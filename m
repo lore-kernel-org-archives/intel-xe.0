@@ -4,153 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB873CD11C2
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 15:46:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EF94CD11C2
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 15:47:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66F9210ED03;
-	Wed, 10 Apr 2024 15:46:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD37D1125A0;
+	Wed, 10 Apr 2024 15:47:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EcbAjZsJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NlMB9+Vu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 157AC10EB3C
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Apr 2024 15:46:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50D1810ED03
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Apr 2024 15:47:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712764017; x=1744300017;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=Z7khXtDdH8LBSCprs+Nw57k0bx1GsvCUuMwxkOPvrpQ=;
- b=EcbAjZsJyqz69TWyxGEAoYZLiogE3c+TZ/fBfW2YB1SCGwTvR27TGwNe
- 7LKiyILMHd1srQDGRp9dFcM/8KfiSATXUQ9TyOhlX+6sntzZIWcfBQcPo
- 8Lk5w0EzNDVSIcip1fUy6600DVOJ3o/uVUGLmmGu3igGaskddkRmJs3rA
- 8SfTZ34L3IH6zZiEXszLs4o/S7w0Dhq+d3z0B5k5LUq8IW5Hv5J9FvQX8
- C8kRF9RnXYJDfrKeRYzdpCFRFSK8fvpvWgXfF0J0ucQl4KiZOQ0LXULID
- ikiD4243/Dx8gDTb54IFsNjRoMcGBIEZaxhiP0wVtjMmXL/47JbxveDXp w==;
-X-CSE-ConnectionGUID: jrEgvLVNRC+YW2AHB3Ds7w==
-X-CSE-MsgGUID: B67ZGcCySHqiVD0NFpfBpA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="8011309"
+ t=1712764036; x=1744300036;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=QskQrD2SS0wSFZEHgRSudqT9jaUwbFbe3CY4Zw3PYPs=;
+ b=NlMB9+VuGfEJpFNKlg8jY5X7MxzEdLWmznHYF2BC+vhQtChBsHqJ32dC
+ N/6iUdAZePNLvSDvhe3R1EsOkaiKEP1148L7oQ5ojo/6HTEWSLZuslE9J
+ C5l1OAQA9vc2yPBa/1leFObueyOp/i0r9cvvTTfUSK7mudZ+f2KWM8RTn
+ 0S/20Oe4CNnGniTapV7LLM98eGepV77zyKXFg6GWDxoTHLE39+BgsPPri
+ 0TQPQNnU5QGc5vuDmYxMIc0xB3OzEj8oLEqFmDEJLE9/nkmzaLl0TkLzu
+ 8TPDFKc3Z21+6aSQNBdWEoXyc1ZKuTRtiYa44UNO3W83m0JnREZN0TdsY w==;
+X-CSE-ConnectionGUID: UeA4rRdDRa6qLYsbcvatHQ==
+X-CSE-MsgGUID: sAJzmSmfRWmete8Xf6wlpQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="7988734"
 X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; 
-   d="scan'208";a="8011309"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 08:46:56 -0700
-X-CSE-ConnectionGUID: Uv68Gdp4RjGxlaZKko25Yw==
-X-CSE-MsgGUID: 60Yk7S14TaKizrUKWvTDhQ==
+   d="scan'208";a="7988734"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2024 08:47:16 -0700
+X-CSE-ConnectionGUID: zva6EfXgTTiQst/Msa0Ing==
+X-CSE-MsgGUID: xOWpP3/JTpeEqAvlbwuZ8A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="20562971"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 10 Apr 2024 08:46:54 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 10 Apr 2024 08:46:51 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 10 Apr 2024 08:46:50 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 10 Apr 2024 08:46:50 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 10 Apr 2024 08:46:49 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nIOSl5cWv9PXs/02Tq/KEHVHd43BgD70o6oBoMngKpN8vcSaQ56G93JMVyQOvaD/ugJDWTiF7FjRl8UtRMJ+PMhD+iLG4CgKEbZWRnHcfzKHeIOCh79KwbEvydPmtLhnsh6nEOAS4WYUy6DfUKoh3JDY7BzCH4AKNZazTR/cUmkYx2m2N541aN/O7+IDI1A+/ay5O+hGssSpM+1Pul/Z+ZL6IgqwoIL2PV117xL6rjvPvWiCpnvAvtcqpnaDPGdKpfXWcbJMCNXk5WvMpgnXr1B0GgxqI1P9pnZHuMVyuv4UE4MEV/bg3IGxgkjKvrEB3S6MjprWPj2AwQwtktzXbw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9WdhidEe0z1PZocQ/wbKX5a8jkCaOJF5R7Bg4sDAYCQ=;
- b=FILzqD0SQLJz1QdIRw+HQqbYqIGuRBhUg+bbjoGPTlZkPWoJkEfZexZZM7qFg0+bIWvVsGFEX1FZfkHx/7ThP0Ocnjzm40cndsBGg5wvspqCR7wMIeEMA4ZNH24UTfNjqsKjwZJZsq6iN9CYZw46zqG5jZoq20gCFvFR2l0GJygiVNSF1wbhklRi5Eedelh0UhEpMk0cja2GSSV3j2FckGRY211qVjy8MBfyNpVLgzYy0MJo6LJ1eUDo9x9TFkjylMZfzM6AaYp1vBN1ixQKQhH4cAvZvrrFnpxLZ52CgtMjIzQL96JIs/XoHuBXM38Yx/H9w8bnWOveAGxbNNF8tw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
- by CH3PR11MB8773.namprd11.prod.outlook.com (2603:10b6:610:1cb::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7430.46; Wed, 10 Apr
- 2024 15:46:45 +0000
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::b867:cbf6:e190:6eb]) by MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::b867:cbf6:e190:6eb%5]) with mapi id 15.20.7452.019; Wed, 10 Apr 2024
- 15:46:44 +0000
-Date: Wed, 10 Apr 2024 17:46:42 +0200
-From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 5/5] drm/xe/pf: Add support to configure GuC SR-IOV
- policies
-Message-ID: <20240410154642.gmjwelkg5kvbf6qd@intel.com>
-References: <20240410123125.1155-1-michal.wajdeczko@intel.com>
- <20240410123125.1155-6-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240410123125.1155-6-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: WA2P291CA0012.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1e::27) To MN0PR11MB6135.namprd11.prod.outlook.com
- (2603:10b6:208:3c9::9)
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="43859526"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa002.fm.intel.com with ESMTP; 10 Apr 2024 08:47:14 -0700
+Received: from [10.252.42.161] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.252.42.161])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 1677F2FC4F;
+ Wed, 10 Apr 2024 16:47:12 +0100 (IST)
+Message-ID: <72afa21e-e7ec-4497-a771-6901a7f44fe8@intel.com>
+Date: Wed, 10 Apr 2024 17:47:11 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|CH3PR11MB8773:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ui1hBwWKM/KLj7mulvnRbBFovULrWJgVJhtTWkgNlOiqJJ9GkWKBbQCcddKGLOjykudX/0stl3lDTI3jHYHvnjDs1Wgysm/KtbX7HQZqIdvoBeAfjCLKJ5ANQ/riQUb5QTcLMrNvJhLQdqOIzzoLxYgm+2LKfP96RSVIUvA0CREv2VFLgtqx2xEEmNzJbZFjlmwEAyBMYrmDAFlE9XIXt2mjiYV/y6SlrIjYFHn4kMQJjBS6ulY51hjiVYhK/BCqI5irtjVoVgt4fLeKi8U6Cj+enPRhfHT49+6X8PkMDY4pICHRDVw+90DReFu38t3dAvtomfIujHZIRHNFUWOTwww0dFN45FF3MhD+t+RlERP9K5YnfZi6wW0rpqK0aOujWdswZ09Y8cS1SUau8c7DcPNHl17fHR19Fg4hEbsdkQLIqf70V2O4cU3dgTY5Or3P0nr/uRdsRiY4cNvbeg4gEipfUx2zW1yKxcdiAXVu3A9LrEUAr1AUhuZUqzxLrG31OzPIVZy2DHgTW40s2wo1KzdV84/25SdAvuhOYxDhibfVOYJZC7AedRyaZFPIFx08MxtSifklb3jTsBD1qSJX9sGXgxAEujrXm44gjVQUMO6BMvL3gclNMTOul0oLItZtj1hJZd4YDcRPueJDLIcabUMSVNvDVYnQYQVpM5K64DM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K2I0SC9oN2J1cGh1L0pvNzliSnFCdkMwRGZ4MFNwMEUza2gvckNIbG94dWRB?=
- =?utf-8?B?UFlOeEdscXNwZjBtNHNabHN5SDlScmhGbkpqekhpRWtKamJXRy9sRkt5aG8x?=
- =?utf-8?B?cjFmWHI0U3ZVYXRkSklVa040NHhVZ0tESXdta1N5dHltVlBIb2phWDN3Ti9l?=
- =?utf-8?B?YnE5SnovS0c3YzZiSzRaSVlqNEZ4S1IvN3czWHBZQ0N2dU1ycDNIWTNQUHc3?=
- =?utf-8?B?TmFVZDI2dmtidW1SdEtqcDhKVGw0U3pqY3VydDY0RE0xU1VkeGIzd3RUQjBZ?=
- =?utf-8?B?RmRwNkRTbFVGNHd2TlJHT3lCQVlIbGpydkRWS2kvNVJlS2MyaloxNlM2MjVH?=
- =?utf-8?B?RWM5Z1pWVy9CNGFFb2Y2WDNNZTZFR214S2ViSHdZajRiVGk4MllCZlNPekZ5?=
- =?utf-8?B?MnpiWGxPelhCNlZOTmNEZmxEdEYyNjlEaTZKTnJCQW82Uy8yRU80OEs1Ukta?=
- =?utf-8?B?K0owNHpDUEo4TUR0VjJwTUY4K1JNVnBaK3d0WEtTaXpVM3NhQXZkcWdRSEhQ?=
- =?utf-8?B?UVBPcGdGVzB4Q2NjNjhVMmlTZWYyUDZBU0dQbm1GYm9QS0huNVd5ODEzdVN4?=
- =?utf-8?B?bWJiMTJ5YWowVFptVmtGRDVVMnl4cWZoejlWTFdjZlZnaVdjb0dBdUtDMmZH?=
- =?utf-8?B?cVFHYzRPUVdSa0hSdHZ1bEZKTTJCNFlPdU5icDFiL3JoS3dIU1d1a24ydVZk?=
- =?utf-8?B?dlBiaklJQ3dTbk9SMG9SUExSRFpDenBpWmZoclNJZkk2Y2UxMmVaMTliMEJB?=
- =?utf-8?B?WXVTSS9wbFJFaTAyQmkxaVVlS3hZT1Q2NytrcWFtUGpadFg5QmZNbVJJekRK?=
- =?utf-8?B?dmhmcjhPM2dsL2t6Q2RBUEZXMTRubmp5NWpXRUZQaGpSc3N4ZnpaMm9pd1lk?=
- =?utf-8?B?U0R1TXR5QlRRS3dzMXdRSDRZZ1FmYXdhSVJLeVdzVldEaVB1ODVlYzBreUtN?=
- =?utf-8?B?ckpqY0lNdG1KRDRyOUlUaUFSUnorb1ZNbEZkSFNQSXkrSytMakpQclp5Q0Fx?=
- =?utf-8?B?ZW9Uc0R2ZFVFZUY3YnZtdForMHQzUEpseVVCd3NpV2lBM29oTVJpYlF2bVpL?=
- =?utf-8?B?cFRjaUx4NWYyZkVoaXVaek1QN0RJWGttRE8xcWtDcFhnMTh1aXNTcW1HSGc2?=
- =?utf-8?B?RDRFVCtBSGlYQkRoSWdraUFJb08vQWlsc1BsYStPREtiOGdUc2ZnQ1N4dlRP?=
- =?utf-8?B?bFhNenlvNG9hcXh3ODhjZ0lvbjB5cXlMUlVUNmljeHlSekc3emdKMzFRNjJH?=
- =?utf-8?B?TjZNRWh4QTluR1hONE9jenU2K21raXZNR2pMTmlFU203T08rdTBLbFViV2Fq?=
- =?utf-8?B?K1JQR3NEeW92Y3d0RTY0M0VIUjVrZFcvdGtkR1h3RnZvQVpRME5BTEVTTmhW?=
- =?utf-8?B?MlZhYW1KN1dTeGUrV05uRzk0bzNCUlRNOWpZMWRhNTJGNWNDcnl6b25jUCtv?=
- =?utf-8?B?NmgvVVVLMkRJaU9IVjBOVFJDd0t4Nm13M1I1R0dmWEdWOG8rUTluL0pPOUhF?=
- =?utf-8?B?N3NYZXUzdXR4M1dtVjYrS0NaRlZIWU9MYTlQaGc3bXFIdFZXY1Qya3Rzc3h0?=
- =?utf-8?B?bjc5VXJTWDBrVVBWMG1GRTg3Y1pBUlVBSWtualcrUWZ0S2hadS9sWEU5eWxj?=
- =?utf-8?B?MXlTNHM0NkVRZmUvZURzQTV4NzBPYmxpS3JHZU43L3pGS2FSUittSFJFaitX?=
- =?utf-8?B?emFUSW1qRTdHemhydjlVaFd2ejhXbHZCajY3T1BtQklBS1pENzZBb1FpZjJt?=
- =?utf-8?B?blRPbjFJY0djSGQ4TmxTdmdWaVFBd1U2SVMzdUUvQ2NwOFlHaEZzUEpoQ3B0?=
- =?utf-8?B?cmNwaCtudGtINlB4ZTNvNUdqNHhQeE5YNllRcDlpdjhXZUl2aHZzZURqMDhi?=
- =?utf-8?B?eXB4RXFRY29idW5pMU1DRnRudkpod1RTVlpTV1N3Z1M2MXhROWt6UmhvNEY2?=
- =?utf-8?B?dFIwNlF3TlVaQVlzUldEOVl1algzRkxIS3FOY3hranRZb1J0L1h2QS9lcnN4?=
- =?utf-8?B?ZTJYV0pUajMrUVQ5K25CeXdnU0tOSVdzZkxOdlRveWhLT1YzUW4zQkJUSHNm?=
- =?utf-8?B?enFVblpPR0JQdTZIZWtiTGJ2Ui9MeWdveDRXR0Njb1RsbWlZaThRVnNMcGlE?=
- =?utf-8?B?aTNVdnZzMFRqSHZoRi9kSWNPM05pU2MwQThSZ2xqbStKaVM5dER5c3lwcjh4?=
- =?utf-8?B?L3c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 23df8387-b89b-443c-bc64-08dc59756c8b
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2024 15:46:44.8531 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 26Jewn/W/uTqRaehO99p5UAm/kmgYtvaAtzl62NxmKId7g0Cr4wee2ttwndrqT5RWJVclETKmAfehNB28vMxKcXhg9KG58q7nTI3Nh5sTRs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8773
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] drm/xe/guc: Add helpers for GuC KLVs
+Content-Language: en-US
+To: =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Cc: intel-xe@lists.freedesktop.org,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+References: <20240410123125.1155-1-michal.wajdeczko@intel.com>
+ <20240410123125.1155-5-michal.wajdeczko@intel.com>
+ <20240410153057.gevtuk53n6vifc3f@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20240410153057.gevtuk53n6vifc3f@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,599 +75,276 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on śro [2024-kwi-10 14:31:25 +0200]:
-> There are few knobs inside GuC firmware to control VFs scheduling.
-> Add basic functions to support their reconfigurations.
-> We will start using them shortly once we prepare debugfs.
+
+
+On 10.04.2024 17:30, Piotr Piórkowski wrote:
+> Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on śro [2024-kwi-10 14:31:24 +0200]:
+>> Many of the GuC actions use KLVs to pass additional parameters or
+>> configuration data. Add few helper functions for better reporting
+>> any information related to KLVs.
+>>
+>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+>> ---
+>> v2: review comments from Himal
+>> ---
+>>  drivers/gpu/drm/xe/Makefile             |   1 +
+>>  drivers/gpu/drm/xe/xe_guc_klv_helpers.c | 134 ++++++++++++++++++++++++
+>>  drivers/gpu/drm/xe/xe_guc_klv_helpers.h |  51 +++++++++
+>>  3 files changed, 186 insertions(+)
+>>  create mode 100644 drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+>>  create mode 100644 drivers/gpu/drm/xe/xe_guc_klv_helpers.h
+>>
+>> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+>> index 8d79df05b84f..ad238f48cf51 100644
+>> --- a/drivers/gpu/drm/xe/Makefile
+>> +++ b/drivers/gpu/drm/xe/Makefile
+>> @@ -98,6 +98,7 @@ xe-y += xe_bb.o \
+>>  	xe_guc_debugfs.o \
+>>  	xe_guc_hwconfig.o \
+>>  	xe_guc_id_mgr.o \
+>> +	xe_guc_klv_helpers.o \
+>>  	xe_guc_log.o \
+>>  	xe_guc_pc.o \
+>>  	xe_guc_submit.o \
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+>> new file mode 100644
+>> index 000000000000..8927374f55ff
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+>> @@ -0,0 +1,134 @@
+>> +// SPDX-License-Identifier: MIT
+>> +/*
+>> + * Copyright © 2024 Intel Corporation
+>> + */
+>> +
+>> +#include <linux/bitfield.h>
+>> +#include <drm/drm_print.h>
+>> +
+>> +#include "abi/guc_klvs_abi.h"
+>> +#include "xe_guc_klv_helpers.h"
+>> +
+>> +#define make_u64(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
+>> +
 > 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> ---
->  drivers/gpu/drm/xe/Makefile                   |   1 +
->  drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c    | 417 ++++++++++++++++++
->  drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h    |  25 ++
->  .../gpu/drm/xe/xe_gt_sriov_pf_policy_types.h  |  31 ++
->  drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h     |  21 +
->  drivers/gpu/drm/xe/xe_gt_types.h              |   7 +
->  6 files changed, 502 insertions(+)
->  create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
->  create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
->  create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h
->  create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
+> This is the second such macro in Xe - maybe it would be worth moving
+> it to a common header somewhere ?
+
+it's complicated
+
+this macro here is (I hope) just temporary as either:
+  - it will be promoted to xe_macros.h [1], or
+  - something similar will be available in wordpart.h [2]
+
+[1] https://patchwork.freedesktop.org/series/129854/
+
+[2]
+https://lore.kernel.org/lkml/20240214214654.1700-1-michal.wajdeczko@intel.com/
+
 > 
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index ad238f48cf51..3efec3315044 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -158,6 +158,7 @@ xe-y += \
->  
->  xe-$(CONFIG_PCI_IOV) += \
->  	xe_gt_sriov_pf_control.o \
-> +	xe_gt_sriov_pf_policy.o \
->  	xe_lmtt.o \
->  	xe_lmtt_2l.o \
->  	xe_lmtt_ml.o \
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-> new file mode 100644
-> index 000000000000..5d38358e6882
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-> @@ -0,0 +1,417 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2023-2024 Intel Corporation
-> + */
-> +
-> +#include "abi/guc_actions_sriov_abi.h"
-> +
-> +#include "xe_bo.h"
-> +#include "xe_gt.h"
-> +#include "xe_gt_sriov_pf_helpers.h"
-> +#include "xe_gt_sriov_pf_policy.h"
-> +#include "xe_gt_sriov_printk.h"
-> +#include "xe_guc_ct.h"
-> +#include "xe_guc_klv_helpers.h"
-> +
-> +/*
-> + * Return: number of KLVs that were successfully parsed and saved,
-> + *         negative error code on failure.
-> + */
-> +static int guc_action_update_vgt_policy(struct xe_guc *guc, u64 addr, u32 size)
-> +{
-> +	u32 request[] = {
-> +		GUC_ACTION_PF2GUC_UPDATE_VGT_POLICY,
-> +		lower_32_bits(addr),
-> +		upper_32_bits(addr),
-> +		size,
-> +	};
-> +
-> +	return xe_guc_ct_send_block(&guc->ct, request, ARRAY_SIZE(request));
-> +}
-> +
-> +/*
-> + * Return: number of KLVs that were successfully parsed and saved,
-> + *         negative error code on failure.
-> + */
-> +static int pf_send_policy_klvs(struct xe_gt *gt, const u32 *klvs, u32 num_dwords)
-> +{
-> +	const u32 bytes = num_dwords * sizeof(u32);
-> +	struct xe_tile *tile = gt_to_tile(gt);
-> +	struct xe_device *xe = tile_to_xe(tile);
-> +	struct xe_guc *guc = &gt->uc.guc;
-> +	struct xe_bo *bo;
-> +	int ret;
-> +
-> +	bo = xe_bo_create_pin_map(xe, tile, NULL,
-> +				  ALIGN(bytes, PAGE_SIZE),
-> +				  ttm_bo_type_kernel,
-> +				  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-> +				  XE_BO_FLAG_GGTT);
-> +	if (IS_ERR(bo))
-> +		return PTR_ERR(bo);
-> +
-> +	iosys_map_memcpy_to(&bo->vmap, 0, klvs, bytes);
-
-Is there any reason why you used this function here instead of xe_map_memcpy_to ?
-
-> +
-> +	ret = guc_action_update_vgt_policy(guc, xe_bo_ggtt_addr(bo), num_dwords);
-> +
-> +	xe_bo_unpin_map_no_vm(bo);
-> +
-> +	return ret;
-> +}
-> +
-> +/*
-> + * Return: 0 on success, -ENOKEY if some KLVs were not updated, -EPROTO if reply was malformed,
-> + *         negative error code on failure.
-> + */
-> +static int pf_push_policy_klvs(struct xe_gt *gt, u32 num_klvs,
-> +			       const u32 *klvs, u32 num_dwords)
-> +{
-> +	int ret;
-> +
-> +	xe_gt_assert(gt, num_klvs == xe_guc_klv_count(klvs, num_dwords));
-> +
-> +	ret = pf_send_policy_klvs(gt, klvs, num_dwords);
-> +
-> +	if (ret != num_klvs) {
-> +		int err = ret < 0 ? ret : ret < num_klvs ? -ENOKEY : -EPROTO;
-> +		struct drm_printer p = xe_gt_info_printer(gt);
-> +
-> +		xe_gt_sriov_notice(gt, "Failed to push %u policy KLV%s (%pe)\n",
-> +				   num_klvs, str_plural(num_klvs), ERR_PTR(err));
-> +		xe_guc_klv_print(klvs, num_dwords, &p);
-> +		return err;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int pf_push_policy_u32(struct xe_gt *gt, u16 key, u32 value)
-> +{
-> +	u32 klv[] = {
-> +		PREP_GUC_KLV(key, 1),
-> +		value,
-> +	};
-> +
-> +	return pf_push_policy_klvs(gt, 1, klv, ARRAY_SIZE(klv));
-> +}
-> +
-> +static int pf_update_policy_bool(struct xe_gt *gt, u16 key, bool *policy, bool value)
-> +{
-> +	int err;
-> +
-> +	err = pf_push_policy_u32(gt, key, value);
-> +	if (unlikely(err)) {
-> +		xe_gt_sriov_notice(gt, "Failed to update policy %#x '%s' to '%s' (%pe)\n",
-> +				   key, xe_guc_klv_key_to_string(key),
-> +				   str_enabled_disabled(value), ERR_PTR(err));
-> +		return err;
-> +	}
-> +
-> +	xe_gt_sriov_dbg(gt, "policy key %#x '%s' updated to '%s'\n",
-> +			key, xe_guc_klv_key_to_string(key),
-> +			str_enabled_disabled(value));
-> +
-> +	*policy = value;
-> +	return 0;
-> +}
-> +
-> +static int pf_update_policy_u32(struct xe_gt *gt, u16 key, u32 *policy, u32 value)
-> +{
-> +	int err;
-> +
-> +	err = pf_push_policy_u32(gt, key, value);
-> +	if (unlikely(err)) {
-> +		xe_gt_sriov_notice(gt, "Failed to update policy %#x '%s' to '%s' (%pe)\n",
-> +				   key, xe_guc_klv_key_to_string(key),
-> +				   str_enabled_disabled(value), ERR_PTR(err));
-> +		return err;
-> +	}
-> +
-> +	xe_gt_sriov_dbg(gt, "policy key %#x '%s' updated to %u\n",
-> +			key, xe_guc_klv_key_to_string(key), value);
-> +
-> +	*policy = value;
-> +	return 0;
-> +}
-
-Have you considered merging the common contents of the pf_update_policy_bool and
-pf_update_policy_u32 functions?
-These functions are almost identical (except for the arguments and the debug log one value)
-- I'm not saying that merging the common content into one function is a good idea,
-but it might be worth considering.
-
-> +
-> +static int pf_provision_sched_if_idle(struct xe_gt *gt, bool enable)
-> +{
-> +	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-> +	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	return pf_update_policy_bool(gt, GUC_KLV_VGT_POLICY_SCHED_IF_IDLE_KEY,
-> +				     &gt->sriov.pf.policy.guc.sched_if_idle,
-> +				     enable);
-> +}
-> +
-> +static int pf_reprovision_sched_if_idle(struct xe_gt *gt)
-> +{
-> +	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-> +	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	return pf_provision_sched_if_idle(gt, gt->sriov.pf.policy.guc.sched_if_idle);
-> +}
-> +
-> +static void pf_sanitize_sched_if_idle(struct xe_gt *gt)
-> +{
-> +	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-> +	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	gt->sriov.pf.policy.guc.sched_if_idle = false;
-> +}
-> +
-> +/**
-> + * xe_gt_sriov_pf_policy_set_sched_if_idle - Control the 'sched_if_idle' policy.
-> + * @gt: the &xe_gt where to apply the policy
-> + * @enable: the value of the 'sched_if_idle' policy
-> + *
-> + * This function can only be called on PF.
-> + *
-> + * Return: 0 on success or a negative error code on failure.
-> + */
-> +int xe_gt_sriov_pf_policy_set_sched_if_idle(struct xe_gt *gt, bool enable)
-> +{
-> +	int err;
-> +
-> +	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
-> +	err = pf_provision_sched_if_idle(gt, enable);
-> +	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	return err;
-> +}
-> +
-> +/**
-> + * xe_gt_sriov_pf_policy_get_sched_if_idle - Retrieve value of 'sched_if_idle' policy.
-> + * @gt: the &xe_gt where to read the policy from
-> + *
-> + * This function can only be called on PF.
-> + *
-> + * Return: value of 'sched_if_idle' policy.
-> + */
-> +bool xe_gt_sriov_pf_policy_get_sched_if_idle(struct xe_gt *gt)
-> +{
-> +	bool enable;
-> +
-> +	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-> +
-> +	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
-> +	enable = gt->sriov.pf.policy.guc.sched_if_idle;
-> +	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	return enable;
-> +}
-> +
-> +static int pf_provision_reset_engine(struct xe_gt *gt, bool enable)
-> +{
-> +	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-> +	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	return pf_update_policy_bool(gt, GUC_KLV_VGT_POLICY_RESET_AFTER_VF_SWITCH_KEY,
-> +				     &gt->sriov.pf.policy.guc.reset_engine, enable);
-> +}
-> +
-> +static int pf_reprovision_reset_engine(struct xe_gt *gt)
-> +{
-> +	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-> +	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	return pf_provision_reset_engine(gt, gt->sriov.pf.policy.guc.reset_engine);
-> +}
-> +
-> +static void pf_sanitize_reset_engine(struct xe_gt *gt)
-> +{
-> +	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-> +	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	gt->sriov.pf.policy.guc.reset_engine = false;
-> +}
-> +
-> +/**
-> + * xe_gt_sriov_pf_policy_set_reset_engine - Control the 'reset_engine' policy.
-> + * @gt: the &xe_gt where to apply the policy
-> + * @enable: the value of the 'reset_engine' policy
-> + *
-> + * This function can only be called on PF.
-> + *
-> + * Return: 0 on success or a negative error code on failure.
-> + */
-> +int xe_gt_sriov_pf_policy_set_reset_engine(struct xe_gt *gt, bool enable)
-> +{
-> +	int err;
-> +
-> +	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
-> +	err = pf_provision_reset_engine(gt, enable);
-> +	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	return err;
-> +}
-> +
-> +/**
-> + * xe_gt_sriov_pf_policy_get_reset_engine - Retrieve value of 'reset_engine' policy.
-> + * @gt: the &xe_gt where to read the policy from
-> + *
-> + * This function can only be called on PF.
-> + *
-> + * Return: value of 'reset_engine' policy.
-> + */
-> +bool xe_gt_sriov_pf_policy_get_reset_engine(struct xe_gt *gt)
-> +{
-> +	bool enable;
-> +
-> +	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-> +
-> +	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
-> +	enable = gt->sriov.pf.policy.guc.reset_engine;
-> +	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	return enable;
-> +}
-> +
-> +static int pf_provision_sample_period(struct xe_gt *gt, u32 value)
-> +{
-> +	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-> +	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	return pf_update_policy_u32(gt, GUC_KLV_VGT_POLICY_ADVERSE_SAMPLE_PERIOD_KEY,
-> +				    &gt->sriov.pf.policy.guc.sample_period, value);
-> +}
-> +
-> +static int pf_reprovision_sample_period(struct xe_gt *gt)
-> +{
-> +	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-> +	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	return pf_provision_sample_period(gt, gt->sriov.pf.policy.guc.sample_period);
-> +}
-> +
-> +static void pf_sanitize_sample_period(struct xe_gt *gt)
-> +{
-> +	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-> +	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	gt->sriov.pf.policy.guc.sample_period = 0;
-> +}
-> +
-> +/**
-> + * xe_gt_sriov_pf_policy_set_sample_period - Control the 'sample_period' policy.
-> + * @gt: the &xe_gt where to apply the policy
-> + * @value: the value of the 'sample_period' policy
-> + *
-> + * This function can only be called on PF.
-> + *
-> + * Return: 0 on success or a negative error code on failure.
-> + */
-> +int xe_gt_sriov_pf_policy_set_sample_period(struct xe_gt *gt, u32 value)
-> +{
-> +	int err;
-> +
-> +	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
-> +	err = pf_provision_sample_period(gt, value);
-> +	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	return err;
-> +}
-> +
-> +/**
-> + * xe_gt_sriov_pf_policy_get_sample_period - Retrieve value of 'sample_period' policy.
-> + * @gt: the &xe_gt where to read the policy from
-> + *
-> + * This function can only be called on PF.
-> + *
-> + * Return: value of 'sample_period' policy.
-> + */
-> +u32 xe_gt_sriov_pf_policy_get_sample_period(struct xe_gt *gt)
-> +{
-> +	u32 value;
-> +
-> +	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-> +
-> +	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
-> +	value = gt->sriov.pf.policy.guc.sample_period;
-> +	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	return value;
-> +}
-> +
-> +static void pf_sanitize_guc_policies(struct xe_gt *gt)
-> +{
-> +	pf_sanitize_sched_if_idle(gt);
-> +	pf_sanitize_reset_engine(gt);
-> +	pf_sanitize_sample_period(gt);
-> +}
-> +
-> +/**
-> + * xe_gt_sriov_pf_policy_sanitize - Reset policy settings.
-> + * @gt: the &xe_gt
-> + *
-> + * This function can only be called on PF.
-> + *
-> + * Return: 0 on success or a negative error code on failure.
-> + */
-> +void xe_gt_sriov_pf_policy_sanitize(struct xe_gt *gt)
-> +{
-> +	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
-> +	pf_sanitize_guc_policies(gt);
-> +	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
-> +}
-> +
-> +/**
-> + * xe_gt_sriov_pf_policy_reprovision - Reprovision (and optionally reset) policy settings.
-> + * @gt: the &xe_gt
-> + * @reset: if true will reprovision using default values instead of latest
-> + *
-> + * This function can only be called on PF.
-> + *
-> + * Return: 0 on success or a negative error code on failure.
-> + */
-> +int xe_gt_sriov_pf_policy_reprovision(struct xe_gt *gt, bool reset)
-> +{
-> +	int err = 0;
-> +
-> +	xe_device_mem_access_get(gt_to_xe(gt));
-> +
-> +	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
-> +	if (reset)
-> +		pf_sanitize_guc_policies(gt);
-> +	err |= pf_reprovision_sched_if_idle(gt);
-> +	err |= pf_reprovision_reset_engine(gt);
-> +	err |= pf_reprovision_sample_period(gt);
-> +	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	xe_device_mem_access_get(gt_to_xe(gt));
-
-
-Was there supposed to be xe_device_mem_access_put here ?
-
-Thanks,
-Piotr
-
-> +
-> +	return err ? -ENXIO : 0;
-> +}
-> +
-> +static void print_guc_policies(struct drm_printer *p, struct xe_gt_sriov_guc_policies *policy)
-> +{
-> +	drm_printf(p, "%s:\t%s\n",
-> +		   xe_guc_klv_key_to_string(GUC_KLV_VGT_POLICY_SCHED_IF_IDLE_KEY),
-> +		   str_enabled_disabled(policy->sched_if_idle));
-> +	drm_printf(p, "%s:\t%s\n",
-> +		   xe_guc_klv_key_to_string(GUC_KLV_VGT_POLICY_RESET_AFTER_VF_SWITCH_KEY),
-> +		   str_enabled_disabled(policy->reset_engine));
-> +	drm_printf(p, "%s:\t%u %s\n",
-> +		   xe_guc_klv_key_to_string(GUC_KLV_VGT_POLICY_ADVERSE_SAMPLE_PERIOD_KEY),
-> +		   policy->sample_period, policy->sample_period ? "ms" : "(disabled)");
-> +}
-> +
-> +/**
-> + * xe_gt_sriov_pf_policy_print - Dump actual policy values.
-> + * @gt: the &xe_gt where to read the policy from
-> + * @p: the &drm_printer
-> + *
-> + * This function can only be called on PF.
-> + *
-> + * Return: 0 on success or a negative error code on failure.
-> + */
-> +int xe_gt_sriov_pf_policy_print(struct xe_gt *gt, struct drm_printer *p)
-> +{
-> +	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-> +
-> +	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
-> +	print_guc_policies(p, &gt->sriov.pf.policy.guc);
-> +	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	return 0;
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
-> new file mode 100644
-> index 000000000000..2a5dc33dc6d7
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
-> @@ -0,0 +1,25 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2023-2024 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_GT_SRIOV_PF_POLICY_H_
-> +#define _XE_GT_SRIOV_PF_POLICY_H_
-> +
-> +#include <linux/types.h>
-> +
-> +struct drm_printer;
-> +struct xe_gt;
-> +
-> +int xe_gt_sriov_pf_policy_set_sched_if_idle(struct xe_gt *gt, bool enable);
-> +bool xe_gt_sriov_pf_policy_get_sched_if_idle(struct xe_gt *gt);
-> +int xe_gt_sriov_pf_policy_set_reset_engine(struct xe_gt *gt, bool enable);
-> +bool xe_gt_sriov_pf_policy_get_reset_engine(struct xe_gt *gt);
-> +int xe_gt_sriov_pf_policy_set_sample_period(struct xe_gt *gt, u32 value);
-> +u32 xe_gt_sriov_pf_policy_get_sample_period(struct xe_gt *gt);
-> +
-> +void xe_gt_sriov_pf_policy_sanitize(struct xe_gt *gt);
-> +int xe_gt_sriov_pf_policy_reprovision(struct xe_gt *gt, bool reset);
-> +int xe_gt_sriov_pf_policy_print(struct xe_gt *gt, struct drm_printer *p);
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h
-> new file mode 100644
-> index 000000000000..4de532af135e
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h
-> @@ -0,0 +1,31 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2023-2024 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_GT_SRIOV_PF_POLICY_TYPES_H_
-> +#define _XE_GT_SRIOV_PF_POLICY_TYPES_H_
-> +
-> +#include <linux/types.h>
-> +
-> +/**
-> + * struct xe_gt_sriov_guc_policies - GuC SR-IOV policies.
-> + * @sched_if_idle: controls strict scheduling policy.
-> + * @reset_engine: controls engines reset on VF switch policy.
-> + * @sample_period: adverse events sampling period (in milliseconds).
-> + */
-> +struct xe_gt_sriov_guc_policies {
-> +	bool sched_if_idle;
-> +	bool reset_engine;
-> +	u32 sample_period;
-> +};
-> +
-> +/**
-> + * struct xe_gt_sriov_pf_policy - PF policy data.
-> + * @guc: GuC scheduling policies.
-> + */
-> +struct xe_gt_sriov_pf_policy {
-> +	struct xe_gt_sriov_guc_policies guc;
-> +};
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
-> new file mode 100644
-> index 000000000000..768277b8bc95
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
-> @@ -0,0 +1,21 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2023-2024 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_GT_SRIOV_PF_TYPES_H_
-> +#define _XE_GT_SRIOV_PF_TYPES_H_
-> +
-> +#include <linux/types.h>
-> +
-> +#include "xe_gt_sriov_pf_policy_types.h"
-> +
-> +/**
-> + * struct xe_gt_sriov_pf - GT level PF virtualization data.
-> + * @policy: policy data.
-> + */
-> +struct xe_gt_sriov_pf {
-> +	struct xe_gt_sriov_pf_policy policy;
-> +};
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-> index 2143dffcaf11..882953d9b87d 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> @@ -8,6 +8,7 @@
->  
->  #include "xe_force_wake_types.h"
->  #include "xe_gt_idle_types.h"
-> +#include "xe_gt_sriov_pf_types.h"
->  #include "xe_hw_engine_types.h"
->  #include "xe_hw_fence_types.h"
->  #include "xe_reg_sr_types.h"
-> @@ -140,6 +141,12 @@ struct xe_gt {
->  		u32 adj_offset;
->  	} mmio;
->  
-> +	/** @sriov: virtualization data related to GT */
-> +	union {
-> +		/** @sriov.pf: PF data. Valid only if driver is running as PF */
-> +		struct xe_gt_sriov_pf pf;
-> +	} sriov;
-> +
->  	/**
->  	 * @reg_sr: table with registers to be restored on GT init/resume/reset
->  	 */
-> -- 
-> 2.43.0
 > 
+>> +/**
+>> + * xe_guc_klv_key_to_string - Convert KLV key into friendly name.
+>> + * @key: the `GuC KLV`_ key
+>> + *
+>> + * Return: name of the KLV key.
+>> + */
+>> +const char *xe_guc_klv_key_to_string(u16 key)
+>> +{
+>> +	switch (key) {
+>> +	/* VGT POLICY keys */
+>> +	case GUC_KLV_VGT_POLICY_SCHED_IF_IDLE_KEY:
+>> +		return "sched_if_idle";
+>> +	case GUC_KLV_VGT_POLICY_ADVERSE_SAMPLE_PERIOD_KEY:
+>> +		return "sample_period";
+>> +	case GUC_KLV_VGT_POLICY_RESET_AFTER_VF_SWITCH_KEY:
+>> +		return "reset_engine";
+>> +	/* VF CFG keys */
+>> +	case GUC_KLV_VF_CFG_GGTT_START_KEY:
+>> +		return "ggtt_start";
+>> +	case GUC_KLV_VF_CFG_GGTT_SIZE_KEY:
+>> +		return "ggtt_size";
+>> +	case GUC_KLV_VF_CFG_LMEM_SIZE_KEY:
+>> +		return "lmem_size";
+>> +	case GUC_KLV_VF_CFG_NUM_CONTEXTS_KEY:
+>> +		return "num_contexts";
+>> +	case GUC_KLV_VF_CFG_TILE_MASK_KEY:
+>> +		return "tile_mask";
+>> +	case GUC_KLV_VF_CFG_NUM_DOORBELLS_KEY:
+>> +		return "num_doorbells";
+>> +	case GUC_KLV_VF_CFG_EXEC_QUANTUM_KEY:
+>> +		return "exec_quantum";
+>> +	case GUC_KLV_VF_CFG_PREEMPT_TIMEOUT_KEY:
+>> +		return "preempt_timeout";
+>> +	case GUC_KLV_VF_CFG_BEGIN_DOORBELL_ID_KEY:
+>> +		return "begin_db_id";
+>> +	case GUC_KLV_VF_CFG_BEGIN_CONTEXT_ID_KEY:
+>> +		return "begin_ctx_id";
+>> +	default:
+>> +		return "(unknown)";
+>> +	}
+>> +}
+>> +
+>> +/**
+>> + * xe_guc_klv_print - Print content of the buffer with `GuC KLV`_.
+>> + * @klvs: the buffer with KLVs
+>> + * @num_dwords: number of dwords (u32) available in the buffer
+>> + * @p: the &drm_printer
+>> + *
+>> + * The buffer may contain more than one KLV.
+>> + */
+>> +void xe_guc_klv_print(const u32 *klvs, u32 num_dwords, struct drm_printer *p)
+>> +{
+>> +	while (num_dwords >= GUC_KLV_LEN_MIN) {
+>> +		u32 key = FIELD_GET(GUC_KLV_0_KEY, klvs[0]);
+>> +		u32 len = FIELD_GET(GUC_KLV_0_LEN, klvs[0]);
+> 
+> u16 is probably sufficient in this case,
+> especially since you use u16 in xe_guc_klv_key_to_string() also for the
+> same key.
 
--- 
+but base KLV unit is u32 so IMO better to start with that
+and for the compiler likely it doesn't matter
+
+>> +
+>> +		klvs += GUC_KLV_LEN_MIN;
+>> +		num_dwords -= GUC_KLV_LEN_MIN;
+>> +
+>> +		if (num_dwords < len) {
+>> +			drm_printf(p, "{ key %#06x : truncated %zu of %zu bytes %*ph } # %s\n",
+>> +				   key, num_dwords * sizeof(u32), len * sizeof(u32),
+>> +				   (int)(num_dwords * sizeof(u32)), klvs,
+>> +				   xe_guc_klv_key_to_string(key));
+>> +			return;
+>> +		}
+>> +
+>> +		switch (len) {
+>> +		case 0:
+>> +			drm_printf(p, "{ key %#06x : no value } # %s\n",
+>> +				   key, xe_guc_klv_key_to_string(key));
+>> +			break;
+>> +		case 1:
+>> +			drm_printf(p, "{ key %#06x : 32b value %u } # %s\n",
+>> +				   key, klvs[0], xe_guc_klv_key_to_string(key));
+>> +			break;
+>> +		case 2:
+>> +			drm_printf(p, "{ key %#06x : 64b value %#llx } # %s\n",
+>> +				   key, make_u64(klvs[1], klvs[0]),
+>> +				   xe_guc_klv_key_to_string(key));
+>> +			break;
+>> +		default:
+>> +			drm_printf(p, "{ key %#06x : %zu bytes %*ph } # %s\n",
+>> +				   key, len * sizeof(u32), (int)(len * sizeof(u32)),
+>> +				   klvs, xe_guc_klv_key_to_string(key));
+>> +			break;
+>> +		}
+>> +
+>> +		klvs += len;
+>> +		num_dwords -= len;
+>> +	}
+>> +
+>> +	/* we don't expect any leftovers, fix if KLV header is ever changed */
+>> +	BUILD_BUG_ON(GUC_KLV_LEN_MIN > 1);
+>> +}
+>> +
+>> +/**
+>> + * xe_guc_klv_count - Count KLVs present in the buffer.
+>> + * @klvs: the buffer with KLVs
+>> + * @num_dwords: number of dwords (u32) in the buffer
+>> + *
+>> + * Return: number of recognized KLVs or
+>> + *          a negative error code if KLV buffer is truncated.
+> 
+> ident too large by one space - I do not know if it is not allowed, but it catches my eye :)
+
+good catch, had to double check to see it
+will fix while pushing
+
+> 
+>> + */
+>> +int xe_guc_klv_count(const u32 *klvs, u32 num_dwords)
+>> +{
+>> +	int num_klvs = 0;
+>> +
+>> +	while (num_dwords >= GUC_KLV_LEN_MIN) {
+>> +		u32 len = FIELD_GET(GUC_KLV_0_LEN, klvs[0]);
+>> +
+>> +		if (num_dwords < len + GUC_KLV_LEN_MIN)
+>> +			break;
+>> +
+>> +		klvs += GUC_KLV_LEN_MIN + len;
+>> +		num_dwords -= GUC_KLV_LEN_MIN + len;
+>> +		num_klvs++;
+>> +	}
+>> +
+>> +	return num_dwords ? -ENODATA : num_klvs;
+>> +}
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.h b/drivers/gpu/drm/xe/xe_guc_klv_helpers.h
+>> new file mode 100644
+>> index 000000000000..b835e0ebe6db
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.h
+>> @@ -0,0 +1,51 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2024 Intel Corporation
+>> + */
+>> +
+>> +#ifndef _XE_GUC_KLV_HELPERS_H_
+>> +#define _XE_GUC_KLV_HELPERS_H_
+>> +
+>> +#include <linux/types.h>
+>> +
+>> +struct drm_printer;
+>> +
+>> +const char *xe_guc_klv_key_to_string(u16 key);
+>> +
+>> +void xe_guc_klv_print(const u32 *klvs, u32 num_dwords, struct drm_printer *p);
+>> +int xe_guc_klv_count(const u32 *klvs, u32 num_dwords);
+>> +
+>> +/**
+>> + * PREP_GUC_KLV - Prepare KLV header value based on provided key and len.
+>> + * @key: KLV key
+>> + * @len: KLV length
+>> + *
+>> + * Return: value of the KLV header (u32).
+>> + */
+>> +#define PREP_GUC_KLV(key, len) \
+>> +	(FIELD_PREP(GUC_KLV_0_KEY, (key)) | \
+>> +	 FIELD_PREP(GUC_KLV_0_LEN, (len)))
+>> +
+>> +/**
+>> + * PREP_GUC_KLV_CONST - Prepare KLV header value based on const key and len.
+>> + * @key: const KLV key
+>> + * @len: const KLV length
+>> + *
+>> + * Return: value of the KLV header (u32).
+>> + */
+>> +#define PREP_GUC_KLV_CONST(key, len) \
+>> +	(FIELD_PREP_CONST(GUC_KLV_0_KEY, (key)) | \
+>> +	 FIELD_PREP_CONST(GUC_KLV_0_LEN, (len)))
+>> +
+>> +/**
+>> + * PREP_GUC_KLV_TAG - Prepare KLV header value based on unique KLV definition tag.
+>> + * @TAG: unique tag of the KLV definition
+>> + *
+>> + * Combine separate KEY and LEN definitions of the KLV identified by the TAG.
+>> + *
+>> + * Return: value of the KLV header (u32).
+>> + */
+>> +#define PREP_GUC_KLV_TAG(TAG) \
+>> +	PREP_GUC_KLV_CONST(GUC_KLV_##TAG##_KEY, GUC_KLV_##TAG##_LEN)
+>> +
+>> +#endif
+> 
+> Only minor comments, besides LGTM:
+> Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+
+thanks,
+Michal
+
+> 
+>> -- 
+>> 2.43.0
+>>
+> 
