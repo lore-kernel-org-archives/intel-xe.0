@@ -4,50 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4758CD1297
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D562CD11C2
 	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 17:04:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29B4711341D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 292F011341C;
 	Wed, 10 Apr 2024 17:04:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kY4gr+QR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cKNvVR0O";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A3DA10E7E8
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF60011341C
  for <intel-xe@lists.freedesktop.org>; Wed, 10 Apr 2024 17:04:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712768641; x=1744304641;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=X2nEralu350+F3f36h+7TSkZKQ2eZFuPLwwZgowHhRQ=;
- b=kY4gr+QRTAVd9c2RjVHWwSb+iG2hVeoJXvcV4j1I0Dil1sHH8uwwDtA9
- yws9Lt5Jm4xpFLun4Ftw6ecAA/VJZLOrF6UPEObirU7y40hJkNpykAXBP
- olOQbAuhb23X4r+VeHXNTYNHaF2ccVfiu/iwcwlqUDg8DjCgOVLojGffr
- zFry+2z0FpYMhGBpIzzMiiopNGcNo6Bn3h1g49WNt6yrk+zMqSqOCbsRo
- l75FkckMhk7ggFiqdRtAKH6U8wLDHxp1JGwlEGR1JaPAhSJVMe57uypst
- d6SimlkQ8rLrCXYcOeCPWLaVNTdPhytkKJsZOpsoDnwCc8kwvSNR9UZkJ w==;
-X-CSE-ConnectionGUID: WR5mksMkQX6qTACa1AOH6g==
-X-CSE-MsgGUID: T5N/wFNiS0io0M5ZPg3ONQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="18707629"
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="18707629"
+ t=1712768642; x=1744304642;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=lKhi8HXj5WvtBYPvpUUJGX3ZfaaO7QL51+70dOiUMn0=;
+ b=cKNvVR0Oq11UL5Eee6HvxWOTQSJNF4Qg41gtvyHU1/FuoaNwwsX2+XUk
+ 4uCnFdG3CnF0dfO7ZLbxNI+59RIJ3sCIzZJZ4o8DBrIKAXL1Q2H4iCYHf
+ W7Uu6KGw07tP3rX5TuNtvogH/WT28SoYSiyCmukOLhxkJ6o3ltm9AmEL1
+ 75RmwJ/O3ybVw2xdSvkvg/S/RmugP5yXM+Px+P0yUqrngSfwOENC38NXK
+ 5vOSoqqtcxkqhAykuJ76US0Ubz1Ib/DVZBvpwlKBCgHXrijTweSfMCaf+
+ FVJrixq2TqAMi3pqZgcXNEep6jA3f2WEtPzPo6NFIC/mnYfA2atO5XZPY w==;
+X-CSE-ConnectionGUID: A9umSb04Ql+A8pwzoOEgnQ==
+X-CSE-MsgGUID: 8fSJobnWTbm/+v+Z5u58Yw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="18707630"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="18707630"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 10:04:01 -0700
-X-CSE-ConnectionGUID: lnqGd+iQTBWWzib+jfORsQ==
-X-CSE-MsgGUID: cbDxu5SxSbS/dOoEdrcMFw==
+ 10 Apr 2024 10:04:02 -0700
+X-CSE-ConnectionGUID: dcGKfVe8TeizrNKFc+1otQ==
+X-CSE-MsgGUID: MrqMUILkQzOjlu8Y2cNwLw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="25401926"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="25401932"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.252.42.161])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 10:03:59 -0700
+ 10 Apr 2024 10:04:00 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2 0/5] PF: Add support to configure GuC SR-IOV policies
-Date: Wed, 10 Apr 2024 19:03:33 +0200
-Message-Id: <20240410170338.1199-1-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Subject: [PATCH v2 1/5] drm/xe/pf: Introduce mutex to protect VFs
+ configurations
+Date: Wed, 10 Apr 2024 19:03:34 +0200
+Message-Id: <20240410170338.1199-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240410170338.1199-1-michal.wajdeczko@intel.com>
+References: <20240410170338.1199-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -65,43 +69,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-v2: kernel-doc fix for PF helper (CI.Hooks)
-    typo in GuC ABI doc (Piotr)
-    prefer xe_map_memcpy_to (Piotr)
-    fix xe_device_mem_access_put (Piotr)
+PF driver will maintain configurations and resources for every VF
+and this data could span multiple tiles and/or GTs.  Prepare mutex
+to protect data that we will add in upcoming patches.
 
-Michal Wajdeczko (5):
-  drm/xe/pf: Introduce mutex to protect VFs configurations
-  drm/xe/pf: Introduce helper functions for use by PF
-  drm/xe/guc: Add PF2GUC_UPDATE_VGT_POLICY to ABI
-  drm/xe/guc: Add helpers for GuC KLVs
-  drm/xe/pf: Add support to configure GuC SR-IOV policies
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_sriov.c       |  7 +++++++
+ drivers/gpu/drm/xe/xe_sriov_pf.c    | 15 +++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_pf.h    |  6 ++++++
+ drivers/gpu/drm/xe/xe_sriov_types.h |  4 ++++
+ 4 files changed, 32 insertions(+)
 
- drivers/gpu/drm/xe/Makefile                   |   2 +
- .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    |  47 ++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_helpers.h   |  35 ++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c    | 417 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h    |  25 ++
- .../gpu/drm/xe/xe_gt_sriov_pf_policy_types.h  |  31 ++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h     |  21 +
- drivers/gpu/drm/xe/xe_gt_types.h              |   7 +
- drivers/gpu/drm/xe/xe_guc_klv_helpers.c       | 134 ++++++
- drivers/gpu/drm/xe/xe_guc_klv_helpers.h       |  51 +++
- drivers/gpu/drm/xe/xe_sriov.c                 |   7 +
- drivers/gpu/drm/xe/xe_sriov_pf.c              |  15 +
- drivers/gpu/drm/xe/xe_sriov_pf.h              |   6 +
- drivers/gpu/drm/xe/xe_sriov_pf_helpers.h      |  46 ++
- drivers/gpu/drm/xe/xe_sriov_types.h           |   4 +
- 15 files changed, 848 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_helpers.h
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_policy_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_guc_klv_helpers.c
- create mode 100644 drivers/gpu/drm/xe/xe_guc_klv_helpers.h
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
-
+diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+index d324f131e3da..1b40f5de9ef5 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.c
++++ b/drivers/gpu/drm/xe/xe_sriov.c
+@@ -94,6 +94,13 @@ int xe_sriov_init(struct xe_device *xe)
+ 	if (!IS_SRIOV(xe))
+ 		return 0;
+ 
++	if (IS_SRIOV_PF(xe)) {
++		int err = xe_sriov_pf_init_early(xe);
++
++		if (err)
++			return err;
++	}
++
+ 	xe_assert(xe, !xe->sriov.wq);
+ 	xe->sriov.wq = alloc_workqueue("xe-sriov-wq", 0, 0);
+ 	if (!xe->sriov.wq)
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c b/drivers/gpu/drm/xe/xe_sriov_pf.c
+index 030c2b69ecc4..0f721ae17b26 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
+@@ -3,6 +3,8 @@
+  * Copyright © 2023-2024 Intel Corporation
+  */
+ 
++#include <drm/drm_managed.h>
++
+ #include "xe_assert.h"
+ #include "xe_device.h"
+ #include "xe_module.h"
+@@ -70,6 +72,19 @@ bool xe_sriov_pf_readiness(struct xe_device *xe)
+ 	return true;
+ }
+ 
++/**
++ * xe_sriov_pf_init_early - Initialize SR-IOV PF specific data.
++ * @xe: the &xe_device to initialize
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_sriov_pf_init_early(struct xe_device *xe)
++{
++	xe_assert(xe, IS_SRIOV_PF(xe));
++
++	return drmm_mutex_init(&xe->drm, &xe->sriov.pf.master_lock);
++}
++
+ /**
+  * xe_sriov_pf_print_vfs_summary - Print SR-IOV PF information.
+  * @xe: the &xe_device to print info from
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.h b/drivers/gpu/drm/xe/xe_sriov_pf.h
+index ebef2e01838a..d1220e70e1c0 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf.h
++++ b/drivers/gpu/drm/xe/xe_sriov_pf.h
+@@ -13,12 +13,18 @@ struct xe_device;
+ 
+ #ifdef CONFIG_PCI_IOV
+ bool xe_sriov_pf_readiness(struct xe_device *xe);
++int xe_sriov_pf_init_early(struct xe_device *xe);
+ void xe_sriov_pf_print_vfs_summary(struct xe_device *xe, struct drm_printer *p);
+ #else
+ static inline bool xe_sriov_pf_readiness(struct xe_device *xe)
+ {
+ 	return false;
+ }
++
++static inline int xe_sriov_pf_init_early(struct xe_device *xe)
++{
++	return 0;
++}
+ #endif
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_sriov_types.h b/drivers/gpu/drm/xe/xe_sriov_types.h
+index fa583e8fa0c2..c7b7ad4af5c8 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_types.h
++++ b/drivers/gpu/drm/xe/xe_sriov_types.h
+@@ -7,6 +7,7 @@
+ #define _XE_SRIOV_TYPES_H_
+ 
+ #include <linux/build_bug.h>
++#include <linux/mutex.h>
+ #include <linux/types.h>
+ 
+ /**
+@@ -50,6 +51,9 @@ struct xe_device_pf {
+ 
+ 	/** @driver_max_vfs: Maximum number of VFs supported by the driver. */
+ 	u16 driver_max_vfs;
++
++	/** @master_lock: protects all VFs configurations across GTs */
++	struct mutex master_lock;
+ };
+ 
+ #endif
 -- 
 2.43.0
 
