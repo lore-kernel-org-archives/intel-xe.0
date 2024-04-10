@@ -4,55 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4ACB8CD1296
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 08:34:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29706CD1296
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 08:39:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF82610E8BB;
-	Wed, 10 Apr 2024 08:34:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A707810E2CE;
+	Wed, 10 Apr 2024 08:39:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b2gGT7cM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="URoiuWKU";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4FC210E8BB
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Apr 2024 08:34:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1ADD10E2CE
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Apr 2024 08:39:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712738081; x=1744274081;
+ t=1712738342; x=1744274342;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=8JajhfC25vtFwTzNUincjAIx2+RY5I+F3Mnvy9QjZNY=;
- b=b2gGT7cMhnJ7HgFeNOk6tkG/bGeBgIrrxuky6todq5W2KG8fXOGYVKgF
- HMDuV6lHbp8LRs6qmihgU8/QuLqNvHqqvc0u8IqoH+GRETWiB1UsFCiAs
- X7kMnTAq8UWGVBVHWuiWccogpK4o0wkSyIoBlF2xn2VMX10NFBI0Tytpq
- o9hrY9igC9Jrf1TCvuzcCrK3b3di+eXUwPkMpZiUwY3cH0uMaVAGJycfD
- F/9ZTSSdOd8M6CQ+MZZUZxGYPhZUuE7kyq5taINIBoyucpU6MjaeN3Oaz
- M2HQAzj9zOcce41HsWpu2NBcIDqj7ERYKQGY4ZQgiSJjJuvGwHko3x+fi w==;
-X-CSE-ConnectionGUID: xzh4pB7xQVe9wWY29kamgQ==
-X-CSE-MsgGUID: dunWqxPRTM64zbOJNxXYkw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="25529390"
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="25529390"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 01:34:41 -0700
-X-CSE-ConnectionGUID: /QbcOSIOSxSUCyQ69+qpzg==
-X-CSE-MsgGUID: VMJfBL+9Sea2iKtSlCauZQ==
+ bh=ZKpqEV08MCRV1Y69mjoVremW7HyqRbzHIWDnl/OSs+I=;
+ b=URoiuWKUK0FuSz+Kh3rLhvESg8ytvaVLLob2rota1DCFODv7L/WD7YDs
+ YBS70dLenRW7CqRQTGDljqKBN0RULj3sv1GRbu5MoT5hnntRmI4HdY73F
+ LrNe3BfaUAf2zYVJOvASd0bY+3g6+3T/Bn94IUWMTFF3IgTYIi7OCpo5o
+ SCA9d3xJt+S9ITDDwJAanKVUBYXNSe4xRyOWEHIFCq/UZ8o5y17o4y5r6
+ Z6NY+JFQBne2cqELbfScWspNB+zvVz7KLsK8gyI6K4lmZmRSlqE63mO59
+ OJb9FrGTmzFkMFm0/Umy/vPGR8iSHU0h7Q25NirqWC5WnRFuDL04TBH3Q w==;
+X-CSE-ConnectionGUID: 27LUKSh0SX2e7nX5/320CA==
+X-CSE-MsgGUID: Trv9zalbS4+Mbql/jVdtKg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="11877653"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="11877653"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2024 01:39:01 -0700
+X-CSE-ConnectionGUID: x0sOzVS1QAutCoRLMq0jVw==
+X-CSE-MsgGUID: tSPSfA+lRNuJSglHPAv6fw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="25174862"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 01:34:40 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="20556250"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2024 01:39:00 -0700
+From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Nirmoy Das <nirmoy.das@intel.com>,
-	Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH] drm/xe: Use enum mode in drm_mm_insert_node_in_range
-Date: Wed, 10 Apr 2024 10:20:39 +0200
-Message-ID: <20240410082039.11249-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.42.0
+Cc: riana.tauro@intel.com,
+	anshuman.gupta@intel.com,
+	rodrigo.vivi@intel.com
+Subject: [CI 0/2] Pcode init status and lmem check
+Date: Wed, 10 Apr 2024 14:20:03 +0530
+Message-Id: <20240410085005.1126343-1-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany,
- Commercial Register: Amtsgericht Muenchen HRB 186928 
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,29 +66,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use DRM_MM_INSERT_BEST as mode instead of zero.
+Check pcode init status on root gt of root tile and
+reorder lmem init to be after pcode init check.
 
-Cc: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/xe/xe_ggtt.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Rev2: change function names for pcode init check
+      fix review comments
+      add fault injection for LMEM check
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index ff2239c0eda5..910153eed457 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -408,7 +408,8 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 	xe_device_mem_access_get(tile_to_xe(ggtt->tile));
- 	mutex_lock(&ggtt->lock);
- 	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node, bo->size,
--					  alignment, 0, start, end, 0);
-+					  alignment, 0, start, end,
-+					  DRM_MM_INSERT_BEST);
- 	if (!err)
- 		xe_ggtt_map_bo(ggtt, bo);
- 	mutex_unlock(&ggtt->lock);
+Rev3: drop the fault injection patch. This will
+      be added in a different series with a different
+      approach.
+      No functional changes to the first two patches.
+
+Rev4: Rebase
+
+Rev5: Rebase
+
+Riana Tauro (2):
+  drm/xe: check pcode init status only on root gt of root tile
+  drm/xe: re-order lmem init check and wait for initialization to
+    complete
+
+ drivers/gpu/drm/xe/xe_device.c |  79 +++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_mmio.c   |  24 -------
+ drivers/gpu/drm/xe/xe_mmio.h   |   1 -
+ drivers/gpu/drm/xe/xe_pcode.c  | 115 ++++++++++++++++++++-------------
+ drivers/gpu/drm/xe/xe_pcode.h  |   6 +-
+ drivers/gpu/drm/xe/xe_pm.c     |  16 ++---
+ 6 files changed, 151 insertions(+), 90 deletions(-)
+
 -- 
-2.42.0
+2.40.0
 
