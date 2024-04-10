@@ -4,56 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5821DCD11C2
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 11:40:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C80E9CD11C2
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 11:50:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B92FA1132E9;
-	Wed, 10 Apr 2024 11:40:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4E1C1120D4;
+	Wed, 10 Apr 2024 11:50:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YpQ+BgaO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IsWYh4JK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD2041132E9
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Apr 2024 11:40:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AB461120D4;
+ Wed, 10 Apr 2024 11:50:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712749208; x=1744285208;
+ t=1712749819; x=1744285819;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=pkJ5PTUJypEmO6pB8jPOISL3Ktl0/ZQOHA//DvTURmE=;
- b=YpQ+BgaOFVCBLxafi+o51QGnR50qM56LEbUBy1scD4nT7Z4qMcYvs0Gp
- 5+ZF5fjq8xaWis0ec0A89t4O8N2U2C4wXvBGkvwJIVRIvZxyxyXrTz2HO
- j2kxp11eUUvtwggZjNQSpRsjko5r1GUvoRbSg47xG3Pft+hmGQzmmuFMo
- QVKo9FG2W9Cb3+MDEVHApFt7I2r9b4wlT4qXg9d3VAvDOzLBZPnNOr6uL
- HOn/k3GTcOlbdiVAK5OEYU4YGFYp+0ftBAv6UMtAz5ssijt7gKt/itXcQ
- v/g48vKMNGPJ3vcoXILKQy9CGZcyBq0ux42/RigiXGCkthbCeMEtnVuCc g==;
-X-CSE-ConnectionGUID: h/Q1vAbfTj+pBZTqDz5ZAQ==
-X-CSE-MsgGUID: Pmgrt2ykTeu7aFn4Mog1Kg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="25547549"
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="25547549"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 04:40:07 -0700
-X-CSE-ConnectionGUID: byS+khfDTwquxQpE80hPIw==
-X-CSE-MsgGUID: anM5sD/dQl+B0EL2xATVHQ==
+ bh=48JgxszmgwzSdEYjlQoIe3fDz23+3fpwfQ7RcJKta4c=;
+ b=IsWYh4JKJrYWrxW3fYTfB5vD9Ubvkz14KNABfoq5hN2joPTXO0rWtDxf
+ F3nbWtNWUCV2QyPvYA3Cs+nAgDZf4nnBs40cvP59K6J1YTD7mhnLA5gVj
+ DsyxqActKFRqSSTKSTgZZIjEsfcz5LdtKo78tCtiUL72H1waScWQmVoxu
+ 4+b5SiRRnv0yfDspNwo4fNOBvO1cuw4C2mknq9akYl2hQOwGmJvcSCpCj
+ P7UxJnlfgfL2cimqWjIDwq89WKyrOwPkaaX5lmNQ44FHqSZ6Xiel3Mh6C
+ +ehdl5YOypLFyZH8ECYv8jKn674AcasJve4cg8vJSZ9xgwSP6Gi682zYo w==;
+X-CSE-ConnectionGUID: LhpNe97hTfactw6YWyQJHQ==
+X-CSE-MsgGUID: gm2meCjTQzeL89+8O1I8mA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="8208150"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; 
+   d="scan'208";a="8208150"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2024 04:50:18 -0700
+X-CSE-ConnectionGUID: zZV8hHBLQ3esCVySK89uXA==
+X-CSE-MsgGUID: 3PgKakM8S9qvX8DgywkVhQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="25044637"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="25158425"
 Received: from oakasatk-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.60.54])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 04:40:05 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/xe: Promote make_u64 macro to .h file
-In-Reply-To: <6498954f-e539-4695-8338-4820d423731b@intel.com>
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2024 04:50:14 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Daniel
+ Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Masahiro
+ Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH v2] drm: ensure drm headers are self-contained and pass
+ kernel-doc
+In-Reply-To: <20240402140136.1722533-1-jani.nikula@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240213210543.1265-1-michal.wajdeczko@intel.com>
- <Zcvq_kiF-EM5evIz@intel.com> <87cysz6ud7.fsf@intel.com>
- <6498954f-e539-4695-8338-4820d423731b@intel.com>
-Date: Wed, 10 Apr 2024 14:40:02 +0300
-Message-ID: <87wmp578fh.fsf@intel.com>
+References: <20240402140136.1722533-1-jani.nikula@intel.com>
+Date: Wed, 10 Apr 2024 14:50:11 +0300
+Message-ID: <87ttk977yk.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -70,107 +73,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 08 Apr 2024, Michal Wajdeczko <michal.wajdeczko@intel.com> wrote:
-> On 14.02.2024 14:36, Jani Nikula wrote:
->> On Tue, 13 Feb 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
->>> On Tue, Feb 13, 2024 at 10:05:43PM +0100, Michal Wajdeczko wrote:
->>>> We shouldn't hide generic macros inside .c files as this may lead
->>>> to unnecessary code duplication if similar functionality is needed
->>>> elsewhere.  Promote make_u64 to .h as soon we will want to reuse it.
->>>
->>> On the other hand, we shouldn't create an internal library of macros
->>> that then start to get used indiscriminately as if it was Linux core
->>> helpers.
->>>
->>> Changes like this was how the i915_utils.h started.
->>>
->>> If we really think that this macro is useful somewhere else, then
->>> we should be looking to make that as part of the linux/types.h
->> 
->> Agreed.
->> 
->> Well, maybe not specifically types.h, but maybe a separate header.
+On Tue, 02 Apr 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> Ensure drm headers build, are self-contained, have header guards, and
+> have no kernel-doc warnings, when CONFIG_DRM_HEADER_TEST=y.
 >
-> My attempts to promote this to a global macro reached dead end. To move
-> forward please either engage in LKML [1] [2] discussions or accept this
-> local solution or suggest other option.
+> The mechanism follows similar patters used in i915, xe, and usr/include.
+>
+> To cover include/drm, we need to recurse there using the top level
+> Kbuild and the new include/Kbuild files.
 
-Tried to nudge things forward. Fingers crossed.
+Masahiro, any input? Ack?
 
 BR,
 Jani.
 
 >
-> Michal
+> v2: make DRM_HEADER_TEST depend on DRM
 >
-> [1]
-> https://lore.kernel.org/lkml/20240214155408.1569-1-michal.wajdeczko@intel.com/
+> Suggested-by: Daniel Vetter <daniel@ffwll.ch>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Masahiro Yamada <masahiroy@kernel.org>
+> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  Kbuild                   |  1 +
+>  drivers/gpu/drm/Kconfig  | 11 +++++++++++
+>  drivers/gpu/drm/Makefile | 18 ++++++++++++++++++
+>  include/Kbuild           |  1 +
+>  include/drm/Makefile     | 18 ++++++++++++++++++
+>  5 files changed, 49 insertions(+)
+>  create mode 100644 include/Kbuild
+>  create mode 100644 include/drm/Makefile
 >
-> [2]
-> https://lore.kernel.org/lkml/20240214214654.1700-1-michal.wajdeczko@intel.com/
->
->
->> 
->> There's a need for something like this:
->> 
->> $ git grep "hi[ )]*<< *\(8\|16\|32\)[ )]*|.*lo"
->> 
->> Ditto for taking higher/lower half of a variable.
->> 
->> 
->> BR,
->> Jani.
->> 
->> 
->>>
->>>>
->>>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>>> ---
->>>>  drivers/gpu/drm/xe/xe_gt_pagefault.c | 2 --
->>>>  drivers/gpu/drm/xe/xe_macros.h       | 8 ++++++++
->>>>  2 files changed, 8 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
->>>> index c26e4fcca01e..76a018ec8136 100644
->>>> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
->>>> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
->>>> @@ -557,8 +557,6 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
->>>>  	return ret;
->>>>  }
->>>>  
->>>> -#define make_u64(hi__, low__)  ((u64)(hi__) << 32 | (u64)(low__))
->>>> -
->>>>  #define ACC_MSG_LEN_DW        4
->>>>  
->>>>  static bool get_acc(struct acc_queue *acc_queue, struct acc *acc)
->>>> diff --git a/drivers/gpu/drm/xe/xe_macros.h b/drivers/gpu/drm/xe/xe_macros.h
->>>> index daf56c846d03..b79d775c737e 100644
->>>> --- a/drivers/gpu/drm/xe/xe_macros.h
->>>> +++ b/drivers/gpu/drm/xe/xe_macros.h
->>>> @@ -7,6 +7,7 @@
->>>>  #define _XE_MACROS_H_
->>>>  
->>>>  #include <linux/bug.h>
->>>> +#include <linux/types.h>
->>>>  
->>>>  #define XE_WARN_ON WARN_ON
->>>>  
->>>> @@ -15,4 +16,11 @@
->>>>  			    "Ioctl argument check failed at %s:%d: %s", \
->>>>  			    __FILE__, __LINE__, #cond), 1))
->>>>  
->>>> +/**
->>>> + * make_u64 - make u64 value from two u32 values
->>>> + * @hi__: value representing upper 32 bits
->>>> + * @lo__: value representing lower 32 bits
->>>> + */
->>>> +#define make_u64(hi__, low__)  ((u64)(hi__) << 32 | (u64)(low__))
->>>> +
->>>>  #endif
->>>> -- 
->>>> 2.43.0
->>>>
->> 
+> diff --git a/Kbuild b/Kbuild
+> index 464b34a08f51..f327ca86990c 100644
+> --- a/Kbuild
+> +++ b/Kbuild
+> @@ -97,3 +97,4 @@ obj-$(CONFIG_SAMPLES)	+= samples/
+>  obj-$(CONFIG_NET)	+= net/
+>  obj-y			+= virt/
+>  obj-y			+= $(ARCH_DRIVERS)
+> +obj-$(CONFIG_DRM_HEADER_TEST)	+= include/
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index 3914aaf443a8..a388c4fda984 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -431,3 +431,14 @@ config DRM_WERROR
+>  	  this config option is disabled by default.
+>  
+>  	  If in doubt, say N.
+> +
+> +config DRM_HEADER_TEST
+> +	bool "Ensure DRM headers are self-contained and pass kernel-doc"
+> +	depends on DRM && EXPERT
+> +	default n
+> +	help
+> +	  Ensure the DRM subsystem headers both under drivers/gpu/drm and
+> +	  include/drm compile, are self-contained, have header guards, and have
+> +	  no kernel-doc warnings.
+> +
+> +	  If in doubt, say N.
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> index a73c04d2d7a3..6605d5686d01 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+> @@ -218,3 +218,21 @@ obj-y			+= solomon/
+>  obj-$(CONFIG_DRM_SPRD) += sprd/
+>  obj-$(CONFIG_DRM_LOONGSON) += loongson/
+>  obj-$(CONFIG_DRM_POWERVR) += imagination/
+> +
+> +# Ensure drm headers are self-contained and pass kernel-doc
+> +hdrtest-files := \
+> +	$(shell cd $(srctree)/$(src) && find . -maxdepth 1 -name 'drm_*.h') \
+> +	$(shell cd $(srctree)/$(src) && find display lib -name '*.h')
+> +
+> +always-$(CONFIG_DRM_HEADER_TEST) += \
+> +	$(patsubst %.h,%.hdrtest, $(hdrtest-files))
+> +
+> +# Include the header twice to detect missing include guard.
+> +quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
+> +      cmd_hdrtest = \
+> +		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
+> +		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_DRM_WERROR),-Werror) $<; \
+> +		touch $@
+> +
+> +$(obj)/%.hdrtest: $(src)/%.h FORCE
+> +	$(call if_changed_dep,hdrtest)
+> diff --git a/include/Kbuild b/include/Kbuild
+> new file mode 100644
+> index 000000000000..5e76a599e2dd
+> --- /dev/null
+> +++ b/include/Kbuild
+> @@ -0,0 +1 @@
+> +obj-$(CONFIG_DRM_HEADER_TEST)	+= drm/
+> diff --git a/include/drm/Makefile b/include/drm/Makefile
+> new file mode 100644
+> index 000000000000..b9f391d7aadd
+> --- /dev/null
+> +++ b/include/drm/Makefile
+> @@ -0,0 +1,18 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +# Ensure drm headers are self-contained and pass kernel-doc
+> +hdrtest-files := \
+> +	$(shell cd $(srctree)/$(src) && find * -name '*.h' 2>/dev/null)
+> +
+> +always-$(CONFIG_DRM_HEADER_TEST) += \
+> +	$(patsubst %.h,%.hdrtest, $(hdrtest-files))
+> +
+> +# Include the header twice to detect missing include guard.
+> +quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
+> +      cmd_hdrtest = \
+> +		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
+> +		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_DRM_WERROR),-Werror) $<; \
+> +		touch $@
+> +
+> +$(obj)/%.hdrtest: $(src)/%.h FORCE
+> +	$(call if_changed_dep,hdrtest)
 
 -- 
 Jani Nikula, Intel
