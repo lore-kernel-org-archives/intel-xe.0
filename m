@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10748CD128A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D581CD1297
 	for <intel-xe@archiver.kernel.org>; Wed, 10 Apr 2024 00:26:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35658113037;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F03F113036;
 	Wed, 10 Apr 2024 00:26:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Niq7lTaP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b59WoXlP";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E59F113036
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85777113037
  for <Intel-Xe@lists.freedesktop.org>; Wed, 10 Apr 2024 00:26:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1712708808; x=1744244808;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=w2mH1ivJhjfpPC/+rj8OC16fuigO9Rpi34biBuRqCNM=;
- b=Niq7lTaPQ+677nqp9lmI2meF/j6Xy9oW2lj5SWzGoY5KUujoH2qcI3GB
- lt0amOYN3+tB2Y1hjTvfVb1jJcRiicFjk+2gTVuRMPsFgKCO3A4/+C+fD
- 7bGcM4Y63fjxeItWnSOeMTsjLAZgDvvtttrahhGN2gtnW+nBi1me/Cd0w
- 1XkTaKu/HuFv3C6cUdbb37AzvqnDCE2CXP3lmCSRXY5t+8T1c2NJ5jroJ
- q9OaNbAy94FXDwcMwASLWk/m9KVKpdMIfszg8Oxm7VWpr4cLmt7Fprohc
- 1satRX/y3lizsZL+4nV5nWYDcFr6/6NE03EzocjX/B6da/OgmQlnnLqMw g==;
-X-CSE-ConnectionGUID: gTAj3mRkQJCtXryExf/BSA==
-X-CSE-MsgGUID: kJrSANhcSQO1unlPVIS0zA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="7907002"
+ bh=fQJOKVIj1iBIu8cErCfIAge4t6QYtsBoeaaaTC8FhDI=;
+ b=b59WoXlPt6bFhC/EBHrfT8kl9/mqwauZa8eKSDxwHNxj0lBfU2w+jvZS
+ HzaU6MpsGG4+eMDEC21BKagdbdLttMlPCr2PJt3MXmVtIeG3f0quQ4Sax
+ UcEptG0U16DX+BUJQPXz07eTSE1OtRExtk9nL8t0n9F74LdMPdbSKfVZ9
+ qmd5sGswgTp46eaFaw8cSUy9+KVApk2P79foG063OlJyNwrY/fuwnQ9Sm
+ ebz8+k8sS6MFM1bMBSIYsvIrTiKgPTb+tplBRr7iVGMuXBZczBj+AgEWz
+ GKrYEQh4Vyk0n/mMc+Jn+1TXWKq/H+erPpQybt0MO242YiMLtxGcUf4Td g==;
+X-CSE-ConnectionGUID: q23FcRBRQhC9IUAkmdftiQ==
+X-CSE-MsgGUID: gfp4Q+iOT16URpu/H3uw9Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="7907003"
 X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; 
-   d="scan'208";a="7907002"
+   d="scan'208";a="7907003"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Apr 2024 17:26:47 -0700
-X-CSE-ConnectionGUID: rAx93y83T4CBsMaCH+M4fg==
-X-CSE-MsgGUID: T3rDViSbSOKmQDFh0jJ8rA==
+X-CSE-ConnectionGUID: jxD3MgWhSHm+1cZ/tFzDLQ==
+X-CSE-MsgGUID: tgVgVgTNS+OMGCkTmWKZ9Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="51359633"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="51359636"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
  by orviesa002.jf.intel.com with ESMTP; 09 Apr 2024 17:26:46 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
 Cc: John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH 1/2] drm/xe/lnl: Enable more GuC based workarounds
-Date: Tue,  9 Apr 2024 17:26:45 -0700
-Message-ID: <20240410002646.3002394-2-John.C.Harrison@Intel.com>
+Subject: [PATCH 2/2] drm/xe/bmg: Some LNL workarounds also apply to BMG
+Date: Tue,  9 Apr 2024 17:26:46 -0700
+Message-ID: <20240410002646.3002394-3-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240410002646.3002394-1-John.C.Harrison@Intel.com>
 References: <20240410002646.3002394-1-John.C.Harrison@Intel.com>
@@ -70,59 +70,28 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-There are a couple of new workarounds for LNL that are implemented in
-the GuC firmware. The KMD needs to enable them explicitly.
+Enable a couple of existing workarounds for a new platform.
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h | 2 ++
- drivers/gpu/drm/xe/xe_guc_ads.c       | 8 ++++++++
- drivers/gpu/drm/xe/xe_wa_oob.rules    | 3 +++
- 3 files changed, 13 insertions(+)
+ drivers/gpu/drm/xe/xe_wa_oob.rules | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-index 5dd45e06f0b6..0972113f6b81 100644
---- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-@@ -324,6 +324,8 @@ enum  {
-  */
- enum xe_guc_klv_ids {
- 	GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED				= 0x9002,
-+	GUC_WORKAROUND_KLV_ID_GAM_PFQ_SHADOW_TAIL_POLLING				= 0x9005,
-+	GUC_WORKAROUND_KLV_ID_DISABLE_MTP_DURING_ASYNC_COMPUTE				= 0x9007,
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index 757cbbb87869..678ece366056 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -318,6 +318,14 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
- 		guc_waklv_enable_simple(ads,
- 					GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED,
- 					&offset, &remain);
-+	if (XE_WA(gt, 18024947630))
-+		guc_waklv_enable_simple(ads,
-+					GUC_WORKAROUND_KLV_ID_GAM_PFQ_SHADOW_TAIL_POLLING,
-+					&offset, &remain);
-+	if (XE_WA(gt, 16022287689))
-+		guc_waklv_enable_simple(ads,
-+					GUC_WORKAROUND_KLV_ID_DISABLE_MTP_DURING_ASYNC_COMPUTE,
-+					&offset, &remain);
- 
- 	size = guc_ads_waklv_size(ads) - remain;
- 	if (!size)
 diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index 98a81468bc8e..5759b7bc1b70 100644
+index 5759b7bc1b70..eb647d5a1e16 100644
 --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
 +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -21,3 +21,6 @@
+@@ -21,6 +21,8 @@
  		PLATFORM(DG2)
  14018094691	GRAPHICS_VERSION(2004)
  14019882105	GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)
-+18024947630	GRAPHICS_VERSION(2004)
-+		MEDIA_VERSION(2000)
-+16022287689	GRAPHICS_VERSION(2004)
+-18024947630	GRAPHICS_VERSION(2004)
++18024947630	GRAPHICS_VERSION(2001)
++		GRAPHICS_VERSION(2004)
+ 		MEDIA_VERSION(2000)
+-16022287689	GRAPHICS_VERSION(2004)
++16022287689	GRAPHICS_VERSION(2001)
++		GRAPHICS_VERSION(2004)
 -- 
 2.43.2
 
