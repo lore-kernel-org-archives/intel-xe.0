@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FE7CC4345F
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Apr 2024 15:45:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2953EC4345F
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Apr 2024 15:57:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04E5F10F1B0;
-	Thu, 11 Apr 2024 15:45:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U5xpbGya";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D3D510F1AC;
- Thu, 11 Apr 2024 15:45:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712850319; x=1744386319;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XGWVELg2qaMdFfmrFFk9Y3LNwzmLrR+g9/UOYabFxBk=;
- b=U5xpbGyaVfqEaJjQbDhSgX+Tfo0psMlshRhi+Z5QR94zWjTVNGrlD9Hz
- oW7US1mOmODvBrI9atHX8Clohv43PgFEtzNxq3lZQ2HGrgbR0xBUcu5SY
- b+gcFXxJ2TTMK9aigqOSk+scDXknJSFlxY6ww+jA4OH8CAbylzXqk0sLM
- Ekp49FM8OSaE7gkJV6dkuXx31VHN94iYkQZBORWqwnHxW7mrXDpPqkc8V
- SZouCs+W5uGeOLaJUAofTjyNAJ/J5XUnLesJnpELTIxKsXfB2kv8AM7jd
- nNsombCsmEWzBLOHpE/XPT6hCQGhguUHlUytWdf2yvbQafKbbIuQWvIBW w==;
-X-CSE-ConnectionGUID: 6ajQWc8vQiaNSRU2f62YhQ==
-X-CSE-MsgGUID: 31q5U/VARIiN9/jcIf2Rvg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="18827087"
-X-IronPort-AV: E=Sophos;i="6.07,193,1708416000"; d="scan'208";a="18827087"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2024 08:45:12 -0700
-X-CSE-ConnectionGUID: mKoR+sRVR5Kdo46fv9GmUQ==
-X-CSE-MsgGUID: QX44pQXpRma6ajjP/TPHdA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,193,1708416000"; d="scan'208";a="20845021"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2024 08:45:08 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: jani.nikula@intel.com, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: [PATCH 11/10] MAINTAINERS: update i915 and xe entries for
- include/drm/intel
-Date: Thu, 11 Apr 2024 18:45:03 +0300
-Message-Id: <20240411154503.342217-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1712743191.git.jani.nikula@intel.com>
-References: <cover.1712743191.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCA0F10ED80;
+	Thu, 11 Apr 2024 15:57:36 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EC3310ED80;
+ Thu, 11 Apr 2024 15:57:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm=3A_move_Intel_dr?=
+ =?utf-8?q?m_headers_to_a_subdirectory_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 11 Apr 2024 15:57:34 -0000
+Message-ID: <171285105451.1340324.2016299143402086580@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <cover.1712743191.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1712743191.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,55 +36,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With all the Intel specific drm files under include/drm/intel, update
-the i915, xe, and the shared display entries. Do not discriminate based
-on file name pattern, just add the entire directory for all three
-entries.
+== Series Details ==
 
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Oded Gabbay <ogabbay@kernel.org>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- MAINTAINERS | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Series: drm: move Intel drm headers to a subdirectory (rev3)
+URL   : https://patchwork.freedesktop.org/series/132263/
+State : success
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e7a511b443af..a71254fdbf4c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10841,6 +10841,7 @@ S:	Supported
- F:	drivers/gpu/drm/i915/display/
- F:	drivers/gpu/drm/xe/display/
- F:	drivers/gpu/drm/xe/compat-i915-headers
-+F:	include/drm/intel/
- 
- INTEL DRM I915 DRIVER (Meteor Lake, DG2 and older excluding Poulsbo, Moorestown and derivative)
- M:	Jani Nikula <jani.nikula@linux.intel.com>
-@@ -10858,7 +10859,7 @@ F:	Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
- F:	Documentation/gpu/i915.rst
- F:	drivers/gpu/drm/ci/xfails/i915*
- F:	drivers/gpu/drm/i915/
--F:	include/drm/i915*
-+F:	include/drm/intel/
- F:	include/uapi/drm/i915_drm.h
- 
- INTEL DRM XE DRIVER (Lunar Lake and newer)
-@@ -10875,7 +10876,7 @@ T:	git https://gitlab.freedesktop.org/drm/xe/kernel.git
- F:	Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
- F:	Documentation/gpu/xe/
- F:	drivers/gpu/drm/xe/
--F:	include/drm/xe*
-+F:	include/drm/intel/
- F:	include/uapi/drm/xe_drm.h
- 
- INTEL ETHERNET DRIVERS
--- 
-2.39.2
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 47b56114d9fd drm-tip: 2024y-04m-11d-13h-48m-11s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915: use system include for drm headers
+Applying: drm: move intel-gtt.h under include/drm/intel
+Applying: drm: move i915_gsc_proxy_mei_interface.h under include/drm/intel
+Applying: drm: move i915_component.h under include/drm/intel
+Applying: drm: move intel_lpe_audio.h under include/drm/intel
+Applying: drm: move i915_drm.h under include/drm/intel
+Applying: drm: move i915_pxp_tee_interface.h under include/drm/intel
+Applying: drm: move i915_pciids.h under include/drm/intel
+Applying: drm: move xe_pciids.h under include/drm/intel
+Applying: drm: move i915_hdcp_interface.h under include/drm/intel
+Applying: MAINTAINERS: update i915 and xe entries for include/drm/intel
+
 
