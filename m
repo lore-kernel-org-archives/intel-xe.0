@@ -4,60 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34A9AC4345F
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Apr 2024 20:33:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC239C4345F
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Apr 2024 21:06:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA0B310EE82;
-	Thu, 11 Apr 2024 20:33:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 587AF10F390;
+	Thu, 11 Apr 2024 21:06:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="QMCudDh1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l0HwDdfK";
 	dkim-atps=neutral
-X-Greylist: delayed 535 seconds by postgrey-1.36 at gabe;
- Thu, 11 Apr 2024 20:33:01 UTC
-Received: from smtp.smtpout.orange.fr (smtp-28.smtpout.orange.fr
- [80.12.242.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D064810EE82;
- Thu, 11 Apr 2024 20:32:51 +0000 (UTC)
-Received: from [192.168.1.18] ([86.243.17.157]) by smtp.orange.fr with ESMTPA
- id v0xXr4JUAqkPUv0xYrdLi7; Thu, 11 Apr 2024 22:23:54 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
- s=t20230301; t=1712867034;
- bh=v4sYyES8feRyP/YNHQ4HOBPVocESBHJ4p6aCiQtSavI=;
- h=Message-ID:Date:MIME-Version:Subject:To:From;
- b=QMCudDh14uA+N4VCUkUhGD3njd4hP+Nm+dZR+AHIvomm17cl8lhe+OEOieTe2tfCd
- CSwaIP3rEU56ONRmKGTfz4ao9J8mzI9LnAVCKVmuUmS//1uy7UrVyFnucM+4esuv/T
- oo+W9WibJxCGBDkR1ETwHvYgNw2WqclnTcAwFFkQCDIl+7Og0xYMtfR6Ce6O1eg8Xj
- TprE9TDFAvWBbHv9DdeSW7gw0cL9SbIVgyxiFM+NCmvp8psAM0yRbsFF/z/qBtmvhS
- tk8PC6grRGcBt957JhfI8k8joswKv/XfbhH8qO5/V5krr5vlKn6DDKJ1S1Ygk95Ha3
- gYl5m7R2w2/OA==
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Thu, 11 Apr 2024 22:23:54 +0200
-X-ME-IP: 86.243.17.157
-Message-ID: <da50e56a-cb59-4815-800d-81742e5294df@wanadoo.fr>
-Date: Thu, 11 Apr 2024 22:23:45 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AE3E10F390
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Apr 2024 21:06:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712869586; x=1744405586;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6xp8544B4r33laAVl3egK4XHdufZdY09DG/A95bjZAc=;
+ b=l0HwDdfKzLss47t0SF1qu0Dh74oLMBnX+8wGGTXvdsY7XXMA8XL1HFZm
+ ZbRsFRWtgxAC2zjBOaNN0UewK1sxjhFPRZFKOrYSef26DHwZYUzhhDm1k
+ xze49WZZE22JdnDrhka7INMTWYpXcR3z57WA+GOQwFf9VQBPo4h0efm+l
+ gvF+8FA3rEWXT78w+oth3PE68ldHsPQM9CPDz7Dsb6xjtvJxHM33QdqUD
+ RmUcW88STNHiRLLbmU/Y5n60PzKGRCQ/rHX6N4W7PHDmgDsSNSVnouO9Y
+ i3Y/Lv3AiGWACHcABh4UuyUCDiWFPi+326DC2yMKe8enTQIhVbJQgob6s w==;
+X-CSE-ConnectionGUID: KvFAjHcuTrS3KJ2odTuiwQ==
+X-CSE-MsgGUID: vH15dMBpRbOPa9QQDLi/Cg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="19460605"
+X-IronPort-AV: E=Sophos;i="6.07,194,1708416000"; d="scan'208";a="19460605"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2024 14:06:25 -0700
+X-CSE-ConnectionGUID: yFxUkO7cRQ2THaeA20/JvQ==
+X-CSE-MsgGUID: nMRlglQATr2t787gM4AEmg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,194,1708416000"; d="scan'208";a="20941740"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2024 14:06:26 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: Nathan Chancellor <nathan@kernel.org>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Dafna Hirschfeld <dhirschfeld@habana.ai>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH] drm/xe: Generate oob before compiling anything
+Date: Thu, 11 Apr 2024 14:07:03 -0700
+Message-ID: <20240411210703.3296782-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] treewide: Fix common grammar mistake "the the"
-To: Thorsten Blum <thorsten.blum@toblux.com>, robin.murphy@arm.com
-Cc: cocci@inria.fr, dri-devel@lists.freedesktop.org,
- ecryptfs@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, io-uring@vger.kernel.org,
- kernel-janitors@vger.kernel.org, linux-afs@lists.infradead.org,
- linux-arch@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-doc@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-perf-users@vger.kernel.org,
- linux-s390@vger.kernel.org, linux-scsi@vger.kernel.org,
- linux-trace-kernel@vger.kernel.org, linux-unionfs@vger.kernel.org,
- linux-wireless@vger.kernel.org, netfs@lists.linux.dev,
- speakup@linux-speakup.org, Randy Dunlap <rdunlap@infradead.org>,
- Tyler Hicks <code@tyhicks.com>
-References: <f2d1bb68-7ab7-4bbf-a1b1-88334ba52bab@arm.com>
- <20240411171145.535123-3-thorsten.blum@toblux.com>
-Content-Language: en-MW
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20240411171145.535123-3-thorsten.blum@toblux.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,55 +70,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Le 11/04/2024 à 19:11, Thorsten Blum a écrit :
-> Use `find . -type f -exec sed -i 's/\<the the\>/the/g' {} +` to find all
-> occurrences of "the the" and replace them with a single "the".
-> 
-> In arch/arm/include/asm/unwind.h replace "the the" with "to the".
-> 
-> Changes only comments and documentation - no code changes.
-> 
-> Signed-off-by: Thorsten Blum <thorsten.blum@toblux.com>
-> Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
-> Reviewed-by: Tyler Hicks <code@tyhicks.com>
+Instead of keep adding more dependencies as WAs are needed in different
+places of the driver, just add a rule with all the objects so the code
+generation happens before anything else.
 
-...
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/Makefile | 16 ++++------------
+ 1 file changed, 4 insertions(+), 12 deletions(-)
 
-> --- a/drivers/scsi/isci/host.h
-> +++ b/drivers/scsi/isci/host.h
-> @@ -244,7 +244,7 @@ enum sci_controller_states {
->   	SCIC_INITIALIZED,
->   
->   	/**
-> -	 * This state indicates the the controller is in the process of becoming
-
-maybe: that the?
-
-> +	 * This state indicates the controller is in the process of becoming
->   	 * ready (i.e. starting).  In this state no new IO operations are permitted.
->   	 * This state is entered from the INITIALIZED state.
->   	 */
-
-...
-
-> diff --git a/io_uring/kbuf.c b/io_uring/kbuf.c
-> index 3aa16e27f509..503244e8470a 100644
-> --- a/io_uring/kbuf.c
-> +++ b/io_uring/kbuf.c
-> @@ -731,7 +731,7 @@ struct io_buffer_list *io_pbuf_get_bl(struct io_ring_ctx *ctx,
->   	 * going away, if someone is trying to be sneaky. Look it up under rcu
->   	 * so we know it's not going away, and attempt to grab a reference to
->   	 * it. If the ref is already zero, then fail the mapping. If successful,
-> -	 * the caller will call io_put_bl() to drop the the reference at at the
-> +	 * the caller will call io_put_bl() to drop the reference at at the
-
-Not strictly related to your patch, but "at at".
-
->   	 * end. This may then safely free the buffer_list (and drop the pages)
->   	 * at that point, vm_insert_pages() would've already grabbed the
->   	 * necessary vma references.
-
-...
-
-CJ
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 6015c9e41f24..a5809b3ec8a5 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -46,18 +46,6 @@ $(obj)/generated/%_wa_oob.c $(obj)/generated/%_wa_oob.h: $(obj)/xe_gen_wa_oob \
+ 		 $(srctree)/$(src)/xe_wa_oob.rules
+ 	$(call cmd,wa_oob)
+ 
+-uses_generated_oob := \
+-	$(obj)/xe_gsc.o \
+-	$(obj)/xe_guc.o \
+-	$(obj)/xe_guc_ads.o \
+-	$(obj)/xe_migrate.o \
+-	$(obj)/xe_ring_ops.o \
+-	$(obj)/xe_vm.o \
+-	$(obj)/xe_wa.o \
+-	$(obj)/xe_ttm_stolen_mgr.o
+-
+-$(uses_generated_oob): $(generated_oob)
+-
+ # Please keep these build lists sorted!
+ 
+ # core driver code
+@@ -319,3 +307,7 @@ quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
+ 
+ $(obj)/%.hdrtest: $(src)/%.h FORCE
+ 	$(call if_changed_dep,hdrtest)
++
++# make sure the generated header is done before any
++# compilation unit is attempted
++$(xe-y): $(generated_oob)
+-- 
+2.43.0
 
