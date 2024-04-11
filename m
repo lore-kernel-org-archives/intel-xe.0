@@ -4,76 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31D65C4345F
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Apr 2024 15:25:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8964CC04FF0
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Apr 2024 15:33:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84C6410F182;
-	Thu, 11 Apr 2024 15:25:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6363510F190;
+	Thu, 11 Apr 2024 15:33:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="xo9altXM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GV07tvMU";
 	dkim-atps=neutral
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com
- [209.85.208.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 891FA10F18A
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Apr 2024 15:25:39 +0000 (UTC)
-Received: by mail-ed1-f48.google.com with SMTP id
- 4fb4d7f45d1cf-56e2ac1c16aso8414198a12.0
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Apr 2024 08:25:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1712849138; x=1713453938; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=CABfqMACNUngHNLxS+WM0hHJ1yaxWLelGbJxYjHioD0=;
- b=xo9altXMP0tNJ9ScwNa+s0TWBO/V6elCReALXrxHUMmha7/tsBzNVdq2WVLT8MN+8z
- 6g63mH27M9VeNyAdzXsUsdTFBd90fSeDcDC/aWwke4B2+INWkxQa3FYcrEacPHWh0cPo
- RGhyrqz2dUPDJjp+2VHtH1gBcCxMEBFx6lea6skYTuxEIqNkOM8PmZ48igCnV9ZVLX7R
- KDDx2ioiezyjbtBBYd3eoaE8O4aMsiXhgA8thaTC0QR9NWnBaPn5WVVzQhG8jbbMapNb
- SCQv2g6ijN4ETQQjpwfq6+IVAMtm2GssoY6TCS6OEqprlLfylpe5rKVj04ikuPi9vLxo
- 7eVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1712849138; x=1713453938;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=CABfqMACNUngHNLxS+WM0hHJ1yaxWLelGbJxYjHioD0=;
- b=Wuucwal/UDP3G7uWlfRbhV4p0HqbTRUy/2Bmv08BW9p0WVwu+Uwe89mHCigUwvL2G7
- U2pdBaLG0FW4ae2uwgA5IxWsJBbd/Idj+/BKUx+qhqGlHHdA2F550+lJr2dJ5C2s+IoM
- af/SoP+2JyNizMqIZZ5xIQB0oZ8nWwbgN/d4hsjYkRCziZ3L4S+dCjAFuUwxoLwYJHOD
- X5YthZjToDjTOSl43qyGyh6ZW8gjJrJPj3vdY/kTuPvQ1NLJrQvD3/XWBTb4W56PSbZf
- wWSlRdFc6o/AeISsWlu8ufthcx0jGg3tDAHjXIcNVhxtmF4o429/YBAn31xxOl7IuSH/
- DDMQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUTDk0UmeCIAufxyvwGOzwKL+zwgedHY1i/zI+UOemo2QNVNGpwBxekZGcPUzIaHxx2YM/ozlIQs6pFuLb5RixR2q5kML4gEf0pNtp8UiI=
-X-Gm-Message-State: AOJu0YyVYrHGGiiWVI+gaR//auYBMdcYpCuvf8g3BuUpJn5dl1z67cqn
- tCVTq7qw3p7pbIpHJ2lgRxkd9dqyvAOzJXs27yHkau8ONYYx85Ym7r8pgMoRzPc=
-X-Google-Smtp-Source: AGHT+IEEewk7llSPmgrxe/7mA2rySV/OUDonUpYE2d0l2M0z39pI2HKiyjdOd8AbAw/PCbmxmW//Bg==
-X-Received: by 2002:a17:906:4f06:b0:a52:3d1:6769 with SMTP id
- t6-20020a1709064f0600b00a5203d16769mr44591eju.14.1712849137563; 
- Thu, 11 Apr 2024 08:25:37 -0700 (PDT)
-Received: from localhost ([102.222.70.76]) by smtp.gmail.com with ESMTPSA id
- r3-20020a170906350300b00a522c69f28asm225076eja.216.2024.04.11.08.25.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 11 Apr 2024 08:25:36 -0700 (PDT)
-Date: Thu, 11 Apr 2024 18:25:32 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Thorsten Blum <thorsten.blum@toblux.com>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-trace-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-s390@vger.kernel.org,
- speakup@linux-speakup.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-wireless@vger.kernel.org, linux-scsi@vger.kernel.org,
- linux-afs@lists.infradead.org, ecryptfs@vger.kernel.org,
- netfs@lists.linux.dev, linux-fsdevel@vger.kernel.org,
- linux-unionfs@vger.kernel.org, linux-arch@vger.kernel.org,
- io-uring@vger.kernel.org, cocci@inria.fr, linux-perf-users@vger.kernel.org
-Subject: Re: [PATCH] treewide: Fix common grammar mistake "the the"
-Message-ID: <0bd7ccc2-4d8c-455b-a6c2-972ebe1fcb08@moroto.mountain>
-References: <20240411150437.496153-4-thorsten.blum@toblux.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A97E910F191;
+ Thu, 11 Apr 2024 15:33:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712849588; x=1744385588;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=YU6hBRKEi7nNXwvrwjkbMFWVMjuJkeNtr6EWDwBJeaQ=;
+ b=GV07tvMUh+NLCWrZ3yaON7TAWKmqcc4tT2Z5YnlcFfIcAf/U/0fNfIHE
+ c0SBumxnqt2w+ziLEwbrqN+ceVymFKlgY3BCEuOKoX+BuzA1CRmzu4kuG
+ 8+Bz0a3iH4Ygc5Uv827bz8hnlPATIEaz8SKGzUj5hEemZ5g9El5GVEsS6
+ Ir7SPFaHDkok7dbAY8x+3gG/IY4s/hWJWuFZ4drnXvmtVk0oTFMmVBz9L
+ cV1pkpB68OAl6//3b4uzkcEhhyPRWBTEBLGPxFsHuf/hUyE5d/AMr3ARe
+ W6WZzkvFkHRNO+wXehPYu2RDC0B/qsnDSuLjHu/oAaD8iwyV72WslHKwL g==;
+X-CSE-ConnectionGUID: soa/umr1T7ix89o5GIxqQg==
+X-CSE-MsgGUID: tM9NrqcyQ5KzfWGrKj5u9g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="8185182"
+X-IronPort-AV: E=Sophos;i="6.07,193,1708416000"; 
+   d="scan'208";a="8185182"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2024 08:33:08 -0700
+X-CSE-ConnectionGUID: LjlKPNDyQb+8XjjusviqIQ==
+X-CSE-MsgGUID: VriTakwqTLuORAK7raibbg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,193,1708416000"; d="scan'208";a="21429135"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2024 08:33:04 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>, Dave
+ Airlie <airlied@gmail.com>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Hans de Goede <hdegoede@redhat.com>,
+ Ilpo =?utf-8?Q?J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Subject: Re: [PATCH v2] drm: move i915_drm.h under include/drm/intel
+In-Reply-To: <Zhfx9weiu7Hp19gy@ashyti-mobl2.lan>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <63e199dec91cc2e717d81ab00e28f68b9bec8461.1712743191.git.jani.nikula@intel.com>
+ <20240410102615.16506-1-jani.nikula@intel.com>
+ <Zhfx9weiu7Hp19gy@ashyti-mobl2.lan>
+Date: Thu, 11 Apr 2024 18:33:00 +0300
+Message-ID: <874jc76hjn.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240411150437.496153-4-thorsten.blum@toblux.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,20 +74,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 11, 2024 at 05:04:40PM +0200, Thorsten Blum wrote:
-> Use `find . -type f -exec sed -i 's/\<the the\>/the/g' {} +` to find all
-> occurrences of "the the" and replace them with a single "the".
-> 
-> Changes only comments and documentation - no code changes.
-> 
-> Signed-off-by: Thorsten Blum <thorsten.blum@toblux.com>
-> ---
+On Thu, 11 Apr 2024, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+> Hi Jani,
+>
+> On Wed, Apr 10, 2024 at 01:26:15PM +0300, Jani Nikula wrote:
+>> Clean up the top level include/drm directory by grouping all the Intel
+>> specific files under a common subdirectory.
+>>=20
+>> v2: Also fix comment in intel_pci_config.h (Ilpo)
+>>=20
+>> Cc: Daniel Vetter <daniel@ffwll.ch>
+>> Cc: Dave Airlie <airlied@gmail.com>
+>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Cc: Bjorn Helgaas <bhelgaas@google.com>
+>> Cc: Hans de Goede <hdegoede@redhat.com>
+>> Cc: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  arch/x86/kernel/early-quirks.c             | 2 +-
+>>  drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 2 +-
+>>  drivers/gpu/drm/i915/gt/intel_ggtt.c       | 2 +-
+>>  drivers/gpu/drm/i915/gt/intel_rps.c        | 2 +-
+>>  drivers/gpu/drm/i915/intel_pci_config.h    | 2 +-
+>>  drivers/gpu/drm/i915/soc/intel_gmch.c      | 2 +-
+>>  drivers/gpu/drm/xe/xe_ggtt.c               | 2 +-
+>>  drivers/platform/x86/intel_ips.c           | 2 +-
+>>  include/drm/{ =3D> intel}/i915_drm.h         | 0
+>>  9 files changed, 8 insertions(+), 8 deletions(-)
+>>  rename include/drm/{ =3D> intel}/i915_drm.h (100%)
+>
+> Am I seeing wrong or are you missing a bunch of them, like
+> Documentation, MAINTAINERS and many more?
 
-It's tricky to know which tree a patch like this would go through.  We
-used to have a trivial tree for this stuff but I guess that didn't work.
-It's possible that it could go through linux-doc, but probably it has to
-go as a set of patches through each of the trees in the CC list.
+uapi/drm/i915_drm.h is different!
 
-regards,
-dan carpenter
+But good point about MAINTAINERS, I'll add a separate patch on top.
 
+BR,
+Jani.
+
+>
+> Andi
+
+--=20
+Jani Nikula, Intel
