@@ -4,24 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DC4EC00A94
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 13:09:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7799C4345F
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 13:09:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A84410F62A;
-	Fri, 12 Apr 2024 13:09:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6795810F634;
+	Fri, 12 Apr 2024 13:09:46 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F33C610F627;
- Fri, 12 Apr 2024 13:09:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1DD310F621;
+ Fri, 12 Apr 2024 13:09:36 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [CI-only 4/8] drm/xe/display: Preparations for preallocating dpt bo
-Date: Fri, 12 Apr 2024 15:09:40 +0200
-Message-ID: <20240412130946.13148-4-maarten.lankhorst@linux.intel.com>
+Subject: [CI-only 7/8] drm/xe/display: Prevent overwriting original GGTT when
+ taking over initial FB.
+Date: Fri, 12 Apr 2024 15:09:43 +0200
+Message-ID: <20240412130946.13148-7-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240412130946.13148-1-maarten.lankhorst@linux.intel.com>
 References: <20240412130946.13148-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -37,228 +39,281 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The DPT bo should not be allocated when pinning, but in advance when
-creating the framebuffer. Split allocation from bo pinning and GGTT
-insertion.
+Instead of overwriting the original GGTT mapping accidentally, allocate
+a new GGTT mapping above the original GGTT mapping.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 159 +++++++++++++++++++------
- 1 file changed, 123 insertions(+), 36 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 40 ++++++++++++-------
+ drivers/gpu/drm/xe/display/xe_fb_pin.h        | 20 ++++++++++
+ drivers/gpu/drm/xe/display/xe_plane_initial.c | 15 ++++---
+ drivers/gpu/drm/xe/xe_ggtt.c                  | 19 ++-------
+ drivers/gpu/drm/xe/xe_ggtt.h                  |  5 +--
+ 5 files changed, 61 insertions(+), 38 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/display/xe_fb_pin.h
 
 diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 3a584bc3a0a3..d967d00bbf9d 100644
+index 16a287cbebc5..dd7a1c4a9430 100644
 --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -76,47 +76,130 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
- 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
+@@ -8,6 +8,7 @@
+ #include "intel_dpt.h"
+ #include "intel_fb.h"
+ #include "intel_fb_pin.h"
++#include "xe_fb_pin.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
+ 
+@@ -119,12 +120,11 @@ static void xe_fb_dpt_free(struct i915_vma *vma, struct intel_framebuffer *fb)
+ 	vma->dpt = NULL;
  }
  
--static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
--			       const struct i915_gtt_view *view,
+-static int xe_fb_dpt_map_ggtt(struct xe_bo *dpt)
++static int xe_fb_dpt_map_ggtt(struct xe_bo *dpt, u64 ggtt_start)
+ {
+ 	struct xe_device *xe = xe_bo_device(dpt);
+ 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
+ 	struct xe_ggtt *ggtt = tile0->mem.ggtt;
+-	u64 start = 0, end = U64_MAX;
+ 	u64 alignment = XE_PAGE_SIZE;
+ 	int err;
+ 
+@@ -139,8 +139,9 @@ static int xe_fb_dpt_map_ggtt(struct xe_bo *dpt)
+ 	if (err)
+ 		goto out_put;
+ 
+-	err = drm_mm_insert_node_in_range(&ggtt->mm, &dpt->ggtt_node, dpt->size,
+-					  alignment, 0, start, end, 0);
++	err = xe_ggtt_insert_special_node_locked(ggtt, &dpt->ggtt_node, dpt->size,
++						 alignment, ggtt_start, U64_MAX,
++						 ggtt_start ? DRM_MM_INSERT_HIGH : 0);
+ 	if (!err)
+ 		xe_ggtt_map_bo(ggtt, dpt);
+ 	mutex_unlock(&ggtt->lock);
+@@ -188,7 +189,7 @@ static void xe_fb_dpt_unpin_free(struct i915_vma *vma, struct intel_framebuffer
+ 
+ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+ 			       const struct i915_gtt_view *view,
 -			       struct i915_vma *vma)
-+static struct xe_bo *xe_fb_dpt_alloc(struct intel_framebuffer *fb)
++			       struct i915_vma *vma, u64 ggtt_start)
  {
  	struct xe_device *xe = to_xe_device(fb->base.dev);
  	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
--	struct xe_ggtt *ggtt = tile0->mem.ggtt;
- 	struct xe_bo *bo = intel_fb_obj(&fb->base), *dpt;
- 	u32 dpt_size, size = bo->ttm.base.size;
- 
--	if (view->type == I915_GTT_VIEW_NORMAL)
-+	if (!intel_fb_needs_pot_stride_remap(fb))
- 		dpt_size = ALIGN(size / XE_PAGE_SIZE * 8, XE_PAGE_SIZE);
--	else if (view->type == I915_GTT_VIEW_REMAPPED)
--		dpt_size = ALIGN(intel_remapped_info_size(&fb->remapped_view.gtt.remapped) * 8,
--				 XE_PAGE_SIZE);
- 	else
--		/* display uses 4K tiles instead of bytes here, convert to entries.. */
--		dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8,
-+		dpt_size = ALIGN(intel_remapped_info_size(&fb->remapped_view.gtt.remapped) * 8,
- 				 XE_PAGE_SIZE);
- 
- 	if (IS_DGFX(xe))
--		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
--					   ttm_bo_type_kernel,
--					   XE_BO_FLAG_VRAM0 |
--					   XE_BO_FLAG_GGTT |
--					   XE_BO_FLAG_PAGETABLE);
--	else
--		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
--					   ttm_bo_type_kernel,
--					   XE_BO_FLAG_STOLEN |
--					   XE_BO_FLAG_GGTT |
--					   XE_BO_FLAG_PAGETABLE);
-+		return xe_bo_create(xe, tile0, NULL, dpt_size,
-+				    ttm_bo_type_kernel,
-+				    XE_BO_FLAG_NEEDS_CPU_ACCESS |
-+				    XE_BO_FLAG_VRAM0 |
-+				    XE_BO_FLAG_PAGETABLE);
-+
-+	dpt = xe_bo_create(xe, tile0, NULL, dpt_size,
-+			   ttm_bo_type_kernel,
-+			   XE_BO_FLAG_NEEDS_CPU_ACCESS |
-+			   XE_BO_FLAG_STOLEN |
-+			   XE_BO_FLAG_PAGETABLE);
- 	if (IS_ERR(dpt))
--		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
--					   ttm_bo_type_kernel,
--					   XE_BO_FLAG_SYSTEM |
--					   XE_BO_FLAG_GGTT |
--					   XE_BO_FLAG_PAGETABLE);
-+		dpt = xe_bo_create(xe, tile0, NULL, dpt_size,
-+				   ttm_bo_type_kernel,
-+				   XE_BO_FLAG_NEEDS_CPU_ACCESS |
-+				   XE_BO_FLAG_SYSTEM |
-+				   XE_BO_FLAG_PAGETABLE);
-+
-+	return dpt;
-+}
-+
-+static void xe_fb_dpt_free(struct i915_vma *vma)
-+{
-+	xe_bo_put(vma->dpt);
-+	vma->dpt = NULL;
-+}
-+
-+static int xe_fb_dpt_map_ggtt(struct xe_bo *dpt)
-+{
-+	struct xe_device *xe = xe_bo_device(dpt);
-+	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
-+	struct xe_ggtt *ggtt = tile0->mem.ggtt;
-+	u64 start = 0, end = U64_MAX;
-+	u64 alignment = XE_PAGE_SIZE;
-+	int err;
-+
-+	if (dpt->flags & XE_BO_FLAG_INTERNAL_64K)
-+		alignment = SZ_64K;
-+
-+	if (XE_WARN_ON(dpt->ggtt_node.size))
-+		return -EINVAL;
-+
-+	xe_device_mem_access_get(tile_to_xe(ggtt->tile));
-+	err = mutex_lock_interruptible(&ggtt->lock);
-+	if (err)
-+		goto out_put;
-+
-+	err = drm_mm_insert_node_in_range(&ggtt->mm, &dpt->ggtt_node, dpt->size,
-+					  alignment, 0, start, end, 0);
-+	if (!err)
-+		xe_ggtt_map_bo(ggtt, dpt);
-+	mutex_unlock(&ggtt->lock);
-+
-+out_put:
-+	xe_device_mem_access_put(tile_to_xe(ggtt->tile));
-+	return err;
-+}
-+
-+static int
-+xe_fb_dpt_alloc_pinned(struct i915_vma *vma, struct intel_framebuffer *fb)
-+{
-+	struct xe_bo *dpt;
-+	int err;
-+
-+	dpt = xe_fb_dpt_alloc(fb);
- 	if (IS_ERR(dpt))
- 		return PTR_ERR(dpt);
- 
-+	vma->dpt = dpt;
-+
-+	err = ttm_bo_reserve(&dpt->ttm, true, false, NULL);
-+	if (!err) {
-+		err = xe_bo_validate(dpt, NULL, true);
-+		if (!err)
-+			err = xe_bo_vmap(dpt);
-+		if (!err)
-+			ttm_bo_pin(&dpt->ttm);
-+		ttm_bo_unreserve(&dpt->ttm);
-+	}
-+	if (err)
-+		xe_fb_dpt_free(vma);
-+	return err;
-+}
-+
-+static void xe_fb_dpt_unpin_free(struct i915_vma *vma)
-+{
-+	ttm_bo_reserve(&vma->dpt->ttm, false, false, NULL);
-+	ttm_bo_unpin(&vma->dpt->ttm);
-+	ttm_bo_unreserve(&vma->dpt->ttm);
-+
-+	xe_fb_dpt_free(vma);
-+}
-+
-+static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
-+			       const struct i915_gtt_view *view,
-+			       struct i915_vma *vma)
-+{
-+	struct xe_device *xe = to_xe_device(fb->base.dev);
-+	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
-+	struct xe_ggtt *ggtt = tile0->mem.ggtt;
-+	struct xe_bo *bo = intel_fb_obj(&fb->base), *dpt;
-+	u32 size = bo->ttm.base.size;
-+	int ret;
-+
-+	ret = xe_fb_dpt_alloc_pinned(vma, fb);
-+	if (ret)
-+		return ret;
-+	dpt = vma->dpt;
-+
-+	/* Create GGTT mapping.. */
- 	if (view->type == I915_GTT_VIEW_NORMAL) {
- 		u32 x;
- 
-@@ -151,9 +234,10 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+@@ -237,7 +238,7 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
  					  rot_info->plane[i].dst_stride);
  	}
  
--	vma->dpt = dpt;
--	vma->node = dpt->ggtt_node;
--	return 0;
-+	ret = xe_fb_dpt_map_ggtt(dpt);
-+	if (ret)
-+		xe_fb_dpt_unpin_free(vma);
-+	return ret;
+-	ret = xe_fb_dpt_map_ggtt(dpt);
++	ret = xe_fb_dpt_map_ggtt(dpt, ggtt_start);
+ 	if (ret)
+ 		xe_fb_dpt_unpin_free(vma, fb);
+ 	return ret;
+@@ -269,7 +270,7 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
+ 
+ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
+ 				const struct i915_gtt_view *view,
+-				struct i915_vma *vma)
++				struct i915_vma *vma, u64 ggtt_start)
+ {
+ 	struct xe_bo *bo = intel_fb_obj(&fb->base);
+ 	struct xe_device *xe = to_xe_device(fb->base.dev);
+@@ -295,7 +296,8 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
+ 		u32 x, size = bo->ttm.base.size;
+ 
+ 		ret = xe_ggtt_insert_special_node_locked(ggtt, &vma->node, size,
+-							 align, 0);
++							 align, ggtt_start, U64_MAX,
++							 ggtt_start ? DRM_MM_INSERT_HIGH : 0);
+ 		if (ret)
+ 			goto out_unlock;
+ 
+@@ -313,7 +315,7 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
+ 		u32 size = intel_rotation_info_size(rot_info) * XE_PAGE_SIZE;
+ 
+ 		ret = xe_ggtt_insert_special_node_locked(ggtt, &vma->node, size,
+-							 align, 0);
++							 align, ggtt_start, U64_MAX, 0);
+ 		if (ret)
+ 			goto out_unlock;
+ 
+@@ -336,7 +338,8 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
  }
  
- static void
-@@ -258,7 +342,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
- 	int ret;
+ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+-					const struct i915_gtt_view *view)
++					const struct i915_gtt_view *view,
++					u64 ggtt_start)
+ {
+ 	struct drm_device *dev = fb->base.dev;
+ 	struct xe_device *xe = to_xe_device(dev);
+@@ -384,9 +387,9 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
  
- 	if (!vma)
--		return ERR_PTR(-ENODEV);
-+		return ERR_PTR(-ENOMEM);
- 
- 	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
- 	    intel_fb_rc_ccs_cc_plane(&fb->base) >= 0 &&
-@@ -281,7 +365,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
- 	 * Pin the framebuffer, we can't use xe_bo_(un)pin functions as the
- 	 * assumptions are incorrect for framebuffers
- 	 */
--	ret = ttm_bo_reserve(&bo->ttm, false, false, NULL);
-+	ret = ttm_bo_reserve(&bo->ttm, true, false, NULL);
+ 	vma->bo = bo;
+ 	if (intel_fb_uses_dpt(&fb->base))
+-		ret = __xe_pin_fb_vma_dpt(fb, view, vma);
++		ret = __xe_pin_fb_vma_dpt(fb, view, vma, ggtt_start);
+ 	else
+-		ret = __xe_pin_fb_vma_ggtt(fb, view, vma);
++		ret = __xe_pin_fb_vma_ggtt(fb, view, vma, ggtt_start);
  	if (ret)
- 		goto err;
+ 		goto err_unpin;
  
-@@ -319,11 +403,14 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
- 	struct xe_device *xe = to_xe_device(vma->bo->ttm.base.dev);
- 	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+@@ -430,7 +433,16 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
+ {
+ 	*out_flags = 0;
  
--	if (vma->dpt)
--		xe_bo_unpin_map_no_vm(vma->dpt);
--	else if (!drm_mm_node_allocated(&vma->bo->ggtt_node) ||
--		 vma->bo->ggtt_node.start != vma->node.start)
--		xe_ggtt_remove_node(ggtt, &vma->node, false);
-+	if (vma->dpt) {
-+		xe_ggtt_remove_bo(ggtt, vma->dpt);
-+		xe_fb_dpt_unpin_free(vma);
-+	} else {
-+		if (!drm_mm_node_allocated(&vma->bo->ggtt_node) ||
-+		    vma->bo->ggtt_node.start != vma->node.start)
-+			xe_ggtt_remove_node(ggtt, &vma->node, false);
+-	return __xe_pin_fb_vma(to_intel_framebuffer(fb), view);
++	return __xe_pin_fb_vma(to_intel_framebuffer(fb), view, 0);
++}
++
++
++struct i915_vma *
++xe_pin_and_fence_fb_obj_initial(struct drm_framebuffer *fb,
++				const struct i915_gtt_view *view,
++				u64 ggtt_start)
++{
++	return __xe_pin_fb_vma(to_intel_framebuffer(fb), view, ggtt_start);
+ }
+ 
+ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
+@@ -447,7 +459,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state)
+ 	/* We reject creating !SCANOUT fb's, so this is weird.. */
+ 	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_SCANOUT));
+ 
+-	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &plane_state->view.gtt);
++	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &plane_state->view.gtt, 0);
+ 	if (IS_ERR(vma))
+ 		return PTR_ERR(vma);
+ 
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.h b/drivers/gpu/drm/xe/display/xe_fb_pin.h
+new file mode 100644
+index 000000000000..f22960138691
+--- /dev/null
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.h
+@@ -0,0 +1,20 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2024 Intel Corporation
++ */
++
++#ifndef __XE_FB_PIN_H__
++#define __XE_FB_PIN_H__
++
++#include <linux/types.h>
++
++struct i915_vma;
++struct drm_framebuffer;
++struct i915_gtt_view;
++
++struct i915_vma *
++xe_pin_and_fence_fb_obj_initial(struct drm_framebuffer *fb,
++				const struct i915_gtt_view *view,
++				u64 ggtt_start);
++
++#endif
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index 9693c56d386b..fdb05043add1 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -18,6 +18,7 @@
+ #include "intel_fb_pin.h"
+ #include "intel_frontbuffer.h"
+ #include "intel_plane_initial.h"
++#include "xe_fb_pin.h"
+ 
+ static bool
+ intel_reuse_initial_plane_obj(struct intel_crtc *this,
+@@ -63,7 +64,7 @@ initial_plane_bo(struct xe_device *xe,
+ 	if (plane_config->size == 0)
+ 		return NULL;
+ 
+-	flags = XE_BO_FLAG_PINNED | XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT;
++	flags = XE_BO_FLAG_PINNED | XE_BO_FLAG_SCANOUT;
+ 
+ 	base = round_down(plane_config->base, page_size);
+ 	if (IS_DGFX(xe)) {
+@@ -193,6 +194,7 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+ 		to_intel_crtc_state(crtc->base.state);
+ 	struct drm_framebuffer *fb;
+ 	struct i915_vma *vma;
++	u64 ggtt_start = 0;
+ 
+ 	/*
+ 	 * TODO:
+@@ -202,17 +204,20 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+ 	if (!plane_config->fb)
+ 		return;
+ 
+-	if (intel_alloc_initial_plane_obj(crtc, plane_config))
++	if (intel_alloc_initial_plane_obj(crtc, plane_config)) {
+ 		fb = &plane_config->fb->base;
+-	else if (!intel_reuse_initial_plane_obj(crtc, plane_configs, &fb))
++
++		/* Ensure that new GGTT mapping is not overwriting the original mapping */
++		ggtt_start = plane_config->base + intel_fb_obj(fb)->ttm.base.size;
++	} else if (!intel_reuse_initial_plane_obj(crtc, plane_configs, &fb)) {
+ 		goto nofb;
 +	}
  
- 	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
- 	ttm_bo_unpin(&vma->bo->ttm);
+ 	plane_state->uapi.rotation = plane_config->rotation;
+ 	intel_fb_fill_view(to_intel_framebuffer(fb),
+ 			   plane_state->uapi.rotation, &plane_state->view);
+ 
+-	vma = intel_pin_and_fence_fb_obj(fb, false, &plane_state->view.gtt,
+-					 false, &plane_state->flags);
++	vma = xe_pin_and_fence_fb_obj_initial(fb, &plane_state->view.gtt, ggtt_start);
+ 	if (IS_ERR(vma))
+ 		goto nofb;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index ff2239c0eda5..95c3ea946bba 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -354,23 +354,10 @@ void xe_ggtt_deballoon(struct xe_ggtt *ggtt, struct drm_mm_node *node)
+ }
+ 
+ int xe_ggtt_insert_special_node_locked(struct xe_ggtt *ggtt, struct drm_mm_node *node,
+-				       u32 size, u32 align, u32 mm_flags)
++				       u32 size, u32 align, u64 start, u64 end, u32 mm_flags)
+ {
+-	return drm_mm_insert_node_generic(&ggtt->mm, node, size, align, 0,
+-					  mm_flags);
+-}
+-
+-int xe_ggtt_insert_special_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
+-				u32 size, u32 align)
+-{
+-	int ret;
+-
+-	mutex_lock(&ggtt->lock);
+-	ret = xe_ggtt_insert_special_node_locked(ggtt, node, size,
+-						 align, DRM_MM_INSERT_HIGH);
+-	mutex_unlock(&ggtt->lock);
+-
+-	return ret;
++	return drm_mm_insert_node_in_range(&ggtt->mm, node, size, align, 0,
++					   start, end, mm_flags);
+ }
+ 
+ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index 8306ef74abc6..81bba456b2f0 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -18,11 +18,10 @@ void xe_ggtt_printk(struct xe_ggtt *ggtt, const char *prefix);
+ int xe_ggtt_balloon(struct xe_ggtt *ggtt, u64 start, u64 size, struct drm_mm_node *node);
+ void xe_ggtt_deballoon(struct xe_ggtt *ggtt, struct drm_mm_node *node);
+ 
+-int xe_ggtt_insert_special_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
+-				u32 size, u32 align);
+ int xe_ggtt_insert_special_node_locked(struct xe_ggtt *ggtt,
+ 				       struct drm_mm_node *node,
+-				       u32 size, u32 align, u32 mm_flags);
++				       u32 size, u32 align,
++				       u64 start, u64 end, u32 mm_flags);
+ void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
+ 			 bool invalidate);
+ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
 -- 
 2.43.0
 
