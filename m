@@ -4,37 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FEA2C4345F
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 12:28:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD79BC4345F
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 12:44:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 527A510E687;
-	Fri, 12 Apr 2024 12:28:48 +0000 (UTC)
-Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E44BD10E687;
- Fri, 12 Apr 2024 12:28:46 +0000 (UTC)
-Received: from 87-95-9-152.bb.dnainternet.fi ([87.95.9.152]
- helo=[192.168.8.139])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1rvG1K-00000000FLo-0IyM; Fri, 12 Apr 2024 15:28:43 +0300
-Message-ID: <7c2a11df009a90646d39783c01f722b96717966c.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: "Shankar, Uma" <uma.shankar@intel.com>, "Coelho, Luciano"
- <luciano.coelho@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- "ville.syrjala@linux.intel.com"
- <ville.syrjala@linux.intel.com>, "Nikula, Jani" <jani.nikula@intel.com>
-Date: Fri, 12 Apr 2024 15:27:10 +0300
-In-Reply-To: <DM4PR11MB63600F7F0EE905B24FED01B2F4042@DM4PR11MB6360.namprd11.prod.outlook.com>
-References: <20240412094148.808179-1-luciano.coelho@intel.com>
- <20240412094148.808179-2-luciano.coelho@intel.com>
- <DM4PR11MB63600F7F0EE905B24FED01B2F4042@DM4PR11MB6360.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 568ED10F5FF;
+	Fri, 12 Apr 2024 12:44:20 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3530A10F5FF;
+ Fri, 12 Apr 2024 12:44:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: Re: [PATCH v5 1/4] drm/i915/display: add support for DMC wakelocks
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
+ =?utf-8?q?DMC_wakelock_implementation_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Luca Coelho" <luciano.coelho@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 12 Apr 2024 12:44:17 -0000
+Message-ID: <171292585721.1353801.18169496816237213360@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240412094148.808179-1-luciano.coelho@intel.com>
+In-Reply-To: <20240412094148.808179-1-luciano.coelho@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,56 +36,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2024-04-12 at 10:30 +0000, Shankar, Uma wrote:
->=20
-> > -----Original Message-----
-> > From: Coelho, Luciano <luciano.coelho@intel.com>
-> > Sent: Friday, April 12, 2024 3:12 PM
-> > To: intel-gfx@lists.freedesktop.org
-> > Cc: intel-xe@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com=
->;
-> > ville.syrjala@linux.intel.com; Nikula, Jani <jani.nikula@intel.com>
-> > Subject: [PATCH v5 1/4] drm/i915/display: add support for DMC wakelocks
-> >=20
-> > In order to reduce the DC5->DC2 restore time, wakelocks have been intro=
-duced
-> > in DMC so the driver can tell it when registers and other memory areas =
-are going
-> > to be accessed and keep their respective blocks awake.
-> >=20
-> > Implement this in the driver by adding the concept of DMC wakelocks.
-> > When the driver needs to access memory which lies inside pre-defined ra=
-nges, it
-> > will tell DMC to set the wakelock, access the memory, then wait for a w=
-hile and
-> > clear the wakelock.
-> >=20
-> > The wakelock state is protected in the driver with spinlocks to prevent
-> > concurrency issues.
->=20
-> Hi Luca,
-> Seems you missed to add the version history.
+== Series Details ==
 
-I've been sending the version history in the cover letter, because I
-don't think it adds any information after it gets to the mainline
-kernel.  The history is lost anyway, so the mailing list is a better
-place to store it (it's unique and meaningful there).
+Series: drm/i915/display: DMC wakelock implementation (rev6)
+URL   : https://patchwork.freedesktop.org/series/128628/
+State : success
 
-Bur as I said to someone else before, I can add it to the commit
-message if you think that it's needed.
+== Summary ==
 
->=20
-> Anyways, changes look good to me.
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 13ece134d9f5 drm-tip: 2024y-04m-12d-12h-05m-15s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: add support for DMC wakelocks
+Applying: drm/i915/display: don't allow DMC wakelock on older hardware
+Applying: drm/i915/display: add module parameter to enable DMC wakelock
+Applying: drm/i915/display: tie DMC wakelock to DC5/6 state transitions
 
-Thanks a lot!
 
-Though you didn't review patch 3/4, the one about the module parameter.
-Was that intentional or did you just miss it?
-
---
-Cheers,
-Luca.
