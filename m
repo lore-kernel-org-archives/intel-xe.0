@@ -4,24 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F9A5C04FF9
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 13:09:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21533C04FFE
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 13:09:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 008FD10F636;
-	Fri, 12 Apr 2024 13:09:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD03710F63B;
+	Fri, 12 Apr 2024 13:09:48 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DF9E10EF11;
- Fri, 12 Apr 2024 13:09:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F070A10EF11;
+ Fri, 12 Apr 2024 13:09:33 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [CI-only 8/8] drm/xe/display: Re-use display vmas when possible
-Date: Fri, 12 Apr 2024 15:09:44 +0200
-Message-ID: <20240412130946.13148-8-maarten.lankhorst@linux.intel.com>
+Subject: [CI-only 2/8] drm/i915: Use vblank worker to unpin old legacy cursor
+ fb safely
+Date: Fri, 12 Apr 2024 15:09:38 +0200
+Message-ID: <20240412130946.13148-2-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240412130946.13148-1-maarten.lankhorst@linux.intel.com>
 References: <20240412130946.13148-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -37,231 +39,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-i915 has this really nice, infrastructure where everything becomes
-complicated, GGTT needs eviction, etc..
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Lets not do that, and make the dumbest possible interface instead.
-Try to retrieve the VMA from old_plane_state, or intel_fbdev if kernel
-fb.
+The cursor hardware only does sync updates, and thus the hardware
+will be scanning out from the old fb until the next start of vblank.
+So in order to make the legacy cursor fastpath actually safe we
+should not unpin the old fb until we're sure the hardware has
+ceased accessing it. The simplest approach is to just use a vblank
+work here to do the delayed unpin.
 
+Not 100% sure it's a good idea to put this onto the same high
+priority vblank worker as eg. our timing critical gamma updates.
+But let's keep it simple for now, and it we later discover that
+this is causing problems we can think about adding a lower
+priority worker for such things.
+
+This patch is slightly reworked by Maarten
+
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- .../gpu/drm/i915/display/intel_atomic_plane.c |  2 +-
- drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
- drivers/gpu/drm/i915/display/intel_fb_pin.c   |  3 +-
- drivers/gpu/drm/i915/display/intel_fb_pin.h   |  3 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c    |  5 ++
- drivers/gpu/drm/i915/display/intel_fbdev.h    |  9 ++++
- .../gpu/drm/xe/compat-i915-headers/i915_vma.h |  3 ++
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 46 +++++++++++++++++--
- 8 files changed, 65 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cursor.c   | 26 +++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_display.c  |  3 +++
+ .../drm/i915/display/intel_display_types.h    |  3 +++
+ 3 files changed, 30 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index ab01c2d15afd..dcb9b7751261 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -1107,7 +1107,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
- 	if (!obj)
- 		return 0;
- 
--	ret = intel_plane_pin_fb(new_plane_state);
-+	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
- 	if (ret)
- 		return ret;
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index f08fce0de713..9153a1cdb1f2 100644
+index 23a122ee20c9..3cebeaa6e8b4 100644
 --- a/drivers/gpu/drm/i915/display/intel_cursor.c
 +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -772,7 +772,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 	if (ret)
- 		goto out_free;
- 
--	ret = intel_plane_pin_fb(new_plane_state);
-+	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
- 	if (ret)
- 		goto out_free;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-index b6df9baf481b..7b8a1825ccfc 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-@@ -236,7 +236,8 @@ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
- 	i915_vma_put(vma);
+@@ -674,6 +674,17 @@ static bool intel_cursor_format_mod_supported(struct drm_plane *_plane,
+ 	return format == DRM_FORMAT_ARGB8888;
  }
  
--int intel_plane_pin_fb(struct intel_plane_state *plane_state)
-+int intel_plane_pin_fb(struct intel_plane_state *plane_state,
-+		       const struct intel_plane_state *old_plane_state)
- {
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
- 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-index de0efaa25905..48675e6233f0 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-@@ -22,7 +22,8 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
- 
- void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags);
- 
--int intel_plane_pin_fb(struct intel_plane_state *plane_state);
-+int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
-+		       const struct intel_plane_state *old_plane_state);
- void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state);
- 
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 43855c6c3509..a010b7a8a468 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -668,3 +668,8 @@ struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
- 
- 	return to_intel_framebuffer(fbdev->helper.fb);
- }
-+
-+struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
++static void intel_cursor_unpin_work(struct kthread_work *base)
 +{
-+	return fbdev ? fbdev->vma : NULL;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
-index 04fd523a5023..fa6c0c1ae936 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
-@@ -22,6 +22,8 @@ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous
- void intel_fbdev_output_poll_changed(struct drm_device *dev);
- void intel_fbdev_restore_mode(struct drm_i915_private *dev_priv);
- struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
-+struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev);
++	struct drm_vblank_work *work = to_drm_vblank_work(base);
++	struct intel_plane_state *plane_state =
++		container_of(work, typeof(*plane_state), unpin_work);
++	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
 +
- #else
- static inline int intel_fbdev_init(struct drm_device *dev)
- {
-@@ -51,10 +53,17 @@ static inline void intel_fbdev_output_poll_changed(struct drm_device *dev)
- static inline void intel_fbdev_restore_mode(struct drm_i915_private *i915)
- {
- }
-+
- static inline struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
- {
- 	return NULL;
- }
-+
-+static inline struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
-+{
-+	return NULL;
++	intel_plane_unpin_fb(plane_state);
++	intel_plane_destroy_state(&plane->base, &plane_state->uapi);
 +}
 +
- #endif
+ static int
+ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 			   struct drm_crtc *_crtc,
+@@ -817,14 +828,25 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
  
- #endif /* __INTEL_FBDEV_H__ */
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-index a20d2638ea7a..193382f97823 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-@@ -9,6 +9,8 @@
- #include <uapi/drm/i915_drm.h>
- #include <drm/drm_mm.h>
+ 	intel_psr_unlock(crtc_state);
  
-+#include <linux/refcount.h>
+-	intel_plane_unpin_fb(old_plane_state);
++	if (old_plane_state->ggtt_vma != new_plane_state->ggtt_vma) {
++		drm_vblank_work_init(&old_plane_state->unpin_work, &crtc->base,
++				     intel_cursor_unpin_work);
 +
- /* We don't want these from i915_drm.h in case of Xe */
- #undef I915_TILING_X
- #undef I915_TILING_Y
-@@ -18,6 +20,7 @@
- struct xe_bo;
- 
- struct i915_vma {
-+	refcount_t ref;
- 	struct xe_bo *bo, *dpt;
- 	struct drm_mm_node node;
- };
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index dd7a1c4a9430..10114c575e5a 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -8,6 +8,7 @@
- #include "intel_dpt.h"
- #include "intel_fb.h"
- #include "intel_fb_pin.h"
-+#include "intel_fbdev.h"
- #include "xe_fb_pin.h"
- #include "xe_ggtt.h"
- #include "xe_gt.h"
-@@ -350,6 +351,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
- 	if (!vma)
- 		return ERR_PTR(-ENOMEM);
- 
-+	refcount_set(&vma->ref, 1);
- 	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
- 	    intel_fb_rc_ccs_cc_plane(&fb->base) >= 0 &&
- 	    !(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS)) {
-@@ -409,6 +411,9 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma, struct intel_framebuffer *fb
- 	struct xe_device *xe = to_xe_device(vma->bo->ttm.base.dev);
- 	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
- 
-+	if (!refcount_dec_and_test(&vma->ref))
-+		return;
++		drm_vblank_work_schedule(&old_plane_state->unpin_work,
++					 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
++					 false);
 +
- 	if (vma->dpt) {
- 		xe_ggtt_remove_bo(ggtt, vma->dpt);
- 		xe_fb_dpt_unpin_free(vma, fb);
-@@ -450,20 +455,53 @@ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
- 	__xe_unpin_fb_vma(vma, NULL);
- }
- 
--int intel_plane_pin_fb(struct intel_plane_state *plane_state)
-+static bool reuse_vma(struct intel_plane_state *new_plane_state,
-+		      const struct intel_plane_state *old_plane_state)
- {
--	struct drm_framebuffer *fb = plane_state->hw.fb;
-+	struct intel_framebuffer *fb = to_intel_framebuffer(new_plane_state->hw.fb);
-+	struct xe_device *xe = to_xe_device(fb->base.dev);
-+	struct i915_vma *vma;
-+
-+	if (old_plane_state->hw.fb == new_plane_state->hw.fb &&
-+	    !memcmp(&old_plane_state->view.gtt,
-+		    &new_plane_state->view.gtt,
-+	            sizeof(new_plane_state->view.gtt))) {
-+		vma = old_plane_state->ggtt_vma;
-+		goto found;
++		old_plane_state = NULL;
++	} else {
++		intel_plane_unpin_fb(old_plane_state);
 +	}
-+
-+	if (fb == intel_fbdev_framebuffer(xe->display.fbdev.fbdev)) {
-+		vma = intel_fbdev_vma_pointer(xe->display.fbdev.fbdev);
-+		if (vma)
-+			goto found;
-+	}
-+
-+	return false;
-+
-+found:
-+	refcount_inc(&vma->ref);
-+	new_plane_state->ggtt_vma = vma;
-+	return true;
-+}
-+
-+int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
-+		       const struct intel_plane_state *old_plane_state)
-+{
-+	struct drm_framebuffer *fb = new_plane_state->hw.fb;
- 	struct xe_bo *bo = intel_fb_obj(fb);
- 	struct i915_vma *vma;
  
-+	if (reuse_vma(new_plane_state, old_plane_state))
-+		return 0;
+ out_free:
+ 	if (new_crtc_state)
+ 		intel_crtc_destroy_state(&crtc->base, &new_crtc_state->uapi);
+ 	if (ret)
+ 		intel_plane_destroy_state(&plane->base, &new_plane_state->uapi);
+-	else
++	else if (old_plane_state)
+ 		intel_plane_destroy_state(&plane->base, &old_plane_state->uapi);
+ 	return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index a92b67adee9c..46982fdc6a30 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -65,6 +65,7 @@
+ #include "intel_crt.h"
+ #include "intel_crtc.h"
+ #include "intel_crtc_state_dump.h"
++#include "intel_cursor.h"
+ #include "intel_ddi.h"
+ #include "intel_de.h"
+ #include "intel_display_driver.h"
+@@ -6932,6 +6933,8 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
+ 			continue;
+ 
+ 		intel_crtc_disable_planes(state, crtc);
 +
- 	/* We reject creating !SCANOUT fb's, so this is weird.. */
- 	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_SCANOUT));
++		drm_vblank_work_flush_all(&crtc->base);
+ 	}
  
--	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &plane_state->view.gtt, 0);
-+	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &new_plane_state->view.gtt, 0);
- 	if (IS_ERR(vma))
- 		return PTR_ERR(vma);
+ 	/* Only disable port sync and MST slaves */
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 0f4bd5710796..563637f20abf 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -730,6 +730,9 @@ struct intel_plane_state {
+ 	struct intel_fb_view view;
+ 	u32 phys_dma_addr; /* for cursor_needs_physical */
  
--	plane_state->ggtt_vma = vma;
-+	new_plane_state->ggtt_vma = vma;
- 	return 0;
- }
++	/* for legacy cursor fb unpin */
++	struct drm_vblank_work unpin_work;
++
+ 	/* Plane pxp decryption state */
+ 	bool decrypt;
  
 -- 
 2.43.0
