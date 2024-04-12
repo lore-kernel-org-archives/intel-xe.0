@@ -4,59 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54A08C00A94
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 15:19:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08FADC00A94
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 15:20:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB68610F6D6;
-	Fri, 12 Apr 2024 15:19:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9026210F6D7;
+	Fri, 12 Apr 2024 15:20:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DuRK4hU1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lMRI28Fq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87C2810F6DE;
- Fri, 12 Apr 2024 15:19:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A66D710F6D7
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Apr 2024 15:20:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712935194; x=1744471194;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=FWKrCnR8NiqIhmuhl3PiEZ6HnAToF1MwN8rIbttNugM=;
- b=DuRK4hU190GjIHvR+heH8bvYN074gvuiFaZfT4ykQNs82AVQhXEdWLtx
- I/HbLVT6yLkIKhr//09Ci9vLEhI5m6u0nEqKvt4TsZohOx2QBOMKPcD2R
- SGTBYX0sgC5d4mjVY0GZJhze2KC6ix+h1kFxTvsJP8R5q/y5Gyx1TROvr
- YTg9D3b+FRwqW1w7794VaPvhGZz02r3SuCul1Q8VNyVU31cND0LrYXp7X
- +MzdWlYhy6RALh0vT3phC1Eovo+feZ/i44GQkMquF8BOVLHrsKlsqq/wL
- QIVLZcZKEoQ1U/zqiEWhydLwjcqpNqtaVyXuETjnspzXPiY8Sphsy7MS4 w==;
-X-CSE-ConnectionGUID: vIIn1NkyS9eQ/NloNGFSbQ==
-X-CSE-MsgGUID: 3MW05rPzQyaCokVXVwf2YA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="19542451"
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="19542451"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 08:19:53 -0700
-X-CSE-ConnectionGUID: HxSwWjs0RiS5Agp2JIactA==
-X-CSE-MsgGUID: X4pXxEEyQTCa4N04W9AIBA==
+ t=1712935222; x=1744471222;
+ h=date:from:to:cc:subject:message-id;
+ bh=nkzPqu0C4j/SevTRxx7YiXgHFpMZV8qfI1vzz2/bMgA=;
+ b=lMRI28Fq/rdYx3KHQ9jtuXzMOttT8Vq5cfAI/yXBQMyxCFJp+wZW2ObO
+ 06L7rI3qLc7qCyvIG00tX9fMW9IspUqWKq/PKevU9EzLrWYaLrYmoXF5B
+ tO5UCW2QuXwTx1HniobYcjpvc0d0rA5fUfEccqC4ALc6wxl5y16vQormy
+ jModJ2J2EZmQnorFufgBvyI92haTUOdrnEMPoDQrYN6sDUaJIcZ9hXeze
+ E8A3P34KQpcZekxjtdK+jlRK5VpEYMETCi8xViOtZOtYEcNYd1hrH0kHD
+ kDlBaHmm2dtbLN82hFqOomUaXaE0NtZGCkKROc95i0HrNAqkg+RDH4onE w==;
+X-CSE-ConnectionGUID: MN09xT58SguBNe2zYKByOA==
+X-CSE-MsgGUID: /81ZHQqSTdaH2jGEkyJGcw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="19814536"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="19814536"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 08:20:13 -0700
+X-CSE-ConnectionGUID: /+UhY4V1Rx2By4Ueu6jssw==
+X-CSE-MsgGUID: jlrx0WNAQt6/OmqEmOWnZw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21346062"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 12 Apr 2024 08:19:50 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 12 Apr 2024 18:19:50 +0300
-Date: Fri, 12 Apr 2024 18:19:50 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/6] drm/i915/color: move palette registers to
- intel_color_regs.h
-Message-ID: <ZhlRFum4FT-I3o35@intel.com>
-References: <cover.1712933479.git.jani.nikula@intel.com>
- <e82ca633fbe0c39d3d72379866737b509c05ece4.1712933479.git.jani.nikula@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e82ca633fbe0c39d3d72379866737b509c05ece4.1712933479.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="58681355"
+Received: from unknown (HELO 23c141fc0fd8) ([10.239.97.151])
+ by orviesa001.jf.intel.com with ESMTP; 12 Apr 2024 08:20:11 -0700
+Received: from kbuild by 23c141fc0fd8 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rvIhF-0000BE-1C;
+ Fri, 12 Apr 2024 15:20:09 +0000
+Date: Fri, 12 Apr 2024 23:19:17 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
+ f76646c83f028c62853c23dac49204232e903597
+Message-ID: <202404122315.2aDdWyO2-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,111 +64,182 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Apr 12, 2024 at 05:52:54PM +0300, Jani Nikula wrote:
-> For some reason the paletter registers were missed when adding
-> intel_color_regs.h. Finish the job.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_color_regs.h   | 30 +++++++++++++++++++
->  drivers/gpu/drm/i915/i915_reg.h               | 30 -------------------
->  2 files changed, 30 insertions(+), 30 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_color_regs.h b/drivers/gpu/drm/i915/display/intel_color_regs.h
-> index 9f4ae58f3e7e..969745821172 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_color_regs.h
-> @@ -8,6 +8,36 @@
->  
->  #include "intel_display_reg_defs.h"
->  
-> +/*
-> + * Palette regs
-> + */
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
+branch HEAD: f76646c83f028c62853c23dac49204232e903597  drm/xe: Label RING_CONTEXT_CONTROL as masked
 
-Quite redundant. If we want to keep a comment then it
-should be adjusted to say these are for gmch platforms.
+elapsed time: 1474m
 
-> +#define _PALETTE_A		0xa000
-> +#define _PALETTE_B		0xa800
-> +#define _CHV_PALETTE_C		0xc000
-> +/* 8bit mode / i965+ 10.6 interpolated mode ldw/udw */
-> +#define   PALETTE_RED_MASK		REG_GENMASK(23, 16)
-> +#define   PALETTE_GREEN_MASK		REG_GENMASK(15, 8)
-> +#define   PALETTE_BLUE_MASK		REG_GENMASK(7, 0)
-> +/* pre-i965 10bit interpolated mode ldw */
-> +#define   PALETTE_10BIT_RED_LDW_MASK	REG_GENMASK(23, 16)
-> +#define   PALETTE_10BIT_GREEN_LDW_MASK	REG_GENMASK(15, 8)
-> +#define   PALETTE_10BIT_BLUE_LDW_MASK	REG_GENMASK(7, 0)
-> +/* pre-i965 10bit interpolated mode udw */
-> +#define   PALETTE_10BIT_RED_EXP_MASK	REG_GENMASK(23, 22)
-> +#define   PALETTE_10BIT_RED_MANT_MASK	REG_GENMASK(21, 18)
-> +#define   PALETTE_10BIT_RED_UDW_MASK	REG_GENMASK(17, 16)
-> +#define   PALETTE_10BIT_GREEN_EXP_MASK	REG_GENMASK(15, 14)
-> +#define   PALETTE_10BIT_GREEN_MANT_MASK	REG_GENMASK(13, 10)
-> +#define   PALETTE_10BIT_GREEN_UDW_MASK	REG_GENMASK(9, 8)
-> +#define   PALETTE_10BIT_BLUE_EXP_MASK	REG_GENMASK(7, 6)
-> +#define   PALETTE_10BIT_BLUE_MANT_MASK	REG_GENMASK(5, 2)
-> +#define   PALETTE_10BIT_BLUE_UDW_MASK	REG_GENMASK(1, 0)
-> +#define PALETTE(pipe, i) _MMIO(DISPLAY_MMIO_BASE(dev_priv) +			\
-> +			       _PICK_EVEN_2RANGES(pipe, 2,			\
-> +						  _PALETTE_A, _PALETTE_B,	\
-> +						  _CHV_PALETTE_C, _CHV_PALETTE_C) + \
-> +						  (i) * 4)
-> +
->  /* legacy palette */
+configs tested: 163
+configs skipped: 7
 
-and then this should be adjusted to indicate ilk+
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-Otherwise
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
->  #define _LGC_PALETTE_A           0x4a000
->  #define _LGC_PALETTE_B           0x4a800
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index c689bc7e2867..b74965383a56 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -1700,36 +1700,6 @@
->  
->  #define GMBUSFREQ_VLV		_MMIO(VLV_DISPLAY_BASE + 0x6510)
->  
-> -/*
-> - * Palette regs
-> - */
-> -#define _PALETTE_A		0xa000
-> -#define _PALETTE_B		0xa800
-> -#define _CHV_PALETTE_C		0xc000
-> -/* 8bit mode / i965+ 10.6 interpolated mode ldw/udw */
-> -#define   PALETTE_RED_MASK		REG_GENMASK(23, 16)
-> -#define   PALETTE_GREEN_MASK		REG_GENMASK(15, 8)
-> -#define   PALETTE_BLUE_MASK		REG_GENMASK(7, 0)
-> -/* pre-i965 10bit interpolated mode ldw */
-> -#define   PALETTE_10BIT_RED_LDW_MASK	REG_GENMASK(23, 16)
-> -#define   PALETTE_10BIT_GREEN_LDW_MASK	REG_GENMASK(15, 8)
-> -#define   PALETTE_10BIT_BLUE_LDW_MASK	REG_GENMASK(7, 0)
-> -/* pre-i965 10bit interpolated mode udw */
-> -#define   PALETTE_10BIT_RED_EXP_MASK	REG_GENMASK(23, 22)
-> -#define   PALETTE_10BIT_RED_MANT_MASK	REG_GENMASK(21, 18)
-> -#define   PALETTE_10BIT_RED_UDW_MASK	REG_GENMASK(17, 16)
-> -#define   PALETTE_10BIT_GREEN_EXP_MASK	REG_GENMASK(15, 14)
-> -#define   PALETTE_10BIT_GREEN_MANT_MASK	REG_GENMASK(13, 10)
-> -#define   PALETTE_10BIT_GREEN_UDW_MASK	REG_GENMASK(9, 8)
-> -#define   PALETTE_10BIT_BLUE_EXP_MASK	REG_GENMASK(7, 6)
-> -#define   PALETTE_10BIT_BLUE_MANT_MASK	REG_GENMASK(5, 2)
-> -#define   PALETTE_10BIT_BLUE_UDW_MASK	REG_GENMASK(1, 0)
-> -#define PALETTE(pipe, i) _MMIO(DISPLAY_MMIO_BASE(dev_priv) +			\
-> -			       _PICK_EVEN_2RANGES(pipe, 2,			\
-> -						  _PALETTE_A, _PALETTE_B,	\
-> -						  _CHV_PALETTE_C, _CHV_PALETTE_C) + \
-> -						  (i) * 4)
-> -
->  #define PEG_BAND_GAP_DATA	_MMIO(0x14d68)
->  
->  #define BXT_RP_STATE_CAP        _MMIO(0x138170)
-> -- 
-> 2.39.2
+tested configs:
+alpha                             allnoconfig   gcc  
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+arc                              allmodconfig   gcc  
+arc                               allnoconfig   gcc  
+arc                              allyesconfig   gcc  
+arc                                 defconfig   gcc  
+arc                            hsdk_defconfig   gcc  
+arc                   randconfig-001-20240412   gcc  
+arc                   randconfig-002-20240412   gcc  
+arm                              alldefconfig   gcc  
+arm                               allnoconfig   clang
+arm                                 defconfig   clang
+arm                        keystone_defconfig   gcc  
+arm                       omap2plus_defconfig   gcc  
+arm                   randconfig-001-20240412   gcc  
+arm                   randconfig-004-20240412   gcc  
+arm                           sama5_defconfig   gcc  
+arm                           u8500_defconfig   gcc  
+arm                         wpcm450_defconfig   gcc  
+arm64                            allmodconfig   clang
+arm64                             allnoconfig   gcc  
+arm64                            allyesconfig   clang
+arm64                               defconfig   gcc  
+arm64                 randconfig-001-20240412   gcc  
+arm64                 randconfig-002-20240412   gcc  
+csky                              allnoconfig   gcc  
+csky                                defconfig   gcc  
+csky                  randconfig-001-20240412   gcc  
+csky                  randconfig-002-20240412   gcc  
+hexagon                          allmodconfig   clang
+hexagon                           allnoconfig   clang
+hexagon                          allyesconfig   clang
+hexagon                             defconfig   clang
+i386                             allmodconfig   gcc  
+i386                              allnoconfig   gcc  
+i386                             allyesconfig   gcc  
+i386         buildonly-randconfig-001-20240412   gcc  
+i386         buildonly-randconfig-002-20240412   clang
+i386         buildonly-randconfig-003-20240412   gcc  
+i386         buildonly-randconfig-004-20240412   gcc  
+i386         buildonly-randconfig-005-20240412   gcc  
+i386         buildonly-randconfig-006-20240412   gcc  
+i386                                defconfig   clang
+i386                  randconfig-001-20240412   clang
+i386                  randconfig-002-20240412   gcc  
+i386                  randconfig-003-20240412   clang
+i386                  randconfig-004-20240412   clang
+i386                  randconfig-005-20240412   clang
+i386                  randconfig-006-20240412   gcc  
+i386                  randconfig-011-20240412   clang
+i386                  randconfig-012-20240412   gcc  
+i386                  randconfig-013-20240412   clang
+i386                  randconfig-014-20240412   gcc  
+i386                  randconfig-015-20240412   gcc  
+i386                  randconfig-016-20240412   clang
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                           defconfig   gcc  
+loongarch             randconfig-001-20240412   gcc  
+loongarch             randconfig-002-20240412   gcc  
+m68k                             allmodconfig   gcc  
+m68k                              allnoconfig   gcc  
+m68k                             allyesconfig   gcc  
+m68k                                defconfig   gcc  
+m68k                        stmark2_defconfig   gcc  
+microblaze                       allmodconfig   gcc  
+microblaze                        allnoconfig   gcc  
+microblaze                       allyesconfig   gcc  
+microblaze                          defconfig   gcc  
+mips                              allnoconfig   gcc  
+mips                             allyesconfig   gcc  
+mips                     cu1000-neo_defconfig   gcc  
+mips                  decstation_64_defconfig   gcc  
+mips                           ip22_defconfig   gcc  
+mips                      maltasmvp_defconfig   gcc  
+nios2                            allmodconfig   gcc  
+nios2                             allnoconfig   gcc  
+nios2                            allyesconfig   gcc  
+nios2                               defconfig   gcc  
+nios2                 randconfig-001-20240412   gcc  
+nios2                 randconfig-002-20240412   gcc  
+openrisc                          allnoconfig   gcc  
+openrisc                         allyesconfig   gcc  
+openrisc                            defconfig   gcc  
+parisc                           allmodconfig   gcc  
+parisc                            allnoconfig   gcc  
+parisc                           allyesconfig   gcc  
+parisc                              defconfig   gcc  
+parisc                randconfig-001-20240412   gcc  
+parisc                randconfig-002-20240412   gcc  
+parisc64                            defconfig   gcc  
+powerpc                          allmodconfig   gcc  
+powerpc                           allnoconfig   gcc  
+powerpc                          allyesconfig   clang
+powerpc                      arches_defconfig   gcc  
+powerpc                      ep88xc_defconfig   gcc  
+powerpc                     powernv_defconfig   gcc  
+powerpc               randconfig-003-20240412   gcc  
+powerpc                     tqm5200_defconfig   gcc  
+powerpc64             randconfig-001-20240412   gcc  
+powerpc64             randconfig-002-20240412   gcc  
+riscv                            allmodconfig   clang
+riscv                             allnoconfig   gcc  
+riscv                            allyesconfig   clang
+riscv                               defconfig   clang
+s390                             allmodconfig   clang
+s390                              allnoconfig   clang
+s390                             allyesconfig   gcc  
+s390                                defconfig   clang
+s390                  randconfig-001-20240412   gcc  
+s390                  randconfig-002-20240412   gcc  
+sh                               allmodconfig   gcc  
+sh                                allnoconfig   gcc  
+sh                               allyesconfig   gcc  
+sh                                  defconfig   gcc  
+sh                        edosk7705_defconfig   gcc  
+sh                    randconfig-001-20240412   gcc  
+sh                    randconfig-002-20240412   gcc  
+sh                          rsk7203_defconfig   gcc  
+sh                          rsk7264_defconfig   gcc  
+sh                           se7343_defconfig   gcc  
+sparc                            allmodconfig   gcc  
+sparc                             allnoconfig   gcc  
+sparc                               defconfig   gcc  
+sparc                       sparc32_defconfig   gcc  
+sparc64                          allmodconfig   gcc  
+sparc64                          allyesconfig   gcc  
+sparc64                             defconfig   gcc  
+sparc64               randconfig-001-20240412   gcc  
+sparc64               randconfig-002-20240412   gcc  
+um                               allmodconfig   clang
+um                                allnoconfig   clang
+um                               allyesconfig   gcc  
+um                                  defconfig   clang
+um                             i386_defconfig   gcc  
+um                    randconfig-002-20240412   gcc  
+um                           x86_64_defconfig   clang
+x86_64                            allnoconfig   clang
+x86_64                           allyesconfig   clang
+x86_64       buildonly-randconfig-004-20240412   clang
+x86_64       buildonly-randconfig-005-20240412   clang
+x86_64                              defconfig   gcc  
+x86_64                randconfig-001-20240412   clang
+x86_64                randconfig-004-20240412   clang
+x86_64                randconfig-005-20240412   clang
+x86_64                randconfig-006-20240412   clang
+x86_64                randconfig-011-20240412   clang
+x86_64                randconfig-013-20240412   clang
+x86_64                randconfig-014-20240412   clang
+x86_64                randconfig-015-20240412   clang
+x86_64                randconfig-072-20240412   clang
+x86_64                randconfig-073-20240412   clang
+x86_64                randconfig-076-20240412   clang
+x86_64                          rhel-8.3-func   gcc  
+x86_64                    rhel-8.3-kselftests   gcc  
+x86_64                          rhel-8.3-rust   clang
+x86_64                               rhel-8.3   gcc  
+xtensa                            allnoconfig   gcc  
+xtensa                          iss_defconfig   gcc  
+xtensa                  nommu_kc705_defconfig   gcc  
+xtensa                randconfig-001-20240412   gcc  
+xtensa                randconfig-002-20240412   gcc  
 
 -- 
-Ville Syrjälä
-Intel
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
