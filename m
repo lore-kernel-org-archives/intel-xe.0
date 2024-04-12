@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3CD3C04FFF
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 17:58:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3373FC4345F
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 17:58:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46B1A10F789;
-	Fri, 12 Apr 2024 17:58:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A0B710F78E;
+	Fri, 12 Apr 2024 17:58:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n4ByeKnV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KxnFIqqX";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C15310F781
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Apr 2024 17:58:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94C6D10F789
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Apr 2024 17:58:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712944719; x=1744480719;
+ t=1712944721; x=1744480721;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eqA97L6S3Q1/YkjWFp3zjZFlgCel8DPtpJJYfgySjwA=;
- b=n4ByeKnVfBBjGTMBMphqN/2fIKkD+KrduLlZMHnX8DKZoSP5pkY5SzIb
- o4ummN4VQ816SzcBzw4NJGdAZZX9OYrNQpS9d5Z7MS2DuRYfoZti+12QQ
- 6QMNHMMBwpBZt+HhdhV39bZuRc9f/uXeS4lLJFJBaLf0pLLYVVsnXG341
- xv+9uMgcM8bc1kRof1q7ZxY+eFRgEu/2MSQAlNLpQ8/MslIV7u4IstPyM
- ImgdNzYGnKVa2vM5zpzuVD6Pn7Le7WCB9loyaQav/dswxldrqez90YYBC
- a67mRR+f7yaAS73O4uCgKqvVGyKTRiYo3EJpTpnjLDDKIwDg4qrkzHRMk g==;
-X-CSE-ConnectionGUID: 4+Btk8Q2QPel3h2anq46mg==
-X-CSE-MsgGUID: QMhKzgdERXqmP1aIpf1Tfw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="8628141"
+ bh=bubNjqpGl7G5gIkw6Zl/szG/6uL3JVZAHkewzbSIMps=;
+ b=KxnFIqqXAEskMlLOwr8RZWoI6DGsuZyAg2LNZ5HqQK/xd/GPeIGlsRSy
+ RangyytNdsbq6Hlvso6mAK7oSVe+0O1I5Yx/NxR1X4927JBMGCJBmvggn
+ A2/xTPYUrARgfGs14ZtEp0uF1/pqv2HY7ZyKlWwQIGZ8Ih4Op1zts/bYm
+ 0JkBCRf9kJdU9M9mCDWwjfHBQDLpXlIQiN83E4Hjy+tysrBh2gCwxcgcO
+ 4S/PRs36sycMVAtn52CFXmkXb9NQoCTnpD/3ZTkkptecHJEMTiMXdv+2G
+ dxXQ+HxBJiSfbGdbGg1E8TeGo/QOHIQ6eDAeHt2cH5gRcZW9/BwsnhIw3 w==;
+X-CSE-ConnectionGUID: IuPI5IddQ+CmJSKNxr8XZA==
+X-CSE-MsgGUID: LtbUl438T2i64dSHTirNrg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="8628148"
 X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; 
-   d="scan'208";a="8628141"
+   d="scan'208";a="8628148"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 10:58:39 -0700
-X-CSE-ConnectionGUID: RLvxWxr/SqGR+zdGt1xVlg==
-X-CSE-MsgGUID: R0tqvX6SQZypC3kUKztEbw==
+ 12 Apr 2024 10:58:41 -0700
+X-CSE-ConnectionGUID: pIGCctU4R069pdISSpwG0w==
+X-CSE-MsgGUID: S1VC7+y9TlSPn0lSGt9mvQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21369116"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21369129"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by fmviesa007.fm.intel.com with ESMTP; 12 Apr 2024 10:58:37 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 12 Apr 2024 10:58:39 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v4 6/7] drm/xe/tile: Abort driver load for sysfs creation
- failure
-Date: Fri, 12 Apr 2024 23:42:10 +0530
-Message-Id: <20240412181211.1155732-7-himal.prasad.ghimiray@intel.com>
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v4 7/7] drm/xe/pm: Capture errors and handle them
+Date: Fri, 12 Apr 2024 23:42:11 +0530
+Message-Id: <20240412181211.1155732-8-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240412181211.1155732-1-himal.prasad.ghimiray@intel.com>
 References: <20240412181211.1155732-1-himal.prasad.ghimiray@intel.com>
@@ -69,150 +68,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Ensure that the status of all tile associated sysfs entries creation is
-relayed to xe_tile_init_noalloc, leading to a driver load abort if any
-sysfs creation failures occur.
+xe_pm_init may encounter failures for various reasons, such as a failure
+in initializing drmm_mutex, or when dealing with a d3cold-capable device
+for vram_threshold sysfs creation and setting default threshold.
+Presently, all these potential failures are disregarded.
+
+Move d3cold.lock initialization to xe_pm_init_early and cause driver
+abort if mutex initialization has failed.
+
+For xe_pm_init failures cleanup the driver and return error code
 
 -v2
-Avoid unnecessary warn/error messages. (Lucas)
+Make mutex init cleaner (Lucas)
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_tile.c       |  2 +-
- drivers/gpu/drm/xe/xe_tile_sysfs.c | 16 +++++++---------
- drivers/gpu/drm/xe/xe_tile_sysfs.h |  2 +-
- drivers/gpu/drm/xe/xe_vram_freq.c  | 20 ++++++++------------
- drivers/gpu/drm/xe/xe_vram_freq.h  |  2 +-
- 5 files changed, 18 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/xe/xe_device_sysfs.c | 12 ++++------
+ drivers/gpu/drm/xe/xe_device_sysfs.h |  2 +-
+ drivers/gpu/drm/xe/xe_pci.c          | 12 ++++++++--
+ drivers/gpu/drm/xe/xe_pm.c           | 36 +++++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_pm.h           |  4 ++--
+ 5 files changed, 45 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index 0650b2fa75ef..409cf55aa8a1 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -173,7 +173,7 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
- 	}
- 	xe_wa_apply_tile_workarounds(tile);
- 
--	xe_tile_sysfs_init(tile);
-+	err = xe_tile_sysfs_init(tile);
- 
- err_mem_access:
- 	xe_device_mem_access_put(tile_to_xe(tile));
-diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c b/drivers/gpu/drm/xe/xe_tile_sysfs.c
-index 237a0761d3ad..e1bfe0e4257d 100644
---- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
-@@ -29,7 +29,7 @@ static void tile_sysfs_fini(struct drm_device *drm, void *arg)
- 	kobject_put(tile->sysfs);
+diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+index e47c8ad1bb17..21677b8cd977 100644
+--- a/drivers/gpu/drm/xe/xe_device_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+@@ -76,18 +76,14 @@ static void xe_device_sysfs_fini(struct drm_device *drm, void *arg)
+ 	sysfs_remove_file(&xe->drm.dev->kobj, &dev_attr_vram_d3cold_threshold.attr);
  }
  
--void xe_tile_sysfs_init(struct xe_tile *tile)
-+int  xe_tile_sysfs_init(struct xe_tile *tile)
+-void xe_device_sysfs_init(struct xe_device *xe)
++int xe_device_sysfs_init(struct xe_device *xe)
  {
- 	struct xe_device *xe = tile_to_xe(tile);
  	struct device *dev = xe->drm.dev;
-@@ -38,7 +38,7 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
+ 	int ret;
  
- 	kt = kzalloc(sizeof(*kt), GFP_KERNEL);
- 	if (!kt)
--		return;
-+		return -ENOMEM;
- 
- 	kobject_init(&kt->base, &xe_tile_sysfs_kobj_type);
- 	kt->tile = tile;
-@@ -46,16 +46,14 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
- 	err = kobject_add(&kt->base, &dev->kobj, "tile%d", tile->id);
- 	if (err) {
- 		kobject_put(&kt->base);
--		drm_warn(&xe->drm, "failed to register TILE sysfs directory, err: %d\n", err);
--		return;
-+		return err;
- 	}
- 
- 	tile->sysfs = &kt->base;
- 
--	xe_vram_freq_sysfs_init(tile);
--
--	err = drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini, tile);
-+	err = xe_vram_freq_sysfs_init(tile);
- 	if (err)
--		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, err: %d\n",
--			 __func__, err);
-+		return err;
-+
-+	return drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini, tile);
- }
-diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.h b/drivers/gpu/drm/xe/xe_tile_sysfs.h
-index e4f065039eba..54a2ba8ba533 100644
---- a/drivers/gpu/drm/xe/xe_tile_sysfs.h
-+++ b/drivers/gpu/drm/xe/xe_tile_sysfs.h
-@@ -8,7 +8,7 @@
- 
- #include "xe_tile_sysfs_types.h"
- 
--void xe_tile_sysfs_init(struct xe_tile *tile);
-+int xe_tile_sysfs_init(struct xe_tile *tile);
- 
- static inline struct xe_tile *
- kobj_to_tile(struct kobject *kobj)
-diff --git a/drivers/gpu/drm/xe/xe_vram_freq.c b/drivers/gpu/drm/xe/xe_vram_freq.c
-index c5f6b5a5d117..3e21ddc6e60c 100644
---- a/drivers/gpu/drm/xe/xe_vram_freq.c
-+++ b/drivers/gpu/drm/xe/xe_vram_freq.c
-@@ -100,31 +100,27 @@ static void vram_freq_sysfs_fini(struct drm_device *drm, void *arg)
-  * @tile: Xe Tile object
-  *
-  * It needs to be initialized after the main tile component is ready
-+ *
-+ * Returns: 0 on success, negative error code on error.
-  */
--void xe_vram_freq_sysfs_init(struct xe_tile *tile)
-+int xe_vram_freq_sysfs_init(struct xe_tile *tile)
- {
- 	struct xe_device *xe = tile_to_xe(tile);
- 	struct kobject *kobj;
- 	int err;
- 
- 	if (xe->info.platform != XE_PVC)
--		return;
-+		return 0;
- 
- 	kobj = kobject_create_and_add("memory", tile->sysfs);
--	if (!kobj) {
--		drm_warn(&xe->drm, "failed to add memory directory, err: %d\n", -ENOMEM);
+ 	ret = sysfs_create_file(&dev->kobj, &dev_attr_vram_d3cold_threshold.attr);
+-	if (ret) {
+-		drm_warn(&xe->drm, "Failed to create sysfs file\n");
 -		return;
 -	}
-+	if (!kobj)
-+		return -ENOMEM;
- 
- 	err = sysfs_create_group(kobj, &freq_group_attrs);
- 	if (err) {
- 		kobject_put(kobj);
--		drm_warn(&xe->drm, "failed to register vram freq sysfs, err: %d\n", err);
--		return;
-+		return err;
- 	}
- 
--	err = drmm_add_action_or_reset(&xe->drm, vram_freq_sysfs_fini, kobj);
--	if (err)
--		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, err: %d\n",
--			 __func__, err);
-+	return drmm_add_action_or_reset(&xe->drm, vram_freq_sysfs_fini, kobj);
+-
+-	ret = drmm_add_action_or_reset(&xe->drm, xe_device_sysfs_fini, xe);
+ 	if (ret)
+-		drm_warn(&xe->drm, "Failed to add sysfs fini drm action\n");
++		return ret;
++
++	return drmm_add_action_or_reset(&xe->drm, xe_device_sysfs_fini, xe);
  }
-diff --git a/drivers/gpu/drm/xe/xe_vram_freq.h b/drivers/gpu/drm/xe/xe_vram_freq.h
-index cbe8c12fbd64..bf726bc5881f 100644
---- a/drivers/gpu/drm/xe/xe_vram_freq.h
-+++ b/drivers/gpu/drm/xe/xe_vram_freq.h
+diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.h b/drivers/gpu/drm/xe/xe_device_sysfs.h
+index 38b240684bee..f9e83d8bd2c7 100644
+--- a/drivers/gpu/drm/xe/xe_device_sysfs.h
++++ b/drivers/gpu/drm/xe/xe_device_sysfs.h
 @@ -8,6 +8,6 @@
  
- struct xe_tile;
+ struct xe_device;
  
--void xe_vram_freq_sysfs_init(struct xe_tile *tile);
-+int xe_vram_freq_sysfs_init(struct xe_tile *tile);
+-void xe_device_sysfs_init(struct xe_device *xe);
++int xe_device_sysfs_init(struct xe_device *xe);
  
- #endif /* _XE_VRAM_FREQ_H_ */
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index fa2cc80a08a3..65ea44672cab 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -781,18 +781,26 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 		str_yes_no(xe_device_has_sriov(xe)),
+ 		xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
+ 
+-	xe_pm_init_early(xe);
++	err = xe_pm_init_early(xe);
++	if (err)
++		return err;
+ 
+ 	err = xe_device_probe(xe);
+ 	if (err)
+ 		return err;
+ 
+-	xe_pm_init(xe);
++	err = xe_pm_init(xe);
++	if (err)
++		goto err_driver_cleanup;
+ 
+ 	drm_dbg(&xe->drm, "d3cold: capable=%s\n",
+ 		str_yes_no(xe->d3cold.capable));
+ 
+ 	return 0;
++
++err_driver_cleanup:
++	xe_pci_remove(pdev);
++	return err;
+ }
+ 
+ static void xe_pci_shutdown(struct pci_dev *pdev)
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index f1fc83845c01..a9decdf266a8 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -208,10 +208,21 @@ static void xe_pm_runtime_init(struct xe_device *xe)
+ 	pm_runtime_put(dev);
+ }
+ 
+-void xe_pm_init_early(struct xe_device *xe)
++int xe_pm_init_early(struct xe_device *xe)
+ {
++	int err;
++
+ 	INIT_LIST_HEAD(&xe->mem_access.vram_userfault.list);
+-	drmm_mutex_init(&xe->drm, &xe->mem_access.vram_userfault.lock);
++
++	err = drmm_mutex_init(&xe->drm, &xe->mem_access.vram_userfault.lock);
++	if (err)
++		return err;
++
++	err = drmm_mutex_init(&xe->drm, &xe->d3cold.lock);
++	if (err)
++		return err;
++
++	return 0;
+ }
+ 
+ /**
+@@ -219,23 +230,32 @@ void xe_pm_init_early(struct xe_device *xe)
+  * @xe: xe device instance
+  *
+  * This component is responsible for System and Device sleep states.
++ *
++ * Returns 0 for success, negative error code otherwise.
+  */
+-void xe_pm_init(struct xe_device *xe)
++int xe_pm_init(struct xe_device *xe)
+ {
++	int err;
++
+ 	/* For now suspend/resume is only allowed with GuC */
+ 	if (!xe_device_uc_enabled(xe))
+-		return;
+-
+-	drmm_mutex_init(&xe->drm, &xe->d3cold.lock);
++		return 0;
+ 
+ 	xe->d3cold.capable = xe_pm_pci_d3cold_capable(xe);
+ 
+ 	if (xe->d3cold.capable) {
+-		xe_device_sysfs_init(xe);
+-		xe_pm_set_vram_threshold(xe, DEFAULT_VRAM_THRESHOLD);
++		err = xe_device_sysfs_init(xe);
++		if (err)
++			return err;
++
++		err = xe_pm_set_vram_threshold(xe, DEFAULT_VRAM_THRESHOLD);
++		if (err)
++			return err;
+ 	}
+ 
+ 	xe_pm_runtime_init(xe);
++
++	return 0;
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
+index 0cb38ca244fe..2cefe8624474 100644
+--- a/drivers/gpu/drm/xe/xe_pm.h
++++ b/drivers/gpu/drm/xe/xe_pm.h
+@@ -20,8 +20,8 @@ struct xe_device;
+ int xe_pm_suspend(struct xe_device *xe);
+ int xe_pm_resume(struct xe_device *xe);
+ 
+-void xe_pm_init_early(struct xe_device *xe);
+-void xe_pm_init(struct xe_device *xe);
++int xe_pm_init_early(struct xe_device *xe);
++int xe_pm_init(struct xe_device *xe);
+ void xe_pm_runtime_fini(struct xe_device *xe);
+ bool xe_pm_runtime_suspended(struct xe_device *xe);
+ int xe_pm_runtime_suspend(struct xe_device *xe);
 -- 
 2.25.1
 
