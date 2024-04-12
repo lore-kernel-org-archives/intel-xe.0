@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78D13C4345F
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 10:37:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BB4AC4345F
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 10:38:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2229B10EFC4;
-	Fri, 12 Apr 2024 10:37:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nA43kDaK";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C210910EFC4
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Apr 2024 10:37:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712918230; x=1744454230;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=aqrUhKJdkBE410Ko4a5kkcBhqeuPvKSvNNB+ri68JiM=;
- b=nA43kDaKqJM+068zie6UKJK1XJ1IslB6Q/yMOMi/INde5jzrs0yill+X
- MXM7vQGBT0TPtDFRwHGllOuoiUFNh8QnNCfR/rNQvFa/nTky69m48ha5/
- rt+bwIjXbvCFVJMWYXY6VWBZsf/5DjNMct94Ehwf7y6vrm8R027g6AvpR
- h+mS7NyXgm/GdokJCke8b4nhhWuwl4tDlxcvPdz8mhtXBcD4kCsAinIMx
- MMoXJ/pKVTdlNJl+xJzL2CyrdrzoIH9dIin2ebfB0aMakDfZMUFImopaw
- GyFNNLamBrQqL0ry8OvtO4QZDmDE1oM/FNfF5Lg3G0JfhdpcJf/wcPyUr A==;
-X-CSE-ConnectionGUID: bPHl68t9Rvy1/egHQ4j+wg==
-X-CSE-MsgGUID: TFSo0yNxQZ6lALSLck6ALQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="8241163"
-X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; 
-   d="scan'208";a="8241163"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 03:37:09 -0700
-X-CSE-ConnectionGUID: Q8A1RgxWQUGrEpw7D3sUQA==
-X-CSE-MsgGUID: lqponM/URVmtfSth6Bqt5A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="25876357"
-Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa003.jf.intel.com with ESMTP; 12 Apr 2024 03:37:06 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH v2] drm/xe: Modify minimum of various scheduler timeout to 0.
-Date: Fri, 12 Apr 2024 16:20:53 +0530
-Message-Id: <20240412105053.1050268-1-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 233D810E4B6;
+	Fri, 12 Apr 2024 10:38:32 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A5F510E4B6;
+ Fri, 12 Apr 2024 10:38:29 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4265093652199821642=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_Enable_device_atomics_with_a_VM_?=
+ =?utf-8?q?bind_flag_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 12 Apr 2024 10:38:29 -0000
+Message-ID: <171291830956.1353801.16275450768474455385@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240412092249.3636-1-nirmoy.das@intel.com>
+In-Reply-To: <20240412092249.3636-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,70 +36,186 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The sysman teams needs to disable preemption and timeslice to
-test exclusivity mode and are relying on setting 'timeslice_duration_us'
-and 'preempt_timeout_us' to 0 for the same. Hence set the
-min configs to 0.
+--===============4265093652199821642==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
--v2
-Modify values in drivers/gpu/drm/xe/xe_hw_engine.h
+== Series Details ==
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/Kconfig.profile | 4 ++--
- drivers/gpu/drm/xe/xe_hw_engine.h  | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+Series: Enable device atomics with a VM bind flag (rev2)
+URL   : https://patchwork.freedesktop.org/series/132290/
+State : failure
 
-diff --git a/drivers/gpu/drm/xe/Kconfig.profile b/drivers/gpu/drm/xe/Kconfig.profile
-index ba17a25e8db3..80e80b55467f 100644
---- a/drivers/gpu/drm/xe/Kconfig.profile
-+++ b/drivers/gpu/drm/xe/Kconfig.profile
-@@ -18,7 +18,7 @@ config DRM_XE_TIMESLICE_MAX
- 	  contexts by guc scheduling.
- config DRM_XE_TIMESLICE_MIN
- 	int "Default min timeslice duration (us)"
--	default 1 # microseconds
-+	default 0 # microseconds
- 	help
- 	  Configures the default min timeslice duration between multiple
- 	  contexts by guc scheduling.
-@@ -39,7 +39,7 @@ config DRM_XE_PREEMPT_TIMEOUT_MAX
- 	  run.
- config DRM_XE_PREEMPT_TIMEOUT_MIN
- 	int "Default min preempt timeout (us)"
--	default 1 # microseconds
-+	default 0 # microseconds
- 	help
- 	  Configures the default min preempt timeout after which context
- 	  will be forcefully taken away and higher priority context will
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
-index 71968ee2f600..5be0783a8865 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.h
-@@ -23,7 +23,7 @@ struct drm_printer;
- #ifdef CONFIG_DRM_XE_TIMESLICE_MIN
- #define XE_HW_ENGINE_TIMESLICE_MIN CONFIG_DRM_XE_TIMESLICE_MIN
- #else
--#define XE_HW_ENGINE_TIMESLICE_MIN 1
-+#define XE_HW_ENGINE_TIMESLICE_MIN 0
- #endif
- #ifdef CONFIG_DRM_XE_TIMESLICE_MAX
- #define XE_HW_ENGINE_TIMESLICE_MAX CONFIG_DRM_XE_TIMESLICE_MAX
-@@ -38,7 +38,7 @@ struct drm_printer;
- #ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT_MIN
- #define XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN CONFIG_DRM_XE_PREEMPT_TIMEOUT_MIN
- #else
--#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN 1
-+#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN 0
- #endif
- #ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT_MAX
- #define XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX CONFIG_DRM_XE_PREEMPT_TIMEOUT_MAX
--- 
-2.25.1
+== Summary ==
 
+CI Bug Log - changes from xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff_BAT -> xe-pw-132290v2_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-132290v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-132290v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-132290v2_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_copy-instance-1-tile-0-vram0-memory:
+    - bat-pvc-2:          [PASS][1] -> [FAIL][2] +17 other tests fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-pvc-2/igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_copy-instance-1-tile-0-vram0-memory.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132290v2/bat-pvc-2/igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_copy-instance-1-tile-0-vram0-memory.html
+
+  * igt@xe_pat@pat-index-all:
+    - bat-adlp-7:         [PASS][3] -> [FAIL][4] +1 other test fail
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-adlp-7/igt@xe_pat@pat-index-all.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132290v2/bat-adlp-7/igt@xe_pat@pat-index-all.html
+    - bat-dg2-oem2:       [PASS][5] -> [FAIL][6] +1 other test fail
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-dg2-oem2/igt@xe_pat@pat-index-all.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132290v2/bat-dg2-oem2/igt@xe_pat@pat-index-all.html
+
+  * igt@xe_pat@prime-external-import-coh:
+    - bat-atsm-2:         [PASS][7] -> [FAIL][8] +1 other test fail
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-atsm-2/igt@xe_pat@prime-external-import-coh.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132290v2/bat-atsm-2/igt@xe_pat@prime-external-import-coh.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@xe_pat@pat-index-all:
+    - {bat-lnl-1}:        [PASS][9] -> [FAIL][10] +1 other test fail
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-lnl-1/igt@xe_pat@pat-index-all.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132290v2/bat-lnl-1/igt@xe_pat@pat-index-all.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+
+
+Build changes
+-------------
+
+  * Linux: xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff -> xe-pw-132290v2
+
+  IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff: d9073a139e9edfd27d830c9c4af9683651044aff
+  xe-pw-132290v2: 132290v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132290v2/index.html
+
+--===============4265093652199821642==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Enable device atomics with a VM bind flag (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132290/">https://patchwork.freedesktop.org/series/132290/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132290v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132290v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff_BAT -&gt; xe-pw-132290v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-132290v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-132290v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-132290v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_copy-instance-1-tile-0-vram0-memory:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-pvc-2/igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_copy-instance-1-tile-0-vram0-memory.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132290v2/bat-pvc-2/igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_copy-instance-1-tile-0-vram0-memory.html">FAIL</a> +17 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-all:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-adlp-7/igt@xe_pat@pat-index-all.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132290v2/bat-adlp-7/igt@xe_pat@pat-index-all.html">FAIL</a> +1 other test fail</li>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-dg2-oem2/igt@xe_pat@pat-index-all.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132290v2/bat-dg2-oem2/igt@xe_pat@pat-index-all.html">FAIL</a> +1 other test fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@prime-external-import-coh:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-atsm-2/igt@xe_pat@prime-external-import-coh.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132290v2/bat-atsm-2/igt@xe_pat@prime-external-import-coh.html">FAIL</a> +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@xe_pat@pat-index-all:<ul>
+<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-lnl-1/igt@xe_pat@pat-index-all.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132290v2/bat-lnl-1/igt@xe_pat@pat-index-all.html">FAIL</a> +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff -&gt; xe-pw-132290v2</li>
+</ul>
+<p>IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff: d9073a139e9edfd27d830c9c4af9683651044aff<br />
+  xe-pw-132290v2: 132290v2</p>
+
+</body>
+</html>
+
+--===============4265093652199821642==--
