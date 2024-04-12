@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22683C4345F
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 09:42:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3443DC00A94
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 09:58:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D991410F560;
-	Fri, 12 Apr 2024 09:42:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F3OQv/aq";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1211D10F55A;
- Fri, 12 Apr 2024 09:42:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712914929; x=1744450929;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qj2jlYCw8omUq1nSaqr0E43ESbm40kk8GpkFmN9V6Rk=;
- b=F3OQv/aqHGovPtGcYMJenKs8TJgg+4Laq8c8APx1QGYGvCqwJO8txWY+
- w5DL6Dv+8tZFuuDJHn+uK95WmNfV/yKps2SSu2IpyE2mbrbYyjBNfXvw4
- 8f7wi9KYOm5n3oExXQwPxm39t7uO8W0nuPRhCK6/NN/jGY2lbvTNPIkOT
- Rzr9J+q8Ed0s8+dsNJ7ijkJM0VOHdRZwmw3GvlALo/XwH32mpck2GBvzO
- 2Jwnq3YXL9wDBQhV25l9btC60NvyqFW4vfywuc7QSQwY39/dqa+UDDePe
- ePHGuDh/h2QVFYzr2kkVpbWWccygoDDg8taW2HMQYu5AhmR6Z+T3nG7+F Q==;
-X-CSE-ConnectionGUID: 7V3E9Rm+ShCg/Be9075L+Q==
-X-CSE-MsgGUID: 1FjLm1JdR1+ut2FyRBAMNw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="12156401"
-X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="12156401"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 02:42:09 -0700
-X-CSE-ConnectionGUID: mlcuLZEgSmia0acVCEcmVw==
-X-CSE-MsgGUID: t8XeVIfARgSKVsIlbCg4Qg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="25841388"
-Received: from swilyman-mobl1.ger.corp.intel.com (HELO
- hazy.ger.corp.intel.com) ([10.251.215.209])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 02:42:07 -0700
-From: Luca Coelho <luciano.coelho@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, uma.shankar@intel.com,
- ville.syrjala@linux.intel.com, jani.nikula@intel.com
-Subject: [PATCH v5 4/4] drm/i915/display: tie DMC wakelock to DC5/6 state
- transitions
-Date: Fri, 12 Apr 2024 12:41:48 +0300
-Message-Id: <20240412094148.808179-5-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240412094148.808179-1-luciano.coelho@intel.com>
-References: <20240412094148.808179-1-luciano.coelho@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0F7F10E6D5;
+	Fri, 12 Apr 2024 09:58:26 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EF9F10E6D5;
+ Fri, 12 Apr 2024 09:58:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Enable_device_atomic?=
+ =?utf-8?q?s_with_a_VM_bind_flag_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 12 Apr 2024 09:58:24 -0000
+Message-ID: <171291590450.1353801.954989195297180322@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240412092249.3636-1-nirmoy.das@intel.com>
+In-Reply-To: <20240412092249.3636-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,80 +36,27 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We only need DMC wakelocks when we allow DC5 and DC6 states.  Add the
-calls to enable and disable DMC wakelock accordingly.
+== Series Details ==
 
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_power_well.c | 7 +++++++
- drivers/gpu/drm/i915/display/intel_dmc.c                | 4 ++++
- 2 files changed, 11 insertions(+)
+Series: Enable device atomics with a VM bind flag (rev2)
+URL   : https://patchwork.freedesktop.org/series/132290/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index e4de40228997..7f4b7602cf02 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -17,6 +17,7 @@
- #include "intel_dkl_phy.h"
- #include "intel_dkl_phy_regs.h"
- #include "intel_dmc.h"
-+#include "intel_dmc_wl.h"
- #include "intel_dp_aux_regs.h"
- #include "intel_dpio_phy.h"
- #include "intel_dpll.h"
-@@ -821,6 +822,8 @@ void gen9_enable_dc5(struct drm_i915_private *dev_priv)
- 		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
- 			     0, SKL_SELECT_ALTERNATE_DC_EXIT);
- 
-+	intel_dmc_wl_enable(dev_priv);
-+
- 	gen9_set_dc_state(dev_priv, DC_STATE_EN_UPTO_DC5);
- }
- 
-@@ -850,6 +853,8 @@ void skl_enable_dc6(struct drm_i915_private *dev_priv)
- 		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
- 			     0, SKL_SELECT_ALTERNATE_DC_EXIT);
- 
-+	intel_dmc_wl_enable(dev_priv);
-+
- 	gen9_set_dc_state(dev_priv, DC_STATE_EN_UPTO_DC6);
- }
- 
-@@ -970,6 +975,8 @@ void gen9_disable_dc_states(struct drm_i915_private *dev_priv)
- 	if (!HAS_DISPLAY(dev_priv))
- 		return;
- 
-+	intel_dmc_wl_disable(dev_priv);
-+
- 	intel_cdclk_get_cdclk(dev_priv, &cdclk_config);
- 	/* Can't read out voltage_level so can't use intel_cdclk_changed() */
- 	drm_WARN_ON(&dev_priv->drm,
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index e61e9c1b8947..a34ff3383fd3 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -552,6 +552,8 @@ void intel_dmc_disable_program(struct drm_i915_private *i915)
- 	pipedmc_clock_gating_wa(i915, true);
- 	disable_all_event_handlers(i915);
- 	pipedmc_clock_gating_wa(i915, false);
-+
-+	intel_dmc_wl_disable(i915);
- }
- 
- void assert_dmc_loaded(struct drm_i915_private *i915)
-@@ -1081,6 +1083,8 @@ void intel_dmc_suspend(struct drm_i915_private *i915)
- 	if (dmc)
- 		flush_work(&dmc->work);
- 
-+	intel_dmc_wl_disable(i915);
-+
- 	/* Drop the reference held in case DMC isn't loaded. */
- 	if (!intel_dmc_has_payload(i915))
- 		intel_dmc_runtime_pm_put(i915);
--- 
-2.39.2
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: d9073a139e9e drm-tip: 2024y-04m-12d-01h-17m-42s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Introduce has_atomic_enable_pte_bit device info
+Applying: drm/xe: Consolidate setting PTE_AE into one place
+Applying: drm/xe: Add function to check if BO has single placement
+Applying: drm/xe: Move vm bind bo validation to a helper function
+Applying: drm/xe: Introduce has_device_atomics_on_smem device info
+Applying: drm/xe/uapi: Introduce VMA bind flag for device atomics
+Applying: drm/xe/uapi: Add a query flag for has_device_atomics_on_smem
+
 
