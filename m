@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0397C00A94
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 08:58:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89072C00A94
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 09:34:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 902E710E0CA;
-	Fri, 12 Apr 2024 08:58:12 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BDCF10E0CA;
- Fri, 12 Apr 2024 08:58:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3082219510394101308=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0710D10F53F;
+	Fri, 12 Apr 2024 09:34:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZbcWPwMb";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D324110F53F
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Apr 2024 09:34:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712914484; x=1744450484;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=SkV6tWijq/Znr717myNIv6DIz4IqAXksxNk2PunxOfQ=;
+ b=ZbcWPwMbrAOkdz4ibUM1q8ZtkwcAE8vjwl1m8b1B2BK8O8H5j439ZM9K
+ KeR7mZAr+8qAQgKp0iE5nL24R4kNOThWjVKal9H/0t8x8XOq9pd6iHC/V
+ LED8xxBKdSqgw//uhscG51ATdU+XNRwZPAzy/lYBDQmwRRHw8uTKESZfB
+ NA/gc0UvdU/FE0BWQpyA52XiIvTW4ql6xfSOFCWAz5ErYEvCdjx3fxQrQ
+ Zv6sRI+YyCCecL/Zt8d/A1/hSWJKAKhGJvU4dlCMkPkK58Ov/T+VfiEen
+ dIEPKJFyDsaVrqOffcpBTGDhPaxq7nfhNSDwnEVrHDDO+frAVRfrqUpLf A==;
+X-CSE-ConnectionGUID: ZpN1IrgnQBCAbKYbDWOL8w==
+X-CSE-MsgGUID: nx9APSBBRZSjjK+Ih2dSSQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="12215732"
+X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="12215732"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 02:34:43 -0700
+X-CSE-ConnectionGUID: 2kPJvSu5Td2kzvHzasNd2w==
+X-CSE-MsgGUID: UcOUPfsvSuqdAbaxzj8KIA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="21233787"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.52.84])
+ ([10.246.52.84])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 02:34:42 -0700
+Message-ID: <cefb9860-9c63-45bc-95b8-db5d8558a600@linux.intel.com>
+Date: Fri, 12 Apr 2024 11:34:40 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Cleanup_and_fixes_in_drmm=5Fadd?=
- =?utf-8?q?=5Faction=5For=5Freset_usage_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drm/xe: Consolidate setting PTE_AE into one place
+To: Matt Roper <matthew.d.roper@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 12 Apr 2024 08:58:09 -0000
-Message-ID: <171291228944.1356874.7064892680675905551@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240412080245.1044902-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20240412080245.1044902-1-himal.prasad.ghimiray@intel.com>
+References: <20240410170308.409-1-nirmoy.das@intel.com>
+ <20240410170308.409-2-nirmoy.das@intel.com>
+ <20240411232243.GG6571@mdroper-desk1.amr.corp.intel.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20240411232243.GG6571@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +68,93 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3082219510394101308==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Matt,
 
-== Series Details ==
+On 4/12/2024 1:22 AM, Matt Roper wrote:
+> On Wed, Apr 10, 2024 at 07:03:06PM +0200, Nirmoy Das wrote:
+>> Currently decision to set PTE_AE is spread between xe_pt
+>> and xe_vm files and there is no reason to be keep it that
+>> way. Consolidate the logic for better maintainability.
+> Does this series bisect properly?  I.e., if we run the driver with this
+> patch applied, but the other two patches missing, isn't it going to turn
+> on the AE bit in the page table in some BMG SMEM cases where it
+> shouldn't?  It seems like we should at least mention that in the commit
+> message to avoid confusion.
+Sorry for the confusion; it came up because I made a mistake with the 
+if-conditions. I didn't intend to introduce any functional changes with 
+this patch.
 
-Series: Cleanup and fixes in drmm_add_action_or_reset usage (rev3)
-URL   : https://patchwork.freedesktop.org/series/132150/
-State : success
+Version 2 corrects the if-condition, which now only allows setting 
+PTE_AE on PVC+VRAM, XE2+VRAM, and XE2+iGFX, thus maintaining the 
+functionality as it was
 
-== Summary ==
+Regards,
 
-CI Bug Log - changes from xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff_BAT -> xe-pw-132150v3_BAT
-====================================================
+Nirmoy
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff -> xe-pw-132150v3
-
-  IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff: d9073a139e9edfd27d830c9c4af9683651044aff
-  xe-pw-132150v3: 132150v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132150v3/index.html
-
---===============3082219510394101308==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Cleanup and fixes in drmm_add_action_or_reset usage (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132150/">https://patchwork.freedesktop.org/series/132150/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132150v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132150v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff_BAT -&gt; xe-pw-132150v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff -&gt; xe-pw-132150v3</li>
-</ul>
-<p>IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff: d9073a139e9edfd27d830c9c4af9683651044aff<br />
-  xe-pw-132150v3: 132150v3</p>
-
-</body>
-</html>
-
---===============3082219510394101308==--
+>
+>
+> Matt
+>
+>> This also remove the extra care needed for PVC which only
+>> allows setting PTE_AE for LMEM.
+>>
+>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_pt.c | 4 +---
+>>   drivers/gpu/drm/xe/xe_vm.c | 7 ++++---
+>>   2 files changed, 5 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+>> index 5b7930f46cf3..7dc13a8bb44f 100644
+>> --- a/drivers/gpu/drm/xe/xe_pt.c
+>> +++ b/drivers/gpu/drm/xe/xe_pt.c
+>> @@ -597,7 +597,6 @@ static int
+>>   xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+>>   		 struct xe_vm_pgtable_update *entries, u32 *num_entries)
+>>   {
+>> -	struct xe_device *xe = tile_to_xe(tile);
+>>   	struct xe_bo *bo = xe_vma_bo(vma);
+>>   	bool is_devmem = !xe_vma_is_userptr(vma) && bo &&
+>>   		(xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo));
+>> @@ -619,8 +618,7 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+>>   	struct xe_pt *pt = xe_vma_vm(vma)->pt_root[tile->id];
+>>   	int ret;
+>>   
+>> -	if ((vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT) &&
+>> -	    (is_devmem || !IS_DGFX(xe)))
+>> +	if (vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT)
+>>   		xe_walk.default_pte |= XE_USM_PPGTT_PTE_AE;
+>>   
+>>   	if (is_devmem) {
+>> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+>> index a196dbe65252..8f3474c5f480 100644
+>> --- a/drivers/gpu/drm/xe/xe_vm.c
+>> +++ b/drivers/gpu/drm/xe/xe_vm.c
+>> @@ -904,9 +904,6 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+>>   	for_each_tile(tile, vm->xe, id)
+>>   		vma->tile_mask |= 0x1 << id;
+>>   
+>> -	if (GRAPHICS_VER(vm->xe) >= 20 || vm->xe->info.platform == XE_PVC)
+>> -		vma->gpuva.flags |= XE_VMA_ATOMIC_PTE_BIT;
+>> -
+>>   	vma->pat_index = pat_index;
+>>   
+>>   	if (bo) {
+>> @@ -914,6 +911,10 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+>>   
+>>   		xe_bo_assert_held(bo);
+>>   
+>> +		if (GRAPHICS_VER(vm->xe) >= 20 || xe_bo_is_vram(bo) ||
+>> +		    !IS_DGFX(vm->xe))
+>> +			vma->gpuva.flags |= XE_VMA_ATOMIC_PTE_BIT;
+>> +
+>>   		vm_bo = drm_gpuvm_bo_obtain(vma->gpuva.vm, &bo->ttm.base);
+>>   		if (IS_ERR(vm_bo)) {
+>>   			xe_vma_free(vma);
+>> -- 
+>> 2.42.0
+>>
