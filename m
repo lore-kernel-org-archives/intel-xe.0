@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2B98C4345F
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 09:37:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19F78C4345F
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 09:37:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCAD710F546;
-	Fri, 12 Apr 2024 09:37:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DD5F10EF2A;
+	Fri, 12 Apr 2024 09:37:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hHwc+U5Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lwLH0pBY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95E3110F54B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 027A6892E4
  for <intel-xe@lists.freedesktop.org>; Fri, 12 Apr 2024 09:37:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712914640; x=1744450640;
+ t=1712914641; x=1744450641;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2qSwgO6WL0vFlUjMYuYiYpqP+2JCsN23vbZUA2+2fOs=;
- b=hHwc+U5YR7Wo8yd8F5Foau9hndJrX7FPk6qfQ9ImDEyuXwhOKAgpsuPQ
- gxSGasI4+vsRwWDVgTb2WO3t7aUe+z8j39/yIShdMpICjlBTylCpA3IqI
- ZeV6HnOXRR39FCV7h71pspfvWRpVwSNrA0eUKcDxscIToPmJo2gVmNtyG
- pHsW57uaBdPYPr/KiKx0ippNNkM3fcQkb598rH+RAtFFnS8H3CO7LabV3
- fsoUfD3rGUo/0VP4ztFk4Sq1Q6T5XJvM/qqSyISO3sCTWu3uqSUDx9uXZ
- 8LJMgbBitGfHSqJ3JKANtxU73xoHud9jelBgdAMgbKjcHW2JhMpC6AQxB A==;
-X-CSE-ConnectionGUID: 3ZFFSTZEQVeU8PgjPI0Jlg==
-X-CSE-MsgGUID: 2pUs5OG+S7C0fi+3WsglDg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="19075939"
-X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="19075939"
+ bh=lnL1yEi35beqSfZ+Q62A1YhavDzbHR4/S+JjcG/tjD4=;
+ b=lwLH0pBYYU3IuPkIYPw61IplbRaK49H0RiNLhzFtrb9YZtaZSsEAfrga
+ zLuycykX3vXrxF83+2V3elI5QGmCgdvVpTWq+6W4XiJKaH1JQSGGw/dAl
+ /IPltW1siKEpRAMrl2JZC/eHE4NbUdBxSdGMAGLjwhx5Mvw9Ojp51x0u1
+ 7uSIIalLK6huzyA6/G+E5UsFIJpUHmqSpTjxVyGtWz8J+xUqG/+JgVSfI
+ 3Ht52POZXacEZt8bVSqbXm4s/msl8whIkX1KGKAjmd0dUpUwMXglnbtP8
+ wktFQp+w9acMny076fEkXDBNAoqfCTbXpLqvN7nr4OPi5hURUPvnd5lzH A==;
+X-CSE-ConnectionGUID: k1QBiVTsT1GGWL2+M/c4ZA==
+X-CSE-MsgGUID: e7BjsXCITTCAR1gbxGRXeg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="19075945"
+X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="19075945"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 02:37:00 -0700
-X-CSE-ConnectionGUID: vXe+BrN4S2ycFSQDlEFXeA==
-X-CSE-MsgGUID: BbSrqEobSHyzwZVGg0Ou2A==
+ 12 Apr 2024 02:37:01 -0700
+X-CSE-ConnectionGUID: M6xxHrhLR9yl8sItGu41Bw==
+X-CSE-MsgGUID: JuZrezceQiqObE3VE2UQNA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="52342148"
+X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="52342152"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 02:36:59 -0700
+ 12 Apr 2024 02:37:00 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Nirmoy Das <nirmoy.das@intel.com>
-Subject: [PATCH v2 2/7] drm/xe: Consolidate setting PTE_AE into one place
-Date: Fri, 12 Apr 2024 11:22:44 +0200
-Message-ID: <20240412092249.3636-3-nirmoy.das@intel.com>
+Subject: [PATCH v2 3/7] drm/xe: Add function to check if BO has single
+ placement
+Date: Fri, 12 Apr 2024 11:22:45 +0200
+Message-ID: <20240412092249.3636-4-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20240412092249.3636-1-nirmoy.das@intel.com>
 References: <20240412092249.3636-1-nirmoy.das@intel.com>
@@ -69,63 +70,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently decision to set PTE_AE is spread between xe_pt
-and xe_vm files and there is no reason to be keep it that
-way. Consolidate the logic for better maintainability.
+A new helper function xe_bo_has_single_placement() to check
+if a BO has single placement.
 
 Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c | 4 +---
- drivers/gpu/drm/xe/xe_vm.c | 7 ++++---
- 2 files changed, 5 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c | 14 ++++++++++++++
+ drivers/gpu/drm/xe/xe_bo.h |  1 +
+ 2 files changed, 15 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 5b7930f46cf3..7dc13a8bb44f 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -597,7 +597,6 @@ static int
- xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 		 struct xe_vm_pgtable_update *entries, u32 *num_entries)
- {
--	struct xe_device *xe = tile_to_xe(tile);
- 	struct xe_bo *bo = xe_vma_bo(vma);
- 	bool is_devmem = !xe_vma_is_userptr(vma) && bo &&
- 		(xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo));
-@@ -619,8 +618,7 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 	struct xe_pt *pt = xe_vma_vm(vma)->pt_root[tile->id];
- 	int ret;
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index fdeb3691d3f6..281126667ba7 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -94,6 +94,20 @@ bool xe_bo_is_stolen(struct xe_bo *bo)
+ 	return bo->ttm.resource->mem_type == XE_PL_STOLEN;
+ }
  
--	if ((vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT) &&
--	    (is_devmem || !IS_DGFX(xe)))
-+	if (vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT)
- 		xe_walk.default_pte |= XE_USM_PPGTT_PTE_AE;
- 
- 	if (is_devmem) {
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index a196dbe65252..7991d88fba22 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -904,9 +904,6 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 	for_each_tile(tile, vm->xe, id)
- 		vma->tile_mask |= 0x1 << id;
- 
--	if (GRAPHICS_VER(vm->xe) >= 20 || vm->xe->info.platform == XE_PVC)
--		vma->gpuva.flags |= XE_VMA_ATOMIC_PTE_BIT;
--
- 	vma->pat_index = pat_index;
- 
- 	if (bo) {
-@@ -914,6 +911,10 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 
- 		xe_bo_assert_held(bo);
- 
-+		if (vm->xe->info.has_atomic_enable_pte_bit &&
-+		    (xe_bo_is_vram(bo) || !IS_DGFX(vm->xe)))
-+			vma->gpuva.flags |= XE_VMA_ATOMIC_PTE_BIT;
++/**
++ * xe_bo_has_single_placement - check if BO is placed only in one memory location
++ * @bo: The BO
++ *
++ * This function checks whether a given BO is placed in only one memory location.
++ *
++ * Returns: true if the BO is placed in a single memory location, false otherwise.
++ *
++ */
++bool xe_bo_has_single_placement(struct xe_bo *bo)
++{
++	return bo->placement.num_placement == 1;
++}
 +
- 		vm_bo = drm_gpuvm_bo_obtain(vma->gpuva.vm, &bo->ttm.base);
- 		if (IS_ERR(vm_bo)) {
- 			xe_vma_free(vma);
+ /**
+  * xe_bo_is_stolen_devmem - check if BO is of stolen type accessed via PCI BAR
+  * @bo: The BO
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index a885b14bf595..6de894c728f5 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -206,6 +206,7 @@ bool mem_type_is_vram(u32 mem_type);
+ bool xe_bo_is_vram(struct xe_bo *bo);
+ bool xe_bo_is_stolen(struct xe_bo *bo);
+ bool xe_bo_is_stolen_devmem(struct xe_bo *bo);
++bool xe_bo_has_single_placement(struct xe_bo *bo);
+ uint64_t vram_region_gpu_offset(struct ttm_resource *res);
+ 
+ bool xe_bo_can_migrate(struct xe_bo *bo, u32 mem_type);
 -- 
 2.42.0
 
