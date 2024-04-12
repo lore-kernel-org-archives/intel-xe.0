@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F20FDC00A94
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 09:37:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F22FC04FFE
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 09:37:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FB8610F546;
-	Fri, 12 Apr 2024 09:37:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E300010F551;
+	Fri, 12 Apr 2024 09:37:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FZ6Rsihr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l3igKm1U";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B5AD10F551
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Apr 2024 09:37:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08D1710F546
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Apr 2024 09:37:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712914643; x=1744450643;
+ t=1712914640; x=1744450640;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+wRLojUZVqy69jtRCZOwOjMx4Eq4A6jRa6Zht2saBKU=;
- b=FZ6Rsihri1rcMZ1hnq419RE7pS7x2yCt2me05AT0R9cVobyvJ1ezFyr4
- GENdUmqe6TYmA+YxF23kl16261SfmqE/esnEY3mseaF4oSTnKEZFuvc6V
- OrHD+eOls3ZlGKdkcyqVznIpWkbsewPA0sWw+wCtGiqLq7LCyuVb212vx
- gpit2fiqO3PlQhAQ4R7cKvf0COhLuzQYSrvtfCdingYjIzJbZ9axrdHP1
- j73V01XrXcFOfPWPkx+wVFnZHZdrh6NPx8DjikG/5idYYnLdfTW3w3bZm
- hpvr5frE1wKkgDqk4xW0R0ERXXaYwgewkMmHa5+FaVN9bhvP3OMnHVbf4 A==;
-X-CSE-ConnectionGUID: fmWzpLiJSNekCTyK+Xlcpg==
-X-CSE-MsgGUID: VQK4i8wRQVW7eHjTfhaN6A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="19075962"
-X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="19075962"
+ bh=JQ3UzX97P0xEAmCxA7/I9RtTRU4ZQSMVyWrVHNGs2y0=;
+ b=l3igKm1Uf/a88jxtfDzEs2nMlw7CnCj1oQpmSR+T5KNyHWNY5XkyllXy
+ 5K2MpQYtLiYSxCtgmXAzXXcCIUi67mjUTeqTuovJ7F5XJWdZoYrqepZUM
+ unnM3/o94jW7ybsPSH8YK3J2OADDpjtxVqki3P0yxsrijLivO25b3uXLE
+ 5LfXvfI8NWj6rAtONOxrk+cgEsXRzTp8ubmrG8/Fo2k0ygmFVLSs/nZqk
+ i0O8dtdy9El6TpvUIdMvtJq9iJ2a9XIysRP2Y+xpk2mi0PPLesyO5gKq7
+ ETjbYJEimp4rhmS4VPSboHiV7P8Gq0T3dYO/bHzdWdVznzjux7Bd0+zFR Q==;
+X-CSE-ConnectionGUID: l+wfKvTWQQGjenS13dsnRA==
+X-CSE-MsgGUID: VhxhmKYYT8KT1CnNh41f9Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="19075937"
+X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="19075937"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 02:37:05 -0700
-X-CSE-ConnectionGUID: JGXDLCaiSNGlb3oFQ/x06A==
-X-CSE-MsgGUID: DJ8KitTaSKGX9YSA0np7ag==
+ 12 Apr 2024 02:36:59 -0700
+X-CSE-ConnectionGUID: 81J+FOwhSq6zBS73dHrvwA==
+X-CSE-MsgGUID: WLMBUeNVTT2SfjGRHoQH1w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="52342183"
+X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="52342145"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 02:37:04 -0700
+ 12 Apr 2024 02:36:58 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Nirmoy Das <nirmoy.das@intel.com>
-Subject: [PATCH v2 7/7] drm/xe/uapi: Add a query flag for
- has_device_atomics_on_smem
-Date: Fri, 12 Apr 2024 11:22:49 +0200
-Message-ID: <20240412092249.3636-8-nirmoy.das@intel.com>
+Subject: [PATCH v2 1/7] drm/xe: Introduce has_atomic_enable_pte_bit device info
+Date: Fri, 12 Apr 2024 11:22:43 +0200
+Message-ID: <20240412092249.3636-2-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20240412092249.3636-1-nirmoy.das@intel.com>
 References: <20240412092249.3636-1-nirmoy.das@intel.com>
@@ -70,60 +69,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a query flag for xe->info.has_device_atomics_on_smem
-as this is platform dependent. This flag can be use to inform
-whether DRM_XE_VM_BIND_FLAG_DEVICE_ATOMICS can be effectively
-applied for a given platform.
+Add has_atomic_enable_pte_bit to specify that a device
+has PTE_AE bit in its PTE feild. Currently XE2 and PVC
+supports this so set this for those two.
+
+This will help consolidate setting atomic access bit in PTE
+logic which is spread between multiple files.
 
 Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- drivers/gpu/drm/xe/xe_query.c | 4 +++-
- include/uapi/drm/xe_drm.h     | 3 +++
- 2 files changed, 6 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_device_types.h | 2 ++
+ drivers/gpu/drm/xe/xe_pci.c          | 3 +++
+ drivers/gpu/drm/xe/xe_pci_types.h    | 1 +
+ 3 files changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index df407d73e5f5..b8a606698e38 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -312,7 +312,7 @@ static int query_mem_regions(struct xe_device *xe,
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 60ced5f90c2b..bde42fe288ff 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -281,6 +281,8 @@ struct xe_device {
+ 		u8 has_heci_gscfi:1;
+ 		/** @info.skip_guc_pc: Skip GuC based PM feature init */
+ 		u8 skip_guc_pc:1;
++		/** @info.has_atomic_enable_pte_bit: Device has atomic enable PTE bit */
++		u8 has_atomic_enable_pte_bit:1;
  
- static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- {
--	const u32 num_params = DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY + 1;
-+	const u32 num_params = DRM_XE_QUERY_CONFIG_SUPP_DEV_ATOMIC_ON_SMEM + 1;
- 	size_t size =
- 		sizeof(struct drm_xe_query_config) + num_params * sizeof(u64);
- 	struct drm_xe_query_config __user *query_ptr =
-@@ -341,6 +341,8 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- 	config->info[DRM_XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
- 	config->info[DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY] =
- 		xe_exec_queue_device_get_max_priority(xe);
-+	config->info[DRM_XE_QUERY_CONFIG_SUPP_DEV_ATOMIC_ON_SMEM] =
-+		xe->info.has_device_atomics_on_smem;
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+ 		struct {
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 3b30353dbc09..9cf45559b915 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -146,6 +146,7 @@ static const struct xe_graphics_desc graphics_xehpc = {
+ 	.vram_flags = XE_VRAM_FLAGS_NEED64K,
  
- 	if (copy_to_user(query_ptr, config, size)) {
- 		kfree(config);
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index a44c057d4471..4804b8a5d028 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -394,6 +394,8 @@ struct drm_xe_query_mem_regions {
-  *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
-  *  - %DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY - Value of the highest
-  *    available exec queue priority
-+ *  - %DRM_XE_QUERY_CONFIG_SUPP_DEV_ATOMIC_ON_SMEM - Flag is set if the device
-+ *    supports device atomics on system memory
-  */
- struct drm_xe_query_config {
- 	/** @num_params: number of parameters returned in info */
-@@ -408,6 +410,7 @@ struct drm_xe_query_config {
- #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
- #define DRM_XE_QUERY_CONFIG_VA_BITS			3
- #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
-+#define DRM_XE_QUERY_CONFIG_SUPP_DEV_ATOMIC_ON_SMEM	5
- 	/** @info: array of elements containing the config info */
- 	__u64 info[];
+ 	.has_asid = 1,
++	.has_atomic_enable_pte_bit = 1,
+ 	.has_flat_ccs = 0,
+ 	.has_usm = 1,
  };
+@@ -163,6 +164,7 @@ static const struct xe_graphics_desc graphics_xelpg = {
+ #define XE2_GFX_FEATURES \
+ 	.dma_mask_size = 46, \
+ 	.has_asid = 1, \
++	.has_atomic_enable_pte_bit = 1, \
+ 	.has_flat_ccs = 1, \
+ 	.has_range_tlb_invalidation = 1, \
+ 	.has_usm = 1, \
+@@ -627,6 +629,7 @@ static int xe_info_init(struct xe_device *xe,
+ 	xe->info.va_bits = graphics_desc->va_bits;
+ 	xe->info.vm_max_level = graphics_desc->vm_max_level;
+ 	xe->info.has_asid = graphics_desc->has_asid;
++	xe->info.has_atomic_enable_pte_bit = graphics_desc->has_atomic_enable_pte_bit;
+ 	xe->info.has_flat_ccs = graphics_desc->has_flat_ccs;
+ 	xe->info.has_range_tlb_invalidation = graphics_desc->has_range_tlb_invalidation;
+ 	xe->info.has_usm = graphics_desc->has_usm;
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index b1ad12fa22d6..e1f2b4879fc2 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -25,6 +25,7 @@ struct xe_graphics_desc {
+ 	u8 max_remote_tiles:2;
+ 
+ 	u8 has_asid:1;
++	u8 has_atomic_enable_pte_bit:1;
+ 	u8 has_flat_ccs:1;
+ 	u8 has_range_tlb_invalidation:1;
+ 	u8 has_usm:1;
 -- 
 2.42.0
 
