@@ -4,26 +4,22 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7799C4345F
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 13:09:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83EFEC41513
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 13:09:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6795810F634;
-	Fri, 12 Apr 2024 13:09:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE11D10F637;
+	Fri, 12 Apr 2024 13:09:47 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1DD310F621;
- Fri, 12 Apr 2024 13:09:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F08DB10F61F;
+ Fri, 12 Apr 2024 13:09:33 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [CI-only 7/8] drm/xe/display: Prevent overwriting original GGTT when
- taking over initial FB.
-Date: Fri, 12 Apr 2024 15:09:43 +0200
-Message-ID: <20240412130946.13148-7-maarten.lankhorst@linux.intel.com>
+Subject: [CI-only 1/8] drm: Add drm_vblank_work_flush_all().
+Date: Fri, 12 Apr 2024 15:09:37 +0200
+Message-ID: <20240412130946.13148-1-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240412130946.13148-1-maarten.lankhorst@linux.intel.com>
-References: <20240412130946.13148-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -39,281 +35,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of overwriting the original GGTT mapping accidentally, allocate
-a new GGTT mapping above the original GGTT mapping.
+In some cases we want to flush all vblank work, right before vblank_off
+for example. Add a simple function to make this possible.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 40 ++++++++++++-------
- drivers/gpu/drm/xe/display/xe_fb_pin.h        | 20 ++++++++++
- drivers/gpu/drm/xe/display/xe_plane_initial.c | 15 ++++---
- drivers/gpu/drm/xe/xe_ggtt.c                  | 19 ++-------
- drivers/gpu/drm/xe/xe_ggtt.h                  |  5 +--
- 5 files changed, 61 insertions(+), 38 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/display/xe_fb_pin.h
+ drivers/gpu/drm/drm_vblank_work.c | 22 ++++++++++++++++++++++
+ include/drm/drm_vblank_work.h     |  2 ++
+ 2 files changed, 24 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 16a287cbebc5..dd7a1c4a9430 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -8,6 +8,7 @@
- #include "intel_dpt.h"
- #include "intel_fb.h"
- #include "intel_fb_pin.h"
-+#include "xe_fb_pin.h"
- #include "xe_ggtt.h"
- #include "xe_gt.h"
- 
-@@ -119,12 +120,11 @@ static void xe_fb_dpt_free(struct i915_vma *vma, struct intel_framebuffer *fb)
- 	vma->dpt = NULL;
+diff --git a/drivers/gpu/drm/drm_vblank_work.c b/drivers/gpu/drm/drm_vblank_work.c
+index 43cd5c0f4f6f..6a53cede547a 100644
+--- a/drivers/gpu/drm/drm_vblank_work.c
++++ b/drivers/gpu/drm/drm_vblank_work.c
+@@ -232,6 +232,28 @@ void drm_vblank_work_flush(struct drm_vblank_work *work)
  }
+ EXPORT_SYMBOL(drm_vblank_work_flush);
  
--static int xe_fb_dpt_map_ggtt(struct xe_bo *dpt)
-+static int xe_fb_dpt_map_ggtt(struct xe_bo *dpt, u64 ggtt_start)
- {
- 	struct xe_device *xe = xe_bo_device(dpt);
- 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
- 	struct xe_ggtt *ggtt = tile0->mem.ggtt;
--	u64 start = 0, end = U64_MAX;
- 	u64 alignment = XE_PAGE_SIZE;
- 	int err;
- 
-@@ -139,8 +139,9 @@ static int xe_fb_dpt_map_ggtt(struct xe_bo *dpt)
- 	if (err)
- 		goto out_put;
- 
--	err = drm_mm_insert_node_in_range(&ggtt->mm, &dpt->ggtt_node, dpt->size,
--					  alignment, 0, start, end, 0);
-+	err = xe_ggtt_insert_special_node_locked(ggtt, &dpt->ggtt_node, dpt->size,
-+						 alignment, ggtt_start, U64_MAX,
-+						 ggtt_start ? DRM_MM_INSERT_HIGH : 0);
- 	if (!err)
- 		xe_ggtt_map_bo(ggtt, dpt);
- 	mutex_unlock(&ggtt->lock);
-@@ -188,7 +189,7 @@ static void xe_fb_dpt_unpin_free(struct i915_vma *vma, struct intel_framebuffer
- 
- static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
- 			       const struct i915_gtt_view *view,
--			       struct i915_vma *vma)
-+			       struct i915_vma *vma, u64 ggtt_start)
- {
- 	struct xe_device *xe = to_xe_device(fb->base.dev);
- 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
-@@ -237,7 +238,7 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
- 					  rot_info->plane[i].dst_stride);
- 	}
- 
--	ret = xe_fb_dpt_map_ggtt(dpt);
-+	ret = xe_fb_dpt_map_ggtt(dpt, ggtt_start);
- 	if (ret)
- 		xe_fb_dpt_unpin_free(vma, fb);
- 	return ret;
-@@ -269,7 +270,7 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
- 
- static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
- 				const struct i915_gtt_view *view,
--				struct i915_vma *vma)
-+				struct i915_vma *vma, u64 ggtt_start)
- {
- 	struct xe_bo *bo = intel_fb_obj(&fb->base);
- 	struct xe_device *xe = to_xe_device(fb->base.dev);
-@@ -295,7 +296,8 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
- 		u32 x, size = bo->ttm.base.size;
- 
- 		ret = xe_ggtt_insert_special_node_locked(ggtt, &vma->node, size,
--							 align, 0);
-+							 align, ggtt_start, U64_MAX,
-+							 ggtt_start ? DRM_MM_INSERT_HIGH : 0);
- 		if (ret)
- 			goto out_unlock;
- 
-@@ -313,7 +315,7 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
- 		u32 size = intel_rotation_info_size(rot_info) * XE_PAGE_SIZE;
- 
- 		ret = xe_ggtt_insert_special_node_locked(ggtt, &vma->node, size,
--							 align, 0);
-+							 align, ggtt_start, U64_MAX, 0);
- 		if (ret)
- 			goto out_unlock;
- 
-@@ -336,7 +338,8 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
- }
- 
- static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
--					const struct i915_gtt_view *view)
-+					const struct i915_gtt_view *view,
-+					u64 ggtt_start)
- {
- 	struct drm_device *dev = fb->base.dev;
- 	struct xe_device *xe = to_xe_device(dev);
-@@ -384,9 +387,9 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
- 
- 	vma->bo = bo;
- 	if (intel_fb_uses_dpt(&fb->base))
--		ret = __xe_pin_fb_vma_dpt(fb, view, vma);
-+		ret = __xe_pin_fb_vma_dpt(fb, view, vma, ggtt_start);
- 	else
--		ret = __xe_pin_fb_vma_ggtt(fb, view, vma);
-+		ret = __xe_pin_fb_vma_ggtt(fb, view, vma, ggtt_start);
- 	if (ret)
- 		goto err_unpin;
- 
-@@ -430,7 +433,16 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
- {
- 	*out_flags = 0;
- 
--	return __xe_pin_fb_vma(to_intel_framebuffer(fb), view);
-+	return __xe_pin_fb_vma(to_intel_framebuffer(fb), view, 0);
-+}
-+
-+
-+struct i915_vma *
-+xe_pin_and_fence_fb_obj_initial(struct drm_framebuffer *fb,
-+				const struct i915_gtt_view *view,
-+				u64 ggtt_start)
-+{
-+	return __xe_pin_fb_vma(to_intel_framebuffer(fb), view, ggtt_start);
- }
- 
- void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
-@@ -447,7 +459,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state)
- 	/* We reject creating !SCANOUT fb's, so this is weird.. */
- 	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_SCANOUT));
- 
--	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &plane_state->view.gtt);
-+	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &plane_state->view.gtt, 0);
- 	if (IS_ERR(vma))
- 		return PTR_ERR(vma);
- 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.h b/drivers/gpu/drm/xe/display/xe_fb_pin.h
-new file mode 100644
-index 000000000000..f22960138691
---- /dev/null
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.h
-@@ -0,0 +1,20 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
++/**
++ * drm_vblank_work_flush_all - flush all currently pending vblank work on crtc.
++ * @crtc: crtc for which vblank work to flush
++ *
++ * Wait until all currently queued vblank work on @crtc
++ * has finished executing once.
 + */
++void drm_vblank_work_flush_all(struct drm_crtc *crtc)
++{
++	struct drm_device *dev = crtc->dev;
++	struct drm_vblank_crtc *vblank = &dev->vblank[drm_crtc_index(crtc)];
 +
-+#ifndef __XE_FB_PIN_H__
-+#define __XE_FB_PIN_H__
++	spin_lock_irq(&dev->event_lock);
++	wait_event_lock_irq(vblank->work_wait_queue,
++			    !waitqueue_active(&vblank->work_wait_queue),
++			    dev->event_lock);
++	spin_unlock_irq(&dev->event_lock);
 +
-+#include <linux/types.h>
++	kthread_flush_worker(vblank->worker);
++}
++EXPORT_SYMBOL(drm_vblank_work_flush_all);
 +
-+struct i915_vma;
-+struct drm_framebuffer;
-+struct i915_gtt_view;
-+
-+struct i915_vma *
-+xe_pin_and_fence_fb_obj_initial(struct drm_framebuffer *fb,
-+				const struct i915_gtt_view *view,
-+				u64 ggtt_start);
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-index 9693c56d386b..fdb05043add1 100644
---- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-@@ -18,6 +18,7 @@
- #include "intel_fb_pin.h"
- #include "intel_frontbuffer.h"
- #include "intel_plane_initial.h"
-+#include "xe_fb_pin.h"
+ /**
+  * drm_vblank_work_init - initialize a vblank work item
+  * @work: vblank work item
+diff --git a/include/drm/drm_vblank_work.h b/include/drm/drm_vblank_work.h
+index eb41d0810c4f..e04d436b7297 100644
+--- a/include/drm/drm_vblank_work.h
++++ b/include/drm/drm_vblank_work.h
+@@ -17,6 +17,7 @@ struct drm_crtc;
+  * drm_vblank_work_init()
+  * drm_vblank_work_cancel_sync()
+  * drm_vblank_work_flush()
++ * drm_vblank_work_flush_all()
+  */
+ struct drm_vblank_work {
+ 	/**
+@@ -67,5 +68,6 @@ void drm_vblank_work_init(struct drm_vblank_work *work, struct drm_crtc *crtc,
+ 			  void (*func)(struct kthread_work *work));
+ bool drm_vblank_work_cancel_sync(struct drm_vblank_work *work);
+ void drm_vblank_work_flush(struct drm_vblank_work *work);
++void drm_vblank_work_flush_all(struct drm_crtc *crtc);
  
- static bool
- intel_reuse_initial_plane_obj(struct intel_crtc *this,
-@@ -63,7 +64,7 @@ initial_plane_bo(struct xe_device *xe,
- 	if (plane_config->size == 0)
- 		return NULL;
- 
--	flags = XE_BO_FLAG_PINNED | XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT;
-+	flags = XE_BO_FLAG_PINNED | XE_BO_FLAG_SCANOUT;
- 
- 	base = round_down(plane_config->base, page_size);
- 	if (IS_DGFX(xe)) {
-@@ -193,6 +194,7 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
- 		to_intel_crtc_state(crtc->base.state);
- 	struct drm_framebuffer *fb;
- 	struct i915_vma *vma;
-+	u64 ggtt_start = 0;
- 
- 	/*
- 	 * TODO:
-@@ -202,17 +204,20 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
- 	if (!plane_config->fb)
- 		return;
- 
--	if (intel_alloc_initial_plane_obj(crtc, plane_config))
-+	if (intel_alloc_initial_plane_obj(crtc, plane_config)) {
- 		fb = &plane_config->fb->base;
--	else if (!intel_reuse_initial_plane_obj(crtc, plane_configs, &fb))
-+
-+		/* Ensure that new GGTT mapping is not overwriting the original mapping */
-+		ggtt_start = plane_config->base + intel_fb_obj(fb)->ttm.base.size;
-+	} else if (!intel_reuse_initial_plane_obj(crtc, plane_configs, &fb)) {
- 		goto nofb;
-+	}
- 
- 	plane_state->uapi.rotation = plane_config->rotation;
- 	intel_fb_fill_view(to_intel_framebuffer(fb),
- 			   plane_state->uapi.rotation, &plane_state->view);
- 
--	vma = intel_pin_and_fence_fb_obj(fb, false, &plane_state->view.gtt,
--					 false, &plane_state->flags);
-+	vma = xe_pin_and_fence_fb_obj_initial(fb, &plane_state->view.gtt, ggtt_start);
- 	if (IS_ERR(vma))
- 		goto nofb;
- 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index ff2239c0eda5..95c3ea946bba 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -354,23 +354,10 @@ void xe_ggtt_deballoon(struct xe_ggtt *ggtt, struct drm_mm_node *node)
- }
- 
- int xe_ggtt_insert_special_node_locked(struct xe_ggtt *ggtt, struct drm_mm_node *node,
--				       u32 size, u32 align, u32 mm_flags)
-+				       u32 size, u32 align, u64 start, u64 end, u32 mm_flags)
- {
--	return drm_mm_insert_node_generic(&ggtt->mm, node, size, align, 0,
--					  mm_flags);
--}
--
--int xe_ggtt_insert_special_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
--				u32 size, u32 align)
--{
--	int ret;
--
--	mutex_lock(&ggtt->lock);
--	ret = xe_ggtt_insert_special_node_locked(ggtt, node, size,
--						 align, DRM_MM_INSERT_HIGH);
--	mutex_unlock(&ggtt->lock);
--
--	return ret;
-+	return drm_mm_insert_node_in_range(&ggtt->mm, node, size, align, 0,
-+					   start, end, mm_flags);
- }
- 
- void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index 8306ef74abc6..81bba456b2f0 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -18,11 +18,10 @@ void xe_ggtt_printk(struct xe_ggtt *ggtt, const char *prefix);
- int xe_ggtt_balloon(struct xe_ggtt *ggtt, u64 start, u64 size, struct drm_mm_node *node);
- void xe_ggtt_deballoon(struct xe_ggtt *ggtt, struct drm_mm_node *node);
- 
--int xe_ggtt_insert_special_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
--				u32 size, u32 align);
- int xe_ggtt_insert_special_node_locked(struct xe_ggtt *ggtt,
- 				       struct drm_mm_node *node,
--				       u32 size, u32 align, u32 mm_flags);
-+				       u32 size, u32 align,
-+				       u64 start, u64 end, u32 mm_flags);
- void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
- 			 bool invalidate);
- void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
+ #endif /* !_DRM_VBLANK_WORK_H_ */
 -- 
 2.43.0
 
