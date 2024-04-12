@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 067CAC04FF8
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 14:41:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CFDFC4345F
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 14:42:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D49C10F68E;
-	Fri, 12 Apr 2024 14:41:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7BEF10F68E;
+	Fri, 12 Apr 2024 14:42:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YedtRTv1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="We+rjn6S";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3710110F693
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Apr 2024 14:41:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70ED810F68E
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Apr 2024 14:42:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712932878; x=1744468878;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=SlIhtFHKeOXRQZ586ncvoB+P+6sVLwd4R0/5Q6OW7Bw=;
- b=YedtRTv1d3jahO6aSj+IuZMe5eHMW7wNt2xonP6qs5wjGwyPIMdvgAGJ
- fDe8l15gkiz9bKQZ0kNiG0pSQdaCAbKq7dmwYl8kJRF29OUS/c6PtuR+W
- 0OYmTejYBGRGas6SerARRPV65ZS4Uodtnhp7IW92y2PWltoSSZqswYjtn
- Aa8CbsS75YHFD3vC14/AlBQJDNWAfX43p7e+tm7FUov/V0FqnUraGtNP0
- 67XKd+ETqSY2vzdAtHhx9v2fvOXKcz77EIBd9SRkzRxCLEp9Oa4VZNOGV
- UYRAxVQHcXikxI/IXzxJKAsxyP8lbc2+S5KACg/3+sCTK+taaxsT6yPOw w==;
-X-CSE-ConnectionGUID: yfF8pXwiSiKmQSO3u27EeA==
-X-CSE-MsgGUID: yzugfjKfRDqsl/OUMSPCpg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="25905455"
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="25905455"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 07:41:17 -0700
-X-CSE-ConnectionGUID: yO7PBOl9T62O081Gs5SbYA==
-X-CSE-MsgGUID: y9L13k1JQySBZ/GA6OtyiQ==
+ t=1712932924; x=1744468924;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=S7+Zq3Sp36ywGsSjIg+MnzoYOT71Y8aF8vKqMab4AmU=;
+ b=We+rjn6S7gsvf5OEpvwtWXa2lrth1DAF1rVxmKXfJedELtNfOVft7OFX
+ kMCGJdIShjwOG32vmLLs+LSIjH0u2U4sRzQV8rpq17LLXj7IcItnwz9Ug
+ X+u8WOfnNcn5kuPmVwgz8TCGwTgpxt/lAETnR+l71hn+aYRJlBS5e686E
+ tFNCB+WXQmcyEMNv7gaHBFca81ECmSQGmExTR/vGQLwyzdexQGubPRYv1
+ qsvrD9dboPz5cp2MG4Nax1CCu87hdZ15JswI7P4nBSw4oU2+nRTWiqToa
+ 0ODDksJvxylnmDjSdjiDZzPJJb8izCN5FU4MZZeB1qK8k+YlibfVaYq3X Q==;
+X-CSE-ConnectionGUID: ydZ7LqrTQyS/8soN8uIDEg==
+X-CSE-MsgGUID: 3zEgmrmRTc2nv4R1QIa8XQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="8246707"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; 
+   d="scan'208";a="8246707"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 07:42:04 -0700
+X-CSE-ConnectionGUID: WQdZVFjfRzC32G9Te2lM+g==
+X-CSE-MsgGUID: t+IJUxbnRCm0Y+F2ErjGHg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="26059763"
-Received: from mohdaris-mobl1.gar.corp.intel.com (HELO localhost)
- ([10.252.61.65])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 07:41:15 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, Himal Prasad Ghimiray
- <himal.prasad.ghimiray@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Subject: Re: [PATCH v3 2/7] drm/xe: Incase of action add failure, remove
- sysfs only once
-In-Reply-To: <x3sy3ujfkzbusyjqfdrjwrg5zvoeog6wu6d74tkonyc6own6hr@sjd2byv6ajqr>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240412080245.1044902-1-himal.prasad.ghimiray@intel.com>
- <20240412080245.1044902-3-himal.prasad.ghimiray@intel.com>
- <x3sy3ujfkzbusyjqfdrjwrg5zvoeog6wu6d74tkonyc6own6hr@sjd2byv6ajqr>
-Date: Fri, 12 Apr 2024 17:41:08 +0300
-Message-ID: <87edba4pa3.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="25690968"
+Received: from maurocar-mobl2.ger.corp.intel.com (HELO [10.245.244.44])
+ ([10.245.244.44])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 07:42:02 -0700
+Message-ID: <14259171-58af-4c64-8ed8-e210400d643e@intel.com>
+Date: Fri, 12 Apr 2024 15:42:00 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drm/xe/vm: prevent UAF with asid based lookup
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>,
+ stable@vger.kernel.org
+References: <20240412113144.259426-4-matthew.auld@intel.com>
+ <sm2cs4zyl7yhnumfefky5kg4yatnfhbkoombgcupih6z6v2yos@ckz475ikjc5b>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <sm2cs4zyl7yhnumfefky5kg4yatnfhbkoombgcupih6z6v2yos@ckz475ikjc5b>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,112 +72,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 12 Apr 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> Oh... nit on commit message "Incase" is not a proper word. Same on other
-> places in this series. Please use "In case" when re-spinning this series.
+On 12/04/2024 15:06, Lucas De Marchi wrote:
+> On Fri, Apr 12, 2024 at 12:31:45PM +0100, Matthew Auld wrote:
+>> The asid is only erased from the xarray when the vm refcount reaches
+>> zero, however this leads to potential UAF since the xe_vm_get() only
+> 
+> I'm not sure I understand the call chain an where xe_vm_get() is coming
+> into play here.
+> 
+> 
+>> works on a vm with refcount != 0. Since the asid is allocated in the vm
+>> create ioctl, rather erase it when closing the vm, prior to dropping the
+>> potential last ref. This should also work when user closes driver fd
+>> without explicit vm destroy.
+> 
+> what seems weird is that you are moving it earlier in the call stack
+> rather than later, outside of the worker, to prevent the UAF.
+> 
+> what exactly was the UAF on?
 
-Or just "remove sysfs only once on action add failure" or something.
+UAF on the vm object. From the bug report it's when servicing some GPU 
+fault, so inside handle_pagefault(). At this stage it just has some asid 
+which is meant to map to some vm AFAICT. The lookup dance relies on 
+calling xe_vm_get() after getting back the vm pointer from the xarray. 
+Currently the asid is only erased from the xarray in 
+vm_destroy_work_func() which is long after the refcount reaches zero and 
+we are about to free the memory for the vm.
 
->
+However xe_vm_get() is only meant to be called if you are already 
+holding a ref, so if the vm refcount is already zero it just throws an 
+error and continues on, and the caller has no idea. If that happens then 
+as soon as we drop the usm lock the memory can be freed and it's game 
+over. This looks to be what happens with the vm refcount reaching zero, 
+and the handle_pagefault() still being able to reach the 
+soon-to-be-freed vm via the xarray. With this patch we now erase from 
+the xarray before we drop what is potentially the final ref. That way if 
+you can reach the vm via the xarray you should always be able get a 
+valid ref.
+
+> 
 > Lucas De Marchi
->
-> On Fri, Apr 12, 2024 at 01:32:40PM +0530, Himal Prasad Ghimiray wrote:
->>The drmm_add_action_or_reset function automatically invokes the action
->>(sysfs removal) in the event of a failure; therefore, there's no
->>necessity to call it within the return check.
+> 
 >>
->>Modify the return type of xe_gt_ccs_mode_sysfs_init to int, allowing the
->>caller to pass errors up the call chain. Should sysfs creation or
->>drmm_add_action_or_reset fail, error propagation will prompt a driver
->>load abort.
+>> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+>> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1594
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: <stable@vger.kernel.org> # v6.8+
+>> ---
+>> drivers/gpu/drm/xe/xe_vm.c | 21 +++++++++++----------
+>> 1 file changed, 11 insertions(+), 10 deletions(-)
 >>
->>Fixes: f3bc5bb4d53d ("drm/xe: Allow userspace to configure CCS mode")
->>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
->>Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->>---
->> drivers/gpu/drm/xe/xe_gt.c          |  5 ++++-
->> drivers/gpu/drm/xe/xe_gt_ccs_mode.c | 17 +++++++----------
->> drivers/gpu/drm/xe/xe_gt_ccs_mode.h |  2 +-
->> 3 files changed, 12 insertions(+), 12 deletions(-)
+>> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+>> index a196dbe65252..c5c26b3d1b76 100644
+>> --- a/drivers/gpu/drm/xe/xe_vm.c
+>> +++ b/drivers/gpu/drm/xe/xe_vm.c
+>> @@ -1581,6 +1581,16 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+>>         xe->usm.num_vm_in_fault_mode--;
+>>     else if (!(vm->flags & XE_VM_FLAG_MIGRATION))
+>>         xe->usm.num_vm_in_non_fault_mode--;
+>> +
+>> +    if (vm->usm.asid) {
+>> +        void *lookup;
+>> +
+>> +        xe_assert(xe, xe->info.has_asid);
+>> +        xe_assert(xe, !(vm->flags & XE_VM_FLAG_MIGRATION));
+>> +
+>> +        lookup = xa_erase(&xe->usm.asid_to_vm, vm->usm.asid);
+>> +        xe_assert(xe, lookup == vm);
+>> +    }
+>>     mutex_unlock(&xe->usm.lock);
 >>
->>diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->>index 2421a8d34324..dca0e9fb3315 100644
->>--- a/drivers/gpu/drm/xe/xe_gt.c
->>+++ b/drivers/gpu/drm/xe/xe_gt.c
->>@@ -379,7 +379,9 @@ static int gt_fw_domain_init(struct xe_gt *gt)
->> 			 err);
+>>     for_each_tile(tile, xe, id)
+>> @@ -1596,24 +1606,15 @@ static void vm_destroy_work_func(struct 
+>> work_struct *w)
+>>     struct xe_device *xe = vm->xe;
+>>     struct xe_tile *tile;
+>>     u8 id;
+>> -    void *lookup;
 >>
->> 	/* Initialize CCS mode sysfs after early initialization of HW engines */
->>-	xe_gt_ccs_mode_sysfs_init(gt);
->>+	err = xe_gt_ccs_mode_sysfs_init(gt);
->>+	if (err)
->>+		goto err_gt_sysfs_create;
+>>     /* xe_vm_close_and_put was not called? */
+>>     xe_assert(xe, !vm->size);
 >>
->> 	/*
->> 	 * Stash hardware-reported version.  Since this register does not exist
->>@@ -395,6 +397,7 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+>>     mutex_destroy(&vm->snap_mutex);
 >>
->> err_force_wake:
->> 	dump_pat_on_error(gt);
->>+err_gt_sysfs_create:
->> 	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
->> err_hw_fence_irq:
->> 	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
->>diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
->>index 529fc286cd06..67a5bd71770d 100644
->>--- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
->>+++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
->>@@ -167,25 +167,22 @@ static void xe_gt_ccs_mode_sysfs_fini(struct drm_device *drm, void *arg)
->>  * and it is expected that there are no open drm clients while doing so.
->>  * The number of available compute slices is exposed to user through a per-gt
->>  * 'num_cslices' sysfs interface.
->>+ *
->>+ * Returns: Returns error value for failure and 0 for success.
->>  */
->>-void xe_gt_ccs_mode_sysfs_init(struct xe_gt *gt)
->>+int xe_gt_ccs_mode_sysfs_init(struct xe_gt *gt)
->> {
->> 	struct xe_device *xe = gt_to_xe(gt);
->> 	int err;
+>> -    if (!(vm->flags & XE_VM_FLAG_MIGRATION)) {
+>> +    if (!(vm->flags & XE_VM_FLAG_MIGRATION))
+>>         xe_device_mem_access_put(xe);
 >>
->> 	if (!xe_gt_ccs_mode_enabled(gt))
->>-		return;
->>+		return 0;
+>> -        if (xe->info.has_asid && vm->usm.asid) {
+>> -            mutex_lock(&xe->usm.lock);
+>> -            lookup = xa_erase(&xe->usm.asid_to_vm, vm->usm.asid);
+>> -            xe_assert(xe, lookup == vm);
+>> -            mutex_unlock(&xe->usm.lock);
+>> -        }
+>> -    }
+>> -
+>>     for_each_tile(tile, xe, id)
+>>         XE_WARN_ON(vm->pt_root[id]);
 >>
->> 	err = sysfs_create_files(gt->sysfs, gt_ccs_mode_attrs);
->> 	if (err) {
->>-		drm_warn(&xe->drm, "Sysfs creation for ccs_mode failed err: %d\n", err);
->>-		return;
->>+		drm_err(&xe->drm, "Sysfs creation for ccs_mode failed err: %d\n", err);
->>+		return err;
->> 	}
+>> -- 
+>> 2.44.0
 >>
->>-	err = drmm_add_action_or_reset(&xe->drm, xe_gt_ccs_mode_sysfs_fini, gt);
->>-	if (err) {
->>-		sysfs_remove_files(gt->sysfs, gt_ccs_mode_attrs);
->>-		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, err: %d\n",
->>-			 __func__, err);
->>-	}
->>+	return drmm_add_action_or_reset(&xe->drm, xe_gt_ccs_mode_sysfs_fini, gt);
->> }
->>diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.h b/drivers/gpu/drm/xe/xe_gt_ccs_mode.h
->>index f39975aaaab0..f8779852cf0d 100644
->>--- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.h
->>+++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.h
->>@@ -12,7 +12,7 @@
->> #include "xe_platform_types.h"
->>
->> void xe_gt_apply_ccs_mode(struct xe_gt *gt);
->>-void xe_gt_ccs_mode_sysfs_init(struct xe_gt *gt);
->>+int xe_gt_ccs_mode_sysfs_init(struct xe_gt *gt);
->>
->> static inline bool xe_gt_ccs_mode_enabled(const struct xe_gt *gt)
->> {
->>-- 
->>2.25.1
->>
-
--- 
-Jani Nikula, Intel
