@@ -4,59 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CFDFC4345F
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 14:42:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02725C4345F
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 14:53:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7BEF10F68E;
-	Fri, 12 Apr 2024 14:42:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73CF910F6A5;
+	Fri, 12 Apr 2024 14:53:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="We+rjn6S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nrT37ynW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70ED810F68E
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Apr 2024 14:42:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06DAF10F6AD;
+ Fri, 12 Apr 2024 14:53:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712932924; x=1744468924;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=S7+Zq3Sp36ywGsSjIg+MnzoYOT71Y8aF8vKqMab4AmU=;
- b=We+rjn6S7gsvf5OEpvwtWXa2lrth1DAF1rVxmKXfJedELtNfOVft7OFX
- kMCGJdIShjwOG32vmLLs+LSIjH0u2U4sRzQV8rpq17LLXj7IcItnwz9Ug
- X+u8WOfnNcn5kuPmVwgz8TCGwTgpxt/lAETnR+l71hn+aYRJlBS5e686E
- tFNCB+WXQmcyEMNv7gaHBFca81ECmSQGmExTR/vGQLwyzdexQGubPRYv1
- qsvrD9dboPz5cp2MG4Nax1CCu87hdZ15JswI7P4nBSw4oU2+nRTWiqToa
- 0ODDksJvxylnmDjSdjiDZzPJJb8izCN5FU4MZZeB1qK8k+YlibfVaYq3X Q==;
-X-CSE-ConnectionGUID: ydZ7LqrTQyS/8soN8uIDEg==
-X-CSE-MsgGUID: 3zEgmrmRTc2nv4R1QIa8XQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="8246707"
+ t=1712933588; x=1744469588;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Ox+FVc0yRS0XmO+OAmznu+ZJebfI23/XHrPqXGmTkMc=;
+ b=nrT37ynWfm8d5L6K01cEmygy+mfauviXrovgvJisQak+CMYE6W2I0olh
+ wx/27Gm2NfTGFZ/HC0cqv/vxuKueU28Z5bSliHke/rnG9ED/v2YM6Sawq
+ L3QLXt3ApAYoPF8RA06ZiqmrYfMqvBpyydJI7BLfHrQPBAfatT4hDnk80
+ dfKrKaEvD4YNEwyIbvxuIENF2aVGMkVCv3yLrYrIseFGOUWDvsO7kZ+EC
+ BAVI6ZbNjifH0MpcEN5/HWgNOC6Pu9DsmxI1XEHLP/wHvoxgi2VGreTQk
+ XEYNSxqriPJi8KLOUbHk91U5+Zelv5UNvU1NIdtHsuZ7YkZKLj9GlZQuX A==;
+X-CSE-ConnectionGUID: QWsC2UuhTF+6wqQbL17s2A==
+X-CSE-MsgGUID: V4+RfcNoTwKgJMYamovVoA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="8246537"
 X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; 
-   d="scan'208";a="8246707"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 07:42:04 -0700
-X-CSE-ConnectionGUID: WQdZVFjfRzC32G9Te2lM+g==
-X-CSE-MsgGUID: t+IJUxbnRCm0Y+F2ErjGHg==
+   d="scan'208";a="8246537"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 07:53:08 -0700
+X-CSE-ConnectionGUID: XDZgub5wSXuMHu+en6EbJA==
+X-CSE-MsgGUID: Mj58zgNZTPaDnyqc10ccqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="25690968"
-Received: from maurocar-mobl2.ger.corp.intel.com (HELO [10.245.244.44])
- ([10.245.244.44])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 07:42:02 -0700
-Message-ID: <14259171-58af-4c64-8ed8-e210400d643e@intel.com>
-Date: Fri, 12 Apr 2024 15:42:00 +0100
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21162183"
+Received: from mohdaris-mobl1.gar.corp.intel.com (HELO localhost)
+ ([10.252.61.65])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 07:53:06 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH 0/6] drm/i915: i915_reg.h cleanups
+Date: Fri, 12 Apr 2024 17:52:52 +0300
+Message-Id: <cover.1712933479.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/xe/vm: prevent UAF with asid based lookup
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>,
- stable@vger.kernel.org
-References: <20240412113144.259426-4-matthew.auld@intel.com>
- <sm2cs4zyl7yhnumfefky5kg4yatnfhbkoombgcupih6z6v2yos@ckz475ikjc5b>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <sm2cs4zyl7yhnumfefky5kg4yatnfhbkoombgcupih6z6v2yos@ckz475ikjc5b>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,105 +68,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 12/04/2024 15:06, Lucas De Marchi wrote:
-> On Fri, Apr 12, 2024 at 12:31:45PM +0100, Matthew Auld wrote:
->> The asid is only erased from the xarray when the vm refcount reaches
->> zero, however this leads to potential UAF since the xe_vm_get() only
-> 
-> I'm not sure I understand the call chain an where xe_vm_get() is coming
-> into play here.
-> 
-> 
->> works on a vm with refcount != 0. Since the asid is allocated in the vm
->> create ioctl, rather erase it when closing the vm, prior to dropping the
->> potential last ref. This should also work when user closes driver fd
->> without explicit vm destroy.
-> 
-> what seems weird is that you are moving it earlier in the call stack
-> rather than later, outside of the worker, to prevent the UAF.
-> 
-> what exactly was the UAF on?
+Continue the cleanup of i915_reg.h. Remove 1k lines from it this time
+around.
 
-UAF on the vm object. From the bug report it's when servicing some GPU 
-fault, so inside handle_pagefault(). At this stage it just has some asid 
-which is meant to map to some vm AFAICT. The lookup dance relies on 
-calling xe_vm_get() after getting back the vm pointer from the xarray. 
-Currently the asid is only erased from the xarray in 
-vm_destroy_work_func() which is long after the refcount reaches zero and 
-we are about to free the memory for the vm.
+Jani Nikula (6):
+  drm/i915/audio: move LPE audio regs to intel_audio_regs.h
+  drm/i915/color: move palette registers to intel_color_regs.h
+  drm/i915/display: split out intel_fbc_regs.h from i915_reg.h
+  drm/i915/display: split out intel_sprite_regs.h from i915_reg.h
+  drm/i915/display: split out intel_dpio_regs.h from i915_reg.h
+  drm/i915/display: split out bxt_phy_regs.h from i915_reg.h
 
-However xe_vm_get() is only meant to be called if you are already 
-holding a ref, so if the vm refcount is already zero it just throws an 
-error and continues on, and the caller has no idea. If that happens then 
-as soon as we drop the usm lock the memory can be freed and it's game 
-over. This looks to be what happens with the vm refcount reaching zero, 
-and the handle_pagefault() still being able to reach the 
-soon-to-be-freed vm via the xarray. With this patch we now erase from 
-the xarray before we drop what is potentially the final ref. That way if 
-you can reach the vm via the xarray you should always be able get a 
-valid ref.
+ drivers/gpu/drm/i915/display/bxt_phy_regs.h   |  292 +++++
+ .../gpu/drm/i915/display/intel_audio_regs.h   |   16 +
+ .../gpu/drm/i915/display/intel_color_regs.h   |   30 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |    1 +
+ .../i915/display/intel_display_power_well.c   |    1 +
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c |    2 +
+ drivers/gpu/drm/i915/display/intel_dpll.c     |    1 +
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |    1 +
+ drivers/gpu/drm/i915/display/intel_fbc.c      |    1 +
+ drivers/gpu/drm/i915/display/intel_fbc_regs.h |  152 +++
+ .../gpu/drm/i915/display/intel_lpe_audio.c    |    2 +-
+ drivers/gpu/drm/i915/display/intel_sprite.c   |    1 +
+ .../gpu/drm/i915/display/intel_sprite_regs.h  |  349 +++++
+ drivers/gpu/drm/i915/display/vlv_dpio_regs.h  |  352 +++++
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |    1 +
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   |    2 +
+ drivers/gpu/drm/i915/gvt/cmd_parser.c         |    1 +
+ drivers/gpu/drm/i915/gvt/display.c            |    2 +
+ drivers/gpu/drm/i915/gvt/fb_decoder.c         |    5 +-
+ drivers/gpu/drm/i915/gvt/handlers.c           |    2 +
+ drivers/gpu/drm/i915/gvt/mmio.c               |    1 +
+ drivers/gpu/drm/i915/i915_reg.h               | 1154 -----------------
+ drivers/gpu/drm/i915/intel_clock_gating.c     |    1 +
+ drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |    3 +
+ 24 files changed, 1217 insertions(+), 1156 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/bxt_phy_regs.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_fbc_regs.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_sprite_regs.h
+ create mode 100644 drivers/gpu/drm/i915/display/vlv_dpio_regs.h
 
-> 
-> Lucas De Marchi
-> 
->>
->> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
->> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1594
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Cc: <stable@vger.kernel.org> # v6.8+
->> ---
->> drivers/gpu/drm/xe/xe_vm.c | 21 +++++++++++----------
->> 1 file changed, 11 insertions(+), 10 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
->> index a196dbe65252..c5c26b3d1b76 100644
->> --- a/drivers/gpu/drm/xe/xe_vm.c
->> +++ b/drivers/gpu/drm/xe/xe_vm.c
->> @@ -1581,6 +1581,16 @@ void xe_vm_close_and_put(struct xe_vm *vm)
->>         xe->usm.num_vm_in_fault_mode--;
->>     else if (!(vm->flags & XE_VM_FLAG_MIGRATION))
->>         xe->usm.num_vm_in_non_fault_mode--;
->> +
->> +    if (vm->usm.asid) {
->> +        void *lookup;
->> +
->> +        xe_assert(xe, xe->info.has_asid);
->> +        xe_assert(xe, !(vm->flags & XE_VM_FLAG_MIGRATION));
->> +
->> +        lookup = xa_erase(&xe->usm.asid_to_vm, vm->usm.asid);
->> +        xe_assert(xe, lookup == vm);
->> +    }
->>     mutex_unlock(&xe->usm.lock);
->>
->>     for_each_tile(tile, xe, id)
->> @@ -1596,24 +1606,15 @@ static void vm_destroy_work_func(struct 
->> work_struct *w)
->>     struct xe_device *xe = vm->xe;
->>     struct xe_tile *tile;
->>     u8 id;
->> -    void *lookup;
->>
->>     /* xe_vm_close_and_put was not called? */
->>     xe_assert(xe, !vm->size);
->>
->>     mutex_destroy(&vm->snap_mutex);
->>
->> -    if (!(vm->flags & XE_VM_FLAG_MIGRATION)) {
->> +    if (!(vm->flags & XE_VM_FLAG_MIGRATION))
->>         xe_device_mem_access_put(xe);
->>
->> -        if (xe->info.has_asid && vm->usm.asid) {
->> -            mutex_lock(&xe->usm.lock);
->> -            lookup = xa_erase(&xe->usm.asid_to_vm, vm->usm.asid);
->> -            xe_assert(xe, lookup == vm);
->> -            mutex_unlock(&xe->usm.lock);
->> -        }
->> -    }
->> -
->>     for_each_tile(tile, xe, id)
->>         XE_WARN_ON(vm->pt_root[id]);
->>
->> -- 
->> 2.44.0
->>
+-- 
+2.39.2
+
