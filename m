@@ -4,21 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83EFEC41513
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 13:09:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F9A5C04FF9
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Apr 2024 13:09:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE11D10F637;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 008FD10F636;
 	Fri, 12 Apr 2024 13:09:47 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F08DB10F61F;
- Fri, 12 Apr 2024 13:09:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DF9E10EF11;
+ Fri, 12 Apr 2024 13:09:37 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [CI-only 1/8] drm: Add drm_vblank_work_flush_all().
-Date: Fri, 12 Apr 2024 15:09:37 +0200
-Message-ID: <20240412130946.13148-1-maarten.lankhorst@linux.intel.com>
+Subject: [CI-only 8/8] drm/xe/display: Re-use display vmas when possible
+Date: Fri, 12 Apr 2024 15:09:44 +0200
+Message-ID: <20240412130946.13148-8-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240412130946.13148-1-maarten.lankhorst@linux.intel.com>
+References: <20240412130946.13148-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -35,67 +37,232 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In some cases we want to flush all vblank work, right before vblank_off
-for example. Add a simple function to make this possible.
+i915 has this really nice, infrastructure where everything becomes
+complicated, GGTT needs eviction, etc..
+
+Lets not do that, and make the dumbest possible interface instead.
+Try to retrieve the VMA from old_plane_state, or intel_fbdev if kernel
+fb.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/drm_vblank_work.c | 22 ++++++++++++++++++++++
- include/drm/drm_vblank_work.h     |  2 ++
- 2 files changed, 24 insertions(+)
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   |  3 +-
+ drivers/gpu/drm/i915/display/intel_fb_pin.h   |  3 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  5 ++
+ drivers/gpu/drm/i915/display/intel_fbdev.h    |  9 ++++
+ .../gpu/drm/xe/compat-i915-headers/i915_vma.h |  3 ++
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 46 +++++++++++++++++--
+ 8 files changed, 65 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_vblank_work.c b/drivers/gpu/drm/drm_vblank_work.c
-index 43cd5c0f4f6f..6a53cede547a 100644
---- a/drivers/gpu/drm/drm_vblank_work.c
-+++ b/drivers/gpu/drm/drm_vblank_work.c
-@@ -232,6 +232,28 @@ void drm_vblank_work_flush(struct drm_vblank_work *work)
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index ab01c2d15afd..dcb9b7751261 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -1107,7 +1107,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 	if (!obj)
+ 		return 0;
+ 
+-	ret = intel_plane_pin_fb(new_plane_state);
++	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index f08fce0de713..9153a1cdb1f2 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -772,7 +772,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 	if (ret)
+ 		goto out_free;
+ 
+-	ret = intel_plane_pin_fb(new_plane_state);
++	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
+ 	if (ret)
+ 		goto out_free;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+index b6df9baf481b..7b8a1825ccfc 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+@@ -236,7 +236,8 @@ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
+ 	i915_vma_put(vma);
  }
- EXPORT_SYMBOL(drm_vblank_work_flush);
  
-+/**
-+ * drm_vblank_work_flush_all - flush all currently pending vblank work on crtc.
-+ * @crtc: crtc for which vblank work to flush
-+ *
-+ * Wait until all currently queued vblank work on @crtc
-+ * has finished executing once.
-+ */
-+void drm_vblank_work_flush_all(struct drm_crtc *crtc)
+-int intel_plane_pin_fb(struct intel_plane_state *plane_state)
++int intel_plane_pin_fb(struct intel_plane_state *plane_state,
++		       const struct intel_plane_state *old_plane_state)
+ {
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+index de0efaa25905..48675e6233f0 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+@@ -22,7 +22,8 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
+ 
+ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags);
+ 
+-int intel_plane_pin_fb(struct intel_plane_state *plane_state);
++int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
++		       const struct intel_plane_state *old_plane_state);
+ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index 43855c6c3509..a010b7a8a468 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -668,3 +668,8 @@ struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
+ 
+ 	return to_intel_framebuffer(fbdev->helper.fb);
+ }
++
++struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
 +{
-+	struct drm_device *dev = crtc->dev;
-+	struct drm_vblank_crtc *vblank = &dev->vblank[drm_crtc_index(crtc)];
-+
-+	spin_lock_irq(&dev->event_lock);
-+	wait_event_lock_irq(vblank->work_wait_queue,
-+			    !waitqueue_active(&vblank->work_wait_queue),
-+			    dev->event_lock);
-+	spin_unlock_irq(&dev->event_lock);
-+
-+	kthread_flush_worker(vblank->worker);
++	return fbdev ? fbdev->vma : NULL;
 +}
-+EXPORT_SYMBOL(drm_vblank_work_flush_all);
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
+index 04fd523a5023..fa6c0c1ae936 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.h
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
+@@ -22,6 +22,8 @@ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous
+ void intel_fbdev_output_poll_changed(struct drm_device *dev);
+ void intel_fbdev_restore_mode(struct drm_i915_private *dev_priv);
+ struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
++struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev);
 +
- /**
-  * drm_vblank_work_init - initialize a vblank work item
-  * @work: vblank work item
-diff --git a/include/drm/drm_vblank_work.h b/include/drm/drm_vblank_work.h
-index eb41d0810c4f..e04d436b7297 100644
---- a/include/drm/drm_vblank_work.h
-+++ b/include/drm/drm_vblank_work.h
-@@ -17,6 +17,7 @@ struct drm_crtc;
-  * drm_vblank_work_init()
-  * drm_vblank_work_cancel_sync()
-  * drm_vblank_work_flush()
-+ * drm_vblank_work_flush_all()
-  */
- struct drm_vblank_work {
- 	/**
-@@ -67,5 +68,6 @@ void drm_vblank_work_init(struct drm_vblank_work *work, struct drm_crtc *crtc,
- 			  void (*func)(struct kthread_work *work));
- bool drm_vblank_work_cancel_sync(struct drm_vblank_work *work);
- void drm_vblank_work_flush(struct drm_vblank_work *work);
-+void drm_vblank_work_flush_all(struct drm_crtc *crtc);
+ #else
+ static inline int intel_fbdev_init(struct drm_device *dev)
+ {
+@@ -51,10 +53,17 @@ static inline void intel_fbdev_output_poll_changed(struct drm_device *dev)
+ static inline void intel_fbdev_restore_mode(struct drm_i915_private *i915)
+ {
+ }
++
+ static inline struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
+ {
+ 	return NULL;
+ }
++
++static inline struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
++{
++	return NULL;
++}
++
+ #endif
  
- #endif /* !_DRM_VBLANK_WORK_H_ */
+ #endif /* __INTEL_FBDEV_H__ */
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+index a20d2638ea7a..193382f97823 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+@@ -9,6 +9,8 @@
+ #include <uapi/drm/i915_drm.h>
+ #include <drm/drm_mm.h>
+ 
++#include <linux/refcount.h>
++
+ /* We don't want these from i915_drm.h in case of Xe */
+ #undef I915_TILING_X
+ #undef I915_TILING_Y
+@@ -18,6 +20,7 @@
+ struct xe_bo;
+ 
+ struct i915_vma {
++	refcount_t ref;
+ 	struct xe_bo *bo, *dpt;
+ 	struct drm_mm_node node;
+ };
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index dd7a1c4a9430..10114c575e5a 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -8,6 +8,7 @@
+ #include "intel_dpt.h"
+ #include "intel_fb.h"
+ #include "intel_fb_pin.h"
++#include "intel_fbdev.h"
+ #include "xe_fb_pin.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
+@@ -350,6 +351,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+ 	if (!vma)
+ 		return ERR_PTR(-ENOMEM);
+ 
++	refcount_set(&vma->ref, 1);
+ 	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
+ 	    intel_fb_rc_ccs_cc_plane(&fb->base) >= 0 &&
+ 	    !(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS)) {
+@@ -409,6 +411,9 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma, struct intel_framebuffer *fb
+ 	struct xe_device *xe = to_xe_device(vma->bo->ttm.base.dev);
+ 	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+ 
++	if (!refcount_dec_and_test(&vma->ref))
++		return;
++
+ 	if (vma->dpt) {
+ 		xe_ggtt_remove_bo(ggtt, vma->dpt);
+ 		xe_fb_dpt_unpin_free(vma, fb);
+@@ -450,20 +455,53 @@ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
+ 	__xe_unpin_fb_vma(vma, NULL);
+ }
+ 
+-int intel_plane_pin_fb(struct intel_plane_state *plane_state)
++static bool reuse_vma(struct intel_plane_state *new_plane_state,
++		      const struct intel_plane_state *old_plane_state)
+ {
+-	struct drm_framebuffer *fb = plane_state->hw.fb;
++	struct intel_framebuffer *fb = to_intel_framebuffer(new_plane_state->hw.fb);
++	struct xe_device *xe = to_xe_device(fb->base.dev);
++	struct i915_vma *vma;
++
++	if (old_plane_state->hw.fb == new_plane_state->hw.fb &&
++	    !memcmp(&old_plane_state->view.gtt,
++		    &new_plane_state->view.gtt,
++	            sizeof(new_plane_state->view.gtt))) {
++		vma = old_plane_state->ggtt_vma;
++		goto found;
++	}
++
++	if (fb == intel_fbdev_framebuffer(xe->display.fbdev.fbdev)) {
++		vma = intel_fbdev_vma_pointer(xe->display.fbdev.fbdev);
++		if (vma)
++			goto found;
++	}
++
++	return false;
++
++found:
++	refcount_inc(&vma->ref);
++	new_plane_state->ggtt_vma = vma;
++	return true;
++}
++
++int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
++		       const struct intel_plane_state *old_plane_state)
++{
++	struct drm_framebuffer *fb = new_plane_state->hw.fb;
+ 	struct xe_bo *bo = intel_fb_obj(fb);
+ 	struct i915_vma *vma;
+ 
++	if (reuse_vma(new_plane_state, old_plane_state))
++		return 0;
++
+ 	/* We reject creating !SCANOUT fb's, so this is weird.. */
+ 	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_SCANOUT));
+ 
+-	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &plane_state->view.gtt, 0);
++	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &new_plane_state->view.gtt, 0);
+ 	if (IS_ERR(vma))
+ 		return PTR_ERR(vma);
+ 
+-	plane_state->ggtt_vma = vma;
++	new_plane_state->ggtt_vma = vma;
+ 	return 0;
+ }
+ 
 -- 
 2.43.0
 
