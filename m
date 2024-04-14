@@ -4,53 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81918C4345F
-	for <intel-xe@archiver.kernel.org>; Sat, 13 Apr 2024 16:23:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAEAEC4345F
+	for <intel-xe@archiver.kernel.org>; Sun, 14 Apr 2024 08:11:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E38BB10E301;
-	Sat, 13 Apr 2024 16:23:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3825E10E3DC;
+	Sun, 14 Apr 2024 08:11:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n7I2D30N";
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="ZXjnkoNI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC3E610E263
- for <intel-xe@lists.freedesktop.org>; Sat, 13 Apr 2024 16:23:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713025417; x=1744561417;
- h=date:from:to:cc:subject:message-id;
- bh=X1tNZy45xk31sdSgI5oGqCUPJPFyS2lIyVrgpvILgj4=;
- b=n7I2D30NR6b+3V9iBdQWtvFHEPhzsNTTKWPgSvJso+eiYjTC/H8pISVj
- FJGAnz9zSzVTKQpUc0dSt6oWZ+mkTUgeaVwGbvIdhiel1JIXG2M2w1NQr
- lDVkkdRTRxiboxJAbtHxtnp3z9GgqEONL9NTKZ4H1t6PaiJUl5Z864Ckb
- p/668zes+WMvbYb5E23sZZTjxZxS6k/rMvjCDteQrCk5cy3ztkTPeH2kr
- VT6B16pv4nQeOvFoxf2k0POoY3fA+yRRBxslhCx9Q1wJJkeNoI4J8+PI4
- m9YrIiiDCdpn9QOZBxkYYOY6WpFSctJH4N9cL8O9E6MI9Ud2JD1i7dGFk g==;
-X-CSE-ConnectionGUID: Hc0+7SPwQf6YPP84pk/dLg==
-X-CSE-MsgGUID: hugxGqOxQyScuCMN3CQWkQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11043"; a="8641615"
-X-IronPort-AV: E=Sophos;i="6.07,199,1708416000"; 
-   d="scan'208";a="8641615"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2024 09:23:36 -0700
-X-CSE-ConnectionGUID: W+A5i4wKQXKQisiWod0BWg==
-X-CSE-MsgGUID: wMzeyPa3Tm2DA0F6hDKclA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,199,1708416000"; d="scan'208";a="21492649"
-Received: from unknown (HELO 23c141fc0fd8) ([10.239.97.151])
- by orviesa009.jf.intel.com with ESMTP; 13 Apr 2024 09:23:35 -0700
-Received: from kbuild by 23c141fc0fd8 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1rvgA8-0002tc-1J;
- Sat, 13 Apr 2024 16:23:32 +0000
-Date: Sun, 14 Apr 2024 00:23:28 +0800
-From: kernel test robot <lkp@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- 48b05e3c3dbbac4275c3e94bed68a36bec6bddfe
-Message-ID: <202404140025.77vhaAnY-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96F6E10E3DC
+ for <intel-xe@lists.freedesktop.org>; Sun, 14 Apr 2024 08:11:48 +0000 (UTC)
+Received: internal info suppressed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
+ t=1713082299; bh=9DkxBx/YZMGIWfhKNNOkAlTkAhMwsNd142bJzPTbPxk=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=ZXjnkoNIG1XPKONSGUv2532BUKCmNWj3XfvbGLgCKVSb7OjiCOI3FuziyA6iW0uaK
+ 2Py5M//U0UuTqbU/9yLL8K4fnYaE5N/LSTSf8ef9xrm1tt5BZXIgn01An5WHFxoCJs
+ KeUftaiRvjQN//8kMTPHfjCqK6rjsFj1+zP52k2BwU+xT+WsPMOXhGdVHaY2GZAulN
+ 3Tv27lysItnxKB7TMoWKM6jJjeB/3K6IEYk/9tYYBjQYTPX0P/N3ujKJ/vDeBY9k+t
+ WOlF4hsxrdMbjXDIJDtRsYaK2gsKzinCXFaN5eEk3d1ww4dbAlUXmN4erfYA50n2PF
+ RcnX13ROovkng==
+Received: from kelbaz-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by kelbaz-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
+ id 43E8B5HU1199572; Sun, 14 Apr 2024 11:11:32 +0300
+From: Koby Elbaz <kelbaz@habana.ai>
+To: intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Ofir Bitton <obitton@habana.ai>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ Michal Winiarski <michal.winiarski@intel.com>
+Subject: [PATCH v7 2/2] drm/xe: restore xe_mmio_ioctl as the ioctl handler of
+ the mmio debugfs file
+Date: Sun, 14 Apr 2024 11:11:05 +0300
+Message-Id: <20240414081105.1199559-2-kelbaz@habana.ai>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240414081105.1199559-1-kelbaz@habana.ai>
+References: <20240414081105.1199559-1-kelbaz@habana.ai>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,153 +58,271 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 48b05e3c3dbbac4275c3e94bed68a36bec6bddfe  drm/xe/pf: Add support to configure GuC SR-IOV policies
+The drm mmio ioctl handler (xe_mmio_ioctl) wasn't needed anymore,
+and therefore, recently removed.
+Nevertheless, it is now restored for debugging purposes to function
+as the ioctl handler of the 'mmio' debugfs file.
 
-elapsed time: 1454m
+Notes:
+1. The non-admin user's limited mmio access (aka, whitelist),
+was removed being irrelevant anymore, now that a user using debugfs
+must anyway have root permission to use it.
+2. To support multi-tile access, the tile index is now dynamic and
+will be retrieved from the given mmio address itself.
 
-configs tested: 134
-configs skipped: 3
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Ofir Bitton <obitton@habana.ai>
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Michal Winiarski <michal.winiarski@intel.com>
+Signed-off-by: Koby Elbaz <kelbaz@habana.ai>
+---
+Changes in v7:
+ - Get/put forcewake will only be done for enabled/available GTs.
+ - Added Multi-tile/GT MMIO access support.
+ - Patchset was rebased on top of drm-tip, rather than drm-xe-next.
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+ drivers/gpu/drm/xe/xe_debugfs.c      | 160 ++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_debugfs_mmio.h |  43 +++++++
+ 2 files changed, 201 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_debugfs_mmio.h
 
-tested configs:
-alpha                             allnoconfig   gcc  
-alpha                            allyesconfig   gcc  
-alpha                               defconfig   gcc  
-arc                              allmodconfig   gcc  
-arc                               allnoconfig   gcc  
-arc                              allyesconfig   gcc  
-arc                                 defconfig   gcc  
-arc                   randconfig-001-20240413   gcc  
-arc                   randconfig-002-20240413   gcc  
-arm                              allmodconfig   gcc  
-arm                               allnoconfig   clang
-arm                              allyesconfig   gcc  
-arm                                 defconfig   clang
-arm                   randconfig-001-20240413   clang
-arm                   randconfig-002-20240413   gcc  
-arm                   randconfig-003-20240413   clang
-arm                   randconfig-004-20240413   clang
-arm                         vf610m4_defconfig   gcc  
-arm64                            allmodconfig   clang
-arm64                             allnoconfig   gcc  
-arm64                               defconfig   gcc  
-arm64                 randconfig-001-20240413   clang
-arm64                 randconfig-002-20240413   clang
-arm64                 randconfig-003-20240413   clang
-arm64                 randconfig-004-20240413   clang
-csky                             allmodconfig   gcc  
-csky                              allnoconfig   gcc  
-csky                             allyesconfig   gcc  
-csky                                defconfig   gcc  
-csky                  randconfig-001-20240413   gcc  
-csky                  randconfig-002-20240413   gcc  
-hexagon                          allmodconfig   clang
-hexagon                           allnoconfig   clang
-hexagon                          allyesconfig   clang
-hexagon                             defconfig   clang
-hexagon               randconfig-001-20240413   clang
-hexagon               randconfig-002-20240413   clang
-i386                             allmodconfig   gcc  
-i386                              allnoconfig   gcc  
-i386                             allyesconfig   gcc  
-i386         buildonly-randconfig-001-20240413   gcc  
-i386         buildonly-randconfig-002-20240413   gcc  
-i386         buildonly-randconfig-003-20240413   clang
-i386         buildonly-randconfig-004-20240413   clang
-i386         buildonly-randconfig-005-20240413   clang
-i386         buildonly-randconfig-006-20240413   clang
-i386                                defconfig   clang
-i386                  randconfig-001-20240413   clang
-i386                  randconfig-002-20240413   gcc  
-i386                  randconfig-003-20240413   clang
-i386                  randconfig-004-20240413   gcc  
-i386                  randconfig-005-20240413   clang
-i386                  randconfig-006-20240413   clang
-i386                  randconfig-011-20240413   gcc  
-i386                  randconfig-012-20240413   clang
-i386                  randconfig-013-20240413   gcc  
-i386                  randconfig-014-20240413   gcc  
-i386                  randconfig-015-20240413   clang
-i386                  randconfig-016-20240413   gcc  
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                           defconfig   gcc  
-loongarch                 loongson3_defconfig   gcc  
-loongarch             randconfig-001-20240413   gcc  
-loongarch             randconfig-002-20240413   gcc  
-m68k                             allmodconfig   gcc  
-m68k                              allnoconfig   gcc  
-m68k                             allyesconfig   gcc  
-m68k                                defconfig   gcc  
-m68k                        m5272c3_defconfig   gcc  
-microblaze                       allmodconfig   gcc  
-microblaze                        allnoconfig   gcc  
-microblaze                       allyesconfig   gcc  
-microblaze                          defconfig   gcc  
-mips                              allnoconfig   gcc  
-mips                             allyesconfig   gcc  
-mips                          ath25_defconfig   clang
-mips                       bmips_be_defconfig   gcc  
-mips                malta_qemu_32r6_defconfig   gcc  
-mips                        vocore2_defconfig   clang
-nios2                            allmodconfig   gcc  
-nios2                             allnoconfig   gcc  
-nios2                            allyesconfig   gcc  
-nios2                               defconfig   gcc  
-nios2                 randconfig-001-20240413   gcc  
-nios2                 randconfig-002-20240413   gcc  
-openrisc                          allnoconfig   gcc  
-openrisc                         allyesconfig   gcc  
-openrisc                            defconfig   gcc  
-parisc                           allmodconfig   gcc  
-parisc                            allnoconfig   gcc  
-parisc                           allyesconfig   gcc  
-parisc                              defconfig   gcc  
-parisc                randconfig-001-20240413   gcc  
-parisc                randconfig-002-20240413   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                     kilauea_defconfig   clang
-powerpc               randconfig-001-20240413   clang
-powerpc               randconfig-003-20240413   clang
-powerpc                     skiroot_defconfig   clang
-riscv                             allnoconfig   gcc  
-riscv                               defconfig   clang
-s390                             allmodconfig   clang
-s390                              allnoconfig   clang
-s390                             allyesconfig   gcc  
-s390                                defconfig   clang
-sh                               allmodconfig   gcc  
-sh                                allnoconfig   gcc  
-sh                               allyesconfig   gcc  
-sh                                  defconfig   gcc  
-sh                           se7705_defconfig   gcc  
-sh                            shmin_defconfig   gcc  
-sh                            titan_defconfig   gcc  
-sparc                            alldefconfig   gcc  
-sparc                            allmodconfig   gcc  
-sparc                             allnoconfig   gcc  
-sparc                               defconfig   gcc  
-sparc64                          allmodconfig   gcc  
-sparc64                          allyesconfig   gcc  
-sparc64                             defconfig   gcc  
-um                               allmodconfig   clang
-um                                allnoconfig   clang
-um                               allyesconfig   gcc  
-um                                  defconfig   clang
-um                             i386_defconfig   gcc  
-um                           x86_64_defconfig   clang
-x86_64                            allnoconfig   clang
-x86_64                           allyesconfig   clang
-x86_64                              defconfig   gcc  
-x86_64                          rhel-8.3-rust   clang
-xtensa                            allnoconfig   gcc  
-xtensa                  cadence_csp_defconfig   gcc  
-
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index ce27516ffac0..4ad728b937fd 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -6,7 +6,7 @@
+ #include "xe_debugfs.h"
+ 
+ #include <linux/string_helpers.h>
+-
++#include <linux/security.h>
+ #include <drm/drm_debugfs.h>
+ 
+ #include "xe_bo.h"
+@@ -15,6 +15,8 @@
+ #include "xe_pm.h"
+ #include "xe_sriov.h"
+ #include "xe_step.h"
++#include "xe_debugfs_mmio.h"
++#include "xe_mmio.h"
+ 
+ #ifdef CONFIG_DRM_XE_DEBUG
+ #include "xe_bo_evict.h"
+@@ -111,8 +113,162 @@ static int forcewake_release(struct inode *inode, struct file *file)
+ 	return 0;
+ }
+ 
+-static long xe_debugfs_mmio_ioctl(struct file *f, unsigned int cmd, unsigned long arg)
++static int get_tile_id_of_mmio_addr(struct xe_device *xe, u32 mmio_addr, u8 *tile_id)
++{
++	/* MMIO space size is identical for all tiles so arbitrarily choose root tile */
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++	u32 tile_mmio_base_addr = 0;
++	u8 id;
++
++	if (mmio_addr >= (tile->mmio.size * xe->info.tile_count))
++		return -EINVAL;
++
++	for_each_tile(tile, xe, id) {
++		tile_mmio_base_addr = id * tile->mmio.size;
++		/* Each tile has a 16M MMIO space, but the contained CFG space is only 4M */
++		if ((mmio_addr >= tile_mmio_base_addr) &&
++				(mmio_addr < (tile_mmio_base_addr + SZ_4M))) {
++			*tile_id = id;
++			return 0;
++		}
++	}
++
++	return -EINVAL;
++}
++
++static int assign_mmio_args_to_xe_reg(struct xe_device *xe, struct xe_debugfs_mmio_ioctl_data *args,
++				      struct xe_reg *reg, u8 *tile_id)
+ {
++	unsigned int mmio_bits_flag, bytes;
++	u32 mmio_offset_in_tile;
++	struct xe_gt *gt;
++	u8 local_tile_id;
++	int ret;
++
++	mmio_bits_flag = args->flags & XE_DEBUGFS_MMIO_BITS_MASK;
++	bytes = 1 << mmio_bits_flag;
++
++	ret = get_tile_id_of_mmio_addr(xe, args->addr, &local_tile_id);
++	if (ret)
++		return ret;
++
++	gt = xe_device_get_gt(xe, local_tile_id);
++	mmio_offset_in_tile = args->addr - local_tile_id * SZ_16M;
++
++	/*
++	 * TODO: migrate to xe_gt_mcr to lookup the mmio range and handle
++	 * multicast registers. Steering would need uapi extension.
++	 */
++	*reg = XE_REG(mmio_offset_in_tile);
++
++	if (XE_IOCTL_DBG(xe, reg->addr + bytes > gt_to_tile(gt)->mmio.size))
++		return -EINVAL;
++
++	*tile_id = local_tile_id;
++
++	return 0;
++}
++
++static int _xe_debugfs_mmio_ioctl(struct xe_device *xe, struct xe_debugfs_mmio_ioctl_data *args)
++{
++	struct xe_reg reg;
++	struct xe_gt *gt;
++	u8 tile_id, id;
++	int ret;
++
++	if (XE_IOCTL_DBG(xe, args->extensions) ||
++	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
++		return -EINVAL;
++
++	if (XE_IOCTL_DBG(xe, args->flags & ~XE_DEBUGFS_MMIO_VALID_FLAGS))
++		return -EINVAL;
++
++	if (XE_IOCTL_DBG(xe, !(args->flags & XE_DEBUGFS_MMIO_WRITE) && args->value))
++		return -EINVAL;
++
++	xe_device_mem_access_get(xe);
++	for_each_gt(gt, xe, id)
++		XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL));
++
++	ret = assign_mmio_args_to_xe_reg(xe, args, &reg, &tile_id);
++	if (ret)
++		goto exit;
++
++	gt = xe_device_get_gt(xe, tile_id);
++
++	if (args->flags & XE_DEBUGFS_MMIO_WRITE) {
++		switch (args->flags & XE_DEBUGFS_MMIO_BITS_MASK) {
++		case XE_DEBUGFS_MMIO_32BIT:
++			if (XE_IOCTL_DBG(xe, args->value > U32_MAX)) {
++				ret = -EINVAL;
++				goto exit;
++			}
++			xe_mmio_write32(gt, reg, args->value);
++			break;
++		default:
++			drm_dbg(&xe->drm, "Invalid MMIO bit size");
++			fallthrough;
++		case XE_DEBUGFS_MMIO_8BIT: /* TODO */
++		case XE_DEBUGFS_MMIO_16BIT: /* TODO */
++			ret = -EOPNOTSUPP;
++			goto exit;
++		}
++	}
++
++	if (args->flags & XE_DEBUGFS_MMIO_READ) {
++		switch (args->flags & XE_DEBUGFS_MMIO_BITS_MASK) {
++		case XE_DEBUGFS_MMIO_32BIT:
++			args->value = xe_mmio_read32(gt, reg);
++			break;
++		case XE_DEBUGFS_MMIO_64BIT:
++			args->value = xe_mmio_read64_2x32(gt, reg);
++			break;
++		default:
++			drm_dbg(&xe->drm, "Invalid MMIO bit size");
++			fallthrough;
++		case XE_DEBUGFS_MMIO_8BIT: /* TODO */
++		case XE_DEBUGFS_MMIO_16BIT: /* TODO */
++			ret = -EOPNOTSUPP;
++		}
++	}
++
++exit:
++	for_each_gt(gt, xe, id)
++		XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
++
++	xe_device_mem_access_put(xe);
++
++	return ret;
++}
++
++static long xe_debugfs_mmio_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
++{
++	struct xe_device *xe = file_inode(filp)->i_private;
++	struct xe_debugfs_mmio_ioctl_data mmio_data;
++	int ret;
++
++	ret = security_locked_down(LOCKDOWN_PCI_ACCESS);
++	if (ret)
++		return ret;
++
++	if (cmd == XE_DEBUGFS_MMIO_IOCTL) {
++		ret = copy_from_user(&mmio_data, (struct xe_debugfs_mmio_ioctl_data __user *)arg,
++				     sizeof(mmio_data));
++		if (ret)
++			return -EFAULT;
++
++		ret = _xe_debugfs_mmio_ioctl(xe, &mmio_data);
++		if (ret)
++			return ret;
++
++		ret = copy_to_user((struct xe_debugfs_mmio_ioctl_data __user *)arg,
++				   &mmio_data, sizeof(mmio_data));
++		if (ret)
++			return -EFAULT;
++	} else {
++		return -EINVAL;
++	}
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_debugfs_mmio.h b/drivers/gpu/drm/xe/xe_debugfs_mmio.h
+new file mode 100644
+index 000000000000..1dfb8fa2ce9a
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_debugfs_mmio.h
+@@ -0,0 +1,43 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_DEBUGFS_MMIO_H_
++#define _XE_DEBUGFS_MMIO_H_
++
++#include <drm/drm.h>
++
++#define XE_DEBUGFS_MMIO_8BIT		0x0
++#define XE_DEBUGFS_MMIO_16BIT		0x1
++#define XE_DEBUGFS_MMIO_32BIT		0x2
++#define XE_DEBUGFS_MMIO_64BIT		0x3
++#define XE_DEBUGFS_MMIO_BITS_MASK	0x3
++#define XE_DEBUGFS_MMIO_READ		0x4
++#define XE_DEBUGFS_MMIO_WRITE		0x8
++
++#define XE_DEBUGFS_MMIO_VALID_FLAGS (\
++	XE_DEBUGFS_MMIO_BITS_MASK |\
++	XE_DEBUGFS_MMIO_READ |\
++	XE_DEBUGFS_MMIO_WRITE)
++
++struct xe_debugfs_mmio_ioctl_data {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++	__u32 addr;
++
++	__u32 flags;
++
++	__u64 value;
++
++	/** @reserved: Reserved */
++	__u64 reserved[2];
++};
++
++#define XE_DEBUGFS_MMIO_IOCTL_NR	0x00
++
++#define XE_DEBUGFS_MMIO_IOCTL \
++	_IOWR(0x20, XE_DEBUGFS_MMIO_IOCTL_NR, struct xe_debugfs_mmio_ioctl_data)
++
++#endif /* _XE_DEBUGFS_MMIO_H_ */
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
