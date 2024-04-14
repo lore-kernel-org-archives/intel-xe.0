@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C10BBC001CC
-	for <intel-xe@archiver.kernel.org>; Sun, 14 Apr 2024 19:02:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D54ECC001CC
+	for <intel-xe@archiver.kernel.org>; Sun, 14 Apr 2024 19:02:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 673BD112323;
-	Sun, 14 Apr 2024 19:02:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F380112327;
+	Sun, 14 Apr 2024 19:02:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i9BLT0t7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K092Vd3h";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A6A2112324
- for <intel-xe@lists.freedesktop.org>; Sun, 14 Apr 2024 19:02:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3472A112323
+ for <intel-xe@lists.freedesktop.org>; Sun, 14 Apr 2024 19:02:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713121327; x=1744657327;
+ t=1713121325; x=1744657325;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=yObWcB0PzpWUPsEDEREjAC5/Bht6Jc2r89PHEanKJvQ=;
- b=i9BLT0t7JCQYuJYNwChzkQ8sZ9tPQWIGmnzr/4mogzB9CwN3XTcSbnde
- GXsmltsDzWB/erin2AFZV4MaIkzhVQZXY71RlQaUVEA17oGhRYsRn2zT2
- k/wh6c+yRrvRYrFWVBS8yrHxUouK16mTT6aEy/9wmpEGVwR+Pas5ClZWJ
- otG9d1bV5gwXs1M/LG7Aw1set9oiJPK32Ish94HKujkMF3mcvV9LHr1TV
- pnsmbiAg869xrSRiuF4xKN8HnLme0mPpdXLT7afFG14Km98WON0h+XeGB
- v0g+lbkM32RRrsz/65luIUWJ7i3gRkMgFqRWVdgLdByo/7Zq9U+QNphrB w==;
-X-CSE-ConnectionGUID: PM1ABXxrTKG7wX0AsbWn8g==
-X-CSE-MsgGUID: nWb7pYbHRWWxfF+zVvg2KA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="30983596"
-X-IronPort-AV: E=Sophos;i="6.07,201,1708416000"; d="scan'208";a="30983596"
+ bh=kmz6tvM99ZR7F8ZGGHP2U6s/JAzYHuh/gVy8LbLSgfo=;
+ b=K092Vd3hSNyyXq43cbBvrz+R5viMd44CYS9IB/ixXgwM4Qxn7bLp7SXp
+ vcfEpYGUhWwmGmEkiq2h1do4oWrBKKlOS0zwenY/O1z5T6KbEStILKs/c
+ mPCMjxN2mHms12kVNpwUu75LoRJnPfwLzObhtfPl784VxHlA1L7A1rPtK
+ VoysbTaz5OK4rgs3Deqk6kXRbDPHkZf4WqRbrXDA1CLp9NscFTzuWMVL0
+ RK3WEkZpg6AYJR5997zzHVJlKXwzSw8Z5+jMsSlCzDCjvlCbwp3+fUQkC
+ PFVhSYmAdzeUmmoi9/MR4/CNxYs8zC7sL3+n1oDeJBPTcgkpq+RrwJed4 g==;
+X-CSE-ConnectionGUID: BgcZTyzhSyaH6Fso5+gW6Q==
+X-CSE-MsgGUID: 6v25PkzASU6FnWermi/qEw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="30983595"
+X-IronPort-AV: E=Sophos;i="6.07,201,1708416000"; d="scan'208";a="30983595"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2024 12:02:07 -0700
-X-CSE-ConnectionGUID: OjbPWdKSRu2lonpNc26F3A==
-X-CSE-MsgGUID: xtBEOtOWQ8eqhUC7HvbImQ==
+ 14 Apr 2024 12:02:05 -0700
+X-CSE-ConnectionGUID: PdSYZ6czQo+nbxvW/S69ww==
+X-CSE-MsgGUID: 8j/qL261SSWSWf/FyiF+Xw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,201,1708416000"; d="scan'208";a="26383442"
+X-IronPort-AV: E=Sophos;i="6.07,201,1708416000"; d="scan'208";a="26383434"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.252.61.42])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2024 12:02:06 -0700
+ 14 Apr 2024 12:02:04 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 5/6] drm/xe/pf: Add SR-IOV PF specific early GT initialization
-Date: Sun, 14 Apr 2024 21:01:36 +0200
-Message-Id: <20240414190137.1243-6-michal.wajdeczko@intel.com>
+Subject: [PATCH 4/6] drm/xe/guc: Add PF2GUC_UPDATE_VF_CFG to ABI
+Date: Sun, 14 Apr 2024 21:01:35 +0200
+Message-Id: <20240414190137.1243-5-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240414190137.1243-1-michal.wajdeczko@intel.com>
 References: <20240414190137.1243-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,175 +65,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The PF driver must maintain additional GT level data per each VF.
-This additional per-VF data will be added in upcoming patches and
-will include: provisioning configuration (like GGTT space or LMEM
-allocation sizes or scheduling parameters), monitoring thresholds
-and counters, and more.
+In upcoming patches the PF driver will add support to change VFs
+configuration and will need to use PF2GUC_UPDATE_VF_CFG messages.
+Add necessary definitions to our GuC firmware ABI header.
 
-As number of supported VFs varies across platforms use flexible
-array where first entry will contain metadata for the PF itself
-(if such configuration parameter is applicable for the PF) and
-all remaining entries will contain data for potential VFs.
+Definitions of the GuC VF Configuration KLVs used by this action
+are already present in abi/guc_klvs_abi.h
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile               |  1 +
- drivers/gpu/drm/xe/xe_gt.c                |  7 +++
- drivers/gpu/drm/xe/xe_gt_sriov_pf.c       | 52 +++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf.h       | 20 +++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h |  9 ++++
- 5 files changed, 89 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf.c
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf.h
+ .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    | 55 +++++++++++++++++++
+ 1 file changed, 55 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index c46d145606f6..daa5865a2773 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -160,6 +160,7 @@ xe-y += \
- 	xe_sriov.o
- 
- xe-$(CONFIG_PCI_IOV) += \
-+	xe_gt_sriov_pf.o \
- 	xe_gt_sriov_pf_control.o \
- 	xe_gt_sriov_pf_policy.o \
- 	xe_lmtt.o \
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index cfa5da900461..38956b60e084 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -29,6 +29,7 @@
- #include "xe_gt_mcr.h"
- #include "xe_gt_pagefault.h"
- #include "xe_gt_printk.h"
-+#include "xe_gt_sriov_pf.h"
- #include "xe_gt_sysfs.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_gt_topology.h"
-@@ -311,6 +312,12 @@ int xe_gt_init_early(struct xe_gt *gt)
- {
- 	int err;
- 
-+	if (IS_SRIOV_PF(gt_to_xe(gt))) {
-+		err = xe_gt_sriov_pf_init_early(gt);
-+		if (err)
-+			return err;
-+	}
-+
- 	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
- 	if (err)
- 		return err;
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-new file mode 100644
-index 000000000000..791dcdd767e2
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-@@ -0,0 +1,52 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023-2024 Intel Corporation
-+ */
-+
-+#include <drm/drm_managed.h>
-+
-+#include "xe_gt_sriov_pf.h"
-+#include "xe_gt_sriov_pf_helpers.h"
-+
-+/*
-+ * VF's metadata is maintained in the flexible array where:
-+ *   - entry [0] contains metadata for the PF (only if applicable),
-+ *   - entries [1..n] contain metadata for VF1..VFn::
-+ *
-+ *       <--------------------------- 1 + total_vfs ----------->
-+ *      +-------+-------+-------+-----------------------+-------+
-+ *      |   0   |   1   |   2   |                       |   n   |
-+ *      +-------+-------+-------+-----------------------+-------+
-+ *      |  PF   |  VF1  |  VF2  |      ...     ...      |  VFn  |
-+ *      +-------+-------+-------+-----------------------+-------+
-+ */
-+static int pf_alloc_metadata(struct xe_gt *gt)
-+{
-+	unsigned int num_vfs = xe_gt_sriov_pf_get_totalvfs(gt);
-+
-+	gt->sriov.pf.vfs = drmm_kcalloc(&gt_to_xe(gt)->drm, 1 + num_vfs,
-+					sizeof(*gt->sriov.pf.vfs), GFP_KERNEL);
-+	if (!gt->sriov.pf.vfs)
-+		return -ENOMEM;
-+
-+	return 0;
-+}
-+
-+/**
-+ * xe_gt_sriov_pf_init_early - Prepare SR-IOV PF data structures on PF.
-+ * @gt: the &xe_gt to initialize
-+ *
-+ * Early initialization of the PF data.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_gt_sriov_pf_init_early(struct xe_gt *gt)
-+{
-+	int err;
-+
-+	err = pf_alloc_metadata(gt);
-+	if (err)
-+		return err;
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf.h
-new file mode 100644
-index 000000000000..05142ffc4319
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.h
-@@ -0,0 +1,20 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023-2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_GT_SRIOV_PF_H_
-+#define _XE_GT_SRIOV_PF_H_
-+
-+struct xe_gt;
-+
-+#ifdef CONFIG_PCI_IOV
-+int xe_gt_sriov_pf_init_early(struct xe_gt *gt);
-+#else
-+static inline int xe_gt_sriov_pf_init_early(struct xe_gt *gt)
-+{
-+	return 0;
-+}
-+#endif
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
-index 768277b8bc95..223f280ef748 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
-@@ -10,12 +10,21 @@
- 
- #include "xe_gt_sriov_pf_policy_types.h"
+diff --git a/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
+index 2d829e812c61..c1ad09b36453 100644
+--- a/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
+@@ -260,6 +260,61 @@
+ #define PF2GUC_UPDATE_VGT_POLICY_RESPONSE_MSG_LEN		GUC_HXG_RESPONSE_MSG_MIN_LEN
+ #define PF2GUC_UPDATE_VGT_POLICY_RESPONSE_MSG_0_COUNT		GUC_HXG_RESPONSE_MSG_0_DATA0
  
 +/**
-+ * struct xe_gt_sriov_metadata - GT level per-VF metadata.
++ * DOC: PF2GUC_UPDATE_VF_CFG
++ *
++ * The `PF2GUC_UPDATE_VF_CFG`_ message is used by PF to provision single VF in GuC.
++ *
++ * This message must be sent as `CTB HXG Message`_.
++ *
++ *  +---+-------+--------------------------------------------------------------+
++ *  |   | Bits  | Description                                                  |
++ *  +===+=======+==============================================================+
++ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_HOST_                                |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_REQUEST_                                 |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 27:16 | MBZ                                                          |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |  15:0 | ACTION = _`GUC_ACTION_PF2GUC_UPDATE_VF_CFG` = 0x5503         |
++ *  +---+-------+--------------------------------------------------------------+
++ *  | 1 |  31:0 | **VFID** - identifier of the VF that the KLV                 |
++ *  |   |       | configurations are being applied to                          |
++ *  +---+-------+--------------------------------------------------------------+
++ *  | 2 |  31:0 | **CFG_ADDR_LO** - dword aligned GGTT offset that represents  |
++ *  |   |       | the start of a list of virtualization related KLV configs    |
++ *  |   |       | that are to be applied to the VF.                            |
++ *  |   |       | If this parameter is zero, the list is not parsed.           |
++ *  |   |       | If full configs address parameter is zero and configs_size is|
++ *  |   |       | zero associated VF config shall be reset to its default state|
++ *  +---+-------+--------------------------------------------------------------+
++ *  | 3 |  31:0 | **CFG_ADDR_HI** - upper 32 bits of configs address.          |
++ *  +---+-------+--------------------------------------------------------------+
++ *  | 4 |  31:0 | **CFG_SIZE** - size (in dwords) of the config buffer         |
++ *  +---+-------+--------------------------------------------------------------+
++ *
++ *  +---+-------+--------------------------------------------------------------+
++ *  |   | Bits  | Description                                                  |
++ *  +===+=======+==============================================================+
++ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_GUC_                                 |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_RESPONSE_SUCCESS_                        |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |  27:0 | **COUNT** - number of KLVs successfully applied              |
++ *  +---+-------+--------------------------------------------------------------+
 + */
-+struct xe_gt_sriov_metadata {
-+	/* XXX: VF metadata will go here */
-+};
++#define GUC_ACTION_PF2GUC_UPDATE_VF_CFG			0x5503u
++
++#define PF2GUC_UPDATE_VF_CFG_REQUEST_MSG_LEN		(GUC_HXG_REQUEST_MSG_MIN_LEN + 4u)
++#define PF2GUC_UPDATE_VF_CFG_REQUEST_MSG_0_MBZ		GUC_HXG_REQUEST_MSG_0_DATA0
++#define PF2GUC_UPDATE_VF_CFG_REQUEST_MSG_1_VFID		GUC_HXG_REQUEST_MSG_n_DATAn
++#define PF2GUC_UPDATE_VF_CFG_REQUEST_MSG_2_CFG_ADDR_LO	GUC_HXG_REQUEST_MSG_n_DATAn
++#define PF2GUC_UPDATE_VF_CFG_REQUEST_MSG_3_CFG_ADDR_HI	GUC_HXG_REQUEST_MSG_n_DATAn
++#define PF2GUC_UPDATE_VF_CFG_REQUEST_MSG_4_CFG_SIZE	GUC_HXG_REQUEST_MSG_n_DATAn
++
++#define PF2GUC_UPDATE_VF_CFG_RESPONSE_MSG_LEN		GUC_HXG_RESPONSE_MSG_MIN_LEN
++#define PF2GUC_UPDATE_VF_CFG_RESPONSE_MSG_0_COUNT	GUC_HXG_RESPONSE_MSG_0_DATA0
 +
  /**
-  * struct xe_gt_sriov_pf - GT level PF virtualization data.
-  * @policy: policy data.
-+ * @vfs: metadata for all VFs.
-  */
- struct xe_gt_sriov_pf {
- 	struct xe_gt_sriov_pf_policy policy;
-+	struct xe_gt_sriov_metadata *vfs;
- };
- 
- #endif
+  * DOC: PF2GUC_VF_CONTROL
+  *
 -- 
 2.43.0
 
