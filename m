@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31984C4345F
-	for <intel-xe@archiver.kernel.org>; Sun, 14 Apr 2024 19:02:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 244BAC4345F
+	for <intel-xe@archiver.kernel.org>; Sun, 14 Apr 2024 19:02:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FA50112322;
-	Sun, 14 Apr 2024 19:02:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF146112324;
+	Sun, 14 Apr 2024 19:02:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="joBTG5u5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gfYGOtaO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2279112322
- for <intel-xe@lists.freedesktop.org>; Sun, 14 Apr 2024 19:02:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C064B112323
+ for <intel-xe@lists.freedesktop.org>; Sun, 14 Apr 2024 19:02:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713121321; x=1744657321;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ephPBHT464zrskvMPURoHqAYud2DgfQ10wqWwpp5cu4=;
- b=joBTG5u5EfF1AfNtNzoSMLhSBO3+uey0xXY0JEEQ6BBXjOToRzBHyKP4
- FdEXziskYgiijypYMCv7wVahA+ZY1+BklNI6i8LZvlef0SUjiSXzN5RZM
- YnOmivuvJ08x2uvnJmNtXHs1J7adqCWBLQJQb2/AnxAPMlg6UwdMw29RW
- A/Sjk9hvhgOQIuHTK3zvr7q+XW9cVkZbcSZ9qXT9/o0qEbtTb7nbH0dO0
- yMN5Sdr42yoZ9p/GvlKQILoDSYby9oWObPCEstosBzP1KHEqqPMQZEjRM
- gF8VPH7xwrLWRtqsTyNXfIuBQon76cJDaqcjgKa1PrhOl1PyddOf8K6uD Q==;
-X-CSE-ConnectionGUID: DIpGryK9Tw6AF+cqPAsd8Q==
-X-CSE-MsgGUID: StFZhIa6SAKju1a8GJpOKA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="30983591"
-X-IronPort-AV: E=Sophos;i="6.07,201,1708416000"; d="scan'208";a="30983591"
+ t=1713121324; x=1744657324;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=k6vDbmH7qeAmBzvWtfSeAwfZVCxK+uKCl2aHy0kgTvQ=;
+ b=gfYGOtaOYk06RRwZ4XWmDhO4zLQ8JQM+ruroNq3OMeJgDsSGd6Fx1SUP
+ fCzpbiEAFqgIm2GNmY1cvcsTUEMZIjOqTogaGRviZMMFwcphyRE2xGPMY
+ v0ANya5dfpmu0cH6/1Y8Z6rlDQaKFWXMet6eHYuvOw7p4aCWcuQV57iUx
+ Lo1qBtyoHVZXXWMV7vutJt8xfAwgqgafdVky0Q7sdPbCcBNBADgUn/Qtz
+ 6mNF9+xKS0g6JjUW5gRfAlqfwR3nCMyfUSAtXY74RjV+ZfD+kuzFk1QVV
+ CmQd4cq68e1DvrMQfUZLS6NoN8laTjLiCJgum071xAskQMP8X/AZvA5Ey g==;
+X-CSE-ConnectionGUID: s33RoI4TSIeAWyJEi7So8g==
+X-CSE-MsgGUID: ypIpqgZES9Clc0HoBgRzqw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="30983594"
+X-IronPort-AV: E=Sophos;i="6.07,201,1708416000"; d="scan'208";a="30983594"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2024 12:02:00 -0700
-X-CSE-ConnectionGUID: bwnMRwUERMW4jjJIlQvXZg==
-X-CSE-MsgGUID: tW0ZfCIJRgWEUdxtDX8i9g==
+ 14 Apr 2024 12:02:04 -0700
+X-CSE-ConnectionGUID: g25TuOQOQIy0j1M6y5mKhw==
+X-CSE-MsgGUID: c9QUBPTsR6a1mhSEjeVoiw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,201,1708416000"; d="scan'208";a="26383419"
+X-IronPort-AV: E=Sophos;i="6.07,201,1708416000"; d="scan'208";a="26383430"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.252.61.42])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2024 12:01:59 -0700
+ 14 Apr 2024 12:02:03 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 0/6] PF: Add support to configure SR-IOV VFs
-Date: Sun, 14 Apr 2024 21:01:31 +0200
-Message-Id: <20240414190137.1243-1-michal.wajdeczko@intel.com>
+Subject: [PATCH 3/6] drm/xe: Add xe_ttm_vram_get_avail
+Date: Sun, 14 Apr 2024 21:01:34 +0200
+Message-Id: <20240414190137.1243-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240414190137.1243-1-michal.wajdeczko@intel.com>
+References: <20240414190137.1243-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,37 +65,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Michal Wajdeczko (6):
-  drm/xe: Add helper to format SR-IOV function name
-  drm/xe: Allow to assign GGTT region to the VF
-  drm/xe: Add xe_ttm_vram_get_avail
-  drm/xe/guc: Add PF2GUC_UPDATE_VF_CFG to ABI
-  drm/xe/pf: Add SR-IOV PF specific early GT initialization
-  drm/xe/pf: Add support to configure SR-IOV VFs
+The PF driver will need to know size of the remaining available
+VRAM to estimate fair VRAM allocations that could be used across
+all VFs in automatic VFs provisioning mode. Add helper function
+for that. We will use it in upcoming patch.
 
- drivers/gpu/drm/xe/Makefile                   |    2 +
- .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    |   55 +
- drivers/gpu/drm/xe/regs/xe_gtt_defs.h         |    2 +
- drivers/gpu/drm/xe/xe_ggtt.c                  |   44 +
- drivers/gpu/drm/xe/xe_ggtt.h                  |    4 +
- drivers/gpu/drm/xe/xe_gt.c                    |    7 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf.c           |   52 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf.h           |   20 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    | 1960 +++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h    |   56 +
- .../gpu/drm/xe/xe_gt_sriov_pf_config_types.h  |   54 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h     |   13 +
- drivers/gpu/drm/xe/xe_sriov.c                 |   17 +
- drivers/gpu/drm/xe/xe_sriov.h                 |    1 +
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |   12 +
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.h          |    1 +
- 16 files changed, 2300 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf.c
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf.h
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_config_types.h
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 12 ++++++++++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |  1 +
+ 2 files changed, 13 insertions(+)
 
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 0678faf83212..8a1f460ff20b 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -478,3 +478,15 @@ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
+ 	*used_visible = mgr->visible_size - mgr->visible_avail;
+ 	mutex_unlock(&mgr->lock);
+ }
++
++u64 xe_ttm_vram_get_avail(struct ttm_resource_manager *man)
++{
++	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
++	u64 avail;
++
++	mutex_lock(&mgr->lock);
++	avail =  mgr->mm.avail;
++	mutex_unlock(&mgr->lock);
++
++	return avail;
++}
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+index d184e19a9230..cc76050e376d 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+@@ -25,6 +25,7 @@ int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+ void xe_ttm_vram_mgr_free_sgt(struct device *dev, enum dma_data_direction dir,
+ 			      struct sg_table *sgt);
+ 
++u64 xe_ttm_vram_get_avail(struct ttm_resource_manager *man);
+ u64 xe_ttm_vram_get_cpu_visible_size(struct ttm_resource_manager *man);
+ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
+ 			  u64 *used, u64 *used_visible);
 -- 
 2.43.0
 
