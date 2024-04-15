@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F90DC04FF9
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 17:39:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 538EAC4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 17:39:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7C2410FCC2;
-	Mon, 15 Apr 2024 17:39:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07CD511273E;
+	Mon, 15 Apr 2024 17:39:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BFR37GaK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jg19a+Rk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17A8A11273D
- for <intel-xe@lists.freedesktop.org>; Mon, 15 Apr 2024 17:39:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0E6811273F
+ for <intel-xe@lists.freedesktop.org>; Mon, 15 Apr 2024 17:39:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713202787; x=1744738787;
+ t=1713202789; x=1744738789;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=1cmIR6NQYgA2icaQt55q/NWRE5wFboKxIQ19m+zacZ0=;
- b=BFR37GaKFOju4JrVfNI9JUg7rNwV5z/BOF0/cT76hu2C51FH88Hv5vv0
- EEGlD5v09/oEqcF7S4HTOs9DrA1LrJCEg/G1vNe4sx14QmMqaz053zoWj
- FA3+H3SQNQTuyft4jqwkD9H54v4lT+q00fwTTVcVscdapX3oXywUGRwvy
- ZN8XRAwoLS3ww3/V6oAdTZBrRKmwEmO87ox1TpkkdVclMwd6lXyzvKWeg
- 7wkX780EZt3tlXIM2mjUfKMYf5TQ38GzR040YjIfrvSPei5E7hP/DMpk4
- oQUhyKXyKInx7sFUFZ4QVjrxdZ2mr/lj0/hOLOTHfm3yKGs7dcO/AQVUw w==;
-X-CSE-ConnectionGUID: 8M3zPu0XRnqTPTssP3/Qhg==
-X-CSE-MsgGUID: EIUAApvaT7i+WjEE2mnN1w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="19998701"
-X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="19998701"
+ bh=9H31M0k6tAOx8ENv4LmKvrjquYZsBGZVgT3VGMJLfCI=;
+ b=jg19a+RkHA9KARjngDSHHG8CnWX80t1xCnYSxXyqNyM63gwz6JdiF4Q7
+ jps3j20KxDRV7R5DpZVSbqkZ9xUYy5Qbw7bdHFxg9mwHMeyuFcL9CCUvX
+ GH0UofIrvth/QY+72ZcZk6Ms03856rYaqiVaFYYLPJiBlt3VNIICo2FIi
+ d7EXDs7YkZjKAc6MsnvOQbLce8YZdUbCDQhQhHwHZwvOCenmx+S8a2XCA
+ uZJ1tk/39uTN1MMD3YKFB8pJp/RNzw9zod1F+LFvsHwxKwznN//NUiav9
+ /oGwpxnBn7nY9T8C3UcdNo/pvZBzAxQID4rXZj3zk/qy2RUyBWEwgjQdQ Q==;
+X-CSE-ConnectionGUID: lvuOALJ1QmSmX9EsXMSEEA==
+X-CSE-MsgGUID: MSCAnt1WQLiQWkKItADAHg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="19998704"
+X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="19998704"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 10:39:47 -0700
-X-CSE-ConnectionGUID: IVMZWRdIRP2clwym0r8NSg==
-X-CSE-MsgGUID: 8zmaIj/3TESrD2HH9yVpdg==
+ 15 Apr 2024 10:39:49 -0700
+X-CSE-ConnectionGUID: xBV6ZBSPSN2tjmIdgNyWaw==
+X-CSE-MsgGUID: 0nDf+CWIT0ChCLDDCSDZBw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="22082752"
+X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="22082771"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.252.45.29])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 10:39:46 -0700
+ 15 Apr 2024 10:39:48 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 1/6] drm/xe: Add helper to format SR-IOV function name
-Date: Mon, 15 Apr 2024 19:39:32 +0200
-Message-Id: <20240415173937.1287-2-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 3/6] drm/xe: Add xe_ttm_vram_get_avail
+Date: Mon, 15 Apr 2024 19:39:34 +0200
+Message-Id: <20240415173937.1287-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240415173937.1287-1-michal.wajdeczko@intel.com>
 References: <20240415173937.1287-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,58 +65,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While the GuC firmware and the Xe driver are using VF identifier
-VFID(0) to represent the Physical Function, we should avoid using
-"VF0" name and use proper "PF" name in all user facing messages
-related to the Physical Function and use "VFn" name only when
-referrinf to the true Virtual Function. Add simple helper to get
-properly formatted function name based on the function number.
+The PF driver will need to know size of the remaining available
+VRAM to estimate fair VRAM allocations that could be used across
+all VFs in automatic VFs provisioning mode. Add helper function
+for that. We will use it in upcoming patch.
 
-Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sriov.c | 17 +++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov.h |  1 +
- 2 files changed, 18 insertions(+)
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 12 ++++++++++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |  1 +
+ 2 files changed, 13 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
-index 1b40f5de9ef5..1c3fa84b6adb 100644
---- a/drivers/gpu/drm/xe/xe_sriov.c
-+++ b/drivers/gpu/drm/xe/xe_sriov.c
-@@ -122,3 +122,20 @@ void xe_sriov_print_info(struct xe_device *xe, struct drm_printer *p)
- 	drm_printf(p, "enabled: %s\n", str_yes_no(IS_SRIOV(xe)));
- 	drm_printf(p, "mode: %s\n", xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 0678faf83212..8a1f460ff20b 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -478,3 +478,15 @@ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
+ 	*used_visible = mgr->visible_size - mgr->visible_avail;
+ 	mutex_unlock(&mgr->lock);
  }
 +
-+/**
-+ * xe_sriov_function_name() - Get SR-IOV Function name.
-+ * @n: the Function number (identifier) to get name of
-+ * @buf: the buffer to format to
-+ * @size: size of the buffer (shall be at least 5 bytes)
-+ *
-+ * Return: formatted function name ("PF" or "VF%u").
-+ */
-+const char *xe_sriov_function_name(unsigned int n, char *buf, size_t size)
++u64 xe_ttm_vram_get_avail(struct ttm_resource_manager *man)
 +{
-+	if (n)
-+		snprintf(buf, size, "VF%u", n);
-+	else
-+		strscpy(buf, "PF", size);
-+	return buf;
++	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
++	u64 avail;
++
++	mutex_lock(&mgr->lock);
++	avail =  mgr->mm.avail;
++	mutex_unlock(&mgr->lock);
++
++	return avail;
 +}
-diff --git a/drivers/gpu/drm/xe/xe_sriov.h b/drivers/gpu/drm/xe/xe_sriov.h
-index f9dec84d77e3..486bb21c3256 100644
---- a/drivers/gpu/drm/xe/xe_sriov.h
-+++ b/drivers/gpu/drm/xe/xe_sriov.h
-@@ -13,6 +13,7 @@
- struct drm_printer;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+index d184e19a9230..cc76050e376d 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+@@ -25,6 +25,7 @@ int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+ void xe_ttm_vram_mgr_free_sgt(struct device *dev, enum dma_data_direction dir,
+ 			      struct sg_table *sgt);
  
- const char *xe_sriov_mode_to_string(enum xe_sriov_mode mode);
-+const char *xe_sriov_function_name(unsigned int n, char *buf, size_t len);
- 
- void xe_sriov_probe_early(struct xe_device *xe);
- void xe_sriov_print_info(struct xe_device *xe, struct drm_printer *p);
++u64 xe_ttm_vram_get_avail(struct ttm_resource_manager *man);
+ u64 xe_ttm_vram_get_cpu_visible_size(struct ttm_resource_manager *man);
+ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
+ 			  u64 *used, u64 *used_visible);
 -- 
 2.43.0
 
