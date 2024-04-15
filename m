@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9ACF0C4345F
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 07:48:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FD27C4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 07:49:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66D4910EC4B;
-	Mon, 15 Apr 2024 07:48:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2285810EC4B;
+	Mon, 15 Apr 2024 07:49:04 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A80510F2D2;
- Mon, 15 Apr 2024 07:48:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA121112289;
+ Mon, 15 Apr 2024 07:49:02 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Modify_min?=
- =?utf-8?q?imum_of_various_scheduler_timeout_to_0=2E_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Modify_minimum_?=
+ =?utf-8?q?of_various_scheduler_timeout_to_0=2E_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 15 Apr 2024 07:48:48 -0000
-Message-ID: <171316732810.1404431.17596036177803601893@8e613ede5ea5>
+Date: Mon, 15 Apr 2024 07:49:02 -0000
+Message-ID: <171316734295.1404431.9879172225651935142@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240412105053.1050268-1-himal.prasad.ghimiray@intel.com>
 In-Reply-To: <20240412105053.1050268-1-himal.prasad.ghimiray@intel.com>
@@ -48,9 +48,35 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 9b333a0889be drm-tip: 2024y-04m-15d-02h-07m-46s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Modify minimum of various scheduler timeout to 0.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c87357e7f6655908c0934a4f55fadf5b9aa9e88f
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3524759ea4c6b9fe2666c6681781674b93d7e3cd
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Fri Apr 12 16:20:53 2024 +0530
+
+    drm/xe: Modify minimum of various scheduler timeout to 0.
+    
+    The sysman teams needs to disable preemption and timeslice to
+    test exclusivity mode and are relying on setting 'timeslice_duration_us'
+    and 'preempt_timeout_us' to 0 for the same. Hence set the
+    min configs to 0.
+    
+    -v2
+    Modify values in drivers/gpu/drm/xe/xe_hw_engine.h
+    
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+    Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
++ /mt/dim checkpatch 9b333a0889be5e0e0fbc4904e60fa7522c495d8b drm-intel
+3524759ea4c6 drm/xe: Modify minimum of various scheduler timeout to 0.
 
 
