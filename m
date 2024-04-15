@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0A5DC04FF8
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 22:06:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD8BDC4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 22:22:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81C0111283B;
-	Mon, 15 Apr 2024 22:06:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MJfkTJC/";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D487112838
- for <intel-xe@lists.freedesktop.org>; Mon, 15 Apr 2024 22:06:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713218760; x=1744754760;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=4Ks/7QJ3A2sW34LUqbcotIYzNktJOZrVwZip+0+8crI=;
- b=MJfkTJC/dx3tKZFrD9ap9Wy1ZZQA1RxcsKopFyDU3mvY4OH/b0hSwNCw
- cpyjCJdrQADlT4645yoE+hVazUaNvLLZstwbm0ldiJ4VoVvFMmKldQN8R
- CP0tMDJhCW00qtEZsolEM8z9TbH9BUYqd/fBVed0IsgxQZYrlwLQI7py2
- xoa6pyea8xMZeLO9R2MMJKUGeVhdiSADmHDoFLCFSjS01Gzc2oRddRPgN
- tmBMeLgoQGaWzR7/rEBecEZbEHV6ogUQ8YTeBoqFBeH73GkiOPYNID/JO
- 5a7WuWUtPs9aEnbx3g5znWuIkCY3sO2hYMR71BTreotRz5chqq10IuRWN g==;
-X-CSE-ConnectionGUID: pHhDjqv7SrODeeVFLBUSUw==
-X-CSE-MsgGUID: eJEQ132mTAumRJkWKj0Vyw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="12478156"
-X-IronPort-AV: E=Sophos;i="6.07,204,1708416000"; d="scan'208";a="12478156"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 15:06:00 -0700
-X-CSE-ConnectionGUID: Kl2Bx/FHRwCJ32BPsjdKrw==
-X-CSE-MsgGUID: bKq7fxl6RtKKpisqpVtWAA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,204,1708416000"; d="scan'208";a="22117583"
-Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 15:05:31 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: jonathan.cavitt@intel.com, saurabhg.gupta@intel.com,
- niranjana.vishwanathapura@intel.com, brian.welty@intel.com,
- matthew.d.roper@intel.com, matthew.brost@intel.com,
- john.c.harrison@intel.com
-Subject: [PATCH v6 3/4] drm/xe/xe_guc_submit: Allow lr exec queues to be banned
-Date: Mon, 15 Apr 2024 14:50:11 -0700
-Message-Id: <20240415215012.2978778-3-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240415215012.2978778-1-jonathan.cavitt@intel.com>
-References: <20240415215012.2978778-1-jonathan.cavitt@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73F6310EA02;
+	Mon, 15 Apr 2024 22:22:55 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F62F10EA02;
+ Mon, 15 Apr 2024 22:22:54 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3951331199750165544=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_Enable_device_atomics_with_a_VM_?=
+ =?utf-8?q?bind_flag_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 15 Apr 2024 22:22:54 -0000
+Message-ID: <171321977458.1424052.747985465734865299@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240415145214.25641-1-nirmoy.das@intel.com>
+In-Reply-To: <20240415145214.25641-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,68 +36,133 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-LR queues currently don't get banned during a GT/GuC reset because they
-lack a job.  Though they don't have a job to detect the reset status of,
-it's still possible to tell when they should be banned by looking at the
-LRC: if the LRC head and tail don't match, then the exec queue should be
-banned and cleaned up.
+--===============3951331199750165544==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This also requires swapping the usage of xe_sched_tdr_queue_imm with
-xe_guc_exec_queue_trigger_cleanup, as the former is specific to non-lr
-exec queues.
+== Series Details ==
 
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Stuart Summers <stuart.summers@intel.com>
----
+Series: Enable device atomics with a VM bind flag (rev3)
+URL   : https://patchwork.freedesktop.org/series/132290/
+State : failure
 
-v2:
-- Fix Subject line
-- Modify change slightly to remove need for "ban" boolean
+== Summary ==
 
-v3: Revert change involving "ban" boolean to version 1
+CI Bug Log - changes from xe-1093-1bfe3965a846936d93b6e69385e53f1bd1c3b889_BAT -> xe-pw-132290v3_BAT
+====================================================
 
-v4: Add missing semicolon and remove whitespace
+Summary
+-------
 
-v5: Use new xe_lrc_ring_tail function
+  **FAILURE**
 
- drivers/gpu/drm/xe/xe_guc_submit.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+  Serious unknown changes coming with xe-pw-132290v3_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-132290v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 09331dc41ebdb..89cf84a5f888d 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1422,15 +1422,23 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
- 	 */
- 	if (!(q->flags & (EXEC_QUEUE_FLAG_KERNEL | EXEC_QUEUE_FLAG_VM))) {
- 		struct xe_sched_job *job = xe_sched_first_pending_job(sched);
-+		bool ban = false;
- 
- 		if (job) {
- 			if ((xe_sched_job_started(job) &&
- 			    !xe_sched_job_completed(job)) ||
- 			    xe_sched_invalidate_job(job, 2)) {
- 				trace_xe_sched_job_ban(job);
--				set_exec_queue_banned(q);
--				xe_sched_tdr_queue_imm(&q->guc->sched);
-+				ban = true;
- 			}
-+		} else if (xe_exec_queue_is_lr(q) &&
-+			   (xe_lrc_ring_head(q->lrc) != xe_lrc_ring_tail(q->lrc))) {
-+			ban = true;
-+		}
-+
-+		if (ban) {
-+			set_exec_queue_banned(q);
-+			xe_guc_exec_queue_trigger_cleanup(q);
- 		}
- 	}
- }
--- 
-2.25.1
+  
 
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-132290v3_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_copy-instance-1-tile-0-vram0-memory:
+    - bat-pvc-2:          [PASS][1] -> [FAIL][2] +15 other tests fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1093-1bfe3965a846936d93b6e69385e53f1bd1c3b889/bat-pvc-2/igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_copy-instance-1-tile-0-vram0-memory.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132290v3/bat-pvc-2/igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_copy-instance-1-tile-0-vram0-memory.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-1093-1bfe3965a846936d93b6e69385e53f1bd1c3b889 -> xe-pw-132290v3
+
+  IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1093-1bfe3965a846936d93b6e69385e53f1bd1c3b889: 1bfe3965a846936d93b6e69385e53f1bd1c3b889
+  xe-pw-132290v3: 132290v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132290v3/index.html
+
+--===============3951331199750165544==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Enable device atomics with a VM bind flag (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132290/">https://patchwork.freedesktop.org/series/132290/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132290v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132290v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1093-1bfe3965a846936d93b6e69385e53f1bd1c3b889_BAT -&gt; xe-pw-132290v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-132290v3_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-132290v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-132290v3_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_copy-instance-1-tile-0-vram0-memory:<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1093-1bfe3965a846936d93b6e69385e53f1bd1c3b889/bat-pvc-2/igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_copy-instance-1-tile-0-vram0-memory.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132290v3/bat-pvc-2/igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_copy-instance-1-tile-0-vram0-memory.html">FAIL</a> +15 other tests fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1093-1bfe3965a846936d93b6e69385e53f1bd1c3b889 -&gt; xe-pw-132290v3</li>
+</ul>
+<p>IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1093-1bfe3965a846936d93b6e69385e53f1bd1c3b889: 1bfe3965a846936d93b6e69385e53f1bd1c3b889<br />
+  xe-pw-132290v3: 132290v3</p>
+
+</body>
+</html>
+
+--===============3951331199750165544==--
