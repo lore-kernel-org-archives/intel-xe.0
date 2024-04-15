@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8F07C4345F
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 22:05:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9D82C4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 22:06:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88B03112834;
-	Mon, 15 Apr 2024 22:05:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FFCA11283A;
+	Mon, 15 Apr 2024 22:06:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KA7kLG7h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g98zAfCT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2CC9112834
- for <intel-xe@lists.freedesktop.org>; Mon, 15 Apr 2024 22:05:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D9C110EF71
+ for <intel-xe@lists.freedesktop.org>; Mon, 15 Apr 2024 22:06:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713218758; x=1744754758;
+ t=1713218760; x=1744754760;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=va1YkpzezPyGl1FlnmU1QCXprNjVtLxYoYCEjEzNtvk=;
- b=KA7kLG7hL8mx2YoxbSuMNo1uLBydmGcfQMTdltatkyVd0mITKzk/P+lN
- TGeIlI41W2eB1bWP42MdzhYOYHSX9zLgpk7SAsM1J6t/Y987vFIhBfjXo
- FhwwVdbKPBmrngl0TjPxExVdTn4B73kK/cBWF5UoN6TSg7S4c80ce6j60
- YuYLUZIJnMkZJfBwzYS8TxV9IvPm3vZSbQ/yGbaMQlSBOkAOLaq5mCxz2
- 2iRnMkcVv3Za0dAy2MwTjfXdDyY98gmNcaqKB1VRBJmlfTEUDre4lgoBa
- ETI4qRU6QvLZLlQTDqvdFAq/H04BVFabfPfA746vGitLzJacu5JH632Il Q==;
-X-CSE-ConnectionGUID: 3BmnrbJFRnqb3I+B5RWOSw==
-X-CSE-MsgGUID: 09cFtzJNQQGrw6gxCdMkdw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="12478154"
-X-IronPort-AV: E=Sophos;i="6.07,204,1708416000"; d="scan'208";a="12478154"
+ bh=Z4jnSKdo221Mw5uHvrqoD7ix3zSZ9J7nstiYx11z6P0=;
+ b=g98zAfCTgnocBBQx3y0Ri0iYta1sLgjJdSCOG3xgoFSHRQaIV9kv9WlN
+ h7H2z0addaUbA8ZbeBYHyytodUwmB1v2h0VjnxIMWa18OuK27uBL9SZ3R
+ RvZfM8BroQ9MAD36JNS8o7ClP98hzhFnJjqY94F1XK7lkrOADhVj28SMo
+ /BtTCaFYAx2LOKgD49Wks4WHuFiUPIsQcHXHVgD+KjZmOXHfpo38zHEGu
+ 3HrhhuULS+9KZ22i7f4eaakoKnrb/qYKuyS2/9emozU3NW9MIsYWkGAYi
+ lN1Zsl/K26O388y+yKONlWpKKlqoaQc24N491n/G+zYkxM1e2w08qukJJ A==;
+X-CSE-ConnectionGUID: D9Xz/zxgR/SXG2QZ2r2fBA==
+X-CSE-MsgGUID: 9YHpoxlCTBKdmnzpBu0vHg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="12478157"
+X-IronPort-AV: E=Sophos;i="6.07,204,1708416000"; d="scan'208";a="12478157"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 15:05:58 -0700
-X-CSE-ConnectionGUID: h3WGCSZAQuu4DUAlPPiPvA==
-X-CSE-MsgGUID: crmNlfeKSGWaHWwC0hWECQ==
+ 15 Apr 2024 15:06:00 -0700
+X-CSE-ConnectionGUID: YafqWniFTKaNmRRVREeh5Q==
+X-CSE-MsgGUID: Zf0b2s9hT3Kr73KVako8Ig==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,204,1708416000"; d="scan'208";a="22117577"
+X-IronPort-AV: E=Sophos;i="6.07,204,1708416000"; d="scan'208";a="22117730"
 Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 15:05:30 -0700
+ 15 Apr 2024 15:05:32 -0700
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: jonathan.cavitt@intel.com, saurabhg.gupta@intel.com,
  niranjana.vishwanathapura@intel.com, brian.welty@intel.com,
  matthew.d.roper@intel.com, matthew.brost@intel.com,
  john.c.harrison@intel.com
-Subject: [PATCH v6 2/4] drm/xe/xe_guc_submit: Fix exec queue stop race
- condition
-Date: Mon, 15 Apr 2024 14:50:10 -0700
-Message-Id: <20240415215012.2978778-2-jonathan.cavitt@intel.com>
+Subject: [PATCH v6 4/4] drm/xe/xe_guc_submit: Declare reset if banned or killed
+Date: Mon, 15 Apr 2024 14:50:12 -0700
+Message-Id: <20240415215012.2978778-4-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240415215012.2978778-1-jonathan.cavitt@intel.com>
 References: <20240415215012.2978778-1-jonathan.cavitt@intel.com>
@@ -70,37 +69,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reorder the xe_sched_tdr_queue_imm and set_exec_queue_banned calls in
-guc_exec_queue_stop.  This prevents a possible race condition between
-the two events in which it's possible for xe_sched_tdr_queue_imm to
-wake the ufence waiter before the exec queue is banned, causing the
-ufence waiter to miss the banned state.
+Add an additional condition to the reset_status guc_exec_queue_op that
+returns true if the exec queue has been banned or killed.  The
+reset_status op is only used for exiting any xe_wait_user_fence_ioctl
+that waits on an exec queue without timing out, so doing this will exit
+the ioctl early in cases where the exec queue can no longer function,
+such as after a GuC stop during a reset.
 
 Suggested-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Stuart Summers <stuart.summers@intel.com>
 ---
-
-v2: Expand on cause of race condition
-
  drivers/gpu/drm/xe/xe_guc_submit.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index ecd1085619b30..09331dc41ebdb 100644
+index 89cf84a5f888d..f964c0f118323 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1428,8 +1428,8 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
- 			    !xe_sched_job_completed(job)) ||
- 			    xe_sched_invalidate_job(job, 2)) {
- 				trace_xe_sched_job_ban(job);
--				xe_sched_tdr_queue_imm(&q->guc->sched);
- 				set_exec_queue_banned(q);
-+				xe_sched_tdr_queue_imm(&q->guc->sched);
- 			}
- 		}
- 	}
+@@ -1369,7 +1369,7 @@ static void guc_exec_queue_resume(struct xe_exec_queue *q)
+ 
+ static bool guc_exec_queue_reset_status(struct xe_exec_queue *q)
+ {
+-	return exec_queue_reset(q);
++	return exec_queue_reset(q) || exec_queue_killed_or_banned(q);
+ }
+ 
+ /*
 -- 
 2.25.1
 
