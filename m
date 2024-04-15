@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9841FC4345F
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 13:37:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 047B8C4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 13:44:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60A6B112592;
-	Mon, 15 Apr 2024 13:37:00 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DC89112592;
- Mon, 15 Apr 2024 13:36:59 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id B39841125AE;
+	Mon, 15 Apr 2024 13:44:43 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EGkvilIe";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1189E1125A5;
+ Mon, 15 Apr 2024 13:44:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713188682; x=1744724682;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=rsGdx6yD3BC7fZxSgiVyOAwMhw2H2rbVRG7Vf/53Ayw=;
+ b=EGkvilIeZntLG1ZT6TdJ66cBqUHjG0AOAO6tfsG157aKF3D+YhD/dRC2
+ VnYvgrwL61lMaivh5UvABe0Ab+CEB3d/CybtjmKIGtFvr3gLILv2rtEeG
+ hErEd/F+TFs8FbxLrhOHv/DyKar8P+LOyrOYINX265rDJId9x28i9Gcsa
+ VrFqZxAwaBiAiwoNdeWUIsnjiR6FdfaJ7PIo7BJ51xgU6xuZcDE8zIlgn
+ Sz7/WUdbjagbI3qW4hsVmK9pZBMHMqlikLWmsmGSLN9pi3HiM6kf8U8tm
+ K3/yvCv9sESlUGgHHHQDs1XGC3b+5F6DKRswzjG2hyQtUWT9uclTHQgA4 w==;
+X-CSE-ConnectionGUID: B683LIwfSYuHAygPFQG4Sg==
+X-CSE-MsgGUID: f9zIxNDeQvGPqAFwdr749A==
+X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="26036650"
+X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="26036650"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2024 06:44:41 -0700
+X-CSE-ConnectionGUID: sCH522LETumbe32L0tZunQ==
+X-CSE-MsgGUID: j2W0Qo42QvSt1OwF3UI/qw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="22394590"
+Received: from lcariou-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.61.121])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2024 06:44:40 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ ville.syrjala@linux.intel.com, Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [PATCH v2 0/7] drm: debug logging improvements
+In-Reply-To: <cover.1712568037.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1712568037.git.jani.nikula@intel.com>
+Date: Mon, 15 Apr 2024 16:44:29 +0300
+Message-ID: <875xwi3flu.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915=3A_i915=5Freg?=
- =?utf-8?q?=2Eh_cleanups?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 15 Apr 2024 13:36:59 -0000
-Message-ID: <171318821938.1406028.13741424869459227407@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <cover.1712933479.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1712933479.git.jani.nikula@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,35 +65,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 08 Apr 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> v2 of [1], dropping drm_mode_print() stuff altogether, and switching to
+> DRM_MODE_FMT/DRM_MODE_ARG() in a separate patch. Also add a few more drm
+> device based logging conversion patches, so the last patch makes more sense.
 
-Series: drm/i915: i915_reg.h cleanups
-URL   : https://patchwork.freedesktop.org/series/132380/
-State : warning
+Thanks for the reviews, pushed the lot to drm-misc-next.
 
-== Summary ==
+BR,
+Jani.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast dae2a18d3c7cc61f4544afe02264163a16fa6e32
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+>
+> BR,
+> Jani.
+>
+> [1] https://patchwork.freedesktop.org/series/130881/
+>
+> Jani Nikula (7):
+>   drm/probe-helper: switch to drm device based logging
+>   drm/modes: switch to drm device based error logging
+>   drm/sysfs: switch to drm device based logging
+>   drm/client: switch to drm device based logging, and more
+>   drm/crtc: switch to drm device based logging
+>   drm/crtc-helper: switch to drm device based logging and warns
+>   drm: prefer DRM_MODE_FMT/ARG over drm_mode_debug_printmodeline()
+>
+>  drivers/gpu/drm/drm_atomic_uapi.c    |   6 +-
+>  drivers/gpu/drm/drm_client_modeset.c | 129 +++++++++++++++------------
+>  drivers/gpu/drm/drm_crtc.c           |  38 ++++----
+>  drivers/gpu/drm/drm_crtc_helper.c    | 100 +++++++++++----------
+>  drivers/gpu/drm/drm_modes.c          |  40 ++++-----
+>  drivers/gpu/drm/drm_probe_helper.c   |  39 ++++----
+>  drivers/gpu/drm/drm_sysfs.c          |  20 ++---
+>  7 files changed, 193 insertions(+), 179 deletions(-)
 
-
+-- 
+Jani Nikula, Intel
