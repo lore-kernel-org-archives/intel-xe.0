@@ -4,27 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E99FC4345F
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 11:55:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B517C04FF8
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 12:14:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF8541124D2;
-	Mon, 15 Apr 2024 11:55:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C80C11124EF;
+	Mon, 15 Apr 2024 12:14:41 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D66041124D2;
- Mon, 15 Apr 2024 11:55:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1830145185693055185=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81F031124F0;
+ Mon, 15 Apr 2024 12:14:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_treewide=3A_Fix_common_grammar_m?=
- =?utf-8?q?istake_=22the_the=22_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5BCI-only=2C1/8=5D_drm=3A_Add_drm=5Fvblank=5Fwork=5Fflush=5Fall?=
+ =?utf-8?q?=28=29=2E?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Thorsten Blum" <thorsten.blum@toblux.com>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 15 Apr 2024 11:55:41 -0000
-Message-ID: <171318214187.1404405.4566926135868343558@8e613ede5ea5>
+Date: Mon, 15 Apr 2024 12:14:40 -0000
+Message-ID: <171318328051.1404405.6069079863742709688@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240411150437.496153-4-thorsten.blum@toblux.com>
-In-Reply-To: <20240411150437.496153-4-thorsten.blum@toblux.com>
+References: <20240412130946.13148-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240412130946.13148-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +41,24 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1830145185693055185==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: treewide: Fix common grammar mistake "the the" (rev2)
-URL   : https://patchwork.freedesktop.org/series/132370/
+Series: series starting with [CI-only,1/8] drm: Add drm_vblank_work_flush_all().
+URL   : https://patchwork.freedesktop.org/series/132373/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1084-85eef611f85be84edeabab83debdbb1fabeba066_BAT -> xe-pw-132370v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 85eef611f85b drm-tip: 2024y-04m-15d-09h-01m-08s UTC integration manifest
+=== git am output follows ===
+Applying: drm: Add drm_vblank_work_flush_all().
+Applying: drm/i915: Use vblank worker to unpin old legacy cursor fb safely
+Applying: drm/i915: Use the same vblank worker for atomic unpin
+Applying: drm/xe/display: Preparations for preallocating dpt bo
+Applying: drm/xe: Remove safety check from __xe_ttm_stolen_io_mem_reserve_stolen
+Applying: drm/xe: Use simple xchg to cache DPT
+Applying: drm/xe/display: Prevent overwriting original GGTT when taking over initial FB.
+Applying: drm/xe/display: Re-use display vmas when possible
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1084-85eef611f85be84edeabab83debdbb1fabeba066 -> xe-pw-132370v2
-
-  IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1084-85eef611f85be84edeabab83debdbb1fabeba066: 85eef611f85be84edeabab83debdbb1fabeba066
-  xe-pw-132370v2: 132370v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132370v2/index.html
-
---===============1830145185693055185==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>treewide: Fix common grammar mistake &quot;the the&quot; (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132370/">https://patchwork.freedesktop.org/series/132370/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132370v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132370v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1084-85eef611f85be84edeabab83debdbb1fabeba066_BAT -&gt; xe-pw-132370v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1084-85eef611f85be84edeabab83debdbb1fabeba066 -&gt; xe-pw-132370v2</li>
-</ul>
-<p>IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1084-85eef611f85be84edeabab83debdbb1fabeba066: 85eef611f85be84edeabab83debdbb1fabeba066<br />
-  xe-pw-132370v2: 132370v2</p>
-
-</body>
-</html>
-
---===============1830145185693055185==--
