@@ -4,58 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B75EC4345F
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 08:14:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AB66C04FF9
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 08:14:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 567BD1122D3;
-	Mon, 15 Apr 2024 08:14:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C5E01122D4;
+	Mon, 15 Apr 2024 08:14:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KmuYooMe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b0P4Bjmo";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BECDD1122CF;
- Mon, 15 Apr 2024 08:14:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E4D01122D4;
+ Mon, 15 Apr 2024 08:14:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713168847; x=1744704847;
+ t=1713168852; x=1744704852;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EFSPbUcX5XGSRoOptBP3MO0sG+hRGJOFyYVLcTqcCSc=;
- b=KmuYooMedLgpodQUmp7aKun8BtmoSJtNp/5bVtRlPERI+B0GaHmoVHCo
- NV2Fg2f5CkWa3lItXxxBwyq16He8YGrI9YWGJFUrwrkISSSwe2beE7TuX
- /miq8DZcD9omjbG/aogYHkfhb+7wE5nSod9Qip4gDS2GjiIcX5b0n/FF/
- cuiN4sYkozyBvFIcQKCsgIIU9s+N+YS1cp0y2AbtWTdCAfFuM2zVIxWlU
- Bcmb7lifXzqiobdItJU/7wkGQAQzLG3OyZrLqwg3Gw/nqQQUInrT/gcUx
- oE03CSXiUxhr/jA+uD5QLMqT90knrIJui6qV4+HHyZcVxw4gfvVYJkxhC Q==;
-X-CSE-ConnectionGUID: qAPNoY5jRx2UDZ2QFOC3zg==
-X-CSE-MsgGUID: Xih/6GCjRAOYjdc60aEKgw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="9096363"
+ bh=rmZXSfo+2gUBO8H9cYskK+TmOFyBh8iX7fIo7R3e+CA=;
+ b=b0P4BjmoHPUtra9/NLBXh9zqpiS3LVCiqKE+5dj3kpTnrHhTeG9DSOKi
+ jj0lu8tBfn711l2Egy5kWzpmTM5Km+UWFenarnNpBW0DuR+qHh+xPTHrZ
+ P2Zw/yDX+MoXCvW4PvW3fZ1NbZ8/buN8XJJndzD9gJsMQwGVc4nrksFSB
+ 0HcbeqAl3kubgWHPfeyDD5dcwBdOXy8H0mONn95i/3TS0aWfrYC/kGLtv
+ V4WzDfCV3f7h9Iada/6dx13GGxNemGyChtmygyYu9z/B1UeeOYHYN8NnV
+ DyTusITNV0hOi3uEKC/O6Crc7eW7u8dPknKKMIJEB/B7tTDwiYb3HoEvi w==;
+X-CSE-ConnectionGUID: oVlsgiTVRSOqYHrIIIZ8Wg==
+X-CSE-MsgGUID: Jvhx0wLJS6KcrubsZEUvLw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="9096385"
 X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; 
-   d="scan'208";a="9096363"
+   d="scan'208";a="9096385"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 01:14:07 -0700
-X-CSE-ConnectionGUID: 9MTEPJ3EQb201KmkpXAoVg==
-X-CSE-MsgGUID: EorrphvhT3Kg0azTQOjAIA==
+ 15 Apr 2024 01:14:12 -0700
+X-CSE-ConnectionGUID: j0aRLptTTnmPMUBa/5iTBw==
+X-CSE-MsgGUID: xa1x6CBYSiiE0nQfN1Qq5w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; d="scan'208";a="26400239"
+X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; d="scan'208";a="26400278"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 01:14:06 -0700
+ 15 Apr 2024 01:14:10 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
- Clint Taylor <clinton.a.taylor@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH v3 05/21] drm/i915/xe2hpd: Initial cdclk table
-Date: Mon, 15 Apr 2024 13:44:07 +0530
-Message-Id: <20240415081423.495834-6-balasubramani.vivekanandan@intel.com>
+Subject: [PATCH v3 07/21] drm/i915/xe2hpd: Properly disable power in port A
+Date: Mon, 15 Apr 2024 13:44:09 +0530
+Message-Id: <20240415081423.495834-8-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240415081423.495834-1-balasubramani.vivekanandan@intel.com>
 References: <20240415081423.495834-1-balasubramani.vivekanandan@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,48 +72,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Clint Taylor <clinton.a.taylor@intel.com>
+From: José Roberto de Souza <jose.souza@intel.com>
 
-Add Xe2_HPD specific CDCLK table and use MTL Funcs.
+Xe2_HPD has a different value to power down port A.
 
-Bspec: 65243
-CC: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+BSpec: 65450
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 17 ++++++++++++++---
+ 1 file changed, 14 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 7a833b5f2de2..b78154c82a71 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1443,6 +1443,14 @@ static const struct intel_cdclk_vals xe2lpd_cdclk_table[] = {
- 	{}
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 5cf5d9b59708..33a612892d94 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2900,17 +2900,28 @@ void intel_mtl_pll_enable(struct intel_encoder *encoder,
+ 		intel_cx0pll_enable(encoder, crtc_state);
+ }
  
-+/*
-+ * Xe2_HPD always uses the minimal cdclk table from Wa_15015413771
-+ */
-+static const struct intel_cdclk_vals xe2hpd_cdclk_table[] = {
-+	{ .refclk = 38400, .cdclk = 652800, .ratio = 34, .waveform = 0xffff },
-+	{}
-+};
++static u8 cx0_power_control_disable_val(struct intel_encoder *encoder)
++{
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
 +
- static const int cdclk_squash_len = 16;
++	if (intel_encoder_is_c10phy(encoder))
++		return CX0_P2PG_STATE_DISABLE;
++
++	if (IS_BATTLEMAGE(i915) && encoder->port == PORT_A)
++		return CX0_P2PG_STATE_DISABLE;
++
++	return CX0_P4PG_STATE_DISABLE;
++}
++
+ static void intel_cx0pll_disable(struct intel_encoder *encoder)
+ {
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+-	bool is_c10 = intel_encoder_is_c10phy(encoder);
+ 	intel_wakeref_t wakeref = intel_cx0_phy_transaction_begin(encoder);
  
- static int cdclk_squash_divider(u16 waveform)
-@@ -3778,6 +3786,9 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
- 	if (DISPLAY_VER(dev_priv) >= 20) {
- 		dev_priv->display.funcs.cdclk = &rplu_cdclk_funcs;
- 		dev_priv->display.cdclk.table = xe2lpd_cdclk_table;
-+	} else if (DISPLAY_VER_FULL(dev_priv) >= IP_VER(14, 1)) {
-+		dev_priv->display.funcs.cdclk = &rplu_cdclk_funcs;
-+		dev_priv->display.cdclk.table = xe2hpd_cdclk_table;
- 	} else if (DISPLAY_VER(dev_priv) >= 14) {
- 		dev_priv->display.funcs.cdclk = &rplu_cdclk_funcs;
- 		dev_priv->display.cdclk.table = mtl_cdclk_table;
+ 	/* 1. Change owned PHY lane power to Disable state. */
+ 	intel_cx0_powerdown_change_sequence(encoder, INTEL_CX0_BOTH_LANES,
+-					    is_c10 ? CX0_P2PG_STATE_DISABLE :
+-					    CX0_P4PG_STATE_DISABLE);
++					    cx0_power_control_disable_val(encoder));
+ 
+ 	/*
+ 	 * 2. Follow the Display Voltage Frequency Switching Sequence Before
 -- 
 2.25.1
 
