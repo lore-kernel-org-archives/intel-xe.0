@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2418EC4345F
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 11:33:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E99FC4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 11:55:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC6F410FFF6;
-	Mon, 15 Apr 2024 11:33:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF8541124D2;
+	Mon, 15 Apr 2024 11:55:42 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1ACA810FB20;
- Mon, 15 Apr 2024 11:33:00 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D66041124D2;
+ Mon, 15 Apr 2024 11:55:41 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1830145185693055185=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_treewide=3A_Fix_common_g?=
- =?utf-8?q?rammar_mistake_=22the_the=22_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_treewide=3A_Fix_common_grammar_m?=
+ =?utf-8?q?istake_=22the_the=22_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Thorsten Blum" <thorsten.blum@toblux.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 15 Apr 2024 11:33:00 -0000
-Message-ID: <171318078011.1404431.2656761903089454587@8e613ede5ea5>
+Date: Mon, 15 Apr 2024 11:55:41 -0000
+Message-ID: <171318214187.1404405.4566926135868343558@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240411150437.496153-4-thorsten.blum@toblux.com>
 In-Reply-To: <20240411150437.496153-4-thorsten.blum@toblux.com>
@@ -40,31 +40,102 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============1830145185693055185==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: treewide: Fix common grammar mistake "the the" (rev2)
 URL   : https://patchwork.freedesktop.org/series/132370/
-State : warning
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 85eef611f85be84edeabab83debdbb1fabeba066
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+CI Bug Log - changes from xe-1084-85eef611f85be84edeabab83debdbb1fabeba066_BAT -> xe-pw-132370v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-1084-85eef611f85be84edeabab83debdbb1fabeba066 -> xe-pw-132370v2
+
+  IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1084-85eef611f85be84edeabab83debdbb1fabeba066: 85eef611f85be84edeabab83debdbb1fabeba066
+  xe-pw-132370v2: 132370v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132370v2/index.html
+
+--===============1830145185693055185==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>treewide: Fix common grammar mistake &quot;the the&quot; (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132370/">https://patchwork.freedesktop.org/series/132370/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132370v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132370v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1084-85eef611f85be84edeabab83debdbb1fabeba066_BAT -&gt; xe-pw-132370v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1084-85eef611f85be84edeabab83debdbb1fabeba066 -&gt; xe-pw-132370v2</li>
+</ul>
+<p>IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1084-85eef611f85be84edeabab83debdbb1fabeba066: 85eef611f85be84edeabab83debdbb1fabeba066<br />
+  xe-pw-132370v2: 132370v2</p>
+
+</body>
+</html>
+
+--===============1830145185693055185==--
