@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8939C4345F
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 08:28:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEF55C4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 08:30:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B9DE10FC44;
-	Mon, 15 Apr 2024 08:28:34 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C55A510F5F0;
- Mon, 15 Apr 2024 08:28:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8420408664843352027=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BCCA112370;
+	Mon, 15 Apr 2024 08:30:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UntXMA0W";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E928112370
+ for <intel-xe@lists.freedesktop.org>; Mon, 15 Apr 2024 08:30:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713169828; x=1744705828;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=p90+GM8+tlDungW5yTLLfJ6BwEgmCkELy9UjgKukxQQ=;
+ b=UntXMA0WTTMkECUZzkydYG5fIRdQnrFwcMhxpNWpCQDLELxurl0c4ul4
+ NxLC3WVVfB6s1SZSvRqoI8dz/iihaDHrzkBQjJFH0b3CbJCQlg0CNTDnc
+ Bj8TYWgDmf8e91ivNDQzwMoNjpDlJBAD1DKHutViOJxQrvP6B6AUl4cHe
+ T6jy0725Byw94VJTfdAcNouVA6u+Gg575RZhFDBmdi2/HgpBCJpMK0FYx
+ TefmvEDsPcwAnMVYeolmk9XCMaV2g3LgP6sCzg9SlrtXUSv/+EjJJN8er
+ 70R1OXX51d7pmvV1bWzwEGqRiu8fiTFNdCtxSKz44PIsW8/PdepI2QwHp g==;
+X-CSE-ConnectionGUID: 1LWCj00gQ66og8ZJxwZp7A==
+X-CSE-MsgGUID: 3q6qBL9cR0exMKgYFVqkJg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="31027147"
+X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; d="scan'208";a="31027147"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2024 01:30:27 -0700
+X-CSE-ConnectionGUID: LglmBso7Ty2mDmJLn1ceWA==
+X-CSE-MsgGUID: 3wAt6XgrSHyVefk3F6Yv9g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; d="scan'208";a="45120326"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa002.fm.intel.com with ESMTP; 15 Apr 2024 01:30:25 -0700
+Received: from [10.252.44.99] (mwajdecz-MOBL.ger.corp.intel.com [10.252.44.99])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 7233633723;
+ Mon, 15 Apr 2024 09:30:16 +0100 (IST)
+Message-ID: <431e5048-e909-4b9b-b1df-fd495298370f@intel.com>
+Date: Mon, 15 Apr 2024 10:30:07 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_Modify_minimum_of_vari?=
- =?utf-8?q?ous_scheduler_timeout_to_0=2E_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] drm/xe: Add helper to format SR-IOV function name
+Content-Language: en-US
+To: =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 15 Apr 2024 08:28:33 -0000
-Message-ID: <171316971380.1404405.12389114005644195581@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240412105053.1050268-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20240412105053.1050268-1-himal.prasad.ghimiray@intel.com>
+References: <20240414190137.1243-1-michal.wajdeczko@intel.com>
+ <20240414190137.1243-2-michal.wajdeczko@intel.com>
+ <42834d9b-f8ab-4206-800e-72222613b83e@intel.com>
+ <20240415075627.ctbcxxwk6jwuhk7p@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20240415075627.ctbcxxwk6jwuhk7p@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,175 +71,93 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8420408664843352027==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/xe: Modify minimum of various scheduler timeout to 0. (rev3)
-URL   : https://patchwork.freedesktop.org/series/130913/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff_BAT -> xe-pw-130913v3_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-130913v3_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-130913v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (5 -> 4)
-------------------------------
-
-  Missing    (1): bat-dg2-oem2 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-130913v3_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_sysfs_defaults@engine-defaults:
-    - bat-pvc-2:          [PASS][1] -> [FAIL][2] +2 other tests fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-pvc-2/igt@xe_sysfs_defaults@engine-defaults.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/bat-pvc-2/igt@xe_sysfs_defaults@engine-defaults.html
-    - bat-atsm-2:         [PASS][3] -> [FAIL][4] +5 other tests fail
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-atsm-2/igt@xe_sysfs_defaults@engine-defaults.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/bat-atsm-2/igt@xe_sysfs_defaults@engine-defaults.html
-
-  * igt@xe_sysfs_defaults@engine-defaults@bcs:
-    - bat-adlp-7:         [PASS][5] -> [FAIL][6] +4 other tests fail
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-adlp-7/igt@xe_sysfs_defaults@engine-defaults@bcs.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/bat-adlp-7/igt@xe_sysfs_defaults@engine-defaults@bcs.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@xe_sysfs_defaults@engine-defaults@rcs:
-    - {bat-lnl-1}:        [PASS][7] -> [FAIL][8] +5 other tests fail
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-lnl-1/igt@xe_sysfs_defaults@engine-defaults@rcs.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/bat-lnl-1/igt@xe_sysfs_defaults@engine-defaults@rcs.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
 
+On 15.04.2024 09:56, Piotr Piórkowski wrote:
+> Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com> wrote on pon [2024-kwi-15 09:17:27 +0530]:
+>>
+>> On 15-04-2024 00:31, Michal Wajdeczko wrote:
+>>> While the GuC firmware and the Xe driver are using VF identifier
+>>> VFID(0) to represent the Physical Function, we should avoid using
+>>> "VF0" name and use proper "PF" name in all user facing messages
+>>> related to the Physical Function and use "VFn" name only when
+>>> referrinf to the true Virtual Function. Add simple helper to get
+>>> properly formatted function name based on the function number.
+>>>
+>>> Signed-off-by: Michal Wajdeczko<michal.wajdeczko@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/xe_sriov.c | 17 +++++++++++++++++
+>>>   drivers/gpu/drm/xe/xe_sriov.h |  1 +
+>>>   2 files changed, 18 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+>>> index 1b40f5de9ef5..1c3fa84b6adb 100644
+>>> --- a/drivers/gpu/drm/xe/xe_sriov.c
+>>> +++ b/drivers/gpu/drm/xe/xe_sriov.c
+>>> @@ -122,3 +122,20 @@ void xe_sriov_print_info(struct xe_device *xe, struct drm_printer *p)
+>>>   	drm_printf(p, "enabled: %s\n", str_yes_no(IS_SRIOV(xe)));
+>>>   	drm_printf(p, "mode: %s\n", xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
+>>>   }
+>>> +
+>>> +/**
+>>> + * xe_sriov_function_name() - Get SR-IOV Function name.
+>>> + * @n: the Function number (identifier) to get name of
+>>> + * @buf: the buffer to format to
+>>> + * @size: size of the buffer (shall be at least 5 bytes)
+>>> + *
+>>> + * Return: formatted function name ("PF" or "VF%u").
+>>> + */
+>>> +const char *xe_sriov_function_name(unsigned int n, char *buf, size_t size)
+>>
+>> nit: It is not necessary to return a |buf|, so |how about void instead of
+>> const char * ?|
 
-Build changes
--------------
+true, it could be done as void, but that looks as a waste of one of the
+potential use which is mentioned below
 
-  * Linux: xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff -> xe-pw-130913v3
+besides, this is our Xe driver helper only, it's main goal is usability
 
-  IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff: d9073a139e9edfd27d830c9c4af9683651044aff
-  xe-pw-130913v3: 130913v3
+otherwise it should be written as returning "int" to "return number of
+characters of output that would have been written which may be greater
+than len, if output was truncated)" like in string_get_size()
 
-== Logs ==
+but that would be overkill IMO as it would be highly unlikely that we
+ever check that ret value
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/index.html
+>>
+>> |With that LGTM.|
+>>
+>> |Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com> |
+> 
+> I'm guessing that this function returns a pointer to be able to use this directly
+> in printf kind of functions. I am ok with this:
 
---===============8420408664843352027==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+yes, even in patch 6/6 I'm using that this way in pf_push_vf_cfg_klvs()
 
+> 
+> Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+thanks!
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Modify minimum of various scheduler timeout to 0. (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130913/">https://patchwork.freedesktop.org/series/130913/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff_BAT -&gt; xe-pw-130913v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-130913v3_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-130913v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (5 -&gt; 4)</h2>
-<p>Missing    (1): bat-dg2-oem2 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-130913v3_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@xe_sysfs_defaults@engine-defaults:</p>
-<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-pvc-2/igt@xe_sysfs_defaults@engine-defaults.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/bat-pvc-2/igt@xe_sysfs_defaults@engine-defaults.html">FAIL</a> +2 other tests fail</li>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-atsm-2/igt@xe_sysfs_defaults@engine-defaults.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/bat-atsm-2/igt@xe_sysfs_defaults@engine-defaults.html">FAIL</a> +5 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_sysfs_defaults@engine-defaults@bcs:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-adlp-7/igt@xe_sysfs_defaults@engine-defaults@bcs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/bat-adlp-7/igt@xe_sysfs_defaults@engine-defaults@bcs.html">FAIL</a> +4 other tests fail</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@xe_sysfs_defaults@engine-defaults@rcs:<ul>
-<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-lnl-1/igt@xe_sysfs_defaults@engine-defaults@rcs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/bat-lnl-1/igt@xe_sysfs_defaults@engine-defaults@rcs.html">FAIL</a> +5 other tests fail</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff -&gt; xe-pw-130913v3</li>
-</ul>
-<p>IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff: d9073a139e9edfd27d830c9c4af9683651044aff<br />
-  xe-pw-130913v3: 130913v3</p>
-
-</body>
-</html>
-
---===============8420408664843352027==--
+>>
+>>> +{
+>>> +	if (n)
+>>> +		snprintf(buf, size, "VF%u", n);
+>>> +	else
+>>> +		strscpy(buf, "PF", size);
+>>> +	return buf;
+>>> +}
+>>> diff --git a/drivers/gpu/drm/xe/xe_sriov.h b/drivers/gpu/drm/xe/xe_sriov.h
+>>> index f9dec84d77e3..486bb21c3256 100644
+>>> --- a/drivers/gpu/drm/xe/xe_sriov.h
+>>> +++ b/drivers/gpu/drm/xe/xe_sriov.h
+>>> @@ -13,6 +13,7 @@
+>>>   struct drm_printer;
+>>>   const char *xe_sriov_mode_to_string(enum xe_sriov_mode mode);
+>>> +const char *xe_sriov_function_name(unsigned int n, char *buf, size_t len);
+>>>   void xe_sriov_probe_early(struct xe_device *xe);
+>>>   void xe_sriov_print_info(struct xe_device *xe, struct drm_printer *p);
+> 
