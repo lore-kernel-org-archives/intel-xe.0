@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4B3DC4345F
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 08:15:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8939C4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 08:28:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 659871122CF;
-	Mon, 15 Apr 2024 08:15:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jEKcL4ti";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFAC41122F5
- for <intel-xe@lists.freedesktop.org>; Mon, 15 Apr 2024 08:14:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713168898; x=1744704898;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=OsCkvd3baQAYLBBfAZfhEH6wqUgwbl+rTATF1M5XPJA=;
- b=jEKcL4tiWk0MFYRnBbwnRYhtTeJIZWh2x7Kyd0fe6Gf+ElogYkCfpEmw
- DbdaHy0z3Uj9T+huLcdmRUq5oVBo4sqy2VXkPpy/w6AXYZjGTwOnS+/55
- dXgUpsT7diy7OfxUf8mCAu6vkNnkkjfrtOmmAbuux73ekfKBL8ssxXeic
- R4KVSDVa4HLMpwLkA+e6Z9epbMy/Vz9uZv9YW4blfhdsXNrmEysWmWNLR
- 440LWAc8tZeM3yresd/DXgB2+B9nUnN3PAsJpMwBaRo5oVt4navlqpKSa
- gZ+jLO8JuCuzUrOuxqmV6ErnyvqbvAOr8lhixrX4GGXryyHXqwqCEPmcw w==;
-X-CSE-ConnectionGUID: hW1Jt5GUT1Go86AUZ7oP2g==
-X-CSE-MsgGUID: N/zXAeCjQdqMofdonjKN1Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="8764923"
-X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; 
-   d="scan'208";a="8764923"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 01:14:49 -0700
-X-CSE-ConnectionGUID: jEh3SLPpRt6HO7GflcZJSg==
-X-CSE-MsgGUID: fQT8bIZJRLyzaEFsIpEXBw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; d="scan'208";a="21937799"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa008.fm.intel.com with ESMTP; 15 Apr 2024 01:14:47 -0700
-Received: from [10.252.44.99] (mwajdecz-MOBL.ger.corp.intel.com [10.252.44.99])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 523C1332C6;
- Mon, 15 Apr 2024 09:14:37 +0100 (IST)
-Message-ID: <641307dc-9f35-4da1-a4d7-6eaa18b47188@intel.com>
-Date: Mon, 15 Apr 2024 10:14:36 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B9DE10FC44;
+	Mon, 15 Apr 2024 08:28:34 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C55A510F5F0;
+ Mon, 15 Apr 2024 08:28:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8420408664843352027=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] drm/xe/pf: Add SR-IOV PF specific early GT
- initialization
-Content-Language: en-US
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20240414190137.1243-1-michal.wajdeczko@intel.com>
- <20240414190137.1243-6-michal.wajdeczko@intel.com>
- <3688efbc-df20-439c-8b53-7e4ae9f1b81c@intel.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <3688efbc-df20-439c-8b53-7e4ae9f1b81c@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_Modify_minimum_of_vari?=
+ =?utf-8?q?ous_scheduler_timeout_to_0=2E_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 15 Apr 2024 08:28:33 -0000
+Message-ID: <171316971380.1404405.12389114005644195581@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240412105053.1050268-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20240412105053.1050268-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,195 +36,175 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============8420408664843352027==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/xe: Modify minimum of various scheduler timeout to 0. (rev3)
+URL   : https://patchwork.freedesktop.org/series/130913/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff_BAT -> xe-pw-130913v3_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-130913v3_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-130913v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (5 -> 4)
+------------------------------
+
+  Missing    (1): bat-dg2-oem2 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-130913v3_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_sysfs_defaults@engine-defaults:
+    - bat-pvc-2:          [PASS][1] -> [FAIL][2] +2 other tests fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-pvc-2/igt@xe_sysfs_defaults@engine-defaults.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/bat-pvc-2/igt@xe_sysfs_defaults@engine-defaults.html
+    - bat-atsm-2:         [PASS][3] -> [FAIL][4] +5 other tests fail
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-atsm-2/igt@xe_sysfs_defaults@engine-defaults.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/bat-atsm-2/igt@xe_sysfs_defaults@engine-defaults.html
+
+  * igt@xe_sysfs_defaults@engine-defaults@bcs:
+    - bat-adlp-7:         [PASS][5] -> [FAIL][6] +4 other tests fail
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-adlp-7/igt@xe_sysfs_defaults@engine-defaults@bcs.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/bat-adlp-7/igt@xe_sysfs_defaults@engine-defaults@bcs.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@xe_sysfs_defaults@engine-defaults@rcs:
+    - {bat-lnl-1}:        [PASS][7] -> [FAIL][8] +5 other tests fail
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-lnl-1/igt@xe_sysfs_defaults@engine-defaults@rcs.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/bat-lnl-1/igt@xe_sysfs_defaults@engine-defaults@rcs.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
 
-On 15.04.2024 07:19, Ghimiray, Himal Prasad wrote:
-> 
-> On 15-04-2024 00:31, Michal Wajdeczko wrote:
->> The PF driver must maintain additional GT level data per each VF.
->> This additional per-VF data will be added in upcoming patches and
->> will include: provisioning configuration (like GGTT space or LMEM
->> allocation sizes or scheduling parameters), monitoring thresholds
->> and counters, and more.
->>
->> As number of supported VFs varies across platforms use flexible
->> array where first entry will contain metadata for the PF itself
->> (if such configuration parameter is applicable for the PF) and
->> all remaining entries will contain data for potential VFs.
->>
->> Signed-off-by: Michal Wajdeczko<michal.wajdeczko@intel.com>
->> ---
->>   drivers/gpu/drm/xe/Makefile               |  1 +
->>   drivers/gpu/drm/xe/xe_gt.c                |  7 +++
->>   drivers/gpu/drm/xe/xe_gt_sriov_pf.c       | 52 +++++++++++++++++++++++
->>   drivers/gpu/drm/xe/xe_gt_sriov_pf.h       | 20 +++++++++
->>   drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h |  9 ++++
->>   5 files changed, 89 insertions(+)
->>   create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf.c
->>   create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf.h
->>
->> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->> index c46d145606f6..daa5865a2773 100644
->> --- a/drivers/gpu/drm/xe/Makefile
->> +++ b/drivers/gpu/drm/xe/Makefile
->> @@ -160,6 +160,7 @@ xe-y += \
->>       xe_sriov.o
->>     xe-$(CONFIG_PCI_IOV) += \
->> +    xe_gt_sriov_pf.o \
->>       xe_gt_sriov_pf_control.o \
->>       xe_gt_sriov_pf_policy.o \
->>       xe_lmtt.o \
->> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->> index cfa5da900461..38956b60e084 100644
->> --- a/drivers/gpu/drm/xe/xe_gt.c
->> +++ b/drivers/gpu/drm/xe/xe_gt.c
->> @@ -29,6 +29,7 @@
->>   #include "xe_gt_mcr.h"
->>   #include "xe_gt_pagefault.h"
->>   #include "xe_gt_printk.h"
->> +#include "xe_gt_sriov_pf.h"
->>   #include "xe_gt_sysfs.h"
->>   #include "xe_gt_tlb_invalidation.h"
->>   #include "xe_gt_topology.h"
->> @@ -311,6 +312,12 @@ int xe_gt_init_early(struct xe_gt *gt)
->>   {
->>       int err;
->>   +    if (IS_SRIOV_PF(gt_to_xe(gt))) {
->> +        err = xe_gt_sriov_pf_init_early(gt);
->> +        if (err)
->> +            return err;
->> +    }
->> +
->>       err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->>       if (err)
->>           return err;
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
->> b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
->> new file mode 100644
->> index 000000000000..791dcdd767e2
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
->> @@ -0,0 +1,52 @@
->> +// SPDX-License-Identifier: MIT
->> +/*
->> + * Copyright © 2023-2024 Intel Corporation
->> + */
->> +
->> +#include <drm/drm_managed.h>
->> +
->> +#include "xe_gt_sriov_pf.h"
->> +#include "xe_gt_sriov_pf_helpers.h"
->> +
->> +/*
->> + * VF's metadata is maintained in the flexible array where:
->> + *   - entry [0] contains metadata for the PF (only if applicable),
->> + *   - entries [1..n] contain metadata for VF1..VFn::
->> + *
->> + *       <--------------------------- 1 + total_vfs ----------->
->> + *      +-------+-------+-------+-----------------------+-------+
->> + *      |   0   |   1   |   2   |                       |   n   |
->> + *      +-------+-------+-------+-----------------------+-------+
->> + *      |  PF   |  VF1  |  VF2  |      ...     ...      |  VFn  |
->> + *      +-------+-------+-------+-----------------------+-------+
->> + */
->> +static int pf_alloc_metadata(struct xe_gt *gt)
->> +{
->> +    unsigned int num_vfs = xe_gt_sriov_pf_get_totalvfs(gt);
->> +
->> +    gt->sriov.pf.vfs = drmm_kcalloc(&gt_to_xe(gt)->drm, 1 + num_vfs,
->> +                    sizeof(*gt->sriov.pf.vfs), GFP_KERNEL);
->> +    if (!gt->sriov.pf.vfs)
->> +        return -ENOMEM;
->> +
->> +    return 0;
->> +}
->> +
->> +/**
->> + * xe_gt_sriov_pf_init_early - Prepare SR-IOV PF data structures on PF.
->> + * @gt: the &xe_gt to initialize
->> + *
->> + * Early initialization of the PF data.
->> + *
->> + * Return: 0 on success or a negative error code on failure.
->> + */
->> +int xe_gt_sriov_pf_init_early(struct xe_gt *gt)
->> +{
->> +    int err;
->> +
->> +    err = pf_alloc_metadata(gt);
->> +    if (err)
->> +        return err;
->> +
->> +    return 0;
-> 
-> nit: If there's a possibility of extending this function in the future
-> to accommodate other initializations, it's best to leave it as it is.
 
-that's correct, at least one more sub-component (PF services) will be
-initialized here in the very near future
+Build changes
+-------------
 
-> Otherwise, return pf_alloc_metadata(gt) looks cleaner.
-> 
-> LGTM
-> 
-> Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+  * Linux: xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff -> xe-pw-130913v3
 
-thanks!
+  IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff: d9073a139e9edfd27d830c9c4af9683651044aff
+  xe-pw-130913v3: 130913v3
 
-> 
-> 
->> +}
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.h
->> b/drivers/gpu/drm/xe/xe_gt_sriov_pf.h
->> new file mode 100644
->> index 000000000000..05142ffc4319
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.h
->> @@ -0,0 +1,20 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2023-2024 Intel Corporation
->> + */
->> +
->> +#ifndef _XE_GT_SRIOV_PF_H_
->> +#define _XE_GT_SRIOV_PF_H_
->> +
->> +struct xe_gt;
->> +
->> +#ifdef CONFIG_PCI_IOV
->> +int xe_gt_sriov_pf_init_early(struct xe_gt *gt);
->> +#else
->> +static inline int xe_gt_sriov_pf_init_early(struct xe_gt *gt)
->> +{
->> +    return 0;
->> +}
->> +#endif
->> +
->> +#endif
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
->> b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
->> index 768277b8bc95..223f280ef748 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
->> @@ -10,12 +10,21 @@
->>     #include "xe_gt_sriov_pf_policy_types.h"
->>   +/**
->> + * struct xe_gt_sriov_metadata - GT level per-VF metadata.
->> + */
->> +struct xe_gt_sriov_metadata {
->> +    /* XXX: VF metadata will go here */
->> +};
->> +
->>   /**
->>    * struct xe_gt_sriov_pf - GT level PF virtualization data.
->>    * @policy: policy data.
->> + * @vfs: metadata for all VFs.
->>    */
->>   struct xe_gt_sriov_pf {
->>       struct xe_gt_sriov_pf_policy policy;
->> +    struct xe_gt_sriov_metadata *vfs;
->>   };
->>     #endif
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/index.html
+
+--===============8420408664843352027==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Modify minimum of various scheduler timeout to 0. (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130913/">https://patchwork.freedesktop.org/series/130913/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff_BAT -&gt; xe-pw-130913v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-130913v3_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-130913v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (5 -&gt; 4)</h2>
+<p>Missing    (1): bat-dg2-oem2 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-130913v3_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@xe_sysfs_defaults@engine-defaults:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-pvc-2/igt@xe_sysfs_defaults@engine-defaults.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/bat-pvc-2/igt@xe_sysfs_defaults@engine-defaults.html">FAIL</a> +2 other tests fail</li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-atsm-2/igt@xe_sysfs_defaults@engine-defaults.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/bat-atsm-2/igt@xe_sysfs_defaults@engine-defaults.html">FAIL</a> +5 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_sysfs_defaults@engine-defaults@bcs:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-adlp-7/igt@xe_sysfs_defaults@engine-defaults@bcs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/bat-adlp-7/igt@xe_sysfs_defaults@engine-defaults@bcs.html">FAIL</a> +4 other tests fail</li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@xe_sysfs_defaults@engine-defaults@rcs:<ul>
+<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff/bat-lnl-1/igt@xe_sysfs_defaults@engine-defaults@rcs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-130913v3/bat-lnl-1/igt@xe_sysfs_defaults@engine-defaults@rcs.html">FAIL</a> +5 other tests fail</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff -&gt; xe-pw-130913v3</li>
+</ul>
+<p>IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1082-d9073a139e9edfd27d830c9c4af9683651044aff: d9073a139e9edfd27d830c9c4af9683651044aff<br />
+  xe-pw-130913v3: 130913v3</p>
+
+</body>
+</html>
+
+--===============8420408664843352027==--
