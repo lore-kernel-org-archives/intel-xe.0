@@ -4,51 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC595C4345F
-	for <intel-xe@archiver.kernel.org>; Sun, 14 Apr 2024 19:02:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F864C4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 03:33:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CF63112323;
-	Sun, 14 Apr 2024 19:02:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31CF710FD8F;
+	Mon, 15 Apr 2024 03:33:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fKQ+UeWt";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="yVI55dsk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99BB8112323
- for <intel-xe@lists.freedesktop.org>; Sun, 14 Apr 2024 19:02:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713121322; x=1744657322;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=Kjgs7ZqvovhCh7whkADr/50fQw39Ka5G3mBsqYwxU2w=;
- b=fKQ+UeWtUK9DDAH4FEac2xIpN0/Q1ZRNOFqEuR0N+C/7mWcs+FaE7RzS
- OQeaImhWbQRrgHR4pJ0rnYN946rF2YKElTdS5W9ekVABSCIdDI7U+Ja7e
- SsS+ARClk9+jUq4D8M7Q4T3v5RIAA9PbHQpuLN982rkx5l6dCfxAB0+/Q
- jR7FCinDW2ZGvkGPXiDH4dyBGK7Ynf0AXE7CiIzUZsbtZRBFDbkEc6NB1
- PXqF25kSUVgu+6U7jKYxQeQJBw7LAUmHwmZLUW/DYptPU4xusrt6lA0F8
- pNIZ7yUhEznRkzunJ1mFWIecN6Wbz/6Tzz+n04/SKs2CW+zE3IPg8HakW g==;
-X-CSE-ConnectionGUID: FUHHJdOYSXeBKTNzdl9PRw==
-X-CSE-MsgGUID: 9izqoOYGSRWuqsiovPLfkw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="30983592"
-X-IronPort-AV: E=Sophos;i="6.07,201,1708416000"; d="scan'208";a="30983592"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2024 12:02:01 -0700
-X-CSE-ConnectionGUID: m5uE1vBaRCCJ4ANbg47pdg==
-X-CSE-MsgGUID: ID/moDL1Sd2xcxPtIe77XA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,201,1708416000"; d="scan'208";a="26383426"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.252.61.42])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2024 12:02:00 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/6] drm/xe: Add helper to format SR-IOV function name
-Date: Sun, 14 Apr 2024 21:01:32 +0200
-Message-Id: <20240414190137.1243-2-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20240414190137.1243-1-michal.wajdeczko@intel.com>
-References: <20240414190137.1243-1-michal.wajdeczko@intel.com>
+X-Greylist: delayed 304 seconds by postgrey-1.36 at gabe;
+ Mon, 15 Apr 2024 03:32:59 UTC
+Received: from out199-17.us.a.mail.aliyun.com (out199-17.us.a.mail.aliyun.com
+ [47.90.199.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 701EC10FD8F
+ for <intel-xe@lists.freedesktop.org>; Mon, 15 Apr 2024 03:32:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux.alibaba.com; s=default;
+ t=1713151975; h=From:To:Subject:Date:Message-Id:MIME-Version;
+ bh=HQ/ETOKOJmL/IZamalPpP4votWKbCg1bK9n71loVHb8=;
+ b=yVI55dskwn48cwqq0Br1sEkM6YJDcy3XL9SRcNCbapRC+KFDMKwm2i+ysBdtTAycIG8cunPdi7IGepZnlMGy4Jqg3rittIVsejSq/xdRuJI/IoL0nt7w8203U5wQwaB0S0E+2yC+VmTySBIRU4h5L06gCqE9Z4hnYng4q9EPxj4=
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R971e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018046051;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=13; SR=0;
+ TI=SMTPD_---0W4UNuFG_1713151654; 
+Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0W4UNuFG_1713151654) by smtp.aliyun-inc.com;
+ Mon, 15 Apr 2024 11:27:41 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: lucas.demarchi@intel.com
+Cc: ogabbay@kernel.org, thomas.hellstrom@linux.intel.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, daniel@ffwll.ch, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+ Abaci Robot <abaci@linux.alibaba.com>
+Subject: [PATCH] drm/xe/irq: remove unneeded semicolon
+Date: Mon, 15 Apr 2024 11:27:33 +0800
+Message-Id: <20240415032733.39584-1-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,56 +58,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While the GuC firmware and the Xe driver are using VF identifier
-VFID(0) to represent the Physical Function, we should avoid using
-"VF0" name and use proper "PF" name in all user facing messages
-related to the Physical Function and use "VFn" name only when
-referrinf to the true Virtual Function. Add simple helper to get
-properly formatted function name based on the function number.
+No functional modification involved.
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+./drivers/gpu/drm/xe/xe_irq.c:279:3-4: Unneeded semicolon.
+
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=8757
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 ---
- drivers/gpu/drm/xe/xe_sriov.c | 17 +++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov.h |  1 +
- 2 files changed, 18 insertions(+)
+ drivers/gpu/drm/xe/xe_irq.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
-index 1b40f5de9ef5..1c3fa84b6adb 100644
---- a/drivers/gpu/drm/xe/xe_sriov.c
-+++ b/drivers/gpu/drm/xe/xe_sriov.c
-@@ -122,3 +122,20 @@ void xe_sriov_print_info(struct xe_device *xe, struct drm_printer *p)
- 	drm_printf(p, "enabled: %s\n", str_yes_no(IS_SRIOV(xe)));
- 	drm_printf(p, "mode: %s\n", xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
- }
-+
-+/**
-+ * xe_sriov_function_name() - Get SR-IOV Function name.
-+ * @n: the Function number (identifier) to get name of
-+ * @buf: the buffer to format to
-+ * @size: size of the buffer (shall be at least 5 bytes)
-+ *
-+ * Return: formatted function name ("PF" or "VF%u").
-+ */
-+const char *xe_sriov_function_name(unsigned int n, char *buf, size_t size)
-+{
-+	if (n)
-+		snprintf(buf, size, "VF%u", n);
-+	else
-+		strscpy(buf, "PF", size);
-+	return buf;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sriov.h b/drivers/gpu/drm/xe/xe_sriov.h
-index f9dec84d77e3..486bb21c3256 100644
---- a/drivers/gpu/drm/xe/xe_sriov.h
-+++ b/drivers/gpu/drm/xe/xe_sriov.h
-@@ -13,6 +13,7 @@
- struct drm_printer;
- 
- const char *xe_sriov_mode_to_string(enum xe_sriov_mode mode);
-+const char *xe_sriov_function_name(unsigned int n, char *buf, size_t len);
- 
- void xe_sriov_probe_early(struct xe_device *xe);
- void xe_sriov_print_info(struct xe_device *xe, struct drm_printer *p);
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index 996806353171..5b1a2f46a1b2 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -276,7 +276,7 @@ static struct xe_gt *pick_engine_gt(struct xe_tile *tile,
+ 			return tile->media_gt;
+ 		default:
+ 			break;
+-		};
++		}
+ 		fallthrough;
+ 	default:
+ 		return tile->primary_gt;
 -- 
-2.43.0
+2.20.1.7.g153144c
 
