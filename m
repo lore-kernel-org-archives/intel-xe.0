@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04D78C04FF8
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 15:07:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D9E0C4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 15:28:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3DEF11265C;
-	Mon, 15 Apr 2024 15:07:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QoCGvAP4";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FEEB112660
- for <intel-xe@lists.freedesktop.org>; Mon, 15 Apr 2024 15:06:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713193605; x=1744729605;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5BRzeTxoGqIS2h+lRQuzwuhfnPtP1s266wl8WGgB7pc=;
- b=QoCGvAP4CvK2QD8l1stXlSvBYQHJIr/acFgVt2vraWc7Zm/rYyRMdB1B
- g9cKqMfLNvh48Nfl5UKpiGdEr0ZZLjqQc5SosUatHjO/ZlZerHzhyUHkt
- 33wxY9UsvIzJPKwu6YWV4d237bOXCm/ljOkuigVlkfyu0Bi6WH02al8jd
- eq1G5/l7oenn3AOJ84SMEZrNFJTJ5IHKbJBPXaNTeCSA0GJ7CiYG+xLaY
- csQLBTsGHf28dT48B3fCVQ2jt96ZNF3MVD5SWjnTce6zI3GoDR07jEk73
- Fb24GrryWcjayLSqeWFgX4GVHVP0yLugP7qBndY+PJo6XXONvSYCXZsB6 A==;
-X-CSE-ConnectionGUID: OfQw8TPfSjOTDqXFYPZ/6g==
-X-CSE-MsgGUID: lSqUtyMFRoepymqLIWYJkg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="20013314"
-X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="20013314"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 08:06:44 -0700
-X-CSE-ConnectionGUID: fh6WvOINT0ey4e2TrI3tIA==
-X-CSE-MsgGUID: ycGpehSHS56TgsFQv6YjbA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="22414859"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 08:06:44 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Nirmoy Das <nirmoy.das@intel.com>
-Subject: [PATCH v3 4/7] drm/xe: Move vm bind bo validation to a helper function
-Date: Mon, 15 Apr 2024 16:52:11 +0200
-Message-ID: <20240415145214.25641-5-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20240415145214.25641-1-nirmoy.das@intel.com>
-References: <20240415145214.25641-1-nirmoy.das@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E1A5112689;
+	Mon, 15 Apr 2024 15:28:36 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98B48112689;
+ Mon, 15 Apr 2024 15:28:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3765851563143642810=="
 MIME-Version: 1.0
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany,
- Commercial Register: Amtsgericht Muenchen HRB 186928 
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Cleanup_and_fixes_in_drmm=5Fadd?=
+ =?utf-8?q?=5Faction=5For=5Freset_usage_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 15 Apr 2024 15:28:34 -0000
+Message-ID: <171319491462.1406028.13270719962448438589@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240412181211.1155732-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20240412181211.1155732-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,120 +36,126 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move vm bind bo validation to a helper function to make the
-xe_vm_bind_ioctl() more readable.
+--===============3765851563143642810==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 77 +++++++++++++++++++++-----------------
- 1 file changed, 43 insertions(+), 34 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index b1dcaa35b6cc..8380f1d23074 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2872,6 +2872,46 @@ static int vm_bind_ioctl_signal_fences(struct xe_vm *vm,
- 	return err;
- }
- 
-+static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
-+					u64 addr, u64 range, u64 obj_offset,
-+					u16 pat_index)
-+{
-+	u16 coh_mode;
-+
-+	if (XE_IOCTL_DBG(xe, range > bo->size) ||
-+	    XE_IOCTL_DBG(xe, obj_offset >
-+			 bo->size - range)) {
-+		return -EINVAL;
-+	}
-+
-+	if (bo->flags & XE_BO_FLAG_INTERNAL_64K) {
-+		if (XE_IOCTL_DBG(xe, obj_offset &
-+				 XE_64K_PAGE_MASK) ||
-+		    XE_IOCTL_DBG(xe, addr & XE_64K_PAGE_MASK) ||
-+		    XE_IOCTL_DBG(xe, range & XE_64K_PAGE_MASK)) {
-+			return  -EINVAL;
-+		}
-+	}
-+
-+	coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
-+	if (bo->cpu_caching) {
-+		if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE &&
-+				 bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB)) {
-+			return  -EINVAL;
-+		}
-+	} else if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE)) {
-+		/*
-+		 * Imported dma-buf from a different device should
-+		 * require 1way or 2way coherency since we don't know
-+		 * how it was mapped on the CPU. Just assume is it
-+		 * potentially cached on CPU side.
-+		 */
-+		return  -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
- int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- {
- 	struct xe_device *xe = to_xe_device(dev);
-@@ -2955,7 +2995,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		u32 obj = bind_ops[i].obj;
- 		u64 obj_offset = bind_ops[i].obj_offset;
- 		u16 pat_index = bind_ops[i].pat_index;
--		u16 coh_mode;
- 
- 		if (!obj)
- 			continue;
-@@ -2967,40 +3006,10 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		}
- 		bos[i] = gem_to_xe_bo(gem_obj);
- 
--		if (XE_IOCTL_DBG(xe, range > bos[i]->size) ||
--		    XE_IOCTL_DBG(xe, obj_offset >
--				 bos[i]->size - range)) {
--			err = -EINVAL;
--			goto put_obj;
--		}
--
--		if (bos[i]->flags & XE_BO_FLAG_INTERNAL_64K) {
--			if (XE_IOCTL_DBG(xe, obj_offset &
--					 XE_64K_PAGE_MASK) ||
--			    XE_IOCTL_DBG(xe, addr & XE_64K_PAGE_MASK) ||
--			    XE_IOCTL_DBG(xe, range & XE_64K_PAGE_MASK)) {
--				err = -EINVAL;
--				goto put_obj;
--			}
--		}
--
--		coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
--		if (bos[i]->cpu_caching) {
--			if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE &&
--					 bos[i]->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB)) {
--				err = -EINVAL;
--				goto put_obj;
--			}
--		} else if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE)) {
--			/*
--			 * Imported dma-buf from a different device should
--			 * require 1way or 2way coherency since we don't know
--			 * how it was mapped on the CPU. Just assume is it
--			 * potentially cached on CPU side.
--			 */
--			err = -EINVAL;
-+		err = xe_vm_bind_ioctl_validate_bo(xe, bos[i], addr, range,
-+						   obj_offset, pat_index);
-+		if (err)
- 			goto put_obj;
--		}
- 	}
- 
- 	if (args->num_syncs) {
--- 
-2.42.0
+Series: Cleanup and fixes in drmm_add_action_or_reset usage (rev4)
+URL   : https://patchwork.freedesktop.org/series/132150/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-1086-a503d0d68ea39792b2740a7af033bd42fb84f4a5_BAT -> xe-pw-132150v4_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-132150v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-threads-small:
+    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#1259] / [Intel XE#1473])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1086-a503d0d68ea39792b2740a7af033bd42fb84f4a5/bat-dg2-oem2/igt@xe_evict@evict-threads-small.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132150v4/bat-dg2-oem2/igt@xe_evict@evict-threads-small.html
+
+  
+  [Intel XE#1259]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1259
+  [Intel XE#1473]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1473
+
+
+Build changes
+-------------
+
+  * Linux: xe-1086-a503d0d68ea39792b2740a7af033bd42fb84f4a5 -> xe-pw-132150v4
+
+  IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1086-a503d0d68ea39792b2740a7af033bd42fb84f4a5: a503d0d68ea39792b2740a7af033bd42fb84f4a5
+  xe-pw-132150v4: 132150v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132150v4/index.html
+
+--===============3765851563143642810==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Cleanup and fixes in drmm_add_action_or_reset usage (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132150/">https://patchwork.freedesktop.org/series/132150/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132150v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132150v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1086-a503d0d68ea39792b2740a7af033bd42fb84f4a5_BAT -&gt; xe-pw-132150v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-132150v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_evict@evict-threads-small:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1086-a503d0d68ea39792b2740a7af033bd42fb84f4a5/bat-dg2-oem2/igt@xe_evict@evict-threads-small.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132150v4/bat-dg2-oem2/igt@xe_evict@evict-threads-small.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1259">Intel XE#1259</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1473">Intel XE#1473</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1086-a503d0d68ea39792b2740a7af033bd42fb84f4a5 -&gt; xe-pw-132150v4</li>
+</ul>
+<p>IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1086-a503d0d68ea39792b2740a7af033bd42fb84f4a5: a503d0d68ea39792b2740a7af033bd42fb84f4a5<br />
+  xe-pw-132150v4: 132150v4</p>
+
+</body>
+</html>
+
+--===============3765851563143642810==--
