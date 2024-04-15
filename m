@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D50FAC4345F
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 22:27:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30A0DC4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 22:32:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EC7210EA7E;
-	Mon, 15 Apr 2024 22:27:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D113F10EA76;
+	Mon, 15 Apr 2024 22:32:38 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0035F10EA36;
- Mon, 15 Apr 2024 22:27:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DD7B10EA73;
+ Mon, 15 Apr 2024 22:32:38 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_lib/kunit=3A_Read_re?=
- =?utf-8?q?sults_from_debugfs_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_PF=3A_Add_support_to?=
+ =?utf-8?q?_configure_SR-IOV_VFs_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 15 Apr 2024 22:27:55 -0000
-Message-ID: <171322007599.1424052.5278404546904718861@8e613ede5ea5>
+Date: Mon, 15 Apr 2024 22:32:38 -0000
+Message-ID: <171322035825.1424088.7655297893314713662@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240415173405.120137-2-janusz.krzysztofik@linux.intel.com>
-In-Reply-To: <20240415173405.120137-2-janusz.krzysztofik@linux.intel.com>
+References: <20240415173937.1287-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20240415173937.1287-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,21 +42,20 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: lib/kunit: Read results from debugfs (rev3)
-URL   : https://patchwork.freedesktop.org/series/131687/
-State : failure
+Series: PF: Add support to configure SR-IOV VFs (rev2)
+URL   : https://patchwork.freedesktop.org/series/132416/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-tip' with base: ===
 Base commit: 7bc330055f5c drm-tip: 2024y-04m-15d-20h-48m-49s UTC integration manifest
 === git am output follows ===
-error: lib/igt_kmod.c: does not exist in index
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: lib/kunit: Read results from debugfs
-Patch failed at 0001 lib/kunit: Read results from debugfs
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/xe: Add helper to format SR-IOV function name
+Applying: drm/xe: Allow to assign GGTT region to the VF
+Applying: drm/xe: Add xe_ttm_vram_get_avail
+Applying: drm/xe/guc: Add PF2GUC_UPDATE_VF_CFG to ABI
+Applying: drm/xe/pf: Add SR-IOV PF specific early GT initialization
+Applying: drm/xe/pf: Add support to configure SR-IOV VFs
 
 
