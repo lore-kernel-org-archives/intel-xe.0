@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8C31C4345F
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 14:21:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 990C8C4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 14:24:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 779DB10F8B1;
-	Mon, 15 Apr 2024 14:21:18 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CE6810F8B1;
- Mon, 15 Apr 2024 14:21:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EBAE10F8B1;
+	Mon, 15 Apr 2024 14:24:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="mm+QMVSj";
+	dkim-atps=neutral
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4779410F8B1;
+ Mon, 15 Apr 2024 14:24:06 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id D73EFCE0E01;
+ Mon, 15 Apr 2024 14:24:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1DCEC3277B;
+ Mon, 15 Apr 2024 14:24:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1713191042;
+ bh=wM44Mb5X99jQyNH+X8BXp++TNUNY8/+5fKzpsl6KLD8=;
+ h=Date:From:To:Subject:In-Reply-To:References:Cc:From;
+ b=mm+QMVSjBO17w3UOqliEQBXEfwBRh9NChcMkC2CdXl00C9UNcY2J/iwTLyUcPFP+9
+ iQ4MXLD1X4dFtW1YC3Sf2Qjg5iw5eopMUnbiuuz0a6HaKP5vhsGOJdZy5xWi36Ve8J
+ rpQXc1blDpl8zX62czvE+aHiBhbCej15rC5qkgG6pUSn0vvfU2bmH1G0pschRz9h3B
+ a34+zpTy+Su6BONocM/vXKUxktT6kVkLo7ZR4tPmt4niqSJFqOyT74osIegUw/s3Aa
+ mWB7ZHZLbjl1FK3m8WnSKp1Mk03+0UDew0pmDLH/6HaLDpxeSgaj4GX4FbptAa70JY
+ V4m/Qfd011MgQ==
+Message-ID: <f9ef8b9bced6f4656907d4a14355e970@kernel.org>
+Date: Mon, 15 Apr 2024 14:23:59 +0000
+From: "Maxime Ripard" <mripard@kernel.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Subject: Re: Re: [PATCH 1/2] drm/print: drop include debugfs.h and include
+ where needed
+In-Reply-To: <878r1e3h8d.fsf@intel.com>
+References: <878r1e3h8d.fsf@intel.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, "Alex
+ Deucher" <alexander.deucher@amd.com>, "Andrzej Hajda" <andrzej.hajda@intel.com>,
+ =?utf-8?b?Q2hyaXN0aWFuS8O2bmln?= <christian.koenig@amd.com>,
+ "Daniel Vetter" <daniel@ffwll.ch>, "Danilo
+ Krummrich" <dakr@redhat.com>, "David Airlie" <airlied@gmail.com>, "Huang
+ Rui" <ray.huang@amd.com>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Jonas
+ Karlman" <jonas@kwiboo.se>, "Karol Herbst" <kherbst@redhat.com>, "Laurent
+ Pinchart" <Laurent.pinchart@ideasonboard.com>, "Lyude Paul" <lyude@redhat.com>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Maxime Ripard" <mripard@kernel.org>, "Neil
+ Armstrong" <neil.armstrong@linaro.org>, =?utf-8?b?IlwiUGFuLCBYaW5odWlc?=
+ =?utf-8?b?IiI=?= <Xinhui.Pan@amd.com>, "Robert Foss" <rfoss@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_series_starting_with_=5B?=
- =?utf-8?q?1/2=5D_drm/xe/stolen=3A_lower_the_default_alignment?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 15 Apr 2024 14:21:17 -0000
-Message-ID: <171319087718.1404431.203719622419104918@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240412150301.273344-3-matthew.auld@intel.com>
-In-Reply-To: <20240412150301.273344-3-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +65,19 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 15 Apr 2024 16:09:22 +0300, Jani Nikula wrote:
+> On Wed, 10 Apr 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> > Surprisingly many places depend on debugfs.h to be included via
+> > drm_print.h. Fix them.
+> 
+> While all of this is trivial, merely adding some includes, please
+> 
+> [ ... ]
 
-Series: series starting with [1/2] drm/xe/stolen: lower the default alignment
-URL   : https://patchwork.freedesktop.org/series/132382/
-State : success
+Acked-by: Maxime Ripard <mripard@kernel.org>
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast a503d0d68ea39792b2740a7af033bd42fb84f4a5
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+Thanks!
+Maxime
