@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C45AC00A94
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 23:16:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8C6CC4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Apr 2024 23:16:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04F111128A4;
-	Mon, 15 Apr 2024 23:16:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0CC71128A4;
+	Mon, 15 Apr 2024 23:16:56 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E8721128A4;
- Mon, 15 Apr 2024 23:16:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DF901128A4;
+ Mon, 15 Apr 2024 23:16:56 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5Bv5=2C1/4=5D_drm/xe/lrc=3A_Add_xe_lrc_ring_tail_function_defin?=
- =?utf-8?q?itions?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5Bv?=
+ =?utf-8?q?5=2C1/4=5D_drm/xe/lrc=3A_Add_xe_lrc_ring_tail_function_definition?=
+ =?utf-8?q?s?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 15 Apr 2024 23:16:38 -0000
-Message-ID: <171322299864.1424088.15710792763793902244@8e613ede5ea5>
+Date: Mon, 15 Apr 2024 23:16:56 -0000
+Message-ID: <171322301625.1424088.1318259949642839475@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240415184608.2918959-1-jonathan.cavitt@intel.com>
 In-Reply-To: <20240415184608.2918959-1-jonathan.cavitt@intel.com>
@@ -45,16 +45,45 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [v5,1/4] drm/xe/lrc: Add xe lrc ring tail function definitions
 URL   : https://patchwork.freedesktop.org/series/132464/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 7bc330055f5c drm-tip: 2024y-04m-15d-20h-48m-49s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/lrc: Add xe lrc ring tail function definitions
-Applying: drm/xe/xe_guc_submit: Fix exec queue stop race condition
-Applying: drm/xe/xe_guc_submit: Allow lr exec queues to be banned
-Applying: drm/xe/xe_guc_submit: Declare reset if banned or killed
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+35057f376b5337039b258ae4c66ed9218f4b3fb8
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 97673d5a20f52076023c4e25039c150a90273383
+Author: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Date:   Mon Apr 15 11:46:08 2024 -0700
+
+    drm/xe/xe_guc_submit: Declare reset if banned or killed
+    
+    Add an additional condition to the reset_status guc_exec_queue_op that
+    returns true if the exec queue has been banned or killed.  The
+    reset_status op is only used for exiting any xe_wait_user_fence_ioctl
+    that waits on an exec queue without timing out, so doing this will exit
+    the ioctl early in cases where the exec queue can no longer function,
+    such as after a GuC stop during a reset.
+    
+    Suggested-by: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+    Reviewed-by: Stuart Summers <stuart.summers@intel.com>
++ /mt/dim checkpatch 7bc330055f5c2924b42e389887691fea3f401a45 drm-intel
+2176e839dfd0 drm/xe/lrc: Add xe lrc ring tail function definitions
+-:6: WARNING:TYPO_SPELLING: 'defintions' may be misspelled - perhaps 'definitions'?
+#6: 
+Add defintions for the functions xe_lrc_set_ring_tail and
+    ^^^^^^^^^^
+
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+37db4a5f44e4 drm/xe/xe_guc_submit: Fix exec queue stop race condition
+8e12c8215163 drm/xe/xe_guc_submit: Allow lr exec queues to be banned
+97673d5a20f5 drm/xe/xe_guc_submit: Declare reset if banned or killed
 
 
