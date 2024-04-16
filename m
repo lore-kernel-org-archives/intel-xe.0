@@ -4,141 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30EECC4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Apr 2024 15:51:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56273C04FFF
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Apr 2024 15:53:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1FDC10F185;
-	Tue, 16 Apr 2024 15:51:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5B18112D2A;
+	Tue, 16 Apr 2024 15:53:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BBFeHUi0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AsgSF9x+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D48C410F182
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Apr 2024 15:51:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1424510F19B
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Apr 2024 15:53:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713282691; x=1744818691;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=O0fYDdYYk7ej+assWfpLRGZqTRajbA0efPX63cMmoiM=;
- b=BBFeHUi0B56CzaxLtRZklXSxo50N1Hw+Dp+XCK2KBCTj85Iule7DabnL
- nl+MiG3KpmxGhw6MKXFCLyLCRsvrcM65ShxuRMEpjcOrtX6Owdu47hC97
- t+vvEseS6O7mSxIuFY55tId9nCwr41Hh6tOiHDTUwSyXOhvGUL2YSojnR
- AIl2vI1l0jq8Jc1GY8JpI7ZRcnNNqcOWk36A29do6SodPYEa3eGZ0Xf7G
- bf6vdgnEvkiXH07MDVC5fxtjO2y4Dw61h3HRX8ljY1PZF214Wv1tsuWbR
- pKbUR5lf5q7iMWrN11OkE7vJQJ4l8pA9GJHC7H8sZomBic7nS8TZ/T/dJ Q==;
-X-CSE-ConnectionGUID: Y3dSYgfASzKyUhAJZKNJ+Q==
-X-CSE-MsgGUID: kTMZwNFSSt2pUIf7ppOluQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="26192091"
-X-IronPort-AV: E=Sophos;i="6.07,206,1708416000"; d="scan'208";a="26192091"
+ t=1713282830; x=1744818830;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=0GuFGIrlwDr1PePmf05o2CdrMLle0OzPUlYKCtQynus=;
+ b=AsgSF9x+HqZN9YlE8SC+oycM0Fj3/ByNB4pobbyDsiRwlqz/jxy3v/iQ
+ xpxX6b3nJR3ZuI63GQXbPXwpn0vzXzFozXIEOO/w1uh5BNjK52GC6Wuz1
+ ktbPiTPP1ojrKqqyLRPKvMcOmWw3x1chjP061KzzHnPuuvjraR4ga3RbU
+ yU74RHX0IibJCb9TVKh2YxDeL0VIqlU4mlFb3UbIo4Xsox0fHBN8UbWeb
+ XTI/8yfLVGaC3fcLV2/cc3SLsge3XdAbhT5ohLYE+59LhCMjx3rkJqnK0
+ bJfC7ot1e3ZczDQxFFE//aNkgVf5VCoxNxFwRB5FeSNyXGLR0ROfLcr5J w==;
+X-CSE-ConnectionGUID: lq81hlUlRpeqZrS4wNfP1w==
+X-CSE-MsgGUID: qHUT9VHLQpWT+jF9rNWlWA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="26192473"
+X-IronPort-AV: E=Sophos;i="6.07,206,1708416000"; d="scan'208";a="26192473"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2024 08:51:28 -0700
-X-CSE-ConnectionGUID: HOKVRVyzRIqaDg9SxPMBLw==
-X-CSE-MsgGUID: HuMlVHsuQUCm5NJNOhr79g==
+ 16 Apr 2024 08:53:46 -0700
+X-CSE-ConnectionGUID: of3E+jQ5S3yGcNNFNOen+g==
+X-CSE-MsgGUID: co2+DLhpQxGDY7k2qxgcZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,206,1708416000"; d="scan'208";a="26958523"
+X-IronPort-AV: E=Sophos;i="6.07,206,1708416000"; d="scan'208";a="26960731"
 Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
  by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 16 Apr 2024 08:51:27 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ 16 Apr 2024 08:53:45 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
  ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 16 Apr 2024 08:51:26 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.35; Tue, 16 Apr 2024 08:53:44 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 16 Apr 2024 08:51:26 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.101)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Tue, 16 Apr 2024 08:53:44 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 16 Apr 2024 08:51:26 -0700
+ 15.1.2507.35; Tue, 16 Apr 2024 08:53:44 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LYys/ieymHsCx6IrJLGtKqa8x4Svkmq7PK3q6vnVaDE5hS712ozDj7ioev87HBTF9RxrcO8HPcgaoHzcnhZ9Bxc6IdSk1dDqAlHElmvuVc6vNTPPB0mPbrsGsb3HRyJrkxnF1q2x7ZSB/DS41dQhKi2q8i2+WcfZwkjpbVT2Fl9ZvvvpkLKCXrfEtCayF01Q92D6d8z211Wp6OvOY4hPI2ZgAffI1CGUpzuYgBMbFpiYMcGeri5OkuXMH/gXP0wGWsgXOvceuSXZk979VW2uHOP6GnPvAQ/BXNgTb00uZ1CubysbnwfUtMp1xBixY1Zpej9n19iUB2XpACp/SJWIyg==
+ b=UtjfMv7rU8DIe+X8d58Lq8HbYqcklIUOQ6mxH5IFnSRhBKusEonXMkftzDjLJF/i9mPqbqxmyJygrMXTFMauUkuSUFJMlObULDgMRfgpumHlpyRkTu+SPa+MY4mQkB9mKDSw6sQzBnhJ3NtQMDhE+VZCDJaGuwgVbCD6j3W0YWuLQwpgtInen/stp0z8nV+96OUp4/UwRHdCaa/lR/BMU1cPXRzRTA8YWfoJDVnwV9KxsAt2bQizrJMpJO48cKjst3e6c0iufX+dXiiFRJq7qaJ0cvsWG891yZw5oRFyWuuiwnt/9A/hnZZGFDAsxjERPTs/a6BiskrcddcJ9kyx+A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rWjKqmEw8aIN94ooFcKDbbiD+k2RvhJ+XJAQ74JCZg8=;
- b=jZ6+9Cyu+waZz1750gExw1XlbgTLfBI64T+8stAhjl/KNcalX4L00HDjAM0w6UDgrKkm9y0+6QR3ln2MoMzoKpqzb4vhVh87HWq+VMMIr4kti8tBiNWxk05tttrR5RCRWDzZalX168KselGNjG2Hwg2lwQ1w4G/dDg1weknJn1jObMWGOJt5/BfjiLC5YLTDtN7POU/I44ZLG5RjGKXUSsD1tVutjdYnAiyNPWQsCoC9FSqSW4yFDk3kVVBFJICMCxKNjsnbQwbQzfLYJHxvdWlo7dBWBNckG7b1HTa0a9Mz60rTIC145LcpWIWrkxt/hKPFFLPtXOuRnEV2AoSoyQ==
+ bh=qzJ6jKpuszFn1ckC4OPRnv6axvfEMpTz1OxlwnGd/s4=;
+ b=ibGOSs/BV0v6cDDqcZiKJMI7Ov4Kt77Z37yGAKMfIogjHe/+C5lyYyMcpwQ4YPTP+6enShQNX/0GyzCXd7yStRTPMYZSslrGjBy/uogVo8d/QcnxYEonh++9ReFY3CrSnQgbSKpwXoaJUvupG9s3b24VwG8eK9wxB4hzrvy4JcbF/mPwz/cZx3vRzajFu3CthZb739KdzVALi5krvR8mgAG3qhNL1/5X4osRYdk5ENpcMl0bIgKMu+8QM1UzAUhxVdHVSHNZajwkGH3nRSFiX2k4VycT2V6/BxedFB4sGg6vOnLk0rHRpl3z7bY4VSWsksRXPRFlgdaUTw1AjUxpQw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from SA1PR11MB6991.namprd11.prod.outlook.com (2603:10b6:806:2b8::21)
- by SA0PR11MB4767.namprd11.prod.outlook.com (2603:10b6:806:97::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.29; Tue, 16 Apr
- 2024 15:51:24 +0000
-Received: from SA1PR11MB6991.namprd11.prod.outlook.com
- ([fe80::c06c:bf95:b3f4:198d]) by SA1PR11MB6991.namprd11.prod.outlook.com
- ([fe80::c06c:bf95:b3f4:198d%5]) with mapi id 15.20.7362.017; Tue, 16 Apr 2024
- 15:51:24 +0000
-From: "Zeng, Oak" <oak.zeng@intel.com>
-To: "Brost, Matthew" <matthew.brost@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH 01/13] drm/xe: Lock all gpuva ops during VM bind IOCTL
-Thread-Topic: [PATCH 01/13] drm/xe: Lock all gpuva ops during VM bind IOCTL
-Thread-Index: AQHaiwme933Fwvd50EaGbjvGNwfAqbFrBfOg
-Date: Tue, 16 Apr 2024 15:51:24 +0000
-Message-ID: <SA1PR11MB6991AC5A46A3177C4742AEE292082@SA1PR11MB6991.namprd11.prod.outlook.com>
-References: <20240410054056.478023-1-matthew.brost@intel.com>
- <20240410054056.478023-2-matthew.brost@intel.com>
-In-Reply-To: <20240410054056.478023-2-matthew.brost@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SA1PR11MB6991:EE_|SA0PR11MB4767:EE_
-x-ms-office365-filtering-correlation-id: 0e89bef5-b356-4c4d-041a-08dc5e2d11c8
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: eyLxXLobxfksxhqDQ5KuKk+IzaefXHLO8GC8SXiwUd5tw/fux4aYqo2FKI6RHMqSNea9G1eWhKQfCyHCNHnOmrQCywfCwF416CyjWjM8ZnPD3SgcJW4pWHQN9jT40XZ6AElNZQfzAwyErCtU/IyO+7xGfLLQJrEmLQd6ANtHPY4gkwzU1/kh9nRawbm64LAqcZv0ehnYcOkUYShWXwa2F183sImf9BwqAgnGpazy/6Xuo52WJrnDgf7/lqQKJPrECzMoMGBpl2ybcM1ELWHk4lMsWeucWNLQ8dgM3jxF/DqLgTsP7pT3TV5R4fZ0mXHtyQJNiIs9FXBBy3Y9MwbPUeLq+ycTi7f5knr5O2+j8zgeszdHAWkyGfo1LviXB4JYQ4175LbvCZabRH3jCiAS+Ma149t6cqN6KxKAS8Ak6X1kiUEVZ/5hrmsWyZYlkKT0hRdUBzNczCUY7g32lsHvF6CHZFIRv4+fflXk0peyNvNPD3O+ujDRisxs+mtR4XB4t+RkLnoSXRjK3BN2BXQuAo+tFi1X+XkAqTtsx9EKwEqSf59Ct6FKvZdmsTjNsi9+hTLNdamjp8BfsSB0Jvv7LVkswr7e8V4MA7+7H81jyljNxQq99fiw8J8llGpF2EfgddEXRw8ZXciHfY/k0DeOg5jct3BlGDcbOOto92Jrq01sdo5+jiv/KnrgIovHgfjasidrkPqX/aUYdUGQKZS0M3qzd5DOzCsjWJ8N+I9vjSI=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA1PR11MB6991.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(366007)(1800799015)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?3dTs4ydw27j6lxWfcVNOFy623W9OJAUmShB/PKXskBlKQ7gy0+MD88HZb8D7?=
- =?us-ascii?Q?Q5JexKEhGK6wfRYKHzqcykUNFkSO6AWAL/yUsVA/ivGLYquu1YDlsjg+LBNX?=
- =?us-ascii?Q?5VK1Z3SppyljYiXfKa8jXd592Bg3t9+f+29Bd3Jrepu3k+IpGdlYrUP7BFmh?=
- =?us-ascii?Q?PIt4zmG9vxv32LHyOFtkP498DIjUt7VP3Q0eq4/FM54lBvmZ06DHJ6MWExDD?=
- =?us-ascii?Q?GAfossJ7BmX21goWsKE6SJ0dcDbSbLboKlNfxtwvmFJ7q+gFfmuNZ/GzIntP?=
- =?us-ascii?Q?vD4dQoGbseFYg7KSZFeJstCSysGnFDOfDXTxz+YVWKxce8dErHxA/xyZCISQ?=
- =?us-ascii?Q?IEtsmDyH5cTmJEBYJLiGcqc49fDdNtIOAOAUsSnlFFaBqrgjARF0XPCwAAW3?=
- =?us-ascii?Q?u3xgC70wIaXyF0ylZJJPS7oGNDu9Yf2ueRg/bcX/Aa3DZYnzsJJtnyDQSy52?=
- =?us-ascii?Q?IC1Vs+8KdLm6+iPY8vu61H0+ZnNbFtX7QVrjv6fcgOm8I/nCUE7WykSWoUUm?=
- =?us-ascii?Q?/8AFDq7Q9SnsPN1jy7EkXvzH42z68m9QxsjU+6XuJnDZer5gyv+7ZlUk56DH?=
- =?us-ascii?Q?mLf57uMdDf7MdI7ms3IKtDenoiSY7l4GqiWw+c4js8VnVj0sr95jhBcj8x7K?=
- =?us-ascii?Q?sZbE2lp/knp4PS3udENaTdGmm4hz8pmT9ThqCO9LSlT9b97WwZelCBW6j1QF?=
- =?us-ascii?Q?IDwSzcflEZVExCcZaQF9HZAmBy7GUDCuXuI3U3tNZ1MhUErbbi2iYn362CXo?=
- =?us-ascii?Q?2FCHq/mZZ1VmdsyM7f9P3/SrofLaLdPJfsxfFad2JHBzf1htgt7/PDD453E7?=
- =?us-ascii?Q?2vGDCPsEFOnLOE2sYKifrNfjT16n4CZTlCztcl2MKt4FSnjQocXOw4OKR2Vz?=
- =?us-ascii?Q?fVJDZDSVIG24wL6UZOM0OHJhqkSM/NlsnIHIKRzJleHCCgRclM9H3f3MPkMq?=
- =?us-ascii?Q?Zh2uGThWdL9oL97/uzAfQMZDRkoo0L+uMqaLOupMISf4D6KzNG2oIXAgHoW4?=
- =?us-ascii?Q?CyX1A8aAvZmBr2RohqFgZRlQ/N0OR966BOqLHp7ky/fid6gn8d4QWmPOGgM3?=
- =?us-ascii?Q?fcw0EkVB5ryLEw5/qxm4vmxh5/QMtYHW7ZT0xHHLiN0fza70+fsgpxvVo/q6?=
- =?us-ascii?Q?niPw6EnZZBZRJd0SNOI/qLL6LmOHwzIxnrRtPms0F9ntTXAiui/N5wguEEb3?=
- =?us-ascii?Q?5D1h+BUGjRyNZMe4i4ic1hVA6OSnkQDSbslwFevEXPIZ691eRtdz+s/LDi3m?=
- =?us-ascii?Q?nue5dIQcyv9YSLZTrHSIAo1WhPcN32Q/TE02F/u4/Aa6YLUKkjroQzq8o95i?=
- =?us-ascii?Q?h4CEVED4SFmiUCENxYOktoCvkXve508GvyQ5KHPwaFg/vUcGIhU+BC/smiI3?=
- =?us-ascii?Q?uvOud4Zkgejxu6WqGvFxteHvtMOdDmS5Q3r+ixEnnEvfYyr4s6NdAS9ND9EA?=
- =?us-ascii?Q?QAjRzf8cWcv9seUj9/iNQEko8idSEQL28mNtHq5CwoLbJhNYC2ZOCM7ScyOV?=
- =?us-ascii?Q?LOX3CCU/PGpYiSpdbYJ5YDCVllJcAKlCFhV9/aoaMmKHHr3clTeOtJ1hRj9M?=
- =?us-ascii?Q?nN7f9OepoZPP8MNxhk8=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by SA2PR11MB4873.namprd11.prod.outlook.com (2603:10b6:806:113::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.26; Tue, 16 Apr
+ 2024 15:53:42 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::e9dd:320:976f:e257]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::e9dd:320:976f:e257%4]) with mapi id 15.20.7472.025; Tue, 16 Apr 2024
+ 15:53:42 +0000
+Date: Tue, 16 Apr 2024 10:53:39 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: "Vivekanandan, Balasubramani" <balasubramani.vivekanandan@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Umesh Nerlige Ramappa
+ <umesh.nerlige.ramappa@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>
+Subject: Re: [PATCH 2/7] drm/xe: Add helper to capture context runtime
+Message-ID: <kqmmb46bjzebl73knydivy3ehchirsvuwdyhuope72fmzdpxbd@cyxieg2yc7xx>
+References: <20240416030454.3739862-1-lucas.demarchi@intel.com>
+ <20240416030454.3739862-3-lucas.demarchi@intel.com>
+ <Zh4L9YhWnN5_CEKP@bvivekan-mobl2>
+ <5yckw2zkfkdzlv6gjx77tmrtfpqrxe7yoywtgvbdzslnamyfha@lrfctmrwcqn5>
+ <Zh6dDMMFsBMLPIbK@bvivekan-mobl2>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <Zh6dDMMFsBMLPIbK@bvivekan-mobl2>
+X-ClientProxiedBy: SJ0PR13CA0088.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::33) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA2PR11MB4873:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9b8adf63-de7d-4595-128e-08dc5e2d63d7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Xm2GtotbNvw8Nx3PbVSO8wca34QRuwXxUbW1D0j8f0WG/YKYZwWmxwPAqNXy5nGUXITeeqbubiyov4vK9kibNgYu6fssANfCxDexE+68YfiPwbQ1SLWNYLXM6TyOEdwKvnX6wG17dTd+W+1UJ+GcTYZYEvV6X6T6qFrnCKY64IRFLJl0gCqQjuB+OCyNBZc0mvCRVpOsUd60yc+XR2du4bEu0HqagL/OLuygNvSl30E4dnUgWAyq4FAuSPi7MX55ZBKtOph2kKBUwCZ4Dmokl7yXzHtZOdZMmJLKd/rBmW+AZyoJ+Ekh8Kn3DSe6u4i4CeG5JtQ7stv+TnXlgZK+FAPq9GR1WYRXvbVVJFWcyz54k49p5Grbw3nbNJ/N5OkGINuS1fnY7pWQUaiUZ/9kh256An8TV3V1Ve1S0c6Yqia1ZKy6iY/slbRv1udFM1c0uvbZjHN8hfJjq118s5483+PCeeM5kzGymKr1jxqttoaqDlkXw4/IgAjxppVrtlDoReI3ZApkdGygrcy/hhx0FO8sCJLIOvuO+o+NEtxOoreNrHgMYVV/ve2hgA8Oq+AY6oxuJVJoQGH2erJzE2mBzF7+edwq1W9szFQ2ZES+7otdiwcbpEpSFZancP3XSVnHqoGYyUqPyH0/CsLC/UTAjlNH3ENvKCbCjXtZRtZHr9E=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3slaEj2YGKqrZn9MAJnfBs5ABrhlm69O1rYXax69CCrKRP2/esCM/y8dsEH7?=
+ =?us-ascii?Q?C3Rk4lj/5OIdtWwphIdeqaWy6loWJVnYv1b6jhcsraVWTltCr0P4CHkrEiC1?=
+ =?us-ascii?Q?8PkB+CeiOptsPXdjo62v283rYmba3yvp9dgNddeF0z0ZqAClInjRD5MWQ6Bs?=
+ =?us-ascii?Q?dukWnxvD8maiVgHWpZM6gr1rxdxUcVpglpwhGXkNflYsf7Ok1b72ywtHcub9?=
+ =?us-ascii?Q?qzV0YcHGhkqoFz34IRJITTesz2imRIDBTUaRgSUfQbwnfno4FRBE7b2O/hkd?=
+ =?us-ascii?Q?aD8hfeHmlVgFZTivhfSzUqtsYcZb95KmsemsZSUHBdMglVGxb09IH0aKZ5uc?=
+ =?us-ascii?Q?efXtt1YX1UadJ9lyk72xbczvx0YHGLhBpt61u1LTka6MaZXTo7LKdlanZ7T7?=
+ =?us-ascii?Q?s3N2IDTfXIkCoj971DYQA4NNAY8AGLJuxV6bAfj0LQHIFlHsDqLs5UcQlxoS?=
+ =?us-ascii?Q?zcXyemtvtKk6pvDddfq4GqGpUjqCzYcBIcmp5cYnm7qt5RVoQRBHNPsQwjvz?=
+ =?us-ascii?Q?TsUGMEgUE6Qr9pvLzFsA2daGeMECxdft1bKzgBu1ReEMHbhkA8OnOabZA6Ky?=
+ =?us-ascii?Q?Z49yMvXBPD/mw8SyyNDilw/ReP+pRTztqJ9iyhPBFEKPEQT4HJvqfHjfGjoK?=
+ =?us-ascii?Q?/CIruvPnlW0yw9Tf/ZIq6Oph9yFw2sSl0cJUr1A+hToko5NojvzPt3BfdqXt?=
+ =?us-ascii?Q?3h+2/Ay3BIsbvH1bTMHMqG+oJCZava3rXKiupzYHLB//O/cSjAYr6AF1HRKn?=
+ =?us-ascii?Q?oafOYLcwXfYLy83gZzk5bU8pieBbnB23ZH7/e2kOtg/lI0/aPcvleufv254A?=
+ =?us-ascii?Q?MX+20W+2y0ym/c6H0CBO53GoBIRrrDtTnewL8a38IZwwLuIXxyNPeZYjq5JM?=
+ =?us-ascii?Q?5dLX5iCNfS2zvHAThEqTezFwM7Le9ia4Kdy7KrpsC75PAc8d/p5gQp4KskYz?=
+ =?us-ascii?Q?haRudoLz0ctD4O/girijymDBMRtwZnNYszftQMLDx2osCzQynWaAPCzRhQtX?=
+ =?us-ascii?Q?fi3sa3IuhZJM2wrv9N0/RFFFYaLDEZQp7Bzj4VYIbxQY6n7ynlfK+9TWEc9u?=
+ =?us-ascii?Q?8aXa/0k2RkLYYKyBoLTAwIpUMbAe7lTT/WjyxevP8zjIPgpVGekqGSg7x7TR?=
+ =?us-ascii?Q?CPYoPKedwgR5TKJtSjfUU+w4l//WlV3tJRX5PlBd8N9M+IE6nrCfYzmyyAOE?=
+ =?us-ascii?Q?3NTLfOkrWjM44Ssx4BMHaBNOJUnrqgs3QA90oLxbiJ+I+407R4T4k0kT73Se?=
+ =?us-ascii?Q?wFdug6i7vCptyV+c81/hz+nfPCc+5ic1BIfyOkceuCUzsZHWqjfUApadKT63?=
+ =?us-ascii?Q?GQ7ugnDGApunqc/jp/dcFnNrQG0CH4OwH8JRmZVts5daz0qZ0pJaLB+9rHYs?=
+ =?us-ascii?Q?ZivS6tH0o2PfO1KqeTP1s1OiAsFKJ22loa/OOtGspkwVJdbHdCJ2viJi9WO0?=
+ =?us-ascii?Q?ZQqyqKvgAdMoP5Tyku1g0U8mHcfzU/svQIFB9Va3ccy2vNy3GF50bPY0JJG1?=
+ =?us-ascii?Q?L61e17jzkuUTy48lq1S/AuiWguGpuZQXCYQefIG+xCLdffis1levzzV+7dfe?=
+ =?us-ascii?Q?xPnpkdHCyuB9i2dpLXPJ9oZNjgcMVh8i7xzwX7MutZmNp7oJSTgCT3qma21v?=
+ =?us-ascii?Q?MA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9b8adf63-de7d-4595-128e-08dc5e2d63d7
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB6991.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0e89bef5-b356-4c4d-041a-08dc5e2d11c8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Apr 2024 15:51:24.4257 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: zy9npXOhW3bsRsKJnCU8u9Q68+/9gBkVo7iniAQd0cd8ZyVmeE8ZUBbjscJ656xK7rAsTAnlrR8wFRAV2y1D6w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4767
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2024 15:53:42.3032 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: JJLmODqlqoakv2g7/If2nF0Y0HkI+2zPp4qFwg3OVjN7NGrd4HgZngEXoJyF3tm47uXHx6ya/VuG97drz0lBTrGDaKV8YgSoLQsqNVI4zAc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4873
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -154,292 +156,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Tue, Apr 16, 2024 at 09:15:16PM +0530, Vivekanandan, Balasubramani wrote:
+>On 16.04.2024 08:42, Lucas De Marchi wrote:
+>> On Tue, Apr 16, 2024 at 10:56:13AM +0530, Vivekanandan, Balasubramani wrote:
+>> > On 15.04.2024 20:04, Lucas De Marchi wrote:
+>> > > From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>> > >
+>> > > Add a helper to update the runtime of an exec_queue accumulate it at 2
+>> > > places:
+>> > >
+>> > > 1. when the exec_queue is destroyed
+>> > > 2. when the sched job is completed
+>> > >
+>> > > Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>> > > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> > > ---
+>> > >  drivers/gpu/drm/xe/xe_device_types.h |  9 +++++++
+>> > >  drivers/gpu/drm/xe/xe_exec_queue.c   | 37 ++++++++++++++++++++++++++++
+>> > >  drivers/gpu/drm/xe/xe_exec_queue.h   |  1 +
+>> > >  drivers/gpu/drm/xe/xe_sched_job.c    |  2 ++
+>> > >  4 files changed, 49 insertions(+)
+>> > >
+>> > > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+>> > > index 60ced5f90c2b..f6632b4d8399 100644
+>> > > --- a/drivers/gpu/drm/xe/xe_device_types.h
+>> > > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+>> > > @@ -553,6 +553,15 @@ struct xe_file {
+>> > >  		struct mutex lock;
+>> > >  	} exec_queue;
+>> > >
+>> > > +	/**
+>> > > +	 * @runtime: hw engine class runtime in ticks for this drm client
+>> > > +	 *
+>> > > +	 * Only stats from xe_exec_queue->lrc[0] are accumulated. For multi-lrc
+>> > > +	 * case, since all jobs run in parallel on the engines, only the stats
+>> > > +	 * from lrc[0] are sufficient.
+>> > > +	 */
+>> > > +	u64 runtime[XE_ENGINE_CLASS_MAX];
+>> > > +
+>> > >  	/** @client: drm client */
+>> > >  	struct xe_drm_client *client;
+>> > >  };
+>> > > diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+>> > > index 71bd52dfebcf..c752d292fd33 100644
+>> > > --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+>> > > +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+>> > > @@ -214,6 +214,8 @@ void xe_exec_queue_fini(struct xe_exec_queue *q)
+>> > >  {
+>> > >  	int i;
+>> > >
+>> > > +	xe_exec_queue_update_runtime(q);
+>> > > +
+>> > >  	for (i = 0; i < q->width; ++i)
+>> > >  		xe_lrc_finish(q->lrc + i);
+>> > >  	if (!(q->flags & EXEC_QUEUE_FLAG_PERMANENT) && (q->flags & EXEC_QUEUE_FLAG_VM || !q->vm))
+>> > > @@ -769,6 +771,41 @@ bool xe_exec_queue_is_idle(struct xe_exec_queue *q)
+>> > >  		q->lrc[0].fence_ctx.next_seqno - 1;
+>> > >  }
+>> > >
+>> > > +/**
+>> > > + * xe_exec_queue_update_runtime() - Update runtime for this exec queue from hw
+>> > > + * @q: The exec queue
+>> > > + *
+>> > > + * Update the timestamp saved by HW for this exec queue and save runtime
+>> > > + * calculated by using the delta from last update. On multi-lrc case, only the
+>> > > + * first is considered.
+>> > > + */
+>> > > +void xe_exec_queue_update_runtime(struct xe_exec_queue *q)
+>> > > +{
+>> > > +	struct xe_file *xef;
+>> > > +	struct xe_lrc *lrc;
+>> > > +	u32 old_ts, new_ts;
+>> > > +
+>> > > +	/*
+>> > > +	 * Jobs that are run during driver load may use an exec_queue, but are
+>> > > +	 * not associated with a user xe file, so avoid accumulating busyness
+>> > > +	 * for kernel specific work.
+>> > > +	 */
+>> > > +	if (!q->vm || !q->vm->xef)
+>> > > +		return;
+>> > > +
+>> > > +	xef = q->vm->xef;
+>> > > +	lrc = &q->lrc[0];
+>> > > +
+>> > > +	new_ts = xe_lrc_update_timestamp(lrc, &old_ts);
+>> > > +
+>> > > +	/*
+>> > > +	 * Special case the very first timestamp: we don't want the
+>> > > +	 * initial delta to be a huge value
+>> > > +	 */
+>> > > +	if (old_ts)
+>> > > +		xef->runtime[q->class] += new_ts - old_ts;
+>> > What is the need for accumulating the delta instead of using the
+>> > absolute timestamp read from CTX_TIMESTAMP?
+>> > This would break if xe_lrc_update_timestamp() is called from some
+>> > additional places in future. The delta would be incorrect.
+>>
+>> can you clarify the breakage?
+>>
+>> - CTX_TIMESTAMP is per context (or exec_queue if you want to use the sw
+>>   name)
+>> - Reported runtime is per client.
+>> - any update to xef->runtime[] should only ever be done by
+>>   xe_lrc_update_timestamp()
+>>
+>> Anytime xe_lrc_update_timestamp() is called, it updates the timestamp,
+>> saves the new one in the lrc, and updates the delta in the xef. The
+>Everytime xe_lrc_update_timestamp() is invoked, it reads the
+>CTX_TIMESTAMP and caches it in lrc. The value in lrc is updated on every
+>invoke of xe_lrc_update_timestamp().
+>xe_exec_queue_update_runtime() is using the delta between the new value
+>from CTX_TIMESTAMP and the value stored in lrc. In this series,
+>xe_lrc_update_timestamp() is called only from
+>xe_exec_queue_update_runtime(). But there is nothing blocking from
+>xe_lrc_update_timestamp() being called from some other place in future.
+
+there is nothing blocking it, but it would be the wrong thing to do.
+
+Just like there's nothing blocking a call to e.g. xe_guc_ads_populate(),
+but calling it willing nilly is the wrong thing to do.
+
+xe_lrc_update_timestamp() shouldn't be called from other places. The
+alternative would be to move the logic to be all inside
+xe_exec_queue_update_runtime(), but it would be breaking one abstraction
+layer to make xe_exec_queue_ know about the lrc layout. And that I
+consider worse than what's here.
 
 
-> -----Original Message-----
-> From: Brost, Matthew <matthew.brost@intel.com>
-> Sent: Wednesday, April 10, 2024 1:41 AM
-> To: intel-xe@lists.freedesktop.org
-> Cc: Brost, Matthew <matthew.brost@intel.com>; Zeng, Oak
-> <oak.zeng@intel.com>
-> Subject: [PATCH 01/13] drm/xe: Lock all gpuva ops during VM bind IOCTL
->=20
-> Lock all BOs used in gpuva ops and validate all BOs in a single step
-> during the VM bind IOCTL.
->=20
-> This help with the transition to making all gpuva ops in a VM bind IOCTL
-> a single atomic job which is required for proper error handling.
->=20
-> v2:
->  - Better commit message (Oak)
->  - s/op_lock/op_lock_and_prep, few other renames too (Oak)
->  - Use DRM_EXEC_IGNORE_DUPLICATES flag in drm_exec_init (local testing)
->  - Do not reserve slots in locking step (direction based on series from T=
-homas)
->=20
-> Cc: Oak Zeng <oak.zeng@intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_vm.c | 147 +++++++++++++++++++++++++++----------
->  1 file changed, 107 insertions(+), 40 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 66b70fd3d105..6375c136e21a 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -414,19 +414,23 @@ int __xe_vm_userptr_needs_repin(struct xe_vm *vm)
->=20
->  #define XE_VM_REBIND_RETRY_TIMEOUT_MS 1000
->=20
-> -static void xe_vm_kill(struct xe_vm *vm)
-> +static void xe_vm_kill(struct xe_vm *vm, bool unlocked)
->  {
->  	struct xe_exec_queue *q;
->=20
->  	lockdep_assert_held(&vm->lock);
->=20
-> -	xe_vm_lock(vm, false);
-> +	if (unlocked)
-> +		xe_vm_lock(vm, false);
-> +
->  	vm->flags |=3D XE_VM_FLAG_BANNED;
->  	trace_xe_vm_kill(vm);
->=20
->  	list_for_each_entry(q, &vm->preempt.exec_queues, compute.link)
->  		q->ops->kill(q);
-> -	xe_vm_unlock(vm);
-> +
-> +	if (unlocked)
-> +		xe_vm_unlock(vm);
->=20
->  	/* TODO: Inform user the VM is banned */
->  }
-> @@ -656,7 +660,7 @@ static void preempt_rebind_work_func(struct
-> work_struct *w)
->=20
->  	if (err) {
->  		drm_warn(&vm->xe->drm, "VM worker error: %d\n", err);
-> -		xe_vm_kill(vm);
-> +		xe_vm_kill(vm, true);
->  	}
->  	up_write(&vm->lock);
->=20
-> @@ -1876,17 +1880,9 @@ static int xe_vm_bind(struct xe_vm *vm, struct
-> xe_vma *vma, struct xe_exec_queue
->  		      u32 num_syncs, bool immediate, bool first_op,
->  		      bool last_op)
->  {
-> -	int err;
-> -
->  	xe_vm_assert_held(vm);
->  	xe_bo_assert_held(bo);
->=20
-> -	if (bo && immediate) {
-> -		err =3D xe_bo_validate(bo, vm, true);
+>In that case, the cached value in lrc would be updated by that
+>invocation outside of xe_exec_queue_update_runtime(). So the next time
+>xe_exec_queue_update_runtime() calls xe_lrc_update_timestamp(), it would
+>have lost a update.
+>
+>> value in xef is the **runtime** for all the exec_queues created by that
+>> client, per engine class.
+>>
+>> Note that we already call it from multiple places with this patch
+>No, xe_lrc_update_timestamp() is called only from
+>xe_exec_queue_update_runtime(). But it is xe_exec_queue_update_runtime()
+>which is called from multiple places.
 
-In this original code, bo validate is conditional to this immediate bind fl=
-ag. This flag is from DRM_XE_VM_BIND_FLAG_IMMEDIATE. It seems later in this=
- patch, the immediate flag is not used any more... can you explain? See bel=
-ow
+I thought you were referring to xe_exec_queue_update_runtime(), not
+xe_lrc_update_timestamp().
 
-> -		if (err)
-> -			return err;
-> -	}
-> -
->  	return __xe_vm_bind(vm, vma, q, syncs, num_syncs, immediate,
-> first_op,
->  			    last_op);
->  }
-> @@ -2539,17 +2535,13 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm
-> *vm, struct xe_exec_queue *q,
->  	return 0;
->  }
->=20
-> -static int op_execute(struct drm_exec *exec, struct xe_vm *vm,
-> -		      struct xe_vma *vma, struct xe_vma_op *op)
-> +static int op_execute(struct xe_vm *vm, struct xe_vma *vma,
-> +		      struct xe_vma_op *op)
->  {
->  	int err;
->=20
->  	lockdep_assert_held_write(&vm->lock);
->=20
-> -	err =3D xe_vm_lock_vma(exec, vma);
-> -	if (err)
-> -		return err;
-> -
->  	xe_vm_assert_held(vm);
->  	xe_bo_assert_held(xe_vma_bo(vma));
->=20
-> @@ -2630,19 +2622,10 @@ static int op_execute(struct drm_exec *exec,
-> struct xe_vm *vm,
->  static int __xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
->  			       struct xe_vma_op *op)
->  {
-> -	struct drm_exec exec;
->  	int err;
->=20
->  retry_userptr:
-> -	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
-> -	drm_exec_until_all_locked(&exec) {
-> -		err =3D op_execute(&exec, vm, vma, op);
-> -		drm_exec_retry_on_contention(&exec);
-> -		if (err)
-> -			break;
-> -	}
-> -	drm_exec_fini(&exec);
-> -
-> +	err =3D op_execute(vm, vma, op);
->  	if (err =3D=3D -EAGAIN) {
->  		lockdep_assert_held_write(&vm->lock);
->=20
-> @@ -2807,29 +2790,113 @@ static void vm_bind_ioctl_ops_unwind(struct
-> xe_vm *vm,
->  	}
->  }
->=20
-> +static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *v=
-ma,
-> +				 bool validate)
-> +{
-> +	struct xe_bo *bo =3D xe_vma_bo(vma);
-> +	int err =3D 0;
-> +
-> +	if (bo) {
-> +		if (!bo->vm)
-> +			err =3D drm_exec_prepare_obj(exec, &bo->ttm.base, 0);
-> +		if (!err && validate)
-> +			err =3D xe_bo_validate(bo, xe_vma_vm(vma), true);
-> +	}
-> +
-> +	return err;
-> +}
-> +
-> +static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
-> +			    struct xe_vma_op *op)
-> +{
-> +	int err =3D 0;
-> +
-> +	switch (op->base.op) {
-> +	case DRM_GPUVA_OP_MAP:
-> +		err =3D vma_lock_and_validate(exec, op->map.vma,
-> +					    !xe_vm_in_fault_mode(vm));
+Lucas De Marchi
 
-I meant here, should the last parameter be: !xe_vm_in_fault_mode(vm) && IMM=
-EDIATE flag? Or maybe the IMMEDIATE flag is deleted? I did see it in xe_vm.=
-c:
-
-2796 #define SUPPORTED_FLAGS \
-2797     (DRM_XE_VM_BIND_FLAG_READONLY | \
-2798      DRM_XE_VM_BIND_FLAG_IMMEDIATE | \
-2799      DRM_XE_VM_BIND_FLAG_NULL | \
-
-Oak
-
-
-> +		break;
-> +	case DRM_GPUVA_OP_REMAP:
-> +		err =3D vma_lock_and_validate(exec,
-> +					    gpuva_to_vma(op-
-> >base.remap.unmap->va),
-> +					    false);
-> +		if (!err && op->remap.prev)
-> +			err =3D vma_lock_and_validate(exec, op->remap.prev,
-> true);
-> +		if (!err && op->remap.next)
-> +			err =3D vma_lock_and_validate(exec, op->remap.next,
-> true);
-> +		break;
-> +	case DRM_GPUVA_OP_UNMAP:
-> +		err =3D vma_lock_and_validate(exec,
-> +					    gpuva_to_vma(op->base.unmap.va),
-> +					    false);
-> +		break;
-> +	case DRM_GPUVA_OP_PREFETCH:
-> +		err =3D vma_lock_and_validate(exec,
-> +					    gpuva_to_vma(op-
-> >base.prefetch.va), true);
-> +		break;
-> +	default:
-> +		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
-> +	}
-> +
-> +	return err;
-> +}
-> +
-> +static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
-> +					   struct xe_vm *vm,
-> +					   struct list_head *ops_list)
-> +{
-> +	struct xe_vma_op *op;
-> +	int err;
-> +
-> +	err =3D drm_exec_prepare_obj(exec, xe_vm_obj(vm), 0);
-> +	if (err)
-> +		return err;
-> +
-> +	list_for_each_entry(op, ops_list, link) {
-> +		err =3D op_lock_and_prep(exec, vm, op);
-> +		if (err)
-> +			return err;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
->  				     struct list_head *ops_list)
->  {
-> +	struct drm_exec exec;
->  	struct xe_vma_op *op, *next;
->  	int err;
->=20
->  	lockdep_assert_held_write(&vm->lock);
->=20
-> -	list_for_each_entry_safe(op, next, ops_list, link) {
-> -		err =3D xe_vma_op_execute(vm, op);
-> -		if (err) {
-> -			drm_warn(&vm->xe->drm, "VM op(%d) failed with %d",
-> -				 op->base.op, err);
-> -			/*
-> -			 * FIXME: Killing VM rather than proper error handling
-> -			 */
-> -			xe_vm_kill(vm);
-> -			return -ENOSPC;
-> +	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT |
-> +		      DRM_EXEC_IGNORE_DUPLICATES, 0);
-> +	drm_exec_until_all_locked(&exec) {
-> +		err =3D vm_bind_ioctl_ops_lock_and_prep(&exec, vm, ops_list);
-> +		drm_exec_retry_on_contention(&exec);
-> +		if (err)
-> +			goto unlock;
-> +
-> +		list_for_each_entry_safe(op, next, ops_list, link) {
-> +			err =3D xe_vma_op_execute(vm, op);
-> +			if (err) {
-> +				drm_warn(&vm->xe->drm, "VM op(%d) failed
-> with %d",
-> +					 op->base.op, err);
-> +				/*
-> +				 * FIXME: Killing VM rather than proper error
-> handling
-> +				 */
-> +				xe_vm_kill(vm, false);
-> +				err =3D -ENOSPC;
-> +				goto unlock;
-> +			}
-> +			xe_vma_op_cleanup(vm, op);
->  		}
-> -		xe_vma_op_cleanup(vm, op);
->  	}
->=20
-> -	return 0;
-> +unlock:
-> +	drm_exec_fini(&exec);
-> +	return err;
->  }
->=20
->  #define SUPPORTED_FLAGS	\
-> --
-> 2.34.1
-
+>
+>Regards,
+>Bala
+>
+>> series:
+>>
+>> 1. when the exec_queue is destroyed
+>> 2. when the sched job is completed
+>> 3. when userspace queries the runtime
+>>
+>> ... so I don't think I understood what would break.
+>>
+>> Lucas De Marchi
