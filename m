@@ -4,84 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2668FC04FFF
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Apr 2024 12:19:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A32FC04FF6
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Apr 2024 12:21:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE6D4112C1C;
-	Tue, 16 Apr 2024 12:19:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03E61112C24;
+	Tue, 16 Apr 2024 12:21:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="wdopkbdq";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="PYKdx0B3";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="wdopkbdq";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="PYKdx0B3";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="sizbC0Sy";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="IPWjMZvb";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="sizbC0Sy";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="IPWjMZvb";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D781112C1A;
- Tue, 16 Apr 2024 12:19:07 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B000C112C23;
+ Tue, 16 Apr 2024 12:21:38 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 767A8373DA;
- Tue, 16 Apr 2024 12:19:06 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 3BC3F5F7B7;
+ Tue, 16 Apr 2024 12:21:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1713269946; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1713270097; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=SG9LgJTPJWeVdN2wv4tQ/5V2BEOa+enYxvxU9lAmf8M=;
- b=wdopkbdqwqgDxPNOrk/be93Rh/gQiEpbzOylkj3sPPGdMJJcNdLRpbSCpEBIA4gG0Q4LlU
- RLsE9WyO996CJ4WSMQ4wNTxKMK4D1nvewFr354eedc/WmBOoGvT38EyKEFA/oJ7CBm7Hym
- OUaaq6FhCqdYBPJiB8A+nOtB/ppyfqM=
+ bh=5GlQjzXybNZYQ+OpKWyZEnlATF0dizVQocwZgqxfwWg=;
+ b=sizbC0SynqP4hb+sovRMbF3l1FxmsaAyMnMp9WYu+oBwIcIpDKy7gDhwXrEDenj+8Y1NLz
+ gRZIP06L1SZiVfJAU7NFXtcOFoqgzrAYljbg6BwO1x1iTntPHscGmcH1Vni+WZoAX4aJ8j
+ u/zpVWlKLl+tMdbp/MafolruKDAUztU=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1713269946;
+ s=susede2_ed25519; t=1713270097;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=SG9LgJTPJWeVdN2wv4tQ/5V2BEOa+enYxvxU9lAmf8M=;
- b=PYKdx0B3LhBKsMD3GroH7w4jVs5I+SFUSHYtfU2ggVJpCfsrEEPIVTjtOlXH9MbOWD9I3h
- EgCEOjwwNaQyGADA==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=wdopkbdq;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=PYKdx0B3
+ bh=5GlQjzXybNZYQ+OpKWyZEnlATF0dizVQocwZgqxfwWg=;
+ b=IPWjMZvbzXRppnDilLnEcyVeme0wIpy++wZpbEE+xfMyD4LyRcANz5vFET1xIdaEwPcCKl
+ rElTJVwnXlgRzYBw==
+Authentication-Results: smtp-out2.suse.de;
+	none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1713269946; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1713270097; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=SG9LgJTPJWeVdN2wv4tQ/5V2BEOa+enYxvxU9lAmf8M=;
- b=wdopkbdqwqgDxPNOrk/be93Rh/gQiEpbzOylkj3sPPGdMJJcNdLRpbSCpEBIA4gG0Q4LlU
- RLsE9WyO996CJ4WSMQ4wNTxKMK4D1nvewFr354eedc/WmBOoGvT38EyKEFA/oJ7CBm7Hym
- OUaaq6FhCqdYBPJiB8A+nOtB/ppyfqM=
+ bh=5GlQjzXybNZYQ+OpKWyZEnlATF0dizVQocwZgqxfwWg=;
+ b=sizbC0SynqP4hb+sovRMbF3l1FxmsaAyMnMp9WYu+oBwIcIpDKy7gDhwXrEDenj+8Y1NLz
+ gRZIP06L1SZiVfJAU7NFXtcOFoqgzrAYljbg6BwO1x1iTntPHscGmcH1Vni+WZoAX4aJ8j
+ u/zpVWlKLl+tMdbp/MafolruKDAUztU=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1713269946;
+ s=susede2_ed25519; t=1713270097;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=SG9LgJTPJWeVdN2wv4tQ/5V2BEOa+enYxvxU9lAmf8M=;
- b=PYKdx0B3LhBKsMD3GroH7w4jVs5I+SFUSHYtfU2ggVJpCfsrEEPIVTjtOlXH9MbOWD9I3h
- EgCEOjwwNaQyGADA==
+ bh=5GlQjzXybNZYQ+OpKWyZEnlATF0dizVQocwZgqxfwWg=;
+ b=IPWjMZvbzXRppnDilLnEcyVeme0wIpy++wZpbEE+xfMyD4LyRcANz5vFET1xIdaEwPcCKl
+ rElTJVwnXlgRzYBw==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5533013931;
- Tue, 16 Apr 2024 12:19:06 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 1B79F13931;
+ Tue, 16 Apr 2024 12:21:37 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([10.150.64.162])
- by imap1.dmz-prg2.suse.org with ESMTPSA id uyaHE7psHmb8PQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Tue, 16 Apr 2024 12:19:06 +0000
-Message-ID: <fb57c317-25ec-4001-abb4-cb52b0aff741@suse.de>
-Date: Tue, 16 Apr 2024 14:19:05 +0200
+ by imap1.dmz-prg2.suse.org with ESMTPSA id hFp5BVFtHmbpPgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 16 Apr 2024 12:21:37 +0000
+Message-ID: <a2e36f83-0e5c-4a57-bf31-37665f8ece71@suse.de>
+Date: Tue, 16 Apr 2024 14:21:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [REBASE 5/7] drm/edid: avoid drm_edid_find_extension() internally
+Subject: Re: [REBASE 7/7] drm/edid: make drm_edid_are_equal() more convenient
+ for its single user
 To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 References: <cover.1713259151.git.jani.nikula@intel.com>
- <9fa366147b06a28304527be48f1b363c3484c8a3.1713259151.git.jani.nikula@intel.com>
+ <1011a285d30babce3aabd8218abb7ece7dcf58a2.1713259151.git.jani.nikula@intel.com>
 Content-Language: en-US
 From: Thomas Zimmermann <tzimmermann@suse.de>
 Autocrypt: addr=tzimmermann@suse.de; keydata=
@@ -108,28 +107,22 @@ Autocrypt: addr=tzimmermann@suse.de; keydata=
  SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
  Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
  4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <9fa366147b06a28304527be48f1b363c3484c8a3.1713259151.git.jani.nikula@intel.com>
+In-Reply-To: <1011a285d30babce3aabd8218abb7ece7dcf58a2.1713259151.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-5.50 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- DWL_DNSWL_LOW(-1.00)[suse.de:dkim];
+X-Spamd-Result: default: False [-4.29 / 50.00]; BAYES_HAM(-3.00)[100.00%];
  NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
  NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; XM_UA_NO_VERSION(0.01)[];
- FUZZY_BLOCKED(0.00)[rspamd.com]; RCVD_VIA_SMTP_AUTH(0.00)[];
- MIME_TRACE(0.00)[0:+]; ARC_NA(0.00)[]; TO_DN_SOME(0.00)[];
- MID_RHS_MATCH_FROM(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ XM_UA_NO_VERSION(0.01)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ MIME_TRACE(0.00)[0:+]; TO_DN_SOME(0.00)[];
+ MID_RHS_MATCH_FROM(0.00)[]; ARC_NA(0.00)[];
+ RCVD_TLS_ALL(0.00)[];
  DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- RCPT_COUNT_THREE(0.00)[4]; RCVD_COUNT_TWO(0.00)[2];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,intel.com:email,suse.de:dkim];
- DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Rspamd-Action: no action
-X-Rspamd-Queue-Id: 767A8373DA
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+ FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_HAS_DN(0.00)[];
+ RCPT_COUNT_THREE(0.00)[4]; FROM_EQ_ENVFROM(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,
+ imap1.dmz-prg2.suse.org:rdns, intel.com:email]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,50 +139,88 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Hi
 
-Am 16.04.24 um 11:19 schrieb Jani Nikula:
-> Prefer the EDID iterators over drm_edid_find_extension() in
-> drm_edid_has_cta_extension(), even if this leads to more code. The key
-> is to use the same patterns as much as possible.
+Am 16.04.24 um 11:20 schrieb Jani Nikula:
+> Repurpose drm_edid_are_equal() to be more helpful for its single user,
+> and rename drm_edid_eq(). Functionally deduce the length from the blob
+> size, not the blob data, making it more robust against any errors.
 
-Should this patch go before patch 4? That would limit the impact of the 
-latter.
+Could be squashed into patch 6.
 
-Why is this instance different than the one in 
-drm_find_displayid_extension()? Best regards Thomas
+Best regards
+Thomas
+
 >
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->   drivers/gpu/drm/drm_edid.c | 14 ++++++++++++--
->   1 file changed, 12 insertions(+), 2 deletions(-)
+>   drivers/gpu/drm/drm_edid.c | 41 ++++++++++++++------------------------
+>   1 file changed, 15 insertions(+), 26 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index c29f31dcc818..4b3ad42a8f95 100644
+> index 463fbad85d90..513590931cc5 100644
 > --- a/drivers/gpu/drm/drm_edid.c
 > +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -4230,11 +4230,21 @@ static bool drm_edid_has_cta_extension(const struct drm_edid *drm_edid)
+> @@ -1820,30 +1820,20 @@ static bool edid_block_is_zero(const void *edid)
+>   	return !memchr_inv(edid, 0, EDID_LENGTH);
+>   }
+>   
+> -/**
+> - * drm_edid_are_equal - compare two edid blobs.
+> - * @edid1: pointer to first blob
+> - * @edid2: pointer to second blob
+> - * This helper can be used during probing to determine if
+> - * edid had changed.
+> - */
+> -static bool drm_edid_are_equal(const struct edid *edid1, const struct edid *edid2)
+> +static bool drm_edid_eq(const struct drm_edid *drm_edid,
+> +			const void *raw_edid, size_t raw_edid_size)
 >   {
->   	const struct displayid_block *block;
->   	struct displayid_iter iter;
-> -	int ext_index = 0;
-> +	struct drm_edid_iter edid_iter;
-> +	const u8 *ext;
->   	bool found = false;
+> -	int edid1_len, edid2_len;
+> -	bool edid1_present = edid1 != NULL;
+> -	bool edid2_present = edid2 != NULL;
+> +	bool edid1_present = drm_edid && drm_edid->edid && drm_edid->size;
+> +	bool edid2_present = raw_edid && raw_edid_size;
 >   
->   	/* Look for a top level CEA extension block */
-> -	if (drm_edid_find_extension(drm_edid, CEA_EXT, &ext_index))
-> +	drm_edid_iter_begin(drm_edid, &edid_iter);
-> +	drm_edid_iter_for_each(ext, &edid_iter) {
-> +		if (ext[0] == CEA_EXT) {
-> +			found = true;
-> +			break;
-> +		}
-> +	}
-> +	drm_edid_iter_end(&edid_iter);
+>   	if (edid1_present != edid2_present)
+>   		return false;
+>   
+> -	if (edid1) {
+> -		edid1_len = edid_size(edid1);
+> -		edid2_len = edid_size(edid2);
+> -
+> -		if (edid1_len != edid2_len)
+> +	if (edid1_present) {
+> +		if (drm_edid->size != raw_edid_size)
+>   			return false;
+>   
+> -		if (memcmp(edid1, edid2, edid1_len))
+> +		if (memcmp(drm_edid->edid, raw_edid, drm_edid->size))
+>   			return false;
+>   	}
+>   
+> @@ -6936,15 +6926,14 @@ static int _drm_edid_connector_property_update(struct drm_connector *connector,
+>   	int ret;
+>   
+>   	if (connector->edid_blob_ptr) {
+> -		const struct edid *old_edid = connector->edid_blob_ptr->data;
+> -
+> -		if (old_edid) {
+> -			if (!drm_edid_are_equal(drm_edid ? drm_edid->edid : NULL, old_edid)) {
+> -				connector->epoch_counter++;
+> -				drm_dbg_kms(dev, "[CONNECTOR:%d:%s] EDID changed, epoch counter %llu\n",
+> -					    connector->base.id, connector->name,
+> -					    connector->epoch_counter);
+> -			}
+> +		const void *old_edid = connector->edid_blob_ptr->data;
+> +		size_t old_edid_size = connector->edid_blob_ptr->length;
 > +
-> +	if (found)
->   		return true;
+> +		if (old_edid && !drm_edid_eq(drm_edid, old_edid, old_edid_size)) {
+> +			connector->epoch_counter++;
+> +			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] EDID changed, epoch counter %llu\n",
+> +				    connector->base.id, connector->name,
+> +				    connector->epoch_counter);
+>   		}
+>   	}
 >   
->   	/* CEA blocks can also be found embedded in a DisplayID block */
 
 -- 
 --
