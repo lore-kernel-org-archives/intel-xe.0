@@ -4,72 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F322CC4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Apr 2024 08:37:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF854C04FF8
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Apr 2024 09:20:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DE3B10EB05;
-	Tue, 16 Apr 2024 08:37:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0140D112B35;
+	Tue, 16 Apr 2024 09:20:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="0MjjWTJh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AHXApejT";
 	dkim-atps=neutral
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
- [209.85.221.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FA3010EB05
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Apr 2024 08:37:47 +0000 (UTC)
-Received: by mail-wr1-f51.google.com with SMTP id
- ffacd0b85a97d-3455ff1339dso2808699f8f.0
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Apr 2024 01:37:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1713256665; x=1713861465;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=dC1V4WAYbz38t8BdaOHfJMYSg1wW7j+2LhDAsQbSIzc=;
- b=0MjjWTJhP94KCtB+4eXNIri8epA4g0MS9ULAgy1ypptyM6sMpvMpLFWnVPbKTgjyPS
- /0uHml1e67VoLLEYRcj6L/1JrLPgWDRHefBVgpnsgW/OXQC+JlV8eeKEADUlWHFd5ynq
- sXIf+lJId7ncMgb7V6+Volyvy9+/PKOwgW/9egqGcCdZHU9yNigzFs78MMEC9sDC/jCD
- 4hMmp3iuvvJ7G9wx11wqAwKiANnySwnLJXTD6T60hZlGaYhbnosEiw+w3WAJaMJHbnmz
- 5DzguK4ktqiN8I6ox+z1FSpUQTRCpc9G4uXouLhJa04Y38EBpJ9bRlqchFz7WWxIhYe4
- ACmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1713256665; x=1713861465;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=dC1V4WAYbz38t8BdaOHfJMYSg1wW7j+2LhDAsQbSIzc=;
- b=Lxi2f23dqs233AQ81jPk3zmZCsaQlSabhHPTZ18HiT2Ncbeo/h+dq4G8Y4D+vw7SF/
- NDoSgnLPeY7s6YRvH5BaDj7UvAIVrCOHrYApLcvV9gX72yorVJZg/vLmijNLvyp7r8G+
- wm1SfGsBue9919hyIFIQ93DjHOMrK7qeF+OjzkzbvfdUTCtfNK4nGuyLAPNqV5bbAMQs
- aoKFc9AqNCY/JDYsyQmkAIOftGhLzDBschvlN/Njg6dyoOyBKib3ixelMj+4lcZzA+vH
- +sYb6tGpAxVb6RuBJRBkYhQTDN1vD+H9Er0v2o9LWtZ1y5qCyBN09/oPOu/PugHDcSH2
- WTtA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXy5ADMll1IXvxfs71x6ITECBO6C1+TIst+QBWRuEdFP76hpPBhFJWZYRzv+GQT95uy87AbEf0G26I/ACYWZlCzCm3PnLx3YH0gA0DqOoE=
-X-Gm-Message-State: AOJu0YyZsXJ4LcjotIYifYkiH1gNqeSgfyHa8f41eXxlPADyOIvhU/aw
- siltivJ7/bZi9UPSS64fm65uZAFvO5VsI06nNrpyefH4pkD+iXkpmgdTttfTMAc=
-X-Google-Smtp-Source: AGHT+IEgIuyKrMkJKHFrNPqexREBh+KVsVvev8Ej4SoM5XxmCjfsip/BPacGylGgZfJtZzd0aljbiA==
-X-Received: by 2002:a5d:63c7:0:b0:346:b6c1:1374 with SMTP id
- c7-20020a5d63c7000000b00346b6c11374mr8313329wrw.65.1713256665328; 
- Tue, 16 Apr 2024 01:37:45 -0700 (PDT)
-Received: from [192.168.0.101] ([84.65.0.132])
- by smtp.gmail.com with ESMTPSA id
- q6-20020adff946000000b003479bec98cesm6797701wrr.115.2024.04.16.01.37.44
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 16 Apr 2024 01:37:45 -0700 (PDT)
-Message-ID: <f2c46934-e137-419d-ba34-cff864a988ce@ursulin.net>
-Date: Tue, 16 Apr 2024 09:37:44 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AE2310FCBC;
+ Tue, 16 Apr 2024 09:20:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713259212; x=1744795212;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=gbGSwvUZvRYb2J1TKm8VmKGfPg6ygHVxEBLUT3T9owE=;
+ b=AHXApejTYvfyulyCxeY10NMH/CDCCZTWVHZgeEaMsRgZDo197rfjdzQ8
+ JyhrgTP2L/ov0O0SYTGx1PUmtlLcBKqltllktBH9v13nx4TySb8jF5Acd
+ nnaIcKpr3nZHWcf+1dlCp7H34My25ZwmZekrPYDUROL+PpKtqQ22H1LbW
+ mX/t+To7XshwGRrRxrmoVv6mPj6Q8heVUmJ8p6zDgbX7drFFCIzJC6744
+ Un58wO1HhyWv5UPlGGNlmI2WopKRfcrOduqtoWQpy+J6H6b1og/bCk4fd
+ RIBV1FXG4ICaYbRHNE3HhxcVDu6YMpu0CybBJ9sHcsHg8VVhcyHotBLVl Q==;
+X-CSE-ConnectionGUID: 71DS8WBdSDm/EfLRLBqyvg==
+X-CSE-MsgGUID: wbnFlpmcSF2xVnbAp/JnZA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="8605995"
+X-IronPort-AV: E=Sophos;i="6.07,205,1708416000"; 
+   d="scan'208";a="8605995"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2024 02:20:12 -0700
+X-CSE-ConnectionGUID: ZkW3LjbmShWrnBSzCiM61g==
+X-CSE-MsgGUID: N9fSBbIkQC2DM7HfyBM2TQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,205,1708416000"; d="scan'208";a="22199294"
+Received: from martakit-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.44.100])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2024 02:20:10 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: [REBASE 1/7] drm/displayid: move drm_displayid.h to
+ drm_displayd_internal.h
+Date: Tue, 16 Apr 2024 12:19:54 +0300
+Message-Id: <220713d4e3cc364ac103ba689065ae96e075f1fa.1713259151.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <cover.1713259151.git.jani.nikula@intel.com>
+References: <cover.1713259151.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/7] drm/xe: Per client usage
-Content-Language: en-GB
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-References: <20240416030454.3739862-1-lucas.demarchi@intel.com>
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20240416030454.3739862-1-lucas.demarchi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,103 +72,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+There are no exported symbols for displayid, and it's all internal
+interfaces. Move the header to drivers/gpu/drm/drm_displayd_internal.h.
 
-On 16/04/2024 04:04, Lucas De Marchi wrote:
-> Add per-client usage statistics to xe. This ports xe to use the common
-> method in drm to export the usage to userspace per client (where 1
-> client == 1 drm fd open).
-> 
-> However insted of using the current format, this creates a new one with
-> the unit "ticks". The intention here is not to mix the GPU clock domain
-> with the CPU clock. It allows to cover a few more use cases without
-> extra complications.
-> 
-> Last patch was a quick implemenation of a gputop-like tool in python.
-> I ended doing it to cross check the gputop implementation. I's not
-> really meant to be applied here.
-> 
-> I tested this on DG2 and TGL with kmscube (console-only) and vkcube
-> (in a gnome session), but it would be good to soak this under more
-> tests. The biggest goal for this patch series right now is to get
-> consensus on the new UAPI.
-> 
-> TODO: Add documentation on top with the new interface.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/drm_displayid.c                              | 3 ++-
+ .../gpu/drm/drm_displayid_internal.h                         | 5 +++--
+ drivers/gpu/drm/drm_edid.c                                   | 2 +-
+ 3 files changed, 6 insertions(+), 4 deletions(-)
+ rename include/drm/drm_displayid.h => drivers/gpu/drm/drm_displayid_internal.h (98%)
 
-Yeah a drm-usage-stats.rst patch would be nice to have in the RFC so one 
-does not have to look into the driver implementation to discuss the 
-proposed uapi.
+diff --git a/drivers/gpu/drm/drm_displayid.c b/drivers/gpu/drm/drm_displayid.c
+index 9edc111be7ee..f72a893c7deb 100644
+--- a/drivers/gpu/drm/drm_displayid.c
++++ b/drivers/gpu/drm/drm_displayid.c
+@@ -3,10 +3,11 @@
+  * Copyright © 2021 Intel Corporation
+  */
+ 
+-#include <drm/drm_displayid.h>
+ #include <drm/drm_edid.h>
+ #include <drm/drm_print.h>
+ 
++#include "drm_displayid_internal.h"
++
+ static const struct displayid_header *
+ displayid_get_header(const u8 *displayid, int length, int index)
+ {
+diff --git a/include/drm/drm_displayid.h b/drivers/gpu/drm/drm_displayid_internal.h
+similarity index 98%
+rename from include/drm/drm_displayid.h
+rename to drivers/gpu/drm/drm_displayid_internal.h
+index 566497eeb3b8..56fd3bb0a779 100644
+--- a/include/drm/drm_displayid.h
++++ b/drivers/gpu/drm/drm_displayid_internal.h
+@@ -19,8 +19,9 @@
+  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+  * OTHER DEALINGS IN THE SOFTWARE.
+  */
+-#ifndef DRM_DISPLAYID_H
+-#define DRM_DISPLAYID_H
++
++#ifndef __DRM_DISPLAYID_INTERNAL_H__
++#define __DRM_DISPLAYID_INTERNAL_H__
+ 
+ #include <linux/types.h>
+ #include <linux/bits.h>
+diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+index 1400722ae3fe..c4f799059522 100644
+--- a/drivers/gpu/drm/drm_edid.c
++++ b/drivers/gpu/drm/drm_edid.c
+@@ -40,7 +40,6 @@
+ #include <linux/slab.h>
+ #include <linux/vga_switcheroo.h>
+ 
+-#include <drm/drm_displayid.h>
+ #include <drm/drm_drv.h>
+ #include <drm/drm_edid.h>
+ #include <drm/drm_eld.h>
+@@ -48,6 +47,7 @@
+ #include <drm/drm_print.h>
+ 
+ #include "drm_crtc_internal.h"
++#include "drm_displayid_internal.h"
+ #include "drm_internal.h"
+ 
+ static int oui(u8 first, u8 second, u8 third)
+-- 
+2.39.2
 
-Nevertheless I understand the proposal is to add this:
-
-  drm-engine-<class>: <GPU_TIMESTAMP> <RUNTIME> ticks
-
-That's two values per key. I guess "one key value pair for per one line 
-of text" does not get strictly broken and that you propose a heuristics 
-in parsing to detect that the <RUNTIME> cannot be mis-interpreted as the 
-unit?
-
-Not sure it is a good idea though. If you instead added a new key for 
-the gpu time what would be the downside in your view? Like:
-
-drm-engine-<class>: <uint> ticks
-drm-ticks-<class>: <uint>
-
-Or maybe even obsfuscate/generalise as:
-
-drm-engine-<class>: <uint> gpu-time
-drm-gpu-time-<class>: <uint>
-
-Potentially could also add a key saying how much wall time is one unit 
-of GPU time.
-
-Or.. would even the existing drm-cycles, plus abuse of drm-maxfreq, 
-work? Ticks == cycles, maxfreq == ticks per wall second.
-
-Secondly, wrap behaviour every 25-30 seconds patch 6/7 describes 
-definitely breaks the format spec and in my view should be worked around 
-in the driver:
-
-"""
-Values are not required to be constantly monotonic if it makes the driver
-implementation easier, but are required to catch up with the previously 
-reported
-larger value within a reasonable period. Upon observing a value lower 
-than what
-was previously read, userspace is expected to stay with that larger previous
-value until a monotonic update is seen.
-"""
-
-Regards,
-
-Tvrtko
-
-> 
-> Test-with: https://lore.kernel.org/igt-dev/20240405060056.59379-1-lucas.demarchi@intel.com/
-> 
-> Lucas De Marchi (5):
->    drm/xe: Promote xe_hw_engine_class_to_str()
->    drm/xe: Add XE_ENGINE_CLASS_OTHER to str conversion
->    drm/xe: Add helper to capture engine timestamp
->    drm/xe/client: Print runtime to fdinfo
->    HACK: simple gputop-like impl in python
-> 
-> Umesh Nerlige Ramappa (2):
->    drm/xe/lrc: Add helper to capture context timestamp
->    drm/xe: Add helper to capture context runtime
-> 
->   drivers/gpu/drm/xe/regs/xe_lrc_layout.h       |   1 +
->   drivers/gpu/drm/xe/xe_device_types.h          |   9 ++
->   drivers/gpu/drm/xe/xe_drm_client.c            |  81 ++++++++++++-
->   drivers/gpu/drm/xe/xe_exec_queue.c            |  37 ++++++
->   drivers/gpu/drm/xe/xe_exec_queue.h            |   1 +
->   drivers/gpu/drm/xe/xe_hw_engine.c             |  29 +++++
->   drivers/gpu/drm/xe/xe_hw_engine.h             |   4 +
->   drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c |  18 ---
->   drivers/gpu/drm/xe/xe_lrc.c                   |  11 ++
->   drivers/gpu/drm/xe/xe_lrc.h                   |   2 +
->   drivers/gpu/drm/xe/xe_lrc_types.h             |   3 +
->   drivers/gpu/drm/xe/xe_sched_job.c             |   2 +
->   pyfdinfo                                      | 113 ++++++++++++++++++
->   13 files changed, 292 insertions(+), 19 deletions(-)
->   create mode 100755 pyfdinfo
-> 
