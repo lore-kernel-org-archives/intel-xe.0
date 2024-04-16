@@ -4,54 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CEE6C04FFF
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Apr 2024 10:08:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDB7FC4345F
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Apr 2024 10:08:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F297010E80E;
-	Tue, 16 Apr 2024 10:08:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C12610EFCE;
+	Tue, 16 Apr 2024 10:08:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OS/U/8A6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j1KcEnQj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DF6910E063;
- Tue, 16 Apr 2024 10:08:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 788AD10EFAE;
+ Tue, 16 Apr 2024 10:08:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713262116; x=1744798116;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=g8OikHnRhv4Cpw0bk8TjOC7U6ItOEuRtnah85rtKDLk=;
- b=OS/U/8A6fbMM+hOrb3c87g0jX0BcsTdA0jEwo5LU+Pn2P/XvMKu3xY3q
- ll56NSN8T91pQat4eLOO5zPmn8kHrs2X4NDcmFzWIp/fi13HXcvQKstTA
- VeHj+Sddnsa/tXhquk/aM+Z/OMausmoHvwEzKOw5H3Iu06OMWwsMYzkLc
- BimRASKfQXFqUf3RwOgmRkTFbGcoIUmq11HeGYBffPH31N5Rs7YemvdST
- +XLnaTNz5N0HGU3Zz+Zct5tXTpTgYI0MaguTceTr9rZcWHKBTukhESqQr
- fU3ay8IpxYmhyNYUgKSoX8ClCHAsTQEQEcMMOj5B1Dvu6gpglGDfkYLx8 Q==;
-X-CSE-ConnectionGUID: BiLIYcWNQxebXYgBn1yRGA==
-X-CSE-MsgGUID: gkNfbCNuSH6hS/Qtc+CBeg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="20112361"
-X-IronPort-AV: E=Sophos;i="6.07,205,1708416000"; d="scan'208";a="20112361"
+ t=1713262119; x=1744798119;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=BPJvQlV7L84+Of/RW1M0QO8h5aJxwN1IAUmey7JLQAk=;
+ b=j1KcEnQjw7sVM4Yhdxt8l4+oI7JTLYV4/jB+S17hk9RkEfiriw/q3i4d
+ APpDTWa474r0QhIBwrvfUBnsfKisRULe+dW/4hg0bRt1o8UrCI0G776XR
+ +fjcLZSiR/xr1KxWDiObdrwwuDg95Wuwfad73SR0LAVJ1kZrH1Cl5s4HS
+ +C+HWg+9t7jtWAjN6LWsm7S/028hxq4EN2zUIQy8isYRTDpOBDWly2CoG
+ YO5cNy4FCc+gVKmhqiFuoKN/1bscjhXEyVLr9ymF8nDISsdqEohu6fTGa
+ B7BAvhNonePiecJDsDmpXfxDKhinTMdfhWbY3uyCJbmn6fxccD+CHzaUp Q==;
+X-CSE-ConnectionGUID: NS848nN9RYa0T+XBNesvhw==
+X-CSE-MsgGUID: hEWDTJOmSEmTjfz7VgiB1A==
+X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="20112367"
+X-IronPort-AV: E=Sophos;i="6.07,205,1708416000"; d="scan'208";a="20112367"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2024 03:08:35 -0700
-X-CSE-ConnectionGUID: 3W1g9X7vQiOYHF6yAY6sIw==
-X-CSE-MsgGUID: rtocg7ymSwymMlC2nXWrtA==
+ 16 Apr 2024 03:08:38 -0700
+X-CSE-ConnectionGUID: osGneO9FTjuNQtG6X1oUIA==
+X-CSE-MsgGUID: EzlmfZXNTU+72m2USeGFcA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,205,1708416000"; d="scan'208";a="22620245"
+X-IronPort-AV: E=Sophos;i="6.07,205,1708416000"; d="scan'208";a="22620299"
 Received: from fcgoea-mobl2.ger.corp.intel.com (HELO fedora..)
  ([10.249.254.79])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2024 03:08:33 -0700
+ 16 Apr 2024 03:08:37 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
  dri-devel@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v2 0/9] TTM shrinker helpers and xe buffer object shrinker
-Date: Tue, 16 Apr 2024 12:07:21 +0200
-Message-ID: <20240416100730.6666-1-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v2 2/9] drm/ttm: Use LRU hitches
+Date: Tue, 16 Apr 2024 12:07:23 +0200
+Message-ID: <20240416100730.6666-3-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240416100730.6666-1-thomas.hellstrom@linux.intel.com>
+References: <20240416100730.6666-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -69,162 +71,259 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series implements TTM shrinker / eviction helpers and an xe bo
-shrinker. It builds on two previous series, *and obsoletes these*. First
+Have iterators insert themselves into the list they are iterating
+over using hitch list nodes. Since only the iterator owner
+can remove these list nodes from the list, it's safe to unlock
+the list and when continuing, use them as a starting point. Due to
+the way LRU bumping works in TTM, newly added items will not be
+missed, and bumped items will be iterated over a second time before
+reaching the end of the list.
 
-https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg484425.html
+The exception is list with bulk move sublists. When bumping a
+sublist, a hitch that is part of that sublist will also be moved
+and we might miss items if restarting from it. This will be
+addressed in a later patch.
 
-for patch 1-4, which IMO still could be reviewed and pushed as a
-separate series.
-
-Second the previous TTM shrinker series
-
-https://lore.kernel.org/linux-mm/b7491378-defd-4f1c-31e2-29e4c77e2d67@amd.com/T/
-
-Where the comment about layering
-https://lore.kernel.org/linux-mm/b7491378-defd-4f1c-31e2-29e4c77e2d67@amd.com/T/#ma918844aa8a6efe8768fdcda0c6590d5c93850c9
-
-now addressed, and this version also implements shmem objects for backup
-rather than direct swap-cache insertions, which was used in the previuos
-series. It turns out that with per-page backup / shrinking, shmem objects
-appears to work just as well as direct swap-cache insertions with the
-added benefit that was introduced in the previous TTM shrinker series to
-avoid running out of swap entries isn't really needed.
-
-In any case, patch 1-4 are better described in their separate series.
-(RFC is removed for those).
-
-Patch 5 could in theory be skipped but introduces a possibility to easily
-add or test multiple backup backends, like the direct swap-cache
-insertion or even files into fast dedicated nvme storage for for example.
-
-Patch 6 introduces helpers in the ttm_pool code for page-by-page shrinking
-and recovery. It avoids having to temporarily allocate a huge amount of
-memory to be able to shrink a buffer object. It also introduces the
-possibility to immediately write-back pages if needed, since that tends
-to be a bit delayed when left to kswapd.
-
-Patch 7 Adds a simple error injection to the above code to help increase
-test coverage.
-
-Patch 8 introduces a LRU walk helper for eviction and shrinking. It's
-currently xe-only but not xe-specific and can easily be moved to TTM when
-used by more than one driver or when eviction is implemented using it.
-
-Patch 9 introduces a helper callback for shrinking (Also ready to be
-moved to TTM) and an xe-specific shrinker implementation. It also
-adds a kunit test to test the shrinker functionality by trying to
-allocate twice the available amount of RAM as buffer objects. If there
-is no swap-space available, the buffer objects are marked
-purgeable.
-
+Changes in previous series:
+- Updated ttm_resource_cursor_fini() documentation.
 v2:
-- Squash obsolete revision history in the patch commit messages.
-- Fix a couple of review comments by Christian
-- Don't store the mem_type in the TTM managers but in the
-  resource cursor.
-- Rename introduced TTM *back_up* function names to *backup*
-- Add ttm pool recovery fault injection.
-- Shrinker xe kunit test
-- Various bugfixes
+- Don't reorder ttm_resource_manager_first() and _next().
+  (Christian König).
+- Use list_add instead of list_move
+  (Christian König)
 
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
 Cc: Christian König <christian.koenig@amd.com>
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
 Cc: <dri-devel@lists.freedesktop.org>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/ttm/ttm_bo.c       |  1 +
+ drivers/gpu/drm/ttm/ttm_device.c   |  9 ++-
+ drivers/gpu/drm/ttm/ttm_resource.c | 94 ++++++++++++++++++++----------
+ include/drm/ttm/ttm_resource.h     | 16 +++--
+ 4 files changed, 82 insertions(+), 38 deletions(-)
 
-Thomas Hellström (8):
-  drm/ttm: Allow TTM LRU list nodes of different types
-  drm/ttm: Use LRU hitches
-  drm/ttm, drm/amdgpu, drm/xe: Consider hitch moves within bulk sublist
-    moves
-  drm/ttm: Allow continued swapout after -ENOSPC falure
-  drm/ttm: Add a virtual base class for graphics memory backup
-  drm/ttm/pool: Provide a helper to shrink pages.
-  drm/xe, drm/ttm: Provide a generic LRU walker helper
-  drm/xe: Add a shrinker for xe bos
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c |   4 +
- drivers/gpu/drm/ttm/Makefile           |   2 +-
- drivers/gpu/drm/ttm/ttm_backup_shmem.c | 137 +++++++++
- drivers/gpu/drm/ttm/ttm_bo.c           |   1 +
- drivers/gpu/drm/ttm/ttm_device.c       |  33 ++-
- drivers/gpu/drm/ttm/ttm_pool.c         | 391 ++++++++++++++++++++++++-
- drivers/gpu/drm/ttm/ttm_resource.c     | 231 ++++++++++++---
- drivers/gpu/drm/ttm/ttm_tt.c           |  34 +++
- drivers/gpu/drm/xe/Makefile            |   2 +
- drivers/gpu/drm/xe/xe_bo.c             | 123 ++++++--
- drivers/gpu/drm/xe/xe_bo.h             |   3 +
- drivers/gpu/drm/xe/xe_device.c         |   8 +
- drivers/gpu/drm/xe/xe_device_types.h   |   2 +
- drivers/gpu/drm/xe/xe_shrinker.c       | 237 +++++++++++++++
- drivers/gpu/drm/xe/xe_shrinker.h       |  18 ++
- drivers/gpu/drm/xe/xe_ttm_helpers.c    | 224 ++++++++++++++
- drivers/gpu/drm/xe/xe_ttm_helpers.h    |  63 ++++
- drivers/gpu/drm/xe/xe_vm.c             |   4 +
- include/drm/ttm/ttm_backup.h           | 136 +++++++++
- include/drm/ttm/ttm_device.h           |   2 +
- include/drm/ttm/ttm_pool.h             |   4 +
- include/drm/ttm/ttm_resource.h         |  96 +++++-
- include/drm/ttm/ttm_tt.h               |  19 ++
- 23 files changed, 1683 insertions(+), 91 deletions(-)
- create mode 100644 drivers/gpu/drm/ttm/ttm_backup_shmem.c
- create mode 100644 drivers/gpu/drm/xe/xe_shrinker.c
- create mode 100644 drivers/gpu/drm/xe/xe_shrinker.h
- create mode 100644 drivers/gpu/drm/xe/xe_ttm_helpers.c
- create mode 100644 drivers/gpu/drm/xe/xe_ttm_helpers.h
- create mode 100644 include/drm/ttm/ttm_backup.h
-
--- 
-2.44.0
-
-
-
-Thomas Hellström (9):
-  drm/ttm: Allow TTM LRU list nodes of different types
-  drm/ttm: Use LRU hitches
-  drm/ttm, drm/amdgpu, drm/xe: Consider hitch moves within bulk sublist
-    moves
-  drm/ttm: Allow continued swapout after -ENOSPC falure
-  drm/ttm: Add a virtual base class for graphics memory backup
-  drm/ttm/pool: Provide a helper to shrink pages.
-  drm/ttm: Use fault-injection to test error paths
-  drm/xe, drm/ttm: Provide a generic LRU walker helper
-  drm/xe: Add a shrinker for xe bos
-
- drivers/gpu/drm/Kconfig                |  10 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c |   4 +
- drivers/gpu/drm/ttm/Makefile           |   2 +-
- drivers/gpu/drm/ttm/ttm_backup_shmem.c | 137 ++++++++
- drivers/gpu/drm/ttm/ttm_bo.c           |   1 +
- drivers/gpu/drm/ttm/ttm_device.c       |  33 +-
- drivers/gpu/drm/ttm/ttm_pool.c         | 412 ++++++++++++++++++++++++-
- drivers/gpu/drm/ttm/ttm_resource.c     | 229 +++++++++++---
- drivers/gpu/drm/ttm/ttm_tt.c           |  37 +++
- drivers/gpu/drm/xe/Makefile            |   2 +
- drivers/gpu/drm/xe/tests/xe_bo.c       | 118 +++++++
- drivers/gpu/drm/xe/tests/xe_bo_test.c  |   1 +
- drivers/gpu/drm/xe/tests/xe_bo_test.h  |   1 +
- drivers/gpu/drm/xe/xe_bo.c             | 145 ++++++++-
- drivers/gpu/drm/xe/xe_bo.h             |   4 +
- drivers/gpu/drm/xe/xe_device.c         |   8 +
- drivers/gpu/drm/xe/xe_device_types.h   |   2 +
- drivers/gpu/drm/xe/xe_shrinker.c       | 226 ++++++++++++++
- drivers/gpu/drm/xe/xe_shrinker.h       |  18 ++
- drivers/gpu/drm/xe/xe_ttm_helpers.c    | 224 ++++++++++++++
- drivers/gpu/drm/xe/xe_ttm_helpers.h    |  50 +++
- drivers/gpu/drm/xe/xe_vm.c             |   4 +
- include/drm/ttm/ttm_backup.h           | 136 ++++++++
- include/drm/ttm/ttm_pool.h             |   5 +
- include/drm/ttm/ttm_resource.h         |  99 +++++-
- include/drm/ttm/ttm_tt.h               |  20 ++
- 26 files changed, 1839 insertions(+), 89 deletions(-)
- create mode 100644 drivers/gpu/drm/ttm/ttm_backup_shmem.c
- create mode 100644 drivers/gpu/drm/xe/xe_shrinker.c
- create mode 100644 drivers/gpu/drm/xe/xe_shrinker.h
- create mode 100644 drivers/gpu/drm/xe/xe_ttm_helpers.c
- create mode 100644 drivers/gpu/drm/xe/xe_ttm_helpers.h
- create mode 100644 include/drm/ttm/ttm_backup.h
-
+diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+index 6396dece0db1..43eda720657f 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo.c
++++ b/drivers/gpu/drm/ttm/ttm_bo.c
+@@ -621,6 +621,7 @@ int ttm_mem_evict_first(struct ttm_device *bdev,
+ 		if (locked)
+ 			dma_resv_unlock(res->bo->base.resv);
+ 	}
++	ttm_resource_cursor_fini_locked(&cursor);
+ 
+ 	if (!bo) {
+ 		if (busy_bo && !ttm_bo_get_unless_zero(busy_bo))
+diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
+index f27406e851e5..e8a6a1dab669 100644
+--- a/drivers/gpu/drm/ttm/ttm_device.c
++++ b/drivers/gpu/drm/ttm/ttm_device.c
+@@ -169,12 +169,17 @@ int ttm_device_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
+ 			num_pages = PFN_UP(bo->base.size);
+ 			ret = ttm_bo_swapout(bo, ctx, gfp_flags);
+ 			/* ttm_bo_swapout has dropped the lru_lock */
+-			if (!ret)
++			if (!ret) {
++				ttm_resource_cursor_fini(&cursor);
+ 				return num_pages;
+-			if (ret != -EBUSY)
++			}
++			if (ret != -EBUSY) {
++				ttm_resource_cursor_fini(&cursor);
+ 				return ret;
++			}
+ 		}
+ 	}
++	ttm_resource_cursor_fini_locked(&cursor);
+ 	spin_unlock(&bdev->lru_lock);
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
+index 7aa5ca5c0e33..22f8ae4ff4c0 100644
+--- a/drivers/gpu/drm/ttm/ttm_resource.c
++++ b/drivers/gpu/drm/ttm/ttm_resource.c
+@@ -32,6 +32,37 @@
+ 
+ #include <drm/drm_util.h>
+ 
++/**
++ * ttm_resource_cursor_fini_locked() - Finalize the LRU list cursor usage
++ * @cursor: The struct ttm_resource_cursor to finalize.
++ *
++ * The function pulls the LRU list cursor off any lists it was previusly
++ * attached to. Needs to be called with the LRU lock held. The function
++ * can be called multiple times after eachother.
++ */
++void ttm_resource_cursor_fini_locked(struct ttm_resource_cursor *cursor)
++{
++	lockdep_assert_held(&cursor->man->bdev->lru_lock);
++	list_del_init(&cursor->hitch.link);
++}
++
++/**
++ * ttm_resource_cursor_fini() - Finalize the LRU list cursor usage
++ * @cursor: The struct ttm_resource_cursor to finalize.
++ *
++ * The function pulls the LRU list cursor off any lists it was previusly
++ * attached to. Needs to be called without the LRU list lock held. The
++ * function can be called multiple times after eachother.
++ */
++void ttm_resource_cursor_fini(struct ttm_resource_cursor *cursor)
++{
++	spinlock_t *lru_lock = &cursor->man->bdev->lru_lock;
++
++	spin_lock(lru_lock);
++	ttm_resource_cursor_fini_locked(cursor);
++	spin_unlock(lru_lock);
++}
++
+ /**
+  * ttm_lru_bulk_move_init - initialize a bulk move structure
+  * @bulk: the structure to init
+@@ -484,61 +515,62 @@ void ttm_resource_manager_debug(struct ttm_resource_manager *man,
+ EXPORT_SYMBOL(ttm_resource_manager_debug);
+ 
+ /**
+- * ttm_resource_manager_first
+- *
++ * ttm_resource_manager_first() - Start iterating over the resources
++ * of a resource manager
+  * @man: resource manager to iterate over
+  * @cursor: cursor to record the position
+  *
+- * Returns the first resource from the resource manager.
++ * Initializes the cursor and starts iterating. When done iterating,
++ * the caller must explicitly call ttm_resource_cursor_fini().
++ *
++ * Return: The first resource from the resource manager.
+  */
+ struct ttm_resource *
+ ttm_resource_manager_first(struct ttm_resource_manager *man,
+ 			   struct ttm_resource_cursor *cursor)
+ {
+-	struct ttm_lru_item *lru;
+-
+ 	lockdep_assert_held(&man->bdev->lru_lock);
+ 
+-	for (cursor->priority = 0; cursor->priority < TTM_MAX_BO_PRIORITY;
+-	     ++cursor->priority)
+-		list_for_each_entry(lru, &man->lru[cursor->priority], link) {
+-			if (ttm_lru_item_is_res(lru))
+-				return ttm_lru_item_to_res(lru);
+-		}
++	cursor->priority = 0;
++	cursor->man = man;
++	ttm_lru_item_init(&cursor->hitch, TTM_LRU_HITCH);
++	list_add(&cursor->hitch.link, &man->lru[cursor->priority]);
+ 
+-	return NULL;
++	return ttm_resource_manager_next(cursor);
+ }
+ 
+ /**
+- * ttm_resource_manager_next
+- *
+- * @man: resource manager to iterate over
++ * ttm_resource_manager_next() - Continue iterating over the resource manager
++ * resources
+  * @cursor: cursor to record the position
+- * @res: the current resource pointer
+  *
+- * Returns the next resource from the resource manager.
++ * Return: The next resource from the resource manager.
+  */
+ struct ttm_resource *
+-ttm_resource_manager_next(struct ttm_resource_manager *man,
+-			  struct ttm_resource_cursor *cursor,
+-			  struct ttm_resource *res)
++ttm_resource_manager_next(struct ttm_resource_cursor *cursor)
+ {
+-	struct ttm_lru_item *lru = &res->lru;
++	struct ttm_resource_manager *man = cursor->man;
++	struct ttm_lru_item *lru;
+ 
+ 	lockdep_assert_held(&man->bdev->lru_lock);
+ 
+-	list_for_each_entry_continue(lru, &man->lru[cursor->priority], link) {
+-		if (ttm_lru_item_is_res(lru))
+-			return ttm_lru_item_to_res(lru);
+-	}
+-
+-	for (++cursor->priority; cursor->priority < TTM_MAX_BO_PRIORITY;
+-	     ++cursor->priority)
+-		list_for_each_entry(lru, &man->lru[cursor->priority], link) {
+-			if (ttm_lru_item_is_res(lru))
+-				ttm_lru_item_to_res(lru);
++	do {
++		lru = &cursor->hitch;
++		list_for_each_entry_continue(lru, &man->lru[cursor->priority], link) {
++			if (ttm_lru_item_is_res(lru)) {
++				list_move(&cursor->hitch.link, &lru->link);
++				return ttm_lru_item_to_res(lru);
++			}
+ 		}
+ 
++		if (++cursor->priority >= TTM_MAX_BO_PRIORITY)
++			break;
++
++		list_move(&cursor->hitch.link, &man->lru[cursor->priority]);
++	} while (true);
++
++	list_del_init(&cursor->hitch.link);
++
+ 	return NULL;
+ }
+ 
+diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
+index 4babc4ff10b0..dfc01258c981 100644
+--- a/include/drm/ttm/ttm_resource.h
++++ b/include/drm/ttm/ttm_resource.h
+@@ -271,15 +271,23 @@ ttm_lru_item_to_res(struct ttm_lru_item *item)
+ 
+ /**
+  * struct ttm_resource_cursor
+- *
++ * @man: The resource manager currently being iterated over
++ * @hitch: A hitch list node inserted before the next resource
++ * to iterate over.
+  * @priority: the current priority
+  *
+  * Cursor to iterate over the resources in a manager.
+  */
+ struct ttm_resource_cursor {
++	struct ttm_resource_manager *man;
++	struct ttm_lru_item hitch;
+ 	unsigned int priority;
+ };
+ 
++void ttm_resource_cursor_fini_locked(struct ttm_resource_cursor *cursor);
++
++void ttm_resource_cursor_fini(struct ttm_resource_cursor *cursor);
++
+ /**
+  * struct ttm_lru_bulk_move_pos
+  *
+@@ -438,9 +446,7 @@ struct ttm_resource *
+ ttm_resource_manager_first(struct ttm_resource_manager *man,
+ 			   struct ttm_resource_cursor *cursor);
+ struct ttm_resource *
+-ttm_resource_manager_next(struct ttm_resource_manager *man,
+-			  struct ttm_resource_cursor *cursor,
+-			  struct ttm_resource *res);
++ttm_resource_manager_next(struct ttm_resource_cursor *cursor);
+ 
+ /**
+  * ttm_resource_manager_for_each_res - iterate over all resources
+@@ -452,7 +458,7 @@ ttm_resource_manager_next(struct ttm_resource_manager *man,
+  */
+ #define ttm_resource_manager_for_each_res(man, cursor, res)		\
+ 	for (res = ttm_resource_manager_first(man, cursor); res;	\
+-	     res = ttm_resource_manager_next(man, cursor, res))
++	     res = ttm_resource_manager_next(cursor))
+ 
+ struct ttm_kmap_iter *
+ ttm_kmap_iter_iomap_init(struct ttm_kmap_iter_iomap *iter_io,
 -- 
 2.44.0
 
