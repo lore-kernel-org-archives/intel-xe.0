@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09E0AC4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Apr 2024 22:22:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7FD2C04FFF
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Apr 2024 22:22:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B155710F3D9;
-	Tue, 16 Apr 2024 22:22:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BAF6112EB1;
+	Tue, 16 Apr 2024 22:22:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N3RwY79e";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m8SDOYB6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85CB410F3DC
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Apr 2024 22:22:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 470D010F3DC
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Apr 2024 22:22:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713306131; x=1744842131;
+ t=1713306130; x=1744842130;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UXCZaMnG4A+/6nJ7yL0n/H54LthULPInAMAd68LplC8=;
- b=N3RwY79eZGBJQvuja/rk4hh9pYAynVGOx50v0UpCCUdHd8Y0nzCVAIWk
- gkUNvCK7Sd8MA59lGw76zHF01EBUC9SvjtjyQEIF67Nwnhuogw/Lmk7ci
- blYO7LPh/aoon9zEc9HTc1vZLyf5hnth52eN2R/FST41hJbl2YDCwnJeQ
- W7zQiwKLD/xh+rYYzOg7Pjfeu88uKKwlE+2YIpcJ4OqywFvsLZMCQKyjg
- dtMLI8vytriUa1k5VirMi/Ch5NOa/telIDTKV7s3PEcmSpVEuXKkhv6N8
- Ixw/kNWThAyjRLi8xa7lmTiN7xHV9AUALWOxZsloptniHFk8ZcHScY6Z0 g==;
-X-CSE-ConnectionGUID: ILAjoEEnTBi10CTpNOI50g==
-X-CSE-MsgGUID: 40e/ee09SjKCj807PGma0A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="11719803"
-X-IronPort-AV: E=Sophos;i="6.07,207,1708416000"; d="scan'208";a="11719803"
+ bh=iczzbWCrErVOxa7WVRRqg60zu+4wTxrH7h2Xk+5vHb8=;
+ b=m8SDOYB67m+W6gIrK0RRNXl0yonlgB5iVHBoOIQ6vz45BzQ6Cchnknx1
+ 2rqawljEp+dmCnXZNFsAuFwosdtZX6xnerBBRNzyzq2raRRIgOGtRwIPN
+ NxqBFWlHdQOIOYirYkfgXyzjCiLiLY4Umm25vrvLYSsFmxaSqSLBeixdS
+ WrscriHqaUhiCdwk/+dAzg8drpoa3PAD4ma2J1jXHdkao2wKyQdJPrta+
+ WdMelbrAzOrEa1SjBE3kcmTWdezFHxyDeJg3yZaGsgoVQM/0ZKmlNNAle
+ fGsJQgFUuZJT/B9jJDHMvoZwCeIZd7HrWA0raKgOqrB6O1FLb/2voRbUd Q==;
+X-CSE-ConnectionGUID: cqP0ESUPTqe2R9Olsui7Dg==
+X-CSE-MsgGUID: xrEX02+rSWi3b2vDUVuwFA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="11719797"
+X-IronPort-AV: E=Sophos;i="6.07,207,1708416000"; d="scan'208";a="11719797"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2024 15:22:11 -0700
-X-CSE-ConnectionGUID: cICbRHlZRzKeH0pWCtKC0A==
-X-CSE-MsgGUID: T2ocuZO2RLSJA/nQs9jMUA==
+ 16 Apr 2024 15:22:10 -0700
+X-CSE-ConnectionGUID: B33JjSxCRtuk7Nsuq1pWCg==
+X-CSE-MsgGUID: qSOP8ADCRU6rCzQILDsdlw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,207,1708416000"; d="scan'208";a="22463215"
+X-IronPort-AV: E=Sophos;i="6.07,207,1708416000"; d="scan'208";a="22463209"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2024 15:22:11 -0700
+ 16 Apr 2024 15:22:10 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Subject: [xe-for-ci v2 2/3] drm/xe/gsc: Skip GSC proxy init
-Date: Tue, 16 Apr 2024 15:21:58 -0700
-Message-ID: <20240416222159.1332619-3-daniele.ceraolospurio@intel.com>
+Subject: [PATCH v2 1/3] drm/xe/gsc: define GSCCS for LNL
+Date: Tue, 16 Apr 2024 15:21:57 -0700
+Message-ID: <20240416222159.1332619-2-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240416222159.1332619-1-daniele.ceraolospurio@intel.com>
 References: <20240416222159.1332619-1-daniele.ceraolospurio@intel.com>
@@ -66,35 +66,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The mei support for LNL hasn't landed yet, so we can't use the GSC proxy
-component. Note that the lack of the GSC proxy means that the content
-protection features (PXP, HDCP) won't work.
+LNL has 1 GSCCS, same as MTL. Note that the GSCCS will be disabled until
+we have a GSC FW defined, but having it in the list of engine is a
+requirement to add such definition.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gsc_proxy.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/gpu/drm/xe/xe_pci.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gsc_proxy.c b/drivers/gpu/drm/xe/xe_gsc_proxy.c
-index 35e397b68dfc..3a7ba63b5bf2 100644
---- a/drivers/gpu/drm/xe/xe_gsc_proxy.c
-+++ b/drivers/gpu/drm/xe/xe_gsc_proxy.c
-@@ -446,6 +446,15 @@ int xe_gsc_proxy_init(struct xe_gsc *gsc)
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 3b30353dbc09..ad46ed6a2de7 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -209,7 +209,8 @@ static const struct xe_media_desc media_xelpmp = {
+ static const struct xe_media_desc media_xe2 = {
+ 	.name = "Xe2_LPM / Xe2_HPM",
+ 	.hw_engine_mask =
+-		BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VECS0), /* TODO: GSC0 */
++		BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VECS0) |
++		BIT(XE_HW_ENGINE_GSCCS0)
+ };
  
- 	mutex_init(&gsc->proxy.mutex);
- 
-+	/*
-+	 * FIXME: mei support for LNL hasn't been merged yet so we can't use the
-+	 * GSC proxy component yet.
-+	 */
-+	if (xe->info.platform == XE_LUNARLAKE) {
-+		xe_gt_info(gt, "skipping GSC proxy init due to missing LNL mei support\n");
-+		return -ENODEV;
-+	}
-+
- 	if (!IS_ENABLED(CONFIG_INTEL_MEI_GSC_PROXY)) {
- 		xe_gt_info(gt, "can't init GSC proxy due to missing mei component\n");
- 		return -ENODEV;
+ static const struct xe_device_desc tgl_desc = {
 -- 
 2.43.0
 
