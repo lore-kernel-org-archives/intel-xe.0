@@ -4,121 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B750BC04FF9
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Apr 2024 13:24:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E610EC04FF6
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Apr 2024 13:30:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23F8F112C97;
-	Tue, 16 Apr 2024 13:24:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A488F112C9B;
+	Tue, 16 Apr 2024 13:30:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Z8cVDeKH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mKti6x8A";
 	dkim-atps=neutral
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2065.outbound.protection.outlook.com [40.107.92.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6B6F112C97;
- Tue, 16 Apr 2024 13:24:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C215112C9A
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Apr 2024 13:30:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713274241; x=1744810241;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=6BJzYsVC6WIKUo870UjCVYUJP7oQHsWuIKuNxp3dXfk=;
+ b=mKti6x8AtCgi0N3nHq9Co8W1BULd8Y3kQ50V+yfRgk0evi8kLSWLfI7b
+ WPebUsmjsUTZMjLQ2A4vlw103f/4j9NuBOKNx/jDm0dUxAKl2gPyCAaDV
+ LkHf3DyFGkiqGD/2/kpMP57mYbgSV+tPxiwjme9JDoWd7/eZLsMBDJmZn
+ 8YGFRGSd/gghdTKmQvxuTyR4VH0xQAIQv2Lrxc+TtQhOJK89dtNA9piuf
+ vKkkgG2Wmr9jQWtoQBAUNE/Rz942A27J90Nb6SO6ATymyE4IqrS3Pc885
+ nkeWxJWCQioMgFoF7HLrExulgbeTXi0+aDeOofuTpuWZjnZyVYs0VcqSl w==;
+X-CSE-ConnectionGUID: 8pYLEYjEQpedXmPUNjs95w==
+X-CSE-MsgGUID: WeVBNlqgQZypgGNYUXUGZw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="20132473"
+X-IronPort-AV: E=Sophos;i="6.07,206,1708416000"; d="scan'208";a="20132473"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2024 06:30:40 -0700
+X-CSE-ConnectionGUID: C+tnxp2lScq6dsqbk6TW3w==
+X-CSE-MsgGUID: 0cBv77z1Smy3UvmdXDAfRQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,206,1708416000"; d="scan'208";a="53242553"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 16 Apr 2024 06:30:40 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 16 Apr 2024 06:30:39 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 16 Apr 2024 06:30:39 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Tue, 16 Apr 2024 06:30:39 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PyNcKWCCxegXc8lWEe+JY1UXHYYi/By+aEJnp8ESGTZzvre+2l9r3tJmQYn1E21vD8RsoqneDL/+PSn3ZlYF/3Q4/4qXKA86BomEA4LOGfB1i5SS0rCan9sFwkl6Z814/a5BpizO3I3KSyfKwY3MhzrK3SDJbi1fAmaWOa8qzzjxNbp99L1C7/a9nbJO8LifgK2aTrqjdRIWwgtmjxpMmJ7ydYD1JfXkKXJMbC5OxIw5E8CMhxiKjXAbUqiQNL6/cPFpCul8WSLnkfv8s4qmLzYqIK3f3GHqdCE4d1b0hZCkjgtV8vwoQwgsHzNYZ94v6gLQixxgxfUyRiQGUdcnSw==
+ b=la6Hp9taHXOb2PZ/ToYQ4g1VDlgONiFFrfBiVS4AUFXek0z+lXW+IerfVD0JKH33UCRU1RO75CjKsPJlVzRnG/a9Rv8D8kj6isU2gm8zs/nKVhKBzpzlrvs/kWUHljC5QAKH29DFIwww4O6IKdjzxu9cYUOLfv7iMX9mIRc7i0hGEqZ9YNeRkUctRjh/8IlbW8P3eyvR9UWG54zf0HbKhl5s3+qXOwN2vVBViFYlEZhRED40QExP7qHzDfGt/lDIe5gb1N6D8zJPK24ZoaeOznqyv9ZX1jtpN/kdC6PR3oUg1iGa+E6YFuzYSE+387kEPS4HhQyXS4NcHNkx+XDU1Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mk1f2ZTSLykVxRN0AGD/yTYSZbj2nlF0eyvDPFYBcj4=;
- b=nrSIgwj/BSGizSNEObA//36BLJvGAMZYYtt57Ka629EGy4/U2/jvgiq6ddfURHDSgK4R9qzN/v5uj31HzO045BxrgQs5kSzbA1aRXe7WzNeUUC/DVF/AeSI8fDd7pg3rLbJ2unFlNqAxsIcLs/jn6LeCdJBYsBtl7QWsYFQhJcjHXPhRRVuvJnrKXiA8iZAqQXzdyXPInyP7LIsp+Bm9nke1NYpJ6izwvA0spoC5b0vjTlo2V3zhnZ/LrYM3fsWeK8mHe/SsTKcmCBq8CUmJ+aKYypArNm2L7qZBPyQdr069VO0Xy/j6j6LX0GZUOO4nw6+H0Cm8nIx2hvDr5Ysgsg==
+ bh=WBqdQ84yfeKFwO3wIu1SgzlOVE1swVWV2bTS6TenohU=;
+ b=F7qz8EGpfvjC3V0gSZ98IPOxxhL3XfqZKknjt47gcPNTlpkLQbAJPi0CKP1+U+mCDuTmGD8UtGtjG39iHaPp5b/iddWNQjmR8lx3x2tbq9PlAfs5yYOUrreQySV/74TAeS7PG1JjkhxhaKVYVe6UhaypadaJtmuAnS6IphrVVKSYzVFH5tWga0dH0ViYSGjq+rGCgCrPcVWJtDXjcbNYhUnEjdspmr0qPxHasW+zPHdABGcbhdTHPd8bF7RktgQind250sOC5JNft1zKfq9R6JOVB9eklbdxpJoYLH2cWgSRLxdJloOCuWC8bxMSzV7V+4dEx7CRQj+OUF0bSnjkMQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mk1f2ZTSLykVxRN0AGD/yTYSZbj2nlF0eyvDPFYBcj4=;
- b=Z8cVDeKHeOifTIRPbfrUPY041vhgzyrs5WCYV4FwCrWBqiDo90UB3JKzHbUK3aJgm8XNIsFxs1r0WP7lpkkNiBgWZ0xk9pMb4jMzlkVn3PztaW0Buz2VD/+5itPo2z2znra7N7tfaYQyYhhocKKU+IqqJpdo/bRiP456httlnQY=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by DM4PR12MB8499.namprd12.prod.outlook.com (2603:10b6:8:181::10) with
- Microsoft SMTP Server (version=TLS1_2,
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by IA0PR11MB7883.namprd11.prod.outlook.com (2603:10b6:208:3de::11)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Tue, 16 Apr
- 2024 13:24:51 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::f2b6:1034:76e8:f15a]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::f2b6:1034:76e8:f15a%6]) with mapi id 15.20.7452.049; Tue, 16 Apr 2024
- 13:24:51 +0000
-Message-ID: <c933025e-3006-4d5f-bb20-fbbeed0de457@amd.com>
-Date: Tue, 16 Apr 2024 15:24:45 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/9] TTM shrinker helpers and xe buffer object shrinker
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- dri-devel@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>,
- "Kuehling, Felix" <Felix.Kuehling@amd.com>
-References: <20240416100730.6666-1-thomas.hellstrom@linux.intel.com>
- <bb679fc6-7890-4b4a-a8cd-8ae7ce087a9f@amd.com>
- <d5ea84dccfc9f41ebe27600a5144778683cf944c.camel@linux.intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <d5ea84dccfc9f41ebe27600a5144778683cf944c.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR3P281CA0023.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:1c::7) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+ 2024 13:30:36 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::e9dd:320:976f:e257]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::e9dd:320:976f:e257%4]) with mapi id 15.20.7472.025; Tue, 16 Apr 2024
+ 13:30:36 +0000
+Date: Tue, 16 Apr 2024 08:30:33 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Tvrtko Ursulin <tursulin@ursulin.net>
+CC: <intel-xe@lists.freedesktop.org>, Umesh Nerlige Ramappa
+ <umesh.nerlige.ramappa@intel.com>
+Subject: Re: [PATCH 0/7] drm/xe: Per client usage
+Message-ID: <zj3ccdsxwfv7yms67c2fycjfhevdzp3qy7yz6u6ffmv4aymo6n@5lu4otfylkbt>
+References: <20240416030454.3739862-1-lucas.demarchi@intel.com>
+ <f2c46934-e137-419d-ba34-cff864a988ce@ursulin.net>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <f2c46934-e137-419d-ba34-cff864a988ce@ursulin.net>
+X-ClientProxiedBy: BYAPR05CA0020.namprd05.prod.outlook.com
+ (2603:10b6:a03:c0::33) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DM4PR12MB8499:EE_
-X-MS-Office365-Filtering-Correlation-Id: 12661bfd-f688-4a75-6b70-08dc5e18985e
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|IA0PR11MB7883:EE_
+X-MS-Office365-Filtering-Correlation-Id: 216a8bf3-94c7-4c06-fdee-08dc5e196654
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Sd+srarviZc1hEHnACVPDUr/P2jEiLSB7XzPmv2cFfo8eON5kxKusL5PQwlzk1hDkLGRu8dMKT1ENTBNZ9WHJbbKOLzXDTUER6/Z8eMC3cXKLtmGRGIcrMSwlq5s6f3vMAH3FdjVcuW3oGTWpUB9lKdXQx5ZcxL4zU9uSchyaAuJzO4CXiy3F4GEUZxCDN57dFryLn/VDCqY3ZMAhzoSCd/0z/j01BdzTwP9NVc0TSn9wT+rThsDgsHEQ//62AHioVdeRuOxGF2852pnMIkV9Z5+DdCzOu5rkDGRfB32SZtXcUu+edGYVGnTsHuLrh60XDWFeCULKIOeDUAocdjynCiij5mo0FARv7SZqX8mQfFaK6NZOOxxRMHvjDCmEyLcXMPHUL/FfC5F75Ixkgym+xgfDqh3xNnWHnq3+XMJnOrmNhFrRAydaLYJZka+U6t4dxuB43cbyJU0vVXQIUF7N3rCtFY+KMVtAY7tDEK7+BJnhIuKFTtV0lWnikM+kn6k1xnWy3MRev8xOkMf+PRaeQcyCHmUGRWxuAGtuCLDv62AEiRi2oMPPigLfFArf1kEU5DrgF6SeMeT8M6s+MSNqq4B/8NUdYTiZdDxGTn0anKhxnK7ZE3y7l2DPLAEVtwc
+X-Microsoft-Antispam-Message-Info: 2VXYFBzEVv/uQ+hd9LdeSWYzpsbieZK949bPX97r/vx9Gqpo5rpulOTrrRIYhG3DaP6FjDrqIDJR9jD7zgziR2AWO2vWIzdFYT1OqNUOkUXyaqn+0VKg5ZRq65b2GdnBTLDl02LUPq8zTuDzoH3wSygv6UmE6AMHN2zL9fvVMp4Ifafcm5KmO16nwFGqQjYl9ycpkvLWLRPKnCXQNV1l+RLzuoS1DKxrp6iEnf4c8DqVjd/axRrjm2NZ64I2K/s37as18wqN3Hu2d5VtnX0ehQnSHiJBY1pV7OPrgMeRRm5QZZYN3rm16feg0G52ly1lYh1mgU3ORgUPb5mkGhzv/cnCxZE3IBQzkHdFptq5srfK/gvUxg9SGeFKB5yt9YZYS/jrhhe6npw0mIfj6gDOYr7Weom44UwDmax0Bz07Zo29q7G18o7IPhOSsN9lanQoe19Qv/GwjFMLfULppEQ7j1eBQ2vo2aYtWYfLYQlv7GL3NAf9wcXZe7oTunxEDaE0lFppy1ty+VZTkIDEdZMnRxeMwkT4x88w+mEUTjYCD2Kk96QeWIEPvwoFvc15S7E+E7EcYXkYp2lMCse5nZYgJ/PVzpmM3WbTsInLOMF2np9dWRk1TGYh4MmvpHTvtkIjnjvlaWLD0e5nu7L5nGfLVfv7aqC6gZEj9nIqjlc+RBE=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TU1wbDZhV3pISnZ0M1lrd2UvMjBzbVNjdi9ycU5NVDhTL2FNTksxejU0NWlY?=
- =?utf-8?B?Z2Vud3pRNG1jVndDblEzVVVubWN1WkdmQkVkRUtKWXRWR2dkK0JNMVJ4cThO?=
- =?utf-8?B?dkZvQjNDWlEyMzhORytGTlZmSUZORFZMZUtyK0RScU5wQm1nU0tOM0U5VVZP?=
- =?utf-8?B?VXVZYWp1SWVrRnJVVnlnNlBVYitTaW1Uald1RmNLYUViU09tYXB0c0FNYlQy?=
- =?utf-8?B?TjdCMHFUZlRXcXJxWURpRFlJN3JHd3hyYTNCNlF4VWVKL3NzU243Z2N0QlVI?=
- =?utf-8?B?QUlYenRUUDZ6ZGV6c0NLVHJNMzRNSXBQaGl5bmE5bkoyc2h1UER5STdkZ3Zi?=
- =?utf-8?B?dkFTK25sLzRaeHJQYkZWcWRJMnAzdE9UazQ5UlUra1kvVzBVZHA2Q2FBYWxP?=
- =?utf-8?B?TTZLaXJ6V25CWTdnTEtxVVVpeGEvdTQybWROQWVjbFV2SldvQTFQUnFrUlNU?=
- =?utf-8?B?MmptYU9QNDBtOThBZ3o0M0hKVnZTVFhpNTRucmZkZWxQd3hZanFzUE5udWd0?=
- =?utf-8?B?bXVHbUNqZ3lKcTZ2R2JBZXpFV3l3NmkrTTh4Sk5HbU9iRitVY0NsWGhMTTc4?=
- =?utf-8?B?ZlJrQlJFMkZPZEFyTjNNR0tzUTYzbmxRbUpsNzNuZThDMU5mR3FwcExoYS9K?=
- =?utf-8?B?RisxU3U0a05wRGp6MW8wT3lReEdNeGoyQXMrNE5OREZZNVYrRkxicFlhMHpY?=
- =?utf-8?B?akp4bE1ZaW5rRExZZDlkbFcvQWRtSG5JRmFzOS8zZlVJOTg5ZnFlVjk5WUZN?=
- =?utf-8?B?eUNwNU91UThvZnZmZlBNa3FxU2RrVG9oN3ZTYTJSdTgrcE8xNUR1UzBRK09Y?=
- =?utf-8?B?NkFEdHdKKzdUYVBmL2sxUUZjWDRhKzRjdEFSdUdRYXFMTkE3ZmNneXBTeVcx?=
- =?utf-8?B?ZjRrQjhlajN0eEZUaUE5YmQ5SHpWNi83TUh5b3ZXRm9rY0xNYlFEazZHeDh0?=
- =?utf-8?B?SFVGbElTRCtlSExtcVlXUzNpdkIwbFR2c0pBckdISzljbTdUWjg3RjlYVVp0?=
- =?utf-8?B?MVpDbzBWSCtwWDdnL2xPdThnOGt3Z1BSV1J1eG5WM2JkMnNqVTYreHhPeExq?=
- =?utf-8?B?dFZrU1JHMGVKaUpYMExibGVqMXExcUNWbTdmUTBLeWpzeDB3bEEzWWljbGpU?=
- =?utf-8?B?QXZNNUNXRGE5aHk3ZDdNcTZUUm0wQncvY1Rld01xaVBLbnlNbm95NFlaSlA1?=
- =?utf-8?B?ZUJadURpcG52ZDJWblliSVRiSU56aHllMnVpbENvK3RxNXR3Zkx0WDlaS3FE?=
- =?utf-8?B?VVBDMVh3UVJUYlpUcGdoTjVtVnpNM0NiUDMxUVRUMGx1Umh5aU5xS0xwNnpT?=
- =?utf-8?B?ditNVG1GajRvV0d2NWs2NUZmZFpGNWVvODEwVWs4czBuT25iY2tZZmc1R3hw?=
- =?utf-8?B?RWZ6ZUdCdi9wNDE5a0FOT3FWYlVLWmFQdHA3NTc5WHBkSjlPbFNiaTVDeDhx?=
- =?utf-8?B?elV1S1lIQS9nKzZoQ2xDdE0rVVhLU2h5VkpjbEh3aHJFeFU1TFlkNzBoa1g4?=
- =?utf-8?B?a1hXcXZGWFpDZEFsTWhjVG5sLzVZazkxMjFINy9tSkVnWS9EZy83S1plK1l2?=
- =?utf-8?B?QnlLdUxpcUJ6bk9LSlg0RlZOSnoxMVBGVWs1ejBLSDU4WVR6K1NtTjE4NW4y?=
- =?utf-8?B?SlAzNnFlM0EwY0hZKzZVZFJSZFZNWFJpcEIvdXdFckJHN2JsZlY3bkJTSStj?=
- =?utf-8?B?TEdvNGFUUFRveURWVFNKazNoSEZHaUl2b1VSVENabStvcURqZVFOZG04VEtX?=
- =?utf-8?B?VHp1NWZlTVdRSm84SzFRc25qR3RlOWN1MGtmQU8wZk56Yy9sSTFqZnJHSDQr?=
- =?utf-8?B?MVNCemN0RDFrL3g3Sjg5UllYQ2FXdmkybzE1c09HQjBzcUJWb1NWalkyM0JF?=
- =?utf-8?B?SXdJRTlJWU9qRXZwRTY0cWt2aldkVVNUZnlyTUFpOEVaWTVkVjQ0ZFVmVFJY?=
- =?utf-8?B?d253dTdmdGdjWU9Rc004b09aa1VkU1VoT1pPZzZTMlY1ekhWdHJyaFBLYlJS?=
- =?utf-8?B?eUdCL2p4cThBMGlYaERwYlBiaEtBSUJUakpMMEVKU1JzN2dnU0E5aTJFemU1?=
- =?utf-8?B?TC9xQjNKUFdiWVFwdnowWFM0WDJNSEdBT3c4RjhlR3pHSDhYWGUvWmRPUmxk?=
- =?utf-8?Q?liO4KMVSfs5f53mwiw1ahWIC0?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 12661bfd-f688-4a75-6b70-08dc5e18985e
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?sNV8Ivb7qU8mtC7KkHaFzY4g5EKo7CLPWj2etwEdDC/j59ujmfrIUcSaub1S?=
+ =?us-ascii?Q?NoeQfsmxy8qvcIU8rRXS/fVOist5RiEPNW2tDaRr9Gch6UwrbyD497YFBviv?=
+ =?us-ascii?Q?qPoVUv3ftPDIc0XwPTuFxh97tIEQnQLDgOOqqQ6S5/srzob1chlLq1miUj4p?=
+ =?us-ascii?Q?PNtRa+eX2P/sv2pfaX/JuN5nJvEkA7fduMXlOSKRpgWtJEZLSVoui5i3EAqZ?=
+ =?us-ascii?Q?xVa7KUjxCX3oIUs2OLCqCQNeEevAmp5mPlFlA8hcSq9/0bFEnjQZHO0e0JCJ?=
+ =?us-ascii?Q?LuumSh/vNWhtxvwiQDeBs0e1Br0yDBhAD0mITqbHh5BBRIBZTSVpmspy8VOF?=
+ =?us-ascii?Q?MF+XkYRvozNLgd4kK53en/iMmbazktUMGWK3jdsF4c2SeVpDK1xmy+r+/dxp?=
+ =?us-ascii?Q?khhet5i9xdhGdOkuddLXYht1R19wlhqtVE8OcMtviZzEoN2Z4DVkFNfx2ZIY?=
+ =?us-ascii?Q?HEQhvIiziZgpmeNGTYFJapfZCfz9W2/eLeoAXELQiDhU/TC6QslA8TJD8IRX?=
+ =?us-ascii?Q?BzOHQooixaNWFYI/wLNJ6oNCi6oyWRhmjabJpVFKO/68UWSid+88U78SqtQC?=
+ =?us-ascii?Q?eEAldpX40/abF79HOP1hLU0MqkNM9HYJ43STMPc5i0KLFW1Dz542Sa0arbau?=
+ =?us-ascii?Q?o0J8Lk4vQRvJ5uoo8gM9DRdEwSrNCXLr8PbK58r7FnRYSsKyNXP17GDfam+N?=
+ =?us-ascii?Q?7aF3eBDLS7QyQHBBiF16Kr/rjigJac6MpkF1uCMas6+6cjJCbgM2Wsh+0SAM?=
+ =?us-ascii?Q?Psyum0obz+zqAQOEumJucTluo7jf+fYTNoC/P7wXAlJo/PI21ppuXRJGV+/N?=
+ =?us-ascii?Q?Z4xK1pCRQPXZaYXA9pCCS2obqWZt0dQdCAT0B941DyroMvAfzJ0ahhPNBH/N?=
+ =?us-ascii?Q?v+nwPkwg4tuz8UJI8+H1q4LzSCb52asU8+7aNqinVVHVlGcVy0PuhO5UNbxZ?=
+ =?us-ascii?Q?Ah8OwfL6/IIgWyGKwnhFBczAECAaMylXF/CYDjnT5hxpKfThAHG3iPgQ8+FL?=
+ =?us-ascii?Q?8F00UepJFxzXt7oz5uP+yFroQhBdNXjYYm+m3GTSzpy6Ud8Oksq+Uesxv5TY?=
+ =?us-ascii?Q?2JLCBn4Lbecim0OkIRuAwDpWziXJWq//Ua/gnXoUmYqv+7iXmKEvfBLeKV95?=
+ =?us-ascii?Q?U5iG+XMVViDpMQysmwKahAfEBdVx0ipH6XAFW4w0R8Z2pyxFPItWNszJnnuH?=
+ =?us-ascii?Q?CvRCTEFtcNWHQ4HvqllfrNsc6KnkLzdGB57vaFIj2Hlan+2m2L49J2OQ+mK6?=
+ =?us-ascii?Q?EZMzk5sBDbrebakc1dU8On93Jvagx0QpPWGqEm6vUi6vj/4NXFMlS5HF8bfh?=
+ =?us-ascii?Q?3Enl5AI8fKdeG2ejIGlFFZKwG9J9+pWhJZbDXQXDFK+FhqIsDTcaNmb82L2N?=
+ =?us-ascii?Q?7fyBSLeSWyX5/shGwOiGG5JpHaHzaXwpJr9Qwmmi6AAO7LLhv4s8nRCcwKh1?=
+ =?us-ascii?Q?Z9jRTrpCpsGhaxR9XmzbptGdauZVhUAmjre5FnpdBigJBW7SnU90t2cIXZH9?=
+ =?us-ascii?Q?Rh3wyYrmEgGjZXl7w5VEZ12egXKmu463GffJCpQRzWRLD4qQIIVNvp81uquY?=
+ =?us-ascii?Q?fykUX6830zj2qA0MZkxm/kKcyVbTsQOiT3uqwJ8U0ffHtm693a453sM6lhpW?=
+ =?us-ascii?Q?cw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 216a8bf3-94c7-4c06-fdee-08dc5e196654
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2024 13:24:50.9536 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2024 13:30:36.6238 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WvKYEnhmfAlOYUq/ZWjPR3S33iRLrTTxMRclQ+Kgz1mZd/f/3+IzmfjWQrngxv1K
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB8499
+X-MS-Exchange-CrossTenant-UserPrincipalName: S8fNgtpk3mzaY6vi5VNhS+M5XoG5ldLpeKXicxVWNt3CJVLbs2PX87cifT74bcfoZysqHUS5wWVBsLWRk7Ou/TUfowjaO6l2WQBtRqtS/9g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7883
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,214 +153,153 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 16.04.24 um 15:08 schrieb Thomas Hellström:
-> Hi, Christian,
+On Tue, Apr 16, 2024 at 09:37:44AM +0100, Tvrtko Ursulin wrote:
 >
-> On Tue, 2024-04-16 at 13:55 +0200, Christian König wrote:
->> While patches 1-4 look good from a high level I still think it needs
->> some prerequisite and re-ordering.
+>On 16/04/2024 04:04, Lucas De Marchi wrote:
+>>Add per-client usage statistics to xe. This ports xe to use the common
+>>method in drm to export the usage to userspace per client (where 1
+>>client == 1 drm fd open).
 >>
->> First of all make all the cleanups separate patches. In other words
->> that
->> ttm_resource_manager_next() takes only the cursor as argument, adding
->> ttm_resource_cursor_fini()/ttm_resource_cursor_fini_locked() as one
->> patch and then ttm_lru_bulk_move_init()/ttm_lru_bulk_move_fini() as
->> second.
-> Yes, I can take a look at that. I think the shortening of the argument
-> list of ttm_resource_manager_next() makes sense as a separate cleanup.
->
-> The other two are needed because of the changes introduced in the
-> respective patches. I could of course add stubs of these functions
-> before the patch that currently introduce them if needed, but don't
-> really see the point. What do you think.
-
-Na, stubs doesn't make sense.
-
-I was under the expression that you would have something to do for them 
-even without the LRU patch. If that's not the case then just skip that.
-
->
->> With that done I think we should first switch over TTM and all
->> drivers
->> using it to drm_exec as part of it's context object.
-> So are you ok with adding an optional drm_exec pointer in the
-> ttm_operation_ctx for this? (That was my plan moving forward).
-
-Yeah, perfectly valid. My thinking was just to do that first.
-
->
-> However, when that has been added, I think it makes sense to leave to
-> the driver author to port their validation loops and bo allocation over
-> to using drm_exec. While we made sure the drm_exec object was indeed
-> passed to the validation helper in the drm_gpuvm code, I'm not sure
-> everybody actually includes their validation and bo allocation (for
-> example page-table-bos) in their drm_exec while_not_all_locked() loop,
-> and I think it's reasonable to require the "port the driver over" to be
-> an optional but strongly recommended driver effort. If the driver sets
-> ctx->drm_exec to NULL, it will fallback to current behaviour.
-
-For the intermediate case I think it makes sense to have this optional, 
-but in the long run we should make it mandatory.
-
->
->> Then I would switch over to using LRU hitches for both swapping and
->> eviction.
+>>However insted of using the current format, this creates a new one with
+>>the unit "ticks". The intention here is not to mix the GPU clock domain
+>>with the CPU clock. It allows to cover a few more use cases without
+>>extra complications.
 >>
->> And when that's finally done we can take a look into the partial
->> shmem
->> swapping :)
+>>Last patch was a quick implemenation of a gputop-like tool in python.
+>>I ended doing it to cross check the gputop implementation. I's not
+>>really meant to be applied here.
 >>
->> And Felix is really (and mean *really*) looking forward to the
->> partial
->> shmem swapping as well.
-> While the LRU walker helper introduced in patch 8 has drm_exec support,
-> shrinkers don't require it, since they are always trylocking. (However
-> being able to "evict" system to swap directly in the validation stage
-> using drm_exec locking is probably something we should support).
->
-> That's why I opted for implementing shrinking before exhaustive
-> eviction. But if you insist we can do it the other way around. Most of
-> what's needed is already in the patches.
-
-I don't care about the order in which things are implemented, but I 
-think we should have at least some eviction prototype as well for testing.
-
-Eviction is just the much easier to exercise use case.
-
-Regards,
-Christian.
-
->
-> /Thomas
->
->
->> Regards,
->> Christian.
+>>I tested this on DG2 and TGL with kmscube (console-only) and vkcube
+>>(in a gnome session), but it would be good to soak this under more
+>>tests. The biggest goal for this patch series right now is to get
+>>consensus on the new UAPI.
 >>
->> Am 16.04.24 um 12:07 schrieb Thomas Hellström:
->>> This series implements TTM shrinker / eviction helpers and an xe bo
->>> shrinker. It builds on two previous series, *and obsoletes these*.
->>> First
->>>
->>> https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg484425.html
->>>
->>> for patch 1-4, which IMO still could be reviewed and pushed as a
->>> separate series.
->>>
->>> Second the previous TTM shrinker series
->>>
->>> https://lore.kernel.org/linux-mm/b7491378-defd-4f1c-31e2-29e4c77e2d67@amd.com/T/
->>>
->>> Where the comment about layering
->>> https://lore.kernel.org/linux-mm/b7491378-defd-4f1c-31e2-29e4c77e2d67@amd.com/T/#ma918844aa8a6efe8768fdcda0c6590d5c93850c9
->>>
->>> now addressed, and this version also implements shmem objects for
->>> backup
->>> rather than direct swap-cache insertions, which was used in the
->>> previuos
->>> series. It turns out that with per-page backup / shrinking, shmem
->>> objects
->>> appears to work just as well as direct swap-cache insertions with
->>> the
->>> added benefit that was introduced in the previous TTM shrinker
->>> series to
->>> avoid running out of swap entries isn't really needed.
->>>
->>> In any case, patch 1-4 are better described in their separate
->>> series.
->>> (RFC is removed for those).
->>>
->>> Patch 5 could in theory be skipped but introduces a possibility to
->>> easily
->>> add or test multiple backup backends, like the direct swap-cache
->>> insertion or even files into fast dedicated nvme storage for for
->>> example.
->>>
->>> Patch 6 introduces helpers in the ttm_pool code for page-by-page
->>> shrinking
->>> and recovery. It avoids having to temporarily allocate a huge
->>> amount of
->>> memory to be able to shrink a buffer object. It also introduces the
->>> possibility to immediately write-back pages if needed, since that
->>> tends
->>> to be a bit delayed when left to kswapd.
->>>
->>> Patch 7 Adds a simple error injection to the above code to help
->>> increase
->>> test coverage.
->>>
->>> Patch 8 introduces a LRU walk helper for eviction and shrinking.
->>> It's
->>> currently xe-only but not xe-specific and can easily be moved to
->>> TTM when
->>> used by more than one driver or when eviction is implemented using
->>> it.
->>>
->>> Patch 9 introduces a helper callback for shrinking (Also ready to
->>> be
->>> moved to TTM) and an xe-specific shrinker implementation. It also
->>> adds a kunit test to test the shrinker functionality by trying to
->>> allocate twice the available amount of RAM as buffer objects. If
->>> there
->>> is no swap-space available, the buffer objects are marked
->>> purgeable.
->>>
->>> v2:
->>> - Squash obsolete revision history in the patch commit messages.
->>> - Fix a couple of review comments by Christian
->>> - Don't store the mem_type in the TTM managers but in the
->>>     resource cursor.
->>> - Rename introduced TTM *back_up* function names to *backup*
->>> - Add ttm pool recovery fault injection.
->>> - Shrinker xe kunit test
->>> - Various bugfixes
->>>
->>> Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
->>> Cc: Christian König <christian.koenig@amd.com>
->>> Cc: <dri-devel@lists.freedesktop.org>
->>>
->>> Thomas Hellström (8):
->>>     drm/ttm: Allow TTM LRU list nodes of different types
->>>     drm/ttm: Use LRU hitches
->>>     drm/ttm, drm/amdgpu, drm/xe: Consider hitch moves within bulk
->>> sublist
->>>       moves
->>>     drm/ttm: Allow continued swapout after -ENOSPC falure
->>>     drm/ttm: Add a virtual base class for graphics memory backup
->>>     drm/ttm/pool: Provide a helper to shrink pages.
->>>     drm/xe, drm/ttm: Provide a generic LRU walker helper
->>>     drm/xe: Add a shrinker for xe bos
->>>
->>>    drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c |   4 +
->>>    drivers/gpu/drm/ttm/Makefile           |   2 +-
->>>    drivers/gpu/drm/ttm/ttm_backup_shmem.c | 137 +++++++++
->>>    drivers/gpu/drm/ttm/ttm_bo.c           |   1 +
->>>    drivers/gpu/drm/ttm/ttm_device.c       |  33 ++-
->>>    drivers/gpu/drm/ttm/ttm_pool.c         | 391
->>> ++++++++++++++++++++++++-
->>>    drivers/gpu/drm/ttm/ttm_resource.c     | 231 ++++++++++++---
->>>    drivers/gpu/drm/ttm/ttm_tt.c           |  34 +++
->>>    drivers/gpu/drm/xe/Makefile            |   2 +
->>>    drivers/gpu/drm/xe/xe_bo.c             | 123 ++++++--
->>>    drivers/gpu/drm/xe/xe_bo.h             |   3 +
->>>    drivers/gpu/drm/xe/xe_device.c         |   8 +
->>>    drivers/gpu/drm/xe/xe_device_types.h   |   2 +
->>>    drivers/gpu/drm/xe/xe_shrinker.c       | 237 +++++++++++++++
->>>    drivers/gpu/drm/xe/xe_shrinker.h       |  18 ++
->>>    drivers/gpu/drm/xe/xe_ttm_helpers.c    | 224 ++++++++++++++
->>>    drivers/gpu/drm/xe/xe_ttm_helpers.h    |  63 ++++
->>>    drivers/gpu/drm/xe/xe_vm.c             |   4 +
->>>    include/drm/ttm/ttm_backup.h           | 136 +++++++++
->>>    include/drm/ttm/ttm_device.h           |   2 +
->>>    include/drm/ttm/ttm_pool.h             |   4 +
->>>    include/drm/ttm/ttm_resource.h         |  96 +++++-
->>>    include/drm/ttm/ttm_tt.h               |  19 ++
->>>    23 files changed, 1683 insertions(+), 91 deletions(-)
->>>    create mode 100644 drivers/gpu/drm/ttm/ttm_backup_shmem.c
->>>    create mode 100644 drivers/gpu/drm/xe/xe_shrinker.c
->>>    create mode 100644 drivers/gpu/drm/xe/xe_shrinker.h
->>>    create mode 100644 drivers/gpu/drm/xe/xe_ttm_helpers.c
->>>    create mode 100644 drivers/gpu/drm/xe/xe_ttm_helpers.h
->>>    create mode 100644 include/drm/ttm/ttm_backup.h
->>>
+>>TODO: Add documentation on top with the new interface.
+>
+>Yeah a drm-usage-stats.rst patch would be nice to have in the RFC so 
+>one does not have to look into the driver implementation to discuss 
+>the proposed uapi.
+>
+>Nevertheless I understand the proposal is to add this:
+>
+> drm-engine-<class>: <GPU_TIMESTAMP> <RUNTIME> ticks
 
+yes, the gputop patch was more explicit about this. Should had added in
+the kernel patch series too.
+
+>
+>That's two values per key. I guess "one key value pair for per one 
+>line of text" does not get strictly broken and that you propose a 
+>heuristics in parsing to detect that the <RUNTIME> cannot be 
+>mis-interpreted as the unit?
+
+the current format is
+
+	drm-engine-<class>: <RUNTIME> ns
+
+the "ns" in the end should be parsed by userspace to know
+what it is about.
+
+>
+>Not sure it is a good idea though. If you instead added a new key for 
+>the gpu time what would be the downside in your view? Like:
+>
+>drm-engine-<class>: <uint> ticks
+>drm-ticks-<class>: <uint>
+>
+>Or maybe even obsfuscate/generalise as:
+>
+>drm-engine-<class>: <uint> gpu-time
+>drm-gpu-time-<class>: <uint>
+
+I think both work, but I fail to see the advantage. This alternative is
+slightly heavier on the parsing side since you have to correlate the
+values from 2 keys, possibly dealing with them appearing in different
+order. The only possible breakage remains with this alternative: if
+userspace didn't parse the unit before. I checked nvtop and htop and
+they were doing the right thing. I sent a fix to igt a few weeks back
+for it to consider the unit:
+https://lore.kernel.org/igt-dev/20240405060056.59379-8-lucas.demarchi@intel.com/
+
+>
+>Potentially could also add a key saying how much wall time is one unit 
+>of GPU time.
+
+I wouldn't add it really as it may not make sense depending on the
+vendor and or usage. Examples: the gpu time may be different for
+different engines depending on where they are located (tile/gt). The
+correlation with CPU time is different when running in VF mode, and may
+change in runtime depending on the number of VFs. +Michal.
+
+Also, if the userspace side really wants to know (why would it?)
+it could be just calculate from 2 samples (possibly repeated a few
+times as it updates the output).
+
+>
+>Or.. would even the existing drm-cycles, plus abuse of drm-maxfreq, 
+>work? Ticks == cycles, maxfreq == ticks per wall second.
+
+I think it'd be up to gpu vendor what clock backs this time. For the
+current Intel cards, it's the refclock and it doesn't vary the
+frequency.
+
+>
+>Secondly, wrap behaviour every 25-30 seconds patch 6/7 describes 
+>definitely breaks the format spec and in my view should be worked 
+>around in the driver:
+>
+>"""
+>Values are not required to be constantly monotonic if it makes the driver
+>implementation easier, but are required to catch up with the 
+>previously reported
+>larger value within a reasonable period. Upon observing a value lower 
+>than what
+>was previously read, userspace is expected to stay with that larger previous
+>value until a monotonic update is seen.
+>"""
+
+but this is the behavior for dealing with "ns", not with "ticks". We can
+add a worker to run every so often.  When I got the original patches
+from Umesh, we had this worker implemented, but dealing with that was
+complex and wasting a lot of cycles since it was always running (except
+if we didn't have any exec_queue). Here is my tentative to simplify it
+since I don't really see the need to account for a ~25s wrap around.
+
+thanks
+Lucas De Marchi
+
+>
+>Regards,
+>
+>Tvrtko
+>
+>>
+>>Test-with: https://lore.kernel.org/igt-dev/20240405060056.59379-1-lucas.demarchi@intel.com/
+>>
+>>Lucas De Marchi (5):
+>>   drm/xe: Promote xe_hw_engine_class_to_str()
+>>   drm/xe: Add XE_ENGINE_CLASS_OTHER to str conversion
+>>   drm/xe: Add helper to capture engine timestamp
+>>   drm/xe/client: Print runtime to fdinfo
+>>   HACK: simple gputop-like impl in python
+>>
+>>Umesh Nerlige Ramappa (2):
+>>   drm/xe/lrc: Add helper to capture context timestamp
+>>   drm/xe: Add helper to capture context runtime
+>>
+>>  drivers/gpu/drm/xe/regs/xe_lrc_layout.h       |   1 +
+>>  drivers/gpu/drm/xe/xe_device_types.h          |   9 ++
+>>  drivers/gpu/drm/xe/xe_drm_client.c            |  81 ++++++++++++-
+>>  drivers/gpu/drm/xe/xe_exec_queue.c            |  37 ++++++
+>>  drivers/gpu/drm/xe/xe_exec_queue.h            |   1 +
+>>  drivers/gpu/drm/xe/xe_hw_engine.c             |  29 +++++
+>>  drivers/gpu/drm/xe/xe_hw_engine.h             |   4 +
+>>  drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c |  18 ---
+>>  drivers/gpu/drm/xe/xe_lrc.c                   |  11 ++
+>>  drivers/gpu/drm/xe/xe_lrc.h                   |   2 +
+>>  drivers/gpu/drm/xe/xe_lrc_types.h             |   3 +
+>>  drivers/gpu/drm/xe/xe_sched_job.c             |   2 +
+>>  pyfdinfo                                      | 113 ++++++++++++++++++
+>>  13 files changed, 292 insertions(+), 19 deletions(-)
+>>  create mode 100755 pyfdinfo
+>>
