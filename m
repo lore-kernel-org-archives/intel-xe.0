@@ -4,61 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61002C04FFF
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Apr 2024 10:25:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 104CEC4345F
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Apr 2024 10:28:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05417112B9A;
-	Tue, 16 Apr 2024 10:25:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UOa9Fjcd";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F8E8112B98;
- Tue, 16 Apr 2024 10:25:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713263138; x=1744799138;
- h=message-id:date:mime-version:subject:from:to:cc:
- references:in-reply-to:content-transfer-encoding;
- bh=1zR+UT0PEnYWjAVbYzA6OHhHC0bd9DVY2vzWigPPEng=;
- b=UOa9FjcdaZbxBr0yQypihOSE19FVud56JVS0S6AIOft2UTygZV1sP73M
- 7exfaEyx2/duU9aA5TnD9kBeYgfjHIRTAAi+slpXl9yAU79q9r9WKNFTc
- 0v6Mpznd0P9AMQJGq4K6puIrCQkYFiQj/wa0QFZj/0mZbsYLfdB/X9Phz
- fGGKQF+T2ZiECFqkMOy3uEV7F5OKpBlnEc2kwX/7MurlG/xIBijf3Gp7l
- LkUUNKlSeovIfiDVkJnN6DhZh7vXknzyZwoB4XmRy/rQHdV6Emr3ozjtu
- AvwhljITu7elBl2UDYUyTKx9GLVbWAJpKX/RjI5EL5W226LD1ZtLfXxk1 w==;
-X-CSE-ConnectionGUID: BVQ81cPgRNOYc7znwuQAWg==
-X-CSE-MsgGUID: n36Hz0TTTfGlynQmjljwvQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="8802605"
-X-IronPort-AV: E=Sophos;i="6.07,205,1708416000"; 
-   d="scan'208";a="8802605"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2024 03:25:37 -0700
-X-CSE-ConnectionGUID: vHlNDGNiR56kTrGkIUcOyQ==
-X-CSE-MsgGUID: zLWYAK6FSzuSr2rBGtWRKg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,205,1708416000"; d="scan'208";a="26873975"
-Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
- ([10.145.162.146])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2024 03:25:36 -0700
-Message-ID: <3f16f54b-f922-4f54-a459-fc175bafef2c@linux.intel.com>
-Date: Tue, 16 Apr 2024 15:58:23 +0530
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94A5510E10C;
+	Tue, 16 Apr 2024 10:28:27 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0AE010E10C;
+ Tue, 16 Apr 2024 10:28:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8861605511817687078=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] drm: add devm release action
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-To: intel-xe@lists.freedesktop.org, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, lucas.demarchi@intel.com
-Cc: dri-devel@lists.freedesktop.org, "daniel@ffwll.ch" <daniel@ffwll.ch>,
- maarten.lankhorst@linux.intel.com
-References: <20240402085859.1591264-1-aravind.iddamsetty@linux.intel.com>
- <20240402085859.1591264-2-aravind.iddamsetty@linux.intel.com>
-Content-Language: en-US
-In-Reply-To: <20240402085859.1591264-2-aravind.iddamsetty@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/edid=3A_cleanups=2C_rebase?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 16 Apr 2024 10:28:25 -0000
+Message-ID: <171326330585.1443400.8646299505248163864@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <cover.1713259151.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1713259151.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,60 +35,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Daniel/ Maarten,
+--===============8861605511817687078==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Could you please ack this patch.
+== Series Details ==
 
-Thanks,
-Aravind.
+Series: drm/edid: cleanups, rebase
+URL   : https://patchwork.freedesktop.org/series/132493/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-1095-5f7597e990bea547bd1261170497e7476fb781bb_BAT -> xe-pw-132493v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
 
 
-On 02/04/24 14:28, Aravind Iddamsetty wrote:
-> In scenarios where drm_dev_put is directly called by driver we want to
-> release devm_drm_dev_init_release action associated with struct
-> drm_device.
->
-> v2: Directly expose the original function, instead of introducing a
-> helper (Rodrigo)
->
-> Cc: Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-> ---
->  drivers/gpu/drm/drm_drv.c | 6 ++++++
->  include/drm/drm_drv.h     | 2 ++
->  2 files changed, 8 insertions(+)
->
-> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> index 243cacb3575c..ba60cbb0725f 100644
-> --- a/drivers/gpu/drm/drm_drv.c
-> +++ b/drivers/gpu/drm/drm_drv.c
-> @@ -714,6 +714,12 @@ static int devm_drm_dev_init(struct device *parent,
->  					devm_drm_dev_init_release, dev);
->  }
->  
-> +void devm_drm_dev_release_action(struct drm_device *dev)
-> +{
-> +	devm_release_action(dev->dev, devm_drm_dev_init_release, dev);
-> +}
-> +EXPORT_SYMBOL(devm_drm_dev_release_action);
-> +
->  void *__devm_drm_dev_alloc(struct device *parent,
->  			   const struct drm_driver *driver,
->  			   size_t size, size_t offset)
-> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-> index 8878260d7529..fa9123684874 100644
-> --- a/include/drm/drm_drv.h
-> +++ b/include/drm/drm_drv.h
-> @@ -444,6 +444,8 @@ struct drm_driver {
->  	const struct file_operations *fops;
->  };
->  
-> +void devm_drm_dev_release_action(struct drm_device *dev);
-> +
->  void *__devm_drm_dev_alloc(struct device *parent,
->  			   const struct drm_driver *driver,
->  			   size_t size, size_t offset);
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7806 -> IGT_7807
+  * Linux: xe-1095-5f7597e990bea547bd1261170497e7476fb781bb -> xe-pw-132493v1
+
+  IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7807: 43e71eeac0fb4fe59df40df2c96fd0fdbf585c0b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1095-5f7597e990bea547bd1261170497e7476fb781bb: 5f7597e990bea547bd1261170497e7476fb781bb
+  xe-pw-132493v1: 132493v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132493v1/index.html
+
+--===============8861605511817687078==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/edid: cleanups, rebase</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132493/">https://patchwork.freedesktop.org/series/132493/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132493v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132493v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1095-5f7597e990bea547bd1261170497e7476fb781bb_BAT -&gt; xe-pw-132493v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7806 -&gt; IGT_7807</li>
+<li>Linux: xe-1095-5f7597e990bea547bd1261170497e7476fb781bb -&gt; xe-pw-132493v1</li>
+</ul>
+<p>IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7807: 43e71eeac0fb4fe59df40df2c96fd0fdbf585c0b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1095-5f7597e990bea547bd1261170497e7476fb781bb: 5f7597e990bea547bd1261170497e7476fb781bb<br />
+  xe-pw-132493v1: 132493v1</p>
+
+</body>
+</html>
+
+--===============8861605511817687078==--
