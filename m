@@ -4,119 +4,132 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63DC4C4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Apr 2024 11:55:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2668FC04FFF
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Apr 2024 12:19:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19966112BF2;
-	Tue, 16 Apr 2024 11:55:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE6D4112C1C;
+	Tue, 16 Apr 2024 12:19:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="glkhf8wC";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="wdopkbdq";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="PYKdx0B3";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="wdopkbdq";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="PYKdx0B3";
 	dkim-atps=neutral
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2052.outbound.protection.outlook.com [40.107.223.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A66CA112BF7;
- Tue, 16 Apr 2024 11:55:33 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UOtq5MVdGAzyVHxeGqFDGdWcSFuO/0uzgu9SppcSnIhAQve/O+GmC96fm42O+MXqS4m93ZZZ4kqH4KU6DO0+87FtqhvCl19jxQyqaYGVyAjBpOwkGJR9iUWqGi+/5BXBVGJilzs7SKKc4bIsTOgggckxijml/qSkvn/oJx4qmrqlG8ikb+V8T1xnkJX8czDKHxuUdULDF+eIZeqceCYncRLdC+r/H4rkL4XGpC0goBHHPpSqSb0st//Z7SFWf8dPltuLn5dxL/yFWlcSy6o1+dQAwjlanQvgv038E+b8QkoF5SL+XEFqpERPZB8VxCybTp4oIupg319ioejjA4vqLQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KmmwzQ2MjMJTY6mb7el6PxR81gTH3PCFxQUfzTXMJUs=;
- b=JiCZp4dpMY7/cfHSzNJjKi9HeAt9T/o40lXv8ZJsYCXWUGgw9cZfvHUZ0jsBdQYTmkzRckmUXABnyEV0R92pZJt5fdlw7Wbf0lHzcCN8W99Zlu8H86MDb8HwVwwkqs8Kkhe5W6hL8AIyvbg267JfccprCQXsB59qnzXtv1MIpmDn/18BOH8FDFCeHEYXGYK884kaLyDfRJ/t7CSymVw6eQaiWRj7hlp1EfF9qZhtDndlCVZjJ2s1FLs4DEBBMEDg2/vymY0kRxpDEoNvNrQ0JgyYatZuRg2DAjlxT8XyxUHVBKadoTL7UGcJ2oYKChOi+JsvpEVhoHO6nCzr2J8uDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KmmwzQ2MjMJTY6mb7el6PxR81gTH3PCFxQUfzTXMJUs=;
- b=glkhf8wC4GFsqVSZ/j+Dcd+9whNxrqIP2Xb4HiIj+Wtt4MFJgd91PkBU3pw8l+IYVsENhqtbTlW14DTO7LHh+p8J8aZelSF6uS5LVWbONlxB9y8/EXztEuUxNu52eyPQPZ6T5XqfHUrHUtxJoq7Xmca/8iufj0FcT7/AjfYI5to=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by IA1PR12MB7493.namprd12.prod.outlook.com (2603:10b6:208:41b::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Tue, 16 Apr
- 2024 11:55:31 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::f2b6:1034:76e8:f15a]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::f2b6:1034:76e8:f15a%6]) with mapi id 15.20.7452.049; Tue, 16 Apr 2024
- 11:55:31 +0000
-Message-ID: <bb679fc6-7890-4b4a-a8cd-8ae7ce087a9f@amd.com>
-Date: Tue, 16 Apr 2024 13:55:24 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/9] TTM shrinker helpers and xe buffer object shrinker
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- dri-devel@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>,
- "Kuehling, Felix" <Felix.Kuehling@amd.com>
-References: <20240416100730.6666-1-thomas.hellstrom@linux.intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20240416100730.6666-1-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI1P191CA0015.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:800:1ba::8) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D781112C1A;
+ Tue, 16 Apr 2024 12:19:07 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 767A8373DA;
+ Tue, 16 Apr 2024 12:19:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1713269946; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=SG9LgJTPJWeVdN2wv4tQ/5V2BEOa+enYxvxU9lAmf8M=;
+ b=wdopkbdqwqgDxPNOrk/be93Rh/gQiEpbzOylkj3sPPGdMJJcNdLRpbSCpEBIA4gG0Q4LlU
+ RLsE9WyO996CJ4WSMQ4wNTxKMK4D1nvewFr354eedc/WmBOoGvT38EyKEFA/oJ7CBm7Hym
+ OUaaq6FhCqdYBPJiB8A+nOtB/ppyfqM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1713269946;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=SG9LgJTPJWeVdN2wv4tQ/5V2BEOa+enYxvxU9lAmf8M=;
+ b=PYKdx0B3LhBKsMD3GroH7w4jVs5I+SFUSHYtfU2ggVJpCfsrEEPIVTjtOlXH9MbOWD9I3h
+ EgCEOjwwNaQyGADA==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=wdopkbdq;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=PYKdx0B3
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1713269946; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=SG9LgJTPJWeVdN2wv4tQ/5V2BEOa+enYxvxU9lAmf8M=;
+ b=wdopkbdqwqgDxPNOrk/be93Rh/gQiEpbzOylkj3sPPGdMJJcNdLRpbSCpEBIA4gG0Q4LlU
+ RLsE9WyO996CJ4WSMQ4wNTxKMK4D1nvewFr354eedc/WmBOoGvT38EyKEFA/oJ7CBm7Hym
+ OUaaq6FhCqdYBPJiB8A+nOtB/ppyfqM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1713269946;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=SG9LgJTPJWeVdN2wv4tQ/5V2BEOa+enYxvxU9lAmf8M=;
+ b=PYKdx0B3LhBKsMD3GroH7w4jVs5I+SFUSHYtfU2ggVJpCfsrEEPIVTjtOlXH9MbOWD9I3h
+ EgCEOjwwNaQyGADA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5533013931;
+ Tue, 16 Apr 2024 12:19:06 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([10.150.64.162])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id uyaHE7psHmb8PQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 16 Apr 2024 12:19:06 +0000
+Message-ID: <fb57c317-25ec-4001-abb4-cb52b0aff741@suse.de>
+Date: Tue, 16 Apr 2024 14:19:05 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|IA1PR12MB7493:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6a554b2d-7b8d-4cd7-b0c2-08dc5e0c1d91
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TQNZEoOl6v0avqATSt/H2lKo+wY2v7LoT4t9uA7xhX20dEuOAMLYZPZTawU5iuujpV2NZgcxwOnAYvtMkYTDUOYlYtf3GUbrp0yh/fVbV2cVk/9UTlqYPD1LRjWZIJ49XOSR39bvfO5cbf0ddVugWTMGuLqMt3QLOMQkkBcvxYa0Q2b5s+oHXnI8y8TDRPI+TKgv7aMrgzoLVf+RP44UrWqiNhaXZmYLetYu/3Fl3jNbUpmg3RuGYNPZ+g7RdFrC8ENkZVi8EzPliMgzh68XxIDTfy5KFrfmo1skGVXLzN8MoRrGsqvKgqBVxUleSwHmZ0epDnpW3ziPXL7ZqWCQEMJ1hZA0ZiNGYlYATXYYnZOb0iTQaGeVbNkSvcaQZZrshHFi3g1UQ/CTQ9OeRESPmG8GakSa8X4hRdybPRe8pdB6gAeOObY3dxb0on4wEdMWAJYKOsKSczU9bh/IS3+BIs7yt5sIE6qIpl0rbMx077YtJdlCACeAplT9rn1jxI4IW8iTqVLWJpReYD9wIle1l5pQ/rKa8MxGZBjxnM1yV6V3UmIcnaCswWJLllppWIBNX/etNqwlZfsoorXiUkG+vxoO8+1nv2IBR4yyoGgijXCy5xKnyezzf3m5eVpK+Khh
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N1ltSFFyTzBxV256TE5xWWwxaEhkOXFtNkUwa2U4NDBHbWZsWW56SUR2UmJV?=
- =?utf-8?B?TVZPS1VOcDlhMnh1cjFTRGl3SmJIMTBPM1QvWEJrcmJqWnMrcFkxZU5NSnFZ?=
- =?utf-8?B?VDlacEg4endJSWpwMFh0QitWWkNPb2FQZHJROGFId0hBQ3Bhb3JieUpDdENH?=
- =?utf-8?B?TnluNDZsT0xpMjl4ZktRYXQraXRvd3YrUlNnZUEwbEVuTUFuTnpwbjFFSHZM?=
- =?utf-8?B?N2p4Sk12NHp4ZGFkMC9sZDAweEJWUjB2MFF5ZEhKRVlEU2Q1TDNlVnFkUmpm?=
- =?utf-8?B?KzZxdEpnclZzQUVmVWJ0YnA5ZnNENm5pSDBiVVBzUTJWRTF4RDhYaGhUQ2Rw?=
- =?utf-8?B?ZWJ4KzZrcWJUTEdhclJGSVFSRVB4UnFYS211Y2FFVEp0R0VXZnFlcXZEQ004?=
- =?utf-8?B?ZGZjMGI2SE5rSURPNXU2VTJuWnpMb054NWwvQ0lLMXltZkVWNk1OOFJuRnVt?=
- =?utf-8?B?aDM5bmZJSEpnRHBvL2dKRlR2R3lIazUwL0RneFVBZ2ZROUV3d3RiWTlyYkZV?=
- =?utf-8?B?WTU3MzlaM01CdE0raWlzcGV3OHZWQ1Zoa1IyVHppQmRWRExBM1NRaXFVYlZY?=
- =?utf-8?B?MXZ4UTJDMG4wcGJjd05iN2ZnOUFWbnBXOFA1MDVzdEVkc0dSbmF1TjJ4Lzk1?=
- =?utf-8?B?Nk9Xd1FWMUNvUkVGWldOVG5BYmdhOWV2Rkd4VDBXMnk0OTJYa3hVTXZ5OFdr?=
- =?utf-8?B?NkcwUnM3Wlp2aVcrbHdycUNOcWpZazRjNEVmd0ZoRnFDMnRXQ1ZLSC9YRDVt?=
- =?utf-8?B?WXNOcmRiVE5iWjhUUktHY1NQM2d6bEk4NCtFek12aWtaczdKcFBLY1BEbC9K?=
- =?utf-8?B?SkVkT1pIM2pTY1Y2QURIUHZET3BUaGNCZk9KTjRac0NySE4xd0hSTXpSQXM0?=
- =?utf-8?B?cjQ1R0QxUHg0RStOMjJoZkxUQk92ZWIvVVU1Y2dqcVY4SStDSmhHbmlDY3F5?=
- =?utf-8?B?Z0laNmdnMlpKRGxib2FENWtZSVAwcHl3RTlzamtyVitGRUE3R1o5NXZzWTQz?=
- =?utf-8?B?YW1nRHdoTTZJd3d6eXRaUTlLQ1hpTkRhUVp6THRFSy9HaE9sdjJ6MVFsclBX?=
- =?utf-8?B?N0RnS1M2aUQxVWlLdXNuTTc2ZnI2ci9BRys2ckhXaHljZko2cnlpcXRqSzNK?=
- =?utf-8?B?c1RFTEh6RURyeFpOL3hjV1IvMDZIcmZpc1dJaU5ibkR2RHErdTR6ZjJqMmta?=
- =?utf-8?B?eThWNmI0L05FUS9XYjdQdS9CU3lKNGowc1VNVHVqdE85UGgwamRxMXltQTRE?=
- =?utf-8?B?M2ZIL1NVVSsvazM0NW9XODN4c3B0aTh0STk2bm9hRUwzV1VVVUxNSUdsa1ll?=
- =?utf-8?B?S09FQVFHYnpDR0hXYUMxRDNYUnNQdHIwVWtFMU11Z3dzS21nUEpHTExaZ2lS?=
- =?utf-8?B?UXpPVUV0YmpnTzFFb2pjakpWWW1ObWMvenJ6OHh5MzQzbGlDUFJOZXNBSm1w?=
- =?utf-8?B?V1ZMaXZabkYwczlJbUh0U2l4WjlNRUhqZ3FTTmVBVmluaHhZU1NYdkMxMmE1?=
- =?utf-8?B?K2dXYXRjcnFOekE1aFUyTkNWeDZ0dUpxa0RzdUI3dHN0WjVrRUhsSUdvUWhB?=
- =?utf-8?B?YkZCc3VSeG15bDVMelVVbzhEd0pBS1hKNm91OHVUVHVBVXdtNktSckFjU0gy?=
- =?utf-8?B?Sy9SSjRnVmZSYTlRMkZsenJ4cURvYm80TnFvTC9IVGpPKzlGVVJILzR0bEN6?=
- =?utf-8?B?WThob3F4b2dPQm12L0g2MU9xeDAwNzdrK1FweGM3cWRMVVdTa1BBczRRdGU5?=
- =?utf-8?B?YmxBZCt6ZE5yOTk5OGFRd2djU09hWk0xWmY3SjVFeHhwVnNOVWtzVEJ0aXJH?=
- =?utf-8?B?bVlwZ01YZkNHUVJXMUlZVDZnSnJJZjBQTnRhZ2FRTDFSRU02TFRWNE5ZWkxK?=
- =?utf-8?B?NXdtSmtqbHFDQUFTT0FBeVlmNlBIcHBTZFAyUTB4ZS9HT2V6RkM5eWFTMURV?=
- =?utf-8?B?elhIUVBHVXR0N3JkdzBCT2tNVjYxTWFveDMyYUdtVjU4NmtPMGZmWWV0bzMx?=
- =?utf-8?B?RnI1aGpUekhGNnVHaW10Nkh6UDl4UW9ub3JPYVBFVlpiL20zNjVjWTl4WFRK?=
- =?utf-8?B?THZPeDVnMTY1WVo5djNrckUxRkdKVzhOcHY0RjBkUjRTMm52R1l1NHdRanNT?=
- =?utf-8?Q?U8fHt4ZLjdx/wqBo+BN8DD1/f?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6a554b2d-7b8d-4cd7-b0c2-08dc5e0c1d91
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2024 11:55:30.9717 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EWL6TpO4O7DDDqCZqNG7HyVwCLbSCA9eaKVSlBzf2pUtZ7KaCoGsY62/2O9djqlK
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7493
+User-Agent: Mozilla Thunderbird
+Subject: Re: [REBASE 5/7] drm/edid: avoid drm_edid_find_extension() internally
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <cover.1713259151.git.jani.nikula@intel.com>
+ <9fa366147b06a28304527be48f1b363c3484c8a3.1713259151.git.jani.nikula@intel.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <9fa366147b06a28304527be48f1b363c3484c8a3.1713259151.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-5.50 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ DWL_DNSWL_LOW(-1.00)[suse.de:dkim];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; XM_UA_NO_VERSION(0.01)[];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ MIME_TRACE(0.00)[0:+]; ARC_NA(0.00)[]; TO_DN_SOME(0.00)[];
+ MID_RHS_MATCH_FROM(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ RCPT_COUNT_THREE(0.00)[4]; RCVD_COUNT_TWO(0.00)[2];
+ TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,intel.com:email,suse.de:dkim];
+ DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+ DKIM_TRACE(0.00)[suse.de:+]
+X-Rspamd-Action: no action
+X-Rspamd-Queue-Id: 767A8373DA
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,133 +144,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While patches 1-4 look good from a high level I still think it needs 
-some prerequisite and re-ordering.
+Hi
 
-First of all make all the cleanups separate patches. In other words that 
-ttm_resource_manager_next() takes only the cursor as argument, adding 
-ttm_resource_cursor_fini()/ttm_resource_cursor_fini_locked() as one 
-patch and then ttm_lru_bulk_move_init()/ttm_lru_bulk_move_fini() as second.
+Am 16.04.24 um 11:19 schrieb Jani Nikula:
+> Prefer the EDID iterators over drm_edid_find_extension() in
+> drm_edid_has_cta_extension(), even if this leads to more code. The key
+> is to use the same patterns as much as possible.
 
-With that done I think we should first switch over TTM and all drivers 
-using it to drm_exec as part of it's context object.
+Should this patch go before patch 4? That would limit the impact of the 
+latter.
 
-Then I would switch over to using LRU hitches for both swapping and 
-eviction.
+Why is this instance different than the one in 
+drm_find_displayid_extension()? Best regards Thomas
+>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>   drivers/gpu/drm/drm_edid.c | 14 ++++++++++++--
+>   1 file changed, 12 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> index c29f31dcc818..4b3ad42a8f95 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -4230,11 +4230,21 @@ static bool drm_edid_has_cta_extension(const struct drm_edid *drm_edid)
+>   {
+>   	const struct displayid_block *block;
+>   	struct displayid_iter iter;
+> -	int ext_index = 0;
+> +	struct drm_edid_iter edid_iter;
+> +	const u8 *ext;
+>   	bool found = false;
+>   
+>   	/* Look for a top level CEA extension block */
+> -	if (drm_edid_find_extension(drm_edid, CEA_EXT, &ext_index))
+> +	drm_edid_iter_begin(drm_edid, &edid_iter);
+> +	drm_edid_iter_for_each(ext, &edid_iter) {
+> +		if (ext[0] == CEA_EXT) {
+> +			found = true;
+> +			break;
+> +		}
+> +	}
+> +	drm_edid_iter_end(&edid_iter);
+> +
+> +	if (found)
+>   		return true;
+>   
+>   	/* CEA blocks can also be found embedded in a DisplayID block */
 
-And when that's finally done we can take a look into the partial shmem 
-swapping :)
-
-And Felix is really (and mean *really*) looking forward to the partial 
-shmem swapping as well.
-
-Regards,
-Christian.
-
-Am 16.04.24 um 12:07 schrieb Thomas Hellström:
-> This series implements TTM shrinker / eviction helpers and an xe bo
-> shrinker. It builds on two previous series, *and obsoletes these*. First
->
-> https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg484425.html
->
-> for patch 1-4, which IMO still could be reviewed and pushed as a
-> separate series.
->
-> Second the previous TTM shrinker series
->
-> https://lore.kernel.org/linux-mm/b7491378-defd-4f1c-31e2-29e4c77e2d67@amd.com/T/
->
-> Where the comment about layering
-> https://lore.kernel.org/linux-mm/b7491378-defd-4f1c-31e2-29e4c77e2d67@amd.com/T/#ma918844aa8a6efe8768fdcda0c6590d5c93850c9
->
-> now addressed, and this version also implements shmem objects for backup
-> rather than direct swap-cache insertions, which was used in the previuos
-> series. It turns out that with per-page backup / shrinking, shmem objects
-> appears to work just as well as direct swap-cache insertions with the
-> added benefit that was introduced in the previous TTM shrinker series to
-> avoid running out of swap entries isn't really needed.
->
-> In any case, patch 1-4 are better described in their separate series.
-> (RFC is removed for those).
->
-> Patch 5 could in theory be skipped but introduces a possibility to easily
-> add or test multiple backup backends, like the direct swap-cache
-> insertion or even files into fast dedicated nvme storage for for example.
->
-> Patch 6 introduces helpers in the ttm_pool code for page-by-page shrinking
-> and recovery. It avoids having to temporarily allocate a huge amount of
-> memory to be able to shrink a buffer object. It also introduces the
-> possibility to immediately write-back pages if needed, since that tends
-> to be a bit delayed when left to kswapd.
->
-> Patch 7 Adds a simple error injection to the above code to help increase
-> test coverage.
->
-> Patch 8 introduces a LRU walk helper for eviction and shrinking. It's
-> currently xe-only but not xe-specific and can easily be moved to TTM when
-> used by more than one driver or when eviction is implemented using it.
->
-> Patch 9 introduces a helper callback for shrinking (Also ready to be
-> moved to TTM) and an xe-specific shrinker implementation. It also
-> adds a kunit test to test the shrinker functionality by trying to
-> allocate twice the available amount of RAM as buffer objects. If there
-> is no swap-space available, the buffer objects are marked
-> purgeable.
->
-> v2:
-> - Squash obsolete revision history in the patch commit messages.
-> - Fix a couple of review comments by Christian
-> - Don't store the mem_type in the TTM managers but in the
->    resource cursor.
-> - Rename introduced TTM *back_up* function names to *backup*
-> - Add ttm pool recovery fault injection.
-> - Shrinker xe kunit test
-> - Various bugfixes
->
-> Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: <dri-devel@lists.freedesktop.org>
->
-> Thomas Hellström (8):
->    drm/ttm: Allow TTM LRU list nodes of different types
->    drm/ttm: Use LRU hitches
->    drm/ttm, drm/amdgpu, drm/xe: Consider hitch moves within bulk sublist
->      moves
->    drm/ttm: Allow continued swapout after -ENOSPC falure
->    drm/ttm: Add a virtual base class for graphics memory backup
->    drm/ttm/pool: Provide a helper to shrink pages.
->    drm/xe, drm/ttm: Provide a generic LRU walker helper
->    drm/xe: Add a shrinker for xe bos
->
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c |   4 +
->   drivers/gpu/drm/ttm/Makefile           |   2 +-
->   drivers/gpu/drm/ttm/ttm_backup_shmem.c | 137 +++++++++
->   drivers/gpu/drm/ttm/ttm_bo.c           |   1 +
->   drivers/gpu/drm/ttm/ttm_device.c       |  33 ++-
->   drivers/gpu/drm/ttm/ttm_pool.c         | 391 ++++++++++++++++++++++++-
->   drivers/gpu/drm/ttm/ttm_resource.c     | 231 ++++++++++++---
->   drivers/gpu/drm/ttm/ttm_tt.c           |  34 +++
->   drivers/gpu/drm/xe/Makefile            |   2 +
->   drivers/gpu/drm/xe/xe_bo.c             | 123 ++++++--
->   drivers/gpu/drm/xe/xe_bo.h             |   3 +
->   drivers/gpu/drm/xe/xe_device.c         |   8 +
->   drivers/gpu/drm/xe/xe_device_types.h   |   2 +
->   drivers/gpu/drm/xe/xe_shrinker.c       | 237 +++++++++++++++
->   drivers/gpu/drm/xe/xe_shrinker.h       |  18 ++
->   drivers/gpu/drm/xe/xe_ttm_helpers.c    | 224 ++++++++++++++
->   drivers/gpu/drm/xe/xe_ttm_helpers.h    |  63 ++++
->   drivers/gpu/drm/xe/xe_vm.c             |   4 +
->   include/drm/ttm/ttm_backup.h           | 136 +++++++++
->   include/drm/ttm/ttm_device.h           |   2 +
->   include/drm/ttm/ttm_pool.h             |   4 +
->   include/drm/ttm/ttm_resource.h         |  96 +++++-
->   include/drm/ttm/ttm_tt.h               |  19 ++
->   23 files changed, 1683 insertions(+), 91 deletions(-)
->   create mode 100644 drivers/gpu/drm/ttm/ttm_backup_shmem.c
->   create mode 100644 drivers/gpu/drm/xe/xe_shrinker.c
->   create mode 100644 drivers/gpu/drm/xe/xe_shrinker.h
->   create mode 100644 drivers/gpu/drm/xe/xe_ttm_helpers.c
->   create mode 100644 drivers/gpu/drm/xe/xe_ttm_helpers.h
->   create mode 100644 include/drm/ttm/ttm_backup.h
->
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
 
