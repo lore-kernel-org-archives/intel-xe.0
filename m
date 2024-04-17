@@ -4,63 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8860C001CC
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Apr 2024 13:50:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2FC0C4345F
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Apr 2024 13:56:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B2FB113546;
-	Wed, 17 Apr 2024 13:50:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86FDB113553;
+	Wed, 17 Apr 2024 13:56:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LrztF3gm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LEpKmIJW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C08C6113544;
- Wed, 17 Apr 2024 13:50:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FBEA113555;
+ Wed, 17 Apr 2024 13:56:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713361842; x=1744897842;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=pJdF8hrnJwuqV2TRl1VS/Uounhlzqb5kh11Beec5rDE=;
- b=LrztF3gmKZ/drMWr7V7YghEwWYzrzmiiZ30+DSlHgPtILyt9zU8hkNWL
- pfA0Q+474wquCJa0XL9oixSMkCf1p9yPATrMp5pw2KHa8HMWmEbxyMzdZ
- CiqO5FEKr6u2Q73F6S+pr41jOJwWn5/3KFuO40JDldyn3mZ2NJ9XB0j6y
- a+45V86MSN+P7Owveuy+QYRxWA0QPgjCuC5hanKQCYmMrViVabYsI9JYf
- yNZrSuE/vgl+9Jvg0sLaX6ZSVO6uAVLX4ecM69bMG24MUef95kutDOwQe
- nVi+cZzj1PVKQFIS+D4U6EZh3xPCwM8UgWn/2KsTwgwib6wj5R7cQot32 w==;
-X-CSE-ConnectionGUID: XJpfpRMyRxaYNleNhGOFyw==
-X-CSE-MsgGUID: 9xnGpX0pR7GJ/+gCwWGZag==
-X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="8777989"
-X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; 
-   d="scan'208";a="8777989"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2024 06:50:42 -0700
-X-CSE-ConnectionGUID: 8AsVgJ13Sn6L6jWQb50u4Q==
-X-CSE-MsgGUID: 02iDpjicQcuzz/pQacZqGw==
+ t=1713362164; x=1744898164;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=8XMy/1mfh8YKwanOtuj2nixgXwXZ56lfWBX6h5FLcm0=;
+ b=LEpKmIJWCG5SxqN67ayg8orL/rLVYMobXnlbUuhvDjzn7jw9eMuNxtMl
+ oMzCKh2fJax3MGOVx4y9NzPQsSGYUqtJCrNRhwPfwqPN7YYDuP9vSOp2Y
+ J+Z4wJkd2234rOn03Vz3HLUo+tZ0n7IVot+IDNRNzFgmbZ9YIFNBwkHvk
+ 1ebYBNmvd3ZQlozHwzhUfpqyq2Ffj6G8REReikHXMJ9BUH0EDfUsJxoWC
+ 6RdWyFdDjkRFXwHPbHeV1nHH3l8SD3kmhI91efLlgD7oJiG4ZLO6oqIbd
+ atW88NQNBTr/JAlloWJWR8ejEs3ynV4Oar2UwosxagGlO9NVz7NLOel8N g==;
+X-CSE-ConnectionGUID: 6JgFZNJESkW/PsThHxGMkA==
+X-CSE-MsgGUID: vHYHrxfGRB6yOqnU/GIXog==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="26366023"
+X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="26366023"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2024 06:56:04 -0700
+X-CSE-ConnectionGUID: Mgv+JzyFTxidZzFb21pI6g==
+X-CSE-MsgGUID: g98Aa3iWSbiFbpifbwXNBA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="22685608"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa006.fm.intel.com with ESMTP; 17 Apr 2024 06:50:39 -0700
-Received: from [10.252.45.94] (unknown [10.252.45.94])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 494F832EA6;
- Wed, 17 Apr 2024 14:50:33 +0100 (IST)
-Message-ID: <fa0574b1-cff1-48b1-bc8e-ccd5a8b2d0a6@intel.com>
-Date: Wed, 17 Apr 2024 15:50:32 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] drm/xe: Extract xe_gt_idle() helper
-To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>,
- dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, airlied@gmail.com, mripard@kernel.org,
- tzimmermann@suse.de, rodrigo.vivi@intel.com
-Cc: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="22705400"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 17 Apr 2024 06:56:04 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 17 Apr 2024 06:56:03 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 17 Apr 2024 06:56:02 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Wed, 17 Apr 2024 06:56:02 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.168)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Wed, 17 Apr 2024 06:56:02 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kwRnTjMBgOompcGnbI3D9gCO+FrIKj/0nnMjCQBFvlnwWPdz8ct5T4oMOimtR8aN2nYjfY302zwclldtnpMmSdBB8pWB8Fx/oM+ra/8FvcZIR/SZTO4xv+CK5dgOF2d4458FjB0a8aJ1J0bleK7A1AhCb+nnzZlitxzEscHPiL6kXBRbAU98qtvEdiQIWHC/vDLT9H4PYT8Q0Pbnka/exhKB/NJfnwHltzze/IxEejrzIKObymjcxWz1kJAq1KBmYy25K/mJ3c38rhOkFIa7wFZ5jO/XVjm9Qu921vh5VVX+1O68o6MnfUy9ImRot33IWFirBOYrTn36AUf/ahWjDA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qyVIu6ELb0KR0JXlL6hcwK9XnNCRunKn7HTpo2QRnHI=;
+ b=c3qlkstYR7kQiarmBJ+J3RA/OXFr2kpH0L71DAjjs4Z2APDHCIF4BQGldh5Aqit2adGJKFcOqiYC+o2kTU+h8kH6+SdgdTyuOa1g+O/YVjQqBNUChrQRko6RPUSMu96qpO+obrZRu2P6UACXch5qBMLITWlFBoZw5C/QLtl9TV4lVy+rboP6pwgTA1HPgCM5UCkdRb1AytYUMaeHhCxOBCgydHW6vrA2hGZpg2VZU+gwH4L4ODB8ApH5stXxzJZQM9NZQfPZYqrM+IazO6lbe1rdSeh3nJldIJtG62W0jrXYMw1AVgyYQlgm6iNm3LJEoX0dB/XXdW+nnBCA9634Fg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by MN0PR11MB6159.namprd11.prod.outlook.com (2603:10b6:208:3c9::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.37; Wed, 17 Apr
+ 2024 13:56:00 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::cf6f:eb9e:9143:f413]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::cf6f:eb9e:9143:f413%5]) with mapi id 15.20.7472.037; Wed, 17 Apr 2024
+ 13:56:00 +0000
+Date: Wed, 17 Apr 2024 09:55:55 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>, Daniel Vetter
+ <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+CC: <dri-devel@lists.freedesktop.org>, <daniel@ffwll.ch>,
+ <maarten.lankhorst@linux.intel.com>, <airlied@gmail.com>,
+ <mripard@kernel.org>, <tzimmermann@suse.de>,
+ <intel-xe@lists.freedesktop.org>, Thomas Hellstr_m
+ <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH v2 1/4] drm: add devm release action
+Message-ID: <Zh_U6zwzyS2Zlf0K@intel.com>
 References: <20240417084145.242480-1-aravind.iddamsetty@linux.intel.com>
- <20240417084145.242480-4-aravind.iddamsetty@linux.intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20240417084145.242480-4-aravind.iddamsetty@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+ <20240417084145.242480-2-aravind.iddamsetty@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240417084145.242480-2-aravind.iddamsetty@linux.intel.com>
+X-ClientProxiedBy: BY5PR13CA0004.namprd13.prod.outlook.com
+ (2603:10b6:a03:180::17) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|MN0PR11MB6159:EE_
+X-MS-Office365-Filtering-Correlation-Id: cf7966d9-6c6b-43b8-be61-08dc5ee61ca3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: xpujeODAAYpWCwriM05CmZDKtKUFgscBHEr2qNXxejCcyMrJrJNiNeUcwNo6umc9PdEX6N7CL0qVGYVqVUW3uTQHpMqwpvAZfj0eY2WAt4e2/CMtCKsZK20wLKfQq5jK3z67v6vv795s8JdOw8bGO5rN9xO5WWjx6k6q1bhJhwN5E40C/e1mZTx1JTUjwCo3br13k3uZK6uznBTSxcsdG3DziVKbjEz9tZvxMbCgXpdwnqG/fieJAzDHLjICU9O+pen40Ionpr2kZDBx8L8EniqZay3TMe0g+pTTfT/uazuC74sFAjUHCTml/6hgC41BXM5pjfoNoLECk/7kcsRRZHNE0ThmzKf1DUSkBOIqhjLcF+gh55rfct6CmQOsI6Z3WloecGrH40RRjCC4kxRgRsmRPeG41PRectKcDAzh2l845smRDbU+VcWq7IRrZabB52ufV9B2tNAEpflg8Z9MUqc1fhNb4TnBzK2Becygk7gkrm9Fd/hJnb2hZRudsAtp05fei80RabtPXOUAkMW7Rlxe3d4TGWzrFSEIlxTagHldaL3HVZyln8Lv9ACf5UCRcsZRWE274ZPVQ7qOZTyA3ANGzKpT9FpIYdRqZHFNc+mSCrlbzOL0l8EBvDyWXcn9aR7BNqVK+F9VP+nG/r7efGbbhP6NptGidghepSO3qHU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(376005)(7416005)(366007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?RWV84yQgNiT20XGptpyorrI7DyBJUY6+M3WDmQaF57V6tR6rLiwsnbRxyqxW?=
+ =?us-ascii?Q?WfQHu6GIcbNsXz6HtXyxppKaQgh3BGy/jgJhoD3WZ5fWFd3ZqPWi/PB3b6me?=
+ =?us-ascii?Q?Mt3psTHbAHF0ki3joOKWrnqg1/sBUwpt48BQn/tOFbKfNYeAQsWCSNF32vzO?=
+ =?us-ascii?Q?jJ4pd+RkIcdDFY92MGjF7yk+QtXVpnQ1gr+zNI5ihIdrUrWM7i6Zau4yEQE3?=
+ =?us-ascii?Q?yPlSHOxlJt+A0Qa62n9sw1b7roASWu5HTFH5nFCgoudvFdLUwat7ZUNvQjD3?=
+ =?us-ascii?Q?Aw10UPB8VvLqUKrZgLv/ozDrCizK1M0yKJjyQpoOy6WLDlxR0XPA9qvbfOdP?=
+ =?us-ascii?Q?/UFApHwkQIe4l+V77gM2BtR8R5s/oyoawRQ43FZ62x7MrebwZDKVKeUWrCep?=
+ =?us-ascii?Q?NqFZK7lgDZbMTUectl2a8gOuKJFIlk06HXzFQohs8nGdh8YpAwdbhfOvrRMv?=
+ =?us-ascii?Q?fbXTadQNWS3Cmcs6REEVw1mBCb60O1GbAv0U48uRRB9GDQz8W9eRXYEjf4iT?=
+ =?us-ascii?Q?lDKd9CfiuKfLVO4omXn5jCVnpSe6wEswngnDAJIksvNnoPp6fkCx6iIxzLvJ?=
+ =?us-ascii?Q?FJtq8mHG4YrmgGVXVOlHpogyL/38D3JYbrxJdBV3CM2KRNRXuAFy5/OccdMc?=
+ =?us-ascii?Q?nxDrt/TiWgES/HTzfdwQIfptXiIwAEvaIc9RI3ElefDxAuy3CZ1AOcxGhp6u?=
+ =?us-ascii?Q?T7O46ZLa+35O8zeeCLxOx7cjX5h170EjgUkuuaRFe9aTVW/yUl3N3revJbQc?=
+ =?us-ascii?Q?7e/xF+t3WbLnLxoFL4c4xir0iyP6zkTdNkmB1uy/6zk9FHq9orJOk4lNSoD3?=
+ =?us-ascii?Q?1DiMWGQ3fNRGSJiU8TuIfSO9HVdpoqRy4zcYxKmdyeKNYL6K1YEclktz1CmH?=
+ =?us-ascii?Q?ldxM43/BBdiLkwQ9rdPlNQRAKuzFbDRtdNwSjV5pD7guPkAVt6OhDze3cmIn?=
+ =?us-ascii?Q?X38M8sruDSqesqozBKTF966kgzqENl4DXKpXL6hxFo2XqYZPY1iKZT0N06WZ?=
+ =?us-ascii?Q?cRgJwxqjNJmXiBvQLj2wgB1SGnI4H151jewrHFkd4CaCr55qing3JdBsZTYE?=
+ =?us-ascii?Q?tSCMYv/vugSWUduNXpHEXkaSDTr2NPNxhmkDTGCg9e1SRkwrrT/SzGKUTV+p?=
+ =?us-ascii?Q?KOZR+mzqGFKN2FSKFHhLa5/AhcW2gGDPkBho42h4vIi4FBdJZu7iktUUi2C/?=
+ =?us-ascii?Q?rDYnpcr5+MFQxbhBwlpOqgPP99+DNrIs3KfEakuCIwfw1ouY67k3zO1l8Xt4?=
+ =?us-ascii?Q?GXDLhqfquQea3AP5wAlQGfpj7Gk9++J8Sja7ewhWeXkuxMC055p+q9hCwVqi?=
+ =?us-ascii?Q?c/0FMxPME0NxKNm9gaEfgGh/ggEXWST43ib6MjolHsh6gI2rhekjggblq3sc?=
+ =?us-ascii?Q?pvCVy39XEIaBn4c5y3vu/rfLRfLqAmkGbB0DqfpDmyMFuFOsp4KFpAhX+KJD?=
+ =?us-ascii?Q?6ZszJQP7zn4brJ5UPZihMu9nAfvl8bRhKh88RECjBsoMZXsdGIWabJrkNVx+?=
+ =?us-ascii?Q?I0ZNwd9cE/Os+MV3wqaAebK5ex2K0bB3fDX5XasLXkc2OeMRwqz1jyJZilXy?=
+ =?us-ascii?Q?kuBUHZEsPYW7X22FACnH0WglcvpiEhGr/ehBSepTg/5jGc8+iOgCcOps70Jp?=
+ =?us-ascii?Q?Xw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf7966d9-6c6b-43b8-be61-08dc5ee61ca3
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2024 13:55:59.9257 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QKIcO4c0Hq37M2s+NVxLQY5b1u9W3ymd8LOxzGr5kzcUyNmxCzVrMaXI1BtX7VsZhHmJtn10HS31klkImpDDdw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6159
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,88 +161,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 17.04.2024 10:41, Aravind Iddamsetty wrote:
-> This would be used in other places outside of gt_reset path.
+On Wed, Apr 17, 2024 at 02:11:42PM +0530, Aravind Iddamsetty wrote:
+> In scenarios where drm_dev_put is directly called by driver we want to
+> release devm_drm_dev_init_release action associated with struct
+> drm_device.
 > 
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> v2: Directly expose the original function, instead of introducing a
+> helper (Rodrigo)
+> 
+> Cc: Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > 
 > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+Sima, Dave, or drm-misc, ack to get this through drm-xe-next?
+
 > Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_gt.c | 31 +++++++++++++++++++++----------
->  drivers/gpu/drm/xe/xe_gt.h |  1 +
->  2 files changed, 22 insertions(+), 10 deletions(-)
+>  drivers/gpu/drm/drm_drv.c | 6 ++++++
+>  include/drm/drm_drv.h     | 2 ++
+>  2 files changed, 8 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index cfa5da900461..59f497d575ad 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -629,6 +629,26 @@ static int do_gt_restart(struct xe_gt *gt)
->  	return 0;
+> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> index 243cacb3575c..ba60cbb0725f 100644
+> --- a/drivers/gpu/drm/drm_drv.c
+> +++ b/drivers/gpu/drm/drm_drv.c
+> @@ -714,6 +714,12 @@ static int devm_drm_dev_init(struct device *parent,
+>  					devm_drm_dev_init_release, dev);
 >  }
 >  
-> +/* Idle the GT */
-
-as this is a public function, can we have a proper kernel-doc here?
-
-and maybe some hint what should be done if this function fails?
-
-> +int xe_gt_idle(struct xe_gt *gt)
+> +void devm_drm_dev_release_action(struct drm_device *dev)
 > +{
-> +	int err;
-> +
-> +	xe_gt_sanitize(gt);
-> +
-> +	xe_uc_gucrc_disable(&gt->uc);
-> +	xe_uc_stop_prepare(&gt->uc);
-> +	xe_gt_pagefault_reset(gt);
-> +
-> +	err = xe_uc_stop(&gt->uc);
-> +	if (err)
-> +		return err;
-> +
-> +	xe_gt_tlb_invalidation_reset(gt);
-> +
-> +	return err;
+> +	devm_release_action(dev->dev, devm_drm_dev_init_release, dev);
 > +}
+> +EXPORT_SYMBOL(devm_drm_dev_release_action);
 > +
->  static int gt_reset(struct xe_gt *gt)
->  {
->  	int err;
-> @@ -645,21 +665,12 @@ static int gt_reset(struct xe_gt *gt)
->  	}
+>  void *__devm_drm_dev_alloc(struct device *parent,
+>  			   const struct drm_driver *driver,
+>  			   size_t size, size_t offset)
+> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+> index 8878260d7529..fa9123684874 100644
+> --- a/include/drm/drm_drv.h
+> +++ b/include/drm/drm_drv.h
+> @@ -444,6 +444,8 @@ struct drm_driver {
+>  	const struct file_operations *fops;
+>  };
 >  
->  	xe_pm_runtime_get(gt_to_xe(gt));
-> -	xe_gt_sanitize(gt);
->  
->  	err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
->  	if (err)
->  		goto err_msg;
->  
-> -	xe_uc_gucrc_disable(&gt->uc);
-> -	xe_uc_stop_prepare(&gt->uc);
-> -	xe_gt_pagefault_reset(gt);
-> -
-> -	err = xe_uc_stop(&gt->uc);
-> -	if (err)
-> -		goto err_out;
-> -
-> -	xe_gt_tlb_invalidation_reset(gt);
-> +	xe_gt_idle(gt);
->  
->  	err = do_gt_reset(gt);
->  	if (err)
-> diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-> index ed6ea8057e35..d62af1725ff6 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.h
-> +++ b/drivers/gpu/drm/xe/xe_gt.h
-> @@ -43,6 +43,7 @@ int xe_gt_resume(struct xe_gt *gt);
->  void xe_gt_reset_async(struct xe_gt *gt);
->  void xe_gt_sanitize(struct xe_gt *gt);
->  void xe_gt_remove(struct xe_gt *gt);
-> +int xe_gt_idle(struct xe_gt *gt);
->  
->  /**
->   * xe_gt_any_hw_engine_by_reset_domain - scan the list of engines and return the
+> +void devm_drm_dev_release_action(struct drm_device *dev);
+> +
+>  void *__devm_drm_dev_alloc(struct device *parent,
+>  			   const struct drm_driver *driver,
+>  			   size_t size, size_t offset);
+> -- 
+> 2.25.1
+> 
