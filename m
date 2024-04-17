@@ -4,148 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CEB2C4345F
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Apr 2024 13:59:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9926BC4345F
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Apr 2024 13:59:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4527411355D;
-	Wed, 17 Apr 2024 13:59:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5731A11355D;
+	Wed, 17 Apr 2024 13:59:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qqz3XS05";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cfuWPQtz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59D1811355B;
- Wed, 17 Apr 2024 13:59:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8B23113561;
+ Wed, 17 Apr 2024 13:59:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713362349; x=1744898349;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=wYm0SWr0qfsbuQq9CBPcHqvOUJdBC2uKpF2DJK3nrsU=;
- b=Qqz3XS05vP6Au1SlM8mJhFXZDC6jTn/geX/2M5Ep49uZDDQe+0rWYVEF
- w/Qwq2XPTryYkKokgdeY//cLddFJ2HUm1KeyPsOdCnVyQiyySIlXOG9hl
- 5+pBcwziABf75MSEfAH1lCxvhjOQv+5fWSFTI4Gv8x+KZaaMYKF8ZmGj9
- STM4y5yBbCQCirbvWom3679AUW0rZBg7pn+RT2VfMmVmvAN/kvYSTiA9a
- 1XM0+iDnw6EflW8YnPI0wF4c+NNq3S0neJTG5orqoAbg3qZBmTtCJS//K
- XyCPtmlAIlfHAkto3/90vOu78iRNgjaUkhjp6ZGUCyyCzfXEFZfRPpQND A==;
-X-CSE-ConnectionGUID: 7BMRVf53QNGbVnVNPLrCKQ==
-X-CSE-MsgGUID: QeAR/7LfRNOxKd3Vihd7HQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="8734184"
-X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; 
-   d="scan'208";a="8734184"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2024 06:59:08 -0700
-X-CSE-ConnectionGUID: mmC3x85KTsSO8DY6Sj51mA==
-X-CSE-MsgGUID: R2ArU67DSq6QCRLGOus2wQ==
+ t=1713362370; x=1744898370;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=jw9LnxnQb1is4cQAP+KeWjhMQ9BUs8jU2E8GTpbJ5HM=;
+ b=cfuWPQtz0oEYppO9OxVqNJiB+c1OCslHHFh3yz/rta/H7OT+xNCxESKF
+ 1Kgs5xJ32uxrfZv9qsx+2DOV7/nZMnUqsUnnr/3F5ZM48S81/quoCglcB
+ byzfazU8Z88QQsyvTEf9OkycwEdSIaZubASZQbCBMxW74hBt/1tNuX/cr
+ 932ir/GmKjlytEYZ7YUApjlOPEmVSyb4AcyB5GEQIhQdjXMPYCq5Myzr9
+ Mq8ru1OsQxStefmfkJsufcGRclsV4dTzBg3JVJjuKDdaX0XBVP/qzj4p1
+ bc+yUCekR/QbMVkLVsJvIHdmUxx5nPfGlcmTH6QW8OtkPiumf5jShXEPs A==;
+X-CSE-ConnectionGUID: NRI9Hu2dS8O4jdT1pXGFtA==
+X-CSE-MsgGUID: W+BtHRd4Ttewg9756rsX0Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="19561641"
+X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="19561641"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2024 06:59:29 -0700
+X-CSE-ConnectionGUID: ZNdZJ++bSByfmZ9loMLnKQ==
+X-CSE-MsgGUID: 2JlHUP2NTxyOlkfarb18+Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="53845188"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 17 Apr 2024 06:59:08 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 17 Apr 2024 06:59:07 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 17 Apr 2024 06:59:06 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 17 Apr 2024 06:59:06 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.168)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 17 Apr 2024 06:59:06 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AUM382hSjNiebndfscxcODHJTJSWeLUtpETtU+tZW/wxQb2pmgojEkEgzRtK/TGhr6eDv7K1OMJM/ycoFky4w71upAs8wW+4lPdeyG2SQER4j4GBCJGxhRlkP6Ja62CXYFNQQNQJzvepzvPEPOhZCpbLQCtOti0SQfOb7JMVPADVnhwPJIpCpnauvlkBxGhyihAYDB3ujLlZnUB7Xrt/Kw/f+GBeb+0rip+E0RjTtR8L/SQiXe9qi6/WihBX+h2ECABLU9J4AZdGNFhlVHmmSXiYi+KMPxGBOGZ8ZsSivFCQpICYGqD6v00S47Q5CgCyJFReh7bGlfKC+4IT2LCgvA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xJ6ykCE7WuXfgDRp0r0H5au5hARvbM6RsW+n0ot+TEk=;
- b=McZ/Su3PDEccE5hvyEUoe8c7WZeNVlOa1nECS0U35sApw5rBaOPp4fBuL8ay42NRhkC4TQrHkT8i2W/OhoOrN3SCm1DzNixmHEAiKrQDjCXuTZczC0BrQgqxxLqILrg1zYaD5nekrMozdhudNYvNm04nmAfeE8Bh+m35yOd/Wl7fCeHVwwkygtnJ5V0d/NQoZ1owD8rA3olfTnsUGNl35V/itor2EYeiPrcUlIK3GvVNdXX1Lls9jG7t1snDJFCFmkO4q65xFt+tClarhwISuAILT3hoG7LeyXdK5dJ1hDdx/W54udRMGz1kwlpfNmMUnc5Y2mhgtmkgj7iQQqi/xQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by MW4PR11MB8290.namprd11.prod.outlook.com (2603:10b6:303:20f::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.29; Wed, 17 Apr
- 2024 13:59:04 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::cf6f:eb9e:9143:f413]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::cf6f:eb9e:9143:f413%5]) with mapi id 15.20.7472.037; Wed, 17 Apr 2024
- 13:59:03 +0000
-Date: Wed, 17 Apr 2024 09:59:00 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, "Luca
- Coelho" <luciano.coelho@intel.com>
-Subject: Re: [PATCH v4 6/9] drm/i915/display: rename
- __intel_wait_for_register_nowl() to indicate intel_de_
-Message-ID: <Zh_VpLLkuxZ3k5lW@intel.com>
-References: <cover.1713358679.git.jani.nikula@intel.com>
- <967d3fc67a9053f7d5f9c03010fd5f94dc8d547d.1713358679.git.jani.nikula@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <967d3fc67a9053f7d5f9c03010fd5f94dc8d547d.1713358679.git.jani.nikula@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0221.namprd13.prod.outlook.com
- (2603:10b6:a03:2c1::16) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="22508071"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa010.jf.intel.com with ESMTP; 17 Apr 2024 06:59:26 -0700
+Received: from [10.252.45.94] (unknown [10.252.45.94])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 3041032EAB;
+ Wed, 17 Apr 2024 14:59:22 +0100 (IST)
+Message-ID: <b738001d-8165-4b52-9f89-f810573be29f@intel.com>
+Date: Wed, 17 Apr 2024 15:59:21 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|MW4PR11MB8290:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9879e45c-fceb-4a80-aa5c-08dc5ee68a5d
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OAmT/yXPL2J8XTgadT6/lOk0PzbpOLkE+4pi2OUFxLofRXYPjlaRmtmsYhRPUxinnvphyR/iWKe0Et9JAQ9t08Zo/iKAntS1QWc9Uq1Z27jJQ6EYZhGy2MjOSIeuHuhLMTu0pWOOI69iLN9tiwCGe16UVOLBp8HkmOCHc1TsOU116NQtooTNOV/rbepdZYGTa0SlQ7j9qmTDR4bnHUTo5vnCw1YMGdqXNFT2Q9iWIiCMQBDCp3llCfrw7Dt1U7A92jofs3iec8+kO/5nLlW+52abM4RRd402lYPzVwj0fQuTe43o+gKeGx/aDF9oU4JBgKnvi9m/cwW0/E0YjBVGzV2lHG83ciG6qSrCSnfjz9o48nCiGgKgr8UrA1bAIG35gY4rbcyC5DMDwyhzjsm0/OEDZdcU0LZayhBWusiSnlrMrJEZfXKVctXEkMol9J5zYlueivT6SN9yGtBJj+wdn20/i0T46p7arOV2iTI5P6U1Dvu1BiYNL8v7f++d1TuwiJoD+LUoD1/llV1lHTvJunkangomg6/WDhoTlFEv5pJrtH2V1JqXO/LOinUU3qmYv8/yHCiuW9Ftgu3x21B7hkjPfIMjfWlhAu0+sPpHcgqUmUNZnkxWZt7jHN+Q5Ec27IKFXukqRmk/9YWbUPIvFayD7MV+rAVfGdiaq75eJc0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?W36+amWzMbryuhTsg2HRrFIhe+m3rZS5KCPlQXwHUs1bVTIdFi9GA3T+5xML?=
- =?us-ascii?Q?2TzVj/BEykLIDIyUYNQDCs363gnpktZqr8vnnYTE4QOot/Z7nL5+cNIzaRXC?=
- =?us-ascii?Q?m43JqYD/O1wA0UXo9ltAnA0Ebn89k7FzR1+59nZFo6598t+2fr2Pup/n8+36?=
- =?us-ascii?Q?TZipiOtbrVV+n0sAZyOIqWCjeGHbbHHnrt3mbw2JiCTohUzT+OzZTyEFaNoa?=
- =?us-ascii?Q?2NSA67OkgQLiO+CR4NXINwuBMc//n6SBwTYQQN/9Jg70oKqIoKrzCwG3+5oK?=
- =?us-ascii?Q?cc6mH8IsGW9Z8aPKl/ZlVt8zLvJLhsJHxSoPSdgwqX1N+/3EdG+Mfonr9BZB?=
- =?us-ascii?Q?/7Mn1aBUJobf+yOGLs2xy/afANa2e4qPW3WYMm38PoE3r9oPOv5F1gLTA3Nm?=
- =?us-ascii?Q?TkkAtaG2SQQWyhqokC+9fcYaWVakntWfQsKp21w4mQM6pmM3ekb+8ktaD6i9?=
- =?us-ascii?Q?tLWV9OHr9dzcsmUAr2fF/PuaBAsIOZPeGzzZmdtDGhBBimzRpcOtprepgfd7?=
- =?us-ascii?Q?NtGjTSwzIih1NZBoiVNhw27rGErx0GfsTrEER/oCrqufArMDNo61Xllul+o8?=
- =?us-ascii?Q?75yEgKmZj4Zms0cTQLXcDlhSSvVP8B9rMdiOkaluVL5dDoM/7NpE8GZN9edQ?=
- =?us-ascii?Q?k0sbTS/xr3C0tqrWLFiwGy37FT47XX+yyWrdqXn0RPY9YhWhNJKCTYOM8lEd?=
- =?us-ascii?Q?TcPdVsy4QHlBoT8TY6acVOqCFfNev76FF9t1EdDPH8G9Kj1oOIdE6EbniWvf?=
- =?us-ascii?Q?Wp1Nk2x9CCy3tVTMtHjUpzrnFxT9531jEHjqvdF/CzX4DAhKGZx6Rdg60Me+?=
- =?us-ascii?Q?soRg9tYj8uSyEed8Vfnhqp9zd9LAVKhN6wjEJ5ahfco47IZO8jgxqzaxDOFJ?=
- =?us-ascii?Q?8qJxHOs2FmBARXMUmo519y/s5jkSZpyqR0HAPxQ8Khw/ogqo4hVNV5zLAntJ?=
- =?us-ascii?Q?PEq6nefu3t5C1DLYB4WvA12Pd46cMf+pSTbc0099O1g50fXQ1iDDBFkJua9l?=
- =?us-ascii?Q?Bb1Ge0ZeIFdsooLE7j62bFZIN93Mr9Wr2nMJ2gpflORBavG7PnCWUzDnJnWk?=
- =?us-ascii?Q?7ERyVfsgyw7s1yPs19xSPvL9AQcruKo0uIu21Scpa3D+69sjeiFL4Cm92MTR?=
- =?us-ascii?Q?eRhxpQBXYjqz7POkm9yrkub8jdZ3u3m0Y7y4HcWYal5z/VZZCJB8OoSD1gVJ?=
- =?us-ascii?Q?nv6wY7iMsOeXYZqbuSIEtDC3GK6iFFtcueWsopeDsUfR1BRWW3OvWpVA7pnU?=
- =?us-ascii?Q?Qg48fZbbZqNShg6PS8MTdZX5wiAc/bBWLDLCKtZzNqHTQvGP4Tygph8S0yn0?=
- =?us-ascii?Q?etkf5aUopez/OCfSTmq8Bp88odZIcz5K2WbZjeh80K5uijWaRevonlMT61U7?=
- =?us-ascii?Q?9XYt8gUmTHhOMNHGXp32+1TBF79kXGc/mEPhMd7T1NWBCyLzzc40okIbHuxZ?=
- =?us-ascii?Q?WAgdo3qPPax9PX1MiTvaeFlOSJSNafH3JXBQoMLt2Ta72sBl2Xk5ZR8qmgvs?=
- =?us-ascii?Q?xoyOipW5PYGJwqUgMY+WDhbf9KGP5fKXwLOm2T1ho8vhw+e04mi7L9saS6Pl?=
- =?us-ascii?Q?u5KyGKHihTwLdFevuuH19ou5MXbJ0jTTJTeMm8PcK1nmSwwmHPmS5QOj9Wn9?=
- =?us-ascii?Q?VA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9879e45c-fceb-4a80-aa5c-08dc5ee68a5d
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2024 13:59:03.8384 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5FAaxT3vtQBqb+AP10h5Z4cqXTRYEB3nNIgu/yTg6UDRS2nwrU3CeP5XxFjL41XTrQ0v1ZLR/8VfjKxo/5nGkA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB8290
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] drm/xe/FLR: Support PCIe FLR
+To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, airlied@gmail.com, mripard@kernel.org,
+ tzimmermann@suse.de, rodrigo.vivi@intel.com
+Cc: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20240417084145.242480-1-aravind.iddamsetty@linux.intel.com>
+ <20240417084145.242480-5-aravind.iddamsetty@linux.intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20240417084145.242480-5-aravind.iddamsetty@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,77 +74,257 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 17, 2024 at 04:02:44PM +0300, Jani Nikula wrote:
-> Rename __intel_wait_for_register_nowl() to
-> __intel_de_wait_for_register_nowl() to be in line with the rest of
-> intel_de.h.
+
+
+On 17.04.2024 10:41, Aravind Iddamsetty wrote:
+> PCI subsystem provides callbacks to inform the driver about a request to
+> do function level reset by user, initiated by writing to sysfs entry
+> /sys/bus/pci/devices/.../reset. This will allow the driver to handle FLR
+> without the need to do unbind and rebind as the driver needs to
+> reinitialize the device afresh post FLR.
 > 
-> Cc: Luca Coelho <luciano.coelho@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
+> v2:
+> 1. separate out gt idle and pci save/restore to a separate patch (Lucas)
+> 2. Fixed the warnings seen around xe_guc_submit_stop, xe_guc_puc_fini
+> 
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> 
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_de.h     |  6 +++---
->  drivers/gpu/drm/i915/display/intel_dmc_wl.c | 14 +++++++-------
->  2 files changed, 10 insertions(+), 10 deletions(-)
+>  drivers/gpu/drm/xe/Makefile          |  1 +
+>  drivers/gpu/drm/xe/xe_device_types.h |  3 +
+>  drivers/gpu/drm/xe/xe_guc_pc.c       |  4 ++
+>  drivers/gpu/drm/xe/xe_pci.c          |  9 ++-
+>  drivers/gpu/drm/xe/xe_pci.h          |  2 +
+>  drivers/gpu/drm/xe/xe_pci_err.c      | 93 ++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_pci_err.h      | 13 ++++
+>  7 files changed, 124 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/gpu/drm/xe/xe_pci_err.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_pci_err.h
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
-> index 0a0fba81e7af..4b51388c6041 100644
-> --- a/drivers/gpu/drm/i915/display/intel_de.h
-> +++ b/drivers/gpu/drm/i915/display/intel_de.h
-> @@ -97,8 +97,8 @@ intel_de_rmw(struct drm_i915_private *i915, i915_reg_t reg, u32 clear, u32 set)
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 522bffa5c4e1..9686ea181ad1 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -117,6 +117,7 @@ xe-y += xe_bb.o \
+>  	xe_module.o \
+>  	xe_pat.o \
+>  	xe_pci.o \
+> +	xe_pci_err.o \
+>  	xe_pcode.o \
+>  	xe_pm.o \
+>  	xe_preempt_fence.o \
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index 0a66555229e9..8c749b378a92 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -465,6 +465,9 @@ struct xe_device {
+>  	/** @pci_state: PCI state of device */
+>  	struct pci_saved_state *pci_state;
+>  
+> +	/** @pci_device_is_reset: device went through PCIe FLR */
+> +	bool pci_device_is_reset;
+> +
+>  	/* private: */
+>  
+>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+> index 521ae24f2314..6108a4dfa05f 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+> @@ -902,6 +902,10 @@ static void xe_guc_pc_fini(struct drm_device *drm, void *arg)
+>  		return;
+>  	}
+>  
+> +	/* We already have done this before going through a reset, so skip here */
+> +	if (xe->pci_device_is_reset)
+> +		return;
+> +
+>  	XE_WARN_ON(xe_force_wake_get(gt_to_fw(pc_to_gt(pc)), XE_FORCEWAKE_ALL));
+>  	XE_WARN_ON(xe_guc_pc_gucrc_disable(pc));
+>  	XE_WARN_ON(xe_guc_pc_stop(pc));
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index f9957cd16356..d986ae7fc7f7 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -23,6 +23,7 @@
+>  #include "xe_macros.h"
+>  #include "xe_mmio.h"
+>  #include "xe_module.h"
+> +#include "xe_pci_err.h"
+>  #include "xe_pci_types.h"
+>  #include "xe_pm.h"
+>  #include "xe_sriov.h"
+> @@ -736,7 +737,7 @@ static void xe_pci_remove(struct pci_dev *pdev)
+>  	pci_set_drvdata(pdev, NULL);
 >  }
 >  
->  static inline int
-> -__intel_wait_for_register_nowl(struct drm_i915_private *i915, i915_reg_t reg,
-> -			       u32 mask, u32 value, unsigned int timeout)
-> +__intel_de_wait_for_register_nowl(struct drm_i915_private *i915, i915_reg_t reg,
-> +				  u32 mask, u32 value, unsigned int timeout)
+> -static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+> +int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 >  {
->  	return intel_wait_for_register(&i915->uncore, reg, mask,
->  				       value, timeout);
-> @@ -112,7 +112,7 @@ intel_de_wait(struct drm_i915_private *i915, i915_reg_t reg,
+>  	const struct xe_device_desc *desc = (const void *)ent->driver_data;
+>  	const struct xe_subplatform_desc *subplatform_desc;
+> @@ -976,6 +977,11 @@ static const struct dev_pm_ops xe_pm_ops = {
+>  };
+>  #endif
 >  
->  	intel_dmc_wl_get(i915, reg);
+> +const struct pci_error_handlers xe_pci_err_handlers = {
+
+static ?
+
+> +	.reset_prepare = xe_pci_reset_prepare,
+> +	.reset_done = xe_pci_reset_done,
+> +};
+> +
+>  static struct pci_driver xe_pci_driver = {
+>  	.name = DRIVER_NAME,
+>  	.id_table = pciidlist,
+> @@ -985,6 +991,7 @@ static struct pci_driver xe_pci_driver = {
+>  #ifdef CONFIG_PM_SLEEP
+>  	.driver.pm = &xe_pm_ops,
+>  #endif
+> +	.err_handler = &xe_pci_err_handlers,
+>  };
 >  
-> -	ret = __intel_wait_for_register_nowl(i915, reg, mask, value, timeout);
-> +	ret = __intel_de_wait_for_register_nowl(i915, reg, mask, value, timeout);
+>  int xe_register_pci_driver(void)
+> diff --git a/drivers/gpu/drm/xe/xe_pci.h b/drivers/gpu/drm/xe/xe_pci.h
+> index 73b90a430d1f..9faf5380a09e 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.h
+> +++ b/drivers/gpu/drm/xe/xe_pci.h
+> @@ -7,8 +7,10 @@
+>  #define _XE_PCI_H_
 >  
->  	intel_dmc_wl_put(i915, reg);
+>  struct pci_dev;
+> +struct pci_device_id;
 >  
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> index 30f8905fae41..162de0d20554 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> @@ -77,9 +77,9 @@ static void intel_dmc_wl_work(struct work_struct *work)
->  
->  	__intel_de_rmw_nowl(i915, DMC_WAKELOCK1_CTL, DMC_WAKELOCK_CTL_REQ, 0);
->  
-> -	if (__intel_wait_for_register_nowl(i915,  DMC_WAKELOCK1_CTL,
-> -					   DMC_WAKELOCK_CTL_ACK, 0,
-> -					   DMC_WAKELOCK_CTL_TIMEOUT)) {
-> +	if (__intel_de_wait_for_register_nowl(i915, DMC_WAKELOCK1_CTL,
-> +					      DMC_WAKELOCK_CTL_ACK, 0,
-> +					      DMC_WAKELOCK_CTL_TIMEOUT)) {
->  		WARN_RATELIMIT(1, "DMC wakelock release timed out");
->  		goto out_unlock;
->  	}
-> @@ -216,10 +216,10 @@ void intel_dmc_wl_get(struct drm_i915_private *i915, i915_reg_t reg)
->  		__intel_de_rmw_nowl(i915, DMC_WAKELOCK1_CTL, 0,
->  				    DMC_WAKELOCK_CTL_REQ);
->  
-> -		if (__intel_wait_for_register_nowl(i915,  DMC_WAKELOCK1_CTL,
-> -						   DMC_WAKELOCK_CTL_ACK,
-> -						   DMC_WAKELOCK_CTL_ACK,
-> -						   DMC_WAKELOCK_CTL_TIMEOUT)) {
-> +		if (__intel_de_wait_for_register_nowl(i915, DMC_WAKELOCK1_CTL,
-> +						      DMC_WAKELOCK_CTL_ACK,
-> +						      DMC_WAKELOCK_CTL_ACK,
-> +						      DMC_WAKELOCK_CTL_TIMEOUT)) {
->  			WARN_RATELIMIT(1, "DMC wakelock ack timed out");
->  			goto out_unlock;
->  		}
-> -- 
-> 2.39.2
-> 
+>  int xe_register_pci_driver(void);
+>  void xe_unregister_pci_driver(void);
+>  void xe_load_pci_state(struct pci_dev *pdev);
+> +int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent);
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_pci_err.c b/drivers/gpu/drm/xe/xe_pci_err.c
+> new file mode 100644
+> index 000000000000..81c440e08fbc
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_pci_err.c
+> @@ -0,0 +1,93 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2024 Intel Corporation
+> + */
+> +
+> +#include <linux/pci.h>
+> +#include <drm/drm_drv.h>
+> +
+> +#include "xe_device.h"
+> +#include "xe_gt.h"
+> +#include "xe_gt_printk.h"
+> +#include "xe_pci.h"
+> +#include "xe_pci_err.h"
+> +#include "xe_pm.h"
+> +#include "xe_uc.h"
+> +
+> +/**
+> + * xe_pci_reset_prepare - Called when user issued a PCIe reset
+> + * via /sys/bus/pci/devices/.../reset.
+> + * @pdev: PCI device struct
+> + */
+> +void xe_pci_reset_prepare(struct pci_dev *pdev)
+> +{
+> +	struct xe_device *xe = pci_get_drvdata(pdev);
+> +	struct xe_gt *gt;
+> +	int id, err;
+> +
+> +	pci_warn(pdev, "preparing for PCIe reset\n");
+> +
+> +	drm_warn(&xe->drm, "removing device access to userspace\n");
+
+do we need two separate warnings here?
+
+[ ] xe 0000:4d:00.0: preparing for PCIe FLR reset
+[ ] xe 0000:4d:00.0: [drm] removing device access to userspace
+
+> +	drm_dev_unplug(&xe->drm);
+> +
+> +	xe_pm_runtime_get(xe);
+> +	/* idle the GTs */
+> +	for_each_gt(gt, xe, id) {
+> +		err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> +		if (err)
+> +			goto reset;
+> +		xe_uc_reset_prepare(&gt->uc);
+> +		err = xe_gt_idle(gt);
+> +		if (err) {
+> +			xe_gt_err(gt, "failed to idle gt (%pe)\n", ERR_PTR(err));
+> +			goto reset;
+> +		}
+> +
+> +		err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> +		XE_WARN_ON(err);
+> +	}
+> +	xe_pm_runtime_put(xe);
+> +
+> +reset:
+> +	pci_disable_device(pdev);
+> +}
+> +
+> +/**
+> + * xe_pci_reset_done - Called when PCIe reset is done.
+> + * @pdev: PCI device struct
+> + */
+> +void xe_pci_reset_done(struct pci_dev *pdev)
+> +{
+> +	const struct pci_device_id *ent = pci_match_id(pdev->driver->id_table, pdev);
+> +	struct xe_device *xe = pci_get_drvdata(pdev);
+> +
+> +	dev_info(&pdev->dev,
+> +		 "device went through PCIe reset, reenabling the device\n");
+> +
+> +	if (pci_enable_device(pdev)) {
+> +		dev_err(&pdev->dev,
+> +			"Cannot re-enable PCI device after reset\n");
+> +		return;
+> +	}
+> +	pci_set_master(pdev);
+> +	xe_load_pci_state(pdev);
+> +
+> +	xe->pci_device_is_reset = true;
+> +	/*
+> +	 * We want to completely clean the driver and even destroy
+> +	 * the xe private data and reinitialize afresh similar to
+> +	 * probe
+> +	 */
+> +	pdev->driver->remove(pdev);
+> +	if (pci_dev_msi_enabled(pdev))
+> +		pci_free_irq_vectors(pdev);
+> +
+> +	devm_drm_dev_release_action(&xe->drm);
+> +	pci_disable_device(pdev);
+> +
+> +	/*
+> +	 * if this fails the driver might be in a stale state, only option is
+> +	 * to unbind and rebind
+> +	 */
+> +	xe_pci_probe(pdev, ent);
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_pci_err.h b/drivers/gpu/drm/xe/xe_pci_err.h
+> new file mode 100644
+> index 000000000000..95a4c8ce9cf1
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_pci_err.h
+> @@ -0,0 +1,13 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2024 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_PCI_ERR_H_
+> +#define _XE_PCI_ERR_H_
+> +
+> +struct pci_dev;
+> +
+> +void xe_pci_reset_prepare(struct pci_dev *pdev);
+> +void xe_pci_reset_done(struct pci_dev *pdev);
+> +#endif
