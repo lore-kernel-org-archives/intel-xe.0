@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD4BEC4345F
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Apr 2024 08:39:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84CE2C4345F
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Apr 2024 08:39:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48D6C1132D5;
-	Wed, 17 Apr 2024 08:39:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39ED71132E1;
+	Wed, 17 Apr 2024 08:39:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CxMa/Ju+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tur/92lM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A99FA1132D5;
- Wed, 17 Apr 2024 08:39:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20EAF1132DF;
+ Wed, 17 Apr 2024 08:39:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713343154; x=1744879154;
+ t=1713343158; x=1744879158;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oKDh0tCdZ35+8S2F0CA1q+1VXVUT7hkULDasdL+Utcs=;
- b=CxMa/Ju++L47ByUGvk77kEzneh+sT6TmHNdkKoGy/nxl2mpfNuUndhGa
- VAm8zoSie2C+ouBRgKkwTBVJua4aZTy6mxEcqvBlbvZWRk96jWSB7Vg90
- hTN5Nr5dH1aaq3HgTaYFtFiqBn5Ka4hLh+1jTN+2vzbwEmJI8+QOp2GLe
- 5JF5d9HIrfv4rYDuxj9b2LYUakjIq0T0GYEL82cen4ekNPEuhBklE4DnX
- HEf4BE6Ln5brfvGjGDLK2VRGodBfw+6fkaDlZ72+6F5AeXMmqqK4TjMia
- pDomp1XpoVAB+AJKfJkp+D3F2eNdPAjVzeaEGABrzjcZKsR+S6KCUOsAn Q==;
-X-CSE-ConnectionGUID: sruyvyB8Q6C4F0si2kt2xA==
-X-CSE-MsgGUID: nj05DOwMRoqrJqWpD5z3ew==
-X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="12660875"
-X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; d="scan'208";a="12660875"
+ bh=jxwKrYdQbJjUb2NDmoKICIy8nBQdnqLRAYUq2VHXE5M=;
+ b=Tur/92lMt8tNIS0OEWoVcsqQp3GsXqU0HJi6+Gbf1ndiMWJ4bCDUE7X+
+ I0cucrQVlzUxQC5lct3ws56PDowHyMA06jrJsWmC7J1nmaZyCuxNk+5XY
+ yNV2B6WD/iqEMYJy/+dJAEZTD/fFM7tPLPY5Q41RKzHNfefsLSjronlP/
+ Ev5ix4kdAQGxSkghn5QfSSIFLp5FXsuajASkPCtUQzliGOXvqRbaT+Yv0
+ uF9C1YfYxNVLn6Uw3164BWr1zWQ9BEyOH8PkaWUsMfT2Wmcp2MUc1YcMo
+ iwQXIOgzV2STXGtd+md3fBouKngEvTvQKDWu2xZxmyWWDJql9LP2p40GR A==;
+X-CSE-ConnectionGUID: DxCM6qFvT++upjbk4RTIDQ==
+X-CSE-MsgGUID: J0NUmrEoS/W4tHFZsg3Zfw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="12660894"
+X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; d="scan'208";a="12660894"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2024 01:39:14 -0700
-X-CSE-ConnectionGUID: rDdMfg4JT+GfP4h7JTIS5w==
-X-CSE-MsgGUID: w0KMXLC/Tfin1DsgcgLluw==
+ 17 Apr 2024 01:39:18 -0700
+X-CSE-ConnectionGUID: JRDA/b7mS9CueNkSVciaVA==
+X-CSE-MsgGUID: WHYUyLKYTou1Lgnz6FSM1w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; d="scan'208";a="27338911"
+X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; d="scan'208";a="27338931"
 Received: from aravind-dev.iind.intel.com ([10.145.162.146])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2024 01:39:06 -0700
+ 17 Apr 2024 01:39:15 -0700
 From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
 To: dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
  maarten.lankhorst@linux.intel.com, airlied@gmail.com, mripard@kernel.org,
  tzimmermann@suse.de, rodrigo.vivi@intel.com
-Cc: intel-xe@lists.freedesktop.org,
- Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v2 1/4] drm: add devm release action
-Date: Wed, 17 Apr 2024 14:11:42 +0530
-Message-Id: <20240417084145.242480-2-aravind.iddamsetty@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH 3/4] drm/xe: Extract xe_gt_idle() helper
+Date: Wed, 17 Apr 2024 14:11:44 +0530
+Message-Id: <20240417084145.242480-4-aravind.iddamsetty@linux.intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240417084145.242480-1-aravind.iddamsetty@linux.intel.com>
 References: <20240417084145.242480-1-aravind.iddamsetty@linux.intel.com>
@@ -69,53 +68,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In scenarios where drm_dev_put is directly called by driver we want to
-release devm_drm_dev_init_release action associated with struct
-drm_device.
+This would be used in other places outside of gt_reset path.
 
-v2: Directly expose the original function, instead of introducing a
-helper (Rodrigo)
-
-Cc: Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
 ---
- drivers/gpu/drm/drm_drv.c | 6 ++++++
- include/drm/drm_drv.h     | 2 ++
- 2 files changed, 8 insertions(+)
+ drivers/gpu/drm/xe/xe_gt.c | 31 +++++++++++++++++++++----------
+ drivers/gpu/drm/xe/xe_gt.h |  1 +
+ 2 files changed, 22 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-index 243cacb3575c..ba60cbb0725f 100644
---- a/drivers/gpu/drm/drm_drv.c
-+++ b/drivers/gpu/drm/drm_drv.c
-@@ -714,6 +714,12 @@ static int devm_drm_dev_init(struct device *parent,
- 					devm_drm_dev_init_release, dev);
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index cfa5da900461..59f497d575ad 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -629,6 +629,26 @@ static int do_gt_restart(struct xe_gt *gt)
+ 	return 0;
  }
  
-+void devm_drm_dev_release_action(struct drm_device *dev)
++/* Idle the GT */
++int xe_gt_idle(struct xe_gt *gt)
 +{
-+	devm_release_action(dev->dev, devm_drm_dev_init_release, dev);
++	int err;
++
++	xe_gt_sanitize(gt);
++
++	xe_uc_gucrc_disable(&gt->uc);
++	xe_uc_stop_prepare(&gt->uc);
++	xe_gt_pagefault_reset(gt);
++
++	err = xe_uc_stop(&gt->uc);
++	if (err)
++		return err;
++
++	xe_gt_tlb_invalidation_reset(gt);
++
++	return err;
 +}
-+EXPORT_SYMBOL(devm_drm_dev_release_action);
 +
- void *__devm_drm_dev_alloc(struct device *parent,
- 			   const struct drm_driver *driver,
- 			   size_t size, size_t offset)
-diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-index 8878260d7529..fa9123684874 100644
---- a/include/drm/drm_drv.h
-+++ b/include/drm/drm_drv.h
-@@ -444,6 +444,8 @@ struct drm_driver {
- 	const struct file_operations *fops;
- };
+ static int gt_reset(struct xe_gt *gt)
+ {
+ 	int err;
+@@ -645,21 +665,12 @@ static int gt_reset(struct xe_gt *gt)
+ 	}
  
-+void devm_drm_dev_release_action(struct drm_device *dev);
-+
- void *__devm_drm_dev_alloc(struct device *parent,
- 			   const struct drm_driver *driver,
- 			   size_t size, size_t offset);
+ 	xe_pm_runtime_get(gt_to_xe(gt));
+-	xe_gt_sanitize(gt);
+ 
+ 	err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+ 	if (err)
+ 		goto err_msg;
+ 
+-	xe_uc_gucrc_disable(&gt->uc);
+-	xe_uc_stop_prepare(&gt->uc);
+-	xe_gt_pagefault_reset(gt);
+-
+-	err = xe_uc_stop(&gt->uc);
+-	if (err)
+-		goto err_out;
+-
+-	xe_gt_tlb_invalidation_reset(gt);
++	xe_gt_idle(gt);
+ 
+ 	err = do_gt_reset(gt);
+ 	if (err)
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index ed6ea8057e35..d62af1725ff6 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -43,6 +43,7 @@ int xe_gt_resume(struct xe_gt *gt);
+ void xe_gt_reset_async(struct xe_gt *gt);
+ void xe_gt_sanitize(struct xe_gt *gt);
+ void xe_gt_remove(struct xe_gt *gt);
++int xe_gt_idle(struct xe_gt *gt);
+ 
+ /**
+  * xe_gt_any_hw_engine_by_reset_domain - scan the list of engines and return the
 -- 
 2.25.1
 
