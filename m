@@ -4,67 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB7B1C4345F
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Apr 2024 03:11:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4D82C4345F
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Apr 2024 03:15:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88C411130B5;
-	Wed, 17 Apr 2024 03:11:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76ADD10EC77;
+	Wed, 17 Apr 2024 03:15:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nQczDFjz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y504En3b";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5699A1130B5
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Apr 2024 03:11:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30D5D1130BD
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Apr 2024 03:15:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713323498; x=1744859498;
+ t=1713323706; x=1744859706;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=2Qf1Y6Xpc2K5S3jbxG8tST4OY5aQ8q+YLoW7ByQ9oCs=;
- b=nQczDFjzY40ZQulZnkvbsaDy/XtC+e+VkajgSSDl/Gx9ogpFNi5PuMO+
- zdi2C5WlwNtkQ6vByS8WabkK6r6y6oObe3Hs1C/Rji3YyEpWAQos4okZu
- 26w/OFjA0e72CsuU2znVc0lxVWcsgKCDYJdVt6wVPCG+mdjDPrN6jM3p6
- ct5AzY/L15NEXfsIoTVcMM23+Syjyka1aQh0NhCauek6xq9MxtYSrgDQc
- GW9NNJVg6ezKfMNWwGt0f96y2+AnH/tn/4Wb2BrQWgLq1/lHipLNHbk82
- Bw0uihipMMJVWOYlNc5YdfM+XFqkMAiLQTwH/ZxE/h1PiKLgV3duqlNlD g==;
-X-CSE-ConnectionGUID: 2Zwe1HGaSxacCO4awBvYkw==
-X-CSE-MsgGUID: sQdVeZrhQLucwEtVyuaaJQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="8721875"
-X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; 
-   d="scan'208";a="8721875"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2024 20:11:37 -0700
-X-CSE-ConnectionGUID: IgbWvgjIT5qdTGCl1y4Wmg==
-X-CSE-MsgGUID: EXgQMphXRsy93Sqoyj5o9A==
+ in-reply-to:mime-version;
+ bh=DMaMqMS9TCeaYO4swdnsA7CIO/QRxBPcHXF7Psp83WI=;
+ b=Y504En3b2D/BmrVipfdGH3qfJXr+sUk6iaDQGNQL2BaonI058G5O614X
+ VjBBcuiLBFolz7HT9Lo5WfvLdRUJYVelLqJ071s9BN+xXUFGS2TzadTA5
+ jzqOiGCT9N8138TDXxZ73pJ3Ff6ookQAabky0lUhKym7gaGbcxtRsH9ey
+ +4CvSc+wfrfKXmqJ9rnVOlMTiWiyp0ODDD6enmaWVUsEUfGRZq0FEyQ/z
+ dlBeMR/0FPuQlPlWoZstJ+hvedkTEfxUfIlyG1nOfnIEIXyJDXCExVDcV
+ eCCyes4Shlwr3fGgJh2Az+tg+LQd5xR7sSbGcviFn1RJT7EUsPPZaNr0c g==;
+X-CSE-ConnectionGUID: owICvxGaSviUenpNwu/4dw==
+X-CSE-MsgGUID: HR0Bh+U5S2u9g3lY/4C45w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="12578780"
+X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; d="scan'208";a="12578780"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2024 20:14:59 -0700
+X-CSE-ConnectionGUID: wJrd4e5WQ+CZKDbDl2NCSw==
+X-CSE-MsgGUID: kPxYEVtBRYie6hqi5EbHXQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; d="scan'208";a="22550839"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 16 Apr 2024 20:11:36 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; d="scan'208";a="22534388"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 16 Apr 2024 20:14:36 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 16 Apr 2024 20:11:35 -0700
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.35; Tue, 16 Apr 2024 20:14:35 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 16 Apr 2024 20:11:35 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ 15.1.2507.35; Tue, 16 Apr 2024 20:14:35 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 16 Apr 2024 20:11:35 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.41) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Tue, 16 Apr 2024 20:14:35 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 16 Apr 2024 20:11:35 -0700
+ 15.1.2507.35; Tue, 16 Apr 2024 20:14:32 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CiVAti16F0XwKWO/4bHH0Sk4WMiUKSH0qfMmzrfUQKYSGnM4LCGpZFVdS0B8zO7f1S4GP/NyZ0uwWNKhASw8JGBa75ohhRNDStqz0vWYkmcQegsMG9oKzpwnwrc8BIiZgZfD7wdxROT/h80WvC8/ybhTKLtwwIjBZQ6K4HZZlhct2+/EuFWEUjjT1L6FDuihwMlCrD7rOkydtkzvOmLGoqfWweggpcwq/lCRjriEVmTBef1uOMZbQowG5wP0hwht56RiCaCVBtBl1J4LJHtV/sf93Sq4j7tQt55uCCDi1w8/UQEMdz6q1qC24p6MpZdZ2lr8XCyV925zzeMsVb57pA==
+ b=NU7D14pT1BoskNEV0U4SLS+ea2SusKknYBQ5wrCj5KEdA9mcy8Rph0Q9zlaAhZwwDdHSt2QdjMD3CfOG8djQydUQQMw13fazeJ+DMFu3tTrCn8GWPFf3f/60Y+XdpcFZNAsysAsrHExIn3Is5SklpR8kvnxv6CH0IY9BszMniHBYOsjl7FdskgErOXyiDQaj1/0bTe7QReH454gitS6E66gk3eFcimVh2j9ZPv3IUiQWe2HcSH7Bw21898GD1+yEprRBt1ppvO8QLVVqmbeeraiqt3LiZjTa0/D+J8WQp6wp0LL8pgA8c4ZALlxCt/ZUYlKCYiI2LNYCZIkOYMZ7kA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OspfM9Zk5z5bRSiZy9VEZhRoMG7JY++Bg7QpAFLLERg=;
- b=Kj17YGzOZbysnptcIL8s+YUHAuxom8uJP/mr5d5WDgIKJmwk4wBGuXfISz5800Y16lrR9V2q0su2twK4+kP/HnsuTCx1HXfnozwH1zCUgzB0pxX3fcFVLRvpW+7o1QyPsdhVF0g+W6K0kg9VgOSReaR6jag+k5yusO2ZGDNHnV7lv4GrA4LUhI2wTSe6ole8ndtnB5H2RM1NjXh6jWmaIwbh3ntaoSraxDKULBYkPGt3Bbfhrbksqf/5D0U6ZN/7bmHEjeVEoxwmQ50AcmwHmVVRaZ34Lf7dokhKRqnfVh9pm1TYULP9aWobuDyO18a9hOBgN4p/9do99Nf733hfRA==
+ bh=Ndhyc5ho5Dlh67bk2833q/0TUgdf9CjnTruQXh4F8G8=;
+ b=aMN7vJufhcDKus4T2waPewQublqLT2HekQqDrJjdZejqFMMDm5LXYMDPGGWR/MXm7Hgw5VPfe/qMxg1lanUbMTHBG7d21UOpnVlWsXGcytZKCml0pyCoBgns7DNEIOaaG4RkofvQlwXmxdEZrouQD6LDw5Gak4CRZGH1PXFsVKQZwlTdgL2yC65nbJGwXxH9evVJHk+2/Y/pXxNF8cJ0NWM6cZeMpWovI7/lNZJIKppcTqQv0SDJsDW8u94AVCLqqdfTQqsF1frjmz41+x/ZfnfXgmL8p1s31l+AOJ2D/eFwbwP6kJZeOGh01HcKhfqaYBMKzZyeV+iDzPUnkdUwFA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -74,76 +73,74 @@ Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
  by LV8PR11MB8509.namprd11.prod.outlook.com (2603:10b6:408:1e6::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.26; Wed, 17 Apr
- 2024 03:11:33 +0000
+ 2024 03:14:31 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::e9dd:320:976f:e257]) by CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::e9dd:320:976f:e257%4]) with mapi id 15.20.7472.025; Wed, 17 Apr 2024
- 03:11:32 +0000
-Date: Tue, 16 Apr 2024 22:11:30 -0500
+ 03:14:31 +0000
+Date: Tue, 16 Apr 2024 22:14:28 -0500
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: Re: [PATCH 6/7] drm/xe/client: Print runtime to fdinfo
-Message-ID: <i6hvr534dzqnj2ihee6jnsyahtsfnek34kumvxhvw3jtvifzsz@lh7p3rq3662c>
+Subject: Re: [PATCH 5/7] drm/xe: Add helper to capture engine timestamp
+Message-ID: <z57tq4ejkkjfo2wsn5dqnf65qmaqt42sgdlquwurv47ikrazwy@ex7tjuv3opbn>
 References: <20240416030454.3739862-1-lucas.demarchi@intel.com>
- <20240416030454.3739862-7-lucas.demarchi@intel.com>
- <Zh8H1t7gwFUFkQtn@orsosgc001>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
+ <20240416030454.3739862-6-lucas.demarchi@intel.com>
+ <Zh8CHQe/yx3+j97L@orsosgc001>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Zh8H1t7gwFUFkQtn@orsosgc001>
-X-ClientProxiedBy: SJ0PR03CA0213.namprd03.prod.outlook.com
- (2603:10b6:a03:39f::8) To CY5PR11MB6139.namprd11.prod.outlook.com
+In-Reply-To: <Zh8CHQe/yx3+j97L@orsosgc001>
+X-ClientProxiedBy: BYAPR07CA0087.namprd07.prod.outlook.com
+ (2603:10b6:a03:12b::28) To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|LV8PR11MB8509:EE_
-X-MS-Office365-Filtering-Correlation-Id: ca9822a2-1625-4d7a-cf3d-08dc5e8c14d7
+X-MS-Office365-Filtering-Correlation-Id: 2df22909-08ea-4d9b-e4fb-08dc5e8c7f9a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Vq+vLLxl36LmUeduER8290vjK7UKUlAH+uJ6zC73CD755Kl9PgTIXNL3o5N+gHFeUd4AOCeKcvu8V/uqmQDWJlMG4rqt9V2fXtUVjZVtm48xh6eNumZFH2k+4NJy2szZo6pV4Ln2D/Rt5NokBZSyt8uRR8pHBFobtkTKRvbv5+GYrCs46DjfYFEbeLUIxGqhB6dJCo+YvV5yRBynJdjxMad2Phy2fe/5rFM0YITQzKSUkzJS4Scs6s1Q3XWJKRuJejOya2y8L1LPBnVuq7fg0P5YtvcFDZM0iY/PtdPxwNPifUhTZ1xpreVSlRl8zgl6bWXuSEEjz76bMCY5m24VTyYxDLTgc0J3yJmzDFP5QVLcRYZhbDvw1ysKpEyrtx5ctZGdXSNkBxveYyDElnTjsh8o7KJawywU0tepm/F79PLUrYbMYCNu8AdOs76bjxQ0FMhk7uAb8hTaANPVQb2XlXn0hPD3sW2Ycz74A+yzIjxoGNwQ1AaOX1WEl/QCzPfcVUn43aaiMI3pKmnJV0jla3BriTwtH66ogLfDYGup+iRkM6+UpPfSN2Tim7wg/XxY/d8quh/5M6cXhLedmHGZU4YxndqUKp34Ew91y+Tp3bhHt2MBg1DOoHWthzfnMhAD5TOqEl8ePHdgIX/5LdNfi3bX9llrcUKoOr2xzYTp1Dg=
+X-Microsoft-Antispam-Message-Info: ZiqwlUUcE2HG/IfH9gtc5VGWCjvexTEVDOuKTcAsUr+uoHpxWodlg09VOGNaCPh5mAMeCsFkl+dSwIvumV1FoVeb42O9Pl5V/taa8E2IJ+5LM0rNI7P2zq6eSbgE9iHVaAmqfANnVtSCqjbzH7mQCfIEDr+fsvbZLgFXx8TuR5lC9MthXUR/IIchAq8x8TmMZhLpb4XijxJpJ+dtTW0/6VEecMrP0mM4QlJP1dzTIr/8ygVA4FYN15G18M/pvR0nwofI1g/n2LbolmM0Y/sEu3bgyu5EEPF56jAh+L8h0YKHH0PKrEulq1JKWJUhaD66MddNMmVo8ciS1B+T+pqeyBTOznYQ9wg49snGg1JLtnspldrFrDtZH7y2BcsPZyBP4BHXcKpGkglLQfvNmuOtdfm3Iz+qNyL2zn+/x4mg31jYvwsZviraqzsvvIVPsSl/n/sOav6zHQY8/RNg2bU2+ly7EIvanS4HuLB1+NWyeqo+R83TpTeifjwz+/UjsDjesY9w7b194fTs5T+dGGder0n/c+CsmVJy9YLW1ViK+4YCfj3CHUvgDwYw9lWm7gfrTz4HHE05NXexMVdkPPVs+PlU1yvaH9Tqe7+zERvFYaBFNUd9+PCXPFxmqBNebP5fXQFCNETke2gN4bOVUF30IS+D8dhk2DbcEM/gQTAvT4c=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?jJfYrfIUtSW0MrJVQf41SFszWdkg48p+6EZKOrzneW4UnQdllG48rRY1YD?=
- =?iso-8859-1?Q?a0GCMX7RzQoPmeLjZRMp66OQcspKucGUvCc6oLWdhW8vcLMSks0iPb1hc7?=
- =?iso-8859-1?Q?nuFLao2ugkyPwVrfN5DYQDg4x9x4APsl2Ddz+/9OHDJek0RsiId+2wPA7l?=
- =?iso-8859-1?Q?3FKV+W/Tz13QoSm/iZShCYSQDEql+IFTmQNS9cnlKSNhXo6inFVX8E9xbB?=
- =?iso-8859-1?Q?xO7Hp+l7yKO97X/M+N0qXTabTCbwFJTDQPZmOwAx3AFGgh2WTEWXt80R0J?=
- =?iso-8859-1?Q?Okw5mspSaQM22ThXqOC1hIhqx9YQgnw6Dafi3O267t9H6Vu9USB5/s05QE?=
- =?iso-8859-1?Q?neZDzgekAha94So9UNgjCCiKATtSmKlbuM1US+c5sSOJo49F/lZlhsO8qr?=
- =?iso-8859-1?Q?NBAanLW0PMtqsj2vQyxovwucayrBn62vY49yBRe9nMx4rIZf5BcunUEyni?=
- =?iso-8859-1?Q?c5ha4mYF/+rDNQdYz3sFtBu/OovbdqjRYF3F5BzBhr6s2dePQLt1kU3aKt?=
- =?iso-8859-1?Q?bKLGc5w1bBCbplWvAyHX6HBxbo5CpaMViwkBmpzZrcRoKtyHBtd50wkDEY?=
- =?iso-8859-1?Q?scrZShMoobc1j79hB7zF5fPApgl1rUYDY1xdyM+FMCS9HxWaTRG/UzN73W?=
- =?iso-8859-1?Q?7VBWR6xOhDCRqCTXid4d1eqSg66IGHOSkE2u+AV9h+dUR7tWPum8cAWg0A?=
- =?iso-8859-1?Q?h5Bz6pQNVhQHLf2+emhLlzu1zblyL7cFk0aSQNnd8a0v/G5VBwbcMtYQaJ?=
- =?iso-8859-1?Q?r6FsMISRkdLGDZODAn9gI+dZNTq3EAUP28B1IRoap60OVhYMlBGchn2m9K?=
- =?iso-8859-1?Q?zARca1AYW4p+EygTq/Jw7fWhlyZHUe30dFQLACD7e1j4krRSUfKihD+Ios?=
- =?iso-8859-1?Q?dC58qI7DUo8Cr+DPXXneTobRaTWmGuDnLYjfYp1HKG0g4ONs18Aarf0iYg?=
- =?iso-8859-1?Q?1VLcUCWYMk62jiApH6w4578hk5w2ySQjFFmu8fOCP0Va3fFa/daBlkT0HM?=
- =?iso-8859-1?Q?+Yg+sEfj/G5TAEPuFCRC5jhCnyLoe0zIJx8n6GPxb6HYhulSOYsrg9r3DU?=
- =?iso-8859-1?Q?H465myJQrM4g31pGYJqGwT8kSjLJSueOumpDqQIjhQRa/LJQ6+u1YDEBEe?=
- =?iso-8859-1?Q?HNAPtDxx193SRm/qYpn9x1sUXim8752Wv5hdxiOmi7kQhGtEplGuglgGUw?=
- =?iso-8859-1?Q?jzp42yk0nNwOYjv4bM5caIN1IhFTXmgLdPJzMPlQd4pn2SDqd4RqhuDyHb?=
- =?iso-8859-1?Q?CMGnJUmOdoefEpdqTQVd5g1Qp8xmnt5zsglK00SNSgROPnSSY5lxr6e7yX?=
- =?iso-8859-1?Q?9grz2OOFClaQJn1+4+Y7l7ZUPobPMkT54rdRgKUjyp55Ac7FzScKVQoW2X?=
- =?iso-8859-1?Q?MZ1gm5e18BJe+AhWzD815vEsL96FXeCt5VtpmTK+gZZdXjSBalhR4lyOO0?=
- =?iso-8859-1?Q?I2eSk+1CNbbZJ9QlEJ+FOvzxfvl3euXUJfTNcj1CYXr5/sb3y5+HWuEho6?=
- =?iso-8859-1?Q?k71tYPNNBBSNfaeP9xe7Ll+5aRT48OLrXCgWF4MyA5ViXhDoWRnQ3NjWYt?=
- =?iso-8859-1?Q?3D36BdncwXfkeHc7batXpwhlwHsKw9o9Pu1Ht6H6uyFgVHyOO/179SB+dk?=
- =?iso-8859-1?Q?EVkpcC4xlpaorhU3lz4vf7m9Slr8EQW90HrBQjqQoT6IOMgclccCtN8w?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ca9822a2-1625-4d7a-cf3d-08dc5e8c14d7
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?NsoWhN8mFJmjW90Lo6TSDoJDymn/48n/CVrm1iJT+ocW/P7a3939HBbtDTbY?=
+ =?us-ascii?Q?jF0Cj3cJKdoLanwAiwe2AzyHbViMWDjowBoV6RJlZkaIi+2Wn/UyhVPzIu0O?=
+ =?us-ascii?Q?Q674oJguX6wUdqmrsshqvXCd9od/dnud7q6xahjoienTM7+y2efqQbMCMvwn?=
+ =?us-ascii?Q?vc8hRSL+zztVCGO81jRk/JsHyq9OP9S9uqGObv0kn6QXLAmlbl2T6bvCNR/L?=
+ =?us-ascii?Q?IWzE5GWXIdWK9vitAcfML+h58ioODGSJz+d8tHSjudSb2688EwQac5OMf8yq?=
+ =?us-ascii?Q?9Ei+JKVHNciz68ssLDVRN5e388w7JxK94vlKYMTG2av+fDLtsjK5s4YdXVTQ?=
+ =?us-ascii?Q?ouDF1uq4pS9l6cKOuSVG/rtrrSwlATUX/k9xKd1Ow4srHdNYRVv/80sHfYHA?=
+ =?us-ascii?Q?Dz8R8pWwiiWd3PSgHZh8auHo2IhuW/5buUQstxt0BJpI+80UQSbCK/fK6IGf?=
+ =?us-ascii?Q?TZncyHgMM/LTHNeyNRxRzMrCOLNnOfIYbGc3g5MM2N8hHydViaTIENfPJELp?=
+ =?us-ascii?Q?WW5mouN44A0r/jxY3Yvj4qRBxWNjVi2DAvdvLgCssxwbXl+38orLuWDRBGG4?=
+ =?us-ascii?Q?zv4sCkkLMB3WczEnPBYnlXjspo0DwgqpDncW9aagCLO81OdEuAu4Xk30+xTw?=
+ =?us-ascii?Q?LKUtXh7OQtRudgeJRPuBBbPS0e+LYAppq/534+ZS/Ro9mO/S/iJvWhrP8j6P?=
+ =?us-ascii?Q?JQDrt6s0bB8HcAmI5b28fA+XYbjFIUwHSeokrKgQ5QzrDGGTGFhQvlwaFltB?=
+ =?us-ascii?Q?2402m/G8/dyJ+gPLovowiSBWOWEIJPHqS3rlf1UPIbr1O5CyAXpYdGctA1Ny?=
+ =?us-ascii?Q?Oc8feQw6yDv4W6E5pz9NK95RDLTZBO547ZcwT9ZZI2njzd5SWB+6ysL9d7jI?=
+ =?us-ascii?Q?4gAexxqH5IkrEbQCVsODlQJnCQQICedLy0M5XgkT8GbY3PxHnyIpxKUKB1/e?=
+ =?us-ascii?Q?JJjMtCMwUAXrryBzXFJ6a1gq6ui+2sdJ/yAkUwV4z1G23kNQyWKpDLZv9mdz?=
+ =?us-ascii?Q?bh0K6xsDUxAic6PjgQMtTa8broEUGjDN0h9tmLtv3/82VYG4fN7WY0qcgtQg?=
+ =?us-ascii?Q?BgToH9nGSJjJCpv8wujAJ0Vj0A5Oqo9Y21+HYTKnnUY073XyZnV0Ecq0zSGE?=
+ =?us-ascii?Q?eaqCzQXkrSJtxehWvaWoZmu59BlblDwrtryw9G+JASI2B33rcSsDNuczQaB2?=
+ =?us-ascii?Q?JuSROrJa/iQ20Fi9+5EzOj/akc+6h35sI9UJuH6VYL6CfwwA8HJh36fQg123?=
+ =?us-ascii?Q?WNz5U0bIDeQVB7bSaovlyJaJCCt4dKybQUBggr92Qh5bbaizM9nmQ6Vt48ZQ?=
+ =?us-ascii?Q?gvzEOUbkHs9bu5Na6BkrRveHrvBgxwk6wk6gSpTTwlwCOquP1SU9oPlP2ttN?=
+ =?us-ascii?Q?ug6gyLAHZUHw7kejV2qzSfTaaal9mZduvi9iWMErHe88uR3FC0fB2Qo/Mp/B?=
+ =?us-ascii?Q?hER/sWdz3q88c7dzhMvNmWUI1WgNhsyhdYIWaFb0GKh8Wo0PgJsZtzAzxHbh?=
+ =?us-ascii?Q?d4cvipqJHEXhhyw7uce1gYVSjenSGg2RvzUsfmTJ5Zx7TdN/ElUzxDOQKYfR?=
+ =?us-ascii?Q?0l3ysfOQ+RJXrYmFL7+S1D8W3f+W+YFzNTb8PkE5IGOiJ5lyKggL6hDTEhGE?=
+ =?us-ascii?Q?rw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2df22909-08ea-4d9b-e4fb-08dc5e8c7f9a
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2024 03:11:31.9946 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2024 03:14:31.0339 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: y4Nsr/SbyV0IXiqag1515yTvTAo7FmNhod0ABESoOP7IKdXrqowclqsnJcHFKFbfxiXDbf1mmX0bGrepS5QvGNz3NgVZNaC2ooT7cubeTxQ=
+X-MS-Exchange-CrossTenant-UserPrincipalName: A5SR1ONtRoCJ/PY5QG7sYrlciRceGa9Mx4ILE4QmcxEZWZCFJHodNB/P/F3GkqHVOnaswYe+cuK0Yicnt/rut3gptMTuH6pxF2ozK8oIof0=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8509
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -160,201 +157,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Apr 16, 2024 at 04:20:54PM GMT, Umesh Nerlige Ramappa wrote:
->On Mon, Apr 15, 2024 at 08:04:53PM -0700, Lucas De Marchi wrote:
->>Print the accumulated runtime, per client, when printing fdinfo.
->>Each time a query is done it first does 2 things:
+On Tue, Apr 16, 2024 at 03:56:29PM GMT, Umesh Nerlige Ramappa wrote:
+>On Mon, Apr 15, 2024 at 08:04:52PM -0700, Lucas De Marchi wrote:
+>>Just like CTX_TIMESTAMP is used to calculate runtime, add a helper to
+>>get the timestamp for the engine so it can be used to calculate the
+>>"engine time" with the same unit as the runtime is recorded.
 >>
->>1) loop through all the exec queues for the current client and
->>  accumulates the runtime, per engine class. CTX_TIMESTAMP is used for
->>  that, being read from the context image.
->>
->>2) Read a "GPU timestamp" that can be used for considering "how much GPU
->>  time has passed" and that has the same unit/ref-clock as the one
->>  recording the runtime. RING_TIMESTAMP is used for that via MMIO.
->>
->>This second part is done once per engine class, since it's a register
->>that is replicated on all engines. It is however the same stamp. At
->>least for the current GPUs this was tested one. It may be simplified,
->>but in order to play safe and avoid the cases the clock is different in
->>future for primary/media GTs, or across engine classes, just read it per
->>class.
->>
->>This is exported to userspace as 2 numbers in fdinfo:
->>
->>	drm-engine-<class>: <GPU_TIMESTAMP> <RUNTIME> ticks
->>
->>Userspace is expected to collect at least 2 samples, which allows to
->>know the engine busyness as per:
->>
->>		    RUNTIME1 - RUNTIME0
->>	busyness = ---------------------
->>			  T1 - T0
->>
->>When calculating the overall system busyness, userspace can loop through
->>all the clients and add up all the numbers.  Since the GPU timestamp
->>will be a little bit different, it's expected some fluctuation on
->>accuracy, but that may be improved with a better hardware/GuC interface
->>in future, maintaining the UAPI.
->>
->>Another thing to point out is that it's expected that userspace reads
->>any 2 samples every few seconds.  Given the update frequency of the
->>counters involved and that CTX_TIMESTAMP is 32b, it is expect to wrap
->>every 25 ~ 30 seconds.
->
->I think the worker I had implemented in my original patches (as well 
->as i915 implementation) may have been confusing.
->
->32 bit counter ticking at 19.2 MHz should wrap around in 223.696 
->seconds. The worker on the other hand was overcompensating for it and 
->running at 1/8th of this wrap around time.
-
-now I'm not sure if I did the math wrong or if I replicated something
-you told me :)... What's the reason to overcompensate like that?
-
-My main issue with the worker is not to have the worker while we have a
-gputop-like app running. That should be totally fine. My main issue is
-doing it regardless of having a process querying it, which would account
-for ~99.9% of the time.
-
->
->>This could be mitigated by adding a workqueue to
->>accumulate the counters every so often, but it's additional complexity
->>for something that is done already by userspace every few seconds in
->>tools like gputop (from igt), htop, nvtop, etc.
->>
->>Test-with: https://lore.kernel.org/igt-dev/20240405060056.59379-1-lucas.demarchi@intel.com/
 >>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+>Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>
 >>---
->>drivers/gpu/drm/xe/xe_drm_client.c | 81 +++++++++++++++++++++++++++++-
->>1 file changed, 80 insertions(+), 1 deletion(-)
+>>drivers/gpu/drm/xe/xe_hw_engine.c | 7 +++++++
+>>drivers/gpu/drm/xe/xe_hw_engine.h | 2 ++
+>> files changed, 9 insertions(+)
 >>
->>diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
->>index 08f0b7c95901..79eb453bfb14 100644
->>--- a/drivers/gpu/drm/xe/xe_drm_client.c
->>+++ b/drivers/gpu/drm/xe/xe_drm_client.c
->>@@ -2,6 +2,7 @@
->>/*
->> * Copyright © 2023 Intel Corporation
->> */
->>+#include "xe_drm_client.h"
+>>diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+>>index ab227fa8984a..528b271c9f23 100644
+>>--- a/drivers/gpu/drm/xe/xe_hw_engine.c
+>>+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+>>@@ -981,3 +981,10 @@ const char *xe_hw_engine_class_to_str(enum xe_engine_class class)
 >>
->>#include <drm/drm_print.h>
->>#include <drm/xe_drm.h>
->>@@ -12,7 +13,10 @@
->>#include "xe_bo.h"
->>#include "xe_bo_types.h"
->>#include "xe_device_types.h"
->>-#include "xe_drm_client.h"
->>+#include "xe_exec_queue.h"
->>+#include "xe_gt.h"
->>+#include "xe_hw_engine.h"
->>+#include "xe_pm.h"
->>#include "xe_trace.h"
->>
->>/**
->>@@ -179,6 +183,80 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
->>	}
+>>	return NULL;
 >>}
->>
->>+static const u64 class_to_mask[] = {
->>+        [XE_ENGINE_CLASS_RENDER] = XE_HW_ENGINE_RCS_MASK,
->>+        [XE_ENGINE_CLASS_VIDEO_DECODE] = XE_HW_ENGINE_VCS_MASK,
->>+        [XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_HW_ENGINE_VECS_MASK,
->>+        [XE_ENGINE_CLASS_COPY] = XE_HW_ENGINE_BCS_MASK,
->>+        [XE_ENGINE_CLASS_OTHER] = XE_HW_ENGINE_GSCCS_MASK,
->>+        [XE_ENGINE_CLASS_COMPUTE] = XE_HW_ENGINE_CCS_MASK,
->>+};
 >>+
->>+static void show_runtime(struct drm_printer *p, struct drm_file *file)
+>>+u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe)
 >>+{
->>+	struct xe_file *xef = file->driver_priv;
->>+	struct xe_device *xe = xef->xe;
->>+	struct xe_gt *gt;
->>+	struct xe_hw_engine *hwe;
->>+	struct xe_exec_queue *q;
->>+	unsigned long i, id_hwe, id_gt, capacity[XE_ENGINE_CLASS_MAX] = { };
->>+	u64 gpu_timestamp, engine_mask = 0;
->>+	bool gpu_stamp = false;
+>>+	struct xe_reg reg = RING_TIMESTAMP(hwe->mmio_base);
 >>+
->>+	xe_pm_runtime_get(xe);
->>+
->>+	mutex_lock(&xef->exec_queue.lock);
->>+	xa_for_each(&xef->exec_queue.xa, i, q)
->>+		xe_exec_queue_update_runtime(q);
->>+	mutex_unlock(&xef->exec_queue.lock);
->>+
->>+	for_each_gt(gt, xe, id_gt)
->>+		engine_mask |= gt->info.engine_mask;
->>+
->>+	BUILD_BUG_ON(ARRAY_SIZE(class_to_mask) != XE_ENGINE_CLASS_MAX);
->>+	for (i = 0; i < XE_ENGINE_CLASS_MAX; i++)
->>+		capacity[i] = hweight64(engine_mask & class_to_mask[i]);
->>+
->>+	/*
->>+	 * Iterate over all engines, printing the accumulated
->>+	 * runtime for this xef per engine class
->>+	 */
->>+	for_each_gt(gt, xe, id_gt) {
->>+		xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->>+		for_each_hw_engine(hwe, gt, id_hwe) {
->>+			const char *class_name;
->>+
->>+			if (!capacity[hwe->class])
->>+				continue;
->>+
->>+			/*
->>+			 * Use any (first) engine to have a timestamp to be used every
->>+			 * time
->>+			 */
->>+			if (!gpu_stamp) {
->
->gpu_stamp is not required if the intention is to read the timestamp 
->once per class (as per commit message) because you are already setting 
->capacity to 0 below.
+>>+	return xe_mmio_read64_2x32(hwe->gt, reg);
 
-yeah... I think I changed my mind and forgot to update the commit
-message.
+given the past issues with reading 64b registers, I'm wondering if we
+shouldn't export a xe_hw_engine_read_timestamp32 and use just the lower
+part. Since the CTX_TIMESTAMP will wrap around first, just using 32b
+for RING_TIMESTAMP should be sufficient.
 
-thanks
 Lucas De Marchi
-
->
->Umesh
->
->>+				gpu_timestamp = xe_hw_engine_read_timestamp(hwe);
->>+				gpu_stamp = true;
->>+			}
->>+
->>+			class_name = xe_hw_engine_class_to_str(hwe->class);
->>+
->>+			drm_printf(p, "drm-engine-%s:\t%llu %llu ticks\n",
->>+				   class_name, gpu_timestamp,
->>+				   xef->runtime[hwe->class]);
->>+
->>+			if (capacity[hwe->class] > 1)
->>+				drm_printf(p, "drm-engine-capacity-%s:\t%lu\n",
->>+					   class_name, capacity[hwe->class]);
->>+
->>+			/* engine class already handled, skip next iterations */
->>+			capacity[hwe->class] = 0;
->>+		}
->>+		xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
->>+	}
->>+
->>+	xe_pm_runtime_get(xe);
->>+}
->>+
->>/**
->> * xe_drm_client_fdinfo() - Callback for fdinfo interface
->> * @p: The drm_printer ptr
->>@@ -192,5 +270,6 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
->>void xe_drm_client_fdinfo(struct drm_printer *p, struct drm_file *file)
->>{
->>	show_meminfo(p, file);
->>+	show_runtime(p, file);
->>}
->>#endif
->>-- 
->>2.43.0
->>
