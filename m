@@ -4,61 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 842E5C04FFF
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Apr 2024 16:16:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 594FEC4345F
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Apr 2024 16:32:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20CE8113682;
-	Wed, 17 Apr 2024 16:16:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0494010F778;
+	Wed, 17 Apr 2024 16:32:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VcBa4fpF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d9mFzNBR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 905BB113680;
- Wed, 17 Apr 2024 16:16:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88C4C10F778
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Apr 2024 16:32:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713370577; x=1744906577;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ZoAiZjL1Zni7caWLOO4U2HfpW83zhz7ZuU1G2GynTbg=;
- b=VcBa4fpF0hT4bE6syqBQjhLMTdN7y1X/ZQMUSO2eMiQc9IYByXeXZ4TT
- 57jgRmO7GcBw/gd8FQMagmi9PqysZyci9xwQNjM1aU8ocumiO0J2+e/RV
- Obs7TZSCFmGKeaY8F2u65c62URnRL1HUnLbjaPa7QwE6vlMa7Tsu85+nG
- TnDPPoZbe5pJaGRPqSnWSxmhHarK9ILVJIX0pBUSxBpVAycjbSxQ2EaTg
- 1A8UrgWt38+AXRn+EkD7Sb6Jj54gH5C/vLxkjg276mfb4mCJnl4zutOye
- VWkIlyF6Gfh4RCeDEbpcc73jhDuECVrT3zsywP6MNNeSl0dRKMhbaPinM A==;
-X-CSE-ConnectionGUID: j0ZuGbcRQC6rtZSETkNPcg==
-X-CSE-MsgGUID: j971yFEOQIu/8y7oue/olg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="11812914"
-X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="11812914"
+ t=1713371534; x=1744907534;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PeuhrkDFP6V6sTT9PbGvnwWsKE1XrIyOHjjjG4qu/gw=;
+ b=d9mFzNBRRipwNHChjozwUWLULzh6rP1xvzb0Cnv0o0RgCdEiOXKVLMX5
+ LtetCjmCzi8dfvFdZqA6UfUwvZ22aPfBgG23MMinEBwCdN+w9doF6+5Aa
+ O0S7NqANsshQPlN6Nn0gaVQ4lZslTYmG4VDPFuB5aw3hIrrEpv046qg5l
+ ZcYCSHIHk/+SxtMpuf4gXt9i63WLP0/iwtQJ1xkobOBzin7QHJtX+8cVJ
+ FaUKUYgO/tIl0Z6Fdftr78hqlYr+vxRQd9y2CBJCoQszvPjiBgZu4+Pft
+ Nk664AfDKWe1hFK9SK8XN3HVx2j3R1HEkroCxHzlhnNnpFvt3jwfYa3CK w==;
+X-CSE-ConnectionGUID: 0UgqtdCzRzSueNlJ6DE7Jw==
+X-CSE-MsgGUID: kn1tmqUaRvePQkB3YU1haQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="9043912"
+X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; 
+   d="scan'208";a="9043912"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2024 09:16:17 -0700
-X-CSE-ConnectionGUID: kZb+AqekTC+KQcg8Um9EWg==
-X-CSE-MsgGUID: 5yEq/i6DTQWcXScK2cA5CQ==
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2024 09:32:13 -0700
+X-CSE-ConnectionGUID: 0EzlbO3hR0WEdINK+o6M7w==
+X-CSE-MsgGUID: 8D+8zjWNQK2KoSUQiGYIhA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="27247049"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.21.20])
+X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="27252110"
+Received: from unknown (HELO mwauld-desk.intel.com) ([10.245.244.81])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2024 09:16:14 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-Cc: igt-dev@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>
-Subject: Re: [PATCH i-g-t v3] lib/kunit: Read results from debugfs
-Date: Wed, 17 Apr 2024 18:16:11 +0200
-Message-ID: <2965949.VdNmn5OnKV@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20240417093755.ece4rzodfe2bzz3f@kamilkon-DESK.igk.intel.com>
-References: <20240415173405.120137-2-janusz.krzysztofik@linux.intel.com>
- <20240417093755.ece4rzodfe2bzz3f@kamilkon-DESK.igk.intel.com>
+ 17 Apr 2024 09:32:11 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+	stable@vger.kernel.org
+Subject: [PATCH] drm/xe/vm: prevent UAF in rebind_work_func()
+Date: Wed, 17 Apr 2024 17:31:08 +0100
+Message-ID: <20240417163107.270053-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,303 +66,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wednesday, 17 April 2024 11:37:55 CEST Kamil Konieczny wrote:
-> Hi Janusz,
-> On 2024-04-15 at 19:31:59 +0200, Janusz Krzysztofik wrote:
-> > KUnit can provide KTAP reports from test modules via debugfs files, one
-> > per test suite.  Using that source of test results instead of extracting
-> > them from dmesg, where they may be interleaved with other kernel messages,
-> > seems more easy to handle and less error prone.  Switch to it.
-> > 
-> > If KUnit debugfs support is found not configured then fall back to legacy
-> > processing path.
-> > 
-> > v3: Try to open KUnit debugfs directory before applying KUnit filters we
-> >     use for test case listing, otherwise those skip-all filters applied
-> >     can break legacy path we may enter on missing KUnit debugfs support
-> >     (detected by Kamil).
-> > v2: Check validity of debugfs argument before calling kunit_get_tests()
-> >     (Kamil),
-> >   - replace multiple openat() + fdopen/fdopendir(), each followed by an
-> >     error check, with less expensive fopen/opendir() of file/dir pathname
-> >     components concatenated to a local buffer, protected from buffer
-> >     overflow or truncation with a single check for enough buffer space
-> >     (Lucas),
-> >   - avoid confusing 'if' statement condition (Lucas).
-> > 
-> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-> > Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> 
-> Thank you for fixing legacy path, it works now.
-> With this,
-> 
-> Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+We flush the rebind worker during the vm close phase, however in places
+like preempt_fence_work_func() we seem to queue the rebind worker
+without first checking if the vm has already been closed.  The concern
+here is the vm being closed with the worker flushed, but then being
+rearmed later, which looks like potential uaf, since there is no actual
+refcounting to track the queued worker. To ensure this can't happen
+prevent queueing the rebind worker once the vm has been closed.
 
-Thank you Kamil, pushed.
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1591
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1304
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1249
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: <stable@vger.kernel.org> # v6.8+
+---
+ drivers/gpu/drm/xe/xe_pt.c |  2 +-
+ drivers/gpu/drm/xe/xe_vm.h | 17 ++++++++++++++---
+ 2 files changed, 15 insertions(+), 4 deletions(-)
 
-Janusz
-
-> 
-> > ---
-> > @Lucas: I've assumed your R-b still applies, I hope you don't mind.
-> > 
-> >  lib/igt_kmod.c | 129 +++++++++++++++++++++++++++++++++++--------------
-> >  1 file changed, 93 insertions(+), 36 deletions(-)
-> > 
-> > diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-> > index 6659c27eba..33f059199f 100644
-> > --- a/lib/igt_kmod.c
-> > +++ b/lib/igt_kmod.c
-> > @@ -28,6 +28,7 @@
-> >  #include <limits.h>
-> >  #include <pthread.h>
-> >  #include <signal.h>
-> > +#include <stdio.h>
-> >  #include <stdlib.h>
-> >  #include <string.h>
-> >  #include <sys/stat.h>
-> > @@ -39,6 +40,7 @@
-> >  
-> >  #include "igt_aux.h"
-> >  #include "igt_core.h"
-> > +#include "igt_debugfs.h"
-> >  #include "igt_kmod.h"
-> >  #include "igt_ktap.h"
-> >  #include "igt_sysfs.h"
-> > @@ -864,6 +866,19 @@ static int open_parameters(const char *module_name)
-> >  	return open(path, O_RDONLY);
-> >  }
-> >  
-> > +static void kunit_debugfs_path(char *kunit_path)
-> > +{
-> > +	const char *debugfs_path = igt_debugfs_mount();
-> > +
-> > +	if (igt_debug_on(!debugfs_path))
-> > +		return;
-> > +
-> > +	if (igt_debug_on(strlen(debugfs_path) + strlen("/kunit/") >= PATH_MAX))
-> > +		return;
-> > +
-> > +	strcpy(stpcpy(kunit_path, debugfs_path), "/kunit/");
-> > +}
-> > +
-> >  static bool kunit_set_filtering(const char *filter_glob, const char *filter,
-> >  				const char *filter_action)
-> >  {
-> > @@ -1071,21 +1086,41 @@ static void kunit_results_free(struct igt_list_head *results,
-> >  	free(*suite_name);
-> >  }
-> >  
-> > -static int kunit_get_results(struct igt_list_head *results, int kmsg_fd,
-> > -			     struct igt_ktap_results **ktap)
-> > +static int kunit_get_results(struct igt_list_head *results, const char *debugfs_path,
-> > +			     const char *suite, struct igt_ktap_results **ktap)
-> >  {
-> > +	char results_path[PATH_MAX];
-> > +	FILE *results_stream;
-> > +	char *buf = NULL;
-> > +	size_t size = 0;
-> > +	ssize_t len;
-> >  	int err;
-> >  
-> > +	if (igt_debug_on(strlen(debugfs_path) + strlen(suite) + strlen("/results") >= PATH_MAX))
-> > +		return -ENOSPC;
-> > +
-> > +	strcpy(stpcpy(stpcpy(results_path, debugfs_path), suite), "/results");
-> > +	results_stream = fopen(results_path, "r");
-> > +	if (igt_debug_on(!results_stream))
-> > +		return -errno;
-> > +
-> >  	*ktap = igt_ktap_alloc(results);
-> > -	if (igt_debug_on(!*ktap))
-> > -		return -ENOMEM;
-> > +	if (igt_debug_on(!*ktap)) {
-> > +		err = -ENOMEM;
-> > +		goto out_fclose;
-> > +	}
-> >  
-> > -	do
-> > -		igt_debug_on((err = kunit_kmsg_result_get(results, NULL, kmsg_fd, *ktap),
-> > -			      err && err != -EINPROGRESS));
-> > -	while (err == -EINPROGRESS);
-> > +	while (len = getline(&buf, &size, results_stream), len > 0) {
-> > +		err = igt_ktap_parse(buf, *ktap);
-> > +		if (err != -EINPROGRESS)
-> > +			break;
-> > +	}
-> > +
-> > +	free(buf);
-> >  
-> >  	igt_ktap_free(ktap);
-> > +out_fclose:
-> > +	fclose(results_stream);
-> >  
-> >  	return err;
-> >  }
-> > @@ -1101,7 +1136,13 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
-> >  	pthread_mutexattr_t attr;
-> >  	IGT_LIST_HEAD(results);
-> >  	unsigned long taints;
-> > -	int ret;
-> > +	int flags, ret;
-> > +
-> > +	igt_skip_on_f(tst->kmsg < 0, "Could not open /dev/kmsg\n");
-> > +
-> > +	igt_skip_on((flags = fcntl(tst->kmsg, F_GETFL, 0), flags < 0));
-> > +	igt_skip_on_f(fcntl(tst->kmsg, F_SETFL, flags & ~O_NONBLOCK) == -1,
-> > +		      "Could not set /dev/kmsg to blocking mode\n");
-> >  
-> >  	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
-> >  
-> > @@ -1224,30 +1265,21 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
-> >  	igt_skip_on_f(ret, "KTAP parser failed\n");
-> >  }
-> >  
-> > -static void kunit_get_tests_timeout(int signal)
-> > -{
-> > -	igt_skip("Timed out while trying to extract a list of KUnit test cases from /dev/kmsg\n");
-> > -}
-> > -
-> >  static bool kunit_get_tests(struct igt_list_head *tests,
-> >  			    struct igt_ktest *tst,
-> >  			    const char *suite,
-> >  			    const char *opts,
-> > +			    const char *debugfs_path,
-> > +			    DIR **debugfs_dir,
-> >  			    struct igt_ktap_results **ktap)
-> >  {
-> > -	struct sigaction sigalrm = { .sa_handler = kunit_get_tests_timeout, },
-> > -			 saved;
-> >  	struct igt_ktap_result *r, *rn;
-> > +	struct dirent *subdir;
-> >  	unsigned long taints;
-> > -	int flags, err;
-> >  
-> > -	igt_skip_on_f(tst->kmsg < 0, "Could not open /dev/kmsg\n");
-> > -
-> > -	igt_skip_on((flags = fcntl(tst->kmsg, F_GETFL, 0), flags < 0));
-> > -	igt_skip_on_f(fcntl(tst->kmsg, F_SETFL, flags & ~O_NONBLOCK) == -1,
-> > -		      "Could not set /dev/kmsg to blocking mode\n");
-> > -
-> > -	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
-> > +	*debugfs_dir = opendir(debugfs_path);
-> > +	if (igt_debug_on(!*debugfs_dir))
-> > +		return false;
-> >  
-> >  	/*
-> >  	 * To get a list of test cases provided by a kunit test module, ask the
-> > @@ -1260,19 +1292,37 @@ static bool kunit_get_tests(struct igt_list_head *tests,
-> >  	if (igt_debug_on(!kunit_set_filtering(suite, "module=none", "skip")))
-> >  		return false;
-> >  
-> > +	if (!suite) {
-> > +		seekdir(*debugfs_dir, 2);	/* directory itself and its parent */
-> > +		errno = 0;
-> > +		igt_skip_on_f(readdir(*debugfs_dir) || errno,
-> > +			      "Require empty KUnit debugfs directory\n");
-> > +		rewinddir(*debugfs_dir);
-> > +	}
-> > +
-> >  	igt_skip_on(modprobe(tst->kmod, opts));
-> >  	igt_skip_on(igt_kernel_tainted(&taints));
-> >  
-> > -	igt_skip_on(sigaction(SIGALRM, &sigalrm, &saved));
-> > -	alarm(10);
-> > +	while (subdir = readdir(*debugfs_dir), subdir) {
-> > +		if (!(subdir->d_type & DT_DIR))
-> > +			continue;
-> >  
-> > -	err = kunit_get_results(tests, tst->kmsg, ktap);
-> > +		if (!strcmp(subdir->d_name, ".") || !strcmp(subdir->d_name, ".."))
-> > +			continue;
-> >  
-> > -	alarm(0);
-> > -	igt_debug_on(sigaction(SIGALRM, &saved, NULL));
-> > +		if (suite && strcmp(subdir->d_name, suite))
-> > +			continue;
-> >  
-> > -	igt_skip_on_f(err,
-> > -		      "KTAP parser failed while getting a list of test cases\n");
-> > +		igt_warn_on_f(kunit_get_results(tests, debugfs_path, subdir->d_name, ktap),
-> > +			      "parsing KTAP report from test suite \"%s\" failed\n",
-> > +			      subdir->d_name);
-> > +
-> > +		if (suite)
-> > +			break;
-> > +	}
-> > +
-> > +	closedir(*debugfs_dir);
-> > +	*debugfs_dir = NULL;
-> >  
-> >  	igt_list_for_each_entry_safe(r, rn, tests, link)
-> >  		igt_require_f(r->code == IGT_EXIT_SKIP,
-> > @@ -1287,6 +1337,7 @@ static void __igt_kunit(struct igt_ktest *tst,
-> >  			const char *subtest,
-> >  			const char *suite,
-> >  			const char *opts,
-> > +			const char *debugfs_path,
-> >  			struct igt_list_head *tests,
-> >  			struct igt_ktap_results **ktap)
-> >  {
-> > @@ -1307,8 +1358,6 @@ static void __igt_kunit(struct igt_ktest *tst,
-> >  
-> >  			igt_skip_on(igt_kernel_tainted(&taints));
-> >  
-> > -			igt_fail_on(lseek(tst->kmsg, 0, SEEK_END) == -1 && errno);
-> > -
-> >  			igt_assert_lt(snprintf(glob, sizeof(glob), "%s.%s",
-> >  					       t->suite_name, t->case_name),
-> >  				      sizeof(glob));
-> > @@ -1317,7 +1366,8 @@ static void __igt_kunit(struct igt_ktest *tst,
-> >  			igt_assert_eq(modprobe(tst->kmod, opts), 0);
-> >  			igt_assert_eq(igt_kernel_tainted(&taints), 0);
-> >  
-> > -			igt_assert_eq(kunit_get_results(&results, tst->kmsg, ktap), 0);
-> > +			igt_assert_eq(kunit_get_results(&results, debugfs_path,
-> > +							t->suite_name, ktap), 0);
-> >  
-> >  			for (i = 0; i < 2; i++) {
-> >  				kunit_result_free(&r, &suite_name, &case_name);
-> > @@ -1385,9 +1435,11 @@ static void __igt_kunit(struct igt_ktest *tst,
-> >   */
-> >  void igt_kunit(const char *module_name, const char *suite, const char *opts)
-> >  {
-> > +	char debugfs_path[PATH_MAX] = { '\0', };
-> >  	struct igt_ktest tst = { .kmsg = -1, };
-> >  	struct igt_ktap_results *ktap = NULL;
-> >  	const char *subtest = suite;
-> > +	DIR *debugfs_dir = NULL;
-> >  	IGT_LIST_HEAD(tests);
-> >  
-> >  	/*
-> > @@ -1435,10 +1487,12 @@ void igt_kunit(const char *module_name, const char *suite, const char *opts)
-> >  		 *	 LTS kernels not capable of using KUnit filters for
-> >  		 *	 listing test cases in KTAP format, with igt_require.
-> >  		 */
-> > -		if (!kunit_get_tests(&tests, &tst, suite, opts, &ktap))
-> > +		kunit_debugfs_path(debugfs_path);
-> > +		if (igt_debug_on(!*debugfs_path) ||
-> > +		    !kunit_get_tests(&tests, &tst, suite, opts, debugfs_path, &debugfs_dir, &ktap))
-> >  			__igt_kunit_legacy(&tst, subtest, opts);
-> >  		else
-> > -			__igt_kunit(&tst, subtest, suite, opts, &tests, &ktap);
-> > +			__igt_kunit(&tst, subtest, suite, opts, debugfs_path, &tests, &ktap);
-> >  	}
-> >  
-> >  	igt_fixture {
-> > @@ -1448,6 +1502,9 @@ void igt_kunit(const char *module_name, const char *suite, const char *opts)
-> >  
-> >  		kunit_results_free(&tests, &suite_name, &case_name);
-> >  
-> > +		if (debugfs_dir)
-> > +			closedir(debugfs_dir);
-> > +
-> >  		igt_ktest_end(&tst);
-> >  	}
-> >  
-> 
-
-
-
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 5b7930f46cf3..e21461be904f 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1327,7 +1327,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
+ 		}
+ 		if (!rebind && last_munmap_rebind &&
+ 		    xe_vm_in_preempt_fence_mode(vm))
+-			xe_vm_queue_rebind_worker(vm);
++			xe_vm_queue_rebind_worker_locked(vm);
+ 	} else {
+ 		kfree(rfence);
+ 		kfree(ifence);
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 306cd0934a19..8420fbf19f6d 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -211,10 +211,20 @@ int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker);
+ 
+ int xe_vm_invalidate_vma(struct xe_vma *vma);
+ 
+-static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
++static inline void xe_vm_queue_rebind_worker_locked(struct xe_vm *vm)
+ {
+ 	xe_assert(vm->xe, xe_vm_in_preempt_fence_mode(vm));
+-	queue_work(vm->xe->ordered_wq, &vm->preempt.rebind_work);
++	lockdep_assert_held(&vm->lock);
++
++	if (!xe_vm_is_closed(vm))
++		queue_work(vm->xe->ordered_wq, &vm->preempt.rebind_work);
++}
++
++static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
++{
++	down_read(&vm->lock);
++	xe_vm_queue_rebind_worker_locked(vm);
++	up_read(&vm->lock);
+ }
+ 
+ /**
+@@ -225,12 +235,13 @@ static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
+  * If the rebind functionality on a compute vm was disabled due
+  * to nothing to execute. Reactivate it and run the rebind worker.
+  * This function should be called after submitting a batch to a compute vm.
++ *
+  */
+ static inline void xe_vm_reactivate_rebind(struct xe_vm *vm)
+ {
+ 	if (xe_vm_in_preempt_fence_mode(vm) && vm->preempt.rebind_deactivated) {
+ 		vm->preempt.rebind_deactivated = false;
+-		xe_vm_queue_rebind_worker(vm);
++		xe_vm_queue_rebind_worker_locked(vm);
+ 	}
+ }
+ 
+-- 
+2.44.0
 
