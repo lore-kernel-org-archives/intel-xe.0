@@ -4,144 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEDE1C001CC
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Apr 2024 18:49:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FFD0C4345F
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Apr 2024 18:56:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62970113770;
-	Wed, 17 Apr 2024 18:49:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DE8011244E;
+	Wed, 17 Apr 2024 18:56:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fJN0ab4w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YKT5SX7K";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B397C11376E
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Apr 2024 18:49:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F21D910F7BD
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Apr 2024 18:56:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713379764; x=1744915764;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=VPAKCmIJuHtNi2QvLfTwTU1mVOo1MN3Oi1fVyZefBPs=;
- b=fJN0ab4wDhCTCU82Ki6EECvRvJZdjdfS45vyTlwXDwPQ4IR+b9epGjWW
- DOeB2dD14XoDbeq/LYSZ8diPJQypbqUpLl7bh5P2cDzxOvNL6rZwTdrO9
- UmF2Np0Sn9nD6vdc1qSU93uXtLoEgS1EJruavMn+fG1FpYHDmx+xS6XJm
- d/krioXFVeR6G18bc3SA/X/HAdcAvk0IjUYuLw6FlPkXHjQ/TkzTHVgH2
- mPDT+Disb4WU0WXjNwtlcLF7kxK+NV5NGpolqmEHG0mjbvvv9PUl9UMLC
- f/Nhni7Z63tGYm8QKc1TdH09faRau30ZOHkK0TXEdmx2noKB/fVA5O/bX g==;
-X-CSE-ConnectionGUID: TKZkNZDQT8OJEL5HYLLBmQ==
-X-CSE-MsgGUID: BpuXEJ3ARmSMCddaBKMs7w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="11832754"
-X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="11832754"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2024 11:49:24 -0700
-X-CSE-ConnectionGUID: BcMvq/2fRjCjbZ5ZhvzAow==
-X-CSE-MsgGUID: +FELcmYeSTyW1LUAZZ6izg==
+ t=1713380171; x=1744916171;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=SWLXfksncj9UxidIYl4KAsxsY0Q5XFfF6Jv30Z4o2kA=;
+ b=YKT5SX7KoN2XmMU4/UVAYXnjjsOoy3HNaKRYDdlEZ6iqQ1qTgGE76s0o
+ isrVdBJr23Lstgfy/EW2q6gLAPcYAntPm9IFfbtJOaMHeihxk7n7ouJjR
+ qY5lAoxZuMq/uHo+5bQX90MhY7nbJfcvdNSLFBnauimzLYcJb2C0P43C0
+ jOzo/n4JNYDxRsTpHFOpVJgGQ/KrtWChocxTVVLMk2iZLd666LCDqWI4Y
+ 1zcMqZUIPxnks/mMOJAg6n9cwHufk+r343BtLb5QxC5GLM80wyFjHyxJy
+ XSzeRBd8U7pkN8B5tqxhv5qzvrNiovYoVk4U4gNxSQBiZdlGGBaO+V2sm w==;
+X-CSE-ConnectionGUID: waHLJsq3RDmmK67TZzOxSg==
+X-CSE-MsgGUID: 7/T+hqZiQieROmTe93tpiA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="31372419"
+X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="31372419"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2024 11:56:10 -0700
+X-CSE-ConnectionGUID: dTrRHBUaSOqV9z3DN/q6qg==
+X-CSE-MsgGUID: P/jzpPDERQSll1R/rA7E2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="53662584"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 17 Apr 2024 11:49:24 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 17 Apr 2024 11:49:23 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 17 Apr 2024 11:49:23 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 17 Apr 2024 11:49:23 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 17 Apr 2024 11:49:22 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XmtfmLfnRP+dOl+vzGkvSuaH3dLX1dfkUx68Iqyce35fizewQifangAyWobpBZrasDByjlm6MTFC1W58dv6eZ14fP2ObK3m6g+jYygcaRh9SOe97PCPJzHYlKr0xx50iX4gooY69zJqAVkhb0fq8b5toJd4eAkciPlYspgsYlJ2fBZnx5F3GUy2jUpeG51aVh3RNyp0VaEunIp5Q8iRI90fvtDh4m7TUjWKWEzJw0VnzdDwipsExCeIDlVPSmnssKiUkv9nmyodBqQLPKnMIna2dqUnudyfbyfs+uYwfDHkTJ1mJJLUn1Xg70oYj4aNgwAsAzsfIdeELe9mUR6ASTA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RuinbCG0l3XbZcfPH+MaZ7eeZn0ONrXjcrU9i9PKKBE=;
- b=kIZ27ELn6AcWz6gi+W13qnq7PZ2E71IxdumoBmHrUWucPk/IuuKNLaso7e9MFVlLNLEuX8VwNtO4N9X0Gjhwdp4J1pyUJoX0abhBNcoX60g9cP1NdGDio42kMwvE/tXKWkTyKY2YBvG8jwyV3JDr8HRpGU+CvXIozT4E4LGa7A3dNTG4mdNG2/b5oQjlMek94ag/JR/nNgISZvn4Z6zxKxC1X9lNm12XZwpA5m57C2Hd42n4XW5819Ei1/x+A0VXA0RSr3qW7BbnbH60/qznYZl78RNNMdiArh+bv8Md4lRe/BicpQBynImbW8nM5y3H7d9IASCc3ouuQkRXTt1otg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DM4PR11MB7376.namprd11.prod.outlook.com (2603:10b6:8:100::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.28; Wed, 17 Apr
- 2024 18:49:20 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e7c:ccbc:a71c:6c15]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e7c:ccbc:a71c:6c15%5]) with mapi id 15.20.7472.027; Wed, 17 Apr 2024
- 18:49:20 +0000
-Date: Wed, 17 Apr 2024 18:49:08 +0000
+X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="60131182"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2024 11:56:11 -0700
 From: Matthew Brost <matthew.brost@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <stable@vger.kernel.org>
-Subject: Re: [PATCH] drm/xe/vm: prevent UAF in rebind_work_func()
-Message-ID: <ZiAZpCdM5LCnTpKk@DUT025-TGLU.fm.intel.com>
-References: <20240417163107.270053-2-matthew.auld@intel.com>
- <ZiAOYD0vqe64HWkk@DUT025-TGLU.fm.intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZiAOYD0vqe64HWkk@DUT025-TGLU.fm.intel.com>
-X-ClientProxiedBy: SJ0PR05CA0068.namprd05.prod.outlook.com
- (2603:10b6:a03:332::13) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+To: <intel-xe@lists.freedesktop.org>
+Cc: Matthew Brost <matthew.brost@intel.com>,
+	Oak Zeng <oak.zeng@intel.com>
+Subject: [PATCH] drm/xe: Refcount VMA
+Date: Wed, 17 Apr 2024 11:56:35 -0700
+Message-Id: <20240417185635.1004663-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DM4PR11MB7376:EE_
-X-MS-Office365-Filtering-Correlation-Id: 45bc7f60-edc6-46f4-acc5-08dc5f0f173a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: i8F9F+eATB+NMP0F0JxoI3PrSBXMsap95TwdmkLsWJzKP8+zi2D44K9eqV6rrryh2YtHG16p7swxiZqAgpNoWYsPqMNiai63BhWsa0wazPLw0+bM8xn2kZPWPbuAbu6n5YCkPP71Udqh28FD/YdjCyoff+hWX+dQx1mGCpFoGiVp6mCfotw5qRqcW2jhOISIHIL5/CprwO5nPF/f2v8ugKoL5U8vYpuDyBxzRXVo9SvEyFj0iiHRnbg2B/UtMp3fnnghCtj5N9n0+aCwG64CMwtv7s1sJhD8ixwMYVcEGDsdoIf0p7MVvbFiUykd9yQi9saLbiaZ+gbcWGWakKAucFiVgGBrke1F1YKXBOCha8ArZPbFvBqe+Nk8G/A6V0TsGZqK/e8JKR+ZzA7zygdWCMeZeT/iGloRJTobyk1wcbxuSlcAmOO1jtM/O5jECIDrKQEYGURP+MoudbYVs7Z3WMUBDWAZD3lo/WxpFIDyyDWXB7osMXm4wEhdhy7q/zY65nY06TgKm6u8gE632JoDVWnlAjPv1nAbXJ6Idf0VFRyJZwllyWnBaD0j2QXbwpDU+JFgSm0/7NNnOqBJ01uv8AQMS+pyq/DSNz2jlE0ksVz226F4r++7adsD8l6hotTW
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?l2wsEerVVWZK5UEOC6jDWJ9GAN0vy2McF8QyXXptp4bbpbiOErMu3ld3zD4k?=
- =?us-ascii?Q?0/Wq38yB9T7jUNzkce9KfA6KlI7yYP63Cs7+P/ZInP6TjP9658lDwQgR9y1S?=
- =?us-ascii?Q?wOhkK+vaa3Z0mNXq4OM9qR/3N6Q55juVs2Y8grdkyRJsos+PuFmb8oaBk3B1?=
- =?us-ascii?Q?850ehaJ11TGWHNKJCjmimNeniaJgomur2b3NFi4QSuZ5cGSb3q6AdLg8H9mx?=
- =?us-ascii?Q?+1sQvjc9YXS9+KSJeBAWK9NlgbEoU3NucVEeKu3IjTbJd6tMmtHdk25VD+RG?=
- =?us-ascii?Q?1qMt+I5Gk2lJHRb+bb8og0EsWowQjt9TKmChLsDsh/S4PcQ7sXup7ifZs9XW?=
- =?us-ascii?Q?5EBxjyN2Gl6qRUdnTRUQ6r4yeJCzflYJYgue/eMQuppI78g8+VZvQYudB/e4?=
- =?us-ascii?Q?Fd/IcifjgBTgK7ob1wtbH1BXt+QBKCNpKg9g3K+JqxPaL7xxPD/D8gM+kIGp?=
- =?us-ascii?Q?14UhTxsn0Xh837wcT75/Vxau7YD+QotsLjynDagQozt3XOg1/2NHbgskHZH1?=
- =?us-ascii?Q?XC706/z6rUNonP8WHidqcXN2sWG81FbsHKd1dE7Slc0WJ7s5LKtK5HvzT2x3?=
- =?us-ascii?Q?7+wy8l8/Rh4PGkkhj//+oxPw9cIEsFTgKDH7MlvKYKMeCVOxQvCHbaVdkk6d?=
- =?us-ascii?Q?MjrjZJxvmm/U5A0904FoUj+u3UIw8hOLBvrh9BLhiYBB+2IS9qwCHPJHTXnB?=
- =?us-ascii?Q?tb/dquEofF4q1NGmEgp0N2obnMg2udpIrFzxOTqZIghgI+tKEx64jKMJykX3?=
- =?us-ascii?Q?XXl5VZR0DkOCexFAKP0B9vOoLKpodCyEJBvWDGxTXLcznqBi+j6HnETzXZW1?=
- =?us-ascii?Q?WW8eUqdkCOg4iolfQVsWHH7QCJPHCApYh487Dfcv0V39kFEdKXSj0gCydZPt?=
- =?us-ascii?Q?LUlAEV8GR5KUd4WSrs7x6Tb1kvjbmeXL0Vr3FycyWeHDiMaxglRq7Zq2xISg?=
- =?us-ascii?Q?RdnpDITTk9DdW8HEUcc1qvHefgNMD2mtIwmyAPcTZe5ZSXDNKpsgMXniBmQh?=
- =?us-ascii?Q?3cuN5+RTHor0pSV9YmMtGEaeXymB9SX9CcETbQ58+Eyzw0TlPBngT2KikqA5?=
- =?us-ascii?Q?6/dQ1i+JIFHRvX+kGtZ6vVy3GTyDSyz/n1P+t38kM2OSmauQwETKD3MVejeI?=
- =?us-ascii?Q?V32LP6KQkuJGqQC0VwJkanNvdjvc9d2GSwsNvBi9mz9SoUixM/BPPiRvYdLr?=
- =?us-ascii?Q?CiPHXZYcaRGQ22dLSqjmBwAC4HpTzlnuOo+zBJ+cgUiYcar0eZA5NjZ6pnwb?=
- =?us-ascii?Q?YuYd0Panywcf1jDt7PDVWoWU3sVhdPt2Tp3ssbitQ2NKN+lnPP8VPUT61gVA?=
- =?us-ascii?Q?fS/ObkfPVhWkTjYvCI1rm7Sh31BLKREcBn1j5jQw5i5lYdEeT80YLIaVecRo?=
- =?us-ascii?Q?z+jagNbgIZaBxfpcreQyA2xXM5qPsuYteWUsFXjke45UtyV/UKtd21RmhSaj?=
- =?us-ascii?Q?4bztGFtRkOU7lxqKlMbpxHHL84dr9wbCBZVRbtpmBYL+8OSaW3qDjqjFFJ75?=
- =?us-ascii?Q?RcuCSmcfWVLOykvNrHQy9tGOvRufeAOlMOniGr90ZfxsLPsLWtQbsvNSeQFe?=
- =?us-ascii?Q?qQ2nUUubxQVvgI35Oi4QvRw+Q3WuNFjMlDTjJVVzqSy5xda6mh01YsyeHIf8?=
- =?us-ascii?Q?3A=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45bc7f60-edc6-46f4-acc5-08dc5f0f173a
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2024 18:49:20.0699 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DdOZgkT8NQPssLCVk6VWsJqG/PA213EPAwtavMpIVM4u2kXc4INOo9nCea8WMEceOuX8WlCcW6P1lwvqI2ZjyQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7376
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,110 +65,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 17, 2024 at 06:01:04PM +0000, Matthew Brost wrote:
-> On Wed, Apr 17, 2024 at 05:31:08PM +0100, Matthew Auld wrote:
-> > We flush the rebind worker during the vm close phase, however in places
-> > like preempt_fence_work_func() we seem to queue the rebind worker
-> > without first checking if the vm has already been closed.  The concern
-> > here is the vm being closed with the worker flushed, but then being
-> > rearmed later, which looks like potential uaf, since there is no actual
-> > refcounting to track the queued worker. To ensure this can't happen
-> > prevent queueing the rebind worker once the vm has been closed.
-> > 
-> > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-> > Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1591
-> > Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1304
-> > Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1249
-> > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Cc: <stable@vger.kernel.org> # v6.8+
-> > ---
-> >  drivers/gpu/drm/xe/xe_pt.c |  2 +-
-> >  drivers/gpu/drm/xe/xe_vm.h | 17 ++++++++++++++---
-> >  2 files changed, 15 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> > index 5b7930f46cf3..e21461be904f 100644
-> > --- a/drivers/gpu/drm/xe/xe_pt.c
-> > +++ b/drivers/gpu/drm/xe/xe_pt.c
-> > @@ -1327,7 +1327,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
-> >  		}
-> >  		if (!rebind && last_munmap_rebind &&
-> >  		    xe_vm_in_preempt_fence_mode(vm))
-> > -			xe_vm_queue_rebind_worker(vm);
-> > +			xe_vm_queue_rebind_worker_locked(vm);
-> >  	} else {
-> >  		kfree(rfence);
-> >  		kfree(ifence);
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-> > index 306cd0934a19..8420fbf19f6d 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.h
-> > +++ b/drivers/gpu/drm/xe/xe_vm.h
-> > @@ -211,10 +211,20 @@ int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker);
-> >  
-> >  int xe_vm_invalidate_vma(struct xe_vma *vma);
-> >  
-> > -static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
-> > +static inline void xe_vm_queue_rebind_worker_locked(struct xe_vm *vm)
-> >  {
-> >  	xe_assert(vm->xe, xe_vm_in_preempt_fence_mode(vm));
-> > -	queue_work(vm->xe->ordered_wq, &vm->preempt.rebind_work);
-> > +	lockdep_assert_held(&vm->lock);
-> > +
-> > +	if (!xe_vm_is_closed(vm))
-> 
-> xe_vm_is_closed_or_banned
-> 
-> Otherwise LGTM. With the above changed:
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+xe_vma is one of the few objects that doesn't currently have a refcount,
+rather an internal scheme which figures out when the VMA can be freed.
+Switch to refcount as this is the standard way to handle this and will
+future-proof the code for cases where additional refs to VMAs are
+needed.
 
-Revoking RB, should have looked at CI first.
+One functional change in the patch is that the freeing of the VMA is
+always done in a worker, as the final put can be done from an IRQ
+context and the freeing of a VMA is not ever in a critical path.
 
-This doesn't work as it deadlocks [1].
+Cc: Oak Zeng <oak.zeng@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_vm.c       | 16 ++++++++++++----
+ drivers/gpu/drm/xe/xe_vm.h       | 12 ++++++++++++
+ drivers/gpu/drm/xe/xe_vm_types.h |  3 +++
+ 3 files changed, 27 insertions(+), 4 deletions(-)
 
-- VMA invalidate notifier waits on VM dma-resv (preempt fences)
-- Preempt fences signaled via worker which queues rebind worked (VM read lock), order WQ too so serially
-- Preempt rebind worker waits on VMA invalidate under VM write lock
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 8a858b8588bd..a2d3aacbf29f 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -791,6 +791,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 			vma->gpuva.gem.obj = &bo->ttm.base;
+ 	}
+ 
++	kref_init(&vma->refcount);
+ 	INIT_LIST_HEAD(&vma->combined_links.rebind);
+ 
+ 	INIT_LIST_HEAD(&vma->gpuva.gem.entry);
+@@ -899,13 +900,20 @@ static void vma_destroy_work_func(struct work_struct *w)
+ 	xe_vma_destroy_late(vma);
+ }
+ 
++void __xe_vma_destroy_async(struct kref *ref)
++{
++	struct xe_vma *vma = container_of(ref, struct xe_vma, refcount);
++
++	INIT_WORK(&vma->destroy_work, vma_destroy_work_func);
++	queue_work(system_unbound_wq, &vma->destroy_work);
++}
++
+ static void vma_destroy_cb(struct dma_fence *fence,
+ 			   struct dma_fence_cb *cb)
+ {
+ 	struct xe_vma *vma = container_of(cb, struct xe_vma, destroy_cb);
+ 
+-	INIT_WORK(&vma->destroy_work, vma_destroy_work_func);
+-	queue_work(system_unbound_wq, &vma->destroy_work);
++	xe_vma_put(vma);
+ }
+ 
+ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
+@@ -934,10 +942,10 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
+ 
+ 		if (ret) {
+ 			XE_WARN_ON(ret != -ENOENT);
+-			xe_vma_destroy_late(vma);
++			xe_vma_put(vma);
+ 		}
+ 	} else {
+-		xe_vma_destroy_late(vma);
++		xe_vma_put(vma);
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 306cd0934a19..1cfe175d99e0 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -39,6 +39,18 @@ static inline void xe_vm_put(struct xe_vm *vm)
+ 	drm_gpuvm_put(&vm->gpuvm);
+ }
+ 
++static inline struct xe_vma *xe_vma_get(struct xe_vma *vma)
++{
++	kref_get(&vma->refcount);
++	return vma;
++}
++
++void __xe_vma_destroy_async(struct kref *ref);
++static inline void xe_vma_put(struct xe_vma *vma)
++{
++	kref_put(&vma->refcount, __xe_vma_destroy_async);
++}
++
+ int xe_vm_lock(struct xe_vm *vm, bool intr);
+ 
+ void xe_vm_unlock(struct xe_vm *vm);
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 7570c2c6c463..9fd4a8939386 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -65,6 +65,9 @@ struct xe_vma {
+ 	/** @gpuva: Base GPUVA object */
+ 	struct drm_gpuva gpuva;
+ 
++	/** @refcount: ref count of this vma */
++	struct kref refcount;
++
+ 	/**
+ 	 * @combined_links: links into lists which are mutually exclusive.
+ 	 * Locking: vm lock in write mode OR vm lock in read mode and the vm's
+-- 
+2.34.1
 
-Going to have to rethink this and aside from this new bug in actually
-rather dangerous too as taking the VM lock any path that block a
-signaling of a fence seemly can deadlock. Wondering if we can use
-lockdep to catch bugs like this?
-
-In the middle of few other things right now so haven't thought a ton
-about this but open to ideas.
-
-Matt
-
-[1] https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132571v1/bat-atsm-2/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
-
-> 
-> > +		queue_work(vm->xe->ordered_wq, &vm->preempt.rebind_work);
-> > +}
-> > +
-> > +static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
-> > +{
-> > +	down_read(&vm->lock);
-> > +	xe_vm_queue_rebind_worker_locked(vm);
-> > +	up_read(&vm->lock);
-> >  }
-> >  
-> >  /**
-> > @@ -225,12 +235,13 @@ static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
-> >   * If the rebind functionality on a compute vm was disabled due
-> >   * to nothing to execute. Reactivate it and run the rebind worker.
-> >   * This function should be called after submitting a batch to a compute vm.
-> > + *
-> >   */
-> >  static inline void xe_vm_reactivate_rebind(struct xe_vm *vm)
-> >  {
-> >  	if (xe_vm_in_preempt_fence_mode(vm) && vm->preempt.rebind_deactivated) {
-> >  		vm->preempt.rebind_deactivated = false;
-> > -		xe_vm_queue_rebind_worker(vm);
-> > +		xe_vm_queue_rebind_worker_locked(vm);
-> >  	}
-> >  }
-> >  
-> > -- 
-> > 2.44.0
-> > 
