@@ -4,27 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C9F7C4345F
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Apr 2024 11:17:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77EE7C001CC
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Apr 2024 11:37:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9553E1133EB;
-	Wed, 17 Apr 2024 11:17:24 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0EB11133EA;
- Wed, 17 Apr 2024 11:17:23 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59D1611341C;
+	Wed, 17 Apr 2024 11:37:33 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RudixTk1";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A026810F2C7;
+ Wed, 17 Apr 2024 11:37:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713353852; x=1744889852;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=QpeC5JACSCBzWeYiD3EYLcmVPCZwEBNjlCX3FbOEIPw=;
+ b=RudixTk1GYX8fHegWZjPpIxkbAts4IEeD5KWxpgUskFKkQlsACtW8o0u
+ NeOgv/B5QTvJBbSPfOMqkXokVhpY/4PaOt1FEH1aC4yiiW6kqIlF2LV8F
+ 1QWB/6jGV3dg8BwnSorAYxLEHXmHS/SUlp3OGJmx2PHEhjgElLIiKddux
+ +SopQwRKix9QUX2M/gpZm7VFG9u+knf0ANUc4R7Y/RRiHwaI40QUeGYgg
+ 56Z7AiMrsAQs9rvEJkNs2PuGzTQcDALWVeyN8zEQHz0xsIlUEdnZcYmmv
+ 0X7zsBjScYNzICGVa22wcU6UMj7EZyZyvlM/T09XWz8zNmczSnjRDmmIW g==;
+X-CSE-ConnectionGUID: GMcx7/JXTVK8+5MrS7y/tA==
+X-CSE-MsgGUID: AtnHHHgqSyaVxWvkwCZJjw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="8960479"
+X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; 
+   d="scan'208";a="8960479"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2024 04:37:30 -0700
+X-CSE-ConnectionGUID: uCwoR7RATC+ZngyJNeV/tg==
+X-CSE-MsgGUID: PAjd/SXFRXmBNdcJUD8i/g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="22687759"
+Received: from vpus-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.45.164])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2024 04:37:27 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Luca Coelho <luca@coelho.fi>, "Shankar, Uma" <uma.shankar@intel.com>,
+ "Coelho, Luciano" <luciano.coelho@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH v5 1/4] drm/i915/display: add support for DMC wakelocks
+In-Reply-To: <17dc38b91bfddf564f12cdd1ed1ed8615d000e13.camel@coelho.fi>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240412094148.808179-1-luciano.coelho@intel.com>
+ <20240412094148.808179-2-luciano.coelho@intel.com>
+ <DM4PR11MB63600F7F0EE905B24FED01B2F4042@DM4PR11MB6360.namprd11.prod.outlook.com>
+ <7c2a11df009a90646d39783c01f722b96717966c.camel@coelho.fi>
+ <DM4PR11MB6360FFEA82155778AD9B9778F4092@DM4PR11MB6360.namprd11.prod.outlook.com>
+ <2fe5226a281ad1db416d26969e5edf07b60dd349.camel@coelho.fi>
+ <87v84gxr3j.fsf@intel.com>
+ <17dc38b91bfddf564f12cdd1ed1ed8615d000e13.camel@coelho.fi>
+Date: Wed, 17 Apr 2024 14:37:24 +0300
+Message-ID: <87mspsxlsb.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Modify_minimum?=
- =?utf-8?q?_of_various_scheduler_timeout_to_0=2E_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 17 Apr 2024 11:17:23 -0000
-Message-ID: <171335264391.1464964.7684105300391913944@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240412105053.1050268-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20240412105053.1050268-1-himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +74,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 17 Apr 2024, Luca Coelho <luca@coelho.fi> wrote:
+> On Wed, 2024-04-17 at 12:42 +0300, Jani Nikula wrote:
+>> On Mon, 15 Apr 2024, Luca Coelho <luca@coelho.fi> wrote:
+>> > Thanks a lot for your reviews! Now I just need to get someone to merge
+>> > this series, since I don't have commit rights to the repo yet.
+>> 
+>> Thanks for the patches and review, merged to drm-intel-next with a
+>> slightly heavy heart because it sets me back with [1] in a pretty
+>> annoying way. Oh well.
+>> 
+>> BR,
+>> Jani.
+>> 
+>> [1] https://lore.kernel.org/r/0b48d6bebfe90aa2f901a05be8279ed887d99d7a.1712665176.git.jani.nikula@intel.com
+>
+> Oh, no! But you do have cocci and scripts, so it should be easy? Let me
+> know if I can help you rebase your change.
 
-Series: drm/xe: Modify minimum of various scheduler timeout to 0. (rev5)
-URL   : https://patchwork.freedesktop.org/series/130913/
-State : success
+The cocci script completely broke apart with the changes. :(
 
-== Summary ==
+I don't know how to tell it to "first do all these transformations, then
+these, and then these" which seems to be necessary.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 75418ec1fe7737396419e6447005b10e666aeaec
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+BR,
+Jani.
 
 
+
+
+
+>
+> In any case, thanks for merging my patches!
+>
+> --
+> Cheers,
+> Luca.
+
+-- 
+Jani Nikula, Intel
