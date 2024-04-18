@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61E16C05023
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Apr 2024 20:35:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7BCBC4345F
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Apr 2024 20:35:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB26F113FC3;
-	Thu, 18 Apr 2024 20:35:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AA5710F5EF;
+	Thu, 18 Apr 2024 20:35:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T9dZQdrQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZfEeoCF0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6C3710F5EF
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Apr 2024 20:34:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED35B113FC4
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Apr 2024 20:35:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713472500; x=1745008500;
+ t=1713472501; x=1745008501;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=engle99vXs9jc12ToF0D/ToZb5pfMJ7YB1MnAxygcMI=;
- b=T9dZQdrQMIXoQ+goe8AV4T6KMuLlH3B63yozwj7S2XHdTS6DyMeD8u0c
- B71Eg00Iv5HlZlC7BoTuA6Hk+c1Qk5pOuPDIfaimDnN8Ky7NHt02W0jRn
- 3uOZtySesJ3aQQgOWADd45NW8dCpGUUMiIS3EByga3a3FIZ3D6Rkd4VVX
- FC7nzcFP/Ne+f8lXolLPp8rr11lJhIbFwW9UxossoPyOWCjAI1ZNoEDR6
- da6eQE14lBIGF1wHvNdn5wfq0In4AYwMqCkjyS91Tuu5x7s6sq/Oh3HTZ
- jSWDE71Y/uChdVIC+Leb+f40ZW863991k/OnswHJvZ84cLyAFO2fzNXxE w==;
-X-CSE-ConnectionGUID: kYb0dLUwRZ6GKvr0rir8tg==
-X-CSE-MsgGUID: Lfy8R/FJQ9uqbWVTxkD24A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="11992057"
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="11992057"
+ bh=6tz5tVXdw7bftdQ6U2f95CSzTozNt79Bs3iYooLTBAE=;
+ b=ZfEeoCF05qlOlpIQWol0aqqmpbgwSilXaQ64xNMYxkYsdTN6FnuKTj+L
+ gCtPTuemu8zwk6ckA8F86o9gxqBOICXLnW27NrhcrcfWB74YSVKR06CHS
+ yfSLk+9rr4lFvBMS3Ab+112QGFKGcYzgTi7xAUexQZjUQT69ComgyA75p
+ FrX72ToydqIWpSKU3XM+6KKwXL9K1Cc3YTVZBJo3PQj7BWNpwZ8jE+vDL
+ 2180vTRbDCQZDEEoG4cbnQk35qerML0WBgUGZBHuQy/qlP2xbgz2UYxQa
+ p5tNTkeX3IOfxSc/VXcf/TeqReMFJECKEptU/OjzWCr1Dr1HhYzHxLs6O g==;
+X-CSE-ConnectionGUID: Ry3njIRFTLGHFY+pVt6+Bw==
+X-CSE-MsgGUID: fADDhX2RQxyO7ax2AYLNBQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="11992059"
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="11992059"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2024 13:35:00 -0700
-X-CSE-ConnectionGUID: BJxPxDFpQG2c9PtK5+Fsaw==
-X-CSE-MsgGUID: b88uk3W6TFqcrY8g3BXiVA==
+ 18 Apr 2024 13:35:01 -0700
+X-CSE-ConnectionGUID: V4q4dLqhSqyTH9p01Qonaw==
+X-CSE-MsgGUID: 5Eq1LGKUScu17942v5O06Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="22969858"
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="22969867"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.252.62.251])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2024 13:34:58 -0700
+ 18 Apr 2024 13:35:00 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 2/3] drm/xe/pf: Expose SR-IOV VF control commands over debugfs
-Date: Thu, 18 Apr 2024 22:34:41 +0200
-Message-Id: <20240418203442.226-3-michal.wajdeczko@intel.com>
+Subject: [PATCH 3/3] drm/xe/pf: Expose SR-IOV policy settings over debugfs
+Date: Thu, 18 Apr 2024 22:34:42 +0200
+Message-Id: <20240418203442.226-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240418203442.226-1-michal.wajdeczko@intel.com>
 References: <20240418203442.226-1-michal.wajdeczko@intel.com>
@@ -67,117 +67,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We already have functions to control the VF.
-Allow to control the VF using debugfs.
+We already have functions to configure SR-IOV policies.
+Allow to tweak those policy settings over debugfs.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 79 +++++++++++++++++++++
- 1 file changed, 79 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 50 +++++++++++++++++++++
+ 1 file changed, 50 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-index 32ce98698690..8909bb950a8b 100644
+index 8909bb950a8b..3a83af7aa039 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-@@ -14,6 +14,7 @@
- #include "xe_gt.h"
- #include "xe_gt_debugfs.h"
- #include "xe_gt_sriov_pf_config.h"
-+#include "xe_gt_sriov_pf_control.h"
+@@ -17,6 +17,7 @@
+ #include "xe_gt_sriov_pf_control.h"
  #include "xe_gt_sriov_pf_debugfs.h"
  #include "xe_gt_sriov_pf_helpers.h"
++#include "xe_gt_sriov_pf_policy.h"
  #include "xe_pm.h"
-@@ -153,6 +154,83 @@ static void pf_add_config_attrs(struct xe_gt *gt, struct dentry *parent, unsigne
- 				   &preempt_timeout_fops);
- }
+ 
+ /*
+@@ -76,6 +77,54 @@ static const struct drm_info_list pf_info[] = {
+ 	},
+ };
  
 +/*
 + *      /sys/kernel/debug/dri/0/
 + *      ├── gt0
-+ *      │   ├── vf1
-+ *      │   │   ├── control { stop, pause, resume }
++ *      │   ├── pf
++ *      │   │   ├── reset_engine
++ *      │   │   ├── sample_period
++ *      │   │   ├── sched_if_idle
 + */
 +
-+static const struct {
-+	const char *cmd;
-+	int (*fn)(struct xe_gt *gt, unsigned int vfid);
-+} control_cmds[] = {
-+	{ "stop", xe_gt_sriov_pf_control_stop_vf },
-+	{ "pause", xe_gt_sriov_pf_control_pause_vf },
-+	{ "resume", xe_gt_sriov_pf_control_resume_vf },
-+};
++#define DEFINE_SRIOV_GT_POLICY_DEBUGFS_ATTRIBUTE(POLICY, TYPE, FORMAT)		\
++										\
++static int POLICY##_set(void *data, u64 val)					\
++{										\
++	struct xe_gt *gt = extract_gt(data);					\
++	struct xe_device *xe = gt_to_xe(gt);					\
++	int err;								\
++										\
++	xe_pm_runtime_get(xe);							\
++	err = xe_gt_sriov_pf_policy_set_##POLICY(gt, val);			\
++	xe_pm_runtime_put(xe);							\
++										\
++	return err;								\
++}										\
++										\
++static int POLICY##_get(void *data, u64 *val)					\
++{										\
++	struct xe_gt *gt = extract_gt(data);					\
++										\
++	*val = xe_gt_sriov_pf_policy_get_##POLICY(gt);				\
++	return 0;								\
++}										\
++										\
++DEFINE_DEBUGFS_ATTRIBUTE(POLICY##_fops, POLICY##_get, POLICY##_set, FORMAT)
 +
-+static ssize_t control_write(struct file *file, const char __user *buf, size_t count, loff_t *pos)
++DEFINE_SRIOV_GT_POLICY_DEBUGFS_ATTRIBUTE(reset_engine, bool, "%llu\n");
++DEFINE_SRIOV_GT_POLICY_DEBUGFS_ATTRIBUTE(sched_if_idle, bool, "%llu\n");
++DEFINE_SRIOV_GT_POLICY_DEBUGFS_ATTRIBUTE(sample_period, u32, "%llu\n");
++
++static void pf_add_policy_attrs(struct xe_gt *gt, struct dentry *parent)
 +{
-+	struct dentry *dent = file_dentry(file);
-+	struct dentry *parent = dent->d_parent;
-+	struct xe_gt *gt = extract_gt(parent);
-+	struct xe_device *xe = gt_to_xe(gt);
-+	unsigned int vfid = extract_vfid(parent);
-+	int ret = -EINVAL;
-+	char cmd[32];
-+	size_t n;
++	xe_gt_assert(gt, gt == extract_gt(parent));
++	xe_gt_assert(gt, PFID == extract_vfid(parent));
 +
-+	xe_gt_assert(gt, vfid);
-+	xe_gt_sriov_pf_assert_vfid(gt, vfid);
-+
-+	if (*pos)
-+		return -ESPIPE;
-+
-+	if (count > sizeof(cmd) - 1)
-+		return -EINVAL;
-+
-+	ret = simple_write_to_buffer(cmd, sizeof(cmd) - 1, pos, buf, count);
-+	if (ret < 0)
-+		return ret;
-+	cmd[ret] = '\0';
-+
-+	for (n = 0; n < ARRAY_SIZE(control_cmds); n++) {
-+		xe_gt_assert(gt, sizeof(cmd) > strlen(control_cmds[n].cmd));
-+
-+		if (sysfs_streq(cmd, control_cmds[n].cmd)) {
-+			xe_pm_runtime_get(xe);
-+			ret = control_cmds[n].fn ? (*control_cmds[n].fn)(gt, vfid) : 0;
-+			xe_pm_runtime_put(xe);
-+			break;
-+		}
-+	}
-+
-+	return (ret < 0) ? ret : count;
++	debugfs_create_file_unsafe("reset_engine", 0644, parent, parent, &reset_engine_fops);
++	debugfs_create_file_unsafe("sched_if_idle", 0644, parent, parent, &sched_if_idle_fops);
++	debugfs_create_file_unsafe("sample_period_ms", 0644, parent, parent, &sample_period_fops);
 +}
 +
-+static ssize_t control_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
-+{
-+	char help[128];
-+	size_t n;
-+
-+	help[0] = '\0';
-+	for (n = 0; n < ARRAY_SIZE(control_cmds); n++) {
-+		strlcat(help, control_cmds[n].cmd, sizeof(help));
-+		strlcat(help, "\n", sizeof(help));
-+	}
-+
-+	return simple_read_from_buffer(buf, count, ppos, help, strlen(help));
-+}
-+
-+static const struct file_operations control_ops = {
-+	.owner		= THIS_MODULE,
-+	.open		= simple_open,
-+	.write		= control_write,
-+	.read		= control_read,
-+	.llseek		= default_llseek,
-+};
-+
- /**
-  * xe_gt_sriov_pf_debugfs_register - Register SR-IOV PF specific entries in GT debugfs.
-  * @gt: the &xe_gt to register
-@@ -199,5 +277,6 @@ void xe_gt_sriov_pf_debugfs_register(struct xe_gt *gt, struct dentry *root)
- 		vfdentry->d_inode->i_private = (void *)(uintptr_t)n;
+ /*
+  *      /sys/kernel/debug/dri/0/
+  *      ├── gt0
+@@ -261,6 +310,7 @@ void xe_gt_sriov_pf_debugfs_register(struct xe_gt *gt, struct dentry *root)
+ 	pfdentry->d_inode->i_private = gt;
  
- 		pf_add_config_attrs(gt, vfdentry, VFID(n));
-+		debugfs_create_file("control", 0600, vfdentry, NULL, &control_ops);
- 	}
- }
+ 	drm_debugfs_create_files(pf_info, ARRAY_SIZE(pf_info), pfdentry, minor);
++	pf_add_policy_attrs(gt, pfdentry);
+ 	pf_add_config_attrs(gt, pfdentry, PFID);
+ 
+ 	for (n = 1; n <= totalvfs; n++) {
 -- 
 2.43.0
 
