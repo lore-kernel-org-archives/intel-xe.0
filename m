@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21D8CC4345F
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Apr 2024 15:46:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 719DEC4345F
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Apr 2024 15:46:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D289F113D66;
-	Thu, 18 Apr 2024 15:46:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39790113D66;
+	Thu, 18 Apr 2024 15:46:26 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9806113D66;
- Thu, 18 Apr 2024 15:46:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C8EC113D66;
+ Thu, 18 Apr 2024 15:46:25 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?b?4pyTIENJLlBhdGNoX2FwcGxpZWQ6IHN1Y2Nlc3MgZm9yIGRybS94ZTogS2lsbCB4?=
- =?utf-8?b?ZV9kZXZpY2VfbWVtX2FjY2Vzc197Z2V0KixwdXR9IChyZXYyKQ==?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Kill_xe=5Fdevic?=
+ =?utf-8?q?e=5Fmem=5Faccess=5F=7Bget*=2Cput=7D_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 18 Apr 2024 15:46:10 -0000
-Message-ID: <171345517082.1501116.16777709076187934853@8e613ede5ea5>
+Date: Thu, 18 Apr 2024 15:46:25 -0000
+Message-ID: <171345518505.1501117.3233657627475192740@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240418125307.39579-1-rodrigo.vivi@intel.com>
 In-Reply-To: <20240418125307.39579-1-rodrigo.vivi@intel.com>
@@ -48,9 +48,42 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 610019be3a56 drm-tip: 2024y-04m-18d-14h-21m-07s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Kill xe_device_mem_access_{get*,put}
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f5fb02e01091a469b6325b72a47b3a0a1e96309c
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a006f159e3c1ba7301aef7a7ceac4c02233e00af
+Author: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date:   Thu Apr 18 10:30:49 2024 -0400
+
+    drm/xe: Kill xe_device_mem_access_{get*,put}
+    
+    Let's simply convert all the current callers towards direct
+    xe_pm_runtime access and remove this extra layer of indirection.
+    
+    No functional change is expected with this patch since
+    xe_mem_access_get was already using the xe_pm_runtime_get_noresume
+    at this point.
+    
+    v2: Convert all the current callers instead of a big refactor
+    at once.
+    
+    v3: - Rebased
+        - Squashed the GSC/HDCP
+        - Added a new case: sriov_pf_policy
+        - Improved commit message to highlight that
+          there's no functional change in this patch.
+    
+    Reviewed-by: Matthew Auld <matthew.auld@intel.com> #v2
+    Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 610019be3a56c982044361759f6ed366ae99a2a1 drm-intel
+a006f159e3c1 drm/xe: Kill xe_device_mem_access_{get*,put}
 
 
