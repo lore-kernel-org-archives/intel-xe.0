@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4979CC4345F
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Apr 2024 10:08:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1115C4345F
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Apr 2024 10:10:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B29510EB6F;
-	Thu, 18 Apr 2024 10:08:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FED410FBB0;
+	Thu, 18 Apr 2024 10:10:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ARC222UZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HhvJ+u8D";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5475B10EB6F;
- Thu, 18 Apr 2024 10:08:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22B0D10FBB0;
+ Thu, 18 Apr 2024 10:10:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713434933; x=1744970933;
+ t=1713435014; x=1744971014;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=col07l0f9QvfGcrr/JtHZEuvX+oqQuc2dEM2Eo0ULms=;
- b=ARC222UZDpc3VPH+5A8mtQ4gyP0/O95xeRdxPfM+6L/UOzuYBmdYi4fj
- Ub6FDTX6Z+ZD3bgRhOpqzZYwHRNYjedDxOJg6Z45BBEG7Xr4od1RsmY1l
- KWl9xMFLqauqyPHqG3gPZMIXRD59o5mi8i3Om3DtuRbLLum0Uet9gjDqs
- bcN84mCLi4vpbARBOqLZtNa3XVt54v3rFPZAGCSNr7xWNOxWOos7+16+m
- i6UiG/FgkXQ4UZEezoty4u0DHk4eBE/oT/jHosuFVGdsHNPtJlBAzaqLh
- p3Y/cWmcup9C0+BrbV3BW/O4ZOZ3L7HaKLiVCIeRonWpV7Pe5TIpdND3O w==;
-X-CSE-ConnectionGUID: KW7MqqlpTKeeH51JoIxndA==
-X-CSE-MsgGUID: 61lYjaIpRFSZTD/2Sdgogw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="11915203"
-X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; d="scan'208";a="11915203"
+ bh=ndzPxIg8Myuph1BxKvie0FrlTnYiWR+q5a1usk+ktr0=;
+ b=HhvJ+u8DagJYiCxYBilN8+7W7f8d8wfvJ7qB7r/eB+pbiFkax2sYi/7F
+ 8RKahNUQj6BpeGYJmuNu5RzdAyOfGF5xW+BVEClGyNupDqqGPTXtRBRuy
+ OoB/I9mBp4EpEh0NbPkXImnrOfbiKl49os5QRPWe7RrshC6h4dYZW5296
+ CH/Zo06C4ZHNvkg11+fNpkfeU5FXlPfbSyp5GNwk104Lm2oALTXBuaF+R
+ yrE277TaKVaQ3kgha4YSNXNDyauApP2m8lMfG/q0Dj9ZiHdFj1dWpYfIw
+ ygknXXB/ypDli2Xfhlgnt7Z3PhywGOAoQ19dfHuh/VPvFxTrYnKEEDS+L w==;
+X-CSE-ConnectionGUID: Xlx6sTboQpezrO5pdsyBOg==
+X-CSE-MsgGUID: Pm+QuNghTtmLHgyXsnnUfQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="11915391"
+X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; d="scan'208";a="11915391"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2024 03:08:52 -0700
-X-CSE-ConnectionGUID: Tr2oRbG9SfqubXPhn1lXzQ==
-X-CSE-MsgGUID: 8Lsq/fefR72mehHALJ9g2w==
+ 18 Apr 2024 03:10:13 -0700
+X-CSE-ConnectionGUID: MMkXmdRNSF6xopy+N1S3DQ==
+X-CSE-MsgGUID: z2bmknMFSViK0t7mjlZTyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; d="scan'208";a="60357071"
+X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; d="scan'208";a="60357107"
 Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
  ([10.145.162.146])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2024 03:08:50 -0700
-Message-ID: <0b8d22cd-2253-49ed-9375-f16d644bde02@linux.intel.com>
-Date: Thu, 18 Apr 2024 15:41:37 +0530
+ 18 Apr 2024 03:10:10 -0700
+Message-ID: <af4a1507-201c-4f8f-a855-a65e91c418ae@linux.intel.com>
+Date: Thu, 18 Apr 2024 15:43:00 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] drm/xe/FLR: Support PCIe FLR
+Subject: Re: [PATCH 3/4] drm/xe: Extract xe_gt_idle() helper
 Content-Language: en-US
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
@@ -54,12 +54,12 @@ To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  tzimmermann@suse.de, rodrigo.vivi@intel.com
 Cc: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
 References: <20240417084145.242480-1-aravind.iddamsetty@linux.intel.com>
- <20240417084145.242480-5-aravind.iddamsetty@linux.intel.com>
- <b738001d-8165-4b52-9f89-f810573be29f@intel.com>
+ <20240417084145.242480-4-aravind.iddamsetty@linux.intel.com>
+ <fa0574b1-cff1-48b1-bc8e-ccd5a8b2d0a6@intel.com>
 From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <b738001d-8165-4b52-9f89-f810573be29f@intel.com>
+In-Reply-To: <fa0574b1-cff1-48b1-bc8e-ccd5a8b2d0a6@intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,262 +75,92 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 17/04/24 19:29, Michal Wajdeczko wrote:
+On 17/04/24 19:20, Michal Wajdeczko wrote:
 >
 > On 17.04.2024 10:41, Aravind Iddamsetty wrote:
->> PCI subsystem provides callbacks to inform the driver about a request to
->> do function level reset by user, initiated by writing to sysfs entry
->> /sys/bus/pci/devices/.../reset. This will allow the driver to handle FLR
->> without the need to do unbind and rebind as the driver needs to
->> reinitialize the device afresh post FLR.
+>> This would be used in other places outside of gt_reset path.
 >>
->> v2:
->> 1. separate out gt idle and pci save/restore to a separate patch (Lucas)
->> 2. Fixed the warnings seen around xe_guc_submit_stop, xe_guc_puc_fini
->>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 >> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 >>
 >> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 >> Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
 >> ---
->>  drivers/gpu/drm/xe/Makefile          |  1 +
->>  drivers/gpu/drm/xe/xe_device_types.h |  3 +
->>  drivers/gpu/drm/xe/xe_guc_pc.c       |  4 ++
->>  drivers/gpu/drm/xe/xe_pci.c          |  9 ++-
->>  drivers/gpu/drm/xe/xe_pci.h          |  2 +
->>  drivers/gpu/drm/xe/xe_pci_err.c      | 93 ++++++++++++++++++++++++++++
->>  drivers/gpu/drm/xe/xe_pci_err.h      | 13 ++++
->>  7 files changed, 124 insertions(+), 1 deletion(-)
->>  create mode 100644 drivers/gpu/drm/xe/xe_pci_err.c
->>  create mode 100644 drivers/gpu/drm/xe/xe_pci_err.h
+>>  drivers/gpu/drm/xe/xe_gt.c | 31 +++++++++++++++++++++----------
+>>  drivers/gpu/drm/xe/xe_gt.h |  1 +
+>>  2 files changed, 22 insertions(+), 10 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->> index 522bffa5c4e1..9686ea181ad1 100644
->> --- a/drivers/gpu/drm/xe/Makefile
->> +++ b/drivers/gpu/drm/xe/Makefile
->> @@ -117,6 +117,7 @@ xe-y += xe_bb.o \
->>  	xe_module.o \
->>  	xe_pat.o \
->>  	xe_pci.o \
->> +	xe_pci_err.o \
->>  	xe_pcode.o \
->>  	xe_pm.o \
->>  	xe_preempt_fence.o \
->> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
->> index 0a66555229e9..8c749b378a92 100644
->> --- a/drivers/gpu/drm/xe/xe_device_types.h
->> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->> @@ -465,6 +465,9 @@ struct xe_device {
->>  	/** @pci_state: PCI state of device */
->>  	struct pci_saved_state *pci_state;
->>  
->> +	/** @pci_device_is_reset: device went through PCIe FLR */
->> +	bool pci_device_is_reset;
->> +
->>  	/* private: */
->>  
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
->> index 521ae24f2314..6108a4dfa05f 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
->> @@ -902,6 +902,10 @@ static void xe_guc_pc_fini(struct drm_device *drm, void *arg)
->>  		return;
->>  	}
->>  
->> +	/* We already have done this before going through a reset, so skip here */
->> +	if (xe->pci_device_is_reset)
->> +		return;
->> +
->>  	XE_WARN_ON(xe_force_wake_get(gt_to_fw(pc_to_gt(pc)), XE_FORCEWAKE_ALL));
->>  	XE_WARN_ON(xe_guc_pc_gucrc_disable(pc));
->>  	XE_WARN_ON(xe_guc_pc_stop(pc));
->> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
->> index f9957cd16356..d986ae7fc7f7 100644
->> --- a/drivers/gpu/drm/xe/xe_pci.c
->> +++ b/drivers/gpu/drm/xe/xe_pci.c
->> @@ -23,6 +23,7 @@
->>  #include "xe_macros.h"
->>  #include "xe_mmio.h"
->>  #include "xe_module.h"
->> +#include "xe_pci_err.h"
->>  #include "xe_pci_types.h"
->>  #include "xe_pm.h"
->>  #include "xe_sriov.h"
->> @@ -736,7 +737,7 @@ static void xe_pci_remove(struct pci_dev *pdev)
->>  	pci_set_drvdata(pdev, NULL);
+>> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+>> index cfa5da900461..59f497d575ad 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt.c
+>> @@ -629,6 +629,26 @@ static int do_gt_restart(struct xe_gt *gt)
+>>  	return 0;
 >>  }
 >>  
->> -static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->> +int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->>  {
->>  	const struct xe_device_desc *desc = (const void *)ent->driver_data;
->>  	const struct xe_subplatform_desc *subplatform_desc;
->> @@ -976,6 +977,11 @@ static const struct dev_pm_ops xe_pm_ops = {
->>  };
->>  #endif
->>  
->> +const struct pci_error_handlers xe_pci_err_handlers = {
-> static ?
-thanks will fix it.
+>> +/* Idle the GT */
+> as this is a public function, can we have a proper kernel-doc here?
 >
->> +	.reset_prepare = xe_pci_reset_prepare,
->> +	.reset_done = xe_pci_reset_done,
->> +};
->> +
->>  static struct pci_driver xe_pci_driver = {
->>  	.name = DRIVER_NAME,
->>  	.id_table = pciidlist,
->> @@ -985,6 +991,7 @@ static struct pci_driver xe_pci_driver = {
->>  #ifdef CONFIG_PM_SLEEP
->>  	.driver.pm = &xe_pm_ops,
->>  #endif
->> +	.err_handler = &xe_pci_err_handlers,
->>  };
->>  
->>  int xe_register_pci_driver(void)
->> diff --git a/drivers/gpu/drm/xe/xe_pci.h b/drivers/gpu/drm/xe/xe_pci.h
->> index 73b90a430d1f..9faf5380a09e 100644
->> --- a/drivers/gpu/drm/xe/xe_pci.h
->> +++ b/drivers/gpu/drm/xe/xe_pci.h
->> @@ -7,8 +7,10 @@
->>  #define _XE_PCI_H_
->>  
->>  struct pci_dev;
->> +struct pci_device_id;
->>  
->>  int xe_register_pci_driver(void);
->>  void xe_unregister_pci_driver(void);
->>  void xe_load_pci_state(struct pci_dev *pdev);
->> +int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent);
->>  #endif
->> diff --git a/drivers/gpu/drm/xe/xe_pci_err.c b/drivers/gpu/drm/xe/xe_pci_err.c
->> new file mode 100644
->> index 000000000000..81c440e08fbc
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_pci_err.c
->> @@ -0,0 +1,93 @@
->> +// SPDX-License-Identifier: MIT
->> +/*
->> + * Copyright © 2024 Intel Corporation
->> + */
->> +
->> +#include <linux/pci.h>
->> +#include <drm/drm_drv.h>
->> +
->> +#include "xe_device.h"
->> +#include "xe_gt.h"
->> +#include "xe_gt_printk.h"
->> +#include "xe_pci.h"
->> +#include "xe_pci_err.h"
->> +#include "xe_pm.h"
->> +#include "xe_uc.h"
->> +
->> +/**
->> + * xe_pci_reset_prepare - Called when user issued a PCIe reset
->> + * via /sys/bus/pci/devices/.../reset.
->> + * @pdev: PCI device struct
->> + */
->> +void xe_pci_reset_prepare(struct pci_dev *pdev)
->> +{
->> +	struct xe_device *xe = pci_get_drvdata(pdev);
->> +	struct xe_gt *gt;
->> +	int id, err;
->> +
->> +	pci_warn(pdev, "preparing for PCIe reset\n");
->> +
->> +	drm_warn(&xe->drm, "removing device access to userspace\n");
-> do we need two separate warnings here?
->
-> [ ] xe 0000:4d:00.0: preparing for PCIe FLR reset
-> [ ] xe 0000:4d:00.0: [drm] removing device access to userspace
-well yes i wanted to convey that a PCIe reset is triggered by the PCIe subsystem and
+> and maybe some hint what should be done if this function fails?
 
-in response to that we are removing the drm device hence a drm warn.
+Ok will do.
 
 Thanks,
 Aravind.
 >
->> +	drm_dev_unplug(&xe->drm);
->> +
->> +	xe_pm_runtime_get(xe);
->> +	/* idle the GTs */
->> +	for_each_gt(gt, xe, id) {
->> +		err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
->> +		if (err)
->> +			goto reset;
->> +		xe_uc_reset_prepare(&gt->uc);
->> +		err = xe_gt_idle(gt);
->> +		if (err) {
->> +			xe_gt_err(gt, "failed to idle gt (%pe)\n", ERR_PTR(err));
->> +			goto reset;
->> +		}
->> +
->> +		err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
->> +		XE_WARN_ON(err);
->> +	}
->> +	xe_pm_runtime_put(xe);
->> +
->> +reset:
->> +	pci_disable_device(pdev);
->> +}
->> +
->> +/**
->> + * xe_pci_reset_done - Called when PCIe reset is done.
->> + * @pdev: PCI device struct
->> + */
->> +void xe_pci_reset_done(struct pci_dev *pdev)
+>> +int xe_gt_idle(struct xe_gt *gt)
 >> +{
->> +	const struct pci_device_id *ent = pci_match_id(pdev->driver->id_table, pdev);
->> +	struct xe_device *xe = pci_get_drvdata(pdev);
+>> +	int err;
 >> +
->> +	dev_info(&pdev->dev,
->> +		 "device went through PCIe reset, reenabling the device\n");
+>> +	xe_gt_sanitize(gt);
 >> +
->> +	if (pci_enable_device(pdev)) {
->> +		dev_err(&pdev->dev,
->> +			"Cannot re-enable PCI device after reset\n");
->> +		return;
->> +	}
->> +	pci_set_master(pdev);
->> +	xe_load_pci_state(pdev);
+>> +	xe_uc_gucrc_disable(&gt->uc);
+>> +	xe_uc_stop_prepare(&gt->uc);
+>> +	xe_gt_pagefault_reset(gt);
 >> +
->> +	xe->pci_device_is_reset = true;
->> +	/*
->> +	 * We want to completely clean the driver and even destroy
->> +	 * the xe private data and reinitialize afresh similar to
->> +	 * probe
->> +	 */
->> +	pdev->driver->remove(pdev);
->> +	if (pci_dev_msi_enabled(pdev))
->> +		pci_free_irq_vectors(pdev);
+>> +	err = xe_uc_stop(&gt->uc);
+>> +	if (err)
+>> +		return err;
 >> +
->> +	devm_drm_dev_release_action(&xe->drm);
->> +	pci_disable_device(pdev);
+>> +	xe_gt_tlb_invalidation_reset(gt);
 >> +
->> +	/*
->> +	 * if this fails the driver might be in a stale state, only option is
->> +	 * to unbind and rebind
->> +	 */
->> +	xe_pci_probe(pdev, ent);
+>> +	return err;
 >> +}
->> diff --git a/drivers/gpu/drm/xe/xe_pci_err.h b/drivers/gpu/drm/xe/xe_pci_err.h
->> new file mode 100644
->> index 000000000000..95a4c8ce9cf1
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_pci_err.h
->> @@ -0,0 +1,13 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2024 Intel Corporation
->> + */
 >> +
->> +#ifndef _XE_PCI_ERR_H_
->> +#define _XE_PCI_ERR_H_
->> +
->> +struct pci_dev;
->> +
->> +void xe_pci_reset_prepare(struct pci_dev *pdev);
->> +void xe_pci_reset_done(struct pci_dev *pdev);
->> +#endif
+>>  static int gt_reset(struct xe_gt *gt)
+>>  {
+>>  	int err;
+>> @@ -645,21 +665,12 @@ static int gt_reset(struct xe_gt *gt)
+>>  	}
+>>  
+>>  	xe_pm_runtime_get(gt_to_xe(gt));
+>> -	xe_gt_sanitize(gt);
+>>  
+>>  	err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+>>  	if (err)
+>>  		goto err_msg;
+>>  
+>> -	xe_uc_gucrc_disable(&gt->uc);
+>> -	xe_uc_stop_prepare(&gt->uc);
+>> -	xe_gt_pagefault_reset(gt);
+>> -
+>> -	err = xe_uc_stop(&gt->uc);
+>> -	if (err)
+>> -		goto err_out;
+>> -
+>> -	xe_gt_tlb_invalidation_reset(gt);
+>> +	xe_gt_idle(gt);
+>>  
+>>  	err = do_gt_reset(gt);
+>>  	if (err)
+>> diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+>> index ed6ea8057e35..d62af1725ff6 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt.h
+>> +++ b/drivers/gpu/drm/xe/xe_gt.h
+>> @@ -43,6 +43,7 @@ int xe_gt_resume(struct xe_gt *gt);
+>>  void xe_gt_reset_async(struct xe_gt *gt);
+>>  void xe_gt_sanitize(struct xe_gt *gt);
+>>  void xe_gt_remove(struct xe_gt *gt);
+>> +int xe_gt_idle(struct xe_gt *gt);
+>>  
+>>  /**
+>>   * xe_gt_any_hw_engine_by_reset_domain - scan the list of engines and return the
