@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6042C4345F
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Apr 2024 01:57:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09D14C4345F
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Apr 2024 01:57:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5683910F8A8;
-	Thu, 18 Apr 2024 01:57:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA9FA10EE9C;
+	Thu, 18 Apr 2024 01:57:43 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29BFB10EE9C;
- Thu, 18 Apr 2024 01:57:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF09910EE9C;
+ Thu, 18 Apr 2024 01:57:42 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xe2lpg=3A_Ext?=
- =?utf-8?q?end_Wa=5F14020338487?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/xe2lpg=3A_Extend_W?=
+ =?utf-8?q?a=5F14020338487?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gustavo Sousa" <gustavo.sousa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 18 Apr 2024 01:57:32 -0000
-Message-ID: <171340545217.1483981.10925973010305257522@8e613ede5ea5>
+Date: Thu, 18 Apr 2024 01:57:42 -0000
+Message-ID: <171340546278.1483981.4302037602786214259@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240417212501.312346-1-gustavo.sousa@intel.com>
 In-Reply-To: <20240417212501.312346-1-gustavo.sousa@intel.com>
@@ -48,9 +48,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: a4f566444a64 drm-tip: 2024y-04m-18d-00h-18m-54s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe2lpg: Extend Wa_14020338487
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f5fb02e01091a469b6325b72a47b3a0a1e96309c
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1e8167f0e7ede43512dcb3b263f352da7bda6ef1
+Author: Gustavo Sousa <gustavo.sousa@intel.com>
+Date:   Wed Apr 17 18:25:01 2024 -0300
+
+    drm/xe/xe2lpg: Extend Wa_14020338487
+    
+    Wa_14020338487 also applies to Xe2_LPG. Replicate the existing entry to
+    one specific for Xe2_LPG.
+    
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+    Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
++ /mt/dim checkpatch a4f566444a645b1ade1b8d948f6e0286136b2cb3 drm-intel
+1e8167f0e7ed drm/xe/xe2lpg: Extend Wa_14020338487
 
 
