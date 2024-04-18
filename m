@@ -4,55 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDDCAC4345F
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Apr 2024 11:17:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4FB4C04FFF
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Apr 2024 11:28:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8210D113BB1;
-	Thu, 18 Apr 2024 11:17:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3076C113BC0;
+	Thu, 18 Apr 2024 11:28:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nkpvd4p9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="auHAvN43";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D339D113BB1
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Apr 2024 11:17:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE2A9113BC0;
+ Thu, 18 Apr 2024 11:28:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713439037; x=1744975037;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=TbgbVfMFwq1hL/8MbB5Le4XBTh02/0ivTruhX2FFKOI=;
- b=Nkpvd4p988mY11M2RZTKjh7+cTCrYa4UrsPc/qOTaOFH15vphxTII0iy
- ZpHiKwoe0WMvMl5yoAS4ZNUvXmMu/DHZkenMFr4065BsgMm0syft+8lma
- zjjBxM9/uKKToytWlEcqYVCkbyK0TRntuGT9tGUklRMOB5D8RjD5De5oY
- aevYUKsJ/TP+kDL3CL7mGTpdAkmn3pxMOGzgnzPV743a+syAdov26ekMl
- SPkmZhMXUFIyYDuKT3BRNfgpK3gpacvMQPkYLHa8m6gq1oc7lkgWXKBOa
- Aj+42ElesFdVJw3Dl7/TeLUGK4yVARx+zJiV8bn8bpaEpsdxPtzf6KSaS Q==;
-X-CSE-ConnectionGUID: CMdSDMK9RvqIcFcJWNrRYA==
-X-CSE-MsgGUID: 3ef4fLtpSSC6B3jBn3YKsw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="8813879"
+ t=1713439723; x=1744975723;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=IDLdJXQpA4Jnd1sjgJ+/sTPUEqjtSUvPodEJI9hOy+8=;
+ b=auHAvN43dimTuMj4A4dNWAeo5uC+oBUf81kfcCQKIWRqz0Rgtoy55jhX
+ YiIj505yv48XdXrn0vKvsIlemYpLvTYui3gdqV0pJcHaHg5TwGO23Lrro
+ cesT4LOJqRpM8HoVaww6NggQXBz7S8uG+m80Lm5JwilnaVrnpQjC2uUUn
+ 4rIgZGNxQBzzklxOlpH/H6QbMaenXQEQRVkCXz28OF0v0DuARgK3N8Pop
+ +cCZ9WpU0hB3n/rTnq2EK57IQScMHezqZs/WU2ys/oJ1QfrliVn2hF15L
+ nlMPbE0mQqtV1jtsJXsbGWWVSxKGF6mBFE7ZYjdAZn6MXFucn/rz1tN8p A==;
+X-CSE-ConnectionGUID: fjmrfLEVR0Wd3UKdJwZHfw==
+X-CSE-MsgGUID: xMEaDX3tQveeEJvwICRBJg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="8815510"
 X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; 
-   d="scan'208";a="8813879"
+   d="scan'208";a="8815510"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2024 04:15:23 -0700
-X-CSE-ConnectionGUID: WDsJKREOR9uIUJdIsrnRoA==
-X-CSE-MsgGUID: FfJUPuAsRlSI0QHnnTHaWw==
+ 18 Apr 2024 04:28:43 -0700
+X-CSE-ConnectionGUID: Pv5SOXmIQJCR3E+WeIyK5A==
+X-CSE-MsgGUID: bNakRgpcTa+yJAngcoj8kA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; d="scan'208";a="23464797"
-Received: from bommu-optiplex-5060.iind.intel.com ([10.145.169.63])
- by orviesa007.jf.intel.com with ESMTP; 18 Apr 2024 04:15:19 -0700
-From: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v2] drm/xe/xe2: Add workaround 14021402888
-Date: Thu, 18 Apr 2024 16:45:34 +0530
-Message-Id: <20240418111534.481568-1-krishnaiah.bommu@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; d="scan'208";a="23468690"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2024 04:28:41 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, ville.syrjala@linux.intel.com,
+ gustavo.sousa@intel.com, james.ausmus@intel.com
+Subject: Re: [PATCH v5] drm/i915: limit eDP MSO pipe only for display
+ version 20 and below
+In-Reply-To: <20240404091646.165309-1-luciano.coelho@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240404091646.165309-1-luciano.coelho@intel.com>
+Date: Thu, 18 Apr 2024 14:28:38 +0300
+Message-ID: <8734riyknt.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,44 +70,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This workaround applies to Graphics 20.01 as RCS engine workaround
+On Thu, 04 Apr 2024, Luca Coelho <luciano.coelho@intel.com> wrote:
+> The pipes that can be used for eDP MSO are limited to pipe A (and
+> sometimes also pipe B) only for display version 20 and below.
+>
+> Modify the function that returns the pipe mask for eDP MSO so that
+> these limitations only apply to version 20 and below, enabling all
+> pipes otherwise.
 
-Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_gt_regs.h | 1 +
- drivers/gpu/drm/xe/xe_wa.c           | 4 ++++
- 2 files changed, 5 insertions(+)
+Thanks for the patch, pushed to din.
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 94445810ccc9..23c302af4cd5 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -350,6 +350,7 @@
- 
- #define HALF_SLICE_CHICKEN7				XE_REG_MCR(0xe194, XE_REG_OPTION_MASKED)
- #define   DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA	REG_BIT(15)
-+#define   CLEAR_OPTIMIZATION_DISABLE			REG_BIT(6)
- 
- #define CACHE_MODE_SS				XE_REG_MCR(0xe420, XE_REG_OPTION_MASKED)
- #define   DISABLE_ECC				REG_BIT(5)
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 632bd9066f8d..31e140968f4a 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -534,6 +534,10 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 		       FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0, WR_REQ_CHAINING_DIS))
- 	},
-+	{ XE_RTP_NAME("14021402888"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2001), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN7, CLEAR_OPTIMIZATION_DISABLE))
-+	},
- 
- 	/* Xe2_HPM */
- 
--- 
-2.25.1
+BR,
+Jani.
 
+>
+> Bspec: 68923
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: James Ausmus <james.ausmus@intel.com>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> ---
+>
+> In v5:
+>    * fixed Ville's name's wrong charset, which prevented patchwork
+>      from picking this up.
+>
+> In v4:
+>    * actually go back to unrestricting only for > 20.  I sent the
+>      wrong patch version in v3.
+>
+> In v3:
+>    * go back to unrestricing only for > 20, since the change for
+>      versions 14 to 20 should be tested separately;
+>    * simplify the if blocks [Ville].
+>
+> In v2:
+>    * allow pipes A and B from ver 14 to 20 [Gustavo]
+>
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index a3d3d4942eb1..5d2863c43296 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -2336,10 +2336,15 @@ static void intel_ddi_power_up_lanes(struct intel=
+_encoder *encoder,
+>  	}
+>  }
+>=20=20
+> -/* Splitter enable for eDP MSO is limited to certain pipes. */
+> +/*
+> + * Splitter enable for eDP MSO is limited to certain pipes, on certain
+> + * platforms.
+> + */
+>  static u8 intel_ddi_splitter_pipe_mask(struct drm_i915_private *i915)
+>  {
+> -	if (IS_ALDERLAKE_P(i915))
+> +	if (DISPLAY_VER(i915) > 20)
+> +		return ~0;
+> +	else if (IS_ALDERLAKE_P(i915))
+>  		return BIT(PIPE_A) | BIT(PIPE_B);
+>  	else
+>  		return BIT(PIPE_A);
+
+--=20
+Jani Nikula, Intel
