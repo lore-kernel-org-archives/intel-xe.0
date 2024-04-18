@@ -4,145 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1316C4345F
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Apr 2024 14:58:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE27BC4345F
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Apr 2024 15:01:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6879C113D30;
-	Thu, 18 Apr 2024 14:58:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6F9A113D3F;
+	Thu, 18 Apr 2024 15:01:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rpcv3oqI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q7az3lIg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7AA5113D30
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Apr 2024 14:58:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4686C113D3F
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Apr 2024 15:01:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713452326; x=1744988326;
+ t=1713452502; x=1744988502;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=HMffubV2KF181JMk9A3TynsBFjuSl2AbrTW07gKldEg=;
- b=Rpcv3oqIlLLP3ihwLiU95LHIxD9UVfuce5FV8Eup5WkxDievE7X9Zh+K
- zj7lYxJpu/Q8o2tRH/sFPMaXG+e20vvvXaGusgyEFCvWPfXFMEbh0ckde
- rSxYLlvXHd71GJfGYpPgpp8P+n4ijhX8uKJwlLqBqKMpIVZlLsbIKShdY
- Fj4UbUuBvc8VxOgknKTd7qguPfZn6/UoTQFhU+/AJfkhVZO8+gObE5wus
- Wrn3fUqu3s6db5dW+5kwzuTgvUwxlVnu0nD8zRXhvjHUheoYhOUFnju3Y
- ocsgs9pnRmwL2MH/662Zf4AMh0mrzYj3vlgpCXvyhvhdp8L2xx5fkt9Qi w==;
-X-CSE-ConnectionGUID: JIsZebaiT/eoiRSQH96OpA==
-X-CSE-MsgGUID: 5TFuDkoYRfOlNf9jSCWFYg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="8839083"
-X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; 
-   d="scan'208";a="8839083"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2024 07:58:43 -0700
-X-CSE-ConnectionGUID: HXn3aWzBQtKV87hTGtewgA==
-X-CSE-MsgGUID: P9TG/ACxQKOZ1JeZ8bpvQg==
+ bh=j/svJ3LP2jMTnHQbTNvFnasAocwNRaXgT1SA82nxcyM=;
+ b=Q7az3lIgx+iDi158Ut1fH4KFwNuy7QdSSjMbDK1J5QzbFeEW7aim3PDm
+ SgdRjfeqJHjbYtTFjJJlN032pxY5uAXh5BCgnUGQw6F5ptOwc8SVYUZpC
+ z9Ur5OBGx37aFVIQxX7cm1iKUvDdJrfVNasWJVFgjkTi7aqbNN1OJsGpx
+ Mp3Q4nL8fHGjbcTOCmNQH0BJnikYfEl54y9ogHzdUHv4Ad7skLSLVz8Fv
+ DsJ4plXhEf949aliOKxZ9eL9OMk3mVPAwaQHVxo5Js+LZ1DyVIpevacsk
+ CvhPePl4HCc9vJvs+aNKkPvnt2XkN/qWVHX6azgVp/rZzp4COw1GO+UdQ Q==;
+X-CSE-ConnectionGUID: FcdU8hIQSlW++AwaUYtySA==
+X-CSE-MsgGUID: lLfwzHWISH6jSw6R7H1zNA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="12793040"
+X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; d="scan'208";a="12793040"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2024 08:01:41 -0700
+X-CSE-ConnectionGUID: Hf+mN6KUQeWpKKC0gDvMsw==
+X-CSE-MsgGUID: XId1YS5ISY6jWK0nTLKgsg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; d="scan'208";a="23084046"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 18 Apr 2024 07:58:42 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; d="scan'208";a="22990827"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 18 Apr 2024 08:01:42 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 18 Apr 2024 07:58:42 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.35; Thu, 18 Apr 2024 08:01:41 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 18 Apr 2024 07:58:41 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 18 Apr 2024 07:58:41 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Thu, 18 Apr 2024 08:01:41 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 18 Apr 2024 07:58:28 -0700
+ 15.1.2507.35; Thu, 18 Apr 2024 08:01:39 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=S8nDgyHfPR+Vk7VPLk2tBBr7t87ob3IZc4Bed7JMku62YT2uCSRa+Z5MagidPu6gd8G8LVPxWgXvqgAO5BjSm5Pe5wEh4GAU66XmlEuCX0cgOgmCF5ApFS3t/Zapn9BekV9SDJX0c6J2fz4K3C71dcxIdg7zOqSM0c/GEHiHmEU0QLKl62GYmdQSm3ZTusb0PKc0ZkCZ+Liq1K/RX1o31ImL6G8laO39ngg+A6qDlnQiva/tFtfOgxfSIU2P5FYsRaRLGMXYVuYEz3cqJbhTRKQlHgsXw3eo5RzkYo2G3JbvLjU+tfO2llbjyPD/x4raFX5vuS9cPyU3Cpp5L3eJng==
+ b=d0tFYELnSnHEeNwNGGEjWpkyVVrGmMpa/p5ey7bT+BTv2PSumD9HcNbxz9/CEnj7vsujPaULdOkJdYnhCcNdjWMAsyqheN8EqeDd5ZeIs10hnF/nktE3lp+z/KENVmYhsDDQk26L/byLfgY+0VovhkI/tMSdtC+zC0RKa3TG+VYAr70RTdRrbM7g/1G8eu7TGwJALitJWWa9mY99MqT/XCxfRa5u+FTp5n1ALq2ihxv9FbT/86nY+0fhkDTDvmssNtTACVZChBY2UAdu4XlK9zo4tV46HfveVZSxgA4HNT6zAmBeXNt+9fkrzQwFktRnyhow0E7QZm7mBfqnr3b/AQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gvOAlrsz1IRiGGB12n16TTXZUKK8OV4kwNUwNdy6v7A=;
- b=U5r4+v6omFA7jdb2oDr82X4noDzC2s/+eDHe2GBML7EQjaKkRRNgRTUtB33Plx0uIrKrnovo0eRJ5TOxbDIlpNBovLu++JobzgoxAeIx/xsQWOPY7h7q/agikpu+Lh/9OlFPscxVqh0ZZZ6b4JHzww/SQNQ4Wjj/sCVVZ+RKjVzVXb9og/vGIub8HufJb25CcVbVecDlPiExEmBbv4hppC5YayWamRBstPpwOc9d4MrYs7svXa8Udx9KfGTDf+Q6hTiU15spFNbmR8iC1psBrTHJYosbdgPDQrt8hd8J3Xip0YfM8yAUcMCjyuXOGPzfamBIbFw8IvTuODjDAOWsIA==
+ bh=50FxtUoZq/4aY4ULGeSpoCcbLwC+fKkbahswfnfKvrA=;
+ b=b5v5jkB4FRC06QfENkj6Yw3bgcw9KxJYAjBsKHH6wo9BYSllPGg5NBqJxLVVUqA3Ee5vK4uCFzsMW83j0SndjguDCAehQLb0tWlcF0PYR8E1wF1LCmQCdYw5TAZxISkeSocP1zFA4PRu8PTOZL7HJI0W6Wpsu2pM54yyQfbTGAznA0dZmXY64nxy5b8O6SrfAMfZTiz+qvAYl2OHi8MyvaMK7+Uu0peqq8dODd7Kmxf3Riyb7a7v11EnD41VCrl6OI/1rS/x5Li2AjCAqrQ/OOmjiP16yPmXoF0wMe/d2sgOzhoz5rKu0N4fx3H04rMYUpOE7j9opQF+e5DH0hYjQw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by CH3PR11MB8313.namprd11.prod.outlook.com (2603:10b6:610:17c::15)
+ by SJ2PR11MB7575.namprd11.prod.outlook.com (2603:10b6:a03:4ce::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.37; Thu, 18 Apr
- 2024 14:58:00 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.28; Thu, 18 Apr
+ 2024 15:00:23 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::e9dd:320:976f:e257]) by CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::e9dd:320:976f:e257%4]) with mapi id 15.20.7519.010; Thu, 18 Apr 2024
- 14:58:00 +0000
-Date: Thu, 18 Apr 2024 09:57:58 -0500
+ 15:00:22 +0000
+Date: Thu, 18 Apr 2024 10:00:21 -0500
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v4 6/7] drm/xe/tile: Abort driver load for sysfs creation
- failure
-Message-ID: <momwzdifdizlcs4njfz3orfsqczukhtvm76hcip6p76tkbg733@mc4czi325hpo>
+Subject: Re: [PATCH v4 7/7] drm/xe/pm: Capture errors and handle them
+Message-ID: <heu2iep5obhbjvcnokwwgmejre3b4ox7u57sueesloycpfrq24@ywmvzvuycsdk>
 References: <20240412181211.1155732-1-himal.prasad.ghimiray@intel.com>
- <20240412181211.1155732-7-himal.prasad.ghimiray@intel.com>
+ <20240412181211.1155732-8-himal.prasad.ghimiray@intel.com>
 Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20240412181211.1155732-7-himal.prasad.ghimiray@intel.com>
-X-ClientProxiedBy: BY3PR03CA0011.namprd03.prod.outlook.com
- (2603:10b6:a03:39a::16) To CY5PR11MB6139.namprd11.prod.outlook.com
+In-Reply-To: <20240412181211.1155732-8-himal.prasad.ghimiray@intel.com>
+X-ClientProxiedBy: BYAPR11CA0090.namprd11.prod.outlook.com
+ (2603:10b6:a03:f4::31) To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CH3PR11MB8313:EE_
-X-MS-Office365-Filtering-Correlation-Id: 71875cdb-613f-4258-13a0-08dc5fb7f0d9
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ2PR11MB7575:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5720fceb-845e-452b-6290-08dc5fb845a1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Rs/Y3xIpRkkaVp9ig5Fng3gS6aaYsiYDQEG8Udacsm9FaYEs8LBDTIzfkHJD595LlJb9eorKiEthPByG56tb8KAkWASWXdJrpksal4hlaKJNt9jF9njAJAf1mp73riFP/XR5RPwPc5M+B1CmDfYf88QnbxiEQWNkeHNqh3zfk0UoVrDVdZypnZtKGnAChfgciJ8cwSACoba1Fi9WaZVsMWby9qNL/t0STlss22H4ICBf0nj0tdh5M1nAW4wQdWQfDVijaPognU7OwtNdZGgzwRbQZhyuBY5I2bYLnoBkzNaL1t6XhTxylKnEpwafGOTqoE8ZQNUNfOhYt//7gmZ8a1Qoh30DCJX+v/autl2uUHH8amAEg5PxlciU+hzopAKqIeF+WyAYvtWSJphfojwx9MvH5QaxU93v6fao9IcXaWl1uqOeLX5NoqiOMOZGDNgfuMYy2Y4euQSzkXPOdwevbvmaa938M4bsBD2bTrjvvgNz9npCvi5M64kp18jZmQ0wr1JhwQOSv0k1PebxXUgTkBf4eMr+sdIv1vBk1nyXAJv7Ggr35vxsiELmEm6lS2DL70a1Qg1+AK1S9qO1OoOMiLizCr2om8isdK2th2a86WIim1ZshSUjgz1MN1+VfDOXoV18Ejhpypr+VfzSzALPRPsvmuJAjrXDUuJQWW3J1ms=
+X-Microsoft-Antispam-Message-Info: grQ3fcOR+k8Y6KQmif7k+unqQqUX0izWOipRmOXFgg0GJRwiWVXZKXAyDBI3cY6N18mX7f7n4fHIr9YYtbHtnV8/2UdkiyBMCxrKOp/CxX0XSXh8CCBOGVPi6VJ+6+nAAUmXW8lmSrrb6yBheSNNHOKVB0WclkFq61SBGivaBmG9X8cZad8ridjvfIduy8LY/BilEwkYVgwNlOFTBe/lKJOPY9Qe3emGZvuVz5/YzOAv+VAHMYBqHKrx8QN9+12DuA2CIZBXsiCkdlruicJCHM8bWbTDMGtzJhSmyvomeFwLvxVP7kkD3DP86AMwvnO2buiJgQEnGO8D0aCySHUKsI6U3cZ4OxJDx1E98ofWpaDzdba+vpHoOrhHhgQsZoPJdHl1VTM1jIki2vt1mhd2vvc0lMJBN1Mm/sTqs81LGF+82sS0SSGOS2C58QvtZYhyK5Wz5aRxw0B0fOXuduADrKXbZ9wzmtAOQ7PsDQrsNjH+HgmjAvahJX3XBdEenit5RiNq76e6tHc08ZX/sVtzIJTfubQPP8W5u5eRB8bK8v2TLC3d+rqKFfqBqWO4M6oKsj9dE1697YGOkv6jv9u4VAVF9G4EgQJT2Ky9tqeCTky6zDYSCmLqJkUwtwdywYS37n6NsrYruHhYaYrJb02yMWZchWl2cbY00aDm4qEbxmdP0eGD7bqutnX606DImuUof58z6CvmUcS7yoEf0toCTA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1101; 
+ SFS:(13230031)(366007)(376005)(1800799015)(27256008); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Ux0+q8kLy5xkMLLn8Ey8h9OEpsYhk4QmdGNPvUhFUn96+vSM2IPTYGH9CTbZ?=
- =?us-ascii?Q?kqtT5SXXNruR99GDvBw9XLyrFm2vqUq+elH1FnGiYAcS5SPasfP05pEMXIKW?=
- =?us-ascii?Q?hEn1RrTQZiyouXXhHqb4gmzz/rUyBdllb/hn2gagDQx36iKJACaEDgrStjPk?=
- =?us-ascii?Q?4BieBVWkkw5mN9N5sj7uUis4+YDh9y3SGBLJtBlHtdkK/Go3cc3jZjvAnYsu?=
- =?us-ascii?Q?rs0egsRs+erIsneRu9/fg5GKvlrCeZY4kzxNcGhVO50npE3SoQY8r49d0v2O?=
- =?us-ascii?Q?6xfp49VjaIKlD/N5zxaJWiI8JHT0/V8KNvuYZkfmBodUaaxqUNGK3Ilqvp7M?=
- =?us-ascii?Q?BLzTciexm46ammCXsYmWICfBbp2JwHl98wTrjojT53e0Pyp6oS7a2sFmrLNG?=
- =?us-ascii?Q?xJax/YQDowKGm7SHAaEYz4aYUHiimhNX50lW3QwVNdKRQLPFqcyweZzFC8U4?=
- =?us-ascii?Q?c2CgulxhEt6nZuLndt/rnpeoAmlYmhKnh9XSQIbqoahheD2oWJTT9e1Szv60?=
- =?us-ascii?Q?huILpebgf05QmnJchxu7WXiIScc3FzO6JKNI5c5aT0swnsSERYt4sRBE36Qd?=
- =?us-ascii?Q?p2dNsK0fu7p2aitif0+i2BjaEo6bRq5/YWTjljt7cW7qfFjcpIIvpdwI7J/q?=
- =?us-ascii?Q?ST6WoW70GELcntcVjeu7dNYqqX+a/4SO79Vgs0eKhWbU/8D12xtthHMSv4b7?=
- =?us-ascii?Q?dKzT0fXVL+EAbQNla3esZk+zIR8wrWeZFoPNBDmjEadXnFis5tUAIKWF6kLu?=
- =?us-ascii?Q?WjMq6vfcUrb25B0H0VmP11sdV31qgvebwwG4IcUT01EWwgSK3gj38WZcZSeL?=
- =?us-ascii?Q?SSSdqLHRZljIBXIuxP7hInvgWw0W0GAx+7d3Jz328A6+bXrHA1Rg4rutDbEO?=
- =?us-ascii?Q?25KhhjFLhuS2GYY79sPybvCOfs7oUXHXu8C5Gs6LXaI6aNSxn1WiS4CMD8yR?=
- =?us-ascii?Q?CPq3w5EQrUdr8iKCEuOTAAP29ciJPrBBUMP62RSb3juaqHGrWfwc3OfIpkFg?=
- =?us-ascii?Q?zAOjEGjwGKZcCj6yecuDn83gvuuWr+in3wc9wG5rDmT0fcbP8KE9sSl9bQx+?=
- =?us-ascii?Q?Fnj27n6tFPDFLLwjDCr53HBTgE0NEcLnlMlIE7gz6Sp5HvHp8DemdkVPe7r8?=
- =?us-ascii?Q?wKRFVqibKCMCuRITUxbx3OAtnPWq6wunrtZJktdi5SVlVEMbpN+sGm+u7zCY?=
- =?us-ascii?Q?Ohc9BVEayWQIlNGIPKn1XPXP9zWjOzJxAWW45IC7JEp7PsuOYjguB5Gni12C?=
- =?us-ascii?Q?ys+GU7Qo+mn0WIjf7CPbcnk8uY/Zj0JuxeiuCneixoYzNKpLDh8eptkhXOaM?=
- =?us-ascii?Q?t9rUmdNfyNXN6tv0T2CN0k8M0wkazxdgdTYAhvpnA22zWHkvL/YQ1LKDBj2i?=
- =?us-ascii?Q?TGlCPajJ/4NB4QhyAyiOBwz65tj1VauYBKI4+nvDa2joFdQUZT0VaKaauxOx?=
- =?us-ascii?Q?vntwrUmrTwJ4RCDnWWST3PwxEu89WkUe2ZO9oDYRquPyc8zry5iL8HxuZeo1?=
- =?us-ascii?Q?OqgvcnbgajGyTq9x+Z5Tnzpvj61AC2A8rOaBKlzsKA9RS4n06pGpoi3NvDC4?=
- =?us-ascii?Q?Q/W6RkIT1B4X/AVNPLdPetIb3902amaBNRYcHnEAAWQlUxLFsNmlOO7z/o31?=
- =?us-ascii?Q?Jw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71875cdb-613f-4258-13a0-08dc5fb7f0d9
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?U6AHfo7CGrYwB73/qw+CnFNKt1c908M7l9xABoj/e3EDSyMca/FE3cP5Jg/N?=
+ =?us-ascii?Q?3C0DDue11M++rSUJNfHOuz16etj8+hJeM5QgDQIpOgapwsC0j2RB1SKuEKMf?=
+ =?us-ascii?Q?Gckz7ThttQCD4Pq0aUY4wKmF1jBOPrgLfQLFcSyBqWoppQXNJOjY9AB4aZCy?=
+ =?us-ascii?Q?TAQDsbbWfXZl8czDR3ANKYFwEoQipVttWn47wHfUhbZKqwYZXvVNU6C5fzij?=
+ =?us-ascii?Q?rGuWHkPYHTwsEkTbLBQ+vKoYQuH3AZ97nf7zktW8Mg1BZ/mPvhzhbljNWQjY?=
+ =?us-ascii?Q?c8bKirpH46oID6omThte5SSQPtkruZLI1KTZDTDFpwrPSYIXLYnZKHu+OZS+?=
+ =?us-ascii?Q?B7MaSiJPbEpV+3P2ra0OMhbGd3i2aIq5IqqYkaiYvNmDadkU3XITiThQnIPU?=
+ =?us-ascii?Q?vTjqAGfJJkmQmrNkv5HUmsJp4eZpxjLeN/9FxXkN2GINha5dtIqNNkmGxf8Y?=
+ =?us-ascii?Q?OD/v2SV3lDB1Y24m8v5PkZqEeYwiHiNX64LQlzMb8jjiQcyttsR1fhK3rj9E?=
+ =?us-ascii?Q?WbzBMrwSV5S7Vk9i9bx6LzyvMS5MpBcFikchqFg2qwymP6pCLhTlHOHrbYzD?=
+ =?us-ascii?Q?aqII2dxgzc9KPkbhcnQHycgc//zC/MkOo7YzxjDGrEqxpjNphNdi2ooe0+s3?=
+ =?us-ascii?Q?7W2QghFSXkQRSAqVM091UMF4bdzncWk2x2VFkmICJ/cv/S7sM3bN9g/Ig9aq?=
+ =?us-ascii?Q?EDQCPhb/dWngswWJ1Ag2U4KRyfSOSqBHOgQnHy8O9Ccmc6sa/lurd0KzrYbi?=
+ =?us-ascii?Q?lZmeRQgjDxQ7A0ijaTt/joUlOL4iacFEzIA1+wZhFjRR6pk/5VpsUXf+r/Bl?=
+ =?us-ascii?Q?EcwFBwnTj3ZqWlfyvNGg0W5970nyU0Gm3h9ccBWCCGfKMsfnaoURa4rrqykC?=
+ =?us-ascii?Q?2Q+wx8E3Z72ahPExsHv0cwwFKcQNgufeawAI86apRxpddlL+P9TK+kP1BUmt?=
+ =?us-ascii?Q?1v6fl/3kDh8MkceVPTwefgszVZCeBhAcsrC3zFXTete6uInFMXbpO+DwbJ61?=
+ =?us-ascii?Q?0q2Ihyl63qXO3MpwIZuH1O3gA0HzcQqbZEj48hS+mjmqWPz524wCNe9eykpk?=
+ =?us-ascii?Q?kwuRuvehXhAd80WSDdB5G02/gYq4OpHppXzcZnPLql57lMfWq5p0O3+dmIWO?=
+ =?us-ascii?Q?T1K0U7o1sw/Qoavf8GEEq2nCHeLGBA/CDzdF5vf5Hjs/5tWummauDpJyV7ps?=
+ =?us-ascii?Q?3AnXb6u9YXSeU/EkcOGylkPQcb6uffB7RCHbNGrNXh+LsIlyvpp/Lg9HBYNG?=
+ =?us-ascii?Q?sd6kLxI24mSgOkHnz+CDa1+diTxiLm4FGuAzahkaV8zobRFKfBwQxbL2ylSm?=
+ =?us-ascii?Q?TXs6Yg4+Cmtuyn11F26bCEIup6++CbwQka9vR0xP+usKcDnfF3nFpkA/qHDw?=
+ =?us-ascii?Q?Vd0uXox878tBe6v1AYQSW082suqvaKNveTNitwk/YDjC6bWZVWfSB7nY/9x6?=
+ =?us-ascii?Q?8Itf5LVAQzBA98ApqP2iS5Gt3udFZZBbv8CqY/XTqulh/QMAp17MEVWiMjbM?=
+ =?us-ascii?Q?MekBiO72GARUMH/l1mCbl44S0f/ivNdC7WOyOsl4j+UFy8fCwcVVSOaZt5Pr?=
+ =?us-ascii?Q?BbsprXzlMPKA/RBMP8J8C/FoGTE2pAQ30DM5QEZm4f/ljLjCDjdMJLO98y3q?=
+ =?us-ascii?Q?lg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5720fceb-845e-452b-6290-08dc5fb845a1
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2024 14:58:00.5646 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2024 15:00:22.8347 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GftSOWalnqoqBTdwCemx/jUbrYxD0o0wHUarF2Q/Y5U2fVFm/sRfMPc5bKtAtSbxu475iRQ40ktgSVJT7Nkr58BzaBfjnli5TlisftbiUfI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8313
+X-MS-Exchange-CrossTenant-UserPrincipalName: OJ1Qxos/J1fwFuVYNpRfZXvxlIdp4Bgz1BN4jJtF3fkA6FftKQfUAbEs7Jhy6/4hiXeD3/P1UJNcFKqF+2tpauWjE2qpf3RETkOtlhl6VQo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7575
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -158,16 +152,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Apr 12, 2024 at 11:42:10PM GMT, Himal Prasad Ghimiray wrote:
->Ensure that the status of all tile associated sysfs entries creation is
->relayed to xe_tile_init_noalloc, leading to a driver load abort if any
->sysfs creation failures occur.
+On Fri, Apr 12, 2024 at 11:42:11PM GMT, Himal Prasad Ghimiray wrote:
+>xe_pm_init may encounter failures for various reasons, such as a failure
+>in initializing drmm_mutex, or when dealing with a d3cold-capable device
+>for vram_threshold sysfs creation and setting default threshold.
+>Presently, all these potential failures are disregarded.
+>
+>Move d3cold.lock initialization to xe_pm_init_early and cause driver
+>abort if mutex initialization has failed.
+>
+>For xe_pm_init failures cleanup the driver and return error code
 >
 >-v2
->Avoid unnecessary warn/error messages. (Lucas)
+>Make mutex init cleaner (Lucas)
 >
->Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 >Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 >Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
 
@@ -177,139 +177,167 @@ thanks
 Lucas De Marchi
 
 >---
-> drivers/gpu/drm/xe/xe_tile.c       |  2 +-
-> drivers/gpu/drm/xe/xe_tile_sysfs.c | 16 +++++++---------
-> drivers/gpu/drm/xe/xe_tile_sysfs.h |  2 +-
-> drivers/gpu/drm/xe/xe_vram_freq.c  | 20 ++++++++------------
-> drivers/gpu/drm/xe/xe_vram_freq.h  |  2 +-
-> 5 files changed, 18 insertions(+), 24 deletions(-)
+> drivers/gpu/drm/xe/xe_device_sysfs.c | 12 ++++------
+> drivers/gpu/drm/xe/xe_device_sysfs.h |  2 +-
+> drivers/gpu/drm/xe/xe_pci.c          | 12 ++++++++--
+> drivers/gpu/drm/xe/xe_pm.c           | 36 +++++++++++++++++++++-------
+> drivers/gpu/drm/xe/xe_pm.h           |  4 ++--
+> 5 files changed, 45 insertions(+), 21 deletions(-)
 >
->diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
->index 0650b2fa75ef..409cf55aa8a1 100644
->--- a/drivers/gpu/drm/xe/xe_tile.c
->+++ b/drivers/gpu/drm/xe/xe_tile.c
->@@ -173,7 +173,7 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
-> 	}
-> 	xe_wa_apply_tile_workarounds(tile);
->
->-	xe_tile_sysfs_init(tile);
->+	err = xe_tile_sysfs_init(tile);
->
-> err_mem_access:
-> 	xe_device_mem_access_put(tile_to_xe(tile));
->diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c b/drivers/gpu/drm/xe/xe_tile_sysfs.c
->index 237a0761d3ad..e1bfe0e4257d 100644
->--- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
->+++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
->@@ -29,7 +29,7 @@ static void tile_sysfs_fini(struct drm_device *drm, void *arg)
-> 	kobject_put(tile->sysfs);
+>diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+>index e47c8ad1bb17..21677b8cd977 100644
+>--- a/drivers/gpu/drm/xe/xe_device_sysfs.c
+>+++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+>@@ -76,18 +76,14 @@ static void xe_device_sysfs_fini(struct drm_device *drm, void *arg)
+> 	sysfs_remove_file(&xe->drm.dev->kobj, &dev_attr_vram_d3cold_threshold.attr);
 > }
 >
->-void xe_tile_sysfs_init(struct xe_tile *tile)
->+int  xe_tile_sysfs_init(struct xe_tile *tile)
+>-void xe_device_sysfs_init(struct xe_device *xe)
+>+int xe_device_sysfs_init(struct xe_device *xe)
 > {
-> 	struct xe_device *xe = tile_to_xe(tile);
 > 	struct device *dev = xe->drm.dev;
->@@ -38,7 +38,7 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
+> 	int ret;
 >
-> 	kt = kzalloc(sizeof(*kt), GFP_KERNEL);
-> 	if (!kt)
->-		return;
->+		return -ENOMEM;
->
-> 	kobject_init(&kt->base, &xe_tile_sysfs_kobj_type);
-> 	kt->tile = tile;
->@@ -46,16 +46,14 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
-> 	err = kobject_add(&kt->base, &dev->kobj, "tile%d", tile->id);
-> 	if (err) {
-> 		kobject_put(&kt->base);
->-		drm_warn(&xe->drm, "failed to register TILE sysfs directory, err: %d\n", err);
->-		return;
->+		return err;
-> 	}
->
-> 	tile->sysfs = &kt->base;
->
->-	xe_vram_freq_sysfs_init(tile);
->-
->-	err = drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini, tile);
->+	err = xe_vram_freq_sysfs_init(tile);
-> 	if (err)
->-		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, err: %d\n",
->-			 __func__, err);
->+		return err;
->+
->+	return drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini, tile);
-> }
->diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.h b/drivers/gpu/drm/xe/xe_tile_sysfs.h
->index e4f065039eba..54a2ba8ba533 100644
->--- a/drivers/gpu/drm/xe/xe_tile_sysfs.h
->+++ b/drivers/gpu/drm/xe/xe_tile_sysfs.h
->@@ -8,7 +8,7 @@
->
-> #include "xe_tile_sysfs_types.h"
->
->-void xe_tile_sysfs_init(struct xe_tile *tile);
->+int xe_tile_sysfs_init(struct xe_tile *tile);
->
-> static inline struct xe_tile *
-> kobj_to_tile(struct kobject *kobj)
->diff --git a/drivers/gpu/drm/xe/xe_vram_freq.c b/drivers/gpu/drm/xe/xe_vram_freq.c
->index c5f6b5a5d117..3e21ddc6e60c 100644
->--- a/drivers/gpu/drm/xe/xe_vram_freq.c
->+++ b/drivers/gpu/drm/xe/xe_vram_freq.c
->@@ -100,31 +100,27 @@ static void vram_freq_sysfs_fini(struct drm_device *drm, void *arg)
->  * @tile: Xe Tile object
->  *
->  * It needs to be initialized after the main tile component is ready
->+ *
->+ * Returns: 0 on success, negative error code on error.
->  */
->-void xe_vram_freq_sysfs_init(struct xe_tile *tile)
->+int xe_vram_freq_sysfs_init(struct xe_tile *tile)
-> {
-> 	struct xe_device *xe = tile_to_xe(tile);
-> 	struct kobject *kobj;
-> 	int err;
->
-> 	if (xe->info.platform != XE_PVC)
->-		return;
->+		return 0;
->
-> 	kobj = kobject_create_and_add("memory", tile->sysfs);
->-	if (!kobj) {
->-		drm_warn(&xe->drm, "failed to add memory directory, err: %d\n", -ENOMEM);
+> 	ret = sysfs_create_file(&dev->kobj, &dev_attr_vram_d3cold_threshold.attr);
+>-	if (ret) {
+>-		drm_warn(&xe->drm, "Failed to create sysfs file\n");
 >-		return;
 >-	}
->+	if (!kobj)
->+		return -ENOMEM;
->
-> 	err = sysfs_create_group(kobj, &freq_group_attrs);
-> 	if (err) {
-> 		kobject_put(kobj);
->-		drm_warn(&xe->drm, "failed to register vram freq sysfs, err: %d\n", err);
->-		return;
->+		return err;
-> 	}
->
->-	err = drmm_add_action_or_reset(&xe->drm, vram_freq_sysfs_fini, kobj);
->-	if (err)
->-		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, err: %d\n",
->-			 __func__, err);
->+	return drmm_add_action_or_reset(&xe->drm, vram_freq_sysfs_fini, kobj);
+>-
+>-	ret = drmm_add_action_or_reset(&xe->drm, xe_device_sysfs_fini, xe);
+> 	if (ret)
+>-		drm_warn(&xe->drm, "Failed to add sysfs fini drm action\n");
+>+		return ret;
+>+
+>+	return drmm_add_action_or_reset(&xe->drm, xe_device_sysfs_fini, xe);
 > }
->diff --git a/drivers/gpu/drm/xe/xe_vram_freq.h b/drivers/gpu/drm/xe/xe_vram_freq.h
->index cbe8c12fbd64..bf726bc5881f 100644
->--- a/drivers/gpu/drm/xe/xe_vram_freq.h
->+++ b/drivers/gpu/drm/xe/xe_vram_freq.h
+>diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.h b/drivers/gpu/drm/xe/xe_device_sysfs.h
+>index 38b240684bee..f9e83d8bd2c7 100644
+>--- a/drivers/gpu/drm/xe/xe_device_sysfs.h
+>+++ b/drivers/gpu/drm/xe/xe_device_sysfs.h
 >@@ -8,6 +8,6 @@
 >
-> struct xe_tile;
+> struct xe_device;
 >
->-void xe_vram_freq_sysfs_init(struct xe_tile *tile);
->+int xe_vram_freq_sysfs_init(struct xe_tile *tile);
+>-void xe_device_sysfs_init(struct xe_device *xe);
+>+int xe_device_sysfs_init(struct xe_device *xe);
 >
-> #endif /* _XE_VRAM_FREQ_H_ */
+> #endif
+>diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+>index fa2cc80a08a3..65ea44672cab 100644
+>--- a/drivers/gpu/drm/xe/xe_pci.c
+>+++ b/drivers/gpu/drm/xe/xe_pci.c
+>@@ -781,18 +781,26 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+> 		str_yes_no(xe_device_has_sriov(xe)),
+> 		xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
+>
+>-	xe_pm_init_early(xe);
+>+	err = xe_pm_init_early(xe);
+>+	if (err)
+>+		return err;
+>
+> 	err = xe_device_probe(xe);
+> 	if (err)
+> 		return err;
+>
+>-	xe_pm_init(xe);
+>+	err = xe_pm_init(xe);
+>+	if (err)
+>+		goto err_driver_cleanup;
+>
+> 	drm_dbg(&xe->drm, "d3cold: capable=%s\n",
+> 		str_yes_no(xe->d3cold.capable));
+>
+> 	return 0;
+>+
+>+err_driver_cleanup:
+>+	xe_pci_remove(pdev);
+>+	return err;
+> }
+>
+> static void xe_pci_shutdown(struct pci_dev *pdev)
+>diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+>index f1fc83845c01..a9decdf266a8 100644
+>--- a/drivers/gpu/drm/xe/xe_pm.c
+>+++ b/drivers/gpu/drm/xe/xe_pm.c
+>@@ -208,10 +208,21 @@ static void xe_pm_runtime_init(struct xe_device *xe)
+> 	pm_runtime_put(dev);
+> }
+>
+>-void xe_pm_init_early(struct xe_device *xe)
+>+int xe_pm_init_early(struct xe_device *xe)
+> {
+>+	int err;
+>+
+> 	INIT_LIST_HEAD(&xe->mem_access.vram_userfault.list);
+>-	drmm_mutex_init(&xe->drm, &xe->mem_access.vram_userfault.lock);
+>+
+>+	err = drmm_mutex_init(&xe->drm, &xe->mem_access.vram_userfault.lock);
+>+	if (err)
+>+		return err;
+>+
+>+	err = drmm_mutex_init(&xe->drm, &xe->d3cold.lock);
+>+	if (err)
+>+		return err;
+>+
+>+	return 0;
+> }
+>
+> /**
+>@@ -219,23 +230,32 @@ void xe_pm_init_early(struct xe_device *xe)
+>  * @xe: xe device instance
+>  *
+>  * This component is responsible for System and Device sleep states.
+>+ *
+>+ * Returns 0 for success, negative error code otherwise.
+>  */
+>-void xe_pm_init(struct xe_device *xe)
+>+int xe_pm_init(struct xe_device *xe)
+> {
+>+	int err;
+>+
+> 	/* For now suspend/resume is only allowed with GuC */
+> 	if (!xe_device_uc_enabled(xe))
+>-		return;
+>-
+>-	drmm_mutex_init(&xe->drm, &xe->d3cold.lock);
+>+		return 0;
+>
+> 	xe->d3cold.capable = xe_pm_pci_d3cold_capable(xe);
+>
+> 	if (xe->d3cold.capable) {
+>-		xe_device_sysfs_init(xe);
+>-		xe_pm_set_vram_threshold(xe, DEFAULT_VRAM_THRESHOLD);
+>+		err = xe_device_sysfs_init(xe);
+>+		if (err)
+>+			return err;
+>+
+>+		err = xe_pm_set_vram_threshold(xe, DEFAULT_VRAM_THRESHOLD);
+>+		if (err)
+>+			return err;
+> 	}
+>
+> 	xe_pm_runtime_init(xe);
+>+
+>+	return 0;
+> }
+>
+> /**
+>diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
+>index 0cb38ca244fe..2cefe8624474 100644
+>--- a/drivers/gpu/drm/xe/xe_pm.h
+>+++ b/drivers/gpu/drm/xe/xe_pm.h
+>@@ -20,8 +20,8 @@ struct xe_device;
+> int xe_pm_suspend(struct xe_device *xe);
+> int xe_pm_resume(struct xe_device *xe);
+>
+>-void xe_pm_init_early(struct xe_device *xe);
+>-void xe_pm_init(struct xe_device *xe);
+>+int xe_pm_init_early(struct xe_device *xe);
+>+int xe_pm_init(struct xe_device *xe);
+> void xe_pm_runtime_fini(struct xe_device *xe);
+> bool xe_pm_runtime_suspended(struct xe_device *xe);
+> int xe_pm_runtime_suspend(struct xe_device *xe);
 >-- 
 >2.25.1
 >
