@@ -4,27 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C23FC4345F
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Apr 2024 09:09:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7C03C4345F
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Apr 2024 09:11:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BAE110E2DC;
-	Fri, 19 Apr 2024 09:09:25 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FA8410E2DC;
- Fri, 19 Apr 2024 09:09:24 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Support_PCIe_FL?=
- =?utf-8?q?R_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Aravind Iddamsetty" <aravind.iddamsetty@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 19 Apr 2024 09:09:24 -0000
-Message-ID: <171351776406.1520059.13272086185091456884@8e613ede5ea5>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6269010E3C9;
+	Fri, 19 Apr 2024 09:11:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EEqXyXka";
+	dkim-atps=neutral
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E88010E2DC;
+ Fri, 19 Apr 2024 09:11:17 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id C8D78CE14A0;
+ Fri, 19 Apr 2024 09:11:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC2F1C116B1;
+ Fri, 19 Apr 2024 09:11:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1713517874;
+ bh=VKtJdk5KIVygp2MmtQR3HyL+P1TFz1OOtq7Q9lsHz98=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=EEqXyXkaLgAMH7nxpoP3IcRTqqpOaj6FeeEo1YzSqhFjaPGuzO4qu/dQETdgSB07k
+ 2pdYIpnTRtB5xKsqPQdxGxTiKfhVIpDICOrkj5LnEXYoYdja1MgG7vtRcnqcG0+sCa
+ YM0ssZDp4CS+mYFAR+LCdc0q0Q+t08VxWzzVQC8Cr2LnW/izKoYZopb8glWzBIUWt2
+ dXUahhIV5lZwhm6auvu4x1wBqIfyVCTmYy7zfMfK4MBcLyKdEtnnzeNdfUTjh8X/Cl
+ D1tngSvvxwMUqrsQVIS/Kn8jZ8ejaxORSsmXbT4uZO+UAbJVCT3tV3X3xqqSXhw+/4
+ aOIbg7Gao51Cw==
+Date: Fri, 19 Apr 2024 11:11:11 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, daniel@ffwll.ch, 
+ maarten.lankhorst@linux.intel.com, airlied@gmail.com, tzimmermann@suse.de,
+ rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org,
+ Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH v2 1/4] drm: add devm release action
+Message-ID: <20240419-stimulating-passionate-mule-bbd4b2@houat>
 References: <20240419085826.263743-1-aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <20240419085826.263743-1-aravind.iddamsetty@linux.intel.com>
+ <20240419085826.263743-2-aravind.iddamsetty@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="4asax4oqr7je7cwt"
+Content-Disposition: inline
+In-Reply-To: <20240419085826.263743-2-aravind.iddamsetty@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,68 +57,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/xe: Support PCIe FLR (rev4)
-URL   : https://patchwork.freedesktop.org/series/131366/
-State : warning
+--4asax4oqr7je7cwt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-== Summary ==
+On Fri, Apr 19, 2024 at 02:28:23PM +0530, Aravind Iddamsetty wrote:
+> In scenarios where drm_dev_put is directly called by driver we want to
+> release devm_drm_dev_init_release action associated with struct
+> drm_device.
+>=20
+> v2: Directly expose the original function, instead of introducing a
+> helper (Rodrigo)
+>=20
+> Cc: Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>=20
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+> ---
+>  drivers/gpu/drm/drm_drv.c | 6 ++++++
+>  include/drm/drm_drv.h     | 2 ++
+>  2 files changed, 8 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> index 243cacb3575c..ba60cbb0725f 100644
+> --- a/drivers/gpu/drm/drm_drv.c
+> +++ b/drivers/gpu/drm/drm_drv.c
+> @@ -714,6 +714,12 @@ static int devm_drm_dev_init(struct device *parent,
+>  					devm_drm_dev_init_release, dev);
+>  }
+> =20
+> +void devm_drm_dev_release_action(struct drm_device *dev)
+> +{
+> +	devm_release_action(dev->dev, devm_drm_dev_init_release, dev);
+> +}
+> +EXPORT_SYMBOL(devm_drm_dev_release_action);
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-0daf0be5bb95eb0a0e42275e00a0e42d8d8fd543
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 3c34e4b100fe02ff713ed6971b2ccc00e00eeb5d
-Author: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-Date:   Fri Apr 19 14:28:26 2024 +0530
+Again, this needs to be documented.
 
-    drm/xe/FLR: Support PCIe FLR
-    
-    PCI subsystem provides callbacks to inform the driver about a request to
-    do function level reset by user, initiated by writing to sysfs entry
-    /sys/bus/pci/devices/.../reset. This will allow the driver to handle FLR
-    without the need to do unbind and rebind as the driver needs to
-    reinitialize the device afresh post FLR.
-    
-    v2:
-    1. separate out gt idle and pci save/restore to a separate patch (Lucas)
-    2. Fixed the warnings seen around xe_guc_submit_stop, xe_guc_puc_fini
-    
-    v3: declare xe_pci_err_handlers as static(Michal)
-    
-    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-    
-    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-    Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-+ /mt/dim checkpatch 1f816172a689b95011a1c1cfe952ac6ec32d3ca3 drm-intel
-2f55168112f4 drm: add devm release action
-e2085978a2ae drm/xe: Save and restore PCI state
-58d2c0eb3dc1 drm/xe: Extract xe_gt_idle() helper
-3c34e4b100fe drm/xe/FLR: Support PCIe FLR
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:123: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#123: 
-new file mode 100644
+Maxime
 
-total: 0 errors, 1 warnings, 0 checks, 170 lines checked
+--4asax4oqr7je7cwt
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZiI1KQAKCRAnX84Zoj2+
+dkSXAXwMIBYJpfoIK1fg3nP8nhTfOSHOlGbPaSlYcDU2k4JWjAvmGZUYs9W0IKK/
+JOESrvMBgMYXYXANbJvojCklt9Ei+qpWCbpwVsPZ10XDkIkhvTw8avrPExGyP7Kr
+Vg+UCapMJg==
+=zKmT
+-----END PGP SIGNATURE-----
+
+--4asax4oqr7je7cwt--
