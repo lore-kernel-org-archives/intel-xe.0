@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEFC2C4345F
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Apr 2024 15:34:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CB77C4345F
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Apr 2024 15:56:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88CB910E26B;
-	Fri, 19 Apr 2024 15:34:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tc9z0xWI";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F50B10E26B
- for <intel-xe@lists.freedesktop.org>; Fri, 19 Apr 2024 15:34:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713540869; x=1745076869;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=zfpyzj1TlBskJB4KrGjYkuTCDADGy3BiRUwTuDezWCg=;
- b=Tc9z0xWILIRBV0ntJoN3n0jJOOo9kdsULid8TfWUJ/ESSmlx5Ew9tnry
- rnPI2cAVX/vSGHV8oIdU36XUy4u090R/8yr6PpsmWw6d9a4E5vtt7RRpL
- a/Nr5Gsxf0pfFmGXVbFx8OvfJpabH1u65oPJcadjuAtAHGxWsmQJwcend
- fTTi4eT3FA71CabhTqumt+VZBQg48348DKSHkDWPEXYoLpGvN5USJ9srq
- tShTrjXuLzSka13N+Ab+VnEenrzlqqs8hJN9st4vSJhge/iuJg0Bcw7Cu
- ccN9Q88j/lo+m1CFsPO9slmnjYRY3zZWePclb75hDtl/YshsZ6xStSfiI w==;
-X-CSE-ConnectionGUID: +nXDt6C+QOySPgGLhL33KA==
-X-CSE-MsgGUID: eY6Uf1LjSZmr1rNMWRdpSA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11049"; a="20539238"
-X-IronPort-AV: E=Sophos;i="6.07,214,1708416000"; d="scan'208";a="20539238"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2024 08:34:18 -0700
-X-CSE-ConnectionGUID: K9yAW0AETqCvEGY06q+pRw==
-X-CSE-MsgGUID: QLxIXZZzQB2RhHtVmozsYA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,214,1708416000"; d="scan'208";a="23435821"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.252.63.117])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2024 08:34:17 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/xe/guc: Improve GuC doorbell/context ID manager intro
- message
-Date: Fri, 19 Apr 2024 17:34:07 +0200
-Message-Id: <20240419153407.402-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BA0610E93D;
+	Fri, 19 Apr 2024 15:56:54 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2670110E93D;
+ Fri, 19 Apr 2024 15:56:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?b?4pyTIENJLlBhdGNoX2FwcGxpZWQ6IHN1Y2Nlc3MgZm9yIGRybS94ZS9wZjogRml4?=
+ =?utf-8?b?IHhlX2d0X3NyaW92X3BmX2NvbmZpZ19wcmludF9hdmFpbGFibGVfZ2d0dCgp?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 19 Apr 2024 15:56:53 -0000
+Message-ID: <171354221315.1520923.8308123809027762447@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240419141000.314-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20240419141000.314-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,45 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We can use recently added str_plural() helper.
+== Series Details ==
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_db_mgr.c | 3 ++-
- drivers/gpu/drm/xe/xe_guc_id_mgr.c | 3 ++-
- 2 files changed, 4 insertions(+), 2 deletions(-)
+Series: drm/xe/pf: Fix xe_gt_sriov_pf_config_print_available_ggtt()
+URL   : https://patchwork.freedesktop.org/series/132647/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_db_mgr.c b/drivers/gpu/drm/xe/xe_guc_db_mgr.c
-index 8d9a0287df6b..6767e8076e6b 100644
---- a/drivers/gpu/drm/xe/xe_guc_db_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_guc_db_mgr.c
-@@ -106,7 +106,8 @@ int xe_guc_db_mgr_init(struct xe_guc_db_mgr *dbm, unsigned int count)
- 	if (ret)
- 		return ret;
- done:
--	xe_gt_dbg(dbm_to_gt(dbm), "using %u doorbell(s)\n", dbm->count);
-+	xe_gt_dbg(dbm_to_gt(dbm), "using %u doorbell%s\n",
-+		  dbm->count, str_plural(dbm->count));
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_id_mgr.c b/drivers/gpu/drm/xe/xe_guc_id_mgr.c
-index 0fb7c6b78c31..cd0549d0ef89 100644
---- a/drivers/gpu/drm/xe/xe_guc_id_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_guc_id_mgr.c
-@@ -97,7 +97,8 @@ int xe_guc_id_mgr_init(struct xe_guc_id_mgr *idm, unsigned int limit)
- 	if (ret)
- 		return ret;
- 
--	xe_gt_info(idm_to_gt(idm), "using %u GUC ID(s)\n", idm->total);
-+	xe_gt_info(idm_to_gt(idm), "using %u GUC ID%s\n",
-+		   idm->total, str_plural(idm->total));
- 	return 0;
- }
- 
--- 
-2.43.0
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 1501acd2d215 drm-tip: 2024y-04m-19d-14h-31m-11s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/pf: Fix xe_gt_sriov_pf_config_print_available_ggtt()
+
 
