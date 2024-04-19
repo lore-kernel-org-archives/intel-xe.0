@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17306C4345F
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Apr 2024 09:34:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B65B7C4345F
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Apr 2024 09:42:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA62F10E23F;
-	Fri, 19 Apr 2024 09:34:00 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FEB610E23F;
- Fri, 19 Apr 2024 09:33:59 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79BD210E809;
+	Fri, 19 Apr 2024 09:42:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UszsXuKk";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B32E10E809;
+ Fri, 19 Apr 2024 09:42:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713519730; x=1745055730;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=o8qPt7dC/dt6pmu8dyibsJe9xr76YTgY6EKfwbi0ofo=;
+ b=UszsXuKktyI/bNhYvwMXXGiJlYcxozd+J5tDo6ixa/+gPlDXMvAqWohq
+ HBdlkfjRnAipu3puOvDSScNkgH9I982PzhtkV77GsJUkQV+9lCcf4PFi1
+ SU3PFssG0cuIUdYcvwTu0ayCZA2MVsUxWe24D7nu03wx+9BwgTZ3DbtB9
+ c+Xj6BV820MNX89cUlF2oluN/z+jkvIFnZ6M0dfredNXFdzCVLhKup0Ag
+ iY2xYCxYtcKwVx7Lr8mlzLrSkqA8DK5FaOi8b4d03+JV/aq/69fHwHpXt
+ KgYjUgGdLVI57hZ/l1zrXEyA9yAEuRJurTSOLS660XS5oKcCel23HRVXR w==;
+X-CSE-ConnectionGUID: vg37mq7tSEm6VyvQxZ3ByQ==
+X-CSE-MsgGUID: 5Asi3W7eQFWrJS9LuVMkGQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="20503819"
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="20503819"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2024 02:42:08 -0700
+X-CSE-ConnectionGUID: HTkcypQDSkmcQ/0Oq7SeGg==
+X-CSE-MsgGUID: f8DodayrSSuWJvASpwZWow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="28117105"
+Received: from agherasi-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.46.119])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2024 02:42:05 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com, Gustavo Sousa <gustavo.sousa@intel.com>,
+ jani.nikula@intel.com
+Subject: [PATCH v2 0/5] drm/i915/dmc: firmware path handling changes
+Date: Fri, 19 Apr 2024 12:41:53 +0300
+Message-Id: <cover.1713519628.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/xe=3A_Support_PCIe_F?=
- =?utf-8?q?LR_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Aravind Iddamsetty" <aravind.iddamsetty@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 19 Apr 2024 09:33:59 -0000
-Message-ID: <171351923913.1519312.1844840496030202866@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240419085826.263743-1-aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <20240419085826.263743-1-aravind.iddamsetty@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,35 +65,26 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+v2 of https://lore.kernel.org/r/cover.1713450693.git.jani.nikula@intel.com
 
-Series: drm/xe: Support PCIe FLR (rev4)
-URL   : https://patchwork.freedesktop.org/series/131366/
-State : warning
+Jani Nikula (5):
+  drm/i915/dmc: handle request_firmware() errors separately
+  drm/i915/dmc: improve firmware parse failure propagation
+  drm/i915/dmc: split out per-platform firmware path selection
+  drm/i915/dmc: change how to disable DMC firmware using module param
+  drm/i915/display: move dmc_firmware_path to display params
 
-== Summary ==
+ .../drm/i915/display/intel_display_params.c   |   4 +
+ .../drm/i915/display/intel_display_params.h   |   1 +
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 175 +++++++++++-------
+ drivers/gpu/drm/i915/i915_params.c            |   3 -
+ drivers/gpu/drm/i915/i915_params.h            |   1 -
+ drivers/gpu/drm/xe/xe_device_types.h          |   3 -
+ 6 files changed, 112 insertions(+), 75 deletions(-)
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 1f816172a689b95011a1c1cfe952ac6ec32d3ca3
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+-- 
+2.39.2
 
