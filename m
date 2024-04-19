@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 645E1C4345F
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Apr 2024 21:27:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11B3CC4345F
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Apr 2024 21:30:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED6B610E464;
-	Fri, 19 Apr 2024 21:27:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B438310E691;
+	Fri, 19 Apr 2024 21:30:54 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D732010E464;
- Fri, 19 Apr 2024 21:27:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB96E10E691;
+ Fri, 19 Apr 2024 21:30:53 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/hwmon=3A_Remo?=
- =?utf-8?q?ve_unwanted_write_permission_for_currN=5Flabel_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/hwmon=3A_Remove_un?=
+ =?utf-8?q?wanted_write_permission_for_currN=5Flabel_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Karthik Poosa" <karthik.poosa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 19 Apr 2024 21:27:15 -0000
-Message-ID: <171356203588.1536851.9894894283407655773@8e613ede5ea5>
+Date: Fri, 19 Apr 2024 21:30:53 -0000
+Message-ID: <171356225389.1536851.14626936700317117454@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240419125945.4085629-1-karthik.poosa@intel.com>
 In-Reply-To: <20240419125945.4085629-1-karthik.poosa@intel.com>
@@ -48,9 +48,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 53dd7a290913 drm-tip: 2024y-04m-19d-16h-09m-10s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/hwmon: Remove unwanted write permission for currN_label
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+0daf0be5bb95eb0a0e42275e00a0e42d8d8fd543
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5b77a943746f031b32f2554c2278a2e9d683e0f4
+Author: Karthik Poosa <karthik.poosa@intel.com>
+Date:   Fri Apr 19 18:29:45 2024 +0530
+
+    drm/xe/hwmon: Remove unwanted write permission for currN_label
+    
+    Change umode of currN_label from 0644 to 0444 as write permission
+    not needed for label.
+    
+    Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+    Reviewed-by: Riana Tauro <riana.tauro@intel.com>
++ /mt/dim checkpatch 53dd7a2909139fb469db4423b79d8a2888a734c2 drm-intel
+5b77a943746f drm/xe/hwmon: Remove unwanted write permission for currN_label
 
 
