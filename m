@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84C2DC04FF6
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Apr 2024 08:31:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2F92C4345F
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Apr 2024 08:55:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E99210FE0C;
-	Fri, 19 Apr 2024 08:31:42 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3458B10FE0C;
- Fri, 19 Apr 2024 08:31:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5340963960752205704=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 677AD10EFA3;
+	Fri, 19 Apr 2024 08:55:47 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZaiywM/2";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA66E10EFA3;
+ Fri, 19 Apr 2024 08:55:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713516947; x=1745052947;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nVPxrcaYzHM8mG5y4RCTn6D2ry7nTjBYAlGLG/6lrxc=;
+ b=ZaiywM/2CjbjVO3iOu2Y+rziuR+mMWVX58OWcft8H9YTFSI1fZ4Ms9tw
+ 4Ay0WR6+EmG20hOIMYis2MK27iwm65C60qV3SmGu6yv7NC6TMsDB0qrAc
+ 1KT0K+HOxXGk+kzZACuuk2Gqh36ta1x6FuLwiCPghxZy5fxwVl8ttEOjj
+ kx0jpeNrnwFerd4+zKgxzvw8uabPk9Q6lMRRyMueiJfXOqJDT0kWxZ1qu
+ FxAmACct3XEZyZo+R6WiNkifdvNsa7IB5/N1rtWexKmuvoVVQOOXX9Sj6
+ sWMEPBroCDR0m2af+IlNQEmtsNWII3e7EBimHNGBzmXkqpkUhXwO7yRek g==;
+X-CSE-ConnectionGUID: OJbucYi5TUSjIEueS3KdWg==
+X-CSE-MsgGUID: wxdT3DJ6TN+/0Vl51qCajg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="12051590"
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="12051590"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2024 01:55:46 -0700
+X-CSE-ConnectionGUID: 7g8AuHqvSCWQmfjnBxuLrg==
+X-CSE-MsgGUID: ijUnJLp7QMKvd+2dMQ1OCw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="27890705"
+Received: from aravind-dev.iind.intel.com ([10.145.162.146])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2024 01:55:43 -0700
+From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+To: dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, airlied@gmail.com, mripard@kernel.org,
+ tzimmermann@suse.de, rodrigo.vivi@intel.com
+Cc: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v3 0/4] drm/xe: Support PCIe FLR
+Date: Fri, 19 Apr 2024 14:28:22 +0530
+Message-Id: <20240419085826.263743-1-aravind.iddamsetty@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/preempt=5Ffence=3A_enlarg?=
- =?utf-8?q?e_the_fence_critical_section_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 19 Apr 2024 08:31:41 -0000
-Message-ID: <171351550121.1519312.10718051919554677954@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240418144630.299531-2-matthew.auld@intel.com>
-In-Reply-To: <20240418144630.299531-2-matthew.auld@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,153 +63,170 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5340963960752205704==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+PCI subsystem provides callbacks to inform the driver about a request to
+do function level reset by user, initiated by writing to sysfs entry
+/sys/bus/pci/devices/.../reset. This will allow the driver to handle FLR
+without the need to do unbind and rebind as the driver needs to
+reinitialize the device afresh post FLR.
 
-== Series Details ==
+v3: Trivial fix
 
-Series: drm/xe/preempt_fence: enlarge the fence critical section (rev2)
-URL   : https://patchwork.freedesktop.org/series/132610/
-State : success
+v2:
+1. Directly expose the devm_drm_dev_release_action instead of introducing
+a helper (Rodrigo)
+2. separate out gt idle and pci save/restore to a separate patch (Lucas)
+3. Fixed the warnings seen around xe_guc_submit_stop, xe_guc_puc_fini
 
-== Summary ==
+Rodrigo, retaining your r-b's since there are no functional changes.
 
-CI Bug Log - changes from xe-1121-1f816172a689b95011a1c1cfe952ac6ec32d3ca3_BAT -> xe-pw-132610v2_BAT
-====================================================
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Summary
--------
+dmesg snip showing FLR recovery:
 
-  **SUCCESS**
+[  590.486336] xe 0000:4d:00.0: enabling device (0140 -> 0142)
+[  590.506933] xe 0000:4d:00.0: [drm] Using GuC firmware from
+xe/pvc_guc_70.20.0.bin version 70.20.0
+[  590.542355] xe 0000:4d:00.0: [drm] Using GuC firmware from
+xe/pvc_guc_70.20.0.bin version 70.20.0
+[  590.578532] xe 0000:4d:00.0: [drm] VISIBLE VRAM: 0x0000202000000000,
+0x0000002000000000
+[  590.578556] xe 0000:4d:00.0: [drm] VRAM[0, 0]: Actual physical size
+0x0000001000000000, usable size exclude stolen 0x0000000fff000000, CPU
+accessible size 0x0000000fff000000
+[  590.578560] xe 0000:4d:00.0: [drm] VRAM[0, 0]: DPA range:
+[0x0000000000000000-1000000000], io range:
+[0x0000202000000000-202fff000000]
+[  590.578585] xe 0000:4d:00.0: [drm] VRAM[1, 1]: Actual physical size
+0x0000001000000000, usable size exclude stolen 0x0000000fff000000, CPU
+accessible size 0x0000000fff000000
+[  590.578589] xe 0000:4d:00.0: [drm] VRAM[1, 1]: DPA range:
+[0x0000001000000000-2000000000], io range:
+[0x0000203000000000-203fff000000]
+[  590.578592] xe 0000:4d:00.0: [drm] Total VRAM: 0x0000202000000000,
+0x0000002000000000
+[  590.578594] xe 0000:4d:00.0: [drm] Available VRAM:
+0x0000202000000000, 0x0000001ffe000000
+[  590.738899] xe 0000:4d:00.0: [drm] GT0: CCS_MODE=0 config:00400000,
+num_engines:1, num_slices:4
+[  590.889991] xe 0000:4d:00.0: [drm] GT1: CCS_MODE=0 config:00400000,
+num_engines:1, num_slices:4
+[  590.892835] [drm] Initialized xe 1.1.0 20201103 for 0000:4d:00.0 on
+minor 1
+[  590.900215] xe 0000:9a:00.0: enabling device (0140 -> 0142)
+[  590.915991] xe 0000:9a:00.0: [drm] Using GuC firmware from
+xe/pvc_guc_70.20.0.bin version 70.20.0
+[  590.957450] xe 0000:9a:00.0: [drm] Using GuC firmware from
+xe/pvc_guc_70.20.0.bin version 70.20.0
+[  590.989863] xe 0000:9a:00.0: [drm] VISIBLE VRAM: 0x000020e000000000,
+0x0000002000000000
+[  590.989888] xe 0000:9a:00.0: [drm] VRAM[0, 0]: Actual physical size
+0x0000001000000000, usable size exclude stolen 0x0000000fff000000, CPU
+accessible size 0x0000000fff000000
+[  590.989893] xe 0000:9a:00.0: [drm] VRAM[0, 0]: DPA range:
+[0x0000000000000000-1000000000], io range:
+[0x000020e000000000-20efff000000]
+[  590.989918] xe 0000:9a:00.0: [drm] VRAM[1, 1]: Actual physical size
+0x0000001000000000, usable size exclude stolen 0x0000000fff000000, CPU
+accessible size 0x0000000fff000000
+[  590.989921] xe 0000:9a:00.0: [drm] VRAM[1, 1]: DPA range:
+[0x0000001000000000-2000000000], io range:
+[0x000020f000000000-20ffff000000]
+[  590.989924] xe 0000:9a:00.0: [drm] Total VRAM: 0x000020e000000000,
+0x0000002000000000
+[  590.989927] xe 0000:9a:00.0: [drm] Available VRAM:
+0x000020e000000000, 0x0000001ffe000000
+[  591.142061] xe 0000:9a:00.0: [drm] GT0: CCS_MODE=0 config:00400000,
+num_engines:1, num_slices:4
+[  591.293505] xe 0000:9a:00.0: [drm] GT1: CCS_MODE=0 config:00400000,
+num_engines:1, num_slices:4
+[  591.295487] [drm] Initialized xe 1.1.0 20201103 for 0000:9a:00.0 on
+minor 2
+[  610.685993] Console: switching to colour dummy device 80x25
+[  610.686118] [IGT] xe_exec_basic: executing
+[  610.755398] xe 0000:4d:00.0: [drm] GT0: CCS_MODE=0 config:00400000,
+num_engines:1, num_slices:4
+[  610.771783] xe 0000:4d:00.0: [drm] GT1: CCS_MODE=0 config:00400000,
+num_engines:1, num_slices:4
+[  610.773542] [IGT] xe_exec_basic: starting subtest once-basic
+[  610.960251] [IGT] xe_exec_basic: finished subtest once-basic, SUCCESS
+[  610.962741] [IGT] xe_exec_basic: exiting, ret=0
+[  610.977203] Console: switching to colour frame buffer device 128x48
+[  611.006675] xe_exec_basic (3237) used greatest stack depth: 11128
+bytes left
+[  644.682201] xe 0000:4d:00.0: [drm] GT0: CCS_MODE=0 config:00400000,
+num_engines:1, num_slices:4
+[  644.699060] xe 0000:4d:00.0: [drm] GT1: CCS_MODE=0 config:00400000,
+num_engines:1, num_slices:4
+[  644.699118] xe 0000:4d:00.0: preparing for PCIe FLR reset
+[  644.699149] xe 0000:4d:00.0: [drm] removing device access to
+userspace
+[  644.928577] xe 0000:4d:00.0: PCI device went through FLR, reenabling
+the device
+[  656.104233] xe 0000:4d:00.0: [drm] Using GuC firmware from
+xe/pvc_guc_70.20.0.bin version 70.20.0
+[  656.149525] xe 0000:4d:00.0: [drm] Using GuC firmware from
+xe/pvc_guc_70.20.0.bin version 70.20.0
+[  656.182711] xe 0000:4d:00.0: [drm] VISIBLE VRAM: 0x0000202000000000,
+0x0000002000000000
+[  656.182737] xe 0000:4d:00.0: [drm] VRAM[0, 0]: Actual physical size
+0x0000001000000000, usable size exclude stolen 0x0000000fff000000, CPU
+accessible size 0x0000000fff000000
+[  656.182742] xe 0000:4d:00.0: [drm] VRAM[0, 0]: DPA range:
+[0x0000000000000000-1000000000], io range:
+[0x0000202000000000-202fff000000]
+[  656.182768] xe 0000:4d:00.0: [drm] VRAM[1, 1]: Actual physical size
+0x0000001000000000, usable size exclude stolen 0x0000000fff000000, CPU
+accessible size 0x0000000fff000000
+[  656.182772] xe 0000:4d:00.0: [drm] VRAM[1, 1]: DPA range:
+[0x0000001000000000-2000000000], io range:
+[0x0000203000000000-203fff000000]
+[  656.182775] xe 0000:4d:00.0: [drm] Total VRAM: 0x0000202000000000,
+0x0000002000000000
+[  656.182778] xe 0000:4d:00.0: [drm] Available VRAM:
+0x0000202000000000, 0x0000001ffe000000
+[  656.348657] xe 0000:4d:00.0: [drm] GT0: CCS_MODE=0 config:00400000,
+num_engines:1, num_slices:4
+[  656.507619] xe 0000:4d:00.0: [drm] GT1: CCS_MODE=0 config:00400000,
+num_engines:1, num_slices:4
+[  656.510848] [drm] Initialized xe 1.1.0 20201103 for 0000:4d:00.0 on
+minor 1
+[  665.754402] Console: switching to colour dummy device 80x25
+[  665.754484] [IGT] xe_exec_basic: executing
+[  665.805853] xe 0000:4d:00.0: [drm] GT0: CCS_MODE=0 config:00400000,
+num_engines:1, num_slices:4
+[  665.819825] xe 0000:4d:00.0: [drm] GT1: CCS_MODE=0 config:00400000,
+num_engines:1, num_slices:4
+[  665.820359] [IGT] xe_exec_basic: starting subtest once-basic
+[  665.968899] [IGT] xe_exec_basic: finished subtest once-basic, SUCCESS
+[  665.969534] [IGT] xe_exec_basic: exiting, ret=0
+[  665.981027] Console: switching to colour frame buffer device 128x48
 
-  No regressions found.
 
-  
+Aravind Iddamsetty (4):
+  drm: add devm release action
+  drm/xe: Save and restore PCI state
+  drm/xe: Extract xe_gt_idle() helper
+  drm/xe/FLR: Support PCIe FLR
 
-Participating hosts (5 -> 5)
-------------------------------
+ drivers/gpu/drm/drm_drv.c            |  6 ++
+ drivers/gpu/drm/xe/Makefile          |  1 +
+ drivers/gpu/drm/xe/xe_device_types.h |  6 ++
+ drivers/gpu/drm/xe/xe_gt.c           | 28 +++++----
+ drivers/gpu/drm/xe/xe_gt.h           |  1 +
+ drivers/gpu/drm/xe/xe_guc_pc.c       |  4 ++
+ drivers/gpu/drm/xe/xe_pci.c          | 57 ++++++++++++++++--
+ drivers/gpu/drm/xe/xe_pci.h          |  6 +-
+ drivers/gpu/drm/xe/xe_pci_err.c      | 88 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pci_err.h      | 13 ++++
+ include/drm/drm_drv.h                |  2 +
+ 11 files changed, 197 insertions(+), 15 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_pci_err.c
+ create mode 100644 drivers/gpu/drm/xe/xe_pci_err.h
 
-  No changes in participating hosts
+-- 
+2.25.1
 
-Known issues
-------------
-
-  Here are the changes found in xe-pw-132610v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_evict@evict-beng-small-external:
-    - bat-pvc-2:          NOTRUN -> [FAIL][1] ([Intel XE#1000]) +3 other tests fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132610v2/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html
-
-  * igt@xe_evict@evict-small-external-cm:
-    - bat-pvc-2:          NOTRUN -> [DMESG-FAIL][2] ([Intel XE#482]) +3 other tests dmesg-fail
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132610v2/bat-pvc-2/igt@xe_evict@evict-small-external-cm.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:
-    - bat-pvc-2:          [INCOMPLETE][3] ([Intel XE#804]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1121-1f816172a689b95011a1c1cfe952ac6ec32d3ca3/bat-pvc-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132610v2/bat-pvc-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
-
-  
-  [Intel XE#1000]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1000
-  [Intel XE#482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/482
-  [Intel XE#804]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/804
-
-
-Build changes
--------------
-
-  * Linux: xe-1121-1f816172a689b95011a1c1cfe952ac6ec32d3ca3 -> xe-pw-132610v2
-
-  IGT_7814: 7814
-  xe-1121-1f816172a689b95011a1c1cfe952ac6ec32d3ca3: 1f816172a689b95011a1c1cfe952ac6ec32d3ca3
-  xe-pw-132610v2: 132610v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132610v2/index.html
-
---===============5340963960752205704==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/preempt_fence: enlarge the fence critical section (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132610/">https://patchwork.freedesktop.org/series/132610/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132610v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132610v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1121-1f816172a689b95011a1c1cfe952ac6ec32d3ca3_BAT -&gt; xe-pw-132610v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-132610v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_evict@evict-beng-small-external:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132610v2/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1000">Intel XE#1000</a>) +3 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-small-external-cm:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132610v2/bat-pvc-2/igt@xe_evict@evict-small-external-cm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/482">Intel XE#482</a>) +3 other tests dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1121-1f816172a689b95011a1c1cfe952ac6ec32d3ca3/bat-pvc-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/804">Intel XE#804</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132610v2/bat-pvc-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1121-1f816172a689b95011a1c1cfe952ac6ec32d3ca3 -&gt; xe-pw-132610v2</li>
-</ul>
-<p>IGT_7814: 7814<br />
-  xe-1121-1f816172a689b95011a1c1cfe952ac6ec32d3ca3: 1f816172a689b95011a1c1cfe952ac6ec32d3ca3<br />
-  xe-pw-132610v2: 132610v2</p>
-
-</body>
-</html>
-
---===============5340963960752205704==--
