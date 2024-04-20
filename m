@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CB8FC4345F
-	for <intel-xe@archiver.kernel.org>; Sat, 20 Apr 2024 04:34:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9654EC4345F
+	for <intel-xe@archiver.kernel.org>; Sat, 20 Apr 2024 04:35:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AA9510F47F;
-	Sat, 20 Apr 2024 04:34:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FB8910F45B;
+	Sat, 20 Apr 2024 04:35:11 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A05210F47E;
- Sat, 20 Apr 2024 04:34:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DF3710F45B;
+ Sat, 20 Apr 2024 04:35:09 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Apply_LNL_workaround?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Apply_LNL_workaround?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 20 Apr 2024 04:34:55 -0000
-Message-ID: <171358769556.1537359.4516883015799158791@8e613ede5ea5>
+Date: Sat, 20 Apr 2024 04:35:09 -0000
+Message-ID: <171358770944.1537358.838152414472148169@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240419201344.2467569-1-vinay.belgaumkar@intel.com>
 In-Reply-To: <20240419201344.2467569-1-vinay.belgaumkar@intel.com>
@@ -43,14 +43,36 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Apply LNL workaround
 URL   : https://patchwork.freedesktop.org/series/132662/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5b8f5c906246 drm-tip: 2024y-04m-19d-22h-43m-43s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/lnl: Apply Wa_22019338487
-Applying: drm/xe/bmg: Apply Wa_22019338487 for BMG
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+0daf0be5bb95eb0a0e42275e00a0e42d8d8fd543
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 7abf678f98a55b31d057f1b072c4d31b8f7c409f
+Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Date:   Fri Apr 19 13:13:44 2024 -0700
+
+    drm/xe/bmg: Apply Wa_22019338487 for BMG
+    
+    Extend this WA to BMG GT as well. In this case media GT is
+    not affected.
+    
+    Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
++ /mt/dim checkpatch 5b8f5c906246fb3ddf35b775a3b6ac9ea5fdcdd5 drm-intel
+e8c0d2663808 drm/xe/lnl: Apply Wa_22019338487
+-:142: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around '!ret'
+#142: FILE: drivers/gpu/drm/xe/xe_guc_pc.c:743:
++	if ((!ret) && xe_guc_pc_needs_wa_22019338487(pc)) {
+
+total: 0 errors, 0 warnings, 1 checks, 127 lines checked
+7abf678f98a5 drm/xe/bmg: Apply Wa_22019338487 for BMG
 
 
