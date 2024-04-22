@@ -4,44 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66E26C41513
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13BF0C25B4F
 	for <intel-xe@archiver.kernel.org>; Sun, 28 Apr 2024 21:33:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8DF6112A1F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A07FF112071;
 	Sun, 28 Apr 2024 21:33:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="JQWB65E7";
-	dkim-atps=neutral
-Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F18931139D0
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Apr 2024 10:07:17 +0000 (UTC)
-Received: internal info suppressed
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1713953234; bh=TngqQV1owfBcq7nJi2GmZBEiNgUVDcv465LML0f9pqc=;
- h=From:To:Cc:Subject:Date:From;
- b=JQWB65E7BhUqhDkYsmabmWUBtrnIOGOdFttr235qhTaYOne2MSd1AjMpwKrJCG5GI
- MYJdQW/c0NBVB3Xb1Z4ADXRPi1Hk7x3rrGwL3kl5x4Ohelar9udrhD1n68veKq+ZoS
- OoBOEgkbq6QtWS+IfFNsa+IeYqXCzIaGxzjoJ5+S8K2/RnIBw/4FLtmDiyLTYD0KvT
- d9j8YHKLUQ/aUL4HoaqAstrFUhNeprhVRu4tfSu+0KoKUVBE6RNd58JkPyVdUv3INT
- ghoW0vXLLfwXLMpZMkQOFL4gaR/zSoOEZUiVZadOVgf2l1Dw0RGf3zOHysupPhBNUF
- LAWdC4c2/UreA==
-Received: from fkassabri-vm-u22.habana-labs.com (localhost [127.0.0.1])
- by fkassabri-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
- ESMTPS id 43OA77wE269539
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
- Wed, 24 Apr 2024 13:07:07 +0300
-Received: (from fkassabri@localhost)
- by fkassabri-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 43OA77MP269538; 
- Wed, 24 Apr 2024 13:07:07 +0300
-From: Farah Kassabri <fkassabri@habana.ai>
-To: intel-xe@lists.freedesktop.org
-Cc: osharabi@habana.ai, Farah Kassabri <fkassabri@habana.ai>
-Subject: [PATCH 1/2] drm: print top commit sha after loading the driver
-Date: Wed, 24 Apr 2024 13:07:05 +0300
-Message-Id: <20240424100706.269523-1-fkassabri@habana.ai>
-X-Mailer: git-send-email 2.34.1
+Received: from metis.whiteo.stw.pengutronix.de
+ (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66E05112B15
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Apr 2024 13:58:35 +0000 (UTC)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+ by metis.whiteo.stw.pengutronix.de with esmtps
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <mol@pengutronix.de>)
+ id 1ryuBV-0004mi-PP; Mon, 22 Apr 2024 15:58:17 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+ by drehscheibe.grey.stw.pengutronix.de with esmtps (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
+ (envelope-from <mol@pengutronix.de>)
+ id 1ryuBU-00Dhch-1z; Mon, 22 Apr 2024 15:58:16 +0200
+Received: from mol by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+ (envelope-from <mol@pengutronix.de>) id 1ryuBT-0089hS-37;
+ Mon, 22 Apr 2024 15:58:15 +0200
+Date: Mon, 22 Apr 2024 15:58:15 +0200
+From: Michael Olbrich <m.olbrich@pengutronix.de>
+To: dri-devel@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: graphics@pengutronix.de
+Subject: Reliably selecting non-CEA modes on Intel graphics (and maybe others)
+Message-ID: <ZiZs94-ZP1n98RZu@pengutronix.de>
+Mail-Followup-To: dri-devel@lists.freedesktop.org,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, graphics@pengutronix.de
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mol@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: intel-xe@lists.freedesktop.org
 X-Mailman-Approved-At: Sun, 28 Apr 2024 21:33:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,46 +82,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add the last driver sha to the existing log message
-which prints the drm device info.
+Hi,
 
-Signed-off-by: Farah Kassabri <fkassabri@habana.ai>
----
- drivers/gpu/drm/drm_drv.c | 6 +++---
- include/drm/drm_drv.h     | 2 ++
- 2 files changed, 5 insertions(+), 3 deletions(-)
+In short: I have a HDMI monitor attached to Intel graphics. I'm trying to
+set a non-CEA mode but the driver always maps it to the corresponding CEA
+mode.
 
-diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-index 535b624d4c9d..e0f7af1b6ec3 100644
---- a/drivers/gpu/drm/drm_drv.c
-+++ b/drivers/gpu/drm/drm_drv.c
-@@ -947,10 +947,10 @@ int drm_dev_register(struct drm_device *dev, unsigned long flags)
- 	}
- 	drm_panic_register(dev);
- 
--	DRM_INFO("Initialized %s %d.%d.%d %s for %s on minor %d\n",
-+	DRM_INFO("Initialized %s %d.%d.%d%s %s for %s on minor %d\n",
- 		 driver->name, driver->major, driver->minor,
--		 driver->patchlevel, driver->date,
--		 dev->dev ? dev_name(dev->dev) : "virtual device",
-+		 driver->patchlevel, driver->git_sha ? driver->git_sha : "",
-+		 driver->date, dev->dev ? dev_name(dev->dev) : "virtual device",
- 		 dev->primary ? dev->primary->index : dev->accel->index);
- 
- 	goto out_unlock;
-diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-index 8878260d7529..7578a1f4ce74 100644
---- a/include/drm/drm_drv.h
-+++ b/include/drm/drm_drv.h
-@@ -407,6 +407,8 @@ struct drm_driver {
- 	int minor;
- 	/** @patchlevel: driver patch level */
- 	int patchlevel;
-+	/** @git_sha: driver last commit sha */
-+	char *git_sha;
- 	/** @name: driver name */
- 	char *name;
- 	/** @desc: driver description */
+More specifically, the monitor has two 1920x1080@60 modes in the EDID:
+1. The CEA mode with VIC 16
+2. A custom DTD mode with exactly the same timings (this is the preferred
+   mode).
+
+From a userspace perspective, the two modes are mostly identical, except
+for the 16:9 aspect ratio flag in the CEA mode and the preferred type in
+the other.
+
+I want to select the second (preferred) mode, but that does not seem
+possible:
+intel_hdmi_compute_avi_infoframe() tries to determine which VIC should be
+added to the avi infoframe and if limited or full range is used.
+It uses various DRM helpers here but in the end drm_match_cea_mode() is
+called. And here lies the problem:
+The mode provided by the userspace has explicitly no aspect ratio. But
+here, it is interpreted as "the aspect ration is undefined". So matching
+ignored the aspect ratio and the CEA mode with VIC 16 is found and limited
+range is used.
+
+The commit that introduces this fuzzy matching
+357768cc9e3fdacf6551da0ae1483bc87dbcb4e8 ("drm/edid: Fix cea mode aspect
+ratio handling") made sense at the time. The capability
+DRM_CLIENT_CAP_ASPECT_RATIO that exposes aspect ratios to userspace was
+introduced later in the same merge request, from what I can tell
+7595bda2fb4378ccbb8db1d0e8de56d15ea7f7fa ("drm: Add DRM client cap for
+aspect-ratio").
+
+Am I missing something here, or is it just not possible to select the
+non-CEA mode right now? In my specific example, the selected CEA mode is
+actually supported by the monitor, but as far as I can tell, the CEA mode
+is used even if the monitor does not support it at all.
+
+I've only tested this on Intel, but I assume that other drivers that use
+the same helpers have the same problem.
+
+So how can this be fixed? I've considered matching the aspect ratio based
+on the DRM_CLIENT_CAP_ASPECT_RATIO capability, but I'm not sure if that is
+valid. The documentation is limited and I found nothing that describes what
+the userspace should do here.
+Or would a new capability make sense here? Or something entirely different?
+I'm not sure how I should proceed here. Any help would be appreciated.
+
+Regards,
+Michael
+
 -- 
-2.34.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
