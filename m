@@ -4,178 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6644BC4345F
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Apr 2024 10:29:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4620C4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Apr 2024 10:40:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A23F11297F;
-	Mon, 22 Apr 2024 10:29:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5696A11299F;
+	Mon, 22 Apr 2024 10:40:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M0OjANNw";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="gwhuNTI2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FBB510F540
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Apr 2024 10:29:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713781772; x=1745317772;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=5HOlvZdV1AcLDr4xdwUcmq/GvtI7tfJnteOwP5Wfdos=;
- b=M0OjANNwhc74RpyQkXkqThHbgfIoThFm5q4ciywUqBakV0Nx/A7xT9EP
- QfiWMQDYHUpSR/wqSr2sbc+PoKKtJdQR3Gy6/TjbKyqO5hxGOqjY1HWzA
- SbvfMe9Rcup7sQHxa1EfwULWc+1NjAIy7QO04UDZuqnlWA52PMkVBvqBH
- 9QCKgI1DcvH1tjIZO8efE9aNlPy0Hh8fQ6S9suJHbJRNaC6q1lTZndAXI
- PEVEDne2gNZ2tPYUJoaX6E1IZ/NQYPy3m7TW/i9jhjPyC94slCCVJA4Gn
- rE3waj2nC12S6zYWL6qK8gvqf3dPwocMcCg152OZd9EQOTW9h3vBmMNIP A==;
-X-CSE-ConnectionGUID: OML3pfkLSjiPuMY05ulMDw==
-X-CSE-MsgGUID: kJI+Oc3KSW269fd88ypqnw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11051"; a="20006896"
-X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; d="scan'208";a="20006896"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2024 03:29:32 -0700
-X-CSE-ConnectionGUID: kJxlijQHQpeDgUpps7nNZQ==
-X-CSE-MsgGUID: T+LbdcxnSbmcz4cqw9wa4w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; d="scan'208";a="24013192"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Apr 2024 03:29:31 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 22 Apr 2024 03:29:31 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 22 Apr 2024 03:29:31 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.173)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 22 Apr 2024 03:29:30 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=c1jOV4CREintehpCFSZ5pE0ozyYelMYnpzXTqy0zza9nuNGobvumAEAPkQCgw3sPSv2e8VC7XaZk18qwgFZkl93OJejfMQtu7pLS/7eOI6DiXI8BnjRkPMPRTaU40jQkOPhIp0HobdrSX3ru6Nx/G0XnUG4u92GA33X8yORQDze2RXD6yO55cygCxNZC51zF3a0einar8c40ZLPivA3YE1ecx5D0JBBy9Xk3NTX0HQKb0D5SnUjZYGl4mDPc2pIlXe7uE8hRKM8I4K/aaQKCne7d3Va3PFcV/L0hM+JCpWudepgdgVEbqWcMZc+JEtHdIgi+kHmGh/S/Th3M9fgu0w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FPLGs46zgUyXmn59SZSGp4wPJZ79E4/bOmjv7jD4sYE=;
- b=A5G9ZU9SPE37IquH1XsWu9D3+iXBySCQtNmNsn0a8sHMw//T8eRTZp8iBF6EkCHSjFaGretNyNfG8ui3N6zY1W5sMJDlbIfseDs5FVOu5B8/GU/LQlWqkl05NZlV92Qu5S3iLFQG+4kyBzPxFAXTcDOQzdz8lQqmVZFR/qcFwWgrIQbiFrPF3DWE1ry2MLtrSyv0ZV+L+gIaLykFfQJzCtLRwGK1F+S0aN5+IBxvWsZXdjM06jSUYXZQqfEqVmG7GC0qBhhzBK1YEcfhKdnc1Kv4hPzqPIyf9JI8+gQ6UE87mNwMihV7qpxgM2bSAnUA1rr66WRWT+UtwmItqu0Oxg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
- by BN9PR11MB5228.namprd11.prod.outlook.com (2603:10b6:408:135::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.21; Mon, 22 Apr
- 2024 10:29:27 +0000
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::b867:cbf6:e190:6eb]) by MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::b867:cbf6:e190:6eb%5]) with mapi id 15.20.7519.018; Mon, 22 Apr 2024
- 10:29:27 +0000
-Date: Mon, 22 Apr 2024 12:29:25 +0200
-From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 2/5] drm/xe: Add helper to calculate adjusted register
- offset
-Message-ID: <20240422102925.ccs2gryz5l3wtv47@intel.com>
-References: <20240418152802.182-1-michal.wajdeczko@intel.com>
- <20240418152802.182-3-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20240418152802.182-3-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: MI1P293CA0003.ITAP293.PROD.OUTLOOK.COM
- (2603:10a6:290:2::19) To MN0PR11MB6135.namprd11.prod.outlook.com
- (2603:10b6:208:3c9::9)
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
+ [209.85.221.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2950511299F
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Apr 2024 10:40:37 +0000 (UTC)
+Received: by mail-wr1-f44.google.com with SMTP id
+ ffacd0b85a97d-34a32ba1962so2946494f8f.2
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Apr 2024 03:40:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1713782435; x=1714387235;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=bQi8JH4GZLWPyGx8wJIDwxiX9g5ThkyL4Ov7RQZgbqE=;
+ b=gwhuNTI2kHh8n9MdDDe2ODW2i06MFBLoSuGc3HxQCwAUQQG5cT7ET6jN8il4e5bu+y
+ 1XjEVhexVgGGAYB4o5Cb9XnLZhBmsTKQU1wkEzbqO9mdlBPrAA+qjv88qcWlcNW5apBg
+ u+Ba9c/gZZaxOxFixfsu80I+uxSxcJGkhHIz7ANbHuoEwHi4TQdRhTJQ61ZQlGk42nDb
+ ZGHyy9PsCtY+9q4hVLOReBJz0MNvS4rxa5TQj8XmpFjGxzGkANAATXHvRLOl2eHT9RFC
+ OzqXs36CBPvouHtgxwb3Fa3XXwE+QT19ZJojsoHIrz2P+pESIb0KgrJztVZzADMsifBQ
+ 6qjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1713782435; x=1714387235;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=bQi8JH4GZLWPyGx8wJIDwxiX9g5ThkyL4Ov7RQZgbqE=;
+ b=MgarkLFah2ILxSIM1A9fKtLCy85+Sbc4XtAF5uadDRsSSG83k229c5OWVx4zvtyE0x
+ VgEs1EMjZNoxVety/iyfE0GUD0O/hMZsrCJIOrv8tDPd4Z3BZHW7gG76qAybNWTTPrRM
+ cp+quHRBLrzZE4MsO+PL2yZ4d0EcH0QfcUOFwo2p+7hPG/R1L2i1T5GnMAm84gY0AZNi
+ 21/oWRLSY6MQ10+ZgR+tD8C9bP37AwTwECBXXQ7fHzrztlNcHdyqjcKzFKQZmux08Z2u
+ y64h+VFtJOUEouCZkmJ1eaH5tUzD1W/8e30f4LTalJKnGWf8XEAniwJ8q0RsIZqldaCP
+ +N4A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX28YI+ojSI2nQbKmlPvxfWu6r1zcPq+hsQwObgWr+saKmx2k4abn9MH8c2zU510RGoYFez72xmOGqV+4CwJ6Sef+c3S9ScAtezJZidgds=
+X-Gm-Message-State: AOJu0YxELmqsq944X+p3kjQnvzyBZ74TDo8f9DXB3BgQiqd8IjlOZtbf
+ ZmtDPzPerFD8KOkvSTTyCesvjeh5YHJY2ARtL5tzQKPiCw4MrjGnahl/m6spSw4=
+X-Google-Smtp-Source: AGHT+IHCTApM/JN/3QYrHhRmmELmsC7kHrCZ7yV3VywOP0T2Yx1owY7W5niWdkpwwXiQJHft+PHccw==
+X-Received: by 2002:a05:6000:b4f:b0:33e:c2ed:d94e with SMTP id
+ dk15-20020a0560000b4f00b0033ec2edd94emr6751458wrb.56.1713782434762; 
+ Mon, 22 Apr 2024 03:40:34 -0700 (PDT)
+Received: from [192.168.0.101] ([84.65.0.132])
+ by smtp.gmail.com with ESMTPSA id
+ cs7-20020a056000088700b00346cdf48262sm11788823wrb.2.2024.04.22.03.40.33
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 22 Apr 2024 03:40:34 -0700 (PDT)
+Message-ID: <a8234a4b-df87-498f-b414-5f6a34fc9223@ursulin.net>
+Date: Mon, 22 Apr 2024 11:40:33 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|BN9PR11MB5228:EE_
-X-MS-Office365-Filtering-Correlation-Id: 867d95d0-79a7-4dfb-722d-08dc62b71680
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|1800799015|366007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?VVhvK1ByY1ZnSkxwMXBURUs3cnFSNVMxZXFhRnhkQ1JyNXF5WGhVWXdiQ1Rr?=
- =?utf-8?B?b3NuNUZ0aFJDbk1MalRRaXJuQzFCeGxONjVndm1WUmJnckpvRGdpcG9Ybk5x?=
- =?utf-8?B?ZXFscFpQRnYvY0NkdTh3N2JURTA3MWdaaStlcjhSTmhxU2xWZHBpT3MrVm9X?=
- =?utf-8?B?dlBRakh5T2hjRFBNS2l3YldOREZtZ2k5RzBiQ3VrTmxCaTV3b1g5TFVJMlE0?=
- =?utf-8?B?WTdpakZnTzZ4R1c4Z1JpM2ZMMlNZNkczTzQ5T3NoeVEzVExFVHN4T21hcElV?=
- =?utf-8?B?V0JQY2d3a2xyc2VFSTBtNUdFcGxFMHlLRWxuek5mVWJhaUlCbGwrSUlIS3Nm?=
- =?utf-8?B?Q2NYTC9lcXpmSUVsLzJTdHIxYldQRGRqVTVMek1rTytlRWNhdnp5QkU4R3Ra?=
- =?utf-8?B?WHg5czlDOURpVUxiMkFnTG51TFg0WGZ1OXZHMkxKdTE2QVhINFMzOEVYdjVL?=
- =?utf-8?B?T2FFNVJkTjk0angwNUt2UmRQM0hMVGdMS3dVMkV3T05sYTF1cW0xSzhMUTVw?=
- =?utf-8?B?RGpzaHozZ2pOb3BtU1E5YzZUbTlWUXUvVFhDdE95a2puYXlWdlZHc0s1ZTRp?=
- =?utf-8?B?WFBMczJMUWVEdUlLcElJN2ZvendJM0EvTkhubHJXWU1WZ0NwNzUzNGtCZlNi?=
- =?utf-8?B?bkZyOE90UGNJTlBpRDAyc0tZbVdDRkxBT3RJU3JZWjN5czhSRERNdDNMUUsx?=
- =?utf-8?B?Z0xhRFpqa200R29vNW9Qd2xuWHFmclhkMldxcFdObVBFRkloT1ZuWExWVE5l?=
- =?utf-8?B?ekZFTVZJTVFQZlZ0QU0rc0ViNkJJTXJJbCtZeDBvUEJzdGthakx4enpaaFZF?=
- =?utf-8?B?N3lXU01HYkkvUUNxQzhnTm5aOE1tMW5OdlVkUDJDOVZyK2dLT0o2b0QxZHht?=
- =?utf-8?B?QURVNFlSdE11Q0FkUUJvTTdVWW9haEZPVkZIMXJ5cjBPaWJudEtGVU9iTUZw?=
- =?utf-8?B?ai9DNTI1eTBHSEFrMG1SU1J0NkNGb25wNmJUcGJGMjI5dk50T0xaSS93SlE1?=
- =?utf-8?B?YmEvdkVPaFFTd25nU1dsT1d4c3NZNkErK0VsMVBtdU1yU3JhSFVWWkJuS2pH?=
- =?utf-8?B?WFdsdWFEdXpTSXJVMVZxWEJLalBkYURLYTVQWFNoM2RzUitYZHd0azVCSnc1?=
- =?utf-8?B?cXpGNEhzaVR6dElad3pyYktmS1ppdXNwUCtWMGlGTEhUTkZzeEY2bWtIeGNF?=
- =?utf-8?B?VFdtQVNEbURoS0N1bzZBVjgwdXRIcXl5WGZhWUFDU3ZMK2FMVnFuOXN1bHFX?=
- =?utf-8?B?ZEJqWGg2dVhYMFhkVjhjdmpOTzlZRlV4SFJIcDJPT00ydzFMaTgzUGo2NWo3?=
- =?utf-8?B?Nk5MUG9LY3RVOXlLNXdlRXl3TlowUmFpaVJuMEZmeHJPd0svL3BpdEVjNHlw?=
- =?utf-8?B?cGNTWnFBMEptdll5b3o2eGVxL2xOWlJkRXVRR0JWZGo3MUVvQmVNeFJ3SW1F?=
- =?utf-8?B?TXNNWDFEZTVGcDhSWUVrWmhDUUorRE9lcFkvMmdzc1JaQkRtL1dtSnIxQm1C?=
- =?utf-8?B?TVdnUGREc3BkQlUwdDE0VmNzcEVhNGE5T012R0h5RWFRdEdNSW1qakxSY1A0?=
- =?utf-8?B?US8xc1N3MmFXQ3BvaEZ6SnBtZFhScEp5aGg2NmhNaVV4UkZEMGNLaXZpUnps?=
- =?utf-8?B?QWR0VnFmTFN5MjlTckRSNnZLd3hGS3EwTnBPMDRQNFk3TFdudm5qWFdoYlZO?=
- =?utf-8?B?M0t3dHl1SUNsMGNSajlBd1V4WWJxUXVCbU1zdHlsYi9ZYUdsdlJJS0ZRPT0=?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eEhMa1ZMU0xkVGFRUi93ODFTNjZFdW1LRTUyeFk3TUJTWk9tRFpXL0Y2RHNh?=
- =?utf-8?B?YndweWlCaFpiMUNQNVJnRlJRQTFUcitFV0QrVVdlamdEQ3RtY2hENXpkeERh?=
- =?utf-8?B?ZmhKalVUR1RkaWdEckFGeTRyc1JMK004Zjh3YW1MQStDZ2ZaWEIyeTZHMGd0?=
- =?utf-8?B?a1gxbjZ0TU52cHFJRmRCYUExS3FoaVpWTzRBaHpzNzZQa25QN2xEOFpnSU1U?=
- =?utf-8?B?cGZWbVZoZ0UzUGZkei9QOW1wVmFIT0tsUndlQ3B5T3pMNTVtc1ZVRVhlZHJR?=
- =?utf-8?B?aTVSRW43Z0JwQ0RBNGNFUGNVT0VFN1M3aVo2ckp0NVlwaHVyZWdCbkxWcDha?=
- =?utf-8?B?UGJORHNZaktVWjlwZG5tbHdNbndadmpYS0tBeFFQZms5MUMvNHRQQUNiYnha?=
- =?utf-8?B?VUNlVGptM1h5MU1oUmpLWHJrR25XNkNQZEJKc0JlN2dkNHdoNGJVTGNYaVlv?=
- =?utf-8?B?ZGZDRmVJUmlPUVEvM252K0swQlFMd0kwUnBXdFlXRmZLNGI4Y3AwL2h2Rytv?=
- =?utf-8?B?WFN0eUdHKzN6MmdmOHR6THNJZHFNbUhMSExrQktNMG9oODVoOWlYaC9NUEp4?=
- =?utf-8?B?aW1ZWDZEWDdxVVl2MSttZGRaS05WNXB3TzBWcnB5MVZsY01YVE1tcmNGcGcz?=
- =?utf-8?B?WmZlRFgvRm45WFdyRkpNY21JMmk4YzM3cG9tbjVoVkhqNWM5RTNEZjlPei9N?=
- =?utf-8?B?OFBERC9TRTZzOE9nYVFrbGZDNFBEVDF5VGlya1B3MXlBRWcwMjFsYUVuWUY5?=
- =?utf-8?B?WXBGeFVJNWlOMUh0VDV3d25ncHZkNWtiS1diQ1RudWcyaXJGZDhIRkVHSU1H?=
- =?utf-8?B?YnZCRVhaNHV0dDl5SWFXOExmSFFncTBaUU5wVG05NFRGeEx2NU8wRnQvZjdC?=
- =?utf-8?B?c1NnY1lPK1p6bWdKM1RxWWxnNEVDdGNEUFdmbFZxUGhRNXk1bUNaRWRod0tR?=
- =?utf-8?B?cFgrUUxsM1JFalY5a01LVDFEQnEra1E4Y2tHU2lkOVNuNHJxZjBaY3pXdmVV?=
- =?utf-8?B?dXZXQWdZQUVIalAyRkJYcCtldUt3RlNtRkNzZUpHVFAzT0x0eTRiMHZNWXVV?=
- =?utf-8?B?ei85WVlJZ0w1NWNRVE9wbmhlYVZPNnluTGVmVXJPSVc0T3haZGpBV2Z4WFNE?=
- =?utf-8?B?NDlJcmRNUEhXYnNBcFE5alphYnBtOTlBeE5WODFEYUF4dVQ5QjZNWjFGNUg5?=
- =?utf-8?B?MmNkbzY4bVpvYWcwaHJDbFZKL0FLbTdIb3dSS3BySHZlNFdwK2RBckR6ZkJo?=
- =?utf-8?B?emdtN2lFMmI2U0I5VVR3NCt5L0xXanc0MGhhYmVvelo3a1hsaTlZK2J0S3B0?=
- =?utf-8?B?TUFKM0I1Tjl6RjREVllqejZ5OEoza29hR3N4SWRqWWU3NVZJaWNoQThkR3dD?=
- =?utf-8?B?dE04T3d1cm16a3BVU0xyT1RJYUc0UHYzdHA0ZGVYVFNrOWFBQU5OWTFMUXJT?=
- =?utf-8?B?OXF5TnJENXJVL0dIejh1QjhHYkU0NkpsQ3JiOWRqd3phT2lDVGF0c3FScmxW?=
- =?utf-8?B?dmRublZJY1JWRG5kT09RRUhTVkVUdnEvZ3Exb2JpWDBCNzU1aWsrczNKZjBw?=
- =?utf-8?B?N2EwSTg0UjRKYzhnSG4wMEowRWZGU0ZnOVZYZ3lCWEtwaWZFcjRPaDVJWWZP?=
- =?utf-8?B?Y0tjS3VOcE5SUkQ2OGgyaXBIOUZ2YmR3ei9IRCtmckhQa0xObTFKTzJ1aGNR?=
- =?utf-8?B?K3ZCZnN0RnUyWVN2dVk1aE5Nc2F5OS9ML3BvMisyNE56Um5nS2xHY1VmTzd1?=
- =?utf-8?B?akkyblhwdlE1YUJDNGZHRFJwYXY3aWs2MDBCTWNlcG5Cci9FSGE2eit4cnU3?=
- =?utf-8?B?QnVLVlgvbFhMS0ZwYzZLZ005dFI4SGtycnkyNUhtWTEyWFlmNXpDeWlVbHBw?=
- =?utf-8?B?Q0xsdFhjVmVRUmk0R3ZzdUFGano5TjdiRGpHQmRZdm1pMlppOFZGTVVRYzRE?=
- =?utf-8?B?aGV6VkRUWEFDMjU0L0ZWbjRHZ1ZRaVRVY2lOUXhEVHNTcDVHR2g0czhvSmpW?=
- =?utf-8?B?ajZHQVRPSXdtOUN1QUdVU3oyQzB1bUNnSForWXNSMmEzaEVVR0dFSjBiOXVw?=
- =?utf-8?B?eExlSHJJS2JodW1MM1RxY1ZXbC9HWjdiUy82aWFsb0l6TkNtaTNtQmRxaTVi?=
- =?utf-8?B?ZzVWSWxQZExnUy9FRndOMG05QXhKTDlGN1FLZU9TSXhwdzRlcm1zNEJTY0dK?=
- =?utf-8?B?YlE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 867d95d0-79a7-4dfb-722d-08dc62b71680
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2024 10:29:27.6690 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hSWF6QYkF1EpZ1JUwjZanj27afpBSfipzn/c+eyzWqw4ziq7SSdwiXnR2Y9Qk4TpzHaDJc+WswbtrPU6NGbVW+zmsby6jxlVQIxqWAsucTg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5228
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/7] drm/xe: Per client usage
+Content-Language: en-GB
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ intel-xe@lists.freedesktop.org, Michal Wajdeczko <michal.wajdeczko@intel.com>
+References: <f2c46934-e137-419d-ba34-cff864a988ce@ursulin.net>
+ <zj3ccdsxwfv7yms67c2fycjfhevdzp3qy7yz6u6ffmv4aymo6n@5lu4otfylkbt>
+ <foccqtfvgz65tg6yoar5tsqjo4bndmftgwlsm3vujjjdin2wts@7cc3m4fcapyb>
+ <6490842a-65b3-4b84-9a8a-ebc9f7b9ac07@ursulin.net>
+ <thplv5pk26br3tou6if2otdoq6owb5lmdhfzi3wcboni4vyeos@sqiu7zpgmgrf>
+ <8e2af1d5-5d22-47d5-8cee-f8bd1e54c0ed@ursulin.net>
+ <fzl42hvf67tb7373gcpovcjjcufs3ba6jajmpt676uymsat4qs@qolxcmhfh6mz>
+ <ZiAyUcuQtQ25xnWw@orsosgc001>
+ <6ib4borj4paiuj5l6digeoc7mgnabtji6vtvdtvcafi64y3j3n@vqid357khkai>
+ <c47f5e70-e09f-41e1-bc0a-b547475e17a1@ursulin.net>
+ <ZiMDh2ddSsx+t+Qv@orsosgc001>
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <ZiMDh2ddSsx+t+Qv@orsosgc001>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -190,39 +95,405 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on czw [2024-kwi-18 17:27:59 +0200]:
-> Our MMIO accessing functions automatically adjust addresses for the
-> media registers based on mmio.adj_limit and mmio.adj_offset logic.
-> Move it to the separate helper to avoid code duplication and to
-> allow using it by the upcoming changes to PF driver code.
-> 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_mmio.h | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-> index a3cd7b3036c7..7d003bfb91a8 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.h
-> +++ b/drivers/gpu/drm/xe/xe_mmio.h
-> @@ -36,4 +36,11 @@ u64 xe_mmio_read64_2x32(struct xe_gt *gt, struct xe_reg reg);
->  int xe_mmio_wait32(struct xe_gt *gt, struct xe_reg reg, u32 mask, u32 val, u32 timeout_us,
->  		   u32 *out_val, bool atomic);
->  
-> +static inline u32 xe_mmio_adjusted_addr(struct xe_gt *gt, u32 addr)
-> +{
-> +	if (addr < gt->mmio.adj_limit)
-> +		addr += gt->mmio.adj_offset;
-> +	return addr;
-> +}
-> +
 
-Since you already extracted it, didn't you think to use it in the xe_mmio_[read|write]_* functions ? 
-
-Piotr
->  #endif
-> -- 
-> 2.43.0
+On 20/04/2024 00:51, Umesh Nerlige Ramappa wrote:
+> On Fri, Apr 19, 2024 at 11:44:46AM +0100, Tvrtko Ursulin wrote:
+>>
+>> On 18/04/2024 00:19, Lucas De Marchi wrote:
+>>> On Wed, Apr 17, 2024 at 01:35:29PM GMT, Umesh Nerlige Ramappa wrote:
+>>>> On Wed, Apr 17, 2024 at 02:05:40PM -0500, Lucas De Marchi wrote:
+>>>>> On Wed, Apr 17, 2024 at 09:51:42AM GMT, Tvrtko Ursulin wrote:
+>>>>>>
+>>>>>> On 16/04/2024 19:29, Lucas De Marchi wrote:
+>>>>>>> On Tue, Apr 16, 2024 at 03:22:21PM +0100, Tvrtko Ursulin wrote:
+>>>>>>>>
+>>>>>>>> On 16/04/2024 14:51, Lucas De Marchi wrote:
+>>>>>>>>> Forgot to Cc Michal, doing now.
+>>>>>>>>>
+>>>>>>>>> Lucas De Marchi
+>>>>>>>>>
+>>>>>>>>> On Tue, Apr 16, 2024 at 08:30:33AM -0500, Lucas De Marchi wrote:
+>>>>>>>>>> On Tue, Apr 16, 2024 at 09:37:44AM +0100, Tvrtko Ursulin wrote:
+>>>>>>>>>>>
+>>>>>>>>>>> On 16/04/2024 04:04, Lucas De Marchi wrote:
+>>>>>>>>>>>> Add per-client usage statistics to xe. This ports xe to use 
+>>>>>>>>>>>> the common
+>>>>>>>>>>>> method in drm to export the usage to userspace per client 
+>>>>>>>>>>>> (where 1
+>>>>>>>>>>>> client == 1 drm fd open).
+>>>>>>>>>>>>
+>>>>>>>>>>>> However insted of using the current format, this creates a 
+>>>>>>>>>>>> new one with
+>>>>>>>>>>>> the unit "ticks". The intention here is not to mix the GPU 
+>>>>>>>>>>>> clock domain
+>>>>>>>>>>>> with the CPU clock. It allows to cover a few more use cases 
+>>>>>>>>>>>> without
+>>>>>>>>>>>> extra complications.
+>>>>>>>>>>>>
+>>>>>>>>>>>> Last patch was a quick implemenation of a gputop-like tool 
+>>>>>>>>>>>> in python.
+>>>>>>>>>>>> I ended doing it to cross check the gputop implementation. 
+>>>>>>>>>>>> I's not
+>>>>>>>>>>>> really meant to be applied here.
+>>>>>>>>>>>>
+>>>>>>>>>>>> I tested this on DG2 and TGL with kmscube (console-only) and 
+>>>>>>>>>>>> vkcube
+>>>>>>>>>>>> (in a gnome session), but it would be good to soak this 
+>>>>>>>>>>>> under more
+>>>>>>>>>>>> tests. The biggest goal for this patch series right now is 
+>>>>>>>>>>>> to get
+>>>>>>>>>>>> consensus on the new UAPI.
+>>>>>>>>>>>>
+>>>>>>>>>>>> TODO: Add documentation on top with the new interface.
+>>>>>>>>>>>
+>>>>>>>>>>> Yeah a drm-usage-stats.rst patch would be nice to have in the 
+>>>>>>>>>>> RFC so one does not have to look into the driver 
+>>>>>>>>>>> implementation to discuss the proposed uapi.
+>>>>>>>>>>>
+>>>>>>>>>>> Nevertheless I understand the proposal is to add this:
+>>>>>>>>>>>
+>>>>>>>>>>> drm-engine-<class>: <GPU_TIMESTAMP> <RUNTIME> ticks
+>>>>>>>>>>
+>>>>>>>>>> yes, the gputop patch was more explicit about this. Should had 
+>>>>>>>>>> added in
+>>>>>>>>>> the kernel patch series too.
+>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>> That's two values per key. I guess "one key value pair for 
+>>>>>>>>>>> per one line of text" does not get strictly broken and that 
+>>>>>>>>>>> you propose a heuristics in parsing to detect that the 
+>>>>>>>>>>> <RUNTIME> cannot be mis-interpreted as the unit?
+>>>>>>>>>>
+>>>>>>>>>> the current format is
+>>>>>>>>>>
+>>>>>>>>>>     drm-engine-<class>: <RUNTIME> ns
+>>>>>>>>>>
+>>>>>>>>>> the "ns" in the end should be parsed by userspace to know
+>>>>>>>>>> what it is about.
+>>>>>>>>
+>>>>>>>> Right.
+>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>> Not sure it is a good idea though. If you instead added a new 
+>>>>>>>>>>> key for the gpu time what would be the downside in your view? 
+>>>>>>>>>>> Like:
+>>>>>>>>>>>
+>>>>>>>>>>> drm-engine-<class>: <uint> ticks
+>>>>>>>>>>> drm-ticks-<class>: <uint>
+>>>>>>>>>>>
+>>>>>>>>>>> Or maybe even obsfuscate/generalise as:
+>>>>>>>>>>>
+>>>>>>>>>>> drm-engine-<class>: <uint> gpu-time
+>>>>>>>>>>> drm-gpu-time-<class>: <uint>
+>>>>>>>>>>
+>>>>>>>>>> I think both work, but I fail to see the advantage. This 
+>>>>>>>>>> alternative is
+>>>>>>>>>> slightly heavier on the parsing side since you have to 
+>>>>>>>>>> correlate the
+>>>>>>>>>> values from 2 keys, possibly dealing with them appearing in 
+>>>>>>>>>> different
+>>>>>>>>>> order. The only possible breakage remains with this 
+>>>>>>>>>> alternative: if
+>>>>>>>>>> userspace didn't parse the unit before. I checked nvtop and 
+>>>>>>>>>> htop and
+>>>>>>>>>> they were doing the right thing. I sent a fix to igt a few 
+>>>>>>>>>> weeks back
+>>>>>>>>>> for it to consider the unit:
+>>>>>>>>>> https://lore.kernel.org/igt-dev/20240405060056.59379-8-lucas.demarchi@intel.com/
+>>>>>>>>
+>>>>>>>> Advantages are that "drm-engine-something: 1234 5678 ticks" 
+>>>>>>>> isn't self-explanatory (intuitively humanly readable) and that 
+>>>>>>>> it doesn't
+>>>>>>>
+>>>>>>> maybe I have a different expectation from procfs. When I do e.g.
+>>>>>>>
+>>>>>>> # cat /proc/self/stat
+>>>>>>> 3861283 (cat) R 3861233 3861283 3861231 34816 3861283 4194304 90 
+>>>>>>> 0 0 0 0 0 0 0 20 0 1 0 1321348797 8560640 384 
+>>>>>>> 18446744073709551615 93979016876032 93979016892449 
+>>>>>>> 140720658378704 0 0 0 0 0 0 0 0 0 17 51 0 0 0 0 0 93979016907440 
+>>>>>>> 93979016908904 93979037196288 140720658380605 140720658380625 
+>>>>>>> 140720658380625 140720658382827 0
+>>>>>>>
+>>>>>>> it doesn't seem to me "intuitively humanly readable" was the first
+>>>>>>> concern for people adding files in procfs :)... I'd rather think 
+>>>>>>> "machine
+>>>>>>> readable" was more important.
+>>>>>>
+>>>>>> I think you are pushing the argument a bit now :) since IMO we 
+>>>>>> should evaluate drm-usage-stats.rst proposal more in the context 
+>>>>>> of drm-usage-stats and other fdinfo files, rather than the whole 
+>>>>>> of procfs. In other words if there isn't a strong reason to 
+>>>>>> regress this particular file lets not do it.
+>>>>>
+>>>>> :) I like pushing arguments if it helps revisit decisions (human vs
+>>>>> machine readable for things in procfs). I'm not
+>>>>> trying to push the 2 counter approaches though. I think other reasons
+>>>>> like discussed below are enough to consider the other keys.
+>>>>>
+>>>>> TBH I was reluctant at first to add a separate uapi rather than 
+>>>>> re-using
+>>>>> drm-engine- without realizing there was already a second one (not
+>>>>> implemented in gputop).
+>>>>>
+>>>>> So AFAICS i915 and amdgpu use drm-engine-. msm and panfrost use
+>>>>> drm-cycles + drm-maxfreq.  And none of them seem suitable to xe.
+>>>>>
+>>>>>>
+>>>>>>>> diverge from the one value per key plus unit format. Latter we 
+>>>>>>>> would then document clearly.
+>>>>>>>>
+>>>>>>>> Different keys potentially appearing in different order does not 
+>>>>>>>> matter since userspace already has to handle that.
+>>>>>>>>
+>>>>>>>>>>> Potentially could also add a key saying how much wall time is 
+>>>>>>>>>>> one unit of GPU time.
+>>>>>>>>>>
+>>>>>>>>>> I wouldn't add it really as it may not make sense depending on 
+>>>>>>>>>> the
+>>>>>>>>>> vendor and or usage. Examples: the gpu time may be different for
+>>>>>>>>>> different engines depending on where they are located 
+>>>>>>>>>> (tile/gt). The
+>>>>>>>>>> correlation with CPU time is different when running in VF 
+>>>>>>>>>> mode, and may
+>>>>>>>>>> change in runtime depending on the number of VFs. +Michal.
+>>>>>>>>
+>>>>>>>> Yes, that's why I said "potentially", which was supposed to mean 
+>>>>>>>> if and where it makes sense and perhaps adds value.
+>>>>>>>>
+>>>>>>>>>> Also, if the userspace side really wants to know (why would it?)
+>>>>>>>>>> it could be just calculate from 2 samples (possibly repeated a 
+>>>>>>>>>> few
+>>>>>>>>>> times as it updates the output).
+>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>> Or.. would even the existing drm-cycles, plus abuse of 
+>>>>>>>>>>> drm-maxfreq, work? Ticks == cycles, maxfreq == ticks per wall 
+>>>>>>>>>>> second.
+>>>>>>>>>>
+>>>>>>>>>> I think it'd be up to gpu vendor what clock backs this time. 
+>>>>>>>>>> For the
+>>>>>>>>>> current Intel cards, it's the refclock and it doesn't vary the
+>>>>>>>>>> frequency.
+>>>>>>>>
+>>>>>>>> Right, but that doesn't matter. What I was saying is that if you 
+>>>>>>>> exposed ticks in drm-cycles and tick frequency in drm-maxfreq it 
+>>>>>>>> would even work, no? (Assuming support for those two was 
+>>>>>>>> actually in igt_drm_fdinfo/clients/gputop and could be used as 
+>>>>>>>> fallback to time based stats.)
+>>>>>>>
+>>>>>>> oh... I was looking at the output for i915 and missed that we had
+>>>>>>> drm-cycles as currently i915 doesn't use it. It seems to be a 
+>>>>>>> similar
+>>>>>>> thing. I agree the drm-maxfreq- is unfortunate and that we don't
+>>>>>>> actually have support for that in gputop.
+>>>>>>>
+>>>>>>> So, instead of the 2 numbers + different unit, I can adapt this to
+>>>>>>> rather use drm-cycles. However for maxfreq, it doesn't seem to be
+>>>>>>> what we need since it doesn't scale for VF. It brings back the 
+>>>>>>> cpu clock
+>>>>>>> domain this series is trying to avoid. The difference is that using
+>>>>>>> drm-cycles- and drm-maxfreq- you are expecting the userspace to do
+>>>>>>> (let me know if I interpreted the docs wrong):
+>>>>>>>
+>>>>>>>     s1 = sample()
+>>>>>>>     sleep(period)
+>>>>>>>     s2 = sample()
+>>>>>>>     engine_utilization = ((s2.drm_cycles * s2.drm_max_freq) - 
+>>>>>>> (s1.drm_cycles * s1.drm_max_freq)) / period
+>>>>>>>
+>>>>>>> ... considering the drm_max_freq may change from one call to the 
+>>>>>>> other.
+>>>>>>> if we simplify it and assume it doesn't change:
+>>>>>>>
+>>>>>>>     engine_utilization = ((s2.drm_cycles - s1.drm_cycles) * 
+>>>>>>> drm_max_freq) / period
+>>>>>>>
+>>>>>>> we'd need different drm_max_freq reported on VF driver that would 
+>>>>>>> need
+>>>>>>> to know the number of VFs enabled to scaled it correctly. Maybe 
+>>>>>>> this is
+>>>>>>> abusing the "drm-maxfreq" a little bit?
+>>>>>>
+>>>>>> Yes it would be bad if the observed VF GPU clock will be variable 
+>>>>>> since maxfreq is supposed to be static.
+>>>>>>
+>>>>>> So on VFs would reported GPU clock moves by the VF "used" quanta?
+>>>>>
+>>>>> s/used/available/. That's my understanding, yes. Each VF has a quanta
+>>>>> and the gpu clock moves according to that quanta.  Note that as I 
+>>>>> said,
+>>>>> this is not the case right now (we are just reading 
+>>>>> RING_TIMESTAMP), but
+>>>>> the intention is to have the UAPI side ready so it's already prepared
+>>>>> for that.
+>>>>>
+>>>>>> Where "used" is defined as time given by the GuC, not necessarily 
+>>>>>> used
+>>>>>
+>>>>> s/used/available/ as above
+>>>>>
+>>>>>> GPU time. For instance 16ms quanta, VF GPU clock would move by 
+>>>>>> 16ms if the GuC decides not to switch out the idle VF? Or it could 
+>>>>>> move by less than 16ms if it switched it out earlier.
+>>>>>
+>>>>> no, afaiu it's 16ms, not less. But the quanta depends on the number of
+>>>>> VFs enabled, which may change in runtime.
+>>>>>
+>>>>> I'm not 100% certain and people in Cc may correct me.
+>>>>>
+>>>>>>
+>>>>>>> What if we had
+>>>>>>>
+>>>>>>> drm-cycles-<keystr>: <uint>
+>>>>>>> drm-total-cycles-<keystr>: <uint>
+>>>>>>>
+>>>>>>> Then the utilization can be done:
+>>>>>>>
+>>>>>>>     s1 = sample()
+>>>>>>>     sleep(period)
+>>>>>>>     s2 = sample()
+>>>>>>>     engine_utilization = (s2.cycles - s1.cycles) / \
+>>>>>>>                  (s2.total_cycles - s1.total_cycles + 1);
+>>>>>>>
+>>>>>>> Capacity still to be added above, but we'd need to clarify if
+>>>>>>> drm-total-cycles-<keystr> already accounts for it.
+>>>>>>>
+>>>>>>> Here instead of the conversion to cpu clock, I'm expecting to read
+>>>>>>> "total_cycles" from HW and that being different (slower) for VF.
+>>>>>>> AFAICS this is not the case with this current polling implementation
+>>>>>>> since we are simply reading the RING_TIMESTAMP, but there are 
+>>>>>>> planned
+>>>>>>> changes to get it from GuC. Umesh/Michal Cc'ed may know better.
+>>>>>>
+>>>>>> I think this works and is clean.
+>>>>>>
+>>>>>> Although I have some doubts about the usefulness on VFs, if the 
+>>>>>> clock movements are at the mercy of the GuC scheduler. Like what 
+>>>>>> does 100% mean for a VF? Maybe it was full quanta, or maybe it was 
+>>>>>> half a quanta if GuC decided to switch it out early, either due 
+>>>>>> going idle or due some other scheduling decision.
+>>>>>
+>>>>> in the scenario you described above the quanta could change 
+>>>>> according to
+>>>>> the scheduler and 100% wouldn't mean much. That's not my 
+>>>>> understanding.
+>>>>> 100% always mean the VF used all the allocated time. I see this line
+>>>>> potentially getting blurred a little bit if the scheduler tries to
+>>>>> maximize the HW usage and distribute quanta unevenly, but I think the
+>>>>> interface already contemplates that.
+>>>>>
+>>>>> Another case is the VF not being able to reach 100% because the PF is
+>>>>> submitting high prio work. But I still think the current interface is
+>>>>> sufficient and it's the implementation by GuC/HW that could be 
+>>>>> improved
+>>>>> (e.g. adapting the gpu time reported).
+>>>>>
+>>>>> Michal / Umesh, please chime in if that is not accurate.
+>>>>>
+>>>>
+>>>> Irrespective of how much quanta a VF used, all calculations will be 
+>>>> based on the quanta that it was allocated. That way the VF would 
+>>>> know that it could have better utilized the allotted time if 
+>>>> busyness is less than 100. This does result in more than 100% usage 
+>>>> for a VF that was resource hungry and scheduling policies allowed it 
+>>>> to run more than the allotted quanta, but this is a known limitation 
+>>>> of the solution provided by GuC. When looking at the overall system 
+>>>> (say from a PF), the usage should still add up to 100%.
+>>>>
+>>>>>
+>>>>> Thinking out loud: IFF the execution quanta is available for VF to 
+>>>>> query
+>>>>
+>>>> For the VF, GuC intends to provide a factor that can be used to 
+>>>> scale the wall time and deduce the VF quanta. This scaled value is 
+>>>> used as the second counter in a VF.
+>>>>> and we are ok with just scaling drm-maxfreq, then maybe we could even
+>>>>> just use the current interface instead of adding a third one. Although
+>>>>> it could be confusing to have a that freq changing.
+>>>>
+>>>> Assuming you are talking about using the drm-cycles and 
+>>>> drm-max-freq. One of the concerns when supporting VFs was that we 
+>>>> cannot actually export busyness in absolute time units to the user 
+>>>> because the GPU is shared across VFs. If we scale the busyness such 
+>>>> that it is stretched across CPU time, then it helps get the right 
+>>>> busyness % relative to CPU time, but the value of busyness in time 
+>>>> units itself is false. This was the primary reason to use 2 
+>>>> "unitless" counters.
+>>>>
+>>>> fwiu, I think by using the drm-maxfreq, you are going to bring the 
+>>>> same concept back in the discussion - exporting busyness in time 
+>>>> units. Not sure if that's a good idea. Let me know if I got that wrong.
+>>>
+>>> no, but I think it would still work if we can scale the freq 
+>>> according to
+>>> the quanta.  But that's probably abusing the interface.
+>>>
+>>> Anyway I think we are settling on
+>>>
+>>>     drm-cycles-<engineclass>
+>>>     drm-total-cycles-<engineclass>
+>>>
+>>> so I will start changing the patches and igt while checking this for
+>>> more feedback if any.
+>> Another option came to mind - expose a quanta ratio as a new key. 
+>> Given it has no security implications and is to be used only for 
+>> calculating real VFs GPU utilisation. Like:
+>>
+>> drm-engine-*: <uint> ns
+>> drm-engine-time-ratio-*: <float>
+>>
+>> Unit would be a ratio of time over quanta, for instance 1000ms / 100ms 
+>> = 10. Which would mean scale down reported time by 10 when comparing 
+>> against wall time.
+>>
+>> New key would only appear on VFs. Otherwise assumed 1.
+>>
+>> Or could be avoided per engine and just have single global:
+>>
+>> drm-gpu-time-ratio: <float>
+>>
+>> Am I missing something or that could work? It would have the same 
+>> problem as above mentioned "could go over 100%" is one. I mean this 
+>> comment:
 > 
+> I am hesitant to expose the quanta ratio at this level. We get that from 
+> GuC and that interface could potentially change. If that happens, I'd 
+> prefer that the uApi is unaffected.
 
--- 
+FWIW this idea was simply a time scale factor and I don't think it 
+should have a connection to any GuC implementation details. In other 
+words the observable result of time*scale/elapsed-time vs 
+ticks/total-ticks should be the same. At least with the semantics that 
+were discussed in this thread.
+
+>>
+>> """
+>> Irrespective of how much quanta a VF used, all calculations will be
+>> based on the quanta that it was allocated.
+>> ...
+>> This does result in more than 100% usage for a VF that
+>> was resource hungry and scheduling policies allowed it to run more
+>> than the allotted quanta,
+>> """
+>>
+>> I read that as total-ticks would never be reported as above the 
+>> configure quanta - always equal.
+> 
+> Correct
+> 
+>> Maybe I misunderstood?
+>>
+>> Second topic - are there any plans to allow the PF to monitor VF GPU 
+>> utilisation? That wouldn't work via fdinfo aggregation since VF 
+>> clients will not be visibible in a PF. But it sounds like a basic and 
+>> important use case.
+> 
+> wip. Engine utilization will be available per-VF from PF.
+
+How it will be exposed out of curiosity?
+
+Regards,
+
+Tvrtko
