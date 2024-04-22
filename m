@@ -4,102 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F560C07C79
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Apr 2024 13:28:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F748C4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Apr 2024 14:13:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B728B10F5C8;
-	Mon, 22 Apr 2024 13:28:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE86A10F654;
+	Mon, 22 Apr 2024 14:13:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="b+2JGUpF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dKjskCcn";
 	dkim-atps=neutral
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com
- [209.85.167.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4EB710F5C8
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Apr 2024 13:28:09 +0000 (UTC)
-Received: by mail-lf1-f54.google.com with SMTP id
- 2adb3069b0e04-51967f75729so5027333e87.0
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Apr 2024 06:28:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1713792487; x=1714397287; darn=lists.freedesktop.org;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=XX6Rj3ViyKFJRZt9TUxrdPILzpKRJIFwxHEizIAbiXA=;
- b=b+2JGUpFt4d3khN0bL4mLbRNfUD8rBzya7I+hxNfSNxkvMcxRb/2y0RRi5ctvQ3iqU
- m4+bF7dDVGjYCEI9h211rouC4PZ2NMcQtFsXIWtC+BEKOPlg882GqThmPSfIePzZ+6TP
- M6JgfpT2gZpgubu7c+0JWx/WjUUZTZS5E8lDteSuBYp9EXQcRoGSmJ+oJoRHl1VX9/2o
- iux7HTNytGJnMCvN5st5bapJxRQrATt2+2CjiZQhrfcHs/LkkE+BqRtWAkU2a22J2GTY
- 2sg9WL9UAXJ6A5Cy8gwhyi3wr0+AHKGxQKCwNMvvo+/Ght4Pw4T0YERJBiVYl97Z0ccX
- rCTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1713792487; x=1714397287;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=XX6Rj3ViyKFJRZt9TUxrdPILzpKRJIFwxHEizIAbiXA=;
- b=PLuQvtehZ6C8vnVqlEDv1kx+O0VG78s056R9XA4JJf5hm03h7PMrOYQhW9srB+nbuE
- FK77Kl9+PL1FjxMthaX6FMEwNAmJV4PWCFYe1dsEPfooKIAUlHavb7+VYUSJ5jqv4E13
- ITwku9RvYKpn/ZQl3b/DilSx7JoyOI6hg/CaBOhV5RDFXIrMNe+hn4zQAx5IpoI0g2ZR
- 5sD5eL7Gwkd2dsB3fMpAgWAA8g3lM/63aqzheFg0L1u0/+gEbF+WwHqvzj53XxoM0FvU
- NldiJC7MqYk7fsZuPa8DdRs0buFHIpvaLRre8a74JbyIKbueSjwQkq8a56I9CMm1I9UP
- eWqg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUHOKmnnGnXqHVaiDn1cE7eSBcVHuyeDxlDdfu7sFeQni7UC7AMAFM/C+eL088HjVAsiJivRAyVPFSKgAx77PCCoKG5QDynAsguoGafFLo=
-X-Gm-Message-State: AOJu0YyWUjp9m61GaKxnN4Mg82PVr8chrn0PxoolZsKHh0oR+yHEtNM+
- MpxDgQeJZktlfKkuYHvKsuE1EF3UTiBCeJzNhfTxRFNF1u+0vvNRCY5h13y6A7M=
-X-Google-Smtp-Source: AGHT+IGDPvlMItNcQnL6SP1fEpUFzqwGmerZ0Fb6TEO3t0LlL1yYrvPrZIwoPE4t255l4aDeVBBZUQ==
-X-Received: by 2002:ac2:4182:0:b0:519:5acc:b114 with SMTP id
- z2-20020ac24182000000b005195accb114mr5630645lfh.45.1713792487411; 
- Mon, 22 Apr 2024 06:28:07 -0700 (PDT)
-Received: from eriador.lumag.spb.ru
- (dzdbxzyyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::8a5])
- by smtp.gmail.com with ESMTPSA id
- y22-20020a0565123f1600b0051b64136e0esm136932lfa.52.2024.04.22.06.28.06
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 Apr 2024 06:28:07 -0700 (PDT)
-Date: Mon, 22 Apr 2024 16:28:05 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: dri-devel@lists.freedesktop.org, 
- Andrzej Hajda <andrzej.hajda@intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
- Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>, 
- Oded Gabbay <ogabbay@kernel.org>, Russell King <linux@armlinux.org.uk>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Frank Binns <frank.binns@imgtec.com>, 
- Matt Coster <matt.coster@imgtec.com>, Rob Clark <robdclark@gmail.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, 
- Danilo Krummrich <dakr@redhat.com>, Alex Deucher <alexander.deucher@amd.com>, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, 
- Alain Volmat <alain.volmat@foss.st.com>, Huang Rui <ray.huang@amd.com>, 
- Zack Rusin <zack.rusin@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 1/2] drm/print: drop include debugfs.h and include where
- needed
-Message-ID: <dgx4grz65pbvne6nt7o5fvklbs6igup7xj4g7ksd6wrsy6hdhn@bunxrngdaq6j>
-References: <20240422121011.4133236-1-jani.nikula@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D3C210EEE0;
+ Mon, 22 Apr 2024 14:13:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713795190; x=1745331190;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=3VH0wPSYjbxLBOo5XQYtJGrCcBkZEO/wQnEkLB2vOfM=;
+ b=dKjskCcn2P2xfyGsZHavSSTJ4LGBRSmfvTG1nNDobMmGJ2Dvwy1piB7I
+ CNVL3eI0J06KkNgvS+ODj8HV6z6O4GXv9h85fncdrmaFofiaSTviq0kmX
+ O+nGLLL51eokpkfTOKhcXaswo+1Bm0p8MqLw1Vb4bcfFLB+rJf3vyEHYL
+ TDY0gIDHs4QAquLJhJXMLH3aM/+aozvkXR1qtevVqK6rjCvUrJtAQtOcJ
+ pxzgMj2HYhjT0qy3QOVR9Bc1nCwbrO04Rmws9o93UUruGpLUJ4XWThVq8
+ LLLNM6YpZxszdFZJ3kN+J2X0N65mjEwZsmJyPalEEPP5OfdAV2ty4HGaS Q==;
+X-CSE-ConnectionGUID: SnDZN2xJSHSI2vzSF4quNg==
+X-CSE-MsgGUID: vpmbyvWHSOGtlyS0NNdCKg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="19941196"
+X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; d="scan'208";a="19941196"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2024 07:13:09 -0700
+X-CSE-ConnectionGUID: DZsqbfzjR8OdPfj3CGCp5w==
+X-CSE-MsgGUID: SRZKEL0xRoiveeHtQ3FgsA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; d="scan'208";a="28810038"
+Received: from ralbanes-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.63.128])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2024 07:13:04 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Michael Olbrich <m.olbrich@pengutronix.de>,
+ dri-devel@lists.freedesktop.org, David Airlie <airlied@gmail.com>, Daniel
+ Vetter <daniel@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Ville =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: graphics@pengutronix.de
+Subject: Re: Reliably selecting non-CEA modes on Intel graphics (and maybe
+ others)
+In-Reply-To: <ZiZs94-ZP1n98RZu@pengutronix.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <ZiZs94-ZP1n98RZu@pengutronix.de>
+Date: Mon, 22 Apr 2024 17:13:00 +0300
+Message-ID: <8734rdtrir.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240422121011.4133236-1-jani.nikula@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,103 +76,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 22, 2024 at 03:10:10PM +0300, Jani Nikula wrote:
-> Surprisingly many places depend on debugfs.h to be included via
-> drm_print.h. Fix them.
-> 
-> v3: Also fix armada, ite-it6505, imagination, msm, sti, vc4, and xe
-> 
-> v2: Also fix ivpu and vmwgfx
-> 
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> Acked-by: Maxime Ripard <mripard@kernel.org>
-> Link: https://patchwork.freedesktop.org/patch/msgid/20240410141434.157908-1-jani.nikula@intel.com
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> ---
-> 
-> Cc: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
-> Cc: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
-> Cc: Oded Gabbay <ogabbay@kernel.org>
-> Cc: Russell King <linux@armlinux.org.uk>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> Cc: Robert Foss <rfoss@kernel.org>
-> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> Cc: Jonas Karlman <jonas@kwiboo.se>
-> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-> Cc: Frank Binns <frank.binns@imgtec.com>
-> Cc: Matt Coster <matt.coster@imgtec.com>
-> Cc: Rob Clark <robdclark@gmail.com>
-> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
-> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: Marijn Suijten <marijn.suijten@somainline.org>
-> Cc: Karol Herbst <kherbst@redhat.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Danilo Krummrich <dakr@redhat.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: "Christian König" <christian.koenig@amd.com>
-> Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
-> Cc: Alain Volmat <alain.volmat@foss.st.com>
-> Cc: Huang Rui <ray.huang@amd.com>
-> Cc: Zack Rusin <zack.rusin@broadcom.com>
-> Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: intel-xe@lists.freedesktop.org
-> Cc: linux-arm-msm@vger.kernel.org
-> Cc: freedreno@lists.freedesktop.org
-> Cc: nouveau@lists.freedesktop.org
-> Cc: amd-gfx@lists.freedesktop.org
-> ---
->  drivers/accel/ivpu/ivpu_debugfs.c           | 2 ++
->  drivers/gpu/drm/armada/armada_debugfs.c     | 1 +
->  drivers/gpu/drm/bridge/ite-it6505.c         | 1 +
->  drivers/gpu/drm/bridge/panel.c              | 2 ++
->  drivers/gpu/drm/drm_print.c                 | 6 +++---
->  drivers/gpu/drm/i915/display/intel_dmc.c    | 1 +
->  drivers/gpu/drm/imagination/pvr_fw_trace.c  | 1 +
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c | 2 ++
+On Mon, 22 Apr 2024, Michael Olbrich <m.olbrich@pengutronix.de> wrote:
+> Hi,
+>
+> In short: I have a HDMI monitor attached to Intel graphics. I'm trying to
+> set a non-CEA mode but the driver always maps it to the corresponding CEA
+> mode.
 
-Acked-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # drm/msm
+Please file a bug as described at [1], and attach dmesg with debugs
+enabled, so we can see what's going on and what kernel and hardware
+you're using exactly, and so on.
 
->  drivers/gpu/drm/nouveau/dispnv50/crc.c      | 2 ++
->  drivers/gpu/drm/radeon/r100.c               | 1 +
->  drivers/gpu/drm/radeon/r300.c               | 1 +
->  drivers/gpu/drm/radeon/r420.c               | 1 +
->  drivers/gpu/drm/radeon/r600.c               | 3 ++-
->  drivers/gpu/drm/radeon/radeon_fence.c       | 1 +
->  drivers/gpu/drm/radeon/radeon_gem.c         | 1 +
->  drivers/gpu/drm/radeon/radeon_ib.c          | 2 ++
->  drivers/gpu/drm/radeon/radeon_pm.c          | 1 +
->  drivers/gpu/drm/radeon/radeon_ring.c        | 2 ++
->  drivers/gpu/drm/radeon/radeon_ttm.c         | 1 +
->  drivers/gpu/drm/radeon/rs400.c              | 1 +
->  drivers/gpu/drm/radeon/rv515.c              | 1 +
->  drivers/gpu/drm/sti/sti_drv.c               | 1 +
->  drivers/gpu/drm/ttm/ttm_device.c            | 1 +
->  drivers/gpu/drm/ttm/ttm_resource.c          | 3 ++-
->  drivers/gpu/drm/ttm/ttm_tt.c                | 5 +++--
->  drivers/gpu/drm/vc4/vc4_drv.h               | 1 +
->  drivers/gpu/drm/vmwgfx/vmwgfx_gem.c         | 2 ++
->  drivers/gpu/drm/xe/xe_debugfs.c             | 1 +
->  drivers/gpu/drm/xe/xe_gt_debugfs.c          | 2 ++
->  drivers/gpu/drm/xe/xe_uc_debugfs.c          | 2 ++
->  include/drm/drm_print.h                     | 2 +-
->  31 files changed, 46 insertions(+), 8 deletions(-)
+BR,
+Jani.
+
+
+
+[1] https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
+
+
+>
+> More specifically, the monitor has two 1920x1080@60 modes in the EDID:
+> 1. The CEA mode with VIC 16
+> 2. A custom DTD mode with exactly the same timings (this is the preferred
+>    mode).
+>
+> From a userspace perspective, the two modes are mostly identical, except
+> for the 16:9 aspect ratio flag in the CEA mode and the preferred type in
+> the other.
+>
+> I want to select the second (preferred) mode, but that does not seem
+> possible:
+> intel_hdmi_compute_avi_infoframe() tries to determine which VIC should be
+> added to the avi infoframe and if limited or full range is used.
+> It uses various DRM helpers here but in the end drm_match_cea_mode() is
+> called. And here lies the problem:
+> The mode provided by the userspace has explicitly no aspect ratio. But
+> here, it is interpreted as "the aspect ration is undefined". So matching
+> ignored the aspect ratio and the CEA mode with VIC 16 is found and limited
+> range is used.
+>
+> The commit that introduces this fuzzy matching
+> 357768cc9e3fdacf6551da0ae1483bc87dbcb4e8 ("drm/edid: Fix cea mode aspect
+> ratio handling") made sense at the time. The capability
+> DRM_CLIENT_CAP_ASPECT_RATIO that exposes aspect ratios to userspace was
+> introduced later in the same merge request, from what I can tell
+> 7595bda2fb4378ccbb8db1d0e8de56d15ea7f7fa ("drm: Add DRM client cap for
+> aspect-ratio").
+>
+> Am I missing something here, or is it just not possible to select the
+> non-CEA mode right now? In my specific example, the selected CEA mode is
+> actually supported by the monitor, but as far as I can tell, the CEA mode
+> is used even if the monitor does not support it at all.
+>
+> I've only tested this on Intel, but I assume that other drivers that use
+> the same helpers have the same problem.
+>
+> So how can this be fixed? I've considered matching the aspect ratio based
+> on the DRM_CLIENT_CAP_ASPECT_RATIO capability, but I'm not sure if that is
+> valid. The documentation is limited and I found nothing that describes what
+> the userspace should do here.
+> Or would a new capability make sense here? Or something entirely different?
+> I'm not sure how I should proceed here. Any help would be appreciated.
+>
+> Regards,
+> Michael
 
 -- 
-With best wishes
-Dmitry
+Jani Nikula, Intel
