@@ -4,182 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87EEEC4345F
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Apr 2024 12:01:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B16DC4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Apr 2024 12:10:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38645112A37;
-	Mon, 22 Apr 2024 12:01:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EC01112A45;
+	Mon, 22 Apr 2024 12:10:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DZbr5DGw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kGm8TTH2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7D40112A39
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Apr 2024 12:01:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9008112A3E;
+ Mon, 22 Apr 2024 12:10:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713787318; x=1745323318;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=+AI3jMWKvKMkdfOjpUlWo2g8jPuavFOCaWgwhp2Xq9w=;
- b=DZbr5DGw/bCnflD7tmPG7EepVqjXP6nGBCbGzLPZDtcl9GfygmGhw8eo
- SjpQTgIjNqBsQcISVpu1E6eXrNpL+/4u1CwX5rmMLqY9dcAQOGALSLWxC
- kUh5gdsyBz+jLWZO6RZvILqt6H+1bMUUg8bFTgsviv+lgYh+dHTHRvOy0
- bSPuEnlybcvDE6IqNCZ1aEwUKYQRsVrTZljuv4s6KrgnWTBFxVw7C7ueA
- gLsp4Z3fN8bKLaupn0uQHwAMfHSCiHSP688OlDP67djai8aK0EStdCIDA
- tLgLTXCKHJhd+6HOKn0qEQvk2NQ6dHVm3JwBxBhlw3g8XR39JjHmk7NQx g==;
-X-CSE-ConnectionGUID: M941NLsPQpSDiiqPgnFpyw==
-X-CSE-MsgGUID: /aO6hY34SpemaEhl053PnA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11051"; a="31811769"
-X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; d="scan'208";a="31811769"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2024 05:01:58 -0700
-X-CSE-ConnectionGUID: HIRI7/VlRQqSMle7tqaKGA==
-X-CSE-MsgGUID: PTDyBPLFSbKIFm74utDbSQ==
+ t=1713787829; x=1745323829;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=EF6pkn9UoDy2Qvqx3xYJi0vD2nMGtY5F4i8Ku6Jw7Jw=;
+ b=kGm8TTH2p57B6W9BhVjtg26XKYxVy45OWu6P0xu0NgtI9nJs1uhUGUBj
+ rXENKnA0lugG4bIP34ebuWRkF/4Wvn+qp3CJheJzAtz5a+k/iXxBNDezW
+ T6i1rEjiPdxu0Qh6+oIn5zgH1WvBghNOQLAezDIYGEud0TOzx0IwPPjO4
+ FBdxqQIpj2B/ZNQFPeedLZ1HAVoB95JtP/kG+Q8xKi1YJf8USe5uh0yVr
+ e/JqxgRFkruAieHTNpK8Uun2GGOu28XiWoQG7QrvHRxBiQKUwmKKiv3AV
+ 2BFPgwTDPAHgo2AB+SVdVJtJLLDo6w9USoDh/hevE7fRrUprGC82YniBG g==;
+X-CSE-ConnectionGUID: 1mgamNDDS+OsmsgJ+u4DLg==
+X-CSE-MsgGUID: dJdZuU7EQK2xVg0d2qFFZQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11051"; a="26771558"
+X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; d="scan'208";a="26771558"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2024 05:10:28 -0700
+X-CSE-ConnectionGUID: 0yux8pNgQFmWb7nP4GDMPg==
+X-CSE-MsgGUID: OgC+Yrd0QJikgwBIRVJQaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; d="scan'208";a="23968315"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Apr 2024 05:01:58 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 22 Apr 2024 05:01:57 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 22 Apr 2024 05:01:56 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 22 Apr 2024 05:01:56 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.101)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 22 Apr 2024 05:01:55 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DufMZ7r9bEOt4LHWcoP1KDnHTt23SWjxMTpdEmIbvLA4vHQeKwWvBT91kNdYQK4VMpjcceVWvhTTCsUTyFJTwLUjEfIezMtUd2S7xLsTuohGJEMtBXy/u5Rv3A02r1XCMe2IeYC4iGXjwQ35Vyt4/XtCeb2mFNyCTLY+lLc3/YHksnMROavY9okmb4/NvpkY/NC3ERXVxDXn8D2xuj7Nb6oRJqRZDt7wI5i1o6G91uQbzJsT853C3yktlWFgN9LNBNX/sdUePuVaUgpGQ1pfIvVytEB6AqaFzxjTY+K+ShbfWAEKHtKQWOSpDvFo6mqLQCxnVP7tGJr1+/8u63OgfQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nxTRb/sr7Lh2OY5pnFy+8/RD5SuptmRRSOPzIvLpRUE=;
- b=INDTRFoOYzf7kK0myOsGr4kJi06vNlt2xfWi6XYqSTj3LP2CM3r42QGRBD0ha5bZ3uj3be5zZF1zh1uFhnREQLwA6Ueohz/kFg5STsMlncO00GLFBRIt7c6tzPjn+vADBnbXFEconvxD3yMzflLKqnMTjVsE5YL7ELLIj6b+UYFiD/+KnHlErJVDZJoEu2YIkZ1/iPwyHckB59pTVVkhefLdpdRMK/dw+zwOHYCJKxBK0yqX3fdTdxiYDYmUR1CioCdxXAvWet96mKUYqOCoDUg/VXz98UuQed36xHo5FrCx6JEWDl2etGxIOZLRHtkenfp+hqqcf1oQlyB1INNNDQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
- by CH3PR11MB7865.namprd11.prod.outlook.com (2603:10b6:610:128::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.26; Mon, 22 Apr
- 2024 12:01:52 +0000
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::b867:cbf6:e190:6eb]) by MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::b867:cbf6:e190:6eb%5]) with mapi id 15.20.7519.018; Mon, 22 Apr 2024
- 12:01:52 +0000
-Date: Mon, 22 Apr 2024 14:01:50 +0200
-From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 5/5] drm/xe/kunit: Add PF service tests
-Message-ID: <20240422120150.xt3iaiuok6nf622e@intel.com>
-References: <20240418152802.182-1-michal.wajdeczko@intel.com>
- <20240418152802.182-6-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240418152802.182-6-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: ZR0P278CA0181.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:44::14) To MN0PR11MB6135.namprd11.prod.outlook.com
- (2603:10b6:208:3c9::9)
+X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; d="scan'208";a="24035074"
+Received: from ralbanes-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.63.128])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2024 05:10:16 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: jani.nikula@intel.com, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
+ Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@redhat.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Alain Volmat <alain.volmat@foss.st.com>, Huang Rui <ray.huang@amd.com>,
+ Zack Rusin <zack.rusin@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/print: drop include debugfs.h and include where needed
+Date: Mon, 22 Apr 2024 15:10:10 +0300
+Message-Id: <20240422121011.4133236-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|CH3PR11MB7865:EE_
-X-MS-Office365-Filtering-Correlation-Id: 017a398d-4d0b-40a9-f008-08dc62c3ff79
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?S2t1QmJaekRqcU05QXNWbmZtcGEyZ1NGdkI1TnNneVd2MWdkSmU3SGl4MEtv?=
- =?utf-8?B?cW1NZnA5NmpkSks2UlBqVDE5ckkvM3VDUUpoTnJNcFAvZFdjQmV1SFIvSktG?=
- =?utf-8?B?aGtQeThPci9WSEx2SUJrZkpodlErRGlJNmRtZHdLY3pieDBvaDlON0FkV0wr?=
- =?utf-8?B?QnBWZnBzRGlHUWlTZ0JpdjRFdUt4ZFZaYlFUNkp0YzBZdVlHT1l3clE1bkM5?=
- =?utf-8?B?Y3FyM1lITTZ1SWFpOUZqaUpoU0pyNTFlaVUzcUZTejZaajZmc1NuWmZ1VlNr?=
- =?utf-8?B?V2Q5U2JXR3RqblhFY0xNYVMzYUhvU0lrYVBIMEhVbU1RT29HeFVEK2l5ekIx?=
- =?utf-8?B?bmNWL25jZVdzOUdqdVZZRlI1TW5lVXFJTjUxRG9BTC85UTdiME1IejJ0TnlC?=
- =?utf-8?B?TlJyeFZEbkFQUzJlSmd3YU9nSjdDenZ4c3NUVHJQUjBDeGNNamswSXVzUkxW?=
- =?utf-8?B?Q05ZcEZLWDBIcmR2Ukp4dUViSWt2YlFKaVdIamRjYU9BVkxTcTZ0V1IxTVBE?=
- =?utf-8?B?eWlkaTVtZWhINSt0dUVwZU9TTlZwdHBaQ2w0TjE0UnZHWW01QjY1OExjcC94?=
- =?utf-8?B?dWFXQ2pMbzRkYXRmc2tJVjZqR3pYK0NlWnppS21vYXFRbHhTb1RwSHk3T3lL?=
- =?utf-8?B?R2RDZFVobUh1ZEZrd3ZMMXArdU5RZzVYTkhPdXV0eW5MR1F4SC9penU1MWR0?=
- =?utf-8?B?c1Fjb0R1RGRiVzVBY2RKeVVWNnJUTkhjd0ZoMnZrM2Uzc3hwQlg2aEdURkow?=
- =?utf-8?B?enlSZlFSNjRkQUhURzNlcy84UWhMQ05DNWN6Zk5NM1BEL2dqUUtGS2t3empk?=
- =?utf-8?B?amVxbkhXdFFaRUxUVEN1Vlp3RzFVNUY5emRqWWpNRjhzY2doN0VwazJNSmlR?=
- =?utf-8?B?ci9vc2gxZm9sZ2xWUWV5dWlCWjAyT2NxamZ2eFFxWTE1dWU4T2RzSjhjOFFD?=
- =?utf-8?B?VlZoaTNxY0wwemVTeWZ5eTZyVGM2UGFDd2tValp6QUVka2NodFk5ejhwekdT?=
- =?utf-8?B?ZU5ETEJHMVdLMVZvYVQ3U0dCT210Y3NTWFpUK3FhOFNZemVIYnZ4T0d0ZGc3?=
- =?utf-8?B?aDRvVWJEUGJjNVZnYWhCdC94V1c5WStNcnlCc2grQjZxYXFUYnJ0ODdjQVVz?=
- =?utf-8?B?OFdpcVFjYWhHL3daRGFsNnkxN25uU0gxRHdmckJvSU9ZZmN5L3o1bk9LWDM3?=
- =?utf-8?B?dGIreis4Y1VuWjBwU0ZuZ1NOWFhsakVLbHRYVlhHdW1ISC9QWjlMWk5LcDBj?=
- =?utf-8?B?VGZPTVFHN3NNMUtUWEdXZ29HSG1GVGhaYy9VVnlUSFdGQXZmMXBMYnVJOE5N?=
- =?utf-8?B?akJFdUE0elFuY2c5d3FjK3VpWjBoaGUwY1V5Nm0zTWpmckg4Qm1QMFd2NWxk?=
- =?utf-8?B?dExXdEJJanUwZUpDTjNCMGJDSi83ekhsejRramlhSUo1M1dWcDhJTEt5Y29P?=
- =?utf-8?B?RmVQWmt6TGhQL3R6WXFpVzF3L1htVUdwU2JuVGY2cVgrVGNRREUrajdNZ3Vz?=
- =?utf-8?B?dWVzOE5wd2dNUnRMMEZBakUrZXRVL3ZCakxkeXR2alU1djRnMnAxMFBhczgz?=
- =?utf-8?B?UkZLNDE1RXdDeHlPQlZqQXdJTEk1V3FwdVdhVGJHT2NRb3lZTHkxWjYvMFk4?=
- =?utf-8?B?N2lmc1p6ellWNGFIYnNzMndqUWlNSHlPRG9MckNOdGh5enIzVWhXVkJsU3hZ?=
- =?utf-8?B?UGUvRkVpSFN4MnZCcW9mc3M5T3gvOENMV3YzTkEvMHd2ZmNxZjArcEVRPT0=?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZmNXZENJSWlQZ3hIb3I4WkR3cXlIRmUxVDlhODRFRnlRUkI4ZG91RUNablBL?=
- =?utf-8?B?Qm5IWEpvQWNnWHU3Z080Q1VHZHNGVzFyeFFyeXlNWExqeUlBcld5aWtWRFBj?=
- =?utf-8?B?cnE0NVRFWjRMOFF2YnNxRkxjV3FKQk9UYkQzTExtTkZsemFaU2NXN2dzVUN6?=
- =?utf-8?B?bHo2NklpYWY5Y29EOHBkU1RZM2JHaERDeWJBZERodDlVSkVXLzBqcnB3d0E4?=
- =?utf-8?B?Nkg0QjJ2VWhBMnFxMnhOY3JnNWJuOFlpN1hzK2FHZmd3Q1M3Qi8xbENjVDAx?=
- =?utf-8?B?cndRTWxOZEc1dTVFa0FkRy9Qb1ZJV2VGMXdyYnp3UnpnNlJGNUQzQ0ZxNGdq?=
- =?utf-8?B?cEorRlpiNkVjNkZCUjBUdW8zbzJkUy83alNUclU0ODRLWVlGN1dWVndTdVhn?=
- =?utf-8?B?Q2YwMTNlMlRMZUdPYXhUdVpueml4eG53NUVLQldldnZnbWxzTE5Kakc4STFC?=
- =?utf-8?B?RzBrNkZ0SXMzNXFQMXJ1cTJScTdLWlFpelV6N1dZUER2MU5mV1V3L1E0YlFW?=
- =?utf-8?B?Q0VJUjA4RzNrR0RtZXZSOGhBUWN0MnRyWFBhNm5VcmN3WlV1bVFyZS93ZU9k?=
- =?utf-8?B?dWJWLzZTeWFMMTNtWHlrOW9FSXVSN2VHN1kwK3hGZ0NTSkRNUGRMSmh4eEx5?=
- =?utf-8?B?T1h5bGV4c2llTldDWVQxY2s3YVF0dXpad1VpbkZDZUx0WEdYd2ljUW9SSXho?=
- =?utf-8?B?RVJORHRsY0cwTnkzYjlrTjNPN01ENjdmcklGMjNST2ZGWHZZdmlvcEhyV212?=
- =?utf-8?B?K3AxdkxkK2JIcUMzMUxUWlJrODNaSlVwbkdXeldqRWxCY2N4amVka1RlajAw?=
- =?utf-8?B?RGFyNFZCeVZkZ1VuZ3hoZGRud2JlZk9STGNOSU9DSXhDNjk3aURKZmFzSExH?=
- =?utf-8?B?NlUza0dEK0FtNHlqNkg3Ty9qYmR4Unl4VlJpRURIa204alBvSEppbzRJUnFH?=
- =?utf-8?B?N0VNOGtSOFdnclVhdjdOdWs1V1dYUk1sdmZmTnFuT0FqMVJPdkRtcktxaGUx?=
- =?utf-8?B?eHpDYTNJUEdCdlhoZWNhd3VGbmg0RTdQbkhPdnBxN1hzMDNVRE9EN2UyVWZS?=
- =?utf-8?B?RFYvQ0RnZXVnbkNrbFJJdEdYYkFhM1hvaERoYjNZOGlCRGtrcHZRMkhXL2pz?=
- =?utf-8?B?ZGU0SzBzUlFVejBVYmc3ZURnQlRhRktSck4vSFdUSXZVdWdXVSt4NXplTnJm?=
- =?utf-8?B?U1BTWXpURzF5ZEhTNHpocWNZWTkwM2lkbjlyeXV2dUowN2lhdFFqdWd3azNp?=
- =?utf-8?B?UzRtZ1hITzgwckRITDBIOGt5eUkwdTN4NnFZSzZZK1RwcWh3ejFyMUtCNUtv?=
- =?utf-8?B?K0pZV3c1ZE9LOHd2bU5hVStUSUVFK3F5SVpKY1lHeWNIS0tUdzBxQkFZNTNC?=
- =?utf-8?B?RmVSbnNNNXVuaHUwVlBMQWtKUmxaaUFrZUZnVnpHQ1YwUm9TbTBBRFJYcmRj?=
- =?utf-8?B?WHRyblU3d3RKcW90dGlXMWdTRlFaUk12U0kyWjJjWWxveG9admlqSUtPRHVj?=
- =?utf-8?B?YnlCUldJYW5xUzI0V3RCam1tcmU4QXZPZDN3aXBVcDI4Mk5oZXYrdGVibnFP?=
- =?utf-8?B?UWlpVU1yTkwvN3VtR3hDZzY0cEZxd1Y4K3lSNFp4ZG1KOE1rQURrNEt6RmJ2?=
- =?utf-8?B?bFBVVUtNTDZLaWdJNW9rN1pSNjZSa0lsSWw1RzZFaGFIOG5NQm0zMzZBQlp0?=
- =?utf-8?B?WFJmenFYdklRV0gzV2l4cFNyMDE1WHBDTXErdSsyemE1QWlmdTZFVzNQQmlp?=
- =?utf-8?B?M25qeUR3YTBDQlBVV2M4NktHSzVnNmROR2xQNU1kV0NNZ1FDZkplUGdUekJD?=
- =?utf-8?B?a1BrbnVoYnk1WkJKdWFadC92Mzh4RTlwVUZFcDhwUklVOVNiUXRjdVR2aWtS?=
- =?utf-8?B?dzkvRTI1VkNRMEg5aHBZdnJ0aGdhZ2E5RFJUWDBqYWN3OU1tM3BwWUl0ZTQr?=
- =?utf-8?B?NWwvNWVNOFdxck1VK3hMY3ZWdXY4RlE0UXNzR0cyN29lem9adGtKSXNaNkJh?=
- =?utf-8?B?YmNNYklnL0RBblhUeGNnSmRQMHFTbkdsK2tBN1VmalhBRFJOZklLY1d6Mm45?=
- =?utf-8?B?VFFSMWUvV2wzTHlLVWxsdHp6c2xmU3l1Q1Z3UnovVWlVTkVSUXpGRmp1RHVY?=
- =?utf-8?B?Z0NHMmNucHpMTDhKeVRtRDVBelV5ajZlZjBNa3NLOFBjZUZtRHFXZE1nN0ZJ?=
- =?utf-8?B?L3c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 017a398d-4d0b-40a9-f008-08dc62c3ff79
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2024 12:01:52.6640 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MauKxzQlq1TkQSVh4TdB3gXYy6SxNHlYO+E+7MsQfRwtSttAoCiitv+VWHc9kESMMi6wWlvDvcMTPNOYgsnnBNfr09vs/sV43b/7cFsXKKo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7865
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -194,274 +99,508 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on czw [2024-kwi-18 17:28:02 +0200]:
-> Start with basic tests for VF/PF ABI version negotiation. As we
-> treat all platforms in the same way, we can run the tests on one
-> platform. More tests will likely come later.
-> 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> ---
->  .../xe/tests/xe_gt_sriov_pf_service_test.c    | 232 ++++++++++++++++++
->  drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c   |   4 +
->  2 files changed, 236 insertions(+)
->  create mode 100644 drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_service_test.c
-> 
-> diff --git a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_service_test.c b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_service_test.c
-> new file mode 100644
-> index 000000000000..b683585db852
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_service_test.c
-> @@ -0,0 +1,232 @@
-> +// SPDX-License-Identifier: GPL-2.0 AND MIT
-> +/*
-> + * Copyright © 2024 Intel Corporation
-> + */
-> +
-> +#include <kunit/test.h>
-> +
-> +#include "xe_device.h"
-> +#include "xe_kunit_helpers.h"
-> +#include "xe_pci_test.h"
-> +
-> +static int pf_service_test_init(struct kunit *test)
-> +{
-> +	struct xe_pci_fake_data fake = {
-> +		.sriov_mode = XE_SRIOV_MODE_PF,
-> +		.platform = XE_TIGERLAKE, /* some random platform */
-> +		.subplatform = XE_SUBPLATFORM_NONE,
-> +	};
-> +	struct xe_device *xe;
-> +	struct xe_gt *gt;
-> +
-> +	test->priv = &fake;
-> +	xe_kunit_helper_xe_device_test_init(test);
-> +
-> +	xe = test->priv;
-> +	KUNIT_ASSERT_EQ(test, xe_sriov_init(xe), 0);
-> +
-> +	gt = xe_device_get_gt(xe, 0);
-> +	pf_init_versions(gt);
-> +
-> +	/*
-> +	 * sanity check:
-> +	 * - all supported platforms VF/PF ABI versions must be defined
-> +	 * - base version can't be newer than latest
-> +	 */
-> +	KUNIT_ASSERT_NE(test, 0, gt->sriov.pf.service.version.base.major);
-> +	KUNIT_ASSERT_NE(test, 0, gt->sriov.pf.service.version.latest.major);
-> +	KUNIT_ASSERT_LE(test, gt->sriov.pf.service.version.base.major,
-> +			gt->sriov.pf.service.version.latest.major);
-> +	if (gt->sriov.pf.service.version.base.major == gt->sriov.pf.service.version.latest.major)
-> +		KUNIT_ASSERT_LE(test, gt->sriov.pf.service.version.base.minor,
-> +				gt->sriov.pf.service.version.latest.minor);
-> +
-> +	test->priv = gt;
-> +	return 0;
-> +}
-> +
-> +static void pf_negotiate_any(struct kunit *test)
-> +{
-> +	struct xe_gt *gt = test->priv;
-> +	u32 major, minor;
-> +
-> +	KUNIT_ASSERT_EQ(test, 0,
-> +			pf_negotiate_version(gt, VF2PF_HANDSHAKE_MAJOR_ANY,
-> +					     VF2PF_HANDSHAKE_MINOR_ANY,
-> +					     &major, &minor));
-> +	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.latest.major);
-> +	KUNIT_ASSERT_EQ(test, minor, gt->sriov.pf.service.version.latest.minor);
-> +}
-> +
-> +static void pf_negotiate_base_match(struct kunit *test)
-> +{
-> +	struct xe_gt *gt = test->priv;
-> +	u32 major, minor;
-> +
-> +	KUNIT_ASSERT_EQ(test, 0,
-> +			pf_negotiate_version(gt,
-> +					     gt->sriov.pf.service.version.base.major,
-> +					     gt->sriov.pf.service.version.base.minor,
-> +					     &major, &minor));
-> +	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.base.major);
-> +	KUNIT_ASSERT_EQ(test, minor, gt->sriov.pf.service.version.base.minor);
-> +}
-> +
-> +static void pf_negotiate_base_newer(struct kunit *test)
-> +{
-> +	struct xe_gt *gt = test->priv;
-> +	u32 major, minor;
-> +
-> +	KUNIT_ASSERT_EQ(test, 0,
-> +			pf_negotiate_version(gt,
-> +					     gt->sriov.pf.service.version.base.major,
-> +					     gt->sriov.pf.service.version.base.minor + 1,
-> +					     &major, &minor));
-> +	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.base.major);
-> +	KUNIT_ASSERT_GE(test, minor, gt->sriov.pf.service.version.base.minor);
-> +	if (gt->sriov.pf.service.version.base.major == gt->sriov.pf.service.version.latest.major)
-> +		KUNIT_ASSERT_LE(test, minor, gt->sriov.pf.service.version.latest.minor);
-> +	else
-> +		KUNIT_FAIL(test, "FIXME: don't know how to test multi-version yet!\n");
-> +}
-> +
-> +static void pf_negotiate_base_next(struct kunit *test)
-> +{
-> +	struct xe_gt *gt = test->priv;
-> +	u32 major, minor;
-> +
-> +	KUNIT_ASSERT_EQ(test, 0,
-> +			pf_negotiate_version(gt,
-> +					     gt->sriov.pf.service.version.base.major + 1, 0,
-> +					     &major, &minor));
-> +	KUNIT_ASSERT_GE(test, major, gt->sriov.pf.service.version.base.major);
-> +	KUNIT_ASSERT_LE(test, major, gt->sriov.pf.service.version.latest.major);
-> +	if (major == gt->sriov.pf.service.version.latest.major)
-> +		KUNIT_ASSERT_LE(test, minor, gt->sriov.pf.service.version.latest.minor);
-> +	else
-> +		KUNIT_FAIL(test, "FIXME: don't know how to test multi-version yet!\n");
-> +}
-> +
-> +static void pf_negotiate_base_older(struct kunit *test)
-> +{
-> +	struct xe_gt *gt = test->priv;
-> +	u32 major, minor;
-> +
-> +	if (!gt->sriov.pf.service.version.base.minor)
-> +		kunit_skip(test, "no older minor\n");
-> +
-> +	KUNIT_ASSERT_NE(test, 0,
-> +			pf_negotiate_version(gt,
-> +					     gt->sriov.pf.service.version.base.major,
-> +					     gt->sriov.pf.service.version.base.minor - 1,
-> +					     &major, &minor));
-> +}
-> +
-> +static void pf_negotiate_base_prev(struct kunit *test)
-> +{
-> +	struct xe_gt *gt = test->priv;
-> +	u32 major, minor;
-> +
-> +	KUNIT_ASSERT_NE(test, 0,
-> +			pf_negotiate_version(gt,
-> +					     gt->sriov.pf.service.version.base.major - 1, 1,
-> +					     &major, &minor));
-> +}
-> +
-> +static void pf_negotiate_latest_match(struct kunit *test)
-> +{
-> +	struct xe_gt *gt = test->priv;
-> +	u32 major, minor;
-> +
-> +	KUNIT_ASSERT_EQ(test, 0,
-> +			pf_negotiate_version(gt,
-> +					     gt->sriov.pf.service.version.latest.major,
-> +					     gt->sriov.pf.service.version.latest.minor,
-> +					     &major, &minor));
-> +	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.latest.major);
-> +	KUNIT_ASSERT_EQ(test, minor, gt->sriov.pf.service.version.latest.minor);
-> +}
-> +
-> +static void pf_negotiate_latest_newer(struct kunit *test)
-> +{
-> +	struct xe_gt *gt = test->priv;
-> +	u32 major, minor;
-> +
-> +	KUNIT_ASSERT_EQ(test, 0,
-> +			pf_negotiate_version(gt,
-> +					     gt->sriov.pf.service.version.latest.major,
-> +					     gt->sriov.pf.service.version.latest.minor + 1,
-> +					     &major, &minor));
-> +	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.latest.major);
-> +	KUNIT_ASSERT_EQ(test, minor, gt->sriov.pf.service.version.latest.minor);
-> +}
-> +
-> +static void pf_negotiate_latest_next(struct kunit *test)
-> +{
-> +	struct xe_gt *gt = test->priv;
-> +	u32 major, minor;
-> +
-> +	KUNIT_ASSERT_EQ(test, 0,
-> +			pf_negotiate_version(gt,
-> +					     gt->sriov.pf.service.version.latest.major + 1, 0,
-> +					     &major, &minor));
-> +	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.latest.major);
-> +	KUNIT_ASSERT_EQ(test, minor, gt->sriov.pf.service.version.latest.minor);
-> +}
-> +
-> +static void pf_negotiate_latest_older(struct kunit *test)
-> +{
-> +	struct xe_gt *gt = test->priv;
-> +	u32 major, minor;
-> +
-> +	if (!gt->sriov.pf.service.version.latest.minor)
-> +		kunit_skip(test, "no older minor\n");
-> +
-> +	KUNIT_ASSERT_EQ(test, 0,
-> +			pf_negotiate_version(gt,
-> +					     gt->sriov.pf.service.version.latest.major,
-> +					     gt->sriov.pf.service.version.latest.minor - 1,
-> +					     &major, &minor));
-> +	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.latest.major);
-> +	KUNIT_ASSERT_EQ(test, minor, gt->sriov.pf.service.version.latest.minor - 1);
-> +}
-> +
-> +static void pf_negotiate_latest_prev(struct kunit *test)
-> +{
-> +	struct xe_gt *gt = test->priv;
-> +	u32 major, minor;
-> +
-> +	if (gt->sriov.pf.service.version.base.major == gt->sriov.pf.service.version.latest.major)
-> +		kunit_skip(test, "no prev major");
-> +
-> +	KUNIT_ASSERT_EQ(test, 0,
-> +			pf_negotiate_version(gt,
-> +					     gt->sriov.pf.service.version.latest.major - 1,
-> +					     gt->sriov.pf.service.version.base.minor + 1,
-> +					     &major, &minor));
-> +	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.latest.major - 1);
-> +	KUNIT_ASSERT_GE(test, major, gt->sriov.pf.service.version.base.major);
-> +}
-> +
-> +static struct kunit_case pf_service_test_cases[] = {
-> +	KUNIT_CASE(pf_negotiate_any),
-> +	KUNIT_CASE(pf_negotiate_base_match),
-> +	KUNIT_CASE(pf_negotiate_base_newer),
-> +	KUNIT_CASE(pf_negotiate_base_next),
-> +	KUNIT_CASE(pf_negotiate_base_older),
-> +	KUNIT_CASE(pf_negotiate_base_prev),
-> +	KUNIT_CASE(pf_negotiate_latest_match),
-> +	KUNIT_CASE(pf_negotiate_latest_newer),
-> +	KUNIT_CASE(pf_negotiate_latest_next),
-> +	KUNIT_CASE(pf_negotiate_latest_older),
-> +	KUNIT_CASE(pf_negotiate_latest_prev),
-> +	{}
-> +};
-> +
-> +static struct kunit_suite pf_service_suite = {
-> +	.name = "pf_service",
-> +	.test_cases = pf_service_test_cases,
-> +	.init = pf_service_test_init,
-> +};
-> +
-> +kunit_test_suite(pf_service_suite);
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-> index 4b9850cc3615..80899fa1ad2a 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-> @@ -547,3 +547,7 @@ int xe_gt_sriov_pf_service_print_version(struct xe_gt *gt, struct drm_printer *p
->  
->  	return 0;
->  }
-> +
-> +#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
-> +#include "tests/xe_gt_sriov_pf_service_test.c"
-> +#endif
+Surprisingly many places depend on debugfs.h to be included via
+drm_print.h. Fix them.
 
-LGTM:
-Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+v3: Also fix armada, ite-it6505, imagination, msm, sti, vc4, and xe
 
-> -- 
-> 2.43.0
-> 
+v2: Also fix ivpu and vmwgfx
 
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Acked-by: Maxime Ripard <mripard@kernel.org>
+Link: https://patchwork.freedesktop.org/patch/msgid/20240410141434.157908-1-jani.nikula@intel.com
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
+---
+
+Cc: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
+Cc: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
+Cc: Oded Gabbay <ogabbay@kernel.org>
+Cc: Russell King <linux@armlinux.org.uk>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Robert Foss <rfoss@kernel.org>
+Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: Jonas Karlman <jonas@kwiboo.se>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: Frank Binns <frank.binns@imgtec.com>
+Cc: Matt Coster <matt.coster@imgtec.com>
+Cc: Rob Clark <robdclark@gmail.com>
+Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Sean Paul <sean@poorly.run>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>
+Cc: Karol Herbst <kherbst@redhat.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Danilo Krummrich <dakr@redhat.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+Cc: Alain Volmat <alain.volmat@foss.st.com>
+Cc: Huang Rui <ray.huang@amd.com>
+Cc: Zack Rusin <zack.rusin@broadcom.com>
+Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: linux-arm-msm@vger.kernel.org
+Cc: freedreno@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org
+---
+ drivers/accel/ivpu/ivpu_debugfs.c           | 2 ++
+ drivers/gpu/drm/armada/armada_debugfs.c     | 1 +
+ drivers/gpu/drm/bridge/ite-it6505.c         | 1 +
+ drivers/gpu/drm/bridge/panel.c              | 2 ++
+ drivers/gpu/drm/drm_print.c                 | 6 +++---
+ drivers/gpu/drm/i915/display/intel_dmc.c    | 1 +
+ drivers/gpu/drm/imagination/pvr_fw_trace.c  | 1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c | 2 ++
+ drivers/gpu/drm/nouveau/dispnv50/crc.c      | 2 ++
+ drivers/gpu/drm/radeon/r100.c               | 1 +
+ drivers/gpu/drm/radeon/r300.c               | 1 +
+ drivers/gpu/drm/radeon/r420.c               | 1 +
+ drivers/gpu/drm/radeon/r600.c               | 3 ++-
+ drivers/gpu/drm/radeon/radeon_fence.c       | 1 +
+ drivers/gpu/drm/radeon/radeon_gem.c         | 1 +
+ drivers/gpu/drm/radeon/radeon_ib.c          | 2 ++
+ drivers/gpu/drm/radeon/radeon_pm.c          | 1 +
+ drivers/gpu/drm/radeon/radeon_ring.c        | 2 ++
+ drivers/gpu/drm/radeon/radeon_ttm.c         | 1 +
+ drivers/gpu/drm/radeon/rs400.c              | 1 +
+ drivers/gpu/drm/radeon/rv515.c              | 1 +
+ drivers/gpu/drm/sti/sti_drv.c               | 1 +
+ drivers/gpu/drm/ttm/ttm_device.c            | 1 +
+ drivers/gpu/drm/ttm/ttm_resource.c          | 3 ++-
+ drivers/gpu/drm/ttm/ttm_tt.c                | 5 +++--
+ drivers/gpu/drm/vc4/vc4_drv.h               | 1 +
+ drivers/gpu/drm/vmwgfx/vmwgfx_gem.c         | 2 ++
+ drivers/gpu/drm/xe/xe_debugfs.c             | 1 +
+ drivers/gpu/drm/xe/xe_gt_debugfs.c          | 2 ++
+ drivers/gpu/drm/xe/xe_uc_debugfs.c          | 2 ++
+ include/drm/drm_print.h                     | 2 +-
+ 31 files changed, 46 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/accel/ivpu/ivpu_debugfs.c b/drivers/accel/ivpu/ivpu_debugfs.c
+index d09d29775b3f..e07e447d08d1 100644
+--- a/drivers/accel/ivpu/ivpu_debugfs.c
++++ b/drivers/accel/ivpu/ivpu_debugfs.c
+@@ -3,6 +3,8 @@
+  * Copyright (C) 2020-2023 Intel Corporation
+  */
+ 
++#include <linux/debugfs.h>
++
+ #include <drm/drm_debugfs.h>
+ #include <drm/drm_file.h>
+ #include <drm/drm_print.h>
+diff --git a/drivers/gpu/drm/armada/armada_debugfs.c b/drivers/gpu/drm/armada/armada_debugfs.c
+index 29f4b52e3c8d..a763349dd89f 100644
+--- a/drivers/gpu/drm/armada/armada_debugfs.c
++++ b/drivers/gpu/drm/armada/armada_debugfs.c
+@@ -5,6 +5,7 @@
+  */
+ 
+ #include <linux/ctype.h>
++#include <linux/debugfs.h>
+ #include <linux/module.h>
+ #include <linux/seq_file.h>
+ #include <linux/uaccess.h>
+diff --git a/drivers/gpu/drm/bridge/ite-it6505.c b/drivers/gpu/drm/bridge/ite-it6505.c
+index 27334173e911..3f68c82888c2 100644
+--- a/drivers/gpu/drm/bridge/ite-it6505.c
++++ b/drivers/gpu/drm/bridge/ite-it6505.c
+@@ -3,6 +3,7 @@
+  * Copyright (c) 2020, The Linux Foundation. All rights reserved.
+  */
+ #include <linux/bits.h>
++#include <linux/debugfs.h>
+ #include <linux/delay.h>
+ #include <linux/device.h>
+ #include <linux/err.h>
+diff --git a/drivers/gpu/drm/bridge/panel.c b/drivers/gpu/drm/bridge/panel.c
+index 7f41525f7a6e..32506524d9a2 100644
+--- a/drivers/gpu/drm/bridge/panel.c
++++ b/drivers/gpu/drm/bridge/panel.c
+@@ -4,6 +4,8 @@
+  * Copyright (C) 2017 Broadcom
+  */
+ 
++#include <linux/debugfs.h>
++
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_bridge.h>
+ #include <drm/drm_connector.h>
+diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
+index 699b7dbffd7b..cf2efb44722c 100644
+--- a/drivers/gpu/drm/drm_print.c
++++ b/drivers/gpu/drm/drm_print.c
+@@ -23,13 +23,13 @@
+  * Rob Clark <robdclark@gmail.com>
+  */
+ 
+-#include <linux/stdarg.h>
+-
++#include <linux/debugfs.h>
++#include <linux/dynamic_debug.h>
+ #include <linux/io.h>
+ #include <linux/moduleparam.h>
+ #include <linux/seq_file.h>
+ #include <linux/slab.h>
+-#include <linux/dynamic_debug.h>
++#include <linux/stdarg.h>
+ 
+ #include <drm/drm.h>
+ #include <drm/drm_drv.h>
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 3697a02b51b6..09346afd1f0e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -22,6 +22,7 @@
+  *
+  */
+ 
++#include <linux/debugfs.h>
+ #include <linux/firmware.h>
+ 
+ #include "i915_drv.h"
+diff --git a/drivers/gpu/drm/imagination/pvr_fw_trace.c b/drivers/gpu/drm/imagination/pvr_fw_trace.c
+index 31199e45b72e..73707daa4e52 100644
+--- a/drivers/gpu/drm/imagination/pvr_fw_trace.c
++++ b/drivers/gpu/drm/imagination/pvr_fw_trace.c
+@@ -12,6 +12,7 @@
+ 
+ #include <linux/build_bug.h>
+ #include <linux/dcache.h>
++#include <linux/debugfs.h>
+ #include <linux/sysfs.h>
+ #include <linux/types.h>
+ 
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c
+index 0bf8a83e8df3..8586f2761782 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c
+@@ -2,6 +2,8 @@
+ /* Copyright (c) 2015-2018, The Linux Foundation. All rights reserved.
+  */
+ 
++#include <linux/debugfs.h>
++
+ #include "dpu_hwio.h"
+ #include "dpu_hw_catalog.h"
+ #include "dpu_hw_lm.h"
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/crc.c b/drivers/gpu/drm/nouveau/dispnv50/crc.c
+index 9c942fbd836d..5936b6b3b15d 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/crc.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/crc.c
+@@ -1,5 +1,7 @@
+ // SPDX-License-Identifier: MIT
++#include <linux/debugfs.h>
+ #include <linux/string.h>
++
+ #include <drm/drm_crtc.h>
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_vblank.h>
+diff --git a/drivers/gpu/drm/radeon/r100.c b/drivers/gpu/drm/radeon/r100.c
+index 86b8b770af19..0b1e19345f43 100644
+--- a/drivers/gpu/drm/radeon/r100.c
++++ b/drivers/gpu/drm/radeon/r100.c
+@@ -26,6 +26,7 @@
+  *          Jerome Glisse
+  */
+ 
++#include <linux/debugfs.h>
+ #include <linux/firmware.h>
+ #include <linux/module.h>
+ #include <linux/pci.h>
+diff --git a/drivers/gpu/drm/radeon/r300.c b/drivers/gpu/drm/radeon/r300.c
+index 25201b9a5aae..1620f534f55f 100644
+--- a/drivers/gpu/drm/radeon/r300.c
++++ b/drivers/gpu/drm/radeon/r300.c
+@@ -26,6 +26,7 @@
+  *          Jerome Glisse
+  */
+ 
++#include <linux/debugfs.h>
+ #include <linux/pci.h>
+ #include <linux/seq_file.h>
+ #include <linux/slab.h>
+diff --git a/drivers/gpu/drm/radeon/r420.c b/drivers/gpu/drm/radeon/r420.c
+index eae8a6389f5e..a979662eaa73 100644
+--- a/drivers/gpu/drm/radeon/r420.c
++++ b/drivers/gpu/drm/radeon/r420.c
+@@ -26,6 +26,7 @@
+  *          Jerome Glisse
+  */
+ 
++#include <linux/debugfs.h>
+ #include <linux/pci.h>
+ #include <linux/seq_file.h>
+ #include <linux/slab.h>
+diff --git a/drivers/gpu/drm/radeon/r600.c b/drivers/gpu/drm/radeon/r600.c
+index b5e97d95a19f..087d41e370fd 100644
+--- a/drivers/gpu/drm/radeon/r600.c
++++ b/drivers/gpu/drm/radeon/r600.c
+@@ -26,11 +26,12 @@
+  *          Jerome Glisse
+  */
+ 
++#include <linux/debugfs.h>
+ #include <linux/firmware.h>
+ #include <linux/module.h>
+ #include <linux/pci.h>
+-#include <linux/slab.h>
+ #include <linux/seq_file.h>
++#include <linux/slab.h>
+ 
+ #include <drm/drm_device.h>
+ #include <drm/drm_vblank.h>
+diff --git a/drivers/gpu/drm/radeon/radeon_fence.c b/drivers/gpu/drm/radeon/radeon_fence.c
+index 9ebe4a0b9a6c..4fb780d96f32 100644
+--- a/drivers/gpu/drm/radeon/radeon_fence.c
++++ b/drivers/gpu/drm/radeon/radeon_fence.c
+@@ -30,6 +30,7 @@
+  */
+ 
+ #include <linux/atomic.h>
++#include <linux/debugfs.h>
+ #include <linux/firmware.h>
+ #include <linux/kref.h>
+ #include <linux/sched/signal.h>
+diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon/radeon_gem.c
+index 3fec3acdaf28..2ef201a072f1 100644
+--- a/drivers/gpu/drm/radeon/radeon_gem.c
++++ b/drivers/gpu/drm/radeon/radeon_gem.c
+@@ -26,6 +26,7 @@
+  *          Jerome Glisse
+  */
+ 
++#include <linux/debugfs.h>
+ #include <linux/iosys-map.h>
+ #include <linux/pci.h>
+ 
+diff --git a/drivers/gpu/drm/radeon/radeon_ib.c b/drivers/gpu/drm/radeon/radeon_ib.c
+index fb9ecf5dbe2b..63d914f3414d 100644
+--- a/drivers/gpu/drm/radeon/radeon_ib.c
++++ b/drivers/gpu/drm/radeon/radeon_ib.c
+@@ -27,6 +27,8 @@
+  *          Christian König
+  */
+ 
++#include <linux/debugfs.h>
++
+ #include <drm/drm_file.h>
+ 
+ #include "radeon.h"
+diff --git a/drivers/gpu/drm/radeon/radeon_pm.c b/drivers/gpu/drm/radeon/radeon_pm.c
+index 4482c8c5f5ce..2d9d9f46f243 100644
+--- a/drivers/gpu/drm/radeon/radeon_pm.c
++++ b/drivers/gpu/drm/radeon/radeon_pm.c
+@@ -21,6 +21,7 @@
+  *          Alex Deucher <alexdeucher@gmail.com>
+  */
+ 
++#include <linux/debugfs.h>
+ #include <linux/hwmon-sysfs.h>
+ #include <linux/hwmon.h>
+ #include <linux/pci.h>
+diff --git a/drivers/gpu/drm/radeon/radeon_ring.c b/drivers/gpu/drm/radeon/radeon_ring.c
+index 38048593bb4a..8d1d458286a8 100644
+--- a/drivers/gpu/drm/radeon/radeon_ring.c
++++ b/drivers/gpu/drm/radeon/radeon_ring.c
+@@ -27,6 +27,8 @@
+  *          Christian König
+  */
+ 
++#include <linux/debugfs.h>
++
+ #include <drm/drm_device.h>
+ #include <drm/drm_file.h>
+ 
+diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c b/drivers/gpu/drm/radeon/radeon_ttm.c
+index 2078b0000e22..5c65b6dfb99a 100644
+--- a/drivers/gpu/drm/radeon/radeon_ttm.c
++++ b/drivers/gpu/drm/radeon/radeon_ttm.c
+@@ -30,6 +30,7 @@
+  *    Dave Airlie
+  */
+ 
++#include <linux/debugfs.h>
+ #include <linux/dma-mapping.h>
+ #include <linux/pagemap.h>
+ #include <linux/pci.h>
+diff --git a/drivers/gpu/drm/radeon/rs400.c b/drivers/gpu/drm/radeon/rs400.c
+index d7f552d441ab..d4d1501e6576 100644
+--- a/drivers/gpu/drm/radeon/rs400.c
++++ b/drivers/gpu/drm/radeon/rs400.c
+@@ -26,6 +26,7 @@
+  *          Jerome Glisse
+  */
+ 
++#include <linux/debugfs.h>
+ #include <linux/seq_file.h>
+ #include <linux/slab.h>
+ 
+diff --git a/drivers/gpu/drm/radeon/rv515.c b/drivers/gpu/drm/radeon/rv515.c
+index 79709d26d983..bbc6ccabf788 100644
+--- a/drivers/gpu/drm/radeon/rv515.c
++++ b/drivers/gpu/drm/radeon/rv515.c
+@@ -26,6 +26,7 @@
+  *          Jerome Glisse
+  */
+ 
++#include <linux/debugfs.h>
+ #include <linux/seq_file.h>
+ #include <linux/slab.h>
+ 
+diff --git a/drivers/gpu/drm/sti/sti_drv.c b/drivers/gpu/drm/sti/sti_drv.c
+index 4bab93c4fefd..1799c12babf5 100644
+--- a/drivers/gpu/drm/sti/sti_drv.c
++++ b/drivers/gpu/drm/sti/sti_drv.c
+@@ -5,6 +5,7 @@
+  */
+ 
+ #include <linux/component.h>
++#include <linux/debugfs.h>
+ #include <linux/dma-mapping.h>
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
+index 76027960054f..434cf0258000 100644
+--- a/drivers/gpu/drm/ttm/ttm_device.c
++++ b/drivers/gpu/drm/ttm/ttm_device.c
+@@ -27,6 +27,7 @@
+ 
+ #define pr_fmt(fmt) "[TTM DEVICE] " fmt
+ 
++#include <linux/debugfs.h>
+ #include <linux/mm.h>
+ 
+ #include <drm/ttm/ttm_bo.h>
+diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
+index be8d286513f9..4a66b851b67d 100644
+--- a/drivers/gpu/drm/ttm/ttm_resource.c
++++ b/drivers/gpu/drm/ttm/ttm_resource.c
+@@ -22,8 +22,9 @@
+  * Authors: Christian König
+  */
+ 
+-#include <linux/iosys-map.h>
++#include <linux/debugfs.h>
+ #include <linux/io-mapping.h>
++#include <linux/iosys-map.h>
+ #include <linux/scatterlist.h>
+ 
+ #include <drm/ttm/ttm_bo.h>
+diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
+index 578a7c37f00b..474fe7aad2a0 100644
+--- a/drivers/gpu/drm/ttm/ttm_tt.c
++++ b/drivers/gpu/drm/ttm/ttm_tt.c
+@@ -32,10 +32,11 @@
+ #define pr_fmt(fmt) "[TTM] " fmt
+ 
+ #include <linux/cc_platform.h>
+-#include <linux/sched.h>
+-#include <linux/shmem_fs.h>
++#include <linux/debugfs.h>
+ #include <linux/file.h>
+ #include <linux/module.h>
++#include <linux/sched.h>
++#include <linux/shmem_fs.h>
+ #include <drm/drm_cache.h>
+ #include <drm/drm_device.h>
+ #include <drm/drm_util.h>
+diff --git a/drivers/gpu/drm/vc4/vc4_drv.h b/drivers/gpu/drm/vc4/vc4_drv.h
+index ab61e96e7e14..08e29fa82563 100644
+--- a/drivers/gpu/drm/vc4/vc4_drv.h
++++ b/drivers/gpu/drm/vc4/vc4_drv.h
+@@ -5,6 +5,7 @@
+ #ifndef _VC4_DRV_H_
+ #define _VC4_DRV_H_
+ 
++#include <linux/debugfs.h>
+ #include <linux/delay.h>
+ #include <linux/of.h>
+ #include <linux/refcount.h>
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c b/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
+index 2132a8ad8c0c..07185c108218 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
+@@ -30,6 +30,8 @@
+ #include "drm/drm_prime.h"
+ #include "drm/drm_gem_ttm_helper.h"
+ 
++#include <linux/debugfs.h>
++
+ static void vmw_gem_object_free(struct drm_gem_object *gobj)
+ {
+ 	struct ttm_buffer_object *bo = drm_gem_ttm_of_gem(gobj);
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index c9b30dbdc14d..0b7aebaae843 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -5,6 +5,7 @@
+ 
+ #include "xe_debugfs.h"
+ 
++#include <linux/debugfs.h>
+ #include <linux/string_helpers.h>
+ 
+ #include <drm/drm_debugfs.h>
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index ff7f4cf52fa9..8cf0b2625efc 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -5,6 +5,8 @@
+ 
+ #include "xe_gt_debugfs.h"
+ 
++#include <linux/debugfs.h>
++
+ #include <drm/drm_debugfs.h>
+ #include <drm/drm_managed.h>
+ 
+diff --git a/drivers/gpu/drm/xe/xe_uc_debugfs.c b/drivers/gpu/drm/xe/xe_uc_debugfs.c
+index 0a39ec5a6e99..78eb8db73791 100644
+--- a/drivers/gpu/drm/xe/xe_uc_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_uc_debugfs.c
+@@ -3,6 +3,8 @@
+  * Copyright © 2022 Intel Corporation
+  */
+ 
++#include <linux/debugfs.h>
++
+ #include <drm/drm_debugfs.h>
+ 
+ #include "xe_gt.h"
+diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+index 9cc473e5d353..561c3b96b6fd 100644
+--- a/include/drm/drm_print.h
++++ b/include/drm/drm_print.h
+@@ -30,11 +30,11 @@
+ #include <linux/printk.h>
+ #include <linux/seq_file.h>
+ #include <linux/device.h>
+-#include <linux/debugfs.h>
+ #include <linux/dynamic_debug.h>
+ 
+ #include <drm/drm.h>
+ 
++struct debugfs_regset32;
+ struct drm_device;
+ 
+ /* Do *not* use outside of drm_print.[ch]! */
 -- 
+2.39.2
+
