@@ -4,60 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B062C4345F
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Apr 2024 17:24:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EECDC4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Apr 2024 17:28:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03DB610EB57;
-	Mon, 22 Apr 2024 17:24:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37A1210EBF6;
+	Mon, 22 Apr 2024 17:28:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SzwJzlVI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TUebDrcu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16FEA10EB57
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Apr 2024 17:24:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1591410EBF6
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Apr 2024 17:28:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713806673; x=1745342673;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=PqpA+HzYLNm31UMN8LiBLK8nVGPthLb8cDMShWwbr7E=;
- b=SzwJzlVID/tUx0Khg/Nxk/m9mpNtoIRf8RR2xyGgx1rmw4+6W/nMBJRB
- cheKvm+FLIHqMaWSruCMftkReWTduWudrICMsGgMfmrgIZJ3ib92xcOkE
- Wcoz/D7nq7YVOf7+RPFMAnJXIGoa3Z+aRR8pjm8cqldkGF9vTZqcUzIM0
- EqcEWmScQ2bRTISAn8M+PmSjV4Y1R/VcweESc7WSjrRkx3otdFbVt2kBz
- N8/lD4Ou5vOgTO00OXxrg1rPJEYamsjwDbYKMrpt9hmUuQoI8CNHvNa/1
- GfDRXu1m48pbCamoZZYmKBhwjMjhsEiSa7opRRctqDKspkBjG/XZnK+Ba Q==;
-X-CSE-ConnectionGUID: aJA6ABNOQV6P2FlJPcr1fQ==
-X-CSE-MsgGUID: 8Y8AyP4kRX2R4kbedyHDqQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="12297332"
-X-IronPort-AV: E=Sophos;i="6.07,221,1708416000"; d="scan'208";a="12297332"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2024 10:24:32 -0700
-X-CSE-ConnectionGUID: jQvbw2iHQ4CFowjqHvoMsw==
-X-CSE-MsgGUID: GPsTyZQNRUmqlbZirLCf8Q==
+ t=1713806920; x=1745342920;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=X01ImktQuSprR4RR4wKSTv/BaIFsljrDr7vTXgqgUyY=;
+ b=TUebDrcutddEd40wPxnL1pUQZSmBtMtcZIAUe4rBWtFBB1/AKgmlYHs/
+ xr4UUO6jx+CKVZzZKIOqa3hLJlsJHa+26yaUvb0AgkGfRV5OZWg3dsKms
+ 6//fJCD6Js0t03Ae2/hFV8yQkUMzzfyT8oXhFRv4493MRrmP7R+rHA0/l
+ sOLyUAuBrFRunaivCKY3/swYJV4qzi205Deo3IJCkpogpMnqr87NEsnex
+ Cwhm3GkGTnKG1Ha2YG2yP3WcOFnwjfHL/4L85d6LyYnpTh1uVdvQYA0UC
+ QP+MVaEpxX1eoqHMGPKDIaGoL2yCJ3nDa41fN+9qbE6U8LVvRJ2QT85j2 w==;
+X-CSE-ConnectionGUID: jPX3DG+lRPWo5U21pBjtKw==
+X-CSE-MsgGUID: b8vy8KVdRCuwFJOadYwSGQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="19912068"
+X-IronPort-AV: E=Sophos;i="6.07,221,1708416000"; d="scan'208";a="19912068"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2024 10:28:40 -0700
+X-CSE-ConnectionGUID: SBIZyPlVR2qN16tIvPzZsg==
+X-CSE-MsgGUID: 4Ce5ogpmS1OnVQajNkysQQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,221,1708416000"; d="scan'208";a="24141003"
+X-IronPort-AV: E=Sophos;i="6.07,221,1708416000"; d="scan'208";a="28603137"
 Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa006.fm.intel.com with ESMTP; 22 Apr 2024 10:24:31 -0700
+ by fmviesa003.fm.intel.com with ESMTP; 22 Apr 2024 10:28:38 -0700
 Received: from [10.252.63.74] (mwajdecz-MOBL.ger.corp.intel.com [10.252.63.74])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 2BD182877B;
- Mon, 22 Apr 2024 18:24:25 +0100 (IST)
-Message-ID: <92380b51-2c09-4000-aad2-f1a463c16ee0@intel.com>
-Date: Mon, 22 Apr 2024 19:24:17 +0200
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 63FD12879A
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Apr 2024 18:28:29 +0100 (IST)
+Message-ID: <d3d3f9a7-2ca3-4d9d-b454-a11a61f7b98e@intel.com>
+Date: Mon, 22 Apr 2024 19:28:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] drm/xe/pf: Expose SR-IOV policy settings over debugfs
-To: =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-References: <20240418203442.226-1-michal.wajdeczko@intel.com>
- <20240418203442.226-4-michal.wajdeczko@intel.com>
- <20240422170219.6jbgcvfjcfvt5tlw@intel.com>
+Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/guc=3A_Fix?=
+ =?UTF-8?Q?_arguments_passed_to_relay_G2H_handlers?=
+To: intel-xe@lists.freedesktop.org
+References: <20240419150351.358-1-michal.wajdeczko@intel.com>
+ <171357010156.1536851.11430254969529858621@8e613ede5ea5>
 Content-Language: en-US
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20240422170219.6jbgcvfjcfvt5tlw@intel.com>
+In-Reply-To: <171357010156.1536851.11430254969529858621@8e613ede5ea5>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,110 +73,59 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 22.04.2024 19:02, Piotr Piórkowski wrote:
-> Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on czw [2024-kwi-18 22:34:42 +0200]:
->> We already have functions to configure SR-IOV policies.
->> Allow to tweak those policy settings over debugfs.
->>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 50 +++++++++++++++++++++
->>  1 file changed, 50 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
->> index 8909bb950a8b..3a83af7aa039 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
->> @@ -17,6 +17,7 @@
->>  #include "xe_gt_sriov_pf_control.h"
->>  #include "xe_gt_sriov_pf_debugfs.h"
->>  #include "xe_gt_sriov_pf_helpers.h"
->> +#include "xe_gt_sriov_pf_policy.h"
->>  #include "xe_pm.h"
->>  
->>  /*
->> @@ -76,6 +77,54 @@ static const struct drm_info_list pf_info[] = {
->>  	},
->>  };
->>  
->> +/*
->> + *      /sys/kernel/debug/dri/0/
->> + *      ├── gt0
->> + *      │   ├── pf
->> + *      │   │   ├── reset_engine
->> + *      │   │   ├── sample_period
->> + *      │   │   ├── sched_if_idle
->> + */
->> +
->> +#define DEFINE_SRIOV_GT_POLICY_DEBUGFS_ATTRIBUTE(POLICY, TYPE, FORMAT)		\
->> +			
-> The same as I wrote in e earlier patch, only here also TYPE seems unnecessary.
-> What's the point of creating a macro with parameters you don't use?
-> \
-
-as explained earlier, FORMAT parameter allows flexibility as provided by
-DEFINE_DEBUGFS_ATTRIBUTE
-
-for TYPE, I clearly missed to add code to reject out of range input
-values, will try to fix in v2
-
->> +static int POLICY##_set(void *data, u64 val)					\
->> +{										\
->> +	struct xe_gt *gt = extract_gt(data);					\
->> +	struct xe_device *xe = gt_to_xe(gt);					\
->> +	int err;								\
->> +										\
->> +	xe_pm_runtime_get(xe);							\
->> +	err = xe_gt_sriov_pf_policy_set_##POLICY(gt, val);			\
->> +	xe_pm_runtime_put(xe);							\
->> +										\
->> +	return err;								\
->> +}										\
->> +										\
->> +static int POLICY##_get(void *data, u64 *val)					\
->> +{										\
->> +	struct xe_gt *gt = extract_gt(data);					\
->> +										\
->> +	*val = xe_gt_sriov_pf_policy_get_##POLICY(gt);				\
->> +	return 0;								\
->> +}										\
->> +										\
->> +DEFINE_DEBUGFS_ATTRIBUTE(POLICY##_fops, POLICY##_get, POLICY##_set, FORMAT)
->> +
->> +DEFINE_SRIOV_GT_POLICY_DEBUGFS_ATTRIBUTE(reset_engine, bool, "%llu\n");
->> +DEFINE_SRIOV_GT_POLICY_DEBUGFS_ATTRIBUTE(sched_if_idle, bool, "%llu\n");
->> +DEFINE_SRIOV_GT_POLICY_DEBUGFS_ATTRIBUTE(sample_period, u32, "%llu\n");
->> +
->> +static void pf_add_policy_attrs(struct xe_gt *gt, struct dentry *parent)
->> +{
->> +	xe_gt_assert(gt, gt == extract_gt(parent));
->> +	xe_gt_assert(gt, PFID == extract_vfid(parent));
->> +
->> +	debugfs_create_file_unsafe("reset_engine", 0644, parent, parent, &reset_engine_fops);
->> +	debugfs_create_file_unsafe("sched_if_idle", 0644, parent, parent, &sched_if_idle_fops);
->> +	debugfs_create_file_unsafe("sample_period_ms", 0644, parent, parent, &sample_period_fops);
->> +}
->> +
->>  /*
->>   *      /sys/kernel/debug/dri/0/
->>   *      ├── gt0
->> @@ -261,6 +310,7 @@ void xe_gt_sriov_pf_debugfs_register(struct xe_gt *gt, struct dentry *root)
->>  	pfdentry->d_inode->i_private = gt;
->>  
->>  	drm_debugfs_create_files(pf_info, ARRAY_SIZE(pf_info), pfdentry, minor);
->> +	pf_add_policy_attrs(gt, pfdentry);
->>  	pf_add_config_attrs(gt, pfdentry, PFID);
->>  
->>  	for (n = 1; n <= totalvfs; n++) {
->> -- 
->> 2.43.0
+On 20.04.2024 01:41, Patchwork wrote:
+> == Series Details ==
 > 
-> One comment above. 
-> Overall the functionality is ok:
-> Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+> Series: drm/xe/guc: Fix arguments passed to relay G2H handlers
+> URL   : https://patchwork.freedesktop.org/series/132651/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from xe-1129-53dd7a2909139fb469db4423b79d8a2888a734c2_BAT -> xe-pw-132651v1_BAT
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with xe-pw-132651v1_BAT absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in xe-pw-132651v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   
+> 
+> Participating hosts (4 -> 0)
+> ------------------------------
+> 
+>   ERROR: It appears as if the changes made in xe-pw-132651v1_BAT prevented too many machines from booting.
+> 
+>   Missing    (4): bat-pvc-2 bat-dg2-oem2 bat-adlp-7 bat-atsm-2 
 
-Thanks,
+this is clearly a CI glitch
 
 > 
->>
+> 
+> Changes
+> -------
+> 
+>   No changes found
+> 
+> 
+> Build changes
+> -------------
+> 
+>   * Linux: xe-1129-53dd7a2909139fb469db4423b79d8a2888a734c2 -> xe-pw-132651v1
+> 
+>   IGT_7814: 7814
+>   xe-1129-53dd7a2909139fb469db4423b79d8a2888a734c2: 53dd7a2909139fb469db4423b79d8a2888a734c2
+>   xe-pw-132651v1: 132651v1
+> 
+> == Logs ==
+> 
+> For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132651v1/index.html
 > 
