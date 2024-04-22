@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C33CC4345F
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Apr 2024 08:21:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 510C4C4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Apr 2024 08:21:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21F4F11289D;
-	Mon, 22 Apr 2024 08:21:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D18211289F;
+	Mon, 22 Apr 2024 08:21:43 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4267911289D;
- Mon, 22 Apr 2024 08:21:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8F7411289D;
+ Mon, 22 Apr 2024 08:21:41 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Support_PC?=
- =?utf-8?q?Ie_FLR_=28rev5=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Support_PCIe_FL?=
+ =?utf-8?q?R_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Aravind Iddamsetty" <aravind.iddamsetty@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 22 Apr 2024 08:21:17 -0000
-Message-ID: <171377407727.1570261.1413395833221399114@8e613ede5ea5>
+Date: Mon, 22 Apr 2024 08:21:41 -0000
+Message-ID: <171377410188.1570261.13039312183388307997@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240422065756.294679-1-aravind.iddamsetty@linux.intel.com>
 In-Reply-To: <20240422065756.294679-1-aravind.iddamsetty@linux.intel.com>
@@ -44,16 +44,60 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Support PCIe FLR (rev5)
 URL   : https://patchwork.freedesktop.org/series/131366/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 0a2af405f074 drm-tip: 2024y-04m-22d-08h-17m-17s UTC integration manifest
-=== git am output follows ===
-Applying: drm: add devm release action
-Applying: drm/xe: Save and restore PCI state
-Applying: drm/xe: Extract xe_gt_idle() helper
-Applying: drm/xe/FLR: Support PCIe FLR
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+0daf0be5bb95eb0a0e42275e00a0e42d8d8fd543
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 44ac8f2f98686dbbfef257f99f3706b91c9502f6
+Author: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+Date:   Mon Apr 22 12:27:56 2024 +0530
+
+    drm/xe/FLR: Support PCIe FLR
+    
+    PCI subsystem provides callbacks to inform the driver about a request to
+    do function level reset by user, initiated by writing to sysfs entry
+    /sys/bus/pci/devices/.../reset. This will allow the driver to handle FLR
+    without the need to do unbind and rebind as the driver needs to
+    reinitialize the device afresh post FLR.
+    
+    v2:
+    1. separate out gt idle and pci save/restore to a separate patch (Lucas)
+    2. Fixed the warnings seen around xe_guc_submit_stop, xe_guc_puc_fini
+    
+    v3: declare xe_pci_err_handlers as static(Michal)
+    
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
++ /mt/dim checkpatch 0a2af405f074ae3e3ef211a1921983d1aa460323 drm-intel
+2a86af383d60 drm: add devm release action
+b1bb267c0c1a drm/xe: Save and restore PCI state
+239ff377cf6d drm/xe: Extract xe_gt_idle() helper
+44ac8f2f9868 drm/xe/FLR: Support PCIe FLR
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:123: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#123: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 170 lines checked
 
 
