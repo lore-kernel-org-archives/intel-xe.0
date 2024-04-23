@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D483C04FFE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B890FC18E72
 	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 18:04:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 247AA113560;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 790BA113562;
 	Tue, 23 Apr 2024 18:04:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dckYRwey";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dUBKBLYd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B672113560
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Apr 2024 18:04:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2213B113560
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Apr 2024 18:04:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713895495; x=1745431495;
+ t=1713895492; x=1745431492;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=t/Oj7D7gSe+NiGFgk87ePa0OmGYaZ/YnEn5vTNTBNgc=;
- b=dckYRwey+b5XpZy5gif4xvuGEgY4J4mjuW+QzpR1S1qcCoHaqF0oWOWJ
- 1/EOKqp/CiJK0BdaV4m3JGptQ/P0aq5tcUWRHd8IHBKskKXBFsN7D6lQ4
- ACXN7NxxLz9IXCERKhNhWC69CiJXLy8BQVvYLN+IWbBZrggcSL29Whyra
- onsbaepTy2anjb5Nw/iPk9DPXhtrvFKqj1lPHIq29SS0yPtS0CnfsqBeZ
- pW/M6bEhwmGu8IRbpc827k57VSGUTkJDyxcyDsx22SSR10BwyKNFhuLLW
- J8FK92K/tlX3MWRdXGLjkmLhA6BChSZATYZHuCr+q1VIVrLjC3lu/+oHi g==;
-X-CSE-ConnectionGUID: 4+BShsPZS0yCec1oEcVPdQ==
-X-CSE-MsgGUID: ouDrHkLyTWKXDYz6xCW28Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="9363510"
+ bh=SeLuBehbIZjLRizDwabw+CT9vf4zsDvrKZHzKsDhG1A=;
+ b=dUBKBLYd5AbKqh3blYfMiwt0Z6j40hqBjffMYs/aQjVXxGxjqlkZcVOy
+ CkbecZRXah8UNU1UL/lFGcNMmgM6Rmqywf29hSVuoi1y8kGQkhi+H+Abf
+ E+BBWMVpx0gsKiXYrokAA2dty4A1qn3u/zGvxOAoklS8n1ZG2p1323hAL
+ sBx2f7t3bbbGnF+h0/1rqCfTTQ6Te+6yjANBm5+AvzmSs8VhwyU1SIwrR
+ AjUObdQIG4juRiV8rBQLvh0uz4TRH9l/7JFEFA7sq08Ia2W49oP5bYFxb
+ L3bKiGNISM17CL8umM2r0uHJf6UC0YM/9twAfpn1q/5ogE7f1R8vQLHDs A==;
+X-CSE-ConnectionGUID: 29rwg1RkQmSwRXQjPklnyA==
+X-CSE-MsgGUID: 88y62OIIR+OovVGistTVHA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="9363497"
 X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
-   d="scan'208";a="9363510"
+   d="scan'208";a="9363497"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2024 11:04:55 -0700
-X-CSE-ConnectionGUID: lKkoq+9cQA20fC8U6HoT3A==
-X-CSE-MsgGUID: EajZmHL2SJ6Vm0hD8KnSEg==
+ 23 Apr 2024 11:04:52 -0700
+X-CSE-ConnectionGUID: QhtKiVKNT8uX04Y5As/aFg==
+X-CSE-MsgGUID: 71BO5/epTB6N7lbQG+7bGg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="29105580"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="29105547"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.252.48.128])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2024 11:04:53 -0700
+ 23 Apr 2024 11:04:51 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v2 4/5] drm/xe/pf: Add SR-IOV GuC Relay PF services
-Date: Tue, 23 Apr 2024 20:04:35 +0200
-Message-Id: <20240423180436.2089-5-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 2/5] drm/xe: Add helper to calculate adjusted register
+ offset
+Date: Tue, 23 Apr 2024 20:04:33 +0200
+Message-Id: <20240423180436.2089-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240423180436.2089-1-michal.wajdeczko@intel.com>
 References: <20240423180436.2089-1-michal.wajdeczko@intel.com>
@@ -69,765 +70,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We already have mechanism that allows a VF driver to communicate
-with the PF driver, now add PF side handlers for VF2PF requests
-defined in version 1.0 of VF/PF GuC Relay ABI specification.
-
-The VF2PF_HANDSHAKE request must be used by the VF driver to
-negotiate the ABI version prior to sending any other request.
-We will reset any negotiated version later during FLR.
-
-The outcome of the VF2PF_QUERY_RUNTIME requests depends on actual
-platform, for legacy platforms used as SDV is provided as-is, for
-latest platforms it is preliminary, and might be changed.
+Our MMIO accessing functions automatically adjust addresses for the
+media registers based on mmio.adj_limit and mmio.adj_offset logic.
+Move it to the separate helper to avoid code duplication and to
+allow using it by the upcoming changes to PF driver code.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
 ---
-v2: fix params indent and improve struct description (Piotr)
-    fix kernel-doc annotation (CI.hooks)
-    use VF2PF_QUERY_RUNTIME_NO_LIMIT
+v2: start using helper (Piotr)
+    make gt param const to allow use in xe_mmio_in_range()
+    assert that we adjust both or none addr in xe_mmio_read64_2x32()
 ---
- drivers/gpu/drm/xe/Makefile                   |   1 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c   | 546 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_service.h   |  36 ++
- .../gpu/drm/xe/xe_gt_sriov_pf_service_types.h |  52 ++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h     |   5 +
- drivers/gpu/drm/xe/xe_guc_relay.c             |   8 +-
- 6 files changed, 646 insertions(+), 2 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_service.h
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_service_types.h
+ drivers/gpu/drm/xe/xe_mmio.c | 38 ++++++++++++++----------------------
+ drivers/gpu/drm/xe/xe_mmio.h |  7 +++++++
+ 2 files changed, 22 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 8321ec4f9b46..5ca09cb03363 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -164,6 +164,7 @@ xe-$(CONFIG_PCI_IOV) += \
- 	xe_gt_sriov_pf_config.o \
- 	xe_gt_sriov_pf_control.o \
- 	xe_gt_sriov_pf_policy.o \
-+	xe_gt_sriov_pf_service.o \
- 	xe_lmtt.o \
- 	xe_lmtt_2l.o \
- 	xe_lmtt_ml.o \
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-new file mode 100644
-index 000000000000..a253f196261d
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-@@ -0,0 +1,546 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023-2024 Intel Corporation
-+ */
-+
-+#include <drm/drm_managed.h>
-+
-+#include "abi/guc_actions_sriov_abi.h"
-+#include "abi/guc_relay_actions_abi.h"
-+
-+#include "regs/xe_gt_regs.h"
-+#include "regs/xe_guc_regs.h"
-+#include "regs/xe_regs.h"
-+
-+#include "xe_mmio.h"
-+#include "xe_gt_sriov_printk.h"
-+#include "xe_gt_sriov_pf_helpers.h"
-+#include "xe_gt_sriov_pf_service.h"
-+#include "xe_gt_sriov_pf_service_types.h"
-+#include "xe_guc_ct.h"
-+#include "xe_guc_hxg_helpers.h"
-+
-+static void pf_init_versions(struct xe_gt *gt)
-+{
-+	BUILD_BUG_ON(!GUC_RELAY_VERSION_BASE_MAJOR && !GUC_RELAY_VERSION_BASE_MINOR);
-+	BUILD_BUG_ON(GUC_RELAY_VERSION_BASE_MAJOR > GUC_RELAY_VERSION_LATEST_MAJOR);
-+
-+	/* base versions may differ between platforms */
-+	gt->sriov.pf.service.version.base.major = GUC_RELAY_VERSION_BASE_MAJOR;
-+	gt->sriov.pf.service.version.base.minor = GUC_RELAY_VERSION_BASE_MINOR;
-+
-+	/* latest version is same for all platforms */
-+	gt->sriov.pf.service.version.latest.major = GUC_RELAY_VERSION_LATEST_MAJOR;
-+	gt->sriov.pf.service.version.latest.minor = GUC_RELAY_VERSION_LATEST_MINOR;
-+}
-+
-+/* Return: 0 on success or a negative error code on failure. */
-+static int pf_negotiate_version(struct xe_gt *gt,
-+				u32 wanted_major, u32 wanted_minor,
-+				u32 *major, u32 *minor)
-+{
-+	struct xe_gt_sriov_pf_service_version base = gt->sriov.pf.service.version.base;
-+	struct xe_gt_sriov_pf_service_version latest = gt->sriov.pf.service.version.latest;
-+
-+	xe_gt_assert(gt, base.major);
-+	xe_gt_assert(gt, base.major <= latest.major);
-+	xe_gt_assert(gt, (base.major < latest.major) || (base.minor <= latest.minor));
-+
-+	/* VF doesn't care - return our latest  */
-+	if (wanted_major == VF2PF_HANDSHAKE_MAJOR_ANY &&
-+	    wanted_minor == VF2PF_HANDSHAKE_MINOR_ANY) {
-+		*major = latest.major;
-+		*minor = latest.minor;
-+		return 0;
-+	}
-+
-+	/* VF wants newer than our - return our latest  */
-+	if (wanted_major > latest.major) {
-+		*major = latest.major;
-+		*minor = latest.minor;
-+		return 0;
-+	}
-+
-+	/* VF wants older than min required - reject */
-+	if (wanted_major < base.major ||
-+	    (wanted_major == base.major && wanted_minor < base.minor)) {
-+		return -EPERM;
-+	}
-+
-+	/* previous major - return wanted, as we should still support it */
-+	if (wanted_major < latest.major) {
-+		/* XXX: we are not prepared for multi-versions yet */
-+		xe_gt_assert(gt, base.major == latest.major);
-+		return -ENOPKG;
-+	}
-+
-+	/* same major - return common minor */
-+	*major = wanted_major;
-+	*minor = min_t(u32, latest.minor, wanted_minor);
-+	return 0;
-+}
-+
-+static void pf_connect(struct xe_gt *gt, u32 vfid, u32 major, u32 minor)
-+{
-+	xe_gt_sriov_pf_assert_vfid(gt, vfid);
-+	xe_gt_assert(gt, major || minor);
-+
-+	gt->sriov.pf.vfs[vfid].version.major = major;
-+	gt->sriov.pf.vfs[vfid].version.minor = minor;
-+}
-+
-+static void pf_disconnect(struct xe_gt *gt, u32 vfid)
-+{
-+	xe_gt_sriov_pf_assert_vfid(gt, vfid);
-+
-+	gt->sriov.pf.vfs[vfid].version.major = 0;
-+	gt->sriov.pf.vfs[vfid].version.minor = 0;
-+}
-+
-+static bool pf_is_negotiated(struct xe_gt *gt, u32 vfid, u32 major, u32 minor)
-+{
-+	xe_gt_sriov_pf_assert_vfid(gt, vfid);
-+
-+	return major == gt->sriov.pf.vfs[vfid].version.major &&
-+	       minor <= gt->sriov.pf.vfs[vfid].version.minor;
-+}
-+
-+static const struct xe_reg tgl_runtime_regs[] = {
-+	RPM_CONFIG0,			/* _MMIO(0x0d00) */
-+	MIRROR_FUSE3,			/* _MMIO(0x9118) */
-+	XELP_EU_ENABLE,			/* _MMIO(0x9134) */
-+	XELP_GT_SLICE_ENABLE,		/* _MMIO(0x9138) */
-+	XELP_GT_GEOMETRY_DSS_ENABLE,	/* _MMIO(0x913c) */
-+	GT_VEBOX_VDBOX_DISABLE,		/* _MMIO(0x9140) */
-+	CTC_MODE,			/* _MMIO(0xa26c) */
-+	HUC_KERNEL_LOAD_INFO,		/* _MMIO(0xc1dc) */
-+	TIMESTAMP_OVERRIDE,		/* _MMIO(0x44074) */
-+};
-+
-+static const struct xe_reg ats_m_runtime_regs[] = {
-+	RPM_CONFIG0,			/* _MMIO(0x0d00) */
-+	MIRROR_FUSE3,			/* _MMIO(0x9118) */
-+	MIRROR_FUSE1,			/* _MMIO(0x911c) */
-+	XELP_EU_ENABLE,			/* _MMIO(0x9134) */
-+	XELP_GT_GEOMETRY_DSS_ENABLE,	/* _MMIO(0x913c) */
-+	GT_VEBOX_VDBOX_DISABLE,		/* _MMIO(0x9140) */
-+	XEHP_GT_COMPUTE_DSS_ENABLE,	/* _MMIO(0x9144) */
-+	CTC_MODE,			/* _MMIO(0xa26c) */
-+	HUC_KERNEL_LOAD_INFO,		/* _MMIO(0xc1dc) */
-+	TIMESTAMP_OVERRIDE,		/* _MMIO(0x44074) */
-+};
-+
-+static const struct xe_reg pvc_runtime_regs[] = {
-+	RPM_CONFIG0,			/* _MMIO(0x0d00) */
-+	MIRROR_FUSE3,			/* _MMIO(0x9118) */
-+	XELP_EU_ENABLE,			/* _MMIO(0x9134) */
-+	XELP_GT_GEOMETRY_DSS_ENABLE,	/* _MMIO(0x913c) */
-+	GT_VEBOX_VDBOX_DISABLE,		/* _MMIO(0x9140) */
-+	XEHP_GT_COMPUTE_DSS_ENABLE,	/* _MMIO(0x9144) */
-+	XEHPC_GT_COMPUTE_DSS_ENABLE_EXT,/* _MMIO(0x9148) */
-+	CTC_MODE,			/* _MMIO(0xA26C) */
-+	HUC_KERNEL_LOAD_INFO,		/* _MMIO(0xc1dc) */
-+	TIMESTAMP_OVERRIDE,		/* _MMIO(0x44074) */
-+};
-+
-+static const struct xe_reg ver_1270_runtime_regs[] = {
-+	RPM_CONFIG0,			/* _MMIO(0x0d00) */
-+	XEHP_FUSE4,			/* _MMIO(0x9114) */
-+	MIRROR_FUSE3,			/* _MMIO(0x9118) */
-+	MIRROR_FUSE1,			/* _MMIO(0x911c) */
-+	XELP_EU_ENABLE,			/* _MMIO(0x9134) */
-+	XELP_GT_GEOMETRY_DSS_ENABLE,	/* _MMIO(0x913c) */
-+	GT_VEBOX_VDBOX_DISABLE,		/* _MMIO(0x9140) */
-+	XEHP_GT_COMPUTE_DSS_ENABLE,	/* _MMIO(0x9144) */
-+	XEHPC_GT_COMPUTE_DSS_ENABLE_EXT,/* _MMIO(0x9148) */
-+	CTC_MODE,			/* _MMIO(0xa26c) */
-+	HUC_KERNEL_LOAD_INFO,		/* _MMIO(0xc1dc) */
-+	TIMESTAMP_OVERRIDE,		/* _MMIO(0x44074) */
-+};
-+
-+static const struct xe_reg ver_2000_runtime_regs[] = {
-+	RPM_CONFIG0,			/* _MMIO(0x0d00) */
-+	XEHP_FUSE4,			/* _MMIO(0x9114) */
-+	MIRROR_FUSE3,			/* _MMIO(0x9118) */
-+	MIRROR_FUSE1,			/* _MMIO(0x911c) */
-+	XELP_EU_ENABLE,			/* _MMIO(0x9134) */
-+	XELP_GT_GEOMETRY_DSS_ENABLE,	/* _MMIO(0x913c) */
-+	GT_VEBOX_VDBOX_DISABLE,		/* _MMIO(0x9140) */
-+	XEHP_GT_COMPUTE_DSS_ENABLE,	/* _MMIO(0x9144) */
-+	XEHPC_GT_COMPUTE_DSS_ENABLE_EXT,/* _MMIO(0x9148) */
-+	XE2_GT_COMPUTE_DSS_2,		/* _MMIO(0x914c) */
-+	XE2_GT_GEOMETRY_DSS_1,		/* _MMIO(0x9150) */
-+	XE2_GT_GEOMETRY_DSS_2,		/* _MMIO(0x9154) */
-+	CTC_MODE,			/* _MMIO(0xa26c) */
-+	HUC_KERNEL_LOAD_INFO,		/* _MMIO(0xc1dc) */
-+	TIMESTAMP_OVERRIDE,		/* _MMIO(0x44074) */
-+};
-+
-+static const struct xe_reg *pick_runtime_regs(struct xe_device *xe, unsigned int *count)
-+{
-+	const struct xe_reg *regs;
-+
-+	if (GRAPHICS_VERx100(xe) >= 2000) {
-+		*count = ARRAY_SIZE(ver_2000_runtime_regs);
-+		regs = ver_2000_runtime_regs;
-+	} else if (GRAPHICS_VERx100(xe) >= 1270) {
-+		*count = ARRAY_SIZE(ver_1270_runtime_regs);
-+		regs = ver_1270_runtime_regs;
-+	} else if (GRAPHICS_VERx100(xe) == 1260) {
-+		*count = ARRAY_SIZE(pvc_runtime_regs);
-+		regs = pvc_runtime_regs;
-+	} else if (GRAPHICS_VERx100(xe) == 1255) {
-+		*count = ARRAY_SIZE(ats_m_runtime_regs);
-+		regs = ats_m_runtime_regs;
-+	} else if (GRAPHICS_VERx100(xe) == 1200) {
-+		*count = ARRAY_SIZE(tgl_runtime_regs);
-+		regs = tgl_runtime_regs;
-+	} else {
-+		regs = ERR_PTR(-ENOPKG);
-+		*count = 0;
-+	}
-+
-+	return regs;
-+}
-+
-+static int pf_alloc_runtime_info(struct xe_gt *gt)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	const struct xe_reg *regs;
-+	unsigned int size;
-+	u32 *values;
-+
-+	xe_gt_assert(gt, IS_SRIOV_PF(xe));
-+	xe_gt_assert(gt, !gt->sriov.pf.service.runtime.size);
-+	xe_gt_assert(gt, !gt->sriov.pf.service.runtime.regs);
-+	xe_gt_assert(gt, !gt->sriov.pf.service.runtime.values);
-+
-+	regs = pick_runtime_regs(xe, &size);
-+	if (IS_ERR(regs))
-+		return PTR_ERR(regs);
-+
-+	if (unlikely(!size))
-+		return 0;
-+
-+	values = drmm_kcalloc(&xe->drm, size, sizeof(u32), GFP_KERNEL);
-+	if (!values)
-+		return -ENOMEM;
-+
-+	gt->sriov.pf.service.runtime.size = size;
-+	gt->sriov.pf.service.runtime.regs = regs;
-+	gt->sriov.pf.service.runtime.values = values;
-+
-+	return 0;
-+}
-+
-+static void read_many(struct xe_gt *gt, unsigned int count,
-+		      const struct xe_reg *regs, u32 *values)
-+{
-+	while (count--)
-+		*values++ = xe_mmio_read32(gt, *regs++);
-+}
-+
-+static void pf_prepare_runtime_info(struct xe_gt *gt)
-+{
-+	const struct xe_reg *regs;
-+	unsigned int size;
-+	u32 *values;
-+
-+	if (!gt->sriov.pf.service.runtime.size)
-+		return;
-+
-+	size = gt->sriov.pf.service.runtime.size;
-+	regs = gt->sriov.pf.service.runtime.regs;
-+	values = gt->sriov.pf.service.runtime.values;
-+
-+	read_many(gt, size, regs, values);
-+
-+	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG_SRIOV)) {
-+		struct drm_printer p = xe_gt_info_printer(gt);
-+
-+		xe_gt_sriov_pf_service_print_runtime(gt, &p);
-+	}
-+}
-+
-+/**
-+ * xe_gt_sriov_pf_service_init - Early initialization of the GT SR-IOV PF services.
-+ * @gt: the &xe_gt to initialize
-+ *
-+ * Performs early initialization of the GT SR-IOV PF services, including preparation
-+ * of the runtime info that will be shared with VFs.
-+ *
-+ * This function can only be called on PF.
-+ */
-+int xe_gt_sriov_pf_service_init(struct xe_gt *gt)
-+{
-+	int err;
-+
-+	pf_init_versions(gt);
-+
-+	err = pf_alloc_runtime_info(gt);
-+	if (unlikely(err))
-+		goto failed;
-+
-+	return 0;
-+failed:
-+	xe_gt_sriov_err(gt, "Failed to initialize service (%pe)\n", ERR_PTR(err));
-+	return err;
-+}
-+
-+/**
-+ * xe_gt_sriov_pf_service_update - Update PF SR-IOV services.
-+ * @gt: the &xe_gt to update
-+ *
-+ * Updates runtime data shared with VFs.
-+ *
-+ * This function can be called more than once.
-+ * This function can only be called on PF.
-+ */
-+void xe_gt_sriov_pf_service_update(struct xe_gt *gt)
-+{
-+	pf_prepare_runtime_info(gt);
-+}
-+
-+/**
-+ * xe_gt_sriov_pf_service_reset - Reset a connection with the VF.
-+ * @gt: the &xe_gt
-+ * @vfid: the VF identifier
-+ *
-+ * Reset a VF driver negotiated VF/PF ABI version.
-+ * After that point, the VF driver will have to perform new version handshake
-+ * to continue use of the PF services again.
-+ *
-+ * This function can only be called on PF.
-+ */
-+void xe_gt_sriov_pf_service_reset(struct xe_gt *gt, unsigned int vfid)
-+{
-+	pf_disconnect(gt, vfid);
-+}
-+
-+/* Return: 0 on success or a negative error code on failure. */
-+static int pf_process_handshake(struct xe_gt *gt, u32 vfid,
-+				u32 wanted_major, u32 wanted_minor,
-+				u32 *major, u32 *minor)
-+{
-+	int err;
-+
-+	xe_gt_sriov_dbg_verbose(gt, "VF%u wants ABI version %u.%u\n",
-+				vfid, wanted_major, wanted_minor);
-+
-+	err = pf_negotiate_version(gt, wanted_major, wanted_minor, major, minor);
-+
-+	if (err < 0) {
-+		xe_gt_sriov_notice(gt, "VF%u failed to negotiate ABI %u.%u (%pe)\n",
-+				   vfid, wanted_major, wanted_minor, ERR_PTR(err));
-+		pf_disconnect(gt, vfid);
-+	} else {
-+		xe_gt_sriov_dbg(gt, "VF%u negotiated ABI version %u.%u\n",
-+				vfid, *major, *minor);
-+		pf_connect(gt, vfid, *major, *minor);
-+	}
-+
-+	return 0;
-+}
-+
-+/* Return: length of the response message or a negative error code on failure. */
-+static int pf_process_handshake_msg(struct xe_gt *gt, u32 origin,
-+				    const u32 *request, u32 len, u32 *response, u32 size)
-+{
-+	u32 wanted_major, wanted_minor;
-+	u32 major, minor;
-+	u32 mbz;
-+	int err;
-+
-+	if (unlikely(len != VF2PF_HANDSHAKE_REQUEST_MSG_LEN))
-+		return -EMSGSIZE;
-+
-+	mbz = FIELD_GET(VF2PF_HANDSHAKE_REQUEST_MSG_0_MBZ, request[0]);
-+	if (unlikely(mbz))
-+		return -EPFNOSUPPORT;
-+
-+	wanted_major = FIELD_GET(VF2PF_HANDSHAKE_REQUEST_MSG_1_MAJOR, request[1]);
-+	wanted_minor = FIELD_GET(VF2PF_HANDSHAKE_REQUEST_MSG_1_MINOR, request[1]);
-+
-+	err = pf_process_handshake(gt, origin, wanted_major, wanted_minor, &major, &minor);
-+	if (err < 0)
-+		return err;
-+
-+	xe_gt_assert(gt, major || minor);
-+	xe_gt_assert(gt, size >= VF2PF_HANDSHAKE_RESPONSE_MSG_LEN);
-+
-+	response[0] = FIELD_PREP(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_HOST) |
-+		      FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_RESPONSE_SUCCESS) |
-+		      FIELD_PREP(GUC_HXG_RESPONSE_MSG_0_DATA0, 0);
-+	response[1] = FIELD_PREP(VF2PF_HANDSHAKE_RESPONSE_MSG_1_MAJOR, major) |
-+		      FIELD_PREP(VF2PF_HANDSHAKE_RESPONSE_MSG_1_MINOR, minor);
-+
-+	return VF2PF_HANDSHAKE_RESPONSE_MSG_LEN;
-+}
-+
-+struct reg_data {
-+	u32 offset;
-+	u32 value;
-+} __packed;
-+static_assert(hxg_sizeof(struct reg_data) == 2);
-+
-+/* Return: number of entries copied or negative error code on failure. */
-+static int pf_service_runtime_query(struct xe_gt *gt, u32 start, u32 limit,
-+				    struct reg_data *data, u32 *remaining)
-+{
-+	struct xe_gt_sriov_pf_service_runtime_regs *runtime;
-+	unsigned int count, i;
-+	u32 addr;
-+
-+	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-+
-+	runtime = &gt->sriov.pf.service.runtime;
-+
-+	if (start > runtime->size)
-+		return -ERANGE;
-+
-+	count = min_t(u32, runtime->size - start, limit);
-+
-+	for (i = 0; i < count; ++i, ++data) {
-+		addr = runtime->regs[start + i].addr;
-+		data->offset = xe_mmio_adjusted_addr(gt, addr);
-+		data->value = runtime->values[start + i];
-+	}
-+
-+	*remaining = runtime->size - start - count;
-+	return count;
-+}
-+
-+/* Return: length of the response message or a negative error code on failure. */
-+static int pf_process_runtime_query_msg(struct xe_gt *gt, u32 origin,
-+					const u32 *msg, u32 msg_len, u32 *response, u32 resp_size)
-+{
-+	const u32 chunk_size = hxg_sizeof(struct reg_data);
-+	struct reg_data *reg_data_buf;
-+	u32 limit, start, max_chunks;
-+	u32 remaining = 0;
-+	int ret;
-+
-+	if (!pf_is_negotiated(gt, origin, 1, 0))
-+		return -EACCES;
-+	if (unlikely(msg_len > VF2PF_QUERY_RUNTIME_REQUEST_MSG_LEN))
-+		return -EMSGSIZE;
-+	if (unlikely(msg_len < VF2PF_QUERY_RUNTIME_REQUEST_MSG_LEN))
-+		return -EPROTO;
-+	if (unlikely(resp_size < VF2PF_QUERY_RUNTIME_RESPONSE_MSG_MIN_LEN))
-+		return -EINVAL;
-+
-+	limit = FIELD_GET(VF2PF_QUERY_RUNTIME_REQUEST_MSG_0_LIMIT, msg[0]);
-+	start = FIELD_GET(VF2PF_QUERY_RUNTIME_REQUEST_MSG_1_START, msg[1]);
-+
-+	resp_size = min_t(u32, resp_size, VF2PF_QUERY_RUNTIME_RESPONSE_MSG_MAX_LEN);
-+	max_chunks = (resp_size - VF2PF_QUERY_RUNTIME_RESPONSE_MSG_MIN_LEN) / chunk_size;
-+	limit = limit == VF2PF_QUERY_RUNTIME_NO_LIMIT ? max_chunks : min_t(u32, max_chunks, limit);
-+	reg_data_buf = (void *)(response + VF2PF_QUERY_RUNTIME_RESPONSE_MSG_MIN_LEN);
-+
-+	ret = pf_service_runtime_query(gt, start, limit, reg_data_buf, &remaining);
-+	if (ret < 0)
-+		return ret;
-+
-+	response[0] = FIELD_PREP(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_HOST) |
-+		      FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_RESPONSE_SUCCESS) |
-+		      FIELD_PREP(VF2PF_QUERY_RUNTIME_RESPONSE_MSG_0_COUNT, ret);
-+	response[1] = FIELD_PREP(VF2PF_QUERY_RUNTIME_RESPONSE_MSG_1_REMAINING, remaining);
-+
-+	return VF2PF_QUERY_RUNTIME_RESPONSE_MSG_MIN_LEN + ret * hxg_sizeof(struct reg_data);
-+}
-+
-+/**
-+ * xe_gt_sriov_pf_service_process_request - Service GT level SR-IOV request message from the VF.
-+ * @gt: the &xe_gt that provides the service
-+ * @origin: VF number that is requesting the service
-+ * @msg: request message
-+ * @msg_len: length of the request message (in dwords)
-+ * @response: placeholder for the response message
-+ * @resp_size: length of the response message buffer (in dwords)
-+ *
-+ * This function processes `Relay Message`_ request from the VF.
-+ *
-+ * Return: length of the response message or a negative error code on failure.
-+ */
-+int xe_gt_sriov_pf_service_process_request(struct xe_gt *gt, u32 origin,
-+					   const u32 *msg, u32 msg_len,
-+					   u32 *response, u32 resp_size)
-+{
-+	u32 action, data __maybe_unused;
-+	int ret;
-+
-+	xe_gt_assert(gt, msg_len >= GUC_HXG_MSG_MIN_LEN);
-+	xe_gt_assert(gt, FIELD_GET(GUC_HXG_MSG_0_TYPE, msg[0]) == GUC_HXG_TYPE_REQUEST);
-+
-+	action = FIELD_GET(GUC_HXG_REQUEST_MSG_0_ACTION, msg[0]);
-+	data = FIELD_GET(GUC_HXG_REQUEST_MSG_0_DATA0, msg[0]);
-+	xe_gt_sriov_dbg_verbose(gt, "service action %#x:%u from VF%u\n",
-+				action, data, origin);
-+
-+	switch (action) {
-+	case GUC_RELAY_ACTION_VF2PF_HANDSHAKE:
-+		ret = pf_process_handshake_msg(gt, origin, msg, msg_len, response, resp_size);
-+		break;
-+	case GUC_RELAY_ACTION_VF2PF_QUERY_RUNTIME:
-+		ret = pf_process_runtime_query_msg(gt, origin, msg, msg_len, response, resp_size);
-+		break;
-+	default:
-+		ret = -EOPNOTSUPP;
-+		break;
-+	}
-+
-+	return ret;
-+}
-+
-+/**
-+ * xe_gt_sriov_pf_service_print_runtime - Print PF runtime data shared with VFs.
-+ * @gt: the &xe_gt
-+ * @p: the &drm_printer
-+ *
-+ * This function is for PF use only.
-+ */
-+int xe_gt_sriov_pf_service_print_runtime(struct xe_gt *gt, struct drm_printer *p)
-+{
-+	const struct xe_reg *regs;
-+	unsigned int size;
-+	u32 *values;
-+
-+	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-+
-+	size = gt->sriov.pf.service.runtime.size;
-+	regs = gt->sriov.pf.service.runtime.regs;
-+	values = gt->sriov.pf.service.runtime.values;
-+
-+	for (; size--; regs++, values++) {
-+		drm_printf(p, "reg[%#x] = %#x\n",
-+			   xe_mmio_adjusted_addr(gt, regs->addr), *values);
-+	}
-+
-+	return 0;
-+}
-+
-+/**
-+ * xe_gt_sriov_pf_service_print_version - Print ABI versions negotiated with VFs.
-+ * @gt: the &xe_gt
-+ * @p: the &drm_printer
-+ *
-+ * This function is for PF use only.
-+ */
-+int xe_gt_sriov_pf_service_print_version(struct xe_gt *gt, struct drm_printer *p)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	unsigned int n, total_vfs = xe_sriov_pf_get_totalvfs(xe);
-+	struct xe_gt_sriov_pf_service_version *version;
-+
-+	xe_gt_assert(gt, IS_SRIOV_PF(xe));
-+
-+	for (n = 1; n <= total_vfs; n++) {
-+		version = &gt->sriov.pf.vfs[n].version;
-+		if (!version->major && !version->minor)
-+			continue;
-+
-+		drm_printf(p, "VF%u:\t%u.%u\n", n, version->major, version->minor);
-+	}
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.h
-new file mode 100644
-index 000000000000..56aaadf0360d
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.h
-@@ -0,0 +1,36 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023-2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_GT_SRIOV_PF_SERVICE_H_
-+#define _XE_GT_SRIOV_PF_SERVICE_H_
-+
-+#include <linux/errno.h>
-+#include <linux/types.h>
-+
-+struct drm_printer;
-+struct xe_gt;
-+
-+int xe_gt_sriov_pf_service_init(struct xe_gt *gt);
-+void xe_gt_sriov_pf_service_update(struct xe_gt *gt);
-+void xe_gt_sriov_pf_service_reset(struct xe_gt *gt, unsigned int vfid);
-+
-+int xe_gt_sriov_pf_service_print_version(struct xe_gt *gt, struct drm_printer *p);
-+int xe_gt_sriov_pf_service_print_runtime(struct xe_gt *gt, struct drm_printer *p);
-+
-+#ifdef CONFIG_PCI_IOV
-+int xe_gt_sriov_pf_service_process_request(struct xe_gt *gt, u32 origin,
-+					   const u32 *msg, u32 msg_len,
-+					   u32 *response, u32 resp_size);
-+#else
-+static inline int
-+xe_gt_sriov_pf_service_process_request(struct xe_gt *gt, u32 origin,
-+				       const u32 *msg, u32 msg_len,
-+				       u32 *response, u32 resp_size)
-+{
-+	return -EPROTO;
-+}
-+#endif
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service_types.h
-new file mode 100644
-index 000000000000..ad6dd75f0056
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service_types.h
-@@ -0,0 +1,52 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023-2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_GT_SRIOV_PF_SERVICE_TYPES_H_
-+#define _XE_GT_SRIOV_PF_SERVICE_TYPES_H_
-+
-+#include <linux/types.h>
-+
-+struct xe_reg;
-+
-+/**
-+ * struct xe_gt_sriov_pf_service_version - VF/PF ABI Version.
-+ * @major: the major version of the VF/PF ABI
-+ * @minor: the minor version of the VF/PF ABI
-+ *
-+ * See `GuC Relay Communication`_.
-+ */
-+struct xe_gt_sriov_pf_service_version {
-+	u16 major;
-+	u16 minor;
-+};
-+
-+/**
-+ * struct xe_gt_sriov_pf_service_runtime_regs - Runtime data shared with VFs.
-+ * @regs: pointer to static array with register offsets.
-+ * @values: pointer to array with captured register values.
-+ * @size: size of the regs and value arrays.
-+ */
-+struct xe_gt_sriov_pf_service_runtime_regs {
-+	const struct xe_reg *regs;
-+	u32 *values;
-+	u32 size;
-+};
-+
-+/**
-+ * struct xe_gt_sriov_pf_service - Data used by the PF service.
-+ * @version: information about VF/PF ABI versions for current platform.
-+ * @version.base: lowest VF/PF ABI version that could be negotiated with VF.
-+ * @version.latest: latest VF/PF ABI version supported by the PF driver.
-+ * @runtime: runtime data shared with VFs.
-+ */
-+struct xe_gt_sriov_pf_service {
-+	struct {
-+		struct xe_gt_sriov_pf_service_version base;
-+		struct xe_gt_sriov_pf_service_version latest;
-+	} version;
-+	struct xe_gt_sriov_pf_service_runtime_regs runtime;
-+};
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
-index faf9ee8266ce..880754f3e215 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
-@@ -10,6 +10,7 @@
- 
- #include "xe_gt_sriov_pf_config_types.h"
- #include "xe_gt_sriov_pf_policy_types.h"
-+#include "xe_gt_sriov_pf_service_types.h"
- 
- /**
-  * struct xe_gt_sriov_metadata - GT level per-VF metadata.
-@@ -17,15 +18,19 @@
- struct xe_gt_sriov_metadata {
- 	/** @config: per-VF provisioning data. */
- 	struct xe_gt_sriov_config config;
-+	/** @version: negotiated VF/PF ABI version */
-+	struct xe_gt_sriov_pf_service_version version;
- };
- 
- /**
-  * struct xe_gt_sriov_pf - GT level PF virtualization data.
-+ * @service: service data.
-  * @policy: policy data.
-  * @spare: PF-only provisioning configuration.
-  * @vfs: metadata for all VFs.
-  */
- struct xe_gt_sriov_pf {
-+	struct xe_gt_sriov_pf_service service;
- 	struct xe_gt_sriov_pf_policy policy;
- 	struct xe_gt_sriov_spare_config spare;
- 	struct xe_gt_sriov_metadata *vfs;
-diff --git a/drivers/gpu/drm/xe/xe_guc_relay.c b/drivers/gpu/drm/xe/xe_guc_relay.c
-index c0a2d8d5d3b3..c3bbaf474f9a 100644
---- a/drivers/gpu/drm/xe/xe_guc_relay.c
-+++ b/drivers/gpu/drm/xe/xe_guc_relay.c
-@@ -19,6 +19,7 @@
- #include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_gt_sriov_printk.h"
-+#include "xe_gt_sriov_pf_service.h"
- #include "xe_guc.h"
- #include "xe_guc_ct.h"
- #include "xe_guc_hxg_helpers.h"
-@@ -664,6 +665,7 @@ static int relay_testloop_action_handler(struct xe_guc_relay *relay, u32 origin,
- static int relay_action_handler(struct xe_guc_relay *relay, u32 origin,
- 				const u32 *msg, u32 len, u32 *response, u32 size)
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 334637511e75..2b18e8149ec3 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -423,41 +423,33 @@ int xe_mmio_init(struct xe_device *xe)
+ u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg reg)
  {
-+	struct xe_gt *gt = relay_to_gt(relay);
- 	u32 type;
- 	int ret;
+ 	struct xe_tile *tile = gt_to_tile(gt);
++	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
  
-@@ -674,8 +676,10 @@ static int relay_action_handler(struct xe_guc_relay *relay, u32 origin,
+-	if (reg.addr < gt->mmio.adj_limit)
+-		reg.addr += gt->mmio.adj_offset;
+-
+-	return readb((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + reg.addr);
++	return readb((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
+ }
  
- 	type = FIELD_GET(GUC_HXG_MSG_0_TYPE, msg[0]);
+ u16 xe_mmio_read16(struct xe_gt *gt, struct xe_reg reg)
+ {
+ 	struct xe_tile *tile = gt_to_tile(gt);
++	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
  
--	/* XXX: PF services will be added later */
--	ret = -EOPNOTSUPP;
-+	if (IS_SRIOV_PF(relay_to_xe(relay)))
-+		ret = xe_gt_sriov_pf_service_process_request(gt, origin, msg, len, response, size);
-+	else
-+		ret = -EOPNOTSUPP;
+-	if (reg.addr < gt->mmio.adj_limit)
+-		reg.addr += gt->mmio.adj_offset;
+-
+-	return readw((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + reg.addr);
++	return readw((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
+ }
  
- 	if (type == GUC_HXG_TYPE_EVENT)
- 		relay_assert(relay, ret <= 0);
+ void xe_mmio_write32(struct xe_gt *gt, struct xe_reg reg, u32 val)
+ {
+ 	struct xe_tile *tile = gt_to_tile(gt);
++	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
+ 
+-	if (reg.addr < gt->mmio.adj_limit)
+-		reg.addr += gt->mmio.adj_offset;
+-
+-	writel(val, (reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + reg.addr);
++	writel(val, (reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
+ }
+ 
+ u32 xe_mmio_read32(struct xe_gt *gt, struct xe_reg reg)
+ {
+ 	struct xe_tile *tile = gt_to_tile(gt);
++	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
+ 
+-	if (reg.addr < gt->mmio.adj_limit)
+-		reg.addr += gt->mmio.adj_offset;
+-
+-	return readl((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + reg.addr);
++	return readl((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
+ }
+ 
+ u32 xe_mmio_rmw32(struct xe_gt *gt, struct xe_reg reg, u32 clr, u32 set)
+@@ -486,10 +478,9 @@ bool xe_mmio_in_range(const struct xe_gt *gt,
+ 		      const struct xe_mmio_range *range,
+ 		      struct xe_reg reg)
+ {
+-	if (reg.addr < gt->mmio.adj_limit)
+-		reg.addr += gt->mmio.adj_offset;
++	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
+ 
+-	return range && reg.addr >= range->start && reg.addr <= range->end;
++	return range && addr >= range->start && addr <= range->end;
+ }
+ 
+ /**
+@@ -519,10 +510,11 @@ u64 xe_mmio_read64_2x32(struct xe_gt *gt, struct xe_reg reg)
+ 	struct xe_reg reg_udw = { .addr = reg.addr + 0x4 };
+ 	u32 ldw, udw, oldudw, retries;
+ 
+-	if (reg.addr < gt->mmio.adj_limit) {
+-		reg.addr += gt->mmio.adj_offset;
+-		reg_udw.addr += gt->mmio.adj_offset;
+-	}
++	reg.addr = xe_mmio_adjusted_addr(gt, reg.addr);
++	reg_udw.addr = xe_mmio_adjusted_addr(gt, reg_udw.addr);
++
++	/* we shouldn't adjust just one register address */
++	xe_gt_assert(gt, reg_udw.addr == reg.addr + 0x4);
+ 
+ 	oldudw = xe_mmio_read32(gt, reg_udw);
+ 	for (retries = 5; retries; --retries) {
+diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
+index a3cd7b3036c7..445ec6a0753e 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.h
++++ b/drivers/gpu/drm/xe/xe_mmio.h
+@@ -36,4 +36,11 @@ u64 xe_mmio_read64_2x32(struct xe_gt *gt, struct xe_reg reg);
+ int xe_mmio_wait32(struct xe_gt *gt, struct xe_reg reg, u32 mask, u32 val, u32 timeout_us,
+ 		   u32 *out_val, bool atomic);
+ 
++static inline u32 xe_mmio_adjusted_addr(const struct xe_gt *gt, u32 addr)
++{
++	if (addr < gt->mmio.adj_limit)
++		addr += gt->mmio.adj_offset;
++	return addr;
++}
++
+ #endif
 -- 
 2.43.0
 
