@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B82BAC4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 04:18:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D1F0C4345F
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 04:19:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DC20113076;
-	Tue, 23 Apr 2024 04:18:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C67BB113077;
+	Tue, 23 Apr 2024 04:19:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EuY9yFFw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hAlSSc56";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0BCA113077
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Apr 2024 04:18:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29D58113077
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Apr 2024 04:19:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713845899; x=1745381899;
+ t=1713845942; x=1745381942;
  h=message-id:date:subject:to:references:from:in-reply-to:
- mime-version; bh=DENVJTRQbBvbUX1MB918g97ZkU8h5lwhzoHMljWWIfU=;
- b=EuY9yFFwy4whUO9Kh5PBSFTCzkUkosQWOfaG9uhiRl7ymPi8yC/SdedZ
- +N6qUXOKAcBjNOf+UW5CZuUSHehc2zyP6ihjbuzFM1Zqrx+QyvTUR75NS
- oxOWhRv4lHsbIC/UYMrLSzVdkgO6Y9RsucSgtJKCXDslLmPVJWJWlaYS0
- t+Rz4P+JjmckKhr0tU+/94V4A11bYOKy6MpE5oO4U4DvUdihxRTlQr7yL
- rwCpX5anMKMezfQQ/NAD3TsvfhBAtJtWKVy4gl3cG3VcnQnbYCiciNCS1
- YqMylu10T5kLSPGjuLijfXS9ZBPnWHPsFs8H/TK6giO/nMwwS+C9WinUs Q==;
-X-CSE-ConnectionGUID: w7hR7yUYRe6/wjA4/6/vhg==
-X-CSE-MsgGUID: iHQAydObRpGCarMAlxIOYw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="12348910"
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208,217";a="12348910"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2024 21:18:17 -0700
-X-CSE-ConnectionGUID: 8DDdeklvQNyV7JNdOk0eGQ==
-X-CSE-MsgGUID: 8anSHpKITkG4vAZ8UGNIlw==
+ mime-version; bh=pDNRgMCA7UaViAMczjKfas8oS4a3jP0yfQPWf8zJyKA=;
+ b=hAlSSc56R3vg3rUGouwolQMyMLdZjehD9ZNi+NEtmV3XaOs/J6C8dzi8
+ 9Ah+e2XScZjnD6vk2Y9CoCgUDz9SaUWS6BBON9UtGafOkyebSVecBmvSx
+ AN5P8Z5iXSe2jaf8VecaWJ0xqgF14MHuQ3hUJjsEluP2Q10S0p4PQnvcc
+ /GqtOlCCbLOiN8HmBq9dNWB50lo3VtguXIfYRW3m/6EZxfih/RiioRJFa
+ h4SPxzEP3+LffjmKT9HsOKGnDfma2ZWRmBtnAcQpl8yUXr+rNeO1cJKv6
+ DBME2sZJ8arJmf2Jbk5M6DTR5iURwG2AvHIOapUD0afzPwMZ5kYdDCxuJ Q==;
+X-CSE-ConnectionGUID: VwOBF4kZShKpHCUTbOrNvA==
+X-CSE-MsgGUID: /lk6CKxjScaf0l+L/7P91A==
+X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="9281984"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208,217";a="9281984"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2024 21:18:52 -0700
+X-CSE-ConnectionGUID: CcFRqxzIQ+mRmzCAuk5ZFQ==
+X-CSE-MsgGUID: 9RGohj1TT92Jekv79gcZ0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208,217";a="24295604"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Apr 2024 21:18:17 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208,217";a="24102450"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 22 Apr 2024 21:18:51 -0700
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 22 Apr 2024 21:18:16 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ 15.1.2507.35; Mon, 22 Apr 2024 21:18:51 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 22 Apr 2024 21:18:16 -0700
+ 15.1.2507.35 via Frontend Transport; Mon, 22 Apr 2024 21:18:51 -0700
 Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 22 Apr 2024 21:18:15 -0700
+ 15.1.2507.35; Mon, 22 Apr 2024 21:18:50 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=f/ulf2ZPsu790w+sKg3Ba+mRIAjTRAwI5a8/sAL6/7O1TsHMh1PGEuIR/xJjuwlahEKYdkzj/msVIQy0ZXO4aUXVaohvWr/LI9FXKElEeRkaTPSXJ+SXpEI96JDO+Z50F5Rr93Be2Fu9ZdjXnu6pxbDrGUKhZbiUyPH8RU+w4UT49XW07im0wjgOF3PcBo3/wyW52vyoFFprsU7Us0xoZ1NMg0nLfejhkcjfo3M0xPMsqJUsoMMFTt0erUqtOqB3zRZkQHeNBphC4HBZsQdaTmkueHqKHsAWLNxMyBFAiZng4ScGaHeorzOuzfhZ1EUbDNO3CrnMbg4xT0ucLxTI+A==
+ b=mplEG9e0U1A8GP4HCxDxRRFRTcLVKD+YsbaXU/FvS5e/xB2PvBTxnYNU/krv2itS11wfVYhgwxzQAmWPUA9cyMqMMonPOBkGsPaTXNiFzCQk4beA1Qw5ZtfgRCUF8B5x1/ggdq9eBTvzNVxmub1tcvF/Ad1Z1M+jAUcGLqcOZb5CFTIany2lvIYBhncCAFzGDx6MXpbK5JoAL3Q8Gok9U/LFVfoQsRMELFzr3pAI13HV33FlDxcP7KmRs2HTxT+w2G4IjsU2jafHorHzR+ZHEK4WIERGn9U+76d00d6gD75xhMbrnSzYFwFl6E0CDT+8I5rqgMOJepvTzt2vOXD2gA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6HyjKXZy9b5WQcDMvYUpiRTW08XRjhAXhacI1XkSue0=;
- b=lFgum6dF1wRRSEJmZ92OdyPx9pLb1vAm/F60z0xjIO6THqXUBPjeDA0zfAAf2MeXbLN8dWSWuCIjvjNW9ol+B99UI3IsWM9IHE0rrQHtdO085MuaRIbAHy9ldkrAEFrgutNZX//V/pKBg7mi4iLnAtRgf0vZoB36KgmFOrBF01/JyIlgEsHoRy4ckLGd9Evw6Me6EavLhjVSBjexQUA6F0SOMeItupVVNGYZJJ3oWNRUElXAIUUe5FDULyHNgTIM0QijODfVkSnNJHLo9FLGmiU7/dA0YUDXaXK0dwCrx44jN8Ud41Z80EHgEb46vuQyCLNpJtgePS970C8KcwQD5w==
+ bh=KtrOyDMWnVtVGR+dNkv6xpvF5yUE4JA/EQ+Gmxz6v2c=;
+ b=WAD0XkT/aEN0l3tNl5YwGRTvrXro30zkfwWgqFHshBdVMhjS3OqXIYLBkIo95Wvut6jyF9EXp4+EawMBAt5k1JXLTaXQwqhKy/ogskzQYvjizWnr/SPmZ0fiL/wn7Kjeosx06FkqAXsTt6g7HG2tdUTc+N1m0t8wRbQUxHWuG+iIVmGaruVTHq0vZ6TR3vgN+dp3f/PV7kVUS0HrgkwCIbFCqozT3i1gSF3sGyCpHKDn+P5EDM72zKqLWANYZ27W1dHN8hrijnLiRIkYViKq5l25Rq5XNwZmmO7xEunPnItdWGl44WOFZPeC6arspXgIJIm2AIwvX8qVPKefH5efiA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -68,111 +68,111 @@ Received: from MW4PR11MB7056.namprd11.prod.outlook.com (2603:10b6:303:21a::12)
  by DM6PR11MB4740.namprd11.prod.outlook.com (2603:10b6:5:2ad::15) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.21; Tue, 23 Apr
- 2024 04:18:12 +0000
+ 2024 04:18:48 +0000
 Received: from MW4PR11MB7056.namprd11.prod.outlook.com
  ([fe80::ff2a:1235:d1ba:4f93]) by MW4PR11MB7056.namprd11.prod.outlook.com
  ([fe80::ff2a:1235:d1ba:4f93%3]) with mapi id 15.20.7519.018; Tue, 23 Apr 2024
- 04:18:12 +0000
+ 04:18:48 +0000
 Content-Type: multipart/alternative;
- boundary="------------LOsTDy5oodNU3KFA6uq9sBUq"
-Message-ID: <53fbeb30-53be-45af-9ac4-8e8c21f8a35a@intel.com>
-Date: Tue, 23 Apr 2024 09:48:06 +0530
+ boundary="------------t0f92HECEOjxmXtP2ACXj2Vg"
+Message-ID: <aa5f34f4-6ab4-4632-a10d-fa247138279f@intel.com>
+Date: Tue, 23 Apr 2024 09:48:43 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] drm/xe: Save and restore PCI state
+Subject: Re: [PATCH v3 4/4] drm/xe/FLR: Support PCIe FLR
 To: <intel-xe@lists.freedesktop.org>
 References: <20240422065756.294679-1-aravind.iddamsetty@linux.intel.com>
- <20240422065756.294679-3-aravind.iddamsetty@linux.intel.com>
+ <20240422065756.294679-5-aravind.iddamsetty@linux.intel.com>
 Content-Language: en-US
 From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20240422065756.294679-3-aravind.iddamsetty@linux.intel.com>
+In-Reply-To: <20240422065756.294679-5-aravind.iddamsetty@linux.intel.com>
 X-ClientProxiedBy: PN3PR01CA0165.INDPRD01.PROD.OUTLOOK.COM
  (2603:1096:c01:de::9) To MW4PR11MB7056.namprd11.prod.outlook.com
  (2603:10b6:303:21a::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MW4PR11MB7056:EE_|DM6PR11MB4740:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7f52df46-8324-4345-839b-08dc634c637d
+X-MS-Office365-Filtering-Correlation-Id: c5771e73-22fa-4235-9f07-08dc634c7924
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|366007|1800799015;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?dG9OY0MzV0xDdWdmckVMbUpBZit4dmdZR0JtUnMwRllISms3L20rajNmR3Bo?=
- =?utf-8?B?YTZSczBVZHo5cVJ0UzNKZjBCQTJ1T1ZUYXp6WnpYMUFEV3dsU3RqaEdaUkgx?=
- =?utf-8?B?bXNKa0owREdqa2tlWGNDWUlNMlAvaGJiNDlzaDdoRFUzamdGWDZrMkJTMTk5?=
- =?utf-8?B?TTRkbm51RW1qMEFzd3Vqa2xYRXIyWG93ZTZOVlRVVFJ4V3cxYTBxNTlETmVp?=
- =?utf-8?B?cXZPN3cySTFPcU9iL1JsWmErYnpTaGhGZ3NCZ1MrNlYwc0pvUUhHZGxBby9n?=
- =?utf-8?B?VXRES1lvdDhVVXAxRWs2L09yalFPMG5QWWx0bnNpRGVXNHpCVStCNk1XM3dB?=
- =?utf-8?B?RHZlRXNtT2ZhOG1BLzBjcjdlYUpjTzl2UWVZVEZabTY4M0lSN00ydldxYWtD?=
- =?utf-8?B?OWljL0hmV1MwTkVCUVdVblkwb01udlgvNHZTalY4RUJZQ3M2SVhVZzM4WTd2?=
- =?utf-8?B?QjREVlZXSGREa01qcWRnWFZ1YWttUEx1aW11K0dmWCtHNnBzYlhNOXZmMXZJ?=
- =?utf-8?B?UEU3T2VES3FweUxsUkJYaktQRFVvL2JZNUgxd3ZsaWZtZDlBNTFLdGw0UUEx?=
- =?utf-8?B?aEdBQXV4Mk5MeXMrRnR2RllyZ1IxNXV6S0NhRHlDSlRSaFlreVhpZXVuQ3Qw?=
- =?utf-8?B?RXlxL0U2QWxYaXpzdGpGbjZQUW9XK1o0MlU1WWJVZjJYampqOGFQZTYyTlQ0?=
- =?utf-8?B?MXdsakhMSS9pQWl6ZnRLaFZON2RSMHdnc0JSQ2lLbkovN3dkblJLaTlWazBy?=
- =?utf-8?B?Zkg0YU1VSHovNUtBY1FLKzJEbjM1bkVtSjJBVVAvQURiRzFHd3Z3OXhmTkZz?=
- =?utf-8?B?OXRTZlQ0S2ZLUjZnTHNJSjJOQ3Vma2F4MTFsemVvK3RaVGhmOXc0Sm5rbG5q?=
- =?utf-8?B?cHdFWGI5LzJZcGNCT0VkTS81S3orT1VDaHEvQzBnQzZEY3ZqOVJBdjlsZ1Bs?=
- =?utf-8?B?VWNZRURqZ2RreUpWSkprWmx6YmppSlFWNXRQVkpKZDhkUU5DakZKd2VWbDZq?=
- =?utf-8?B?ODBmWjN4dnVHS3pHSVpQYkEvNnB5MHpPQnhEOXZUU1ZnRzR4ODBoYzZPa1dR?=
- =?utf-8?B?L0pzNExya2ZPRmpvZFRETUtsenhJcUJIMjFRQ1BKb1dPMFI4eUJQUEViRjFW?=
- =?utf-8?B?bjJXNHZGSEVVUE1rZ1U4TFpiRFJYUUFFU2EwVjNlMk9zaXA4K0xYNDU2ZFFh?=
- =?utf-8?B?TXFFcFROVGUrWEhlY0syMzlhemdsK2pyY09zRVJhakRxMTRyMzRLNG4xNDB2?=
- =?utf-8?B?WmJxYUZ2WGhQRzZ1WFp6NDFuUHNGejZZdzVOWjlVYXNWTEJaSzJsZndELzA0?=
- =?utf-8?B?ZERhSHVKQUxQeTRZNThURG52d3FEa0s1NWxIaGMxSjB6L3JJR0RwbmMvVjdV?=
- =?utf-8?B?eUhsUDlNMERubXl2SFZzRjhIQnl3SUhjblNYNmVCTEZ5eXM4ODR5TlA5K2JT?=
- =?utf-8?B?L2FPQmc4c1JaV2hvR3NsL3ZRTHExdVgzajRNTE5VTFN2WlpSb1gxbHRUbFgy?=
- =?utf-8?B?ZDNzSVBqVHMyTEJta25OdzhLMDJwblpRcHp6SkVxbjhkeUlZOFJhdnhwVGxr?=
- =?utf-8?B?Ym9KZnNUclpPczYvZ0NRMm55a3FGOHZta1pZdjU3T3AvczA0N2dLRDB3QUth?=
- =?utf-8?B?VS9CZ0NkTVM5UU1IRE9IUFpNdC9nMEZ0dC9IT0lEYUdDZ1pha1VHR2gwRmdm?=
- =?utf-8?B?amFKdjJLTElwZjAwNm9rQlRJeklvSkhwUG9YREpOL0IxL0NaRG8vSkxBPT0=?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Rnc5aDBXTkhVdUF0VER2dWJXaHRUMm03bEVPSmxRdFVZT2Y0NE9DTHZDbVkr?=
+ =?utf-8?B?d2VVMTdpakVDUzVSclJYY3Zia2JSa1RVUVNtQWhCaTI2ZlZzdFRRZzFQckxo?=
+ =?utf-8?B?a05qZ2NOSlJHTHJxVTMyTGF5bzJIaU1Xd0V5ZnpoZzBMcmpJd0l6K1JaNHRN?=
+ =?utf-8?B?Y09oSkMxK0ViRE11QzFRbE81Sm1WVjkrbUN0azdxNGNVY3JXS292V0JEUW1l?=
+ =?utf-8?B?TlpEY1R4S3NxK1MvWWJERitWVGttQit0Sml4aW9ORTRUUklmREZ0ZHpKVS84?=
+ =?utf-8?B?Ryt5UUI0MW1la0tvZEVvNFFUdmM1L0c2S1JRMjN0K1NjcVFPNmtGWmhzNjdx?=
+ =?utf-8?B?NkFQRFg1Y0gwRVlOSmI1aHhtVWRkWUVXQ3ZhY1N6MjNYdjhQY2xOZjV1cUND?=
+ =?utf-8?B?QTZlNVVna1JhbWVldGtZOUhQWEQ0aEkrNStYMCtvTnRBNFlFM3ZVYjA2dzVn?=
+ =?utf-8?B?U0xOVC9hS1g2M0d2OFRwV3VySkRrMS9nbkhtaU1hTkFmbmlXekNUTjBqNWJ1?=
+ =?utf-8?B?SS9HMGxBeVIvK1JMMUlYNlJtZ1VxQ1B5bmJ5blRSOXdMUzVNOHE1MTY5YVBN?=
+ =?utf-8?B?WFNMU3M3aEhMN0FjOWJqZitvVTRSQXN2T0JhNlExV0xGSHd6MHFEZDg2VmxE?=
+ =?utf-8?B?aDZVbEtENnJzVVVqQ0hNL1lyTVZNVjB5TGs0Und5bUNvU21Pa2pqWmxDZ1FB?=
+ =?utf-8?B?bXJQR3lZY2k4NU5CWmV4UUxHMjh4YlJ6MFhQRTllV0huang5bXdIRkplMlk0?=
+ =?utf-8?B?enI2VExlM3RTWXExeHRHbTV6dEJUYmZRMGZNRlc0dko1U1NpM1o1ZEdSYWxS?=
+ =?utf-8?B?dStqY25jUmRuelRpVnNGNjg2ejdGS3ZkVkZ5OEhmOVQ0N1dYZGdTM2NHU3V4?=
+ =?utf-8?B?MFhZTGhzdjZXaXIrdFhzamV5b1RMK2lNVWs0RG1DMVN4VTZweDhMTm1mVXBh?=
+ =?utf-8?B?NGRsODdQRyt4NUZ0RXZ5Z3NkMWg5NXJTdXkrTkZOVjY3d1N1QmNTOUlQOEs2?=
+ =?utf-8?B?akJxcVBWMW9JS2pGOE1aUWVXaVlOaXA1c3RncmxJdHBtVnRhK3Q2bExpT3Fi?=
+ =?utf-8?B?RGJBbm53d2YwMHRiYVhNbWxEYXk5Z2k4NmluWlRTbUxkbzU5VndlVmhyZCtU?=
+ =?utf-8?B?OVJyTFBoakdNRytnYkNmbFVzRExLUEwvTHNjZ3VRWmtodkZsUnFuTkNmRmRS?=
+ =?utf-8?B?K1lHdnBiaVd1RUxWYjBnRVJMa1N1MlJkcTFJQWVQVnAxZUY1a2xZb0tVaGFM?=
+ =?utf-8?B?bkdnSVVsK012cFpVdDdseXdQVVRETUx1ZkNENGRVSGRTZFlob1QybUc0ZHhU?=
+ =?utf-8?B?cXUvcmZBSk1IMnpqTTBERGN3U1Q1Y2syOHUyTTBzeFFrRVRpcU5PZXpkNlRN?=
+ =?utf-8?B?ajVBOVU1eG96NXJCdEgyTHRhY3ZLVDZkOUttSW1sUHdDVjg2T2MwRUMrUHlO?=
+ =?utf-8?B?dHl5VGVmNlJuU0haS2lWbnl1QUhQc2Fhd0JrejM4OEREenVTTnBxZ1VCSjdl?=
+ =?utf-8?B?SmFYUTFRdVA5d3pFWjVueFdNejlaNFQwV0ZrQmxjeFZFYkhvaWpXU0J0d1NS?=
+ =?utf-8?B?Wk5qdm0rZ0ZPSXdmTE1nQXlaSUowMU1TSkh1cXRsR0pwbFNmRWpWQlcvZzl5?=
+ =?utf-8?B?RG5HY3dGb2kxRzVJOC96VVE4S2lNeWxkVlJMRHVuRUV4QnpHamFxd0hSNmxJ?=
+ =?utf-8?B?QmsrL053TFpwWk5QTTNVc2FNNXJHSEdWZUJ4WmhXRklOSXBTWFlaV1hRPT0=?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW4PR11MB7056.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?b3JYalVnUEt6NjBkMzRRY240aHhiczVJazNjc1V1V0V1bjVDVnh6QlU1NUY2?=
- =?utf-8?B?bmtNR1FyUTR6VVA0VzlXMGJtUVNJYjBsMmUreGdETzZla1NaYVkzQ2RzS2l5?=
- =?utf-8?B?MUt5bHZCTDFjWGJ4UU83R2JiNnVMaGZlUkxlN2RkS1lxaXVJNVgrTm1kaW1a?=
- =?utf-8?B?cm1MUnFVcm5ZYzE5VU1yVndNWHhIdERsMmV4WWM2V2xrRVY0Tk5JV2ZmUC9V?=
- =?utf-8?B?QlloUzlibmlxRERKbGZZV1dIeklWTFdFUDV2Z3RaZmFsano2TWpROHZDUExU?=
- =?utf-8?B?L1FzcFRVQnVGYkpCczh2QlNRWXYxbUJpQUVzZFhRK1QwMis1OFBoVUM1VWN6?=
- =?utf-8?B?SXpFVVBzYkpFazY4VlhiTkRWc1htVUtVS0VGN3U4T2lta3hSRmwveU9TNnZi?=
- =?utf-8?B?S0FwSHQvTUFDNDZPbGlLSTc5OEZoRnRoZEpiSTBSVEVtTmx1b0NIZzhPUGtI?=
- =?utf-8?B?dnJEaUdEWklFNGhMU1Qzbm96NUVNL3BsWlpxQXQrbjluK2p3eVJlODA3OGFx?=
- =?utf-8?B?L1BvUEZ4bExsN3J0b0d3Z3BJZVpqRFhqMDR5TFpYS1ZPdk9VQ0NabmduUUJ2?=
- =?utf-8?B?dWFjTUd4elZNOTYzTTdMSlJzUlZaaHpEeUlFejE1L3BmN2J5WExESzFUZTFm?=
- =?utf-8?B?YnhaTzhIQ3prS0hWekJCZGRCZEl5VWtpSGFBRjhVbDNra3A2ZnVuVW52VHlC?=
- =?utf-8?B?VHFYbXRNcEhRbzY3UFh3Y0pFOWduY3djQ2licHFuNG1ZYlExdURoc0tKQWlP?=
- =?utf-8?B?TTVlUU9pbXNsZkM1VjhjMFdoaE40ZTZPRjdvM3p3V0FwdXloUC9GZkRESFFE?=
- =?utf-8?B?RmJ1MWh6WjdXdXNibU9nSnZ2ZldjQXJ1RTAvSkM1NkhFTVQvNlBwY3pwbDVO?=
- =?utf-8?B?NGhpTnlNMUpwOGhTa3IxM3ozSXBmSXg1Vng5Q2RsNnZPcDBkWEw2Umg0UHNn?=
- =?utf-8?B?clpwZGFJemh5U3NFTEY2VkFBZDR3a2JXWGpIYXFHV3F6ajhCQ2Q3MG1PSVU0?=
- =?utf-8?B?b0lEaVBORUlOcEhVSis4UHlyTWV6bTZYcWFsYmlUWDMraEpyYVQ2QytaMEtn?=
- =?utf-8?B?NlVKZEk2MG5xMDBOenkrbUZUdWw5SC9TazM5NmZjZ2ZVdDdtbi8vbWcyMnB1?=
- =?utf-8?B?TTczZ1c2ZzJXNUlpUElQeWp4NGtDZUlMY1pPZDBjeHJOZGU2MTBmcXFFaFhX?=
- =?utf-8?B?MS9KSGdNcCs1RUZVTjEyazFtdDFRNHgwVnRuMzFObTYzYlQ3cjEwMUFTaVVE?=
- =?utf-8?B?bzZtdUtsejQzc2I1YW5EL3JVd0VjMUs1blE3WWVkd2FjOGZ1WmNCcmVmcjhU?=
- =?utf-8?B?Y1hrbGk5KzE1SG9rb0xtK0VISFgwbE43ek5WaG8zMllYbjhvcGpzNmdwNXhm?=
- =?utf-8?B?bWNrQi9sbGlYUDFyVlo1WStnY3BiT3RpejlZTnd2cmhaVVh4VGVQL1FwYkRn?=
- =?utf-8?B?K0VVbmRxN3JJdFpjSFNrSmtqSE5BVy9kanprUjE0UVR0ek4rSWRpRDVMZjJx?=
- =?utf-8?B?SUZYUWczc1BYUWVjZmwvazdsYXF3aFoxVGpObUVmWnYrOHF4aW1PZmtHcVg1?=
- =?utf-8?B?RXBHTjQ4cXNpRC9MYVZSY2FySUFMRWVmeVo5MDB1MWluWjlUK1J5emVhK3lu?=
- =?utf-8?B?WFM3UGViT1ozZ3dNK2hPOU40VUE5Rzh4Vlh2Z1QxQW96Y0JISmYxSEVBNjFh?=
- =?utf-8?B?dFRNbmhWa3Z1b3ZOYU4va1lXQlJzVWwzTlpNMG0ramtxanZDTnI1VzhWVlpP?=
- =?utf-8?B?T09KZXZEb3JMKzFUS0FjVkFRMXNMRHdtelRJNUdFVmk5dnpyaXBjcWtJRVpZ?=
- =?utf-8?B?OWxmNG42T1RyVStLbUd4V0J2RDN4SFpmU2RxUU5DNDRDWmN2TXU5M2grdXpI?=
- =?utf-8?B?M0lFeURyajJiWHFjWXkzWEx3MUp3L3p4Q2xLUFZGYVhxSDBPbjdEQVFPVG51?=
- =?utf-8?B?K3BDbTUrNktCZ1JVUzFkMHZqakN5N2xaUE5aREJaekJXVkhNQzN3NFJqajRR?=
- =?utf-8?B?T1haZHhjaE5WTmFhM1dRaVB0c1pkUUdhOUJUOS90Tno0QXJiaHdRRGNhVWU2?=
- =?utf-8?B?QjhaUmpnYjJDVXRxRm1VNC9ZdG9pZUk3M1FSYzg5YjluNG1lZkhxdzJ5Rjll?=
- =?utf-8?B?UWwvMWozNW1zRXM1WHFjMEFQNTFZbCtHaEtTaVo5Nmw2OERDT0JOREozdmVi?=
- =?utf-8?Q?8aXYTwbJ1Udfm2AS13fZp4Y=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f52df46-8324-4345-839b-08dc634c637d
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cVZ6dTZBRm0zNVRyMk52UmNiQzhwV2s4bXpGUHBDa05PamJDZDZ4YXB0ak9M?=
+ =?utf-8?B?QkhDVUU2emE4N1BBeEU4M1VWYkJvMm5oY3NQR2ExRTliTDFrdCtId0VlZ2Ir?=
+ =?utf-8?B?Q3J2L0xqcll6cTcwcGdHbTRxMytDS0ZibTlqM2FyRlZSZWtFK1BQc25Xejcz?=
+ =?utf-8?B?anJXZENJR3NkM1NjN1BPT2s2M1ZpVUFLc3J1eGpCblB4Wkh2aU9FWFpQY2tL?=
+ =?utf-8?B?TWhRR2YwR0VoWEhwcXEwNEtkNXJGTGlMbzZHNjVsbDJHZFVQTUIrTG5jemdM?=
+ =?utf-8?B?WFRIZUlrV1luQzV2ZGduZkU2RDJCMkxYTkhScllVc0hia3p4ak5FMUlaMDZi?=
+ =?utf-8?B?cVdKRDExcW5IZUVFVW4vUDFTdS9UUGNnOFI3aDYyZkQ3cjNmTFlDenlpN2pW?=
+ =?utf-8?B?V2cyYzF5bWNWanZuazRvT2xDQmtaVE5jWm5JSUtieFQ3SzVLckFXdWRoV0tO?=
+ =?utf-8?B?ek4za3FmZFc2ZDNzd0VMTzFuNDlnSnRQcDBFQmhVZzFtMTExUmtEUnJSUDY0?=
+ =?utf-8?B?Uks4WjlKaHkyZkVnVGdVVzMySmtuSGtBWk4waFcyWjdWWFN3SExuLzdCSEpq?=
+ =?utf-8?B?cVViL1JEL0pFcnRVUWZKMHFhUDlzTlM4YThaQ1NFRWdvYnlIYzFxcURQQVJI?=
+ =?utf-8?B?VEJYQVU0VWF6djlYUDFCWDFidmJHc0RDakN5S1dESUxtKzJBSFpIV0R5bzhJ?=
+ =?utf-8?B?cnZtVWVaVjRlN0RZcE52R3hlNExjU05yYTA3TnFWTlJSRnhvSjd3MFI1VUNY?=
+ =?utf-8?B?TTI4YUowK2ZOUmNvcVVuWjhrcld1WmhlVlpPLzlYZHdGWFowWDhxemhRR1NF?=
+ =?utf-8?B?UWpYQ1dMNnN5ZEl0SFlMNXNHZ2RBNnY2Nml6eHMxdHRoWmNDMDBDSktqQ1Fl?=
+ =?utf-8?B?Q2VxZ2hPVnY2akdHUjgrYTBlR0hYU05RUG1ZaDJIcER2VnFOamdIektiNjdi?=
+ =?utf-8?B?bUFuVjJtSW1OcTdXVWJiT3B4L2lJNXpEQ0djTkp4bW9yaW4vbk9ZMnJZaGli?=
+ =?utf-8?B?eHRGbWhRYzFmNWlSNW9GVExtZ2ZBRGFRRU8yYWloOXhqQzRjSitPZzhKS3Rm?=
+ =?utf-8?B?U0c2M0pEVlU1KytQSTFOb25MbTFGcWRMK0NGVksyeDBELzBjRTBiT0drUW4v?=
+ =?utf-8?B?NCtBQjEyRTVkSFZZalZ0amVjVURwYTJycERTVTFLazFHZGxKUHFZVVlBNTVn?=
+ =?utf-8?B?dGZNVW5hTGZFQ2U2ZEFoSmlQbHhyaWJjYWp1eUsvdkFkbnhnRFJHaHcwZG9U?=
+ =?utf-8?B?SmZBdktNeWp2cVZ4K3QxbjZZajhtVHo4amRwTkVBKzFBdWxZYnovYk55QlJh?=
+ =?utf-8?B?ZCs3T3RuU21IaWc4a1RMaFFOaVZMS1JlcUNKcXB5TU1qL2d5bit1WHBuTHJu?=
+ =?utf-8?B?YTAvT0lFQjYvRElVa1lTbjhjY3JFaVNJbk1Qa2VOVUk1S2JSeFQ3VDVvbEtv?=
+ =?utf-8?B?L2dabzlIM1MzTmRsZEE5dTUzQjBjQnEwVmMwd3ZUQStzZHNJSERlTlVQQTYx?=
+ =?utf-8?B?b3BqRzJDSjN3bEZUZG1NeC9OYzJpTGRlQzVrSG56dzdMOVNIMHpRREVTY3Uy?=
+ =?utf-8?B?NG1heXk1UzFQVFUvSSszZHp0bnRGbVBhVHpqTU91ZWgwRUUrUE1jaU1WSDcx?=
+ =?utf-8?B?Z1hMODdUSFZEdFN6c2ZleG1EeVZ1Z1dCVUZqU3JMQTVINlB6TE95SHdrK0c5?=
+ =?utf-8?B?WnFLUEorR1VTRytNTlFpRUNGbTVqVmc2Q0hUZk45QXV0bHBaWEZoNWRDZ1dU?=
+ =?utf-8?B?N04rU3k5Y2tIdG03c0tFTkRRVVhUZCtlMUsrZFRZbUhoWkRNOTdUanJUTjNF?=
+ =?utf-8?B?eTdtN0k4d2pMZnhnY3NCNlNsMmFWOC9IdUVDb21ESnlZQWlZVVNYdmU4MHFU?=
+ =?utf-8?B?VkFSUXpYeXVBelpNRUJXdFFrdVJVWE5RUkxtVHY0YjM2TVQ3dTVocVJkd2Nk?=
+ =?utf-8?B?VmZlL01ILzVCeERvclRhenJBZzMvWDg3RWR5RURPd1llQ1U3cFdjcnJYc2tj?=
+ =?utf-8?B?T2luLzRvVm1rc3dmeWZwN2lHdjdiNlZ3ZHdiMjVSNEloSHhPRkN1WlNkZ2lE?=
+ =?utf-8?B?T1Y2VUloMjFwSk84OG5sTm9GaDZTN1h1SWsrZmhWdWxEaXBXeUY4Y2pFSjFG?=
+ =?utf-8?B?UkxoZHF2RUhPem9ENGF0cU4zMVBRU2xKSWwrTEIrZnZhdnl6R2ZVMHlHTjVs?=
+ =?utf-8?Q?nZwwtRfC6qPDp9bGUxflQtY=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c5771e73-22fa-4235-9f07-08dc634c7924
 X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB7056.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 04:18:12.0405 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 04:18:48.4488 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3lOb4nMYGzeT6sGiLr7z+ZKNItTaZgeC2vKleWlDPhlA5LHNFsQhCq+SwF8Wzpw44ETkVOQAjBWjuptdHf4kY0i7bRHx/RBm/dbtg0QenuU=
+X-MS-Exchange-CrossTenant-UserPrincipalName: o39mWLsZx3nY7pmKjLm0px+ItNT6ea/X9WPwdLQ2L8COO39Yj+Yeka4WV+lkNNTdB/SCoMaw/LLflOAqRMb0OlwGH9fZN7BIG8ThhvK4SpA=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4740
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -189,149 +189,233 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------LOsTDy5oodNU3KFA6uq9sBUq
+--------------t0f92HECEOjxmXtP2ACXj2Vg
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
 
 On 22-04-2024 12:27, Aravind Iddamsetty wrote:
-> Save and restore PCI states where ever needed.
+> PCI subsystem provides callbacks to inform the driver about a request to
+> do function level reset by user, initiated by writing to sysfs entry
+> /sys/bus/pci/devices/.../reset. This will allow the driver to handle FLR
+> without the need to do unbind and rebind as the driver needs to
+> reinitialize the device afresh post FLR.
 >
+> v2:
+> 1. separate out gt idle and pci save/restore to a separate patch (Lucas)
+> 2. Fixed the warnings seen around xe_guc_submit_stop, xe_guc_puc_fini
+>
+> v3: declare xe_pci_err_handlers as static(Michal)
+>
+> Cc: Rodrigo Vivi<rodrigo.vivi@intel.com>
 > Cc: Lucas De Marchi<lucas.demarchi@intel.com>
+> Cc: Michal Wajdeczko<michal.wajdeczko@intel.com>
 >
 > Reviewed-by: Rodrigo Vivi<rodrigo.vivi@intel.com>
 > Signed-off-by: Aravind Iddamsetty<aravind.iddamsetty@linux.intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_device_types.h |  3 ++
->   drivers/gpu/drm/xe/xe_pci.c          | 48 ++++++++++++++++++++++++++--
->   drivers/gpu/drm/xe/xe_pci.h          |  4 ++-
->   3 files changed, 51 insertions(+), 4 deletions(-)
+>   drivers/gpu/drm/xe/Makefile          |  1 +
+>   drivers/gpu/drm/xe/xe_device_types.h |  3 +
+>   drivers/gpu/drm/xe/xe_guc_pc.c       |  4 ++
+>   drivers/gpu/drm/xe/xe_pci.c          |  9 ++-
+>   drivers/gpu/drm/xe/xe_pci.h          |  2 +
+>   drivers/gpu/drm/xe/xe_pci_err.c      | 88 ++++++++++++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_pci_err.h      | 13 ++++
+>   7 files changed, 119 insertions(+), 1 deletion(-)
+>   create mode 100644 drivers/gpu/drm/xe/xe_pci_err.c
+>   create mode 100644 drivers/gpu/drm/xe/xe_pci_err.h
 >
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 8bc62bfbc679..693971a1fac0 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -117,6 +117,7 @@ xe-y += xe_bb.o \
+>   	xe_module.o \
+>   	xe_pat.o \
+>   	xe_pci.o \
+> +	xe_pci_err.o \
+>   	xe_pcode.o \
+>   	xe_pm.o \
+>   	xe_preempt_fence.o \
 > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 8244b177a6a3..0a66555229e9 100644
+> index 0a66555229e9..8c749b378a92 100644
 > --- a/drivers/gpu/drm/xe/xe_device_types.h
 > +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -462,6 +462,9 @@ struct xe_device {
->   	/** @needs_flr_on_fini: requests function-reset on fini */
->   	bool needs_flr_on_fini;
+> @@ -465,6 +465,9 @@ struct xe_device {
+>   	/** @pci_state: PCI state of device */
+>   	struct pci_saved_state *pci_state;
 >   
-> +	/** @pci_state: PCI state of device */
-> +	struct pci_saved_state *pci_state;
+> +	/** @pci_device_is_reset: device went through PCIe FLR */
+> +	bool pci_device_is_reset;
 > +
 >   	/* private: */
 >   
 >   #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+> index 509649d0e65e..efba0fbe2f5c 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+> @@ -902,6 +902,10 @@ static void xe_guc_pc_fini(struct drm_device *drm, void *arg)
+>   		return;
+>   	}
+>   
+> +	/* We already have done this before going through a reset, so skip here */
+> +	if (xe->pci_device_is_reset)
+> +		return;
+> +
+>   	XE_WARN_ON(xe_force_wake_get(gt_to_fw(pc_to_gt(pc)), XE_FORCEWAKE_ALL));
+>   	XE_WARN_ON(xe_guc_pc_gucrc_disable(pc));
+>   	XE_WARN_ON(xe_guc_pc_stop(pc));
 > diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index fb20c9828563..a62300990e19 100644
+> index a62300990e19..b5a582afc9e7 100644
 > --- a/drivers/gpu/drm/xe/xe_pci.c
 > +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -393,6 +393,41 @@ MODULE_DEVICE_TABLE(pci, pciidlist);
->   
->   #undef INTEL_VGA_DEVICE
->   
-> +static bool xe_save_pci_state(struct pci_dev *pdev)
-> +{
-> +	struct xe_device *xe = pci_get_drvdata(pdev);
-> +
-> +	if (pci_save_state(pdev))
-> +		return false;
-> +
-> +	kfree(xe->pci_state);
-> +
-> +	xe->pci_state = pci_store_saved_state(pdev);
-> +	if (!xe->pci_state) {
-> +		drm_err(&xe->drm, "Failed to store PCI saved state\n");
-> +		return false;
-> +	}
-> +
-> +	return true;
-> +}
-> +
-> +void xe_load_pci_state(struct pci_dev *pdev)
-> +{
-> +	struct xe_device *xe = pci_get_drvdata(pdev);
-> +	int ret;
-> +
-> +	if (!xe->pci_state)
-> +		return;
-> +
-> +	ret = pci_load_saved_state(pdev, xe->pci_state);
-> +	if (ret) {
-> +		drm_warn(&xe->drm, "Failed to load PCI state err:%d\n", ret);
-> +		return;
-> +	}
-> +
-> +	pci_restore_state(pdev);
-> +}
-> +
->   /* is device_id present in comma separated list of ids */
->   static bool device_id_in_list(u16 device_id, const char *devices, bool negative)
->   {
-> @@ -698,6 +733,8 @@ static void xe_pci_remove(struct pci_dev *pdev)
->   
->   	xe_device_remove(xe);
->   	xe_pm_runtime_fini(xe);
-> +
-> +	kfree(xe->pci_state);
+> @@ -23,6 +23,7 @@
+>   #include "xe_macros.h"
+>   #include "xe_mmio.h"
+>   #include "xe_module.h"
+> +#include "xe_pci_err.h"
+>   #include "xe_pci_types.h"
+>   #include "xe_pm.h"
+>   #include "xe_sriov.h"
+> @@ -738,7 +739,7 @@ static void xe_pci_remove(struct pci_dev *pdev)
 >   	pci_set_drvdata(pdev, NULL);
 >   }
 >   
-> @@ -798,6 +835,9 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->   	drm_dbg(&xe->drm, "d3cold: capable=%s\n",
->   		str_yes_no(xe->d3cold.capable));
+> -static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+> +int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>   {
+>   	const struct xe_device_desc *desc = (const void *)ent->driver_data;
+>   	const struct xe_subplatform_desc *subplatform_desc;
+> @@ -986,6 +987,11 @@ static const struct dev_pm_ops xe_pm_ops = {
+>   };
+>   #endif
 >   
-> +	if (xe_save_pci_state(pdev))
-> +		pci_restore_state(pdev);
+> +static const struct pci_error_handlers xe_pci_err_handlers = {
+> +	.reset_prepare = xe_pci_reset_prepare,
+> +	.reset_done = xe_pci_reset_done,
+> +};
 > +
->   	return 0;
+>   static struct pci_driver xe_pci_driver = {
+>   	.name = DRIVER_NAME,
+>   	.id_table = pciidlist,
+> @@ -995,6 +1001,7 @@ static struct pci_driver xe_pci_driver = {
+>   #ifdef CONFIG_PM_SLEEP
+>   	.driver.pm = &xe_pm_ops,
+>   #endif
+> +	.err_handler = &xe_pci_err_handlers,
+>   };
 >   
->   err_driver_cleanup:
-> @@ -849,7 +889,7 @@ static int xe_pci_suspend(struct device *dev)
->   	 */
->   	d3cold_toggle(pdev, D3COLD_ENABLE);
->   
-> -	pci_save_state(pdev);
-> +	xe_save_pci_state(pdev);
->   	pci_disable_device(pdev);
->   
->   	return 0;
-> @@ -873,6 +913,8 @@ static int xe_pci_resume(struct device *dev)
->   
->   	pci_set_master(pdev);
->   
-> +	xe_load_pci_state(pdev);
-> +
->   	err = xe_pm_resume(pdev_to_xe_device(pdev));
->   	if (err)
->   		return err;
-> @@ -890,7 +932,7 @@ static int xe_pci_runtime_suspend(struct device *dev)
->   	if (err)
->   		return err;
->   
-> -	pci_save_state(pdev);
-> +	xe_save_pci_state(pdev);
->   
->   	if (xe->d3cold.allowed) {
->   		d3cold_toggle(pdev, D3COLD_ENABLE);
-> @@ -915,7 +957,7 @@ static int xe_pci_runtime_resume(struct device *dev)
->   	if (err)
->   		return err;
->   
-> -	pci_restore_state(pdev);
-> +	xe_load_pci_state(pdev);
->   
->   	if (xe->d3cold.allowed) {
->   		err = pci_enable_device(pdev);
+>   int xe_register_pci_driver(void)
 > diff --git a/drivers/gpu/drm/xe/xe_pci.h b/drivers/gpu/drm/xe/xe_pci.h
-> index 611c1209b14c..73b90a430d1f 100644
+> index 73b90a430d1f..9faf5380a09e 100644
 > --- a/drivers/gpu/drm/xe/xe_pci.h
 > +++ b/drivers/gpu/drm/xe/xe_pci.h
-> @@ -6,7 +6,9 @@
->   #ifndef _XE_PCI_H_
+> @@ -7,8 +7,10 @@
 >   #define _XE_PCI_H_
 >   
-> +struct pci_dev;
+>   struct pci_dev;
+> +struct pci_device_id;
+>   
+>   int xe_register_pci_driver(void);
+>   void xe_unregister_pci_driver(void);
+>   void xe_load_pci_state(struct pci_dev *pdev);
+> +int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent);
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_pci_err.c b/drivers/gpu/drm/xe/xe_pci_err.c
+> new file mode 100644
+> index 000000000000..5306925ea2fa
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_pci_err.c
+> @@ -0,0 +1,88 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2024 Intel Corporation
+> + */
 > +
+> +#include <linux/pci.h>
+> +#include <drm/drm_drv.h>
+> +
+> +#include "xe_device.h"
+> +#include "xe_gt.h"
+> +#include "xe_gt_printk.h"
+> +#include "xe_pci.h"
+> +#include "xe_pci_err.h"
+> +#include "xe_pm.h"
+> +#include "xe_uc.h"
+> +
+> +/**
+> + * xe_pci_reset_prepare - Called when user issued a PCIe reset
+> + * via /sys/bus/pci/devices/.../reset.
+> + * @pdev: PCI device struct
+> + */
+> +void xe_pci_reset_prepare(struct pci_dev *pdev)
+> +{
+> +	struct xe_device *xe = pci_get_drvdata(pdev);
+> +	struct xe_gt *gt;
+> +	int id, err;
+> +
+> +	pci_warn(pdev, "preparing for PCIe reset\n");
+> +
+> +	drm_warn(&xe->drm, "removing device access to userspace\n");
+> +	drm_dev_unplug(&xe->drm);
+> +
+> +	xe_pm_runtime_get(xe);
+> +	/* idle the GTs */
+> +	for_each_gt(gt, xe, id) {
+> +		err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> +		if (err)
+> +			goto reset;
+> +		xe_uc_reset_prepare(&gt->uc);
+> +		xe_gt_idle(gt);
+> +		err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> +		XE_WARN_ON(err);
+> +	}
+> +	xe_pm_runtime_put(xe);
+> +
+> +reset:
+> +	pci_disable_device(pdev);
+> +}
+> +
+> +/**
+> + * xe_pci_reset_done - Called when PCIe reset is done.
+> + * @pdev: PCI device struct
+> + */
+> +void xe_pci_reset_done(struct pci_dev *pdev)
+> +{
+> +	const struct pci_device_id *ent = pci_match_id(pdev->driver->id_table, pdev);
+> +	struct xe_device *xe = pci_get_drvdata(pdev);
+> +
+> +	dev_info(&pdev->dev,
+> +		 "device went through PCIe reset, reenabling the device\n");
+> +
+> +	if (pci_enable_device(pdev)) {
+> +		dev_err(&pdev->dev,
+> +			"Cannot re-enable PCI device after reset\n");
+> +		return;
+> +	}
+> +	pci_set_master(pdev);
+> +	xe_load_pci_state(pdev);
+> +
+> +	xe->pci_device_is_reset = true;
+> +	/*
+> +	 * We want to completely clean the driver and even destroy
+> +	 * the xe private data and reinitialize afresh similar to
+> +	 * probe
+> +	 */
+> +	pdev->driver->remove(pdev);
+> +	if (pci_dev_msi_enabled(pdev))
+> +		pci_free_irq_vectors(pdev);
+> +
+> +	devm_drm_dev_release_action(&xe->drm);
+> +	pci_disable_device(pdev);
+> +
+> +	/*
+> +	 * if this fails the driver might be in a stale state, only option is
+> +	 * to unbind and rebind
+> +	 */
+> +	xe_pci_probe(pdev, ent);
+> +}
 
 
 LGTM
@@ -339,14 +423,28 @@ LGTM
 Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
 
->   int xe_register_pci_driver(void);
->   void xe_unregister_pci_driver(void);
-> -
-> +void xe_load_pci_state(struct pci_dev *pdev);
->   #endif
---------------LOsTDy5oodNU3KFA6uq9sBUq
+> diff --git a/drivers/gpu/drm/xe/xe_pci_err.h b/drivers/gpu/drm/xe/xe_pci_err.h
+> new file mode 100644
+> index 000000000000..95a4c8ce9cf1
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_pci_err.h
+> @@ -0,0 +1,13 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2024 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_PCI_ERR_H_
+> +#define _XE_PCI_ERR_H_
+> +
+> +struct pci_dev;
+> +
+> +void xe_pci_reset_prepare(struct pci_dev *pdev);
+> +void xe_pci_reset_done(struct pci_dev *pdev);
+> +#endif
+--------------t0f92HECEOjxmXtP2ACXj2Vg
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
 <!DOCTYPE html><html><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -357,144 +455,228 @@ Content-Transfer-Encoding: 7bit
     <div class="moz-cite-prefix">On 22-04-2024 12:27, Aravind Iddamsetty
       wrote:<br>
     </div>
-    <blockquote type="cite" cite="mid:20240422065756.294679-3-aravind.iddamsetty@linux.intel.com">
-      <pre class="moz-quote-pre" wrap="">Save and restore PCI states where ever needed.
+    <blockquote type="cite" cite="mid:20240422065756.294679-5-aravind.iddamsetty@linux.intel.com">
+      <pre class="moz-quote-pre" wrap="">PCI subsystem provides callbacks to inform the driver about a request to
+do function level reset by user, initiated by writing to sysfs entry
+/sys/bus/pci/devices/.../reset. This will allow the driver to handle FLR
+without the need to do unbind and rebind as the driver needs to
+reinitialize the device afresh post FLR.
 
+v2:
+1. separate out gt idle and pci save/restore to a separate patch (Lucas)
+2. Fixed the warnings seen around xe_guc_submit_stop, xe_guc_puc_fini
+
+v3: declare xe_pci_err_handlers as static(Michal)
+
+Cc: Rodrigo Vivi <a class="moz-txt-link-rfc2396E" href="mailto:rodrigo.vivi@intel.com">&lt;rodrigo.vivi@intel.com&gt;</a>
 Cc: Lucas De Marchi <a class="moz-txt-link-rfc2396E" href="mailto:lucas.demarchi@intel.com">&lt;lucas.demarchi@intel.com&gt;</a>
+Cc: Michal Wajdeczko <a class="moz-txt-link-rfc2396E" href="mailto:michal.wajdeczko@intel.com">&lt;michal.wajdeczko@intel.com&gt;</a>
 
 Reviewed-by: Rodrigo Vivi <a class="moz-txt-link-rfc2396E" href="mailto:rodrigo.vivi@intel.com">&lt;rodrigo.vivi@intel.com&gt;</a>
 Signed-off-by: Aravind Iddamsetty <a class="moz-txt-link-rfc2396E" href="mailto:aravind.iddamsetty@linux.intel.com">&lt;aravind.iddamsetty@linux.intel.com&gt;</a>
 ---
- drivers/gpu/drm/xe/xe_device_types.h |  3 ++
- drivers/gpu/drm/xe/xe_pci.c          | 48 ++++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_pci.h          |  4 ++-
- 3 files changed, 51 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/Makefile          |  1 +
+ drivers/gpu/drm/xe/xe_device_types.h |  3 +
+ drivers/gpu/drm/xe/xe_guc_pc.c       |  4 ++
+ drivers/gpu/drm/xe/xe_pci.c          |  9 ++-
+ drivers/gpu/drm/xe/xe_pci.h          |  2 +
+ drivers/gpu/drm/xe/xe_pci_err.c      | 88 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pci_err.h      | 13 ++++
+ 7 files changed, 119 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_pci_err.c
+ create mode 100644 drivers/gpu/drm/xe/xe_pci_err.h
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 8bc62bfbc679..693971a1fac0 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -117,6 +117,7 @@ xe-y += xe_bb.o \
+ 	xe_module.o \
+ 	xe_pat.o \
+ 	xe_pci.o \
++	xe_pci_err.o \
+ 	xe_pcode.o \
+ 	xe_pm.o \
+ 	xe_preempt_fence.o \
 diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 8244b177a6a3..0a66555229e9 100644
+index 0a66555229e9..8c749b378a92 100644
 --- a/drivers/gpu/drm/xe/xe_device_types.h
 +++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -462,6 +462,9 @@ struct xe_device {
- 	/** @needs_flr_on_fini: requests function-reset on fini */
- 	bool needs_flr_on_fini;
+@@ -465,6 +465,9 @@ struct xe_device {
+ 	/** @pci_state: PCI state of device */
+ 	struct pci_saved_state *pci_state;
  
-+	/** @pci_state: PCI state of device */
-+	struct pci_saved_state *pci_state;
++	/** @pci_device_is_reset: device went through PCIe FLR */
++	bool pci_device_is_reset;
 +
  	/* private: */
  
  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 509649d0e65e..efba0fbe2f5c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -902,6 +902,10 @@ static void xe_guc_pc_fini(struct drm_device *drm, void *arg)
+ 		return;
+ 	}
+ 
++	/* We already have done this before going through a reset, so skip here */
++	if (xe-&gt;pci_device_is_reset)
++		return;
++
+ 	XE_WARN_ON(xe_force_wake_get(gt_to_fw(pc_to_gt(pc)), XE_FORCEWAKE_ALL));
+ 	XE_WARN_ON(xe_guc_pc_gucrc_disable(pc));
+ 	XE_WARN_ON(xe_guc_pc_stop(pc));
 diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index fb20c9828563..a62300990e19 100644
+index a62300990e19..b5a582afc9e7 100644
 --- a/drivers/gpu/drm/xe/xe_pci.c
 +++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -393,6 +393,41 @@ MODULE_DEVICE_TABLE(pci, pciidlist);
- 
- #undef INTEL_VGA_DEVICE
- 
-+static bool xe_save_pci_state(struct pci_dev *pdev)
-+{
-+	struct xe_device *xe = pci_get_drvdata(pdev);
-+
-+	if (pci_save_state(pdev))
-+		return false;
-+
-+	kfree(xe-&gt;pci_state);
-+
-+	xe-&gt;pci_state = pci_store_saved_state(pdev);
-+	if (!xe-&gt;pci_state) {
-+		drm_err(&amp;xe-&gt;drm, &quot;Failed to store PCI saved state\n&quot;);
-+		return false;
-+	}
-+
-+	return true;
-+}
-+
-+void xe_load_pci_state(struct pci_dev *pdev)
-+{
-+	struct xe_device *xe = pci_get_drvdata(pdev);
-+	int ret;
-+
-+	if (!xe-&gt;pci_state)
-+		return;
-+
-+	ret = pci_load_saved_state(pdev, xe-&gt;pci_state);
-+	if (ret) {
-+		drm_warn(&amp;xe-&gt;drm, &quot;Failed to load PCI state err:%d\n&quot;, ret);
-+		return;
-+	}
-+
-+	pci_restore_state(pdev);
-+}
-+
- /* is device_id present in comma separated list of ids */
- static bool device_id_in_list(u16 device_id, const char *devices, bool negative)
- {
-@@ -698,6 +733,8 @@ static void xe_pci_remove(struct pci_dev *pdev)
- 
- 	xe_device_remove(xe);
- 	xe_pm_runtime_fini(xe);
-+
-+	kfree(xe-&gt;pci_state);
+@@ -23,6 +23,7 @@
+ #include &quot;xe_macros.h&quot;
+ #include &quot;xe_mmio.h&quot;
+ #include &quot;xe_module.h&quot;
++#include &quot;xe_pci_err.h&quot;
+ #include &quot;xe_pci_types.h&quot;
+ #include &quot;xe_pm.h&quot;
+ #include &quot;xe_sriov.h&quot;
+@@ -738,7 +739,7 @@ static void xe_pci_remove(struct pci_dev *pdev)
  	pci_set_drvdata(pdev, NULL);
  }
  
-@@ -798,6 +835,9 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	drm_dbg(&amp;xe-&gt;drm, &quot;d3cold: capable=%s\n&quot;,
- 		str_yes_no(xe-&gt;d3cold.capable));
+-static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
++int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ {
+ 	const struct xe_device_desc *desc = (const void *)ent-&gt;driver_data;
+ 	const struct xe_subplatform_desc *subplatform_desc;
+@@ -986,6 +987,11 @@ static const struct dev_pm_ops xe_pm_ops = {
+ };
+ #endif
  
-+	if (xe_save_pci_state(pdev))
-+		pci_restore_state(pdev);
++static const struct pci_error_handlers xe_pci_err_handlers = {
++	.reset_prepare = xe_pci_reset_prepare,
++	.reset_done = xe_pci_reset_done,
++};
 +
- 	return 0;
+ static struct pci_driver xe_pci_driver = {
+ 	.name = DRIVER_NAME,
+ 	.id_table = pciidlist,
+@@ -995,6 +1001,7 @@ static struct pci_driver xe_pci_driver = {
+ #ifdef CONFIG_PM_SLEEP
+ 	.driver.pm = &amp;xe_pm_ops,
+ #endif
++	.err_handler = &amp;xe_pci_err_handlers,
+ };
  
- err_driver_cleanup:
-@@ -849,7 +889,7 @@ static int xe_pci_suspend(struct device *dev)
- 	 */
- 	d3cold_toggle(pdev, D3COLD_ENABLE);
- 
--	pci_save_state(pdev);
-+	xe_save_pci_state(pdev);
- 	pci_disable_device(pdev);
- 
- 	return 0;
-@@ -873,6 +913,8 @@ static int xe_pci_resume(struct device *dev)
- 
- 	pci_set_master(pdev);
- 
-+	xe_load_pci_state(pdev);
-+
- 	err = xe_pm_resume(pdev_to_xe_device(pdev));
- 	if (err)
- 		return err;
-@@ -890,7 +932,7 @@ static int xe_pci_runtime_suspend(struct device *dev)
- 	if (err)
- 		return err;
- 
--	pci_save_state(pdev);
-+	xe_save_pci_state(pdev);
- 
- 	if (xe-&gt;d3cold.allowed) {
- 		d3cold_toggle(pdev, D3COLD_ENABLE);
-@@ -915,7 +957,7 @@ static int xe_pci_runtime_resume(struct device *dev)
- 	if (err)
- 		return err;
- 
--	pci_restore_state(pdev);
-+	xe_load_pci_state(pdev);
- 
- 	if (xe-&gt;d3cold.allowed) {
- 		err = pci_enable_device(pdev);
+ int xe_register_pci_driver(void)
 diff --git a/drivers/gpu/drm/xe/xe_pci.h b/drivers/gpu/drm/xe/xe_pci.h
-index 611c1209b14c..73b90a430d1f 100644
+index 73b90a430d1f..9faf5380a09e 100644
 --- a/drivers/gpu/drm/xe/xe_pci.h
 +++ b/drivers/gpu/drm/xe/xe_pci.h
-@@ -6,7 +6,9 @@
- #ifndef _XE_PCI_H_
+@@ -7,8 +7,10 @@
  #define _XE_PCI_H_
  
-+struct pci_dev;
-+</pre>
+ struct pci_dev;
++struct pci_device_id;
+ 
+ int xe_register_pci_driver(void);
+ void xe_unregister_pci_driver(void);
+ void xe_load_pci_state(struct pci_dev *pdev);
++int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent);
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_pci_err.c b/drivers/gpu/drm/xe/xe_pci_err.c
+new file mode 100644
+index 000000000000..5306925ea2fa
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_pci_err.c
+@@ -0,0 +1,88 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2024 Intel Corporation
++ */
++
++#include &lt;linux/pci.h&gt;
++#include &lt;drm/drm_drv.h&gt;
++
++#include &quot;xe_device.h&quot;
++#include &quot;xe_gt.h&quot;
++#include &quot;xe_gt_printk.h&quot;
++#include &quot;xe_pci.h&quot;
++#include &quot;xe_pci_err.h&quot;
++#include &quot;xe_pm.h&quot;
++#include &quot;xe_uc.h&quot;
++
++/**
++ * xe_pci_reset_prepare - Called when user issued a PCIe reset
++ * via /sys/bus/pci/devices/.../reset.
++ * @pdev: PCI device struct
++ */
++void xe_pci_reset_prepare(struct pci_dev *pdev)
++{
++	struct xe_device *xe = pci_get_drvdata(pdev);
++	struct xe_gt *gt;
++	int id, err;
++
++	pci_warn(pdev, &quot;preparing for PCIe reset\n&quot;);
++
++	drm_warn(&amp;xe-&gt;drm, &quot;removing device access to userspace\n&quot;);
++	drm_dev_unplug(&amp;xe-&gt;drm);
++
++	xe_pm_runtime_get(xe);
++	/* idle the GTs */
++	for_each_gt(gt, xe, id) {
++		err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++		if (err)
++			goto reset;
++		xe_uc_reset_prepare(&amp;gt-&gt;uc);
++		xe_gt_idle(gt);
++		err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++		XE_WARN_ON(err);
++	}
++	xe_pm_runtime_put(xe);
++
++reset:
++	pci_disable_device(pdev);
++}
++
++/**
++ * xe_pci_reset_done - Called when PCIe reset is done.
++ * @pdev: PCI device struct
++ */
++void xe_pci_reset_done(struct pci_dev *pdev)
++{
++	const struct pci_device_id *ent = pci_match_id(pdev-&gt;driver-&gt;id_table, pdev);
++	struct xe_device *xe = pci_get_drvdata(pdev);
++
++	dev_info(&amp;pdev-&gt;dev,
++		 &quot;device went through PCIe reset, reenabling the device\n&quot;);
++
++	if (pci_enable_device(pdev)) {
++		dev_err(&amp;pdev-&gt;dev,
++			&quot;Cannot re-enable PCI device after reset\n&quot;);
++		return;
++	}
++	pci_set_master(pdev);
++	xe_load_pci_state(pdev);
++
++	xe-&gt;pci_device_is_reset = true;
++	/*
++	 * We want to completely clean the driver and even destroy
++	 * the xe private data and reinitialize afresh similar to
++	 * probe
++	 */
++	pdev-&gt;driver-&gt;remove(pdev);
++	if (pci_dev_msi_enabled(pdev))
++		pci_free_irq_vectors(pdev);
++
++	devm_drm_dev_release_action(&amp;xe-&gt;drm);
++	pci_disable_device(pdev);
++
++	/*
++	 * if this fails the driver might be in a stale state, only option is
++	 * to unbind and rebind
++	 */
++	xe_pci_probe(pdev, ent);
++}</pre>
     </blockquote>
     <p><br>
     </p>
@@ -1149,16 +1331,30 @@ index 611c1209b14c..73b90a430d1f 100644
     <p class="MsoPlainText">Reviewed-by: Himal Prasad Ghimiray &lt;<a href="mailto:himal.prasad.ghimiray@intel.com" class="moz-txt-link-freetext">himal.prasad.ghimiray@intel.com</a>&gt;</p>
     <p class="MsoPlainText"><br>
     </p>
-    <blockquote type="cite" cite="mid:20240422065756.294679-3-aravind.iddamsetty@linux.intel.com">
+    <blockquote type="cite" cite="mid:20240422065756.294679-5-aravind.iddamsetty@linux.intel.com">
       <pre class="moz-quote-pre" wrap="">
- int xe_register_pci_driver(void);
- void xe_unregister_pci_driver(void);
--
-+void xe_load_pci_state(struct pci_dev *pdev);
- #endif
+diff --git a/drivers/gpu/drm/xe/xe_pci_err.h b/drivers/gpu/drm/xe/xe_pci_err.h
+new file mode 100644
+index 000000000000..95a4c8ce9cf1
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_pci_err.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2024 Intel Corporation
++ */
++
++#ifndef _XE_PCI_ERR_H_
++#define _XE_PCI_ERR_H_
++
++struct pci_dev;
++
++void xe_pci_reset_prepare(struct pci_dev *pdev);
++void xe_pci_reset_done(struct pci_dev *pdev);
++#endif
 </pre>
     </blockquote>
   </body>
 </html>
 
---------------LOsTDy5oodNU3KFA6uq9sBUq--
+--------------t0f92HECEOjxmXtP2ACXj2Vg--
