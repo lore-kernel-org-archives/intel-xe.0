@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 276D0C18E72
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 23:56:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51920C4345F
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 23:56:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 070B711377C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 528D511377D;
 	Tue, 23 Apr 2024 23:56:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O6qZVhBb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="igFRaaVm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 111FC11377A;
- Tue, 23 Apr 2024 23:56:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0E3C113779;
+ Tue, 23 Apr 2024 23:56:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1713916586; x=1745452586;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FkOi2zVfaSw9XbSlrMCfXPWMasGyyPIA+qtei/cco54=;
- b=O6qZVhBbPQAoRZkHHAi14hH8+cYUFTKA8OT0Eb4NtpBt4WnuI5Irj9Iz
- qw96x7HRcQ1m4nYLfmA1tG4RJ0vyRKGyRM7ppv0quQbnWSZmcJhDOaqBW
- N0yioIb4aLFvIuoGHQt+oB/m2hKlOK6bJvz5oQcigh8/w+qPiuiINlWZd
- Hqlg0UBZERdJJk3EXrm0RJcoCE3qqDDybdcbXXiY7uZhuTG6jl8II2e4A
- uXWg7IMKpQVdRAY8Rg+HtOirAEFPhkEsHWKtu65RezdnC0ko3Zig605Qf
- jHwD7KGIq03A3YOCfHrfJzMR+3HWZKeJOc1ZfpZ8eLxI8IP/T35eigpJK A==;
-X-CSE-ConnectionGUID: L8J4WJ7oSnSeLhm2PivDKw==
-X-CSE-MsgGUID: AfRdTSV0RKmcKOQfBLZevA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="27040648"
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="27040648"
+ bh=7RUNRWAw/Jy7CMiXad5RP36prd47GeoL5Kr9KYHcVyc=;
+ b=igFRaaVm6TbQM1aYcqVmP2Dtd9/gjvJF0L6r6EAR/Ck8CED7+dtgYcNv
+ KP3SMMZ63/WKyEi0tukmYSwsl+ZFso0fBAwWbUnlEpZrCDggHd6Z0iPos
+ CX9IaGG+6fhBNE/Kw2hNFQuIkYxeATLUXRWCAuEA+j6qD3Cs8zC4WlS5b
+ SAjxjILtniw7Z6LzTm2b0jV0TOBV9fKegUed5DI3gzWeE2XYkRqM4q8zq
+ Kl7TPD+7ubFzJxKMzX5H5UHSPKxgCCmnsuuPwJvp+XTvZcDBEdQLaWst/
+ KYF71tg3zQYBXQEs0XHzDMNfQAmEXiw8aw9l3072d5mjCa2ls7EnjSbV1 g==;
+X-CSE-ConnectionGUID: Q9EU1oUHSSyo+WgixpJyuA==
+X-CSE-MsgGUID: LpiJBwDDSmm+IexUV2HKtQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="27040647"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="27040647"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Apr 2024 16:56:25 -0700
-X-CSE-ConnectionGUID: WnFq/9/RTpS+Brd22YKs4w==
-X-CSE-MsgGUID: H8Rd3Cv9TFiVvbK2jMU5eg==
+X-CSE-ConnectionGUID: 5Z0GZCwIRheQa5YEUPes7Q==
+X-CSE-MsgGUID: pOM/PbVwTzq+sTwk/MM75Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="29170915"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="29170909"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Apr 2024 16:56:24 -0700
@@ -47,9 +47,9 @@ Cc: dri-devel@lists.freedesktop.org,
  Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 3/6] drm/xe: Add helper to accumulate exec queue runtime
-Date: Tue, 23 Apr 2024 16:56:48 -0700
-Message-ID: <20240423235652.1959945-4-lucas.demarchi@intel.com>
+Subject: [PATCH v2 1/6] drm/xe/lrc: Add helper to capture context timestamp
+Date: Tue, 23 Apr 2024 16:56:46 -0700
+Message-ID: <20240423235652.1959945-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240423235652.1959945-1-lucas.demarchi@intel.com>
 References: <20240423235652.1959945-1-lucas.demarchi@intel.com>
@@ -71,120 +71,102 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-Add a helper to accumulate per-client runtime of all its
-exec queues. Currently that is done in 2 places:
+Add a helper to capture CTX_TIMESTAMP from the context image so it can
+be used to calculate the runtime.
 
-	1. when the exec_queue is destroyed
-	2. when the sched job is completed
+v2: Add kernel-doc to clarify expectation from caller
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h |  9 +++++++
- drivers/gpu/drm/xe/xe_exec_queue.c   | 37 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_exec_queue.h   |  1 +
- drivers/gpu/drm/xe/xe_sched_job.c    |  2 ++
- 4 files changed, 49 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_lrc_layout.h |  1 +
+ drivers/gpu/drm/xe/xe_lrc.c             | 11 +++++++++++
+ drivers/gpu/drm/xe/xe_lrc.h             | 14 ++++++++++++++
+ drivers/gpu/drm/xe/xe_lrc_types.h       |  3 +++
+ 4 files changed, 29 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 2e62450d86e1..33d3bf93a2f1 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -547,6 +547,15 @@ struct xe_file {
- 		struct mutex lock;
- 	} exec_queue;
+diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+index 1825d8f79db6..8780e6c6b649 100644
+--- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
++++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+@@ -11,6 +11,7 @@
+ #define CTX_RING_TAIL			(0x06 + 1)
+ #define CTX_RING_START			(0x08 + 1)
+ #define CTX_RING_CTL			(0x0a + 1)
++#define CTX_TIMESTAMP			(0x22 + 1)
+ #define CTX_PDP0_UDW			(0x30 + 1)
+ #define CTX_PDP0_LDW			(0x32 + 1)
  
-+	/**
-+	 * @runtime: hw engine class runtime in ticks for this drm client
-+	 *
-+	 * Only stats from xe_exec_queue->lrc[0] are accumulated. For multi-lrc
-+	 * case, since all jobs run in parallel on the engines, only the stats
-+	 * from lrc[0] are sufficient.
-+	 */
-+	u64 runtime[XE_ENGINE_CLASS_MAX];
-+
- 	/** @client: drm client */
- 	struct xe_drm_client *client;
- };
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 395de93579fa..b7b6256cb96a 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -214,6 +214,8 @@ void xe_exec_queue_fini(struct xe_exec_queue *q)
- {
- 	int i;
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 615bbc372ac6..4bfd8f9c3b46 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -751,6 +751,7 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 	lrc->tile = gt_to_tile(hwe->gt);
+ 	lrc->ring.size = ring_size;
+ 	lrc->ring.tail = 0;
++	lrc->ctx_timestamp = 0;
  
-+	xe_exec_queue_update_runtime(q);
-+
- 	for (i = 0; i < q->width; ++i)
- 		xe_lrc_finish(q->lrc + i);
- 	if (!(q->flags & EXEC_QUEUE_FLAG_PERMANENT) && (q->flags & EXEC_QUEUE_FLAG_VM || !q->vm))
-@@ -769,6 +771,41 @@ bool xe_exec_queue_is_idle(struct xe_exec_queue *q)
- 		q->lrc[0].fence_ctx.next_seqno - 1;
+ 	xe_hw_fence_ctx_init(&lrc->fence_ctx, hwe->gt,
+ 			     hwe->fence_irq, hwe->name);
+@@ -786,6 +787,7 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 			xe_drm_client_add_bo(vm->xef->client, lrc->bo);
+ 	}
+ 
++	xe_lrc_write_ctx_reg(lrc, CTX_TIMESTAMP, 0);
+ 	xe_lrc_write_ctx_reg(lrc, CTX_RING_START, __xe_lrc_ring_ggtt_addr(lrc));
+ 	xe_lrc_write_ctx_reg(lrc, CTX_RING_HEAD, 0);
+ 	xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, lrc->ring.tail);
+@@ -1444,3 +1446,12 @@ void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot)
+ 		xe_bo_put(snapshot->lrc_bo);
+ 	kfree(snapshot);
  }
++
++u32 xe_lrc_update_timestamp(struct xe_lrc *lrc, u32 *old_ts)
++{
++	*old_ts = lrc->ctx_timestamp;
++
++	lrc->ctx_timestamp = xe_lrc_read_ctx_reg(lrc, CTX_TIMESTAMP);
++
++	return lrc->ctx_timestamp;
++}
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index d32fa31faa2c..dcbc6edd80da 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -60,4 +60,18 @@ void xe_lrc_snapshot_capture_delayed(struct xe_lrc_snapshot *snapshot);
+ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer *p);
+ void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot);
  
 +/**
-+ * xe_exec_queue_update_runtime() - Update runtime for this exec queue from hw
-+ * @q: The exec queue
++ * xe_lrc_update_timestamp - readout LRC timestamp and update cached value
++ * @lrc: logical ring context for this exec queue
++ * @old_ts: pointer where to save the previous timestamp
 + *
-+ * Update the timestamp saved by HW for this exec queue and save runtime
-+ * calculated by using the delta from last update. On multi-lrc case, only the
-+ * first is considered.
++ * Read the current timestamp for this LRC and update the cached value. The
++ * previous cached value is also returned in @old_ts so the caller can calculate
++ * the delta between 2 updates. Note that this is not intended to be called from
++ * any place, but just by the paths updating the drm client utilization.
++ *
++ * Returns the current LRC timestamp
 + */
-+void xe_exec_queue_update_runtime(struct xe_exec_queue *q)
-+{
-+	struct xe_file *xef;
-+	struct xe_lrc *lrc;
-+	u32 old_ts, new_ts;
++u32 xe_lrc_update_timestamp(struct xe_lrc *lrc, u32 *old_ts);
 +
-+	/*
-+	 * Jobs that are run during driver load may use an exec_queue, but are
-+	 * not associated with a user xe file, so avoid accumulating busyness
-+	 * for kernel specific work.
-+	 */
-+	if (!q->vm || !q->vm->xef)
-+		return;
-+
-+	xef = q->vm->xef;
-+	lrc = &q->lrc[0];
-+
-+	new_ts = xe_lrc_update_timestamp(lrc, &old_ts);
-+
-+	/*
-+	 * Special case the very first timestamp: we don't want the
-+	 * initial delta to be a huge value
-+	 */
-+	if (old_ts)
-+		xef->runtime[q->class] += new_ts - old_ts;
-+}
-+
- void xe_exec_queue_kill(struct xe_exec_queue *q)
- {
- 	struct xe_exec_queue *eq = q, *next;
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index 02ce8d204622..45b72daa2db3 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -66,5 +66,6 @@ struct dma_fence *xe_exec_queue_last_fence_get(struct xe_exec_queue *e,
- 					       struct xe_vm *vm);
- void xe_exec_queue_last_fence_set(struct xe_exec_queue *e, struct xe_vm *vm,
- 				  struct dma_fence *fence);
-+void xe_exec_queue_update_runtime(struct xe_exec_queue *q);
- 
  #endif
-diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-index cd8a2fba5438..6a081a4fa190 100644
---- a/drivers/gpu/drm/xe/xe_sched_job.c
-+++ b/drivers/gpu/drm/xe/xe_sched_job.c
-@@ -242,6 +242,8 @@ bool xe_sched_job_completed(struct xe_sched_job *job)
- {
- 	struct xe_lrc *lrc = job->q->lrc;
+diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
+index b716df0dfb4e..5765d771b901 100644
+--- a/drivers/gpu/drm/xe/xe_lrc_types.h
++++ b/drivers/gpu/drm/xe/xe_lrc_types.h
+@@ -41,6 +41,9 @@ struct xe_lrc {
  
-+	xe_exec_queue_update_runtime(job->q);
+ 	/** @fence_ctx: context for hw fence */
+ 	struct xe_hw_fence_ctx fence_ctx;
 +
- 	/*
- 	 * Can safely check just LRC[0] seqno as that is last seqno written when
- 	 * parallel handshake is done.
++	/** @ctx_timestamp: readout value of CTX_TIMESTAMP on last update */
++	u32 ctx_timestamp;
+ };
+ 
+ struct xe_lrc_snapshot;
 -- 
 2.43.0
 
