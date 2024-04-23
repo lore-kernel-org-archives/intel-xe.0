@@ -4,167 +4,169 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1965DC4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 01:12:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58D8CC4345F
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 01:24:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABF0D10F238;
-	Tue, 23 Apr 2024 01:12:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2A9B112F1E;
+	Tue, 23 Apr 2024 01:24:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VeWm6UOB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lZfzb+JL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D31310F238
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Apr 2024 01:12:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3713112F1E
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Apr 2024 01:24:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713834774; x=1745370774;
+ t=1713835454; x=1745371454;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=orS1C2sxZiCu7quxmwh/xOgd2HADq+UhBTKkvdE0OW8=;
- b=VeWm6UOBH7UNfbAUhKsllFjUx6xMwSG/0MJBucQUA7G51lRxBerz/7qS
- RUvBswpBVS/fbwlgx6Z9sB4HoVJL5AZfUBcZ2WnJSv9CraomA9NCwweu0
- MKTxdByRw8Usj+BMzXT1yvSIuDBxJL0vEM/lVSqzLGIEiLiTNGpTDe2AA
- u5ySy1qImwjYD4f8D2KhAQczv/lQeLVZUXys0vbhr895cBcpRLybhD+hv
- i+gEoZy6bZro94o5WfJRYHOwVVnGgh7OTGmWH9R5jLh6oeRNt9Mb4AN+f
- qXIDyfMv2CLD9yf6K8Vuu9lS9A2fLo/qsR+qXNXENnbVVEwNVxRa51Azv g==;
-X-CSE-ConnectionGUID: b8zu6an7TUe3qkuOi2byxw==
-X-CSE-MsgGUID: FpJ+qfqpQ6umS0NiB3u9hA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="9317418"
+ bh=L8SGQI5GFPXZIJ4JWYGzo6Mb811OyEAVJJs7Ib1Vy0I=;
+ b=lZfzb+JLBZ2T8QFdEG8FX9DJtyCHc9I731ywOm1TjXdKMLS2xxR0QQcS
+ HGuAqUw2PueYwMC7Hf0v0eM/6ClUSh7cx0y+bFB+W3Rm8QNmr+moPtMn0
+ UJhGk0cUGmgcSYFn+RTkCDehkB9T9e+hTJBIs0JDivcF96phtuC70UBUN
+ 72CeTPmQEapYI6cw/BtO+pUfxE32t8kHqEKKEnyvJ1pNXrKy1EnlJ0O7X
+ IclxfrevVEBGg4O2ftomtEhXjWXC8M4OWOea9KD8ON6UztygGv9t4wm7I
+ yaniTTp7ez9G2S5/Kole2YvBeFJhAhMxxxJIWC10vPzKZfp16avhOmV3I w==;
+X-CSE-ConnectionGUID: 6CcJCMjBSk2Jt3QjpOunOQ==
+X-CSE-MsgGUID: t8VeSU2IQCKCWLwBc2D2Vg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="9268288"
 X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
-   d="scan'208";a="9317418"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2024 18:12:53 -0700
-X-CSE-ConnectionGUID: TXg1lS6wQ/mdLCGxKYffqQ==
-X-CSE-MsgGUID: iRJcoxM7QkyLdNs1G9HV+g==
+   d="scan'208";a="9268288"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2024 18:24:13 -0700
+X-CSE-ConnectionGUID: 4GjozPh4TmyJ29LboIh4vg==
+X-CSE-MsgGUID: JnfxQSLvTXWg9W3626pmgA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="61646354"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Apr 2024 18:12:52 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="28716831"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 22 Apr 2024 18:24:13 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 22 Apr 2024 18:12:52 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.35; Mon, 22 Apr 2024 18:24:12 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 22 Apr 2024 18:12:52 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.35; Mon, 22 Apr 2024 18:24:12 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 22 Apr 2024 18:12:51 -0700
+ 15.1.2507.35 via Frontend Transport; Mon, 22 Apr 2024 18:24:12 -0700
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 22 Apr 2024 18:12:51 -0700
+ 15.1.2507.35; Mon, 22 Apr 2024 18:24:11 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=E9D/5D8VIROWRxwqXk5eZAsRFBKZV9AqmaM9mmcnwaJsODknO+QhpJ8Mx0J3oogFRjaAgoEkPh1nI8xzrANtFKTyfVjF4AmCxFyfjo0In2fHBuFO6d3bDffdec++ks3OBRNTVfUR0fbUIn8MotTzcMczpLZDxvhMhS6onwTRqDNLfSOQ66iSJj2Da/Upu6CYCmxk9MpXh1TRNT8QKBv35qYpqTV9HOleQguL2IKVHBO1DrY/egruHjbiSzZLjVkRqat2kKKhUcipp9J9HIsMRoX3q55Bn+u8Fu1UXOpiGbHCiF/9gCX20q4MuAsMttJsbE5ZHH3aOBoClvCEzioRqg==
+ b=iBxcdmaNwuhdcqeBMCvREblLMQ90O+23pqrv4zD5bUw6CDX9ZFk5F4/YjTX/5ki9QtnVNFEu83ljCxRwGeUJK6YSghm/E9CQGxE2VwvaLv80Gme4tQs3BEswcTkFCqKZemkRJAN8Z0R7/qkMLbc03rYH4Wf/uYvOrI8O4tk2AI9NZRYFMLbpYMEsfIeNzFIhf9pSeYT5iNkFdT6taAnUmwF3dmAIjaVXBAKT5D1UDowkaSobZZYCBkR7Yo7CzU2xVYHgw23DYVzpqxmLpOCK+cLzKCoxZ8eXheOYvtnvDGQBmIBSCt+P/i8MH0Mg5hseA0WE2EJjGvCvxcOnI2QTag==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oBTUiJ0ghV+Cl+pnA3njaVscJAhK8UPvQsu6yhian6o=;
- b=Bynb54lm6gyoWZHHTB3vebDYr5rbkRLRKHLmwA9dQnOkGdEXtmOBQ1u6IKiWZl0L1AWhR5OTjkEEHjYt0k5msqzaTHyeof4jc49pD/iIE3vi84/2GcP7T5kVEElnaN5lNwraXcjjXWpc2Z547ftTAZP5lYP03B4EPPoEfH3F5HkSiD4oi05kZ61Ie6VRWOF17fMjm84Tdf5aSaMZ7xlhXsPNBTnBL6UYK1mMT5NmiBgXkuzP0WvwP2VRe6hvDRmviM/v37h8tzge4wjQF/aPG8uXdTK8qVtpkMSEw+JVQIIc6rapKohvaDRMifNhJtgjZUSwWGXUObP2Cpe+uEUogw==
+ bh=QqmqASEl2n7Rq+MyLdOrrV8KEc4auU5VGr+Ph52kBdo=;
+ b=K50zK7WOrreeZLHh0yqRXQ/2YvgEpbBymm3RmVaQjUevZeZPBOM5ytk8M9LyM90mKxDQ3EpRkCtwYZRnCrdU4ZGD1zsEHhFRl/PaDqKz2bAGy+H00y/yBRbh31atSZKpHOeMIkitVM8fdQ8r0ClwCoKyoMUUnHXLARFPItiZUtDvwN0kLgZ9iTZ11Lfaai1z5bWsgrn5BHwRwedDhqvivSL/jn8YnmolnlJGrzvon4JJ0quY6nh0Pm5WgsbTHcgRyjMm2DtpwAzjvKFCk97O8Pixopyw8KQG9ystCOYKlcEdFYcLm38xBE1WQCCEMo9XjBldYKxAgvw9sjUyxbb4CA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by IA1PR11MB6217.namprd11.prod.outlook.com (2603:10b6:208:3eb::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.20; Tue, 23 Apr
- 2024 01:12:45 +0000
+ by DM4PR11MB6504.namprd11.prod.outlook.com (2603:10b6:8:8d::5) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7519.21; Tue, 23 Apr 2024 01:24:08 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::cf6f:eb9e:9143:f413]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::cf6f:eb9e:9143:f413%5]) with mapi id 15.20.7519.018; Tue, 23 Apr 2024
- 01:12:45 +0000
-Date: Mon, 22 Apr 2024 21:12:42 -0400
+ 01:24:08 +0000
+Date: Mon, 22 Apr 2024 21:24:05 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, Matt Roper <matthew.d.roper@intel.com>, 
  Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: Re: [PATCH v6 1/3] drm/xe: Store xe_he_engine in xe_hw_engine_snapshot
-Message-ID: <ZicLCivv5DFZRfK5@intel.com>
+Subject: Re: [PATCH v6 3/3] drm/xe: Add INSTDONE registers to devcoredump
+Message-ID: <ZicNtTSq3cH6L4PM@intel.com>
 References: <20240405182326.72157-1-jose.souza@intel.com>
+ <20240405182326.72157-3-jose.souza@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240405182326.72157-1-jose.souza@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0221.namprd03.prod.outlook.com
- (2603:10b6:a03:39f::16) To MN0PR11MB6059.namprd11.prod.outlook.com
+In-Reply-To: <20240405182326.72157-3-jose.souza@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0061.namprd05.prod.outlook.com
+ (2603:10b6:a03:332::6) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|IA1PR11MB6217:EE_
-X-MS-Office365-Filtering-Correlation-Id: ca77b14c-11bf-4086-b8a9-08dc63327b82
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DM4PR11MB6504:EE_
+X-MS-Office365-Filtering-Correlation-Id: 367e3c61-fdf6-4e1c-4493-08dc633412cb
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|376005|366007;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?2aOY3zt4Qthig0HxQHWSzyH46fUt7AWPswaj2GfdUc64GTm+pb7xe6ClRH?=
- =?iso-8859-1?Q?VoxRa1C4gVChKkr7B3yoswvevEjg98pXz4jQo/vDy2eX4fJEv/AcF2fm4j?=
- =?iso-8859-1?Q?C1uWE6ZEigE5A3sXE4oOya+Ry5gyWPCisqqYmIxCYoqNEmrT4S66r8md2I?=
- =?iso-8859-1?Q?4jeFw8XAxkcmm2HrqD7dbgX/dLvzVMGmBCt0lEQWk3L5F/xoys+5ENg/UR?=
- =?iso-8859-1?Q?fOY3TNl+hzJ6Lr+ZnM+Sn1m/iG5eDMJuLNOQ8q38lJp1MGT46Z7Jc2o65A?=
- =?iso-8859-1?Q?hcqzlAEx1+YWRJdIeJW6nUlE2x/jTOWrOrYJPOrdszGc1M8RQGHpwmp6BV?=
- =?iso-8859-1?Q?nKI5Oe1IsAke9m7q6MD8C3aff/MYcdjFFUpqMAoLck8NsyD0/ftyD4Elno?=
- =?iso-8859-1?Q?suiVwybCffPjRyKG+/uVhao582OdtIGR5mW0ugIgdmrR1GAv4Drrtf3oD/?=
- =?iso-8859-1?Q?/Dx6GKaYX//82ELsAsxpqj/sdYd6OCGAQwtmUXkr6V/s39lbbyywWhzD0I?=
- =?iso-8859-1?Q?n7T0hZO0lcMQ8PsL/DxVzgIaD3yxG6otncO8bmp0/Rba2qV2u6UQ5JCdU5?=
- =?iso-8859-1?Q?9VaIvG/xtWklHpEHSaghlJ01YNP34LtkMAmUWgpu72I2peCRFyuBpU1lmf?=
- =?iso-8859-1?Q?nUPUQrGOg83Ebt9ft6Tfy03NiLd6NdEZFQsprKV1Nby9bSE+er3oZPVJ5v?=
- =?iso-8859-1?Q?ceFmUoKjRUv6P70GxcSkrVNyoiOQaXnPlNSAXB12E1XCxkWDYgTLv7UsLE?=
- =?iso-8859-1?Q?DlQHTiLqbTidgH/fuPw0fNR32zIj4TfRI+AdzQ6gw+/N91gFHdpeaVM9bk?=
- =?iso-8859-1?Q?5NnK+Hj8qOeiK9GKSo4gOKVow2+mWa/ocQxgj/4RmcO2PBiIDPHT5BAcnr?=
- =?iso-8859-1?Q?ma/OYCGK5jsY0H0tcszuYVF0C5w8Sq7ujJRM+jr5ld1EYJkc6vs96SA2IH?=
- =?iso-8859-1?Q?mnB+vMaKh6pD8xjucPXwGcqPHwo9EgveXo1go7jIlZdnKmHmgBh/lXNfCI?=
- =?iso-8859-1?Q?lyvgaLrRsrqf0AlmokdZjDSQ/W57dqc09RqJUoCPwqyopnQzbplZ9nPtOX?=
- =?iso-8859-1?Q?3ar99q08pDWPzskTPTJeBOcsn0mJYuJzYdwh2wMd8wtoG5mWDT9nNV90nM?=
- =?iso-8859-1?Q?p9XWY5XeK0TJFgLiSwz1xzRwB75WRUebahJFTjKW72wgNRnYletWlyRaa9?=
- =?iso-8859-1?Q?UVO+mWaxHUlKbJ4kOb5YD19ow+/ici8irHibhAJ32ZmcH4q6m+CePiimTY?=
- =?iso-8859-1?Q?TW2ln4oFbMkGqZtcLX7TQYinRMIZJEisVNy4Qg1ryLqzY/a4Zooh4b4UtT?=
- =?iso-8859-1?Q?P2egFnt4JIgY1K7gV9GWU1G0uQ=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|376005|1800799015;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?nvMHq7MrLUsLUjgVUN5EDWnVgOD1dk7IOPmqfLQ5TFDr6ThFGK3PsDtm0o?=
+ =?iso-8859-1?Q?D9cnhw3oDymX5pOnKu9jgKRqxzUwXNO8GgnMMqWVXb3E4B2Swgh460MOnx?=
+ =?iso-8859-1?Q?+tVCfOHbYmglmLja3ZaR3ow1MXzHmogm2zhA4ZEXh4NIlDC8y4E0Yg8wMZ?=
+ =?iso-8859-1?Q?7CAnSBRu5yLeMk7blvtQoDc0QKCyQ6I4lUgg9/5wirn5zxU+/oCpsKnNP4?=
+ =?iso-8859-1?Q?EORRDgrneAcHyCV8bCEN2lq9o5XNKbdjdWdWkrr48ZctWlZ6At4jyuC6QZ?=
+ =?iso-8859-1?Q?e5U0QqeST4gc52yY/hPkjzoeivalzByQRpTZ+YCxePnIYLzlsCCpWvDE5F?=
+ =?iso-8859-1?Q?SqGmMp8XusvOCF0rLWxY/cRLsKMAPIqExDF5ZIocztZzqRlghiu99FZLa0?=
+ =?iso-8859-1?Q?DoMf5mFGn0rNEk0RqWtqjLqY5NLF2bI9Yyt/sdSZbOMPUlF08Dk0f5GqL8?=
+ =?iso-8859-1?Q?zy3fofNECO9zYm18/pvGa8SMfj9RZTgqGiL9k0OW17Z/hFVskCjH9IIt1+?=
+ =?iso-8859-1?Q?cfu9fFQh0YDSnOCTUGERw7iL3p/Sp5MSmXjMXg1FTABCMw0loLrmVu6Zya?=
+ =?iso-8859-1?Q?sJpHixyGjW8OhUbxUQMN/FCy6T0bSXLo+LqeZU3rgMwef7TFpvabCOn47C?=
+ =?iso-8859-1?Q?c/OqveW1ASSLJqRQgeBxS6nOLkNcDYa2EnQ79FVSpp7cfQWxcBmkH1gRv4?=
+ =?iso-8859-1?Q?imPVgkFOMLJ7sv78mMOK1/YE4B6eLrBG6tEYpXGUjJRlaO9SMi5I0Olvwm?=
+ =?iso-8859-1?Q?NkGjRZhgJGWwlDWB2d+lxhWkPHTbNHz2dnLwhlYSp/yFKzAvjhnCeuuhri?=
+ =?iso-8859-1?Q?yrkiHbh8lAHe/6lkc51+WJLYvKj1XDZI3pzvyvjG2fLHYo/JVoY2ZrDSgY?=
+ =?iso-8859-1?Q?6QiOuz2o93N3c8Bw7FGujSLTpMrKEIWMM7PKwr55cShUraHI/6I1zk05YF?=
+ =?iso-8859-1?Q?XUW2ehyU8FQbo4H4ZD1NoImNqtYlR6AP5SS1sBWEiIUpVKLrNljwWRmc0E?=
+ =?iso-8859-1?Q?jIXzNyfJ9ez6KUrXIoXYQ4vHBTdeXYCNuRl+TD6h91CNucFBV8xiYFNx39?=
+ =?iso-8859-1?Q?D4LSmF+7cYqFtzQwhwZzoENikx//2k097J0h3zD+q16HS3vblVRfbhBqVD?=
+ =?iso-8859-1?Q?X9NdXVeHf5O9Komlh14oPvEN03k9+MXrGSwrRNf7SITnsGqhuWCZol2aFi?=
+ =?iso-8859-1?Q?66TSTBk9wTCPuxNkU2+7IwmXRA2eE3H9tCPq0i1AsaZYWQs7DAQN6JgU+G?=
+ =?iso-8859-1?Q?0FyyLvvFU83s48qnhjK7pFybX54I42nmEFwHAAjeJLy76ZI2u9N8WZo7li?=
+ =?iso-8859-1?Q?8Ki8+fPV7k8VKLb9/6lE09EyMA=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
+ SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?ihQuRPU0yVCLF7WE8rY9VYT3zc0nbfLG0V6jacCGRcSUSNyUnOrib8Wwgz?=
- =?iso-8859-1?Q?XzsTQ5oBhCai7GVTSoMq9fufDxYMRzPtAa1UhfMFdcH6TXjdH7mgfWf9hp?=
- =?iso-8859-1?Q?Kq0QioDzUW5YE4DooWfTFVGirxN0QawXMj1GJizm80tt93ywwSZU4QKlMk?=
- =?iso-8859-1?Q?HC4TMbiHrIzXlzB43rKNn4XhJf08aEtupN4fYKM5FtfZkFg4RnSpaFgOk2?=
- =?iso-8859-1?Q?iijw4k/SnblYVVlXFw+vmxY6ZWC/4QllSJ6OWxu71J0wLpLxZhzu9OULqM?=
- =?iso-8859-1?Q?WT7GnALWNXY4LBcH+qoNjHCqZSBN44phIeJGKynzZ0HpF91NMuPcZ8spCu?=
- =?iso-8859-1?Q?7sLZc+sow84DCcu9zwl69av08n8vVLgBL+I3xDF1jJw4MXOvr3DRQPtSLw?=
- =?iso-8859-1?Q?S22K434bmD14DyTyAmEwr7woDaQenqt6PuCCrg0/p3P1OF1s2ifa1FRnhZ?=
- =?iso-8859-1?Q?C7Ymbr8lg0fGxxgiBlVEfIyw0vnXY7ZRDNRpp/oWxj9gfDHNoy1cjTYzaP?=
- =?iso-8859-1?Q?osz5n4cLNFV1w+F5N3I2V7Z/TqvCZDCbZdZSarU5UVRRNO6/A1AAfsRs8m?=
- =?iso-8859-1?Q?N1PwSBxXNmn6fXhFWy1gm53i8x5Oc+Id9u8anysltGYd5GDZnOqOcGjBfh?=
- =?iso-8859-1?Q?kZ2vOIKkqQwFkLpBzikyNj+4j2qI1iMT/Tsap60vGfZcD8bpLHXgIvB295?=
- =?iso-8859-1?Q?GCS3/0ncwsiN47MGmpxcG9yCaURI2s4RA2XfpwT8JIFh2RV1NH651ReKiQ?=
- =?iso-8859-1?Q?86RPxItSsDaBgRID+JAMJkXdHdZo3cfkfltsd/j7kYLQu5VL0l48/pmgGV?=
- =?iso-8859-1?Q?1oOY7gXNUD7Pat16H95XV/2lTDNdb/tDlpO1U1x/wM20ThoAgT38CxgL0O?=
- =?iso-8859-1?Q?lOGfaupFjjUz7XmU4cHbnAyxL7pADeGEFB8OlM9V8PUePPZFU8dAgV+Bjs?=
- =?iso-8859-1?Q?teMoW/QtKHEb87+vtbAOES77d3/368vZgBwrNwEeAhT6XbFFPQBaeJeJAE?=
- =?iso-8859-1?Q?NrwrNhlqDEMLjJHvj0PEyxdmPmi/aoXXk2bThQffwbaBGzd7bJoc7P8jlz?=
- =?iso-8859-1?Q?Z0fNfFfcLqDyHx/liN8sbZyd7y08I36GiVs0CLPVKI5xa1JoplXTfeZ4c8?=
- =?iso-8859-1?Q?7BIfySP95fa4i/011KzZIiWAgB12BmKRvOhePTR3bgyxtpMDSEpPpZ2WlO?=
- =?iso-8859-1?Q?n8/ZWYQo1OBOUp/Rtiw4NCbLd32H70wMgEsjTJXw/X1iqO8oSkzMVEaTFO?=
- =?iso-8859-1?Q?iHxy1xvbnrS4AzwzkgUKO/UybAIKJkb7//zlkarjyM9DRu7LzVQ+Ym7FkI?=
- =?iso-8859-1?Q?P2LNpcYcyvjQpNurckO6Bp0hyeIMSF6TNyRv6RO0TgiE+ZbniOL70upVwe?=
- =?iso-8859-1?Q?38U6y/iVCiiGOkPqQ7gzvv7PEFo9HKY0GlaNs62qCmaH0tnFcNC8lKAOSY?=
- =?iso-8859-1?Q?gTXyIpl0+ak/uNsKzmFy4ICul4M/l/TG/BrNOioocUefbxYyKAiHRnCbWy?=
- =?iso-8859-1?Q?DW4+WIH/nng/61SckaukHZH9GpyePfmAiAFdpzby6jObEfDSdoWP/Rq41a?=
- =?iso-8859-1?Q?sH9DEA6L3anh69pmsIImlHmOV+frtyqvxCfVvAMv9WSKKVCHa4AxvFJWjI?=
- =?iso-8859-1?Q?jUyxFLjfnOCGVpzEPbRIJYpI4f19mdieOs?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ca77b14c-11bf-4086-b8a9-08dc63327b82
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?DkL2rxfSSJa6qu4pI6D/KsD393Qif3S6VeApNYh/MEpr4El9x4zWJT9B2f?=
+ =?iso-8859-1?Q?IvyvwbndYdcoUk2ZU1UrotfPgKoNZTfigssb32SkBXoDorhw5MuWI5oFyl?=
+ =?iso-8859-1?Q?MJQtSHVv2rSn+tQPKL+32ErThSsQEweCYpymb9u/t2QIQkAa7Z/3R/qkQ8?=
+ =?iso-8859-1?Q?ytU1m1oGNzXb9TvXZ5L6In73qiyTcuMhFrbZQp3JzcN3U/gBR6UvM8Rl00?=
+ =?iso-8859-1?Q?SYzQ4SO3WVaF1QDNlOhIckR+xlQ9FlnBNrpw0Oi8p4nbDpuHMVo+NPUtPf?=
+ =?iso-8859-1?Q?36eT6/+YxBGLi/6NvFk0BrritnE+sqjqAdyxCDSgo57S7XE4mwOR+EZGZe?=
+ =?iso-8859-1?Q?fNAL3TFSpLvCWsDMrm1BbBw4Yj4oBqb8R8fIqWYwO8ce3MtOMR7P2sP9/h?=
+ =?iso-8859-1?Q?4Qd8tub4Hp1ep2Ddxnx5vg0FhNqLHAFkZvv5ELiH0qfi7srvLrrPrX4trK?=
+ =?iso-8859-1?Q?RBeg8X2Fr0O2qLMX5JL2YrV5dlxkDcO2a2LlV7hsE6XCCP/nXnT8maAl4K?=
+ =?iso-8859-1?Q?G8sZkTcilB4HQ/tQLL38E8frRBYuNNANFCwvMgAvUq/La3mqxLi123jXnl?=
+ =?iso-8859-1?Q?HhkmbpueGDa7ICoxH02o6czNUKVFqf05XwYzCSQHsisMAfoTkJdCJHtoL8?=
+ =?iso-8859-1?Q?zRG78+CuMrJ41qgPcnWessnXBhsfoevfnHnirrlNWnHie5HV5dpMuFHtg6?=
+ =?iso-8859-1?Q?dRqHhYs1QFj52p/f9peCkE3D1V0U4HFEl6iF94X5VaPPz/Ea7Eu3c5y8eM?=
+ =?iso-8859-1?Q?RWh90PddtfCd7RyIJsi9J9QNwD5nMe58kQbMhYEs9xgiCCvqwKOknCnmDq?=
+ =?iso-8859-1?Q?oG+ymZZCg80/owHJaj1SEPLoGpAYH9w8YYnU9YR8Lgcy8ekKcj4M1Ox2H9?=
+ =?iso-8859-1?Q?VCoL8WeunDp+ZGZa9R2xZPVFUxsmiNWAYd8v0rEFeXp32pAEQ0syk+4klI?=
+ =?iso-8859-1?Q?nHy0mOK6qdz1CPYWbIG2OU/8P4v5Zebp9ptTuVmN4isqNHkZBFvZJYdWMr?=
+ =?iso-8859-1?Q?+X02Fadc8F9hXmaV/ejSvgAOzUl8OS91K6tdWDtyD82zZL+bNZxDIYROdl?=
+ =?iso-8859-1?Q?qUuorY7b+zFvpEkUYegMqcusdMI14cScVcxNMlfHVvusG9WJfJGs+Jybuv?=
+ =?iso-8859-1?Q?LJLD6+WGKl4iVG7qqhGNe9Yt9Vca5/nHhm92mU0+/1X/sLWuTivyLQrNM4?=
+ =?iso-8859-1?Q?b1LbDG9jPXsrOJIYPh8cjaDd2BUAWHm/yJm23y7vbYNkHKCXY94Tn89VID?=
+ =?iso-8859-1?Q?RmDzVe06cXAHjc9egXssJnu4s6qzkrozBmNGoOxsEuUT3cKcSKSJvib2+/?=
+ =?iso-8859-1?Q?r2g/uwybnLGNQsflbovkdqtyC+gHJtPX0yIScbZbU+EW65TssQJmQhSdIB?=
+ =?iso-8859-1?Q?w/cL8Nwswf3rw3saLyLIPnkrYxfDWYJSr1K6AbTEnxnOLh5E3qgjjFYVvP?=
+ =?iso-8859-1?Q?tOgegl7QaSEZVsugv9f22EhUsu5em6yZr8VRx2yEPBqZ8WcGoH6frguC3+?=
+ =?iso-8859-1?Q?U1NPMNcHTnck80nmzoBk6ymot0RCDN+QfyKdFRYLVVgeiXn8+7UCedgboX?=
+ =?iso-8859-1?Q?MUnAaCRIr9FUhDnnyunNn5ZfYdzPnyQXtR7Zni0WpmGNt9jwcMNe6jMG8S?=
+ =?iso-8859-1?Q?bh4VOqRt/UztbkYNqke/Evgz9qqI7xLO+yvOIQNBZrW+4oPatCnD42hw?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 367e3c61-fdf6-4e1c-4493-08dc633412cb
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 01:12:45.3546 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 01:24:08.6992 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +pLqLvJCwQZyP8QfZpoc5X1c3xyy2EBADWr8TwkM37okCBn45XoJDPE4wrsnwhA1ZYE/jngmpC+WLJBef5rZgw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6217
+X-MS-Exchange-CrossTenant-UserPrincipalName: e9xzlH7TpVL223CgU42wGwsD5lpBCrOXnHfLBoEL44qjq7w0lH+Rvh/BYwv/byYKhSn1pSlspYxPKeQyT1EPKg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6504
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -180,68 +182,314 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Apr 05, 2024 at 11:23:24AM -0700, José Roberto de Souza wrote:
-> A future patch will require gt and xe device structs, so here
-> replacing class by hwe.
+On Fri, Apr 05, 2024 at 11:23:26AM -0700, José Roberto de Souza wrote:
+> This registers contains important information that can help with debug
+> of GPU hangs.
+> 
+> While at it also fixing the double line jump at the end of engine
+> registers for CCS engines.
+> 
+> v2:
+> - print other INSTDONE registers
+> 
+> v3:
+> - add for_each_geometry/compute_dss()
+> 
+> v4:
+> - print one slice_common_instdone per glice in DG2+
+> 
+> v5:
+> - rename registers prefix from DG2 to XEHPG (Zhanjun)
 > 
 > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > Cc: Matt Roper <matthew.d.roper@intel.com>
 > Cc: Zhanjun Dong <zhanjun.dong@intel.com>
 > Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
 > ---
->  drivers/gpu/drm/xe/xe_hw_engine.c       | 6 +++---
->  drivers/gpu/drm/xe/xe_hw_engine_types.h | 4 ++--
->  2 files changed, 5 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/xe/regs/xe_engine_regs.h |   1 +
+>  drivers/gpu/drm/xe/regs/xe_gt_regs.h     |  13 +++
+>  drivers/gpu/drm/xe/xe_hw_engine.c        | 128 +++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_hw_engine_types.h  |  16 +++
+>  4 files changed, 158 insertions(+)
 > 
+> diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> index a08528d9c76b2..98d830013e96b 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> @@ -65,6 +65,7 @@
+>  #define RING_ACTHD_UDW(base)			XE_REG((base) + 0x5c)
+>  #define RING_DMA_FADD_UDW(base)			XE_REG((base) + 0x60)
+>  #define RING_IPEHR(base)			XE_REG((base) + 0x68)
+> +#define RING_INSTDONE(base)			XE_REG((base) + 0x6c)
+>  #define RING_ACTHD(base)			XE_REG((base) + 0x74)
+>  #define RING_DMA_FADD(base)			XE_REG((base) + 0x78)
+>  #define RING_HWS_PGA(base)			XE_REG((base) + 0x80)
+> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> index 6617c86a096b6..04f9077bacc57 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> @@ -94,6 +94,8 @@
+>  #define   FF_MODE2_TDS_TIMER_MASK		REG_GENMASK(23, 16)
+>  #define   FF_MODE2_TDS_TIMER_128		REG_FIELD_PREP(FF_MODE2_TDS_TIMER_MASK, 4)
+>  
+> +#define XEHPG_INSTDONE_GEOM_SVGUNIT		XE_REG_MCR(0x666c)
+> +
+>  #define CACHE_MODE_1				XE_REG(0x7004, XE_REG_OPTION_MASKED)
+>  #define   MSAA_OPTIMIZATION_REDUC_DISABLE	REG_BIT(11)
+>  
+> @@ -111,6 +113,14 @@
+>  #define   FLSH_IGNORES_PSD			REG_BIT(10)
+>  #define   FD_END_COLLECT			REG_BIT(5)
+>  
+> +#define SC_INSTDONE				XE_REG(0x7100)
+> +#define SC_INSTDONE_EXTRA			XE_REG(0x7104)
+> +#define SC_INSTDONE_EXTRA2			XE_REG(0x7108)
+> +
+> +#define XEHPG_SC_INSTDONE			XE_REG_MCR(0x7100)
+> +#define XEHPG_SC_INSTDONE_EXTRA			XE_REG_MCR(0x7104)
+
+I believe you have an alignment problem here    ^
+
+> +#define XEHPG_SC_INSTDONE_EXTRA2		XE_REG_MCR(0x7108)
+> +
+>  #define COMMON_SLICE_CHICKEN4			XE_REG(0x7300, XE_REG_OPTION_MASKED)
+>  #define   DISABLE_TDC_LOAD_BALANCING_CALC	REG_BIT(6)
+>  
+> @@ -327,6 +337,9 @@
+>  #define HALF_SLICE_CHICKEN5			XE_REG_MCR(0xe188, XE_REG_OPTION_MASKED)
+>  #define   DISABLE_SAMPLE_G_PERFORMANCE		REG_BIT(0)
+>  
+> +#define SAMPLER_INSTDONE			XE_REG_MCR(0xe160)
+> +#define ROW_INSTDONE				XE_REG_MCR(0xe164)
+> +
+>  #define SAMPLER_MODE				XE_REG_MCR(0xe18c, XE_REG_OPTION_MASKED)
+>  #define   ENABLE_SMALLPL			REG_BIT(15)
+>  #define   SC_DISABLE_POWER_OPTIMIZATION_EBB	REG_BIT(9)
 > diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-> index a688bb2d96ce3..669753f0a9c50 100644
+> index 669753f0a9c50..1864eeedf95fd 100644
 > --- a/drivers/gpu/drm/xe/xe_hw_engine.c
 > +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-> @@ -795,7 +795,7 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+> @@ -18,6 +18,7 @@
+>  #include "xe_gt.h"
+>  #include "xe_gt_ccs_mode.h"
+>  #include "xe_gt_printk.h"
+> +#include "xe_gt_mcr.h"
+>  #include "xe_gt_topology.h"
+>  #include "xe_hw_fence.h"
+>  #include "xe_irq.h"
+> @@ -770,6 +771,57 @@ void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec)
+>  		xe_hw_fence_irq_run(hwe->fence_irq);
+>  }
+>  
+> +static bool
+> +is_slice_common_per_gslice(struct xe_device *xe)
+> +{
+> +	return GRAPHICS_VERx100(xe) >= 1255;
+> +}
+> +
+> +static void
+> +xe_he_engine_snapshot_instdone_capture(struct xe_hw_engine *hwe,
+> +				       struct xe_hw_engine_snapshot *snapshot)
+> +{
+> +	struct xe_gt *gt = hwe->gt;
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +	unsigned int dss;
+> +	u16 group, instance;
+> +
+> +	snapshot->reg.instdone.ring = hw_engine_mmio_read32(hwe, RING_INSTDONE(0));
+> +
+> +	if (snapshot->hwe->class != XE_ENGINE_CLASS_RENDER)
+> +		return;
+> +
+> +	if (is_slice_common_per_gslice(xe) == false) {
+
+do you really need this if? I don't see equivalence in i915.
+
+> +		snapshot->reg.instdone.slice_common[0] =
+> +			xe_mmio_read32(gt, SC_INSTDONE);
+> +		snapshot->reg.instdone.slice_common_extra[0] =
+> +			xe_mmio_read32(gt, SC_INSTDONE_EXTRA);
+> +		snapshot->reg.instdone.slice_common_extra2[0] =
+> +			xe_mmio_read32(gt, SC_INSTDONE_EXTRA2);
+
+do you really need to allocate the MAX array only for these?
+perhaps unify them in one array like i915?
+
+> +	} else {
+> +		for_each_geometry_dss(dss, gt, group, instance) {
+> +			snapshot->reg.instdone.slice_common[dss] =
+> +				xe_gt_mcr_unicast_read(gt, XEHPG_SC_INSTDONE, group, instance);
+> +			snapshot->reg.instdone.slice_common_extra[dss] =
+> +				xe_gt_mcr_unicast_read(gt, XEHPG_SC_INSTDONE_EXTRA, group, instance);
+> +			snapshot->reg.instdone.slice_common_extra2[dss] =
+> +				xe_gt_mcr_unicast_read(gt, XEHPG_SC_INSTDONE_EXTRA2, group, instance);
+> +		}
+> +	}
+> +
+> +	for_each_geometry_dss(dss, gt, group, instance) {
+> +		snapshot->reg.instdone.sampler[dss] =
+> +			xe_gt_mcr_unicast_read(gt, SAMPLER_INSTDONE, group, instance);
+> +		snapshot->reg.instdone.row[dss] =
+> +			xe_gt_mcr_unicast_read(gt, ROW_INSTDONE, group, instance);
+> +
+> +		if (GRAPHICS_VERx100(xe) >= 1255)
+> +			snapshot->reg.instdone.geom_svg[dss] =
+> +				xe_gt_mcr_unicast_read(gt, XEHPG_INSTDONE_GEOM_SVGUNIT,
+> +						       group, instance);
+> +	}
+> +}
+> +
+>  /**
+>   * xe_hw_engine_snapshot_capture - Take a quick snapshot of the HW Engine.
+>   * @hwe: Xe HW Engine.
+> @@ -784,6 +836,7 @@ struct xe_hw_engine_snapshot *
+>  xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+>  {
+>  	struct xe_hw_engine_snapshot *snapshot;
+> +	size_t len;
+>  	u64 val;
+>  
+>  	if (!xe_hw_engine_is_valid(hwe))
+> @@ -794,6 +847,28 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+>  	if (!snapshot)
 >  		return NULL;
 >  
+> +	/* Because XE_MAX_DSS_FUSE_BITS is defined in xe_gt_types.h and it
+> +	 * includes xe_hw_engine_types.h the length of this 3 registers can't be
+> +	 * set in struct xe_hw_engine_snapshot, so here doing additional
+> +	 * allocations.
+> +	 */
+> +	len = (XE_MAX_DSS_FUSE_BITS * sizeof(u32));
+> +	snapshot->reg.instdone.slice_common = kzalloc(len, GFP_ATOMIC);
+> +	snapshot->reg.instdone.slice_common_extra = kzalloc(len, GFP_ATOMIC);
+> +	snapshot->reg.instdone.slice_common_extra2 = kzalloc(len, GFP_ATOMIC);
+> +	snapshot->reg.instdone.sampler = kzalloc(len, GFP_ATOMIC);
+> +	snapshot->reg.instdone.row = kzalloc(len, GFP_ATOMIC);
+> +	snapshot->reg.instdone.geom_svg = kzalloc(len, GFP_ATOMIC);
+> +	if (!snapshot->reg.instdone.slice_common ||
+> +	    !snapshot->reg.instdone.slice_common_extra ||
+> +	    !snapshot->reg.instdone.slice_common_extra2 ||
+> +	    !snapshot->reg.instdone.sampler ||
+> +	    !snapshot->reg.instdone.row ||
+> +	    !snapshot->reg.instdone.geom_svg) {
+> +		xe_hw_engine_snapshot_free(snapshot);
+> +		return NULL;
+> +	}
+> +
 >  	snapshot->name = kstrdup(hwe->name, GFP_ATOMIC);
-> -	snapshot->class = hwe->class;
-> +	snapshot->hwe = hwe;
+>  	snapshot->hwe = hwe;
 >  	snapshot->logical_instance = hwe->logical_instance;
->  	snapshot->forcewake.domain = hwe->domain;
->  	snapshot->forcewake.ref = xe_force_wake_ref(gt_to_fw(hwe->gt),
-> @@ -846,7 +846,7 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+> @@ -845,6 +920,7 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+>  	snapshot->reg.ring_emr = hw_engine_mmio_read32(hwe, RING_EMR(0));
 >  	snapshot->reg.ring_eir = hw_engine_mmio_read32(hwe, RING_EIR(0));
 >  	snapshot->reg.ipehr = hw_engine_mmio_read32(hwe, RING_IPEHR(0));
+> +	xe_he_engine_snapshot_instdone_capture(hwe, snapshot);
 >  
-> -	if (snapshot->class == XE_ENGINE_CLASS_COMPUTE)
-> +	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
+>  	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
 >  		snapshot->reg.rcu_mode = xe_mmio_read32(hwe->gt, RCU_MODE);
->  
+> @@ -852,6 +928,49 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
 >  	return snapshot;
-> @@ -891,7 +891,7 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
+>  }
+>  
+> +static void
+> +xe_hw_engine_snapshot_instdone_print(struct xe_hw_engine_snapshot *snapshot, struct drm_printer *p)
+> +{
+> +	struct xe_gt *gt = snapshot->hwe->gt;
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +	u16 group, instance;
+> +	unsigned int dss;
+> +
+> +	drm_printf(p, "\tRING_INSTDONE: 0x%08x\n", snapshot->reg.instdone.ring);
+> +
+> +	if (snapshot->hwe->class != XE_ENGINE_CLASS_RENDER)
+> +		return;
+> +
+> +	if (is_slice_common_per_gslice(xe) == false) {
+> +		drm_printf(p, "\tSC_INSTDONE[0]: 0x%08x\n",
+> +			   snapshot->reg.instdone.slice_common[0]);
+> +		drm_printf(p, "\tSC_INSTDONE_EXTRA[0]: 0x%08x\n",
+> +			   snapshot->reg.instdone.slice_common_extra[0]);
+> +		drm_printf(p, "\tSC_INSTDONE_EXTRA2[0]: 0x%08x\n",
+> +			   snapshot->reg.instdone.slice_common_extra2[0]);
+> +	} else {
+> +		for_each_geometry_dss(dss, gt, group, instance) {
+> +			drm_printf(p, "\tSC_INSTDONE[%u]: 0x%08x\n", dss,
+> +				   snapshot->reg.instdone.slice_common[dss]);
+> +			drm_printf(p, "\tSC_INSTDONE_EXTRA[%u]: 0x%08x\n", dss,
+> +				   snapshot->reg.instdone.slice_common_extra[dss]);
+> +			drm_printf(p, "\tSC_INSTDONE_EXTRA2[%u]: 0x%08x\n", dss,
+> +				   snapshot->reg.instdone.slice_common_extra2[dss]);
+> +		}
+> +	}
+> +
+> +	for_each_geometry_dss(dss, gt, group, instance) {
+> +		drm_printf(p, "\tSAMPLER_INSTDONE[%u]: 0x%08x\n", dss,
+> +			   snapshot->reg.instdone.sampler[dss]);
+> +		drm_printf(p, "\tROW_INSTDONE[%u]: 0x%08x\n", dss,
+> +			   snapshot->reg.instdone.row[dss]);
+> +
+> +		if (GRAPHICS_VERx100(xe) >= 1255)
+> +			drm_printf(p, "\tINSTDONE_GEOM_SVGUNIT[%u]: 0x%08x\n",
+> +				   dss, snapshot->reg.instdone.geom_svg[dss]);
+> +	}
+> +}
+> +
+>  /**
+>   * xe_hw_engine_snapshot_print - Print out a given Xe HW Engine snapshot.
+>   * @snapshot: Xe HW Engine snapshot object.
+> @@ -891,9 +1010,12 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
 >  	drm_printf(p, "\tBBADDR: 0x%016llx\n", snapshot->reg.ring_bbaddr);
 >  	drm_printf(p, "\tDMA_FADDR: 0x%016llx\n", snapshot->reg.ring_dma_fadd);
 >  	drm_printf(p, "\tIPEHR: 0x%08x\n", snapshot->reg.ipehr);
-> -	if (snapshot->class == XE_ENGINE_CLASS_COMPUTE)
-> +	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
+> +	xe_hw_engine_snapshot_instdone_print(snapshot, p);
+> +
+>  	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
 >  		drm_printf(p, "\tRCU_MODE: 0x%08x\n",
 >  			   snapshot->reg.rcu_mode);
+> +	drm_puts(p, "\n");
+>  }
+>  
+>  /**
+> @@ -908,6 +1030,12 @@ void xe_hw_engine_snapshot_free(struct xe_hw_engine_snapshot *snapshot)
+>  	if (!snapshot)
+>  		return;
+>  
+> +	kfree(snapshot->reg.instdone.slice_common);
+> +	kfree(snapshot->reg.instdone.slice_common_extra);
+> +	kfree(snapshot->reg.instdone.slice_common_extra2);
+> +	kfree(snapshot->reg.instdone.sampler);
+> +	kfree(snapshot->reg.instdone.row);
+> +	kfree(snapshot->reg.instdone.geom_svg);
+>  	kfree(snapshot->name);
+>  	kfree(snapshot);
 >  }
 > diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-> index d7f828c76cc5f..27deaa31efd31 100644
+> index 27deaa31efd31..9f9755e31b9fe 100644
 > --- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
 > +++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-> @@ -158,8 +158,8 @@ struct xe_hw_engine {
->  struct xe_hw_engine_snapshot {
->  	/** @name: name of the hw engine */
->  	char *name;
-> -	/** @class: class of this hw engine */
-> -	enum xe_engine_class class;
-> +	/** @hwe: hw engine */
-> +	struct xe_hw_engine *hwe;
->  	/** @logical_instance: logical instance of this hw engine */
->  	u16 logical_instance;
->  	/** @forcewake: Force Wake information snapshot */
+> @@ -211,6 +211,22 @@ struct xe_hw_engine_snapshot {
+>  		u32 ipehr;
+>  		/** @reg.rcu_mode: RCU_MODE */
+>  		u32 rcu_mode;
+> +		struct {
+> +			/** @reg.instdone.ring: RING_INSTDONE */
+> +			u32 ring;
+> +			/** @reg.instdone.slice_common: SC_INSTDONE */
+> +			u32 *slice_common;
+> +			/** @reg.instdone.slice_common_extra: SC_INSTDONE_EXTRA */
+> +			u32 *slice_common_extra;
+> +			/** @reg.instdone.slice_common_extra2: SC_INSTDONE_EXTRA2 */
+> +			u32 *slice_common_extra2;
+> +			/** @reg.instdone.sampler: SAMPLER_INSTDONE */
+> +			u32 *sampler;
+> +			/** @reg.instdone.row: ROW_INSTDONE */
+> +			u32 *row;
+> +			/** @reg.instdone.geom_svg: INSTDONE_GEOM_SVGUNIT */
+> +			u32 *geom_svg;
+> +		} instdone;
+>  	} reg;
+>  };
+>  
 > -- 
 > 2.44.0
 > 
