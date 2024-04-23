@@ -4,50 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70D7FC4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 13:13:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 455E9C4345F
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 13:13:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3104B10E462;
-	Tue, 23 Apr 2024 13:13:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03A7E10E278;
+	Tue, 23 Apr 2024 13:13:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k9nfagkG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ez92Xfbe";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89D3510E462
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Apr 2024 13:13:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA23D10E4C1
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Apr 2024 13:13:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713877983; x=1745413983;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2KT3gzNWSenR6OHErGboIXBYuMPenYojMx6pmM6fN/Y=;
- b=k9nfagkGSuQPcdElT6tsUbUtPkJq/5EsaPxT2Am6mqdAEbR4ZPWuFClL
- iuCd896xsxEeu08yao3gYa9Bxa601yDQLQF89x+MVnKBpxf+OwG6V8ofH
- Q+TpqaWl/CVEoxN7Qke1Y1TeGQt9cHJ+QqdOALjctnP1S8Iq+NEVs4yKT
- apNm51PxafsggGWKO9X+zguUYeCRLIukKx5FHYRpm/azb/9uymuexSxxB
- RVyOg7iW/DnCsl4NWsDeQkRU4k+I+Fh/vLc/NZSItaCfKS7XWGrH0atdj
- urCpeA6j+nbbYttwxXfsbivdMolYH9y6AcdMeQdDUu0q9lWosqNlu+vUb w==;
-X-CSE-ConnectionGUID: eRN5fwsvQgOTO7+XN8j0cg==
-X-CSE-MsgGUID: Gctnfoc+SAamCyJM4j3oXg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="20070870"
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="20070870"
+ t=1713877985; x=1745413985;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=amzfV+8TldBwqBRlvcb0EQSGdOWTM5LRFQO05CixzCc=;
+ b=ez92XfbedQBwhkIeEOajd7UyPxd8kEE54LYVE5QjrjltzV9Te5YPdr9k
+ b4ed/Lb92j5sjEQna0ZOG1bMHOehPi0ezGwaT4LrXKlgqntaCwEuJnQ/u
+ JMzyysIG9lamKU5wpG7qNzRT5UtM5AG3Ajz12hfwIKzLLj+9M9G0TcGhS
+ idoSyvF1J5R04zdVo+MfLk3p6yHFMDGQp1rS3Z4EqkRHSf9CkkRzq4U6P
+ LLQUCBmUyyjxpGb+0CtieCJpt8VTJMs75LNIrDYSoVgk+S8MybM9prm4F
+ hBSoFlDOKG0+GT9iMpZmPa9vIioyWcQ0NgCcFuuHmO3dlsf/IBDLGgPTK w==;
+X-CSE-ConnectionGUID: 5l/IVSYzT9ewiHBsS4wCXQ==
+X-CSE-MsgGUID: tILXAeSyQPijWk06zpoLWg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="20070874"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="20070874"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Apr 2024 06:13:02 -0700
-X-CSE-ConnectionGUID: hm9q2xnaT0CimRMIhRG2FA==
-X-CSE-MsgGUID: JJltizLzSli+zwdqjAm51g==
+X-CSE-ConnectionGUID: ztQ2jiQzRHaU5somihNpAQ==
+X-CSE-MsgGUID: IytMBmpXQxy3lFiwIvhZog==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="55321528"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="55321552"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.252.48.128])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2024 06:12:58 -0700
+ 23 Apr 2024 06:13:00 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2 0/3] PF: Expose GT-level SR-IOV details over debugfs
-Date: Tue, 23 Apr 2024 15:12:41 +0200
-Message-Id: <20240423131244.2045-1-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Subject: [PATCH v2 2/3] drm/xe/pf: Expose SR-IOV VF control commands over
+ debugfs
+Date: Tue, 23 Apr 2024 15:12:43 +0200
+Message-Id: <20240423131244.2045-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240423131244.2045-1-michal.wajdeczko@intel.com>
+References: <20240423131244.2045-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -65,47 +69,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-   /sys/kernel/debug/dri/0/
-   +-- gt0
-   |     +-- pf
-   |     |    +-- contexts_provisioned
-   |     |    +-- contexts_spare
-   |     |    +-- doorbells_provisioned
-   |     |    +-- doorbells_spare
-   |     |    +-- exec_quantum_ms
-   |     |    +-- ggtt_available
-   |     |    +-- ggtt_provisioned
-   |     |    +-- ggtt_spare
-   |     |    +-- lmem_spare
-   |     |    +-- preempt_timeout_us
-   |     |    +-- reset_engine
-   |     |    +-- sample_period_ms
-   |     |    +-- sched_if_idle
-   |     +-- vf1
-   |     |    +-- contexts_quota
-   |     |    +-- control
-   |     |    +-- doorbells_quota
-   |     |    +-- exec_quantum_ms
-   |     |    +-- ggtt_quota
-   |     |    +-- lmem_quota
-   |     |    +-- preempt_timeout_us
+We already have functions to control the VF.
+Allow to control the VF using debugfs.
 
-v1: https://patchwork.freedesktop.org/series/132621/#rev1
-v2: check for overflow in policy_set functions
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 79 +++++++++++++++++++++
+ 1 file changed, 79 insertions(+)
 
-Michal Wajdeczko (3):
-  drm/xe/pf: Expose SR-IOV VFs configuration over debugfs
-  drm/xe/pf: Expose SR-IOV VF control commands over debugfs
-  drm/xe/pf: Expose SR-IOV policy settings over debugfs
-
- drivers/gpu/drm/xe/Makefile                 |   1 +
- drivers/gpu/drm/xe/xe_gt_debugfs.c          |   5 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 335 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.h |  18 ++
- 4 files changed, 359 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.h
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+index 32ce98698690..8909bb950a8b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+@@ -14,6 +14,7 @@
+ #include "xe_gt.h"
+ #include "xe_gt_debugfs.h"
+ #include "xe_gt_sriov_pf_config.h"
++#include "xe_gt_sriov_pf_control.h"
+ #include "xe_gt_sriov_pf_debugfs.h"
+ #include "xe_gt_sriov_pf_helpers.h"
+ #include "xe_pm.h"
+@@ -153,6 +154,83 @@ static void pf_add_config_attrs(struct xe_gt *gt, struct dentry *parent, unsigne
+ 				   &preempt_timeout_fops);
+ }
+ 
++/*
++ *      /sys/kernel/debug/dri/0/
++ *      ├── gt0
++ *      │   ├── vf1
++ *      │   │   ├── control { stop, pause, resume }
++ */
++
++static const struct {
++	const char *cmd;
++	int (*fn)(struct xe_gt *gt, unsigned int vfid);
++} control_cmds[] = {
++	{ "stop", xe_gt_sriov_pf_control_stop_vf },
++	{ "pause", xe_gt_sriov_pf_control_pause_vf },
++	{ "resume", xe_gt_sriov_pf_control_resume_vf },
++};
++
++static ssize_t control_write(struct file *file, const char __user *buf, size_t count, loff_t *pos)
++{
++	struct dentry *dent = file_dentry(file);
++	struct dentry *parent = dent->d_parent;
++	struct xe_gt *gt = extract_gt(parent);
++	struct xe_device *xe = gt_to_xe(gt);
++	unsigned int vfid = extract_vfid(parent);
++	int ret = -EINVAL;
++	char cmd[32];
++	size_t n;
++
++	xe_gt_assert(gt, vfid);
++	xe_gt_sriov_pf_assert_vfid(gt, vfid);
++
++	if (*pos)
++		return -ESPIPE;
++
++	if (count > sizeof(cmd) - 1)
++		return -EINVAL;
++
++	ret = simple_write_to_buffer(cmd, sizeof(cmd) - 1, pos, buf, count);
++	if (ret < 0)
++		return ret;
++	cmd[ret] = '\0';
++
++	for (n = 0; n < ARRAY_SIZE(control_cmds); n++) {
++		xe_gt_assert(gt, sizeof(cmd) > strlen(control_cmds[n].cmd));
++
++		if (sysfs_streq(cmd, control_cmds[n].cmd)) {
++			xe_pm_runtime_get(xe);
++			ret = control_cmds[n].fn ? (*control_cmds[n].fn)(gt, vfid) : 0;
++			xe_pm_runtime_put(xe);
++			break;
++		}
++	}
++
++	return (ret < 0) ? ret : count;
++}
++
++static ssize_t control_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
++{
++	char help[128];
++	size_t n;
++
++	help[0] = '\0';
++	for (n = 0; n < ARRAY_SIZE(control_cmds); n++) {
++		strlcat(help, control_cmds[n].cmd, sizeof(help));
++		strlcat(help, "\n", sizeof(help));
++	}
++
++	return simple_read_from_buffer(buf, count, ppos, help, strlen(help));
++}
++
++static const struct file_operations control_ops = {
++	.owner		= THIS_MODULE,
++	.open		= simple_open,
++	.write		= control_write,
++	.read		= control_read,
++	.llseek		= default_llseek,
++};
++
+ /**
+  * xe_gt_sriov_pf_debugfs_register - Register SR-IOV PF specific entries in GT debugfs.
+  * @gt: the &xe_gt to register
+@@ -199,5 +277,6 @@ void xe_gt_sriov_pf_debugfs_register(struct xe_gt *gt, struct dentry *root)
+ 		vfdentry->d_inode->i_private = (void *)(uintptr_t)n;
+ 
+ 		pf_add_config_attrs(gt, vfdentry, VFID(n));
++		debugfs_create_file("control", 0600, vfdentry, NULL, &control_ops);
+ 	}
+ }
 -- 
 2.43.0
 
