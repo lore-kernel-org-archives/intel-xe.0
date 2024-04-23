@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B890FC18E72
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 18:04:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70EB1C19F4F
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 18:05:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 790BA113562;
-	Tue, 23 Apr 2024 18:04:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AF93113565;
+	Tue, 23 Apr 2024 18:05:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dUBKBLYd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h3wZbMxD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2213B113560
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Apr 2024 18:04:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FF45113560
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Apr 2024 18:04:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713895492; x=1745431492;
+ t=1713895497; x=1745431497;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SeLuBehbIZjLRizDwabw+CT9vf4zsDvrKZHzKsDhG1A=;
- b=dUBKBLYd5AbKqh3blYfMiwt0Z6j40hqBjffMYs/aQjVXxGxjqlkZcVOy
- CkbecZRXah8UNU1UL/lFGcNMmgM6Rmqywf29hSVuoi1y8kGQkhi+H+Abf
- E+BBWMVpx0gsKiXYrokAA2dty4A1qn3u/zGvxOAoklS8n1ZG2p1323hAL
- sBx2f7t3bbbGnF+h0/1rqCfTTQ6Te+6yjANBm5+AvzmSs8VhwyU1SIwrR
- AjUObdQIG4juRiV8rBQLvh0uz4TRH9l/7JFEFA7sq08Ia2W49oP5bYFxb
- L3bKiGNISM17CL8umM2r0uHJf6UC0YM/9twAfpn1q/5ogE7f1R8vQLHDs A==;
-X-CSE-ConnectionGUID: 29rwg1RkQmSwRXQjPklnyA==
-X-CSE-MsgGUID: 88y62OIIR+OovVGistTVHA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="9363497"
+ bh=ehozFVUyh0nL2Jm1YqTwHZ/zNZl4qT+qrT239PmLHPU=;
+ b=h3wZbMxDQVOni59T2Jv/0GdtYlrUA0XO+R9oWmuzOtVdb2u1XjChJEal
+ NvoPHiNsmkO/CjUmKEHJbO8cQjQosbKS+cou3CgoUWj2orwv1cKbfOeTd
+ ZeSdkUil2aV0homRZ+VBLhi6+HuNNnmFV4LYSfrRCcgzkItyhnWqauHuY
+ G/JCYNGdOLmLjv3zPzzS4VcEAWnQ+MnxskOb1aX/9vA6zQ/Jq+rwnl13D
+ hmxetrYjt1jHfX9cCp0MV67mEB/xLviZ2oP/q4Jz0K9YmMcXPJRH0uIDX
+ e1xPm59UpOt3eHEvIfTDcA5LkLH672XbOmowtKZHwyUKii0MZkXsuB6OL Q==;
+X-CSE-ConnectionGUID: Td/WnK76R3+aD9QMAeKQCg==
+X-CSE-MsgGUID: 59IeAmoLTmmMG1sQZdJrNQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="9363517"
 X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
-   d="scan'208";a="9363497"
+   d="scan'208";a="9363517"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2024 11:04:52 -0700
-X-CSE-ConnectionGUID: QhtKiVKNT8uX04Y5As/aFg==
-X-CSE-MsgGUID: 71BO5/epTB6N7lbQG+7bGg==
+ 23 Apr 2024 11:04:56 -0700
+X-CSE-ConnectionGUID: iVh6NQnfRJOd9fWophWHMg==
+X-CSE-MsgGUID: YFmSLvEFRrmIoAEo8txLrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="29105547"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="29105596"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.252.48.128])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2024 11:04:51 -0700
+ 23 Apr 2024 11:04:55 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v2 2/5] drm/xe: Add helper to calculate adjusted register
- offset
-Date: Tue, 23 Apr 2024 20:04:33 +0200
-Message-Id: <20240423180436.2089-3-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 5/5] drm/xe/kunit: Add PF service tests
+Date: Tue, 23 Apr 2024 20:04:36 +0200
+Message-Id: <20240423180436.2089-6-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240423180436.2089-1-michal.wajdeczko@intel.com>
 References: <20240423180436.2089-1-michal.wajdeczko@intel.com>
@@ -70,121 +69,268 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Our MMIO accessing functions automatically adjust addresses for the
-media registers based on mmio.adj_limit and mmio.adj_offset logic.
-Move it to the separate helper to avoid code duplication and to
-allow using it by the upcoming changes to PF driver code.
+Start with basic tests for VF/PF ABI version negotiation. As we
+treat all platforms in the same way, we can run the tests on one
+platform. More tests will likely come later.
 
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
 ---
-v2: start using helper (Piotr)
-    make gt param const to allow use in xe_mmio_in_range()
-    assert that we adjust both or none addr in xe_mmio_read64_2x32()
----
- drivers/gpu/drm/xe/xe_mmio.c | 38 ++++++++++++++----------------------
- drivers/gpu/drm/xe/xe_mmio.h |  7 +++++++
- 2 files changed, 22 insertions(+), 23 deletions(-)
+ .../xe/tests/xe_gt_sriov_pf_service_test.c    | 232 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c   |   4 +
+ 2 files changed, 236 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_service_test.c
 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 334637511e75..2b18e8149ec3 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -423,41 +423,33 @@ int xe_mmio_init(struct xe_device *xe)
- u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg reg)
- {
- 	struct xe_tile *tile = gt_to_tile(gt);
-+	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
- 
--	if (reg.addr < gt->mmio.adj_limit)
--		reg.addr += gt->mmio.adj_offset;
--
--	return readb((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + reg.addr);
-+	return readb((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
- }
- 
- u16 xe_mmio_read16(struct xe_gt *gt, struct xe_reg reg)
- {
- 	struct xe_tile *tile = gt_to_tile(gt);
-+	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
- 
--	if (reg.addr < gt->mmio.adj_limit)
--		reg.addr += gt->mmio.adj_offset;
--
--	return readw((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + reg.addr);
-+	return readw((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
- }
- 
- void xe_mmio_write32(struct xe_gt *gt, struct xe_reg reg, u32 val)
- {
- 	struct xe_tile *tile = gt_to_tile(gt);
-+	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
- 
--	if (reg.addr < gt->mmio.adj_limit)
--		reg.addr += gt->mmio.adj_offset;
--
--	writel(val, (reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + reg.addr);
-+	writel(val, (reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
- }
- 
- u32 xe_mmio_read32(struct xe_gt *gt, struct xe_reg reg)
- {
- 	struct xe_tile *tile = gt_to_tile(gt);
-+	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
- 
--	if (reg.addr < gt->mmio.adj_limit)
--		reg.addr += gt->mmio.adj_offset;
--
--	return readl((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + reg.addr);
-+	return readl((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
- }
- 
- u32 xe_mmio_rmw32(struct xe_gt *gt, struct xe_reg reg, u32 clr, u32 set)
-@@ -486,10 +478,9 @@ bool xe_mmio_in_range(const struct xe_gt *gt,
- 		      const struct xe_mmio_range *range,
- 		      struct xe_reg reg)
- {
--	if (reg.addr < gt->mmio.adj_limit)
--		reg.addr += gt->mmio.adj_offset;
-+	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
- 
--	return range && reg.addr >= range->start && reg.addr <= range->end;
-+	return range && addr >= range->start && addr <= range->end;
- }
- 
- /**
-@@ -519,10 +510,11 @@ u64 xe_mmio_read64_2x32(struct xe_gt *gt, struct xe_reg reg)
- 	struct xe_reg reg_udw = { .addr = reg.addr + 0x4 };
- 	u32 ldw, udw, oldudw, retries;
- 
--	if (reg.addr < gt->mmio.adj_limit) {
--		reg.addr += gt->mmio.adj_offset;
--		reg_udw.addr += gt->mmio.adj_offset;
--	}
-+	reg.addr = xe_mmio_adjusted_addr(gt, reg.addr);
-+	reg_udw.addr = xe_mmio_adjusted_addr(gt, reg_udw.addr);
+diff --git a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_service_test.c b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_service_test.c
+new file mode 100644
+index 000000000000..b683585db852
+--- /dev/null
++++ b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_service_test.c
+@@ -0,0 +1,232 @@
++// SPDX-License-Identifier: GPL-2.0 AND MIT
++/*
++ * Copyright © 2024 Intel Corporation
++ */
 +
-+	/* we shouldn't adjust just one register address */
-+	xe_gt_assert(gt, reg_udw.addr == reg.addr + 0x4);
- 
- 	oldudw = xe_mmio_read32(gt, reg_udw);
- 	for (retries = 5; retries; --retries) {
-diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-index a3cd7b3036c7..445ec6a0753e 100644
---- a/drivers/gpu/drm/xe/xe_mmio.h
-+++ b/drivers/gpu/drm/xe/xe_mmio.h
-@@ -36,4 +36,11 @@ u64 xe_mmio_read64_2x32(struct xe_gt *gt, struct xe_reg reg);
- int xe_mmio_wait32(struct xe_gt *gt, struct xe_reg reg, u32 mask, u32 val, u32 timeout_us,
- 		   u32 *out_val, bool atomic);
- 
-+static inline u32 xe_mmio_adjusted_addr(const struct xe_gt *gt, u32 addr)
++#include <kunit/test.h>
++
++#include "xe_device.h"
++#include "xe_kunit_helpers.h"
++#include "xe_pci_test.h"
++
++static int pf_service_test_init(struct kunit *test)
 +{
-+	if (addr < gt->mmio.adj_limit)
-+		addr += gt->mmio.adj_offset;
-+	return addr;
++	struct xe_pci_fake_data fake = {
++		.sriov_mode = XE_SRIOV_MODE_PF,
++		.platform = XE_TIGERLAKE, /* some random platform */
++		.subplatform = XE_SUBPLATFORM_NONE,
++	};
++	struct xe_device *xe;
++	struct xe_gt *gt;
++
++	test->priv = &fake;
++	xe_kunit_helper_xe_device_test_init(test);
++
++	xe = test->priv;
++	KUNIT_ASSERT_EQ(test, xe_sriov_init(xe), 0);
++
++	gt = xe_device_get_gt(xe, 0);
++	pf_init_versions(gt);
++
++	/*
++	 * sanity check:
++	 * - all supported platforms VF/PF ABI versions must be defined
++	 * - base version can't be newer than latest
++	 */
++	KUNIT_ASSERT_NE(test, 0, gt->sriov.pf.service.version.base.major);
++	KUNIT_ASSERT_NE(test, 0, gt->sriov.pf.service.version.latest.major);
++	KUNIT_ASSERT_LE(test, gt->sriov.pf.service.version.base.major,
++			gt->sriov.pf.service.version.latest.major);
++	if (gt->sriov.pf.service.version.base.major == gt->sriov.pf.service.version.latest.major)
++		KUNIT_ASSERT_LE(test, gt->sriov.pf.service.version.base.minor,
++				gt->sriov.pf.service.version.latest.minor);
++
++	test->priv = gt;
++	return 0;
 +}
 +
- #endif
++static void pf_negotiate_any(struct kunit *test)
++{
++	struct xe_gt *gt = test->priv;
++	u32 major, minor;
++
++	KUNIT_ASSERT_EQ(test, 0,
++			pf_negotiate_version(gt, VF2PF_HANDSHAKE_MAJOR_ANY,
++					     VF2PF_HANDSHAKE_MINOR_ANY,
++					     &major, &minor));
++	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.latest.major);
++	KUNIT_ASSERT_EQ(test, minor, gt->sriov.pf.service.version.latest.minor);
++}
++
++static void pf_negotiate_base_match(struct kunit *test)
++{
++	struct xe_gt *gt = test->priv;
++	u32 major, minor;
++
++	KUNIT_ASSERT_EQ(test, 0,
++			pf_negotiate_version(gt,
++					     gt->sriov.pf.service.version.base.major,
++					     gt->sriov.pf.service.version.base.minor,
++					     &major, &minor));
++	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.base.major);
++	KUNIT_ASSERT_EQ(test, minor, gt->sriov.pf.service.version.base.minor);
++}
++
++static void pf_negotiate_base_newer(struct kunit *test)
++{
++	struct xe_gt *gt = test->priv;
++	u32 major, minor;
++
++	KUNIT_ASSERT_EQ(test, 0,
++			pf_negotiate_version(gt,
++					     gt->sriov.pf.service.version.base.major,
++					     gt->sriov.pf.service.version.base.minor + 1,
++					     &major, &minor));
++	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.base.major);
++	KUNIT_ASSERT_GE(test, minor, gt->sriov.pf.service.version.base.minor);
++	if (gt->sriov.pf.service.version.base.major == gt->sriov.pf.service.version.latest.major)
++		KUNIT_ASSERT_LE(test, minor, gt->sriov.pf.service.version.latest.minor);
++	else
++		KUNIT_FAIL(test, "FIXME: don't know how to test multi-version yet!\n");
++}
++
++static void pf_negotiate_base_next(struct kunit *test)
++{
++	struct xe_gt *gt = test->priv;
++	u32 major, minor;
++
++	KUNIT_ASSERT_EQ(test, 0,
++			pf_negotiate_version(gt,
++					     gt->sriov.pf.service.version.base.major + 1, 0,
++					     &major, &minor));
++	KUNIT_ASSERT_GE(test, major, gt->sriov.pf.service.version.base.major);
++	KUNIT_ASSERT_LE(test, major, gt->sriov.pf.service.version.latest.major);
++	if (major == gt->sriov.pf.service.version.latest.major)
++		KUNIT_ASSERT_LE(test, minor, gt->sriov.pf.service.version.latest.minor);
++	else
++		KUNIT_FAIL(test, "FIXME: don't know how to test multi-version yet!\n");
++}
++
++static void pf_negotiate_base_older(struct kunit *test)
++{
++	struct xe_gt *gt = test->priv;
++	u32 major, minor;
++
++	if (!gt->sriov.pf.service.version.base.minor)
++		kunit_skip(test, "no older minor\n");
++
++	KUNIT_ASSERT_NE(test, 0,
++			pf_negotiate_version(gt,
++					     gt->sriov.pf.service.version.base.major,
++					     gt->sriov.pf.service.version.base.minor - 1,
++					     &major, &minor));
++}
++
++static void pf_negotiate_base_prev(struct kunit *test)
++{
++	struct xe_gt *gt = test->priv;
++	u32 major, minor;
++
++	KUNIT_ASSERT_NE(test, 0,
++			pf_negotiate_version(gt,
++					     gt->sriov.pf.service.version.base.major - 1, 1,
++					     &major, &minor));
++}
++
++static void pf_negotiate_latest_match(struct kunit *test)
++{
++	struct xe_gt *gt = test->priv;
++	u32 major, minor;
++
++	KUNIT_ASSERT_EQ(test, 0,
++			pf_negotiate_version(gt,
++					     gt->sriov.pf.service.version.latest.major,
++					     gt->sriov.pf.service.version.latest.minor,
++					     &major, &minor));
++	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.latest.major);
++	KUNIT_ASSERT_EQ(test, minor, gt->sriov.pf.service.version.latest.minor);
++}
++
++static void pf_negotiate_latest_newer(struct kunit *test)
++{
++	struct xe_gt *gt = test->priv;
++	u32 major, minor;
++
++	KUNIT_ASSERT_EQ(test, 0,
++			pf_negotiate_version(gt,
++					     gt->sriov.pf.service.version.latest.major,
++					     gt->sriov.pf.service.version.latest.minor + 1,
++					     &major, &minor));
++	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.latest.major);
++	KUNIT_ASSERT_EQ(test, minor, gt->sriov.pf.service.version.latest.minor);
++}
++
++static void pf_negotiate_latest_next(struct kunit *test)
++{
++	struct xe_gt *gt = test->priv;
++	u32 major, minor;
++
++	KUNIT_ASSERT_EQ(test, 0,
++			pf_negotiate_version(gt,
++					     gt->sriov.pf.service.version.latest.major + 1, 0,
++					     &major, &minor));
++	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.latest.major);
++	KUNIT_ASSERT_EQ(test, minor, gt->sriov.pf.service.version.latest.minor);
++}
++
++static void pf_negotiate_latest_older(struct kunit *test)
++{
++	struct xe_gt *gt = test->priv;
++	u32 major, minor;
++
++	if (!gt->sriov.pf.service.version.latest.minor)
++		kunit_skip(test, "no older minor\n");
++
++	KUNIT_ASSERT_EQ(test, 0,
++			pf_negotiate_version(gt,
++					     gt->sriov.pf.service.version.latest.major,
++					     gt->sriov.pf.service.version.latest.minor - 1,
++					     &major, &minor));
++	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.latest.major);
++	KUNIT_ASSERT_EQ(test, minor, gt->sriov.pf.service.version.latest.minor - 1);
++}
++
++static void pf_negotiate_latest_prev(struct kunit *test)
++{
++	struct xe_gt *gt = test->priv;
++	u32 major, minor;
++
++	if (gt->sriov.pf.service.version.base.major == gt->sriov.pf.service.version.latest.major)
++		kunit_skip(test, "no prev major");
++
++	KUNIT_ASSERT_EQ(test, 0,
++			pf_negotiate_version(gt,
++					     gt->sriov.pf.service.version.latest.major - 1,
++					     gt->sriov.pf.service.version.base.minor + 1,
++					     &major, &minor));
++	KUNIT_ASSERT_EQ(test, major, gt->sriov.pf.service.version.latest.major - 1);
++	KUNIT_ASSERT_GE(test, major, gt->sriov.pf.service.version.base.major);
++}
++
++static struct kunit_case pf_service_test_cases[] = {
++	KUNIT_CASE(pf_negotiate_any),
++	KUNIT_CASE(pf_negotiate_base_match),
++	KUNIT_CASE(pf_negotiate_base_newer),
++	KUNIT_CASE(pf_negotiate_base_next),
++	KUNIT_CASE(pf_negotiate_base_older),
++	KUNIT_CASE(pf_negotiate_base_prev),
++	KUNIT_CASE(pf_negotiate_latest_match),
++	KUNIT_CASE(pf_negotiate_latest_newer),
++	KUNIT_CASE(pf_negotiate_latest_next),
++	KUNIT_CASE(pf_negotiate_latest_older),
++	KUNIT_CASE(pf_negotiate_latest_prev),
++	{}
++};
++
++static struct kunit_suite pf_service_suite = {
++	.name = "pf_service",
++	.test_cases = pf_service_test_cases,
++	.init = pf_service_test_init,
++};
++
++kunit_test_suite(pf_service_suite);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
+index a253f196261d..0e23b7ea4f3e 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
+@@ -544,3 +544,7 @@ int xe_gt_sriov_pf_service_print_version(struct xe_gt *gt, struct drm_printer *p
+ 
+ 	return 0;
+ }
++
++#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
++#include "tests/xe_gt_sriov_pf_service_test.c"
++#endif
 -- 
 2.43.0
 
