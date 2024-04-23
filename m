@@ -4,27 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92260C4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 13:48:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F04B6C04FFE
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 13:49:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 401CD10FC68;
-	Tue, 23 Apr 2024 13:48:01 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCCE710FC68;
- Tue, 23 Apr 2024 13:47:59 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E32E1133CD;
+	Tue, 23 Apr 2024 13:49:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PzWX+VMv";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6BE51133CD;
+ Tue, 23 Apr 2024 13:49:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713880191; x=1745416191;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=F5ZwzNOM8YYxa0GgmYoO/rKq3WxU/435xGcYnQ0eYjg=;
+ b=PzWX+VMvPsRUWZ2dMw1gp9kehl0fE0RL9fYu1Tk0TKta+ioV0bUfkSoZ
+ IoWYCzeENBSrjmiDQw4gB7CZQSN3s6zMw4yg6mPW14JqxXpz+MKisrCmh
+ F85VKqC911Ag0+/k0+vNQkOJaG/yG46/DH37+22sa+0+Jlw5ZAwICUrfv
+ CyesPUpFyOrJI8CihHPODE1xkzXF2ZHH00r7W+bKLoDvYmof69dsE44uq
+ dyTQ1XcnO2RQ6RmgpnB2BQrgOetItz4xhVcUD7dJ2Nko/XX5+PzNoFE7V
+ x+Aker0hxr0TFKd+xvPpkqi7NKPNwaOOCesNpC2jSXOKLUhvvuDbFzpCk Q==;
+X-CSE-ConnectionGUID: sIi4O1rxQTeYM5BNmzaNAQ==
+X-CSE-MsgGUID: 2QHVrWbgTGyVBIOdWkaOkw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="9328676"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
+   d="scan'208";a="9328676"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2024 06:49:50 -0700
+X-CSE-ConnectionGUID: XYVmQ3A3TiirawFUXYiPfQ==
+X-CSE-MsgGUID: xcwfNnyjTre0QeCTDMC3KQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="61835295"
+Received: from fpirou-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.46.117])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2024 06:49:45 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>, "Upadhyay, Tejas"
+ <tejas.upadhyay@intel.com>, "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>, "joonas.lahtinen@linux.intel.com"
+ <joonas.lahtinen@linux.intel.com>, "ogabbay@kernel.org"
+ <ogabbay@kernel.org>, "javierm@redhat.com" <javierm@redhat.com>,
+ "airlied@gmail.com" <airlied@gmail.com>, "Deak, Imre"
+ <imre.deak@intel.com>, "thomas.hellstrom@linux.intel.com"
+ <thomas.hellstrom@linux.intel.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH v8 6/6] drm/{i915,xe}: Implement fbdev emulation as
+ in-kernel client
+In-Reply-To: <275e85aa8165204bcfe8ff6039356cd0f3577c61.camel@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240409081029.17843-1-tzimmermann@suse.de>
+ <20240409081029.17843-7-tzimmermann@suse.de>
+ <d164f7d9b0fab2573c9c9781cab17b02c4cdce46.camel@intel.com>
+ <1517673a-50da-4f66-958c-1222b1dfc4a6@suse.de>
+ <275e85aa8165204bcfe8ff6039356cd0f3577c61.camel@intel.com>
+Date: Tue, 23 Apr 2024 16:49:42 +0300
+Message-ID: <87a5lkrxxl.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe/guc=3A_Fix_ar?=
- =?utf-8?q?guments_passed_to_relay_G2H_handlers_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 23 Apr 2024 13:47:59 -0000
-Message-ID: <171388007990.1607644.1543559622617560380@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240419150351.358-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20240419150351.358-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,28 +81,25 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 23 Apr 2024, "Hogander, Jouni" <jouni.hogander@intel.com> wrote:
+> On Tue, 2024-04-23 at 13:13 +0200, Thomas Zimmermann wrote:
+>> Thank you so much. All patches has R-bs. Can you add the series to
+>> the intel tree?
+>
+> Is it ok to merge patch 01/06 via intel tree as well?
+>
+> Rodrigo, This set is containing Xe display changes as well. Is it ok to
+> push this via drm-intel?
 
-Series: drm/xe/guc: Fix arguments passed to relay G2H handlers (rev3)
-URL   : https://patchwork.freedesktop.org/series/132651/
-State : failure
+For that we'll need an ack from the xe maintainers; usually Lucas for
+the display stuff.
 
-== Summary ==
-
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 861eed75446f drm-tip: 2024y-04m-23d-07h-30m-22s UTC integration manifest
-=== git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/xe_guc_ct.c:1058
-error: drivers/gpu/drm/xe/xe_guc_ct.c: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: drm/xe/guc: Fix arguments passed to relay G2H handlers
-Patch failed at 0001 drm/xe/guc: Fix arguments passed to relay G2H handlers
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+BR,
+Jani.
 
 
+-- 
+Jani Nikula, Intel
