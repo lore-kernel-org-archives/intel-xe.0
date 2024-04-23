@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2CADC4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 23:55:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8650C10F15
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 23:56:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A85B113778;
-	Tue, 23 Apr 2024 23:55:32 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3059113775;
- Tue, 23 Apr 2024 23:55:30 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BE5F11377A;
+	Tue, 23 Apr 2024 23:56:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CLmtqWjF";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E9EB113779;
+ Tue, 23 Apr 2024 23:56:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713916585; x=1745452585;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=FYvrK/0KYXO4/EtBbu/5hac7Bxz3Jcuim+RQWymddYw=;
+ b=CLmtqWjFgFbEwB/8UdqvlHv11ri+jD6JB1W5R59o1ZgZf7MJgBcjwVLn
+ vO7PZVK2gAZqoGp/6eGPQd1IyW9KyUF7kxRgjVLw/2wr8eMB/mMuwZFYw
+ fSyTqZK67PTAvGnw0o0kSl7QHTo9kulggLM4H7gEmJnMaSyQ3jiIGxoc/
+ U5gRSvmP3KqPt/KHtBoe7H5Le/eTBx+4fJPivgHmwIU2etSqZVe3rye+y
+ yo27dpqXTZkWWMpUY3XyBrYvaf9eIQI693gFzG2z/7qe3kKNGmcTKd9dg
+ QuMEz17Et11PDEdYkTZC4XefFyrmanKb5CpM2/qSFgjwGAQrn3cOS+3ed w==;
+X-CSE-ConnectionGUID: mmL0iq+VTm62gTzSnfbBNg==
+X-CSE-MsgGUID: fvCuJMMpT0+5OwohgSa39g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="27040637"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="27040637"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2024 16:56:24 -0700
+X-CSE-ConnectionGUID: 2e4GKCXDSMu9sOSZSiPPkw==
+X-CSE-MsgGUID: 97ugmLQUTjCxkozCiC5W6Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="29170913"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2024 16:56:24 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: dri-devel@lists.freedesktop.org,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v2 2/6] drm/xe: Add helper to capture engine timestamp
+Date: Tue, 23 Apr 2024 16:56:47 -0700
+Message-ID: <20240423235652.1959945-3-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240423235652.1959945-1-lucas.demarchi@intel.com>
+References: <20240423235652.1959945-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Use_distinct_er?=
- =?utf-8?q?ror_code_in_VM=5FCREATE_for_device_fault_mode_checks?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Brian Welty" <brian.welty@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 23 Apr 2024 23:55:30 -0000
-Message-ID: <171391653079.1610190.3651788787219792018@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240423234707.6587-1-brian.welty@intel.com>
-In-Reply-To: <20240423234707.6587-1-brian.welty@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,42 +66,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Just like CTX_TIMESTAMP is used to calculate runtime, add a helper to
+get the timestamp for the engine so it can be used to calculate the
+"engine time" with the same unit as the runtime is recorded.
 
-Series: drm/xe: Use distinct error code in VM_CREATE for device fault mode checks
-URL   : https://patchwork.freedesktop.org/series/132803/
-State : success
+Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_hw_engine.c | 5 +++++
+ drivers/gpu/drm/xe/xe_hw_engine.h | 2 ++
+ 2 files changed, 7 insertions(+)
 
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-0daf0be5bb95eb0a0e42275e00a0e42d8d8fd543
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit ab0b6663758259af0f6858fef224a19768ff3f8d
-Author: Brian Welty <brian.welty@intel.com>
-Date:   Tue Apr 23 16:47:07 2024 -0700
-
-    drm/xe: Use distinct error code in VM_CREATE for device fault mode checks
-    
-    vm_create_ioctl doesn't allow creating new VM in fault_mode while existing
-    VMs are in non-fault mode, and vice-versa.
-    This is not necessarily the user doing anything wrong if others are sharing
-    the system. Instead of returning -EINVAL which suggests the user provided a
-    bad argument, return distinct error code of -EBUSY for this class of errors
-    so the user knows they can retry the vm_create when system is idle.
-    
-    Signed-off-by: Brian Welty <brian.welty@intel.com>
-+ /mt/dim checkpatch b5b592a3902a51cc5747c625aa1898768d4ce79a drm-intel
-ab0b66637582 drm/xe: Use distinct error code in VM_CREATE for device fault mode checks
-
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 455f375c1cbd..f357de532685 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -955,3 +955,8 @@ bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe)
+ 	return xe->info.has_usm && hwe->class == XE_ENGINE_CLASS_COPY &&
+ 		hwe->instance == gt->usm.reserved_bcs_instance;
+ }
++
++u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe)
++{
++	return xe_mmio_read64_2x32(hwe->gt, RING_TIMESTAMP(hwe->mmio_base));
++}
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
+index 71968ee2f600..a10d5e528958 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine.h
+@@ -67,4 +67,6 @@ static inline bool xe_hw_engine_is_valid(struct xe_hw_engine *hwe)
+ 	return hwe->name;
+ }
+ 
++u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe);
++
+ #endif
+-- 
+2.43.0
 
