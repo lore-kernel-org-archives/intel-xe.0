@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8650C10F15
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B599C4345F
 	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 23:56:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BE5F11377A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F6D4113779;
 	Tue, 23 Apr 2024 23:56:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CLmtqWjF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cfMAmPS0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E9EB113779;
- Tue, 23 Apr 2024 23:56:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05610113778;
+ Tue, 23 Apr 2024 23:56:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1713916585; x=1745452585;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=FYvrK/0KYXO4/EtBbu/5hac7Bxz3Jcuim+RQWymddYw=;
- b=CLmtqWjFgFbEwB/8UdqvlHv11ri+jD6JB1W5R59o1ZgZf7MJgBcjwVLn
- vO7PZVK2gAZqoGp/6eGPQd1IyW9KyUF7kxRgjVLw/2wr8eMB/mMuwZFYw
- fSyTqZK67PTAvGnw0o0kSl7QHTo9kulggLM4H7gEmJnMaSyQ3jiIGxoc/
- U5gRSvmP3KqPt/KHtBoe7H5Le/eTBx+4fJPivgHmwIU2etSqZVe3rye+y
- yo27dpqXTZkWWMpUY3XyBrYvaf9eIQI693gFzG2z/7qe3kKNGmcTKd9dg
- QuMEz17Et11PDEdYkTZC4XefFyrmanKb5CpM2/qSFgjwGAQrn3cOS+3ed w==;
-X-CSE-ConnectionGUID: mmL0iq+VTm62gTzSnfbBNg==
-X-CSE-MsgGUID: fvCuJMMpT0+5OwohgSa39g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="27040637"
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="27040637"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MiAy3RPERKIvBpgYzVAmKOyOF2fj9wRGPBQk7H9g1js=;
+ b=cfMAmPS0dr0YS6BtH8CbWpT/U5cO3e6v6cXpy0PiY8HSJ9y5QxTjdcvc
+ x08jGWW/+s6skszeT4lmLxAwULEyvSdgVKwEUOQ553vPHSvpZSZQ0j9YW
+ XgrKtDW0f0OnepySSHRPNLOtuN0rVax0yxDus2O4pBZvQ2GwYDn3bKMtR
+ G5Ou4vBYGnurQWexC38CqCLSWbU/zjPeXHpjSLHx1INabQCOgyRxSdGFj
+ kjq3DvpRkbMLMFC6OHxjO9tGhmsEeAa4AIJer8mkVmBmLEjWxySIe3ffG
+ Pp2I/SLBY8C8cuxc1ZBiPQPN099LQUqB9yxe2IYM2c2jvgRWKb0H6X3jw A==;
+X-CSE-ConnectionGUID: qhAqiV29TVOP259D1cC+hw==
+X-CSE-MsgGUID: SZMvPRjeRm6NfOL9ycruRg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="27040635"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="27040635"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Apr 2024 16:56:24 -0700
-X-CSE-ConnectionGUID: 2e4GKCXDSMu9sOSZSiPPkw==
-X-CSE-MsgGUID: 97ugmLQUTjCxkozCiC5W6Q==
+X-CSE-ConnectionGUID: WobSp0RqR86q4ThGjK39oQ==
+X-CSE-MsgGUID: u5Zbn4UaTUO2OWtqvVle2Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="29170913"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="29170906"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Apr 2024 16:56:24 -0700
@@ -47,12 +47,10 @@ Cc: dri-devel@lists.freedesktop.org,
  Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 2/6] drm/xe: Add helper to capture engine timestamp
-Date: Tue, 23 Apr 2024 16:56:47 -0700
-Message-ID: <20240423235652.1959945-3-lucas.demarchi@intel.com>
+Subject: [PATCH v2 0/6] drm/xe: Per client usage
+Date: Tue, 23 Apr 2024 16:56:45 -0700
+Message-ID: <20240423235652.1959945-1-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240423235652.1959945-1-lucas.demarchi@intel.com>
-References: <20240423235652.1959945-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,41 +67,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Just like CTX_TIMESTAMP is used to calculate runtime, add a helper to
-get the timestamp for the engine so it can be used to calculate the
-"engine time" with the same unit as the runtime is recorded.
+Add per-client usage statistics to xe. This ports xe to use the common
+method in drm to export the usage to userspace per client (where 1
+client == 1 drm fd open).
 
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/xe_hw_engine.c | 5 +++++
- drivers/gpu/drm/xe/xe_hw_engine.h | 2 ++
- 2 files changed, 7 insertions(+)
+However insted of using the current format measured in nsec, this
+creates a new one. The intention here is not to mix the GPU clock domain
+with the CPU clock. It allows to cover a few more use cases without
+extra complications.
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 455f375c1cbd..f357de532685 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -955,3 +955,8 @@ bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe)
- 	return xe->info.has_usm && hwe->class == XE_ENGINE_CLASS_COPY &&
- 		hwe->instance == gt->usm.reserved_bcs_instance;
- }
-+
-+u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe)
-+{
-+	return xe_mmio_read64_2x32(hwe->gt, RING_TIMESTAMP(hwe->mmio_base));
-+}
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
-index 71968ee2f600..a10d5e528958 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.h
-@@ -67,4 +67,6 @@ static inline bool xe_hw_engine_is_valid(struct xe_hw_engine *hwe)
- 	return hwe->name;
- }
- 
-+u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe);
-+
- #endif
+I tested this on DG2 and also checked gputop with i915 to make sure not
+regressed. Last patch also contains the documentation for the new key
+and sample output as requested in v1. Reproducing it partially here:
+
+	- drm-total-cycles-<keystr>: <uint>
+
+	Engine identifier string must be the same as the one specified in the
+	drm-cycles-<keystr> tag and shall contain the total number cycles for the given
+	engine.
+
+	This is a timestamp in GPU unspecified unit that matches the update rate
+	of drm-cycles-<keystr>. For drivers that implement this interface, the engine
+	utilization can be calculated entirely on the GPU clock domain, without
+	considering the CPU sleep time between 2 samples.
+
+The pre-existent drm-cycles-<keystr> is used as is, which allows gputop
+to work with xe.
+
+v2:
+  - Create a new drm-total-cycles instead of re-using drm-engine with a
+    different unit
+  - Add documentation for the new interface and clarify usage of
+    xe_lrc_update_timestamp()
+
+Test-with: https://lore.kernel.org/igt-dev/20240423234431.1959354-1-lucas.demarchi@intel.com/
+
+Lucas De Marchi (4):
+  drm/xe: Add helper to capture engine timestamp
+  drm/xe: Promote xe_hw_engine_class_to_str()
+  drm/xe: Add XE_ENGINE_CLASS_OTHER to str conversion
+  drm/xe/client: Print runtime to fdinfo
+
+Umesh Nerlige Ramappa (2):
+  drm/xe/lrc: Add helper to capture context timestamp
+  drm/xe: Add helper to accumulate exec queue runtime
+
+ Documentation/gpu/drm-usage-stats.rst         |  16 +-
+ Documentation/gpu/xe/index.rst                |   1 +
+ Documentation/gpu/xe/xe-drm-usage-stats.rst   |  10 ++
+ drivers/gpu/drm/xe/regs/xe_lrc_layout.h       |   1 +
+ drivers/gpu/drm/xe/xe_device_types.h          |   9 ++
+ drivers/gpu/drm/xe/xe_drm_client.c            | 138 +++++++++++++++++-
+ drivers/gpu/drm/xe/xe_exec_queue.c            |  37 +++++
+ drivers/gpu/drm/xe/xe_exec_queue.h            |   1 +
+ drivers/gpu/drm/xe/xe_hw_engine.c             |  27 ++++
+ drivers/gpu/drm/xe/xe_hw_engine.h             |   3 +
+ drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c |  18 ---
+ drivers/gpu/drm/xe/xe_lrc.c                   |  11 ++
+ drivers/gpu/drm/xe/xe_lrc.h                   |  14 ++
+ drivers/gpu/drm/xe/xe_lrc_types.h             |   3 +
+ drivers/gpu/drm/xe/xe_sched_job.c             |   2 +
+ 15 files changed, 270 insertions(+), 21 deletions(-)
+ create mode 100644 Documentation/gpu/xe/xe-drm-usage-stats.rst
+
 -- 
 2.43.0
 
