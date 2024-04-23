@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7460AC4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 18:14:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C952C4345F
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 18:19:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDEA3113574;
-	Tue, 23 Apr 2024 18:14:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C258E11357E;
+	Tue, 23 Apr 2024 18:19:25 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36100113575;
- Tue, 23 Apr 2024 18:14:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8390698225331173061=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9504F11357E;
+ Tue, 23 Apr 2024 18:19:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Fix_unexpected_backmer?=
- =?utf-8?q?ge_results?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_PF=3A_Expose_GT-leve?=
+ =?utf-8?q?l_SR-IOV_details_over_debugfs?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Thomas Hellstrom" <thomas.hellstrom@linux.intel.com>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 23 Apr 2024 18:14:39 -0000
-Message-ID: <171389607921.1609648.12842529438697621431@8e613ede5ea5>
+Date: Tue, 23 Apr 2024 18:19:24 -0000
+Message-ID: <171389636460.1609648.14398949092681755637@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240423121114.39325-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240423121114.39325-1-thomas.hellstrom@linux.intel.com>
+References: <20240423131244.2045-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20240423131244.2045-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,19 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8390698225331173061==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Fix unexpected backmerge results
-URL   : https://patchwork.freedesktop.org/series/132774/
+Series: PF: Expose GT-level SR-IOV details over debugfs
+URL   : https://patchwork.freedesktop.org/series/132777/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1161-d3158dfc418559bcd958bae7af47374e38d6f468_BAT -> xe-pw-132774v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: e1dc9638bb47 drm-tip: 2024y-04m-23d-16h-45m-07s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/pf: Expose SR-IOV VFs configuration over debugfs
+Applying: drm/xe/pf: Expose SR-IOV VF control commands over debugfs
+Applying: drm/xe/pf: Expose SR-IOV policy settings over debugfs
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1161-d3158dfc418559bcd958bae7af47374e38d6f468 -> xe-pw-132774v1
-
-  IGT_7818: 8e68eb5f6393f1be25ff775c094b427243a6a403 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1161-d3158dfc418559bcd958bae7af47374e38d6f468: d3158dfc418559bcd958bae7af47374e38d6f468
-  xe-pw-132774v1: 132774v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132774v1/index.html
-
---===============8390698225331173061==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix unexpected backmerge results</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132774/">https://patchwork.freedesktop.org/series/132774/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132774v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132774v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1161-d3158dfc418559bcd958bae7af47374e38d6f468_BAT -&gt; xe-pw-132774v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1161-d3158dfc418559bcd958bae7af47374e38d6f468 -&gt; xe-pw-132774v1</li>
-</ul>
-<p>IGT_7818: 8e68eb5f6393f1be25ff775c094b427243a6a403 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1161-d3158dfc418559bcd958bae7af47374e38d6f468: d3158dfc418559bcd958bae7af47374e38d6f468<br />
-  xe-pw-132774v1: 132774v1</p>
-
-</body>
-</html>
-
---===============8390698225331173061==--
