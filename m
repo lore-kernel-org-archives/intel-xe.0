@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CC9DC4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 06:54:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C9C2C4345F
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 06:54:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE2E410FB04;
-	Tue, 23 Apr 2024 06:54:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0740C10FB03;
+	Tue, 23 Apr 2024 06:54:46 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 251C610FB02;
- Tue, 23 Apr 2024 06:54:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 746A110FB03;
+ Tue, 23 Apr 2024 06:54:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/vm=3A_Use_xe?=
- =?utf-8?q?=5Fvm=5Flock=28=29_helper_for_locking?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/vm=3A_Use_xe=5Fvm?=
+ =?utf-8?q?=5Flock=28=29_helper_for_locking?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 23 Apr 2024 06:54:33 -0000
-Message-ID: <171385527315.1590799.6683411613760093019@8e613ede5ea5>
+Date: Tue, 23 Apr 2024 06:54:44 -0000
+Message-ID: <171385528447.1590798.9993927635206897484@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240423070332.2036539-1-himal.prasad.ghimiray@intel.com>
 In-Reply-To: <20240423070332.2036539-1-himal.prasad.ghimiray@intel.com>
@@ -48,9 +48,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 41a57dfc2851 drm-tip: 2024y-04m-23d-05h-57m-47s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/vm: Use xe_vm_lock() helper for locking
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+0daf0be5bb95eb0a0e42275e00a0e42d8d8fd543
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3cc8f7bb6f83df98e94175da5e7669a20b69989f
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Tue Apr 23 12:33:32 2024 +0530
+
+    drm/xe/vm: Use xe_vm_lock() helper for locking
+    
+    There is no change in functionality. Using the helper function
+    defined within the driver.
+    
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch 41a57dfc285157c6879743afba44480353a592d4 drm-intel
+3cc8f7bb6f83 drm/xe/vm: Use xe_vm_lock() helper for locking
 
 
