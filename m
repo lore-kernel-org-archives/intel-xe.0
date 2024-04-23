@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7D21C4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 16:44:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0BD0C4345F
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 16:45:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A19081134B3;
-	Tue, 23 Apr 2024 16:44:34 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CBE51134B3;
- Tue, 23 Apr 2024 16:44:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2887158082092801608=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 433641134B4;
+	Tue, 23 Apr 2024 16:45:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VC9QyANp";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62E3E1134B7;
+ Tue, 23 Apr 2024 16:45:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713890706; x=1745426706;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xtSQBG/3BSgHtBHQjdNis6vXNsV9X7sGEWedPMP7VKQ=;
+ b=VC9QyANpvID1gINaBNGd20XjKitxNHq4iLG+8K4p7gikNs0bx33jjP7T
+ ZAmONdfCqLM6lj1BtAj1e8QP2QUSCh6WjmLjXyEq82s8n8diXjVu7eMRC
+ 6ev//bzy7bVxx2G3cI3wLk4oYfXULB5m/DXzy7nJcnbCoXJ1mGNem7KpW
+ 1fSAbsSWg9uXsTK7zMWhDGmfvKxmcOo1YL1AGHPzwaV4tUqZbduyflWva
+ n5e5ckbkXOEbDVOhWYbaHQBYNC4BLKrfLsEdkiPAo4/szZ8hq8QZP8QPH
+ FSbBrNCv5bQGKQGUm/p/J91MVd9/313ELDw1rhuleS6R9dJ4t1NS8AdzF w==;
+X-CSE-ConnectionGUID: oLG3/bMLTy2CkIMsaU+vGQ==
+X-CSE-MsgGUID: AikM0EKcTbuWZ7K6GMIT0g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="20891452"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="20891452"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2024 09:45:05 -0700
+X-CSE-ConnectionGUID: KFAyuP4YToyKbBuyMXHWEA==
+X-CSE-MsgGUID: AmYbfegGSOuVML+qpt8nQA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="28883581"
+Received: from fpirou-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.46.117])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2024 09:45:04 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/2] drm/i915: baby steps towards removing implicit dev_priv
+Date: Tue, 23 Apr 2024 19:44:58 +0300
+Message-Id: <cover.1713890614.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B1/2=5D_R?=
- =?utf-8?q?evert_=22drm/xe/vm=3A_drop_vm-=3Edestroy=5Fwork=22_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 23 Apr 2024 16:44:33 -0000
-Message-ID: <171389067324.1608578.17089427296189304656@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240423074721.119633-3-matthew.auld@intel.com>
-In-Reply-To: <20240423074721.119633-3-matthew.auld@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,130 +64,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2887158082092801608==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Some prep steps towards removing implict dev_priv in register macros.
 
-== Series Details ==
+After this, all dev_priv get passed from a slightly higher level,
+instead of being hidden in the lowest level helpers.
 
-Series: series starting with [1/2] Revert "drm/xe/vm: drop vm->destroy_work" (rev2)
-URL   : https://patchwork.freedesktop.org/series/132756/
-State : success
+Jani Nikula (2):
+  drm/i915: convert _MMIO_PIPE3()/_MMIO_PORT3() to accept base
+  drm/i915: pass dev_priv to _MMIO_PIPE2, _MMIO_TRANS2, _MMIO_CURSOR2
 
-== Summary ==
+ .../gpu/drm/i915/display/intel_color_regs.h   |  12 +-
+ .../drm/i915/display/intel_display_reg_defs.h |  22 +-
+ drivers/gpu/drm/i915/display/intel_psr_regs.h |  38 +--
+ drivers/gpu/drm/i915/i915_reg.h               | 266 +++++++++---------
+ 4 files changed, 171 insertions(+), 167 deletions(-)
 
-CI Bug Log - changes from xe-1160-22610da92b8883caee927eb63c57249972979d68_BAT -> xe-pw-132756v2_BAT
-====================================================
+-- 
+2.39.2
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-132756v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_exec_threads@threads-basic:
-    - {bat-lnl-1}:        [FAIL][1] ([Intel XE#1256]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1160-22610da92b8883caee927eb63c57249972979d68/bat-lnl-1/igt@xe_exec_threads@threads-basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132756v2/bat-lnl-1/igt@xe_exec_threads@threads-basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1256]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1256
-
-
-Build changes
--------------
-
-  * Linux: xe-1160-22610da92b8883caee927eb63c57249972979d68 -> xe-pw-132756v2
-
-  IGT_7818: 8e68eb5f6393f1be25ff775c094b427243a6a403 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1160-22610da92b8883caee927eb63c57249972979d68: 22610da92b8883caee927eb63c57249972979d68
-  xe-pw-132756v2: 132756v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132756v2/index.html
-
---===============2887158082092801608==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] Revert &quot;drm/xe/vm: drop vm-&gt;destroy_work&quot; (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132756/">https://patchwork.freedesktop.org/series/132756/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132756v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132756v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1160-22610da92b8883caee927eb63c57249972979d68_BAT -&gt; xe-pw-132756v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-132756v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_exec_threads@threads-basic:<ul>
-<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1160-22610da92b8883caee927eb63c57249972979d68/bat-lnl-1/igt@xe_exec_threads@threads-basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1256">Intel XE#1256</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132756v2/bat-lnl-1/igt@xe_exec_threads@threads-basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1160-22610da92b8883caee927eb63c57249972979d68 -&gt; xe-pw-132756v2</li>
-</ul>
-<p>IGT_7818: 8e68eb5f6393f1be25ff775c094b427243a6a403 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1160-22610da92b8883caee927eb63c57249972979d68: 22610da92b8883caee927eb63c57249972979d68<br />
-  xe-pw-132756v2: 132756v2</p>
-
-</body>
-</html>
-
---===============2887158082092801608==--
