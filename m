@@ -4,63 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A801C4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 03:09:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70823C4345F
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 03:17:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD79610F9ED;
-	Tue, 23 Apr 2024 03:09:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E9EE10F96E;
+	Tue, 23 Apr 2024 03:17:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nZJ0GYXC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K6Q2Ha5O";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DEEA10F9ED
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Apr 2024 03:09:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05D4710F749
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Apr 2024 03:17:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713841751; x=1745377751;
+ t=1713842253; x=1745378253;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=t4HJpFEhRLEjkinjpxlPCUp84of436Y+8Xaths2UQbY=;
- b=nZJ0GYXCO98nCfN9VYvemzu0xjvgE6nhV1yuB4QHHwkpnohmsHpTqHTa
- hp2syQbXb31jc4jMfWgDQcTCEtuxAhX/3yGOorALZCu2kZCjQCjnXgzdt
- FYhKYa5eXuvRPLslGY2vmQw7tDnYdaKn5Nxy07jlal9jsQQT9WR0KFZez
- ZVFVxGWpVDmfZLRFzs2Gi5wI6MT2aQwNHzdtOaVExilA36faDJXHEt+fr
- 0wWG7bZblGnDcBGj9kiKIlpDDRidcu7CK5QDf1i5KMl++sVQBDbVBcXwj
- T0ouzUpcA98tABscbKOvMto8SWoUHttoqCkLA7unhv+znH+RKrwrfGG27 Q==;
-X-CSE-ConnectionGUID: zy0RAKXsQpKuQWA0IKM2tQ==
-X-CSE-MsgGUID: fVbzUYM/T+uYOPYX3tHT5Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="9517362"
+ bh=ODiDt9dLvpnegONDuF7fXeY95bg2JIMPp5zzWsVNHy8=;
+ b=K6Q2Ha5OtdfdnMjcs5/rNACpmg0HlhKixB1q7zq8TUQ6FpJ8zikCKVBP
+ JN1/LaAQ/0quxmOeWznxImgco33TNwxtgFQg0/kVxi6/ug6TB1jSe5Kla
+ oKiGQeoItoNURQA+83FAtP9Cntv2ZTnPVkkDuepKJGmdwbszVbPIXrX1B
+ FXv3w6HGOr0rLir72YS9HAYTAaGclxbRZx1x1ZgK1c6nNdp44i18Hz65a
+ iFoitbBt2WbCJnGZCJJRs0I/wNSVsbc76GYcGCCOnDHBV1otIbfZJ0QsQ
+ 0Pt3wLtArpiM3OrYPGwEOJqFqUycp+WLUVDq5ZGpRYcxroG2DZUQ69BVk w==;
+X-CSE-ConnectionGUID: 4gqyhAX6QKe3+fCeKk3XoA==
+X-CSE-MsgGUID: ADy3GWJWTWi26rfXswVbVw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="9283637"
 X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
-   d="scan'208";a="9517362"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2024 20:09:11 -0700
-X-CSE-ConnectionGUID: /ynX7tT4QiC7t/6ME/bkEA==
-X-CSE-MsgGUID: mprQn3NnQK6WVMicV3Q/nA==
+   d="scan'208";a="9283637"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2024 20:17:31 -0700
+X-CSE-ConnectionGUID: U9zJmYvAQYatbcomauTOxQ==
+X-CSE-MsgGUID: A3n/N9QBR6iyrJ54N2MSNw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="24670446"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Apr 2024 20:09:11 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="61674096"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 22 Apr 2024 20:17:28 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 22 Apr 2024 20:09:10 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.35; Mon, 22 Apr 2024 20:17:28 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 22 Apr 2024 20:09:10 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.35; Mon, 22 Apr 2024 20:17:27 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 22 Apr 2024 20:17:27 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 22 Apr 2024 20:09:10 -0700
+ 15.1.2507.35; Mon, 22 Apr 2024 20:17:27 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CkZI2p0ZQ+2eXFGD/+yifdClF37mM0VclTn0ycW7lfu6+dMUr/BNbRPS+/tUAf6/sLy/Y0sYyLBf4B9V2zQF8rJ9bG+Dx3NEhtzdX+ewKG7HiNERrnW/g4W7Gue5yAUxBFBjdqgcfUHWWTR4Csl0X09VDeBEietkFYHTYanGiAJXy1XBuqr9QIrOzGQyaL+/UGtjwRGVGPLvKEY0vC4laHYoh+HLRlX+aLnUWlXhDoWuPCrj+YxD9QKeHeOLC4PfTGmQza5GePAHT5u0BddBTIWKJiE70K7sTMwVVJNeaRyOqnJRqDksQc1CaKnp+fpqXxsROSAVWoPphFn7IHMW5w==
+ b=nppUu9ucT+GU7EvifZyzOme5lBNNsUfH81ZFj+AZu3SCgPn2Ef0jVh4A/hNyQuIio4bU4t/xbj7aXVBCNAfznb6rPZR5zSDZ+YBczvAby3tnv2ShS8fD4jV4Xv5XUf57B75ThEGbF04b/KPETe4NFcUpA+/8xraB9WesAwV84tpwxdvXXU2Ui6vF43yuO2mIiqhIzlg1hE78bCrGr3RQZNgEMv3DpQW+JofUHHyBDsmuo+c/cIACk9VhVFJOs30DrnwvCUy22kAbXUZcqiLaQ7RVSqHRr5Re1pteHn495rBMFOe+7fCtlwQJyEyWnus8BxBddU/5Qa88y3ZKxWwfaw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xcgCMbzL2zs8uAgNb0ko1pIbikC6HNV34tDQbneCFI8=;
- b=XWuI62GAK73BBgmGy1O4J3AQnDLIHXeQNY9uN8TY69wKHIn4YA28PgBkT7qol+C/lrL8EoT/Rjy85jiYeoB35dHxgeRdDylQaakmxyRJq9ya1D4eIPvjXx1TZAk+x1SZKV2h58kVmvrMUQgq/R4J5TKHIMJSIoKP72fnKBtzHHyh8uKW5bGxUW3peaDggmyOraAN0CWwmyqcq3K+c9AxeffWKWfz0WJerl6SZLJ7DCmYcAMY5Xcik8hwMHlRXxNNN24c5Qr5xsCaYyNj/a5Irom+Mrc1mg/ne7ydgWRBTYTuph8fDHHVB9HHt1FYpPHuODvppzxH89QwpGMoRxZkDg==
+ bh=73RRS1HiefXMT9HJ96LEkIG3Fi2BIVe9rnf+OblSmcg=;
+ b=ALQJ7xeiKwyyVdoK26xjp3AmsWrlVl7f5q4oLkMp3rJsAzXTnGJqF8zM7WIEnN3pStUwO9h8tkhq/4V0V5cj5FqhUWm4BK/ZcPXlNsuZtYKEDcBieyQI09kiTc9iyF2nPHgbPvvN8R4SrWBPRrsKryamu8Lr3xXtWQ0uDnquZGrE+sfoOoMSSuu39aOIGjAWHnvO5jN5NEHy/R94HldMZcDEyID0Oe8PqOomrsIXQPb3m8K4d/8sklj+47jVIxFNU0yjXWXRXTBIqsN4lX9Guxpy1x/xPRyXlvdC6pz/tsEJuSJmrCrbB1kdMypL6p7raJEe8AKWqW2lnWy+k+Q1sg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -68,26 +72,24 @@ Received: from SA1PR11MB6991.namprd11.prod.outlook.com (2603:10b6:806:2b8::21)
  by LV2PR11MB6070.namprd11.prod.outlook.com (2603:10b6:408:179::22)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.21; Tue, 23 Apr
- 2024 03:09:07 +0000
+ 2024 03:17:25 +0000
 Received: from SA1PR11MB6991.namprd11.prod.outlook.com
  ([fe80::c06c:bf95:b3f4:198d]) by SA1PR11MB6991.namprd11.prod.outlook.com
  ([fe80::c06c:bf95:b3f4:198d%5]) with mapi id 15.20.7519.018; Tue, 23 Apr 2024
- 03:09:07 +0000
+ 03:17:25 +0000
 From: "Zeng, Oak" <oak.zeng@intel.com>
 To: "Brost, Matthew" <matthew.brost@intel.com>
 CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH 02/13] drm/xe: Add ops_execute function which returns a
- fence
-Thread-Topic: [PATCH 02/13] drm/xe: Add ops_execute function which returns a
- fence
-Thread-Index: AQHaiwmm2r+3AllXc0e2/xaxJGBOdbFuOgyggAA/aICABsda8A==
-Date: Tue, 23 Apr 2024 03:09:07 +0000
-Message-ID: <SA1PR11MB6991C21A1E95AC466C00E02992112@SA1PR11MB6991.namprd11.prod.outlook.com>
+Subject: RE: [PATCH 05/13] drm/xe: Use xe_vma_ops to implement xe_vm_rebind
+Thread-Topic: [PATCH 05/13] drm/xe: Use xe_vma_ops to implement xe_vm_rebind
+Thread-Index: AQHaiwm2vy3hET/BjEeusMhbYXbvSrFu/1DQgAAKtYCABjkVIA==
+Date: Tue, 23 Apr 2024 03:17:25 +0000
+Message-ID: <SA1PR11MB6991A32A2B42FEB231AC146292112@SA1PR11MB6991.namprd11.prod.outlook.com>
 References: <20240410054056.478023-1-matthew.brost@intel.com>
- <20240410054056.478023-3-matthew.brost@intel.com>
- <SA1PR11MB69915478598B96B5553FE726920E2@SA1PR11MB6991.namprd11.prod.outlook.com>
- <ZiF2VSumpZTbIN+z@DUT025-TGLU.fm.intel.com>
-In-Reply-To: <ZiF2VSumpZTbIN+z@DUT025-TGLU.fm.intel.com>
+ <20240410054056.478023-6-matthew.brost@intel.com>
+ <SA1PR11MB699140DE94F7D680AADD7A3E920D2@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <ZiHvm7C6I9n5XoG6@DUT025-TGLU.fm.intel.com>
+In-Reply-To: <ZiHvm7C6I9n5XoG6@DUT025-TGLU.fm.intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -96,75 +98,75 @@ authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
 x-ms-traffictypediagnostic: SA1PR11MB6991:EE_|LV2PR11MB6070:EE_
-x-ms-office365-filtering-correlation-id: a66033a7-43f5-416c-d6fe-08dc6342bd3f
+x-ms-office365-filtering-correlation-id: 10a901b6-1483-4282-aca6-08dc6343e617
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0; ARA:13230031|1800799015|376005|366007|38070700009;
-x-microsoft-antispam-message-info: =?us-ascii?Q?WUuvePmISkI9r34VxoIz2aVrV83B8zp8Wd6tc/mknE/L0KvyEW/EGAjlprgF?=
- =?us-ascii?Q?XB40KAgbPQOEN+BpzBbOB/F0DzlNOyiM3JWlStMrqx1JaXeFPLuOqqT1wAhB?=
- =?us-ascii?Q?84OrmellwwtTMIsF1w//7DeWLbxL1RmRGZQZJrwsBFvHuEftsXda189u7pFQ?=
- =?us-ascii?Q?6DhKD/kXQZZNzzRXSCI5YfqAdwOifG+aDf8zgbwpIYlrDSwPXwp7NHbIoGU5?=
- =?us-ascii?Q?0BVryDboGCcFsEt94uZvNst0/Yd/MEKy1p7cabvWXXHLILiLqpakJehRK4TR?=
- =?us-ascii?Q?UAWdHbroZWPbfwZ60pRtyWgW70xDpNoWdP+0FiYGffu1Y7wClgcKvmXGxBDy?=
- =?us-ascii?Q?HOsln53ThZMUVVDkK5pVhDDDO7OtQDIMZNCJ+Rxnc+PzS9vWclTDb6tlhtRZ?=
- =?us-ascii?Q?txtL9Ata1FfrDJLixCrKE8MaCje6P7b54mFgT5y9QNVENpvCYvxFxN1ju7Zy?=
- =?us-ascii?Q?7XJqJeRulIwntrailxQJGesGNdFYohvFo4vhnSk69TemFaIDDnN99UKgSZuD?=
- =?us-ascii?Q?bAwhqbmoGGoWltmusLtQ7oTriSjUvdnK+qi+4pt8tTy9bhu93muFccudgk+0?=
- =?us-ascii?Q?xdJ7p/cjJE1YmC5k1KEp0XNXpIOrTOSZe8jG4aShBjoE7pbDVfZ8+cHMNy51?=
- =?us-ascii?Q?/4iRI4Bhsbg62l8qXfVYGvnChvrD21iTiTP/EXPhTkhfReEMzyuS+I17yCrn?=
- =?us-ascii?Q?6vLk+6dTNLx23vf1+2/8w3HBILe3B0ecP3vH3QTqlWxFDZny3dxXnD79Er+f?=
- =?us-ascii?Q?PZIRwkQZSPRutcxJ1JFiPve7pu6hxZ+9YSB9efWWYBQfDwBY91Y8wlq4ieTG?=
- =?us-ascii?Q?IZHBPhQEhNyM4j1+7fYbplgRxyfde5nnSqD8l2nCxrbNeV09UMAs4sotQsRU?=
- =?us-ascii?Q?ktPtA7Qh0tdBJi+8nVBDZuxtdaF9e49+FRejfhWSDbM9vF5UwHPFgSN4RNZD?=
- =?us-ascii?Q?Z3QONx50ByJffUdlJaVln/Y+URwexge7hbBQqaHSun365/g7EgBcb6yly86S?=
- =?us-ascii?Q?A0W8Gi47vxpPdmt9bLUKq3r4jgeS2SRhYxzoijZdJkGDypQqBTVWifAgmw1o?=
- =?us-ascii?Q?VJ7apXW/9Tup53RYWvyx4FKngTZkzjf3ulDRhAcuSHMuceXXaXHzzyLjqD8P?=
- =?us-ascii?Q?j+VrLsMrzar8JiIBWAEPzYgMXr1Ir7TPVahubKnAlAnyArULVb/3wqnVWnk/?=
- =?us-ascii?Q?Wq+5x937j49cTlb3DFyVAgoM+gvPFLVsVQN0g9B9V3cdjZ8A3XsiTAHK6c4b?=
- =?us-ascii?Q?C+S8adbhByi/pNHTE5rHOzR8SFyIUQ1ohLZ2oXk+GSrdERugVWfGp5lb+c7M?=
- =?us-ascii?Q?BE4=3D?=
+x-microsoft-antispam-message-info: =?us-ascii?Q?SbxmYhsD2F3vYOwahGzxOdUKjTdSTdVoOjm/KrmC1smA/RLO6YpyDZQ6+hgZ?=
+ =?us-ascii?Q?Xs/oZNQTHVaLOGsq9mEo1hPaPDaebh26kAH2eHeCNujDx4f+QefTSdOPTF+p?=
+ =?us-ascii?Q?ruSqB5Hm4tyQjgXorBR7Gk+M6nA0aV7qkWi34dUVj4VhMk577A5KITHrhn52?=
+ =?us-ascii?Q?7otUodmiWlpwOLXSvf0eWdlfE5Yd9lZKPAuPNnLNESYIRrow/FBiqHYofWLQ?=
+ =?us-ascii?Q?LeWcKaqJ0jl9tVFtKXCXXJ6Fvj5bDSHfktLZKidgOVjk5ihV96MGxo6SfLzC?=
+ =?us-ascii?Q?WxtAtnfZfm9R1ybkWkq7oLOR0CHX712GjO7MpzMw3U1nowsk29b6PEvsm8Bg?=
+ =?us-ascii?Q?/E4ofPOV/wtq7WseD6AhXKcua/RoRZeWxamh6JnZDATRvH7Bp4/jOOnHted4?=
+ =?us-ascii?Q?G05iJRPTf0Ev+r3CPYuIiXAnwFWHQRaUya2qz4kwpOqi88CwOvjWXWbuPGy4?=
+ =?us-ascii?Q?5HI9+/h6J8M/tHp9nZ5HyxuQefbdqh5WeN7DVAENyNaU2aDvUtDHhVztNIO4?=
+ =?us-ascii?Q?h28JxLXWSFRrVL5STflylDfXbfNbDiD9ZGFaUlis0gpouvxTNhGngNqIONpf?=
+ =?us-ascii?Q?8hKD6mNkTqQbvYc9mMErzfS4LXbSUb+9pj1YtiFktpCidskfvyXs410n2cz1?=
+ =?us-ascii?Q?oVwFExhgntviTVb0DCdNYL3ajHgCr9j2U3pFIdzSSU6A0WWG0nHazH+E3sJo?=
+ =?us-ascii?Q?yceJx8xu7g2ru2iXWeRF3K/SiPcCAi5F9GoTjVFXW9IRtl/kvT4H1u5OCo3/?=
+ =?us-ascii?Q?LW+p3bQjZUvZYsrzqMUkX8lfY5+cxnOfySykuA9kBCf2CbEgZPOymx4+mWIj?=
+ =?us-ascii?Q?FEKWlzn2pPqgrt/jF3OLPBYzQDMyYEQrHdT0HwPyHHfPOLo/roaLJv3QiQ36?=
+ =?us-ascii?Q?o8OEoMByZPfpp5zwEASKlHg8OUBKY6t/wFI2vHi0Rhw4H3iUIgvovnDPoGCL?=
+ =?us-ascii?Q?+DGcgb93KcX90Yhj9oqrP2wR+aA5qUkSZx6XDxT4xl1R3of1+IvtOQASoVUQ?=
+ =?us-ascii?Q?JpFmrJ7LCyBmUEno7w7TNOQajC3WlJLGJwpywC+Bt9zV/w02ZkRhafHICpS8?=
+ =?us-ascii?Q?8f5Wpk9aQ/XESBlhZAbT+xM8vMfbu7u3xkz+2+J7RXC0nj0ZRmaZtY8C/rSx?=
+ =?us-ascii?Q?4X0qnYoRF3JxfIafcomsQKfnOYr6AV84GamryqpXoc6hk43tXyjiIubbsfGB?=
+ =?us-ascii?Q?1jeQJOs/BWm0qzNN/zqBHm7ctFMc3gx7diT3vxn+mRXCW7e6TTHQsiqdDi/8?=
+ =?us-ascii?Q?DmGAweSDkpRe7HWPBneQTB1YW92sjRlKhi1o4Vo32vlN7buSGtcXuIW4p3Qr?=
+ =?us-ascii?Q?eEL0/6eJyfMGtrrJ5IqNqj794hEnecaZz+tCTeCC/xxU8g=3D=3D?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SA1PR11MB6991.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(1800799015)(376005)(366007)(38070700009); DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?9DYT/sK9IALO7d2EFmYHJ6k5vbPE1QuDrGHm7MMVS9gd1QIDH+/1FrRbbq35?=
- =?us-ascii?Q?WqtlrcA/BHVVQ8AXDKnHRimGQIYZhZKnWF4sG5TY8Orlh4CYDWs/W4j0L9Ok?=
- =?us-ascii?Q?LBPMkqpL5W2fCVLhY9udoUDM8edhNKtBMSoHQgKsWTWEQ7vzMAs5i/M0V9T5?=
- =?us-ascii?Q?MExxeR5xfwkvNv+k5YPgqvnhumrMv+qyqB7Rl6xJV2anHkONBEtTLuEpefAE?=
- =?us-ascii?Q?/kN2JvrBxUis6tF2UiV6omEJQpvZFNmqHbwnsy6N6/x5oOfLhhWvcD2/9iOf?=
- =?us-ascii?Q?/9roKQDvpp/hBlmrNfyd2v4oXLlb7RopvEoKxo1dvjA70KWz7bTZ5+nsIJoz?=
- =?us-ascii?Q?WiW7hnHpmKDEbURefnGtl4Zpp+NsnQFr21OSHyfMhuxqyd4I1svdzqH71Nbe?=
- =?us-ascii?Q?7IAEndtrkKAOm2AxV+qTtAVrUo8/0s8KoU+iQsl8EDMw7Hn9pBDfe4jsBYdw?=
- =?us-ascii?Q?tcyD8OjTNJpi8/hjjOygYC/eWosuL8Yx9WnyvLRUJoyvcaRSUxXy+prZxaHk?=
- =?us-ascii?Q?peoTfSzU7IvqG5YccA1GuMQnrTmKT71/edO1/sEiyrdcY5oMcRvgTh4DlVqj?=
- =?us-ascii?Q?9J4f/xTX18HZUQC2KSfUHd7O0vAvLGIljpgqAyGcg/Yrv0b5ifpMgvn4OWXs?=
- =?us-ascii?Q?QpaXfly2UE7lwnLzHEmXcV/i2IstH2Dgn5xt7VipvjLpz6xv7m06vc6RZ48T?=
- =?us-ascii?Q?Fr5Xb/Zrm4c9hBj/Yx4OH59azuWPsWWxn8d/UH5eem6yi+vWbDznJE9S7B2a?=
- =?us-ascii?Q?Of7mgAtb+2MtIizCUfvcECnJKb0Y9DR9mQ3NakuDuId8B0TvkUjyji2Ny+we?=
- =?us-ascii?Q?LHNiaxSHTS05M1pnBcfOCHpcbPQwJmm9hTDgkFwK4ZlH8U9FI2LFslmziOy4?=
- =?us-ascii?Q?1a5UuZNHQHZZcED9njHMDyJsjfh3BnXqavW0DRmU5mDUA5v+XutWgXEn8nJS?=
- =?us-ascii?Q?oASLgQOYbY6AUQLxInPrERDUSsrfaqgeAIgRkRjkL5gNQXhlVAdazzn7X7bn?=
- =?us-ascii?Q?CbxduMSdJAKv2F9HYRaqGOXe7hsI+4VE7P00SwCvqlv+Ie+Peq2tjuI8TzB3?=
- =?us-ascii?Q?z6HtE2QcMFuNAY7/Jvt2Tez+6DIabKVVQBDw9jnTYAka2jz007bRFetwW71J?=
- =?us-ascii?Q?c1orpmawen5i9VCXdZ6YBC8GBgrnfYFOPCUPuZ6NH2aXYf1g0BdbF0zrDj8b?=
- =?us-ascii?Q?HclaYHQ3UMjpw1c/E3/RzeFhsG44qiXG7O6rHIXg7ai+PA+bXGUfsHVv5HYH?=
- =?us-ascii?Q?PH34H+vf78hp2TsN+Mkl/SRTctXB7ct3Xqb4KnhVZDTLh0WRS/CZ+Xj6qYd/?=
- =?us-ascii?Q?L9M15+wj3omNbcKo/6UVvrX2eTeKCS0m+FlbK8jdJu/23DUSGZPrDI5TKdBc?=
- =?us-ascii?Q?ocBJUcduXtPspb1u1YyPDSmA0odId0QrMB50akXLg7RjxqG6Q1P9alzujiJj?=
- =?us-ascii?Q?b1WT8s5sKCS7eh6og6irSBd/EmnqDR0ZVao0hZAVMSmx83/e2Q+f5rlHVv0b?=
- =?us-ascii?Q?UiQXLXG/eS3048nzISwo4HSqPhmGPbTzzRybWJpD/BmQcLVj+lyQZKfBKlOx?=
- =?us-ascii?Q?wDf6MYQeMmvn8KHkW5w=3D?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?0ySuhpJc9aLd6Kl4I1yrEl2+pgpQOtifuSrS36GFz6hmdTDPtlTbqCat15V1?=
+ =?us-ascii?Q?GbBmfWk2RiJ/CoNVQf58cfacyAs8iAuOhbUBtBwW38kHt6LFoLxNN1QxEd8j?=
+ =?us-ascii?Q?SDnDhPzj0rry1P+sAGfZEUxAeBcceEO0Dl71IwIjDnUmiE8Tty1qKfYsAPLO?=
+ =?us-ascii?Q?l+DkLypMQka/sUzKPysgYBtd155g+nkKcViEDk6clUIy/Y6++kivXGgT5QRs?=
+ =?us-ascii?Q?kr65CNiiXjnQoyWG7m7QbDBThzinDX9L30l2CvmNzskmacdJWfaro0QNox3h?=
+ =?us-ascii?Q?fxGt4Pf8/gZaeU8vdg60piShsTWjaT7/3TshNaeowuRjrzy1WhKzfvhkobUa?=
+ =?us-ascii?Q?Dtu/VudtVll0hKGr2GE8tjdoWbfcz5gqErjaPnCeBfGkXr0zeHmddVgG7zvg?=
+ =?us-ascii?Q?TEY0XWrhDSc1Vhwy0O0aJUZcPrThqOw0I61/onvc+ca758sULWrAZddBMPDn?=
+ =?us-ascii?Q?UlUmT56uqT041O80n/lLNMSeyx55mdQ2FofR6Aw5h2gcuEOHWPW7xd/LaRdt?=
+ =?us-ascii?Q?tt81dhOsMKQN6oXQgnzxmPqXnb/09VMioJdWgNFGbSTdenTrXUZtpiYzy2t1?=
+ =?us-ascii?Q?j5iTi+rdz5v9QJtaOszXUJViAHXCMP1ESS50wVt5IWYGLDFPaju75LHtNffk?=
+ =?us-ascii?Q?aUrT1eh01Ybv4nmS6VaTExvjnlBAEPVROD/DpImCrEvONIA3rPN2Q1Hl+qz+?=
+ =?us-ascii?Q?M/bDcxq6qLUB28Khu2EjVswp+Upbmc4VZzHWHjcFPAHFeEOnPQIC0IxLlAQ4?=
+ =?us-ascii?Q?3BHOGwuhtDfw04S6i/2VeEtrgaaAYleux53yQ6BvYEUWHxGKgv8euLjp+OlE?=
+ =?us-ascii?Q?S9m2FELsbxMgeDsQiUA9JO1q3tkBOqHybIaY6MbrQ5yacYt5EmoUKC9iwhBJ?=
+ =?us-ascii?Q?TKr/I7kLGNvOJFX/wISMQx92iE6doMhAP1u94CeG3HmWOB3BrxttbTCE176v?=
+ =?us-ascii?Q?iIe3nt82udUPG6omB70mSm7US1ITHLK/uf1kaPd3EMbkVEqfJeP2MamJ+gX6?=
+ =?us-ascii?Q?qKUlwbHLMW/5uAQrV6PlTxUmOmrcVWbbAvH/JVV1TrHfRR9yJMUZFbeHdIkn?=
+ =?us-ascii?Q?FN1v28MBwzxJUxSu+2Z/2NbZd8SWt645DAeIpCn/T/44z7QDjmXWXQ6yOX1M?=
+ =?us-ascii?Q?LMBf6K6DZVciGsX486SsrdZD5XQiFYGulf8GAz9mNZBzixpvIjrcbaSTzmKl?=
+ =?us-ascii?Q?usf+yu9Ur6FT6NVmYrJNy65gPRcpbMQypoP8a+gbQls5w0VnvHYvhMJXsc32?=
+ =?us-ascii?Q?G13MzfO/4ZA+KrneMJB24XBYc+xRSAtTEB3ppJHbByCB+C6Jy9No9sCHS0s7?=
+ =?us-ascii?Q?rqmU3NwFhnlePLVMZodkBg42LDVkDbCK889qJvSQSb56tK17EqTfGNgbLlXH?=
+ =?us-ascii?Q?5M84YZ7Lv/v3hJRpxOSEGXbWZykAzGPer+ramueh6nJomL51WKaIK+h3HGsL?=
+ =?us-ascii?Q?KttVBTNd7OfkNVizs5M/pEHPwANoED/Sky0V6S3cs0604X8su7x/Wa6nCcxt?=
+ =?us-ascii?Q?8RpsTOYYarmYR7++WvZrtfQoNa4cVwtOBImM4sUu/cq7XMRKqtZRQVI7/2sf?=
+ =?us-ascii?Q?Qr9uBVCBA6cjWc/0X5U=3D?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB6991.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a66033a7-43f5-416c-d6fe-08dc6342bd3f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Apr 2024 03:09:07.3729 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 10a901b6-1483-4282-aca6-08dc6343e617
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Apr 2024 03:17:25.3677 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +2Irw39R5XdQjhIVLHKHGtuWMgTCPVVp67tp8Re9E6+t/9w79PjLCzJf0ug18oDiTEhHeBAp6M5PYuu818gsUg==
+X-MS-Exchange-CrossTenant-userprincipalname: jWaFZ7YEOFyVfqOd29AcRLI0L7MExCAUpn1TSlKlR3DonADPJETiaQeOv2gkca1XamUNShG3FNkXneGSVXKPAQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB6070
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -185,564 +187,206 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 > -----Original Message-----
 > From: Brost, Matthew <matthew.brost@intel.com>
-> Sent: Thursday, April 18, 2024 3:37 PM
+> Sent: Friday, April 19, 2024 12:14 AM
 > To: Zeng, Oak <oak.zeng@intel.com>
 > Cc: intel-xe@lists.freedesktop.org
-> Subject: Re: [PATCH 02/13] drm/xe: Add ops_execute function which returns
-> a fence
+> Subject: Re: [PATCH 05/13] drm/xe: Use xe_vma_ops to implement
+> xe_vm_rebind
 >=20
-> On Thu, Apr 18, 2024 at 10:16:15AM -0600, Zeng, Oak wrote:
+> On Thu, Apr 18, 2024 at 09:43:06PM -0600, Zeng, Oak wrote:
 > >
 > >
 > > > -----Original Message-----
-> > > From: Brost, Matthew <matthew.brost@intel.com>
+> > > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of
+> > > Matthew Brost
 > > > Sent: Wednesday, April 10, 2024 1:41 AM
 > > > To: intel-xe@lists.freedesktop.org
-> > > Cc: Brost, Matthew <matthew.brost@intel.com>; Zeng, Oak
-> > > <oak.zeng@intel.com>
-> > > Subject: [PATCH 02/13] drm/xe: Add ops_execute function which returns
-> a
-> > > fence
+> > > Cc: Brost, Matthew <matthew.brost@intel.com>
+> > > Subject: [PATCH 05/13] drm/xe: Use xe_vma_ops to implement
+> > > xe_vm_rebind
 > > >
-> > > Add ops_execute function which returns a fence. This will be helpful =
-to
-> > > initiate all binds (VM bind IOCTL, rebinds in exec IOCTL, rebinds in
-> > > preempt rebind worker, and rebinds in pagefaults) via a gpuva ops lis=
-t.
-> > > Returning a fence is needed in various paths.
+> > > All page tables updates are moving to a xe_vma_ops interface to
+> > > implement 1 job per VM bind IOCTL.
+> >
+> > Just want to make sure I understand it correctly. So far after this pat=
+ch, the
+> rebind is still many jobs (one job per vma), right?
+> >
+>=20
+> Yes. A follow on series will convert to 1 job for all of the rebind list.
+>=20
+> >
+> >  Convert xe_vm_rebind to use a
+> > > xe_vma_ops based interface.
 > > >
-> > > v2:
-> > >  - Rebase
-> > >
-> > > Cc: Oak Zeng <oak.zeng@intel.com>
 > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > > > ---
-> > >  drivers/gpu/drm/xe/xe_vm.c | 211 +++++++++++++++++++---------------
-> ---
-> > >  1 file changed, 111 insertions(+), 100 deletions(-)
+> > >  drivers/gpu/drm/xe/xe_vm.c | 78
+> +++++++++++++++++++++++++++++++-
+> > > ------
+> > >  1 file changed, 64 insertions(+), 14 deletions(-)
 > > >
 > > > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> > > index 6375c136e21a..84c6b10b4b78 100644
+> > > index 4cd485d5bc0a..9d82396cf5d5 100644
 > > > --- a/drivers/gpu/drm/xe/xe_vm.c
 > > > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > > @@ -1834,16 +1834,17 @@ find_ufence_get(struct xe_sync_entry
-> *syncs,
-> > > u32 num_syncs)
-> > >  	return NULL;
+> > > @@ -811,37 +811,87 @@ int xe_vm_userptr_check_repin(struct xe_vm
+> *vm)
+> > >  		list_empty_careful(&vm->userptr.invalidated)) ? 0 : -EAGAIN;
 > > >  }
 > > >
-> > > -static int __xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma,
-> > > -			struct xe_exec_queue *q, struct xe_sync_entry
-> > > *syncs,
-> > > -			u32 num_syncs, bool immediate, bool first_op,
-> > > -			bool last_op)
-> > > +static struct dma_fence *
-> > > +xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma, struct
-> > > xe_exec_queue *q,
-> > > +	   struct xe_bo *bo, struct xe_sync_entry *syncs, u32 num_syncs,
-> > > +	   bool immediate, bool first_op, bool last_op)
-> > >  {
-> > >  	struct dma_fence *fence;
-> > >  	struct xe_exec_queue *wait_exec_queue =3D
-> > > to_wait_exec_queue(vm, q);
-> > >  	struct xe_user_fence *ufence;
-> > >
-> > >  	xe_vm_assert_held(vm);
-> > > +	xe_bo_assert_held(bo);
-> > >
-> > >  	ufence =3D find_ufence_get(syncs, num_syncs);
-> > >  	if (vma->ufence && ufence)
-> > > @@ -1855,7 +1856,7 @@ static int __xe_vm_bind(struct xe_vm *vm,
-> struct
-> > > xe_vma *vma,
-> > >  		fence =3D xe_vm_bind_vma(vma, q, syncs, num_syncs,
-> > > first_op,
-> > >  				       last_op);
-> > >  		if (IS_ERR(fence))
-> > > -			return PTR_ERR(fence);
-> > > +			return fence;
-> > >  	} else {
-> > >  		int i;
-> > >
-> > > @@ -1870,26 +1871,14 @@ static int __xe_vm_bind(struct xe_vm *vm,
-> > > struct xe_vma *vma,
-> > >
-> > >  	if (last_op)
-> > >  		xe_exec_queue_last_fence_set(wait_exec_queue, vm,
-> > > fence);
-> > > -	dma_fence_put(fence);
-> > > -
-> > > -	return 0;
-> > > -}
-> > > -
-> > > -static int xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma, struct
-> > > xe_exec_queue *q,
-> > > -		      struct xe_bo *bo, struct xe_sync_entry *syncs,
-> > > -		      u32 num_syncs, bool immediate, bool first_op,
-> > > -		      bool last_op)
-> > > -{
-> > > -	xe_vm_assert_held(vm);
-> > > -	xe_bo_assert_held(bo);
-> > >
-> > > -	return __xe_vm_bind(vm, vma, q, syncs, num_syncs, immediate,
-> > > first_op,
-> > > -			    last_op);
-> > > +	return fence;
-> > >  }
-> > >
-> > > -static int xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
-> > > -			struct xe_exec_queue *q, struct xe_sync_entry
-> > > *syncs,
-> > > -			u32 num_syncs, bool first_op, bool last_op)
-> > > +static struct dma_fence *
-> > > +xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
-> > > +	     struct xe_exec_queue *q, struct xe_sync_entry *syncs,
-> > > +	     u32 num_syncs, bool first_op, bool last_op)
-> > >  {
-> > >  	struct dma_fence *fence;
-> > >  	struct xe_exec_queue *wait_exec_queue =3D
-> > > to_wait_exec_queue(vm, q);
-> > > @@ -1899,14 +1888,13 @@ static int xe_vm_unbind(struct xe_vm *vm,
-> > > struct xe_vma *vma,
-> > >
-> > >  	fence =3D xe_vm_unbind_vma(vma, q, syncs, num_syncs, first_op,
-> > > last_op);
-> > >  	if (IS_ERR(fence))
-> > > -		return PTR_ERR(fence);
-> > > +		return fence;
-> > >
-> > >  	xe_vma_destroy(vma, fence);
-> > >  	if (last_op)
-> > >  		xe_exec_queue_last_fence_set(wait_exec_queue, vm,
-> > > fence);
-> > > -	dma_fence_put(fence);
-> > >
-> > > -	return 0;
-> > > +	return fence;
-> > >  }
-> > >
-> > >  #define ALL_DRM_XE_VM_CREATE_FLAGS
-> > > (DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE | \
-> > > @@ -2049,10 +2037,11 @@ static const u32 region_to_mem_type[] =3D {
-> > >  	XE_PL_VRAM1,
-> > >  };
-> > >
-> > > -static int xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
-> > > -			  struct xe_exec_queue *q, u32 region,
-> > > -			  struct xe_sync_entry *syncs, u32 num_syncs,
-> > > -			  bool first_op, bool last_op)
-> > > +static struct dma_fence *
-> > > +xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
-> > > +	       struct xe_exec_queue *q, u32 region,
-> > > +	       struct xe_sync_entry *syncs, u32 num_syncs,
-> > > +	       bool first_op, bool last_op)
-> > >  {
-> > >  	struct xe_exec_queue *wait_exec_queue =3D
-> > > to_wait_exec_queue(vm, q);
-> > >  	int err;
-> > > @@ -2062,27 +2051,24 @@ static int xe_vm_prefetch(struct xe_vm *vm,
-> > > struct xe_vma *vma,
-> > >  	if (!xe_vma_has_no_bo(vma)) {
-> > >  		err =3D xe_bo_migrate(xe_vma_bo(vma),
-> > > region_to_mem_type[region]);
-> > >  		if (err)
-> > > -			return err;
-> > > +			return ERR_PTR(err);
-> > >  	}
-> > >
-> > >  	if (vma->tile_mask !=3D (vma->tile_present & ~vma->tile_invalidated=
-))
-> > > {
-> > >  		return xe_vm_bind(vm, vma, q, xe_vma_bo(vma), syncs,
-> > > num_syncs,
-> > >  				  true, first_op, last_op);
-> > >  	} else {
-> > > +		struct dma_fence *fence =3D
-> > > +			xe_exec_queue_last_fence_get(wait_exec_queue,
-> > > vm);
-> > >  		int i;
-> > >
-> > >  		/* Nothing to do, signal fences now */
-> > >  		if (last_op) {
-> > > -			for (i =3D 0; i < num_syncs; i++) {
-> > > -				struct dma_fence *fence =3D
-> > > -
-> > > 	xe_exec_queue_last_fence_get(wait_exec_queue, vm);
-> > > -
-> > > +			for (i =3D 0; i < num_syncs; i++)
-> > >  				xe_sync_entry_signal(&syncs[i], fence);
-> > > -				dma_fence_put(fence);
-> > > -			}
-> > >  		}
-> > >
-> > > -		return 0;
-> > > +		return fence;
-> > >  	}
-> > >  }
-> > >
-> > > @@ -2535,10 +2521,10 @@ static int vm_bind_ioctl_ops_parse(struct
-> xe_vm
-> > > *vm, struct xe_exec_queue *q,
-> > >  	return 0;
-> > >  }
-> > >
-> > > -static int op_execute(struct xe_vm *vm, struct xe_vma *vma,
-> > > -		      struct xe_vma_op *op)
-> > > +static struct dma_fence *op_execute(struct xe_vm *vm, struct xe_vma
+> > > -static struct dma_fence *
+> > > -xe_vm_bind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
+> > > -	       struct xe_sync_entry *syncs, u32 num_syncs,
+> > > -	       bool first_op, bool last_op);
+> > > +static void xe_vm_populate_rebind(struct xe_vma_op *op, struct
+> xe_vma
 > > > *vma,
-> > > +				    struct xe_vma_op *op)
-> > >  {
-> > > -	int err;
-> > > +	struct dma_fence *fence =3D NULL;
-> > >
-> > >  	lockdep_assert_held_write(&vm->lock);
-> > >
-> > > @@ -2547,11 +2533,11 @@ static int op_execute(struct xe_vm *vm,
-> struct
-> > > xe_vma *vma,
-> > >
-> > >  	switch (op->base.op) {
-> > >  	case DRM_GPUVA_OP_MAP:
-> > > -		err =3D xe_vm_bind(vm, vma, op->q, xe_vma_bo(vma),
-> > > -				 op->syncs, op->num_syncs,
-> > > -				 op->map.immediate
-> > > || !xe_vm_in_fault_mode(vm),
-> > > -				 op->flags & XE_VMA_OP_FIRST,
-> > > -				 op->flags & XE_VMA_OP_LAST);
-> > > +		fence =3D xe_vm_bind(vm, vma, op->q, xe_vma_bo(vma),
-> > > +				   op->syncs, op->num_syncs,
-> > > +				   op->map.immediate
-> > > || !xe_vm_in_fault_mode(vm),
-> > > +				   op->flags & XE_VMA_OP_FIRST,
-> > > +				   op->flags & XE_VMA_OP_LAST);
-> > >  		break;
-> > >  	case DRM_GPUVA_OP_REMAP:
-> > >  	{
-> > > @@ -2561,37 +2547,39 @@ static int op_execute(struct xe_vm *vm,
-> struct
-> > > xe_vma *vma,
-> > >  		if (!op->remap.unmap_done) {
-> > >  			if (prev || next)
-> > >  				vma->gpuva.flags |=3D XE_VMA_FIRST_REBIND;
-> > > -			err =3D xe_vm_unbind(vm, vma, op->q, op->syncs,
-> > > -					   op->num_syncs,
-> > > -					   op->flags & XE_VMA_OP_FIRST,
-> > > -					   op->flags & XE_VMA_OP_LAST &&
-> > > -					   !prev && !next);
-> > > -			if (err)
-> > > +			fence =3D xe_vm_unbind(vm, vma, op->q, op->syncs,
-> > > +					     op->num_syncs,
-> > > +					     op->flags & XE_VMA_OP_FIRST,
-> > > +					     op->flags & XE_VMA_OP_LAST &&
-> > > +					     !prev && !next);
-> > > +			if (IS_ERR(fence))
-> > >  				break;
-> > >  			op->remap.unmap_done =3D true;
-> > >  		}
-> > >
-> > >  		if (prev) {
-> > >  			op->remap.prev->gpuva.flags |=3D
-> > > XE_VMA_LAST_REBIND;
-> > > -			err =3D xe_vm_bind(vm, op->remap.prev, op->q,
-> > > -					 xe_vma_bo(op->remap.prev), op-
-> > > >syncs,
-> > > -					 op->num_syncs, true, false,
-> > > -					 op->flags & XE_VMA_OP_LAST
-> > > && !next);
-> > > +			dma_fence_put(fence);
-> > > +			fence =3D xe_vm_bind(vm, op->remap.prev, op->q,
-> > > +					   xe_vma_bo(op->remap.prev), op-
-> > > >syncs,
-> > > +					   op->num_syncs, true, false,
-> > > +					   op->flags & XE_VMA_OP_LAST
-> > > && !next);
-> > >  			op->remap.prev->gpuva.flags &=3D
-> > > ~XE_VMA_LAST_REBIND;
-> > > -			if (err)
-> > > +			if (IS_ERR(fence))
-> > >  				break;
-> > >  			op->remap.prev =3D NULL;
-> > >  		}
-> > >
-> > >  		if (next) {
-> > >  			op->remap.next->gpuva.flags |=3D
-> > > XE_VMA_LAST_REBIND;
-> > > -			err =3D xe_vm_bind(vm, op->remap.next, op->q,
-> > > -					 xe_vma_bo(op->remap.next),
-> > > -					 op->syncs, op->num_syncs,
-> > > -					 true, false,
-> > > -					 op->flags & XE_VMA_OP_LAST);
-> > > +			dma_fence_put(fence);
-> > > +			fence =3D xe_vm_bind(vm, op->remap.next, op->q,
-> > > +					   xe_vma_bo(op->remap.next),
-> > > +					   op->syncs, op->num_syncs,
-> > > +					   true, false,
-> > > +					   op->flags & XE_VMA_OP_LAST);
-> > >  			op->remap.next->gpuva.flags &=3D
-> > > ~XE_VMA_LAST_REBIND;
-> > > -			if (err)
-> > > +			if (IS_ERR(fence))
-> > >  				break;
-> > >  			op->remap.next =3D NULL;
-> > >  		}
-> > > @@ -2599,34 +2587,36 @@ static int op_execute(struct xe_vm *vm,
-> struct
-> > > xe_vma *vma,
-> > >  		break;
-> > >  	}
-> > >  	case DRM_GPUVA_OP_UNMAP:
-> > > -		err =3D xe_vm_unbind(vm, vma, op->q, op->syncs,
-> > > -				   op->num_syncs, op->flags &
-> > > XE_VMA_OP_FIRST,
-> > > -				   op->flags & XE_VMA_OP_LAST);
-> > > +		fence =3D xe_vm_unbind(vm, vma, op->q, op->syncs,
-> > > +				     op->num_syncs, op->flags &
-> > > XE_VMA_OP_FIRST,
-> > > +				     op->flags & XE_VMA_OP_LAST);
-> > >  		break;
-> > >  	case DRM_GPUVA_OP_PREFETCH:
-> > > -		err =3D xe_vm_prefetch(vm, vma, op->q, op->prefetch.region,
-> > > -				     op->syncs, op->num_syncs,
-> > > -				     op->flags & XE_VMA_OP_FIRST,
-> > > -				     op->flags & XE_VMA_OP_LAST);
-> > > +		fence =3D xe_vm_prefetch(vm, vma, op->q, op-
-> > > >prefetch.region,
-> > > +				       op->syncs, op->num_syncs,
-> > > +				       op->flags & XE_VMA_OP_FIRST,
-> > > +				       op->flags & XE_VMA_OP_LAST);
-> > >  		break;
-> > >  	default:
-> > >  		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
-> > >  	}
-> > >
-> > > -	if (err)
-> > > +	if (IS_ERR(fence))
-> > >  		trace_xe_vma_fail(vma);
-> > >
-> > > -	return err;
-> > > +	return fence;
-> > >  }
-> > >
-> > > -static int __xe_vma_op_execute(struct xe_vm *vm, struct xe_vma
-> *vma,
-> > > -			       struct xe_vma_op *op)
-> > > +static struct dma_fence *
-> > > +__xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
-> > > +		    struct xe_vma_op *op)
-> > >  {
-> > > +	struct dma_fence *fence;
-> > >  	int err;
-> > >
-> > >  retry_userptr:
-> > > -	err =3D op_execute(vm, vma, op);
-> > > -	if (err =3D=3D -EAGAIN) {
-> > > +	fence =3D op_execute(vm, vma, op);
-> > > +	if (IS_ERR(fence) && PTR_ERR(fence) =3D=3D -EAGAIN) {
-> > >  		lockdep_assert_held_write(&vm->lock);
-> > >
-> > >  		if (op->base.op =3D=3D DRM_GPUVA_OP_REMAP) {
-> > > @@ -2643,22 +2633,24 @@ static int __xe_vma_op_execute(struct
-> xe_vm
-> > > *vm, struct xe_vma *vma,
-> > >  			if (!err)
-> > >  				goto retry_userptr;
-> > >
-> > > +			fence =3D ERR_PTR(err);
-> > >  			trace_xe_vma_fail(vma);
-> > >  		}
-> > >  	}
-> > >
-> > > -	return err;
-> > > +	return fence;
-> > >  }
-> > >
-> > > -static int xe_vma_op_execute(struct xe_vm *vm, struct xe_vma_op
-> *op)
-> > > +static struct dma_fence *
-> > > +xe_vma_op_execute(struct xe_vm *vm, struct xe_vma_op *op)
-> > >  {
-> > > -	int ret =3D 0;
-> > > +	struct dma_fence *fence =3D ERR_PTR(-ENOMEM);
-> > >
-> > >  	lockdep_assert_held_write(&vm->lock);
-> > >
-> > >  	switch (op->base.op) {
-> > >  	case DRM_GPUVA_OP_MAP:
-> > > -		ret =3D __xe_vma_op_execute(vm, op->map.vma, op);
-> > > +		fence =3D __xe_vma_op_execute(vm, op->map.vma, op);
-> > >  		break;
-> > >  	case DRM_GPUVA_OP_REMAP:
-> > >  	{
-> > > @@ -2671,23 +2663,23 @@ static int xe_vma_op_execute(struct xe_vm
-> *vm,
-> > > struct xe_vma_op *op)
-> > >  		else
-> > >  			vma =3D op->remap.next;
-> > >
-> > > -		ret =3D __xe_vma_op_execute(vm, vma, op);
-> > > +		fence =3D __xe_vma_op_execute(vm, vma, op);
-> > >  		break;
-> > >  	}
-> > >  	case DRM_GPUVA_OP_UNMAP:
-> > > -		ret =3D __xe_vma_op_execute(vm, gpuva_to_vma(op-
-> > > >base.unmap.va),
-> > > -					  op);
-> > > +		fence =3D __xe_vma_op_execute(vm, gpuva_to_vma(op-
-> > > >base.unmap.va),
-> > > +					    op);
-> > >  		break;
-> > >  	case DRM_GPUVA_OP_PREFETCH:
-> > > -		ret =3D __xe_vma_op_execute(vm,
-> > > -					  gpuva_to_vma(op-
-> > > >base.prefetch.va),
-> > > -					  op);
-> > > +		fence =3D __xe_vma_op_execute(vm,
-> > > +					    gpuva_to_vma(op-
-> > > >base.prefetch.va),
-> > > +					    op);
-> > >  		break;
-> > >  	default:
-> > >  		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
-> > >  	}
-> > >
-> > > -	return ret;
-> > > +	return fence;
-> > >  }
-> > >
-> > >  static void xe_vma_op_cleanup(struct xe_vm *vm, struct xe_vma_op
-> *op)
-> > > @@ -2861,11 +2853,35 @@ static int
-> > > vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
-> > >  	return 0;
-> > >  }
-> > >
-> > > +static struct dma_fence *ops_execute(struct xe_vm *vm,
-> > > +				     struct list_head *ops_list,
-> > > +				     bool cleanup)
+> > > +				  u8 tile_mask)
 > > > +{
-> > > +	struct xe_vma_op *op, *next;
-> > > +	struct dma_fence *fence =3D NULL;
-> > > +
-> > > +	list_for_each_entry_safe(op, next, ops_list, link) {
-> > > +		if (!IS_ERR(fence)) {
-> > > +			dma_fence_put(fence);
-> > > +			fence =3D xe_vma_op_execute(vm, op);
-> > > +		}
-> > > +		if (IS_ERR(fence)) {
-> > > +			drm_warn(&vm->xe->drm, "VM op(%d) failed
-> > > with %ld",
-> > > +				 op->base.op, PTR_ERR(fence));
-> > > +			fence =3D ERR_PTR(-ENOSPC);
-> >
-> > There is a comment before not addressed. Copy as below:
-> >
-> >
-> > > > Once error happen for one operation, you seem to print the same err=
-or
-> > > message for all the rest operations....because fence =3D
-> xe_vma_op_execute(vm,
-> > > op) is not called anymore after the first error
-> > > >
-> > >
-> > > Yes.
-> >
-> > Is this problematic though? Lets say you have 2 ops in the list and
-> op_execute failed with op1. You will print as below:
-> >
-> > VM op1 failed with xxx
-> > VM op1 failed with xxx
-> >
->=20
-> I don't think that is a problem and changes later in the series once
-> xe_vma_op_cleanup is removed from this function.
-
-Right.
-
->=20
-> >
-> >
-> > > +		}
-> > > +		if (cleanup)
-> > > +			xe_vma_op_cleanup(vm, op);
-> > > +	}
-> > > +
-> > > +	return fence;
+> > > +	INIT_LIST_HEAD(&op->link);
+> > > +	op->base.op =3D DRM_GPUVA_OP_MAP;
+> > > +	op->base.map.va.addr =3D vma->gpuva.va.addr;
+> > > +	op->base.map.va.range =3D vma->gpuva.va.range;
+> > > +	op->base.map.gem.obj =3D vma->gpuva.gem.obj;
+> > > +	op->base.map.gem.offset =3D vma->gpuva.gem.offset;
+> > > +	op->map.vma =3D vma;
+> > > +	op->map.immediate =3D true;
+> > > +	op->map.dumpable =3D vma->gpuva.flags & XE_VMA_DUMPABLE;
+> > > +	op->map.is_null =3D xe_vma_is_null(vma);
 > > > +}
 > > > +
-> > >  static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
-> > >  				     struct list_head *ops_list)
+> > > +static int xe_vm_ops_add_rebind(struct xe_vma_ops *vops, struct
+> xe_vma
+> > > *vma,
+> > > +				u8 tile_mask)
+> > > +{
+> > > +	struct xe_vma_op *op;
+> > > +
+> > > +	op =3D kzalloc(sizeof(*op), GFP_KERNEL);
+> > > +	if (!op)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	xe_vm_populate_rebind(op, vma, tile_mask);
+> > > +	list_add_tail(&op->link, &vops->list);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static struct dma_fence *ops_execute(struct xe_vm *vm,
+> > > +				     struct xe_vma_ops *vops,
+> > > +				     bool cleanup);
+> > > +static void xe_vma_ops_init(struct xe_vma_ops *vops);
+> > >
+> > >  int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
 > > >  {
-> > >  	struct drm_exec exec;
-> > > -	struct xe_vma_op *op, *next;
-> > > +	struct dma_fence *fence;
-> > >  	int err;
+> > >  	struct dma_fence *fence;
+> > >  	struct xe_vma *vma, *next;
+> > > +	struct xe_vma_ops vops;
+> > > +	struct xe_vma_op *op, *next_op;
+> > > +	int err;
 > > >
-> > >  	lockdep_assert_held_write(&vm->lock);
-> > > @@ -2878,19 +2894,14 @@ static int vm_bind_ioctl_ops_execute(struct
-> > > xe_vm *vm,
-> > >  		if (err)
-> > >  			goto unlock;
+> > >  	lockdep_assert_held(&vm->lock);
+> > > -	if (xe_vm_in_lr_mode(vm) && !rebind_worker)
+> > > +	if ((xe_vm_in_lr_mode(vm) && !rebind_worker) ||
+> > > +	    list_empty(&vm->rebind_list))
+> > >  		return 0;
 > > >
-> > > -		list_for_each_entry_safe(op, next, ops_list, link) {
-> > > -			err =3D xe_vma_op_execute(vm, op);
-> > > -			if (err) {
-> > > -				drm_warn(&vm->xe->drm, "VM op(%d)
-> > > failed with %d",
-> > > -					 op->base.op, err);
-> > > -				/*
-> > > -				 * FIXME: Killing VM rather than proper error
-> > > handling
-> > > -				 */
-> > > -				xe_vm_kill(vm, false);
-> > > -				err =3D -ENOSPC;
-> > > -				goto unlock;
-> > > -			}
-> > > -			xe_vma_op_cleanup(vm, op);
-> > > +		fence =3D ops_execute(vm, ops_list, true);
-> > > +		if (IS_ERR(fence)) {
-> > > +			err =3D PTR_ERR(fence);
-> > > +			/* FIXME: Killing VM rather than proper error
-> > > handling */
-> > > +			xe_vm_kill(vm, false);
-> > > +			goto unlock;
-> > > +		} else {
-> > > +			dma_fence_put(fence);
+> > > +	xe_vma_ops_init(&vops);
+> > > +
+> > >  	xe_vm_assert_held(vm);
+> > > -	list_for_each_entry_safe(vma, next, &vm->rebind_list,
+> > > -				 combined_links.rebind) {
+> > > +	list_for_each_entry(vma, &vm->rebind_list, combined_links.rebind)
+> > > {
+> > >  		xe_assert(vm->xe, vma->tile_present);
+> > >
+> > > -		list_del_init(&vma->combined_links.rebind);
+> > >  		if (rebind_worker)
+> > >  			trace_xe_vma_rebind_worker(vma);
+> > >  		else
+> > >  			trace_xe_vma_rebind_exec(vma);
+> > > -		fence =3D xe_vm_bind_vma(vma, NULL, NULL, 0, false, false);
+> > > -		if (IS_ERR(fence))
+> > > -			return PTR_ERR(fence);
+> > > +
+> > > +		err =3D xe_vm_ops_add_rebind(&vops, vma,
+> > > +					   vma->tile_present);
+> > > +		if (err)
+> > > +			goto free_ops;
+> > > +	}
+> > > +
+> > > +	fence =3D ops_execute(vm, &vops, false);
+> > > +	if (IS_ERR(fence)) {
+> > > +		err =3D PTR_ERR(fence);
 > >
-> > I don't get here. You introduced function ops_execute to return the las=
-t
-> fence of all the operations. But you just put the fence here. Isn't you i=
-ntend
-> to wait for this fence somehow? What is the point to return a fence from
-> ops_execute?
-> > i
+> > So here, if above ops_execute partially succeed (some vma bind failed,
+> some succeed), for those vmas which are successfully bound, it is kept in=
+ the
+> vm's rebind_list. Is this the correct behavior? Next time we will rebind =
+them
+> again....
+> >
 >=20
-> It is used patch #7 [1] and #9 [2] in this series.
+> The VM is killed if any VMA ops fails so it doesn't really matter, also
+> it safe to issue a rebind twice.
 >=20
-> In [1], the returned fence is used wait on ops to compelete before
-> signaling page fault complete to GuC.
+> In the follow up series, once we have 1 job per the rebind list we can
+> cope with errors and not kill the VM. In that case we must leave
+> everything on the rebind list.
 >=20
-> In [2], the returned fence is used as an argument to
-> vm_bind_ioctl_ops_fini which attaches VMA destroy to fence, installs
-> fence in IOCTL out-syncs, and sets last fence on the exec queue.
+> So this patch is correct now and for the follow on series.
 
-I see. Thanks for explaining. Patch is:
+I see. Patch is:
 
 Reviewed-by: Oak Zeng <oak.zeng@intel.com>
+
 
 >=20
 > Matt
 >=20
-> [1] https://patchwork.freedesktop.org/patch/588594/?series=3D132246&rev=
-=3D1
-> [2] https://patchwork.freedesktop.org/patch/588595/?series=3D132246&rev=
-=3D1
->=20
+> >
 > > Oak
 > >
 > >
-> > >  		}
+> > > +	} else {
+> > >  		dma_fence_put(fence);
+> > > +		list_for_each_entry_safe(vma, next, &vm->rebind_list,
+> > > +					 combined_links.rebind)
+> > > +			list_del_init(&vma->combined_links.rebind);
+> > > +	}
+> > > +free_ops:
+> > > +	list_for_each_entry_safe(op, next_op, &vops.list, link) {
+> > > +		list_del(&op->link);
+> > > +		kfree(op);
 > > >  	}
 > > >
+> > > -	return 0;
+> > > +	return err;
+> > >  }
+> > >
+> > >  static void xe_vma_free(struct xe_vma *vma)
+> > > @@ -2516,7 +2566,7 @@ static struct dma_fence *op_execute(struct
+> xe_vm
+> > > *vm, struct xe_vma *vma,
+> > >  {
+> > >  	struct dma_fence *fence =3D NULL;
+> > >
+> > > -	lockdep_assert_held_write(&vm->lock);
+> > > +	lockdep_assert_held(&vm->lock);
+> > >
+> > >  	xe_vm_assert_held(vm);
+> > >  	xe_bo_assert_held(xe_vma_bo(vma));
+> > > @@ -2635,7 +2685,7 @@ xe_vma_op_execute(struct xe_vm *vm, struct
+> > > xe_vma_op *op)
+> > >  {
+> > >  	struct dma_fence *fence =3D ERR_PTR(-ENOMEM);
+> > >
+> > > -	lockdep_assert_held_write(&vm->lock);
+> > > +	lockdep_assert_held(&vm->lock);
+> > >
+> > >  	switch (op->base.op) {
+> > >  	case DRM_GPUVA_OP_MAP:
 > > > --
 > > > 2.34.1
 > >
