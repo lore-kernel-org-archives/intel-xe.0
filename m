@@ -4,27 +4,200 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B0BDC4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 13:01:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75227C10F15
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 13:06:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F25B2113394;
-	Tue, 23 Apr 2024 13:01:17 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 291B6113394;
- Tue, 23 Apr 2024 13:01:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 282F41133AB;
+	Tue, 23 Apr 2024 13:06:49 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UB+e3uiA";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9A941133A9;
+ Tue, 23 Apr 2024 13:06:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713877607; x=1745413607;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Ln/ZXg3YHolvohD4N1UmGLTzRPqIEQl34FqOcUfwncQ=;
+ b=UB+e3uiAAuLGWbfeKFsWr6eE8pcChL1Ff3PuyFDUOBilpfnEehOtXIgW
+ zj+ClLvHcviOb3L+4mQ5NnGhGdSa/bZ93ote/vDx5vWCt1Zm3MBhlpMZz
+ wqvRL9wrC8sliK8cD0h21DDYcauP5P/AVrCDeYOLfH58H0o0/dEb71jd4
+ Gi3Az3tgKlPFiAbOXSvEKQe1VT6QuF7Hm4qQaWMIm5JlqoFYVfIEG0m4+
+ DteP5hofddE4Kq5A1hrnDWO98VFKp7x8meUUwYe3M729qVKXKBfxXJiNP
+ ph23luhJ3ok4lWjGbUr/Q/eh0lJxDwU1/oVST6Ozlw1aqGix/sA/6hY2d Q==;
+X-CSE-ConnectionGUID: oO7bOEAsSHKt+Pmg3AWP8g==
+X-CSE-MsgGUID: I7YsP/+dQkW5+53VtQGg6g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="9328878"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
+   d="scan'208";a="9328878"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2024 06:06:47 -0700
+X-CSE-ConnectionGUID: HXSAE8YJQgayCMwcCqQ1AQ==
+X-CSE-MsgGUID: OTWDb+2HSB69dtWldRuRiw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="61824678"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 Apr 2024 06:06:47 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 23 Apr 2024 06:06:46 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 23 Apr 2024 06:06:46 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Tue, 23 Apr 2024 06:06:46 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Qttr8n3EbkOmXCdz2/83KB3JXKuJUoreTofyq1Iu2xEF9pWFgX3SsHtbZ1PssngXOAbt8TbzADVKxrgvmv+92IQ0yIenbBlOVUGtzqYIQhNU7NCBZu+7LBSpbI+E9elNvS3vH356JXRLrHYbDVTbepYIICzTZKCEXumhQuXK0jL7u6UQVcFN8s5N+M3mAQ9ourgj7UFmvOdQ24fflYZ5FOTm5cDCXaBkQ7kddBp7ELcdijE39Z8PxxT2P0cEB/6XJsr8XPC71n5/WbvGaK2kBpuUdif4qCCTrnPOp5np39qzv9gJMexxSrPP4H/lvTP3fmcctACGbjBAbHOvvlwa6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Ln/ZXg3YHolvohD4N1UmGLTzRPqIEQl34FqOcUfwncQ=;
+ b=IRTgM1sc5AizZeqfBFAFAis7xYTdTxo0/nM8oP0n3alsEgMujbNfFIyTA7FbaEBcECsrEhqAQK0ycWSRssRHMY1aqW6qNDvZgwKEXP2I6Uw5OrWSl0M0kTgP3shCNXtzeL3B1oh+xJmH5phOyM7gsM84lz8S0zhVPTbnXQQdFbOOFyIvPhiuWjThuFZukjf41BS8Bzxcbjmp7WBp6eFs8NaO03SECRKze2WVIPcKoHG1z2AvBmVhxChR39V9u2lCkZ2u2RtbbFwFrbbIOddRreyUuC0rrD+vGBsdgPRrOFgCKdqvV1pZ7Mv83/MfWVQ7x5/GTBV3P0ZDHx6H0RJE7A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
+ by DM3PR11MB8683.namprd11.prod.outlook.com (2603:10b6:8:1ac::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.20; Tue, 23 Apr
+ 2024 13:06:43 +0000
+Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
+ ([fe80::1604:d970:ed05:4729]) by SJ1PR11MB6204.namprd11.prod.outlook.com
+ ([fe80::1604:d970:ed05:4729%7]) with mapi id 15.20.7472.027; Tue, 23 Apr 2024
+ 13:06:43 +0000
+From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+To: "Harrison, John C" <john.c.harrison@intel.com>, "Brost, Matthew"
+ <matthew.brost@intel.com>
+CC: "De Marchi, Lucas" <lucas.demarchi@intel.com>, "Roper, Matthew D"
+ <matthew.d.roper@intel.com>, "igt-dev@lists.freedesktop.org"
+ <igt-dev@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH V2 i-g-t] tests/xe_exec_threads: Make hang tests reset
+ domain aware
+Thread-Topic: [PATCH V2 i-g-t] tests/xe_exec_threads: Make hang tests reset
+ domain aware
+Thread-Index: AQHahPafLEfGR8IzR02LuXk/Od8ojLFVYUCAgAAVBACAAIxecIACwXUAgABZyLCAAOKcAIAAWNiAgAACrICAA4IjgIAAb7+AgAOg+gCAE/+0sA==
+Date: Tue, 23 Apr 2024 13:06:43 +0000
+Message-ID: <SJ1PR11MB6204CC35D5875CCDF7B2230D81112@SJ1PR11MB6204.namprd11.prod.outlook.com>
+References: <20240402122223.643413-1-tejas.upadhyay@intel.com>
+ <20240402194017.GJ6574@mdroper-desk1.amr.corp.intel.com>
+ <kss23fgx24bvhlarkvrivrvvh32pxugpvgavdo3tc4u55jmidf@rnr7terjza6w>
+ <SJ1PR11MB62041F26676765342848070D813D2@SJ1PR11MB6204.namprd11.prod.outlook.com>
+ <7eac7b89-8c32-4261-b288-0cf2002b4e93@intel.com>
+ <SJ1PR11MB6204AA1AFB30BFEF7EBAA3D281032@SJ1PR11MB6204.namprd11.prod.outlook.com>
+ <76010aec-7937-4e5a-afd2-672b338df8df@intel.com>
+ <ZhCKOUi3cn+n2p8j@DUT025-TGLU.fm.intel.com>
+ <d03eddc7-f35f-422f-be9a-1d5af78ecd77@intel.com>
+ <SJ1PR11MB620459806AE14F3301D0E39381002@SJ1PR11MB6204.namprd11.prod.outlook.com>
+ <SJ1PR11MB6204DA50D5580560728D53CC81002@SJ1PR11MB6204.namprd11.prod.outlook.com>
+ <31816663-8429-4792-a032-df5eff8a1e4e@intel.com>
+In-Reply-To: <31816663-8429-4792-a032-df5eff8a1e4e@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-Mentions: john.c.harrison@intel.com,matthew.brost@intel.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|DM3PR11MB8683:EE_
+x-ms-office365-filtering-correlation-id: 17f65913-febf-448f-b9f1-08dc63963951
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230031|376005|366007|1800799015|38070700009;
+x-microsoft-antispam-message-info: =?utf-8?B?UE45MDJkb1IvRUtDUW15OEM1ODZodkFxanF0K3RyRGQrcnh1Rk10V1QvTG10?=
+ =?utf-8?B?YmlTcHUzTTNRUXJhSndweFQvTFJqQnVHTUtUSjNmQVBXd2FWZGcrMkxVWnNs?=
+ =?utf-8?B?MFpGL1VERXVEWitrZTRwSVgzVmRBSTZCdi92NVNVbW5JMml1eHcvaFNVK0RR?=
+ =?utf-8?B?Mi9rMDRuNjVOWEdyMTFrdCs1c0s0TitJRkc4WHBSczVGeHJnVHJ0b3FPdTBS?=
+ =?utf-8?B?MGV5S0kzRXZnWFdsWFZ2T3VTZTdEdm1LMWVia2xXOXBtWXIrNDc4WFduc294?=
+ =?utf-8?B?OWNKckF0VjBUd01Kc0hJaUc3Z283Y0RuTnY4ekZYRWE2UEx2OS83cXdrWmdJ?=
+ =?utf-8?B?ZnltMFgwR1ZGejNmY2VmRGhqanYyaTRYaHAvT3JPd2NlanZNSFkycGpUZ0hQ?=
+ =?utf-8?B?dmFWcHEzNkNjKzRWclY1K3Rrc0N3UTRLdGlGOUNtWGVlNFpCK2Y5YU94aG9T?=
+ =?utf-8?B?RFRnUlRqdXo3MVhkNDE5aENvTzNreEtqVVVmdWZBa1MzdDl5em1OdFlCZVFL?=
+ =?utf-8?B?MTJ2WUE0R3Q4ZUhKZy8wNTViRHhoRFNSdDY2UEU0eVAvMlhWTzNQWHVsK2o4?=
+ =?utf-8?B?elpJRXlxYzUvOG9XaGtzcURHT2c3SktUY1RQNG1md2phRFRVMVdKS0x1RWhY?=
+ =?utf-8?B?bGlnMGM4eXpQYVhpZXFpN0dVbDA1OWxPOHRGRUs4MGJSSDJxV1lRNW9uUEpv?=
+ =?utf-8?B?VUNiMitiU2hPSnpjalV3NnJkc2I1eDArbkxPOTRZQ0VhN0gzS0pRZEltQTkw?=
+ =?utf-8?B?QkErVlRxRENCTWlFWi95MnJjbEN3bTcvR3hUTER2RFVuK0NubmU1bTFSY1dT?=
+ =?utf-8?B?ajRJbWd1WlJ0d1gzSHRXZHJ0OHprcno0Zm9rbExUSEIyWFo0ZFdaOEdReU1k?=
+ =?utf-8?B?ajlaNGtnVlJSYmE1K1RMenNZNG9HSkFPV01Wb2lFZHpWVUQrSHByVjBLTFlr?=
+ =?utf-8?B?TVhwM3kwSVZqZEFzVHdZRnRkRWdMQ3dMNzhscUthWEk0YThhL01Mc2tySDFE?=
+ =?utf-8?B?YlN3TDFlMHkxYk9BSWx6OVlPQksycXU2ZjUrZVhPanlMZ2ZFVHJRMEhKbmpK?=
+ =?utf-8?B?R0VzZFFqcGdhdUNNREtFVDNWYkFBWVFwU1ZPQnNTeFNneHU3T0JCU2tEWkVm?=
+ =?utf-8?B?K0E4OG1oYmhHbDc2eENDNG1aWVNvcHl0VjNEZ3k3N2djVU1DUjZqZk4rZ0R3?=
+ =?utf-8?B?ZFdjUmR5MmEvSjZGOUF0dlBMSWtLaU9ObnJPbVkzcE5TV2FKcUdOb2ZNbkpq?=
+ =?utf-8?B?WlJjOHRiYXFyVVdRUFZYVVRKNUNPSndLOW9YY3lGNkh5dGxsdWxLanluOG5G?=
+ =?utf-8?B?bmZvUlhwWFM3OGx0NEpHT2lGSTVBNXRLL0puaGVBRzdCclZ4Q1pZNHRWdXRB?=
+ =?utf-8?B?RnhKM1lxQUJZek9vT0lYL0pDNTYvVmdZZlFLdnp3U25qVi9ORVQrOWNXUTVt?=
+ =?utf-8?B?b0p5dDZNVm11S2FtYTA2RU1EVUZVeFgrYVZnVG5aS1BIekVBTHNmNmNVUmdk?=
+ =?utf-8?B?dFVmeWt5WGZpMDdIZTU5RVBrcUVyQTF0clQ2aEo0ZVVjdzBKSVFOTlpIQkcw?=
+ =?utf-8?B?Z1dUejBGU1ZFVHByQ2FmV0ROaUhCR0VRSjJnZ01xTlI3TmMxWk5aeDRmM0ZV?=
+ =?utf-8?B?NjkySG9TSzZHZkR2ZXIwVC82VFMwaklnRkt2cEpNSG9JaFROY1Ixdk1uVXE1?=
+ =?utf-8?B?ZlBRSmpPaFB5RzE2V1Z6ZkZXNEVlWWVISTgxS1dMUDFFU0FEMVNDZXhpWTcw?=
+ =?utf-8?B?TkZYWWVXQ0Jjb3NHOC94Y0FaVGJWOEV5TG1jUytwem5DNTVKT3ZpS29VdDd2?=
+ =?utf-8?B?b01hUE8rQVlxNTYzNFdhUT09?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(366007)(1800799015)(38070700009); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OVJpYVhESWlLVGQvQUVWMVNKSHJEQTY0Z1NKNENNV0Exb2toaE5KZGZzeEVW?=
+ =?utf-8?B?VXd6UHY4WXVYdlFNMGcwVjRodk9mREg1WlczMm1JN0JtbzlTTDNLMUltWElL?=
+ =?utf-8?B?YkVUM0piaTlnczZjelF0MkRrTHRaSjNuS1BHeUtQUUhwWEp5TE1ub2pVZmlv?=
+ =?utf-8?B?YjJlaDgySFA2QzNoa0NBMExuZStxSjFlQWs0YzJBZW4xWG5IZ2RGOWJJTnF5?=
+ =?utf-8?B?NkVRTldkWFNDYWQ2Q0NvUitCY2dIRjY4ZGlFVk55K2FRZzlENUpiemkvYlFK?=
+ =?utf-8?B?bDN4QUQzWDhhQTFGL3hPRXBGSmgzVWNUbG1YZ2hIb3FkeGhYM1RRN2NhNFF2?=
+ =?utf-8?B?RTJ4UmY1eHNCNFE3Y2xYOU11SUlRcml4TXBPVk5TRWZYSFNjNGo4YW13TERE?=
+ =?utf-8?B?WEdpRExtZFlmSWVqMk92bXhLVWZCcnVGMUliOXhlLzExbDl3WkM4M0dnUHFG?=
+ =?utf-8?B?MFQvbTk3MTZLMm5Kc2UzbkZCVFFDZC8rUFFtenlQWFB5WEFPdGRuQ3dUMXhH?=
+ =?utf-8?B?eTBmODJwV3NXRHQxWTlOL05weVZLWDk0ckFsUzQ5Smk4TmVwTGxyZHBHaW94?=
+ =?utf-8?B?bEl0VVp0Wit4RGNZZ3lwWWtDZWFPWVh0Y2ZSeWVGcVlkSW5kV3hIdGZhOHJV?=
+ =?utf-8?B?cEJaNE4rY054RjZNM0hLOEJYOWFoMnEyaXRCNWZTVzJleDBpME1nNVJDbWNX?=
+ =?utf-8?B?OEJHZ1l5WmxJWkIrV2JsZFJoN1htb2V2R01nVElTK3gvNGtUeExiejZNUmtR?=
+ =?utf-8?B?ekZBTUpWcUo5YkVmT0wyc1AxUTA5VHlXNURLY0lSMnhTZTEwYTRwUFlWVml6?=
+ =?utf-8?B?ZFloMWkwYzZkQWhINE5OTVdkdjB0blN6U0JDTXNjYnZHZXpXQlZ0Q0JKRnNj?=
+ =?utf-8?B?L2x0MGxTMEx2cTRqWHRBQzZJKzBub08vc1lZNDlBMHpGMjA4UWFkQzBtdDJF?=
+ =?utf-8?B?aHgxcG1Rd2p4NEdHeG03VDdOL0tBOFJXRVY2VkZaS3FYNmIxbGVLdXFkMUlS?=
+ =?utf-8?B?anBhR0w4N3BjeGxNUnN0SllRNXZTWjFhc3crL3QvNnEvTDkrZHFTQVcxclh2?=
+ =?utf-8?B?ZGw0OWpUelNkVDdjNlBzUWhOVGFZbXU1OUJLSE5MQW9XNUpONG45WTIyMDFu?=
+ =?utf-8?B?NGdYNCt3OFluUDFXdWsva1JrZjllcEdSRU03a0NVaytrTWZ5M2hPQmo0dHNw?=
+ =?utf-8?B?dUFaaDg2UDk5bk5uWTRLNkNhK1lIblB6NmFHVm42MzU2SThaVTlQZ1ZaaXY5?=
+ =?utf-8?B?a1ZRWjJRZWh0ODJEZVkwdzdtMTNyb0RqdDNDd3JONFo2Wnk2WlNEUHUwcEpP?=
+ =?utf-8?B?KzB4UDRaWkdLT2dVeTdNUmZOcW1Ta1VQbEk3UElFOVlpblFhT1VveDFRbDlU?=
+ =?utf-8?B?cFl4bGlVWFNrakY2QXcyMDRoY2l2VkJydGhIMllRTXpqdUdxQ2VZQ2tmYmpH?=
+ =?utf-8?B?WGR5QU9kMC96MmdCWW1mSUpTaEh1TzZIUS9LWHlWU2E3ZGF1Tk1Bc3ZXVytz?=
+ =?utf-8?B?K204dkNRL2lWMXFvdGZob0ZYT3E4VHdGTnBObzhVVFpNTHpYL3FiS2tsMm51?=
+ =?utf-8?B?ZTVkUXJDZ2Z0Q3FLTnpZVlh2SFBiSkFwN28wWjNPN2Nja01TMndidTB6VFpm?=
+ =?utf-8?B?Vlp3Z204bjJVN0RySlprWnB5YkdwZVRPWTAwNy9qOEo0YnhPczB5YXozRmpw?=
+ =?utf-8?B?YmFuOFNyWEpLV1BnZ09Kc2tobWlYNFRRS0hMUWM0MU9sR0JmTUFlQWxUVW04?=
+ =?utf-8?B?d0cwV0d0MGJ0WTJjZUt4WWhIVzZqSG1YNGFjWlJFWERRSXY0bTR3dVA1U3lM?=
+ =?utf-8?B?MjFFWDFDTnRXM1l3YkpIalVNWG9zSjA4Um9JbHJGaCtQNm5pbi9SczA5Rngr?=
+ =?utf-8?B?YlJIWWZzT3VIM2FtSHZHMXNTZ0hvcmxsWmpvZ0xpS0NXNWJ5T29FZkh3Q0NS?=
+ =?utf-8?B?YjUrVmNOQUwzblBUMmFScVdoVVNoNEVUNExsYkpiOVZsVnptVkgvN25CVGVt?=
+ =?utf-8?B?ekp1Y0FOOTNaUm91VUFPYjlWUnFORkxNZUZ3dFdHWGNUNDhuWXBsYTYza3kz?=
+ =?utf-8?B?a1BOcElObmVab1R6QWg1VjBPSFNJQTNEbW5vRWhmdlBQUWM5blhSZXlma2Jl?=
+ =?utf-8?B?RFdJREMyVWhScnhYMlJMdWtKLy9ZR1NBL3N1TlRYK3VpRHhVUytPWVNmbVUr?=
+ =?utf-8?Q?iiMYivmSdn1Hg4LtkEcR6xM=3D?=
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EKUnit=3A_success_for_drm/xe/hwmon=3A_Remove_unwante?=
- =?utf-8?q?d_write_permission_for_currN=5Flabel_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Karthik Poosa" <karthik.poosa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 23 Apr 2024 13:01:16 -0000
-Message-ID: <171387727616.1607644.768998284622305695@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240419125945.4085629-1-karthik.poosa@intel.com>
-In-Reply-To: <20240419125945.4085629-1-karthik.poosa@intel.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 17f65913-febf-448f-b9f1-08dc63963951
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Apr 2024 13:06:43.7253 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 3XOop5tRmP7gWZoyjHWjO/Lc/ulmF9evWfoVVkoRyhP300lsJVk+gXdntjSU05k8NcqtHPL8DbHkg2SGVNJuFpd1bDP1tg+eXy0KVTu7sy4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR11MB8683
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,995 +209,264 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/xe/hwmon: Remove unwanted write permission for currN_label (rev3)
-URL   : https://patchwork.freedesktop.org/series/132643/
-State : success
-
-== Summary ==
-
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[13:00:20] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[13:00:24] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-../arch/x86/um/user-offsets.c:17:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-   17 | void foo(void)
-      |      ^~~
-In file included from ../arch/um/kernel/asm-offsets.c:1:
-../arch/x86/um/shared/sysdep/kernel-offsets.h:9:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-    9 | void foo(void)
-      |      ^~~
-../arch/x86/um/fault.c:18:5: warning: no previous prototype for ‘arch_fixup’ [-Wmissing-prototypes]
-   18 | int arch_fixup(unsigned long address, struct uml_pt_regs *regs)
-      |     ^~~~~~~~~~
-../arch/x86/um/bugs_64.c:9:6: warning: no previous prototype for ‘arch_check_bugs’ [-Wmissing-prototypes]
-    9 | void arch_check_bugs(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/x86/um/bugs_64.c:13:6: warning: no previous prototype for ‘arch_examine_signal’ [-Wmissing-prototypes]
-   13 | void arch_examine_signal(int sig, struct uml_pt_regs *regs)
-      |      ^~~~~~~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:16:5: warning: no previous prototype for ‘__vdso_clock_gettime’ [-Wmissing-prototypes]
-   16 | int __vdso_clock_gettime(clockid_t clock, struct __kernel_old_timespec *ts)
-      |     ^~~~~~~~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:30:5: warning: no previous prototype for ‘__vdso_gettimeofday’ [-Wmissing-prototypes]
-   30 | int __vdso_gettimeofday(struct __kernel_old_timeval *tv, struct timezone *tz)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:44:21: warning: no previous prototype for ‘__vdso_time’ [-Wmissing-prototypes]
-   44 | __kernel_old_time_t __vdso_time(__kernel_old_time_t *t)
-      |                     ^~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:57:1: warning: no previous prototype for ‘__vdso_getcpu’ [-Wmissing-prototypes]
-   57 | __vdso_getcpu(unsigned *cpu, unsigned *node, struct getcpu_cache *unused)
-      | ^~~~~~~~~~~~~
-../arch/x86/um/os-Linux/mcontext.c:7:6: warning: no previous prototype for ‘get_regs_from_mc’ [-Wmissing-prototypes]
-    7 | void get_regs_from_mc(struct uml_pt_regs *regs, mcontext_t *mc)
-      |      ^~~~~~~~~~~~~~~~
-../arch/x86/um/os-Linux/registers.c:146:15: warning: no previous prototype for ‘get_thread_reg’ [-Wmissing-prototypes]
-  146 | unsigned long get_thread_reg(int reg, jmp_buf *buf)
-      |               ^~~~~~~~~~~~~~
-../arch/um/os-Linux/skas/process.c:107:6: warning: no previous prototype for ‘wait_stub_done’ [-Wmissing-prototypes]
-  107 | void wait_stub_done(int pid)
-      |      ^~~~~~~~~~~~~~
-../arch/um/os-Linux/skas/process.c:683:6: warning: no previous prototype for ‘__switch_mm’ [-Wmissing-prototypes]
-  683 | void __switch_mm(struct mm_id *mm_idp)
-      |      ^~~~~~~~~~~
-../arch/x86/um/ptrace_64.c:111:5: warning: no previous prototype for ‘poke_user’ [-Wmissing-prototypes]
-  111 | int poke_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/x86/um/ptrace_64.c:171:5: warning: no previous prototype for ‘peek_user’ [-Wmissing-prototypes]
-  171 | int peek_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/um/kernel/skas/mmu.c:17:5: warning: no previous prototype for ‘init_new_context’ [-Wmissing-prototypes]
-   17 | int init_new_context(struct task_struct *task, struct mm_struct *mm)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/skas/mmu.c:60:6: warning: no previous prototype for ‘destroy_context’ [-Wmissing-prototypes]
-   60 | void destroy_context(struct mm_struct *mm)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:187:7: warning: no previous prototype for ‘__wrap_malloc’ [-Wmissing-prototypes]
-  187 | void *__wrap_malloc(int size)
-      |       ^~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:208:7: warning: no previous prototype for ‘__wrap_calloc’ [-Wmissing-prototypes]
-  208 | void *__wrap_calloc(int n, int size)
-      |       ^~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:222:6: warning: no previous prototype for ‘__wrap_free’ [-Wmissing-prototypes]
-  222 | void __wrap_free(void *ptr)
-      |      ^~~~~~~~~~~
-../arch/um/os-Linux/mem.c:28:6: warning: no previous prototype for ‘kasan_map_memory’ [-Wmissing-prototypes]
-   28 | void kasan_map_memory(void *start, size_t len)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/os-Linux/mem.c:212:13: warning: no previous prototype for ‘check_tmpexec’ [-Wmissing-prototypes]
-  212 | void __init check_tmpexec(void)
-      |             ^~~~~~~~~~~~~
-../arch/um/kernel/skas/process.c:36:12: warning: no previous prototype for ‘start_uml’ [-Wmissing-prototypes]
-   36 | int __init start_uml(void)
-      |            ^~~~~~~~~
-../arch/um/os-Linux/signal.c:75:6: warning: no previous prototype for ‘sig_handler’ [-Wmissing-prototypes]
-   75 | void sig_handler(int sig, struct siginfo *si, mcontext_t *mc)
-      |      ^~~~~~~~~~~
-../arch/um/os-Linux/signal.c:111:6: warning: no previous prototype for ‘timer_alarm_handler’ [-Wmissing-prototypes]
-  111 | void timer_alarm_handler(int sig, struct siginfo *unused_si, mcontext_t *mc)
-      |      ^~~~~~~~~~~~~~~~~~~
-../arch/um/os-Linux/start_up.c:301:12: warning: no previous prototype for ‘parse_iomem’ [-Wmissing-prototypes]
-  301 | int __init parse_iomem(char *str, int *add)
-      |            ^~~~~~~~~~~
-../arch/x86/um/signal.c:560:6: warning: no previous prototype for ‘sys_rt_sigreturn’ [-Wmissing-prototypes]
-  560 | long sys_rt_sigreturn(void)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/mem.c:202:8: warning: no previous prototype for ‘pgd_alloc’ [-Wmissing-prototypes]
-  202 | pgd_t *pgd_alloc(struct mm_struct *mm)
-      |        ^~~~~~~~~
-../arch/um/kernel/mem.c:215:7: warning: no previous prototype for ‘uml_kmalloc’ [-Wmissing-prototypes]
-  215 | void *uml_kmalloc(int size, int flags)
-      |       ^~~~~~~~~~~
-../arch/x86/um/syscalls_64.c:48:6: warning: no previous prototype for ‘arch_switch_to’ [-Wmissing-prototypes]
-   48 | void arch_switch_to(struct task_struct *to)
-      |      ^~~~~~~~~~~~~~
-../arch/um/kernel/process.c:51:5: warning: no previous prototype for ‘pid_to_processor_id’ [-Wmissing-prototypes]
-   51 | int pid_to_processor_id(int pid)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:87:7: warning: no previous prototype for ‘__switch_to’ [-Wmissing-prototypes]
-   87 | void *__switch_to(struct task_struct *from, struct task_struct *to)
-      |       ^~~~~~~~~~~
-../arch/um/kernel/process.c:140:6: warning: no previous prototype for ‘fork_handler’ [-Wmissing-prototypes]
-  140 | void fork_handler(void)
-      |      ^~~~~~~~~~~~
-../arch/um/kernel/process.c:217:6: warning: no previous prototype for ‘arch_cpu_idle’ [-Wmissing-prototypes]
-  217 | void arch_cpu_idle(void)
-      |      ^~~~~~~~~~~~~
-../arch/um/kernel/process.c:253:5: warning: no previous prototype for ‘copy_to_user_proc’ [-Wmissing-prototypes]
-  253 | int copy_to_user_proc(void __user *to, void *from, int size)
-      |     ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:263:5: warning: no previous prototype for ‘clear_user_proc’ [-Wmissing-prototypes]
-  263 | int clear_user_proc(void __user *buf, int size)
-      |     ^~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:271:6: warning: no previous prototype for ‘set_using_sysemu’ [-Wmissing-prototypes]
-  271 | void set_using_sysemu(int value)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:278:5: warning: no previous prototype for ‘get_using_sysemu’ [-Wmissing-prototypes]
-  278 | int get_using_sysemu(void)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:316:12: warning: no previous prototype for ‘make_proc_sysemu’ [-Wmissing-prototypes]
-  316 | int __init make_proc_sysemu(void)
-      |            ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:348:15: warning: no previous prototype for ‘arch_align_stack’ [-Wmissing-prototypes]
-  348 | unsigned long arch_align_stack(unsigned long sp)
-      |               ^~~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:45:6: warning: no previous prototype for ‘machine_restart’ [-Wmissing-prototypes]
-   45 | void machine_restart(char * __unused)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:51:6: warning: no previous prototype for ‘machine_power_off’ [-Wmissing-prototypes]
-   51 | void machine_power_off(void)
-      |      ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:57:6: warning: no previous prototype for ‘machine_halt’ [-Wmissing-prototypes]
-   57 | void machine_halt(void)
-      |      ^~~~~~~~~~~~
-../arch/um/kernel/tlb.c:579:6: warning: no previous prototype for ‘flush_tlb_mm_range’ [-Wmissing-prototypes]
-  579 | void flush_tlb_mm_range(struct mm_struct *mm, unsigned long start,
-      |      ^~~~~~~~~~~~~~~~~~
-../arch/um/kernel/tlb.c:594:6: warning: no previous prototype for ‘force_flush_all’ [-Wmissing-prototypes]
-  594 | void force_flush_all(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/um_arch.c:408:19: warning: no previous prototype for ‘read_initrd’ [-Wmissing-prototypes]
-  408 | int __init __weak read_initrd(void)
-      |                   ^~~~~~~~~~~
-../arch/um/kernel/um_arch.c:461:7: warning: no previous prototype for ‘text_poke’ [-Wmissing-prototypes]
-  461 | void *text_poke(void *addr, const void *opcode, size_t len)
-      |       ^~~~~~~~~
-../arch/um/kernel/um_arch.c:473:6: warning: no previous prototype for ‘text_poke_sync’ [-Wmissing-prototypes]
-  473 | void text_poke_sync(void)
-      |      ^~~~~~~~~~~~~~
-../arch/um/kernel/kmsg_dump.c:60:12: warning: no previous prototype for ‘kmsg_dumper_stdout_init’ [-Wmissing-prototypes]
-   60 | int __init kmsg_dumper_stdout_init(void)
-      |            ^~~~~~~~~~~~~~~~~~~~~~~
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-stty: 'standard input': Inappropriate ioctl for device
-
-[13:00:49] Starting KUnit Kernel (1/1)...
-[13:00:49] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[13:00:49] =================== guc_dbm (7 subtests) ===================
-[13:00:49] [PASSED] test_empty
-[13:00:49] [PASSED] test_default
-[13:00:49] ======================== test_size  ========================
-[13:00:49] [PASSED] 4
-[13:00:49] [PASSED] 8
-[13:00:49] [PASSED] 32
-[13:00:49] [PASSED] 256
-[13:00:49] ==================== [PASSED] test_size ====================
-[13:00:49] ======================= test_reuse  ========================
-[13:00:49] [PASSED] 4
-[13:00:49] [PASSED] 8
-[13:00:49] [PASSED] 32
-[13:00:49] [PASSED] 256
-[13:00:49] =================== [PASSED] test_reuse ====================
-[13:00:49] =================== test_range_overlap  ====================
-[13:00:49] [PASSED] 4
-[13:00:49] [PASSED] 8
-[13:00:49] [PASSED] 32
-[13:00:49] [PASSED] 256
-[13:00:49] =============== [PASSED] test_range_overlap ================
-[13:00:49] =================== test_range_compact  ====================
-[13:00:49] [PASSED] 4
-[13:00:49] [PASSED] 8
-[13:00:49] [PASSED] 32
-[13:00:49] [PASSED] 256
-[13:00:49] =============== [PASSED] test_range_compact ================
-[13:00:49] ==================== test_range_spare  =====================
-[13:00:49] [PASSED] 4
-[13:00:49] [PASSED] 8
-[13:00:49] [PASSED] 32
-[13:00:49] [PASSED] 256
-[13:00:49] ================ [PASSED] test_range_spare =================
-[13:00:49] ===================== [PASSED] guc_dbm =====================
-[13:00:49] =================== guc_idm (6 subtests) ===================
-[13:00:49] [PASSED] bad_init
-[13:00:49] [PASSED] no_init
-[13:00:49] [PASSED] init_fini
-[13:00:49] [PASSED] check_used
-[13:00:49] [PASSED] check_quota
-[13:00:49] [PASSED] check_all
-[13:00:49] ===================== [PASSED] guc_idm =====================
-[13:00:49] ================== no_relay (3 subtests) ===================
-[13:00:49] [PASSED] xe_drops_guc2pf_if_not_ready
-[13:00:49] [PASSED] xe_drops_guc2vf_if_not_ready
-[13:00:49] [PASSED] xe_rejects_send_if_not_ready
-[13:00:49] ==================== [PASSED] no_relay =====================
-[13:00:49] ================== pf_relay (14 subtests) ==================
-[13:00:49] [PASSED] pf_rejects_guc2pf_too_short
-[13:00:49] [PASSED] pf_rejects_guc2pf_too_long
-[13:00:49] [PASSED] pf_rejects_guc2pf_no_payload
-[13:00:49] [PASSED] pf_fails_no_payload
-[13:00:49] [PASSED] pf_fails_bad_origin
-[13:00:49] [PASSED] pf_fails_bad_type
-[13:00:49] [PASSED] pf_txn_reports_error
-[13:00:49] [PASSED] pf_txn_sends_pf2guc
-[13:00:49] [PASSED] pf_sends_pf2guc
-[13:00:49] [SKIPPED] pf_loopback_nop
-[13:00:49] [SKIPPED] pf_loopback_echo
-[13:00:49] [SKIPPED] pf_loopback_fail
-[13:00:49] [SKIPPED] pf_loopback_busy
-[13:00:49] [SKIPPED] pf_loopback_retry
-[13:00:49] ==================== [PASSED] pf_relay =====================
-[13:00:49] ================== vf_relay (3 subtests) ===================
-[13:00:49] [PASSED] vf_rejects_guc2vf_too_short
-[13:00:49] [PASSED] vf_rejects_guc2vf_too_long
-[13:00:49] [PASSED] vf_rejects_guc2vf_no_payload
-[13:00:49] ==================== [PASSED] vf_relay =====================
-[13:00:49] ===================== lmtt (1 subtest) =====================
-[13:00:49] ======================== test_ops  =========================
-[13:00:49] [PASSED] 2-level
-[13:00:49] [PASSED] multi-level
-[13:00:49] ==================== [PASSED] test_ops =====================
-[13:00:49] ====================== [PASSED] lmtt =======================
-[13:00:49] ==================== xe_bo (2 subtests) ====================
-[13:00:49] [SKIPPED] xe_ccs_migrate_kunit
-[13:00:49] [SKIPPED] xe_bo_evict_kunit
-[13:00:49] ===================== [SKIPPED] xe_bo ======================
-[13:00:49] ================== xe_dma_buf (1 subtest) ==================
-[13:00:49] [SKIPPED] xe_dma_buf_kunit
-[13:00:49] =================== [SKIPPED] xe_dma_buf ===================
-[13:00:49] ================== xe_migrate (1 subtest) ==================
-[13:00:49] [SKIPPED] xe_migrate_sanity_kunit
-[13:00:49] =================== [SKIPPED] xe_migrate ===================
-[13:00:49] =================== xe_mocs (2 subtests) ===================
-[13:00:49] [SKIPPED] xe_live_mocs_kernel_kunit
-[13:00:49] [SKIPPED] xe_live_mocs_reset_kunit
-[13:00:49] ==================== [SKIPPED] xe_mocs =====================
-[13:00:49] =================== xe_pci (2 subtests) ====================
-[13:00:49] [PASSED] xe_gmdid_graphics_ip
-[13:00:49] [PASSED] xe_gmdid_media_ip
-[13:00:49] ===================== [PASSED] xe_pci ======================
-[13:00:49] ==================== xe_rtp (1 subtest) ====================
-[13:00:49] ================== xe_rtp_process_tests  ===================
-[13:00:49] [PASSED] coalesce-same-reg
-[13:00:49] [PASSED] no-match-no-add
-[13:00:49] [PASSED] no-match-no-add-multiple-rules
-[13:00:49] [PASSED] two-regs-two-entries
-[13:00:49] [PASSED] clr-one-set-other
-[13:00:49] [PASSED] set-field
-[13:00:49] [PASSED] conflict-duplicate
-[13:00:49] [PASSED] conflict-not-disjoint
-[13:00:49] [PASSED] conflict-reg-type
-[13:00:49] ============== [PASSED] xe_rtp_process_tests ===============
-[13:00:49] ===================== [PASSED] xe_rtp ======================
-[13:00:49] ==================== xe_wa (1 subtest) =====================
-[13:00:49] ======================== xe_wa_gt  =========================
-[13:00:49] [PASSED] TIGERLAKE (B0)
-[13:00:49] [PASSED] DG1 (A0)
-[13:00:49] [PASSED] DG1 (B0)
-[13:00:49] [PASSED] ALDERLAKE_S (A0)
-[13:00:49] [PASSED] ALDERLAKE_S (B0)
-[13:00:49] [PASSED] ALDERLAKE_S (C0)
-[13:00:49] [PASSED] ALDERLAKE_S (D0)
-[13:00:49] [PASSED] ALDERLAKE_P (A0)
-[13:00:49] [PASSED] ALDERLAKE_P (B0)
-[13:00:49] [PASSED] ALDERLAKE_P (C0)
-[13:00:49] [PASSED] ALDERLAKE_S_RPLS (D0)
-[13:00:49] [PASSED] ALDERLAKE_P_RPLU (E0)
-[13:00:49] [PASSED] DG2_G10 (C0)
-[13:00:49] [PASSED] DG2_G11 (B1)
-[13:00:49] [PASSED] DG2_G12 (A1)
-[13:00:49] [PASSED] METEORLAKE (g:A0, m:A0)
-[13:00:49] [PASSED] METEORLAKE (g:A0, m:A0)
-[13:00:49] [PASSED] METEORLAKE (g:A0, m:A0)
-[13:00:49] [PASSED] LUNARLAKE (g:A0, m:A0)
-[13:00:49] [PASSED] LUNARLAKE (g:B0, m:A0)
-[13:00:49] ==================== [PASSED] xe_wa_gt =====================
-[13:00:49] ====================== [PASSED] xe_wa ======================
-[13:00:49] ============================================================
-[13:00:49] Testing complete. Ran 87 tests: passed: 76, skipped: 11
-[13:00:49] Elapsed time: 29.395s total, 4.222s configuring, 24.953s building, 0.203s running
-
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
-[13:00:49] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[13:00:51] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-In file included from ../arch/um/kernel/asm-offsets.c:1:
-../arch/x86/um/shared/sysdep/kernel-offsets.h:9:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-    9 | void foo(void)
-      |      ^~~
-../arch/x86/um/ptrace_64.c:111:5: warning: no previous prototype for ‘poke_user’ [-Wmissing-prototypes]
-  111 | int poke_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/x86/um/ptrace_64.c:171:5: warning: no previous prototype for ‘peek_user’ [-Wmissing-prototypes]
-  171 | int peek_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/x86/um/signal.c:560:6: warning: no previous prototype for ‘sys_rt_sigreturn’ [-Wmissing-prototypes]
-  560 | long sys_rt_sigreturn(void)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/mem.c:202:8: warning: no previous prototype for ‘pgd_alloc’ [-Wmissing-prototypes]
-  202 | pgd_t *pgd_alloc(struct mm_struct *mm)
-      |        ^~~~~~~~~
-../arch/um/kernel/mem.c:215:7: warning: no previous prototype for ‘uml_kmalloc’ [-Wmissing-prototypes]
-  215 | void *uml_kmalloc(int size, int flags)
-      |       ^~~~~~~~~~~
-../arch/um/kernel/process.c:51:5: warning: no previous prototype for ‘pid_to_processor_id’ [-Wmissing-prototypes]
-   51 | int pid_to_processor_id(int pid)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:87:7: warning: no previous prototype for ‘__switch_to’ [-Wmissing-prototypes]
-   87 | void *__switch_to(struct task_struct *from, struct task_struct *to)
-      |       ^~~~~~~~~~~
-../arch/um/kernel/process.c:140:6: warning: no previous prototype for ‘fork_handler’ [-Wmissing-prototypes]
-  140 | void fork_handler(void)
-      |      ^~~~~~~~~~~~
-../arch/um/kernel/process.c:217:6: warning: no previous prototype for ‘arch_cpu_idle’ [-Wmissing-prototypes]
-  217 | void arch_cpu_idle(void)
-      |      ^~~~~~~~~~~~~
-../arch/um/kernel/process.c:253:5: warning: no previous prototype for ‘copy_to_user_proc’ [-Wmissing-prototypes]
-  253 | int copy_to_user_proc(void __user *to, void *from, int size)
-      |     ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:263:5: warning: no previous prototype for ‘clear_user_proc’ [-Wmissing-prototypes]
-  263 | int clear_user_proc(void __user *buf, int size)
-      |     ^~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:271:6: warning: no previous prototype for ‘set_using_sysemu’ [-Wmissing-prototypes]
-  271 | void set_using_sysemu(int value)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:278:5: warning: no previous prototype for ‘get_using_sysemu’ [-Wmissing-prototypes]
-  278 | int get_using_sysemu(void)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:316:12: warning: no previous prototype for ‘make_proc_sysemu’ [-Wmissing-prototypes]
-  316 | int __init make_proc_sysemu(void)
-      |            ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:348:15: warning: no previous prototype for ‘arch_align_stack’ [-Wmissing-prototypes]
-  348 | unsigned long arch_align_stack(unsigned long sp)
-      |               ^~~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:45:6: warning: no previous prototype for ‘machine_restart’ [-Wmissing-prototypes]
-   45 | void machine_restart(char * __unused)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:51:6: warning: no previous prototype for ‘machine_power_off’ [-Wmissing-prototypes]
-   51 | void machine_power_off(void)
-      |      ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:57:6: warning: no previous prototype for ‘machine_halt’ [-Wmissing-prototypes]
-   57 | void machine_halt(void)
-      |      ^~~~~~~~~~~~
-../arch/um/kernel/tlb.c:579:6: warning: no previous prototype for ‘flush_tlb_mm_range’ [-Wmissing-prototypes]
-  579 | void flush_tlb_mm_range(struct mm_struct *mm, unsigned long start,
-      |      ^~~~~~~~~~~~~~~~~~
-../arch/um/kernel/tlb.c:594:6: warning: no previous prototype for ‘force_flush_all’ [-Wmissing-prototypes]
-  594 | void force_flush_all(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/x86/um/syscalls_64.c:48:6: warning: no previous prototype for ‘arch_switch_to’ [-Wmissing-prototypes]
-   48 | void arch_switch_to(struct task_struct *to)
-      |      ^~~~~~~~~~~~~~
-../arch/um/kernel/kmsg_dump.c:60:12: warning: no previous prototype for ‘kmsg_dumper_stdout_init’ [-Wmissing-prototypes]
-   60 | int __init kmsg_dumper_stdout_init(void)
-      |            ^~~~~~~~~~~~~~~~~~~~~~~
-../arch/um/kernel/um_arch.c:408:19: warning: no previous prototype for ‘read_initrd’ [-Wmissing-prototypes]
-  408 | int __init __weak read_initrd(void)
-      |                   ^~~~~~~~~~~
-../arch/um/kernel/um_arch.c:461:7: warning: no previous prototype for ‘text_poke’ [-Wmissing-prototypes]
-  461 | void *text_poke(void *addr, const void *opcode, size_t len)
-      |       ^~~~~~~~~
-../arch/um/kernel/um_arch.c:473:6: warning: no previous prototype for ‘text_poke_sync’ [-Wmissing-prototypes]
-  473 | void text_poke_sync(void)
-      |      ^~~~~~~~~~~~~~
-../arch/um/kernel/skas/process.c:36:12: warning: no previous prototype for ‘start_uml’ [-Wmissing-prototypes]
-   36 | int __init start_uml(void)
-      |            ^~~~~~~~~
-../arch/um/kernel/skas/mmu.c:17:5: warning: no previous prototype for ‘init_new_context’ [-Wmissing-prototypes]
-   17 | int init_new_context(struct task_struct *task, struct mm_struct *mm)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/skas/mmu.c:60:6: warning: no previous prototype for ‘destroy_context’ [-Wmissing-prototypes]
-   60 | void destroy_context(struct mm_struct *mm)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-
-[13:01:12] Starting KUnit Kernel (1/1)...
-[13:01:12] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[13:01:12] ============ drm_test_pick_cmdline (2 subtests) ============
-[13:01:12] [PASSED] drm_test_pick_cmdline_res_1920_1080_60
-[13:01:12] =============== drm_test_pick_cmdline_named  ===============
-[13:01:12] [PASSED] NTSC
-[13:01:12] [PASSED] NTSC-J
-[13:01:12] [PASSED] PAL
-[13:01:12] [PASSED] PAL-M
-[13:01:12] =========== [PASSED] drm_test_pick_cmdline_named ===========
-[13:01:12] ============== [PASSED] drm_test_pick_cmdline ==============
-[13:01:12] ================== drm_buddy (7 subtests) ==================
-[13:01:12] [PASSED] drm_test_buddy_alloc_limit
-[13:01:12] [PASSED] drm_test_buddy_alloc_optimistic
-[13:01:12] [PASSED] drm_test_buddy_alloc_pessimistic
-[13:01:12] [PASSED] drm_test_buddy_alloc_pathological
-[13:01:12] [PASSED] drm_test_buddy_alloc_contiguous
-[13:01:12] [PASSED] drm_test_buddy_alloc_clear
-[13:01:12] [PASSED] drm_test_buddy_alloc_range_bias
-[13:01:12] ==================== [PASSED] drm_buddy ====================
-[13:01:12] ============= drm_cmdline_parser (40 subtests) =============
-[13:01:12] [PASSED] drm_test_cmdline_force_d_only
-[13:01:12] [PASSED] drm_test_cmdline_force_D_only_dvi
-[13:01:12] [PASSED] drm_test_cmdline_force_D_only_hdmi
-[13:01:12] [PASSED] drm_test_cmdline_force_D_only_not_digital
-[13:01:12] [PASSED] drm_test_cmdline_force_e_only
-[13:01:12] [PASSED] drm_test_cmdline_res
-[13:01:12] [PASSED] drm_test_cmdline_res_vesa
-[13:01:12] [PASSED] drm_test_cmdline_res_vesa_rblank
-[13:01:12] [PASSED] drm_test_cmdline_res_rblank
-[13:01:12] [PASSED] drm_test_cmdline_res_bpp
-[13:01:12] [PASSED] drm_test_cmdline_res_refresh
-[13:01:12] [PASSED] drm_test_cmdline_res_bpp_refresh
-[13:01:12] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced
-[13:01:12] [PASSED] drm_test_cmdline_res_bpp_refresh_margins
-[13:01:12] [PASSED] drm_test_cmdline_res_bpp_refresh_force_off
-[13:01:12] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on
-[13:01:12] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_analog
-[13:01:12] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_digital
-[13:01:12] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced_margins_force_on
-[13:01:12] [PASSED] drm_test_cmdline_res_margins_force_on
-[13:01:12] [PASSED] drm_test_cmdline_res_vesa_margins
-[13:01:12] [PASSED] drm_test_cmdline_name
-[13:01:12] [PASSED] drm_test_cmdline_name_bpp
-[13:01:12] [PASSED] drm_test_cmdline_name_option
-[13:01:12] [PASSED] drm_test_cmdline_name_bpp_option
-[13:01:12] [PASSED] drm_test_cmdline_rotate_0
-[13:01:12] [PASSED] drm_test_cmdline_rotate_90
-[13:01:12] [PASSED] drm_test_cmdline_rotate_180
-[13:01:12] [PASSED] drm_test_cmdline_rotate_270
-[13:01:12] [PASSED] drm_test_cmdline_hmirror
-[13:01:12] [PASSED] drm_test_cmdline_vmirror
-[13:01:12] [PASSED] drm_test_cmdline_margin_options
-[13:01:12] [PASSED] drm_test_cmdline_multiple_options
-[13:01:12] [PASSED] drm_test_cmdline_bpp_extra_and_option
-[13:01:12] [PASSED] drm_test_cmdline_extra_and_option
-[13:01:12] [PASSED] drm_test_cmdline_freestanding_options
-[13:01:12] [PASSED] drm_test_cmdline_freestanding_force_e_and_options
-[13:01:12] [PASSED] drm_test_cmdline_panel_orientation
-[13:01:12] ================ drm_test_cmdline_invalid  =================
-[13:01:12] [PASSED] margin_only
-[13:01:12] [PASSED] interlace_only
-[13:01:12] [PASSED] res_missing_x
-[13:01:12] [PASSED] res_missing_y
-[13:01:12] [PASSED] res_bad_y
-[13:01:12] [PASSED] res_missing_y_bpp
-[13:01:12] [PASSED] res_bad_bpp
-[13:01:12] [PASSED] res_bad_refresh
-[13:01:12] [PASSED] res_bpp_refresh_force_on_off
-[13:01:12] [PASSED] res_invalid_mode
-[13:01:12] [PASSED] res_bpp_wrong_place_mode
-[13:01:12] [PASSED] name_bpp_refresh
-[13:01:12] [PASSED] name_refresh
-[13:01:12] [PASSED] name_refresh_wrong_mode
-[13:01:12] [PASSED] name_refresh_invalid_mode
-[13:01:12] [PASSED] rotate_multiple
-[13:01:12] [PASSED] rotate_invalid_val
-[13:01:12] [PASSED] rotate_truncated
-[13:01:12] [PASSED] invalid_option
-[13:01:12] [PASSED] invalid_tv_option
-[13:01:12] [PASSED] truncated_tv_option
-[13:01:12] ============ [PASSED] drm_test_cmdline_invalid =============
-[13:01:12] =============== drm_test_cmdline_tv_options  ===============
-[13:01:12] [PASSED] NTSC
-[13:01:12] [PASSED] NTSC_443
-[13:01:12] [PASSED] NTSC_J
-[13:01:12] [PASSED] PAL
-[13:01:12] [PASSED] PAL_M
-[13:01:12] [PASSED] PAL_N
-[13:01:12] [PASSED] SECAM
-[13:01:12] =========== [PASSED] drm_test_cmdline_tv_options ===========
-[13:01:12] =============== [PASSED] drm_cmdline_parser ================
-[13:01:12] ============= drmm_connector_init (3 subtests) =============
-[13:01:12] [PASSED] drm_test_drmm_connector_init
-[13:01:12] [PASSED] drm_test_drmm_connector_init_null_ddc
-[13:01:12] ========= drm_test_drmm_connector_init_type_valid  =========
-[13:01:12] [PASSED] Unknown
-[13:01:12] [PASSED] VGA
-[13:01:12] [PASSED] DVI-I
-[13:01:12] [PASSED] DVI-D
-[13:01:12] [PASSED] DVI-A
-[13:01:12] [PASSED] Composite
-[13:01:12] [PASSED] SVIDEO
-[13:01:12] [PASSED] LVDS
-[13:01:12] [PASSED] Component
-[13:01:12] [PASSED] DIN
-[13:01:12] [PASSED] DP
-[13:01:12] [PASSED] HDMI-A
-[13:01:12] [PASSED] HDMI-B
-[13:01:12] [PASSED] TV
-[13:01:12] [PASSED] eDP
-[13:01:12] [PASSED] Virtual
-[13:01:12] [PASSED] DSI
-[13:01:12] [PASSED] DPI
-[13:01:12] [PASSED] Writeback
-[13:01:12] [PASSED] SPI
-[13:01:12] [PASSED] USB
-[13:01:12] ===== [PASSED] drm_test_drmm_connector_init_type_valid =====
-[13:01:12] =============== [PASSED] drmm_connector_init ===============
-[13:01:12] ========== drm_get_tv_mode_from_name (2 subtests) ==========
-[13:01:12] ========== drm_test_get_tv_mode_from_name_valid  ===========
-[13:01:12] [PASSED] NTSC
-[13:01:12] [PASSED] NTSC-443
-[13:01:12] [PASSED] NTSC-J
-[13:01:12] [PASSED] PAL
-[13:01:12] [PASSED] PAL-M
-[13:01:12] [PASSED] PAL-N
-[13:01:12] [PASSED] SECAM
-[13:01:12] ====== [PASSED] drm_test_get_tv_mode_from_name_valid =======
-[13:01:12] [PASSED] drm_test_get_tv_mode_from_name_truncated
-[13:01:12] ============ [PASSED] drm_get_tv_mode_from_name ============
-[13:01:12] ============= drm_damage_helper (21 subtests) ==============
-[13:01:12] [PASSED] drm_test_damage_iter_no_damage
-[13:01:12] [PASSED] drm_test_damage_iter_no_damage_fractional_src
-[13:01:12] [PASSED] drm_test_damage_iter_no_damage_src_moved
-[13:01:12] [PASSED] drm_test_damage_iter_no_damage_fractional_src_moved
-[13:01:12] [PASSED] drm_test_damage_iter_no_damage_not_visible
-[13:01:12] [PASSED] drm_test_damage_iter_no_damage_no_crtc
-[13:01:12] [PASSED] drm_test_damage_iter_no_damage_no_fb
-[13:01:12] [PASSED] drm_test_damage_iter_simple_damage
-[13:01:12] [PASSED] drm_test_damage_iter_single_damage
-[13:01:12] [PASSED] drm_test_damage_iter_single_damage_intersect_src
-[13:01:12] [PASSED] drm_test_damage_iter_single_damage_outside_src
-[13:01:12] [PASSED] drm_test_damage_iter_single_damage_fractional_src
-[13:01:12] [PASSED] drm_test_damage_iter_single_damage_intersect_fractional_src
-[13:01:12] [PASSED] drm_test_damage_iter_single_damage_outside_fractional_src
-[13:01:12] [PASSED] drm_test_damage_iter_single_damage_src_moved
-[13:01:12] [PASSED] drm_test_damage_iter_single_damage_fractional_src_moved
-[13:01:12] [PASSED] drm_test_damage_iter_damage
-[13:01:12] [PASSED] drm_test_damage_iter_damage_one_intersect
-[13:01:12] [PASSED] drm_test_damage_iter_damage_one_outside
-[13:01:12] [PASSED] drm_test_damage_iter_damage_src_moved
-[13:01:12] [PASSED] drm_test_damage_iter_damage_not_visible
-[13:01:12] ================ [PASSED] drm_damage_helper ================
-[13:01:12] ============== drm_dp_mst_helper (3 subtests) ==============
-[13:01:12] ============== drm_test_dp_mst_calc_pbn_mode  ==============
-[13:01:12] [PASSED] Clock 154000 BPP 30 DSC disabled
-[13:01:12] [PASSED] Clock 234000 BPP 30 DSC disabled
-[13:01:12] [PASSED] Clock 297000 BPP 24 DSC disabled
-[13:01:12] [PASSED] Clock 332880 BPP 24 DSC enabled
-[13:01:12] [PASSED] Clock 324540 BPP 24 DSC enabled
-[13:01:12] ========== [PASSED] drm_test_dp_mst_calc_pbn_mode ==========
-[13:01:12] ============== drm_test_dp_mst_calc_pbn_div  ===============
-[13:01:12] [PASSED] Link rate 2000000 lane count 4
-[13:01:12] [PASSED] Link rate 2000000 lane count 2
-[13:01:12] [PASSED] Link rate 2000000 lane count 1
-[13:01:12] [PASSED] Link rate 1350000 lane count 4
-[13:01:12] [PASSED] Link rate 1350000 lane count 2
-[13:01:12] [PASSED] Link rate 1350000 lane count 1
-[13:01:12] [PASSED] Link rate 1000000 lane count 4
-[13:01:12] [PASSED] Link rate 1000000 lane count 2
-[13:01:12] [PASSED] Link rate 1000000 lane count 1
-[13:01:12] [PASSED] Link rate 810000 lane count 4
-[13:01:12] [PASSED] Link rate 810000 lane count 2
-[13:01:12] [PASSED] Link rate 810000 lane count 1
-[13:01:12] [PASSED] Link rate 540000 lane count 4
-[13:01:12] [PASSED] Link rate 540000 lane count 2
-[13:01:12] [PASSED] Link rate 540000 lane count 1
-[13:01:12] [PASSED] Link rate 270000 lane count 4
-[13:01:12] [PASSED] Link rate 270000 lane count 2
-[13:01:12] [PASSED] Link rate 270000 lane count 1
-[13:01:12] [PASSED] Link rate 162000 lane count 4
-[13:01:12] [PASSED] Link rate 162000 lane count 2
-[13:01:12] [PASSED] Link rate 162000 lane count 1
-[13:01:12] ========== [PASSED] drm_test_dp_mst_calc_pbn_div ===========
-[13:01:12] ========= drm_test_dp_mst_sideband_msg_req_decode  =========
-[13:01:12] [PASSED] DP_ENUM_PATH_RESOURCES with port number
-[13:01:12] [PASSED] DP_POWER_UP_PHY with port number
-[13:01:12] [PASSED] DP_POWER_DOWN_PHY with port number
-[13:01:12] [PASSED] DP_ALLOCATE_PAYLOAD with SDP stream sinks
-[13:01:12] [PASSED] DP_ALLOCATE_PAYLOAD with port number
-[13:01:12] [PASSED] DP_ALLOCATE_PAYLOAD with VCPI
-[13:01:12] [PASSED] DP_ALLOCATE_PAYLOAD with PBN
-[13:01:12] [PASSED] DP_QUERY_PAYLOAD with port number
-[13:01:12] [PASSED] DP_QUERY_PAYLOAD with VCPI
-[13:01:12] [PASSED] DP_REMOTE_DPCD_READ with port number
-[13:01:12] [PASSED] DP_REMOTE_DPCD_READ with DPCD address
-[13:01:12] [PASSED] DP_REMOTE_DPCD_READ with max number of bytes
-[13:01:12] [PASSED] DP_REMOTE_DPCD_WRITE with port number
-[13:01:12] [PASSED] DP_REMOTE_DPCD_WRITE with DPCD address
-[13:01:12] [PASSED] DP_REMOTE_DPCD_WRITE with data array
-[13:01:12] [PASSED] DP_REMOTE_I2C_READ with port number
-[13:01:12] [PASSED] DP_REMOTE_I2C_READ with I2C device ID
-[13:01:12] [PASSED] DP_REMOTE_I2C_READ with transactions array
-[13:01:12] [PASSED] DP_REMOTE_I2C_WRITE with port number
-[13:01:12] [PASSED] DP_REMOTE_I2C_WRITE with I2C device ID
-[13:01:12] [PASSED] DP_REMOTE_I2C_WRITE with data array
-[13:01:12] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream ID
-[13:01:12] [PASSED] DP_QUERY_STREAM_ENC_STATUS with client ID
-[13:01:12] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream event
-[13:01:12] [PASSED] DP_QUERY_STREAM_ENC_STATUS with valid stream event
-[13:01:12] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream behavior
-[13:01:12] [PASSED] DP_QUERY_STREAM_ENC_STATUS with a valid stream behavior
-[13:01:12] ===== [PASSED] drm_test_dp_mst_sideband_msg_req_decode =====
-[13:01:12] ================ [PASSED] drm_dp_mst_helper ================
-[13:01:12] ================== drm_exec (7 subtests) ===================
-[13:01:12] [PASSED] sanitycheck
-[13:01:12] [PASSED] test_lock
-[13:01:12] [PASSED] test_lock_unlock
-[13:01:12] [PASSED] test_duplicates
-[13:01:12] [PASSED] test_prepare
-[13:01:12] [PASSED] test_prepare_array
-[13:01:12] [PASSED] test_multiple_loops
-[13:01:12] ==================== [PASSED] drm_exec =====================
-[13:01:12] =========== drm_format_helper_test (17 subtests) ===========
-[13:01:12] ============== drm_test_fb_xrgb8888_to_gray8  ==============
-[13:01:12] [PASSED] single_pixel_source_buffer
-[13:01:12] [PASSED] single_pixel_clip_rectangle
-[13:01:12] [PASSED] well_known_colors
-[13:01:12] [PASSED] destination_pitch
-[13:01:12] ========== [PASSED] drm_test_fb_xrgb8888_to_gray8 ==========
-[13:01:12] ============= drm_test_fb_xrgb8888_to_rgb332  ==============
-[13:01:12] [PASSED] single_pixel_source_buffer
-[13:01:12] [PASSED] single_pixel_clip_rectangle
-[13:01:12] [PASSED] well_known_colors
-[13:01:12] [PASSED] destination_pitch
-[13:01:12] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb332 ==========
-[13:01:12] ============= drm_test_fb_xrgb8888_to_rgb565  ==============
-[13:01:12] [PASSED] single_pixel_source_buffer
-[13:01:12] [PASSED] single_pixel_clip_rectangle
-[13:01:12] [PASSED] well_known_colors
-[13:01:12] [PASSED] destination_pitch
-[13:01:12] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb565 ==========
-[13:01:12] ============ drm_test_fb_xrgb8888_to_xrgb1555  =============
-[13:01:12] [PASSED] single_pixel_source_buffer
-[13:01:12] [PASSED] single_pixel_clip_rectangle
-[13:01:12] [PASSED] well_known_colors
-[13:01:12] [PASSED] destination_pitch
-[13:01:12] ======== [PASSED] drm_test_fb_xrgb8888_to_xrgb1555 =========
-[13:01:12] ============ drm_test_fb_xrgb8888_to_argb1555  =============
-[13:01:12] [PASSED] single_pixel_source_buffer
-[13:01:12] [PASSED] single_pixel_clip_rectangle
-[13:01:12] [PASSED] well_known_colors
-[13:01:12] [PASSED] destination_pitch
-[13:01:12] ======== [PASSED] drm_test_fb_xrgb8888_to_argb1555 =========
-[13:01:12] ============ drm_test_fb_xrgb8888_to_rgba5551  =============
-[13:01:12] [PASSED] single_pixel_source_buffer
-[13:01:12] [PASSED] single_pixel_clip_rectangle
-[13:01:12] [PASSED] well_known_colors
-[13:01:12] [PASSED] destination_pitch
-[13:01:12] ======== [PASSED] drm_test_fb_xrgb8888_to_rgba5551 =========
-[13:01:12] ============= drm_test_fb_xrgb8888_to_rgb888  ==============
-[13:01:12] [PASSED] single_pixel_source_buffer
-[13:01:12] [PASSED] single_pixel_clip_rectangle
-[13:01:12] [PASSED] well_known_colors
-[13:01:12] [PASSED] destination_pitch
-[13:01:12] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb888 ==========
-[13:01:12] ============ drm_test_fb_xrgb8888_to_argb8888  =============
-[13:01:12] [PASSED] single_pixel_source_buffer
-[13:01:12] [PASSED] single_pixel_clip_rectangle
-[13:01:12] [PASSED] well_known_colors
-[13:01:12] [PASSED] destination_pitch
-[13:01:12] ======== [PASSED] drm_test_fb_xrgb8888_to_argb8888 =========
-[13:01:12] =========== drm_test_fb_xrgb8888_to_xrgb2101010  ===========
-[13:01:12] [PASSED] single_pixel_source_buffer
-[13:01:12] [PASSED] single_pixel_clip_rectangle
-[13:01:12] [PASSED] well_known_colors
-[13:01:12] [PASSED] destination_pitch
-[13:01:12] ======= [PASSED] drm_test_fb_xrgb8888_to_xrgb2101010 =======
-[13:01:12] =========== drm_test_fb_xrgb8888_to_argb2101010  ===========
-[13:01:12] [PASSED] single_pixel_source_buffer
-[13:01:12] [PASSED] single_pixel_clip_rectangle
-[13:01:12] [PASSED] well_known_colors
-[13:01:12] [PASSED] destination_pitch
-[13:01:12] ======= [PASSED] drm_test_fb_xrgb8888_to_argb2101010 =======
-[13:01:12] ============== drm_test_fb_xrgb8888_to_mono  ===============
-[13:01:12] [PASSED] single_pixel_source_buffer
-[13:01:12] [PASSED] single_pixel_clip_rectangle
-[13:01:12] [PASSED] well_known_colors
-[13:01:12] [PASSED] destination_pitch
-[13:01:12] ========== [PASSED] drm_test_fb_xrgb8888_to_mono ===========
-[13:01:12] ==================== drm_test_fb_swab  =====================
-[13:01:12] [PASSED] single_pixel_source_buffer
-[13:01:12] [PASSED] single_pixel_clip_rectangle
-[13:01:12] [PASSED] well_known_colors
-[13:01:12] [PASSED] destination_pitch
-[13:01:12] ================ [PASSED] drm_test_fb_swab =================
-[13:01:12] ============ drm_test_fb_xrgb8888_to_xbgr8888  =============
-[13:01:12] [PASSED] single_pixel_source_buffer
-[13:01:12] [PASSED] single_pixel_clip_rectangle
-[13:01:12] [PASSED] well_known_colors
-[13:01:12] [PASSED] destination_pitch
-[13:01:12] ======== [PASSED] drm_test_fb_xrgb8888_to_xbgr8888 =========
-[13:01:12] ============ drm_test_fb_xrgb8888_to_abgr8888  =============
-[13:01:12] [PASSED] single_pixel_source_buffer
-[13:01:12] [PASSED] single_pixel_clip_rectangle
-[13:01:12] [PASSED] well_known_colors
-[13:01:12] [PASSED] destination_pitch
-[13:01:12] ======== [PASSED] drm_test_fb_xrgb8888_to_abgr8888 =========
-[13:01:12] ================= drm_test_fb_clip_offset  =================
-[13:01:12] [PASSED] pass through
-[13:01:12] [PASSED] horizontal offset
-[13:01:12] [PASSED] vertical offset
-[13:01:12] [PASSED] horizontal and vertical offset
-[13:01:12] [PASSED] horizontal offset (custom pitch)
-[13:01:12] [PASSED] vertical offset (custom pitch)
-[13:01:12] [PASSED] horizontal and vertical offset (custom pitch)
-[13:01:12] ============= [PASSED] drm_test_fb_clip_offset =============
-[13:01:12] ============== drm_test_fb_build_fourcc_list  ==============
-[13:01:12] [PASSED] no native formats
-[13:01:12] [PASSED] XRGB8888 as native format
-[13:01:12] [PASSED] remove duplicates
-[13:01:12] [PASSED] convert alpha formats
-[13:01:12] [PASSED] random formats
-[13:01:12] ========== [PASSED] drm_test_fb_build_fourcc_list ==========
-[13:01:12] =================== drm_test_fb_memcpy  ====================
-[13:01:12] [PASSED] single_pixel_source_buffer: XR24 little-endian (0x34325258)
-[13:01:12] [PASSED] single_pixel_source_buffer: XRA8 little-endian (0x38415258)
-[13:01:12] [PASSED] single_pixel_source_buffer: YU24 little-endian (0x34325559)
-[13:01:12] [PASSED] single_pixel_clip_rectangle: XB24 little-endian (0x34324258)
-[13:01:12] [PASSED] single_pixel_clip_rectangle: XRA8 little-endian (0x38415258)
-[13:01:12] [PASSED] single_pixel_clip_rectangle: YU24 little-endian (0x34325559)
-[13:01:12] [PASSED] well_known_colors: XB24 little-endian (0x34324258)
-[13:01:12] [PASSED] well_known_colors: XRA8 little-endian (0x38415258)
-[13:01:12] [PASSED] well_known_colors: YU24 little-endian (0x34325559)
-[13:01:12] [PASSED] destination_pitch: XB24 little-endian (0x34324258)
-[13:01:12] [PASSED] destination_pitch: XRA8 little-endian (0x38415258)
-[13:01:12] [PASSED] destination_pitch: YU24 little-endian (0x34325559)
-[13:01:12] =============== [PASSED] drm_test_fb_memcpy ================
-[13:01:12] ============= [PASSED] drm_format_helper_test ==============
-[13:01:12] ================= drm_format (18 subtests) =================
-[13:01:12] [PASSED] drm_test_format_block_width_invalid
-[13:01:12] [PASSED] drm_test_format_block_width_one_plane
-[13:01:12] [PASSED] drm_test_format_block_width_two_plane
-[13:01:12] [PASSED] drm_test_format_block_width_three_plane
-[13:01:12] [PASSED] drm_test_format_block_width_tiled
-[13:01:12] [PASSED] drm_test_format_block_height_invalid
-[13:01:12] [PASSED] drm_test_format_block_height_one_plane
-[13:01:12] [PASSED] drm_test_format_block_height_two_plane
-[13:01:12] [PASSED] drm_test_format_block_height_three_plane
-[13:01:12] [PASSED] drm_test_format_block_height_tiled
-[13:01:12] [PASSED] drm_test_format_min_pitch_invalid
-[13:01:12] [PASSED] drm_test_format_min_pitch_one_plane_8bpp
-[13:01:12] [PASSED] drm_test_format_min_pitch_one_plane_16bpp
-[13:01:12] [PASSED] drm_test_format_min_pitch_one_plane_24bpp
-[13:01:12] [PASSED] drm_test_format_min_pitch_one_plane_32bpp
-[13:01:12] [PASSED] drm_test_format_min_pitch_two_plane
-[13:01:12] [PASSED] drm_test_format_min_pitch_three_plane_8bpp
-[13:01:12] [PASSED] drm_test_format_min_pitch_tiled
-[13:01:12] =================== [PASSED] drm_format ====================
-[13:01:12] =============== drm_framebuffer (1 subtest) ================
-[13:01:12] =============== drm_test_framebuffer_create  ===============
-[13:01:12] [PASSED] ABGR8888 normal sizes
-[13:01:12] [PASSED] ABGR8888 max sizes
-[13:01:12] [PASSED] ABGR8888 pitch greater than min required
-[13:01:12] [PASSED] ABGR8888 pitch less than min required
-[13:01:12] [PASSED] ABGR8888 Invalid width
-[13:01:12] [PASSED] ABGR8888 Invalid buffer handle
-[13:01:12] [PASSED] No pixel format
-[13:01:12] [PASSED] ABGR8888 Width 0
-[13:01:12] [PASSED] ABGR8888 Height 0
-[13:01:12] [PASSED] ABGR8888 Out of bound height * pitch combination
-[13:01:12] [PASSED] ABGR8888 Large buffer offset
-[13:01:12] [PASSED] ABGR8888 Set DRM_MODE_FB_MODIFIERS without modifiers
-[13:01:12] [PASSED] ABGR8888 Valid buffer modifier
-[13:01:12] [PASSED] ABGR8888 Invalid buffer modifier(DRM_FORMAT_MOD_SAMSUNG_64_32_TILE)
-[13:01:12] [PASSED] ABGR8888 Extra pitches without DRM_MODE_FB_MODIFIERS
-[13:01:12] [PASSED] ABGR8888 Extra pitches with DRM_MODE_FB_MODIFIERS
-[13:01:12] [PASSED] NV12 Normal sizes
-[13:01:12] [PASSED] NV12 Max sizes
-[13:01:12] [PASSED] NV12 Invalid pitch
-[13:01:12] [PASSED] NV12 Invalid modifier/missing DRM_MODE_FB_MODIFIERS flag
-[13:01:12] [PASSED] NV12 different  modifier per-plane
-[13:01:12] [PASSED] NV12 with DRM_FORMAT_MOD_SAMSUNG_64_32_TILE
-[13:01:12] [PASSED] NV12 Valid modifiers without DRM_MODE_FB_MODIFIERS
-[13:01:12] [PASSED] NV12 Modifier for inexistent plane
-[13:01:12] [PASSED] NV12 Handle for inexistent plane
-[13:01:12] [PASSED] NV12 Handle for inexistent plane without DRM_MODE_FB_MODIFIERS
-[13:01:12] [PASSED] YVU420 DRM_MODE_FB_MODIFIERS set without modifier
-[13:01:12] [PASSED] YVU420 Normal sizes
-[13:01:12] [PASSED] YVU420 Max sizes
-[13:01:12] [PASSED] YVU420 Invalid pitch
-[13:01:12] [PASSED] YVU420 Different pitches
-[13:01:12] [PASSED] YVU420 Different buffer offsets/pitches
-[13:01:12] [PASSED] YVU420 Modifier set just for plane 0, without DRM_MODE_FB_MODIFIERS
-[13:01:12] [PASSED] YVU420 Modifier set just for planes 0, 1, without DRM_MODE_FB_MODIFIERS
-[13:01:12] [PASSED] YVU420 Modifier set just for plane 0, 1, with DRM_MODE_FB_MODIFIERS
-[13:01:12] [PASSED] YVU420 Valid modifier
-[13:01:12] [PASSED] YVU420 Different modifiers per plane
-[13:01:12] [PASSED] YVU420 Modifier for inexistent plane
-[13:01:12] [PASSED] X0L2 Normal sizes
-[13:01:12] [PASSED] X0L2 Max sizes
-[13:01:12] [PASSED] X0L2 Invalid pitch
-[13:01:12] [PASSED] X0L2 Pitch greater than minimum required
-[13:01:12] [PASSED] X0L2 Handle for inexistent plane
-[13:01:12] [PASSED] X0L2 Offset for inexistent plane, without DRM_MODE_FB_MODIFIERS set
-[13:01:12] [PASSED] X0L2 Modifier without DRM_MODE_FB_MODIFIERS set
-[13:01:12] [PASSED] X0L2 Valid modifier
-[13:01:12] [PASSED] X0L2 Modifier for inexistent plane
-[13:01:12] =========== [PASSED] drm_test_framebuffer_create ===========
-[13:01:12] ================= [PASSED] drm_framebuffer =================
-[13:01:12] ================ drm_gem_shmem (8 subtests) ================
-[13:01:12] [PASSED] drm_gem_shmem_test_obj_create
-[13:01:12] [PASSED] drm_gem_shmem_test_obj_create_private
-[13:01:12] [PASSED] drm_gem_shmem_test_pin_pages
-[13:01:12] [PASSED] drm_gem_shmem_test_vmap
-[13:01:12] [PASSED] drm_gem_shmem_test_get_pages_sgt
-[13:01:12] [PASSED] drm_gem_shmem_test_get_sg_table
-[13:01:12] [PASSED] drm_gem_shmem_test_madvise
-[13:01:12] [PASSED] drm_gem_shmem_test_purge
-[13:01:12] ================== [PASSED] drm_gem_shmem ==================
-[13:01:12] ================= drm_managed (2 subtests) =================
-[13:01:12] [PASSED] drm_test_managed_release_action
-[13:01:12] [PASSED] drm_test_managed_run_action
-[13:01:12] =================== [PASSED] drm_managed ===================
-[13:01:12] =================== drm_mm (6 subtests) ====================
-[13:01:12] [PASSED] drm_test_mm_init
-[13:01:12] [PASSED] drm_test_mm_debug
-[13:01:12] [PASSED] drm_test_mm_align32
-[13:01:12] [PASSED] drm_test_mm_align64
-[13:01:12] [PASSED] drm_test_mm_lowest
-[13:01:12] [PASSED] drm_test_mm_highest
-[13:01:12] ===================== [PASSED] drm_mm ======================
-[13:01:12] ============= drm_modes_analog_tv (4 subtests) =============
-[13:01:12] [PASSED] drm_test_modes_analog_tv_ntsc_480i
-[13:01:12] [PASSED] drm_test_modes_analog_tv_ntsc_480i_inlined
-[13:01:12] [PASSED] drm_test_modes_analog_tv_pal_576i
-[13:01:12] [PASSED] drm_test_modes_analog_tv_pal_576i_inlined
-[13:01:12] =============== [PASSED] drm_modes_analog_tv ===============
-[13:01:12] ============== drm_plane_helper (2 subtests) ===============
-[13:01:12] =============== drm_test_check_plane_state  ================
-[13:01:12] [PASSED] clipping_simple
-[13:01:12] [PASSED] clipping_rotate_reflect
-[13:01:12] [PASSED] positioning_simple
-[13:01:12] [PASSED] upscaling
-[13:01:12] [PASSED] downscaling
-[13:01:12] [PASSED] rounding1
-[13:01:12] [PASSED] rounding2
-[13:01:12] [PASSED] rounding3
-[13:01:12] [PASSED] rounding4
-[13:01:12] =========== [PASSED] drm_test_check_plane_state ============
-[13:01:12] =========== drm_test_check_invalid_plane_state  ============
-[13:01:12] [PASSED] positioning_invalid
-[13:01:12] [PASSED] upscaling_invalid
-[13:01:12] [PASSED] downscaling_invalid
-[13:01:12] ======= [PASSED] drm_test_check_invalid_plane_state ========
-[13:01:12] ================ [PASSED] drm_plane_helper =================
-[13:01:12] ====== drm_connector_helper_tv_get_modes (1 subtest) =======
-[13:01:12] ====== drm_test_connector_helper_tv_get_modes_check  =======
-[13:01:12] [PASSED] None
-[13:01:12] [PASSED] PAL
-[13:01:12] [PASSED] NTSC
-[13:01:12] [PASSED] Both, NTSC Default
-[13:01:12] [PASSED] Both, PAL Default
-[13:01:12] [PASSED] Both, NTSC Default, with PAL on command-line
-[13:01:12] [PASSED] Both, PAL Default, with NTSC on command-line
-[13:01:12] == [PASSED] drm_test_connector_helper_tv_get_modes_check ===
-[13:01:12] ======== [PASSED] drm_connector_helper_tv_get_modes ========
-[13:01:12] ================== drm_rect (9 subtests) ===================
-[13:01:12] [PASSED] drm_test_rect_clip_scaled_div_by_zero
-[13:01:12] [PASSED] drm_test_rect_clip_scaled_not_clipped
-[13:01:12] [PASSED] drm_test_rect_clip_scaled_clipped
-stty: 'standard input': Inappropriate ioctl for device
-[13:01:12] [PASSED] drm_test_rect_clip_scaled_signed_vs_unsigned
-[13:01:12] ================= drm_test_rect_intersect  =================
-[13:01:12] [PASSED] top-left x bottom-right: 2x2+1+1 x 2x2+0+0
-[13:01:12] [PASSED] top-right x bottom-left: 2x2+0+0 x 2x2+1-1
-[13:01:12] [PASSED] bottom-left x top-right: 2x2+1-1 x 2x2+0+0
-[13:01:12] [PASSED] bottom-right x top-left: 2x2+0+0 x 2x2+1+1
-[13:01:12] [PASSED] right x left: 2x1+0+0 x 3x1+1+0
-[13:01:12] [PASSED] left x right: 3x1+1+0 x 2x1+0+0
-[13:01:12] [PASSED] up x bottom: 1x2+0+0 x 1x3+0-1
-[13:01:12] [PASSED] bottom x up: 1x3+0-1 x 1x2+0+0
-[13:01:12] [PASSED] touching corner: 1x1+0+0 x 2x2+1+1
-[13:01:12] [PASSED] touching side: 1x1+0+0 x 1x1+1+0
-[13:01:12] [PASSED] equal rects: 2x2+0+0 x 2x2+0+0
-[13:01:12] [PASSED] inside another: 2x2+0+0 x 1x1+1+1
-[13:01:12] [PASSED] far away: 1x1+0+0 x 1x1+3+6
-[13:01:12] [PASSED] points intersecting: 0x0+5+10 x 0x0+5+10
-[13:01:12] [PASSED] points not intersecting: 0x0+0+0 x 0x0+5+10
-[13:01:12] ============= [PASSED] drm_test_rect_intersect =============
-[13:01:12] ================ drm_test_rect_calc_hscale  ================
-[13:01:12] [PASSED] normal use
-[13:01:12] [PASSED] out of max range
-[13:01:12] [PASSED] out of min range
-[13:01:12] [PASSED] zero dst
-[13:01:12] [PASSED] negative src
-[13:01:12] [PASSED] negative dst
-[13:01:12] ============ [PASSED] drm_test_rect_calc_hscale ============
-[13:01:12] ================ drm_test_rect_calc_vscale  ================
-[13:01:12] [PASSED] normal use
-[13:01:12] [PASSED] out of max range
-[13:01:12] [PASSED] out of min range
-[13:01:12] [PASSED] zero dst
-[13:01:12] [PASSED] negative src
-[13:01:12] [PASSED] negative dst
-[13:01:12] ============ [PASSED] drm_test_rect_calc_vscale ============
-[13:01:12] ================== drm_test_rect_rotate  ===================
-[13:01:12] [PASSED] reflect-x
-[13:01:12] [PASSED] reflect-y
-[13:01:12] [PASSED] rotate-0
-[13:01:12] [PASSED] rotate-90
-[13:01:12] [PASSED] rotate-180
-[13:01:12] [PASSED] rotate-270
-[13:01:12] ============== [PASSED] drm_test_rect_rotate ===============
-[13:01:12] ================ drm_test_rect_rotate_inv  =================
-[13:01:12] [PASSED] reflect-x
-[13:01:12] [PASSED] reflect-y
-[13:01:12] [PASSED] rotate-0
-[13:01:12] [PASSED] rotate-90
-[13:01:12] [PASSED] rotate-180
-[13:01:12] [PASSED] rotate-270
-[13:01:12] ============ [PASSED] drm_test_rect_rotate_inv =============
-[13:01:12] ==================== [PASSED] drm_rect =====================
-[13:01:12] ============================================================
-[13:01:12] Testing complete. Ran 417 tests: passed: 417
-[13:01:12] Elapsed time: 23.274s total, 1.713s configuring, 21.371s building, 0.187s running
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSGFycmlzb24sIEpvaG4g
+QyA8am9obi5jLmhhcnJpc29uQGludGVsLmNvbT4NCj4gU2VudDogVGh1cnNkYXksIEFwcmlsIDEx
+LCAyMDI0IDEyOjUyIEFNDQo+IFRvOiBVcGFkaHlheSwgVGVqYXMgPHRlamFzLnVwYWRoeWF5QGlu
+dGVsLmNvbT47IEJyb3N0LCBNYXR0aGV3DQo+IDxtYXR0aGV3LmJyb3N0QGludGVsLmNvbT4NCj4g
+Q2M6IERlIE1hcmNoaSwgTHVjYXMgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT47IFJvcGVyLCBN
+YXR0aGV3IEQNCj4gPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20+OyBpZ3QtZGV2QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZzsgaW50ZWwtDQo+IHhlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBTdWJq
+ZWN0OiBSZTogW1BBVENIIFYyIGktZy10XSB0ZXN0cy94ZV9leGVjX3RocmVhZHM6IE1ha2UgaGFu
+ZyB0ZXN0cyByZXNldA0KPiBkb21haW4gYXdhcmUNCj4gDQo+IE9uIDQvOC8yMDI0IDA1OjAwLCBV
+cGFkaHlheSwgVGVqYXMgd3JvdGU6DQo+ID4+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+
+ID4+IEZyb206IFVwYWRoeWF5LCBUZWphcw0KPiA+PiBTZW50OiBNb25kYXksIEFwcmlsIDgsIDIw
+MjQgMTA6NTQgQU0NCj4gPj4gVG86IEhhcnJpc29uLCBKb2huIEMgPGpvaG4uYy5oYXJyaXNvbkBp
+bnRlbC5jb20+OyBCcm9zdCwgTWF0dGhldw0KPiA+PiA8bWF0dGhldy5icm9zdEBpbnRlbC5jb20+
+DQo+ID4+IENjOiBEZSBNYXJjaGksIEx1Y2FzIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+OyBS
+b3BlciwgTWF0dGhldyBEDQo+ID4+IDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPjsgaWd0LWRl
+dkBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IGludGVsLQ0KPiA+PiB4ZUBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcNCj4gPj4gU3ViamVjdDogUkU6IFtQQVRDSCBWMiBpLWctdF0gdGVzdHMveGVfZXhlY190
+aHJlYWRzOiBNYWtlIGhhbmcgdGVzdHMNCj4gPj4gcmVzZXQgZG9tYWluIGF3YXJlDQo+ID4+DQo+
+ID4+DQo+ID4+DQo+ID4+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+Pj4gRnJvbTog
+SGFycmlzb24sIEpvaG4gQyA8am9obi5jLmhhcnJpc29uQGludGVsLmNvbT4NCj4gPj4+IFNlbnQ6
+IFNhdHVyZGF5LCBBcHJpbCA2LCAyMDI0IDU6MTMgQU0NCj4gPj4+IFRvOiBCcm9zdCwgTWF0dGhl
+dyA8bWF0dGhldy5icm9zdEBpbnRlbC5jb20+DQo+ID4+PiBDYzogVXBhZGh5YXksIFRlamFzIDx0
+ZWphcy51cGFkaHlheUBpbnRlbC5jb20+OyBEZSBNYXJjaGksIEx1Y2FzDQo+ID4+PiA8bHVjYXMu
+ZGVtYXJjaGlAaW50ZWwuY29tPjsgUm9wZXIsIE1hdHRoZXcgRA0KPiA+Pj4gPG1hdHRoZXcuZC5y
+b3BlckBpbnRlbC5jb20+OyBpZ3QtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgaW50ZWwtDQo+
+ID4+PiB4ZUBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gPj4+IFN1YmplY3Q6IFJlOiBbUEFUQ0gg
+VjIgaS1nLXRdIHRlc3RzL3hlX2V4ZWNfdGhyZWFkczogTWFrZSBoYW5nIHRlc3RzDQo+ID4+PiBy
+ZXNldCBkb21haW4gYXdhcmUNCj4gPj4+DQo+ID4+PiBPbiA0LzUvMjAyNCAxNjozMywgTWF0dGhl
+dyBCcm9zdCB3cm90ZToNCj4gPj4+PiBPbiBGcmksIEFwciAwNSwgMjAyNCBhdCAxMToxNToxNEFN
+IC0wNzAwLCBKb2huIEhhcnJpc29uIHdyb3RlOg0KPiA+Pj4+PiBPbiA0LzQvMjAyNCAyMTo0Nywg
+VXBhZGh5YXksIFRlamFzIHdyb3RlOg0KPiA+Pj4+Pj4+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0t
+LS0tDQo+ID4+Pj4+Pj4gRnJvbTogSGFycmlzb24sIEpvaG4gQzxqb2huLmMuaGFycmlzb25AaW50
+ZWwuY29tPg0KPiA+Pj4+Pj4+IFNlbnQ6IEZyaWRheSwgQXByaWwgNSwgMjAyNCA0OjUzIEFNDQo+
+ID4+Pj4+Pj4gVG86IFVwYWRoeWF5LCBUZWphczx0ZWphcy51cGFkaHlheUBpbnRlbC5jb20+OyBE
+ZSBNYXJjaGksIEx1Y2FzDQo+ID4+Pj4+Pj4gPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT47IFJv
+cGVyLCBNYXR0aGV3IEQNCj4gPj4+Pj4+PiA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4NCj4g
+Pj4+Pj4+PiBDYzppZ3QtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZztpbnRlbC14ZUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmc7DQo+ID4+Pj4+Pj4gQnJvc3QsIE1hdHRoZXc8bWF0dGhldy5icm9zdEBp
+bnRlbC5jb20+DQo+ID4+Pj4+Pj4gU3ViamVjdDogUmU6IFtQQVRDSCBWMiBpLWctdF0gdGVzdHMv
+eGVfZXhlY190aHJlYWRzOiBNYWtlIGhhbmcNCj4gPj4+Pj4+PiB0ZXN0cyByZXNldCBkb21haW4g
+YXdhcmUNCj4gPj4+Pj4+Pg0KPiA+Pj4+Pj4+IE9uIDQvMi8yMDI0IDIyOjM1LCBVcGFkaHlheSwg
+VGVqYXMgd3JvdGU6DQo+ID4+Pj4+Pj4+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+
+Pj4+Pj4+Pj4gRnJvbTogRGUgTWFyY2hpLCBMdWNhczxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+
+DQo+ID4+Pj4+Pj4+PiBTZW50OiBXZWRuZXNkYXksIEFwcmlsIDMsIDIwMjQgMjoyNiBBTQ0KPiA+
+Pj4+Pj4+Pj4gVG86IFJvcGVyLCBNYXR0aGV3IEQ8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4N
+Cj4gPj4+Pj4+Pj4+IENjOiBVcGFkaHlheSwgVGVqYXM8dGVqYXMudXBhZGh5YXlAaW50ZWwuY29t
+PjsgaWd0LQ0KPiA+Pj4+Pj4+Pj4gZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZztpbnRlbC14ZUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmc7DQo+ID4+Pj4+Pj4+PiBCcm9zdCwgTWF0dGhldzxtYXR0aGV3
+LmJyb3N0QGludGVsLmNvbT4NCj4gPj4+Pj4+Pj4+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggVjIgaS1n
+LXRdIHRlc3RzL3hlX2V4ZWNfdGhyZWFkczogTWFrZSBoYW5nDQo+ID4+Pj4+Pj4+PiB0ZXN0cyBy
+ZXNldCBkb21haW4gYXdhcmUNCj4gPj4+Pj4+Pj4+DQo+ID4+Pj4+Pj4+PiBPbiBUdWUsIEFwciAw
+MiwgMjAyNCBhdCAxMjo0MDoxN1BNIC0wNzAwLCBNYXR0IFJvcGVyIHdyb3RlOg0KPiA+Pj4+Pj4+
+Pj4+IE9uIFR1ZSwgQXByIDAyLCAyMDI0IGF0IDA1OjUyOjIzUE0gKzA1MzAsIFRlamFzIFVwYWRo
+eWF5DQo+IHdyb3RlOg0KPiA+Pj4+Pj4+Pj4+PiBSQ1MvQ0NTIGFyZSBkZXBlbmRlbnQgZW5naW5l
+cyBhcyB0aGV5IGFyZSBzaGFyaW5nIHJlc2V0DQo+IGRvbWFpbi4NCj4gPj4+Pj4+Pj4+Pj4gV2hl
+bmV2ZXIgdGhlcmUgaXMgcmVzZXQgZnJvbSBDQ1MsIGFsbCB0aGUgZXhlYyBxdWV1ZXMNCj4gPj4+
+Pj4+Pj4+Pj4gcnVubmluZyBvbiBSQ1MgYXJlIHZpY3RpbWlzZWQgbWFpbmx5IG9uIEx1bmFybGFr
+ZS4NCj4gPj4+Pj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4+Pj4gTGV0cyBza2lwIHBhcmFsbGVsIGV4ZWN1
+dGlvbiBvbiBDQ1Mgd2l0aCBSQ1MuDQo+ID4+Pj4+Pj4+Pj4gSSBoYXZlbid0IHJlYWxseSBsb29r
+ZWQgYXQgdGhpcyBzcGVjaWZpYyB0ZXN0IGluIGRldGFpbCwgYnV0DQo+ID4+Pj4+Pj4+Pj4gYmFz
+ZWQgb24geW91ciBleHBsYW5hdGlvbiBoZXJlLCB5b3UncmUgYWxzbyBnb2luZyB0byBydW4gaW50
+bw0KPiA+Pj4+Pj4+Pj4+IHByb2JsZW1zIHdpdGggbXVsdGlwbGUgQ0NTIGVuZ2luZXMgc2luY2Ug
+dGhleSBhbGwgc2hhcmUgdGhlDQo+ID4+Pj4+Pj4+Pj4gc2FtZSByZXNldC4gIFlvdSB3b24ndCBz
+ZWUgdGhhdCBvbiBwbGF0Zm9ybXMgbGlrZSBMTkwgdGhhdA0KPiA+Pj4+Pj4+Pj4+IG9ubHkgaGF2
+ZSBhIHNpbmdsZSBDQ1MsIGJ1dCBwbGF0Zm9ybXMNCj4gPj4+Pj4+Pj4+IGJ1dCBpdCBpcyBzZWVu
+IG9uIExOTCBiZWNhdXNlIG9mIGhhdmluZyBib3RoIFJDUyBhbmQgQ0NTLg0KPiA+Pj4+Pj4+Pj4N
+Cj4gPj4+Pj4+Pj4+PiBsaWtlIFBWQywgQVRTLU0sIERHMiwgZXRjLiBjYW4gYWxsIGhhdmUgbXVs
+dGlwbGUgQ0NTIHdoZXJlIGENCj4gPj4+Pj4+Pj4+PiByZXNldCBvbiBvbmUga2lsbHMgYW55dGhp
+bmcgcnVubmluZyBvbiB0aGUgb3RoZXJzLg0KPiA+Pj4+Pj4+Pj4+DQo+ID4+Pj4+Pj4+Pj4NCj4g
+Pj4+Pj4+Pj4+PiBNYXR0DQo+ID4+Pj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4+Pj4gSXQgaGVscHMgaW4g
+Zml4aW5nIGZvbGxvd2luZyBlcnJvcnM6DQo+ID4+Pj4+Pj4+Pj4+IDEuIFRlc3QgYXNzZXJ0aW9u
+IGZhaWx1cmUgZnVuY3Rpb24gdGVzdF9sZWdhY3lfbW9kZSwgZmlsZSwNCj4gPj4+Pj4+Pj4+Pj4g
+RmFpbGVkDQo+ID4+Pj4+Pj4+Pj4+IGFzc2VydGlvbjogZGF0YVtpXS5kYXRhID09IDB4YzBmZmVl
+DQo+ID4+Pj4+Pj4+Pj4+DQo+ID4+Pj4+Pj4+Pj4+IDIuVGVzdCBhc3NlcnRpb24gZmFpbHVyZSBm
+dW5jdGlvbiB4ZV9leGVjLCBmaWxlDQo+ID4+Pj4+Pj4+Pj4+IC4uL2xpYi94ZS94ZV9pb2N0bC5j
+LCBGYWlsZWQgYXNzZXJ0aW9uOiBfX3hlX2V4ZWMoZmQsIGV4ZWMpDQo+ID4+Pj4+Pj4+Pj4+ID09
+IDAsDQo+ID4+Pj4+Pj4+Pj4+IGVycm9yOiAtMTI1ICE9IDANCj4gPj4+Pj4+Pj4+Pj4NCj4gPj4+
+Pj4+Pj4+Pj4gU2lnbmVkLW9mZi1ieTogVGVqYXMgVXBhZGh5YXk8dGVqYXMudXBhZGh5YXlAaW50
+ZWwuY29tPg0KPiA+Pj4+Pj4+Pj4+PiAtLS0NCj4gPj4+Pj4+Pj4+Pj4gICAgICB0ZXN0cy9pbnRl
+bC94ZV9leGVjX3RocmVhZHMuYyB8IDI2DQo+ID4+ICsrKysrKysrKysrKysrKysrKysrKysrKyst
+DQo+ID4+Pj4+Pj4+Pj4+ICAgICAgMSBmaWxlIGNoYW5nZWQsIDI1IGluc2VydGlvbnMoKyksIDEg
+ZGVsZXRpb24oLSkNCj4gPj4+Pj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4+Pj4gZGlmZiAtLWdpdCBhL3Rl
+c3RzL2ludGVsL3hlX2V4ZWNfdGhyZWFkcy5jDQo+ID4+Pj4+Pj4+Pj4+IGIvdGVzdHMvaW50ZWwv
+eGVfZXhlY190aHJlYWRzLmMgaW5kZXggODA4Mzk4MGY5Li4zMWFmNjFkYzkNCj4gPj4+Pj4+Pj4+
+Pj4gMTAwNjQ0DQo+ID4+Pj4+Pj4+Pj4+IC0tLSBhL3Rlc3RzL2ludGVsL3hlX2V4ZWNfdGhyZWFk
+cy5jDQo+ID4+Pj4+Pj4+Pj4+ICsrKyBiL3Rlc3RzL2ludGVsL3hlX2V4ZWNfdGhyZWFkcy5jDQo+
+ID4+Pj4+Pj4+Pj4+IEBAIC03MTAsNiArNzEwLDE3IEBAIHN0YXRpYyB2b2lkICp0aHJlYWQodm9p
+ZCAqZGF0YSkNCj4gPj4+Pj4+Pj4+Pj4gICAgICAJcmV0dXJuIE5VTEw7DQo+ID4+Pj4+Pj4+Pj4+
+ICAgICAgfQ0KPiA+Pj4+Pj4+Pj4+Pg0KPiA+Pj4+Pj4+Pj4+PiArc3RhdGljIGJvb2wgaXNfZW5n
+aW5lX2NvbnRleHRzX3ZpY3RpbWl6ZWQoaW50IGZkLCB1bnNpZ25lZA0KPiA+Pj4+Pj4+Pj4+PiAr
+aW50DQo+ID4+Pj4+Pj4+Pj4+ICtmbGFncykgew0KPiA+Pj4+Pj4+Pj4+PiArCWlmICghSVNfTFVO
+QVJMQUtFKGludGVsX2dldF9kcm1fZGV2aWQoZmQpKSkNCj4gPj4+Pj4+Pj4+Pj4gKwkJcmV0dXJu
+IGZhbHNlOw0KPiA+Pj4+Pj4+Pj4gYXMgYWJvdmUsIEkgZG9uJ3QgdGhpbmsgd2Ugc2hvdWxkIGFk
+ZCBhbnkgcGxhdGZvcm0gY2hlY2sgaGVyZS4NCj4gPj4+Pj4+Pj4+IEl0J3MgaW1wb3NzaWJsZSB0
+byBrZWVwIGl0IHVwIHRvIGRhdGUgYW5kIGl0J3MgYWxzbyB0ZXN0aW5nDQo+ID4+Pj4+Pj4+PiB0
+aGUgd3JvbmcNCj4gPj4+IHRoaW5nLg0KPiA+Pj4+Pj4+Pj4gQUZBSVUgeW91IGRvbid0IHdhbnQg
+cGFyYWxsZWwgc3VibWlzc2lvbiBvbiBlbmdpbmVzIHRoYXQgc2hhcmUNCj4gPj4+Pj4+Pj4+IHRo
+ZSBzYW1lIHJlc2V0IGRvbWFpbi4gU28sIHRoaXMgaXMgYWN0dWFsbHkgd2hhdCBzaG91bGQgYmUg
+dGVzdGVkLg0KPiA+Pj4+Pj4+PiBQbGF0Zm9ybXMgbGlrZSAgUFZDLCBBVFMtTSwgREcyLCBldGMu
+IGhhdmUgc29tZSBraW5kIG9mIFdBL25vV0ENCj4gPj4+Pj4+Pj4gd2hpY2gNCj4gPj4+Pj4+PiBo
+ZWxwcyB0byBydW4gdGhpbmdzIHBhcmFsbGVsbHkgb24gZW5naW5lcyBpbiBzYW1lIHJlc2V0IGRv
+bWFpbg0KPiA+Pj4+Pj4+IGFuZCBhcHBhcmVudGx5IEJNRy9MTkwgZG9lcyBub3QgaGF2ZSB0aGF0
+IGtpbmQgb2Ygc3VwcG9ydCBzbw0KPiA+Pj4+Pj4+IGFwcGxpY2FibGUgZm9yIExOTC9CTUcgd2l0
+aCBwYXJhbGxlbCBzdWJtaXNzaW9uIG9uIFJDUy9DQ1Mgb25seS4NCj4gPj4+Pj4+Pj4gQEhhcnJp
+c29uLCBKb2huIEMgcGxlYXNlIHJlcGx5IGlmIHlvdSBoYXZlIGFueSBvdGhlciBpbnB1dCBoZXJl
+Lg0KPiA+Pj4+Pj4+IEkgZG9uJ3QgZ2V0IHdoYXQgeW91IG1lYW4gYnkgJ2hhdmUgc29tZSBraW5k
+IG9mIFdBL25vV0EnLiBBbGwNCj4gPj4+Pj4+PiBwbGF0Zm9ybXMgd2l0aCBjb21wdXRlIGVuZ2lu
+ZXMgaGF2ZSBzaGFyZWQgcmVzZXQgZG9tYWlucy4gVGhhdA0KPiA+Pj4+Pj4+IGlzIGFsbA0KPiA+
+Pj4gdGhlcmUgaXMgdG8gaXQuIEkuZS4NCj4gPj4+Pj4+PiBldmVyeXRoaW5nIGZyb20gVEdMIG9u
+d2FyZHMuIFRoYXQgaW5jbHVkZXMgUkNTIGFuZCBhbGwgQ0NTIGVuZ2luZXMuDQo+ID4+Pj4+Pj4g
+U28gUkNTICsgQ0NTLCBDQ1MwICsgQ0NTMSwgUkNTICsgQ0MwICsgQ0NTMSwgZXRjLiBBbnkgcGxh
+dGZvcm0NCj4gPj4+Pj4+PiB3aXRoIG11bHRpcGxlIGVuZ2luZXMgdGhhdCB0YWxrIHRvIEVVcyB3
+aWxsIHJlc2V0IGFsbCBvZiB0aG9zZQ0KPiA+Pj4+Pj4+IGVuZ2luZXMgaW4NCj4gPj4+IHBhcmFs
+bGVsLg0KPiA+Pj4+Pj4+IFRoZXJlIGFyZSB3L2EncyB3aGljaCBtYWtlIHRoZSBzaXR1YXRpb24g
+ZXZlbiB3b3JzZS4gRS5nLiBvbg0KPiA+Pj4+Pj4+IERHMi9NVEwgeW91IGFyZSBub3QgYWxsb3dl
+ZCB0byBjb250ZXh0IHN3aXRjaCBvbmUgb2YgdGhvc2UNCj4gPj4+Pj4+PiBlbmdpbmVzDQo+ID4+
+PiB3aGlsZSBhbm90aGVyIGlzIGJ1c3kuDQo+ID4+Pj4+Pj4gV2hpY2ggbWVhbnMgdGhhdCBpZiBv
+bmUgaGFuZ3MsIHRoZXkgYWxsIGhhbmcgLSB5b3UgY2Fubm90IGp1c3QNCj4gPj4+Pj4+PiB3YWl0
+IGZvciBvdGhlciB3b3JrbG9hZHMgdG8gY29tcGxldGUgYW5kL29yIHByZS1lbXB0IHRoZW0gb2Zm
+DQo+ID4+Pj4+Pj4gdGhlIGVuZ2luZSBwcmlvciB0byBkb2luZyB0aGUgc2hhcmVkIHJlc2V0LiBC
+dXQgdGhlcmUgaXMgbm90aGluZw0KPiA+Pj4+Pj4+IHRoYXQgbWFrZXMNCj4gPj4gaXQgYmV0dGVy
+Lg0KPiA+Pj4+Pj4+IEkgYXNzdW1lIHdlIGFyZSB0YWxraW5nIGFib3V0IEd1QyB0cmlnZ2VyZWQg
+ZW5naW5lIHJlc2V0cyBoZXJlPw0KPiA+Pj4+Pj4+IEFzIG9wcG9zZWQgdG8gZHJpdmVyIHRyaWdn
+ZXJlZCBmdWxsIEdUIHJlc2V0cz8NCj4gPj4+Pj4+Pg0KPiA+Pj4+Pj4+IFRoZSBHdUMgd2lsbCBh
+dHRlbXB0IHRvIGlkbGUgYWxsIG90aGVyIGNvbm5lY3RlZCBlbmdpbmVzIGZpcnN0DQo+ID4+Pj4+
+Pj4gYnkgcHJlLWVtcHRpbmcgb3V0IGFueSBleGVjdXRpbmcgY29udGV4dHMuIElmIHRob3NlIGNv
+bnRleHRzIGFyZQ0KPiA+Pj4+Pj4+IHByZS1lbXB0aWJsZSB0aGVuIHRoZXkgd2lsbCBzdXJ2aXZl
+IC0gR3VDIHdpbGwgYXV0b21hdGljYWxseQ0KPiA+Pj4+Pj4+IHJlc3RhcnQgdGhlbSBvbmNlIHRo
+ZSByZXNldCBpcyBjb21wbGV0ZS4gSWYgdGhleSBhcmUgbm90IChvciBhdA0KPiA+Pj4+Pj4+IGxl
+YXN0IG5vdCBwcmUtZW1wdGlibGUgd2l0aGluIHRoZSBwcmUtZW1wdGlvbiB0aW1lb3V0DQo+ID4+
+Pj4+Pj4gbGltaXQpIHRoZW4gdGhleSB3aWxsIGJlIGtpbGxlZCBhcyBjb2xsYXRlcmFsIGRhbWFn
+ZS4NCj4gPj4+Pj4+Pg0KPiA+Pj4+Pj4+IFdoYXQgYXJlIHRoZSB3b3JrbG9hZHMgYmVpbmcgc3Vi
+bWl0dGVkIGJ5IHRoaXMgdGVzdD8gQXJlIHRoZQ0KPiA+Pj4+Pj4+IHByZS1lbXB0aWJsZSBzcGlu
+bmVycz8gSWYgc28sIHRoZW4gdGhleSBzaG91bGQgc3Vydml2ZSAoYXNzdW1pbmcNCj4gPj4+Pj4+
+PiB5b3UgZG9uJ3QgaGF2ZSB0aGUgREcyL01UTCBSQ1MvQ0NTIHcvYSBpbiBlZmZlY3QpLiBJZiB0
+aGV5IGFyZQ0KPiA+Pj4+Pj4+IG5vbi1wcmVlbXB0aWJsZSBzcGlubmVycyB0aGVuIHRoZXkgYXJl
+IHRvYXN0Lg0KPiA+Pj4+Pj4gTWFpbiBxdWVzdGlvbiBoZXJlIHdhcywgaWYgdGhpcyBmaXggc2hv
+dWxkIGJlIGFwcGxpZWQgdG8gYWxsDQo+ID4+Pj4+PiBwbGF0Zm9ybXMgd2hvDQo+ID4+PiBoYXMg
+UkNTIGFuZCBDQ1MgYm90aCBvciBqdXN0IExOTC9CTUcuIFJlYXNvbiB0byBhc2sgaXMsIG9ubHkg
+TE5ML0JNRw0KPiA+Pj4gYXJlIGhpdHRpbmcgdGhpcyBpc3N1ZSwgd2l0aCBzYW1lIHRlc3RzIFBW
+QyBhbmQgb3RoZXIgcGxhdGZvcm1zIGFyZQ0KPiA+Pj4gbm90IGhpdHRpbmcgaXNzdWUgd2hpY2gg
+d2UgYXJlIGFkZHJlc3NpbmcgaGVyZS4NCj4gPj4+Pj4gQW5kIHRoZSBhbnN3ZXIgaXMgdGhhdCB5
+ZXMsIHNoYXJlZCByZXNldCBkb21haW5zIGFyZSBjb21tb24gdG8gYWxsDQo+ID4+Pj4+IHBsYXRm
+b3JtcyB3aXRoIGNvbXB1dGUgZW5naW5lcy4gU28gaWYgb25seSBMTkwvQk1HIGFyZSBmYWlsaW5n
+DQo+ID4+Pj4+IHRoZW4gdGhlIHByb2JsZW0gaXMgbm90IHVuZGVyc3Rvb2QuIFdoaWNoIGlzIG5v
+dCBoZWxwZWQgYnkgdGhpcw0KPiA+Pj4+PiB0ZXN0IGNvZGUgYmVpbmcgZXh0cmVtZWx5IGNvbXBs
+ZXggYW5kIGhhdmluZyBhbG1vc3QgemVybw0KPiA+Pj4+PiBleHBsYW5hdGlvbiBpbiBpdCBhdA0K
+PiA+PiBhbGwgOiguDQo+ID4+Pj4gTGV0IG1lIGV4cGxhaW4gd2hhdCB0aGlzIHRlc3QgaXMgZG9p
+bmcuLi4NCj4gPj4+Pg0KPiA+Pj4+IC0gSXQgY3JlYXRlcyBhIHRocmVhZCBwZXIgaGFyZHdhcmUg
+ZW5naW5lIGluc3RhbmNlDQo+ID4+Pj4gLSBXaXRoaW4gZWFjaCB0aHJlYWQgaXQgY3JlYXRlcyBt
+YW55IGV4ZWMgcXVldWVzIHRhcmdldGluZyAxIGhhcmR3YXJlDQo+ID4+Pj4gICAgIGluc3RhbmNl
+DQo+ID4+Pj4gLSBJdCBzdWJtaXRzIGEgYnVuY2ggb2YgYmF0Y2hlcyB3aGljaCBkbyBkd29yZCB3
+cml0ZSB0aGUgZXhlYw0KPiA+Pj4+IHF1ZXVlcw0KPiA+Pj4+IC0gSWYgdGhlIEhBTkcgZmxhZyBp
+cyBzZXQsIDEgb2YgdGhlIGV4ZWMgcXVldWUgcGVyIHRocmVhZCB3aWxsIGluc2VydCBhDQo+ID4+
+Pj4gICAgIG5vbi1wcmVlbXB0YWJsZSBzcGlubmVyLiBJdCBpcyBleHBlY3RlZCB0aGUgR3VDIHdp
+bGwgcmVzZXQgdGhpcyBleGVjDQo+ID4+Pj4gICAgIHF1ZXVlIG9ubHkuIENyb3NzIENDUyAvIFJD
+UyByZXNldHMgd2lsbCBicmVhayB0aGlzIGFzIG9uZSBvZiB0aGUNCj4gPj4+PiAgICAgJ2dvb2Qn
+IGV4ZWMgcXVldWVzIGZyb20gYW5vdGhlciB0aHJlYWQgY291bGQgYWxzbyBiZSByZXNldC4NCj4g
+Pj4+IElmIHRoZSAnZ29vZCcgd29ya2xvYWRzIGFyZSBwcmUtZW1wdGlibGUgdGhlbiB0aGV5IHNo
+b3VsZCBub3QgYmUgcmVzZXQuDQo+ID4+PiBUaGUgR3VDIHdpbGwgYXR0ZW1wdCB0byBwcmUtZW1w
+dCBhbGwgc2hhcmVkIGRvbWFpbiBlbmdpbmVzIHByaW9yIHRvDQo+ID4+PiB0cmlnZ2VyaW5nIGFu
+eSByZXNldHMuIElmIHRoZXkgYXJlIGJlaW5nIGtpbGxlZCB0aGVuIHNvbWV0aGluZyBpcw0KPiA+
+Pj4gYnJva2VuIGFuZCBuZWVkcyB0byBiZSBmaXhlZC4NCj4gPj4+DQo+ID4+Pj4gLSBJIHRoaW5r
+IHRoZSBIQU5HIHNlY3Rpb25zIGNhbiBmYWlsIG9uIFBWQyB0b28gKFZMSy01NzcyNSkNCj4gPj4+
+PiAtIFRoaXMgaXMgcmFjZXksIGFzIGlmIHRoZSByZXNldHMgb2NjdXIgd2hlbiBhbGwgdGhlICdi
+YWQnIGV4ZWMgcXVldWVzDQo+ID4+Pj4gICAgIGFyZSBydW5uaW5nIHRoZSB0ZXN0IHdpbGwgc3Rp
+bGwgd29yayB3aXRoIGNyb3NzIENDUyAvIFJDUw0KPiA+Pj4+IHJlc2V0cw0KPiA+Pj4gQ2FuIHRo
+aXMgZGVzY3JpcHRpb24gYmUgYWRkZWQgdG8gdGhlIHRlc3Q/DQo+ID4+Pg0KPiA+Pj4+IEFzIHRo
+ZSBhdXRob3Igb2YgdGhpcyB0ZXN0LCBJIGFtIGZpbmUgd2l0aCBjb21wdXRlIGNsYXNzIGp1c3Qg
+YmVpbmcNCj4gPj4+PiBza2lwcGVkIGlmIEhBTkYgZmxhZyBzZXQuIEl0IGlzIG5vdCB0ZXN0aW5n
+IGluZGl2aWR1YWwgZW5naW5lDQo+ID4+Pj4gaW5zdGFuY2UgcmVzZXRzICh3ZSBoYWQgdGVzdHMg
+Zm9yIHRoYXQgYnV0IG1pZ2h0IGJlIHRlbXBvcmFsbHkNCj4gPj4+PiByZW1vdmVkKSByYXRoZXIg
+ZmFsbHMgaW50byB0aGUgY2xhc3Mgb2YgdGVzdHMgd2hpY2ggdHJ5aW5nIHRvIGRvIGENCj4gPj4+
+PiBidW5jaCBvZiB0aGluZ3MgaW4gcGFyYWxsZWwgdG8gc3RyZXNzIHRoZSBLTUQuDQo+ID4+PiBO
+b3RlIHRoYXQgc29tZSBwbGF0Zm9ybXMgZG9uJ3QgaGF2ZSBSQ1Mgb3IgbWVkaWEgZW5naW5lcy4g
+V2hpY2gNCj4gPj4+IG1lYW5zIG9ubHkgcnVubmluZyBvbiBCQ1MgZW5naW5lcy4gSXMgdGhhdCBz
+dWZmaWNpZW50IGNvdmVyYWdlPw0KPiA+PiBJZiB5b3UgbG9vayBhdCB0aGlzIHBhdGNoLCB3ZSBz
+a2lwIGNvbXB1dGUgb25seSBpZiByY3MgaXMgcHJlc2VudCwgb3RoZXJ3aXNlDQo+IG5vdC4NCj4g
+Pj4gU28gZmFyIEkgZG9u4oCZdCBzZWUgZmFpbHVyZSB3aGVuIDIgY29tcHV0ZSBpbnN0YW5jZXMg
+aGFwcGVuIHRvIGVudGVyIHRoaXMNCj4gcmFjZS4NCj4gPj4NCj4gPiBJIGNhbiBtb2RpZnkgdGVz
+dCB0byBza2lwIGluIGNhc2UgMiBjY3MgYW5kIG5vIHJjcyB3aXRoIEhBTkcgdGVzdHMuIEV2ZW4N
+Cj4gdGhvdWdoIGlzc3VlIG5vdCBzZWVuIGFueXdoZXJlIGVsc2UgaWYgY2hhbmdlIG5lZWRzIHRv
+IGJlIGdlbmVyaWMuDQo+IE15IHBvaW50IGlzIG5vdCB0byBtYWtlIHJhbmRvbSBhbmQgdW5leHBs
+YWluZWQgY2hhbmdlcyB0byB0aGUgdGVzdCBidXQgdG8NCj4gdW5kZXJzdGFuZCB3aHkgdGhlIHRl
+c3QgaXMgZmFpbGluZyB0aGUgd2F5IGl0IGlzLiBTbyBmYXIsIHRoZSBleHBsYW5hdGlvbiBkb2Vz
+DQo+IG5vdCBtYWtlIHNlbnNlLg0KPiANCj4gU2VlIGFib3ZlIGFib3V0IHByZS1lbXB0aWJsZSB3
+b3JrbG9hZHMgc2hvdWxkIG5vdCBiZSBraWxsZWQuIExOTC9CTUcgZG8NCj4gbm90IGhhdmUgdGhl
+IFJDUy9DQ1Mgd29ya2Fyb3VuZCBvZiBERzIgdGhhdCBwcmV2ZW50cyBwcmUtZW1wdGlvbnMgYW5k
+DQo+IGNvbnRleHQgc3dpdGNoZXMgd2hpbGUgdGhlIG90aGVyIHNpZGUgaXMgYnVzeS4gU28gSSBh
+bSBub3Qgc2VlaW5nIGEgcmVhc29uIHdoeQ0KPiB0aGUgdGVzdCBpcyBmYWlsaW5nLiBUaGF0IG5l
+ZWRzIHRvIGJlIGV4cGxhaW5lZCBiZWZvcmUgc2ltcGx5IG1ha2luZyBpdCBza2lwIG9uDQo+IHRo
+b3NlIHBsYXRmb3Jtcy4NCg0KSGkgQEhhcnJpc29uLCBKb2huIEMsIA0KDQpBcyBmYXIgYXMgSSBh
+bSBzZWVpbmcsDQoNCldvcmtsb2FkIGJhdGNoIHN1Ym1pdHRlZCBhcmUgbm9uLXByZWVtcHRpYmxl
+IGluY2x1ZGluZyBzcGlubmVyIHdoaWNoIGFjdHVhbGx5IGNyZWF0ZXMgaGFuZyBpbiB0aGUgdGVz
+dC4gSW4gdGhhdCBjYXNlIGFzIHBlciB5b3VyIGV4cGxhbmF0aW9uIHdoYXQgc2hvdWxkIGJlIHRl
+c3QgYmVoYXZpb3VyPyBTaG91bGQgd2Ugc2tpcCBjb21wdXRlcyBhcyBJIHNlbnQgaW4gVjMgdmVy
+c2lvbj8gT3Igc29tZXRoaW5nIG5lZWRzIHRvIGJlIGZpeGVkIGluIEtNRC9HVUM/DQoNCkFsc28g
+d2hpY2ggREcyIHdvcmthcm91bmQgeW91IGFyZSB0YWxraW5nIGFib3V0LCBjYW4geW91IHBsZWFz
+ZSBoZWxwIHdpdGggV0EgbnVtYmVyIG9yIHNvbWUgcmVmZXJlbmNlPyBBcyBmYXIgYXMgSSB1bmRl
+cnN0YW5kIHdlIGRvbuKAmXQgbWFyayBXTCBwcmVlbXB0aWJsZSBzbyBpdCBkb2VzIG5vdCBtYXR0
+ZXIgaWYgV0EgaXMgdGhlcmUgb3Igbm90LCBubz8NCg0KRllJIEBCcm9zdCwgTWF0dGhldw0KDQpU
+aGFua3MsDQpUZWphcyANCj4gDQo+IEpvaG4uDQo+IA0KPiA+DQo+ID4+IFRoYW5rcywNCj4gPj4g
+VGVqYXMNCj4gPj4NCj4gPj4+IEFuZCBpZiB0aGlzIGlzIG5vdCBtZWFudCB0byBiZSBhIHJlc2V0
+IHRlc3QsIHdoeSBkb2VzIGl0IHRlc3QgcmVzZXRzDQo+ID4+PiBhdCBhbGw/IElmIHRoZSBjb25j
+ZXJuIGlzIHRoYXQgd2UgZG9uJ3QgaGF2ZSBhIHN0cmVzcyB0ZXN0IGludm9sdmluZw0KPiA+Pj4g
+cmVzZXRzIGFuZCB0aGlzIGlzIHRoZSBvbmx5IGNvdmVyYWdlIHRoZW4gaXQgc2VlbXMgbGlrZSB3
+ZSBzaG91bGQNCj4gPj4+IG5vdCBiZQ0KPiA+PiBjcmlwcGxpbmcgaXQuDQo+ID4+PiBKb2huLg0K
+PiA+Pj4NCj4gPj4+DQo+ID4+Pj4gTWF0dA0KPiA+Pj4+DQo+ID4+Pj4+IEFzIG5vdGVkLCBQVkMg
+aGFzIG11bHRpcGxlIGNvbXB1dGUgZW5naW5lcyBidXQgbm8gUkNTIGVuZ2luZS4gSWYNCj4gPj4+
+Pj4gYW55IGNvbXB1dGUgZW5naW5lIGlzIHJlc2V0IHRoZW4gYWxsIGFyZSByZXNldC4gU28gaWYg
+dGhlIHRlc3QgaXMNCj4gPj4+Pj4gcnVubmluZyBjb3JyZWN0bHkgYW5kIHBhc3Npbmcgb24gUFZD
+IHRoZW4gaXQgY2Fubm90IGJlIGZhaWxpbmcgb24NCj4gPj4+Pj4gTE5ML0JNRyBwdXJlbHkgZHVl
+IHRvIHNoYXJlZCBkb21haW4gcmVzZXRzLg0KPiA+Pj4+Pg0KPiA+Pj4+PiBJcyB0aGUgcmVzZXQg
+bm90IGhhcHBlbmluZyBvbiBQVkM/IElzIHRoZSB0ZXN0IG5vdCBhY3R1YWxseQ0KPiA+Pj4+PiBy
+dW5uaW5nIG11bHRpcGxlIGNvbnRleHRzIGluIHBhcmFsbGVsIG9uIFBWQz8gT3IgYXJlIHRoZSBz
+cGlubmVycw0KPiA+Pj4+PiBwcmUtZW1wdGlibGUgYW5kIGFyZSB0aGVyZWZvcmUgc3VwcG9zZWQg
+dG8gc3Vydml2ZSB0aGUgcmVzZXQgb2YgYQ0KPiA+Pj4+PiBzaGFyZWQgZG9tYWluIGVuZ2luZSBi
+eSBiZWluZyBzd2FwcGVkIG91dCBmaXJzdD8gSW4gd2hpY2ggY2FzZQ0KPiA+Pj4+PiBMTkwvQk1H
+IGFyZSBicm9rZW4gYmVjYXVzZSB0aGUga2lsbGVkIGNvbnRleHRzIGFyZSBub3Qgc3VwcG9zZWQg
+dG8NCj4gPj4+Pj4gYmUNCj4gPj4+IGtpbGxlZCBldmVuIHRob3VnaCB0aGUgZW5naW5lIGlzIHJl
+c2V0Pw0KPiA+Pj4+PiBKb2huLg0KPiA+Pj4+Pg0KPiA+Pj4+Pj4gVGhhbmtzLA0KPiA+Pj4+Pj4g
+VGVqYXMNCj4gPj4+Pj4+PiBKb2huLg0KPiA+Pj4+Pj4+DQo+ID4+Pj4+Pj4NCj4gPj4+Pj4+Pj4g
+VGhhbmtzLA0KPiA+Pj4+Pj4+PiBUZWphcw0KPiA+Pj4+Pj4+Pj4gTHVjYXMgRGUgTWFyY2hpDQo+
+ID4+Pj4+Pj4+Pg0KPiA+Pj4+Pj4+Pj4+PiArDQo+ID4+Pj4+Pj4+Pj4+ICsJaWYgKGZsYWdzICYg
+SEFORykNCj4gPj4+Pj4+Pj4+Pj4gKwkJcmV0dXJuIHRydWU7DQo+ID4+Pj4+Pj4+Pj4+ICsNCj4g
+Pj4+Pj4+Pj4+Pj4gKwlyZXR1cm4gZmFsc2U7DQo+ID4+Pj4+Pj4+Pj4+ICt9DQo+ID4+Pj4+Pj4+
+Pj4+ICsNCj4gPj4+Pj4+Pj4+Pj4gICAgICAvKioNCj4gPj4+Pj4+Pj4+Pj4gICAgICAgKiBTVUJU
+RVNUOiB0aHJlYWRzLSVzDQo+ID4+Pj4+Pj4+Pj4+ICAgICAgICogRGVzY3JpcHRpb246IFJ1biB0
+aHJlYWRzICVhcmdbMV0gdGVzdCB3aXRoIG11bHRpDQo+ID4+Pj4+Pj4+Pj4+IHRocmVhZHMgQEAN
+Cj4gPj4+Pj4+Pj4+Pj4gLTk1NSw5ICs5NjYsMTMgQEAgc3RhdGljIHZvaWQgdGhyZWFkcyhpbnQg
+ZmQsIGludCBmbGFncykNCj4gPj4+Pj4+Pj4+Pj4gICAgICAJYm9vbCBnbyA9IGZhbHNlOw0KPiA+
+Pj4+Pj4+Pj4+PiAgICAgIAlpbnQgbl90aHJlYWRzID0gMDsNCj4gPj4+Pj4+Pj4+Pj4gICAgICAJ
+aW50IGd0Ow0KPiA+Pj4+Pj4+Pj4+PiArCWJvb2wgaGFzX3JjcyA9IGZhbHNlOw0KPiA+Pj4+Pj4+
+Pj4+Pg0KPiA+Pj4+Pj4+Pj4+PiAtCXhlX2Zvcl9lYWNoX2VuZ2luZShmZCwgaHdlKQ0KPiA+Pj4+
+Pj4+Pj4+PiArCXhlX2Zvcl9lYWNoX2VuZ2luZShmZCwgaHdlKSB7DQo+ID4+Pj4+Pj4+Pj4+ICsJ
+CWlmIChod2UtPmVuZ2luZV9jbGFzcyA9PQ0KPiA+Pj4gRFJNX1hFX0VOR0lORV9DTEFTU19SRU5E
+RVIpDQo+ID4+Pj4+Pj4+Pj4+ICsJCQloYXNfcmNzID0gdHJ1ZTsNCj4gPj4+Pj4+Pj4+Pj4gICAg
+ICAJCSsrbl9lbmdpbmVzOw0KPiA+Pj4+Pj4+Pj4+PiArCX0NCj4gPj4+Pj4+Pj4+Pj4NCj4gPj4+
+Pj4+Pj4+Pj4gICAgICAJaWYgKGZsYWdzICYgQkFMQU5DRVIpIHsNCj4gPj4+Pj4+Pj4+Pj4gICAg
+ICAJCXhlX2Zvcl9lYWNoX2d0KGZkLCBndCkgQEAgLTk5MCw2ICsxMDA1LDE1DQo+IEBAIHN0YXRp
+Yw0KPiA+Pj4+Pj4+Pj4+PiB2b2lkIHRocmVhZHMoaW50IGZkLCBpbnQgZmxhZ3MpDQo+ID4+Pj4+
+Pj4+Pj4+ICAgICAgCX0NCj4gPj4+Pj4+Pj4+Pj4NCj4gPj4+Pj4+Pj4+Pj4gICAgICAJeGVfZm9y
+X2VhY2hfZW5naW5lKGZkLCBod2UpIHsNCj4gPj4+Pj4+Pj4+Pj4gKwkJLyogUkNTL0NDUyBzaGFy
+aW5nIHJlc2V0IGRvbWFpbiBoZW5jZSBkZXBlbmRlbnQNCj4gPj4+IGVuZ2luZXMuDQo+ID4+Pj4+
+Pj4+Pj4+ICsJCSAqIFdoZW4gQ0NTIGlzIGRvaW5nIHJlc2V0LCBhbGwgdGhlIGNvbnRleHRzIG9m
+IFJDUyBhcmUNCj4gPj4+Pj4+Pj4+Pj4gKwkJICogdmljdGltaXplZCwgc28gc2tpcCB0aGUgY29t
+cHV0ZSBlbmdpbmUgYXZvaWRpbmcNCj4gPj4+Pj4+Pj4+Pj4gKwkJICogcGFyYWxsZWwgZXhlY3V0
+aW9uIHdpdGggUkNTDQo+ID4+Pj4+Pj4+Pj4+ICsJCSAqLw0KPiA+Pj4+Pj4+Pj4+PiArCQlpZiAo
+aGFzX3JjcyAmJiBod2UtPmVuZ2luZV9jbGFzcyA9PQ0KPiA+Pj4+Pj4+Pj4gRFJNX1hFX0VOR0lO
+RV9DTEFTU19DT01QVVRFICYmDQo+ID4+Pj4+Pj4+Pj4+ICsJCSAgICBpc19lbmdpbmVfY29udGV4
+dHNfdmljdGltaXplZChmZCwgZmxhZ3MpKQ0KPiA+Pj4+Pj4+Pj4+PiArCQkJY29udGludWU7DQo+
+ID4+Pj4+Pj4+Pj4+ICsNCj4gPj4+Pj4+Pj4+Pj4gICAgICAJCXRocmVhZHNfZGF0YVtpXS5tdXRl
+eCA9ICZtdXRleDsNCj4gPj4+Pj4+Pj4+Pj4gICAgICAJCXRocmVhZHNfZGF0YVtpXS5jb25kID0g
+JmNvbmQ7DQo+ID4+Pj4+Pj4+Pj4+ICAgICAgI2RlZmluZSBBRERSRVNTX1NISUZUCTM5DQo+ID4+
+Pj4+Pj4+Pj4+IC0tDQo+ID4+Pj4+Pj4+Pj4+IDIuMjUuMQ0KPiA+Pj4+Pj4+Pj4+Pg0KPiA+Pj4+
+Pj4+Pj4+IC0tDQo+ID4+Pj4+Pj4+Pj4gTWF0dCBSb3Blcg0KPiA+Pj4+Pj4+Pj4+IEdyYXBoaWNz
+IFNvZnR3YXJlIEVuZ2luZWVyDQo+ID4+Pj4+Pj4+Pj4gTGludXggR1BVIFBsYXRmb3JtIEVuYWJs
+ZW1lbnQgSW50ZWwgQ29ycG9yYXRpb24NCg0K
