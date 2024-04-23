@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49003C4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 16:06:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AD4AC4345F
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Apr 2024 16:17:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 029FB113479;
-	Tue, 23 Apr 2024 16:06:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OBXIO+lw";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B188113475
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Apr 2024 16:06:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713888398; x=1745424398;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=041Fq7CuReklTECSamsgpxP+ln//OQe3sBd84aiU7Vg=;
- b=OBXIO+lwL86Z10PAMpAF/y5d9T/pWnSDYe+hywDtLRbI2r1culWfo9rT
- D+S80UtAZzSOJJGWdRL8mz7wDUIanc6UX0XBZoLnChqxYmW9Yexhs+0kV
- qeF12Yui6poSaDxHDWZ2P1avqBB/mDaHm3VRpQxydTKyWgn0mv541Bym0
- oTsfk26wQypCJ8+1Cpz86RB4leYD3noYf2BfXh+mwESjGSHbh2HatbQgQ
- ouPHeJ/yagj9TtIB3W8LjhT+Fc/i95PFRTij05KHn+Js9jOITzwbizA2b
- qsQs4lpE3Z2Fhax/8f40NESh3zoWcnmOKF7oXcKjT1Vwo4qa9T8SEGX4+ w==;
-X-CSE-ConnectionGUID: A4hyTLPHSBG/rN3fleLBhQ==
-X-CSE-MsgGUID: qF7Lf4NnRV6MWOoCBV5tTQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="26998820"
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="26998820"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2024 09:06:37 -0700
-X-CSE-ConnectionGUID: 1Jph/9nyR9S3snJOqOimPw==
-X-CSE-MsgGUID: OGYM+qYkQE6r3QI4MvmHpQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="24462359"
-Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2024 09:06:36 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: linux-kernel@vger.kernel.org,
-	intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Zhanjun Dong <zhanjun.dong@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Subject: [PATCH CI 2/3] drm/xe: Add helpers to loop over geometry and compute
- DSS
-Date: Tue, 23 Apr 2024 09:05:49 -0700
-Message-ID: <20240423160626.77110-2-jose.souza@intel.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240423160626.77110-1-jose.souza@intel.com>
-References: <20240423160626.77110-1-jose.souza@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0B5911348C;
+	Tue, 23 Apr 2024 16:17:23 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55535113494;
+ Tue, 23 Apr 2024 16:17:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_series_starting_with_=5B1/2=5D?=
+ =?utf-8?q?_Revert_=22drm/xe/vm=3A_drop_vm-=3Edestroy=5Fwork=22_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 23 Apr 2024 16:17:22 -0000
+Message-ID: <171388904234.1607644.16012308592238234833@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240423074721.119633-3-matthew.auld@intel.com>
+In-Reply-To: <20240423074721.119633-3-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,92 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some DSS can only be available for geometry while others can only be
-available for compute.
-So here adding helpers to loop only available DSS for given usage.
+== Series Details ==
 
-User of this helper will come in the next patch.
+Series: series starting with [1/2] Revert "drm/xe/vm: drop vm->destroy_work" (rev2)
+URL   : https://patchwork.freedesktop.org/series/132756/
+State : success
 
-v2:
-- drop has_dss()
+== Summary ==
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_mcr.h      | 24 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_topology.c | 10 ++++++++++
- drivers/gpu/drm/xe/xe_gt_topology.h |  3 +++
- 3 files changed, 37 insertions(+)
+lib/modules/6.9.0-rc5-xe/kernel/sound/pci/hda/snd-hda-intel.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/core/
+lib/modules/6.9.0-rc5-xe/kernel/sound/core/seq/
+lib/modules/6.9.0-rc5-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/core/snd.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soundcore.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/intel/
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/intel/common/
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/amd/
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/sof/
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/codecs/
+lib/modules/6.9.0-rc5-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/hda/
+lib/modules/6.9.0-rc5-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/hda/ext/
+lib/modules/6.9.0-rc5-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.9.0-rc5-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.9.0-rc5-xe/kernel/arch/
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/kernel/
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/crypto/
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/events/
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/events/intel/
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/kvm/
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.9.0-rc5-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.9.0-rc5-xe/kernel/crypto/
+lib/modules/6.9.0-rc5-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.9.0-rc5-xe/kernel/crypto/cmac.ko
+lib/modules/6.9.0-rc5-xe/kernel/crypto/ccm.ko
+lib/modules/6.9.0-rc5-xe/kernel/crypto/cryptd.ko
+lib/modules/6.9.0-rc5-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.9.0-rc5-xe/kernel/crypto/async_tx/
+lib/modules/6.9.0-rc5-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.9.0-rc5-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.9.0-rc5-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.9.0-rc5-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.9.0-rc5-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.9.0-rc5-xe/build
+lib/modules/6.9.0-rc5-xe/modules.alias.bin
+lib/modules/6.9.0-rc5-xe/modules.builtin
+lib/modules/6.9.0-rc5-xe/modules.softdep
+lib/modules/6.9.0-rc5-xe/modules.alias
+lib/modules/6.9.0-rc5-xe/modules.order
+lib/modules/6.9.0-rc5-xe/modules.symbols
+lib/modules/6.9.0-rc5-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1713889030:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1713889030:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.h b/drivers/gpu/drm/xe/xe_gt_mcr.h
-index a7f4ab1aa584b..e7d03e001a49f 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.h
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.h
-@@ -40,4 +40,28 @@ void xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, u16 *group,
- 	for_each_dss((dss), (gt)) \
- 		for_each_if((xe_gt_mcr_get_dss_steering((gt), (dss), &(group), &(instance)), true))
- 
-+/*
-+ * Loop over each DSS available for geometry and determine the group and
-+ * instance IDs that should be used to steer MCR accesses toward this DSS.
-+ * @dss: DSS ID to obtain steering for
-+ * @gt: GT structure
-+ * @group: steering group ID, data type: u16
-+ * @instance: steering instance ID, data type: u16
-+ */
-+#define for_each_geometry_dss(dss, gt, group, instance) \
-+		for_each_dss_steering(dss, gt, group, instance) \
-+			if (xe_gt_has_geometry_dss(gt, dss))
-+
-+/*
-+ * Loop over each DSS available for compute and determine the group and
-+ * instance IDs that should be used to steer MCR accesses toward this DSS.
-+ * @dss: DSS ID to obtain steering for
-+ * @gt: GT structure
-+ * @group: steering group ID, data type: u16
-+ * @instance: steering instance ID, data type: u16
-+ */
-+#define for_each_compute_dss(dss, gt, group, instance) \
-+		for_each_dss_steering(dss, gt, group, instance) \
-+			if (xe_gt_has_compute_dss(gt, dss))
-+
- #endif /* _XE_GT_MCR_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
-index 3733e7a6860d3..af841d801a8f5 100644
---- a/drivers/gpu/drm/xe/xe_gt_topology.c
-+++ b/drivers/gpu/drm/xe/xe_gt_topology.c
-@@ -278,3 +278,13 @@ bool xe_gt_topology_has_dss_in_quadrant(struct xe_gt *gt, int quad)
- 
- 	return quad_first < (quad + 1) * dss_per_quad;
- }
-+
-+bool xe_gt_has_geometry_dss(struct xe_gt *gt, unsigned int dss)
-+{
-+	return test_bit(dss, gt->fuse_topo.g_dss_mask);
-+}
-+
-+bool xe_gt_has_compute_dss(struct xe_gt *gt, unsigned int dss)
-+{
-+	return test_bit(dss, gt->fuse_topo.c_dss_mask);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt_topology.h b/drivers/gpu/drm/xe/xe_gt_topology.h
-index b3e357777a6e7..746b325bbf6e4 100644
---- a/drivers/gpu/drm/xe/xe_gt_topology.h
-+++ b/drivers/gpu/drm/xe/xe_gt_topology.h
-@@ -33,4 +33,7 @@ bool xe_dss_mask_empty(const xe_dss_mask_t mask);
- bool
- xe_gt_topology_has_dss_in_quadrant(struct xe_gt *gt, int quad);
- 
-+bool xe_gt_has_geometry_dss(struct xe_gt *gt, unsigned int dss);
-+bool xe_gt_has_compute_dss(struct xe_gt *gt, unsigned int dss);
-+
- #endif /* _XE_GT_TOPOLOGY_H_ */
--- 
-2.44.0
 
