@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29D20C19F53
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 17:24:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3432C19F4F
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 17:24:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CF0A10FEF2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DCCF10FF32;
 	Wed, 24 Apr 2024 17:24:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lMEJAcnd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kBtESnFt";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6092610FF33
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Apr 2024 17:24:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B4CB10FDA3
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Apr 2024 17:24:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713979465; x=1745515465;
+ t=1713979464; x=1745515464;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=x50UMQ8GlrvjcWlkwj3iRbFA+ObdbvETfDFZsKvodto=;
- b=lMEJAcndLxfJ6Eez+7bBhOhAj8RHK+5I9pLNApe7uxljeievorVUFgnh
- ++rf6sWi3IDEO7puqOUSSkzubVGbhhUUK+9OWR3evRRjfh+q6QXJ7AHCR
- ypKORoOfuQ25DrwZQpi/B62y61Vp0XBlwrt4lpncQfEUyFrpjDDpQsFlW
- 3ow7lBeuHYA80Y2YC8Z1Oj/Xi+MCbl7d5w16Q2/REXOoch5R6mkS6EjpP
- WwUY9xQeR6vPF82LjzJvNbKb1EAsfS9hBwjQ/MtbWSB+Zhb+tPNKsp5km
- XfiWC/8E2Xt/eCZqd1jfsxPSKeNzD1/9rcsj1tpahB+uVBtOd1WBb0WRT w==;
-X-CSE-ConnectionGUID: rGr+0XwFRxGjzL/OLeSP8w==
-X-CSE-MsgGUID: Xnm24eyMRYGrjWkaixmVjQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="12561484"
-X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="12561484"
+ bh=J3MBRXI3Rut+UnGrx4byId27rUfzp0Usm2gpX23IF/E=;
+ b=kBtESnFtL6DZEhILXvZZcQ0UcntEP0lfkP4NvA0idshWCHaJOHKUgbe8
+ 6gp6+otfXajwXC6NamOPKUjmrPPu3nQPE3BfCz+TxhvNe0vueb1kzDY/e
+ 8txkH4JmGgo1239DX+VCEeJezhc49vJ3ZB0y2wVK5kyEXWu199XiPzIsp
+ 6Rp7EUBpe0CLtlmZ/aYMo+7l8vBRF/fSKBt4ylc8PTWw/d42WJH+0t+Xl
+ iK6fLGuHeXzXxwXFDPfBLERTK1FukziNbu7glbFz+1KwG1FfHSXbZrxuT
+ Yw13dQ+QVCFjijUjiW2ehGKHW+9X62PWa9Cy9/HAPQlw55oKHrar88esa g==;
+X-CSE-ConnectionGUID: irqGF/v5TpaMU3av7rjbWw==
+X-CSE-MsgGUID: pj9wBOemT1mye27clTcZWg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="12561479"
+X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="12561479"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Apr 2024 10:24:23 -0700
-X-CSE-ConnectionGUID: J9A3mG0BRH2+zwBjiH4NsA==
-X-CSE-MsgGUID: LuM1UMTLSd2tQKuZ7FdmBw==
+X-CSE-ConnectionGUID: bAu2TtSCQn2MHXj9OOxizw==
+X-CSE-MsgGUID: HAK2Lg49RsSEHo5BTTSnUw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="24825510"
+X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="24825504"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Apr 2024 10:24:20 -0700
@@ -45,9 +45,9 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Matthew Brost <matthew.brost@intel.com>,
 	Oak Zeng <oak.zeng@intel.com>
-Subject: [PATCH v2 10/13] drm/xe: Move ufence check to op_lock_and_prep
-Date: Wed, 24 Apr 2024 10:23:49 -0700
-Message-Id: <20240424172352.1704851-11-matthew.brost@intel.com>
+Subject: [PATCH v2 08/13] drm/xe: Add some members to xe_vma_ops
+Date: Wed, 24 Apr 2024 10:23:47 -0700
+Message-Id: <20240424172352.1704851-9-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240424172352.1704851-1-matthew.brost@intel.com>
 References: <20240424172352.1704851-1-matthew.brost@intel.com>
@@ -67,86 +67,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rather than checking for an unsignaled ufence ay unbind time, check for
-this during the op_lock_and_prep function. This helps with the
-transition to job 1 per VM bind IOCTL.
+This will help with moving to single jobs for many bind operations.
 
 v2:
  - Rebase
-v3:
- - Fix typo in commit message (Oak)
 
+Cc: Oak Zeng <oak.zeng@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 33 +++++++++++++++++++++++----------
- 1 file changed, 23 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c       | 19 ++++++++++++++-----
+ drivers/gpu/drm/xe/xe_vm_types.h |  8 ++++++++
+ 2 files changed, 22 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 93a2c113ad1a..9f561763e287 100644
+index 234b1baac39e..2e91067fc0ea 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1637,16 +1637,6 @@ xe_vm_unbind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
+@@ -745,7 +745,9 @@ static int xe_vm_ops_add_rebind(struct xe_vma_ops *vops, struct xe_vma *vma,
  
- 	trace_xe_vma_unbind(vma);
+ static struct dma_fence *ops_execute(struct xe_vm *vm,
+ 				     struct xe_vma_ops *vops);
+-static void xe_vma_ops_init(struct xe_vma_ops *vops);
++static void xe_vma_ops_init(struct xe_vma_ops *vops, struct xe_vm *vm,
++			    struct xe_exec_queue *q,
++			    struct xe_sync_entry *syncs, u32 num_syncs);
  
--	if (vma->ufence) {
--		struct xe_user_fence * const f = vma->ufence;
--
--		if (!xe_sync_ufence_get_status(f))
--			return ERR_PTR(-EBUSY);
--
--		vma->ufence = NULL;
--		xe_sync_ufence_put(f);
--	}
--
- 	if (number_tiles > 1) {
- 		fences = kmalloc_array(number_tiles, sizeof(*fences),
- 				       GFP_KERNEL);
-@@ -2701,6 +2691,21 @@ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
+ int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
+ {
+@@ -760,7 +762,7 @@ int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
+ 	    list_empty(&vm->rebind_list))
+ 		return 0;
+ 
+-	xe_vma_ops_init(&vops);
++	xe_vma_ops_init(&vops, vm, NULL, NULL, 0);
+ 
+ 	xe_vm_assert_held(vm);
+ 	list_for_each_entry(vma, &vm->rebind_list, combined_links.rebind) {
+@@ -806,7 +808,7 @@ struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma, u8 tile_ma
+ 	xe_vm_assert_held(vm);
+ 	xe_assert(vm->xe, xe_vm_in_fault_mode(vm));
+ 
+-	xe_vma_ops_init(&vops);
++	xe_vma_ops_init(&vops, vm, NULL, NULL, 0);
+ 
+ 	err = xe_vm_ops_add_rebind(&vops, vma, tile_mask);
+ 	if (err)
+@@ -2998,9 +3000,16 @@ static int vm_bind_ioctl_signal_fences(struct xe_vm *vm,
  	return err;
  }
  
-+static int check_ufence(struct xe_vma *vma)
-+{
-+	if (vma->ufence) {
-+		struct xe_user_fence * const f = vma->ufence;
-+
-+		if (!xe_sync_ufence_get_status(f))
-+			return -EBUSY;
-+
-+		vma->ufence = NULL;
-+		xe_sync_ufence_put(f);
-+	}
-+
-+	return 0;
-+}
-+
- static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
- 			    struct xe_vma_op *op)
+-static void xe_vma_ops_init(struct xe_vma_ops *vops)
++static void xe_vma_ops_init(struct xe_vma_ops *vops, struct xe_vm *vm,
++			    struct xe_exec_queue *q,
++			    struct xe_sync_entry *syncs, u32 num_syncs)
  {
-@@ -2713,6 +2718,10 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
- 					    op->map.immediate);
- 		break;
- 	case DRM_GPUVA_OP_REMAP:
-+		err = check_ufence(gpuva_to_vma(op->base.remap.unmap->va));
-+		if (err)
-+			break;
-+
- 		err = vma_lock_and_validate(exec,
- 					    gpuva_to_vma(op->base.remap.unmap->va),
- 					    false);
-@@ -2722,6 +2731,10 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
- 			err = vma_lock_and_validate(exec, op->remap.next, true);
- 		break;
- 	case DRM_GPUVA_OP_UNMAP:
-+		err = check_ufence(gpuva_to_vma(op->base.unmap.va));
-+		if (err)
-+			break;
-+
- 		err = vma_lock_and_validate(exec,
- 					    gpuva_to_vma(op->base.unmap.va),
- 					    false);
++	memset(vops, 0, sizeof(*vops));
+ 	INIT_LIST_HEAD(&vops->list);
++	vops->vm = vm;
++	vops->q = q;
++	vops->syncs = syncs;
++	vops->num_syncs = num_syncs;
+ }
+ 
+ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+@@ -3167,7 +3176,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		goto free_syncs;
+ 	}
+ 
+-	xe_vma_ops_init(&vops);
++	xe_vma_ops_init(&vops, vm, q, syncs, num_syncs);
+ 	for (i = 0; i < args->num_binds; ++i) {
+ 		u64 range = bind_ops[i].range;
+ 		u64 addr = bind_ops[i].addr;
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 7ff92b263b79..144ee88c70a5 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -353,6 +353,14 @@ struct xe_vma_op {
+ struct xe_vma_ops {
+ 	/** @list: list of VMA operations */
+ 	struct list_head list;
++	/** @vm: VM */
++	struct xe_vm *vm;
++	/** @q: exec queue these operations */
++	struct xe_exec_queue *q;
++	/** @syncs: syncs these operation */
++	struct xe_sync_entry *syncs;
++	/** @num_syncs: number of syncs */
++	u32 num_syncs;
+ };
+ 
+ #endif
 -- 
 2.34.1
 
