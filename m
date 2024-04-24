@@ -4,39 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 953FAC4345F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A823C25B10
 	for <intel-xe@archiver.kernel.org>; Sun, 28 Apr 2024 21:34:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5951610E457;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B21C10F307;
 	Sun, 28 Apr 2024 21:34:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="xb3qSnWY";
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="uaICe6wK";
 	dkim-atps=neutral
-Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A46DC10FDDE
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Apr 2024 09:35:53 +0000 (UTC)
+Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 874EC112141
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Apr 2024 09:43:15 +0000 (UTC)
 Received: internal info suppressed
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1714037748; bh=qLpuQd0vYM0RPfQ7canD3KzMcV9OIAhm32WReB3USP4=;
+ t=1713951788; bh=qLpuQd0vYM0RPfQ7canD3KzMcV9OIAhm32WReB3USP4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=xb3qSnWYSMZE2wtr6TPBqM0VCwkxJB5eBfqXPPYpSl6CbG7NOBqNKUmQx+X6vfxUp
- gnsshdB5eRrBktmwz/wsoTofW5y+Cv3cPSI6CYrGiur5br9zhRXtOeVbm74lUaPUwn
- NOtEMmw7XK0vYMZFDHs5dcfFoihvMoNGfjaz7ZRQgt37JTl1oEXHLSTkX+qNrqAEm1
- o5HAGeaO0/ioJYmjEFYAa+OH0/ED2AiFZjfTcoF+inUiXFKiXmyzSCIpZCF9gqMkQc
- LfE5aSSU8bvjmeRPxc8C8N536NdnmscOQSX9XZVM4mXsEWdMZJZ+S1TbevSMSy9WPh
- yiMaliXfzihIw==
+ b=uaICe6wKs9xqoemrFnY+i06RzPCo4EHUri3uAjSGD6jHlPNL4dZ9j4lccrWyllEkY
+ QEPBoD3ZlmT2n2PKd4Ej5eyKH3JXI2mfkP0weThmimL/W28BLy9l6bEXkgA/wVdQSf
+ 6BvHl10n1p5e+5IH2H99CElvvB11LAC6XVa7QxRjfyG5mK2Z4XvmxKf0ftKWwid+b2
+ QyVZUsuoXkts14TZ2K1ORJJ/PzQ3FktbacbL9fdqEGi6bv9xzqS3bN1WWqw4bs2G68
+ WlvudrsWvFPhjPZ/SpEAHmKugYEUnQw2RGVquo7nzKIkChyPbH1qD/KznfKaGVlNBX
+ HZINN5DFj29pw==
 Received: from fkassabri-vm-u22.habana-labs.com (localhost [127.0.0.1])
  by fkassabri-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
- ESMTP id 43P9ZehR356497; Thu, 25 Apr 2024 12:35:40 +0300
+ ESMTPS id 43O9h2ws231070
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+ Wed, 24 Apr 2024 12:43:02 +0300
+Received: (from fkassabri@localhost)
+ by fkassabri-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 43O9h2C5231069; 
+ Wed, 24 Apr 2024 12:43:02 +0300
 From: Farah Kassabri <fkassabri@habana.ai>
 To: intel-xe@lists.freedesktop.org
-Cc: ofir1.bitton@intel.com
+Cc: ofir1.bitton@intel.com, Farah Kassabri <fkassabri@habana.ai>
 Subject: [PATCH 2/2] drm/xe: preparations for multi instance TLB invalidations
-Date: Thu, 25 Apr 2024 12:35:40 +0300
-Message-Id: <20240425093540.356478-3-fkassabri@habana.ai>
+Date: Wed, 24 Apr 2024 12:42:44 +0300
+Message-Id: <20240424094244.231035-3-fkassabri@habana.ai>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240425093540.356478-1-fkassabri@habana.ai>
-References: <20240425093540.356478-1-fkassabri@habana.ai>
+In-Reply-To: <20240424094244.231035-1-fkassabri@habana.ai>
+References: <20240424094244.231035-1-fkassabri@habana.ai>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
