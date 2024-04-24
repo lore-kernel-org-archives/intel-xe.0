@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9048BC4345F
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 14:03:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C21DC07E8E
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 14:03:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3817510FEF5;
-	Wed, 24 Apr 2024 14:03:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D522110FF00;
+	Wed, 24 Apr 2024 14:03:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nf9XihxO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dV4LoEtm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B09DE10FEF5
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Apr 2024 14:03:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B574113B90
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Apr 2024 14:03:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713967413; x=1745503413;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=AuFhT2dm9IFYLz/1j8HPpycvQA1AWYKZU/3evwihrKk=;
- b=Nf9XihxO/e6rE1yfHQsxJWsuY9vB0uaftCHo+HHufE1XYSrACHDnVBDL
- zKjMJrJ2QQGH10vMgGkrI/bpCna61b2hkeMoIUmhe63jVRFaVxZPJHqjL
- itC4TD87C5q1SxjrcJVORZvbAcTrdbdV15VSaXdeVeh9fO2AJI/7AmpkY
- zmqvuu7UPmjdA20Z0lAEnWghi2rL2Ne56M++L3NZ0wHrJpum7c0vZYGM9
- I4zRn4bn7hWPl4PQeJ0SqIURXTg+ExctDl8D/z6jgdaY9jMuFiojeQxPr
- JPuEqnJZsYrQHet0+sJt9/Cwo5AoW8QfAc1ylaYEeDyMAgv3fUdE9qs3k g==;
-X-CSE-ConnectionGUID: 9tsf+3APTJW396gYmDE+uw==
-X-CSE-MsgGUID: Eewmeg5PQZuig3JYJQSnZg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="9469271"
+ t=1713967415; x=1745503415;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=RR//UNuqXV0T9jVmh9hWgEddGUoOzLIagj6vnPC9UOk=;
+ b=dV4LoEtmym/HZwLVaT1xmcfEGkgssuQvexHGekpnLEMk4GrcwKloTyjA
+ cr/8K9gvfKjTMr4kuT4YC57qnTXT0keVdYVEjn1jx/rX/81zGEeffBiYF
+ stUWRNUwsRG2anTLeFT0w8hk6HIMipFW+Rm9++SPMN8JfRQ+9VMyD9dxm
+ O4zFNK4+xfecn6ycuIaM3y2I51jwd4JHbr66Qa9sKIZp0sjMsCQS7BEpo
+ VEGDXPvSP1Dnnn1Jx/eXrJSnUBAhfjZuR9mZowJb1ncMb1hEkqcHCVbDh
+ iVmsR8zku7RMCmPcw18VMMF6pPJIUv9dvXCAwIkBMHr5C9zEZgBkWyWJk w==;
+X-CSE-ConnectionGUID: VFyIKcKRTh+9dTwURzQPnw==
+X-CSE-MsgGUID: PycjB6F2S1OgkBtYhVxJ1Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="9469278"
 X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; 
-   d="scan'208";a="9469271"
+   d="scan'208";a="9469278"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2024 07:03:33 -0700
-X-CSE-ConnectionGUID: ZCpHkYX+QXO/VUwjQd8ybw==
-X-CSE-MsgGUID: T37mlLdqQ+6R3CUStCNuDw==
+ 24 Apr 2024 07:03:35 -0700
+X-CSE-ConnectionGUID: uKgj+LnRSKS7LCONl7BkHg==
+X-CSE-MsgGUID: aFOshODIRZiChyH5rLL5Ug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="29359242"
+X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="29359276"
 Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2024 07:03:31 -0700
+ 24 Apr 2024 07:03:33 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
@@ -49,10 +49,13 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Zhanjun Dong <zhanjun.dong@intel.com>,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Subject: [PATCH CI 1/3] drm/xe: Store xe_hw_engine in xe_hw_engine_snapshot
-Date: Wed, 24 Apr 2024 07:03:01 -0700
-Message-ID: <20240424140319.61651-1-jose.souza@intel.com>
+Subject: [PATCH CI 2/3] drm/xe: Add helpers to loop over geometry and compute
+ DSS
+Date: Wed, 24 Apr 2024 07:03:02 -0700
+Message-ID: <20240424140319.61651-2-jose.souza@intel.com>
 X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240424140319.61651-1-jose.souza@intel.com>
+References: <20240424140319.61651-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -70,8 +73,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A future patch will require gt and xe device structs, so here
-replacing class by hwe.
+Some DSS can only be available for geometry while others can only be
+available for compute.
+So here adding helpers to loop only available DSS for given usage.
+
+User of this helper will come in the next patch.
+
+v2:
+- drop has_dss()
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Matt Roper <matthew.d.roper@intel.com>
@@ -80,56 +89,74 @@ Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c       | 6 +++---
- drivers/gpu/drm/xe/xe_hw_engine_types.h | 4 ++--
- 2 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_mcr.h      | 24 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_topology.c | 10 ++++++++++
+ drivers/gpu/drm/xe/xe_gt_topology.h |  3 +++
+ 3 files changed, 37 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 455f375c1cbd6..c84dbe8a8ed1d 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -791,7 +791,7 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
- 		return NULL;
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.h b/drivers/gpu/drm/xe/xe_gt_mcr.h
+index a7f4ab1aa584b..e7d03e001a49f 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.h
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.h
+@@ -40,4 +40,28 @@ void xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, u16 *group,
+ 	for_each_dss((dss), (gt)) \
+ 		for_each_if((xe_gt_mcr_get_dss_steering((gt), (dss), &(group), &(instance)), true))
  
- 	snapshot->name = kstrdup(hwe->name, GFP_ATOMIC);
--	snapshot->class = hwe->class;
-+	snapshot->hwe = hwe;
- 	snapshot->logical_instance = hwe->logical_instance;
- 	snapshot->forcewake.domain = hwe->domain;
- 	snapshot->forcewake.ref = xe_force_wake_ref(gt_to_fw(hwe->gt),
-@@ -842,7 +842,7 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
- 	snapshot->reg.ring_eir = hw_engine_mmio_read32(hwe, RING_EIR(0));
- 	snapshot->reg.ipehr = hw_engine_mmio_read32(hwe, RING_IPEHR(0));
++/*
++ * Loop over each DSS available for geometry and determine the group and
++ * instance IDs that should be used to steer MCR accesses toward this DSS.
++ * @dss: DSS ID to obtain steering for
++ * @gt: GT structure
++ * @group: steering group ID, data type: u16
++ * @instance: steering instance ID, data type: u16
++ */
++#define for_each_geometry_dss(dss, gt, group, instance) \
++		for_each_dss_steering(dss, gt, group, instance) \
++			if (xe_gt_has_geometry_dss(gt, dss))
++
++/*
++ * Loop over each DSS available for compute and determine the group and
++ * instance IDs that should be used to steer MCR accesses toward this DSS.
++ * @dss: DSS ID to obtain steering for
++ * @gt: GT structure
++ * @group: steering group ID, data type: u16
++ * @instance: steering instance ID, data type: u16
++ */
++#define for_each_compute_dss(dss, gt, group, instance) \
++		for_each_dss_steering(dss, gt, group, instance) \
++			if (xe_gt_has_compute_dss(gt, dss))
++
+ #endif /* _XE_GT_MCR_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
+index 3733e7a6860d3..af841d801a8f5 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.c
++++ b/drivers/gpu/drm/xe/xe_gt_topology.c
+@@ -278,3 +278,13 @@ bool xe_gt_topology_has_dss_in_quadrant(struct xe_gt *gt, int quad)
  
--	if (snapshot->class == XE_ENGINE_CLASS_COMPUTE)
-+	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
- 		snapshot->reg.rcu_mode = xe_mmio_read32(hwe->gt, RCU_MODE);
- 
- 	return snapshot;
-@@ -887,7 +887,7 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
- 	drm_printf(p, "\tBBADDR: 0x%016llx\n", snapshot->reg.ring_bbaddr);
- 	drm_printf(p, "\tDMA_FADDR: 0x%016llx\n", snapshot->reg.ring_dma_fadd);
- 	drm_printf(p, "\tIPEHR: 0x%08x\n", snapshot->reg.ipehr);
--	if (snapshot->class == XE_ENGINE_CLASS_COMPUTE)
-+	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
- 		drm_printf(p, "\tRCU_MODE: 0x%08x\n",
- 			   snapshot->reg.rcu_mode);
+ 	return quad_first < (quad + 1) * dss_per_quad;
  }
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-index d7f828c76cc5f..27deaa31efd31 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-@@ -158,8 +158,8 @@ struct xe_hw_engine {
- struct xe_hw_engine_snapshot {
- 	/** @name: name of the hw engine */
- 	char *name;
--	/** @class: class of this hw engine */
--	enum xe_engine_class class;
-+	/** @hwe: hw engine */
-+	struct xe_hw_engine *hwe;
- 	/** @logical_instance: logical instance of this hw engine */
- 	u16 logical_instance;
- 	/** @forcewake: Force Wake information snapshot */
++
++bool xe_gt_has_geometry_dss(struct xe_gt *gt, unsigned int dss)
++{
++	return test_bit(dss, gt->fuse_topo.g_dss_mask);
++}
++
++bool xe_gt_has_compute_dss(struct xe_gt *gt, unsigned int dss)
++{
++	return test_bit(dss, gt->fuse_topo.c_dss_mask);
++}
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.h b/drivers/gpu/drm/xe/xe_gt_topology.h
+index b3e357777a6e7..746b325bbf6e4 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.h
++++ b/drivers/gpu/drm/xe/xe_gt_topology.h
+@@ -33,4 +33,7 @@ bool xe_dss_mask_empty(const xe_dss_mask_t mask);
+ bool
+ xe_gt_topology_has_dss_in_quadrant(struct xe_gt *gt, int quad);
+ 
++bool xe_gt_has_geometry_dss(struct xe_gt *gt, unsigned int dss);
++bool xe_gt_has_compute_dss(struct xe_gt *gt, unsigned int dss);
++
+ #endif /* _XE_GT_TOPOLOGY_H_ */
 -- 
 2.44.0
 
