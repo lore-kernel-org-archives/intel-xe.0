@@ -4,26 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A14E6C19F4F
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 13:02:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75602C4345F
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 13:15:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C238D113B31;
-	Wed, 24 Apr 2024 13:02:51 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D220810FDD5;
- Wed, 24 Apr 2024 13:02:50 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v3 4/4] drm/xe/display: Re-use display vmas when possible
-Date: Wed, 24 Apr 2024 15:03:02 +0200
-Message-ID: <20240424130302.1603331-5-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240424130302.1603331-1-maarten.lankhorst@linux.intel.com>
-References: <20240424130302.1603331-1-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10187112BF6;
+	Wed, 24 Apr 2024 13:15:06 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C48F10FECA;
+ Wed, 24 Apr 2024 13:15:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8199458508536133375=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/guc=3A_Improve_GuC_doorbe?=
+ =?utf-8?q?ll/context_ID_manager_intro_message?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 24 Apr 2024 13:15:05 -0000
+Message-ID: <171396450511.1628979.3659911408586695925@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240419153407.402-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20240419153407.402-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,235 +36,122 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-i915 has this really nice, infrastructure where everything becomes
-complicated, GGTT needs eviction, etc..
+--===============8199458508536133375==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Lets not do that, and make the dumbest possible interface instead.
-Try to retrieve the VMA from old_plane_state, or intel_fbdev if kernel
-fb.
+== Series Details ==
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- .../gpu/drm/i915/display/intel_atomic_plane.c |  2 +-
- drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
- drivers/gpu/drm/i915/display/intel_fb_pin.c   |  3 +-
- drivers/gpu/drm/i915/display/intel_fb_pin.h   |  3 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c    |  5 ++
- drivers/gpu/drm/i915/display/intel_fbdev.h    |  9 ++++
- .../gpu/drm/xe/compat-i915-headers/i915_vma.h |  3 ++
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 46 +++++++++++++++++--
- 8 files changed, 65 insertions(+), 8 deletions(-)
+Series: drm/xe/guc: Improve GuC doorbell/context ID manager intro message
+URL   : https://patchwork.freedesktop.org/series/132653/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 76d77d5a0409..24ba55531e8d 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -1106,7 +1106,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
- 	if (!obj)
- 		return 0;
- 
--	ret = intel_plane_pin_fb(new_plane_state);
-+	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 23a122ee20c9..3d3b8e37c0f2 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -761,7 +761,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 	if (ret)
- 		goto out_free;
- 
--	ret = intel_plane_pin_fb(new_plane_state);
-+	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
- 	if (ret)
- 		goto out_free;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-index b6df9baf481b..7b8a1825ccfc 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-@@ -236,7 +236,8 @@ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
- 	i915_vma_put(vma);
- }
- 
--int intel_plane_pin_fb(struct intel_plane_state *plane_state)
-+int intel_plane_pin_fb(struct intel_plane_state *plane_state,
-+		       const struct intel_plane_state *old_plane_state)
- {
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
- 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-index de0efaa25905..48675e6233f0 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-@@ -22,7 +22,8 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
- 
- void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags);
- 
--int intel_plane_pin_fb(struct intel_plane_state *plane_state);
-+int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
-+		       const struct intel_plane_state *old_plane_state);
- void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state);
- 
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 43855c6c3509..a010b7a8a468 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -668,3 +668,8 @@ struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
- 
- 	return to_intel_framebuffer(fbdev->helper.fb);
- }
-+
-+struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
-+{
-+	return fbdev ? fbdev->vma : NULL;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
-index 04fd523a5023..fa6c0c1ae936 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
-@@ -22,6 +22,8 @@ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous
- void intel_fbdev_output_poll_changed(struct drm_device *dev);
- void intel_fbdev_restore_mode(struct drm_i915_private *dev_priv);
- struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
-+struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev);
-+
- #else
- static inline int intel_fbdev_init(struct drm_device *dev)
- {
-@@ -51,10 +53,17 @@ static inline void intel_fbdev_output_poll_changed(struct drm_device *dev)
- static inline void intel_fbdev_restore_mode(struct drm_i915_private *i915)
- {
- }
-+
- static inline struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
- {
- 	return NULL;
- }
-+
-+static inline struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
-+{
-+	return NULL;
-+}
-+
- #endif
- 
- #endif /* __INTEL_FBDEV_H__ */
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-index a20d2638ea7a..193382f97823 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-@@ -9,6 +9,8 @@
- #include <uapi/drm/i915_drm.h>
- #include <drm/drm_mm.h>
- 
-+#include <linux/refcount.h>
-+
- /* We don't want these from i915_drm.h in case of Xe */
- #undef I915_TILING_X
- #undef I915_TILING_Y
-@@ -18,6 +20,7 @@
- struct xe_bo;
- 
- struct i915_vma {
-+	refcount_t ref;
- 	struct xe_bo *bo, *dpt;
- 	struct drm_mm_node node;
- };
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 6ebda3ded8b4..75e030f0fb70 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -8,6 +8,7 @@
- #include "intel_dpt.h"
- #include "intel_fb.h"
- #include "intel_fb_pin.h"
-+#include "intel_fbdev.h"
- #include "xe_ggtt.h"
- #include "xe_gt.h"
- #include "xe_pm.h"
-@@ -348,6 +349,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
- 	if (!vma)
- 		return ERR_PTR(-ENOMEM);
- 
-+	refcount_set(&vma->ref, 1);
- 	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
- 	    intel_fb_rc_ccs_cc_plane(&fb->base) >= 0 &&
- 	    !(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS)) {
-@@ -407,6 +409,9 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma, struct intel_framebuffer *fb
- 	struct xe_device *xe = to_xe_device(vma->bo->ttm.base.dev);
- 	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
- 
-+	if (!refcount_dec_and_test(&vma->ref))
-+		return;
-+
- 	if (vma->dpt) {
- 		xe_ggtt_remove_bo(ggtt, vma->dpt);
- 		xe_fb_dpt_unpin_free(vma, fb);
-@@ -439,20 +444,53 @@ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
- 	__xe_unpin_fb_vma(vma, NULL);
- }
- 
--int intel_plane_pin_fb(struct intel_plane_state *plane_state)
-+static bool reuse_vma(struct intel_plane_state *new_plane_state,
-+		      const struct intel_plane_state *old_plane_state)
- {
--	struct drm_framebuffer *fb = plane_state->hw.fb;
-+	struct intel_framebuffer *fb = to_intel_framebuffer(new_plane_state->hw.fb);
-+	struct xe_device *xe = to_xe_device(fb->base.dev);
-+	struct i915_vma *vma;
-+
-+	if (old_plane_state->hw.fb == new_plane_state->hw.fb &&
-+	    !memcmp(&old_plane_state->view.gtt,
-+		    &new_plane_state->view.gtt,
-+	            sizeof(new_plane_state->view.gtt))) {
-+		vma = old_plane_state->ggtt_vma;
-+		goto found;
-+	}
-+
-+	if (fb == intel_fbdev_framebuffer(xe->display.fbdev.fbdev)) {
-+		vma = intel_fbdev_vma_pointer(xe->display.fbdev.fbdev);
-+		if (vma)
-+			goto found;
-+	}
-+
-+	return false;
-+
-+found:
-+	refcount_inc(&vma->ref);
-+	new_plane_state->ggtt_vma = vma;
-+	return true;
-+}
-+
-+int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
-+		       const struct intel_plane_state *old_plane_state)
-+{
-+	struct drm_framebuffer *fb = new_plane_state->hw.fb;
- 	struct xe_bo *bo = intel_fb_obj(fb);
- 	struct i915_vma *vma;
- 
-+	if (reuse_vma(new_plane_state, old_plane_state))
-+		return 0;
-+
- 	/* We reject creating !SCANOUT fb's, so this is weird.. */
- 	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_SCANOUT));
- 
--	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &plane_state->view.gtt);
-+	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &new_plane_state->view.gtt);
- 	if (IS_ERR(vma))
- 		return PTR_ERR(vma);
- 
--	plane_state->ggtt_vma = vma;
-+	new_plane_state->ggtt_vma = vma;
- 	return 0;
- }
- 
--- 
-2.43.0
+== Summary ==
 
+CI Bug Log - changes from xe-1167-989973bc834b7b0eb0dd7a8e030def537dc1e935_BAT -> xe-pw-132653v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-132653v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-132653v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (5 -> 0)
+------------------------------
+
+  ERROR: It appears as if the changes made in xe-pw-132653v1_BAT prevented too many machines from booting.
+
+  Missing    (5): bat-pvc-2 bat-lnl-1 bat-dg2-oem2 bat-adlp-7 bat-atsm-2 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7820 -> IGT_7814
+  * Linux: xe-1167-989973bc834b7b0eb0dd7a8e030def537dc1e935 -> xe-pw-132653v1
+
+  IGT_7814: 7814
+  IGT_7820: 741ef547cbf5d8fcc144f1bb048844c33bca7509 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1167-989973bc834b7b0eb0dd7a8e030def537dc1e935: 989973bc834b7b0eb0dd7a8e030def537dc1e935
+  xe-pw-132653v1: 132653v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132653v1/index.html
+
+--===============8199458508536133375==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Improve GuC doorbell/context ID manager intro message</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132653/">https://patchwork.freedesktop.org/series/132653/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132653v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132653v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1167-989973bc834b7b0eb0dd7a8e030def537dc1e935_BAT -&gt; xe-pw-132653v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-132653v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-132653v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (5 -&gt; 0)</h2>
+<p>ERROR: It appears as if the changes made in xe-pw-132653v1_BAT prevented too many machines from booting.</p>
+<p>Missing    (5): bat-pvc-2 bat-lnl-1 bat-dg2-oem2 bat-adlp-7 bat-atsm-2 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7820 -&gt; IGT_7814</li>
+<li>Linux: xe-1167-989973bc834b7b0eb0dd7a8e030def537dc1e935 -&gt; xe-pw-132653v1</li>
+</ul>
+<p>IGT_7814: 7814<br />
+  IGT_7820: 741ef547cbf5d8fcc144f1bb048844c33bca7509 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1167-989973bc834b7b0eb0dd7a8e030def537dc1e935: 989973bc834b7b0eb0dd7a8e030def537dc1e935<br />
+  xe-pw-132653v1: 132653v1</p>
+
+</body>
+</html>
+
+--===============8199458508536133375==--
