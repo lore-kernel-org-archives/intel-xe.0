@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A255C04FFE
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 03:39:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28254C04FFE
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 03:43:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01E4510FC99;
-	Wed, 24 Apr 2024 03:39:40 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 025EC10FB00;
- Wed, 24 Apr 2024 03:39:39 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0FD010FB00;
+	Wed, 24 Apr 2024 03:43:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GAV0+S0+";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90F2810FB00
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Apr 2024 03:43:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713930238; x=1745466238;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4oLj0Ga5umGvPvsTofkjsTorVhdPbvpgig3vbB2hUKk=;
+ b=GAV0+S0+qUI0HQgHg6JWfeRXMQbz4YRrO3OL1qxRKtrR7VqAKPmtfqgk
+ 7Qn4Nw7haarSenhEWpZHcXR8TYaD/V5OdnulDS5R7bzrF9xSnoMhpOAww
+ ZzG2e4gTw+mWRxqZJeqcmJjfDRgx+Onnx3fLj8N7lqxIx/l2bIIUkyNJz
+ saM7UD83L3IS6SzuI+98bB3QHZ8lJkAhYM/BySudZt3Pe+/riaKoUOc7K
+ gd35xBYDQ2aupsbc+g8nHG0PCwFNU9XZVg9k9k3dsUGqODntUv4JEmJLV
+ yBjt+mhyTW8pqdmKmpJp050mRwPjsIRZtzZKHuk+7ymueI561cw/IIfNY A==;
+X-CSE-ConnectionGUID: CwnbGYQMQVWl1tp3O1E7eg==
+X-CSE-MsgGUID: kkKlLfIgQLi1/MYr6lvilg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="9371045"
+X-IronPort-AV: E=Sophos;i="6.07,225,1708416000"; 
+   d="scan'208";a="9371045"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2024 20:43:57 -0700
+X-CSE-ConnectionGUID: qrb7ZF7WQeGT4Sfd4pLh+A==
+X-CSE-MsgGUID: tJtjHTBETHK4adAQLfDFbw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,225,1708416000"; d="scan'208";a="25089178"
+Received: from himal-super-server.iind.intel.com ([10.145.169.168])
+ by orviesa007.jf.intel.com with ESMTP; 23 Apr 2024 20:43:56 -0700
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v2 0/2] Use the helpers for locking/unlocking resv object
+Date: Wed, 24 Apr 2024 09:27:54 +0530
+Message-Id: <20240424035756.2169209-1-himal.prasad.ghimiray@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Use_the_helpers_for_locki?=
- =?utf-8?q?ng/unlocking_resv_object?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 24 Apr 2024 03:39:39 -0000
-Message-ID: <171392997901.1610961.785846003895136112@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240424034515.2161938-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20240424034515.2161938-1-himal.prasad.ghimiray@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,43 +61,19 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Use the helpers for locking/unlocking resv object
 
-Series: Use the helpers for locking/unlocking resv object
-URL   : https://patchwork.freedesktop.org/series/132815/
-State : success
+Himal Prasad Ghimiray (2):
+  drm/xe/vm: Use xe_vm_lock()/xe_vm_unlock() helpers
+  drm/xe: Use xe_bo_lock()/xe_bo_unlock() helpers
 
-== Summary ==
+ drivers/gpu/drm/xe/xe_lrc.c | 4 ++--
+ drivers/gpu/drm/xe/xe_vm.c  | 8 ++++----
+ 2 files changed, 6 insertions(+), 6 deletions(-)
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-0daf0be5bb95eb0a0e42275e00a0e42d8d8fd543
-+ git -C mt rev-list -n1 origin/master
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 1d99d6f383da0800bda455dd3f2fd6c96fbebd08
-Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Date:   Wed Apr 24 09:15:15 2024 +0530
-
-    drm/xe: Use xe_bo_lock()/xe_bo_unlock() helpers
-    
-    There is no change in functionality. Using the helper function
-    defined within the driver for locking/unlocking the reservation
-    object.
-    
-    Cc: Matthew Brost <matthew.brost@intel.com>
-    Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-    Suggested-by: Matthew Brost <matthew.brost@intel.com>
-    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-+ /mt/dim checkpatch b489bf6605759a57c37295c2025e5ee392b88ff3 drm-intel
-42c7df8123be drm/xe/vm: Use xe_vm_lock()/xe_vm_unlock() helpers
-1d99d6f383da drm/xe: Use xe_bo_lock()/xe_bo_unlock() helpers
-
+-- 
+2.25.1
 
