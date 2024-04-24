@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99296C10F15
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50B32C4345F
 	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 17:24:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4392110FDA3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FAC110FCEB;
 	Wed, 24 Apr 2024 17:24:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bHLwFC/V";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U5bUZc+b";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59B5110FDA3
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D96C10FCEB
  for <intel-xe@lists.freedesktop.org>; Wed, 24 Apr 2024 17:24:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713979465; x=1745515465;
+ t=1713979464; x=1745515464;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vSkf5B2nfnCMCQ4B+ZVF6+rvflj78duSLykKGpPw+iA=;
- b=bHLwFC/VaxV4L9K1AsBZWhgHkqPtalBTTHkhsequoeC5EYqSGidXO62o
- 2qcnbEaFOfdmyMw7VtwiOgopquBLaeOuBKISNoJBwNIFxL8Ff0j/JJv6f
- tkutt0L+04X/eMVc4pcW6wTIa8n6boITxhdWRupj9JrPaAaY7m2ci2tiC
- /XubXqZuJxLCG4Ts5Byh1BKpX6/mAH4OFIE/5jxZUWWIA3Ib2UCzoAji0
- mNd7Kl5bJzQfxmBTu9HjeX5GyYoAzCUKzfy7qJxfqJY95t8eWzAXDgMBN
- 7l4HHIBwBb+OpIOQXSz+6TaHwXUw3XzohRI4hDBFo2yYd4Q8lQHwrjJON w==;
-X-CSE-ConnectionGUID: 42lqSyeoThS3y5kJIl3Syw==
-X-CSE-MsgGUID: QXa/MpiuRWGSq71myGzN4Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="12561482"
-X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="12561482"
+ bh=Z1BoPRW8IxjSoZNVWAYDwzmu20q4s7C+LKPk5n2VHfA=;
+ b=U5bUZc+bCilvUVicC8COlLgX8BaIVeAZ9g58mNDEdOvJf4dvd/E0bzO9
+ RqNrGJlFzcKtTKdRKfcQUEleKaeizLSa9Gz0uitU0I+tYakQHn53hff06
+ sVrAuJT7PEm5M2P4OuuWc3tmTOUpRT4fW/WTAHxm/NuMETrEDPL//JCR/
+ rfrO/zjSTVm6wspfL67gFKSpAaPV+2D7pnisrlPQanuOinRjyDgnAQ50G
+ OVoaW3KjeCZHocZRnfdPpPdLCce8twxpa5mz/uUWavibSXLrLhcdzs8D5
+ 61dbQXBy6TpwgPeWq+Y/9hBHtttNPv9zwGz5lOIGsNO/sdK74nM7TVyCf g==;
+X-CSE-ConnectionGUID: gGCKIFfvQ2GImIgCv+OVGA==
+X-CSE-MsgGUID: qOLSSx/lSga0BbNq3RLfpg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="12561480"
+X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="12561480"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Apr 2024 10:24:23 -0700
-X-CSE-ConnectionGUID: ZEbHfDElTGuw3y61vTAYkQ==
-X-CSE-MsgGUID: UGeOQrobR2iFjapvEBCcbQ==
+X-CSE-ConnectionGUID: GDGXLS+LTlKbtCsbT+VHtg==
+X-CSE-MsgGUID: f5Q9NVJ3QCezWEoF5RRp7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="24825494"
+X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="24825513"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2024 10:24:19 -0700
+ 24 Apr 2024 10:24:20 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Matthew Brost <matthew.brost@intel.com>,
 	Oak Zeng <oak.zeng@intel.com>
-Subject: [PATCH v2 05/13] drm/xe: Use xe_vma_ops to implement xe_vm_rebind
-Date: Wed, 24 Apr 2024 10:23:44 -0700
-Message-Id: <20240424172352.1704851-6-matthew.brost@intel.com>
+Subject: [PATCH v2 11/13] drm/xe: Move ufence add to vm_bind_ioctl_ops_fini
+Date: Wed, 24 Apr 2024 10:23:50 -0700
+Message-Id: <20240424172352.1704851-12-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240424172352.1704851-1-matthew.brost@intel.com>
 References: <20240424172352.1704851-1-matthew.brost@intel.com>
@@ -67,138 +67,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-All page tables updates are moving to a xe_vma_ops interface to
-implement 1 job per VM bind IOCTL. Convert xe_vm_rebind to use a
-xe_vma_ops based interface.
+Rather than adding a ufence to a VMA in the bind function, add the
+ufence to all VMAs in the IOCTL that require binds in
+vm_bind_ioctl_ops_fini. This help withs the transition to job 1 per VM
+bind IOCTL.
+
+v2:
+ - Rebase
+v3:
+ - Fix typo in commit (Oak)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 78 +++++++++++++++++++++++++++++++-------
- 1 file changed, 64 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/xe_sync.c | 15 ++++++++++++
+ drivers/gpu/drm/xe/xe_sync.h |  1 +
+ drivers/gpu/drm/xe/xe_vm.c   | 44 ++++++++++++++++++++++++++++++------
+ 3 files changed, 53 insertions(+), 7 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+index 65f1f1628235..2883d9aca404 100644
+--- a/drivers/gpu/drm/xe/xe_sync.c
++++ b/drivers/gpu/drm/xe/xe_sync.c
+@@ -338,6 +338,21 @@ xe_sync_in_fence_get(struct xe_sync_entry *sync, int num_sync,
+ 	return ERR_PTR(-ENOMEM);
+ }
+ 
++/**
++ * __xe_sync_ufence_get() - Get user fence from user fence
++ * @ufence: input user fence
++ *
++ * Get a user fence reference from user fence
++ *
++ * Return: xe_user_fence pointer with reference
++ */
++struct xe_user_fence *__xe_sync_ufence_get(struct xe_user_fence *ufence)
++{
++	user_fence_get(ufence);
++
++	return ufence;
++}
++
+ /**
+  * xe_sync_ufence_get() - Get user fence from sync
+  * @sync: input sync
+diff --git a/drivers/gpu/drm/xe/xe_sync.h b/drivers/gpu/drm/xe/xe_sync.h
+index 3e03396af2c6..006dbf780793 100644
+--- a/drivers/gpu/drm/xe/xe_sync.h
++++ b/drivers/gpu/drm/xe/xe_sync.h
+@@ -37,6 +37,7 @@ static inline bool xe_sync_is_ufence(struct xe_sync_entry *sync)
+ 	return !!sync->ufence;
+ }
+ 
++struct xe_user_fence *__xe_sync_ufence_get(struct xe_user_fence *ufence);
+ struct xe_user_fence *xe_sync_ufence_get(struct xe_sync_entry *sync);
+ void xe_sync_ufence_put(struct xe_user_fence *ufence);
+ int xe_sync_ufence_get_status(struct xe_user_fence *ufence);
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 7d878d1234cf..d44234dc25b2 100644
+index 9f561763e287..2ffe7a81ac43 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -712,37 +712,87 @@ int xe_vm_userptr_check_repin(struct xe_vm *vm)
- 		list_empty_careful(&vm->userptr.invalidated)) ? 0 : -EAGAIN;
- }
- 
--static struct dma_fence *
--xe_vm_bind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
--	       struct xe_sync_entry *syncs, u32 num_syncs,
--	       bool first_op, bool last_op);
-+static void xe_vm_populate_rebind(struct xe_vma_op *op, struct xe_vma *vma,
-+				  u8 tile_mask)
-+{
-+	INIT_LIST_HEAD(&op->link);
-+	op->base.op = DRM_GPUVA_OP_MAP;
-+	op->base.map.va.addr = vma->gpuva.va.addr;
-+	op->base.map.va.range = vma->gpuva.va.range;
-+	op->base.map.gem.obj = vma->gpuva.gem.obj;
-+	op->base.map.gem.offset = vma->gpuva.gem.offset;
-+	op->map.vma = vma;
-+	op->map.immediate = true;
-+	op->map.dumpable = vma->gpuva.flags & XE_VMA_DUMPABLE;
-+	op->map.is_null = xe_vma_is_null(vma);
-+}
-+
-+static int xe_vm_ops_add_rebind(struct xe_vma_ops *vops, struct xe_vma *vma,
-+				u8 tile_mask)
-+{
-+	struct xe_vma_op *op;
-+
-+	op = kzalloc(sizeof(*op), GFP_KERNEL);
-+	if (!op)
-+		return -ENOMEM;
-+
-+	xe_vm_populate_rebind(op, vma, tile_mask);
-+	list_add_tail(&op->link, &vops->list);
-+
-+	return 0;
-+}
-+
-+static struct dma_fence *ops_execute(struct xe_vm *vm,
-+				     struct xe_vma_ops *vops,
-+				     bool cleanup);
-+static void xe_vma_ops_init(struct xe_vma_ops *vops);
- 
- int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
+@@ -1782,17 +1782,10 @@ xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma, struct xe_exec_queue *q,
  {
  	struct dma_fence *fence;
- 	struct xe_vma *vma, *next;
-+	struct xe_vma_ops vops;
-+	struct xe_vma_op *op, *next_op;
-+	int err;
+ 	struct xe_exec_queue *wait_exec_queue = to_wait_exec_queue(vm, q);
+-	struct xe_user_fence *ufence;
  
- 	lockdep_assert_held(&vm->lock);
--	if (xe_vm_in_lr_mode(vm) && !rebind_worker)
-+	if ((xe_vm_in_lr_mode(vm) && !rebind_worker) ||
-+	    list_empty(&vm->rebind_list))
- 		return 0;
- 
-+	xe_vma_ops_init(&vops);
-+
  	xe_vm_assert_held(vm);
--	list_for_each_entry_safe(vma, next, &vm->rebind_list,
--				 combined_links.rebind) {
-+	list_for_each_entry(vma, &vm->rebind_list, combined_links.rebind) {
- 		xe_assert(vm->xe, vma->tile_present);
+ 	xe_bo_assert_held(bo);
  
--		list_del_init(&vma->combined_links.rebind);
- 		if (rebind_worker)
- 			trace_xe_vma_rebind_worker(vma);
- 		else
- 			trace_xe_vma_rebind_exec(vma);
--		fence = xe_vm_bind_vma(vma, NULL, NULL, 0, false, false);
--		if (IS_ERR(fence))
--			return PTR_ERR(fence);
-+
-+		err = xe_vm_ops_add_rebind(&vops, vma,
-+					   vma->tile_present);
-+		if (err)
-+			goto free_ops;
-+	}
-+
-+	fence = ops_execute(vm, &vops, false);
-+	if (IS_ERR(fence)) {
-+		err = PTR_ERR(fence);
-+	} else {
- 		dma_fence_put(fence);
-+		list_for_each_entry_safe(vma, next, &vm->rebind_list,
-+					 combined_links.rebind)
-+			list_del_init(&vma->combined_links.rebind);
-+	}
-+free_ops:
-+	list_for_each_entry_safe(op, next_op, &vops.list, link) {
-+		list_del(&op->link);
-+		kfree(op);
- 	}
- 
--	return 0;
-+	return err;
+-	ufence = find_ufence_get(syncs, num_syncs);
+-	if (vma->ufence && ufence)
+-		xe_sync_ufence_put(vma->ufence);
+-
+-	vma->ufence = ufence ?: vma->ufence;
+-
+ 	if (immediate) {
+ 		fence = xe_vm_bind_vma(vma, q, syncs, num_syncs, tile_mask,
+ 				       first_op, last_op);
+@@ -2801,20 +2794,57 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
+ 	return fence;
  }
  
- static void xe_vma_free(struct xe_vma *vma)
-@@ -2398,7 +2448,7 @@ static struct dma_fence *op_execute(struct xe_vm *vm, struct xe_vma *vma,
++static void vma_add_ufence(struct xe_vma *vma, struct xe_user_fence *ufence)
++{
++	if (vma->ufence)
++		xe_sync_ufence_put(vma->ufence);
++	vma->ufence = __xe_sync_ufence_get(ufence);
++}
++
++static void op_add_ufence(struct xe_vm *vm, struct xe_vma_op *op,
++			  struct xe_user_fence *ufence)
++{
++	switch (op->base.op) {
++	case DRM_GPUVA_OP_MAP:
++		vma_add_ufence(op->map.vma, ufence);
++		break;
++	case DRM_GPUVA_OP_REMAP:
++		if (op->remap.prev)
++			vma_add_ufence(op->remap.prev, ufence);
++		if (op->remap.next)
++			vma_add_ufence(op->remap.next, ufence);
++		break;
++	case DRM_GPUVA_OP_UNMAP:
++		break;
++	case DRM_GPUVA_OP_PREFETCH:
++		vma_add_ufence(gpuva_to_vma(op->base.prefetch.va), ufence);
++		break;
++	default:
++		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
++	}
++}
++
+ static void vm_bind_ioctl_ops_fini(struct xe_vm *vm, struct xe_vma_ops *vops,
+ 				   struct dma_fence *fence)
  {
- 	struct dma_fence *fence = NULL;
+ 	struct xe_exec_queue *wait_exec_queue = to_wait_exec_queue(vm, vops->q);
++	struct xe_user_fence *ufence;
+ 	struct xe_vma_op *op;
+ 	int i;
  
--	lockdep_assert_held_write(&vm->lock);
-+	lockdep_assert_held(&vm->lock);
- 
- 	xe_vm_assert_held(vm);
- 	xe_bo_assert_held(xe_vma_bo(vma));
-@@ -2517,7 +2567,7 @@ xe_vma_op_execute(struct xe_vm *vm, struct xe_vma_op *op)
- {
- 	struct dma_fence *fence = ERR_PTR(-ENOMEM);
- 
--	lockdep_assert_held_write(&vm->lock);
-+	lockdep_assert_held(&vm->lock);
- 
- 	switch (op->base.op) {
- 	case DRM_GPUVA_OP_MAP:
++	ufence = find_ufence_get(vops->syncs, vops->num_syncs);
+ 	list_for_each_entry(op, &vops->list, link) {
++		if (ufence)
++			op_add_ufence(vm, op, ufence);
++
+ 		if (op->base.op == DRM_GPUVA_OP_UNMAP)
+ 			xe_vma_destroy(gpuva_to_vma(op->base.unmap.va), fence);
+ 		else if (op->base.op == DRM_GPUVA_OP_REMAP)
+ 			xe_vma_destroy(gpuva_to_vma(op->base.remap.unmap->va),
+ 				       fence);
+ 	}
++	if (ufence)
++		xe_sync_ufence_put(ufence);
+ 	for (i = 0; i < vops->num_syncs; i++)
+ 		xe_sync_entry_signal(vops->syncs + i, fence);
+ 	xe_exec_queue_last_fence_set(wait_exec_queue, vm, fence);
 -- 
 2.34.1
 
