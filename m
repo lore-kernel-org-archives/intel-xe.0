@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95E07C4345F
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 18:44:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CDD2C4345F
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 18:54:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4010410FFB7;
-	Wed, 24 Apr 2024 18:44:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D50B113D3E;
+	Wed, 24 Apr 2024 18:54:48 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D003710FFB9;
- Wed, 24 Apr 2024 18:44:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0356124632498543337=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5A5B113D3E;
+ Wed, 24 Apr 2024 18:54:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/pf=3A_Expose_PF_service_d?=
- =?utf-8?q?etails_via_debugfs?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Prep_patches_for_1_j?=
+ =?utf-8?q?ob_per_VM_bind_IOCTL_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 24 Apr 2024 18:44:51 -0000
-Message-ID: <171398429184.1632134.18285123415758118575@8e613ede5ea5>
+Date: Wed, 24 Apr 2024 18:54:46 -0000
+Message-ID: <171398488667.1632086.3182583351746678395@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240424171030.2177-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20240424171030.2177-1-michal.wajdeczko@intel.com>
+References: <20240424172352.1704851-1-matthew.brost@intel.com>
+In-Reply-To: <20240424172352.1704851-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,29 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0356124632498543337==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/pf: Expose PF service details via debugfs
-URL   : https://patchwork.freedesktop.org/series/132858/
+Series: Prep patches for 1 job per VM bind IOCTL (rev2)
+URL   : https://patchwork.freedesktop.org/series/132246/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1171-ad654139fd5a7773f0310b5f745c105cdba520e8_BAT -> xe-pw-132858v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: ad654139fd5a drm-tip: 2024y-04m-24d-16h-23m-13s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Lock all gpuva ops during VM bind IOCTL
+Applying: drm/xe: Add ops_execute function which returns a fence
+Applying: drm/xe: Move migrate to prefetch to op_lock_and_prep function
+Applying: drm/xe: Add struct xe_vma_ops abstraction
+Applying: drm/xe: Use xe_vma_ops to implement xe_vm_rebind
+Applying: drm/xe: Simplify VM bind IOCTL error handling and cleanup
+Applying: drm/xe: Use xe_vma_ops to implement page fault rebinds
+Applying: drm/xe: Add some members to xe_vma_ops
+Applying: drm/xe: Add vm_bind_ioctl_ops_fini helper
+Applying: drm/xe: Move ufence check to op_lock_and_prep
+Applying: drm/xe: Move ufence add to vm_bind_ioctl_ops_fini
+Applying: drm/xe: Add xe_gt_tlb_invalidation_range and convert PT layer to use this
+Applying: drm/xe: Delete PT update selftest
 
 
-Build changes
--------------
-
-  * Linux: xe-1171-ad654139fd5a7773f0310b5f745c105cdba520e8 -> xe-pw-132858v1
-
-  IGT_7823: 61121a2eac4d191ad9f3077948c8ba19686fbb16 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1171-ad654139fd5a7773f0310b5f745c105cdba520e8: ad654139fd5a7773f0310b5f745c105cdba520e8
-  xe-pw-132858v1: 132858v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132858v1/index.html
-
---===============0356124632498543337==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pf: Expose PF service details via debugfs</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132858/">https://patchwork.freedesktop.org/series/132858/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132858v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132858v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1171-ad654139fd5a7773f0310b5f745c105cdba520e8_BAT -&gt; xe-pw-132858v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1171-ad654139fd5a7773f0310b5f745c105cdba520e8 -&gt; xe-pw-132858v1</li>
-</ul>
-<p>IGT_7823: 61121a2eac4d191ad9f3077948c8ba19686fbb16 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1171-ad654139fd5a7773f0310b5f745c105cdba520e8: ad654139fd5a7773f0310b5f745c105cdba520e8<br />
-  xe-pw-132858v1: 132858v1</p>
-
-</body>
-</html>
-
---===============0356124632498543337==--
