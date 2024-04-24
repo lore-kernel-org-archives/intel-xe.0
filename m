@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0797EC4345F
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 21:40:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0D4CC4345F
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 21:40:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF7E5113E08;
-	Wed, 24 Apr 2024 21:40:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 542D6113E08;
+	Wed, 24 Apr 2024 21:40:29 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43F74113E07;
- Wed, 24 Apr 2024 21:40:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63CF4113E09;
+ Wed, 24 Apr 2024 21:40:28 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/pf=3A_Impleme?=
- =?utf-8?q?nt_pci=5Fdriver=2Esriov=5Fconfigure_callback?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/pf=3A_Implement_pc?=
+ =?utf-8?q?i=5Fdriver=2Esriov=5Fconfigure_callback?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 24 Apr 2024 21:40:16 -0000
-Message-ID: <171399481627.1648713.8020584162270656890@8e613ede5ea5>
+Date: Wed, 24 Apr 2024 21:40:28 -0000
+Message-ID: <171399482840.1648713.2893472701266633797@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240424212101.2221-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20240424212101.2221-1-michal.wajdeczko@intel.com>
@@ -44,13 +44,46 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/pf: Implement pci_driver.sriov_configure callback
 URL   : https://patchwork.freedesktop.org/series/132868/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: ad654139fd5a drm-tip: 2024y-04m-24d-16h-23m-13s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/pf: Implement pci_driver.sriov_configure callback
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+0daf0be5bb95eb0a0e42275e00a0e42d8d8fd543
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 06c50d9d08c5c8723b32d544e2832624d87ec474
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Wed Apr 24 23:21:01 2024 +0200
+
+    drm/xe/pf: Implement pci_driver.sriov_configure callback
+    
+    The PCI subsystem already exposes the "sriov_numvfs" attribute
+    that users can use to enable or disable SR-IOV VFs. Add custom
+    implementation of the .sriov_configure callback defined by the
+    pci_driver to perform additional steps, including fair VFs
+    provisioning with the resources, as required by our platforms.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch ad654139fd5a7773f0310b5f745c105cdba520e8 drm-intel
+06c50d9d08c5 drm/xe/pf: Implement pci_driver.sriov_configure callback
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:49: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#49: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 173 lines checked
 
 
