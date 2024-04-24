@@ -4,56 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C5C6C4345F
-	for <intel-xe@archiver.kernel.org>; Sun, 28 Apr 2024 08:37:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C08C6C25B10
+	for <intel-xe@archiver.kernel.org>; Sun, 28 Apr 2024 21:33:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0F4010F3CB;
-	Sun, 28 Apr 2024 08:37:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4856410E457;
+	Sun, 28 Apr 2024 21:33:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jRi6EqdF";
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="kq1e1Q16";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8C5B10F3CB
- for <intel-xe@lists.freedesktop.org>; Sun, 28 Apr 2024 08:37:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714293444; x=1745829444;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=0Isp7en5eR1+cMdOFdNsRsnqxlIM6CU3z+S5NRzvfmw=;
- b=jRi6EqdFI0OR8ecN9uOeHtf10KnhUHRYq5dLUHhT585ziz2rw/9nDlWq
- CtwW7LBpurF9nVVHCUAXExs8qohqV5v8VXlaj7o1zy/cV7Qq0VvLjmY8W
- RqNa34G6b/rJApvdWOLz/OQ1i59RsalLly4fkMvi6LBJg8Ww41SC7raIf
- dobb91nh0A8YXU39ODimfcs7i31Kvco95o4PasKUzQMP3rdGAHR/ZBCA0
- s5E4RXE4vEYoB+XXssc+VyS8Y++zh+jUSFKLCudwlI0+oR1N3A3G+s7e2
- sjmaI8QvilvuYda3I6aQIk/L9sDpgzQkDcQjuuncISW4v0/Ugo5KDdhna w==;
-X-CSE-ConnectionGUID: Kv9XF9QFS4qqlx6KD1odcQ==
-X-CSE-MsgGUID: Sxv8e7qpQpOsMYBTjYqmvA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11057"; a="13766135"
-X-IronPort-AV: E=Sophos;i="6.07,237,1708416000"; d="scan'208";a="13766135"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2024 01:37:23 -0700
-X-CSE-ConnectionGUID: EwWavcfxQ2Cs9PWF1nzS4A==
-X-CSE-MsgGUID: Y4OQdjy4SWWk1YJQwEYCZw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,237,1708416000"; d="scan'208";a="26463960"
-Received: from lkp-server01.sh.intel.com (HELO e434dd42e5a1) ([10.239.97.150])
- by orviesa008.jf.intel.com with ESMTP; 28 Apr 2024 01:37:21 -0700
-Received: from kbuild by e434dd42e5a1 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1s102A-00060w-2g;
- Sun, 28 Apr 2024 08:37:18 +0000
-Date: Sun, 28 Apr 2024 16:36:44 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- intel-xe@lists.freedesktop.org, Oak Zeng <oak.zeng@intel.com>
-Subject: [drm-xe:drm-xe-next 12/13]
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:321:15: error: variable 'end' is
- uninitialized when used here
-Message-ID: <202404281655.e9wgLPAR-lkp@intel.com>
+Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E2301139D0
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Apr 2024 10:07:19 +0000 (UTC)
+Received: internal info suppressed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
+ t=1713953235; bh=uFedjR1tM4ZjuzhFk/mMGMstJXmh0vcy1cdo5pRrQHQ=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=kq1e1Q16OvDQj3ZzOn4vGU6XVqGoaHU96YRTHZQtYOz8wBIQBLhHVaiOnyhqx4tsw
+ hsN6A3/yQFY95VDKmC9iQynH/gHSZX7nspMipmU5kvW8t/nhqmKp/0vrohVHm9JbBE
+ OzJG8RcQfZFztk61nDFDs+TU7uVFwiftjNP/5SMKfXQcCsSevnCw9EiDfSbes8zEwl
+ KsVCRKtu3EkxxF36Zr7xw8qIjA8eNR4tml9pWrgDMJlM9J+mJXK1bbFtX7/l+6Qv27
+ TRPbLEtSbTyyv7xYPoS4PMSP8kLNIpk5fRxN72Cj1b9fsKLI3piJvwAocYXaRDf0dR
+ kmV5OWU0tscng==
+Received: from fkassabri-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by fkassabri-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
+ ESMTPS id 43OA79TJ269544
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+ Wed, 24 Apr 2024 13:07:09 +0300
+Received: (from fkassabri@localhost)
+ by fkassabri-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 43OA79Me269543; 
+ Wed, 24 Apr 2024 13:07:09 +0300
+From: Farah Kassabri <fkassabri@habana.ai>
+To: intel-xe@lists.freedesktop.org
+Cc: osharabi@habana.ai, Farah Kassabri <fkassabri@habana.ai>
+Subject: [PATCH 2/2] drm/xe: set last driver commit sha
+Date: Wed, 24 Apr 2024 13:07:06 +0300
+Message-Id: <20240424100706.269523-2-fkassabri@habana.ai>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240424100706.269523-1-fkassabri@habana.ai>
+References: <20240424100706.269523-1-fkassabri@habana.ai>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sun, 28 Apr 2024 21:33:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,230 +59,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-head:   98ad158e543426561fa5df5c4387d4368601866f
-commit: c4f18703629dd0112641d6974eb295a53c4a4615 [12/13] drm/xe: Add xe_gt_tlb_invalidation_range and convert PT layer to use this
-config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20240428/202404281655.e9wgLPAR-lkp@intel.com/config)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project 5ef5eb66fb428aaf61fb51b709f065c069c11242)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240428/202404281655.e9wgLPAR-lkp@intel.com/reproduce)
+This patch will set the last driver commit sha into the drm driver
+info data structure, which will be used in the log message which
+prints the device info at the end of the driver initialization.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202404281655.e9wgLPAR-lkp@intel.com/
+Signed-off-by: Farah Kassabri <fkassabri@habana.ai>
+---
+ drivers/gpu/drm/xe/Makefile    | 4 ++++
+ drivers/gpu/drm/xe/xe_device.c | 1 +
+ 2 files changed, 5 insertions(+)
 
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:9:
-   In file included from drivers/gpu/drm/xe/xe_device.h:12:
-   In file included from include/drm/drm_util.h:36:
-   In file included from include/linux/kgdb.h:19:
-   In file included from include/linux/kprobes.h:28:
-   In file included from include/linux/ftrace.h:13:
-   In file included from include/linux/kallsyms.h:13:
-   In file included from include/linux/mm.h:2208:
-   include/linux/vmstat.h:508:43: error: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Werror,-Wenum-enum-conversion]
-     508 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     509 |                            item];
-         |                            ~~~~
-   include/linux/vmstat.h:515:43: error: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Werror,-Wenum-enum-conversion]
-     515 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     516 |                            NR_VM_NUMA_EVENT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/vmstat.h:522:36: error: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Werror,-Wenum-enum-conversion]
-     522 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
-   include/linux/vmstat.h:527:43: error: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Werror,-Wenum-enum-conversion]
-     527 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     528 |                            NR_VM_NUMA_EVENT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/vmstat.h:536:43: error: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Werror,-Wenum-enum-conversion]
-     536 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     537 |                            NR_VM_NUMA_EVENT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~~
-   In file included from drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:9:
-   In file included from drivers/gpu/drm/xe/xe_device.h:15:
-   In file included from drivers/gpu/drm/xe/xe_device_types.h:9:
-   In file included from include/linux/pci.h:39:
-   In file included from include/linux/io.h:13:
-   In file included from arch/s390/include/asm/io.h:78:
-   include/asm-generic/io.h:547:31: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
-     547 |         val = __raw_readb(PCI_IOBASE + addr);
-         |                           ~~~~~~~~~~ ^
-   include/asm-generic/io.h:560:61: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
-     560 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/big_endian.h:37:59: note: expanded from macro '__le16_to_cpu'
-      37 | #define __le16_to_cpu(x) __swab16((__force __u16)(__le16)(x))
-         |                                                           ^
-   include/uapi/linux/swab.h:102:54: note: expanded from macro '__swab16'
-     102 | #define __swab16(x) (__u16)__builtin_bswap16((__u16)(x))
-         |                                                      ^
-   In file included from drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:9:
-   In file included from drivers/gpu/drm/xe/xe_device.h:15:
-   In file included from drivers/gpu/drm/xe/xe_device_types.h:9:
-   In file included from include/linux/pci.h:39:
-   In file included from include/linux/io.h:13:
-   In file included from arch/s390/include/asm/io.h:78:
-   include/asm-generic/io.h:573:61: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
-     573 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/big_endian.h:35:59: note: expanded from macro '__le32_to_cpu'
-      35 | #define __le32_to_cpu(x) __swab32((__force __u32)(__le32)(x))
-         |                                                           ^
-   include/uapi/linux/swab.h:115:54: note: expanded from macro '__swab32'
-     115 | #define __swab32(x) (__u32)__builtin_bswap32((__u32)(x))
-         |                                                      ^
-   In file included from drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:9:
-   In file included from drivers/gpu/drm/xe/xe_device.h:15:
-   In file included from drivers/gpu/drm/xe/xe_device_types.h:9:
-   In file included from include/linux/pci.h:39:
-   In file included from include/linux/io.h:13:
-   In file included from arch/s390/include/asm/io.h:78:
-   include/asm-generic/io.h:584:33: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
-     584 |         __raw_writeb(value, PCI_IOBASE + addr);
-         |                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:594:59: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
-     594 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:604:59: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
-     604 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:692:20: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
-     692 |         readsb(PCI_IOBASE + addr, buffer, count);
-         |                ~~~~~~~~~~ ^
-   include/asm-generic/io.h:700:20: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
-     700 |         readsw(PCI_IOBASE + addr, buffer, count);
-         |                ~~~~~~~~~~ ^
-   include/asm-generic/io.h:708:20: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
-     708 |         readsl(PCI_IOBASE + addr, buffer, count);
-         |                ~~~~~~~~~~ ^
-   include/asm-generic/io.h:717:21: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
-     717 |         writesb(PCI_IOBASE + addr, buffer, count);
-         |                 ~~~~~~~~~~ ^
-   include/asm-generic/io.h:726:21: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
-     726 |         writesw(PCI_IOBASE + addr, buffer, count);
-         |                 ~~~~~~~~~~ ^
-   include/asm-generic/io.h:735:21: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
-     735 |         writesl(PCI_IOBASE + addr, buffer, count);
-         |                 ~~~~~~~~~~ ^
->> drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:321:15: error: variable 'end' is uninitialized when used here [-Werror,-Wuninitialized]
-     321 |                 end = ALIGN(end, align);
-         |                             ^~~
-   include/linux/align.h:8:38: note: expanded from macro 'ALIGN'
-       8 | #define ALIGN(x, a)             __ALIGN_KERNEL((x), (a))
-         |                                                 ^
-   include/uapi/linux/const.h:31:51: note: expanded from macro '__ALIGN_KERNEL'
-      31 | #define __ALIGN_KERNEL(x, a)            __ALIGN_KERNEL_MASK(x, (__typeof__(x))(a) - 1)
-         |                                                             ^
-   include/uapi/linux/const.h:32:41: note: expanded from macro '__ALIGN_KERNEL_MASK'
-      32 | #define __ALIGN_KERNEL_MASK(x, mask)    (((x) + (mask)) & ~(mask))
-         |                                            ^
-   drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:308:17: note: initialize the variable 'end' to silence this warning
-     308 |                 u64 align, end;
-         |                               ^
-         |                                = 0
-   18 errors generated.
-
-
-vim +/end +321 drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-
-   264	
-   265	/**
-   266	 * xe_gt_tlb_invalidation_range - Issue a TLB invalidation on this GT for an
-   267	 * address range
-   268	 *
-   269	 * @gt: graphics tile
-   270	 * @fence: invalidation fence which will be signal on TLB invalidation
-   271	 * completion, can be NULL
-   272	 * @start: start address
-   273	 * @end: end address
-   274	 * @asid: address space id
-   275	 *
-   276	 * Issue a range based TLB invalidation if supported, if not fallback to a full
-   277	 * TLB invalidation. Completion of TLB is asynchronous and caller can either use
-   278	 * the invalidation fence or seqno + xe_gt_tlb_invalidation_wait to wait for
-   279	 * completion.
-   280	 *
-   281	 * Return: Seqno which can be passed to xe_gt_tlb_invalidation_wait on success,
-   282	 * negative error code on error.
-   283	 */
-   284	int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
-   285					 struct xe_gt_tlb_invalidation_fence *fence,
-   286					 u64 start, u64 end, u32 asid)
-   287	{
-   288		struct xe_device *xe = gt_to_xe(gt);
-   289	#define MAX_TLB_INVALIDATION_LEN	7
-   290		u32 action[MAX_TLB_INVALIDATION_LEN];
-   291		int len = 0;
-   292	
-   293		/* Execlists not supported */
-   294		if (gt_to_xe(gt)->info.force_execlist) {
-   295			if (fence)
-   296				__invalidation_fence_signal(fence);
-   297	
-   298			return 0;
-   299		}
-   300	
-   301		action[len++] = XE_GUC_ACTION_TLB_INVALIDATION;
-   302		action[len++] = 0; /* seqno, replaced in send_tlb_invalidation */
-   303		if (!xe->info.has_range_tlb_invalidation) {
-   304			action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL);
-   305		} else {
-   306			u64 orig_start = start;
-   307			u64 length = end - start;
-   308			u64 align, end;
-   309	
-   310			if (length < SZ_4K)
-   311				length = SZ_4K;
-   312	
-   313			/*
-   314			 * We need to invalidate a higher granularity if start address
-   315			 * is not aligned to length. When start is not aligned with
-   316			 * length we need to find the length large enough to create an
-   317			 * address mask covering the required range.
-   318			 */
-   319			align = roundup_pow_of_two(length);
-   320			start = ALIGN_DOWN(start, align);
- > 321			end = ALIGN(end, align);
-   322			length = align;
-   323			while (start + length < end) {
-   324				length <<= 1;
-   325				start = ALIGN_DOWN(orig_start, length);
-   326			}
-   327	
-   328			/*
-   329			 * Minimum invalidation size for a 2MB page that the hardware
-   330			 * expects is 16MB
-   331			 */
-   332			if (length >= SZ_2M) {
-   333				length = max_t(u64, SZ_16M, length);
-   334				start = ALIGN_DOWN(orig_start, length);
-   335			}
-   336	
-   337			xe_gt_assert(gt, length >= SZ_4K);
-   338			xe_gt_assert(gt, is_power_of_2(length));
-   339			xe_gt_assert(gt, !(length & GENMASK(ilog2(SZ_16M) - 1,
-   340							    ilog2(SZ_2M) + 1)));
-   341			xe_gt_assert(gt, IS_ALIGNED(start, length));
-   342	
-   343			action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_PAGE_SELECTIVE);
-   344			action[len++] = asid;
-   345			action[len++] = lower_32_bits(start);
-   346			action[len++] = upper_32_bits(start);
-   347			action[len++] = ilog2(length) - ilog2(SZ_4K);
-   348		}
-   349	
-   350		xe_gt_assert(gt, len <= MAX_TLB_INVALIDATION_LEN);
-   351	
-   352		return send_tlb_invalidation(&gt->uc.guc, fence, action, len);
-   353	}
-   354	
-
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 8321ec4f9b46..acccb517b7bb 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -309,6 +309,10 @@ ifeq ($(CONFIG_DEBUG_FS),y)
+ 		i915-display/intel_pipe_crc.o
+ endif
+ 
++GIT_SHA ?= $(shell cd $(srctree) && git rev-parse --short HEAD)
++DRV_CFLAGS_MODULE="-DXE_DRIVER_GIT_SHA=-$(GIT_SHA)"
++CFLAGS_MODULE += ${DRV_CFLAGS_MODULE}
++
+ obj-$(CONFIG_DRM_XE) += xe.o
+ obj-$(CONFIG_DRM_XE_KUNIT_TEST) += tests/
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 55bbc8b8df15..2e74aa18e953 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -215,6 +215,7 @@ static struct drm_driver driver = {
+ 	.major = DRIVER_MAJOR,
+ 	.minor = DRIVER_MINOR,
+ 	.patchlevel = DRIVER_PATCHLEVEL,
++	.git_sha = __stringify(XE_DRIVER_GIT_SHA),
+ };
+ 
+ static void xe_device_destroy(struct drm_device *dev, void *dummy)
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
