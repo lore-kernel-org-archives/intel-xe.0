@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3432C19F4F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCFE0C07E8E
 	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 17:24:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DCCF10FF32;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 501C710FE61;
 	Wed, 24 Apr 2024 17:24:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kBtESnFt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mnlqUrfc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B4CB10FDA3
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Apr 2024 17:24:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 539AB10FEF2
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Apr 2024 17:24:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713979464; x=1745515464;
+ t=1713979465; x=1745515465;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=J3MBRXI3Rut+UnGrx4byId27rUfzp0Usm2gpX23IF/E=;
- b=kBtESnFtL6DZEhILXvZZcQ0UcntEP0lfkP4NvA0idshWCHaJOHKUgbe8
- 6gp6+otfXajwXC6NamOPKUjmrPPu3nQPE3BfCz+TxhvNe0vueb1kzDY/e
- 8txkH4JmGgo1239DX+VCEeJezhc49vJ3ZB0y2wVK5kyEXWu199XiPzIsp
- 6Rp7EUBpe0CLtlmZ/aYMo+7l8vBRF/fSKBt4ylc8PTWw/d42WJH+0t+Xl
- iK6fLGuHeXzXxwXFDPfBLERTK1FukziNbu7glbFz+1KwG1FfHSXbZrxuT
- Yw13dQ+QVCFjijUjiW2ehGKHW+9X62PWa9Cy9/HAPQlw55oKHrar88esa g==;
-X-CSE-ConnectionGUID: irqGF/v5TpaMU3av7rjbWw==
-X-CSE-MsgGUID: pj9wBOemT1mye27clTcZWg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="12561479"
-X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="12561479"
+ bh=GrH2oTFDu+8CYZ3tfKSm/gt4yFpS60yQC+1/i3jWL6Y=;
+ b=mnlqUrfcYZl2T5CZ7Xa0Og5NwRsL3618JqwL6qPB/B1DTFep7x1ZHW0k
+ 5O9vDEmaYDm7TXJuZ5EKNuRQpf5K2n5kTXMtHV8t3U0YpXJ6jMYFvnsvY
+ HtM+IzQb2lTWDl9oGKE++tHqHSjQVmCsyNc3Ii+WFtWdBpO74m5PqqRB7
+ pAp7qYT2AhJmKqUK+yPCqBmK+Rg008LIZ5CWvPwi/fFz535mKrA/eek3G
+ bBdgg+uN4JpmVeO+BlrmmQCe4/QYV0LQuOC3G2i0IL0jQEixiUSeFZfa3
+ zPZWAgYWUhQDV3QDGd2bkUwHB8d7brnFK9NOdr3E6yIuBOGhWHtGrLZp7 A==;
+X-CSE-ConnectionGUID: J76coDebRsO5oyO8srS8rw==
+X-CSE-MsgGUID: ROTJb7stSfGLielc3F5fAw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="12561483"
+X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="12561483"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Apr 2024 10:24:23 -0700
-X-CSE-ConnectionGUID: bAu2TtSCQn2MHXj9OOxizw==
-X-CSE-MsgGUID: HAK2Lg49RsSEHo5BTTSnUw==
+X-CSE-ConnectionGUID: j00Fo76zSDKiBl0fkkmqSg==
+X-CSE-MsgGUID: ETc4In4uRHqVLo0/bDiYRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="24825504"
+X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="24825507"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Apr 2024 10:24:20 -0700
@@ -45,9 +45,9 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Matthew Brost <matthew.brost@intel.com>,
 	Oak Zeng <oak.zeng@intel.com>
-Subject: [PATCH v2 08/13] drm/xe: Add some members to xe_vma_ops
-Date: Wed, 24 Apr 2024 10:23:47 -0700
-Message-Id: <20240424172352.1704851-9-matthew.brost@intel.com>
+Subject: [PATCH v2 09/13] drm/xe: Add vm_bind_ioctl_ops_fini helper
+Date: Wed, 24 Apr 2024 10:23:48 -0700
+Message-Id: <20240424172352.1704851-10-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240424172352.1704851-1-matthew.brost@intel.com>
 References: <20240424172352.1704851-1-matthew.brost@intel.com>
@@ -67,98 +67,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This will help with moving to single jobs for many bind operations.
+Simplify VM bind code by signaling out-fences / destroying VMAs in a
+single location. Will help with transition single job for many bind ops.
 
 v2:
- - Rebase
+ - s/vm_bind_ioctl_ops_install_fences/vm_bind_ioctl_ops_fini (Oak)
+ - Set last fence in vm_bind_ioctl_ops_fini (Oak)
 
 Cc: Oak Zeng <oak.zeng@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c       | 19 ++++++++++++++-----
- drivers/gpu/drm/xe/xe_vm_types.h |  8 ++++++++
- 2 files changed, 22 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c | 62 +++++++++++++++-----------------------
+ 1 file changed, 24 insertions(+), 38 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 234b1baac39e..2e91067fc0ea 100644
+index 2e91067fc0ea..93a2c113ad1a 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -745,7 +745,9 @@ static int xe_vm_ops_add_rebind(struct xe_vma_ops *vops, struct xe_vma *vma,
+@@ -1630,7 +1630,7 @@ xe_vm_unbind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
+ 	struct dma_fence *fence = NULL;
+ 	struct dma_fence **fences = NULL;
+ 	struct dma_fence_array *cf = NULL;
+-	int cur_fence = 0, i;
++	int cur_fence = 0;
+ 	int number_tiles = hweight8(vma->tile_present);
+ 	int err;
+ 	u8 id;
+@@ -1688,10 +1688,6 @@ xe_vm_unbind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
  
- static struct dma_fence *ops_execute(struct xe_vm *vm,
- 				     struct xe_vma_ops *vops);
--static void xe_vma_ops_init(struct xe_vma_ops *vops);
-+static void xe_vma_ops_init(struct xe_vma_ops *vops, struct xe_vm *vm,
-+			    struct xe_exec_queue *q,
-+			    struct xe_sync_entry *syncs, u32 num_syncs);
+ 	fence = cf ? &cf->base : !fence ?
+ 		xe_exec_queue_last_fence_get(wait_exec_queue, vm) : fence;
+-	if (last_op) {
+-		for (i = 0; i < num_syncs; i++)
+-			xe_sync_entry_signal(&syncs[i], fence);
+-	}
  
- int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
- {
-@@ -760,7 +762,7 @@ int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
- 	    list_empty(&vm->rebind_list))
- 		return 0;
+ 	return fence;
  
--	xe_vma_ops_init(&vops);
-+	xe_vma_ops_init(&vops, vm, NULL, NULL, 0);
- 
- 	xe_vm_assert_held(vm);
- 	list_for_each_entry(vma, &vm->rebind_list, combined_links.rebind) {
-@@ -806,7 +808,7 @@ struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma, u8 tile_ma
- 	xe_vm_assert_held(vm);
- 	xe_assert(vm->xe, xe_vm_in_fault_mode(vm));
- 
--	xe_vma_ops_init(&vops);
-+	xe_vma_ops_init(&vops, vm, NULL, NULL, 0);
- 
- 	err = xe_vm_ops_add_rebind(&vops, vma, tile_mask);
- 	if (err)
-@@ -2998,9 +3000,16 @@ static int vm_bind_ioctl_signal_fences(struct xe_vm *vm,
- 	return err;
- }
- 
--static void xe_vma_ops_init(struct xe_vma_ops *vops)
-+static void xe_vma_ops_init(struct xe_vma_ops *vops, struct xe_vm *vm,
-+			    struct xe_exec_queue *q,
-+			    struct xe_sync_entry *syncs, u32 num_syncs)
- {
-+	memset(vops, 0, sizeof(*vops));
- 	INIT_LIST_HEAD(&vops->list);
-+	vops->vm = vm;
-+	vops->q = q;
-+	vops->syncs = syncs;
-+	vops->num_syncs = num_syncs;
- }
- 
- int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-@@ -3167,7 +3176,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		goto free_syncs;
+@@ -1715,7 +1711,7 @@ xe_vm_bind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
+ 	struct dma_fence **fences = NULL;
+ 	struct dma_fence_array *cf = NULL;
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+-	int cur_fence = 0, i;
++	int cur_fence = 0;
+ 	int number_tiles = hweight8(tile_mask);
+ 	int err;
+ 	u8 id;
+@@ -1762,12 +1758,6 @@ xe_vm_bind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
+ 		}
  	}
  
--	xe_vma_ops_init(&vops);
-+	xe_vma_ops_init(&vops, vm, q, syncs, num_syncs);
- 	for (i = 0; i < args->num_binds; ++i) {
- 		u64 range = bind_ops[i].range;
- 		u64 addr = bind_ops[i].addr;
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 7ff92b263b79..144ee88c70a5 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -353,6 +353,14 @@ struct xe_vma_op {
- struct xe_vma_ops {
- 	/** @list: list of VMA operations */
- 	struct list_head list;
-+	/** @vm: VM */
-+	struct xe_vm *vm;
-+	/** @q: exec queue these operations */
-+	struct xe_exec_queue *q;
-+	/** @syncs: syncs these operation */
-+	struct xe_sync_entry *syncs;
-+	/** @num_syncs: number of syncs */
-+	u32 num_syncs;
- };
+-	if (last_op) {
+-		for (i = 0; i < num_syncs; i++)
+-			xe_sync_entry_signal(&syncs[i],
+-					     cf ? &cf->base : fence);
+-	}
+-
+ 	return cf ? &cf->base : fence;
  
- #endif
+ err_fences:
+@@ -1819,20 +1809,11 @@ xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma, struct xe_exec_queue *q,
+ 		if (IS_ERR(fence))
+ 			return fence;
+ 	} else {
+-		int i;
+-
+ 		xe_assert(vm->xe, xe_vm_in_fault_mode(vm));
+ 
+ 		fence = xe_exec_queue_last_fence_get(wait_exec_queue, vm);
+-		if (last_op) {
+-			for (i = 0; i < num_syncs; i++)
+-				xe_sync_entry_signal(&syncs[i], fence);
+-		}
+ 	}
+ 
+-	if (last_op)
+-		xe_exec_queue_last_fence_set(wait_exec_queue, vm, fence);
+-
+ 	return fence;
+ }
+ 
+@@ -1842,7 +1823,6 @@ xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
+ 	     u32 num_syncs, bool first_op, bool last_op)
+ {
+ 	struct dma_fence *fence;
+-	struct xe_exec_queue *wait_exec_queue = to_wait_exec_queue(vm, q);
+ 
+ 	xe_vm_assert_held(vm);
+ 	xe_bo_assert_held(xe_vma_bo(vma));
+@@ -1851,10 +1831,6 @@ xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
+ 	if (IS_ERR(fence))
+ 		return fence;
+ 
+-	xe_vma_destroy(vma, fence);
+-	if (last_op)
+-		xe_exec_queue_last_fence_set(wait_exec_queue, vm, fence);
+-
+ 	return fence;
+ }
+ 
+@@ -2009,17 +1985,7 @@ xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
+ 		return xe_vm_bind(vm, vma, q, xe_vma_bo(vma), syncs, num_syncs,
+ 				  vma->tile_mask, true, first_op, last_op);
+ 	} else {
+-		struct dma_fence *fence =
+-			xe_exec_queue_last_fence_get(wait_exec_queue, vm);
+-		int i;
+-
+-		/* Nothing to do, signal fences now */
+-		if (last_op) {
+-			for (i = 0; i < num_syncs; i++)
+-				xe_sync_entry_signal(&syncs[i], fence);
+-		}
+-
+-		return fence;
++		return xe_exec_queue_last_fence_get(wait_exec_queue, vm);
+ 	}
+ }
+ 
+@@ -2822,6 +2788,26 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
+ 	return fence;
+ }
+ 
++static void vm_bind_ioctl_ops_fini(struct xe_vm *vm, struct xe_vma_ops *vops,
++				   struct dma_fence *fence)
++{
++	struct xe_exec_queue *wait_exec_queue = to_wait_exec_queue(vm, vops->q);
++	struct xe_vma_op *op;
++	int i;
++
++	list_for_each_entry(op, &vops->list, link) {
++		if (op->base.op == DRM_GPUVA_OP_UNMAP)
++			xe_vma_destroy(gpuva_to_vma(op->base.unmap.va), fence);
++		else if (op->base.op == DRM_GPUVA_OP_REMAP)
++			xe_vma_destroy(gpuva_to_vma(op->base.remap.unmap->va),
++				       fence);
++	}
++	for (i = 0; i < vops->num_syncs; i++)
++		xe_sync_entry_signal(vops->syncs + i, fence);
++	xe_exec_queue_last_fence_set(wait_exec_queue, vm, fence);
++	dma_fence_put(fence);
++}
++
+ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
+ 				     struct xe_vma_ops *vops)
+ {
+@@ -2846,7 +2832,7 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
+ 			xe_vm_kill(vm, false);
+ 			goto unlock;
+ 		} else {
+-			dma_fence_put(fence);
++			vm_bind_ioctl_ops_fini(vm, vops, fence);
+ 		}
+ 	}
+ 
 -- 
 2.34.1
 
