@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21712C07E8E
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 11:49:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1357C4345F
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 11:50:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A91E510F7F4;
-	Wed, 24 Apr 2024 11:49:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JylF1rcI";
-	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AE4110F47A;
- Wed, 24 Apr 2024 11:49:20 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 6038B6197E;
- Wed, 24 Apr 2024 11:49:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B06FCC2BD10;
- Wed, 24 Apr 2024 11:49:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1713959359;
- bh=c+NIyIxckPHmqEd/nB4JkVKyhmET6Cm0MANJ8VKJ9nk=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=JylF1rcIMBicsRPZbxPkpv2ii6i/6F7yp3isjlV0eanD1/f5rdKHdQZPbowAZCbwx
- zRhVNExjC7CO4JLRpKdDq+YDRbE+LNmpjEz+Fe8ZZ6f9DuVVubvhqXqxnabRoEMNQ8
- sWwIkH5A1N5vy5UnklujfbRhJt2wIftl8hsVxTGIu6ilUMYDR70KeByEIPr38YP7Ky
- u+KnZJQTQhJQzB8NZ36NZ86Hc1X+M6/neSyXFz5/8YqAFbt3ZKKExTomidMyB/CwqJ
- tsZHydTA/yl3YZ5lCizlNsbwACUpGTNpbByduN4Ou0z3pxp01E5yFatsjoFs8YGzuR
- 9MI3I2iSyy8sg==
-Date: Wed, 24 Apr 2024 13:49:16 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>, 
- dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, 
- airlied@gmail.com, tzimmermann@suse.de, intel-xe@lists.freedesktop.org, 
- Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH v3 1/4] drm: add devm release action
-Message-ID: <20240424-spectacular-lumpy-guan-7188eb@houat>
-References: <20240422065756.294679-1-aravind.iddamsetty@linux.intel.com>
- <20240422065756.294679-2-aravind.iddamsetty@linux.intel.com>
- <ZibOmWPr3pZXdoNM@intel.com>
- <c899f2a5-e4f8-421f-ba87-8e8c15a6f665@linux.intel.com>
- <Zify_rd1yV6ki7oR@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FEB210F7F4;
+	Wed, 24 Apr 2024 11:50:00 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49C1210F47A;
+ Wed, 24 Apr 2024 11:49:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3198358382065053520=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="ge6lzsrmzmegosqw"
-Content-Disposition: inline
-In-Reply-To: <Zify_rd1yV6ki7oR@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_PF=3A_Expose_GT-level_SR-IOV_det?=
+ =?utf-8?q?ails_over_debugfs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 24 Apr 2024 11:49:59 -0000
+Message-ID: <171395939929.1630367.9073807472341415764@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240423131244.2045-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20240423131244.2045-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,96 +36,191 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============3198358382065053520==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---ge6lzsrmzmegosqw
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-On Tue, Apr 23, 2024 at 01:42:22PM -0400, Rodrigo Vivi wrote:
-> On Tue, Apr 23, 2024 at 02:25:06PM +0530, Aravind Iddamsetty wrote:
-> >=20
-> > On 23/04/24 02:24, Rodrigo Vivi wrote:
-> > > On Mon, Apr 22, 2024 at 12:27:53PM +0530, Aravind Iddamsetty wrote:
-> > >> In scenarios where drm_dev_put is directly called by driver we want =
-to
-> > >> release devm_drm_dev_init_release action associated with struct
-> > >> drm_device.
-> > >>
-> > >> v2: Directly expose the original function, instead of introducing a
-> > >> helper (Rodrigo)
-> > >>
-> > >> v3: add kernel-doc (Maxime Ripard)
-> > >>
-> > >> Cc: Maxime Ripard <mripard@kernel.org>
-> > >> Cc: Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>
-> > >> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > >>
-> > > please avoid these empty lines here.... cc, rv-b, sign-offs, links,
-> > > etc are all in the same block.
-> > ok.
-> > >
-> > >> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > >> Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.co=
-m>
-> > >> ---
-> > >>  drivers/gpu/drm/drm_drv.c | 13 +++++++++++++
-> > >>  include/drm/drm_drv.h     |  2 ++
-> > >>  2 files changed, 15 insertions(+)
-> > >>
-> > >> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> > >> index 243cacb3575c..9d0409165f1e 100644
-> > >> --- a/drivers/gpu/drm/drm_drv.c
-> > >> +++ b/drivers/gpu/drm/drm_drv.c
-> > >> @@ -714,6 +714,19 @@ static int devm_drm_dev_init(struct device *par=
-ent,
-> > >>  					devm_drm_dev_init_release, dev);
-> > >>  }
-> > >> =20
-> > >> +/**
-> > >> + * devm_drm_dev_release_action - Call the final release action of t=
-he device
-> > > Seeing the doc here gave me a second thought....
-> > >
-> > > the original release should be renamed to _devm_drm_dev_release
-> > > and this should be called devm_drm_dev_release without the 'action' w=
-ord.
-> > i believe, was suggested earlier to directly expose the main function, =
-is=A0
-> > there any reason to have a __ version ?
->=20
-> No no, just ignore me. Just remove the '_action' and don't change the oth=
-er.
->=20
-> I don't like exposing the a function with '__'. what would '__' that mean?
-> This is what I meant on the first comment.
->=20
-> Now, I believe that we don't need the '_action'. What does the 'action' m=
-ean?
->=20
-> the devm_drm_dev_release should be enough. But then I got confused and
-> I thought it would conflict with the original released function name.
-> But I misread it.
+Series: PF: Expose GT-level SR-IOV details over debugfs
+URL   : https://patchwork.freedesktop.org/series/132777/
+State : success
 
-I don't think devm_drm_dev_release is a good name either. Just like any
-other devm_* function that cancels what a previous one has been doing
-(devm_kfree, devm_backlight_device_unregister, devm_nvmem_device_put,
-etc.) it should be called devm_drm_dev_put or something similar.
+== Summary ==
 
-Maxime
+CI Bug Log - changes from xe-1162-e1dc9638bb47a28181fee1a9a180445ca2a8b9cf_BAT -> xe-pw-132777v1_BAT
+====================================================
 
---ge6lzsrmzmegosqw
-Content-Type: application/pgp-signature; name="signature.asc"
+Summary
+-------
 
------BEGIN PGP SIGNATURE-----
+  **SUCCESS**
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZijxuwAKCRDj7w1vZxhR
-xdPVAPoDrkDtnoH7rcCJKhYwFQR+0yk0SQCZaSStbjLEB5sLLgEAkJR8ZnPGko+8
-7TCBr7HyVXZsdzhqEQunyG7pPSTQPgE=
-=d4mB
------END PGP SIGNATURE-----
+  No regressions found.
 
---ge6lzsrmzmegosqw--
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-132777v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-small-cm:
+    - bat-adlp-7:         NOTRUN -> [SKIP][1] ([Intel XE#261] / [Intel XE#688]) +15 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132777v1/bat-adlp-7/igt@xe_evict@evict-small-cm.html
+
+  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
+    - bat-adlp-7:         NOTRUN -> [SKIP][2] ([Intel XE#288]) +22 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132777v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
+
+  * igt@xe_mmap@vram:
+    - bat-adlp-7:         NOTRUN -> [SKIP][3] ([Intel XE#1008])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132777v1/bat-adlp-7/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-xe2:
+    - bat-adlp-7:         NOTRUN -> [SKIP][4] ([Intel XE#977])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132777v1/bat-adlp-7/igt@xe_pat@pat-index-xe2.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-adlp-7:         NOTRUN -> [SKIP][5] ([Intel XE#979]) +1 other test skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132777v1/bat-adlp-7/igt@xe_pat@pat-index-xehpc.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_exec_compute_mode@twice-basic:
+    - bat-adlp-7:         [INCOMPLETE][6] ([Intel XE#925]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1162-e1dc9638bb47a28181fee1a9a180445ca2a8b9cf/bat-adlp-7/igt@xe_exec_compute_mode@twice-basic.html
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132777v1/bat-adlp-7/igt@xe_exec_compute_mode@twice-basic.html
+
+  
+  [Intel XE#1008]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008
+  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#925]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/925
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7818 -> IGT_7819
+  * Linux: xe-1162-e1dc9638bb47a28181fee1a9a180445ca2a8b9cf -> xe-pw-132777v1
+
+  IGT_7818: 8e68eb5f6393f1be25ff775c094b427243a6a403 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7819: 98e0d03839ce31141328a2935eb193361eca61e3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1162-e1dc9638bb47a28181fee1a9a180445ca2a8b9cf: e1dc9638bb47a28181fee1a9a180445ca2a8b9cf
+  xe-pw-132777v1: 132777v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132777v1/index.html
+
+--===============3198358382065053520==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>PF: Expose GT-level SR-IOV details over debugfs</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132777/">https://patchwork.freedesktop.org/series/132777/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132777v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132777v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1162-e1dc9638bb47a28181fee1a9a180445ca2a8b9cf_BAT -&gt; xe-pw-132777v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-132777v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-small-cm:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132777v1/bat-adlp-7/igt@xe_evict@evict-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +15 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132777v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +22 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132777v1/bat-adlp-7/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008">Intel XE#1008</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132777v1/bat-adlp-7/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132777v1/bat-adlp-7/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>) +1 other test skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_compute_mode@twice-basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1162-e1dc9638bb47a28181fee1a9a180445ca2a8b9cf/bat-adlp-7/igt@xe_exec_compute_mode@twice-basic.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/925">Intel XE#925</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132777v1/bat-adlp-7/igt@xe_exec_compute_mode@twice-basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7818 -&gt; IGT_7819</li>
+<li>Linux: xe-1162-e1dc9638bb47a28181fee1a9a180445ca2a8b9cf -&gt; xe-pw-132777v1</li>
+</ul>
+<p>IGT_7818: 8e68eb5f6393f1be25ff775c094b427243a6a403 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7819: 98e0d03839ce31141328a2935eb193361eca61e3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1162-e1dc9638bb47a28181fee1a9a180445ca2a8b9cf: e1dc9638bb47a28181fee1a9a180445ca2a8b9cf<br />
+  xe-pw-132777v1: 132777v1</p>
+
+</body>
+</html>
+
+--===============3198358382065053520==--
