@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7279CC10F16
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 05:50:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA8CFC07E8E
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 05:50:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B5811137F1;
-	Wed, 24 Apr 2024 05:50:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95B161137F2;
+	Wed, 24 Apr 2024 05:50:20 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 804F51137F2;
- Wed, 24 Apr 2024 05:50:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9D601137F1;
+ Wed, 24 Apr 2024 05:50:19 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Change_xe?=
- =?utf-8?q?=5Fguc=5Fsubmit=5Fstop_return_to_void?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Change_xe=5Fguc?=
+ =?utf-8?q?=5Fsubmit=5Fstop_return_to_void?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 24 Apr 2024 05:50:00 -0000
-Message-ID: <171393780052.1628979.14831965057686193521@8e613ede5ea5>
+Date: Wed, 24 Apr 2024 05:50:19 -0000
+Message-ID: <171393781969.1628979.12051154577027202869@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240424041911.2184868-1-himal.prasad.ghimiray@intel.com>
 In-Reply-To: <20240424041911.2184868-1-himal.prasad.ghimiray@intel.com>
@@ -48,9 +48,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: b489bf660575 drm-tip: 2024y-04m-24d-02h-53m-52s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Change xe_guc_submit_stop return to void
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+0daf0be5bb95eb0a0e42275e00a0e42d8d8fd543
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b62ac8d70229b67442ab5f2ed3748e3e3619c020
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Wed Apr 24 09:49:11 2024 +0530
+
+    drm/xe: Change xe_guc_submit_stop return to void
+    
+    The function xe_guc_submit_stop consistently returns 0 without an error
+    state, prompting the caller to verify it, which is redundant.
+    
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch b489bf6605759a57c37295c2025e5ee392b88ff3 drm-intel
+b62ac8d70229 drm/xe: Change xe_guc_submit_stop return to void
 
 
