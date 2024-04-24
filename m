@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84A17C10F16
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 04:25:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9667C4345F
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 04:46:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F65010F66D;
-	Wed, 24 Apr 2024 04:25:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cBLGK4aI";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A32710F26B
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Apr 2024 04:25:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713932714; x=1745468714;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2AiwIt4XK4nABFupdmcL8Xnay4HuB+DNHtjkZ1ck7pE=;
- b=cBLGK4aIE50WXUZcg2FI58whlXklCqjHuwNCfawB38HRAg/gMwEya6Rf
- WhFmm6wXNUjr/UDxPHOaMLKan0SLqCcxnkd6o3HtGDACyq59wW+9V1HTq
- cFGuN2EwDiVdaOViYJWGDMOOfHV6VwhU3/A2QN5FJWXbij2TEbl63dykQ
- DgEDtoGTfmuRLBlSORGOK/12BvurWHBCIAy9F0gAggPix7TzJ5uCbkaN0
- nXyl+xxzZ+L1C7OahQATW+gcgUDyjDwU9e8i9N2Rr+JWUciG0qbx1pRPS
- OWxaKY7EBG+SnNwONO2tUJs1nofV7OY24H4mKgjKpHooC0sCBlwb/9S0S A==;
-X-CSE-ConnectionGUID: 7Q5CRN2bSpGnrbhI/Fadbw==
-X-CSE-MsgGUID: CL02l8SQTJqgt2WpGRvcog==
-X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="13334206"
-X-IronPort-AV: E=Sophos;i="6.07,225,1708416000"; d="scan'208";a="13334206"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2024 21:25:14 -0700
-X-CSE-ConnectionGUID: O5F8+o7MTKmHHdX2YhMIyA==
-X-CSE-MsgGUID: wwfi8TJzTDy/e9ijHaTp7Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,225,1708416000"; d="scan'208";a="29222132"
-Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa003.jf.intel.com with ESMTP; 23 Apr 2024 21:25:13 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>
-Subject: [PATCH 2/2] drm/xe: Use xe_bo_lock()/xe_bo_unlock() helpers
-Date: Wed, 24 Apr 2024 10:09:10 +0530
-Message-Id: <20240424043910.2190376-3-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240424043910.2190376-1-himal.prasad.ghimiray@intel.com>
-References: <20240424043910.2190376-1-himal.prasad.ghimiray@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C3D51124A3;
+	Wed, 24 Apr 2024 04:46:02 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12822112457;
+ Wed, 24 Apr 2024 04:46:02 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4421711040208443258=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Use_the_helpers_for_locking/unlo?=
+ =?utf-8?q?cking_resv_object?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 24 Apr 2024 04:46:02 -0000
+Message-ID: <171393396207.1628979.4286001332692439041@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240424034515.2161938-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20240424034515.2161938-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,67 +36,214 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is no change in functionality. Using the helper function
-defined within the driver for locking/unlocking the reservation
-object.
+--===============4421711040208443258==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/xe_lrc.c | 4 ++--
- drivers/gpu/drm/xe/xe_vm.c  | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 615bbc372ac6..2066d34ddf0b 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1382,7 +1382,7 @@ void xe_lrc_snapshot_capture_delayed(struct xe_lrc_snapshot *snapshot)
- 	if (!snapshot->lrc_snapshot)
- 		goto put_bo;
- 
--	dma_resv_lock(bo->ttm.base.resv, NULL);
-+	xe_bo_lock(bo, false);
- 	if (!ttm_bo_vmap(&bo->ttm, &src)) {
- 		xe_map_memcpy_from(xe_bo_device(bo),
- 				   snapshot->lrc_snapshot, &src, snapshot->lrc_offset,
-@@ -1392,7 +1392,7 @@ void xe_lrc_snapshot_capture_delayed(struct xe_lrc_snapshot *snapshot)
- 		kvfree(snapshot->lrc_snapshot);
- 		snapshot->lrc_snapshot = NULL;
- 	}
--	dma_resv_unlock(bo->ttm.base.resv);
-+	xe_bo_unlock(bo);
- put_bo:
- 	xe_bo_put(bo);
- }
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 5c9d48203d73..235ab4e79d11 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3335,7 +3335,7 @@ void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap)
- 		}
- 
- 		if (bo) {
--			dma_resv_lock(bo->ttm.base.resv, NULL);
-+			xe_bo_lock(bo, false);
- 			err = ttm_bo_vmap(&bo->ttm, &src);
- 			if (!err) {
- 				xe_map_memcpy_from(xe_bo_device(bo),
-@@ -3344,7 +3344,7 @@ void xe_vm_snapshot_capture_delayed(struct xe_vm_snapshot *snap)
- 						   snap->snap[i].len);
- 				ttm_bo_vunmap(&bo->ttm, &src);
- 			}
--			dma_resv_unlock(bo->ttm.base.resv);
-+			xe_bo_unlock(bo);
- 		} else {
- 			void __user *userptr = (void __user *)(size_t)snap->snap[i].bo_ofs;
- 
--- 
-2.25.1
+Series: Use the helpers for locking/unlocking resv object
+URL   : https://patchwork.freedesktop.org/series/132815/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-1163-b5b592a3902a51cc5747c625aa1898768d4ce79a_BAT -> xe-pw-132815v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-132815v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-beng-small-external:
+    - bat-pvc-2:          NOTRUN -> [FAIL][1] ([Intel XE#1000]) +3 other tests fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html
+
+  * igt@xe_evict@evict-small-external-cm:
+    - bat-pvc-2:          NOTRUN -> [DMESG-FAIL][2] ([Intel XE#482]) +3 other tests dmesg-fail
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/bat-pvc-2/igt@xe_evict@evict-small-external-cm.html
+
+  * igt@xe_gt_freq@freq_range_idle:
+    - bat-pvc-2:          NOTRUN -> [SKIP][3] ([Intel XE#1021]) +1 other test skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/bat-pvc-2/igt@xe_gt_freq@freq_range_idle.html
+
+  * igt@xe_huc_copy@huc_copy:
+    - bat-pvc-2:          NOTRUN -> [SKIP][4] ([Intel XE#255])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/bat-pvc-2/igt@xe_huc_copy@huc_copy.html
+
+  * igt@xe_intel_bb@render:
+    - bat-pvc-2:          NOTRUN -> [SKIP][5] ([Intel XE#532])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/bat-pvc-2/igt@xe_intel_bb@render.html
+
+  * igt@xe_pat@pat-index-xe2:
+    - bat-pvc-2:          NOTRUN -> [SKIP][6] ([Intel XE#977]) +1 other test skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/bat-pvc-2/igt@xe_pat@pat-index-xe2.html
+
+  * igt@xe_pat@pat-index-xehpc@render:
+    - bat-pvc-2:          NOTRUN -> [SKIP][7] ([Intel XE#976])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/bat-pvc-2/igt@xe_pat@pat-index-xehpc@render.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-pvc-2:          NOTRUN -> [SKIP][8] ([Intel XE#979])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/bat-pvc-2/igt@xe_pat@pat-index-xelpg.html
+
+  * igt@xe_pm_residency@gt-c6-on-idle:
+    - bat-pvc-2:          NOTRUN -> [SKIP][9] ([Intel XE#531])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/bat-pvc-2/igt@xe_pm_residency@gt-c6-on-idle.html
+
+  
+  [Intel XE#1000]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1000
+  [Intel XE#1021]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1021
+  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
+  [Intel XE#482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/482
+  [Intel XE#531]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/531
+  [Intel XE#532]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/532
+  [Intel XE#976]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/976
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+
+
+Build changes
+-------------
+
+  * Linux: xe-1163-b5b592a3902a51cc5747c625aa1898768d4ce79a -> xe-pw-132815v1
+
+  IGT_7819: 98e0d03839ce31141328a2935eb193361eca61e3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1163-b5b592a3902a51cc5747c625aa1898768d4ce79a: b5b592a3902a51cc5747c625aa1898768d4ce79a
+  xe-pw-132815v1: 132815v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/index.html
+
+--===============4421711040208443258==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Use the helpers for locking/unlocking resv object</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132815/">https://patchwork.freedesktop.org/series/132815/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1163-b5b592a3902a51cc5747c625aa1898768d4ce79a_BAT -&gt; xe-pw-132815v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-132815v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-small-external:</p>
+<ul>
+<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1000">Intel XE#1000</a>) +3 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-small-external-cm:</p>
+<ul>
+<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/bat-pvc-2/igt@xe_evict@evict-small-external-cm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/482">Intel XE#482</a>) +3 other tests dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_gt_freq@freq_range_idle:</p>
+<ul>
+<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/bat-pvc-2/igt@xe_gt_freq@freq_range_idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1021">Intel XE#1021</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_huc_copy@huc_copy:</p>
+<ul>
+<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/bat-pvc-2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_intel_bb@render:</p>
+<ul>
+<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/bat-pvc-2/igt@xe_intel_bb@render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/532">Intel XE#532</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/bat-pvc-2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc@render:</p>
+<ul>
+<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/bat-pvc-2/igt@xe_pat@pat-index-xehpc@render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/976">Intel XE#976</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/bat-pvc-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pm_residency@gt-c6-on-idle:</p>
+<ul>
+<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132815v1/bat-pvc-2/igt@xe_pm_residency@gt-c6-on-idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/531">Intel XE#531</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1163-b5b592a3902a51cc5747c625aa1898768d4ce79a -&gt; xe-pw-132815v1</li>
+</ul>
+<p>IGT_7819: 98e0d03839ce31141328a2935eb193361eca61e3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1163-b5b592a3902a51cc5747c625aa1898768d4ce79a: b5b592a3902a51cc5747c625aa1898768d4ce79a<br />
+  xe-pw-132815v1: 132815v1</p>
+
+</body>
+</html>
+
+--===============4421711040208443258==--
