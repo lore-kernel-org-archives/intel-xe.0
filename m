@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72573C4345F
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 01:14:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31942C4345F
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 01:14:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3275B10F89B;
-	Wed, 24 Apr 2024 01:14:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1D7A10F93D;
+	Wed, 24 Apr 2024 01:14:41 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2379210F89B;
- Wed, 24 Apr 2024 01:14:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E90A110F89B;
+ Wed, 24 Apr 2024 01:14:40 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Per_client?=
- =?utf-8?q?_usage_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Per_client_usag?=
+ =?utf-8?q?e_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 24 Apr 2024 01:14:22 -0000
-Message-ID: <171392126214.1610190.15928029155126925@8e613ede5ea5>
+Date: Wed, 24 Apr 2024 01:14:40 -0000
+Message-ID: <171392128095.1610961.8780640273821932357@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240423235652.1959945-1-lucas.demarchi@intel.com>
 In-Reply-To: <20240423235652.1959945-1-lucas.demarchi@intel.com>
@@ -44,18 +44,292 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Per client usage (rev2)
 URL   : https://patchwork.freedesktop.org/series/132477/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: b5b592a3902a drm-tip: 2024y-04m-23d-23h-09m-19s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/lrc: Add helper to capture context timestamp
-Applying: drm/xe: Add helper to capture engine timestamp
-Applying: drm/xe: Add helper to accumulate exec queue runtime
-Applying: drm/xe: Promote xe_hw_engine_class_to_str()
-Applying: drm/xe: Add XE_ENGINE_CLASS_OTHER to str conversion
-Applying: drm/xe/client: Print runtime to fdinfo
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+0daf0be5bb95eb0a0e42275e00a0e42d8d8fd543
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 23b4f637de099357961b38c371edd3b92b381cfa
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Tue Apr 23 16:56:51 2024 -0700
+
+    drm/xe/client: Print runtime to fdinfo
+    
+    Print the accumulated runtime for client when printing fdinfo.
+    Each time a query is done it first does 2 things:
+    
+    1) loop through all the exec queues for the current client and
+       accumulate the runtime, per engine class. CTX_TIMESTAMP is used for
+       that, being read from the context image.
+    
+    2) Read a "GPU timestamp" that can be used for considering "how much GPU
+       time has passed" and that has the same unit/refclock as the one
+       recording the runtime. RING_TIMESTAMP is used for that via MMIO.
+    
+    Since for all current platforms RING_TIMESTAMP follows the same
+    refclock, just read it once, using any first engine.
+    
+    This is exported to userspace as 2 numbers in fdinfo:
+    
+            drm-cycles-<class>: <RUNTIME>
+            drm-total-cycles-<class>: <TIMESTAMP>
+    
+    Userspace is expected to collect at least 2 samples, which allows to
+    know the client engine busyness as per:
+    
+                        RUNTIME1 - RUNTIME0
+            busyness = ---------------------
+                              T1 - T0
+    
+    Another thing to point out is that it's expected that userspace will
+    read any 2 samples every few seconds.  Given the update frequency of the
+    counters involved and that CTX_TIMESTAMP is 32-bits, the counter for
+    each exec_queue can wrap around (assuming 100% utilization) after ~200s.
+    The wraparound is not perceived by userspace since it's just accumulated
+    for all the exec_queues in a 64-bit counter), but the measurement will
+    not be accurate if the samples are too far apart.
+    
+    This could be mitigated by adding a workqueue to accumulate the counters
+    every so often, but it's additional complexity for something that is
+    done already by userspace every few seconds in tools like gputop (from
+    igt), htop, nvtop, etc with none of them really defaulting to 1 sample
+    per minute or more.
+    
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch b5b592a3902a51cc5747c625aa1898768d4ce79a drm-intel
+4398037c5ec4 drm/xe/lrc: Add helper to capture context timestamp
+315154a6233d drm/xe: Add helper to capture engine timestamp
+5301ded9e3f3 drm/xe: Add helper to accumulate exec queue runtime
+165d9d9850df drm/xe: Promote xe_hw_engine_class_to_str()
+12ff7c76927e drm/xe: Add XE_ENGINE_CLASS_OTHER to str conversion
+23b4f637de09 drm/xe/client: Print runtime to fdinfo
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:89: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#89: 
+new file mode 100644
+
+-:99: WARNING:TYPO_SPELLING: 'implemenation' may be misspelled - perhaps 'implementation'?
+#99: FILE: Documentation/gpu/xe/xe-drm-usage-stats.rst:6:
++Xe DRM client usage stats implemenation
+                           ^^^^^^^^^^^^^
+
+-:138: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#138: FILE: drivers/gpu/drm/xe/xe_drm_client.c:33:
++ * ^Ipos:    0$
+
+-:139: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#139: FILE: drivers/gpu/drm/xe/xe_drm_client.c:34:
++ * ^Iflags:  0100002$
+
+-:140: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#140: FILE: drivers/gpu/drm/xe/xe_drm_client.c:35:
++ * ^Imnt_id: 26$
+
+-:141: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#141: FILE: drivers/gpu/drm/xe/xe_drm_client.c:36:
++ * ^Iino:    685$
+
+-:142: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#142: FILE: drivers/gpu/drm/xe/xe_drm_client.c:37:
++ * ^Idrm-driver:     xe$
+
+-:143: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#143: FILE: drivers/gpu/drm/xe/xe_drm_client.c:38:
++ * ^Idrm-client-id:  3$
+
+-:144: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#144: FILE: drivers/gpu/drm/xe/xe_drm_client.c:39:
++ * ^Idrm-pdev:       0000:03:00.0$
+
+-:145: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#145: FILE: drivers/gpu/drm/xe/xe_drm_client.c:40:
++ * ^Idrm-total-system:       0$
+
+-:146: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#146: FILE: drivers/gpu/drm/xe/xe_drm_client.c:41:
++ * ^Idrm-shared-system:      0$
+
+-:147: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#147: FILE: drivers/gpu/drm/xe/xe_drm_client.c:42:
++ * ^Idrm-active-system:      0$
+
+-:148: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#148: FILE: drivers/gpu/drm/xe/xe_drm_client.c:43:
++ * ^Idrm-resident-system:    0$
+
+-:149: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#149: FILE: drivers/gpu/drm/xe/xe_drm_client.c:44:
++ * ^Idrm-purgeable-system:   0$
+
+-:150: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#150: FILE: drivers/gpu/drm/xe/xe_drm_client.c:45:
++ * ^Idrm-total-gtt:  192 KiB$
+
+-:151: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#151: FILE: drivers/gpu/drm/xe/xe_drm_client.c:46:
++ * ^Idrm-shared-gtt: 0$
+
+-:152: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#152: FILE: drivers/gpu/drm/xe/xe_drm_client.c:47:
++ * ^Idrm-active-gtt: 0$
+
+-:153: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#153: FILE: drivers/gpu/drm/xe/xe_drm_client.c:48:
++ * ^Idrm-resident-gtt:       192 KiB$
+
+-:154: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#154: FILE: drivers/gpu/drm/xe/xe_drm_client.c:49:
++ * ^Idrm-total-vram0:        23992 KiB$
+
+-:155: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#155: FILE: drivers/gpu/drm/xe/xe_drm_client.c:50:
++ * ^Idrm-shared-vram0:       16 MiB$
+
+-:156: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#156: FILE: drivers/gpu/drm/xe/xe_drm_client.c:51:
++ * ^Idrm-active-vram0:       0$
+
+-:157: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#157: FILE: drivers/gpu/drm/xe/xe_drm_client.c:52:
++ * ^Idrm-resident-vram0:     23992 KiB$
+
+-:158: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#158: FILE: drivers/gpu/drm/xe/xe_drm_client.c:53:
++ * ^Idrm-total-stolen:       0$
+
+-:159: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#159: FILE: drivers/gpu/drm/xe/xe_drm_client.c:54:
++ * ^Idrm-shared-stolen:      0$
+
+-:160: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#160: FILE: drivers/gpu/drm/xe/xe_drm_client.c:55:
++ * ^Idrm-active-stolen:      0$
+
+-:161: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#161: FILE: drivers/gpu/drm/xe/xe_drm_client.c:56:
++ * ^Idrm-resident-stolen:    0$
+
+-:162: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#162: FILE: drivers/gpu/drm/xe/xe_drm_client.c:57:
++ * ^Idrm-cycles-rcs: 28257900$
+
+-:163: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#163: FILE: drivers/gpu/drm/xe/xe_drm_client.c:58:
++ * ^Idrm-total-cycles-rcs:   7655183225$
+
+-:164: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#164: FILE: drivers/gpu/drm/xe/xe_drm_client.c:59:
++ * ^Idrm-cycles-bcs: 0$
+
+-:165: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#165: FILE: drivers/gpu/drm/xe/xe_drm_client.c:60:
++ * ^Idrm-total-cycles-bcs:   7655183225$
+
+-:166: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#166: FILE: drivers/gpu/drm/xe/xe_drm_client.c:61:
++ * ^Idrm-cycles-vcs: 0$
+
+-:167: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#167: FILE: drivers/gpu/drm/xe/xe_drm_client.c:62:
++ * ^Idrm-total-cycles-vcs:   7655183225$
+
+-:168: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#168: FILE: drivers/gpu/drm/xe/xe_drm_client.c:63:
++ * ^Idrm-engine-capacity-vcs:        2$
+
+-:169: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#169: FILE: drivers/gpu/drm/xe/xe_drm_client.c:64:
++ * ^Idrm-cycles-vecs:        0$
+
+-:170: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#170: FILE: drivers/gpu/drm/xe/xe_drm_client.c:65:
++ * ^Idrm-total-cycles-vecs:  7655183225$
+
+-:171: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#171: FILE: drivers/gpu/drm/xe/xe_drm_client.c:66:
++ * ^Idrm-engine-capacity-vecs:       2$
+
+-:172: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#172: FILE: drivers/gpu/drm/xe/xe_drm_client.c:67:
++ * ^Idrm-cycles-ccs: 0$
+
+-:173: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#173: FILE: drivers/gpu/drm/xe/xe_drm_client.c:68:
++ * ^Idrm-total-cycles-ccs:   7655183225$
+
+-:174: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#174: FILE: drivers/gpu/drm/xe/xe_drm_client.c:69:
++ * ^Idrm-engine-capacity-ccs:        4$
+
+-:180: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#180: FILE: drivers/gpu/drm/xe/xe_drm_client.c:75:
++
++
+
+-:189: ERROR:CODE_INDENT: code indent should use tabs where possible
+#189: FILE: drivers/gpu/drm/xe/xe_drm_client.c:241:
++        [XE_ENGINE_CLASS_RENDER] = XE_HW_ENGINE_RCS_MASK,$
+
+-:189: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#189: FILE: drivers/gpu/drm/xe/xe_drm_client.c:241:
++        [XE_ENGINE_CLASS_RENDER] = XE_HW_ENGINE_RCS_MASK,$
+
+-:190: ERROR:CODE_INDENT: code indent should use tabs where possible
+#190: FILE: drivers/gpu/drm/xe/xe_drm_client.c:242:
++        [XE_ENGINE_CLASS_VIDEO_DECODE] = XE_HW_ENGINE_VCS_MASK,$
+
+-:190: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#190: FILE: drivers/gpu/drm/xe/xe_drm_client.c:242:
++        [XE_ENGINE_CLASS_VIDEO_DECODE] = XE_HW_ENGINE_VCS_MASK,$
+
+-:191: ERROR:CODE_INDENT: code indent should use tabs where possible
+#191: FILE: drivers/gpu/drm/xe/xe_drm_client.c:243:
++        [XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_HW_ENGINE_VECS_MASK,$
+
+-:191: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#191: FILE: drivers/gpu/drm/xe/xe_drm_client.c:243:
++        [XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_HW_ENGINE_VECS_MASK,$
+
+-:192: ERROR:CODE_INDENT: code indent should use tabs where possible
+#192: FILE: drivers/gpu/drm/xe/xe_drm_client.c:244:
++        [XE_ENGINE_CLASS_COPY] = XE_HW_ENGINE_BCS_MASK,$
+
+-:192: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#192: FILE: drivers/gpu/drm/xe/xe_drm_client.c:244:
++        [XE_ENGINE_CLASS_COPY] = XE_HW_ENGINE_BCS_MASK,$
+
+-:193: ERROR:CODE_INDENT: code indent should use tabs where possible
+#193: FILE: drivers/gpu/drm/xe/xe_drm_client.c:245:
++        [XE_ENGINE_CLASS_OTHER] = XE_HW_ENGINE_GSCCS_MASK,$
+
+-:193: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#193: FILE: drivers/gpu/drm/xe/xe_drm_client.c:245:
++        [XE_ENGINE_CLASS_OTHER] = XE_HW_ENGINE_GSCCS_MASK,$
+
+-:194: ERROR:CODE_INDENT: code indent should use tabs where possible
+#194: FILE: drivers/gpu/drm/xe/xe_drm_client.c:246:
++        [XE_ENGINE_CLASS_COMPUTE] = XE_HW_ENGINE_CCS_MASK,$
+
+-:194: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#194: FILE: drivers/gpu/drm/xe/xe_drm_client.c:246:
++        [XE_ENGINE_CLASS_COMPUTE] = XE_HW_ENGINE_CCS_MASK,$
+
+-:216: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#216: FILE: drivers/gpu/drm/xe/xe_drm_client.c:268:
++
++
+
+total: 6 errors, 45 warnings, 2 checks, 202 lines checked
 
 
