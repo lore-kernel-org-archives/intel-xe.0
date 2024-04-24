@@ -4,99 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AB0ECD128A
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Apr 2024 13:39:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6866EC10F1A
+	for <intel-xe@archiver.kernel.org>; Sun, 28 Apr 2024 21:34:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 743CB10E705;
-	Mon,  8 Apr 2024 13:39:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CEFF112A1B;
+	Sun, 28 Apr 2024 21:34:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Re8F0gky";
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="WLiWMF1c";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BB2E112AA4;
- Wed,  3 Apr 2024 12:37:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712147822; x=1743683822;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Gz4IMh43tlqJQMtkQNAmSURtoItRp7LuOPT/d9igbhs=;
- b=Re8F0gkyxNMG91bQSCmM+sumsuhc/4ehQlP89bNusxXv2SWnXzgjJPFK
- CLz9kMrGiZewa9C3EdKrNDfRcCrYpPbsat1ytgRlBd62M2VDY1LD+Ppia
- NDTPfLXiUyQLLgXOSSqOQNJyk3X5i0ksIV9GXnhbegDabHOVxRjkAl+L9
- 1ZUb0wesnfVDgV3xE0Vkh7pPrQZ9rTHY/OMJpRIVlgvpfqVym6UYOocSe
- 3WRhKo6d+rlL8wZsHZRVd2l+HJsOaVAjR7TIu82r0UCES6uFWFbRoobwk
- thIu8GRCft8GFjQQxP3XI20hTDJmOw5HsiI8BC9C8GmiaPYY0NQsXtZx4 w==;
-X-CSE-ConnectionGUID: 9buRWh2zSkumz/QaT0a9MQ==
-X-CSE-MsgGUID: 3jpF2ZTeT7mDQpkXQ84gEg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="32764450"
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="32764450"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 05:36:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="827789899"
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="827789899"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 03 Apr 2024 05:36:43 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 03 Apr 2024 15:36:43 +0300
-Date: Wed, 3 Apr 2024 15:36:43 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Easwar Hariharan <eahariha@linux.microsoft.com>,
-	Alex Deucher <alexander.deucher@amd.com>,
-	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
-	"Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
-	Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
-	Evan Quan <evan.quan@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
-	Candice Li <candice.li@amd.com>, Ran Sun <sunran001@208suo.com>,
-	Alexander Richards <electrodeyt@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Hamza Mahfooz <hamza.mahfooz@amd.com>,
-	Ruan Jinjie <ruanjinjie@huawei.com>, Alan Liu <haoping.liu@amd.com>,
-	Aurabindo Pillai <aurabindo.pillai@amd.com>,
-	Wayne Lin <wayne.lin@amd.com>, Samson Tam <samson.tam@amd.com>,
-	Alvin Lee <alvin.lee2@amd.com>, Charlene Liu <charlene.liu@amd.com>,
-	Sohaib Nadeem <sohaib.nadeem@amd.com>,
-	Lewis Huang <lewis.huang@amd.com>,
-	Tom Chung <chiahsuan.chung@amd.com>,
-	Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
-	Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
-	George Shen <george.shen@amd.com>, Aric Cyr <aric.cyr@amd.com>,
-	Jun Lei <jun.lei@amd.com>,
-	Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
-	Qingqing Zhuo <Qingqing.Zhuo@amd.com>,
-	Dillon Varone <dillon.varone@amd.com>, Le Ma <Le.Ma@amd.com>,
-	Lijo Lazar <lijo.lazar@amd.com>, Asad kamal <asad.kamal@amd.com>,
-	Kenneth Feng <kenneth.feng@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
-	Mario Limonciello <mario.limonciello@amd.com>,
-	Yang Wang <kevinyang.wang@amd.com>,
-	Darren Powell <darren.powell@amd.com>,
-	Yifan Zhang <yifan1.zhang@amd.com>,
-	"open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
-	"open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-	open list <linux-kernel@vger.kernel.org>, Wolfram@freedesktop.org,
-	"Sang <wsa+renesas"@sang-engineering
-Subject: Re: [PATCH v0 02/14] drm/amdgpu,drm/radeon: Make I2C terminology
- more inclusive
-Message-ID: <Zg1NW0jqwFn4lvEP@intel.com>
-References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
- <20240329170038.3863998-3-eahariha@linux.microsoft.com>
- <Zgb3VYsgLjhJ2HKs@ashyti-mobl2.lan>
- <ceeaafe1-49d5-4602-8251-eed63a1be2b6@linux.microsoft.com>
- <Zgb8gieDzZtZmg2q@ashyti-mobl2.lan>
+X-Greylist: delayed 882 seconds by postgrey-1.36 at gabe;
+ Wed, 24 Apr 2024 09:57:46 UTC
+Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63D251139B7
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Apr 2024 09:57:46 +0000 (UTC)
+Received: internal info suppressed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
+ t=1713951778; bh=+ddBqk70jyIjwwzDwfpNrfAbakiOwy4uLInAX6CByM4=;
+ h=From:To:Cc:Subject:Date:From;
+ b=WLiWMF1c57a7FFemRXqi3jf5MVU5OajZ20dbJnyJirOy7hWBRFSMUfoxfg8Gd52jp
+ HKsVDx9swVqrQZBaTq4S/+tefwKjV4ckyr4XHFXltXJnx/FniXY6E99hjax658evab
+ mCCW0hmY5P+eLeLdNB8YJebzfiKXp+gRX0Nr2Si4FRfexafubBKaXQNNhzStHfCV2W
+ nD1hpc+OoL4uIxUcNw1UKilj9Hn8jieN7ZTeWzXKanpBA271TAVl0OG1Wjybldas/c
+ x8k8B7zAXK5O4zv1ROZ1PqxbARUoHas4sigFNroyVZubUfz9LG2UXlsN1YfZF79B5e
+ 33Cf5tz96arTQ==
+Received: from fkassabri-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by fkassabri-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
+ ESMTPS id 43O9gorA231058
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+ Wed, 24 Apr 2024 12:42:50 +0300
+Received: (from fkassabri@localhost)
+ by fkassabri-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 43O9go91231057; 
+ Wed, 24 Apr 2024 12:42:50 +0300
+From: Farah Kassabri <fkassabri@habana.ai>
+To: intel-xe@lists.freedesktop.org
+Cc: ofir1.bitton@intel.com, Farah Kassabri <fkassabri@habana.ai>
+Subject: 
+Date: Wed, 24 Apr 2024 12:42:42 +0300
+Message-Id: <20240424094244.231035-1-fkassabri@habana.ai>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <Zgb8gieDzZtZmg2q@ashyti-mobl2.lan>
-X-Patchwork-Hint: comment
-X-Mailman-Approved-At: Mon, 08 Apr 2024 13:38:51 +0000
+X-Mailman-Approved-At: Sun, 28 Apr 2024 21:33:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,62 +59,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 29, 2024 at 06:38:10PM +0100, Andi Shyti wrote:
-> Hi,
-> 
-> On Fri, Mar 29, 2024 at 10:28:14AM -0700, Easwar Hariharan wrote:
-> > On 3/29/2024 10:16 AM, Andi Shyti wrote:
-> > > Hi Easwar,
-> > > 
-> > > On Fri, Mar 29, 2024 at 05:00:26PM +0000, Easwar Hariharan wrote:
-> > >> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
-> > > 
-> > > I don't understand why we forget that i3c is 1.1.1 :-)
-> > 
-> > That's because it's a copy-paste error from Wolfram's cover letter. :) I'll update
-> > next go-around.
-> 
-> not a binding comment, though. Just for completeness, because we
-> are giving the version to the i2c and smbus, but not i3c.
-> 
-> > >> with more appropriate terms. Inspired by and following on to Wolfram's
-> > >> series to fix drivers/i2c/[1], fix the terminology for users of
-> > >> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
-> > >> in the specification.
-> > > 
-> > > The specification talks about:
-> > > 
-> > >  - master -> controller
-> > >  - slave -> target (and not client)
-> > > 
-> > > But both you and Wolfram have used client. I'd like to reach
-> > > some more consistency here.
-> > 
-> > I had the impression that remote targets (i.e external to the device) were to be called clients,
-> > e.g. the QSFP FRUs in drivers/infiniband, and internal ones targets.
-> > I chose the terminology according to that understanding, but now I can't find where I got that
-> > information.
-> 
-> The word "client" does not even appear in the documentation (only
-> one instance in the i3c document), so that the change is not
-> related to the document as stated in the commit log. Unless, of
-> course, I am missing something.
-> 
-> I'm OK with choosing a "customized" naming, but we need to reach
-> an agreement.
-> 
-> I raised the same question to Wolfram.
+Current Xe driver supports one TLB invaliation flow, which is
+for the compute TLB going through the Guc.
+This driver will be used for future products which will have multiple
+TLBs each has it's own invalidation flow.
+In order to prepare the driver for those new flows, these patches here
+will add infrastructure to easily allow each TLB to register it's own
+function keeping the common code generic.
 
-I don't know where that discussion happened, but my opinion
-is NAK to "client". Life is already confusing enough with
-these renames, so let's not make it even more confusing by
-inventing new names nowhere to be found in the spec.
+Farah Kassabri (2):
+  drm/xe: rename gt invalidation functions
+  drm/xe: preparations for multi instance TLB invalidations
 
-And let's especially not invent names that don't even fit
-the purpose. "Client" makes me think of "client/server" or
-some real world analogy. Neither of which seem to have any
-resemblence to how the term would be used for i2c.
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h      |   2 +-
+ drivers/gpu/drm/xe/xe_device.c                |   7 +
+ drivers/gpu/drm/xe/xe_ggtt.c                  |   6 +-
+ drivers/gpu/drm/xe/xe_gt.c                    |   9 +-
+ .../gpu/drm/xe/xe_gt_guc_tlb_invalidation.c   | 459 +++++++++++++++++
+ .../gpu/drm/xe/xe_gt_guc_tlb_invalidation.h   |  26 +
+ ...s.h => xe_gt_guc_tlb_invalidation_types.h} |  15 +-
+ drivers/gpu/drm/xe/xe_gt_pagefault.c          |   2 +-
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c   | 484 ++++--------------
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h   |  66 ++-
+ drivers/gpu/drm/xe/xe_gt_types.h              |   6 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c                |   6 +-
+ drivers/gpu/drm/xe/xe_pt.c                    |  12 +-
+ drivers/gpu/drm/xe/xe_trace.h                 |  38 +-
+ drivers/gpu/drm/xe/xe_vm.c                    |   8 +-
+ 16 files changed, 695 insertions(+), 452 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_guc_tlb_invalidation.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_guc_tlb_invalidation.h
+ rename drivers/gpu/drm/xe/{xe_gt_tlb_invalidation_types.h => xe_gt_guc_tlb_invalidation_types.h} (54%)
 
 -- 
-Ville Syrjälä
-Intel
+2.34.1
+
