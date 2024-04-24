@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2A1EC41513
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 17:24:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30C00C25B4F
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 17:24:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49E3E10FDE4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DAB110FF33;
 	Wed, 24 Apr 2024 17:24:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LXGUwPWz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mQSclIVn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53FC110FD2F
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Apr 2024 17:24:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 820B310FDA3
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Apr 2024 17:24:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713979464; x=1745515464;
+ t=1713979465; x=1745515465;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7Up/k439KD0hsjUozQ1U74kt3cYx2IpJvsN6YIIcxBM=;
- b=LXGUwPWzXQ0OF2aUrBg5zMpB6APoIrAV9zYO37xnJyhnxMfVeP5Z2V8B
- wNJ/OM5dtdhgCpBYB9Viv16RptTarsfq5kbtjvoUyFO2rw4e5UqQPSM8U
- XE+Na9sZ7Y3du0HqC0ho+0Mc6uN+bNiWCWTaC6odFiHKABY7X+uFd/XRw
- W/tne1kultdVta8nMjFmNwOKfUw91E/rbZQxwDjn+JkzkAekEdYPuHdax
- 8ySBkIoNGr59CiPA+yDezdmlAdDJ1WH62Bm9jx/WlOTpWvg9xLVgKyH3D
- pyiYp193YU1rV3hbJu4j3aC/1lElMFmmnBsIvlyFolG620eNVBI0lkJVz A==;
-X-CSE-ConnectionGUID: iei00JO1QBi/7MiDWmORfg==
-X-CSE-MsgGUID: Pbjv//mcS8mu19JU77rouA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="12561481"
-X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="12561481"
+ bh=PhWR8m4lbkndtYbC7ykcwYRlr73rt0t/D8Pp1AHPmXA=;
+ b=mQSclIVn1Dx4MKS1xLIhxQx/CmWsejMUHncUIsuBMjjzvTMfDJ6CfbZy
+ KVvhkPYZMIrzdYKRWrM+VnBjhBNjQiE7VGci0IAsUqyLyLLLwX+p1hDTV
+ 4OdI0etU0+MA08igsrPqITj2ucvi7nsbktAhtYf1gjO+w5f6VA/wuzp8m
+ KeWyYLwxLbV41hMISRnGAlu5OMsfNE6MtL/y5jDFQDpUmBldMHzOEdpEi
+ Padnu7+huZqRqeZvLYdvbwEcjUQjy9qyrBD1aqM2C1m8e33dpfzcm2IHP
+ hdla8C93/qm4mkm672qoRSkbi2Kmrp7L/sTngki+7w/zkJbp21/YKiG6b Q==;
+X-CSE-ConnectionGUID: 0N2tVvVcQmus6LUQwQoKVQ==
+X-CSE-MsgGUID: HiTWGB0XRqC/ddel2V9BQg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="12561485"
+X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="12561485"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Apr 2024 10:24:23 -0700
-X-CSE-ConnectionGUID: zwfPcYn6QrSj9SIOsYvq2g==
-X-CSE-MsgGUID: 41jzudIWScCDElNihF/aEw==
+X-CSE-ConnectionGUID: LybsWTWJSLiehX1CKglseA==
+X-CSE-MsgGUID: 5cBOnir/T5qBJ7FVVowTyg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="24825520"
+X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="24825518"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Apr 2024 10:24:20 -0700
@@ -45,9 +45,10 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Matthew Brost <matthew.brost@intel.com>,
 	Oak Zeng <oak.zeng@intel.com>
-Subject: [PATCH v2 13/13] drm/xe: Delete PT update selftest
-Date: Wed, 24 Apr 2024 10:23:52 -0700
-Message-Id: <20240424172352.1704851-14-matthew.brost@intel.com>
+Subject: [PATCH v2 12/13] drm/xe: Add xe_gt_tlb_invalidation_range and convert
+ PT layer to use this
+Date: Wed, 24 Apr 2024 10:23:51 -0700
+Message-Id: <20240424172352.1704851-13-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240424172352.1704851-1-matthew.brost@intel.com>
 References: <20240424172352.1704851-1-matthew.brost@intel.com>
@@ -67,128 +68,228 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-IGTs (e.g. xe_vm) can provide the exact same coverage as the PT update
-selftest. The PT update selftest is dependent on internal functions
-which can change thus maintaining this test is costly and provide no
-extra coverage. Delete this test.
+xe_gt_tlb_invalidation_range accepts a start and end address rather than
+a VMA. This will enable multiple VMAs to be invalidated in a single
+invalidation. Update the PT layer to use this new function.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_migrate.c | 86 ---------------------------
- 1 file changed, 86 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 59 +++++++++++++++------
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |  3 ++
+ drivers/gpu/drm/xe/xe_pt.c                  | 25 ++++++---
+ 3 files changed, 65 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index 977d5f4e4490..b6e7f80c3774 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -62,36 +62,6 @@ static int run_sanity_job(struct xe_migrate *m, struct xe_device *xe,
- 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index 8e9c4b990fbb..d0ee1e0df0bd 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -263,11 +263,15 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
  }
  
--static void
--sanity_populate_cb(struct xe_migrate_pt_update *pt_update,
--		   struct xe_tile *tile, struct iosys_map *map, void *dst,
--		   u32 qword_ofs, u32 num_qwords,
--		   const struct xe_vm_pgtable_update *update)
--{
--	struct migrate_test_params *p =
--		to_migrate_test_params(xe_cur_kunit_priv(XE_TEST_LIVE_MIGRATE));
--	int i;
--	u64 *ptr = dst;
--	u64 value;
--
--	for (i = 0; i < num_qwords; i++) {
--		value = (qword_ofs + i - update->ofs) * 0x1111111111111111ULL;
--		if (map)
--			xe_map_wr(tile_to_xe(tile), map, (qword_ofs + i) *
--				  sizeof(u64), u64, value);
--		else
--			ptr[i] = value;
--	}
--
--	kunit_info(xe_cur_kunit(), "Used %s.\n", map ? "CPU" : "GPU");
--	if (p->force_gpu && map)
--		KUNIT_FAIL(xe_cur_kunit(), "GPU pagetable update used CPU.\n");
--}
--
--static const struct xe_migrate_pt_update_ops sanity_ops = {
--	.populate = sanity_populate_cb,
--};
--
- #define check(_retval, _expected, str, _test)				\
- 	do { if ((_retval) != (_expected)) {				\
- 			KUNIT_FAIL(_test, "Sanity check failed: " str	\
-@@ -209,57 +179,6 @@ static void test_copy_vram(struct xe_migrate *m, struct xe_bo *bo,
- 	test_copy(m, bo, test, region);
- }
- 
--static void test_pt_update(struct xe_migrate *m, struct xe_bo *pt,
--			   struct kunit *test, bool force_gpu)
--{
--	struct xe_device *xe = tile_to_xe(m->tile);
--	struct dma_fence *fence;
--	u64 retval, expected;
--	ktime_t then, now;
--	int i;
--
--	struct xe_vm_pgtable_update update = {
--		.ofs = 1,
--		.qwords = 0x10,
--		.pt_bo = pt,
--	};
--	struct xe_migrate_pt_update pt_update = {
--		.ops = &sanity_ops,
--	};
--	struct migrate_test_params p = {
--		.base.id = XE_TEST_LIVE_MIGRATE,
--		.force_gpu = force_gpu,
--	};
--
--	test->priv = &p;
--	/* Test xe_migrate_update_pgtables() updates the pagetable as expected */
--	expected = 0xf0f0f0f0f0f0f0f0ULL;
--	xe_map_memset(xe, &pt->vmap, 0, (u8)expected, pt->size);
--
--	then = ktime_get();
--	fence = xe_migrate_update_pgtables(m, m->q->vm, NULL, m->q, &update, 1,
--					   NULL, 0, &pt_update);
--	now = ktime_get();
--	if (sanity_fence_failed(xe, fence, "Migration pagetable update", test))
--		return;
--
--	kunit_info(test, "Updating without syncing took %llu us,\n",
--		   (unsigned long long)ktime_to_us(ktime_sub(now, then)));
--
--	dma_fence_put(fence);
--	retval = xe_map_rd(xe, &pt->vmap, 0, u64);
--	check(retval, expected, "PTE[0] must stay untouched", test);
--
--	for (i = 0; i < update.qwords; i++) {
--		retval = xe_map_rd(xe, &pt->vmap, (update.ofs + i) * 8, u64);
--		check(retval, i * 0x1111111111111111ULL, "PTE update", test);
--	}
--
--	retval = xe_map_rd(xe, &pt->vmap, 8 * (update.ofs + update.qwords),
--			   u64);
--	check(retval, expected, "PTE[0x11] must stay untouched", test);
--}
--
- static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ /**
+- * xe_gt_tlb_invalidation_vma - Issue a TLB invalidation on this GT for a VMA
++ * xe_gt_tlb_invalidation_range - Issue a TLB invalidation on this GT for an
++ * address range
++ *
+  * @gt: graphics tile
+  * @fence: invalidation fence which will be signal on TLB invalidation
+  * completion, can be NULL
+- * @vma: VMA to invalidate
++ * @start: start address
++ * @end: end address
++ * @asid: address space id
+  *
+  * Issue a range based TLB invalidation if supported, if not fallback to a full
+  * TLB invalidation. Completion of TLB is asynchronous and caller can either use
+@@ -277,17 +281,15 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
+  * Return: Seqno which can be passed to xe_gt_tlb_invalidation_wait on success,
+  * negative error code on error.
+  */
+-int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+-			       struct xe_gt_tlb_invalidation_fence *fence,
+-			       struct xe_vma *vma)
++int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
++				 struct xe_gt_tlb_invalidation_fence *fence,
++				 u64 start, u64 end, u32 asid)
  {
- 	struct xe_tile *tile = m->tile;
-@@ -398,11 +317,6 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
- 		test_copy_vram(m, big, test);
- 	}
+ 	struct xe_device *xe = gt_to_xe(gt);
+ #define MAX_TLB_INVALIDATION_LEN	7
+ 	u32 action[MAX_TLB_INVALIDATION_LEN];
+ 	int len = 0;
  
--	kunit_info(test, "Testing page table update using CPU if GPU idle.\n");
--	test_pt_update(m, pt, test, false);
--	kunit_info(test, "Testing page table update using GPU\n");
--	test_pt_update(m, pt, test, true);
+-	xe_gt_assert(gt, vma);
 -
- out:
- 	xe_bb_free(bb, NULL);
- free_tiny:
+ 	/* Execlists not supported */
+ 	if (gt_to_xe(gt)->info.force_execlist) {
+ 		if (fence)
+@@ -301,8 +303,8 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 	if (!xe->info.has_range_tlb_invalidation) {
+ 		action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL);
+ 	} else {
+-		u64 start = xe_vma_start(vma);
+-		u64 length = xe_vma_size(vma);
++		u64 orig_start = start;
++		u64 length = end - start;
+ 		u64 align, end;
+ 
+ 		if (length < SZ_4K)
+@@ -315,12 +317,12 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 		 * address mask covering the required range.
+ 		 */
+ 		align = roundup_pow_of_two(length);
+-		start = ALIGN_DOWN(xe_vma_start(vma), align);
+-		end = ALIGN(xe_vma_end(vma), align);
++		start = ALIGN_DOWN(start, align);
++		end = ALIGN(end, align);
+ 		length = align;
+ 		while (start + length < end) {
+ 			length <<= 1;
+-			start = ALIGN_DOWN(xe_vma_start(vma), length);
++			start = ALIGN_DOWN(orig_start, length);
+ 		}
+ 
+ 		/*
+@@ -329,16 +331,17 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 		 */
+ 		if (length >= SZ_2M) {
+ 			length = max_t(u64, SZ_16M, length);
+-			start = ALIGN_DOWN(xe_vma_start(vma), length);
++			start = ALIGN_DOWN(orig_start, length);
+ 		}
+ 
+ 		xe_gt_assert(gt, length >= SZ_4K);
+ 		xe_gt_assert(gt, is_power_of_2(length));
+-		xe_gt_assert(gt, !(length & GENMASK(ilog2(SZ_16M) - 1, ilog2(SZ_2M) + 1)));
++		xe_gt_assert(gt, !(length & GENMASK(ilog2(SZ_16M) - 1,
++						    ilog2(SZ_2M) + 1)));
+ 		xe_gt_assert(gt, IS_ALIGNED(start, length));
+ 
+ 		action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_PAGE_SELECTIVE);
+-		action[len++] = xe_vma_vm(vma)->usm.asid;
++		action[len++] = asid;
+ 		action[len++] = lower_32_bits(start);
+ 		action[len++] = upper_32_bits(start);
+ 		action[len++] = ilog2(length) - ilog2(SZ_4K);
+@@ -349,6 +352,32 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 	return send_tlb_invalidation(&gt->uc.guc, fence, action, len);
+ }
+ 
++/**
++ * xe_gt_tlb_invalidation_vma - Issue a TLB invalidation on this GT for a VMA
++ * @gt: graphics tile
++ * @fence: invalidation fence which will be signal on TLB invalidation
++ * completion, can be NULL
++ * @vma: VMA to invalidate
++ *
++ * Issue a range based TLB invalidation if supported, if not fallback to a full
++ * TLB invalidation. Completion of TLB is asynchronous and caller can either use
++ * the invalidation fence or seqno + xe_gt_tlb_invalidation_wait to wait for
++ * completion.
++ *
++ * Return: Seqno which can be passed to xe_gt_tlb_invalidation_wait on success,
++ * negative error code on error.
++ */
++int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
++			       struct xe_gt_tlb_invalidation_fence *fence,
++			       struct xe_vma *vma)
++{
++	xe_gt_assert(gt, vma);
++
++	return xe_gt_tlb_invalidation_range(gt, fence, xe_vma_start(vma),
++					    xe_vma_end(vma),
++					    xe_vma_vm(vma)->usm.asid);
++}
++
+ /**
+  * xe_gt_tlb_invalidation_wait - Wait for TLB to complete
+  * @gt: graphics tile
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+index fbb743d80d2c..bf3bebd9f985 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+@@ -20,6 +20,9 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt);
+ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 			       struct xe_gt_tlb_invalidation_fence *fence,
+ 			       struct xe_vma *vma);
++int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
++				 struct xe_gt_tlb_invalidation_fence *fence,
++				 u64 start, u64 end, u32 asid);
+ int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno);
+ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 5b7930f46cf3..8d3765d3351e 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1075,10 +1075,12 @@ static const struct xe_migrate_pt_update_ops userptr_bind_ops = {
+ struct invalidation_fence {
+ 	struct xe_gt_tlb_invalidation_fence base;
+ 	struct xe_gt *gt;
+-	struct xe_vma *vma;
+ 	struct dma_fence *fence;
+ 	struct dma_fence_cb cb;
+ 	struct work_struct work;
++	u64 start;
++	u64 end;
++	u32 asid;
+ };
+ 
+ static const char *
+@@ -1121,13 +1123,14 @@ static void invalidation_fence_work_func(struct work_struct *w)
+ 		container_of(w, struct invalidation_fence, work);
+ 
+ 	trace_xe_gt_tlb_invalidation_fence_work_func(&ifence->base);
+-	xe_gt_tlb_invalidation_vma(ifence->gt, &ifence->base, ifence->vma);
++	xe_gt_tlb_invalidation_range(ifence->gt, &ifence->base, ifence->start,
++				     ifence->end, ifence->asid);
+ }
+ 
+ static int invalidation_fence_init(struct xe_gt *gt,
+ 				   struct invalidation_fence *ifence,
+ 				   struct dma_fence *fence,
+-				   struct xe_vma *vma)
++				   u64 start, u64 end, u32 asid)
+ {
+ 	int ret;
+ 
+@@ -1144,7 +1147,9 @@ static int invalidation_fence_init(struct xe_gt *gt,
+ 	dma_fence_get(&ifence->base.base);	/* Ref for caller */
+ 	ifence->fence = fence;
+ 	ifence->gt = gt;
+-	ifence->vma = vma;
++	ifence->start = start;
++	ifence->end = end;
++	ifence->asid = asid;
+ 
+ 	INIT_WORK(&ifence->work, invalidation_fence_work_func);
+ 	ret = dma_fence_add_callback(fence, &ifence->cb, invalidation_fence_cb);
+@@ -1295,8 +1300,11 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
+ 
+ 		/* TLB invalidation must be done before signaling rebind */
+ 		if (ifence) {
+-			int err = invalidation_fence_init(tile->primary_gt, ifence, fence,
+-							  vma);
++			int err = invalidation_fence_init(tile->primary_gt,
++							  ifence, fence,
++							  xe_vma_start(vma),
++							  xe_vma_end(vma),
++							  xe_vma_vm(vma)->usm.asid);
+ 			if (err) {
+ 				dma_fence_put(fence);
+ 				kfree(ifence);
+@@ -1641,7 +1649,10 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queu
+ 			dma_fence_wait(fence, false);
+ 
+ 		/* TLB invalidation must be done before signaling unbind */
+-		err = invalidation_fence_init(tile->primary_gt, ifence, fence, vma);
++		err = invalidation_fence_init(tile->primary_gt, ifence, fence,
++					      xe_vma_start(vma),
++					      xe_vma_end(vma),
++					      xe_vma_vm(vma)->usm.asid);
+ 		if (err) {
+ 			dma_fence_put(fence);
+ 			kfree(ifence);
 -- 
 2.34.1
 
