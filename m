@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2924DC4345F
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 14:01:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9048BC4345F
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Apr 2024 14:03:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D81FE113B90;
-	Wed, 24 Apr 2024 14:01:55 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FBCD113B90;
- Wed, 24 Apr 2024 14:01:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6255281123200448226=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3817510FEF5;
+	Wed, 24 Apr 2024 14:03:33 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nf9XihxO";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B09DE10FEF5
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Apr 2024 14:03:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713967413; x=1745503413;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=AuFhT2dm9IFYLz/1j8HPpycvQA1AWYKZU/3evwihrKk=;
+ b=Nf9XihxO/e6rE1yfHQsxJWsuY9vB0uaftCHo+HHufE1XYSrACHDnVBDL
+ zKjMJrJ2QQGH10vMgGkrI/bpCna61b2hkeMoIUmhe63jVRFaVxZPJHqjL
+ itC4TD87C5q1SxjrcJVORZvbAcTrdbdV15VSaXdeVeh9fO2AJI/7AmpkY
+ zmqvuu7UPmjdA20Z0lAEnWghi2rL2Ne56M++L3NZ0wHrJpum7c0vZYGM9
+ I4zRn4bn7hWPl4PQeJ0SqIURXTg+ExctDl8D/z6jgdaY9jMuFiojeQxPr
+ JPuEqnJZsYrQHet0+sJt9/Cwo5AoW8QfAc1ylaYEeDyMAgv3fUdE9qs3k g==;
+X-CSE-ConnectionGUID: 9tsf+3APTJW396gYmDE+uw==
+X-CSE-MsgGUID: Eewmeg5PQZuig3JYJQSnZg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="9469271"
+X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; 
+   d="scan'208";a="9469271"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2024 07:03:33 -0700
+X-CSE-ConnectionGUID: ZCpHkYX+QXO/VUwjQd8ybw==
+X-CSE-MsgGUID: T37mlLdqQ+6R3CUStCNuDw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="29359242"
+Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2024 07:03:31 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Zhanjun Dong <zhanjun.dong@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Subject: [PATCH CI 1/3] drm/xe: Store xe_hw_engine in xe_hw_engine_snapshot
+Date: Wed, 24 Apr 2024 07:03:01 -0700
+Message-ID: <20240424140319.61651-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/guc=3A_Improve_GuC_doorbe?=
- =?utf-8?q?ll/context_ID_manager_intro_message_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 24 Apr 2024 14:01:55 -0000
-Message-ID: <171396731551.1630367.4265993926499348745@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240419153407.402-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20240419153407.402-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +67,69 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6255281123200448226==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+A future patch will require gt and xe device structs, so here
+replacing class by hwe.
 
-== Series Details ==
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/xe/xe_hw_engine.c       | 6 +++---
+ drivers/gpu/drm/xe/xe_hw_engine_types.h | 4 ++--
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
-Series: drm/xe/guc: Improve GuC doorbell/context ID manager intro message (rev2)
-URL   : https://patchwork.freedesktop.org/series/132653/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 455f375c1cbd6..c84dbe8a8ed1d 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -791,7 +791,7 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+ 		return NULL;
+ 
+ 	snapshot->name = kstrdup(hwe->name, GFP_ATOMIC);
+-	snapshot->class = hwe->class;
++	snapshot->hwe = hwe;
+ 	snapshot->logical_instance = hwe->logical_instance;
+ 	snapshot->forcewake.domain = hwe->domain;
+ 	snapshot->forcewake.ref = xe_force_wake_ref(gt_to_fw(hwe->gt),
+@@ -842,7 +842,7 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+ 	snapshot->reg.ring_eir = hw_engine_mmio_read32(hwe, RING_EIR(0));
+ 	snapshot->reg.ipehr = hw_engine_mmio_read32(hwe, RING_IPEHR(0));
+ 
+-	if (snapshot->class == XE_ENGINE_CLASS_COMPUTE)
++	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
+ 		snapshot->reg.rcu_mode = xe_mmio_read32(hwe->gt, RCU_MODE);
+ 
+ 	return snapshot;
+@@ -887,7 +887,7 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
+ 	drm_printf(p, "\tBBADDR: 0x%016llx\n", snapshot->reg.ring_bbaddr);
+ 	drm_printf(p, "\tDMA_FADDR: 0x%016llx\n", snapshot->reg.ring_dma_fadd);
+ 	drm_printf(p, "\tIPEHR: 0x%08x\n", snapshot->reg.ipehr);
+-	if (snapshot->class == XE_ENGINE_CLASS_COMPUTE)
++	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
+ 		drm_printf(p, "\tRCU_MODE: 0x%08x\n",
+ 			   snapshot->reg.rcu_mode);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+index d7f828c76cc5f..27deaa31efd31 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+@@ -158,8 +158,8 @@ struct xe_hw_engine {
+ struct xe_hw_engine_snapshot {
+ 	/** @name: name of the hw engine */
+ 	char *name;
+-	/** @class: class of this hw engine */
+-	enum xe_engine_class class;
++	/** @hwe: hw engine */
++	struct xe_hw_engine *hwe;
+ 	/** @logical_instance: logical instance of this hw engine */
+ 	u16 logical_instance;
+ 	/** @forcewake: Force Wake information snapshot */
+-- 
+2.44.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-1167-989973bc834b7b0eb0dd7a8e030def537dc1e935_BAT -> xe-pw-132653v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1167-989973bc834b7b0eb0dd7a8e030def537dc1e935 -> xe-pw-132653v2
-
-  IGT_7820: 741ef547cbf5d8fcc144f1bb048844c33bca7509 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1167-989973bc834b7b0eb0dd7a8e030def537dc1e935: 989973bc834b7b0eb0dd7a8e030def537dc1e935
-  xe-pw-132653v2: 132653v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132653v2/index.html
-
---===============6255281123200448226==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Improve GuC doorbell/context ID manager intro message (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132653/">https://patchwork.freedesktop.org/series/132653/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132653v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132653v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1167-989973bc834b7b0eb0dd7a8e030def537dc1e935_BAT -&gt; xe-pw-132653v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1167-989973bc834b7b0eb0dd7a8e030def537dc1e935 -&gt; xe-pw-132653v2</li>
-</ul>
-<p>IGT_7820: 741ef547cbf5d8fcc144f1bb048844c33bca7509 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1167-989973bc834b7b0eb0dd7a8e030def537dc1e935: 989973bc834b7b0eb0dd7a8e030def537dc1e935<br />
-  xe-pw-132653v2: 132653v2</p>
-
-</body>
-</html>
-
---===============6255281123200448226==--
