@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71A56C25B4F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D975C25B10
 	for <intel-xe@archiver.kernel.org>; Thu, 25 Apr 2024 04:54:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAD0511A0EA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 788DF11A0E9;
 	Thu, 25 Apr 2024 04:54:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gz5fVR8C";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m0UyDh8g";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEB3F11A0E4
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9666311A0E5
  for <intel-xe@lists.freedesktop.org>; Thu, 25 Apr 2024 04:54:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714020884; x=1745556884;
+ t=1714020883; x=1745556883;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fB2n1BBLPfXu6qFtulNU53lpuv6TALoe8qFRHodM6t0=;
- b=Gz5fVR8CjtJaL7RDYsgKMCAayhxcWeKkboHTuUi7alDOTLZwcwHDZ28l
- 82h/z0zypuh8kuW9UHNJ7EjXgYUL7Z0/cgj1YbtwEznKQ6gVEOM9KN92Z
- oKSCYhoPPGB7xtwAZmo1jZyuvkc2p35OfHQaWKc67q9q0fAblvAeXbuu5
- QVWqfbF7hfxQjWM+inhsRKu3iSvqYUejd4wr9Vy4i+4tL6+pu2mQY6eHI
- 01JQKhNoHZqGODtO+5JU1b5ZJ0z30TtNWHbG9uGRDaWUykB6lpKsuVhtY
- LrK9FI823bmrlIONnCLP5kCuZoC9yRuRZX4HrpyRyQ5VxsACOLgcmu1DO Q==;
-X-CSE-ConnectionGUID: 6a2/M/vgQGy2breBF1xhKg==
-X-CSE-MsgGUID: hkDtaN8OSiuaEFUZq9Dqyw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="20374871"
-X-IronPort-AV: E=Sophos;i="6.07,228,1708416000"; d="scan'208";a="20374871"
+ bh=DtkyzT7j++f/xdp8Me5ux8wwLsicVitBv3czilL7Rgk=;
+ b=m0UyDh8ghtzX7MjJri/TN6smzWEUXqcV+gO1pCL1OoyCXQAfVkQEa599
+ HSschUrt/uHjZUPhobIyelj4dyLJyGFwD2K0A14hKNMzOX9GFi+Sx6eG9
+ XHe4gdQJ73SLSHyDz9pS9kOEE/HreITLYxWwCwjeJDC/kuADHcEVuYh/x
+ 95jAwAUE7pguYmMJvR7uvw8jq7Cf6RCu7v/zQ2GhTVpntXCTRNR9Ex5/Y
+ CGpaS90LZ8eOBuBnkD0lgnlcEDrKnF8NZYp3P1sQ54DmaKkVC5nhL7cnQ
+ GBx5ZQ0Uq+2q+BoO5LjB3Ue5z1XOuxixFeH/jJmzKbfNksIJ2V+L5e+q3 Q==;
+X-CSE-ConnectionGUID: ecZ066BBTSGisjEvQvr3iQ==
+X-CSE-MsgGUID: YkmvW0BMTRKN/j1Lv6azTw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="20374870"
+X-IronPort-AV: E=Sophos;i="6.07,228,1708416000"; d="scan'208";a="20374870"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2024 21:54:43 -0700
-X-CSE-ConnectionGUID: j5Kq8AEJRlSXWN0vUnhFrg==
-X-CSE-MsgGUID: nQA1v9RRTomC3/HBf53Tfw==
+ 24 Apr 2024 21:54:42 -0700
+X-CSE-ConnectionGUID: fFfgctHYTyG9D55k4BjyUA==
+X-CSE-MsgGUID: fVylHZVsR/a0382TcemZZw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,228,1708416000"; d="scan'208";a="24996477"
+X-IronPort-AV: E=Sophos;i="6.07,228,1708416000"; d="scan'208";a="24996474"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Apr 2024 21:54:42 -0700
@@ -45,10 +45,9 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Matthew Brost <matthew.brost@intel.com>,
 	Oak Zeng <oak.zeng@intel.com>
-Subject: [PATCH v3 02/13] drm/xe: Add ops_execute function which returns a
- fence
-Date: Wed, 24 Apr 2024 21:55:02 -0700
-Message-Id: <20240425045513.1913039-3-matthew.brost@intel.com>
+Subject: [PATCH v3 01/13] drm/xe: Lock all gpuva ops during VM bind IOCTL
+Date: Wed, 24 Apr 2024 21:55:01 -0700
+Message-Id: <20240425045513.1913039-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240425045513.1913039-1-matthew.brost@intel.com>
 References: <20240425045513.1913039-1-matthew.brost@intel.com>
@@ -68,417 +67,252 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add ops_execute function which returns a fence. This will be helpful to
-initiate all binds (VM bind IOCTL, rebinds in exec IOCTL, rebinds in
-preempt rebind worker, and rebinds in pagefaults) via a gpuva ops list.
-Returning a fence is needed in various paths.
+Lock all BOs used in gpuva ops and validate all BOs in a single step
+during the VM bind IOCTL.
+
+This help with the transition to making all gpuva ops in a VM bind IOCTL
+a single atomic job which is required for proper error handling.
 
 v2:
- - Rebase
+ - Better commit message (Oak)
+ - s/op_lock/op_lock_and_prep, few other renames too (Oak)
+ - Use DRM_EXEC_IGNORE_DUPLICATES flag in drm_exec_init (local testing)
+ - Do not reserve slots in locking step (direction based on series from Thomas)
+v3:
+ - Validate BO if is immediate set (Oak)
 
 Cc: Oak Zeng <oak.zeng@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 211 +++++++++++++++++++------------------
- 1 file changed, 111 insertions(+), 100 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c | 148 +++++++++++++++++++++++++++----------
+ 1 file changed, 108 insertions(+), 40 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index ad575ac80352..d889e9c422fe 100644
+index 7ae2b0300db6..ad575ac80352 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1716,16 +1716,17 @@ find_ufence_get(struct xe_sync_entry *syncs, u32 num_syncs)
- 	return NULL;
- }
+@@ -315,19 +315,23 @@ int __xe_vm_userptr_needs_repin(struct xe_vm *vm)
  
--static int __xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma,
--			struct xe_exec_queue *q, struct xe_sync_entry *syncs,
--			u32 num_syncs, bool immediate, bool first_op,
--			bool last_op)
-+static struct dma_fence *
-+xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma, struct xe_exec_queue *q,
-+	   struct xe_bo *bo, struct xe_sync_entry *syncs, u32 num_syncs,
-+	   bool immediate, bool first_op, bool last_op)
+ #define XE_VM_REBIND_RETRY_TIMEOUT_MS 1000
+ 
+-static void xe_vm_kill(struct xe_vm *vm)
++static void xe_vm_kill(struct xe_vm *vm, bool unlocked)
  {
- 	struct dma_fence *fence;
- 	struct xe_exec_queue *wait_exec_queue = to_wait_exec_queue(vm, q);
- 	struct xe_user_fence *ufence;
+ 	struct xe_exec_queue *q;
  
+ 	lockdep_assert_held(&vm->lock);
+ 
+-	xe_vm_lock(vm, false);
++	if (unlocked)
++		xe_vm_lock(vm, false);
++
+ 	vm->flags |= XE_VM_FLAG_BANNED;
+ 	trace_xe_vm_kill(vm);
+ 
+ 	list_for_each_entry(q, &vm->preempt.exec_queues, compute.link)
+ 		q->ops->kill(q);
+-	xe_vm_unlock(vm);
++
++	if (unlocked)
++		xe_vm_unlock(vm);
+ 
+ 	/* TODO: Inform user the VM is banned */
+ }
+@@ -557,7 +561,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 
+ 	if (err) {
+ 		drm_warn(&vm->xe->drm, "VM worker error: %d\n", err);
+-		xe_vm_kill(vm);
++		xe_vm_kill(vm, true);
+ 	}
+ 	up_write(&vm->lock);
+ 
+@@ -1758,17 +1762,9 @@ static int xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma, struct xe_exec_queue
+ 		      u32 num_syncs, bool immediate, bool first_op,
+ 		      bool last_op)
+ {
+-	int err;
+-
  	xe_vm_assert_held(vm);
-+	xe_bo_assert_held(bo);
+ 	xe_bo_assert_held(bo);
  
- 	ufence = find_ufence_get(syncs, num_syncs);
- 	if (vma->ufence && ufence)
-@@ -1737,7 +1738,7 @@ static int __xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma,
- 		fence = xe_vm_bind_vma(vma, q, syncs, num_syncs, first_op,
- 				       last_op);
- 		if (IS_ERR(fence))
--			return PTR_ERR(fence);
-+			return fence;
- 	} else {
- 		int i;
- 
-@@ -1752,26 +1753,14 @@ static int __xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma,
- 
- 	if (last_op)
- 		xe_exec_queue_last_fence_set(wait_exec_queue, vm, fence);
--	dma_fence_put(fence);
--
--	return 0;
--}
--
--static int xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma, struct xe_exec_queue *q,
--		      struct xe_bo *bo, struct xe_sync_entry *syncs,
--		      u32 num_syncs, bool immediate, bool first_op,
--		      bool last_op)
--{
--	xe_vm_assert_held(vm);
--	xe_bo_assert_held(bo);
- 
--	return __xe_vm_bind(vm, vma, q, syncs, num_syncs, immediate, first_op,
--			    last_op);
-+	return fence;
- }
- 
--static int xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
--			struct xe_exec_queue *q, struct xe_sync_entry *syncs,
--			u32 num_syncs, bool first_op, bool last_op)
-+static struct dma_fence *
-+xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
-+	     struct xe_exec_queue *q, struct xe_sync_entry *syncs,
-+	     u32 num_syncs, bool first_op, bool last_op)
- {
- 	struct dma_fence *fence;
- 	struct xe_exec_queue *wait_exec_queue = to_wait_exec_queue(vm, q);
-@@ -1781,14 +1770,13 @@ static int xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
- 
- 	fence = xe_vm_unbind_vma(vma, q, syncs, num_syncs, first_op, last_op);
- 	if (IS_ERR(fence))
--		return PTR_ERR(fence);
-+		return fence;
- 
- 	xe_vma_destroy(vma, fence);
- 	if (last_op)
- 		xe_exec_queue_last_fence_set(wait_exec_queue, vm, fence);
--	dma_fence_put(fence);
- 
--	return 0;
-+	return fence;
- }
- 
- #define ALL_DRM_XE_VM_CREATE_FLAGS (DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE | \
-@@ -1931,10 +1919,11 @@ static const u32 region_to_mem_type[] = {
- 	XE_PL_VRAM1,
- };
- 
--static int xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
--			  struct xe_exec_queue *q, u32 region,
--			  struct xe_sync_entry *syncs, u32 num_syncs,
--			  bool first_op, bool last_op)
-+static struct dma_fence *
-+xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
-+	       struct xe_exec_queue *q, u32 region,
-+	       struct xe_sync_entry *syncs, u32 num_syncs,
-+	       bool first_op, bool last_op)
- {
- 	struct xe_exec_queue *wait_exec_queue = to_wait_exec_queue(vm, q);
- 	int err;
-@@ -1944,27 +1933,24 @@ static int xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
- 	if (!xe_vma_has_no_bo(vma)) {
- 		err = xe_bo_migrate(xe_vma_bo(vma), region_to_mem_type[region]);
- 		if (err)
+-	if (bo && immediate) {
+-		err = xe_bo_validate(bo, vm, true);
+-		if (err)
 -			return err;
-+			return ERR_PTR(err);
- 	}
- 
- 	if (vma->tile_mask != (vma->tile_present & ~vma->tile_invalidated)) {
- 		return xe_vm_bind(vm, vma, q, xe_vma_bo(vma), syncs, num_syncs,
- 				  true, first_op, last_op);
- 	} else {
-+		struct dma_fence *fence =
-+			xe_exec_queue_last_fence_get(wait_exec_queue, vm);
- 		int i;
- 
- 		/* Nothing to do, signal fences now */
- 		if (last_op) {
--			for (i = 0; i < num_syncs; i++) {
--				struct dma_fence *fence =
--					xe_exec_queue_last_fence_get(wait_exec_queue, vm);
+-	}
 -
-+			for (i = 0; i < num_syncs; i++)
- 				xe_sync_entry_signal(&syncs[i], fence);
--				dma_fence_put(fence);
--			}
- 		}
- 
--		return 0;
-+		return fence;
- 	}
+ 	return __xe_vm_bind(vm, vma, q, syncs, num_syncs, immediate, first_op,
+ 			    last_op);
  }
- 
-@@ -2417,10 +2403,10 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
+@@ -2421,17 +2417,13 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
  	return 0;
  }
  
--static int op_execute(struct xe_vm *vm, struct xe_vma *vma,
--		      struct xe_vma_op *op)
-+static struct dma_fence *op_execute(struct xe_vm *vm, struct xe_vma *vma,
-+				    struct xe_vma_op *op)
+-static int op_execute(struct drm_exec *exec, struct xe_vm *vm,
+-		      struct xe_vma *vma, struct xe_vma_op *op)
++static int op_execute(struct xe_vm *vm, struct xe_vma *vma,
++		      struct xe_vma_op *op)
  {
--	int err;
-+	struct dma_fence *fence = NULL;
+ 	int err;
  
  	lockdep_assert_held_write(&vm->lock);
  
-@@ -2429,11 +2415,11 @@ static int op_execute(struct xe_vm *vm, struct xe_vma *vma,
- 
- 	switch (op->base.op) {
- 	case DRM_GPUVA_OP_MAP:
--		err = xe_vm_bind(vm, vma, op->q, xe_vma_bo(vma),
--				 op->syncs, op->num_syncs,
--				 op->map.immediate || !xe_vm_in_fault_mode(vm),
--				 op->flags & XE_VMA_OP_FIRST,
--				 op->flags & XE_VMA_OP_LAST);
-+		fence = xe_vm_bind(vm, vma, op->q, xe_vma_bo(vma),
-+				   op->syncs, op->num_syncs,
-+				   op->map.immediate || !xe_vm_in_fault_mode(vm),
-+				   op->flags & XE_VMA_OP_FIRST,
-+				   op->flags & XE_VMA_OP_LAST);
- 		break;
- 	case DRM_GPUVA_OP_REMAP:
- 	{
-@@ -2443,37 +2429,39 @@ static int op_execute(struct xe_vm *vm, struct xe_vma *vma,
- 		if (!op->remap.unmap_done) {
- 			if (prev || next)
- 				vma->gpuva.flags |= XE_VMA_FIRST_REBIND;
--			err = xe_vm_unbind(vm, vma, op->q, op->syncs,
--					   op->num_syncs,
--					   op->flags & XE_VMA_OP_FIRST,
--					   op->flags & XE_VMA_OP_LAST &&
--					   !prev && !next);
--			if (err)
-+			fence = xe_vm_unbind(vm, vma, op->q, op->syncs,
-+					     op->num_syncs,
-+					     op->flags & XE_VMA_OP_FIRST,
-+					     op->flags & XE_VMA_OP_LAST &&
-+					     !prev && !next);
-+			if (IS_ERR(fence))
- 				break;
- 			op->remap.unmap_done = true;
- 		}
- 
- 		if (prev) {
- 			op->remap.prev->gpuva.flags |= XE_VMA_LAST_REBIND;
--			err = xe_vm_bind(vm, op->remap.prev, op->q,
--					 xe_vma_bo(op->remap.prev), op->syncs,
--					 op->num_syncs, true, false,
--					 op->flags & XE_VMA_OP_LAST && !next);
-+			dma_fence_put(fence);
-+			fence = xe_vm_bind(vm, op->remap.prev, op->q,
-+					   xe_vma_bo(op->remap.prev), op->syncs,
-+					   op->num_syncs, true, false,
-+					   op->flags & XE_VMA_OP_LAST && !next);
- 			op->remap.prev->gpuva.flags &= ~XE_VMA_LAST_REBIND;
--			if (err)
-+			if (IS_ERR(fence))
- 				break;
- 			op->remap.prev = NULL;
- 		}
- 
- 		if (next) {
- 			op->remap.next->gpuva.flags |= XE_VMA_LAST_REBIND;
--			err = xe_vm_bind(vm, op->remap.next, op->q,
--					 xe_vma_bo(op->remap.next),
--					 op->syncs, op->num_syncs,
--					 true, false,
--					 op->flags & XE_VMA_OP_LAST);
-+			dma_fence_put(fence);
-+			fence = xe_vm_bind(vm, op->remap.next, op->q,
-+					   xe_vma_bo(op->remap.next),
-+					   op->syncs, op->num_syncs,
-+					   true, false,
-+					   op->flags & XE_VMA_OP_LAST);
- 			op->remap.next->gpuva.flags &= ~XE_VMA_LAST_REBIND;
--			if (err)
-+			if (IS_ERR(fence))
- 				break;
- 			op->remap.next = NULL;
- 		}
-@@ -2481,34 +2469,36 @@ static int op_execute(struct xe_vm *vm, struct xe_vma *vma,
- 		break;
- 	}
- 	case DRM_GPUVA_OP_UNMAP:
--		err = xe_vm_unbind(vm, vma, op->q, op->syncs,
--				   op->num_syncs, op->flags & XE_VMA_OP_FIRST,
--				   op->flags & XE_VMA_OP_LAST);
-+		fence = xe_vm_unbind(vm, vma, op->q, op->syncs,
-+				     op->num_syncs, op->flags & XE_VMA_OP_FIRST,
-+				     op->flags & XE_VMA_OP_LAST);
- 		break;
- 	case DRM_GPUVA_OP_PREFETCH:
--		err = xe_vm_prefetch(vm, vma, op->q, op->prefetch.region,
--				     op->syncs, op->num_syncs,
--				     op->flags & XE_VMA_OP_FIRST,
--				     op->flags & XE_VMA_OP_LAST);
-+		fence = xe_vm_prefetch(vm, vma, op->q, op->prefetch.region,
-+				       op->syncs, op->num_syncs,
-+				       op->flags & XE_VMA_OP_FIRST,
-+				       op->flags & XE_VMA_OP_LAST);
- 		break;
- 	default:
- 		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
- 	}
- 
+-	err = xe_vm_lock_vma(exec, vma);
 -	if (err)
-+	if (IS_ERR(fence))
- 		trace_xe_vma_fail(vma);
+-		return err;
+-
+ 	xe_vm_assert_held(vm);
+ 	xe_bo_assert_held(xe_vma_bo(vma));
  
--	return err;
-+	return fence;
- }
- 
--static int __xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
--			       struct xe_vma_op *op)
-+static struct dma_fence *
-+__xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
-+		    struct xe_vma_op *op)
+@@ -2512,19 +2504,10 @@ static int op_execute(struct drm_exec *exec, struct xe_vm *vm,
+ static int __xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
+ 			       struct xe_vma_op *op)
  {
-+	struct dma_fence *fence;
+-	struct drm_exec exec;
  	int err;
  
  retry_userptr:
--	err = op_execute(vm, vma, op);
--	if (err == -EAGAIN) {
-+	fence = op_execute(vm, vma, op);
-+	if (IS_ERR(fence) && PTR_ERR(fence) == -EAGAIN) {
+-	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
+-	drm_exec_until_all_locked(&exec) {
+-		err = op_execute(&exec, vm, vma, op);
+-		drm_exec_retry_on_contention(&exec);
+-		if (err)
+-			break;
+-	}
+-	drm_exec_fini(&exec);
+-
++	err = op_execute(vm, vma, op);
+ 	if (err == -EAGAIN) {
  		lockdep_assert_held_write(&vm->lock);
  
- 		if (op->base.op == DRM_GPUVA_OP_REMAP) {
-@@ -2525,22 +2515,24 @@ static int __xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
- 			if (!err)
- 				goto retry_userptr;
- 
-+			fence = ERR_PTR(err);
- 			trace_xe_vma_fail(vma);
- 		}
+@@ -2689,29 +2672,114 @@ static void vm_bind_ioctl_ops_unwind(struct xe_vm *vm,
  	}
- 
--	return err;
-+	return fence;
  }
  
--static int xe_vma_op_execute(struct xe_vm *vm, struct xe_vma_op *op)
-+static struct dma_fence *
-+xe_vma_op_execute(struct xe_vm *vm, struct xe_vma_op *op)
- {
--	int ret = 0;
-+	struct dma_fence *fence = ERR_PTR(-ENOMEM);
- 
- 	lockdep_assert_held_write(&vm->lock);
- 
- 	switch (op->base.op) {
- 	case DRM_GPUVA_OP_MAP:
--		ret = __xe_vma_op_execute(vm, op->map.vma, op);
-+		fence = __xe_vma_op_execute(vm, op->map.vma, op);
- 		break;
- 	case DRM_GPUVA_OP_REMAP:
- 	{
-@@ -2553,23 +2545,23 @@ static int xe_vma_op_execute(struct xe_vm *vm, struct xe_vma_op *op)
- 		else
- 			vma = op->remap.next;
- 
--		ret = __xe_vma_op_execute(vm, vma, op);
-+		fence = __xe_vma_op_execute(vm, vma, op);
- 		break;
- 	}
- 	case DRM_GPUVA_OP_UNMAP:
--		ret = __xe_vma_op_execute(vm, gpuva_to_vma(op->base.unmap.va),
--					  op);
-+		fence = __xe_vma_op_execute(vm, gpuva_to_vma(op->base.unmap.va),
-+					    op);
- 		break;
- 	case DRM_GPUVA_OP_PREFETCH:
--		ret = __xe_vma_op_execute(vm,
--					  gpuva_to_vma(op->base.prefetch.va),
--					  op);
-+		fence = __xe_vma_op_execute(vm,
-+					    gpuva_to_vma(op->base.prefetch.va),
-+					    op);
- 		break;
- 	default:
- 		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
- 	}
- 
--	return ret;
-+	return fence;
- }
- 
- static void xe_vma_op_cleanup(struct xe_vm *vm, struct xe_vma_op *op)
-@@ -2744,11 +2736,35 @@ static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
- 	return 0;
- }
- 
-+static struct dma_fence *ops_execute(struct xe_vm *vm,
-+				     struct list_head *ops_list,
-+				     bool cleanup)
++static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
++				 bool validate)
 +{
-+	struct xe_vma_op *op, *next;
-+	struct dma_fence *fence = NULL;
++	struct xe_bo *bo = xe_vma_bo(vma);
++	int err = 0;
 +
-+	list_for_each_entry_safe(op, next, ops_list, link) {
-+		if (!IS_ERR(fence)) {
-+			dma_fence_put(fence);
-+			fence = xe_vma_op_execute(vm, op);
-+		}
-+		if (IS_ERR(fence)) {
-+			drm_warn(&vm->xe->drm, "VM op(%d) failed with %ld",
-+				 op->base.op, PTR_ERR(fence));
-+			fence = ERR_PTR(-ENOSPC);
-+		}
-+		if (cleanup)
-+			xe_vma_op_cleanup(vm, op);
++	if (bo) {
++		if (!bo->vm)
++			err = drm_exec_prepare_obj(exec, &bo->ttm.base, 0);
++		if (!err && validate)
++			err = xe_bo_validate(bo, xe_vma_vm(vma), true);
 +	}
 +
-+	return fence;
++	return err;
++}
++
++static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
++			    struct xe_vma_op *op)
++{
++	int err = 0;
++
++	switch (op->base.op) {
++	case DRM_GPUVA_OP_MAP:
++		err = vma_lock_and_validate(exec, op->map.vma,
++					    !xe_vm_in_fault_mode(vm) ||
++					    op->map.immediate);
++		break;
++	case DRM_GPUVA_OP_REMAP:
++		err = vma_lock_and_validate(exec,
++					    gpuva_to_vma(op->base.remap.unmap->va),
++					    false);
++		if (!err && op->remap.prev)
++			err = vma_lock_and_validate(exec, op->remap.prev, true);
++		if (!err && op->remap.next)
++			err = vma_lock_and_validate(exec, op->remap.next, true);
++		break;
++	case DRM_GPUVA_OP_UNMAP:
++		err = vma_lock_and_validate(exec,
++					    gpuva_to_vma(op->base.unmap.va),
++					    false);
++		break;
++	case DRM_GPUVA_OP_PREFETCH:
++		err = vma_lock_and_validate(exec,
++					    gpuva_to_vma(op->base.prefetch.va), true);
++		break;
++	default:
++		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
++	}
++
++	return err;
++}
++
++static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
++					   struct xe_vm *vm,
++					   struct list_head *ops_list)
++{
++	struct xe_vma_op *op;
++	int err;
++
++	err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), 0);
++	if (err)
++		return err;
++
++	list_for_each_entry(op, ops_list, link) {
++		err = op_lock_and_prep(exec, vm, op);
++		if (err)
++			return err;
++	}
++
++	return 0;
 +}
 +
  static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
  				     struct list_head *ops_list)
  {
- 	struct drm_exec exec;
--	struct xe_vma_op *op, *next;
-+	struct dma_fence *fence;
++	struct drm_exec exec;
+ 	struct xe_vma_op *op, *next;
  	int err;
  
  	lockdep_assert_held_write(&vm->lock);
-@@ -2761,19 +2777,14 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
- 		if (err)
- 			goto unlock;
  
--		list_for_each_entry_safe(op, next, ops_list, link) {
--			err = xe_vma_op_execute(vm, op);
--			if (err) {
--				drm_warn(&vm->xe->drm, "VM op(%d) failed with %d",
--					 op->base.op, err);
--				/*
--				 * FIXME: Killing VM rather than proper error handling
--				 */
--				xe_vm_kill(vm, false);
--				err = -ENOSPC;
--				goto unlock;
--			}
--			xe_vma_op_cleanup(vm, op);
-+		fence = ops_execute(vm, ops_list, true);
-+		if (IS_ERR(fence)) {
-+			err = PTR_ERR(fence);
-+			/* FIXME: Killing VM rather than proper error handling */
-+			xe_vm_kill(vm, false);
+-	list_for_each_entry_safe(op, next, ops_list, link) {
+-		err = xe_vma_op_execute(vm, op);
+-		if (err) {
+-			drm_warn(&vm->xe->drm, "VM op(%d) failed with %d",
+-				 op->base.op, err);
+-			/*
+-			 * FIXME: Killing VM rather than proper error handling
+-			 */
+-			xe_vm_kill(vm);
+-			return -ENOSPC;
++	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT |
++		      DRM_EXEC_IGNORE_DUPLICATES, 0);
++	drm_exec_until_all_locked(&exec) {
++		err = vm_bind_ioctl_ops_lock_and_prep(&exec, vm, ops_list);
++		drm_exec_retry_on_contention(&exec);
++		if (err)
 +			goto unlock;
-+		} else {
-+			dma_fence_put(fence);
++
++		list_for_each_entry_safe(op, next, ops_list, link) {
++			err = xe_vma_op_execute(vm, op);
++			if (err) {
++				drm_warn(&vm->xe->drm, "VM op(%d) failed with %d",
++					 op->base.op, err);
++				/*
++				 * FIXME: Killing VM rather than proper error handling
++				 */
++				xe_vm_kill(vm, false);
++				err = -ENOSPC;
++				goto unlock;
++			}
++			xe_vma_op_cleanup(vm, op);
  		}
+-		xe_vma_op_cleanup(vm, op);
  	}
  
+-	return 0;
++unlock:
++	drm_exec_fini(&exec);
++	return err;
+ }
+ 
+ #define SUPPORTED_FLAGS	\
 -- 
 2.34.1
 
