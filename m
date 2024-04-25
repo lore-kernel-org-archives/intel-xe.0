@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73C79C4345F
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Apr 2024 18:23:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D033C4345F
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Apr 2024 18:23:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39F2B11A765;
-	Thu, 25 Apr 2024 18:23:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C46F4112117;
+	Thu, 25 Apr 2024 18:23:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eegHFMtT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W/C3yc1Y";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78AC211A770
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6585611A76C
  for <intel-xe@lists.freedesktop.org>; Thu, 25 Apr 2024 18:23:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1714069429; x=1745605429;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yRjVpx8mQKo6/tqlkVzCPeaRjBVW6uKl5Eqre1prbbc=;
- b=eegHFMtTAukaWusw5aV8+9EKpmj05ibzQaEQgZabTuKc3suIJaTfwzh5
- Vc1Jc5/5/ftrQzPxiwf7Sq+6yJUS7oUG5H4diHsnb9XGstFY2ydjcDlIR
- bCf4lZIrrf8ULr/GBggmEcorrDRcSiGqvHRWxbKgKBm29Mpe3PYXYwWV0
- AzBClnaooLfPDN3q8MMAbVFIfQP1ljS25pj3KfvM82Y06Igvdfsd/8aDn
- qM2+fWPGAjdBGygo8vk/JTtDyWQQHZZdNFF1RIDpDixPLIeYn/YQwlj1q
- pETsMnaPA6JG64uScN3XA46ebrQd+HWsGSm+54IQKd72HMyQErP7UQGcq w==;
-X-CSE-ConnectionGUID: NrzMUu8lRyCh+uyZ18w3Lw==
-X-CSE-MsgGUID: W291wpPqTN6t7269wcfnng==
-X-IronPort-AV: E=McAfee;i="6600,9927,11055"; a="9605756"
+ bh=1pt9FJA7xT7Ru6hE42zH5rT6Ia0gNXxWUszKIQ7w7ac=;
+ b=W/C3yc1YSR4z2Q8Ht3NYki1vkKqZ1CKlZyfaxE65b38b4PUvufUHySET
+ OYa3MTthtUHfQLjV7i2v9zgrZ889tJGFUMBt+2JbPC3WiDkVll3qKnT3u
+ ZEt/K20OirdiLRU/toXMknSOhAf71OVwIz4V0VijIli0bgE6O5M0KiOE8
+ y+UumdtG6eXO7tXp+50btS/GhsnBOp3qDS92GaBHO4+rOvmX/qN6t+4X8
+ bvFJDNyQUK4JflU119IU86XsOikv6mhsEpnXY7oNJbOPaF2Yit8Bso13p
+ H6qu25SWnzHHOyD5RgwAbaxj/Udh8nXqjqcIl+J9fj5T6vBtjMjj/yz7O w==;
+X-CSE-ConnectionGUID: n6QlyplURpObyAt5w8sLwg==
+X-CSE-MsgGUID: BCxx6TetS12QV7hIQqTzIA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11055"; a="9605755"
 X-IronPort-AV: E=Sophos;i="6.07,230,1708416000"; 
-   d="scan'208";a="9605756"
+   d="scan'208";a="9605755"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Apr 2024 11:23:49 -0700
-X-CSE-ConnectionGUID: XlH01MyfSY6rGla53J5lQw==
-X-CSE-MsgGUID: r91H7pkZSfiHc9ytKJaNxA==
+X-CSE-ConnectionGUID: aXscaHUVQSam7CU2Fx6QLA==
+X-CSE-MsgGUID: 8IRbVOVEQ/mPdKFSlj27Fg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,230,1708416000"; d="scan'208";a="25157824"
+X-IronPort-AV: E=Sophos;i="6.07,230,1708416000"; d="scan'208";a="25157821"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2024 11:23:49 -0700
+ 25 Apr 2024 11:23:48 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: vinay.belgaumkar@intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  michal.winiarski@intel.com, matthew.brost@intel.com,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH 3/5] drm/xe: Move xe_gt_init_early() where it belongs
-Date: Thu, 25 Apr 2024 11:24:08 -0700
-Message-ID: <20240425182410.2705061-4-lucas.demarchi@intel.com>
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH 2/5] drm/xe: Drop useless forcewake get/put
+Date: Thu, 25 Apr 2024 11:24:07 -0700
+Message-ID: <20240425182410.2705061-3-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240425182410.2705061-1-lucas.demarchi@intel.com>
 References: <20240425182410.2705061-1-lucas.demarchi@intel.com>
@@ -69,46 +70,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Early shall be early enough, stop doing other things with gt before it.
-Now that xe_gt_init_early() doesn't need forcewake and doesn't depend on
-the fake engine_mask initialization, move it where it belongs: it
-doesn't need to be after hwconfig config anymore.
+Forcewake used to be needed in xe_gt_init_early() since it was calling
+xe_gt_topology_init(). That call was dropped in commit 4c47049d93b7
+("drm/xe/guc: Fix missing topology init"), but the forcewake calls were
+left behind. Remove them.
 
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c | 8 --------
+ 1 file changed, 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index bb4fbae5edb6..8d04283b3617 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -566,6 +566,12 @@ int xe_device_probe(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 00a22cf2f5b5..805fd0acfc03 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -318,14 +318,6 @@ int xe_gt_init_early(struct xe_gt *gt)
+ 			return err;
+ 	}
  
- 	xe_ttm_sys_mgr_init(xe);
- 
-+	for_each_gt(gt, xe, id) {
-+		err = xe_gt_init_early(gt);
-+		if (err)
-+			return err;
-+	}
-+
- 	for_each_gt(gt, xe, id)
- 		xe_force_wake_init_gt(gt, gt_to_fw(gt));
- 
-@@ -604,12 +610,6 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		goto err;
- 
--	for_each_gt(gt, xe, id) {
--		err = xe_gt_init_early(gt);
--		if (err)
--			goto err_irq_shutdown;
--	}
+-	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+-	if (err)
+-		return err;
 -
- 	err = xe_device_set_has_flat_ccs(xe);
- 	if (err)
- 		goto err_irq_shutdown;
+-	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+-	if (err)
+-		return err;
+-
+ 	xe_reg_sr_init(&gt->reg_sr, "GT", gt_to_xe(gt));
+ 
+ 	err = xe_wa_init(gt);
 -- 
 2.43.0
 
