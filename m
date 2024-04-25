@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88CBFC4345F
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Apr 2024 12:21:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22196C10F15
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Apr 2024 12:22:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B23411A410;
-	Thu, 25 Apr 2024 12:21:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E07E311A410;
+	Thu, 25 Apr 2024 12:22:11 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A102911A410;
- Thu, 25 Apr 2024 12:21:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A7C911A410;
+ Thu, 25 Apr 2024 12:22:11 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_skip_error?=
- =?utf-8?q?_capture_when_exec_queue_is_killed?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_skip_error_capt?=
+ =?utf-8?q?ure_when_exec_queue_is_killed?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 25 Apr 2024 12:21:49 -0000
-Message-ID: <171404770965.1650497.6174649200548912465@8e613ede5ea5>
+Date: Thu, 25 Apr 2024 12:22:11 -0000
+Message-ID: <171404773104.1650497.1057659934732356244@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240425122931.1851837-1-tejas.upadhyay@intel.com>
 In-Reply-To: <20240425122931.1851837-1-tejas.upadhyay@intel.com>
@@ -44,16 +44,38 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: skip error capture when exec queue is killed
 URL   : https://patchwork.freedesktop.org/series/132906/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 972738688dc4 drm-tip: 2024y-04m-25d-11h-47m-56s UTC integration manifest
-=== git am output follows ===
-.git/rebase-apply/patch:14: trailing whitespace.
-	if (exec_queue_killed(q) || 
-warning: 1 line adds whitespace errors.
-Applying: drm/xe: skip error capture when exec queue is killed
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+0daf0be5bb95eb0a0e42275e00a0e42d8d8fd543
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 7d93ba0167616a98b17ea9f53e6da57c92d87900
+Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Date:   Thu Apr 25 17:59:31 2024 +0530
+
+    drm/xe: skip error capture when exec queue is killed
+    
+    When user closes exec queue soon after job submission,
+    we are generating error coredump. Instead check if
+    exec queue is killed during job timeout then skip
+    error coredump capture, just free the job and return
+    proper scheduler state.
+    
+    Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
++ /mt/dim checkpatch 972738688dc48cf04e4aec9a39ef4703c78aa17b drm-intel
+7d93ba016761 drm/xe: skip error capture when exec queue is killed
+-:23: ERROR:TRAILING_WHITESPACE: trailing whitespace
+#23: FILE: drivers/gpu/drm/xe/xe_guc_submit.c:974:
++^Iif (exec_queue_killed(q) || $
+
+total: 1 errors, 0 warnings, 0 checks, 9 lines checked
 
 
