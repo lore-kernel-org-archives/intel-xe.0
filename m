@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A101BC4345F
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Apr 2024 10:52:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18E91C4345F
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Apr 2024 11:13:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FA7B1137BA;
-	Thu, 25 Apr 2024 10:52:13 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F41E71137BA;
- Thu, 25 Apr 2024 10:52:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id D742711A3AC;
+	Thu, 25 Apr 2024 11:13:49 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kwzsYtdd";
+	dkim-atps=neutral
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CE4910F5C7;
+ Thu, 25 Apr 2024 11:13:47 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 1248961753;
+ Thu, 25 Apr 2024 11:13:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8845C113CC;
+ Thu, 25 Apr 2024 11:13:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1714043626;
+ bh=UdE/4VvWguswfPLwhPsX/2X0F7/oUgqui2wg2DgneZQ=;
+ h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
+ b=kwzsYtdd0hAovJSOhImyMm/eguj4w9HNQIO9PqY5Nd4EaZWUK+kPf4L53jPNCOxPU
+ LVguMyn6n1X5KWbxMqrDEi9gQMpE/KEH9MJ80Wx4/d2uc1vlcYl7hO0k+QmjXvJ0k6
+ sfj7TiQauOmI7VPi6PtD7O/uHcLZGU8wreLiRQU0+uqHio7PKV00NKghqOVJI/AmFk
+ LSAJKRUx4F8a9fbzd1TLC3e7r3BuhZkxODjaC6FBSrlbQe5rGHQ3MyuU+fwX7PEcY8
+ CEbyRswR9ZJCUe4yiOvg1Rr7UnPqtYWMipFTpF0Hdi4AsGKTtW4VYYYZC47AfLNqGu
+ L1CiVG6ZcaszA==
+Received: by mail-yw1-f182.google.com with SMTP id
+ 00721157ae682-61816fc256dso8206327b3.0; 
+ Thu, 25 Apr 2024 04:13:46 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUUdSXueoND6u+EJLiM3FQD0EkbiuMy299+SrmJJbYQoZdmimeUADQ5KYDDcWzdcFBrs3hI9w5yKo5nJOMGOabGQTF8v7D1hQx5cbGPV5Vl9ax8NVuB8J8mfuGZhd/jKTbm6mWcbidHK6C+9FAxKug=
+X-Gm-Message-State: AOJu0YwUeM6eTJvjHbSAUIYMRHbV7zJswWnVYDMzDwFYXEMQ/dhnkneu
+ IUlA76+yNg+/Jxlivlg7hdHGAeaWHI0ov8wrrhd4Q+jGeleZzp9AIap56CDSMJo7gSf64Q9anLq
+ KL1uTmE/+yW63gqfPWo+UytBuCUs=
+X-Google-Smtp-Source: AGHT+IH0r0HuuhH+CjENzxURKfg+8noQ+AdC4Rc8qgNcIBcwuEPoIMh4zgRJAUHb92NoaQfxuR+SLS3UnPmrzJbGe8A=
+X-Received: by 2002:a05:690c:7084:b0:619:da17:87be with SMTP id
+ jg4-20020a05690c708400b00619da1787bemr5670833ywb.42.1714043625975; Thu, 25
+ Apr 2024 04:13:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/display=3A_Unpi?=
- =?utf-8?q?n_cursor_worker_in_vblank_worker_series=2E?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 25 Apr 2024 10:52:12 -0000
-Message-ID: <171404233200.1650497.6851125611967669245@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240425102604.1704520-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20240425102604.1704520-1-maarten.lankhorst@linux.intel.com>
+References: <20240424200515.281478-2-gustavo.sousa@intel.com>
+In-Reply-To: <20240424200515.281478-2-gustavo.sousa@intel.com>
+From: Josh Boyer <jwboyer@kernel.org>
+Date: Thu, 25 Apr 2024 07:13:34 -0400
+X-Gmail-Original-Message-ID: <CA+5PVA4MeV56Zj_Xr2JuRUS7KWWOw0fd6-9mTow1i64ADkPpkw@mail.gmail.com>
+Message-ID: <CA+5PVA4MeV56Zj_Xr2JuRUS7KWWOw0fd6-9mTow1i64ADkPpkw@mail.gmail.com>
+Subject: Re: PR for Xe2LPD DMC v2.20
+To: Gustavo Sousa <gustavo.sousa@intel.com>
+Cc: linux-firmware@kernel.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,35 +66,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Apr 24, 2024 at 4:05=E2=80=AFPM Gustavo Sousa <gustavo.sousa@intel.=
+com> wrote:
+>
+> The following changes since commit 93f329774542b9b7d57abb18ea8b6542f2d8fe=
+ac:
+>
+>   Merge branch 'robot/pr-0-1709214990' into 'main' (2024-02-29 14:10:53 +=
+0000)
+>
+> are available in the Git repository at:
+>
+>   https://gitlab.freedesktop.org/drm/firmware.git tags/intel-2024-04-24
 
-Series: drm/i915/display: Unpin cursor worker in vblank worker series.
-URL   : https://patchwork.freedesktop.org/series/132899/
-State : warning
+Merged and pushed out.
 
-== Summary ==
+https://gitlab.com/kernel-firmware/linux-firmware/-/merge_requests/201
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 67988afd596f307b6b7e849e6a246bca9a20e93d
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+josh
 
-
+>
+> for you to fetch changes up to 8a52a94db5502d797864f5209c28739d2d9449d0:
+>
+>   i915: Update Xe2LPD DMC to v2.20 (2024-04-22 23:31:42 +0530)
+>
+> ----------------------------------------------------------------
+> Intel DRM firmware intel-2024-04-24
+>
+> ----------------------------------------------------------------
+> Daniele Ceraolo Spurio (1):
+>       i915: Add DG2 HuC 7.10.15
+>
+> Dnyaneshwar Bhadane (1):
+>       i915: Update Xe2LPD DMC to v2.20
+>
+>  WHENCE               |   4 ++--
+>  i915/dg2_huc_gsc.bin | Bin 622592 -> 630784 bytes
+>  i915/xe2lpd_dmc.bin  | Bin 61208 -> 59284 bytes
+>  3 files changed, 2 insertions(+), 2 deletions(-)
+>  mode change 100755 =3D> 100644 i915/dg2_huc_gsc.bin
