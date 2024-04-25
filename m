@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E685C19F4E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54EECC10F15
 	for <intel-xe@archiver.kernel.org>; Thu, 25 Apr 2024 18:24:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29ECA11A768;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AA3B11A765;
 	Thu, 25 Apr 2024 18:24:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F0UZl4V0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hNelvslw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2705A112117
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Apr 2024 18:23:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55A3A11A76A
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Apr 2024 18:23:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714069430; x=1745605430;
+ t=1714069429; x=1745605429;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nHrFFTT3SffY/d5aZFaf+owtMCVARbP0rMD2e+ky+KE=;
- b=F0UZl4V0CIFdYQ8HtrqwDxaX4R+sKSE/QpFEIPaM5SMXHdlEH70i/+17
- 6ydJ+h3LyBYhR5a5KzXjuNC6Ov91O9yAdInSKTRo//TyaOb9rz2M2fKj0
- T0BqoycULFr2L9/RCLXFBzACYE+toTYdr0sTeWW6pvUE4BajgZmpN7shP
- +GqZh12NSQ8sRr4xgiQzMM6QPHlukr0woQ4Ut9xrU2OH/YJYiz47ubT3O
- mLKmLlslykmrZCzaRCepxetQo4jME5KZ6b6NaucAkCVuZmzv5kKD0kAhN
- KbcjANtvErbjosK9RosV4nqekdwX9138fF1copWQgGGyyc5XvHqV1l1Cy Q==;
-X-CSE-ConnectionGUID: U7BjosFoRM68WRlFcRPL2w==
-X-CSE-MsgGUID: cBB0u0JPSYeFzJROhLW8Dg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11055"; a="9605760"
+ bh=XVRBTL4uuS/welxeEKTS26J+xbMaCoHmfXeQxIftQoY=;
+ b=hNelvslwTk6BQZyuWkE/jSYoep833kaaZ/UR2nvVFwGJDtzM9FvljbVu
+ U2AD2bO56lrIyqEv1pkofaEr1w1xaPD7FV+AOezi3/jtT1GopgklQLCBT
+ MjvyZEKlfvyoi1geqw6ZiiVQD751mLNyjEHcQX+6gUAODR+m/vDdKBO1m
+ 24e6epc5/Y8ZEbOQOsCKLy0wbdSnHyjxucIJ+KWWXFBl0OkaEOGygmkZi
+ LUCoAV580uqfuSxjGV7bI0BW5TXmK1kAzQpv7plL6ySlQ9fwFFO/6PPzT
+ ZmogxXK5UdsLxr4C9hgkeki+5Wtyi9DrQSB4hmaw0hB0nrf1GGREV82Py A==;
+X-CSE-ConnectionGUID: BKiUav8QR72hTLKDi38lSQ==
+X-CSE-MsgGUID: iTGRML8+Sf+CYOnSj0NXjA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11055"; a="9605754"
 X-IronPort-AV: E=Sophos;i="6.07,230,1708416000"; 
-   d="scan'208";a="9605760"
+   d="scan'208";a="9605754"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Apr 2024 11:23:49 -0700
-X-CSE-ConnectionGUID: xvPDcRlgQGSSNAgOhYHuFA==
-X-CSE-MsgGUID: yR9RREFfQZ6vZHxlCWRvkw==
+X-CSE-ConnectionGUID: kzqbu4ThTfSIxYM5NlWxdA==
+X-CSE-MsgGUID: YST0g0JOSNm1uYVoJzAfHw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,230,1708416000"; d="scan'208";a="25157831"
+X-IronPort-AV: E=Sophos;i="6.07,230,1708416000"; d="scan'208";a="25157818"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2024 11:23:49 -0700
+ 25 Apr 2024 11:23:48 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: vinay.belgaumkar@intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  michal.winiarski@intel.com, matthew.brost@intel.com,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH 5/5] drm/xe: Move sw-only pcode initialization
-Date: Thu, 25 Apr 2024 11:24:10 -0700
-Message-ID: <20240425182410.2705061-6-lucas.demarchi@intel.com>
+Subject: [PATCH 1/5] drm/xe: Drop __engine_mask
+Date: Thu, 25 Apr 2024 11:24:06 -0700
+Message-ID: <20240425182410.2705061-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240425182410.2705061-1-lucas.demarchi@intel.com>
 References: <20240425182410.2705061-1-lucas.demarchi@intel.com>
@@ -69,49 +69,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move it to xe_gt_init_early() that initializes the sw-only part for each
-gt.
+Not really used, it's just a copy of engine_mask, which already reads
+the fuses to mark engines as available/not-available.
+
+While at it, use XE_HW_ENGINE_BCS_MASK to span all copy engines.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 3 ---
- drivers/gpu/drm/xe/xe_gt.c     | 2 ++
- 2 files changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c       | 3 ---
+ drivers/gpu/drm/xe/xe_gt_types.h | 6 ------
+ drivers/gpu/drm/xe/xe_migrate.c  | 3 +--
+ drivers/gpu/drm/xe/xe_pci.c      | 6 +++---
+ 4 files changed, 4 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index d090c4e7d57a..c0f2cf0dc006 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -596,9 +596,6 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
--	for_each_gt(gt, xe, id)
--		xe_pcode_init(gt);
--
- 	err = xe_display_init_noirq(xe);
- 	if (err)
- 		return err;
 diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 2e8efce2799a..b6ab3e0cfb64 100644
+index e922e77f5010..00a22cf2f5b5 100644
 --- a/drivers/gpu/drm/xe/xe_gt.c
 +++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -44,6 +44,7 @@
- #include "xe_migrate.h"
- #include "xe_mmio.h"
- #include "xe_pat.h"
-+#include "xe_pcode.h"
- #include "xe_pm.h"
- #include "xe_mocs.h"
- #include "xe_reg_sr.h"
-@@ -329,6 +330,7 @@ int xe_gt_init_early(struct xe_gt *gt)
- 	xe_tuning_process_gt(gt);
+@@ -515,9 +515,6 @@ int xe_gt_init_hwconfig(struct xe_gt *gt)
+ 	if (err)
+ 		goto out_fw;
  
- 	xe_force_wake_init_gt(gt, gt_to_fw(gt));
-+	xe_pcode_init(gt);
- 
- 	return 0;
+-	/* XXX: Fake that we pull the engine mask from hwconfig blob */
+-	gt->info.engine_mask = gt->info.__engine_mask;
+-
+ out_fw:
+ 	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+ out:
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index cfdc761ff7f4..72568414fb7d 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -116,12 +116,6 @@ struct xe_gt {
+ 		u32 reference_clock;
+ 		/** @info.engine_mask: mask of engines present on GT */
+ 		u64 engine_mask;
+-		/**
+-		 * @info.__engine_mask: mask of engines present on GT read from
+-		 * xe_pci.c, used to fake reading the engine_mask from the
+-		 * hwconfig blob.
+-		 */
+-		u64 __engine_mask;
+ 		/** @info.gmdid: raw GMD_ID value from hardware */
+ 		u32 gmdid;
+ 	} info;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 9f6e9b7f11c8..59a3f24d31e6 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -936,8 +936,7 @@ static bool has_service_copy_support(struct xe_gt *gt)
+ 	 * all of the actual service copy engines (BCS1-BCS8) have been fused
+ 	 * off.
+ 	 */
+-	return gt->info.__engine_mask & GENMASK(XE_HW_ENGINE_BCS8,
+-						XE_HW_ENGINE_BCS1);
++	return gt->info.engine_mask & XE_HW_ENGINE_BCS_MASK;
  }
+ 
+ static u32 emit_clear_cmd_len(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index a0cf5dd803c2..6b2086ea24ab 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -656,9 +656,9 @@ static int xe_info_init(struct xe_device *xe,
+ 		gt = tile->primary_gt;
+ 		gt->info.id = xe->info.gt_count++;
+ 		gt->info.type = XE_GT_TYPE_MAIN;
+-		gt->info.__engine_mask = graphics_desc->hw_engine_mask;
++		gt->info.engine_mask = graphics_desc->hw_engine_mask;
+ 		if (MEDIA_VER(xe) < 13 && media_desc)
+-			gt->info.__engine_mask |= media_desc->hw_engine_mask;
++			gt->info.engine_mask |= media_desc->hw_engine_mask;
+ 
+ 		if (MEDIA_VER(xe) < 13 || !media_desc)
+ 			continue;
+@@ -673,7 +673,7 @@ static int xe_info_init(struct xe_device *xe,
+ 
+ 		gt = tile->media_gt;
+ 		gt->info.type = XE_GT_TYPE_MEDIA;
+-		gt->info.__engine_mask = media_desc->hw_engine_mask;
++		gt->info.engine_mask = media_desc->hw_engine_mask;
+ 		gt->mmio.adj_offset = MEDIA_GT_GSI_OFFSET;
+ 		gt->mmio.adj_limit = MEDIA_GT_GSI_LENGTH;
+ 
 -- 
 2.43.0
 
