@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEB43C4345F
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Apr 2024 04:55:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 668ECC4345F
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Apr 2024 04:55:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83AE011A0E6;
-	Thu, 25 Apr 2024 04:55:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2330611A0E5;
+	Thu, 25 Apr 2024 04:55:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZF0roXYt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Eyrsei/u";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EB4A11A0E7
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 475AC11A0E7
  for <intel-xe@lists.freedesktop.org>; Thu, 25 Apr 2024 04:54:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1714020884; x=1745556884;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7Up/k439KD0hsjUozQ1U74kt3cYx2IpJvsN6YIIcxBM=;
- b=ZF0roXYtqh9LOkRxbbr7MRpfya//539/XrEu9ltQGCkCP2g+UjxagP1o
- VGEwPCgd0Ce2y2hgq8dyrqajyeBj7hi5Y81Dib4LgjguHDWbUsm8GKCu2
- TSJoHSpiYdLgiK7W9akglzc4sSkg68txjfEkS5GKqX7U22+rbH5vQakoD
- hyV9sOOFE479EuvWzOlGCnbFkOzbfkiLmkqYBNFx5ufvrgyy/SaOnm2jS
- 8p/rFidmPV450t2WFaVSVYxTQaRldWFCV7/ilBaRWjN+NJhMohn8wC8fO
- KIWuFhcv89SpzJ8WBQtrU8Rz/HzPEwYVQETzusq0xnSqcBD1NZOntNqX4 Q==;
-X-CSE-ConnectionGUID: I52QTSU9Tl+U4WJUGIYN4Q==
-X-CSE-MsgGUID: rYgbShIuTGSJUxzHnvArAw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="20374884"
-X-IronPort-AV: E=Sophos;i="6.07,228,1708416000"; d="scan'208";a="20374884"
+ bh=ux+HHfDM68Hz9+Vorco+i9HIYQAiLlcstKsVaWvs2J4=;
+ b=Eyrsei/uyCm00yA0ehnmUJ39qbvRw1M2kVA5P6ILxisM+jUIe1VNrleq
+ fnNPlc3E6E8kG+8T/aW6rctxI1bBcjT2S6CzYnj43Wu6QKTWq/gCmGRbD
+ 4JBSDBEg8KY/sKoMvZopE+0y5a7L/rstxV3Bsk8GgFoQYNDcxq19l11f1
+ gOzPQUF+Uh9hfgBs2YZJv70sz2OBGjD12ia5StXWxjnxkGF4n9Z2sR888
+ 1aHjM4rdkWPwafGoJVlFBUGnHqWT0i3THEx44wS9JCDG0rU1QIfOuaUkN
+ t0FjYxvKdAIP6W8hD7M9XOK3ZCMub0CHl0YLbFIhzQjJhFBUgsXDOeTCM g==;
+X-CSE-ConnectionGUID: UgYqgyT+TJO3YmcYZMCPOw==
+X-CSE-MsgGUID: yqtj5EnaTi+WOq0ydkUTrQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="20374879"
+X-IronPort-AV: E=Sophos;i="6.07,228,1708416000"; d="scan'208";a="20374879"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Apr 2024 21:54:44 -0700
-X-CSE-ConnectionGUID: ibid+jNXScKeP20KNp3R4A==
-X-CSE-MsgGUID: zCEt5FwYQ520UDuTvtpusg==
+X-CSE-ConnectionGUID: gkoPmH9jSPSVzPXVvpf2/Q==
+X-CSE-MsgGUID: Tm/E79TdRp+lnPvvh2QPyQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,228,1708416000"; d="scan'208";a="24996514"
+X-IronPort-AV: E=Sophos;i="6.07,228,1708416000"; d="scan'208";a="24996501"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2024 21:54:44 -0700
+ 24 Apr 2024 21:54:43 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Matthew Brost <matthew.brost@intel.com>,
 	Oak Zeng <oak.zeng@intel.com>
-Subject: [PATCH v3 13/13] drm/xe: Delete PT update selftest
-Date: Wed, 24 Apr 2024 21:55:13 -0700
-Message-Id: <20240425045513.1913039-14-matthew.brost@intel.com>
+Subject: [PATCH v3 09/13] drm/xe: Add vm_bind_ioctl_ops_fini helper
+Date: Wed, 24 Apr 2024 21:55:09 -0700
+Message-Id: <20240425045513.1913039-10-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240425045513.1913039-1-matthew.brost@intel.com>
 References: <20240425045513.1913039-1-matthew.brost@intel.com>
@@ -67,128 +67,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-IGTs (e.g. xe_vm) can provide the exact same coverage as the PT update
-selftest. The PT update selftest is dependent on internal functions
-which can change thus maintaining this test is costly and provide no
-extra coverage. Delete this test.
+Simplify VM bind code by signaling out-fences / destroying VMAs in a
+single location. Will help with transition single job for many bind ops.
 
+v2:
+ - s/vm_bind_ioctl_ops_install_fences/vm_bind_ioctl_ops_fini (Oak)
+ - Set last fence in vm_bind_ioctl_ops_fini (Oak)
+
+Cc: Oak Zeng <oak.zeng@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_migrate.c | 86 ---------------------------
- 1 file changed, 86 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c | 62 +++++++++++++++-----------------------
+ 1 file changed, 24 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index 977d5f4e4490..b6e7f80c3774 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -62,36 +62,6 @@ static int run_sanity_job(struct xe_migrate *m, struct xe_device *xe,
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index a422efd924a3..fe824ff5346f 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1630,7 +1630,7 @@ xe_vm_unbind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
+ 	struct dma_fence *fence = NULL;
+ 	struct dma_fence **fences = NULL;
+ 	struct dma_fence_array *cf = NULL;
+-	int cur_fence = 0, i;
++	int cur_fence = 0;
+ 	int number_tiles = hweight8(vma->tile_present);
+ 	int err;
+ 	u8 id;
+@@ -1688,10 +1688,6 @@ xe_vm_unbind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
  
--static void
--sanity_populate_cb(struct xe_migrate_pt_update *pt_update,
--		   struct xe_tile *tile, struct iosys_map *map, void *dst,
--		   u32 qword_ofs, u32 num_qwords,
--		   const struct xe_vm_pgtable_update *update)
--{
--	struct migrate_test_params *p =
--		to_migrate_test_params(xe_cur_kunit_priv(XE_TEST_LIVE_MIGRATE));
--	int i;
--	u64 *ptr = dst;
--	u64 value;
--
--	for (i = 0; i < num_qwords; i++) {
--		value = (qword_ofs + i - update->ofs) * 0x1111111111111111ULL;
--		if (map)
--			xe_map_wr(tile_to_xe(tile), map, (qword_ofs + i) *
--				  sizeof(u64), u64, value);
--		else
--			ptr[i] = value;
+ 	fence = cf ? &cf->base : !fence ?
+ 		xe_exec_queue_last_fence_get(wait_exec_queue, vm) : fence;
+-	if (last_op) {
+-		for (i = 0; i < num_syncs; i++)
+-			xe_sync_entry_signal(&syncs[i], fence);
 -	}
--
--	kunit_info(xe_cur_kunit(), "Used %s.\n", map ? "CPU" : "GPU");
--	if (p->force_gpu && map)
--		KUNIT_FAIL(xe_cur_kunit(), "GPU pagetable update used CPU.\n");
--}
--
--static const struct xe_migrate_pt_update_ops sanity_ops = {
--	.populate = sanity_populate_cb,
--};
--
- #define check(_retval, _expected, str, _test)				\
- 	do { if ((_retval) != (_expected)) {				\
- 			KUNIT_FAIL(_test, "Sanity check failed: " str	\
-@@ -209,57 +179,6 @@ static void test_copy_vram(struct xe_migrate *m, struct xe_bo *bo,
- 	test_copy(m, bo, test, region);
- }
  
--static void test_pt_update(struct xe_migrate *m, struct xe_bo *pt,
--			   struct kunit *test, bool force_gpu)
--{
--	struct xe_device *xe = tile_to_xe(m->tile);
--	struct dma_fence *fence;
--	u64 retval, expected;
--	ktime_t then, now;
--	int i;
--
--	struct xe_vm_pgtable_update update = {
--		.ofs = 1,
--		.qwords = 0x10,
--		.pt_bo = pt,
--	};
--	struct xe_migrate_pt_update pt_update = {
--		.ops = &sanity_ops,
--	};
--	struct migrate_test_params p = {
--		.base.id = XE_TEST_LIVE_MIGRATE,
--		.force_gpu = force_gpu,
--	};
--
--	test->priv = &p;
--	/* Test xe_migrate_update_pgtables() updates the pagetable as expected */
--	expected = 0xf0f0f0f0f0f0f0f0ULL;
--	xe_map_memset(xe, &pt->vmap, 0, (u8)expected, pt->size);
--
--	then = ktime_get();
--	fence = xe_migrate_update_pgtables(m, m->q->vm, NULL, m->q, &update, 1,
--					   NULL, 0, &pt_update);
--	now = ktime_get();
--	if (sanity_fence_failed(xe, fence, "Migration pagetable update", test))
--		return;
--
--	kunit_info(test, "Updating without syncing took %llu us,\n",
--		   (unsigned long long)ktime_to_us(ktime_sub(now, then)));
--
--	dma_fence_put(fence);
--	retval = xe_map_rd(xe, &pt->vmap, 0, u64);
--	check(retval, expected, "PTE[0] must stay untouched", test);
--
--	for (i = 0; i < update.qwords; i++) {
--		retval = xe_map_rd(xe, &pt->vmap, (update.ofs + i) * 8, u64);
--		check(retval, i * 0x1111111111111111ULL, "PTE update", test);
--	}
--
--	retval = xe_map_rd(xe, &pt->vmap, 8 * (update.ofs + update.qwords),
--			   u64);
--	check(retval, expected, "PTE[0x11] must stay untouched", test);
--}
--
- static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
- {
- 	struct xe_tile *tile = m->tile;
-@@ -398,11 +317,6 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
- 		test_copy_vram(m, big, test);
+ 	return fence;
+ 
+@@ -1715,7 +1711,7 @@ xe_vm_bind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
+ 	struct dma_fence **fences = NULL;
+ 	struct dma_fence_array *cf = NULL;
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+-	int cur_fence = 0, i;
++	int cur_fence = 0;
+ 	int number_tiles = hweight8(tile_mask);
+ 	int err;
+ 	u8 id;
+@@ -1762,12 +1758,6 @@ xe_vm_bind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
+ 		}
  	}
  
--	kunit_info(test, "Testing page table update using CPU if GPU idle.\n");
--	test_pt_update(m, pt, test, false);
--	kunit_info(test, "Testing page table update using GPU\n");
--	test_pt_update(m, pt, test, true);
+-	if (last_op) {
+-		for (i = 0; i < num_syncs; i++)
+-			xe_sync_entry_signal(&syncs[i],
+-					     cf ? &cf->base : fence);
+-	}
 -
- out:
- 	xe_bb_free(bb, NULL);
- free_tiny:
+ 	return cf ? &cf->base : fence;
+ 
+ err_fences:
+@@ -1819,20 +1809,11 @@ xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma, struct xe_exec_queue *q,
+ 		if (IS_ERR(fence))
+ 			return fence;
+ 	} else {
+-		int i;
+-
+ 		xe_assert(vm->xe, xe_vm_in_fault_mode(vm));
+ 
+ 		fence = xe_exec_queue_last_fence_get(wait_exec_queue, vm);
+-		if (last_op) {
+-			for (i = 0; i < num_syncs; i++)
+-				xe_sync_entry_signal(&syncs[i], fence);
+-		}
+ 	}
+ 
+-	if (last_op)
+-		xe_exec_queue_last_fence_set(wait_exec_queue, vm, fence);
+-
+ 	return fence;
+ }
+ 
+@@ -1842,7 +1823,6 @@ xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
+ 	     u32 num_syncs, bool first_op, bool last_op)
+ {
+ 	struct dma_fence *fence;
+-	struct xe_exec_queue *wait_exec_queue = to_wait_exec_queue(vm, q);
+ 
+ 	xe_vm_assert_held(vm);
+ 	xe_bo_assert_held(xe_vma_bo(vma));
+@@ -1851,10 +1831,6 @@ xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
+ 	if (IS_ERR(fence))
+ 		return fence;
+ 
+-	xe_vma_destroy(vma, fence);
+-	if (last_op)
+-		xe_exec_queue_last_fence_set(wait_exec_queue, vm, fence);
+-
+ 	return fence;
+ }
+ 
+@@ -2009,17 +1985,7 @@ xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
+ 		return xe_vm_bind(vm, vma, q, xe_vma_bo(vma), syncs, num_syncs,
+ 				  vma->tile_mask, true, first_op, last_op);
+ 	} else {
+-		struct dma_fence *fence =
+-			xe_exec_queue_last_fence_get(wait_exec_queue, vm);
+-		int i;
+-
+-		/* Nothing to do, signal fences now */
+-		if (last_op) {
+-			for (i = 0; i < num_syncs; i++)
+-				xe_sync_entry_signal(&syncs[i], fence);
+-		}
+-
+-		return fence;
++		return xe_exec_queue_last_fence_get(wait_exec_queue, vm);
+ 	}
+ }
+ 
+@@ -2822,6 +2788,26 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
+ 	return fence;
+ }
+ 
++static void vm_bind_ioctl_ops_fini(struct xe_vm *vm, struct xe_vma_ops *vops,
++				   struct dma_fence *fence)
++{
++	struct xe_exec_queue *wait_exec_queue = to_wait_exec_queue(vm, vops->q);
++	struct xe_vma_op *op;
++	int i;
++
++	list_for_each_entry(op, &vops->list, link) {
++		if (op->base.op == DRM_GPUVA_OP_UNMAP)
++			xe_vma_destroy(gpuva_to_vma(op->base.unmap.va), fence);
++		else if (op->base.op == DRM_GPUVA_OP_REMAP)
++			xe_vma_destroy(gpuva_to_vma(op->base.remap.unmap->va),
++				       fence);
++	}
++	for (i = 0; i < vops->num_syncs; i++)
++		xe_sync_entry_signal(vops->syncs + i, fence);
++	xe_exec_queue_last_fence_set(wait_exec_queue, vm, fence);
++	dma_fence_put(fence);
++}
++
+ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
+ 				     struct xe_vma_ops *vops)
+ {
+@@ -2846,7 +2832,7 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
+ 			xe_vm_kill(vm, false);
+ 			goto unlock;
+ 		} else {
+-			dma_fence_put(fence);
++			vm_bind_ioctl_ops_fini(vm, vops, fence);
+ 		}
+ 	}
+ 
 -- 
 2.34.1
 
