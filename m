@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8858BC4345F
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Apr 2024 13:00:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1BFCC4345F
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Apr 2024 13:05:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B45511A41B;
-	Thu, 25 Apr 2024 13:00:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9891511A441;
+	Thu, 25 Apr 2024 13:05:49 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7276711A41B;
- Thu, 25 Apr 2024 13:00:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1969603471164548033=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28A0711A441;
+ Thu, 25 Apr 2024 13:05:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_skip_error_capture_whe?=
- =?utf-8?q?n_exec_queue_is_killed?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Add_engine?=
+ =?utf-8?q?_name_to_the_engine_reset_and_cat-err_log?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 25 Apr 2024 13:00:53 -0000
-Message-ID: <171405005346.1650662.10229936836482012619@8e613ede5ea5>
+Date: Thu, 25 Apr 2024 13:05:48 -0000
+Message-ID: <171405034816.1650662.13044737004628013971@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240425122931.1851837-1-tejas.upadhyay@intel.com>
-In-Reply-To: <20240425122931.1851837-1-tejas.upadhyay@intel.com>
+References: <20240425121856.4500-1-nirmoy.das@intel.com>
+In-Reply-To: <20240425121856.4500-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,17 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1969603471164548033==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: skip error capture when exec queue is killed
-URL   : https://patchwork.freedesktop.org/series/132906/
+Series: drm/xe: Add engine name to the engine reset and cat-err log
+URL   : https://patchwork.freedesktop.org/series/132907/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1176-f7f80826e24682b8f13b91dc483426dc06a72e8e_BAT -> xe-pw-132906v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: badb49f5ec57 drm-tip: 2024y-04m-25d-12h-40m-10s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Add engine name to the engine reset and cat-err log
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1176-f7f80826e24682b8f13b91dc483426dc06a72e8e -> xe-pw-132906v1
-
-  IGT_7824: 7824
-  xe-1176-f7f80826e24682b8f13b91dc483426dc06a72e8e: f7f80826e24682b8f13b91dc483426dc06a72e8e
-  xe-pw-132906v1: 132906v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132906v1/index.html
-
---===============1969603471164548033==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: skip error capture when exec queue is killed</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132906/">https://patchwork.freedesktop.org/series/132906/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132906v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132906v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1176-f7f80826e24682b8f13b91dc483426dc06a72e8e_BAT -&gt; xe-pw-132906v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1176-f7f80826e24682b8f13b91dc483426dc06a72e8e -&gt; xe-pw-132906v1</li>
-</ul>
-<p>IGT_7824: 7824<br />
-  xe-1176-f7f80826e24682b8f13b91dc483426dc06a72e8e: f7f80826e24682b8f13b91dc483426dc06a72e8e<br />
-  xe-pw-132906v1: 132906v1</p>
-
-</body>
-</html>
-
---===============1969603471164548033==--
