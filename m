@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82BF9C4345F
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Apr 2024 22:38:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D355CC10F15
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Apr 2024 22:39:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 490CF10ECEA;
-	Thu, 25 Apr 2024 22:38:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9099510ECE6;
+	Thu, 25 Apr 2024 22:39:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ijUzwU38";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h8knldYR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DDF510ECEA
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Apr 2024 22:38:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BC6D10ECEA
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Apr 2024 22:38:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714084728; x=1745620728;
+ t=1714084731; x=1745620731;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HGRfUaI2mFidMOBWn3N7bksbEWI5ZXfKQCMvu7Dq3qY=;
- b=ijUzwU38mijjid9+3s2tqZpfgLLQU7U0wAOVoiD7HE1jHDlO9ilwlX4v
- fT7egpXrHVy6Xg1EZVjcpRutNj6MzPKmoltR9TTiGHsO4Ya+dAHxSTDbD
- NtWc5TnO1aEpDo1jeQGliq1rX3F+hiQ8Rc8ezq+sDQsR/Snajn3Q/5dj8
- G7aV8TUtvSDQ9iLq6/ESFWlNEFqqbpi5rP5+Zu7iuB2VqNsHFuiVTEpM4
- oOjwm1oQj5qkoas3/G9D504Z/+yiwrS393SmsyT+WCnEi228fA0ZUPuF5
- J+uMs4iDTqqXFf1yPV7w/zFJSFQmBhz7JmKVul+V2Y3EiflKdJE7Z1Osm Q==;
-X-CSE-ConnectionGUID: cfflKpmGSMu7Z9aql8nheA==
-X-CSE-MsgGUID: lE4FmsDtQFyfsqc7Q9A/8g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11055"; a="27325056"
-X-IronPort-AV: E=Sophos;i="6.07,230,1708416000"; d="scan'208";a="27325056"
+ bh=/UcH6J1Q077kdfltwPG03zdFaHuLWpJKTNH7rTy079U=;
+ b=h8knldYRctDTzxFqgOnujQtHtqPNnvmxu0hrKiOAinM4AanUEe5KUoFz
+ Z1gOrBLgotI6X6705j5acR99HEYJcX7+UoeC65zgMrie2OiBJMLfydAhQ
+ nQpATHkY/dj3jdRXpVY63AfH6TY/KxyFxag4wAsmrXWuP6Awr+a3dQs2y
+ yg8wKxQ8C3z08E/pZTtGVv5rqRA1r8QCCnUQFBiDSm4zofws5ntdlAGQe
+ MOAaJ1+7ASPFqHwy+q/KCxxUJV+XIoIBM6a6fUfONyXESMoLgI+B1xldE
+ egBK4C0McJ+MdAokXfslM7pECcWsv5euewgcCNrEUGB7DQne8xOXS76mS g==;
+X-CSE-ConnectionGUID: ph4Ix515S3CPV+454Pl9ig==
+X-CSE-MsgGUID: hbNN84m8Qt2hm0q1xZhlGw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11055"; a="27325062"
+X-IronPort-AV: E=Sophos;i="6.07,230,1708416000"; d="scan'208";a="27325062"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2024 15:38:48 -0700
-X-CSE-ConnectionGUID: Xqt5RLt1ShC7SRMy2mEH9Q==
-X-CSE-MsgGUID: En485iAqR+2sS2Ctdxzg2A==
+ 25 Apr 2024 15:38:51 -0700
+X-CSE-ConnectionGUID: 0KrbqnoiRH+A82jL36fP+g==
+X-CSE-MsgGUID: JcBjcX5pS3GDJqsorVo7qA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,230,1708416000"; d="scan'208";a="56167318"
+X-IronPort-AV: E=Sophos;i="6.07,230,1708416000"; d="scan'208";a="56167327"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2024 15:38:47 -0700
+ 25 Apr 2024 15:38:50 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Nirmoy Das <nirmoy.das@intel.com>, Matthew Brost <matthew.brost@intel.com>,
- Oak Zeng <oak.zeng@intel.com>,
+Cc: Nirmoy Das <nirmoy.das@intel.com>,
  =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Subject: [PATCH v4 2/5] drm/xe: Move vm bind bo validation to a helper function
-Date: Fri, 26 Apr 2024 00:23:43 +0200
-Message-ID: <20240425222346.13026-3-nirmoy.das@intel.com>
+Subject: [PATCH v4 4/5] drm/xe: Add function to check if BO has single
+ placement
+Date: Fri, 26 Apr 2024 00:23:45 +0200
+Message-ID: <20240425222346.13026-5-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20240425222346.13026-1-nirmoy.das@intel.com>
 References: <20240425222346.13026-1-nirmoy.das@intel.com>
@@ -72,123 +72,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move vm bind bo validation to a helper function to make the
-xe_vm_bind_ioctl() more readable.
-
-v2: Capture ret value of xe_vm_bind_ioctl_validate_bo(Matt B).
-    Remove redundant coh_mode param.
+A new helper function xe_bo_has_single_placement() to check
+if a BO has single placement.
 
 Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Oak Zeng <oak.zeng@intel.com>
 Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 77 +++++++++++++++++++++-----------------
- 1 file changed, 43 insertions(+), 34 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c | 14 ++++++++++++++
+ drivers/gpu/drm/xe/xe_bo.h |  1 +
+ 2 files changed, 15 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 7ae2b0300db6..e41345c1627d 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2859,6 +2859,46 @@ static int vm_bind_ioctl_signal_fences(struct xe_vm *vm,
- 	return err;
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index bc1f794e3e61..37df8c5aa707 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -95,6 +95,20 @@ bool xe_bo_is_stolen(struct xe_bo *bo)
+ 	return bo->ttm.resource->mem_type == XE_PL_STOLEN;
  }
  
-+static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
-+					u64 addr, u64 range, u64 obj_offset,
-+					u16 pat_index)
++/**
++ * xe_bo_has_single_placement - check if BO is placed only in one memory location
++ * @bo: The BO
++ *
++ * This function checks whether a given BO is placed in only one memory location.
++ *
++ * Returns: true if the BO is placed in a single memory location, false otherwise.
++ *
++ */
++bool xe_bo_has_single_placement(struct xe_bo *bo)
 +{
-+	u16 coh_mode;
-+
-+	if (XE_IOCTL_DBG(xe, range > bo->size) ||
-+	    XE_IOCTL_DBG(xe, obj_offset >
-+			 bo->size - range)) {
-+		return -EINVAL;
-+	}
-+
-+	if (bo->flags & XE_BO_FLAG_INTERNAL_64K) {
-+		if (XE_IOCTL_DBG(xe, obj_offset &
-+				 XE_64K_PAGE_MASK) ||
-+		    XE_IOCTL_DBG(xe, addr & XE_64K_PAGE_MASK) ||
-+		    XE_IOCTL_DBG(xe, range & XE_64K_PAGE_MASK)) {
-+			return  -EINVAL;
-+		}
-+	}
-+
-+	coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
-+	if (bo->cpu_caching) {
-+		if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE &&
-+				 bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB)) {
-+			return  -EINVAL;
-+		}
-+	} else if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE)) {
-+		/*
-+		 * Imported dma-buf from a different device should
-+		 * require 1way or 2way coherency since we don't know
-+		 * how it was mapped on the CPU. Just assume is it
-+		 * potentially cached on CPU side.
-+		 */
-+		return  -EINVAL;
-+	}
-+
-+	return 0;
++	return bo->placement.num_placement == 1;
 +}
 +
- int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- {
- 	struct xe_device *xe = to_xe_device(dev);
-@@ -2942,7 +2982,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		u32 obj = bind_ops[i].obj;
- 		u64 obj_offset = bind_ops[i].obj_offset;
- 		u16 pat_index = bind_ops[i].pat_index;
--		u16 coh_mode;
+ /**
+  * xe_bo_is_stolen_devmem - check if BO is of stolen type accessed via PCI BAR
+  * @bo: The BO
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index a885b14bf595..6de894c728f5 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -206,6 +206,7 @@ bool mem_type_is_vram(u32 mem_type);
+ bool xe_bo_is_vram(struct xe_bo *bo);
+ bool xe_bo_is_stolen(struct xe_bo *bo);
+ bool xe_bo_is_stolen_devmem(struct xe_bo *bo);
++bool xe_bo_has_single_placement(struct xe_bo *bo);
+ uint64_t vram_region_gpu_offset(struct ttm_resource *res);
  
- 		if (!obj)
- 			continue;
-@@ -2954,40 +2993,10 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		}
- 		bos[i] = gem_to_xe_bo(gem_obj);
- 
--		if (XE_IOCTL_DBG(xe, range > bos[i]->size) ||
--		    XE_IOCTL_DBG(xe, obj_offset >
--				 bos[i]->size - range)) {
--			err = -EINVAL;
--			goto put_obj;
--		}
--
--		if (bos[i]->flags & XE_BO_FLAG_INTERNAL_64K) {
--			if (XE_IOCTL_DBG(xe, obj_offset &
--					 XE_64K_PAGE_MASK) ||
--			    XE_IOCTL_DBG(xe, addr & XE_64K_PAGE_MASK) ||
--			    XE_IOCTL_DBG(xe, range & XE_64K_PAGE_MASK)) {
--				err = -EINVAL;
--				goto put_obj;
--			}
--		}
--
--		coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
--		if (bos[i]->cpu_caching) {
--			if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE &&
--					 bos[i]->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB)) {
--				err = -EINVAL;
--				goto put_obj;
--			}
--		} else if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE)) {
--			/*
--			 * Imported dma-buf from a different device should
--			 * require 1way or 2way coherency since we don't know
--			 * how it was mapped on the CPU. Just assume is it
--			 * potentially cached on CPU side.
--			 */
--			err = -EINVAL;
-+		err = xe_vm_bind_ioctl_validate_bo(xe, bos[i], addr, range,
-+						   obj_offset, pat_index);
-+		if (err)
- 			goto put_obj;
--		}
- 	}
- 
- 	if (args->num_syncs) {
+ bool xe_bo_can_migrate(struct xe_bo *bo, u32 mem_type);
 -- 
 2.42.0
 
