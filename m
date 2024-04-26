@@ -4,59 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E389C4345F
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Apr 2024 11:11:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A53D1C4345F
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Apr 2024 11:11:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FFB111228C;
-	Fri, 26 Apr 2024 11:11:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42EA51121F6;
+	Fri, 26 Apr 2024 11:11:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y9FN8Tc3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EdTDarZ/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60CA31121F6
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Apr 2024 11:11:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F62B1121F6
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 Apr 2024 11:11:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714129891; x=1745665891;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=YJ9FsTaok8o7KkafhlYQn448zC3ZBjyjH0y4r/JAHPw=;
- b=Y9FN8Tc31Y3DAmppWgcemUdNNuUU1qIFSejwtsXgtoh8cKSMFQPNB+Tx
- Xoby/ByFf3CftOOE4N1cd+vMMVf07iay1g7hIwKzj91cl1zDauED+hDIZ
- VEseOPwsUZzklzXOYZW4cRD6j+nov0jnkOqPF+l/u1AOkj7IPH+vk2abg
- JfYuA7I8zjbhgN1FWfK1pAnR3XQA2RRM4kxVKZnPX5iUWJFTs0m6dU8ji
- Eg1LCi0pTRaYDJlDU37rwrucOuvfCJRQIt+3V/n+YVr1K4oq2SufCgXIA
- I9yABOhsR5LTQNR9godIet/qxfX+wNr6p0btYg6UbykEPNtafcyH3KhWB Q==;
-X-CSE-ConnectionGUID: cVAq/X1FTzmZFSkphZAQLA==
-X-CSE-MsgGUID: an5NMfmhQlmSZJ5db0Nu5w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11055"; a="9712804"
+ t=1714129896; x=1745665896;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=/UcH6J1Q077kdfltwPG03zdFaHuLWpJKTNH7rTy079U=;
+ b=EdTDarZ/TT8jU3Gk4cpx3BPvMRXtz/4wDDuKXbT2sXL4CD4JlgsYOmua
+ Nt71CHJ6FlrO2H5+5i7KuS/BqZI9mfKgyUMoYS6SLKKI6alPRdjZczPnF
+ w6XMTo3vLhS879sNKS7KpUS6c3R4EmjJx5Duf0cZ76i3c1HxWOhkINq1E
+ Ej1G1UQEoT0kZ6r+Tn3ciBPvpzY5/4tqBSocNmNXV541/rPyTU9QOLMbV
+ slSKURd5HihM3+h7lqIREz/QhWX8xGk+w48JebhTh8coJ0uNEYvX8TIhJ
+ xyu3C3ZxdDE0f1UxsocTdbNSrm5bjacLw3WiGtbSHI0dGGnhfhm/wYHOZ A==;
+X-CSE-ConnectionGUID: TpagfTCkSJC6g9horSU48A==
+X-CSE-MsgGUID: 6RFIZ3soTw6HUwP0L3sLrQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11055"; a="9712817"
 X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; 
-   d="scan'208";a="9712804"
+   d="scan'208";a="9712817"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2024 04:11:30 -0700
-X-CSE-ConnectionGUID: v9M/z9J3SF6zz8dfDWYAxg==
-X-CSE-MsgGUID: iyaYWYy/RVyq3W9PuRr8hg==
+ 26 Apr 2024 04:11:36 -0700
+X-CSE-ConnectionGUID: RjZ0ihKWRfSMze9Un1Awyw==
+X-CSE-MsgGUID: cYnBdgDCRRqRlImoq7/p3w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="25384173"
+X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="25384216"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2024 04:11:28 -0700
+ 26 Apr 2024 04:11:35 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Nirmoy Das <nirmoy.das@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- Brian Welty <brian.welty@intel.com>, Fei Yang <fei.yang@intel.com>,
- Jose Souza <jose.souza@intel.com>,
- Lionel G Landwerlin <lionel.g.landwerlin@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Michal Mrozek <michal.mrozek@intel.com>, Oak Zeng <oak.zeng@intel.com>,
- Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v5 0/5] Refactor default device atomic settings
-Date: Fri, 26 Apr 2024 12:56:50 +0200
-Message-ID: <20240426105655.23738-1-nirmoy.das@intel.com>
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Subject: [PATCH v5 4/5] drm/xe: Add function to check if BO has single
+ placement
+Date: Fri, 26 Apr 2024 12:56:54 +0200
+Message-ID: <20240426105655.23738-5-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20240426105655.23738-1-nirmoy.das@intel.com>
+References: <20240426105655.23738-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
@@ -77,65 +73,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The default behavior of device atomics depends on the
-VM type and buffer allocation types. Device atomics are
-expected to function with all types of allocations for
-traditional applications/APIs. Additionally, in compute/SVM
-API scenarios with fault mode or LR mode VMs, device atomics
-must work with single-region allocations. In all other cases
-device atomics should be disabled by default. PVC needs special 
-care as it doesn't support device atomics on SMEM.
+A new helper function xe_bo_has_single_placement() to check
+if a BO has single placement.
 
-v5: Fix broken atomics on PVC from v4 changes.
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c | 14 ++++++++++++++
+ drivers/gpu/drm/xe/xe_bo.h |  1 +
+ 2 files changed, 15 insertions(+)
 
-v4: Previous assumption that device atomics should be disabled
-    by default on SMEM only BO was wrong as traditional applications
-    will not use such allocations for CPU atomics. So remove the
-    VM bind flag and the query uAPI and instead refactor default device 
-    atomics settings as per VM type and buffer allocations.
-      
-
-v3: Capture ret value of xe_vm_bind_ioctl_validate_bo(Matt B).
-    Remove redundant coh_mode param from xe_vm_bind_ioctl_validate_bo().
-    Remove has_device_atomics_on_smem from xe_graphics_desc(Jose).
-    Replace DRM_XE_QUERY_CONFIG_SUPP_DEV_ATOMIC_ON_SMEM with 
-    config flag DRM_XE_QUERY_CONFIG_FLAG_HAS_DEV_ATOMIC_ON_SMEM(Jose).
-    Mention that PTE_AE will not be applied to userptr(Matt R)
-
-v2: Add BO helper func in xe_vm_bind_ioctl()(Matt B).
-    Use XE_IOCTL_DBG for checks(Matt B).
-    Move platform checks with help of adding flags in
-    intel_device_info(Matt B).
-    Add document for DRM_XE_VM_BIND_FLAG_DEVICE_ATOMICS(Matt B). 
-    Create query uAPI for this newly added VM bind flag(Jose, Lionel).
-
-Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
-Cc: Fei Yang <fei.yang@intel.com>
-Cc: Jose Souza <jose.souza@intel.com>
-Cc: Lionel G Landwerlin <lionel.g.landwerlin@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Michal Mrozek <michal.mrozek@intel.com>
-Cc: Oak Zeng <oak.zeng@intel.com>
-Cc: Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>
-
-Nirmoy Das (5):
-  drm/xe: Introduce has_atomic_enable_pte_bit device info
-  drm/xe: Move vm bind bo validation to a helper function
-  drm/xe: Introduce has_device_atomics_on_smem device info
-  drm/xe: Add function to check if BO has single placement
-  drm/xe: Refactor default device atomic settings
-
- drivers/gpu/drm/xe/xe_bo.c           | 14 +++++
- drivers/gpu/drm/xe/xe_bo.h           |  1 +
- drivers/gpu/drm/xe/xe_device_types.h |  4 ++
- drivers/gpu/drm/xe/xe_pci.c          |  5 ++
- drivers/gpu/drm/xe/xe_pci_types.h    |  1 +
- drivers/gpu/drm/xe/xe_pt.c           | 27 ++++++++--
- drivers/gpu/drm/xe/xe_vm.c           | 79 ++++++++++++++++------------
- 7 files changed, 93 insertions(+), 38 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index bc1f794e3e61..37df8c5aa707 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -95,6 +95,20 @@ bool xe_bo_is_stolen(struct xe_bo *bo)
+ 	return bo->ttm.resource->mem_type == XE_PL_STOLEN;
+ }
+ 
++/**
++ * xe_bo_has_single_placement - check if BO is placed only in one memory location
++ * @bo: The BO
++ *
++ * This function checks whether a given BO is placed in only one memory location.
++ *
++ * Returns: true if the BO is placed in a single memory location, false otherwise.
++ *
++ */
++bool xe_bo_has_single_placement(struct xe_bo *bo)
++{
++	return bo->placement.num_placement == 1;
++}
++
+ /**
+  * xe_bo_is_stolen_devmem - check if BO is of stolen type accessed via PCI BAR
+  * @bo: The BO
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index a885b14bf595..6de894c728f5 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -206,6 +206,7 @@ bool mem_type_is_vram(u32 mem_type);
+ bool xe_bo_is_vram(struct xe_bo *bo);
+ bool xe_bo_is_stolen(struct xe_bo *bo);
+ bool xe_bo_is_stolen_devmem(struct xe_bo *bo);
++bool xe_bo_has_single_placement(struct xe_bo *bo);
+ uint64_t vram_region_gpu_offset(struct ttm_resource *res);
+ 
+ bool xe_bo_can_migrate(struct xe_bo *bo, u32 mem_type);
 -- 
 2.42.0
 
