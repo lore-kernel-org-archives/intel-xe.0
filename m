@@ -4,54 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1956AC25B4F
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Apr 2024 13:09:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95106C4345F
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Apr 2024 13:11:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1EF11123BF;
-	Fri, 26 Apr 2024 13:09:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 402061123C1;
+	Fri, 26 Apr 2024 13:11:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="REsO10Md";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oBngwwrd";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A16B51123BA;
- Fri, 26 Apr 2024 13:09:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D091B1123C1;
+ Fri, 26 Apr 2024 13:11:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714136990; x=1745672990;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=kuYMqhGQ+gATA6ZRDIWdlvxOT1isLspNTVI6crwbQxo=;
- b=REsO10MdOQACGD3GT3iHuBGh7ODp41RDCcWNPruEF61MPmZjsaxyLIRQ
- l3Zh1BeIL0BAaO7rHci1Hy2+hW3FF+qwRbLcDuooJQDre9thEt4PnnbXQ
- 5XKXCqSwNtMSB23lZCQqUp3Gj5kRSDZN1Q5FI/15TJUAFxvQEmTOKZvG5
- ZdfNxdF32aTxRe/2MmHKjYklmkjjsrp8sM+x9B+f+Dofwl9QpsmoicEOM
- QH1bD9yWoZd2l1W6t+WuqpGYzSNo3vW/r2a4nmB1B/LXSFDXWg0mv4qaq
- REj6jzMXN2kaWQHYGypIwB39PqFtkY6mAxW0pGMFnABR9ukH+7AQrAP7U A==;
-X-CSE-ConnectionGUID: Xm4M6AxmRuukA5RmrJuTZQ==
-X-CSE-MsgGUID: Y/H9JmWITRunTWXDLB6qKA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11056"; a="21017946"
-X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="21017946"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2024 06:09:50 -0700
-X-CSE-ConnectionGUID: RoXs2KxGRbeUOTUqL2Oz0A==
-X-CSE-MsgGUID: Gf0CMhHXTjyjkBJ/fHZvtg==
+ t=1714137092; x=1745673092;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=/UFE2tDaNmf2j4moyUP8Rwbzpwd1yZuB0QRkfQ1nl7Y=;
+ b=oBngwwrdkbaj+e35pOgN1cBd3NHWHua1FApE5/nmscP1WCwuXEOKOPTU
+ Yix3ZlhcNoFnWEfTslou4O1EgIYZnh5jAE8Bo5qoECi/K64VLPjMgrr2q
+ IVns8iBuab89bkP27H2Xt6K/USWceLfyAM18h4v8P6mfyZdoOCsb6qGyI
+ x/ledXLGX4GK7D5e0iWXq6Vt3WWERy3aPt8TqNlj9axhwqjrRyT19B1of
+ Wz1DY0eLMDKjiH9DolrGUYT/S2s7lEH9Lks05bHM8NpEdwjfl3+o/x6c6
+ 293nmySbJbTrrQqj1Zp6gERNWXu3N918i3qL2z8tyjGGGFV/HfadvooPg g==;
+X-CSE-ConnectionGUID: 3jIJ8fFXTpOK02+8fpVa9A==
+X-CSE-MsgGUID: fYTaSjsxQQCeaLNTCfa1Ow==
+X-IronPort-AV: E=McAfee;i="6600,9927,11056"; a="9796899"
+X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; 
+   d="scan'208";a="9796899"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2024 06:11:32 -0700
+X-CSE-ConnectionGUID: 7DirwTB3QyG176RdgkR2Sw==
+X-CSE-MsgGUID: P+xVloUzRFyKGYA33/EkLw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="25406115"
-Received: from dgarbuz-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.48.145])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2024 06:09:48 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 000/123] drm/i915: remove implicit dev_priv local
- variable use
-In-Reply-To: <cover.1714136165.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1714136165.git.jani.nikula@intel.com>
-Date: Fri, 26 Apr 2024 16:09:45 +0300
-Message-ID: <87ttjo46ee.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="25416985"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2024 06:11:30 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Oded Gabbay <ogabbay@kernel.org>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Colin Ian King <colin.i.king@gmail.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH][next] drm/xe: Fix spelling mistake "forcebly" ->
+ "forcibly"
+Date: Fri, 26 Apr 2024 06:11:51 -0700
+Message-ID: <171413710466.3189116.492328462949220625.b4-ty@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240426094904.816033-1-colin.i.king@gmail.com>
+References: <20240426094904.816033-1-colin.i.king@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,26 +76,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 26 Apr 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> Hey all, it's time to stop using the implicit dev_priv local variable in
-> register macros. Yes, this is huge. It's also (almost) completely
-> scripted.
 
-Okay, I was first going to send the entire series, but chickened out and
-hit ^C when git send-email was going though the patches. You get the
-idea with what's here. It's just more of the same. Plus I pushed the lot
-to [1].
+On Fri, 26 Apr 2024 10:49:04 +0100, Colin Ian King wrote:
+> There is a spelling mistake in a drm_dbg message. Fix it.
+> 
+> 
 
-I think we'll need to do this. The question is how to handle this
-churn. Do we want this many patches? If not, how much to squash?
+Applied, thanks!
 
+[1/1] drm/xe: Fix spelling mistake "forcebly" -> "forcibly"
+      (no commit info)
 
-BR,
-Jani.
-
-
-[1] https://gitlab.freedesktop.org/jani/linux/-/commits/regs-mass-dev-priv-removal/?ref_type=heads
-
-
+Best regards,
 -- 
-Jani Nikula, Intel
+Lucas De Marchi <lucas.demarchi@intel.com>
