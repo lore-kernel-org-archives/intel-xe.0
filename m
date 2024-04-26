@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4FD1C4345F
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Apr 2024 09:23:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45B8AC10F15
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Apr 2024 09:35:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B99110E9F3;
-	Fri, 26 Apr 2024 09:23:19 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDAA110E9F3;
- Fri, 26 Apr 2024 09:23:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD93610F28F;
+	Fri, 26 Apr 2024 09:35:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OucCb8YG";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B769010F28F
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 Apr 2024 09:35:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1714124140; x=1745660140;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=tEABSVxEmmha0tiTILspXbZ3M+tyYNn/rTuI920OKsQ=;
+ b=OucCb8YGMBsLDFMsjLm/boQ9MDIwMzNJs4FWIJxoA+JmzlBZ8cGu9n/i
+ XGhGlNNEFHGWj9JlbF9Ys9vS7GNHsW0jEWreTiOCxOvMasnX5/KBxa/E6
+ AhmtI6VQ0+qIuKdIMRqbSnfVcnRntsYagiowp3yjgnnKRaAlpCyW+b/jr
+ sng8Ux/9TYUyGaNl44sKgXeOJfZ0iHY/LICwCe5qSMu0hal4UMVOsKavm
+ qt7L0dI6LI0qw7ymaQJzG7gG3zPklnqUelpR246w1GNC3zaAV4PNq5EMg
+ mGMc7BH/ig9PsmBvWlAAkkLVMkIihol2H8LgOxAkSe6oFTiPTIRLNuKbz g==;
+X-CSE-ConnectionGUID: bMfwyiW7T7GKFdFmMb0Iqg==
+X-CSE-MsgGUID: FwMSepv/Sn2mh0N5GCHuDg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11055"; a="20467095"
+X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="20467095"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2024 02:35:40 -0700
+X-CSE-ConnectionGUID: 5n9CaK1+QL+aQfU2QXU0jg==
+X-CSE-MsgGUID: yPQyL5FXQkCMRMqwCM5Haw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="25373010"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2024 02:35:39 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [CI 1/5] drm/xe: Introduce has_atomic_enable_pte_bit device info
+Date: Fri, 26 Apr 2024 11:20:49 +0200
+Message-ID: <20240426092053.2863-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Refactor_default_device_?=
- =?utf-8?q?atomic_settings_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 26 Apr 2024 09:23:17 -0000
-Message-ID: <171412339783.1685485.10380772506753256854@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240425222346.13026-1-nirmoy.das@intel.com>
-In-Reply-To: <20240425222346.13026-1-nirmoy.das@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +64,78 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Add has_atomic_enable_pte_bit to specify that a device
+has PTE_AE bit in its PTE feild. Currently XE2 and PVC
+supports this so set this for those two.
 
-Series: Refactor default device atomic settings (rev2)
-URL   : https://patchwork.freedesktop.org/series/132930/
-State : success
+This will help consolidate setting atomic access bit in PTE
+logic which is spread between multiple files.
 
-== Summary ==
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Oak Zeng <oak.zeng@intel.com>
+Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_types.h | 2 ++
+ drivers/gpu/drm/xe/xe_pci.c          | 3 +++
+ drivers/gpu/drm/xe/xe_pci_types.h    | 1 +
+ 3 files changed, 6 insertions(+)
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast f39ba481e5873b7617afc2e8cf618ac9dc85123f
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 0f68c55ea405..7cddb00f9c35 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -281,6 +281,8 @@ struct xe_device {
+ 		u8 has_heci_gscfi:1;
+ 		/** @info.skip_guc_pc: Skip GuC based PM feature init */
+ 		u8 skip_guc_pc:1;
++		/** @info.has_atomic_enable_pte_bit: Device has atomic enable PTE bit */
++		u8 has_atomic_enable_pte_bit:1;
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+ 		struct {
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index a0cf5dd803c2..5618318e6f3a 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -146,6 +146,7 @@ static const struct xe_graphics_desc graphics_xehpc = {
+ 	.vram_flags = XE_VRAM_FLAGS_NEED64K,
+ 
+ 	.has_asid = 1,
++	.has_atomic_enable_pte_bit = 1,
+ 	.has_flat_ccs = 0,
+ 	.has_usm = 1,
+ };
+@@ -163,6 +164,7 @@ static const struct xe_graphics_desc graphics_xelpg = {
+ #define XE2_GFX_FEATURES \
+ 	.dma_mask_size = 46, \
+ 	.has_asid = 1, \
++	.has_atomic_enable_pte_bit = 1, \
+ 	.has_flat_ccs = 1, \
+ 	.has_range_tlb_invalidation = 1, \
+ 	.has_usm = 1, \
+@@ -629,6 +631,7 @@ static int xe_info_init(struct xe_device *xe,
+ 	xe->info.va_bits = graphics_desc->va_bits;
+ 	xe->info.vm_max_level = graphics_desc->vm_max_level;
+ 	xe->info.has_asid = graphics_desc->has_asid;
++	xe->info.has_atomic_enable_pte_bit = graphics_desc->has_atomic_enable_pte_bit;
+ 	xe->info.has_flat_ccs = graphics_desc->has_flat_ccs;
+ 	xe->info.has_range_tlb_invalidation = graphics_desc->has_range_tlb_invalidation;
+ 	xe->info.has_usm = graphics_desc->has_usm;
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index b1ad12fa22d6..e1f2b4879fc2 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -25,6 +25,7 @@ struct xe_graphics_desc {
+ 	u8 max_remote_tiles:2;
+ 
+ 	u8 has_asid:1;
++	u8 has_atomic_enable_pte_bit:1;
+ 	u8 has_flat_ccs:1;
+ 	u8 has_range_tlb_invalidation:1;
+ 	u8 has_usm:1;
+-- 
+2.42.0
 
