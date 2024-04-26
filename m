@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40D1AC4345F
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Apr 2024 14:38:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F25DC04FFE
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Apr 2024 14:39:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB23711247E;
-	Fri, 26 Apr 2024 14:38:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA9B811246D;
+	Fri, 26 Apr 2024 14:39:17 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E31C11246D;
- Fri, 26 Apr 2024 14:38:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDEB111246A;
+ Fri, 26 Apr 2024 14:39:16 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Fix_early_?=
- =?utf-8?q?probe_order_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Fix_early_probe?=
+ =?utf-8?q?_order_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 26 Apr 2024 14:38:56 -0000
-Message-ID: <171414233644.1685485.16177621757572424332@8e613ede5ea5>
+Date: Fri, 26 Apr 2024 14:39:16 -0000
+Message-ID: <171414235684.1685485.17778858415958957139@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240425182410.2705061-1-lucas.demarchi@intel.com>
 In-Reply-To: <20240425182410.2705061-1-lucas.demarchi@intel.com>
@@ -48,13 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 9eafb9067479 drm-tip: 2024y-04m-26d-14h-05m-48s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Drop __engine_mask
-Applying: drm/xe: Drop useless forcewake get/put
-Applying: drm/xe: Move xe_gt_init_early() where it belongs
-Applying: drm/xe: Move xe_force_wake_init_gt() inside gt initialization
-Applying: drm/xe: Move sw-only pcode initialization
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+0daf0be5bb95eb0a0e42275e00a0e42d8d8fd543
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 317b628881bd987fbdb7dc6a0cd5d0529ca4fb43
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Thu Apr 25 11:24:10 2024 -0700
+
+    drm/xe: Move sw-only pcode initialization
+    
+    Move it to xe_gt_init_early() that initializes the sw-only part for each
+    gt.
+    
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 9eafb9067479e7e797781d93e6a1a6309ac9d778 drm-intel
+a05f95b4d5d9 drm/xe: Drop __engine_mask
+80c1ff112975 drm/xe: Drop useless forcewake get/put
+68110012310e drm/xe: Move xe_gt_init_early() where it belongs
+4cfd28772b55 drm/xe: Move xe_force_wake_init_gt() inside gt initialization
+317b628881bd drm/xe: Move sw-only pcode initialization
 
 
