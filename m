@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 547A7C4345F
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Apr 2024 13:09:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1956AC25B4F
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Apr 2024 13:09:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1342B1123B8;
-	Fri, 26 Apr 2024 13:09:50 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 715DB1123B8;
- Fri, 26 Apr 2024 13:09:48 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1EF11123BF;
+	Fri, 26 Apr 2024 13:09:54 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="REsO10Md";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A16B51123BA;
+ Fri, 26 Apr 2024 13:09:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1714136990; x=1745672990;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=kuYMqhGQ+gATA6ZRDIWdlvxOT1isLspNTVI6crwbQxo=;
+ b=REsO10MdOQACGD3GT3iHuBGh7ODp41RDCcWNPruEF61MPmZjsaxyLIRQ
+ l3Zh1BeIL0BAaO7rHci1Hy2+hW3FF+qwRbLcDuooJQDre9thEt4PnnbXQ
+ 5XKXCqSwNtMSB23lZCQqUp3Gj5kRSDZN1Q5FI/15TJUAFxvQEmTOKZvG5
+ ZdfNxdF32aTxRe/2MmHKjYklmkjjsrp8sM+x9B+f+Dofwl9QpsmoicEOM
+ QH1bD9yWoZd2l1W6t+WuqpGYzSNo3vW/r2a4nmB1B/LXSFDXWg0mv4qaq
+ REj6jzMXN2kaWQHYGypIwB39PqFtkY6mAxW0pGMFnABR9ukH+7AQrAP7U A==;
+X-CSE-ConnectionGUID: Xm4M6AxmRuukA5RmrJuTZQ==
+X-CSE-MsgGUID: Y/H9JmWITRunTWXDLB6qKA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11056"; a="21017946"
+X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="21017946"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2024 06:09:50 -0700
+X-CSE-ConnectionGUID: RoXs2KxGRbeUOTUqL2Oz0A==
+X-CSE-MsgGUID: Gf0CMhHXTjyjkBJ/fHZvtg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="25406115"
+Received: from dgarbuz-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.48.145])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2024 06:09:48 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 000/123] drm/i915: remove implicit dev_priv local
+ variable use
+In-Reply-To: <cover.1714136165.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1714136165.git.jani.nikula@intel.com>
+Date: Fri, 26 Apr 2024 16:09:45 +0300
+Message-ID: <87ttjo46ee.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Refactor_default_device_?=
- =?utf-8?q?atomic_settings_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 26 Apr 2024 13:09:48 -0000
-Message-ID: <171413698846.1685485.8955899853066597284@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240426105655.23738-1-nirmoy.das@intel.com>
-In-Reply-To: <20240426105655.23738-1-nirmoy.das@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +63,29 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 26 Apr 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> Hey all, it's time to stop using the implicit dev_priv local variable in
+> register macros. Yes, this is huge. It's also (almost) completely
+> scripted.
 
-Series: Refactor default device atomic settings (rev3)
-URL   : https://patchwork.freedesktop.org/series/132930/
-State : success
+Okay, I was first going to send the entire series, but chickened out and
+hit ^C when git send-email was going though the patches. You get the
+idea with what's here. It's just more of the same. Plus I pushed the lot
+to [1].
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 47c509a8d4944e6276f7b956061c2020323f0a90
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+I think we'll need to do this. The question is how to handle this
+churn. Do we want this many patches? If not, how much to squash?
 
 
+BR,
+Jani.
+
+
+[1] https://gitlab.freedesktop.org/jani/linux/-/commits/regs-mass-dev-priv-removal/?ref_type=heads
+
+
+-- 
+Jani Nikula, Intel
