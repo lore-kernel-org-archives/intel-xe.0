@@ -4,54 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FEEAC19F4F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CD41C4345F
 	for <intel-xe@archiver.kernel.org>; Fri, 26 Apr 2024 11:11:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1BAD1121F6;
-	Fri, 26 Apr 2024 11:11:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03ABF11220E;
+	Fri, 26 Apr 2024 11:11:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RPaoxdyj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tm5QfWqU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 793D711226E
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Apr 2024 11:11:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DBB31121F6
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 Apr 2024 11:11:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714129897; x=1745665897;
+ t=1714129892; x=1745665892;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GgF1xl0u0uciUny7wJVT6Trp6SQSgqiYbyqlNrk39GQ=;
- b=RPaoxdyjJ4cIz+FaEK0E477i74UaayHes9EiEniMCZRwVYa0NKeQbAJK
- Wg51WqDpcdN51syntQx9zIYAUZ/U4SUjy0qOquDg1hEnavgOSCrpnzyJa
- f6uJNSMDc7jVg2O/ESf/9/SZzsb+0ctLkx6C+NWwjdscko1fLkr8oQjiL
- b0rVRo94LVm8ZqH2NRKmIV7AeoS7aXxv6CX2kodHAHKIrd60k6DDH7mTF
- Vv4B3iJUKVL4F81/9ThxU9LM7erJuyycSVRn0TwJVbMyvewzaifDIJPib
- bRM4BIwylsD9BVnryL2UKlSF2kwCDMOD+LS/eQHXJWf2D8D0lkSUpnWZt w==;
-X-CSE-ConnectionGUID: XMzXSqLKTJyINxlGBPmVLg==
-X-CSE-MsgGUID: E6zqp1TKQBujLOwt8Mh+/Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11055"; a="9712824"
+ bh=tEABSVxEmmha0tiTILspXbZ3M+tyYNn/rTuI920OKsQ=;
+ b=Tm5QfWqUejnVsg0ZEnprvFh6/cHtwiahvdozOnsn4JYDqKg2gEkil50e
+ cLns1LHXoI4Fnu/pEbmmQeBDtX/1RPLNKUbY0qb1q7rAiSvZn07NKrBDv
+ gsd5aIughUPdTcBoZ8T7dGoEAP/hWvP2oAhPt7mLo/I7RX4SqR1zJ816V
+ Z6kTSMttZEz6atkrhW1oo0o6ZwWCCyTRI3swjLIrbfQencfmPWsvzG08g
+ kTfCTwSTORJv8LkQtab+6SQHbZdapwnMCUymPAICLn83byPgKa7O7bxoa
+ 53PnU/C/ZTZTmCKGGdmwGqZULy8j2Kd6OhXnESurZ29VjgLFX/cyyPD0M w==;
+X-CSE-ConnectionGUID: n8P2BHB2QTW0UipoLCilcA==
+X-CSE-MsgGUID: nNhmyZEWQ72flGgaAigsUA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11055"; a="9712806"
 X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; 
-   d="scan'208";a="9712824"
+   d="scan'208";a="9712806"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2024 04:11:37 -0700
-X-CSE-ConnectionGUID: giUo3/XCRimB1f4I51k2/Q==
-X-CSE-MsgGUID: vkUdK89iSzG6ITnMwil06A==
+ 26 Apr 2024 04:11:32 -0700
+X-CSE-ConnectionGUID: D9McluFnRT+Zk822U9JQeQ==
+X-CSE-MsgGUID: cuGu5kZVQj6m+/PgTjXl/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="25384223"
+X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="25384181"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2024 04:11:36 -0700
+ 26 Apr 2024 04:11:31 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Nirmoy Das <nirmoy.das@intel.com>
-Subject: [PATCH v5 5/5] drm/xe: Refactor default device atomic settings
-Date: Fri, 26 Apr 2024 12:56:55 +0200
-Message-ID: <20240426105655.23738-6-nirmoy.das@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>, Oak Zeng <oak.zeng@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Subject: [PATCH v5 1/5] drm/xe: Introduce has_atomic_enable_pte_bit device info
+Date: Fri, 26 Apr 2024 12:56:51 +0200
+Message-ID: <20240426105655.23738-2-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20240426105655.23738-1-nirmoy.das@intel.com>
 References: <20240426105655.23738-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
  85579 Neubiberg, Germany,
  Commercial Register: Amtsgericht Muenchen HRB 186928 
@@ -70,75 +72,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The default behavior of device atomics depends on the
-VM type and buffer allocation types. Device atomics are
-expected to function with all types of allocations for
-traditional applications/APIs. Additionally, in compute/SVM
-API scenarios with fault mode or LR mode VMs, device atomics
-must work with single-region allocations. In all other cases
-device atomics should be disabled by default also on platforms
-where we know device atomics doesn't on work on particular
-allocations types.
+Add has_atomic_enable_pte_bit to specify that a device
+has PTE_AE bit in its PTE feild. Currently XE2 and PVC
+supports this so set this for those two.
 
-v2: Fix platform checks to correct atomics behaviour on PVC.
+This will help consolidate setting atomic access bit in PTE
+logic which is spread between multiple files.
 
 Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Oak Zeng <oak.zeng@intel.com>
+Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c | 27 ++++++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_vm.c |  2 +-
- 2 files changed, 25 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h | 2 ++
+ drivers/gpu/drm/xe/xe_pci.c          | 3 +++
+ drivers/gpu/drm/xe/xe_pci_types.h    | 1 +
+ 3 files changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 5b7930f46cf3..237e4a4985a4 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -619,9 +619,30 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 	struct xe_pt *pt = xe_vma_vm(vma)->pt_root[tile->id];
- 	int ret;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 0f68c55ea405..7cddb00f9c35 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -281,6 +281,8 @@ struct xe_device {
+ 		u8 has_heci_gscfi:1;
+ 		/** @info.skip_guc_pc: Skip GuC based PM feature init */
+ 		u8 skip_guc_pc:1;
++		/** @info.has_atomic_enable_pte_bit: Device has atomic enable PTE bit */
++		u8 has_atomic_enable_pte_bit:1;
  
--	if ((vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT) &&
--	    (is_devmem || !IS_DGFX(xe)))
--		xe_walk.default_pte |= XE_USM_PPGTT_PTE_AE;
-+	/**
-+	 * Default atomic expectations for different allocation scenarios are as follows:
-+	 *
-+	 * 1. Traditional API: When the VM is not in fault mode or LR mode:
-+	 *    - Device atomics are expected to function with all allocations.
-+	 *
-+	 * 2. Compute/SVM API: When the VM is either in fault mode or LR mode:
-+	 *    - Device atomics are the default behavior when the bo is placed in a single region.
-+	 *    - In all other cases device atomics will be disabled with AE=0 until an application
-+	 *      request differently using a ioctl like madvise.
-+	 */
-+	if (vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT) {
-+		if (xe_vm_in_fault_mode(xe_vma_vm(vma)) ||
-+		    xe_vm_in_lr_mode(xe_vma_vm(vma))) {
-+			if (bo && xe_bo_has_single_placement(bo))
-+				xe_walk.default_pte |= XE_USM_PPGTT_PTE_AE;
-+		} else {
-+			xe_walk.default_pte |= XE_USM_PPGTT_PTE_AE;
-+		}
-+
-+		/* Unset AE if the platform(PVC) doesn't support it */
-+		if (!xe->info.has_device_atomics_on_smem && !is_devmem)
-+			xe_walk.default_pte &= ~XE_USM_PPGTT_PTE_AE;
-+	}
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+ 		struct {
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index a0cf5dd803c2..5618318e6f3a 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -146,6 +146,7 @@ static const struct xe_graphics_desc graphics_xehpc = {
+ 	.vram_flags = XE_VRAM_FLAGS_NEED64K,
  
- 	if (is_devmem) {
- 		xe_walk.default_pte |= XE_PPGTT_PTE_DM;
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 8fc37c5a0196..f795016a80d5 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -805,7 +805,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 	for_each_tile(tile, vm->xe, id)
- 		vma->tile_mask |= 0x1 << id;
+ 	.has_asid = 1,
++	.has_atomic_enable_pte_bit = 1,
+ 	.has_flat_ccs = 0,
+ 	.has_usm = 1,
+ };
+@@ -163,6 +164,7 @@ static const struct xe_graphics_desc graphics_xelpg = {
+ #define XE2_GFX_FEATURES \
+ 	.dma_mask_size = 46, \
+ 	.has_asid = 1, \
++	.has_atomic_enable_pte_bit = 1, \
+ 	.has_flat_ccs = 1, \
+ 	.has_range_tlb_invalidation = 1, \
+ 	.has_usm = 1, \
+@@ -629,6 +631,7 @@ static int xe_info_init(struct xe_device *xe,
+ 	xe->info.va_bits = graphics_desc->va_bits;
+ 	xe->info.vm_max_level = graphics_desc->vm_max_level;
+ 	xe->info.has_asid = graphics_desc->has_asid;
++	xe->info.has_atomic_enable_pte_bit = graphics_desc->has_atomic_enable_pte_bit;
+ 	xe->info.has_flat_ccs = graphics_desc->has_flat_ccs;
+ 	xe->info.has_range_tlb_invalidation = graphics_desc->has_range_tlb_invalidation;
+ 	xe->info.has_usm = graphics_desc->has_usm;
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index b1ad12fa22d6..e1f2b4879fc2 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -25,6 +25,7 @@ struct xe_graphics_desc {
+ 	u8 max_remote_tiles:2;
  
--	if (GRAPHICS_VER(vm->xe) >= 20 || vm->xe->info.platform == XE_PVC)
-+	if (vm->xe->info.has_atomic_enable_pte_bit)
- 		vma->gpuva.flags |= XE_VMA_ATOMIC_PTE_BIT;
- 
- 	vma->pat_index = pat_index;
+ 	u8 has_asid:1;
++	u8 has_atomic_enable_pte_bit:1;
+ 	u8 has_flat_ccs:1;
+ 	u8 has_range_tlb_invalidation:1;
+ 	u8 has_usm:1;
 -- 
 2.42.0
 
