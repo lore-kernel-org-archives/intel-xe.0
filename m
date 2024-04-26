@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45B8AC10F15
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Apr 2024 09:35:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 166F1C4345F
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Apr 2024 09:35:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD93610F28F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9C8D10F282;
 	Fri, 26 Apr 2024 09:35:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OucCb8YG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kh/QkFQB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B769010F28F
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Apr 2024 09:35:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FB2010F282
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 Apr 2024 09:35:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714124140; x=1745660140;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=tEABSVxEmmha0tiTILspXbZ3M+tyYNn/rTuI920OKsQ=;
- b=OucCb8YGMBsLDFMsjLm/boQ9MDIwMzNJs4FWIJxoA+JmzlBZ8cGu9n/i
- XGhGlNNEFHGWj9JlbF9Ys9vS7GNHsW0jEWreTiOCxOvMasnX5/KBxa/E6
- AhmtI6VQ0+qIuKdIMRqbSnfVcnRntsYagiowp3yjgnnKRaAlpCyW+b/jr
- sng8Ux/9TYUyGaNl44sKgXeOJfZ0iHY/LICwCe5qSMu0hal4UMVOsKavm
- qt7L0dI6LI0qw7ymaQJzG7gG3zPklnqUelpR246w1GNC3zaAV4PNq5EMg
- mGMc7BH/ig9PsmBvWlAAkkLVMkIihol2H8LgOxAkSe6oFTiPTIRLNuKbz g==;
-X-CSE-ConnectionGUID: bMfwyiW7T7GKFdFmMb0Iqg==
-X-CSE-MsgGUID: FwMSepv/Sn2mh0N5GCHuDg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11055"; a="20467095"
-X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="20467095"
+ t=1714124141; x=1745660141;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=HGRfUaI2mFidMOBWn3N7bksbEWI5ZXfKQCMvu7Dq3qY=;
+ b=Kh/QkFQBfzGOZGfuhfe7RbewzX+rKRbmXV1Nn4wUKzq9gZF6+l6G1JjI
+ UDXTafIyuniEb2jKIL3aGyGbhr/z4VwX6Nbm6L4DvqXZe1Siklm3qb3At
+ RIFyXWh/Lz6sXpNTUwwjAjM5zbkglBRPneLo0S1Uzic4fn1nWQAoEgWK4
+ LGK3A87UqCUdYtdS5SFe6BibqyOxpLo5Ab7VyaGAAA2yXLx8I+hX+GssY
+ aEdo2zj9cMUdS0Jj4pYDe4kEzpiFs+PCYq8pvhJ6mgpUape7a+ygmn7oq
+ uypvTlSTOwMewKjaUTxbYMUkOr/2G3dXvjz2FmJ2LjEaq8yjBIVVqeF3V A==;
+X-CSE-ConnectionGUID: 8+Z8WRnaRuaLcd8y7qcl7A==
+X-CSE-MsgGUID: JcpU3Ne9RnO510d1RSt/yA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11055"; a="20467098"
+X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="20467098"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Apr 2024 02:35:40 -0700
-X-CSE-ConnectionGUID: 5n9CaK1+QL+aQfU2QXU0jg==
-X-CSE-MsgGUID: yPQyL5FXQkCMRMqwCM5Haw==
+X-CSE-ConnectionGUID: UNcnJS1uRbyNmLkuWrjC5Q==
+X-CSE-MsgGUID: xdmpHtjJStud9Lw86CKv1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="25373010"
+X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="25373012"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2024 02:35:39 -0700
+ 26 Apr 2024 02:35:40 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 1/5] drm/xe: Introduce has_atomic_enable_pte_bit device info
-Date: Fri, 26 Apr 2024 11:20:49 +0200
-Message-ID: <20240426092053.2863-1-nirmoy.das@intel.com>
+Subject: [CI 2/5] drm/xe: Move vm bind bo validation to a helper function
+Date: Fri, 26 Apr 2024 11:20:50 +0200
+Message-ID: <20240426092053.2863-2-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20240426092053.2863-1-nirmoy.das@intel.com>
+References: <20240426092053.2863-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
@@ -67,75 +69,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add has_atomic_enable_pte_bit to specify that a device
-has PTE_AE bit in its PTE feild. Currently XE2 and PVC
-supports this so set this for those two.
+Move vm bind bo validation to a helper function to make the
+xe_vm_bind_ioctl() more readable.
 
-This will help consolidate setting atomic access bit in PTE
-logic which is spread between multiple files.
+v2: Capture ret value of xe_vm_bind_ioctl_validate_bo(Matt B).
+    Remove redundant coh_mode param.
 
 Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Oak Zeng <oak.zeng@intel.com>
 Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h | 2 ++
- drivers/gpu/drm/xe/xe_pci.c          | 3 +++
- drivers/gpu/drm/xe/xe_pci_types.h    | 1 +
- 3 files changed, 6 insertions(+)
+ drivers/gpu/drm/xe/xe_vm.c | 77 +++++++++++++++++++++-----------------
+ 1 file changed, 43 insertions(+), 34 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 0f68c55ea405..7cddb00f9c35 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -281,6 +281,8 @@ struct xe_device {
- 		u8 has_heci_gscfi:1;
- 		/** @info.skip_guc_pc: Skip GuC based PM feature init */
- 		u8 skip_guc_pc:1;
-+		/** @info.has_atomic_enable_pte_bit: Device has atomic enable PTE bit */
-+		u8 has_atomic_enable_pte_bit:1;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 7ae2b0300db6..e41345c1627d 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2859,6 +2859,46 @@ static int vm_bind_ioctl_signal_fences(struct xe_vm *vm,
+ 	return err;
+ }
  
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
- 		struct {
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index a0cf5dd803c2..5618318e6f3a 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -146,6 +146,7 @@ static const struct xe_graphics_desc graphics_xehpc = {
- 	.vram_flags = XE_VRAM_FLAGS_NEED64K,
++static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
++					u64 addr, u64 range, u64 obj_offset,
++					u16 pat_index)
++{
++	u16 coh_mode;
++
++	if (XE_IOCTL_DBG(xe, range > bo->size) ||
++	    XE_IOCTL_DBG(xe, obj_offset >
++			 bo->size - range)) {
++		return -EINVAL;
++	}
++
++	if (bo->flags & XE_BO_FLAG_INTERNAL_64K) {
++		if (XE_IOCTL_DBG(xe, obj_offset &
++				 XE_64K_PAGE_MASK) ||
++		    XE_IOCTL_DBG(xe, addr & XE_64K_PAGE_MASK) ||
++		    XE_IOCTL_DBG(xe, range & XE_64K_PAGE_MASK)) {
++			return  -EINVAL;
++		}
++	}
++
++	coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
++	if (bo->cpu_caching) {
++		if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE &&
++				 bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB)) {
++			return  -EINVAL;
++		}
++	} else if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE)) {
++		/*
++		 * Imported dma-buf from a different device should
++		 * require 1way or 2way coherency since we don't know
++		 * how it was mapped on the CPU. Just assume is it
++		 * potentially cached on CPU side.
++		 */
++		return  -EINVAL;
++	}
++
++	return 0;
++}
++
+ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ {
+ 	struct xe_device *xe = to_xe_device(dev);
+@@ -2942,7 +2982,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		u32 obj = bind_ops[i].obj;
+ 		u64 obj_offset = bind_ops[i].obj_offset;
+ 		u16 pat_index = bind_ops[i].pat_index;
+-		u16 coh_mode;
  
- 	.has_asid = 1,
-+	.has_atomic_enable_pte_bit = 1,
- 	.has_flat_ccs = 0,
- 	.has_usm = 1,
- };
-@@ -163,6 +164,7 @@ static const struct xe_graphics_desc graphics_xelpg = {
- #define XE2_GFX_FEATURES \
- 	.dma_mask_size = 46, \
- 	.has_asid = 1, \
-+	.has_atomic_enable_pte_bit = 1, \
- 	.has_flat_ccs = 1, \
- 	.has_range_tlb_invalidation = 1, \
- 	.has_usm = 1, \
-@@ -629,6 +631,7 @@ static int xe_info_init(struct xe_device *xe,
- 	xe->info.va_bits = graphics_desc->va_bits;
- 	xe->info.vm_max_level = graphics_desc->vm_max_level;
- 	xe->info.has_asid = graphics_desc->has_asid;
-+	xe->info.has_atomic_enable_pte_bit = graphics_desc->has_atomic_enable_pte_bit;
- 	xe->info.has_flat_ccs = graphics_desc->has_flat_ccs;
- 	xe->info.has_range_tlb_invalidation = graphics_desc->has_range_tlb_invalidation;
- 	xe->info.has_usm = graphics_desc->has_usm;
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index b1ad12fa22d6..e1f2b4879fc2 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -25,6 +25,7 @@ struct xe_graphics_desc {
- 	u8 max_remote_tiles:2;
+ 		if (!obj)
+ 			continue;
+@@ -2954,40 +2993,10 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		}
+ 		bos[i] = gem_to_xe_bo(gem_obj);
  
- 	u8 has_asid:1;
-+	u8 has_atomic_enable_pte_bit:1;
- 	u8 has_flat_ccs:1;
- 	u8 has_range_tlb_invalidation:1;
- 	u8 has_usm:1;
+-		if (XE_IOCTL_DBG(xe, range > bos[i]->size) ||
+-		    XE_IOCTL_DBG(xe, obj_offset >
+-				 bos[i]->size - range)) {
+-			err = -EINVAL;
+-			goto put_obj;
+-		}
+-
+-		if (bos[i]->flags & XE_BO_FLAG_INTERNAL_64K) {
+-			if (XE_IOCTL_DBG(xe, obj_offset &
+-					 XE_64K_PAGE_MASK) ||
+-			    XE_IOCTL_DBG(xe, addr & XE_64K_PAGE_MASK) ||
+-			    XE_IOCTL_DBG(xe, range & XE_64K_PAGE_MASK)) {
+-				err = -EINVAL;
+-				goto put_obj;
+-			}
+-		}
+-
+-		coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
+-		if (bos[i]->cpu_caching) {
+-			if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE &&
+-					 bos[i]->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB)) {
+-				err = -EINVAL;
+-				goto put_obj;
+-			}
+-		} else if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE)) {
+-			/*
+-			 * Imported dma-buf from a different device should
+-			 * require 1way or 2way coherency since we don't know
+-			 * how it was mapped on the CPU. Just assume is it
+-			 * potentially cached on CPU side.
+-			 */
+-			err = -EINVAL;
++		err = xe_vm_bind_ioctl_validate_bo(xe, bos[i], addr, range,
++						   obj_offset, pat_index);
++		if (err)
+ 			goto put_obj;
+-		}
+ 	}
+ 
+ 	if (args->num_syncs) {
 -- 
 2.42.0
 
