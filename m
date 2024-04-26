@@ -4,54 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9D70C4345F
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Apr 2024 09:36:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DC2AC10F15
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Apr 2024 09:49:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B11F10F2FA;
-	Fri, 26 Apr 2024 09:36:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B5BA10F51A;
+	Fri, 26 Apr 2024 09:49:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ScqA43F7";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VPT8nu8h";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69BD810F2A6
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Apr 2024 09:36:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714124177; x=1745660177;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=bubd3p4lqfOiG0Gd4SyHc00lxuvGFnbdnwzso8QsbP4=;
- b=ScqA43F73OhspvV421ZAxum45sgZugoZZfQNKaB9AVV/A7S4VGyaMwwP
- +CaU5aqRS/9RNoRcFkoAJ18ZK8jDE5jwwVWpQ7h2Fk+1b09bO6EDqt48f
- OYU2YoyJdKFbmZXVkF8l5rJLFQEmLbVsT3Wlv14jU8X7+Zky2yTUc5FlM
- EoUzNP7zdkUxSCemdCkUnoFBCyB5IZMa1mHdW+nQymrqxZidcAgi7xS0I
- mw4F4Qvw0x6jwbnJvgrnMUDz2FzEK8+KFMBILudc68UWLsPJnOVwZ5duA
- 5EwwznLnViJdwUbCfxGDaQQUEvLtiAEakZ1acIKCwOKt47B41E6a/B6Ix g==;
-X-CSE-ConnectionGUID: S/8NMc4vRD6UM2cLS+i1nw==
-X-CSE-MsgGUID: DGXIfX4ETmWGGUjzOzZCBg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11055"; a="13686909"
-X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="13686909"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2024 02:36:17 -0700
-X-CSE-ConnectionGUID: oQpbrd+JSQugfxu//OfgPA==
-X-CSE-MsgGUID: 7+RaTB0RQO+2dr+XxU4sSw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="29830351"
-Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by fmviesa003.fm.intel.com with ESMTP; 26 Apr 2024 02:36:16 -0700
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH 2/2] drm/xe/xe2lpm: Add permanent wa_14020756599
-Date: Fri, 26 Apr 2024 15:19:47 +0530
-Message-Id: <20240426094947.2039436-3-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240426094947.2039436-1-tejas.upadhyay@intel.com>
-References: <20240426094947.2039436-1-tejas.upadhyay@intel.com>
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+ [209.85.128.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54C2110F537;
+ Fri, 26 Apr 2024 09:49:08 +0000 (UTC)
+Received: by mail-wm1-f51.google.com with SMTP id
+ 5b1f17b1804b1-41b847a81d1so2751695e9.1; 
+ Fri, 26 Apr 2024 02:49:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1714124946; x=1714729746; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=OTqofDDyhWS27DTBkyA9Wn/ozYeD7cxzwbx1fLDfXq4=;
+ b=VPT8nu8hpLGymNdgSu8Vq3xBp/T10GoZ4jEBMcl49QJlIK5Kk6fV7ilLuV6+gMjJSw
+ Tpd9UeVz4aDiYv+KoaupKu7+UBHafuuFl2BfhDCmGOIU7hP6mr+MvZmA4MFOcIRLlISO
+ JJK+Uy9iGamwODAgSKiUIYEyKidMxgA7Kjmy32Gh9yWO4m1pjPcAjc6i0Ja6WyslYEEm
+ Z7I2vx6Qp1l2uirfvRJsXnt0cmJh0Vit107HjGXgC2Uh+rXAx0B5pkzFiRQ7ZknTwtdL
+ 0IWaaUT3dk0hUxy38O89GlKxuVbMeu18JWUeLFGGZlklpcXH+5JZ6q8iTm0AmNn0Twek
+ fqKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1714124946; x=1714729746;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=OTqofDDyhWS27DTBkyA9Wn/ozYeD7cxzwbx1fLDfXq4=;
+ b=i0PC7HUaDBv34oxctJDZOW3SpN4Ehb15y+i2UO3vNd3S+lqglhjO7Em5FaEwJ/0R3B
+ kjv3sdL7rOUzbteNcVu/LKznmjJmIl6O424j10nQ3Q6u9D759v/AylTlcVXImaVhXSRo
+ 6TqdN2u0CETBpXiXx65eCj8nre6UyQ/BvYAfTwKocYUyR/8JXNdOGQjy2vUDq1R/gSor
+ StAGIFgouVJavjRsjuwXyvyD39XEzKfWSufkGZO7vDYLcvg96X2zCWN/JRYV+PyAveM6
+ t4STsxqn0fRxIPIcesjqiuAHm1duvxEFBXQZWnCCIowE/bhKa2YQwgOEV5fuQSGd06sk
+ FOrw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUKShrwrgfByZUVcLD4wb3+A0cN4hWIyBPlL9XG+wbfBje+ii5h4MgHbiN5kVdBUPfXlz2JTd9ljGqhp/zTV8NpYnVuneSJ/R3XbY9J+G6F2/PWYrE1CVmfNqqsAZAqFnmkDwz95oMpzk7tv4rkBwY=
+X-Gm-Message-State: AOJu0Yx/A1YuYKjhZegWWOb71FhtGzmdduPdRyOkG+9thnZDEFVtySk4
+ uSNpxoFG/P0q6U1rrbbrpgtX03JpjFcm7uE83IxFk564c8JTYuxx
+X-Google-Smtp-Source: AGHT+IEnEbGzWwb5BtL05FOeJSjU5tiXoKG2o7C40aXQG1lwfb02NqLf7df70RE0rq1MKonJ92sK/A==
+X-Received: by 2002:a05:600c:3509:b0:418:de31:7148 with SMTP id
+ h9-20020a05600c350900b00418de317148mr1930550wmq.3.1714124946253; 
+ Fri, 26 Apr 2024 02:49:06 -0700 (PDT)
+Received: from localhost
+ (craw-09-b2-v4wan-169726-cust2117.vm24.cable.virginm.net. [92.238.24.70])
+ by smtp.gmail.com with ESMTPSA id
+ d4-20020adfe2c4000000b0034a3a0a753asm20338400wrj.100.2024.04.26.02.49.05
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 26 Apr 2024 02:49:05 -0700 (PDT)
+From: Colin Ian King <colin.i.king@gmail.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH][next] drm/xe: Fix spelling mistake "forcebly" -> "forcibly"
+Date: Fri, 26 Apr 2024 10:49:04 +0100
+Message-Id: <20240426094904.816033-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,31 +88,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For xe2_lpm Wa_14020756599 is applied to
-all steppings.
+There is a spelling mistake in a drm_dbg message. Fix it.
 
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
 ---
- drivers/gpu/drm/xe/xe_wa.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/xe/xe_device.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index c75946e70d84..d692eb69f231 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -697,6 +697,12 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
- 	  XE_RTP_ACTIONS(SET(WM_CHICKEN3, HIZ_PLANE_COMPRESSION_DIS))
- 	},
- 
-+	/* Xe2_LPM */
-+	{ XE_RTP_NAME("14020756599"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2000), ENGINE_CLASS(VIDEO_DECODE)),
-+	  XE_RTP_ACTIONS(SET(WM_CHICKEN3, HIZ_PLANE_COMPRESSION_DIS))
-+	},
-+
- 	{}
- };
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index bb4fbae5edb6..b61f8356e23e 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -788,7 +788,7 @@ u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address)
+ void xe_device_declare_wedged(struct xe_device *xe)
+ {
+ 	if (xe->wedged.mode == 0) {
+-		drm_dbg(&xe->drm, "Wedged mode is forcebly disabled\n");
++		drm_dbg(&xe->drm, "Wedged mode is forcibly disabled\n");
+ 		return;
+ 	}
  
 -- 
-2.25.1
+2.39.2
 
