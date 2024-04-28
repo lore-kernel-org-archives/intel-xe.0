@@ -4,52 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4E18C4345F
-	for <intel-xe@archiver.kernel.org>; Sat, 27 Apr 2024 17:23:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C5C6C4345F
+	for <intel-xe@archiver.kernel.org>; Sun, 28 Apr 2024 08:37:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4485510F5CF;
-	Sat, 27 Apr 2024 17:23:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0F4010F3CB;
+	Sun, 28 Apr 2024 08:37:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L9nMxua2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jRi6EqdF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54BFA10F5CF
- for <intel-xe@lists.freedesktop.org>; Sat, 27 Apr 2024 17:23:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8C5B10F3CB
+ for <intel-xe@lists.freedesktop.org>; Sun, 28 Apr 2024 08:37:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714238628; x=1745774628;
- h=date:from:to:cc:subject:message-id;
- bh=i5nBjJeE/XsWdmJzxDHgH5R++yecRzCfLek2UTG3lpw=;
- b=L9nMxua2Zmpzy3eJLmCw5JXuGrd7JlCIR58SHczJ8BvBbd2Hhzajoj6U
- iJ+xUsuH+uuJvDPdSrYcmPybz1ln2oOjeX46WMth7Q0zQ4rlU27W9HVZj
- +7AVoqx4pJmvD2tn+VLe1fhC72NdrIS6k6tXmzWK3OPl+637pedt0G0xM
- ECjhNaNoLBJpjXdXtVDq8tNgBFZ0HyAbjnovsM+1iOV4Vu5MOLHx63rJw
- I9685s82ClWE63lN8Urv6nLsJKof7HauCffh3oKwY8dhVuMCFefkfXmkV
- C+5Ymti2NqthMDFVq9886sx0PgjYlKYr28nRq+PXv8GHklZNPUjW/rFGe g==;
-X-CSE-ConnectionGUID: TChQhU6PRIOeLg7NbdHu/A==
-X-CSE-MsgGUID: 3W7pRf/JRGyf5iL5Cv72gA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11057"; a="10075828"
-X-IronPort-AV: E=Sophos;i="6.07,235,1708416000"; d="scan'208";a="10075828"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2024 10:23:48 -0700
-X-CSE-ConnectionGUID: prSyq7hyTc+g2Xlf/OZbNA==
-X-CSE-MsgGUID: mPYOTHnWS1KPtclR/xQiYA==
+ t=1714293444; x=1745829444;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=0Isp7en5eR1+cMdOFdNsRsnqxlIM6CU3z+S5NRzvfmw=;
+ b=jRi6EqdFI0OR8ecN9uOeHtf10KnhUHRYq5dLUHhT585ziz2rw/9nDlWq
+ CtwW7LBpurF9nVVHCUAXExs8qohqV5v8VXlaj7o1zy/cV7Qq0VvLjmY8W
+ RqNa34G6b/rJApvdWOLz/OQ1i59RsalLly4fkMvi6LBJg8Ww41SC7raIf
+ dobb91nh0A8YXU39ODimfcs7i31Kvco95o4PasKUzQMP3rdGAHR/ZBCA0
+ s5E4RXE4vEYoB+XXssc+VyS8Y++zh+jUSFKLCudwlI0+oR1N3A3G+s7e2
+ sjmaI8QvilvuYda3I6aQIk/L9sDpgzQkDcQjuuncISW4v0/Ugo5KDdhna w==;
+X-CSE-ConnectionGUID: Kv9XF9QFS4qqlx6KD1odcQ==
+X-CSE-MsgGUID: Sxv8e7qpQpOsMYBTjYqmvA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11057"; a="13766135"
+X-IronPort-AV: E=Sophos;i="6.07,237,1708416000"; d="scan'208";a="13766135"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2024 01:37:23 -0700
+X-CSE-ConnectionGUID: EwWavcfxQ2Cs9PWF1nzS4A==
+X-CSE-MsgGUID: Y4OQdjy4SWWk1YJQwEYCZw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,235,1708416000"; d="scan'208";a="26215527"
+X-IronPort-AV: E=Sophos;i="6.07,237,1708416000"; d="scan'208";a="26463960"
 Received: from lkp-server01.sh.intel.com (HELO e434dd42e5a1) ([10.239.97.150])
- by orviesa007.jf.intel.com with ESMTP; 27 Apr 2024 10:23:46 -0700
+ by orviesa008.jf.intel.com with ESMTP; 28 Apr 2024 01:37:21 -0700
 Received: from kbuild by e434dd42e5a1 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1s0lm4-0005Kg-1p;
- Sat, 27 Apr 2024 17:23:44 +0000
-Date: Sun, 28 Apr 2024 01:22:57 +0800
+ (envelope-from <lkp@intel.com>) id 1s102A-00060w-2g;
+ Sun, 28 Apr 2024 08:37:18 +0000
+Date: Sun, 28 Apr 2024 16:36:44 +0800
 From: kernel test robot <lkp@intel.com>
 To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS WITH WARNING
- 98ad158e543426561fa5df5c4387d4368601866f
-Message-ID: <202404280153.m01guroU-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, Oak Zeng <oak.zeng@intel.com>
+Subject: [drm-xe:drm-xe-next 12/13]
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:321:15: error: variable 'end' is
+ uninitialized when used here
+Message-ID: <202404281655.e9wgLPAR-lkp@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,202 +68,229 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 98ad158e543426561fa5df5c4387d4368601866f  drm/xe: Delete PT update selftest
+tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+head:   98ad158e543426561fa5df5c4387d4368601866f
+commit: c4f18703629dd0112641d6974eb295a53c4a4615 [12/13] drm/xe: Add xe_gt_tlb_invalidation_range and convert PT layer to use this
+config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20240428/202404281655.e9wgLPAR-lkp@intel.com/config)
+compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project 5ef5eb66fb428aaf61fb51b709f065c069c11242)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240428/202404281655.e9wgLPAR-lkp@intel.com/reproduce)
 
-Warning reports:
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202404281655.e9wgLPAR-lkp@intel.com/
 
-https://lore.kernel.org/oe-kbuild-all/202404271550.YdQqXkUF-lkp@intel.com
+All errors (new ones prefixed by >>):
 
-Warning: (recently discovered and may have been fixed)
+   In file included from drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:9:
+   In file included from drivers/gpu/drm/xe/xe_device.h:12:
+   In file included from include/drm/drm_util.h:36:
+   In file included from include/linux/kgdb.h:19:
+   In file included from include/linux/kprobes.h:28:
+   In file included from include/linux/ftrace.h:13:
+   In file included from include/linux/kallsyms.h:13:
+   In file included from include/linux/mm.h:2208:
+   include/linux/vmstat.h:508:43: error: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Werror,-Wenum-enum-conversion]
+     508 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     509 |                            item];
+         |                            ~~~~
+   include/linux/vmstat.h:515:43: error: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Werror,-Wenum-enum-conversion]
+     515 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     516 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/vmstat.h:522:36: error: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Werror,-Wenum-enum-conversion]
+     522 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+   include/linux/vmstat.h:527:43: error: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Werror,-Wenum-enum-conversion]
+     527 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     528 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/vmstat.h:536:43: error: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Werror,-Wenum-enum-conversion]
+     536 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     537 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+   In file included from drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:9:
+   In file included from drivers/gpu/drm/xe/xe_device.h:15:
+   In file included from drivers/gpu/drm/xe/xe_device_types.h:9:
+   In file included from include/linux/pci.h:39:
+   In file included from include/linux/io.h:13:
+   In file included from arch/s390/include/asm/io.h:78:
+   include/asm-generic/io.h:547:31: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
+     547 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:560:61: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
+     560 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/big_endian.h:37:59: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) __swab16((__force __u16)(__le16)(x))
+         |                                                           ^
+   include/uapi/linux/swab.h:102:54: note: expanded from macro '__swab16'
+     102 | #define __swab16(x) (__u16)__builtin_bswap16((__u16)(x))
+         |                                                      ^
+   In file included from drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:9:
+   In file included from drivers/gpu/drm/xe/xe_device.h:15:
+   In file included from drivers/gpu/drm/xe/xe_device_types.h:9:
+   In file included from include/linux/pci.h:39:
+   In file included from include/linux/io.h:13:
+   In file included from arch/s390/include/asm/io.h:78:
+   include/asm-generic/io.h:573:61: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
+     573 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/big_endian.h:35:59: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) __swab32((__force __u32)(__le32)(x))
+         |                                                           ^
+   include/uapi/linux/swab.h:115:54: note: expanded from macro '__swab32'
+     115 | #define __swab32(x) (__u32)__builtin_bswap32((__u32)(x))
+         |                                                      ^
+   In file included from drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:9:
+   In file included from drivers/gpu/drm/xe/xe_device.h:15:
+   In file included from drivers/gpu/drm/xe/xe_device_types.h:9:
+   In file included from include/linux/pci.h:39:
+   In file included from include/linux/io.h:13:
+   In file included from arch/s390/include/asm/io.h:78:
+   include/asm-generic/io.h:584:33: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
+     584 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:594:59: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
+     594 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:604:59: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
+     604 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:692:20: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
+     692 |         readsb(PCI_IOBASE + addr, buffer, count);
+         |                ~~~~~~~~~~ ^
+   include/asm-generic/io.h:700:20: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
+     700 |         readsw(PCI_IOBASE + addr, buffer, count);
+         |                ~~~~~~~~~~ ^
+   include/asm-generic/io.h:708:20: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
+     708 |         readsl(PCI_IOBASE + addr, buffer, count);
+         |                ~~~~~~~~~~ ^
+   include/asm-generic/io.h:717:21: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
+     717 |         writesb(PCI_IOBASE + addr, buffer, count);
+         |                 ~~~~~~~~~~ ^
+   include/asm-generic/io.h:726:21: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
+     726 |         writesw(PCI_IOBASE + addr, buffer, count);
+         |                 ~~~~~~~~~~ ^
+   include/asm-generic/io.h:735:21: error: performing pointer arithmetic on a null pointer has undefined behavior [-Werror,-Wnull-pointer-arithmetic]
+     735 |         writesl(PCI_IOBASE + addr, buffer, count);
+         |                 ~~~~~~~~~~ ^
+>> drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:321:15: error: variable 'end' is uninitialized when used here [-Werror,-Wuninitialized]
+     321 |                 end = ALIGN(end, align);
+         |                             ^~~
+   include/linux/align.h:8:38: note: expanded from macro 'ALIGN'
+       8 | #define ALIGN(x, a)             __ALIGN_KERNEL((x), (a))
+         |                                                 ^
+   include/uapi/linux/const.h:31:51: note: expanded from macro '__ALIGN_KERNEL'
+      31 | #define __ALIGN_KERNEL(x, a)            __ALIGN_KERNEL_MASK(x, (__typeof__(x))(a) - 1)
+         |                                                             ^
+   include/uapi/linux/const.h:32:41: note: expanded from macro '__ALIGN_KERNEL_MASK'
+      32 | #define __ALIGN_KERNEL_MASK(x, mask)    (((x) + (mask)) & ~(mask))
+         |                                            ^
+   drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:308:17: note: initialize the variable 'end' to silence this warning
+     308 |                 u64 align, end;
+         |                               ^
+         |                                = 0
+   18 errors generated.
 
-drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:321:15: warning: variable 'end' is uninitialized when used here [-Wuninitialized]
 
-Warning ids grouped by kconfigs:
+vim +/end +321 drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
 
-clang_recent_errors
-|-- i386-buildonly-randconfig-004-20240427
-|   `-- drivers-gpu-drm-xe-xe_gt_tlb_invalidation.c:warning:variable-end-is-uninitialized-when-used-here
-|-- i386-randconfig-006-20240427
-|   `-- drivers-gpu-drm-xe-xe_gt_tlb_invalidation.c:warning:variable-end-is-uninitialized-when-used-here
-|-- i386-randconfig-014-20240427
-|   `-- drivers-gpu-drm-xe-xe_gt_tlb_invalidation.c:warning:variable-end-is-uninitialized-when-used-here
-|-- powerpc-randconfig-002-20240427
-|   `-- drivers-gpu-drm-xe-xe_gt_tlb_invalidation.c:warning:variable-end-is-uninitialized-when-used-here
-|-- x86_64-buildonly-randconfig-006-20240427
-|   `-- drivers-gpu-drm-xe-xe_gt_tlb_invalidation.c:warning:variable-end-is-uninitialized-when-used-here
-|-- x86_64-randconfig-001-20240427
-|   `-- drivers-gpu-drm-xe-xe_gt_tlb_invalidation.c:warning:variable-end-is-uninitialized-when-used-here
-`-- x86_64-randconfig-013-20240427
-    `-- drivers-gpu-drm-xe-xe_gt_tlb_invalidation.c:warning:variable-end-is-uninitialized-when-used-here
-
-elapsed time: 1277m
-
-configs tested: 161
-configs skipped: 5
-
-tested configs:
-alpha                             allnoconfig   gcc  
-alpha                            allyesconfig   gcc  
-alpha                               defconfig   gcc  
-arc                              allmodconfig   gcc  
-arc                               allnoconfig   gcc  
-arc                              allyesconfig   gcc  
-arc                                 defconfig   gcc  
-arc                   randconfig-001-20240427   gcc  
-arc                   randconfig-002-20240427   gcc  
-arm                              allmodconfig   gcc  
-arm                               allnoconfig   clang
-arm                              allyesconfig   gcc  
-arm                                 defconfig   clang
-arm                            mmp2_defconfig   gcc  
-arm                   randconfig-001-20240427   clang
-arm                   randconfig-002-20240427   clang
-arm                   randconfig-003-20240427   gcc  
-arm                   randconfig-004-20240427   clang
-arm                         s5pv210_defconfig   gcc  
-arm64                            allmodconfig   clang
-arm64                             allnoconfig   gcc  
-arm64                               defconfig   gcc  
-arm64                 randconfig-001-20240427   clang
-arm64                 randconfig-002-20240427   clang
-arm64                 randconfig-003-20240427   gcc  
-arm64                 randconfig-004-20240427   clang
-csky                             allmodconfig   gcc  
-csky                              allnoconfig   gcc  
-csky                             allyesconfig   gcc  
-csky                                defconfig   gcc  
-csky                  randconfig-001-20240427   gcc  
-csky                  randconfig-002-20240427   gcc  
-hexagon                          allmodconfig   clang
-hexagon                           allnoconfig   clang
-hexagon                          allyesconfig   clang
-hexagon                             defconfig   clang
-hexagon               randconfig-001-20240427   clang
-hexagon               randconfig-002-20240427   clang
-i386                             allmodconfig   gcc  
-i386                              allnoconfig   gcc  
-i386                             allyesconfig   gcc  
-i386         buildonly-randconfig-001-20240427   clang
-i386         buildonly-randconfig-002-20240427   gcc  
-i386         buildonly-randconfig-003-20240427   clang
-i386         buildonly-randconfig-004-20240427   clang
-i386         buildonly-randconfig-005-20240427   clang
-i386         buildonly-randconfig-006-20240427   gcc  
-i386                                defconfig   clang
-i386                  randconfig-001-20240427   clang
-i386                  randconfig-002-20240427   gcc  
-i386                  randconfig-003-20240427   clang
-i386                  randconfig-004-20240427   gcc  
-i386                  randconfig-005-20240427   gcc  
-i386                  randconfig-006-20240427   clang
-i386                  randconfig-011-20240427   gcc  
-i386                  randconfig-012-20240427   gcc  
-i386                  randconfig-013-20240427   clang
-i386                  randconfig-014-20240427   clang
-i386                  randconfig-015-20240427   gcc  
-i386                  randconfig-016-20240427   gcc  
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                           defconfig   gcc  
-loongarch             randconfig-001-20240427   gcc  
-loongarch             randconfig-002-20240427   gcc  
-m68k                             allmodconfig   gcc  
-m68k                              allnoconfig   gcc  
-m68k                             allyesconfig   gcc  
-m68k                                defconfig   gcc  
-microblaze                       allmodconfig   gcc  
-microblaze                        allnoconfig   gcc  
-microblaze                       allyesconfig   gcc  
-microblaze                          defconfig   gcc  
-microblaze                      mmu_defconfig   gcc  
-mips                              allnoconfig   gcc  
-mips                             allyesconfig   gcc  
-nios2                            allmodconfig   gcc  
-nios2                             allnoconfig   gcc  
-nios2                            allyesconfig   gcc  
-nios2                               defconfig   gcc  
-nios2                 randconfig-001-20240427   gcc  
-nios2                 randconfig-002-20240427   gcc  
-openrisc                          allnoconfig   gcc  
-openrisc                         allyesconfig   gcc  
-openrisc                            defconfig   gcc  
-parisc                           allmodconfig   gcc  
-parisc                            allnoconfig   gcc  
-parisc                           allyesconfig   gcc  
-parisc                              defconfig   gcc  
-parisc                randconfig-001-20240427   gcc  
-parisc                randconfig-002-20240427   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                          allyesconfig   clang
-powerpc               randconfig-001-20240427   clang
-powerpc               randconfig-002-20240427   clang
-powerpc               randconfig-003-20240427   clang
-powerpc                     tqm8540_defconfig   gcc  
-powerpc                 xes_mpc85xx_defconfig   gcc  
-powerpc64             randconfig-001-20240427   gcc  
-powerpc64             randconfig-002-20240427   gcc  
-powerpc64             randconfig-003-20240427   gcc  
-riscv                            allmodconfig   clang
-riscv                             allnoconfig   gcc  
-riscv                            allyesconfig   clang
-riscv                               defconfig   clang
-riscv                 randconfig-001-20240427   clang
-riscv                 randconfig-002-20240427   gcc  
-s390                              allnoconfig   clang
-s390                             allyesconfig   gcc  
-s390                                defconfig   clang
-s390                  randconfig-001-20240427   gcc  
-s390                  randconfig-002-20240427   gcc  
-sh                               alldefconfig   gcc  
-sh                               allmodconfig   gcc  
-sh                                allnoconfig   gcc  
-sh                               allyesconfig   gcc  
-sh                                  defconfig   gcc  
-sh                         ecovec24_defconfig   gcc  
-sh                          landisk_defconfig   gcc  
-sh                          lboxre2_defconfig   gcc  
-sh                            migor_defconfig   gcc  
-sh                    randconfig-001-20240427   gcc  
-sh                    randconfig-002-20240427   gcc  
-sh                          rsk7269_defconfig   gcc  
-sh                           se7343_defconfig   gcc  
-sh                        sh7763rdp_defconfig   gcc  
-sparc                            allmodconfig   gcc  
-sparc                             allnoconfig   gcc  
-sparc                               defconfig   gcc  
-sparc64                          allmodconfig   gcc  
-sparc64                          allyesconfig   gcc  
-sparc64                             defconfig   gcc  
-sparc64               randconfig-001-20240427   gcc  
-sparc64               randconfig-002-20240427   gcc  
-um                               allmodconfig   clang
-um                                allnoconfig   clang
-um                               allyesconfig   gcc  
-um                                  defconfig   clang
-um                             i386_defconfig   gcc  
-um                    randconfig-001-20240427   clang
-um                    randconfig-002-20240427   gcc  
-um                           x86_64_defconfig   clang
-x86_64                            allnoconfig   clang
-x86_64                           allyesconfig   clang
-x86_64       buildonly-randconfig-003-20240427   gcc  
-x86_64                              defconfig   gcc  
-x86_64                randconfig-003-20240427   gcc  
-x86_64                randconfig-005-20240427   gcc  
-x86_64                randconfig-006-20240427   gcc  
-x86_64                randconfig-011-20240427   gcc  
-x86_64                randconfig-015-20240427   gcc  
-x86_64                randconfig-016-20240427   gcc  
-x86_64                randconfig-071-20240427   gcc  
-x86_64                randconfig-076-20240427   gcc  
-x86_64                          rhel-8.3-rust   clang
-x86_64                               rhel-8.3   gcc  
-xtensa                            allnoconfig   gcc  
-xtensa                randconfig-001-20240427   gcc  
-xtensa                randconfig-002-20240427   gcc  
+   264	
+   265	/**
+   266	 * xe_gt_tlb_invalidation_range - Issue a TLB invalidation on this GT for an
+   267	 * address range
+   268	 *
+   269	 * @gt: graphics tile
+   270	 * @fence: invalidation fence which will be signal on TLB invalidation
+   271	 * completion, can be NULL
+   272	 * @start: start address
+   273	 * @end: end address
+   274	 * @asid: address space id
+   275	 *
+   276	 * Issue a range based TLB invalidation if supported, if not fallback to a full
+   277	 * TLB invalidation. Completion of TLB is asynchronous and caller can either use
+   278	 * the invalidation fence or seqno + xe_gt_tlb_invalidation_wait to wait for
+   279	 * completion.
+   280	 *
+   281	 * Return: Seqno which can be passed to xe_gt_tlb_invalidation_wait on success,
+   282	 * negative error code on error.
+   283	 */
+   284	int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+   285					 struct xe_gt_tlb_invalidation_fence *fence,
+   286					 u64 start, u64 end, u32 asid)
+   287	{
+   288		struct xe_device *xe = gt_to_xe(gt);
+   289	#define MAX_TLB_INVALIDATION_LEN	7
+   290		u32 action[MAX_TLB_INVALIDATION_LEN];
+   291		int len = 0;
+   292	
+   293		/* Execlists not supported */
+   294		if (gt_to_xe(gt)->info.force_execlist) {
+   295			if (fence)
+   296				__invalidation_fence_signal(fence);
+   297	
+   298			return 0;
+   299		}
+   300	
+   301		action[len++] = XE_GUC_ACTION_TLB_INVALIDATION;
+   302		action[len++] = 0; /* seqno, replaced in send_tlb_invalidation */
+   303		if (!xe->info.has_range_tlb_invalidation) {
+   304			action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL);
+   305		} else {
+   306			u64 orig_start = start;
+   307			u64 length = end - start;
+   308			u64 align, end;
+   309	
+   310			if (length < SZ_4K)
+   311				length = SZ_4K;
+   312	
+   313			/*
+   314			 * We need to invalidate a higher granularity if start address
+   315			 * is not aligned to length. When start is not aligned with
+   316			 * length we need to find the length large enough to create an
+   317			 * address mask covering the required range.
+   318			 */
+   319			align = roundup_pow_of_two(length);
+   320			start = ALIGN_DOWN(start, align);
+ > 321			end = ALIGN(end, align);
+   322			length = align;
+   323			while (start + length < end) {
+   324				length <<= 1;
+   325				start = ALIGN_DOWN(orig_start, length);
+   326			}
+   327	
+   328			/*
+   329			 * Minimum invalidation size for a 2MB page that the hardware
+   330			 * expects is 16MB
+   331			 */
+   332			if (length >= SZ_2M) {
+   333				length = max_t(u64, SZ_16M, length);
+   334				start = ALIGN_DOWN(orig_start, length);
+   335			}
+   336	
+   337			xe_gt_assert(gt, length >= SZ_4K);
+   338			xe_gt_assert(gt, is_power_of_2(length));
+   339			xe_gt_assert(gt, !(length & GENMASK(ilog2(SZ_16M) - 1,
+   340							    ilog2(SZ_2M) + 1)));
+   341			xe_gt_assert(gt, IS_ALIGNED(start, length));
+   342	
+   343			action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_PAGE_SELECTIVE);
+   344			action[len++] = asid;
+   345			action[len++] = lower_32_bits(start);
+   346			action[len++] = upper_32_bits(start);
+   347			action[len++] = ilog2(length) - ilog2(SZ_4K);
+   348		}
+   349	
+   350		xe_gt_assert(gt, len <= MAX_TLB_INVALIDATION_LEN);
+   351	
+   352		return send_tlb_invalidation(&gt->uc.guc, fence, action, len);
+   353	}
+   354	
 
 -- 
 0-DAY CI Kernel Test Service
