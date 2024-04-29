@@ -4,76 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07EE1C4345F
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Apr 2024 08:07:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E7FBC04FFE
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Apr 2024 08:25:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC8CF10FDC7;
-	Mon, 29 Apr 2024 08:07:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08B8F10FDE6;
+	Mon, 29 Apr 2024 08:25:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="sUQviPAI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hEf5SOE4";
 	dkim-atps=neutral
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
- [209.85.128.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B67BD10FDC7
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Apr 2024 08:07:25 +0000 (UTC)
-Received: by mail-wm1-f52.google.com with SMTP id
- 5b1f17b1804b1-41b79450f8cso24555505e9.3
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Apr 2024 01:07:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1714378044; x=1714982844;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=T5/hJsVmQUs2bQw1ikox8cY2fuz3ApOf5h0qgxHHUyc=;
- b=sUQviPAI3+ky/ueHtzHP4D66F4RYvn+aItLvVy1nfEoKWvxCihlTd4ovkmFVP0zh3I
- zWj/a6cEf5rQvJCV2GMV4E3ks2f5Z7XF7O3+ZJ+X0nOwByLRRomqKMDn/DlFWZjEpzuW
- dC8Cqhw4FIT43JzArQmfRzb2tD77MyTwCmPJ3N0g9FPKVwCHjudXM+cXs8SxnrrzSbxy
- hkr3Pdl2qH15sfq1nTUNYhB/PKxObQTUdXJN+fKf45VP8YeXQA2cnj2kS7k45SrYsKXB
- u5mTa/Ig9fE9Ae28q3uyLdsU6uDZZeBM0imuneA7TU+M2cEp0iipG8pxo+bRHixa3hyh
- H+bQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1714378044; x=1714982844;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=T5/hJsVmQUs2bQw1ikox8cY2fuz3ApOf5h0qgxHHUyc=;
- b=eqiTlidOJubVqZf9pMuDdJ2OD3XpyKE3n1QmAGh+iw21JO985Q07J20TZTixEwIhzy
- 7wOstPn+nByRqx83qOkldLrkmEHYRgiCylSnONU6UxIsupYTq4DzITzl4wajXYBdsuYN
- jlNK//Pi7Gp0J3sHV1WGkUpPwNqsjagPQ7wa92OmAHkTFxiQJvw2CXO6g+mmvfqYzqjv
- Qqc+87xV3P3xWdu0rL0Gxc38NYCClrgEHDFbd3xImbVdTnyAI2XYqfaRegSO7wyWNYms
- Ko0ttKnyfrTt3m++lkbg9KFiRXjJXP5wEg7Qk0haM+zbAcd3iPpPahgNR9Cp5OOsgPRQ
- jbeA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXE3rUYxy6GhQ9jwZ8/Q83Z480iVK5GPPJvxNldlMCnuaETLjb8nUwaRqrv5F6nQ6puLsYMVV146eU0lLHJn+nF8VJYYGfetrOOs999e6k=
-X-Gm-Message-State: AOJu0YyDb52G1knvjoK6ANxIoznLN3LYFijIvk8RImUu59fnaLGUmm7N
- oEMRjLphyGsMm64Pc08iJpCPISBC4cC9LCT51Y9ak2TP6E047WFe2vSAhfOnDbI=
-X-Google-Smtp-Source: AGHT+IF5NieIT8w4n19jbd4GyYuctJOdURqn4+cjHXfoClamoglaPAvqgOqR8HFIeKT2uQ+LmR8znA==
-X-Received: by 2002:a05:600c:35cf:b0:41c:1b0:7b6b with SMTP id
- r15-20020a05600c35cf00b0041c01b07b6bmr2843459wmq.19.1714378043799; 
- Mon, 29 Apr 2024 01:07:23 -0700 (PDT)
-Received: from [192.168.0.101] ([84.65.0.132])
- by smtp.gmail.com with ESMTPSA id
- fl23-20020a05600c0b9700b0041bc41287cesm9071198wmb.16.2024.04.29.01.07.23
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 29 Apr 2024 01:07:23 -0700 (PDT)
-Message-ID: <1094d239-a536-438d-9fe3-23f1d58363dd@ursulin.net>
-Date: Mon, 29 Apr 2024 09:07:22 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DBFE10FDDD;
+ Mon, 29 Apr 2024 08:25:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1714379154; x=1745915154;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=WNscBPM0GGHjKNd+HJ35/6EViQoUZjVHEKSnjaAfJQ0=;
+ b=hEf5SOE4+zF/zKDFpthiX8IDxSaOd7LpeC3B9NQyKnXmf7zCpsMHb0eH
+ cM6zJtA4jE5ehlscFaGLy+GbCEx837PoYov4JVnDFQab9xur3wPIHS7iA
+ iMh3CTQcMBD72JqsE1uVa/b+hQgnl/KjrOXm6m08jPj6/jSk3sHljCd/L
+ Z8mtV+nLmOsZ85m8YC9EZV9LwLrL5fhqRGgqLxuIjOxw6QSNs+bKe6C+D
+ 7gUhc3Q/f3LTs+12N88oWoQJXXfnkPsBHHZZoVIEAYJk3fGtSxQt579NL
+ hO2Ksejk+jEvdoGacJ0n7mGFX4TxztBm4WGzVfo7mzS/mG/5BxZ2QQUj7 Q==;
+X-CSE-ConnectionGUID: kwMRzQbZQ1Cj4gBkw3UWyQ==
+X-CSE-MsgGUID: SF4ODh+3Ry+hQrEcwKZs0w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11057"; a="27547865"
+X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="27547865"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2024 01:25:53 -0700
+X-CSE-ConnectionGUID: ewzeZA4WTaqipfPS3o4nsA==
+X-CSE-MsgGUID: mKfc8SmuQ+OHVax7Ip/3hw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="56927804"
+Received: from sbint17x-mobl.gar.corp.intel.com (HELO [10.249.254.23])
+ ([10.249.254.23])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2024 01:25:51 -0700
+Message-ID: <f938dc8f7309ae833e02ccdbc72134df0607dfa4.camel@linux.intel.com>
+Subject: Re: [PATCH 06/23] drm/xe/svm: Introduce a helper to build sg table
+ from hmm range
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: "Zeng, Oak" <oak.zeng@intel.com>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "Brost, Matthew"
+ <matthew.brost@intel.com>,  "Welty, Brian" <brian.welty@intel.com>,
+ "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>, "Bommu,
+ Krishnaiah" <krishnaiah.bommu@intel.com>, "Vishwanathapura, Niranjana"
+ <niranjana.vishwanathapura@intel.com>, Leon Romanovsky <leon@kernel.org>
+Date: Mon, 29 Apr 2024 10:25:48 +0200
+In-Reply-To: <20240426163519.GZ941030@nvidia.com>
+References: <20240405180212.GG5383@nvidia.com>
+ <SA1PR11MB6991A4BD0EDDDF051A9A2C5C92072@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <20240409172418.GA5383@nvidia.com>
+ <SA1PR11MB6991EDB4351D99B4E76EBC2992112@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <20240424134840.GJ941030@nvidia.com>
+ <SA1PR11MB699102978E72F21E6C803D6392102@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <20240425010520.GW941030@nvidia.com>
+ <65cb3984309d377d6e7d57cb6567473c8a83ed78.camel@linux.intel.com>
+ <20240426120047.GX941030@nvidia.com>
+ <ad82f95ee29ada403459416d4c97c2b9083b5a0f.camel@linux.intel.com>
+ <20240426163519.GZ941030@nvidia.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/6] drm/xe: Add helper to accumulate exec queue runtime
-Content-Language: en-GB
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20240423235652.1959945-1-lucas.demarchi@intel.com>
- <20240423235652.1959945-4-lucas.demarchi@intel.com>
- <da261fef-03ef-47ad-8001-fe4fa26f43e0@ursulin.net>
- <Ziv5i/ZBGr/bfGrH@orsosgc001>
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <Ziv5i/ZBGr/bfGrH@orsosgc001>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,164 +88,186 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Fri, 2024-04-26 at 13:35 -0300, Jason Gunthorpe wrote:
+> On Fri, Apr 26, 2024 at 04:49:26PM +0200, Thomas Hellstr=C3=B6m wrote:
+> > On Fri, 2024-04-26 at 09:00 -0300, Jason Gunthorpe wrote:
+> > > On Fri, Apr 26, 2024 at 11:55:05AM +0200, Thomas Hellstr=C3=B6m wrote=
+:
+> > > > First, the gpu_vma structure is something that partitions the
+> > > > gpu_vm
+> > > > that holds gpu-related range metadata, like what to mirror,
+> > > > desired
+> > > > gpu
+> > > > caching policies etc. These are managed (created, removed and
+> > > > split)
+> > > > mainly from user-space. These are stored and looked up from an
+> > > > rb-
+> > > > tree.
+> > >=20
+> > > Except we are talking about SVA here, so all of this should not
+> > > be
+> > > exposed to userspace.
+> >=20
+> > I think you are misreading. this is on the level "Mirror this
+> > region of
+> > the cpu_vm", "prefer this region placed in VRAM", "GPU will do
+> > atomic
+> > accesses on this region", very similar to cpu mmap / munmap and
+> > madvise. What I'm trying to say here is that this does not directly
+> > affect the SVA except whether to do SVA or not, and in that case
+> > what
+> > region of the CPU mm will be mirrored, and in addition, any gpu
+> > attributes for the mirrored region.
+>=20
+> SVA is you bind the whole MM and device faults dynamically populate
+> the mirror page table. There aren't non-SVA regions. Meta data, like
+> you describe, is meta data for the allocation/migration mechanism,
+> not
+> for the page table or that has anything to do with the SVA mirror
+> operation.
 
-On 26/04/2024 19:59, Umesh Nerlige Ramappa wrote:
-> On Fri, Apr 26, 2024 at 11:49:32AM +0100, Tvrtko Ursulin wrote:
->>
->> On 24/04/2024 00:56, Lucas De Marchi wrote:
->>> From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->>>
->>> Add a helper to accumulate per-client runtime of all its
->>> exec queues. Currently that is done in 2 places:
->>>
->>>     1. when the exec_queue is destroyed
->>>     2. when the sched job is completed
->>>
->>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>> ---
->>>  drivers/gpu/drm/xe/xe_device_types.h |  9 +++++++
->>>  drivers/gpu/drm/xe/xe_exec_queue.c   | 37 ++++++++++++++++++++++++++++
->>>  drivers/gpu/drm/xe/xe_exec_queue.h   |  1 +
->>>  drivers/gpu/drm/xe/xe_sched_job.c    |  2 ++
->>>  4 files changed, 49 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h 
->>> b/drivers/gpu/drm/xe/xe_device_types.h
->>> index 2e62450d86e1..33d3bf93a2f1 100644
->>> --- a/drivers/gpu/drm/xe/xe_device_types.h
->>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->>> @@ -547,6 +547,15 @@ struct xe_file {
->>>          struct mutex lock;
->>>      } exec_queue;
->>> +    /**
->>> +     * @runtime: hw engine class runtime in ticks for this drm client
->>> +     *
->>> +     * Only stats from xe_exec_queue->lrc[0] are accumulated. For 
->>> multi-lrc
->>> +     * case, since all jobs run in parallel on the engines, only the 
->>> stats
->>> +     * from lrc[0] are sufficient.
->>
->> Out of curiousity doesn't this mean multi-lrc jobs will be incorrectly 
->> accounted for? (When capacity is considered.)
-> 
-> TBH, I am not sure what the user would like to see here for multi-lrc. 
-> If reporting the capacity, then we may need to use width as a 
-> multiplication factor for multi-lrc. How was this done in i915?
 
-IMO user has to see the real utilisation - so if there are two VCS and 
-both are busy, 100% should be reported and not 50%. Latter would be 
-misleading, either with or without cross-checking with physical utilisation.
 
-In i915 with execlists this works correctly and with GuC you would 
-probably know the answer better than me.
+>=20
+> Yes there is another common scheme where you bind a window of CPU to
+> a
+> window on the device and mirror a fixed range, but this is a quite
+> different thing. It is not SVA, it has a fixed range, and it is
+> probably bound to a single GPU VMA in a multi-VMA device page table.
 
-Regards,
+And this above here is exactly what we're implementing, and the GPU
+page-tables are populated using device faults. Regions (large) of the
+mirrored CPU mm need to coexist in the same GPU vm as traditional GPU
+buffer objects.
 
-Tvrtko
+>=20
+> SVA is not just a whole bunch of windows being dynamically created by
+> the OS, that is entirely the wrong mental model. It would be horrible
+> to expose to userspace something like that as uAPI. Any hidden SVA
+> granules and other implementation specific artifacts must not be made
+> visible to userspace!!
 
-> 
-> Regards,
-> Umesh
-> 
-> 
->>
->> Regards,
->>
->> Tvrtko
->>
->>> +     */
->>> +    u64 runtime[XE_ENGINE_CLASS_MAX];
->>> +
->>>      /** @client: drm client */
->>>      struct xe_drm_client *client;
->>>  };
->>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c 
->>> b/drivers/gpu/drm/xe/xe_exec_queue.c
->>> index 395de93579fa..b7b6256cb96a 100644
->>> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
->>> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
->>> @@ -214,6 +214,8 @@ void xe_exec_queue_fini(struct xe_exec_queue *q)
->>>  {
->>>      int i;
->>> +    xe_exec_queue_update_runtime(q);
->>> +
->>>      for (i = 0; i < q->width; ++i)
->>>          xe_lrc_finish(q->lrc + i);
->>>      if (!(q->flags & EXEC_QUEUE_FLAG_PERMANENT) && (q->flags & 
->>> EXEC_QUEUE_FLAG_VM || !q->vm))
->>> @@ -769,6 +771,41 @@ bool xe_exec_queue_is_idle(struct xe_exec_queue *q)
->>>          q->lrc[0].fence_ctx.next_seqno - 1;
->>>  }
->>> +/**
->>> + * xe_exec_queue_update_runtime() - Update runtime for this exec 
->>> queue from hw
->>> + * @q: The exec queue
->>> + *
->>> + * Update the timestamp saved by HW for this exec queue and save 
->>> runtime
->>> + * calculated by using the delta from last update. On multi-lrc 
->>> case, only the
->>> + * first is considered.
->>> + */
->>> +void xe_exec_queue_update_runtime(struct xe_exec_queue *q)
->>> +{
->>> +    struct xe_file *xef;
->>> +    struct xe_lrc *lrc;
->>> +    u32 old_ts, new_ts;
->>> +
->>> +    /*
->>> +     * Jobs that are run during driver load may use an exec_queue, 
->>> but are
->>> +     * not associated with a user xe file, so avoid accumulating 
->>> busyness
->>> +     * for kernel specific work.
->>> +     */
->>> +    if (!q->vm || !q->vm->xef)
->>> +        return;
->>> +
->>> +    xef = q->vm->xef;
->>> +    lrc = &q->lrc[0];
->>> +
->>> +    new_ts = xe_lrc_update_timestamp(lrc, &old_ts);
->>> +
->>> +    /*
->>> +     * Special case the very first timestamp: we don't want the
->>> +     * initial delta to be a huge value
->>> +     */
->>> +    if (old_ts)
->>> +        xef->runtime[q->class] += new_ts - old_ts;
->>> +}
->>> +
->>>  void xe_exec_queue_kill(struct xe_exec_queue *q)
->>>  {
->>>      struct xe_exec_queue *eq = q, *next;
->>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h 
->>> b/drivers/gpu/drm/xe/xe_exec_queue.h
->>> index 02ce8d204622..45b72daa2db3 100644
->>> --- a/drivers/gpu/drm/xe/xe_exec_queue.h
->>> +++ b/drivers/gpu/drm/xe/xe_exec_queue.h
->>> @@ -66,5 +66,6 @@ struct dma_fence 
->>> *xe_exec_queue_last_fence_get(struct xe_exec_queue *e,
->>>                             struct xe_vm *vm);
->>>  void xe_exec_queue_last_fence_set(struct xe_exec_queue *e, struct 
->>> xe_vm *vm,
->>>                    struct dma_fence *fence);
->>> +void xe_exec_queue_update_runtime(struct xe_exec_queue *q);
->>>  #endif
->>> diff --git a/drivers/gpu/drm/xe/xe_sched_job.c 
->>> b/drivers/gpu/drm/xe/xe_sched_job.c
->>> index cd8a2fba5438..6a081a4fa190 100644
->>> --- a/drivers/gpu/drm/xe/xe_sched_job.c
->>> +++ b/drivers/gpu/drm/xe/xe_sched_job.c
->>> @@ -242,6 +242,8 @@ bool xe_sched_job_completed(struct xe_sched_job 
->>> *job)
->>>  {
->>>      struct xe_lrc *lrc = job->q->lrc;
->>> +    xe_exec_queue_update_runtime(job->q);
->>> +
->>>      /*
->>>       * Can safely check just LRC[0] seqno as that is last seqno 
->>> written when
->>>       * parallel handshake is done.
+Implementation-specific artifacts are not to be made visible to user-
+space.
+
+>=20
+> > > If you use dma_map_sg you get into the world of wrongness where
+> > > you
+> > > have to track ranges and invalidation has to wipe an entire range
+> > > -
+> > > because you cannot do a dma unmap of a single page from a
+> > > dma_map_sg
+> > > mapping. This is all the wrong way to use hmm_range_fault.
+> > >=20
+> > > hmm_range_fault() is page table mirroring, it fundamentally must
+> > > be
+> > > page-by-page. The target page table structure must have similar
+> > > properties to the MM page table - especially page by page
+> > > validate/invalidate. Meaning you cannot use dma_map_sg().
+> >=20
+> > To me this is purely an optimization to make the driver page-table
+> > and
+> > hence the GPU TLB benefit from iommu coalescing / large pages and
+> > large
+> > driver PTEs.
+>=20
+> This is a different topic. Leon is working on improving the DMA API
+> to
+> get these kinds of benifits for HMM users. dma_map_sg is not the path
+> to get this. Leon's work should be significantly better in terms of
+> optimizing IOVA contiguity for a GPU use case. You can get a
+> guaranteed DMA contiguity at your choosen granual level, even up to
+> something like 512M.
+>=20
+> > It is true that invalidation will sometimes shoot down
+> > large gpu ptes unnecessarily but it will not put any additional
+> > burden
+> > on the core AFAICT.=20
+>=20
+> In my experience people doing performance workloads don't enable the
+> IOMMU due to the high performance cost, so while optimizing iommu
+> coalescing is sort of interesting, it is not as important as using
+> the
+> APIs properly and not harming the much more common situation when
+> there is no iommu and there is no artificial contiguity.
+>=20
+> > on invalidation since zapping the gpu PTEs effectively stops any
+> > dma
+> > accesses. The dma mappings are rebuilt on the next gpu pagefault,
+> > which, as you mention, are considered slow anyway, but will
+> > probably
+> > still reuse the same prefault region, hence needing to rebuild the
+> > dma
+> > mappings anyway.
+>=20
+> This is bad too. The DMA should not remain mapped after pages have
+> been freed, it completely destroys the concept of IOMMU enforced DMA
+> security and the ACPI notion of untrusted external devices.
+
+Hmm. Yes, good point.
+
+>=20
+> > So as long as we are correct and do not adversely affect core mm,
+> > If
+> > the gpu performance (for whatever reason) is severely hampered if
+> > large gpu page-table-entries are not used, couldn't this be
+> > considered
+> > left to the driver?
+>=20
+> Please use the APIs properly. We are trying to improve the DMA API to
+> better support HMM users, and doing unnecessary things like this in
+> drivers is only harmful to that kind of consolidation.
+>=20
+> There is nothing stopping getting large GPU page table entries for
+> large CPU page table entries.
+>=20
+> > And a related question. What about THP pages? OK to set up a single
+> > dma-mapping to those?
+>=20
+> Yes, THP is still a page and dma_map_page() will map it.
+
+OK great. This is probably sufficient for the performance concern for
+now.
+
+Thanks,
+Thomas
+
+> =C2=A0
+> > > > That's why finer-granularity mmu_interval notifiers might be
+> > > > beneficial
+> > > > (and then cached for future re-use of the same prefault range).
+> > > > This
+> > > > leads me to the next question:
+> > >=20
+> > > It is not the design, please don't invent crazy special Intel
+> > > things
+> > > on top of hmm_range_fault.
+> >=20
+> > For the record, this is not a "crazy special Intel" invention. It's
+> > the
+> > way all GPU implementations do this so far.
+>=20
+> "all GPU implementations" you mean AMD, and AMD predates alot of the
+> modern versions of this infrastructure IIRC.
+>=20
+> > > Why would a prefetch have anything to do with a VMA? Ie your app
+> > > calls
+> > > malloc() and gets a little allocation out of a giant mmap() arena
+> > > -
+> > > you want to prefault the entire arena? Does that really make any
+> > > sense?
+> >=20
+> > Personally, no it doesn't. I'd rather use some sort of fixed-size
+> > chunk. But to rephrase, the question was more into the strong
+> > "drivers
+> > should not be aware of the cpu mm vma structures" comment.=20
+>=20
+> But this is essentially why - there is nothing useful the driver can
+> possibly learn from the CPU VMA to drive
+> hmm_range_fault(). hmm_range_fault already has to walk the VMA's if
+> someday something is actually needed it needs to be integrated in a
+> general way, not by having the driver touch vmas directly.
+>=20
+> Jason
+
+
