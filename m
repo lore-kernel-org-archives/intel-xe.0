@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20ED9C25B5C
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Apr 2024 12:16:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3ACEBC04FFE
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Apr 2024 12:16:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF8A6112C02;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99D6F112C00;
 	Mon, 29 Apr 2024 12:16:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gglKd8rJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D1cxfTSQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFD12112C02
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Apr 2024 12:15:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F9B4112C14
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Apr 2024 12:15:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714392954; x=1745928954;
+ t=1714392952; x=1745928952;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kOy9BO1cxQsJQd+om7PsWAE6bChjvFSgX7s3Wmc1l48=;
- b=gglKd8rJm9dXbRE/dOsfo/vcjWTu8ACcJWEBS4B5rtTXoWDErsr1yRZJ
- YyRY2aXUNyHYxCQNjBBkMTIwaTlbkyY6eb2TcfXF+dt0OE5BfAZIx1F/+
- nLPc+imogzvx3X932987yQ9enk3MEWUpMMTEkxMOZyHcJSkMq9mBkBSi8
- Ki4l71mCVbbt4KnN505Jqx/pISm3qIxV/JUqxfIvgGc8DDd6YrZ3Iei+v
- oTN7NXR4ySeSkoAYYCm7yKzQ9Ibrc36NsMl4czwlOtzHiOaQ83FGX41Z3
- vrxEND5lgeFp9EMSbYam/4z/S6uf1Ww83X0jvgM6xCu+ETv+utXiEIN2H A==;
-X-CSE-ConnectionGUID: bgWtY+b0SwOGmQEwQP5WuA==
-X-CSE-MsgGUID: Ph2BwljWTpavx4EMUARYFg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11057"; a="9878404"
+ bh=9NOQyHOf4VIBkzCHFEjknkzexehgONYMlHmKT/csGQs=;
+ b=D1cxfTSQyR2ZWfFFzo+6Gj0qi/MRM71186SrP2ucbKGKwwUyvUre26Yy
+ BLkmqIbbtb/6Umxk2rOpFN6IXdlhCdO5/TxNBOmmUj1Quo2EZt+x4dqrq
+ 2dtMY5k8kpZ0cQVHsM25+HcmUYogNZb3BTwIswzx+Nr1fRIMbeDaitClo
+ guMXhtojjS3mqP6CglZ3PGiojAfRCdZOnIlGeAm5AaYB4elycRuNLC6WR
+ vPULwzL3AnQhD7EyjsGEwkABpDzoT8VkvBMsTBvDHTKztgKyQrhBi2CGB
+ fJeXh34duz9pV762L2TC5TTMpgHX+/kIT5rsvH9MW/2IM5NncEe7uglc2 A==;
+X-CSE-ConnectionGUID: jtVObjPwQa6ybprlBlitxA==
+X-CSE-MsgGUID: mT7s/n/TRsGHPQQhsGz9jg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11057"; a="9878391"
 X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; 
-   d="scan'208";a="9878404"
+   d="scan'208";a="9878391"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2024 05:15:54 -0700
-X-CSE-ConnectionGUID: Jpf63yh1RSy7pvh2xJHJNg==
-X-CSE-MsgGUID: 7FoGhHmdSvWhD9mZ1AyfyQ==
+ 29 Apr 2024 05:15:52 -0700
+X-CSE-ConnectionGUID: yYaS3mrmRK2ORP4W9qTO8w==
+X-CSE-MsgGUID: iNaZwgP3RVai1lTdQB0bhg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="49303412"
+X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="49303401"
 Received: from unknown (HELO mwauld-desk.intel.com) ([10.245.244.199])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2024 05:15:52 -0700
+ 29 Apr 2024 05:15:50 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 7/8] drm/xe/device: move flr to devm
-Date: Mon, 29 Apr 2024 13:14:43 +0100
-Message-ID: <20240429121436.33013-15-matthew.auld@intel.com>
+Subject: [PATCH 5/8] drm/xe/guc_pc: move pc_fini to devm
+Date: Mon, 29 Apr 2024 13:14:41 +0100
+Message-ID: <20240429121436.33013-13-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240429121436.33013-9-matthew.auld@intel.com>
 References: <20240429121436.33013-9-matthew.auld@intel.com>
@@ -67,37 +67,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Should be called when driver is removed, not when this particular driver
-instance is destroyed.
+Here we are touching the HW/GuC and presumably this should happen when
+the device is removed. Currently if you hotunplug the device this is
+skipped if there is already open driver instance.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 4 ++--
+ drivers/gpu/drm/xe/xe_guc_pc.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index b61f8356e23e..ba917e383f8f 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -387,7 +387,7 @@ static void xe_driver_flr(struct xe_device *xe)
- 	xe_mmio_write32(gt, GU_DEBUG, DRIVERFLR_STATUS);
- }
- 
--static void xe_driver_flr_fini(struct drm_device *drm, void *arg)
-+static void xe_driver_flr_fini(void *arg)
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 8fc757900ed1..8c855afd1144 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -892,7 +892,7 @@ int xe_guc_pc_stop(struct xe_guc_pc *pc)
+  * @drm: DRM device
+  * @arg: opaque pointer that should point to Xe_GuC_PC instance
+  */
+-static void xe_guc_pc_fini(struct drm_device *drm, void *arg)
++static void xe_guc_pc_fini(void *arg)
  {
- 	struct xe_device *xe = arg;
+ 	struct xe_guc_pc *pc = arg;
+ 	struct xe_device *xe = pc_to_xe(pc);
+@@ -940,5 +940,5 @@ int xe_guc_pc_init(struct xe_guc_pc *pc)
  
-@@ -589,7 +589,7 @@ int xe_device_probe(struct xe_device *xe)
- 	err = xe_devcoredump_init(xe);
- 	if (err)
- 		return err;
--	err = drmm_add_action_or_reset(&xe->drm, xe_driver_flr_fini, xe);
-+	err = devm_add_action_or_reset(xe->drm.dev, xe_driver_flr_fini, xe);
- 	if (err)
- 		return err;
+ 	pc->bo = bo;
  
+-	return drmm_add_action_or_reset(&xe->drm, xe_guc_pc_fini, pc);
++	return devm_add_action_or_reset(xe->drm.dev, xe_guc_pc_fini, pc);
+ }
 -- 
 2.44.0
 
