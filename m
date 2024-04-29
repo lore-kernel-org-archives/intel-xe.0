@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD5B4C25B4F
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Apr 2024 12:16:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20ED9C25B5C
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Apr 2024 12:16:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC793112C04;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF8A6112C02;
 	Mon, 29 Apr 2024 12:16:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dGuiR/oW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gglKd8rJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E260112BFD
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Apr 2024 12:15:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFD12112C02
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Apr 2024 12:15:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714392950; x=1745928950;
+ t=1714392954; x=1745928954;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yBe62V+Qjiw8383W0bZaPkiJNNcvEEF5neLE5/kwQiI=;
- b=dGuiR/oWlNl3xqDLMMZNcZHomTyNKYIoc+ePhczoycLP0phhekrFWhp5
- LTsmyKgOlBoaiLAFFReIufuvrx0NDDwUPqEvZJ08cHm58JX1rbaydpTNF
- HDZ4FpO6PYzviQs8EubL84hevpqFL1DUwhTobYkKLQxrSEMiVCjzimwOD
- W7+CrK5QlmC7f6F6M6wqmI0RAXW72SuZtQ77iqGhNqf8CbGcpyb8K+aD3
- gkVZQFkNbKBeUl0u01zoIY1GlVih+Bz6gIvnT0HBGdJkvu9KbvDV5A7oI
- Um5+j+ANLXX7d7Z0cmR8QCqe9C+UNvmKyNR2zxb4SRlePoYVU5BCYOafx A==;
-X-CSE-ConnectionGUID: M8yOIT1ERI+vIRZyxlq2lA==
-X-CSE-MsgGUID: 7qg7zMRDSKOWASBOSZwoyQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11057"; a="9878380"
+ bh=kOy9BO1cxQsJQd+om7PsWAE6bChjvFSgX7s3Wmc1l48=;
+ b=gglKd8rJm9dXbRE/dOsfo/vcjWTu8ACcJWEBS4B5rtTXoWDErsr1yRZJ
+ YyRY2aXUNyHYxCQNjBBkMTIwaTlbkyY6eb2TcfXF+dt0OE5BfAZIx1F/+
+ nLPc+imogzvx3X932987yQ9enk3MEWUpMMTEkxMOZyHcJSkMq9mBkBSi8
+ Ki4l71mCVbbt4KnN505Jqx/pISm3qIxV/JUqxfIvgGc8DDd6YrZ3Iei+v
+ oTN7NXR4ySeSkoAYYCm7yKzQ9Ibrc36NsMl4czwlOtzHiOaQ83FGX41Z3
+ vrxEND5lgeFp9EMSbYam/4z/S6uf1Ww83X0jvgM6xCu+ETv+utXiEIN2H A==;
+X-CSE-ConnectionGUID: bgWtY+b0SwOGmQEwQP5WuA==
+X-CSE-MsgGUID: Ph2BwljWTpavx4EMUARYFg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11057"; a="9878404"
 X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; 
-   d="scan'208";a="9878380"
+   d="scan'208";a="9878404"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2024 05:15:50 -0700
-X-CSE-ConnectionGUID: X1P3p8rLTb+T+oNTvzpBZA==
-X-CSE-MsgGUID: J82kBz8fQRKOvnB6HxIEVQ==
+ 29 Apr 2024 05:15:54 -0700
+X-CSE-ConnectionGUID: Jpf63yh1RSy7pvh2xJHJNg==
+X-CSE-MsgGUID: 7FoGhHmdSvWhD9mZ1AyfyQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="49303383"
+X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="49303412"
 Received: from unknown (HELO mwauld-desk.intel.com) ([10.245.244.199])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2024 05:15:48 -0700
+ 29 Apr 2024 05:15:52 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 3/8] drm/xe/ggtt: use drm_dev_enter to mark device section
-Date: Mon, 29 Apr 2024 13:14:39 +0100
-Message-ID: <20240429121436.33013-11-matthew.auld@intel.com>
+Subject: [PATCH 7/8] drm/xe/device: move flr to devm
+Date: Mon, 29 Apr 2024 13:14:43 +0100
+Message-ID: <20240429121436.33013-15-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240429121436.33013-9-matthew.auld@intel.com>
 References: <20240429121436.33013-9-matthew.auld@intel.com>
@@ -67,71 +67,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Device can be hotunplugged before we start destroying gem objects. In
-such a case don't touch the GGTT entries, trigger any invalidations or
-mess around with rpm.  This should already be taken care of when
-removing the device, we just need to take care of dealing with the
-software state, like removing the mm node.
+Should be called when driver is removed, not when this particular driver
+instance is destroyed.
 
-References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1717
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 34 ++++++++++++++++++++++------------
- 1 file changed, 22 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 0d541f55b4fc..7c05d3f7e1a4 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -8,6 +8,7 @@
- #include <linux/io-64-nonatomic-lo-hi.h>
- #include <linux/sizes.h>
- 
-+#include <drm/drm_drv.h>
- #include <drm/drm_managed.h>
- #include <drm/i915_drm.h>
- 
-@@ -433,18 +434,27 @@ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
- void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
- 			 bool invalidate)
- {
--	xe_pm_runtime_get_noresume(tile_to_xe(ggtt->tile));
--
--	mutex_lock(&ggtt->lock);
--	xe_ggtt_clear(ggtt, node->start, node->size);
--	drm_mm_remove_node(node);
--	node->size = 0;
--	mutex_unlock(&ggtt->lock);
--
--	if (invalidate)
--		xe_ggtt_invalidate(ggtt);
--
--	xe_pm_runtime_put(tile_to_xe(ggtt->tile));
-+	struct xe_device *xe = tile_to_xe(ggtt->tile);
-+	int idx;
-+
-+	if (drm_dev_enter(&xe->drm, &idx)) {
-+		xe_pm_runtime_get_noresume(xe);
-+		mutex_lock(&ggtt->lock);
-+		xe_ggtt_clear(ggtt, node->start, node->size);
-+		drm_mm_remove_node(node);
-+		node->size = 0;
-+		mutex_unlock(&ggtt->lock);
-+
-+		if (invalidate)
-+			xe_ggtt_invalidate(ggtt);
-+		xe_pm_runtime_put(xe);
-+		drm_dev_exit(idx);
-+	} else {
-+		mutex_lock(&ggtt->lock);
-+		drm_mm_remove_node(node);
-+		node->size = 0;
-+		mutex_unlock(&ggtt->lock);
-+	}
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index b61f8356e23e..ba917e383f8f 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -387,7 +387,7 @@ static void xe_driver_flr(struct xe_device *xe)
+ 	xe_mmio_write32(gt, GU_DEBUG, DRIVERFLR_STATUS);
  }
  
- void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+-static void xe_driver_flr_fini(struct drm_device *drm, void *arg)
++static void xe_driver_flr_fini(void *arg)
+ {
+ 	struct xe_device *xe = arg;
+ 
+@@ -589,7 +589,7 @@ int xe_device_probe(struct xe_device *xe)
+ 	err = xe_devcoredump_init(xe);
+ 	if (err)
+ 		return err;
+-	err = drmm_add_action_or_reset(&xe->drm, xe_driver_flr_fini, xe);
++	err = devm_add_action_or_reset(xe->drm.dev, xe_driver_flr_fini, xe);
+ 	if (err)
+ 		return err;
+ 
 -- 
 2.44.0
 
