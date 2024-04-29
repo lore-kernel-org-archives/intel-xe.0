@@ -4,56 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA91FC4345F
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Apr 2024 11:15:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D655CC4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Apr 2024 12:15:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4845C112731;
-	Mon, 29 Apr 2024 11:15:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8ED50112BFB;
+	Mon, 29 Apr 2024 12:15:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nTT6cJ95";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QKttIh4Q";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C524A112B90
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Apr 2024 11:15:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A03D7112BF8
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Apr 2024 12:15:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714389353; x=1745925353;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=687Xdj6gjzUuk6Vo6aMBxLwRP0DOf75ruP4r/WUVgow=;
- b=nTT6cJ95ZxfzGdwaoWkLAh8VWTKrKuI33gl7cV3DEm1K9MAOJ/NgTBmj
- vxxqvoYmumD0uTpsBNwyqzL/hOrg/+UN9/D2qOvgGsTNw8tpegGOUx8Cd
- SpamwHu8scJqCsXenHwvr49h7PzOs269dQJAupv8lBXVXWbkhdb9sv8mq
- GXGqEwfaK/hZ+JOsgIo3RXKawq4PLobfm1sM8hTVAE6kSN8rzS1NR5pc2
- ovKGff9h36qDSD+/LKMYkTUsbRKIOLXgJ2OHAtYAxd0cED9Qb8TFUVXLk
- URhKiQEpbuDQsZQTXXjSH6blR7M93rLhxluQZVAQLUt7126ds4j7V0faC g==;
-X-CSE-ConnectionGUID: V4QaaKuXQKeZrCFJd36dNA==
-X-CSE-MsgGUID: cnzScfB0REWZLQCYe+snfA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11057"; a="20731875"
-X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="20731875"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2024 04:15:52 -0700
-X-CSE-ConnectionGUID: +AyyDhS9Q5iHLTOTgggczw==
-X-CSE-MsgGUID: 2+BFmC70Sfm8NYhqdWqOZQ==
+ t=1714392948; x=1745928948;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=sTwhIt5ooJPXXIsrZoPvHLYjQJOt/8wk+G9YJM/9T/I=;
+ b=QKttIh4Qwz5sfGU7r/yWI7XL5wTyqrXc165cgrqGwfEuxwcXKLWebAKw
+ 2aHz+eaaKDKIMxI/9UF/i5t+KRMAhRxNEmRZ8rBJ42v3eVc5Q3Yj9BgfK
+ gtXUXJ+OeL0KXI4riZ/bX1LMteV/bQo5qgH0XUXliRw89eIRafWjG11Pz
+ semjC9daG3+PjR31PDHjvgw2CdvkT/T5Vf8xJq/qICtzFPH+cmW30Lqmp
+ IklYDONg9VYnFPVwwUGyKfR55Ag8eCUOralE7phNHNtVlGYl8DLqHznBy
+ Zni4/twK+tIGJgcAdSWI9MB/cxdhoFieZXVJMqqHgi8829MePDzsxaBZJ g==;
+X-CSE-ConnectionGUID: n4mlWj0eSUujFiMYqcOvhA==
+X-CSE-MsgGUID: 7SyOzk9ES4icrlTDGEauTQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11057"; a="9878371"
+X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; 
+   d="scan'208";a="9878371"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2024 05:15:48 -0700
+X-CSE-ConnectionGUID: 6sEt0g9yT9q4n8vdZ7DMgg==
+X-CSE-MsgGUID: n6A05dJQQGm3dFxGD/OIHw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="26070975"
-Received: from aantonov-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.49.167])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2024 04:15:50 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Farah Kassabri <fkassabri@habana.ai>, intel-xe@lists.freedesktop.org
-Cc: osharabi@habana.ai, Farah Kassabri <fkassabri@habana.ai>
-Subject: Re: [PATCH 2/2] drm/xe: set last driver commit sha
-In-Reply-To: <20240424100706.269523-2-fkassabri@habana.ai>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240424100706.269523-1-fkassabri@habana.ai>
- <20240424100706.269523-2-fkassabri@habana.ai>
-Date: Mon, 29 Apr 2024 14:15:47 +0300
-Message-ID: <878r0w4dy4.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="49303347"
+Received: from unknown (HELO mwauld-desk.intel.com) ([10.245.244.199])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2024 05:15:46 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH 1/8] drm/xe/device_sysfs: switch over to devm
+Date: Mon, 29 Apr 2024 13:14:37 +0100
+Message-ID: <20240429121436.33013-9-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,55 +65,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 24 Apr 2024, Farah Kassabri <fkassabri@habana.ai> wrote:
-> This patch will set the last driver commit sha into the drm driver
-> info data structure, which will be used in the log message which
-> prints the device info at the end of the driver initialization.
->
-> Signed-off-by: Farah Kassabri <fkassabri@habana.ai>
-> ---
->  drivers/gpu/drm/xe/Makefile    | 4 ++++
->  drivers/gpu/drm/xe/xe_device.c | 1 +
->  2 files changed, 5 insertions(+)
->
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index 8321ec4f9b46..acccb517b7bb 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -309,6 +309,10 @@ ifeq ($(CONFIG_DEBUG_FS),y)
->  		i915-display/intel_pipe_crc.o
->  endif
->  
-> +GIT_SHA ?= $(shell cd $(srctree) && git rev-parse --short HEAD)
+When hotunplugging the device we currently hit:
 
-There are no guarantees that the kernel is being built from a git
-checkout. Or if it is, that there are no uncommitted changes. Etc. See
-scripts/setlocalversion.
+kernfs: can not remove 'vram_d3cold_threshold', no directory
 
-IMO it's just not so simple that we could reasonably add this into a
-local Makefile.
+Due to directory already being removed. Using drmm for sysfs device
+stuff like vram_d3cold_threshold doesn't really make sense when you
+consider hot unplugging of the pci device. In such a case the device is
+removed however the drmm release action will only fire once the driver
+instance can be released, which can be long after the device has already
+been hotunplugged. Rather use devm which is directly tied to the device
+and should be called when it is removed.
 
-BR,
-Jani.
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1432
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_sysfs.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> +DRV_CFLAGS_MODULE="-DXE_DRIVER_GIT_SHA=-$(GIT_SHA)"
-> +CFLAGS_MODULE += ${DRV_CFLAGS_MODULE}
-> +
->  obj-$(CONFIG_DRM_XE) += xe.o
->  obj-$(CONFIG_DRM_XE_KUNIT_TEST) += tests/
->  
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 55bbc8b8df15..2e74aa18e953 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -215,6 +215,7 @@ static struct drm_driver driver = {
->  	.major = DRIVER_MAJOR,
->  	.minor = DRIVER_MINOR,
->  	.patchlevel = DRIVER_PATCHLEVEL,
-> +	.git_sha = __stringify(XE_DRIVER_GIT_SHA),
->  };
->  
->  static void xe_device_destroy(struct drm_device *dev, void *dummy)
-
+diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+index 21677b8cd977..7375937934fa 100644
+--- a/drivers/gpu/drm/xe/xe_device_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+@@ -69,7 +69,7 @@ vram_d3cold_threshold_store(struct device *dev, struct device_attribute *attr,
+ 
+ static DEVICE_ATTR_RW(vram_d3cold_threshold);
+ 
+-static void xe_device_sysfs_fini(struct drm_device *drm, void *arg)
++static void xe_device_sysfs_fini(void *arg)
+ {
+ 	struct xe_device *xe = arg;
+ 
+@@ -85,5 +85,5 @@ int xe_device_sysfs_init(struct xe_device *xe)
+ 	if (ret)
+ 		return ret;
+ 
+-	return drmm_add_action_or_reset(&xe->drm, xe_device_sysfs_fini, xe);
++	return devm_add_action_or_reset(dev, xe_device_sysfs_fini, xe);
+ }
 -- 
-Jani Nikula, Intel
+2.44.0
+
