@@ -4,25 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACDF8C4345F
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Apr 2024 15:48:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E978EC4345F
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Apr 2024 15:48:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D48E10E0FB;
-	Mon, 29 Apr 2024 15:48:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A31910E0FB;
+	Mon, 29 Apr 2024 15:48:39 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7241510E12F;
- Mon, 29 Apr 2024 15:48:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E6A410E0FB;
+ Mon, 29 Apr 2024 15:48:38 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Remove_uni?=
- =?utf-8?q?nitialized_end_var_from_xe=5Fgt=5Ftlb=5Finvalidation=5Frange=28?=
- =?utf-8?q?=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Remove_uninitia?=
+ =?utf-8?q?lized_end_var_from_xe=5Fgt=5Ftlb=5Finvalidation=5Frange=28=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nirmoy Das" <nirmoy.das@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 29 Apr 2024 15:48:24 -0000
-Message-ID: <171440570446.1757642.1182077895132422278@8e613ede5ea5>
+Date: Mon, 29 Apr 2024 15:48:38 -0000
+Message-ID: <171440571825.1756580.8982278911828895298@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240429152821.27490-1-nirmoy.das@intel.com>
 In-Reply-To: <20240429152821.27490-1-nirmoy.das@intel.com>
@@ -49,9 +48,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: acf512bb5ff4 drm-tip: 2024y-04m-29d-15h-11m-22s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Remove uninitialized end var from xe_gt_tlb_invalidation_range()
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+0daf0be5bb95eb0a0e42275e00a0e42d8d8fd543
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit dd7857da11b68e9aef91c8e3baafe46439fa952b
+Author: Nirmoy Das <nirmoy.das@intel.com>
+Date:   Mon Apr 29 17:28:21 2024 +0200
+
+    drm/xe: Remove uninitialized end var from xe_gt_tlb_invalidation_range()
+    
+    This fixes commit c4f18703629d ("drm/xe: Add
+    xe_gt_tlb_invalidation_range and convert PT layer to use this")
+    which added the end variable as part of the function param.
+    
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
++ /mt/dim checkpatch acf512bb5ff4d2e8ed5ef67444b6c1f92a222d77 drm-intel
+dd7857da11b6 drm/xe: Remove uninitialized end var from xe_gt_tlb_invalidation_range()
 
 
