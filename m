@@ -4,164 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43EBEC4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 15:46:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D16CCC10F16
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 15:51:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B938E112329;
-	Tue, 30 Apr 2024 15:46:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D04D11250A;
+	Tue, 30 Apr 2024 15:51:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MtIUScMi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cwIfxt42";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5D1C112329
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Apr 2024 15:46:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EFE2112367
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Apr 2024 15:51:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714492001; x=1746028001;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=9/J8Rj7QufwdJCxT8FJ+5Xh9+1hKkGsvhPfEDXOy8us=;
- b=MtIUScMiex6bF0y0nv8kkDrW5AWbCaDQVrbhBonJ/j3zzLO+EF5nqciG
- Jlc345B4dEuSrHi4hP5InHZOL4Pd2moL7qoTNQG/jfkC0A5gYKrsad1lW
- u6OtsU/eFdZWwXKbb9nvF9Lu+2uj/8nuUD63qxs9HZZdwSsnZCftudlyM
- qcJ1FepTkl8vrmLIl+uBTVoy9cU3i2EDVMCL3oI37kcyc6J3eVGL3j114
- 0bCHdisGW3IJmEEuof4gDloX/3j2hOeeCC4G2/cVG/FLz/2l4AknG68gJ
- qXu3mY8dqxo3NBmgxGJWMQ51xFrCostqQ+hKerk1Smifyqu5kPTjXkoFA A==;
-X-CSE-ConnectionGUID: RfWcyA3sSamUKDjByrWvxg==
-X-CSE-MsgGUID: uueOcOjLTGOh+/ttX4D8Tw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="14032891"
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="14032891"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 08:46:41 -0700
-X-CSE-ConnectionGUID: jWy/7a+bQU6uwMeExjszBQ==
-X-CSE-MsgGUID: vieOPIjvRZCYInZ6nShqyA==
+ t=1714492289; x=1746028289;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:to:cc;
+ bh=Pc6T99MumclGrmsTGCss3tG5ZJwHBtuEFSleC4014uw=;
+ b=cwIfxt42fGp4WGEXoKVQizXvWEGQVZZ0xGvlgx8oU/leiWUBr0DdmgsG
+ uQM8K1hUl+BGVscZxh/W8i8Y+bvECaMaqyYSja7Zz57uptLpC0i4aB2f7
+ REaCwp8k1wnVdZu1kJkVhI0BObpJRmXAN5kgk7LptkybcQsD3iBs8Rt2F
+ hZ/FIrsWpMyvKLBBx4/ohAKM7BVd6R44Xmel8Sk3+75A7yILOSZuZfUl5
+ q4m4q6B4GI0W2CGh5hhw1RaM4AGGHFJO9QQjnYommAkNhVKlixdSlgOBu
+ Job6to4YFE86QKTllk/JrNPpa+kYEVJGlrrhm0vPEnizg9969uRJ6rWZn Q==;
+X-CSE-ConnectionGUID: zl+C/g/8T3e+6NjBJgphnA==
+X-CSE-MsgGUID: LgxvGCI1QeSQd0pssGlZGw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="13133471"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="13133471"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2024 08:51:28 -0700
+X-CSE-ConnectionGUID: ExROXnrGRrSA/qJ+ascmtg==
+X-CSE-MsgGUID: t0pn7p6yQBiAKf3BopGMQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="63987137"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 30 Apr 2024 08:46:40 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 30 Apr 2024 08:46:40 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 30 Apr 2024 08:46:39 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 30 Apr 2024 08:46:39 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 30 Apr 2024 08:46:39 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MZOHQZtgxIWKvnPBR3bQ9+Yf17D7cMeWKmIfJUKgKidOzkoIeOjMrf1SUT+rkLoxxoZk6tq1e7bf4Oi5EpgYJ5luS0y+KioDgLbSDkqVBg6iwTfoBjdVKbped48k7Cs4OhF97Zkb+/D+vbAJSV0rjFGL9/Oc64jULQ64xyEPwy6x+ORl8xfqHCN9NTx+j1hjZNwqpufmwaILFw76zI06k/WcjZKPE3+xth+gkXa3i9JhGBs+0erWG6hiHbuoaA8tUoE9ypgSCIMUBeqKmf1dPlJ916jwpRldrjc521ZjIKi4wB8Kq0N7CnDT28OEfuPDpyykla8mn1v1nTIohrnOLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=j8ULz8FtMWgFRTu4rEpBOrz3qIZ3jEFGQCwMVwPpoGk=;
- b=RTTLGxAyBMSQraks9eXqgyGkw1hZw8ACEj3LXyHCNhtjmX9lzT60qpszIPHsEIqFkOcVf7JvgY5mVjscw4L/uv2gK3wc61zA0m08lcGuEsbxAnmnPu8yShyyR/dr3f8o9IfqU2QYWxSG8LxQNrVkdEPxS9ZLI+72mIpbotDnru3QxG/8/5RNYiBRjME57Jn/H2sBzZCLxNsIpnxB9TCpOb0foNdAK3P6Nedo4HXu9PbBsUcfhARAYjIjClHFXPSab0Y7iemCSlwFpNQ1VqCRhTgpB/Q7OonRyHoHXaEPNqCLlEmpsvOavXLcjtzmE10Wfms2eh6EsQvZdutLqe/vjQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by PH0PR11MB4902.namprd11.prod.outlook.com (2603:10b6:510:37::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.34; Tue, 30 Apr
- 2024 15:46:37 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.7544.023; Tue, 30 Apr 2024
- 15:46:37 +0000
-Date: Tue, 30 Apr 2024 15:46:27 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH] drm/xe: skip error capture when exec queue is killed
-Message-ID: <ZjESU4WcO1bTls5w@DUT025-TGLU.fm.intel.com>
-References: <20240425122931.1851837-1-tejas.upadhyay@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240425122931.1851837-1-tejas.upadhyay@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0122.namprd03.prod.outlook.com
- (2603:10b6:a03:33c::7) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="30972752"
+Received: from lab-ah.igk.intel.com ([10.102.138.202])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2024 08:51:28 -0700
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Date: Tue, 30 Apr 2024 17:51:11 +0200
+Subject: [PATCH] drm/xe: remove sysfs entries on driver unbind
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH0PR11MB4902:EE_
-X-MS-Office365-Filtering-Correlation-Id: f37bde6b-7220-4881-7574-08dc692cb877
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|1800799015|376005;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?xkraQvzyHcOZNqKF30B1f7lGXLdRiHSDA4Doh6XKaNwTddwtfFU5Kg0xhMPL?=
- =?us-ascii?Q?UMTE3hqX/EG2mP46TO8PqIM3VCpuESxoUCLvrMzndH/C2uzeLaCEnrz2c2Av?=
- =?us-ascii?Q?7/1w25dnbHUP6Ne/p5a7nf6sIfHda5FxzBZtfowFYvKZKgldK4eYGwkDRmrr?=
- =?us-ascii?Q?wizrXX8suSuyqrfi3Ks6NN+wYr8owAw0fa9kkZuFVeT0Jw/agE8EzrsYc0Mu?=
- =?us-ascii?Q?jjLNKNPInTj8hLgll+YdfWnfe1X+/KJFNsAIB2gCSe4UIm1kHV83W75tX/KH?=
- =?us-ascii?Q?kNna9WHTvk4UpZduzwLPKG/6A58TrEVupzx2fLsdbEZ58yOSOIwHmk0k92bB?=
- =?us-ascii?Q?WSYDaAK+1rmqPR1x1SZkPD75oHLGQy8ziCEGIaCQ9c9ubqCwLe2Qfc+HPXeX?=
- =?us-ascii?Q?mm6nxFheuoyP1XW59iWexCduv4boL6KWXnNZhsNFckeRbdNfAPE4R+Rvi5mH?=
- =?us-ascii?Q?ok/TtAYqaNjZC8S6Gc7cumyukxy9vr7KfmLZ0q3XJ7KkjILGEvUp+lALlTeD?=
- =?us-ascii?Q?Uo6dA0xShmzj2lQ+GaITCsp5oy43CdwidWSuLZAHgeBo8Kn/aYxTiX12dB+f?=
- =?us-ascii?Q?wLQ0GVQt5NSQD117lrb5lgZDEDilQeU9chRPyr67elM3rlTCWfUKMubieZbj?=
- =?us-ascii?Q?dFO+DyOTey50iROUzsFm59QpeOdsvrGcyUoaqvF85CSaZpd29n5z3hZ+wftP?=
- =?us-ascii?Q?kW/rykwVqGwCStwp/tBe26yF0y6b67EcUg7wrpCWuuQg4oDNgqmlzMqyLRdq?=
- =?us-ascii?Q?3jttTuWij6ljqq3Z9nXApLvyUrhtWLlZUdnoEY1kXPLMbqTIANCnXxwhkXSe?=
- =?us-ascii?Q?oaEBr6nmr62m76Rwzp9FL1+xQ0s3GOmn0NbKCV4JDvf9Ani3q93MxhrqfAsz?=
- =?us-ascii?Q?tBZ0rMe+YjNNsG0cOPXoemfluKETb1Zvj7aQBeY4oYS+WO2v+dT6Z1ZtD+tj?=
- =?us-ascii?Q?owwSRELCVcegnW11NSpcczqpp7aFop4F9zuG3yA04nQHO/73BJpcoL8X3tJN?=
- =?us-ascii?Q?3xALF3BFMbZdk5q8zT0kIyrJ593VvpODF2hO2gOsWldxqT4uMVXP/foqZc1W?=
- =?us-ascii?Q?I5/0XcVj2pwj5k7r+Z6MEuFpfxvPGPbsRQlalOnJTIs1K2vKhdmxnUD2vX64?=
- =?us-ascii?Q?b2//vIDfrC0B5ugRKab0FEtQXDlE9Pk/vymFxvliiMeoNbg4wsoqL1VSof0H?=
- =?us-ascii?Q?VcDtGVpq7sS3Yzuk92d6LxyzuhJzNX/DeJZyt8WsSZMU69RhPocD2EegTELd?=
- =?us-ascii?Q?7/KksfXnSO61l4xTMV5qfMkpVIr9/6C9OIsMe8NO6A=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?9DS9nwAO2qOmJ723NhPdrs/uWIRK/eK1fk4VHabhShtDv1B8Vs5mU1D3PnNR?=
- =?us-ascii?Q?HkK9XTHzAqgr2vpo/V5Bt0YYxOKOWDPF5jY9SV6dC0gntKUlNIpjl1O7ZeOo?=
- =?us-ascii?Q?L7xM76rBk9YdYoNCtsnvov4hSy+uzzDyeJ6UAMMC0/RusBUYJSqAIkPTD0Yd?=
- =?us-ascii?Q?dDFGAZwIESNHokgLslTtMUMFcF+dKArIfdYXgKNkf4KGIcX0a0mavC2HGC0n?=
- =?us-ascii?Q?pYW1GUZ4tTUJ4EndDv3Ltq58L+Qm4VFd3lQp7Kr86rDhl664sZO6UHNxs3Eg?=
- =?us-ascii?Q?jwAx0eUOQhfGwkuljBCkcdmGdCQMM46w+j6U7yeipD4Omic5+2JMoJkMKS8B?=
- =?us-ascii?Q?/+539dgTf4kS5R5ORnbu27yO1rdC/dPrQTw2mbMn6lqZpYXYBENjaYgRo6hD?=
- =?us-ascii?Q?wXeLAHgZsfow9ld0Lfy5k44KWWmihRHBIAcCFRiDpyyZ2PhiwAgjytOK41D5?=
- =?us-ascii?Q?DB8CESAvkHExYqfe1I0Uq9/Jwnb0ymwb360EuqT4kHwe9lcukmPD4zUWPTkV?=
- =?us-ascii?Q?YCWaDQZCurBxFAlMhe259xazT9oknP00AGB3Mi6+gAsGefrkRwQQDqWV1Vx0?=
- =?us-ascii?Q?6U+qj7BuvAQ+GP2z4sT4f7d5zytH1qmsqQmFE0wqpe/VouTwCizS0iORM1HJ?=
- =?us-ascii?Q?bHzD5ilIheeH0M4ratknAV3+j2JE/RuRWfZAE6Wzui6ai5a9/Jx/kpsofs2o?=
- =?us-ascii?Q?mOtZ9OCHm3ko3pTjiKyzLnIiBf8gESpQldcqMgYdxsOurmCb6C3Ymf2n9gR0?=
- =?us-ascii?Q?n32FRzYFtZI/yAcQSOmk7XFkxc8ynOQhuQDI++lqV5bspTLHxL7zox+DHmbt?=
- =?us-ascii?Q?Sj1PQZ/PfJ1GuMhhGQ455B6ima7giXuT/t/JLO36O/5tYwr5Y7M/xd2KGAaY?=
- =?us-ascii?Q?Smle5wRG6WtBCcaMqPoWs+RGhJJIqr1u9s02MhwWWUddWbjqHYOL+2H04dcW?=
- =?us-ascii?Q?/yJqRUEGL5jgpZJipXjXFKjRiKP89oM5Eal8QAwk5iHN96/Ac5UupLk1MJGD?=
- =?us-ascii?Q?qwBMuR4XgZDxNj5d4fqwTRmzOQloSbDATxut1rxeDahef5OLV50Kklj8uNRa?=
- =?us-ascii?Q?OoHnaaYAgQJm6IupyEMWdkZt25JI8Kr6mllR4NBL32Sh7kVNALNFZ0YENJcY?=
- =?us-ascii?Q?fdgQsP1yQKewLKt+PJ4tSM1Tel7I2nxC87CdxWp6jGNuqKMyp82mJMNPyAqC?=
- =?us-ascii?Q?P9OyxyAffAklFkSAhD5oy0vpOAHlB9kDoMWKKjEYdz90SDaPHFP25lgc105y?=
- =?us-ascii?Q?C1uJnZJkg1TjKnKGckLDRl6+FoLFCWkPGYP8k2C/WLgFDyVe7CgpN6WFrPiC?=
- =?us-ascii?Q?C1jve3Qe4j9lyR5iGB9IfI3kmH8rcPu6GyVbxI5WAOXqRlidOFEyAE+MTJ2y?=
- =?us-ascii?Q?sgNtAutdUGcpAmJhbCueJHbEEqnCTv59+MPO2GaLgpnPrl0dienwGJKID8b4?=
- =?us-ascii?Q?YDeK4SLIC+amTO1CIlyu4bIXw1k3rZ+GyExwJD3aQoVLK3TnA2Jxj+EUjhuD?=
- =?us-ascii?Q?DBgtZ3+znvIu9Cb2eKvppPYAjvEnHVXk0GVmfh/2cs2/bXVsPbxOx5Athgqn?=
- =?us-ascii?Q?6eOHWJYJPD0AJv4JjoEFf/qXiszSU269laOR3piPbwMOaHwJ2XfeSiVzvchT?=
- =?us-ascii?Q?dQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f37bde6b-7220-4881-7574-08dc692cb877
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2024 15:46:37.5035 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zsuV2ijBYtkJt9jujjQdtSj7b24ncH8WdYKyI6unJteImz9YT3StTFNa50nJaHH0VH/+ZDIL4e7zwB0+90HqBg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4902
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240430-hotrebind_xu-v1-1-3c5e88d1516b@intel.com>
+X-B4-Tracking: v=1; b=H4sIAG4TMWYC/x3MTQqDMBBA4avIrDsQTcC2Vyml5GdsZtGxTLQEx
+ Lsbu/wW721QSJkK3LsNlH5ceJaG/tJBzF7ehJyaYTCDM84azPOiFFjSq654vY0xWtdbP07Qkq/
+ SxPW/ezybgy+EQb3EfE6SfrASCtUF9v0AYQ3jIXwAAAA=
+To: Lucas De Marchi <lucas.demarchi@intel.com>, 
+ Oded Gabbay <ogabbay@kernel.org>, 
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=12237;
+ i=andrzej.hajda@intel.com; h=from:subject:message-id;
+ bh=Pc6T99MumclGrmsTGCss3tG5ZJwHBtuEFSleC4014uw=;
+ b=owEB7QES/pANAwAKASNispPeEP3XAcsmYgBmMRN+NK+UyNax4BLfJHPZ3ypJbHWOuOvmOqNLIZK1
+ kEZ8wzaJAbMEAAEKAB0WIQT8qEQxNN2/XeF/A00jYrKT3hD91wUCZjETfgAKCRAjYrKT3hD91x+2C/
+ wOTZTctfEdHj/1UB5nmxucWofzA9cIHyGCxDn4u2rtauBj9sHviBpsxkedZomV2f6YnzsKQ9t6PwCN
+ B97yI4dlX6v/mclGlzv+jLrSVDx1ARLjsu3OgI53Iqy8mgX3dVrP9Jw5KhunxS4gYh7eBmMtGyiiuF
+ KhkjmhfMeMd3lGep27G+/cU9h2AhYJG/A1jL5p/LraoT58rCr3d3nsDTRw5DTu+NTDK/cm9X3MoiID
+ t+wupSlnsK0qhCkVPVCBWqAIUdiBttZTWuSL6/PnwO18kHommIO5haR3bmJ1mI5RvE7zrvrIHDUOEb
+ YWwWfh3eTKg1cv1krUfoNMRJSCSGN8Spduelfa4txGD7T4qjAUi2TL/gw3kUZQyyiphs7g8fwhi+YA
+ O6KUVBEtJw3RLFAfEuMW5s+nD3V6Oh534lHQ1OR2HtaN/THfsG+aG/sKJ5scYk+E1pGmrSykUbBrd5
+ Rf5PJ5R/UIu+Lzr9BQssKsn8Cvyqkx2eRFe+uGYFRUcrE=
+X-Developer-Key: i=andrzej.hajda@intel.com; a=openpgp;
+ fpr=FCA8443134DDBF5DE17F034D2362B293DE10FDD7
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -176,35 +85,313 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 25, 2024 at 05:59:31PM +0530, Tejas Upadhyay wrote:
-> When user closes exec queue soon after job submission,
-> we are generating error coredump. Instead check if
-> exec queue is killed during job timeout then skip
-> error coredump capture, just free the job and return
-> proper scheduler state.
-> 
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+After unbinding driver from the device, driver is responsible for
+leaving the device in it's initial state, to be ready to bind to another
+driver or to rebind. Particularly device sysfs entries added by the driver
+should disappear. Removing them together with drm device is too late,
+as it's life-time can be prolonged by userspace keeping open drm
+descriptor. Removing them at driver's unbind seems the proper solution.
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+Hi all,
 
-> ---
->  drivers/gpu/drm/xe/xe_guc_submit.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index 93e1ee183e4a..376a2c04e899 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -971,7 +971,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
->  	 * TDR has fired before free job worker. Common if exec queue
->  	 * immediately closed after last fence signaled.
->  	 */
-> -	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &job->fence->flags)) {
-> +	if (exec_queue_killed(q) || 
-> +	    test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &job->fence->flags)) {
->  		guc_exec_queue_free_job(drm_job);
->  
->  		return DRM_GPU_SCHED_STAT_NOMINAL;
-> -- 
-> 2.25.1
-> 
+xe driver seems to be not protected against hot-rebind scenario - driver
+re-bind with opened drm descriptor.
+This patch solves one of the issues - removal of sysfs entires, but
+apparently there are more:
+[  845.740016] ---[ end trace 0000000000000000 ]---
+[  845.771285] xe 0000:00:02.0: [drm] *ERROR* power well DC_off state mismatch (refcount 1/enabled 0)
+[  845.771309] xe 0000:00:02.0: [drm] *ERROR* power well PW_2 state mismatch (refcount 1/enabled 0)
+[  845.771324] xe 0000:00:02.0: [drm] *ERROR* power well PW_A state mismatch (refcount 1/enabled 0)
+[  845.771338] xe 0000:00:02.0: [drm] *ERROR* power well PW_B state mismatch (refcount 1/enabled 0)
+[  845.771351] xe 0000:00:02.0: [drm] *ERROR* power well PW_C state mismatch (refcount 1/enabled 0)
+[  845.771365] xe 0000:00:02.0: [drm] *ERROR* power well PW_D state mismatch (refcount 1/enabled 0)
+[  845.774682] ------------[ cut here ]------------
+[  845.774697] xe 0000:00:02.0: Missing outer runtime PM protection
+[  845.774743] WARNING: CPU: 16 PID: 2228 at drivers/gpu/drm/xe/xe_pm.c:550 xe_pm_runtime_get_noresume+0x141/0x1d0 [xe]
+...
+[  845.777795] Call Trace:
+[  845.777801]  <TASK>
+[  845.777809]  ? show_regs+0x71/0x90
+[  845.777824]  ? __warn+0xce/0x300
+[  845.777835]  ? xe_pm_runtime_get_noresume+0x141/0x1d0 [xe]
+[  845.778002]  ? report_bug+0x2ad/0x300
+[  845.778015]  ? handle_bug+0x46/0x90
+[  845.778027]  ? exc_invalid_op+0x19/0x50
+[  845.778037]  ? asm_exc_invalid_op+0x1b/0x20
+[  845.778052]  ? xe_pm_runtime_get_noresume+0x141/0x1d0 [xe]
+[  845.778215]  xe_ggtt_remove_node+0x69/0x1c0 [xe]
+[  845.780754]  xe_ggtt_remove_bo+0x10a/0x650 [xe]
+[  845.780909]  ? __pfx_xe_ggtt_remove_bo+0x10/0x10 [xe]
+[  845.781064]  ? _raw_write_unlock+0x23/0x50
+[  845.781076]  ? drm_vma_offset_remove+0x72/0x90 [drm]
+[  845.781190]  xe_ttm_bo_destroy+0x351/0x770 [xe]
+[  845.781341]  ? ww_mutex_unlock+0x1a6/0x280
+[  845.781354]  ttm_bo_release+0x41d/0xae0 [ttm]
+[  845.781380]  ? __pfx_ttm_bo_release+0x10/0x10 [ttm]
+[  845.781402]  ? __pfx___mutex_unlock_slowpath+0x10/0x10
+[  845.781413]  ? __kasan_check_read+0x11/0x20
+[  845.781425]  ? do_raw_spin_unlock+0x5c/0x210
+[  845.781437]  ? _raw_spin_unlock+0x23/0x50
+[  845.781448]  ttm_bo_put+0x50/0x80 [ttm]
+[  845.781469]  xe_gem_object_free+0x88/0x190 [xe]
+[  845.781610]  drm_gem_object_free+0x59/0x90 [drm]
+[  845.781697]  __xe_bo_unpin_map_no_vm+0xcf/0x110 [xe]
+[  845.781839]  drm_managed_release+0x1a3/0x4e0 [drm]
+[  845.781925]  ? drm_client_dev_restore+0x1f4/0x280 [drm]
+[  845.782001]  drm_minor_release+0xd1/0x140 [drm]
+[  845.782079]  drm_release_noglobal+0xad/0x100 [drm]
+
+I guess after device remove call driver should not touch the hardware
+at all, it could only maintain objects allocated by userspace in kind
+of zombie mode - no interactions with hw, if userspace request hw access
+return error.
+Question to maintainers of xe/drm. How should it be implemented in xe
+driver?
+Or maybe drm provides already well tested way of handling such cases?
+
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_sysfs.c          |  4 ++--
+ drivers/gpu/drm/xe/xe_gt_ccs_mode.c           |  4 ++--
+ drivers/gpu/drm/xe/xe_gt_freq.c               |  4 ++--
+ drivers/gpu/drm/xe/xe_gt_idle.c               |  4 ++--
+ drivers/gpu/drm/xe/xe_gt_sysfs.c              |  4 ++--
+ drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c     |  4 ++--
+ drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c | 12 ++++++------
+ drivers/gpu/drm/xe/xe_tile_sysfs.c            |  4 ++--
+ drivers/gpu/drm/xe/xe_vram_freq.c             |  4 ++--
+ 9 files changed, 22 insertions(+), 22 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+index 21677b8cd977..8d096db750fa 100644
+--- a/drivers/gpu/drm/xe/xe_device_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+@@ -69,7 +69,7 @@ vram_d3cold_threshold_store(struct device *dev, struct device_attribute *attr,
+ 
+ static DEVICE_ATTR_RW(vram_d3cold_threshold);
+ 
+-static void xe_device_sysfs_fini(struct drm_device *drm, void *arg)
++static void xe_device_sysfs_fini(void *arg)
+ {
+ 	struct xe_device *xe = arg;
+ 
+@@ -85,5 +85,5 @@ int xe_device_sysfs_init(struct xe_device *xe)
+ 	if (ret)
+ 		return ret;
+ 
+-	return drmm_add_action_or_reset(&xe->drm, xe_device_sysfs_fini, xe);
++	return devm_add_action_or_reset(xe->drm.dev, xe_device_sysfs_fini, xe);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+index 396aeb5b9924..890da8870b0d 100644
+--- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
++++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+@@ -150,7 +150,7 @@ static const struct attribute *gt_ccs_mode_attrs[] = {
+ 	NULL,
+ };
+ 
+-static void xe_gt_ccs_mode_sysfs_fini(struct drm_device *drm, void *arg)
++static void xe_gt_ccs_mode_sysfs_fini(void *arg)
+ {
+ 	struct xe_gt *gt = arg;
+ 
+@@ -182,5 +182,5 @@ int xe_gt_ccs_mode_sysfs_init(struct xe_gt *gt)
+ 	if (err)
+ 		return err;
+ 
+-	return drmm_add_action_or_reset(&xe->drm, xe_gt_ccs_mode_sysfs_fini, gt);
++	return devm_add_action_or_reset(xe->drm.dev, xe_gt_ccs_mode_sysfs_fini, gt);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
+index 855de40e40ea..ed7949df5bf5 100644
+--- a/drivers/gpu/drm/xe/xe_gt_freq.c
++++ b/drivers/gpu/drm/xe/xe_gt_freq.c
+@@ -209,7 +209,7 @@ static const struct attribute *freq_attrs[] = {
+ 	NULL
+ };
+ 
+-static void freq_fini(struct drm_device *drm, void *arg)
++static void freq_fini(void *arg)
+ {
+ 	struct kobject *kobj = arg;
+ 
+@@ -237,7 +237,7 @@ int xe_gt_freq_init(struct xe_gt *gt)
+ 	if (!gt->freq)
+ 		return -ENOMEM;
+ 
+-	err = drmm_add_action_or_reset(&xe->drm, freq_fini, gt->freq);
++	err = devm_add_action_or_reset(xe->drm.dev, freq_fini, gt->freq);
+ 	if (err)
+ 		return err;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
+index 8fc0f3f6ecc5..9e907033f32b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_idle.c
++++ b/drivers/gpu/drm/xe/xe_gt_idle.c
+@@ -144,7 +144,7 @@ static const struct attribute *gt_idle_attrs[] = {
+ 	NULL,
+ };
+ 
+-static void gt_idle_sysfs_fini(struct drm_device *drm, void *arg)
++static void gt_idle_sysfs_fini(void *arg)
+ {
+ 	struct kobject *kobj = arg;
+ 
+@@ -181,7 +181,7 @@ int xe_gt_idle_sysfs_init(struct xe_gt_idle *gtidle)
+ 		return err;
+ 	}
+ 
+-	return drmm_add_action_or_reset(&xe->drm, gt_idle_sysfs_fini, kobj);
++	return devm_add_action_or_reset(xe->drm.dev, gt_idle_sysfs_fini, kobj);
+ }
+ 
+ void xe_gt_idle_enable_c6(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_gt_sysfs.c b/drivers/gpu/drm/xe/xe_gt_sysfs.c
+index 1e5971072bc8..ec2b8246204b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_sysfs.c
+@@ -22,7 +22,7 @@ static const struct kobj_type xe_gt_sysfs_kobj_type = {
+ 	.sysfs_ops = &kobj_sysfs_ops,
+ };
+ 
+-static void gt_sysfs_fini(struct drm_device *drm, void *arg)
++static void gt_sysfs_fini(void *arg)
+ {
+ 	struct xe_gt *gt = arg;
+ 
+@@ -51,5 +51,5 @@ int xe_gt_sysfs_init(struct xe_gt *gt)
+ 
+ 	gt->sysfs = &kg->base;
+ 
+-	return drmm_add_action_or_reset(&xe->drm, gt_sysfs_fini, gt);
++	return devm_add_action_or_reset(xe->drm.dev, gt_sysfs_fini, gt);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
+index fbe21a8599ca..c9e04151286d 100644
+--- a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
+@@ -229,7 +229,7 @@ static const struct attribute_group throttle_group_attrs = {
+ 	.attrs = throttle_attrs,
+ };
+ 
+-static void gt_throttle_sysfs_fini(struct drm_device *drm, void *arg)
++static void gt_throttle_sysfs_fini(void *arg)
+ {
+ 	struct xe_gt *gt = arg;
+ 
+@@ -245,5 +245,5 @@ int xe_gt_throttle_sysfs_init(struct xe_gt *gt)
+ 	if (err)
+ 		return err;
+ 
+-	return drmm_add_action_or_reset(&xe->drm, gt_throttle_sysfs_fini, gt);
++	return devm_add_action_or_reset(xe->drm.dev, gt_throttle_sysfs_fini, gt);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+index 844ec68cbbb8..258078a6b461 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+@@ -492,7 +492,7 @@ static const struct attribute * const files[] = {
+ 	NULL
+ };
+ 
+-static void kobj_xe_hw_engine_class_fini(struct drm_device *drm, void *arg)
++static void kobj_xe_hw_engine_class_fini(void *arg)
+ {
+ 	struct kobject *kobj = arg;
+ 
+@@ -517,7 +517,7 @@ kobj_xe_hw_engine_class(struct xe_device *xe, struct kobject *parent, const char
+ 	}
+ 	keclass->xe = xe;
+ 
+-	err = drmm_add_action_or_reset(&xe->drm, kobj_xe_hw_engine_class_fini,
++	err = devm_add_action_or_reset(xe->drm.dev, kobj_xe_hw_engine_class_fini,
+ 				       &keclass->base);
+ 	if (err)
+ 		return NULL;
+@@ -525,7 +525,7 @@ kobj_xe_hw_engine_class(struct xe_device *xe, struct kobject *parent, const char
+ 	return keclass;
+ }
+ 
+-static void hw_engine_class_defaults_fini(struct drm_device *drm, void *arg)
++static void hw_engine_class_defaults_fini(void *arg)
+ {
+ 	struct kobject *kobj = arg;
+ 
+@@ -552,7 +552,7 @@ static int xe_add_hw_engine_class_defaults(struct xe_device *xe,
+ 	if (err)
+ 		goto err_object;
+ 
+-	return drmm_add_action_or_reset(&xe->drm, hw_engine_class_defaults_fini, kobj);
++	return devm_add_action_or_reset(xe->drm.dev, hw_engine_class_defaults_fini, kobj);
+ 
+ err_object:
+ 	kobject_put(kobj);
+@@ -611,7 +611,7 @@ static const struct kobj_type xe_hw_engine_sysfs_kobj_type = {
+ 	.sysfs_ops = &xe_hw_engine_class_sysfs_ops,
+ };
+ 
+-static void hw_engine_class_sysfs_fini(struct drm_device *drm, void *arg)
++static void hw_engine_class_sysfs_fini(void *arg)
+ {
+ 	struct kobject *kobj = arg;
+ 
+@@ -698,7 +698,7 @@ int xe_hw_engine_class_sysfs_init(struct xe_gt *gt)
+ 			goto err_object;
+ 	}
+ 
+-	return drmm_add_action_or_reset(&xe->drm, hw_engine_class_sysfs_fini, kobj);
++	return devm_add_action_or_reset(xe->drm.dev, hw_engine_class_sysfs_fini, kobj);
+ 
+ err_object:
+ 	kobject_put(kobj);
+diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+index 64661403afcd..12b2c3e5c421 100644
+--- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+@@ -22,7 +22,7 @@ static const struct kobj_type xe_tile_sysfs_kobj_type = {
+ 	.sysfs_ops = &kobj_sysfs_ops,
+ };
+ 
+-static void tile_sysfs_fini(struct drm_device *drm, void *arg)
++static void tile_sysfs_fini(void *arg)
+ {
+ 	struct xe_tile *tile = arg;
+ 
+@@ -55,5 +55,5 @@ int xe_tile_sysfs_init(struct xe_tile *tile)
+ 	if (err)
+ 		return err;
+ 
+-	return drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini, tile);
++	return devm_add_action_or_reset(dev, tile_sysfs_fini, tile);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_vram_freq.c b/drivers/gpu/drm/xe/xe_vram_freq.c
+index 3e21ddc6e60c..99ff95e408e0 100644
+--- a/drivers/gpu/drm/xe/xe_vram_freq.c
++++ b/drivers/gpu/drm/xe/xe_vram_freq.c
+@@ -87,7 +87,7 @@ static const struct attribute_group freq_group_attrs = {
+ 	.attrs = freq_attrs,
+ };
+ 
+-static void vram_freq_sysfs_fini(struct drm_device *drm, void *arg)
++static void vram_freq_sysfs_fini(void *arg)
+ {
+ 	struct kobject *kobj = arg;
+ 
+@@ -122,5 +122,5 @@ int xe_vram_freq_sysfs_init(struct xe_tile *tile)
+ 		return err;
+ 	}
+ 
+-	return drmm_add_action_or_reset(&xe->drm, vram_freq_sysfs_fini, kobj);
++	return devm_add_action_or_reset(xe->drm.dev, vram_freq_sysfs_fini, kobj);
+ }
+
+---
+base-commit: 4caf410766add8cf376a3afc910b17dd0961dd75
+change-id: 20240430-hotrebind_xu-897cc3413a7f
+
+Best regards,
+-- 
+Andrzej Hajda <andrzej.hajda@intel.com>
+
