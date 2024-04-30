@@ -4,28 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06210C4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 16:58:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A522C4345F
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 17:03:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B49D0112D2C;
-	Tue, 30 Apr 2024 16:58:31 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81677112D2C;
- Tue, 30 Apr 2024 16:58:30 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAE42112D3C;
+	Tue, 30 Apr 2024 17:03:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="djM2jdxV";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFCDE112D3B
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Apr 2024 17:03:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1714496625; x=1746032625;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=E9B52S+w4D7YEHgpOx0kw1VYI2mam54i8XhiAEs1Qqc=;
+ b=djM2jdxVpgRN+nCJR1efTrKsYOFAZIGllHw8Vl0JDQmf5fo2Jw6Gkr4J
+ U1HBF7bRaDPkN5UF5E4WIPlIWvR5cPiSqjlQBhWs297bB+D1ChwGI3Pbl
+ axxmkNLIFBcsYPjQE03fZ3hOn1/mjCQJGKU9JDPG9hvvX3RIpV7wli3Cl
+ 6LbkhtVkeCcIrvKoQbsqH2vjiFLWBhywIV8CA7rwrVXFc+5JFo1gi+uih
+ al4+xvyyaF8e0pfAXFCqYs0xro1ecuySDO9PPTq+eQCVPzDBwaqeMbl8c
+ 04nhdGiaEYk4YrjGR7LvQEBxtP+6mxPGE/Kf2pcx7/9dokTi8wJWw/OAf w==;
+X-CSE-ConnectionGUID: T5wKfaCcTYGejYR+Gh8a2Q==
+X-CSE-MsgGUID: YZ6XSGPcSWyCK7VQGxR5tw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="10048141"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="10048141"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2024 10:03:45 -0700
+X-CSE-ConnectionGUID: m1ZJpFfJRxCLIfifPNXEuA==
+X-CSE-MsgGUID: gqaFj97RQl6nSNDFqXsMkQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="57409961"
+Received: from rahul-super-server.iind.intel.com ([10.145.169.156])
+ by orviesa002.jf.intel.com with ESMTP; 30 Apr 2024 10:03:43 -0700
+From: Janga Rahul Kumar <janga.rahul.kumar@intel.com>
+To: intel-xe@lists.freedesktop.org, janga.rahul.kumar@intel.com,
+ ramadevi.gandi@intel.com
+Cc: matthew.d.roper@intel.com,
+	lucas.demarchi@intel.com
+Subject: [PATCH v4 0/2] drm/xe/mocs: Add debugfs node to dump mocs
+Date: Tue, 30 Apr 2024 22:34:25 +0530
+Message-Id: <20240430170427.1808136-1-janga.rahul.kumar@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_series_starting_with_=5BCI=2C1?=
- =?utf-8?q?/2=5D_drm/xe/gsc=3A_Turn_off_GSCCS_interrupts_when_disabling_the_?=
- =?utf-8?q?engine_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 30 Apr 2024 16:58:30 -0000
-Message-ID: <171449631052.1793171.15646628289891294798@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240419183412.1605782-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20240419183412.1605782-1-daniele.ceraolospurio@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,118 +62,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This is useful to check mocs configuration. Tests/Tools can use
+this debugfs entry to get mocs info.
 
-Series: series starting with [CI,1/2] drm/xe/gsc: Turn off GSCCS interrupts when disabling the engine (rev2)
-URL   : https://patchwork.freedesktop.org/series/132658/
-State : success
+v2: Address review comments. Change debugfs output style similar
+to pat debugfs. (Lucas De Marchi)
 
-== Summary ==
+v3: rebase.
 
-lib/modules/6.9.0-rc6-xe/kernel/sound/pci/hda/snd-hda-intel.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/core/
-lib/modules/6.9.0-rc6-xe/kernel/sound/core/seq/
-lib/modules/6.9.0-rc6-xe/kernel/sound/core/seq/snd-seq.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/core/snd-seq-device.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/core/snd-hwdep.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/core/snd.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/core/snd-pcm.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/core/snd-compress.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/core/snd-timer.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soundcore.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/intel/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/intel/atom/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/intel/atom/sst/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/intel/common/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/amd/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/amd/snd-acp-config.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/intel/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/amd/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/snd-sof-utils.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/snd-sof-pci.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/snd-sof.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/snd-sof-probes.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/xtensa/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/snd-soc-core.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/snd-soc-acpi.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/codecs/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/hda/
-lib/modules/6.9.0-rc6-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/hda/ext/
-lib/modules/6.9.0-rc6-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/hda/snd-intel-dspcfg.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/hda/snd-hda-core.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/kernel/
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/kernel/msr.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/kernel/cpuid.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/crypto/
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/crypto/aesni-intel.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/events/
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/events/intel/
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/kvm/
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/
-lib/modules/6.9.0-rc6-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/cmac.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/ccm.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/cryptd.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/async_tx/
-lib/modules/6.9.0-rc6-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.9.0-rc6-xe/build
-lib/modules/6.9.0-rc6-xe/modules.alias.bin
-lib/modules/6.9.0-rc6-xe/modules.builtin
-lib/modules/6.9.0-rc6-xe/modules.softdep
-lib/modules/6.9.0-rc6-xe/modules.alias
-lib/modules/6.9.0-rc6-xe/modules.order
-lib/modules/6.9.0-rc6-xe/modules.symbols
-lib/modules/6.9.0-rc6-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1714496276:package_x86_64_nodebug\r\e[0K'
-[0Ksection_end:1714496276:package_x86_64_nodebug
-[0K
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+v4: Address review comments. Use function pointer inside ops
+struct. Update Test-with links. Remove usage of flags wherever
+not required. Create separate patch for moving function. (Lucas De Marchi)
 
+Test-with: https://patchwork.freedesktop.org/patch/msgid/20240424200856.1194881-2-janga.rahul.kumar@intel.com
+           https://patchwork.freedesktop.org/patch/msgid/20240424200856.1194881-3-janga.rahul.kumar@intel.com/
+
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Janga Rahul Kumar <janga.rahul.kumar@intel.com>
+
+
+Janga Rahul Kumar (2):
+  drm/xe: Relocate regs_are_mcr function
+  drm/xe/mocs: Add debugfs node to dump mocs
+
+ drivers/gpu/drm/xe/xe_gt_debugfs.c |  11 ++
+ drivers/gpu/drm/xe/xe_mocs.c       | 278 +++++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_mocs.h       |   8 +
+ 3 files changed, 287 insertions(+), 10 deletions(-)
+
+-- 
+2.25.1
 
