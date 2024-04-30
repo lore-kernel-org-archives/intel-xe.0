@@ -4,27 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37A95C4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 16:39:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6CC8C4345F
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 16:40:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEDFB112CE5;
-	Tue, 30 Apr 2024 16:39:27 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1D1A112CE5;
- Tue, 30 Apr 2024 16:39:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9221849924873797464=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92893112CEA;
+	Tue, 30 Apr 2024 16:40:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g9+aGYx0";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86909112CEA
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Apr 2024 16:40:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1714495212; x=1746031212;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0+53YZSNaUVfHkSBU3b91H+Oqwtvl9mZRNVLrkQmMQs=;
+ b=g9+aGYx08d/t+nLXyaaSrD0NtuCT85FN6Hr4nBmQgL1KArHfkpC06HxO
+ udIyG46mgtH3OSqxZV93l0i9gfSkWMGMQoNrqV2w4q7tpKtvWsMB+5QuE
+ w3+q2fATDizEbnBqSR0OAh5+JpnoGV1rbxTDjiw9b/ZSIpcgN4h0sX0o0
+ /e2eGxOEdoiMf0nXgWlzpVLENLiyZB/fxW+pls7/qY2M0fIMHi/xloO8b
+ oLbKJea8y3UNaUnAGLXk1HyNa5WajCaBhEVAXRK5ICjI7w4qUlB8u1Lf0
+ UEYf1YD5Cg4t6DLSKpV7W2b7vpemysGnZXbOwkbGLj/amhVlSLXHibfAT g==;
+X-CSE-ConnectionGUID: t6naT6fNRb28kxE7zvgP9w==
+X-CSE-MsgGUID: XG86q+X+T0OxaTHjoO1Kew==
+X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="10073927"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="10073927"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2024 09:40:12 -0700
+X-CSE-ConnectionGUID: TstJjX3EQfaUFT2zo75VAQ==
+X-CSE-MsgGUID: rWh77CAtTGmNtf/hRWLBSg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26519117"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2024 09:40:09 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>,
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
+ Brian Welty <brian.welty@intel.com>, Fei Yang <fei.yang@intel.com>,
+ Jose Souza <jose.souza@intel.com>,
+ Lionel G Landwerlin <lionel.g.landwerlin@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Michal Mrozek <michal.mrozek@intel.com>, Oak Zeng <oak.zeng@intel.com>,
+ Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v6 0/5] Refactor default device atomic settings
+Date: Tue, 30 Apr 2024 18:25:24 +0200
+Message-ID: <20240430162529.21588-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_remove_sysfs_entries_o?=
- =?utf-8?q?n_driver_unbind?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andrzej Hajda" <andrzej.hajda@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 30 Apr 2024 16:39:26 -0000
-Message-ID: <171449516685.1793102.12755750703586359839@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240430-hotrebind_xu-v1-1-3c5e88d1516b@intel.com>
-In-Reply-To: <20240430-hotrebind_xu-v1-1-3c5e88d1516b@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +73,73 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9221849924873797464==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The default behavior of device atomics depends on the
+VM type and buffer allocation types. Device atomics are
+expected to function with all types of allocations for
+traditional applications/APIs. Additionally, in compute/SVM
+API scenarios with fault mode or LR mode VMs, device atomics
+must work with single-region allocations. In all other cases
+device atomics should be disabled by default. PVC needs special
+care as it doesn't support device atomics on SMEM.
 
-== Series Details ==
+v6: Only check LR mode to determine compute API as fault
+    mode requires LR mode(Jose)
+    Set AE=1 on SMEM+LMEM allocation when a buffer is migrated 
+    to LMEM from SMEM(Brian)
 
-Series: drm/xe: remove sysfs entries on driver unbind
-URL   : https://patchwork.freedesktop.org/series/133080/
-State : failure
+v5: Fix broken atomics on PVC from v4 changes.
 
-== Summary ==
-
-CI Bug Log - changes from xe-1210-016b4f46551e7a9b3da9607e546b18df2ca31cbc_BAT -> xe-pw-133080v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-133080v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-133080v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (5 -> 0)
-------------------------------
-
-  ERROR: It appears as if the changes made in xe-pw-133080v1_BAT prevented too many machines from booting.
-
-  Missing    (5): bat-pvc-2 bat-lnl-1 bat-dg2-oem2 bat-adlp-7 bat-atsm-2 
+v4: Previous assumption that device atomics should be disabled
+    by default on SMEM only BO was wrong as traditional applications
+    will not use such allocations for CPU atomics. So remove the
+    VM bind flag and the query uAPI and instead refactor default device
+    atomics settings as per VM type and buffer allocations.
 
 
-Changes
--------
+v3: Capture ret value of xe_vm_bind_ioctl_validate_bo(Matt B).
+    Remove redundant coh_mode param from xe_vm_bind_ioctl_validate_bo().
+    Remove has_device_atomics_on_smem from xe_graphics_desc(Jose).
+    Replace DRM_XE_QUERY_CONFIG_SUPP_DEV_ATOMIC_ON_SMEM with
+    config flag DRM_XE_QUERY_CONFIG_FLAG_HAS_DEV_ATOMIC_ON_SMEM(Jose).
+    Mention that PTE_AE will not be applied to userptr(Matt R)
 
-  No changes found
+v2: Add BO helper func in xe_vm_bind_ioctl()(Matt B).
+    Use XE_IOCTL_DBG for checks(Matt B).
+    Move platform checks with help of adding flags in
+    intel_device_info(Matt B).
+    Add document for DRM_XE_VM_BIND_FLAG_DEVICE_ATOMICS(Matt B).
+    Create query uAPI for this newly added VM bind flag(Jose, Lionel).
 
+Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Cc: Brian Welty <brian.welty@intel.com>
+Cc: Fei Yang <fei.yang@intel.com>
+Cc: Jose Souza <jose.souza@intel.com>
+Cc: Lionel G Landwerlin <lionel.g.landwerlin@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Michal Mrozek <michal.mrozek@intel.com>
+Cc: Oak Zeng <oak.zeng@intel.com>
+Cc: Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>
 
-Build changes
--------------
+Nirmoy Das (5):
+  drm/xe: Introduce has_atomic_enable_pte_bit device info
+  drm/xe: Move vm bind bo validation to a helper function
+  drm/xe: Introduce has_device_atomics_on_smem device info
+  drm/xe: Add function to check if BO has single placement
+  drm/xe: Refactor default device atomic settings
 
-  * Linux: xe-1210-016b4f46551e7a9b3da9607e546b18df2ca31cbc -> xe-pw-133080v1
+ drivers/gpu/drm/xe/xe_bo.c           | 14 +++++
+ drivers/gpu/drm/xe/xe_bo.h           |  1 +
+ drivers/gpu/drm/xe/xe_device_types.h |  4 ++
+ drivers/gpu/drm/xe/xe_pci.c          |  5 ++
+ drivers/gpu/drm/xe/xe_pci_types.h    |  1 +
+ drivers/gpu/drm/xe/xe_pt.c           | 37 +++++++++++--
+ drivers/gpu/drm/xe/xe_vm.c           | 79 ++++++++++++++++------------
+ 7 files changed, 103 insertions(+), 38 deletions(-)
 
-  IGT_7826: ce6ce0f60dd1a6c0df93a01ad71a31964158a2cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1210-016b4f46551e7a9b3da9607e546b18df2ca31cbc: 016b4f46551e7a9b3da9607e546b18df2ca31cbc
-  xe-pw-133080v1: 133080v1
+-- 
+2.42.0
 
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133080v1/index.html
-
---===============9221849924873797464==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: remove sysfs entries on driver unbind</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133080/">https://patchwork.freedesktop.org/series/133080/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133080v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133080v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1210-016b4f46551e7a9b3da9607e546b18df2ca31cbc_BAT -&gt; xe-pw-133080v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-133080v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-133080v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (5 -&gt; 0)</h2>
-<p>ERROR: It appears as if the changes made in xe-pw-133080v1_BAT prevented too many machines from booting.</p>
-<p>Missing    (5): bat-pvc-2 bat-lnl-1 bat-dg2-oem2 bat-adlp-7 bat-atsm-2 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1210-016b4f46551e7a9b3da9607e546b18df2ca31cbc -&gt; xe-pw-133080v1</li>
-</ul>
-<p>IGT_7826: ce6ce0f60dd1a6c0df93a01ad71a31964158a2cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1210-016b4f46551e7a9b3da9607e546b18df2ca31cbc: 016b4f46551e7a9b3da9607e546b18df2ca31cbc<br />
-  xe-pw-133080v1: 133080v1</p>
-
-</body>
-</html>
-
---===============9221849924873797464==--
