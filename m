@@ -4,56 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F422C19F4F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A668C4345F
 	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 16:40:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52253112CF0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 507AC112CEA;
 	Tue, 30 Apr 2024 16:40:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UWMKAavK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O3h2PYTA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EFFC112CEC
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Apr 2024 16:40:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06BD5112CEE
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Apr 2024 16:40:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714495216; x=1746031216;
+ t=1714495219; x=1746031219;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pNTlGUXL63en01VcMtjhfDq2tbl5bEy9kjEsQCQWKkk=;
- b=UWMKAavKXbvLQOwKziCbixYn1g3BlWUsl24F7WXA9yUPqlQP9XIaRrfn
- 5b42cMmY2gqwr+OTwnaWLxlpGmX91gy8dkoIKEHAnAjyYbw3cAeNIZ+G7
- RJnD+ekrDZK3PHYHaLQw5Tz8mGs/44g1kfqPY517+xEw3conuYX6V4FGo
- Ezh/nIaGeAl9JYJvGDW0POzgaJNQ52C8BA/4mVPDiJdpB5RJagIwWrYA0
- wBCYXdrPqN7CU0PkPqiG1rZLyWH8yXJW83p74pQdS0gSO80kdknq9VOn8
- IldlmBos4DsA0Wd4KL7Nj6tkbpgLOxQ3jQ0bCJFi5iwk60P77P08kzOGB g==;
-X-CSE-ConnectionGUID: L4cqPE4ISpqqMKPQk9uJng==
-X-CSE-MsgGUID: tINnO1cLQESpVhXDTrWovw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="10073958"
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="10073958"
+ bh=EK23igEBN3T1RwBYxY4IU18at0s76i1kUo8UzCtFQlg=;
+ b=O3h2PYTAcuksc75ZeBf7DeQf8SBhBcyZsTdqr/Q6QtAS8hhVQ4sbmLmR
+ 9imUA/tTVjKD/tOO2HiyDWkHp7JCm/P2BNbZBeaDC5D6pcnaqHQ68tHlL
+ /PU77qJoR8Mz0txajkI6AK0uBWdHKba2XtCyunlQCd3A39ihzJ99NJI36
+ G1P9h1AkB3dxFgCAQGeD8z9/qyay+/rI7gN6WEkmY1BCEdc3JfahAAsE7
+ dNfuqF2QmFXf+63I1Y4I7oEMmSEkR0m0tLZ060vT+O/IRc8k9z3unLElP
+ VymJMBWHxn/80fEqF1pN5XY6Bs4NpP9Q/C4lUFPkvJ9m2J5Ab4K6u6z/b Q==;
+X-CSE-ConnectionGUID: REgiYduDS/+oMGJAmpZMyw==
+X-CSE-MsgGUID: d4EAn0JJRuOmeBE/oUIMgg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="10073962"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="10073962"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 09:40:16 -0700
-X-CSE-ConnectionGUID: gmf/FykmSdijGgLX9K3YFQ==
-X-CSE-MsgGUID: cEU8ib8OSD2qGe9Un6MJhA==
+ 30 Apr 2024 09:40:19 -0700
+X-CSE-ConnectionGUID: Owspuhr6SZO2bOfSaeZQWA==
+X-CSE-MsgGUID: fUpssW5BSSS9bpFyVMvQgA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26519131"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26519153"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 09:40:15 -0700
+ 30 Apr 2024 09:40:18 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Nirmoy Das <nirmoy.das@intel.com>, Oak Zeng <oak.zeng@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Subject: [PATCH v6 3/5] drm/xe: Introduce has_device_atomics_on_smem device
- info
-Date: Tue, 30 Apr 2024 18:25:27 +0200
-Message-ID: <20240430162529.21588-4-nirmoy.das@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>, Michal Mrozek <michal.mrozek@intel.com>
+Subject: [PATCH v6 5/5] drm/xe: Refactor default device atomic settings
+Date: Tue, 30 Apr 2024 18:25:29 +0200
+Message-ID: <20240430162529.21588-6-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20240430162529.21588-1-nirmoy.das@intel.com>
 References: <20240430162529.21588-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
  85579 Neubiberg, Germany,
  Commercial Register: Amtsgericht Muenchen HRB 186928 
@@ -72,47 +69,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add has_device_atomics_on_smem to specify that a device
-supports device atomics on system memory. Currently XE2
-supports this so set this for XE2.
+The default behavior of device atomics depends on the
+VM type and buffer allocation types. Device atomics are
+expected to function with all types of allocations for
+traditional applications/APIs. Additionally, in compute/SVM
+API scenarios with fault mode or LR mode VMs, device atomics
+must work with single-region allocations. In all other cases
+device atomics should be disabled by default also on platforms
+where we know device atomics doesn't on work on particular
+allocations types.
 
-v2: Set has_device_atomics_on_smem for all platform but
-    PVC.
+v3: fault mode requires LR mode so only check for LR mode
+    to determine compute API(Jose).
+    Handle SMEM+LMEM BO's migration to LMEM where device
+    atomics is expected to work. (Brian).
+v2: Fix platform checks to correct atomics behaviour on PVC.
 
 Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Oak Zeng <oak.zeng@intel.com>
-Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+Acked-by: Michal Mrozek <michal.mrozek@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h | 2 ++
- drivers/gpu/drm/xe/xe_pci.c          | 2 ++
- 2 files changed, 4 insertions(+)
+ drivers/gpu/drm/xe/xe_pt.c | 37 ++++++++++++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_vm.c |  2 +-
+ 2 files changed, 35 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 7cddb00f9c35..0af739981ebf 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -283,6 +283,8 @@ struct xe_device {
- 		u8 skip_guc_pc:1;
- 		/** @info.has_atomic_enable_pte_bit: Device has atomic enable PTE bit */
- 		u8 has_atomic_enable_pte_bit:1;
-+		/** @info.has_device_atomics_on_smem: Supports device atomics on SMEM */
-+		u8 has_device_atomics_on_smem:1;
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 8d3765d3351e..87975e45622a 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -619,9 +619,40 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 	struct xe_pt *pt = xe_vma_vm(vma)->pt_root[tile->id];
+ 	int ret;
  
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
- 		struct {
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 5618318e6f3a..c6e8a264348c 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -632,6 +632,8 @@ static int xe_info_init(struct xe_device *xe,
- 	xe->info.vm_max_level = graphics_desc->vm_max_level;
- 	xe->info.has_asid = graphics_desc->has_asid;
- 	xe->info.has_atomic_enable_pte_bit = graphics_desc->has_atomic_enable_pte_bit;
-+	if (xe->info.platform != XE_PVC)
-+		xe->info.has_device_atomics_on_smem = 1;
- 	xe->info.has_flat_ccs = graphics_desc->has_flat_ccs;
- 	xe->info.has_range_tlb_invalidation = graphics_desc->has_range_tlb_invalidation;
- 	xe->info.has_usm = graphics_desc->has_usm;
+-	if ((vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT) &&
+-	    (is_devmem || !IS_DGFX(xe)))
+-		xe_walk.default_pte |= XE_USM_PPGTT_PTE_AE;
++	/**
++	 * Default atomic expectations for different allocation scenarios are as follows:
++	 *
++	 * 1. Traditional API: When the VM is not in LR mode:
++	 *    - Device atomics are expected to function with all allocations.
++	 *
++	 * 2. Compute/SVM API: When the VM is in LR mode:
++	 *    - Device atomics are the default behavior when the bo is placed in a single region.
++	 *    - In all other cases device atomics will be disabled with AE=0 until an application
++	 *      request differently using a ioctl like madvise.
++	 */
++	if (vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT) {
++		if (xe_vm_in_lr_mode(xe_vma_vm(vma))) {
++			if (bo && xe_bo_has_single_placement(bo))
++				xe_walk.default_pte |= XE_USM_PPGTT_PTE_AE;
++			/**
++			 * If a SMEM+LMEM allocation is backed by SMEM, a device
++			 * atomics will cause a gpu page fault and which then
++			 * gets migrated to LMEM, bind such allocations with
++			 * device atomics enabled.
++			 */
++			else if (is_devmem && !xe_bo_has_single_placement(bo))
++				xe_walk.default_pte |= XE_USM_PPGTT_PTE_AE;
++		} else {
++			xe_walk.default_pte |= XE_USM_PPGTT_PTE_AE;
++		}
++
++		/**
++		 * Unset AE if the platform(PVC) doesn't support it on an
++		 * allocation
++		 */
++		if (!xe->info.has_device_atomics_on_smem && !is_devmem)
++			xe_walk.default_pte &= ~XE_USM_PPGTT_PTE_AE;
++	}
+ 
+ 	if (is_devmem) {
+ 		xe_walk.default_pte |= XE_PPGTT_PTE_DM;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index f1357e2a3b10..d17192c8b7de 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -888,7 +888,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 	for_each_tile(tile, vm->xe, id)
+ 		vma->tile_mask |= 0x1 << id;
+ 
+-	if (GRAPHICS_VER(vm->xe) >= 20 || vm->xe->info.platform == XE_PVC)
++	if (vm->xe->info.has_atomic_enable_pte_bit)
+ 		vma->gpuva.flags |= XE_VMA_ATOMIC_PTE_BIT;
+ 
+ 	vma->pat_index = pat_index;
 -- 
 2.42.0
 
