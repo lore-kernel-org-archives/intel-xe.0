@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8666C25B7B
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 17:30:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F8FBC4345F
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 17:30:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57F0A112D9A;
-	Tue, 30 Apr 2024 17:30:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0852112D84;
+	Tue, 30 Apr 2024 17:30:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EiHYZJ87";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SWYnO55y";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EFE3112D77;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17685112D76;
  Tue, 30 Apr 2024 17:30:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1714498221; x=1746034221;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=L23EFbpp/8lafdT3ysklOzFGp7/DGXe33oG5UadcWO4=;
- b=EiHYZJ87JhUMkNdStWbrF8nrjyiRMpr1bxvFjz/R6F9eObY2gquvW0yc
- G9W3mgNE13d8E66xSuKFy2cz7r5UzvoFY8xTYDAwb99UBcJDYggIzZ6e6
- YzXcMBZFdxtuKmOXTuILubx2KhRO0mZznEk06OtpJOA9QUG2EebqcqT+Z
- Ev0U+q7J28Hm/8R2RAxoRS3JvZWs9axs8YFdhMxOCUMe/l5w4P+D2aP2X
- 5+pt4oBGQXinz1n46SDdbrB3lqwkBdBYJ+CQ6pfcrzYqvwSkBylEe/DcC
- ypU+aT/XcKVnWgVzASSAmqZkXEFpppuadnlv8jsw3WmyFqvaCAGTRblFm Q==;
-X-CSE-ConnectionGUID: 1guZNPdNSsaj1Q2TodX44w==
-X-CSE-MsgGUID: T63+/U1pRhGchM/iox3RyA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27742000"
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27742000"
+ bh=qLc9Xh91rJyGijDI5udatv2e/1dDjE0wjPbeSXea2NM=;
+ b=SWYnO55yZktq1UW+ZPd9+iM7VBNnbMUM4gYcdeB8TCiquUhlHYot+v3b
+ beZUfdtQOM84LJpC75NH9v6dQRqBfwKOe9q6QL5uZt1c6K6lNjNNWlrsC
+ 3dydmvA9XLA71IMTMBh7CsMmroxZjkGBjd2CIaQLySW0ADft0icyWRzzd
+ IxzNeeDNWgHBVdvzZNaDoUMVroJJRAEuQiZVKigvjGrXHDWqPgWURYF3l
+ 7EhANdRxbSyk2OsSqF5jfjMgiBunqiNSS7F8z3lG7whIvqzzu9dWc4X8o
+ Focdd/Pl6TG2If15ChdQzQi69EhyW6HBlDzBSkCu8CabXsAmbNAxBOI1b w==;
+X-CSE-ConnectionGUID: 8TgRc9cZSKqXgy6lef2nlA==
+X-CSE-MsgGUID: o2rseOQvQiCHFBzFsFDhfg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27741997"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27741997"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 10:30:21 -0700
-X-CSE-ConnectionGUID: mTbd3I6SQU6fbMHrPSgrMQ==
-X-CSE-MsgGUID: Z9cQrJNLQoqbhi4h5MZMWA==
+ 30 Apr 2024 10:30:20 -0700
+X-CSE-ConnectionGUID: Em/J19goQfe+q1T/u0LKrQ==
+X-CSE-MsgGUID: wpOZQ974ScuRl2pzVjSL2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617852"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617846"
 Received: from invictus.jf.intel.com ([10.165.21.201])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Apr 2024 10:30:21 -0700
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
  Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Subject: [PATCH v3 14/19] Revert "drm/i915/dgfx: DGFX uses direct VBT pin
- mapping"
-Date: Tue, 30 Apr 2024 10:28:45 -0700
-Message-Id: <20240430172850.1881525-15-radhakrishna.sripada@intel.com>
+Subject: [PATCH v3 12/19] drm/i915/xe2hpd: Do not program MBUS_DBOX BW credits
+Date: Tue, 30 Apr 2024 10:28:43 -0700
+Message-Id: <20240430172850.1881525-13-radhakrishna.sripada@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
 References: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,42 +71,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+From: José Roberto de Souza <jose.souza@intel.com>
 
-This reverts commit 562f33836f519a235e5c5e71bcc723ab1faccd2f.
-For BMG it seems that the VBT to DDI mapping does not follow DG1, and
-DG2, but follows ADLP mapping given in Bspec:20124.
+No display IP beyond Xe_LPD+ has "BW credits" bits in MBUS_DBOX_CTL
+register. Restrict the programming only to Xe_LPD+.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+BSpec: 49213
+CC: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 661842a3c2e6..cf770c866d13 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2231,15 +2231,14 @@ static u8 map_ddc_pin(struct drm_i915_private *i915, u8 vbt_pin)
- 	const u8 *ddc_pin_map;
- 	int i, n_entries;
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 7c6187b4479f..be9a4712c54e 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -3604,7 +3604,7 @@ static void intel_mbus_dbox_update(struct intel_atomic_state *state)
+ 	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, new_dbuf_state->active_pipes) {
+ 		u32 pipe_val = val;
  
--	if (IS_DGFX(i915))
--		return vbt_pin;
--
- 	if (INTEL_PCH_TYPE(i915) >= PCH_MTL || IS_ALDERLAKE_P(i915)) {
- 		ddc_pin_map = adlp_ddc_pin_map;
- 		n_entries = ARRAY_SIZE(adlp_ddc_pin_map);
- 	} else if (IS_ALDERLAKE_S(i915)) {
- 		ddc_pin_map = adls_ddc_pin_map;
- 		n_entries = ARRAY_SIZE(adls_ddc_pin_map);
-+	} else if (INTEL_PCH_TYPE(i915) >= PCH_DG1) {
-+		return vbt_pin;
- 	} else if (IS_ROCKETLAKE(i915) && INTEL_PCH_TYPE(i915) == PCH_TGP) {
- 		ddc_pin_map = rkl_pch_tgp_ddc_pin_map;
- 		n_entries = ARRAY_SIZE(rkl_pch_tgp_ddc_pin_map);
+-		if (DISPLAY_VER(i915) >= 14) {
++		if (DISPLAY_VER_FULL(i915) == IP_VER(14, 0)) {
+ 			if (xelpdp_is_only_pipe_per_dbuf_bank(crtc->pipe,
+ 							      new_dbuf_state->active_pipes))
+ 				pipe_val |= MBUS_DBOX_BW_8CREDITS_MTL;
 -- 
 2.34.1
 
