@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 848CAC4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 08:48:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7B74C4345F
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 08:48:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4347E10EB0C;
-	Tue, 30 Apr 2024 08:48:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A5E910E75B;
+	Tue, 30 Apr 2024 08:48:49 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91B8A10E75B;
- Tue, 30 Apr 2024 08:48:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 507F910F40E;
+ Tue, 30 Apr 2024 08:48:48 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/gt=3A_Fix_ass?=
- =?utf-8?q?ert_in_L3_bank_mask_generation?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/gt=3A_Fix_assert_i?=
+ =?utf-8?q?n_L3_bank_mask_generation?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Francois Dugast" <francois.dugast@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 30 Apr 2024 08:48:34 -0000
-Message-ID: <171446691459.1778343.8268205393259325815@8e613ede5ea5>
+Date: Tue, 30 Apr 2024 08:48:48 -0000
+Message-ID: <171446692832.1778251.9402792311382666008@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240430084309.7-1-francois.dugast@intel.com>
 In-Reply-To: <20240430084309.7-1-francois.dugast@intel.com>
@@ -48,9 +48,33 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 429c710ab5ee drm-tip: 2024y-04m-30d-05h-13m-35s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/gt: Fix assert in L3 bank mask generation
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+0daf0be5bb95eb0a0e42275e00a0e42d8d8fd543
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 63c07418f46c092373ad5ed2de2da3ab4ac8eb60
+Author: Francois Dugast <francois.dugast@intel.com>
+Date:   Tue Apr 30 08:43:09 2024 +0000
+
+    drm/xe/gt: Fix assert in L3 bank mask generation
+    
+    What needs to be asserted is that the pattern fits in the number
+    of bits provided by the user in patternbits, otherwise it would
+    be truncated when replicated according to the mask, which is
+    likely not the intended use of this function.
+    The pattern argument is a bitmap so use find_last_bit() instead
+    of fls(). The bit position starts at index 0 so remove "or equal"
+    from the comparison.
+    
+    Cc: Matt Roper <matthew.d.roper@intel.com>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Signed-off-by: Francois Dugast <francois.dugast@intel.com>
++ /mt/dim checkpatch 429c710ab5eee230e239c85040716ed068fff345 drm-intel
+63c07418f46c drm/xe/gt: Fix assert in L3 bank mask generation
 
 
