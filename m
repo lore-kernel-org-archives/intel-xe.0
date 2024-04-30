@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8351CC10F16
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3069C25B10
 	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 17:30:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4755C112D88;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD6CC112D8C;
 	Tue, 30 Apr 2024 17:30:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rm2smwRU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HI9PnTH4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A00C112D78;
- Tue, 30 Apr 2024 17:30:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FD33112D77;
+ Tue, 30 Apr 2024 17:30:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714498220; x=1746034220;
+ t=1714498222; x=1746034222;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=M/Augv4QApN+dSPQmN9/1exhM7/SjAqWXkbZ26nRHnU=;
- b=Rm2smwRUVrBL2QkTcBGK4RsnDZcbYjQm9JzAGKbYwhGXVO9XO8Ho5PuE
- bZd7KVUaryqSfxMx5SfwuHYF1JDVVxyvwrJteh9n87urr5Rgk3eEDnjsk
- ftrfVEvTu6Hi5DtWqrUXO/eiQNGHTqBnyQDOd2q/v0RBqXPW+tkseGOuQ
- PN8uSFCkvQhF1gUSDZnS8Yl2eb77fjaOvjscorBhf7I6nE+5uZ1nbgnfD
- 9GHPBCi9v3XlfZ+JcFaJ4zEaLnIfNd7AXE7bo/2M4IWGBgE4vGaY9JTr3
- 4DDn6CWAZdLLLQ9m2bVgarn4pIzxTrEeqq11uYTk7PIaRL3uD5EZM24wJ g==;
-X-CSE-ConnectionGUID: wMSUROPMR7aDsDP/bnuyOg==
-X-CSE-MsgGUID: pRjyjOtqRc+u5QV4yBlixQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27741987"
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27741987"
+ bh=izPNDR7v+lJkFTynysUpQF+1Ohpci8BHgvNGTGywdQk=;
+ b=HI9PnTH40Ta4sERfLXgMDeP91QJ32Jkxcje1i09UsqSMcEIDScrGNi+b
+ A450aUN6nJKpvC0CRqasbFxpm9BryfdY0G6Gjg2ZD4Te2jRkhKkN5+S6k
+ qzJk+Z8qePaXOT1BPKxTo8xZImlSmk1SRe3lIdzzcfH2dIziFnm83+jes
+ PlzV2G61Puc6Rv/BeFYuwdxsGGTMHOYpQRsi8rbE1CMzx+DQ8FOowx6n5
+ MUetylPwGdkoQFd/DBFxR30en09Btvt0q9mHhNYFMyIVihFP/v4tc2q72
+ S2uqmcISJDVwsR5QNBRb+8jGnqf0mVJyjkEqAeh22sFCuBWvaR/9hKxHG g==;
+X-CSE-ConnectionGUID: KiNDz9B5SUC3VHp24xK0OQ==
+X-CSE-MsgGUID: Pi8IPGp4RmKCFVPlcoaqpA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27742006"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27742006"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 10:30:19 -0700
-X-CSE-ConnectionGUID: 4W2D6InDRQ6tUgs7O5n6Gw==
-X-CSE-MsgGUID: P3pOHltnRd6bGDun28MIDA==
+ 30 Apr 2024 10:30:22 -0700
+X-CSE-ConnectionGUID: UufrL4CNQu+D0sJKpFx0aw==
+X-CSE-MsgGUID: 7ufgrPE9QE6Y5mOwxuTx2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617819"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617868"
 Received: from invictus.jf.intel.com ([10.165.21.201])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 10:30:19 -0700
+ 30 Apr 2024 10:30:22 -0700
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Clint Taylor <clinton.a.taylor@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
+Cc: intel-xe@lists.freedesktop.org,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
+ Shekhar Chauhan <shekhar.chauhan@intel.com>,
  Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Subject: [PATCH v3 03/19] drm/i915/xe2hpd: Initial cdclk table
-Date: Tue, 30 Apr 2024 10:28:34 -0700
-Message-Id: <20240430172850.1881525-4-radhakrishna.sripada@intel.com>
+Subject: [PATCH v3 19/19] drm/xe/bmg: Enable the display support
+Date: Tue, 30 Apr 2024 10:28:50 -0700
+Message-Id: <20240430172850.1881525-20-radhakrishna.sripada@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
 References: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
@@ -70,49 +69,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Clint Taylor <clinton.a.taylor@intel.com>
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 
-Add Xe2_HPD specific CDCLK table and use MTL Funcs.
+Enable the display support for Battlemage
 
-Bspec: 65243
-CC: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
 Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ drivers/gpu/drm/xe/xe_pci.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 7a833b5f2de2..b78154c82a71 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1443,6 +1443,14 @@ static const struct intel_cdclk_vals xe2lpd_cdclk_table[] = {
- 	{}
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index a0cf5dd803c2..b01b1d30976a 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -342,6 +342,7 @@ static const struct xe_device_desc lnl_desc = {
+ static const struct xe_device_desc bmg_desc __maybe_unused = {
+ 	DGFX_FEATURES,
+ 	PLATFORM(XE_BATTLEMAGE),
++	.has_display = true,
+ 	.require_force_probe = true,
  };
  
-+/*
-+ * Xe2_HPD always uses the minimal cdclk table from Wa_15015413771
-+ */
-+static const struct intel_cdclk_vals xe2hpd_cdclk_table[] = {
-+	{ .refclk = 38400, .cdclk = 652800, .ratio = 34, .waveform = 0xffff },
-+	{}
-+};
-+
- static const int cdclk_squash_len = 16;
- 
- static int cdclk_squash_divider(u16 waveform)
-@@ -3778,6 +3786,9 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
- 	if (DISPLAY_VER(dev_priv) >= 20) {
- 		dev_priv->display.funcs.cdclk = &rplu_cdclk_funcs;
- 		dev_priv->display.cdclk.table = xe2lpd_cdclk_table;
-+	} else if (DISPLAY_VER_FULL(dev_priv) >= IP_VER(14, 1)) {
-+		dev_priv->display.funcs.cdclk = &rplu_cdclk_funcs;
-+		dev_priv->display.cdclk.table = xe2hpd_cdclk_table;
- 	} else if (DISPLAY_VER(dev_priv) >= 14) {
- 		dev_priv->display.funcs.cdclk = &rplu_cdclk_funcs;
- 		dev_priv->display.cdclk.table = mtl_cdclk_table;
 -- 
 2.34.1
 
