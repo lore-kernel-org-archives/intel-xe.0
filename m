@@ -4,57 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21CFFC19F4F
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 17:30:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE298C25B10
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 17:38:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2BFB112D8E;
-	Tue, 30 Apr 2024 17:30:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 114A9112D89;
+	Tue, 30 Apr 2024 17:38:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P5bGVykX";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="eFkL2nKO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49401112D7A;
- Tue, 30 Apr 2024 17:30:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714498222; x=1746034222;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=R8psRS3fEG7Y5lNMSQmgHZo5obRWnDjG/QTKOvl/++o=;
- b=P5bGVykXdeBmVP7RYR+eEgiydYSQPXJFQtKLY4xvIKnXJSMfr7dMbq5v
- uv6Zbxn3E+ee6aA0tvICoFRtu4tDpDIyjbO5F6Y+P3CDo4qYQVwDoHeVA
- U0BRILK9W4g2lkXVFfwMDQHpDW1M4VHkc1S70ALg0zyA1fCE8rIDDdZJf
- YgGkRqTIaBBRVHYcpGbT77P9INbXw2FmlpupkXfdK+otM0EUQVLbvKs2c
- MTEodlkk0Wsn4L7gcjfI723vVnS+3ZfrPQ29anah/8hQ2G6WpbsADoctn
- 6d8k7Sb3pW7kgi51npC53sgJuMMFXTlZgmVLzkseqs+LoX+MPoISiF56J g==;
-X-CSE-ConnectionGUID: dWIeD2HhTwOG0VlPSkLMmQ==
-X-CSE-MsgGUID: r7u2DyYwSEiIu/vIbPPnag==
-X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27742005"
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27742005"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 10:30:22 -0700
-X-CSE-ConnectionGUID: pxFnYOMhRY2QpJOrzjzNNw==
-X-CSE-MsgGUID: GKhMz+A/SAGHvnLDHvNHBw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617865"
-Received: from invictus.jf.intel.com ([10.165.21.201])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 10:30:22 -0700
-From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>, Matt Roper <matthew.d.roper@intel.com>,
- Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Subject: [PATCH v3 18/19] drm/i915/display: perform transient flush
-Date: Tue, 30 Apr 2024 10:28:49 -0700
-Message-Id: <20240430172850.1881525-19-radhakrishna.sripada@intel.com>
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2094610E34F;
+ Tue, 30 Apr 2024 17:38:20 +0000 (UTC)
+Received: from rrs24-12-35.corp.microsoft.com (unknown [131.107.174.176])
+ by linux.microsoft.com (Postfix) with ESMTPSA id 95C4D210FBDE;
+ Tue, 30 Apr 2024 10:38:19 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 95C4D210FBDE
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+ s=default; t=1714498699;
+ bh=VdncFJmpEms1rtvDJ9LrT1l4xx0UNlVPLoYUQFPr2Tc=;
+ h=From:To:Cc:Subject:Date:From;
+ b=eFkL2nKOxng4uC66U6S9GZdhAeGMNUf8d7wKvgzdYF2o6KalwxZzlPEut3PhYm+nh
+ TU2fPY6ItCwnM5X9u/MOTLfrUDzTHtZ3RShufVYeZyi/1el85rynGYntI6uwA0ormO
+ aQmDNxy8VqFJeXN/uoELxnKjK6Ktsi69eG8tabmo=
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+To: 
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
+ dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
+ linux-kernel@vger.kernel.org (open list),
+ intel-gfx@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
+ DRIVERS), 
+ intel-xe@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
+ DRIVERS), 
+ nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
+ GPUS), linux-i2c@vger.kernel.org (open list:I2C SUBSYSTEM HOST DRIVERS),
+ linux-media@vger.kernel.org (open list:BTTV VIDEO4LINUX DRIVER),
+ linux-fbdev@vger.kernel.org (open list:FRAMEBUFFER LAYER),
+ Easwar Hariharan <eahariha@linux.microsoft.com>
+Subject: [PATCH v1 00/12] Make I2C terminology more inclusive for I2C Algobit
+ and consumers
+Date: Tue, 30 Apr 2024 17:37:59 +0000
+Message-Id: <20240430173812.1423757-1-eahariha@linux.microsoft.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
-References: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,133 +62,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Auld <matthew.auld@intel.com>
+I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
+with more appropriate terms. Inspired by and following on to Wolfram's
+series to fix drivers/i2c/[1], fix the terminology for users of the
+I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+in the specification.
 
-Perform manual transient cache flush prior to flip and at the end of
-frontbuffer_flush. This is needed to ensure display engine doesn't see
-garbage if the surface is L3:XD dirty.
+Compile tested, no functionality changes intended
 
-Testcase: igt@xe-pat@display-vs-wb-transient
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Acked-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c  |  3 +++
- .../gpu/drm/i915/display/intel_frontbuffer.c  |  2 ++
- drivers/gpu/drm/i915/display/intel_tdf.h      | 25 +++++++++++++++++++
- drivers/gpu/drm/xe/Makefile                   |  3 ++-
- drivers/gpu/drm/xe/display/xe_tdf.c           | 13 ++++++++++
- 5 files changed, 45 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_tdf.h
- create mode 100644 drivers/gpu/drm/xe/display/xe_tdf.c
+Please chime in with your opinions and suggestions.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 00e583fc2a8c..294539b4ca99 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -109,6 +109,7 @@
- #include "intel_sdvo.h"
- #include "intel_snps_phy.h"
- #include "intel_tc.h"
-+#include "intel_tdf.h"
- #include "intel_tv.h"
- #include "intel_vblank.h"
- #include "intel_vdsc.h"
-@@ -7225,6 +7226,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 
- 	intel_atomic_commit_fence_wait(state);
- 
-+	intel_td_flush(dev_priv);
-+
- 	drm_atomic_helper_wait_for_dependencies(&state->base);
- 	drm_dp_mst_atomic_wait_for_dependencies(&state->base);
- 	intel_atomic_global_state_wait_for_dependencies(state);
-diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-index 2ea37c0414a9..4923c340a0b6 100644
---- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-+++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-@@ -65,6 +65,7 @@
- #include "intel_fbc.h"
- #include "intel_frontbuffer.h"
- #include "intel_psr.h"
-+#include "intel_tdf.h"
- 
- /**
-  * frontbuffer_flush - flush frontbuffer
-@@ -93,6 +94,7 @@ static void frontbuffer_flush(struct drm_i915_private *i915,
- 	trace_intel_frontbuffer_flush(i915, frontbuffer_bits, origin);
- 
- 	might_sleep();
-+	intel_td_flush(i915);
- 	intel_drrs_flush(i915, frontbuffer_bits);
- 	intel_psr_flush(i915, frontbuffer_bits, origin);
- 	intel_fbc_flush(i915, frontbuffer_bits, origin);
-diff --git a/drivers/gpu/drm/i915/display/intel_tdf.h b/drivers/gpu/drm/i915/display/intel_tdf.h
-new file mode 100644
-index 000000000000..353cde21f6c2
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_tdf.h
-@@ -0,0 +1,25 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_TDF_H__
-+#define __INTEL_TDF_H__
-+
-+/*
-+ * TDF (Transient-Data-Flush) is needed for Xe2+ where special L3:XD caching can
-+ * be enabled through various PAT index modes. Idea is to use this caching mode
-+ * when for example rendering onto the display surface, with the promise that
-+ * KMD will ensure transient cache entries are always flushed by the time we do
-+ * the display flip, since display engine is never coherent with CPU/GPU caches.
-+ */
-+
-+struct drm_i915_private;
-+
-+#ifdef I915
-+static inline void intel_td_flush(struct drm_i915_private *i915) {}
-+#else
-+void intel_td_flush(struct drm_i915_private *i915);
-+#endif
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index a67977edff5b..b620389761d5 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -206,7 +206,8 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	display/xe_dsb_buffer.o \
- 	display/xe_fb_pin.o \
- 	display/xe_hdcp_gsc.o \
--	display/xe_plane_initial.o
-+	display/xe_plane_initial.o \
-+	display/xe_tdf.o
- 
- # SOC code shared with i915
- xe-$(CONFIG_DRM_XE_DISPLAY) += \
-diff --git a/drivers/gpu/drm/xe/display/xe_tdf.c b/drivers/gpu/drm/xe/display/xe_tdf.c
-new file mode 100644
-index 000000000000..2c0d4e144e09
---- /dev/null
-+++ b/drivers/gpu/drm/xe/display/xe_tdf.c
-@@ -0,0 +1,13 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include "xe_device.h"
-+#include "intel_display_types.h"
-+#include "intel_tdf.h"
-+
-+void intel_td_flush(struct drm_i915_private *i915)
-+{
-+	xe_device_td_flush(i915);
-+}
+This series is based on v6.9-rc1.
+
+[1]:
+https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+----
+
+changelog:
+v0->v1:
+- Link: https://lore.kernel.org/all/20240329170038.3863998-1-eahariha@linux.microsoft.com/
+- Drop drivers/infiniband patches [Leon, Dennis]
+- Switch to specification verbiage master->controller, slave->target,
+  drop usage of client [Andi, Ville, Jani, Christian]
+- Add I3C specification version in commit messages [Andi]
+- Pick up Reviewed-bys from Martin and Simon [sfc]
+- Drop i2c/treewide patch to make this series independent from Wolfram's
+  ([1]) [Wolfram]
+- Split away drm/nouveau patch to allow expansion into non-I2C
+  non-inclusive terms
+
+----
+
+Easwar Hariharan (12):
+  drm/amdgpu, drm/radeon: Make I2C terminology more inclusive
+  drm/gma500: Make I2C terminology more inclusive
+  drm/i915: Make I2C terminology more inclusive
+  media: au0828: Make I2C terminology more inclusive
+  media: cobalt: Make I2C terminology more inclusive
+  media: cx18: Make I2C terminology more inclusive
+  media: cx25821: Make I2C terminology more inclusive
+  media: ivtv: Make I2C terminology more inclusive
+  media: cx23885: Make I2C terminology more inclusive
+  sfc: falcon: Make I2C terminology more inclusive
+  fbdev/smscufx: Make I2C terminology more inclusive
+  fbdev/viafb: Make I2C terminology more inclusive
+
+ .../gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c  |  8 ++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c       | 10 +++----
+ drivers/gpu/drm/amd/amdgpu/atombios_i2c.c     |  8 ++---
+ drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c    | 20 ++++++-------
+ .../gpu/drm/amd/display/dc/bios/bios_parser.c |  2 +-
+ .../drm/amd/display/dc/bios/bios_parser2.c    |  2 +-
+ .../drm/amd/display/dc/core/dc_link_exports.c |  4 +--
+ drivers/gpu/drm/amd/display/dc/dc.h           |  2 +-
+ drivers/gpu/drm/amd/display/dc/dce/dce_i2c.c  |  4 +--
+ .../display/include/grph_object_ctrl_defs.h   |  2 +-
+ drivers/gpu/drm/amd/include/atombios.h        |  2 +-
+ drivers/gpu/drm/amd/include/atomfirmware.h    | 26 ++++++++--------
+ .../powerplay/hwmgr/vega20_processpptables.c  |  4 +--
+ .../amd/pm/powerplay/inc/smu11_driver_if.h    |  2 +-
+ .../inc/pmfw_if/smu11_driver_if_arcturus.h    |  2 +-
+ .../inc/pmfw_if/smu11_driver_if_navi10.h      |  2 +-
+ .../pmfw_if/smu11_driver_if_sienna_cichlid.h  |  2 +-
+ .../inc/pmfw_if/smu13_driver_if_aldebaran.h   |  2 +-
+ .../inc/pmfw_if/smu13_driver_if_v13_0_0.h     |  2 +-
+ .../inc/pmfw_if/smu13_driver_if_v13_0_7.h     |  2 +-
+ .../gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c |  4 +--
+ .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   |  8 ++---
+ drivers/gpu/drm/gma500/cdv_intel_lvds.c       |  2 +-
+ drivers/gpu/drm/gma500/intel_bios.c           | 22 +++++++-------
+ drivers/gpu/drm/gma500/intel_bios.h           |  4 +--
+ drivers/gpu/drm/gma500/intel_gmbus.c          |  2 +-
+ drivers/gpu/drm/gma500/psb_drv.h              |  2 +-
+ drivers/gpu/drm/gma500/psb_intel_drv.h        |  2 +-
+ drivers/gpu/drm/gma500/psb_intel_lvds.c       |  4 +--
+ drivers/gpu/drm/gma500/psb_intel_sdvo.c       | 26 ++++++++--------
+ drivers/gpu/drm/i915/display/dvo_ch7017.c     | 14 ++++-----
+ drivers/gpu/drm/i915/display/dvo_ch7xxx.c     | 18 +++++------
+ drivers/gpu/drm/i915/display/dvo_ivch.c       | 16 +++++-----
+ drivers/gpu/drm/i915/display/dvo_ns2501.c     | 18 +++++------
+ drivers/gpu/drm/i915/display/dvo_sil164.c     | 18 +++++------
+ drivers/gpu/drm/i915/display/dvo_tfp410.c     | 18 +++++------
+ drivers/gpu/drm/i915/display/intel_bios.c     | 22 +++++++-------
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  2 +-
+ .../gpu/drm/i915/display/intel_display_core.h |  2 +-
+ drivers/gpu/drm/i915/display/intel_dsi.h      |  2 +-
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c  | 20 ++++++-------
+ drivers/gpu/drm/i915/display/intel_dvo.c      | 14 ++++-----
+ drivers/gpu/drm/i915/display/intel_dvo_dev.h  |  2 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |  4 +--
+ drivers/gpu/drm/i915/display/intel_sdvo.c     | 30 +++++++++----------
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h |  4 +--
+ drivers/gpu/drm/i915/gvt/edid.c               | 28 ++++++++---------
+ drivers/gpu/drm/i915/gvt/edid.h               |  4 +--
+ drivers/gpu/drm/i915/gvt/opregion.c           |  2 +-
+ drivers/gpu/drm/radeon/atombios.h             |  2 +-
+ drivers/gpu/drm/radeon/atombios_i2c.c         |  4 +--
+ drivers/gpu/drm/radeon/radeon_combios.c       | 28 ++++++++---------
+ drivers/gpu/drm/radeon/radeon_i2c.c           | 10 +++----
+ drivers/gpu/drm/radeon/radeon_mode.h          |  6 ++--
+ drivers/media/pci/cobalt/cobalt-i2c.c         |  6 ++--
+ drivers/media/pci/cx18/cx18-av-firmware.c     |  8 ++---
+ drivers/media/pci/cx18/cx18-cards.c           |  6 ++--
+ drivers/media/pci/cx18/cx18-cards.h           |  4 +--
+ drivers/media/pci/cx18/cx18-gpio.c            |  6 ++--
+ drivers/media/pci/cx23885/cx23885-f300.c      |  8 ++---
+ drivers/media/pci/cx23885/cx23885-i2c.c       |  6 ++--
+ drivers/media/pci/cx25821/cx25821-i2c.c       |  6 ++--
+ drivers/media/pci/ivtv/ivtv-i2c.c             | 16 +++++-----
+ drivers/media/usb/au0828/au0828-i2c.c         |  4 +--
+ drivers/media/usb/au0828/au0828-input.c       |  2 +-
+ drivers/net/ethernet/sfc/falcon/falcon.c      |  2 +-
+ drivers/video/fbdev/smscufx.c                 |  4 +--
+ drivers/video/fbdev/via/chip.h                |  8 ++---
+ drivers/video/fbdev/via/dvi.c                 | 24 +++++++--------
+ drivers/video/fbdev/via/lcd.c                 |  6 ++--
+ drivers/video/fbdev/via/via_aux.h             |  2 +-
+ drivers/video/fbdev/via/via_i2c.c             | 12 ++++----
+ drivers/video/fbdev/via/vt1636.c              |  6 ++--
+ 73 files changed, 304 insertions(+), 304 deletions(-)
+
+
+base-commit: 4cece764965020c22cff7665b18a012006359095
 -- 
 2.34.1
 
