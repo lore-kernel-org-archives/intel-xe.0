@@ -4,58 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A2A1C25B77
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C5A9C25B76
 	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 17:30:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC81A112D89;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C30A2112D80;
 	Tue, 30 Apr 2024 17:30:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GsVE1Zzw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ACLsh1lg";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 307BD112D76;
- Tue, 30 Apr 2024 17:30:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD3EA112D7A;
+ Tue, 30 Apr 2024 17:30:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714498220; x=1746034220;
+ t=1714498221; x=1746034221;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=POQTqjeQD7S7iWBbsEGY9PQk3TV+hseVmIuycsP0rgM=;
- b=GsVE1Zzwk2u6VE0UsWZ21FS35hldED+KaFGHju5WDKen6G+nud/1XSrj
- SJJyJCbfqtgJVqRfGrlI6hg0j2ziQ4dDSCcC4gPiws9jLiSpZjwcW33SI
- pMLA/ES946f7ZEAXoZcm6NTYZzUpUikgurNDAvtRQMuPhnTp/EUoNSJ7b
- yC1XzoTETBrBlGoQGLA/tykn2vwdqTxXstYcr9ZKNxdaLiWA6+Qa/+kkS
- nbhiCRIeIa8keLc8EH7v50k51Rz7Ox6+sgCEoWDdXcZfnD9HljcTgm+vW
- 34SviyX1QLoP98FzbBuz2sCsdWTk1t7vNREdfQngJjZcfRIUpl5iMAYWW g==;
-X-CSE-ConnectionGUID: AQq+JtjXRkuouD022L8GWg==
-X-CSE-MsgGUID: 71caOPSaQhWiVZcmb14E3Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27741989"
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27741989"
+ bh=r1sklwSj48CNNRxPiIAqoKjo7MaVp0gz+dElCYGXxnE=;
+ b=ACLsh1lg6A8Y66Ugu802rUgvkJ9AniTeyro4fbN+kN3geMemuPWLOQIV
+ i4mn9tf2XE5aPgrILk7+kBxz7XnnNVL863MI3dK82DYWN/mFxx7nF3ogY
+ 2sYp2Kf+l8yAn+BecvG3nFcmbLKkxzscc/w8kLsbDt8dx3JjybKZqFy7N
+ GXKuh6/afy74UciKS5D4+eXxTanbqwa4s6eLaguh803STVVsXic6Qs5Gn
+ rgO45bOku0rDnaqdUegZ/rx35u1AE0/dJoTvgNYRWRhgEK7ztFi+swI1F
+ PrkLozC313i0Zv/k1Isw9pkKUoCFkrL3/eCIZ7FDFZEu5Fe1GAcLA6ujC g==;
+X-CSE-ConnectionGUID: Xjw3MIWBTc6cDo4QVHLTQg==
+X-CSE-MsgGUID: U5oNP7nWQ+WgnP7wFo70qg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27742002"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27742002"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 10:30:19 -0700
-X-CSE-ConnectionGUID: jF5epQUDTDG3rw6PxDheSw==
-X-CSE-MsgGUID: G/A/oEWbQ7StHy8w0/YvcQ==
+ 30 Apr 2024 10:30:21 -0700
+X-CSE-ConnectionGUID: LTOuyirKQuSRxxSAmksKWw==
+X-CSE-MsgGUID: KlZswUupTte14HxdqkgJMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617825"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617855"
 Received: from invictus.jf.intel.com ([10.165.21.201])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 10:30:19 -0700
+ 30 Apr 2024 10:30:21 -0700
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
+ Shekhar Chauhan <shekhar.chauhan@intel.com>,
  Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Subject: [PATCH v3 05/19] drm/i915/xe2hpd: Properly disable power in port A
-Date: Tue, 30 Apr 2024 10:28:36 -0700
-Message-Id: <20240430172850.1881525-6-radhakrishna.sripada@intel.com>
+Subject: [PATCH v3 15/19] drm/i915/xe2hpd: Set maximum DP rate to UHBR13.5
+Date: Tue, 30 Apr 2024 10:28:46 -0700
+Message-Id: <20240430172850.1881525-16-radhakrishna.sripada@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
 References: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,55 +69,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: José Roberto de Souza <jose.souza@intel.com>
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 
-Xe2_HPD has a different value to power down port A.
+Max supported speed by xe2hpd is UHBR13.5. Limit the max DP source rate
+to it.
 
-BSpec: 65450
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+Bspec: 67066
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
 Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 17 ++++++++++++++---
- 1 file changed, 14 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 9930fa7313e4..2fee024d642b 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2900,17 +2900,28 @@ void intel_mtl_pll_enable(struct intel_encoder *encoder,
- 		intel_cx0pll_enable(encoder, crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index e05e25cd4a94..486361eb0070 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -477,6 +477,9 @@ static int mtl_max_source_rate(struct intel_dp *intel_dp)
+ 	if (intel_encoder_is_c10phy(encoder))
+ 		return 810000;
+ 
++	if (DISPLAY_VER_FULL(to_i915(encoder->base.dev)) == IP_VER(14, 1))
++		return 1350000;
++
+ 	return 2000000;
  }
  
-+static u8 cx0_power_control_disable_val(struct intel_encoder *encoder)
-+{
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+
-+	if (intel_encoder_is_c10phy(encoder))
-+		return CX0_P2PG_STATE_DISABLE;
-+
-+	if (IS_BATTLEMAGE(i915) && encoder->port == PORT_A)
-+		return CX0_P2PG_STATE_DISABLE;
-+
-+	return CX0_P4PG_STATE_DISABLE;
-+}
-+
- static void intel_cx0pll_disable(struct intel_encoder *encoder)
- {
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	enum phy phy = intel_encoder_to_phy(encoder);
--	bool is_c10 = intel_encoder_is_c10phy(encoder);
- 	intel_wakeref_t wakeref = intel_cx0_phy_transaction_begin(encoder);
- 
- 	/* 1. Change owned PHY lane power to Disable state. */
- 	intel_cx0_powerdown_change_sequence(encoder, INTEL_CX0_BOTH_LANES,
--					    is_c10 ? CX0_P2PG_STATE_DISABLE :
--					    CX0_P4PG_STATE_DISABLE);
-+					    cx0_power_control_disable_val(encoder));
- 
- 	/*
- 	 * 2. Follow the Display Voltage Frequency Switching Sequence Before
 -- 
 2.34.1
 
