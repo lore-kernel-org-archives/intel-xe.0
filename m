@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AECFC4345F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77B9FC25B10
 	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 17:30:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFEE1112D8F;
-	Tue, 30 Apr 2024 17:30:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08243112D90;
+	Tue, 30 Apr 2024 17:30:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U9+lvb9G";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mPEv53l9";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36285112D79;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0E54112D77;
  Tue, 30 Apr 2024 17:30:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714498221; x=1746034221;
+ t=1714498222; x=1746034222;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FewVEvq68BJuspVFQjRmefNzDxO+/zqhnTctQSSajmQ=;
- b=U9+lvb9GNceUZ9JlFjdbDQx0OqX/pCgKUMugik2Npvy/a77+VP9FISQ2
- fST3U9z+HZ41jFCGGsQUvwZUBesEJVXG5hroq67ypJB4Jg/vP0FpPMDLN
- dHe9bYYY/+WVpJsrWEOaX2Q/Kl6TPYxCAk4En5KidN9keHEdMZ113FoJ1
- dTGDQhjZ286i4uG/p3JJBcHo2Z6WU9B7KTGWLq3lwUPS7vIeGA4OD5Av+
- 62yOg1moiy2u/rkxM5oeqm6ojY9vcMyy9t/dp4yyIdzS1uJ1vUFOsqYkY
- XLosIzbdrZ0Bog0hsRFXyjyav/kD+C24NfkISe6UOwzycraF4CbwfFWLY w==;
-X-CSE-ConnectionGUID: ZKmCPoSFSnOs3KXIQQezkg==
-X-CSE-MsgGUID: RNqisU/rTCKM15DSzoYwmQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27741998"
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27741998"
+ bh=shPQJaO9/KURCj0ZVJLjXTFD7lHOMtV483tA46Qv7rM=;
+ b=mPEv53l9LMWrYzD26deQlQBqqFILNL5fk9CsIKyCcCR0aWT+ARrYDQXq
+ gUA4igiO2EvW6lZLo07YQ51oOrOzsW2XntMmCn1DN1bzVZMcUUij0evlp
+ L3nRA8SUHUz7mZSN+AxcIDvHEpRsAn84nC3WeXfbUSmoXwm+vQyYN3W1R
+ g0Rs8GQxwkM1KmqSjkWXNe1wTTzqRjtPwKTdsMSLBoDeY98XgeqYIFwhJ
+ 2pkRmGCsxOlzALwlkdKOCbtL64MnPk7eB9kL3XDs3N43Nb6ikSd3BPEug
+ FOXysp4xTIspRa4mFffeAlARfRw0Hrg4ZIdtA2h2NbaBnNaVeQRAbQREi w==;
+X-CSE-ConnectionGUID: CzeJO0+gQAuRRptRWTw00Q==
+X-CSE-MsgGUID: 7rqG98AnQCyAyGfuqP9wug==
+X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27742003"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27742003"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Apr 2024 10:30:21 -0700
-X-CSE-ConnectionGUID: hVVRvC3ER/aJGFeibqVVHQ==
-X-CSE-MsgGUID: 5ApwjS0WQzKGgb94WUPg0g==
+X-CSE-ConnectionGUID: MjQV/H/mQCuyKQpU5mpr0A==
+X-CSE-MsgGUID: 8W7VwWg0TRiZmCf77dSsug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617849"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617859"
 Received: from invictus.jf.intel.com ([10.165.21.201])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Apr 2024 10:30:21 -0700
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>,
+Cc: intel-xe@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>,
  Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Subject: [PATCH v3 13/19] drm/i915/bmg: BMG should re-use MTL's south display
- logic
-Date: Tue, 30 Apr 2024 10:28:44 -0700
-Message-Id: <20240430172850.1881525-14-radhakrishna.sripada@intel.com>
+Subject: [PATCH v3 16/19] drm/xe/gt_print: add xe_gt_err_once()
+Date: Tue, 30 Apr 2024 10:28:47 -0700
+Message-Id: <20240430172850.1881525-17-radhakrishna.sripada@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
 References: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
@@ -70,36 +69,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
 
-Battlemage's south display is the same as Meteor Lake's, including the
-need to invert the HPD pins, which Lunar Lake does not need.
+Needed in an upcoming patch, where we want GT level print, but only
+which to trigger once to avoid flooding dmesg.
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Reviewed-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 ---
- drivers/gpu/drm/i915/soc/intel_pch.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_printk.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/soc/intel_pch.c b/drivers/gpu/drm/i915/soc/intel_pch.c
-index 3cad6dac06b0..542eea50093c 100644
---- a/drivers/gpu/drm/i915/soc/intel_pch.c
-+++ b/drivers/gpu/drm/i915/soc/intel_pch.c
-@@ -218,10 +218,10 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
- 	if (DISPLAY_VER(dev_priv) >= 20) {
- 		dev_priv->pch_type = PCH_LNL;
- 		return;
--	} else if (IS_METEORLAKE(dev_priv)) {
-+	} else if (IS_BATTLEMAGE(dev_priv) || IS_METEORLAKE(dev_priv)) {
- 		/*
- 		 * Both north display and south display are on the SoC die.
--		 * The real PCH is uninvolved in display.
-+		 * The real PCH (if it even exists) is uninvolved in display.
- 		 */
- 		dev_priv->pch_type = PCH_MTL;
- 		return;
+diff --git a/drivers/gpu/drm/xe/xe_gt_printk.h b/drivers/gpu/drm/xe/xe_gt_printk.h
+index c2b004d3f48e..d6228baaff1e 100644
+--- a/drivers/gpu/drm/xe/xe_gt_printk.h
++++ b/drivers/gpu/drm/xe/xe_gt_printk.h
+@@ -13,6 +13,9 @@
+ #define xe_gt_printk(_gt, _level, _fmt, ...) \
+ 	drm_##_level(&gt_to_xe(_gt)->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+ 
++#define xe_gt_err_once(_gt, _fmt, ...) \
++	xe_gt_printk((_gt), err_once, _fmt, ##__VA_ARGS__)
++
+ #define xe_gt_err(_gt, _fmt, ...) \
+ 	xe_gt_printk((_gt), err, _fmt, ##__VA_ARGS__)
+ 
 -- 
 2.34.1
 
