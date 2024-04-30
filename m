@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0376AC4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 18:38:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E320DC4345F
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 18:47:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A682210ECF2;
-	Tue, 30 Apr 2024 18:38:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB729112E4B;
+	Tue, 30 Apr 2024 18:47:50 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECDEE10ECF2;
- Tue, 30 Apr 2024 18:38:29 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0873031499249213296=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE653112E4B;
+ Tue, 30 Apr 2024 18:47:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/gt=3A_Fix_assert_in_L3_ba?=
- =?utf-8?q?nk_mask_generation_=28rev3=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Refactor_default_dev?=
+ =?utf-8?q?ice_atomic_settings_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 30 Apr 2024 18:38:29 -0000
-Message-ID: <171450230995.1793171.5934320695808227605@8e613ede5ea5>
+Date: Tue, 30 Apr 2024 18:47:49 -0000
+Message-ID: <171450286997.1793171.13373976145659627803@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240430163905.7-1-francois.dugast@intel.com>
-In-Reply-To: <20240430163905.7-1-francois.dugast@intel.com>
+References: <20240430162529.21588-1-nirmoy.das@intel.com>
+In-Reply-To: <20240430162529.21588-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,21 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0873031499249213296==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/gt: Fix assert in L3 bank mask generation (rev3)
-URL   : https://patchwork.freedesktop.org/series/133055/
+Series: Refactor default device atomic settings (rev6)
+URL   : https://patchwork.freedesktop.org/series/132930/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1211-08b0a07df5e75d9babe85ab59f029a6598b6c3bc_BAT -> xe-pw-133055v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 3ac3efef3a1f drm-tip: 2024y-04m-30d-18h-34m-20s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Introduce has_atomic_enable_pte_bit device info
+Applying: drm/xe: Move vm bind bo validation to a helper function
+Applying: drm/xe: Introduce has_device_atomics_on_smem device info
+Applying: drm/xe: Add function to check if BO has single placement
+Applying: drm/xe: Refactor default device atomic settings
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1211-08b0a07df5e75d9babe85ab59f029a6598b6c3bc -> xe-pw-133055v3
-
-  IGT_7826: ce6ce0f60dd1a6c0df93a01ad71a31964158a2cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1211-08b0a07df5e75d9babe85ab59f029a6598b6c3bc: 08b0a07df5e75d9babe85ab59f029a6598b6c3bc
-  xe-pw-133055v3: 133055v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133055v3/index.html
-
---===============0873031499249213296==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/gt: Fix assert in L3 bank mask generation (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133055/">https://patchwork.freedesktop.org/series/133055/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133055v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133055v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1211-08b0a07df5e75d9babe85ab59f029a6598b6c3bc_BAT -&gt; xe-pw-133055v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1211-08b0a07df5e75d9babe85ab59f029a6598b6c3bc -&gt; xe-pw-133055v3</li>
-</ul>
-<p>IGT_7826: ce6ce0f60dd1a6c0df93a01ad71a31964158a2cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1211-08b0a07df5e75d9babe85ab59f029a6598b6c3bc: 08b0a07df5e75d9babe85ab59f029a6598b6c3bc<br />
-  xe-pw-133055v3: 133055v3</p>
-
-</body>
-</html>
-
---===============0873031499249213296==--
