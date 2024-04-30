@@ -4,58 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F8FBC4345F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8351CC10F16
 	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 17:30:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0852112D84;
-	Tue, 30 Apr 2024 17:30:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4755C112D88;
+	Tue, 30 Apr 2024 17:30:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SWYnO55y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rm2smwRU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17685112D76;
- Tue, 30 Apr 2024 17:30:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A00C112D78;
+ Tue, 30 Apr 2024 17:30:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714498221; x=1746034221;
+ t=1714498220; x=1746034220;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qLc9Xh91rJyGijDI5udatv2e/1dDjE0wjPbeSXea2NM=;
- b=SWYnO55yZktq1UW+ZPd9+iM7VBNnbMUM4gYcdeB8TCiquUhlHYot+v3b
- beZUfdtQOM84LJpC75NH9v6dQRqBfwKOe9q6QL5uZt1c6K6lNjNNWlrsC
- 3dydmvA9XLA71IMTMBh7CsMmroxZjkGBjd2CIaQLySW0ADft0icyWRzzd
- IxzNeeDNWgHBVdvzZNaDoUMVroJJRAEuQiZVKigvjGrXHDWqPgWURYF3l
- 7EhANdRxbSyk2OsSqF5jfjMgiBunqiNSS7F8z3lG7whIvqzzu9dWc4X8o
- Focdd/Pl6TG2If15ChdQzQi69EhyW6HBlDzBSkCu8CabXsAmbNAxBOI1b w==;
-X-CSE-ConnectionGUID: 8TgRc9cZSKqXgy6lef2nlA==
-X-CSE-MsgGUID: o2rseOQvQiCHFBzFsFDhfg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27741997"
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27741997"
+ bh=M/Augv4QApN+dSPQmN9/1exhM7/SjAqWXkbZ26nRHnU=;
+ b=Rm2smwRUVrBL2QkTcBGK4RsnDZcbYjQm9JzAGKbYwhGXVO9XO8Ho5PuE
+ bZd7KVUaryqSfxMx5SfwuHYF1JDVVxyvwrJteh9n87urr5Rgk3eEDnjsk
+ ftrfVEvTu6Hi5DtWqrUXO/eiQNGHTqBnyQDOd2q/v0RBqXPW+tkseGOuQ
+ PN8uSFCkvQhF1gUSDZnS8Yl2eb77fjaOvjscorBhf7I6nE+5uZ1nbgnfD
+ 9GHPBCi9v3XlfZ+JcFaJ4zEaLnIfNd7AXE7bo/2M4IWGBgE4vGaY9JTr3
+ 4DDn6CWAZdLLLQ9m2bVgarn4pIzxTrEeqq11uYTk7PIaRL3uD5EZM24wJ g==;
+X-CSE-ConnectionGUID: wMSUROPMR7aDsDP/bnuyOg==
+X-CSE-MsgGUID: pRjyjOtqRc+u5QV4yBlixQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27741987"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27741987"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 10:30:20 -0700
-X-CSE-ConnectionGUID: Em/J19goQfe+q1T/u0LKrQ==
-X-CSE-MsgGUID: wpOZQ974ScuRl2pzVjSL2g==
+ 30 Apr 2024 10:30:19 -0700
+X-CSE-ConnectionGUID: 4W2D6InDRQ6tUgs7O5n6Gw==
+X-CSE-MsgGUID: P3pOHltnRd6bGDun28MIDA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617846"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617819"
 Received: from invictus.jf.intel.com ([10.165.21.201])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 10:30:21 -0700
+ 30 Apr 2024 10:30:19 -0700
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
+Cc: intel-xe@lists.freedesktop.org, Clint Taylor <clinton.a.taylor@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
  Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Subject: [PATCH v3 12/19] drm/i915/xe2hpd: Do not program MBUS_DBOX BW credits
-Date: Tue, 30 Apr 2024 10:28:43 -0700
-Message-Id: <20240430172850.1881525-13-radhakrishna.sripada@intel.com>
+Subject: [PATCH v3 03/19] drm/i915/xe2hpd: Initial cdclk table
+Date: Tue, 30 Apr 2024 10:28:34 -0700
+Message-Id: <20240430172850.1881525-4-radhakrishna.sripada@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
 References: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,34 +70,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: José Roberto de Souza <jose.souza@intel.com>
+From: Clint Taylor <clinton.a.taylor@intel.com>
 
-No display IP beyond Xe_LPD+ has "BW credits" bits in MBUS_DBOX_CTL
-register. Restrict the programming only to Xe_LPD+.
+Add Xe2_HPD specific CDCLK table and use MTL Funcs.
 
-BSpec: 49213
-CC: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+Bspec: 65243
+CC: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 7c6187b4479f..be9a4712c54e 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3604,7 +3604,7 @@ static void intel_mbus_dbox_update(struct intel_atomic_state *state)
- 	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, new_dbuf_state->active_pipes) {
- 		u32 pipe_val = val;
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 7a833b5f2de2..b78154c82a71 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -1443,6 +1443,14 @@ static const struct intel_cdclk_vals xe2lpd_cdclk_table[] = {
+ 	{}
+ };
  
--		if (DISPLAY_VER(i915) >= 14) {
-+		if (DISPLAY_VER_FULL(i915) == IP_VER(14, 0)) {
- 			if (xelpdp_is_only_pipe_per_dbuf_bank(crtc->pipe,
- 							      new_dbuf_state->active_pipes))
- 				pipe_val |= MBUS_DBOX_BW_8CREDITS_MTL;
++/*
++ * Xe2_HPD always uses the minimal cdclk table from Wa_15015413771
++ */
++static const struct intel_cdclk_vals xe2hpd_cdclk_table[] = {
++	{ .refclk = 38400, .cdclk = 652800, .ratio = 34, .waveform = 0xffff },
++	{}
++};
++
+ static const int cdclk_squash_len = 16;
+ 
+ static int cdclk_squash_divider(u16 waveform)
+@@ -3778,6 +3786,9 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
+ 	if (DISPLAY_VER(dev_priv) >= 20) {
+ 		dev_priv->display.funcs.cdclk = &rplu_cdclk_funcs;
+ 		dev_priv->display.cdclk.table = xe2lpd_cdclk_table;
++	} else if (DISPLAY_VER_FULL(dev_priv) >= IP_VER(14, 1)) {
++		dev_priv->display.funcs.cdclk = &rplu_cdclk_funcs;
++		dev_priv->display.cdclk.table = xe2hpd_cdclk_table;
+ 	} else if (DISPLAY_VER(dev_priv) >= 14) {
+ 		dev_priv->display.funcs.cdclk = &rplu_cdclk_funcs;
+ 		dev_priv->display.cdclk.table = mtl_cdclk_table;
 -- 
 2.34.1
 
