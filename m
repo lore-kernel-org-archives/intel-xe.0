@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5ABF4C25B79
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8666C25B7B
 	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 17:30:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04DAC112D99;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57F0A112D9A;
 	Tue, 30 Apr 2024 17:30:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jT/j0TAs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EiHYZJ87";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 667EE112D78;
- Tue, 30 Apr 2024 17:30:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EFE3112D77;
+ Tue, 30 Apr 2024 17:30:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714498220; x=1746034220;
+ t=1714498221; x=1746034221;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZlHOIHn4Z908dmqXA1gFFCASoKCVHIGInjZToZuEkr4=;
- b=jT/j0TAsHMbeo30IFqgekpBHxoWkBxg/Tp/EO5a67r1Hi4qvRYgT9/rU
- hsthiCbG0eFsOmn9Z2OHKocDJJIVd7jfhb0HLndbMylM1lXox4jy7L2nc
- /Q3GerWa8PwNJj7CYk29U39SyOYY5Lpmmdz1XY9DUHdFmtLYH22gYvg80
- qTNu0vSuJZXMpDpqVYgNSsa3sViynOnSPAx0ZD0Zw9BnVS4BhAahUreGb
- lHD+sx6KGb5fG8cMwPaLUiXeXBiP5o6oVewhC0kCIZJgx7+P6cHG8cqKK
- I+p6z2WUXTcJlULrSbqdRPpr9OpGPnuaRuXs9CUD9LerhKwP6247LJReP g==;
-X-CSE-ConnectionGUID: eoeM2p4bS/SvQwXK2mtN/g==
-X-CSE-MsgGUID: VufilqMBTL2/atkMwVZ3VA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27741991"
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27741991"
+ bh=L23EFbpp/8lafdT3ysklOzFGp7/DGXe33oG5UadcWO4=;
+ b=EiHYZJ87JhUMkNdStWbrF8nrjyiRMpr1bxvFjz/R6F9eObY2gquvW0yc
+ G9W3mgNE13d8E66xSuKFy2cz7r5UzvoFY8xTYDAwb99UBcJDYggIzZ6e6
+ YzXcMBZFdxtuKmOXTuILubx2KhRO0mZznEk06OtpJOA9QUG2EebqcqT+Z
+ Ev0U+q7J28Hm/8R2RAxoRS3JvZWs9axs8YFdhMxOCUMe/l5w4P+D2aP2X
+ 5+pt4oBGQXinz1n46SDdbrB3lqwkBdBYJ+CQ6pfcrzYqvwSkBylEe/DcC
+ ypU+aT/XcKVnWgVzASSAmqZkXEFpppuadnlv8jsw3WmyFqvaCAGTRblFm Q==;
+X-CSE-ConnectionGUID: 1guZNPdNSsaj1Q2TodX44w==
+X-CSE-MsgGUID: T63+/U1pRhGchM/iox3RyA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27742000"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27742000"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 10:30:20 -0700
-X-CSE-ConnectionGUID: I/t7fpmxSm+X5p3BPmjr9g==
-X-CSE-MsgGUID: yzGdAbFOSSavm8Qq030kyg==
+ 30 Apr 2024 10:30:21 -0700
+X-CSE-ConnectionGUID: mTbd3I6SQU6fbMHrPSgrMQ==
+X-CSE-MsgGUID: Z9cQrJNLQoqbhi4h5MZMWA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617831"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617852"
 Received: from invictus.jf.intel.com ([10.165.21.201])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 10:30:20 -0700
+ 30 Apr 2024 10:30:21 -0700
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- Clint Taylor <Clinton.A.Taylor@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
  Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Subject: [PATCH v3 07/19] drm/i915/xe2hpd: Add support for eDP PLL
- configuration
-Date: Tue, 30 Apr 2024 10:28:38 -0700
-Message-Id: <20240430172850.1881525-8-radhakrishna.sripada@intel.com>
+Subject: [PATCH v3 14/19] Revert "drm/i915/dgfx: DGFX uses direct VBT pin
+ mapping"
+Date: Tue, 30 Apr 2024 10:28:45 -0700
+Message-Id: <20240430172850.1881525-15-radhakrishna.sripada@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
 References: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
@@ -71,188 +71,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-Tables for eDP PHY PLL configuration for different link rates added for
-Xe2_HPD. Previous platforms were using C10 PHY for eDP port whereas
-Xe2_HPD has C20 PHY.
+This reverts commit 562f33836f519a235e5c5e71bcc723ab1faccd2f.
+For BMG it seems that the VBT to DDI mapping does not follow DG1, and
+DG2, but follows ADLP mapping given in Bspec:20124.
 
-v2: Updated with a more appropriate Bspec number.
-
-Bspec: 74165
-CC: Clint Taylor <Clinton.A.Taylor@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 147 ++++++++++++++++++-
- 1 file changed, 146 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_bios.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 866b943311f1..d16aab31349f 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -945,6 +945,148 @@ static const struct intel_c20pll_state * const mtl_c20_dp_tables[] = {
- 	NULL,
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 661842a3c2e6..cf770c866d13 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -2231,15 +2231,14 @@ static u8 map_ddc_pin(struct drm_i915_private *i915, u8 vbt_pin)
+ 	const u8 *ddc_pin_map;
+ 	int i, n_entries;
  
-+/*
-+ * eDP link rates with 38.4 MHz reference clock.
-+ */
-+
-+static const struct intel_c20pll_state xe2hpd_c20_edp_r216 = {
-+	.clock = 216000,
-+	.tx = { 0xbe88,
-+		0x4800,
-+		0x0000,
-+		},
-+	.cmn = { 0x0500,
-+		 0x0005,
-+		 0x0000,
-+		 0x0000,
-+		},
-+	.mpllb = { 0x50e1,
-+		   0x2120,
-+		   0x8e18,
-+		   0xbfc1,
-+		   0x9000,
-+		   0x78f6,
-+		   0x0000,
-+		   0x0000,
-+		   0x0000,
-+		   0x0000,
-+		   0x0000,
-+		  },
-+};
-+
-+static const struct intel_c20pll_state xe2hpd_c20_edp_r243 = {
-+	.clock = 243000,
-+	.tx = { 0xbe88,
-+		0x4800,
-+		0x0000,
-+		},
-+	.cmn = { 0x0500,
-+		 0x0005,
-+		 0x0000,
-+		 0x0000,
-+		},
-+	.mpllb = { 0x50fd,
-+		   0x2120,
-+		   0x8f18,
-+		   0xbfc1,
-+		   0xa200,
-+		   0x8814,
-+		   0x2000,
-+		   0x0001,
-+		   0x1000,
-+		   0x0000,
-+		   0x0000,
-+		  },
-+};
-+
-+static const struct intel_c20pll_state xe2hpd_c20_edp_r324 = {
-+	.clock = 324000,
-+	.tx = { 0xbe88,
-+		0x4800,
-+		0x0000,
-+		},
-+	.cmn = { 0x0500,
-+		 0x0005,
-+		 0x0000,
-+		 0x0000,
-+		},
-+	.mpllb = { 0x30a8,
-+		   0x2110,
-+		   0xcd9a,
-+		   0xbfc1,
-+		   0x6c00,
-+		   0x5ab8,
-+		   0x2000,
-+		   0x0001,
-+		   0x6000,
-+		   0x0000,
-+		   0x0000,
-+		  },
-+};
-+
-+static const struct intel_c20pll_state xe2hpd_c20_edp_r432 = {
-+	.clock = 432000,
-+	.tx = { 0xbe88,
-+		0x4800,
-+		0x0000,
-+		},
-+	.cmn = { 0x0500,
-+		 0x0005,
-+		 0x0000,
-+		 0x0000,
-+		},
-+	.mpllb = { 0x30e1,
-+		   0x2110,
-+		   0x8e18,
-+		   0xbfc1,
-+		   0x9000,
-+		   0x78f6,
-+		   0x0000,
-+		   0x0000,
-+		   0x0000,
-+		   0x0000,
-+		   0x0000,
-+		  },
-+};
-+
-+static const struct intel_c20pll_state xe2hpd_c20_edp_r675 = {
-+	.clock = 675000,
-+	.tx = { 0xbe88,
-+		0x4800,
-+		0x0000,
-+		},
-+	.cmn = { 0x0500,
-+		 0x0005,
-+		 0x0000,
-+		 0x0000,
-+		},
-+	.mpllb = { 0x10af,
-+		   0x2108,
-+		   0xce1a,
-+		   0xbfc1,
-+		   0x7080,
-+		   0x5e80,
-+		   0x2000,
-+		   0x0001,
-+		   0x6400,
-+		   0x0000,
-+		   0x0000,
-+		  },
-+};
-+
-+static const struct intel_c20pll_state * const xe2hpd_c20_edp_tables[] = {
-+	&mtl_c20_dp_rbr,
-+	&xe2hpd_c20_edp_r216,
-+	&xe2hpd_c20_edp_r243,
-+	&mtl_c20_dp_hbr1,
-+	&xe2hpd_c20_edp_r324,
-+	&xe2hpd_c20_edp_r432,
-+	&mtl_c20_dp_hbr2,
-+	&xe2hpd_c20_edp_r675,
-+	&mtl_c20_dp_hbr3,
-+	NULL,
-+};
-+
- /*
-  * HDMI link rates with 38.4 MHz reference clock.
-  */
-@@ -2062,7 +2204,10 @@ intel_c20_pll_tables_get(struct intel_crtc_state *crtc_state,
- 			 struct intel_encoder *encoder)
- {
- 	if (intel_crtc_has_dp_encoder(crtc_state))
--		return mtl_c20_dp_tables;
-+		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
-+			return xe2hpd_c20_edp_tables;
-+		else
-+			return mtl_c20_dp_tables;
- 	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
- 		return mtl_c20_hdmi_tables;
- 
+-	if (IS_DGFX(i915))
+-		return vbt_pin;
+-
+ 	if (INTEL_PCH_TYPE(i915) >= PCH_MTL || IS_ALDERLAKE_P(i915)) {
+ 		ddc_pin_map = adlp_ddc_pin_map;
+ 		n_entries = ARRAY_SIZE(adlp_ddc_pin_map);
+ 	} else if (IS_ALDERLAKE_S(i915)) {
+ 		ddc_pin_map = adls_ddc_pin_map;
+ 		n_entries = ARRAY_SIZE(adls_ddc_pin_map);
++	} else if (INTEL_PCH_TYPE(i915) >= PCH_DG1) {
++		return vbt_pin;
+ 	} else if (IS_ROCKETLAKE(i915) && INTEL_PCH_TYPE(i915) == PCH_TGP) {
+ 		ddc_pin_map = rkl_pch_tgp_ddc_pin_map;
+ 		n_entries = ARRAY_SIZE(rkl_pch_tgp_ddc_pin_map);
 -- 
 2.34.1
 
