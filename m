@@ -4,86 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10224C4345F
-	for <intel-xe@archiver.kernel.org>; Wed,  1 May 2024 16:45:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AE9CC10F1A
+	for <intel-xe@archiver.kernel.org>; Wed,  1 May 2024 16:45:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D0E010F135;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C85A4112381;
 	Wed,  1 May 2024 16:45:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="XsJNzxxe";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="Ocmke1vm";
 	dkim-atps=neutral
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com
- [209.85.221.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02267112E69
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Apr 2024 18:57:52 +0000 (UTC)
-Received: by mail-wr1-f48.google.com with SMTP id
- ffacd0b85a97d-34ca50999cdso179242f8f.2
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Apr 2024 11:57:52 -0700 (PDT)
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
+ [209.85.221.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECA3C10E11F
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Apr 2024 13:30:01 +0000 (UTC)
+Received: by mail-wr1-f50.google.com with SMTP id
+ ffacd0b85a97d-34cba0d9a3eso143333f8f.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Apr 2024 06:30:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1714503471; x=1715108271; darn=lists.freedesktop.org; 
+ d=ffwll.ch; s=google; t=1714483800; x=1715088600; darn=lists.freedesktop.org; 
  h=in-reply-to:content-transfer-encoding:content-disposition
  :mime-version:references:message-id:subject:cc:to:from:date:from:to
  :cc:subject:date:message-id:reply-to;
- bh=mf09Ii49RKqdZdRDBWZ+S2qAns/t9VUczc0KsSwX7Dg=;
- b=XsJNzxxedHrwpDjQqsuZQH9WGYShgmKzMx9FdgfMsS1XrzU9XPXft2LlX7H8+iwWq6
- 29nuhf+QJyQ3ix8zC0otKnF/iZvVcc2UpUE4gpHHVdoGXyNx8cwHelERfz41n3TQa+ZL
- 9lJ0+VnQDwvS43N3pEzLQ4AJj5vsTvYGeD6n0=
+ bh=fez5FshotDgqPDjvhQ+Fu0cD6X/ZgD5uxwNqXUp1qVI=;
+ b=Ocmke1vmIFjrdg3mMMjfgsjwYfOx7ymseRur4LvLB5aVppJyinNF8TcckVYXW5IKSS
+ Wdt1HIh+aQoQGWbH6lM2r58XRPkBdGu5y7nioFU3qEr1wPfP7bQvJtGIak/korwgn+yq
+ wICo1dmA/XxNqEJYHusciN9keRK78Q2rfaRmQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1714503471; x=1715108271;
+ d=1e100.net; s=20230601; t=1714483800; x=1715088600;
  h=in-reply-to:content-transfer-encoding:content-disposition
  :mime-version:references:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=mf09Ii49RKqdZdRDBWZ+S2qAns/t9VUczc0KsSwX7Dg=;
- b=NxKbwYVBei8i3iYAuFJTkM3SPvIwA3h9EQj+WAXmfdeeOvqb8iGVMgDw5/p/DHrBQG
- HQQsT/H0VoM8/iE/B4gnrgTjZ7ehmX357xp9eM9JpsoTiMRzwwLBJGaFuvtRr5tk18T7
- 6HUlBf7+cyZIurcYJusQME/Dyesj4W5/iqpx1f6pB8APUUbKU0/EoaepcS4J3SjeqE+A
- cuiY92fS7/1OVtIvFS0wTrvlapwanZN4umn2ZdOw44XxnZOF50K1GJXzadPvjjphsVLt
- x2Imi+ga6VMgD9EfCPnFCQDHaYCOiAxMJXaCpEyIA7fLWIcjqdUuPaEruudZWLjfQf45
- FAFQ==
+ bh=fez5FshotDgqPDjvhQ+Fu0cD6X/ZgD5uxwNqXUp1qVI=;
+ b=nXc+v5AXc2aASKllFviVJ2UnqxjTTkVYCODIY+mp/fxAK0Zg56RorO4SwNvVZqpXx6
+ VVvgFE1QSIANzE3Dw0hVVXqwx+79HLd1hbRC8Yk5uw9TEeCKZ/aDVerFNQuUPZL5yIap
+ AHlAV6632AVFuH0w7qT346KyfLFGpKRqMD2iiJ6tE5brHabbqXEkJEwQOq8hFrwWz91Q
+ YtAxxIdZlf48ZNTUeE0X7zmMDHid/8ODVFbRRY53fRnnBTvNl1JM38DavrUsyb2jOXry
+ cSY2M2+2gJPVJivY22smRq3jyI1JO2WbNhQ4IA99/E3M96Gpx7HFCTcUHtmk9+Uug3/s
+ Intg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXuq+Oy78uuutkJOUnq/xXEtn1pNOJAI9JEe7PHZlLDeiJwQDuN7EaySMO1NlSu4OgZqzwtaT0ba+UzmnM4Cq2zoVmvWdGQGLtee88J4CQ=
-X-Gm-Message-State: AOJu0Ywzncg2ktfNURQPX82e1j3ppVGsRJa14ydhgjJNDlovrFLqz05J
- yz3IyMVuScoxBfQ9nBlK08capIRSrPQbq0AJNfRX6qlwk0fcdM9odPBKC5nyQHU=
-X-Google-Smtp-Source: AGHT+IHNugruTVr76jvzG+rzeMeBpbbnChG2sXKsYk0c94q64l07t5rbWRrIDWL9Zec55jKEwv6onw==
-X-Received: by 2002:a05:600c:3b08:b0:41a:c4fe:b0a5 with SMTP id
- m8-20020a05600c3b0800b0041ac4feb0a5mr259777wms.4.1714503471037; 
- Tue, 30 Apr 2024 11:57:51 -0700 (PDT)
+ AJvYcCWJvxWKvIHBcZV4ahHcb82BjjilVR24YAWJYbEDKpCMkJTH8ZcBoWyMFpFjWkF0u++Nhz3U0oNiwNoiNPX4ubEfkKZzwvC5XFZ+8wTYh1M=
+X-Gm-Message-State: AOJu0Yza2hjIBBX099TmNT5qQMaB4YR/CsRMbzXRsYr0JVvJWSqLrrLk
+ LARB67chA70z62dUm2Vy4jDLtaQMbU0jDzl2HVvTD63V2xOIfWwGouETa0vA/2o=
+X-Google-Smtp-Source: AGHT+IFmbGrzLzdSJErP57jfvCCVh2UEsqJMRXiZGVi1oiQjBg8XcIdJ+s3HYYHCYAEmSC4Q8wG06w==
+X-Received: by 2002:a5d:6903:0:b0:34d:b05b:c784 with SMTP id
+ t3-20020a5d6903000000b0034db05bc784mr230849wru.7.1714483799960; 
+ Tue, 30 Apr 2024 06:29:59 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
  by smtp.gmail.com with ESMTPSA id
- j42-20020a05600c1c2a00b0041bfa2171efsm11844484wms.40.2024.04.30.11.57.50
+ g7-20020a05600c4ec700b0041c14061c71sm9546207wmq.15.2024.04.30.06.29.59
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Apr 2024 11:57:50 -0700 (PDT)
-Date: Tue, 30 Apr 2024 20:57:48 +0200
+ Tue, 30 Apr 2024 06:29:59 -0700 (PDT)
+Date: Tue, 30 Apr 2024 15:29:57 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- "Zeng, Oak" <oak.zeng@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Brost, Matthew" <matthew.brost@intel.com>,
- "Welty, Brian" <brian.welty@intel.com>,
- "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
- "Bommu, Krishnaiah" <krishnaiah.bommu@intel.com>,
- "Vishwanathapura, Niranjana" <niranjana.vishwanathapura@intel.com>,
- Leon Romanovsky <leon@kernel.org>
-Subject: Re: [PATCH 06/23] drm/xe/svm: Introduce a helper to build sg table
- from hmm range
-Message-ID: <ZjE_LJ7AFFQk0Eep@phenom.ffwll.local>
-References: <SA1PR11MB6991EDB4351D99B4E76EBC2992112@SA1PR11MB6991.namprd11.prod.outlook.com>
- <20240424134840.GJ941030@nvidia.com>
- <SA1PR11MB699102978E72F21E6C803D6392102@SA1PR11MB6991.namprd11.prod.outlook.com>
- <20240425010520.GW941030@nvidia.com>
- <65cb3984309d377d6e7d57cb6567473c8a83ed78.camel@linux.intel.com>
- <20240426120047.GX941030@nvidia.com>
- <ad82f95ee29ada403459416d4c97c2b9083b5a0f.camel@linux.intel.com>
- <20240426163519.GZ941030@nvidia.com>
- <f938dc8f7309ae833e02ccdbc72134df0607dfa4.camel@linux.intel.com>
- <20240430173002.GV941030@nvidia.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ aravind.iddamsetty@linux.intel.com, michal.winiarski@intel.com,
+ intel-xe@lists.freedesktop.org,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Subject: drmm vs devm (was Re: [PATCH 2/8] drm/xe: covert sysfs over to devm)
+Message-ID: <ZjDyVfJ1QFKQlG_4@phenom.ffwll.local>
+References: <20240429121436.33013-9-matthew.auld@intel.com>
+ <20240429121436.33013-10-matthew.auld@intel.com>
+ <Zi-gYDEFzI_bXCzP@intel.com>
+ <wtqag5pd5plbiubuhypzdr7jitxutcfbft2xtchwx3fbf4zzfm@pmokwtkmlnf4>
+ <2b6f8692-79ad-4976-99ae-c2b227b893d9@intel.com>
+ <Zi_qxhMrrlUc7hBz@intel.com>
+ <7ik4xh7hncw6h62zvmv7vr43a3aedn3ft7sxv4xjvnf3glf2g6@h72yiizlvqje>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240430173002.GV941030@nvidia.com>
+In-Reply-To: <7ik4xh7hncw6h62zvmv7vr43a3aedn3ft7sxv4xjvnf3glf2g6@h72yiizlvqje>
 X-Operating-System: Linux phenom 6.6.15-amd64 
 X-Mailman-Approved-At: Wed, 01 May 2024 16:45:06 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -100,46 +91,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Apr 30, 2024 at 02:30:02PM -0300, Jason Gunthorpe wrote:
-> On Mon, Apr 29, 2024 at 10:25:48AM +0200, Thomas Hellström wrote:
+Adding dri-devel because this is kinda more important.
+
+On Mon, Apr 29, 2024 at 04:28:42PM -0500, Lucas De Marchi wrote:
+> On Mon, Apr 29, 2024 at 02:45:26PM GMT, Rodrigo Vivi wrote:
+> > On Mon, Apr 29, 2024 at 04:17:54PM +0100, Matthew Auld wrote:
+> > > On 29/04/2024 14:52, Lucas De Marchi wrote:
+> > > > On Mon, Apr 29, 2024 at 09:28:00AM GMT, Rodrigo Vivi wrote:
+> > > > > On Mon, Apr 29, 2024 at 01:14:38PM +0100, Matthew Auld wrote:
+> > > > > > Hotunplugging the device seems to result in stuff like:
+> > > > > >
+> > > > > > kobject_add_internal failed for tile0 with -EEXIST, don't try to
+> > > > > > register things with the same name in the same directory.
+> > > > > >
+> > > > > > We only remove the sysfs as part of drmm, however that is tied to the
+> > > > > > lifetime of the driver instance and not the device underneath. Attempt
+> > > > > > to fix by using devm for all of the remaining sysfs stuff related to the
+> > > > > > device.
+> > > > >
+> > > > > hmmm... so basically we should use the drmm only for the global module
+> > > > > stuff and the devm for things that are per device?
+> > > >
+> > > > that doesn't make much sense. drmm is supposed to run when the driver
+> > > > unbinds from the device... basically when all refcounts are gone with
+> > > > drm_dev_put().  Are we keeping a ref we shouldn't?
+> > > 
+> > > It's run when all refcounts are dropped for that particular drm_device, but
+> > > that is separate from the physical device underneath (struct device). For
+> > > example if something has an open driver fd the drmm release action is not
+> > > going to be called until after that is also closed. But in the meantime we
+> > > might have already removed the pci device and re-attached it to a newly
+> > > allocated drm_device/xe_driver instance, like with hotunplug.
+> > > 
+> > > For example, currently we don't even call basic stuff like guc_fini() etc.
+> > > when removing the pci device, but rather when the drm_device is released,
+> > > which sounds quite broken.
+> > > 
+> > > So roughly drmm is for drm_device software level stuff and devm is for stuff
+> > > that needs to happen when removing the device. See also the doc for drmm:
+> > > https://elixir.bootlin.com/linux/v6.8-rc1/source/drivers/gpu/drm/drm_managed.c#L23
+> > > 
+> > > Also: https://docs.kernel.org/gpu/drm-uapi.html#device-hot-unplug
 > 
-> > > Yes there is another common scheme where you bind a window of CPU to
-> > > a
-> > > window on the device and mirror a fixed range, but this is a quite
-> > > different thing. It is not SVA, it has a fixed range, and it is
-> > > probably bound to a single GPU VMA in a multi-VMA device page table.
+> yeah... I think you convinced me
+
+So rule of thumb:
+
+- devm is for hardware stuff, so like removeing pci mmaps, releasing
+  interrupt handlers, cleaning up anything hw related. Because after devm
+  respective driver unbind, all that stuff is gone, _even_ when you hold
+  onto a struct device reference. Because all that struct device
+  reference guarantees is that the software structure stays around as a
+  valid memory reference.
+
+- devm is also for remove uapi. Unfortunately we're not quite at the world
+  where devm_drm_dev_register is possible, because on the unload side that
+  must be done first, and there's still a few things drivers need to do
+  after that which isn't fully devm/drmm-ified.
+
+- drmm is for anything software related, so data structures and stuff like
+  that. If you have a devm_kmalloc, you very, very likely have a bug. This
+  is were you tear down all your software datastructures, which means if
+  you have that interleaved with the hw teardown in e.g. guc_fini you have
+  some serious work cut out for you. drmm stuff is tied to the drm_device
+  lifetime as the core drm uapi interface thing which might stick around
+  for much longer than the drm_dev_unregister.
+
+- Finally, when going from the sw side to hw side you must wrap such
+  access with drm_dev_enter/exit, or you have races. This is also where
+  using drmm and devm for everything really helps, because it gives you a
+  very strong hint when you're going from the sw world to the hw world.
+
+  As an example, all the callbacks on the various kms objects are in the
+  sw world (so need to be cleaned up with drmm), but the moment you access
+  hw (e.g. any mmio) you need to protect that with a drm_dev_enter/exit
+
+Using devm for everything means you have a use-after-free on the sw side,
+otoh using devm means you have use-after-free on the hw side (like a
+physical hotunplug might reallocate your mmio range to another thunderbolt
+device that has been plugged in meanwhile).
+
+It's definitely big time fun all around :-/
+
+Oh also, please help improve the docs on this stuff, I'm trying to make
+sure it's all there and ideally the various pieces link to the other
+parts, but it's tricky and I understand this stuff to much to spot the
+gaps ...
+
+Cheers, Sima
+
+> 
 > > 
-> > And this above here is exactly what we're implementing, and the GPU
-> > page-tables are populated using device faults. Regions (large) of the
-> > mirrored CPU mm need to coexist in the same GPU vm as traditional GPU
-> > buffer objects.
+> > Cc: Aravind and Michal since this likely relates to the FLR discussion...
+> > 
+> > but it looks to me that we should move more towards the devm_ and limit
+> > the usage of drmm_ to some very specific cases...
 > 
-> Well, not really, if that was the case you'd have a single VMA over
-> the entire bound range, not dynamically create them.
+> agreed,
 > 
-> A single VMA that uses hmm_range_fault() to populate the VM is
-> completely logical.
+> Lucas De Marchi
 > 
-> Having a hidden range of mm binding and then creating/destroying 2M
-> VMAs dynamicaly is the thing that doesn't make alot of sense.
+> > 
+> > > 
+> > > >
+> > > > Lucas De Marchi
 
-I only noticed this thread now but fyi I did dig around in the
-implementation and it's summarily an absolute no-go imo for multiple
-reasons. It starts with this approach of trying to mirror cpu vma (which I
-think originated from amdkfd) leading to all kinds of locking fun, and
-then it gets substantially worse when you dig into the details.
-
-I think until something more solid shows up you can just ignore this. I do
-fully agree that for sva the main mirroring primitive needs to be page
-centric, so dma_map_sg. There's a bit a question around how to make the
-necessary batching efficient and the locking/mmu_interval_notifier scale
-enough, but I had some long chats with Thomas and I think there's enough
-option to spawn pretty much any possible upstream consensus. So I'm not
-worried.
-
-But first this needs to be page-centric in the fundamental mirroring
-approach.
--Sima
 -- 
 Daniel Vetter
 Software Engineer, Intel Corporation
