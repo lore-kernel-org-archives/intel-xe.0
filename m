@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94C92C19F4F
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 17:30:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5ABF4C25B79
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 17:30:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 333A2112D9C;
-	Tue, 30 Apr 2024 17:30:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04DAC112D99;
+	Tue, 30 Apr 2024 17:30:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ith01XyG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jT/j0TAs";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0727112D77;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 667EE112D78;
  Tue, 30 Apr 2024 17:30:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714498221; x=1746034221;
+ t=1714498220; x=1746034220;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/+VBzGnypk4oxe/lNfyLahnlabWNZOFRngex1oHT6dA=;
- b=ith01XyG7pJMMEqFJquGCzFM6k4O7NTkCyzc5/U8wXiJWfJHNlsbNtSy
- CSqAbu96/IinS8llT8yr/MpgTpaKptd8LQfJaddtfq9FySuKh9g1xf5k5
- WTPi9Obv5BZGPvTCCoNX5rn2ndL8Rx4gzo+mQE0tsQx7dGuaSR8U1MWj8
- BI6dpeagbDrGQ0YkyMuvohtNfRu93AW+Mqr3ikdnODFvu8asdLB49dlji
- +JIl5AP1fnnURpYqZ33C5RfO/OD4eLrIBuP8Cipkt4CiJ6KoE0ceoYX3B
- c2RgYVAUM4fzrmuWFsn8NGloDd5xwbkJps7NX2hJTG9ByFKXk+134TcpO g==;
-X-CSE-ConnectionGUID: kRv51r7mSdGqJKKcIkt+6A==
-X-CSE-MsgGUID: hOw21rwvQB680PzeimaUpA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27741995"
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27741995"
+ bh=ZlHOIHn4Z908dmqXA1gFFCASoKCVHIGInjZToZuEkr4=;
+ b=jT/j0TAsHMbeo30IFqgekpBHxoWkBxg/Tp/EO5a67r1Hi4qvRYgT9/rU
+ hsthiCbG0eFsOmn9Z2OHKocDJJIVd7jfhb0HLndbMylM1lXox4jy7L2nc
+ /Q3GerWa8PwNJj7CYk29U39SyOYY5Lpmmdz1XY9DUHdFmtLYH22gYvg80
+ qTNu0vSuJZXMpDpqVYgNSsa3sViynOnSPAx0ZD0Zw9BnVS4BhAahUreGb
+ lHD+sx6KGb5fG8cMwPaLUiXeXBiP5o6oVewhC0kCIZJgx7+P6cHG8cqKK
+ I+p6z2WUXTcJlULrSbqdRPpr9OpGPnuaRuXs9CUD9LerhKwP6247LJReP g==;
+X-CSE-ConnectionGUID: eoeM2p4bS/SvQwXK2mtN/g==
+X-CSE-MsgGUID: VufilqMBTL2/atkMwVZ3VA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27741991"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27741991"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Apr 2024 10:30:20 -0700
-X-CSE-ConnectionGUID: YNvq/15fTOWPxrNrJglleQ==
-X-CSE-MsgGUID: oy34lVeuS9GX7K0sytMZlg==
+X-CSE-ConnectionGUID: I/t7fpmxSm+X5p3BPmjr9g==
+X-CSE-MsgGUID: yzGdAbFOSSavm8Qq030kyg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617840"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617831"
 Received: from invictus.jf.intel.com ([10.165.21.201])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Apr 2024 10:30:20 -0700
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
- Anusha Srivatsa <anusha.srivatsa@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
+ Clint Taylor <Clinton.A.Taylor@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
  Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Subject: [PATCH v3 10/19] drm/i915/xe2hpd: Configure CHICKEN_MISC_2 before
- enabling planes
-Date: Tue, 30 Apr 2024 10:28:41 -0700
-Message-Id: <20240430172850.1881525-11-radhakrishna.sripada@intel.com>
+Subject: [PATCH v3 07/19] drm/i915/xe2hpd: Add support for eDP PLL
+ configuration
+Date: Tue, 30 Apr 2024 10:28:38 -0700
+Message-Id: <20240430172850.1881525-8-radhakrishna.sripada@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
 References: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
@@ -71,49 +71,188 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 
-Add step 9 from initialize display sequence.
+Tables for eDP PHY PLL configuration for different link rates added for
+Xe2_HPD. Previous platforms were using C10 PHY for eDP port whereas
+Xe2_HPD has C20 PHY.
 
-v2: Commit subject improved
+v2: Updated with a more appropriate Bspec number.
 
-Bpsec: 49189
-Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Bspec: 74165
+CC: Clint Taylor <Clinton.A.Taylor@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power.c | 4 ++++
- drivers/gpu/drm/i915/i915_reg.h                    | 1 +
- 2 files changed, 5 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 147 ++++++++++++++++++-
+ 1 file changed, 146 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 03dc7edcc443..a860d88a65da 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -1688,6 +1688,10 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
- 	if (IS_DG2(dev_priv))
- 		intel_snps_phy_wait_for_calibration(dev_priv);
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 866b943311f1..d16aab31349f 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -945,6 +945,148 @@ static const struct intel_c20pll_state * const mtl_c20_dp_tables[] = {
+ 	NULL,
+ };
  
-+	/* 9. XE2_HPD: Program CHICKEN_MISC_2 before any cursor or planes are enabled */
-+	if (DISPLAY_VER_FULL(dev_priv) == IP_VER(14, 1))
-+		intel_de_rmw(dev_priv, CHICKEN_MISC_2, BMG_DARB_HALF_BLK_END_BURST, 1);
++/*
++ * eDP link rates with 38.4 MHz reference clock.
++ */
 +
- 	if (resume)
- 		intel_dmc_load_program(dev_priv);
++static const struct intel_c20pll_state xe2hpd_c20_edp_r216 = {
++	.clock = 216000,
++	.tx = { 0xbe88,
++		0x4800,
++		0x0000,
++		},
++	.cmn = { 0x0500,
++		 0x0005,
++		 0x0000,
++		 0x0000,
++		},
++	.mpllb = { 0x50e1,
++		   0x2120,
++		   0x8e18,
++		   0xbfc1,
++		   0x9000,
++		   0x78f6,
++		   0x0000,
++		   0x0000,
++		   0x0000,
++		   0x0000,
++		   0x0000,
++		  },
++};
++
++static const struct intel_c20pll_state xe2hpd_c20_edp_r243 = {
++	.clock = 243000,
++	.tx = { 0xbe88,
++		0x4800,
++		0x0000,
++		},
++	.cmn = { 0x0500,
++		 0x0005,
++		 0x0000,
++		 0x0000,
++		},
++	.mpllb = { 0x50fd,
++		   0x2120,
++		   0x8f18,
++		   0xbfc1,
++		   0xa200,
++		   0x8814,
++		   0x2000,
++		   0x0001,
++		   0x1000,
++		   0x0000,
++		   0x0000,
++		  },
++};
++
++static const struct intel_c20pll_state xe2hpd_c20_edp_r324 = {
++	.clock = 324000,
++	.tx = { 0xbe88,
++		0x4800,
++		0x0000,
++		},
++	.cmn = { 0x0500,
++		 0x0005,
++		 0x0000,
++		 0x0000,
++		},
++	.mpllb = { 0x30a8,
++		   0x2110,
++		   0xcd9a,
++		   0xbfc1,
++		   0x6c00,
++		   0x5ab8,
++		   0x2000,
++		   0x0001,
++		   0x6000,
++		   0x0000,
++		   0x0000,
++		  },
++};
++
++static const struct intel_c20pll_state xe2hpd_c20_edp_r432 = {
++	.clock = 432000,
++	.tx = { 0xbe88,
++		0x4800,
++		0x0000,
++		},
++	.cmn = { 0x0500,
++		 0x0005,
++		 0x0000,
++		 0x0000,
++		},
++	.mpllb = { 0x30e1,
++		   0x2110,
++		   0x8e18,
++		   0xbfc1,
++		   0x9000,
++		   0x78f6,
++		   0x0000,
++		   0x0000,
++		   0x0000,
++		   0x0000,
++		   0x0000,
++		  },
++};
++
++static const struct intel_c20pll_state xe2hpd_c20_edp_r675 = {
++	.clock = 675000,
++	.tx = { 0xbe88,
++		0x4800,
++		0x0000,
++		},
++	.cmn = { 0x0500,
++		 0x0005,
++		 0x0000,
++		 0x0000,
++		},
++	.mpllb = { 0x10af,
++		   0x2108,
++		   0xce1a,
++		   0xbfc1,
++		   0x7080,
++		   0x5e80,
++		   0x2000,
++		   0x0001,
++		   0x6400,
++		   0x0000,
++		   0x0000,
++		  },
++};
++
++static const struct intel_c20pll_state * const xe2hpd_c20_edp_tables[] = {
++	&mtl_c20_dp_rbr,
++	&xe2hpd_c20_edp_r216,
++	&xe2hpd_c20_edp_r243,
++	&mtl_c20_dp_hbr1,
++	&xe2hpd_c20_edp_r324,
++	&xe2hpd_c20_edp_r432,
++	&mtl_c20_dp_hbr2,
++	&xe2hpd_c20_edp_r675,
++	&mtl_c20_dp_hbr3,
++	NULL,
++};
++
+ /*
+  * HDMI link rates with 38.4 MHz reference clock.
+  */
+@@ -2062,7 +2204,10 @@ intel_c20_pll_tables_get(struct intel_crtc_state *crtc_state,
+ 			 struct intel_encoder *encoder)
+ {
+ 	if (intel_crtc_has_dp_encoder(crtc_state))
+-		return mtl_c20_dp_tables;
++		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
++			return xe2hpd_c20_edp_tables;
++		else
++			return mtl_c20_dp_tables;
+ 	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+ 		return mtl_c20_hdmi_tables;
  
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index beed2b97d4b2..962c1b307bde 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3792,6 +3792,7 @@
- 
- #define CHICKEN_MISC_2		_MMIO(0x42084)
- #define   CHICKEN_MISC_DISABLE_DPT	REG_BIT(30) /* adl,dg2 */
-+#define   BMG_DARB_HALF_BLK_END_BURST	REG_BIT(27)
- #define   KBL_ARB_FILL_SPARE_14		REG_BIT(14)
- #define   KBL_ARB_FILL_SPARE_13		REG_BIT(13)
- #define   GLK_CL2_PWR_DOWN		REG_BIT(12)
 -- 
 2.34.1
 
