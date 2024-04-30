@@ -4,54 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92934C25B5C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B53BDC25B73
 	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 17:30:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 286AA112D92;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 489EB112D94;
 	Tue, 30 Apr 2024 17:30:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SAcNFm8s";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ilp7PBAf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D34C8112D76;
- Tue, 30 Apr 2024 17:30:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FCCC112D73;
+ Tue, 30 Apr 2024 17:30:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714498219; x=1746034219;
+ t=1714498220; x=1746034220;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5HzJm4GT4INborqvKvQvE+N+FeItI1VA49CQYkUMHck=;
- b=SAcNFm8s8nxuFOKy5JK4YmU/gwVya23SuEs+jMt+GQ0kaeGITcx1H+OG
- fX91fwyFgqb0aOiZrsuTNdP+Mv1J9K7OKycVMianQDiw3P5d5+7gcQ2vu
- tZzQWgnwtVSESk9TLfj3dJtH8Eu6Nn0XuM01HHpKc+njuBU+0NDSLqmmD
- U3DmQgOA6VaqyB1f818UN6NEEyHkJYoeO+KGvrs6ePOry/Y5MEDSWU9Hf
- VYJab+nfGPDI9Z1MTv3GiFpL9a5spMv6SrEtI/G+E+xtJhOCOwXAAh1U0
- iBC/kCQzwzC7FPekOL41uLuu0e64pcAYz4V1mdqo5xgkmFdGqeewYHTGg A==;
-X-CSE-ConnectionGUID: S5oeyzj1Q7Oje9KPf/eDmw==
-X-CSE-MsgGUID: zcZTfWNeRfqUIRXN5duasw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27741983"
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27741983"
+ bh=omm6ZvRnGPcvkeKmE2v3Y/SH1p3kTyXwWZgil+QRFBI=;
+ b=ilp7PBAfz5eTRvoDLFWFHx7unrirhnQJYUPUQH9y/J/JVOTqWGzfSXme
+ Xxfzz2J+vfNXhSzwqOzUn4sONWGOxMqK13IBOXRSYLF0tPYEJAI4SB7Xj
+ t95NSV4ByMHGK9e6WfwvmTbpL1VFKbd0VfyWMRmn7Y8TC2yxJtptHKewl
+ 0mP7iuwi1M8Jf9CQZ1tN6ysSCM0IKRcTXpNQTAWyGx7YKE7adlMQN6VaT
+ wRxRnuN1m5ndjiQ4P26Vmeu5SB+RA0g9/pAhUJsDsjNR8XXWCDU2GDNGf
+ pjzl2+6DVricMd2pAgDJA5GWc/9hLvjw2dLQWtdCiyiGzpenArBHP8/9W A==;
+X-CSE-ConnectionGUID: L2ijmq32SgulQc0DVXfiYA==
+X-CSE-MsgGUID: yohyRKc6Rc+R+IiYOoOvgA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27741988"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27741988"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 10:30:18 -0700
-X-CSE-ConnectionGUID: pOdfV7DvR/KTfqrQL8Q5aw==
-X-CSE-MsgGUID: oFYb2qbqR067lkSmhRq6+w==
+ 30 Apr 2024 10:30:19 -0700
+X-CSE-ConnectionGUID: xqR32Z/qTIGiSw6Rp2pQoA==
+X-CSE-MsgGUID: 3z5Ktu0aR9ymmXGfgnT+dQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617813"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617822"
 Received: from invictus.jf.intel.com ([10.165.21.201])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Apr 2024 10:30:19 -0700
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Clint Taylor <clinton.a.taylor@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
+Cc: intel-xe@lists.freedesktop.org,
+ Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Subject: [PATCH v3 01/19] drm/i915/bmg: Lane reversal requires writes to both
- context lanes
-Date: Tue, 30 Apr 2024 10:28:32 -0700
-Message-Id: <20240430172850.1881525-2-radhakrishna.sripada@intel.com>
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH v3 04/19] drm/i915/bmg: Extend DG2 tc check to future
+Date: Tue, 30 Apr 2024 10:28:35 -0700
+Message-Id: <20240430172850.1881525-5-radhakrishna.sripada@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
 References: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
@@ -71,66 +69,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Clint Taylor <clinton.a.taylor@intel.com>
+Discrete cards use the Port numbers TC1-4 for the offsets. The regular
+flow for type-c subsystem port initialization can be skipped. This check
+is present in DG2. Extend this to future discrete products.
 
-Write both CX0 Lanes for Context Toggle for all except TC pin assignment D.
-
-v2: Update title(RK)
-Bspec: 64539
-CC: Jani Nikula <jani.nikula@linux.intel.com>
-Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 8e3b13884bb8..9930fa7313e4 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2337,7 +2337,7 @@ static void intel_c20_pll_program(struct drm_i915_private *i915,
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index f45e5f02096d..00e583fc2a8c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1893,11 +1893,10 @@ bool intel_phy_is_combo(struct drm_i915_private *dev_priv, enum phy phy)
+ bool intel_phy_is_tc(struct drm_i915_private *dev_priv, enum phy phy)
  {
- 	const struct intel_c20pll_state *pll_state = &crtc_state->dpll_hw_state.cx0pll.c20;
- 	bool dp = false;
--	int lane = crtc_state->lane_count > 2 ? INTEL_CX0_BOTH_LANES : INTEL_CX0_LANE0;
-+	u8 owned_lane_mask = intel_cx0_get_owned_lane_mask(encoder);
- 	u32 clock = crtc_state->port_clock;
- 	bool cntx;
- 	int i;
-@@ -2402,19 +2402,19 @@ static void intel_c20_pll_program(struct drm_i915_private *i915,
- 	}
- 
- 	/* 4. Program custom width to match the link protocol */
--	intel_cx0_rmw(encoder, lane, PHY_C20_VDR_CUSTOM_WIDTH,
-+	intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_WIDTH,
- 		      PHY_C20_CUSTOM_WIDTH_MASK,
- 		      PHY_C20_CUSTOM_WIDTH(intel_get_c20_custom_width(clock, dp)),
- 		      MB_WRITE_COMMITTED);
- 
- 	/* 5. For DP or 6. For HDMI */
- 	if (dp) {
--		intel_cx0_rmw(encoder, lane, PHY_C20_VDR_CUSTOM_SERDES_RATE,
-+		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
- 			      BIT(6) | PHY_C20_CUSTOM_SERDES_MASK,
- 			      BIT(6) | PHY_C20_CUSTOM_SERDES(intel_c20_get_dp_rate(clock)),
- 			      MB_WRITE_COMMITTED);
- 	} else {
--		intel_cx0_rmw(encoder, lane, PHY_C20_VDR_CUSTOM_SERDES_RATE,
-+		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
- 			      BIT(7) | PHY_C20_CUSTOM_SERDES_MASK,
- 			      is_hdmi_frl(clock) ? BIT(7) : 0,
- 			      MB_WRITE_COMMITTED);
-@@ -2428,7 +2428,7 @@ static void intel_c20_pll_program(struct drm_i915_private *i915,
- 	 * 7. Write Vendor specific registers to toggle context setting to load
- 	 * the updated programming toggle context bit
+ 	/*
+-	 * DG2's "TC1", although TC-capable output, doesn't share the same flow
+-	 * as other platforms on the display engine side and rather rely on the
+-	 * SNPS PHY, that is programmed separately
++	 * Discrete GPU phy's are not attached to FIA's to support TC
++	 * subsystem Legacy or non-legacy, and only support native DP/HDMI
  	 */
--	intel_cx0_rmw(encoder, lane, PHY_C20_VDR_CUSTOM_SERDES_RATE,
-+	intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
- 		      BIT(0), cntx ? 0 : 1, MB_WRITE_COMMITTED);
- }
+-	if (IS_DG2(dev_priv))
++	if (IS_DGFX(dev_priv))
+ 		return false;
  
+ 	if (DISPLAY_VER(dev_priv) >= 13)
 -- 
 2.34.1
 
