@@ -4,32 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FC89C25B5C
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 17:39:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BB68C10F16
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 17:39:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE6B1112DB9;
-	Tue, 30 Apr 2024 17:39:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFF5A112DBE;
+	Tue, 30 Apr 2024 17:39:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="DNkzmr1C";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="htzZoJSb";
 	dkim-atps=neutral
 Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id EC905112DA5;
- Tue, 30 Apr 2024 17:39:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4E6ED112DC0;
+ Tue, 30 Apr 2024 17:39:54 +0000 (UTC)
 Received: from rrs24-12-35.corp.microsoft.com (unknown [131.107.174.176])
- by linux.microsoft.com (Postfix) with ESMTPSA id 9EB0421112E0;
- Tue, 30 Apr 2024 10:39:50 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 9EB0421112E0
+ by linux.microsoft.com (Postfix) with ESMTPSA id 11AB1210FBDF;
+ Tue, 30 Apr 2024 10:39:54 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 11AB1210FBDF
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1714498790;
- bh=/C508Sgc5oG8dRgGNlpHGKxQcys75NzfRyiOW8pPq1o=;
+ s=default; t=1714498794;
+ bh=2awojmCcrYHSFAnzLGFfwPsc4GsaxB9Ca4K7Bj7Q+lE=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=DNkzmr1C/EnkLCcDNNYihg2fh0da5zLqJAsLHzYtB0smxEDrfjowi+AoYOWwUst2z
- SZxNGBflu1zmRaW4GbdGdCz2HjtQe5jiDjunU2jjb1ghTmSGAs3McJTyqrganfYWti
- BI5R6Y7dS67uecXImkyhykdw3AqSOg8sRr98RejQ=
+ b=htzZoJSbHITKCfrlx0PrPnJqdtP5WYr7h24RYyEYAs6vX5eMEtybpbvPsPzR3n17n
+ l/nKf8va3DuUcIzMxRn9yT10jenrOLykbJqkYunzZfnpT12aDkB021UtCJ0Xp7jKUy
+ O1N4belG+yi3RuxDAzenGXjUkKKe7NeIn2tUWetg=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Easwar Hariharan <eahariha@linux.microsoft.com>,
- linux-media@vger.kernel.org (open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)), 
+To: Steve Glendinning <steve.glendinning@shawell.net>,
+ Helge Deller <deller@gmx.de>,
+ linux-fbdev@vger.kernel.org (open list:SMSC UFX6000 and UFX7000 USB to VGA
+ DRIVER), dri-devel@lists.freedesktop.org (open list:FRAMEBUFFER LAYER),
  linux-kernel@vger.kernel.org (open list)
 Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
  amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
@@ -42,10 +43,11 @@ Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
  nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
  GPUS), linux-i2c@vger.kernel.org (open list:I2C SUBSYSTEM HOST DRIVERS),
  linux-media@vger.kernel.org (open list:BTTV VIDEO4LINUX DRIVER),
- linux-fbdev@vger.kernel.org (open list:FRAMEBUFFER LAYER)
-Subject: [PATCH v1 09/12] media: cx23885: Make I2C terminology more inclusive
-Date: Tue, 30 Apr 2024 17:38:08 +0000
-Message-Id: <20240430173812.1423757-10-eahariha@linux.microsoft.com>
+ linux-fbdev@vger.kernel.org (open list:FRAMEBUFFER LAYER),
+ Easwar Hariharan <eahariha@linux.microsoft.com>
+Subject: [PATCH v1 11/12] fbdev/smscufx: Make I2C terminology more inclusive
+Date: Tue, 30 Apr 2024 17:38:10 +0000
+Message-Id: <20240430173812.1423757-12-eahariha@linux.microsoft.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240430173812.1423757-1-eahariha@linux.microsoft.com>
 References: <20240430173812.1423757-1-eahariha@linux.microsoft.com>
@@ -77,68 +79,31 @@ Compile tested, no functionality changes intended
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- drivers/media/pci/cx23885/cx23885-f300.c | 8 ++++----
- drivers/media/pci/cx23885/cx23885-i2c.c  | 6 +++---
- 2 files changed, 7 insertions(+), 7 deletions(-)
+ drivers/video/fbdev/smscufx.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/media/pci/cx23885/cx23885-f300.c b/drivers/media/pci/cx23885/cx23885-f300.c
-index ac1c434e8e24..5f937c281793 100644
---- a/drivers/media/pci/cx23885/cx23885-f300.c
-+++ b/drivers/media/pci/cx23885/cx23885-f300.c
-@@ -92,7 +92,7 @@ static u8 f300_xfer(struct dvb_frontend *fe, u8 *buf)
- 	f300_set_line(dev, F300_RESET, 0);/* begin to send data */
- 	msleep(1);
+diff --git a/drivers/video/fbdev/smscufx.c b/drivers/video/fbdev/smscufx.c
+index 35d682b110c4..1c80c1a3d516 100644
+--- a/drivers/video/fbdev/smscufx.c
++++ b/drivers/video/fbdev/smscufx.c
+@@ -1292,7 +1292,7 @@ static int ufx_realloc_framebuffer(struct ufx_data *dev, struct fb_info *info)
+ 	return 0;
+ }
  
--	f300_send_byte(dev, 0xe0);/* the slave address is 0xe0, write */
-+	f300_send_byte(dev, 0xe0);/* the client address is 0xe0, write */
- 	msleep(1);
- 
- 	temp = buf[0];
-@@ -112,10 +112,10 @@ static u8 f300_xfer(struct dvb_frontend *fe, u8 *buf)
- 	}
- 
- 	if (i > 7) {
--		pr_err("%s: timeout, the slave no response\n",
-+		pr_err("%s: timeout, the client no response\n",
- 								__func__);
--		ret = 1; /* timeout, the slave no response */
--	} else { /* the slave not busy, prepare for getting data */
-+		ret = 1; /* timeout, the client no response */
-+	} else { /* the client not busy, prepare for getting data */
- 		f300_set_line(dev, F300_RESET, 0);/*ready...*/
- 		msleep(1);
- 		f300_send_byte(dev, 0xe1);/* 0xe1 is Read */
-diff --git a/drivers/media/pci/cx23885/cx23885-i2c.c b/drivers/media/pci/cx23885/cx23885-i2c.c
-index f51fad33dc04..385af2a893b4 100644
---- a/drivers/media/pci/cx23885/cx23885-i2c.c
-+++ b/drivers/media/pci/cx23885/cx23885-i2c.c
-@@ -34,7 +34,7 @@ MODULE_PARM_DESC(i2c_scan, "scan i2c bus at insmod time");
- #define I2C_EXTEND  (1 << 3)
- #define I2C_NOSTOP  (1 << 4)
- 
--static inline int i2c_slave_did_ack(struct i2c_adapter *i2c_adap)
-+static inline int i2c_client_did_ack(struct i2c_adapter *i2c_adap)
+-/* sets up I2C Controller for 100 Kbps, std. speed, 7-bit addr, master,
++/* sets up I2C Controller for 100 Kbps, std. speed, 7-bit addr, host,
+  * restart enabled, but no start byte, enable controller */
+ static int ufx_i2c_init(struct ufx_data *dev)
  {
- 	struct cx23885_i2c *bus = i2c_adap->algo_data;
- 	struct cx23885_dev *dev = bus->dev;
-@@ -84,7 +84,7 @@ static int i2c_sendbytes(struct i2c_adapter *i2c_adap,
- 		cx_write(bus->reg_ctrl, bus->i2c_period | (1 << 2));
- 		if (!i2c_wait_done(i2c_adap))
- 			return -EIO;
--		if (!i2c_slave_did_ack(i2c_adap))
-+		if (!i2c_client_did_ack(i2c_adap))
- 			return -ENXIO;
+@@ -1321,7 +1321,7 @@ static int ufx_i2c_init(struct ufx_data *dev)
+ 	/* 7-bit (not 10-bit) addressing */
+ 	tmp &= ~(0x10);
  
- 		dprintk(1, "%s() returns 0\n", __func__);
-@@ -163,7 +163,7 @@ static int i2c_readbytes(struct i2c_adapter *i2c_adap,
- 		cx_write(bus->reg_ctrl, bus->i2c_period | (1 << 2) | 1);
- 		if (!i2c_wait_done(i2c_adap))
- 			return -EIO;
--		if (!i2c_slave_did_ack(i2c_adap))
-+		if (!i2c_client_did_ack(i2c_adap))
- 			return -ENXIO;
+-	/* enable restart conditions and master mode */
++	/* enable restart conditions and host mode */
+ 	tmp |= 0x21;
  
- 
+ 	status = ufx_reg_write(dev, 0x1000, tmp);
 -- 
 2.34.1
 
