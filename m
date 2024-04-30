@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D63DC4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 16:15:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EA90C10F16
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 16:18:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 997D7112895;
-	Tue, 30 Apr 2024 16:15:49 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D89D61128E7;
- Tue, 30 Apr 2024 16:15:47 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D49E10F156;
+	Tue, 30 Apr 2024 16:18:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hABPOCMF";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B83510E3E0
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Apr 2024 16:18:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1714493904; x=1746029904;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=cR8OpLmSR+KThwJOpQXRkXivMOjHoUw0RnTOvc3tXu4=;
+ b=hABPOCMFV3HOB1Ykcc9pQyQ1NDWliRqK2jJx7TXCZN0xY/BBw2rK6/UQ
+ TF4iS0NbqWSQss4EtXZEQOGLHomHdEITn2DzVZRIrRn+jLZNBqH2b2JlV
+ OCChVI/5/CcUhvR3SL2fTu+Yib50sWtQP2sVG6O3wKpww9WyRo0FFrQ8N
+ ZXEmugd6gbsikNb1UdVaaV+Dj8/b3SO+MVhpYlVGZc8cDfmSr9JU7yzfL
+ aWEPfSOlWFEvhM3Iv7iGT79jrZ5h0+h/M6imRBmKucIszWJbXCXvM22SQ
+ SwWuRNKEi0IJeW5uIb9rFTGz1x7uPmJ79JyTTHy4vFGO9ksJutWLCVDor Q==;
+X-CSE-ConnectionGUID: QqtLBoMkQfiqhqB+TLkBJQ==
+X-CSE-MsgGUID: gRldL4lDRIKOIdWPvmj6Tw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="10043409"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="10043409"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2024 09:18:23 -0700
+X-CSE-ConnectionGUID: eUp/Q1YMS0uMznA1wzRMbA==
+X-CSE-MsgGUID: 3tCjQ9EsRF22nkZvkGegdw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="30956216"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.246.4.197])
+ ([10.246.4.197])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2024 09:18:21 -0700
+Message-ID: <bad64412-e7f8-4220-a916-c635cfe05d13@intel.com>
+Date: Tue, 30 Apr 2024 18:18:18 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_remove_sysfs_entries?=
- =?utf-8?q?_on_driver_unbind?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andrzej Hajda" <andrzej.hajda@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: remove sysfs entries on driver unbind
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 30 Apr 2024 16:15:47 -0000
-Message-ID: <171449374788.1793102.8257245834024359368@8e613ede5ea5>
-X-Patchwork-Hint: ignore
 References: <20240430-hotrebind_xu-v1-1-3c5e88d1516b@intel.com>
+Content-Language: en-US
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
 In-Reply-To: <20240430-hotrebind_xu-v1-1-3c5e88d1516b@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +71,326 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 30.04.2024 17:51, Andrzej Hajda wrote:
+> After unbinding driver from the device, driver is responsible for
+> leaving the device in it's initial state, to be ready to bind to another
+> driver or to rebind. Particularly device sysfs entries added by the driver
+> should disappear. Removing them together with drm device is too late,
+> as it's life-time can be prolonged by userspace keeping open drm
+> descriptor. Removing them at driver's unbind seems the proper solution.
+> 
+> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> ---
+> Hi all,
+> 
+> xe driver seems to be not protected against hot-rebind scenario - driver
+> re-bind with opened drm descriptor.
+> This patch solves one of the issues - removal of sysfs entires, but
+> apparently there are more:
+> [  845.740016] ---[ end trace 0000000000000000 ]---
+> [  845.771285] xe 0000:00:02.0: [drm] *ERROR* power well DC_off state mismatch (refcount 1/enabled 0)
+> [  845.771309] xe 0000:00:02.0: [drm] *ERROR* power well PW_2 state mismatch (refcount 1/enabled 0)
+> [  845.771324] xe 0000:00:02.0: [drm] *ERROR* power well PW_A state mismatch (refcount 1/enabled 0)
+> [  845.771338] xe 0000:00:02.0: [drm] *ERROR* power well PW_B state mismatch (refcount 1/enabled 0)
+> [  845.771351] xe 0000:00:02.0: [drm] *ERROR* power well PW_C state mismatch (refcount 1/enabled 0)
+> [  845.771365] xe 0000:00:02.0: [drm] *ERROR* power well PW_D state mismatch (refcount 1/enabled 0)
+> [  845.774682] ------------[ cut here ]------------
+> [  845.774697] xe 0000:00:02.0: Missing outer runtime PM protection
+> [  845.774743] WARNING: CPU: 16 PID: 2228 at drivers/gpu/drm/xe/xe_pm.c:550 xe_pm_runtime_get_noresume+0x141/0x1d0 [xe]
+> ...
+> [  845.777795] Call Trace:
+> [  845.777801]  <TASK>
+> [  845.777809]  ? show_regs+0x71/0x90
+> [  845.777824]  ? __warn+0xce/0x300
+> [  845.777835]  ? xe_pm_runtime_get_noresume+0x141/0x1d0 [xe]
+> [  845.778002]  ? report_bug+0x2ad/0x300
+> [  845.778015]  ? handle_bug+0x46/0x90
+> [  845.778027]  ? exc_invalid_op+0x19/0x50
+> [  845.778037]  ? asm_exc_invalid_op+0x1b/0x20
+> [  845.778052]  ? xe_pm_runtime_get_noresume+0x141/0x1d0 [xe]
+> [  845.778215]  xe_ggtt_remove_node+0x69/0x1c0 [xe]
+> [  845.780754]  xe_ggtt_remove_bo+0x10a/0x650 [xe]
+> [  845.780909]  ? __pfx_xe_ggtt_remove_bo+0x10/0x10 [xe]
+> [  845.781064]  ? _raw_write_unlock+0x23/0x50
+> [  845.781076]  ? drm_vma_offset_remove+0x72/0x90 [drm]
+> [  845.781190]  xe_ttm_bo_destroy+0x351/0x770 [xe]
+> [  845.781341]  ? ww_mutex_unlock+0x1a6/0x280
+> [  845.781354]  ttm_bo_release+0x41d/0xae0 [ttm]
+> [  845.781380]  ? __pfx_ttm_bo_release+0x10/0x10 [ttm]
+> [  845.781402]  ? __pfx___mutex_unlock_slowpath+0x10/0x10
+> [  845.781413]  ? __kasan_check_read+0x11/0x20
+> [  845.781425]  ? do_raw_spin_unlock+0x5c/0x210
+> [  845.781437]  ? _raw_spin_unlock+0x23/0x50
+> [  845.781448]  ttm_bo_put+0x50/0x80 [ttm]
+> [  845.781469]  xe_gem_object_free+0x88/0x190 [xe]
+> [  845.781610]  drm_gem_object_free+0x59/0x90 [drm]
+> [  845.781697]  __xe_bo_unpin_map_no_vm+0xcf/0x110 [xe]
+> [  845.781839]  drm_managed_release+0x1a3/0x4e0 [drm]
+> [  845.781925]  ? drm_client_dev_restore+0x1f4/0x280 [drm]
+> [  845.782001]  drm_minor_release+0xd1/0x140 [drm]
+> [  845.782079]  drm_release_noglobal+0xad/0x100 [drm]
+> 
+> I guess after device remove call driver should not touch the hardware
+> at all, it could only maintain objects allocated by userspace in kind
+> of zombie mode - no interactions with hw, if userspace request hw access
+> return error.
+> Question to maintainers of xe/drm. How should it be implemented in xe
+> driver?
+> Or maybe drm provides already well tested way of handling such cases?
 
-Series: drm/xe: remove sysfs entries on driver unbind
-URL   : https://patchwork.freedesktop.org/series/133080/
-State : success
+There are drm helpers:
+- drm_dev_unplug
+- drm_dev_enter
+- drm_dev_exit
+Maybe we just need to use them widely in xe?
 
-== Summary ==
+Regards
+Andrzej
 
-lib/modules/6.9.0-rc6-xe/kernel/sound/pci/hda/snd-hda-intel.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/core/
-lib/modules/6.9.0-rc6-xe/kernel/sound/core/seq/
-lib/modules/6.9.0-rc6-xe/kernel/sound/core/seq/snd-seq.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/core/snd-seq-device.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/core/snd-hwdep.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/core/snd.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/core/snd-pcm.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/core/snd-compress.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/core/snd-timer.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soundcore.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/intel/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/intel/atom/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/intel/atom/sst/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/intel/common/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/amd/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/amd/snd-acp-config.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/intel/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/amd/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/snd-sof-utils.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/snd-sof-pci.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/snd-sof.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/snd-sof-probes.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/xtensa/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/snd-soc-core.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/snd-soc-acpi.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/codecs/
-lib/modules/6.9.0-rc6-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/hda/
-lib/modules/6.9.0-rc6-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/hda/ext/
-lib/modules/6.9.0-rc6-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/hda/snd-intel-dspcfg.ko
-lib/modules/6.9.0-rc6-xe/kernel/sound/hda/snd-hda-core.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/kernel/
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/kernel/msr.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/kernel/cpuid.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/crypto/
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/crypto/aesni-intel.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/events/
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/events/intel/
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/kvm/
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.9.0-rc6-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/
-lib/modules/6.9.0-rc6-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/cmac.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/ccm.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/cryptd.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/async_tx/
-lib/modules/6.9.0-rc6-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.9.0-rc6-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.9.0-rc6-xe/build
-lib/modules/6.9.0-rc6-xe/modules.alias.bin
-lib/modules/6.9.0-rc6-xe/modules.builtin
-lib/modules/6.9.0-rc6-xe/modules.softdep
-lib/modules/6.9.0-rc6-xe/modules.alias
-lib/modules/6.9.0-rc6-xe/modules.order
-lib/modules/6.9.0-rc6-xe/modules.symbols
-lib/modules/6.9.0-rc6-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1714493736:package_x86_64_nodebug\r\e[0K'
-+ sync
-[0Ksection_end:1714493736:package_x86_64_nodebug
-[0K
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
 
+> 
+> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_device_sysfs.c          |  4 ++--
+>   drivers/gpu/drm/xe/xe_gt_ccs_mode.c           |  4 ++--
+>   drivers/gpu/drm/xe/xe_gt_freq.c               |  4 ++--
+>   drivers/gpu/drm/xe/xe_gt_idle.c               |  4 ++--
+>   drivers/gpu/drm/xe/xe_gt_sysfs.c              |  4 ++--
+>   drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c     |  4 ++--
+>   drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c | 12 ++++++------
+>   drivers/gpu/drm/xe/xe_tile_sysfs.c            |  4 ++--
+>   drivers/gpu/drm/xe/xe_vram_freq.c             |  4 ++--
+>   9 files changed, 22 insertions(+), 22 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+> index 21677b8cd977..8d096db750fa 100644
+> --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
+> +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+> @@ -69,7 +69,7 @@ vram_d3cold_threshold_store(struct device *dev, struct device_attribute *attr,
+>   
+>   static DEVICE_ATTR_RW(vram_d3cold_threshold);
+>   
+> -static void xe_device_sysfs_fini(struct drm_device *drm, void *arg)
+> +static void xe_device_sysfs_fini(void *arg)
+>   {
+>   	struct xe_device *xe = arg;
+>   
+> @@ -85,5 +85,5 @@ int xe_device_sysfs_init(struct xe_device *xe)
+>   	if (ret)
+>   		return ret;
+>   
+> -	return drmm_add_action_or_reset(&xe->drm, xe_device_sysfs_fini, xe);
+> +	return devm_add_action_or_reset(xe->drm.dev, xe_device_sysfs_fini, xe);
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+> index 396aeb5b9924..890da8870b0d 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+> @@ -150,7 +150,7 @@ static const struct attribute *gt_ccs_mode_attrs[] = {
+>   	NULL,
+>   };
+>   
+> -static void xe_gt_ccs_mode_sysfs_fini(struct drm_device *drm, void *arg)
+> +static void xe_gt_ccs_mode_sysfs_fini(void *arg)
+>   {
+>   	struct xe_gt *gt = arg;
+>   
+> @@ -182,5 +182,5 @@ int xe_gt_ccs_mode_sysfs_init(struct xe_gt *gt)
+>   	if (err)
+>   		return err;
+>   
+> -	return drmm_add_action_or_reset(&xe->drm, xe_gt_ccs_mode_sysfs_fini, gt);
+> +	return devm_add_action_or_reset(xe->drm.dev, xe_gt_ccs_mode_sysfs_fini, gt);
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
+> index 855de40e40ea..ed7949df5bf5 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_freq.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_freq.c
+> @@ -209,7 +209,7 @@ static const struct attribute *freq_attrs[] = {
+>   	NULL
+>   };
+>   
+> -static void freq_fini(struct drm_device *drm, void *arg)
+> +static void freq_fini(void *arg)
+>   {
+>   	struct kobject *kobj = arg;
+>   
+> @@ -237,7 +237,7 @@ int xe_gt_freq_init(struct xe_gt *gt)
+>   	if (!gt->freq)
+>   		return -ENOMEM;
+>   
+> -	err = drmm_add_action_or_reset(&xe->drm, freq_fini, gt->freq);
+> +	err = devm_add_action_or_reset(xe->drm.dev, freq_fini, gt->freq);
+>   	if (err)
+>   		return err;
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
+> index 8fc0f3f6ecc5..9e907033f32b 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_idle.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_idle.c
+> @@ -144,7 +144,7 @@ static const struct attribute *gt_idle_attrs[] = {
+>   	NULL,
+>   };
+>   
+> -static void gt_idle_sysfs_fini(struct drm_device *drm, void *arg)
+> +static void gt_idle_sysfs_fini(void *arg)
+>   {
+>   	struct kobject *kobj = arg;
+>   
+> @@ -181,7 +181,7 @@ int xe_gt_idle_sysfs_init(struct xe_gt_idle *gtidle)
+>   		return err;
+>   	}
+>   
+> -	return drmm_add_action_or_reset(&xe->drm, gt_idle_sysfs_fini, kobj);
+> +	return devm_add_action_or_reset(xe->drm.dev, gt_idle_sysfs_fini, kobj);
+>   }
+>   
+>   void xe_gt_idle_enable_c6(struct xe_gt *gt)
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sysfs.c b/drivers/gpu/drm/xe/xe_gt_sysfs.c
+> index 1e5971072bc8..ec2b8246204b 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sysfs.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sysfs.c
+> @@ -22,7 +22,7 @@ static const struct kobj_type xe_gt_sysfs_kobj_type = {
+>   	.sysfs_ops = &kobj_sysfs_ops,
+>   };
+>   
+> -static void gt_sysfs_fini(struct drm_device *drm, void *arg)
+> +static void gt_sysfs_fini(void *arg)
+>   {
+>   	struct xe_gt *gt = arg;
+>   
+> @@ -51,5 +51,5 @@ int xe_gt_sysfs_init(struct xe_gt *gt)
+>   
+>   	gt->sysfs = &kg->base;
+>   
+> -	return drmm_add_action_or_reset(&xe->drm, gt_sysfs_fini, gt);
+> +	return devm_add_action_or_reset(xe->drm.dev, gt_sysfs_fini, gt);
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
+> index fbe21a8599ca..c9e04151286d 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
+> @@ -229,7 +229,7 @@ static const struct attribute_group throttle_group_attrs = {
+>   	.attrs = throttle_attrs,
+>   };
+>   
+> -static void gt_throttle_sysfs_fini(struct drm_device *drm, void *arg)
+> +static void gt_throttle_sysfs_fini(void *arg)
+>   {
+>   	struct xe_gt *gt = arg;
+>   
+> @@ -245,5 +245,5 @@ int xe_gt_throttle_sysfs_init(struct xe_gt *gt)
+>   	if (err)
+>   		return err;
+>   
+> -	return drmm_add_action_or_reset(&xe->drm, gt_throttle_sysfs_fini, gt);
+> +	return devm_add_action_or_reset(xe->drm.dev, gt_throttle_sysfs_fini, gt);
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+> index 844ec68cbbb8..258078a6b461 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+> @@ -492,7 +492,7 @@ static const struct attribute * const files[] = {
+>   	NULL
+>   };
+>   
+> -static void kobj_xe_hw_engine_class_fini(struct drm_device *drm, void *arg)
+> +static void kobj_xe_hw_engine_class_fini(void *arg)
+>   {
+>   	struct kobject *kobj = arg;
+>   
+> @@ -517,7 +517,7 @@ kobj_xe_hw_engine_class(struct xe_device *xe, struct kobject *parent, const char
+>   	}
+>   	keclass->xe = xe;
+>   
+> -	err = drmm_add_action_or_reset(&xe->drm, kobj_xe_hw_engine_class_fini,
+> +	err = devm_add_action_or_reset(xe->drm.dev, kobj_xe_hw_engine_class_fini,
+>   				       &keclass->base);
+>   	if (err)
+>   		return NULL;
+> @@ -525,7 +525,7 @@ kobj_xe_hw_engine_class(struct xe_device *xe, struct kobject *parent, const char
+>   	return keclass;
+>   }
+>   
+> -static void hw_engine_class_defaults_fini(struct drm_device *drm, void *arg)
+> +static void hw_engine_class_defaults_fini(void *arg)
+>   {
+>   	struct kobject *kobj = arg;
+>   
+> @@ -552,7 +552,7 @@ static int xe_add_hw_engine_class_defaults(struct xe_device *xe,
+>   	if (err)
+>   		goto err_object;
+>   
+> -	return drmm_add_action_or_reset(&xe->drm, hw_engine_class_defaults_fini, kobj);
+> +	return devm_add_action_or_reset(xe->drm.dev, hw_engine_class_defaults_fini, kobj);
+>   
+>   err_object:
+>   	kobject_put(kobj);
+> @@ -611,7 +611,7 @@ static const struct kobj_type xe_hw_engine_sysfs_kobj_type = {
+>   	.sysfs_ops = &xe_hw_engine_class_sysfs_ops,
+>   };
+>   
+> -static void hw_engine_class_sysfs_fini(struct drm_device *drm, void *arg)
+> +static void hw_engine_class_sysfs_fini(void *arg)
+>   {
+>   	struct kobject *kobj = arg;
+>   
+> @@ -698,7 +698,7 @@ int xe_hw_engine_class_sysfs_init(struct xe_gt *gt)
+>   			goto err_object;
+>   	}
+>   
+> -	return drmm_add_action_or_reset(&xe->drm, hw_engine_class_sysfs_fini, kobj);
+> +	return devm_add_action_or_reset(xe->drm.dev, hw_engine_class_sysfs_fini, kobj);
+>   
+>   err_object:
+>   	kobject_put(kobj);
+> diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+> index 64661403afcd..12b2c3e5c421 100644
+> --- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
+> +++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+> @@ -22,7 +22,7 @@ static const struct kobj_type xe_tile_sysfs_kobj_type = {
+>   	.sysfs_ops = &kobj_sysfs_ops,
+>   };
+>   
+> -static void tile_sysfs_fini(struct drm_device *drm, void *arg)
+> +static void tile_sysfs_fini(void *arg)
+>   {
+>   	struct xe_tile *tile = arg;
+>   
+> @@ -55,5 +55,5 @@ int xe_tile_sysfs_init(struct xe_tile *tile)
+>   	if (err)
+>   		return err;
+>   
+> -	return drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini, tile);
+> +	return devm_add_action_or_reset(dev, tile_sysfs_fini, tile);
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_vram_freq.c b/drivers/gpu/drm/xe/xe_vram_freq.c
+> index 3e21ddc6e60c..99ff95e408e0 100644
+> --- a/drivers/gpu/drm/xe/xe_vram_freq.c
+> +++ b/drivers/gpu/drm/xe/xe_vram_freq.c
+> @@ -87,7 +87,7 @@ static const struct attribute_group freq_group_attrs = {
+>   	.attrs = freq_attrs,
+>   };
+>   
+> -static void vram_freq_sysfs_fini(struct drm_device *drm, void *arg)
+> +static void vram_freq_sysfs_fini(void *arg)
+>   {
+>   	struct kobject *kobj = arg;
+>   
+> @@ -122,5 +122,5 @@ int xe_vram_freq_sysfs_init(struct xe_tile *tile)
+>   		return err;
+>   	}
+>   
+> -	return drmm_add_action_or_reset(&xe->drm, vram_freq_sysfs_fini, kobj);
+> +	return devm_add_action_or_reset(xe->drm.dev, vram_freq_sysfs_fini, kobj);
+>   }
+> 
+> ---
+> base-commit: 4caf410766add8cf376a3afc910b17dd0961dd75
+> change-id: 20240430-hotrebind_xu-897cc3413a7f
+> 
+> Best regards,
 
