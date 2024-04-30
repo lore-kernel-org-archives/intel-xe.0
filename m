@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4CA5C4345F
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 16:39:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37A95C4345F
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Apr 2024 16:39:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DA19112CE4;
-	Tue, 30 Apr 2024 16:39:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YYtCu7Ks";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DAD0112CE4
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Apr 2024 16:39:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714495158; x=1746031158;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=mHNt3X6xk/6SGvQj4+JH/j8Af0a6+1a6b6AYy8BH9GU=;
- b=YYtCu7KsWLMaXQsJY/Hw9HiP75sE/s2iFWFejoNW3GHMCLvkNM7Se92o
- +X3IbiubnqSuE926irPYiyDRXM7ZARwdnUGeRq4q5tU+QL9QykQu4KHqP
- qz7Dh+v2NAZx4fGhPdTZ/Ir4KJFumip5xJI+ndcalPyet58djQxa+qY3y
- BhV3mjWXDGSlFz3GXe+URkEy+hpu+/JEpAQ47djucvusM1/j4JR+KxEPJ
- VfQumdMybccOmvnZmoo8J4KkrG8psRdUsjNATw8rc856jZ0PbrLIA4CPy
- BX8YJAm2zqpk0EJ+5SPOZq8KulE+now4X0hf1iKSxHsy1rGFJ1llWd8Li A==;
-X-CSE-ConnectionGUID: YVTkPWpQT1eW4fYteMi3Mw==
-X-CSE-MsgGUID: 0degIKoMQ7i8ivpnR0+aHg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="13995420"
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="13995420"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 09:39:18 -0700
-X-CSE-ConnectionGUID: V5zA0G6oQc2JoUwALllPFA==
-X-CSE-MsgGUID: Y7ZmnQP0QjWhhjwvkudG0g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="57400216"
-Received: from wtcline-desk12.amr.corp.intel.com (HELO 881182325eba.intel.com)
- ([10.245.246.108])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 09:39:16 -0700
-From: Francois Dugast <francois.dugast@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Francois Dugast <francois.dugast@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v3] drm/xe/gt: Fix assert in L3 bank mask generation
-Date: Tue, 30 Apr 2024 16:39:05 +0000
-Message-Id: <20240430163905.7-1-francois.dugast@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEDFB112CE5;
+	Tue, 30 Apr 2024 16:39:27 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1D1A112CE5;
+ Tue, 30 Apr 2024 16:39:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9221849924873797464=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_remove_sysfs_entries_o?=
+ =?utf-8?q?n_driver_unbind?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andrzej Hajda" <andrzej.hajda@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 30 Apr 2024 16:39:26 -0000
+Message-ID: <171449516685.1793102.12755750703586359839@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240430-hotrebind_xu-v1-1-3c5e88d1516b@intel.com>
+In-Reply-To: <20240430-hotrebind_xu-v1-1-3c5e88d1516b@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,43 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-What needs to be asserted is that the pattern fits in the number
-of bits provided by the user in patternbits, otherwise it would
-be truncated when replicated according to the mask, which is
-likely not the intended use of this function.
-The pattern argument is a bitmap so use find_last_bit() instead
-of fls(). The bit position starts at index 0 so remove "or equal"
-from the comparison. XE_MAX_L3_BANK_MASK_BITS would be the
-returned value if the pattern is 0, which can be the case on some
-platforms.
+--===============9221849924873797464==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Check the result does not overflow the array (Lucas De Marchi)
+== Series Details ==
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Francois Dugast <francois.dugast@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_topology.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Series: drm/xe: remove sysfs entries on driver unbind
+URL   : https://patchwork.freedesktop.org/series/133080/
+State : failure
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
-index af841d801a8f..b51f40493123 100644
---- a/drivers/gpu/drm/xe/xe_gt_topology.c
-+++ b/drivers/gpu/drm/xe/xe_gt_topology.c
-@@ -108,7 +108,9 @@ gen_l3_mask_from_pattern(struct xe_device *xe, xe_l3_bank_mask_t dst,
- {
- 	unsigned long bit;
- 
--	xe_assert(xe, fls(mask) <= patternbits);
-+	xe_assert(xe, find_last_bit(pattern, XE_MAX_L3_BANK_MASK_BITS) < patternbits ||
-+		  bitmap_empty(pattern, XE_MAX_L3_BANK_MASK_BITS));
-+	xe_assert(xe, patternbits * fls(mask) <= XE_MAX_L3_BANK_MASK_BITS);
- 	for_each_set_bit(bit, &mask, 32) {
- 		xe_l3_bank_mask_t shifted_pattern = {};
- 
--- 
-2.34.1
+== Summary ==
 
+CI Bug Log - changes from xe-1210-016b4f46551e7a9b3da9607e546b18df2ca31cbc_BAT -> xe-pw-133080v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-133080v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-133080v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (5 -> 0)
+------------------------------
+
+  ERROR: It appears as if the changes made in xe-pw-133080v1_BAT prevented too many machines from booting.
+
+  Missing    (5): bat-pvc-2 bat-lnl-1 bat-dg2-oem2 bat-adlp-7 bat-atsm-2 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-1210-016b4f46551e7a9b3da9607e546b18df2ca31cbc -> xe-pw-133080v1
+
+  IGT_7826: ce6ce0f60dd1a6c0df93a01ad71a31964158a2cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1210-016b4f46551e7a9b3da9607e546b18df2ca31cbc: 016b4f46551e7a9b3da9607e546b18df2ca31cbc
+  xe-pw-133080v1: 133080v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133080v1/index.html
+
+--===============9221849924873797464==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: remove sysfs entries on driver unbind</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133080/">https://patchwork.freedesktop.org/series/133080/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133080v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133080v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1210-016b4f46551e7a9b3da9607e546b18df2ca31cbc_BAT -&gt; xe-pw-133080v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-133080v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-133080v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (5 -&gt; 0)</h2>
+<p>ERROR: It appears as if the changes made in xe-pw-133080v1_BAT prevented too many machines from booting.</p>
+<p>Missing    (5): bat-pvc-2 bat-lnl-1 bat-dg2-oem2 bat-adlp-7 bat-atsm-2 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1210-016b4f46551e7a9b3da9607e546b18df2ca31cbc -&gt; xe-pw-133080v1</li>
+</ul>
+<p>IGT_7826: ce6ce0f60dd1a6c0df93a01ad71a31964158a2cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1210-016b4f46551e7a9b3da9607e546b18df2ca31cbc: 016b4f46551e7a9b3da9607e546b18df2ca31cbc<br />
+  xe-pw-133080v1: 133080v1</p>
+
+</body>
+</html>
+
+--===============9221849924873797464==--
