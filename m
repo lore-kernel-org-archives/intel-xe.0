@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49C65C4345F
-	for <intel-xe@archiver.kernel.org>; Wed,  1 May 2024 23:17:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06D13C4345F
+	for <intel-xe@archiver.kernel.org>; Wed,  1 May 2024 23:18:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 406AB10EAC1;
-	Wed,  1 May 2024 23:17:29 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3B3C1124A1;
- Wed,  1 May 2024 23:17:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6421844615345260448=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FB4810EAC1;
+	Wed,  1 May 2024 23:18:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ILSn7K4R";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F33C10EAC1
+ for <intel-xe@lists.freedesktop.org>; Wed,  1 May 2024 23:18:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1714605518; x=1746141518;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+xiNPFkyY9qtz0OK/ChjrE8fG5S5uanHqB5QgJvb2DU=;
+ b=ILSn7K4RlOwAwFBjNjtoVBcL3mQ7L+8rIS2HZMP9Yz8tHG6ap4hTfp9b
+ lyc3LGocedRx95euSedmCCh4FWd/lRSb4L4xbPiUvaptTtqi81zj4O+QN
+ gqsVctrlGYEGAADP5W4m2moedoaB/lPTyn7kr11jImFL5dbVpUDO7uIBZ
+ WAr1Eof6KIwerw779XltuweGOAe5mo0rfW004T1WahKnBkGijqKRIkdvX
+ OcXglosi7AvKxWK3lJp5j9ebMQywD6YZ1wlctzxNRTlDc7IIwl7giOdfD
+ Da+6bdLdMZ/gr4IuMniLcwo5HIqEkXeQG/1tQY/pAwVJCDnv4QGDn/BMK A==;
+X-CSE-ConnectionGUID: HCeMpGd/QpSGqkznWWEGyw==
+X-CSE-MsgGUID: LSJz0fCDRaWTHmPh9wGLyw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11061"; a="14163346"
+X-IronPort-AV: E=Sophos;i="6.07,246,1708416000"; d="scan'208";a="14163346"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 May 2024 16:18:38 -0700
+X-CSE-ConnectionGUID: u3+HtFpZSJaVa6KcMi+L6Q==
+X-CSE-MsgGUID: vBi+GJUxTAyo//6OUb0xPQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,246,1708416000"; d="scan'208";a="31408569"
+Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 May 2024 16:18:37 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [xe-for-ci v3 0/2] LNL GSC FW support
+Date: Wed,  1 May 2024 16:18:27 -0700
+Message-ID: <20240501231829.2122219-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Define_generic_helpers_for_manip?=
- =?utf-8?q?ulating_macro_arguments?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 01 May 2024 23:17:27 -0000
-Message-ID: <171460544792.1793171.3618903888559408961@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240501223221.2395-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20240501223221.2395-1-michal.wajdeczko@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +62,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6421844615345260448==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The flow is the same as MTL, so the only things we need to add on the Xe
+side is the FW definition. Due to the FW not being in its final state
+yet, we can't push it to linux-firmware yet so it needs to be in the
+xe-for-ci branch.
+Also, the mei patch required for the mei driver to run on LNL (which is
+needed for GSC proxy) is not merged yet, so it has been included here to
+be merged in xe-for-ci while we wait for it to land in Linus' tree
+(via char-misc).
 
-== Series Details ==
+v2: rebase
 
-Series: Define generic helpers for manipulating macro arguments
-URL   : https://patchwork.freedesktop.org/series/133123/
-State : success
+v3: rebase on already merged GSCCS patch, add mei patch instead of
+disabling SW proxy
 
-== Summary ==
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 
-CI Bug Log - changes from xe-1215-0c418be899e4476fb09eec9f6693432bcc0c45d1_BAT -> xe-pw-133123v1_BAT
-====================================================
+Alexander Usyskin (1):
+  mei: me: add lunar lake point M DID
 
-Summary
--------
+Daniele Ceraolo Spurio (1):
+  drm/xe/gsc: define GSC FW for LNL
 
-  **SUCCESS**
+ drivers/gpu/drm/xe/xe_uc_fw.c | 1 +
+ drivers/misc/mei/hw-me-regs.h | 2 ++
+ drivers/misc/mei/pci-me.c     | 2 ++
+ 3 files changed, 5 insertions(+)
 
-  No regressions found.
+-- 
+2.43.0
 
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1215-0c418be899e4476fb09eec9f6693432bcc0c45d1 -> xe-pw-133123v1
-
-  IGT_7828: 68a055ff91b91dadb01d9501cd8670f654b5b952 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1215-0c418be899e4476fb09eec9f6693432bcc0c45d1: 0c418be899e4476fb09eec9f6693432bcc0c45d1
-  xe-pw-133123v1: 133123v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133123v1/index.html
-
---===============6421844615345260448==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Define generic helpers for manipulating macro arguments</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133123/">https://patchwork.freedesktop.org/series/133123/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133123v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133123v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1215-0c418be899e4476fb09eec9f6693432bcc0c45d1_BAT -&gt; xe-pw-133123v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1215-0c418be899e4476fb09eec9f6693432bcc0c45d1 -&gt; xe-pw-133123v1</li>
-</ul>
-<p>IGT_7828: 68a055ff91b91dadb01d9501cd8670f654b5b952 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1215-0c418be899e4476fb09eec9f6693432bcc0c45d1: 0c418be899e4476fb09eec9f6693432bcc0c45d1<br />
-  xe-pw-133123v1: 133123v1</p>
-
-</body>
-</html>
-
---===============6421844615345260448==--
