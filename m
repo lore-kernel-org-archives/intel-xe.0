@@ -4,54 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F4EEC4345F
-	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 11:31:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98376C4345F
+	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 11:41:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B63F10F41F;
-	Thu,  2 May 2024 11:31:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A44410F540;
+	Thu,  2 May 2024 11:41:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hm1w7a4z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dUfDhItr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83BF010F41F
- for <intel-xe@lists.freedesktop.org>; Thu,  2 May 2024 11:31:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0030610EC4A;
+ Thu,  2 May 2024 11:41:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714649502; x=1746185502;
+ t=1714650089; x=1746186089;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=v/hhT0QQY843U4zdVSGkYFp636f69/Vl6zPrv9Dst3o=;
- b=Hm1w7a4zQ3rvqcKIFFy11xSmIvxllhI3/L+u8oLAM7cgg/VgOiHSTv2W
- wjsF59f8g8lOgPbCbfPOigDILYL5BTSwpY1KgWE44ndGeuk94G50sANUL
- 8jkBjauBQXBeKFJ39gzO+I3yJrgGlQhvu6Fg4mtJ7A7pA6NO0Zq9qMPA+
- qp6Sec+ntTG7Rqky6y+5+uVUw/VYXMnf2ZI8MlvGgustjFk628i5kDwVW
- nF5L5Z20YGTAMEa2t/yibM13XxvZKsE6SAkYzHjQPGAXXnRlqZKpePHFK
- CLMs3islIjTCNiICxLBuQeXeBbB15HmJLkMx1WukETEh/2X9o9AuKFrzn A==;
-X-CSE-ConnectionGUID: +j9zGpR4Qg+3TGqjBDd8Qw==
-X-CSE-MsgGUID: mbDu5+GXRlaFa9tgP1xJwg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11061"; a="21558505"
-X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="21558505"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2024 04:31:41 -0700
-X-CSE-ConnectionGUID: CohRterfQ6OUX/GQ079nKQ==
-X-CSE-MsgGUID: u7tiehitRiGeSULUwMSLOQ==
+ bh=796DP42f/Nit2O23rut6sx4IsyrMlz30AfgQF4PuCyQ=;
+ b=dUfDhItrNNPluSz8OcUneCv6slfbWzbxQsm0FPb/c5L6+IX1m9r/yW5C
+ DoX8NMZt8haco9YXvskkvPpulk/QB2G+nS9YPxroiEyOCVp0nCaMOrJUF
+ cZ435QjUAud+ndmbCUdoy393d/AZ+pkDyWZcmfhxpmyBwE7EyTNu/9NNz
+ M4r6O+a79zR2553rzmhcbQsx5osTXwRez6B9tW3LSnM6P4sci6LvQWkUA
+ F+o2Ae+vuQ3Gn+V8oE91loM8ZqeE3jCjbGZ9vszPVlzFL44E2C595nyH7
+ ZLvk3UgNiUPYUqp7X+eCxBbYntNuJLm1+NqXISafiEAgauVYeAz+29OVN w==;
+X-CSE-ConnectionGUID: 9p6WXUtTR0Cc3Nqee1Vacg==
+X-CSE-MsgGUID: fgGnPMInSaiwX0NW6B5VXA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11061"; a="14218513"
+X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="14218513"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2024 04:41:29 -0700
+X-CSE-ConnectionGUID: cipci429Tx63W9PpgyFW6Q==
+X-CSE-MsgGUID: qB0mNawqTzancsAMn3Yc+g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="64531795"
+X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="58296809"
 Received: from vpus-mobl1.ger.corp.intel.com (HELO [10.252.34.3])
  ([10.252.34.3])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2024 04:31:40 -0700
-Message-ID: <203d2774f5f901041bb9d20efd759001f968ffdf.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Perform dma_map when moving system buffer
- objects to TT
+ 02 May 2024 04:41:27 -0700
+Message-ID: <1a26087ddae46ae3963c723545f85d67764cef53.camel@linux.intel.com>
+Subject: Re: [PATCH v2 1/9] drm/ttm: Allow TTM LRU list nodes of different
+ types
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 02 May 2024 13:31:37 +0200
-In-Reply-To: <ZjEgowaMK2IUexXO@DUT025-TGLU.fm.intel.com>
-References: <20240430120214.5372-1-thomas.hellstrom@linux.intel.com>
- <ZjEgowaMK2IUexXO@DUT025-TGLU.fm.intel.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Matthew
+ Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Somalapuram Amaranath
+ <Amaranath.Somalapuram@amd.com>, dri-devel@lists.freedesktop.org
+Date: Thu, 02 May 2024 13:41:24 +0200
+In-Reply-To: <aa06fb7e-19d6-4161-a659-70cf953e534a@amd.com>
+References: <20240416100730.6666-1-thomas.hellstrom@linux.intel.com>
+ <20240416100730.6666-2-thomas.hellstrom@linux.intel.com>
+ <Zh8isq+3btgEJGTx@DUT025-TGLU.fm.intel.com>
+ <aa06fb7e-19d6-4161-a659-70cf953e534a@amd.com>
 Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
  keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
 Organization: Intel Sweden AB, Registration Number: 556189-6027
@@ -73,173 +77,409 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2024-04-30 at 16:47 +0000, Matthew Brost wrote:
-> On Tue, Apr 30, 2024 at 02:02:14PM +0200, Thomas Hellstr=C3=B6m wrote:
-> > Currently we dma_map on ttm_tt population and dma_unmap when
-> > the pages are released in ttm_tt unpopulate.
+Hi, Matt, Christian,
+
+On Wed, 2024-04-17 at 08:09 +0200, Christian K=C3=B6nig wrote:
+> Am 17.04.24 um 03:15 schrieb Matthew Brost:
+> > On Tue, Apr 16, 2024 at 12:07:22PM +0200, Thomas Hellstr=C3=B6m wrote:
+> > > To be able to handle list unlocking while traversing the LRU
+> > > list, we want the iterators not only to point to the next
+> > > position of the list traversal, but to insert themselves as
+> > > list nodes at that point to work around the fact that the
+> > > next node might otherwise disappear from the list while
+> > > the iterator is pointing to it.
+> > >=20
+> > > These list nodes need to be easily distinguishable from other
+> > > list nodes so that others traversing the list can skip
+> > > over them.
+> > >=20
+> > > So declare a struct ttm_lru_item, with a struct list_head member
+> > > and a type enum. This will slightly increase the size of a
+> > > struct ttm_resource.
+> > >=20
+> > > Changes in previous series:
+> > > - Update enum ttm_lru_item_type documentation.
+> > >=20
+> > Patch itself makes sense to me. One style question (or maybe
+> > suggestion?) below.
 > >=20
-> > Strictly, the dma_map is not needed until the bo is moved to the
-> > XE_PL_TT placement, so perform the dma_mapping on such moves
-> > instead, and remove the dma_mappig when moving to XE_PL_SYSTEM.
-> >=20
-> > This is desired for the upcoming shrinker series where shrinking
-> > of a ttm_tt might fail. That would lead to an odd construct where
-> > we first dma_unmap, then shrink and if shrinking fails dma_map
-> > again. If dma_mapping instead is performed on move like this,
-> > shrinking does not need to care at all about dma mapping.
-> >=20
-> > Finally, where a ttm_tt is destroyed while bound to a different
-> > memory type than XE_PL_SYSTEM, we keep the dma_unmap in
-> > unpopulate().
-> >=20
->=20
-> Makes sense.
-> =C2=A0
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > ---
-> > =C2=A0drivers/gpu/drm/xe/xe_bo.c | 45 ++++++++++++++++++++++++---------=
+> > > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > > Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+> > > Cc: <dri-devel@lists.freedesktop.org>
+> > > Signed-off-by: Thomas Hellstr=C3=B6m
+> > > <thomas.hellstrom@linux.intel.com>
+> > > ---
+> > > =C2=A0 drivers/gpu/drm/ttm/ttm_device.c=C2=A0=C2=A0 | 13 ++++--
+> > > =C2=A0 drivers/gpu/drm/ttm/ttm_resource.c | 70 ++++++++++++++++++++++=
 -
-> > ----
-> > =C2=A01 file changed, 29 insertions(+), 16 deletions(-)
+> > > -------
+> > > =C2=A0 include/drm/ttm/ttm_resource.h=C2=A0=C2=A0=C2=A0=C2=A0 | 51 ++=
++++++++++++++++++++-
+> > > =C2=A0 3 files changed, 110 insertions(+), 24 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/ttm/ttm_device.c
+> > > b/drivers/gpu/drm/ttm/ttm_device.c
+> > > index 76027960054f..f27406e851e5 100644
+> > > --- a/drivers/gpu/drm/ttm/ttm_device.c
+> > > +++ b/drivers/gpu/drm/ttm/ttm_device.c
+> > > @@ -270,17 +270,22 @@ EXPORT_SYMBOL(ttm_device_fini);
+> > > =C2=A0 static void ttm_device_clear_lru_dma_mappings(struct ttm_devic=
+e
+> > > *bdev,
+> > > =C2=A0=C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct list_head
+> > > *list)
+> > > =C2=A0 {
+> > > -	struct ttm_resource *res;
+> > > +	struct ttm_lru_item *lru;
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	spin_lock(&bdev->lru_lock);
+> > > -	while ((res =3D list_first_entry_or_null(list,
+> > > typeof(*res), lru))) {
+> > > -		struct ttm_buffer_object *bo =3D res->bo;
+> > > +	while ((lru =3D list_first_entry_or_null(list,
+> > > typeof(*lru), link))) {
+> > > +		struct ttm_buffer_object *bo;
+> > > +
+> > > +		if (!ttm_lru_item_is_res(lru))
+> > > +			continue;
+> > > +
+> > > +		bo =3D ttm_lru_item_to_res(lru)->bo;
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0		/* Take ref against racing releases once
+> > > lru_lock is unlocked */
+> > > =C2=A0=C2=A0		if (!ttm_bo_get_unless_zero(bo))
+> > > =C2=A0=C2=A0			continue;
+> > > =C2=A0=20
+> > > -		list_del_init(&res->lru);
+> > > +		list_del_init(&bo->resource->lru.link);
+> > > =C2=A0=C2=A0		spin_unlock(&bdev->lru_lock);
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0		if (bo->ttm)
+> > > diff --git a/drivers/gpu/drm/ttm/ttm_resource.c
+> > > b/drivers/gpu/drm/ttm/ttm_resource.c
+> > > index be8d286513f9..7aa5ca5c0e33 100644
+> > > --- a/drivers/gpu/drm/ttm/ttm_resource.c
+> > > +++ b/drivers/gpu/drm/ttm/ttm_resource.c
+> > > @@ -69,8 +69,8 @@ void ttm_lru_bulk_move_tail(struct
+> > > ttm_lru_bulk_move *bulk)
+> > > =C2=A0=C2=A0			dma_resv_assert_held(pos->last->bo-
+> > > >base.resv);
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0			man =3D ttm_manager_type(pos->first->bo-
+> > > >bdev, i);
+> > > -			list_bulk_move_tail(&man->lru[j], &pos-
+> > > >first->lru,
+> > > -					=C2=A0=C2=A0=C2=A0 &pos->last->lru);
+> > > +			list_bulk_move_tail(&man->lru[j], &pos-
+> > > >first->lru.link,
+> > > +					=C2=A0=C2=A0=C2=A0 &pos->last-
+> > > >lru.link);
+> > > =C2=A0=C2=A0		}
+> > > =C2=A0=C2=A0	}
+> > > =C2=A0 }
+> > > @@ -83,14 +83,38 @@ ttm_lru_bulk_move_pos(struct
+> > > ttm_lru_bulk_move *bulk, struct ttm_resource *res)
+> > > =C2=A0=C2=A0	return &bulk->pos[res->mem_type][res->bo->priority];
+> > > =C2=A0 }
+> > > =C2=A0=20
+> > > +/* Return the previous resource on the list (skip over non-
+> > > resource list items) */
+> > > +static struct ttm_resource *ttm_lru_prev_res(struct ttm_resource
+> > > *cur)
+> > > +{
+> > > +	struct ttm_lru_item *lru =3D &cur->lru;
+> > > +
+> > > +	do {
+> > > +		lru =3D list_prev_entry(lru, link);
+> > > +	} while (!ttm_lru_item_is_res(lru));
+> > > +
+> > > +	return ttm_lru_item_to_res(lru);
+> > > +}
+> > > +
+> > > +/* Return the next resource on the list (skip over non-resource
+> > > list items) */
+> > > +static struct ttm_resource *ttm_lru_next_res(struct ttm_resource
+> > > *cur)
+> > > +{
+> > > +	struct ttm_lru_item *lru =3D &cur->lru;
+> > > +
+> > > +	do {
+> > > +		lru =3D list_next_entry(lru, link);
+> > > +	} while (!ttm_lru_item_is_res(lru));
+> > > +
+> > > +	return ttm_lru_item_to_res(lru);
+> > > +}
+> > > +
+> > > =C2=A0 /* Move the resource to the tail of the bulk move range */
+> > > =C2=A0 static void ttm_lru_bulk_move_pos_tail(struct
+> > > ttm_lru_bulk_move_pos *pos,
+> > > =C2=A0=C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_resou=
+rce *res)
+> > > =C2=A0 {
+> > > =C2=A0=C2=A0	if (pos->last !=3D res) {
+> > > =C2=A0=C2=A0		if (pos->first =3D=3D res)
+> > > -			pos->first =3D list_next_entry(res, lru);
+> > > -		list_move(&res->lru, &pos->last->lru);
+> > > +			pos->first =3D ttm_lru_next_res(res);
+> > > +		list_move(&res->lru.link, &pos->last->lru.link);
+> > > =C2=A0=C2=A0		pos->last =3D res;
+> > > =C2=A0=C2=A0	}
+> > > =C2=A0 }
+> > > @@ -121,11 +145,11 @@ static void ttm_lru_bulk_move_del(struct
+> > > ttm_lru_bulk_move *bulk,
+> > > =C2=A0=C2=A0		pos->first =3D NULL;
+> > > =C2=A0=C2=A0		pos->last =3D NULL;
+> > > =C2=A0=C2=A0	} else if (pos->first =3D=3D res) {
+> > > -		pos->first =3D list_next_entry(res, lru);
+> > > +		pos->first =3D ttm_lru_next_res(res);
+> > > =C2=A0=C2=A0	} else if (pos->last =3D=3D res) {
+> > > -		pos->last =3D list_prev_entry(res, lru);
+> > > +		pos->last =3D ttm_lru_prev_res(res);
+> > > =C2=A0=C2=A0	} else {
+> > > -		list_move(&res->lru, &pos->last->lru);
+> > > +		list_move(&res->lru.link, &pos->last->lru.link);
+> > > =C2=A0=C2=A0	}
+> > > =C2=A0 }
+> > > =C2=A0=20
+> > > @@ -154,7 +178,7 @@ void ttm_resource_move_to_lru_tail(struct
+> > > ttm_resource *res)
+> > > =C2=A0=C2=A0	lockdep_assert_held(&bo->bdev->lru_lock);
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	if (bo->pin_count) {
+> > > -		list_move_tail(&res->lru, &bdev->pinned);
+> > > +		list_move_tail(&res->lru.link, &bdev->pinned);
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	} else	if (bo->bulk_move) {
+> > > =C2=A0=C2=A0		struct ttm_lru_bulk_move_pos *pos =3D
+> > > @@ -165,7 +189,7 @@ void ttm_resource_move_to_lru_tail(struct
+> > > ttm_resource *res)
+> > > =C2=A0=C2=A0		struct ttm_resource_manager *man;
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0		man =3D ttm_manager_type(bdev, res->mem_type);
+> > > -		list_move_tail(&res->lru, &man->lru[bo-
+> > > >priority]);
+> > > +		list_move_tail(&res->lru.link, &man->lru[bo-
+> > > >priority]);
+> > > =C2=A0=C2=A0	}
+> > > =C2=A0 }
+> > > =C2=A0=20
+> > > @@ -196,9 +220,9 @@ void ttm_resource_init(struct
+> > > ttm_buffer_object *bo,
+> > > =C2=A0=C2=A0	man =3D ttm_manager_type(bo->bdev, place->mem_type);
+> > > =C2=A0=C2=A0	spin_lock(&bo->bdev->lru_lock);
+> > > =C2=A0=C2=A0	if (bo->pin_count)
+> > > -		list_add_tail(&res->lru, &bo->bdev->pinned);
+> > > +		list_add_tail(&res->lru.link, &bo->bdev-
+> > > >pinned);
+> > > =C2=A0=C2=A0	else
+> > > -		list_add_tail(&res->lru, &man->lru[bo-
+> > > >priority]);
+> > > +		list_add_tail(&res->lru.link, &man->lru[bo-
+> > > >priority]);
+> > > =C2=A0=C2=A0	man->usage +=3D res->size;
+> > > =C2=A0=C2=A0	spin_unlock(&bo->bdev->lru_lock);
+> > > =C2=A0 }
+> > > @@ -220,7 +244,7 @@ void ttm_resource_fini(struct
+> > > ttm_resource_manager *man,
+> > > =C2=A0=C2=A0	struct ttm_device *bdev =3D man->bdev;
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	spin_lock(&bdev->lru_lock);
+> > > -	list_del_init(&res->lru);
+> > > +	list_del_init(&res->lru.link);
+> > > =C2=A0=C2=A0	man->usage -=3D res->size;
+> > > =C2=A0=C2=A0	spin_unlock(&bdev->lru_lock);
+> > > =C2=A0 }
+> > > @@ -471,14 +495,16 @@ struct ttm_resource *
+> > > =C2=A0 ttm_resource_manager_first(struct ttm_resource_manager *man,
+> > > =C2=A0=C2=A0			=C2=A0=C2=A0 struct ttm_resource_cursor *cursor)
+> > > =C2=A0 {
+> > > -	struct ttm_resource *res;
+> > > +	struct ttm_lru_item *lru;
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	lockdep_assert_held(&man->bdev->lru_lock);
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	for (cursor->priority =3D 0; cursor->priority <
+> > > TTM_MAX_BO_PRIORITY;
+> > > =C2=A0=C2=A0	=C2=A0=C2=A0=C2=A0=C2=A0 ++cursor->priority)
+> > > -		list_for_each_entry(res, &man->lru[cursor-
+> > > >priority], lru)
+> > > -			return res;
+> > > +		list_for_each_entry(lru, &man->lru[cursor-
+> > > >priority], link) {
+> > > +			if (ttm_lru_item_is_res(lru))
+> > > +				return ttm_lru_item_to_res(lru);
+> > > +		}
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	return NULL;
+> > > =C2=A0 }
+> > > @@ -497,15 +523,21 @@ ttm_resource_manager_next(struct
+> > > ttm_resource_manager *man,
+> > > =C2=A0=C2=A0			=C2=A0 struct ttm_resource_cursor *cursor,
+> > > =C2=A0=C2=A0			=C2=A0 struct ttm_resource *res)
+> > > =C2=A0 {
+> > > +	struct ttm_lru_item *lru =3D &res->lru;
+> > > +
+> > > =C2=A0=C2=A0	lockdep_assert_held(&man->bdev->lru_lock);
+> > > =C2=A0=20
+> > > -	list_for_each_entry_continue(res, &man->lru[cursor-
+> > > >priority], lru)
+> > > -		return res;
+> > > +	list_for_each_entry_continue(lru, &man->lru[cursor-
+> > > >priority], link) {
+> > > +		if (ttm_lru_item_is_res(lru))
+> > > +			return ttm_lru_item_to_res(lru);
+> > > +	}
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	for (++cursor->priority; cursor->priority <
+> > > TTM_MAX_BO_PRIORITY;
+> > > =C2=A0=C2=A0	=C2=A0=C2=A0=C2=A0=C2=A0 ++cursor->priority)
+> > > -		list_for_each_entry(res, &man->lru[cursor-
+> > > >priority], lru)
+> > > -			return res;
+> > > +		list_for_each_entry(lru, &man->lru[cursor-
+> > > >priority], link) {
+> > > +			if (ttm_lru_item_is_res(lru))
+> > > +				ttm_lru_item_to_res(lru);
+> > > +		}
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0	return NULL;
+> > > =C2=A0 }
+> > > diff --git a/include/drm/ttm/ttm_resource.h
+> > > b/include/drm/ttm/ttm_resource.h
+> > > index 69769355139f..4babc4ff10b0 100644
+> > > --- a/include/drm/ttm/ttm_resource.h
+> > > +++ b/include/drm/ttm/ttm_resource.h
+> > > @@ -49,6 +49,43 @@ struct io_mapping;
+> > > =C2=A0 struct sg_table;
+> > > =C2=A0 struct scatterlist;
+> > > =C2=A0=20
+> > > +/**
+> > > + * enum ttm_lru_item_type - enumerate ttm_lru_item subclasses
+> > > + */
+> > > +enum ttm_lru_item_type {
+> > > +	/** @TTM_LRU_RESOURCE: The resource subclass */
+> > > +	TTM_LRU_RESOURCE,
+> > > +	/** @TTM_LRU_HITCH: The iterator hitch subclass */
+> > > +	TTM_LRU_HITCH
+> > > +};
+> > > +
+> > > +/**
+> > > + * struct ttm_lru_item - The TTM lru list node base class
+> > > + * @link: The list link
+> > > + * @type: The subclass type
+> > > + */
+> > > +struct ttm_lru_item {
+> > > +	struct list_head link;
+> > > +	enum ttm_lru_item_type type;
+> > > +};
+> > > +
+> > > +/**
+> > > + * ttm_lru_item_init() - initialize a struct ttm_lru_item
+> > > + * @item: The item to initialize
+> > > + * @type: The subclass type
+> > > + */
+> > > +static inline void ttm_lru_item_init(struct ttm_lru_item *item,
+> > > +				=C2=A0=C2=A0=C2=A0=C2=A0 enum ttm_lru_item_type
+> > > type)
+> > > +{
+> > > +	item->type =3D type;
+> > > +	INIT_LIST_HEAD(&item->link);
+> > > +}
+> > > +
+> > > +static inline bool ttm_lru_item_is_res(const struct ttm_lru_item
+> > > *item)
+> > > +{
+> > > +	return item->type =3D=3D TTM_LRU_RESOURCE;
+> > > +}
+> > > +
+> > > =C2=A0 struct ttm_resource_manager_func {
+> > > =C2=A0=C2=A0	/**
+> > > =C2=A0=C2=A0	 * struct ttm_resource_manager_func member alloc
+> > > @@ -217,9 +254,21 @@ struct ttm_resource {
+> > > =C2=A0=C2=A0	/**
+> > > =C2=A0=C2=A0	 * @lru: Least recently used list, see
+> > > &ttm_resource_manager.lru
+> > > =C2=A0=C2=A0	 */
+> > > -	struct list_head lru;
+> > > +	struct ttm_lru_item lru;
+> > > =C2=A0 };
+> > > =C2=A0=20
+> > > +/**
+> > > + * ttm_lru_item_to_res() - Downcast a struct ttm_lru_item to a
+> > > struct ttm_resource
+> > > + * @item: The struct ttm_lru_item to downcast
+> > > + *
+> > > + * Return: Pointer to the embedding struct ttm_resource
+> > > + */
+> > > +static inline struct ttm_resource *
+> > > +ttm_lru_item_to_res(struct ttm_lru_item *item)
+> > Pretty much everywhere in this series we have the following coding
+> > pattern:
 > >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > b/drivers/gpu/drm/xe/xe_bo.c
-> > index bc1f794e3e61..4c1dd67a4588 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > @@ -302,6 +302,18 @@ static int xe_tt_map_sg(struct ttm_tt *tt)
-> > =C2=A0	return 0;
-> > =C2=A0}
-> > =C2=A0
-> > +static void xe_tt_unmap_sg(struct ttm_tt *tt)
-> > +{
-> > +	struct xe_ttm_tt *xe_tt =3D container_of(tt, struct
-> > xe_ttm_tt, ttm);
-> > +
-> > +	if (xe_tt->sg) {
-> > +		dma_unmap_sgtable(xe_tt->dev, xe_tt->sg,
-> > +				=C2=A0 DMA_BIDIRECTIONAL, 0);
-> > +		sg_free_table(xe_tt->sg);
-> > +		xe_tt->sg =3D NULL;
-> > +	}
-> > +}
-> > +
-> > =C2=A0struct sg_table *xe_bo_sg(struct xe_bo *bo)
-> > =C2=A0{
-> > =C2=A0	struct ttm_tt *tt =3D bo->ttm.ttm;
-> > @@ -377,27 +389,15 @@ static int xe_ttm_tt_populate(struct
-> > ttm_device *ttm_dev, struct ttm_tt *tt,
-> > =C2=A0	if (err)
-> > =C2=A0		return err;
-> > =C2=A0
-> > -	/* A follow up may move this xe_bo_move when BO is moved
-> > to XE_PL_TT */
-> > -	err =3D xe_tt_map_sg(tt);
-> > -	if (err)
-> > -		ttm_pool_free(&ttm_dev->pool, tt);
-> > -
-> > =C2=A0	return err;
-> > =C2=A0}
-> > =C2=A0
-> > =C2=A0static void xe_ttm_tt_unpopulate(struct ttm_device *ttm_dev,
-> > struct ttm_tt *tt)
-> > =C2=A0{
-> > -	struct xe_ttm_tt *xe_tt =3D container_of(tt, struct
-> > xe_ttm_tt, ttm);
-> > -
-> > =C2=A0	if (tt->page_flags & TTM_TT_FLAG_EXTERNAL)
-> > =C2=A0		return;
-> > =C2=A0
-> > -	if (xe_tt->sg) {
-> > -		dma_unmap_sgtable(xe_tt->dev, xe_tt->sg,
-> > -				=C2=A0 DMA_BIDIRECTIONAL, 0);
-> > -		sg_free_table(xe_tt->sg);
-> > -		xe_tt->sg =3D NULL;
-> > -	}
-> > +	xe_tt_unmap_sg(tt);
-> > =C2=A0
-> > =C2=A0	return ttm_pool_free(&ttm_dev->pool, tt);
-> > =C2=A0}
-> > @@ -628,10 +628,14 @@ static int xe_bo_move(struct
-> > ttm_buffer_object *ttm_bo, bool evict,
-> > =C2=A0	bool handle_system_ccs =3D (!IS_DGFX(xe) &&
-> > xe_bo_needs_ccs_pages(bo) &&
-> > =C2=A0				=C2=A0 ttm && ttm_tt_is_populated(ttm))
-> > ? true : false;
-> > =C2=A0	int ret =3D 0;
-> > +
-> > =C2=A0	/* Bo creation path, moving to system or TT. */
-> > =C2=A0	if ((!old_mem && ttm) && !handle_system_ccs) {
-> > -		ttm_bo_move_null(ttm_bo, new_mem);
-> > -		return 0;
-> > +		if (new_mem->mem_type =3D=3D XE_PL_TT)
-> > +			ret =3D xe_tt_map_sg(ttm);
-> > +		if (!ret)
-> > +			ttm_bo_move_null(ttm_bo, new_mem);
->=20
-> Random ranting, ttm_bo_move_null is a terrible name. It is freeing
-> the
-> old memory and assigning a new one.
-
-I guess it stems from the move operation itself being a no-op, and at
-that time the resource assignment was only a metadata update...
-
-
->=20
-> > +		goto out;
-> > =C2=A0	}
-> > =C2=A0
-> > =C2=A0	if (ttm_bo->type =3D=3D ttm_bo_type_sg) {
-> > @@ -650,6 +654,12 @@ static int xe_bo_move(struct ttm_buffer_object
-> > *ttm_bo, bool evict,
-> > =C2=A0	needs_clear =3D (ttm && ttm->page_flags &
-> > TTM_TT_FLAG_ZERO_ALLOC) ||
-> > =C2=A0		(!ttm && ttm_bo->type =3D=3D ttm_bo_type_device);
-> > =C2=A0
-> > +	if (new_mem->mem_type =3D=3D XE_PL_TT) {
-> > +		ret =3D xe_tt_map_sg(ttm);
-> > +		if (ret)
-> > +			goto out;
-> > +	}
-> > +
-> > =C2=A0	if ((move_lacks_source && !needs_clear)) {
-> > =C2=A0		ttm_bo_move_null(ttm_bo, new_mem);
-> > =C2=A0		goto out;
-> > @@ -786,8 +796,11 @@ static int xe_bo_move(struct ttm_buffer_object
-> > *ttm_bo, bool evict,
-> > =C2=A0	xe_pm_runtime_put(xe);
-> > =C2=A0
-> > =C2=A0out:
-> > -	return ret;
-> > +	if ((!ttm_bo->resource || ttm_bo->resource->mem_type =3D=3D
-> > XE_PL_SYSTEM) &&
-> > +	=C2=A0=C2=A0=C2=A0 ttm_bo->ttm)
->=20
-> So this is covering the case where we have moved to system and had
-> pages.
->=20
-> What about the case where evict fails after the 2nd instance of
-> 'xe_tt_map_sg' in this function. I'm guessing xe_ttm_tt_unpopulate
-> covers that case?
-
-Yes, in that case we have a struct ttm_tt in the PL_TT placement. It
-can either get moved to system, or more likely get unpopulated and
-destroyed. In the latter case, the dma-umap happens in unpopulate.
-
-/Thomas
-
-
-
->=20
-> Matt
->=20
-> > +		xe_tt_unmap_sg(ttm_bo->ttm);
-> > =C2=A0
-> > +	return ret;
-> > =C2=A0}
-> > =C2=A0
-> > =C2=A0/**
-> > --=20
-> > 2.44.0
+> > if (ttm_lru_item_is_res(item))
+> > 	do something with ttm_lru_item_to_res(item);
 > >=20
+> > Would it make more sense to squash these functions together with
+> > only
+> > ttm_lru_item_to_res which returns NULL if item is not
+> > TTM_LRU_RESOURCE?
+> >=20
+> > The new pattern would be:
+> >=20
+> > res =3D ttm_lru_item_is_res(item)
+> > if (res)
+> > 	do something with res
+> >=20
+> > What do you think?
+
+After looking into this, in the typical case this would actually amount
+to
+
+struct ttm_resource *res =3D ttm_lru_item_to_res(item)
+
+if (res)
+	do_something_with_res()
+
+So four lines instead of two and an extra variable. So I don't see the
+immediate benefit. I can change if you guys insist, though
+
+>=20
+> I would even say we should put that filtering into the iterator.
+>=20
+> Nobody except the code which inserted the anchor into the LRU is=20
+> interested in it.
+
+That's true, and it's already part of the _next() iterator function.
+However in those places where the iteration is open-coded it's still
+present. Those functions are typically intended to drain the LRU list.
+
+I could probably introduce a
+	struct ttm_resource *ttm_lru_first_res_or_null(struct
+list_head *);
+
+function to handle those cases, though.
+
+/Thomas.
+
+
+
+
+>=20
+> Regards,
+> Christian.
+>=20
+> >=20
+> > Matt
+> >=20
+> > > +{
+> > > +	return container_of(item, struct ttm_resource, lru);
+> > > +}
+> > > +
+> > > =C2=A0 /**
+> > > =C2=A0=C2=A0 * struct ttm_resource_cursor
+> > > =C2=A0=C2=A0 *
+> > > --=20
+> > > 2.44.0
+> > >=20
+>=20
 
