@@ -4,65 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA985C4345F
-	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 14:26:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D46DDC04FFE
+	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 14:51:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72C4A112163;
-	Thu,  2 May 2024 14:26:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AtA9NMBT";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0F3C11211F;
- Thu,  2 May 2024 14:26:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714659999; x=1746195999;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=sRrnWlDo6EPMIXtN/t+1OOXdyxw9pa5QXZJuXlyOShw=;
- b=AtA9NMBTHNzMGaSLnYVuECkCja1zNBzZg/9RT4wuNW6jH4wTt0EXRRwk
- r8stZeYc9bguRd57NubjJvIwnTzqlEkenAOCRlO9IV0SMqtKSoZBQHO+h
- euoVbIa2PIAHUAu9N9He9O15S7r822hiVsYwhOPuH+gb6ZHcs1Cp9U8jh
- 3JmGwq0vZy1oiJPUYaDTwDiOfiPtZx3qNp+OCo8Kvb++hW5c2S7BQ5bAZ
- q294PrwZQiXsOpfPxAo6YVn+mWQLaTgSxQZadoEOPhxXH+qiaJRDJOL/6
- 7C8Zi+Ainl2HdpQfS1GHy4q/PRPH6xed2Wjwnwwznfh4y7EMJG2CIWTtY A==;
-X-CSE-ConnectionGUID: VwfXEPAzTjKBdpLBJl48wA==
-X-CSE-MsgGUID: Ag4MblxSRyGmulwRD3/PNA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11062"; a="21117881"
-X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="21117881"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2024 07:26:36 -0700
-X-CSE-ConnectionGUID: GZskzRGTR2Cy7x51pngBPw==
-X-CSE-MsgGUID: hF/wpQ3FSpybRTuYjkRSBw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="31628318"
-Received: from antonvol-mobl1.ccr.corp.intel.com (HELO fedora)
- ([10.251.209.48])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2024 07:26:32 -0700
-Date: Thu, 2 May 2024 16:26:21 +0200
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-next-fixes
-Message-ID: <ZjOijQA43zhu3SZ4@fedora>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9646A11246A;
+	Thu,  2 May 2024 14:51:54 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43ED511246A;
+ Thu,  2 May 2024 14:51:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1182307473196512609=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/gt=3A_Fix_assert_in_L3_ba?=
+ =?utf-8?q?nk_mask_generation_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Francois Dugast" <francois.dugast@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 02 May 2024 14:51:53 -0000
+Message-ID: <171466151327.1848758.4254042741043074921@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240502124311.159695-1-francois.dugast@intel.com>
+In-Reply-To: <20240502124311.159695-1-francois.dugast@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,51 +36,115 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Dave, Sima
+--===============1182307473196512609==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This week's small set of fixes for drm-next.
+== Series Details ==
 
-drm-xe-next-fixes-2024-05-02:
-Driver Changes:
-- Fix for a backmerge going slightly wrong.
-- An UAF fix
-- Avoid a WA error on LNL.
+Series: drm/xe/gt: Fix assert in L3 bank mask generation (rev4)
+URL   : https://patchwork.freedesktop.org/series/133055/
+State : success
 
-Thanks,
-Thomas
+== Summary ==
 
-The following changes since commit 4a56c0ed5aa0bcbe1f5f7d755fb1fe1ebf48ae9c:
+CI Bug Log - changes from xe-1220-1b26f047c5fd5ce2cb738736d729d198b4ead7c8_BAT -> xe-pw-133055v4_BAT
+====================================================
 
-  Merge tag 'amd-drm-next-6.10-2024-04-26' of https://gitlab.freedesktop.org/agd5f/linux into drm-next (2024-04-30 14:43:00 +1000)
+Summary
+-------
 
-are available in the Git repository at:
+  **SUCCESS**
 
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-fixes-2024-05-02
+  No regressions found.
 
-for you to fetch changes up to 3bc8848bb7f7478e6806e4522b06b63f40a53e1e:
+  
 
-  drm/xe: Merge 16021540221 and 18034896535 WAs (2024-05-02 11:29:42 +0200)
+Participating hosts (4 -> 5)
+------------------------------
 
-----------------------------------------------------------------
-Driver Changes:
-- Fix for a backmerge going slightly wrong.
-- An UAF fix
-- Avoid a WA error on LNL.
+  Additional (1): bat-lnl-1 
 
-----------------------------------------------------------------
-Lucas De Marchi (1):
-      drm/xe: Merge 16021540221 and 18034896535 WAs
+Known issues
+------------
 
-Matthew Auld (1):
-      drm/xe/vm: prevent UAF in rebind_work_func()
+  Here are the changes found in xe-pw-133055v4_BAT that come from known issues:
 
-Thomas Hellström (1):
-      drm/xe: Fix unexpected backmerge results
+### IGT changes ###
 
- drivers/gpu/drm/xe/xe_vm.c       | 16 ++++++++++------
- drivers/gpu/drm/xe/xe_vm_types.h |  4 ++++
- drivers/gpu/drm/xe/xe_wa.c       |  7 +------
- 3 files changed, 15 insertions(+), 12 deletions(-)
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#1767]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1767
+
+
+Build changes
+-------------
+
+  * Linux: xe-1220-1b26f047c5fd5ce2cb738736d729d198b4ead7c8 -> xe-pw-133055v4
+
+  IGT_7828: 68a055ff91b91dadb01d9501cd8670f654b5b952 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1220-1b26f047c5fd5ce2cb738736d729d198b4ead7c8: 1b26f047c5fd5ce2cb738736d729d198b4ead7c8
+  xe-pw-133055v4: 133055v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133055v4/index.html
+
+--===============1182307473196512609==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/gt: Fix assert in L3 bank mask generation (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133055/">https://patchwork.freedesktop.org/series/133055/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133055v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133055v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1220-1b26f047c5fd5ce2cb738736d729d198b4ead7c8_BAT -&gt; xe-pw-133055v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 5)</h2>
+<p>Additional (1): bat-lnl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-133055v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1220-1b26f047c5fd5ce2cb738736d729d198b4ead7c8 -&gt; xe-pw-133055v4</li>
+</ul>
+<p>IGT_7828: 68a055ff91b91dadb01d9501cd8670f654b5b952 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1220-1b26f047c5fd5ce2cb738736d729d198b4ead7c8: 1b26f047c5fd5ce2cb738736d729d198b4ead7c8<br />
+  xe-pw-133055v4: 133055v4</p>
+
+</body>
+</html>
+
+--===============1182307473196512609==--
