@@ -4,63 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 460AEC4345F
-	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 11:01:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E753C4345F
+	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 11:21:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB89F10E341;
-	Thu,  2 May 2024 11:01:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4C2810E5F5;
+	Thu,  2 May 2024 11:21:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R28uctmH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oH2MRB9h";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FCEF10E39C
- for <intel-xe@lists.freedesktop.org>; Thu,  2 May 2024 11:01:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0D2110E5F5;
+ Thu,  2 May 2024 11:21:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714647667; x=1746183667;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=qjG/R6nzcsBkplLwehmg/bm0GC7yqLimPMf359r+LOE=;
- b=R28uctmH0VxHqTJM7ZB3GbsQiBoHDHFo80Ob0bsqrdgBxMuSqg9rlm9s
- RzJ3p2LIrmVnjGfkYblz4l+DsJ6E1g7NyRoFMgWdgAomc20Hcr5g/Lj5w
- 2r74V0hzuqCoMwHYggjKOvSFJAhdcYbukAeXYlLjxJawTMBXrVKIyI5CW
- ykW+uXn1UupJMNxKHIBgJWRz3hWhaEhhCmXmxOiYbdK9+GafXGUEZcrgg
- +98m6zVWqeR+5lTDPoqvujI2P+9ZDvNLaSprvN/F1goI9DkdJgX9KvX/Q
- rC5ewa09sYOwP01Z4btJoDINTQxors8Sf7lWSkJBsUDs95ulTlgW78DaG A==;
-X-CSE-ConnectionGUID: eP1zqiXXQvSzb0rP+/N54w==
-X-CSE-MsgGUID: G20XxiSZRTqLkkn2PHYEqQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11061"; a="10337405"
-X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="10337405"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2024 04:01:06 -0700
-X-CSE-ConnectionGUID: ZR/LV04eRlidune7Al2Enw==
-X-CSE-MsgGUID: yYpaSNkoQjiFbyW1R+RXkA==
+ t=1714648877; x=1746184877;
+ h=message-id:subject:from:to:cc:in-reply-to:references:
+ content-transfer-encoding:mime-version:date;
+ bh=ciGwY2N2O0x6I3gavs1U22wVYFqwhV0R9Fxj9nqNb7I=;
+ b=oH2MRB9hArgiU4QSGF0Hu+FUbxg1fjtsHqNGk0wc+lH6ltxvq8IAsym8
+ laMgztU5CD9ftfxncjsJrGxuQdMuWWyL+0qVGksP2N0fJ8ZPhih1KkOuS
+ 64le5gThKVW5UZX1DG88hQVQU1zJw+JEfDh8jViiGaAw2gYMXbhqTmyT1
+ jyroDk7byExKZHfTkXB/r2B7am0TtAGbpNpTClxJLZngmPD/Vn8xV+ZkL
+ JXo+gBvac8rMgTyXSYUxaxasqeGz/sHF0L0BIa62PtzCk3pM6CTTLGm1Z
+ MeSSu25bzhx0uEgmUPzwkN+XDKzs3MoZMW4UBdZMzeA+KOXaLwEdZBDSH w==;
+X-CSE-ConnectionGUID: s7ofPpX4R0KxxvJgAZHEIA==
+X-CSE-MsgGUID: 96/VyPSYSjiL9fRm6+/3tw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11061"; a="21557539"
+X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="21557539"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2024 04:21:16 -0700
+X-CSE-ConnectionGUID: MPvc4DICT36rMKurqmDtNQ==
+X-CSE-MsgGUID: 9jdG6VlmQAuq5yPBkjBrtA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="27594640"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa007.jf.intel.com with ESMTP; 02 May 2024 04:01:04 -0700
-Received: from [10.246.17.255] (unknown [10.246.17.255])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 461252879A;
- Thu,  2 May 2024 12:01:02 +0100 (IST)
-Message-ID: <3ab475e9-b5ae-4dca-8764-806a8236e883@intel.com>
-Date: Thu, 2 May 2024 13:01:00 +0200
+X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="64530305"
+Received: from vpus-mobl1.ger.corp.intel.com (HELO [10.252.34.3])
+ ([10.252.34.3])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2024 04:21:13 -0700
+Message-ID: <93fca752517f0120baa770992fd0f9160b0c14d1.camel@linux.intel.com>
+Subject: Re: [PATCH 06/23] drm/xe/svm: Introduce a helper to build sg table
+ from hmm range
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>, Jason Gunthorpe <jgg@nvidia.com>
+Cc: "Zeng, Oak" <oak.zeng@intel.com>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "Brost, Matthew"
+ <matthew.brost@intel.com>,  "Welty, Brian" <brian.welty@intel.com>,
+ "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>, "Bommu,
+ Krishnaiah" <krishnaiah.bommu@intel.com>, "Vishwanathapura, Niranjana"
+ <niranjana.vishwanathapura@intel.com>, Leon Romanovsky <leon@kernel.org>
+In-Reply-To: <ZjNJASw0JdXS6dTa@phenom.ffwll.local>
+References: <SA1PR11MB699102978E72F21E6C803D6392102@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <20240425010520.GW941030@nvidia.com>
+ <65cb3984309d377d6e7d57cb6567473c8a83ed78.camel@linux.intel.com>
+ <20240426120047.GX941030@nvidia.com>
+ <ad82f95ee29ada403459416d4c97c2b9083b5a0f.camel@linux.intel.com>
+ <20240426163519.GZ941030@nvidia.com>
+ <f938dc8f7309ae833e02ccdbc72134df0607dfa4.camel@linux.intel.com>
+ <20240430173002.GV941030@nvidia.com> <ZjE_LJ7AFFQk0Eep@phenom.ffwll.local>
+ <20240501000915.GY941030@nvidia.com> <ZjNJASw0JdXS6dTa@phenom.ffwll.local>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/xe/pf: Implement pci_driver.sriov_configure
- callback
-To: "Nilawar, Badal" <badal.nilawar@intel.com>,
- =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-References: <20240426132217.2351-1-michal.wajdeczko@intel.com>
- <20240426150713.ntnegd6r4s3qbpvk@intel.com>
- <29b2e173-55f3-48dc-9343-b107812fffac@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <29b2e173-55f3-48dc-9343-b107812fffac@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Date: Thu, 02 May 2024 11:11:04 +0200
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,284 +86,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-+ @Rodrigo
+Hi,
 
-On 30.04.2024 13:25, Nilawar, Badal wrote:
-> 
-> 
-> On 26-04-2024 20:37, Piotr Piórkowski wrote:
->> Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on pią
->> [2024-kwi-26 15:22:17 +0200]:
->>> The PCI subsystem already exposes the "sriov_numvfs" attribute
->>> that users can use to enable or disable SR-IOV VFs. Add custom
->>> implementation of the .sriov_configure callback defined by the
->>> pci_driver to perform additional steps, including fair VFs
->>> provisioning with the resources, as required by our platforms.
->>>
->>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>> Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
->>> ---
->>> v2: check result of VFs provisioning (Piotr)
->>>      use xe_sriov_pf_get_totalvfs consistently (Piotr)
->>>      prefer VFID instead of plain a VF number (Piotr)
->>> ---
->>>   drivers/gpu/drm/xe/Makefile       |   1 +
->>>   drivers/gpu/drm/xe/xe_pci.c       |   4 +
->>>   drivers/gpu/drm/xe/xe_pci_sriov.c | 138 ++++++++++++++++++++++++++++++
->>>   drivers/gpu/drm/xe/xe_pci_sriov.h |  13 +++
->>>   4 files changed, 156 insertions(+)
->>>   create mode 100644 drivers/gpu/drm/xe/xe_pci_sriov.c
->>>   create mode 100644 drivers/gpu/drm/xe/xe_pci_sriov.h
->>>
->>> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->>> index a67977edff5b..6acde66f0827 100644
->>> --- a/drivers/gpu/drm/xe/Makefile
->>> +++ b/drivers/gpu/drm/xe/Makefile
->>> @@ -169,6 +169,7 @@ xe-$(CONFIG_PCI_IOV) += \
->>>       xe_lmtt.o \
->>>       xe_lmtt_2l.o \
->>>       xe_lmtt_ml.o \
->>> +    xe_pci_sriov.o \
->>>       xe_sriov_pf.o
->>>     # include helpers for tests even when XE is built-in
->>> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
->>> index a0cf5dd803c2..f3efde939df4 100644
->>> --- a/drivers/gpu/drm/xe/xe_pci.c
->>> +++ b/drivers/gpu/drm/xe/xe_pci.c
->>> @@ -23,6 +23,7 @@
->>>   #include "xe_macros.h"
->>>   #include "xe_mmio.h"
->>>   #include "xe_module.h"
->>> +#include "xe_pci_sriov.h"
->>>   #include "xe_pci_types.h"
->>>   #include "xe_pm.h"
->>>   #include "xe_sriov.h"
->>> @@ -952,6 +953,9 @@ static struct pci_driver xe_pci_driver = {
->>>       .probe = xe_pci_probe,
->>>       .remove = xe_pci_remove,
->>>       .shutdown = xe_pci_shutdown,
->>> +#ifdef CONFIG_PCI_IOV
->>> +    .sriov_configure = xe_pci_sriov_configure,
->>> +#endif
->>>   #ifdef CONFIG_PM_SLEEP
->>>       .driver.pm = &xe_pm_ops,
->>>   #endif
->>> diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c
->>> b/drivers/gpu/drm/xe/xe_pci_sriov.c
->>> new file mode 100644
->>> index 000000000000..75248fdd6cee
->>> --- /dev/null
->>> +++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
->>> @@ -0,0 +1,138 @@
->>> +// SPDX-License-Identifier: MIT
->>> +/*
->>> + * Copyright © 2023-2024 Intel Corporation
->>> + */
->>> +
->>> +#include "xe_assert.h"
->>> +#include "xe_device.h"
->>> +#include "xe_gt_sriov_pf_config.h"
->>> +#include "xe_pci_sriov.h"
->>> +#include "xe_pm.h"
->>> +#include "xe_sriov.h"
->>> +#include "xe_sriov_pf_helpers.h"
->>> +#include "xe_sriov_printk.h"
->>> +
->>> +static int pf_provision_vfs(struct xe_device *xe, unsigned int num_vfs)
->>> +{
->>> +    struct xe_gt *gt;
->>> +    unsigned int id;
->>> +    int result = 0, err;
->>> +
->>> +    for_each_gt(gt, xe, id) {
->>> +        err = xe_gt_sriov_pf_config_set_fair(gt, VFID(1), num_vfs);
->>> +        result = result ?: err;
->>> +    }
->>> +
->>> +    return result;
->>> +}
->>> +
->>> +static void pf_unprovision_vfs(struct xe_device *xe, unsigned int
->>> num_vfs)
->>> +{
->>> +    struct xe_gt *gt;
->>> +    unsigned int id;
->>> +    unsigned int n;
->>> +
->>> +    for_each_gt(gt, xe, id)
->>> +        for (n = 1; n <= num_vfs; n++)
->>> +            xe_gt_sriov_pf_config_release(gt, n, true);
->>> +}
->>> +
->>> +static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
->>> +{
->>> +    struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->>> +    int total_vfs = xe_sriov_pf_get_totalvfs(xe);
->>> +    int err;
->>> +
->>> +    xe_assert(xe, IS_SRIOV_PF(xe));
->>> +    xe_assert(xe, num_vfs > 0);
->>> +    xe_assert(xe, num_vfs <= total_vfs);
->>> +    xe_sriov_dbg(xe, "enabling %u VF%s\n", num_vfs,
->>> str_plural(num_vfs));
->>> +
->>> +    /*
->>> +     * hold additional reference to the runtime PM as long as VFs are
->>> +     * enabled to keep GuC alive - will be released in pf_disable_vfs()
->>> +     */
-> AFAIK PF shouldn't be placed in lower power state than VF. With that in
-> above comment we should mention PF alive rather than GuC alive.
+Although I haven't had a chance yet to eye through the current code,
+some comments along the way.
 
-from the VFs provisioning POV we are more interested in that the GuC
-will be kept alive, and in result we will have PF also alive.
 
-but maybe indeed it will be better to refer to the PCI level spec:
+On Thu, 2024-05-02 at 10:04 +0200, Daniel Vetter wrote:
+> On Tue, Apr 30, 2024 at 09:09:15PM -0300, Jason Gunthorpe wrote:
+> > On Tue, Apr 30, 2024 at 08:57:48PM +0200, Daniel Vetter wrote:
+> > > On Tue, Apr 30, 2024 at 02:30:02PM -0300, Jason Gunthorpe wrote:
+> > > > On Mon, Apr 29, 2024 at 10:25:48AM +0200, Thomas Hellstr=C3=B6m
+> > > > wrote:
+> > > >=20
+> > > > > > Yes there is another common scheme where you bind a window
+> > > > > > of CPU to
+> > > > > > a
+> > > > > > window on the device and mirror a fixed range, but this is
+> > > > > > a quite
+> > > > > > different thing. It is not SVA, it has a fixed range, and
+> > > > > > it is
+> > > > > > probably bound to a single GPU VMA in a multi-VMA device
+> > > > > > page table.
+> > > > >=20
+> > > > > And this above here is exactly what we're implementing, and
+> > > > > the GPU
+> > > > > page-tables are populated using device faults. Regions
+> > > > > (large) of the
+> > > > > mirrored CPU mm need to coexist in the same GPU vm as
+> > > > > traditional GPU
+> > > > > buffer objects.
+> > > >=20
+> > > > Well, not really, if that was the case you'd have a single VMA
+> > > > over
+> > > > the entire bound range, not dynamically create them.
+> > > >=20
+> > > > A single VMA that uses hmm_range_fault() to populate the VM is
+> > > > completely logical.
+> > > >=20
+> > > > Having a hidden range of mm binding and then
+> > > > creating/destroying 2M
+> > > > VMAs dynamicaly is the thing that doesn't make alot of sense.
+> > >=20
+> > > I only noticed this thread now but fyi I did dig around in the
+> > > implementation and it's summarily an absolute no-go imo for
+> > > multiple
+> > > reasons. It starts with this approach of trying to mirror cpu vma
+> > > (which I
+> > > think originated from amdkfd) leading to all kinds of locking
+> > > fun, and
+> > > then it gets substantially worse when you dig into the details.
 
-/*
- * We must hold additional reference to the runtime PM to keep PF in D0
- * during VFs lifetime, as our VFs do not implement the PM capability.
- *
- * With PF being in D0 state, all VFs will also behave as in D0 state.
- * This will also keep GuC alive with all VFs' configurations.
- *
- * We will release this additional PM reference in pf_disable_vfs().
- */
+It's true the cpu vma lookup is a remnant from amdkfd. The idea here is
+to replace that with fixed prefaulting ranges of tunable size. So far,
+as you mention, the prefaulting range has been determined by the CPU
+vma size. Given previous feedback, this is going to change.
 
-sounds better ?
+Still the prefaulting range needs to be restricted to avoid -EFAULT
+failures in hmm_range_fault(). That can ofc be done by calling it
+without HMM_PFN_REQ_FAULT for the range and interpret the returned
+pnfs. There is a performance concern of this approach as compared to
+peeking at the CPU vmas directly, since hmm_range_fault() would need to
+be called twice. Any guidelines ideas here?
 
->>> +    xe_pm_runtime_get(xe);
+The second aspect of this is gpu_vma creation / splitting on fault that
+the current implementation has. The plan is to get rid of that as well,
+in favour of a sparsely populated gpu_vma. The reason for this
+implementation was the easy integration with drm_gpuvm.
 
-@Rodrigo, is this ok, or based on below discussion this should be
-xe_pm_runtime_get_noresume() instead?
+Still, I don't see any locking problems here, though, maintaining
 
->>> +
->>> +    err = pf_provision_vfs(xe, num_vfs);
->>> +    if (err < 0)
->>> +        goto failed;
->>> +
->>> +    err = pci_enable_sriov(pdev, num_vfs);
->>> +    if (err < 0)
->>> +        goto failed;
->>> +
->>> +    xe_sriov_info(xe, "Enabled %u of %u VF%s\n",
->>> +              num_vfs, total_vfs, str_plural(total_vfs));
->>> +    return num_vfs;
->>> +
->>> +failed:
->>> +    pf_unprovision_vfs(xe, num_vfs);
->>> +    xe_pm_runtime_put(xe);
->>> +
->>> +    xe_sriov_notice(xe, "Failed to enable %u VF%s (%pe)\n",
->>> +            num_vfs, str_plural(num_vfs), ERR_PTR(err));
->>> +    return err;
->>> +}
->>> +
->>> +static int pf_disable_vfs(struct xe_device *xe)
->>> +{
->>> +    struct device *dev = xe->drm.dev;
->>> +    struct pci_dev *pdev = to_pci_dev(dev);
->>> +    u16 num_vfs = pci_num_vf(pdev);
->>> +
->>> +    xe_assert(xe, IS_SRIOV_PF(xe));
->>> +    xe_sriov_dbg(xe, "disabling %u VF%s\n", num_vfs,
->>> str_plural(num_vfs));
->>> +
->>> +    if (!num_vfs)
->>> +        return 0;
->>> +
->>> +    pci_disable_sriov(pdev);
->>> +
->>> +    pf_unprovision_vfs(xe, num_vfs);
->>> +
->>> +    /* not needed anymore - see pf_enable_vfs() */
->>> +    xe_pm_runtime_put(xe);
->>> +
->>> +    xe_sriov_info(xe, "Disabled %u VF%s\n", num_vfs,
->>> str_plural(num_vfs));
->>> +    return 0;
->>> +}
->>> +
->>> +/**
->>> + * xe_pci_sriov_configure - Configure SR-IOV (enable/disable VFs).
->>> + * @pdev: the &pci_dev
->>> + * @num_vfs: number of VFs to enable or zero to disable all VFs
->>> + *
->>> + * This is the Xe implementation of struct
->>> pci_driver.sriov_configure callback.
->>> + *
->>> + * This callback will be called by the PCI subsystem to enable or
->>> disable SR-IOV
->>> + * Virtual Functions (VFs) as requested by the used via the PCI
->>> sysfs interface.
->>> + *
->>> + * Return: number of configured VFs or a negative error code on
->>> failure.
->>> + */
->>> +int xe_pci_sriov_configure(struct pci_dev *pdev, int num_vfs)
->>> +{
->>> +    struct xe_device *xe = pdev_to_xe_device(pdev);
->>> +    int ret;
->>> +
->>> +    if (!IS_SRIOV_PF(xe))
->>> +        return -ENODEV;
->>> +
->>> +    if (num_vfs < 0)
->>> +        return -EINVAL;
->>> +
->>> +    if (num_vfs > xe_sriov_pf_get_totalvfs(xe))
->>> +        return -ERANGE;
->>> +
->>> +    if (num_vfs && pci_num_vf(pdev))
->>> +        return -EBUSY;
->>> +
->>> +    xe_pm_runtime_get(xe);
-> I think this is not needed as rpm ref is already being held and released
-> in vfs enable and disble function.
+gpu_vm->lock
+mmap_lock
+dma_resv
+reclaim
+notifier_lock
 
-IMO this is the 'outer-bound' caller, as called by our PM doc, which
-should take the initial reference, while rpm calls in enable_vfs() and
-disable_vfs() are just additional one, SR-IOV VFs lifetime specific, to
-allow VFs to operate.
+throughout the code. What is likely to get somewhat problematic,
+though, is VRAM eviction.
 
-@Rodrigo, is my above understanding correct ?
+/Thomas
 
-> 
-> Regards,
-> Badal
->>> +    if (num_vfs > 0)
->>> +        ret = pf_enable_vfs(xe, num_vfs);
->>> +    else
->>> +        ret = pf_disable_vfs(xe);
->>> +    xe_pm_runtime_put(xe);
->>> +
->>> +    return ret;
->>> +}
->>> diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.h
->>> b/drivers/gpu/drm/xe/xe_pci_sriov.h
->>> new file mode 100644
->>> index 000000000000..3b8bfbf7e1d9
->>> --- /dev/null
->>> +++ b/drivers/gpu/drm/xe/xe_pci_sriov.h
->>> @@ -0,0 +1,13 @@
->>> +/* SPDX-License-Identifier: MIT */
->>> +/*
->>> + * Copyright © 2023-2024 Intel Corporation
->>> + */
->>> +
->>> +#ifndef _XE_PCI_SRIOV_H_
->>> +#define _XE_PCI_SRIOV_H_
->>> +
->>> +struct pci_dev;
->>> +
->>> +int xe_pci_sriov_configure(struct pci_dev *pdev, int num_vfs);
->>> +
->>> +#endif
->>
->>
->> LGTM:
->> Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
->>
->>> -- 
->>> 2.43.0
->>>
->>
+
+
+
+>=20
+> s the main reason I replied, it felt a
+> bit like the thread was derailing in details that don't yet matter.
+>=20
+> Thanks, Sima
+
+/Thomas
+
