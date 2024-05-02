@@ -4,165 +4,172 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A8BCC4345F
-	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 17:21:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DF68C4345F
+	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 17:27:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3202B10F46F;
-	Thu,  2 May 2024 17:21:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 195ED10E0AD;
+	Thu,  2 May 2024 17:27:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B8kbleLV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M+cbrVdE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 236AD10F46F
- for <intel-xe@lists.freedesktop.org>; Thu,  2 May 2024 17:21:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1A9F10E0AD
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 May 2024 17:27:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714670465; x=1746206465;
+ t=1714670866; x=1746206866;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=q9AEanbwSvVTAzHKYkyE4v4PEhPMYeALzsH+frQH0sU=;
- b=B8kbleLVAIfJABX/4TIg/23Sy8Ut9MSiJyUzTFrb/uKEwq2NYYlXKnAn
- TJT3AsISxrdC5RfTYfS2rDbnj0cnWGgf+Io4hu3DtcXIOd0EEsLZoQme6
- +zwun5+BP29sfyHCI9wLL+/19GpubtBwR75qIMX44U1jVHiNiR+pnCkka
- domxf6aC9xc19P5juXCKIr3RhG4WKqgox2j3tontx3uZZlVBDypFb2ITE
- ejmBHIdfD14Jb6RV69zuIUCU82SC+1Xm7J9G+plQb5q4WdOEfcAC+Kav/
- MmJg9dajLPbUqMs3nX378pWT4QXNOzmw3/8NpuiC+slkBYASzSFm+/N3f Q==;
-X-CSE-ConnectionGUID: TqS15853RVuqO1CiZC0NtA==
-X-CSE-MsgGUID: ++Blj2oWTQKbcwWZRlRn9w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11062"; a="10577610"
-X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="10577610"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2024 10:21:04 -0700
-X-CSE-ConnectionGUID: envlV/SlTsqk9RpCSrpSSQ==
-X-CSE-MsgGUID: t+YO0Y0zQUe80/FkglQveg==
+ bh=U+BL9ssbk91n7lHI0I7ZIlS96HmT1j8A0nOaN0nxiOw=;
+ b=M+cbrVdEqFxuTj54qUAcq/LRBylZrTiNpp9bnJ/+HzatxKpHUO/FA94R
+ IKrljY3NDslu3ynlZZHCWWstms8gY/Hr5DqGU96573ELZOPbeNIrI2FnX
+ lozMqLJr9Xje7dVLvZtfRb+5cNpXkhow0Z7c7KC06A4Y/+kj6R+y3mh9l
+ eBi7onmbbeqGVorSehnq0IYO9WuDgDPygc12WV0H2kGnBDBfmpTk6Hr7f
+ TVQxeHoVvnrBLbDRxhgIrngdAo2YCDNfEOEV8ovQpunBdZlqQIqLc45zd
+ mS8xME6JhPLrR72l4YhY4NV5wZvAO9A8nYYjH9KGvENVeWmBfv8x8Nmzv A==;
+X-CSE-ConnectionGUID: 1+Wt6+ILSJa/BwLStvupqA==
+X-CSE-MsgGUID: JLaW9gKUT6SFIcOU3NfiTg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11062"; a="14260975"
+X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="14260975"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2024 10:27:45 -0700
+X-CSE-ConnectionGUID: /QTkHlhqSeyphVibF15IwQ==
+X-CSE-MsgGUID: CIgB8foRQnGAorMNYUiSqg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="27165990"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 02 May 2024 10:21:04 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="27293519"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 02 May 2024 10:27:45 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 2 May 2024 10:21:03 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.35; Thu, 2 May 2024 10:27:44 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 2 May 2024 10:21:03 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.40) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Thu, 2 May 2024 10:27:44 -0700
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.41) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 2 May 2024 10:21:03 -0700
+ 15.1.2507.35; Thu, 2 May 2024 10:27:02 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=R+7wjr4VCOLPhq5R2enB9GsHn5U0WsCjk41iHoJ721hCPeF2+LgctO78KtFgz17fxI4CJOqBADtz2lXcSqWiIrgZ/YmZY1f6+PFcBNAb7bNM8Iyu0xB0I3PgtwiGsRqs6lebgGyxG1N2v064IaounR3Ir9LfeAVt4JZ4BIH7BzxreNenjQ6yXSIqtAzExy2Q60SI6qr3dm38oA9ubpAeuRoU8YxnsehKSebW8Of+YztzL8K4TujQX9U/x71eni7ENhBxR4VFWwYCt1ui3qeqi3NKBj589oHIwOqcnbQ69U8GCv9C0UFPUi+r/emOxRfOcPj/1/n7PjU/AJ0L9l08Jg==
+ b=GZioS88wB6kVwzX+GKvJFaPEb9K7O+DZukK6pidaNq//HTSN8U7D+RKwE7RgCEIune0+sakmcQeqCvFYoytnC1+WRGE6D23tlQBPn+9UGop2o6iDpGQmD1RVHidRL6jAM+nivdnVyhSRUtKCLDCJcT9n/j+fMMr5PWrz/EQ4/ymLosrhO1V9TkLAB3rmYJY4xSTkciU4ybpFEcxHgbyd60Ti/LiNfC4hrcVPpic3gHiodsmg41iDMw/U7cITy9xT3tZ5F46z5/X6RyMtRckNXSfxwcTqC8fO+2KSVkArsdjihPkTShughmqmxkphc5RKM0Q+j74FUPAtajP+nmUtQA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tx0tKPsy4xn5L9Kr2hcw5VGkbnQjGDyeZY7bCcnUxyQ=;
- b=Go1DJtb2vsFf16mn5mvS52+WpNK24D2PT40fFcHX3oqCoxva8wsOG6DJdb+bl0fDCwwmYrX/KsgemEJZHsd8NDmlC9sEhr2RIvVMaXGR3XDZu1N3FRf9Rg4RDsjwukDcqgN1WPyhz6IFVNMGu6U/xlKGI0x6Dq5YStiPtT9atAz8smJ986kEPdpicHWZLaDzglGNhwrsRCKBAof9Gut5F0fh2WAQeyF0YRcO30ukZaywDziCLjVndYtZTvNhqXy6/vf3TAQEWY1MGLhxRAsfER3oRh+27aiY82+ax9/PitRGtINbCZZDCUrCbQ7yWXyeylY99YRVpBPXL/BL8mpscA==
+ bh=hhsY4DPAQXu8Z1dtBR6zcYp5c/H6NjGPt2+ejr2Ej0I=;
+ b=fSdkdsmK96YM0U2w4tb3m8+1ljmXFHGSIJXE1kf7/4vT/uJXVDLgQZvVTKjy6rsgvTdq1zfkcGijIoU0wqNK4nOE0TCN5Loqtv3nY3EOx3NMHFf0xi730P2rduXbKOQU/HZwPcDq9rvmg2FbgJMM7Y864iTLlBIi/MnaMB2mj1CI3/h0J5qc34QEoRjXSe33QtcdX4bWOWoYyyl5Zjn8jOsS7mV7v2cVJ5H6t4dlmvNFOuvU0eQSEWpPJLCaA7TYcAAx6y0KRlxgB/3HnC+t3au7TpcTpwaiduLDnMTweL39+bSlBvYI1sDnTO1vLHqsuRggVntX93E0E3G1k/lWnw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by IA1PR11MB7246.namprd11.prod.outlook.com (2603:10b6:208:42e::13)
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by CY5PR11MB6161.namprd11.prod.outlook.com (2603:10b6:930:2a::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.34; Thu, 2 May
- 2024 17:20:59 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.7544.023; Thu, 2 May 2024
- 17:20:58 +0000
-Date: Thu, 2 May 2024 17:20:43 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/xe: Perform dma_map when moving system buffer
- objects to TT
-Message-ID: <ZjPLa8H08IVmR6Fe@DUT025-TGLU.fm.intel.com>
-References: <20240430120214.5372-1-thomas.hellstrom@linux.intel.com>
- <ZjEgowaMK2IUexXO@DUT025-TGLU.fm.intel.com>
- <203d2774f5f901041bb9d20efd759001f968ffdf.camel@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.24; Thu, 2 May
+ 2024 17:26:59 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::9365:d8e6:4e8d:8711]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::9365:d8e6:4e8d:8711%6]) with mapi id 15.20.7519.031; Thu, 2 May 2024
+ 17:26:59 +0000
+Date: Thu, 2 May 2024 12:26:55 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+CC: Matthew Brost <matthew.brost@intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, <intel-xe@lists.freedesktop.org>,
+ <vinay.belgaumkar@intel.com>, <michal.winiarski@intel.com>
+Subject: Re: [PATCH 1/5] drm/xe: Drop __engine_mask
+Message-ID: <u3yk3pbtysegqltmlbhufuqhv27zqxefef2jkcm4klgy4dkkiu@nmt3dij4d4bj>
+References: <20240425182410.2705061-1-lucas.demarchi@intel.com>
+ <20240425182410.2705061-2-lucas.demarchi@intel.com>
+ <ZjADLvXstooUQk58@intel.com>
+ <ZjAEtBb/P1kDQzeI@DUT025-TGLU.fm.intel.com>
+ <2nxudidnseyqjxa7fsug2nnrudaysoqysl5vp2ftr4ikt6u4cw@ufsbnqheyovt>
+ <ZjEUm9LD8irh+eKh@DUT025-TGLU.fm.intel.com>
+ <87b968f4-e6ec-41e2-af11-03b6adc6f0f8@intel.com>
+ <qer2v7bslci6af6u3ygkcpicxyacbex6r54wzfyww32rq3sevu@2tovdhmfdp4t>
+ <7db2a29a-9a5e-48e8-8b28-711a74daa815@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"; format=flowed
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <203d2774f5f901041bb9d20efd759001f968ffdf.camel@linux.intel.com>
-X-ClientProxiedBy: SJ0PR03CA0130.namprd03.prod.outlook.com
- (2603:10b6:a03:33c::15) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+In-Reply-To: <7db2a29a-9a5e-48e8-8b28-711a74daa815@intel.com>
+X-ClientProxiedBy: MW4P221CA0003.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:303:8b::8) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA1PR11MB7246:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7525f880-3a91-4653-2f61-08dc6acc3b8a
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CY5PR11MB6161:EE_
+X-MS-Office365-Filtering-Correlation-Id: 90712e23-e0f3-47ef-2c93-08dc6acd12b2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|1800799015|366007;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?udHbfCOlGQWqMVlPW2xcouJhHQupKbO6R2hiKRfi+WtAZWN6eCpQJ12DA4?=
- =?iso-8859-1?Q?bPFUT2MgU0HSJH4xFnF3P5YFkpTGDELlWsNK+d4qjZFcKz5wTf/9zQZFMp?=
- =?iso-8859-1?Q?Mo7Hr2jwqw9Z9Z/XkdGc6XWMxjWRWeywwKFr9JsHUZCbyiXMoNdtm9i3OY?=
- =?iso-8859-1?Q?++Wo3PRj0dbHam+4uZ6xZ2YNtHeVA9xrQMaaq3rsefIlCH0oLQioTcEc+/?=
- =?iso-8859-1?Q?jQKsWKpL3QYig7K9EMblJ/yCZgaKI3V64+Omr5Gspz4wJ6lG5roROezhNo?=
- =?iso-8859-1?Q?TwuIp4jms2aoM4cbFHNeneSl6h2cm45g1PjKhjsmtJluuWn/qtrQycFilq?=
- =?iso-8859-1?Q?EyvNDl6gXEDet8hE7fb4qtDY1gRtHIsy2n5lnNFgIdbtXL5/jcKbGsi3rZ?=
- =?iso-8859-1?Q?zE92XiFsjE9bnwfYWcoZqbo514o01C0f1o9L5jmMyBeXyxl/JUzWZvoE4X?=
- =?iso-8859-1?Q?hb3LpvH+IiI1AHo0i2F9USGJ5INHX2gAlaYIs7Cs6Yfkd1bDZ5/5WarmuN?=
- =?iso-8859-1?Q?uI1yRRZJWU+d+EL2rEY3fWosQrESk9CYOsMCzklJtT4YZIjyZLLCvog+58?=
- =?iso-8859-1?Q?SB64sw15vtPW22g0Q5S9aRhauVrJ/Vq4DhA+Q2X9pz8ztoTCov6Z3Mwbgu?=
- =?iso-8859-1?Q?1uEfDYVCcxg/BMtlfH6Jq6Hoj9zcKzzDUmjjnr3+7+onfzWK5oWRdI6xKQ?=
- =?iso-8859-1?Q?QH3rZk8UjnuzZXln9UV9Q43iL3Igms7u2DHXnqfRsu28p0pcYWtsEtGrfN?=
- =?iso-8859-1?Q?zDxwQg9clLmFiuTgIDslgSw/b5vIy9FcLyhWk7VoduyUqjTwjMkTUCZLn7?=
- =?iso-8859-1?Q?lZS984xbIls7CexzaB0ISfhBx5py7TH9GBgmMmahuVqIdsOsb+QcePXn27?=
- =?iso-8859-1?Q?KHVRZO831tbeFQpwtNfccBDWfbabGrXjIIUWaECw7lZxy4cT63qh1GyOOU?=
- =?iso-8859-1?Q?ClTcJRUC6JIXv1M9SBu4dLgQTx9S395x9w5n52lHnz8Ayep9pZOKlv16qW?=
- =?iso-8859-1?Q?AUKJwQnaj8sbeYXZkbyzDwvsp66V7lKzPFOsb0fVnhZFnzPKV9Wpytudxg?=
- =?iso-8859-1?Q?3KGroorfjTWht4PI4icL3ZV6tutxsrrlHyTydMem50jgkJWiuS+nHS67cO?=
- =?iso-8859-1?Q?4oV/Xmvey37ofbDtRXcmZYDLCC8+Uj+CZxTBWNDPeCJaitGR4LhXKUiW6v?=
- =?iso-8859-1?Q?YQiDlMA3lqhmPO47tuJR8tTmqvQlDIr2Ljps+4Kre4Sb/nKpoxbL688Pwq?=
- =?iso-8859-1?Q?9NSmu0tpSiteRuEj4RwrjzYcaubqAmjaugkIE4I8mQqBw+hPsISlB79I7i?=
- =?iso-8859-1?Q?IhfpDhc9WCXjLdFnFHj0+IIUHw=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|376005|366007;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?PYT5Q/NravS2PyZQkY1+FuHo1j4BVs83ek/Yp6MkuR1PK7BpYvWDf2Z6FJ?=
+ =?iso-8859-1?Q?jZ+tFJtu1vyHMcnoBtQggI5ySzZoI5SV4oeV0aRYnNvtQesmIUs2OvP7E0?=
+ =?iso-8859-1?Q?no4lsbZEW8YqOqHe2eboyv6E02FaTUMrqekwTWsTyyFUbkK5ji5JKRb9Uf?=
+ =?iso-8859-1?Q?6822BPsliRsl7QjQqEygc75faQE5oTYxft5kpZXtBzgtdWOLZOT/rtsW4m?=
+ =?iso-8859-1?Q?phYN9kX777IlwiSRFWxtckrrY5zZ7lW8NiK+6G0GZoN9QoIxip1rpYIP9n?=
+ =?iso-8859-1?Q?OLkWxMkYQYsierVzZBOFVb1hsGlR08U4GMe7g2khaUunEAv09SXfkGCZmn?=
+ =?iso-8859-1?Q?Pps0GiRFGkl8FriL7uV4OidxKo0oNB7ywjvTud4jar64DX8F8vKYlrXyLy?=
+ =?iso-8859-1?Q?r/1/6UDCjU4anylyoGT+A8+4UH5nfyWM0RMxUsg8BUjji4Kq5q8nlwwDGp?=
+ =?iso-8859-1?Q?w1kasfRGay4zx0hemstICtuli4sMIALlXQMBY7vqRiGgo2EFcmzToUM3sQ?=
+ =?iso-8859-1?Q?kRF6bOxNYfh3yi9hxZWaKEbk0kGKFhhP1Gq0MVgKqCyq7HB8N2/QDluHto?=
+ =?iso-8859-1?Q?9v4y1wHfSvmgJldnHSo8pfBt+mOHbtbwH9sOzL+7vvW/LDj8jLrCoUDD+j?=
+ =?iso-8859-1?Q?yPBYFpcBTXiAnOMhPN9hqX7eCljOrNounpHEMU7IZme7aHHbRON4Fs6lWc?=
+ =?iso-8859-1?Q?IYLmwrQmw5rIr+m7s5sNQ9lfbs8S8c4BNg1ra4azTWctpNom/huXAxw8yt?=
+ =?iso-8859-1?Q?bUCKGyouQuopJWMiBVYUGd465zNr5Fc4Z2x/sNeDiGhbu9lKjFF0xOMsGC?=
+ =?iso-8859-1?Q?xyAY7+a+QPZIclEJjrpNHjiVJDfkk5X3SQvNXf/9Q96n0DZZFAluMkIhHD?=
+ =?iso-8859-1?Q?UEr2LHZ18G9e3Y7GWayXRn2daIleBjnt9bNTpJ06SyU1BQp3vC30R4/QCm?=
+ =?iso-8859-1?Q?wzqMp8rtF0lv/JMF8/kKNEtTk7K10hbTkLR+aW5NF0LGXw/EuzV6VpWb6T?=
+ =?iso-8859-1?Q?UkUq8kY3Q1H3f23+F4myTX6kBl+liVWjVE1tw35tRszNyn3nYrmaElLPHy?=
+ =?iso-8859-1?Q?HxYf8VJUaFuUpr1ZxI10GtGNET4FW3MF0Hib4kfnPIy2seB1vVH5CxGxjf?=
+ =?iso-8859-1?Q?7GVDOyG1DPVNg05Hb2LxnBMeQRXiMzPkZzboyRFyr7yhXSTQS60eXLqMbp?=
+ =?iso-8859-1?Q?VM3/pOMWdHI8OqD1iU6l+/ql10U0+BJvIZCvC1i1Og8VFcj/C+KSjmGil/?=
+ =?iso-8859-1?Q?17XswyQjfNU5KL+fL3luFFPhnKx1PnngCFXwg5iUz75HeRcMo77ebzvqRl?=
+ =?iso-8859-1?Q?sRmHRjqOxN9n5wTrIz97X6Aa9Q=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?DgRyWJwBj8Qq/geAR8C10aoSStZimHFgZLM3i2WEgws3pLpZaRTwhtetc3?=
- =?iso-8859-1?Q?BV5EGLZepeiyoJwb9LOgMjHXLrUOAbai0RiezZI639BwM766SfYwzxzm9k?=
- =?iso-8859-1?Q?6Pfjg7Q1TwcpY5DGPaSIpyslxhR2ICd9De93kh3yEMyMTroivwWA3od+AJ?=
- =?iso-8859-1?Q?mQKNwP0WweVqu/RNY41CnHS6AWhQr5JgpvyjlQs7XT7X8U6Zr8w87tBRt/?=
- =?iso-8859-1?Q?k+11ZZ8HqqjeIkV3G8Z23IUZ9qFUt4TLLSy2kIAvERUIkSJ1BUnv1qHf2E?=
- =?iso-8859-1?Q?tkB8kDkve3vFzmd/kIti7k31jnY3weYzntpkHmT951gpGvTJxp2mKjchZt?=
- =?iso-8859-1?Q?OlOdO/bl0ff27CQllTDSnfMpuWPpGNW999PeFfgROj5IiJWNvlXxW4YYu7?=
- =?iso-8859-1?Q?vubBNQSM0SsRWRjcpLBkiUG++AyWoEQJbDowev897YDeI60yBvWQfe+qKA?=
- =?iso-8859-1?Q?SOyYPizu3IXS3uXOcaXLxmfROh08vYs/27azbM2rOIK/l1imJak6ycDnwB?=
- =?iso-8859-1?Q?iwZ5HQ67ReGX+ZMGuB4UlM6RWorFwf2rAd4jEA1g6OjDFs2QwpeCzLxnbZ?=
- =?iso-8859-1?Q?RAuNysi7zjkOJDjcXCTsHiSZgEdevhWNNoGRgGlIF1bPdHKVdIudxUvTWJ?=
- =?iso-8859-1?Q?F6hWcWpxJODdvKLI9EY35Ti7RObSaC9nQvfcjTlFFG3wPCK20sRADYPBV1?=
- =?iso-8859-1?Q?I0XMHgB7AibQlE9rrifzJWQM6kAryFrxLO6L1b5Xl+zUzEprgv2Je1eRwG?=
- =?iso-8859-1?Q?qiZCic4SyybjtALS9gU/agi7rcrlaQikeNXQt+LhXEMkTd/2qX8ojACVJB?=
- =?iso-8859-1?Q?4XtrgntN5tbj+fShzjzeKrJ2VdsYhzplGG5MLdLwz+qWBfMvjhB9fpB35+?=
- =?iso-8859-1?Q?2GAeCmhDjOacx6jhYttQ1hTfxTBADkZRFB1pL54ao2c2X50wMgpUcS06+T?=
- =?iso-8859-1?Q?jo6CnF2UARPOEpcYcDbOfh0LoBx3g9iB2c9ml8PSm2wZyUTPQeMYo7Uoa6?=
- =?iso-8859-1?Q?TyR4AR2K/685qk1wTChKMcNXa2K1omJVY0m0RMg5Z4mYSL/NzjoJTaOfYd?=
- =?iso-8859-1?Q?Z6PbaKcvA1S16bj9I8S2a2U5KjF1r9CbF6/3RzzHBiMPs6V+TZpcQnfjk6?=
- =?iso-8859-1?Q?ENEVeeOVWOpa9KQHe4Ow3QMtKm4StW1gkdwE30KRXlpDxR1/VQw37TtMoZ?=
- =?iso-8859-1?Q?pDthSmTkK2c6CQOi7K5cuwy6qX772ZpLA4fwBbDzuzjLdRQCy7+3iqp2t6?=
- =?iso-8859-1?Q?bpPFfthmPJbqdEGs65whIv+aG0Yae5qVJeiqYLL8KBbmaQIY9ogLwl42IO?=
- =?iso-8859-1?Q?Z9wGaF7j3R2W3NxR2Y84HodmAlG/y/N1RWQl0GQ5UrSItMwX+e7EmRzzFQ?=
- =?iso-8859-1?Q?5ViEx0IKWZ64TpN2Wob9cNfKrkJQxUDqcLclSZl2+d129uDYcNpAMFhFzy?=
- =?iso-8859-1?Q?atcYlzs0OkX4QpJTnU8HDxNXn6fdCvxYybMG8gkW8KGQTaoMfjRcaidLOn?=
- =?iso-8859-1?Q?agJqUvZC4uf7cSVikkGxGgqc8oeln7msYvAObBEwd1Py1COn7yiw+lCETT?=
- =?iso-8859-1?Q?HQpkfgiPmwe+z0d6PUxpgMZSxUM8EtdlRSLqTT1yQV+kbwDS6tCcbPW2DM?=
- =?iso-8859-1?Q?Ci3IWurIJv47kB995s3bUolmEZyhjSzA/PidE8bVr3Ay0hEgTtz8avpA?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?eZ6aQs/P/cnFvgkDAjwIuapwcU2su+jF7FI3AHnndWHumw+TEKw+cuHUG5?=
+ =?iso-8859-1?Q?Yh5gnhuicw22EDTabnFaTVQOF+7Pct3ftWVmRDE4beZrJY+On+oZ6dNtbZ?=
+ =?iso-8859-1?Q?9+8LTHv21lRv8rwhfbUw+BbzkVsRrE6XEY2vchA2NMAw3Zqz/Xj1mCupxb?=
+ =?iso-8859-1?Q?MoiazX3wlFMM5Gy4w27gmfCbwDRvtOdu/X+d6urMjvjBfGGVvPDg+autPW?=
+ =?iso-8859-1?Q?/HAbo9XxQ6J60X+aKVfvgM3B9F8Vo8nlYVQpmndUxauytIEFUGxcOaSt6X?=
+ =?iso-8859-1?Q?lV5PxQfVLtX8Rs018XhbSg8cXvow3Cmf2su4en0UdhjO/3BlFuDee9UHzv?=
+ =?iso-8859-1?Q?dA0CMsJuMhDihB44TDsvLZ/IqM20fJ4IG2wTWzLHhs9qlf25bsR2pzZI7m?=
+ =?iso-8859-1?Q?Do+QGLOd+Tfim7nUqq0zojVcgKB1jCHVL00a0VzRd5UmK3H008ePk5I2LR?=
+ =?iso-8859-1?Q?M4GmYka8XxS3A4s90dCGAezaQwcn3gxAjGby2MAo97+6V02pN1bVAGbbYc?=
+ =?iso-8859-1?Q?yVb59R4z/8D/AtTL58+d+2ISX5R7/fJpwKFkeR2+nEEYDq5EimIdcSPwtA?=
+ =?iso-8859-1?Q?gbrxOK4GZciz6v1fvrGC0NyI4Rp0GWdXcYfeoyrDpgrmxvLjo7OJ0CtQTN?=
+ =?iso-8859-1?Q?zMywVt9Dze3FZj29yYYpmHjt7sFcAHOjF5pOQ4evrFYozkQiGvw3KzNAo/?=
+ =?iso-8859-1?Q?wATfpooKSAQABsiDF/HapZJyBxvSpCDuhx4wJmH7J905dUnViosHoW6pOd?=
+ =?iso-8859-1?Q?koSQmWY8pF3UvdFcWiey+li4JspC6hlrXJbF4bz1vrjCzY92yLVnx5Zggo?=
+ =?iso-8859-1?Q?cTwP3znD/H2Z3BOV+bCdJ17GOno0S+uOLK0hu/rHAhxaBDgAJKkRlwNTLC?=
+ =?iso-8859-1?Q?oolaFSO4aGn4qX9A9M4tJsFZVP/FVdIC7aZQY3v8Cjtr3dKPWMQyKVCJps?=
+ =?iso-8859-1?Q?FkBJUbg7vvL8MRj/4bA6dV1h6GxST2OJdKaCqtXly0hlvqKD3JksBeBzMN?=
+ =?iso-8859-1?Q?S3aNNKRBOSdmdtc3dJocwMS9VY3jvaJnnI5rZljNAUJkJ3O02ifiSjcp8m?=
+ =?iso-8859-1?Q?q78DKfcPUdEfPRH9UNyWvjaghcFDhKZwlLgkuyHdDQRdItIAEvF7EGactu?=
+ =?iso-8859-1?Q?l3pFLqEJu1cm+skq0jMn5kKqXGX3U7/kdBvJYT8Q/WvvqbSuah9PW4/TT7?=
+ =?iso-8859-1?Q?MSdn4ta4/yBJ5mSzk+2FuOI5X0b6tWfSXSnOCiKMQoJ21PIvNGV7cepC0d?=
+ =?iso-8859-1?Q?k6O4/OxYTsvr+ftT1WoKwlwjE3pTV3Eg2dcB4SRKRWAxER8+QJR4WvNr31?=
+ =?iso-8859-1?Q?fs0thyJiphrPUl4RGJi1FHdFN1h3MFztmrzd1C8SKZGW2VmK4Xz58vGsEt?=
+ =?iso-8859-1?Q?bucxWKAxH+XeicniNZOHvGNhVFvkFrB2Tkd+zA24W0h2Fz5E9lyba2FF+J?=
+ =?iso-8859-1?Q?y+Xcrp85WGVzwRh6YfSUEqMR9mjUfYfUxxQ0zDvUIHRQUPRpObUjcDzoz0?=
+ =?iso-8859-1?Q?WR91QjNpSBz4xomty3m3pVJ9m1Nl8FXm/CmXTJ6Oi/H8RUWYn/ZD7sA3bE?=
+ =?iso-8859-1?Q?7OE2kG8EMueTMDVDuLy9SP8uoYjfAQabaCGoNSsAuC05dHk/hydnpy7Y4W?=
+ =?iso-8859-1?Q?FTJQXhZzS3Ro0N//ws96PVsG4DqMvtcQiWnIWc1kKP3RYGJEmLHsshmA?=
  =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7525f880-3a91-4653-2f61-08dc6acc3b8a
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90712e23-e0f3-47ef-2c93-08dc6acd12b2
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2024 17:20:58.6094 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2024 17:26:59.7741 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xWe+WCrYsI+UiBjnbzOReVsr9qb3b+dHvATyWUo4+TULufK+GogsmCDmU/2BKGY6qiqHTwjWD9uYF9NnUcsLHA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7246
+X-MS-Exchange-CrossTenant-UserPrincipalName: LIxZkBGi4si3sw5cfUxEXo1aL5Vv2YyMsvYo46SBGhHhaGQWhIPTeyfjh0eYJmCXeTk3Zto/A6EYxZQ8tswIMW7ZnJaJqprJ86K+Eo60dZw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6161
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,179 +185,288 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, May 02, 2024 at 01:31:37PM +0200, Thomas Hellström wrote:
-> On Tue, 2024-04-30 at 16:47 +0000, Matthew Brost wrote:
-> > On Tue, Apr 30, 2024 at 02:02:14PM +0200, Thomas Hellström wrote:
-> > > Currently we dma_map on ttm_tt population and dma_unmap when
-> > > the pages are released in ttm_tt unpopulate.
-> > > 
-> > > Strictly, the dma_map is not needed until the bo is moved to the
-> > > XE_PL_TT placement, so perform the dma_mapping on such moves
-> > > instead, and remove the dma_mappig when moving to XE_PL_SYSTEM.
-> > > 
-> > > This is desired for the upcoming shrinker series where shrinking
-> > > of a ttm_tt might fail. That would lead to an odd construct where
-> > > we first dma_unmap, then shrink and if shrinking fails dma_map
-> > > again. If dma_mapping instead is performed on move like this,
-> > > shrinking does not need to care at all about dma mapping.
-> > > 
-> > > Finally, where a ttm_tt is destroyed while bound to a different
-> > > memory type than XE_PL_SYSTEM, we keep the dma_unmap in
-> > > unpopulate().
-> > > 
-> > 
-> > Makes sense.
-> >  
-> > > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > ---
-> > >  drivers/gpu/drm/xe/xe_bo.c | 45 ++++++++++++++++++++++++----------
-> > > ----
-> > >  1 file changed, 29 insertions(+), 16 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > > b/drivers/gpu/drm/xe/xe_bo.c
-> > > index bc1f794e3e61..4c1dd67a4588 100644
-> > > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > > @@ -302,6 +302,18 @@ static int xe_tt_map_sg(struct ttm_tt *tt)
-> > >  	return 0;
-> > >  }
-> > >  
-> > > +static void xe_tt_unmap_sg(struct ttm_tt *tt)
-> > > +{
-> > > +	struct xe_ttm_tt *xe_tt = container_of(tt, struct
-> > > xe_ttm_tt, ttm);
-> > > +
-> > > +	if (xe_tt->sg) {
-> > > +		dma_unmap_sgtable(xe_tt->dev, xe_tt->sg,
-> > > +				  DMA_BIDIRECTIONAL, 0);
-> > > +		sg_free_table(xe_tt->sg);
-> > > +		xe_tt->sg = NULL;
-> > > +	}
-> > > +}
-> > > +
-> > >  struct sg_table *xe_bo_sg(struct xe_bo *bo)
-> > >  {
-> > >  	struct ttm_tt *tt = bo->ttm.ttm;
-> > > @@ -377,27 +389,15 @@ static int xe_ttm_tt_populate(struct
-> > > ttm_device *ttm_dev, struct ttm_tt *tt,
-> > >  	if (err)
-> > >  		return err;
-> > >  
-> > > -	/* A follow up may move this xe_bo_move when BO is moved
-> > > to XE_PL_TT */
-> > > -	err = xe_tt_map_sg(tt);
-> > > -	if (err)
-> > > -		ttm_pool_free(&ttm_dev->pool, tt);
-> > > -
-> > >  	return err;
-> > >  }
-> > >  
-> > >  static void xe_ttm_tt_unpopulate(struct ttm_device *ttm_dev,
-> > > struct ttm_tt *tt)
-> > >  {
-> > > -	struct xe_ttm_tt *xe_tt = container_of(tt, struct
-> > > xe_ttm_tt, ttm);
-> > > -
-> > >  	if (tt->page_flags & TTM_TT_FLAG_EXTERNAL)
-> > >  		return;
-> > >  
-> > > -	if (xe_tt->sg) {
-> > > -		dma_unmap_sgtable(xe_tt->dev, xe_tt->sg,
-> > > -				  DMA_BIDIRECTIONAL, 0);
-> > > -		sg_free_table(xe_tt->sg);
-> > > -		xe_tt->sg = NULL;
-> > > -	}
-> > > +	xe_tt_unmap_sg(tt);
-> > >  
-> > >  	return ttm_pool_free(&ttm_dev->pool, tt);
-> > >  }
-> > > @@ -628,10 +628,14 @@ static int xe_bo_move(struct
-> > > ttm_buffer_object *ttm_bo, bool evict,
-> > >  	bool handle_system_ccs = (!IS_DGFX(xe) &&
-> > > xe_bo_needs_ccs_pages(bo) &&
-> > >  				  ttm && ttm_tt_is_populated(ttm))
-> > > ? true : false;
-> > >  	int ret = 0;
-> > > +
-> > >  	/* Bo creation path, moving to system or TT. */
-> > >  	if ((!old_mem && ttm) && !handle_system_ccs) {
-> > > -		ttm_bo_move_null(ttm_bo, new_mem);
-> > > -		return 0;
-> > > +		if (new_mem->mem_type == XE_PL_TT)
-> > > +			ret = xe_tt_map_sg(ttm);
-> > > +		if (!ret)
-> > > +			ttm_bo_move_null(ttm_bo, new_mem);
-> > 
-> > Random ranting, ttm_bo_move_null is a terrible name. It is freeing
-> > the
-> > old memory and assigning a new one.
-> 
-> I guess it stems from the move operation itself being a no-op, and at
-> that time the resource assignment was only a metadata update...
-> 
-> 
-> > 
-> > > +		goto out;
-> > >  	}
-> > >  
-> > >  	if (ttm_bo->type == ttm_bo_type_sg) {
-> > > @@ -650,6 +654,12 @@ static int xe_bo_move(struct ttm_buffer_object
-> > > *ttm_bo, bool evict,
-> > >  	needs_clear = (ttm && ttm->page_flags &
-> > > TTM_TT_FLAG_ZERO_ALLOC) ||
-> > >  		(!ttm && ttm_bo->type == ttm_bo_type_device);
-> > >  
-> > > +	if (new_mem->mem_type == XE_PL_TT) {
-> > > +		ret = xe_tt_map_sg(ttm);
-> > > +		if (ret)
-> > > +			goto out;
-> > > +	}
-> > > +
-> > >  	if ((move_lacks_source && !needs_clear)) {
-> > >  		ttm_bo_move_null(ttm_bo, new_mem);
-> > >  		goto out;
-> > > @@ -786,8 +796,11 @@ static int xe_bo_move(struct ttm_buffer_object
-> > > *ttm_bo, bool evict,
-> > >  	xe_pm_runtime_put(xe);
-> > >  
-> > >  out:
-> > > -	return ret;
-> > > +	if ((!ttm_bo->resource || ttm_bo->resource->mem_type ==
-> > > XE_PL_SYSTEM) &&
-> > > +	    ttm_bo->ttm)
-> > 
-> > So this is covering the case where we have moved to system and had
-> > pages.
-> > 
-> > What about the case where evict fails after the 2nd instance of
-> > 'xe_tt_map_sg' in this function. I'm guessing xe_ttm_tt_unpopulate
-> > covers that case?
-> 
-> Yes, in that case we have a struct ttm_tt in the PL_TT placement. It
-> can either get moved to system, or more likely get unpopulated and
-> destroyed. In the latter case, the dma-umap happens in unpopulate.
-> 
+On Thu, May 02, 2024 at 04:12:43PM GMT, Michal Wajdeczko wrote:
+>
+>
+>On 02.05.2024 14:55, Lucas De Marchi wrote:
+>> On Thu, May 02, 2024 at 01:54:55PM GMT, Michal Wajdeczko wrote:
+>>>
+>>>
+>>> On 30.04.2024 17:56, Matthew Brost wrote:
+>>>> On Mon, Apr 29, 2024 at 04:03:25PM -0500, Lucas De Marchi wrote:
+>>>>> On Mon, Apr 29, 2024 at 08:36:04PM GMT, Matthew Brost wrote:
+>>>>>> On Mon, Apr 29, 2024 at 04:29:34PM -0400, Rodrigo Vivi wrote:
+>>>>>>> On Thu, Apr 25, 2024 at 11:24:06AM -0700, Lucas De Marchi wrote:
+>>>>>>>> Not really used, it's just a copy of engine_mask, which already
+>>>>>>>> reads
+>>>>>>>> the fuses to mark engines as available/not-available.
+>>>>>>>
+>>>>>>> I got confused trying to understand why this ever existed.
+>>>>>>> It indeed doesn't make much sense on today's code.
+>>>>>>>
+>>>>>>
+>>>>>> That was my doing with the intent that we never use the engine mask
+>>>>>> until after hwconfig load as the engine mask would be read from
+>>>>>> that. Or
+>>>>>> alternatively in SRIOV via CTB (or MMIO) relays.
+>>>>>>
+>>>>>> i.e. it was fake way to enforce correct load ordering.
+>>>>>
+>>>>> but we never used it from hwconfig (instead we kept the fake copy here)
+>>>>> and we never will as it doesn't have the info we need.
+>>>>>
+>>>>> Instead we just went out of our way and started using __engine_mask
+>>>>> instead where needed. See e.g.  drivers/gpu/drm/xe/xe_migrate.c. I
+>>>>> fail to
+>>>>> see how exactly this enforces the correct load ordering. At most it
+>>>>> would return the wrong value and we would silently ignore it (e.g.
+>>>>> if we
+>>>>> had a call like xe_hw_engine_mask_per_class() before that point
+>>>>> since it
+>>>>> uses gt->info.engine_mask).
+>>>>>
+>>>>> For SR-IOV, nothing overrides engine_mask anywhere. Not even if I look
+>>>>> at the wip branch for VF.  So, I'd say that if VF needs it, then please
+>>>>> add the prep together with patches making use of that because the
+>>>>> way it
+>>>>> is is now it's too fragile.
+>>>
+>>> but the idea was that for any engine overrides there should be no VF
+>>> specific code, except the way how VF will know the fuse values
+>>>
+>>> in other words, the only SR-IOV requirement for the load ordering was to
+>>> make sure that we can use GuC CTB, to allow the VF communicate with GuC,
+>>> prior to making any manipulation around engines.
+>>>
+>>> separate requirement to use hwconfig by the native driver, was actually
+>>> from the arch team, and it was a prerequisite for SR-IOV requirement, as
+>>> fulfilling this requirement was guaranteeing that MMIO, GGTT and IRQ
+>>> would be operational, thus GuC CTB will work.
+>>>
+>>> note that actual driver implementation, before this series, still didn't
+>>> comply with initial requirements, as while we pretend that we can enable
+>>> CTB in xe_guc_min_load_for_hwconfig(), any CTB communication will fail
+>>> as IRQ are not enabled yet
+>>>
+>>>>>
+>>>>
+>>>> They should read the fuses via a GuC relay.
+>>>>
+>>>>>>
+>>>>>> Assuming fuses are read after this removed LoC, the load ordering is
+>>>>>> correct.
+>>>>>
+>>>>> fuses are read much much earlier than that, in xe_pci.c. Why would
+>>>>> it be
+>>>>> wrong?
+>>>
+>>> only GMDID is read there and VF must use GuC MMIO (lucky not CTB)
+>>> communication to get that.
+>>
+>> right, I looked in the wrong place. GMDID is read from xe_pci.c.
+>> Fuses follow this call chain:
+>>
+>> xe_device_probe() -> xe_gt_init() -> all_fw_domain_init() ->
+>> xe_hw_engines_init_early()
+>>
+>>>
+>>> on VFs we read fuses right after we get a hwconfig and enable
+>>> (malfunctioning) CTB
+>>
+>> where? except from  the place I'm removing and the place we read the
+>> fuses, I didn't find anywhere the engine_mask being changed.
+>
+>to be more specific: on VF we are getting fuse values at hwconfig phase,
+>just to have them cached locally, before driver will try to 'read' them
+>in the call chain listed above.
+>
+>  xe_device_probe
+>    xe_gt_init_hwconfig
+>      xe_uc_init_hwconfig
+>        vf_guc_min_load_for_hwconfig
 
-Thanks for the explaination.
+are you sure you pushed it somewhere? I found this function in one of
+the WIP branches, but no sign of using fuses.
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+More specifically, I'm grepping for user of engine_mask and what is
+possibly setting it. If in VF we read media/graphics/copy fuses to tell
+what are the engines available, we should really be setting engine_mask.
+Somewhere.  How is VF being tested on systems that have engines fused
+off?
+
+Also, I don't thikn here we are talking about partitioning (different
+engines to VFs), are we?
+
+>
+>and that's before
+>
+>  xe_device_probe
+>    xe_gt_init
+>
+>and while it's after
+>
+>  xe_device_probe
+>    xe_gt_init_early
+>
+>it doesn't change too much right now as on VF we don't call any of:
+>
+>  xe_wa_process_gt
+>  xe_wa_process_oob
+>  xe_tuning_process_gt
+>
+>as those access registers that are not available for the VFs
+>
+>so we should be fine unless some WA/tuning should be handled by the VF
+
+then those should probably be in another category to be processed by the
+rtp infra.
 
 
-> /Thomas
-> 
-> 
-> 
-> > 
-> > Matt
-> > 
-> > > +		xe_tt_unmap_sg(ttm_bo->ttm);
-> > >  
-> > > +	return ret;
-> > >  }
-> > >  
-> > >  /**
-> > > -- 
-> > > 2.44.0
-> > > 
-> 
+Anyway, I'm reading this as "for sr-iov it doesn't matter right now or
+in the mid-term future", so I will proceed and prepare a v2 after
+checking why CI failed.
+
+
+thanks
+Lucas De Marchi
+
+
+>
+>Michal
+>
+>>
+>> thanks
+>> Lucas De Marchi
+>>
+>>>
+>>>>>
+>>>>
+>>>> I was thinking the fuse read required hwconfig step (also brings up
+>>>
+>>> that was due to the ordering suggested by arch:
+>>>
+>>> 1. read hwconfig
+>>> 2. read fuses
+>>>
+>>> and since 1) requires the GuC, so MMIO and GGTT must be functional
+>>>
+>>> thus for 2) the VFs can use CTB Relay (as MMIO/GGTT and IRQ shall be
+>>> already functional due to 1)
+>>>
+>>>> CTBs) but now that I think about this, I believe the fuses can be read
+>>>> via a MMIO relay so the current location probably works. Double check
+>>>
+>>> according to arch team, we can't use the GuC MMIO Relay anymore
+>>>
+>>>> with Michal Winarski on that.
+>>>>
+>>>> Anyways don't let anything I say hold this up.
+>>>
+>>> btw, I was able to test this series on my WIP SR-IOV branch and didn't
+>>> notice any regressions yet
+>>>
+>>> Michal
+>>>
+>>>>
+>>>> Matt
+>>>>
+>>>>> Lucas De Marchi
+>>>>>
+>>>>>>
+>>>>>> Matt
+>>>>>>
+>>>>>>>>
+>>>>>>>> While at it, use XE_HW_ENGINE_BCS_MASK to span all copy engines.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>>>>>>
+>>>>>>>
+>>>>>>> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>>>>>>
+>>>>>>>
+>>>>>>>> ---
+>>>>>>>>  drivers/gpu/drm/xe/xe_gt.c       | 3 ---
+>>>>>>>>  drivers/gpu/drm/xe/xe_gt_types.h | 6 ------
+>>>>>>>>  drivers/gpu/drm/xe/xe_migrate.c  | 3 +--
+>>>>>>>>  drivers/gpu/drm/xe/xe_pci.c      | 6 +++---
+>>>>>>>>  4 files changed, 4 insertions(+), 14 deletions(-)
+>>>>>>>>
+>>>>>>>> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+>>>>>>>> index e922e77f5010..00a22cf2f5b5 100644
+>>>>>>>> --- a/drivers/gpu/drm/xe/xe_gt.c
+>>>>>>>> +++ b/drivers/gpu/drm/xe/xe_gt.c
+>>>>>>>> @@ -515,9 +515,6 @@ int xe_gt_init_hwconfig(struct xe_gt *gt)
+>>>>>>>>      if (err)
+>>>>>>>>          goto out_fw;
+>>>>>>>>
+>>>>>>>> -    /* XXX: Fake that we pull the engine mask from hwconfig blob */
+>>>>>>>> -    gt->info.engine_mask = gt->info.__engine_mask;
+>>>>>>>> -
+>>>>>>>>  out_fw:
+>>>>>>>>      xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+>>>>>>>>  out:
+>>>>>>>> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h
+>>>>>>>> b/drivers/gpu/drm/xe/xe_gt_types.h
+>>>>>>>> index cfdc761ff7f4..72568414fb7d 100644
+>>>>>>>> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+>>>>>>>> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+>>>>>>>> @@ -116,12 +116,6 @@ struct xe_gt {
+>>>>>>>>          u32 reference_clock;
+>>>>>>>>          /** @info.engine_mask: mask of engines present on GT */
+>>>>>>>>          u64 engine_mask;
+>>>>>>>> -        /**
+>>>>>>>> -         * @info.__engine_mask: mask of engines present on GT
+>>>>>>>> read from
+>>>>>>>> -         * xe_pci.c, used to fake reading the engine_mask from the
+>>>>>>>> -         * hwconfig blob.
+>>>>>>>> -         */
+>>>>>>>> -        u64 __engine_mask;
+>>>>>>>>          /** @info.gmdid: raw GMD_ID value from hardware */
+>>>>>>>>          u32 gmdid;
+>>>>>>>>      } info;
+>>>>>>>> diff --git a/drivers/gpu/drm/xe/xe_migrate.c
+>>>>>>>> b/drivers/gpu/drm/xe/xe_migrate.c
+>>>>>>>> index 9f6e9b7f11c8..59a3f24d31e6 100644
+>>>>>>>> --- a/drivers/gpu/drm/xe/xe_migrate.c
+>>>>>>>> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+>>>>>>>> @@ -936,8 +936,7 @@ static bool has_service_copy_support(struct
+>>>>>>>> xe_gt *gt)
+>>>>>>>>       * all of the actual service copy engines (BCS1-BCS8) have
+>>>>>>>> been fused
+>>>>>>>>       * off.
+>>>>>>>>       */
+>>>>>>>> -    return gt->info.__engine_mask & GENMASK(XE_HW_ENGINE_BCS8,
+>>>>>>>> -                        XE_HW_ENGINE_BCS1);
+>>>>>>>> +    return gt->info.engine_mask & XE_HW_ENGINE_BCS_MASK;
+>>>>>>>>  }
+>>>>>>>>
+>>>>>>>>  static u32 emit_clear_cmd_len(struct xe_gt *gt)
+>>>>>>>> diff --git a/drivers/gpu/drm/xe/xe_pci.c
+>>>>>>>> b/drivers/gpu/drm/xe/xe_pci.c
+>>>>>>>> index a0cf5dd803c2..6b2086ea24ab 100644
+>>>>>>>> --- a/drivers/gpu/drm/xe/xe_pci.c
+>>>>>>>> +++ b/drivers/gpu/drm/xe/xe_pci.c
+>>>>>>>> @@ -656,9 +656,9 @@ static int xe_info_init(struct xe_device *xe,
+>>>>>>>>          gt = tile->primary_gt;
+>>>>>>>>          gt->info.id = xe->info.gt_count++;
+>>>>>>>>          gt->info.type = XE_GT_TYPE_MAIN;
+>>>>>>>> -        gt->info.__engine_mask = graphics_desc->hw_engine_mask;
+>>>>>>>> +        gt->info.engine_mask = graphics_desc->hw_engine_mask;
+>>>>>>>>          if (MEDIA_VER(xe) < 13 && media_desc)
+>>>>>>>> -            gt->info.__engine_mask |= media_desc->hw_engine_mask;
+>>>>>>>> +            gt->info.engine_mask |= media_desc->hw_engine_mask;
+>>>>>>>>
+>>>>>>>>          if (MEDIA_VER(xe) < 13 || !media_desc)
+>>>>>>>>              continue;
+>>>>>>>> @@ -673,7 +673,7 @@ static int xe_info_init(struct xe_device *xe,
+>>>>>>>>
+>>>>>>>>          gt = tile->media_gt;
+>>>>>>>>          gt->info.type = XE_GT_TYPE_MEDIA;
+>>>>>>>> -        gt->info.__engine_mask = media_desc->hw_engine_mask;
+>>>>>>>> +        gt->info.engine_mask = media_desc->hw_engine_mask;
+>>>>>>>>          gt->mmio.adj_offset = MEDIA_GT_GSI_OFFSET;
+>>>>>>>>          gt->mmio.adj_limit = MEDIA_GT_GSI_LENGTH;
+>>>>>>>>
+>>>>>>>> --
+>>>>>>>> 2.43.0
+>>>>>>>>
