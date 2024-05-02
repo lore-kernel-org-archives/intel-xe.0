@@ -4,57 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BCFFC4345F
-	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 22:26:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9252AC04FFE
+	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 22:33:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6F1911270A;
-	Thu,  2 May 2024 22:26:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BFF610EE05;
+	Thu,  2 May 2024 22:33:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="NhCrLKdI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L22uwnfE";
 	dkim-atps=neutral
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id 90BBF1126F6;
- Thu,  2 May 2024 22:26:38 +0000 (UTC)
-Received: from [100.64.232.195] (unknown [20.29.225.195])
- by linux.microsoft.com (Postfix) with ESMTPSA id 518C5206B4FD;
- Thu,  2 May 2024 15:26:37 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 518C5206B4FD
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1714688797;
- bh=NzMrFwSnELsNTouka86zwY4xBu0HDKLPheXHNRlf/UY=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=NhCrLKdI/ZqOMxIi0x/9IcKVE1fu8SJgV6IOu9yOzA4/X9AoPavE5e5S65Ugw3uBC
- sulaSRBperkkDcIDt2jCnwInTZEDOTYmaUAyGGeCvlgfS23LBxyBkoeXTUrIdi6qwD
- 4F+b4DUgYEKEoHW556opdVdEoci1DJoGsON85j90=
-Message-ID: <076e0a0d-ad26-490e-9784-300ed52637ca@linux.microsoft.com>
-Date: Thu, 2 May 2024 15:26:36 -0700
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCBA110E330
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 May 2024 22:33:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1714689206; x=1746225206;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=oQ9ZFeMKRJ0XNSq2vvYHE67AE54ZbfmHIN5LZddcSBo=;
+ b=L22uwnfEfbyJjOPjoMgaD68fVrWFWtKTpTazRJq2D3nxJHpSbDJu+OI+
+ sW4opR4EgUDPBmQOAsG1MiQ12g+CNgucuGiGnPxgpbLEUN+4E/pGkKCZA
+ EumQqFT69BJXNT4gA+ZuaatKuUi6tA/AFgU66juqrFcwEy6txPUHXjQp/
+ HRWX6xFiD0oIqQ/K9F5qRGlbqVGgCzgUzVUEBlJEhn9tapovB8znBhey/
+ pUVZei5QKSVmjm3hxpRzliIfscE8oFKZhkK+7vHJuCc3J3m4VUbdXuzB2
+ QSYIWBdRKkg6Ytzu9KxHAPEHOgIPHoxdMGEoZ1abYfO7h/1HgxB0cYnG0 Q==;
+X-CSE-ConnectionGUID: f3VytVj5TzC9T207E2xk6A==
+X-CSE-MsgGUID: UhY1cekSQDOf2TJbWJo0GQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11062"; a="10312968"
+X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="10312968"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2024 15:33:25 -0700
+X-CSE-ConnectionGUID: 03b18IcETlSGjnnHsGhc6g==
+X-CSE-MsgGUID: ijuotal+Q1u3tqzHvGBoyA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="32061533"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.17.255])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2024 15:33:25 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v3 0/3] Define generic helpers for manipulating macro arguments
+Date: Fri,  3 May 2024 00:33:10 +0200
+Message-Id: <20240502223313.2527-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 12/12] fbdev/viafb: Make I2C terminology more inclusive
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- Florian Tobias Schandinat <FlorianSchandinat@gmx.de>,
- Helge Deller <deller@gmx.de>,
- "open list:VIA UNICHROME(PRO)/CHROME9 FRAMEBUFFER DRIVER"
- <linux-fbdev@vger.kernel.org>,
- "open list:FRAMEBUFFER LAYER" <dri-devel@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-gfx@lists.freedesktop.org>,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-xe@lists.freedesktop.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>,
- "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
- "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>
-References: <20240430173812.1423757-1-eahariha@linux.microsoft.com>
- <20240430173812.1423757-13-eahariha@linux.microsoft.com>
- <271ad513-0ea1-45df-ba0f-51582474ff34@suse.de>
-Content-Language: en-CA
-From: Easwar Hariharan <eahariha@linux.microsoft.com>
-In-Reply-To: <271ad513-0ea1-45df-ba0f-51582474ff34@suse.de>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,52 +64,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 5/2/2024 3:46 AM, Thomas Zimmermann wrote:
-> 
-> 
-> Am 30.04.24 um 19:38 schrieb Easwar Hariharan:
->> I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
->> with more appropriate terms. Inspired by and following on to Wolfram's
->> series to fix drivers/i2c/[1], fix the terminology for users of
->> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
->> in the specification.
->>
->> Compile tested, no functionality changes intended
->>
->> [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
->>
->> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
-> 
-> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-> 
+v1: https://patchwork.freedesktop.org/series/133123/#rev1
+v2: don't pollute linux/args.h yet (Andy, Lucas)
+v3: add explicit comment on future use inside the code (Lucas)
+    add xe_args kunit tests (Michal)
 
-Thanks for the ack! I had been addressing feedback as I got it on the v0 series, and it seems
-I missed out on updating viafb and smscufx to spec-compliant controller/target terminology like
-the v0->v1 changelog calls out before posting v1.
+Michal Wajdeczko (3):
+  drm/xe: Add helpers for manipulating macro arguments
+  drm/xe/kunit: Add simple tests for new xe_args macros
+  drm/xe/rtp: Prefer helper macros from xe_args.h
 
-For smscufx, I feel phrasing the following line (as an example)
+ drivers/gpu/drm/xe/tests/Makefile       |   1 +
+ drivers/gpu/drm/xe/tests/xe_args_test.c | 190 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_args.h            | 121 +++++++++++++++
+ drivers/gpu/drm/xe/xe_rtp.h             |   4 +-
+ drivers/gpu/drm/xe/xe_rtp_helpers.h     |  26 ++--
+ 5 files changed, 324 insertions(+), 18 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_args_test.c
+ create mode 100644 drivers/gpu/drm/xe/xe_args.h
 
-> -/* sets up I2C Controller for 100 Kbps, std. speed, 7-bit addr, host, 
-> +/* sets up I2C Controller for 100 Kbps, std. speed, 7-bit addr, *controller*, 
+-- 
+2.43.0
 
-would actually impact readability negatively, so I propose to leave smscufx as is.
-
-For viafb, I propose making it compliant with the spec using the controller/target terminology and
-posting a v2 respin (which I can send out as soon as you say) and ask you to review again.
-
-What do you think?
-
-Thanks,
-Easwar
-
->> ---
->>   drivers/video/fbdev/via/chip.h    |  8 ++++----
->>   drivers/video/fbdev/via/dvi.c     | 24 ++++++++++++------------
->>   drivers/video/fbdev/via/lcd.c     |  6 +++---
->>   drivers/video/fbdev/via/via_aux.h |  2 +-
->>   drivers/video/fbdev/via/via_i2c.c | 12 ++++++------
->>   drivers/video/fbdev/via/vt1636.c  |  6 +++---
->>   6 files changed, 29 insertions(+), 29 deletions(-)
->>
-
-<snip>
