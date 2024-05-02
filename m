@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5A97C25B10
-	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 22:33:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 157C9C4345F
+	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 22:33:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B18A1126EB;
-	Thu,  2 May 2024 22:33:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA90910F6AA;
+	Thu,  2 May 2024 22:33:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BeCSWoio";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MS1Tx9/n";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0093410F6AA
- for <intel-xe@lists.freedesktop.org>; Thu,  2 May 2024 22:33:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CAFC1126FB
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 May 2024 22:33:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714689209; x=1746225209;
+ t=1714689210; x=1746225210;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IN6wGEuqrDAlcJu+v5mzMrFaN17dionP18WVbWDfIr8=;
- b=BeCSWoiout5jbstismoyznsdWaNNiyGOX2mWV30btxiVgdJJlV+3NiyI
- QMTJIDcqm2pdAqx6jvDgMmJLjdq+HDY0cWaUoBq+BK7XervkVdV5ijm4z
- J6hfPWZfcyye1RgS2wVhU2Ujv7WFH/RUSQaEXBx5PO+yUSZTbT1A25hPW
- SZcfKCiuo4c/6RrCIx+bANW5N118WZNjw0IEvX5d91eweKef8l560t0Lo
- +3q62brWhjIqrZA9Lxbt7sa0n+dis7VMhHEZUuTiz2giBeUIauDthK9L2
- nwVNJWkteA/Db+3WcImrRc8gJvCDpkJBYY5REMeWc2nKbzAsj4gUMsIeW Q==;
-X-CSE-ConnectionGUID: UoWcuYIMRUyDr83qlCh58w==
-X-CSE-MsgGUID: OOpmBnjvTaqJc8n+8aS6lQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11062"; a="10312976"
-X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="10312976"
+ bh=JAvlyLKikNfnhGAzCt2P77Ru9YJNDz3EJMrvtRZP0xM=;
+ b=MS1Tx9/n+IMv72vH2VFaOdwvArtfzvqF3IXdljiJqtlkU8s4NC4t0NQ9
+ qH6ZLqY6L4D681x3GjVD6AyWo7QPkZ60nZDsxsxl9HC/sl3Esns3e7CPT
+ hT3PUTx1UzoVuoMTjzcm7jFRCKWZo0AfWG6NG1d+hK50V6brVF0Nz5LRo
+ ghoIgbL3SHzicBLJz05JVfQta45m74Av0V4rWIkr6xvMo5KZtXNM2fiLP
+ ITGsryinTCo40NdNsdu89C9h+9YrVy0W2VEDBPy73fxyKMYMHMC5RVe74
+ +FWIwBqRsO5fOYzRjrXqCE1Qr2FlWLsft9OHyXZx6YsBYEehtClpyPt30 g==;
+X-CSE-ConnectionGUID: vQ2TGRp+QWKbXCmBN9Zn4g==
+X-CSE-MsgGUID: ZYGWvr4UQZmRzbRU4mevxA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11062"; a="10312986"
+X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="10312986"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2024 15:33:29 -0700
-X-CSE-ConnectionGUID: StxkVpsCSRix6BiwZPwJmQ==
-X-CSE-MsgGUID: WaN1ZJ55Ql2zxMlhKmpd6A==
+ 02 May 2024 15:33:30 -0700
+X-CSE-ConnectionGUID: XoYk9LUhRdmOFWx5rutsuA==
+X-CSE-MsgGUID: xxEl52g7S36Uvzd7Y7cNXg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="32061555"
+X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="32061567"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.17.255])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2024 15:33:28 -0700
+ 02 May 2024 15:33:30 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v3 2/3] drm/xe/kunit: Add simple tests for new xe_args macros
-Date: Fri,  3 May 2024 00:33:12 +0200
-Message-Id: <20240502223313.2527-3-michal.wajdeczko@intel.com>
+Subject: [PATCH v3 3/3] drm/xe/rtp: Prefer helper macros from xe_args.h
+Date: Fri,  3 May 2024 00:33:13 +0200
+Message-Id: <20240502223313.2527-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240502223313.2527-1-michal.wajdeczko@intel.com>
 References: <20240502223313.2527-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,224 +67,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We want to make sure that helper macros are working as expected.
+Some custom implementation can be replaced with generic macros
+from the linux/args.h or xe_args.h.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/tests/Makefile       |   1 +
- drivers/gpu/drm/xe/tests/xe_args_test.c | 190 ++++++++++++++++++++++++
- 2 files changed, 191 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_args_test.c
+ drivers/gpu/drm/xe/xe_rtp.h         |  4 ++--
+ drivers/gpu/drm/xe/xe_rtp_helpers.h | 26 ++++++++++----------------
+ 2 files changed, 12 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/Makefile b/drivers/gpu/drm/xe/tests/Makefile
-index 8cf2367449d8..6e58931fddd4 100644
---- a/drivers/gpu/drm/xe/tests/Makefile
-+++ b/drivers/gpu/drm/xe/tests/Makefile
-@@ -11,6 +11,7 @@ xe_live_test-y = xe_live_test_mod.o \
- # Normal kunit tests
- obj-$(CONFIG_DRM_XE_KUNIT_TEST) += xe_test.o
- xe_test-y = xe_test_mod.o \
-+	xe_args_test.o \
- 	xe_pci_test.o \
- 	xe_rtp_test.o \
- 	xe_wa_test.o
-diff --git a/drivers/gpu/drm/xe/tests/xe_args_test.c b/drivers/gpu/drm/xe/tests/xe_args_test.c
-new file mode 100644
-index 000000000000..9b44c1ab6364
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_args_test.c
-@@ -0,0 +1,190 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include <kunit/test.h>
-+
+diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
+index c56fedd126e6..337b1ef1959c 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.h
++++ b/drivers/gpu/drm/xe/xe_rtp.h
+@@ -341,7 +341,7 @@ struct xe_reg_sr;
+  *	};
+  */
+ #define XE_RTP_RULES(...)							\
+-	.n_rules = _XE_COUNT_ARGS(__VA_ARGS__),					\
++	.n_rules = COUNT_ARGS(__VA_ARGS__),					\
+ 	.rules = (const struct xe_rtp_rule[]) {					\
+ 		XE_RTP_PASTE_FOREACH(RULE_, COMMA, (__VA_ARGS__))	\
+ 	}
+@@ -366,7 +366,7 @@ struct xe_reg_sr;
+  *	};
+  */
+ #define XE_RTP_ACTIONS(...)							\
+-	.n_actions = _XE_COUNT_ARGS(__VA_ARGS__),				\
++	.n_actions = COUNT_ARGS(__VA_ARGS__),					\
+ 	.actions = (const struct xe_rtp_action[]) {				\
+ 		XE_RTP_PASTE_FOREACH(ACTION_, COMMA, (__VA_ARGS__))	\
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_rtp_helpers.h b/drivers/gpu/drm/xe/xe_rtp_helpers.h
+index 181b6290fac3..8129d6d9ef37 100644
+--- a/drivers/gpu/drm/xe/xe_rtp_helpers.h
++++ b/drivers/gpu/drm/xe/xe_rtp_helpers.h
+@@ -10,22 +10,16 @@
+ #error "This header is supposed to be included by xe_rtp.h only"
+ #endif
+ 
 +#include "xe_args.h"
 +
-+static void call_args_example(struct kunit *test)
-+{
-+#define foo	X, Y, Z, Q
-+#define bar	COUNT_ARGS(foo)
-+#define buz	CALL_ARGS(COUNT_ARGS, foo)
-+
-+	KUNIT_EXPECT_EQ(test, bar, 1);
-+	KUNIT_EXPECT_EQ(test, buz, 4);
-+
-+#undef foo
-+#undef bar
-+#undef buz
-+}
-+
-+static void drop_first_example(struct kunit *test)
-+{
-+#define foo	X, Y, Z, Q
-+#define bar	CALL_ARGS(COUNT_ARGS, DROP_FIRST(foo))
-+
-+	KUNIT_EXPECT_EQ(test, bar, 3);
-+
-+#undef foo
-+#undef bar
-+}
-+
-+static void pick_first_example(struct kunit *test)
-+{
-+	int X = 1;
-+
-+#define foo	X, Y, Z, Q
-+#define bar	PICK_FIRST(foo)
-+
-+	KUNIT_EXPECT_EQ(test, bar, X);
-+	KUNIT_EXPECT_STREQ(test, __stringify(bar), "X");
-+
-+#undef foo
-+#undef bar
-+}
-+
-+static void pick_last_example(struct kunit *test)
-+{
-+	int Q = 1;
-+
-+#define foo	X, Y, Z, Q
-+#define bar	PICK_LAST(foo)
-+
-+	KUNIT_EXPECT_EQ(test, bar, Q);
-+	KUNIT_EXPECT_STREQ(test, __stringify(bar), "Q");
-+
-+#undef foo
-+#undef bar
-+}
-+
-+static void sep_comma_example(struct kunit *test)
-+{
-+#define foo(f)	f(X) f(Y) f(Z) f(Q)
-+#define bar	DROP_FIRST(foo(ARGS_SEP_COMMA __stringify))
-+#define buz	CALL_ARGS(COUNT_ARGS, DROP_FIRST(foo(ARGS_SEP_COMMA)))
-+
-+	static const char * const a[] = { bar };
-+
-+	KUNIT_EXPECT_STREQ(test, a[0], "X");
-+	KUNIT_EXPECT_STREQ(test, a[1], "Y");
-+	KUNIT_EXPECT_STREQ(test, a[2], "Z");
-+	KUNIT_EXPECT_STREQ(test, a[3], "Q");
-+
-+	KUNIT_EXPECT_EQ(test, buz, 4);
-+
-+#undef foo
-+#undef bar
-+#undef buz
-+}
-+
-+#define NO_ARGS
-+#define FOO_ARGS	X, Y, Z, Q
-+#define MAX_ARGS	-1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11, -12
-+
-+static void count_args_test(struct kunit *test)
-+{
-+	int count;
-+
-+	/* COUNT_ARGS() counts to 12 */
-+
-+	count = COUNT_ARGS();
-+	KUNIT_EXPECT_EQ(test, count, 0);
-+
-+	count = COUNT_ARGS(1);
-+	KUNIT_EXPECT_EQ(test, count, 1);
-+
-+	count = COUNT_ARGS(a, b, c, d, e);
-+	KUNIT_EXPECT_EQ(test, count, 5);
-+
-+	count = COUNT_ARGS(a, b, c, d, e, f, g, h, i, j, k, l);
-+	KUNIT_EXPECT_EQ(test, count, 12);
-+
-+	/* COUNT_ARGS() does not expand params */
-+
-+	count = COUNT_ARGS(NO_ARGS);
-+	KUNIT_EXPECT_EQ(test, count, 1);
-+
-+	count = COUNT_ARGS(FOO_ARGS);
-+	KUNIT_EXPECT_EQ(test, count, 1);
-+}
-+
-+static void call_args_test(struct kunit *test)
-+{
-+	int count;
-+
-+	count = CALL_ARGS(COUNT_ARGS, NO_ARGS);
-+	KUNIT_EXPECT_EQ(test, count, 0);
-+	KUNIT_EXPECT_EQ(test, CALL_ARGS(COUNT_ARGS, NO_ARGS), 0);
-+	KUNIT_EXPECT_EQ(test, CALL_ARGS(COUNT_ARGS, FOO_ARGS), 4);
-+	KUNIT_EXPECT_EQ(test, CALL_ARGS(COUNT_ARGS, FOO_ARGS, FOO_ARGS), 8);
-+	KUNIT_EXPECT_EQ(test, CALL_ARGS(COUNT_ARGS, MAX_ARGS), 12);
-+}
-+
-+static void drop_first_test(struct kunit *test)
-+{
-+	int Y = -2, Z = -3, Q = -4;
-+	int a[] = { DROP_FIRST(FOO_ARGS) };
-+
-+	KUNIT_EXPECT_EQ(test, DROP_FIRST(0, -1), -1);
-+	KUNIT_EXPECT_EQ(test, DROP_FIRST(DROP_FIRST(0, -1, -2)), -2);
-+
-+	KUNIT_EXPECT_EQ(test, CALL_ARGS(COUNT_ARGS, DROP_FIRST(FOO_ARGS)), 3);
-+	KUNIT_EXPECT_EQ(test, DROP_FIRST(DROP_FIRST(DROP_FIRST(FOO_ARGS))), -4);
-+	KUNIT_EXPECT_EQ(test, a[0], -2);
-+	KUNIT_EXPECT_EQ(test, a[1], -3);
-+	KUNIT_EXPECT_EQ(test, a[2], -4);
-+	KUNIT_EXPECT_STREQ(test, __stringify(DROP_FIRST(DROP_FIRST(DROP_FIRST(FOO_ARGS)))), "Q");
-+}
-+
-+static void pick_first_test(struct kunit *test)
-+{
-+	int X = -1;
-+	int a[] = { PICK_FIRST(FOO_ARGS) };
-+
-+	KUNIT_EXPECT_EQ(test, PICK_FIRST(-1, -2), -1);
-+
-+	KUNIT_EXPECT_EQ(test, CALL_ARGS(COUNT_ARGS, PICK_FIRST(FOO_ARGS)), 1);
-+	KUNIT_EXPECT_EQ(test, PICK_FIRST(FOO_ARGS), -1);
-+	KUNIT_EXPECT_EQ(test, a[0], -1);
-+	KUNIT_EXPECT_STREQ(test, __stringify(PICK_FIRST(FOO_ARGS)), "X");
-+}
-+
-+static void pick_last_test(struct kunit *test)
-+{
-+	int Q = -4;
-+	int a[] = { PICK_LAST(FOO_ARGS) };
-+
-+	KUNIT_EXPECT_EQ(test, PICK_LAST(-1, -2), -2);
-+
-+	KUNIT_EXPECT_EQ(test, CALL_ARGS(COUNT_ARGS, PICK_LAST(FOO_ARGS)), 1);
-+	KUNIT_EXPECT_EQ(test, PICK_LAST(FOO_ARGS), -4);
-+	KUNIT_EXPECT_EQ(test, a[0], -4);
-+	KUNIT_EXPECT_STREQ(test, __stringify(PICK_LAST(FOO_ARGS)), "Q");
-+
-+	KUNIT_EXPECT_EQ(test, PICK_LAST(MAX_ARGS), -12);
-+	KUNIT_EXPECT_STREQ(test, __stringify(PICK_LAST(MAX_ARGS)), "-12");
-+}
-+
-+static struct kunit_case args_tests[] = {
-+	KUNIT_CASE(count_args_test),
-+	KUNIT_CASE(call_args_example),
-+	KUNIT_CASE(call_args_test),
-+	KUNIT_CASE(drop_first_example),
-+	KUNIT_CASE(drop_first_test),
-+	KUNIT_CASE(pick_first_example),
-+	KUNIT_CASE(pick_first_test),
-+	KUNIT_CASE(pick_last_example),
-+	KUNIT_CASE(pick_last_test),
-+	KUNIT_CASE(sep_comma_example),
-+	{}
-+};
-+
-+static struct kunit_suite args_test_suite = {
-+	.name = "args",
-+	.test_cases = args_tests,
-+};
-+
-+kunit_test_suite(args_test_suite);
+ /*
+  * Helper macros - not to be used outside this header.
+  */
+ #define _XE_ESC(...) __VA_ARGS__
+-#define _XE_COUNT_ARGS(...) _XE_ESC(__XE_COUNT_ARGS(__VA_ARGS__, 5, 4, 3, 2, 1,))
+-#define __XE_COUNT_ARGS(_, _5, _4, _3, _2, X_, ...) X_
+ 
+-#define _XE_FIRST(...) _XE_ESC(__XE_FIRST(__VA_ARGS__,))
+-#define __XE_FIRST(x_, ...) x_
+-#define _XE_TUPLE_TAIL(...) _XE_ESC(__XE_TUPLE_TAIL(__VA_ARGS__))
+-#define __XE_TUPLE_TAIL(x_, ...) (__VA_ARGS__)
++#define _XE_TUPLE_TAIL(...) (DROP_FIRST(__VA_ARGS__))
+ 
+-#define _XE_DROP_FIRST(x_, ...) __VA_ARGS__
+-
+-#define _XE_RTP_CONCAT(a, b) __XE_RTP_CONCAT(a, b)
+-#define __XE_RTP_CONCAT(a, b) XE_RTP_ ## a ## b
++#define _XE_RTP_CONCAT(a, b) CONCATENATE(XE_RTP_, CONCATENATE(a, b))
+ 
+ #define __XE_RTP_PASTE_SEP_COMMA		,
+ #define __XE_RTP_PASTE_SEP_BITWISE_OR		|
+@@ -59,11 +53,11 @@
+  *
+  *	XE_RTP_TEST_FOO BANANA XE_RTP_TEST_BAR
+  */
+-#define XE_RTP_PASTE_FOREACH(prefix_, sep_, args_) _XE_ESC(_XE_RTP_CONCAT(PASTE_, _XE_COUNT_ARGS args_)(prefix_, sep_, args_))
+-#define XE_RTP_PASTE_1(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_)
+-#define XE_RTP_PASTE_2(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_1(prefix_, sep_, _XE_TUPLE_TAIL args_)
+-#define XE_RTP_PASTE_3(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_2(prefix_, sep_, _XE_TUPLE_TAIL args_)
+-#define XE_RTP_PASTE_4(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_3(prefix_, sep_, _XE_TUPLE_TAIL args_)
++#define XE_RTP_PASTE_FOREACH(prefix_, sep_, args_) _XE_RTP_CONCAT(PASTE_, COUNT_ARGS args_)(prefix_, sep_, args_)
++#define XE_RTP_PASTE_1(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, PICK_FIRST args_)
++#define XE_RTP_PASTE_2(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, PICK_FIRST args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_1(prefix_, sep_, _XE_TUPLE_TAIL args_)
++#define XE_RTP_PASTE_3(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, PICK_FIRST args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_2(prefix_, sep_, _XE_TUPLE_TAIL args_)
++#define XE_RTP_PASTE_4(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, PICK_FIRST args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_3(prefix_, sep_, _XE_TUPLE_TAIL args_)
+ 
+ /*
+  * XE_RTP_DROP_CAST - Drop cast to convert a compound statement to a initializer
+@@ -76,6 +70,6 @@
+  *
+  *	{ .a = 10 }
+  */
+-#define XE_RTP_DROP_CAST(...) _XE_ESC(_XE_DROP_FIRST _XE_ESC __VA_ARGS__)
++#define XE_RTP_DROP_CAST(...) _XE_ESC(DROP_FIRST _XE_ESC __VA_ARGS__)
+ 
+ #endif
 -- 
 2.43.0
 
