@@ -4,56 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CF5EC4345F
-	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 04:18:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79171C4345F
+	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 07:24:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66C1510E7E5;
-	Thu,  2 May 2024 04:18:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E26B10EED4;
+	Thu,  2 May 2024 07:24:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mu1ikOlC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZRVbH6j4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4530E10E7E5
- for <intel-xe@lists.freedesktop.org>; Thu,  2 May 2024 04:18:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9063910EED4
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 May 2024 07:24:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714623505; x=1746159505;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=zLQ6MyNCDQW6HdxNnjLWT+NE8Wh3KFsEVw+XWeXO85Y=;
- b=Mu1ikOlCdzB/DU9doEF60tHyTiCcfkRJz/JhTYHWyC/GxpvJ6KczDcaG
- uq22M5W882lH2DHNt5RVT3pQrrtKCRfNLINToHwpw5gKne+OeaOZd/2ig
- 3whBuGATzltUnd/bhP334idZD26mXBPJp3/jOUkUN5DMy7U2z4RfhxYSG
- 5KWKBwDqosbrZ7fnSaW9DqrvL9MtGTGSBqG5WPdkFGQ5bvZqWCK4IUNeA
- QoQNtEv3SZe0WbzEaZ/2FvjeUuDQ3pbLEBXvEA1SNPu74dww90TgL7k55
- 2Cpyi904LJGDV2dzQwyL7/zm5467Bgn1veT2nP+x1D57+ctOUk2PjEBfe g==;
-X-CSE-ConnectionGUID: cp6pPX38SZeGOK/LkVmYuQ==
-X-CSE-MsgGUID: uu3q3cLARCSzMPthrysEnw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11061"; a="14155792"
-X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="14155792"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2024 21:18:24 -0700
-X-CSE-ConnectionGUID: AqBLaG2OQi+gjVrOSQXixQ==
-X-CSE-MsgGUID: TLS1dzUZQ3uIRpE+BgfabQ==
+ t=1714634689; x=1746170689;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=RLYhi4pMSVDRtLryjed2HVeLnbFHn0EK9gnJDY1cQU8=;
+ b=ZRVbH6j4EOMVW5ZLBSH7nLQphJCGxTPUeUp3uCK8umci347dNpIYkwI9
+ XCXom66tHc3w4JBURahek3JCwAhxMt/RG+O2gn/9ghvDqVMY4acwBKfxp
+ n7cb+tWDciNWwwM/qbAIiONcwFT1jXUJOyqyFhwBE4/v3aq3I1qHtQGc4
+ /VG2d+Z+N7JMfchX7bI838zKa4Z9A70xWQKka4Y+7HrL6aQHJyUtpYnba
+ EfkA5nbt1CKALO4O5gBlkcroHlDOgUXzx8Y+z4ULpqCgbNeUddzqRCtzh
+ ZSWob8Q0POJ7qVkvd0jQmMQi9Pik749pTp1Q9YODILQsrUoEdNV8Jwg4m Q==;
+X-CSE-ConnectionGUID: YeKAuGw0T6O3kyqvaKMnwA==
+X-CSE-MsgGUID: fgNtyJ6bQRCHZGQEn6y9tg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11061"; a="10514664"
+X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="10514664"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2024 00:24:48 -0700
+X-CSE-ConnectionGUID: kl6Cd6H4RqymCpaZbcyZUg==
+X-CSE-MsgGUID: /4+EFT+wQpulPcKuNa2dJg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="31611116"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2024 21:18:24 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: [xe-for-ci v3 0/2] LNL GSC FW support
-Date: Wed,  1 May 2024 21:19:16 -0700
-Message-ID: <171462351410.3723520.7559381849375007157.b4-ty@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240501231829.2122219-1-daniele.ceraolospurio@intel.com>
-References: <20240501231829.2122219-1-daniele.ceraolospurio@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="27538914"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2024 00:24:47 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+ (envelope-from <andriy.shevchenko@intel.com>)
+ id 1s2Qo8-00000003DvJ-49wD; Thu, 02 May 2024 10:24:44 +0300
+Date: Thu, 2 May 2024 10:24:44 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 0/2] Define generic helpers for manipulating macro
+ arguments
+Message-ID: <ZjM_vNXn9JmlzOkc@smile.fi.intel.com>
+References: <20240501223221.2395-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240501223221.2395-1-michal.wajdeczko@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,26 +71,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On Wed, 01 May 2024 16:18:27 -0700, Daniele Ceraolo Spurio wrote:
-> The flow is the same as MTL, so the only things we need to add on the Xe
-> side is the FW definition. Due to the FW not being in its final state
-> yet, we can't push it to linux-firmware yet so it needs to be in the
-> xe-for-ci branch.
-> Also, the mei patch required for the mei driver to run on LNL (which is
-> needed for GSC proxy) is not merged yet, so it has been included here to
-> be merged in xe-for-ci while we wait for it to land in Linus' tree
-> (via char-misc).
+On Thu, May 02, 2024 at 12:32:19AM +0200, Michal Wajdeczko wrote:
+> Michal Wajdeczko (2):
+>   args.h: add more helpers for manipulating macro arguments
+>   drm/xe/rtp: Prefer helper macros from args.h
 > 
-> [...]
+>  drivers/gpu/drm/xe/xe_rtp.h         |   4 +-
+>  drivers/gpu/drm/xe/xe_rtp_helpers.h |  26 +++----
+>  include/linux/args.h                | 103 ++++++++++++++++++++++++++++
+>  3 files changed, 115 insertions(+), 18 deletions(-)
 
-Applied both patches to topic/xe-for-CI, thanks!
+It's good in general to have the code being deduplicated, but the above
+statistics is a bit scary. Do we have more users where we indeed make code much
+nicer? If not, let's keep these where it belongs to for now.
 
-[1/2] mei: me: add lunar lake point M DID
-      (no commit info)
-[2/2] drm/xe/gsc: define GSC FW for LNL
-      (no commit info)
-
-Best regards,
 -- 
-Lucas De Marchi <lucas.demarchi@intel.com>
+With Best Regards,
+Andy Shevchenko
+
+
