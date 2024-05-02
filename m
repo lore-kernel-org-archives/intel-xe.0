@@ -4,50 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D57BAC4345F
-	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 13:42:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBEFCC4345F
+	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 13:43:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8FF610FA99;
-	Thu,  2 May 2024 13:42:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WGsuvdLc";
-	dkim-atps=neutral
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1640210FA8C;
- Thu,  2 May 2024 13:42:26 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id D98D6CE16B9;
- Thu,  2 May 2024 13:42:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF5A3C113CC;
- Thu,  2 May 2024 13:42:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1714657341;
- bh=WKPsUxWXl4yHvgtoNsaCIYXC/ka2/toWtJoy5D7VxaU=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=WGsuvdLc+roF8Yz6mXf3HVoKntvXEZfyV56nqpAVi8hGuC39tWCvY5gB7s2zm/EaP
- b336gJCXfZQTSsfbDiCVTwMvguLhaSkEmozTDxLFxg14whPxWqB7Kilzairv/qfH4W
- DdNYer/sUprQ105G1J9XxtufEOPnqogUIRcx0alyW5E4c4/v++HgnUxQmwn2QMBGC/
- 1wMhlvSwxCmiOeJlzsEoQ7Oit+Agf287brQbstKc0dmVH2+w6lf8t2R70UaoG3JsQo
- x8DkKjHyZ30T62vgyrMizG+7jK/Cl35tqIsxAbd9/E19mvNu9dEReH8pmHvjBXbF8W
- U2kNV/8A/0+RA==
-Date: Thu, 2 May 2024 15:42:18 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org, daniel@ffwll.ch, 
- maarten.lankhorst@linux.intel.com, airlied@gmail.com, tzimmermann@suse.de,
- rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org,
- Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH v3 1/4] drm: add devm release action
-Message-ID: <20240502-wakeful-rattlesnake-of-tornado-af78f5@houat>
-References: <20240422065756.294679-1-aravind.iddamsetty@linux.intel.com>
- <20240422065756.294679-2-aravind.iddamsetty@linux.intel.com>
- <20240424-garrulous-realistic-pronghorn-fbfcd5@houat>
- <e54a0551-9484-40c9-abf7-f2e39e101497@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84DA710E529;
+	Thu,  2 May 2024 13:43:42 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECFBD10E23B;
+ Thu,  2 May 2024 13:43:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="dpel2lgqmxvhdsml"
-Content-Disposition: inline
-In-Reply-To: <e54a0551-9484-40c9-abf7-f2e39e101497@linux.intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/gt=3A_Fix_ass?=
+ =?utf-8?q?ert_in_L3_bank_mask_generation_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Francois Dugast" <francois.dugast@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 02 May 2024 13:43:40 -0000
+Message-ID: <171465742096.1848696.2290156841045520877@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240502124311.159695-1-francois.dugast@intel.com>
+In-Reply-To: <20240502124311.159695-1-francois.dugast@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,90 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
---dpel2lgqmxvhdsml
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Series: drm/xe/gt: Fix assert in L3 bank mask generation (rev4)
+URL   : https://patchwork.freedesktop.org/series/133055/
+State : success
 
-On Wed, Apr 24, 2024 at 06:06:52PM +0530, Aravind Iddamsetty wrote:
->=20
-> On 24/04/24 17:21, Maxime Ripard wrote:
-> > On Mon, Apr 22, 2024 at 12:27:53PM +0530, Aravind Iddamsetty wrote:
-> >> In scenarios where drm_dev_put is directly called by driver we want to
-> >> release devm_drm_dev_init_release action associated with struct
-> >> drm_device.
-> >>
-> >> v2: Directly expose the original function, instead of introducing a
-> >> helper (Rodrigo)
-> >>
-> >> v3: add kernel-doc (Maxime Ripard)
-> >>
-> >> Cc: Maxime Ripard <mripard@kernel.org>
-> >> Cc: Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>
-> >> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> >>
-> >> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> >> Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-> >> ---
-> >>  drivers/gpu/drm/drm_drv.c | 13 +++++++++++++
-> >>  include/drm/drm_drv.h     |  2 ++
-> >>  2 files changed, 15 insertions(+)
-> >>
-> >> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> >> index 243cacb3575c..9d0409165f1e 100644
-> >> --- a/drivers/gpu/drm/drm_drv.c
-> >> +++ b/drivers/gpu/drm/drm_drv.c
-> >> @@ -714,6 +714,19 @@ static int devm_drm_dev_init(struct device *paren=
-t,
-> >>  					devm_drm_dev_init_release, dev);
-> >>  }
-> >> =20
-> >> +/**
-> >> + * devm_drm_dev_release_action - Call the final release action of the=
- device
-> >> + * @dev: DRM device
-> >> + *
-> >> + * In scenarios where drm_dev_put is directly called by driver we wan=
-t to release
-> >> + * devm_drm_dev_init_release action associated with struct drm_device.
-> >> + */
-> > I'm not entirely sure what you mean by that documentation. "In scenarios
-> > where drm_dev_put is directly called by the driver", we wouldn't need to
-> > consider that function at all, right?
->=20
-> the drm_dev_put is not being invoked by drivers directly but that is
-> associated with devres releases and the scenario here I meant if
-> drivers want to have that called by themselves.
+== Summary ==
 
-Then that needs to be rephrased to mention both that it applies only to
-drivers using devm_drm_dev_alloc, and if they want to drop their
-reference earlier than anticipated.
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 1b26f047c5fd drm-tip: 2024y-05m-02d-11h-23m-26s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/gt: Fix assert in L3 bank mask generation
 
-> > Also, we should reference it in drm_dev_put and devm_drm_dev_alloc too.
->=20
-> sorry I didn't get this can you please elaborate.
 
-devm_drm_dev_alloc needs to point at this new function to mention that
-we can drop the reference explicitly. And drm_dev_put needs to mention
-that it only applies to non-devm drivers, and if we want to drop the
-reference on a devm driver, we need to call this new function.
-
-Maxime
-
---dpel2lgqmxvhdsml
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZjOYMgAKCRAnX84Zoj2+
-dhgNAX9K9kvLmZUOCM8Pn6TejNzLHJv5HbOe+0eeQVXz/smnUT+AFA+UYvUOij4O
-KfBriDYBgL25AWQPTtyjIWFhBWn/ocily10sx2PmOCT9ZO0BqlrYFCCzdmepccaf
-hgWWAnOsSA==
-=uaxv
------END PGP SIGNATURE-----
-
---dpel2lgqmxvhdsml--
