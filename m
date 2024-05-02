@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D9D5C4345F
-	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 22:24:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BCFFC4345F
+	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 22:26:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6F381126DE;
-	Thu,  2 May 2024 22:24:08 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24F5C1126DE;
- Thu,  2 May 2024 22:24:08 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4961656136636424058=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6F1911270A;
+	Thu,  2 May 2024 22:26:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="NhCrLKdI";
+	dkim-atps=neutral
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 90BBF1126F6;
+ Thu,  2 May 2024 22:26:38 +0000 (UTC)
+Received: from [100.64.232.195] (unknown [20.29.225.195])
+ by linux.microsoft.com (Postfix) with ESMTPSA id 518C5206B4FD;
+ Thu,  2 May 2024 15:26:37 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 518C5206B4FD
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+ s=default; t=1714688797;
+ bh=NzMrFwSnELsNTouka86zwY4xBu0HDKLPheXHNRlf/UY=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=NhCrLKdI/ZqOMxIi0x/9IcKVE1fu8SJgV6IOu9yOzA4/X9AoPavE5e5S65Ugw3uBC
+ sulaSRBperkkDcIDt2jCnwInTZEDOTYmaUAyGGeCvlgfS23LBxyBkoeXTUrIdi6qwD
+ 4F+b4DUgYEKEoHW556opdVdEoci1DJoGsON85j90=
+Message-ID: <076e0a0d-ad26-490e-9784-300ed52637ca@linux.microsoft.com>
+Date: Thu, 2 May 2024 15:26:36 -0700
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/guc=3A_Add_GuC_based_regi?=
- =?utf-8?q?ster_capture_for_error_capture_=28rev7=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 02 May 2024 22:24:08 -0000
-Message-ID: <171468864814.1848696.3161789196534012986@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240502205738.863369-1-zhanjun.dong@intel.com>
-In-Reply-To: <20240502205738.863369-1-zhanjun.dong@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 12/12] fbdev/viafb: Make I2C terminology more inclusive
+To: Thomas Zimmermann <tzimmermann@suse.de>,
+ Florian Tobias Schandinat <FlorianSchandinat@gmx.de>,
+ Helge Deller <deller@gmx.de>,
+ "open list:VIA UNICHROME(PRO)/CHROME9 FRAMEBUFFER DRIVER"
+ <linux-fbdev@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>,
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>
+References: <20240430173812.1423757-1-eahariha@linux.microsoft.com>
+ <20240430173812.1423757-13-eahariha@linux.microsoft.com>
+ <271ad513-0ea1-45df-ba0f-51582474ff34@suse.de>
+Content-Language: en-CA
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+In-Reply-To: <271ad513-0ea1-45df-ba0f-51582474ff34@suse.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +67,55 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4961656136636424058==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 5/2/2024 3:46 AM, Thomas Zimmermann wrote:
+> 
+> 
+> Am 30.04.24 um 19:38 schrieb Easwar Hariharan:
+>> I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
+>> with more appropriate terms. Inspired by and following on to Wolfram's
+>> series to fix drivers/i2c/[1], fix the terminology for users of
+>> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+>> in the specification.
+>>
+>> Compile tested, no functionality changes intended
+>>
+>> [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+>>
+>> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+> 
+> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+> 
 
-== Series Details ==
+Thanks for the ack! I had been addressing feedback as I got it on the v0 series, and it seems
+I missed out on updating viafb and smscufx to spec-compliant controller/target terminology like
+the v0->v1 changelog calls out before posting v1.
 
-Series: drm/xe/guc: Add GuC based register capture for error capture (rev7)
-URL   : https://patchwork.freedesktop.org/series/128077/
-State : failure
+For smscufx, I feel phrasing the following line (as an example)
 
-== Summary ==
+> -/* sets up I2C Controller for 100 Kbps, std. speed, 7-bit addr, host, 
+> +/* sets up I2C Controller for 100 Kbps, std. speed, 7-bit addr, *controller*, 
 
-CI Bug Log - changes from xe-1225-9bc56b5d5f4e38bd455b3bc78932b73af09a9b72_BAT -> xe-pw-128077v7_BAT
-====================================================
+would actually impact readability negatively, so I propose to leave smscufx as is.
 
-Summary
--------
+For viafb, I propose making it compliant with the spec using the controller/target terminology and
+posting a v2 respin (which I can send out as soon as you say) and ask you to review again.
 
-  **FAILURE**
+What do you think?
 
-  Serious unknown changes coming with xe-pw-128077v7_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-128077v7_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Thanks,
+Easwar
 
-  
+>> ---
+>>   drivers/video/fbdev/via/chip.h    |  8 ++++----
+>>   drivers/video/fbdev/via/dvi.c     | 24 ++++++++++++------------
+>>   drivers/video/fbdev/via/lcd.c     |  6 +++---
+>>   drivers/video/fbdev/via/via_aux.h |  2 +-
+>>   drivers/video/fbdev/via/via_i2c.c | 12 ++++++------
+>>   drivers/video/fbdev/via/vt1636.c  |  6 +++---
+>>   6 files changed, 29 insertions(+), 29 deletions(-)
+>>
 
-Participating hosts (5 -> 0)
-------------------------------
-
-  ERROR: It appears as if the changes made in xe-pw-128077v7_BAT prevented too many machines from booting.
-
-  Missing    (5): bat-pvc-2 bat-lnl-1 bat-dg2-oem2 bat-adlp-7 bat-atsm-2 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1225-9bc56b5d5f4e38bd455b3bc78932b73af09a9b72 -> xe-pw-128077v7
-
-  IGT_7828: 68a055ff91b91dadb01d9501cd8670f654b5b952 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1225-9bc56b5d5f4e38bd455b3bc78932b73af09a9b72: 9bc56b5d5f4e38bd455b3bc78932b73af09a9b72
-  xe-pw-128077v7: 128077v7
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v7/index.html
-
---===============4961656136636424058==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Add GuC based register capture for error capture (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128077/">https://patchwork.freedesktop.org/series/128077/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-128077v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1225-9bc56b5d5f4e38bd455b3bc78932b73af09a9b72_BAT -&gt; xe-pw-128077v7_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-128077v7_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-128077v7_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (5 -&gt; 0)</h2>
-<p>ERROR: It appears as if the changes made in xe-pw-128077v7_BAT prevented too many machines from booting.</p>
-<p>Missing    (5): bat-pvc-2 bat-lnl-1 bat-dg2-oem2 bat-adlp-7 bat-atsm-2 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1225-9bc56b5d5f4e38bd455b3bc78932b73af09a9b72 -&gt; xe-pw-128077v7</li>
-</ul>
-<p>IGT_7828: 68a055ff91b91dadb01d9501cd8670f654b5b952 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1225-9bc56b5d5f4e38bd455b3bc78932b73af09a9b72: 9bc56b5d5f4e38bd455b3bc78932b73af09a9b72<br />
-  xe-pw-128077v7: 128077v7</p>
-
-</body>
-</html>
-
---===============4961656136636424058==--
+<snip>
