@@ -4,27 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C608DC4345F
-	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 13:39:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D57BAC4345F
+	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 13:42:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 728F610E7CF;
-	Thu,  2 May 2024 13:39:14 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7A7010E529;
- Thu,  2 May 2024 13:39:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6947431793769260686=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8FF610FA99;
+	Thu,  2 May 2024 13:42:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WGsuvdLc";
+	dkim-atps=neutral
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1640210FA8C;
+ Thu,  2 May 2024 13:42:26 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id D98D6CE16B9;
+ Thu,  2 May 2024 13:42:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF5A3C113CC;
+ Thu,  2 May 2024 13:42:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1714657341;
+ bh=WKPsUxWXl4yHvgtoNsaCIYXC/ka2/toWtJoy5D7VxaU=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=WGsuvdLc+roF8Yz6mXf3HVoKntvXEZfyV56nqpAVi8hGuC39tWCvY5gB7s2zm/EaP
+ b336gJCXfZQTSsfbDiCVTwMvguLhaSkEmozTDxLFxg14whPxWqB7Kilzairv/qfH4W
+ DdNYer/sUprQ105G1J9XxtufEOPnqogUIRcx0alyW5E4c4/v++HgnUxQmwn2QMBGC/
+ 1wMhlvSwxCmiOeJlzsEoQ7Oit+Agf287brQbstKc0dmVH2+w6lf8t2R70UaoG3JsQo
+ x8DkKjHyZ30T62vgyrMizG+7jK/Cl35tqIsxAbd9/E19mvNu9dEReH8pmHvjBXbF8W
+ U2kNV/8A/0+RA==
+Date: Thu, 2 May 2024 15:42:18 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, daniel@ffwll.ch, 
+ maarten.lankhorst@linux.intel.com, airlied@gmail.com, tzimmermann@suse.de,
+ rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org,
+ Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH v3 1/4] drm: add devm release action
+Message-ID: <20240502-wakeful-rattlesnake-of-tornado-af78f5@houat>
+References: <20240422065756.294679-1-aravind.iddamsetty@linux.intel.com>
+ <20240422065756.294679-2-aravind.iddamsetty@linux.intel.com>
+ <20240424-garrulous-realistic-pronghorn-fbfcd5@houat>
+ <e54a0551-9484-40c9-abf7-f2e39e101497@linux.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_Perform_dma=5Fmap_when?=
- =?utf-8?q?_moving_system_buffer_objects_to_TT_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 02 May 2024 13:39:12 -0000
-Message-ID: <171465715281.1848696.1675285262105896258@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240430120214.5372-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240430120214.5372-1-thomas.hellstrom@linux.intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="dpel2lgqmxvhdsml"
+Content-Disposition: inline
+In-Reply-To: <e54a0551-9484-40c9-abf7-f2e39e101497@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,170 +59,90 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6947431793769260686==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+--dpel2lgqmxvhdsml
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Series: drm/xe: Perform dma_map when moving system buffer objects to TT (rev2)
-URL   : https://patchwork.freedesktop.org/series/133068/
-State : failure
+On Wed, Apr 24, 2024 at 06:06:52PM +0530, Aravind Iddamsetty wrote:
+>=20
+> On 24/04/24 17:21, Maxime Ripard wrote:
+> > On Mon, Apr 22, 2024 at 12:27:53PM +0530, Aravind Iddamsetty wrote:
+> >> In scenarios where drm_dev_put is directly called by driver we want to
+> >> release devm_drm_dev_init_release action associated with struct
+> >> drm_device.
+> >>
+> >> v2: Directly expose the original function, instead of introducing a
+> >> helper (Rodrigo)
+> >>
+> >> v3: add kernel-doc (Maxime Ripard)
+> >>
+> >> Cc: Maxime Ripard <mripard@kernel.org>
+> >> Cc: Thomas Hellstr_m <thomas.hellstrom@linux.intel.com>
+> >> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> >>
+> >> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> >> Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+> >> ---
+> >>  drivers/gpu/drm/drm_drv.c | 13 +++++++++++++
+> >>  include/drm/drm_drv.h     |  2 ++
+> >>  2 files changed, 15 insertions(+)
+> >>
+> >> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> >> index 243cacb3575c..9d0409165f1e 100644
+> >> --- a/drivers/gpu/drm/drm_drv.c
+> >> +++ b/drivers/gpu/drm/drm_drv.c
+> >> @@ -714,6 +714,19 @@ static int devm_drm_dev_init(struct device *paren=
+t,
+> >>  					devm_drm_dev_init_release, dev);
+> >>  }
+> >> =20
+> >> +/**
+> >> + * devm_drm_dev_release_action - Call the final release action of the=
+ device
+> >> + * @dev: DRM device
+> >> + *
+> >> + * In scenarios where drm_dev_put is directly called by driver we wan=
+t to release
+> >> + * devm_drm_dev_init_release action associated with struct drm_device.
+> >> + */
+> > I'm not entirely sure what you mean by that documentation. "In scenarios
+> > where drm_dev_put is directly called by the driver", we wouldn't need to
+> > consider that function at all, right?
+>=20
+> the drm_dev_put is not being invoked by drivers directly but that is
+> associated with devres releases and the scenario here I meant if
+> drivers want to have that called by themselves.
 
-== Summary ==
+Then that needs to be rephrased to mention both that it applies only to
+drivers using devm_drm_dev_alloc, and if they want to drop their
+reference earlier than anticipated.
 
-CI Bug Log - changes from xe-1219-0f511aa3b7d7eafc1f8d7cea4a29cc270b748212_BAT -> xe-pw-133068v2_BAT
-====================================================
+> > Also, we should reference it in drm_dev_put and devm_drm_dev_alloc too.
+>=20
+> sorry I didn't get this can you please elaborate.
 
-Summary
--------
+devm_drm_dev_alloc needs to point at this new function to mention that
+we can drop the reference explicitly. And drm_dev_put needs to mention
+that it only applies to non-devm drivers, and if we want to drop the
+reference on a devm driver, we need to call this new function.
 
-  **FAILURE**
+Maxime
 
-  Serious unknown changes coming with xe-pw-133068v2_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-133068v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+--dpel2lgqmxvhdsml
+Content-Type: application/pgp-signature; name="signature.asc"
 
-  
+-----BEGIN PGP SIGNATURE-----
 
-Participating hosts (4 -> 5)
-------------------------------
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZjOYMgAKCRAnX84Zoj2+
+dhgNAX9K9kvLmZUOCM8Pn6TejNzLHJv5HbOe+0eeQVXz/smnUT+AFA+UYvUOij4O
+KfBriDYBgL25AWQPTtyjIWFhBWn/ocily10sx2PmOCT9ZO0BqlrYFCCzdmepccaf
+hgWWAnOsSA==
+=uaxv
+-----END PGP SIGNATURE-----
 
-  Additional (1): bat-lnl-1 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-133068v2_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_live_ktest@xe_dma_buf:
-    - bat-adlp-7:         [PASS][1] -> [ABORT][2] +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1219-0f511aa3b7d7eafc1f8d7cea4a29cc270b748212/bat-adlp-7/igt@xe_live_ktest@xe_dma_buf.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133068v2/bat-adlp-7/igt@xe_live_ktest@xe_dma_buf.html
-    - bat-pvc-2:          [PASS][3] -> [INCOMPLETE][4] +1 other test incomplete
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1219-0f511aa3b7d7eafc1f8d7cea4a29cc270b748212/bat-pvc-2/igt@xe_live_ktest@xe_dma_buf.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133068v2/bat-pvc-2/igt@xe_live_ktest@xe_dma_buf.html
-    - bat-dg2-oem2:       [PASS][5] -> [ABORT][6] +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1219-0f511aa3b7d7eafc1f8d7cea4a29cc270b748212/bat-dg2-oem2/igt@xe_live_ktest@xe_dma_buf.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133068v2/bat-dg2-oem2/igt@xe_live_ktest@xe_dma_buf.html
-
-  * igt@xe_live_ktest@xe_dma_buf@xe_dma_buf_kunit:
-    - bat-atsm-2:         [PASS][7] -> [INCOMPLETE][8] +1 other test incomplete
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1219-0f511aa3b7d7eafc1f8d7cea4a29cc270b748212/bat-atsm-2/igt@xe_live_ktest@xe_dma_buf@xe_dma_buf_kunit.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133068v2/bat-atsm-2/igt@xe_live_ktest@xe_dma_buf@xe_dma_buf_kunit.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-133068v2_BAT that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1466]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1466
-
-
-Build changes
--------------
-
-  * Linux: xe-1219-0f511aa3b7d7eafc1f8d7cea4a29cc270b748212 -> xe-pw-133068v2
-
-  IGT_7828: 68a055ff91b91dadb01d9501cd8670f654b5b952 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1219-0f511aa3b7d7eafc1f8d7cea4a29cc270b748212: 0f511aa3b7d7eafc1f8d7cea4a29cc270b748212
-  xe-pw-133068v2: 133068v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133068v2/index.html
-
---===============6947431793769260686==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Perform dma_map when moving system buffer objects to TT (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133068/">https://patchwork.freedesktop.org/series/133068/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133068v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133068v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1219-0f511aa3b7d7eafc1f8d7cea4a29cc270b748212_BAT -&gt; xe-pw-133068v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-133068v2_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-133068v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (4 -&gt; 5)</h2>
-<p>Additional (1): bat-lnl-1 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-133068v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@xe_live_ktest@xe_dma_buf:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1219-0f511aa3b7d7eafc1f8d7cea4a29cc270b748212/bat-adlp-7/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133068v2/bat-adlp-7/igt@xe_live_ktest@xe_dma_buf.html">ABORT</a> +1 other test abort</li>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1219-0f511aa3b7d7eafc1f8d7cea4a29cc270b748212/bat-pvc-2/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133068v2/bat-pvc-2/igt@xe_live_ktest@xe_dma_buf.html">INCOMPLETE</a> +1 other test incomplete</li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1219-0f511aa3b7d7eafc1f8d7cea4a29cc270b748212/bat-dg2-oem2/igt@xe_live_ktest@xe_dma_buf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133068v2/bat-dg2-oem2/igt@xe_live_ktest@xe_dma_buf.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_dma_buf@xe_dma_buf_kunit:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1219-0f511aa3b7d7eafc1f8d7cea4a29cc270b748212/bat-atsm-2/igt@xe_live_ktest@xe_dma_buf@xe_dma_buf_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133068v2/bat-atsm-2/igt@xe_live_ktest@xe_dma_buf@xe_dma_buf_kunit.html">INCOMPLETE</a> +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-133068v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1219-0f511aa3b7d7eafc1f8d7cea4a29cc270b748212 -&gt; xe-pw-133068v2</li>
-</ul>
-<p>IGT_7828: 68a055ff91b91dadb01d9501cd8670f654b5b952 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1219-0f511aa3b7d7eafc1f8d7cea4a29cc270b748212: 0f511aa3b7d7eafc1f8d7cea4a29cc270b748212<br />
-  xe-pw-133068v2: 133068v2</p>
-
-</body>
-</html>
-
---===============6947431793769260686==--
+--dpel2lgqmxvhdsml--
