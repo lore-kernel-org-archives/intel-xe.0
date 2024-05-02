@@ -4,27 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D46DDC04FFE
-	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 14:51:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5005AC4345F
+	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 15:02:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9646A11246A;
-	Thu,  2 May 2024 14:51:54 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43ED511246A;
- Thu,  2 May 2024 14:51:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1182307473196512609=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC5A11124EF;
+	Thu,  2 May 2024 15:01:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nztOQpEx";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24C2B1124EA;
+ Thu,  2 May 2024 15:01:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1714662118; x=1746198118;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=AxiPjBwg/o//qvlid03BaPkYWf99rAvtN0FR76XKJDE=;
+ b=nztOQpEx628Nsgxr26pdKSyeAkUCSgzJ+PglYrTSSDRQnhwMBzIblPLj
+ VCJIsLsR41TwZsMKtIB44RdkvfZtdLeKIUQqgFnoZ2DF3KQ9dxxgiX5zY
+ H4AUEhh8xGd5Ky4CS72J2f5RecoHRxBaVR5W9xdqoJO9VyYhiA1mjUeta
+ dBwB5d3dEY9TS0WDHG9SF4YsDoTQ5GJSFPa2wRcv7xABLIAOMcpQX2I6h
+ zb026TTyT3vKfDd7XD5lafLqD8AAhWIH17oP0JMIART9J8m6yXKsoEl41
+ nwj88gDg4fVMKGMHfwNjkclqgU2G7/oIAeCO+5QFQd73lWQM895oSSzjp Q==;
+X-CSE-ConnectionGUID: inJWjQSqT9SvU8B63wVJ7w==
+X-CSE-MsgGUID: 851W8Bg9TcinthCgMm/C6A==
+X-IronPort-AV: E=McAfee;i="6600,9927,11062"; a="10283449"
+X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="10283449"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2024 08:01:58 -0700
+X-CSE-ConnectionGUID: 7MtFKqrtSmmOCLOQKuvvBQ==
+X-CSE-MsgGUID: 6KwmRaYgQJmL+quXWHpFyQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="27027101"
+Received: from antonvol-mobl1.ccr.corp.intel.com (HELO [10.251.209.48])
+ ([10.251.209.48])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2024 08:01:55 -0700
+Message-ID: <0b700baf6fc3d41b4adf6301b1b4dbc4ff7078fa.camel@linux.intel.com>
+Subject: Re: [PATCH 06/23] drm/xe/svm: Introduce a helper to build sg table
+ from hmm range
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>, "Zeng, Oak" <oak.zeng@intel.com>, 
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Brost,
+ Matthew" <matthew.brost@intel.com>,  "Welty, Brian"
+ <brian.welty@intel.com>, "Ghimiray, Himal Prasad"
+ <himal.prasad.ghimiray@intel.com>, "Bommu, Krishnaiah"
+ <krishnaiah.bommu@intel.com>, "Vishwanathapura, Niranjana"
+ <niranjana.vishwanathapura@intel.com>, Leon Romanovsky <leon@kernel.org>
+Date: Thu, 02 May 2024 17:01:51 +0200
+In-Reply-To: <20240502124632.GB3341011@nvidia.com>
+References: <65cb3984309d377d6e7d57cb6567473c8a83ed78.camel@linux.intel.com>
+ <20240426120047.GX941030@nvidia.com>
+ <ad82f95ee29ada403459416d4c97c2b9083b5a0f.camel@linux.intel.com>
+ <20240426163519.GZ941030@nvidia.com>
+ <f938dc8f7309ae833e02ccdbc72134df0607dfa4.camel@linux.intel.com>
+ <20240430173002.GV941030@nvidia.com> <ZjE_LJ7AFFQk0Eep@phenom.ffwll.local>
+ <20240501000915.GY941030@nvidia.com> <ZjNJASw0JdXS6dTa@phenom.ffwll.local>
+ <93fca752517f0120baa770992fd0f9160b0c14d1.camel@linux.intel.com>
+ <20240502124632.GB3341011@nvidia.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/gt=3A_Fix_assert_in_L3_ba?=
- =?utf-8?q?nk_mask_generation_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 02 May 2024 14:51:53 -0000
-Message-ID: <171466151327.1848758.4254042741043074921@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240502124311.159695-1-francois.dugast@intel.com>
-In-Reply-To: <20240502124311.159695-1-francois.dugast@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,115 +84,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1182307473196512609==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 2024-05-02 at 09:46 -0300, Jason Gunthorpe wrote:
+> On Thu, May 02, 2024 at 11:11:04AM +0200, Thomas Hellstr=C3=B6m wrote:
+>=20
+> > It's true the cpu vma lookup is a remnant from amdkfd. The idea
+> > here is
+> > to replace that with fixed prefaulting ranges of tunable size. So
+> > far,
+> > as you mention, the prefaulting range has been determined by the
+> > CPU
+> > vma size. Given previous feedback, this is going to change.
+>=20
+> Perhaps limiting prefault to a VMA barrier is a reasonable thing to
+> do, but the implementation should be pushed into hmm_range_fault and
+> not open coded in the driver.
+>=20
+> > Still the prefaulting range needs to be restricted to avoid -EFAULT
+> > failures in hmm_range_fault(). That can ofc be done by calling it
+> > without HMM_PFN_REQ_FAULT for the range and interpret the returned
+> > pnfs.=20
+>=20
+> Yes, this is exactly what that feature is for, you mark your prefetch
+> differently from the fault critical page(s).
+>=20
+> > There is a performance concern of this approach as compared to
+> > peeking at the CPU vmas directly, since hmm_range_fault() would
+> > need to
+> > be called twice. Any guidelines ideas here?
+>=20
+> If there is something wrong with hmm_range_fault() then please fix
+> it. I'm not sure why you'd call it twice, the HMM_PFN_REQ_FAULT is
+> per
+> PFN?
 
-== Series Details ==
+Ah, yes you're right. I somehow thought it was per range. Makes sense
+now.
 
-Series: drm/xe/gt: Fix assert in L3 bank mask generation (rev4)
-URL   : https://patchwork.freedesktop.org/series/133055/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-1220-1b26f047c5fd5ce2cb738736d729d198b4ead7c8_BAT -> xe-pw-133055v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 5)
-------------------------------
-
-  Additional (1): bat-lnl-1 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-133055v4_BAT that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1767]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1767
+Thanks,
+Thomas
 
 
-Build changes
--------------
 
-  * Linux: xe-1220-1b26f047c5fd5ce2cb738736d729d198b4ead7c8 -> xe-pw-133055v4
+>=20
+> Jason
 
-  IGT_7828: 68a055ff91b91dadb01d9501cd8670f654b5b952 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1220-1b26f047c5fd5ce2cb738736d729d198b4ead7c8: 1b26f047c5fd5ce2cb738736d729d198b4ead7c8
-  xe-pw-133055v4: 133055v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133055v4/index.html
-
---===============1182307473196512609==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/gt: Fix assert in L3 bank mask generation (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133055/">https://patchwork.freedesktop.org/series/133055/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133055v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133055v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1220-1b26f047c5fd5ce2cb738736d729d198b4ead7c8_BAT -&gt; xe-pw-133055v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 5)</h2>
-<p>Additional (1): bat-lnl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-133055v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1220-1b26f047c5fd5ce2cb738736d729d198b4ead7c8 -&gt; xe-pw-133055v4</li>
-</ul>
-<p>IGT_7828: 68a055ff91b91dadb01d9501cd8670f654b5b952 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1220-1b26f047c5fd5ce2cb738736d729d198b4ead7c8: 1b26f047c5fd5ce2cb738736d729d198b4ead7c8<br />
-  xe-pw-133055v4: 133055v4</p>
-
-</body>
-</html>
-
---===============1182307473196512609==--
