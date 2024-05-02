@@ -4,27 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE5F8C4345F
-	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 19:01:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EE9EC25B10
+	for <intel-xe@archiver.kernel.org>; Thu,  2 May 2024 19:21:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88D9B10F74E;
-	Thu,  2 May 2024 19:01:25 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81E5210F74E;
- Thu,  2 May 2024 19:01:24 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65B68112675;
+	Thu,  2 May 2024 19:21:23 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="K8cC/7mP";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="KNaX5ZtX";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="K8cC/7mP";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="KNaX5ZtX";
+	dkim-atps=neutral
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02B7F11265E;
+ Thu,  2 May 2024 19:21:20 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 17BC31FCF6;
+ Thu,  2 May 2024 19:21:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1714677679; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=ZXqsBYu/Ng5F1OxLPZUY7dBgxj95fCG+OPrKH3Oi9tI=;
+ b=K8cC/7mPT5DbpE5e/O7a/zwCxNcpOiXaEB/g4JArOrHGoRoPoDwO84Hn8LeIRUpgI0pPFD
+ mQNzfK0Zu9miSzh/2bQSqZdzfr/T4kAcOrzZ4vhjCnRWM4dza/iw3G8MthgecwZH85vX5r
+ w4aCRxe3p5RcLFtsfzGkKi9w+6mx+rE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1714677679;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=ZXqsBYu/Ng5F1OxLPZUY7dBgxj95fCG+OPrKH3Oi9tI=;
+ b=KNaX5ZtXpM1DWloHOV0ZxtYTYbKjjX2yx41WW4CPkmNZ/nDOwbE+S7zWRxVXQsNSodphlF
+ QExQaUfkTLWwtWAA==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1714677679; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=ZXqsBYu/Ng5F1OxLPZUY7dBgxj95fCG+OPrKH3Oi9tI=;
+ b=K8cC/7mPT5DbpE5e/O7a/zwCxNcpOiXaEB/g4JArOrHGoRoPoDwO84Hn8LeIRUpgI0pPFD
+ mQNzfK0Zu9miSzh/2bQSqZdzfr/T4kAcOrzZ4vhjCnRWM4dza/iw3G8MthgecwZH85vX5r
+ w4aCRxe3p5RcLFtsfzGkKi9w+6mx+rE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1714677679;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=ZXqsBYu/Ng5F1OxLPZUY7dBgxj95fCG+OPrKH3Oi9tI=;
+ b=KNaX5ZtXpM1DWloHOV0ZxtYTYbKjjX2yx41WW4CPkmNZ/nDOwbE+S7zWRxVXQsNSodphlF
+ QExQaUfkTLWwtWAA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id B2F031386E;
+ Thu,  2 May 2024 19:21:18 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id Zb2SKq7nM2Y/QAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 02 May 2024 19:21:18 +0000
+Date: Thu, 2 May 2024 21:21:17 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20240502192117.GA12158@linux.fritz.box>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Perform_dma=5F?=
- =?utf-8?q?map_when_moving_system_buffer_objects_to_TT_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 02 May 2024 19:01:24 -0000
-Message-ID: <171467648452.1869305.18008267136306723806@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240502183251.10170-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240502183251.10170-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
+ MIME_TRACE(0.00)[0:+]; MISSING_XM_UA(0.00)[];
+ RCPT_COUNT_TWELVE(0.00)[16]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ RCVD_TLS_ALL(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; TO_DN_SOME(0.00)[]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +106,104 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Dave, Sima,
 
-Series: drm/xe: Perform dma_map when moving system buffer objects to TT (rev3)
-URL   : https://patchwork.freedesktop.org/series/133068/
-State : success
+here's the PR for drm-misc-fixes for this week.
 
-== Summary ==
+Best regards
+Thomas
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 83d6b363ebb5ba75c62b3d632a3eb2f73b05f9d6
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+drm-misc-fixes-2024-05-02:
+Short summary of fixes pull:
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+imagination:
+- fix page-count macro
 
+nouveau:
+- avoid page-table allocation failures
+- fix firmware memory allocation
 
+panel:
+- ili9341: avoid OF for device properties; respect deferred probe; fix
+usage of errno codes
+
+ttm:
+- fix status output
+
+vmwgfx:
+- fix legacy display unit
+- fix read length in fence signalling
+The following changes since commit 78d9161d2bcd442d93d917339297ffa057dbee8c:
+
+  fbdev: fix incorrect address computation in deferred IO (2024-04-24 15:03:37 +0200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2024-05-02
+
+for you to fetch changes up to da85f0aaa9f21999753b01d45c0343f885a8f905:
+
+  drm/panel: ili9341: Use predefined error codes (2024-05-02 09:41:27 +0200)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+imagination:
+- fix page-count macro
+
+nouveau:
+- avoid page-table allocation failures
+- fix firmware memory allocation
+
+panel:
+- ili9341: avoid OF for device properties; respect deferred probe; fix
+usage of errno codes
+
+ttm:
+- fix status output
+
+vmwgfx:
+- fix legacy display unit
+- fix read length in fence signalling
+
+----------------------------------------------------------------
+Andy Shevchenko (3):
+      drm/panel: ili9341: Correct use of device property APIs
+      drm/panel: ili9341: Respect deferred probe
+      drm/panel: ili9341: Use predefined error codes
+
+Ian Forbes (1):
+      drm/vmwgfx: Fix Legacy Display Unit
+
+Lyude Paul (2):
+      drm/nouveau/firmware: Fix SG_DEBUG error with nvkm_firmware_ctor()
+      drm/nouveau/gsp: Use the sg allocator for level 2 of radix3
+
+Matt Coster (1):
+      drm/imagination: Ensure PVR_MIPS_PT_PAGE_COUNT is never zero
+
+Zack Rusin (2):
+      drm/ttm: Print the memory decryption status just once
+      drm/vmwgfx: Fix invalid reads in fence signaled events
+
+ drivers/gpu/drm/imagination/pvr_fw_mips.h         |  5 +-
+ drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h |  4 +-
+ drivers/gpu/drm/nouveau/nvkm/core/firmware.c      | 19 +++---
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c    | 77 +++++++++++++++--------
+ drivers/gpu/drm/panel/Kconfig                     |  2 +-
+ drivers/gpu/drm/panel/panel-ilitek-ili9341.c      | 13 ++--
+ drivers/gpu/drm/ttm/ttm_tt.c                      |  2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_bo.c                |  1 +
+ drivers/gpu/drm/vmwgfx/vmwgfx_fence.c             |  2 +-
+ 9 files changed, 80 insertions(+), 45 deletions(-)
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
