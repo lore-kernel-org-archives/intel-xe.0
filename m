@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E448DC10F16
-	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 12:17:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B93FC10F16
+	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 12:22:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F6E910E204;
-	Mon,  6 May 2024 12:17:32 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A823010E204;
- Mon,  6 May 2024 12:17:30 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDBE010E15D;
+	Mon,  6 May 2024 12:22:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LizLuuvl";
+	dkim-atps=neutral
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 026B010E035;
+ Fri,  3 May 2024 22:13:02 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id DB92661E37;
+ Fri,  3 May 2024 22:13:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E21A6C116B1;
+ Fri,  3 May 2024 22:13:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1714774381;
+ bh=lfmOGOZfhnCUlEiIDxBBf2bhFfZo+XWkOL15C/9q4gg=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=LizLuuvl3rIQpUP79UErjXcSkos8A0+bWmuon50exKaQxHHovPycNRnTPTY42cSdK
+ tPk26zSCuLzBZBmwxgmvlxX4SJ+nUmpVGWJC9f7/vYwj9yqsa1Pd8/Z/td2Irvy8LU
+ u26vNVtSW9V2MJPM2EMAMZCaLNiVRfP3k/NV1t6mmHVc6SYd7iZbkYK7zk5bhDEE4W
+ dzMTBykNicvk4hvWRqa9jwQUyxPjCkYMtbaCd0opgAr2WdJU75sm4LkESwDbMraJGL
+ 2XSMKIhrFZSc+5Bs6hGpAfMTG0dHdow/2S95mJpAFgHi+Lo4RCvM3nco5D4wCcRYD5
+ s0IILBeTsS96w==
+Date: Fri, 3 May 2024 15:13:00 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Easwar Hariharan <eahariha@linux.microsoft.com>
+Cc: Edward Cree <ecree.xilinx@gmail.com>, Martin Habets
+ <habetsm.xilinx@gmail.com>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Simon
+ Horman <horms@kernel.org>, netdev@vger.kernel.org (open list:SFC NETWORK
+ DRIVER), linux-net-drivers@amd.com (open list:SFC NETWORK DRIVER),
+ linux-kernel@vger.kernel.org (open list), Wolfram Sang
+ <wsa+renesas@sang-engineering.com>, amd-gfx@lists.freedesktop.org (open
+ list:RADEON and AMDGPU DRM DRIVERS), dri-devel@lists.freedesktop.org (open
+ list:DRM DRIVERS), intel-gfx@lists.freedesktop.org (open list:INTEL DRM
+ DISPLAY FOR XE AND I915 DRIVERS), intel-xe@lists.freedesktop.org (open
+ list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS),
+ nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA
+ GEFORCE/QUADRO GPUS), linux-i2c@vger.kernel.org (open list:I2C SUBSYSTEM
+ HOST DRIVERS), linux-media@vger.kernel.org (open list:BTTV VIDEO4LINUX
+ DRIVER), linux-fbdev@vger.kernel.org (open list:FRAMEBUFFER LAYER)
+Subject: Re: [PATCH v1 10/12] sfc: falcon: Make I2C terminology more inclusive
+Message-ID: <20240503151300.0f202c30@kernel.org>
+In-Reply-To: <20240430173812.1423757-11-eahariha@linux.microsoft.com>
+References: <20240430173812.1423757-1-eahariha@linux.microsoft.com>
+ <20240430173812.1423757-11-eahariha@linux.microsoft.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_lib/intel=5Fctx=3A_P?=
- =?utf-8?q?ropagate_error_from_=5F=5Fintel=5Fctx=5Fxe=5Fexec_wait_timeout?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 06 May 2024 12:17:30 -0000
-Message-ID: <171499785068.1939724.11272443205829715010@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240506120827.5799-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20240506120827.5799-1-maarten.lankhorst@linux.intel.com>
+X-Mailman-Approved-At: Mon, 06 May 2024 12:22:43 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,27 +68,18 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 30 Apr 2024 17:38:09 +0000 Easwar Hariharan wrote:
+> I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
+> with more appropriate terms. Inspired by and following on to Wolfram's
+> series to fix drivers/i2c/[1], fix the terminology for users of
+> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+> in the specification.
+> 
+> Compile tested, no functionality changes intended
 
-Series: lib/intel_ctx: Propagate error from __intel_ctx_xe_exec wait timeout
-URL   : https://patchwork.freedesktop.org/series/133229/
-State : failure
-
-== Summary ==
-
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5a43da669cdb drm-tip: 2024y-05m-06d-08h-26m-33s UTC integration manifest
-=== git am output follows ===
-error: lib/intel_ctx.c: does not exist in index
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: lib/intel_ctx: Propagate error from __intel_ctx_xe_exec wait timeout
-Patch failed at 0001 lib/intel_ctx: Propagate error from __intel_ctx_xe_exec wait timeout
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-
-
+FWIW we're assuming someone (Wolfram?) will take all of these,
+instead of area maintainers picking them individually.
+Please let us know if that's incorrect.
