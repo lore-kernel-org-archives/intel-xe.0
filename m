@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B11CC10F1A
-	for <intel-xe@archiver.kernel.org>; Sat,  4 May 2024 23:35:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF064C4345F
+	for <intel-xe@archiver.kernel.org>; Sat,  4 May 2024 23:35:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67F9D10FFC4;
-	Sat,  4 May 2024 23:35:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8052510FFCC;
+	Sat,  4 May 2024 23:35:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XC5BeHzd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HLx2/KOh";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4BFE10F52D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1B6410FFCB
  for <intel-xe@lists.freedesktop.org>; Sat,  4 May 2024 23:35:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1714865708; x=1746401708;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=P0BmTWHUenPmDyjXmy+t7lLeukxpITpyW271iV0LZak=;
- b=XC5BeHzda+pANO0OJTUZ02Zu/jLagLLzd0OxoZrpCBp+wHBhLlznHitN
- HqTwciRG7BOzwlEpVHjzCVX0r5wRbw7N6V619J+TQGcuCeYEMJby7ak+U
- UnV6NxjMWQIYAEbP+34QSFiui00Tp/Bhx1pcI2XslJiM45STzHQOf3tHS
- dnO84T1HtHdi6wsPUHNlZVPmGsgdmX1RKDy/pG8/7FhC7r7pXdkTQmiNU
- t/7Smcxbg8FB0xSBy9Dzz8IltPasB8dfXvcUWa9tUHYqILr8nybn7HWO8
- ABBHquZ3TOWfzTvS5mMoYOUAn2EtoXEOid67RNBjT3pkQHWJuh8Mrelse Q==;
-X-CSE-ConnectionGUID: uzamJN4+S0WqgKwY9X3WLA==
-X-CSE-MsgGUID: MEXgMDA1RtqiT+6zI6sBLA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11063"; a="21196778"
-X-IronPort-AV: E=Sophos;i="6.07,255,1708416000"; d="scan'208";a="21196778"
+ bh=PoHtlZnBt0z8bP9pdP7QlUuasKnU+Dm5WGxiDydbq1g=;
+ b=HLx2/KOhhdhgSf4c0/NfaQhc57L2Klh5vh5PLRJhXhY68ZoSKJoNJw+a
+ /JNCDogMEQg4JrLwVKG1R1bOzvPkGBx9E7lFbG0yxBxrz0UbrYDMlqr02
+ SnvA3hONfAMtJ+IMe7V1R0ZJTTgLMss86L8UblWeGKUBqscwW1DHbkx2g
+ NJxKMavl6SMQOFuSciaNozk2dOyRaV2Jtoies82mOFH3jW3UqZGAmrITg
+ 3lzPYJIkWB+wdWHqYvGfN3yxw9OB2hAaaRcx4Jtfbt3ZOKYyx4HTf105C
+ bbFQt48i9TQoWvwGgaxsZUZnREBYNZl4+uL4Dd4QX7a2YRr16itxr7sq8 A==;
+X-CSE-ConnectionGUID: aH0f5UioR+Wu8yORd9ua/Q==
+X-CSE-MsgGUID: fHKfQcUOT7avEHItqmrTBA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11063"; a="21196781"
+X-IronPort-AV: E=Sophos;i="6.07,255,1708416000"; d="scan'208";a="21196781"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 May 2024 16:35:08 -0700
-X-CSE-ConnectionGUID: qYnIu6eCSFS90soSq1sZAA==
-X-CSE-MsgGUID: UmxUXvpETISBuILfCOCsKg==
+X-CSE-ConnectionGUID: XjVcD/OITXabjJZ5AKwaFg==
+X-CSE-MsgGUID: 95VlIgO8SXq2T2k15wgjDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,255,1708416000"; d="scan'208";a="32606612"
+X-IronPort-AV: E=Sophos;i="6.07,255,1708416000"; d="scan'208";a="32606617"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2024 16:35:08 -0700
+ 04 May 2024 16:35:09 -0700
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/4] drm/xe: Minor cleanup in LRC handling
-Date: Sat,  4 May 2024 16:34:58 -0700
-Message-ID: <20240504233503.16095-2-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH 4/4] drm/xe/xe2: Enable Indirect Ring State support for Xe2
+Date: Sat,  4 May 2024 16:35:01 -0700
+Message-ID: <20240504233503.16095-5-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240504233503.16095-1-niranjana.vishwanathapura@intel.com>
 References: <20240504233503.16095-1-niranjana.vishwanathapura@intel.com>
@@ -65,52 +65,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Properly define register fields and remove redundant
-lower_32_bits().
+Indirect Ring State is the recommended mode for Xe2 platforms,
+enable it by default.
 
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_engine_regs.h | 4 ++--
- drivers/gpu/drm/xe/xe_lrc.c              | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_pci.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index 97d2aed63e01..7e1b0fd68275 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -44,9 +44,10 @@
- #define GSCCS_RING_BASE				0x11a000
- 
- #define RING_TAIL(base)				XE_REG((base) + 0x30)
-+#define   TAIL_ADDR				REG_GENMASK(20, 3)
- 
- #define RING_HEAD(base)				XE_REG((base) + 0x34)
--#define   HEAD_ADDR				0x001FFFFC
-+#define   HEAD_ADDR				REG_GENMASK(20, 2)
- 
- #define RING_START(base)			XE_REG((base) + 0x38)
- 
-@@ -136,7 +137,6 @@
- #define   RING_VALID_MASK			0x00000001
- #define   RING_VALID				0x00000001
- #define   STOP_RING				REG_BIT(8)
--#define   TAIL_ADDR				0x001FFFF8
- 
- #define RING_CTX_TIMESTAMP(base)		XE_REG((base) + 0x3a8)
- #define CSBE_DEBUG_STATUS(base)			XE_REG((base) + 0x3fc)
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 2066d34ddf0b..f759f4c10914 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1354,7 +1354,7 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
- 	if (!snapshot)
- 		return NULL;
- 
--	snapshot->context_desc = lower_32_bits(xe_lrc_ggtt_addr(lrc));
-+	snapshot->context_desc = xe_lrc_ggtt_addr(lrc);
- 	snapshot->head = xe_lrc_ring_head(lrc);
- 	snapshot->tail.internal = lrc->ring.tail;
- 	snapshot->tail.memory = xe_lrc_read_ctx_reg(lrc, CTX_RING_TAIL);
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 5bf94abf84cc..9f66c41067d3 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -164,6 +164,7 @@ static const struct xe_graphics_desc graphics_xelpg = {
+ 	.dma_mask_size = 46, \
+ 	.has_asid = 1, \
+ 	.has_flat_ccs = 1, \
++	.has_indirect_ring_state = true, \
+ 	.has_range_tlb_invalidation = 1, \
+ 	.has_usm = 1, \
+ 	.va_bits = 48, \
 -- 
 2.43.0
 
