@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D16BBC25B4F
-	for <intel-xe@archiver.kernel.org>; Sat,  4 May 2024 23:35:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B11CC10F1A
+	for <intel-xe@archiver.kernel.org>; Sat,  4 May 2024 23:35:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D44510F52D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67F9D10FFC4;
 	Sat,  4 May 2024 23:35:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l/74JxKT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XC5BeHzd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D470710FFC6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4BFE10F52D
  for <intel-xe@lists.freedesktop.org>; Sat,  4 May 2024 23:35:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1714865708; x=1746401708;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=nxDrMr9YWEjBTi+tMtLMPQ3/qSaMd/MWL6laXYr+61s=;
- b=l/74JxKTifaOMSijor4LX+Xbqv2BLs5ELFKeBXq3P+xn8EdXLoVJGDRK
- 4U/lVT69DuZ4qGzIhyftA42Jn1fx6WROqCFpNZt3p9SHLfNbJIdcNdytO
- iUpgWBMJob8gOJ4ovW0XCAtLFbLdpsKYuRmyT0Xhvr4D+5cKnf14DsJDa
- px6rFiae6K7JVxSW3JLcqlHW8Iigp5qWHGf8eAVn+LqoeTkQ3D8He/H6N
- lsIGLmyVBEO4eYxiG3XJz6tdyIhX+A70JiACyoDV0ArMfCbbgjmILVaZ1
- dfdAUqAkLwwRUBtC+HYIgg8i8ug+4AbTqcH27Augc7J8lOJ3gOVPcflVn w==;
-X-CSE-ConnectionGUID: Th8kFv9PRgq6k6leiczHWA==
-X-CSE-MsgGUID: ctyeiesZRYe4MCcW5xUSSg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11063"; a="21196780"
-X-IronPort-AV: E=Sophos;i="6.07,255,1708416000"; d="scan'208";a="21196780"
+ bh=P0BmTWHUenPmDyjXmy+t7lLeukxpITpyW271iV0LZak=;
+ b=XC5BeHzda+pANO0OJTUZ02Zu/jLagLLzd0OxoZrpCBp+wHBhLlznHitN
+ HqTwciRG7BOzwlEpVHjzCVX0r5wRbw7N6V619J+TQGcuCeYEMJby7ak+U
+ UnV6NxjMWQIYAEbP+34QSFiui00Tp/Bhx1pcI2XslJiM45STzHQOf3tHS
+ dnO84T1HtHdi6wsPUHNlZVPmGsgdmX1RKDy/pG8/7FhC7r7pXdkTQmiNU
+ t/7Smcxbg8FB0xSBy9Dzz8IltPasB8dfXvcUWa9tUHYqILr8nybn7HWO8
+ ABBHquZ3TOWfzTvS5mMoYOUAn2EtoXEOid67RNBjT3pkQHWJuh8Mrelse Q==;
+X-CSE-ConnectionGUID: uzamJN4+S0WqgKwY9X3WLA==
+X-CSE-MsgGUID: MEXgMDA1RtqiT+6zI6sBLA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11063"; a="21196778"
+X-IronPort-AV: E=Sophos;i="6.07,255,1708416000"; d="scan'208";a="21196778"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 May 2024 16:35:08 -0700
-X-CSE-ConnectionGUID: yQrfka75QJWBNblOn3EugQ==
-X-CSE-MsgGUID: Usooue9kQSuMa6dbU0hPfA==
+X-CSE-ConnectionGUID: qYnIu6eCSFS90soSq1sZAA==
+X-CSE-MsgGUID: UmxUXvpETISBuILfCOCsKg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,255,1708416000"; d="scan'208";a="32606615"
+X-IronPort-AV: E=Sophos;i="6.07,255,1708416000"; d="scan'208";a="32606612"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 May 2024 16:35:08 -0700
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/4] drm/xe: Dump Indirect Ring State registers
-Date: Sat,  4 May 2024 16:35:00 -0700
-Message-ID: <20240504233503.16095-4-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH 1/4] drm/xe: Minor cleanup in LRC handling
+Date: Sat,  4 May 2024 16:34:58 -0700
+Message-ID: <20240504233503.16095-2-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240504233503.16095-1-niranjana.vishwanathapura@intel.com>
 References: <20240504233503.16095-1-niranjana.vishwanathapura@intel.com>
@@ -65,95 +65,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Dump INDIRECT_RING_STATE and RING_START_UDW registers.
+Properly define register fields and remove redundant
+lower_32_bits().
 
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |  4 ++++
- drivers/gpu/drm/xe/xe_hw_engine.c        | 11 +++++++++++
- drivers/gpu/drm/xe/xe_hw_engine_types.h  |  4 ++++
- 3 files changed, 19 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h | 4 ++--
+ drivers/gpu/drm/xe/xe_lrc.c              | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index 260a44f46f7e..263ffc7bc2ef 100644
+index 97d2aed63e01..7e1b0fd68275 100644
 --- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
 +++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -55,6 +55,8 @@
- #define   RING_CTL_SIZE(size)			((size) - PAGE_SIZE) /* in bytes -> pages */
- #define   RING_CTL_SIZE(size)			((size) - PAGE_SIZE) /* in bytes -> pages */
+@@ -44,9 +44,10 @@
+ #define GSCCS_RING_BASE				0x11a000
  
-+#define RING_START_UDW(base)			XE_REG((base) + 0x48)
-+
- #define RING_PSMI_CTL(base)			XE_REG((base) + 0x50, XE_REG_OPTION_MASKED)
- #define   RC_SEMA_IDLE_MSG_DISABLE		REG_BIT(12)
- #define   WAIT_FOR_EVENT_POWER_DOWN_DISABLE	REG_BIT(7)
-@@ -110,6 +112,8 @@
- #define   FF_DOP_CLOCK_GATE_DISABLE		REG_BIT(1)
- #define   REPLAY_MODE_GRANULARITY		REG_BIT(0)
+ #define RING_TAIL(base)				XE_REG((base) + 0x30)
++#define   TAIL_ADDR				REG_GENMASK(20, 3)
  
-+#define INDIRECT_RING_STATE(base)		XE_REG((base) + 0x108)
-+
- #define RING_BBADDR(base)			XE_REG((base) + 0x140)
- #define RING_BBADDR_UDW(base)			XE_REG((base) + 0x168)
+ #define RING_HEAD(base)				XE_REG((base) + 0x34)
+-#define   HEAD_ADDR				0x001FFFFC
++#define   HEAD_ADDR				REG_GENMASK(20, 2)
  
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index ec69803152a2..45f582a7caaa 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -908,6 +908,13 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
- 	snapshot->reg.ring_hwstam = hw_engine_mmio_read32(hwe, RING_HWSTAM(0));
- 	snapshot->reg.ring_hws_pga = hw_engine_mmio_read32(hwe, RING_HWS_PGA(0));
- 	snapshot->reg.ring_start = hw_engine_mmio_read32(hwe, RING_START(0));
-+	if (xe_gt_has_indirect_ring_state(hwe->gt)) {
-+		snapshot->reg.indirect_ring_state =
-+			hw_engine_mmio_read32(hwe, INDIRECT_RING_STATE(0));
-+		snapshot->reg.ring_start_udw =
-+			hw_engine_mmio_read32(hwe, RING_START_UDW(0));
-+	}
-+
- 	snapshot->reg.ring_head =
- 		hw_engine_mmio_read32(hwe, RING_HEAD(0)) & HEAD_ADDR;
- 	snapshot->reg.ring_tail =
-@@ -997,6 +1004,8 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
- 	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS: 0x%016llx\n",
- 		   snapshot->reg.ring_execlist_sq_contents);
- 	drm_printf(p, "\tRING_START: 0x%08x\n", snapshot->reg.ring_start);
-+	drm_printf(p, "\tRING_START_UDW: 0x%08x\n",
-+		   snapshot->reg.ring_start_udw);
- 	drm_printf(p, "\tRING_HEAD: 0x%08x\n", snapshot->reg.ring_head);
- 	drm_printf(p, "\tRING_TAIL: 0x%08x\n", snapshot->reg.ring_tail);
- 	drm_printf(p, "\tRING_CTL: 0x%08x\n", snapshot->reg.ring_ctl);
-@@ -1010,6 +1019,8 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
- 	drm_printf(p, "\tACTHD: 0x%016llx\n", snapshot->reg.ring_acthd);
- 	drm_printf(p, "\tBBADDR: 0x%016llx\n", snapshot->reg.ring_bbaddr);
- 	drm_printf(p, "\tDMA_FADDR: 0x%016llx\n", snapshot->reg.ring_dma_fadd);
-+	drm_printf(p, "\tINDIRECT_RING_STATE: 0x%08x\n",
-+		   snapshot->reg.indirect_ring_state);
- 	drm_printf(p, "\tIPEHR: 0x%08x\n", snapshot->reg.ipehr);
- 	xe_hw_engine_snapshot_instdone_print(snapshot, p);
+ #define RING_START(base)			XE_REG((base) + 0x38)
  
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-index 9f9755e31b9f..5f4b67acba99 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-@@ -189,6 +189,8 @@ struct xe_hw_engine_snapshot {
- 		u32 ring_hws_pga;
- 		/** @reg.ring_start: RING_START */
- 		u32 ring_start;
-+		/** @reg.ring_start_udw: RING_START_UDW */
-+		u32 ring_start_udw;
- 		/** @reg.ring_head: RING_HEAD */
- 		u32 ring_head;
- 		/** @reg.ring_tail: RING_TAIL */
-@@ -207,6 +209,8 @@ struct xe_hw_engine_snapshot {
- 		u32 ring_emr;
- 		/** @reg.ring_eir: RING_EIR */
- 		u32 ring_eir;
-+		/** @reg.indirect_ring_state: INDIRECT_RING_STATE */
-+		u32 indirect_ring_state;
- 		/** @reg.ipehr: IPEHR */
- 		u32 ipehr;
- 		/** @reg.rcu_mode: RCU_MODE */
+@@ -136,7 +137,6 @@
+ #define   RING_VALID_MASK			0x00000001
+ #define   RING_VALID				0x00000001
+ #define   STOP_RING				REG_BIT(8)
+-#define   TAIL_ADDR				0x001FFFF8
+ 
+ #define RING_CTX_TIMESTAMP(base)		XE_REG((base) + 0x3a8)
+ #define CSBE_DEBUG_STATUS(base)			XE_REG((base) + 0x3fc)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 2066d34ddf0b..f759f4c10914 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1354,7 +1354,7 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
+ 	if (!snapshot)
+ 		return NULL;
+ 
+-	snapshot->context_desc = lower_32_bits(xe_lrc_ggtt_addr(lrc));
++	snapshot->context_desc = xe_lrc_ggtt_addr(lrc);
+ 	snapshot->head = xe_lrc_ring_head(lrc);
+ 	snapshot->tail.internal = lrc->ring.tail;
+ 	snapshot->tail.memory = xe_lrc_read_ctx_reg(lrc, CTX_RING_TAIL);
 -- 
 2.43.0
 
