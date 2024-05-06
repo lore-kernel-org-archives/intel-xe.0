@@ -4,58 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50933C10F16
-	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 14:16:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 948CEC25B4F
+	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 14:18:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E330010FB4B;
-	Mon,  6 May 2024 14:16:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E33D10EBE2;
+	Mon,  6 May 2024 14:18:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U6tbglG+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jEsYQYfF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D7A410F8DA;
- Mon,  6 May 2024 14:16:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A54B510EBE2
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 May 2024 14:18:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715005016; x=1746541016;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=jFFtw8EWdmvPdf82ndw6IZh0L3x6bT3MiWx5RIfwaJ4=;
- b=U6tbglG+k+xy2wqmfZO2LqdARvAgvTRs1h9POeMA+Pmw6zOpnEVElHj6
- o4vnV1Q+9WrXPKDDPm1QRR7Zt6fzkjnp5z1jcVlsdOaPZyxqx1ZLl4V3Q
- 7p413Q5djLlkbYNAh18fg03ajCyHgnEG0stHxbKNxpKf9hG4ckVK1wkgV
- snUBmPEfJ+5GOBD0seh8FdRH1aVfBOFhsVOdnTA+0by/Ez/g/tJPRtAMq
- cvq/lgImS9PPvfB4G8jlEh9/OSFz4akONArrlD99CAqfbRqtt+8QMbqBn
- bLVEBkK2iSgmcnJCIwWDmoZQJ5TQz8+C5RHQpW8Kb9BsF/w1WLxfl+OMB A==;
-X-CSE-ConnectionGUID: YccrZsnQT4+vVbspimaPaw==
-X-CSE-MsgGUID: M0k0TzkfRiev1o2kEsKvzA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="10967692"
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10967692"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 07:16:55 -0700
-X-CSE-ConnectionGUID: WgbTvF6QS7WlfJrwZFXyNA==
-X-CSE-MsgGUID: ylF8+y7hQ3umLvX8JpZmzA==
+ t=1715005108; x=1746541108;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9eXGbB79alku/P6zdSB0gvbMbuipICWv6WddZsXR0QI=;
+ b=jEsYQYfF4VIQjTTUNID8mpczt4e2gMbgbpPIRVDyzoaovNIbxfb44/HA
+ dUfSX0eJCynMNjsEi2Io3AdHCDcIzedzhigPTf+Yf54pX7bs91cQHqERQ
+ rr9hIpS3RrVnmdQoHLv4VOSMa+fPSg8n+sSps7tMovcJ/bQ2iyBsxodhR
+ d3WteShQQQHINahGAAYmK9jygjat9rnf4uTlrhk0DWXoIBjPQJnFKBk7A
+ f2aPhGkjJTVa2R8DW1m8AkkW4pxie/3vRB6AmM7QiZpycyrAlhVeN34GH
+ 99bmOp7DfwQ7USD8OTcNPxmcMvTMZ+KhbAJRKwc87oqpE6zAgYARGS55B g==;
+X-CSE-ConnectionGUID: 2F3+Y7pNT3ikqKrX8x6HTQ==
+X-CSE-MsgGUID: PGM39jJHRgm/g6E2ecbcnQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="22155166"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="22155166"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 07:18:27 -0700
+X-CSE-ConnectionGUID: mPQ7qj2sTv+wUolD65+dzA==
+X-CSE-MsgGUID: EUJ44bjXTXmbxsVBwzlPqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="28268755"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.230])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 07:16:54 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 7/9] drm/i915: Change intel_fbdev_fb_alloc() reuturn type
-In-Reply-To: <20240506125718.26001-8-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240506125718.26001-1-ville.syrjala@linux.intel.com>
- <20240506125718.26001-8-ville.syrjala@linux.intel.com>
-Date: Mon, 06 May 2024 17:16:50 +0300
-Message-ID: <87pltzkotp.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="32988209"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 07:18:27 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ kernel test robot <lkp@intel.com>, Julia Lawall <julia.lawall@inria.fr>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH] drm/xe/ads: Use flexible-array
+Date: Mon,  6 May 2024 07:19:17 -0700
+Message-ID: <20240506141917.205714-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,108 +66,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Zero-length arrays are deprecated and flexible arrays should be used
+instead: https://www.kernel.org/doc/html/v6.9-rc7/process/deprecated.html#zero-length-and-one-element-arrays
 
-*return in subject
+Reported-by: kernel test robot <lkp@intel.com>
+Reported-by: Julia Lawall <julia.lawall@inria.fr>
+Closes: https://lore.kernel.org/r/202405051824.AmjAI5Pg-lkp@intel.com/
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_ads.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Mon, 06 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Change intel_fbdev_fb_alloc() to return struct intel_fb instead
-> of struct drm_framebuffer. Let's us eliminate some annoying
-> aliasing variables in the fbdev setup code.
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index 6a5eb21748b1..b48639cfe955 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -109,7 +109,7 @@ struct __guc_ads_blob {
+ 	struct guc_engine_usage engine_usage;
+ 	struct guc_um_init_params um_init_params;
+ 	/* From here on, location is dynamic! Refer to above diagram. */
+-	struct guc_mmio_reg regset[0];
++	struct guc_mmio_reg regset[];
+ } __packed;
+ 
+ #define ads_blob_read(ads_, field_) \
+-- 
+2.43.0
 
-You'll need to enable DRM_XE=3Dm and DRM_XE_DISPLAY=3Dy configs, this will
-fail the build there. ;)
-
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_fbdev.c    | 10 +++++-----
->  drivers/gpu/drm/i915/display/intel_fbdev_fb.c |  6 +++---
->  drivers/gpu/drm/i915/display/intel_fbdev_fb.h |  5 +++--
->  3 files changed, 11 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm=
-/i915/display/intel_fbdev.c
-> index bda702c2cab8..0d79ec1a6427 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> @@ -207,13 +207,13 @@ static int intelfb_create(struct drm_fb_helper *hel=
-per,
->  		intel_fb =3D ifbdev->fb =3D NULL;
->  	}
->  	if (!intel_fb || drm_WARN_ON(dev, !intel_fb_obj(&intel_fb->base))) {
-> -		struct drm_framebuffer *fb;
-> +		struct intel_framebuffer *fb;
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "no BIOS fb, allocating a new one\n");
-> -		fb =3D intel_fbdev_fb_alloc(helper, sizes);
-> -		if (IS_ERR(fb))
-> -			return PTR_ERR(fb);
-> -		intel_fb =3D ifbdev->fb =3D to_intel_framebuffer(fb);
-> +		intel_fb =3D intel_fbdev_fb_alloc(helper, sizes);
-
-Now you have both fb in block context and intel_fb in the function
-context, and I think there's some confusion here.
-
-BR,
-Jani.
-
-> +		if (IS_ERR(intel_fb))
-> +			return PTR_ERR(intel_fb);
-> +		ifbdev->fb =3D fb;
->  	} else {
->  		drm_dbg_kms(&dev_priv->drm, "re-using BIOS fb\n");
->  		prealloc =3D true;
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu/=
-drm/i915/display/intel_fbdev_fb.c
-> index 0665f943f65f..497525ef9668 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-> @@ -11,8 +11,8 @@
->  #include "intel_display_types.h"
->  #include "intel_fbdev_fb.h"
->=20=20
-> -struct drm_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helpe=
-r,
-> -					     struct drm_fb_helper_surface_size *sizes)
-> +struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *hel=
-per,
-> +					       struct drm_fb_helper_surface_size *sizes)
->  {
->  	struct drm_framebuffer *fb;
->  	struct drm_device *dev =3D helper->dev;
-> @@ -63,7 +63,7 @@ struct drm_framebuffer *intel_fbdev_fb_alloc(struct drm=
-_fb_helper *helper,
->  	fb =3D intel_framebuffer_create(obj, &mode_cmd);
->  	i915_gem_object_put(obj);
->=20=20
-> -	return fb;
-> +	return to_intel_framebuffer(fb);
->  }
->=20=20
->  int intel_fbdev_fb_fill_info(struct drm_i915_private *i915, struct fb_in=
-fo *info,
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu/=
-drm/i915/display/intel_fbdev_fb.h
-> index a395b2c65d33..82e8e7cc007b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
-> @@ -12,9 +12,10 @@ struct drm_i915_gem_object;
->  struct drm_i915_private;
->  struct fb_info;
->  struct i915_vma;
-> +struct intel_framebuffer;
->=20=20
-> -struct drm_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helpe=
-r,
-> -					     struct drm_fb_helper_surface_size *sizes);
-> +struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *hel=
-per,
-> +					       struct drm_fb_helper_surface_size *sizes);
->  int intel_fbdev_fb_fill_info(struct drm_i915_private *i915, struct fb_in=
-fo *info,
->  			     struct drm_i915_gem_object *obj, struct i915_vma *vma);
-
---=20
-Jani Nikula, Intel
