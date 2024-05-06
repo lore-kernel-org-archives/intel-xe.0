@@ -4,58 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EE0AC25B5F
-	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 13:57:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D766C10F16
+	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 13:59:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B987E10EC32;
-	Mon,  6 May 2024 13:57:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA8B110EDDD;
+	Mon,  6 May 2024 13:59:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TT2ebx5k";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bneJn8YL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DCCD10E21B;
- Mon,  6 May 2024 13:57:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 705B210EDDD
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 May 2024 13:59:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715003873; x=1746539873;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=L8q0K/urtfe2d0amxbA2d8K4Z2i5k0Ttu10BUByETXU=;
- b=TT2ebx5kcX69ccdJxPwTmOr7ePtrPiuELafTk0b7seRvxJwf8hiaf3pw
- gmBTC4wZQawMC3jOTpe+nlzuzl2kN46pIVsXloZ/HGVkOsBdlZLpHv8JH
- 5txJwl6DaTp48S1GNThGEeoldTAcKurU8TT6yg0OikTw9VWVpNbBAONCs
- hwME9UV4ramvTg2Cv6FBeY/uMNutwQKmsOkCuwTfvBLBZfd48i38YN8Ty
- F18Lo/fH92/ow+Oah9pEW07SyUEibd1jImhBOT08JIqjxz0eEgNhM8XDZ
- 64l6N2z3h9ftT4zZCtHeUO1eo51uG6kY8v+fzcoOb2vI/jve/sVM18cre Q==;
-X-CSE-ConnectionGUID: sxjQWtShSvuy5qH0YT6R5Q==
-X-CSE-MsgGUID: RsS+/kTgQwq7N1CGn3Ew7w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="10581256"
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10581256"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 06:57:52 -0700
-X-CSE-ConnectionGUID: B44mz14BT66q3cJhgrRq5A==
-X-CSE-MsgGUID: SbPkwNpfQ2abJ8gSgRwKhQ==
+ t=1715003987; x=1746539987;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=uNwMW4qam/ow18nu0nKyIKnT++VLC4GPqifJQLa+95A=;
+ b=bneJn8YL+mY3QFBWiuGFqPEbmXnqkIOOHANvSimbnT4ij6q94lqTfJIt
+ TG7rjClKk+bw2VxRmTwbp4HrAqUUQ1HFE0QVNcv7VjW305M3b6VXn7PEq
+ pHG8emvstL8vOaomDUhQLRvr0SouVI0oVN5KVWZrzCpA7rL2wf9W/SN3N
+ cgFrU3hk/R0vdRrAvpWXy0GQeZFuAeNOW3V8T4HLNjS/kO+ophKWWKuyU
+ GEocRa+eFJaaNT8Fbmr670EI1iWYKASW5Iid/TmTI4aYEIQoK/qYV46jB
+ Fc/7+lBAqFsMLud+thqonr8xkpcq2/sqMR7DpRL85UHYwPKenSy/Cejxk A==;
+X-CSE-ConnectionGUID: 7zg5iPMNSH2n2wekouXC6w==
+X-CSE-MsgGUID: AFKdC8QuRBKqkff8xrgjGg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="21361067"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="21361067"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 06:59:47 -0700
+X-CSE-ConnectionGUID: /Cvw53RlQLaQolxcADl81A==
+X-CSE-MsgGUID: 7cGEktprSbO1jloDEOELEQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="28258679"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.230])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 06:57:50 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/9] drm/i915: Split gen2 vs. gen3 .max_stride()
-In-Reply-To: <20240506125718.26001-2-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240506125718.26001-1-ville.syrjala@linux.intel.com>
- <20240506125718.26001-2-ville.syrjala@linux.intel.com>
-Date: Mon, 06 May 2024 16:57:47 +0300
-Message-ID: <877cg7m49w.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="32846539"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 06:59:46 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1s3ysZ-00000004iNO-1rMH; Mon, 06 May 2024 16:59:43 +0300
+Date: Mon, 6 May 2024 16:59:43 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: Re: [PATCH v3 1/3] drm/xe: Add helpers for manipulating macro
+ arguments
+Message-ID: <ZjjiTzNlecRNLjLu@smile.fi.intel.com>
+References: <20240502223313.2527-1-michal.wajdeczko@intel.com>
+ <20240502223313.2527-2-michal.wajdeczko@intel.com>
+ <ZjUJyy7Ziy8cWdx0@smile.fi.intel.com>
+ <265a5c7a-0a22-4276-9535-2d6026cdfef7@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <265a5c7a-0a22-4276-9535-2d6026cdfef7@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,84 +74,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 06 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Plane .max_stride() is alreayd a vfunc so having one made
+On Mon, May 06, 2024 at 03:17:32PM +0200, Michal Wajdeczko wrote:
+> On 03.05.2024 17:59, Andy Shevchenko wrote:
+> > On Fri, May 03, 2024 at 12:33:11AM +0200, Michal Wajdeczko wrote:
 
-*already
+...
 
-> up of two branches based on the display version is silly.
-> Split i9xx_plane_max_stride() into gen2 vs. gen3 variants
-> so  that we get rid of said check.
+> >> +#define DROP_FIRST(args...)		__DROP_FIRST(args)
+> >> +#define __DROP_FIRST(a, b...)		b
+> > 
+> >> +#define PICK_FIRST(args...)		__PICK_FIRST(args)
+> >> +#define __PICK_FIRST(a, b...)		a
+> > 
+> >> +#define PICK_LAST(args...)		__PICK_ARG(COUNT_ARGS(args), args)
+> > 
+> > All but these have ARG(S) in the name, I would add it.
+> 
+> but then final names will be IMO little too long
+> 
+> 	DROP_FIRST_ARG
+> 	PICK_FIRST_ARG
+> 	PICK_LAST_ARG
+> 
+> maybe
+> 	FIRST_ARG and LAST_ARG
+> 
+> would work still have no idea for the replacement for DROP_FIRST
+> (and likely DROP/PICK FIRST will be more frequently used than LAST)
 
--' '
+Works for me.
 
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> besides, CONCATENATE also doesn't have ARGS in it's name
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Yes, but it's not a good argument (pun is accidental).
 
-> ---
->  drivers/gpu/drm/i915/display/i9xx_plane.c | 32 +++++++++++++----------
->  1 file changed, 18 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/=
-i915/display/i9xx_plane.c
-> index 3442264443e5..21303fa4f08f 100644
-> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> @@ -741,23 +741,25 @@ i965_plane_max_stride(struct intel_plane *plane,
->  }
->=20=20
->  static unsigned int
-> -i9xx_plane_max_stride(struct intel_plane *plane,
-> +i915_plane_max_stride(struct intel_plane *plane,
->  		      u32 pixel_format, u64 modifier,
->  		      unsigned int rotation)
->  {
-> -	struct drm_i915_private *dev_priv =3D to_i915(plane->base.dev);
-> +	if (modifier =3D=3D I915_FORMAT_MOD_X_TILED)
-> +		return 8 * 1024;
-> +	else
-> +		return 16 * 1024;
-> +}
->=20=20
-> -	if (DISPLAY_VER(dev_priv) >=3D 3) {
-> -		if (modifier =3D=3D I915_FORMAT_MOD_X_TILED)
-> -			return 8*1024;
-> -		else
-> -			return 16*1024;
-> -	} else {
-> -		if (plane->i9xx_plane =3D=3D PLANE_C)
-> -			return 4*1024;
-> -		else
-> -			return 8*1024;
-> -	}
-> +static unsigned int
-> +i8xx_plane_max_stride(struct intel_plane *plane,
-> +		      u32 pixel_format, u64 modifier,
-> +		      unsigned int rotation)
-> +{
-> +	if (plane->i9xx_plane =3D=3D PLANE_C)
-> +		return 4 * 1024;
-> +	else
-> +		return 8 * 1024;
->  }
->=20=20
->  static const struct drm_plane_funcs i965_plane_funcs =3D {
-> @@ -854,8 +856,10 @@ intel_primary_plane_create(struct drm_i915_private *=
-dev_priv, enum pipe pipe)
->  	if (HAS_GMCH(dev_priv)) {
->  		if (DISPLAY_VER(dev_priv) >=3D 4)
->  			plane->max_stride =3D i965_plane_max_stride;
-> +		else if (DISPLAY_VER(dev_priv) =3D=3D 3)
-> +			plane->max_stride =3D i915_plane_max_stride;
->  		else
-> -			plane->max_stride =3D i9xx_plane_max_stride;
-> +			plane->max_stride =3D i8xx_plane_max_stride;
->  	} else {
->  		if (IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
->  			plane->max_stride =3D hsw_primary_max_stride;
+> >> +#define __PICK_ARG(n, args...)		CALL_ARGS(CONCATENATE(PICK_ARG, n), args)
+> > 
+> > Interesting, why FIRST and LAST are not symmetrical. Maybe the first
+> > counterpart can use the __PICK_ARG()?
+> 
+> the PICK_FIRST could be defined without introducing PICK_LAST combo
+> 
+> and PICK_LAST was initially considered less important (but still serves
+> as a part of the complete solution) and it is implemented based on
+> simpler (and more likely accepted) PICK_FIRST and DROP_FIRST macros
+> 
+> since series is now already merged to Xe,
 
---=20
-Jani Nikula, Intel
+How comes? I have not being notified. I assume we are still in the settling
+down phase.
+
+> I guess we can return to this
+> discussion when we will be promoting these macros to linux/args.h
+
+I would fix the namings right away, it will really help to avoid possible
+and unneeded collisions.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
