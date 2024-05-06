@@ -4,26 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D9B0C10F16
-	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 13:53:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EE0AC25B5F
+	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 13:57:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 264A610E372;
-	Mon,  6 May 2024 13:53:19 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BE9310E372;
- Mon,  6 May 2024 13:53:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3239634710919737050=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915=3A_Plane_fb_refactoring?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B987E10EC32;
+	Mon,  6 May 2024 13:57:54 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TT2ebx5k";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DCCD10E21B;
+ Mon,  6 May 2024 13:57:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1715003873; x=1746539873;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=L8q0K/urtfe2d0amxbA2d8K4Z2i5k0Ttu10BUByETXU=;
+ b=TT2ebx5kcX69ccdJxPwTmOr7ePtrPiuELafTk0b7seRvxJwf8hiaf3pw
+ gmBTC4wZQawMC3jOTpe+nlzuzl2kN46pIVsXloZ/HGVkOsBdlZLpHv8JH
+ 5txJwl6DaTp48S1GNThGEeoldTAcKurU8TT6yg0OikTw9VWVpNbBAONCs
+ hwME9UV4ramvTg2Cv6FBeY/uMNutwQKmsOkCuwTfvBLBZfd48i38YN8Ty
+ F18Lo/fH92/ow+Oah9pEW07SyUEibd1jImhBOT08JIqjxz0eEgNhM8XDZ
+ 64l6N2z3h9ftT4zZCtHeUO1eo51uG6kY8v+fzcoOb2vI/jve/sVM18cre Q==;
+X-CSE-ConnectionGUID: sxjQWtShSvuy5qH0YT6R5Q==
+X-CSE-MsgGUID: RsS+/kTgQwq7N1CGn3Ew7w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="10581256"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10581256"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 06:57:52 -0700
+X-CSE-ConnectionGUID: B44mz14BT66q3cJhgrRq5A==
+X-CSE-MsgGUID: SbPkwNpfQ2abJ8gSgRwKhQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="28258679"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.230])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 06:57:50 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 06 May 2024 13:53:18 -0000
-Message-ID: <171500359810.1939724.2716614644708852738@8e613ede5ea5>
-X-Patchwork-Hint: ignore
+Subject: Re: [PATCH 1/9] drm/i915: Split gen2 vs. gen3 .max_stride()
+In-Reply-To: <20240506125718.26001-2-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240506125718.26001-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20240506125718.26001-1-ville.syrjala@linux.intel.com>
+ <20240506125718.26001-2-ville.syrjala@linux.intel.com>
+Date: Mon, 06 May 2024 16:57:47 +0300
+Message-ID: <877cg7m49w.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,131 +67,87 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3239634710919737050==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 06 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Plane .max_stride() is alreayd a vfunc so having one made
 
-== Series Details ==
+*already
 
-Series: drm/i915: Plane fb refactoring
-URL   : https://patchwork.freedesktop.org/series/133232/
-State : success
+> up of two branches based on the display version is silly.
+> Split i9xx_plane_max_stride() into gen2 vs. gen3 variants
+> so  that we get rid of said check.
 
-== Summary ==
+-' '
 
-CI Bug Log - changes from xe-1239-5a43da669cdb9b8df66e32a661b09cd9c52e35f2_BAT -> xe-pw-133232v1_BAT
-====================================================
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Summary
--------
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-  **SUCCESS**
+> ---
+>  drivers/gpu/drm/i915/display/i9xx_plane.c | 32 +++++++++++++----------
+>  1 file changed, 18 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/=
+i915/display/i9xx_plane.c
+> index 3442264443e5..21303fa4f08f 100644
+> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
+> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> @@ -741,23 +741,25 @@ i965_plane_max_stride(struct intel_plane *plane,
+>  }
+>=20=20
+>  static unsigned int
+> -i9xx_plane_max_stride(struct intel_plane *plane,
+> +i915_plane_max_stride(struct intel_plane *plane,
+>  		      u32 pixel_format, u64 modifier,
+>  		      unsigned int rotation)
+>  {
+> -	struct drm_i915_private *dev_priv =3D to_i915(plane->base.dev);
+> +	if (modifier =3D=3D I915_FORMAT_MOD_X_TILED)
+> +		return 8 * 1024;
+> +	else
+> +		return 16 * 1024;
+> +}
+>=20=20
+> -	if (DISPLAY_VER(dev_priv) >=3D 3) {
+> -		if (modifier =3D=3D I915_FORMAT_MOD_X_TILED)
+> -			return 8*1024;
+> -		else
+> -			return 16*1024;
+> -	} else {
+> -		if (plane->i9xx_plane =3D=3D PLANE_C)
+> -			return 4*1024;
+> -		else
+> -			return 8*1024;
+> -	}
+> +static unsigned int
+> +i8xx_plane_max_stride(struct intel_plane *plane,
+> +		      u32 pixel_format, u64 modifier,
+> +		      unsigned int rotation)
+> +{
+> +	if (plane->i9xx_plane =3D=3D PLANE_C)
+> +		return 4 * 1024;
+> +	else
+> +		return 8 * 1024;
+>  }
+>=20=20
+>  static const struct drm_plane_funcs i965_plane_funcs =3D {
+> @@ -854,8 +856,10 @@ intel_primary_plane_create(struct drm_i915_private *=
+dev_priv, enum pipe pipe)
+>  	if (HAS_GMCH(dev_priv)) {
+>  		if (DISPLAY_VER(dev_priv) >=3D 4)
+>  			plane->max_stride =3D i965_plane_max_stride;
+> +		else if (DISPLAY_VER(dev_priv) =3D=3D 3)
+> +			plane->max_stride =3D i915_plane_max_stride;
+>  		else
+> -			plane->max_stride =3D i9xx_plane_max_stride;
+> +			plane->max_stride =3D i8xx_plane_max_stride;
+>  	} else {
+>  		if (IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
+>  			plane->max_stride =3D hsw_primary_max_stride;
 
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-133232v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_module_load@load:
-    - {bat-lnl-1}:        [INCOMPLETE][1] ([Intel XE#1772]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1239-5a43da669cdb9b8df66e32a661b09cd9c52e35f2/bat-lnl-1/igt@xe_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133232v1/bat-lnl-1/igt@xe_module_load@load.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1466]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1466
-  [Intel XE#1772]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1772
-
-
-Build changes
--------------
-
-  * Linux: xe-1239-5a43da669cdb9b8df66e32a661b09cd9c52e35f2 -> xe-pw-133232v1
-
-  IGT_7833: 6f89cac1b180e7cd7cbac535e65843595b2bb5bd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1239-5a43da669cdb9b8df66e32a661b09cd9c52e35f2: 5a43da669cdb9b8df66e32a661b09cd9c52e35f2
-  xe-pw-133232v1: 133232v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133232v1/index.html
-
---===============3239634710919737050==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Plane fb refactoring</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133232/">https://patchwork.freedesktop.org/series/133232/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133232v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133232v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1239-5a43da669cdb9b8df66e32a661b09cd9c52e35f2_BAT -&gt; xe-pw-133232v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-133232v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1239-5a43da669cdb9b8df66e32a661b09cd9c52e35f2/bat-lnl-1/igt@xe_module_load@load.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1772">Intel XE#1772</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133232v1/bat-lnl-1/igt@xe_module_load@load.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1239-5a43da669cdb9b8df66e32a661b09cd9c52e35f2 -&gt; xe-pw-133232v1</li>
-</ul>
-<p>IGT_7833: 6f89cac1b180e7cd7cbac535e65843595b2bb5bd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1239-5a43da669cdb9b8df66e32a661b09cd9c52e35f2: 5a43da669cdb9b8df66e32a661b09cd9c52e35f2<br />
-  xe-pw-133232v1: 133232v1</p>
-
-</body>
-</html>
-
---===============3239634710919737050==--
+--=20
+Jani Nikula, Intel
