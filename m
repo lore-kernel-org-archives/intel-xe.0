@@ -4,59 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88370C25B4F
-	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 16:38:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33200C25B4F
+	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 16:47:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CC8710F16E;
-	Mon,  6 May 2024 16:38:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C516B10ED49;
+	Mon,  6 May 2024 16:47:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CvwIRVwO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xq8RBffI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFD8E10F10B;
- Mon,  6 May 2024 16:38:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2ECF510ED49
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 May 2024 16:47:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715013486; x=1746549486;
+ t=1715014023; x=1746550023;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=x6rpYphBy5rJ6wq+7DapIOu7ZKUHff1rXbKExBTr9nc=;
- b=CvwIRVwObfqkXTzXbDu5FR+e2Ezsp7k//xiR1LykoSjBNzdTEVh5pQKo
- F4xe4r0BQz0A/vU76Gj5pLXeZjdjXr0L+f9+OfVnp6PYt9qnd9i0DPMwr
- RGN7QoZfYXO+/GXOD7LNcTYycy5R8Sp3o53v8fkLsBhxfHILMlftzVAh0
- P+iw3vFtd2NYaMcyJR8DI4/FpQ159j0LuOj31rLua+C86FR212DW6cv8+
- 98AK9O4x4ZGIIC3bKAsHzkjb+ZyOU8itmG46I4ugD50P0LZzOAauYKOdg
- mXP85aWSquJ9idFdaQpyoon3LPQCoZagPHxikQpFI7toDu+qg4cwwqsf0 g==;
-X-CSE-ConnectionGUID: cvmPPidPSpmd8HfqW+wMTw==
-X-CSE-MsgGUID: ++D3Lg0/QUGUcGoPh+lgYw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="14579273"
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="14579273"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 09:38:04 -0700
-X-CSE-ConnectionGUID: YcpJrTRXQ3GBoB1bBdARxg==
-X-CSE-MsgGUID: LZHdX6oeT1Gy2K3tSOmzXQ==
+ in-reply-to:mime-version;
+ bh=jrdFeRUKVQB8Hns6sPxwkkojvbtwxAeYsLvC8cFiz3M=;
+ b=Xq8RBffIAFizUT1duZrdRtYk50VNs2PZcUeP0Bg4jGG1b6m8OsxRQQ+4
+ z4XbWyp+NcaVZ9LpKoL3KWPOWU8K+THfh232MdXdw64pRJOZCGS7zTg9Y
+ 4hqRx7qs9sjBWqIR4uv0HiRaD8O1vu6paxqX2sbqkIgCeAWVoMe7bYDkR
+ ZlMwfScOlmpPra1WpVDi134yRCyV2p3VW0S3E/6Pu3B2v9wZDyX/hCrMo
+ tJXyP1ux7WSJ12ylS4tXkQqkFuWQlDxtUEQHZHMNqThs7pbWnJb6pJrRK
+ 0YZ5xoxyGSGVAfYvp9w4y3Xk7JxjFw7EnLflqdIIAxrZv2Bw+bis+QjdY Q==;
+X-CSE-ConnectionGUID: 0/5CiyaZRaurKjYB4LAaXw==
+X-CSE-MsgGUID: s5XhVepdQv6QrleZLTNtAg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="10986962"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10986962"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 09:47:03 -0700
+X-CSE-ConnectionGUID: ye8Bz9eMQSyGOW5iZQMSnA==
+X-CSE-MsgGUID: gnyHlw6tSQOZIQXa2qeS8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="28214699"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 06 May 2024 09:38:02 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 06 May 2024 19:38:01 +0300
-Date: Mon, 6 May 2024 19:38:01 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/9] drm/i915: Clean up skl+ plane stride limits
-Message-ID: <ZjkHaZOdijUrHrci@intel.com>
-References: <20240506125718.26001-1-ville.syrjala@linux.intel.com>
- <20240506125718.26001-3-ville.syrjala@linux.intel.com>
- <874jbbm3zk.fsf@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="28213930"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 06 May 2024 09:47:02 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 6 May 2024 09:47:02 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 6 May 2024 09:47:02 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Mon, 6 May 2024 09:47:01 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CKYU1Gf5jSvY+EvBoW2EB4GlsKQuwHXQRGWj/1X1yhhyvwNJ7rClTSMa+hDuuU6YbJHvumOD2FR2keyw+IP4xtj2Dg7FnlZH+tGbtYbP6dEX2Wl8E8o2C6hhogfEXBj6qGzyDPuYv2B1lxLHmRvFdgOmE9Mg1VbdIPvjG5h+fuGBMv8uPZB323kkzEhUWS4jj3GFu5XMVQPxWh3w1jJLMgYy2CWY7YDGcU51tcvRHDtlXVLh8ml/r3Zl89fecxlUDDCTV+Q3blNHP5sIPsbV/qwQYV25kS/HqNEmPwsRQitWUYY164QQrGCDBo3ccpd4QwhITxRKgijPm71anmNbTg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Wcd+1zG6BgJKy7/JLUlKOB4aSRotsB8lSIeoLFwDf0k=;
+ b=oDezbEpZrl3dXSUW8mtjluso2fd9or8dCD1eMbIJ2Zgp51kf91UK2fi4fXOiDAmp6p0MkyhsyuDpaXVtaCG1eGJnFNZTiFS87z7QNcZEMVoYrwLgnO59n6mxSwDtQNznAwguDEWDQsNEHKMy4OavckO0+1WNhhgAqEOjW9mn0+pEn++qsv1B/63eJ/dBjpuEb37JnFeY2Q9it+uxhCk9jn2QJIDsGGnuPWuuOdo/DTLZxrZ6G8rJ0Ac3VB3aCDTDiIlG1wW7kvj9XVEXk8W1BikWUvPnhmOiO/rJxN1BKsw0QltqpdmLiWHIpiVwjp9K5e+/1JvBjebWKnYx7AY42A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB6952.namprd11.prod.outlook.com (2603:10b6:510:224::13)
+ by BY1PR11MB8125.namprd11.prod.outlook.com (2603:10b6:a03:528::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.41; Mon, 6 May
+ 2024 16:46:58 +0000
+Received: from PH8PR11MB6952.namprd11.prod.outlook.com
+ ([fe80::ffd7:2656:a8c4:43b0]) by PH8PR11MB6952.namprd11.prod.outlook.com
+ ([fe80::ffd7:2656:a8c4:43b0%3]) with mapi id 15.20.7544.041; Mon, 6 May 2024
+ 16:46:58 +0000
+Date: Mon, 6 May 2024 09:46:56 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 2/4] drm/xe: Add Indirect Ring State support
+Message-ID: <ZjkJgI3dEkIsnN0R@nvishwa1-DESK>
+References: <20240504233503.16095-1-niranjana.vishwanathapura@intel.com>
+ <20240504233503.16095-3-niranjana.vishwanathapura@intel.com>
+ <2b334a03-fe98-4e1c-a8aa-30800bb06977@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <874jbbm3zk.fsf@intel.com>
-X-Patchwork-Hint: comment
+In-Reply-To: <2b334a03-fe98-4e1c-a8aa-30800bb06977@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0082.namprd05.prod.outlook.com
+ (2603:10b6:a03:332::27) To PH8PR11MB6952.namprd11.prod.outlook.com
+ (2603:10b6:510:224::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB6952:EE_|BY1PR11MB8125:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5cb2773c-915a-4564-c0e1-08dc6dec24e7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|376005|366007;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?WsHSpKjdA6IFesl4OfVUlhpIvmUldVW04300UunqMQKS1O7MpmPLcuvs/BOW?=
+ =?us-ascii?Q?3Z3TKPBDzWoIiffWUgKpzUd39kHAXtRpSJ6VhHZqACqfc81u60OdXSEWDIzn?=
+ =?us-ascii?Q?qff/mRT8P9cdZcTStPB3mSkniLOksmAmDGxCNHog3dQ0eSSbp4p92dSrwQSv?=
+ =?us-ascii?Q?O4n1SOiZK4rBwPNAvXfr+MlEn2CnUI+n5ALxUB3E8xYk3nu8RsM3jufLFxH1?=
+ =?us-ascii?Q?0ktBqD5AELE4ZkqsLobAkUtkWCxzJE/3rHmE2OmncUyTBtUIdJSz6KZjLiVk?=
+ =?us-ascii?Q?SPhOUGgC5pf+ZDU1iMRZRFitwAP9c3HK0e1X0muEdXbECFf7LOb+M5tOoOmc?=
+ =?us-ascii?Q?hz2B9voPb/K732j+OAjz/HjCeKgb3IeCVgAgnr1xmQUcLb0Rvi4H+W1CT92D?=
+ =?us-ascii?Q?cO88xuGbzRvTedl5glLga3VUbY/jaCk9CnNAyL92iCI7LV8f3eqwY2pyhVig?=
+ =?us-ascii?Q?66CS4KvVx0iGPdJlAeY90szBdCCutpE05mKnHCkIAGmNpLlVIVMDewCyU7OV?=
+ =?us-ascii?Q?8YFXcfGFmXOFQIxyLZnuz2UKlReNBgozeucojZzIhYIdZdNm+5qVYKrC/tcV?=
+ =?us-ascii?Q?NJ6hdiCGN5kfwCRY+iB0SH0Ma/KcX8PieFM34HmnKk3uuHoUBplSMdt93SX9?=
+ =?us-ascii?Q?9dvOOHi+AZOuds5sDpSSrpOoCiaegcwi0zZ9ibczqm4gOcePQGy/4Khd6FJq?=
+ =?us-ascii?Q?aywFuAkWiWqnK/vIRrpipW7emH6hTZNzKGcE+KUGbhQlQXCK51tqcrQdWVv1?=
+ =?us-ascii?Q?36daeSZrJV2rB8ApoV3j5U88si12uJh7b4m71LUOMe4teAIxV4188gYtOiNr?=
+ =?us-ascii?Q?C83cORcZwIIVssSs6zJOTwJ8d3Fxy2s4iE2RKAVEVUq2L5qyi07fOh2jLqLp?=
+ =?us-ascii?Q?APzVXrsao0wd2/d+kC/IhbvSImsTHElZwoAoKRW5zt18lfvKBi+BG1IdqLKe?=
+ =?us-ascii?Q?EZ5dAeu6cWDeebK6Pzr37PY+GY3X0j1M2PocF1NWMUHTYVZZR5pouXAzero7?=
+ =?us-ascii?Q?WkatArOUuxFyc8upODUmgzs5dgQs5lD/pg29Lpx69dcTKuCAiQYuRWoBAfR1?=
+ =?us-ascii?Q?0WXLmhyCk7IxTEKwDmknCfbuYmIV6+6IuUBZf0nUXA0Yt9qU2m6NUKDLTHMy?=
+ =?us-ascii?Q?2TQ0iCli3ItB/V892jVjdR7dN2PtTnVngNqzagLFjTGuQrt3+TDReQJMbxX8?=
+ =?us-ascii?Q?BNIgD/3O9AJBZBcFy331MZWZopeTEmONh0Lm5bxg7mpjtUBttENwGCDylz6E?=
+ =?us-ascii?Q?zialEoUdT6dJYBIuR2vs/k443E8UH7Fvxxhdf5QkQA=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB6952.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?JJkp/wyiFWppZJO4bwS2xPyxcnJJuT79L64wyY80ViyWRsGEErejjRIGfWxN?=
+ =?us-ascii?Q?wpuKYbdUs/nZiDU3tcUFXUI+ptlUBvP3oRvxgryQ/+sOkEsLhocSpvDwljg4?=
+ =?us-ascii?Q?yXt5ChVO2CHBjqb4Csiy5bOca9OJuSt7MFD1Mz/Hrhv9GdsAVYlGsSjCcckb?=
+ =?us-ascii?Q?OSrQq70EjUatr8jk4xpFizkUrieyxXJu9bLtYz5sE5le47BzXXb3WSy8FfTI?=
+ =?us-ascii?Q?QxveVTXwNOxsM6r/jPDwK5dzvxA0xuEplVqZr51EZaUWDRE+lGfYbwP5C5U3?=
+ =?us-ascii?Q?396nK8lYIv/YFoPvlkkGDZDgCYvDXM3cNoq77+qmhU6MKjBpG8JVS3Ihv8du?=
+ =?us-ascii?Q?/wlYklbPs/RubdCov7r2BHKmcN/ew41iwHYzyyV0eZR2EyC2XvucPiSPLzo0?=
+ =?us-ascii?Q?YHNdL2RukJp2UUl+txDaiycJVqe4kGZ48VFT94Z0SncbFlEpPxpieexPL3g8?=
+ =?us-ascii?Q?+/crNm+IzhRfYaKer91u6SSs+5k9crgtZm+aymGCNgGKhFhSdxvVBwxLXD9B?=
+ =?us-ascii?Q?Q9jTwGpB1ZaMFaMHyp3Avl9tYid/e/MOihc5KYSPFMfYqAECTODUXpIp34Yb?=
+ =?us-ascii?Q?GzGYf3Hou8ynFvquEK719UBwod8BKmMGwFRM9vKU14RCGrB8qpaJoZ77WORi?=
+ =?us-ascii?Q?QDtlhp7ycSA2YrvuK2f0H+x8cQMRRyRt8g70wUoK9SOPYrw3F6+D/oVlSHeX?=
+ =?us-ascii?Q?3ZKSY5ucwWFft3lh1uhCVsUN9zAaAao1hP0++t7YUFmhysqyjDe2ZSzVdmvc?=
+ =?us-ascii?Q?ax3keLPqlH+xEJVW9bJYRgl4ztdCz3nxh+jOKMilRUN62j2W6DxSpKL6oZBo?=
+ =?us-ascii?Q?AgCwXOQ+rZjKn4HLcjuDQ9YCHz9bIjTVRscugkRBhnE6/s+zn374HRMVneV/?=
+ =?us-ascii?Q?zx32zmVy1cQfq1cBTANg7e7bDL7MlsZs+WnhPHS9KBlAXk+bDZ9q5AJulCWW?=
+ =?us-ascii?Q?mIwwzglzDnm7B7475D/wQcUDmTcxWbejvsyZRMVcgDWWXLd7Rq8j1hWoKp23?=
+ =?us-ascii?Q?hHDCC7xSHzhUNuhf1YPNB0PWtigsWX4+vP8iIcaz3opx3PpXHkAnpwlCRX+B?=
+ =?us-ascii?Q?/yoUr+hR+tFyh2g4AeoOwOOSEznISZuV1rs/Zq79FZrQs7VPNfWv0wnaCIsl?=
+ =?us-ascii?Q?6hEPdZ0Z1uJmdTeSkWk6YkIIjx8rjJ51x6C9SVQX8SxrGaDwDAR/wC5X9jvd?=
+ =?us-ascii?Q?QLKg5c/ecbriVDNAqrJFTGj9P1ByNOFFRFo0+NGQb6PQI9Qx8ZkAIBymcv6X?=
+ =?us-ascii?Q?1zNf9KsJkO9zU3hzegQW1hNRbqjdcZhHRlAKhRWNfOwFEM88nPYnVAU0nGM+?=
+ =?us-ascii?Q?5BdtT5Fsn/T3IePj7MSHSnds/n6U9VEyU7pKTeeT25bSeBl8rP5XZATAPtjE?=
+ =?us-ascii?Q?O5Gi4/dF/LP2emikBIA/o3th8JOT7iuBLpRu5B+cb7Kku0z3tRnIGslPFMtX?=
+ =?us-ascii?Q?/cCTAUbJN19IAzCt3ODMoKBG6FubFld8/riajIYa/f1JDRBUh9WsgIgAUdLb?=
+ =?us-ascii?Q?gizWK/9l1GYg9TV/Baoujs077mWzl2ywVqMR/xUEWGKtdxj6mnez6UXMLPf0?=
+ =?us-ascii?Q?Yy61RGAjPIV600bS2Rq6sH5VRKVEvmOXK5brcYliDYzgxfTVS6RizE+hzGCC?=
+ =?us-ascii?Q?rX3ZCwIiCmDzpU50OL6uoLE=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5cb2773c-915a-4564-c0e1-08dc6dec24e7
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6952.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2024 16:46:57.9999 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 63VH97XI1nCtFEV6ruNDG6VX/4jH0pnYnNgPFlY3ZUuzX6iW619afRPSkd5ZFDtjxhzBLwUHar4LvWtb2Mto9aN48R6SVWTp6uRexf2Bio75VNcGb+QYabb+JAhjceuT
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB8125
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,124 +174,576 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, May 06, 2024 at 05:03:59PM +0300, Jani Nikula wrote:
-> On Mon, 06 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > skl_plane_max_stride() is pretty messy. Streamline it and
-> > split it into clear skl+ vs. adl+ variants.
-> >
-> > TODO: Deal with icl and tgl strude limits properly
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  .../drm/i915/display/skl_universal_plane.c    | 65 +++++++++++--------
-> >  1 file changed, 37 insertions(+), 28 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > index 0a8e781a3648..b8103d6ebc1f 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > @@ -461,41 +461,46 @@ static int icl_plane_max_height(const struct drm_framebuffer *fb,
-> >  }
-> >  
-> >  static unsigned int
-> > -skl_plane_max_stride(struct intel_plane *plane,
-> > -		     u32 pixel_format, u64 modifier,
-> > -		     unsigned int rotation)
-> > +plane_max_stride(struct intel_plane *plane,
-> > +		 u32 pixel_format, u64 modifier,
-> > +		 unsigned int rotation,
-> > +		 unsigned int max_pixels,
-> > +		 unsigned int max_bytes)
-> >  {
-> > -	struct drm_i915_private *i915 = to_i915(plane->base.dev);
-> >  	const struct drm_format_info *info = drm_format_info(pixel_format);
-> >  	int cpp = info->cpp[0];
-> > -	int max_horizontal_pixels = 8192;
-> > -	int max_stride_bytes;
-> > -
-> > -	if (DISPLAY_VER(i915) >= 13) {
-> > -		/*
-> > -		 * The stride in bytes must not exceed of the size
-> > -		 * of 128K bytes. For pixel formats of 64bpp will allow
-> > -		 * for a 16K pixel surface.
-> > -		 */
-> > -		max_stride_bytes = 131072;
-> > -		if (cpp == 8)
-> > -			max_horizontal_pixels = 16384;
-> 
-> The commit message doesn't mention anything about this being dropped.
+On Mon, May 06, 2024 at 10:30:18AM +0530, Ghimiray, Himal Prasad wrote:
+>
+>On 05-05-2024 05:04, Niranjana Vishwanathapura wrote:
+>>When Indirect Ring State is enabled, the Ring Buffer state and
+>>Batch Buffer state are context save/restored to/form Indirect
+>>Ring State instead of the LRC. The Indirect Ring State is a 4K
+>>page mapped in global GTT at a 4K aligned address. This address
+>>is programmed in the INDIRECT_RING_STATE register of the
+>>corresponding context's LRC.
+>>
+>>Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+>>---
+>>  drivers/gpu/drm/xe/regs/xe_engine_regs.h |   1 +
+>>  drivers/gpu/drm/xe/regs/xe_lrc_layout.h  |   7 +
+>>  drivers/gpu/drm/xe/xe_gt.c               |   6 +-
+>>  drivers/gpu/drm/xe/xe_gt.h               |   7 +
+>>  drivers/gpu/drm/xe/xe_gt_types.h         |   6 +-
+>>  drivers/gpu/drm/xe/xe_guc_ads.c          |   5 +-
+>>  drivers/gpu/drm/xe/xe_guc_submit.c       |   2 +-
+>>  drivers/gpu/drm/xe/xe_lrc.c              | 185 +++++++++++++++++++----
+>>  drivers/gpu/drm/xe/xe_lrc.h              |   5 +-
+>>  drivers/gpu/drm/xe/xe_lrc_types.h        |   4 +
+>>  drivers/gpu/drm/xe/xe_pci.c              |   2 +
+>>  drivers/gpu/drm/xe/xe_pci_types.h        |   3 +
+>>  12 files changed, 197 insertions(+), 36 deletions(-)
+>>
+>>diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+>>index 7e1b0fd68275..260a44f46f7e 100644
+>>--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+>>+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+>>@@ -125,6 +125,7 @@
+>>  #define RING_EXECLIST_STATUS_HI(base)		XE_REG((base) + 0x234 + 4)
+>>  #define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244, XE_REG_OPTION_MASKED)
+>>+#define	  CTX_CTRL_INDIRECT_RING_STATE_ENABLE	REG_BIT(4)
+>>  #define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	REG_BIT(3)
+>>  #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
+>>diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+>>index 1825d8f79db6..e6ca8bbda8f4 100644
+>>--- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+>>+++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+>>@@ -11,6 +11,7 @@
+>>  #define CTX_RING_TAIL			(0x06 + 1)
+>>  #define CTX_RING_START			(0x08 + 1)
+>>  #define CTX_RING_CTL			(0x0a + 1)
+>>+#define CTX_INDIRECT_RING_STATE		(0x26 + 1)
+>>  #define CTX_PDP0_UDW			(0x30 + 1)
+>>  #define CTX_PDP0_LDW			(0x32 + 1)
+>>@@ -23,4 +24,10 @@
+>>  #define CTX_INT_SRC_REPORT_REG		(CTX_LRI_INT_REPORT_PTR + 3)
+>>  #define CTX_INT_SRC_REPORT_PTR		(CTX_LRI_INT_REPORT_PTR + 4)
+>>+#define INDIRECT_CTX_RING_HEAD		(0x02 + 1)
+>>+#define INDIRECT_CTX_RING_TAIL		(0x04 + 1)
+>>+#define INDIRECT_CTX_RING_START		(0x06 + 1)
+>>+#define INDIRECT_CTX_RING_START_UDW	(0x08 + 1)
+>>+#define INDIRECT_CTX_RING_CTL		(0x0a + 1)
+>>+
+>>  #endif
+>>diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+>>index 0528d599c3fe..36c7b1631fa6 100644
+>>--- a/drivers/gpu/drm/xe/xe_gt.c
+>>+++ b/drivers/gpu/drm/xe/xe_gt.c
+>>@@ -160,7 +160,7 @@ static int emit_wa_job(struct xe_gt *gt, struct xe_exec_queue *q)
+>>  	if (q->hwe->class == XE_ENGINE_CLASS_RENDER)
+>>  		/* Big enough to emit all of the context's 3DSTATE */
+>>-		bb = xe_bb_new(gt, xe_lrc_size(gt_to_xe(gt), q->hwe->class), false);
+>>+		bb = xe_bb_new(gt, xe_gt_lrc_size(gt, q->hwe->class), false);
+>>  	else
+>>  		/* Just pick a large BB size */
+>>  		bb = xe_bb_new(gt, SZ_4K, false);
+>>@@ -244,7 +244,7 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
+>>  		xe_tuning_process_lrc(hwe);
+>>  		default_lrc = drmm_kzalloc(&xe->drm,
+>>-					   xe_lrc_size(xe, hwe->class),
+>>+					   xe_gt_lrc_size(gt, hwe->class),
+>>  					   GFP_KERNEL);
+>>  		if (!default_lrc)
+>>  			return -ENOMEM;
+>>@@ -294,7 +294,7 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
+>>  		xe_map_memcpy_from(xe, default_lrc,
+>>  				   &q->lrc[0].bo->vmap,
+>>  				   xe_lrc_pphwsp_offset(&q->lrc[0]),
+>>-				   xe_lrc_size(xe, hwe->class));
+>>+				   xe_gt_lrc_size(gt, hwe->class));
+>>  		gt->default_lrc[hwe->class] = default_lrc;
+>>  put_nop_q:
+>>diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+>>index ed6ea8057e35..8474c50b1b30 100644
+>>--- a/drivers/gpu/drm/xe/xe_gt.h
+>>+++ b/drivers/gpu/drm/xe/xe_gt.h
+>>@@ -8,6 +8,7 @@
+>>  #include <drm/drm_util.h>
+>>+#include "xe_device.h"
+>>  #include "xe_device_types.h"
+>>  #include "xe_hw_engine.h"
+>>@@ -58,6 +59,12 @@ struct xe_hw_engine *xe_gt_hw_engine(struct xe_gt *gt,
+>>  				     u16 instance,
+>>  				     bool logical);
+>>+static inline bool xe_gt_has_indirect_ring_state(struct xe_gt *gt)
+>>+{
+>>+	return gt->info.has_indirect_ring_state &&
+>>+	       xe_device_uc_enabled(gt_to_xe(gt));
+>>+}
+>>+
+>>  static inline bool xe_gt_is_media_type(struct xe_gt *gt)
+>>  {
+>>  	return gt->info.type == XE_GT_TYPE_MEDIA;
+>>diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+>>index cfdc761ff7f4..acb97291579f 100644
+>>--- a/drivers/gpu/drm/xe/xe_gt_types.h
+>>+++ b/drivers/gpu/drm/xe/xe_gt_types.h
+>>@@ -110,8 +110,6 @@ struct xe_gt {
+>>  	struct {
+>>  		/** @info.type: type of GT */
+>>  		enum xe_gt_type type;
+>>-		/** @info.id: Unique ID of this GT within the PCI Device */
+>>-		u8 id;
+>>  		/** @info.reference_clock: clock frequency */
+>>  		u32 reference_clock;
+>>  		/** @info.engine_mask: mask of engines present on GT */
+>>@@ -124,6 +122,10 @@ struct xe_gt {
+>>  		u64 __engine_mask;
+>>  		/** @info.gmdid: raw GMD_ID value from hardware */
+>>  		u32 gmdid;
+>>+		/** @info.id: Unique ID of this GT within the PCI Device */
+>>+		u8 id;
+>>+		/** @has_indirect_ring_state: GT has indirect ring state support */
+>>+		u8 has_indirect_ring_state:1;
+>>  	} info;
+>>  	/**
+>>diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+>>index 6a5eb21748b1..8b011acd8f6c 100644
+>>--- a/drivers/gpu/drm/xe/xe_guc_ads.c
+>>+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+>>@@ -267,7 +267,6 @@ static u32 engine_enable_mask(struct xe_gt *gt, enum xe_engine_class class)
+>>  static size_t calculate_golden_lrc_size(struct xe_guc_ads *ads)
+>>  {
+>>-	struct xe_device *xe = ads_to_xe(ads);
+>>  	struct xe_gt *gt = ads_to_gt(ads);
+>>  	size_t total_size = 0, alloc_size, real_size;
+>>  	int class;
+>>@@ -276,7 +275,7 @@ static size_t calculate_golden_lrc_size(struct xe_guc_ads *ads)
+>>  		if (!engine_enable_mask(gt, class))
+>>  			continue;
+>>-		real_size = xe_lrc_size(xe, class);
+>>+		real_size = xe_gt_lrc_size(gt, class);
+>>  		alloc_size = PAGE_ALIGN(real_size);
+>>  		total_size += alloc_size;
+>>  	}
+>>@@ -774,7 +773,7 @@ static void guc_populate_golden_lrc(struct xe_guc_ads *ads)
+>>  		xe_gt_assert(gt, gt->default_lrc[class]);
+>>-		real_size = xe_lrc_size(xe, class);
+>>+		real_size = xe_gt_lrc_size(gt, class);
+>>  		alloc_size = PAGE_ALIGN(real_size);
+>>  		total_size += alloc_size;
+>>diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+>>index d274a139010b..34b19f0a6ad1 100644
+>>--- a/drivers/gpu/drm/xe/xe_guc_submit.c
+>>+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+>>@@ -677,7 +677,7 @@ static void submit_exec_queue(struct xe_exec_queue *q)
+>>  	if (xe_exec_queue_is_parallel(q))
+>>  		wq_item_append(q);
+>>  	else
+>>-		xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, lrc->ring.tail);
+>>+		xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
+>>  	if (exec_queue_suspended(q) && !xe_exec_queue_is_parallel(q))
+>>  		return;
+>>diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+>>index f759f4c10914..ef954cd5cd68 100644
+>>--- a/drivers/gpu/drm/xe/xe_lrc.c
+>>+++ b/drivers/gpu/drm/xe/xe_lrc.c
+>>@@ -34,12 +34,15 @@
+>>  #define LRC_ENGINE_CLASS			GENMASK_ULL(63, 61)
+>>  #define LRC_ENGINE_INSTANCE			GENMASK_ULL(53, 48)
+>>+#define LRC_INDIRECT_RING_STATE_SIZE		SZ_4K
+>>+
+>>  struct xe_lrc_snapshot {
+>>  	struct xe_bo *lrc_bo;
+>>  	void *lrc_snapshot;
+>>  	unsigned long lrc_size, lrc_offset;
+>>  	u32 context_desc;
+>>+	u32 indirect_context_desc;
+>>  	u32 head;
+>>  	struct {
+>>  		u32 internal;
+>>@@ -55,20 +58,25 @@ lrc_to_xe(struct xe_lrc *lrc)
+>>  	return gt_to_xe(lrc->fence_ctx.gt);
+>>  }
+>>-size_t xe_lrc_size(struct xe_device *xe, enum xe_engine_class class)
+>>+size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class)
+>>  {
+>>+	struct xe_device *xe = gt_to_xe(gt);
+>>+	size_t size;
+>>+
+>>  	switch (class) {
+>>  	case XE_ENGINE_CLASS_RENDER:
+>>  		if (GRAPHICS_VER(xe) >= 20)
+>>-			return 4 * SZ_4K;
+>>+			size = 4 * SZ_4K;
+>>  		else
+>>-			return 14 * SZ_4K;
+>>+			size = 14 * SZ_4K;
+>>+		break;
+>>  	case XE_ENGINE_CLASS_COMPUTE:
+>>  		/* 14 pages since graphics_ver == 11 */
+>>  		if (GRAPHICS_VER(xe) >= 20)
+>>-			return 3 * SZ_4K;
+>>+			size = 3 * SZ_4K;
+>>  		else
+>>-			return 14 * SZ_4K;
+>>+			size = 14 * SZ_4K;
+>>+		break;
+>>  	default:
+>>  		WARN(1, "Unknown engine class: %d", class);
+>>  		fallthrough;
+>>@@ -76,8 +84,14 @@ size_t xe_lrc_size(struct xe_device *xe, enum xe_engine_class class)
+>>  	case XE_ENGINE_CLASS_VIDEO_DECODE:
+>>  	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
+>>  	case XE_ENGINE_CLASS_OTHER:
+>>-		return 2 * SZ_4K;
+>>+		size = 2 * SZ_4K;
+>>  	}
+>>+
+>>+	/* Add indirect ring state page */
+>>+	if (xe_gt_has_indirect_ring_state(gt))
+>>+		size += LRC_INDIRECT_RING_STATE_SIZE;
+>>+
+>>+	return size;
+>>  }
+>>  /*
+>>@@ -508,6 +522,32 @@ static const u8 xe2_xcs_offsets[] = {
+>>  	0
+>>  };
+>>+static const u8 xe2_indirect_ring_state_offsets[] = {
+>>+	NOP(1),                 /* [0x00] */
+>>+	LRI(5, POSTED),         /* [0x01] */
+>>+	REG(0x034),             /* [0x02] RING_BUFFER_HEAD */
+>>+	REG(0x030),             /* [0x04] RING_BUFFER_TAIL */
+>>+	REG(0x038),             /* [0x06] RING_BUFFER_START */
+>>+	REG(0x048),             /* [0x08] RING_BUFFER_START_UDW */
+>>+	REG(0x03c),             /* [0x0a] RING_BUFFER_CONTROL */
+>>+
+>>+	NOP(5),                 /* [0x0c] */
+>>+	LRI(9, POSTED),         /* [0x11] */
+>>+	REG(0x168),             /* [0x12] BB_ADDR_UDW */
+>>+	REG(0x140),             /* [0x14] BB_ADDR */
+>>+	REG(0x110),             /* [0x16] BB_STATE */
+>>+	REG16(0x588),           /* [0x18] BB_STACK_WRITE_PORT */
+>>+	REG16(0x588),           /* [0x20] BB_STACK_WRITE_PORT */
+>>+	REG16(0x588),           /* [0x22] BB_STACK_WRITE_PORT */
+>>+	REG16(0x588),           /* [0x24] BB_STACK_WRITE_PORT */
+>>+	REG16(0x588),           /* [0x26] BB_STACK_WRITE_PORT */
+>>+	REG16(0x588),           /* [0x28] BB_STACK_WRITE_PORT */
+>>+
+>>+	NOP(12),                 /* [0x00] */
+>>+
+>>+	0
+>>+};
+>can you please share BSPEC or other resources to corroborate above 
+>mentioned info ?
 
-16k pixels * 8 cpp == 128k bytes, so it's completely redundant.
+Ok, will add Bspec reference in the commit text.
 
-> 
-> BR,
-> Jani.
-> 
-> > -		else
-> > -			max_horizontal_pixels = 65536;
-> > -	} else {
-> > -		/*
-> > -		 * "The stride in bytes must not exceed the
-> > -		 * of the size of 8K pixels and 32K bytes."
-> > -		 */
-> > -		max_stride_bytes = 32768;
-> > -	}
-> >  
-> >  	if (drm_rotation_90_or_270(rotation))
-> > -		return min(max_horizontal_pixels, max_stride_bytes / cpp);
-> > +		return min(max_pixels, max_bytes / cpp);
-> >  	else
-> > -		return min(max_horizontal_pixels * cpp, max_stride_bytes);
-> > +		return min(max_pixels * cpp, max_bytes);
-> >  }
-> >  
-> > +static unsigned int
-> > +adl_plane_max_stride(struct intel_plane *plane,
-> > +		     u32 pixel_format, u64 modifier,
-> > +		     unsigned int rotation)
-> > +{
-> > +	unsigned int max_pixels = 65536; /* PLANE_OFFSET limit */
-> > +	unsigned int max_bytes = 128 * 1024;
-> > +
-> > +	return plane_max_stride(plane, pixel_format,
-> > +				modifier, rotation,
-> > +				max_pixels, max_bytes);
-> > +}
-> > +
-> > +static unsigned int
-> > +skl_plane_max_stride(struct intel_plane *plane,
-> > +		     u32 pixel_format, u64 modifier,
-> > +		     unsigned int rotation)
-> > +{
-> > +	unsigned int max_pixels = 8192; /* PLANE_OFFSET limit */
-> > +	unsigned int max_bytes = 32 * 1024;
-> > +
-> > +	return plane_max_stride(plane, pixel_format,
-> > +				modifier, rotation,
-> > +				max_pixels, max_bytes);
-> > +}
-> >  
-> >  /* Preoffset values for YUV to RGB Conversion */
-> >  #define PREOFF_YUV_TO_RGB_HI		0x1800
-> > @@ -2357,7 +2362,11 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
-> >  		plane->min_cdclk = skl_plane_min_cdclk;
-> >  	}
-> >  
-> > -	plane->max_stride = skl_plane_max_stride;
-> > +	if (DISPLAY_VER(dev_priv) >= 13)
-> > +		plane->max_stride = adl_plane_max_stride;
-> > +	else
-> > +		plane->max_stride = skl_plane_max_stride;
-> > +
-> >  	if (DISPLAY_VER(dev_priv) >= 11) {
-> >  		plane->update_noarm = icl_plane_update_noarm;
-> >  		plane->update_arm = icl_plane_update_arm;
-> 
-> -- 
-> Jani Nikula, Intel
+Niranjana
 
--- 
-Ville Syrjälä
-Intel
+>>+
+>>  #undef REG16
+>>  #undef REG
+>>  #undef LRI
+>>@@ -546,6 +586,10 @@ static void set_context_control(u32 *regs, struct xe_hw_engine *hwe)
+>>  	regs[CTX_CONTEXT_CONTROL] = _MASKED_BIT_ENABLE(CTX_CTRL_INHIBIT_SYN_CTX_SWITCH |
+>>  						       CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT);
+>>+	if (xe_gt_has_indirect_ring_state(hwe->gt))
+>>+		regs[CTX_CONTEXT_CONTROL] |=
+>>+			_MASKED_BIT_ENABLE(CTX_CTRL_INDIRECT_RING_STATE_ENABLE);
+>>+
+>>  	/* TODO: Timestamp */
+>>  }
+>>@@ -589,6 +633,11 @@ static void reset_stop_ring(u32 *regs, struct xe_hw_engine *hwe)
+>>  	regs[x + 1] |= STOP_RING << 16;
+>>  }
+>>+static inline bool xe_lrc_has_indirect_ring_state(struct xe_lrc *lrc)
+>>+{
+>>+	return lrc->flags & XE_LRC_FLAG_INDIRECT_RING_STATE;
+>>+}
+>>+
+>>  static inline u32 __xe_lrc_ring_offset(struct xe_lrc *lrc)
+>>  {
+>>  	return 0;
+>>@@ -643,6 +692,12 @@ static inline u32 __xe_lrc_regs_offset(struct xe_lrc *lrc)
+>>  	return xe_lrc_pphwsp_offset(lrc) + LRC_PPHWSP_SIZE;
+>>  }
+>>+static inline u32 __xe_lrc_indirect_ring_offset(struct xe_lrc *lrc)
+>>+{
+>>+	/* Indirect ring state page is at the very end of LRC */
+>>+	return lrc->size - LRC_INDIRECT_RING_STATE_SIZE;
+>>+}
+>>+
+>>  #define DECL_MAP_ADDR_HELPERS(elem) \
+>>  static inline struct iosys_map __xe_lrc_##elem##_map(struct xe_lrc *lrc) \
+>>  { \
+>>@@ -663,6 +718,7 @@ DECL_MAP_ADDR_HELPERS(seqno)
+>>  DECL_MAP_ADDR_HELPERS(regs)
+>>  DECL_MAP_ADDR_HELPERS(start_seqno)
+>>  DECL_MAP_ADDR_HELPERS(parallel)
+>>+DECL_MAP_ADDR_HELPERS(indirect_ring)
+>>  #undef DECL_MAP_ADDR_HELPERS
+>>@@ -671,6 +727,35 @@ u32 xe_lrc_ggtt_addr(struct xe_lrc *lrc)
+>>  	return __xe_lrc_pphwsp_ggtt_addr(lrc);
+>>  }
+>>+u32 xe_lrc_indirect_ring_ggtt_addr(struct xe_lrc *lrc)
+>>+{
+>>+	if (!xe_lrc_has_indirect_ring_state(lrc))
+>>+		return 0;
+>>+
+>>+	return __xe_lrc_indirect_ring_ggtt_addr(lrc);
+>>+}
+>>+
+>>+static u32 xe_lrc_read_indirect_ctx_reg(struct xe_lrc *lrc, int reg_nr)
+>>+{
+>>+	struct xe_device *xe = lrc_to_xe(lrc);
+>>+	struct iosys_map map;
+>>+
+>>+	map = __xe_lrc_indirect_ring_map(lrc);
+>>+	iosys_map_incr(&map, reg_nr * sizeof(u32));
+>>+	return xe_map_read32(xe, &map);
+>>+}
+>>+
+>>+static void xe_lrc_write_indirect_ctx_reg(struct xe_lrc *lrc,
+>>+					  int reg_nr, u32 val)
+>>+{
+>>+	struct xe_device *xe = lrc_to_xe(lrc);
+>>+	struct iosys_map map;
+>>+
+>>+	map = __xe_lrc_indirect_ring_map(lrc);
+>>+	iosys_map_incr(&map, reg_nr * sizeof(u32));
+>>+	xe_map_write32(xe, &map, val);
+>>+}
+>>+
+>>  u32 xe_lrc_read_ctx_reg(struct xe_lrc *lrc, int reg_nr)
+>>  {
+>>  	struct xe_device *xe = lrc_to_xe(lrc);
+>>@@ -693,20 +778,25 @@ void xe_lrc_write_ctx_reg(struct xe_lrc *lrc, int reg_nr, u32 val)
+>>  static void *empty_lrc_data(struct xe_hw_engine *hwe)
+>>  {
+>>-	struct xe_device *xe = gt_to_xe(hwe->gt);
+>>+	struct xe_gt *gt = hwe->gt;
+>>  	void *data;
+>>  	u32 *regs;
+>>-	data = kzalloc(xe_lrc_size(xe, hwe->class), GFP_KERNEL);
+>>+	data = kzalloc(xe_gt_lrc_size(gt, hwe->class), GFP_KERNEL);
+>>  	if (!data)
+>>  		return NULL;
+>>  	/* 1st page: Per-Process of HW status Page */
+>>  	regs = data + LRC_PPHWSP_SIZE;
+>>-	set_offsets(regs, reg_offsets(xe, hwe->class), hwe);
+>>+	set_offsets(regs, reg_offsets(gt_to_xe(gt), hwe->class), hwe);
+>>  	set_context_control(regs, hwe);
+>>  	set_memory_based_intr(regs, hwe);
+>>  	reset_stop_ring(regs, hwe);
+>>+	if (xe_gt_has_indirect_ring_state(gt)) {
+>>+		regs = data + xe_gt_lrc_size(gt, hwe->class) -
+>>+		       LRC_INDIRECT_RING_STATE_SIZE;
+>>+		set_offsets(regs, xe2_indirect_ring_state_offsets, hwe);
+>>+	}
+>>  	return data;
+>>  }
+>>@@ -731,23 +821,27 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+>>  	struct iosys_map map;
+>>  	void *init_data = NULL;
+>>  	u32 arb_enable;
+>>+	u32 lrc_size;
+>>  	int err;
+>>  	lrc->flags = 0;
+>>+	lrc_size = ring_size + xe_gt_lrc_size(gt, hwe->class);
+>>+	if (xe_gt_has_indirect_ring_state(gt))
+>>+		lrc->flags |= XE_LRC_FLAG_INDIRECT_RING_STATE;
+>>  	/*
+>>  	 * FIXME: Perma-pinning LRC as we don't yet support moving GGTT address
+>>  	 * via VM bind calls.
+>>  	 */
+>>-	lrc->bo = xe_bo_create_pin_map(xe, tile, vm,
+>>-				      ring_size + xe_lrc_size(xe, hwe->class),
+>>-				      ttm_bo_type_kernel,
+>>-				      XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+>>-				      XE_BO_FLAG_GGTT |
+>>-				      XE_BO_FLAG_GGTT_INVALIDATE);
+>>+	lrc->bo = xe_bo_create_pin_map(xe, tile, vm, lrc_size,
+>>+				       ttm_bo_type_kernel,
+>>+				       XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+>>+				       XE_BO_FLAG_GGTT |
+>>+				       XE_BO_FLAG_GGTT_INVALIDATE);
+>>  	if (IS_ERR(lrc->bo))
+>>  		return PTR_ERR(lrc->bo);
+>>+	lrc->size = lrc_size;
+>>  	lrc->tile = gt_to_tile(hwe->gt);
+>>  	lrc->ring.size = ring_size;
+>>  	lrc->ring.tail = 0;
+>>@@ -772,10 +866,10 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+>>  		xe_map_memset(xe, &map, 0, 0, LRC_PPHWSP_SIZE);	/* PPHWSP */
+>>  		xe_map_memcpy_to(xe, &map, LRC_PPHWSP_SIZE,
+>>  				 gt->default_lrc[hwe->class] + LRC_PPHWSP_SIZE,
+>>-				 xe_lrc_size(xe, hwe->class) - LRC_PPHWSP_SIZE);
+>>+				 xe_gt_lrc_size(gt, hwe->class) - LRC_PPHWSP_SIZE);
+>>  	} else {
+>>  		xe_map_memcpy_to(xe, &map, 0, init_data,
+>>-				 xe_lrc_size(xe, hwe->class));
+>>+				 xe_gt_lrc_size(gt, hwe->class));
+>>  		kfree(init_data);
+>>  	}
+>>@@ -786,11 +880,25 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+>>  			xe_drm_client_add_bo(vm->xef->client, lrc->bo);
+>>  	}
+>>-	xe_lrc_write_ctx_reg(lrc, CTX_RING_START, __xe_lrc_ring_ggtt_addr(lrc));
+>>-	xe_lrc_write_ctx_reg(lrc, CTX_RING_HEAD, 0);
+>>-	xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, lrc->ring.tail);
+>>-	xe_lrc_write_ctx_reg(lrc, CTX_RING_CTL,
+>>-			     RING_CTL_SIZE(lrc->ring.size) | RING_VALID);
+>>+	if (xe_gt_has_indirect_ring_state(gt)) {
+>>+		xe_lrc_write_ctx_reg(lrc, CTX_INDIRECT_RING_STATE,
+>>+				     __xe_lrc_indirect_ring_ggtt_addr(lrc));
+>>+
+>>+		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_START,
+>>+					      __xe_lrc_ring_ggtt_addr(lrc));
+>>+		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_START_UDW, 0);
+>>+		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_HEAD, 0);
+>>+		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_TAIL, lrc->ring.tail);
+>>+		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_CTL,
+>>+					      RING_CTL_SIZE(lrc->ring.size) | RING_VALID);
+>>+	} else {
+>>+		xe_lrc_write_ctx_reg(lrc, CTX_RING_START, __xe_lrc_ring_ggtt_addr(lrc));
+>>+		xe_lrc_write_ctx_reg(lrc, CTX_RING_HEAD, 0);
+>>+		xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, lrc->ring.tail);
+>>+		xe_lrc_write_ctx_reg(lrc, CTX_RING_CTL,
+>>+				     RING_CTL_SIZE(lrc->ring.size) | RING_VALID);
+>>+	}
+>>+
+>>  	if (xe->info.has_asid && vm)
+>>  		xe_lrc_write_ctx_reg(lrc, PVC_CTX_ASID, vm->usm.asid);
+>>@@ -834,14 +942,36 @@ void xe_lrc_finish(struct xe_lrc *lrc)
+>>  	xe_bo_put(lrc->bo);
+>>  }
+>>+void xe_lrc_set_ring_tail(struct xe_lrc *lrc, u32 tail)
+>>+{
+>>+	if (xe_lrc_has_indirect_ring_state(lrc))
+>>+		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_TAIL, tail);
+>>+	else
+>>+		xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, tail);
+>>+}
+>>+
+>>+u32 xe_lrc_ring_tail(struct xe_lrc *lrc)
+>>+{
+>>+	if (xe_lrc_has_indirect_ring_state(lrc))
+>>+		return xe_lrc_read_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_TAIL) & TAIL_ADDR;
+>>+	else
+>>+		return xe_lrc_read_ctx_reg(lrc, CTX_RING_TAIL) & TAIL_ADDR;
+>>+}
+>>+
+>>  void xe_lrc_set_ring_head(struct xe_lrc *lrc, u32 head)
+>>  {
+>>-	xe_lrc_write_ctx_reg(lrc, CTX_RING_HEAD, head);
+>>+	if (xe_lrc_has_indirect_ring_state(lrc))
+>>+		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_HEAD, head);
+>>+	else
+>>+		xe_lrc_write_ctx_reg(lrc, CTX_RING_HEAD, head);
+>>  }
+>>  u32 xe_lrc_ring_head(struct xe_lrc *lrc)
+>>  {
+>>-	return xe_lrc_read_ctx_reg(lrc, CTX_RING_HEAD) & HEAD_ADDR;
+>>+	if (xe_lrc_has_indirect_ring_state(lrc))
+>>+		return xe_lrc_read_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_HEAD) & HEAD_ADDR;
+>>+	else
+>>+		return xe_lrc_read_ctx_reg(lrc, CTX_RING_HEAD) & HEAD_ADDR;
+>>  }
+>>  u32 xe_lrc_ring_space(struct xe_lrc *lrc)
+>>@@ -1214,7 +1344,7 @@ void xe_lrc_dump_default(struct drm_printer *p,
+>>  	 * hardware status page.
+>>  	 */
+>>  	dw = gt->default_lrc[hwe_class] + LRC_PPHWSP_SIZE;
+>>-	remaining_dw = (xe_lrc_size(gt_to_xe(gt), hwe_class) - LRC_PPHWSP_SIZE) / 4;
+>>+	remaining_dw = (xe_gt_lrc_size(gt, hwe_class) - LRC_PPHWSP_SIZE) / 4;
+>>  	while (remaining_dw > 0) {
+>>  		if ((*dw & XE_INSTR_CMD_TYPE) == XE_INSTR_MI) {
+>>@@ -1355,9 +1485,10 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
+>>  		return NULL;
+>>  	snapshot->context_desc = xe_lrc_ggtt_addr(lrc);
+>>+	snapshot->indirect_context_desc = xe_lrc_indirect_ring_ggtt_addr(lrc);
+>>  	snapshot->head = xe_lrc_ring_head(lrc);
+>>  	snapshot->tail.internal = lrc->ring.tail;
+>>-	snapshot->tail.memory = xe_lrc_read_ctx_reg(lrc, CTX_RING_TAIL);
+>>+	snapshot->tail.memory = xe_lrc_ring_tail(lrc);
+>>  	snapshot->start_seqno = xe_lrc_start_seqno(lrc);
+>>  	snapshot->seqno = xe_lrc_seqno(lrc);
+>>  	snapshot->lrc_bo = xe_bo_get(lrc->bo);
+>>@@ -1405,6 +1536,8 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
+>>  		return;
+>>  	drm_printf(p, "\tHW Context Desc: 0x%08x\n", snapshot->context_desc);
+>>+	drm_printf(p, "\tHW Indirect Ring State: 0x%08x\n",
+>>+		   snapshot->indirect_context_desc);
+>>  	drm_printf(p, "\tLRC Head: (memory) %u\n", snapshot->head);
+>>  	drm_printf(p, "\tLRC Tail: (internal) %u, (memory) %u\n",
+>>  		   snapshot->tail.internal, snapshot->tail.memory);
+>>diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+>>index d32fa31faa2c..06a95a598736 100644
+>>--- a/drivers/gpu/drm/xe/xe_lrc.h
+>>+++ b/drivers/gpu/drm/xe/xe_lrc.h
+>>@@ -21,14 +21,17 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+>>  		struct xe_exec_queue *q, struct xe_vm *vm, u32 ring_size);
+>>  void xe_lrc_finish(struct xe_lrc *lrc);
+>>-size_t xe_lrc_size(struct xe_device *xe, enum xe_engine_class class);
+>>+size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class);
+>>  u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc);
+>>+void xe_lrc_set_ring_tail(struct xe_lrc *lrc, u32 tail);
+>>+u32 xe_lrc_ring_tail(struct xe_lrc *lrc);
+>>  void xe_lrc_set_ring_head(struct xe_lrc *lrc, u32 head);
+>>  u32 xe_lrc_ring_head(struct xe_lrc *lrc);
+>>  u32 xe_lrc_ring_space(struct xe_lrc *lrc);
+>>  void xe_lrc_write_ring(struct xe_lrc *lrc, const void *data, size_t size);
+>>+u32 xe_lrc_indirect_ring_ggtt_addr(struct xe_lrc *lrc);
+>>  u32 xe_lrc_ggtt_addr(struct xe_lrc *lrc);
+>>  u32 *xe_lrc_regs(struct xe_lrc *lrc);
+>>diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
+>>index b716df0dfb4e..cdbf03faef15 100644
+>>--- a/drivers/gpu/drm/xe/xe_lrc_types.h
+>>+++ b/drivers/gpu/drm/xe/xe_lrc_types.h
+>>@@ -20,10 +20,14 @@ struct xe_lrc {
+>>  	 */
+>>  	struct xe_bo *bo;
+>>+	/** @size: size of lrc including any indirect ring state page */
+>>+	u32 size;
+>>+
+>>  	/** @tile: tile which this LRC belongs to */
+>>  	struct xe_tile *tile;
+>>  	/** @flags: LRC flags */
+>>+#define XE_LRC_FLAG_INDIRECT_RING_STATE		0x1
+>>  	u32 flags;
+>>  	/** @ring: submission ring state */
+>>diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+>>index 3f6e143d4a8e..5bf94abf84cc 100644
+>>--- a/drivers/gpu/drm/xe/xe_pci.c
+>>+++ b/drivers/gpu/drm/xe/xe_pci.c
+>>@@ -658,6 +658,7 @@ static int xe_info_init(struct xe_device *xe,
+>>  		gt = tile->primary_gt;
+>>  		gt->info.id = xe->info.gt_count++;
+>>  		gt->info.type = XE_GT_TYPE_MAIN;
+>>+		gt->info.has_indirect_ring_state = graphics_desc->has_indirect_ring_state;
+>>  		gt->info.__engine_mask = graphics_desc->hw_engine_mask;
+>>  		if (MEDIA_VER(xe) < 13 && media_desc)
+>>  			gt->info.__engine_mask |= media_desc->hw_engine_mask;
+>>@@ -675,6 +676,7 @@ static int xe_info_init(struct xe_device *xe,
+>>  		gt = tile->media_gt;
+>>  		gt->info.type = XE_GT_TYPE_MEDIA;
+>>+		gt->info.has_indirect_ring_state = media_desc->has_indirect_ring_state;
+>>  		gt->info.__engine_mask = media_desc->hw_engine_mask;
+>>  		gt->mmio.adj_offset = MEDIA_GT_GSI_OFFSET;
+>>  		gt->mmio.adj_limit = MEDIA_GT_GSI_LENGTH;
+>>diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+>>index b1ad12fa22d6..c5c2a35410a4 100644
+>>--- a/drivers/gpu/drm/xe/xe_pci_types.h
+>>+++ b/drivers/gpu/drm/xe/xe_pci_types.h
+>>@@ -26,6 +26,7 @@ struct xe_graphics_desc {
+>>  	u8 has_asid:1;
+>>  	u8 has_flat_ccs:1;
+>>+	u8 has_indirect_ring_state:1;
+>>  	u8 has_range_tlb_invalidation:1;
+>>  	u8 has_usm:1;
+>>  };
+>>@@ -36,6 +37,8 @@ struct xe_media_desc {
+>>  	u8 rel;
+>>  	u64 hw_engine_mask;	/* hardware engines provided by media IP */
+>>+
+>>+	u8 has_indirect_ring_state:1;
+>>  };
+>>  struct gmdid_map {
