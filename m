@@ -4,66 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49BACC4345F
-	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 05:00:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54ED2C4345F
+	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 05:03:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D234710FE9B;
-	Mon,  6 May 2024 05:00:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 043E31120CA;
+	Mon,  6 May 2024 05:03:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cVajAD4S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C8JoY7sq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65F5D10FE9B
- for <intel-xe@lists.freedesktop.org>; Mon,  6 May 2024 05:00:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA63B10E63D
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 May 2024 05:03:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714971630; x=1746507630;
+ t=1714971781; x=1746507781;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=MJ8EgMvDEI6sksmJ1dBm2ltA+L/XYWMfL58iSxYfGIQ=;
- b=cVajAD4SQxPlVuwj72mj2jet1U5GzIQT9oYTj90YK2KsvYKyAj2wLrkl
- fo7ZWEK8mz9ss+qocEs6C78dHzNVVFnaGRAU/7M1D6wqS09N0PeLvLe2h
- HmCyduJ1NmZaSg5wgQc3lHtdpx4NGJ+GPHY6dzwNPLlC7iGTUeFlmnZCt
- UOkJ7LQyQYpihofTS/92AKq5ULPJq3tpuhgBTTNA71jeheSkccEW+V4d3
- x/Wk5rk4kOkU08sXyelG+OKkdf1bxfObGKfffQdkhvuXr2u+wBaXL6tWf
- A87dS7NQxVt6drWpaR7n1pBq3aSVGJYOe72lxVfNEvydwU1dv1PPo9qz8 A==;
-X-CSE-ConnectionGUID: 8nAKb4HgQ72P3+NunYMt6A==
-X-CSE-MsgGUID: wkAMioVYSmq5h73TUIIdZA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11064"; a="10825357"
-X-IronPort-AV: E=Sophos;i="6.07,257,1708416000"; d="scan'208";a="10825357"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2024 22:00:29 -0700
-X-CSE-ConnectionGUID: 6V7s8VarSkWaOzil7Gq7BA==
-X-CSE-MsgGUID: o+XOjj2gRhK5Du6bdtAIQA==
+ bh=9N2hOtLiJ0qx5kHqgIZDrZgXf/ZQSJzfRIrhTmAn090=;
+ b=C8JoY7sqbMEluSYoOlpaspP4Xk5FeRrrtOvOhNWMWIjia1dH+Ppzmc80
+ IGYnkNIIra6Bk46s67ZdZwnulziN/thJWLdpYg8msojf13CSgVnsrDe1b
+ n+gqEziFu9qRKm9C4p+y0xdTVfAVE44hlc5vZw/kW+cDmWhXyiCXqDSTJ
+ Mg6jTMtQT2QYE8dVSuYdeI9jJOZ7zsqD57VJtTobVYPxWDW5CAuLBaweP
+ IOVKRXjaf2oEtER4n3ByzPYguooANuAJ+A09Sd6BInAziFEeS18j1ICS4
+ yud2Fhd30ph8Qwmn2YyKjLvpUGaNHzaY3ZQdVZgWz4sOuw33k7Voo+Khh w==;
+X-CSE-ConnectionGUID: 8CPzCPutQHmkAcXLhw6IQg==
+X-CSE-MsgGUID: FnAg81vIRhGRC2kgPrG6dg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11064"; a="21856067"
+X-IronPort-AV: E=Sophos;i="6.07,257,1708416000"; d="scan'208";a="21856067"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2024 22:03:00 -0700
+X-CSE-ConnectionGUID: Bhddm6fXRD+PRnKzCQhfrw==
+X-CSE-MsgGUID: HNqaLdpJSrKL3oO3/oxsbA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,257,1708416000"; d="scan'208";a="28159341"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 May 2024 22:00:29 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,257,1708416000"; d="scan'208";a="32718931"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 05 May 2024 22:03:00 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 5 May 2024 22:00:28 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.35; Sun, 5 May 2024 22:02:59 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 5 May 2024 22:00:27 -0700
+ 15.1.2507.35; Sun, 5 May 2024 22:02:59 -0700
 Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Sun, 5 May 2024 22:00:27 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
+ 15.1.2507.35 via Frontend Transport; Sun, 5 May 2024 22:02:59 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.101)
  by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Sun, 5 May 2024 22:00:27 -0700
+ 15.1.2507.35; Sun, 5 May 2024 22:02:59 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oQ2kRXciNHFpOGSUXQ53YEr3fDMyNr4xvD7sHlv4LdELQZp9AI56ydS7e7j362ubWNxslu1VdtuG0vYci9yIEuEDTvfVBSSw8rNPzgnmaujaseLx52R62F/4v5j0JXi1PQC548bYtpgJiG4h32c+35IvhfaIJLD3dbMAyZQ3kiWP4KFmgY+bVHYear+8PI3t2xbtPyPDd8cTXDUW1qKBOk29RYOtD+Ynyyga/ywo9WRtfDNCEluNznZ82FhJmcPNtzvMbuCw3Gr3KGpEOZ+w7xdmnEBhCZH9VvzRQojGYfrWs02u5zlLjSEevee2Czstkec2OdLMD5vhv62otXvBiA==
+ b=Pkjg6QIDl4RkERnQUyrsBKHVj/F1YSXcOSnm38FvSBYpRwQRzv4Qj2oKjIsQPRyk0bW4g1LP8rpeBPtAeIrJMHz/hn0EpBNtn+s4+knt4e+KUYF0nA8Ic1ASU1HLnug6aEsJwJZ9Tf15iMMll9HxDhOQXttGPZnMopvHdBd8fgUUWL9h+Cr6JWDiYWgiuIBJj4lvbZw7A9OG15uYt09iWHzwj7jHCqkerKx99dFbKfpx8N7LS0yyQlIeYJP6aJ4RkpTM6xXbrmRkn0ozT8pM/snRgUmRm8j4Wb67A8UXZfpYIoOPNpOMz5NT0IYSCPqVfCaN1AyIMOsO97jNucvTAw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C0ZrNPidXlwMBCKeUaFnnIkDLMJNfXNF8LCge0nV37Q=;
- b=JkxAZsWtN4DWtwTGSJf/J5A+lO6TnuBSqQbeFtEJgabN+Z7/nMU53ekfzITZ/9U/gq0UJN2RgV5S6lYMszQrlhiraVdUKNj59EBBCqCJQtZ0/Qce8Dz+nfiJEt/vo/P4BrY0PsxcXo8UmnnOTAJNCFoktzmk1MlEztcygxLvCYLKZqakho/YLHfTL0I2PYe4OCMup56u6vo0yBQGSljI0u5dhBRvEkQQWZLRuwWx6hof/BQbxvnXPrh3lxzpbajf9YyraViQk4A5JKEZlOvgrWdtgMsVsefKAAJlo8TDfQwszPnQK4B0Qe9IyfmqpKs1/ZJIojwrPC8KDVNX9i7D+g==
+ bh=MDWF/zJI9O1cO63/u0kb3wauAcFy5LB/8FMaxCT0Qug=;
+ b=C28M/h2uMXEblmui4NXKfzY+XORNmcx0Cc6d/VM2FVUOdBMDj6Yo/YZUwJvlNm+a/vTrOqr7YCcZO81mEKQ+k55Bqqni87N13wvbLtMER+drcY+DqsLwh3m7iQkc+WJaP6xDB8MhxTG5zFjGKAY+JKoMAiuY84Rm/gwC8sXluC/8j9wGZOmQcS86A9JmLlKwxJFY7uHElJsvCMhqhvZFJSj8LutJuWkfWxBmc6zbEsJErvU800Uqvym7Bxe0rU6VLw24aPyGLChTnS5eJnSgnzRFtaGUW++sbrMHALhTarm/si+ssKxVsJMSaO5qg4Ewj8MiNvvSZ/FnITIbGKlfFw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -73,112 +73,112 @@ Received: from MW4PR11MB7056.namprd11.prod.outlook.com (2603:10b6:303:21a::12)
  by PH0PR11MB7635.namprd11.prod.outlook.com (2603:10b6:510:28e::14)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.41; Mon, 6 May
- 2024 05:00:24 +0000
+ 2024 05:02:57 +0000
 Received: from MW4PR11MB7056.namprd11.prod.outlook.com
  ([fe80::ff2a:1235:d1ba:4f93]) by MW4PR11MB7056.namprd11.prod.outlook.com
  ([fe80::ff2a:1235:d1ba:4f93%3]) with mapi id 15.20.7544.041; Mon, 6 May 2024
- 05:00:23 +0000
-Message-ID: <2b334a03-fe98-4e1c-a8aa-30800bb06977@intel.com>
-Date: Mon, 6 May 2024 10:30:18 +0530
+ 05:02:57 +0000
+Message-ID: <53a3518a-01ed-41a1-bdd1-90ff367522b6@intel.com>
+Date: Mon, 6 May 2024 10:32:51 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] drm/xe: Add Indirect Ring State support
+Subject: Re: [PATCH 3/4] drm/xe: Dump Indirect Ring State registers
 To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
  <intel-xe@lists.freedesktop.org>
 References: <20240504233503.16095-1-niranjana.vishwanathapura@intel.com>
- <20240504233503.16095-3-niranjana.vishwanathapura@intel.com>
+ <20240504233503.16095-4-niranjana.vishwanathapura@intel.com>
 Content-Language: en-US
 From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20240504233503.16095-3-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20240504233503.16095-4-niranjana.vishwanathapura@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN2PR01CA0197.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:e9::6) To MW4PR11MB7056.namprd11.prod.outlook.com
+X-ClientProxiedBy: PN3PR01CA0033.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:97::8) To MW4PR11MB7056.namprd11.prod.outlook.com
  (2603:10b6:303:21a::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MW4PR11MB7056:EE_|PH0PR11MB7635:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9decddf0-fb06-4423-8a01-08dc6d896fd3
+X-MS-Office365-Filtering-Correlation-Id: 7d5d9198-2d92-4e22-f060-08dc6d89cb31
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|366007|1800799015;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?T3dKTGZPK2hrcnZYT0t1aFVWQ0Nma0xqK0VOdytFVnhJK1JNSUlVM0ZrN1ho?=
- =?utf-8?B?aTVIRmEvdlNOOEVpUG0wcVFWcGtTSFVrbFVrUnVPK2xSZ3d1YzhXc2VoaXZ0?=
- =?utf-8?B?SlVERHpEL052MTFnK3g0OHB1dnpiN0dRUlRIMi9GZVlYTkVLRGx6MUVhSDIy?=
- =?utf-8?B?bm13VkE5Y0w1RGZPTzhSMVA2aGhxOUFGK0tUMTVsNWFmM0YvWFpqOHNFWWRV?=
- =?utf-8?B?VTRGQmRzelNGb21BajhwK2hwMUpicEhPb041dEtiVmdHdjR5VERmMlViUzBD?=
- =?utf-8?B?RzlHeHhTNld1YjdoVGtzRUowMmE1L3FCbFYxNlAraXBPMjdOOFkrTE1IbkJm?=
- =?utf-8?B?QTVXak80aTVjMTdQV3dzaGtTOUI4OHJnY0dWb0tEMDJKbG4ySFFDS3ZIZGpC?=
- =?utf-8?B?SXgrYjJ2RTdQRVZXVWFrVHF4aDZ3Q1JGVTg3TWtQUFJ6NTJlS3A0UmNjM085?=
- =?utf-8?B?TngzM013WENkN2doMDdTbWhRRlpNSG0xKzNqamlpd3pHbzVGdHUxcncwWFZB?=
- =?utf-8?B?MkRTbm00R1g0MGFhQzFOTlI2MFZGelB6YkdIbW1iOEdIV1FnVWhNaDAyMDhz?=
- =?utf-8?B?bC85OFBZOE9vdy9uaUszeWxnNUNlUXVGd3lDeHpFZm1reDFZR3prSHl4ays4?=
- =?utf-8?B?b1lCYUswVUF2T3JlMWtvYWRZMW41WHRLUFI4Q0UySXdlWXhsa2V2R21heWVT?=
- =?utf-8?B?ckdQQ3hZdGZRR21XWXo3YVVXYjRXMDVpSGROTk5tK3U2MnQzaFR0ZDN4YUln?=
- =?utf-8?B?bForWTZmdmhFdlVjZGRpQ3ZNV1R1ZHlHWlZBeHhsZDFLNlB3Vm1mQ2FoS2l4?=
- =?utf-8?B?TlN5UkJ2RGVqc0FBMHNaaU5xalp4QzVqN1AreDR5dFgwYkFDRmgwMG5hMmxw?=
- =?utf-8?B?cmIwUjV3eTNuUitpaXEvR05oZGZXa1cwY0JaSGVJaXROc21RMFhhZW9jcnBM?=
- =?utf-8?B?ODNlQTAxNGUzd2YrNkxwZkUwK05oZVQ1S3VXN0c0MzhyVVMvV0RxRXRkcmc2?=
- =?utf-8?B?WElseDhLNlMwMkJ4dVpoKzIyamg4QUFTUmZ5OENMVkZXMm9wQ1F5RHp1VGZR?=
- =?utf-8?B?b3p3QTZIbWtUekNrZ1lWMk9xZUtVU3QwV0psS1ZINnRpK3ppY0V5eGUxS2Fy?=
- =?utf-8?B?TUdLb2w3eGNuVUJVMFRzU3hRbmQzK25sTkxrYkdHc3YyeXFCQXlUV2d3dmJt?=
- =?utf-8?B?QWlHbEkzRXptaG9NRlFOSVlnK1NHeVkxV0ZXVDY4NzZtZGdEYzBoQWtuNUg3?=
- =?utf-8?B?bGpBelA3VlBUd1pMWlh6a0Z6eUVQTWZuN0prOXZneDlkeGpPN1RmZ3R4MWlX?=
- =?utf-8?B?K0JUdmhIZEhGcTNJZGs2eEk4MXoxV080SUdRbG9HZHNqMWMydTdJNlpHTUh3?=
- =?utf-8?B?czVXenVVa1V4MUhXakNWbTBEYVlna3RHUFUxdDJKVEcwSmFlTlhvMDJsMWlU?=
- =?utf-8?B?cjN2Mk1TSFQ4K1pzc1RVWE5IVW52alFNRDRrSTkwdDFDUHBVNEFwZk95alk3?=
- =?utf-8?B?TzljNlAvbzZTZnBEL1o4K3hHVFAwUzBVWGtJUDJqRk9uLzNqRGR5V0lFSDZh?=
- =?utf-8?B?Syt3Qzg2R1NLWkpRY3FZSjhybnBITUszYWptZlRWcEZqZlRFdHB2WWtiWXJH?=
- =?utf-8?B?anVLMkVoSW5RbnZ5TEM4MjBCL1d1RDM5Y0Z6UlN6VlZ1OVlBMDlnVWp4UmRL?=
- =?utf-8?B?UCtJUFJ5ZFl2cGszdzYwOGh0NmMwWm4xZzBoV0c4Tk0yMVRyYW84SDVRPT0=?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?MTRSajN4bzB3djNzc3dPeVZFRjhmUVBES1JSdWpwWGdwYUtma0VUYk1kMXQv?=
+ =?utf-8?B?cVBBdHhsNVQ5Q29NYkxoTk1VNEQrajg0YTd0MDhPN1R0eDdSQmRlTWxUVnFn?=
+ =?utf-8?B?REszVFB6NjlLdXgvUS9qeklDcUh6TDIvSEwxWTYzYkhFWW43T1ozQUV2dVJk?=
+ =?utf-8?B?a1pVaGNTSlBqN2lCUWFGRUkwdVQyWEZMdXJhaCtZSWhFKytURDZNOFVzRHFl?=
+ =?utf-8?B?alJkK0U1YW4wK1lhRHdJRlBjYzRRa0FLZ1dldk93ZTdwRmx5TExyeXlrRHlk?=
+ =?utf-8?B?cllIdW5xMWEzL0s1aDdrMjRPQWR5RTRZMDNrWEZ6L25ORWZybWhuZkxrMWVF?=
+ =?utf-8?B?bktEL1E0YWVFY2Z4ekpaRERMSmFBNk9USHFnc1o4YU9qOGFtd3psdUxyNEQv?=
+ =?utf-8?B?TkhERktoK0ZNK2lZZEN1RW9VdEc2eC9wUzY0TEt4SktXWGtFaEg0NFEwWHg3?=
+ =?utf-8?B?WDhFQktOQjM5SGNvdlhUMjJBM3ArZjlWQmFBNnBOQm9kZ0dZdmo5MlJBZTRr?=
+ =?utf-8?B?TXlPYldYUS9XU2xLMVM4dlpjbElIeFNSUFRJTjFPRC96ZHk2L09qbG1aUVVD?=
+ =?utf-8?B?QlpwMWVDQms0RnNyVGJKeFk1OFA2QzZSRjJ1Rm9FVDVMdVRJdGNNUzZxZmNI?=
+ =?utf-8?B?MU5wQjlMNXY0aGhnTEJLZWZMK3pqbURaNUxxZ0d5bmpnMENQdGRxMXg4dk9T?=
+ =?utf-8?B?M1RvL2tDaUVhZGdodFpKU2o1SXpOdkYwVC9ZRC9LTkM4ZkpwdmduUmQvc1gv?=
+ =?utf-8?B?VDZFSXFyS2o3eEdiU2pER1ZsclEraDFUS3VWQWVnWjU2RDUwdW93dkVXM0E3?=
+ =?utf-8?B?RTFwUWc2NU83cXFRdDFjVlNrcnhrVW9DRHFmODhKS0k2bDl3Mkord1NkMjZE?=
+ =?utf-8?B?RHVkRzdEQW9Ea1ZLSzU2T3NrdjVsT0pPSXFJWkRMQUs4WG9WRW9wUU0wZzBB?=
+ =?utf-8?B?b2pjY01ETUZXYXR4dStFN1pLRDZJUlh0MTgvRE9oV1M3NGZ3czRYSGJ3aTVa?=
+ =?utf-8?B?cW5rcWRxTVhFYVhQZEwrZ2NmTkQyc2FvY25lV0dSOTJWTXJONWh5bVAwZVJE?=
+ =?utf-8?B?NHQ1Z3FZd1dLQXNLRnQ3cHRjcTlwcXFlczV5OERUd3lBZFZnUk9JL1MrSFhs?=
+ =?utf-8?B?SjArRlJUWTlHeE1lUFpjS1Q3V1NmeFB5M2s3MXV0c1hBeWpUUVNBQmdFa2tT?=
+ =?utf-8?B?VG1GL20rMEE3em1OZkdJdCtNcG5DTzlRNWJ4NjcxNWNzS1M3NXpwRUpmajBK?=
+ =?utf-8?B?VDhRMUlWNzRUcWg3WjNIcmVtR2lKMmR0eHh0cWRUVGJxbDJxcUUrRkxWSzhx?=
+ =?utf-8?B?RHZrMG1XaE1KczZMLzA5Q0lYWDNqSWlMMkl6RGVIV2g2aWxhK28zWEtEVGNo?=
+ =?utf-8?B?SElGb0NuMHNTLzgzNFMwNS94cEhObzlqV2RsSHdVTldqb2NrWFRDNjlwWTR5?=
+ =?utf-8?B?SXhlSGxRQlQxYmg1L1dUeHdhMzRNM2g5a0VlbjRDQ3R6L1V6Z0dKemc3U3hH?=
+ =?utf-8?B?bGdiRE51Qi9RcXVoVG53QjVPMzJ4aGFCeC80L3BJQ0piNzB4UjlkeHFNNXJh?=
+ =?utf-8?B?MmZUMEJPanBDZm5va0VSYlp2ZDNFeWF5SlErMS81RjlGdGJTZm52WVhWcnJJ?=
+ =?utf-8?B?YitJRi9UMnhVOENDc0FVUGJvS0krNXlxMnlJa3FQYmNnUUJlcnBiM1pqcVpU?=
+ =?utf-8?B?STZGZG03N2xBMkhIV1pma2ZXL3BiMzlheW9UQlkzbE5tTWNSVWkrSjZRPT0=?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW4PR11MB7056.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZXgrK3ZNMUF5SlpXdStuSlFHamdPQ2pWUjZDQ004ZHh2R2poVjlGYldDWk9M?=
- =?utf-8?B?bmUxSWozcnYwaHhtWE9xbDIyT1BvN3prMk5aeTMxSFRXKzJ1a25jRDYvM1Mw?=
- =?utf-8?B?TlpsZXM1d0xodVB0SnNwb1hKY3FhanU2UWxjeUFzNUc1cUNIYjBlUFJSODZ3?=
- =?utf-8?B?TjhzQUc2c3hmRE5nc21lazh2SmtYNFF4bXhjT3IyNERJaW5KT29XUHpyMDIz?=
- =?utf-8?B?WE1nS3NJV1lOK1loSDNhMTRRRmVNNWRCdHBPU0UyTUFiUC9sNVRXOGduTGl6?=
- =?utf-8?B?Y1lpaTVpc29DeVNoNXl4ODNUOGQ1ZjFCb040NmkrNkVZZEZtSGZ2S042SG9v?=
- =?utf-8?B?amZJaHMvSHk4T1pUSGZrVUFFYkhNOUhpOTNxek1jaGRVRlNPSVNzSTlrZ3hs?=
- =?utf-8?B?NUZra1owZGltQk80NytFVGNGaUFZZkUydnoySy9VK2tDd0xCOFBJVHo4NXBP?=
- =?utf-8?B?NGEzY0FXVENQejJXWWU1NFBjWFRSbjNoRGNxSktncVhFRTA5SEI5MERrSmNT?=
- =?utf-8?B?Rk53WXk3R29OWmphMGNQeWJ2MzN6NmFKc3hNbTQxTDExVGVJK1pyRDlmMmZm?=
- =?utf-8?B?SDM2NkU5NDlqT3o5NzFlVHJ4UjlLRVlaVUVjNWRXOTdWa3pWZFVOYk1YZWFR?=
- =?utf-8?B?VWVUMkV1bm5lVnRHYzExSGswdjNBT2NTSndoTzd4dk9STUg0dERIcGhzUzVr?=
- =?utf-8?B?MmoyZjNzR2ZvWWt2MzdSenRiaWVBYkR5d1pFMXRlOHpteEhyb1NMUnNVa2d0?=
- =?utf-8?B?WFN3MzdyWU55SmVneWpDM1RqY2c2MFVVVXdwK3M4eVFQNnhpczB2bGl5Q09P?=
- =?utf-8?B?VmVFM0NQYmlwTDdvQ3R3WExwbDVsWjl3MFBRVzNpOW13bCtnY0Z3Q2I4SEpa?=
- =?utf-8?B?T1VrYVdSVEcrRmZWbFRVL3FWVXRaZy9Cb0xSN2JWcHc1Nmh0UWc5bXBidW1h?=
- =?utf-8?B?Vk10TG84SmZQYmJBNG9HV2hWTnQ0MDlUdFJsMWtWcDM1ZDY4UjBhRllqM1RZ?=
- =?utf-8?B?ZVM1RVNENWU0a1RUeVZyZkY1c1VvOGxOd1ByZ05QR3FEMEpIY2VPb0lMeU41?=
- =?utf-8?B?K2U5bWRsUDdmcFgwSUlXL0g0KzJUZm1peU8xYjdVcitKT3hQNlZvdURCODd3?=
- =?utf-8?B?MkZBR1duMHBHL3Qycy8zT0dXNHZxcDNGU2dYWDlLcnFOdlUzdkYweW45Tkhz?=
- =?utf-8?B?cmJmaTg0SUJCdjlQOHhTTzVsc0VleTBOT3JjSUtDSEI4NjBMdk9USHp3dEd4?=
- =?utf-8?B?ODNsbGR2eHoyZHhaRnEvK0xLKy84NWowaUJNaXdNTTZPUVBheDluVkZKV0x6?=
- =?utf-8?B?c3U3aFI2Q2tIek83SlNJbFJqeWFmRTZ4RWFRR2lVNFRWeFdVVGhvU0xRZlkz?=
- =?utf-8?B?MGlwOC8vdmF1L0g2blFkTm8zREphM09LNWxFa1hIR1pRZE9BcmUzWXRCNFJW?=
- =?utf-8?B?aXZUUGxmT2Jmd1VKSE0vSjREQXJHQ1laUG1hYXBnQmRpSVFNaHZxYnRoamhq?=
- =?utf-8?B?MTh4ME9hQUdiUmRpT3paaUxoMDlBWkQrK2VYK2M2Q3Q3RVpyS1hzTzZHc2tH?=
- =?utf-8?B?V1Voc003SEJsSTJEYTNnQUU4UW1PUWJLK240TjB3c2daUlFUUVF1NkVjV3ZT?=
- =?utf-8?B?NnBnMlkzMUVLVTNrUVhHZkNiVFZKdm92dWRRN0IydVVXc0Q0c2FyaWt3UWFl?=
- =?utf-8?B?OEFUTVhEMzlrQjNraWxQTmxtU3IwWDEwOVhCb2tFOHhDa2U2WjR0NXB5Y2pz?=
- =?utf-8?B?czdBMWlyMkdyK1BsTDR2R2NXNVNlQUZQWlB4NGNtNStwVGdrTFVHSEV2NGp0?=
- =?utf-8?B?SGlvYXA0UmdWNExiTkh2b3d2K1JNUGRxbldFWGVYckQveXdlWHJxcXNNV1Vj?=
- =?utf-8?B?NnhZSGxpWWN4cHFCbS9tOHg4M1FhK2NjY1FVWFpxWUNVV0lVVDNjRjdycTl4?=
- =?utf-8?B?RXRQU1psWkhNYmJ6M0wyZmxaSVZDbGVCQzdOOUxQdENkN3d1SUZ6dVpzN1Va?=
- =?utf-8?B?YTFuRHV5ZmdLdklxNWtuckx3SXlkbk9DUUV3dlpLK3hvQmNPeDFlNXkxUm9J?=
- =?utf-8?B?UGJiU1QwaUhpOFNJMkVOVVZuSkhxWW9TNXdJaEJGREJEZlRGREs3UER1bTBI?=
- =?utf-8?B?WFhSSE4zclk1UGxBUUtVTGp2S25PalNFYXNZSU1QNUx3WWNFcG1tdTdpSEVM?=
- =?utf-8?B?cUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9decddf0-fb06-4423-8a01-08dc6d896fd3
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ellqWHp1ZkIyYnNQWWV3b0RSa29xSFk2Wlgvd0dTUVVTUm9TbE81ZFVxZTZM?=
+ =?utf-8?B?WnlzNjdhcHlZMExGNWlaOGhCbm5EWlYrRnVjVFJjMy9pVGdDUXFGQUNpN0ww?=
+ =?utf-8?B?KzMvZDJNVlN5NVQ2elFJaUpTV1Q3TDZZUFh3c05zZlBpa0hTUE9vNTN3Ri9m?=
+ =?utf-8?B?OFlmNW9CTXdwTDhGSVhZRVZxRytzeGtpMnFLdVBkaER0cjl6NDdyRjRWanYw?=
+ =?utf-8?B?amxFUi9ERzV4V0hyTXI2SUlQbDA2cXFtU3Y5a2Q3bWlhZ1NTOThjWGZnaCty?=
+ =?utf-8?B?Nm15a202ZGM2OTc0K290eDF5cVBveFpUaXRPdG94UjNJM0kxRTVnMmp5RHBz?=
+ =?utf-8?B?d0EyZmM2WnlPTEpZc29oTUFVOVVyRk5reGRnZUNPTlpHSDJSd3kzYUxlaitm?=
+ =?utf-8?B?bERnWHE1bzNWRGZiM2d4UE03MHVLbzRpdXNBeitjRnZBRCthZElPbE1UaEJM?=
+ =?utf-8?B?V2xEUXd6ZTR5bmxLSjUySHptWDgzKzRXQWE5c0FuZHVmTXhaejF4ZVhvOUFp?=
+ =?utf-8?B?WE4vYUFTeDE2YUZ1b1RsWU1WODBOQzZyZzQ4ZnNURjRUT3Z3MzBQblAxSHAv?=
+ =?utf-8?B?K2JONjhDNENvK3RNZGMzL0gxdWhpdVFjU0RobUl0V2QwMXdzQms4alh5bkRI?=
+ =?utf-8?B?MDFpYnd2S1JnM2sxWHFueThnMldPVkpSaEJyUFd6Rzlza1cxcTR6VUVPNGo1?=
+ =?utf-8?B?TWhNVDZSV3U0UG5lcEtqaUJOOVpIZlhVQlFPQmdobjhQNVVSZ1hxSlRrSnd5?=
+ =?utf-8?B?Q20rQzN1bGR6SWdQUjRlSjEyejBSSmVDZi9zVjgxbnhzSjlYTWNmNm0zaG1E?=
+ =?utf-8?B?L1VxTGN1bExxZEJjU0hNaE9GSnZpTFBjODBDM3YxY2MyVUhjaldocWY3c0hX?=
+ =?utf-8?B?Nm5lVGRwT2JRdGVsbU92MStQNG5pN011UTZPWldhbWU1NU5lcDVodE04eFhZ?=
+ =?utf-8?B?dEFLcHV4U3BraFphT2Qzb3YzeTBQMmliUG5KQzYrMFRGdmx1OVNHNG0xQXpI?=
+ =?utf-8?B?VXlmRzQ5ejlGVEIxdDQ0YzdCS3h1bTloNUg1cHY0aStseWRubVF1T1dDSVFp?=
+ =?utf-8?B?L1FJSURRRXptdVZWRUNKWEtPT3MyTVdyMVpnNG9GSTk1YVBzZ3lVSGMyVjls?=
+ =?utf-8?B?Qlk4WVVaWGxEQUllMmZ4LzNiZ3U1SFk1VHRsZDdGRjM0NnU3ZENnaWZ1emcv?=
+ =?utf-8?B?RnEyQTJJaVpVRldGT1J2R0RKUW83UGFtVW1GRjN2QWswS01ESHdsVENtaHdV?=
+ =?utf-8?B?aVRGNkpPUDEwV21hNTk4bnJaQVQ3MCtIdVpjRlBnalgrUnA0M0RQaEdOU0JI?=
+ =?utf-8?B?c2x4dnplY2FIbzJDQXFaRUhDaVM5Z1lkRllFMHZ6aDhVRmJqZitBSS9xdERZ?=
+ =?utf-8?B?NEFVZWVSZExQc2ZGMTlQVkp3bktFWWloNGJsdUVoUTZoZXF3dGd4dnRFaXhp?=
+ =?utf-8?B?Q2V5UVZXeDc3RVUxdW5xZkRyTCtvdjVjU0hmQ0gvN3VEUEJ6cS9NNUE4TzZR?=
+ =?utf-8?B?T1VQbGtxbUV6Z25ydEdIZmZVeE9WU0JmekR6UzJ2SUprR0xReXEyUVVzeGtq?=
+ =?utf-8?B?UXZnTUpJbFVFSnZxVkdwR2pDS3R6SmQ4MnlsdW5PVDVLNzIxOS90dTV4dmdJ?=
+ =?utf-8?B?d2EyR3k2K2lDaVRVc1BFcU8zTFFZSStucHE2VG1tQ2lDQzZuWnJsR3JlOE5I?=
+ =?utf-8?B?YzVDckhJSGVYVU9QakNXa1FMWmZLNWsvelh4bFAzYkJKZ3dHYldFaUNrTW43?=
+ =?utf-8?B?OUErMzRMd1ozOUhraDczRUE0U1F3VE1wazFYWWFMb1BLRDRXam9aWkZwVjZ3?=
+ =?utf-8?B?YzhJb1lLejF1ME1GNmwrU2xUcER3QUxqdWdFb2VjSmI1N3lnMUJjZzlZc1dC?=
+ =?utf-8?B?VXFESlJ0SXk2VWU5cmo2MWpXOG45NWRJdXIxMU5neE9CS3dZUStXVjdWVDVU?=
+ =?utf-8?B?dG5xWTdSWDNHeGV0L0VzT3FtK1RaTjVGdExCR2M0TzZpaGxId3YrcUdoY21s?=
+ =?utf-8?B?djF5NlVoaGtjTkZZSThwZE1QR3lzQVMwRS81NWpCVWkxU1I3THErWm5KQkJZ?=
+ =?utf-8?B?U3ZiZTBielI4Tm1FWnd4Tkh2Z1UyT0dJM2laODV1Zko3WFZKMnFYa3pMYUFB?=
+ =?utf-8?B?WDhNcWFMNmF1cW54UENCeVBJczJUMmRxcDVqd2hvUWdLblV6dnVyNS9YVC9O?=
+ =?utf-8?B?a0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d5d9198-2d92-4e22-f060-08dc6d89cb31
 X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB7056.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2024 05:00:23.6784 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2024 05:02:57.2024 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lBKIuZ5OkUF/+d31A6U9g310RBKvoUms62Spxxxjfgun8lsoNyArcBwgmKass3lThFBceaEn2jGEIq4b8kDB55lOmHU7tpt8h5I7osJ1UjQ=
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4n4JjzWodLxlB3uvY0aj+gaom1pbpRLWVsxUjh515Ydocq33sjCqjhLsF2i/2ZovTaxs8pfn+ugyJvI3hAX8M2UGpH7M7GvLkfcMZjs+gMI=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7635
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -196,626 +196,97 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 05-05-2024 05:04, Niranjana Vishwanathapura wrote:
-> When Indirect Ring State is enabled, the Ring Buffer state and
-> Batch Buffer state are context save/restored to/form Indirect
-> Ring State instead of the LRC. The Indirect Ring State is a 4K
-> page mapped in global GTT at a 4K aligned address. This address
-> is programmed in the INDIRECT_RING_STATE register of the
-> corresponding context's LRC.
+On 05-05-2024 05:05, Niranjana Vishwanathapura wrote:
+> Dump INDIRECT_RING_STATE and RING_START_UDW registers.
 >
 > Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 > ---
->   drivers/gpu/drm/xe/regs/xe_engine_regs.h |   1 +
->   drivers/gpu/drm/xe/regs/xe_lrc_layout.h  |   7 +
->   drivers/gpu/drm/xe/xe_gt.c               |   6 +-
->   drivers/gpu/drm/xe/xe_gt.h               |   7 +
->   drivers/gpu/drm/xe/xe_gt_types.h         |   6 +-
->   drivers/gpu/drm/xe/xe_guc_ads.c          |   5 +-
->   drivers/gpu/drm/xe/xe_guc_submit.c       |   2 +-
->   drivers/gpu/drm/xe/xe_lrc.c              | 185 +++++++++++++++++++----
->   drivers/gpu/drm/xe/xe_lrc.h              |   5 +-
->   drivers/gpu/drm/xe/xe_lrc_types.h        |   4 +
->   drivers/gpu/drm/xe/xe_pci.c              |   2 +
->   drivers/gpu/drm/xe/xe_pci_types.h        |   3 +
->   12 files changed, 197 insertions(+), 36 deletions(-)
+>   drivers/gpu/drm/xe/regs/xe_engine_regs.h |  4 ++++
+>   drivers/gpu/drm/xe/xe_hw_engine.c        | 11 +++++++++++
+>   drivers/gpu/drm/xe/xe_hw_engine_types.h  |  4 ++++
+>   3 files changed, 19 insertions(+)
 >
 > diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-> index 7e1b0fd68275..260a44f46f7e 100644
+> index 260a44f46f7e..263ffc7bc2ef 100644
 > --- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
 > +++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-> @@ -125,6 +125,7 @@
->   #define RING_EXECLIST_STATUS_HI(base)		XE_REG((base) + 0x234 + 4)
+> @@ -55,6 +55,8 @@
+>   #define   RING_CTL_SIZE(size)			((size) - PAGE_SIZE) /* in bytes -> pages */
+>   #define   RING_CTL_SIZE(size)			((size) - PAGE_SIZE) /* in bytes -> pages */
 >   
->   #define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244, XE_REG_OPTION_MASKED)
-> +#define	  CTX_CTRL_INDIRECT_RING_STATE_ENABLE	REG_BIT(4)
->   #define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	REG_BIT(3)
->   #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
->   
-> diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-> index 1825d8f79db6..e6ca8bbda8f4 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-> @@ -11,6 +11,7 @@
->   #define CTX_RING_TAIL			(0x06 + 1)
->   #define CTX_RING_START			(0x08 + 1)
->   #define CTX_RING_CTL			(0x0a + 1)
-> +#define CTX_INDIRECT_RING_STATE		(0x26 + 1)
->   #define CTX_PDP0_UDW			(0x30 + 1)
->   #define CTX_PDP0_LDW			(0x32 + 1)
->   
-> @@ -23,4 +24,10 @@
->   #define CTX_INT_SRC_REPORT_REG		(CTX_LRI_INT_REPORT_PTR + 3)
->   #define CTX_INT_SRC_REPORT_PTR		(CTX_LRI_INT_REPORT_PTR + 4)
->   
-> +#define INDIRECT_CTX_RING_HEAD		(0x02 + 1)
-> +#define INDIRECT_CTX_RING_TAIL		(0x04 + 1)
-> +#define INDIRECT_CTX_RING_START		(0x06 + 1)
-> +#define INDIRECT_CTX_RING_START_UDW	(0x08 + 1)
-> +#define INDIRECT_CTX_RING_CTL		(0x0a + 1)
+> +#define RING_START_UDW(base)			XE_REG((base) + 0x48)
 > +
->   #endif
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 0528d599c3fe..36c7b1631fa6 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -160,7 +160,7 @@ static int emit_wa_job(struct xe_gt *gt, struct xe_exec_queue *q)
+>   #define RING_PSMI_CTL(base)			XE_REG((base) + 0x50, XE_REG_OPTION_MASKED)
+>   #define   RC_SEMA_IDLE_MSG_DISABLE		REG_BIT(12)
+>   #define   WAIT_FOR_EVENT_POWER_DOWN_DISABLE	REG_BIT(7)
+> @@ -110,6 +112,8 @@
+>   #define   FF_DOP_CLOCK_GATE_DISABLE		REG_BIT(1)
+>   #define   REPLAY_MODE_GRANULARITY		REG_BIT(0)
 >   
->   	if (q->hwe->class == XE_ENGINE_CLASS_RENDER)
->   		/* Big enough to emit all of the context's 3DSTATE */
-> -		bb = xe_bb_new(gt, xe_lrc_size(gt_to_xe(gt), q->hwe->class), false);
-> +		bb = xe_bb_new(gt, xe_gt_lrc_size(gt, q->hwe->class), false);
->   	else
->   		/* Just pick a large BB size */
->   		bb = xe_bb_new(gt, SZ_4K, false);
-> @@ -244,7 +244,7 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
->   		xe_tuning_process_lrc(hwe);
->   
->   		default_lrc = drmm_kzalloc(&xe->drm,
-> -					   xe_lrc_size(xe, hwe->class),
-> +					   xe_gt_lrc_size(gt, hwe->class),
->   					   GFP_KERNEL);
->   		if (!default_lrc)
->   			return -ENOMEM;
-> @@ -294,7 +294,7 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
->   		xe_map_memcpy_from(xe, default_lrc,
->   				   &q->lrc[0].bo->vmap,
->   				   xe_lrc_pphwsp_offset(&q->lrc[0]),
-> -				   xe_lrc_size(xe, hwe->class));
-> +				   xe_gt_lrc_size(gt, hwe->class));
->   
->   		gt->default_lrc[hwe->class] = default_lrc;
->   put_nop_q:
-> diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-> index ed6ea8057e35..8474c50b1b30 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.h
-> +++ b/drivers/gpu/drm/xe/xe_gt.h
-> @@ -8,6 +8,7 @@
->   
->   #include <drm/drm_util.h>
->   
-> +#include "xe_device.h"
->   #include "xe_device_types.h"
->   #include "xe_hw_engine.h"
->   
-> @@ -58,6 +59,12 @@ struct xe_hw_engine *xe_gt_hw_engine(struct xe_gt *gt,
->   				     u16 instance,
->   				     bool logical);
->   
-> +static inline bool xe_gt_has_indirect_ring_state(struct xe_gt *gt)
-> +{
-> +	return gt->info.has_indirect_ring_state &&
-> +	       xe_device_uc_enabled(gt_to_xe(gt));
-> +}
+> +#define INDIRECT_RING_STATE(base)		XE_REG((base) + 0x108)
 > +
->   static inline bool xe_gt_is_media_type(struct xe_gt *gt)
->   {
->   	return gt->info.type == XE_GT_TYPE_MEDIA;
-> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-> index cfdc761ff7f4..acb97291579f 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> @@ -110,8 +110,6 @@ struct xe_gt {
->   	struct {
->   		/** @info.type: type of GT */
->   		enum xe_gt_type type;
-> -		/** @info.id: Unique ID of this GT within the PCI Device */
-> -		u8 id;
->   		/** @info.reference_clock: clock frequency */
->   		u32 reference_clock;
->   		/** @info.engine_mask: mask of engines present on GT */
-> @@ -124,6 +122,10 @@ struct xe_gt {
->   		u64 __engine_mask;
->   		/** @info.gmdid: raw GMD_ID value from hardware */
->   		u32 gmdid;
-> +		/** @info.id: Unique ID of this GT within the PCI Device */
-> +		u8 id;
-> +		/** @has_indirect_ring_state: GT has indirect ring state support */
-> +		u8 has_indirect_ring_state:1;
->   	} info;
+
+same as previous patch.
+
+
+>   #define RING_BBADDR(base)			XE_REG((base) + 0x140)
+>   #define RING_BBADDR_UDW(base)			XE_REG((base) + 0x168)
 >   
->   	/**
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-> index 6a5eb21748b1..8b011acd8f6c 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-> @@ -267,7 +267,6 @@ static u32 engine_enable_mask(struct xe_gt *gt, enum xe_engine_class class)
->   
->   static size_t calculate_golden_lrc_size(struct xe_guc_ads *ads)
->   {
-> -	struct xe_device *xe = ads_to_xe(ads);
->   	struct xe_gt *gt = ads_to_gt(ads);
->   	size_t total_size = 0, alloc_size, real_size;
->   	int class;
-> @@ -276,7 +275,7 @@ static size_t calculate_golden_lrc_size(struct xe_guc_ads *ads)
->   		if (!engine_enable_mask(gt, class))
->   			continue;
->   
-> -		real_size = xe_lrc_size(xe, class);
-> +		real_size = xe_gt_lrc_size(gt, class);
->   		alloc_size = PAGE_ALIGN(real_size);
->   		total_size += alloc_size;
->   	}
-> @@ -774,7 +773,7 @@ static void guc_populate_golden_lrc(struct xe_guc_ads *ads)
->   
->   		xe_gt_assert(gt, gt->default_lrc[class]);
->   
-> -		real_size = xe_lrc_size(xe, class);
-> +		real_size = xe_gt_lrc_size(gt, class);
->   		alloc_size = PAGE_ALIGN(real_size);
->   		total_size += alloc_size;
->   
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index d274a139010b..34b19f0a6ad1 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -677,7 +677,7 @@ static void submit_exec_queue(struct xe_exec_queue *q)
->   	if (xe_exec_queue_is_parallel(q))
->   		wq_item_append(q);
->   	else
-> -		xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, lrc->ring.tail);
-> +		xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
->   
->   	if (exec_queue_suspended(q) && !xe_exec_queue_is_parallel(q))
->   		return;
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> index f759f4c10914..ef954cd5cd68 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.c
-> +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> @@ -34,12 +34,15 @@
->   #define LRC_ENGINE_CLASS			GENMASK_ULL(63, 61)
->   #define LRC_ENGINE_INSTANCE			GENMASK_ULL(53, 48)
->   
-> +#define LRC_INDIRECT_RING_STATE_SIZE		SZ_4K
-> +
->   struct xe_lrc_snapshot {
->   	struct xe_bo *lrc_bo;
->   	void *lrc_snapshot;
->   	unsigned long lrc_size, lrc_offset;
->   
->   	u32 context_desc;
-> +	u32 indirect_context_desc;
->   	u32 head;
->   	struct {
->   		u32 internal;
-> @@ -55,20 +58,25 @@ lrc_to_xe(struct xe_lrc *lrc)
->   	return gt_to_xe(lrc->fence_ctx.gt);
->   }
->   
-> -size_t xe_lrc_size(struct xe_device *xe, enum xe_engine_class class)
-> +size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class)
->   {
-> +	struct xe_device *xe = gt_to_xe(gt);
-> +	size_t size;
-> +
->   	switch (class) {
->   	case XE_ENGINE_CLASS_RENDER:
->   		if (GRAPHICS_VER(xe) >= 20)
-> -			return 4 * SZ_4K;
-> +			size = 4 * SZ_4K;
->   		else
-> -			return 14 * SZ_4K;
-> +			size = 14 * SZ_4K;
-> +		break;
->   	case XE_ENGINE_CLASS_COMPUTE:
->   		/* 14 pages since graphics_ver == 11 */
->   		if (GRAPHICS_VER(xe) >= 20)
-> -			return 3 * SZ_4K;
-> +			size = 3 * SZ_4K;
->   		else
-> -			return 14 * SZ_4K;
-> +			size = 14 * SZ_4K;
-> +		break;
->   	default:
->   		WARN(1, "Unknown engine class: %d", class);
->   		fallthrough;
-> @@ -76,8 +84,14 @@ size_t xe_lrc_size(struct xe_device *xe, enum xe_engine_class class)
->   	case XE_ENGINE_CLASS_VIDEO_DECODE:
->   	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
->   	case XE_ENGINE_CLASS_OTHER:
-> -		return 2 * SZ_4K;
-> +		size = 2 * SZ_4K;
->   	}
-> +
-> +	/* Add indirect ring state page */
-> +	if (xe_gt_has_indirect_ring_state(gt))
-> +		size += LRC_INDIRECT_RING_STATE_SIZE;
-> +
-> +	return size;
->   }
->   
->   /*
-> @@ -508,6 +522,32 @@ static const u8 xe2_xcs_offsets[] = {
->   	0
->   };
->   
-> +static const u8 xe2_indirect_ring_state_offsets[] = {
-> +	NOP(1),                 /* [0x00] */
-> +	LRI(5, POSTED),         /* [0x01] */
-> +	REG(0x034),             /* [0x02] RING_BUFFER_HEAD */
-> +	REG(0x030),             /* [0x04] RING_BUFFER_TAIL */
-> +	REG(0x038),             /* [0x06] RING_BUFFER_START */
-> +	REG(0x048),             /* [0x08] RING_BUFFER_START_UDW */
-> +	REG(0x03c),             /* [0x0a] RING_BUFFER_CONTROL */
-> +
-> +	NOP(5),                 /* [0x0c] */
-> +	LRI(9, POSTED),         /* [0x11] */
-> +	REG(0x168),             /* [0x12] BB_ADDR_UDW */
-> +	REG(0x140),             /* [0x14] BB_ADDR */
-> +	REG(0x110),             /* [0x16] BB_STATE */
-> +	REG16(0x588),           /* [0x18] BB_STACK_WRITE_PORT */
-> +	REG16(0x588),           /* [0x20] BB_STACK_WRITE_PORT */
-> +	REG16(0x588),           /* [0x22] BB_STACK_WRITE_PORT */
-> +	REG16(0x588),           /* [0x24] BB_STACK_WRITE_PORT */
-> +	REG16(0x588),           /* [0x26] BB_STACK_WRITE_PORT */
-> +	REG16(0x588),           /* [0x28] BB_STACK_WRITE_PORT */
-> +
-> +	NOP(12),                 /* [0x00] */
-> +
-> +	0
-> +};
-can you please share BSPEC or other resources to corroborate above 
-mentioned info ?
-> +
->   #undef REG16
->   #undef REG
->   #undef LRI
-> @@ -546,6 +586,10 @@ static void set_context_control(u32 *regs, struct xe_hw_engine *hwe)
->   	regs[CTX_CONTEXT_CONTROL] = _MASKED_BIT_ENABLE(CTX_CTRL_INHIBIT_SYN_CTX_SWITCH |
->   						       CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT);
->   
-> +	if (xe_gt_has_indirect_ring_state(hwe->gt))
-> +		regs[CTX_CONTEXT_CONTROL] |=
-> +			_MASKED_BIT_ENABLE(CTX_CTRL_INDIRECT_RING_STATE_ENABLE);
-> +
->   	/* TODO: Timestamp */
->   }
->   
-> @@ -589,6 +633,11 @@ static void reset_stop_ring(u32 *regs, struct xe_hw_engine *hwe)
->   	regs[x + 1] |= STOP_RING << 16;
->   }
->   
-> +static inline bool xe_lrc_has_indirect_ring_state(struct xe_lrc *lrc)
-> +{
-> +	return lrc->flags & XE_LRC_FLAG_INDIRECT_RING_STATE;
-> +}
-> +
->   static inline u32 __xe_lrc_ring_offset(struct xe_lrc *lrc)
->   {
->   	return 0;
-> @@ -643,6 +692,12 @@ static inline u32 __xe_lrc_regs_offset(struct xe_lrc *lrc)
->   	return xe_lrc_pphwsp_offset(lrc) + LRC_PPHWSP_SIZE;
->   }
->   
-> +static inline u32 __xe_lrc_indirect_ring_offset(struct xe_lrc *lrc)
-> +{
-> +	/* Indirect ring state page is at the very end of LRC */
-> +	return lrc->size - LRC_INDIRECT_RING_STATE_SIZE;
-> +}
-> +
->   #define DECL_MAP_ADDR_HELPERS(elem) \
->   static inline struct iosys_map __xe_lrc_##elem##_map(struct xe_lrc *lrc) \
->   { \
-> @@ -663,6 +718,7 @@ DECL_MAP_ADDR_HELPERS(seqno)
->   DECL_MAP_ADDR_HELPERS(regs)
->   DECL_MAP_ADDR_HELPERS(start_seqno)
->   DECL_MAP_ADDR_HELPERS(parallel)
-> +DECL_MAP_ADDR_HELPERS(indirect_ring)
->   
->   #undef DECL_MAP_ADDR_HELPERS
->   
-> @@ -671,6 +727,35 @@ u32 xe_lrc_ggtt_addr(struct xe_lrc *lrc)
->   	return __xe_lrc_pphwsp_ggtt_addr(lrc);
->   }
->   
-> +u32 xe_lrc_indirect_ring_ggtt_addr(struct xe_lrc *lrc)
-> +{
-> +	if (!xe_lrc_has_indirect_ring_state(lrc))
-> +		return 0;
-> +
-> +	return __xe_lrc_indirect_ring_ggtt_addr(lrc);
-> +}
-> +
-> +static u32 xe_lrc_read_indirect_ctx_reg(struct xe_lrc *lrc, int reg_nr)
-> +{
-> +	struct xe_device *xe = lrc_to_xe(lrc);
-> +	struct iosys_map map;
-> +
-> +	map = __xe_lrc_indirect_ring_map(lrc);
-> +	iosys_map_incr(&map, reg_nr * sizeof(u32));
-> +	return xe_map_read32(xe, &map);
-> +}
-> +
-> +static void xe_lrc_write_indirect_ctx_reg(struct xe_lrc *lrc,
-> +					  int reg_nr, u32 val)
-> +{
-> +	struct xe_device *xe = lrc_to_xe(lrc);
-> +	struct iosys_map map;
-> +
-> +	map = __xe_lrc_indirect_ring_map(lrc);
-> +	iosys_map_incr(&map, reg_nr * sizeof(u32));
-> +	xe_map_write32(xe, &map, val);
-> +}
-> +
->   u32 xe_lrc_read_ctx_reg(struct xe_lrc *lrc, int reg_nr)
->   {
->   	struct xe_device *xe = lrc_to_xe(lrc);
-> @@ -693,20 +778,25 @@ void xe_lrc_write_ctx_reg(struct xe_lrc *lrc, int reg_nr, u32 val)
->   
->   static void *empty_lrc_data(struct xe_hw_engine *hwe)
->   {
-> -	struct xe_device *xe = gt_to_xe(hwe->gt);
-> +	struct xe_gt *gt = hwe->gt;
->   	void *data;
->   	u32 *regs;
->   
-> -	data = kzalloc(xe_lrc_size(xe, hwe->class), GFP_KERNEL);
-> +	data = kzalloc(xe_gt_lrc_size(gt, hwe->class), GFP_KERNEL);
->   	if (!data)
->   		return NULL;
->   
->   	/* 1st page: Per-Process of HW status Page */
->   	regs = data + LRC_PPHWSP_SIZE;
-> -	set_offsets(regs, reg_offsets(xe, hwe->class), hwe);
-> +	set_offsets(regs, reg_offsets(gt_to_xe(gt), hwe->class), hwe);
->   	set_context_control(regs, hwe);
->   	set_memory_based_intr(regs, hwe);
->   	reset_stop_ring(regs, hwe);
-> +	if (xe_gt_has_indirect_ring_state(gt)) {
-> +		regs = data + xe_gt_lrc_size(gt, hwe->class) -
-> +		       LRC_INDIRECT_RING_STATE_SIZE;
-> +		set_offsets(regs, xe2_indirect_ring_state_offsets, hwe);
-> +	}
->   
->   	return data;
->   }
-> @@ -731,23 +821,27 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
->   	struct iosys_map map;
->   	void *init_data = NULL;
->   	u32 arb_enable;
-> +	u32 lrc_size;
->   	int err;
->   
->   	lrc->flags = 0;
-> +	lrc_size = ring_size + xe_gt_lrc_size(gt, hwe->class);
-> +	if (xe_gt_has_indirect_ring_state(gt))
-> +		lrc->flags |= XE_LRC_FLAG_INDIRECT_RING_STATE;
->   
->   	/*
->   	 * FIXME: Perma-pinning LRC as we don't yet support moving GGTT address
->   	 * via VM bind calls.
->   	 */
-> -	lrc->bo = xe_bo_create_pin_map(xe, tile, vm,
-> -				      ring_size + xe_lrc_size(xe, hwe->class),
-> -				      ttm_bo_type_kernel,
-> -				      XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-> -				      XE_BO_FLAG_GGTT |
-> -				      XE_BO_FLAG_GGTT_INVALIDATE);
-> +	lrc->bo = xe_bo_create_pin_map(xe, tile, vm, lrc_size,
-> +				       ttm_bo_type_kernel,
-> +				       XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-> +				       XE_BO_FLAG_GGTT |
-> +				       XE_BO_FLAG_GGTT_INVALIDATE);
->   	if (IS_ERR(lrc->bo))
->   		return PTR_ERR(lrc->bo);
->   
-> +	lrc->size = lrc_size;
->   	lrc->tile = gt_to_tile(hwe->gt);
->   	lrc->ring.size = ring_size;
->   	lrc->ring.tail = 0;
-> @@ -772,10 +866,10 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
->   		xe_map_memset(xe, &map, 0, 0, LRC_PPHWSP_SIZE);	/* PPHWSP */
->   		xe_map_memcpy_to(xe, &map, LRC_PPHWSP_SIZE,
->   				 gt->default_lrc[hwe->class] + LRC_PPHWSP_SIZE,
-> -				 xe_lrc_size(xe, hwe->class) - LRC_PPHWSP_SIZE);
-> +				 xe_gt_lrc_size(gt, hwe->class) - LRC_PPHWSP_SIZE);
->   	} else {
->   		xe_map_memcpy_to(xe, &map, 0, init_data,
-> -				 xe_lrc_size(xe, hwe->class));
-> +				 xe_gt_lrc_size(gt, hwe->class));
->   		kfree(init_data);
->   	}
->   
-> @@ -786,11 +880,25 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
->   			xe_drm_client_add_bo(vm->xef->client, lrc->bo);
->   	}
->   
-> -	xe_lrc_write_ctx_reg(lrc, CTX_RING_START, __xe_lrc_ring_ggtt_addr(lrc));
-> -	xe_lrc_write_ctx_reg(lrc, CTX_RING_HEAD, 0);
-> -	xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, lrc->ring.tail);
-> -	xe_lrc_write_ctx_reg(lrc, CTX_RING_CTL,
-> -			     RING_CTL_SIZE(lrc->ring.size) | RING_VALID);
-> +	if (xe_gt_has_indirect_ring_state(gt)) {
-> +		xe_lrc_write_ctx_reg(lrc, CTX_INDIRECT_RING_STATE,
-> +				     __xe_lrc_indirect_ring_ggtt_addr(lrc));
-> +
-> +		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_START,
-> +					      __xe_lrc_ring_ggtt_addr(lrc));
-> +		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_START_UDW, 0);
-> +		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_HEAD, 0);
-> +		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_TAIL, lrc->ring.tail);
-> +		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_CTL,
-> +					      RING_CTL_SIZE(lrc->ring.size) | RING_VALID);
-> +	} else {
-> +		xe_lrc_write_ctx_reg(lrc, CTX_RING_START, __xe_lrc_ring_ggtt_addr(lrc));
-> +		xe_lrc_write_ctx_reg(lrc, CTX_RING_HEAD, 0);
-> +		xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, lrc->ring.tail);
-> +		xe_lrc_write_ctx_reg(lrc, CTX_RING_CTL,
-> +				     RING_CTL_SIZE(lrc->ring.size) | RING_VALID);
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+> index ec69803152a2..45f582a7caaa 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+> @@ -908,6 +908,13 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+>   	snapshot->reg.ring_hwstam = hw_engine_mmio_read32(hwe, RING_HWSTAM(0));
+>   	snapshot->reg.ring_hws_pga = hw_engine_mmio_read32(hwe, RING_HWS_PGA(0));
+>   	snapshot->reg.ring_start = hw_engine_mmio_read32(hwe, RING_START(0));
+> +	if (xe_gt_has_indirect_ring_state(hwe->gt)) {
+> +		snapshot->reg.indirect_ring_state =
+> +			hw_engine_mmio_read32(hwe, INDIRECT_RING_STATE(0));
+> +		snapshot->reg.ring_start_udw =
+> +			hw_engine_mmio_read32(hwe, RING_START_UDW(0));
 > +	}
 > +
->   	if (xe->info.has_asid && vm)
->   		xe_lrc_write_ctx_reg(lrc, PVC_CTX_ASID, vm->usm.asid);
+>   	snapshot->reg.ring_head =
+>   		hw_engine_mmio_read32(hwe, RING_HEAD(0)) & HEAD_ADDR;
+>   	snapshot->reg.ring_tail =
+> @@ -997,6 +1004,8 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
+>   	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS: 0x%016llx\n",
+>   		   snapshot->reg.ring_execlist_sq_contents);
+>   	drm_printf(p, "\tRING_START: 0x%08x\n", snapshot->reg.ring_start);
+> +	drm_printf(p, "\tRING_START_UDW: 0x%08x\n",
+> +		   snapshot->reg.ring_start_udw);
+>   	drm_printf(p, "\tRING_HEAD: 0x%08x\n", snapshot->reg.ring_head);
+>   	drm_printf(p, "\tRING_TAIL: 0x%08x\n", snapshot->reg.ring_tail);
+>   	drm_printf(p, "\tRING_CTL: 0x%08x\n", snapshot->reg.ring_ctl);
+> @@ -1010,6 +1019,8 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
+>   	drm_printf(p, "\tACTHD: 0x%016llx\n", snapshot->reg.ring_acthd);
+>   	drm_printf(p, "\tBBADDR: 0x%016llx\n", snapshot->reg.ring_bbaddr);
+>   	drm_printf(p, "\tDMA_FADDR: 0x%016llx\n", snapshot->reg.ring_dma_fadd);
+> +	drm_printf(p, "\tINDIRECT_RING_STATE: 0x%08x\n",
+> +		   snapshot->reg.indirect_ring_state);
+>   	drm_printf(p, "\tIPEHR: 0x%08x\n", snapshot->reg.ipehr);
+>   	xe_hw_engine_snapshot_instdone_print(snapshot, p);
 >   
-> @@ -834,14 +942,36 @@ void xe_lrc_finish(struct xe_lrc *lrc)
->   	xe_bo_put(lrc->bo);
->   }
->   
-> +void xe_lrc_set_ring_tail(struct xe_lrc *lrc, u32 tail)
-> +{
-> +	if (xe_lrc_has_indirect_ring_state(lrc))
-> +		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_TAIL, tail);
-> +	else
-> +		xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, tail);
-> +}
-> +
-> +u32 xe_lrc_ring_tail(struct xe_lrc *lrc)
-> +{
-> +	if (xe_lrc_has_indirect_ring_state(lrc))
-> +		return xe_lrc_read_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_TAIL) & TAIL_ADDR;
-> +	else
-> +		return xe_lrc_read_ctx_reg(lrc, CTX_RING_TAIL) & TAIL_ADDR;
-> +}
-> +
->   void xe_lrc_set_ring_head(struct xe_lrc *lrc, u32 head)
->   {
-> -	xe_lrc_write_ctx_reg(lrc, CTX_RING_HEAD, head);
-> +	if (xe_lrc_has_indirect_ring_state(lrc))
-> +		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_HEAD, head);
-> +	else
-> +		xe_lrc_write_ctx_reg(lrc, CTX_RING_HEAD, head);
->   }
->   
->   u32 xe_lrc_ring_head(struct xe_lrc *lrc)
->   {
-> -	return xe_lrc_read_ctx_reg(lrc, CTX_RING_HEAD) & HEAD_ADDR;
-> +	if (xe_lrc_has_indirect_ring_state(lrc))
-> +		return xe_lrc_read_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_HEAD) & HEAD_ADDR;
-> +	else
-> +		return xe_lrc_read_ctx_reg(lrc, CTX_RING_HEAD) & HEAD_ADDR;
->   }
->   
->   u32 xe_lrc_ring_space(struct xe_lrc *lrc)
-> @@ -1214,7 +1344,7 @@ void xe_lrc_dump_default(struct drm_printer *p,
->   	 * hardware status page.
->   	 */
->   	dw = gt->default_lrc[hwe_class] + LRC_PPHWSP_SIZE;
-> -	remaining_dw = (xe_lrc_size(gt_to_xe(gt), hwe_class) - LRC_PPHWSP_SIZE) / 4;
-> +	remaining_dw = (xe_gt_lrc_size(gt, hwe_class) - LRC_PPHWSP_SIZE) / 4;
->   
->   	while (remaining_dw > 0) {
->   		if ((*dw & XE_INSTR_CMD_TYPE) == XE_INSTR_MI) {
-> @@ -1355,9 +1485,10 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
->   		return NULL;
->   
->   	snapshot->context_desc = xe_lrc_ggtt_addr(lrc);
-> +	snapshot->indirect_context_desc = xe_lrc_indirect_ring_ggtt_addr(lrc);
->   	snapshot->head = xe_lrc_ring_head(lrc);
->   	snapshot->tail.internal = lrc->ring.tail;
-> -	snapshot->tail.memory = xe_lrc_read_ctx_reg(lrc, CTX_RING_TAIL);
-> +	snapshot->tail.memory = xe_lrc_ring_tail(lrc);
->   	snapshot->start_seqno = xe_lrc_start_seqno(lrc);
->   	snapshot->seqno = xe_lrc_seqno(lrc);
->   	snapshot->lrc_bo = xe_bo_get(lrc->bo);
-> @@ -1405,6 +1536,8 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
->   		return;
->   
->   	drm_printf(p, "\tHW Context Desc: 0x%08x\n", snapshot->context_desc);
-> +	drm_printf(p, "\tHW Indirect Ring State: 0x%08x\n",
-> +		   snapshot->indirect_context_desc);
->   	drm_printf(p, "\tLRC Head: (memory) %u\n", snapshot->head);
->   	drm_printf(p, "\tLRC Tail: (internal) %u, (memory) %u\n",
->   		   snapshot->tail.internal, snapshot->tail.memory);
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-> index d32fa31faa2c..06a95a598736 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.h
-> +++ b/drivers/gpu/drm/xe/xe_lrc.h
-> @@ -21,14 +21,17 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
->   		struct xe_exec_queue *q, struct xe_vm *vm, u32 ring_size);
->   void xe_lrc_finish(struct xe_lrc *lrc);
->   
-> -size_t xe_lrc_size(struct xe_device *xe, enum xe_engine_class class);
-> +size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class);
->   u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc);
->   
-> +void xe_lrc_set_ring_tail(struct xe_lrc *lrc, u32 tail);
-> +u32 xe_lrc_ring_tail(struct xe_lrc *lrc);
->   void xe_lrc_set_ring_head(struct xe_lrc *lrc, u32 head);
->   u32 xe_lrc_ring_head(struct xe_lrc *lrc);
->   u32 xe_lrc_ring_space(struct xe_lrc *lrc);
->   void xe_lrc_write_ring(struct xe_lrc *lrc, const void *data, size_t size);
->   
-> +u32 xe_lrc_indirect_ring_ggtt_addr(struct xe_lrc *lrc);
->   u32 xe_lrc_ggtt_addr(struct xe_lrc *lrc);
->   u32 *xe_lrc_regs(struct xe_lrc *lrc);
->   
-> diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
-> index b716df0dfb4e..cdbf03faef15 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc_types.h
-> +++ b/drivers/gpu/drm/xe/xe_lrc_types.h
-> @@ -20,10 +20,14 @@ struct xe_lrc {
->   	 */
->   	struct xe_bo *bo;
->   
-> +	/** @size: size of lrc including any indirect ring state page */
-> +	u32 size;
-> +
->   	/** @tile: tile which this LRC belongs to */
->   	struct xe_tile *tile;
->   
->   	/** @flags: LRC flags */
-> +#define XE_LRC_FLAG_INDIRECT_RING_STATE		0x1
->   	u32 flags;
->   
->   	/** @ring: submission ring state */
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 3f6e143d4a8e..5bf94abf84cc 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -658,6 +658,7 @@ static int xe_info_init(struct xe_device *xe,
->   		gt = tile->primary_gt;
->   		gt->info.id = xe->info.gt_count++;
->   		gt->info.type = XE_GT_TYPE_MAIN;
-> +		gt->info.has_indirect_ring_state = graphics_desc->has_indirect_ring_state;
->   		gt->info.__engine_mask = graphics_desc->hw_engine_mask;
->   		if (MEDIA_VER(xe) < 13 && media_desc)
->   			gt->info.__engine_mask |= media_desc->hw_engine_mask;
-> @@ -675,6 +676,7 @@ static int xe_info_init(struct xe_device *xe,
->   
->   		gt = tile->media_gt;
->   		gt->info.type = XE_GT_TYPE_MEDIA;
-> +		gt->info.has_indirect_ring_state = media_desc->has_indirect_ring_state;
->   		gt->info.__engine_mask = media_desc->hw_engine_mask;
->   		gt->mmio.adj_offset = MEDIA_GT_GSI_OFFSET;
->   		gt->mmio.adj_limit = MEDIA_GT_GSI_LENGTH;
-> diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-> index b1ad12fa22d6..c5c2a35410a4 100644
-> --- a/drivers/gpu/drm/xe/xe_pci_types.h
-> +++ b/drivers/gpu/drm/xe/xe_pci_types.h
-> @@ -26,6 +26,7 @@ struct xe_graphics_desc {
->   
->   	u8 has_asid:1;
->   	u8 has_flat_ccs:1;
-> +	u8 has_indirect_ring_state:1;
->   	u8 has_range_tlb_invalidation:1;
->   	u8 has_usm:1;
->   };
-> @@ -36,6 +37,8 @@ struct xe_media_desc {
->   	u8 rel;
->   
->   	u64 hw_engine_mask;	/* hardware engines provided by media IP */
-> +
-> +	u8 has_indirect_ring_state:1;
->   };
->   
->   struct gmdid_map {
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+> index 9f9755e31b9f..5f4b67acba99 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+> @@ -189,6 +189,8 @@ struct xe_hw_engine_snapshot {
+>   		u32 ring_hws_pga;
+>   		/** @reg.ring_start: RING_START */
+>   		u32 ring_start;
+> +		/** @reg.ring_start_udw: RING_START_UDW */
+> +		u32 ring_start_udw;
+>   		/** @reg.ring_head: RING_HEAD */
+>   		u32 ring_head;
+>   		/** @reg.ring_tail: RING_TAIL */
+> @@ -207,6 +209,8 @@ struct xe_hw_engine_snapshot {
+>   		u32 ring_emr;
+>   		/** @reg.ring_eir: RING_EIR */
+>   		u32 ring_eir;
+> +		/** @reg.indirect_ring_state: INDIRECT_RING_STATE */
+> +		u32 indirect_ring_state;
+>   		/** @reg.ipehr: IPEHR */
+>   		u32 ipehr;
+>   		/** @reg.rcu_mode: RCU_MODE */
