@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DFB1C25B10
-	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 02:18:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87733C4345F
+	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 03:47:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4B6410FD41;
-	Mon,  6 May 2024 02:18:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1893510ED7E;
+	Mon,  6 May 2024 03:47:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="kywDGneH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RRn0xDym";
 	dkim-atps=neutral
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE99410E615;
- Mon,  6 May 2024 02:18:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1714961881;
- bh=soFSD916NRLT6/m2clSFEXil9meuREHqNYpgRHAYDh4=;
- h=Date:From:To:Cc:Subject:From;
- b=kywDGneH6DxElX/YlYI2lslELIDY3H1jOiGgsRvvLkFfKNGGgy6fVDZA7paVXffDQ
- 68pSP7Onlq64BJ57ZjgKKWbIjeC+xvFjsJBFYHf6g7USYssLvMBtDpDDKbplkoJ7Bv
- hHwwpEqE8Sux3K3PGelvJjrIs0K5+BH7nBzUu4SgDinGEgqFNP4kCjorFiThqs9Nrd
- E+MIXDnMiGnnnhBAkyLIMfynX/kDW6+xnhhgpsGnLf4FiRxMMlCPc0+n0Uufg1QRJh
- DnFy1yaH7x2/Htg1847HpB5kU/dlQCFF+Bak7toYjAqpPrQpYlsY2F5hM6SKaKKniH
- s9VZ3LRYmtxzg==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4VXlS77221z4x0x;
- Mon,  6 May 2024 12:17:59 +1000 (AEST)
-Date: Mon, 6 May 2024 12:17:59 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?=
- <thomas.hellstrom@linux.intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>, DRM XE List
- <intel-xe@lists.freedesktop.org>, Balasubramani Vivekanandan
- <balasubramani.vivekanandan@intel.com>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>, Matthew Auld <matthew.auld@intel.com>, Nirmoy
- Das <nirmoy.das@intel.com>, Radhakrishna Sripada
- <radhakrishna.sripada@intel.com>
-Subject: linux-next: manual merge of the drm-xe tree with the drm-intel tree
-Message-ID: <20240506121759.5b6c6a7c@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE22F10ED7E
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 May 2024 03:47:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1714967245; x=1746503245;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RK6yj4lD621S+Hs9R7/1VKnPvMeDk8oiL+OZurPhxpU=;
+ b=RRn0xDymU+4xUjwG8b1d7scY4Mh9VATAmfx6OgWclSAP40IxJnjZRK1T
+ O5bH4nLEJEskqq2674wE6vsHEGXX7vp89WOW0Rvu38XUEUC/h55ZY/nq7
+ /A5NRBsLjuUuS7qnpvsCAaKLOWqSLHQ9oHdPweK6Z4xV6TKdf1xTc5HaL
+ dCPFSG1ZlAm+u/lS0Z4wkxd6LKU7vJ+SEfJ5Qa6kusteZu6gwgez61eax
+ rZvGeo+te6AqmcepBMhYPfFGWksv9bKBlllJfXVAXS98Y4G3L9baQbVb7
+ 1+HD9ixbvgJtUtIEpTPZhNh1XDkVwDg+NA85X4FN8Rx2vqBdQo0yxJ95I A==;
+X-CSE-ConnectionGUID: hgt/QAvBRwmFEDGRQoAUcg==
+X-CSE-MsgGUID: hItPNSyjTkKYCekfcjk1Ww==
+X-IronPort-AV: E=McAfee;i="6600,9927,11064"; a="10851834"
+X-IronPort-AV: E=Sophos;i="6.07,257,1708416000"; d="scan'208";a="10851834"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2024 20:47:24 -0700
+X-CSE-ConnectionGUID: IlFaKTaCTLGBGtJSQ/CQ0A==
+X-CSE-MsgGUID: yHkKxu4TRDGk84s4435b/g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,257,1708416000"; d="scan'208";a="28144728"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2024 20:47:25 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: Matthew Brost <matthew.brost@intel.com>,
+	stable@vger.kernel.org
+Subject: [PATCH] drm/xe: Use ordered WQ for G2H handler
+Date: Sun,  5 May 2024 20:47:58 -0700
+Message-Id: <20240506034758.3697397-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/7Wi8_X7WNQwmePZdKHLY9jd";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,73 +65,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---Sig_/7Wi8_X7WNQwmePZdKHLY9jd
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+System work queues are shared, use a dedicated work queue for G2H
+processing to avoid G2H processing getting block behind system tasks.
 
-Hi all,
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_ct.c       | 5 +++++
+ drivers/gpu/drm/xe/xe_guc_ct.h       | 2 +-
+ drivers/gpu/drm/xe/xe_guc_ct_types.h | 2 ++
+ 3 files changed, 8 insertions(+), 1 deletion(-)
 
-Today's linux-next merge of the drm-xe tree got a conflict in:
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 8ac819a7061e..cc60c3333ce3 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -121,6 +121,7 @@ static void guc_ct_fini(struct drm_device *drm, void *arg)
+ {
+ 	struct xe_guc_ct *ct = arg;
+ 
++	destroy_workqueue(ct->g2h_wq);
+ 	xa_destroy(&ct->fence_lookup);
+ }
+ 
+@@ -146,6 +147,10 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+ 
+ 	xe_gt_assert(gt, !(guc_ct_size() % PAGE_SIZE));
+ 
++	ct->g2h_wq = alloc_ordered_workqueue("xe-g2h-wq", 0);
++	if(!ct->g2h_wq)
++		return -ENOMEM;
++
+ 	spin_lock_init(&ct->fast_lock);
+ 	xa_init(&ct->fence_lookup);
+ 	INIT_WORK(&ct->g2h_worker, g2h_worker_func);
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+index 5083e099064f..105bb8e99a8d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+@@ -34,7 +34,7 @@ static inline void xe_guc_ct_irq_handler(struct xe_guc_ct *ct)
+ 		return;
+ 
+ 	wake_up_all(&ct->wq);
+-	queue_work(system_unbound_wq, &ct->g2h_worker);
++	queue_work(ct->g2h_wq, &ct->g2h_worker);
+ 	xe_guc_ct_fast_path(ct);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+index d29144c9f20b..fede4c6e93cb 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+@@ -120,6 +120,8 @@ struct xe_guc_ct {
+ 	wait_queue_head_t wq;
+ 	/** @g2h_fence_wq: wait queue used for G2H fencing */
+ 	wait_queue_head_t g2h_fence_wq;
++	/** @g2h_wq: used to process G2H */
++	struct workqueue_struct *g2h_wq;
+ 	/** @msg: Message buffer */
+ 	u32 msg[GUC_CTB_MSG_MAX_LEN];
+ 	/** @fast_msg: Message buffer */
+-- 
+2.34.1
 
-  drivers/gpu/drm/xe/xe_device.h
-
-between commit:
-
-  c01c6066e6fa ("drm/xe/device: implement transient flush")
-
-from the drm-intel tree and commits:
-
-  fb74b205cdd2 ("drm/xe: Introduce a simple wedged state")
-  8ed9aaae39f3 ("drm/xe: Force wedged state and block GT reset upon any GPU=
- hang")
-  6b8ef44cc0a9 ("drm/xe: Introduce the wedged_mode debugfs")
-
-from the drm-xe tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc drivers/gpu/drm/xe/xe_device.h
-index 7524a71c0d84,82317580f4bf..000000000000
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@@ -167,6 -167,11 +167,13 @@@ void xe_device_snapshot_print(struct xe
-  u64 xe_device_canonicalize_addr(struct xe_device *xe, u64 address);
-  u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address);
- =20
- +void xe_device_td_flush(struct xe_device *xe);
- +
-+ static inline bool xe_device_wedged(struct xe_device *xe)
-+ {
-+ 	return atomic_read(&xe->wedged.flag);
-+ }
-+=20
-+ void xe_device_declare_wedged(struct xe_device *xe);
-+=20
-  #endif
-
---Sig_/7Wi8_X7WNQwmePZdKHLY9jd
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmY4PdcACgkQAVBC80lX
-0Gw7Gwf+MQ1FKfb1l4Fje3jDfpRrK+62r1mwZXibfC3BqZQ6M4oFZ+ME7KEeKcn8
-bh4F87u44sK00j/pdLqHB8V4JnZlIfEBRVGSCd9cMLLfjXLi/fd1Yu9RlL5izbWf
-d2U9Is+FKq5AoZwAMatw2LTdb0EgH6xQ01nNJnMvDCu9g8BztuAcuuZimEbNRzgt
-5DX1LkSQdbgfylYR1TWr3o3kD76jsmyOa/Znctsty2ejdNzQLFAxO/+YZp6ZP6xC
-1qIQft83W3bq+SzZJ5UT9ckohvBxvr8cvpCs/PiqZOlnHzq61c7KcphP5l1OCOID
-78urM3wwUWGJI/gVfNpXlw1lc2zbkA==
-=rp0r
------END PGP SIGNATURE-----
-
---Sig_/7Wi8_X7WNQwmePZdKHLY9jd--
