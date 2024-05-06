@@ -4,57 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3AC0C25B4F
-	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 16:33:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88370C25B4F
+	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 16:38:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7650A10EED5;
-	Mon,  6 May 2024 16:33:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CC8710F16E;
+	Mon,  6 May 2024 16:38:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MxVq7TAy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CvwIRVwO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22AC610EED5
- for <intel-xe@lists.freedesktop.org>; Mon,  6 May 2024 16:33:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFD8E10F10B;
+ Mon,  6 May 2024 16:38:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715013233; x=1746549233;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=84a9STStFUbzeCndz3/NzWzipZcJa8VAhiiZ8D6KTos=;
- b=MxVq7TAy+7RWCinS39V716gDNBgqwxE/yO5R1y7UMYF52sNmxLaS14Ap
- hcX0qlX1qU63qy1gNBaQRsiJIxM18jVYXTeEVZb9Jme1BJ2L7wD7Zw3lv
- Pk3ynDK8V2qy/h0XhyjjwDRfkwFUtru48UbSmEP/Y8bYDvDlT+v5SX0JX
- Db2k6brHY1XTQQKeexpnaU08YgEBC1/CtcD9pZB7GtmLBZLAz3jMf6+AZ
- 2+IW4TUp+v0WyD07tj0SNpydg6JhpejQUyyVYbxacMKCEVqxPNHoX5ASW
- syjz6kbTeQ89w21+9nj8OqERpuxe+Qtpnivq7btJfN2YRamr00TZqld8S A==;
-X-CSE-ConnectionGUID: 6Q5/yUoPS9SXIEiHbkwRMA==
-X-CSE-MsgGUID: BOeOo5A2SxW1CZRX6QO2FQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="13717430"
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="13717430"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 09:33:52 -0700
-X-CSE-ConnectionGUID: IWNb3Di8SjKDP5Rge/RhRQ==
-X-CSE-MsgGUID: 2+yzd1EaSzy1ySQZA8rX3g==
+ t=1715013486; x=1746549486;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=x6rpYphBy5rJ6wq+7DapIOu7ZKUHff1rXbKExBTr9nc=;
+ b=CvwIRVwObfqkXTzXbDu5FR+e2Ezsp7k//xiR1LykoSjBNzdTEVh5pQKo
+ F4xe4r0BQz0A/vU76Gj5pLXeZjdjXr0L+f9+OfVnp6PYt9qnd9i0DPMwr
+ RGN7QoZfYXO+/GXOD7LNcTYycy5R8Sp3o53v8fkLsBhxfHILMlftzVAh0
+ P+iw3vFtd2NYaMcyJR8DI4/FpQ159j0LuOj31rLua+C86FR212DW6cv8+
+ 98AK9O4x4ZGIIC3bKAsHzkjb+ZyOU8itmG46I4ugD50P0LZzOAauYKOdg
+ mXP85aWSquJ9idFdaQpyoon3LPQCoZagPHxikQpFI7toDu+qg4cwwqsf0 g==;
+X-CSE-ConnectionGUID: cvmPPidPSpmd8HfqW+wMTw==
+X-CSE-MsgGUID: ++D3Lg0/QUGUcGoPh+lgYw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="14579273"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="14579273"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 09:38:04 -0700
+X-CSE-ConnectionGUID: YcpJrTRXQ3GBoB1bBdARxg==
+X-CSE-MsgGUID: LZHdX6oeT1Gy2K3tSOmzXQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="28610535"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 09:33:52 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org, ramadevi.gandi@intel.com,
- Janga Rahul Kumar <janga.rahul.kumar@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
-	matthew.d.roper@intel.com
-Subject: Re: [PATCH v5 0/2] drm/xe/mocs: Add debugfs node to dump mocs
-Date: Mon,  6 May 2024 09:34:44 -0700
-Message-ID: <171501325073.219249.15264562284999475028.b4-ty@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240503193902.2056202-1-janga.rahul.kumar@intel.com>
-References: <20240503193902.2056202-1-janga.rahul.kumar@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="28214699"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 06 May 2024 09:38:02 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 06 May 2024 19:38:01 +0300
+Date: Mon, 6 May 2024 19:38:01 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 2/9] drm/i915: Clean up skl+ plane stride limits
+Message-ID: <ZjkHaZOdijUrHrci@intel.com>
+References: <20240506125718.26001-1-ville.syrjala@linux.intel.com>
+ <20240506125718.26001-3-ville.syrjala@linux.intel.com>
+ <874jbbm3zk.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <874jbbm3zk.fsf@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,25 +71,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On Sat, 04 May 2024 01:09:00 +0530, Janga Rahul Kumar wrote:
-> This is useful to check mocs configuration. Tests/Tools can use
-> this debugfs entry to get mocs info.
+On Mon, May 06, 2024 at 05:03:59PM +0300, Jani Nikula wrote:
+> On Mon, 06 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > skl_plane_max_stride() is pretty messy. Streamline it and
+> > split it into clear skl+ vs. adl+ variants.
+> >
+> > TODO: Deal with icl and tgl strude limits properly
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  .../drm/i915/display/skl_universal_plane.c    | 65 +++++++++++--------
+> >  1 file changed, 37 insertions(+), 28 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > index 0a8e781a3648..b8103d6ebc1f 100644
+> > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > @@ -461,41 +461,46 @@ static int icl_plane_max_height(const struct drm_framebuffer *fb,
+> >  }
+> >  
+> >  static unsigned int
+> > -skl_plane_max_stride(struct intel_plane *plane,
+> > -		     u32 pixel_format, u64 modifier,
+> > -		     unsigned int rotation)
+> > +plane_max_stride(struct intel_plane *plane,
+> > +		 u32 pixel_format, u64 modifier,
+> > +		 unsigned int rotation,
+> > +		 unsigned int max_pixels,
+> > +		 unsigned int max_bytes)
+> >  {
+> > -	struct drm_i915_private *i915 = to_i915(plane->base.dev);
+> >  	const struct drm_format_info *info = drm_format_info(pixel_format);
+> >  	int cpp = info->cpp[0];
+> > -	int max_horizontal_pixels = 8192;
+> > -	int max_stride_bytes;
+> > -
+> > -	if (DISPLAY_VER(i915) >= 13) {
+> > -		/*
+> > -		 * The stride in bytes must not exceed of the size
+> > -		 * of 128K bytes. For pixel formats of 64bpp will allow
+> > -		 * for a 16K pixel surface.
+> > -		 */
+> > -		max_stride_bytes = 131072;
+> > -		if (cpp == 8)
+> > -			max_horizontal_pixels = 16384;
 > 
-> v2: Address review comments. Change debugfs output style similar
-> to pat debugfs. (Lucas De Marchi)
+> The commit message doesn't mention anything about this being dropped.
+
+16k pixels * 8 cpp == 128k bytes, so it's completely redundant.
+
 > 
-> v3: rebase.
+> BR,
+> Jani.
 > 
-> [...]
+> > -		else
+> > -			max_horizontal_pixels = 65536;
+> > -	} else {
+> > -		/*
+> > -		 * "The stride in bytes must not exceed the
+> > -		 * of the size of 8K pixels and 32K bytes."
+> > -		 */
+> > -		max_stride_bytes = 32768;
+> > -	}
+> >  
+> >  	if (drm_rotation_90_or_270(rotation))
+> > -		return min(max_horizontal_pixels, max_stride_bytes / cpp);
+> > +		return min(max_pixels, max_bytes / cpp);
+> >  	else
+> > -		return min(max_horizontal_pixels * cpp, max_stride_bytes);
+> > +		return min(max_pixels * cpp, max_bytes);
+> >  }
+> >  
+> > +static unsigned int
+> > +adl_plane_max_stride(struct intel_plane *plane,
+> > +		     u32 pixel_format, u64 modifier,
+> > +		     unsigned int rotation)
+> > +{
+> > +	unsigned int max_pixels = 65536; /* PLANE_OFFSET limit */
+> > +	unsigned int max_bytes = 128 * 1024;
+> > +
+> > +	return plane_max_stride(plane, pixel_format,
+> > +				modifier, rotation,
+> > +				max_pixels, max_bytes);
+> > +}
+> > +
+> > +static unsigned int
+> > +skl_plane_max_stride(struct intel_plane *plane,
+> > +		     u32 pixel_format, u64 modifier,
+> > +		     unsigned int rotation)
+> > +{
+> > +	unsigned int max_pixels = 8192; /* PLANE_OFFSET limit */
+> > +	unsigned int max_bytes = 32 * 1024;
+> > +
+> > +	return plane_max_stride(plane, pixel_format,
+> > +				modifier, rotation,
+> > +				max_pixels, max_bytes);
+> > +}
+> >  
+> >  /* Preoffset values for YUV to RGB Conversion */
+> >  #define PREOFF_YUV_TO_RGB_HI		0x1800
+> > @@ -2357,7 +2362,11 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+> >  		plane->min_cdclk = skl_plane_min_cdclk;
+> >  	}
+> >  
+> > -	plane->max_stride = skl_plane_max_stride;
+> > +	if (DISPLAY_VER(dev_priv) >= 13)
+> > +		plane->max_stride = adl_plane_max_stride;
+> > +	else
+> > +		plane->max_stride = skl_plane_max_stride;
+> > +
+> >  	if (DISPLAY_VER(dev_priv) >= 11) {
+> >  		plane->update_noarm = icl_plane_update_noarm;
+> >  		plane->update_arm = icl_plane_update_arm;
+> 
+> -- 
+> Jani Nikula, Intel
 
-Applied to drm-xe-next, thanks!
-
-[1/2] drm/xe: Relocate regs_are_mcr function
-      commit: 72c7163f27483c333a1f27916505459efa1a373a
-[2/2] drm/xe/mocs: Add debugfs node to dump mocs
-      commit: 9fbd0adbcbe81e207eb030d9ad59953905625dd1
-
-Best regards,
 -- 
-Lucas De Marchi <lucas.demarchi@intel.com>
+Ville Syrjälä
+Intel
