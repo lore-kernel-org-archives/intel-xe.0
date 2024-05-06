@@ -4,60 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD535C10F16
-	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 09:12:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 711E3C41513
+	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 09:17:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EB7610EA91;
-	Mon,  6 May 2024 09:12:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27DA210E9DA;
+	Mon,  6 May 2024 09:17:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iKipcEq1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jz9VJjCq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDF6610EA91
- for <intel-xe@lists.freedesktop.org>; Mon,  6 May 2024 09:12:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF8F610E9DA;
+ Mon,  6 May 2024 09:17:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714986778; x=1746522778;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=2Qu4SL2V0Rxwlf43/nU8OchmzCGtJaXT4R/q3cdjmHM=;
- b=iKipcEq1rSnxFnN6ma3suxjJaNzdKuieUOu/LZfXY4dxRnWii2QIZZqt
- 1XF6RydWeUKtPFpad9gdLLWKytBFj+GRgAwMM4w6Gs3bNgoC6n3GJuBh4
- EqIjTgu29NPHyO4XwhKlOTUoq4Sbd3E+u0s0WcHYumHpUZxQYKwx4uu7M
- yofslN1Qe52A5dLRWXE+nYwuwsIEWCl9zCiGu+Gjo3xqbg3MPezKS6sFF
- Px/QCagnBcqCL2wZica0cekwXCEVBOE715uDB56bH8LSrlj9NXmYKgI+1
- 1UWe9wplB5tl8KJv4LqZDy9Q/Tcuha/RUHKdS+9c0/EqfCrzYW1b9bN6A Q==;
-X-CSE-ConnectionGUID: 9DmcIokNS4+bsl88KKtdEA==
-X-CSE-MsgGUID: IZbRLuSgR8eeUfTLmv8elQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11064"; a="21278359"
-X-IronPort-AV: E=Sophos;i="6.07,257,1708416000"; d="scan'208";a="21278359"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 02:12:57 -0700
-X-CSE-ConnectionGUID: +2MVn6ZaTPGSJek2i+3vGA==
-X-CSE-MsgGUID: FTnu8nc9QHGhwBSiWB9pgw==
+ t=1714987056; x=1746523056;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=cl18l/TXvz4Zvo1045jScsKEtjhBFIXuANQZjuBD3wQ=;
+ b=Jz9VJjCq4pW1BSyFf7c1HH49Aah5cltvu3ypy+RX2KG6o+LuXLreovkn
+ WXHQFqjPeGHoOOytQPfWK2ckWi7BL5feCDzHnazFrprCQVXz7rr3kO761
+ c9EdpIvwiYmEJ4VRZpSnK9ou2RuekMQ9aQ4YbfrcFPcCGeJOF193aCh7U
+ s6rpnuSCWyt5XxRxJ0ESEH9Wgngj3xoDkQkDX3UKSy7BdGk5BhP+BYXVL
+ EFoAN7tfOEqxwTjUgU+iIHB3zolrGT/pd8aa+Ro8QWyYHhI1oICYjqInm
+ wm9s+m3WdmIXNkJOr9kQeEq12+mbgFPXOFi47fx2VPSi0M4jwYgVsn2xy g==;
+X-CSE-ConnectionGUID: KCH4/JQVSWOsqFXYdp7anw==
+X-CSE-MsgGUID: RANmDG2tRPyHnprb18Dxtg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11064"; a="11257825"
+X-IronPort-AV: E=Sophos;i="6.07,257,1708416000"; d="scan'208";a="11257825"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 02:17:35 -0700
+X-CSE-ConnectionGUID: 4+Jvg8cMTyaYXdytTnxAvQ==
+X-CSE-MsgGUID: JlvUVT2gRSG1ghf7Ms253g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,257,1708416000"; d="scan'208";a="58987057"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.246.30.61])
- ([10.246.30.61])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 02:12:55 -0700
-Message-ID: <4b2283cf-dc3a-487b-9e3e-45bf863d2c92@intel.com>
-Date: Mon, 6 May 2024 11:12:53 +0200
+X-IronPort-AV: E=Sophos;i="6.07,257,1708416000"; d="scan'208";a="28504342"
+Received: from unknown (HELO intel.com) ([10.247.119.173])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 02:17:18 -0700
+Date: Mon, 6 May 2024 11:17:09 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Easwar Hariharan <eahariha@linux.microsoft.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>, 
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ "open list:INTEL GVT-g DRIVERS (Intel GPU Virtualization)"
+ <intel-gvt-dev@lists.freedesktop.org>, 
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>, 
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+ Zhi Wang <zhiwang@kernel.org>
+Subject: Re: [PATCH v2 03/12] drm/i915: Make I2C terminology more inclusive
+Message-ID: <ZjigFRyMhgcS6Zju@ashyti-mobl2.lan>
+References: <20240503181333.2336999-1-eahariha@linux.microsoft.com>
+ <20240503181333.2336999-4-eahariha@linux.microsoft.com>
+ <ZjU8NB-71xWI2X73@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/8] drm/xe/device: move flr to devm
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20240429121436.33013-9-matthew.auld@intel.com>
- <20240429121436.33013-15-matthew.auld@intel.com>
-Content-Language: en-US
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20240429121436.33013-15-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZjU8NB-71xWI2X73@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,40 +89,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 29.04.2024 14:14, Matthew Auld wrote:
-> Should be called when driver is removed, not when this particular driver
-> instance is destroyed.
-> 
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Hi,
 
-Regards
-Andrzej
-> ---
->   drivers/gpu/drm/xe/xe_device.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+On Fri, May 03, 2024 at 03:34:12PM -0400, Rodrigo Vivi wrote:
+> On Fri, May 03, 2024 at 06:13:24PM +0000, Easwar Hariharan wrote:
+> > I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
+> > with more appropriate terms. Inspired by and following on to Wolfram's
+> > series to fix drivers/i2c/[1], fix the terminology for users of
+> > I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+> > in the specification.
+> > 
+> > Compile tested, no functionality changes intended
+> > 
+> > [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+> > 
+> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index b61f8356e23e..ba917e383f8f 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -387,7 +387,7 @@ static void xe_driver_flr(struct xe_device *xe)
->   	xe_mmio_write32(gt, GU_DEBUG, DRIVERFLR_STATUS);
->   }
->   
-> -static void xe_driver_flr_fini(struct drm_device *drm, void *arg)
-> +static void xe_driver_flr_fini(void *arg)
->   {
->   	struct xe_device *xe = arg;
->   
-> @@ -589,7 +589,7 @@ int xe_device_probe(struct xe_device *xe)
->   	err = xe_devcoredump_init(xe);
->   	if (err)
->   		return err;
-> -	err = drmm_add_action_or_reset(&xe->drm, xe_driver_flr_fini, xe);
-> +	err = devm_add_action_or_reset(xe->drm.dev, xe_driver_flr_fini, xe);
->   	if (err)
->   		return err;
->   
+> It looks like the ack is not needed since we are merging this through
+> drm-intel-next. But I'm planing to merge this only after seeing the
+> main drivers/i2c accepting the new terminology. So we don't have a
+> risk of that getting push back and new names there and we having
+> to rename it once again.
 
+I basically agree with this patch (without the eDP part).
+
+But the documentation is still not update and I think we need to
+hold until Wolfram has done that.
+
+In any case, it's good to anticipate the reviews.
+
+Thanks Easwar,
+Andi
