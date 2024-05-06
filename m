@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 283C0C10F16
-	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 15:54:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A43E9C25B4F
+	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 16:05:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C874A10F0FA;
-	Mon,  6 May 2024 15:54:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="mvrt3j3G";
-	dkim-atps=neutral
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id E7E8C10F0F9;
- Mon,  6 May 2024 15:54:48 +0000 (UTC)
-Received: from [100.65.96.57] (unknown [20.236.10.66])
- by linux.microsoft.com (Postfix) with ESMTPSA id 63A2E20B2C82;
- Mon,  6 May 2024 08:54:47 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 63A2E20B2C82
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1715010888;
- bh=sn+I7ADMPSvGvZYIULHrdfmxmoEt29gcieDFLNGehhA=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=mvrt3j3GirQyL+zNWSUJPrkb94vYe3gRE3gFwpfF/00niIyl3fc+VRb5f4AxuoW6y
- kfky6VeELzBpCgzxTreaammrgxgd2SDXZvPOj7nLeVxJzxzGqiRR6ErGuzVari+m/L
- Ad5PQJ1lUdbhal6K44JEvCMsC3zo/UFAAL0Irirc=
-Message-ID: <82f5b8e3-45c4-4b59-bc96-4cee2b122e9a@linux.microsoft.com>
-Date: Mon, 6 May 2024 08:54:47 -0700
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BC8C10E689;
+	Mon,  6 May 2024 16:05:08 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6A1A10E689;
+ Mon,  6 May 2024 16:05:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 10/12] sfc: falcon: Make I2C terminology more inclusive
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Edward Cree <ecree.xilinx@gmail.com>,
- Martin Habets <habetsm.xilinx@gmail.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
- "open list:SFC NETWORK DRIVER" <netdev@vger.kernel.org>,
- "open list:SFC NETWORK DRIVER" <linux-net-drivers@amd.com>,
- open list <linux-kernel@vger.kernel.org>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-gfx@lists.freedesktop.org>,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-xe@lists.freedesktop.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>,
- "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
- "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
- "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
-References: <20240430173812.1423757-1-eahariha@linux.microsoft.com>
- <20240430173812.1423757-11-eahariha@linux.microsoft.com>
- <20240503151300.0f202c30@kernel.org>
-Content-Language: en-CA
-From: Easwar Hariharan <eahariha@linux.microsoft.com>
-In-Reply-To: <20240503151300.0f202c30@kernel.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_PF=3A_Support_for_ad?=
+ =?utf-8?q?verse_events_notifications?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 06 May 2024 16:05:06 -0000
+Message-ID: <171501150687.1939724.13362182617946830163@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240506133814.2571-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20240506133814.2571-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,27 +36,28 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 5/3/2024 3:13 PM, Jakub Kicinski wrote:
-> On Tue, 30 Apr 2024 17:38:09 +0000 Easwar Hariharan wrote:
->> I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
->> with more appropriate terms. Inspired by and following on to Wolfram's
->> series to fix drivers/i2c/[1], fix the terminology for users of
->> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
->> in the specification.
->>
->> Compile tested, no functionality changes intended
-> 
-> FWIW we're assuming someone (Wolfram?) will take all of these,
-> instead of area maintainers picking them individually.
-> Please let us know if that's incorrect.
+== Series Details ==
 
-I think, based on the trend in the v2 conversation[1], that's correct. If maintainers of
-other areas disagree, please chime in.
+Series: PF: Support for adverse events notifications
+URL   : https://patchwork.freedesktop.org/series/133236/
+State : success
 
-Thanks,
-Easwar
+== Summary ==
 
-[1] https://lore.kernel.org/all/20240503181333.2336999-1-eahariha@linux.microsoft.com/
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 5a59c9dd7c7b drm-tip: 2024y-05m-06d-15h-59m-14s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/guc: Add more KLV helper macros
+Applying: drm/xe/guc: Introduce GuC KLV thresholds set
+Applying: drm/xe/guc: Add support for threshold KLVs in to_string() helper
+Applying: drm/xe/pf: Introduce functions to configure VF thresholds
+Applying: drm/xe/pf: Allow configuration of VF thresholds over debugfs
+Applying: drm/xe/guc: Add GUC2PF_ADVERSE_EVENT to ABI
+Applying: drm/xe/pf: Track adverse events notifications from GuC
+Applying: drm/xe/pf: Expose PF monitor details via debugfs
+
+
