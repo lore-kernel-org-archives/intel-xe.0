@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64929C25B5C
-	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 18:25:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF7BFC25B4F
+	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 18:33:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 240171122EF;
-	Mon,  6 May 2024 18:25:05 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4298E1122EF;
- Mon,  6 May 2024 18:25:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A65310E581;
+	Mon,  6 May 2024 18:33:36 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n8WwXS7S";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4047410E581;
+ Mon,  6 May 2024 18:33:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1715020415; x=1746556415;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+h3wkleTWs//RT0tKl8/c7nGqMr4Je4r+hYyHjvnzAU=;
+ b=n8WwXS7SemkGmIvfXZjW4hC+QJRVgMGjvDlMVPWcjNqi0H2T1WjzJJ2X
+ f/SocYgRlH4Ma6lYzQOpBFdpGFiDhwvpRS+iNKrXaLzunPgnj1ACc8j1v
+ Xmk8aGcZL1i5NS30TZf4FT9mwADUBuRTtqYW8l/+k1qtSt91+Mwi5MDt8
+ ZfYFL4r6nIO6LKmaDYt3sQsJk9jlAguwNUekzyRYvaNb/1aL+M2g0qyAK
+ FsPjIxwscf0jdmRREX8Y7irAer8XmiS9jGPo3XSHwa5FW1bcpX1lYJLZJ
+ ZtQ3ZVZQqV5Xx/59hT4WyPfAFjCaBOuLfstDaw9Vx18PdKj3nep/9kxsq w==;
+X-CSE-ConnectionGUID: 6zAXy7MzRrel5Ud8GWni2w==
+X-CSE-MsgGUID: uA3Q7JE6Rj6tFsogZ0OC6Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="21455528"
+X-IronPort-AV: E=Sophos;i="6.07,259,1708416000"; d="scan'208";a="21455528"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 11:33:35 -0700
+X-CSE-ConnectionGUID: 5DZd3uFlSC6uK/PPtSfNjg==
+X-CSE-MsgGUID: df+NTNEwSQaQ7Naq6SuEvQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,259,1708416000"; d="scan'208";a="28237088"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 06 May 2024 11:33:33 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 06 May 2024 21:33:31 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/xe: Nuke xe's copy of intel_fbdev_fb.h
+Date: Mon,  6 May 2024 21:33:31 +0300
+Message-ID: <20240506183331.7720-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/ads=3A_Use_flexib?=
- =?utf-8?q?le-array?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 06 May 2024 18:25:04 -0000
-Message-ID: <171501990427.1941771.16075867314483792548@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240506141917.205714-1-lucas.demarchi@intel.com>
-In-Reply-To: <20240506141917.205714-1-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +63,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: drm/xe/ads: Use flexible-array
-URL   : https://patchwork.freedesktop.org/series/133240/
-State : success
+For some reason xe and i915 each have an identical (fortunately)
+copy of intel_fbdev_fb.h. The xe copy actually only gets included
+by xe's intel_fbdev_fb.c, and the i915 copy by everyone else,
+include intel_fbdev.c which is the actual caller of the
+functions declared in the header.
 
-== Summary ==
+This means the xe and i915 headers are free to define/declare
+completely incompatible things and the build would still succeed
+as long as the symbol names match.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 47082f3bfe201756960b6ac0e0af31495d9a53f5
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+That is not a good thing, so let's nuke xe's copy of the header
+so that everyone will use the same header, and be forced to
+agree on the same API/ABI.
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/xe/display/intel_fbdev_fb.h | 21 ---------------------
+ 1 file changed, 21 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/display/intel_fbdev_fb.h
 
+diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.h b/drivers/gpu/drm/xe/display/intel_fbdev_fb.h
+deleted file mode 100644
+index ea186772e0bb..000000000000
+--- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.h
++++ /dev/null
+@@ -1,21 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright © 2023 Intel Corporation
+- */
+-
+-#ifndef __INTEL_FBDEV_FB_H__
+-#define __INTEL_FBDEV_FB_H__
+-
+-struct drm_fb_helper;
+-struct drm_fb_helper_surface_size;
+-struct drm_i915_gem_object;
+-struct drm_i915_private;
+-struct fb_info;
+-struct i915_vma;
+-
+-struct drm_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
+-			 struct drm_fb_helper_surface_size *sizes);
+-int intel_fbdev_fb_fill_info(struct drm_i915_private *i915, struct fb_info *info,
+-			      struct drm_i915_gem_object *obj, struct i915_vma *vma);
+-
+-#endif
+-- 
+2.43.2
 
