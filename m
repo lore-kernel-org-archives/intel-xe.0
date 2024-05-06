@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF7BFC25B4F
-	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 18:33:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 568F0C25B4F
+	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 18:41:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A65310E581;
-	Mon,  6 May 2024 18:33:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15A5C10F4C8;
+	Mon,  6 May 2024 18:41:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n8WwXS7S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lyzDLP8o";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4047410E581;
- Mon,  6 May 2024 18:33:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8646112305
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 May 2024 18:41:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715020415; x=1746556415;
+ t=1715020899; x=1746556899;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=+h3wkleTWs//RT0tKl8/c7nGqMr4Je4r+hYyHjvnzAU=;
- b=n8WwXS7SemkGmIvfXZjW4hC+QJRVgMGjvDlMVPWcjNqi0H2T1WjzJJ2X
- f/SocYgRlH4Ma6lYzQOpBFdpGFiDhwvpRS+iNKrXaLzunPgnj1ACc8j1v
- Xmk8aGcZL1i5NS30TZf4FT9mwADUBuRTtqYW8l/+k1qtSt91+Mwi5MDt8
- ZfYFL4r6nIO6LKmaDYt3sQsJk9jlAguwNUekzyRYvaNb/1aL+M2g0qyAK
- FsPjIxwscf0jdmRREX8Y7irAer8XmiS9jGPo3XSHwa5FW1bcpX1lYJLZJ
- ZtQ3ZVZQqV5Xx/59hT4WyPfAFjCaBOuLfstDaw9Vx18PdKj3nep/9kxsq w==;
-X-CSE-ConnectionGUID: 6zAXy7MzRrel5Ud8GWni2w==
-X-CSE-MsgGUID: uA3Q7JE6Rj6tFsogZ0OC6Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="21455528"
-X-IronPort-AV: E=Sophos;i="6.07,259,1708416000"; d="scan'208";a="21455528"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 11:33:35 -0700
-X-CSE-ConnectionGUID: 5DZd3uFlSC6uK/PPtSfNjg==
-X-CSE-MsgGUID: df+NTNEwSQaQ7Naq6SuEvQ==
+ bh=EMnHr/FwNyfpR4r+Vml0AHBfEgX7bsRG/gWNyYa9U5g=;
+ b=lyzDLP8ooZNzMCdmO102I4FZizqE7fIBLWO/7tj7dcxSKWjVcgxjSJCE
+ lkffwEJVvObVRSrlAFrJNwE5rqX1wGNX8kJLrvel7blVGH0FF/cKq97F8
+ QWgAyb84943gJ/lYql0EygL6jh8IcBe/yF8Pxe2zKQuUMSzpEvXGUkgXp
+ ylaylBJZUda0mztzUiq9pttcGYmhkn7yh0sM9rrPi0GXu2kYcTMMLQM0X
+ 25+LSIGdrwD5epwNks3ocUzMRAnOd8qeLJmC9o4YyPlC1EpQHWw4ldDvS
+ J1eF3+3HDHVyLXnYJuABdeTnVi/cWH9nw0iBK0ZZhUwu5i4vB9mWpq/DG w==;
+X-CSE-ConnectionGUID: jPWZ/QEWTw+Tvr40W4WHsQ==
+X-CSE-MsgGUID: Nozf2sKIR5u31y64SOdRew==
+X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="22187858"
+X-IronPort-AV: E=Sophos;i="6.07,259,1708416000"; d="scan'208";a="22187858"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 11:41:38 -0700
+X-CSE-ConnectionGUID: ScImRGanSkWb96zxzOPxuw==
+X-CSE-MsgGUID: Z9Y1HBgJSQ+6EY2ReZMHkg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,259,1708416000"; d="scan'208";a="28237088"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 06 May 2024 11:33:33 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 06 May 2024 21:33:31 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,259,1708416000"; d="scan'208";a="33048315"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.82.128])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 11:41:36 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/xe: Nuke xe's copy of intel_fbdev_fb.h
-Date: Mon,  6 May 2024 21:33:31 +0300
-Message-ID: <20240506183331.7720-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.43.2
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v3] drm/xe/pf: Implement pci_driver.sriov_configure callback
+Date: Mon,  6 May 2024 20:41:21 +0200
+Message-Id: <20240506184121.2615-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -66,55 +68,234 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+The PCI subsystem already exposes the "sriov_numvfs" attribute
+that users can use to enable or disable SR-IOV VFs. Add custom
+implementation of the .sriov_configure callback defined by the
+pci_driver to perform additional steps, including fair VFs
+provisioning with the resources, as required by our platforms.
 
-For some reason xe and i915 each have an identical (fortunately)
-copy of intel_fbdev_fb.h. The xe copy actually only gets included
-by xe's intel_fbdev_fb.c, and the i915 copy by everyone else,
-include intel_fbdev.c which is the actual caller of the
-functions declared in the header.
-
-This means the xe and i915 headers are free to define/declare
-completely incompatible things and the build would still succeed
-as long as the symbol names match.
-
-That is not a good thing, so let's nuke xe's copy of the header
-so that everyone will use the same header, and be forced to
-agree on the same API/ABI.
-
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Cc: Badal Nilawar <badal.nilawar@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com> #v2
 ---
- drivers/gpu/drm/xe/display/intel_fbdev_fb.h | 21 ---------------------
- 1 file changed, 21 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/display/intel_fbdev_fb.h
+v2: check result of VFs provisioning (Piotr)
+    use xe_sriov_pf_get_totalvfs consistently (Piotr)
+    prefer VFID instead of plain a VF number (Piotr)
+v3: improve comment why PF takes extra RPM ref (Badal)
+    use _noresume variant for extra RPM ref (Rodrigo)
+---
+ drivers/gpu/drm/xe/Makefile       |   1 +
+ drivers/gpu/drm/xe/xe_pci.c       |   4 +
+ drivers/gpu/drm/xe/xe_pci_sriov.c | 143 ++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pci_sriov.h |  13 +++
+ 4 files changed, 161 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_pci_sriov.c
+ create mode 100644 drivers/gpu/drm/xe/xe_pci_sriov.h
 
-diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.h b/drivers/gpu/drm/xe/display/intel_fbdev_fb.h
-deleted file mode 100644
-index ea186772e0bb..000000000000
---- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.h
-+++ /dev/null
-@@ -1,21 +0,0 @@
--/* SPDX-License-Identifier: MIT */
--/*
-- * Copyright © 2023 Intel Corporation
-- */
--
--#ifndef __INTEL_FBDEV_FB_H__
--#define __INTEL_FBDEV_FB_H__
--
--struct drm_fb_helper;
--struct drm_fb_helper_surface_size;
--struct drm_i915_gem_object;
--struct drm_i915_private;
--struct fb_info;
--struct i915_vma;
--
--struct drm_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
--			 struct drm_fb_helper_surface_size *sizes);
--int intel_fbdev_fb_fill_info(struct drm_i915_private *i915, struct fb_info *info,
--			      struct drm_i915_gem_object *obj, struct i915_vma *vma);
--
--#endif
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index b620389761d5..38da5a575deb 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -169,6 +169,7 @@ xe-$(CONFIG_PCI_IOV) += \
+ 	xe_lmtt.o \
+ 	xe_lmtt_2l.o \
+ 	xe_lmtt_ml.o \
++	xe_pci_sriov.o \
+ 	xe_sriov_pf.o
+ 
+ # include helpers for tests even when XE is built-in
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 912b59fe9567..353ec44592c3 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -23,6 +23,7 @@
+ #include "xe_macros.h"
+ #include "xe_mmio.h"
+ #include "xe_module.h"
++#include "xe_pci_sriov.h"
+ #include "xe_pci_types.h"
+ #include "xe_pm.h"
+ #include "xe_sriov.h"
+@@ -959,6 +960,9 @@ static struct pci_driver xe_pci_driver = {
+ 	.probe = xe_pci_probe,
+ 	.remove = xe_pci_remove,
+ 	.shutdown = xe_pci_shutdown,
++#ifdef CONFIG_PCI_IOV
++	.sriov_configure = xe_pci_sriov_configure,
++#endif
+ #ifdef CONFIG_PM_SLEEP
+ 	.driver.pm = &xe_pm_ops,
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
+new file mode 100644
+index 000000000000..06d0fceb5114
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
+@@ -0,0 +1,143 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023-2024 Intel Corporation
++ */
++
++#include "xe_assert.h"
++#include "xe_device.h"
++#include "xe_gt_sriov_pf_config.h"
++#include "xe_pci_sriov.h"
++#include "xe_pm.h"
++#include "xe_sriov.h"
++#include "xe_sriov_pf_helpers.h"
++#include "xe_sriov_printk.h"
++
++static int pf_provision_vfs(struct xe_device *xe, unsigned int num_vfs)
++{
++	struct xe_gt *gt;
++	unsigned int id;
++	int result = 0, err;
++
++	for_each_gt(gt, xe, id) {
++		err = xe_gt_sriov_pf_config_set_fair(gt, VFID(1), num_vfs);
++		result = result ?: err;
++	}
++
++	return result;
++}
++
++static void pf_unprovision_vfs(struct xe_device *xe, unsigned int num_vfs)
++{
++	struct xe_gt *gt;
++	unsigned int id;
++	unsigned int n;
++
++	for_each_gt(gt, xe, id)
++		for (n = 1; n <= num_vfs; n++)
++			xe_gt_sriov_pf_config_release(gt, n, true);
++}
++
++static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
++{
++	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++	int total_vfs = xe_sriov_pf_get_totalvfs(xe);
++	int err;
++
++	xe_assert(xe, IS_SRIOV_PF(xe));
++	xe_assert(xe, num_vfs > 0);
++	xe_assert(xe, num_vfs <= total_vfs);
++	xe_sriov_dbg(xe, "enabling %u VF%s\n", num_vfs, str_plural(num_vfs));
++
++	/*
++	 * We must hold additional reference to the runtime PM to keep PF in D0
++	 * during VFs lifetime, as our VFs do not implement the PM capability.
++	 *
++	 * With PF being in D0 state, all VFs will also behave as in D0 state.
++	 * This will also keep GuC alive with all VFs' configurations.
++	 *
++	 * We will release this additional PM reference in pf_disable_vfs().
++	 */
++	xe_pm_runtime_get_noresume(xe);
++
++	err = pf_provision_vfs(xe, num_vfs);
++	if (err < 0)
++		goto failed;
++
++	err = pci_enable_sriov(pdev, num_vfs);
++	if (err < 0)
++		goto failed;
++
++	xe_sriov_info(xe, "Enabled %u of %u VF%s\n",
++		      num_vfs, total_vfs, str_plural(total_vfs));
++	return num_vfs;
++
++failed:
++	pf_unprovision_vfs(xe, num_vfs);
++	xe_pm_runtime_put(xe);
++
++	xe_sriov_notice(xe, "Failed to enable %u VF%s (%pe)\n",
++			num_vfs, str_plural(num_vfs), ERR_PTR(err));
++	return err;
++}
++
++static int pf_disable_vfs(struct xe_device *xe)
++{
++	struct device *dev = xe->drm.dev;
++	struct pci_dev *pdev = to_pci_dev(dev);
++	u16 num_vfs = pci_num_vf(pdev);
++
++	xe_assert(xe, IS_SRIOV_PF(xe));
++	xe_sriov_dbg(xe, "disabling %u VF%s\n", num_vfs, str_plural(num_vfs));
++
++	if (!num_vfs)
++		return 0;
++
++	pci_disable_sriov(pdev);
++
++	pf_unprovision_vfs(xe, num_vfs);
++
++	/* not needed anymore - see pf_enable_vfs() */
++	xe_pm_runtime_put(xe);
++
++	xe_sriov_info(xe, "Disabled %u VF%s\n", num_vfs, str_plural(num_vfs));
++	return 0;
++}
++
++/**
++ * xe_pci_sriov_configure - Configure SR-IOV (enable/disable VFs).
++ * @pdev: the &pci_dev
++ * @num_vfs: number of VFs to enable or zero to disable all VFs
++ *
++ * This is the Xe implementation of struct pci_driver.sriov_configure callback.
++ *
++ * This callback will be called by the PCI subsystem to enable or disable SR-IOV
++ * Virtual Functions (VFs) as requested by the used via the PCI sysfs interface.
++ *
++ * Return: number of configured VFs or a negative error code on failure.
++ */
++int xe_pci_sriov_configure(struct pci_dev *pdev, int num_vfs)
++{
++	struct xe_device *xe = pdev_to_xe_device(pdev);
++	int ret;
++
++	if (!IS_SRIOV_PF(xe))
++		return -ENODEV;
++
++	if (num_vfs < 0)
++		return -EINVAL;
++
++	if (num_vfs > xe_sriov_pf_get_totalvfs(xe))
++		return -ERANGE;
++
++	if (num_vfs && pci_num_vf(pdev))
++		return -EBUSY;
++
++	xe_pm_runtime_get(xe);
++	if (num_vfs > 0)
++		ret = pf_enable_vfs(xe, num_vfs);
++	else
++		ret = pf_disable_vfs(xe);
++	xe_pm_runtime_put(xe);
++
++	return ret;
++}
+diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.h b/drivers/gpu/drm/xe/xe_pci_sriov.h
+new file mode 100644
+index 000000000000..3b8bfbf7e1d9
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_pci_sriov.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023-2024 Intel Corporation
++ */
++
++#ifndef _XE_PCI_SRIOV_H_
++#define _XE_PCI_SRIOV_H_
++
++struct pci_dev;
++
++int xe_pci_sriov_configure(struct pci_dev *pdev, int num_vfs);
++
++#endif
 -- 
-2.43.2
+2.43.0
 
