@@ -4,53 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B72DC25B4F
-	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 17:11:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CA59C25B4F
+	for <intel-xe@archiver.kernel.org>; Mon,  6 May 2024 17:25:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 430261122D6;
-	Mon,  6 May 2024 17:11:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0707E10F1BF;
+	Mon,  6 May 2024 17:25:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MrVll/CU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J74F568Y";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7540B10FEFC
- for <intel-xe@lists.freedesktop.org>; Mon,  6 May 2024 17:11:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B47D310F1BF
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 May 2024 17:25:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715015483; x=1746551483;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=gluAESULl2UJ4do1ZuozqC4Zk7N+m11ksAv675IAiow=;
- b=MrVll/CUAaQ3hU1SZ5maxKtH9yA/2w0vCEMRSNH/7ZdXitsJCyr0tfC2
- mbQMa/CjWz3Q8P9MpqyvbgUTsLnt/SraWUTlwNYPLLZKuDmWLbrqzi/e1
- c5g6WaCW7hOlg+95ztmv+aRPH7YtoMlYx3BAqLvnSbUbb0lV3PAM1vq0b
- 5d6hIkHRy4LVgicX+CfmXGgEiXuoBAy6NLmkUiVrazD7Av7xDvL44T2Ug
- VwDqiENdHYeVpyDHxjbuYxJcQhyvoWeEI99CFhTeXE3j14nD78pY9rTqK
- b1MZ4P5w0rYUOBSLI42gi1iUwAshRZaXipIDDcLB0J2n/HII5AHDy0zfc A==;
-X-CSE-ConnectionGUID: YkrPVmdsTACHaDcbN74Nzg==
-X-CSE-MsgGUID: lGxfHJfYSMqo92Z6J1Xlrg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="21325504"
-X-IronPort-AV: E=Sophos;i="6.07,259,1708416000"; d="scan'208";a="21325504"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 10:11:21 -0700
-X-CSE-ConnectionGUID: q8eovk1BQNGFuUf3s3a6Kg==
-X-CSE-MsgGUID: X8bTONUlQ2yXmCl8ucl7/w==
+ t=1715016339; x=1746552339;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=pzDDtqJWiHDRplqryjEcyiCJEbGYq6Mp8gcu63FVxL0=;
+ b=J74F568YWXD9HzyZTxAZ1KqSkzbTHolP2Jdc8gf5moaVbbbBbUHtOyuz
+ nLf5c2b5ddRU0UeOIOAqim1ZB6o2yrr2iiOK8Aw6VLxZ6kAycqRosUlM7
+ wBV6cGR7V/1KYm7VuU9n4N6CsJepZYjGir3qQTe/FHC0UwDdBuItMXlqK
+ GkAdx8a/54pCZF+d6YDVp4zRmbtmNzJ5+2tqhJLGC72woJRofdN/OiUA5
+ JKsim1YVupGz6hNxIBEBfoFEiVW5geKSBprmo1odDnkAF+5r4C8ekKfMv
+ LDYRXGMAhQ99hEdfdLuneLoTo0JUk9nHpDIKLeeIvzItHNDL81QvqPaX9 A==;
+X-CSE-ConnectionGUID: j5MGGi0xQW+B0mFCxp5jQA==
+X-CSE-MsgGUID: +1yfh91gSLyJcw7q1W2rQQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="10931204"
+X-IronPort-AV: E=Sophos;i="6.07,259,1708416000"; d="scan'208";a="10931204"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 10:25:39 -0700
+X-CSE-ConnectionGUID: k8P8nteQQUS/cbBJ/pCF8w==
+X-CSE-MsgGUID: GT0+Sy+qSb69FC27AanAIg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,259,1708416000"; d="scan'208";a="28116389"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 10:11:20 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 3/4] drm/xe: Dump Indirect Ring State registers
-Date: Mon,  6 May 2024 10:11:04 -0700
-Message-ID: <20240506171111.16280-4-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240506171111.16280-1-niranjana.vishwanathapura@intel.com>
-References: <20240506171111.16280-1-niranjana.vishwanathapura@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,259,1708416000"; d="scan'208";a="32731507"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.246.30.61])
+ ([10.246.30.61])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 10:25:38 -0700
+Message-ID: <16054da5-fe08-4a48-8c42-a9e1f101e180@intel.com>
+Date: Mon, 6 May 2024 19:25:36 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 8/8] drm/xe/device: move xe_device_sanitize over to devm
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20240429121436.33013-9-matthew.auld@intel.com>
+ <20240429121436.33013-16-matthew.auld@intel.com>
+Content-Language: en-US
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20240429121436.33013-16-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,98 +72,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Dump INDIRECT_RING_STATE and RING_START_UDW registers.
+On 29.04.2024 14:14, Matthew Auld wrote:
+> Disable GuC submission when removing the device.
+> 
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-v2: Add bspec reference
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-Bspec: 67137, 67138
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |  4 ++++
- drivers/gpu/drm/xe/xe_hw_engine.c        | 11 +++++++++++
- drivers/gpu/drm/xe/xe_hw_engine_types.h  |  4 ++++
- 3 files changed, 19 insertions(+)
+I have tried to test whole patchset with
+core_hotunplug@hotrebind
+and I still observe attempts to call xe runtime_pm callbacks from 
+removed driver(???):
+[  135.059797] xe 0000:00:02.0: [drm:drm_managed_release [drm]] REL 
+ffff88812b63c240 kmalloc (13 bytes)
+[  135.059844] xe 0000:00:02.0: [drm:drm_managed_release [drm]] REL 
+ffff88812b63d040 drm_gem_init_release (0 bytes)
+[  135.059887] xe 0000:00:02.0: [drm:drm_managed_release [drm]] REL 
+ffff88814f73b200 kmalloc (304 bytes)
+[  135.059931] xe 0000:00:02.0: [drm:drm_managed_release [drm]] REL 
+ffff88812b63c740 drm_minor_alloc_release (8 bytes)
+[  135.059995] xe 0000:00:02.0: [drm:drm_managed_release [drm]] REL 
+ffff888115620708 kmalloc (40 bytes)
+[  135.060065] xe 0000:00:02.0: [drm:drm_managed_release [drm]] REL 
+ffff88812b63ca40 drm_minor_alloc_release (8 bytes)
+[  135.060161] xe 0000:00:02.0: [drm:drm_managed_release [drm]] REL 
+ffff888115620a88 kmalloc (40 bytes)
+[  135.060229] xe 0000:00:02.0: [drm:drm_managed_release [drm]] REL 
+ffff88812d407e40 drm_dev_init_release (0 bytes)
+[  135.060323] [drm:drm_managed_release [drm]] drmres release end
+[  136.099951] general protection fault, probably for non-canonical 
+address 0xdffffc00000004a3: 0000 [#1] PREEMPT SMP KASAN NOPTI
+[  136.099969] KASAN: probably user-memory-access in range 
+[0x0000000000002518-0x000000000000251f]
+[  136.099977] CPU: 0 PID: 9 Comm: kworker/0:1 Not tainted 6.9.0-rc2-xe+ #25
+[  136.099985] Hardware name: Intel Corporation Raptor Lake Client 
+Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS 
+RPLSFWI1.R00.4064.A02.2302091143 02/09/2023
+[  136.099994] Workqueue: pm pm_runtime_work
+[  136.100010] RIP: 0010:xe_pm_d3cold_allowed_toggle+0x2f/0x2d0 [xe]
+[  136.100209] Code: 48 b8 00 00 00 00 00 fc ff df 55 48 89 e5 41 56 41 
+55 41 54 53 48 89 fb 48 81 c7 18 25 00 00 48 89 fa 48 c1 ea 03 48 83 ec 
+08 <0f> b6 04 02 48 89 fa 83 e2 07 38 d0 7f 08 84 c0 0f 85 21 02 00 00
+[  136.100228] RSP: 0018:ffffc900001d7be8 EFLAGS: 00010296
+[  136.100237] RAX: dffffc0000000000 RBX: 0000000000000000 RCX: 
+0000000000000000
+[  136.100246] RDX: 00000000000004a3 RSI: 0000000000000000 RDI: 
+0000000000002518
+[  136.100255] RBP: ffffc900001d7c10 R08: ffff888117cf43c9 R09: 
+ffff888117cf4220
+[  136.100263] R10: 0000000000000000 R11: 0000000000000000 R12: 
+ffff888117cf40c8
+[  136.100271] R13: 0000000000000000 R14: ffffffff82dc8270 R15: 
+ffff888117cf43c8
+[  136.100280] FS:  0000000000000000(0000) GS:ffff88884dc00000(0000) 
+knlGS:0000000000000000
+[  136.100290] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  136.100298] CR2: 00005572f1fff388 CR3: 000000012134e000 CR4: 
+0000000000750ef0
+[  136.100307] PKRU: 55555554
+[  136.100312] Call Trace:
+[  136.100317]  <TASK>
+[  136.100322]  ? show_regs+0x71/0x90
+[  136.100331]  ? die_addr+0x41/0xc0
+[  136.100339]  ? exc_general_protection+0x15d/0x260
+[  136.100352]  ? asm_exc_general_protection+0x27/0x30
+[  136.100361]  ? __pfx_pci_pm_runtime_idle+0x10/0x10
+[  136.100373]  ? xe_pm_d3cold_allowed_toggle+0x2f/0x2d0 [xe]
+[  136.100500]  ? __pfx_pci_pm_runtime_idle+0x10/0x10
+[  136.100507]  xe_pci_runtime_idle+0x31/0x50 [xe]
+[  136.100629]  pci_pm_runtime_idle+0xb7/0x100
+[  136.100637]  rpm_idle+0x1ec/0x5c0
+[  136.100646]  pm_runtime_work+0x10e/0x170
+[  136.100653]  process_one_work+0x855/0x1a20
+[  136.100665]  ? __pfx_process_one_work+0x10/0x10
+[  136.100673]  ? move_linked_works+0x12b/0x2d0
+[  136.100682]  ? assign_work+0x16f/0x280
+[  136.100690]  worker_thread+0x57c/0xd40
+[  136.100701]  kthread+0x2f3/0x3f0
+[  136.100708]  ? __pfx_worker_thread+0x10/0x10
+[  136.100716]  ? __pfx_kthread+0x10/0x10
+[  136.100723]  ret_from_fork+0x43/0x90
+[  136.100730]  ? __pfx_kthread+0x10/0x10
+[  136.100737]  ret_from_fork_asm+0x1a/0x30
+[  136.100748]  </TASK>
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index 260a44f46f7e..263ffc7bc2ef 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -55,6 +55,8 @@
- #define   RING_CTL_SIZE(size)			((size) - PAGE_SIZE) /* in bytes -> pages */
- #define   RING_CTL_SIZE(size)			((size) - PAGE_SIZE) /* in bytes -> pages */
- 
-+#define RING_START_UDW(base)			XE_REG((base) + 0x48)
-+
- #define RING_PSMI_CTL(base)			XE_REG((base) + 0x50, XE_REG_OPTION_MASKED)
- #define   RC_SEMA_IDLE_MSG_DISABLE		REG_BIT(12)
- #define   WAIT_FOR_EVENT_POWER_DOWN_DISABLE	REG_BIT(7)
-@@ -110,6 +112,8 @@
- #define   FF_DOP_CLOCK_GATE_DISABLE		REG_BIT(1)
- #define   REPLAY_MODE_GRANULARITY		REG_BIT(0)
- 
-+#define INDIRECT_RING_STATE(base)		XE_REG((base) + 0x108)
-+
- #define RING_BBADDR(base)			XE_REG((base) + 0x140)
- #define RING_BBADDR_UDW(base)			XE_REG((base) + 0x168)
- 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index ec69803152a2..45f582a7caaa 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -908,6 +908,13 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
- 	snapshot->reg.ring_hwstam = hw_engine_mmio_read32(hwe, RING_HWSTAM(0));
- 	snapshot->reg.ring_hws_pga = hw_engine_mmio_read32(hwe, RING_HWS_PGA(0));
- 	snapshot->reg.ring_start = hw_engine_mmio_read32(hwe, RING_START(0));
-+	if (xe_gt_has_indirect_ring_state(hwe->gt)) {
-+		snapshot->reg.indirect_ring_state =
-+			hw_engine_mmio_read32(hwe, INDIRECT_RING_STATE(0));
-+		snapshot->reg.ring_start_udw =
-+			hw_engine_mmio_read32(hwe, RING_START_UDW(0));
-+	}
-+
- 	snapshot->reg.ring_head =
- 		hw_engine_mmio_read32(hwe, RING_HEAD(0)) & HEAD_ADDR;
- 	snapshot->reg.ring_tail =
-@@ -997,6 +1004,8 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
- 	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS: 0x%016llx\n",
- 		   snapshot->reg.ring_execlist_sq_contents);
- 	drm_printf(p, "\tRING_START: 0x%08x\n", snapshot->reg.ring_start);
-+	drm_printf(p, "\tRING_START_UDW: 0x%08x\n",
-+		   snapshot->reg.ring_start_udw);
- 	drm_printf(p, "\tRING_HEAD: 0x%08x\n", snapshot->reg.ring_head);
- 	drm_printf(p, "\tRING_TAIL: 0x%08x\n", snapshot->reg.ring_tail);
- 	drm_printf(p, "\tRING_CTL: 0x%08x\n", snapshot->reg.ring_ctl);
-@@ -1010,6 +1019,8 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
- 	drm_printf(p, "\tACTHD: 0x%016llx\n", snapshot->reg.ring_acthd);
- 	drm_printf(p, "\tBBADDR: 0x%016llx\n", snapshot->reg.ring_bbaddr);
- 	drm_printf(p, "\tDMA_FADDR: 0x%016llx\n", snapshot->reg.ring_dma_fadd);
-+	drm_printf(p, "\tINDIRECT_RING_STATE: 0x%08x\n",
-+		   snapshot->reg.indirect_ring_state);
- 	drm_printf(p, "\tIPEHR: 0x%08x\n", snapshot->reg.ipehr);
- 	xe_hw_engine_snapshot_instdone_print(snapshot, p);
- 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-index 9f9755e31b9f..5f4b67acba99 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-@@ -189,6 +189,8 @@ struct xe_hw_engine_snapshot {
- 		u32 ring_hws_pga;
- 		/** @reg.ring_start: RING_START */
- 		u32 ring_start;
-+		/** @reg.ring_start_udw: RING_START_UDW */
-+		u32 ring_start_udw;
- 		/** @reg.ring_head: RING_HEAD */
- 		u32 ring_head;
- 		/** @reg.ring_tail: RING_TAIL */
-@@ -207,6 +209,8 @@ struct xe_hw_engine_snapshot {
- 		u32 ring_emr;
- 		/** @reg.ring_eir: RING_EIR */
- 		u32 ring_eir;
-+		/** @reg.indirect_ring_state: INDIRECT_RING_STATE */
-+		u32 indirect_ring_state;
- 		/** @reg.ipehr: IPEHR */
- 		u32 ipehr;
- 		/** @reg.rcu_mode: RCU_MODE */
--- 
-2.43.0
+
+
+Regards
+Andrzej
+
+> ---
+>   drivers/gpu/drm/xe/xe_device.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index ba917e383f8f..8c3415d7635a 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -395,7 +395,7 @@ static void xe_driver_flr_fini(void *arg)
+>   		xe_driver_flr(xe);
+>   }
+>   
+> -static void xe_device_sanitize(struct drm_device *drm, void *arg)
+> +static void xe_device_sanitize(void *arg)
+>   {
+>   	struct xe_device *xe = arg;
+>   	struct xe_gt *gt;
+> @@ -661,7 +661,7 @@ int xe_device_probe(struct xe_device *xe)
+>   
+>   	xe_hwmon_register(xe);
+>   
+> -	return drmm_add_action_or_reset(&xe->drm, xe_device_sanitize, xe);
+> +	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
+>   
+>   err_fini_display:
+>   	xe_display_driver_remove(xe);
 
