@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4382C10F1A
-	for <intel-xe@archiver.kernel.org>; Tue,  7 May 2024 09:42:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AF5CC10F1A
+	for <intel-xe@archiver.kernel.org>; Tue,  7 May 2024 10:03:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25BD710E42B;
-	Tue,  7 May 2024 09:42:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dwPwkcWz";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1998010E42B
- for <intel-xe@lists.freedesktop.org>; Tue,  7 May 2024 09:42:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715074970; x=1746610970;
- h=message-id:date:mime-version:subject:from:to:cc:
- references:in-reply-to;
- bh=KmlleweDs0U4nUfHCGjLe6NmtCtk/pny6xd+bfpDW5c=;
- b=dwPwkcWz0y+qVWjYSk4h+GflTamRDsweCTQaPi4siDpdY8G3w+qlu4+n
- kNQ3G757pFpg3yPdj8ijWNJcgz9xWInQQwC4pJITveDnO8flVeGgfO2BK
- BCWu9sioIVW59hfoLJ29zXeg+F2/ERurn4r2s6JFgOFRLaaB3o2d3PI5h
- 8RZZSWZNNuewZ8hKa2EqIrRzj7XDfpW6ho9bm36EciukKw0JwvVOhQUYZ
- 7FH/Zyo0xWuaMoMSi5UNuyD0De5O4KLtYLFXAUTSR/25rqN8KRZ552FNH
- 2Ur5FhTEqz9lgGbSIksO/iE2Zudlydz6EEHQdoPFcUeziezXh1PRJChPe w==;
-X-CSE-ConnectionGUID: 4Rz5fzMhSc6yNnpdpJy9sQ==
-X-CSE-MsgGUID: 8vJNV/ubTESrpK12Zy6wug==
-X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="22270561"
-X-IronPort-AV: E=Sophos;i="6.07,260,1708416000"; d="scan'208,217";a="22270561"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2024 02:42:49 -0700
-X-CSE-ConnectionGUID: NvrJconST4eUf9frPAYgFw==
-X-CSE-MsgGUID: 5XPkFI8YQrW6sx3r182uPA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,260,1708416000"; d="scan'208,217";a="29047158"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.32.254])
- ([10.246.32.254])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2024 02:42:49 -0700
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48BEC10E9B4;
+	Tue,  7 May 2024 10:03:39 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46A1210E9B4;
+ Tue,  7 May 2024 10:03:38 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="------------jKw4JnHyLKgubk0AeZQDaOYt"
-Message-ID: <96b6a562-eeaf-49f9-9ade-d58fb061086d@linux.intel.com>
-Date: Tue, 7 May 2024 11:42:46 +0200
+ boundary="===============7883337688206478835=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Fix UBSAN shift-out-of-bounds failure
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-To: Shuicheng Lin <shuicheng.lin@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>
-References: <20240507080456.613786-1-shuicheng.lin@intel.com>
- <2a9a7bb2-c74d-44fb-b9d2-cbb42e462d0f@linux.intel.com>
-Content-Language: en-US
-In-Reply-To: <2a9a7bb2-c74d-44fb-b9d2-cbb42e462d0f@linux.intel.com>
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Revert_=22drm/i915=3A_?=
+ =?utf-8?q?Disable_DSB_in_Xe_KMD=22_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Manna, Animesh" <animesh.manna@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 07 May 2024 10:03:38 -0000
+Message-ID: <171507621828.1961300.15166878503835154342@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240322114214.1501078-1-animesh.manna@intel.com>
+In-Reply-To: <20240322114214.1501078-1-animesh.manna@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,182 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------jKw4JnHyLKgubk0AeZQDaOYt
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--===============7883337688206478835==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
+== Series Details ==
 
-On 5/7/2024 11:39 AM, Nirmoy Das wrote:
->
->
-> On 5/7/2024 10:04 AM, Shuicheng Lin wrote:
->> Here is the failure stack:
->> [   12.988209] ------------[ cut here ]------------
->> [   12.988216] UBSAN: shift-out-of-bounds in ./include/linux/log2.h:57:13
->> [   12.988232] shift exponent 64 is too large for 64-bit type 'long unsigned int'
->> [   12.988235] CPU: 4 PID: 1310 Comm: gnome-shell Tainted: G     U             6.9.0-rc6+prerelease1158+ #19
->> [   12.988237] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.3301.A02.2208050712 08/05/2022
->> [   12.988239] Call Trace:
->> [   12.988240]  <TASK>
->> [   12.988242]  dump_stack_lvl+0xd7/0xf0
->> [   12.988248]  dump_stack+0x10/0x20
->> [   12.988250]  ubsan_epilogue+0x9/0x40
->> [   12.988253]  __ubsan_handle_shift_out_of_bounds+0x10e/0x170
->> [   12.988260]  dma_resv_reserve_fences.cold+0x2b/0x48
->> [   12.988262]  ? ww_mutex_lock_interruptible+0x3c/0x110
->> [   12.988267]  drm_exec_prepare_obj+0x45/0x60 [drm_exec]
->> [   12.988271]  ? vm_bind_ioctl_ops_execute+0x5b/0x740 [xe]
->> [   12.988345]  vm_bind_ioctl_ops_execute+0x78/0x740 [xe]
->>
->> It is caused by the value 0 of parameter num_fences in function drm_exec_prepare_obj.
->> And lead to in function __rounddown_pow_of_two, "0 - 1" causes the shift-out-of-bounds.
->> For the num_fences, it should be 1 at least.
->>
->> Cc: Matthew Brost<matthew.brost@intel.com>
->> Signed-off-by: Shuicheng Lin<shuicheng.lin@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_vm.c | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
->> index d17192c8b7de..96cb4d9762a3 100644
->> --- a/drivers/gpu/drm/xe/xe_vm.c
->> +++ b/drivers/gpu/drm/xe/xe_vm.c
->> @@ -2692,7 +2692,7 @@ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
->>   
->>   	if (bo) {
->>   		if (!bo->vm)
->> -			err = drm_exec_prepare_obj(exec, &bo->ttm.base, 0);
->> +			err = drm_exec_prepare_obj(exec, &bo->ttm.base, 1);
->
-> This needs to be fixed in drm_exec_prepare_obj() by checking 
-> num_fences and not calling dma_resv_reserve_fences()
->
-or just call drm_exec_lock_obj() here. ref: 
-https://patchwork.freedesktop.org/patch/577487/
+Series: drm/xe: Revert "drm/i915: Disable DSB in Xe KMD" (rev2)
+URL   : https://patchwork.freedesktop.org/series/131488/
+State : success
 
-Nirmoy
+== Summary ==
 
->
-> Regards,
->
-> Nirmoy
->
->>   		if (!err && validate)
->>   			err = xe_bo_validate(bo, xe_vma_vm(vma), true);
->>   	}
->> @@ -2777,7 +2777,7 @@ static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
->>   	struct xe_vma_op *op;
->>   	int err;
->>   
->> -	err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), 0);
->> +	err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), 1);
->>   	if (err)
->>   		return err;
->>   
---------------jKw4JnHyLKgubk0AeZQDaOYt
-Content-Type: text/html; charset=UTF-8
+CI Bug Log - changes from xe-1244-980de4c8f9c4fc65bd51d355372e06dc576c3ea7_BAT -> xe-pw-131488v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (0 -> 0)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7835 -> IGT_7836
+  * Linux: xe-1244-980de4c8f9c4fc65bd51d355372e06dc576c3ea7 -> xe-pw-131488v2
+
+  IGT_7835: 4b767566bbc6c3ac342b54620aec0fabc8cdd4bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7836: 22531b406bad976bfa4828b05ad97248717ae38f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1244-980de4c8f9c4fc65bd51d355372e06dc576c3ea7: 980de4c8f9c4fc65bd51d355372e06dc576c3ea7
+  xe-pw-131488v2: 131488v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131488v2/index.html
+
+--===============7883337688206478835==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
+
 
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 5/7/2024 11:39 AM, Nirmoy Das wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:2a9a7bb2-c74d-44fb-b9d2-cbb42e462d0f@linux.intel.com">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <p><br>
-      </p>
-      <div class="moz-cite-prefix">On 5/7/2024 10:04 AM, Shuicheng Lin
-        wrote:<br>
-      </div>
-      <blockquote type="cite"
-        cite="mid:20240507080456.613786-1-shuicheng.lin@intel.com">
-        <pre class="moz-quote-pre" wrap="">Here is the failure stack:
-[   12.988209] ------------[ cut here ]------------
-[   12.988216] UBSAN: shift-out-of-bounds in ./include/linux/log2.h:57:13
-[   12.988232] shift exponent 64 is too large for 64-bit type 'long unsigned int'
-[   12.988235] CPU: 4 PID: 1310 Comm: gnome-shell Tainted: G     U             6.9.0-rc6+prerelease1158+ #19
-[   12.988237] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.3301.A02.2208050712 08/05/2022
-[   12.988239] Call Trace:
-[   12.988240]  &lt;TASK&gt;
-[   12.988242]  dump_stack_lvl+0xd7/0xf0
-[   12.988248]  dump_stack+0x10/0x20
-[   12.988250]  ubsan_epilogue+0x9/0x40
-[   12.988253]  __ubsan_handle_shift_out_of_bounds+0x10e/0x170
-[   12.988260]  dma_resv_reserve_fences.cold+0x2b/0x48
-[   12.988262]  ? ww_mutex_lock_interruptible+0x3c/0x110
-[   12.988267]  drm_exec_prepare_obj+0x45/0x60 [drm_exec]
-[   12.988271]  ? vm_bind_ioctl_ops_execute+0x5b/0x740 [xe]
-[   12.988345]  vm_bind_ioctl_ops_execute+0x78/0x740 [xe]
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-It is caused by the value 0 of parameter num_fences in function drm_exec_prepare_obj.
-And lead to in function __rounddown_pow_of_two, "0 - 1" causes the shift-out-of-bounds.
-For the num_fences, it should be 1 at least.
 
-Cc: Matthew Brost <a class="moz-txt-link-rfc2396E"
-        href="mailto:matthew.brost@intel.com" moz-do-not-send="true">&lt;matthew.brost@intel.com&gt;</a>
-Signed-off-by: Shuicheng Lin <a class="moz-txt-link-rfc2396E"
-        href="mailto:shuicheng.lin@intel.com" moz-do-not-send="true">&lt;shuicheng.lin@intel.com&gt;</a>
----
- drivers/gpu/drm/xe/xe_vm.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Revert &quot;drm/i915: Disable DSB in Xe KMD&quot; (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131488/">https://patchwork.freedesktop.org/series/131488/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index d17192c8b7de..96cb4d9762a3 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2692,7 +2692,7 @@ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
- 
- 	if (bo) {
- 		if (!bo-&gt;vm)
--			err = drm_exec_prepare_obj(exec, &amp;bo-&gt;ttm.base, 0);
-+			err = drm_exec_prepare_obj(exec, &amp;bo-&gt;ttm.base, 1);</pre>
-      </blockquote>
-      <p>This needs to be fixed in <span style="white-space: pre-wrap">drm_exec_prepare_obj() </span>by
-        checking num_fences and not calling dma_resv_reserve_fences() <br>
-      </p>
-    </blockquote>
-    <p>or just call drm_exec_lock_obj() here. ref:
-      <a class="moz-txt-link-freetext" href="https://patchwork.freedesktop.org/patch/577487/">https://patchwork.freedesktop.org/patch/577487/</a></p>
-    <p>Nirmoy<br>
-    </p>
-    <blockquote type="cite"
-      cite="mid:2a9a7bb2-c74d-44fb-b9d2-cbb42e462d0f@linux.intel.com">
-      <p> </p>
-      <p><br>
-      </p>
-      <p>Regards,</p>
-      <p>Nirmoy<br>
-      </p>
-      <blockquote type="cite"
-        cite="mid:20240507080456.613786-1-shuicheng.lin@intel.com">
-        <pre class="moz-quote-pre" wrap=""> 		if (!err &amp;&amp; validate)
- 			err = xe_bo_validate(bo, xe_vma_vm(vma), true);
- 	}
-@@ -2777,7 +2777,7 @@ static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
- 	struct xe_vma_op *op;
- 	int err;
- 
--	err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), 0);
-+	err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), 1);
- 	if (err)
- 		return err;
- 
-</pre>
-      </blockquote>
-    </blockquote>
-  </body>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131488v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-131488v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1244-980de4c8f9c4fc65bd51d355372e06dc576c3ea7_BAT -&gt; xe-pw-131488v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (0 -&gt; 0)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7835 -&gt; IGT_7836</li>
+<li>Linux: xe-1244-980de4c8f9c4fc65bd51d355372e06dc576c3ea7 -&gt; xe-pw-131488v2</li>
+</ul>
+<p>IGT_7835: 4b767566bbc6c3ac342b54620aec0fabc8cdd4bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7836: 22531b406bad976bfa4828b05ad97248717ae38f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1244-980de4c8f9c4fc65bd51d355372e06dc576c3ea7: 980de4c8f9c4fc65bd51d355372e06dc576c3ea7<br />
+  xe-pw-131488v2: 131488v2</p>
+
+</body>
 </html>
 
---------------jKw4JnHyLKgubk0AeZQDaOYt--
+--===============7883337688206478835==--
