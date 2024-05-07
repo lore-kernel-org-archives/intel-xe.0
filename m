@@ -4,171 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFE46C10F1A
-	for <intel-xe@archiver.kernel.org>; Tue,  7 May 2024 09:35:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D194DC10F1A
+	for <intel-xe@archiver.kernel.org>; Tue,  7 May 2024 09:39:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AB7910F2D0;
-	Tue,  7 May 2024 09:35:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85A7D10F3B3;
+	Tue,  7 May 2024 09:39:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vqrdvvxn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E8YpvFe1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87FD810F245;
- Tue,  7 May 2024 09:35:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C005310F3B3
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 May 2024 09:39:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715074552; x=1746610552;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Ew0t4N0h4svqrriSxNo0sVahd1Pb9JGtFqE8oE80vlI=;
- b=VqrdvvxnB8PopEFpaIC01Wrr00ZL34S6fNYixMIaPjV3ymc+WzLkCvgM
- 9eYwCr7hYLfGkZzFcw4WHeCX/kYhnnrmV/3qXUoXDuMU9Ex0eeWdJ/DkW
- BuuCXDDm+jfX6PURuCUPrsiAAi750H6+Yxrlu4Ko/cIWS6O2erAyJO3Zj
- YEqplFOSnl8jQcyo4NsEmHLJtTFHz6RAHuQL86Yxn1uKZv0ocApHZvzb2
- Xou/YeRaE6mULOQgjIkoCPcR5tP1Ey1lDKqZO+Y1z6nAYpqXeyN1oM8ht
- vA1VQIlYrhuaYPu1btdheuKCTYCkjwYyFQEEsRVMMbVs+qR9CNpXnr2fg A==;
-X-CSE-ConnectionGUID: DnZ/RqN+Scm28RhzZFKg9g==
-X-CSE-MsgGUID: TrFcOolaSB+ajJV0fBoTgg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="10695239"
-X-IronPort-AV: E=Sophos;i="6.07,260,1708416000"; d="scan'208";a="10695239"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2024 02:35:51 -0700
-X-CSE-ConnectionGUID: JjyiNrzfQyCgfToxST9LLg==
-X-CSE-MsgGUID: KNlow/Q8Q/q3oiQXLWG98g==
+ t=1715074790; x=1746610790;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to;
+ bh=8WBwWX6k+u2as1UtUtZhHJTKDP55tziRNPtfCFkV0DA=;
+ b=E8YpvFe12oYUlSNd1NqtoNMKkGbyOuawNM+LxubTqY1qtBwkqakVzGl+
+ OfQRFV2o9fN07bSZ3eekDf5zi3DPPKwCC+6TPynfCplNcxzCJ1LgGaJlF
+ CNmLmI/UuAupV1b2j7lNZtu6mfuL5scm11GXsiSiFDaaD6oKGzMNg9Tg7
+ 2Wlljhq+9pWeoxZK19/6aZq1e1L7l1mPZX4gAJBMzUiE8G4s7Kcri2Nfx
+ jnuiVYrwk/KRxxmMUovleShdoPhNdCHuWo97cRGryNKV0XvKWZZICgJmo
+ myru2Kn9K5TghbkkzNzglHVm2lRIKjGpxunUz32ruPDjuo4wV7lSueyRb g==;
+X-CSE-ConnectionGUID: CHazzIKFTcGLt65MyTKeoQ==
+X-CSE-MsgGUID: OpiFbHl5ST+l7b4t+4xCMQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="10708169"
+X-IronPort-AV: E=Sophos;i="6.07,260,1708416000"; d="scan'208,217";a="10708169"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2024 02:39:49 -0700
+X-CSE-ConnectionGUID: c/hSeqLRQ1qPEkzKvQex6w==
+X-CSE-MsgGUID: l/h+7w6nR2W7j5Ba8NPpvg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,260,1708416000"; d="scan'208";a="28429328"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 07 May 2024 02:35:52 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 7 May 2024 02:35:50 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 7 May 2024 02:35:50 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 7 May 2024 02:35:50 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 7 May 2024 02:35:49 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kyn13j/kKDg1yR4P9SMw3f6htwbgN241M7a/MuvkT6ZW2jC8PqYZgfOxyxclphw/ilA6P57E+c5gxOvhZBv9J5UiXVPWMc66uDbtak5l17Y+fRlaj/g/kji10LJWmn0sFJYuVWyDskFpzlEi1yLHC5VDjlDyN7vYvLY1q8JOD6ae93X9NQbXL2Zbyy0yhE7ClqzT+Tvl5s2GdVQsSpZ7OwI2BBNkuu/s6xvHuqeOZKjgBE1BDjiIF4OtjwyHnsI0Z1DcXGkkAv8s79fZ9i0CODD0/feP4FjBdizGr1Az/3yn+nIvV2dRS4pTWShH/JJQ+t+cnV6b70IFIXuKSddAbA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=X+nF2L9YaTfEawGoOej3NfzwiGreyZYlZ9t/ZHyiXBQ=;
- b=h3WhyJLO5qFwO+IvoMkPs3WIdZVZ3kmvxjdaBogfN+x+bqUm71jiRGkSAZRAOpSlKkuW+RKuv7+CBx+A7bwGZVxXogiCA/nwBN5dTp9XcYbJoONTMeqwHb+8mhZ/I9lVIO4C3891/hqLsZ8M3vLv7V3weKDZz8rfzedZhe50GvyNO+uZ7r7q7KtZ3hh2j5N5jdE1/opCq7Nr0BwMlDF9ZHMDdH6NyzhPfpE4OSGxQ98NVjQQAATpolyt0OA/6TBubQNj9RTkfkzcbmPf/chE/qSfUB6ZTAwDJPqU+NLxHa3lDjYrqYKhsTLwZ5X0I4dMUHCDUfNeelOLNlZGYFO6lA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
- DM4PR11MB6189.namprd11.prod.outlook.com (2603:10b6:8:ae::18) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7544.41; Tue, 7 May 2024 09:35:48 +0000
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::cf96:7894:5097:f510]) by DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::cf96:7894:5097:f510%2]) with mapi id 15.20.7544.041; Tue, 7 May 2024
- 09:35:48 +0000
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>, "Roper,
- Matthew D" <matthew.d.roper@intel.com>
-Subject: RE: [v3] drm/i915: Implement Audio WA_14020863754
-Thread-Topic: [v3] drm/i915: Implement Audio WA_14020863754
-Thread-Index: AQHan52a8JXy0ZpDekOygeoIFZXdurGLbtOAgAAVj5A=
-Date: Tue, 7 May 2024 09:35:48 +0000
-Message-ID: <DM4PR11MB636096D6889D350A523E28D1F4E42@DM4PR11MB6360.namprd11.prod.outlook.com>
-References: <20240506101817.2590328-1-uma.shankar@intel.com>
- <SJ1PR11MB6129D96B9ED77A6282BE8A27B9E42@SJ1PR11MB6129.namprd11.prod.outlook.com>
-In-Reply-To: <SJ1PR11MB6129D96B9ED77A6282BE8A27B9E42@SJ1PR11MB6129.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|DM4PR11MB6189:EE_
-x-ms-office365-filtering-correlation-id: e67e495e-ae9f-459c-ee9d-08dc6e7913db
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230031|1800799015|376005|366007|38070700009;
-x-microsoft-antispam-message-info: =?us-ascii?Q?FvM8vTMCM8lk0UO9MErIA95EqQcV8l7Ssz24ZkLEBdUnM6X0FcAgZd6z9sUR?=
- =?us-ascii?Q?YOqQDn67w6HNG/1WGCs2+9odcGxmWFFvjJNsKJsbjml9eO3EJv7N6G7gxc4g?=
- =?us-ascii?Q?Zugzlo7TjoQNkSICp/v0JDkYGWJ4ASgN8MmjLwwwYV7vXslMLCdKz9AJlfGk?=
- =?us-ascii?Q?IEPAyjxbKkRHfbsv2HusFPUiJWaQsEJMIb1IfYwKWtBTfEEuWxHyCagGuVK+?=
- =?us-ascii?Q?Zu5DhjCRe6lNoVLIKAoF+0yY08kDxSVA8WUDLTr601E1VsfEBm8rIZklUVoG?=
- =?us-ascii?Q?GOPSbMNjcq+JWANTbc+jhK7p/j9OOlvj3kjfI9jYNUAwD7Ne17HfD2ABAzen?=
- =?us-ascii?Q?7FmiyU0VQiCQdNepaJDOov0/hWfTcycmRQg0V2SczY5PfXgFv+LaoGDFhbc0?=
- =?us-ascii?Q?5s9d2I+y/X7hNQuIwD1c2JM/COMYjhOlMmHsfkbMTTRBy1DvPPr15maXQExw?=
- =?us-ascii?Q?LIkKNMyhLJgqv00wRdttrTGY9g7SrFS1/wdEdx5/JJ5ZgxBi3sKD6imHFQsI?=
- =?us-ascii?Q?fTEbcF+8IzkVgZRSe30gv9hOVq4YPoWYJxTsxsrUYVQwmxy+1duIa0ayLCsN?=
- =?us-ascii?Q?Cyy61uWaq/ClUyvnK1E1y5dN9vD1Hr4IeFm6v4ewfrIw9/DISswr5sG/Vfjs?=
- =?us-ascii?Q?Mf1Z8DuYhKcnuiqqA67vhvBDDTmeB6St402EJ33KSWP/az1B5l/7azQnkH20?=
- =?us-ascii?Q?7RVKi6SMROX0Oj+uyjgm4ppLtnX8RdN+tHeZaYeyOHB+9K+bsisy6Xj6rWLw?=
- =?us-ascii?Q?pYUprzlEymn7Kon1ipiFauyvBDwJ1f5Xd0Dg3KwoZUwaHz4F0GF2n8zI52Rk?=
- =?us-ascii?Q?mtGdaPkGz8AHH6GnMREBhReowXGf0CX4yI21QHqaySAhlKYRwjImlfJDO8Ck?=
- =?us-ascii?Q?3UinLS5rtBPaR3sS9tedkobEp/snWPtsIsfipa8S3OZ0VZ6owwzYeXtVuBCI?=
- =?us-ascii?Q?SppxljhM2pti4Sj/QsCtInLgdqDqS5E+uDDelZRS/aig7253zOkZbSzUYZwm?=
- =?us-ascii?Q?YFQkNbVmBAodxOVvL4m1ayg64+mG4j1yt/akTbAQjvAEpiagnhDZ6By/IC7p?=
- =?us-ascii?Q?9PCwTzkXFU1Gz8qwe+ZWgW5CJLX0x4gEub88djtMUhocffoZc3bpIsZ1ToAN?=
- =?us-ascii?Q?fqH3Co/9nsbIbV/6NEFFGUPuJ4AINF8FMWMFhppSK+FyoMvVcdIgBXITXo12?=
- =?us-ascii?Q?i01eV4KutlzGOgRqkkTUFUrgOgYOnG3F6EyiimTBttiAk1KiQ0K31HAygKKG?=
- =?us-ascii?Q?Yvb2Uy4LG/DdbmhzPY6mgdGNkFjbDY+W8WNP8qTytRm0/pvpYRX/ajYAFlvR?=
- =?us-ascii?Q?rPrVocKoxWLal/oJ5jsdaokFk6PHWdhSjU07xLjQnKdItQ=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(366007)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Si3XAYnpWRfsGR0UsN/CIP5iAnactCyBn8d55gvtWPEfpaxcV1k3miqiSHtt?=
- =?us-ascii?Q?ObsZhzQsnroVbJXFW209lzbZcqdjlKDz7BH6v2XkgyPFdUuf8diEmyNb+S3N?=
- =?us-ascii?Q?x1SmQEWUajfcF8b5g550dwDc2qC/MHmIgZcJdHj8phO28T6Fo38Z5DQ8z6M7?=
- =?us-ascii?Q?9s4IfJIu7q1Qqez3irZFJJcjX8kASlZd9/VflxLheRJl6/LVjhJ7xq+16349?=
- =?us-ascii?Q?py9Mn+qxJPHTCsj+iBqHuxfv72/c+YOPYhtTKBHYRqIPWwkuF8UUTr2JsAbz?=
- =?us-ascii?Q?tWjSQaNL6NYzBL/FxXpft5N7IWjceGJLh2e1HUiVCA1L/9N538F0cgpGzY5g?=
- =?us-ascii?Q?MPUaC/CrgV6FTkkPkgGBhmj4tofCPXEtR2WywZwRrakBw2LOz/iAQeoV172l?=
- =?us-ascii?Q?izVChjnJuOblMp4CIl8gfTtdPe7ZSOXHZS+dszpbst3pewhvx3XsJ7/yb9Gq?=
- =?us-ascii?Q?uSlADq696z1l4ZXo3OSaHRNYun7+HvDTBbfs9NKxTD8ZamHXRTf3pbZ/fXcN?=
- =?us-ascii?Q?31cxY+uEZQbAsDbXEN/vja8XY+nErqTMPXcAoVCOB+eYowxWILm68vL/Pqjw?=
- =?us-ascii?Q?aIJP2D708qmOeDACpd7mzK0DmOyr+A1MpCZ6uhoctB6YKieeZYrDVUhze9BC?=
- =?us-ascii?Q?xPLmX/+ZSMRb8xg6TO0jldDTN4VMKdcm3JS6GuYsIwzvjXsmpE1ObyY2jat1?=
- =?us-ascii?Q?byxEVOQvJ3h0c5tp3evj+ogSMNJkQS/10q7qdjWlfxd+MjjNExXT//RTDhbO?=
- =?us-ascii?Q?oTbCoWwkkoHLPM4/1Kaj9QJ9Q1HCSTvXtrD6y2xAMiV5FTfXZdSvUq7ZPrqY?=
- =?us-ascii?Q?enuz5uk7PS7Uwj7H/5md7vSEpoXuPp6jqIvGPMNJOqNcFlZwMmttac0ZdBEM?=
- =?us-ascii?Q?HymvDYNN+VLy6WAtSalTYttX3/BUTUyn86nxrBuOphkoryPY68BoJ4m6q8Gm?=
- =?us-ascii?Q?UZvgTk6g3zSdv9FhBLAyUHd0KY91o/MlxqUWuDsfEfitau7/YJa2MQaFJITE?=
- =?us-ascii?Q?glHQPWB2BWTS0UHjvPpOjPFL0ArXZguKxMq798ZN9hbrO7quif0Y58wTHYKU?=
- =?us-ascii?Q?1oc6sa63LVsuA8PhsiDuHRrh2yhUWczX9uAfXy+F1sUuYFs0n317wQwbovEG?=
- =?us-ascii?Q?QZJz/IQP9V4AgIQRBpZg+9EZHfw/sbjFZd5b/YiFwR1EVz6ZGcYmFl0rdm18?=
- =?us-ascii?Q?TEZH1BdLGQc6yIN4/tZReTWAdDCSuHSt/L39PosAR71Q/G6aUbBhxq8bGkKg?=
- =?us-ascii?Q?NSVcLSjpeqddV5AZdha1+BIq52ucFy2htW7yFWTm6Uk47fqFrMMo2Wa0kLg+?=
- =?us-ascii?Q?K5voUxkI4CuElaiAPjL62yMTwYd5Kn3hLT/cD8f98HEJdRcqGbi+e0rwhC5A?=
- =?us-ascii?Q?qwrcxSZNs/Ojgz+ic5llcksXbdjdXY37NvKixxRYi/u7PgTDIUDbuO11miJ6?=
- =?us-ascii?Q?DXc/1tslEcerVbw3VE4hOgizyIrG0xc3xXRD0zeRQ+PtRj9cD72V3cI0f8FI?=
- =?us-ascii?Q?OwCqLlYmewV7poeZZ/6r71EpK+QRiOQn5wSCRR7YpESbmaTvpM06ghkX5J2Y?=
- =?us-ascii?Q?mvcnNEMs2nPAfBWWG2hA4HX2iwnPII2Po4TkPpdM?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.07,260,1708416000"; d="scan'208,217";a="28986477"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.32.254])
+ ([10.246.32.254])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2024 02:39:48 -0700
+Content-Type: multipart/alternative;
+ boundary="------------IVRxL754F2tWMRWWIzqTRU2A"
+Message-ID: <2a9a7bb2-c74d-44fb-b9d2-cbb42e462d0f@linux.intel.com>
+Date: Tue, 7 May 2024 11:39:45 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e67e495e-ae9f-459c-ee9d-08dc6e7913db
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2024 09:35:48.2752 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: rdNRCXe0cw09Ob2VE8QMPkoS//hNcRs7egGTHYrDD6hjFrY+3K/YK2COT+wXuctUap6XU2+2HFYAPnYpM4GuVA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6189
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Fix UBSAN shift-out-of-bounds failure
+To: Shuicheng Lin <shuicheng.lin@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>
+References: <20240507080456.613786-1-shuicheng.lin@intel.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20240507080456.613786-1-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -183,128 +69,154 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+This is a multi-part message in MIME format.
+--------------IVRxL754F2tWMRWWIzqTRU2A
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
-> -----Original Message-----
-> From: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>
-> Sent: Tuesday, May 7, 2024 1:48 PM
-> To: Shankar, Uma <uma.shankar@intel.com>; intel-gfx@lists.freedesktop.org=
-;
-> intel-xe@lists.freedesktop.org
-> Cc: jani.nikula@linux.intel.com; Roper, Matthew D <matthew.d.roper@intel.=
-com>
-> Subject: RE: [v3] drm/i915: Implement Audio WA_14020863754
->=20
->=20
->=20
-> > -----Original Message-----
-> > From: Shankar, Uma <uma.shankar@intel.com>
-> > Sent: Monday, May 6, 2024 3:48 PM
-> > To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> > Cc: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>;
-> > jani.nikula@linux.intel.com; Roper, Matthew D
-> > <matthew.d.roper@intel.com>; Shankar, Uma <uma.shankar@intel.com>
-> > Subject: [v3] drm/i915: Implement Audio WA_14020863754
-> >
-> > WA_14020863754: Corner case with Min Hblank Fix can cause audio hang
-> >
-> > Issue: Previously a fix was made to avoid issues with extremely small
-> > hblanks, called the "Min Hblank Fix". However, this can potentially
-> > cause an audio hang.
-> >
-> > Workaround :
-> > During "Audio Programming Sequence" Audio Enabling - When DP mode is
-> > enabled Set mmio offset 0x65F1C bit 18 =3D 1b, before step #1 "Enable
-> > audio Presence Detect"
-> >
-> > During "Audio Programming Sequence" Audio Disabling - When DP mode is
-> > enabled Clear mmio offset 0x65F1C bit 18 =3D 0b, after step #6 "Disable
-> > Audio PD (Presence Detect)"
-> > If not clearing PD bit, must also not clear 0x65F1C bit 18 (leave =3D
-> > 1b)
-> >
-> > v2: Update the platform checks (Jani Nikula)
-> >
-> > v3: Limited the WA to LNL and BMG, added a helper (Matt Roper)
-> >
-> > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_audio.c     | 18 ++++++++++++++++++
-> >  .../gpu/drm/i915/display/intel_audio_regs.h    |  3 +++
-> >  2 files changed, 21 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_audio.c
-> > b/drivers/gpu/drm/i915/display/intel_audio.c
-> > index ed81e1466c4b..cb055c16dd98 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_audio.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_audio.c
-> > @@ -183,6 +183,18 @@ static const struct hdmi_aud_ncts
-> > hdmi_aud_ncts_36bpp[] =3D {
-> >  	{ 192000, TMDS_445_5M, 20480, 371250 },  };
-> >
-> > +/*
-> > + * WA_14020863754: Implement Audio Workaround
-> > + * Corner case with Min Hblank Fix can cause audio hang  */ static
-> > +bool needs_wa_14020863754(struct drm_i915_private *i915) {
-> > +	if (DISPLAY_VER(i915) =3D=3D 20 || IS_BATTLEMAGE(i915))
-> > +		return true;
-> > +
-> > +	return false;
-> > +}
-> > +
-> >  /* get AUD_CONFIG_PIXEL_CLOCK_HDMI_* value for mode */  static u32
-> > audio_config_hdmi_pixel_clock(const struct intel_crtc_state
-> > *crtc_state)  { @@ -415,6 +427,9 @@ static void
-> > hsw_audio_codec_disable(struct intel_encoder *encoder,
-> >  	intel_de_rmw(i915, HSW_AUD_PIN_ELD_CP_VLD,
-> >  		     AUDIO_OUTPUT_ENABLE(cpu_transcoder), 0);
-> >
-> > +	if (needs_wa_14020863754(i915))
-> > +		intel_de_rmw(i915, AUD_CHICKENBIT_REG3,
-> > CHICKEN3_SPARE18, 0);
-> > +
-> >  	mutex_unlock(&i915->display.audio.mutex);
-> >  }
-> >
-> > @@ -540,6 +555,9 @@ static void hsw_audio_codec_enable(struct
-> > intel_encoder *encoder,
-> >  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP))
-> >  		enable_audio_dsc_wa(encoder, crtc_state);
-> >
-> > +	if (needs_wa_14020863754(i915))
-> > +		intel_de_rmw(i915, AUD_CHICKENBIT_REG3, 0,
-> > CHICKEN3_SPARE18);
-> > +
-> >  	/* Enable audio presence detect */
-> >  	intel_de_rmw(i915, HSW_AUD_PIN_ELD_CP_VLD,
-> >  		     0, AUDIO_OUTPUT_ENABLE(cpu_transcoder));
-> > diff --git a/drivers/gpu/drm/i915/display/intel_audio_regs.h
-> > b/drivers/gpu/drm/i915/display/intel_audio_regs.h
-> > index 88ea2740365d..7de82cd3380e 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_audio_regs.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_audio_regs.h
-> > @@ -164,4 +164,7 @@
-> >
-> > _VLV_AUD_PORT_EN_D_DBG)
-> >  #define VLV_AMP_MUTE		        (1 << 1)
-> >
-> > +#define AUD_CHICKENBIT_REG3		_MMIO(0x65F1C)
-> > +#define  CHICKEN3_SPARE18		REG_BIT(18)
->=20
-> Nit. This bit seems to have a name now (Bspec-69036). Otherwise, LGTM.
+On 5/7/2024 10:04 AM, Shuicheng Lin wrote:
+> Here is the failure stack:
+> [   12.988209] ------------[ cut here ]------------
+> [   12.988216] UBSAN: shift-out-of-bounds in ./include/linux/log2.h:57:13
+> [   12.988232] shift exponent 64 is too large for 64-bit type 'long unsigned int'
+> [   12.988235] CPU: 4 PID: 1310 Comm: gnome-shell Tainted: G     U             6.9.0-rc6+prerelease1158+ #19
+> [   12.988237] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.3301.A02.2208050712 08/05/2022
+> [   12.988239] Call Trace:
+> [   12.988240]  <TASK>
+> [   12.988242]  dump_stack_lvl+0xd7/0xf0
+> [   12.988248]  dump_stack+0x10/0x20
+> [   12.988250]  ubsan_epilogue+0x9/0x40
+> [   12.988253]  __ubsan_handle_shift_out_of_bounds+0x10e/0x170
+> [   12.988260]  dma_resv_reserve_fences.cold+0x2b/0x48
+> [   12.988262]  ? ww_mutex_lock_interruptible+0x3c/0x110
+> [   12.988267]  drm_exec_prepare_obj+0x45/0x60 [drm_exec]
+> [   12.988271]  ? vm_bind_ioctl_ops_execute+0x5b/0x740 [xe]
+> [   12.988345]  vm_bind_ioctl_ops_execute+0x78/0x740 [xe]
+>
+> It is caused by the value 0 of parameter num_fences in function drm_exec_prepare_obj.
+> And lead to in function __rounddown_pow_of_two, "0 - 1" causes the shift-out-of-bounds.
+> For the num_fences, it should be 1 at least.
+>
+> Cc: Matthew Brost<matthew.brost@intel.com>
+> Signed-off-by: Shuicheng Lin<shuicheng.lin@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_vm.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index d17192c8b7de..96cb4d9762a3 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -2692,7 +2692,7 @@ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
+>   
+>   	if (bo) {
+>   		if (!bo->vm)
+> -			err = drm_exec_prepare_obj(exec, &bo->ttm.base, 0);
+> +			err = drm_exec_prepare_obj(exec, &bo->ttm.base, 1);
 
-Yeah this got renamed now, will update the name.
-Thanks for the review.
+This needs to be fixed in drm_exec_prepare_obj() by checking num_fences 
+and not calling dma_resv_reserve_fences()
+
 
 Regards,
-Uma Shankar
-=20
-> Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 
->=20
->=20
-> > +
-> >  #endif /* __INTEL_AUDIO_REGS_H__ */
-> > --
-> > 2.42.0
+Nirmoy
 
+>   		if (!err && validate)
+>   			err = xe_bo_validate(bo, xe_vma_vm(vma), true);
+>   	}
+> @@ -2777,7 +2777,7 @@ static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
+>   	struct xe_vma_op *op;
+>   	int err;
+>   
+> -	err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), 0);
+> +	err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), 1);
+>   	if (err)
+>   		return err;
+>   
+--------------IVRxL754F2tWMRWWIzqTRU2A
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 5/7/2024 10:04 AM, Shuicheng Lin
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:20240507080456.613786-1-shuicheng.lin@intel.com">
+      <pre class="moz-quote-pre" wrap="">Here is the failure stack:
+[   12.988209] ------------[ cut here ]------------
+[   12.988216] UBSAN: shift-out-of-bounds in ./include/linux/log2.h:57:13
+[   12.988232] shift exponent 64 is too large for 64-bit type 'long unsigned int'
+[   12.988235] CPU: 4 PID: 1310 Comm: gnome-shell Tainted: G     U             6.9.0-rc6+prerelease1158+ #19
+[   12.988237] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.3301.A02.2208050712 08/05/2022
+[   12.988239] Call Trace:
+[   12.988240]  &lt;TASK&gt;
+[   12.988242]  dump_stack_lvl+0xd7/0xf0
+[   12.988248]  dump_stack+0x10/0x20
+[   12.988250]  ubsan_epilogue+0x9/0x40
+[   12.988253]  __ubsan_handle_shift_out_of_bounds+0x10e/0x170
+[   12.988260]  dma_resv_reserve_fences.cold+0x2b/0x48
+[   12.988262]  ? ww_mutex_lock_interruptible+0x3c/0x110
+[   12.988267]  drm_exec_prepare_obj+0x45/0x60 [drm_exec]
+[   12.988271]  ? vm_bind_ioctl_ops_execute+0x5b/0x740 [xe]
+[   12.988345]  vm_bind_ioctl_ops_execute+0x78/0x740 [xe]
+
+It is caused by the value 0 of parameter num_fences in function drm_exec_prepare_obj.
+And lead to in function __rounddown_pow_of_two, "0 - 1" causes the shift-out-of-bounds.
+For the num_fences, it should be 1 at least.
+
+Cc: Matthew Brost <a class="moz-txt-link-rfc2396E" href="mailto:matthew.brost@intel.com">&lt;matthew.brost@intel.com&gt;</a>
+Signed-off-by: Shuicheng Lin <a class="moz-txt-link-rfc2396E" href="mailto:shuicheng.lin@intel.com">&lt;shuicheng.lin@intel.com&gt;</a>
+---
+ drivers/gpu/drm/xe/xe_vm.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index d17192c8b7de..96cb4d9762a3 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2692,7 +2692,7 @@ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
+ 
+ 	if (bo) {
+ 		if (!bo-&gt;vm)
+-			err = drm_exec_prepare_obj(exec, &amp;bo-&gt;ttm.base, 0);
++			err = drm_exec_prepare_obj(exec, &amp;bo-&gt;ttm.base, 1);</pre>
+    </blockquote>
+    <p>This needs to be fixed in <span style="white-space: pre-wrap">drm_exec_prepare_obj() </span>by
+      checking num_fences and not calling dma_resv_reserve_fences() <br>
+    </p>
+    <p><br>
+    </p>
+    <p>Regards,</p>
+    <p>Nirmoy<br>
+    </p>
+    <blockquote type="cite"
+      cite="mid:20240507080456.613786-1-shuicheng.lin@intel.com">
+      <pre class="moz-quote-pre" wrap="">
+ 		if (!err &amp;&amp; validate)
+ 			err = xe_bo_validate(bo, xe_vma_vm(vma), true);
+ 	}
+@@ -2777,7 +2777,7 @@ static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
+ 	struct xe_vma_op *op;
+ 	int err;
+ 
+-	err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), 0);
++	err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), 1);
+ 	if (err)
+ 		return err;
+ 
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------IVRxL754F2tWMRWWIzqTRU2A--
