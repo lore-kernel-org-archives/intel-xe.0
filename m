@@ -4,150 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B9F1C25B4F
-	for <intel-xe@archiver.kernel.org>; Tue,  7 May 2024 13:23:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9614C10F1A
+	for <intel-xe@archiver.kernel.org>; Tue,  7 May 2024 13:24:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5CD610F59F;
-	Tue,  7 May 2024 13:23:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97BD010FB33;
+	Tue,  7 May 2024 13:24:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="qYX1tFCl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iHA/VPRu";
 	dkim-atps=neutral
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2089.outbound.protection.outlook.com [40.107.220.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 320EF10F59F;
- Tue,  7 May 2024 13:23:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E298610FB33
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 May 2024 13:24:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1715088271; x=1746624271;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=UH4UH8U6BEaScbltISNeL/rSpaXE8pgBqgTohwtrIeI=;
+ b=iHA/VPRuYYtreNLlH5N9eWgDndwQ2toSF3Y1OqZK8XMxwtrDIX/uI7bn
+ i6xd2yOBQGEtHln/O/gTRGBNnf6oogshNIXiLCvoVAcixLYolsOsQup5m
+ 5Wg82oQnkal59MHXKAsA4liD7+eXRc7FhAW4R7rlu7sbKj5U7nlZMInnL
+ BCl5LjNH2Wm88s3YnxSOmuslPP/eHKpxesoG8z9AY58NnCzdsdsA49xH7
+ dD5ceamHgtbtibcg9ZddR42HmPHWgSS8vmQwyrcT2dTdscKbrZxZm/jCz
+ bC752a0z6PgzFpxvMhlCFFFyzEGlO5dtgvmykYGkeOjNMDjblfBjDsHaS g==;
+X-CSE-ConnectionGUID: rlr6zpbqTBeeZwxpkT3jUw==
+X-CSE-MsgGUID: fet08rZbRMugoVnA6jCwjQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="21550835"
+X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; d="scan'208";a="21550835"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2024 06:24:30 -0700
+X-CSE-ConnectionGUID: +tovn7MBSiKSaE2xfUOZhg==
+X-CSE-MsgGUID: WhAOZevORZ6N/Bw/cYjtUw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; d="scan'208";a="59375060"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 07 May 2024 06:24:30 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 7 May 2024 06:24:29 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 7 May 2024 06:24:29 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 7 May 2024 06:24:29 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Tue, 7 May 2024 06:24:28 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Iq00Hd3W615eovw/R+RSizrDPx5B+zFpCs1OycFNxX4cGkBfpZzOMfcUiVJmjZAkYB8jy+AWTP9oIZIya1/uAUdqjXy7tySe6spBTO9ek7e84VZqeQ0/DpYSqZ8cNpEQaNL9Wsuw2HpZDRE9ZQrgQq9lgol/fIoBej3J8CcgM55AYSAmESzIcS1DbI72hwbqJqqlFsr98iWRecF3CTf5LgEbMiogzcv2mx+XqnaCxJYrl1NYmBMXlnOTSdZgNs4vKlGKRbB4yOmkot8JpdZt7EtdRHnHusirRZS5eL/cUe3rgyph18nELb+opw8ARoto3JZjPLoGSMxcJ0XCNu1+9Q==
+ b=Pdx0QYC71Cp67mMnP4khFhySCQcPOcmcIxMSDLTu5S2xuqCpIjVp6H1Xa1j5Wyf8bzDFKRIwBdeF2EUwttLeiC0wkzOkex07L524G79bfbUseMZVfSqJw9ECPagGGLGtQIxgA01cTkeGkF+zB8MtoHzpIyUPZUZk/d60yZt5pJmnJwldsim3i9gd/p2LhTCJn73MZ+a/qtzTCEaFMf041Al608WfOcZPOlXJv/SkMMIU4Jti4a4vShpZN1xl4RRSzMGYkWL5oxUCyGiOQOhpAhylm9pvaT4p2cAVAohJ0jo/APy5d25hD9GziAhk5CgqMn3NuUbYm1C9Q/FiiZ4gWg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MXS/nlFDAouVSjEKew9zhPSpZyzfy146y3dT8rSM+sE=;
- b=OusfklE+qNKYBxxfedOUiOfapxhd7Y96RDyRxXt/9S9Wc/niIARcgKobv1llYzJSFZfAbfEbzAtTDtaBc4Bz/RHh0CXlgr3banSZ1psq8m0uFCwdZiNXhubPIgPGnKLmlbonX9aMUiWfPsqMfYuOmkvE7raifdrRTLss7x97kvpLRV/segPK7xw2qswsCqmhIpLCKhsSK/vgGc+GyIhMfqyw3Ld2076pdZymklktOx8MC3jn6+SgA7zmdnSxMxb9Z/7uUSDZ8bWkxGxlcAHgo5CmDybOwAEihlxxv6/FirTv2IXLGvQn0W79M127d5YPj422a5CfkYZzKdW4SYvJNQ==
+ bh=1JHBOOKHAIEac6UHX9d9PzvAyYUZnZserX87BC8RerE=;
+ b=g7cD5xH0j6JTX+U1KeFyAn58Q4VcgfAvltqwUDp7xoNqSEFtUubs9WeS+Dr9xf3DF9SnXCgrDqMQBEmCpEDWRedMfKvhgS63foMpRAcgxNfuJ2YfJenOghxSwdcaIwy+41K9JER+mB7O3furYqax2iLaXelwwKzZJDCP+HLNmn7hgES82mhukOxskAiC4dAcVGw24FWwslkKt7WAvTsUeN7qAKkBT6ixYJc+k8vaEM3gs9kDKlpEGab2aOiE5a7EWNsm52TztmR30d0gTUD7XRHIM+bSg3rJHtTyC9zVRMfKG5Gel7N5oDYFhYQ9Hit5lqKn7/O140qUVbSot118Mw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MXS/nlFDAouVSjEKew9zhPSpZyzfy146y3dT8rSM+sE=;
- b=qYX1tFClLyRxfd+gVtrjIbjY+A1CKLTUysafkdcth4veOyY6XLXJBxMycjqwS/l/DWo6peWap0eWPWZGzzyik03WR8MQ+WXrpggLiaLVmyl7ga+Kb/EZ3ZrXn6VyN0CVlv774YY+QFDBEKRGwlaJHspCbZd2yCxWQaJ7Tc58Ob0=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by DS0PR12MB8415.namprd12.prod.outlook.com (2603:10b6:8:fc::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.39; Tue, 7 May
- 2024 13:23:16 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%2]) with mapi id 15.20.7544.041; Tue, 7 May 2024
- 13:23:16 +0000
-Message-ID: <24d4a9a9-c622-4f56-8672-21f4c6785476@amd.com>
-Date: Tue, 7 May 2024 15:23:10 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Fix UBSAN shift-out-of-bounds failure
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- Nirmoy Das <nirmoy.das@linux.intel.com>
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>, intel-xe@lists.freedesktop.org,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@intel.com>,
- dri-devel@lists.freedesktop.org
-References: <20240507080456.613786-1-shuicheng.lin@intel.com>
- <2a9a7bb2-c74d-44fb-b9d2-cbb42e462d0f@linux.intel.com>
- <96b6a562-eeaf-49f9-9ade-d58fb061086d@linux.intel.com>
- <fs2aq6wgrsoilkk4spw7fbmvxnbovn555qbney6aqwetflvg75@q4zsc2l2v64s>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <fs2aq6wgrsoilkk4spw7fbmvxnbovn555qbney6aqwetflvg75@q4zsc2l2v64s>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0070.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ce::12) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by SJ1PR11MB6132.namprd11.prod.outlook.com (2603:10b6:a03:45d::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.42; Tue, 7 May
+ 2024 13:24:16 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%5]) with mapi id 15.20.7544.041; Tue, 7 May 2024
+ 13:24:16 +0000
+Date: Tue, 7 May 2024 08:24:13 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Rename few xe_args.h macros
+Message-ID: <c5meihr4bizvba6yxyuiygwzvwzb7njqbhpblvqbl2vakoygrs@tnmfpt4i4v3j>
+References: <20240506215618.2703-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240506215618.2703-1-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: MW4PR03CA0259.namprd03.prod.outlook.com
+ (2603:10b6:303:b4::24) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DS0PR12MB8415:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0777ab33-7cd6-47cc-4c19-08dc6e98daaf
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ1PR11MB6132:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7b0c8dc5-8762-4330-f785-08dc6e98fe7d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|376005|366007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?bW44NHdwZ0VoUC94amV6c3JZZVpQdnMxam84aFRSWWo5aks3RzRtSHE5Ly9E?=
- =?utf-8?B?eTFXQW1pblp6NGhnYy93c0x3UU1zZWUrTVFZUzR1ZXVsbGNta0l6TjJYd2RH?=
- =?utf-8?B?dm54ZUhLSVduTnd5cVJzNTNHb01ZemRoVWFSQnZwSDFIWjQ5WlAxTlE1ektP?=
- =?utf-8?B?ZDZ4bGF1bHE3MzZmQkhGbXprc2VydUxQcmFLRVliREdqL1ZmSHVpM3g4eWNG?=
- =?utf-8?B?QzIzeGJMeTN6aFRUbExTUXlkc1hHa2U4djdEaG83d1hMN0I5eHArQ2tvS2I2?=
- =?utf-8?B?R0lsUE1nUk9ZaXF2U0xVNGVGeHJWbGNDaDBST09SRVg5REJxcVRYaE9OVXpZ?=
- =?utf-8?B?bjJkTlN4eW4xWkdBc0cySFFXM21FYmt4QXlzRHpVU1BtblpqUEoxUVBZSnNm?=
- =?utf-8?B?SFpzMUNVZ0ZmSHBaNEMvTlljNWU2d2ZyRWZjRTNUaFVCcDRGUXYwOVhJQi83?=
- =?utf-8?B?NXBnV1hsOHdUeVVRVGM2QnN3dEIzMUptZURtRG9mZjFSaC91VGRBZllaMWUv?=
- =?utf-8?B?ZVBiQVFVMnFRNldiWkg0MFJXVkdtQTRjdUdaZ09rWmxndEVraXZSeURzSzV4?=
- =?utf-8?B?aGJ1c3RhemhxUzRoNGl5d3pWMng2SnI2YXZOdEFVclJ6V2Z6cThBUkNoU3Vh?=
- =?utf-8?B?U1ZSS2ZhWmUwYkJmUlB3V1hkWUEyUnRZcnFIWXFoSkwrNlFIYW5uSER2SU9V?=
- =?utf-8?B?V0VFVVJJRTdOb3lXcGRPQ1pMMXc5cGI0MjFsSWN1NDE3SnByQXZVQWx5ei9t?=
- =?utf-8?B?aEtEak9udVh2OS8wLytsRkNwbnE5Q3NVeGhtVzhab29HUUl6QXhNSmVmbnky?=
- =?utf-8?B?bzRPR1prOWwrbWd6YS9sMnZkeDFZcFExcWdmMkFyeGJScVRCajdsUXpIR2hk?=
- =?utf-8?B?NFROeVkvL3puTDZjenhONEtkZjVDc3pENGVZWUh1dEdjUDBrZEV0UWxNUWpU?=
- =?utf-8?B?NEFBTzM4eG1YT1FCdTZVcUhtWC9RK3JpaTQvWW1Nb0MzcENiT2g1TXlCbjJt?=
- =?utf-8?B?TFJjM0FydWpvdmtzMlFSeFNRVFA2T0thbEdCb0orejhMbWxnOUd6ejNaWjZr?=
- =?utf-8?B?VjZaS2xpdVM1bEc0RmNTUU1YUzZUUlVRc2gydm94N2U3anhETGozQTQ4Wmlv?=
- =?utf-8?B?a2ZEb3V5YjNaWnhBcWcyZWdzblc4N0lISjR5R3ZSTjlrT21yQm1uNVNESFhP?=
- =?utf-8?B?SmU3eVJTUko4UnArc1dmSCtPU3ZlczJRTThzb0oxb0k5WURKUkhWOVJYVnNL?=
- =?utf-8?B?TzFXNEpYN0VJcmI5eGNEUDBNbHVjWEYwL3BIMFcvOGdvenVwNFNkeUNaa2RG?=
- =?utf-8?B?WHVWMFBoRzJkdlp0RDc1cG1YWmVDSEp0VXdyUW1USnVRWFAzNjdCc3lyNVNM?=
- =?utf-8?B?SU1sTnFwaHI5N29nYXQrWnV1V2JJR01lVUs4ek1oZnp0SGRTV283NWtEM0xZ?=
- =?utf-8?B?VWFWTUthb295TXZHY3Z2M3FBQjlNakVqd3pEbzZjM3lRcnJwNHZMTkxNREtw?=
- =?utf-8?B?TWtPYTZEelhXR2V6Z1VmOWVUVTFoR3l4SGFJVHljcThxQm1zT25yMC9lUkUv?=
- =?utf-8?B?cDJLQURORm4vUE5rT0J0aHlDQjdVUEd4enNZTG5uQ2lhYW1UMkZsLzQ3bWpG?=
- =?utf-8?Q?7TOTIa6JDMzue4dNHWSZpkAmJBIWa87COmECnpmD0juw=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|376005|1800799015;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?alHnF5+BaoiW5tnRmX7g7iEAkkdVy7gvB3S244E79weSEUurgExc3+szIiN9?=
+ =?us-ascii?Q?q6POXQqJQxISX9Cn58DWzM95Zq1PJ6td+3+xOTizKGw5ZCpH0V5B21mtrHZK?=
+ =?us-ascii?Q?bmbb9NVNmfNXVQEWn/l9iOaW8knPykeLg9hU4TAyb0pxkdqGyTt8uifpjm37?=
+ =?us-ascii?Q?baqkUEc9/PmVIZM+6chHHV0fhj5jg9dYHJ1+If8TeB82csXMazBjFrX3+kL9?=
+ =?us-ascii?Q?Kqw8q19aq30ZOFZ7uMXnWiGuljXwFTNmoVghtNwDicgJpOfvEB34MSBb4ipp?=
+ =?us-ascii?Q?2UK+NtNKSq9bLhfq2lypick8lNiuC4B/FJOQRPJMJ2cyl+ta/OeozFVZdx8T?=
+ =?us-ascii?Q?CKUf/5MtLTlAgFeR7A14+qbQC5X3PxE7pPlQ5a89BaoiRfsiJs8cP3pb/8h6?=
+ =?us-ascii?Q?FqYOA2QR3Rc8iH3o8afI05oN+Y/ZRrC/r2ZhVdflh4xZoTcgAUjNr4lU869s?=
+ =?us-ascii?Q?5wiIYUQIh7oyLRKfYZYRT1ezOaA3CrahjtNTjEwVWlfWT5rbiDc6tgtkUhxI?=
+ =?us-ascii?Q?AU1DzZ79Ol7fmEWEY6iYf2qJKR+KnMitxrC4DS6o2QZB1kLgcelK+mDYDqDh?=
+ =?us-ascii?Q?1I5Ne37eWXuuZTf8h+JPvKAunOjBhc65WwXpdcLMd7yLsc7eMZpqPp5yKl3D?=
+ =?us-ascii?Q?H+yrddtDkHp9N9F9KUxcVrASw1a0St8nxNfxJLiZv/sr59NULs+cvml8JL/3?=
+ =?us-ascii?Q?F/TNb04Byst1zitvYc39YHgvfLPO+ljJ/myr1zL0QrloHCjntLovGh3mHEKR?=
+ =?us-ascii?Q?NW//RHhD22ZrWMclTVTTlvpIg9NKMLHBOcjRjPIBkWjYEASuvsw1rBZJizeF?=
+ =?us-ascii?Q?20oNnybxbovRVlxgRogCBdrv5yH4vObNE5p4rVgK9AeGC158mazFSXYxY1mj?=
+ =?us-ascii?Q?p9Et8+2jHAznSBYJTe2+4fjdkScnCYvS+7RI38Sh4zXijfH9h3+1uaL8nNjA?=
+ =?us-ascii?Q?o+GLn3EDH0QxKc1lMEbUvmf73D/zPgij3sX1vfGXml6b9QjGs4cAC/z4eqR2?=
+ =?us-ascii?Q?srDAvfV67VfA2fzXxJJ0nQakBbFosUAj4HZYp3NA4Q1uix8EmCHMoRpQRfz4?=
+ =?us-ascii?Q?1QLqcs28Fwpg14MLnv9tCjaNPmmjKU5V/lxzh8g9Uz82qWFYwwej4Hve2vDS?=
+ =?us-ascii?Q?Mv7QLNj6SutY8a9nY5LaUzo1VOSgfIzH/dpyl9yShDX8h7kcRpjt3zJQNxUS?=
+ =?us-ascii?Q?6kbsUqP5I3/SnBuvRFvFIhJcyiLJMBqefYS4bxn89Iamu7M0Osfsrifn/Sux?=
+ =?us-ascii?Q?WWCt7NAmElQ7qIh9rd4KsxDy/4pFU4RJ1YDOEtYDLA=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Szd4cVJ0Q3g4TkR3dDhJbXRzK21CRkpKV2Z1YWZqdEsyUXVYdGkyK1E2T28x?=
- =?utf-8?B?MzZpVEc4Mm9CVTczcjAvbk5WU3lURy9jdHBDdFEzNU95Mnc5TWp3WUtrWExV?=
- =?utf-8?B?eUlsaEdESFhZTS9uUDAwM3JJZkUzSTBkSlpmbUorcyt3UzlnOWtvWTlRQ2NZ?=
- =?utf-8?B?ME1YeDVNVVoxY0lyckZUSmw0MTFRZjBTYWRHVjZ4MVhPbDREck5HOU1GK1RI?=
- =?utf-8?B?czZ6QnJlM1VjQnpwa0pHTk9FdUpMeitXbVQreVdtbWFWT3FCVUdWb3cyakdN?=
- =?utf-8?B?b1ExMVE1VTdpQzk1ak0xK2lVcWY3Wjd0VDJJVng2Z21IZUVyVVp0MlZsQWQ4?=
- =?utf-8?B?clFLK3M2bm5leUwzYU5Ya1dJKzRhQXJpUFlmbHNmRFQ3djY2OFJydXU1WEJ2?=
- =?utf-8?B?dnFpdDc5azFuRzJoL1JmY1dxL01jeWE1SUdTek92ZUd1WUhvb3RIa2pvNkxa?=
- =?utf-8?B?a01RRTgvUUtjNUtpYllTKzZ6M0lZQy83ZUdLSzd4YVpmdGphVVB0Y2wwTVNV?=
- =?utf-8?B?Z1pXNnpHOEJxQktNY2NDNllDZ3cwMDZ0Mmk0WWJCN1pTWTAzSm0vTWpTdThV?=
- =?utf-8?B?RHpCOUdpM0M2Vys2TU1RWDV6ZEN3UnFwaWZsU1ZnbVFranBGeFUvK2JQUFcr?=
- =?utf-8?B?RkVjV2FiS1loY3VYdXFjU0xHSnZpdkFNTHFCcklRajJuOHZ3QjJVWlZYWlRn?=
- =?utf-8?B?UGs3MmY1TGxWRVgxY29OV3doT1d5WEtxUTJYKytPdzAvRUphRU1USlB2Y2hG?=
- =?utf-8?B?TVhUNkN4eW9KcFY1bzBpaVFhTzNxQUFxWnVtZDRjZnhWNDJlc2NPdmRxWUM3?=
- =?utf-8?B?OWRMNHRIa1c0WTVodXkxMHFidXJrTStlcWVUcXJJTHpVVk50a01ibzN6ZTg1?=
- =?utf-8?B?TDZhbkE1ZzVCTTJqajFxaTBuUURJWFNXODRaTkJ6Z3VlOWxWMnhzSEhBUTlV?=
- =?utf-8?B?RHFjWEw5dHk1TU9aVGlWZERTRS9xdk9FYzdpNGRZQ0p0L204dWlLZ1NIV2hu?=
- =?utf-8?B?VDk4QzFMems3T3EwdkZHWUNyZVBqVXFqMGFZSzdnY3JieWowOHlIMU9zK3RN?=
- =?utf-8?B?VkN1a0ZEcEV5MHhPY1pHaEk5aE9vODllRFlLMGlpVUdoUG9TdzZDR3JCUEFH?=
- =?utf-8?B?dEdmeHBKb3g3cUFYMkc4L2hmRGVwTklYS0l4SGQ1OFZIa09QOFZ6a0FkSy9H?=
- =?utf-8?B?ODdZazdwc2xEeHZNdEpCUjBJbU5nVGNnRFdISHRNSUZBT3VBRDBsS2RCOU9s?=
- =?utf-8?B?WGtURS9La3c1ck5MWEI4Y1FQZVQ3aW5QbjNoV2NySVFFcG02ZFNkeGJMcXR5?=
- =?utf-8?B?RG5mazlPZWkrTCsySjVwd0loUDlNZUE2d3ZsUW4vejdvcjhWVWoxeHV4cE9o?=
- =?utf-8?B?d0xSa09xZ2h5VXZ3NXZrMmc4cThPZjloNkRKbTRzaE8vaGdST1hSZTVaSVlt?=
- =?utf-8?B?U0V2YlM0Vi9oNXlaNEk1V2VUaGNkeTZjZkQ4SGNmNk5mN0VYNnRVVWVaVGsx?=
- =?utf-8?B?L3hHZUpaZFdaVEpQZVdLRnk3YmFVcVN6WVQxaDg0QWxtL3N6UHdxSlBJMUYz?=
- =?utf-8?B?ci9aeDNwTHovakFpa2laOHVqZWM4cDdwd1M4cG55cHkxVmdzZW1sSkhtR2Rz?=
- =?utf-8?B?Sk0zaVMyd3pxdEFOMlZpbVo5L2draHhLU2Z2VUhFSW9GWjc4M1BSOFlpMkZN?=
- =?utf-8?B?RmRlUWFMLy9PL3N3cExtcm9xN0tGS0NuYW9KcVptbXVjbXNNUjJpUGZqWUxz?=
- =?utf-8?B?Rjd1dUw4VjI1bEM1RHFPa0Jwa0EzZkl6V2d2TkpXRjJJOG1RMTBLZVZROU91?=
- =?utf-8?B?T0FUOGs2RWt6dWM0b3FWRnJneHZkRzAxaVNYY0hLN1JvSmRhYUtGQTh4V1VD?=
- =?utf-8?B?cFdRNFg0TTNpNE0wSnBUZStHNDF0QWRkbHhvdzlHbmoyTnc3WHZPSURmeWpN?=
- =?utf-8?B?a0VvZkZ3SU5mU0RXd25Uc2NyRCtZNnMzaDhRaEp0QnhrMzIyM3psNWRLd1Y5?=
- =?utf-8?B?Q3g0eVN0cGJMNU9hQnBURTA2OFFLeGIvc0tVSUVWRjZTbVFrU3E3bFBpcVJp?=
- =?utf-8?B?S2g3d2tUMGx2bGNQanp6REV2cTZCWWRIUzlIMDNHRHBHTHhLNVF4RzhMY25w?=
- =?utf-8?Q?IppaQnhtlcX9CAqSnifoevWCN?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0777ab33-7cd6-47cc-4c19-08dc6e98daaf
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mse+hMWJAma6RdYsAi1405sPZN8lx+dZ5zLZpYT0IxR9b7u3ujiXJfRdIx2X?=
+ =?us-ascii?Q?/vvfiQZp0UFI48LTG2/QxG1UA6tKV5gnmqS5SkTjvghph30jg5qiuqpdHeUf?=
+ =?us-ascii?Q?/X2F6FiD28wXNpRBrIBTO3sZmYmB061Pjdg4fDlRcTeciZ1q65YCvzO3Ls/q?=
+ =?us-ascii?Q?H+3ruAe7OC0kDBkqCzeIBy6papKH3sDeyzy5KasBBW4uCjyjcql81byCOInV?=
+ =?us-ascii?Q?9s/oOZV5u8elgBoamTfSHqOmiroJ+XJIg5Bpgvl8eS8BnLXKLsNy6rZhQhLo?=
+ =?us-ascii?Q?/IhOL0YDGEZAEhaaxhJBizr5I/wHBjkjYszYfd3WzjTCd8/jMj3tgGf2MMEm?=
+ =?us-ascii?Q?A0ebBm2K0KQXuCYheUGrBznKcWd0mr6NC9CuhIVfRAXtFb9XSc9QJsznMvHe?=
+ =?us-ascii?Q?5b+2NiFNNYAB6NoOwfeoAYTJwwbLHV5Qs9GBE0YXCYsOcazXIsU5SM17hg/N?=
+ =?us-ascii?Q?Z6f7KrSwOEBLEbaP3e0II42kMVrdgz+39vPeL7MyYFL9aR6rMBsSMYWxP/lI?=
+ =?us-ascii?Q?G+R2+pDKVRA9KrhurN391KdJ0I4NZ1XPCBqGbTiO2nepVDdYbo5IpG9ns8pP?=
+ =?us-ascii?Q?SYjYJHBlMNoEE3eU9ar1PmV/JcJrPmLNCIBijkpVDxYn/+7wGCIbnykluqB+?=
+ =?us-ascii?Q?4o3kVey8Q44Se9HHh+6WuEI6kMDtugPQr3KnBmNNVKx3amwsib4EqfMtaCeM?=
+ =?us-ascii?Q?jI6DKixgwIqq7wzSWTj9lryNUifzgWfki7ELpzwskCW26t1P3XR6wZ/O4DzV?=
+ =?us-ascii?Q?ThMH/2RW6Jknm2Tq2hDj08B0bOOtanYAgkLQMOV5ItdFCC+Ns5R0kophIOuU?=
+ =?us-ascii?Q?01P2HaL/zsPsngRoD7aeHV5IXR7ZkQKBSULFUguvt9slu4c/j2xG8N2BQvFD?=
+ =?us-ascii?Q?16xzjcxD3WQgjyxaDbWElBqiPa0qZqAi3emHxXHnSmL0uVL3r7DXBBJp6BCt?=
+ =?us-ascii?Q?huCjrNoRTtT/NoyMuQ2sbRJzb+PQFH/JqMLzO2oqcL23tN1fUhNLPly5f97S?=
+ =?us-ascii?Q?A+TempF6bo6AfOI8hL3Y3h6zevbSUuYP8gC2y66FBhtYZLHjI8f0Vh8UA9HF?=
+ =?us-ascii?Q?BC/kIl1B8y6m4MF6Zd2kAZc6yHNqwI9Gt2qVAiFxYkBpVo8xoQR1VX8Vubtm?=
+ =?us-ascii?Q?IdyqgkKl6L2+wM6oqcm84Zc4SssOiRtjoiSq9vQHbtrN17Z/jcIiD8tRcfvA?=
+ =?us-ascii?Q?+aPqphI7XCKZ3KS4vq/m/tcZnSqARz1IrlgP/3TTfgDE4d4MBk7YBknASOGq?=
+ =?us-ascii?Q?qKGRYJ6m/yqBVeVIQUFMYgxpmqVn2ZlEZY1SvzCZB5HEWeM1bpfWIiBE+go9?=
+ =?us-ascii?Q?7jeZFO3Mg84dDLwNKZmY0ZH+G+7efjcE5r9ncxpy6vcNrNCKF91ouYA0DsR5?=
+ =?us-ascii?Q?OzkSAnSm6gkE+7EOrMzuA/M1oVMvuslvo4CoF4Yu4qotd2L/yohJMlik+9gW?=
+ =?us-ascii?Q?kIhvvSD83jGaI+N3BHE2B08TqZogzl/7OIp86hAWjyhFZXXztjHww0e9ffQ4?=
+ =?us-ascii?Q?Xu71JI3WNdSIWqUeV93ORF9kSMiApHSW0FLeFxhsSTnKYfYqBbSuwt0C0JUT?=
+ =?us-ascii?Q?3/BfMn72tjJSM1Ydhyc90KUfZb4vdcIqJ8rqS3TVKCIbSw32wPbX6Fs4JkzY?=
+ =?us-ascii?Q?Sw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b0c8dc5-8762-4330-f785-08dc6e98fe7d
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2024 13:23:16.3810 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2024 13:24:16.5446 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fiCAyj2xjX/zrue7Sf5I7d7YNBz8j7AJcduBbDDfwKPZHQQgNWxOWxJbWvePZXwD
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8415
+X-MS-Exchange-CrossTenant-UserPrincipalName: B6WrQ9APQS9jhBwHS7T3zv3cT5Ot1HuirhhWJDqHyp4/k2MS1Hrz28JEAQ5Sz9pjdX565Ovguuqhh+TUKmHrlmYX97rACx3Eq3xITC0By8c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6132
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,130 +177,324 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 07.05.24 um 15:18 schrieb Lucas De Marchi:
+On Mon, May 06, 2024 at 11:56:18PM GMT, Michal Wajdeczko wrote:
+>To minimize the risk of future name collisions, rename macros to
+>always include the ARG or ARGS tag:
 >
-> +Thomas, +Christian, +dri-devel
->
-> On Tue, May 07, 2024 at 11:42:46AM GMT, Nirmoy Das wrote:
->>
->> On 5/7/2024 11:39 AM, Nirmoy Das wrote:
->>>
->>>
->>> On 5/7/2024 10:04 AM, Shuicheng Lin wrote:
->>>> Here is the failure stack:
->>>> [   12.988209] ------------[ cut here ]------------
->>>> [   12.988216] UBSAN: shift-out-of-bounds in 
->>>> ./include/linux/log2.h:57:13
->>>> [   12.988232] shift exponent 64 is too large for 64-bit type 'long 
->>>> unsigned int'
->>>> [   12.988235] CPU: 4 PID: 1310 Comm: gnome-shell Tainted: G     
->>>> U             6.9.0-rc6+prerelease1158+ #19
->>>> [   12.988237] Hardware name: Intel Corporation Raptor Lake Client 
->>>> Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS 
->>>> RPLSFWI1.R00.3301.A02.2208050712 08/05/2022
->>>> [   12.988239] Call Trace:
->>>> [   12.988240]  <TASK>
->>>> [   12.988242]  dump_stack_lvl+0xd7/0xf0
->>>> [   12.988248]  dump_stack+0x10/0x20
->>>> [   12.988250]  ubsan_epilogue+0x9/0x40
->>>> [   12.988253] __ubsan_handle_shift_out_of_bounds+0x10e/0x170
->>>> [   12.988260]  dma_resv_reserve_fences.cold+0x2b/0x48
->>>> [   12.988262]  ? ww_mutex_lock_interruptible+0x3c/0x110
->>>> [   12.988267]  drm_exec_prepare_obj+0x45/0x60 [drm_exec]
->>>> [   12.988271]  ? vm_bind_ioctl_ops_execute+0x5b/0x740 [xe]
->>>> [   12.988345]  vm_bind_ioctl_ops_execute+0x78/0x740 [xe]
->>>>
->>>> It is caused by the value 0 of parameter num_fences in function 
->>>> drm_exec_prepare_obj.
->>>> And lead to in function __rounddown_pow_of_two, "0 - 1" causes the 
->>>> shift-out-of-bounds.
->>>> For the num_fences, it should be 1 at least.
->>>>
->>>> Cc: Matthew Brost<matthew.brost@intel.com>
->>>> Signed-off-by: Shuicheng Lin<shuicheng.lin@intel.com>
->>>> ---
->>>>  drivers/gpu/drm/xe/xe_vm.c | 4 ++--
->>>>  1 file changed, 2 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
->>>> index d17192c8b7de..96cb4d9762a3 100644
->>>> --- a/drivers/gpu/drm/xe/xe_vm.c
->>>> +++ b/drivers/gpu/drm/xe/xe_vm.c
->>>> @@ -2692,7 +2692,7 @@ static int vma_lock_and_validate(struct 
->>>> drm_exec *exec, struct xe_vma *vma,
->>>>      if (bo) {
->>>>          if (!bo->vm)
->>>> -            err = drm_exec_prepare_obj(exec, &bo->ttm.base, 0);
->>>> +            err = drm_exec_prepare_obj(exec, &bo->ttm.base, 1);
->>>
->>> This needs to be fixed in drm_exec_prepare_obj() by checking 
->>> num_fences and not calling dma_resv_reserve_fences()
->>>
->> or just call drm_exec_lock_obj() here. ref: 
->> https://patchwork.freedesktop.org/patch/577487/
->
-> we are hit again by this. Couldn't we change drm_exec_prepare_obj() to
-> check num_fences and if is 0 just fallback to just do
-> drm_exec_lock_obj() as  "the least amount of work needed in this case"?
+>  DROP_FIRST to ARGS_TAIL
 
-No, and that reminds me (again!) that I wanted to add a WARN_ON for this.
+this one is odd. When I read DROP_FIRST(1, 2, 3), it's immediately clear
+what it means. It's not with ARGS_TAIL(1, 2, 3) as I have to read the
+doc to know if tail == everything but first arg, or if the first args is
+the length.
 
-If you don't need a fence slot in the first place then you should only 
-use drm_exec_lock_obj() instead of drm_exec_prepare_obj().
+I'd rather prefer DROP_FIRST_ARG if we are trying to add _ARG suffix in
+the others. It's longer, but it's also unambiguous.
 
-If you dynamically calculate the number of fence slots needed and end up 
-with zero then there is most likely something wrong with your calculation.
+>  PICK_FIRST to FIRST_ARG
+>  PICK_LAST to LAST_ARG
 
-That was intentionally made like this because we ended up with quite 
-some bugs around that.
+these are clear, so ack
 
-Regards,
-Christian.
+Lucas De Marchi
 
 >
-> Something like this:
+>Suggested-by:: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+>Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>---
+> drivers/gpu/drm/xe/tests/xe_args_test.c | 70 ++++++++++++-------------
+> drivers/gpu/drm/xe/xe_args.h            | 50 +++++++++---------
+> drivers/gpu/drm/xe/xe_rtp_helpers.h     | 12 ++---
+> 3 files changed, 66 insertions(+), 66 deletions(-)
 >
-> | diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
-> | index 2da094bdf8a4..68b5f6210b09 100644
-> | --- a/drivers/gpu/drm/drm_exec.c
-> | +++ b/drivers/gpu/drm/drm_exec.c
-> | @@ -296,10 +296,12 @@ int drm_exec_prepare_obj(struct drm_exec 
-> *exec, struct drm_gem_object *obj,
-> |      if (ret)
-> |          return ret;
-> |  | -    ret = dma_resv_reserve_fences(obj->resv, num_fences);
-> | -    if (ret) {
-> | -        drm_exec_unlock_obj(exec, obj);
-> | -        return ret;
-> | +    if (num_fences) {
-> | +        ret = dma_resv_reserve_fences(obj->resv, num_fences);
-> | +        if (ret) {
-> | +            drm_exec_unlock_obj(exec, obj);
-> | +            return ret;
-> | +        }
-> |      }
-> |  |      return 0;
+>diff --git a/drivers/gpu/drm/xe/tests/xe_args_test.c b/drivers/gpu/drm/xe/tests/xe_args_test.c
+>index 9b44c1ab6364..3b25688e4da7 100644
+>--- a/drivers/gpu/drm/xe/tests/xe_args_test.c
+>+++ b/drivers/gpu/drm/xe/tests/xe_args_test.c
+>@@ -21,10 +21,10 @@ static void call_args_example(struct kunit *test)
+> #undef buz
+> }
 >
-> thanks
-> Lucas De Marchi
+>-static void drop_first_example(struct kunit *test)
+>+static void args_tail_example(struct kunit *test)
+> {
+> #define foo	X, Y, Z, Q
+>-#define bar	CALL_ARGS(COUNT_ARGS, DROP_FIRST(foo))
+>+#define bar	CALL_ARGS(COUNT_ARGS, ARGS_TAIL(foo))
 >
->>
->> Nirmoy
->>
->>>
->>> Regards,
->>>
->>> Nirmoy
->>>
->>>>          if (!err && validate)
->>>>              err = xe_bo_validate(bo, xe_vma_vm(vma), true);
->>>>      }
->>>> @@ -2777,7 +2777,7 @@ static int 
->>>> vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
->>>>      struct xe_vma_op *op;
->>>>      int err;
->>>> -    err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), 0);
->>>> +    err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), 1);
->>>>      if (err)
->>>>          return err;
-
+> 	KUNIT_EXPECT_EQ(test, bar, 3);
+>
+>@@ -32,12 +32,12 @@ static void drop_first_example(struct kunit *test)
+> #undef bar
+> }
+>
+>-static void pick_first_example(struct kunit *test)
+>+static void first_arg_example(struct kunit *test)
+> {
+> 	int X = 1;
+>
+> #define foo	X, Y, Z, Q
+>-#define bar	PICK_FIRST(foo)
+>+#define bar	FIRST_ARG(foo)
+>
+> 	KUNIT_EXPECT_EQ(test, bar, X);
+> 	KUNIT_EXPECT_STREQ(test, __stringify(bar), "X");
+>@@ -46,12 +46,12 @@ static void pick_first_example(struct kunit *test)
+> #undef bar
+> }
+>
+>-static void pick_last_example(struct kunit *test)
+>+static void last_arg_example(struct kunit *test)
+> {
+> 	int Q = 1;
+>
+> #define foo	X, Y, Z, Q
+>-#define bar	PICK_LAST(foo)
+>+#define bar	LAST_ARG(foo)
+>
+> 	KUNIT_EXPECT_EQ(test, bar, Q);
+> 	KUNIT_EXPECT_STREQ(test, __stringify(bar), "Q");
+>@@ -63,8 +63,8 @@ static void pick_last_example(struct kunit *test)
+> static void sep_comma_example(struct kunit *test)
+> {
+> #define foo(f)	f(X) f(Y) f(Z) f(Q)
+>-#define bar	DROP_FIRST(foo(ARGS_SEP_COMMA __stringify))
+>-#define buz	CALL_ARGS(COUNT_ARGS, DROP_FIRST(foo(ARGS_SEP_COMMA)))
+>+#define bar	ARGS_TAIL(foo(ARGS_SEP_COMMA __stringify))
+>+#define buz	CALL_ARGS(COUNT_ARGS, ARGS_TAIL(foo(ARGS_SEP_COMMA)))
+>
+> 	static const char * const a[] = { bar };
+>
+>@@ -123,61 +123,61 @@ static void call_args_test(struct kunit *test)
+> 	KUNIT_EXPECT_EQ(test, CALL_ARGS(COUNT_ARGS, MAX_ARGS), 12);
+> }
+>
+>-static void drop_first_test(struct kunit *test)
+>+static void args_tail_test(struct kunit *test)
+> {
+> 	int Y = -2, Z = -3, Q = -4;
+>-	int a[] = { DROP_FIRST(FOO_ARGS) };
+>+	int a[] = { ARGS_TAIL(FOO_ARGS) };
+>
+>-	KUNIT_EXPECT_EQ(test, DROP_FIRST(0, -1), -1);
+>-	KUNIT_EXPECT_EQ(test, DROP_FIRST(DROP_FIRST(0, -1, -2)), -2);
+>+	KUNIT_EXPECT_EQ(test, ARGS_TAIL(0, -1), -1);
+>+	KUNIT_EXPECT_EQ(test, ARGS_TAIL(ARGS_TAIL(0, -1, -2)), -2);
+>
+>-	KUNIT_EXPECT_EQ(test, CALL_ARGS(COUNT_ARGS, DROP_FIRST(FOO_ARGS)), 3);
+>-	KUNIT_EXPECT_EQ(test, DROP_FIRST(DROP_FIRST(DROP_FIRST(FOO_ARGS))), -4);
+>+	KUNIT_EXPECT_EQ(test, CALL_ARGS(COUNT_ARGS, ARGS_TAIL(FOO_ARGS)), 3);
+>+	KUNIT_EXPECT_EQ(test, ARGS_TAIL(ARGS_TAIL(ARGS_TAIL(FOO_ARGS))), -4);
+> 	KUNIT_EXPECT_EQ(test, a[0], -2);
+> 	KUNIT_EXPECT_EQ(test, a[1], -3);
+> 	KUNIT_EXPECT_EQ(test, a[2], -4);
+>-	KUNIT_EXPECT_STREQ(test, __stringify(DROP_FIRST(DROP_FIRST(DROP_FIRST(FOO_ARGS)))), "Q");
+>+	KUNIT_EXPECT_STREQ(test, __stringify(ARGS_TAIL(ARGS_TAIL(ARGS_TAIL(FOO_ARGS)))), "Q");
+> }
+>
+>-static void pick_first_test(struct kunit *test)
+>+static void first_arg_test(struct kunit *test)
+> {
+> 	int X = -1;
+>-	int a[] = { PICK_FIRST(FOO_ARGS) };
+>+	int a[] = { FIRST_ARG(FOO_ARGS) };
+>
+>-	KUNIT_EXPECT_EQ(test, PICK_FIRST(-1, -2), -1);
+>+	KUNIT_EXPECT_EQ(test, FIRST_ARG(-1, -2), -1);
+>
+>-	KUNIT_EXPECT_EQ(test, CALL_ARGS(COUNT_ARGS, PICK_FIRST(FOO_ARGS)), 1);
+>-	KUNIT_EXPECT_EQ(test, PICK_FIRST(FOO_ARGS), -1);
+>+	KUNIT_EXPECT_EQ(test, CALL_ARGS(COUNT_ARGS, FIRST_ARG(FOO_ARGS)), 1);
+>+	KUNIT_EXPECT_EQ(test, FIRST_ARG(FOO_ARGS), -1);
+> 	KUNIT_EXPECT_EQ(test, a[0], -1);
+>-	KUNIT_EXPECT_STREQ(test, __stringify(PICK_FIRST(FOO_ARGS)), "X");
+>+	KUNIT_EXPECT_STREQ(test, __stringify(FIRST_ARG(FOO_ARGS)), "X");
+> }
+>
+>-static void pick_last_test(struct kunit *test)
+>+static void last_arg_test(struct kunit *test)
+> {
+> 	int Q = -4;
+>-	int a[] = { PICK_LAST(FOO_ARGS) };
+>+	int a[] = { LAST_ARG(FOO_ARGS) };
+>
+>-	KUNIT_EXPECT_EQ(test, PICK_LAST(-1, -2), -2);
+>+	KUNIT_EXPECT_EQ(test, LAST_ARG(-1, -2), -2);
+>
+>-	KUNIT_EXPECT_EQ(test, CALL_ARGS(COUNT_ARGS, PICK_LAST(FOO_ARGS)), 1);
+>-	KUNIT_EXPECT_EQ(test, PICK_LAST(FOO_ARGS), -4);
+>+	KUNIT_EXPECT_EQ(test, CALL_ARGS(COUNT_ARGS, LAST_ARG(FOO_ARGS)), 1);
+>+	KUNIT_EXPECT_EQ(test, LAST_ARG(FOO_ARGS), -4);
+> 	KUNIT_EXPECT_EQ(test, a[0], -4);
+>-	KUNIT_EXPECT_STREQ(test, __stringify(PICK_LAST(FOO_ARGS)), "Q");
+>+	KUNIT_EXPECT_STREQ(test, __stringify(LAST_ARG(FOO_ARGS)), "Q");
+>
+>-	KUNIT_EXPECT_EQ(test, PICK_LAST(MAX_ARGS), -12);
+>-	KUNIT_EXPECT_STREQ(test, __stringify(PICK_LAST(MAX_ARGS)), "-12");
+>+	KUNIT_EXPECT_EQ(test, LAST_ARG(MAX_ARGS), -12);
+>+	KUNIT_EXPECT_STREQ(test, __stringify(LAST_ARG(MAX_ARGS)), "-12");
+> }
+>
+> static struct kunit_case args_tests[] = {
+> 	KUNIT_CASE(count_args_test),
+> 	KUNIT_CASE(call_args_example),
+> 	KUNIT_CASE(call_args_test),
+>-	KUNIT_CASE(drop_first_example),
+>-	KUNIT_CASE(drop_first_test),
+>-	KUNIT_CASE(pick_first_example),
+>-	KUNIT_CASE(pick_first_test),
+>-	KUNIT_CASE(pick_last_example),
+>-	KUNIT_CASE(pick_last_test),
+>+	KUNIT_CASE(args_tail_example),
+>+	KUNIT_CASE(args_tail_test),
+>+	KUNIT_CASE(first_arg_example),
+>+	KUNIT_CASE(first_arg_test),
+>+	KUNIT_CASE(last_arg_example),
+>+	KUNIT_CASE(last_arg_test),
+> 	KUNIT_CASE(sep_comma_example),
+> 	{}
+> };
+>diff --git a/drivers/gpu/drm/xe/xe_args.h b/drivers/gpu/drm/xe/xe_args.h
+>index 40b9eb4151d8..e17a41f9da0b 100644
+>--- a/drivers/gpu/drm/xe/xe_args.h
+>+++ b/drivers/gpu/drm/xe/xe_args.h
+>@@ -35,7 +35,7 @@
+> #define __CALL_ARGS(f, args...)		f(args)
+>
+> /**
+>- * DROP_FIRST - Returns all arguments except the first one.
+>+ * ARGS_TAIL - Returns all arguments except the first one.
+>  * @args: arguments
+>  *
+>  * This helper macro allows manipulation the argument list before passing it
+>@@ -44,15 +44,15 @@
+>  * Example:
+>  *
+>  *	#define foo	X,Y,Z,Q
+>- *	#define bar	CALL_ARGS(COUNT_ARGS, DROP_FIRST(foo))
+>+ *	#define bar	CALL_ARGS(COUNT_ARGS, ARGS_TAIL(foo))
+>  *
+>  *	With above definitions bar expands to 3.
+>  */
+>-#define DROP_FIRST(args...)		__DROP_FIRST(args)
+>-#define __DROP_FIRST(a, b...)		b
+>+#define ARGS_TAIL(args...)		__ARGS_TAIL(args)
+>+#define __ARGS_TAIL(a, b...)		b
+>
+> /**
+>- * PICK_FIRST - Returns the first argument.
+>+ * FIRST_ARG - Returns the first argument.
+>  * @args: arguments
+>  *
+>  * This helper macro allows manipulation the argument list before passing it
+>@@ -61,15 +61,15 @@
+>  * Example:
+>  *
+>  *	#define foo	X,Y,Z,Q
+>- *	#define bar	PICK_FIRST(foo)
+>+ *	#define bar	FIRST_ARG(foo)
+>  *
+>  *	With above definitions bar expands to X.
+>  */
+>-#define PICK_FIRST(args...)		__PICK_FIRST(args)
+>-#define __PICK_FIRST(a, b...)		a
+>+#define FIRST_ARG(args...)		__FIRST_ARG(args)
+>+#define __FIRST_ARG(a, b...)		a
+>
+> /**
+>- * PICK_LAST - Returns the last argument.
+>+ * LAST_ARG - Returns the last argument.
+>  * @args: arguments
+>  *
+>  * This helper macro allows manipulation the argument list before passing it
+>@@ -80,24 +80,24 @@
+>  * Example:
+>  *
+>  *	#define foo	X,Y,Z,Q
+>- *	#define bar	PICK_LAST(foo)
+>+ *	#define bar	LAST_ARG(foo)
+>  *
+>  *	With above definitions bar expands to Q.
+>  */
+>-#define PICK_LAST(args...)		__PICK_ARG(COUNT_ARGS(args), args)
+>+#define LAST_ARG(args...)		__PICK_ARG(COUNT_ARGS(args), args)
+> #define __PICK_ARG(n, args...)		CALL_ARGS(CONCATENATE(PICK_ARG, n), args)
+>-#define PICK_ARG1(args...)		PICK_FIRST(args)
+>-#define PICK_ARG2(args...)		PICK_ARG1(DROP_FIRST(args))
+>-#define PICK_ARG3(args...)		PICK_ARG2(DROP_FIRST(args))
+>-#define PICK_ARG4(args...)		PICK_ARG3(DROP_FIRST(args))
+>-#define PICK_ARG5(args...)		PICK_ARG4(DROP_FIRST(args))
+>-#define PICK_ARG6(args...)		PICK_ARG5(DROP_FIRST(args))
+>-#define PICK_ARG7(args...)		PICK_ARG6(DROP_FIRST(args))
+>-#define PICK_ARG8(args...)		PICK_ARG7(DROP_FIRST(args))
+>-#define PICK_ARG9(args...)		PICK_ARG8(DROP_FIRST(args))
+>-#define PICK_ARG10(args...)		PICK_ARG9(DROP_FIRST(args))
+>-#define PICK_ARG11(args...)		PICK_ARG10(DROP_FIRST(args))
+>-#define PICK_ARG12(args...)		PICK_ARG11(DROP_FIRST(args))
+>+#define PICK_ARG1(args...)		FIRST_ARG(args)
+>+#define PICK_ARG2(args...)		PICK_ARG1(ARGS_TAIL(args))
+>+#define PICK_ARG3(args...)		PICK_ARG2(ARGS_TAIL(args))
+>+#define PICK_ARG4(args...)		PICK_ARG3(ARGS_TAIL(args))
+>+#define PICK_ARG5(args...)		PICK_ARG4(ARGS_TAIL(args))
+>+#define PICK_ARG6(args...)		PICK_ARG5(ARGS_TAIL(args))
+>+#define PICK_ARG7(args...)		PICK_ARG6(ARGS_TAIL(args))
+>+#define PICK_ARG8(args...)		PICK_ARG7(ARGS_TAIL(args))
+>+#define PICK_ARG9(args...)		PICK_ARG8(ARGS_TAIL(args))
+>+#define PICK_ARG10(args...)		PICK_ARG9(ARGS_TAIL(args))
+>+#define PICK_ARG11(args...)		PICK_ARG10(ARGS_TAIL(args))
+>+#define PICK_ARG12(args...)		PICK_ARG11(ARGS_TAIL(args))
+>
+> /**
+>  * ARGS_SEP_COMMA - Definition of a comma character.
+>@@ -109,8 +109,8 @@
+>  * Example:
+>  *
+>  *	#define foo(f)	f(X) f(Y) f(Z) f(Q)
+>- *	#define bar	DROP_FIRST(foo(ARGS_SEP_COMMA __stringify))
+>- *	#define buz	CALL_ARGS(COUNT_ARGS, DROP_FIRST(foo(ARGS_SEP_COMMA)))
+>+ *	#define bar	ARGS_TAIL(foo(ARGS_SEP_COMMA __stringify))
+>+ *	#define buz	CALL_ARGS(COUNT_ARGS, ARGS_TAIL(foo(ARGS_SEP_COMMA)))
+>  *
+>  *	With above definitions bar expands to
+>  *		"X", "Y", "Z", "Q"
+>diff --git a/drivers/gpu/drm/xe/xe_rtp_helpers.h b/drivers/gpu/drm/xe/xe_rtp_helpers.h
+>index 8129d6d9ef37..5e699455c32f 100644
+>--- a/drivers/gpu/drm/xe/xe_rtp_helpers.h
+>+++ b/drivers/gpu/drm/xe/xe_rtp_helpers.h
+>@@ -17,7 +17,7 @@
+>  */
+> #define _XE_ESC(...) __VA_ARGS__
+>
+>-#define _XE_TUPLE_TAIL(...) (DROP_FIRST(__VA_ARGS__))
+>+#define _XE_TUPLE_TAIL(...) (ARGS_TAIL(__VA_ARGS__))
+>
+> #define _XE_RTP_CONCAT(a, b) CONCATENATE(XE_RTP_, CONCATENATE(a, b))
+>
+>@@ -54,10 +54,10 @@
+>  *	XE_RTP_TEST_FOO BANANA XE_RTP_TEST_BAR
+>  */
+> #define XE_RTP_PASTE_FOREACH(prefix_, sep_, args_) _XE_RTP_CONCAT(PASTE_, COUNT_ARGS args_)(prefix_, sep_, args_)
+>-#define XE_RTP_PASTE_1(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, PICK_FIRST args_)
+>-#define XE_RTP_PASTE_2(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, PICK_FIRST args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_1(prefix_, sep_, _XE_TUPLE_TAIL args_)
+>-#define XE_RTP_PASTE_3(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, PICK_FIRST args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_2(prefix_, sep_, _XE_TUPLE_TAIL args_)
+>-#define XE_RTP_PASTE_4(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, PICK_FIRST args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_3(prefix_, sep_, _XE_TUPLE_TAIL args_)
+>+#define XE_RTP_PASTE_1(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_)
+>+#define XE_RTP_PASTE_2(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_1(prefix_, sep_, _XE_TUPLE_TAIL args_)
+>+#define XE_RTP_PASTE_3(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_2(prefix_, sep_, _XE_TUPLE_TAIL args_)
+>+#define XE_RTP_PASTE_4(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_3(prefix_, sep_, _XE_TUPLE_TAIL args_)
+>
+> /*
+>  * XE_RTP_DROP_CAST - Drop cast to convert a compound statement to a initializer
+>@@ -70,6 +70,6 @@
+>  *
+>  *	{ .a = 10 }
+>  */
+>-#define XE_RTP_DROP_CAST(...) _XE_ESC(DROP_FIRST _XE_ESC __VA_ARGS__)
+>+#define XE_RTP_DROP_CAST(...) _XE_ESC(ARGS_TAIL _XE_ESC __VA_ARGS__)
+>
+> #endif
+>-- 
+>2.43.0
+>
