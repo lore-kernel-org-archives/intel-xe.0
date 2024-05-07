@@ -4,60 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2570AC41513
-	for <intel-xe@archiver.kernel.org>; Tue,  7 May 2024 14:41:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70A75C10F1A
+	for <intel-xe@archiver.kernel.org>; Tue,  7 May 2024 14:53:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBDB010FE21;
-	Tue,  7 May 2024 14:41:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2149F10EB4A;
+	Tue,  7 May 2024 14:53:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SeTI8Iga";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="wsecaT/0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D625D10FD84;
- Tue,  7 May 2024 14:41:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715092896; x=1746628896;
- h=message-id:subject:from:to:date:in-reply-to:references:
- content-transfer-encoding:mime-version;
- bh=OOefQy1OnUSF9uW1Yz7kfD1xKpXKTazZrOFwd6DOppY=;
- b=SeTI8IgaqXO0epEdBk6aCOYTVRBbkb7l/05jzWqfct1FE3YBnJEYaeSD
- FZImg0tZ04AaPgAriQoDPQokuIyT+rrdy416rSUCfPReRKTr6g95nPzKy
- 1lYGiZI4WiWPzj07ICWPdxKu2ijYLD2gGq/aSRrTQ17NFtEwWvScSBOd9
- gJp6xsC2bhy+s0yUKKTcFQfmB2FYPQ3uknx3x3yIbDAvTSjNYVwqENnIL
- uZM/vjI938ZWcK+tPXOdWFYwA0rtwicfwLx3wum/FCIlu++VIdJyWKGXK
- NbvQqudxM4kjpqJ7HnjoEh64+s5+Qp3I0OJT3vgSYfnf9GVGrffm1o07Y g==;
-X-CSE-ConnectionGUID: dk8zQL6hS7OUN24Xw2jIyA==
-X-CSE-MsgGUID: C+pA5qbUQTehXG09b3vFLA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11066"; a="11049601"
-X-IronPort-AV: E=Sophos;i="6.08,142,1712646000"; d="scan'208";a="11049601"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2024 07:41:35 -0700
-X-CSE-ConnectionGUID: 39awC9IGS8CSAK5MaujBmw==
-X-CSE-MsgGUID: SIaABrMeTqm1xmYLRosQxw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,142,1712646000"; d="scan'208";a="28600907"
-Received: from mklonows-mobl1.ger.corp.intel.com (HELO [10.245.246.27])
- ([10.245.246.27])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2024 07:41:33 -0700
-Message-ID: <953c157bf69df12d831a781f0f638d93717bb044.camel@linux.intel.com>
-Subject: Re: drm_exec changes for eviction
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Date: Tue, 07 May 2024 16:41:31 +0200
-In-Reply-To: <e54f1ffc-854f-4dc0-b1b5-257cbe5d9772@amd.com>
-References: <9f5f8b3b93b629c8530bbcce9567b51a320c5537.camel@linux.intel.com>
- <e54f1ffc-854f-4dc0-b1b5-257cbe5d9772@amd.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
+ [209.85.221.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5546A10E93C
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 May 2024 14:53:48 +0000 (UTC)
+Received: by mail-wr1-f52.google.com with SMTP id
+ ffacd0b85a97d-34db6a299b2so2856153f8f.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 07 May 2024 07:53:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1715093626; x=1715698426; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=j7kmNI81ueJ+8K9p2euywm2F9bZhRCB2pfex1OgyyGM=;
+ b=wsecaT/0YJZ5ujDZ7EKUnodpgv7UqjU2nRApmtsnF3d71AEHwvp/7aNkcjLII2gABC
+ rE/VT1KAeF5xv7Nubcj7eiyKo950lFPX9SHP09SnfcYjeDkzSDQCM3wWyczqXg+5D38h
+ dwfNCKGDWaj6ZDr6pvDIQRe/dp3Oiw606mV2Z8Bhras1EcISrjwDoX7WkW5u7pnskfAm
+ Cv4EKfPBysugC3YxBCMy3WTS41jR0tV/7laIOXaRLDrvTQmvmfWOx6xy2TL6AZkSqJDR
+ +YQ8ms11ss4WH+NjOtXURPCokponM/e5PxhPIwUGYiGOTGWzYjeQP908lsj9m3ET8pQC
+ zasQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1715093626; x=1715698426;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=j7kmNI81ueJ+8K9p2euywm2F9bZhRCB2pfex1OgyyGM=;
+ b=qHDn8BuYfaYbczBBZ/8ed5FaFV4qQQEMze5jP0fZfpo0qcIz1ql/NTDwqxMlO9x+g4
+ yO2Fgfw2fMlxMWWStwjH0uXctLJ5DlSl251SXFW12uQGsv5PQSv/XvoG/6+DZm420SRE
+ e3cKFdRUJ36H0ZlreTJVDIgqHXZWEuFIvR7tv4OuA3jEsHzDpH8sq4sUo1GgAjLDbHA3
+ SfSr11zs1eiQ5sokUe29to1+wIx4C6Wb3pIghb0n3Zfn3955/zkK0wG77BbPGhTV2LB5
+ Ubz4F24f35YR6P+NbLUjep7JsONGPPda4H9TL3WQCVfgvgw9Ihmv09RhUlZbxCtBFVlx
+ WwbQ==
+X-Gm-Message-State: AOJu0YzGS0gyADjPOzDQ9E8zu03TkLiYWWarrDKBm7IleDgFDGS0IWHs
+ B8HEasV+Wkp4Vq8/8Un3VwbxIqm6PGxk5eDjd5iFcgvPl9NjlHJtnbn94+w64cQ=
+X-Google-Smtp-Source: AGHT+IGoHpXayaaktiS5UIGYOYKiKnq5pSh71Xeh2wLuSTyhEuIIUS/pHpvSW3rttQtwUKbjyl18gw==
+X-Received: by 2002:adf:fc8d:0:b0:34d:9d2c:8eaa with SMTP id
+ ffacd0b85a97d-34fcb3accfcmr1060f8f.67.1715093626443; 
+ Tue, 07 May 2024 07:53:46 -0700 (PDT)
+Received: from localhost ([102.222.70.76]) by smtp.gmail.com with ESMTPSA id
+ v7-20020a056000144700b0034c66bddea3sm13213929wrx.37.2024.05.07.07.53.45
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 07 May 2024 07:53:45 -0700 (PDT)
+Date: Tue, 7 May 2024 17:53:40 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: matthew.brost@intel.com
+Cc: intel-xe@lists.freedesktop.org
+Subject: [bug report] drm/xe: Introduce a new DRM driver for Intel GPUs
+Message-ID: <dfab90f9-0989-4652-9854-91a00a7d90c1@moroto.mountain>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,81 +74,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2024-05-07 at 15:36 +0200, Christian K=C3=B6nig wrote:
-> Am 06.05.24 um 11:46 schrieb Thomas Hellstr=C3=B6m:
-> > Hi Christian, Others.
-> >=20
-> > In order to support exhaustive eviction there are some changes that
-> > I
-> > think needs to be made to drm_exec:
-> >=20
-> > 1) Trylock support
-> > (This is for ttm_bo_vm, ttm_buffer_object_init_reserved, and also
-> > for
-> > the eviction path where I think we want to make a trylock pass
-> > before a
-> > sleeping lock pass).
->=20
-> Not sure why we need this for ttm_bo_vm, but in general that sounds
-> like=20
-> the right approach to me as well.
+Hello Matthew Brost,
 
-In current ttm_bo_vm, if the trylock fails, the mmap lock is typically
-dropped while we wait for the lock to become available, and then the
-fault is retried, using the fault retry mechanism. (This is only to
-avoid blocking the mmap lock unnecessarily- the comment around that
-code is obsolete).
+Commit dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel
+GPUs") from Mar 30, 2023 (linux-next), leads to the following Smatch
+static checker warning:
 
->=20
-> > In essence this means we can't leave any contending lock unlocked
-> > until
-> > the next sleeping lock, but rather need to relock it on
-> > drm_exec_retry_on_contention(), meaning that that macro also gets
-> > passed and returns an error code to handle -EINTR.
->=20
-> Hui what? I can't really follow what you mean here.
+	drivers/gpu/drm/xe/xe_hw_engine.c:611 read_media_fuses()
+	warn: was expecting a 64 bit value instead of '((((1))) << i)'
 
-Currently drm_exec keeps a reference to the contended lock, which is
-not locked. And it is locked on the *next* drm_exec_lock_obj() after a
-restart. So the question arises what to do if the *next* lock is a
-trylock. We shouldn't really do a sleeping lock of the contended object
-at that point. So the suggestion here was to do it during
-drm_exec_retry_on_contention() instead. But then we face the problem
-that the locking of the contended object might fail with -EINTR.
+drivers/gpu/drm/xe/xe_hw_engine.c
+    582 static void read_media_fuses(struct xe_gt *gt)
+    583 {
+    584         struct xe_device *xe = gt_to_xe(gt);
+    585         u32 media_fuse;
+    586         u16 vdbox_mask;
+    587         u16 vebox_mask;
+    588         int i, j;
+    589 
+    590         xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
+    591 
+    592         media_fuse = xe_mmio_read32(gt, GT_VEBOX_VDBOX_DISABLE);
+    593 
+    594         /*
+    595          * Pre-Xe_HP platforms had register bits representing absent engines,
+    596          * whereas Xe_HP and beyond have bits representing present engines.
+    597          * Invert the polarity on old platforms so that we can use common
+    598          * handling below.
+    599          */
+    600         if (GRAPHICS_VERx100(xe) < 1250)
+    601                 media_fuse = ~media_fuse;
+    602 
+    603         vdbox_mask = REG_FIELD_GET(GT_VDBOX_DISABLE_MASK, media_fuse);
+    604         vebox_mask = REG_FIELD_GET(GT_VEBOX_DISABLE_MASK, media_fuse);
+    605 
+    606         for (i = XE_HW_ENGINE_VCS0, j = 0; i <= XE_HW_ENGINE_VCS7; ++i, ++j) {
+    607                 if (!(gt->info.engine_mask & BIT(i)))
+    608                         continue;
+    609 
+    610                 if (!(BIT(j) & vdbox_mask)) {
+--> 611                         gt->info.engine_mask &= ~BIT(i);
 
->=20
-> >=20
-> > 2) Snapshot unlock
-> > After successfully obtaining backing store, we want to unlock all
-> > evicted objects. So snapshot the drm_exec state when eviction
-> > begins,
-> > and unlock everything down to the snapshot after successful backing
-> > store allocation. Essentially the snapshot contains the number of
-> > locked objects and a pointer to the prelocked object.
->=20
-> Interesting idea, never though about that. Not sure if that makes the
-> situation better or worse.
->=20
-> One goal of drm_exec was to be able to keep evicted BOs locked until
-> the=20
-> whole submission is completed and that obviously contradicts that.
+This would only be an issue on 32bit builds...  The ->engine_mask is a
+u64 but BIT() is unsigned long (32 bit in this case).  So this clears
+out the top 32 bits.
 
-We've tried both approaches on i915 downstream (non-ttm). IIRC the
-snapshot idea was originally brought up by Sima. Couldn't see any real
-difference, but I think snapshotting should be sufficient to avoid
-starvation.
+I think that we don't actually need 64 flags, so we could just make
+gt->info.engine_mask a u32.
 
-/Thomas
+    612                         drm_info(&xe->drm, "vcs%u fused off\n", j);
+    613                 }
+    614         }
+    615 
+    616         for (i = XE_HW_ENGINE_VECS0, j = 0; i <= XE_HW_ENGINE_VECS3; ++i, ++j) {
+    617                 if (!(gt->info.engine_mask & BIT(i)))
+    618                         continue;
+    619 
+    620                 if (!(BIT(j) & vebox_mask)) {
+    621                         gt->info.engine_mask &= ~BIT(i);
+    622                         drm_info(&xe->drm, "vecs%u fused off\n", j);
+    623                 }
+    624         }
+    625 }
 
-
->=20
-> Regards,
-> Christian.
->=20
-> >=20
-> > Any concerns?
-> > Thanks,
-> > Thomas
-> >=20
->=20
-
+regards,
+dan carpenter
