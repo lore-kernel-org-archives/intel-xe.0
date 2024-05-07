@@ -4,66 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2788DC10F1A
-	for <intel-xe@archiver.kernel.org>; Tue,  7 May 2024 16:08:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51B38C25B5F
+	for <intel-xe@archiver.kernel.org>; Tue,  7 May 2024 16:28:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9A1410E914;
-	Tue,  7 May 2024 16:08:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C956D112507;
+	Tue,  7 May 2024 16:28:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YVlotvnr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DxdVRtEq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D633710E914;
- Tue,  7 May 2024 16:08:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2D90112507
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 May 2024 16:28:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715098081; x=1746634081;
+ t=1715099327; x=1746635327;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=2w4dI/w1wBDQbAaLfx5WiSK9Dzz9FqkqCxA4Fyl7JzQ=;
- b=YVlotvnrUOLNv9MOYU7bvuuv6bzz3YshiveOCuOKmy9t8hZODn1DnEDC
- Eqw8Esh4g4TLKBDJibxkfrfCIpJaZwfOWuYUwGBA9uXEf45pO8494YoMo
- uQv18oQ3fPE+k8Z8RgjhKL0VCrSFoi3LUNBcLZvOMyC32QivsXhy1Lex3
- OJ0CKf8JnTIfZt3O32bT3wZfZot6K0ZxvjdBJPI3LWuy07U67zvsaL4yw
- RjssaVNvxsXC0iKMB69XS783j0ep3mJQRUnEObW8y4lxJdhW4E8udEiLH
- h+w9nrizDNNLvWUT38hBNg2WO8inFy7Gk8/7XmblmFsYrcU7ClgJeA9GP g==;
-X-CSE-ConnectionGUID: RJO9211cSgiuvDNBsgnNHw==
-X-CSE-MsgGUID: a5QtzTxJRD+PMt2bBF2HWw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11066"; a="14693910"
-X-IronPort-AV: E=Sophos;i="6.08,142,1712646000"; d="scan'208";a="14693910"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2024 09:08:00 -0700
-X-CSE-ConnectionGUID: 0SiPiUnYQ12S9hFDNX2gjg==
-X-CSE-MsgGUID: vZ85WMUpQciF9t3jhW1IkA==
+ mime-version:in-reply-to;
+ bh=7Qf0564tVpS7VmGJxLKeMAhu/IISov+zdxvdld8L8uA=;
+ b=DxdVRtEqK3HAmzSIgssC2xbJUUvp+T2dwRULYfLU5cqlsmbS0VP/2VOT
+ xo7NCvUme4saEOvt0AsWKV6Ms33S90hmH3EmJZyrn/WMrli4LCSVYHok8
+ dIgSpVQt5taVgYAcb+EtUcMwXOSliDgVpBUoZJBj9qKcOxOZ3EAAwyEwq
+ d74PbgWPe+yeELXr412RXAnmi9W6+EroMxDa9mvoAOc/rwVNOGCduch7y
+ wY3ZUdwwrzI9AcrrmI5YH9v4Irb67rfjekhlTnY8b6ZL3hqHzDItMZYj7
+ ipcAGn/WQ7WIYIHA/UUmy48aMG2Jo8ZofVduT/YlVr2a9Dl/epun7q8Or w==;
+X-CSE-ConnectionGUID: r+H9QNcLQw2NQiO5S2qj3w==
+X-CSE-MsgGUID: U4rDBCvQQOyXndsu4kCtIQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11066"; a="11033586"
+X-IronPort-AV: E=Sophos;i="6.08,142,1712646000"; d="scan'208";a="11033586"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2024 09:28:47 -0700
+X-CSE-ConnectionGUID: y7yoXQ3DRjuoeSjxnv2Kjw==
+X-CSE-MsgGUID: lxzGdOxCToyHZoWFIikkPQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,142,1712646000"; d="scan'208";a="28547778"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 07 May 2024 09:07:57 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 07 May 2024 19:07:55 +0300
-Date: Tue, 7 May 2024 19:07:55 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- "Chery, Nanley G" <nanley.g.chery@intel.com>,
- "Saarinen, Jani" <jani.saarinen@intel.com>,
- "Graunke, Kenneth W" <kenneth.w.graunke@intel.com>,
- "Souza, Jose" <jose.souza@intel.com>,
- "Mathew, Alwin" <alwin.mathew@intel.com>,
- "Zhang, Jianxun" <jianxun.zhang@intel.com>,
- "Nikula, Jani" <jani.nikula@intel.com>
-Subject: Re: [RFC PATCH 2/3] drm/xe/display: allow creation of case
- I915_FORMAT_MOD_4_TILED_XE2_CCS type framebuffer
-Message-ID: <ZjpR203p3wcy8yW0@intel.com>
-References: <20240506185238.364539-1-juhapekka.heikkila@gmail.com>
- <20240506185238.364539-3-juhapekka.heikkila@gmail.com>
+X-IronPort-AV: E=Sophos;i="6.08,142,1712646000"; d="scan'208";a="33260378"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2024 09:28:47 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1s4NgJ-000000056il-2x4Z; Tue, 07 May 2024 19:28:43 +0300
+Date: Tue, 7 May 2024 19:28:43 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: Re: [PATCH v2] drm/xe: Rename few xe_args.h macros
+Message-ID: <ZjpWuy5inznQdNWl@smile.fi.intel.com>
+References: <20240507152246.2791-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240506185238.364539-3-juhapekka.heikkila@gmail.com>
-X-Patchwork-Hint: comment
+In-Reply-To: <20240507152246.2791-1-michal.wajdeczko@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,33 +70,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, May 06, 2024 at 09:52:37PM +0300, Juha-Pekka Heikkila wrote:
-> Add I915_FORMAT_MOD_4_TILED_XE2_CCS to possible created tiling for new framebuffer
-> on Xe driver.
+On Tue, May 07, 2024 at 05:22:46PM +0200, Michal Wajdeczko wrote:
+> To minimize the risk of future name collisions, rename macros to
+> always include the ARG or ARGS tag:
 > 
-> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> ---
->  drivers/gpu/drm/xe/display/xe_plane_initial.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> index 9693c56d386b..59adcd15eb31 100644
-> --- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> +++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> @@ -145,6 +145,7 @@ intel_alloc_initial_plane_obj(struct intel_crtc *crtc,
->  	case I915_FORMAT_MOD_X_TILED:
->  	case I915_FORMAT_MOD_Y_TILED:
->  	case I915_FORMAT_MOD_4_TILED:
-> +	case I915_FORMAT_MOD_4_TILED_XE2_CCS:
+>   DROP_FIRST to DROP_FIRST_ARG
+>   PICK_FIRST to FIRST_ARG
+>   PICK_LAST to LAST_ARG
 
-Are we actually expecting GOP to enable compression?
+> Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 
->  		break;
->  	default:
->  		drm_dbg(&dev_priv->drm,
-> -- 
-> 2.43.2
+Seems I already gave a tag...
+
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
 -- 
-Ville Syrjälä
-Intel
+With Best Regards,
+Andy Shevchenko
+
+
