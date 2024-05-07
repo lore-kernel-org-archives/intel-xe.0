@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45358C10F1A
-	for <intel-xe@archiver.kernel.org>; Tue,  7 May 2024 18:01:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F8E7C10F1A
+	for <intel-xe@archiver.kernel.org>; Tue,  7 May 2024 18:01:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1D5910F712;
-	Tue,  7 May 2024 18:01:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE9B511257C;
+	Tue,  7 May 2024 18:01:34 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90062112589;
- Tue,  7 May 2024 18:01:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8F6A10F722;
+ Tue,  7 May 2024 18:01:33 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/ads=3A_Use_fl?=
- =?utf-8?q?exible-array_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/ads=3A_Use_flexibl?=
+ =?utf-8?q?e-array_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 07 May 2024 18:01:02 -0000
-Message-ID: <171510486258.1963161.10951218217728633903@8e613ede5ea5>
+Date: Tue, 07 May 2024 18:01:33 -0000
+Message-ID: <171510489382.1963161.4746898618310439697@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240506141917.205714-1-lucas.demarchi@intel.com>
 In-Reply-To: <20240506141917.205714-1-lucas.demarchi@intel.com>
@@ -44,13 +44,50 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/ads: Use flexible-array (rev2)
 URL   : https://patchwork.freedesktop.org/series/133240/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: f58676e47c12 drm-tip: 2024y-05m-07d-17h-09m-38s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/ads: Use flexible-array
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+0daf0be5bb95eb0a0e42275e00a0e42d8d8fd543
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e0db068498d4642d980d7bb01b3634f6f7af098c
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Mon May 6 07:19:17 2024 -0700
+
+    drm/xe/ads: Use flexible-array
+    
+    Zero-length arrays are deprecated and flexible arrays should be used
+    instead: https://www.kernel.org/doc/html/v6.9-rc7/process/deprecated.html#zero-length-and-one-element-arrays
+    
+    Reported-by: kernel test robot <lkp@intel.com>
+    Reported-by: Julia Lawall <julia.lawall@inria.fr>
+    Closes: https://lore.kernel.org/r/202405051824.AmjAI5Pg-lkp@intel.com/
+    Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch f58676e47c12a99409b71f7d3bab9f89e14522b4 drm-intel
+e0db068498d4 drm/xe/ads: Use flexible-array
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+instead: https://www.kernel.org/doc/html/v6.9-rc7/process/deprecated.html#zero-length-and-one-element-arrays
+
+-:7: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'instead:', use 'Link:' or 'Closes:' instead
+#7: 
+instead: https://www.kernel.org/doc/html/v6.9-rc7/process/deprecated.html#zero-length-and-one-element-arrays
+
+-:9: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#9: 
+Reported-by: kernel test robot <lkp@intel.com>
+Reported-by: Julia Lawall <julia.lawall@inria.fr>
+
+total: 0 errors, 3 warnings, 0 checks, 8 lines checked
 
 
