@@ -4,166 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4477C10F1A
-	for <intel-xe@archiver.kernel.org>; Tue,  7 May 2024 21:36:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A418C10F1A
+	for <intel-xe@archiver.kernel.org>; Tue,  7 May 2024 22:10:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58ADD10F5E6;
-	Tue,  7 May 2024 21:36:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0A001126B6;
+	Tue,  7 May 2024 22:10:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NO+iMp3J";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="awESgdtF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87D7E10F5E6;
- Tue,  7 May 2024 21:36:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A98A710F800
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 May 2024 22:10:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715117768; x=1746653768;
+ t=1715119845; x=1746655845;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=ObE8E0A+Y8jaRTE+DWqY4StcxaKIYEDnvDxEc0eAAqs=;
- b=NO+iMp3JSka7fdXdCXnaL4Q7Kv/+pwCapnF4EUxPJUvs6biVQapFvpU9
- zIhXoRHuzGySd+IODFJ1kWSAuGGRQh9R8biM77ulHDPL3zVDo7arkS8ra
- oVaILDhN3Xsm12UbAH1n/7VLo1Cism6Kv11q2SrSNYeFgnQckGchZdMI+
- rIKv9KleYuBz84fpLCr+Wxd7tu0m0BaPzREwZeBcJyiG+4YaWNp5oNgjU
- oHY4Bncw9vDiCLtRyDIqtlgUxWqNB6QehQAqwYzw0LF0gYHtbWh+D8lK3
- aLRAOz8Jz6xd2xDbB1qZ8ShAolOdvhuONvt5q4E3NXfIqNWftRsGU/tdF Q==;
-X-CSE-ConnectionGUID: vS7m5dNvTPCxq5VtO3dm3g==
-X-CSE-MsgGUID: DFMLIAP7TvSanoUFcZFKow==
-X-IronPort-AV: E=McAfee;i="6600,9927,11066"; a="10814359"
-X-IronPort-AV: E=Sophos;i="6.08,143,1712646000"; d="scan'208";a="10814359"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2024 14:36:08 -0700
-X-CSE-ConnectionGUID: RBBbtDtaQIa1pE5LRrTjLA==
-X-CSE-MsgGUID: Bkoeiv9BSUGgJWqf5xZ1GA==
+ bh=lxLMyw5+y+d0JhZMbyUxPDVrztmQmFrvSQ8K2lRww8s=;
+ b=awESgdtFAyGWRNI289wJrTEWjv1CfnASHKyj2FR75dYD+A1Ow9njH70x
+ D4GnyhzLUCPrOCWEZer5PBciIBcotasy3e+h7Zr5Towx9UOlziVfoZv8I
+ MYjeS4inghOWiMDvZUOG+D5je1U1HYBMaqx/HSQ4c2458/+XyNcmdY3Ab
+ TdmVZ4KDWkVTBVz7q3RlSz3Q0fdPhADp740z5+FcBFmDSBQMIwZWSUXat
+ /JoXS7zVaHAxbdaK/sJAabFn/34od1rHpIly4obsgetCaBCuN8gAPpkfT
+ lnQCXnF8vlP1To+ljWbog3mXxIPrIc7alh8vc9rANCU4I7F+wKarfb+bY A==;
+X-CSE-ConnectionGUID: SDMLEHuFRjqiYdRoJyG+Ug==
+X-CSE-MsgGUID: LC3UPImrQ3S8vIGuairP+g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11066"; a="11103362"
+X-IronPort-AV: E=Sophos;i="6.08,143,1712646000"; d="scan'208";a="11103362"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2024 15:10:45 -0700
+X-CSE-ConnectionGUID: cXzaVYK6S22e1nRSaZWAbQ==
+X-CSE-MsgGUID: q0Wu3JnfRB6wiGEDJNUHJw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,143,1712646000"; d="scan'208";a="33144593"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 07 May 2024 14:36:02 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.08,143,1712646000"; d="scan'208";a="33225350"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 07 May 2024 15:10:45 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 7 May 2024 14:36:01 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.35; Tue, 7 May 2024 15:10:43 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 7 May 2024 14:36:01 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.35; Tue, 7 May 2024 15:10:43 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 7 May 2024 15:10:43 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.173)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 7 May 2024 14:35:54 -0700
+ 15.1.2507.35; Tue, 7 May 2024 15:10:42 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mQtCqHMv/Rvg9tx527ljftoaWFlf+qqPaPifMQ++Oao20zAFHIgSw25KNbfGovn8DMFmHSpciWFZ/Qf4Cg6jItFLfGUpF+CzBtPBjV5sS+s9LfoYseVi+An+rYqRTvd5unuRaNTNtkeVxlFaRm3gM6x6pVi4z/xtQAOT+sjiT0Y54DCteNfChnR1Y07RBmCA3MMMItKSONuqWq4CXlYzhgYLiikZbZ4HMXBtQefSKvX5+pGnWonNSfQaxQ4QZ4a1wMJlWlOdBlrQohAvAb0ixtBwR4sk+j5fq4KriYNj6utIQDVxKH+279Z+jaMCakMRfUOCtGVa/TaClEa3GGRm9Q==
+ b=cT7KQB7YeqPEHUqUBkRq3e07AaWMyXCQAazx4Fv/K8yiofRR5dhtGky1NgiD79M7pvkVTYiTxkH2WXhNi7eQtutEM51A/GDjBZM4Yfj2TcpfsNh57ztTTJoB4uRJOzo19oHpXBiIO8maDVAKXUt/4boAt1V3eXXtMYyik8kfPfWRVC2yZN0wc0BVqrkI7LBiHzLQJYxLr095OTuEW6+oF7ALXjcsEJ89xv1/i0/SQDuSGk3dVGyq3rGS1PW/na6QAsgunuFi0oHRz6eVDvSPAnaxGZkylww3RlWHo0gr8mtKAsi3OEqiZ5ZRoCoKtVdEvx7K19No/qc4bpUqX7rtnw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=g2FbPPUDvjvw7qEF1X4a7TYcSUTnozDwn2zL2E+izz8=;
- b=glXrme6oUTP+lLp2HXfax+OjoiHDSf3Slu11oXl21/KJX8GmhYTXpwFgBb0LOcZyU9MWndipdB3bVbfQRZAHPto3JSn40L5qjHQLQPQa45IDVYNktyD0GLNdFr1jU72uc/JmUKc32nFmuNHkahF9t2ufhcUj6hNdvEBQpy8IJaAR+d/U/DmByHIGWv58fFu/gh9H7AMtRg27u8ZyEwA8YB3I8v4/T7IcnIZLnaVMTNwwpIL6oy7oE5qE9yi7+zKNiix05LUELqSo9LsUEteG0GR10tF3HhB1MtDusLjy9N+7mEXq/YVVqsugCv7g30QJhRXgdEurUs8azs09dgnsxg==
+ bh=UxeItEBgMEG1VkS0+h9wzRf8ibEv1WUxVyECb+DokE8=;
+ b=O+HHDavDWFfFnsQHJzou9zDSpWHFIiGiXVjjMhg1OPwinmqUZb+kBvIw93J1NGHqJiyVwr61HGIxZjXnhLVlQo/3smd8Xcaz05itu2vlPthcu+3QkAYqYXO2ZWi+8mfzOyA1814xxoTlZZE91l07yWOuLcJP6T6/d5TJRLm4mujj7z8K6gsoMyryOsTyNPbYKvG4vqVCkYJzoePJRxY2Y2tAX+dgeAjl7Scql+BT5REsJLhJso/svDecARsg9AhjDQ9CBrq/wneFeOYApWaMeRaegHV9o8r2QIl0qcI1bemKi1CiAv+8uIdwXa34PoXpQtRhfrjEsTPx0sJmCrso1A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by IA1PR11MB6537.namprd11.prod.outlook.com (2603:10b6:208:3a3::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.43; Tue, 7 May
- 2024 21:35:49 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%5]) with mapi id 15.20.7544.041; Tue, 7 May 2024
- 21:35:49 +0000
-Date: Tue, 7 May 2024 16:35:45 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Tvrtko Ursulin <tursulin@ursulin.net>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>,
- "=?utf-8?Q?Adri=C3=A1n?= Larumbe" <adrian.larumbe@collabora.com>, Rob Clark
- <robdclark@gmail.com>, "Alex Deucher" <alexander.deucher@amd.com>, Christian
- =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, =?utf-8?B?TWHDrXJh?= Canal
- <mcanal@igalia.com>
-Subject: Re: [PATCH v2 6/6] drm/xe/client: Print runtime to fdinfo
-Message-ID: <xwp77yi7y3e3f6eyqf3qqeawsv3nh4db4vwmok3pccdddnimce@n7rts73arupp>
-References: <20240423235652.1959945-1-lucas.demarchi@intel.com>
- <20240423235652.1959945-7-lucas.demarchi@intel.com>
- <ed28cb4e-a417-4255-b034-778dbfdaf6ec@ursulin.net>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by PH7PR11MB6835.namprd11.prod.outlook.com (2603:10b6:510:1ee::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.39; Tue, 7 May
+ 2024 22:10:40 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e%6]) with mapi id 15.20.7544.036; Tue, 7 May 2024
+ 22:10:39 +0000
+Date: Tue, 7 May 2024 15:10:37 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v2 2/4] drm/xe: Add Indirect Ring State support
+Message-ID: <20240507221037.GE5615@mdroper-desk1.amr.corp.intel.com>
+References: <20240506171111.16280-1-niranjana.vishwanathapura@intel.com>
+ <20240506171111.16280-3-niranjana.vishwanathapura@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <ed28cb4e-a417-4255-b034-778dbfdaf6ec@ursulin.net>
-X-ClientProxiedBy: MW4PR04CA0110.namprd04.prod.outlook.com
- (2603:10b6:303:83::25) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+In-Reply-To: <20240506171111.16280-3-niranjana.vishwanathapura@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0029.namprd03.prod.outlook.com
+ (2603:10b6:a03:33a::34) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|IA1PR11MB6537:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6427ded3-4308-4637-6767-08dc6edda9b1
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|PH7PR11MB6835:EE_
+X-MS-Office365-Filtering-Correlation-Id: ba092460-4a9d-4434-5345-08dc6ee2878b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|366007|1800799015;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?u39bENv7o+xAjoywkJhEPVPdly96cTWPEapFr1T7YBk44g2NXMI/8HoLAFVj?=
- =?us-ascii?Q?S4ACUsnYwKJJfaLjSDIOVwwaXiJzsPpqYl+DP/lL/FlKa/AJR0OYa/yxrQnv?=
- =?us-ascii?Q?NQJGrPd5b25o1qOXtSZ1Lb+/7UG0/ICSmZ1Gwxk2AQkGHNFmo4OxrYZ44dtn?=
- =?us-ascii?Q?JEyAQ4yidkmMMr93h20xTLnpOXwx6z4fProsa/Aymhi/E4w0xvluQtgMw+8X?=
- =?us-ascii?Q?/33Z4zGwVDm5J7VZuxkjAiFdVMrRHxMzcUSONgbVsBcXX5tedt1vvBQBxdrj?=
- =?us-ascii?Q?3GSgzvgGYsfvmi8WegZycxtT3l+wZcks/0Zldx8awyht/aDXaq8aYr2MFifu?=
- =?us-ascii?Q?oyT1YpBAytgZMs0pLoRSq3ODI4COmcfmU1IXgdKDU1SW+wqKj8EcbYTh0fI0?=
- =?us-ascii?Q?f20EEdUnmUNtMDz6rnO8q3eQVbH3TsSK7ulyznYE7/nZVA5hUCcDsEZIIW+N?=
- =?us-ascii?Q?NbY8W0Rf5qg7KTmSMrCCSU0whqkigZw46mAuNZvKfWbAkgtRp9U2Tou1oX56?=
- =?us-ascii?Q?9UyBaN96eG+G8TlBkSoGiQUcw9/rvDjmOGK/BR4L4mRzXZ4b32iqmiq3WhGW?=
- =?us-ascii?Q?Ikz225oeGEzbX92JbRv8mO8+wl5JH+zdFf36tjoJYTho05JBt9pB1FJsFhWy?=
- =?us-ascii?Q?qG5ccDRV+QCU0ZBgHUJQGoHYre63WTmAOlxmufXgVCMBuCOzN4ilgnVyGBlN?=
- =?us-ascii?Q?63NINH8/nSjJyw/agCAY3fijOuFDvAMmlndjrc3O97wm0s7i/umYn9Qf5NDK?=
- =?us-ascii?Q?Agte56bEj6KsNlmF5aFq2p2Vm94f8H2KY2Ek9d5g53F/cJ4HZ5ccKGdoCpCr?=
- =?us-ascii?Q?zhyY8h1TIClL6z45MP+6ZshPdfNq6SXwSuqG6wnluNkEiMKDBCLuyvKk56jt?=
- =?us-ascii?Q?Xlf/FTb1fzXS9RpyrA5MtL8KHEWDkhE1jiMNHmA5BJfgp17P+3rw26nnmkVN?=
- =?us-ascii?Q?4pkToNGMKrtVaLH8LDEQlGfzvkucrbX4H323wQCrCfHHLqlFQ8kc9b9K0VNJ?=
- =?us-ascii?Q?kQKl+GY/jXTPK29ofwQ5kBVzATTammgSky26AAg6/maCo1+od3ABzdjdfTxC?=
- =?us-ascii?Q?iXyQZOUb+evo4UppljhVbDlO0dkQOcuxAANNCLraBEw80B3POJfk4OO7wZzy?=
- =?us-ascii?Q?E7NY6ImFmjDgp0gD42HxMTHdDzy8kb8SzrK/9KVUYbXWHvK02NF3r7cd2eH8?=
- =?us-ascii?Q?gHh0UHPyFtDaLutscXe7WNFsGqoAdqJr6dF+NRjEX9Iw0uhU4wJz88TDylIf?=
- =?us-ascii?Q?vO0tRafrbcNc6qARF/Kdy71IFmFOi8wd8vekYlfiIw=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?NXkGpRPpb5GjAKyxWX1/KRwu0lf26vFEWwixPC+/I+9mp8hCQIS7GAsQv7/I?=
+ =?us-ascii?Q?+349PsqMCBYxDJdQ4IL7dj+xOW41TcpMD26fj584EJCbapdeDWk0jrQ2c2dS?=
+ =?us-ascii?Q?9TjUrNUzNGdVsmdyZNBZ7bQ/BY7TPUQPHmszJjHOdYQgaL+1APNSoHaeSyLM?=
+ =?us-ascii?Q?JthoL79M8h0dYfB3jradk+/Bw0X1GH1P70aMM8xNVRQGxBS/zeQN9v/0e++F?=
+ =?us-ascii?Q?H5K/BB6dNLirQUS4p/pmwIw3qIej4igcL38gz5I7yWDfhVjeo5IaV2/C44Cl?=
+ =?us-ascii?Q?Q8E1/G3ci7TaDeMcUILix3ggSsOtvzOMJI9oZcA9WHCHwvNl85QCQEypQhGy?=
+ =?us-ascii?Q?t4HR+aaVfGJdxdMe94whMGcrdhPNbCQyo+iOM1H8EuykYY+Qj6/hHlucoGVY?=
+ =?us-ascii?Q?aN9alSHrX0bDeAFREVeukhajgld2xP28+cI5Md9pkiBUgOLjPy0bj56ezIYP?=
+ =?us-ascii?Q?4fhNBH+OlqQ0uxTcK8k0QQq9ibXQ8opQvjJfEEG3beqe5x+qhAos5uMhHuW+?=
+ =?us-ascii?Q?VJ6FgGmT/yZL714YMiNn+GbUDTE6b+pNfWWxrIBUnnAtotZhjGhHmCn/E+Mg?=
+ =?us-ascii?Q?qyZaSczVaUeWyjWZAqca2tG9DkJX5ppoyd2fm5wuvJqFin4m+7aGD6oKM7F6?=
+ =?us-ascii?Q?YrfEVGYRiCdD6045X1LYAiVc3WvY01MJj0U14hVMadwvJmqxcbqeiDukBBE6?=
+ =?us-ascii?Q?wXwvQQRhFTIjWGF+RhuWcAuQJoX5PBBUZB3pYF0lj69IZ+hE4oADLjoyzyAw?=
+ =?us-ascii?Q?TCShNenQbfc083Mrt4xCqQycSaaaNBheMN7MbDZmNGPZU7yq+lyJBYSZ1DDW?=
+ =?us-ascii?Q?/zrlzqVnFGCsb4Iw6BnEhQF57ZxkD7DFiUmy5dbXl6fm431bKwHowge85T87?=
+ =?us-ascii?Q?5sqz+63vSQ1IPkJEOCa4bRJCdyXaDJYJkcMzfGXI3TS1uZbCta88Jkzr9b6G?=
+ =?us-ascii?Q?Ru9rA2Y3ESD040aL/QGakL8cG4eZewlzTt+DauUrgNzso5+m7y8Hma/CgdvJ?=
+ =?us-ascii?Q?/Rjth0p8ng/yczsiZaH8tr4m9TMolPZXSEGDJjaAD57+bmLbkVg1URLrfhwx?=
+ =?us-ascii?Q?NhWVXCpmgH1ongA7GfOC6vSdfPeIzemrp/gkRXDAuKHSrGtJKDgqkGjefWEq?=
+ =?us-ascii?Q?SdBQueKxWjz0Sf4FbCE4t1/maNof/xt5L1PNoDcz7AI8PGab6rabZ2hWG9mR?=
+ =?us-ascii?Q?qsz/z3kEvgf9ec02q1xaHzmfLFfUKrEfD13t3fMaYpuf8dH0wRqDkG2mjhIS?=
+ =?us-ascii?Q?yQcC8G+a04PHrt6Yggrps0WEAhcA7bNCQ6/d22+ZKQ=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wawrWPMqvydBYv0hupVB2EmNzca3dJiWsTSy+JbEtLNPIVWk1Um8k2vGO0Ok?=
- =?us-ascii?Q?7SvqZmsOSE0hBtLfY8gMVsocYasNCmBXS7PY4a5JxvkzS7U1w3TpEgALZRNg?=
- =?us-ascii?Q?S4gRar2AMYwP0o1Jd1iyRFhXVPSG0dRY4cPmzZaXXqB3XcsMG+9YkVNQHuv0?=
- =?us-ascii?Q?x0zeGj60bvIlRcdr9SoUz4uLaeZ2axorCeFPmpbJzGoKBtee/mEAp2qjjVvb?=
- =?us-ascii?Q?5JuxZqR6WQEnIb+VAl39l+AhSu9S0NSIW5eyiL9d0LHxOYqQNoIdcxJuFsaX?=
- =?us-ascii?Q?saWdVsg41cbCQtgICvt5kyfz609WP4jXAjtFYcSnUDfdjLCLEMQDrmbYPVja?=
- =?us-ascii?Q?eQKqSRk7uN9scexjahXAuMT0w5pNNw7bUeMfiQ2/6big+prxcYZPPurmXiuF?=
- =?us-ascii?Q?ERZqkTn/Vy6+Wf9qtZAIcq1RIxqRmBUPGxvNXKdgiGwoWB1lU3vY3X+bg7gr?=
- =?us-ascii?Q?lkE44lYUfnLq8R0KoJE3iOSUFK5h+RrpFKZ4a4CuhUSu+QymmI8hyUCnQsmn?=
- =?us-ascii?Q?4O3+CFpgqRkYUe1DHCkneID9OacfuF3tKrFxkSmMs6aEPYp4z0YlSdhYk+Yj?=
- =?us-ascii?Q?hpWANvMDXO4Gh/3LoWg18PpJqJmLWUKuk3xoi/X+uthsmzPhonAl554STZde?=
- =?us-ascii?Q?obsK8OZ2vuWvF/5PBT9VJwFXdWpbFKVb/uxob4uDvsYblEpSThWBcsioFH6Z?=
- =?us-ascii?Q?u8Kdy0PCpkDAZr3tt7j8DhYUGwn0lx+vvaaBvoHWcBicL2mOjEl++5mTeJEb?=
- =?us-ascii?Q?rqcGMPM/Y+S6g7lmlD1U6ZEWwrvqE9LGMm1hygbl6kUCBrSm9/tt9CuDHPOY?=
- =?us-ascii?Q?qJQJnXmI3w6E8O6PFSQWxHROad8B1bPvBnI3C5UF4g0zQa/MWk+OYsAKpCMc?=
- =?us-ascii?Q?1ho21O/Ae86tBcw7nsBIO/+L8Uk4Zq3GOq+w+swFt5ir+GZAFmYV1U83lsgc?=
- =?us-ascii?Q?W9fEP1xbLyt8UF2b2wn3owoNd9o9OuYCbsttj1Qr7TQOCzJjOWO1xHUQtGsR?=
- =?us-ascii?Q?62Ka1Eb9K/9k6jxyCzbMjrVUU4bsyASfm9wwy2cb/yaHu9buoShbeU4YW6Ky?=
- =?us-ascii?Q?3nFnPkJiNe5Ag9iheg4nZPL6yMhyKtp/sMhr5TNNVSYW8hrif/gFgiidBpAm?=
- =?us-ascii?Q?cFT5LbTK2yn7KTDUB9+6EoWUvo9UGJ9Mx6VhIWaWJx+377vUdLIihPj7dNqP?=
- =?us-ascii?Q?ckOzJ0rfpER05XVvMeuFhvIj+LS3b54cz3t7rCR3BFSFQSx+bkXh/SnGLgf4?=
- =?us-ascii?Q?aRrVvLzc5XwwWI28r9eRWKvaNTNDVAc7ohA1382ABK7TBaiggV629Rmr3/NH?=
- =?us-ascii?Q?9GclUJftNbQE7e0wjxCx1wsMPPNTLRVSXUXILHBjQ22oij9qZmAWy9ydMvPW?=
- =?us-ascii?Q?X3nGQ9DA9tSGRiEyFVBLwa7yDZ0AQdAIfMjRhBIFZEBW8dSBa4WFm5xVkWvN?=
- =?us-ascii?Q?Kur0mw2gWKw4njGAaejXTIfu6Ajbh717GFJoN6zWpkrU2zvNrTPByQagM8+S?=
- =?us-ascii?Q?uSGBAfYO5sUb2UDH2PhYwG+wwy0kLeWWLhaHwZci+ZBr8hFS5BwJ8650Bloz?=
- =?us-ascii?Q?c+hlar2cvwrDjr0eG5ZYoLZIGX9Rsnp0SZCRJLmKVV6qhxcePMJGszenpz1f?=
- =?us-ascii?Q?cQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6427ded3-4308-4637-6767-08dc6edda9b1
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?SaNXxpHMtQ6vpyAFit9yFb+cfU7KYRI1JL4TQF50ZyLwbE7Vszzwk2rr6gOL?=
+ =?us-ascii?Q?3l1f5/FpEL18t2hfVTY+vATv7BdkrFhi5AFbcWq9HMZIcZ9WnF2YtPOVhLG4?=
+ =?us-ascii?Q?D7aGIvYaOqE/9Bt9Qixbt6AErskWBNBG+f6Jfznq1fsYyQVb/UnHZtr/Ei3s?=
+ =?us-ascii?Q?spkzSqs+VhC+gc9lGUvAoQ3lo4mABpb4Qh/ocTQQ/5PvWsDNjUwEtSY6URya?=
+ =?us-ascii?Q?+TcNkRq5xfaJmzAnwEDDF2taOghJyx1uTXyBUB0255/JmH6HCfMCmfi/z0ct?=
+ =?us-ascii?Q?4OPItlH2XboHfO1ne1qPCEBtkqo914kKknKEraI9nTX/QsqYbL3Lk/UrRCHc?=
+ =?us-ascii?Q?5AG34Wb3GMOeQVltxVKJTlXGd+w+xMFdmehKpQUkj9G9eB8GumDn/A3DTuBv?=
+ =?us-ascii?Q?Wnps04xHbo2irEjX4i6TF9MvUBdbSVrtIZusoBFVGFoWCQ9htRtDNSPTxMFv?=
+ =?us-ascii?Q?NRDpPiXbjSaVL/wcrxBvN4YT6hvRBNWh9bX+i8Ad2MD4NyuNxwJ9Htf9hfK+?=
+ =?us-ascii?Q?gh2fi4iuFadFsiF99R4hnamKJmwaGKYdDq2nlcqW9EOq6sI3llVGfkJf+uPO?=
+ =?us-ascii?Q?/qOgkXuJEELCJXBVVm1iTm+IZEfr4hcCH3b1+XjjxauNpNzl2E/mmJ702GWC?=
+ =?us-ascii?Q?ahg+g5MK1UHgVfiqC9YFd4+DX4/U20gJgsIaRVdOeJ96EZbrh7Yx2j56WW82?=
+ =?us-ascii?Q?UqTZs4Ruvt7/FT2gyOm2iFwMhnGM+jwk2ER/1ysUjUs1r3oq7UH3jx3YZzxT?=
+ =?us-ascii?Q?/VYlZLm36ms6Zd/p5guCa1EzdYJjsEAcJNhdN8g+Re3WA6z8Y+AXvfXwIWOU?=
+ =?us-ascii?Q?ksJQApRjZmH+PkhSlHxjyJCUBW2+UhgFfdhVempMJvQjaIIP2DO02Q2DCL56?=
+ =?us-ascii?Q?9J/V/VaNqNl2DtBhxmtHK8Kce4Vt9HG7AibNnXMDS6oHe3AoAs2lZD5OQQsS?=
+ =?us-ascii?Q?1zLwBEPwm3wvWtBirmAs2oX+sca7J6UyTt5hCYYFe3emfavbW/uTfluv9z96?=
+ =?us-ascii?Q?AKNyw74U+Qod0oK1CeYMZXW5kCmq+bybW7H1USMXuwoffWe1UdKnQU3NxSKM?=
+ =?us-ascii?Q?sPOhcanSC+sPQS1YCBYI0nD835DXmz9YkjhbKeVImpn9cbp3BHnjwFkoDoGU?=
+ =?us-ascii?Q?kgz4a+omLEQjnBFZCRXyNQKKoFQizMc6qosKFoa5KVd+L+1cSDoNRHZSiIF1?=
+ =?us-ascii?Q?7qScK2PezFd5kJY0H0uUx1mKhMmBL4OmNVaQ11zKtIuiOQMM7bED2E6uU5M/?=
+ =?us-ascii?Q?y3J+AzDnMmnINyuGisN9fDp/s1PCRJ9kne/9gAiw2FsSLGY8sRhdMXlNGfkW?=
+ =?us-ascii?Q?zibXazp1kcWdiqIIpnI26iBi569/hBCbRDNRii7dUSjfenrutS8xXraYXIlE?=
+ =?us-ascii?Q?eqvReNC15u/71DEgeR3k+nN7KTIjb7gtPvgw+yRuYZ6YeGKcWWDckWP8f2CR?=
+ =?us-ascii?Q?5Z7qg6BlB7Gmv969rXHtoZMY1KhLSgrtdIHAiXju9RpUW2vAhskhwXDUKlIF?=
+ =?us-ascii?Q?J6hovzkwmSL6LB4d7/O+VZT+5/llLixuhImPt8fJjsKxBOCF7QC7A5UrBy/Q?=
+ =?us-ascii?Q?BMFLvgjU16Vv82mMJlFI9bnmLdtnIZ9LF7ejrPpjikU8a6vPLDz54AS/Rqv4?=
+ =?us-ascii?Q?WA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ba092460-4a9d-4434-5345-08dc6ee2878b
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2024 21:35:49.7145 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2024 22:10:39.8746 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 00OKxy5sy/eFd4XgQQY/nNFsoMi/eRw96Ba8wJ+S5jiEkv/KR+dqD7z9Pku/z5qNsZ6mnMDQUm6p5wFQ1qNPzi7VOkuG6xNimIp0cAPoxg8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6537
+X-MS-Exchange-CrossTenant-UserPrincipalName: axVXUt8ygXxK97XXkkUDtwJCL90qfviuvWEUotdoteF+iZFRPUeexBSX40PkoqYmd3Mg600vxIps4MchuEPHrWIrwiCIZNSaoQP26Kiwgrw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6835
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -179,226 +177,644 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Apr 26, 2024 at 11:47:37AM GMT, Tvrtko Ursulin wrote:
->
->On 24/04/2024 00:56, Lucas De Marchi wrote:
->>Print the accumulated runtime for client when printing fdinfo.
->>Each time a query is done it first does 2 things:
->>
->>1) loop through all the exec queues for the current client and
->>    accumulate the runtime, per engine class. CTX_TIMESTAMP is used for
->>    that, being read from the context image.
->>
->>2) Read a "GPU timestamp" that can be used for considering "how much GPU
->>    time has passed" and that has the same unit/refclock as the one
->>    recording the runtime. RING_TIMESTAMP is used for that via MMIO.
->>
->>Since for all current platforms RING_TIMESTAMP follows the same
->>refclock, just read it once, using any first engine.
->>
->>This is exported to userspace as 2 numbers in fdinfo:
->>
->>	drm-cycles-<class>: <RUNTIME>
->>	drm-total-cycles-<class>: <TIMESTAMP>
->>
->>Userspace is expected to collect at least 2 samples, which allows to
->>know the client engine busyness as per:
->>
->>		    RUNTIME1 - RUNTIME0
->>	busyness = ---------------------
->>			  T1 - T0
->>
->>Another thing to point out is that it's expected that userspace will
->>read any 2 samples every few seconds.  Given the update frequency of the
->>counters involved and that CTX_TIMESTAMP is 32-bits, the counter for
->>each exec_queue can wrap around (assuming 100% utilization) after ~200s.
->>The wraparound is not perceived by userspace since it's just accumulated
->>for all the exec_queues in a 64-bit counter), but the measurement will
->>not be accurate if the samples are too far apart.
->>
->>This could be mitigated by adding a workqueue to accumulate the counters
->>every so often, but it's additional complexity for something that is
->>done already by userspace every few seconds in tools like gputop (from
->>igt), htop, nvtop, etc with none of them really defaulting to 1 sample
->>per minute or more.
->>
->>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>---
->>  Documentation/gpu/drm-usage-stats.rst       |  16 ++-
->>  Documentation/gpu/xe/index.rst              |   1 +
->>  Documentation/gpu/xe/xe-drm-usage-stats.rst |  10 ++
->>  drivers/gpu/drm/xe/xe_drm_client.c          | 138 +++++++++++++++++++-
->>  4 files changed, 162 insertions(+), 3 deletions(-)
->>  create mode 100644 Documentation/gpu/xe/xe-drm-usage-stats.rst
->>
->>diff --git a/Documentation/gpu/drm-usage-stats.rst b/Documentation/gpu/drm-usage-stats.rst
->>index 6dc299343b48..421766289b78 100644
->>--- a/Documentation/gpu/drm-usage-stats.rst
->>+++ b/Documentation/gpu/drm-usage-stats.rst
->>@@ -112,6 +112,17 @@ larger value within a reasonable period. Upon observing a value lower than what
->>  was previously read, userspace is expected to stay with that larger previous
->>  value until a monotonic update is seen.
->>+- drm-total-cycles-<keystr>: <uint>
->>+
->>+Engine identifier string must be the same as the one specified in the
->>+drm-cycles-<keystr> tag and shall contain the total number cycles for the given
->>+engine.
->>+
->>+This is a timestamp in GPU unspecified unit that matches the update rate
->>+of drm-cycles-<keystr>. For drivers that implement this interface, the engine
->>+utilization can be calculated entirely on the GPU clock domain, without
->>+considering the CPU sleep time between 2 samples.
->
->Two opens.
->
->1)
->Do we need to explicity document that drm-total-cycles and drm-maxfreq 
->are mutually exclusive?
+On Mon, May 06, 2024 at 10:11:03AM -0700, Niranjana Vishwanathapura wrote:
+> When Indirect Ring State is enabled, the Ring Buffer state and
+> Batch Buffer state are context save/restored to/form Indirect
 
-so userspace has a fallback mechanism to calculate utilization depending
-on what keys are available?
+s/form/from/
 
->
->2)
->Should drm-total-cycles for now be documents as driver specific?
+Otherwise,
 
-you mean to call it xe-total-cycles?
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
->
->I have added some more poeple in the cc who were involved with driver 
->fdinfo implementations if they will have an opinion.
->
->I would say potentially yes, and promote it to common if more than one 
->driver would use it.
->
->For instance I see panfrost has the driver specific drm-curfreq 
->(although isn't documenting it fully in panfrost.rst). And I have to 
->say it is somewhat questionable to expose the current frequency per 
->fdinfo per engine but not my call.
 
-aren't all of Documentation/gpu/drm-usage-stats.rst optional that
-driver may or may not implement? When you say driver-specific I'd think
-more of the ones not using <drm> as prefix as e.g. amd-*.
+> Ring State instead of the LRC. The Indirect Ring State is a 4K
+> page mapped in global GTT at a 4K aligned address. This address
+> is programmed in the INDIRECT_RING_STATE register of the
+> corresponding context's LRC.
+> 
+> v2: Fix kernel-doc, add bspec reference
+> 
+> Bspec: 67296, 67139
+> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+> ---
+>  drivers/gpu/drm/xe/regs/xe_engine_regs.h |   1 +
+>  drivers/gpu/drm/xe/regs/xe_lrc_layout.h  |   7 +
+>  drivers/gpu/drm/xe/xe_gt.c               |   6 +-
+>  drivers/gpu/drm/xe/xe_gt.h               |   7 +
+>  drivers/gpu/drm/xe/xe_gt_types.h         |   6 +-
+>  drivers/gpu/drm/xe/xe_guc_ads.c          |   5 +-
+>  drivers/gpu/drm/xe/xe_guc_submit.c       |   2 +-
+>  drivers/gpu/drm/xe/xe_lrc.c              | 185 +++++++++++++++++++----
+>  drivers/gpu/drm/xe/xe_lrc.h              |   5 +-
+>  drivers/gpu/drm/xe/xe_lrc_types.h        |   4 +
+>  drivers/gpu/drm/xe/xe_pci.c              |   2 +
+>  drivers/gpu/drm/xe/xe_pci_types.h        |   3 +
+>  12 files changed, 197 insertions(+), 36 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> index 7e1b0fd68275..260a44f46f7e 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> @@ -125,6 +125,7 @@
+>  #define RING_EXECLIST_STATUS_HI(base)		XE_REG((base) + 0x234 + 4)
+>  
+>  #define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244, XE_REG_OPTION_MASKED)
+> +#define	  CTX_CTRL_INDIRECT_RING_STATE_ENABLE	REG_BIT(4)
+>  #define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	REG_BIT(3)
+>  #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
+>  
+> diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+> index 1825d8f79db6..e6ca8bbda8f4 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+> @@ -11,6 +11,7 @@
+>  #define CTX_RING_TAIL			(0x06 + 1)
+>  #define CTX_RING_START			(0x08 + 1)
+>  #define CTX_RING_CTL			(0x0a + 1)
+> +#define CTX_INDIRECT_RING_STATE		(0x26 + 1)
+>  #define CTX_PDP0_UDW			(0x30 + 1)
+>  #define CTX_PDP0_LDW			(0x32 + 1)
+>  
+> @@ -23,4 +24,10 @@
+>  #define CTX_INT_SRC_REPORT_REG		(CTX_LRI_INT_REPORT_PTR + 3)
+>  #define CTX_INT_SRC_REPORT_PTR		(CTX_LRI_INT_REPORT_PTR + 4)
+>  
+> +#define INDIRECT_CTX_RING_HEAD		(0x02 + 1)
+> +#define INDIRECT_CTX_RING_TAIL		(0x04 + 1)
+> +#define INDIRECT_CTX_RING_START		(0x06 + 1)
+> +#define INDIRECT_CTX_RING_START_UDW	(0x08 + 1)
+> +#define INDIRECT_CTX_RING_CTL		(0x0a + 1)
+> +
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index 0528d599c3fe..36c7b1631fa6 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> @@ -160,7 +160,7 @@ static int emit_wa_job(struct xe_gt *gt, struct xe_exec_queue *q)
+>  
+>  	if (q->hwe->class == XE_ENGINE_CLASS_RENDER)
+>  		/* Big enough to emit all of the context's 3DSTATE */
+> -		bb = xe_bb_new(gt, xe_lrc_size(gt_to_xe(gt), q->hwe->class), false);
+> +		bb = xe_bb_new(gt, xe_gt_lrc_size(gt, q->hwe->class), false);
+>  	else
+>  		/* Just pick a large BB size */
+>  		bb = xe_bb_new(gt, SZ_4K, false);
+> @@ -244,7 +244,7 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
+>  		xe_tuning_process_lrc(hwe);
+>  
+>  		default_lrc = drmm_kzalloc(&xe->drm,
+> -					   xe_lrc_size(xe, hwe->class),
+> +					   xe_gt_lrc_size(gt, hwe->class),
+>  					   GFP_KERNEL);
+>  		if (!default_lrc)
+>  			return -ENOMEM;
+> @@ -294,7 +294,7 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
+>  		xe_map_memcpy_from(xe, default_lrc,
+>  				   &q->lrc[0].bo->vmap,
+>  				   xe_lrc_pphwsp_offset(&q->lrc[0]),
+> -				   xe_lrc_size(xe, hwe->class));
+> +				   xe_gt_lrc_size(gt, hwe->class));
+>  
+>  		gt->default_lrc[hwe->class] = default_lrc;
+>  put_nop_q:
+> diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+> index ed6ea8057e35..8474c50b1b30 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.h
+> +++ b/drivers/gpu/drm/xe/xe_gt.h
+> @@ -8,6 +8,7 @@
+>  
+>  #include <drm/drm_util.h>
+>  
+> +#include "xe_device.h"
+>  #include "xe_device_types.h"
+>  #include "xe_hw_engine.h"
+>  
+> @@ -58,6 +59,12 @@ struct xe_hw_engine *xe_gt_hw_engine(struct xe_gt *gt,
+>  				     u16 instance,
+>  				     bool logical);
+>  
+> +static inline bool xe_gt_has_indirect_ring_state(struct xe_gt *gt)
+> +{
+> +	return gt->info.has_indirect_ring_state &&
+> +	       xe_device_uc_enabled(gt_to_xe(gt));
+> +}
+> +
+>  static inline bool xe_gt_is_media_type(struct xe_gt *gt)
+>  {
+>  	return gt->info.type == XE_GT_TYPE_MEDIA;
+> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+> index cfdc761ff7f4..8dc203413a27 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+> @@ -110,8 +110,6 @@ struct xe_gt {
+>  	struct {
+>  		/** @info.type: type of GT */
+>  		enum xe_gt_type type;
+> -		/** @info.id: Unique ID of this GT within the PCI Device */
+> -		u8 id;
+>  		/** @info.reference_clock: clock frequency */
+>  		u32 reference_clock;
+>  		/** @info.engine_mask: mask of engines present on GT */
+> @@ -124,6 +122,10 @@ struct xe_gt {
+>  		u64 __engine_mask;
+>  		/** @info.gmdid: raw GMD_ID value from hardware */
+>  		u32 gmdid;
+> +		/** @info.id: Unique ID of this GT within the PCI Device */
+> +		u8 id;
+> +		/** @info.has_indirect_ring_state: GT has indirect ring state support */
+> +		u8 has_indirect_ring_state:1;
+>  	} info;
+>  
+>  	/**
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+> index 6a5eb21748b1..8b011acd8f6c 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+> @@ -267,7 +267,6 @@ static u32 engine_enable_mask(struct xe_gt *gt, enum xe_engine_class class)
+>  
+>  static size_t calculate_golden_lrc_size(struct xe_guc_ads *ads)
+>  {
+> -	struct xe_device *xe = ads_to_xe(ads);
+>  	struct xe_gt *gt = ads_to_gt(ads);
+>  	size_t total_size = 0, alloc_size, real_size;
+>  	int class;
+> @@ -276,7 +275,7 @@ static size_t calculate_golden_lrc_size(struct xe_guc_ads *ads)
+>  		if (!engine_enable_mask(gt, class))
+>  			continue;
+>  
+> -		real_size = xe_lrc_size(xe, class);
+> +		real_size = xe_gt_lrc_size(gt, class);
+>  		alloc_size = PAGE_ALIGN(real_size);
+>  		total_size += alloc_size;
+>  	}
+> @@ -774,7 +773,7 @@ static void guc_populate_golden_lrc(struct xe_guc_ads *ads)
+>  
+>  		xe_gt_assert(gt, gt->default_lrc[class]);
+>  
+> -		real_size = xe_lrc_size(xe, class);
+> +		real_size = xe_gt_lrc_size(gt, class);
+>  		alloc_size = PAGE_ALIGN(real_size);
+>  		total_size += alloc_size;
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index d274a139010b..34b19f0a6ad1 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -677,7 +677,7 @@ static void submit_exec_queue(struct xe_exec_queue *q)
+>  	if (xe_exec_queue_is_parallel(q))
+>  		wq_item_append(q);
+>  	else
+> -		xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, lrc->ring.tail);
+> +		xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
+>  
+>  	if (exec_queue_suspended(q) && !xe_exec_queue_is_parallel(q))
+>  		return;
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> index f759f4c10914..ef954cd5cd68 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -34,12 +34,15 @@
+>  #define LRC_ENGINE_CLASS			GENMASK_ULL(63, 61)
+>  #define LRC_ENGINE_INSTANCE			GENMASK_ULL(53, 48)
+>  
+> +#define LRC_INDIRECT_RING_STATE_SIZE		SZ_4K
+> +
+>  struct xe_lrc_snapshot {
+>  	struct xe_bo *lrc_bo;
+>  	void *lrc_snapshot;
+>  	unsigned long lrc_size, lrc_offset;
+>  
+>  	u32 context_desc;
+> +	u32 indirect_context_desc;
+>  	u32 head;
+>  	struct {
+>  		u32 internal;
+> @@ -55,20 +58,25 @@ lrc_to_xe(struct xe_lrc *lrc)
+>  	return gt_to_xe(lrc->fence_ctx.gt);
+>  }
+>  
+> -size_t xe_lrc_size(struct xe_device *xe, enum xe_engine_class class)
+> +size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class)
+>  {
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +	size_t size;
+> +
+>  	switch (class) {
+>  	case XE_ENGINE_CLASS_RENDER:
+>  		if (GRAPHICS_VER(xe) >= 20)
+> -			return 4 * SZ_4K;
+> +			size = 4 * SZ_4K;
+>  		else
+> -			return 14 * SZ_4K;
+> +			size = 14 * SZ_4K;
+> +		break;
+>  	case XE_ENGINE_CLASS_COMPUTE:
+>  		/* 14 pages since graphics_ver == 11 */
+>  		if (GRAPHICS_VER(xe) >= 20)
+> -			return 3 * SZ_4K;
+> +			size = 3 * SZ_4K;
+>  		else
+> -			return 14 * SZ_4K;
+> +			size = 14 * SZ_4K;
+> +		break;
+>  	default:
+>  		WARN(1, "Unknown engine class: %d", class);
+>  		fallthrough;
+> @@ -76,8 +84,14 @@ size_t xe_lrc_size(struct xe_device *xe, enum xe_engine_class class)
+>  	case XE_ENGINE_CLASS_VIDEO_DECODE:
+>  	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
+>  	case XE_ENGINE_CLASS_OTHER:
+> -		return 2 * SZ_4K;
+> +		size = 2 * SZ_4K;
+>  	}
+> +
+> +	/* Add indirect ring state page */
+> +	if (xe_gt_has_indirect_ring_state(gt))
+> +		size += LRC_INDIRECT_RING_STATE_SIZE;
+> +
+> +	return size;
+>  }
+>  
+>  /*
+> @@ -508,6 +522,32 @@ static const u8 xe2_xcs_offsets[] = {
+>  	0
+>  };
+>  
+> +static const u8 xe2_indirect_ring_state_offsets[] = {
+> +	NOP(1),                 /* [0x00] */
+> +	LRI(5, POSTED),         /* [0x01] */
+> +	REG(0x034),             /* [0x02] RING_BUFFER_HEAD */
+> +	REG(0x030),             /* [0x04] RING_BUFFER_TAIL */
+> +	REG(0x038),             /* [0x06] RING_BUFFER_START */
+> +	REG(0x048),             /* [0x08] RING_BUFFER_START_UDW */
+> +	REG(0x03c),             /* [0x0a] RING_BUFFER_CONTROL */
+> +
+> +	NOP(5),                 /* [0x0c] */
+> +	LRI(9, POSTED),         /* [0x11] */
+> +	REG(0x168),             /* [0x12] BB_ADDR_UDW */
+> +	REG(0x140),             /* [0x14] BB_ADDR */
+> +	REG(0x110),             /* [0x16] BB_STATE */
+> +	REG16(0x588),           /* [0x18] BB_STACK_WRITE_PORT */
+> +	REG16(0x588),           /* [0x20] BB_STACK_WRITE_PORT */
+> +	REG16(0x588),           /* [0x22] BB_STACK_WRITE_PORT */
+> +	REG16(0x588),           /* [0x24] BB_STACK_WRITE_PORT */
+> +	REG16(0x588),           /* [0x26] BB_STACK_WRITE_PORT */
+> +	REG16(0x588),           /* [0x28] BB_STACK_WRITE_PORT */
+> +
+> +	NOP(12),                 /* [0x00] */
+> +
+> +	0
+> +};
+> +
+>  #undef REG16
+>  #undef REG
+>  #undef LRI
+> @@ -546,6 +586,10 @@ static void set_context_control(u32 *regs, struct xe_hw_engine *hwe)
+>  	regs[CTX_CONTEXT_CONTROL] = _MASKED_BIT_ENABLE(CTX_CTRL_INHIBIT_SYN_CTX_SWITCH |
+>  						       CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT);
+>  
+> +	if (xe_gt_has_indirect_ring_state(hwe->gt))
+> +		regs[CTX_CONTEXT_CONTROL] |=
+> +			_MASKED_BIT_ENABLE(CTX_CTRL_INDIRECT_RING_STATE_ENABLE);
+> +
+>  	/* TODO: Timestamp */
+>  }
+>  
+> @@ -589,6 +633,11 @@ static void reset_stop_ring(u32 *regs, struct xe_hw_engine *hwe)
+>  	regs[x + 1] |= STOP_RING << 16;
+>  }
+>  
+> +static inline bool xe_lrc_has_indirect_ring_state(struct xe_lrc *lrc)
+> +{
+> +	return lrc->flags & XE_LRC_FLAG_INDIRECT_RING_STATE;
+> +}
+> +
+>  static inline u32 __xe_lrc_ring_offset(struct xe_lrc *lrc)
+>  {
+>  	return 0;
+> @@ -643,6 +692,12 @@ static inline u32 __xe_lrc_regs_offset(struct xe_lrc *lrc)
+>  	return xe_lrc_pphwsp_offset(lrc) + LRC_PPHWSP_SIZE;
+>  }
+>  
+> +static inline u32 __xe_lrc_indirect_ring_offset(struct xe_lrc *lrc)
+> +{
+> +	/* Indirect ring state page is at the very end of LRC */
+> +	return lrc->size - LRC_INDIRECT_RING_STATE_SIZE;
+> +}
+> +
+>  #define DECL_MAP_ADDR_HELPERS(elem) \
+>  static inline struct iosys_map __xe_lrc_##elem##_map(struct xe_lrc *lrc) \
+>  { \
+> @@ -663,6 +718,7 @@ DECL_MAP_ADDR_HELPERS(seqno)
+>  DECL_MAP_ADDR_HELPERS(regs)
+>  DECL_MAP_ADDR_HELPERS(start_seqno)
+>  DECL_MAP_ADDR_HELPERS(parallel)
+> +DECL_MAP_ADDR_HELPERS(indirect_ring)
+>  
+>  #undef DECL_MAP_ADDR_HELPERS
+>  
+> @@ -671,6 +727,35 @@ u32 xe_lrc_ggtt_addr(struct xe_lrc *lrc)
+>  	return __xe_lrc_pphwsp_ggtt_addr(lrc);
+>  }
+>  
+> +u32 xe_lrc_indirect_ring_ggtt_addr(struct xe_lrc *lrc)
+> +{
+> +	if (!xe_lrc_has_indirect_ring_state(lrc))
+> +		return 0;
+> +
+> +	return __xe_lrc_indirect_ring_ggtt_addr(lrc);
+> +}
+> +
+> +static u32 xe_lrc_read_indirect_ctx_reg(struct xe_lrc *lrc, int reg_nr)
+> +{
+> +	struct xe_device *xe = lrc_to_xe(lrc);
+> +	struct iosys_map map;
+> +
+> +	map = __xe_lrc_indirect_ring_map(lrc);
+> +	iosys_map_incr(&map, reg_nr * sizeof(u32));
+> +	return xe_map_read32(xe, &map);
+> +}
+> +
+> +static void xe_lrc_write_indirect_ctx_reg(struct xe_lrc *lrc,
+> +					  int reg_nr, u32 val)
+> +{
+> +	struct xe_device *xe = lrc_to_xe(lrc);
+> +	struct iosys_map map;
+> +
+> +	map = __xe_lrc_indirect_ring_map(lrc);
+> +	iosys_map_incr(&map, reg_nr * sizeof(u32));
+> +	xe_map_write32(xe, &map, val);
+> +}
+> +
+>  u32 xe_lrc_read_ctx_reg(struct xe_lrc *lrc, int reg_nr)
+>  {
+>  	struct xe_device *xe = lrc_to_xe(lrc);
+> @@ -693,20 +778,25 @@ void xe_lrc_write_ctx_reg(struct xe_lrc *lrc, int reg_nr, u32 val)
+>  
+>  static void *empty_lrc_data(struct xe_hw_engine *hwe)
+>  {
+> -	struct xe_device *xe = gt_to_xe(hwe->gt);
+> +	struct xe_gt *gt = hwe->gt;
+>  	void *data;
+>  	u32 *regs;
+>  
+> -	data = kzalloc(xe_lrc_size(xe, hwe->class), GFP_KERNEL);
+> +	data = kzalloc(xe_gt_lrc_size(gt, hwe->class), GFP_KERNEL);
+>  	if (!data)
+>  		return NULL;
+>  
+>  	/* 1st page: Per-Process of HW status Page */
+>  	regs = data + LRC_PPHWSP_SIZE;
+> -	set_offsets(regs, reg_offsets(xe, hwe->class), hwe);
+> +	set_offsets(regs, reg_offsets(gt_to_xe(gt), hwe->class), hwe);
+>  	set_context_control(regs, hwe);
+>  	set_memory_based_intr(regs, hwe);
+>  	reset_stop_ring(regs, hwe);
+> +	if (xe_gt_has_indirect_ring_state(gt)) {
+> +		regs = data + xe_gt_lrc_size(gt, hwe->class) -
+> +		       LRC_INDIRECT_RING_STATE_SIZE;
+> +		set_offsets(regs, xe2_indirect_ring_state_offsets, hwe);
+> +	}
+>  
+>  	return data;
+>  }
+> @@ -731,23 +821,27 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+>  	struct iosys_map map;
+>  	void *init_data = NULL;
+>  	u32 arb_enable;
+> +	u32 lrc_size;
+>  	int err;
+>  
+>  	lrc->flags = 0;
+> +	lrc_size = ring_size + xe_gt_lrc_size(gt, hwe->class);
+> +	if (xe_gt_has_indirect_ring_state(gt))
+> +		lrc->flags |= XE_LRC_FLAG_INDIRECT_RING_STATE;
+>  
+>  	/*
+>  	 * FIXME: Perma-pinning LRC as we don't yet support moving GGTT address
+>  	 * via VM bind calls.
+>  	 */
+> -	lrc->bo = xe_bo_create_pin_map(xe, tile, vm,
+> -				      ring_size + xe_lrc_size(xe, hwe->class),
+> -				      ttm_bo_type_kernel,
+> -				      XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+> -				      XE_BO_FLAG_GGTT |
+> -				      XE_BO_FLAG_GGTT_INVALIDATE);
+> +	lrc->bo = xe_bo_create_pin_map(xe, tile, vm, lrc_size,
+> +				       ttm_bo_type_kernel,
+> +				       XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+> +				       XE_BO_FLAG_GGTT |
+> +				       XE_BO_FLAG_GGTT_INVALIDATE);
+>  	if (IS_ERR(lrc->bo))
+>  		return PTR_ERR(lrc->bo);
+>  
+> +	lrc->size = lrc_size;
+>  	lrc->tile = gt_to_tile(hwe->gt);
+>  	lrc->ring.size = ring_size;
+>  	lrc->ring.tail = 0;
+> @@ -772,10 +866,10 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+>  		xe_map_memset(xe, &map, 0, 0, LRC_PPHWSP_SIZE);	/* PPHWSP */
+>  		xe_map_memcpy_to(xe, &map, LRC_PPHWSP_SIZE,
+>  				 gt->default_lrc[hwe->class] + LRC_PPHWSP_SIZE,
+> -				 xe_lrc_size(xe, hwe->class) - LRC_PPHWSP_SIZE);
+> +				 xe_gt_lrc_size(gt, hwe->class) - LRC_PPHWSP_SIZE);
+>  	} else {
+>  		xe_map_memcpy_to(xe, &map, 0, init_data,
+> -				 xe_lrc_size(xe, hwe->class));
+> +				 xe_gt_lrc_size(gt, hwe->class));
+>  		kfree(init_data);
+>  	}
+>  
+> @@ -786,11 +880,25 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+>  			xe_drm_client_add_bo(vm->xef->client, lrc->bo);
+>  	}
+>  
+> -	xe_lrc_write_ctx_reg(lrc, CTX_RING_START, __xe_lrc_ring_ggtt_addr(lrc));
+> -	xe_lrc_write_ctx_reg(lrc, CTX_RING_HEAD, 0);
+> -	xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, lrc->ring.tail);
+> -	xe_lrc_write_ctx_reg(lrc, CTX_RING_CTL,
+> -			     RING_CTL_SIZE(lrc->ring.size) | RING_VALID);
+> +	if (xe_gt_has_indirect_ring_state(gt)) {
+> +		xe_lrc_write_ctx_reg(lrc, CTX_INDIRECT_RING_STATE,
+> +				     __xe_lrc_indirect_ring_ggtt_addr(lrc));
+> +
+> +		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_START,
+> +					      __xe_lrc_ring_ggtt_addr(lrc));
+> +		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_START_UDW, 0);
+> +		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_HEAD, 0);
+> +		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_TAIL, lrc->ring.tail);
+> +		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_CTL,
+> +					      RING_CTL_SIZE(lrc->ring.size) | RING_VALID);
+> +	} else {
+> +		xe_lrc_write_ctx_reg(lrc, CTX_RING_START, __xe_lrc_ring_ggtt_addr(lrc));
+> +		xe_lrc_write_ctx_reg(lrc, CTX_RING_HEAD, 0);
+> +		xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, lrc->ring.tail);
+> +		xe_lrc_write_ctx_reg(lrc, CTX_RING_CTL,
+> +				     RING_CTL_SIZE(lrc->ring.size) | RING_VALID);
+> +	}
+> +
+>  	if (xe->info.has_asid && vm)
+>  		xe_lrc_write_ctx_reg(lrc, PVC_CTX_ASID, vm->usm.asid);
+>  
+> @@ -834,14 +942,36 @@ void xe_lrc_finish(struct xe_lrc *lrc)
+>  	xe_bo_put(lrc->bo);
+>  }
+>  
+> +void xe_lrc_set_ring_tail(struct xe_lrc *lrc, u32 tail)
+> +{
+> +	if (xe_lrc_has_indirect_ring_state(lrc))
+> +		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_TAIL, tail);
+> +	else
+> +		xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, tail);
+> +}
+> +
+> +u32 xe_lrc_ring_tail(struct xe_lrc *lrc)
+> +{
+> +	if (xe_lrc_has_indirect_ring_state(lrc))
+> +		return xe_lrc_read_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_TAIL) & TAIL_ADDR;
+> +	else
+> +		return xe_lrc_read_ctx_reg(lrc, CTX_RING_TAIL) & TAIL_ADDR;
+> +}
+> +
+>  void xe_lrc_set_ring_head(struct xe_lrc *lrc, u32 head)
+>  {
+> -	xe_lrc_write_ctx_reg(lrc, CTX_RING_HEAD, head);
+> +	if (xe_lrc_has_indirect_ring_state(lrc))
+> +		xe_lrc_write_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_HEAD, head);
+> +	else
+> +		xe_lrc_write_ctx_reg(lrc, CTX_RING_HEAD, head);
+>  }
+>  
+>  u32 xe_lrc_ring_head(struct xe_lrc *lrc)
+>  {
+> -	return xe_lrc_read_ctx_reg(lrc, CTX_RING_HEAD) & HEAD_ADDR;
+> +	if (xe_lrc_has_indirect_ring_state(lrc))
+> +		return xe_lrc_read_indirect_ctx_reg(lrc, INDIRECT_CTX_RING_HEAD) & HEAD_ADDR;
+> +	else
+> +		return xe_lrc_read_ctx_reg(lrc, CTX_RING_HEAD) & HEAD_ADDR;
+>  }
+>  
+>  u32 xe_lrc_ring_space(struct xe_lrc *lrc)
+> @@ -1214,7 +1344,7 @@ void xe_lrc_dump_default(struct drm_printer *p,
+>  	 * hardware status page.
+>  	 */
+>  	dw = gt->default_lrc[hwe_class] + LRC_PPHWSP_SIZE;
+> -	remaining_dw = (xe_lrc_size(gt_to_xe(gt), hwe_class) - LRC_PPHWSP_SIZE) / 4;
+> +	remaining_dw = (xe_gt_lrc_size(gt, hwe_class) - LRC_PPHWSP_SIZE) / 4;
+>  
+>  	while (remaining_dw > 0) {
+>  		if ((*dw & XE_INSTR_CMD_TYPE) == XE_INSTR_MI) {
+> @@ -1355,9 +1485,10 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
+>  		return NULL;
+>  
+>  	snapshot->context_desc = xe_lrc_ggtt_addr(lrc);
+> +	snapshot->indirect_context_desc = xe_lrc_indirect_ring_ggtt_addr(lrc);
+>  	snapshot->head = xe_lrc_ring_head(lrc);
+>  	snapshot->tail.internal = lrc->ring.tail;
+> -	snapshot->tail.memory = xe_lrc_read_ctx_reg(lrc, CTX_RING_TAIL);
+> +	snapshot->tail.memory = xe_lrc_ring_tail(lrc);
+>  	snapshot->start_seqno = xe_lrc_start_seqno(lrc);
+>  	snapshot->seqno = xe_lrc_seqno(lrc);
+>  	snapshot->lrc_bo = xe_bo_get(lrc->bo);
+> @@ -1405,6 +1536,8 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
+>  		return;
+>  
+>  	drm_printf(p, "\tHW Context Desc: 0x%08x\n", snapshot->context_desc);
+> +	drm_printf(p, "\tHW Indirect Ring State: 0x%08x\n",
+> +		   snapshot->indirect_context_desc);
+>  	drm_printf(p, "\tLRC Head: (memory) %u\n", snapshot->head);
+>  	drm_printf(p, "\tLRC Tail: (internal) %u, (memory) %u\n",
+>  		   snapshot->tail.internal, snapshot->tail.memory);
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+> index d32fa31faa2c..06a95a598736 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.h
+> +++ b/drivers/gpu/drm/xe/xe_lrc.h
+> @@ -21,14 +21,17 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+>  		struct xe_exec_queue *q, struct xe_vm *vm, u32 ring_size);
+>  void xe_lrc_finish(struct xe_lrc *lrc);
+>  
+> -size_t xe_lrc_size(struct xe_device *xe, enum xe_engine_class class);
+> +size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class);
+>  u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc);
+>  
+> +void xe_lrc_set_ring_tail(struct xe_lrc *lrc, u32 tail);
+> +u32 xe_lrc_ring_tail(struct xe_lrc *lrc);
+>  void xe_lrc_set_ring_head(struct xe_lrc *lrc, u32 head);
+>  u32 xe_lrc_ring_head(struct xe_lrc *lrc);
+>  u32 xe_lrc_ring_space(struct xe_lrc *lrc);
+>  void xe_lrc_write_ring(struct xe_lrc *lrc, const void *data, size_t size);
+>  
+> +u32 xe_lrc_indirect_ring_ggtt_addr(struct xe_lrc *lrc);
+>  u32 xe_lrc_ggtt_addr(struct xe_lrc *lrc);
+>  u32 *xe_lrc_regs(struct xe_lrc *lrc);
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
+> index b716df0dfb4e..cdbf03faef15 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc_types.h
+> +++ b/drivers/gpu/drm/xe/xe_lrc_types.h
+> @@ -20,10 +20,14 @@ struct xe_lrc {
+>  	 */
+>  	struct xe_bo *bo;
+>  
+> +	/** @size: size of lrc including any indirect ring state page */
+> +	u32 size;
+> +
+>  	/** @tile: tile which this LRC belongs to */
+>  	struct xe_tile *tile;
+>  
+>  	/** @flags: LRC flags */
+> +#define XE_LRC_FLAG_INDIRECT_RING_STATE		0x1
+>  	u32 flags;
+>  
+>  	/** @ring: submission ring state */
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index 912b59fe9567..8f3e4c563105 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -663,6 +663,7 @@ static int xe_info_init(struct xe_device *xe,
+>  		gt = tile->primary_gt;
+>  		gt->info.id = xe->info.gt_count++;
+>  		gt->info.type = XE_GT_TYPE_MAIN;
+> +		gt->info.has_indirect_ring_state = graphics_desc->has_indirect_ring_state;
+>  		gt->info.__engine_mask = graphics_desc->hw_engine_mask;
+>  		if (MEDIA_VER(xe) < 13 && media_desc)
+>  			gt->info.__engine_mask |= media_desc->hw_engine_mask;
+> @@ -680,6 +681,7 @@ static int xe_info_init(struct xe_device *xe,
+>  
+>  		gt = tile->media_gt;
+>  		gt->info.type = XE_GT_TYPE_MEDIA;
+> +		gt->info.has_indirect_ring_state = media_desc->has_indirect_ring_state;
+>  		gt->info.__engine_mask = media_desc->hw_engine_mask;
+>  		gt->mmio.adj_offset = MEDIA_GT_GSI_OFFSET;
+>  		gt->mmio.adj_limit = MEDIA_GT_GSI_LENGTH;
+> diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+> index e1f2b4879fc2..79b0f80376a4 100644
+> --- a/drivers/gpu/drm/xe/xe_pci_types.h
+> +++ b/drivers/gpu/drm/xe/xe_pci_types.h
+> @@ -27,6 +27,7 @@ struct xe_graphics_desc {
+>  	u8 has_asid:1;
+>  	u8 has_atomic_enable_pte_bit:1;
+>  	u8 has_flat_ccs:1;
+> +	u8 has_indirect_ring_state:1;
+>  	u8 has_range_tlb_invalidation:1;
+>  	u8 has_usm:1;
+>  };
+> @@ -37,6 +38,8 @@ struct xe_media_desc {
+>  	u8 rel;
+>  
+>  	u64 hw_engine_mask;	/* hardware engines provided by media IP */
+> +
+> +	u8 has_indirect_ring_state:1;
+>  };
+>  
+>  struct gmdid_map {
+> -- 
+> 2.43.0
+> 
 
-I think drm-cycles + drm-total-cycles is just an alternative
-implementation for engine utilization. Like drm-cycles + drm-maxfreq
-already is an alternative to drm-engine and is not implemented by e.g.
-amdgpu/i915.
-
-I will submit a new version of the entire patch series to get the ball
-rolling, but let's keep this open for now.
-
-<...>
-
->>+static void show_runtime(struct drm_printer *p, struct drm_file *file)
->>+{
->>+	struct xe_file *xef = file->driver_priv;
->>+	struct xe_device *xe = xef->xe;
->>+	struct xe_gt *gt;
->>+	struct xe_hw_engine *hwe;
->>+	struct xe_exec_queue *q;
->>+	unsigned long i, id_hwe, id_gt, capacity[XE_ENGINE_CLASS_MAX] = { };
->>+	u64 gpu_timestamp, engine_mask = 0;
->>+	bool gpu_stamp = false;
->>+
->>+	xe_pm_runtime_get(xe);
->>+
->>+	/* Accumulate all the exec queues from this client */
->>+	mutex_lock(&xef->exec_queue.lock);
->>+	xa_for_each(&xef->exec_queue.xa, i, q)
->>+		xe_exec_queue_update_runtime(q);
->>+	mutex_unlock(&xef->exec_queue.lock);
->>+
->>+
->>+	/* Calculate capacity of each engine class */
->>+	BUILD_BUG_ON(ARRAY_SIZE(class_to_mask) != XE_ENGINE_CLASS_MAX);
->>+	for_each_gt(gt, xe, id_gt)
->>+		engine_mask |= gt->info.engine_mask;
->>+	for (i = 0; i < XE_ENGINE_CLASS_MAX; i++)
->>+		capacity[i] = hweight64(engine_mask & class_to_mask[i]);
->
->FWIW the above two loops are static so could store capacity in struct 
->xe_device.
-
-yes, but just creating a cache in xe of something derived from gt is not
-something to consider lightly. Particularly considering the small number
-of xe->info.gt_count we have. For something that runs only when someone
-cat the fdinfo, this doesn't seem terrible.
-
->
->>+
->>+	/*
->>+	 * Iterate over all engines, printing the accumulated
->>+	 * runtime for this client, per engine class
->>+	 */
->>+	for_each_gt(gt, xe, id_gt) {
->>+		xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->>+		for_each_hw_engine(hwe, gt, id_hwe) {
->>+			const char *class_name;
->>+
->>+			if (!capacity[hwe->class])
->>+				continue;
->>+
->>+			/*
->>+			 * Use any (first) engine to have a timestamp to be used every
->>+			 * time
->>+			 */
->>+			if (!gpu_stamp) {
->>+				gpu_timestamp = xe_hw_engine_read_timestamp(hwe);
->>+				gpu_stamp = true;
->>+			}
->>+
->>+			class_name = xe_hw_engine_class_to_str(hwe->class);
->>+
->>+			drm_printf(p, "drm-cycles-%s:\t%llu\n",
->>+				   class_name, xef->runtime[hwe->class]);
->>+			drm_printf(p, "drm-total-cycles-%s:\t%llu\n",
->>+				   class_name, gpu_timestamp);
->>+
->>+			if (capacity[hwe->class] > 1)
->>+				drm_printf(p, "drm-engine-capacity-%s:\t%lu\n",
->>+					   class_name, capacity[hwe->class]);
->>+
->>+			/* engine class already handled, skip next iterations */
->>+			capacity[hwe->class] = 0;
->>+		}
->>+		xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
->>+	}
->
->More FWIW and AFAICT, could just walk the "list" of classes instead of 
-
-xe_force_wake_get() is per gt, so the alternative would be... loop
-through the gts to get all forcewakes, loop through all engine classes, loop
-again through all gts to put the forcewake. And we also need to consider
-that an engine class may not be available in all GTs... example:
-vcs/vecs in MTL and later, so we need to track it globally across GTs
-anyway.
-
->the nested loop with skipping already visited classes. Assuming in xe 
->there is an easy way to get a known present engine for the 
->gpu_timestamp it would be flatter and less code.
-
-from the device we can get either tile or gt. To work with the
-hw_engines we have to look inside the gt.
-
-Lucas De Marchi
-
->
->Regards,
->
->Tvrtko
->
->>+
->>+	xe_pm_runtime_get(xe);
->>+}
->>+
->>  /**
->>   * xe_drm_client_fdinfo() - Callback for fdinfo interface
->>   * @p: The drm_printer ptr
->>@@ -192,5 +327,6 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
->>  void xe_drm_client_fdinfo(struct drm_printer *p, struct drm_file *file)
->>  {
->>  	show_meminfo(p, file);
->>+	show_runtime(p, file);
->>  }
->>  #endif
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
