@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 565FCC04FFE
-	for <intel-xe@archiver.kernel.org>; Wed,  8 May 2024 20:07:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7879DC04FFE
+	for <intel-xe@archiver.kernel.org>; Wed,  8 May 2024 20:08:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFCF61131CC;
-	Wed,  8 May 2024 20:07:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C5F310F6DD;
+	Wed,  8 May 2024 20:08:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KM+XfLsC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lzbaba1V";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 921431126FA
- for <intel-xe@lists.freedesktop.org>; Wed,  8 May 2024 20:07:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77FD210F6DD
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 May 2024 20:08:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715198851; x=1746734851;
+ t=1715198890; x=1746734890;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=BKwA4AGzEl0/AkpGlNHE79+2h5K0TKBlpulUKyo9hQ8=;
- b=KM+XfLsCqykrn3KFPSrHOxN+boLtlVlLd4NjDLnJKwvFmQsMOrx97AcU
- vL9PgIG4qdbjW7q09Jf0JnfZvHb0kzTmmc1pqHsKiueuw+J54swlS1i/t
- 9O6SzXH56Zdg1t03ORnCe9hJ6HbYhsIDyHmPEicG0bAavBskZCm+pOjgF
- nfyRVzRq5FEXPSfbjhsliFA6EXWMzAHyYBV3zu5F22Ut7X5QdMgMYdPkW
- KpPd2Jt1hqEoUyNzwsJJ5Slqt3bReFmKs9rxk1BcRZcv+Zb+oYoeo94AJ
- 9+nSmK7s9gMOABr+pcRnl5p9mYeunDBaOIIc7iM5oeF4XGh2JXfRuJ2c+ Q==;
-X-CSE-ConnectionGUID: qakCeic+SUSA7Jk0yx/EBg==
-X-CSE-MsgGUID: eVkS87zpQ2Sng+3Oe7aaTw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="36466735"
-X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="36466735"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2024 13:07:31 -0700
-X-CSE-ConnectionGUID: QtryWMflQOOABHPJls8R8Q==
-X-CSE-MsgGUID: DNEqG3WrRzi3Fw6Urkiljg==
+ bh=5wYpH3njiaDzmUZNhogmnFo04u5qOtnI8iPvki1mnug=;
+ b=lzbaba1Vv0Asi4Ur1bnGiq+YNF/X6sBFFlz+1iM797J2qFCNo3sSBK0c
+ 4UDJN/ryHrCMtpLU2Fc9B/ja6QeX0dnyx/LPSMNaQ9E6SGBhEWfU5vQYj
+ ji+2aOVFq8u69woG7pf1HCfU7EgyFipTdbUjdtcjGplhdTnuk8dp4sqXA
+ eqyiVcsyxcDG4nmwNbZ3+7jBgJ+EJD/BwyLMREvFuGgaS5GFAmc3mZoaf
+ HsSy0P0Iilo+N6Wx9t+VqZOtweYGWdZT5mL+1qgOUt30rc+zpde7rCFjo
+ aPs8izIszHm5sYHX59jx1x5+sULZeEOTfADmNuluuyyjso2+Jjj1dHv4d g==;
+X-CSE-ConnectionGUID: /3aO7O96RSqTttVx6EibEg==
+X-CSE-MsgGUID: YvqRHJwcTQSpTM3JjuRjDQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="14882474"
+X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="14882474"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2024 13:07:35 -0700
+X-CSE-ConnectionGUID: ICKqd2pnTFujnB7SLGWHQA==
+X-CSE-MsgGUID: GwISMFXgRzKLycllg3oatg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="33515557"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 08 May 2024 13:07:31 -0700
+X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="29042472"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 08 May 2024 13:07:29 -0700
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 8 May 2024 13:07:30 -0700
+ 15.1.2507.35; Wed, 8 May 2024 13:07:29 -0700
 Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 8 May 2024 13:07:30 -0700
+ 15.1.2507.35 via Frontend Transport; Wed, 8 May 2024 13:07:29 -0700
 Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
  by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 8 May 2024 13:07:30 -0700
+ 15.1.2507.35; Wed, 8 May 2024 13:07:29 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JtZr87blJT/dOKN06gC3MupEgmFfDar+ZImow6o1xLAPRNBUilvcXiVKqUGI9DySa55hEROZBov/79jIWXloGDjg1ATxgCvAKsPdLpF2b6JiOTVib23gROf+/M87QXKfdb4kV1/oKRdICTRviTu5iFS5Tc6Zw1rwxkLNVKXOQ4aB3ZJ4Q1fFSl/TFM815QZHn9sbnMNgyHx7iaDPJYQ3vtdZUlQboKNTaJkOnIrO5W+k/E/CCKb1SnTNAl3O6ubv6sr65/SfhZRa728j4XdsYfSLNlkIKvKQx10vV+Hv+RVYGqPtxsYCHdumAj7ufCdn1yElx0+v7UlIWPim6Kj4ww==
+ b=BUgerwv8I04l2a04wdznjIT0YhszHxUjYgD2c+4b0D7N+Q12ia26GEz8tX7cMcvfVoDne3GTAGCzX78SVzN86Fylnxp2ocJOh7nv1o6JpD/n2LHW5++PddXN+A1JGd0STopahfoH9dFylwdv9jSHtIje1tpCisNxeFoX3Qk6X5oSRJD4dYJyj32+lV7R4gwvPAS+4CQlTsb/37NhUT6DgdYMWHo9CST2ub5YASU6I4t8ISgEoCo02CYIWjXc3Fd+UzSgUI8sz7vapmtmww4rq/ntwVNWO1H4LxHW9kSxVj793i5WylyWgXVL4ZX7td3sCwRW8YzYkKyCVwI2HpNJKg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5muoJG61hLhLLlZ4n3CVwYPrWD+H7p/gKmEarrzCAK4=;
- b=PPqrvtnQ8uqEXm2TfrOnzZcGshOKWuNWfk3CmtMLFGkJ1XnJB7Vv3ZSS+3whXOLbA5r1BLV4gkYUZfUggEJcokCgzz9IZ5PUSuJGDzff4x3MiXCjFES3AqIv37fyssRH3vgXQMwLvz6JafAS0ZpwK3fgLH7FNdeQZEXiclJOdL0Cxbul+Lr/7B2KlRzPthgJwOQ9JcZn5qY+9WpQj6H3BFz3Y26FFa14wHaS11WlQlOzXlfn8mfCvEpV57ZGYrBL8Cpci5Xrrih0LaFo2vMf4nyVqF5Ed7GFfMs4e7mKzDNQi8OWX4eC9Zg5OWILRaJHzWWMMhwufIWjWpbUKHnJhg==
+ bh=NzBPrRFBic7ZSGhAptNUxikzavzqSrSD+9BsVyxBIfQ=;
+ b=oGvZRmcZOw30AzQd5/05dG6iDLK6gds2gmQuvjQ+ll4IW4A0sobRBN+hHdBEdaNUoHtcDTFdoCk5tOXp0RHlxFZf6CooMnPfNisHcmZEx39ys3hU+KFaSfTT3JJh0ZRHJzuQ8QupzlnqhxNthmzsW8Fjrva3ZrNAxNzJPVlFEuhwcVLLx+zq96ZcztaDqtPwTYsuSadIMtzFSifx0v7BqN7Frgv7DljFwKexuZkvFZZDwblZff0PzNsooZFf4wm8MqsWYzX/IVKdPd6r/dzCJhAUP1Jy56MvNCpV31Ru+rjGCQCUA9xH+b5gfujrpBz5oAKhJRcYzVhM3RqkgcTDMA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,95 +69,113 @@ Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
  by SJ0PR11MB4832.namprd11.prod.outlook.com (2603:10b6:a03:2dd::12)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.34; Wed, 8 May
- 2024 20:07:28 +0000
+ 2024 20:07:22 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::cf6f:eb9e:9143:f413]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::cf6f:eb9e:9143:f413%5]) with mapi id 15.20.7544.041; Wed, 8 May 2024
- 20:07:28 +0000
+ 20:07:22 +0000
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, Anshuman Gupta
- <anshuman.gupta@intel.com>
-Subject: [PATCH 6/7] drm/xe: Stop checking for power_lost on D3Cold
-Date: Wed, 8 May 2024 16:07:06 -0400
-Message-ID: <20240508200707.375414-6-rodrigo.vivi@intel.com>
+CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, =?UTF-8?q?Thomas=20Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ "Francois Dugast" <francois.dugast@intel.com>
+Subject: [PATCH 4/7] drm/xe: Relax runtime pm protection around VM
+Date: Wed, 8 May 2024 16:07:04 -0400
+Message-ID: <20240508200707.375414-4-rodrigo.vivi@intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240508200707.375414-1-rodrigo.vivi@intel.com>
 References: <20240508200707.375414-1-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0388.namprd03.prod.outlook.com
- (2603:10b6:a03:3a1::33) To MN0PR11MB6059.namprd11.prod.outlook.com
+X-ClientProxiedBy: SJ0PR05CA0060.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::35) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SJ0PR11MB4832:EE_
-X-MS-Office365-Filtering-Correlation-Id: 79bd1f47-9fd8-438a-9c7b-08dc6f9a7c6e
+X-MS-Office365-Filtering-Correlation-Id: 1ec999c8-97e5-4b0d-d780-08dc6f9a7832
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|366007|376005;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?I03YC9CQCx7acT4KLxfj4FPMCKMrBgkg8xq2dM4yZrJu6SHFn4HOS7v7yQf4?=
- =?us-ascii?Q?ezpj8ya7qoDoZhI+up7T0Tth7RKpm/2pd7+rYp1yzRCDCzk/LTSQwSVYVsmH?=
- =?us-ascii?Q?zpaAr2Cvb/Q5kyeyv+bi7HFwVDmobwxZXbgYpPnRJSjlHQFfcWJzfuRtQXvU?=
- =?us-ascii?Q?cwyh7OLdyXwzGVQnMJqsEQBvtf5FQzFcThYdqh3C3ISmzoQfYp+3VAmOClm2?=
- =?us-ascii?Q?YjGC2mz93FFM43q7y5M+hSD1IWJ6y9yirLCYwaAOgyijQJq+mu4iXCdavxE6?=
- =?us-ascii?Q?1YLUxYlHC3dEd0NBFRz2wbgmnm20BDAsSjbfwh1qTefHRX2yOan55j0zhQ2i?=
- =?us-ascii?Q?x9uOlmsqzj7GBxLPkIB1I4AkP/eOKl+wzp7KyWo3/ChRFYfX1VCb0CpWSNvK?=
- =?us-ascii?Q?gO6+DskIMzMJitlSUFbBaGYcu7478ddumdUw6BoZy0pQLfHXbQpJ3tqU1UeP?=
- =?us-ascii?Q?wiAw75KCBtMeQIX8vw/YbmFJBvlx3xd69+zgakZynuTzfwLoBVPmMxv2r5Al?=
- =?us-ascii?Q?IkxvVFRHUengff3fBwHDdmyUy4RnpNncA8aJ+FvcXXxtGzfPIo+PSr1OYNx3?=
- =?us-ascii?Q?lgW4rYay135NxyCjVo0n1ejrRzFShEM5tX2H0nQzL6gXHIasy7yI6TeaMnZs?=
- =?us-ascii?Q?8uJ38wnEUvuQm5xksFDIK33wC/Q4GjQSEvBycAxX2dLHdDmEATk3mxvzzPws?=
- =?us-ascii?Q?cuFe7c0suH2sUaIae6l81el5Mge5iAdKY4BskIwkoaEaIKg0WzeORa5VKtrL?=
- =?us-ascii?Q?4SRPHBNIvySorl0ndJ9jLkH7MIyPaJQ0oYj57k/bsKWm3lnWufkBqHXk4S80?=
- =?us-ascii?Q?i4cxljeypXj7NcjzHKxphI1fRfHFrAZaNRt7waN36y4ZKy9h6gK87PI8Xk4E?=
- =?us-ascii?Q?ub9dsQP7HAGCF0AFxHEZYJu1XrSNgydfISL15rpyDF1+EC8+DfwIoXBdnGDf?=
- =?us-ascii?Q?bUBitCB9k1n5ZDk1o5Gge7t66LmI16arorTkjKwHoDb2Kui0tzELFDx8GVrz?=
- =?us-ascii?Q?Io2Zq3K90noOD3akZHGODjSntpoVSKMIFxqw3Irc2Zc6/h1S0eBqjKEoLw3A?=
- =?us-ascii?Q?6vuhE3zM3wyIQJkOnq9GE3gvokw/mDv7YxjGVCkmVRQ6C6eAWBzSY9HEkVBo?=
- =?us-ascii?Q?+VT870bI+kLW4t3q0uRt8K+clgD8F8IBweFiSrHAD0FjJ1kUXCTBplGkwK94?=
- =?us-ascii?Q?LYLwEyWs7HldUdGIXEYo6LI7D8fx73RyUaTnJ991bYhXNhC2TSWIMCt+hdDN?=
- =?us-ascii?Q?A4JHla0Eon8nU7XBhgVo1uCB0mZK+uY0WTIwfeoEuQ=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Zk5ZVTlYR2xFQTE2RlRvMnVVVERib25MNzJ3WHZmZktxekEwL0JyUU02UzRR?=
+ =?utf-8?B?MUc3TWFzSTRKZWNFaWVYeENEanFxaWo1bldoRGw5QUdXT0JJK1l1RkxCdjZz?=
+ =?utf-8?B?VnFYdUlEaVNrU3VxOGdNQ1RjckpSZlpmSlBtTnZHS3V4dVJHMVBtUTJzNlVj?=
+ =?utf-8?B?aERzaXUvMGpvSERGTzZZb3lpVnJLcXNnY0xSbjQ3c1Z6N2xqNGxBS2xCSlJy?=
+ =?utf-8?B?eDg0d0Y2WE5OUG82dWJMWVJ4RCtUU05SbUppZGRtU1IxTTg2ekxSenEyM016?=
+ =?utf-8?B?UW0zRXFoMEo1SW9TVnhPb2Y3SWlBTE92Q3dZdFRVZGRoQXJWc21qb2VLYWo5?=
+ =?utf-8?B?eEtBUUhjMy9BdkhsQUdxcUlZZUJ0R2lwWHB4L1VEaHplTFRkR0hKR1hpZmJn?=
+ =?utf-8?B?aDBENC85UFB6dEhpQU9raDJKamMxVnlJZnFtWHl5N0hjVU00Y2p6cTZRY3Rq?=
+ =?utf-8?B?b2RUUzE4eXQ0dmtkalJRcnhjRE83OFNCb1plaEowQXBjQ1BsaDBWQnJvWEh0?=
+ =?utf-8?B?K3lHWUhXcGNOYyszZnRzQk0yaEwyRlA5cGl2WWQ3U1pGR3JuVDdnUlp1UHY5?=
+ =?utf-8?B?MWVldGZtaHhmZnFXMnRSVVNqbHQwSEJnNk56ZVJvRUU1aWZiNkwwUWZGN0xk?=
+ =?utf-8?B?QzRpNHAvK0lreHlWaGo4aW5kbFI5QjJQVWpROFJoWmJlUHJmLzBUTW0wRy9t?=
+ =?utf-8?B?STZ0K0g3YTB0Mk55Tlg1SDJuMzdSNW1pVThrSDR6U2kvMXJRNFdNQkhRVGtm?=
+ =?utf-8?B?a1EzcWowcDlYeEJ5RjhxaUR6aCtJV3EzZm5pVnlMSHpzdmE4UHVEUzVHZDBp?=
+ =?utf-8?B?K21ZdlFjaXp0UU5yT2NhdGQ3bGoxeUIxS0pEZFhFbG94cmdDM0I0MWxXeC9B?=
+ =?utf-8?B?RWREUU81cUlnRjl1SERyM2lzUkZuWVlyaEUvZGFFZ29MZjVlRFlTenRDNlEx?=
+ =?utf-8?B?enZLTGE4R2pIUmwya1BBcG1BWVJlNkZnanYwbzNiNjZveCtkcjhFS1hvaVJL?=
+ =?utf-8?B?L1BpN05qTDRqVkFzWHpraGhKSDFzNDNqRE96cEZmaHJrUmU2Q0ZmRU53Nk1M?=
+ =?utf-8?B?dC9oRWQrOFp6ZUJIS3YrbzRHMlR5SEM4TjQ4MS9kWnVLWHVoSlRFV1NnaUt4?=
+ =?utf-8?B?NlJ4MHJPSzFpZmZUcFg5RDBOVmp2ZUphWEJ0eHo2amdJaEUxOENPTlNxNHY4?=
+ =?utf-8?B?WVh5UVloU2NlMi9SenIyZW85Qm52SmdFRkNUZ21WUFZQSC8zUk9RUkxBaCtx?=
+ =?utf-8?B?WjVVcndxQUxjcS9tRW1RK1F1NkNFcXhna3NsYi9Ea0ZMbm1sV043b1pjQ1pG?=
+ =?utf-8?B?TUpjclVUZ2owWXIrQWhmWDlCTm9lY3Nnay9oRVpFNGoydEt6MU95ZXNvdWM2?=
+ =?utf-8?B?UHE0N0habWNvakM2eE1qTkx2L3B6aVlPQzJMZ2lPQUFkbHRlSzd0S0lHOG8w?=
+ =?utf-8?B?RDE2bDBtaUc2WkxhZ3VUQ1JSeTVHVUEzdTRzWkRtTEJncEx3Qll3eHQvdzYr?=
+ =?utf-8?B?d2p4clpXVXl0VVQzTHRQVXZRcndkaU14Q05zdVNpeGFwMng0TjREZEh5WFhm?=
+ =?utf-8?B?TzMzYVh5eFlHVkI3ajQ2YjMzbVdPWFY2RTRUc2JEaHF1UnpKcmJRRUt1K2Uz?=
+ =?utf-8?B?RzhMaFV3TDdnV1EvMUYreDU2bnNndUpyS2hYZVcwMzYvaTVLZWlFWFdBdk9o?=
+ =?utf-8?B?ZEhucy9FUWs0N2pzSTZuazJQWkJJRXJUb2k4Rm90djV4azVTL0g1ZGRBPT0=?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?oMbTiknogCkI7nYT1o3XytHnQF706QEedhYwPY//EUdwALXmBN3EUu9Pvste?=
- =?us-ascii?Q?pxevKhFUUVBDcWVI+/4/PiCodAxLQeh7wCNMEIRUZyA6Sl+R7GT1w+lUUt50?=
- =?us-ascii?Q?NZ9p7Bz7Jkl6sPFJeqEGBky1PAB6zveyNx67pvNtFP0I4UMNLEhsgT0u+bOd?=
- =?us-ascii?Q?BsAICGyefjht0mpryCnrcxW/GQUu2dLW1kyapaJ7mYA9i9SYmVv0paYtoHDu?=
- =?us-ascii?Q?6LwZZJszDsdQxcF6PRjRAb0bRAfquK+CeoXFfEJVNFwavB6w03LrcLN2D/7V?=
- =?us-ascii?Q?qvJu3/E5mBMhfD7VuFdxZggibiWR9O0i6689gKqMh3QA5Dv9/Fxa9WDUFVYq?=
- =?us-ascii?Q?nfsPcAaBcFKSmK/Ll/cpZtWxDNRjbuUsvd0bWQwPFKRUtOBVMkRoIrmV/D9Z?=
- =?us-ascii?Q?bHyw8CKMVsGoktmQYVFsla0akGUqEYZsdNjjNfuTPoLZlqzO0ol8k25Yd/JW?=
- =?us-ascii?Q?UtSi+/QOLWnBs/JDU6uYaWPdqIIk0+Vthf0b161KljEY3mBnphM1QUFs0nbG?=
- =?us-ascii?Q?gUiKqpMonA4fgufvCf4QZT5AklKQz7MJY2tBB0kkrF7MjjjlflfFdBOGLw9c?=
- =?us-ascii?Q?fzGFEdgYCz/qbxvMT+KVWwgOxjhbZCi85LZ0h8wx39d1pur0XpY0ail/UYJH?=
- =?us-ascii?Q?vpZtvHEjDrPS3sn/nppoPIgYSTC5CGFQ450kJzTSRMLVwsYtxdE/NrpWw5X5?=
- =?us-ascii?Q?pSRzWBa2DFoIMC54bPEIvM9LUnahARgxUYQMmp+3SVsEK5bfhJlcUI1aYACU?=
- =?us-ascii?Q?lu3Gd1k+fJhM1p5xGya02Rn8rC1PHUn1BEFqJo+z+n2u6+DXC95FFVFq0z+O?=
- =?us-ascii?Q?OnDDZZxh459BgYMFlnm1wCZzjnb1fu/cZ4+5JGoZSn19FcHv+VM9obYpjYaQ?=
- =?us-ascii?Q?OvpDn5wHF2glGeXFTQGC6H2wrEihkzCXgz6aZ7VFx6hA5K49ooOYmu9e52cf?=
- =?us-ascii?Q?mJK2TucNE0WLkywFYKHLcJlRGx4FAFUdVUSRHFus9mHowf0r3C7emofgx9T9?=
- =?us-ascii?Q?DFQmXN7BhzLIlBJ5ppPzlo2JM+acVyXARl90taEnhYYvyuEOOqkm59Zrt0ip?=
- =?us-ascii?Q?VzKtBOGpGgczKX3cxBIj6Ts4ZwyOOWtTq0mMLmW966gM2wkDeYsP2sT5rtHP?=
- =?us-ascii?Q?pLPUD94fPcjTLp3bnvYa/nZ7eIF9PCJ+KajOgoKobX+ZmPj44+rWkM6Hecdu?=
- =?us-ascii?Q?6Ew3rFg6MStJoxocmWoeX+p7uLJm6Y/CzY0z65/OjHC5S1q3v2EtFlPm+LDU?=
- =?us-ascii?Q?sxUlH7E843OEk3A10xbEzEaQdse5C7TafzdtCEcmHpB8MZfgGnYk+9ut8/YF?=
- =?us-ascii?Q?LHWT0ogSJ/7K/bqC7Q9Gh11IvOU9GQjptgaRIhtcoJ0EtP6SDiquY+NrQhI6?=
- =?us-ascii?Q?Xl4+KEOalYgetT47oCFrf8dhn1WTnAe2ksiZyHRgK4IYMwQQRZ9i2RJ887Qo?=
- =?us-ascii?Q?kDL34J2fFStJ/PL3q14vxSmaL8/087uLrF8hwIePR5R7R6+VB5kH4WFJWwlz?=
- =?us-ascii?Q?sa8UMyKqCPiKEzAQBp9C2Rh6aKxTq+oRWuPpNUrNpMN2i9cHwl0deV+FFXMa?=
- =?us-ascii?Q?Xym6/33SBuZY62ent5Tf2xaFXdbcmkwlxCT5jaiLl/P9ZHwdhmfpusA9IVDr?=
- =?us-ascii?Q?iA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 79bd1f47-9fd8-438a-9c7b-08dc6f9a7c6e
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?akR6QWlQanFWZXdKNVlSOGZuMUJMMkhYcXh4N1pkalR5UDlrTld2eHdqYVRF?=
+ =?utf-8?B?eHN0SStySnN1MGpKYThZQ0Uxam9JYVZjNE1PSW9VYXBmb0Y1ZHpKL0RjUi8y?=
+ =?utf-8?B?KzFMS2JTK3J4MFFFcXo5cmppdWdSMWs1cHBHZWt5cUFnSVFPb0VkVWtSWE5U?=
+ =?utf-8?B?NjJubmJwUXVSZW90TURxSEUxRUVjMHlWRTZIVEhsU3J1ejZqZm85UTFwR3h1?=
+ =?utf-8?B?a0k2bTIzRGdyR090eFFSQkU1YjY2VTFncnZNZnk4cDdFZlF1T3JqZHZHYy9R?=
+ =?utf-8?B?VEVqd2VMbzRYM3Y0LzNpTUkzaGFIVXhxaDNYbmNhSDhnNDRrL1RUbkp5ZWFp?=
+ =?utf-8?B?WGJpS3pPeFp0NTNZN1lBTnN0RHlGNCtwaWh4Q1Vnb01YMDNiSnlGajRPeUJX?=
+ =?utf-8?B?aGpFRmw1bHJYbnl5d3BQYjNUQUd3WWVNbnBiNHVjVEcxemxwako0UDcxR0p4?=
+ =?utf-8?B?ZE9GV1A0dXV1WDRqWXpPU3AyNExIQXFNUkZsNjdXVzNRckNFMFp4VVJRWVFj?=
+ =?utf-8?B?UHBZWFNaSERYTXZOaytRKzNRSjUySGNTSkl1RkF2ZldYalo0VkJiVnBTcFlO?=
+ =?utf-8?B?djIySGw0SmZVMDhTZkNWOVNqSzA3K1hGREtaYjc4emt1NXhoWmZRN0w0TDlS?=
+ =?utf-8?B?dEM5dk1PWjVmUUVPN0U1SVdoVFJuSUFPdiszVFNkQTM3UHR6U3VWREJIKzMw?=
+ =?utf-8?B?MG5TQ21RYjdObElreVFjSVVIakp6WVJGc3d3U1FwNEYrTnpEaGhBNkR5NXRS?=
+ =?utf-8?B?eDlSWU5vVlczdmVEY1dCeFVtNE1mb0p0TFYrYWpuVFFkRmxuM2FHcmc0WjdT?=
+ =?utf-8?B?L2VuVWVQVzNkRXBxeTNNMUhJU29OUUZrbzMrY2NEc0piaW5LZmkvbktDSHVF?=
+ =?utf-8?B?T0x3dWZPbWVGamNDcU96blJZZ1Z1VTdoL2ZPZGlKcEF3bmFvSEtLSjk1WkhE?=
+ =?utf-8?B?dnMySGpjSDFTZVZ4YWFqTkszdHBVUkw1NnFGZGxTM3pEbGI4c0xhQXh4N0U4?=
+ =?utf-8?B?NjZwUUMwL3hvSVV6STJRUTEyRFZGRUFNZnRXQTcrRXRGMW9xcXBUM3ZFSDgx?=
+ =?utf-8?B?d3ZlcmQxSlFHMWJtQ2tzWDRyT3FtOGRNMjE5b2xXYzhnQWk1bGlNdHJsRXBl?=
+ =?utf-8?B?ZDZ1MnhxMnRPdkN3OGZtd3lyajRrM1BkQmk3bFV5R3J6QjRDcnVlekxyeE04?=
+ =?utf-8?B?TVJtbk1Ybkw4L1plN1hvUXhiODBqRld5UzhzUmZuNmo0eWRsWnRVUkR5algv?=
+ =?utf-8?B?RUtlaWJ3OS9yWEQrN3EvYmFHYTIrRUZIWkNWUXJGOHZuU3RGOFpHQTllTHc3?=
+ =?utf-8?B?SkVQL0x0Y045enI5YkZhTzkvRjFZNXVrZ2FQdjZROGdhaWdkSEFqRjc2NGg0?=
+ =?utf-8?B?bVYxVWNwaWlwUkg1NjRjRk9vM29RM25UZ1RZTEJxZ05nMkx2aGdrOFJreXoy?=
+ =?utf-8?B?TmR6NnJTdVpzWjNLSW9CM2hwelUxczQxOXJJdlZwTFd2L0R2dXloSkR4WXZj?=
+ =?utf-8?B?VFVWZFkvRW1JOEVKUCtwUW1KcWJDekxQY2o4Sk1raDh3MzBOMU5PeGFvWXVY?=
+ =?utf-8?B?eDA5YmpSWjQwNGN5eU9NdkdwcWkyaHpDK2xZRlNSamVWN1pQcEpXZm1RTTNB?=
+ =?utf-8?B?Q3hCYXFWcDJkaXRPelczVnN6eS9TMjJlWWpqUUJVZ0pDdkp3YWJ1ekNWYkVV?=
+ =?utf-8?B?M1pEMXludkhkRk5mMDdHMGtGWkpGYVdyTW9aQUlyZjFBYVRyeGU0a09kTW5J?=
+ =?utf-8?B?MlU4VU9UYWRTMjlwT0k3d1lIdUI1RXJ3Q0EvNTlaMDVqQXo4Y242Ym9aR2xZ?=
+ =?utf-8?B?ZXoyUkNvSVA3WWtoYjl3bmZkOU5DL0pUVXdyTHIrTDBoVlhJRzRDUHBDbnFp?=
+ =?utf-8?B?M2xhdnFDS0VIRldnSlNNa05Lak9DbG9lRmxIVlowNXBkZFhVZGc5WFVvOTVZ?=
+ =?utf-8?B?YnJUWCt6QnNvS0xMZ2lEdnlGOHpObDFNUkNQQndWM2RHMWYvSnNTQkJ6WDBP?=
+ =?utf-8?B?WTZxV0d5YSsycUhMamJVKzJmNm81RjdxU1B3R1dGNCtEOWpzclhOaE1vOVZW?=
+ =?utf-8?B?U3NBQndSZFZNc3U1b2prbzNxZEg5c1M2NHRCdHNrTGRnN2tEdkZReTF6bWJE?=
+ =?utf-8?B?eTlZNmhrTlpMWUpocmJudHpKc3kwWmlBNHdNaHBtRGlkelE2OFN2MERCVWtr?=
+ =?utf-8?B?K2c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1ec999c8-97e5-4b0d-d780-08dc6f9a7832
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2024 20:07:28.5966 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2024 20:07:22.0325 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DeBg/YGu/u3kHXmfFgqiTg7891ovKcBslU1N3D5f0VhzNUSrhN9IkFgbxRNCv7KDnRplXYNH0JkaBn3UYV5DDg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: JgWBmSuh85mHQ/1gh207HxviR9oO8E5ocgb64apB9D5+Bd2dplkud84o1c8bo6zg8xzRPWzbFt/QdO1e2V5xuQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4832
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -174,117 +192,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-GuC reset status is not reliable for this purpose and it is
-once in a while ending up in a situation of D3Cold, where
-power_reset is false and without the proper memory restoration
-the GuC reload and Display will fail to come back from D3Cold.
+In the regular use case scenario, user space will create a
+VM, and keep it alive for the entire duration of its workload.
 
-So, let's do a full restoration of everything if we have a risk
-of losing power, without further optimizations.
+For the regular desktop cases, it means that the VM
+is alive even on idle scenarios where display goes off. This
+is unacceptable since this would entirely block runtime PM
+indefinitely, blocking deeper Package-C state. This would be
+a waste drainage of power.
 
-v2: also remove the gut_in_reset function (Anshuman)
+Limit the VM protection solely for long-running workloads that
+are not protected by display cases nor by the scheduler
+references. By design, run_job for long-running workloads
+returns NULL and the scheduler drops all the references of it,
+hence protecting the VM for this case is necessary.
 
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
+This indeed opens up a risk of use case without display, and
+without long-running workload, where memory might be mapped
+and accessed with direct read and write operations without
+any gpu execution involved. Because of this, extra protection
+for the special vm_op access callback.
+
+In the ideal case of the mmapped scenario of vm_ops, we would
+also get references in the 'open' and 'mmap' callbacks, and
+put it back on the 'close' callback, for a balanced case.
+However, this would also block the regular desktop case.
+
+v2: Update commit message to a more imperative language and to
+    reflect why the VM protection is really needed.
+    Also add a comment in the code to let the reason visbible.
+
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>
+Acked-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h |  3 ---
- drivers/gpu/drm/xe/xe_guc.c          | 27 ---------------------------
- drivers/gpu/drm/xe/xe_guc.h          |  1 -
- drivers/gpu/drm/xe/xe_pm.c           | 12 ++----------
- 4 files changed, 2 insertions(+), 41 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c | 17 ++++++++++++++++-
+ drivers/gpu/drm/xe/xe_vm.c | 12 +++++++++---
+ 2 files changed, 25 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 906b98fb973b..471c848b2638 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -431,9 +431,6 @@ struct xe_device {
- 		/** @d3cold.allowed: Indicates if d3cold is a valid device state */
- 		bool allowed;
- 
--		/** @d3cold.power_lost: Indicates if card has really lost power. */
--		bool power_lost;
--
- 		/**
- 		 * @d3cold.vram_threshold:
- 		 *
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 0c9938e0ab8c..7860b720a99c 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -938,30 +938,3 @@ void xe_guc_print_info(struct xe_guc *guc, struct drm_printer *p)
- 	xe_guc_ct_print(&guc->ct, p, false);
- 	xe_guc_submit_print(guc, p);
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 03f7fe7acf8c..7980efe139ed 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1171,11 +1171,26 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+ 	return ret;
  }
--
--/**
-- * xe_guc_in_reset() - Detect if GuC MIA is in reset.
-- * @guc: The GuC object
-- *
-- * This function detects runtime resume from d3cold by leveraging
-- * GUC_STATUS, GUC doesn't get reset during d3hot,
-- * it strictly to be called from RPM resume handler.
-- *
-- * Return: true if failed to get forcewake or GuC MIA is in Reset,
-- * otherwise false.
-- */
--bool xe_guc_in_reset(struct xe_guc *guc)
--{
--	struct xe_gt *gt = guc_to_gt(guc);
--	u32 status;
--	int err;
--
--	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--	if (err)
--		return true;
--
--	status = xe_mmio_read32(gt, GUC_STATUS);
--	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
--
--	return  status & GS_MIA_IN_RESET;
--}
-diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
-index a3c92b74a3d5..af59c9545753 100644
---- a/drivers/gpu/drm/xe/xe_guc.h
-+++ b/drivers/gpu/drm/xe/xe_guc.h
-@@ -37,7 +37,6 @@ void xe_guc_reset_wait(struct xe_guc *guc);
- void xe_guc_stop_prepare(struct xe_guc *guc);
- void xe_guc_stop(struct xe_guc *guc);
- int xe_guc_start(struct xe_guc *guc);
--bool xe_guc_in_reset(struct xe_guc *guc);
  
- static inline u16 xe_engine_class_to_guc_class(enum xe_engine_class class)
- {
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index a2f5a1b11cbf..de3b5df65e48 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -404,15 +404,7 @@ int xe_pm_runtime_resume(struct xe_device *xe)
++static int xe_vm_access(struct vm_area_struct *vma, unsigned long addr,
++			void *buf, int len, int write)
++{
++	struct ttm_buffer_object *tbo = vma->vm_private_data;
++	struct drm_device *ddev = tbo->base.dev;
++	struct xe_device *xe = to_xe_device(ddev);
++	int ret;
++
++	xe_pm_runtime_get(xe);
++	ret = ttm_bo_vm_access(vma, addr, buf, len, write);
++	xe_pm_runtime_put(xe);
++
++	return ret;
++}
++
+ static const struct vm_operations_struct xe_gem_vm_ops = {
+ 	.fault = xe_gem_fault,
+ 	.open = ttm_bo_vm_open,
+ 	.close = ttm_bo_vm_close,
+-	.access = ttm_bo_vm_access
++	.access = xe_vm_access
+ };
  
- 	lock_map_acquire(&xe_pm_runtime_lockdep_map);
+ static const struct drm_gem_object_funcs xe_gem_object_funcs = {
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index d17192c8b7de..f2915741fe16 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1347,7 +1347,13 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
  
--	/*
--	 * It can be possible that xe has allowed d3cold but other pcie devices
--	 * in gfx card soc would have blocked d3cold, therefore card has not
--	 * really lost power. Detecting primary Gt power is sufficient.
--	 */
--	gt = xe_device_get_gt(xe, 0);
--	xe->d3cold.power_lost = xe_guc_in_reset(&gt->uc.guc);
--
--	if (xe->d3cold.allowed && xe->d3cold.power_lost) {
-+	if (xe->d3cold.allowed) {
- 		err = xe_pcode_ready(xe, true);
- 		if (err)
- 			goto out;
-@@ -433,7 +425,7 @@ int xe_pm_runtime_resume(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_resume(gt);
+ 	vm->pt_ops = &xelp_pt_ops;
  
--	if (xe->d3cold.allowed && xe->d3cold.power_lost) {
-+	if (xe->d3cold.allowed) {
- 		xe_display_pm_resume(xe, true);
- 		err = xe_bo_restore_user(xe);
- 		if (err)
+-	if (!(flags & XE_VM_FLAG_MIGRATION))
++	/*
++	 * Long-running workloads are not protected by the scheduler references.
++	 * By design, run_job for long-running workloads returns NULL and the
++	 * scheduler drops all the references of it, hence protecting the VM
++	 * for this case is necessary.
++	 */
++	if (flags & XE_VM_FLAG_LR_MODE)
+ 		xe_pm_runtime_get_noresume(xe);
+ 
+ 	vm_resv_obj = drm_gpuvm_resv_object_alloc(&xe->drm);
+@@ -1457,7 +1463,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 	for_each_tile(tile, xe, id)
+ 		xe_range_fence_tree_fini(&vm->rftree[id]);
+ 	kfree(vm);
+-	if (!(flags & XE_VM_FLAG_MIGRATION))
++	if (flags & XE_VM_FLAG_LR_MODE)
+ 		xe_pm_runtime_put(xe);
+ 	return ERR_PTR(err);
+ }
+@@ -1592,7 +1598,7 @@ static void vm_destroy_work_func(struct work_struct *w)
+ 
+ 	mutex_destroy(&vm->snap_mutex);
+ 
+-	if (!(vm->flags & XE_VM_FLAG_MIGRATION))
++	if (vm->flags & XE_VM_FLAG_LR_MODE)
+ 		xe_pm_runtime_put(xe);
+ 
+ 	for_each_tile(tile, xe, id)
 -- 
 2.44.0
 
