@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4097CC19F4F
-	for <intel-xe@archiver.kernel.org>; Wed,  8 May 2024 01:34:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C46A7C10F1A
+	for <intel-xe@archiver.kernel.org>; Wed,  8 May 2024 01:34:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBFBD10E100;
-	Wed,  8 May 2024 01:34:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8743D10E100;
+	Wed,  8 May 2024 01:34:54 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA62310E100;
- Wed,  8 May 2024 01:34:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 785F310E100;
+ Wed,  8 May 2024 01:34:53 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Per_client_usag?=
- =?utf-8?q?e_=28rev3=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_Per_client_usage_=28?=
+ =?utf-8?q?rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 08 May 2024 01:34:24 -0000
-Message-ID: <171513206476.1963161.7325068166315008480@8e613ede5ea5>
+Date: Wed, 08 May 2024 01:34:53 -0000
+Message-ID: <171513209349.1963161.15478573336081174345@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240507224510.442971-1-lucas.demarchi@intel.com>
 In-Reply-To: <20240507224510.442971-1-lucas.demarchi@intel.com>
@@ -44,229 +44,216 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Per client usage (rev3)
 URL   : https://patchwork.freedesktop.org/series/132477/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-0daf0be5bb95eb0a0e42275e00a0e42d8d8fd543
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 62d75efcaf3b2ababfe9f605d2cb8532de4a3b3b
-Author: Lucas De Marchi <lucas.demarchi@intel.com>
-Date:   Tue May 7 15:45:10 2024 -0700
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../arch/x86/um/user-offsets.c:17:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
+   17 | void foo(void)
+      |      ^~~
+In file included from ../arch/um/kernel/asm-offsets.c:1:
+../arch/x86/um/shared/sysdep/kernel-offsets.h:9:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
+    9 | void foo(void)
+      |      ^~~
+../arch/x86/um/bugs_64.c:9:6: warning: no previous prototype for ‘arch_check_bugs’ [-Wmissing-prototypes]
+    9 | void arch_check_bugs(void)
+      |      ^~~~~~~~~~~~~~~
+../arch/x86/um/bugs_64.c:13:6: warning: no previous prototype for ‘arch_examine_signal’ [-Wmissing-prototypes]
+   13 | void arch_examine_signal(int sig, struct uml_pt_regs *regs)
+      |      ^~~~~~~~~~~~~~~~~~~
+../arch/x86/um/fault.c:18:5: warning: no previous prototype for ‘arch_fixup’ [-Wmissing-prototypes]
+   18 | int arch_fixup(unsigned long address, struct uml_pt_regs *regs)
+      |     ^~~~~~~~~~
+../arch/x86/um/os-Linux/mcontext.c:7:6: warning: no previous prototype for ‘get_regs_from_mc’ [-Wmissing-prototypes]
+    7 | void get_regs_from_mc(struct uml_pt_regs *regs, mcontext_t *mc)
+      |      ^~~~~~~~~~~~~~~~
+../arch/x86/um/os-Linux/registers.c:146:15: warning: no previous prototype for ‘get_thread_reg’ [-Wmissing-prototypes]
+  146 | unsigned long get_thread_reg(int reg, jmp_buf *buf)
+      |               ^~~~~~~~~~~~~~
+../arch/x86/um/vdso/um_vdso.c:16:5: warning: no previous prototype for ‘__vdso_clock_gettime’ [-Wmissing-prototypes]
+   16 | int __vdso_clock_gettime(clockid_t clock, struct __kernel_old_timespec *ts)
+      |     ^~~~~~~~~~~~~~~~~~~~
+../arch/x86/um/vdso/um_vdso.c:30:5: warning: no previous prototype for ‘__vdso_gettimeofday’ [-Wmissing-prototypes]
+   30 | int __vdso_gettimeofday(struct __kernel_old_timeval *tv, struct timezone *tz)
+      |     ^~~~~~~~~~~~~~~~~~~
+../arch/x86/um/vdso/um_vdso.c:44:21: warning: no previous prototype for ‘__vdso_time’ [-Wmissing-prototypes]
+   44 | __kernel_old_time_t __vdso_time(__kernel_old_time_t *t)
+      |                     ^~~~~~~~~~~
+../arch/x86/um/vdso/um_vdso.c:57:1: warning: no previous prototype for ‘__vdso_getcpu’ [-Wmissing-prototypes]
+   57 | __vdso_getcpu(unsigned *cpu, unsigned *node, struct getcpu_cache *unused)
+      | ^~~~~~~~~~~~~
+../arch/um/os-Linux/skas/process.c:107:6: warning: no previous prototype for ‘wait_stub_done’ [-Wmissing-prototypes]
+  107 | void wait_stub_done(int pid)
+      |      ^~~~~~~~~~~~~~
+../arch/um/os-Linux/skas/process.c:683:6: warning: no previous prototype for ‘__switch_mm’ [-Wmissing-prototypes]
+  683 | void __switch_mm(struct mm_id *mm_idp)
+      |      ^~~~~~~~~~~
+../arch/um/os-Linux/main.c:187:7: warning: no previous prototype for ‘__wrap_malloc’ [-Wmissing-prototypes]
+  187 | void *__wrap_malloc(int size)
+      |       ^~~~~~~~~~~~~
+../arch/um/os-Linux/main.c:208:7: warning: no previous prototype for ‘__wrap_calloc’ [-Wmissing-prototypes]
+  208 | void *__wrap_calloc(int n, int size)
+      |       ^~~~~~~~~~~~~
+../arch/um/os-Linux/main.c:222:6: warning: no previous prototype for ‘__wrap_free’ [-Wmissing-prototypes]
+  222 | void __wrap_free(void *ptr)
+      |      ^~~~~~~~~~~
+../arch/x86/um/ptrace_64.c:111:5: warning: no previous prototype for ‘poke_user’ [-Wmissing-prototypes]
+  111 | int poke_user(struct task_struct *child, long addr, long data)
+      |     ^~~~~~~~~
+../arch/x86/um/ptrace_64.c:171:5: warning: no previous prototype for ‘peek_user’ [-Wmissing-prototypes]
+  171 | int peek_user(struct task_struct *child, long addr, long data)
+      |     ^~~~~~~~~
+../arch/um/os-Linux/mem.c:28:6: warning: no previous prototype for ‘kasan_map_memory’ [-Wmissing-prototypes]
+   28 | void kasan_map_memory(void *start, size_t len)
+      |      ^~~~~~~~~~~~~~~~
+../arch/um/os-Linux/mem.c:212:13: warning: no previous prototype for ‘check_tmpexec’ [-Wmissing-prototypes]
+  212 | void __init check_tmpexec(void)
+      |             ^~~~~~~~~~~~~
+../arch/um/kernel/skas/process.c:36:12: warning: no previous prototype for ‘start_uml’ [-Wmissing-prototypes]
+   36 | int __init start_uml(void)
+      |            ^~~~~~~~~
+../arch/um/kernel/skas/mmu.c:17:5: warning: no previous prototype for ‘init_new_context’ [-Wmissing-prototypes]
+   17 | int init_new_context(struct task_struct *task, struct mm_struct *mm)
+      |     ^~~~~~~~~~~~~~~~
+../arch/um/kernel/skas/mmu.c:60:6: warning: no previous prototype for ‘destroy_context’ [-Wmissing-prototypes]
+   60 | void destroy_context(struct mm_struct *mm)
+      |      ^~~~~~~~~~~~~~~
+../arch/um/os-Linux/signal.c:75:6: warning: no previous prototype for ‘sig_handler’ [-Wmissing-prototypes]
+   75 | void sig_handler(int sig, struct siginfo *si, mcontext_t *mc)
+      |      ^~~~~~~~~~~
+../arch/um/os-Linux/signal.c:111:6: warning: no previous prototype for ‘timer_alarm_handler’ [-Wmissing-prototypes]
+  111 | void timer_alarm_handler(int sig, struct siginfo *unused_si, mcontext_t *mc)
+      |      ^~~~~~~~~~~~~~~~~~~
+../arch/x86/um/signal.c:560:6: warning: no previous prototype for ‘sys_rt_sigreturn’ [-Wmissing-prototypes]
+  560 | long sys_rt_sigreturn(void)
+      |      ^~~~~~~~~~~~~~~~
+../arch/um/os-Linux/start_up.c:301:12: warning: no previous prototype for ‘parse_iomem’ [-Wmissing-prototypes]
+  301 | int __init parse_iomem(char *str, int *add)
+      |            ^~~~~~~~~~~
+../arch/um/kernel/mem.c:202:8: warning: no previous prototype for ‘pgd_alloc’ [-Wmissing-prototypes]
+  202 | pgd_t *pgd_alloc(struct mm_struct *mm)
+      |        ^~~~~~~~~
+../arch/um/kernel/mem.c:215:7: warning: no previous prototype for ‘uml_kmalloc’ [-Wmissing-prototypes]
+  215 | void *uml_kmalloc(int size, int flags)
+      |       ^~~~~~~~~~~
+../arch/um/kernel/reboot.c:45:6: warning: no previous prototype for ‘machine_restart’ [-Wmissing-prototypes]
+   45 | void machine_restart(char * __unused)
+      |      ^~~~~~~~~~~~~~~
+../arch/um/kernel/reboot.c:51:6: warning: no previous prototype for ‘machine_power_off’ [-Wmissing-prototypes]
+   51 | void machine_power_off(void)
+      |      ^~~~~~~~~~~~~~~~~
+../arch/um/kernel/reboot.c:57:6: warning: no previous prototype for ‘machine_halt’ [-Wmissing-prototypes]
+   57 | void machine_halt(void)
+      |      ^~~~~~~~~~~~
+../arch/um/kernel/process.c:51:5: warning: no previous prototype for ‘pid_to_processor_id’ [-Wmissing-prototypes]
+   51 | int pid_to_processor_id(int pid)
+      |     ^~~~~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:87:7: warning: no previous prototype for ‘__switch_to’ [-Wmissing-prototypes]
+   87 | void *__switch_to(struct task_struct *from, struct task_struct *to)
+      |       ^~~~~~~~~~~
+../arch/um/kernel/process.c:140:6: warning: no previous prototype for ‘fork_handler’ [-Wmissing-prototypes]
+  140 | void fork_handler(void)
+      |      ^~~~~~~~~~~~
+../arch/um/kernel/process.c:217:6: warning: no previous prototype for ‘arch_cpu_idle’ [-Wmissing-prototypes]
+  217 | void arch_cpu_idle(void)
+      |      ^~~~~~~~~~~~~
+../arch/um/kernel/process.c:253:5: warning: no previous prototype for ‘copy_to_user_proc’ [-Wmissing-prototypes]
+  253 | int copy_to_user_proc(void __user *to, void *from, int size)
+      |     ^~~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:263:5: warning: no previous prototype for ‘clear_user_proc’ [-Wmissing-prototypes]
+  263 | int clear_user_proc(void __user *buf, int size)
+      |     ^~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:271:6: warning: no previous prototype for ‘set_using_sysemu’ [-Wmissing-prototypes]
+  271 | void set_using_sysemu(int value)
+      |      ^~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:278:5: warning: no previous prototype for ‘get_using_sysemu’ [-Wmissing-prototypes]
+  278 | int get_using_sysemu(void)
+      |     ^~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:316:12: warning: no previous prototype for ‘make_proc_sysemu’ [-Wmissing-prototypes]
+  316 | int __init make_proc_sysemu(void)
+      |            ^~~~~~~~~~~~~~~~
+../arch/um/kernel/process.c:348:15: warning: no previous prototype for ‘arch_align_stack’ [-Wmissing-prototypes]
+  348 | unsigned long arch_align_stack(unsigned long sp)
+      |               ^~~~~~~~~~~~~~~~
+../arch/um/kernel/tlb.c:579:6: warning: no previous prototype for ‘flush_tlb_mm_range’ [-Wmissing-prototypes]
+  579 | void flush_tlb_mm_range(struct mm_struct *mm, unsigned long start,
+      |      ^~~~~~~~~~~~~~~~~~
+../arch/um/kernel/tlb.c:594:6: warning: no previous prototype for ‘force_flush_all’ [-Wmissing-prototypes]
+  594 | void force_flush_all(void)
+      |      ^~~~~~~~~~~~~~~
+../arch/x86/um/syscalls_64.c:48:6: warning: no previous prototype for ‘arch_switch_to’ [-Wmissing-prototypes]
+   48 | void arch_switch_to(struct task_struct *to)
+      |      ^~~~~~~~~~~~~~
+../arch/um/kernel/um_arch.c:408:19: warning: no previous prototype for ‘read_initrd’ [-Wmissing-prototypes]
+  408 | int __init __weak read_initrd(void)
+      |                   ^~~~~~~~~~~
+../arch/um/kernel/um_arch.c:461:7: warning: no previous prototype for ‘text_poke’ [-Wmissing-prototypes]
+  461 | void *text_poke(void *addr, const void *opcode, size_t len)
+      |       ^~~~~~~~~
+../arch/um/kernel/um_arch.c:473:6: warning: no previous prototype for ‘text_poke_sync’ [-Wmissing-prototypes]
+  473 | void text_poke_sync(void)
+      |      ^~~~~~~~~~~~~~
+../arch/um/kernel/kmsg_dump.c:60:12: warning: no previous prototype for ‘kmsg_dumper_stdout_init’ [-Wmissing-prototypes]
+   60 | int __init kmsg_dumper_stdout_init(void)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_drm_client.c: In function ‘show_runtime’:
+../drivers/gpu/drm/xe/xe_drm_client.c:279:3: error: implicit declaration of function ‘xe_force_wake_get’ [-Werror=implicit-function-declaration]
+  279 |   xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+      |   ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_drm_client.c:309:3: error: implicit declaration of function ‘xe_force_wake_put’ [-Werror=implicit-function-declaration]
+  309 |   xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+      |   ^~~~~~~~~~~~~~~~~
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:244: drivers/gpu/drm/xe/xe_drm_client.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:485: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:485: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:485: drivers/gpu] Error 2
+make[4]: *** Waiting for unfinished jobs....
+make[3]: *** [../scripts/Makefile.build:485: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+make[2]: *** [/kernel/Makefile:1919: .] Error 2
+make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
 
-    drm/xe/client: Print runtime to fdinfo
-    
-    Print the accumulated runtime for client when printing fdinfo.
-    Each time a query is done it first does 2 things:
-    
-    1) loop through all the exec queues for the current client and
-       accumulate the runtime, per engine class. CTX_TIMESTAMP is used for
-       that, being read from the context image.
-    
-    2) Read a "GPU timestamp" that can be used for considering "how much GPU
-       time has passed" and that has the same unit/refclock as the one
-       recording the runtime. RING_TIMESTAMP is used for that via MMIO.
-    
-    Since for all current platforms RING_TIMESTAMP follows the same
-    refclock, just read it once, using any first engine.
-    
-    This is exported to userspace as 2 numbers in fdinfo:
-    
-            drm-cycles-<class>: <RUNTIME>
-            drm-total-cycles-<class>: <TIMESTAMP>
-    
-    Userspace is expected to collect at least 2 samples, which allows to
-    know the client engine busyness as per:
-    
-                        RUNTIME1 - RUNTIME0
-            busyness = ---------------------
-                              T1 - T0
-    
-    Another thing to point out is that it's expected that userspace will
-    read any 2 samples every few seconds.  Given the update frequency of the
-    counters involved and that CTX_TIMESTAMP is 32-bits, the counter for
-    each exec_queue can wrap around (assuming 100% utilization) after ~200s.
-    The wraparound is not perceived by userspace since it's just accumulated
-    for all the exec_queues in a 64-bit counter), but the measurement will
-    not be accurate if the samples are too far apart.
-    
-    This could be mitigated by adding a workqueue to accumulate the counters
-    every so often, but it's additional complexity for something that is
-    done already by userspace every few seconds in tools like gputop (from
-    igt), htop, nvtop, etc with none of them really defaulting to 1 sample
-    per minute or more.
-    
-    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-+ /mt/dim checkpatch 703bc96550be8cd9f4995bfa5126ca8a2e98c58c drm-intel
-0e581f24ae59 drm/xe: Promote xe_hw_engine_class_to_str()
-f90b2d51606a drm/xe: Add XE_ENGINE_CLASS_OTHER to str conversion
-11294dbb0160 drm/xe/lrc: Add helper to capture context timestamp
-187c54795475 drm/xe: Add helper to capture engine timestamp
-3d8ecf1d30ce drm/xe: Add helper to accumulate exec queue runtime
-62d75efcaf3b drm/xe/client: Print runtime to fdinfo
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:89: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#89: 
-new file mode 100644
-
--:138: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#138: FILE: drivers/gpu/drm/xe/xe_drm_client.c:33:
-+ * ^Ipos:    0$
-
--:139: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#139: FILE: drivers/gpu/drm/xe/xe_drm_client.c:34:
-+ * ^Iflags:  0100002$
-
--:140: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#140: FILE: drivers/gpu/drm/xe/xe_drm_client.c:35:
-+ * ^Imnt_id: 26$
-
--:141: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#141: FILE: drivers/gpu/drm/xe/xe_drm_client.c:36:
-+ * ^Iino:    685$
-
--:142: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#142: FILE: drivers/gpu/drm/xe/xe_drm_client.c:37:
-+ * ^Idrm-driver:     xe$
-
--:143: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#143: FILE: drivers/gpu/drm/xe/xe_drm_client.c:38:
-+ * ^Idrm-client-id:  3$
-
--:144: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#144: FILE: drivers/gpu/drm/xe/xe_drm_client.c:39:
-+ * ^Idrm-pdev:       0000:03:00.0$
-
--:145: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#145: FILE: drivers/gpu/drm/xe/xe_drm_client.c:40:
-+ * ^Idrm-total-system:       0$
-
--:146: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#146: FILE: drivers/gpu/drm/xe/xe_drm_client.c:41:
-+ * ^Idrm-shared-system:      0$
-
--:147: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#147: FILE: drivers/gpu/drm/xe/xe_drm_client.c:42:
-+ * ^Idrm-active-system:      0$
-
--:148: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#148: FILE: drivers/gpu/drm/xe/xe_drm_client.c:43:
-+ * ^Idrm-resident-system:    0$
-
--:149: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#149: FILE: drivers/gpu/drm/xe/xe_drm_client.c:44:
-+ * ^Idrm-purgeable-system:   0$
-
--:150: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#150: FILE: drivers/gpu/drm/xe/xe_drm_client.c:45:
-+ * ^Idrm-total-gtt:  192 KiB$
-
--:151: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#151: FILE: drivers/gpu/drm/xe/xe_drm_client.c:46:
-+ * ^Idrm-shared-gtt: 0$
-
--:152: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#152: FILE: drivers/gpu/drm/xe/xe_drm_client.c:47:
-+ * ^Idrm-active-gtt: 0$
-
--:153: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#153: FILE: drivers/gpu/drm/xe/xe_drm_client.c:48:
-+ * ^Idrm-resident-gtt:       192 KiB$
-
--:154: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#154: FILE: drivers/gpu/drm/xe/xe_drm_client.c:49:
-+ * ^Idrm-total-vram0:        23992 KiB$
-
--:155: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#155: FILE: drivers/gpu/drm/xe/xe_drm_client.c:50:
-+ * ^Idrm-shared-vram0:       16 MiB$
-
--:156: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#156: FILE: drivers/gpu/drm/xe/xe_drm_client.c:51:
-+ * ^Idrm-active-vram0:       0$
-
--:157: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#157: FILE: drivers/gpu/drm/xe/xe_drm_client.c:52:
-+ * ^Idrm-resident-vram0:     23992 KiB$
-
--:158: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#158: FILE: drivers/gpu/drm/xe/xe_drm_client.c:53:
-+ * ^Idrm-total-stolen:       0$
-
--:159: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#159: FILE: drivers/gpu/drm/xe/xe_drm_client.c:54:
-+ * ^Idrm-shared-stolen:      0$
-
--:160: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#160: FILE: drivers/gpu/drm/xe/xe_drm_client.c:55:
-+ * ^Idrm-active-stolen:      0$
-
--:161: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#161: FILE: drivers/gpu/drm/xe/xe_drm_client.c:56:
-+ * ^Idrm-resident-stolen:    0$
-
--:162: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#162: FILE: drivers/gpu/drm/xe/xe_drm_client.c:57:
-+ * ^Idrm-cycles-rcs: 28257900$
-
--:163: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#163: FILE: drivers/gpu/drm/xe/xe_drm_client.c:58:
-+ * ^Idrm-total-cycles-rcs:   7655183225$
-
--:164: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#164: FILE: drivers/gpu/drm/xe/xe_drm_client.c:59:
-+ * ^Idrm-cycles-bcs: 0$
-
--:165: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#165: FILE: drivers/gpu/drm/xe/xe_drm_client.c:60:
-+ * ^Idrm-total-cycles-bcs:   7655183225$
-
--:166: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#166: FILE: drivers/gpu/drm/xe/xe_drm_client.c:61:
-+ * ^Idrm-cycles-vcs: 0$
-
--:167: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#167: FILE: drivers/gpu/drm/xe/xe_drm_client.c:62:
-+ * ^Idrm-total-cycles-vcs:   7655183225$
-
--:168: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#168: FILE: drivers/gpu/drm/xe/xe_drm_client.c:63:
-+ * ^Idrm-engine-capacity-vcs:        2$
-
--:169: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#169: FILE: drivers/gpu/drm/xe/xe_drm_client.c:64:
-+ * ^Idrm-cycles-vecs:        0$
-
--:170: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#170: FILE: drivers/gpu/drm/xe/xe_drm_client.c:65:
-+ * ^Idrm-total-cycles-vecs:  7655183225$
-
--:171: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#171: FILE: drivers/gpu/drm/xe/xe_drm_client.c:66:
-+ * ^Idrm-engine-capacity-vecs:       2$
-
--:172: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#172: FILE: drivers/gpu/drm/xe/xe_drm_client.c:67:
-+ * ^Idrm-cycles-ccs: 0$
-
--:173: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#173: FILE: drivers/gpu/drm/xe/xe_drm_client.c:68:
-+ * ^Idrm-total-cycles-ccs:   7655183225$
-
--:174: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#174: FILE: drivers/gpu/drm/xe/xe_drm_client.c:69:
-+ * ^Idrm-engine-capacity-ccs:        4$
-
-total: 0 errors, 38 warnings, 0 checks, 200 lines checked
+[01:34:25] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[01:34:29] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
