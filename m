@@ -4,49 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3F77C04FFE
-	for <intel-xe@archiver.kernel.org>; Wed,  8 May 2024 22:49:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 709A8C25B74
+	for <intel-xe@archiver.kernel.org>; Wed,  8 May 2024 22:49:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6016F11324E;
-	Wed,  8 May 2024 22:49:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C810113252;
+	Wed,  8 May 2024 22:49:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IhOxCrqs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m8gs5XLF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BA4911324E
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC49111324E
  for <Intel-Xe@lists.freedesktop.org>; Wed,  8 May 2024 22:49:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715208569; x=1746744569;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/xAtwl8G5Rpqe2YnkrbZK/qqALt/9Wui9B2Zk79YpRM=;
- b=IhOxCrqsECe55Im07C+oEgr9RwMh1lg6knVGfEVucY45d0hizP5mSl/O
- cdLeyrmHn+4hRiPepm8oQk7cwTVNuayz7aE+AOTOiwsR+8Zd3mx/zdx5l
- l8eHGtkXwJwaV5YGV2fugLUrnsf3mMwNHjTj/n348eQDr0dflaY/fd6Gf
- +Re+cHImnaEVNl3HlMeRlsvCm+2IaCyevo7QWXOJn+il3e+2ruJVUlCaD
- +9Ps7t+CmzLkeW56GsESNqg2htXBSqs1Yak1NSzELu9pq5h/VUET89AEh
- iNxsbHcMpSF0JBZMPuE2nTxzCkh+Zv/lJnLzNtesT/woVLKLe17CIm5Sv Q==;
-X-CSE-ConnectionGUID: ArVNbtLhTbiAwdUhTXVi3Q==
-X-CSE-MsgGUID: 1HRFki22SqC2HGS2+YAirA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="10938732"
-X-IronPort-AV: E=Sophos;i="6.08,146,1712646000"; d="scan'208";a="10938732"
+ t=1715208570; x=1746744570;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=doWUXLYWgoncj5yKYHyOamAYXmr8tcB6Al8Mbzf9KjU=;
+ b=m8gs5XLFDPFdga49lm5dV8bOVrNBJOBI01PY5wGEB8qqsjvVY+TJBWA5
+ 88gqRSxc1b2VBtLgG5OJxMBu1/z3sj8wCPDNXIfg/Z5SsGibFyZD1EOpe
+ t988KagY72rxP15/nhnrYNZHOPj5AJRD93PF7PbMj5Qah8R7Wmlvj3fhK
+ A3uc8b6I0Etb3eUGY9WVaJ95/XeveTT1HhSPMl+tlzR3IheMgvwVCv7OY
+ OoPmcRl3BCMZ6hDKK3po2sfFZ5kXLxVPIzUx3/h99StnBFS1UMCXEvpqN
+ FO8XdutD/fH+ykFY+E6AEFPmlQ7OJRq338zN2wjWKVuxctKF/zhChhXg9 g==;
+X-CSE-ConnectionGUID: eMhDXfGJTz+TIEaTv6If3g==
+X-CSE-MsgGUID: B7B4MRptSyqL7v8ZjKfYDA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="10938734"
+X-IronPort-AV: E=Sophos;i="6.08,146,1712646000"; d="scan'208";a="10938734"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2024 15:49:28 -0700
-X-CSE-ConnectionGUID: FSQIdAhpTbyrwkbmWdb0sQ==
-X-CSE-MsgGUID: zKPw6MM9Qw20gzT7cuu3jw==
+ 08 May 2024 15:49:29 -0700
+X-CSE-ConnectionGUID: nTADxB3aQ0+fDOt2rSMUIw==
+X-CSE-MsgGUID: gsVfL223T7y3fKR1UnZifQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,146,1712646000"; d="scan'208";a="33565753"
+X-IronPort-AV: E=Sophos;i="6.08,146,1712646000"; d="scan'208";a="33565759"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
  by fmviesa003.fm.intel.com with ESMTP; 08 May 2024 15:49:27 -0700
 From: John.C.Harrison@Intel.com
 To: Intel-Xe@Lists.FreeDesktop.Org
 Cc: John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH v3 0/2] Imrpove GuC debug log/status output
-Date: Wed,  8 May 2024 15:49:25 -0700
-Message-ID: <20240508224927.11341-1-John.C.Harrison@Intel.com>
+Subject: [PATCH v3 2/2] drm/xe/guc: Improve robustness of GuC log dumping to
+ dmesg
+Date: Wed,  8 May 2024 15:49:27 -0700
+Message-ID: <20240508224927.11341-3-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240508224927.11341-1-John.C.Harrison@Intel.com>
+References: <20240508224927.11341-1-John.C.Harrison@Intel.com>
 MIME-Version: 1.0
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
  Swindon SN3 1RJ
@@ -67,25 +70,160 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: John Harrison <John.C.Harrison@Intel.com>
 
-Improve the robustness and decodeability of GuC log output, especially
-when dumped via dmesg. Also remove a spurious line feed that messes up
-the GuC status dump when sent to dmesg.
+There is a debug mechanism for dumping the GuC log as an ASCII hex
+stream via dmesg. This is extremely useful for situations where it is
+not possibe to query the log from debugfs (self tests, bugs that cause
+the driver to fail to load, system hangs, etc.). However, dumping via
+dmesg is not the most reliable. The dmesg buffer is limited in size,
+can be rate limited and a simple hex stream is hard to parse by tools.
 
-v2: Remote pm calls (Matthew Brost)
-v3: Add more info and fix spurious line feed.
+So add extra information to the dump to make it more robust and
+parsable. This includes adding start and end tags to delimit the dump,
+using longer lines to reduce the per line overhead, adding a rolling
+count to check for missing lines and interleaved concurrent dumps and
+adding other important information such as the GuC version number and
+timestamp offset.
+
+v2: Remove pm get/put as unnecessary (review feedback from Matthew B).
+v3: Add firmware filename and 'wanted' version number.
 
 Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-
-
-John Harrison (2):
-  drm/xe/guc: Remove spurious line feed in debug print
-  drm/xe/guc: Improve robustness of GuC log dumping to dmesg
-
+---
  drivers/gpu/drm/xe/regs/xe_guc_regs.h |  1 +
- drivers/gpu/drm/xe/xe_guc_ct.c        |  2 +-
  drivers/gpu/drm/xe/xe_guc_log.c       | 85 ++++++++++++++++++++++-----
- 3 files changed, 72 insertions(+), 16 deletions(-)
+ 2 files changed, 71 insertions(+), 15 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+index 11682e675e0f..45fb3707fabe 100644
+--- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+@@ -82,6 +82,7 @@
+ #define   HUC_LOADING_AGENT_GUC			REG_BIT(1)
+ #define   GUC_WOPCM_OFFSET_VALID		REG_BIT(0)
+ #define GUC_MAX_IDLE_COUNT			XE_REG(0xc3e4)
++#define GUC_PMTIMESTAMP				XE_REG(0xc3e8)
+ 
+ #define GUC_SEND_INTERRUPT			XE_REG(0xc4c8)
+ #define   GUC_SEND_TRIGGER			REG_BIT(0)
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index a37ee3419428..7e7e2fdc9a11 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -7,11 +7,19 @@
+ 
+ #include <drm/drm_managed.h>
+ 
++#include "regs/xe_guc_regs.h"
+ #include "xe_bo.h"
+ #include "xe_gt.h"
+ #include "xe_map.h"
++#include "xe_mmio.h"
+ #include "xe_module.h"
+ 
++static struct xe_guc *
++log_to_guc(struct xe_guc_log *log)
++{
++	return container_of(log, struct xe_guc, log);
++}
++
+ static struct xe_gt *
+ log_to_gt(struct xe_guc_log *log)
+ {
+@@ -49,32 +57,79 @@ static size_t guc_log_size(void)
+ 		CAPTURE_BUFFER_SIZE;
+ }
+ 
++#define BYTES_PER_WORD		sizeof(u32)
++#define WORDS_PER_DUMP		8
++#define DUMPS_PER_LINE		4
++#define LINES_PER_READ		4
++#define WORDS_PER_READ		(WORDS_PER_DUMP * DUMPS_PER_LINE * LINES_PER_READ)
++
+ void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
+ {
++	static int g_count;
++	struct xe_gt *gt = log_to_gt(log);
++	struct xe_guc *guc = log_to_guc(log);
++	struct xe_uc_fw_version *ver_f = &guc->fw.versions.found[XE_UC_FW_VER_RELEASE];
++	struct xe_uc_fw_version *ver_w = &guc->fw.versions.wanted;
+ 	struct xe_device *xe = log_to_xe(log);
+ 	size_t size;
+-	int i, j;
++	char line_buff[DUMPS_PER_LINE * WORDS_PER_DUMP * 9 + 1];
++	int l_count = g_count++;
++	int line = 0;
++	int i, j, k;
++	u64 ktime;
++	u32 stamp;
+ 
+ 	xe_assert(xe, log->bo);
+ 
+ 	size = log->bo->size;
+ 
+-#define DW_PER_READ		128
+-	xe_assert(xe, !(size % (DW_PER_READ * sizeof(u32))));
+-	for (i = 0; i < size / sizeof(u32); i += DW_PER_READ) {
+-		u32 read[DW_PER_READ];
+-
+-		xe_map_memcpy_from(xe, read, &log->bo->vmap, i * sizeof(u32),
+-				   DW_PER_READ * sizeof(u32));
+-#define DW_PER_PRINT		4
+-		for (j = 0; j < DW_PER_READ / DW_PER_PRINT; ++j) {
+-			u32 *print = read + j * DW_PER_PRINT;
+-
+-			drm_printf(p, "0x%08x 0x%08x 0x%08x 0x%08x\n",
+-				   *(print + 0), *(print + 1),
+-				   *(print + 2), *(print + 3));
++	drm_printf(p, "[Capture/%d.%d] Dumping GuC log for %ps...\n",
++		   l_count, line++, __builtin_return_address(0));
++
++	drm_printf(p, "[Capture/%d.%d] GuC version %u.%u.%u (wanted %u.%u.%u)\n",
++		   l_count, line++,
++		   ver_f->major, ver_f->minor, ver_f->patch,
++		   ver_w->major, ver_w->minor, ver_w->patch);
++	drm_printf(p, "[Capture/%d.%d] GuC firmware: %s\n", l_count, line++, guc->fw.path);
++
++	ktime = ktime_get_boottime_ns();
++	drm_printf(p, "[Capture/%d.%d] Kernel timestamp: 0x%08llX [%llu]\n",
++		   l_count, line++, ktime, ktime);
++
++	stamp = xe_mmio_read32(gt, GUC_PMTIMESTAMP);
++	drm_printf(p, "[Capture/%d.%d] GuC timestamp: 0x%08X [%u]\n",
++		   l_count, line++, stamp, stamp);
++
++	drm_printf(p, "[Capture/%d.%d] CS timestamp frequency: %u Hz\n",
++		   l_count, line++, gt->info.reference_clock);
++
++	xe_assert(xe, !(size % (WORDS_PER_READ * BYTES_PER_WORD)));
++	for (i = 0; i < size / BYTES_PER_WORD; i += WORDS_PER_READ) {
++		u32 read[WORDS_PER_READ];
++
++		xe_map_memcpy_from(xe, read, &log->bo->vmap, i * BYTES_PER_WORD,
++				   WORDS_PER_READ * BYTES_PER_WORD);
++
++		for (j = 0; j < WORDS_PER_READ; ) {
++			u32 done = 0;
++
++			for (k = 0; k < DUMPS_PER_LINE; k++) {
++				line_buff[done++] = ' ';
++				done += hex_dump_to_buffer(read + j,
++							   sizeof(*read) * (WORDS_PER_READ - j),
++							   WORDS_PER_DUMP * BYTES_PER_WORD,
++							   BYTES_PER_WORD,
++							   line_buff + done,
++							   sizeof(line_buff) - done,
++							   false);
++				j += WORDS_PER_DUMP;
++			}
++
++			drm_printf(p, "[Capture/%d.%d]%s\n", l_count, line++, line_buff);
+ 		}
+ 	}
++
++	drm_printf(p, "[Capture/%d.%d] Done.\n", l_count, line++);
+ }
+ 
+ int xe_guc_log_init(struct xe_guc_log *log)
 -- 
 2.43.2
 
