@@ -4,64 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0789DC25B5F
-	for <intel-xe@archiver.kernel.org>; Wed,  8 May 2024 10:36:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DA44C04FFE
+	for <intel-xe@archiver.kernel.org>; Wed,  8 May 2024 11:34:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3998F11358C;
-	Wed,  8 May 2024 10:36:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBCBF10F6CC;
+	Wed,  8 May 2024 11:34:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rr0Svj1L";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BmBJYyDB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F4C3113587;
- Wed,  8 May 2024 10:36:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4963B10FADC;
+ Wed,  8 May 2024 11:34:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715164571; x=1746700571;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=WGv/5VuYW2r16KYJevf+UCY0ndkpQZYpWB/W5sNTOCM=;
- b=Rr0Svj1LElbFnA1aKt4MtjXk/e+2JI78w2bQkoDjKlFZJkYI0jE6LZz3
- qLSA3oyo7j0fggdz/u+hDbH+qkFlOdGRfjn82zYza0Fqk/P77m3eZw+M7
- G1AD9ksFz79LBhldogG1puvaqotQPWtxMpKwI8N5DlycBBbeiUZ/LUxhb
- 58GY7qbTX+FQTyxUl7ffHKpZ2rsXvDNpVD9YqsN1zKrI7zNKMzMOEc4oY
- FGASEizVGEn6pgO0qfLVR1sQzwtZoMddEhsU8GS1iWYAFQjjj4YJdXFq8
- MQVv0ElLBWXHMuVmN5jCJZRViLYAP+aNQ79V1QY8Si2epCcLcY0jwMq+f g==;
-X-CSE-ConnectionGUID: C9p72SBqRRi613aTJ7knYw==
-X-CSE-MsgGUID: 8J54EH+zQ9ymJ2hQiNN6qg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11066"; a="28491397"
-X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="28491397"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2024 03:36:10 -0700
-X-CSE-ConnectionGUID: iHM+A9pUQd+gwaioNRs+dg==
-X-CSE-MsgGUID: 3gKs9FuXSGqcqEjEmedIkg==
+ t=1715168053; x=1746704053;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=Ngtt6qxyBZKCQLxH7yAYeYhGIsHrAn5VzCtRAIry/6c=;
+ b=BmBJYyDBE9H2dmZMsLHl3u/7/y3ledmEXxvYEHOaFgeQw8KKEFbeId0q
+ IRbskgSqPLRctlsxzyHedv+Hmz6qzj3m9bigPw1/B4+/hPKKK85uQVoLI
+ uqIcrewAoxX69HTATWJjjUmTD6i7QXfcn1o9kogScw8nYiZMGVJMYctuL
+ 0Go75f8LQhk46aNxqvfcN7M1nU9HlZhblaeUoBrFALpyK1Mn+G1+vUeSN
+ XAY+RNERw8QPpIZT4qh8zfxxTPkfTEIibGZj38BU63RiWi/NTjxGY7vg3
+ 9kcAJC1dOspVx4+WOxlCREU1vZ70J5yG53nnE+25Zb3HT0SvStyWsmxC2 g==;
+X-CSE-ConnectionGUID: tlomQ90+TqigzUQry0P0nA==
+X-CSE-MsgGUID: ZPnD0GrQTlmP1RZwtxHC4A==
+X-IronPort-AV: E=McAfee;i="6600,9927,11066"; a="11183124"
+X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="11183124"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2024 04:34:13 -0700
+X-CSE-ConnectionGUID: aJA7K4oUTk6CCop1BVS35g==
+X-CSE-MsgGUID: Qs9sG8wHQgOGIFeA0Xb42g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="33677494"
-Received: from tgorgenx-mobl.ger.corp.intel.com (HELO [10.252.34.133])
- ([10.252.34.133])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2024 03:36:05 -0700
-Message-ID: <fe630414-d13e-4052-86f3-ce3155eb3e44@linux.intel.com>
-Date: Wed, 8 May 2024 12:36:25 +0200
+X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="33329442"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2024 04:34:11 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Farah Kassabri <fkassabri@habana.ai>, "De Marchi, Lucas"
+ <lucas.demarchi@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, Ohad
+ Sharabi <osharabi@habana.ai>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>
+Subject: Re: [PATCH 1/2] drm: print top commit sha after loading the driver
+In-Reply-To: <6a605dbe-53c9-416b-9bdc-728c3e155256@habana.ai>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240424100706.269523-1-fkassabri@habana.ai>
+ <87bk5s4ekb.fsf@intel.com>
+ <45wxpwjv6fqzbnsivojrr2dbspnftinois7um3rrtku5j47le4@lobf5qyr2f2n>
+ <6a605dbe-53c9-416b-9bdc-728c3e155256@habana.ai>
+Date: Wed, 08 May 2024 14:34:08 +0300
+Message-ID: <87seysk05r.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-next-fixes
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,118 +73,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+On Wed, 08 May 2024, Farah Kassabri <fkassabri@habana.ai> wrote:
+> On 4/29/2024 18:32, Lucas De Marchi wrote:
+>> On Mon, Apr 29, 2024 at 02:02:28PM GMT, Jani Nikula wrote:
+>>> On Wed, 24 Apr 2024, Farah Kassabri <fkassabri@habana.ai> wrote:
+>>>> Add the last driver sha to the existing log message
+>>>> which prints the drm device info.
+>>>
+>>> The commit message fails to answer the most important question: why?
+>>>
+>>> Especially, what makes drm devices such special snowflakes that they'd
+>>> need to be the only ones in the kernel to print git commit sha1's?
+>>=20
+>>=20
+>> the closest to what was added here would be srcversion:
+>>=20
+>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 $ modinfo build64/drivers/gp=
+u/drm/xe/xe.ko=C2=A0 | grep srcversion
+>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 srcversion:=C2=A0=C2=A0=C2=
+=A0=C2=A0 0EA08A43AC399A0D942740
+>>=20
+>> which makes more sense and doesn't depend on the git tree checkout and
+>> other possible problems with dirty checkouts.=C2=A0 If you want to print=
+ it
+>> on module load to be able to tell from a log, you could probably just
+>> access mod->srcversion.
+>>=20
+>> but I'm not sure what we are trying to accomplish here and the commit
+>> message certainly missed that. Please Cc dri-devel on changes outside xe
+>> and provide the motivation in the commit message.
+>
+> The main reason why we need this sha, is because our driver will run in=20
+> multiple environments and setups (whether it's for clients, our labs or=20
+> data center), each setup could work with different driver build and it's=
+=20
+> very convenient to see what is the last sha in the running driver
+> in order to see if some fix is inside or not for example.
 
-drm-misc-next-fixes for v6.10-rc1.
+While I sympathize with this view, it's not really an upstream problem,
+is it? When you're running upstream kernels, you don't mix and match,
+you run a known kernel version and the drivers that come with it.
 
-There was some discussion on certain cherry picks I did,
-specifically the one for hiding fbdev address. There is some potential
-to cause regressions on ARM by hiding the physical address, but I think 
-it should be fine to move ahead. This is why a pull request didn't make 
-it in time last week.
+And again, why should xe be a special snowflake in this respect? If it
+were fine for xe to add this, why wouldn't it be fine for absolutely all
+drivers?
 
-Hope the extra time at least gave more chance of detection of potential 
-regressions.
+> The srcversion is not good enough as it's doesn't server the purpose and=
+=20
+> it's not incrementing at the same rate as the commits sha.
+> Note that this apply not to all drm devices only xe, and it's optional=20
+> for other devices to set it or not, and in case it's not set this patch=20
+> will not affect the existing drm log.
+> you can see we're already doing that for habanalabs driver.
 
-Cheers,
-Maarten
+Where?
 
-drm-misc-next-fixes-2024-05-08:
-drm-misc-next-fixes for v6.10-rc1:
-- panthor fixes.
-- Reverting Kconfig changes, and moving drm options to submenu.
-- Hide physical fb address in fb helper.
-- zynqmp bridge fix.
-- Revert broken ti-sn65dsi83 fix.
-The following changes since commit 4a56c0ed5aa0bcbe1f5f7d755fb1fe1ebf48ae9c:
+Not that it justifies adding more, but I can't find it.
 
-   Merge tag 'amd-drm-next-6.10-2024-04-26' of 
-https://gitlab.freedesktop.org/agd5f/linux into drm-next (2024-04-30 
-14:43:00 +1000)
 
-are available in the Git repository at:
+BR,
+Jani.
 
-   https://gitlab.freedesktop.org/drm/misc/kernel.git 
-tags/drm-misc-next-fixes-2024-05-08
 
-for you to fetch changes up to be3f3042391d061cfca2bd22630e0d101acea5fc:
+> I'll update the commit message, and the dri-level alreay in CC in case=20
+> they see any issue with this change.
+>
+> BR,
+> Farah
+>
+>>=20
+>> thanks
+>> Lucas De Marchi
+>>=20
+>>=20
+>>>
+>>> BR,
+>>> Jani.
+>>>
+>>>>
+>>>> Signed-off-by: Farah Kassabri <fkassabri@habana.ai>
+>>>> ---
+>>>> =C2=A0drivers/gpu/drm/drm_drv.c | 6 +++---
+>>>> =C2=A0include/drm/drm_drv.h=C2=A0=C2=A0=C2=A0=C2=A0 | 2 ++
+>>>> =C2=A02 files changed, 5 insertions(+), 3 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+>>>> index 535b624d4c9d..e0f7af1b6ec3 100644
+>>>> --- a/drivers/gpu/drm/drm_drv.c
+>>>> +++ b/drivers/gpu/drm/drm_drv.c
+>>>> @@ -947,10 +947,10 @@ int drm_dev_register(struct drm_device *dev,=20
+>>>> unsigned long flags)
+>>>> =C2=A0=C2=A0=C2=A0=C2=A0 }
+>>>> =C2=A0=C2=A0=C2=A0=C2=A0 drm_panic_register(dev);
+>>>>
+>>>> -=C2=A0=C2=A0=C2=A0 DRM_INFO("Initialized %s %d.%d.%d %s for %s on min=
+or %d\n",
+>>>> +=C2=A0=C2=A0=C2=A0 DRM_INFO("Initialized %s %d.%d.%d%s %s for %s on m=
+inor %d\n",
+>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 driver->name, d=
+river->major, driver->minor,
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 driver->patchlevel, =
+driver->date,
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev->dev ? dev_name(=
+dev->dev) : "virtual device",
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 driver->patchlevel, =
+driver->git_sha ? driver->git_sha : "",
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 driver->date, dev->d=
+ev ? dev_name(dev->dev) : "virtual=20
+>>>> device",
+>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev->primary ? =
+dev->primary->index : dev->accel->index);
+>>>>
+>>>> =C2=A0=C2=A0=C2=A0=C2=A0 goto out_unlock;
+>>>> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+>>>> index 8878260d7529..7578a1f4ce74 100644
+>>>> --- a/include/drm/drm_drv.h
+>>>> +++ b/include/drm/drm_drv.h
+>>>> @@ -407,6 +407,8 @@ struct drm_driver {
+>>>> =C2=A0=C2=A0=C2=A0=C2=A0 int minor;
+>>>> =C2=A0=C2=A0=C2=A0=C2=A0 /** @patchlevel: driver patch level */
+>>>> =C2=A0=C2=A0=C2=A0=C2=A0 int patchlevel;
+>>>> +=C2=A0=C2=A0=C2=A0 /** @git_sha: driver last commit sha */
+>>>> +=C2=A0=C2=A0=C2=A0 char *git_sha;
+>>>> =C2=A0=C2=A0=C2=A0=C2=A0 /** @name: driver name */
+>>>> =C2=A0=C2=A0=C2=A0=C2=A0 char *name;
+>>>> =C2=A0=C2=A0=C2=A0=C2=A0 /** @desc: driver description */
+>>>
+>>> --=20
+>>> Jani Nikula, Intel
+>
 
-   drm: zynqmp_dpsub: Always register bridge (2024-05-02 23:40:56 +0200)
-
-----------------------------------------------------------------
-drm-misc-next-fixes for v6.10-rc1:
-- panthor fixes.
-- Reverting Kconfig changes, and moving drm options to submenu.
-- Hide physical fb address in fb helper.
-- zynqmp bridge fix.
-- Revert broken ti-sn65dsi83 fix.
-
-----------------------------------------------------------------
-Boris Brezillon (3):
-       drm/panthor: Kill the faulty_slots variable in 
-panthor_sched_suspend()
-       drm/panthor: Make sure we handle 'unknown group state' case properly
-       drm/panthor: Fix the FW reset logic
-
-Geert Uytterhoeven (11):
-       Revert "drm: fix DRM_DISPLAY_DP_HELPER dependencies, part 2"
-       Revert "drm/display: Select DRM_KMS_HELPER for DP helpers"
-       Revert "drm/bridge: dw-hdmi: Make DRM_DW_HDMI selectable"
-       Revert "drm: fix DRM_DISPLAY_DP_HELPER dependencies"
-       Revert "drm: Switch DRM_DISPLAY_HDMI_HELPER to depends on"
-       Revert "drm: Switch DRM_DISPLAY_HDCP_HELPER to depends on"
-       Revert "drm: Switch DRM_DISPLAY_DP_HELPER to depends on"
-       Revert "drm: Switch DRM_DISPLAY_DP_AUX_BUS to depends on"
-       Revert "drm: Switch DRM_DISPLAY_HELPER to depends on"
-       Revert "drm: Make drivers depends on DRM_DW_HDMI"
-       Revert "drm/display: Make all helpers visible and switch to 
-depends on"
-
-Jocelyn Falempe (1):
-       drm/fb_dma: Add checks in drm_fb_dma_get_scanout_buffer()
-
-Luca Ceresoli (1):
-       Revert "drm/bridge: ti-sn65dsi83: Fix enable error path"
-
-Masahiro Yamada (1):
-       drm: move DRM-related CONFIG options into DRM submenu
-
-Sean Anderson (1):
-       drm: zynqmp_dpsub: Always register bridge
-
-Thomas Zimmermann (1):
-       drm/fbdev-generic: Do not set physical framebuffer address
-
-  drivers/gpu/drm/Kconfig                 | 20 +++++++-------
-  drivers/gpu/drm/amd/amdgpu/Kconfig      | 12 ++++-----
-  drivers/gpu/drm/bridge/Kconfig          | 28 ++++++++++----------
-  drivers/gpu/drm/bridge/analogix/Kconfig | 18 ++++++-------
-  drivers/gpu/drm/bridge/cadence/Kconfig  |  8 +++---
-  drivers/gpu/drm/bridge/imx/Kconfig      |  4 +--
-  drivers/gpu/drm/bridge/synopsys/Kconfig |  6 ++---
-  drivers/gpu/drm/bridge/ti-sn65dsi83.c   |  1 -
-  drivers/gpu/drm/display/Kconfig         | 32 +++++++++-------------
-  drivers/gpu/drm/drm_fb_dma_helper.c     |  3 +++
-  drivers/gpu/drm/drm_fbdev_generic.c     |  1 -
-  drivers/gpu/drm/exynos/Kconfig          |  4 +--
-  drivers/gpu/drm/i915/Kconfig            |  8 +++---
-  drivers/gpu/drm/imx/ipuv3/Kconfig       |  5 ++--
-  drivers/gpu/drm/ingenic/Kconfig         |  2 +-
-  drivers/gpu/drm/mediatek/Kconfig        |  6 ++---
-  drivers/gpu/drm/meson/Kconfig           |  2 +-
-  drivers/gpu/drm/msm/Kconfig             |  8 +++---
-  drivers/gpu/drm/nouveau/Kconfig         | 10 +++----
-  drivers/gpu/drm/panel/Kconfig           | 32 +++++++++++-----------
-  drivers/gpu/drm/panthor/panthor_fw.c    |  7 ++---
-  drivers/gpu/drm/panthor/panthor_sched.c | 47 
-++++++++++++++++++++++++++-------
-  drivers/gpu/drm/radeon/Kconfig          |  8 +++---
-  drivers/gpu/drm/renesas/rcar-du/Kconfig |  2 +-
-  drivers/gpu/drm/rockchip/Kconfig        | 10 +++----
-  drivers/gpu/drm/sun4i/Kconfig           |  2 +-
-  drivers/gpu/drm/tegra/Kconfig           |  8 +++---
-  drivers/gpu/drm/vc4/Kconfig             | 10 +++----
-  drivers/gpu/drm/xe/Kconfig              | 13 ++++-----
-  drivers/gpu/drm/xlnx/Kconfig            |  8 +++---
-  drivers/gpu/drm/xlnx/zynqmp_dpsub.c     |  7 +++--
-  31 files changed, 172 insertions(+), 160 deletions(-)
+--=20
+Jani Nikula, Intel
