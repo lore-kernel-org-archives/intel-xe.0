@@ -4,66 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DACA9C25B5F
-	for <intel-xe@archiver.kernel.org>; Wed,  8 May 2024 20:53:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E9BBC25B5F
+	for <intel-xe@archiver.kernel.org>; Wed,  8 May 2024 20:55:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DB131131E2;
-	Wed,  8 May 2024 20:53:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47B821131EC;
+	Wed,  8 May 2024 20:55:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lTekMJwa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cLD4GxG7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D1BF1129A5;
- Wed,  8 May 2024 20:53:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 958BC1131EB;
+ Wed,  8 May 2024 20:55:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715201630; x=1746737630;
+ t=1715201704; x=1746737704;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=uY+VYFpwPfo8uSdrB1jBQ9kFzi61ttDNz0J1tR0RBt4=;
- b=lTekMJwajBIcgYpW4yoNH1dhBuhk3Mo+I83eti85rCEmo3bPYJXp1ztZ
- pUqflAgIovUPfx0ZUdmzGfalqJZ77zuebIr9sHD3tQEttl0zf9AUjq69h
- aswe0JNa5+XHJmEe3qmBcCCXSeDsdK+VLMv2MKAuBCwAhKvk9czeY729f
- yN2+8jhtRthsS/XCFzT/4y2inQz+ED8mBGZIyq5DxFHJFMuOK50LrEH1X
- KPITPHVFlfrSqYgXM7xACIWww2gL/5iwU8j9FLaMWW3bquULqLupNFyt3
- 6ywKC/C6XwjZDxnlNFhu2pD65OO6keufS8bynt86Ir1niTpeXRD1Q2S++ w==;
-X-CSE-ConnectionGUID: 4Eehcg1dQo2ZRQlOw9JfqQ==
-X-CSE-MsgGUID: x2NuKciSRMmhn8S0quRGPw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="10959129"
-X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="10959129"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2024 13:53:49 -0700
-X-CSE-ConnectionGUID: R+6E4B1RSmi6kQgjTzCHsA==
-X-CSE-MsgGUID: l2Cs+s2XSJqmAATZrD0TFA==
+ bh=ivwUUdSO9B1rn41c384Jiee+jmfQI5kcz9LbglFCZ08=;
+ b=cLD4GxG7zCCXNaSF1jO3rkhr7ShHE6R5ySzkHXMSoGdp/1ttRJjf+nXY
+ 2WYuUIyn5GDHO6v32ieoE7HPu593QZ5UjHPwWRJyFFQWhBRdz8mfSSk7V
+ jiaA/o9HevUqeIcVrgeLiNnFbwLe5/JIue1XzB1s1kHoPxpY+zQpvyAvF
+ TqtHL4RCeWjyNNPukW7UXx/sAQsvzlXLvH0ZrLTmdCZCQZWaBRbhG3hWm
+ /xNPuBIL2BAUaklnR+uqQWJYqg80D+oS8J8l7yeiGBT5w35xtBw0r3FKH
+ 2g675ZCg6luzvxxHqKcFODmSM6iACWwqJK8XaJpNsnfj195YDL/+xwUU1 Q==;
+X-CSE-ConnectionGUID: 4iNcwBrxSXmwloDk0z0N4Q==
+X-CSE-MsgGUID: WLU3HgcWSeG12gW22WWMCw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="10940974"
+X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="10940974"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2024 13:55:03 -0700
+X-CSE-ConnectionGUID: 7qOCAIePTQqUSxzZM2Cg2Q==
+X-CSE-MsgGUID: HSmuQ2yNSTisaZtuUpzw3w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="29096341"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 08 May 2024 13:53:48 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="33847547"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 08 May 2024 13:55:02 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 8 May 2024 13:53:48 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.35; Wed, 8 May 2024 13:55:02 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 8 May 2024 13:53:48 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ 15.1.2507.35; Wed, 8 May 2024 13:55:01 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 8 May 2024 13:53:48 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Wed, 8 May 2024 13:55:01 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 8 May 2024 13:53:47 -0700
+ 15.1.2507.35; Wed, 8 May 2024 13:55:01 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VYtO23Z6hDW68mfRFs7WOJHxR/PRAYcGaeADkOC22lciM0No1dNuCOmqDXP7b3GkjSkc6h8giJEr1DU9h02aqHmvpF9Rd04tnLwPJNdU3U6TFKSQnAm0juvK4ByMh9K1jr8D4TykUA+9y0UNQdc97S13TReRA0JYBBnBBNHSt9snrKZlEcuN4AvoSTfMUff216rqZulIq20cV5l1Dd6Mrkk2zxkfwYY/uAmC6zdLusRD45yGZWNfmelzIQSRfn6Zx4tNwo/MLQA8OF5b7HvCMTGs2XcOw4Os45AXjgDx5+D1tJg79mr49TEuxlH1/7/U9qhsAeCrJyO6r+mizUVJIQ==
+ b=inlH5BQcqjF8lRrMsrjDnk5USwwhRLZzKBz4phgeGc88Nf/1lJXI+80ZhwS8ebGRufjK48oJP+O+X+k+Mzn4bLXZEkFxVw1GYB7yeC0rZKFvGGh4gTGhc1TP/6OiHboA7BPNCgOYO+CZIgme8fy2ujGS7QjvGu6o0/f0FsXUM66PdE4estY7OpOPE0jKpkL8bk/u/pyxfeHThBBzreXnRydW0trbo/BamXF43OwsFCshWj+U13k63mNcA+kVf2EfTGV/aGwZPGjLUcpeIR3SkZ/+/pHzkAvamulHU95cfBfOnvusQJYeIJZbv7NXuoc9TP/wQWxeP4llLI0t7vpGFw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bg0cSI1iBrJ5vvAf+EiCwU1DH5cePlX47Z3w2L/DQdU=;
- b=oSqLReaesIAJCe6KqXyexXjGRJdAnPf1riH501Dm2SE9IdXDq3W6U7m6FBDdsyQe5T573qH2UZv5c6QHVa3no6iGhOcBgu2Gp+0vutC/XBSLDSSfhJ1uDAYjGiZh1nXuBZvWP/miCQueRUgNn4t4ONDktC9C1iujIXsi0juYwHhJ0eDpRGtBqVWlmK8xGYN5wjCxx+mVeQ8WYNRENVLF+L/LEXVMxuhDFe2EB3jAPB/Vtsq0Pvam0J8cYPkMCbOV1Cxvd0Bydm6FGyKXqyb9Uz1EpWLHTao8yzygwMYDDe+2VSdxMfZh27i469WP7SMayRu6dszUinG0HURr8Hl2vA==
+ bh=q1zreyCal3FIy423YuEYAsvgIze9/E61Igwt23+9V8M=;
+ b=PAT8qnpvfC+aWTajoqv8FwXNdyL4Vsqbd8gIspi4K6E3AnGUbOga0OTNorwtyF45RE8QZQpPd1auL81LyPOQfcWnbVZe+lgrB+W7WIMIHjM30t6IoFJoFWNVEFHVklsYpn9hCla9NyvtGyzZXjMDeqUaEVhcx/+zRX0nqGlC9FTPjQw5gFa+hvU63r4Af/aT8dNKnxA3AelOiHkPk4ciMYnTDvcGQZXp1+KIc/nM80wGg4HgEh3rj7eK0iBVDm/1oXEtNcCiduo8rkAWcoS+swleiQ/e9/8JFi/6OnAxmGxkDd6oRD+frpMhPzu//p4hI3A/WVBM5Kn2UCtL0qMMbQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -73,104 +73,100 @@ Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
  by SJ0PR11MB4862.namprd11.prod.outlook.com (2603:10b6:a03:2de::16)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.43; Wed, 8 May
- 2024 20:53:46 +0000
+ 2024 20:54:55 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::7141:316f:77a0:9c44%5]) with mapi id 15.20.7544.041; Wed, 8 May 2024
- 20:53:45 +0000
-Date: Wed, 8 May 2024 15:53:43 -0500
+ 20:54:55 +0000
+Date: Wed, 8 May 2024 15:54:53 -0500
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Tvrtko Ursulin <tursulin@ursulin.net>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>, Umesh
- Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>, =?utf-8?Q?Adri=C3=A1n?=
- Larumbe <adrian.larumbe@collabora.com>, Rob Clark <robdclark@gmail.com>,
- Alex Deucher <alexander.deucher@amd.com>, Christian =?utf-8?B?S8O2bmln?=
- <christian.koenig@amd.com>, =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>
-Subject: Re: [PATCH v2 6/6] drm/xe/client: Print runtime to fdinfo
-Message-ID: <h2xkygfdjfmjzb7i7i6vec7o6zbslfdrjdm6lutpn4plicggeg@h6cyouletta4>
-References: <20240423235652.1959945-1-lucas.demarchi@intel.com>
- <20240423235652.1959945-7-lucas.demarchi@intel.com>
- <ed28cb4e-a417-4255-b034-778dbfdaf6ec@ursulin.net>
- <xwp77yi7y3e3f6eyqf3qqeawsv3nh4db4vwmok3pccdddnimce@n7rts73arupp>
- <88d6eeee-fa6f-4e5e-9304-22df8fb0f63c@ursulin.net>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+CC: Jani Nikula <jani.nikula@linux.intel.com>,
+ <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>, "Oded
+ Gabbay" <ogabbay@kernel.org>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Nuke xe's copy of intel_fbdev_fb.h
+Message-ID: <vhkrhplkhep2agw7f7igvdycz4vdtv7skj2imk3jzmaleu77yi@olrsv5d5f75v>
+References: <20240506183331.7720-1-ville.syrjala@linux.intel.com>
+ <87msp2knor.fsf@intel.com> <ZjvYFkUbsP_hXOG4@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"; format=flowed
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <88d6eeee-fa6f-4e5e-9304-22df8fb0f63c@ursulin.net>
-X-ClientProxiedBy: MW4PR03CA0202.namprd03.prod.outlook.com
- (2603:10b6:303:b8::27) To CY5PR11MB6139.namprd11.prod.outlook.com
+In-Reply-To: <ZjvYFkUbsP_hXOG4@intel.com>
+X-ClientProxiedBy: MW4PR04CA0348.namprd04.prod.outlook.com
+ (2603:10b6:303:8a::23) To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ0PR11MB4862:EE_
-X-MS-Office365-Filtering-Correlation-Id: aae1b173-84f9-4077-c096-08dc6fa0f3e3
+X-MS-Office365-Filtering-Correlation-Id: a6bdda26-3622-48bc-9e7a-08dc6fa11d1b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|1800799015|376005;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?albPOeYkjdg9VpYiUXnBiWnl6fwJhmt2F6iUf0Vsp95xYviZ9yUgqpiZdC?=
- =?iso-8859-1?Q?8E1GVazNtpllW6M26/DSlg2uC3rLKDNVi2FnEqa6j/jPuvG837dvayXyCt?=
- =?iso-8859-1?Q?n1ZP4zGHaLgEwrb0bzfyNey264etRa+QbwvQYKbBc/G+7xrwd2h9EAC1O7?=
- =?iso-8859-1?Q?/sVU5Kmkq+yNms1CBcfvyCibG16Fm6yhVhZwblvDxRQafyTrP6Y1LuY6/y?=
- =?iso-8859-1?Q?I7Qts30O+aOLnMfxPjQ9g3jKTO3jVIvmaUxGbkenu05ta2g3BQ4iMfXMp9?=
- =?iso-8859-1?Q?VtFkAklpgZMYLX/mpovvjmrhUJ7Mp7Fm2jC1TFnT3mEfzFQHYjeIJ07f7J?=
- =?iso-8859-1?Q?ET8pBXsGkz0tvxtGg2zPZ/L4Nvo8dDLUi6+hTiIg/spxViQ4QXtews4a8C?=
- =?iso-8859-1?Q?Ch7KXPyvPBdT5g5NedTPdgkklcHs+Af/cOEx6h40Lvatx7NVZC0pxBZA0I?=
- =?iso-8859-1?Q?woG4qmhoRdlcqShONG5aOP9y6R6dyEcrzrWa4l4vfixsf/aoqK9nrKKJKz?=
- =?iso-8859-1?Q?z1iX6ovWH+W7RrkNj0lRyk75P23BaBku2SgipU1p2WT3gz3foXitDSn75o?=
- =?iso-8859-1?Q?b5SMqqzV0FYIg0RibaXYLj1dR1uo88G4yLrO3yru0+Sj1pIpFhMWWTX0Cz?=
- =?iso-8859-1?Q?sdg6jGRJZ/rWC/plcXkbxjDOzZLo3rMANmbVe/Z9pfxvEQVu4f2VPwLY4U?=
- =?iso-8859-1?Q?Ng/x6ntoCm1ZS6QyW4QvEw9i/yTSOusSsPWU1hyo9lbIBRTA8jhAQN0i7x?=
- =?iso-8859-1?Q?VGdPjG4okuA/YS750t7DJJztdKFWq54PMaHP2moaBnoGoNWmKSIClC3gfS?=
- =?iso-8859-1?Q?n4Xs9J+z696QjndDhNQLm/f6YFZ0FMNhr0dL/7OafkvKCIhlQa6EY1/GUN?=
- =?iso-8859-1?Q?GXyJVkKIIsV+QoBlWeP6kDSKKCv9h1tbbqq1PrLiLxNvQ2ohjSgkp+P2g5?=
- =?iso-8859-1?Q?Nip6KITc/u+MDzMjkD4/risRGKIRUoZZTDQZsy3Pk9PkLOZ3MHxgxMyR6E?=
- =?iso-8859-1?Q?gOHEuFQ+v2QfNvZNuHaYnq3LmZHutPcp0lW/LPIQNyMyie/OFPUjfhSd5U?=
- =?iso-8859-1?Q?J4mEZmWBA3YkfSdtlEKQQ2PxuILt8WjWnhcdE9lZgScUBuXoNfzXwIp/CG?=
- =?iso-8859-1?Q?R0lZxKOmMLwM3CISRIn/bH35HDno/4S2bpm90J10DptS+R5XykOzbcy+ES?=
- =?iso-8859-1?Q?GuGxB2vrYdHlo8Y8UQLlCtD9KNCGJltDk0bpyoId8xJtb+YIBS64tljQLt?=
- =?iso-8859-1?Q?ymU9yJbf9l49DtdbIcDg6HzV75aUXl/l2D0Iq8hmwzgjyw33sfQP0Nwe6x?=
- =?iso-8859-1?Q?+aWdnGpyE7S2heNOM8NHm9Mh4w=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?axiyI39ikpWR7iu9Y4ReVBkLYCgdECsxqgxjgN4h6pFo1WhoRgYWZOyrrM?=
+ =?iso-8859-1?Q?g1kZyEqBEtpsKfjGXfTke4a5TdmoonZOmo4qcvRkFZFbnjANHW0m5YxaQ5?=
+ =?iso-8859-1?Q?zAu5dwrlbPnZDx3Xhfo1YY+OV287UwLhDlF24yVFzeu6fSXsURRmnUPBuZ?=
+ =?iso-8859-1?Q?+Ph+MEnCZmcfUo5/RVSCgwHQFLWBxYDVpaHw+ztEOgSv1MKAIALGRwxn+m?=
+ =?iso-8859-1?Q?DOoznxjKy+oVNZTUpDoESpZJK7U10AbJTB8OI0QAriTYtkrdJLkL/HxH0f?=
+ =?iso-8859-1?Q?NKPwXWxHNFLeqIBnQri0+sbY6DsK8jwDjmjb9EVtYdSFF+4IusAc6TXH3+?=
+ =?iso-8859-1?Q?fXOAzti3XmRis+r11MixuBRbUZCF/4SQNA0IQPLNbQ+IAR47tmPXu2hC5h?=
+ =?iso-8859-1?Q?dfcBvA3oHyRB22MkofpsIBX3wKZG8zRaQKSVj4141kPt+mkvX6ntYYQ+TO?=
+ =?iso-8859-1?Q?wqhK+FTkE0WseCaYtgJJF/R3K9tDbnzDdiNlIzqbbpNsd6z3skWqKkZvXD?=
+ =?iso-8859-1?Q?Q5ghdCpFxE9i0wq06aWkF8X/MGiNNwqYbSQUlixghs/YrNLSq4kTbO92ps?=
+ =?iso-8859-1?Q?/sxki1PM1GrDqMOw2qNpTyLXWhm6PBaNSnR+lcGn/yyz363+GRk9ZAz77x?=
+ =?iso-8859-1?Q?cTlNpKgw/HmH7+qMMHDCSTCSrHp3bsYKftbnXKQgwNHwttqWXWC++a0DR4?=
+ =?iso-8859-1?Q?cpBnq4knzcORgEHYk53o4CmsMQgf6xR0Dc9BNSMstl0txhsHQPf5ccImKx?=
+ =?iso-8859-1?Q?f5q9PS3ftxFOp//B/xLEypwrUSjsTUIiIEENp4ly9A36WFZk5JzvzwJoIk?=
+ =?iso-8859-1?Q?xiiArhOHcvfPib6iBMMLwqxv1zbiioiBtAaPvwiYRzTMidy8wjwwGf8Lr5?=
+ =?iso-8859-1?Q?GG0DSyJ7596So0iighMODWQXDtPGlwWS/CUjpJ1vqrUe1FU1C0bQf+Ie5x?=
+ =?iso-8859-1?Q?QnfC5p9r+Edhee0YQxOhFjbhPi6o/UaDT5eks1XNtSUiQtoSobr0oxZbbo?=
+ =?iso-8859-1?Q?1L6902AI0gA3G2a98ZwcpFmECIzW5cLrBJPUQUvj03iOSJytBJdc43Hfra?=
+ =?iso-8859-1?Q?YXDGI1hYWUMX12px8uf82bTxi5rwgS72HM7rX2SW+gqUvLimbT1u2ukBml?=
+ =?iso-8859-1?Q?1Yr62s01WSVnyK43UJFVTRNpsIzc8fbGtwISd1A0Nn4D3Vkejs24RqBeOm?=
+ =?iso-8859-1?Q?vzJj/qOMgwXkRULltLt1Vis8vd7ZJBrFscpnB8CcT4uX/O9YSF4Zhd272N?=
+ =?iso-8859-1?Q?aNgAcwPpkNDha9LzPCkrei7w2aikixs+EMZCdTLwiTDhIzYpypkHQmbT81?=
+ =?iso-8859-1?Q?MW0rVtM3V3pK2fjqfo5GVhIUcA=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?vthcabuyRRZ/TkIsCgV11UEivLlAtm8mAAwLF52mMslFY2AEseC73qZ05c?=
- =?iso-8859-1?Q?XEPglLWG7qISiq/9KcpQmV/WeIeZuy8OJT0gVecH1ZDxqVtPDCgX5MC3YY?=
- =?iso-8859-1?Q?VH09XRZX8LheZ2wgU1/mX5kuBphDQ9jBoOXtNoXSeJC/lrBT5LohBgZf00?=
- =?iso-8859-1?Q?QyNnNp4jtDbkxmsGA8nRgtVcmIdV4rxXtL16z7Qki8QtRshjIXEY3jQd6j?=
- =?iso-8859-1?Q?AhHvE6h62J6P+2i5SqQsawr2f0vWsCcHGl312kFYLTE2Ot+Y/iqc99JqD/?=
- =?iso-8859-1?Q?8jpExC8lGIqhY7IgkHvz5De+ji33mjjRcKL5BrWz9Q7rXzyUVqMZo+Y6rE?=
- =?iso-8859-1?Q?uA/kaHYt3dideeIOm0BJk8fsRYCepqeAzHRAoweaePXx9EnawvLZNtiREB?=
- =?iso-8859-1?Q?TMGnO+F2YtO1u+Qb/Mh1rl9QlZ0pdPANFKPp/0l/AocjrjaB4hLXCGbuQ/?=
- =?iso-8859-1?Q?8GTqMhKSOwkDOQacJ+SWCeyiiYui77I0XjhwGNvSvTqipRN4AitfXrzxEZ?=
- =?iso-8859-1?Q?YEg3o926ufuMc9fNnmGQToG7/Yte3zZOcK0HYzlDov7qOG6i8LR2wGF/bn?=
- =?iso-8859-1?Q?7uYczGvl/onYeDtVS3E1NTLjDSZUnT1VyUExJzuG76Y1NOZ+a6C+/NIE1L?=
- =?iso-8859-1?Q?kNOgqN84aVGK9tAVp0xVLInos268mAcrzXJNzGIT6NBXG7fU5ZrjOwWEyx?=
- =?iso-8859-1?Q?CtSwl8odcW+sR7VBRaatkTPfy3eOh72NS48vTk5kSsgS5GWaaBAY303Jx0?=
- =?iso-8859-1?Q?jURolSdC7GvNl2c4J3YGGndhBhG/TNKUbz67MNTktT+iEHUkyOmgQ6O1lT?=
- =?iso-8859-1?Q?blnJ45xkE0I1kdzf3SokfXxyIEJAemWVUNNjTmK8UZq148JFAMrkffvmI5?=
- =?iso-8859-1?Q?FLNd+BrWrtx+tBO4dh/w8WlxpefPrP6Zj6BiC9kbs5aC8HhnfB2BeIqbzU?=
- =?iso-8859-1?Q?LoLCHgBrGIRS9505nVFqafk+vk/y+vQ/mY8jEjIKpaELq0IF68kWi8j6li?=
- =?iso-8859-1?Q?uIBAAQP/gnac8MX2lZNXjoq3jO2OUNKQHXzv6N7ab0HJ0pBPlNygu3rdmX?=
- =?iso-8859-1?Q?jci52V36QinHJO5Dj9CZZ0Xt9WSXTtCQLVtz/dPTU722Azm2tES9UtLikW?=
- =?iso-8859-1?Q?wW2t3BXkncooRqOYpOPYicqKJjNHwGO5PuTAEkqGADO1xR1GbdCt6Rqc4r?=
- =?iso-8859-1?Q?Xz96WtZ1BoHnmA3TU5iD7DJCDwRo3yBf1+X+7wKRNfXUT7vt649Gs7iVaN?=
- =?iso-8859-1?Q?RvCsPQywB33pRN0B0mxQ/eEUOZrTU20b40QOrFQbS2s1Wa40NibM1YE3aC?=
- =?iso-8859-1?Q?XrDXDffp54ClSecjNklRjPFkR5HHsuYFxdj9yDxkZ9iUDAuSnn99GpiQTQ?=
- =?iso-8859-1?Q?jMHo25eFzAMp3/7SGNt7VYMHX+SbfkH5zr16ryF4YE0N4DJFyaP0qj8/I1?=
- =?iso-8859-1?Q?1clC+ad6NVmNgwWacDw3RCF/4AzYe760upu4fTKclK1KAso3dycFD2cjZn?=
- =?iso-8859-1?Q?plsGOxii9/pU2xyugnFcr5NhKSsYvO235EK+fKfEEYCHgFBl0bLIjVuWSU?=
- =?iso-8859-1?Q?M/NPNFDAx+Vm730+VkvlXenyGHVfSccDfmA0Dm+1DPBIHIp4xgXeQu4ryE?=
- =?iso-8859-1?Q?Imi1+SbP3G6afCqV7Rob80LHMvMQsxE2HC0gjCgMWQczzQUyH5zJO4Vw?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?KAyf6PXZj3ZwQ1LGYDHND7sNbNsYWB3rwfK9Ohw+fHEwhDPzsNVf26uKbt?=
+ =?iso-8859-1?Q?YTPtphyF2RxZntpq1l31im17+Cg5vRpHFMP5vkXTCYI9/5ZJz3yZihlASk?=
+ =?iso-8859-1?Q?nzWIgvm/iXxwBT5RxAbohLt5eNmBS9Ttq8vcHMVDnrnltPhYSroPzkFi2l?=
+ =?iso-8859-1?Q?Td+5RG0M7Rvz9Zu+zLmAlVzF9GXGgJhaEFQj3iJNhUyukKDANXUZpXziqf?=
+ =?iso-8859-1?Q?yrX7PxktUMcuUaQkp5PjtFsld5ePyNaWH6UVfRBWXhLjNVYohznkKolUC9?=
+ =?iso-8859-1?Q?Z6dd3nFu5Fputn0OVLuJ6sDm43cD6qswg5guse/XONWxv4AqtGvrUhuloC?=
+ =?iso-8859-1?Q?2DBrVKaQf4guFFGGFRXA+MgCQDISEnWsyRFuMSf5I93C6FRxsKFjgPz5sn?=
+ =?iso-8859-1?Q?7PhddLgDZPn4KDHf/W+hqvv+m/DTQuQrYwQ4WUqK+GcU9q56X7ajHGVlU7?=
+ =?iso-8859-1?Q?LzzU/U4kGct+qE2jdsjL79mcMIQJQ1X8FTd6FfeFLUbexTs3RJh7oNUWZj?=
+ =?iso-8859-1?Q?r/PjGLnJgjzsKnuI9xzOX4vc35k5E+JHS+TMVtuWND0lANgzPpeY2Wb+Ik?=
+ =?iso-8859-1?Q?26PKhb591YqXKWNZQ8MszmBfka6mN1qyro9jLBvWsqq6wjAPHQsEbRIPea?=
+ =?iso-8859-1?Q?c9pgkM0cItRt44tWdii/yKK0WmdzZN4ZNu3FEoiV8lWxsGgAo+tBSUWBtz?=
+ =?iso-8859-1?Q?khfUCoEBzCiyAv2uYFARDOV4pz3d8H9v0nMfTbPjSvUlJIyWgtIwN4QqUY?=
+ =?iso-8859-1?Q?7F+n23TUxDNLNUlGHdJmW3BYS6SHBanSPVecsxN1WPxW8vallFPk088nZX?=
+ =?iso-8859-1?Q?c1wEoOlyUbmd6wBf+eaYFChsHaoDYOj3LejXNa1xWif8pkzi82Dx1Uw7z4?=
+ =?iso-8859-1?Q?MKPWrjG3NkUUvGmaZAqQTQ8Cf1bySTWVc8vGdz6qLArsvqYfnUcw0Nlgpc?=
+ =?iso-8859-1?Q?BbOQjzVFn0YJButz0CSh5Y4u0SOjoYRj/BiOJRdJ9PiGk9XWQpNP7ulyRC?=
+ =?iso-8859-1?Q?vJvorfkYBgwi+ptRqSXzQHAojDcLwMNZ+XzYI+vyAArExIoPY4BE0gTlEw?=
+ =?iso-8859-1?Q?VP2vBXVXzcicZvIl9cus8o1lRpSxE0j+U7FafpNiomGel/b+hiTXSREUx+?=
+ =?iso-8859-1?Q?RL31CKwMDGtDtiWj/o16bKY4WzuEg4Wk9FsqEmBcBXtr+qNvAUjt4otkJp?=
+ =?iso-8859-1?Q?K9mlIWJcgRICPctjIrRZDBTfdFnYF2q6gSQHqRTwsbN3naa/w4jkpdSDYc?=
+ =?iso-8859-1?Q?F4ZVoB2Qh//0TaewCgJLQhK0XucYPX/VsCt2AoSj31BDtIoDzY8XeonCzf?=
+ =?iso-8859-1?Q?NTRBfKDdzrGRsncGuQhjlvO6/+kXzkyifYxJqXU3g+PXZAk0LUrLrvvA/q?=
+ =?iso-8859-1?Q?I1JMxOpsAl7W1zvZZB3JXaicrQOwfmkFejuXwev2gQfPWFhHr7u0h548BW?=
+ =?iso-8859-1?Q?85GHQrMLYiTuM7NLAkVBTXQMutGlr8bhtWR7Rd+fz5FI+CWN7dk6w2N6jG?=
+ =?iso-8859-1?Q?Cpt/UMyXQHP/q5sqMJlOdh92yiThU20Vn+kU1yVW3r0xjrWhrC4YVF/Gqk?=
+ =?iso-8859-1?Q?2pPvbY7VlckN10a9GD6e6sROWpKX8pDnA+wzb1896MadrbLQ4iRMUjvDEr?=
+ =?iso-8859-1?Q?+PobApFsqg8sME7kMK2CKn9x8Z1hKEuUH+EXgAsb8Q4kPwtFOtAPNGfg?=
  =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: aae1b173-84f9-4077-c096-08dc6fa0f3e3
+X-MS-Exchange-CrossTenant-Network-Message-Id: a6bdda26-3622-48bc-9e7a-08dc6fa11d1b
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2024 20:53:45.8694 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2024 20:54:55.0600 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: i/VwNa7PuI/XfqaDqXhvNwb+WHpmh6Gz1fwn7tZRlz6UMMQvKuR6TiTY2S8jO9+i3LgahvFdAy/MBg+il2ghDflI5MQBvvasODC1YCy/wcM=
+X-MS-Exchange-CrossTenant-UserPrincipalName: tuJ6WW/tWhmeMPSPakxEmqM0gpO86PPAWRrOJbj0joZWJADd0VHbSr6Q5deBO08MvyAMGF7qkJjtEWAqy3eqNl9Z3V+B9DePdtGT1vwjoDE=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4862
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -187,251 +183,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 08, 2024 at 09:23:17AM GMT, Tvrtko Ursulin wrote:
+On Wed, May 08, 2024 at 10:52:54PM GMT, Ville Syrjälä wrote:
+>On Tue, May 07, 2024 at 11:53:40AM +0300, Jani Nikula wrote:
+>> On Mon, 06 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+>> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>> >
+>> > For some reason xe and i915 each have an identical (fortunately)
+>> > copy of intel_fbdev_fb.h. The xe copy actually only gets included
+>> > by xe's intel_fbdev_fb.c, and the i915 copy by everyone else,
+>> > include intel_fbdev.c which is the actual caller of the
+>> > functions declared in the header.
+>> >
+>> > This means the xe and i915 headers are free to define/declare
+>> > completely incompatible things and the build would still succeed
+>> > as long as the symbol names match.
+>> >
+>> > That is not a good thing, so let's nuke xe's copy of the header
+>> > so that everyone will use the same header, and be forced to
+>> > agree on the same API/ABI.
+>> >
+>> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>
+>> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 >
->On 07/05/2024 22:35, Lucas De Marchi wrote:
->>On Fri, Apr 26, 2024 at 11:47:37AM GMT, Tvrtko Ursulin wrote:
->>>
->>>On 24/04/2024 00:56, Lucas De Marchi wrote:
->>>>Print the accumulated runtime for client when printing fdinfo.
->>>>Each time a query is done it first does 2 things:
->>>>
->>>>1) loop through all the exec queues for the current client and
->>>>   accumulate the runtime, per engine class. CTX_TIMESTAMP is used for
->>>>   that, being read from the context image.
->>>>
->>>>2) Read a "GPU timestamp" that can be used for considering "how much GPU
->>>>   time has passed" and that has the same unit/refclock as the one
->>>>   recording the runtime. RING_TIMESTAMP is used for that via MMIO.
->>>>
->>>>Since for all current platforms RING_TIMESTAMP follows the same
->>>>refclock, just read it once, using any first engine.
->>>>
->>>>This is exported to userspace as 2 numbers in fdinfo:
->>>>
->>>>    drm-cycles-<class>: <RUNTIME>
->>>>    drm-total-cycles-<class>: <TIMESTAMP>
->>>>
->>>>Userspace is expected to collect at least 2 samples, which allows to
->>>>know the client engine busyness as per:
->>>>
->>>>            RUNTIME1 - RUNTIME0
->>>>    busyness = ---------------------
->>>>              T1 - T0
->>>>
->>>>Another thing to point out is that it's expected that userspace will
->>>>read any 2 samples every few seconds.  Given the update frequency of the
->>>>counters involved and that CTX_TIMESTAMP is 32-bits, the counter for
->>>>each exec_queue can wrap around (assuming 100% utilization) after ~200s.
->>>>The wraparound is not perceived by userspace since it's just accumulated
->>>>for all the exec_queues in a 64-bit counter), but the measurement will
->>>>not be accurate if the samples are too far apart.
->>>>
->>>>This could be mitigated by adding a workqueue to accumulate the counters
->>>>every so often, but it's additional complexity for something that is
->>>>done already by userspace every few seconds in tools like gputop (from
->>>>igt), htop, nvtop, etc with none of them really defaulting to 1 sample
->>>>per minute or more.
->>>>
->>>>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>>>---
->>>> Documentation/gpu/drm-usage-stats.rst       |  16 ++-
->>>> Documentation/gpu/xe/index.rst              |   1 +
->>>> Documentation/gpu/xe/xe-drm-usage-stats.rst |  10 ++
->>>> drivers/gpu/drm/xe/xe_drm_client.c          | 138 +++++++++++++++++++-
->>>> 4 files changed, 162 insertions(+), 3 deletions(-)
->>>> create mode 100644 Documentation/gpu/xe/xe-drm-usage-stats.rst
->>>>
->>>>diff --git a/Documentation/gpu/drm-usage-stats.rst 
->>>>b/Documentation/gpu/drm-usage-stats.rst
->>>>index 6dc299343b48..421766289b78 100644
->>>>--- a/Documentation/gpu/drm-usage-stats.rst
->>>>+++ b/Documentation/gpu/drm-usage-stats.rst
->>>>@@ -112,6 +112,17 @@ larger value within a reasonable period. 
->>>>Upon observing a value lower than what
->>>> was previously read, userspace is expected to stay with that 
->>>>larger previous
->>>> value until a monotonic update is seen.
->>>>+- drm-total-cycles-<keystr>: <uint>
->>>>+
->>>>+Engine identifier string must be the same as the one specified in the
->>>>+drm-cycles-<keystr> tag and shall contain the total number 
->>>>cycles for the given
->>>>+engine.
->>>>+
->>>>+This is a timestamp in GPU unspecified unit that matches the 
->>>>update rate
->>>>+of drm-cycles-<keystr>. For drivers that implement this 
->>>>interface, the engine
->>>>+utilization can be calculated entirely on the GPU clock domain, without
->>>>+considering the CPU sleep time between 2 samples.
->>>
->>>Two opens.
->>>
->>>1)
->>>Do we need to explicity document that drm-total-cycles and 
->>>drm-maxfreq are mutually exclusive?
->>
->>so userspace has a fallback mechanism to calculate utilization depending
->>on what keys are available?
+>Thanks.
 >
->No, to document all three at once do not make sense. Or at least are 
->not expected. Or you envisage someone might legitimately emit all 
->three? I don't see what would be the semantics. When we have 
->cycles+maxfreq the latter is in Hz. And when we have cycles+total then 
->it is unitless. All three?
-
-I don't follow what you mean here. *cycles* is actually a unit.
-
-The engine spent 10 cycles running this context (drm-cycles). In the
-same period there were 100 cycles available (drm-total-cycles). Current
-frequency is X MHz. Max frequency is Y MHz. For me all of them make
-sense if one wants to mix them together. For xe it doesn't make sense
-because the counter backing drm-cycles and drm-total-cycles is unrelated
-to the engine frequency.
-
-I can add something in the doc that we do not expected to see all of them
-together until we see a usecase. Each driver may implement a subset.
-
+>I was going to push this to drm-xe-next, but I should actually
+>push it to drm-intel-next since I'll be massaging this stuff
+>there.
 >
->>>2)
->>>Should drm-total-cycles for now be documents as driver specific?
->>
->>you mean to call it xe-total-cycles?
->
->Yes but it is not an ask, just an open.
+>xe maintainers, ack for merging via drm-intel-next?
 
-Ok, my opinion is that we shouldn't. Just like we have drm-cycles today
-implemented by some drivers, but not all. I'd consider the drm-curfreq,
-not documented in the drm layer as something to be fixed or migrated to
-a driver-only interface (probably not possible anymore as it'd break the
-uapi).  Problem I see with turning it into xe-total-cycles, is that the
-moment another driver decide to implement they will either have to use
-xe- prefix or xe will need to start publishing both keys.
-As said above, I can document that it's not expected to use both total
-and maxfreq as it's currently the case.
 
->
->>>I have added some more poeple in the cc who were involved with 
->>>driver fdinfo implementations if they will have an opinion.
->>>
->>>I would say potentially yes, and promote it to common if more than 
->>>one driver would use it.
->>>
->>>For instance I see panfrost has the driver specific drm-curfreq 
->>>(although isn't documenting it fully in panfrost.rst). And I have 
->>>to say it is somewhat questionable to expose the current frequency 
->>>per fdinfo per engine but not my call.
->>
->>aren't all of Documentation/gpu/drm-usage-stats.rst optional that
->>driver may or may not implement? When you say driver-specific I'd think
->>more of the ones not using <drm> as prefix as e.g. amd-*.
->>
->>I think drm-cycles + drm-total-cycles is just an alternative
->>implementation for engine utilization. Like drm-cycles + drm-maxfreq
->>already is an alternative to drm-engine and is not implemented by e.g.
->>amdgpu/i915.
->>
->>I will submit a new version of the entire patch series to get the ball
->>rolling, but let's keep this open for now.
->>
->><...>
->>
->>>>+static void show_runtime(struct drm_printer *p, struct drm_file *file)
->>>>+{
->>>>+    struct xe_file *xef = file->driver_priv;
->>>>+    struct xe_device *xe = xef->xe;
->>>>+    struct xe_gt *gt;
->>>>+    struct xe_hw_engine *hwe;
->>>>+    struct xe_exec_queue *q;
->>>>+    unsigned long i, id_hwe, id_gt, 
->>>>capacity[XE_ENGINE_CLASS_MAX] = { };
->>>>+    u64 gpu_timestamp, engine_mask = 0;
->>>>+    bool gpu_stamp = false;
->>>>+
->>>>+    xe_pm_runtime_get(xe);
->>>>+
->>>>+    /* Accumulate all the exec queues from this client */
->>>>+    mutex_lock(&xef->exec_queue.lock);
->>>>+    xa_for_each(&xef->exec_queue.xa, i, q)
->>>>+        xe_exec_queue_update_runtime(q);
->>>>+    mutex_unlock(&xef->exec_queue.lock);
->>>>+
->>>>+
->>>>+    /* Calculate capacity of each engine class */
->>>>+    BUILD_BUG_ON(ARRAY_SIZE(class_to_mask) != XE_ENGINE_CLASS_MAX);
->>>>+    for_each_gt(gt, xe, id_gt)
->>>>+        engine_mask |= gt->info.engine_mask;
->>>>+    for (i = 0; i < XE_ENGINE_CLASS_MAX; i++)
->>>>+        capacity[i] = hweight64(engine_mask & class_to_mask[i]);
->>>
->>>FWIW the above two loops are static so could store capacity in 
->>>struct xe_device.
->>
->>yes, but just creating a cache in xe of something derived from gt is not
->>something to consider lightly. Particularly considering the small number
->>of xe->info.gt_count we have. For something that runs only when someone
->>cat the fdinfo, this doesn't seem terrible.
->>
->>>
->>>>+
->>>>+    /*
->>>>+     * Iterate over all engines, printing the accumulated
->>>>+     * runtime for this client, per engine class
->>>>+     */
->>>>+    for_each_gt(gt, xe, id_gt) {
->>>>+        xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->>>>+        for_each_hw_engine(hwe, gt, id_hwe) {
->>>>+            const char *class_name;
->>>>+
->>>>+            if (!capacity[hwe->class])
->>>>+                continue;
->>>>+
->>>>+            /*
->>>>+             * Use any (first) engine to have a timestamp to be 
->>>>used every
->>>>+             * time
->>>>+             */
->>>>+            if (!gpu_stamp) {
->>>>+                gpu_timestamp = xe_hw_engine_read_timestamp(hwe);
->>>>+                gpu_stamp = true;
->>>>+            }
->>>>+
->>>>+            class_name = xe_hw_engine_class_to_str(hwe->class);
->>>>+
->>>>+            drm_printf(p, "drm-cycles-%s:\t%llu\n",
->>>>+                   class_name, xef->runtime[hwe->class]);
->>>>+            drm_printf(p, "drm-total-cycles-%s:\t%llu\n",
->>>>+                   class_name, gpu_timestamp);
->>>>+
->>>>+            if (capacity[hwe->class] > 1)
->>>>+                drm_printf(p, "drm-engine-capacity-%s:\t%lu\n",
->>>>+                       class_name, capacity[hwe->class]);
->>>>+
->>>>+            /* engine class already handled, skip next iterations */
->>>>+            capacity[hwe->class] = 0;
->>>>+        }
->>>>+        xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
->>>>+    }
->>>
->>>More FWIW and AFAICT, could just walk the "list" of classes 
->>>instead of
->>
->>xe_force_wake_get() is per gt, so the alternative would be... loop
->>through the gts to get all forcewakes, loop through all engine 
->>classes, loop
->>again through all gts to put the forcewake. And we also need to consider
->>that an engine class may not be available in all GTs... example:
->>vcs/vecs in MTL and later, so we need to track it globally across GTs
->>anyway.
->
->Forcewake is only needed once for the gpu_timestamp, no? At least I 
->don't see any other potential hardware access in the loop. Hence I 
->thought if you could have a known engine to get the timestamp outside 
->the loop, you could then run a flat loop (over classes) avoiding the 
->per gt fw dance. Your choice ofc.
+Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-makes sense... I will try this and run some tests.
-
-thanks
 Lucas De Marchi
