@@ -4,165 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDF66C25B10
-	for <intel-xe@archiver.kernel.org>; Thu,  9 May 2024 15:49:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1C15C25B10
+	for <intel-xe@archiver.kernel.org>; Thu,  9 May 2024 16:01:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C2C810E3D5;
-	Thu,  9 May 2024 15:49:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B05CE10E2E3;
+	Thu,  9 May 2024 16:01:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PRd065dF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hE4sy+I9";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A036510E3D5
- for <intel-xe@lists.freedesktop.org>; Thu,  9 May 2024 15:49:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EBDB10E2BA
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 May 2024 16:01:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715269764; x=1746805764;
+ t=1715270471; x=1746806471;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=ZYGz0hhEAaMUWDcNntNJZKyLjdyUFs0GH2gICilwKhw=;
- b=PRd065dFFOLPbdTYwTDgVuCi5TX/mWzhxcr5RqjzU9T/fzhUJzMY4MwK
- riYsKg9WSPtXhnsSjhwM+fV2TVwsQa1cQe/qzWmb/rsmmKdm7Axm/n8Gd
- KD1JzFjynAo9WZhkro5yvQVaTYmP84cAEaQcafgBFrQWTKpqhcaH2ekt3
- y3H+532h/LUW7vVY+//tstdYkV4CYvqBVtY+bwxl99BDKiC5CM1LlOVlH
- +g73uCdP1S+rE9KfoflhqH9iszXCwRRDVaSNaj29JPazrmg5IHEtlN2em
- +EBqo4ci/adodGImUNncCMgefiXKR1qUfCHwWFc4oXt5jmkxPCh2yrvji w==;
-X-CSE-ConnectionGUID: z9qgpDvIQpaObxwFBJRXKQ==
-X-CSE-MsgGUID: iU6UG4NXS3SVzLwZ+DZsRg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="11327859"
-X-IronPort-AV: E=Sophos;i="6.08,148,1712646000"; d="scan'208";a="11327859"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2024 08:49:23 -0700
-X-CSE-ConnectionGUID: n4zILWfJQpi/YeGp+OxzdA==
-X-CSE-MsgGUID: Dz8/U2v9Rj2lsmBXxxYsGw==
+ in-reply-to:mime-version;
+ bh=Z12jRFC+yZ6cIL7vtSlWX4YMW/ici9iVH5HczsoOns0=;
+ b=hE4sy+I9XB5EskYlVqzcv8yZArC9OxlQ4zGW5sgrwEjaNvW7sLgjCz65
+ QRIqMZgAo+czahn5lP/FdbdMGt2bnlULRmgwHMJ8IVCJbW47XZEYu9kPX
+ JUYTZ2k1pxJDygRwsb2xO3EDEF8Zw37cs2iYZHaiLyD+His5biMgBJ/cW
+ hyLQx+96C2XsC1CZ1Vji7jr5Xt92Ipus5++jluYe6YB72p0EIQ/0Sql50
+ OUNrcTi/c8NVH6Ca0DmCEjUKJfGGP0qsWt8mJUmixBph7DPimczmiKWV6
+ xvKYcOEEi8257CzSOQyMbP6hYd9SHMFwmkHiJHJiOMd35XM17TdFtf+9L Q==;
+X-CSE-ConnectionGUID: VtjupyU1TzqiLaBnIFgMoA==
+X-CSE-MsgGUID: XC6/7AORSNmF3sjwBHOeKA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="21873914"
+X-IronPort-AV: E=Sophos;i="6.08,148,1712646000"; d="scan'208";a="21873914"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2024 09:01:11 -0700
+X-CSE-ConnectionGUID: dBZXSmEETLG1MPc6gFSW8Q==
+X-CSE-MsgGUID: uOWo4Ku5Tz2nwP3fTOtXdg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,148,1712646000"; d="scan'208";a="60139187"
+X-IronPort-AV: E=Sophos;i="6.08,148,1712646000"; d="scan'208";a="29160094"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 09 May 2024 08:49:23 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 09 May 2024 09:01:11 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 9 May 2024 08:49:21 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.35; Thu, 9 May 2024 09:01:09 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 9 May 2024 08:49:21 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Thu, 9 May 2024 09:01:09 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 9 May 2024 08:49:21 -0700
+ 15.1.2507.35; Thu, 9 May 2024 09:01:08 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=M4hmA+kTg+lK5OkHwSK8kpbRvyeRtqhRUCVf0q168i8fVP8laIi/AllFsg3Wzsc0W+kDPhJytHsK/4hDSxpcxDhN5DhGSrBBER1m6pX2v6lK2t0zgRt2FrirVtCldEHgrZaDXJbPIBIdPgUaiau0kjWUkCN8wB2mdlW41+tK5yTYNCMSF8GwZeL744zeWepXSkfgIWafeo5HVecz2iJGAlVz1XD70FlHB4mDz7srajPQg8yaXWU1PMxajIEk2Cps5r2wgO8N+bzLTZggl/JjoJYAqVCH3j8KnEzfdPuKDvSsF/fx1UPiPeg9gkCsrY/jTVXJcgfOByvqQBmXCjGvMw==
+ b=BRnfE/Be8H5YLQkBY+5Q0WapGYWA0cdV9loKAvWts9OxMTlBaMokJPT0mwjS5yP4UIuqWtk6L3wSQgIWMeIS8rD4FIN4gQyT6+F9JvsD13yJaIdjy0OKqFmEmB+uBEGq4ugmIh1oKqYpTbsbHxLr1LXip3E7ve8rfMVLw1CZtih7amLdSNFz4cR80Tk9A2RZ5NpeJlvFodD0iCz2N9g27K7hoI7JlUPSoapY79QC8OX+PsHHFl6ByykFNn6QPoRO5EMZyfOKrRT2QXjhmW/aaL5XEmtXaPrZ/tN/+XyvJtjTtt+pHduqxFlML5GrtlPqKI2TfrospeSfXPtJUHhzZQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vSDoKjYdX7xstCNUk4agatCjOwaoSeECzr0Up0nFotU=;
- b=i2CtKo4/gP0NsJZzOLRx1/7NgCGhdboKzmox0Yie8RbJhAL/2s7UFyMK3lUgsFYvETpvhQKQ+F2NNaB2LCiKbURKdFonzI+KREaaK9tJmAxLPkHNv9pOq88y7NPidkSgt447FAL9bIx9WYbnKZnTTCd5NiZZPEkucctfywOnCHc+0QIY/AkVXCd8K+82Nez+mlD15bfXilgqy/9GNJLyjN7NtJ6O+7S1eIjPlMw+KuYjwqN9uU19bkMVyOocA/TYl5mzGtOwK7A36ZOYS2iZkSL2Jb3gsBQ7PKTeVTlwvArOGF+6ksHrLfCfeaPd4Cfs6IonhWBiIN+t/wWUU4qpkw==
+ bh=GrzAe4DkG1rSxNPZLK3wsd0xvU3Nm0v4eFFUgLXFiKc=;
+ b=eSsodFbuPdVCUvkAf6GFjyqpnUQ6H2SS5I2TBWYDwoiM7ND99sS/OvGYovnspbzvw7F3hj0PrSuyqmrpbKS6RwZ9bOl4N8CwcgfGXzqTVpZIlopNU09RbP+2+zsA9obLYVT10ZupA/T5oXC3gNqYL9RiLni+9FUsonzxdo+tcsvcW1tT/j/ozToLxb+iB8l60np6Ynz8ukOz9Pb91j1MxzxbZaKl14mtPrsefgbLhivRxa2PEzIw/c1VGbnotbVL7bKis9Cya2QIMmXLkQTm9Xkqw0KpsN41RzHwXqq2pVNNQ0iRbFrS6hTO5+0NdkobgfkHe+iwN5h1gdz+tnvjzQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SJ2PR11MB8403.namprd11.prod.outlook.com (2603:10b6:a03:53c::8)
+ by IA1PR11MB7246.namprd11.prod.outlook.com (2603:10b6:208:42e::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.47; Thu, 9 May
- 2024 15:49:17 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.48; Thu, 9 May
+ 2024 16:01:05 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.7544.047; Thu, 9 May 2024
- 15:49:16 +0000
-Date: Thu, 9 May 2024 15:48:54 +0000
+ 16:01:05 +0000
+Date: Thu, 9 May 2024 16:00:43 +0000
 From: Matthew Brost <matthew.brost@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Francois Dugast <francois.dugast@intel.com>
-Subject: Re: [PATCH 4/7] drm/xe: Relax runtime pm protection around VM
-Message-ID: <ZjzwZvy5ZwHsYuLF@DUT025-TGLU.fm.intel.com>
-References: <20240508200707.375414-1-rodrigo.vivi@intel.com>
- <20240508200707.375414-4-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+CC: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ <intel-xe@lists.freedesktop.org>, Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Modify minimum of various scheduler timeout to 0
+Message-ID: <ZjzzKwMHFjdQaG7m@DUT025-TGLU.fm.intel.com>
+References: <20240506133447.3143994-1-himal.prasad.ghimiray@intel.com>
+ <27iutedmzaotadr7fhnqhvy6naydrsqstgarjmqa4ltmlsowix@bn7n2shccrgd>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240508200707.375414-4-rodrigo.vivi@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0355.namprd03.prod.outlook.com
- (2603:10b6:a03:39c::30) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <27iutedmzaotadr7fhnqhvy6naydrsqstgarjmqa4ltmlsowix@bn7n2shccrgd>
+X-ClientProxiedBy: BYAPR05CA0009.namprd05.prod.outlook.com
+ (2603:10b6:a03:c0::22) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ2PR11MB8403:EE_
-X-MS-Office365-Filtering-Correlation-Id: e54bcf47-c186-4a24-69a2-08dc703f952c
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA1PR11MB7246:EE_
+X-MS-Office365-Filtering-Correlation-Id: 41155f7a-62e8-40f6-59d1-08dc70413ba5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|366007|376005;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?W5zOVt6k3rL3gULVDB/wUkncrxirFDWR655lj6az+rVHtrz6QHSr6RISjT?=
- =?iso-8859-1?Q?ve75i2ywg6/9FXHi0WmbJYgaZGELJETTj0ji988U9Z+yWqrqNWUeH5iMR5?=
- =?iso-8859-1?Q?vyZanuVYMy5HDF9Jm0VOHriuOXrN/w2zYI0pWEgu0Ayy1Yxo5zeVEpymTu?=
- =?iso-8859-1?Q?/Ym3qGLv/DoryxRSQEpM9Pu/IHZ4aJy0ZIfDKoBZqnbcjmEzlCLkpn5fYF?=
- =?iso-8859-1?Q?zSR/bed+U+MNfHur/BkQf56rLeF1uXfNYAc6TFrBDT6zB0bywzX4fZB/u3?=
- =?iso-8859-1?Q?Bl48St5U+ESBub2HuFYQEOWRWPt7a1C5oUoxZScay3N2Zow0yq/+Aybpsw?=
- =?iso-8859-1?Q?BLu5JBR2Qeb43vWo1ltjRuD39/OpvuyEkW8ThI5syDhc3Ej5wX4yY5ZpbF?=
- =?iso-8859-1?Q?UHqSnflyhrdx0Ac/OT124hPpwTQNKMQXEnvPa95OGVCEdNB5Mbz/j17IPp?=
- =?iso-8859-1?Q?uXo5cpSjll9yKKsEKHA1TgHfyhqEEBPCTXO2EXTJdUePiDchNvUpr4r/lh?=
- =?iso-8859-1?Q?ED7xUzKX3Mg0DFrLjI14ij8/rOj8kfAPk3IA3Od3i0Ut0qhzF9JBO84nBl?=
- =?iso-8859-1?Q?pPr65vbYuXoDQX1kBn2X0ltxlZp25kYgZqYWcExrc4uA5/thu3phxvs8RO?=
- =?iso-8859-1?Q?LgVD/xEx7he2UojLy/9YEnwWsVETGyeq0POPKgWS1ifrljmImVQWFQiTsF?=
- =?iso-8859-1?Q?L7CtGWISolfz8sERU0yz9JnAX2JV7jrV5l8RoA4TwnQL8kFHfQyEYJK/sg?=
- =?iso-8859-1?Q?0iEiBAuyiSODbNmQ4n+qq7w4Aqp/L0mi+C2RAyq5JThOLKwvra4SL2h+IC?=
- =?iso-8859-1?Q?EZyWbwgSJLDKyPBgiggXu37jWkOUfpcb32jNbRxZyFd48zob/ZPVBHk/zu?=
- =?iso-8859-1?Q?UUyNpYPg1sm5MDvK0qkro3LE/i4Q6qwHMUvDXOl7LcOwTDK95U5X9x138k?=
- =?iso-8859-1?Q?6yQ1HjpyQ7S3jWmTBMOdLqjVbqQaygroY6P6a4GIse4WRp4cmYwPWxyOy/?=
- =?iso-8859-1?Q?I7rVC8/Lne4NjAp4ru2H7ZbsnZdLd0i0YH+cDrjVNI1Q1Y/x2/6dj9hnf7?=
- =?iso-8859-1?Q?CQGDO0VX1HcpgC7d9mV8V1fmKz0QIcagPypKypxPnKZATI8hoTKu/c3Vds?=
- =?iso-8859-1?Q?OtwIHRZzdfRcnll+PnMFwaJwI7UNfTAaetcw3fy2qMtQbAIzQxyanTu2XW?=
- =?iso-8859-1?Q?LeCG8mJGlVh9eYThrkuL488FIGPtXKwfNx82IKPqrX2ppuJxoFNhcudsCN?=
- =?iso-8859-1?Q?9rRSSvbS+U8XIVrLAWGiN8nPaNdtIl87qoLmT1976I37SBV0v675p2oBRq?=
- =?iso-8859-1?Q?Lpg+UHKK6CtdgepL8NSU33u4hw=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|1800799015|376005;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?rjcGHyZuUohvQrFqj/FG+3NTgRznBuXGlz1A0G/gdXSAoBAI3LdJJIGB5Ivv?=
+ =?us-ascii?Q?P/u4GRVoBtxb+MWpGQnQbJg6us/WKjnD4tkHNZ0fV4teMijMBVj4BaN08Zvl?=
+ =?us-ascii?Q?qKWUW1H0gR4RpimZf/uTskIjy+aYIbLZcqFFXGmv7wxEkVMVh6XhDneSNOk1?=
+ =?us-ascii?Q?axE1n1/4k0lidUSZywjxCwSG6PTfjdaeqMORC+zp+xx01q6HhiRmWlMGHc2V?=
+ =?us-ascii?Q?Rr6CgcaOlKKTDqatan65SGecYAZQZK/sMNlvyB6oav/hlqHcngKgsnXo0a1f?=
+ =?us-ascii?Q?Q3w9RABIsRWxEJUXgjQq9Nx5M5yTB9K9oKMsKjeqh91XjxXftaPA9TUfql5V?=
+ =?us-ascii?Q?IR33SvKvEZGsHuZkX9yeU015g0vqF9BVTCu/2qdJC0QpV9ajQvARoN2+G2TJ?=
+ =?us-ascii?Q?adZSPEyLD8IULvAxL3ZWgDJbHrpTW4VSRIxghlzSz2QaH/dynoJuKwo9lMxK?=
+ =?us-ascii?Q?6iXQ37RqvRlJtWAmFYYG7/nDxvyGcMNsZLEp/EgFeNh+2GeEGnQA8kBD6Nyg?=
+ =?us-ascii?Q?SSE9Vgh3f9y3JTIY8pqKQceILoFX9ih60cLbpJzC1Cev4PUzho6M9cpjUOSP?=
+ =?us-ascii?Q?MEqTnO6sP0TOhkVyI2CuNHugH+635zUBv3H9kQW6BaVGi29dUhvl18xBF1Eb?=
+ =?us-ascii?Q?Km9HcUi7efdPoimuYkVYbUmY7xcZdI+XreuII8ym9U/+vENrzGvreZdSeh8d?=
+ =?us-ascii?Q?9xk/Uqw8gFR/VMDSAOQXAk1X6dm4eetuvKDhZ0F4I781d4qibG7sxz94T6OU?=
+ =?us-ascii?Q?fIWze/2tm45UAh3rNBlFMTJXoFg7XKvKJN8Yjzx8wPyhtgvlMXrOY3Sx4a0F?=
+ =?us-ascii?Q?YsmjxWgRAvffPQ9DqzhU2bdKwJ5MIvnli+6qaeonprlmrdoHV0ysbSNYmm9f?=
+ =?us-ascii?Q?hzwcDeDX+zr7AuFZXhvvRh3lGsKfVKQQH9dW4zo9/IYRDjdP7LvqKJLr3yUy?=
+ =?us-ascii?Q?DGiEGN3nu19NZVGbkyZTMc+wK0U2XKNiIby5taLh8+w3HlYf1ZX2owq53qR6?=
+ =?us-ascii?Q?RdNyueUkKH3xP44kgZJB0VbByV/L6vqHXgf3K1sToK6YXMJ2vID6+oz3XN1U?=
+ =?us-ascii?Q?cTiJwsmpeP6KAIQRc9rDlkTROM+zeKn6bIo/KMv7iM+Tt+jcDRjE+4gEwDZw?=
+ =?us-ascii?Q?BwdBV2xSxFs8g98+6PrbP3DhXd/iaLUd4XgLmkDTLi13s7vZkRwRCKUdwE04?=
+ =?us-ascii?Q?F5agtyuw0qj1e+znVn2gzPmPJvhefpj5kKcUhTSQDVtQEdwKrcMPsgojW2NR?=
+ =?us-ascii?Q?jmZNrf8svg9pjsQVAi9IHuq7qqMNl/BjkrmTiDoVbQ=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1101; 
+ SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?C3Yy3nBw+xjDoWFk0QAz1mimMhA+cueA/Czllou37/HQdPIQzpZ0Et+KEz?=
- =?iso-8859-1?Q?MDMpaG+iFwvaVTxz/Hht7HXHijzpuSi4+JrR7LK6byl2jhyYCC4Fos5a9G?=
- =?iso-8859-1?Q?hE/6wMirS/quEpN3NneTYh84b7533r1GioFYV8VhYAS0irF0Qar1Bt9eR3?=
- =?iso-8859-1?Q?/o5j2O+nAW78k6Bzqgz8SLzMiVDiZWcjV9MuGhSxuctRCz/V9YXBFtgjpk?=
- =?iso-8859-1?Q?timePsmxFIubm/rOv9ed6dt4BlUfPsF01YmlKm6gtBiZHjADzIAewRyNal?=
- =?iso-8859-1?Q?Ptv0kuGGDpPHIWnn1Ch2WBhAkKf7CSk5pp55c9ItveAF1dVC8tjjT8cGCE?=
- =?iso-8859-1?Q?IoWmvtPJMyiWopH0QB+SOJCnf12BzWBVWzmTFw6FqKrAzPa9xIqqArw3IK?=
- =?iso-8859-1?Q?bGWvzBWpY9ZCzuxgWUaGj0tRPQDMxpQA2KLFRAL/Jq1Dd+8HQdNQugC5vb?=
- =?iso-8859-1?Q?NySZEvXzsAztcnorttMpGzqokEyPAh3wQHiwO/wpNH/78DYU0R+AYDlE0F?=
- =?iso-8859-1?Q?GGi9ORedEQAEetMWupgc0wEcNukFrlGJ9s3ujbqMpEDapyHcKLVu5PfXKN?=
- =?iso-8859-1?Q?eBW4EyhlSqeYW0iCpT379hd5cZ9xzp2Mqa2h7mGbZWeneX5HXfKATfTT4E?=
- =?iso-8859-1?Q?E0Xu2M7rOZmdvCmK2MMvAzgC7T4kkhj3M74slvkWa8gu4WgpX4iwsNf4yD?=
- =?iso-8859-1?Q?vYGSMZJ7RHWJYg9HOrTSyZMzmISVmF6M2mOJ1UPyf8pCmV4NO/KXnxvffU?=
- =?iso-8859-1?Q?maWDEGoYBOFrthqWRCByypXO/l0YGt5xDAJB3PRZQOs0GiTXmQ461Oof+7?=
- =?iso-8859-1?Q?BG7ojKL/Ir0r3tv6o3+qaqcLVmf7E7oGcNn5iAvBlr4pq5Pt60aNQi0rpg?=
- =?iso-8859-1?Q?39sCw96B7ge9thM87uMzD/rpxSbGy/lZ6svUrZkn92afIP/f3I6dX3Ihnv?=
- =?iso-8859-1?Q?2rxDsJFjJpqRzba0n3R7R6UTwXWs5DcAq7KyUrdwe3VQ1RvpymCoPG96YD?=
- =?iso-8859-1?Q?MZxotNBxxbyljjiM+0w2GVg43s0B/RhCvnzNGFMdA/TX4fk5tQt751Xoc8?=
- =?iso-8859-1?Q?YH3wc9peSGvUWuZtTum1Yh3oKkZJ5YB7i31iVQ5Q7VskOkMLDlXePfXwpq?=
- =?iso-8859-1?Q?8a2PGO2km2VCv0tfMuxByIXO5jvCupcsq8BSs3yEyuuCWQI4/4G7OM9nBO?=
- =?iso-8859-1?Q?Rx/EgtA/Nv/NWxjZataaVUpm5pmeky9SercVtvBLGt/dGaMTM37OydjOcD?=
- =?iso-8859-1?Q?uaW6RxguxI2qZMvJQK9ELcdhP4o/yJCgueRt7265BUQuXWCF9A9I0RGBO/?=
- =?iso-8859-1?Q?9UL1DCzbLmhO+RY55K8a//E7yZFvvuooWTg1DcAhmAsSlE/jzH57wGoBrz?=
- =?iso-8859-1?Q?Ehd1GqQsGA3T8XFVIyFGMKqfUBuIEGENqT0oGteEvch+2q89kM7EZm0Ox7?=
- =?iso-8859-1?Q?KTcAThYqtFQXTcUuAJ36pzzq07yXs/wU8YPA7HLYCAUOhuJXwfjXiXsb3N?=
- =?iso-8859-1?Q?Sg3smcMC4WF8zJaF/h2YyJ7N+FF+0U0H1BqfOHIJIjmPGIc9IMprTMo8T1?=
- =?iso-8859-1?Q?CAVSDi2fW7smC90m3ssfk2tdulpZ3AfNMsE0WRuKiq0jGeLNLJDb2FCNcl?=
- =?iso-8859-1?Q?f898O6lNHc6OnEQuWmYuYzy0TcEfKhycUO6Tt+UALfEX+fanpPBdcOlQ?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e54bcf47-c186-4a24-69a2-08dc703f952c
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?5RGP+++qVHSxZ9Vq5VHRCWGQxkGouNwhpfR3aQ5sVbl+MDCcmjaIAoDJexd4?=
+ =?us-ascii?Q?bD4wuDwY7WJYpvAGX1ZbFmWyUd9i2sWzGLNw1/P/t+bNz9ZaEWyWLNxutqP0?=
+ =?us-ascii?Q?6DapTyDXwfpncWcM4FayZQ/kFzbQE21tVXLQVkODqSWqpx/uyECwPpkxUtkG?=
+ =?us-ascii?Q?I4xUFuP1mjw9B62swao+CXwjZNFVrujPRuEWug83Qbgh+cp4nZsIwtkyUncY?=
+ =?us-ascii?Q?g9exJ/B4gqb+SiKoBvrGFIakPVvCehiJ1sWdVCKqdIQZgLhidwsUJL+/PFQ/?=
+ =?us-ascii?Q?3WAJjxuWbG1l/r7yqpB9robA1LvQ/lwyJG7xR9cF5AU7yYlsoPDm2oj3vWk/?=
+ =?us-ascii?Q?iF9EG6TSUZCykHXHzINYfVZQu8znbgomhq9diOOIhFKi3Jf7zuZ92WNpZVLZ?=
+ =?us-ascii?Q?WDMfUJD9R84fi850X5yb0ZRt1T50r+ZIKNXOXQx0Fqk9cl/2rQFIk/OV1PYn?=
+ =?us-ascii?Q?J2o0E8+34br48j/ChimD5nCs4DcU0/RnS4N5ehnC9/yeUrw+eTK410u6/r0o?=
+ =?us-ascii?Q?LczvyO+bEpz96g8FClqqkCF6cBUTOY8IkCTS6xwTNRr4vjE/4jcWW4K3HEPQ?=
+ =?us-ascii?Q?OOfTuWGvKstRyIEt5ZKycb3umqGBrl8HG3PbGQ73WZZaDrw8sF0ZQ/Hvdtjq?=
+ =?us-ascii?Q?6y8li0lTOb5iEVaON919xVerwJG/B7bjvaD+8V/5PagKqyVRIuJlnI+qIdJG?=
+ =?us-ascii?Q?u4vjZvxmLHfMwED8NxOqHTFEoAzAJJd2YsVlY3wtByJvDN49hB7ECfYcWq50?=
+ =?us-ascii?Q?c95Nikf7gZqeKD0Hd4xnnv5268jal+w0Cqex/Qcp5xsUsw+EnR/tyEn+Z+vU?=
+ =?us-ascii?Q?47zSoOjLmU7OvV0bNt7g3V4xl9Rp5Pziu00Men1qxj0z26ZoX6lItfjEEMto?=
+ =?us-ascii?Q?onBXAVJoifGfSZjGwcT5ReahFJZ+JhvGGgpEGA40pxpBvtImDqe0epW7qLUc?=
+ =?us-ascii?Q?aJNXWu9W9GzdxtDyVIraYe/u5w23dpRSAC2kNDq1BSsTXY8Y//6Eq9IIfgJv?=
+ =?us-ascii?Q?Zuj2GfTbiXu9tDPRakbBBlnH4u0sC1kFIAtXYXxo2lqEO/e/rgKiAXbwxrHO?=
+ =?us-ascii?Q?ne8mTaZsJtyNVFH3Pj3ABR1j2Rijiwf3oQLknevB0wRyfR7MgsHwlLaa1xtO?=
+ =?us-ascii?Q?ZUbZLtjHF4/NAgdyh1G6vUgmT6Xwvlu3j9MllvnUWTJj0eaSMXKH2f+pWWQ+?=
+ =?us-ascii?Q?j52x0PRRKTAbR8qF2ntvJJSX27rSIQIiRXYFJ/ligiaHugQ+V0h7QpAtsPoL?=
+ =?us-ascii?Q?+ZDtP8LG3qjV/5qu2xbwsLtWylcKnHFxSryM/vG2EoE+Gm9xmZmrz1x8XK17?=
+ =?us-ascii?Q?p6o6YsyzbHqha3+ggCFqt1sSbEVbSgWmsTYUb7eXMd15ecjESuonSHMBNCBB?=
+ =?us-ascii?Q?ztXeFZYVjBSVYguGpfTjErgtbCDad7JfiPIx4KdBSZcW8I8leEftTCjtdmIy?=
+ =?us-ascii?Q?nB3nbpHbAY5EDtBQ0HNYdPddcC5q+MmHW6gnEZ5AQ2bFAPtWFPQZUqXRXfJb?=
+ =?us-ascii?Q?N6aw3/0LvifqcEcA6QhCsXiPtyYdC4mI8ZWdWY+nbprpeHXWwmAlyGosYEZl?=
+ =?us-ascii?Q?ZhdDLqL0Zy3cdmT7nF0/ewHoRAot6VTotEtei8fsnNfxL5igS2h3B496rZ5E?=
+ =?us-ascii?Q?pQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41155f7a-62e8-40f6-59d1-08dc70413ba5
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2024 15:49:16.9055 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2024 16:01:05.7115 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qwkfWYW4q2h7g2l7Ft1D2nQCSDOVOlMfprRwn78yZpyPZzuxtJbEY9equdisc2TPvUPMQUEf/6+xcod3fiIajw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8403
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5sDo8tQCViEOq6TBIgBTd4uo/M94z8vTsIjhBjIjj3kqEt6RB7LrCJvHTJ0UMoWRtuq6rdSARiWh4UnVpv5kyg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7246
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,128 +175,156 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 08, 2024 at 04:07:04PM -0400, Rodrigo Vivi wrote:
-> In the regular use case scenario, user space will create a
-> VM, and keep it alive for the entire duration of its workload.
+On Wed, May 08, 2024 at 08:06:52AM -0500, Lucas De Marchi wrote:
+> On Mon, May 06, 2024 at 07:04:47PM GMT, Himal Prasad Ghimiray wrote:
+> > Remove the min/max configs and change minimum values of preemption and
+> > timeslice to 0. The sysman teams must deactivate preemption and
+> > timeslice to assess exclusivity mode. They depend on configuring
+> > timeslice_duration_us and preempt_timeout_us to 0, ensuring these
+> > values are set at their minimum.
 > 
-> For the regular desktop cases, it means that the VM
-> is alive even on idle scenarios where display goes off. This
-> is unacceptable since this would entirely block runtime PM
-> indefinitely, blocking deeper Package-C state. This would be
-> a waste drainage of power.
+> nack for now, based on this explanation. See below.
 > 
-> Limit the VM protection solely for long-running workloads that
-> are not protected by display cases nor by the scheduler
-> references. By design, run_job for long-running workloads
-> returns NULL and the scheduler drops all the references of it,
-> hence protecting the VM for this case is necessary.
+> > 
+> > Cc: Matthew Brost <matthew.brost@intel.com>
+> > Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> > Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> > ---
+> > drivers/gpu/drm/xe/Kconfig.profile | 38 ------------------------------
+> > drivers/gpu/drm/xe/xe_hw_engine.h  | 28 ++--------------------
+> > 2 files changed, 2 insertions(+), 64 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/Kconfig.profile b/drivers/gpu/drm/xe/Kconfig.profile
+> > index ba17a25e8db3..9bf7adb45eea 100644
+> > --- a/drivers/gpu/drm/xe/Kconfig.profile
+> > +++ b/drivers/gpu/drm/xe/Kconfig.profile
+> > @@ -1,27 +1,3 @@
+> > -config DRM_XE_JOB_TIMEOUT_MAX
+> > -	int "Default max job timeout (ms)"
+> > -	default 10000 # milliseconds
+> > -	help
+> > -	  Configures the default max job timeout after which job will
+> > -	  be forcefully taken away from scheduler.
+> > -config DRM_XE_JOB_TIMEOUT_MIN
+> > -	int "Default min job timeout (ms)"
+> > -	default 1 # milliseconds
+> > -	help
+> > -	  Configures the default min job timeout after which job will
+> > -	  be forcefully taken away from scheduler.
+> > -config DRM_XE_TIMESLICE_MAX
+> > -	int "Default max timeslice duration (us)"
+> > -	default 10000000 # microseconds
+> > -	help
+> > -	  Configures the default max timeslice duration between multiple
+> > -	  contexts by guc scheduling.
+> > -config DRM_XE_TIMESLICE_MIN
+> > -	int "Default min timeslice duration (us)"
+> > -	default 1 # microseconds
+> > -	help
+> > -	  Configures the default min timeslice duration between multiple
+> > -	  contexts by guc scheduling.
+> > config DRM_XE_PREEMPT_TIMEOUT
+> > 	int "Preempt timeout (us, jiffy granularity)"
+> > 	default 640000 # microseconds
+> > @@ -30,20 +6,6 @@ config DRM_XE_PREEMPT_TIMEOUT
+> > 	  when submitting a new context. If the current context does not hit
+> > 	  an arbitration point and yield to HW before the timer expires, the
+> > 	  HW will be reset to allow the more important context to execute.
+> > -config DRM_XE_PREEMPT_TIMEOUT_MAX
+> > -	int "Default max preempt timeout (us)"
+> > -	default 10000000 # microseconds
+> > -	help
+> > -	  Configures the default max preempt timeout after which context
+> > -	  will be forcefully taken away and higher priority context will
+> > -	  run.
+> > -config DRM_XE_PREEMPT_TIMEOUT_MIN
+> > -	int "Default min preempt timeout (us)"
+> > -	default 1 # microseconds
+> > -	help
+> > -	  Configures the default min preempt timeout after which context
+> > -	  will be forcefully taken away and higher priority context will
+> > -	  run.
+> > config DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
+> > 	bool "Default configuration of limitation on scheduler timeout"
+> > 	default y
+> > diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
+> > index 71968ee2f600..803555c601ec 100644
+> > --- a/drivers/gpu/drm/xe/xe_hw_engine.h
+> > +++ b/drivers/gpu/drm/xe/xe_hw_engine.h
+> > @@ -10,41 +10,17 @@
+> > 
+> > struct drm_printer;
+> > 
+> > -#ifdef CONFIG_DRM_XE_JOB_TIMEOUT_MIN
+> > -#define XE_HW_ENGINE_JOB_TIMEOUT_MIN CONFIG_DRM_XE_JOB_TIMEOUT_MIN
+> > -#else
+> > #define XE_HW_ENGINE_JOB_TIMEOUT_MIN 1
+> > -#endif
+> > -#ifdef CONFIG_DRM_XE_JOB_TIMEOUT_MAX
+> > -#define XE_HW_ENGINE_JOB_TIMEOUT_MAX CONFIG_DRM_XE_JOB_TIMEOUT_MAX
+> > -#else
+> > #define XE_HW_ENGINE_JOB_TIMEOUT_MAX (10 * 1000)
 > 
-> This indeed opens up a risk of use case without display, and
-> without long-running workload, where memory might be mapped
-> and accessed with direct read and write operations without
-> any gpu execution involved. Because of this, extra protection
-> for the special vm_op access callback.
+> previously one could configure a kernel with a different max.
+> And now it's hardcoded. How is this better and related to the
+> motivation in the commit message?
 > 
-> In the ideal case of the mmapped scenario of vm_ops, we would
-> also get references in the 'open' and 'mmap' callbacks, and
-> put it back on the 'close' callback, for a balanced case.
-> However, this would also block the regular desktop case.
+> is this commit doing 2 different things?
 > 
-> v2: Update commit message to a more imperative language and to
->     reflect why the VM protection is really needed.
->     Also add a comment in the code to let the reason visbible.
-> 
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Francois Dugast <francois.dugast@intel.com>
-> Acked-by: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_bo.c | 17 ++++++++++++++++-
->  drivers/gpu/drm/xe/xe_vm.c | 12 +++++++++---
->  2 files changed, 25 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 03f7fe7acf8c..7980efe139ed 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -1171,11 +1171,26 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
->  	return ret;
->  }
->  
-> +static int xe_vm_access(struct vm_area_struct *vma, unsigned long addr,
-> +			void *buf, int len, int write)
-> +{
-> +	struct ttm_buffer_object *tbo = vma->vm_private_data;
-> +	struct drm_device *ddev = tbo->base.dev;
-> +	struct xe_device *xe = to_xe_device(ddev);
-> +	int ret;
-> +
-> +	xe_pm_runtime_get(xe);
-> +	ret = ttm_bo_vm_access(vma, addr, buf, len, write);
+> 1) Removing the _MAX from config since nobody is or should change that
+> 2) Modify the min value to 0... That seems weird as basically there is
+>    no minimum.
 
-Trying to understand this case. Looking at ttm_bo_vm_access it appears
-to be a function in which a CPU VMA is read / wrote when it has a
-backing store of a TTM BO. System an TT placement defaults to a TTM
-function while VRAM access is implemented via the access_memory vfunc
-which we do not implement in Xe. Is this something we are missing?
+This is true.
 
-Patch itself makes sense, have a PM ref when accessing memory.
+> 
+> I'd like to hear Matt Brost's opinion on that.
+
+I chatted with Lucas and second his nack. The requirements for this
+change are coming from sysman and are unclear. If sysman needs to set
+this to 0 (akin to no maximum), why can't sysman build the kernel with a
+Kconfig to allow this? This use case appears to be an HPC/AI data center
+scenario in which the kernel is probably built with a non-standard
+Kconfig anyway. Why can't CONFIG_DRM_*_MIN be set to zero? This needs to
+be addressed clearly and publicly.
 
 Matt
-
-> +	xe_pm_runtime_put(xe);
-> +
-> +	return ret;
-> +}
-> +
->  static const struct vm_operations_struct xe_gem_vm_ops = {
->  	.fault = xe_gem_fault,
->  	.open = ttm_bo_vm_open,
->  	.close = ttm_bo_vm_close,
-> -	.access = ttm_bo_vm_access
-> +	.access = xe_vm_access
->  };
->  
->  static const struct drm_gem_object_funcs xe_gem_object_funcs = {
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index d17192c8b7de..f2915741fe16 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -1347,7 +1347,13 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
->  
->  	vm->pt_ops = &xelp_pt_ops;
->  
-> -	if (!(flags & XE_VM_FLAG_MIGRATION))
-> +	/*
-> +	 * Long-running workloads are not protected by the scheduler references.
-> +	 * By design, run_job for long-running workloads returns NULL and the
-> +	 * scheduler drops all the references of it, hence protecting the VM
-> +	 * for this case is necessary.
-> +	 */
-> +	if (flags & XE_VM_FLAG_LR_MODE)
->  		xe_pm_runtime_get_noresume(xe);
->  
->  	vm_resv_obj = drm_gpuvm_resv_object_alloc(&xe->drm);
-> @@ -1457,7 +1463,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
->  	for_each_tile(tile, xe, id)
->  		xe_range_fence_tree_fini(&vm->rftree[id]);
->  	kfree(vm);
-> -	if (!(flags & XE_VM_FLAG_MIGRATION))
-> +	if (flags & XE_VM_FLAG_LR_MODE)
->  		xe_pm_runtime_put(xe);
->  	return ERR_PTR(err);
->  }
-> @@ -1592,7 +1598,7 @@ static void vm_destroy_work_func(struct work_struct *w)
->  
->  	mutex_destroy(&vm->snap_mutex);
->  
-> -	if (!(vm->flags & XE_VM_FLAG_MIGRATION))
-> +	if (vm->flags & XE_VM_FLAG_LR_MODE)
->  		xe_pm_runtime_put(xe);
->  
->  	for_each_tile(tile, xe, id)
-> -- 
-> 2.44.0
+ 
 > 
+> Lucas De Marchi
+> 
+> > -#endif
+> > -#ifdef CONFIG_DRM_XE_TIMESLICE_MIN
+> > -#define XE_HW_ENGINE_TIMESLICE_MIN CONFIG_DRM_XE_TIMESLICE_MIN
+> > -#else
+> > -#define XE_HW_ENGINE_TIMESLICE_MIN 1
+> > -#endif
+> > -#ifdef CONFIG_DRM_XE_TIMESLICE_MAX
+> > -#define XE_HW_ENGINE_TIMESLICE_MAX CONFIG_DRM_XE_TIMESLICE_MAX
+> > -#else
+> > +#define XE_HW_ENGINE_TIMESLICE_MIN 0
+> > #define XE_HW_ENGINE_TIMESLICE_MAX (10 * 1000 * 1000)
+> > -#endif
+> > #ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT
+> > #define XE_HW_ENGINE_PREEMPT_TIMEOUT CONFIG_DRM_XE_PREEMPT_TIMEOUT
+> > #else
+> > #define XE_HW_ENGINE_PREEMPT_TIMEOUT (640 * 1000)
+> > #endif
+> > -#ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT_MIN
+> > -#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN CONFIG_DRM_XE_PREEMPT_TIMEOUT_MIN
+> > -#else
+> > -#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN 1
+> > -#endif
+> > -#ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT_MAX
+> > -#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX CONFIG_DRM_XE_PREEMPT_TIMEOUT_MAX
+> > -#else
+> > +#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN 0
+> > #define XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX (10 * 1000 * 1000)
+> > -#endif
+> > 
+> > int xe_hw_engines_init_early(struct xe_gt *gt);
+> > int xe_hw_engines_init(struct xe_gt *gt);
+> > -- 
+> > 2.25.1
+> > 
