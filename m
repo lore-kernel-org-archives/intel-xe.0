@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18A1DC25B77
-	for <intel-xe@archiver.kernel.org>; Thu,  9 May 2024 04:11:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98A80C25B74
+	for <intel-xe@archiver.kernel.org>; Thu,  9 May 2024 04:11:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2324E10E232;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0400310E1C1;
 	Thu,  9 May 2024 04:11:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CK5h0hmX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IYqGRCDu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DF0E10E232
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F18C10E1C1
  for <intel-xe@lists.freedesktop.org>; Thu,  9 May 2024 04:11:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1715227891; x=1746763891;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VyeIfT6NmeLysRNchx6SA57jHLPX2zmmz83CKt4J0Ws=;
- b=CK5h0hmXsK1FMx/YWxFPETxWpGKe59wJxQL+rlyWk9p6Euexau7c26WJ
- UqVzG1+eIVH+kJEmkifflnh1kiefYPrlbI58oX2J+30ndSzJ2Z2oPV03j
- lFDaC54OWqV+/jpjEe8F25WIHqQXDd30Yyn4ujeT8nHMCJqIJo1z03R34
- bJTIgA0yiCBjoA5D2EJDArX/tly+dkh8fr59CBFThhwk6K7NgIQUX2jk0
- I3wfv/TWfJWQIB/YHSX21HSXI54C2IoKjjc31/s/z5POgp0jxQNstkFAU
- eVeq6vVTZDWLEysjfBdSSwZZPwhqQHk1ikqAeftSJwEbCJSPQMWgzl3OP Q==;
-X-CSE-ConnectionGUID: cccZnG/kTpaZdL3UjENBcg==
-X-CSE-MsgGUID: z0YHt2uFSFyiHUAcIxfyAg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="11249895"
-X-IronPort-AV: E=Sophos;i="6.08,146,1712646000"; d="scan'208";a="11249895"
+ bh=drVZllywv0Genkk3JlbMgl82wK9NGkbJsh5rA97zzfk=;
+ b=IYqGRCDuPavI0URoo7o27LS3DdrB//mIhs5jg6eLXupubgRhcWtXjeZg
+ Jv/Q8Z2ny9JXI/tgQbd1aqZ+DT2QvovU4V5DuwGkMgC0CumRJjxWsr+iF
+ TJn6fSpoevRLwo/daahwqjCeysvul5DXIyO8Ce9YtRsC5rYpWPMMgf6rn
+ qpU20Kj+rRWrNx93lFOXNWCNmSQZWRs+KpZ7H4PSKwadJowGs0OUeLCH+
+ UoaQgJxVjSCUYDdWD8k1EZVFkQtgxso5u4TFbTd1CbGOq5TbsGluzKr2q
+ CnNFm5V3d2NvFQuRsGLWu8Gc7Ea770FF/gp/4zqgXNvFx0V6NsLPGTTWw w==;
+X-CSE-ConnectionGUID: CHZ5eHdlSvqF76qSlm1vKA==
+X-CSE-MsgGUID: PWUMr4D9Se+SASVHe/xd5w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="11249893"
+X-IronPort-AV: E=Sophos;i="6.08,146,1712646000"; d="scan'208";a="11249893"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 May 2024 21:11:29 -0700
-X-CSE-ConnectionGUID: +7pD87dQRN2/9qhM32G1CA==
-X-CSE-MsgGUID: DpxXbkWNSNCS4bA4etdaSA==
+X-CSE-ConnectionGUID: S13b4NA+TrWtsKtDhTr6jw==
+X-CSE-MsgGUID: CFNT1qIGRIWjoXGhyr7Euw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,146,1712646000"; d="scan'208";a="33915538"
+X-IronPort-AV: E=Sophos;i="6.08,146,1712646000"; d="scan'208";a="33915532"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 May 2024 21:11:29 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Zhanjun Dong <zhanjun.dong@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI 4/5] drm/xe: Move xe_force_wake_init_gt() inside gt initialization
-Date: Wed,  8 May 2024 21:12:24 -0700
-Message-ID: <20240509041225.610636-4-lucas.demarchi@intel.com>
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [CI 2/5] drm/xe: Drop useless forcewake get/put
+Date: Wed,  8 May 2024 21:12:22 -0700
+Message-ID: <20240509041225.610636-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240509041225.610636-1-lucas.demarchi@intel.com>
 References: <20240509041225.610636-1-lucas.demarchi@intel.com>
@@ -69,45 +70,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_force_wake_init_gt() is a software-only initialization and doesn't
-need to be called from xe_device_probe(). Move it to initialize
-together with the gt.
+Forcewake used to be needed in xe_gt_init_early() since it was calling
+xe_gt_topology_init(). That call was dropped in commit 4c47049d93b7
+("drm/xe/guc: Fix missing topology init"), but the forcewake calls were
+left behind. Remove them.
 
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>
 Reviewed-by: Michał Winiarski <michal.winiarski@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Zhanjun Dong <zhanjun.dong@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 3 ---
- drivers/gpu/drm/xe/xe_gt.c     | 2 ++
- 2 files changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c | 8 --------
+ 1 file changed, 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index ef9231675e67..fb838f35ab52 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -573,9 +573,6 @@ int xe_device_probe(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 3b3418eb7bc4..05b77214f996 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -318,14 +318,6 @@ int xe_gt_init_early(struct xe_gt *gt)
  			return err;
  	}
  
--	for_each_gt(gt, xe, id)
--		xe_force_wake_init_gt(gt, gt_to_fw(gt));
+-	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+-	if (err)
+-		return err;
 -
- 	for_each_tile(tile, xe, id) {
- 		err = xe_ggtt_init_early(tile->mem.ggtt);
- 		if (err)
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 05b77214f996..e05899691a8c 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -328,6 +328,8 @@ int xe_gt_init_early(struct xe_gt *gt)
- 	xe_wa_process_oob(gt);
- 	xe_tuning_process_gt(gt);
+-	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+-	if (err)
+-		return err;
+-
+ 	xe_reg_sr_init(&gt->reg_sr, "GT", gt_to_xe(gt));
  
-+	xe_force_wake_init_gt(gt, gt_to_fw(gt));
-+
- 	return 0;
- }
- 
+ 	err = xe_wa_init(gt);
 -- 
 2.43.0
 
