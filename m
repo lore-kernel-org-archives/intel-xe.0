@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 801C5C10F1A
-	for <intel-xe@archiver.kernel.org>; Thu,  9 May 2024 19:47:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6756C25B77
+	for <intel-xe@archiver.kernel.org>; Thu,  9 May 2024 19:47:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44E3610E764;
-	Thu,  9 May 2024 19:47:50 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30FB810F1B6;
- Thu,  9 May 2024 19:47:49 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6908910F1C1;
+	Thu,  9 May 2024 19:47:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YhPOQkkY";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D13A110F1B6;
+ Thu,  9 May 2024 19:47:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1715284071; x=1746820071;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=IVTabDqpuPhlwLB7TiGgxA1XuYB9/hb1y6nnVfyEuSM=;
+ b=YhPOQkkYYUpShx/KKr47g1u3enjFqAyFKXCFNS1B5Jcc2ZNGDacFOw4F
+ o94e1R8Y5ZhR0VmvciFemYvwP26cmysL5MWqB8abWHDeaEfDdRwRZiZKi
+ HaWTNvkmLMic9H4SvuJwNuM39EzHAP+vQk9Z9LXrY8oRxTwV8rruYZyZq
+ +lP6J7b8O8bWALyZORWbUEWDrwL5Tx8085WIFGkX7l7fsBmFZEX+I2Et+
+ p0T585DlkXXyrQgp8zeTsj6U3ioc649DM4G2At+gXAaAXzlBOk/E9jdPn
+ 65kp3eanTvd3udsfQbUCGQiLW/OAR7VOe1n9/GGw7WyJ2fVU3tVoDsOeO Q==;
+X-CSE-ConnectionGUID: D+cmHgSrTDq5/490T5NJKA==
+X-CSE-MsgGUID: VPRl55MPQlKKTeUtgZpGxA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="11080858"
+X-IronPort-AV: E=Sophos;i="6.08,148,1712646000"; d="scan'208";a="11080858"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2024 12:47:50 -0700
+X-CSE-ConnectionGUID: 1rKGOTZuTsitbS8lEH2iNQ==
+X-CSE-MsgGUID: JvF0khoESYiO+QR7TLex0w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,148,1712646000"; d="scan'208";a="29457818"
+Received: from bjrankin-mobl3.amr.corp.intel.com (HELO
+ gjsousa-mobl2.intel.com) ([10.124.223.58])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2024 12:47:49 -0700
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: linux-firmware@kernel.org
+Cc: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Subject: PR for BMG DMC v2.06
+Date: Thu,  9 May 2024 16:47:40 -0300
+Message-ID: <20240509194740.358934-1-gustavo.sousa@intel.com>
+X-Mailer: git-send-email 2.45.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5B1?=
- =?utf-8?q?/7=5D_drm/xe=3A_Fix_xe=5Fpm=5Fruntime=5Fget=5Fif=5Factive_return?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 09 May 2024 19:47:49 -0000
-Message-ID: <171528406919.2038581.15843268683215742481@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240509191657.504300-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20240509191657.504300-1-rodrigo.vivi@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,52 +63,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The following changes since commit 93f329774542b9b7d57abb18ea8b6542f2d8feac:
 
-Series: series starting with [1/7] drm/xe: Fix xe_pm_runtime_get_if_active return
-URL   : https://patchwork.freedesktop.org/series/133404/
-State : success
+  Merge branch 'robot/pr-0-1709214990' into 'main' (2024-02-29 14:10:53 +0000)
 
-== Summary ==
+are available in the Git repository at:
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-0daf0be5bb95eb0a0e42275e00a0e42d8d8fd543
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit f8ff9eb3b83983484e49a37e85fdb91fee4917d3
-Author: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date:   Thu May 9 15:16:57 2024 -0400
+  https://gitlab.freedesktop.org/drm/firmware.git tags/intel-2024-05-09
 
-    drm/xe: Enable D3Cold on 'low' VRAM utilization
-    
-    Now that we eliminated all the mem_access get/put with its
-    locking issues from the inner calls of migration, we can
-    allow D3Cold.
-    
-    Enable it when VRAM utilization is lower then 300Mb. On
-    higher utilization we only allow D3hot so we don't increase
-    so much the latency on runtime resume due to the memory
-    restoration.
-    
-    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-    Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
-    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-+ /mt/dim checkpatch fa0763ee56bac0fea0c399b9f41f19439b07b616 drm-intel
-d0c1f8c83f3d drm/xe: Fix xe_pm_runtime_get_if_active return
-1fa71e7627f2 drm/xe: Fix xe_pm_runtime_get_if_in_use documentation
-09e63aae3628 drm/xe: Relax runtime pm protection during execution
-413f95d23efc drm/xe: Relax runtime pm protection around VM
-2337aa38c6dc drm/xe: Prepare display for D3Cold
-3bebcd80760e drm/xe: Stop checking for power_lost on D3Cold
-f8ff9eb3b839 drm/xe: Enable D3Cold on 'low' VRAM utilization
+for you to fetch changes up to 8724b227b8999e11cf89601fec9f6f80795d8fa8:
 
+  i915: Add BMG DMC v2.06 (2024-05-09 15:10:44 -0300)
 
+----------------------------------------------------------------
+Intel DRM firmware intel-2024-05-09
+
+----------------------------------------------------------------
+Daniele Ceraolo Spurio (1):
+      i915: Add DG2 HuC 7.10.15
+
+Dnyaneshwar Bhadane (1):
+      i915: Update Xe2LPD DMC to v2.20
+
+Gustavo Sousa (1):
+      i915: Add BMG DMC v2.06
+
+ WHENCE               |   7 +++++--
+ i915/bmg_dmc.bin     | Bin 0 -> 45964 bytes
+ i915/dg2_huc_gsc.bin | Bin 622592 -> 630784 bytes
+ i915/xe2lpd_dmc.bin  | Bin 61208 -> 59284 bytes
+ 4 files changed, 5 insertions(+), 2 deletions(-)
+ create mode 100644 i915/bmg_dmc.bin
+ mode change 100755 => 100644 i915/dg2_huc_gsc.bin
