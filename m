@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1735DC25B10
-	for <intel-xe@archiver.kernel.org>; Thu,  9 May 2024 16:35:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D36F5C10F1A
+	for <intel-xe@archiver.kernel.org>; Thu,  9 May 2024 18:55:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DA3310E0B0;
-	Thu,  9 May 2024 16:35:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mCPov13r";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36E7210E011;
- Thu,  9 May 2024 16:35:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715272543; x=1746808543;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=mHJd8p5Tjz0afxfdDn3nOYI76VYbyKUrqy+KDEXsM4A=;
- b=mCPov13rKf2UY67Y2JMxJlyDvW7hEpGrMvVBOaD76Ble91het1xdiVKA
- Codv5Gklae0ziIdDzRZ7UAUKfYy8v+o8ac2OV0oPz0Jr4Swb/DZZuxgcF
- pgeymP/R85EQ+Ktz+J024clZX4iubcyj0GYTogQ95bhXPUNeKoGsdz7zK
- xBT88xSK7slUS6w/2U3Vh0YOHoGDbJFOgYqAnRJcuf68+2TJPXMoRn2Ri
- 0bFDYeXSQ6SW6YqKu8fIdZaHP92O24yTesFC2QhJduVOwRqWWpPNzp7vB
- HWDouXhord1XvNUx2YsxzXzwt/FqI8ynbIywzUZ04+njoN39Ei+oJ3rZ+ A==;
-X-CSE-ConnectionGUID: V6hn4NwwRT+82jyEsFKJKw==
-X-CSE-MsgGUID: bbhqHzUBQ2aYw0hDzQ+/RQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="28691397"
-X-IronPort-AV: E=Sophos;i="6.08,148,1712646000"; d="scan'208";a="28691397"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2024 09:35:42 -0700
-X-CSE-ConnectionGUID: +av35eoIQQm7W/rBSD1WlQ==
-X-CSE-MsgGUID: jt1AFr10S6i4iBwn7XCAqA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,148,1712646000"; d="scan'208";a="60158199"
-Received: from dhhellew-desk2.ger.corp.intel.com.ger.corp.intel.com (HELO
- fedora) ([10.245.246.154])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2024 09:35:37 -0700
-Date: Thu, 9 May 2024 18:35:23 +0200
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-next-fixes
-Message-ID: <Zjz7SzCvfA3vQRxu@fedora>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 628D010EF3F;
+	Thu,  9 May 2024 18:55:35 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7ED8410EF3F;
+ Thu,  9 May 2024 18:55:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5BCI=2C1/5=5D_drm/xe=3A_Drop_=5F=5Fengine=5Fmask_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 09 May 2024 18:55:34 -0000
+Message-ID: <171528093451.2038581.4079926954085779272@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240509041225.610636-1-lucas.demarchi@intel.com>
+In-Reply-To: <20240509041225.610636-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,46 +36,25 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Dave & Sima
+== Series Details ==
 
-This weeks -next-fixes. Two fixes breifly described below.
+Series: series starting with [CI,1/5] drm/xe: Drop __engine_mask (rev2)
+URL   : https://patchwork.freedesktop.org/series/133360/
+State : success
 
-Driver Changes:
-- Use ordered WQ for G2H handler. (Matthew Brost)
-- Use flexible-array rather than zero-sized (Lucas De Marchi)
+== Summary ==
 
-Thanks,
-Thomas
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 31ab65c31f18 drm-tip: 2024y-05m-09d-16h-03m-56s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Drop __engine_mask
+Applying: drm/xe: Drop useless forcewake get/put
+Applying: drm/xe: Move xe_gt_init_early() where it belongs
+Applying: drm/xe: Move xe_force_wake_init_gt() inside gt initialization
+Applying: drm/xe: Move sw-only pcode initialization
 
-The following changes since commit 3bc8848bb7f7478e6806e4522b06b63f40a53e1e:
 
-  drm/xe: Merge 16021540221 and 18034896535 WAs (2024-05-02 11:29:42 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-fixes-2024-05-09-1
-
-for you to fetch changes up to d69c3d4b53829097b8948d6791ea32c07de3faab:
-
-  drm/xe/ads: Use flexible-array (2024-05-09 17:51:46 +0200)
-
-----------------------------------------------------------------
-Driver Changes:
-- Use ordered WQ for G2H handler. (Matthew Brost)
-- Use flexible-array rather than zero-sized (Lucas De Marchi)
-
-----------------------------------------------------------------
-Lucas De Marchi (1):
-      drm/xe/ads: Use flexible-array
-
-Matthew Brost (1):
-      drm/xe: Use ordered WQ for G2H handler
-
- drivers/gpu/drm/xe/xe_guc_ads.c      | 2 +-
- drivers/gpu/drm/xe/xe_guc_ct.c       | 5 +++++
- drivers/gpu/drm/xe/xe_guc_ct.h       | 2 +-
- drivers/gpu/drm/xe/xe_guc_ct_types.h | 2 ++
- 4 files changed, 9 insertions(+), 2 deletions(-)
