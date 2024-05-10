@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF6F6C25B74
-	for <intel-xe@archiver.kernel.org>; Fri, 10 May 2024 21:03:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A99AC25B74
+	for <intel-xe@archiver.kernel.org>; Fri, 10 May 2024 21:04:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79AB910E14F;
-	Fri, 10 May 2024 21:03:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29D6810E14F;
+	Fri, 10 May 2024 21:04:00 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C66610E14F;
- Fri, 10 May 2024 21:03:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 881E510E14F;
+ Fri, 10 May 2024 21:03:58 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Move_GuC_submission_?=
- =?utf-8?q?init_to_post_hwconfig_step?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Move_GuC_submission_init_?=
+ =?utf-8?q?to_post_hwconfig_step?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 10 May 2024 21:03:45 -0000
-Message-ID: <171537502557.2056703.4150681622824561386@8e613ede5ea5>
+Date: Fri, 10 May 2024 21:03:58 -0000
+Message-ID: <171537503855.2056296.13295060246444582459@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240510203810.1952-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20240510203810.1952-1-michal.wajdeczko@intel.com>
@@ -48,10 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: afd593c3e9f9 drm-tip: 2024y-05m-10d-17h-57m-52s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/uc: Reorder post hwconfig uC initialization step
-Applying: drm/xe/uc: Move GuC submission init to post hwconfig step
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+57b97a66dd129aea93991dc66cd10477f7a05cf8
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a1f0975dea4d4e911eb021b2387879f91eceb070
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Fri May 10 22:38:10 2024 +0200
+
+    drm/xe/uc: Move GuC submission init to post hwconfig step
+    
+    We shouldn't need anything from the GuC submission code until we
+    finish GuC initialization in post hwconfig step.
+    
+    While around add diagnostic message if we fail uC init.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch afd593c3e9f9218ececa93e30c33182346295ac9 drm-intel
+099a48c30e10 drm/xe/uc: Reorder post hwconfig uC initialization step
+a1f0975dea4d drm/xe/uc: Move GuC submission init to post hwconfig step
 
 
