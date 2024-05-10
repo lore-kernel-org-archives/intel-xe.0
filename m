@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05D41C25B5F
-	for <intel-xe@archiver.kernel.org>; Fri, 10 May 2024 14:07:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73853C25B10
+	for <intel-xe@archiver.kernel.org>; Fri, 10 May 2024 14:12:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DF1510E36A;
-	Fri, 10 May 2024 14:07:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EbJWURpB";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1757910E567;
- Fri, 10 May 2024 14:07:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715350048; x=1746886048;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=QaUcNCm/a+BamJrLrdY3E5oXAXyy4EKgqLmNWQnOaiU=;
- b=EbJWURpB/NAa52YNEpM0zYtGogWT3gxndbSsbQRnqBfId3pTou80l1mT
- 1REE+VDg0Mz1j1HSSkpjWKr2s0MHBHPo7m+SOHM1/9xa6/aUCGkAXbO6T
- DeU+V0k2e/EpKaEQr3ir2ftsCbRPiS99lNBwZG2RDpaZ8XmqKZx3MJ20/
- KL2aKzqds/Ds3AgzZmx0bE6f0c/6bCz2VkpD1nPb4q+L4w4iihaR/Jly/
- P+pn9KeSCy7z7IXpdG4SdBwW00ROhbwRHbtbvPtnuy0jb1vzOZXThEPqa
- UmY0b8HetHyH7ju+735NGTjy2CusI2UxrPWV09tUN45IhNIcISdru36UC Q==;
-X-CSE-ConnectionGUID: z47g9cGxTWiVS6EOvPZ0uA==
-X-CSE-MsgGUID: 4WCUvyKCR/eKjZo5d549MA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="28815917"
-X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="28815917"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 07:07:28 -0700
-X-CSE-ConnectionGUID: fuqtex9LSDiT7YJzMVtyFg==
-X-CSE-MsgGUID: i2zf0qRXSWuj7sLomb1yEQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="52840049"
-Received: from hcaldwel-desk1.amr.corp.intel.com (HELO
- gjsousa-mobl2.intel.com) ([10.124.223.133])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 07:07:27 -0700
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/i915/bmg: Load DMC
-Date: Fri, 10 May 2024 11:05:33 -0300
-Message-ID: <20240510140532.112352-2-gustavo.sousa@intel.com>
-X-Mailer: git-send-email 2.45.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 291F010E115;
+	Fri, 10 May 2024 14:12:37 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD3AC10E115;
+ Fri, 10 May 2024 14:12:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/bmg=3A_Load?=
+ =?utf-8?q?_DMC?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 10 May 2024 14:12:35 -0000
+Message-ID: <171535035577.2056703.405661334846579937@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240510140532.112352-2-gustavo.sousa@intel.com>
+In-Reply-To: <20240510140532.112352-2-gustavo.sousa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,41 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Load Battlemage's DMC. We re-use XELPDP_DMC_MAX_FW_SIZE since BMG's
-display is a derivative of Xe_LPD+ and has the same MMIO offset limits.
+== Series Details ==
 
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dmc.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+Series: drm/i915/bmg: Load DMC
+URL   : https://patchwork.freedesktop.org/series/133451/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index cbd2ac5671b1..63fccdda56c0 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -115,6 +115,9 @@ static bool dmc_firmware_param_disabled(struct drm_i915_private *i915)
- #define XE2LPD_DMC_PATH			DMC_PATH(xe2lpd)
- MODULE_FIRMWARE(XE2LPD_DMC_PATH);
- 
-+#define BMG_DMC_PATH			DMC_PATH(bmg)
-+MODULE_FIRMWARE(BMG_DMC_PATH);
-+
- #define MTL_DMC_PATH			DMC_PATH(mtl)
- MODULE_FIRMWARE(MTL_DMC_PATH);
- 
-@@ -166,6 +169,9 @@ static const char *dmc_firmware_default(struct drm_i915_private *i915, u32 *size
- 	if (DISPLAY_VER_FULL(i915) == IP_VER(20, 0)) {
- 		fw_path = XE2LPD_DMC_PATH;
- 		max_fw_size = XE2LPD_DMC_MAX_FW_SIZE;
-+	} else if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1)) {
-+		fw_path = BMG_DMC_PATH;
-+		max_fw_size = XELPDP_DMC_MAX_FW_SIZE;
- 	} else if (DISPLAY_VER_FULL(i915) == IP_VER(14, 0)) {
- 		fw_path = MTL_DMC_PATH;
- 		max_fw_size = XELPDP_DMC_MAX_FW_SIZE;
--- 
-2.45.0
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: b885b00e7fc0 drm-tip: 2024y-05m-10d-10h-26m-56s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/bmg: Load DMC
+
 
