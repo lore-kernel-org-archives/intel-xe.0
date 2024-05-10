@@ -4,59 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B7CEC25B4F
-	for <intel-xe@archiver.kernel.org>; Fri, 10 May 2024 09:29:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 080C5C25B10
+	for <intel-xe@archiver.kernel.org>; Fri, 10 May 2024 09:43:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEE1910E724;
-	Fri, 10 May 2024 09:29:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9CCF10E871;
+	Fri, 10 May 2024 09:43:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IrYaZSGP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X/Kwgelq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BB7310E724;
- Fri, 10 May 2024 09:29:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 143C610E46D;
+ Fri, 10 May 2024 09:43:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715333353; x=1746869353;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=jOlGr0f07G7nohP2bQvUoPkQdT1zw/VTSHnpfs13NtI=;
- b=IrYaZSGPhDYj4mHg0iJgRotCP6u/hnQOqa6JqQ5PoTyrRI6Di6dG9X9h
- wrrhm3XBh75BOKvImdlwWlhCgkwyBekjOJ+5zpOYD72fO8Nxl2uV3xK99
- C9Ea9Q4Xt6H6HFsoYtSSWEIco3GR1gAHcF+wRL65Ka4LubF2jRoA6bw8z
- xB7YodX0/4TryvN6/dvx2q+mykhSRcr92g7sXTTRZHQnNstHbOywTpEvC
- bSFbs1c/UyAHiPGhHzgdsfinw0JpDTZB5XhYUBjeRnkSKqlqOEYyBjzPZ
- xaVK5IW8Zr1TXYIo77D74E9yE+M4ILWpleFA9APIIGZqHTz5xzI19eADT g==;
-X-CSE-ConnectionGUID: qicKNE1GRTWDmbgu6Z8YSw==
-X-CSE-MsgGUID: 1QZ47nhMTumPJJmlNrFYow==
-X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="11184724"
-X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="11184724"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 02:29:13 -0700
-X-CSE-ConnectionGUID: Pm2bPyxXS8ieN44SkxnrkA==
-X-CSE-MsgGUID: Xif+8oVrRQyFEUvg/IFn5g==
+ t=1715334199; x=1746870199;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Pg+VLSV5LwG/F484HkWJ43sfpg8QgH0S403zB1yjD8Q=;
+ b=X/KwgelqWPEsoYidpnoma+aLT/P/vs0XeHdtW4CrN7abJaFYeq1/FEJh
+ PoZkIWbPT9w/SwGIMuwT2M5aYZAojjAcJk40LiGWIy1twXcZstAp8xxDC
+ PaX/i6fm/yPmkf4WJYiI1b77jJe0NKwR9iPtJ+IDu/ixNt+TOlS+WMo6H
+ q2IW1PUElN7EC5acDLDKmEGPh/P2lPqFgVfzAcrQtvmapGJZm0NpfpNb3
+ g/YKhIqQDOjo+I/8ismqI56dHDexaYNWzcoprj6sOHMiGBlz4n/bq5iP3
+ 9a7xBCaUGQd1P50JBEHPC3N1PP6Jo3Gm9/WKGYnpf+Nf9nkIS2k+sgEHK Q==;
+X-CSE-ConnectionGUID: bX+OK9XPRIWTlrruFCMMNw==
+X-CSE-MsgGUID: t7SsQIxMQGGQQ8yQN19LlQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="15141221"
+X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="15141221"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2024 02:43:19 -0700
+X-CSE-ConnectionGUID: eVc5MbQOSdCJ1BXZTz6ofw==
+X-CSE-MsgGUID: 31y3fOsmR/iSdMXAUpyp7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="34333187"
+X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="34213574"
 Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.180])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 02:29:10 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Lucas
- De Marchi <lucas.demarchi@intel.com>, Oded Gabbay <ogabbay@kernel.org>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Nuke xe's copy of intel_fbdev_fb.h
-In-Reply-To: <ZjvYFkUbsP_hXOG4@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240506183331.7720-1-ville.syrjala@linux.intel.com>
- <87msp2knor.fsf@intel.com> <ZjvYFkUbsP_hXOG4@intel.com>
-Date: Fri, 10 May 2024 12:29:06 +0300
-Message-ID: <87ttj6hv6l.fsf@intel.com>
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2024 02:43:17 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 1/2] drm/xe/display: remove unused xe->enabled_irq_mask
+Date: Fri, 10 May 2024 12:43:12 +0300
+Message-Id: <20240510094313.3422982-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,86 +67,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 08 May 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Tue, May 07, 2024 at 11:53:40AM +0300, Jani Nikula wrote:
->> On Mon, 06 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
->> > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> >
->> > For some reason xe and i915 each have an identical (fortunately)
->> > copy of intel_fbdev_fb.h. The xe copy actually only gets included
->> > by xe's intel_fbdev_fb.c, and the i915 copy by everyone else,
->> > include intel_fbdev.c which is the actual caller of the
->> > functions declared in the header.
->> >
->> > This means the xe and i915 headers are free to define/declare
->> > completely incompatible things and the build would still succeed
->> > as long as the symbol names match.
->> >
->> > That is not a good thing, so let's nuke xe's copy of the header
->> > so that everyone will use the same header, and be forced to
->> > agree on the same API/ABI.
->> >
->> > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->>=20
->> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->
-> Thanks.
->
-> I was going to push this to drm-xe-next, but I should actually
-> push it to drm-intel-next since I'll be massaging this stuff
-> there.
+The xe->enabled_irq_mask member has never been used for anything.
 
-Yeah, things often run more smoothly if we merge xe/display/ changes via
-drm-intel-next. It can take a while to merge stuff to drm-next and
-backmerge to respective drivers to sync it all up.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_display.c | 1 -
+ drivers/gpu/drm/xe/xe_device_types.h    | 2 --
+ 2 files changed, 3 deletions(-)
 
-BR,
-Jani.
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 0de0566e5b39..fbe2c2eddea9 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -97,7 +97,6 @@ int xe_display_create(struct xe_device *xe)
+ 	xe->display.hotplug.dp_wq = alloc_ordered_workqueue("xe-dp", 0);
+ 
+ 	drmm_mutex_init(&xe->drm, &xe->sb_lock);
+-	xe->enabled_irq_mask = ~0;
+ 
+ 	return drmm_add_action_or_reset(&xe->drm, display_destroy, NULL);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 906b98fb973b..b78223e3baab 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -517,8 +517,6 @@ struct xe_device {
+ 	/* only to allow build, not used functionally */
+ 	u32 irq_mask;
+ 
+-	u32 enabled_irq_mask;
+-
+ 	struct intel_uncore {
+ 		spinlock_t lock;
+ 	} uncore;
+-- 
+2.39.2
 
-
->
-> xe maintainers, ack for merging via drm-intel-next?
->
->>=20
->> > ---
->> >  drivers/gpu/drm/xe/display/intel_fbdev_fb.h | 21 ---------------------
->> >  1 file changed, 21 deletions(-)
->> >  delete mode 100644 drivers/gpu/drm/xe/display/intel_fbdev_fb.h
->> >
->> > diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.h b/drivers/gpu=
-/drm/xe/display/intel_fbdev_fb.h
->> > deleted file mode 100644
->> > index ea186772e0bb..000000000000
->> > --- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.h
->> > +++ /dev/null
->> > @@ -1,21 +0,0 @@
->> > -/* SPDX-License-Identifier: MIT */
->> > -/*
->> > - * Copyright =C2=A9 2023 Intel Corporation
->> > - */
->> > -
->> > -#ifndef __INTEL_FBDEV_FB_H__
->> > -#define __INTEL_FBDEV_FB_H__
->> > -
->> > -struct drm_fb_helper;
->> > -struct drm_fb_helper_surface_size;
->> > -struct drm_i915_gem_object;
->> > -struct drm_i915_private;
->> > -struct fb_info;
->> > -struct i915_vma;
->> > -
->> > -struct drm_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *he=
-lper,
->> > -			 struct drm_fb_helper_surface_size *sizes);
->> > -int intel_fbdev_fb_fill_info(struct drm_i915_private *i915, struct fb=
-_info *info,
->> > -			      struct drm_i915_gem_object *obj, struct i915_vma *vma);
->> > -
->> > -#endif
->>=20
->> --=20
->> Jani Nikula, Intel
-
---=20
-Jani Nikula, Intel
