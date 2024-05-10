@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D30AC25B74
-	for <intel-xe@archiver.kernel.org>; Fri, 10 May 2024 18:12:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43FC1C25B75
+	for <intel-xe@archiver.kernel.org>; Fri, 10 May 2024 18:12:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0203510EEFB;
-	Fri, 10 May 2024 18:12:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC0EF10EF42;
+	Fri, 10 May 2024 18:12:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mcF4jf0W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qjr6G84p";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBCC410EC25
- for <intel-xe@lists.freedesktop.org>; Fri, 10 May 2024 18:12:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D957B10EC25
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 May 2024 18:12:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715364769; x=1746900769;
+ t=1715364773; x=1746900773;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uc9IP8haF7jyGry8u107E4izHqVTM1afysdhmq2Gz9s=;
- b=mcF4jf0W+y+GFOPDh6CTo3dsFya6kWyk7F+q5ryzgFgJmo2Rf7qm+5ek
- W2OXbn17Tr2u25SWpRPEdXACp6GuGxBlTUWtdoJkJN+vA9/HUUoWKxdCH
- 6OW/MIXq6HglGPdT53k1XJVhhP1lacBYggwBABmA7a3sF11or5p5kg/3u
- eVu9VzmGcq3D+msniaGynnP47r/g53/9p6xl2U0eoWA/NZXfrlNVmXDf/
- JIVMhi/7tYyWMXbw/ReZOgmIIA0pOn8ERc1k3hxKqZiH4ddw10YZbMbn9
- /be/X6vmnyzHHnlZvHm72Nv1KUa9WIVdIvVzRLow1hNZPA9sNK86o8ky6 g==;
-X-CSE-ConnectionGUID: 0Q3ZJ2MgTwim7nBLORWuuA==
-X-CSE-MsgGUID: 68oTerC/RpWa766W8ExVRA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11069"; a="28844619"
-X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="28844619"
+ bh=feO0dpIDdydces1sA0rpmmCBjIe5rJ4H6HJqaUKDJbw=;
+ b=Qjr6G84ph4IucVs8GjKtKFvKO2xJfZyZ3ECTDavfQp/cXtJ5VJatkkR0
+ LzS9IyNVrM4B9vUdDV0Zy0PKyf8yfs4y7j4TINqSI6yriRcwL178xHORc
+ iSxHfZXBjEjfZmTV5v0bWGBFZqHr5gOrzAS7SpYuIdmOoiz0ZBczZgqst
+ /1UnLjd2ONjeNcwrqZvUTwp50KV9W2KWpNvGY4LgDihZW40oj9DDiV4kR
+ 3DF4XfM1hY6rel3b+rgd9RDRGTODmj3Sds6EZ0KnYYrt2TdTIrEX5c9gf
+ sJ+hhfC+gF1Atz6qjmfy7UJO2QJcOpH9Qxp2IN7J3tlD6k7bjBheCUnOv Q==;
+X-CSE-ConnectionGUID: Y9UzXAe5QS6txapbm16mog==
+X-CSE-MsgGUID: c7JcewjQSI26txmqfIM3pg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11069"; a="28844641"
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="28844641"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 11:12:49 -0700
-X-CSE-ConnectionGUID: 2gGvHILpQYmF3VVra6/ZzQ==
-X-CSE-MsgGUID: 4JTY56FLQsO0s7O/xzzi0w==
+ 10 May 2024 11:12:53 -0700
+X-CSE-ConnectionGUID: WhQ8iKwCTWueUGGxN9iq6w==
+X-CSE-MsgGUID: xxbVYVAmRNeJFhD8uG/S4A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="60544142"
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="60544162"
 Received: from maurocar-mobl2.ger.corp.intel.com (HELO mwauld-desk.intel.com)
  ([10.245.244.149])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 11:12:47 -0700
+ 10 May 2024 11:12:51 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 17/20] drm/xe: reset mmio mappings with devm
-Date: Fri, 10 May 2024 19:12:30 +0100
-Message-ID: <20240510181212.264622-39-matthew.auld@intel.com>
+Subject: [PATCH 20/20] drm/xe/display: move device_remove over to drmm
+Date: Fri, 10 May 2024 19:12:33 +0100
+Message-ID: <20240510181212.264622-42-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.45.0
 In-Reply-To: <20240510181212.264622-22-matthew.auld@intel.com>
 References: <20240510181212.264622-22-matthew.auld@intel.com>
@@ -68,118 +68,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Set our various mmio mappings to NULL. This should make it easier to
-catch something rogue trying to mess with mmio after device removal. For
-example, we might unmap everything and then start hitting some mmio
-address which has already been unmamped by us and then remapped by
-something else, causing all kinds of carnage.
+i915 display calls this when releasing the drm_device, match this also
+in xe by using drmm. intel_display_device_remove() is freeing purely
+software state for the drm_device.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c |  4 +++-
- drivers/gpu/drm/xe/xe_mmio.c   | 35 ++++++++++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_mmio.h   |  2 +-
- 3 files changed, 33 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display.c | 20 ++++++++++++++++----
+ drivers/gpu/drm/xe/display/xe_display.h |  4 ++--
+ drivers/gpu/drm/xe/xe_pci.c             |  4 +++-
+ 3 files changed, 21 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 40983ad66e3c..ce8bccbb06ba 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -554,7 +554,9 @@ int xe_device_probe(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 734bddbb8932..ac674a08664d 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -234,8 +234,6 @@ void xe_display_driver_remove(struct xe_device *xe)
+ 		return;
+ 
+ 	intel_display_driver_remove(xe);
+-
+-	intel_display_device_remove(xe);
+ }
+ 
+ /* IRQ-related functions */
+@@ -377,17 +375,31 @@ void xe_display_pm_resume(struct xe_device *xe)
+ 	intel_power_domains_enable(xe);
+ }
+ 
+-void xe_display_probe(struct xe_device *xe)
++static void display_device_remove(struct drm_device *dev, void *arg)
++{
++	struct xe_device *xe = arg;
++
++	intel_display_device_remove(xe);
++}
++
++int xe_display_probe(struct xe_device *xe)
+ {
++	int err;
++
+ 	if (!xe->info.enable_display)
+ 		goto no_display;
+ 
+ 	intel_display_device_probe(xe);
+ 
++	err = drmm_add_action_or_reset(&xe->drm, display_device_remove, xe);
++	if (err)
++		return err;
++
+ 	if (has_display(xe))
+-		return;
++		return 0;
+ 
+ no_display:
+ 	xe->info.enable_display = false;
+ 	unset_display_features(xe);
++	return 0;
+ }
+diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
+index 710e56180b52..148bf7d744e6 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.h
++++ b/drivers/gpu/drm/xe/display/xe_display.h
+@@ -18,7 +18,7 @@ void xe_display_driver_remove(struct xe_device *xe);
+ 
+ int xe_display_create(struct xe_device *xe);
+ 
+-void xe_display_probe(struct xe_device *xe);
++int xe_display_probe(struct xe_device *xe);
+ 
+ int xe_display_init_nommio(struct xe_device *xe);
+ int xe_display_init_noirq(struct xe_device *xe);
+@@ -47,7 +47,7 @@ static inline void xe_display_driver_remove(struct xe_device *xe) {}
+ 
+ static inline int xe_display_create(struct xe_device *xe) { return 0; }
+ 
+-static inline void xe_display_probe(struct xe_device *xe) { }
++static inline int xe_display_probe(struct xe_device *xe) { }
+ 
+ static inline int xe_display_init_nommio(struct xe_device *xe) { return 0; }
+ static inline int xe_display_init_noirq(struct xe_device *xe) { return 0; }
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 841b02ac6ba1..b366cbceb476 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -768,7 +768,9 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
  	if (err)
  		return err;
  
--	xe_mmio_probe_tiles(xe);
-+	err = xe_mmio_probe_tiles(xe);
+-	xe_display_probe(xe);
++	err = xe_display_probe(xe);
 +	if (err)
 +		return err;
  
- 	xe_ttm_sys_mgr_init(xe);
- 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index a3094e741db8..0ad840bab8f3 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -255,6 +255,21 @@ static int xe_mmio_tile_vram_size(struct xe_tile *tile, u64 *vram_size,
- 	return xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
- }
- 
-+static void vram_fini(void *arg)
-+{
-+	struct xe_device *xe = arg;
-+	struct xe_tile *tile;
-+	int id;
-+
-+	if (xe->mem.vram.mapping)
-+		iounmap(xe->mem.vram.mapping);
-+
-+	xe->mem.vram.mapping = NULL;
-+
-+	for_each_tile(tile, xe, id)
-+		tile->mem.vram.mapping = NULL;
-+}
-+
- int xe_mmio_probe_vram(struct xe_device *xe)
- {
- 	struct xe_tile *tile;
-@@ -331,10 +346,20 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 	drm_info(&xe->drm, "Available VRAM: %pa, %pa\n", &xe->mem.vram.io_start,
- 		 &available_size);
- 
--	return 0;
-+	return devm_add_action_or_reset(xe->drm.dev, vram_fini, xe);
- }
- 
--void xe_mmio_probe_tiles(struct xe_device *xe)
-+static void tiles_fini(void *arg)
-+{
-+	struct xe_device *xe = arg;
-+	struct xe_tile *tile;
-+	int id;
-+
-+	for_each_tile(tile, xe, id)
-+		tile->mmio.regs = NULL;
-+}
-+
-+int xe_mmio_probe_tiles(struct xe_device *xe)
- {
- 	size_t tile_mmio_size = SZ_16M, tile_mmio_ext_size = xe->info.tile_mmio_ext_size;
- 	u8 id, tile_count = xe->info.tile_count;
-@@ -385,6 +410,8 @@ void xe_mmio_probe_tiles(struct xe_device *xe)
- 			regs += tile_mmio_ext_size;
- 		}
- 	}
-+
-+	return devm_add_action_or_reset(xe->drm.dev, tiles_fini, xe);
- }
- 
- static void mmio_fini(void *arg)
-@@ -392,10 +419,6 @@ static void mmio_fini(void *arg)
- 	struct xe_device *xe = arg;
- 
- 	pci_iounmap(to_pci_dev(xe->drm.dev), xe->mmio.regs);
--	if (xe->mem.vram.mapping)
--		iounmap(xe->mem.vram.mapping);
--
--	xe->mem.vram.mapping = NULL;
- 	xe->mmio.regs = NULL;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-index 445ec6a0753e..6488705c1ffe 100644
---- a/drivers/gpu/drm/xe/xe_mmio.h
-+++ b/drivers/gpu/drm/xe/xe_mmio.h
-@@ -21,7 +21,7 @@ struct xe_device;
- #define LMEM_BAR		2
- 
- int xe_mmio_init(struct xe_device *xe);
--void xe_mmio_probe_tiles(struct xe_device *xe);
-+int xe_mmio_probe_tiles(struct xe_device *xe);
- 
- u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg reg);
- u16 xe_mmio_read16(struct xe_gt *gt, struct xe_reg reg);
+ 	drm_dbg(&xe->drm, "%s %s %04x:%04x dgfx:%d gfx:%s (%d.%02d) media:%s (%d.%02d) display:%s dma_m_s:%d tc:%d gscfi:%d",
+ 		desc->platform_name,
 -- 
 2.45.0
 
