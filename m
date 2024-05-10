@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6F54C25B10
-	for <intel-xe@archiver.kernel.org>; Fri, 10 May 2024 18:12:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43DEDC25B75
+	for <intel-xe@archiver.kernel.org>; Fri, 10 May 2024 18:12:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87C7910E7BA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E791B10EEE9;
 	Fri, 10 May 2024 18:12:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J6Q3ZHph";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="be3n3Qql";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35EBF10EC25
- for <intel-xe@lists.freedesktop.org>; Fri, 10 May 2024 18:12:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8587910EF01
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 May 2024 18:12:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715364770; x=1746900770;
+ t=1715364768; x=1746900768;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SychnyikB8kbgogHaChmSt+VS8WFKRt9SrkGTlDi1Qk=;
- b=J6Q3ZHph8wntOV3e4kPCOM99Td5B9sWixJwtL2s69x5oXId9iYanwuTN
- JEb/SVrYOhr2q1wB7K347R4vVIXIr/hqGTImlts1tqXUUoA4O6/mvYrlo
- oz95AOLKMV8mY7OPF0+TqDmWyiUBoWCXXoRc8cD3DtQyaAV8uQf3QQFG+
- xwH+JZgEM5v27xbJK7gqOPVscHGYEVnem/oe0W5oO4pwr5zO9PpwzmztY
- RGILX1JzjKrR2GRMHiMMGmnZICBTi0Gb3a04RrrCN1OJHaiqrGbwsNbBG
- VvltPCn53wmCDlMJrgRwS5sAcCDa4qxa7zlQNyISYUqsaGYjDFkW08yj7 w==;
-X-CSE-ConnectionGUID: bLtepTZqQLSWxxc3xuVdkA==
-X-CSE-MsgGUID: mmVu+gAnQ4SmNARv9OOrIg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11069"; a="28844623"
-X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="28844623"
+ bh=oCpbsh7ZXVlyyaNdclzMlDkK5dqXtSMnFM5lq32Q5/8=;
+ b=be3n3QqlEthiUxHiQrw+3gNd/SmZZAFluCFme9SJdvMsj4C3Dw4VtvZO
+ 20ioCcfMIFxud1lhdfaSNaMOQNjm6WQh9iJEIouMvWWhhgTkH1cSzVCSM
+ P+NOzzaDg8WCFQCaH5caPhNPxHV1/eDvndNYwoMTCzUe9d4CUn/WFZAec
+ aE6VYOnD3TxMDziBfGFrMX4phr4KYrM6k5JYZA7OeGyAt7BAMQeBrL49o
+ kOrPCRlZJRAsVuiNz3oUTaH1qGcOIpkmSHqG/7C+nRZu6yTLP3905kshZ
+ ACXMNlxSG/K3/KdBZCimslsCoGh/IllWHeUhhrSvRpJEMm6HrLYFXCY6n A==;
+X-CSE-ConnectionGUID: 60SuJNbVT6mHrSPUgt47pw==
+X-CSE-MsgGUID: fGcPQfrsS0KKTqonYIU2rg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11069"; a="28844616"
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="28844616"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 11:12:50 -0700
-X-CSE-ConnectionGUID: OmujPQ16QAqY0mUCdqNhUw==
-X-CSE-MsgGUID: vWkh38QZStKcdrgaj2r55A==
+ 10 May 2024 11:12:48 -0700
+X-CSE-ConnectionGUID: 1KIQudzMThmDNoGcxjHKmg==
+X-CSE-MsgGUID: 5apE6yQvTtSfdJTYqniszA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="60544149"
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="60544134"
 Received: from maurocar-mobl2.ger.corp.intel.com (HELO mwauld-desk.intel.com)
  ([10.245.244.149])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 11:12:48 -0700
+ 10 May 2024 11:12:46 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 18/20] drm/xe/display: move display fini stuff to devm
-Date: Fri, 10 May 2024 19:12:31 +0100
-Message-ID: <20240510181212.264622-40-matthew.auld@intel.com>
+Subject: [PATCH 16/20] drm/xe/mmio: move mmio_fini over to devm
+Date: Fri, 10 May 2024 19:12:29 +0100
+Message-ID: <20240510181212.264622-38-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.45.0
 In-Reply-To: <20240510181212.264622-22-matthew.auld@intel.com>
 References: <20240510181212.264622-22-matthew.auld@intel.com>
@@ -68,57 +68,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Match the i915 display handling here with calling both no_irq and
-noaccel when removing the device.
+Not valid to touch mmio once the device is removed, so make sure we
+unmap on removal and not just when driver instance goes away. Also set
+the mmio pointers to NULL to hopefully catch such issues more easily.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_display.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_mmio.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 0de0566e5b39..6d74c9f55b0a 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -126,9 +126,9 @@ int xe_display_init_nommio(struct xe_device *xe)
- 	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_nommio, xe);
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 05edab0e085d..a3094e741db8 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -387,13 +387,16 @@ void xe_mmio_probe_tiles(struct xe_device *xe)
+ 	}
  }
  
--static void xe_display_fini_noirq(struct drm_device *dev, void *dummy)
-+static void xe_display_fini_noirq(void *arg)
+-static void mmio_fini(struct drm_device *drm, void *arg)
++static void mmio_fini(void *arg)
  {
--	struct xe_device *xe = to_xe_device(dev);
-+	struct xe_device *xe = arg;
+ 	struct xe_device *xe = arg;
  
- 	if (!xe->info.enable_display)
- 		return;
-@@ -163,12 +163,12 @@ int xe_display_init_noirq(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
--	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_noirq, NULL);
-+	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_noirq, xe);
+ 	pci_iounmap(to_pci_dev(xe->drm.dev), xe->mmio.regs);
+ 	if (xe->mem.vram.mapping)
+ 		iounmap(xe->mem.vram.mapping);
++
++	xe->mem.vram.mapping = NULL;
++	xe->mmio.regs = NULL;
  }
  
--static void xe_display_fini_noaccel(struct drm_device *dev, void *dummy)
-+static void xe_display_fini_noaccel(void *arg)
- {
--	struct xe_device *xe = to_xe_device(dev);
-+	struct xe_device *xe = arg;
+ int xe_mmio_init(struct xe_device *xe)
+@@ -418,7 +421,7 @@ int xe_mmio_init(struct xe_device *xe)
+ 	root_tile->mmio.size = SZ_16M;
+ 	root_tile->mmio.regs = xe->mmio.regs;
  
- 	if (!xe->info.enable_display)
- 		return;
-@@ -187,7 +187,7 @@ int xe_display_init_noaccel(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
--	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_noaccel, NULL);
-+	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_noaccel, xe);
+-	return drmm_add_action_or_reset(&xe->drm, mmio_fini, xe);
++	return devm_add_action_or_reset(xe->drm.dev, mmio_fini, xe);
  }
  
- int xe_display_init(struct xe_device *xe)
+ u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg reg)
 -- 
 2.45.0
 
