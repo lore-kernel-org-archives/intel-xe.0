@@ -4,106 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29B40C25B75
-	for <intel-xe@archiver.kernel.org>; Fri, 10 May 2024 07:20:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA28DC25B4F
+	for <intel-xe@archiver.kernel.org>; Fri, 10 May 2024 09:10:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A97BA10E5AA;
-	Fri, 10 May 2024 07:20:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BD4B10E303;
+	Fri, 10 May 2024 09:10:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="QH7pJL/Y";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="hOFN2VKb";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="QH7pJL/Y";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="hOFN2VKb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fioakwnb";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED62410E125;
- Fri, 10 May 2024 07:20:30 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 03BB222856;
- Fri, 10 May 2024 07:20:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1715325629; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=nRaJnEhDEuyGs2/onfbZ3Mu5Utk1iJeoV7Xtm1V0TXQ=;
- b=QH7pJL/YX4d9IF5mZhh6MhUBcdydmy02gLuYURCRhbI8HlOJ6FRPhxzMA2o1b5AaUOObPP
- GB3HcVk1G4yx3wE89JhVXK9j2ifjtDG43dxx35C9ThfQCcC5LR21evR3IRd8zq3yWYtSK6
- jgfQ6mfnC1RtOB85rogRP5d2AVnAr4M=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1715325629;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=nRaJnEhDEuyGs2/onfbZ3Mu5Utk1iJeoV7Xtm1V0TXQ=;
- b=hOFN2VKbUc2zsdWgbdpFo6Tv7lFEqLcbO1F6CMTNWc1bZZ0EhdU9naY8A3u2WArvjO3/Zy
- +zH7SOLLmxkMbOBw==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b="QH7pJL/Y";
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=hOFN2VKb
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1715325629; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=nRaJnEhDEuyGs2/onfbZ3Mu5Utk1iJeoV7Xtm1V0TXQ=;
- b=QH7pJL/YX4d9IF5mZhh6MhUBcdydmy02gLuYURCRhbI8HlOJ6FRPhxzMA2o1b5AaUOObPP
- GB3HcVk1G4yx3wE89JhVXK9j2ifjtDG43dxx35C9ThfQCcC5LR21evR3IRd8zq3yWYtSK6
- jgfQ6mfnC1RtOB85rogRP5d2AVnAr4M=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1715325629;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=nRaJnEhDEuyGs2/onfbZ3Mu5Utk1iJeoV7Xtm1V0TXQ=;
- b=hOFN2VKbUc2zsdWgbdpFo6Tv7lFEqLcbO1F6CMTNWc1bZZ0EhdU9naY8A3u2WArvjO3/Zy
- +zH7SOLLmxkMbOBw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 94F02139AA;
- Fri, 10 May 2024 07:20:28 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 4fD/IrzKPWa7DwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 10 May 2024 07:20:28 +0000
-Date: Fri, 10 May 2024 09:20:27 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20240510072027.GA9131@linux.fritz.box>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 881BD10E303
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 May 2024 09:10:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1715332204; x=1746868204;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:cc:subject:from:to:message-id:date;
+ bh=kUQ7eUUX6UBmoXoQpCwl4G0bJlmL+hymN2y/qSCOuRc=;
+ b=FioakwnbhrtCsO0799JHoK/y/zscVPV6LcgF3FiowIfArN7fF4zpgmTs
+ huPkEeir7BpI2Aa13zUGfg4wV8SOmV9/NxRSxfmtwl0I808e16iEhzXW9
+ oZxeDhaO0i50WWYSU/fFyYs5URBtOu8kK/5xGq/RC27BFpecjOOUr0rzl
+ p77xZr7IVQVjnkesunWemWDoPdfM/PixyWjMk3WpgoQa3ljG4PYX2fzue
+ mXIAh5Q/dgwjU6+b5QWeyprIR3HMqLPmeHxuefDHN5gfn05kY5PUZSmva
+ WiAqi9rwD9DwvsDJoKwwuMGaqtYYh8JlTOJQYMGEpFikeTdXgalGykkZA g==;
+X-CSE-ConnectionGUID: sezJnUyuQfaZ1DA8PFqSMQ==
+X-CSE-MsgGUID: V0ogrsUzR7S17s2Szex8cA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="11153661"
+X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="11153661"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2024 02:10:04 -0700
+X-CSE-ConnectionGUID: Lwr42KaSRbqADj//8Uoggg==
+X-CSE-MsgGUID: xLx3O0LTRpy5SVFidQB+VA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="60407055"
+Received: from fpallare-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.140])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2024 02:10:01 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spamd-Result: default: False [-6.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- DWL_DNSWL_MED(-2.00)[suse.de:dkim];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch]; MISSING_XM_UA(0.00)[];
- RCPT_COUNT_TWELVE(0.00)[16]; MIME_TRACE(0.00)[0:+];
- FUZZY_BLOCKED(0.00)[rspamd.com]; ARC_NA(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- DNSWL_BLOCKED(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Rspamd-Action: no action
-X-Rspamd-Queue-Id: 03BB222856
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <ZjzzKwMHFjdQaG7m@DUT025-TGLU.fm.intel.com>
+References: <20240506133447.3143994-1-himal.prasad.ghimiray@intel.com>
+ <27iutedmzaotadr7fhnqhvy6naydrsqstgarjmqa4ltmlsowix@bn7n2shccrgd>
+ <ZjzzKwMHFjdQaG7m@DUT025-TGLU.fm.intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ intel-xe@lists.freedesktop.org, Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: Re: [PATCH] drm/xe: Modify minimum of various scheduler timeout to 0
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <171533219643.7531.15603783689137370423@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Fri, 10 May 2024 12:09:56 +0300
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,60 +73,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+Quoting Matthew Brost (2024-05-09 19:00:43)
+> On Wed, May 08, 2024 at 08:06:52AM -0500, Lucas De Marchi wrote:
+> > On Mon, May 06, 2024 at 07:04:47PM GMT, Himal Prasad Ghimiray wrote:
+> > > Remove the min/max configs and change minimum values of preemption and
+> > > timeslice to 0. The sysman teams must deactivate preemption and
+> > > timeslice to assess exclusivity mode. They depend on configuring
+> > > timeslice_duration_us and preempt_timeout_us to 0, ensuring these
+> > > values are set at their minimum.
+> >=20
+> > nack for now, based on this explanation. See below.
+> >=20
+> > >=20
+> > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> > > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> > > Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-this is the weekly drm-misc-fixes PR. Sorry for being late.
+<SNIP>
 
-Best regards
-Thomas
+> > > +++ b/drivers/gpu/drm/xe/xe_hw_engine.h
+> > > @@ -10,41 +10,17 @@
+> > >=20
+> > > struct drm_printer;
+> > >=20
+> > > -#ifdef CONFIG_DRM_XE_JOB_TIMEOUT_MIN
+> > > -#define XE_HW_ENGINE_JOB_TIMEOUT_MIN CONFIG_DRM_XE_JOB_TIMEOUT_MIN
+> > > -#else
+> > > #define XE_HW_ENGINE_JOB_TIMEOUT_MIN 1
+> > > -#endif
+> > > -#ifdef CONFIG_DRM_XE_JOB_TIMEOUT_MAX
+> > > -#define XE_HW_ENGINE_JOB_TIMEOUT_MAX CONFIG_DRM_XE_JOB_TIMEOUT_MAX
+> > > -#else
+> > > #define XE_HW_ENGINE_JOB_TIMEOUT_MAX (10 * 1000)
+> >=20
+> > previously one could configure a kernel with a different max.
+> > And now it's hardcoded. How is this better and related to the
+> > motivation in the commit message?
+> >=20
+> > is this commit doing 2 different things?
+> >=20
+> > 1) Removing the _MAX from config since nobody is or should change that
+> > 2) Modify the min value to 0... That seems weird as basically there is
+> >    no minimum.
+>=20
+> This is true.
 
-drm-misc-fixes-2024-05-10:
-Short summary of fixes pull:
+Maybe I've missed some discussion but what is wrong with the previously
+agreed approach where KConfig would determine hard _MIN/_MAX bounds
+(and maybe _DEFAULT) that the kernel can work with, then there would be
+sysfs min/max (+ default) which the sysadmin sets as comfortable with
+considering the expected use-cases on the system and application then
+choose within those bounds (if it wants expedited hang detection for an
+example)?
 
-core:
-- fix connector debugging output
+> > I'd like to hear Matt Brost's opinion on that.
+>=20
+> I chatted with Lucas and second his nack. The requirements for this
+> change are coming from sysman and are unclear. If sysman needs to set
+> this to 0 (akin to no maximum), why can't sysman build the kernel with a
+> Kconfig to allow this? This use case appears to be an HPC/AI data center
+> scenario in which the kernel is probably built with a non-standard
+> Kconfig anyway. Why can't CONFIG_DRM_*_MIN be set to zero? This needs to
+> be addressed clearly and publicly.
 
-meson:
-- dw-hdmi: power-up fixes
-- dw-hdmi: add badngap setting for g12
-The following changes since commit da85f0aaa9f21999753b01d45c0343f885a8f905:
+I also thought we agreed on doing different build for such scenario
+where the interactive desktop is not expected to be used, so larger
+delays are more allowable.
 
-  drm/panel: ili9341: Use predefined error codes (2024-05-02 09:41:27 +0200)
+The default build simply can't allow unlimited blocking of the HW by
+certain workloads in order to make sure the desktop/compositor stays
+operational. That can only be enabled by default build when the long-running
+workloads can be isolated so they won't interfere with the workloads
+using dma-fences. And I don't think that code exists yet.
 
-are available in the Git repository at:
+Sysman should be able to report a feature missing from the kernel if it
+detects that it can't set the limits wanted. This can be reported to
+user via error code and/or error message asking to install a different
+kernel build.
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2024-05-10
+Same strategy has been applied in the past for various kernel features
+like realtime/virtualization etc.=20
 
-for you to fetch changes up to 6897204ea3df808d342c8e4613135728bc538bcd:
+Regards, Joonas
 
-  drm/connector: Add \n to message about demoting connector force-probes (2024-05-07 09:17:07 -0700)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-core:
-- fix connector debugging output
-
-meson:
-- dw-hdmi: power-up fixes
-- dw-hdmi: add badngap setting for g12
-
-----------------------------------------------------------------
-Douglas Anderson (1):
-      drm/connector: Add \n to message about demoting connector force-probes
-
-Jerome Brunet (2):
-      drm/meson: dw-hdmi: power up phy on device init
-      drm/meson: dw-hdmi: add bandgap setting for g12
-
- drivers/gpu/drm/drm_connector.c       |  2 +-
- drivers/gpu/drm/meson/meson_dw_hdmi.c | 70 ++++++++++++++++-------------------
- 2 files changed, 32 insertions(+), 40 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+>=20
+> Matt
+> =20
+> >=20
+> > Lucas De Marchi
+> >=20
+> > > -#endif
+> > > -#ifdef CONFIG_DRM_XE_TIMESLICE_MIN
+> > > -#define XE_HW_ENGINE_TIMESLICE_MIN CONFIG_DRM_XE_TIMESLICE_MIN
+> > > -#else
+> > > -#define XE_HW_ENGINE_TIMESLICE_MIN 1
+> > > -#endif
+> > > -#ifdef CONFIG_DRM_XE_TIMESLICE_MAX
+> > > -#define XE_HW_ENGINE_TIMESLICE_MAX CONFIG_DRM_XE_TIMESLICE_MAX
+> > > -#else
+> > > +#define XE_HW_ENGINE_TIMESLICE_MIN 0
+> > > #define XE_HW_ENGINE_TIMESLICE_MAX (10 * 1000 * 1000)
+> > > -#endif
+> > > #ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT
+> > > #define XE_HW_ENGINE_PREEMPT_TIMEOUT CONFIG_DRM_XE_PREEMPT_TIMEOUT
+> > > #else
+> > > #define XE_HW_ENGINE_PREEMPT_TIMEOUT (640 * 1000)
+> > > #endif
+> > > -#ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT_MIN
+> > > -#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN CONFIG_DRM_XE_PREEMPT_TIMEO=
+UT_MIN
+> > > -#else
+> > > -#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN 1
+> > > -#endif
+> > > -#ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT_MAX
+> > > -#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX CONFIG_DRM_XE_PREEMPT_TIMEO=
+UT_MAX
+> > > -#else
+> > > +#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN 0
+> > > #define XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX (10 * 1000 * 1000)
+> > > -#endif
+> > >=20
+> > > int xe_hw_engines_init_early(struct xe_gt *gt);
+> > > int xe_hw_engines_init(struct xe_gt *gt);
+> > > --=20
+> > > 2.25.1
+> > >=20
