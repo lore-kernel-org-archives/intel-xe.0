@@ -4,26 +4,186 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62FF9C25B10
-	for <intel-xe@archiver.kernel.org>; Fri, 10 May 2024 18:18:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A15C1C25B10
+	for <intel-xe@archiver.kernel.org>; Fri, 10 May 2024 18:43:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3413410E34F;
-	Fri, 10 May 2024 18:18:36 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E291110E34F;
- Fri, 10 May 2024 18:18:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AB5F10E0E7;
+	Fri, 10 May 2024 18:43:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="goblqma5";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F61A10E0E7
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 May 2024 18:43:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1715366603; x=1746902603;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-id:content-transfer-encoding:mime-version;
+ bh=TRzgfSG6tZs2Lu6MDyq5wc7D783z2iQKgUs8ZDoWImA=;
+ b=goblqma5jROe94ANmH3QU5feVEmzVIUpb7diDMBF9tjlpUYnkOCH6gDz
+ HhusmbUh890SMhfIVnsPXRh9xdCsQDNOMvZalPe9obUVzsgwfuOLncstp
+ qfAMJevLFNjRhYpein2vdbEdNTRH9/Vy8d+Fo8sWrnmh9uFkdu4aLDGvJ
+ 1FNpwqQorAaxDxSD3hock+BwC8E/02Zn7K28fVJ7Ca6DqyEISkH+RJ13P
+ mK72wkEzckCK2w2C9PuVFKLwOkQyf4jd553nW4K6fg7FWKUQCUeq1RLhI
+ lVa1WL3PoOcmgK0glq1zhWMlHYQMXtXX23zMBdVcnxBdgrnN/pAblCAzK g==;
+X-CSE-ConnectionGUID: O9yrJogRTzGuey/4/gQJUg==
+X-CSE-MsgGUID: Z04PDoGES8eEemO2USfvlg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11069"; a="22770834"
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="22770834"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2024 11:43:23 -0700
+X-CSE-ConnectionGUID: DbTdu+RxTuel07HBUtFpmQ==
+X-CSE-MsgGUID: UYElENbMThiKetTvw0xpag==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="52915577"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 10 May 2024 11:43:24 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 10 May 2024 11:43:22 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Fri, 10 May 2024 11:43:22 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Fri, 10 May 2024 11:43:22 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EMBsd8SeLPQJa7fsd4o2Plk3oh/jXirqDCv0WekVLsLV/yyHSSTm1dE98zT05V9jmSgvJ9VxvezTMgMi6jzeH/sHbtFxChow0/6id5z7aQ7vAypCk0S+migrwplhTD99LMITYuAVJPKKzGAI1EzgIQaKGE1nAi0Pee17i8jIt3vWOOyGrwe3nWDPmW73qyCnSXcMkjeK2MEB7bhvP/ZW+EO9M9fHtxFwwVXxMKH9Ncu6xAi9Gpl7rT/7oX4XyORnaTj/rzIwmNgfS4VzBoPtF0qjxPw7CRozmF6mGxQl5mHj5PL97Kh4IxQJAfNkk5P2f7QL19jx9LSSzSMo4758pA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TRzgfSG6tZs2Lu6MDyq5wc7D783z2iQKgUs8ZDoWImA=;
+ b=ZOVp/5l7Q2MPUocqtAbkrbbss/4DRTh68spsJRphmUXgShfsR7d6c6yx6oX6RmA9J9d0LuNmfAO8lEVAJycNxzDvsPS5HN4Buo6Cr6qNTWE9JBf7RK3tblqcD4whhMS06TVhRgjFkE1Chm1VD4yuHIL+kyXVxE1P6r38QBu7tUhDpNhGuHLqhkA1GWOxqtOHSfQGJSmucuD6vXH7IS0iowfllwMjxyLvhPaUZBKTqdH+hocFpvZ3j4JbBt5a520iyteQ/DFvV54UZZk8gLDn7gGZWvnbujb4sWiF2JFiDAjF+4ub7ChJmO8gp3OmPY1T9ZUzXXfh1KrF07uYqkuK4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM8PR11MB5751.namprd11.prod.outlook.com (2603:10b6:8:12::16) by
+ DS7PR11MB6221.namprd11.prod.outlook.com (2603:10b6:8:9a::15) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7544.49; Fri, 10 May 2024 18:43:15 +0000
+Received: from DM8PR11MB5751.namprd11.prod.outlook.com
+ ([fe80::abaf:6ba7:2d70:7840]) by DM8PR11MB5751.namprd11.prod.outlook.com
+ ([fe80::abaf:6ba7:2d70:7840%2]) with mapi id 15.20.7544.047; Fri, 10 May 2024
+ 18:43:15 +0000
+From: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
+To: "Dong, Zhanjun" <zhanjun.dong@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v8 1/6] drm/xe/guc: Prepare GuC register list and update
+ ADS size for error capture
+Thread-Topic: [PATCH v8 1/6] drm/xe/guc: Prepare GuC register list and update
+ ADS size for error capture
+Thread-Index: AQHaoCC0kY+SyEwMI0WUfQsIDa7Ru7GQ05GA
+Date: Fri, 10 May 2024 18:43:14 +0000
+Message-ID: <f55c5f7ef0ab613be9372d1f30cfb5071e872435.camel@intel.com>
+References: <20240507014736.1057093-1-zhanjun.dong@intel.com>
+ <20240507014736.1057093-2-zhanjun.dong@intel.com>
+In-Reply-To: <20240507014736.1057093-2-zhanjun.dong@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.44.4-0ubuntu2 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM8PR11MB5751:EE_|DS7PR11MB6221:EE_
+x-ms-office365-filtering-correlation-id: ad9384ec-a923-4512-dfc3-08dc71210d4d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230031|376005|366007|1800799015|38070700009;
+x-microsoft-antispam-message-info: =?utf-8?B?MFFTTTZRellhenlFV0ZmRFBrbmt5eTYrRk0zR2VZd2s5WDdhUlhVUFE3RWtL?=
+ =?utf-8?B?S2pUNXZ4NWZPRTkraVlzYm5rTXN3dzgxaXgzdHVBWkNraGFCdk1mekdqd3lo?=
+ =?utf-8?B?VmF4Q1Q4ZlBLZUxKcnJFOGJxMFdDSGorcE5hN2ZseStQOUJ0SVV4dVRrcENI?=
+ =?utf-8?B?c2F6d0NXdW9Fc3FGUFlUaVgzZjZxcDJDRkpKT1c0eWhZUmVWZ3lKWStkMG1X?=
+ =?utf-8?B?amx5R2JvZmdtSHBESUhkZmhnSzFtMjg3VUxMSGIzRGg0K1o0bzNzVXQ4TzRF?=
+ =?utf-8?B?OEZGRVhkbGRSYlR3dWd2OFNmVFdVaHQwUUZYd0ovVTlxUVo3NFZyZzBidE03?=
+ =?utf-8?B?SEdiWG9LSjh1UGVRR1BlWnNyVDAycG16d2pJU0tsMm5pWSs0a1NvOGdKeHdB?=
+ =?utf-8?B?c2wzSkt4TWE4MXllZ3BzblhnWmd5LzBqZ1BKQTJZUGlWSzhzdzI2dG9KQXR5?=
+ =?utf-8?B?WGxtcUtNdlJKdkZDYWVoVjRlWkJTRnh5SUdycFZNdU5uSnJBNSs3ZE0wQVNx?=
+ =?utf-8?B?TzZzeGo5M2w1U3RBbWNFS09paWIxMGVaK05MSk1QZlFTVGxNSTBwWjJvcnlt?=
+ =?utf-8?B?cEVsd085dTV4Qng3RFRtSkxhaEZseElTRmZyQXF2NTQzM3lFNHZhbTlpdUNy?=
+ =?utf-8?B?MCt5SUJHakVDRW85M29reTNHWXFLTU54NmZBdmI1OFYyeElKZmsvczY0UUN1?=
+ =?utf-8?B?VzZCZ2tGZ0lFWXVreDNySWptRU1lSlkxYVBLeHZhMmdmL2k5cHhKalRTTVpI?=
+ =?utf-8?B?WWx2UGVhL2QvNUk2UXIvTzBSQzVKVFk4dTU5VWtnOTRpSmNTci9mRzFSWVRq?=
+ =?utf-8?B?M3h5anNrVUFlNWZVSlZWUjBONzNJR1ZONm9xcUhuMDdWUURvdHUrMGZwSnl2?=
+ =?utf-8?B?Nkh1VXlrRzR5WmZuRXZQbGtGNzdDU0VwZ05YekhudzVBTkwzT0U3TDM5dlh3?=
+ =?utf-8?B?dTVXdUFQQU41ZHVhcWtTcmJDa0xpNkF2cDFaaUo1d1FEcUs3MTByWGg5L05o?=
+ =?utf-8?B?dmxTaElodi9WK1R0L1BYWE82enRWcUtQaS9NY3dCV3VXWWNna2NicUducHV1?=
+ =?utf-8?B?dXRYVkhzM25FTEFjREt3S0dyaUdxV09QYThsT1BkTHpvd0tGbmZkT3liY0FK?=
+ =?utf-8?B?bW4wMVRxbG05RDh3bXRWSlNlbTZRWlhFWWxVakRPaWM5VXVEaTFXNVp6Z0Y5?=
+ =?utf-8?B?NGpEVklDallPUGVGREU0S3BFWW0zUi85ajcvbkZwRTRqaFBycVMxOWNjOHNr?=
+ =?utf-8?B?ZXh5dUYxRVhBVG9ZWGtyQ2dWM3hNYytYZS9ma2VudXc2NU5zS1d5TjJLUUtl?=
+ =?utf-8?B?NlhkL1grZjJGQ0pqKzEwZm9zc05pVVJ6N0tBbUpERk8zRWU4VEFwV3ZDNjRh?=
+ =?utf-8?B?Zm94b0xzOFM1aDB1KzBMOUhkZjdtOWpTQWx0MmlHbjVtR085SmV0K1FxMEd6?=
+ =?utf-8?B?L2E4WUVScGt3RnpsRVVDM2w0M3Jscys4QVovQngyOURQaDZqT0V3ZkQ1RTlC?=
+ =?utf-8?B?bzRLYlpFRGlZczFJU28yYTlsNzlvd2piWXFacVF4a01Nb21pUmJRbUJPbStP?=
+ =?utf-8?B?MHpzYWxSUHFqb3N0WGQrSnFhY2RNNE1WSlg4eXNSNzBNdUJnZ215N3o3a3BF?=
+ =?utf-8?B?dkk2NjBCb1lpTUk0QzVVMFJLcmRPUnlMWlI5anlBazl2SUx5cktJTE1COXpC?=
+ =?utf-8?B?TGs2K0l1ZVdERmJYSXR2b2gxQmVLa2xWSkVkK0h2aVJIRU9wVC8reEJKckp3?=
+ =?utf-8?B?WCtwMCtsTEJDNHVJdnpTeEVoR1lHZGlYOWx4emZzZ243bURnNHF5Smg1dU5U?=
+ =?utf-8?B?aHhnYjNydVZYMG04UHVpZz09?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5751.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(366007)(1800799015)(38070700009); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WktvQXdwQUVxWFNOVmcrelM5MHArVy94NHQrNG1ZR1puZlpBREJtREhaZXBE?=
+ =?utf-8?B?a2t5NDFHOFpGb2p3QzcvWkVQZC9HMk9TakxxaURIcEM5b0pnalZSb2gvVjhu?=
+ =?utf-8?B?NDN5SWxJZ2xmRkpIUmZTeTdjdGlQaFFXT3Z3YVRrVDhDaGwrdEdQcnkzbnd2?=
+ =?utf-8?B?MXpoTllPd0dOWm9iS2JlSUZSRG84UC91NlFlSGFNcVQ5QkRwM01JbDYwWjhW?=
+ =?utf-8?B?RlAyS1pYMlNiZVRad1VvMU1xS1lNNlo3djdSL0JFa3RWV1FuVVQrSit3aTNG?=
+ =?utf-8?B?ajhsdzZIUXlKeHBYZ3NzaU9lUWtSOVNuT0ZWRFJNNzJpMDRVeG55dkdaczJn?=
+ =?utf-8?B?bjBEcHI1Uy8vVk1PUzhZR3Q4d2p2ME5HMXpwSVVTYnRyZVRGWFBzVVZ4NWFC?=
+ =?utf-8?B?b0hMUTZGY0FHRFV5WURNeUVWRVI0c2V3d0IybVZabHBWMlpTV0ZnMzh2NXho?=
+ =?utf-8?B?d2hnRXdKWW1jZ0kwU3UvTEhIdUZsTVNTRkJtRWdXWHdpUWxyZExLODVPVG5r?=
+ =?utf-8?B?Uml2MUE1cTN1OEYwZkdQTWxPeTUrOE4wZzhtenA3R1Z2V1NZN3RITTJxRlJ2?=
+ =?utf-8?B?UmxYTUk2V2hjVWhFaDZQZ1FXYjU2Z0t1M3VFc1NFL3FpZEVWaFlqMnM4V2sy?=
+ =?utf-8?B?TGsrWGVIakFDMVZWcmE2ZnRMeFRiZTdGZUIvNWtiLzFaQzF6Rnk3R0QzdkFi?=
+ =?utf-8?B?RFFZWkVwYmMwWXBUam4yV0s5NFdESTVXQmZRMkc2NE52VlRveEgxL0VDR1Js?=
+ =?utf-8?B?MEJJMEVPRzFVaDhlUFE0Wmd0d1Z3eDdPUTNiQXV4QnM0RUlIbU0zcldINEZ1?=
+ =?utf-8?B?b0VRa1RjYndZM2RodENPZHA4ZkRSMVRERG1lT1g2cDdtZUpSOE5oMDZWaVF3?=
+ =?utf-8?B?a3NsaUpkRjJxYm5lU0h3ekFzcmZkaGhQZXdMQlRPV2haTm5kaVc2VmdmOHdZ?=
+ =?utf-8?B?bXMxKzQ2RXBWSjRucHdLMGNEZDhOM3Z0Zk16MFhiN01KTXNTb2xXeXdRLzNm?=
+ =?utf-8?B?ZitMUUQ5VGM3TGVYNkNDa01qdmtHMTdheU5YbjZxNm9EbE9EcHdJdDJxcERI?=
+ =?utf-8?B?dktzUGRMUm5JTnRXU291RjZoKzY1QzlXUTNqd3d2V0dDeGVCbk1KNlRnWXF6?=
+ =?utf-8?B?R0kxY0E5QkhXYWVDU0RvSFNmeE9pbEw0Z2Z1VGg4UHFMeWFBaUh0N1h0bjV6?=
+ =?utf-8?B?R1g0MVZuZ3MyY1F4d1NTdHBFOE56RzVtQmVYMWxsbFhhUjdsMkV1NFFZVU9J?=
+ =?utf-8?B?eVdBNlQvV2htOXQxNGkyUkxkalA4M0U1YzdvMVRWM0Q3bXNMc0pxcGRWOERj?=
+ =?utf-8?B?Rkg4akVXc0p5T0g5b0N6WTJ2RmVpMEI4Z0VJVlZBcXZJVWRONCtYNmVtQWVY?=
+ =?utf-8?B?RTZLeFJ5SmdmbnRNbi9rTTlERGp5d1k4Yy93ZXpCT3IzUFp6dzEyemkvckU3?=
+ =?utf-8?B?MGU4NENVcDdYdDFRcVBrMWxvSktrdU9vVHFwYUxmMzY1YjFwY1NwSXBTOFFv?=
+ =?utf-8?B?eDd6RDlnTFhuQ2ZvOE10TndWTkh6Um82S1cyc3FJZFdiU0dFanpxWTVqWHVC?=
+ =?utf-8?B?QUVpbFZaWWppQ3crL2pzek1pUldndnlzRVEwMmVXS01qWC9jTU02VEdBYXpO?=
+ =?utf-8?B?UEVIQjErbEdmeWhqUVBFUVhINjJCa212Y3NpUWFvY0lHc09XNW9DK2E5d3do?=
+ =?utf-8?B?S1E3d21HQUE3bGYxN2c4bjRuZmpVK0hHSTQyb3lCMC9DYUh0KzNrUklOYUpp?=
+ =?utf-8?B?dUpTNkdTNWRCNjJHamJrRkFxZ0xHc2Rkbi82MG91UStUMDQrb2hXWmZTY2tO?=
+ =?utf-8?B?cGpyRUFpdm5JNVVUUXJLSGxWZEYyamdkV3ZBSzJvY3hUai91NU9XTE9ZQ2tp?=
+ =?utf-8?B?Y0kyRHFUaG0yV1NaNXBHc3FnbXZuS0d1aUlwVXZ0Mm8wdzdQSjdxNG1ZZEZ3?=
+ =?utf-8?B?RUJ0b0pyWDI4UUJsWUFSNWdOTXAzVnJ1QjdZTmJTRldmVm00TzJDY0lFc0xs?=
+ =?utf-8?B?ZVBGZ0U3d01KY1VldEVHMDYzcUhoQ3Q3M0RyWFVSUVBMV3A3MitvN3hrUkxL?=
+ =?utf-8?B?WktWVHg3b0pWQ0JiejBjYWRGdURHK0pKNkJtanhKS2dET3BYR2NNZ0lVcEVS?=
+ =?utf-8?B?UEFHYzZ5WE4xSWh0Z3VlV2hDOTZwTHJyRWlVRjB6MnNWaGJia0dDM3dtOUJZ?=
+ =?utf-8?Q?4fxn+dIc38iByHXaO5LRDZQ=3D?=
 Content-Type: text/plain; charset="utf-8"
+Content-ID: <18ABA8B080CFBD44BA3EA9CE619DDF55@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_core=5Fhotunplug_improvements?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 10 May 2024 18:18:34 -0000
-Message-ID: <171536511492.2056296.9183175740305071546@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240510181212.264622-22-matthew.auld@intel.com>
-In-Reply-To: <20240510181212.264622-22-matthew.auld@intel.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5751.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ad9384ec-a923-4512-dfc3-08dc71210d4d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 May 2024 18:43:15.0310 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: T0XzVVoUWHgZFkOYgSnYbdHwxaFpF+wiR6nLyG9QDziRC6j4qMHKEP+lEzwxy6Gm9jPFh7J/R3b3fdONb0i/8HRi2rfRn7vNYsFuF8jBw1wS5ve+RAKjKI3l0hEBIuP3
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6221
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,222 +195,212 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: core_hotunplug improvements
-URL   : https://patchwork.freedesktop.org/series/133462/
-State : failure
-
-== Summary ==
-
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../arch/x86/um/user-offsets.c:17:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-   17 | void foo(void)
-      |      ^~~
-In file included from ../arch/um/kernel/asm-offsets.c:1:
-../arch/x86/um/shared/sysdep/kernel-offsets.h:9:6: warning: no previous prototype for ‘foo’ [-Wmissing-prototypes]
-    9 | void foo(void)
-      |      ^~~
-../arch/x86/um/bugs_64.c:9:6: warning: no previous prototype for ‘arch_check_bugs’ [-Wmissing-prototypes]
-    9 | void arch_check_bugs(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/x86/um/bugs_64.c:13:6: warning: no previous prototype for ‘arch_examine_signal’ [-Wmissing-prototypes]
-   13 | void arch_examine_signal(int sig, struct uml_pt_regs *regs)
-      |      ^~~~~~~~~~~~~~~~~~~
-../arch/x86/um/fault.c:18:5: warning: no previous prototype for ‘arch_fixup’ [-Wmissing-prototypes]
-   18 | int arch_fixup(unsigned long address, struct uml_pt_regs *regs)
-      |     ^~~~~~~~~~
-../arch/x86/um/os-Linux/mcontext.c:7:6: warning: no previous prototype for ‘get_regs_from_mc’ [-Wmissing-prototypes]
-    7 | void get_regs_from_mc(struct uml_pt_regs *regs, mcontext_t *mc)
-      |      ^~~~~~~~~~~~~~~~
-../arch/x86/um/os-Linux/registers.c:146:15: warning: no previous prototype for ‘get_thread_reg’ [-Wmissing-prototypes]
-  146 | unsigned long get_thread_reg(int reg, jmp_buf *buf)
-      |               ^~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:16:5: warning: no previous prototype for ‘__vdso_clock_gettime’ [-Wmissing-prototypes]
-   16 | int __vdso_clock_gettime(clockid_t clock, struct __kernel_old_timespec *ts)
-      |     ^~~~~~~~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:30:5: warning: no previous prototype for ‘__vdso_gettimeofday’ [-Wmissing-prototypes]
-   30 | int __vdso_gettimeofday(struct __kernel_old_timeval *tv, struct timezone *tz)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:44:21: warning: no previous prototype for ‘__vdso_time’ [-Wmissing-prototypes]
-   44 | __kernel_old_time_t __vdso_time(__kernel_old_time_t *t)
-      |                     ^~~~~~~~~~~
-../arch/x86/um/vdso/um_vdso.c:57:1: warning: no previous prototype for ‘__vdso_getcpu’ [-Wmissing-prototypes]
-   57 | __vdso_getcpu(unsigned *cpu, unsigned *node, struct getcpu_cache *unused)
-      | ^~~~~~~~~~~~~
-../arch/um/os-Linux/skas/process.c:107:6: warning: no previous prototype for ‘wait_stub_done’ [-Wmissing-prototypes]
-  107 | void wait_stub_done(int pid)
-      |      ^~~~~~~~~~~~~~
-../arch/um/os-Linux/skas/process.c:683:6: warning: no previous prototype for ‘__switch_mm’ [-Wmissing-prototypes]
-  683 | void __switch_mm(struct mm_id *mm_idp)
-      |      ^~~~~~~~~~~
-../arch/um/os-Linux/main.c:187:7: warning: no previous prototype for ‘__wrap_malloc’ [-Wmissing-prototypes]
-  187 | void *__wrap_malloc(int size)
-      |       ^~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:208:7: warning: no previous prototype for ‘__wrap_calloc’ [-Wmissing-prototypes]
-  208 | void *__wrap_calloc(int n, int size)
-      |       ^~~~~~~~~~~~~
-../arch/um/os-Linux/main.c:222:6: warning: no previous prototype for ‘__wrap_free’ [-Wmissing-prototypes]
-  222 | void __wrap_free(void *ptr)
-      |      ^~~~~~~~~~~
-../arch/um/os-Linux/mem.c:28:6: warning: no previous prototype for ‘kasan_map_memory’ [-Wmissing-prototypes]
-   28 | void kasan_map_memory(void *start, size_t len)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/os-Linux/mem.c:212:13: warning: no previous prototype for ‘check_tmpexec’ [-Wmissing-prototypes]
-  212 | void __init check_tmpexec(void)
-      |             ^~~~~~~~~~~~~
-../arch/um/kernel/skas/process.c:36:12: warning: no previous prototype for ‘start_uml’ [-Wmissing-prototypes]
-   36 | int __init start_uml(void)
-      |            ^~~~~~~~~
-../arch/x86/um/ptrace_64.c:111:5: warning: no previous prototype for ‘poke_user’ [-Wmissing-prototypes]
-  111 | int poke_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/x86/um/ptrace_64.c:171:5: warning: no previous prototype for ‘peek_user’ [-Wmissing-prototypes]
-  171 | int peek_user(struct task_struct *child, long addr, long data)
-      |     ^~~~~~~~~
-../arch/x86/um/signal.c:560:6: warning: no previous prototype for ‘sys_rt_sigreturn’ [-Wmissing-prototypes]
-  560 | long sys_rt_sigreturn(void)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/skas/mmu.c:17:5: warning: no previous prototype for ‘init_new_context’ [-Wmissing-prototypes]
-   17 | int init_new_context(struct task_struct *task, struct mm_struct *mm)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/skas/mmu.c:60:6: warning: no previous prototype for ‘destroy_context’ [-Wmissing-prototypes]
-   60 | void destroy_context(struct mm_struct *mm)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/os-Linux/signal.c:75:6: warning: no previous prototype for ‘sig_handler’ [-Wmissing-prototypes]
-   75 | void sig_handler(int sig, struct siginfo *si, mcontext_t *mc)
-      |      ^~~~~~~~~~~
-../arch/um/os-Linux/signal.c:111:6: warning: no previous prototype for ‘timer_alarm_handler’ [-Wmissing-prototypes]
-  111 | void timer_alarm_handler(int sig, struct siginfo *unused_si, mcontext_t *mc)
-      |      ^~~~~~~~~~~~~~~~~~~
-../arch/um/os-Linux/start_up.c:301:12: warning: no previous prototype for ‘parse_iomem’ [-Wmissing-prototypes]
-  301 | int __init parse_iomem(char *str, int *add)
-      |            ^~~~~~~~~~~
-../arch/um/kernel/mem.c:202:8: warning: no previous prototype for ‘pgd_alloc’ [-Wmissing-prototypes]
-  202 | pgd_t *pgd_alloc(struct mm_struct *mm)
-      |        ^~~~~~~~~
-../arch/um/kernel/mem.c:215:7: warning: no previous prototype for ‘uml_kmalloc’ [-Wmissing-prototypes]
-  215 | void *uml_kmalloc(int size, int flags)
-      |       ^~~~~~~~~~~
-../arch/um/kernel/process.c:51:5: warning: no previous prototype for ‘pid_to_processor_id’ [-Wmissing-prototypes]
-   51 | int pid_to_processor_id(int pid)
-      |     ^~~~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:87:7: warning: no previous prototype for ‘__switch_to’ [-Wmissing-prototypes]
-   87 | void *__switch_to(struct task_struct *from, struct task_struct *to)
-      |       ^~~~~~~~~~~
-../arch/um/kernel/process.c:140:6: warning: no previous prototype for ‘fork_handler’ [-Wmissing-prototypes]
-  140 | void fork_handler(void)
-      |      ^~~~~~~~~~~~
-../arch/um/kernel/process.c:217:6: warning: no previous prototype for ‘arch_cpu_idle’ [-Wmissing-prototypes]
-  217 | void arch_cpu_idle(void)
-      |      ^~~~~~~~~~~~~
-../arch/um/kernel/process.c:253:5: warning: no previous prototype for ‘copy_to_user_proc’ [-Wmissing-prototypes]
-  253 | int copy_to_user_proc(void __user *to, void *from, int size)
-      |     ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:263:5: warning: no previous prototype for ‘clear_user_proc’ [-Wmissing-prototypes]
-  263 | int clear_user_proc(void __user *buf, int size)
-      |     ^~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:271:6: warning: no previous prototype for ‘set_using_sysemu’ [-Wmissing-prototypes]
-  271 | void set_using_sysemu(int value)
-      |      ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:278:5: warning: no previous prototype for ‘get_using_sysemu’ [-Wmissing-prototypes]
-  278 | int get_using_sysemu(void)
-      |     ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:316:12: warning: no previous prototype for ‘make_proc_sysemu’ [-Wmissing-prototypes]
-  316 | int __init make_proc_sysemu(void)
-      |            ^~~~~~~~~~~~~~~~
-../arch/um/kernel/process.c:348:15: warning: no previous prototype for ‘arch_align_stack’ [-Wmissing-prototypes]
-  348 | unsigned long arch_align_stack(unsigned long sp)
-      |               ^~~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:45:6: warning: no previous prototype for ‘machine_restart’ [-Wmissing-prototypes]
-   45 | void machine_restart(char * __unused)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:51:6: warning: no previous prototype for ‘machine_power_off’ [-Wmissing-prototypes]
-   51 | void machine_power_off(void)
-      |      ^~~~~~~~~~~~~~~~~
-../arch/um/kernel/reboot.c:57:6: warning: no previous prototype for ‘machine_halt’ [-Wmissing-prototypes]
-   57 | void machine_halt(void)
-      |      ^~~~~~~~~~~~
-../arch/x86/um/syscalls_64.c:48:6: warning: no previous prototype for ‘arch_switch_to’ [-Wmissing-prototypes]
-   48 | void arch_switch_to(struct task_struct *to)
-      |      ^~~~~~~~~~~~~~
-../arch/um/kernel/tlb.c:579:6: warning: no previous prototype for ‘flush_tlb_mm_range’ [-Wmissing-prototypes]
-  579 | void flush_tlb_mm_range(struct mm_struct *mm, unsigned long start,
-      |      ^~~~~~~~~~~~~~~~~~
-../arch/um/kernel/tlb.c:594:6: warning: no previous prototype for ‘force_flush_all’ [-Wmissing-prototypes]
-  594 | void force_flush_all(void)
-      |      ^~~~~~~~~~~~~~~
-../arch/um/kernel/um_arch.c:408:19: warning: no previous prototype for ‘read_initrd’ [-Wmissing-prototypes]
-  408 | int __init __weak read_initrd(void)
-      |                   ^~~~~~~~~~~
-../arch/um/kernel/um_arch.c:461:7: warning: no previous prototype for ‘text_poke’ [-Wmissing-prototypes]
-  461 | void *text_poke(void *addr, const void *opcode, size_t len)
-      |       ^~~~~~~~~
-../arch/um/kernel/um_arch.c:473:6: warning: no previous prototype for ‘text_poke_sync’ [-Wmissing-prototypes]
-  473 | void text_poke_sync(void)
-      |      ^~~~~~~~~~~~~~
-../arch/um/kernel/kmsg_dump.c:60:12: warning: no previous prototype for ‘kmsg_dumper_stdout_init’ [-Wmissing-prototypes]
-   60 | int __init kmsg_dumper_stdout_init(void)
-      |            ^~~~~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_device.c:19:
-../drivers/gpu/drm/xe/display/xe_display.h: In function ‘xe_display_probe’:
-../drivers/gpu/drm/xe/display/xe_display.h:50:43: error: no return statement in function returning non-void [-Werror=return-type]
-   50 | static inline int xe_display_probe(struct xe_device *xe) { }
-      |                                           ^~~~~~~~~
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:244: drivers/gpu/drm/xe/xe_device.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:485: drivers/gpu/drm/xe] Error 2
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:485: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:485: drivers/gpu] Error 2
-make[4]: *** Waiting for unfinished jobs....
-make[3]: *** [../scripts/Makefile.build:485: drivers] Error 2
-make[3]: *** Waiting for unfinished jobs....
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-make[2]: *** [/kernel/Makefile:1919: .] Error 2
-make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
-
-[18:18:06] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[18:18:11] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+T24gTW9uLCAyMDI0LTA1LTA2IGF0IDE4OjQ3IC0wNzAwLCBaaGFuanVuIERvbmcgd3JvdGU6Cj4g
+QWRkIHJlZmVyZW5jZWQgcmVnaXN0ZXJzIGRlZmluZXMgYW5kIGxpc3Qgb2YgcmVnaXN0ZXJzLgo+
+IFVwZGF0ZSBHdUMgQURTIHNpemUgYWxsb2NhdGlvbiB0byBpbmNsdWRlIHNwYWNlIGZvcgo+IHRo
+ZSBsaXN0cyBvZiBlcnJvciBzdGF0ZSBjYXB0dXJlIHJlZ2lzdGVyIGRlc2NyaXB0b3JzLgo+IAo+
+IAphbGFuOnNuaXAKPiAraW50IHhlX2NhbGN1bGF0ZV9ndWNfcmVnc19jYXB0dXJlX3dvcnN0X3Np
+emUoc3RydWN0IHhlX2d1YyAqZ3VjKQo+ICt7Cj4gK8KgwqDCoMKgwqDCoMKgc2l6ZV90IHRvdGFs
+X3NpemUsIGNsYXNzX3NpemUsIGluc3RhbmNlX3NpemUsIGdsb2JhbF9zaXplOwo+ICvCoMKgwqDC
+oMKgwqDCoGludCBpLCBqOwo+ICsKPiArwqDCoMKgwqDCoMKgwqAvKiBUaGlzIGZ1bmN0aW9uIGNh
+bGN1bGF0ZXMgdGhlIHdvcnN0IGNhc2UgcmVnaXN0ZXIgbGlzdHMgc2l6ZSBieQo+ICvCoMKgwqDC
+oMKgwqDCoCAqIGluY2x1ZGluZyBhbGwgcG9zc2libGUgZW5naW5lcyBjbGFzc2VzLiBJdCBpcyBj
+YWxsZWQgZHVyaW5nIHRoZQo+ICvCoMKgwqDCoMKgwqDCoCAqIGZpcnN0IG9mIGEgdHdvLXBoYXNl
+IEd1QyAoYW5kIEFEUy1wb3B1bGF0aW9uKSBpbml0aWFsaXphdGlvbgo+ICvCoMKgwqDCoMKgwqDC
+oCAqIHNlcXVlbmNlLCB0aGF0IGlzLCBkdXJpbmcgdGhlIHByZS1od2NvbmZpZyBwaGFzZSBiZWZv
+cmUgd2UgaGF2ZQo+ICvCoMKgwqDCoMKgwqDCoCAqIHRoZSBleGFjdCBlbmdpbmUgZnVzaW5nIGlu
+Zm8uCj4gK8KgwqDCoMKgwqDCoMKgICovCj4gK8KgwqDCoMKgwqDCoMKgdG90YWxfc2l6ZSA9IFBB
+R0VfU0laRTvCoC8qIFBhZCBhIHBhZ2UgaW4gZnJvbnQgZm9yIGVtcHR5IGxpc3RzICovCj4gK8Kg
+wqDCoMKgwqDCoMKgZm9yIChpID0gMDsgaSA8IEdVQ19DQVBUVVJFX0xJU1RfSU5ERVhfTUFYOyBp
+KyspIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZm9yIChqID0gMDsgaiA8IEdV
+Q19MQVNUX0VOR0lORV9DTEFTUzsgaisrKSB7CmFsYW46IHNvIGluIHJldjYsIGkgbWVudGlvbmVk
+IGluIG9uZSBvZiB0aGUgb3RoZXIgaHVua3MgdGhhdCBpbiBndWMgaW50ZXJmYWNlLAp0aGUgJ21h
+eCBlbmdpbmUgY2xhc3MnIGRlZmluaXRpb24gdXNlZCBieSBndWMtZXJyb3ItY2FwdHVyZSByZWdp
+c3Rlci1saXN0LWFycmF5cwpkb2VzIG5vdCBmb2xsb3cgdGhlIGRlZmluaXRpb24gb2YgZW5naW5l
+LWNsYXNzIGVudW0gb2YgYWJvdmUgKHdoaWNoIGlzIHVzZWQKZm9yIHN1Ym1pc3Npb24gYW5kIG90
+aGVyIGludGVyZmFjZXMgd2l0aCBHdUMpLiBJIG5vdGljZSB5b3UgZml4ZWQgdGhpcyBvbgphbm90
+aGVyIGh1bmsgYnV0IG1pc3NlZCBpdCBhYm92ZS4gSSBzaG91bGQgaGF2ZSBtYWRlIGl0IGNsZWFy
+IHRoaXMgY2hhbmdlIGlzCnJlcXVpcmVkIGZvciBBTEwgY2FzZXMgd2hlcmUgd2UgYXJlIGxvb3Bp
+bmcgdGhyb3VnaCB0aGUgZW5naW5lIGNsYXNzZXMnIHJlZ2lzdGVyCmxpc3RzIHVzZWQgaW4gZ3Vj
+LSBlcnJvci1jYXB0dXJlLgo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgaWYgKHhlX2d1Y19jYXB0dXJlX2dldGxpc3RzaXplKGd1YywgaSwKPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBHVUNfQ0FQVFVSRV9M
+SVNUX1RZUEVfRU5HSU5FX0NMQVNTLAo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIGosICZjbGFzc19zaXplKSA8IDApCj4gK8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY2xhc3Nfc2l6
+ZSA9IDA7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBp
+ZiAoeGVfZ3VjX2NhcHR1cmVfZ2V0bGlzdHNpemUoZ3VjLCBpLAo+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIEdVQ19DQVBUVVJFX0xJU1RfVFlQRV9F
+TkdJTkVfSU5TVEFOQ0UsCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAgaiwgJmluc3RhbmNlX3NpemUpIDwgMCkKPiAKYWxhbjpzbmlwCgo+IMKgI2Rl
+ZmluZSBNQVhfR09MREVOX0xSQ19TSVpFwqDCoMKgwqAoU1pfNEsgKiA2NCkKPiDCoAo+IMKgaW50
+IHhlX2d1Y19hZHNfaW5pdChzdHJ1Y3QgeGVfZ3VjX2FkcyAqYWRzKQo+IEBAIC0zOTgsNiArNDQz
+LDcgQEAgaW50IHhlX2d1Y19hZHNfaW5pdChzdHJ1Y3QgeGVfZ3VjX2FkcyAqYWRzKQo+IMKgwqDC
+oMKgwqDCoMKgwqBzdHJ1Y3QgeGVfYm8gKmJvOwo+IMKgCj4gwqDCoMKgwqDCoMKgwqDCoGFkcy0+
+Z29sZGVuX2xyY19zaXplID0gY2FsY3VsYXRlX2dvbGRlbl9scmNfc2l6ZShhZHMpOwo+ICvCoMKg
+wqDCoMKgwqDCoGFkcy0+Y2FwdHVyZV9zaXplID0geGVfY2FsY3VsYXRlX2d1Y19yZWdzX2NhcHR1
+cmVfd29yc3Rfc2l6ZShhZHNfdG9fZ3VjKGFkcykpOwo+IMKgwqDCoMKgwqDCoMKgwqBhZHMtPnJl
+Z3NldF9zaXplID0gY2FsY3VsYXRlX3JlZ3NldF9zaXplKGd0KTsKPiDCoMKgwqDCoMKgwqDCoMKg
+YWRzLT5hZHNfd2FrbHZfc2l6ZSA9IGNhbGN1bGF0ZV93YWtsdl9zaXplKGFkcyk7Cj4gwqAKPiBA
+QCAtNDMxLDkgKzQ3NywxMCBAQCBpbnQgeGVfZ3VjX2Fkc19pbml0X3Bvc3RfaHdjb25maWcoc3Ry
+dWN0IHhlX2d1Y19hZHMgKmFkcykKPiDCoMKgwqDCoMKgwqDCoMKgeGVfZ3RfYXNzZXJ0KGd0LCBh
+ZHMtPmJvKTsKPiDCoAo+IMKgwqDCoMKgwqDCoMKgwqBhZHMtPmdvbGRlbl9scmNfc2l6ZSA9IGNh
+bGN1bGF0ZV9nb2xkZW5fbHJjX3NpemUoYWRzKTsKPiArwqDCoMKgwqDCoMKgwqBhZHMtPmNhcHR1
+cmVfc2l6ZSA9IHhlX2NhbGN1bGF0ZV9ndWNfcmVnc19jYXB0dXJlX3dvcnN0X3NpemUoYWRzX3Rv
+X2d1YyhhZHMpKTsKYWxhbjogbml0OiB3ZSBoYWQgYW4gb2ZmbGluZSBjb252ZXJzYXRpb24gdGhh
+dCBkZXNwaXRlIHBvc3RfaHdfY29uZmlnIGtub3dpbmcKZXhhY3QgZW5naW5lIGNsYXNzIGxpc3Qs
+IHdlIHNpbXBsaWlmeSBhbmQgaW1wcm92ZSBleGVjdXRpb24gdGltZSBieSB1c2luZwp3b3JzdC1j
+YXNlLXNpemUgaW4gYm90aCBwcmUgYW5kIHBvc3QgaHdjb25maWcgd2hlbiBkZWNpZGluZyBvbiBz
+aXplLiBXb3VsZCBiZSBuaWNlIHRvCmFkZCBhIGNvbW1lbnQgb24gdGhhdD8gKHNvIGZvbGtzIGRv
+bnQgYXNzdW1lIGl0cyBhIGJ1ZykKCmFsYW46c25pcAoKCj4gwqDCoMKgwqDCoMKgwqDCoGFkcy0+
+cmVnc2V0X3NpemUgPSBjYWxjdWxhdGVfcmVnc2V0X3NpemUoZ3QpOwo+IMKgCj4gLcKgwqDCoMKg
+wqDCoMKgeGVfZ3RfYXNzZXJ0KGd0LCBhZHMtPmdvbGRlbl9scmNfc2l6ZSArCj4gK8KgwqDCoMKg
+wqDCoMKgeGVfZ3RfYXNzZXJ0KGd0LCBhZHMtPmdvbGRlbl9scmNfc2l6ZSArIGFkcy0+Y2FwdHVy
+ZV9zaXplICsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIChhZHMt
+PnJlZ3NldF9zaXplIC0gcHJldl9yZWdzZXRfc2l6ZSkgPD0KPiDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIE1BWF9HT0xERU5fTFJDX1NJWkUpOwphbGFuOiBpIG1pc3Nl
+ZCB0aGlzIGluIHJldjYgLSB3aHkgYXJlIHdlIHVzaW5nIGFkcy0+Y2FwdHVyZV9zaXplIHRvIHZl
+cmlmeSBNQVhfR09MREVOX0xSQ19TSVpFIGlzCnN1ZmZpY2llbnQ/IGkgZG9udCBiZWxpZXZlIHRo
+aXMgbWFjcm8gaXMgcmVsYXRlZCB0byBndWMtZXJyb3ItY2FwdHVyZSByZWcgbGlzdC4KCmFsYW46
+c25pcAoKPiArc3RhdGljIGludCBndWNfY2FwdHVyZV9wcmVwX2xpc3RzKHN0cnVjdCB4ZV9ndWNf
+YWRzICphZHMpCj4gK3sKPiArwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgeGVfZ3VjICpndWMgPSBhZHNf
+dG9fZ3VjKGFkcyk7Cj4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IHhlX2d0ICpndCA9IGFkc190b19n
+dChhZHMpOwo+ICvCoMKgwqDCoMKgwqDCoHUzMiBhZHNfZ2d0dCwgY2FwdHVyZV9vZmZzZXQsIG51
+bGxfZ2d0dCwgdG90YWxfc2l6ZSA9IDA7Cj4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IGlvc3lzX21h
+cCBpbmZvX21hcDsKPiArwqDCoMKgwqDCoMKgwqBzaXplX3Qgc2l6ZSA9IDA7Cj4gK8KgwqDCoMKg
+wqDCoMKgdm9pZCAqcHRyOwo+IMKgwqDCoMKgwqDCoMKgwqBpbnQgaSwgajsKYWxhbjpzbmlwCj4g
+K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKiovCj4gK8KgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKioqIGVuZ2luZSBleGlz
+dHM6IHN0YXJ0IHdpdGggZW5naW5lLWNsYXNzIHJlZ2lzdGVycyAqKiovCj4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKiovCj4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB3cml0ZV9lbXB0eV9saXN0ID0gdHJ1ZTsgLyog
+c3RhcnRpbmcgYXNzdW1wdGlvbiBpcyBhbiBlbXB0eSBsaXN0ICovCj4gK8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBzaXplID0gMDsKPiArwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmICgheGVfZ3VjX2NhcHR1cmVfZ2V0
+bGlzdHNpemUoZ3VjLCBpLAo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoEdVQ19DQVBUVVJFX0xJU1RfVFlQRV9FTkdJTkVfQ0xBU1MsCj4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaiwgJnNp
+emUpKSB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgaWYgKHRvdGFsX3NpemUgKyBzaXplID4gYWRzLT5jYXB0dXJlX3NpemUp
+Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHhlX2d0X2RiZyhndCwgIkNhcHR1cmUgc2l6ZSBvdmVy
+ZmxvdyA6JWx1IHZzICVkXG4iLAo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgdG90YWxfc2l6ZSArIHNpemUsIGFkcy0+Y2FwdHVyZV9zaXplKTsKYWxhbjogaSB0aGlu
+ayBwcmVtZXJnZSBob29rcyBhcmUgZmFpbGluZyBkdWUgdG8gZm9ybWF0IHNwZWNpZmllcnMgLSBw
+bGVhc2UgZG8gZml4IHRoYXQuCmFsYW46c25pcAo+ICvCoMKgwqDCoMKgwqDCoGlmIChhZHMtPmNh
+cHR1cmVfc2l6ZSAhPSBQQUdFX0FMSUdOKHRvdGFsX3NpemUpKQo+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqB4ZV9ndF9pbmZvKGd0LCAiQURTIGNhcHR1cmUgYWxsb2Mgc2l6ZSBjaGFu
+Z2VkIGZyb20gJWQgdG8gJWRcbiIsCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIGFkcy0+Y2FwdHVyZV9zaXplLCBQQUdFX0FMSUdOKHRvdGFsX3Np
+emUpKTsKPiArwqDCoMKgwqDCoMKgwqByZXR1cm4gUEFHRV9BTElHTih0b3RhbF9zaXplKTsKPiDC
+oH0KYWxhbjpzbmlwCgo+ICsjZGVmaW5lIENPTU1PTl9YRUxQX0JBU0VfR0xPQkFMIFwKPiArwqDC
+oMKgwqDCoMKgwqB7IEZPUkNFV0FLRV9HVCzCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMCzCoMKg
+wqDCoMKgIDAsICJGT1JDRVdBS0UiIH0KPiArCj4gKyNkZWZpbmUgQ09NTU9OX0JBU0VfRU5HSU5F
+X0lOU1RBTkNFIFwKPiArwqDCoMKgwqDCoMKgwqB7IFJJTkdfRVNSKDApLMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIDAswqDCoMKgwqDCoCAwLCAiRVNSIiB9LCBcCj4gK8KgwqDCoMKgwqDCoMKg
+eyBSSU5HX0VNUigwKSzCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAwLMKgwqDCoMKgwqAgMCwg
+IkVNUiIgfSwgXAo+ICvCoMKgwqDCoMKgwqDCoHsgUklOR19FSVIoMCkswqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAgMCzCoMKgwqDCoMKgIDAsICJFSVIiIH0sIFwKPiArwqDCoMKgwqDCoMKgwqB7
+IFJJTkdfRVhFQ0xJU1RfU1RBVFVTX0hJKDApLCAwLMKgwqDCoCAwLCAiUklOR19FWEVDTElTVF9T
+VEFUVVNfSEkiIH0sIFwKPiArwqDCoMKgwqDCoMKgwqB7IFJJTkdfRVhFQ0xJU1RfU1RBVFVTX0xP
+KDApLCAwLMKgwqDCoCAwLCAiUklOR19FWEVDTElTVF9TVEFUVVNfTE8iIH0sIFwKPiArwqDCoMKg
+wqDCoMKgwqB7IFJJTkdfRE1BX0ZBREQoMCkswqDCoMKgwqDCoMKgwqDCoCAwLMKgwqDCoMKgwqAg
+MCwgIlJJTkdfRE1BX0ZBRERfTERXIiB9LCBcCj4gK8KgwqDCoMKgwqDCoMKgeyBSSU5HX0RNQV9G
+QUREX1VEVygwKSzCoMKgwqDCoCAwLMKgwqDCoMKgwqAgMCwgIlJJTkdfRE1BX0ZBRERfVURXIiB9
+LCBcCj4gK8KgwqDCoMKgwqDCoMKgeyBSSU5HX0lQRUhSKDApLMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgMCzCoMKgwqDCoMKgIDAsICJJUEVIUiIgfSwgXAo+ICvCoMKgwqDCoMKgwqDCoHsgUklOR19C
+QkFERFIoMCkswqDCoMKgwqDCoMKgwqDCoMKgwqAgMCzCoMKgwqDCoMKgIDAsICJSSU5HX0JCQURE
+Ul9MT1czMiIgfSwgXAo+ICvCoMKgwqDCoMKgwqDCoHsgUklOR19CQkFERFJfVURXKDApLMKgwqDC
+oMKgwqDCoCAwLMKgwqDCoMKgwqAgMCwgIlJJTkdfQkJBRERSX1VQMzIiIH0sIFwKPiArwqDCoMKg
+wqDCoMKgwqB7IFJJTkdfQUNUSEQoMCkswqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAwLMKgwqDCoMKg
+wqAgMCwgIkFDVEhEX0xEVyIgfSwgXAo+ICvCoMKgwqDCoMKgwqDCoHsgUklOR19BQ1RIRF9VRFco
+MCkswqDCoMKgwqDCoMKgwqAgMCzCoMKgwqDCoMKgIDAsICJBQ1RIRF9VRFciIH0sIFwKPiArwqDC
+oMKgwqDCoMKgwqB7IFJJTkdfU1RBUlQoMCkswqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAwLMKgwqDC
+oMKgwqAgMCwgIlNUQVJUIiB9LCBcCj4gK8KgwqDCoMKgwqDCoMKgeyBSSU5HX0hFQUQoMCkswqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIDAswqDCoMKgwqDCoCAwLCAiSEVBRCIgfSwgXAo+ICvCoMKg
+wqDCoMKgwqDCoHsgUklOR19UQUlMKDApLMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAwLMKgwqDC
+oMKgwqAgMCwgIlRBSUwiIH0sIFwKPiArwqDCoMKgwqDCoMKgwqB7IFJJTkdfQ1RMKDApLMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIDAswqDCoMKgwqDCoCAwLCAiQ1RMIiB9LCBcCj4gK8KgwqDC
+oMKgwqDCoMKgeyBSSU5HX01JX01PREUoMCkswqDCoMKgwqDCoMKgwqDCoMKgIDAswqDCoMKgwqDC
+oCAwLCAiTU9ERSIgfSwgXAo+ICvCoMKgwqDCoMKgwqDCoHsgUklOR19IV1NfUEdBKDApLMKgwqDC
+oMKgwqDCoMKgwqDCoCAwLMKgwqDCoMKgwqAgMCwgIkhXUyIgfSwgXAo+ICvCoMKgwqDCoMKgwqDC
+oHsgUklOR19NT0RFKDApLMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAwLMKgwqDCoMKgwqAgMCwg
+IkdGWF9NT0RFIiB9CmFsYW46IEkgbm90aWNlIHRoYXQgInN0cnVjdCBfX2d1Y19tbWlvX3JlZ19k
+ZXNjci5yZWduYW1lIiBpcyBpbnRyb2R1Y2VkIGhlcmUgaW4KUGF0Y2gtIzEgYW5kIHVzZWQgaW4g
+dGhlIHBvcHVsYXRpb24gb2YgdGhlIHN0YXRpYyByZWdsaXN0IHRhYmxlIGFib3ZlIGJ1dCB0aGVu
+Cm5ldmVyIGV2ZXIgcmVmZXJlbmNlZCBpbiB0aGUgZW50aXJlIHNlcmllcy4gSW4gZmFjdCBpbiBQ
+YXRjaCAjNiwgaXRzIHJlbW92ZWQuCgpOT1RFOiB0aGlzIGlzIGRpZmZlcmVudCBmcm9tIGk5MTUg
+d2hlcmUgdGhpcyB2YXJpYWJsZSB3YXMgdXNlZCBpbiB0aGUgcmVwb3J0aW5nCnBhdGNoIG9mIGk5
+MTUncyBzZXJpZXMgYnV0IGl0IGxvb2tzIGxpa2UgZnJvbSB0aGlzIHhlIHNlcmllcyB2ZXJzaW9u
+LCB3ZSBhcmUKY3JlYXRpbmcgYSBzaGFyZWQgInJlZ2lzdGVyLT5vZmZzZXQtPm5hbWUiwqBsb29r
+dXAgdGFibGUgbGlzdCBpbiB4ZV9od19lbmdpbmUuYwpmb3IgYm90aCBndWMgYW5kIGV4ZWNsaXN0
+IGluIFBhdGNoIDYuCgpJIGJlbGlldmUgdGhpcyBmbGlydHMgZGFuZ2Vyb3VzbHkgY2xvc2UgdG8g
+YnJlYWtpbmcgbGludXggcGF0Y2ggcnVsZXMuIEEgdmFyaWFibGUvCmZ1bmMgbm90IHVzZWQgaW4g
+dGhlIGVudGlyZSBzZXJpZXMgcmVhbGx5IHNob3VsZG50IGJlIGFkZGVkLiBJbiB0aGlzIGNhc2Us
+IHdlIGFyZQpOT1QgY29uc3VtaW5nIHJlZ25hbWUgYXQgYWxsIGFueXdoZXJlIGluIHRoZSBzZXJp
+ZXMuIEFuZCB0aGVuIHdlIHJlbW92ZSBpdCBpbiB0aGUKc3Vic2VxdWVudCBwYXRjaC02LgoKYWxh
+bjpzbmlwCgoKCj4gK3N0YXRpYyBpbnQKPiArZ3VjX2NhcHR1cmVfZ2V0bGlzdHNpemUoc3RydWN0
+IHhlX2d1YyAqZ3VjLCB1MzIgb3duZXIsIHUzMiB0eXBlLCB1MzIgY2xhc3NpZCwKPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHNpemVfdCAqc2l6ZSwgYm9v
+bCBpc19wdXJwb3NlX2VzdCkKPiArewo+ICvCoMKgwqDCoMKgwqDCoHN0cnVjdCB4ZV9ndWNfc3Rh
+dGVfY2FwdHVyZSAqZ2MgPSBndWMtPmNhcHR1cmU7Cj4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IF9f
+Z3VjX2NhcHR1cmVfYWRzX2NhY2hlICpjYWNoZSA9ICZnYy0+YWRzX2NhY2hlW293bmVyXVt0eXBl
+XVtjbGFzc2lkXTsKPiArwqDCoMKgwqDCoMKgwqBpbnQgbnVtX3JlZ3M7Cj4gKwo+ICvCoMKgwqDC
+oMKgwqDCoGlmICghZ2MtPnJlZ2xpc3RzKSB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoHhlX2d0X3dhcm4oZ3VjX3RvX2d0KGd1YyksICJObyBjYXB0dXJlIHJlZ2xpc3QgZm9yIHRo
+aXMgZGV2aWNlXG4iKTsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIC1F
+Tk9ERVY7Cj4gK8KgwqDCoMKgwqDCoMKgfQo+ICsKPiArwqDCoMKgwqDCoMKgwqBpZiAoY2FjaGUt
+PmlzX3ZhbGlkKSB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCpzaXplID0gY2Fj
+aGUtPnNpemU7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybiBjYWNoZS0+
+c3RhdHVzOwo+ICvCoMKgwqDCoMKgwqDCoH0KPiArCj4gK8KgwqDCoMKgwqDCoMKgaWYgKCFpc19w
+dXJwb3NlX2VzdCAmJiBvd25lciA9PSBHVUNfQ0FQVFVSRV9MSVNUX0lOREVYX1BGICYmCmFsYW46
+IHNvIHRoaXMgb25lIHRvb2sgbWUgYSB3aGlsZSB0byBmaWd1cmUgb3V0IHdoeSBpdCBoYXMgYmVj
+b21lIG9ycGhhbmVkLgooYWZ0ZXIgaSB3ZW50IHRocm91Z2ggdGhlIGVudGlyZSBzZXJpZXMgaHVu
+dGluZyBmb3IgaXQpLiBJJ20gcmVmZXJpZ24gdG8gImlzX3B1cnBvc2VfZXN0Ii4KClNvIHRoaXMg
+aXMgYW5vdGhlciBpOTE1IGluaGVyaXR0YW5jZSB3aGljaCBkaWQgaGF2ZSB2YWxpZCByZWFzb25p
+bmcuIEluIGk5MTUgd2hlbiB3ZQp3ZXJlIGRvaW5nICJjaGVja19ndWNfY2FwdHVyZV9zaXplIiAo
+d2hpY2ggaXMgYSBvbmUtdGltZSBldmVudCksIHdlIHdhbnRlZCB0byBmbGFnIGlmCmFueSBvZiB0
+aGUgcmVnaXN0ZXIgdGFibGVzIHdlcmUgbm9uIGV4aXN0ZW50LiB0YWtlIG5vdGUgdGhhdCBhdCB0
+aGlzIGVhcmx5IGxvZy1idWZmZXItCmNhbGN1bGF0aW9uIHRpbWUsIHdlIGFzc3VtZWQgYWxsIGVu
+Z2luZSBjbGFzc2VzIGFyZSB2YWxpZCBvbiB0aGUgcGxhdGZvcm0gYXQKcHJlLWh3LWNvbmZpZyB0
+aW1lLiBUaGUgcmVhc29uIGlzIGJlY2F1c2Ugd2UgZGlkIGFjdHVhbGx5IGRpc2NvdmVyIGNhc2Vz
+IHdoZW4gbmV3CnBsYXRmb3JtcyBhZGRlZCBuZXcgZW5naW5lcyBhbmQgdGhlIGRldmVsb3BlciBj
+b21wbGV0ZWx5IG1pc3NlZCBhZGRpbmcgdGhlIHJlZ2lzdGVyCnRhYmxlIGZvciBlcnJvciBjYXB0
+dXJlIGFzIHdlbGwuIFdpdGggdGhpcyBtZXNzYWdlLCBpdCB3b3VsZCBnZXQgZmxhZ2dlZCBhcyBh
+IHdhcm5pbmcuCkhvd2V2ZXIsIHRoaXMgc2FtZSBsb3dlciBsZXZlbCBmdW5jdGlvbiB3YXMgYWxz
+byB1c2VkIGZvciB0aGUgcmVndWxhciByZWdpc3RlcgpsaXN0IHBvcHVsYXRpb24gd2hpY2ggY2Fu
+IGdldCBjYWxsZWQgZXZlcnl0aW1lIHdlIHJlc2V0IGd1YyBpbmNsdWRpbmcgY29taW5nCm91dCBv
+ZiBzdXNwZW5kIG9yIGlmIHdlIHBlcmZvcm1lZCBhIEdUIHJlc2V0IGFuZCBzbyB3ZSBkaWRuJ3Qg
+d2FudCB0aGF0IHdhcm5pbmcKdG8gaGFwcGVuIGV2ZXJ5IHNpbmdsZSB0aW1lIC0gb25seSBvbmNl
+IHBlciBtb2R1bGUgbG9hZC4gc28gdGhhdHMgd2h5IHdlCmNyZWF0ZWQgYSB3cmFwZXIgd2l0aCB0
+aGF0ICJpc19wdXJwb3NlX2VzdCIgdG8gZGlmZmVyZW50YXRlIGlmIHRoZSBjYWxsZXIKd2FzIGZv
+ciB0aGUgbG9nLWJ1ZmZlci1zaXplLWVzdG1hdGlvbiBvciBmb3IgYWN0dWFsIHBvcHVsYXRpb24g
+d2hlcmUgd2Ugb25seQpwcmludCB0aGUgd2FybiBpbiB0aGUgZm9ybWVyLgoKc28gbXkgcmV2aWV3
+IGNvbW1lbnQgd291bGQgYmU6IHdlIGFscmVhZHkgbGVhcm50IHRoZSBsZXNzb25zIGZyb20gaTkx
+NSBzbyBsZXRzCnVzZSB0aGlzIHByb3Blcmx5LiBpIHN1Z2dlc3Qgd2UgZml4IHBhdGNoICMzIHNv
+IHRoYXQgY2hlY2tfZ3VjX2NhcHR1cmVfc2l6ZQp3aWxsIGNhbGwgYWJvdmUgZ3VjX2NhcHR1cmVf
+Z2V0bGlzdHNpemUgd2l0aCBpc19wdXJwb3NlX2VzdCBzZXQgdHJ1ZSBhcyBvcHBvc2VkIHRvCmNh
+bGxpbmcgeGVfY2FsY3VsYXRlX2d1Y19yZWdzX2NhcHR1cmVfd29yc3Rfc2l6ZS4gSSdsbCBtYWtl
+IHRoZSBzYW1lIGNvbW1lbnQKaW4gUGF0Y2gzCgphbGFuOnNuaXAKCj4gKwo+ICsjZW5kaWYgLyog
+X1hFX0dVQ19DQVBUVVJFX0ggKi8KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hl
+X2d1Y19jYXB0dXJlX2Z3aWYuaCBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndWNfY2FwdHVyZV9m
+d2lmLmgKPiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+IGluZGV4IDAwMDAwMDAwMDAwMC4uNzliYzI3
+N2FmYWE4Cj4gLS0tIC9kZXYvbnVsbAphbGFuOnNuaXAKCj4gK3N0cnVjdCBndWNfc3RhdGVfY2Fw
+dHVyZV9ncm91cF9oZWFkZXJfdCB7Cj4gK8KgwqDCoMKgwqDCoMKgdTMyIG93bmVyOwphbGFuOiBJ
+ZiBpIHJlYWQgdGhlIHRoZSBzcGVjIGNvcnJlY3RseSwgY2FwdHVyZV9ncm91cF9oZWFkZXIncyBv
+d25lcgpoYXMgVkZJRCBmaWVsZCBhdCBHRU5NQVNLKDcsMCkuCj4gK8KgwqDCoMKgwqDCoMKgdTMy
+IGluZm87Cj4gKyNkZWZpbmUgQ0FQX0dSUF9IRFJfTlVNX0NBUFRVUkVTIEdFTk1BU0soNywgMCkK
+PiArI2RlZmluZSBDQVBfR1JQX0hEUl9DQVBUVVJFX1RZUEUgR0VOTUFTSygxNSwgOCkgLyogZ3Vj
+X2NhcHR1cmVfZ3JvdXBfdHlwZXMgKi8KPiArfSBfX3BhY2tlZDsKYWxhbjpzbmlwCgo=
