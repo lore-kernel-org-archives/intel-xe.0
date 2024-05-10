@@ -4,52 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F31FC25B10
-	for <intel-xe@archiver.kernel.org>; Fri, 10 May 2024 19:28:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4D3EC25B10
+	for <intel-xe@archiver.kernel.org>; Fri, 10 May 2024 20:00:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4818610E0E7;
-	Fri, 10 May 2024 19:28:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5186E10E0E7;
+	Fri, 10 May 2024 20:00:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J6tJo6UL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wi1Nbr2B";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 221E610E0E7
- for <intel-xe@lists.freedesktop.org>; Fri, 10 May 2024 19:28:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D68210ECF2
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 May 2024 20:00:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715369310; x=1746905310;
- h=date:from:to:cc:subject:message-id;
- bh=Oag4q09IvduhRH2bif2hkikEdQlserBvfuWWyjHJv0U=;
- b=J6tJo6ULGGUSXstOh49dJf4O9IvF9nkhH9TTq/GLfbPCW09dH1JtbLNk
- P2OHx7XmqTJVt/Kx8Ha+shDSxhyocrDMKpZRw5SXd+M1Hytnn27CQRiTc
- xNmVYnyss1at+gEEtErra0P5EP0euIw5Ix2JgpDWit2sgJRmMBRtsZh7i
- v9xNpEXgdDR96+GNv3iEWfUbGjIEDlyCPuRJw7+v/1YjYcXxtL4MXIvr7
- 0Sbb1x5OCrpSXGtcbQzWKWxYk1GmenaVah1dJMFgQRZo4i0C6nctuWsgN
- H+wWFT9CEgjmUlFMEz9fRs9ihdyHysLWfxKVIPNGau3oKz8rpEM88KTJX Q==;
-X-CSE-ConnectionGUID: 9SwzQgsiTQeaCChSMM07dw==
-X-CSE-MsgGUID: e9JZmVbIRWa+8t1Tcg07YQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11069"; a="11531671"
-X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="11531671"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 12:28:30 -0700
-X-CSE-ConnectionGUID: xj5ZCBcwTEKdsrnAbJfTTw==
-X-CSE-MsgGUID: k1FhPmPdQbqHob8unfyWIg==
+ t=1715371258; x=1746907258;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=aC22jCXrvAQHZqET5F0e79gZ/RCegwLmXumtoi7Wrlc=;
+ b=Wi1Nbr2BLtFJSCoxl8CncLaZdt4CZIYaorsxAoKs+mrwS5ppcfg1Z4RT
+ IVloDbpuv93sqljhtYSYgQJvDiFY/YF8Lg5w7acRPsFre6vdQptyyLAf3
+ xcE0jbVmIEWZghWdMQx8adaClJpHD7ZIJFJw2W+0AExWyf66cqCvRDNwn
+ 308moBICZd0iW5UqQTMDXHzlgCcMWfii8UXLweTVE385oAexe+IswjXXx
+ J3crTtKmOW3Nd2UB4LYX9UNEMLKoE4MhuPT6TjeeMkG9TXFo+mXFfTF6Y
+ yzj01HmH9q1V0MUxC0aFUQL3nhU9/zbD+I6pENOQ+C2tYRCrsGJ4Ne3Mn g==;
+X-CSE-ConnectionGUID: whI6yiAPSdm92Nwp2x7Baw==
+X-CSE-MsgGUID: vpvkPopsRJmz9tRM4HRkdg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11069"; a="21948547"
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="21948547"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2024 13:00:56 -0700
+X-CSE-ConnectionGUID: bzP9khBXTPmr6kEgi73JDg==
+X-CSE-MsgGUID: tIY94keTTWWB3amBJOl9Mg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="34145296"
-Received: from lkp-server01.sh.intel.com (HELO f8b243fe6e68) ([10.239.97.150])
- by fmviesa005.fm.intel.com with ESMTP; 10 May 2024 12:28:28 -0700
-Received: from kbuild by f8b243fe6e68 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1s5Vus-0006WB-0g;
- Fri, 10 May 2024 19:28:26 +0000
-Date: Sat, 11 May 2024 03:28:15 +0800
-From: kernel test robot <lkp@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- c3203ca3b8a6aab7c5a5dc3f5e165a53410461f6
-Message-ID: <202405110313.kJp3vofl-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="29566569"
+Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2024 13:00:57 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: jonathan.cavitt@intel.com,
+	saurabhg.gupta@intel.com
+Subject: [PATCH v7 2/3] drm/xe/xe_guc_submit: Allow lr exec queues to be banned
+Date: Fri, 10 May 2024 12:45:39 -0700
+Message-Id: <20240510194540.3246991-2-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240510194540.3246991-1-jonathan.cavitt@intel.com>
+References: <20240510194540.3246991-1-jonathan.cavitt@intel.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,160 +67,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: c3203ca3b8a6aab7c5a5dc3f5e165a53410461f6  drm/xe: Rename few xe_args.h macros
+LR queues currently don't get banned during a GT/GuC reset because they
+lack a job.  Though they don't have a job to detect the reset status of,
+it's still possible to tell when they should be banned by looking at the
+LRC: if the LRC head and tail don't match, then the exec queue should be
+banned and cleaned up.
 
-elapsed time: 1381m
+This also requires swapping the usage of xe_sched_tdr_queue_imm with
+xe_guc_exec_queue_trigger_cleanup, as the former is specific to non-lr
+exec queues.
 
-configs tested: 141
-configs skipped: 3
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Stuart Summers <stuart.summers@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_submit.c | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
-
-tested configs:
-alpha                             allnoconfig   gcc  
-alpha                            allyesconfig   gcc  
-alpha                               defconfig   gcc  
-arc                              allmodconfig   gcc  
-arc                               allnoconfig   gcc  
-arc                              allyesconfig   gcc  
-arc                                 defconfig   gcc  
-arc                   randconfig-001-20240510   gcc  
-arc                   randconfig-002-20240510   gcc  
-arm                              allmodconfig   gcc  
-arm                               allnoconfig   clang
-arm                              allyesconfig   gcc  
-arm                                 defconfig   clang
-arm                   randconfig-001-20240510   gcc  
-arm                   randconfig-002-20240510   clang
-arm                   randconfig-003-20240510   gcc  
-arm                   randconfig-004-20240510   gcc  
-arm64                            allmodconfig   clang
-arm64                             allnoconfig   gcc  
-arm64                               defconfig   gcc  
-arm64                 randconfig-001-20240510   clang
-arm64                 randconfig-002-20240510   gcc  
-arm64                 randconfig-003-20240510   clang
-arm64                 randconfig-004-20240510   clang
-csky                             allmodconfig   gcc  
-csky                              allnoconfig   gcc  
-csky                             allyesconfig   gcc  
-csky                                defconfig   gcc  
-csky                  randconfig-001-20240510   gcc  
-csky                  randconfig-002-20240510   gcc  
-hexagon                          allmodconfig   clang
-hexagon                           allnoconfig   clang
-hexagon                          allyesconfig   clang
-hexagon                             defconfig   clang
-hexagon               randconfig-001-20240510   clang
-hexagon               randconfig-002-20240510   clang
-i386                             allmodconfig   gcc  
-i386                              allnoconfig   gcc  
-i386                             allyesconfig   gcc  
-i386         buildonly-randconfig-001-20240510   clang
-i386         buildonly-randconfig-002-20240510   gcc  
-i386         buildonly-randconfig-003-20240510   clang
-i386         buildonly-randconfig-004-20240510   clang
-i386         buildonly-randconfig-005-20240510   clang
-i386         buildonly-randconfig-006-20240510   gcc  
-i386                                defconfig   clang
-i386                  randconfig-001-20240510   clang
-i386                  randconfig-002-20240510   clang
-i386                  randconfig-003-20240510   gcc  
-i386                  randconfig-004-20240510   gcc  
-i386                  randconfig-005-20240510   clang
-i386                  randconfig-006-20240510   clang
-i386                  randconfig-011-20240510   clang
-i386                  randconfig-012-20240510   clang
-i386                  randconfig-013-20240510   gcc  
-i386                  randconfig-014-20240510   clang
-i386                  randconfig-015-20240510   gcc  
-i386                  randconfig-016-20240510   gcc  
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                           defconfig   gcc  
-loongarch             randconfig-001-20240510   gcc  
-loongarch             randconfig-002-20240510   gcc  
-m68k                             allmodconfig   gcc  
-m68k                              allnoconfig   gcc  
-m68k                             allyesconfig   gcc  
-m68k                                defconfig   gcc  
-microblaze                       allmodconfig   gcc  
-microblaze                        allnoconfig   gcc  
-microblaze                       allyesconfig   gcc  
-microblaze                          defconfig   gcc  
-mips                              allnoconfig   gcc  
-mips                             allyesconfig   gcc  
-nios2                            allmodconfig   gcc  
-nios2                             allnoconfig   gcc  
-nios2                            allyesconfig   gcc  
-nios2                               defconfig   gcc  
-nios2                 randconfig-001-20240510   gcc  
-nios2                 randconfig-002-20240510   gcc  
-openrisc                          allnoconfig   gcc  
-openrisc                         allyesconfig   gcc  
-openrisc                            defconfig   gcc  
-parisc                           allmodconfig   gcc  
-parisc                            allnoconfig   gcc  
-parisc                           allyesconfig   gcc  
-parisc                              defconfig   gcc  
-parisc                randconfig-001-20240510   gcc  
-parisc                randconfig-002-20240510   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                          allyesconfig   clang
-powerpc               randconfig-001-20240510   gcc  
-powerpc               randconfig-002-20240510   gcc  
-powerpc               randconfig-003-20240510   clang
-powerpc64             randconfig-001-20240510   clang
-powerpc64             randconfig-002-20240510   clang
-powerpc64             randconfig-003-20240510   clang
-riscv                            allmodconfig   clang
-riscv                             allnoconfig   gcc  
-riscv                            allyesconfig   clang
-riscv                               defconfig   clang
-riscv                 randconfig-001-20240510   clang
-riscv                 randconfig-002-20240510   clang
-s390                             allmodconfig   clang
-s390                              allnoconfig   clang
-s390                             allyesconfig   gcc  
-s390                                defconfig   clang
-s390                  randconfig-001-20240510   gcc  
-s390                  randconfig-002-20240510   gcc  
-sh                               allmodconfig   gcc  
-sh                                allnoconfig   gcc  
-sh                               allyesconfig   gcc  
-sh                                  defconfig   gcc  
-sh                    randconfig-001-20240510   gcc  
-sh                    randconfig-002-20240510   gcc  
-sparc                            allmodconfig   gcc  
-sparc                             allnoconfig   gcc  
-sparc                               defconfig   gcc  
-sparc64                          allmodconfig   gcc  
-sparc64                          allyesconfig   gcc  
-sparc64                             defconfig   gcc  
-sparc64               randconfig-001-20240510   gcc  
-sparc64               randconfig-002-20240510   gcc  
-um                               allmodconfig   clang
-um                                allnoconfig   clang
-um                               allyesconfig   gcc  
-um                                  defconfig   clang
-um                             i386_defconfig   gcc  
-um                    randconfig-001-20240510   gcc  
-um                    randconfig-002-20240510   gcc  
-um                           x86_64_defconfig   clang
-x86_64                            allnoconfig   clang
-x86_64                           allyesconfig   clang
-x86_64       buildonly-randconfig-002-20240510   clang
-x86_64       buildonly-randconfig-003-20240510   gcc  
-x86_64                              defconfig   gcc  
-x86_64                          rhel-8.3-rust   clang
-xtensa                            allnoconfig   gcc  
-xtensa                randconfig-001-20240510   gcc  
-xtensa                randconfig-002-20240510   gcc  
-
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 3a8e501f2bc25..bd507a916c1cf 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1485,15 +1485,23 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
+ 	 */
+ 	if (!(q->flags & (EXEC_QUEUE_FLAG_KERNEL | EXEC_QUEUE_FLAG_VM))) {
+ 		struct xe_sched_job *job = xe_sched_first_pending_job(sched);
++		bool ban = false;
+ 
+ 		if (job) {
+ 			if ((xe_sched_job_started(job) &&
+ 			    !xe_sched_job_completed(job)) ||
+ 			    xe_sched_invalidate_job(job, 2)) {
+ 				trace_xe_sched_job_ban(job);
+-				set_exec_queue_banned(q);
+-				xe_sched_tdr_queue_imm(&q->guc->sched);
++				ban = true;
+ 			}
++		} else if (xe_exec_queue_is_lr(q) &&
++			   (xe_lrc_ring_head(q->lrc) != xe_lrc_ring_tail(q->lrc))) {
++			ban = true;
++		}
++
++		if (ban) {
++			set_exec_queue_banned(q);
++			xe_guc_exec_queue_trigger_cleanup(q);
+ 		}
+ 	}
+ }
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.25.1
+
