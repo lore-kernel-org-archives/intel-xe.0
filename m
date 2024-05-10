@@ -4,28 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D291C25B10
-	for <intel-xe@archiver.kernel.org>; Fri, 10 May 2024 20:59:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7DA9C25B10
+	for <intel-xe@archiver.kernel.org>; Fri, 10 May 2024 21:00:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D595F10E14F;
-	Fri, 10 May 2024 20:59:04 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71B2A10E14F;
- Fri, 10 May 2024 20:59:03 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6875525259397055366=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C2B210E14F;
+	Fri, 10 May 2024 21:00:04 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fQrB2R1s";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45D2310E14F
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 May 2024 21:00:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1715374803; x=1746910803;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fSJESqmSVw/QhWOZNxFutMH0gg51diu8bReydXCh1ck=;
+ b=fQrB2R1s5spU6vSpC/uYw3srirKPHKRuzKlqoeEUKvIRAuJQoPBvRLs/
+ KIAyYkkwbesPI0IGSk7G5NO3bf8YrAgA4J4QxzJYctgenEuYIyrgxvney
+ NxOD4H34/yT0G0UMc8btKdNpCHA3XT+hKm/Z1mnDVGtnkVCM7d1hQ7zJJ
+ 7f1qgF+vtGgqINuB8mscMD0F4VnGL9Rwm9q29slVzLl0MqD4sF3oARv+S
+ /L7062jRMitvCtkRdkv58RQ8CFg5suJcNz7uP7MqHQCGPykjzDub/lMsC
+ K4ZFOmb4cSP5wT9uHXekz7X+tTwI7swedIf6pxxQqq4RvPkfhpmwNb+5h w==;
+X-CSE-ConnectionGUID: F4lK3Z0sT/S2PyHO052K1Q==
+X-CSE-MsgGUID: rOuKYyaXS6eO2FrxU/yVBQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11069"; a="22048285"
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="22048285"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2024 14:00:02 -0700
+X-CSE-ConnectionGUID: CPmpK7wTSl6XlJfFpwBH5A==
+X-CSE-MsgGUID: FRS1OARNQiebeFmGh4rtvA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="34604045"
+Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2024 14:00:02 -0700
+From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: david.e.box@linux.intel.com, "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Subject: [PATCH 0/6] Support PMT features in Xe
+Date: Fri, 10 May 2024 16:59:32 -0400
+Message-ID: <20240510205948.904409-1-michael.j.ruhl@intel.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5Bv7=2C1/3?=
- =?utf-8?q?=5D_drm/xe/xe=5Fguc=5Fsubmit=3A_Fix_exec_queue_stop_race_conditio?=
- =?utf-8?q?n?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 10 May 2024 20:59:03 -0000
-Message-ID: <171537474346.2056703.15412287175314990737@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240510194540.3246991-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20240510194540.3246991-1-jonathan.cavitt@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,115 +61,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6875525259397055366==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+DG2 and Battlemage have the Intel Platform Monitoring Technology (PMT)
+feature available, but not in the "standard" (pci endpoint) way.
 
-== Series Details ==
+Add support to the vsec and Xe drivers to allow access to the PMT space
+for the DG2 and BMG devices.
 
-Series: series starting with [v7,1/3] drm/xe/xe_guc_submit: Fix exec queue stop race condition
-URL   : https://patchwork.freedesktop.org/series/133468/
-State : success
+The intel_vsec_register() function allows drivers to provide telemetry
+header information (usually found at probe time), to allow the PMT
+driver to probe the telemetry features.
 
-== Summary ==
+Battlemage has a shared memory area (selected by index), so a callback
+function is required to access the appropriate PMT data.
 
-CI Bug Log - changes from xe-1275-afd593c3e9f9218ececa93e30c33182346295ac9_BAT -> xe-pw-133468v1_BAT
-====================================================
+David E. Box (3):
+  platform/x86/intel/vsec.h: Move to include/linux
+  platform/x86/intel/vsec: Add PMT read callbacks
+  platform/x86/intel/pmt: Add support to use provided read callbacks
 
-Summary
--------
+Michael J. Ruhl (3):
+  platform/x86/intel/pmt: Add quirk for BAR0 offset adjustment
+  drm/xe/vsec: Add support for DG2
+  drm/xe/vsec: Support BMG devices
 
-  **SUCCESS**
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/xe_device.c                |   5 +
+ drivers/gpu/drm/xe/xe_device_types.h          |   5 +
+ drivers/gpu/drm/xe/xe_vsec.c                  | 241 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vsec.h                  |  13 +
+ drivers/platform/x86/intel/pmc/core_ssram.c   |   2 +-
+ drivers/platform/x86/intel/pmt/class.c        |  33 ++-
+ drivers/platform/x86/intel/pmt/class.h        |  10 +-
+ drivers/platform/x86/intel/pmt/crashlog.c     |   2 +-
+ drivers/platform/x86/intel/pmt/telemetry.c    |  14 +-
+ drivers/platform/x86/intel/sdsi.c             |   3 +-
+ drivers/platform/x86/intel/tpmi.c             |   3 +-
+ drivers/platform/x86/intel/vsec.c             |  10 +-
+ .../vsec.h => include/linux/intel_vsec.h      |  12 +-
+ 14 files changed, 325 insertions(+), 29 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_vsec.c
+ create mode 100644 drivers/gpu/drm/xe/xe_vsec.h
+ rename drivers/platform/x86/intel/vsec.h => include/linux/intel_vsec.h (92%)
 
-  No regressions found.
+-- 
+2.44.0
 
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-133468v1_BAT that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
-
-
-Build changes
--------------
-
-  * Linux: xe-1275-afd593c3e9f9218ececa93e30c33182346295ac9 -> xe-pw-133468v1
-
-  IGT_7846: 4a5fd4e7cb2798636f6464e2bd61399f3242b322 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1275-afd593c3e9f9218ececa93e30c33182346295ac9: afd593c3e9f9218ececa93e30c33182346295ac9
-  xe-pw-133468v1: 133468v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133468v1/index.html
-
---===============6875525259397055366==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v7,1/3] drm/xe/xe_guc_submit: Fix exec queue stop race condition</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133468/">https://patchwork.freedesktop.org/series/133468/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133468v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133468v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1275-afd593c3e9f9218ececa93e30c33182346295ac9_BAT -&gt; xe-pw-133468v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-133468v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1275-afd593c3e9f9218ececa93e30c33182346295ac9 -&gt; xe-pw-133468v1</li>
-</ul>
-<p>IGT_7846: 4a5fd4e7cb2798636f6464e2bd61399f3242b322 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1275-afd593c3e9f9218ececa93e30c33182346295ac9: afd593c3e9f9218ececa93e30c33182346295ac9<br />
-  xe-pw-133468v1: 133468v1</p>
-
-</body>
-</html>
-
---===============6875525259397055366==--
