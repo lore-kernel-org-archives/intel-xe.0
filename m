@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28744C25B4F
-	for <intel-xe@archiver.kernel.org>; Sun, 12 May 2024 15:49:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70EA6C25B4F
+	for <intel-xe@archiver.kernel.org>; Sun, 12 May 2024 15:49:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3BDE10E28D;
-	Sun, 12 May 2024 15:49:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DE9A10E2C4;
+	Sun, 12 May 2024 15:49:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fMrdtm5i";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XzU+gVNU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B132210E28D
- for <intel-xe@lists.freedesktop.org>; Sun, 12 May 2024 15:49:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8861410E2C4
+ for <intel-xe@lists.freedesktop.org>; Sun, 12 May 2024 15:49:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715528967; x=1747064967;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LG102nLYOXfqHt4GA9Wf44Ea/am9H0Hi+tC5RPjOFGE=;
- b=fMrdtm5ii8pDNMfvxfoX4OOLqOQ5FP+uEs9UZG00gPUo79dFglAL6CwG
- pn7SdlCLPfKDQAi5q3z66daFTxhXd9Gg70lr8CkXuz4cV1fiTB8aoO+UM
- dAYi8L7JI09J0aUB5gohU+dsNFSxmVjbK4CjC+HUtuT1ZO7UVq0X7JhfU
- jSUmaAuCNrWPN3wXY0psql+qdYcKzP9kn0i//n24KCP0aLSv960JE5KkY
- K3Dj3aKNrqXcYx4H8aFRmv2rKG+kDKck5IGAx77vLQ6ErQi6Imb33soK3
- Ikp8Sz9ni8FgeXT+gkzqhASQdDfmEY79y+afsuVFL9c1njllNLlt/xH3a A==;
-X-CSE-ConnectionGUID: BZWfzTKRS9aMSnbfaIH5zA==
-X-CSE-MsgGUID: Z5JQhjceQWagCWNgEVumBw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11071"; a="22039939"
-X-IronPort-AV: E=Sophos;i="6.08,156,1712646000"; d="scan'208";a="22039939"
+ t=1715528968; x=1747064968;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=pXbCkLuvzCvhXwgG6bbiJ1N3PQsgdzHP7YbHZM3lKog=;
+ b=XzU+gVNUSPIKBodzpWeA7ZLPI6oJRuLA0PQ4CpoYzXRY2h1slPDUfpOs
+ efolem8DILpdmTLh9wiKaEdecttP0pCZQcpg67+uyy+W4fZwoZaH5Wqtz
+ kxN7FDSPJEIU9egMxmerZpdW3jmoCQrZNrUCvl/LUJqosV9aCdGMFinsD
+ gjh0+lIR6Xf0pMVQYm0h+MQG3sEklXl9k4lsYXtwXjLI6vyYAo5jyp1u/
+ plZZEWTUwpPevHiGhv1+Nd1UbGyfs9sNb0G5CTiuTGxiPwusLR6s7Qjs9
+ mtD8mRHALQ4THACFQiP/sTFuRhK5yU5muk6AGIhxkxbrAWmN2YI7oo7xp g==;
+X-CSE-ConnectionGUID: 7FNBQSVYSSmNFft1WOKLYg==
+X-CSE-MsgGUID: s/6Wt973SIKvFO0JKJpPRw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11071"; a="22039943"
+X-IronPort-AV: E=Sophos;i="6.08,156,1712646000"; d="scan'208";a="22039943"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2024 08:49:26 -0700
-X-CSE-ConnectionGUID: lGWO8Yc1T+urwNVv2SWlWQ==
-X-CSE-MsgGUID: odxzVF10QSOvkuwBrFs+1A==
+ 12 May 2024 08:49:28 -0700
+X-CSE-ConnectionGUID: z0ptdQL2SUW8C6VI1LUvPg==
+X-CSE-MsgGUID: Cwf6tSOETW2RNXkVJWuRCw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,156,1712646000"; d="scan'208";a="53332478"
+X-IronPort-AV: E=Sophos;i="6.08,156,1712646000"; d="scan'208";a="53332490"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.25.139])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2024 08:49:25 -0700
+ 12 May 2024 08:49:28 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 0/6] Add support for VF to query its configuration
-Date: Sun, 12 May 2024 17:49:09 +0200
-Message-Id: <20240512154915.2040-1-michal.wajdeczko@intel.com>
+Subject: [PATCH 2/6] drm/xe/guc: Add VF2GUC_VF_RESET to ABI
+Date: Sun, 12 May 2024 17:49:11 +0200
+Message-Id: <20240512154915.2040-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240512154915.2040-1-michal.wajdeczko@intel.com>
+References: <20240512154915.2040-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,31 +65,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Michal Wajdeczko (6):
-  drm/xe/guc: Add VF2GUC_MATCH_VERSION to ABI
-  drm/xe/guc: Add VF2GUC_VF_RESET to ABI
-  drm/xe/guc: Add VF2GUC_QUERY_SINGLE_KLV to ABI
-  drm/xe/vf: Add support for VF to query its configuration
-  drm/xe/vf: Custom hardware config load step if VF
-  drm/xe/vf: Expose SR-IOV VF attributes to GT debugfs
+The version negotiation between the VF driver and the GuC firmware
+must start with explicit soft reset of the GuC state initiated by
+the VF driver. Add VF2GUC action definitions to the ABI header.
 
- drivers/gpu/drm/xe/Makefile                   |   2 +
- .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    | 160 ++++
- drivers/gpu/drm/xe/xe_gt_debugfs.c            |   3 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c           | 747 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.h           |  23 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c   |  72 ++
- drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.h   |  14 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h     |  82 ++
- drivers/gpu/drm/xe/xe_gt_types.h              |   3 +
- drivers/gpu/drm/xe/xe_guc.c                   |  36 +
- 10 files changed, 1142 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf.c
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf.h
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.h
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    | 37 +++++++++++++++++++
+ 1 file changed, 37 insertions(+)
 
+diff --git a/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
+index 49ed5fbd4ced..dbe6eb47dd31 100644
+--- a/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
+@@ -434,4 +434,41 @@
+ #define   GUC_PF_TRIGGER_VF_FLR_START			4u
+ #define   GUC_PF_TRIGGER_VF_FLR_FINISH			5u
+ 
++/**
++ * DOC: VF2GUC_VF_RESET
++ *
++ * This action is used by VF to reset GuC's VF state.
++ *
++ * This message must be sent as `MMIO HXG Message`_.
++ *
++ *  +---+-------+--------------------------------------------------------------+
++ *  |   | Bits  | Description                                                  |
++ *  +===+=======+==============================================================+
++ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_HOST_                                |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_REQUEST_                                 |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 27:16 | DATA0 = MBZ                                                  |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |  15:0 | ACTION = _`GUC_ACTION_VF2GUC_VF_RESET` = 0x5507              |
++ *  +---+-------+--------------------------------------------------------------+
++ *
++ *  +---+-------+--------------------------------------------------------------+
++ *  |   | Bits  | Description                                                  |
++ *  +===+=======+==============================================================+
++ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_GUC_                                 |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_RESPONSE_SUCCESS_                        |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |  27:0 | DATA0 = MBZ                                                  |
++ *  +---+-------+--------------------------------------------------------------+
++ */
++#define GUC_ACTION_VF2GUC_VF_RESET			0x5507u
++
++#define VF2GUC_VF_RESET_REQUEST_MSG_LEN			GUC_HXG_REQUEST_MSG_MIN_LEN
++#define VF2GUC_VF_RESET_REQUEST_MSG_0_MBZ		GUC_HXG_REQUEST_MSG_0_DATA0
++
++#define VF2GUC_VF_RESET_RESPONSE_MSG_LEN		GUC_HXG_RESPONSE_MSG_MIN_LEN
++#define VF2GUC_VF_RESET_RESPONSE_MSG_0_MBZ		GUC_HXG_RESPONSE_MSG_0_DATA0
++
+ #endif
 -- 
 2.43.0
 
