@@ -4,55 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9683C25B75
-	for <intel-xe@archiver.kernel.org>; Sun, 12 May 2024 15:36:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28744C25B4F
+	for <intel-xe@archiver.kernel.org>; Sun, 12 May 2024 15:49:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA9E710E2CF;
-	Sun, 12 May 2024 15:36:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3BDE10E28D;
+	Sun, 12 May 2024 15:49:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WOq9uKUy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fMrdtm5i";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAB0A10E2CF;
- Sun, 12 May 2024 15:36:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B132210E28D
+ for <intel-xe@lists.freedesktop.org>; Sun, 12 May 2024 15:49:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715528197; x=1747064197;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=bgkLgGVBN1X+G4AcO3iprTd4Lp+rZcXDf1rU9vl2ShI=;
- b=WOq9uKUyZXvtjWT64wdjR40QgtLyvoRTyKH9b9FxJd4I/PHBNVtYHpkH
- skePHVCmcpB5v/1XZPwcYTl953F3UyHABpcuFY8OIHA+jnAfHG5/g8JK2
- CTIjUypTwK4kWz7SoBSPdItmgvWESyl9TtS3mfDpl7/2uINqDifESJA3B
- BXEo2eemDv+AVKDYgjtDud5aoVv91Imaqq0pkAeagShiyBSlofMm/aJ3B
- aBCruVHDPI5e7AXqwBsZwQlLjuPYhXHQQAGMCU7KGNMuhkplVfL3cuJ4i
- PIAa3o+9zTUlU9TSWakN9SRTrpzBR2R3ZPXfPbFnPgh8wuoIO9miub5Ld g==;
-X-CSE-ConnectionGUID: 17lLujIeQPmXFY7Oyl3mqw==
-X-CSE-MsgGUID: OZSm+fk0SliXb5uOxeKMpQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11071"; a="11403316"
-X-IronPort-AV: E=Sophos;i="6.08,156,1712646000"; d="scan'208";a="11403316"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2024 08:36:37 -0700
-X-CSE-ConnectionGUID: m3n46GydTXuj/s+gNmxweg==
-X-CSE-MsgGUID: /j/BC61GQnKijWeCcPqVRQ==
+ t=1715528967; x=1747064967;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LG102nLYOXfqHt4GA9Wf44Ea/am9H0Hi+tC5RPjOFGE=;
+ b=fMrdtm5ii8pDNMfvxfoX4OOLqOQ5FP+uEs9UZG00gPUo79dFglAL6CwG
+ pn7SdlCLPfKDQAi5q3z66daFTxhXd9Gg70lr8CkXuz4cV1fiTB8aoO+UM
+ dAYi8L7JI09J0aUB5gohU+dsNFSxmVjbK4CjC+HUtuT1ZO7UVq0X7JhfU
+ jSUmaAuCNrWPN3wXY0psql+qdYcKzP9kn0i//n24KCP0aLSv960JE5KkY
+ K3Dj3aKNrqXcYx4H8aFRmv2rKG+kDKck5IGAx77vLQ6ErQi6Imb33soK3
+ Ikp8Sz9ni8FgeXT+gkzqhASQdDfmEY79y+afsuVFL9c1njllNLlt/xH3a A==;
+X-CSE-ConnectionGUID: BZWfzTKRS9aMSnbfaIH5zA==
+X-CSE-MsgGUID: Z5JQhjceQWagCWNgEVumBw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11071"; a="22039939"
+X-IronPort-AV: E=Sophos;i="6.08,156,1712646000"; d="scan'208";a="22039939"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2024 08:49:26 -0700
+X-CSE-ConnectionGUID: lGWO8Yc1T+urwNVv2SWlWQ==
+X-CSE-MsgGUID: odxzVF10QSOvkuwBrFs+1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,156,1712646000"; d="scan'208";a="34976587"
+X-IronPort-AV: E=Sophos;i="6.08,156,1712646000"; d="scan'208";a="53332478"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.25.139])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2024 08:36:34 -0700
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2024 08:49:25 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>, linux-fsdevel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH 4/4] drm/xe/guc: Expose raw access to GuC log over debugfs
-Date: Sun, 12 May 2024 17:36:06 +0200
-Message-Id: <20240512153606.1996-5-michal.wajdeczko@intel.com>
+Subject: [PATCH 0/6] Add support for VF to query its configuration
+Date: Sun, 12 May 2024 17:49:09 +0200
+Message-Id: <20240512154915.2040-1-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20240512153606.1996-1-michal.wajdeczko@intel.com>
-References: <20240512153606.1996-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,82 +63,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We already provide the content of the GuC log in debugsfs, but it
-is in a text format where each log dword is printed as hexadecimal
-number, which does not scale well with large GuC log buffers.
+Michal Wajdeczko (6):
+  drm/xe/guc: Add VF2GUC_MATCH_VERSION to ABI
+  drm/xe/guc: Add VF2GUC_VF_RESET to ABI
+  drm/xe/guc: Add VF2GUC_QUERY_SINGLE_KLV to ABI
+  drm/xe/vf: Add support for VF to query its configuration
+  drm/xe/vf: Custom hardware config load step if VF
+  drm/xe/vf: Expose SR-IOV VF attributes to GT debugfs
 
-To allow more efficient access to the GuC log, which could benefit
-our CI systems, expose raw binary log data.  In addition to less
-overhead in preparing text based GuC log file, the new GuC log file
-in binary format is also almost 3x smaller.
+ drivers/gpu/drm/xe/Makefile                   |   2 +
+ .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    | 160 ++++
+ drivers/gpu/drm/xe/xe_gt_debugfs.c            |   3 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c           | 747 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.h           |  23 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c   |  72 ++
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.h   |  14 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h     |  82 ++
+ drivers/gpu/drm/xe/xe_gt_types.h              |   3 +
+ drivers/gpu/drm/xe/xe_guc.c                   |  36 +
+ 10 files changed, 1142 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
 
-Any existing script that expects the GuC log buffer in text format
-can use command like below to convert from new binary format:
-
-	hexdump -e '4/4 "0x%08x " "\n"'
-
-but this shouldn't be the case as most decoders expect GuC log data
-in binary format.
-
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
----
-Cc: linux-fsdevel@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
----
- drivers/gpu/drm/xe/xe_guc_debugfs.c | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-index d3822cbea273..53fea952344d 100644
---- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-@@ -8,6 +8,7 @@
- #include <drm/drm_debugfs.h>
- #include <drm/drm_managed.h>
- 
-+#include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_guc.h"
-@@ -52,6 +53,29 @@ static const struct drm_info_list debugfs_list[] = {
- 	{"guc_log", guc_log, 0},
- };
- 
-+static ssize_t guc_log_read(struct file *file, char __user *buf, size_t count, loff_t *pos)
-+{
-+	struct dentry *dent = file_dentry(file);
-+	struct dentry *uc_dent = dent->d_parent;
-+	struct dentry *gt_dent = uc_dent->d_parent;
-+	struct xe_gt *gt = gt_dent->d_inode->i_private;
-+	struct xe_guc_log *log = &gt->uc.guc.log;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	ssize_t ret;
-+
-+	xe_pm_runtime_get(xe);
-+	ret = xe_map_read_from(xe, buf, count, pos, &log->bo->vmap, log->bo->size);
-+	xe_pm_runtime_put(xe);
-+
-+	return ret;
-+}
-+
-+static const struct file_operations guc_log_ops = {
-+	.owner		= THIS_MODULE,
-+	.read		= guc_log_read,
-+	.llseek		= default_llseek,
-+};
-+
- void xe_guc_debugfs_register(struct xe_guc *guc, struct dentry *parent)
- {
- 	struct drm_minor *minor = guc_to_xe(guc)->drm.primary;
-@@ -72,4 +96,6 @@ void xe_guc_debugfs_register(struct xe_guc *guc, struct dentry *parent)
- 	drm_debugfs_create_files(local,
- 				 ARRAY_SIZE(debugfs_list),
- 				 parent, minor);
-+
-+	debugfs_create_file("guc_log_raw", 0600, parent, NULL, &guc_log_ops);
- }
 -- 
 2.43.0
 
