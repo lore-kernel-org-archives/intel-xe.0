@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3428CC25B78
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9575DC25B4F
 	for <intel-xe@archiver.kernel.org>; Sun, 12 May 2024 15:49:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDC8A10E2CF;
-	Sun, 12 May 2024 15:49:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50F3410E2F8;
+	Sun, 12 May 2024 15:49:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kxrywDpO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RdUgQWTi";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27AFE10E2F8
- for <intel-xe@lists.freedesktop.org>; Sun, 12 May 2024 15:49:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 698D410E28D
+ for <intel-xe@lists.freedesktop.org>; Sun, 12 May 2024 15:49:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715528973; x=1747064973;
+ t=1715528967; x=1747064967;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=S4G/Fb+45jy/pk/Cdyao2CWuYTC4I39rUIAv8MG1OGE=;
- b=kxrywDpOt5Nqt4yX3X+32nokbQDFfG3Tx/Lt44ReFf4BHuJwfzAFAuag
- iQvz5AunsS5VlfCxe/2nL1gKsjaDOOepOJrkWqJ9jHEOnVM8GINCJcx1c
- 0z9+v6de4WKBfONdqENOIkbniWUw60g1RQrU+Ku+Im/ZEspllRpoB827x
- Pvrrxe5pMBU755ZiOIrujHrlhY890Xl0/NSxZ8ErPdJaJmTqEi96Gmm4Q
- XqSmfm8eLoQxdz4nMhiAwoFO04uiEsb7zFHZrDIySlAff6VWo2onV2VSu
- LOoUi4HLHMGPIeH+U/ayclI+SCWe53baDt54wfz5ZLVOWMgj2tYHNy1X4 g==;
-X-CSE-ConnectionGUID: JuClrDN9REy0RRICluuPGw==
-X-CSE-MsgGUID: 9jT9uebySguS/0/bwVjPcw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11071"; a="22039947"
-X-IronPort-AV: E=Sophos;i="6.08,156,1712646000"; d="scan'208";a="22039947"
+ bh=vwUIz09Dngz2m5cfSFMSyltKwuNdZ+dvZv7E0kVYCA0=;
+ b=RdUgQWTisXgErrXnm2Y9DPL1YIoqDYASGl7RjgeAhSid9yd/k8BDxnrE
+ GGEmPPqXaja05l0a/K6jKetTaJar3/4EPblZ/r6Nnh25jOAugpdEFW/X1
+ OB/UkZ2bEyZ5M59YX5l4EokvOO9KDC4LcnrX5f/Pq1Nln5P8gMoSmuS0q
+ R/k4hti1Lxg8DBu/d/nLouR+5YxfE8iA+5B86kcMkGWQkKdEVVw+DQA2A
+ GzYNS9OT7TAKwagBdsDUtNCkVBLmn//GltZkU/8Qa1o7g8iI0KZ0fP8xZ
+ 2FSsu8vb08i03ndvrAeH+8j/32nuZT5SefYe5QAmfUQhKvdEc1xyEJCP8 A==;
+X-CSE-ConnectionGUID: FxIPrjOFQtWlszHJPZji1A==
+X-CSE-MsgGUID: bmDQoQc9S52JmJjhVOoihQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11071"; a="22039941"
+X-IronPort-AV: E=Sophos;i="6.08,156,1712646000"; d="scan'208";a="22039941"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2024 08:49:33 -0700
-X-CSE-ConnectionGUID: m+GdkhywRGG36ETbYOOOrg==
-X-CSE-MsgGUID: JDkjLoroSF2/YYOcjyYBzA==
+ 12 May 2024 08:49:27 -0700
+X-CSE-ConnectionGUID: bWQZMxIPR3qpISdytok03Q==
+X-CSE-MsgGUID: xW3KgdrVRNS8oJ01rjeElg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,156,1712646000"; d="scan'208";a="53332501"
+X-IronPort-AV: E=Sophos;i="6.08,156,1712646000"; d="scan'208";a="53332483"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.25.139])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2024 08:49:32 -0700
+ 12 May 2024 08:49:26 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 6/6] drm/xe/vf: Expose SR-IOV VF attributes to GT debugfs
-Date: Sun, 12 May 2024 17:49:15 +0200
-Message-Id: <20240512154915.2040-7-michal.wajdeczko@intel.com>
+Subject: [PATCH 1/6] drm/xe/guc: Add VF2GUC_MATCH_VERSION to ABI
+Date: Sun, 12 May 2024 17:49:10 +0200
+Message-Id: <20240512154915.2040-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240512154915.2040-1-michal.wajdeczko@intel.com>
 References: <20240512154915.2040-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,149 +65,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For debug purposes we might want to view actual VF configuration
-(including GGTT range, LMEM size, number of GuC contexts IDs or
-doorbells) and the negotiated ABI versions (with GuC and PF).
+In upcoming patches we will add a version negotiation between
+the VF driver and the GuC firmware. Add necessary definitions
+to our GuC firmware ABI header.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile                 |  1 +
- drivers/gpu/drm/xe/xe_gt_debugfs.c          |  3 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c | 72 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.h | 14 ++++
- 4 files changed, 90 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.h
+ .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    | 67 +++++++++++++++++++
+ 1 file changed, 67 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index aaa3bce7390f..04c94629b349 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -156,6 +156,7 @@ xe-$(CONFIG_HWMON) += xe_hwmon.o
- # graphics virtualization (SR-IOV) support
- xe-y += \
- 	xe_gt_sriov_vf.o \
-+	xe_gt_sriov_vf_debugfs.o \
- 	xe_guc_relay.o \
- 	xe_memirq.o \
- 	xe_sriov.o
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index c5e562e143fd..66f897a9b6ca 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -16,6 +16,7 @@
- #include "xe_gt.h"
- #include "xe_gt_mcr.h"
- #include "xe_gt_sriov_pf_debugfs.h"
-+#include "xe_gt_sriov_vf_debugfs.h"
- #include "xe_gt_topology.h"
- #include "xe_hw_engine.h"
- #include "xe_lrc.h"
-@@ -306,4 +307,6 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
+index c1ad09b36453..49ed5fbd4ced 100644
+--- a/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
+@@ -213,6 +213,73 @@
+ #define   GUC_PF_NOTIFY_VF_PAUSE_DONE			3u
+ #define   GUC_PF_NOTIFY_VF_FIXUP_DONE			4u
  
- 	if (IS_SRIOV_PF(xe))
- 		xe_gt_sriov_pf_debugfs_register(gt, root);
-+	else if (IS_SRIOV_VF(xe))
-+		xe_gt_sriov_vf_debugfs_register(gt, root);
- }
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c
-new file mode 100644
-index 000000000000..f3ddcbefc6bc
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c
-@@ -0,0 +1,72 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023-2024 Intel Corporation
-+ */
-+
-+#include <linux/debugfs.h>
-+
-+#include <drm/drm_debugfs.h>
-+
-+#include "xe_gt_debugfs.h"
-+#include "xe_gt_sriov_vf.h"
-+#include "xe_gt_sriov_vf_debugfs.h"
-+#include "xe_gt_types.h"
-+#include "xe_sriov.h"
-+
-+/*
-+ *      /sys/kernel/debug/dri/0/
-+ *      ├── gt0
-+ *      │   ├── vf
-+ *      │   │   ├── self_config
-+ *      │   │   ├── abi_versions
-+ *      │   │   ├── runtime_regs
-+ */
-+
-+static const struct drm_info_list vf_info[] = {
-+	{
-+		"self_config",
-+		.show = xe_gt_debugfs_simple_show,
-+		.data = xe_gt_sriov_vf_print_config,
-+	},
-+	{
-+		"abi_versions",
-+		.show = xe_gt_debugfs_simple_show,
-+		.data = xe_gt_sriov_vf_print_version,
-+	},
-+#if defined(CONFIG_DRM_XE_DEBUG) || defined(CONFIG_DRM_XE_DEBUG_SRIOV)
-+	{
-+		"runtime_regs",
-+		.show = xe_gt_debugfs_simple_show,
-+		.data = xe_gt_sriov_vf_print_runtime,
-+	},
-+#endif
-+};
-+
 +/**
-+ * xe_gt_sriov_vf_debugfs_register - Register SR-IOV VF specific entries in GT debugfs.
-+ * @gt: the &xe_gt to register
-+ * @root: the &dentry that represents the GT directory
++ * DOC: VF2GUC_MATCH_VERSION
 + *
-+ * Register SR-IOV VF entries that are GT related and must be shown under GT debugfs.
++ * This action is used to match VF interface version used by VF and GuC.
++ *
++ * This action must be sent over MMIO.
++ *
++ *  +---+-------+--------------------------------------------------------------+
++ *  |   | Bits  | Description                                                  |
++ *  +===+=======+==============================================================+
++ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_HOST_                                |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_REQUEST_                                 |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 27:16 | DATA0 = MBZ                                                  |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |  15:0 | ACTION = _`GUC_ACTION_VF2GUC_MATCH_VERSION` = 0x5500         |
++ *  +---+-------+--------------------------------------------------------------+
++ *  | 1 | 31:24 | **BRANCH** - branch ID of the VF interface                   |
++ *  |   |       | (use BRANCH_ANY to request latest version supported by GuC)  |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 23:16 | **MAJOR** - major version of the VF interface                |
++ *  |   |       | (use MAJOR_ANY to request latest version supported by GuC)   |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |  15:8 | **MINOR** - minor version of the VF interface                |
++ *  |   |       | (use MINOR_ANY to request latest version supported by GuC)   |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |   7:0 | **MBZ**                                                      |
++ *  +---+-------+--------------------------------------------------------------+
++ *
++ *  +---+-------+--------------------------------------------------------------+
++ *  |   | Bits  | Description                                                  |
++ *  +===+=======+==============================================================+
++ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_GUC_                                 |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_RESPONSE_SUCCESS_                        |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |  27:0 | DATA0 = MBZ                                                  |
++ *  +---+-------+--------------------------------------------------------------+
++ *  | 1 | 31:24 | **BRANCH** - branch ID of the VF interface                   |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 23:16 | **MAJOR** - major version of the VF interface                |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |  15:8 | **MINOR** - minor version of the VF interface                |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |   7:0 | **PATCH** - patch version of the VF interface                |
++ *  +---+-------+--------------------------------------------------------------+
 + */
-+void xe_gt_sriov_vf_debugfs_register(struct xe_gt *gt, struct dentry *root)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct drm_minor *minor = xe->drm.primary;
-+	struct dentry *vfdentry;
++#define GUC_ACTION_VF2GUC_MATCH_VERSION			0x5500u
 +
-+	xe_assert(xe, IS_SRIOV_VF(xe));
-+	xe_assert(xe, root->d_inode->i_private == gt);
++#define VF2GUC_MATCH_VERSION_REQUEST_MSG_LEN		(GUC_HXG_REQUEST_MSG_MIN_LEN + 1u)
++#define VF2GUC_MATCH_VERSION_REQUEST_MSG_0_MBZ		GUC_HXG_REQUEST_MSG_0_DATA0
++#define VF2GUC_MATCH_VERSION_REQUEST_MSG_1_BRANCH	(0xffu << 24)
++#define   GUC_VERSION_BRANCH_ANY			0
++#define VF2GUC_MATCH_VERSION_REQUEST_MSG_1_MAJOR	(0xffu << 16)
++#define   GUC_VERSION_MAJOR_ANY				0
++#define VF2GUC_MATCH_VERSION_REQUEST_MSG_1_MINOR	(0xffu << 8)
++#define   GUC_VERSION_MINOR_ANY				0
++#define VF2GUC_MATCH_VERSION_REQUEST_MSG_1_MBZ		(0xffu << 0)
 +
-+	/*
-+	 *      /sys/kernel/debug/dri/0/
-+	 *      ├── gt0
-+	 *      │   ├── vf
-+	 */
-+	vfdentry = debugfs_create_dir("vf", root);
-+	if (IS_ERR(vfdentry))
-+		return;
-+	vfdentry->d_inode->i_private = gt;
++#define VF2GUC_MATCH_VERSION_RESPONSE_MSG_LEN		(GUC_HXG_RESPONSE_MSG_MIN_LEN + 1u)
++#define VF2GUC_MATCH_VERSION_RESPONSE_MSG_0_MBZ		GUC_HXG_RESPONSE_MSG_0_DATA0
++#define VF2GUC_MATCH_VERSION_RESPONSE_MSG_1_BRANCH	(0xffu << 24)
++#define VF2GUC_MATCH_VERSION_RESPONSE_MSG_1_MAJOR	(0xffu << 16)
++#define VF2GUC_MATCH_VERSION_RESPONSE_MSG_1_MINOR	(0xffu << 8)
++#define VF2GUC_MATCH_VERSION_RESPONSE_MSG_1_PATCH	(0xffu << 0)
 +
-+	drm_debugfs_create_files(vf_info, ARRAY_SIZE(vf_info), vfdentry, minor);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.h
-new file mode 100644
-index 000000000000..b2cff7ef5c78
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.h
-@@ -0,0 +1,14 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023-2024 Intel Corporation
-+ */
-+
-+#ifndef _XE_GT_SRIOV_VF_DEBUGFS_H_
-+#define _XE_GT_SRIOV_VF_DEBUGFS_H_
-+
-+struct xe_gt;
-+struct dentry;
-+
-+void xe_gt_sriov_vf_debugfs_register(struct xe_gt *gt, struct dentry *root);
-+
-+#endif
+ /**
+  * DOC: PF2GUC_UPDATE_VGT_POLICY
+  *
 -- 
 2.43.0
 
