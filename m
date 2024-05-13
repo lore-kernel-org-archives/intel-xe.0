@@ -4,62 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18DF3C25B75
-	for <intel-xe@archiver.kernel.org>; Mon, 13 May 2024 09:19:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5332BC25B10
+	for <intel-xe@archiver.kernel.org>; Mon, 13 May 2024 09:30:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B15EC10E554;
-	Mon, 13 May 2024 09:19:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eVtGDbaY";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D1B310E560
- for <intel-xe@lists.freedesktop.org>; Mon, 13 May 2024 09:19:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715591993; x=1747127993;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=rBX6mkCI2wHNtQJlkpWBNdiV5pv46+IxEDKVx1B0zr4=;
- b=eVtGDbaYFtN+GrGpkRNSACzIA8l2xB4oWt9z+zXvSU/AIDaNFaxItVcj
- vVFjnfhMHkJl5j971K4yrpT86UFHROL1aecs2NWWWMcBc9XObaSwj7SGP
- BVygHilUZ+9QlVkprpgdEh+0MG61teQa1SNp/nJmNGQ3g4WzaG+QTNGay
- W01IOB6XysiPh2tB1sLAFiHy5vuirJ++MANz1bSiUBDkDBX9bcM7WkA+F
- lYVPZt65t8e4Zb4fpWzZdoHk7WMHmnhdGoRyxcLlz3d5gKlj1OfigmRi+
- 8gHp/ZWoWAUufmmqRtMz8Jv3yD0zIO8uDKibRmFwaqmxMcdfzRxrMqnAp w==;
-X-CSE-ConnectionGUID: 87ndFfoBTDa/9Z5DoFUuMA==
-X-CSE-MsgGUID: 7DLiU2BGQuGIyNKAwAgSKw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11071"; a="11338824"
-X-IronPort-AV: E=Sophos;i="6.08,157,1712646000"; d="scan'208";a="11338824"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2024 02:19:52 -0700
-X-CSE-ConnectionGUID: eKyoLdV5R4yKk+qlPaSqLQ==
-X-CSE-MsgGUID: C7zPkz31TzekpoS+vcHsiw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,157,1712646000"; d="scan'208";a="34789093"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.245.99.210])
- ([10.245.99.210])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2024 02:19:51 -0700
-Message-ID: <d6d907b9-4606-4a55-b6d9-f71dbe6d93ca@intel.com>
-Date: Mon, 13 May 2024 11:19:49 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A74710E5AB;
+	Mon, 13 May 2024 09:30:19 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0088110E5AB;
+ Mon, 13 May 2024 09:30:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3668743751465746693=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 14/20] drm/xe/gt: break out gt_fini into sw vs hw state
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20240510181212.264622-22-matthew.auld@intel.com>
- <20240510181212.264622-36-matthew.auld@intel.com>
- <6334b1c4-469d-4251-a737-a5ba79b01224@intel.com>
- <7adf98aa-610a-4285-bd69-1f53d332fa01@intel.com>
-Content-Language: en-US
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <7adf98aa-610a-4285-bd69-1f53d332fa01@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_xe=5Fgt=5Fidle_fixes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 13 May 2024 09:30:17 -0000
+Message-ID: <171559261700.2094388.14820743000687536782@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240513070546.3754640-1-riana.tauro@intel.com>
+In-Reply-To: <20240513070546.3754640-1-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,94 +35,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============3668743751465746693==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: xe_gt_idle fixes
+URL   : https://patchwork.freedesktop.org/series/133519/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-1276-7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e_BAT -> xe-pw-133519v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-133519v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_exec_threads@threads-mixed-shared-vm-basic:
+    - bat-pvc-2:          [DMESG-WARN][1] ([Intel XE#1238]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1276-7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e/bat-pvc-2/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133519v1/bat-pvc-2/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html
+
+  
+  [Intel XE#1238]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1238
 
 
-On 13.05.2024 10:37, Matthew Auld wrote:
-> On 13/05/2024 08:50, Andrzej Hajda wrote:
->> On 10.05.2024 20:12, Matthew Auld wrote:
->>> Have a cleaner separation between hw vs sw.
->>>
->>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
->>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> ---
->>>   drivers/gpu/drm/xe/xe_gt.c | 21 +++++++++++++--------
->>>   1 file changed, 13 insertions(+), 8 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->>> index 36c7b1631fa6..3f1826b783ad 100644
->>> --- a/drivers/gpu/drm/xe/xe_gt.c
->>> +++ b/drivers/gpu/drm/xe/xe_gt.c
->>> @@ -57,9 +57,17 @@
->>>   #include "xe_wa.h"
->>>   #include "xe_wopcm.h"
->>> +static void gt_fini(struct drm_device *drm, void *arg)
->>> +{
->>> +    struct xe_gt *gt = arg;
->>> +
->>> +    destroy_workqueue(gt->ordered_wq);
->>
->> Do we need this wq after unbind? It seems to be used by hw stuff:
->> - gt_reset
->> - xe_guc_exec_queue_trigger_cleanup
->
-> Yeah, my thinking is that for stuff like exec queue we might need to 
-> clean it up after unplug? Plus it's just sw state. I can drop for now 
-> if you prefer?
+Build changes
+-------------
 
-OK, no strong feelings.
+  * IGT: IGT_7846 -> IGT_7847
+  * Linux: xe-1276-7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e -> xe-pw-133519v1
 
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+  IGT_7846: 4a5fd4e7cb2798636f6464e2bd61399f3242b322 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7847: 86712f2effc8ba6690c7e165ad63904416763b75 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1276-7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e: 7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e
+  xe-pw-133519v1: 133519v1
 
-Regards
-Andrzej
+== Logs ==
 
->
->>
->> Regards
->> Andrzej
->>
->>> +}
->>> +
->>>   struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
->>>   {
->>>       struct xe_gt *gt;
->>> +    int err;
->>>       gt = drmm_kzalloc(&tile_to_xe(tile)->drm, sizeof(*gt), 
->>> GFP_KERNEL);
->>>       if (!gt)
->>> @@ -68,6 +76,10 @@ struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
->>>       gt->tile = tile;
->>>       gt->ordered_wq = alloc_ordered_workqueue("gt-ordered-wq", 0);
->>> +    err = drmm_add_action_or_reset(&gt_to_xe(gt)->drm, gt_fini, gt);
->>> +    if (err)
->>> +        return ERR_PTR(err);
->>> +
->>>       return gt;
->>>   }
->>> @@ -90,15 +102,9 @@ void xe_gt_sanitize(struct xe_gt *gt)
->>>    */
->>>   void xe_gt_remove(struct xe_gt *gt)
->>>   {
->>> -    xe_uc_remove(&gt->uc);
->>> -}
->>> -
->>> -static void gt_fini(struct drm_device *drm, void *arg)
->>> -{
->>> -    struct xe_gt *gt = arg;
->>>       int i;
->>> -    destroy_workqueue(gt->ordered_wq);
->>> +    xe_uc_remove(&gt->uc);
->>>       for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
->>>           xe_hw_fence_irq_finish(&gt->fence_irq[i]);
->>> @@ -567,7 +573,6 @@ int xe_gt_init(struct xe_gt *gt)
->>>       if (err)
->>>           return err;
->>> -    return drmm_add_action_or_reset(&gt_to_xe(gt)->drm, gt_fini, gt);
->>>   }
->>>   static int do_gt_reset(struct xe_gt *gt)
->>
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133519v1/index.html
 
+--===============3668743751465746693==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>xe_gt_idle fixes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133519/">https://patchwork.freedesktop.org/series/133519/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133519v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133519v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1276-7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e_BAT -&gt; xe-pw-133519v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-133519v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_threads@threads-mixed-shared-vm-basic:<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1276-7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e/bat-pvc-2/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1238">Intel XE#1238</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133519v1/bat-pvc-2/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7846 -&gt; IGT_7847</li>
+<li>Linux: xe-1276-7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e -&gt; xe-pw-133519v1</li>
+</ul>
+<p>IGT_7846: 4a5fd4e7cb2798636f6464e2bd61399f3242b322 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7847: 86712f2effc8ba6690c7e165ad63904416763b75 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1276-7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e: 7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e<br />
+  xe-pw-133519v1: 133519v1</p>
+
+</body>
+</html>
+
+--===============3668743751465746693==--
