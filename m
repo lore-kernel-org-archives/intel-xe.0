@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D81AEC25B79
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9538C25B75
 	for <intel-xe@archiver.kernel.org>; Mon, 13 May 2024 08:42:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 893C310E532;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7581310E52F;
 	Mon, 13 May 2024 08:42:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T6s2zwoe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G7a9fL4s";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D764910E505
- for <intel-xe@lists.freedesktop.org>; Mon, 13 May 2024 08:42:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D97210E532
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 May 2024 08:42:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715589748; x=1747125748;
+ t=1715589750; x=1747125750;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=OzEwzdeDBduIs9yt2dNd7fsjGxonjrNTAwLKqD5RBuU=;
- b=T6s2zwoe5ys0TF2BCMSgcJaBvmgfHE9YwrdGAITjCRHLh3x4H0eh+8V6
- YsiH36vqin4O/O4bLS5FMhSTuwF6KvlPnk26lQxkF9SXV6Wyj3zwoHFc7
- uqiCgIeivvluD1sPtleYlAQwap9zAvOhqVDDHf3K0xp0WcEmXDYMH04bo
- zb7/3aDGC0LqufrZkp8YnurLQvS75vkaSwVFTrmYbz70W2MwSLS5W1ev4
- 5foLMP4bVVFZvRV5G1yVxYsY+zLNSSYM0jtT1e9eFtySWs3iJ4AtXnxqC
- A4vZIRM1QiXm3YrFVCWjIYCuLoDO9H3hkigPImX6narXxgwEXcJStNQ/L g==;
-X-CSE-ConnectionGUID: jD2l3ZLzRDaSy2nXY7c1Cw==
-X-CSE-MsgGUID: R9ORe2ART1W1kin4kmRU2Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11071"; a="11452632"
-X-IronPort-AV: E=Sophos;i="6.08,157,1712646000"; d="scan'208";a="11452632"
+ bh=gEw0DeFTd0cqKWh3/b1azcCII2VdWIWkVKgp/yNt6ic=;
+ b=G7a9fL4sq5fGcuvri0oL9PsiiB5m5WD258+rrhe0PDuzqiI3r3PmmrCU
+ IQSRbcCeQuypPd4uzOjNJBtawgrqZDVQxPljlKtYeL6dbt6muDQkBh3Hv
+ /WjuUkNvQIxqvou98HhjdGJfVBgUPVoxToTyKYHPSmTKuecOPylh6dqRD
+ 2IW3D2Yz/notalz25OC+/An8EyWqHMRTl+Oky/XBJe09ASx5Ozh5d1FNK
+ w8YIMXeyYwUnlRqixAanbF6/rFJRqcVGM+WptYt/saaqcFbKCZIFbsWyH
+ CzrMVvkzO9BjLzwIOe3Flg8Idmk3hEhk5Fp2ULbyUOZWGHyfOTpVl8dEx Q==;
+X-CSE-ConnectionGUID: odJZ1tAaS0Kk62wRoSmuhA==
+X-CSE-MsgGUID: OaKiJyhPTMS6EFzhaSxqTQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11071"; a="11452637"
+X-IronPort-AV: E=Sophos;i="6.08,157,1712646000"; d="scan'208";a="11452637"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2024 01:42:28 -0700
-X-CSE-ConnectionGUID: B8XvoBCXTtmcvzvjBmo3bw==
-X-CSE-MsgGUID: HwXFmgXNQ0aqGDwefSHl9g==
+ 13 May 2024 01:42:30 -0700
+X-CSE-ConnectionGUID: SujDCVWkSWCo1+ehIQqtow==
+X-CSE-MsgGUID: sYz2vgvLRJK3MQXq0uk3Ug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,157,1712646000"; d="scan'208";a="30306516"
+X-IronPort-AV: E=Sophos;i="6.08,157,1712646000"; d="scan'208";a="30306520"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.119.62])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2024 01:42:26 -0700
+ 13 May 2024 01:42:29 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/4] drm/xe: Fix xe_gt_throttle_sysfs.h
-Date: Mon, 13 May 2024 10:42:15 +0200
-Message-Id: <20240513084218.2084-2-michal.wajdeczko@intel.com>
+Subject: [PATCH 3/4] drm/xe: Fix xe_lrc.h
+Date: Mon, 13 May 2024 10:42:17 +0200
+Message-Id: <20240513084218.2084-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240513084218.2084-1-michal.wajdeczko@intel.com>
 References: <20240513084218.2084-1-michal.wajdeczko@intel.com>
@@ -65,32 +65,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We don't need to include drm/drm_managed.h here.
-We don't need to comment final #endif.
-Also remove empty line at the end.
+Prefer forward declarations over #include xe_lrc_types.h
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_lrc.h | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
-index 6c61e6f228a8..335c402b51a6 100644
---- a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
-+++ b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
-@@ -6,11 +6,8 @@
- #ifndef _XE_GT_THROTTLE_SYSFS_H_
- #define _XE_GT_THROTTLE_SYSFS_H_
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 06a95a598736..e0e841963c23 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -5,14 +5,17 @@
+ #ifndef _XE_LRC_H_
+ #define _XE_LRC_H_
  
--#include <drm/drm_managed.h>
--
- struct xe_gt;
+-#include "xe_lrc_types.h"
++#include <linux/types.h>
  
- int xe_gt_throttle_sysfs_init(struct xe_gt *gt);
+ struct drm_printer;
+ struct xe_bb;
+ struct xe_device;
+ struct xe_exec_queue;
+ enum xe_engine_class;
++struct xe_gt;
+ struct xe_hw_engine;
++struct xe_lrc;
++struct xe_lrc_snapshot;
+ struct xe_vm;
  
--#endif /* _XE_GT_THROTTLE_SYSFS_H_ */
--
-+#endif
+ #define LRC_PPHWSP_SCRATCH_ADDR (0x34 * 4)
 -- 
 2.43.0
 
