@@ -4,73 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B23FC25B78
-	for <intel-xe@archiver.kernel.org>; Mon, 13 May 2024 11:55:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 906C9C25B10
+	for <intel-xe@archiver.kernel.org>; Mon, 13 May 2024 12:10:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0289610E6FE;
-	Mon, 13 May 2024 11:55:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 397DB10E730;
+	Mon, 13 May 2024 12:10:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ifep1ceu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cTwmBHmC";
 	dkim-atps=neutral
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com
- [209.85.208.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84E0510E6FC;
- Mon, 13 May 2024 11:54:58 +0000 (UTC)
-Received: by mail-lj1-f180.google.com with SMTP id
- 38308e7fff4ca-2e0933d3b5fso62113581fa.2; 
- Mon, 13 May 2024 04:54:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1715601296; x=1716206096; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=gkWrpMbT160QX8etadVw3QNSncen2WpGm7FU8IV2vG8=;
- b=Ifep1ceudiC8uB+P1n1z+z9s+EYQvIP6S8aL25yWM8AJoSA5hEhUWWzm3JcTw0mVed
- OEJ4jyKA/sN27HAnZTD8GqN2hBdZPKM9m/hG0jJ/bocj7rlZ5Eueag8DEG+Lmfw6acnL
- RhxUUmJPttuyU9/wy86ZbuU+Sr/PE+zJsnuzRnO1Z5icgqwsDqQcg34oCly7baMqBVYH
- /j14NtwT/Tt6A2tNdzhEFNAvZBoj6kRJ1ZIN1bANo+J/Nt7B0gdKSyYfdw3yEtQDS2IC
- LKZf5hFTubsXx2jxNDq/MZV19GH95Demhe31ctzgDkadbYqQa6ENaGZPF251yDJr/kqu
- x4dQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1715601296; x=1716206096;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=gkWrpMbT160QX8etadVw3QNSncen2WpGm7FU8IV2vG8=;
- b=ZlJ9IVCUf31SDIQJ3iZoDLWX5H1wl4AmEyGwM4RAZWbnGLng/TZcwzoeGrDXOivXq4
- OLZrcEHT1M1/M35FzUYHQ+hLamm4B6GBqOp5rJLn5z+ARCrBex17YsiCMVvfzRwYL9yV
- 6PLSP5HVYeV8pITYARafJ4j2xVQduNYSaO12xX1usp03LM4a/az1i3MJ2kJxkVIYHOfK
- ZwR3820/JtSRq0eCueqrbKiqVQHH+nUW048H/wsFdbjoZsQJ77jIMWs1f69qZxce2nub
- 7NgaGVChorpJ0PhATeDtucFBZxRa2iCE8eBObBGMStcnNEC8gCux8XqKx3ccj6L78aAy
- HFYw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXx7zG1JQQnJNj4wK6/k8l8T725xHL0Ijyll3txDEARHeDMyFOWsfSfi9Y2UrIVvZvihNcwcdKVvICfs7muGFNvETYDShIHrGPRLEbo9aZ18zA2XZBVFtfq/4Zz+/eI9wnbeBY3Xl16nxs2eXsc
-X-Gm-Message-State: AOJu0YwZthPHMXy9Ytq7B4G6sg/S5wX3+NtlvWN4Fopi7vDg/jdBcBTA
- b4XSy51RGXwdSOGDgA3Vo9l1ZgcD9ece7LyeuvlWNxpQpYflLQ/w
-X-Google-Smtp-Source: AGHT+IHavjprewU8HemKAAUcDJry0RMSDZxfPy8GbQ+53u+j5iKEKjHG05nrkouXF+12V6vxjItN3Q==
-X-Received: by 2002:a2e:b1c6:0:b0:2e1:f6f7:89c7 with SMTP id
- 38308e7fff4ca-2e5204aee0dmr53224501fa.49.1715601296155; 
- Mon, 13 May 2024 04:54:56 -0700 (PDT)
-Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-41f88111033sm191061725e9.34.2024.05.13.04.54.55
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 13 May 2024 04:54:55 -0700 (PDT)
-Message-ID: <849adc1e-b4fc-4fd1-aefb-d5da2d8c560a@gmail.com>
-Date: Mon, 13 May 2024 13:54:54 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A06EB10E730;
+ Mon, 13 May 2024 12:10:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1715602235; x=1747138235;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=Lioopf77e3Dk97gbfHhACPzFioA0I12pqZKH9jSzFGg=;
+ b=cTwmBHmCFgHz7VcBXZ0CIPKh3eiBnLP5xW1N07T9jEViAxd5/9U94o91
+ 1O21osgRQThgNFexcVAgRNwFp8qVI059RfVIC+ypN6eoFUH8zfsrUA8Gz
+ V0JMUXseUMfaU+OTwNlTQg/rV7aHuxlT/98phbw950TouzS0miPbE4tLc
+ 5DdOWyQrwO9F+8An/J0uYZP2ts/7yCyOGpi6mkAEtQawLeTHupKf1fIUn
+ Eitlx+mdOp2Ry3E968ZRDHu6Wx7JA3tfbEu44efH1B4gddcFtRPbvwuQE
+ XAe/4+/hCbWKqvnnPAMgrNhcEdZ9k4NOkO/HSm89gc5bPug2r5w/av4/d w==;
+X-CSE-ConnectionGUID: niQOvrjvQFepP0Tm5JUp4A==
+X-CSE-MsgGUID: AZg7XbODRk+cEenjnZPwYg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11071"; a="22108689"
+X-IronPort-AV: E=Sophos;i="6.08,158,1712646000"; d="scan'208";a="22108689"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2024 05:10:35 -0700
+X-CSE-ConnectionGUID: hmhmAYxNSayBWMPBBM/hhw==
+X-CSE-MsgGUID: 7hkzcXfTTnC1MruIKPh1CA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,158,1712646000"; d="scan'208";a="61499592"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.7])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2024 05:10:32 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Lucas
+ De Marchi <lucas.demarchi@intel.com>
+Subject: Re: [PATCH 1/2] drm/xe/display: remove unused xe->enabled_irq_mask
+In-Reply-To: <20240510094313.3422982-1-jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240510094313.3422982-1-jani.nikula@intel.com>
+Date: Mon, 13 May 2024 15:10:29 +0300
+Message-ID: <87y18dewui.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/20] drm/amdgpu: don't trample pdev drvdata
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, amd-gfx@lists.freedesktop.org
-References: <20240510181212.264622-22-matthew.auld@intel.com>
- <20240510181212.264622-24-matthew.auld@intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20240510181212.264622-24-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,44 +66,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 10.05.24 um 20:12 schrieb Matthew Auld:
-> The driver release callback is called when a particular drm_device goes
-> away, just like with drmm, so here we should never nuke the pdev drvdata
-> pointer, since that could already be pointing to a new drvdata.
-> For example something hotunplugs the device, for which we have an open
-> driver fd, keeping the drm_device alive, and in the meantime the same
-> physical device is re-attached to a new drm_device therefore setting
-> drvdata again. Once the original drm_device goes away, we might then
-> call the release which then incorrectly tramples the drvdata.
+On Fri, 10 May 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> The xe->enabled_irq_mask member has never been used for anything.
 >
-> The driver core will already nuke the pointer for us when the pci device
-> is removed, so should be safe to simply drop. Alternative would be to
-> move to the driver pci remove callback.
->
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Cc: amd-gfx@lists.freedesktop.org
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Oh! Very good catch! That might become important for a feature we 
-current discuss internally.
+Lucas, ack for merging these two via drm-intel-next? Even though these
+touch struct xe_device, I presume any further cleanups touching the
+surrounding context would have a bigger footprint in drm-intel-next.
 
-Reviewed-by: Christian König <christian.koenig@amd.com>
+BR,
+Jani.
 
 > ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 1 -
->   1 file changed, 1 deletion(-)
+>  drivers/gpu/drm/xe/display/xe_display.c | 1 -
+>  drivers/gpu/drm/xe/xe_device_types.h    | 2 --
+>  2 files changed, 3 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> index a0ea6fe8d060..d5fed007c698 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> @@ -1450,7 +1450,6 @@ void amdgpu_driver_release_kms(struct drm_device *dev)
->   	struct amdgpu_device *adev = drm_to_adev(dev);
->   
->   	amdgpu_device_fini_sw(adev);
-> -	pci_set_drvdata(adev->pdev, NULL);
->   }
->   
->   /*
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> index 0de0566e5b39..fbe2c2eddea9 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -97,7 +97,6 @@ int xe_display_create(struct xe_device *xe)
+>  	xe->display.hotplug.dp_wq = alloc_ordered_workqueue("xe-dp", 0);
+>  
+>  	drmm_mutex_init(&xe->drm, &xe->sb_lock);
+> -	xe->enabled_irq_mask = ~0;
+>  
+>  	return drmm_add_action_or_reset(&xe->drm, display_destroy, NULL);
+>  }
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index 906b98fb973b..b78223e3baab 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -517,8 +517,6 @@ struct xe_device {
+>  	/* only to allow build, not used functionally */
+>  	u32 irq_mask;
+>  
+> -	u32 enabled_irq_mask;
+> -
+>  	struct intel_uncore {
+>  		spinlock_t lock;
+>  	} uncore;
 
+-- 
+Jani Nikula, Intel
