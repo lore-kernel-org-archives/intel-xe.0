@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93441C25B10
-	for <intel-xe@archiver.kernel.org>; Mon, 13 May 2024 07:58:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AFF3C25B74
+	for <intel-xe@archiver.kernel.org>; Mon, 13 May 2024 07:58:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5859F10E4AD;
-	Mon, 13 May 2024 07:58:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EXm1vPYH";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3648810E4AD
- for <intel-xe@lists.freedesktop.org>; Mon, 13 May 2024 07:58:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715587100; x=1747123100;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=b8gje2kaDxuKzzX8OjllGkliIYu6Rwu0c1ey105Xu74=;
- b=EXm1vPYHsYu3W1J63HAPxQ5q/TA5dw+/D1PbdLL48k38i9at+mgxUZEk
- Ow7/D2znrkwOPR+FkvKV8wWumPTpmLOOHccOsf2Zj1ZKHP3E6poP7kPRI
- ECrq+jzqHjAmVBVoDmaTUhS7nb0iKfh/w50vlyZW7ynr71K6k5GW0pKRR
- ZtJIvVX84+s6sKx8Yh6xj8Pv5zSBuNTlfGvjZddQRbtG2tczsJ8RdJpcO
- wYsZ2Xr5OGJmXA1Z3DI1gIei3kDU0yQDxzuGDeTzt/4uL2vUpmWfPGm5r
- xilNkecQrcxNZWMRsyRzFE0cjGQCiRZv8vrgjn1Fg6fc7apwCrm1bssOL w==;
-X-CSE-ConnectionGUID: BD0GP1ZMRLiBA2SuCwaNlw==
-X-CSE-MsgGUID: yihdTbEMTjCuU6Qnd7Fy4Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11071"; a="11330555"
-X-IronPort-AV: E=Sophos;i="6.08,157,1712646000"; d="scan'208";a="11330555"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2024 00:58:20 -0700
-X-CSE-ConnectionGUID: gSTkVgOOTSm3ZXmxoNPwPQ==
-X-CSE-MsgGUID: ///JJXEhS+SOr0qE7Zjoqw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,157,1712646000"; d="scan'208";a="34771383"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.245.99.210])
- ([10.245.99.210])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2024 00:58:18 -0700
-Message-ID: <47f3889e-1e64-405e-90e0-74f3795a92d8@intel.com>
-Date: Mon, 13 May 2024 09:58:16 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD26D10E4CA;
+	Mon, 13 May 2024 07:58:44 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC5EC10E4AD;
+ Mon, 13 May 2024 07:58:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0974376795790834836=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 15/20] drm/xe: make gt_remove use devm
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20240510181212.264622-22-matthew.auld@intel.com>
- <20240510181212.264622-37-matthew.auld@intel.com>
-Content-Language: en-US
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20240510181212.264622-37-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_add_mmio_debugfs_file_?=
+ =?utf-8?q?=26_restore_xe=5Fmmio=5Fioctl_as_its_ioctl_handler?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Koby Elbaz" <kelbaz@habana.ai>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 13 May 2024 07:58:43 -0000
+Message-ID: <171558712370.2094224.7382848628128208546@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240512125318.427303-1-kelbaz@habana.ai>
+In-Reply-To: <20240512125318.427303-1-kelbaz@habana.ai>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,137 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 10.05.2024 20:12, Matthew Auld wrote:
-> No need to hand roll the onion unwind here, just move gt_remove over to
-> devm which will already have the correct ordering.
-> 
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+--===============0974376795790834836==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+== Series Details ==
 
-Regards
-Andrzej
-> ---
->   drivers/gpu/drm/xe/xe_device.c | 22 ++--------------------
->   drivers/gpu/drm/xe/xe_gt.c     |  9 ++++-----
->   drivers/gpu/drm/xe/xe_gt.h     |  1 -
->   3 files changed, 6 insertions(+), 26 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index e4c30030fc40..40983ad66e3c 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -537,7 +537,6 @@ int xe_device_probe(struct xe_device *xe)
->   	struct xe_tile *tile;
->   	struct xe_gt *gt;
->   	int err;
-> -	u8 last_gt;
->   	u8 id;
->   
->   	xe_pat_init_early(xe);
-> @@ -631,18 +630,16 @@ int xe_device_probe(struct xe_device *xe)
->   		goto err_irq_shutdown;
->   
->   	for_each_gt(gt, xe, id) {
-> -		last_gt = id;
-> -
->   		err = xe_gt_init(gt);
->   		if (err)
-> -			goto err_fini_gt;
-> +			goto err_irq_shutdown;
->   	}
->   
->   	xe_heci_gsc_init(xe);
->   
->   	err = xe_display_init(xe);
->   	if (err)
-> -		goto err_fini_gt;
-> +		goto err_irq_shutdown;
->   
->   	err = drm_dev_register(&xe->drm, 0);
->   	if (err)
-> @@ -658,15 +655,6 @@ int xe_device_probe(struct xe_device *xe)
->   
->   err_fini_display:
->   	xe_display_driver_remove(xe);
-> -
-> -err_fini_gt:
-> -	for_each_gt(gt, xe, id) {
-> -		if (id < last_gt)
-> -			xe_gt_remove(gt);
-> -		else
-> -			break;
-> -	}
-> -
->   err_irq_shutdown:
->   	xe_irq_shutdown(xe);
->   err:
-> @@ -684,18 +672,12 @@ static void xe_device_remove_display(struct xe_device *xe)
->   
->   void xe_device_remove(struct xe_device *xe)
->   {
-> -	struct xe_gt *gt;
-> -	u8 id;
-> -
->   	xe_device_remove_display(xe);
->   
->   	xe_display_fini(xe);
->   
->   	xe_heci_gsc_fini(xe);
->   
-> -	for_each_gt(gt, xe, id)
-> -		xe_gt_remove(gt);
-> -
->   	xe_irq_shutdown(xe);
->   }
->   
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 3f1826b783ad..00dbb84828ff 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -92,16 +92,14 @@ void xe_gt_sanitize(struct xe_gt *gt)
->   	gt->uc.guc.submission_state.enabled = false;
->   }
->   
-> -/**
-> - * xe_gt_remove() - Clean up the GT structures before driver removal
-> - * @gt: the GT object
-> - *
-> +/*
->    * This function should only act on objects/structures that must be cleaned
->    * before the driver removal callback is complete and therefore can't be
->    * deferred to a drmm action.
->    */
-> -void xe_gt_remove(struct xe_gt *gt)
-> +static void gt_remove(void *arg)
->   {
-> +	struct xe_gt *gt = arg;
->   	int i;
->   
->   	xe_uc_remove(&gt->uc);
-> @@ -573,6 +571,7 @@ int xe_gt_init(struct xe_gt *gt)
->   	if (err)
->   		return err;
->   
-> +	return devm_add_action_or_reset(gt_to_xe(gt)->drm.dev, gt_remove, gt);
->   }
->   
->   static int do_gt_reset(struct xe_gt *gt)
-> diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-> index 8474c50b1b30..866a49037d58 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.h
-> +++ b/drivers/gpu/drm/xe/xe_gt.h
-> @@ -43,7 +43,6 @@ int xe_gt_suspend(struct xe_gt *gt);
->   int xe_gt_resume(struct xe_gt *gt);
->   void xe_gt_reset_async(struct xe_gt *gt);
->   void xe_gt_sanitize(struct xe_gt *gt);
-> -void xe_gt_remove(struct xe_gt *gt);
->   
->   /**
->    * xe_gt_any_hw_engine_by_reset_domain - scan the list of engines and return the
+Series: drm/xe: add mmio debugfs file & restore xe_mmio_ioctl as its ioctl handler
+URL   : https://patchwork.freedesktop.org/series/133505/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-1276-7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e_BAT -> xe-pw-133505v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (5 -> 3)
+------------------------------
+
+  Missing    (2): bat-dg2-oem2 bat-adlp-7 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-133505v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_exec_threads@threads-mixed-shared-vm-basic:
+    - bat-pvc-2:          [DMESG-WARN][1] ([Intel XE#1238]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1276-7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e/bat-pvc-2/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133505v1/bat-pvc-2/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html
+
+  
+  [Intel XE#1238]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1238
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7846 -> IGT_7847
+  * Linux: xe-1276-7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e -> xe-pw-133505v1
+
+  IGT_7846: 4a5fd4e7cb2798636f6464e2bd61399f3242b322 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7847: 86712f2effc8ba6690c7e165ad63904416763b75 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1276-7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e: 7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e
+  xe-pw-133505v1: 133505v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133505v1/index.html
+
+--===============0974376795790834836==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: add mmio debugfs file &amp; restore xe_mmio_ioctl as its ioctl handler</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133505/">https://patchwork.freedesktop.org/series/133505/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133505v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133505v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1276-7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e_BAT -&gt; xe-pw-133505v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (5 -&gt; 3)</h2>
+<p>Missing    (2): bat-dg2-oem2 bat-adlp-7 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-133505v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_threads@threads-mixed-shared-vm-basic:<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1276-7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e/bat-pvc-2/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1238">Intel XE#1238</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133505v1/bat-pvc-2/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7846 -&gt; IGT_7847</li>
+<li>Linux: xe-1276-7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e -&gt; xe-pw-133505v1</li>
+</ul>
+<p>IGT_7846: 4a5fd4e7cb2798636f6464e2bd61399f3242b322 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7847: 86712f2effc8ba6690c7e165ad63904416763b75 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1276-7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e: 7aa7a8842f00c5749e1a21cd2cf6dfc0e3e3a18e<br />
+  xe-pw-133505v1: 133505v1</p>
+
+</body>
+</html>
+
+--===============0974376795790834836==--
