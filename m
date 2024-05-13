@@ -4,37 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89B0FC25B75
-	for <intel-xe@archiver.kernel.org>; Mon, 13 May 2024 10:47:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30B67C25B75
+	for <intel-xe@archiver.kernel.org>; Mon, 13 May 2024 10:52:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 341D710E636;
-	Mon, 13 May 2024 10:47:58 +0000 (UTC)
-X-Greylist: delayed 618 seconds by postgrey-1.36 at gabe;
- Mon, 13 May 2024 10:47:56 UTC
-Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8D7610E636;
- Mon, 13 May 2024 10:47:56 +0000 (UTC)
-Received: from abreu.molgen.mpg.de (g34.guest.molgen.mpg.de [141.14.220.34])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: pmenzel)
- by mx.molgen.mpg.de (Postfix) with ESMTPSA id 7B18161E5FE01;
- Mon, 13 May 2024 12:36:59 +0200 (CEST)
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>
-Cc: Paul Menzel <pmenzel@molgen.mpg.de>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/i915/fbc: Add sizes to info message about reducing fb size
-Date: Mon, 13 May 2024 12:36:51 +0200
-Message-ID: <20240513103652.371721-1-pmenzel@molgen.mpg.de>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id E673810E650;
+	Mon, 13 May 2024 10:52:28 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88A5E10E645;
+ Mon, 13 May 2024 10:52:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/fbc=3A_Add_?=
+ =?utf-8?q?sizes_to_info_message_about_reducing_fb_size?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Paul Menzel" <pmenzel@molgen.mpg.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 13 May 2024 10:52:28 -0000
+Message-ID: <171559754856.2094388.8836803698953615201@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240513103652.371721-1-pmenzel@molgen.mpg.de>
+In-Reply-To: <20240513103652.371721-1-pmenzel@molgen.mpg.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,35 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The info message currently does not contain any information, how much
-the stolen memory size should be increased.
+== Series Details ==
 
-    [drm] Reducing the compressed framebuffer size. This may lead to less power savings than a non-reduced-size. Try to increase stolen memory size if available in BIOS.
+Series: drm/i915/fbc: Add sizes to info message about reducing fb size
+URL   : https://patchwork.freedesktop.org/series/133532/
+State : success
 
-To be more useful to the user, add the sizes to the message.
+== Summary ==
 
-Signed-off-by: Paul Menzel <pmenzel@molgen.mpg.de>
----
- drivers/gpu/drm/i915/display/intel_fbc.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 64f1f664cc72 drm-tip: 2024y-05m-13d-10h-34m-22s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/fbc: Add sizes to info message about reducing fb size
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index b453fcbd67da..e4a5d251013f 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -801,7 +801,8 @@ static int intel_fbc_alloc_cfb(struct intel_fbc *fbc,
- 		goto err_llb;
- 	else if (ret > min_limit)
- 		drm_info_once(&i915->drm,
--			      "Reducing the compressed framebuffer size. This may lead to less power savings than a non-reduced-size. Try to increase stolen memory size if available in BIOS.\n");
-+			      "Reducing the compressed framebuffer size from %d bytes to %d bytes. This may lead to less power savings than a non-reduced-size. Try to increase stolen memory size if available in BIOS.\n",
-+			      min_limit, ret);
- 
- 	fbc->limit = ret;
- 
--- 
-2.43.0
 
