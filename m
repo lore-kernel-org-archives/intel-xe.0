@@ -4,54 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38026C25B10
-	for <intel-xe@archiver.kernel.org>; Mon, 13 May 2024 06:54:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40F1DC25B10
+	for <intel-xe@archiver.kernel.org>; Mon, 13 May 2024 07:06:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0DC310E3FB;
-	Mon, 13 May 2024 06:54:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B52FD10E3F3;
+	Mon, 13 May 2024 07:06:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MOXTxCUt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z4hToYKR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 366F910E3F3
- for <intel-xe@lists.freedesktop.org>; Mon, 13 May 2024 06:54:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6F7F10E3E6;
+ Mon, 13 May 2024 07:06:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715583246; x=1747119246;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=UN4D72X1gJYQT+vV/LVzsj9Y8i1WpZq1JT3Flrk0oOM=;
- b=MOXTxCUts/hAbgtyjDa0l6WGr9jGATt+cHBCt+z3s8kibEcIkEL+9Yjt
- qmnOKwkdtM5gbNbIU7cL4tcA8fq7VqwkKQTbMlUjyrFD+sELVD1Tr2Xwl
- T9KFs+GT9rnY4JQ36TOUIJbn9jCk8f49jArMlUBCYB9LuJxXn7bBo8PiH
- zhBxiTQQ7aZUuWMMArxu7zQJKvM2M2ivMBBJ+i4bdKUeKoB1PqhWek1yY
- GN4ifEZZCmmAgR8aAj+kIRGcKkG2QJdPyiKswnzajBVsZ/DTciQfs5JZe
- yDJZ4nfN8hUPTOwXZwvlFrH1irDm8gNo+f2x4UHJ+jq7KiLjHy4BVKCnM Q==;
-X-CSE-ConnectionGUID: HguzNI01Q8yzEPderG+xvw==
-X-CSE-MsgGUID: p8fCDgCzTDOlr7gpyLV5Uw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11071"; a="11657845"
-X-IronPort-AV: E=Sophos;i="6.08,157,1712646000"; d="scan'208";a="11657845"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2024 23:54:06 -0700
-X-CSE-ConnectionGUID: fIfsPEsTS/mffOqSb0ZSvw==
-X-CSE-MsgGUID: xJaYc48pSuSgkQnob1KVQg==
+ t=1715584012; x=1747120012;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=PftKofuWUcC6leo1FDVnPS965n+TKE45fKeH65Tls10=;
+ b=Z4hToYKR4Q+YWyaESt6BsPYyMR5d9edrtex7/YdwVoSPi+0k5Bwaxh8/
+ m9EGykailLJj82noYsDpS8oqakBWyrtzdQz0QwJAyiZnvqAfSE8huptn6
+ ujGT0NLQ2D98M12Ui43wjCRw8SocfLbDFM4z6FGmb7Kw530Lq+32zICKG
+ 2f2/DwFMHaiOMPBhy2369V5/ktvyyefVzNDwwx6mlbXPx58D3s4iBq+88
+ 18Kw9FkmZ1rtiTeEPkZwuw2JXrKJ4eU3LMv6eWd4imzMc/QpvzLph8QwX
+ ykJpnbnEQFHXK0v+SSr2ttsnH/6+yPlUWVWDIVAX8MYuAs9pJ6RNl3Jy9 g==;
+X-CSE-ConnectionGUID: 9Q0/FrPLTceA5RtvnrcFrg==
+X-CSE-MsgGUID: bpQllw0lRkKvC+YWAShOng==
+X-IronPort-AV: E=McAfee;i="6600,9927,11071"; a="11494067"
+X-IronPort-AV: E=Sophos;i="6.08,157,1712646000"; d="scan'208";a="11494067"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2024 00:06:50 -0700
+X-CSE-ConnectionGUID: /FfsnYM/QvaQPG95Z9kABg==
+X-CSE-MsgGUID: P5+ohKYLRj+zRTSdBMla8w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,157,1712646000"; d="scan'208";a="30321394"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2024 23:54:04 -0700
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, vinay.belgaumkar@intel.com
-Subject: [PATCH 2/2] drm/xe: move disable_c6 call
-Date: Mon, 13 May 2024 12:35:46 +0530
-Message-Id: <20240513070546.3754640-3-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20240513070546.3754640-1-riana.tauro@intel.com>
-References: <20240513070546.3754640-1-riana.tauro@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,157,1712646000"; d="scan'208";a="30636016"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.245.99.210])
+ ([10.245.99.210])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2024 00:06:49 -0700
+Message-ID: <3169ea93-8da8-4386-b239-8fffe8eaa088@intel.com>
+Date: Mon, 13 May 2024 09:06:46 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/20] drm/drm_managed: try to improve the drmm DOC
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org
+References: <20240510181212.264622-22-matthew.auld@intel.com>
+ <20240510181212.264622-23-matthew.auld@intel.com>
+Content-Language: en-US
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20240510181212.264622-23-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,66 +72,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-disable c6 called from guc pc fini on skipping GuC PC is unreachable.
+On 10.05.2024 20:12, Matthew Auld wrote:
+> Hopefully make it clearer when to use devm vs drmm.
+> 
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: dri-devel@lists.freedesktop.org
+> ---
+>   drivers/gpu/drm/drm_managed.c | 42 +++++++++++++++++++++++++++++++++++
+>   1 file changed, 42 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_managed.c b/drivers/gpu/drm/drm_managed.c
+> index 7646f67bda4e..20d705bbc0a3 100644
+> --- a/drivers/gpu/drm/drm_managed.c
+> +++ b/drivers/gpu/drm/drm_managed.c
+> @@ -34,6 +34,48 @@
+>    * during the lifetime of the driver, all the functions are fully concurrent
+>    * safe. But it is recommended to use managed resources only for resources that
+>    * change rarely, if ever, during the lifetime of the &drm_device instance.
+> + *
+> + * Note that the distinction between devm and drmm is important to get right.
+> + * Consider some hotunplug scenarios, where it is valid for there to be multiple
+> + * unplugged struct &drm_device instances each being kept alive by an open
+> + * driver fd. The driver needs a clean separation between what needs to happen
+> + * when the struct &device is removed and what needs to happen when a given
+> + * struct &drm_device instance is released, as well as in some cases a more
+> + * finer grained marking of critical sections that require hardware interaction.
+> + * See below.
+> + *
+> + * devm
+> + * ~~~~
+> + * In general use devm for cleaning up anything hardware related. So removing
+> + * pci mmaps, releasing interrupt handlers, basically anything hw related.  The
+> + * devm release actions are called when the struct &device is removed, shortly
+> + * after calling into the drivers struct &pci_driver.remove() callback, if this
+> + * is a pci device.
+> + *
+> + * devm can be thought of as an alternative to putting all the hw related
+> + * cleanup directly in the struct &pci_driver.remove() callback, where the
+> + * correct ordering of the unwind steps needs to be manually done in the error
+> + * path of the struct &pci_driver.probe() and again on the remove side.  With
+> + * devm this is all done automatically.
+> + *
+> + * drmm
+> + * ~~~~
+> + * In general use this for cleaning up anything software related. So data
+> + * structures and the like which are tied to the lifetime of a particular struct
+> + * &drm_device instance.
+> + *
+> + * drmm can be thought of as an alternative to putting all the software related
+> + * cleanup directly in the struct &drm_driver.release() callback, where again
+> + * the correct ordering of the unwind steps needs to be done manually. As with
+> + * devm this is instead done automatically.
+> + *
+> + * Sometimes there is no clean separation between software and hardware, which
+> + * is where drm_dev_enter() comes in. For example, a driver might have some
+> + * state tied to a struct &drm_device instance, for which the same cleanup path
+> + * is called for both a plugged and unplugged device, and the cleanup itself
+> + * might require talking to the device if it's still attached to this particular
+> + * struct &drm_device. For that we instead mark the device sections.  See
+> + * drm_dev_enter(), drm_dev_exit() and drm_dev_unplug().
 
-GuC pc init call returns earlier if skip_guc_pc is true and never
-registers the finish call thus making disable_c6 unreachable.
+I would emphasize somewhere that after device unbind any interaction 
+with physical device is forbidden (are some exceptions for this?).
+Anyway nice stuff.
 
-move this call to gt idle.
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_idle.c | 11 +++++++++--
- drivers/gpu/drm/xe/xe_guc_pc.c  |  5 -----
- 2 files changed, 9 insertions(+), 7 deletions(-)
+Regards
+Andrzej
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
-index 2f247cb910d1..0fc865e07965 100644
---- a/drivers/gpu/drm/xe/xe_gt_idle.c
-+++ b/drivers/gpu/drm/xe/xe_gt_idle.c
-@@ -145,9 +145,16 @@ static const struct attribute *gt_idle_attrs[] = {
- 	NULL,
- };
- 
--static void gt_idle_sysfs_fini(struct drm_device *drm, void *arg)
-+static void gt_idle_fini(struct drm_device *drm, void *arg)
- {
- 	struct kobject *kobj = arg;
-+	struct xe_gt *gt = kobj_to_gt(kobj->parent);
-+
-+	if (gt_to_xe(gt)->info.skip_guc_pc) {
-+		xe_gt_WARN_ON(gt, xe_force_wake_get(gt_to_fw(gt), XE_FW_GT));
-+		xe_gt_idle_disable_c6(gt);
-+		xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-+	}
- 
- 	sysfs_remove_files(kobj, gt_idle_attrs);
- 	kobject_put(kobj);
-@@ -182,7 +189,7 @@ int xe_gt_idle_sysfs_init(struct xe_gt_idle *gtidle)
- 		return err;
- 	}
- 
--	return drmm_add_action_or_reset(&xe->drm, gt_idle_sysfs_fini, kobj);
-+	return drmm_add_action_or_reset(&xe->drm, gt_idle_fini, kobj);
- }
- 
- void xe_gt_idle_enable_c6(struct xe_gt *gt)
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index d10aab29651e..d0bc5e3090bd 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -898,11 +898,6 @@ static void xe_guc_pc_fini(struct drm_device *drm, void *arg)
- 	struct xe_guc_pc *pc = arg;
- 	struct xe_device *xe = pc_to_xe(pc);
- 
--	if (xe->info.skip_guc_pc) {
--		xe_gt_idle_disable_c6(pc_to_gt(pc));
--		return;
--	}
--
- 	if (xe_device_wedged(xe))
- 		return;
- 
--- 
-2.40.0
+>    */
+>   
+>   struct drmres_node {
 
