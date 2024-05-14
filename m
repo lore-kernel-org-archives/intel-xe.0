@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AFBDC25B79
-	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 19:08:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0704C04FFE
+	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 19:19:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2571E10E686;
-	Tue, 14 May 2024 19:08:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OEyjTp+3";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C958110E686
- for <Intel-Xe@lists.freedesktop.org>; Tue, 14 May 2024 19:08:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715713701; x=1747249701;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=WRdbXGjlVDwFgdqxAASbdd3ILjml1w47/YxMSppff3E=;
- b=OEyjTp+3ejbOhA2UluJ7xGPKjF2IbVORWweZkF6F2zUhjuvnL/N+qeFV
- vRIOjhLilymAFYphOfrhVCh0DAvbt1Gs33eaf7A0M1lmroWlJKbiqZZ5g
- OAQ+3NVO9RuvNGARKXO3H9Xnnzs/lT2j1f1VGy+qgrmhYYcoPn0WBqD+A
- 5bU8HLcvp9biwXOK2Ni0HimYDhN3H8AsOn2P+MS4baQHinfOMYEXQgX+x
- jjfZQ5hOqc12T5ParIh29mdehMVPeOYXVM6RPUaTgBVdt1AYyB+L/iSf0
- WJ7ozY5lwn+pgAM1IR4cVt/FecFZUXCBvfVKCKQ7OxirCvmQ9FyyEn7nA w==;
-X-CSE-ConnectionGUID: 5xE/d1WrRROBK3Svhi869g==
-X-CSE-MsgGUID: eq6c450SRXKq2YyAsKRJrg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="11552839"
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="11552839"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2024 12:08:21 -0700
-X-CSE-ConnectionGUID: P+fFx/I+QT6Oj270SeyFwA==
-X-CSE-MsgGUID: ZtCNjuDFSfuVryUm3dPM7A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="35270774"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by fmviesa005.fm.intel.com with ESMTP; 14 May 2024 12:08:20 -0700
-From: John.C.Harrison@Intel.com
-To: Intel-Xe@Lists.FreeDesktop.Org
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH v4 2/2] drm/xe/guc: Improve robustness of GuC log dumping to
- dmesg
-Date: Tue, 14 May 2024 12:08:19 -0700
-Message-ID: <20240514190819.1970533-3-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240514190819.1970533-1-John.C.Harrison@Intel.com>
-References: <20240514190819.1970533-1-John.C.Harrison@Intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76EDA10E0AE;
+	Tue, 14 May 2024 19:19:28 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0A1010E0AE;
+ Tue, 14 May 2024 19:19:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_PF=3A_Support_for_adverse_even?=
+ =?utf-8?q?ts_notifications_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 14 May 2024 19:19:26 -0000
+Message-ID: <171571436698.2115985.12050158529596070778@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240514190015.2172-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20240514190015.2172-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,183 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+== Series Details ==
 
-There is a debug mechanism for dumping the GuC log as an ASCII hex
-stream via dmesg. This is extremely useful for situations where it is
-not possibe to query the log from debugfs (self tests, bugs that cause
-the driver to fail to load, system hangs, etc.). However, dumping via
-dmesg is not the most reliable. The dmesg buffer is limited in size,
-can be rate limited and a simple hex stream is hard to parse by tools.
+Series: PF: Support for adverse events notifications (rev2)
+URL   : https://patchwork.freedesktop.org/series/133236/
+State : success
 
-So add extra information to the dump to make it more robust and
-parsable. This includes adding start and end tags to delimit the dump,
-using longer lines to reduce the per line overhead, adding a rolling
-count to check for missing lines and interleaved concurrent dumps and
-adding other important information such as the GuC version number and
-timestamp offset.
+== Summary ==
 
-v2: Remove pm get/put as unnecessary (review feedback from Matthew B).
-v3: Add firmware filename and 'wanted' version number.
-v4: Add kernel doc and undef macros when done (review feedback from
-Michal W).
+lib/modules/6.9.0-xe/kernel/sound/pci/hda/snd-hda-intel.ko
+lib/modules/6.9.0-xe/kernel/sound/core/
+lib/modules/6.9.0-xe/kernel/sound/core/seq/
+lib/modules/6.9.0-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.9.0-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.9.0-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.9.0-xe/kernel/sound/core/snd.ko
+lib/modules/6.9.0-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.9.0-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.9.0-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.9.0-xe/kernel/sound/soundcore.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/common/
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/amd/
+lib/modules/6.9.0-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/codecs/
+lib/modules/6.9.0-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.9.0-xe/kernel/sound/hda/
+lib/modules/6.9.0-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.9.0-xe/kernel/sound/hda/ext/
+lib/modules/6.9.0-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.9.0-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.9.0-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.9.0-xe/kernel/arch/
+lib/modules/6.9.0-xe/kernel/arch/x86/
+lib/modules/6.9.0-xe/kernel/arch/x86/kernel/
+lib/modules/6.9.0-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/events/
+lib/modules/6.9.0-xe/kernel/arch/x86/events/intel/
+lib/modules/6.9.0-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/kvm/
+lib/modules/6.9.0-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.9.0-xe/kernel/crypto/
+lib/modules/6.9.0-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.9.0-xe/kernel/crypto/cmac.ko
+lib/modules/6.9.0-xe/kernel/crypto/ccm.ko
+lib/modules/6.9.0-xe/kernel/crypto/cryptd.ko
+lib/modules/6.9.0-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.9.0-xe/kernel/crypto/async_tx/
+lib/modules/6.9.0-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.9.0-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.9.0-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.9.0-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.9.0-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.9.0-xe/build
+lib/modules/6.9.0-xe/modules.alias.bin
+lib/modules/6.9.0-xe/modules.builtin
+lib/modules/6.9.0-xe/modules.softdep
+lib/modules/6.9.0-xe/modules.alias
+lib/modules/6.9.0-xe/modules.order
+lib/modules/6.9.0-xe/modules.symbols
+lib/modules/6.9.0-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1715714355:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1715714355:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/xe/regs/xe_guc_regs.h |   1 +
- drivers/gpu/drm/xe/xe_guc_log.c       | 101 ++++++++++++++++++++++----
- 2 files changed, 87 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
-index 11682e675e0f..45fb3707fabe 100644
---- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
-@@ -82,6 +82,7 @@
- #define   HUC_LOADING_AGENT_GUC			REG_BIT(1)
- #define   GUC_WOPCM_OFFSET_VALID		REG_BIT(0)
- #define GUC_MAX_IDLE_COUNT			XE_REG(0xc3e4)
-+#define GUC_PMTIMESTAMP				XE_REG(0xc3e8)
- 
- #define GUC_SEND_INTERRUPT			XE_REG(0xc4c8)
- #define   GUC_SEND_TRIGGER			REG_BIT(0)
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-index a37ee3419428..596946c4a541 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.c
-+++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@ -7,11 +7,19 @@
- 
- #include <drm/drm_managed.h>
- 
-+#include "regs/xe_guc_regs.h"
- #include "xe_bo.h"
- #include "xe_gt.h"
- #include "xe_map.h"
-+#include "xe_mmio.h"
- #include "xe_module.h"
- 
-+static struct xe_guc *
-+log_to_guc(struct xe_guc_log *log)
-+{
-+	return container_of(log, struct xe_guc, log);
-+}
-+
- static struct xe_gt *
- log_to_gt(struct xe_guc_log *log)
- {
-@@ -49,32 +57,95 @@ static size_t guc_log_size(void)
- 		CAPTURE_BUFFER_SIZE;
- }
- 
-+/**
-+ * xe_guc_log_print - Dump the GuC log to the given printer
-+ * @log: the &xe_guc_log to print out
-+ * @p: the printer to use
-+ *
-+ * This can be used to convert the binary log to ASCII form and print it to an
-+ * arbitrary printer object. Expected usage is a debugfs file interface and for
-+ * dumping to the kernel log (i.e. dmesg, by passing in a DRM printk type printer
-+ * such as 'drm_info_printer(drm->dev)').
-+ */
- void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
- {
-+#define BYTES_PER_WORD		sizeof(u32)
-+#define WORDS_PER_DUMP		8
-+#define DUMPS_PER_LINE		4
-+#define LINES_PER_READ		4
-+#define WORDS_PER_READ		(WORDS_PER_DUMP * DUMPS_PER_LINE * LINES_PER_READ)
-+
-+	static int g_count;
-+	struct xe_gt *gt = log_to_gt(log);
-+	struct xe_guc *guc = log_to_guc(log);
-+	struct xe_uc_fw_version *ver_f = &guc->fw.versions.found[XE_UC_FW_VER_RELEASE];
-+	struct xe_uc_fw_version *ver_w = &guc->fw.versions.wanted;
- 	struct xe_device *xe = log_to_xe(log);
- 	size_t size;
--	int i, j;
-+	char line_buff[DUMPS_PER_LINE * WORDS_PER_DUMP * 9 + 1];
-+	int l_count = g_count++;
-+	int line = 0;
-+	int i, j, k;
-+	u64 ktime;
-+	u32 stamp;
- 
- 	xe_assert(xe, log->bo);
- 
- 	size = log->bo->size;
- 
--#define DW_PER_READ		128
--	xe_assert(xe, !(size % (DW_PER_READ * sizeof(u32))));
--	for (i = 0; i < size / sizeof(u32); i += DW_PER_READ) {
--		u32 read[DW_PER_READ];
--
--		xe_map_memcpy_from(xe, read, &log->bo->vmap, i * sizeof(u32),
--				   DW_PER_READ * sizeof(u32));
--#define DW_PER_PRINT		4
--		for (j = 0; j < DW_PER_READ / DW_PER_PRINT; ++j) {
--			u32 *print = read + j * DW_PER_PRINT;
--
--			drm_printf(p, "0x%08x 0x%08x 0x%08x 0x%08x\n",
--				   *(print + 0), *(print + 1),
--				   *(print + 2), *(print + 3));
-+	drm_printf(p, "[Capture/%d.%d] Dumping GuC log for %ps...\n",
-+		   l_count, line++, __builtin_return_address(0));
-+
-+	drm_printf(p, "[Capture/%d.%d] GuC version %u.%u.%u (wanted %u.%u.%u)\n",
-+		   l_count, line++,
-+		   ver_f->major, ver_f->minor, ver_f->patch,
-+		   ver_w->major, ver_w->minor, ver_w->patch);
-+	drm_printf(p, "[Capture/%d.%d] GuC firmware: %s\n", l_count, line++, guc->fw.path);
-+
-+	ktime = ktime_get_boottime_ns();
-+	drm_printf(p, "[Capture/%d.%d] Kernel timestamp: 0x%08llX [%llu]\n",
-+		   l_count, line++, ktime, ktime);
-+
-+	stamp = xe_mmio_read32(gt, GUC_PMTIMESTAMP);
-+	drm_printf(p, "[Capture/%d.%d] GuC timestamp: 0x%08X [%u]\n",
-+		   l_count, line++, stamp, stamp);
-+
-+	drm_printf(p, "[Capture/%d.%d] CS timestamp frequency: %u Hz\n",
-+		   l_count, line++, gt->info.reference_clock);
-+
-+	xe_assert(xe, !(size % (WORDS_PER_READ * BYTES_PER_WORD)));
-+	for (i = 0; i < size / BYTES_PER_WORD; i += WORDS_PER_READ) {
-+		u32 read[WORDS_PER_READ];
-+
-+		xe_map_memcpy_from(xe, read, &log->bo->vmap, i * BYTES_PER_WORD,
-+				   WORDS_PER_READ * BYTES_PER_WORD);
-+
-+		for (j = 0; j < WORDS_PER_READ; ) {
-+			u32 done = 0;
-+
-+			for (k = 0; k < DUMPS_PER_LINE; k++) {
-+				line_buff[done++] = ' ';
-+				done += hex_dump_to_buffer(read + j,
-+							   sizeof(*read) * (WORDS_PER_READ - j),
-+							   WORDS_PER_DUMP * BYTES_PER_WORD,
-+							   BYTES_PER_WORD,
-+							   line_buff + done,
-+							   sizeof(line_buff) - done,
-+							   false);
-+				j += WORDS_PER_DUMP;
-+			}
-+
-+			drm_printf(p, "[Capture/%d.%d]%s\n", l_count, line++, line_buff);
- 		}
- 	}
-+
-+	drm_printf(p, "[Capture/%d.%d] Done.\n", l_count, line++);
-+
-+#undef BYTES_PER_WORD
-+#undef WORDS_PER_DUMP
-+#undef DUMPS_PER_LINE
-+#undef LINES_PER_READ
-+#undef WORDS_PER_READ
- }
- 
- int xe_guc_log_init(struct xe_guc_log *log)
--- 
-2.43.2
 
