@@ -4,60 +4,185 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04189C25B75
-	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 16:23:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 211F0C25B79
+	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 16:39:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B362510E042;
-	Tue, 14 May 2024 16:23:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD28310E042;
+	Tue, 14 May 2024 16:39:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZujOwDnG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hsKj/nFx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3630010E042
- for <intel-xe@lists.freedesktop.org>; Tue, 14 May 2024 16:23:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEC3E10E042;
+ Tue, 14 May 2024 16:39:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715703799; x=1747239799;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=5fv8eRy8cXPIEdh8lYkOz/7IgYMy+yuIW+QEkP1Caz4=;
- b=ZujOwDnGVdIeaiVESoS2zNZFA0ZoDnMk1unXROhRcJr+l++qyQspfGpo
- lDs9s9u5yNX/RgPnCgzeSxad1R9LaRvayScFz/TYSkx/TNQPybWdxoD63
- w/g/5v2RiVfZ2FIk2YDfORA06HZSTerW6u6QaJSyJzY3HiMvIOgjRwr6+
- 6dVVtM/1eGCR9jiX0CAmFuocgKRtDEo2+Z3HSrBACZQ/MH+4ZtQ/uibfc
- FrpakTN02G5h4VD/kxrwLiXMVt0AiKGThCP5dmVfXo965mm2MRUvkIf5d
- bhhXUxhj1jSRjRYHuFNrbTYm4dKsCFtiTl9TIj/ao4PChSc5XbxuF2CHl g==;
-X-CSE-ConnectionGUID: OmJVpKJcS4ymdRCWtU0rjQ==
-X-CSE-MsgGUID: uFjt2kBkSgq87C0/FxkalA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="15488302"
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="15488302"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2024 09:23:18 -0700
-X-CSE-ConnectionGUID: mZZksImxQficsiIy6UkiaQ==
-X-CSE-MsgGUID: ItKHch0MSxWudBEN9B2hLw==
+ t=1715704759; x=1747240759;
+ h=message-id:date:subject:from:to:cc:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=6GX3GKU2J2L7IiDF/UVBndF08kkj3/YRjdVsfrKyT3A=;
+ b=hsKj/nFxyyYpqU6c7JTB18RCrvgyGrV0iFHy1NvbHthNVwyzBr+5aR+C
+ hFTz98xn5BDBSS+mcdCGWjfkZU8vyaeVV0N0Jj5nIU8peF5Ij5p5xgmI/
+ lfybrfa7FISuxud4zQz3yLWd/LgKnzD54l2jqmV9pjDNdyEAgi4dKcL60
+ PbMQKnsCaZeAYiyA+kCOJ1cuesT71tpVF8k+w0c1Jsx3Zrza9f/zkJ7ap
+ UDlYBjTAJiBTXxAytI3PF8qFaJIhH9y9FmyNO3+d++2LN48md4vsllG/L
+ YS3X7dhLDK4V1kQ1C4mga0r5tQkBZdK+xXgYvGYLukZo3SNGPFasJZ3Co g==;
+X-CSE-ConnectionGUID: oYSFfGI8R+qpNc2WSrfo7A==
+X-CSE-MsgGUID: knoc/INzSQSRpDA0BN2aNQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="11873952"
+X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="11873952"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2024 09:39:13 -0700
+X-CSE-ConnectionGUID: YHq0IZFeTvSB6bgssX25Zw==
+X-CSE-MsgGUID: Z4c/+Ak6QvKEbRKUATFW9Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="30749045"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa009.fm.intel.com with ESMTP; 14 May 2024 09:23:15 -0700
-Received: from [10.246.1.253] (mwajdecz-MOBL.ger.corp.intel.com [10.246.1.253])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 2354D2878B;
- Tue, 14 May 2024 17:23:14 +0100 (IST)
-Message-ID: <3493ef4c-f4bf-4fd1-b77f-fbb5f82fc45e@intel.com>
-Date: Tue, 14 May 2024 18:23:13 +0200
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="30864016"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 May 2024 09:39:12 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 14 May 2024 09:39:12 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 14 May 2024 09:39:11 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 14 May 2024 09:39:11 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.101)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Tue, 14 May 2024 09:39:11 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Uz9ez1FuO2tkUG6WvwbFvnJNtDSHQ39Og6ldb0HrlBzZ2Fv3lgy34c4KGIk4ikI0HQo/tZe264lwXN/kPSfOvaVbZFvdgBvjAoxyHaU0mmwZlM5VHH98WIAEyVjWud820o9epg/6UBMYi8uQI+E6T6ImfGcWdQztdItGLh73M0gkAluy76u2OuSzv1EmX1sLrYnRU4hqAdPSY1skyU5Wofjr2K/eNg2dPcp64hoolib0/3lBxIGYUNcFLCkIAFzzjUVrSeg+lIzwIsiUIoPjx7nLg9sFcnQm+2udXVsLtds/mTo4A5BeogvR2oYhUTtcKZIFpUaQK83CfvUy2kMpQw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=t49VpOShJ2vJnU343dyNi3G5zN7dqVkAwq6MsvPFZzs=;
+ b=LEvZ5XtMz0M396ge8WsKMCa6Vgk5r8aC/A0HSQjcFCRHY8S4/cZkKdU1jIMe0xuBmW73pf3k4yRryCPEDTCngj/OFJViw7qG8ZOxRIyJI4nAbP24FYMFmPDlDjMdEXCbfj+yKVnF5nxsiiP7GC1Tpwmn4vKTK8r2m0ImvdU4mPyMfSdfIT6pRBvltFbHoqFMSI4HiWyMC2K1IrnEXQf8Q4GLxgZhRhOsVGbD/OOp37nj9ChxPo+FIlWt7w9viyezHig+0riZdW2jRgonC6Ab+UKlMV2ptTGjMjcq0eYz1t4iV214P83asc7lt0kNd2+qe/YEdQJQCI2eUaoJf32qBw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
+ by CY8PR11MB7686.namprd11.prod.outlook.com (2603:10b6:930:70::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.55; Tue, 14 May
+ 2024 16:39:08 +0000
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::13bd:eb49:2046:32a9]) by BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::13bd:eb49:2046:32a9%3]) with mapi id 15.20.7587.025; Tue, 14 May 2024
+ 16:39:08 +0000
+Message-ID: <ef48d5cb-7ddd-4c88-b0ef-d1def71aafd0@intel.com>
+Date: Tue, 14 May 2024 22:09:00 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/8] drm/xe/pf: Track adverse events notifications from GuC
-To: =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-References: <20240506133814.2571-1-michal.wajdeczko@intel.com>
- <20240506133814.2571-8-michal.wajdeczko@intel.com>
- <20240514103727.v46ftf2jodytv6kl@intel.com>
+Subject: Re: [PATCH i-g-t 4/5] tests/intel/xe_pm: Only check the rpm resume
+ after the first mmap operation
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, <igt-dev@lists.freedesktop.org>
+CC: <intel-xe@lists.freedesktop.org>, Anshuman Gupta <anshuman.gupta@intel.com>
+References: <20240513185518.772398-1-rodrigo.vivi@intel.com>
+ <20240513185518.772398-4-rodrigo.vivi@intel.com>
+ <c33614a5-2e89-427f-8e8e-6126ef728901@intel.com>
 Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20240514103727.v46ftf2jodytv6kl@intel.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <c33614a5-2e89-427f-8e8e-6126ef728901@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN2PR01CA0241.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:21a::12) To BN9PR11MB5530.namprd11.prod.outlook.com
+ (2603:10b6:408:103::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|CY8PR11MB7686:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9415edbc-f0cd-4cd4-a9b8-08dc74346043
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|366007|1800799015;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SmZnNzcrNnk3ZjRIc1JEUFFIMmhHam9PZ2dHUlRSNUpDOHNLU1pJYzJkS0JN?=
+ =?utf-8?B?Vkd6NGlWbWNKNnBsM1Y4S010RG5zZ1VIMGdVaE5GeGZYZ1dZYWNQQ2YvaDcv?=
+ =?utf-8?B?L281aGJDd01nOTBUMHBOT0NSeDEzcWZyb3RwQVR4MW5yVFN0cGVYcHJOTytV?=
+ =?utf-8?B?SXJvK0tvNStnSnlXUXhqeHFwUmk5blBBSjkzU0FjZzRwUVMzUHFRMmpkK1pJ?=
+ =?utf-8?B?bmNsMDAzQ3J2M3lMN1FHekhCRm9qeVhDNWpydzl2ZzdQOVEwOG5GaDBRVEQv?=
+ =?utf-8?B?ckVCTW1kQWlpTkw1NEUwdndJWnFDVXJFenZwQmk0RzNaZ3FkVGFNdGZ6S2Jm?=
+ =?utf-8?B?RUJiY01VcWU2Z3doQ1dFVWVHenlOU0JNeFVabHlFY3pKVWdrQlJrS1l6enpq?=
+ =?utf-8?B?TUVWNFVzb1YxTEF2Y2R6QlFhWjFrL3g3VllJUXRodlhrUjRqSDViUytseFJ5?=
+ =?utf-8?B?STBmYThGdFl3M2RQMVpHNUhQeS9ZQzV5eUhuR1YvNmJSanRmL2s3cHY2K2Zs?=
+ =?utf-8?B?d3NydXF2Wm0zYm5nRXpIMjQ3bnMrejZHb3ZFT1JlVkVCRWcwV1lCWXMrMG1D?=
+ =?utf-8?B?STI3MHhOWnFGdzNsejlIZ1gxNEdIMVFYSmxqa1pJQUhPN1l3ZVUwMEt6emw2?=
+ =?utf-8?B?ellRSVJSYnF3ZVJmeXp4Skw1bkVrSVNESXRmZndQcUs3M1FiN3RvcGZWa3lF?=
+ =?utf-8?B?VGlqZUw4UThIZEg2eXBGaURHdzdBc05pVlU5UUtaQ2hZWXVsaHBBQXpVNzlD?=
+ =?utf-8?B?eTZweUV6SDdHZVJwTDZqUXBxcGNQeVl6WFJ2VXcySXZTSEJXVndFQXBUZXdB?=
+ =?utf-8?B?Tk8rZHF1Y3RoOEg3blkzWnRVN3lQTFBwb051WklSSDFCZG1hNmFJZGJpTjVq?=
+ =?utf-8?B?RjVNck5LeTdwUUliTlpka1BsaWROSEYzcks1aW1STG51MVRJeG9waWhPOUc1?=
+ =?utf-8?B?QzlhM3M1azRsbExVc3VKd3dBNGk0dnVQcVMvdlpHbTNSeDFRaExOV0J3T2tJ?=
+ =?utf-8?B?UlJIZC9FL1EycWVJWlBqblltbmMyU3dwM0FRaU5QbTlPWVlvRDVHdFhBcE4w?=
+ =?utf-8?B?bk82SGlOVXVoMUhxWnB2UGZuWU9wY2xTZTM0ZFNoOXZ6cm9oazNZTXNudFRW?=
+ =?utf-8?B?NWphcVVzWXNKbmwrbW4xS29WU1Y1YjdPek5DdlJPaE16dmFYRlNYczVKREhh?=
+ =?utf-8?B?UHFtN1JLUVFRWk9vdDBVM0hTVjNsdmQwTDBEK2lMcURaSm4xTDZQRVI4ek1M?=
+ =?utf-8?B?R1E3ZENzeWtWcWZIM2RuUVlRU1lmenU1VktjYkNwVEhuKzhyeVRwbElNZmpi?=
+ =?utf-8?B?emx1MUt1d3lIRGdtRWp0ekhBS3dJYUxQL1lwZ0tSa21QRmsxem5mTWh6VkRU?=
+ =?utf-8?B?TWlIVVhSNE9HUXU5WXI2T0RZM0lWRm5KU2plL1lXT0N1QWVwMmVuaHlNOVhz?=
+ =?utf-8?B?UTN2U3liaXNsR01wVytuNEtHTHBISjVibVB0aXZMQ3dtM1RVT1dGUDZ2Zisr?=
+ =?utf-8?B?Z1RTYVlSNUVsRm84TllpTmpVS010VHBLM3ZnODg3c0hVOWlSYVJBNmhRTDlW?=
+ =?utf-8?B?cGpPZ1F6elNDdXB2dWprN1lBUm1ITlpzNExQUVEwVXRPemdhWk8wMTlZZTdy?=
+ =?utf-8?B?d1ZQQ1FZZGd4bEZRWm52VFNQVFJoQzRFdUpDY3JLZWVMM3FnNCtmTFQ3NGps?=
+ =?utf-8?B?aThSMEhyMWIxWVBaYzJGc2ZMN2ZybmZVSzZqNEd3cldNUWtQYVhTMytBPT0=?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MFd6akRwNTlQZDVxWU5EZWo0bGUzMDRKTlFsUm9CR1FpLyswbncvd1dwT1VW?=
+ =?utf-8?B?V2ZYazJYSlFkdjNpMTA3MjAzV1NHQXlYcWgxS0NMZWtkMVYvV3YzdjRnNTBv?=
+ =?utf-8?B?VlcrN0o0VGppcm9lVks2dzNhdmRYeUxkNTVZcTVsNHlvVURvcElydFNhQk5J?=
+ =?utf-8?B?b1ZLd1ExcTZCbEZKb0hidHc3UlZoeXZsbWRPTjVoZ1NJWkZ1OGhJSWtoTWRy?=
+ =?utf-8?B?Qml0Z05hb2xqQUg3WE42RDNzQTRLZysxZjJlYzcyNU12b1ZLU2Q0NUlmc2Fs?=
+ =?utf-8?B?QlBENG5PQ3VCRXp4eEJ6NlQ1d2hFaDlpcDdxTW1JMFBaVzVzMWNuZTRwYXpI?=
+ =?utf-8?B?R2ZIMUFKZDArNzJHRi85ay81cGU5L3o2NE1BYkxiSHU1WjdvZDhLVUkxS2dh?=
+ =?utf-8?B?blByNnFRelNyRlJibVhvSWRDaEZYeE1qOGlNSUtLckNvTXUwNTNKY0VwWlJJ?=
+ =?utf-8?B?SHQvREZQclRlOWcwYVBqZ0I2SDFtdVhBQjJvc3Y5OWxrK0ZjTjBWQU8yY2NW?=
+ =?utf-8?B?dFY4SlZoSXdiTzdSRFVyU0JlcE02VmJuZGdoNGhUVFhKalJpTmZFTXNMVm11?=
+ =?utf-8?B?M1ArN3czcTU5bFo3V0JkK3hueHVxYmlzd1dnN0JlQVllOUx5eFVMeWdvaEdP?=
+ =?utf-8?B?U1JPZ2VTakdDUHZ0aE55L09EcU5LTG9ESTBMLytKMUV4NmRVeCtPRWZocktt?=
+ =?utf-8?B?OEk0VkRKcmNxZ0Z2UU1QU2JDR3BVR2JTcjlYNzdEZmJ3WFhzUHN5YkNsNUdx?=
+ =?utf-8?B?eldMc09jeFlyKzREazk5bExpb1dFcHdNYjZsOXBCUVU2Nk5UZ3lWci80QmVs?=
+ =?utf-8?B?dEwrTUdlTzliSzVBYXlHcjh0YlkreExIQ3o4S0dxSS9MaXM1b3RMUXl4NHdF?=
+ =?utf-8?B?QXZxUlYzanR4bXZJRHFTSVdoT0FEdDJsejZFMDdCaDBZa212eTJhbVhHZDIx?=
+ =?utf-8?B?a1FjT25ldlJ5YXdkaDdnU0Ixa1BwKzdpMm1tbXpNVlNKYVRsN1ppWkFrdEwr?=
+ =?utf-8?B?WnJlVm43TFVyajJUa0ZEaVZncUdMWnlmNW9TTGxvdU8yNkx5QzBxcWtFenQ4?=
+ =?utf-8?B?ZGRHVXk4WUhLaHFnMkRqWFZSeWNBQTlLK0NQWXNlYmwvSVplSjZ0L1NYdTBC?=
+ =?utf-8?B?elI1Qmc5TG1VMHI2dFBPV0JlRDlMZGc1MExtMjQwcjd5ektER2VMaFF1aVFR?=
+ =?utf-8?B?UDA0OG1SN0VvTWZZb21NcVNxN2wvZkxyajJ5UmNjQ2dCaHQvQW41NU1uLzhC?=
+ =?utf-8?B?U1JCTlNyby9tOEpFRVZDZGJtM21WYlBxeGJIYUpiUlU5Mi9VSUhld0xJcTlS?=
+ =?utf-8?B?N2Y0MlQ1SVFsQ1d4d21Wa3MyTFRVYThITHp1a2g3c2hHSUpUKzBidTM2V29s?=
+ =?utf-8?B?ZDJ0bmZ4bHJ0bjNQUUZzVWFPV0Jqck9FV255eVpXQldCMW9iVWdOUVplcTF1?=
+ =?utf-8?B?eEoxRDFQclhIV2Z5RVNkd21YdlNKSzJudE5udzBYN3M0c0FuNnRqRlhXVDRW?=
+ =?utf-8?B?TmpIdUI5bkpnSG9aM2FzM2EzbnRPdjNicWM0eGRNTmMwanJOYmFvQXBLS3hO?=
+ =?utf-8?B?WEVWa3ZyNmVzK2FOQUZvb0ZSbU04NFo4VHh5RUJZTlZvUGFYU1NIQkVNSjRz?=
+ =?utf-8?B?Sm1sUXhoNGNZdnNuTzRFcmhlaERoM0NaaHdjM3p2aHZ0Qm9YNk5qMnFWYmg4?=
+ =?utf-8?B?K1RNeTJHY2tPU2tWd3RVMDlOT0FiK0ErYVJWTFUxWCs1U2hoNXhYZDJVNjBu?=
+ =?utf-8?B?alNVU3VYOVVHb3FzK3BTM0o0alZaOFJJNXBXNGx3ZXFpWTZCUk1XOU1DdUM5?=
+ =?utf-8?B?VGZHbGRRSENJakFZcUxkRUMyUGlmTVhuOGNUUlNXcjY1NHF4RjlvOGpoY29u?=
+ =?utf-8?B?WmF6bU40NGR2NUFUWGRKYjQ2NzIvWFpJay8yS3dPeUxFQ0doenJ4UnRoazJw?=
+ =?utf-8?B?cEUwbnlWMmdqRGR3L211dWsxZ0dwVkxVbG42M0NNQUE3RTZURHpERWcxVlNG?=
+ =?utf-8?B?T2dRSk1IcDZ1TmJHRzlSaG5tSURKV1ZSNm9FYVEvWnIyalNuUVZnalBOb1p0?=
+ =?utf-8?B?V3VQWElRY1QxMjZxV1VsUUNXeDJXQ3AwaGtzWnl2WjVsQ0xjbzBod01CSWNw?=
+ =?utf-8?B?Vm0xZ3E1NXh2UUlOVXNtRmpYYmdTeko2RkF1U1Jyd0ZEOWhlekZlc2NaODhH?=
+ =?utf-8?B?MlE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9415edbc-f0cd-4cd4-a9b8-08dc74346043
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 May 2024 16:39:08.5219 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eziBm0OK1B6gUBa/x4zakmeVDuPYy+SpKivPYk8inGVpEAitEqGc02p6N190rmGw/+24iTPBp0NO1xUpuQNRpQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7686
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,311 +199,132 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 14.05.2024 12:37, Piotr Piórkowski wrote:
-> Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on pon [2024-maj-06 15:38:13 +0200]:
->> When thresholds used to monitor VFs activities are configured,
->> then GuC may send GUC2PF_ADVERSE_EVENT messages informing the
->> PF driver about exceeded thresholds. Start handling such messages.
+On 14-05-2024 20:49, Nilawar, Badal wrote:
+> 
+> 
+> On 14-05-2024 00:25, Rodrigo Vivi wrote:
+>> The very first memory operation on a mmaped region after runtime suspend,
+>> the device will be resumed if the memory used is vram.
+>> However, after this first operation with page fault, the memory
+>> can be migrated to the system memory.
+This probably due to xe_bo_evict_all() in D3 cold.
 >>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> During this migration, Xe kernel will get a notification at
+>> xe_bo_move_notify, and the bo will be removed from the
+>> vram_userfault list. Then, on the next suspend, we won't mark
+>> bo for page fault and resume won't happen and the active count
+>> won't increase. This is okay, since the bo is now in the system
+>> memory we don't need to wake up the device. But the current
+>> test is wrong, because it assumes that the bo keeps forever
+>> in vram, what is the issue here.
+Not completely wrong in D3 Hot.
+>>
+>> Only checking the resume after the first operation is the
+>> enough. But also, ensure that both read and write operations
+>> are actually validated.
+Should we keep "first operation" check only for D3 cold and previous 
+logic for D3 hot? May be combine patch 4 and 5 to handle this.
+
+Regards,
+Badal
+>>
+>> Cc: Badal Nilawar <badal.nilawar@intel.com>
+>> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+>> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 >> ---
->>  drivers/gpu/drm/xe/Makefile                   |   1 +
->>  drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.c   | 143 ++++++++++++++++++
->>  drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.h   |  27 ++++
->>  .../gpu/drm/xe/xe_gt_sriov_pf_monitor_types.h |  22 +++
->>  drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h     |   5 +
->>  drivers/gpu/drm/xe/xe_guc_ct.c                |   4 +
->>  6 files changed, 202 insertions(+)
->>  create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.c
->>  create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.h
->>  create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor_types.h
+>>   tests/intel/xe_pm.c | 36 +++++++++++++++++++++++++-----------
+>>   1 file changed, 25 insertions(+), 11 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->> index b620389761d5..31198375022a 100644
->> --- a/drivers/gpu/drm/xe/Makefile
->> +++ b/drivers/gpu/drm/xe/Makefile
->> @@ -164,6 +164,7 @@ xe-$(CONFIG_PCI_IOV) += \
->>  	xe_gt_sriov_pf_config.o \
->>  	xe_gt_sriov_pf_control.o \
->>  	xe_gt_sriov_pf_debugfs.o \
->> +	xe_gt_sriov_pf_monitor.o \
->>  	xe_gt_sriov_pf_policy.o \
->>  	xe_gt_sriov_pf_service.o \
->>  	xe_lmtt.o \
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.c
->> new file mode 100644
->> index 000000000000..2c0c5572a6cf
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.c
->> @@ -0,0 +1,143 @@
->> +// SPDX-License-Identifier: MIT
->> +/*
->> + * Copyright © 2023-2024 Intel Corporation
->> + */
->> +
->> +#include "abi/guc_actions_sriov_abi.h"
->> +#include "abi/guc_messages_abi.h"
->> +
->> +#include "xe_gt_sriov_pf_config.h"
->> +#include "xe_gt_sriov_pf_helpers.h"
->> +#include "xe_gt_sriov_pf_monitor.h"
->> +#include "xe_gt_sriov_printk.h"
->> +#include "xe_guc_klv_helpers.h"
->> +#include "xe_guc_klv_thresholds_set.h"
->> +
->> +/**
->> + * xe_gt_sriov_pf_monitor_flr - Process VF FLR.
-> 
-> The description is more suitable for the VF FLR handling function
-
-will try to improve
-
-> 
->> + * @gt: the &xe_gt
->> + * @vfid: the VF identifier
->> + *
->> + * On FLR this function will reset all event data related to the VF.
->> + * This function is for PF only.
->> + */
->> +void xe_gt_sriov_pf_monitor_flr(struct xe_gt *gt, u32 vfid)
->> +{
->> +	int e;
->> +
->> +	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
->> +	xe_gt_sriov_pf_assert_vfid(gt, vfid);
->> +
->> +	for (e = 0; e < XE_GUC_KLV_NUM_THRESHOLDS; e++)
->> +		gt->sriov.pf.vfs[vfid].monitor.guc.events[e] = 0;
->> +}
->> +
->> +static void pf_update_event_counter(struct xe_gt *gt, u32 vfid,
->> +				    enum xe_guc_klv_threshold_index e)
->> +{
->> +	xe_gt_assert(gt, e < XE_GUC_KLV_NUM_THRESHOLDS);
->> +	gt->sriov.pf.vfs[vfid].monitor.guc.events[e]++;
->> +}
->> +
->> +static int pf_handle_vf_threshold_event(struct xe_gt *gt, u32 vfid, u32 threshold)
->> +{
->> +	char origin[8];
->> +	int e;
->> +
->> +	e = xe_guc_klv_threshold_key_to_index(threshold);
->> +	xe_sriov_function_name(vfid, origin, sizeof(origin));
->> +
->> +	/* was there a new KEY added that we missed? */
->> +	if (unlikely(e < 0)) {
->> +		xe_gt_sriov_notice(gt, "unknown threshold key %#x reported for %s\n",
->> +				   threshold, origin);
->> +		return -ENOTCONN;
->> +	}
->> +
->> +	xe_gt_sriov_dbg(gt, "%s exceeded threshold %u %s\n",
->> +			origin, xe_gt_sriov_pf_config_get_threshold(gt, vfid, e),
->> +			xe_guc_klv_key_to_string(threshold));
->> +
->> +	pf_update_event_counter(gt, vfid, e);
->> +
->> +	return 0;
->> +}
->> +
->> +/**
->> + * xe_gt_sriov_pf_monitor_process_guc2pf - Handle adverse event notification from the GuC.
->> + * @gt: the &xe_gt
->> + * @msg: G2H event message
->> + * @len: length of the message
->> + *
->> + * This function is intended for PF only.
->> + *
->> + * Return: 0 on success or a negative error code on failure.
->> + */
->> +int xe_gt_sriov_pf_monitor_process_guc2pf(struct xe_gt *gt, const u32 *msg, u32 len)
->> +{
->> +	struct xe_device *xe = gt_to_xe(gt);
->> +	u32 vfid;
->> +	u32 threshold;
->> +
->> +	xe_gt_assert(gt, len >= GUC_HXG_MSG_MIN_LEN);
->> +	xe_gt_assert(gt, FIELD_GET(GUC_HXG_MSG_0_ORIGIN, msg[0]) == GUC_HXG_ORIGIN_GUC);
->> +	xe_gt_assert(gt, FIELD_GET(GUC_HXG_MSG_0_TYPE, msg[0]) == GUC_HXG_TYPE_EVENT);
->> +	xe_gt_assert(gt, FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, msg[0]) ==
->> +		     GUC_ACTION_GUC2PF_ADVERSE_EVENT);
->> +
->> +	if (unlikely(!IS_SRIOV_PF(xe)))
->> +		return -EPROTO;
->> +
->> +	if (unlikely(FIELD_GET(GUC2PF_ADVERSE_EVENT_EVENT_MSG_0_MBZ, msg[0])))
->> +		return -EPFNOSUPPORT;
->> +
->> +	if (unlikely(len < GUC2PF_ADVERSE_EVENT_EVENT_MSG_LEN))
->> +		return -EPROTO;
->> +
->> +	vfid = FIELD_GET(GUC2PF_ADVERSE_EVENT_EVENT_MSG_1_VFID, msg[1]);
->> +	threshold = FIELD_GET(GUC2PF_ADVERSE_EVENT_EVENT_MSG_2_THRESHOLD, msg[2]);
->> +
->> +	if (unlikely(vfid > xe_gt_sriov_pf_get_totalvfs(gt)))
->> +		return -EINVAL;
->> +
->> +	return pf_handle_vf_threshold_event(gt, vfid, threshold);
->> +}
->> +
->> +/**
->> + * xe_gt_sriov_pf_monitor_print_events - Print adverse events counters.
->> + * @gt: the &xe_gt to print events from
->> + * @p: the &drm_printer
->> + *
->> + * Print adverse events counters for all VFs.
->> + * VFs with no events are not printed.
->> + *
->> + * This function can only be called on PF.
->> + */
->> +void xe_gt_sriov_pf_monitor_print_events(struct xe_gt *gt, struct drm_printer *p)
->> +{
->> +	unsigned int n, total_vfs = xe_gt_sriov_pf_get_totalvfs(gt);
->> +	const struct xe_gt_sriov_monitor *data;
->> +	int e;
->> +
-> 
-> If you describe that the function is only for PF, then add some assert.
-
-it's already in xe_gt_sriov_pf_get_totalvfs() but since I'm using
-gt.sriov.pf data here, will add explicit one as a documentation
-
-> 
->> +	for (n = 1; n <= total_vfs; n++) {
->> +		data = &gt->sriov.pf.vfs[n].monitor;
->> +
->> +		for (e = 0; e < XE_GUC_KLV_NUM_THRESHOLDS; e++)
->> +			if (data->guc.events[e])
->> +				break;
->> +
->> +		/* skip empty unless in debug mode */
->> +		if (e >= XE_GUC_KLV_NUM_THRESHOLDS &&
->> +		    !IS_ENABLED(CONFIG_DRM_XE_DEBUG_SRIOV))
->> +			continue;
->> +
->> +#define __format(...) "%s:%u "
->> +#define __value(TAG, NAME, ...) , #NAME, data->guc.events[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)]
->> +
->> +		drm_printf(p, "VF%u:\t" MAKE_XE_GUC_KLV_THRESHOLDS_SET(__format) "\n",
->> +			   n MAKE_XE_GUC_KLV_THRESHOLDS_SET(__value));
->> +
->> +#undef __format
->> +#undef __value
->> +	}
->> +}
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.h
->> new file mode 100644
->> index 000000000000..7ca9351a271b
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.h
->> @@ -0,0 +1,27 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2023-2024 Intel Corporation
->> + */
->> +
->> +#ifndef _XE_GT_SRIOV_PF_MONITOR_H_
->> +#define _XE_GT_SRIOV_PF_MONITOR_H_
->> +
->> +#include <linux/errno.h>
->> +#include <linux/types.h>
->> +
->> +struct drm_printer;
->> +struct xe_gt;
->> +
->> +void xe_gt_sriov_pf_monitor_flr(struct xe_gt *gt, u32 vfid);
->> +void xe_gt_sriov_pf_monitor_print_events(struct xe_gt *gt, struct drm_printer *p);
->> +
->> +#ifdef CONFIG_PCI_IOV
->> +int xe_gt_sriov_pf_monitor_process_guc2pf(struct xe_gt *gt, const u32 *msg, u32 len);
->> +#else
->> +static inline int xe_gt_sriov_pf_monitor_process_guc2pf(struct xe_gt *gt, const u32 *msg, u32 len)
->> +{
->> +	return -EPROTO;
->> +}
->> +#endif
->> +
->> +#endif
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor_types.h
->> new file mode 100644
->> index 000000000000..e27c0308c5db
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor_types.h
->> @@ -0,0 +1,22 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2023-2024 Intel Corporation
->> + */
->> +
->> +#ifndef _XE_GT_SRIOV_PF_MONITOR_TYPES_H_
->> +#define _XE_GT_SRIOV_PF_MONITOR_TYPES_H_
->> +
->> +#include "xe_guc_klv_thresholds_set_types.h"
->> +
->> +/**
->> + * struct xe_gt_sriov_monitor - GT level per-VF monitoring data.
->> + */
->> +struct xe_gt_sriov_monitor {
->> +	/** @guc: monitoring data related to the GuC. */
->> +	struct {
->> +		/** @guc.events: number of adverse events reported by the GuC. */
->> +		unsigned int events[XE_GUC_KLV_NUM_THRESHOLDS];
->> +	} guc;
+>> diff --git a/tests/intel/xe_pm.c b/tests/intel/xe_pm.c
+>> index 72d484163..81226a910 100644
+>> --- a/tests/intel/xe_pm.c
+>> +++ b/tests/intel/xe_pm.c
+>> @@ -37,6 +37,11 @@
+>>   #define PREFETCH (0x1 << 1)
+>>   #define UNBIND_ALL (0x1 << 2)
+>> +enum mem_op {
+>> +    READ,
+>> +    WRITE,
 >> +};
 >> +
->> +#endif
->> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
->> index 880754f3e215..40cbaea3ef44 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
->> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
->> @@ -9,6 +9,7 @@
->>  #include <linux/types.h>
->>  
->>  #include "xe_gt_sriov_pf_config_types.h"
->> +#include "xe_gt_sriov_pf_monitor_types.h"
->>  #include "xe_gt_sriov_pf_policy_types.h"
->>  #include "xe_gt_sriov_pf_service_types.h"
->>  
->> @@ -18,6 +19,10 @@
->>  struct xe_gt_sriov_metadata {
->>  	/** @config: per-VF provisioning data. */
->>  	struct xe_gt_sriov_config config;
->> +
->> +	/** @monitor: per-VF monitoring data. */
->> +	struct xe_gt_sriov_monitor monitor;
->> +
->>  	/** @version: negotiated VF/PF ABI version */
->>  	struct xe_gt_sriov_pf_service_version version;
->>  };
->> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
->> index 8ac819a7061e..be9aaf30974a 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
->> @@ -22,6 +22,7 @@
->>  #include "xe_gt_pagefault.h"
->>  #include "xe_gt_printk.h"
->>  #include "xe_gt_sriov_pf_control.h"
->> +#include "xe_gt_sriov_pf_monitor.h"
->>  #include "xe_gt_tlb_invalidation.h"
->>  #include "xe_guc.h"
->>  #include "xe_guc_relay.h"
->> @@ -1066,6 +1067,9 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
->>  	case GUC_ACTION_GUC2PF_VF_STATE_NOTIFY:
->>  		ret = xe_gt_sriov_pf_control_process_guc2pf(gt, hxg, hxg_len);
->>  		break;
->> +	case GUC_ACTION_GUC2PF_ADVERSE_EVENT:
->> +		ret = xe_gt_sriov_pf_monitor_process_guc2pf(gt, hxg, hxg_len);
->> +		break;
->>  	default:
->>  		xe_gt_err(gt, "unexpected G2H action 0x%04x\n", action);
->>  	}
+>>   typedef struct {
+>>       int fd_xe;
+>>       struct pci_device *pci_xe;
+>> @@ -525,7 +530,8 @@ static void test_vram_d3cold_threshold(device_t 
+>> device, int sysfs_fd)
+>>    *
+>>    * Functionality: pm-d3
+>>    */
+>> -static void test_mmap(device_t device, uint32_t placement, uint32_t 
+>> flags)
+>> +static void test_mmap(device_t device, uint32_t placement, uint32_t 
+>> flags,
+>> +              enum mem_op first_op)
+>>   {
+>>       size_t bo_size = 8192;
+>>       uint32_t *map = NULL;
+>> @@ -563,8 +569,12 @@ static void test_mmap(device_t device, uint32_t 
+>> placement, uint32_t flags)
+>>       
+>> igt_assert(igt_wait_for_pm_status(IGT_RUNTIME_PM_STATUS_SUSPENDED));
+>>       active_time = igt_pm_get_runtime_active_time(device.pci_xe);
+>> -    for (i = 0; i < bo_size / sizeof(*map); i++)
+>> -        igt_assert(map[i] == MAGIC_1);
+>> +    for (i = 0; i < bo_size / sizeof(*map); i++) {
+>> +        if (first_op == READ)
+>> +            igt_assert(map[i] == MAGIC_1);
+>> +        else
+>> +            map[i] = MAGIC_2;
+>> +    }
+>>       /* dgfx page-fault on mmaping should wake the gpu */
+>>       if (xe_has_vram(device.fd_xe) && flags & 
+>> DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM)
+>> @@ -574,12 +584,12 @@ static void test_mmap(device_t device, uint32_t 
+>> placement, uint32_t flags)
+>>       
+>> igt_assert(igt_wait_for_pm_status(IGT_RUNTIME_PM_STATUS_SUSPENDED));
+>>       active_time = igt_pm_get_runtime_active_time(device.pci_xe);
+> Above line can be removed.
+>> -    for (i = 0; i < bo_size / sizeof(*map); i++)
+>> -        map[i] = MAGIC_2;
+>> -
+>> -    if (xe_has_vram(device.fd_xe) && flags & 
+>> DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM)
+>> -        igt_assert(igt_pm_get_runtime_active_time(device.pci_xe) >
+>> -               active_time);
+>> +    for (i = 0; i < bo_size / sizeof(*map); i++) {
+>> +        if (first_op == READ)
+>> +            map[i] = MAGIC_2;
+>> +        else
+>> +            igt_assert(map[i] == MAGIC_2);
+>> +    }
+>>       
+>> igt_assert(igt_wait_for_pm_status(IGT_RUNTIME_PM_STATUS_SUSPENDED));
+>> @@ -781,7 +791,8 @@ igt_main
+>>                    "when device along with parent bridge in d3");
+>>           igt_subtest("d3-mmap-system") {
+>>               dpms_on_off(device, DRM_MODE_DPMS_OFF);
+>> -            test_mmap(device, system_memory(device.fd_xe), 0);
+>> +            test_mmap(device, system_memory(device.fd_xe), 0, READ);
+>> +            test_mmap(device, system_memory(device.fd_xe), 0, WRITE);
+>>               dpms_on_off(device, DRM_MODE_DPMS_ON);
+>>           }
+>> @@ -800,7 +811,10 @@ igt_main
+>>               /* Give some auto suspend delay to validate rpm active 
+>> during page fault */
+>>               igt_pm_set_autosuspend_delay(device.pci_xe, 1000);
+>>               dpms_on_off(device, DRM_MODE_DPMS_OFF);
+>> -            test_mmap(device, vram_memory(device.fd_xe, 0), 
+>> DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM);
+>> +            test_mmap(device, vram_memory(device.fd_xe, 0),
+>> +                  DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM, READ);
+>> +            test_mmap(device, vram_memory(device.fd_xe, 0),
+>> +                  DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM, 
+>> WRITE);With a comment this is
+> Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
 > 
-> With fixes:
-> Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
-> 
-> 
->> -- 
->> 2.43.0
->>
-> 
+> Regards,
+> Badal
+>>               dpms_on_off(device, DRM_MODE_DPMS_ON);
+>>               igt_pm_set_autosuspend_delay(device.pci_xe, delay_ms);
+>>           }
