@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BF5CC04FFE
-	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 23:28:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2239C04FFE
+	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 23:28:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8D6E10E0D3;
-	Tue, 14 May 2024 23:28:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA45310E0F3;
+	Tue, 14 May 2024 23:28:52 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A308410E0D3;
- Tue, 14 May 2024 23:28:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D686910E0F3;
+ Tue, 14 May 2024 23:28:51 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Only_zap_P?=
- =?utf-8?q?TEs_as_needed?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Only_zap_PTEs_a?=
+ =?utf-8?q?s_needed?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 14 May 2024 23:28:40 -0000
-Message-ID: <171572932066.2116539.1587750384862928669@8e613ede5ea5>
+Date: Tue, 14 May 2024 23:28:51 -0000
+Message-ID: <171572933187.2116540.17179804514245979979@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240514232325.84508-1-matthew.brost@intel.com>
 In-Reply-To: <20240514232325.84508-1-matthew.brost@intel.com>
@@ -48,9 +48,25 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 4cb2d17202b7 drm-tip: 2024y-05m-14d-21h-24m-53s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Only zap PTEs as needed
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+57b97a66dd129aea93991dc66cd10477f7a05cf8
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e28429bfedc0afe5ac53525b00cbbfa92785b82b
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Tue May 14 16:23:25 2024 -0700
+
+    drm/xe: Only zap PTEs as needed
+    
+    If PTEs are already invalidated no need to invalidate again.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 4cb2d17202b74ed81c0b6f22e540d811458869df drm-intel
+e28429bfedc0 drm/xe: Only zap PTEs as needed
 
 
