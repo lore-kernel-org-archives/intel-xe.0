@@ -4,52 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F434C04FFE
-	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 21:54:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DECA6C25B78
+	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 22:05:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D537210E6E4;
-	Tue, 14 May 2024 21:54:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X/Xc8Urq";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C5FB10E6E4
- for <intel-xe@lists.freedesktop.org>; Tue, 14 May 2024 21:54:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715723685; x=1747259685;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=vI4bLAXZilGKz3M/c8W+izw735XZLUBWoCmVdExNgoM=;
- b=X/Xc8Urq5mjuw66qBSEPa31WWp0RUItkishjlx9uMcCZV5Uv2rc4OXqM
- KeZ1KZRKcnQYLTkiBs6+XJCytArNLTFYw7LLlzCwnz28ipfhpIMzOSS/r
- hM6Co6qZyoOvZmH39LpXvlC7M51zWLaMn8wOrcbK4F+2VdjP9EScC7VwE
- uED2Ap6nRd4lLlSuFNcg2a55KpWholzTXRDplUMs5p+3YZfuRQNcpeoU1
- 4+yIgjPljeixN8ciRNK/bs7B/0IO73nrBGnBYOqNfrl/7fSPAzhO4OIr8
- rqdeugeOEgtLIEtOPV1bLYRzkzJuOz1dR+lF/7CACPesbWqSDnnK6pmOv A==;
-X-CSE-ConnectionGUID: UlR50zw9QySR3cHmb7Mp0A==
-X-CSE-MsgGUID: mqew5YmbQ/CsMqOkgtEwWQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="11600139"
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="11600139"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2024 14:54:45 -0700
-X-CSE-ConnectionGUID: Gyv+XH37STSsabQBh8M2eA==
-X-CSE-MsgGUID: aeoJIaEmQtuAfGc9Nsm23Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="35620804"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2024 14:54:44 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH] drm/xe: Rework GPU page fault handling
-Date: Tue, 14 May 2024 14:55:23 -0700
-Message-Id: <20240514215523.55065-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A09310E89E;
+	Tue, 14 May 2024 22:05:41 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B397D10E89E;
+ Tue, 14 May 2024 22:05:40 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7109516531769657537=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_Retry_BO_allocation?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 14 May 2024 22:05:40 -0000
+Message-ID: <171572434073.2116539.13483200877403765616@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240514211949.46127-1-matthew.brost@intel.com>
+In-Reply-To: <20240514211949.46127-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,213 +35,178 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add helper function to implement VMA (user binding) page faults, remove
-unnecessary userptr.invalidate_link list del operation, retry on memory
-pressure, remove unnecessary xe_vma_userptr_check_repin after rebinding,
-remove unnecessary TLB invalidation, and always use vm->lock in write
-mode. Changes help facilitate SVM page faults.
+--===============7109516531769657537==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 142 ++++++++++++---------------
- 1 file changed, 62 insertions(+), 80 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 040dd142c49c..eaf68f0135c1 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -125,126 +125,108 @@ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
- 	return 0;
- }
- 
--static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
-+static int handle_vma_pagefault(struct xe_tile *tile, struct pagefault *pf,
-+				struct xe_vma *vma)
- {
--	struct xe_device *xe = gt_to_xe(gt);
--	struct xe_tile *tile = gt_to_tile(gt);
-+	struct xe_vm *vm = xe_vma_vm(vma);
- 	struct drm_exec exec;
--	struct xe_vm *vm;
--	struct xe_vma *vma = NULL;
- 	struct dma_fence *fence;
--	bool write_locked;
--	int ret = 0;
-+	ktime_t end = 0;
-+	int err;
- 	bool atomic;
- 
--	/* SW isn't expected to handle TRTT faults */
--	if (pf->trva_fault)
--		return -EFAULT;
--
--	/* ASID to VM */
--	mutex_lock(&xe->usm.lock);
--	vm = xa_load(&xe->usm.asid_to_vm, pf->asid);
--	if (vm && xe_vm_in_fault_mode(vm))
--		xe_vm_get(vm);
--	else
--		vm = NULL;
--	mutex_unlock(&xe->usm.lock);
--	if (!vm)
--		return -EINVAL;
--
--retry_userptr:
--	/*
--	 * TODO: Avoid exclusive lock if VM doesn't have userptrs, or
--	 * start out read-locked?
--	 */
--	down_write(&vm->lock);
--	write_locked = true;
--	vma = lookup_vma(vm, pf->page_addr);
--	if (!vma) {
--		ret = -EINVAL;
--		goto unlock_vm;
--	}
--
--	if (!xe_vma_is_userptr(vma) ||
--	    !xe_vma_userptr_check_repin(to_userptr_vma(vma))) {
--		downgrade_write(&vm->lock);
--		write_locked = false;
--	}
--
- 	trace_xe_vma_pagefault(vma);
--
- 	atomic = access_is_atomic(pf->access_type);
- 
- 	/* Check if VMA is valid */
- 	if (vma_is_valid(tile, vma) && !atomic)
--		goto unlock_vm;
--
--	/* TODO: Validate fault */
-+		return 0;
- 
--	if (xe_vma_is_userptr(vma) && write_locked) {
-+retry_userptr:
-+	if (xe_vma_is_userptr(vma) &&
-+	    xe_vma_userptr_check_repin(to_userptr_vma(vma))) {
- 		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
- 
--		spin_lock(&vm->userptr.invalidated_lock);
--		list_del_init(&uvma->userptr.invalidate_link);
--		spin_unlock(&vm->userptr.invalidated_lock);
--
--		ret = xe_vma_userptr_pin_pages(uvma);
--		if (ret)
--			goto unlock_vm;
--
--		downgrade_write(&vm->lock);
--		write_locked = false;
-+		err = xe_vma_userptr_pin_pages(uvma);
-+		if (err)
-+			return err;
- 	}
- 
- 	/* Lock VM and BOs dma-resv */
- 	drm_exec_init(&exec, 0, 0);
- 	drm_exec_until_all_locked(&exec) {
--		ret = xe_pf_begin(&exec, vma, atomic, tile->id);
-+		err = xe_pf_begin(&exec, vma, atomic, tile->id);
- 		drm_exec_retry_on_contention(&exec);
--		if (ret)
-+		if (xe_vm_validate_should_retry(&exec, err, &end))
-+			err = -EAGAIN;
-+		if (err)
- 			goto unlock_dma_resv;
- 
- 		/* Bind VMA only to the GT that has faulted */
- 		trace_xe_vma_pf_bind(vma);
- 		fence = xe_vma_rebind(vm, vma, BIT(tile->id));
- 		if (IS_ERR(fence)) {
--			ret = PTR_ERR(fence);
-+			err = PTR_ERR(fence);
-+			if (xe_vm_validate_should_retry(&exec, err, &end))
-+				err = -EAGAIN;
- 			goto unlock_dma_resv;
- 		}
- 	}
- 
--	/*
--	 * XXX: Should we drop the lock before waiting? This only helps if doing
--	 * GPU binds which is currently only done if we have to wait for more
--	 * than 10ms on a move.
--	 */
- 	dma_fence_wait(fence, false);
- 	dma_fence_put(fence);
--
--	if (xe_vma_is_userptr(vma))
--		ret = xe_vma_userptr_check_repin(to_userptr_vma(vma));
- 	vma->tile_invalidated &= ~BIT(tile->id);
- 
- unlock_dma_resv:
- 	drm_exec_fini(&exec);
--unlock_vm:
--	if (!ret)
--		vm->usm.last_fault_vma = vma;
--	if (write_locked)
--		up_write(&vm->lock);
--	else
--		up_read(&vm->lock);
--	if (ret == -EAGAIN)
-+	if (err == -EAGAIN)
- 		goto retry_userptr;
- 
--	if (!ret) {
--		ret = xe_gt_tlb_invalidation_vma(gt, NULL, vma);
--		if (ret >= 0)
--			ret = 0;
-+	return err;
-+}
-+
-+static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_tile *tile = gt_to_tile(gt);
-+	struct xe_vm *vm;
-+	struct xe_vma *vma = NULL;
-+	int err;
-+
-+	/* SW isn't expected to handle TRTT faults */
-+	if (pf->trva_fault)
-+		return -EFAULT;
-+
-+	/* ASID to VM */
-+	mutex_lock(&xe->usm.lock);
-+	vm = xa_load(&xe->usm.asid_to_vm, pf->asid);
-+	if (vm && xe_vm_in_fault_mode(vm))
-+		xe_vm_get(vm);
-+	else
-+		vm = NULL;
-+	mutex_unlock(&xe->usm.lock);
-+	if (!vm)
-+		return -EINVAL;
-+
-+	/*
-+	 * TODO: Change to read lock? Using write lock for simplicity.
-+	 */
-+	down_write(&vm->lock);
-+	vma = lookup_vma(vm, pf->page_addr);
-+	if (!vma) {
-+		err = -EINVAL;
-+		goto unlock_vm;
- 	}
-+
-+	err = handle_vma_pagefault(tile, pf, vma);
-+
-+unlock_vm:
-+	if (!err)
-+		vm->usm.last_fault_vma = vma;
-+	up_write(&vm->lock);
- 	xe_vm_put(vm);
- 
--	return ret;
-+	return err;
- }
- 
- static int send_pagefault_reply(struct xe_guc *guc,
--- 
-2.34.1
+Series: drm/xe: Retry BO allocation
+URL   : https://patchwork.freedesktop.org/series/133626/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from xe-1285-a0c161037de0a89c0a9ea744f60099a4f94cc123_BAT -> xe-pw-133626v1_BAT
+====================================================
+
+Summary
+-------
+
+  **WARNING**
+
+  Minor unknown changes coming with xe-pw-133626v1_BAT need to be verified
+  manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-133626v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-133626v1_BAT:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate:
+    - bat-dg2-oem2:       [SKIP][1] ([Intel XE#288]) -> [SKIP][2] +32 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1285-a0c161037de0a89c0a9ea744f60099a4f94cc123/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133626v1/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html
+
+  * igt@xe_exec_fault_mode@twice-userptr-invalidate-imm:
+    - bat-atsm-2:         [SKIP][3] ([Intel XE#288]) -> [SKIP][4] +32 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1285-a0c161037de0a89c0a9ea744f60099a4f94cc123/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133626v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html
+
+  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
+    - bat-adlp-7:         [SKIP][5] ([Intel XE#288]) -> [SKIP][6] +32 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1285-a0c161037de0a89c0a9ea744f60099a4f94cc123/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133626v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-133626v1_BAT that come from known issues:
+
+### IGT changes ###
+
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7853 -> IGT_7854
+  * Linux: xe-1285-a0c161037de0a89c0a9ea744f60099a4f94cc123 -> xe-pw-133626v1
+
+  IGT_7853: b6c459b99abc85cad050b0b04faaca9fc3568a69 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7854: 8abb25ffe588020cf0b797d60ad1f3f9e7c0764a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1285-a0c161037de0a89c0a9ea744f60099a4f94cc123: a0c161037de0a89c0a9ea744f60099a4f94cc123
+  xe-pw-133626v1: 133626v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133626v1/index.html
+
+--===============7109516531769657537==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Retry BO allocation</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133626/">https://patchwork.freedesktop.org/series/133626/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133626v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133626v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1285-a0c161037de0a89c0a9ea744f60099a4f94cc123_BAT -&gt; xe-pw-133626v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>WARNING</strong></p>
+<p>Minor unknown changes coming with xe-pw-133626v1_BAT need to be verified<br />
+  manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-133626v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-133626v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1285-a0c161037de0a89c0a9ea744f60099a4f94cc123/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133626v1/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html">SKIP</a> +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-imm:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1285-a0c161037de0a89c0a9ea744f60099a4f94cc123/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133626v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html">SKIP</a> +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1285-a0c161037de0a89c0a9ea744f60099a4f94cc123/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133626v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> +32 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-133626v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7853 -&gt; IGT_7854</li>
+<li>Linux: xe-1285-a0c161037de0a89c0a9ea744f60099a4f94cc123 -&gt; xe-pw-133626v1</li>
+</ul>
+<p>IGT_7853: b6c459b99abc85cad050b0b04faaca9fc3568a69 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7854: 8abb25ffe588020cf0b797d60ad1f3f9e7c0764a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1285-a0c161037de0a89c0a9ea744f60099a4f94cc123: a0c161037de0a89c0a9ea744f60099a4f94cc123<br />
+  xe-pw-133626v1: 133626v1</p>
+
+</body>
+</html>
+
+--===============7109516531769657537==--
