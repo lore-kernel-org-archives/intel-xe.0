@@ -4,171 +4,177 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94D01C04FFE
-	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 10:17:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEA60C04FFE
+	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 10:37:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EB3910E22A;
-	Tue, 14 May 2024 10:17:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BF9310E0B7;
+	Tue, 14 May 2024 10:37:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OcFs985u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WlC4Q47H";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E39810E22A
- for <intel-xe@lists.freedesktop.org>; Tue, 14 May 2024 10:17:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ACD810E0B7
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 May 2024 10:37:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715681849; x=1747217849;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:mime-version;
- bh=6ES82RWGlkqq+n6EGMGFHQaGvNjv5ENNYQtpRZb/2Y0=;
- b=OcFs985uCQOJ4cIFwiWDJrCjTjvrcMK2g/eRAEUbbqjNZ3HAl9ARa9F2
- bUg0HDOEW7IUecwzBwLKjN3me6OncfyX7cgSWuJNQNtcwgDijvVyGG0Qc
- kZDLU1xBsl7YhrmOOoM+9wdAGXS3rV2WMwGboerkw9fi2knAN4HxNXdYD
- zZwcD45ZQVXcv31GivCqJQzkvrpQMA2K3btUilIdZI+tsmwBxdstyvfzI
- 7o5ozptFV/21SvUmML5SnvjwZ2I3d/0dP4spuwpXPNN2DkkgjnzY0czgQ
- lzR90Dx4zVPpa/uOCC9Y5x4NFj6teJkJfUU8OAsQDmp4/LbnBVx6WZbrm Q==;
-X-CSE-ConnectionGUID: zL3+ci51SPW/PP/+ffpF8g==
-X-CSE-MsgGUID: QkbDDOvySkKMobIK1peXOQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11072"; a="22326512"
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208,217";a="22326512"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ t=1715683054; x=1747219054;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=XPAIDSTdBOdFK1jVwIszU7u/K3IIwlM5TB8Uzoy8yiA=;
+ b=WlC4Q47H6kWEU4y//XyQAjH69mhCZtTTaXD70d6fm2afiDO2AsxqD55T
+ wpYc3OQjprPuec4HnlqHbU41uY3mI+2prCqUPCSgOjXbdFirHY8GqT+s7
+ G342CR9K38VtX/UF77gEWRtrFQGJPiWvwM/imYFh3F0p6aVhb2wjl4nZo
+ MpyVDCQfJOSyCPr65NTDTODLOWIJYQYoPLX+PEJW/Zht13I6/krqMHudt
+ vuig+HihZolfRXqrBUHRZn3r8t7WRXeCdOZk8tHB0aap1Plln0RYM7LoO
+ R2rixhuqXBonCpxuHTUbkuzEus0H2Fpj67cnjPTPJi0uGrdBXo+X9pT4A A==;
+X-CSE-ConnectionGUID: ranHhWlSR2qpAGuNW7ONWQ==
+X-CSE-MsgGUID: +aa7xTgmQhWyZoyNYjkcdw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11072"; a="22328711"
+X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="22328711"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2024 03:17:28 -0700
-X-CSE-ConnectionGUID: IhyzRUlaQrK+4Lik5jz48A==
-X-CSE-MsgGUID: Mbd1WbpiSTqYNJ5NdWFj3A==
+ 14 May 2024 03:37:33 -0700
+X-CSE-ConnectionGUID: rbhUwqdGSfqpbDqAMitsvA==
+X-CSE-MsgGUID: d770ySvCRX2erFnTQlicoA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208,217";a="30649056"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 14 May 2024 03:17:28 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="30708617"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 May 2024 03:37:33 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 14 May 2024 03:17:27 -0700
+ 15.1.2507.35; Tue, 14 May 2024 03:37:32 -0700
 Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 14 May 2024 03:17:27 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Tue, 14 May 2024 03:37:32 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 14 May 2024 03:17:27 -0700
+ 15.1.2507.35; Tue, 14 May 2024 03:37:32 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JRG/y3VfK1OQ3H8EznuyDOqlYIIlYe5OIAaCreTVaQjlwUzzUMTscmUS9omX6uv2avE1GG4+LrItpNq14ZosqNx47iqsKUEQDXrju4grJ7AGnR4ok6IzdteGdhHq5h8+HDJffcjbRBnq5kbFIIMrAdta8K+BB0Vku2wvhW46Sh0EGkO1L2KBUUoe6+YRXEfk8d2e1ODRriaX0aIWHMO0Ugpqow5Wsx+/R+VcxKwUEgqXxmGplPfCokdLwqJgtO1Za6I8zHX/aYekeUlFNtwB8FzhRXTM4kBNuV7d+So71gxrttbDzZIIc3rkCoPilvNGjvB+xZRW3BB30irVNCvDpQ==
+ b=A82ZAiFtcc6ftkeLVrct0iPcfe6GU4Ftrb3jr892PL0yXkm6Lib0XUzs9EBLX0x9G/zZ3yHw2e7B5PfuLyUZnBvW5JwFgk+6NLt3R9xKp5TztyvuX9rjFXyYDqK4MiA6aWt560QbSy4jKhGGq4NnWvKjewNovBKo3IzJN2XWUpM0UCS4ZlDVR+Bak8D2KQBvNisCDIqxW5nN0nIQfzhI8IFWSwktu4OGBsLQRXAGFuyqGgDogHC/5YLVAm/y0KZd+hRp0j1XSExOUXfKDAPxRYA76qeiUdq/rFrin/cOAy7O8ew5xObv0xcoD2KPVQPdC3cBK3thDq0q9GhusSWXLA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UpTkCrJxDj7Rgv/Y2okCIhImfgG5aD/kGzXsyM8V6fo=;
- b=FnAowS+bZNyKF3CM90N+Me+HyHl/6yuqb7JFycGDG7vQsisFkmCB70+oIfD78WBtzYq6B6hyj5tw2R4rbgXDniUdWo0hoPYdQG++dVVoELGKLubtijNVe07xhahFCvnLNQ5PXBurv9pTIdIiGPJE02PvHnlG02RAd0Ft5sv50b8B7cYJZ8CvoONN5QLKcK/dKh6iVuF8QEdXCr9YNCa3QaxtqGiVPGoidy6iXFWbV9hPN6HqJ+VJ2o+xesTkPdLfpyDU4mQaZxel7ugVRgBn/UJ8jCKO06SQI6RzGnxiMX3ijbdPO3bhRb9df+m9m+gVNAkjpXZBcaOMs9M4DMDe7w==
+ bh=E43godrFgJqz536xus85o5fXpzrSSlE/gRgdkRQepO0=;
+ b=JPESRROR5/Lo5QI9yAotVPyQIoRlXkSydRvQfsM8LihDsIYfbJwrNlg8FkbjiiafKJC6+eRvG0uOonQF5GoPoICPTCKnTun7R4A+XIDCfbsF9EyMhR48bYBQE0A1QCgcQuGz8J1sJ7Yg2bS7HrO1kOCTJyXaxWBM7c1pyX2vP6X1n6cSTjM6B2G5rBNb4hQAZlE9HAgnggMRazoyk65lUyEP07HHzbOs2p06WvpTVHn5ulk2HY2YImOaM9WIM30D7sZ8AH+vhaCGVD1A5kmTHNYaBPtB05b8yNOX5W0uVgKncZ5guir5Xqap7dNR+alkSBRwMRVTfS2+wVe+i0Hhbw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from PH0PR11MB5674.namprd11.prod.outlook.com (2603:10b6:510:ec::10)
- by DM4PR11MB6503.namprd11.prod.outlook.com (2603:10b6:8:8c::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7587.26; Tue, 14 May 2024 10:17:25 +0000
-Received: from PH0PR11MB5674.namprd11.prod.outlook.com
- ([fe80::77d3:dfb2:3bd:e02a]) by PH0PR11MB5674.namprd11.prod.outlook.com
- ([fe80::77d3:dfb2:3bd:e02a%5]) with mapi id 15.20.7544.052; Tue, 14 May 2024
- 10:17:25 +0000
-From: "Konda, SaiKishore" <saikishore.konda@intel.com>
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>, "Joonas
- Lahtinen" <joonas.lahtinen@linux.intel.com>, "De Marchi, Lucas"
- <lucas.demarchi@intel.com>, "Brost, Matthew" <matthew.brost@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Upadhyay, Tejas" <tejas.upadhyay@intel.com>, "Siddiqui, Ayaz A"
- <ayaz.siddiqui@intel.com>
-Subject: RE: [PATCH] drm/xe: Modify minimum of various scheduler timeout to 0
-Thread-Topic: [PATCH] drm/xe: Modify minimum of various scheduler timeout to 0
-Thread-Index: AQHan7gxBZth6vRpC0quH9Xo1BUEo7GNUb8AgAHC6ICAAR+PAIAACWnPgAZSgnA=
-Date: Tue, 14 May 2024 10:17:25 +0000
-Message-ID: <PH0PR11MB5674E8EF849E5B47A847B70594E32@PH0PR11MB5674.namprd11.prod.outlook.com>
-References: <20240506133447.3143994-1-himal.prasad.ghimiray@intel.com>
- <27iutedmzaotadr7fhnqhvy6naydrsqstgarjmqa4ltmlsowix@bn7n2shccrgd>
- <ZjzzKwMHFjdQaG7m@DUT025-TGLU.fm.intel.com>
- <171533219643.7531.15603783689137370423@jlahtine-mobl.ger.corp.intel.com>
- <MW4PR11MB705636A5456E4D03F69005E0B3E72@MW4PR11MB7056.namprd11.prod.outlook.com>
-In-Reply-To: <MW4PR11MB705636A5456E4D03F69005E0B3E72@MW4PR11MB7056.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-Mentions: himal.prasad.ghimiray@intel.com
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH0PR11MB5674:EE_|DM4PR11MB6503:EE_
-x-ms-office365-filtering-correlation-id: db7bd55d-7cb2-4c4d-925c-08dc73ff0d17
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230031|366007|376005|1800799015|38070700009;
-x-microsoft-antispam-message-info: =?us-ascii?Q?/5sZNmoQI/HZOmkyAZkXQSsPqln9U31JDVu2V78rQbpIZheEMavcKQd6RNX4?=
- =?us-ascii?Q?SkJnyDhZMRFTBjeS0oF5B5lJiOErLJX+2caXXVPH+1iOtPstWnzLcg8eOYmo?=
- =?us-ascii?Q?Lw4+H3Qu5AA+pvi6Cdf2mBIA7GrD/0/36hTnY3zidl/rGip81KfTOjpjI7u5?=
- =?us-ascii?Q?nUtgfGxRkEqj89N5HTfFgmlTApFOFWhvIvNno3wpX/NyfEER1NkTacbyr45h?=
- =?us-ascii?Q?zjnJnQLA8w2BXVufxrDmhHKbjzLGkK0cFMeYZ/WOeaY4GjqCM2YM8WBcSGSU?=
- =?us-ascii?Q?wfSOTYr7gFctXM6i9IXwwM3tQOO8UnrwUnJrhFkQk7sZMBuu2IIXM4tDdbMF?=
- =?us-ascii?Q?V4lYgjbIjVxGWDHYRiynLYjKw0Kml/59RI/f4seqLNgVqemzmAQEZF0+v1NZ?=
- =?us-ascii?Q?vLMJ4BHqjCzq/MqfWzZHHtnBloHdD1zW0SvWaKCOJ4fKxpc6oHpGko1iGksv?=
- =?us-ascii?Q?JmXkWC8ohkhy/lTEHREuqmNZ+8IXyGrZRDsJaf8PL2F5ExKhjEF02cPzrkbS?=
- =?us-ascii?Q?ARpyVKvU7cXtuFRaubw9jLd4kFpSkKefaOgXCw90aHmWTeGEhnVXfgfVEV40?=
- =?us-ascii?Q?wGxXtmjDakbyogO7y2obU/eR1ML056KPYqq42lPvRRCkvac5UDbKhrxM96to?=
- =?us-ascii?Q?0gHbT3u1fcGmwV3DOT8xlnqOsP3+5Ziw9HlkDu9CLmxKrR8/25n4Xn2RxNrL?=
- =?us-ascii?Q?m62UlMjnnOc7GhlA9AErg53w2k0q29jNUi0PKtQR9W0tew/kY1udoiiJQx4t?=
- =?us-ascii?Q?u1thqxZUICUd5xhpaJj8kdY18wqBiZcyKN4S5jAH7xNISK52QDwGQFEnmqt4?=
- =?us-ascii?Q?hNCW3zipnrnhHq+zneG3oa7OPMTWiNjoMhTZByWxZTUh6/8CXWm7tAJLVlmx?=
- =?us-ascii?Q?KD2lwU06CeNZOvJhOH7DwKDurBm9L6nC37MsUx7LaqEASmuIiqqrXI1fvcV4?=
- =?us-ascii?Q?DN1qs6YnUC3LCeq+Za9UrlFGD5VwRB/If+25g2FaziTXj5Ih2Wi/JJyy/NMU?=
- =?us-ascii?Q?6G3bVrOyL0chOEL/5H/vaWKzRKCuKwTr6MFrrjvuWlGwp+MUyZPFJ0ALQUP5?=
- =?us-ascii?Q?CWcCo8Zaw63FZZUaZQnDrgRTyE87BH7LrX1stXLjzheLf2PrY9X47Y4bGrsa?=
- =?us-ascii?Q?xfHX+eycWcPlggnltCSA/zpoXD2DUJx4GFvRprAw3k4W3SRDCUmBE9uSeV+/?=
- =?us-ascii?Q?cZvXT6n+rMYVh0/zyrYmYVay9xz90zVfK+oMJc6RDEhN7+IxGbkx/8J7xGp0?=
- =?us-ascii?Q?VlLizM9AA0Dv9m+qORXvS3Hq8Fx7HmiJF5zZaMIJnmXJTiBB914QghcLMUBF?=
- =?us-ascii?Q?Zk04JGZC/5xbIDnShBFC2+nmsre28uhqPY2zugQNmld2yw=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH0PR11MB5674.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(376005)(1800799015)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?jsO1oVboGKNNebMvW04A1DsmqEKZUoJD5lDTfcIVTUT/jNAl2134F8p4qfC0?=
- =?us-ascii?Q?2Fo0W4Xt0JIthJw1gBTgBwXSSo0uLNiRQsmF6T7Pa3WEA0a/83blZySJe8GV?=
- =?us-ascii?Q?7a2Egj9matqzt3RocxW2m4xhVQW5lhAmfeiOMl5XM77NS21e/Vg/eGMPiF/O?=
- =?us-ascii?Q?EE8Vze3x9J6xjrfMtKI09MkVeyorxVeuhdULV93woNRnGX2nsYUl6+qCpAbu?=
- =?us-ascii?Q?1lF84u5EeAoC7mtaOdMWc0jb9euyf/sw8Xv05m7XmvWTi3+MyUquFcrdOaql?=
- =?us-ascii?Q?3JV6+DmAmUBM+OsuCpNFKcf5VcHir44Whsj9sMpvxEYtbZlAVYKa7VIdqXrF?=
- =?us-ascii?Q?z3//So9OcBQtPcTc60OsjZF6WLCVos/20yAfrNZUoD2uBDReJVWtOUmiirlF?=
- =?us-ascii?Q?BHR3Pu+wfPdDqUbpzwc8DUrOyoJl9hXFuIgsi0vTXfifhvEdJ+Yguw76vPAV?=
- =?us-ascii?Q?QxOuRg9UTQaFfmSQKvjfHZmpb4OMSYFp3zu7NNzloW7cqeGTnuF2igr6IZ0C?=
- =?us-ascii?Q?klPVBnyyUMJQYRA7nY8rkm+Y7/S3nwZFAKO/LH+MFh4EzPLFps6Gxi2ncp30?=
- =?us-ascii?Q?tCm7FjpRZTLHAwIQeUczGqiZO2LZVLwnvdbKGD2qs3Oi0Il/U3nhcWM6vwE7?=
- =?us-ascii?Q?3VodqWu+Q+Cczgb0KScwFEzkjb+P/cFPyI+XeBqiMH7Iw+f8WFuYXEqjXhr/?=
- =?us-ascii?Q?/RcBbcQjx0gQ39Wi9g+hrlIuMPrE0f4j0qoDCg+XXbZBtIyVpw2pC5xwCzw7?=
- =?us-ascii?Q?5cwc1Q1Ph2qHiq57ciAmyv+1SJrMysbPZGuuqWWaJ4jhTLloYuXx40/IzfiY?=
- =?us-ascii?Q?dKxPjeV8ieLU1QTGuRpo0/P46KIs4TcmYjdk4iUuXfPt9HV/SWaYydmm8kUq?=
- =?us-ascii?Q?f1HXCISB0xpAo4DtIQqK9cMX+hvF/l0ODcdvVE+LOxES/SAyBP8P7JSxwa/O?=
- =?us-ascii?Q?QNC5uITaZ4hdJDp1dMqt/MZKkpTYI+KnAnpASFqBJflvxCB4d6Ocq9THbCOL?=
- =?us-ascii?Q?kj90G95P3Qm9jCk0ZgY6oB+5nH7GkDWGW2E5bMyHKta1ls+hmWsL1MFaWuCt?=
- =?us-ascii?Q?JcC6qiao+s3S3UTAXqn77QkB/M3ieKoJeVzrOqsFDsKurB1GY+jD7ga58x/Z?=
- =?us-ascii?Q?dj4Zyvw+wfpELG/U9TONu1c8ze2wWlcICcFol/19omPxJ4tFwVYdbMNOKOWU?=
- =?us-ascii?Q?nQi00wCakzGK9gJ0a4prlLObWtZi/eV6nE0pPfPAlU6dgZZzbT9eH1BwSaZE?=
- =?us-ascii?Q?a/sJC0cv2OwEHdWQJIvzWr6sNWlxgcBnX4Nqnp18mKHnoWKfTTU/fhAJU8LQ?=
- =?us-ascii?Q?iUA2SxBBmzDciutrLSglmxGgWGa4UsLKwSvzBVtJFGNa7akGJ+iw47CgpV9r?=
- =?us-ascii?Q?eBTpmOT+UWQ6+oiZ19T3SrqV5D0m4jS7Ysf3QwZss5FuL50ljq8ceK0Mm1RA?=
- =?us-ascii?Q?5JObKwUfj7YCXoISYXFrGbllS0q1TlJbrSiJSMsYDB78UBUo7gxEqF6/PrmJ?=
- =?us-ascii?Q?MRcMs+2MqpLeJfiI3izz+Pq7Oj2HoElv63O8zCaAVJ51asv0AAxGHveWgu32?=
- =?us-ascii?Q?1xV3oj5tYvHGfMq2N6ucOoW/ulr7RpJ1bwgnK3IY?=
-Content-Type: multipart/alternative;
- boundary="_000_PH0PR11MB5674E8EF849E5B47A847B70594E32PH0PR11MB5674namp_"
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
+ by PH7PR11MB6452.namprd11.prod.outlook.com (2603:10b6:510:1f3::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.55; Tue, 14 May
+ 2024 10:37:30 +0000
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::3225:d4ad:74a:6d7a%5]) with mapi id 15.20.7544.052; Tue, 14 May 2024
+ 10:37:29 +0000
+Date: Tue, 14 May 2024 12:37:27 +0200
+From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 7/8] drm/xe/pf: Track adverse events notifications from GuC
+Message-ID: <20240514103727.v46ftf2jodytv6kl@intel.com>
+References: <20240506133814.2571-1-michal.wajdeczko@intel.com>
+ <20240506133814.2571-8-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240506133814.2571-8-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: DU7PR01CA0043.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:50e::21) To MN0PR11MB6135.namprd11.prod.outlook.com
+ (2603:10b6:208:3c9::9)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|PH7PR11MB6452:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3a90833c-3b69-4b03-87a1-08dc7401dafe
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|1800799015|366007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?NTBtMDNKcERyT3FqNWRkRXVOL01GQnM1UWFFZDN1cjM4OVJIL1RsTnY3UC9U?=
+ =?utf-8?B?aHBQdC85N1NGQkN5TG8wOU03WUMyWUZhSTVrMWxXcnhMZk14aTFwa1dub1pZ?=
+ =?utf-8?B?NW1BaGZZNHdnVFRXbXlBQWJzMVFuVUVaQU5xYUxSODFSb3pWU2tqZGg2eUZu?=
+ =?utf-8?B?WURuZkdkRXBtS1hxcGxyQ0JOZ29nMENwSEpuM0EyNUlnT2ZkN2xubTBCTXJT?=
+ =?utf-8?B?c3NYcVFaMU9zS09URW8wNVdRdGZUeTdZSWIxNXhjWVYxRGlrc2FUZU51M0tI?=
+ =?utf-8?B?S1NrUEJtN0orNmpJblNHRVQzU2N1VnRsZ3BuRzlNT3YzY3UrUnB4ZWtmSWRY?=
+ =?utf-8?B?Z2lHR0E5SGFxRC9HT01vWXFKZVhlZEsxSHl0Qm1jeDBSZU12Si9UTjJxQnow?=
+ =?utf-8?B?QWhTNFYxMHhHdWpEN3BuZ3RVcWRyTldCRlAvL1B0c2F1N2l4WEMzNENnOE54?=
+ =?utf-8?B?ZHBhajlWdGJ2K01McFVGVUJkWjdFNjI3NUdTTVdWM2lITENXSjE4K0JlMDJu?=
+ =?utf-8?B?VFFOaGR5ckxraTJrUE5wZkVaamtCaTFNTTBNU2M3Rm1TMTN0T3lIb0xXUWZ2?=
+ =?utf-8?B?bU5ockwyRzQzSUFPbDdpYXpkNDNuaHhaV1R1Y1p1RkhHVFB1bTdLUHc3MnVO?=
+ =?utf-8?B?b0VlckxIcGNRNnVoR1RoRWdqRzJNV3lBVisvWXFnczZNYjdieTQ1MVZleE1J?=
+ =?utf-8?B?RmNLTjhNdmFMM1dhNlg3MzEvdDFoTnNIOTE2SzRMcUEwU09vY1NISjZUc1Qy?=
+ =?utf-8?B?a1hWQ0pvVXNZRkJVUnF4VzZUYkRNeStCVUk3U0JRTjY4RW5JeGtsK2VLZE5Y?=
+ =?utf-8?B?dUN3WlVjTVppMEdDS1Q5L1R0Ums0OE90OGpPN0w4UWVKakladGh3Q1p3bGtq?=
+ =?utf-8?B?RHZLSUxiTW0wdkxWYkpEeWNiZ2Rvcy94VVpUeEU3SlVidHhtL24rYlZDS0JC?=
+ =?utf-8?B?ZGl3SVhWZHcyeWNvUTViV2JiZE9wUHExazJWNVg1ZEZyKzRzbmJqd0lDTGcx?=
+ =?utf-8?B?TWVqbGw2Zm9zelhNaUpVTkNFaXp5cEZsSXVod0pIaTBtRkswM2ZwTUNVaHdw?=
+ =?utf-8?B?ZVR0NFlIbTZIejQxQ3A4REx1UG5YTUVsZkw2NEhTKzA4dWV2dkQ1RFJsK3p5?=
+ =?utf-8?B?aGh6UW9vL1U5NllMZ3hMZzhrS2U5Q3VxelE1aGJSMFZXQkY4VTdiMm5KM3RE?=
+ =?utf-8?B?WmtBZXNNUFVVWFJpckl4NGZUelhYVXFkenJ0dS9VQnFoNzdXWWJzbU5SYXF1?=
+ =?utf-8?B?VXIrcDV3Vis3b2tYSU9NQ3pQZmlNYVZSQ04vYk5qSUtacmVJOStxYkhoQUZl?=
+ =?utf-8?B?aEQ0c1BLZ3RleEwzM1dPL3V6d3hYd3RPOEhmblhkSUNPVHlEa1ZuelBBR1Vj?=
+ =?utf-8?B?NkxVdENVd042MUdtSWxGZldrTGJuR3FmOWlCWUpjNmdUT0M4ay9SRndKaGR2?=
+ =?utf-8?B?MkVrNlgycFByaXBrNncxSEJ0TytTNVVnMFdnK1l5dXpWTVY2bzFzTUJENkNh?=
+ =?utf-8?B?TmdmMk5sdEhNeWt3VmFtVVlYbUIwU21wOFo4NHNzMXpPOGh0U1Vpa2VvZVUr?=
+ =?utf-8?B?cjN2VDMxWVRmVzBSa2J0Z3NIaWUrMmJFcmhZSkl5WlY0aVVaY3BpMkVLYndw?=
+ =?utf-8?B?eDZBV0NiTEdQZzlvVGwzQWQ2akQreHEvRXN5Y25oUjViVkU4dm1FM05PZ2wx?=
+ =?utf-8?B?T0NrT21LMkMyaFA3TEM3MUxxTXZZK090VjNMS21HUXJadjZSNHFaRG5RPT0=?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SnZ4Z1Y1QnZFaVVmTElJNDlWZ3h1NmNHcGRZZUFGbksrVVVwMC9qVndGK3BD?=
+ =?utf-8?B?dytkMDdmY0ptck1hcElXT3BDcktCZDE1UnpJRDBqMUxmY1pCaWlXaG9GaVpv?=
+ =?utf-8?B?Ymp1QU9hNDkvbU40c2x1eWZBMEU4TzVmVDNPZENrQnNZYnZxdXovOUlVMXV6?=
+ =?utf-8?B?NTFlQ09qRFAvRXQ1ZGlkLzkyRmI2WDlWNmdqR25CcVkrWW9xSDE5Q3BOQmFr?=
+ =?utf-8?B?bEp1ZEtDN21wTGlsd1FZK3l1TXRDcEdCSndOdnNnNXo3K3ExMTVndnFDREMx?=
+ =?utf-8?B?TmRKQzZ4TlQ3WlFhSjZGQlR6NnRTelhWbWl5RXNySzd4bHI4dEtlZERCMklV?=
+ =?utf-8?B?SVRNWjVFcWxta21Yc0I0bnc1dnRRbjNrQjd5QjRZTjM3OXVBdnA4RmY0eWVi?=
+ =?utf-8?B?ekRabmowM2FHNmFwbWhiekZXWDBmekVMWGhHOGdTWmVPbnlyTktiK3JnTGhU?=
+ =?utf-8?B?WktRTU9oM09vMmtVc0syZlQ4ZU1Ya2lDeDZ0M0ZHeHFqcFlHN3NrNzlYdTJW?=
+ =?utf-8?B?SUVoWDRBWGRlNzJhN085MmJ6YVlJdWJzR2JLTTlqSUtPV3pxaDREZDRNYTNh?=
+ =?utf-8?B?SzRwTEZGYVdsd3NPelJQbU9WUXJ0ZDE2eFFQZk1uMk1hb2lXUHVqV2UrMi9q?=
+ =?utf-8?B?aW5RVzVFUHVVMTRGNnpvZU1KNU1BWEdRS2lhQWhpcmxSdHV1QXU1NXBpQ0U0?=
+ =?utf-8?B?MC8yOUNQc1Myd2VIdHVjU3pMWkl0UzhJWWJ2QXczZWRlQTdWbXBCL1JCZzl5?=
+ =?utf-8?B?L2tMaXdaZE1iQ0pjRW5XVzRySi94SGovQ25JSkp6YWs4dVJ1MHhVWnV4Z1dG?=
+ =?utf-8?B?VlFLS2g3d2V1LytTMENyL1h0ajRma1hMS2tPN3cxd2VIeExRZFJwN25WQVFO?=
+ =?utf-8?B?OTl0Wi9tNjhIbVp1QUNYYTZnY1oxazVoSlhkZjRKWVJ2Z2llc0hhd0tJNGs3?=
+ =?utf-8?B?L1JGemNKemMxN2pGZThyM05oMDdVaUhxT2dUcStUSDJ3bnhxOUpaRGdPeTFB?=
+ =?utf-8?B?bStCUHUvRHF2RVFXZ3lIdzEvSDV5MDhuOGtqUVNFOVBQMk96ZEJLM2h6VDFo?=
+ =?utf-8?B?Y3pleC9YYndxMVNOZ2xkS0ZZRWFHL0RndTFxSDB4cGpEZWs5dEhsNTltc0Yr?=
+ =?utf-8?B?ZjdKVk9KOGdwTzNwWFI1K2wwYUI0eEYyczBiakpRdUVsNXh2Q0lsTlh6MmZn?=
+ =?utf-8?B?c212eUdkRzZrUGdtTnJuNGI4cGlFOXpJQnpKdmwwcVp4OFNqTUhoQkY3bjZh?=
+ =?utf-8?B?TE9zOStwM3R3RFIwVTNEd3FBSWhxTGZzbTdncDFJWW50UU9rd3VVQ2czSnFp?=
+ =?utf-8?B?anVqSElnREpOTnRkMXlxYW4zaGxHd25JMDlpbmNPcUJ5dUQ5Zm1DT0NvSVlV?=
+ =?utf-8?B?dEFSalh5QVVYbDZLbjRCV3RrWDRMYXhWOXFlbkg4WllOdElhZVl1aGVNTHV0?=
+ =?utf-8?B?bGNVME1UU2lFYmlXcmthcVE4NEtGeWVQRnp0dzdkcXB2QUdoeDAwZXMzdXZT?=
+ =?utf-8?B?RE1xaVFUb0hBUEFhS3E2SXpscWZCWGVJN1F5R2ZjZDJmRDk3WTZadnZkSnFo?=
+ =?utf-8?B?Rlh0bWRSdXZYTCtOTWh3S0tjQlZkV2N6OE1EbmRDUXdJaFV5UHl1eTl6YUJQ?=
+ =?utf-8?B?Y1JCekJLc1RhYkM1bG9zc3pqZ05WVGRhOWVYay93SDlIWUdhaXlua2IwZU5y?=
+ =?utf-8?B?a0h2RGZoWGNyMFhUNjV0RFp2cGtYcUlheUM3SHluZStRUnJVZW43R1hFeDAx?=
+ =?utf-8?B?cWNtTTN4UnNCd2Jmam1yUlhRSW1kM2xwNktYdjdxeUxYSHVjUnBjSGt3ckFR?=
+ =?utf-8?B?OFN4SzdVcTRQcHdUS3JOTjdpNnhqbFdrMkh1S1dvdUJtSWpsNWhST1J3aWxY?=
+ =?utf-8?B?UVI2cmFmRHU5dzEvM3BGWm9VZmQ2bWlGUVFxK21DOWpQUzByRXRTNUlzZ2c2?=
+ =?utf-8?B?WXlka2tJVVNWR25vYnJXUTgzb0dOMnI0dWU4Z0RxMWxuYmI2WUpDbHNzUlRD?=
+ =?utf-8?B?MUpYdHhoM1pZNUVLN0JmT1VlazU4SzlzcXZob2U1V0xFOFpuM3JwTkhCZSts?=
+ =?utf-8?B?eldzOXZFWjRzK0N3dXdQbHdMVFN5QzdBU2Y5Yzl3YlVpdTRubDQ3djUxVFBZ?=
+ =?utf-8?B?SUhuWjljT05tZmhKUHkrOEVJZitWWlIwZCt5NXN1eG9JUTJuSGN2V25nZnBl?=
+ =?utf-8?B?TUE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3a90833c-3b69-4b03-87a1-08dc7401dafe
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5674.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: db7bd55d-7cb2-4c4d-925c-08dc73ff0d17
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 May 2024 10:17:25.2879 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: p6HuJyVnEdQS3Kc5jqgYr1TPN6jFqVpC5d1ArcLFzlKAo9En1DSBjrxInecXid1oRD6OrVtFAZW6tyDgGqDB1s5lGtqrBu5G4+9VMWW8Zvg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6503
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 May 2024 10:37:29.9250 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: u+YXnQ+lb6m5rkavxyKrE1rq0JHAC0SfLHBpsKYrWfPCdnIHN87qlfKqFZeoegkj28we6/yQhVxscKOe99LQQ3wxKKiU7jHPK6FlnYcDmIM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6452
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -184,450 +190,304 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---_000_PH0PR11MB5674E8EF849E5B47A847B70594E32PH0PR11MB5674namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on pon [2024-maj-06 15:38:13 +0200]:
+> When thresholds used to monitor VFs activities are configured,
+> then GuC may send GUC2PF_ADVERSE_EVENT messages informing the
+> PF driver about exceeded thresholds. Start handling such messages.
+> 
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> ---
+>  drivers/gpu/drm/xe/Makefile                   |   1 +
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.c   | 143 ++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.h   |  27 ++++
+>  .../gpu/drm/xe/xe_gt_sriov_pf_monitor_types.h |  22 +++
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h     |   5 +
+>  drivers/gpu/drm/xe/xe_guc_ct.c                |   4 +
+>  6 files changed, 202 insertions(+)
+>  create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor_types.h
+> 
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index b620389761d5..31198375022a 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -164,6 +164,7 @@ xe-$(CONFIG_PCI_IOV) += \
+>  	xe_gt_sriov_pf_config.o \
+>  	xe_gt_sriov_pf_control.o \
+>  	xe_gt_sriov_pf_debugfs.o \
+> +	xe_gt_sriov_pf_monitor.o \
+>  	xe_gt_sriov_pf_policy.o \
+>  	xe_gt_sriov_pf_service.o \
+>  	xe_lmtt.o \
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.c
+> new file mode 100644
+> index 000000000000..2c0c5572a6cf
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.c
+> @@ -0,0 +1,143 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2023-2024 Intel Corporation
+> + */
+> +
+> +#include "abi/guc_actions_sriov_abi.h"
+> +#include "abi/guc_messages_abi.h"
+> +
+> +#include "xe_gt_sriov_pf_config.h"
+> +#include "xe_gt_sriov_pf_helpers.h"
+> +#include "xe_gt_sriov_pf_monitor.h"
+> +#include "xe_gt_sriov_printk.h"
+> +#include "xe_guc_klv_helpers.h"
+> +#include "xe_guc_klv_thresholds_set.h"
+> +
+> +/**
+> + * xe_gt_sriov_pf_monitor_flr - Process VF FLR.
 
-Hi @Ghimiray, Himal Prasad<mailto:himal.prasad.ghimiray@intel.com>
-What was the conclusion ?  Will XE team support this ? Sysman consumers use=
- single KMD Config and they don't have different configs for different use =
-cases.
+The description is more suitable for the VF FLR handling function
 
-Thanks
-SaiKishore
+> + * @gt: the &xe_gt
+> + * @vfid: the VF identifier
+> + *
+> + * On FLR this function will reset all event data related to the VF.
+> + * This function is for PF only.
+> + */
+> +void xe_gt_sriov_pf_monitor_flr(struct xe_gt *gt, u32 vfid)
+> +{
+> +	int e;
+> +
+> +	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
+> +	xe_gt_sriov_pf_assert_vfid(gt, vfid);
+> +
+> +	for (e = 0; e < XE_GUC_KLV_NUM_THRESHOLDS; e++)
+> +		gt->sriov.pf.vfs[vfid].monitor.guc.events[e] = 0;
+> +}
+> +
+> +static void pf_update_event_counter(struct xe_gt *gt, u32 vfid,
+> +				    enum xe_guc_klv_threshold_index e)
+> +{
+> +	xe_gt_assert(gt, e < XE_GUC_KLV_NUM_THRESHOLDS);
+> +	gt->sriov.pf.vfs[vfid].monitor.guc.events[e]++;
+> +}
+> +
+> +static int pf_handle_vf_threshold_event(struct xe_gt *gt, u32 vfid, u32 threshold)
+> +{
+> +	char origin[8];
+> +	int e;
+> +
+> +	e = xe_guc_klv_threshold_key_to_index(threshold);
+> +	xe_sriov_function_name(vfid, origin, sizeof(origin));
+> +
+> +	/* was there a new KEY added that we missed? */
+> +	if (unlikely(e < 0)) {
+> +		xe_gt_sriov_notice(gt, "unknown threshold key %#x reported for %s\n",
+> +				   threshold, origin);
+> +		return -ENOTCONN;
+> +	}
+> +
+> +	xe_gt_sriov_dbg(gt, "%s exceeded threshold %u %s\n",
+> +			origin, xe_gt_sriov_pf_config_get_threshold(gt, vfid, e),
+> +			xe_guc_klv_key_to_string(threshold));
+> +
+> +	pf_update_event_counter(gt, vfid, e);
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * xe_gt_sriov_pf_monitor_process_guc2pf - Handle adverse event notification from the GuC.
+> + * @gt: the &xe_gt
+> + * @msg: G2H event message
+> + * @len: length of the message
+> + *
+> + * This function is intended for PF only.
+> + *
+> + * Return: 0 on success or a negative error code on failure.
+> + */
+> +int xe_gt_sriov_pf_monitor_process_guc2pf(struct xe_gt *gt, const u32 *msg, u32 len)
+> +{
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +	u32 vfid;
+> +	u32 threshold;
+> +
+> +	xe_gt_assert(gt, len >= GUC_HXG_MSG_MIN_LEN);
+> +	xe_gt_assert(gt, FIELD_GET(GUC_HXG_MSG_0_ORIGIN, msg[0]) == GUC_HXG_ORIGIN_GUC);
+> +	xe_gt_assert(gt, FIELD_GET(GUC_HXG_MSG_0_TYPE, msg[0]) == GUC_HXG_TYPE_EVENT);
+> +	xe_gt_assert(gt, FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, msg[0]) ==
+> +		     GUC_ACTION_GUC2PF_ADVERSE_EVENT);
+> +
+> +	if (unlikely(!IS_SRIOV_PF(xe)))
+> +		return -EPROTO;
+> +
+> +	if (unlikely(FIELD_GET(GUC2PF_ADVERSE_EVENT_EVENT_MSG_0_MBZ, msg[0])))
+> +		return -EPFNOSUPPORT;
+> +
+> +	if (unlikely(len < GUC2PF_ADVERSE_EVENT_EVENT_MSG_LEN))
+> +		return -EPROTO;
+> +
+> +	vfid = FIELD_GET(GUC2PF_ADVERSE_EVENT_EVENT_MSG_1_VFID, msg[1]);
+> +	threshold = FIELD_GET(GUC2PF_ADVERSE_EVENT_EVENT_MSG_2_THRESHOLD, msg[2]);
+> +
+> +	if (unlikely(vfid > xe_gt_sriov_pf_get_totalvfs(gt)))
+> +		return -EINVAL;
+> +
+> +	return pf_handle_vf_threshold_event(gt, vfid, threshold);
+> +}
+> +
+> +/**
+> + * xe_gt_sriov_pf_monitor_print_events - Print adverse events counters.
+> + * @gt: the &xe_gt to print events from
+> + * @p: the &drm_printer
+> + *
+> + * Print adverse events counters for all VFs.
+> + * VFs with no events are not printed.
+> + *
+> + * This function can only be called on PF.
+> + */
+> +void xe_gt_sriov_pf_monitor_print_events(struct xe_gt *gt, struct drm_printer *p)
+> +{
+> +	unsigned int n, total_vfs = xe_gt_sriov_pf_get_totalvfs(gt);
+> +	const struct xe_gt_sriov_monitor *data;
+> +	int e;
+> +
 
-From: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>
-Sent: Friday, May 10, 2024 3:14 PM
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>; De Marchi, Lucas <lu=
-cas.demarchi@intel.com>; Brost, Matthew <matthew.brost@intel.com>; Konda, S=
-aiKishore <saikishore.konda@intel.com>
-Cc: intel-xe@lists.freedesktop.org; Upadhyay, Tejas <tejas.upadhyay@intel.c=
-om>; Siddiqui, Ayaz A <ayaz.siddiqui@intel.com>
-Subject: Re: [PATCH] drm/xe: Modify minimum of various scheduler timeout to=
- 0
+If you describe that the function is only for PF, then add some assert.
+
+> +	for (n = 1; n <= total_vfs; n++) {
+> +		data = &gt->sriov.pf.vfs[n].monitor;
+> +
+> +		for (e = 0; e < XE_GUC_KLV_NUM_THRESHOLDS; e++)
+> +			if (data->guc.events[e])
+> +				break;
+> +
+> +		/* skip empty unless in debug mode */
+> +		if (e >= XE_GUC_KLV_NUM_THRESHOLDS &&
+> +		    !IS_ENABLED(CONFIG_DRM_XE_DEBUG_SRIOV))
+> +			continue;
+> +
+> +#define __format(...) "%s:%u "
+> +#define __value(TAG, NAME, ...) , #NAME, data->guc.events[MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG)]
+> +
+> +		drm_printf(p, "VF%u:\t" MAKE_XE_GUC_KLV_THRESHOLDS_SET(__format) "\n",
+> +			   n MAKE_XE_GUC_KLV_THRESHOLDS_SET(__value));
+> +
+> +#undef __format
+> +#undef __value
+> +	}
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.h
+> new file mode 100644
+> index 000000000000..7ca9351a271b
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.h
+> @@ -0,0 +1,27 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2023-2024 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_GT_SRIOV_PF_MONITOR_H_
+> +#define _XE_GT_SRIOV_PF_MONITOR_H_
+> +
+> +#include <linux/errno.h>
+> +#include <linux/types.h>
+> +
+> +struct drm_printer;
+> +struct xe_gt;
+> +
+> +void xe_gt_sriov_pf_monitor_flr(struct xe_gt *gt, u32 vfid);
+> +void xe_gt_sriov_pf_monitor_print_events(struct xe_gt *gt, struct drm_printer *p);
+> +
+> +#ifdef CONFIG_PCI_IOV
+> +int xe_gt_sriov_pf_monitor_process_guc2pf(struct xe_gt *gt, const u32 *msg, u32 len);
+> +#else
+> +static inline int xe_gt_sriov_pf_monitor_process_guc2pf(struct xe_gt *gt, const u32 *msg, u32 len)
+> +{
+> +	return -EPROTO;
+> +}
+> +#endif
+> +
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor_types.h
+> new file mode 100644
+> index 000000000000..e27c0308c5db
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor_types.h
+> @@ -0,0 +1,22 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2023-2024 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_GT_SRIOV_PF_MONITOR_TYPES_H_
+> +#define _XE_GT_SRIOV_PF_MONITOR_TYPES_H_
+> +
+> +#include "xe_guc_klv_thresholds_set_types.h"
+> +
+> +/**
+> + * struct xe_gt_sriov_monitor - GT level per-VF monitoring data.
+> + */
+> +struct xe_gt_sriov_monitor {
+> +	/** @guc: monitoring data related to the GuC. */
+> +	struct {
+> +		/** @guc.events: number of adverse events reported by the GuC. */
+> +		unsigned int events[XE_GUC_KLV_NUM_THRESHOLDS];
+> +	} guc;
+> +};
+> +
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
+> index 880754f3e215..40cbaea3ef44 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h
+> @@ -9,6 +9,7 @@
+>  #include <linux/types.h>
+>  
+>  #include "xe_gt_sriov_pf_config_types.h"
+> +#include "xe_gt_sriov_pf_monitor_types.h"
+>  #include "xe_gt_sriov_pf_policy_types.h"
+>  #include "xe_gt_sriov_pf_service_types.h"
+>  
+> @@ -18,6 +19,10 @@
+>  struct xe_gt_sriov_metadata {
+>  	/** @config: per-VF provisioning data. */
+>  	struct xe_gt_sriov_config config;
+> +
+> +	/** @monitor: per-VF monitoring data. */
+> +	struct xe_gt_sriov_monitor monitor;
+> +
+>  	/** @version: negotiated VF/PF ABI version */
+>  	struct xe_gt_sriov_pf_service_version version;
+>  };
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> index 8ac819a7061e..be9aaf30974a 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -22,6 +22,7 @@
+>  #include "xe_gt_pagefault.h"
+>  #include "xe_gt_printk.h"
+>  #include "xe_gt_sriov_pf_control.h"
+> +#include "xe_gt_sriov_pf_monitor.h"
+>  #include "xe_gt_tlb_invalidation.h"
+>  #include "xe_guc.h"
+>  #include "xe_guc_relay.h"
+> @@ -1066,6 +1067,9 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>  	case GUC_ACTION_GUC2PF_VF_STATE_NOTIFY:
+>  		ret = xe_gt_sriov_pf_control_process_guc2pf(gt, hxg, hxg_len);
+>  		break;
+> +	case GUC_ACTION_GUC2PF_ADVERSE_EVENT:
+> +		ret = xe_gt_sriov_pf_monitor_process_guc2pf(gt, hxg, hxg_len);
+> +		break;
+>  	default:
+>  		xe_gt_err(gt, "unexpected G2H action 0x%04x\n", action);
+>  	}
+
+With fixes:
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
 
-________________________________
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com<mailto:joonas.lahtin=
-en@linux.intel.com>>
-Sent: Friday, May 10, 2024 2:39:56 PM
-To: De Marchi, Lucas <lucas.demarchi@intel.com<mailto:lucas.demarchi@intel.=
-com>>; Brost, Matthew <matthew.brost@intel.com<mailto:matthew.brost@intel.c=
-om>>
-Cc: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com<mailto:himal.pr=
-asad.ghimiray@intel.com>>; intel-xe@lists.freedesktop.org<mailto:intel-xe@l=
-ists.freedesktop.org> <intel-xe@lists.freedesktop.org<mailto:intel-xe@lists=
-.freedesktop.org>>; Upadhyay, Tejas <tejas.upadhyay@intel.com<mailto:tejas.=
-upadhyay@intel.com>>
-Subject: Re: [PATCH] drm/xe: Modify minimum of various scheduler timeout to=
- 0
+> -- 
+> 2.43.0
+> 
 
-Quoting Matthew Brost (2024-05-09 19:00:43)
-> On Wed, May 08, 2024 at 08:06:52AM -0500, Lucas De Marchi wrote:
-> > On Mon, May 06, 2024 at 07:04:47PM GMT, Himal Prasad Ghimiray wrote:
-> > > Remove the min/max configs and change minimum values of preemption an=
-d
-> > > timeslice to 0. The sysman teams must deactivate preemption and
-> > > timeslice to assess exclusivity mode. They depend on configuring
-> > > timeslice_duration_us and preempt_timeout_us to 0, ensuring these
-> > > values are set at their minimum.
-> >
-> > nack for now, based on this explanation. See below.
-> >
-> > >
-> > > Cc: Matthew Brost <matthew.brost@intel.com<mailto:matthew.brost@intel=
-.com>>
-> > > Cc: Tejas Upadhyay <tejas.upadhyay@intel.com<mailto:tejas.upadhyay@in=
-tel.com>>
-> > > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com<mailto:joonas.la=
-htinen@linux.intel.com>>
-> > > Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com=
-<mailto:himal.prasad.ghimiray@intel.com>>
-
-<SNIP>
-
-> > > +++ b/drivers/gpu/drm/xe/xe_hw_engine.h
-> > > @@ -10,41 +10,17 @@
-> > >
-> > > struct drm_printer;
-> > >
-> > > -#ifdef CONFIG_DRM_XE_JOB_TIMEOUT_MIN
-> > > -#define XE_HW_ENGINE_JOB_TIMEOUT_MIN CONFIG_DRM_XE_JOB_TIMEOUT_MIN
-> > > -#else
-> > > #define XE_HW_ENGINE_JOB_TIMEOUT_MIN 1
-> > > -#endif
-> > > -#ifdef CONFIG_DRM_XE_JOB_TIMEOUT_MAX
-> > > -#define XE_HW_ENGINE_JOB_TIMEOUT_MAX CONFIG_DRM_XE_JOB_TIMEOUT_MAX
-> > > -#else
-> > > #define XE_HW_ENGINE_JOB_TIMEOUT_MAX (10 * 1000)
-> >
-> > previously one could configure a kernel with a different max.
-> > And now it's hardcoded. How is this better and related to the
-> > motivation in the commit message?
-> >
-> > is this commit doing 2 different things?
-> >
-> > 1) Removing the _MAX from config since nobody is or should change that
-> > 2) Modify the min value to 0... That seems weird as basically there is
-> >    no minimum.
->
-> This is true.
-
-Maybe I've missed some discussion but what is wrong with the previously
-agreed approach where KConfig would determine hard _MIN/_MAX bounds
-(and maybe _DEFAULT) that the kernel can work with, then there would be
-sysfs min/max (+ default) which the sysadmin sets as comfortable with
-considering the expected use-cases on the system and application then
-choose within those bounds (if it wants expedited hang detection for an
-example)?
-
-> > I'd like to hear Matt Brost's opinion on that.
->
-> I chatted with Lucas and second his nack. The requirements for this
-> change are coming from sysman and are unclear. If sysman needs to set
-> this to 0 (akin to no maximum), why can't sysman build the kernel with a
-> Kconfig to allow this? This use case appears to be an HPC/AI data center
-> scenario in which the kernel is probably built with a non-standard
-> Kconfig anyway. Why can't CONFIG_DRM_*_MIN be set to zero? This needs to
-> be addressed clearly and publicly.
-
-I also thought we agreed on doing different build for such scenario
-where the interactive desktop is not expected to be used, so larger
-delays are more allowable.
-
-The default build simply can't allow unlimited blocking of the HW by
-certain workloads in order to make sure the desktop/compositor stays
-operational. That can only be enabled by default build when the long-runnin=
-g
-workloads can be isolated so they won't interfere with the workloads
-using dma-fences. And I don't think that code exists yet.
-
-Sysman should be able to report a feature missing from the kernel if it
-detects that it can't set the limits wanted. This can be reported to
-user via error code and/or error message asking to install a different
-kernel build.
-
-Same strategy has been applied in the past for various kernel features
-like realtime/virtualization etc.
-
-Regards, Joonas
-
->
-> Matt
->
-> >
-> > Lucas De Marchi
-> >
-> > > -#endif
-> > > -#ifdef CONFIG_DRM_XE_TIMESLICE_MIN
-> > > -#define XE_HW_ENGINE_TIMESLICE_MIN CONFIG_DRM_XE_TIMESLICE_MIN
-> > > -#else
-> > > -#define XE_HW_ENGINE_TIMESLICE_MIN 1
-> > > -#endif
-> > > -#ifdef CONFIG_DRM_XE_TIMESLICE_MAX
-> > > -#define XE_HW_ENGINE_TIMESLICE_MAX CONFIG_DRM_XE_TIMESLICE_MAX
-> > > -#else
-> > > +#define XE_HW_ENGINE_TIMESLICE_MIN 0
-> > > #define XE_HW_ENGINE_TIMESLICE_MAX (10 * 1000 * 1000)
-> > > -#endif
-> > > #ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT
-> > > #define XE_HW_ENGINE_PREEMPT_TIMEOUT CONFIG_DRM_XE_PREEMPT_TIMEOUT
-> > > #else
-> > > #define XE_HW_ENGINE_PREEMPT_TIMEOUT (640 * 1000)
-> > > #endif
-> > > -#ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT_MIN
-> > > -#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN CONFIG_DRM_XE_PREEMPT_TIMEO=
-UT_MIN
-> > > -#else
-> > > -#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN 1
-> > > -#endif
-> > > -#ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT_MAX
-> > > -#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX CONFIG_DRM_XE_PREEMPT_TIMEO=
-UT_MAX
-> > > -#else
-> > > +#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN 0
-> > > #define XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX (10 * 1000 * 1000)
-> > > -#endif
-> > >
-> > > int xe_hw_engines_init_early(struct xe_gt *gt);
-> > > int xe_hw_engines_init(struct xe_gt *gt);
-> > > --
-> > > 2.25.1
-> > >
-
---_000_PH0PR11MB5674E8EF849E5B47A847B70594E32PH0PR11MB5674namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	mso-ligatures:none;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-IN" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
-break-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">Hi <a id=
-=3D"OWAAMB3B24BE1CEFA408B8563DFC28E3AA050" href=3D"mailto:himal.prasad.ghim=
-iray@intel.com">
-<span style=3D"font-family:&quot;Calibri&quot;,sans-serif;text-decoration:n=
-one">@Ghimiray, Himal Prasad</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">What was =
-the conclusion ?&nbsp; Will XE team support this ? Sysman consumers use sin=
-gle KMD Config and they don&#8217;t have different configs for different us=
-e cases.
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
-p;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">Thanks<o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">SaiKishor=
-e<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
-p;</o:p></span></p>
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
-0cm 0cm">
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
-=3D"EN-US"> Ghimiray, Himal Prasad &lt;himal.prasad.ghimiray@intel.com&gt;
-<br>
-<b>Sent:</b> Friday, May 10, 2024 3:14 PM<br>
-<b>To:</b> Joonas Lahtinen &lt;joonas.lahtinen@linux.intel.com&gt;; De Marc=
-hi, Lucas &lt;lucas.demarchi@intel.com&gt;; Brost, Matthew &lt;matthew.bros=
-t@intel.com&gt;; Konda, SaiKishore &lt;saikishore.konda@intel.com&gt;<br>
-<b>Cc:</b> intel-xe@lists.freedesktop.org; Upadhyay, Tejas &lt;tejas.upadhy=
-ay@intel.com&gt;; Siddiqui, Ayaz A &lt;ayaz.siddiqui@intel.com&gt;<br>
-<b>Subject:</b> Re: [PATCH] drm/xe: Modify minimum of various scheduler tim=
-eout to 0<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
-<hr size=3D"2" width=3D"98%" align=3D"center">
-</div>
-<div id=3D"divRplyFwdMsg">
-<p class=3D"MsoNormal"><b><span style=3D"color:black">From:</span></b><span=
- style=3D"color:black"> Joonas Lahtinen &lt;<a href=3D"mailto:joonas.lahtin=
-en@linux.intel.com">joonas.lahtinen@linux.intel.com</a>&gt;<br>
-<b>Sent:</b> Friday, May 10, 2024 2:39:56 PM<br>
-<b>To:</b> De Marchi, Lucas &lt;<a href=3D"mailto:lucas.demarchi@intel.com"=
->lucas.demarchi@intel.com</a>&gt;; Brost, Matthew &lt;<a href=3D"mailto:mat=
-thew.brost@intel.com">matthew.brost@intel.com</a>&gt;<br>
-<b>Cc:</b> Ghimiray, Himal Prasad &lt;<a href=3D"mailto:himal.prasad.ghimir=
-ay@intel.com">himal.prasad.ghimiray@intel.com</a>&gt;;
-<a href=3D"mailto:intel-xe@lists.freedesktop.org">intel-xe@lists.freedeskto=
-p.org</a> &lt;<a href=3D"mailto:intel-xe@lists.freedesktop.org">intel-xe@li=
-sts.freedesktop.org</a>&gt;; Upadhyay, Tejas &lt;<a href=3D"mailto:tejas.up=
-adhyay@intel.com">tejas.upadhyay@intel.com</a>&gt;<br>
-<b>Subject:</b> Re: [PATCH] drm/xe: Modify minimum of various scheduler tim=
-eout to 0</span>
-<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
-</div>
-</div>
-<div>
-<div>
-<p class=3D"MsoNormal">Quoting Matthew Brost (2024-05-09 19:00:43)<br>
-&gt; On Wed, May 08, 2024 at 08:06:52AM -0500, Lucas De Marchi wrote:<br>
-&gt; &gt; On Mon, May 06, 2024 at 07:04:47PM GMT, Himal Prasad Ghimiray wro=
-te:<br>
-&gt; &gt; &gt; Remove the min/max configs and change minimum values of pree=
-mption and<br>
-&gt; &gt; &gt; timeslice to 0. The sysman teams must deactivate preemption =
-and<br>
-&gt; &gt; &gt; timeslice to assess exclusivity mode. They depend on configu=
-ring<br>
-&gt; &gt; &gt; timeslice_duration_us and preempt_timeout_us to 0, ensuring =
-these<br>
-&gt; &gt; &gt; values are set at their minimum.<br>
-&gt; &gt; <br>
-&gt; &gt; nack for now, based on this explanation. See below.<br>
-&gt; &gt; <br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; Cc: Matthew Brost &lt;<a href=3D"mailto:matthew.brost@intel.=
-com">matthew.brost@intel.com</a>&gt;<br>
-&gt; &gt; &gt; Cc: Tejas Upadhyay &lt;<a href=3D"mailto:tejas.upadhyay@inte=
-l.com">tejas.upadhyay@intel.com</a>&gt;<br>
-&gt; &gt; &gt; Cc: Joonas Lahtinen &lt;<a href=3D"mailto:joonas.lahtinen@li=
-nux.intel.com">joonas.lahtinen@linux.intel.com</a>&gt;<br>
-&gt; &gt; &gt; Signed-off-by: Himal Prasad Ghimiray &lt;<a href=3D"mailto:h=
-imal.prasad.ghimiray@intel.com">himal.prasad.ghimiray@intel.com</a>&gt;<br>
-<br>
-&lt;SNIP&gt;<br>
-<br>
-&gt; &gt; &gt; +++ b/drivers/gpu/drm/xe/xe_hw_engine.h<br>
-&gt; &gt; &gt; @@ -10,41 +10,17 @@<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; struct drm_printer;<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; -#ifdef CONFIG_DRM_XE_JOB_TIMEOUT_MIN<br>
-&gt; &gt; &gt; -#define XE_HW_ENGINE_JOB_TIMEOUT_MIN CONFIG_DRM_XE_JOB_TIME=
-OUT_MIN<br>
-&gt; &gt; &gt; -#else<br>
-&gt; &gt; &gt; #define XE_HW_ENGINE_JOB_TIMEOUT_MIN 1<br>
-&gt; &gt; &gt; -#endif<br>
-&gt; &gt; &gt; -#ifdef CONFIG_DRM_XE_JOB_TIMEOUT_MAX<br>
-&gt; &gt; &gt; -#define XE_HW_ENGINE_JOB_TIMEOUT_MAX CONFIG_DRM_XE_JOB_TIME=
-OUT_MAX<br>
-&gt; &gt; &gt; -#else<br>
-&gt; &gt; &gt; #define XE_HW_ENGINE_JOB_TIMEOUT_MAX (10 * 1000)<br>
-&gt; &gt; <br>
-&gt; &gt; previously one could configure a kernel with a different max.<br>
-&gt; &gt; And now it's hardcoded. How is this better and related to the<br>
-&gt; &gt; motivation in the commit message?<br>
-&gt; &gt; <br>
-&gt; &gt; is this commit doing 2 different things?<br>
-&gt; &gt; <br>
-&gt; &gt; 1) Removing the _MAX from config since nobody is or should change=
- that<br>
-&gt; &gt; 2) Modify the min value to 0... That seems weird as basically the=
-re is<br>
-&gt; &gt;&nbsp;&nbsp;&nbsp; no minimum.<br>
-&gt; <br>
-&gt; This is true.<br>
-<br>
-Maybe I've missed some discussion but what is wrong with the previously<br>
-agreed approach where KConfig would determine hard _MIN/_MAX bounds<br>
-(and maybe _DEFAULT) that the kernel can work with, then there would be<br>
-sysfs min/max (+ default) which the sysadmin sets as comfortable with<br>
-considering the expected use-cases on the system and application then<br>
-choose within those bounds (if it wants expedited hang detection for an<br>
-example)?<br>
-<br>
-&gt; &gt; I'd like to hear Matt Brost's opinion on that.<br>
-&gt; <br>
-&gt; I chatted with Lucas and second his nack. The requirements for this<br=
->
-&gt; change are coming from sysman and are unclear. If sysman needs to set<=
-br>
-&gt; this to 0 (akin to no maximum), why can't sysman build the kernel with=
- a<br>
-&gt; Kconfig to allow this? This use case appears to be an HPC/AI data cent=
-er<br>
-&gt; scenario in which the kernel is probably built with a non-standard<br>
-&gt; Kconfig anyway. Why can't CONFIG_DRM_*_MIN be set to zero? This needs =
-to<br>
-&gt; be addressed clearly and publicly.<br>
-<br>
-I also thought we agreed on doing different build for such scenario<br>
-where the interactive desktop is not expected to be used, so larger<br>
-delays are more allowable.<br>
-<br>
-The default build simply can't allow unlimited blocking of the HW by<br>
-certain workloads in order to make sure the desktop/compositor stays<br>
-operational. That can only be enabled by default build when the long-runnin=
-g<br>
-workloads can be isolated so they won't interfere with the workloads<br>
-using dma-fences. And I don't think that code exists yet.<br>
-<br>
-Sysman should be able to report a feature missing from the kernel if it<br>
-detects that it can't set the limits wanted. This can be reported to<br>
-user via error code and/or error message asking to install a different<br>
-kernel build.<br>
-<br>
-Same strategy has been applied in the past for various kernel features<br>
-like realtime/virtualization etc. <br>
-<br>
-Regards, Joonas<br>
-<br>
-&gt; <br>
-&gt; Matt<br>
-&gt;&nbsp; <br>
-&gt; &gt; <br>
-&gt; &gt; Lucas De Marchi<br>
-&gt; &gt; <br>
-&gt; &gt; &gt; -#endif<br>
-&gt; &gt; &gt; -#ifdef CONFIG_DRM_XE_TIMESLICE_MIN<br>
-&gt; &gt; &gt; -#define XE_HW_ENGINE_TIMESLICE_MIN CONFIG_DRM_XE_TIMESLICE_=
-MIN<br>
-&gt; &gt; &gt; -#else<br>
-&gt; &gt; &gt; -#define XE_HW_ENGINE_TIMESLICE_MIN 1<br>
-&gt; &gt; &gt; -#endif<br>
-&gt; &gt; &gt; -#ifdef CONFIG_DRM_XE_TIMESLICE_MAX<br>
-&gt; &gt; &gt; -#define XE_HW_ENGINE_TIMESLICE_MAX CONFIG_DRM_XE_TIMESLICE_=
-MAX<br>
-&gt; &gt; &gt; -#else<br>
-&gt; &gt; &gt; +#define XE_HW_ENGINE_TIMESLICE_MIN 0<br>
-&gt; &gt; &gt; #define XE_HW_ENGINE_TIMESLICE_MAX (10 * 1000 * 1000)<br>
-&gt; &gt; &gt; -#endif<br>
-&gt; &gt; &gt; #ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT<br>
-&gt; &gt; &gt; #define XE_HW_ENGINE_PREEMPT_TIMEOUT CONFIG_DRM_XE_PREEMPT_T=
-IMEOUT<br>
-&gt; &gt; &gt; #else<br>
-&gt; &gt; &gt; #define XE_HW_ENGINE_PREEMPT_TIMEOUT (640 * 1000)<br>
-&gt; &gt; &gt; #endif<br>
-&gt; &gt; &gt; -#ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT_MIN<br>
-&gt; &gt; &gt; -#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN CONFIG_DRM_XE_PREE=
-MPT_TIMEOUT_MIN<br>
-&gt; &gt; &gt; -#else<br>
-&gt; &gt; &gt; -#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN 1<br>
-&gt; &gt; &gt; -#endif<br>
-&gt; &gt; &gt; -#ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT_MAX<br>
-&gt; &gt; &gt; -#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX CONFIG_DRM_XE_PREE=
-MPT_TIMEOUT_MAX<br>
-&gt; &gt; &gt; -#else<br>
-&gt; &gt; &gt; +#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN 0<br>
-&gt; &gt; &gt; #define XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX (10 * 1000 * 1000)<=
-br>
-&gt; &gt; &gt; -#endif<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; int xe_hw_engines_init_early(struct xe_gt *gt);<br>
-&gt; &gt; &gt; int xe_hw_engines_init(struct xe_gt *gt);<br>
-&gt; &gt; &gt; -- <br>
-&gt; &gt; &gt; 2.25.1<br>
-&gt; &gt; &gt; <o:p></o:p></p>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_PH0PR11MB5674E8EF849E5B47A847B70594E32PH0PR11MB5674namp_--
+-- 
