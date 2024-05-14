@@ -4,177 +4,182 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78E05C04FFE
-	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 08:08:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D0F1C04FFE
+	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 08:21:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2452410E063;
-	Tue, 14 May 2024 08:08:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D07810E415;
+	Tue, 14 May 2024 08:21:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RPPR5NTH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AcpQ7N6b";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B32D10EA37
- for <intel-xe@lists.freedesktop.org>; Tue, 14 May 2024 08:08:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AC9F10E415
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 May 2024 08:21:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715674093; x=1747210093;
+ t=1715674864; x=1747210864;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=+u0d7xpx3LxEJpy/v/w7UUvJkPjdCoKpzoRIpglb9mc=;
- b=RPPR5NTHY6d7pVevWCSkCwImtcQZToJ4v85Az4YYbr2ufXNcSmSc+WWd
- tkgCByO1GEXwVBAPmmUDfq8Em8kbGWzjEg0Hx4I8GqsF3e9dos04fyCWc
- Pzw879JHv0ASYdJ9blMhzGAU/yH2hdS/+iXbc9sg9VpCX7KSUip2kOgef
- ocZfUn9HiYYxcORzmIkixPwaGMoeecj0QYCYNr1175SQXUbOfCpxAS5fA
- wqr4nnSfUCtzOk3G49oqgpmWO1+yWShq/KMDxs1lFmX3dwTeVtKCWlb9F
- 3seyggdcwng1wOy3lOhvMQDbyNpGauopVAMpCnIxLab+85kmgzvbCllIA Q==;
-X-CSE-ConnectionGUID: N0E4jSfpR4Oe06DAkBg+3Q==
-X-CSE-MsgGUID: Z5F4sexWQc6g7FGVv3HjBA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11072"; a="11586438"
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="11586438"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2024 01:08:12 -0700
-X-CSE-ConnectionGUID: F/j+7cmzTd2w/x41Gi7tBg==
-X-CSE-MsgGUID: 3Ae859CVSt6P/s0kfzFUug==
+ bh=XX9Kgk+IsY2nNPr1xq/WsR7yfXCGjfJWY9joO3d6DPM=;
+ b=AcpQ7N6bK6JRV6+8JYV87L5roVpXCrWnQ+lj6SBeXWbbPLbcYM2JN759
+ aonTBN799Hxg0q/5m/kN0A0umaWgO+KIvUub929BF6rnVmll6z7NimVyl
+ 28eYqBZfvIcIvLjb4Qx5RtA8MIVKkskl5oQ4tGc5E8rZa6TK8eX+BrEd9
+ DegmNHvHOAVaOy0Eb81S37Bte6lOBGdHarvX7z6wTALxsNYW0JgGMVG74
+ 81FhdKFAU7NUYeDrReUF/fbXzlCMYnxmKB7NCq4q/t50Gj5UvgQaNrKJC
+ FWb4zx7xDlIFhCsyCh7fjdthE+PItmNQk7CRCTwgPv1hXXVW1EYH8NYu6 Q==;
+X-CSE-ConnectionGUID: T/DcX9EvRSeJEnLS1SOloQ==
+X-CSE-MsgGUID: fBzwI3qHR8m3NN4juz+Qew==
+X-IronPort-AV: E=McAfee;i="6600,9927,11072"; a="11513258"
+X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="11513258"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2024 01:21:03 -0700
+X-CSE-ConnectionGUID: V8XeZlT0Qf6xnCJIclj5hQ==
+X-CSE-MsgGUID: Uc2uoa0AQTSApTC1RIrBjQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="30618580"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 14 May 2024 01:08:11 -0700
+X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="61788998"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 May 2024 01:21:03 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 14 May 2024 01:08:10 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ 15.1.2507.35; Tue, 14 May 2024 01:21:03 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 14 May 2024 01:21:02 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 14 May 2024 01:08:10 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Tue, 14 May 2024 01:21:02 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 14 May 2024 01:08:10 -0700
+ 15.1.2507.35; Tue, 14 May 2024 01:21:02 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Kt72KImfxAIiA3vueg7ivzUalT1zKPWd9hLtI13FmZDg2pJn/EzEMlSDWkZoY+usx6YRtwS02WWeHQKGdfmK0oooCpHjYzUQm/VgMinzRoXjIqADIg+vKpCPzny50T1OrLqN4ndm5UasilTgkepjymTGRfEico4R8bkWKI61JpzHJ5H2q2spf6fuZlIZbrxo6xVDhnYII2/0dLpvIke/ibFaKClW8KucZllTIwxHfu2o2xIc57BzEp00fhIK981SbyEfepRTneG1lD0yfpWuK8MFWqWnQosO1Vd4+wxhJJN1kEGCnAUnN/409irDGGdeRoMZ29iSynLqNSlIz4rovg==
+ b=haLLSzfzpp9qsBvlRAFTwMXUv7fVaUjf7+zxrbr/iXL3SHrCF0ru3BvsvPtmmRcfjeDxNJGAI5oSG3UpxLx5tP6TOA9dgrpOMR9uDyKdQEPadqWEznSXEjqtu9Y5OyfcbFqRmX8/SZvlxMLfGHYK1ZsdLIUOzjJ+8cW4prNQdJ3DJOvCtaw0tJy9zc2i8+/luUHH3omGgnGL554L3sPoTKhqlxLMZ1pJZSQd4E01aG4lB5pIN2wuAgh5n7cJhN7ulWHbOjtwZ6t5tYyqm9UlB+1XKHLiHfW/VP37PgEq82XMHJML9ie7T5/QdIbNTFJC0ghQb5b9SDd32vjZ8bkSDQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dkPWvIIfyZRQ0j95uFDWaCSUM4HdZhL010if6BMJqQg=;
- b=LXHL73NcsC6bwDULyUYC1QlJ378T1BhZXoVySQNmzDM/le/j+6Goa7RONf8h2acOtVRlt0ibryCFKNHlaK/KkQo0IWeWWJGLiNl75w1/cJM5djfpCZSUTlFC6Rdkc160NFnwoju2cbMnZBnhf4BYpuPBg4vCkyKFnkgmLUVWbqvFa1PFTp3rKi+3PMrNKUv8U7v/zQzHVFJTIdtjqVjRrRWqRqzTE4m2ev4arbaXuvUcZVBru2XhR8MqZcZqWWWDvoQ966tofzOmxGHhEdz0h5ElAieCHcheUMbiYidyL8wk28qnLQYBx/jR0DgMRIIxWPzzHK6ZczHCBX4TTbpLLg==
+ bh=4Gx6uL08CwB5byUrlzO1YbUAuayHpZrli0+hJUuk8eE=;
+ b=lstppUqY0VDFbwtePsVHThu3LLBD2rduhN1PGD3r2HEtcr6KNnbRsLden/+ZGLMGJdZE7WEA1yEg1Ay2Hxkfc3pw/HgQhfY5O+QGsOkFHbNTsNd04R7iuBzFnHo8Iokun9OoySE5b2+eNGY0l1VJ0PQWtOkgx/T67ZnBr2/tTCUmYUOfY5c1tkStOl66H8e3fPhs0JPEoY6aSakV9UwcWr85j+Ts8wXPHq2b2ihN/qQlh3/557RiINnoWsnOWq8jPDO6x85Ji7mfe0BDqoZN74mgEVgXd07ZiEVY/z5sfDfM57JuI5YhK8+O/w0QM9ifn9VD03Uurjp0rRRws7XHbw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
- by CY5PR11MB6416.namprd11.prod.outlook.com (2603:10b6:930:34::14)
+ by CY8PR11MB7924.namprd11.prod.outlook.com (2603:10b6:930:7a::20)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.55; Tue, 14 May
- 2024 08:08:08 +0000
+ 2024 08:21:00 +0000
 Received: from MN0PR11MB6135.namprd11.prod.outlook.com
  ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
  ([fe80::3225:d4ad:74a:6d7a%5]) with mapi id 15.20.7544.052; Tue, 14 May 2024
- 08:08:08 +0000
-Date: Tue, 14 May 2024 10:08:05 +0200
+ 08:21:00 +0000
+Date: Tue, 14 May 2024 10:20:58 +0200
 From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>
 CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 2/8] drm/xe/guc: Introduce GuC KLV thresholds set
-Message-ID: <20240514080805.2g6tbanqrgsvamso@intel.com>
+Subject: Re: [PATCH 3/8] drm/xe/guc: Add support for threshold KLVs in
+ to_string() helper
+Message-ID: <20240514082058.cigcuaiyqemm746t@intel.com>
 References: <20240506133814.2571-1-michal.wajdeczko@intel.com>
- <20240506133814.2571-3-michal.wajdeczko@intel.com>
+ <20240506133814.2571-4-michal.wajdeczko@intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240506133814.2571-3-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: DU7P195CA0003.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:10:54d::19) To MN0PR11MB6135.namprd11.prod.outlook.com
+In-Reply-To: <20240506133814.2571-4-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: DB8PR06CA0023.eurprd06.prod.outlook.com
+ (2603:10a6:10:100::36) To MN0PR11MB6135.namprd11.prod.outlook.com
  (2603:10b6:208:3c9::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|CY5PR11MB6416:EE_
-X-MS-Office365-Filtering-Correlation-Id: f39b621c-7c57-49c5-e47a-08dc73ecfd91
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|CY8PR11MB7924:EE_
+X-MS-Office365-Filtering-Correlation-Id: 151c2c7e-9b48-4e83-462e-08dc73eec9d1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|366007|376005;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?S2N2elgrRjVab0hqOCtWbHhOQUhKUGRoRTJCVkU1Y0h0TFFrMnhiSXhTOTk2?=
- =?utf-8?B?Zklad216djJkbzNwZkR5QUNFd29kMEhrUXIvN0M4c01NaWxQUmt4SE1MQkpG?=
- =?utf-8?B?KzVqOHNoYXNjejlkZEswSFhyc08wUnJEaEkrTFpoaS9heWdSc3hhc3E2Q2E1?=
- =?utf-8?B?R1ZNUm9DaHNLOHArU05KSFNQOUJmdmVmNGIxaWZSSzM0Q2VSbXgvRU1MMTJy?=
- =?utf-8?B?dUZYTGFYSGFuVm5tNTlPNGEvTnJJZndNM3hHbk5FbExGS1VTdURaMVh3bW1i?=
- =?utf-8?B?bld2c3JrNXI2bEFhaDViVmJWUGNYZDgyMHZHY0VmQUNnQm1uTTE0cHRTUW1S?=
- =?utf-8?B?TCtiVzNFNVpTRmxpTDB1cU8xVmFuSmg5ZzhVQjdqUWhzcjZSc3NtQ3F4Q0dS?=
- =?utf-8?B?MDY0UXpYL29WMmlRaDBEWHBOOGxFTTNoaG50d2dLbm85clUzTkRwcFdRcEt1?=
- =?utf-8?B?TDdGWTN6MmxFSXc0NlRPUGs4amM2dWQ0UlVJWXp6Ymo5WUdia2tFSDJWN0JN?=
- =?utf-8?B?Nml0VjhLems5czU4UGJTVW1XSXNXVTgzMkF3QzdDWmV2Rmg4UXRhVGJvVEY4?=
- =?utf-8?B?YkNGeE9FSG9aNHVhNE1jTklSczQyZm85ZFlTVVZLaWVFcWduRGMrazRDSXI5?=
- =?utf-8?B?WTJsMkZXSTQzSjU1TDJSTWQzSkppeEpxV24rdzZtTjQ0Y1pXU0lFNjRmNm5D?=
- =?utf-8?B?VXdjUzhxSHgydHBqZXhZd2lDZzR1dDJvYjdXSmhUWWNoQUJqQ2s4V1R0eFlp?=
- =?utf-8?B?VmxVZDg2dUd6UDl2ZXk4aXdtdFZURkRxRnNSRXYvYkpubG0vRCtSRDQxRzho?=
- =?utf-8?B?UjZtbCtwdWt4bEhyVzNwUTByNVc1blJQU0pQeXUwNVUrU2h4NDdPcUhWS04v?=
- =?utf-8?B?N0FVdzd0TVQ3QmxYM1ZVbWZLNGRDQXdWRVhsaFNFTWhaZll1NTVMT2l0SGhK?=
- =?utf-8?B?WDdkZFBaTFFVN0tuUms5QTVxbGRGdXRZWEM3b1MzZmNqVWQ5QWRqZzNWaGk5?=
- =?utf-8?B?engydGlLTVUzVmVDSTBVbXc5SWgzemNDWk1PY3RGd21TdEQvcjFORnpmWDJa?=
- =?utf-8?B?bjNNQzdqdjBzVVA0QlBoNFFnZlpIVUEveGtVQ3FjNTBteUYyeFFsSjJEUDVq?=
- =?utf-8?B?bmFMYkQwQnNRdDJGWndVL1JZRGZzSUJ4Tmk4SGxQNXBRTHFuQ1VjVHZMckxC?=
- =?utf-8?B?R05BUFhQWDZjODAzcFNPYlBaRkZZOFhDR3ZXa1hJMmQ5eTVJWHpUUFpFR20y?=
- =?utf-8?B?cEp5RG8zS1llZGkyeExsWjFLaXlBZUc4SmcvV2I0eWU3dFpJVzlnN2p4ZHVK?=
- =?utf-8?B?RER6ZEtIWDg4b3ZwdGpsNWZod2lsWVZwa3c0NWxiQXp3WEFwOWtRTTZkVFp2?=
- =?utf-8?B?SlUxVVhEbVlJdzNJOFA2L0dPMFpqN1RuSWRyaFJNN3l1ZWpEK1FTRUVzakY0?=
- =?utf-8?B?U0U0TDdoTDJvT1creUM3cmY0c0VyWVlyd0J1OHZCc0ZZNUpaaXlhVlpOWHYv?=
- =?utf-8?B?OWo2ZTBuTUVVWGtjbGlHUTBGSncwaU1GYSs5MDMrNk1CVlFWM1lvUUtNRmxF?=
- =?utf-8?B?TkYzdkFESGx2TXpRWWh1eDBVNVl0dnF3YjZKQWZJT3lHMkpKclQ1SVBGQnJO?=
- =?utf-8?B?Wld1VkJCNVh2SXFsMkVkN0JXZGRlSW4rR2pnRi9vdGUxbXMzN2hQcWhrLzB6?=
- =?utf-8?B?TW9NOEIrV2hxOC9MZ1ZjR2MwYXRjUmV4TE5ZSHpDbGU3Nzhpek9xb3pBPT0=?=
+X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|366007|1800799015;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UWQyZTNHMnpWSmFQT0RIajhMaExBcVcwTVk3cktrc3Vaa3dCRE5BRUhNc2Vv?=
+ =?utf-8?B?NkRCS3VkYXlRbENsMGpEbHcwMnVGdlZ6cnBiTFNheFBoMTJrbzVSOHN2Yk8x?=
+ =?utf-8?B?K1ZYWHVBakZzVllEdlFuRTM4L0o3MDE4NHk2UkhwYUlvSGtneisyRXBMVGM3?=
+ =?utf-8?B?TnFzZVdoYlNiRE4wSDhWR3pVTkFIdmp6aFdhK05kbXpvbXlmMEFTeFZTWGhw?=
+ =?utf-8?B?Syt2T3lkeTQxakhtNWNqMGxLMHRsNit1NjlkZXVIb3hOcEpxaG1waUFmUHF4?=
+ =?utf-8?B?ajBGdk83WkExbkR0THRENWFPT25UUlVpRGtlTTNFOUx2ektXM3JlVFFwTGxS?=
+ =?utf-8?B?TzByaEZQRkMyaSsydzIvNlFHTEtKRkU5endHU29DcHRJMTRvTUJCVEhVL2dQ?=
+ =?utf-8?B?Nkx3cUFYby9ZQ0lpWXZ0UVA3LzZBU0dNblF3V09qdVg2VWJGT2pUVjFEcjRh?=
+ =?utf-8?B?T2dOZ2h1ZWpaRFZCdWUvSnJTbXlWOEU0aXFWSHV5dzM3T0tXY0YzYnpySkxs?=
+ =?utf-8?B?dTFBL1ptYyt3TWc0bllWaFJWTHNTazlYcExrN1BveUlJVmZQZXA4UGlhUkxj?=
+ =?utf-8?B?RE9mVjNPZEV0WHZZWGpCbUpNQ3FKaWN5UkRaUnJTQmdjOTVxL3paSmFrOUNk?=
+ =?utf-8?B?ZGNsbktnR2ZQNzdCVk44a2RWZFJ6LzlVbDhwZWhiWThicEpLQ3pSUGZzQlRI?=
+ =?utf-8?B?em1OVk8xQmZ0Nzh2YlhkU3RQbTNmUUFHeWdpRnJybUZ2NXgrMzdoMWxHVE41?=
+ =?utf-8?B?Tm1KWFJMM3J3RVN3VmM1cXA3S1ZjM002QUlCaUVZNkt4UVZ2KzAwRCtIbFFQ?=
+ =?utf-8?B?cDYvWW9hWk9nbSs1RXFVTU5mT0xBTHhOdDJqR1dhQzFyS2FkV2lWTWFyK0tD?=
+ =?utf-8?B?MmFJejZkaTZhY3RZR2lyQnhTYS8rVk1JWFdQaTgvYzhTRENZREsvaEx5WWJu?=
+ =?utf-8?B?aExxL0hGNERKS0RzVVF1d095Q1M1NURwQUpOcmozZDlqbGVhTGtWdks3Mmhq?=
+ =?utf-8?B?Q2JyVnErRHBZV3dTaGg0dE1BbFA1SnV4U1RJTWFGT0xIcHUyeGxVbWFCSnRX?=
+ =?utf-8?B?ZDFGTmNwMkwxNll6ZnRic3BMSk5wVERDMXNEYVZ4VVVOeHFxc1FSY2IwQUVt?=
+ =?utf-8?B?aktRSDN5YXVuNWlVMStRV3g5YXlEcDFiVTVicFVJNTVia0xqWWl6TElLL0Rh?=
+ =?utf-8?B?OTI3dlhNNVdPNjFwdFlVYWFwdEgxZnFTN1N3R0RnNSsvZGx5bDZuRFpCVnpF?=
+ =?utf-8?B?dVAwc1QwUExQY0VNUmE2dFlhL2pza1psTzhsaEtZYllrT3V2emJKT20wemdB?=
+ =?utf-8?B?T3dOb1cycU5qWUM4UTdCMGlQdCs5SHdWR2EvVzV2SWR0bWR2Z1RLd2dEZXd4?=
+ =?utf-8?B?WGN4NUZyVFlwMnByUFhUS1g4QkRNYzVhc21ZUEJ4UDlxRENEbFc0bVk5UTdB?=
+ =?utf-8?B?ZEx3cVVIU3c4TjluTlRZQlJJYW1BWU5zdnRZOWJ0cXZXMG5qdmFWV2lTREVJ?=
+ =?utf-8?B?YzY3NGM3SHlhMkVkWjRzSDgrb3VKZVJxMCtvbzN3alhGaEdtWXdseEdSNXBJ?=
+ =?utf-8?B?RFpiZllnRm1Rb1Q5VTdoT2RkSXpUNExsd2VLQUkzOHdXeWp4WVpQbWZJOXR5?=
+ =?utf-8?B?SERjQThnUnc2YkZwN2N1Y1BYWGZ5aHV6ZVl5dERreDZJMzhxRlg2OXdyZDkz?=
+ =?utf-8?B?OGd3NVRRTVd6TmRZQUR0RWVpeEFJcUdVVmlkZUJkZmdqRklQL2JuUlZBPT0=?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1101; 
+ SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ajMrdENPTW1TMldOcC9KczVibXdRSFFFUFhlQ2lPMWQyY3Vad2JNRjZRMjVa?=
- =?utf-8?B?akVyZitvOHBObmFEbEN1UlNDczhDRnBvUGFWcUo0Y2Vqak5wNWFiUDI4V2hQ?=
- =?utf-8?B?VHhST0R6Y0lpUTdkVklid1I4ZHIzcVN1ZUIvTXJ5SVA4a0NmdU9DOVVoQjc5?=
- =?utf-8?B?azVPUTVvSmZGVVlYVUZydFBHcUwyaWJnL2JYaWdFcFUvTzdsWkRGU1BGSFA4?=
- =?utf-8?B?a2FHQzI0cW51MnNBUEVmVnFwNjJ6ZllzT2VCaE5sTXBLRkJxK0RoUWk4dFZi?=
- =?utf-8?B?RW9FT0t4WkN1VzFyc2tzM1RtUzJWZ3haaDFJYkFGcVVZWk54N3pwMmU4Mkl6?=
- =?utf-8?B?blBXQW1iM20vZHR2MjdGcGdpaUFBZm5nZkloSjJnb1ljelNLWjYzQjdRcTRj?=
- =?utf-8?B?MXF3eWZqbGZYWjd1cWZlSlBGdFVkc0xtNDFNVmV3QlpYQmRDQ1l3MWhzTUtJ?=
- =?utf-8?B?RnMxcGJvY3Y5YWkzbjU2Q0ZkdzlsR3VxMm5ja0VWN1NxU0d5YUo5d3dSZ1V2?=
- =?utf-8?B?UDllaWozRmVnMFgrbzNPK1JhOFMrNkxpNkttNWhXRDk0ZHRpMDdMWjdsK2pI?=
- =?utf-8?B?cnNBdERIQnlYaUQ1TlNjS3AvQ1lySGFHUE1WR2JPUjZ2MzBJMk1BV25pcHZD?=
- =?utf-8?B?WkZFUnh1RDhJN1RXV1lxSklkcHU5R1ZCOEZyeU11cVZ6YytBdjVkaHJQU3F5?=
- =?utf-8?B?QVUybFFOMURrL3RkS1dQemlIWUVpRGovR05PQ1AzR2NLM0NkdGZWQ2VWSm8w?=
- =?utf-8?B?d213VXlGajlnMThUclhVNUlJRjhrMVNtOGk4TWQwUGZGTDV1aldVZEUxaldO?=
- =?utf-8?B?RU5sVk8yS0hlRXI0RDBjcjFLa051d2R0ZnlxMTdvOHIyZ3hteUFTcndEV2pJ?=
- =?utf-8?B?d3VmUEJVSjVCVGhjTWlMNEdwMlVrRHNJakYvenFPbTA2TDBMUXVDVUhBRFd4?=
- =?utf-8?B?TzN4dk5RamhaQ0xBQXlaY2VuODZaWG5xUDFCWnRXYlNkNVRXSHdZNk9kL01H?=
- =?utf-8?B?Slh6MXM4MHZ0YVQrbkF5SlVzUy9FMFBqNHB4c1RIRGxkZks5REpTdXpFZFdY?=
- =?utf-8?B?dThSSzZYRTluV1NpaXYxeFlmdG9EbHFDNENtSjJGeGRKT0h2emJzSk82L2lW?=
- =?utf-8?B?eldJTWtrQTBXNUJNMU5rUXJhQlVERXVDUTZaM0Z5aGxERXk5bXg3QmU2VU1E?=
- =?utf-8?B?S0FpQjNmbmZ4RTJKakxnN0FHWnB4aTd4OFlpOVJ1S0VxS3VoWWJZOXJTK0xM?=
- =?utf-8?B?a2pIOENRc1FoQ3V0ZHlmYXhUN2NkRHBhSmRYOUpqV2ZwWmNPd2R0ZlNCNEJo?=
- =?utf-8?B?UzRQRS9sWFlyRk5RTk9QNi9VbVJpcWNtSHZ5Y29PTDRsa2MxYmpqTU03SExV?=
- =?utf-8?B?dGY0ZVU3SU5MVEt2ZEZSUXArY1Q3RkoyNWJCaTFudHhTVTB5dlNQQUlmaUla?=
- =?utf-8?B?cXZhZTdYM0pESHprUFFxYm0zUnVzR1NPU0RaQ01NNmo3cmZXR2syY1FwamJK?=
- =?utf-8?B?UHYrT01XMlFCN1ExMXNlVk9QOWhpaStieEJDVExmd2pJV2JuYW11QkJCZUlL?=
- =?utf-8?B?VERuNXJYa1FFcnZtb1ZqOFZXdWxBd3FWc0VodzE2QUlTZEVsKzhUYUNOemlO?=
- =?utf-8?B?eHF2QlZac0JuWjhUSEJDR0FyUXhyU2hicEd4YUR4SDJzeUJsQnRNQjBIemxt?=
- =?utf-8?B?Wi9xdEplSlhoeTRGdlZpRVZCeHIvZjN5NTBHVUc5OStnWkVVZkR4dmFOYUZ3?=
- =?utf-8?B?WFR0RXdjeGluTHYvbnZmZGtIWmoxRHRIL2xSaWYxd3hFalkzdkZFQmVQSG50?=
- =?utf-8?B?ZXdXdkVmZEVSWi84T0tibkVzTWNyVi9MeUJvbUp0NG82Wm9yY1BEVXhHREZ5?=
- =?utf-8?B?OXo0Nk1kM3E2a3FUYkcvMExsbzE4VzdqUUJQWk9KYnlHSUUxV3VTVUkrS0dX?=
- =?utf-8?B?bXo2S1FkcGsyMFRWazlmbzJvWVB4WnVEVkZIZm1IMEhUTVI5elhRMG9iaXJv?=
- =?utf-8?B?QlpQVlVIcGgwdERIaWcyM3FTTWZ4bDQ3bng4SVBtWllBWjc3MjBxVlByazFB?=
- =?utf-8?B?TVQ2VU41enVpc2k1ai8rdkY0dzQyb0d3Nm9Sc3d3cnRDbFUzRTFLVjF0V21Q?=
- =?utf-8?B?MWtUSmphSjVJUVkxZXBLR0VwZFZiaGcvSjIyTlBFTTliYjRIcHNzeU1UbDgy?=
- =?utf-8?B?R2c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f39b621c-7c57-49c5-e47a-08dc73ecfd91
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bHdmVTdVWm0vcENHS2tEUnF0STJoaEhST2pJc0xQMitDQjlkWGk5UjR2ajcz?=
+ =?utf-8?B?RWlTb2RFWFBKQUJ2Sy9HWVJWbEdNcXZsZ2NFYy9vMk1jb3ZxczZqRGZEZVNL?=
+ =?utf-8?B?MlRsRGdvbTcxVEJoT2diWkdLTWd0bHpYL3JqMnNobHB3bU9Wejhub1ZRKzI5?=
+ =?utf-8?B?a1B3SHhYQmtaVVJjTW9NSTlNQ3htUXVpbFJjN1ZmRXhoemNuNjBZY2ViUEVm?=
+ =?utf-8?B?K1ZRalA2TUtTUGEvK2ljRWNST1ZNY0ZEQldNMG0yRE45R0dXQkQrUGMvSld3?=
+ =?utf-8?B?MzgzQlFlMWlpdGd0M245aGZIRlZQODBKS1UxS3VkeXhEdTB1SWhCNnRJY3po?=
+ =?utf-8?B?OS9WZ3lhSFZ0cnRRNmJ3Q2hyTjBoSW1SOUw4S2F2RUphakJiUEl0U0pXbXBZ?=
+ =?utf-8?B?UVRVT2pzMXpPcTNuVkRicGQ2bWhYYkRSNlJPYUNNV29DQXBUejBBcmhDdHFO?=
+ =?utf-8?B?L0NLWE42dDJEeHA0OXQzRmNGTHBCTjNWM004U2VPNlRpbFpHdXBLenN2OHpk?=
+ =?utf-8?B?eE5JOGJRbkNVWTJDMVp2bERsUktwOEdUdVJ0Z3B3TmdhTy9jUjlBaVZGZlZY?=
+ =?utf-8?B?c1NXMDlRODYyTHI2WUhTeVVXaW02VnFhWEFSQzFXSXNkelhqQ3VDWVlZYmxu?=
+ =?utf-8?B?Y3hGUEo5OVJmL2V3RENUbS9lcnN0Vk91eFNEbHN5U3FKVENSQ3ZjT2VENW5F?=
+ =?utf-8?B?ZHdXMkprR3dzLzFEbHBCYkcwTHNMVmloM0p3d28xaFg5d1U4MjhzZ2RJek4r?=
+ =?utf-8?B?RHQ0ZG5SaGNraTZzc3pVcUl5RGowc05rRTdPRWRybXp0UVlrV3BGMk4rQ25C?=
+ =?utf-8?B?RXV0eU1ROEZpOW50cjF0Q2dYZ09wRTNvNFE4YlBQQTl1UDZFUXM4VUZTSXlY?=
+ =?utf-8?B?d0k2RkZtbDhKcWx6bm9GQ09MdVN3QUM5cGxFWUhGdXorSlFuc2Q2eC9ncFcz?=
+ =?utf-8?B?U2NyTk1xR0pNWnRUcm5TSzUxSExtMkxzTlVtcEJKZHl1bHhWUTRTWjVqZWhZ?=
+ =?utf-8?B?dzRLaEN0bEVUZFpRSkUvcDRDWDkrNGNNWnRLRDZDT0tsYXdBdzhJUG9YKzNx?=
+ =?utf-8?B?L0lJaERIN09hblhQNmZpTVhBR1FvQjFyVDFxTEo2SGtIM0VFd05PMEFzMlFO?=
+ =?utf-8?B?Y09YYktSdXVyYjV1QWlMSkVudTllK0phUU9TY2tjMUFpREttZUdwL2ZVanY5?=
+ =?utf-8?B?Rlc0ZWk1eGdvMXJETCtyMzFpMFhDVUJqTG14eElIN3N2NGFDSW1ONkRHRkVj?=
+ =?utf-8?B?Q1JoVk92dlNKQlIvbWtLMGVjRS9FbitSNEV3bDZObExrYkhzMTFpSjlJYno4?=
+ =?utf-8?B?RTNLS0pBQlQ3TGVlZGlKSHZyenJaR0U3MVlENWJHd1RRMHluTy9TZndobkEw?=
+ =?utf-8?B?R3RqZDV5RXAxdFJEQXc0VEhXelE1U0tPejZsRkNxaXlIVlBRTXN2UEtnZ1l5?=
+ =?utf-8?B?aTEyKzMwNzY5aWcwNDFYMUpienpmY0duQTBLSnprZHJJTmxaMU4xU3g3anYz?=
+ =?utf-8?B?cC9CZEhKNkpOck9Oa1AyU1hYcmY4enlyNWI0SktvSWZZNFE5cXg3OEtxVnFT?=
+ =?utf-8?B?K2EwM2grYnIzVTFGUVNGVHVKbUJLL3d1ZDlzelJWa1dlYnFaQUdxMEhQMWg1?=
+ =?utf-8?B?MXR5VzBVN2ZkR0ZWdlZNdTdsYzJmcTBSMElCRDA2YXk0bFlOSmVXK2NIeERw?=
+ =?utf-8?B?YnBraituc2krOGdoM3RUNTJUTmk5dTNpZkwxU0I2WG1kMUR5b2lXcVc5REl3?=
+ =?utf-8?B?K1pKLzBiT0JIRWM4eVhkWTdDNDMzSnhZVFNzYktXYXkvTXBaZGI5aGlpVlZo?=
+ =?utf-8?B?blBpSFVPZ2FwQkpFc1lLVzIyUVdWQVNEYXpvWTBudlJhSS9iUVpDVTlNRGQw?=
+ =?utf-8?B?RzM4TC9JczI1VDR3Tjdsck9CcCt0d0xpQXpDcnlHVEp3TElsdkJoWWxpYVQ3?=
+ =?utf-8?B?RjlqdWZiNFdCWmRTMk5WZzFSeFJhL1VmWXZRNW5oUkVRbndMZjlqQUI5Y0c4?=
+ =?utf-8?B?WWd6OHhGSDlqdkRZZUhXMXpxN0YxSU05N1VCVHZpMHk3SXRKNFZZd1dTRTFW?=
+ =?utf-8?B?RXAzNE5ZTmVPek1RdkZvczdNeTd6VzZSVms4dDVZdDhiYVcwcmhDSE96QnV6?=
+ =?utf-8?B?NW5PNWprUXlVMVJBZktNSlRSelF6Ymo2LzcwWlBpSnNiRE44OUJrZ3B4Szhv?=
+ =?utf-8?B?eGc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 151c2c7e-9b48-4e83-462e-08dc73eec9d1
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 May 2024 08:08:08.4330 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 May 2024 08:21:00.6203 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VU2ofo+iJbtgm20UKx3/j9k3yMRZuV/w+WqFvztvCplj9h255YGlJ2wg+deAXZDQQtIauUZblxo6SDvKrWZuTIvKUKqjZSf8u0IAVus4B+U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6416
+X-MS-Exchange-CrossTenant-UserPrincipalName: U0HklDg99GyUXj8ndJ0LW1rcODEZyZ27vcvz7Xxv4kE8U2tJiaCSaenQO9I/eiq7c+BwAELrgk62wA2o01BaoKxdYfMRrlJN39xIgbe7cv4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7924
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -190,171 +195,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on pon [2024-maj-06 15:38:08 +0200]:
-> The GuC firmware monitors VF's activity and notifies the PF driver
-> once any configured threshold related to such activity is exceeded.
-> 
-> The available thresholds are defined in the GuC ABI as part of the
-> GuC VF Configuration KLVs.  Threshold configurations performed by
-> the PF driver and notifications sent by the GuC rely on the KLV keys,
-> which are not zero-based and might not guarantee continuity.
-> 
-> To simplify the driver code and eliminate the need to repeat very
-> similar code for each threshold, introduce the threshold set macro
-> that allows to generate required code based on unique threshold tag.
+Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on pon [2024-maj-06 15:38:09 +0200]:
+> Use MAKE_XE_GUC_KLV_THRESHOLDS_SET to generate missing conversion
+> of threshold KLV keys to string.
 > 
 > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 > ---
->  .../gpu/drm/xe/xe_guc_klv_thresholds_set.h    | 58 +++++++++++++++++
->  .../drm/xe/xe_guc_klv_thresholds_set_types.h  | 65 +++++++++++++++++++
->  2 files changed, 123 insertions(+)
->  create mode 100644 drivers/gpu/drm/xe/xe_guc_klv_thresholds_set.h
->  create mode 100644 drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
+>  drivers/gpu/drm/xe/xe_guc_klv_helpers.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set.h b/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set.h
-> new file mode 100644
-> index 000000000000..da9ae10c72b8
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set.h
-> @@ -0,0 +1,58 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2024 Intel Corporation
-> + */
+> diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+> index ceca949932a0..cf7c5fed407d 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
+> @@ -8,6 +8,7 @@
+>  
+>  #include "abi/guc_klvs_abi.h"
+>  #include "xe_guc_klv_helpers.h"
+> +#include "xe_guc_klv_thresholds_set.h"
+>  
+>  #define make_u64(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
+>  
+> @@ -48,6 +49,14 @@ const char *xe_guc_klv_key_to_string(u16 key)
+>  		return "begin_db_id";
+>  	case GUC_KLV_VF_CFG_BEGIN_CONTEXT_ID_KEY:
+>  		return "begin_ctx_id";
 > +
-> +#ifndef _XE_GUC_KLV_THRESHOLDS_SET_H_
-> +#define _XE_GUC_KLV_THRESHOLDS_SET_H_
-> +
-> +#include "abi/guc_klvs_abi.h"
-> +#include "xe_guc_klv_helpers.h"
-> +#include "xe_guc_klv_thresholds_set_types.h"
-> +
-> +/**
-> + * MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY - Prepare the name of the KLV key constant.
-> + * @TAG: unique tag of the GuC threshold KLV key.
-> + */
-> +#define MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG) \
-> +	MAKE_GUC_KLV_KEY(CONCATENATE(VF_CFG_THRESHOLD_, TAG))
-> +
-> +/**
-> + * xe_guc_klv_threshold_key_to_index - Find index of the tracked GuC threshold.
-> + * @key: GuC threshold KLV key.
-> + *
-> + * This translation is automatically generated using &MAKE_XE_GUC_KLV_THRESHOLDS_SET.
-> + * Return: index of the GuC threshold KLV or -1 if not found.
-> + */
-> +static inline int xe_guc_klv_threshold_key_to_index(u32 key)
-> +{
-> +	switch (key) {
-> +#define define_xe_guc_klv_threshold_key_to_index_case(TAG, ...)		\
-> +	case MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG):			\
-> +		return MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG);
+> +	/* VF CFG threshold keys */
+> +#define define_threshold_key_to_string_case(TAG, NAME, ...)	\
+> +	case MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG):		\
+> +		return #NAME;
+> +	MAKE_XE_GUC_KLV_THRESHOLDS_SET(define_threshold_key_to_string_case)
+> +#undef define_threshold_key_to_string_case
 
-NIT: In my opinion, putting these definitions inside a switch (or in another case,
-inside an enum) worsens the readability of the code, which is already unreadable by the fact
-that these are macros - which, by the way, are very interesting in itself.
-
-> +	MAKE_XE_GUC_KLV_THRESHOLDS_SET(define_xe_guc_klv_threshold_key_to_index_case)
-> +	}
-> +	return -1;
-> +#undef define_xe_guc_klv_threshold_key_to_index_case
-> +}
-> +
-> +/**
-> + * xe_guc_klv_threshold_index_to_key - Get tracked GuC threshold KLV key.
-> + * @index: GuC threshold KLV index.
-> + *
-> + * This translation is automatically generated using &MAKE_XE_GUC_KLV_THRESHOLDS_SET.
-> + * Return: key of the GuC threshold KLV or 0 on malformed index.
-> + */
-> +static inline u32 xe_guc_klv_threshold_index_to_key(enum xe_guc_klv_threshold_index index)
-> +{
-> +	switch (index) {
-> +#define define_xe_guc_klv_threshold_index_to_key_case(TAG, ...)		\
-> +	case MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG):			\
-> +		return MAKE_GUC_KLV_VF_CFG_THRESHOLD_KEY(TAG);
-> +	MAKE_XE_GUC_KLV_THRESHOLDS_SET(define_xe_guc_klv_threshold_index_to_key_case)
-> +	}
-> +	return 0; /* unreachable */
-> +#undef define_xe_guc_klv_threshold_index_to_key_case
-> +}
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h b/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
-> new file mode 100644
-> index 000000000000..6a48d76924a4
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
-> @@ -0,0 +1,65 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2024 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_GUC_KLV_THRESHOLDS_SET_TYPES_H_
-> +#define _XE_GUC_KLV_THRESHOLDS_SET_TYPES_H_
-> +
-> +#include "xe_args.h"
-> +
-> +/**
-> + * MAKE_XE_GUC_KLV_THRESHOLDS_SET - Generate various GuC thresholds definitions.
-> + * @define: name of the inner macro to expand.
-> + *
-> + * The GuC firmware is able to monitor VF's adverse activity and will notify the
-> + * PF driver once any threshold is exceeded.
-> + *
-> + * This super macro allows various conversions between the GuC adverse event
-> + * threshold KLV definitions and the driver code without repeating similar code
-> + * or risking missing some cases.
-> + *
-> + * For each GuC threshold definition, the inner macro &define will be provided
-> + * with the &TAG, that corresponds to the GuC threshold KLV key name defined by
-> + * ABI and the associated &NAME, that may be used in code or debugfs/sysfs::
-> + *
-> + *	define(TAG, NAME)
-> + */
-> +#define MAKE_XE_GUC_KLV_THRESHOLDS_SET(define)		\
-> +	define(CAT_ERR, cat_error_count)		\
-> +	define(ENGINE_RESET, engine_reset_count)	\
-> +	define(PAGE_FAULT, page_fault_count)		\
-> +	define(H2G_STORM, guc_time_us)			\
-> +	define(IRQ_STORM, irq_time_us)			\
-> +	define(DOORBELL_STORM, doorbell_time_us)	\
-> +	/* end */
-> +
-> +/**
-> + * XE_GUC_KLV_NUM_THRESHOLDS - Number of GuC thresholds KLVs.
-> + *
-> + * Calculated automatically using &MAKE_XE_GUC_KLV_THRESHOLDS_SET.
-> + */
-> +#define XE_GUC_KLV_NUM_THRESHOLDS \
-> +	(CALL_ARGS(COUNT_ARGS, MAKE_XE_GUC_KLV_THRESHOLDS_SET(ARGS_SEP_COMMA)) - 1)
-> +
-> +/**
-> + * MAKE_XE_GUC_KLV_THRESHOLD_INDEX - Create enumerator name.
-> + * @TAG: unique TAG of the enum xe_guc_klv_threshold_index.
-> + */
-> +#define MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG) \
-> +	CONCATENATE(XE_GUC_KLV_THRESHOLD_INDEX_, TAG)
-> +
-> +/**
-> + * enum xe_guc_klv_threshold_index - Index of the tracked GuC threshold.
-> + *
-> + * This enum is automatically generated using &MAKE_XE_GUC_KLV_THRESHOLDS_SET.
-> + * All these generated enumerators will only be used by the also generated code.
-> + */
-> +enum xe_guc_klv_threshold_index {
-> +#define define_xe_guc_klv_threshold_index_enum(TAG, ...) \
-> +	MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG),
-> +	MAKE_XE_GUC_KLV_THRESHOLDS_SET(define_xe_guc_klv_threshold_index_enum)
-> +#undef define_xe_guc_klv_threshold_index_enum
-> +};
-> +
-> +#endif
-
-One comment above, however, the code functionally seems ok:
+In a review of an earlier patch, I already mentioned that placing the definition of this macro
+inside the switch worsens the readability of the code, but still:
 Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
-
+> +
+>  	default:
+>  		return "(unknown)";
+>  	}
 > -- 
 > 2.43.0
 > 
