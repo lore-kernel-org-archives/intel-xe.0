@@ -4,169 +4,179 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B1CBC04FFE
-	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 22:32:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AA1DC04FFE
+	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 22:45:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA0C010EA23;
-	Tue, 14 May 2024 22:32:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1A2810E0F3;
+	Tue, 14 May 2024 22:45:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GNR/+oOA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eXimGnXW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B899E10E8F8;
- Tue, 14 May 2024 22:32:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECD9F10E0F3
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 May 2024 22:45:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715725934; x=1747261934;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=5zi2kr3EqqcqhV2yZ8Q1nQFWHmPh1RqFnu8GPOIg4a4=;
- b=GNR/+oOAdTYiUUw504vMTmhPtx/wYb3gkUeiLp/P64+UL9r1G0A7by2v
- qK3MV7O422d0rGcm644YcgHvqQT0gcKm8nZLd5PdSNdFt7JHjT597vTXu
- 0F7rg5bSGXBeFSxZMz9OZ6/E4+SqgwACpT9X9Gdu7Eqm0VOi84HyMPugC
- CY85TcRbZJam+6x3j5uo5LQ3Mm2pyP6W8ve1+MJjjzC6awleQhPsLSUgk
- x3ZFO0dUwIzBUqvPUCn+oMYuNFDeGneN+9fqHIboSljkGLn03G5/z1ChS
- aRGdi0wwaFyVjxsxhPx4hg0jb6E5ASFNEVQ9S+5ULK2TQlb/8Pu01QPrM Q==;
-X-CSE-ConnectionGUID: htroZow9QBet2s1eXVXzBw==
-X-CSE-MsgGUID: 0o2z1qhzRFWjmCTbCRboAA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="11688779"
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="11688779"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2024 15:32:13 -0700
-X-CSE-ConnectionGUID: vb8knya4TN2nRST9h5ffCw==
-X-CSE-MsgGUID: H1eFolnnQP+gkksidbIJwA==
+ t=1715726706; x=1747262706;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=wM882oskqPclG4d+8TnW76ubbLXnwPg692UNPoFmdjc=;
+ b=eXimGnXW94wXKsKlfwOUBaq3Xo6un4XMZDYuuq13BnMmvxoY2Mv7pnXn
+ YwOu8b9XvsIQt+iver/mbymG2v1R9uxXRruogW6z2q+ekJBLbl2PPu5fJ
+ vzR8/Psf0whEIV0DUtQbejkI8HEwlBmZgO5IG5DYsQJdjCZHBdofa/2F4
+ SwWGRLc2qQRE3YYxWo3y9DkPAZIgJ6VyUhCHSYFTy1V4B0zUiOx4WQWFy
+ ByOtH2MnWc2ShJJbzOg4NEfA+P02xihJlS06V6VxipDPGMloH0yCFu16Y
+ I6yQmN7Z2Bo0C+Mp9Brs9t7hqr4xC/LVThjIt/kAo+EnlXlFacakYEhz3 Q==;
+X-CSE-ConnectionGUID: cO3EBPLYQtql8bDA4mrzlg==
+X-CSE-MsgGUID: kfMMiKMYSN+hunjohdC3vQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="11577236"
+X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="11577236"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2024 15:45:05 -0700
+X-CSE-ConnectionGUID: Zjje5ktjRuuywaY+AyL17A==
+X-CSE-MsgGUID: V7RjUZT4RXavzc2lR1uR8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="61663694"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 14 May 2024 15:32:13 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="30898391"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 May 2024 15:45:05 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 14 May 2024 15:32:12 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.35; Tue, 14 May 2024 15:45:04 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 14 May 2024 15:32:12 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Tue, 14 May 2024 15:45:04 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.40) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 14 May 2024 15:32:12 -0700
+ 15.1.2507.35; Tue, 14 May 2024 15:45:04 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fnHvL+bLxyDbabVNgvMtoCe4CJuS5B+IYiZd/pOWLxELN/2IdDtmkOLZI13WoKSoZigAzh5bOv6UCqxO/dyBthbixt4Z9HTDQ7xnKCWgjLUap5MIfBEsohHJJ8qCttmQKR6b1t7T1Qqdi51tRg9CZ0CvLlDkZVNjpKyNEoX2htWZR0mT0gGKgN30iOlnUHoKi0WleMVAUTPgGTKEo/nUvAjOW4H/r61OwcVlpA1UNxLpShx4y/8ycEnblMDFSbz1SpJbwK1Jlmx4m6Ag3SoYc3Mfz2azORTAlm8DDPK1h8YdgHW0cNpn0Ljmj1s+mJkyTTEvXgQeS1xSLGemmP/bwg==
+ b=mTd029ZKoXpqB0UxQXZI6mKwQjjH2eA3t2HhJotKAVd68vKl6gdolkd3cU22SMaer6UxyhTfTWXIS4j112IQLeLMC/S2lE5jgKMbzezXMWhPgHaCXoGMS6d6Fw/8fzrl0nT59mnW1nZ/TYQVt9ezGUPXgnQeiTzZq4Ku9FOxMa58EPNM4xk48x9xecNS00ySjjSpZKw+ppVCe4HY0STIWQoUx7cxiF67O2VlRZxtvyfchjls3jyJoyqYC0Rlw8b78s1Z08ziz8IDx4sY5Eb6dvEh2xlFMCt3r0hm/WuLhNSjqqNdDF0sTyr+eMTzzf1sQOHA8aFUgY5Qs9UriMOPDQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5mWzVDZjwGn3hUPa+n2gBR1eyRk5bCsBDCqmmiY3/X8=;
- b=RXz8zOi94//7dUQljtF6nrEQzcYxnrDo9ljiwkif0vGtSbgTS9BeCjmJYR1/hXRh/3d579YK3ESzL7Kj+x4tz1A+ooaB3hAbq8L7B8HqKliy2nacTt0kuWNOrL7m1NtcdFsjirJGcXfq9sww8u5QC/AirZTC9UA6TGBRiYOMpCI6JGJo72Kgz6oitXf4Q2Q3dJl8eXcP5E69D7QwIqlfovLZGWVKP1D1v4irfm8af0N/+wwSMzhXHGNK9g2EnKywtO6eyRZEdsG/81QzmsmgU5DKe3u8J49KZtiGQvi0F1Ata838vwbK0Tp+FxYgSHrZEpDsxc56RdAz7rlbrzHGng==
+ bh=Kb1Rw5599HNMG5fB/bR1jxLzjWvJExgJSUR0ZpCbmVw=;
+ b=QWjZiRJVYe8OJHA/Px1/QHmMHK+s5hEqRAyln/hgn/C0eFucAyUFvwaSjSjsNQzJV55bzwZ4I3shpmxVDknCdqGA9wnNuJ3spM8T1/o2KrjsKzne8ve9+Q80KCv5CCmBaAczXChyQshk+XXCwtvt/bjNJraCsT6oONTIkkUP/LQ4CHipv1edeNjyPAwDxOcxJDrRgvmFBVzWsiclu9wmWxluU4pTtA4z0ViNRo2CgiD1vc0qevNnNYFrUiOlQPNZEB0VWMFnVRNvkdoGjAKOrS5euN8WZ+02uAMKQrTw8IWR8tBC5VcmHhB8z8wGW6veOe3d+WJ4oNcAZh9OhtBHnA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by PH7PR11MB7593.namprd11.prod.outlook.com (2603:10b6:510:27f::9)
+Received: from IA1PR11MB8200.namprd11.prod.outlook.com (2603:10b6:208:454::6)
+ by SJ2PR11MB8449.namprd11.prod.outlook.com (2603:10b6:a03:56f::14)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.55; Tue, 14 May
- 2024 22:32:03 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.7544.052; Tue, 14 May 2024
- 22:32:03 +0000
-Date: Tue, 14 May 2024 22:31:19 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-CC: John Harrison <john.c.harrison@intel.com>,
- <intel-xe@lists.freedesktop.org>, Lucas De Marchi <lucas.demarchi@intel.com>, 
- <linux-fsdevel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH 4/4] drm/xe/guc: Expose raw access to GuC log over debugfs
-Message-ID: <ZkPmN2KyjC3vPlZ+@DUT025-TGLU.fm.intel.com>
-References: <20240512153606.1996-1-michal.wajdeczko@intel.com>
- <20240512153606.1996-5-michal.wajdeczko@intel.com>
- <d0fd0b46-a8ac-464b-99e7-0b5384a79bf6@intel.com>
- <83484000-0716-465a-b55d-70cd07205ae5@intel.com>
- <3127eb0f-ef0b-46e8-a778-df6276718d06@intel.com>
- <ZkPKM/J0CiBsNgMe@DUT025-TGLU.fm.intel.com>
- <1c2dd2d5-1e55-4a7d-8a38-0fe96b31019e@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
+ 2024 22:45:01 +0000
+Received: from IA1PR11MB8200.namprd11.prod.outlook.com
+ ([fe80::ca61:3301:7ce0:f694]) by IA1PR11MB8200.namprd11.prod.outlook.com
+ ([fe80::ca61:3301:7ce0:f694%4]) with mapi id 15.20.7587.025; Tue, 14 May 2024
+ 22:45:01 +0000
+Message-ID: <7cb2095e-b808-4ca2-aa2c-1c793526197a@intel.com>
+Date: Tue, 14 May 2024 18:44:58 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 1/6] drm/xe/guc: Prepare GuC register list and update
+ ADS size for error capture
+Content-Language: en-US
+To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+References: <20240507014736.1057093-1-zhanjun.dong@intel.com>
+ <20240507014736.1057093-2-zhanjun.dong@intel.com>
+ <f55c5f7ef0ab613be9372d1f30cfb5071e872435.camel@intel.com>
+From: "Dong, Zhanjun" <zhanjun.dong@intel.com>
+In-Reply-To: <f55c5f7ef0ab613be9372d1f30cfb5071e872435.camel@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1c2dd2d5-1e55-4a7d-8a38-0fe96b31019e@intel.com>
-X-ClientProxiedBy: BYAPR02CA0016.namprd02.prod.outlook.com
- (2603:10b6:a02:ee::29) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-ClientProxiedBy: BY3PR04CA0024.namprd04.prod.outlook.com
+ (2603:10b6:a03:217::29) To IA1PR11MB8200.namprd11.prod.outlook.com
+ (2603:10b6:208:454::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH7PR11MB7593:EE_
-X-MS-Office365-Filtering-Correlation-Id: 45dbd25c-dab6-44a8-c99a-08dc7465adaa
+X-MS-TrafficTypeDiagnostic: IA1PR11MB8200:EE_|SJ2PR11MB8449:EE_
+X-MS-Office365-Filtering-Correlation-Id: 50ced6b3-e3d7-4eee-0d33-08dc74677d5b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|376005|1800799015;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?BMEFcdHF0ppDpwi1Hd7Vo+UYEb6uE6MfSthwvwIGbmt4vk93KuisKyHzt3?=
- =?iso-8859-1?Q?Blya7B9RCCHUzE0avm9wFLKebFaaafUBVRHNFN8p69AJsfJY5u/+Ktj9ND?=
- =?iso-8859-1?Q?mwvk/i+1//2V0G45iL8APl5DNhL5S7biHRwcC7bMM89Clwyx5bs9oO+qN/?=
- =?iso-8859-1?Q?xqTDoRQH8N9cXHzBzWnQA+Z+oXJCFkVJS8cviccdcyfOD6f/yx75przdGf?=
- =?iso-8859-1?Q?XJXl++OtM4xdmncfPg3FnUDiwBP6oP1m10rn17a/V1YebpPv59dzdcHNoy?=
- =?iso-8859-1?Q?lG/t72gdFHI7RZZW8yUsjsiNrtNGwJ64I25zfHDh01wr+XtGJijJ/dplu7?=
- =?iso-8859-1?Q?ucVL5fJMXBD17LVKr6oCH51U+3oN39Xe3rlm+8nyM73sstvvFm1zZiQ5OV?=
- =?iso-8859-1?Q?9lhjNdekNzhi5oi7pWDK6DbajtFS3eS9cJFcy2wOF2t19aE3XEh8zk/Vh4?=
- =?iso-8859-1?Q?/OPgbhn3Jdyv4dnLlP71dlXCw73NqjGxyTAHFI7Pxc8SSstGPM26TdvDc4?=
- =?iso-8859-1?Q?eUIyq5deE/43ehC7kGvT2XFjGFscALV9dQ/MB3hG7d5j7TVGqHvEog8OtT?=
- =?iso-8859-1?Q?DekDwQxhY6BqUFo8mU3YhDM2p294A+2lVJZkte9q3cwxyR8n3xAmBHer3V?=
- =?iso-8859-1?Q?dRA1LX/z47H6fkkSNFEWAWPGJXnVgKf0CpDZRNys4xs6HfkVqiqMf0j09h?=
- =?iso-8859-1?Q?LWR46dsZdBnk4TQn9LQzehbsNl4n1i48VQQxmK0iMY7wZapk5+KG5hO+fE?=
- =?iso-8859-1?Q?1Ijna9UXq454ULlLjgvvGZyCqOGQb+aiPiW91cGmUr+mtOoLPrWn9tMEUj?=
- =?iso-8859-1?Q?wX6hNQ2tqQqjV0G7z7XN7hDW+sNL5aQuHMUTqoRqsyqZyQ0VRNovcgn0Ku?=
- =?iso-8859-1?Q?FZxTxIS0hUDi0PLX8UBXMF/SuMGTFjUoDQ1emXVqe/cLW3WvdEAx3eyEdQ?=
- =?iso-8859-1?Q?xQKcLR7cmxiWHRz3R/j6w1frBCJCKFUOCHe9VjIizdf4BxPjklMorrSlp9?=
- =?iso-8859-1?Q?3ayHqUztOO9fNb7xR0M9pPCN54IMx13ZwuMfrZVFE9BFRWMzbb/TI6eOrl?=
- =?iso-8859-1?Q?1Ys6J/aah4DsZAl9X1/Qzx/03LDEUChPPttFtAQAl292EhmbnnuA7B/TZo?=
- =?iso-8859-1?Q?g+lQLQnGe7ixJjxCcAxax8xuzJ0+O8stKMViFi9NnrLeyOTEg7Jvrr164s?=
- =?iso-8859-1?Q?1MLsvksMNpRBIPmp0KbB26dddvnPhdK5MFUn2Hj6B2UhSisNk2O1poRWyt?=
- =?iso-8859-1?Q?CEWAc2J1irRPerl7cmYF4FL3NL/0LlsArDt4hnmwM=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|366007|1800799015;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?THZYeUNvREtLR0tNRXMvSllkWVQvaUl3YjR6V2lWNHpIRzVzWWxhK0lHbVMr?=
+ =?utf-8?B?SkU0dlFLZ3A4YmRiQkFLY0hGMDJaVUIwRzZNWUZlSEFiTWRibGplTEhQVGx2?=
+ =?utf-8?B?Y2dZeXk3VjhmWXBvRFVCanhtcjJxUWllSGloSjYzK0lvT2lpWjMwdTRuakJl?=
+ =?utf-8?B?bkVRYTBZaUdHSGNKWngwbzFrdFIvYm5yTTRMOXlGZmN1cmVPaXluOWlyZ0Nr?=
+ =?utf-8?B?TW1SUXNQZGFwbG5KenhQUzV0cWpyMEpLYlg5TnoxaW1zeFpxakhHU0MvbHhu?=
+ =?utf-8?B?Y2o0K2hmb0NkYmJTSVo0eWhhdWZlV21MdXRJYVJTazBzamhPNU1zYllNRmky?=
+ =?utf-8?B?VGhKSUdVUXIvUnRCY094VXg1d2o3WVZZMUI3VjAvcW1jSDZZV0tFZU9EM25I?=
+ =?utf-8?B?U0RwUytjdGpBeVBkKzRsb3NFaDh2cFdteDhSWHNWS0xraGJTS3NnUDdmOXl1?=
+ =?utf-8?B?WWhqNmtUOVhTT2xNYnpVckdxY1FZU2g3WjVSOVQyMFZHZml6cXpNR3IrNll2?=
+ =?utf-8?B?bnlCRkc5b2wwUncyUjRJRW1yVTNPZXBMS2JXOFdhZUxrSFErVmRwZXQxeU1N?=
+ =?utf-8?B?TDVRRTZjYkNxQys2RytZU2I5eUNQUDV2VnQ5K2hlMWhoVkVRTllWdmRWM3dQ?=
+ =?utf-8?B?dnk5eVRQWnNMT1V0Q0o2STdscEFEcnFib2MrRTRYVWZndnNOcXhLeTNHbUtM?=
+ =?utf-8?B?VEFxV0MyRTY1QThNZXF4NDJybmhGZHc0ZVYzWjkrcm9Fek9iRjF0LzJJWmpr?=
+ =?utf-8?B?cUZFYlpWU01CQmdpSkxJYlVPanBSK08wYWwxZkt0VHVDZnNCY0J0dm9oUDhk?=
+ =?utf-8?B?d3hjbmFHeldXSHZ5SkdNVHJGMWZrNlNpd2VoWVZ4Mm0vcEFpSFVWS2tBaWVG?=
+ =?utf-8?B?T1JUSVg1cUdnY2tDYkEwMXpJdnAza3k2NnBQTkZCZDhEcWVkNHFxdzJCWk12?=
+ =?utf-8?B?VFNqaHRqRDVLK2ZQRlQycm5ZbEJkZ1V0MTVBUGdsU3V5cFhFdytrS1ZZVkp1?=
+ =?utf-8?B?RHpZMnQxY3ZKOEl3SURDVVVVWTJ2YTdzNWNiNGdxaWFMRm10Z1lNNTExK1Ex?=
+ =?utf-8?B?TGNnTWx3K0ViU0M0Z2ZURDRvbEpiTDN6SHBUZFNvWTl2MGhYeENDUkZENHQr?=
+ =?utf-8?B?aS8vTjZNSXQ2SFJqOUJUWUJEeGpLeCtNMlUwcnliWkNFRVNLak5VL1BCZy91?=
+ =?utf-8?B?emdhN29zV0tHcFpRTFMxZ0xsQ2hIOGMrR2dJZmhlbk4wMTJiUGt2SFN2SXJY?=
+ =?utf-8?B?bS9TaXE0Wk5RZlp4bEw4SHJQc1I3VGVjN1hlbzY3eTkrZk5JS280UTJHd1pE?=
+ =?utf-8?B?SVA3eE5LUUw3NFYrTGd1UXhPbHV5Yk5xcitHdkxnd1h1aW5udEFkdEtYTUJ0?=
+ =?utf-8?B?ZThzdFd5ak9aTDUzM0NjY0p6MUhtc1RtVGRXZTlPOFNMUGdOOUx2STlVUnli?=
+ =?utf-8?B?S1ZmSFIxN3l3ZzlQK00wSkFEbjZNdWVVSFVBWk4reklHdi94NndPcEJTYnN2?=
+ =?utf-8?B?RWJWT0Q5WVdwdm5OZHYyQ1NwS3BCYlFJK2pIcVJ6aVdGb0FuR0FXenowMFhj?=
+ =?utf-8?B?Z09VL1ExZ2x5SzBleSt0SFBWTnRTaEJzZFhCOURRUGZoVHV2eGNxcWFxSGEr?=
+ =?utf-8?B?UVRIS0NYc041clVkNEUzWFZwb2lVVUFrUytlUHdVc3YyQnVpMGZMTGVZQVRQ?=
+ =?utf-8?B?cHVDVGNWMmNwbXZUbG5STW55cFlIei9IL1dqaWVhZ3hjRTUwdGZGMS9nPT0=?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB8200.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?5CCiwUugWoiJd2lGmgGLMjaC7Vh61PyMl0+q1cWgDkKtkutvRuva1NGwYS?=
- =?iso-8859-1?Q?oSQrfyCp5LgIrsetDEP5NdLBDOl9mK/9jIJH3gaUfeBNo7MGxMKKXinBVI?=
- =?iso-8859-1?Q?NlIUOCUwT74tfUVWV9/7al06SUTy4+b3SB0EyI9Yu/cdxBZyidGsXQXIlS?=
- =?iso-8859-1?Q?RHZQ3eCyzmV9zWdwYzeyZQKaPYrNRAhi4qYUbONedhoF3IuLBTUkDFdAAz?=
- =?iso-8859-1?Q?i7CCOrh/xnf4KEEIM2zTGUthfJ68nVci7TOdwf20T62BaXTpb8dDylnhD3?=
- =?iso-8859-1?Q?VeBKzqSdjXZJDtGsThr0VqUPKI7gCiPBa/iJCk6FHq+1PWGwWHh9K+ugME?=
- =?iso-8859-1?Q?GPxmAxaRjz5Cfg8b+MNeDbeqmeyQ+azZ9qH7RgXNk0GFlf4VjO1Lav6SU3?=
- =?iso-8859-1?Q?4qLVQFQHqZIVw5twO6mtF/YHlIEkvufURkRssv7+x4zAe6CHZolnVTm06E?=
- =?iso-8859-1?Q?rcD8ZLWaflMpyX43EvcWEt/JrOJCsj87rngvu1f619iPOXMMv/u5TVQ31v?=
- =?iso-8859-1?Q?2r2mKB9el2SWVFmbm8nFtUgCNXecSY6etzjSI8lQQ+3FWdAfmpzYVo8bIt?=
- =?iso-8859-1?Q?c19GiBJrtNJYBK7v+aia9Gz1h1ogxcqOjoRhKbxOCv8waXmLKnB4siIZpg?=
- =?iso-8859-1?Q?3RFmsYTp0iPwvBYB1s/fC4LDut4dSh92qY7iuZp6m4R98e5vQ2y8twBfRw?=
- =?iso-8859-1?Q?6yh6cpy6YJjUGDF7fR7LXCexZ0SkEeRCS2sfxTSX7KpD5FHI1ccIRX41Zq?=
- =?iso-8859-1?Q?UBOiCU5UZDBIjor0R48I+hzVHZ6/3wkA5MDhxF8+utIAamrXZ2xqElcMAk?=
- =?iso-8859-1?Q?xnnl8CQxqrvoMyTcLPbgFPNT0Ghh9FVYMTTnOOtK+LFF/ZEFBZgmHFG94G?=
- =?iso-8859-1?Q?+CEp8QbKYsejXuizJZCDvb5YEOl/z3RvYD/qycJkI+xSX3WD/EtrXj+oFE?=
- =?iso-8859-1?Q?+ZbwSTf6U2FF23ALa7BtXOylMz6yNlCs1YpLWdgGUZzJ4wreBLgUYaTSUY?=
- =?iso-8859-1?Q?cbslYMQKW4rIEePA0PAPiwL724AT+Ykpf+CcRJ6lGns7C4cRtceUMpdK5E?=
- =?iso-8859-1?Q?kYIpa88DiwNk/8pvwyBupIzPk/0b5Ul71XmK6nvKZ8ltzo2+S8S3xpf9KM?=
- =?iso-8859-1?Q?jkIaBJKzjQ15cYPyGWa5b23FL4HEORbHgWluFjk7XbARpJzdgV0A3iQD88?=
- =?iso-8859-1?Q?9yAyN4HqjGhyDz4W8Vif3exGKK5Y60Mq4gnbYlqE9TPA0b9amKqTxjyq+c?=
- =?iso-8859-1?Q?ZHLotclp6RdRmQdnV4PbmhGdVjDMom2pqdOQ+uAs+iVoE6bcNcV3PkMDxW?=
- =?iso-8859-1?Q?04/0K3SZVYqA6bdoeHUoCpb9elj0gN2DlbOnom9g61KHxxV2Tkwx+MvAqW?=
- =?iso-8859-1?Q?Gt6mU3w6FPZUDrc/W/Q7iL6ONpXbVEm+cFvQw3VTM+gyvnAEmV5YLhVhLx?=
- =?iso-8859-1?Q?tXURrgCQM8QMmstIlK+qfy2r6syW65M/d4cKv1uoAgii6F2yKg2EHf4h+o?=
- =?iso-8859-1?Q?/JNxcCdPW0jpsPcbk+BbdCdPIdWGoITCAt0uREYLjWHB3Yx4RrAK8QDeyJ?=
- =?iso-8859-1?Q?5CPzVykh9I7MMPxyvcCeh6VnMj1sR3hiozKAviKFGFCs4NJzyRq6fRv8s0?=
- =?iso-8859-1?Q?r4PMcwBWx5xNi2cKCC1aT8JPUMeqBUzBbggjDv753srMHzZOpYzCzueA?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45dbd25c-dab6-44a8-c99a-08dc7465adaa
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dlhlWWQwVkFWRnN2cE4zYkJQMEN3eCtYanhRSUJ6azVSaEs4TW56cEx6anJC?=
+ =?utf-8?B?VjMwdDVwYXFhd0xmUUdvd3VtRTVRQmZ0TWVUcVpONjVxNWRGTktKUUtYY0dY?=
+ =?utf-8?B?T1dYYitINndiRVRCck03aWp3SDdSOFo0bFNYdEtDUmpRZldCbkZJTGI1SjQy?=
+ =?utf-8?B?SDQrOHR6WEtsNVMwL1QzcW5weWxLOG9YeWl5U0ZZV0c3OEFma0J0M3djb3Ri?=
+ =?utf-8?B?RFFYZXk5V3NUUlZNWENpVkR2T2R5aXRRWkI3VzJMWFVuemRNNmVzOGN1VWty?=
+ =?utf-8?B?bVI3NXBGcjljSTdxOTZRTDArTXVldFFkUDJjT0ZEZ2hxMjN1WU1yWTZaTHRk?=
+ =?utf-8?B?OEdGZTBISFl1TjE4cTBLb3RFMlVGN2hzeXZCVDlJT3Z1REFTdFRGMWRCbG9L?=
+ =?utf-8?B?YkFnOHNRSlN2RnFmR2FIMVV4Z09XQm43SUg4M0VyZkNRR2VZYUwxT0JRSW52?=
+ =?utf-8?B?elVyVjhtQVNOUzVyK0IwMkRWS1FNTkNtQVJ4eFNnWDBzZUFWci9sUzRLaldE?=
+ =?utf-8?B?bTA0Sk51ZERySTdVUnVWOWVGeVFFZmtkSjRNR1NJczVpOE9VOFoyKzJjejk2?=
+ =?utf-8?B?ckF4bTdZK3g4RU9FUERoN09wYkVHNzNUR2MyNE1peWw0MHN1UVEwL21NUHdE?=
+ =?utf-8?B?S1h2azZYN3BjRlFTMVFoSzhua0dZeWM4LzJYVVJ0VWRpckVuQytOeGZQdHlw?=
+ =?utf-8?B?cDlxcVVMMTlabVp4Yk9HSTh2R2I5dnpUamhZNGtKOGwxd2tYSFRuY3NmNkU4?=
+ =?utf-8?B?dEVYYnU0bHlLbmszNmxqYjdrdi9BNk9HN3JrTXR3YWxBck5nL0w1VDduV0pw?=
+ =?utf-8?B?RzY1Y0FLdEN6bUJCYnZkZUlZSkxhaWl3UkcyejB5dkZrd0NYeVNOUjRCTVBD?=
+ =?utf-8?B?MVBBUnJzSVowTjBCZXZpL0lEM3o5eDQwWlgwMUVNa3J2UXRxRW5ucmtoRFRX?=
+ =?utf-8?B?V2MxNkFIdEE2SHR4YnE3ZmNIMlVqK3lIOUNQNnNFM28vbjVFWk5vS2EvejVY?=
+ =?utf-8?B?RXZ3cjM5YVBLbERrUjRiT3pBalJTYW9jcDhHZW9OWmk4UDh0clNNNS9Icmcr?=
+ =?utf-8?B?MmdpaG84eE5SZlkwbGQ3VDZDdDBuYnlHT1F6dXI3SXVNTmgzQ0owQmx0blFz?=
+ =?utf-8?B?Tlk1UzBwZlZhU2thTVRjQUZxYWIxOVo2eHY1ZEwzaEVRdXlIdXIrYytlTTRR?=
+ =?utf-8?B?LzFWUGRZNk1Hd05pM3dsOWRGNE91VU5qYnVzdWVKS0FKSi9FZVgwbllQUnFD?=
+ =?utf-8?B?SUZuaFFCWGVpQ04vQnNtREo3bUtRVG5CaWtHNUNockxzdHhKZ1VuOEF0Ynp3?=
+ =?utf-8?B?NWtEOHZaN3FpWnZicWlrTEgyVkNhaENOVTJIMnlQZ3JPcFJZa1l6SGZMSUlE?=
+ =?utf-8?B?cEdpM0V0L09LY1NHQ0VVNTY4WU5aaDFhTzJEMVJqNVhwM3JkUWhtU2cvMSs0?=
+ =?utf-8?B?UllkMzAyR2NoQUpiQWloQ29TdncrZnNoaVlrSGxJZWFLd2I1aUR2bnBmV1FN?=
+ =?utf-8?B?NWVTczBHdVVOQStHN244bloyZVkvaEhuRVVKam9tWHBZMEppUmQ5cFFON25N?=
+ =?utf-8?B?L0xHQnhEV0JTTlJzOThlbTJsNVBaZnV1T0p5SktFV0ZSck01c21DNGFvVVBF?=
+ =?utf-8?B?R1JKbUNPcEgxVndDanQ2ZWJlalBIeWxVaC9HalNKbjIySjJDNmNBWkd2ckFZ?=
+ =?utf-8?B?Z2dwa0w2SkdBS2dEYnZDMExYcW9EMTBRbUYxWXppYU5YYUxuOE5SWFBGTEJ5?=
+ =?utf-8?B?bkNVaDNUNWt0YVFTOXlLeGptT2M4RXVtTTZVV2FXaWs2d0ZRY2d5M1hjMWM2?=
+ =?utf-8?B?YldnMkJjMjl3RTRNVGZ5cjVVTDZHM0wyc1c2WHN3RGFCYUtHSVFQMStLSnBQ?=
+ =?utf-8?B?cGRwRytjTE9adUM1Nk1acGFsRm9FZkYybWJlMmo2KzdhQmc4ajhjY0hzQ0hE?=
+ =?utf-8?B?L3BsUzNVaFF1b0FxNVBNNGRLU0tDOW45RnRpZXBHMjZHemh4aE9NUFFmdnBs?=
+ =?utf-8?B?L0Q3ZjNZdndDYlRzUEpYSzNlRlA4UUt0UW5wT3Z2SUErL2xYOFNydG9wS0Z4?=
+ =?utf-8?B?UXM1SW9FTURLODdSTXhIWWFVR05oOExMRHdVbm96QkdkSmZ5Q2tEZS85SHI3?=
+ =?utf-8?Q?+7jxjBHAKQJwPCUERxlHrq49W?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50ced6b3-e3d7-4eee-0d33-08dc74677d5b
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB8200.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 May 2024 22:32:03.5555 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 May 2024 22:45:01.5245 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7L5LCm/jbkTLgrahfEac3askZsStxlNFXKsjGdfBue6tlBaGfb2MO+WKa/8uVo/han1tuYbUoAR76mL6grDCxg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7593
+X-MS-Exchange-CrossTenant-UserPrincipalName: N6h5OvKMu9OpwaQEOgxxJoIag0snm2uGhnRlgrQFGB3r0oEDczcHPY2jWsQpY3N4h/bVUSDV8RNnM8eAroUF0w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8449
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -182,230 +192,227 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, May 14, 2024 at 11:15:55PM +0200, Michal Wajdeczko wrote:
-> 
-> 
-> On 14.05.2024 22:31, Matthew Brost wrote:
-> > On Tue, May 14, 2024 at 11:13:14AM -0700, John Harrison wrote:
-> >> On 5/14/2024 07:58, Michal Wajdeczko wrote:
-> >>> On 13.05.2024 18:53, John Harrison wrote:
-> >>>> On 5/12/2024 08:36, Michal Wajdeczko wrote:
-> >>>>> We already provide the content of the GuC log in debugsfs, but it
-> >>>>> is in a text format where each log dword is printed as hexadecimal
-> >>>>> number, which does not scale well with large GuC log buffers.
-> >>>>>
-> >>>>> To allow more efficient access to the GuC log, which could benefit
-> >>>>> our CI systems, expose raw binary log data.� In addition to less
-> >>>>> overhead in preparing text based GuC log file, the new GuC log file
-> >>>>> in binary format is also almost 3x smaller.
-> >>>>>
-> >>>>> Any existing script that expects the GuC log buffer in text format
-> >>>>> can use command like below to convert from new binary format:
-> >>>>>
-> >>>>>  ����hexdump -e '4/4 "0x%08x " "\n"'
-> >>>>>
-> >>>>> but this shouldn't be the case as most decoders expect GuC log data
-> >>>>> in binary format.
-> >>>> I strongly disagree with this.
-> >>>>
-> >>>> Efficiency and file size is not an issue when accessing the GuC log via
-> >>>> debugfs on actual hardware.
-> >>> to some extend it is as CI team used to refuse to collect GuC logs after
-> >>> each executed test just because of it's size
-> >> I've never heard that argument. I've heard many different arguments but not
-> >> one about file size. The default GuC log size is pretty tiny. So size really
-> >> is not an issue.
-> >>
-> >>>
-> >>>> It is an issue when dumping via dmesg but
-> >>>> you definitely should not be dumping binary data to dmesg. Whereas,
-> >>> not following here - this is debugfs specific, not a dmesg printer
-> >> Except that it is preferable to have common code for both if at all
-> >> possible.
-> >>
-> >>>
-> >>>> dumping in binary data is much more dangerous and liable to corruption
-> >>>> because some tool along the way tries to convert to ASCII, or truncates
-> >>>> at the first zero, etc. We request GuC logs be sent by end users,
-> >>>> customer bug reports, etc. all doing things that we have no control over.
-> >>> hmm, how "cp gt0/uc/guc_log_raw FILE" could end with a corrupted file ?
-> >> Because someone then tries to email it, or attach it or copy it via Windows
-> >> or any number of other ways in which a file can get munged.
-> >>
-> >>>
-> >>>> Converting the hexdump back to binary is trivial for those tools which
-> >>>> require it. If you follow the acquisition and decoding instructions on
-> >>>> the wiki page then it is all done for you automatically.
-> >>> I'm afraid I don't know where this wiki page is, but I do know that hex
-> >>> conversion dance is not needed for me to get decoded GuC log the way I
-> >>> used to do
-> >> Look for the 'GuC Debug Logs' page on the developer wiki. It's pretty easy
-> >> to find.
-> >>
-> >>>> These patches are trying to solve a problem which does not exist and are
-> >>>> going to make working with GuC logs harder and more error prone.
-> >>> it at least solves the problem of currently super inefficient way of
-> >>> generating the GuC log in text format.
-> >>>
-> >>> it also opens other opportunities to develop tools that could monitor or
-> >>> capture GuC log independently on  top of what driver is able to offer
-> >>> today (on i915 there was guc-log-relay, but it was broken for long time,
-> >>> not sure what are the plans for Xe)
-> >>>
-> >>> also still not sure how it can be more error prone.
-> >> As already explained, the plan is move to LFD - an extensible, streamable,
-> >> logging format. Any non-trivial effort that is not helping to move to LFD is
-> >> not worth the effort.
-> >>
-> >>>
-> >>>> On the other hand, there are many other issues with GuC logs that it
-> >>>> would be useful to solves - including extra meta data, reliable output
-> >>>> via dmesg, continuous streaming, pre-sizing the debugfs file to not have
-> >>>> to generate it ~12 times for a single read, etc.
-> >>> this series actually solves last issue but in a bit different way (we
-> >>> even don't need to generate full GuC log dump at all if we would like to
-> >>> capture only part of the log if we know where to look)
-> >> No, it doesn't solve it. Your comment below suggests it will be read in 4KB
-> >> chunks. Which means your 16MB buffer now requires 4096 separate reads! And
-> >> you only doing partial reads of the section you think you need is never
-> >> going to be reliable on live system. Not sure why you would want to anyway.
-> >> It is just making things much more complex. You now need an intelligent user
-> >> land program to read the log out and decode at least the header section to
-> >> know what data section to read. You can't just dump the whole thing with
-> >> 'cat' or 'dd'.
-> >>
-> > 
-> > Briefly have read this thread but seconding John's opinion that anything
-> > which breaks GuC log collection via a simple command like cat is a no
-> 
-> hexdump or cp is also a simple command and likely we can assume that
-> either user will know what command to use or will just type the command
-> that we say.
-> 
-> > go. Also anything that can allow windows to mangle the output would be
-> > less than idle too. Lastly, GuC log collection is not a critical path
-> > operation so it likely does not need to optimized for speed.
-> 
-> but please remember that this patch does not change anything to the
-> existing debugfs files, the guc_log stays as is, this new raw access is
-> defined as another guc_log_raw file that would allow develop other use
-> cases, beyond what is possible with naive text snapshots, like live
-> monitor for errors, all implemented above kernel driver
-> 
+See my comments inline below.
 
-Not opposed to this, nor is it a tremendous amount of code to carry in
-addition to existing GuC log interfaces. However, adding an additional
-interface could create some confusion. If there are indeed interesting
-uses for this new interface, it would be helpful to post those as well.
+Regards,
+Zhanjun
 
-Matt
+On 2024-05-10 2:43 p.m., Teres Alexis, Alan Previn wrote:
+> On Mon, 2024-05-06 at 18:47 -0700, Zhanjun Dong wrote:
+>> Add referenced registers defines and list of registers.
+>> Update GuC ADS size allocation to include space for
+>> the lists of error state capture register descriptors.
+>>
+>>
+> alan:snip
+>> +int xe_calculate_guc_regs_capture_worst_size(struct xe_guc *guc)
+>> +{
+>> +       size_t total_size, class_size, instance_size, global_size;
+>> +       int i, j;
+>> +
+>> +       /* This function calculates the worst case register lists size by
+>> +        * including all possible engines classes. It is called during the
+>> +        * first of a two-phase GuC (and ADS-population) initialization
+>> +        * sequence, that is, during the pre-hwconfig phase before we have
+>> +        * the exact engine fusing info.
+>> +        */
+>> +       total_size = PAGE_SIZE; /* Pad a page in front for empty lists */
+>> +       for (i = 0; i < GUC_CAPTURE_LIST_INDEX_MAX; i++) {
+>> +               for (j = 0; j < GUC_LAST_ENGINE_CLASS; j++) {
+> alan: so in rev6, i mentioned in one of the other hunks that in guc interface,
+> the 'max engine class' definition used by guc-error-capture register-list-arrays
+> does not follow the definition of engine-class enum of above (which is used
+> for submission and other interfaces with GuC). I notice you fixed this on
+> another hunk but missed it above. I should have made it clear this change is
+> required for ALL cases where we are looping through the engine classes' register
+> lists used in guc- error-capture.
+Thanks, will changed to GUC_CAPTURE_LIST_CLASS_MAX
 
-> > 
-> > Matt
-> > 
-> >>>
-> >>> for reliable output via dmesg - see my proposal at [1]
-> >>>
-> >>> [1] https://patchwork.freedesktop.org/series/133613/
-> >>
-> >>>
-> >>>> Hmm. Actually, is this interface allowing the filesystem layers to issue
-> >>>> multiple read calls to read the buffer out in small chunks? That is also
-> >>>> going to break things. If the GuC is still writing to the log as the
-> >>>> user is reading from it, there is the opportunity for each chunk to not
-> >>>> follow on from the previous chunk because the data has just been
-> >>>> overwritten. This is already a problem at the moment that causes issues
-> >>>> when decoding the logs, even with an almost atomic copy of the log into
-> >>>> a temporary buffer before reading it out. Doing the read in separate
-> >>>> chunks is only going to make that problem even worse.
-> >>> current solution, that converts data into hex numbers, reads log buffer
-> >>> in chunks of 128 dwords, how proposed here solution that reads in 4K
-> >>> chunks could be "even worse" ?
-> >> See above, 4KB chunks means 4096 separate reads for a 16M buffer. And each
-> >> one of those reads is a full round trip to user land and back. If you want
-> >> to get at all close to an atomic read of the log then it needs to be done as
-> >> a single call that copies the log into a locally allocated kernel buffer and
-> >> then allows user land to read out from that buffer rather than from the live
-> >> log. Which can be trivially done with the current method (at the expense of
-> >> a large memory allocation) but would be much more difficult with random
-> >> access reader like this as you would need to say the copied buffer around
-> >> until the reads have all been done. Which would presumably mean adding
-> >> open/close handlers to allocate and free that memory.
-> >>
-> >>>
-> >>> and in case of some smart tool, that would understands the layout of the
-> >>> GuC log buffer, we can even fully eliminate problem of reading stale
-> >>> data, so why not to choose a more scalable solution ?
-> >> You cannot eliminate the problem of stale data. You read the header, you
-> >> read the data it was pointing to, you re-read the header and find that the
-> >> GuC has moved on. That is an infinite loop of continuously updating
-> >> pointers.
-> >>
-> >> John.
-> >>
-> >>>
-> >>>> John.
-> >>>>
-> >>>>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> >>>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> >>>>> Cc: John Harrison <John.C.Harrison@Intel.com>
-> >>>>> ---
-> >>>>> Cc: linux-fsdevel@vger.kernel.org
-> >>>>> Cc: dri-devel@lists.freedesktop.org
-> >>>>> ---
-> >>>>>  � drivers/gpu/drm/xe/xe_guc_debugfs.c | 26 ++++++++++++++++++++++++++
-> >>>>>  � 1 file changed, 26 insertions(+)
-> >>>>>
-> >>>>> diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c
-> >>>>> b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-> >>>>> index d3822cbea273..53fea952344d 100644
-> >>>>> --- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
-> >>>>> +++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-> >>>>> @@ -8,6 +8,7 @@
-> >>>>>  � #include <drm/drm_debugfs.h>
-> >>>>>  � #include <drm/drm_managed.h>
-> >>>>>  � +#include "xe_bo.h"
-> >>>>>  � #include "xe_device.h"
-> >>>>>  � #include "xe_gt.h"
-> >>>>>  � #include "xe_guc.h"
-> >>>>> @@ -52,6 +53,29 @@ static const struct drm_info_list debugfs_list[] = {
-> >>>>>  ����� {"guc_log", guc_log, 0},
-> >>>>>  � };
-> >>>>>  � +static ssize_t guc_log_read(struct file *file, char __user *buf,
-> >>>>> size_t count, loff_t *pos)
-> >>>>> +{
-> >>>>> +��� struct dentry *dent = file_dentry(file);
-> >>>>> +��� struct dentry *uc_dent = dent->d_parent;
-> >>>>> +��� struct dentry *gt_dent = uc_dent->d_parent;
-> >>>>> +��� struct xe_gt *gt = gt_dent->d_inode->i_private;
-> >>>>> +��� struct xe_guc_log *log = &gt->uc.guc.log;
-> >>>>> +��� struct xe_device *xe = gt_to_xe(gt);
-> >>>>> +��� ssize_t ret;
-> >>>>> +
-> >>>>> +��� xe_pm_runtime_get(xe);
-> >>>>> +��� ret = xe_map_read_from(xe, buf, count, pos, &log->bo->vmap,
-> >>>>> log->bo->size);
-> >>>>> +��� xe_pm_runtime_put(xe);
-> >>>>> +
-> >>>>> +��� return ret;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static const struct file_operations guc_log_ops = {
-> >>>>> +��� .owner������� = THIS_MODULE,
-> >>>>> +��� .read������� = guc_log_read,
-> >>>>> +��� .llseek������� = default_llseek,
-> >>>>> +};
-> >>>>> +
-> >>>>>  � void xe_guc_debugfs_register(struct xe_guc *guc, struct dentry *parent)
-> >>>>>  � {
-> >>>>>  ����� struct drm_minor *minor = guc_to_xe(guc)->drm.primary;
-> >>>>> @@ -72,4 +96,6 @@ void xe_guc_debugfs_register(struct xe_guc *guc,
-> >>>>> struct dentry *parent)
-> >>>>>  ����� drm_debugfs_create_files(local,
-> >>>>>  ������������������ ARRAY_SIZE(debugfs_list),
-> >>>>>  ������������������ parent, minor);
-> >>>>> +
-> >>>>> +��� debugfs_create_file("guc_log_raw", 0600, parent, NULL,
-> >>>>> &guc_log_ops);
-> >>>>>  � }
-> >>
+>> +                       if (xe_guc_capture_getlistsize(guc, i,
+>> +                                                      GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS,
+>> +                                                      j, &class_size) < 0)
+>> +                               class_size = 0;
+>> +                       if (xe_guc_capture_getlistsize(guc, i,
+>> +                                                      GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE,
+>> +                                                      j, &instance_size) < 0)
+>>
+> alan:snip
+> 
+>>   #define MAX_GOLDEN_LRC_SIZE    (SZ_4K * 64)
+>>   
+>>   int xe_guc_ads_init(struct xe_guc_ads *ads)
+>> @@ -398,6 +443,7 @@ int xe_guc_ads_init(struct xe_guc_ads *ads)
+>>          struct xe_bo *bo;
+>>   
+>>          ads->golden_lrc_size = calculate_golden_lrc_size(ads);
+>> +       ads->capture_size = xe_calculate_guc_regs_capture_worst_size(ads_to_guc(ads));
+>>          ads->regset_size = calculate_regset_size(gt);
+>>          ads->ads_waklv_size = calculate_waklv_size(ads);
+>>   
+>> @@ -431,9 +477,10 @@ int xe_guc_ads_init_post_hwconfig(struct xe_guc_ads *ads)
+>>          xe_gt_assert(gt, ads->bo);
+>>   
+>>          ads->golden_lrc_size = calculate_golden_lrc_size(ads);
+>> +       ads->capture_size = xe_calculate_guc_regs_capture_worst_size(ads_to_guc(ads));
+> alan: nit: we had an offline conversation that despite post_hw_config knowing
+> exact engine class list, we simpliify and improve execution time by using
+> worst-case-size in both pre and post hwconfig when deciding on size. Would be nice to
+> add a comment on that? (so folks dont assume its a bug)
+Sure, will do.
+> 
+> alan:snip
+> 
+> 
+>>          ads->regset_size = calculate_regset_size(gt);
+>>   
+>> -       xe_gt_assert(gt, ads->golden_lrc_size +
+>> +       xe_gt_assert(gt, ads->golden_lrc_size + ads->capture_size +
+>>                       (ads->regset_size - prev_regset_size) <=
+>>                       MAX_GOLDEN_LRC_SIZE);
+> alan: i missed this in rev6 - why are we using ads->capture_size to verify MAX_GOLDEN_LRC_SIZE is
+> sufficient? i dont believe this macro is related to guc-error-capture reg list.
+> 
+Yes, will remove it.
+> alan:snip
+> 
+>> +static int guc_capture_prep_lists(struct xe_guc_ads *ads)
+>> +{
+>> +       struct xe_guc *guc = ads_to_guc(ads);
+>> +       struct xe_gt *gt = ads_to_gt(ads);
+>> +       u32 ads_ggtt, capture_offset, null_ggtt, total_size = 0;
+>> +       struct iosys_map info_map;
+>> +       size_t size = 0;
+>> +       void *ptr;
+>>          int i, j;
+> alan:snip
+>> +                       /********************************************************/
+>> +                       /*** engine exists: start with engine-class registers ***/
+>> +                       /********************************************************/
+>> +                       write_empty_list = true; /* starting assumption is an empty list */
+>> +                       size = 0;
+>> +                       if (!xe_guc_capture_getlistsize(guc, i,
+>> +                                                       GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS,
+>> +                                                       j, &size)) {
+>> +                               if (total_size + size > ads->capture_size)
+>> +                                       xe_gt_dbg(gt, "Capture size overflow :%lu vs %d\n",
+>> +                                                 total_size + size, ads->capture_size);
+> alan: i think premerge hooks are failing due to format specifiers - please do fix that.
+> alan:snip
+>> +       if (ads->capture_size != PAGE_ALIGN(total_size))
+>> +               xe_gt_info(gt, "ADS capture alloc size changed from %d to %d\n",
+>> +                          ads->capture_size, PAGE_ALIGN(total_size));
+>> +       return PAGE_ALIGN(total_size);
+>>   }
+> alan:snip
+> 
+>> +#define COMMON_XELP_BASE_GLOBAL \
+>> +       { FORCEWAKE_GT,             0,      0, "FORCEWAKE" }
+>> +
+>> +#define COMMON_BASE_ENGINE_INSTANCE \
+>> +       { RING_ESR(0),              0,      0, "ESR" }, \
+>> +       { RING_EMR(0),              0,      0, "EMR" }, \
+>> +       { RING_EIR(0),              0,      0, "EIR" }, \
+>> +       { RING_EXECLIST_STATUS_HI(0), 0,    0, "RING_EXECLIST_STATUS_HI" }, \
+>> +       { RING_EXECLIST_STATUS_LO(0), 0,    0, "RING_EXECLIST_STATUS_LO" }, \
+>> +       { RING_DMA_FADD(0),         0,      0, "RING_DMA_FADD_LDW" }, \
+>> +       { RING_DMA_FADD_UDW(0),     0,      0, "RING_DMA_FADD_UDW" }, \
+>> +       { RING_IPEHR(0),            0,      0, "IPEHR" }, \
+>> +       { RING_BBADDR(0),           0,      0, "RING_BBADDR_LOW32" }, \
+>> +       { RING_BBADDR_UDW(0),       0,      0, "RING_BBADDR_UP32" }, \
+>> +       { RING_ACTHD(0),            0,      0, "ACTHD_LDW" }, \
+>> +       { RING_ACTHD_UDW(0),        0,      0, "ACTHD_UDW" }, \
+>> +       { RING_START(0),            0,      0, "START" }, \
+>> +       { RING_HEAD(0),             0,      0, "HEAD" }, \
+>> +       { RING_TAIL(0),             0,      0, "TAIL" }, \
+>> +       { RING_CTL(0),              0,      0, "CTL" }, \
+>> +       { RING_MI_MODE(0),          0,      0, "MODE" }, \
+>> +       { RING_HWS_PGA(0),          0,      0, "HWS" }, \
+>> +       { RING_MODE(0),             0,      0, "GFX_MODE" }
+> alan: I notice that "struct __guc_mmio_reg_descr.regname" is introduced here in
+> Patch-#1 and used in the population of the static reglist table above but then
+> never ever referenced in the entire series. In fact in Patch #6, its removed.
+> 
+> NOTE: this is different from i915 where this variable was used in the reporting
+> patch of i915's series but it looks like from this xe series version, we are
+> creating a shared "register->offset->name" lookup table list in xe_hw_engine.c
+> for both guc and execlist in Patch 6.
+> 
+> I believe this flirts dangerously close to breaking linux patch rules. A variable/
+> func not used in the entire series really shouldnt be added. In this case, we are
+> NOT consuming regname at all anywhere in the series. And then we remove it in the
+> subsequent patch-6.
+Yes, will get it removed in next patch.
+Meanwhile, as there are 2 register list exist in capture and 
+hw_engine.c, so I'm also consider to merge them. It could be done in 
+separate patch.
+> 
+> alan:snip
+> 
+> 
+> 
+>> +static int
+>> +guc_capture_getlistsize(struct xe_guc *guc, u32 owner, u32 type, u32 classid,
+>> +                       size_t *size, bool is_purpose_est)
+>> +{
+>> +       struct xe_guc_state_capture *gc = guc->capture;
+>> +       struct __guc_capture_ads_cache *cache = &gc->ads_cache[owner][type][classid];
+>> +       int num_regs;
+>> +
+>> +       if (!gc->reglists) {
+>> +               xe_gt_warn(guc_to_gt(guc), "No capture reglist for this device\n");
+>> +               return -ENODEV;
+>> +       }
+>> +
+>> +       if (cache->is_valid) {
+>> +               *size = cache->size;
+>> +               return cache->status;
+>> +       }
+>> +
+>> +       if (!is_purpose_est && owner == GUC_CAPTURE_LIST_INDEX_PF &&
+> alan: so this one took me a while to figure out why it has become orphaned.
+> (after i went through the entire series hunting for it). I'm referign to "is_purpose_est".
+> 
+> So this is another i915 inherittance which did have valid reasoning. In i915 when we
+> were doing "check_guc_capture_size" (which is a one-time event), we wanted to flag if
+> any of the register tables were non existent. take note that at this early log-buffer-
+> calculation time, we assumed all engine classes are valid on the platform at
+> pre-hw-config time. The reason is because we did actually discover cases when new
+> platforms added new engines and the developer completely missed adding the register
+> table for error capture as well. With this message, it would get flagged as a warning.
+> However, this same lower level function was also used for the regular register
+> list population which can get called everytime we reset guc including coming
+> out of suspend or if we performed a GT reset and so we didn't want that warning
+> to happen every single time - only once per module load. so thats why we
+> created a wraper with that "is_purpose_est" to differentate if the caller
+> was for the log-buffer-size-estmation or for actual population where we only
+> print the warn in the former.
+> 
+> so my review comment would be: we already learnt the lessons from i915 so lets
+> use this properly. i suggest we fix patch #3 so that check_guc_capture_size
+> will call above guc_capture_getlistsize with is_purpose_est set true as opposed to
+> calling xe_calculate_guc_regs_capture_worst_size. I'll make the same comment
+> in Patch3
+
+Thanks for point out. Will be fixed in patch 3
+> 
+> alan:snip
+> 
+>> +
+>> +#endif /* _XE_GUC_CAPTURE_H */
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_capture_fwif.h b/drivers/gpu/drm/xe/xe_guc_capture_fwif.h
+>> new file mode 100644
+>> index 000000000000..79bc277afaa8
+>> --- /dev/null
+> alan:snip
+> 
+>> +struct guc_state_capture_group_header_t {
+>> +       u32 owner;
+> alan: If i read the the spec correctly, capture_group_header's owner
+> has VFID field at GENMASK(7,0).
+Will add.
+>> +       u32 info;
+>> +#define CAP_GRP_HDR_NUM_CAPTURES GENMASK(7, 0)
+>> +#define CAP_GRP_HDR_CAPTURE_TYPE GENMASK(15, 8) /* guc_capture_group_types */
+>> +} __packed;
+> alan:snip
+> 
