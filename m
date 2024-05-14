@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11A31C04FFE
-	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 06:36:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 670C5C04FFE
+	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 06:36:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC01C10E290;
-	Tue, 14 May 2024 06:36:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C34310E25D;
+	Tue, 14 May 2024 06:36:44 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67B3210E25D;
- Tue, 14 May 2024 06:36:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E897410E25D;
+ Tue, 14 May 2024 06:36:42 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Enable_Coarse_Power_?=
- =?utf-8?q?Gating?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Enable_Coarse_Power_Gatin?=
+ =?utf-8?q?g?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Riana Tauro" <riana.tauro@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 14 May 2024 06:36:29 -0000
-Message-ID: <171566858942.2114161.7749048364148229192@8e613ede5ea5>
+Date: Tue, 14 May 2024 06:36:42 -0000
+Message-ID: <171566860295.2114161.7293891549925271314@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240514064309.3819722-1-riana.tauro@intel.com>
 In-Reply-To: <20240514064309.3819722-1-riana.tauro@intel.com>
@@ -48,10 +48,32 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 90004c84ff25 drm-tip: 2024y-05m-14d-04h-21m-47s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: change the power gating register names
-Applying: RFC drm/xe: Enable Coarse Power Gating
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+57b97a66dd129aea93991dc66cd10477f7a05cf8
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6989e7a19feb4ab2ab9bebc87cd3d47e6c31dd35
+Author: Riana Tauro <riana.tauro@intel.com>
+Date:   Tue May 14 12:13:09 2024 +0530
+
+    RFC drm/xe: Enable Coarse Power Gating
+    
+    Coarse Power Gating (CPG), where Render and Media can enter C6
+    independent of the remaining GT. Enable render and media
+    power gating.
+    
+    Also enable VD HCP/MFX sub-pipe power gating.
+    HCP/MFX power gating is disabled by default, turn it on for
+    the vd units available
+    
+    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
++ /mt/dim checkpatch 90004c84ff25805007de766bf47ba255e4a0d9f2 drm-intel
+969c9df22a5f drm/xe: change the power gating register names
+6989e7a19feb RFC drm/xe: Enable Coarse Power Gating
 
 
