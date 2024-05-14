@@ -4,59 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B6E9C04FFE
-	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 21:05:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3BBAC04FFE
+	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 21:16:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AE7410E5BE;
-	Tue, 14 May 2024 21:05:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A24510E2D7;
+	Tue, 14 May 2024 21:16:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PqCLHLfI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XPB8949O";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 824D310E5BE
- for <Intel-Xe@lists.freedesktop.org>; Tue, 14 May 2024 21:05:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49F0410E2D7;
+ Tue, 14 May 2024 21:16:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715720744; x=1747256744;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=TJBVWFbPNPguw/TSef7zlxtXPZ77rI3wlhiCFyhotR8=;
- b=PqCLHLfIvhRBM7MhQjx3lZfd5/ErJkpAIwCYmLVtukFdZatFgl1tGq5P
- tbOY+BVrR8x3uhY8yYOy2S2XudOnjDbd/UVLVPFyFaQQnpwfLKiv7VD9E
- DeVKm5w1ohCdeDWO+RqK/QneWvquSaXLEzRXLqLpWFwFPEH/m1pxi9Bgu
- Ekkh4ISTr3Xk412jE0V5gOoD+LV8tW4oi07A6c60GlbbZfPcXXfTRIA29
- n7S5+4m7ljSZ4YYsLPmPBIbbqzzFweeJWKt2Fn07VZIU7/0tJ3KmwzEZs
- 4F9itXJnxdr0kWpPsqd7/yHKfbAu+cDhxCQQeDdQevh7Lg1p1HEZHhswP w==;
-X-CSE-ConnectionGUID: uIkOgMw/Soic4VSPCEAfDQ==
-X-CSE-MsgGUID: TmWIvf7nRsi91514fAIeWQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="11524671"
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="11524671"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2024 14:05:43 -0700
-X-CSE-ConnectionGUID: nzJR9qVfRZeuba7BVq0nzg==
-X-CSE-MsgGUID: DStNNgHwQ4qSjg7IFkfEiA==
+ t=1715721362; x=1747257362;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=ekiwj7QRULcGLHnHBng2FURlUqBxT3WifXZA3b5gW+Y=;
+ b=XPB8949OW6q5k4SDRHmxyv/pj0F1EKSeiIlaCqWndJSph8E5iS+24brn
+ WNy503Ud72d+5YqL7oKnF/tPEfxGcShLo84dOivaCNwJG4tjpVccwkTKH
+ seIPWBNsH2dBnzLZ2+EPzttP31iYYc3oZbLC1WcbjT5Ko+0Y5qIfwDoBY
+ 7/hzc2U6SEEBtWYs+JXTcvkceOj8bL1s/MpOwMzv0mQqTFEPe1rR8GQyz
+ ZVGODQZi5ccOYQoDNCRF+M8GgYEwHc5vDi/7PTvK7hO2ffxORikxuL8Uz
+ Hra3T9UEslEkC4kYtALm6J8bTL7c8l304S7T3CfesR4bV/eL/JiS9FU6B A==;
+X-CSE-ConnectionGUID: MOgQYnR2THqCNRHSPY0f4g==
+X-CSE-MsgGUID: KeA3GHCcQ9ubRVWiViq6GA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="29256579"
+X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="29256579"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2024 14:16:01 -0700
+X-CSE-ConnectionGUID: ucxs9h7FRjmIiJagls2KBA==
+X-CSE-MsgGUID: VK1zborATIyY6SJvssNO+w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="35299428"
+X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="30940044"
 Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa005.fm.intel.com with ESMTP; 14 May 2024 14:05:40 -0700
+ by orviesa009.jf.intel.com with ESMTP; 14 May 2024 14:15:59 -0700
 Received: from [10.245.82.128] (unknown [10.245.82.128])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id A636428184;
- Tue, 14 May 2024 22:05:38 +0100 (IST)
-Message-ID: <9000fac5-b49d-4c1b-b09f-f8b0a2cf60c8@intel.com>
-Date: Tue, 14 May 2024 23:05:37 +0200
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 9E8A32878B;
+ Tue, 14 May 2024 22:15:56 +0100 (IST)
+Message-ID: <1c2dd2d5-1e55-4a7d-8a38-0fe96b31019e@intel.com>
+Date: Tue, 14 May 2024 23:15:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] drm/xe/guc: Improve robustness of GuC log dumping
- to dmesg
-To: John Harrison <john.c.harrison@intel.com>, Intel-Xe@Lists.FreeDesktop.Org
-References: <20240508224927.11341-1-John.C.Harrison@Intel.com>
- <20240508224927.11341-3-John.C.Harrison@Intel.com>
- <b978eca4-d69f-4d67-b3f2-34ccfbd1b506@intel.com>
- <9da5ca75-58bb-485d-a0fa-909a5d31f8c7@intel.com>
+Subject: Re: [PATCH 4/4] drm/xe/guc: Expose raw access to GuC log over debugfs
+To: Matthew Brost <matthew.brost@intel.com>,
+ John Harrison <john.c.harrison@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Lucas De Marchi
+ <lucas.demarchi@intel.com>, linux-fsdevel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
+References: <20240512153606.1996-1-michal.wajdeczko@intel.com>
+ <20240512153606.1996-5-michal.wajdeczko@intel.com>
+ <d0fd0b46-a8ac-464b-99e7-0b5384a79bf6@intel.com>
+ <83484000-0716-465a-b55d-70cd07205ae5@intel.com>
+ <3127eb0f-ef0b-46e8-a778-df6276718d06@intel.com>
+ <ZkPKM/J0CiBsNgMe@DUT025-TGLU.fm.intel.com>
 Content-Language: en-US
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <9da5ca75-58bb-485d-a0fa-909a5d31f8c7@intel.com>
+In-Reply-To: <ZkPKM/J0CiBsNgMe@DUT025-TGLU.fm.intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -75,272 +80,219 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 14.05.2024 20:31, John Harrison wrote:
-> On 5/14/2024 09:01, Michal Wajdeczko wrote:
->> On 09.05.2024 00:49, John.C.Harrison@Intel.com wrote:
->>> From: John Harrison <John.C.Harrison@Intel.com>
+On 14.05.2024 22:31, Matthew Brost wrote:
+> On Tue, May 14, 2024 at 11:13:14AM -0700, John Harrison wrote:
+>> On 5/14/2024 07:58, Michal Wajdeczko wrote:
+>>> On 13.05.2024 18:53, John Harrison wrote:
+>>>> On 5/12/2024 08:36, Michal Wajdeczko wrote:
+>>>>> We already provide the content of the GuC log in debugsfs, but it
+>>>>> is in a text format where each log dword is printed as hexadecimal
+>>>>> number, which does not scale well with large GuC log buffers.
+>>>>>
+>>>>> To allow more efficient access to the GuC log, which could benefit
+>>>>> our CI systems, expose raw binary log data.  In addition to less
+>>>>> overhead in preparing text based GuC log file, the new GuC log file
+>>>>> in binary format is also almost 3x smaller.
+>>>>>
+>>>>> Any existing script that expects the GuC log buffer in text format
+>>>>> can use command like below to convert from new binary format:
+>>>>>
+>>>>>      hexdump -e '4/4 "0x%08x " "\n"'
+>>>>>
+>>>>> but this shouldn't be the case as most decoders expect GuC log data
+>>>>> in binary format.
+>>>> I strongly disagree with this.
+>>>>
+>>>> Efficiency and file size is not an issue when accessing the GuC log via
+>>>> debugfs on actual hardware.
+>>> to some extend it is as CI team used to refuse to collect GuC logs after
+>>> each executed test just because of it's size
+>> I've never heard that argument. I've heard many different arguments but not
+>> one about file size. The default GuC log size is pretty tiny. So size really
+>> is not an issue.
+>>
 >>>
->>> There is a debug mechanism for dumping the GuC log as an ASCII hex
->>> stream via dmesg. This is extremely useful for situations where it is
->>> not possibe to query the log from debugfs (self tests, bugs that cause
->>> the driver to fail to load, system hangs, etc.). However, dumping via
->>> dmesg is not the most reliable. The dmesg buffer is limited in size,
->>> can be rate limited and a simple hex stream is hard to parse by tools.
+>>>> It is an issue when dumping via dmesg but
+>>>> you definitely should not be dumping binary data to dmesg. Whereas,
+>>> not following here - this is debugfs specific, not a dmesg printer
+>> Except that it is preferable to have common code for both if at all
+>> possible.
+>>
 >>>
->>> So add extra information to the dump to make it more robust and
->>> parsable. This includes adding start and end tags to delimit the dump,
->>> using longer lines to reduce the per line overhead, adding a rolling
->>> count to check for missing lines and interleaved concurrent dumps and
->>> adding other important information such as the GuC version number and
->>> timestamp offset.
+>>>> dumping in binary data is much more dangerous and liable to corruption
+>>>> because some tool along the way tries to convert to ASCII, or truncates
+>>>> at the first zero, etc. We request GuC logs be sent by end users,
+>>>> customer bug reports, etc. all doing things that we have no control over.
+>>> hmm, how "cp gt0/uc/guc_log_raw FILE" could end with a corrupted file ?
+>> Because someone then tries to email it, or attach it or copy it via Windows
+>> or any number of other ways in which a file can get munged.
+>>
 >>>
->>> v2: Remove pm get/put as unnecessary (review feedback from Matthew B).
->>> v3: Add firmware filename and 'wanted' version number.
+>>>> Converting the hexdump back to binary is trivial for those tools which
+>>>> require it. If you follow the acquisition and decoding instructions on
+>>>> the wiki page then it is all done for you automatically.
+>>> I'm afraid I don't know where this wiki page is, but I do know that hex
+>>> conversion dance is not needed for me to get decoded GuC log the way I
+>>> used to do
+>> Look for the 'GuC Debug Logs' page on the developer wiki. It's pretty easy
+>> to find.
+>>
+>>>> These patches are trying to solve a problem which does not exist and are
+>>>> going to make working with GuC logs harder and more error prone.
+>>> it at least solves the problem of currently super inefficient way of
+>>> generating the GuC log in text format.
 >>>
->>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
->>> ---
->>>   drivers/gpu/drm/xe/regs/xe_guc_regs.h |  1 +
->>>   drivers/gpu/drm/xe/xe_guc_log.c       | 85 ++++++++++++++++++++++-----
->>>   2 files changed, 71 insertions(+), 15 deletions(-)
+>>> it also opens other opportunities to develop tools that could monitor or
+>>> capture GuC log independently on  top of what driver is able to offer
+>>> today (on i915 there was guc-log-relay, but it was broken for long time,
+>>> not sure what are the plans for Xe)
 >>>
->>> diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->>> b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->>> index 11682e675e0f..45fb3707fabe 100644
->>> --- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->>> +++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->>> @@ -82,6 +82,7 @@
->>>   #define   HUC_LOADING_AGENT_GUC            REG_BIT(1)
->>>   #define   GUC_WOPCM_OFFSET_VALID        REG_BIT(0)
->>>   #define GUC_MAX_IDLE_COUNT            XE_REG(0xc3e4)
->>> +#define GUC_PMTIMESTAMP                XE_REG(0xc3e8)
->>>     #define GUC_SEND_INTERRUPT            XE_REG(0xc4c8)
->>>   #define   GUC_SEND_TRIGGER            REG_BIT(0)
->>> diff --git a/drivers/gpu/drm/xe/xe_guc_log.c
->>> b/drivers/gpu/drm/xe/xe_guc_log.c
->>> index a37ee3419428..7e7e2fdc9a11 100644
->>> --- a/drivers/gpu/drm/xe/xe_guc_log.c
->>> +++ b/drivers/gpu/drm/xe/xe_guc_log.c
->>> @@ -7,11 +7,19 @@
->>>     #include <drm/drm_managed.h>
->>>   +#include "regs/xe_guc_regs.h"
->>>   #include "xe_bo.h"
->>>   #include "xe_gt.h"
->>>   #include "xe_map.h"
->>> +#include "xe_mmio.h"
->>>   #include "xe_module.h"
->>>   +static struct xe_guc *
->>> +log_to_guc(struct xe_guc_log *log)
->>> +{
->>> +    return container_of(log, struct xe_guc, log);
->>> +}
->>> +
->>>   static struct xe_gt *
->>>   log_to_gt(struct xe_guc_log *log)
->> as you have log_to_guc() then this log_to_gt() could be updated to:
+>>> also still not sure how it can be more error prone.
+>> As already explained, the plan is move to LFD - an extensible, streamable,
+>> logging format. Any non-trivial effort that is not helping to move to LFD is
+>> not worth the effort.
 >>
->>     return guc_to_gt(log_to_guc(log));
-> Is there any point? The existing version works fine so why replace a
-> single indirection with a double indirection?
+>>>
+>>>> On the other hand, there are many other issues with GuC logs that it
+>>>> would be useful to solves - including extra meta data, reliable output
+>>>> via dmesg, continuous streaming, pre-sizing the debugfs file to not have
+>>>> to generate it ~12 times for a single read, etc.
+>>> this series actually solves last issue but in a bit different way (we
+>>> even don't need to generate full GuC log dump at all if we would like to
+>>> capture only part of the log if we know where to look)
+>> No, it doesn't solve it. Your comment below suggests it will be read in 4KB
+>> chunks. Which means your 16MB buffer now requires 4096 separate reads! And
+>> you only doing partial reads of the section you think you need is never
+>> going to be reliable on live system. Not sure why you would want to anyway.
+>> It is just making things much more complex. You now need an intelligent user
+>> land program to read the log out and decode at least the header section to
+>> know what data section to read. You can't just dump the whole thing with
+>> 'cat' or 'dd'.
+>>
+> 
+> Briefly have read this thread but seconding John's opinion that anything
+> which breaks GuC log collection via a simple command like cat is a no
 
-compiler can inline that, but from our POV we will have single place
-that must know exact placement of the .log member in our xe tree
+hexdump or cp is also a simple command and likely we can assume that
+either user will know what command to use or will just type the command
+that we say.
+
+> go. Also anything that can allow windows to mangle the output would be
+> less than idle too. Lastly, GuC log collection is not a critical path
+> operation so it likely does not need to optimized for speed.
+
+but please remember that this patch does not change anything to the
+existing debugfs files, the guc_log stays as is, this new raw access is
+defined as another guc_log_raw file that would allow develop other use
+cases, beyond what is possible with naive text snapshots, like live
+monitor for errors, all implemented above kernel driver
 
 > 
+> Matt
 > 
+>>>
+>>> for reliable output via dmesg - see my proposal at [1]
+>>>
+>>> [1] https://patchwork.freedesktop.org/series/133613/
 >>
->>>   {
->>> @@ -49,32 +57,79 @@ static size_t guc_log_size(void)
->>>           CAPTURE_BUFFER_SIZE;
->>>   }
->>>   +#define BYTES_PER_WORD        sizeof(u32)
->>> +#define WORDS_PER_DUMP        8
->>> +#define DUMPS_PER_LINE        4
->>> +#define LINES_PER_READ        4
->>> +#define WORDS_PER_READ        (WORDS_PER_DUMP * DUMPS_PER_LINE *
->>> LINES_PER_READ)
->>> +
->> as you are heavily updating this function, maybe it's good time to add
->> kernel-doc for it ?
-> Good idea. Will do.
-> 
+>>>
+>>>> Hmm. Actually, is this interface allowing the filesystem layers to issue
+>>>> multiple read calls to read the buffer out in small chunks? That is also
+>>>> going to break things. If the GuC is still writing to the log as the
+>>>> user is reading from it, there is the opportunity for each chunk to not
+>>>> follow on from the previous chunk because the data has just been
+>>>> overwritten. This is already a problem at the moment that causes issues
+>>>> when decoding the logs, even with an almost atomic copy of the log into
+>>>> a temporary buffer before reading it out. Doing the read in separate
+>>>> chunks is only going to make that problem even worse.
+>>> current solution, that converts data into hex numbers, reads log buffer
+>>> in chunks of 128 dwords, how proposed here solution that reads in 4K
+>>> chunks could be "even worse" ?
+>> See above, 4KB chunks means 4096 separate reads for a 16M buffer. And each
+>> one of those reads is a full round trip to user land and back. If you want
+>> to get at all close to an atomic read of the log then it needs to be done as
+>> a single call that copies the log into a locally allocated kernel buffer and
+>> then allows user land to read out from that buffer rather than from the live
+>> log. Which can be trivially done with the current method (at the expense of
+>> a large memory allocation) but would be much more difficult with random
+>> access reader like this as you would need to say the copied buffer around
+>> until the reads have all been done. Which would presumably mean adding
+>> open/close handlers to allocate and free that memory.
 >>
->>>   void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
->>>   {
->>> +    static int g_count;
+>>>
+>>> and in case of some smart tool, that would understands the layout of the
+>>> GuC log buffer, we can even fully eliminate problem of reading stale
+>>> data, so why not to choose a more scalable solution ?
+>> You cannot eliminate the problem of stale data. You read the header, you
+>> read the data it was pointing to, you re-read the header and find that the
+>> GuC has moved on. That is an infinite loop of continuously updating
+>> pointers.
 >>
->>> +    struct xe_gt *gt = log_to_gt(log);
->>> +    struct xe_guc *guc = log_to_guc(log);
->>> +    struct xe_uc_fw_version *ver_f =
->>> &guc->fw.versions.found[XE_UC_FW_VER_RELEASE];
->>> +    struct xe_uc_fw_version *ver_w = &guc->fw.versions.wanted;
->>>       struct xe_device *xe = log_to_xe(log);
->>>       size_t size;
->>> -    int i, j;
->>> +    char line_buff[DUMPS_PER_LINE * WORDS_PER_DUMP * 9 + 1];
->>> +    int l_count = g_count++;
->>> +    int line = 0;
->>> +    int i, j, k;
->>> +    u64 ktime;
->>> +    u32 stamp;
->>>         xe_assert(xe, log->bo);
->>>         size = log->bo->size;
->>>   -#define DW_PER_READ        128
->>> -    xe_assert(xe, !(size % (DW_PER_READ * sizeof(u32))));
->>> -    for (i = 0; i < size / sizeof(u32); i += DW_PER_READ) {
->>> -        u32 read[DW_PER_READ];
->>> -
->>> -        xe_map_memcpy_from(xe, read, &log->bo->vmap, i * sizeof(u32),
->>> -                   DW_PER_READ * sizeof(u32));
->>> -#define DW_PER_PRINT        4
->>> -        for (j = 0; j < DW_PER_READ / DW_PER_PRINT; ++j) {
->>> -            u32 *print = read + j * DW_PER_PRINT;
->>> -
->>> -            drm_printf(p, "0x%08x 0x%08x 0x%08x 0x%08x\n",
->>> -                   *(print + 0), *(print + 1),
->>> -                   *(print + 2), *(print + 3));
->>> +    drm_printf(p, "[Capture/%d.%d] Dumping GuC log for %ps...\n",
->>> +           l_count, line++, __builtin_return_address(0));
->> this function is also used in debugfs outputs and prefixing all lines
->> with "[Capture/n.m]" is pointless there (and will also make collecting
->> GuC log over debugfs even more inefficient)
+>> John.
 >>
->> and as you likely don't want to have separate print functions (one for
->> reliable dmesg, other for debugfs) then maybe consider use of cascaded
->> drm_printer as proposed in [1] - it will also make your code tidier
+>>>
+>>>> John.
+>>>>
+>>>>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>>>> Cc: John Harrison <John.C.Harrison@Intel.com>
+>>>>> ---
+>>>>> Cc: linux-fsdevel@vger.kernel.org
+>>>>> Cc: dri-devel@lists.freedesktop.org
+>>>>> ---
+>>>>>    drivers/gpu/drm/xe/xe_guc_debugfs.c | 26 ++++++++++++++++++++++++++
+>>>>>    1 file changed, 26 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c
+>>>>> b/drivers/gpu/drm/xe/xe_guc_debugfs.c
+>>>>> index d3822cbea273..53fea952344d 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
+>>>>> +++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
+>>>>> @@ -8,6 +8,7 @@
+>>>>>    #include <drm/drm_debugfs.h>
+>>>>>    #include <drm/drm_managed.h>
+>>>>>    +#include "xe_bo.h"
+>>>>>    #include "xe_device.h"
+>>>>>    #include "xe_gt.h"
+>>>>>    #include "xe_guc.h"
+>>>>> @@ -52,6 +53,29 @@ static const struct drm_info_list debugfs_list[] = {
+>>>>>        {"guc_log", guc_log, 0},
+>>>>>    };
+>>>>>    +static ssize_t guc_log_read(struct file *file, char __user *buf,
+>>>>> size_t count, loff_t *pos)
+>>>>> +{
+>>>>> +    struct dentry *dent = file_dentry(file);
+>>>>> +    struct dentry *uc_dent = dent->d_parent;
+>>>>> +    struct dentry *gt_dent = uc_dent->d_parent;
+>>>>> +    struct xe_gt *gt = gt_dent->d_inode->i_private;
+>>>>> +    struct xe_guc_log *log = &gt->uc.guc.log;
+>>>>> +    struct xe_device *xe = gt_to_xe(gt);
+>>>>> +    ssize_t ret;
+>>>>> +
+>>>>> +    xe_pm_runtime_get(xe);
+>>>>> +    ret = xe_map_read_from(xe, buf, count, pos, &log->bo->vmap,
+>>>>> log->bo->size);
+>>>>> +    xe_pm_runtime_put(xe);
+>>>>> +
+>>>>> +    return ret;
+>>>>> +}
+>>>>> +
+>>>>> +static const struct file_operations guc_log_ops = {
+>>>>> +    .owner        = THIS_MODULE,
+>>>>> +    .read        = guc_log_read,
+>>>>> +    .llseek        = default_llseek,
+>>>>> +};
+>>>>> +
+>>>>>    void xe_guc_debugfs_register(struct xe_guc *guc, struct dentry *parent)
+>>>>>    {
+>>>>>        struct drm_minor *minor = guc_to_xe(guc)->drm.primary;
+>>>>> @@ -72,4 +96,6 @@ void xe_guc_debugfs_register(struct xe_guc *guc,
+>>>>> struct dentry *parent)
+>>>>>        drm_debugfs_create_files(local,
+>>>>>                     ARRAY_SIZE(debugfs_list),
+>>>>>                     parent, minor);
+>>>>> +
+>>>>> +    debugfs_create_file("guc_log_raw", 0600, parent, NULL,
+>>>>> &guc_log_ops);
+>>>>>    }
 >>
->> [1] https://patchwork.freedesktop.org/series/133613/
-> As already discussed, the intention was to keep this as simple as
-> possible and not over engineer a stop gap measure. Yes, the debugfs
-> version gets some extra overhead (but mitigated by using longer lines).
-
-but OTOH exposing useless data over debugfs could be perceived as signs
-of bad design and/or laziness, no?
-
-> But size of the debugfs file is really not an issue, and it does provide
-> extra robustness. 
-
-hmm, are you suggesting that reading over debugfs is not robust and
-requires extra protection? and it is xe driver specific issue?
-
-> The prefix is also trivially easy to remove the prefix
-> if desired with "cut -d ' ' -f 2' < in > out".
-
-equally we can trivially avoid adding this prefix
-
-> 
->>
->>> +
->>> +    drm_printf(p, "[Capture/%d.%d] GuC version %u.%u.%u (wanted
->>> %u.%u.%u)\n",
->>> +           l_count, line++,
->>> +           ver_f->major, ver_f->minor, ver_f->patch,
->>> +           ver_w->major, ver_w->minor, ver_w->patch);
->> hmm, what's the relation between "wanted version" and actual "guc log
->> buffer format" ? IMO it doesn't really matter what driver wanted to
->> load, this supposed to be "GuC-log-print" so then only actually running
->> version matters as it implies schema version needed for proper decoding.
-> It is not necessary but it is potentially useful information that can be
-> added pretty much for free, so why not?
-
-because this function (undocumented) is still named as xe_guc_log_print
-and is located in xe_guc_log.c which strongly suggests that it is about
-GuC log, not anything else from the GuC
-
-if you need combo print function, place it in guc.c and name properly
-
-> 
->>
->>> +    drm_printf(p, "[Capture/%d.%d] GuC firmware: %s\n", l_count,
->>> line++, guc->fw.path);
->> again, why do we want include firmware filename here? it's not relevant
->> to the log buffer content/format (as we already have 'found version')
-> Actually, it is important. The filename gives the GuC platform. And that
-> is required to know what quirks need to be applied when decoding the
-> log. E.g. context switch logs on a TGL platform are truncated because
-> the hardware has fewer bits for the context id. The decoder needs to
-> know that to correctly track context switching.
-
-then you should explicitly capture the platform name, as firmware file
-name could be provided by the user as modparam xe.guc_firmware_path and
-named anything like foo.bin
-
-> 
->>
->> maybe more interesting thing would be status of the GuC firmware?
->> whether it is still running and writing logs or it is already dead
-> Not sure how you would get that information? Unless the GuC is actually
-> in reset for the duration of the dump, there is no way to know whether
-> it is alive, actively logging, idle, or what.
-
-we could start with capturing GUC_STATUS(0xc000)
-
-but we can also assume that captured log snapshot is always incomplete
-due to a living nature of the GuC firmware (so there is expected
-mismatch between what we can find in header vs actual last log entry)
-
-> 
->>
->>> +
->>> +    ktime = ktime_get_boottime_ns();
->>> +    drm_printf(p, "[Capture/%d.%d] Kernel timestamp: 0x%08llX
->>> [%llu]\n",
->>> +           l_count, line++, ktime, ktime);
->>> +
->>> +    stamp = xe_mmio_read32(gt, GUC_PMTIMESTAMP);
->>> +    drm_printf(p, "[Capture/%d.%d] GuC timestamp: 0x%08X [%u]\n",
->>> +           l_count, line++, stamp, stamp);
->>> +
->>> +    drm_printf(p, "[Capture/%d.%d] CS timestamp frequency: %u Hz\n",
->>> +           l_count, line++, gt->info.reference_clock);
->>> +
->>> +    xe_assert(xe, !(size % (WORDS_PER_READ * BYTES_PER_WORD)));
->>> +    for (i = 0; i < size / BYTES_PER_WORD; i += WORDS_PER_READ) {
->>> +        u32 read[WORDS_PER_READ];
->>> +
->>> +        xe_map_memcpy_from(xe, read, &log->bo->vmap, i *
->>> BYTES_PER_WORD,
->>> +                   WORDS_PER_READ * BYTES_PER_WORD);
->>> +
->>> +        for (j = 0; j < WORDS_PER_READ; ) {
->>> +            u32 done = 0;
->>> +
->>> +            for (k = 0; k < DUMPS_PER_LINE; k++) {
->>> +                line_buff[done++] = ' ';
->>> +                done += hex_dump_to_buffer(read + j,
->>> +                               sizeof(*read) * (WORDS_PER_READ - j),
->>> +                               WORDS_PER_DUMP * BYTES_PER_WORD,
->>> +                               BYTES_PER_WORD,
->>> +                               line_buff + done,
->>> +                               sizeof(line_buff) - done,
->>> +                               false);
->>> +                j += WORDS_PER_DUMP;
->>> +            }
->> as there could be many holes (zeros) in full GuC log, did you consider
->> to skip such lines and update custom parser to understand that?
-> As per other response, in a real world live system, there won't be big
-> chunks of zeros. And if you are specifically debugging a start of day
-> issue then you can just use a smaller log size.
-> 
-> Rather than attempting to implement some kind of simple RLE, a real and
-> significant benefit would be to re-use the compression mechanism we had
-> in i915. That is a lot more effort, though. So that could be done as a
-> follow up, but it is not worth holding up the current set of trivial
-> fixes for some long term goal.
-> 
->>
->>> +
->>> +            drm_printf(p, "[Capture/%d.%d]%s\n", l_count, line++,
->>> line_buff);
->>>           }
->>>       }
->>> +
->>> +    drm_printf(p, "[Capture/%d.%d] Done.\n", l_count, line++);
->>>   }
->> per BKM shouldn't we #undef not used any more local macros ?
-> One could. It didn't seem necessary given that this is the end of the file.
-> 
-> John.
-> 
->>
->>>     int xe_guc_log_init(struct xe_guc_log *log)
-> 
