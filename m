@@ -4,49 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6FD4C25B75
-	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 19:01:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2C7DC25B79
+	for <intel-xe@archiver.kernel.org>; Tue, 14 May 2024 19:01:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CECA10E136;
-	Tue, 14 May 2024 19:01:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BE2610E53F;
+	Tue, 14 May 2024 19:01:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kk1pw170";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dKAL2QJj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AF2910E136
- for <intel-xe@lists.freedesktop.org>; Tue, 14 May 2024 19:01:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E32B10E4B0
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 May 2024 19:01:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715713263; x=1747249263;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=p9E5PgDLwjFygxLHz6O/hIUhWKh6nmExkabYd9zglEo=;
- b=kk1pw170yiPq5tDGu+/o1u5LRZ/ezHVm1dmTaofU040G1ruZpGR0x9bF
- Qe7vXxcG6Tnkld2WXKZbTVcE1DK+7fMEcpaxGLFpFvuyPWaqxvVdoATpH
- YBUTncaMn+Ljmn3hAa6LTnEkM0XFYc3OPEpMyLqISBirsdAhTGP7m6tcM
- Jlb+oIMB7Snk5LzrRZuupC4/Vzm/e+d5u/5YNRqCj9IfLT1dJ6SP43IG2
- X9ucpUySSWECQw8Iq8epM5AJF42KRhV0aHIHOZG2Sd66m1uMawI7yTg5l
- bDvt5UWQqHnC0ZW9hcInhl7OP5QSPjUJ/1GTF10VFIuYYYwMAhre1YuI7 A==;
-X-CSE-ConnectionGUID: wMiizf2zQjWNi/HJa42ZlA==
-X-CSE-MsgGUID: 0P5UrEpjR6+RQ7v9MtznfA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="11523178"
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="11523178"
+ t=1715713268; x=1747249268;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=z6YiC5lG1TTwDVFvixtz1VnVYsTXydhipjGfW/Sxe9s=;
+ b=dKAL2QJjzeo400gqc2A/Cr/qEMmld28bpwiWt1ZBMUljixRSdVkfgBpm
+ gfnmdVA1i/PlVLcQ/nwBPqkbQbE19oEavr2S0AhPdNKCUkjmVZMwHj2Wq
+ eQDPXukZDhRkQKnnzUUY/PnF9bfry3vnQi8/iyW8aeejcVjv/YSt1FSkO
+ EhmEDBIRpQj1qo6a4nHV8CXrIBRJDVriKk/jnLsTzZcacYD3BwOw/1KPd
+ 2EDl0VssROo+ImfsRZWLux0NYjFABEVwXy6FbAnpWuRzZ2mCywh5hNh5G
+ 0rEwicZAA70NmEl9oQdYZYqjGhpVYlOg5kACsEKaedV1EAWTcmF/r4rp9 g==;
+X-CSE-ConnectionGUID: b+2IKcNxSF+tanm0Y5NqDQ==
+X-CSE-MsgGUID: gSEvhZwIQd2DlO3dcPJR5w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="11523183"
+X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="11523183"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2024 12:01:02 -0700
-X-CSE-ConnectionGUID: Mz6nBpuLSQGdjg9K6Y93Ew==
-X-CSE-MsgGUID: Vvt1AB0dTYyOnIGWEpco6g==
+ 14 May 2024 12:01:08 -0700
+X-CSE-ConnectionGUID: M9BnJF7jRbSsJoSwQgfsCQ==
+X-CSE-MsgGUID: h9aY6Eb7R+OnjD/DRT5gxA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="35565472"
+X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="35565511"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.1.253])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2024 12:01:00 -0700
+ 14 May 2024 12:01:06 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 0/8] PF: Support for adverse events notifications
-Date: Tue, 14 May 2024 21:00:07 +0200
-Message-Id: <20240514190015.2172-1-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 5/8] drm/xe/pf: Allow configuration of VF thresholds over
+ debugfs
+Date: Tue, 14 May 2024 21:00:12 +0200
+Message-Id: <20240514190015.2172-6-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240514190015.2172-1-michal.wajdeczko@intel.com>
+References: <20240514190015.2172-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -64,50 +67,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GuC firmware monitors VF's activity and notifies the PF driver
-once any configured threshold related to such activity is exceeded.
+Initial values of all thresholds used by the GuC to monitor VF's
+activity is zero (disabled) and we need to explicitly configure
+them per each VF. Expose additional attributes over debugfs.
 
-To avoid having to rewrite a lot of code for each threshold and to
-be prepared for any new GuC threshold additions, where possible,
-use macros to generate threshold specific code.
+Definitions of all attributes are generated so we will not need
+to make any changes if new thresholds would be added to the set.
 
-v1: https://patchwork.freedesktop.org/series/133236/#rev1
-v2: improve readability of macros (Piotr)
-    fix kernel-doc (Piotr, CI.hooks)
-    add explicit asserts (Piotr)
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 72 +++++++++++++++++++++
+ 1 file changed, 72 insertions(+)
 
-Michal Wajdeczko (8):
-  drm/xe/guc: Add more KLV helper macros
-  drm/xe/guc: Introduce GuC KLV thresholds set
-  drm/xe/guc: Add support for threshold KLVs in to_string() helper
-  drm/xe/pf: Introduce functions to configure VF thresholds
-  drm/xe/pf: Allow configuration of VF thresholds over debugfs
-  drm/xe/guc: Add GUC2PF_ADVERSE_EVENT to ABI
-  drm/xe/pf: Track adverse events notifications from GuC
-  drm/xe/pf: Expose PF monitor details via debugfs
-
- drivers/gpu/drm/xe/Makefile                   |   1 +
- .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    |  30 ++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |  87 +++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h    |   6 +
- .../gpu/drm/xe/xe_gt_sriov_pf_config_types.h  |   4 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   |  79 ++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.c   | 147 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.h   |  27 ++++
- .../gpu/drm/xe/xe_gt_sriov_pf_monitor_types.h |  22 +++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h     |   5 +
- drivers/gpu/drm/xe/xe_guc_ct.c                |   4 +
- drivers/gpu/drm/xe/xe_guc_klv_helpers.c       |  12 ++
- drivers/gpu/drm/xe/xe_guc_klv_helpers.h       |  15 +-
- .../gpu/drm/xe/xe_guc_klv_thresholds_set.h    |  64 ++++++++
- .../drm/xe/xe_guc_klv_thresholds_set_types.h  |  68 ++++++++
- 15 files changed, 570 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.c
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor.h
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_pf_monitor_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_guc_klv_thresholds_set.h
- create mode 100644 drivers/gpu/drm/xe/xe_guc_klv_thresholds_set_types.h
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+index 5102035faa7e..eb71c2009c34 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+@@ -197,6 +197,71 @@ DEFINE_SRIOV_GT_CONFIG_DEBUGFS_ATTRIBUTE(dbs, u32, "%llu\n");
+ DEFINE_SRIOV_GT_CONFIG_DEBUGFS_ATTRIBUTE(exec_quantum, u32, "%llu\n");
+ DEFINE_SRIOV_GT_CONFIG_DEBUGFS_ATTRIBUTE(preempt_timeout, u32, "%llu\n");
+ 
++/*
++ *      /sys/kernel/debug/dri/0/
++ *      ├── gt0
++ *      │   ├── pf
++ *      │   │   ├── threshold_cat_error_count
++ *      │   │   ├── threshold_doorbell_time_us
++ *      │   │   ├── threshold_engine_reset_count
++ *      │   │   ├── threshold_guc_time_us
++ *      │   │   ├── threshold_irq_time_us
++ *      │   │   ├── threshold_page_fault_count
++ *      │   ├── vf1
++ *      │   │   ├── threshold_cat_error_count
++ *      │   │   ├── threshold_doorbell_time_us
++ *      │   │   ├── threshold_engine_reset_count
++ *      │   │   ├── threshold_guc_time_us
++ *      │   │   ├── threshold_irq_time_us
++ *      │   │   ├── threshold_page_fault_count
++ */
++
++static int set_threshold(void *data, u64 val, enum xe_guc_klv_threshold_index index)
++{
++	struct xe_gt *gt = extract_gt(data);
++	unsigned int vfid = extract_vfid(data);
++	struct xe_device *xe = gt_to_xe(gt);
++	int err;
++
++	if (val > (u32)~0ull)
++		return -EOVERFLOW;
++
++	xe_pm_runtime_get(xe);
++	err = xe_gt_sriov_pf_config_set_threshold(gt, vfid, index, val);
++	xe_pm_runtime_put(xe);
++
++	return err;
++}
++
++static int get_threshold(void *data, u64 *val, enum xe_guc_klv_threshold_index index)
++{
++	struct xe_gt *gt = extract_gt(data);
++	unsigned int vfid = extract_vfid(data);
++
++	*val = xe_gt_sriov_pf_config_get_threshold(gt, vfid, index);
++	return 0;
++}
++
++#define DEFINE_SRIOV_GT_THRESHOLD_DEBUGFS_ATTRIBUTE(THRESHOLD, INDEX)		\
++										\
++static int THRESHOLD##_set(void *data, u64 val)					\
++{										\
++	return set_threshold(data, val, INDEX);					\
++}										\
++										\
++static int THRESHOLD##_get(void *data, u64 *val)				\
++{										\
++	return get_threshold(data, val, INDEX);					\
++}										\
++										\
++DEFINE_DEBUGFS_ATTRIBUTE(THRESHOLD##_fops, THRESHOLD##_get, THRESHOLD##_set, "%llu\n")
++
++/* generate all threshold attributes */
++#define define_threshold_attribute(TAG, NAME, ...) \
++	DEFINE_SRIOV_GT_THRESHOLD_DEBUGFS_ATTRIBUTE(NAME, MAKE_XE_GUC_KLV_THRESHOLD_INDEX(TAG));
++MAKE_XE_GUC_KLV_THRESHOLDS_SET(define_threshold_attribute)
++#undef define_threshold_attribute
++
+ static void pf_add_config_attrs(struct xe_gt *gt, struct dentry *parent, unsigned int vfid)
+ {
+ 	xe_gt_assert(gt, gt == extract_gt(parent));
+@@ -217,6 +282,13 @@ static void pf_add_config_attrs(struct xe_gt *gt, struct dentry *parent, unsigne
+ 				   &exec_quantum_fops);
+ 	debugfs_create_file_unsafe("preempt_timeout_us", 0644, parent, parent,
+ 				   &preempt_timeout_fops);
++
++	/* register all threshold attributes */
++#define register_threshold_attribute(TAG, NAME, ...) \
++	debugfs_create_file_unsafe("threshold_" #NAME, 0644, parent, parent, \
++				   &NAME##_fops);
++	MAKE_XE_GUC_KLV_THRESHOLDS_SET(register_threshold_attribute)
++#undef register_threshold_attribute
+ }
+ 
+ /*
 -- 
 2.43.0
 
