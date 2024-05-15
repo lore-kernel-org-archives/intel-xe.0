@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFBE7C25B77
-	for <intel-xe@archiver.kernel.org>; Wed, 15 May 2024 08:15:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43FC4C41513
+	for <intel-xe@archiver.kernel.org>; Wed, 15 May 2024 08:15:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88A7D10E36B;
-	Wed, 15 May 2024 08:15:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27BD010E5CA;
+	Wed, 15 May 2024 08:15:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m9LyGBoe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cpdr71mI";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B72FC10E36B
- for <intel-xe@lists.freedesktop.org>; Wed, 15 May 2024 08:15:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEAC210E255
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 May 2024 08:15:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715760910; x=1747296910;
+ t=1715760903; x=1747296903;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=xbWsc4Z91FWnT6/wnnXD7oswYhBKOnOX9Cpc4iYFUXU=;
- b=m9LyGBoe9cQEt/LJd41BdxpOg1jz9lc36Gb3sVWvFP/SVBDAbhntspbX
- S0OEe5jO/kWOMFT9ICyFCmy62ENcuuUEpkgfVnk9Ws9rGkZI7+Z8Xv8GJ
- mKk617XZi0mMorel1/6sdheQT43Ld9bRDySlTnS8K1z/WVViGKQSyJ707
- FXK2eSY12bqsKR1K6AJbYUS4zYIJwmMvg/sKS5uLnTpH6kp1nSqEbtuXy
- oqQLJFLCqr9RRidRdwN+zqqMyxcHQclqeGwowyYkw/6mW7xzMObsT1s+0
- 2wHw+TwAQk1fHEBuQf45Az2rYD6G1d525glyiV78/FF4NdndV5MSQxl0u Q==;
-X-CSE-ConnectionGUID: B9gPqgq1SnaLovp44Lrh3A==
-X-CSE-MsgGUID: 2Cq52msCRCGRpefKZDdIoQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="23193309"
-X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="23193309"
+ bh=JUUJ6lKLMprNCYMxmgB9gpLSJ+1NJOtgFobq81brjSg=;
+ b=cpdr71mIKb5HU/A1y9nS62yICD0dQBreEgBNQoFXRXR2KwqZr0emXsa7
+ 8r8uM9NBNQmhLfUl/CGZzhsb/ipBFZQ7cY8ET5UOvmTehcG9ykehAKbdC
+ 6RFhwEbQsK/6F9QsVaA4tq/1dcomQnyyEHN9JflyI3EuemhHd/bUGzYkM
+ lVPnaOzKgKHKOTvWzlObgpHwX64SJsfrL2mhUjBM3OoXY87yeuzBrJ7JJ
+ 0JjoezOmFzV7czQD1aGqGxrdRmNA+Hk7UazcAyOwPIwxfxUI3+0OpDPPu
+ AACFgmVvFLkH9R6hWawlSguixtPaTANGhePg/DxH4GNbwHFgxJW9f3cn7 w==;
+X-CSE-ConnectionGUID: KOSIqucJSwKR81+VQPq/5A==
+X-CSE-MsgGUID: AykZNVNGTLepjOLkfDerIw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="23193287"
+X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="23193287"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2024 01:15:10 -0700
-X-CSE-ConnectionGUID: 4mpj7kVAQdCpcREtFAquog==
-X-CSE-MsgGUID: 6f+e6jR4Szuh8miYGZmy1g==
+ 15 May 2024 01:15:03 -0700
+X-CSE-ConnectionGUID: yEX0QepLQgaPB702MTnUvA==
+X-CSE-MsgGUID: q3HG1pFhQM28rsCIgY5/pQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="30977464"
+X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="30977302"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO fedora..)
  ([10.245.246.147])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2024 01:15:09 -0700
+ 15 May 2024 01:15:02 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 11/21] drm/ttm: Use fault-injection to test error paths
-Date: Wed, 15 May 2024 10:14:39 +0200
-Message-ID: <20240515081449.46646-12-thomas.hellstrom@linux.intel.com>
+Subject: [CI 03/21] drm/ttm: Use LRU hitches
+Date: Wed, 15 May 2024 10:14:31 +0200
+Message-ID: <20240515081449.46646-4-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240515081449.46646-1-thomas.hellstrom@linux.intel.com>
 References: <20240515081449.46646-1-thomas.hellstrom@linux.intel.com>
@@ -67,83 +67,214 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use fault-injection to test partial TTM swapout and interrupted swapin.
-Return -EINTR for swapin to test the callers ability to handle and
-restart the swapin, and on swapout perform a partial swapout to test that
-the swapin and release_shrunken functionality.
+Have iterators insert themselves into the list they are iterating
+over using hitch list nodes. Since only the iterator owner
+can remove these list nodes from the list, it's safe to unlock
+the list and when continuing, use them as a starting point. Due to
+the way LRU bumping works in TTM, newly added items will not be
+missed, and bumped items will be iterated over a second time before
+reaching the end of the list.
+
+The exception is list with bulk move sublists. When bumping a
+sublist, a hitch that is part of that sublist will also be moved
+and we might miss items if restarting from it. This will be
+addressed in a later patch.
+
+Changes in previous series:
+- Updated ttm_resource_cursor_fini() documentation.
+v2:
+- Don't reorder ttm_resource_manager_first() and _next().
+  (Christian König).
+- Use list_add instead of list_move
+  (Christian König)
+v3:
+- Split into two patches, one cleanup, one new functionality
+  (Christian König)
+- use ttm_resource_cursor_fini_locked() instead of open-coding
+  (Matthew Brost)
 
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
 Cc: <dri-devel@lists.freedesktop.org>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/Kconfig        | 10 ++++++++++
- drivers/gpu/drm/ttm/ttm_pool.c | 17 ++++++++++++++++-
- 2 files changed, 26 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/ttm/ttm_bo.c       |  1 +
+ drivers/gpu/drm/ttm/ttm_device.c   |  9 +++--
+ drivers/gpu/drm/ttm/ttm_resource.c | 56 +++++++++++++++++++++++++-----
+ include/drm/ttm/ttm_resource.h     |  9 +++--
+ 4 files changed, 62 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index 026444eeb5c6..f041ef44228d 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -258,6 +258,16 @@ config DRM_GPUVM
- 	  GPU-VM representation providing helpers to manage a GPUs virtual
- 	  address space
+diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+index 6396dece0db1..43eda720657f 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo.c
++++ b/drivers/gpu/drm/ttm/ttm_bo.c
+@@ -621,6 +621,7 @@ int ttm_mem_evict_first(struct ttm_device *bdev,
+ 		if (locked)
+ 			dma_resv_unlock(res->bo->base.resv);
+ 	}
++	ttm_resource_cursor_fini_locked(&cursor);
  
-+config DRM_TTM_BACKUP_FAULT_INJECT
-+	bool "Enable fault injection during TTM backup"
-+	depends on DRM_TTM
-+	default n
-+	help
-+	  Inject recoverable failures during TTM backup and recovery of
-+	  backed-up objects. For DRM driver developers only.
-+
-+	  If in doubt, choose N.
-+
- config DRM_BUDDY
- 	tristate
- 	depends on DRM
-diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-index 38e50cf81b0a..d32a1f2e5e50 100644
---- a/drivers/gpu/drm/ttm/ttm_pool.c
-+++ b/drivers/gpu/drm/ttm/ttm_pool.c
-@@ -431,6 +431,7 @@ static int ttm_pool_restore_tt(struct ttm_pool_tt_restore *restore,
- 			       struct ttm_backup *backup,
- 			       struct ttm_operation_ctx *ctx)
- {
-+	static unsigned long __maybe_unused swappedin;
- 	unsigned int i, nr = 1 << restore->order;
- 	int ret = 0;
- 
-@@ -446,6 +447,13 @@ static int ttm_pool_restore_tt(struct ttm_pool_tt_restore *restore,
- 			if (handle == 0)
- 				continue;
- 
-+			if (IS_ENABLED(CONFIG_DRM_TTM_BACKUP_FAULT_INJECT) &&
-+			    ctx->interruptible &&
-+			    ++swappedin % 100 == 0) {
-+				ret = -EINTR;
-+				break;
+ 	if (!bo) {
+ 		if (busy_bo && !ttm_bo_get_unless_zero(busy_bo))
+diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
+index 09411978a13a..f9e9b1ec8c8a 100644
+--- a/drivers/gpu/drm/ttm/ttm_device.c
++++ b/drivers/gpu/drm/ttm/ttm_device.c
+@@ -170,12 +170,17 @@ int ttm_device_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
+ 			num_pages = PFN_UP(bo->base.size);
+ 			ret = ttm_bo_swapout(bo, ctx, gfp_flags);
+ 			/* ttm_bo_swapout has dropped the lru_lock */
+-			if (!ret)
++			if (!ret) {
++				ttm_resource_cursor_fini(&cursor);
+ 				return num_pages;
+-			if (ret != -EBUSY)
 +			}
-+
- 			ret = backup->ops->copy_backed_up_page
- 				(backup, restore->first_page[i],
- 				 handle, ctx->interruptible);
-@@ -892,7 +900,14 @@ long ttm_pool_backup_tt(struct ttm_pool *pool, struct ttm_tt *ttm, bool purge,
++			if (ret != -EBUSY) {
++				ttm_resource_cursor_fini(&cursor);
+ 				return ret;
++			}
+ 		}
+ 	}
++	ttm_resource_cursor_fini_locked(&cursor);
+ 	spin_unlock(&bdev->lru_lock);
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
+index 8bfbddddc0e8..9c8b6499edfb 100644
+--- a/drivers/gpu/drm/ttm/ttm_resource.c
++++ b/drivers/gpu/drm/ttm/ttm_resource.c
+@@ -33,6 +33,37 @@
  
- 	alloc_gfp = GFP_KERNEL | __GFP_HIGH | __GFP_NOWARN | __GFP_RETRY_MAYFAIL;
+ #include <drm/drm_util.h>
  
--	for (i = 0; i < ttm->num_pages; ++i) {
-+	num_pages = ttm->num_pages;
++/**
++ * ttm_resource_cursor_fini_locked() - Finalize the LRU list cursor usage
++ * @cursor: The struct ttm_resource_cursor to finalize.
++ *
++ * The function pulls the LRU list cursor off any lists it was previusly
++ * attached to. Needs to be called with the LRU lock held. The function
++ * can be called multiple times after eachother.
++ */
++void ttm_resource_cursor_fini_locked(struct ttm_resource_cursor *cursor)
++{
++	lockdep_assert_held(&cursor->man->bdev->lru_lock);
++	list_del_init(&cursor->hitch.link);
++}
 +
-+	/* Pretend doing fault injection by shrinking only half of the pages. */
++/**
++ * ttm_resource_cursor_fini() - Finalize the LRU list cursor usage
++ * @cursor: The struct ttm_resource_cursor to finalize.
++ *
++ * The function pulls the LRU list cursor off any lists it was previusly
++ * attached to. Needs to be called without the LRU list lock held. The
++ * function can be called multiple times after eachother.
++ */
++void ttm_resource_cursor_fini(struct ttm_resource_cursor *cursor)
++{
++	spinlock_t *lru_lock = &cursor->man->bdev->lru_lock;
 +
-+	if (IS_ENABLED(CONFIG_DRM_TTM_BACKUP_FAULT_INJECT))
-+		num_pages = DIV_ROUND_UP(num_pages, 2);
++	spin_lock(lru_lock);
++	ttm_resource_cursor_fini_locked(cursor);
++	spin_unlock(lru_lock);
++}
 +
-+	for (i = 0; i < num_pages; ++i) {
- 		page = ttm->pages[i];
- 		if (unlikely(!page))
- 			continue;
+ /**
+  * ttm_lru_bulk_move_init - initialize a bulk move structure
+  * @bulk: the structure to init
+@@ -485,12 +516,15 @@ void ttm_resource_manager_debug(struct ttm_resource_manager *man,
+ EXPORT_SYMBOL(ttm_resource_manager_debug);
+ 
+ /**
+- * ttm_resource_manager_first
+- *
++ * ttm_resource_manager_first() - Start iterating over the resources
++ * of a resource manager
+  * @man: resource manager to iterate over
+  * @cursor: cursor to record the position
+  *
+- * Returns the first resource from the resource manager.
++ * Initializes the cursor and starts iterating. When done iterating,
++ * the caller must explicitly call ttm_resource_cursor_fini().
++ *
++ * Return: The first resource from the resource manager.
+  */
+ struct ttm_resource *
+ ttm_resource_manager_first(struct ttm_resource_manager *man,
+@@ -500,13 +534,15 @@ ttm_resource_manager_first(struct ttm_resource_manager *man,
+ 
+ 	cursor->priority = 0;
+ 	cursor->man = man;
+-	cursor->cur = &man->lru[cursor->priority];
++	ttm_lru_item_init(&cursor->hitch, TTM_LRU_HITCH);
++	list_add(&cursor->hitch.link, &man->lru[cursor->priority]);
++
+ 	return ttm_resource_manager_next(cursor);
+ }
+ 
+ /**
+- * ttm_resource_manager_next
+- *
++ * ttm_resource_manager_next() - Continue iterating over the resource manager
++ * resources
+  * @cursor: cursor to record the position
+  *
+  * Return: the next resource from the resource manager.
+@@ -520,10 +556,10 @@ ttm_resource_manager_next(struct ttm_resource_cursor *cursor)
+ 	lockdep_assert_held(&man->bdev->lru_lock);
+ 
+ 	for (;;) {
+-		lru = list_entry(cursor->cur, typeof(*lru), link);
++		lru = &cursor->hitch;
+ 		list_for_each_entry_continue(lru, &man->lru[cursor->priority], link) {
+ 			if (ttm_lru_item_is_res(lru)) {
+-				cursor->cur = &lru->link;
++				list_move(&cursor->hitch.link, &lru->link);
+ 				return ttm_lru_item_to_res(lru);
+ 			}
+ 		}
+@@ -531,9 +567,11 @@ ttm_resource_manager_next(struct ttm_resource_cursor *cursor)
+ 		if (++cursor->priority >= TTM_MAX_BO_PRIORITY)
+ 			break;
+ 
+-		cursor->cur = &man->lru[cursor->priority];
++		list_move(&cursor->hitch.link, &man->lru[cursor->priority]);
+ 	}
+ 
++	ttm_resource_cursor_fini_locked(cursor);
++
+ 	return NULL;
+ }
+ 
+diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
+index 7d81fd5b5b83..8fac781f641e 100644
+--- a/include/drm/ttm/ttm_resource.h
++++ b/include/drm/ttm/ttm_resource.h
+@@ -273,17 +273,22 @@ ttm_lru_item_to_res(struct ttm_lru_item *item)
+  * struct ttm_resource_cursor
+  *
+  * @man: The resource manager currently being iterated over.
+- * @cur: The list head the cursor currently points to.
++ * @hitch: A hitch list node inserted before the next resource
++ * to iterate over.
+  * @priority: the current priority
+  *
+  * Cursor to iterate over the resources in a manager.
+  */
+ struct ttm_resource_cursor {
+ 	struct ttm_resource_manager *man;
+-	struct list_head *cur;
++	struct ttm_lru_item hitch;
+ 	unsigned int priority;
+ };
+ 
++void ttm_resource_cursor_fini_locked(struct ttm_resource_cursor *cursor);
++
++void ttm_resource_cursor_fini(struct ttm_resource_cursor *cursor);
++
+ /**
+  * struct ttm_lru_bulk_move_pos
+  *
 -- 
 2.44.0
 
