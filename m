@@ -4,43 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FD4BC25B7B
-	for <intel-xe@archiver.kernel.org>; Wed, 15 May 2024 16:53:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E65DC25B75
+	for <intel-xe@archiver.kernel.org>; Wed, 15 May 2024 17:07:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B24D10EBBD;
-	Wed, 15 May 2024 16:53:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="M+FYK9+4";
-	dkim-atps=neutral
-Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D20210E5BF
- for <intel-xe@lists.freedesktop.org>; Wed, 15 May 2024 16:53:07 +0000 (UTC)
-Received: internal info suppressed
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1715791982; bh=Kfe1ENmA9j7ahsKtH/OKmYTjUySWtdTPbN1jaD7oJ7k=;
- h=From:To:Cc:Subject:Date:From;
- b=M+FYK9+4QQvj25SvVEloE96nemsIcJumdIwY/0ennEoJFeeZj4Ki2zklXYVmpGPvQ
- sV833rJlPBMr4SBhCaP8BomlTDciq7gp51yQN+Lj2LmCGvlCTHpFN+NuFOSqlfBbip
- n+kTBM3t82smU1Oc+Ev02tD2ghWZS+rtKXplV92PGrq3VynEa38vPKuJzmkfNvJQzG
- UxBfqTYgZPPbAB4pC8rXwpd0reTHXV4JWNnz8fhhoHag0uvYeqgBMEAX/+hSqtoLKl
- U3myOOP73IKiJvJntuBemduXIUmCm1/4KEben1yDj1XtC7Ld8jzI9EBkgZtJ6/4hjz
- 26zVIq620FjBg==
-Received: from kelbaz-vm-u22.habana-labs.com (localhost [127.0.0.1])
- by kelbaz-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
- id 44FGqmPK156208; Wed, 15 May 2024 19:52:48 +0300
-From: Koby Elbaz <kelbaz@habana.ai>
-To: rodrigo.vivi@intel.com
-Cc: intel-xe@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Ofir Bitton <obitton@habana.ai>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Subject: [PATCH v9] drm/xe: add mmio debugfs file & restore xe_mmio_ioctl as
- its ioctl handler
-Date: Wed, 15 May 2024 19:52:44 +0300
-Message-Id: <20240515165244.156194-1-kelbaz@habana.ai>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07C4110E1BE;
+	Wed, 15 May 2024 17:07:33 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CDEF882B5;
+ Wed, 15 May 2024 17:07:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7465204023547845672=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Update_on_habanalabs=2C_Xe_maint?=
+ =?utf-8?q?ainer_status?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Oded Gabbay" <ogabbay@kernel.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 15 May 2024 17:07:32 -0000
+Message-ID: <171579285211.2118035.11533706770426986064@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240515162222.12958-1-ogabbay@kernel.org>
+In-Reply-To: <20240515162222.12958-1-ogabbay@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,292 +36,138 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The drm mmio ioctl handler (xe_mmio_ioctl) wasn't needed anymore,
-and therefore, recently removed.
-Nevertheless, it is now restored for debugging purposes as an
-ioctl handler for a newly added 'mmio' debugfs file.
+--===============7465204023547845672==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Notes:
-1. The non-admin user's limited mmio access (aka, whitelist),
-was removed being irrelevant anymore, now that a user using debugfs
-must anyway have root permissions to use it.
-2. To support multi-tile access, the tile index is now dynamic and
-will be retrieved from the given mmio address itself.
+== Series Details ==
 
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Ofir Bitton <obitton@habana.ai>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Signed-off-by: Koby Elbaz <kelbaz@habana.ai>
----
-Changes in v9:
- - Fix checkpatch warnings
+Series: Update on habanalabs, Xe maintainer status
+URL   : https://patchwork.freedesktop.org/series/133661/
+State : success
 
- drivers/gpu/drm/xe/xe_debugfs.c      | 169 ++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_debugfs_mmio.h |  43 +++++++
- 2 files changed, 211 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/xe/xe_debugfs_mmio.h
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 1011e5d281fa..ff99f5466931 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -7,7 +7,7 @@
- 
- #include <linux/debugfs.h>
- #include <linux/string_helpers.h>
--
-+#include <linux/security.h>
- #include <drm/drm_debugfs.h>
- 
- #include "xe_bo.h"
-@@ -19,6 +19,8 @@
- #include "xe_pm.h"
- #include "xe_sriov.h"
- #include "xe_step.h"
-+#include "xe_debugfs_mmio.h"
-+#include "xe_mmio.h"
- 
- #ifdef CONFIG_DRM_XE_DEBUG
- #include "xe_bo_evict.h"
-@@ -115,6 +117,164 @@ static int forcewake_release(struct inode *inode, struct file *file)
- 	return 0;
- }
- 
-+static int get_tile_id_of_mmio_addr(struct xe_device *xe, u32 mmio_addr, u8 *tile_id)
-+{
-+	/* MMIO space size is identical for all tiles so arbitrarily choose root tile */
-+	struct xe_tile *tile = xe_device_get_root_tile(xe);
-+	u32 tile_mmio_base_addr = 0;
-+	u8 id;
-+
-+	if (mmio_addr >= (tile->mmio.size * xe->info.tile_count))
-+		return -EINVAL;
-+
-+	for_each_tile(tile, xe, id) {
-+		tile_mmio_base_addr = id * tile->mmio.size;
-+		/* Each tile has a 16M MMIO space, but the contained CFG space is only 4M */
-+		if (mmio_addr >= tile_mmio_base_addr && mmio_addr < (tile_mmio_base_addr + SZ_4M)) {
-+			*tile_id = id;
-+			return 0;
-+		}
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int assign_mmio_args_to_xe_reg(struct xe_device *xe, struct xe_debugfs_mmio_ioctl_data *args,
-+				      struct xe_reg *reg, u8 *tile_id)
-+{
-+	unsigned int mmio_bits_flag, bytes;
-+	u32 mmio_offset_in_tile;
-+	struct xe_gt *gt;
-+	u8 local_tile_id;
-+	int ret;
-+
-+	mmio_bits_flag = args->flags & XE_DEBUGFS_MMIO_BITS_MASK;
-+	bytes = 1 << mmio_bits_flag;
-+
-+	ret = get_tile_id_of_mmio_addr(xe, args->addr, &local_tile_id);
-+	if (ret)
-+		return ret;
-+
-+	gt = xe_device_get_gt(xe, local_tile_id);
-+	mmio_offset_in_tile = args->addr - local_tile_id * SZ_16M;
-+
-+	/*
-+	 * TODO: migrate to xe_gt_mcr to lookup the mmio range and handle
-+	 * multicast registers. Steering would need uapi extension.
-+	 */
-+	*reg = XE_REG(mmio_offset_in_tile);
-+
-+	if (XE_IOCTL_DBG(xe, reg->addr + bytes > gt_to_tile(gt)->mmio.size))
-+		return -EINVAL;
-+
-+	*tile_id = local_tile_id;
-+
-+	return 0;
-+}
-+
-+static int _xe_debugfs_mmio_ioctl(struct xe_device *xe, struct xe_debugfs_mmio_ioctl_data *args)
-+{
-+	struct xe_reg reg;
-+	struct xe_gt *gt;
-+	u8 tile_id, id;
-+	int ret;
-+
-+	if (XE_IOCTL_DBG(xe, args->extensions) ||
-+	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe, args->flags & ~XE_DEBUGFS_MMIO_VALID_FLAGS))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe, !(args->flags & XE_DEBUGFS_MMIO_WRITE) && args->value))
-+		return -EINVAL;
-+
-+	xe_pm_runtime_get_noresume(xe);
-+	for_each_gt(gt, xe, id)
-+		XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-+
-+	ret = assign_mmio_args_to_xe_reg(xe, args, &reg, &tile_id);
-+	if (ret)
-+		goto exit;
-+
-+	gt = xe_device_get_gt(xe, tile_id);
-+
-+	if (args->flags & XE_DEBUGFS_MMIO_WRITE) {
-+		switch (args->flags & XE_DEBUGFS_MMIO_BITS_MASK) {
-+		case XE_DEBUGFS_MMIO_32BIT:
-+			if (XE_IOCTL_DBG(xe, args->value > U32_MAX)) {
-+				ret = -EINVAL;
-+				goto exit;
-+			}
-+			xe_mmio_write32(gt, reg, args->value);
-+			break;
-+		default:
-+			drm_dbg(&xe->drm, "Invalid MMIO bit size");
-+			fallthrough;
-+		case XE_DEBUGFS_MMIO_8BIT: /* TODO */
-+		case XE_DEBUGFS_MMIO_16BIT: /* TODO */
-+			ret = -EOPNOTSUPP;
-+			goto exit;
-+		}
-+	}
-+
-+	if (args->flags & XE_DEBUGFS_MMIO_READ) {
-+		switch (args->flags & XE_DEBUGFS_MMIO_BITS_MASK) {
-+		case XE_DEBUGFS_MMIO_32BIT:
-+			args->value = xe_mmio_read32(gt, reg);
-+			break;
-+		case XE_DEBUGFS_MMIO_64BIT:
-+			args->value = xe_mmio_read64_2x32(gt, reg);
-+			break;
-+		default:
-+			drm_dbg(&xe->drm, "Invalid MMIO bit size");
-+			fallthrough;
-+		case XE_DEBUGFS_MMIO_8BIT: /* TODO */
-+		case XE_DEBUGFS_MMIO_16BIT: /* TODO */
-+			ret = -EOPNOTSUPP;
-+		}
-+	}
-+
-+exit:
-+	for_each_gt(gt, xe, id)
-+		XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-+
-+	xe_pm_runtime_put(xe);
-+
-+	return ret;
-+}
-+
-+static long xe_debugfs_mmio_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
-+{
-+	struct xe_device *xe = file_inode(filp)->i_private;
-+	struct xe_debugfs_mmio_ioctl_data mmio_data;
-+	int ret;
-+
-+	ret = security_locked_down(LOCKDOWN_PCI_ACCESS);
-+	if (ret)
-+		return ret;
-+
-+	if (cmd == XE_DEBUGFS_MMIO_IOCTL) {
-+		ret = copy_from_user(&mmio_data, (struct xe_debugfs_mmio_ioctl_data __user *)arg,
-+				     sizeof(mmio_data));
-+		if (ret)
-+			return -EFAULT;
-+
-+		ret = _xe_debugfs_mmio_ioctl(xe, &mmio_data);
-+		if (ret)
-+			return ret;
-+
-+		ret = copy_to_user((struct xe_debugfs_mmio_ioctl_data __user *)arg,
-+				   &mmio_data, sizeof(mmio_data));
-+		if (ret)
-+			return -EFAULT;
-+	} else {
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
- static const struct file_operations forcewake_all_fops = {
- 	.owner = THIS_MODULE,
- 	.open = forcewake_open,
-@@ -173,6 +333,11 @@ static const struct file_operations wedged_mode_fops = {
- 	.write = wedged_mode_set,
- };
- 
-+static const struct file_operations mmio_fops = {
-+	.owner = THIS_MODULE,
-+	.unlocked_ioctl = xe_debugfs_mmio_ioctl,
-+};
-+
- void xe_debugfs_register(struct xe_device *xe)
- {
- 	struct ttm_device *bdev = &xe->ttm;
-@@ -214,6 +379,8 @@ void xe_debugfs_register(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_debugfs_register(gt);
- 
-+	debugfs_create_file("mmio", 0644, root, xe, &mmio_fops);
-+
- #ifdef CONFIG_FAULT_INJECTION
- 	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_debugfs_mmio.h b/drivers/gpu/drm/xe/xe_debugfs_mmio.h
-new file mode 100644
-index 000000000000..1dfb8fa2ce9a
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_debugfs_mmio.h
-@@ -0,0 +1,43 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_DEBUGFS_MMIO_H_
-+#define _XE_DEBUGFS_MMIO_H_
-+
-+#include <drm/drm.h>
-+
-+#define XE_DEBUGFS_MMIO_8BIT		0x0
-+#define XE_DEBUGFS_MMIO_16BIT		0x1
-+#define XE_DEBUGFS_MMIO_32BIT		0x2
-+#define XE_DEBUGFS_MMIO_64BIT		0x3
-+#define XE_DEBUGFS_MMIO_BITS_MASK	0x3
-+#define XE_DEBUGFS_MMIO_READ		0x4
-+#define XE_DEBUGFS_MMIO_WRITE		0x8
-+
-+#define XE_DEBUGFS_MMIO_VALID_FLAGS (\
-+	XE_DEBUGFS_MMIO_BITS_MASK |\
-+	XE_DEBUGFS_MMIO_READ |\
-+	XE_DEBUGFS_MMIO_WRITE)
-+
-+struct xe_debugfs_mmio_ioctl_data {
-+	/** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
-+
-+	__u32 addr;
-+
-+	__u32 flags;
-+
-+	__u64 value;
-+
-+	/** @reserved: Reserved */
-+	__u64 reserved[2];
-+};
-+
-+#define XE_DEBUGFS_MMIO_IOCTL_NR	0x00
-+
-+#define XE_DEBUGFS_MMIO_IOCTL \
-+	_IOWR(0x20, XE_DEBUGFS_MMIO_IOCTL_NR, struct xe_debugfs_mmio_ioctl_data)
-+
-+#endif /* _XE_DEBUGFS_MMIO_H_ */
--- 
-2.34.1
+CI Bug Log - changes from xe-1292-d98c9eae84056cb2d86293c145234017681f09f4_BAT -> xe-pw-133661v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-133661v1_BAT:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - {bat-lnl-1}:        [PASS][1] -> [FAIL][2] +1 other test fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1292-d98c9eae84056cb2d86293c145234017681f09f4/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133661v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7854 -> IGT_7855
+  * Linux: xe-1292-d98c9eae84056cb2d86293c145234017681f09f4 -> xe-pw-133661v1
+
+  IGT_7854: 8abb25ffe588020cf0b797d60ad1f3f9e7c0764a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7855: 7855
+  xe-1292-d98c9eae84056cb2d86293c145234017681f09f4: d98c9eae84056cb2d86293c145234017681f09f4
+  xe-pw-133661v1: 133661v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133661v1/index.html
+
+--===============7465204023547845672==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Update on habanalabs, Xe maintainer status</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133661/">https://patchwork.freedesktop.org/series/133661/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133661v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133661v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1292-d98c9eae84056cb2d86293c145234017681f09f4_BAT -&gt; xe-pw-133661v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-133661v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
+<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1292-d98c9eae84056cb2d86293c145234017681f09f4/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133661v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7854 -&gt; IGT_7855</li>
+<li>Linux: xe-1292-d98c9eae84056cb2d86293c145234017681f09f4 -&gt; xe-pw-133661v1</li>
+</ul>
+<p>IGT_7854: 8abb25ffe588020cf0b797d60ad1f3f9e7c0764a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7855: 7855<br />
+  xe-1292-d98c9eae84056cb2d86293c145234017681f09f4: d98c9eae84056cb2d86293c145234017681f09f4<br />
+  xe-pw-133661v1: 133661v1</p>
+
+</body>
+</html>
+
+--===============7465204023547845672==--
