@@ -4,55 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B628EC25B78
-	for <intel-xe@archiver.kernel.org>; Wed, 15 May 2024 21:43:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00A14C41513
+	for <intel-xe@archiver.kernel.org>; Wed, 15 May 2024 21:43:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4850110EC11;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C05A10EC1B;
 	Wed, 15 May 2024 21:43:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hySy1CGz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ib04uVL0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88CAC10E1D6;
- Wed, 15 May 2024 21:42:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FC0F10E5FA;
+ Wed, 15 May 2024 21:43:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1715809380; x=1747345380;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oNKLKwPHNRHrP3RgDBGmYROV3j8XFi8065ZP9okRlcE=;
- b=hySy1CGz04KRpdDRc9GqbKHe8TYCPqsP6A+240morRfsm1Ci78ihBecR
- AqrvDVEO+Js8opsMO5ksWZeJlUdvbOlQZ9/HWjBLpJkwZ0uYTF/ZyKEX1
- 3PgRPJKlRRBPAlgkW8cDSwakjGd0CjUra4ppeujuSihideBGPsuq2Z8+1
- 8UOA8Pm0mH6DiNKSH/UbFeq2vErfX7JzDhYI8x+MHUnZHyyVM9zvHw1fL
- /Uu6vJH2IwnhGU6kL38mSKcBkJt9EBRdycURcwlEOMHy4Bdz+kAMZPJvg
- /q7zu3beDsho21NkJVzHDjzM/C9BAvplymJTVa9qOif49VlEebnJ9uywe A==;
-X-CSE-ConnectionGUID: taoItlukRQuKdN+64FDZHA==
-X-CSE-MsgGUID: 8vXhGOEHRwWWCthtRrD+wQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="11739166"
-X-IronPort-AV: E=Sophos;i="6.08,162,1712646000"; d="scan'208";a="11739166"
+ bh=R8TGBAf6rYvtQ6MUu1oPU6n9HbqRYJfnV2otXAU+A/o=;
+ b=Ib04uVL0MdHXAo/KJSMffuUdpAbektgIu8PssxnCgvTd/JMQPISZhYam
+ dekKsKCNkRdZeCaUpQBG211GJu2TDqQgzsbawgZsPNxtvOwISfwqJn0Q2
+ 6mfkscp4kiGyosIFDenC47+Yg6Q78kZjsk9yuW4zAU2ozTKwcL8LgwL8X
+ jWg95Q0/zdJHgRfnZzt4i4adipFz2kU5ZsHJZ3k3JyANtD4K0uo/RKE8w
+ f652liXsklLqlHiromR+VJQN79WpamlPRSrv39UC4Fwmizp5nwiQuwo99
+ GScsRk3WjPi1QhFANDS6sGIsFWe9IRdLRQkeki1UIpecS3fXL2FUj2hp9 g==;
+X-CSE-ConnectionGUID: wYUyBdumSWORVASSC9rckQ==
+X-CSE-MsgGUID: VeGvjB0qSAqpPhtGke0Ujg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="11739174"
+X-IronPort-AV: E=Sophos;i="6.08,162,1712646000"; d="scan'208";a="11739174"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2024 14:42:59 -0700
-X-CSE-ConnectionGUID: C5oo3/AaQxmV4/wnFYSYNQ==
-X-CSE-MsgGUID: EruH1MH2Rs+3IPbrrNftwA==
+ 15 May 2024 14:43:00 -0700
+X-CSE-ConnectionGUID: hcovAz3VTUKWDZQ9eprTjw==
+X-CSE-MsgGUID: R30FVeSWQr2TNS/OdUQeMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,162,1712646000"; d="scan'208";a="35651135"
+X-IronPort-AV: E=Sophos;i="6.08,162,1712646000"; d="scan'208";a="35651150"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2024 14:42:59 -0700
+ 15 May 2024 14:43:00 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Tvrtko Ursulin <tursulin@ursulin.net>,
  Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
  dri-devel@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v4 4/8] drm/xe: Add helper to capture engine timestamp
-Date: Wed, 15 May 2024 14:42:54 -0700
-Message-ID: <20240515214258.59209-5-lucas.demarchi@intel.com>
+Subject: [PATCH v4 8/8] drm/xe/client: Print runtime to fdinfo
+Date: Wed, 15 May 2024 14:42:58 -0700
+Message-ID: <20240515214258.59209-9-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240515214258.59209-1-lucas.demarchi@intel.com>
 References: <20240515214258.59209-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,40 +69,279 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Just like CTX_TIMESTAMP is used to calculate runtime, add a helper to
-get the timestamp for the engine so it can be used to calculate the
-"engine time" with the same unit as the runtime is recorded.
+Print the accumulated runtime for client when printing fdinfo.
+Each time a query is done it first does 2 things:
 
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+1) loop through all the exec queues for the current client and
+   accumulate the runtime, per engine class. CTX_TIMESTAMP is used for
+   that, being read from the context image.
+
+2) Read a "GPU timestamp" that can be used for considering "how much GPU
+   time has passed" and that has the same unit/refclock as the one
+   recording the runtime. RING_TIMESTAMP is used for that via MMIO.
+
+Since for all current platforms RING_TIMESTAMP follows the same
+refclock, just read it once, using any first engine available.
+
+This is exported to userspace as 2 numbers in fdinfo:
+
+	drm-cycles-<class>: <RUNTIME>
+	drm-total-cycles-<class>: <TIMESTAMP>
+
+Userspace is expected to collect at least 2 samples, which allows to
+know the client engine busyness as per:
+
+		    RUNTIME1 - RUNTIME0
+	busyness = ---------------------
+			  T1 - T0
+
+Since drm-cycles-<class> always starts at 0, it's also possible to know
+if and engine was ever used by a client.
+
+It's expected that userspace will read any 2 samples every few seconds.
+Given the update frequency of the counters involved and that
+CTX_TIMESTAMP is 32-bits, the counter for each exec_queue can wrap
+around (assuming 100% utilization) after ~200s. The wraparound is not
+perceived by userspace since it's just accumulated for all the
+exec_queues in a 64-bit counter) but the measurement will not be
+accurate if the samples are too far apart.
+
+This could be mitigated by adding a workqueue to accumulate the counters
+every so often, but it's additional complexity for something that is
+done already by userspace every few seconds in tools like gputop (from
+igt), htop, nvtop, etc, with none of them really defaulting to 1 sample
+per minute or more.
+
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c | 5 +++++
- drivers/gpu/drm/xe/xe_hw_engine.h | 1 +
- 2 files changed, 6 insertions(+)
+ Documentation/gpu/drm-usage-stats.rst       |  21 +++-
+ Documentation/gpu/xe/index.rst              |   1 +
+ Documentation/gpu/xe/xe-drm-usage-stats.rst |  10 ++
+ drivers/gpu/drm/xe/xe_drm_client.c          | 121 +++++++++++++++++++-
+ 4 files changed, 150 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/gpu/xe/xe-drm-usage-stats.rst
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index f76bb507e1a5..51536d05ad86 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -1121,3 +1121,8 @@ const char *xe_hw_engine_class_to_str(enum xe_engine_class class)
+diff --git a/Documentation/gpu/drm-usage-stats.rst b/Documentation/gpu/drm-usage-stats.rst
+index 6dc299343b48..a80f95ca1b2f 100644
+--- a/Documentation/gpu/drm-usage-stats.rst
++++ b/Documentation/gpu/drm-usage-stats.rst
+@@ -112,6 +112,19 @@ larger value within a reasonable period. Upon observing a value lower than what
+ was previously read, userspace is expected to stay with that larger previous
+ value until a monotonic update is seen.
  
- 	return NULL;
- }
++- drm-total-cycles-<keystr>: <uint>
 +
-+u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe)
-+{
-+	return xe_mmio_read64_2x32(hwe->gt, RING_TIMESTAMP(hwe->mmio_base));
-+}
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
-index 843de159e47c..7f2d27c0ba1a 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.h
-@@ -68,5 +68,6 @@ static inline bool xe_hw_engine_is_valid(struct xe_hw_engine *hwe)
++Engine identifier string must be the same as the one specified in the
++drm-cycles-<keystr> tag and shall contain the total number cycles for the given
++engine.
++
++This is a timestamp in GPU unspecified unit that matches the update rate
++of drm-cycles-<keystr>. For drivers that implement this interface, the engine
++utilization can be calculated entirely on the GPU clock domain, without
++considering the CPU sleep time between 2 samples.
++
++A driver may implement either this key or drm-maxfreq-<keystr>, but not both.
++
+ - drm-maxfreq-<keystr>: <uint> [Hz|MHz|KHz]
+ 
+ Engine identifier string must be the same as the one specified in the
+@@ -121,6 +134,9 @@ percentage utilization of the engine, whereas drm-engine-<keystr> only reflects
+ time active without considering what frequency the engine is operating as a
+ percentage of its maximum frequency.
+ 
++A driver may implement either this key or drm-total-cycles-<keystr>, but not
++both.
++
+ Memory
+ ^^^^^^
+ 
+@@ -168,5 +184,6 @@ be documented above and where possible, aligned with other drivers.
+ Driver specific implementations
+ -------------------------------
+ 
+-:ref:`i915-usage-stats`
+-:ref:`panfrost-usage-stats`
++* :ref:`i915-usage-stats`
++* :ref:`panfrost-usage-stats`
++* :ref:`xe-usage-stats`
+diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
+index c224ecaee81e..3f07aa3b5432 100644
+--- a/Documentation/gpu/xe/index.rst
++++ b/Documentation/gpu/xe/index.rst
+@@ -23,3 +23,4 @@ DG2, etc is provided to prototype the driver.
+    xe_firmware
+    xe_tile
+    xe_debugging
++   xe-drm-usage-stats.rst
+diff --git a/Documentation/gpu/xe/xe-drm-usage-stats.rst b/Documentation/gpu/xe/xe-drm-usage-stats.rst
+new file mode 100644
+index 000000000000..482d503ae68a
+--- /dev/null
++++ b/Documentation/gpu/xe/xe-drm-usage-stats.rst
+@@ -0,0 +1,10 @@
++.. SPDX-License-Identifier: GPL-2.0+
++
++.. _xe-usage-stats:
++
++========================================
++Xe DRM client usage stats implementation
++========================================
++
++.. kernel-doc:: drivers/gpu/drm/xe/xe_drm_client.c
++   :doc: DRM Client usage stats
+diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
+index 08f0b7c95901..952b0cc87708 100644
+--- a/drivers/gpu/drm/xe/xe_drm_client.c
++++ b/drivers/gpu/drm/xe/xe_drm_client.c
+@@ -2,6 +2,7 @@
+ /*
+  * Copyright © 2023 Intel Corporation
+  */
++#include "xe_drm_client.h"
+ 
+ #include <drm/drm_print.h>
+ #include <drm/xe_drm.h>
+@@ -12,9 +13,66 @@
+ #include "xe_bo.h"
+ #include "xe_bo_types.h"
+ #include "xe_device_types.h"
+-#include "xe_drm_client.h"
++#include "xe_exec_queue.h"
++#include "xe_force_wake.h"
++#include "xe_gt.h"
++#include "xe_hw_engine.h"
++#include "xe_pm.h"
+ #include "xe_trace.h"
+ 
++/**
++ * DOC: DRM Client usage stats
++ *
++ * The drm/xe driver implements the DRM client usage stats specification as
++ * documented in :ref:`drm-client-usage-stats`.
++ *
++ * Example of the output showing the implemented key value pairs and entirety of
++ * the currently possible format options:
++ *
++ * ::
++ *
++ * 	pos:    0
++ * 	flags:  0100002
++ * 	mnt_id: 26
++ * 	ino:    685
++ * 	drm-driver:     xe
++ * 	drm-client-id:  3
++ * 	drm-pdev:       0000:03:00.0
++ * 	drm-total-system:       0
++ * 	drm-shared-system:      0
++ * 	drm-active-system:      0
++ * 	drm-resident-system:    0
++ * 	drm-purgeable-system:   0
++ * 	drm-total-gtt:  192 KiB
++ * 	drm-shared-gtt: 0
++ * 	drm-active-gtt: 0
++ * 	drm-resident-gtt:       192 KiB
++ * 	drm-total-vram0:        23992 KiB
++ * 	drm-shared-vram0:       16 MiB
++ * 	drm-active-vram0:       0
++ * 	drm-resident-vram0:     23992 KiB
++ * 	drm-total-stolen:       0
++ * 	drm-shared-stolen:      0
++ * 	drm-active-stolen:      0
++ * 	drm-resident-stolen:    0
++ * 	drm-cycles-rcs: 28257900
++ * 	drm-total-cycles-rcs:   7655183225
++ * 	drm-cycles-bcs: 0
++ * 	drm-total-cycles-bcs:   7655183225
++ * 	drm-cycles-vcs: 0
++ * 	drm-total-cycles-vcs:   7655183225
++ * 	drm-engine-capacity-vcs:        2
++ * 	drm-cycles-vecs:        0
++ * 	drm-total-cycles-vecs:  7655183225
++ * 	drm-engine-capacity-vecs:       2
++ * 	drm-cycles-ccs: 0
++ * 	drm-total-cycles-ccs:   7655183225
++ * 	drm-engine-capacity-ccs:        4
++ *
++ * Possible `drm-cycles-` key names are: `rcs`, `ccs`, `bcs`, `vcs`, `vecs` and
++ * "other".
++ */
++
+ /**
+  * xe_drm_client_alloc() - Allocate drm client
+  * @void: No arg
+@@ -179,6 +237,66 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
+ 	}
  }
  
- const char *xe_hw_engine_class_to_str(enum xe_engine_class class);
-+u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe);
- 
++static void show_runtime(struct drm_printer *p, struct drm_file *file)
++{
++	unsigned long class, i, gt_id, capacity[XE_ENGINE_CLASS_MAX] = { };
++	struct xe_file *xef = file->driver_priv;
++	struct xe_device *xe = xef->xe;
++	struct xe_gt *gt;
++	struct xe_hw_engine *hwe;
++	struct xe_exec_queue *q;
++	u64 gpu_timestamp;
++
++	xe_pm_runtime_get(xe);
++
++	/* Accumulate all the exec queues from this client */
++	mutex_lock(&xef->exec_queue.lock);
++	xa_for_each(&xef->exec_queue.xa, i, q)
++		xe_exec_queue_update_runtime(q);
++	mutex_unlock(&xef->exec_queue.lock);
++
++	/* Get the total GPU cycles */
++	for_each_gt(gt, xe, gt_id) {
++		hwe = xe_gt_any_hw_engine(gt);
++		if (!hwe)
++			continue;
++
++		xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++		gpu_timestamp = xe_hw_engine_read_timestamp(hwe);
++		xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
++		break;
++	}
++
++	if (unlikely(!hwe))
++		return;
++
++	for (class = 0; class < XE_ENGINE_CLASS_MAX; class++) {
++		const char *class_name;
++
++		for_each_gt(gt, xe, gt_id)
++			capacity[class] += gt->user_engines.instances_per_class[class];
++
++		/*
++		 * Engines may be fused off or not exposed to userspace. Don't
++		 * return anything if this entire class is not available
++		 */
++		if (!capacity[class])
++			continue;
++
++		class_name = xe_hw_engine_class_to_str(class);
++		drm_printf(p, "drm-cycles-%s:\t%llu\n",
++			   class_name, xef->runtime[class]);
++		drm_printf(p, "drm-total-cycles-%s:\t%llu\n",
++			   class_name, gpu_timestamp);
++
++		if (capacity[class] > 1)
++			drm_printf(p, "drm-engine-capacity-%s:\t%lu\n",
++				   class_name, capacity[class]);
++	}
++
++	xe_pm_runtime_put(xe);
++}
++
+ /**
+  * xe_drm_client_fdinfo() - Callback for fdinfo interface
+  * @p: The drm_printer ptr
+@@ -192,5 +310,6 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
+ void xe_drm_client_fdinfo(struct drm_printer *p, struct drm_file *file)
+ {
+ 	show_meminfo(p, file);
++	show_runtime(p, file);
+ }
  #endif
 -- 
 2.43.0
