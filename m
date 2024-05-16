@@ -4,165 +4,185 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CF00C25B78
-	for <intel-xe@archiver.kernel.org>; Wed, 15 May 2024 22:46:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B707C25B75
+	for <intel-xe@archiver.kernel.org>; Thu, 16 May 2024 00:01:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1281D10E0BE;
-	Wed, 15 May 2024 22:46:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED78C10E284;
+	Thu, 16 May 2024 00:01:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UN6lUHOl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jBMX48GT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17DEE10E0BE
- for <intel-xe@lists.freedesktop.org>; Wed, 15 May 2024 22:46:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2051F10E284
+ for <Intel-Xe@lists.freedesktop.org>; Thu, 16 May 2024 00:01:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715813191; x=1747349191;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=eCMmu8CL1qSrQjFyAY/oTYhmLeY83TZrDwyZwCIkBSU=;
- b=UN6lUHOlG0au0hMrzjgjjN/hxP4q/1pS/UzV6M4nypop3MfvTVV8qPC4
- qexVYvaqcvLGDhnBWXtBQT2yZDWrF476u4lu5kkVyAGEo9Ya/5X49eYIF
- 9VhaIqcS9LPLAWUtV/ICh8pTuUX0gOb/Gtj3NEEcgip3JU9mWHO1NZLJz
- EPaMlVusCj/e+vHexKMC9jQzJxG2GJ6F44HaD7lqO/J76VFS15ZD3dklH
- NW6DezSE4V98aFVV0K+WnmIG0wgWqSsRp4fsL42LKeVvhxp7c3xih5jH1
- xPSJoihp+Tz6evImBN7Xv7f+D6xkR6ipXqHle9poMqppmnc2X0zPUdwyD A==;
-X-CSE-ConnectionGUID: b8m2UGZTQBujpWMFKuXYKQ==
-X-CSE-MsgGUID: NXiQnlgISpqLF3eD6rUr9w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="14846470"
-X-IronPort-AV: E=Sophos;i="6.08,162,1712646000"; d="scan'208";a="14846470"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2024 15:46:30 -0700
-X-CSE-ConnectionGUID: NaWcO8ueQ6iQuwffytv9wg==
-X-CSE-MsgGUID: idoCWCnzTpOGBTIFJRtq/A==
+ t=1715817666; x=1747353666;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=JMvYXmq73mM+cqiXc2l8w695tkXL6/GvUfs07xfW74k=;
+ b=jBMX48GTBL01tcA+aCay95qHH9A8anpJlTWVSZ6WMbJkLOevbJPf8qUs
+ B6OA9YbkcbIxwEgEtrRbdEVlb53kqsZ2uT+FRZlMQnt8h5aHFNSh/6Eph
+ 02eAjgb3IqoHTBgVmMkd3RF9qZ16ln6LUa6wCRnRIwOQ0tX63x8Rk2Osl
+ 5BS/yUkNexXoivkfmR+A2423VgdjpAWoy8zWtctQUc7Liizyaq1ehzUk4
+ LcNkfIi9wHXw//EBXIw7H3lyPoDftmXssDu31J7GpbeKxwh3B2SQZ4oEF
+ qZuKwC1eH0JS+teq/rBK+jEEVGWfrpJ8WXedaH/+gGzVO1u2Ku7MEtTWV Q==;
+X-CSE-ConnectionGUID: bQIgljHkRTKe9mm8ZMgRXA==
+X-CSE-MsgGUID: UvECK5vSTXObX9dR+FjfwA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="15724998"
+X-IronPort-AV: E=Sophos;i="6.08,162,1712646000"; d="scan'208";a="15724998"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2024 17:01:05 -0700
+X-CSE-ConnectionGUID: UUqvVaOrQOiTE6Do0ICwMw==
+X-CSE-MsgGUID: O1/jt/cLRdmBr1hTEavWdQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,162,1712646000"; d="scan'208";a="62409076"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 15 May 2024 15:46:30 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.08,162,1712646000"; d="scan'208";a="68688678"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 15 May 2024 17:01:06 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 15 May 2024 15:46:29 -0700
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.35; Wed, 15 May 2024 17:01:05 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 15 May 2024 15:46:29 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ 15.1.2507.35; Wed, 15 May 2024 17:01:04 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 15 May 2024 15:46:29 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Wed, 15 May 2024 17:01:04 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.40) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 15 May 2024 15:46:29 -0700
+ 15.1.2507.35; Wed, 15 May 2024 17:01:04 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KzgNnVTMsBbrErciuoPU63rjmWFBcQNx8OUu8CzXqrIX/pmWlt4EffcGBwWAOYNHyzD1yKb8PwJ4HnGhEwK2d6eDfYk0T2+WcNfxfNcYQkNKH3iBNQpJfA1wnqw7xicWKUDC92wBV2n9KFopcfmygMx4MBfokK6OHsBQkzod4/Ahq3p8v3ZDgdbRaKDEkIFoWy8xA3RfDB3f/qdWz24ikLzbrQkdz/Ifcvnn4MefI/34dtorxPmsaeYkewdSLnPTY9tZYUNhCClRWaESJ00RGVzKDUQf+7wdh/K/V+yYzsObJnwBeIZ5O3HwLQ0+WKCWKvXGqE4yk5jjsxVjI5B13A==
+ b=Crs4KvkUbLdxI0PkO8hxWn8KJ5QGf7wstxMLsJ2ZhiNjz4rdWgQy3x2OMOrkX3CpnPrSqHDZgmM/B/IDBEkGZlq/3lT67WEWgIZRV1d4YCU4fAXm1IXN1ZoWVpixBrKrq0J2CRawsk+5bHBg8fEG9wh/GVc4D8DBr4QRlPgBqsplP0NQf3MRnOoJWoEvhfnKho7elyaYS8cy7CiPl+XTwTSEv0pZ0c/ZsbfqXcw0dbaz7bs+lUyMfCYA/0E4pCOmz74f99Ft2Nsi754tN932wHns2pYX1Q7FuYoSTZv6MaouR+MEQEEPAViKtYoNVIi/OIthk0rFLhkwO3GAv4uXZg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UTRdstjI38BnzndNnB8Un5851WLh2L9IozItGBgtUdQ=;
- b=AGKupjQ2up2tlW9ZImbFGDlC34b2iuNJeZkBcu9ff0aUd9Z/LiMGu+hO83Ha6LRsYoQvwdPltxHvzBWDXG3AFnyKoI5IB+BpxzH9YWoiPeAIqe5yFqK5laD4WW0KF8RZGvJqH+hnKebovDtZQMOacgPKIeg7C0mgrUz4j0UdgKT2e3CfchSZ1dTfmIDOLEAnqq+Kp8a/cccSv4ov9WFJcItrA5wYY/REP4l5a0mrtAxX5a7j7ysekMIVc1Yr59gx4exTrN9w61g+qRKrIBtACpSEebyz2mi4c/gNUEROxJ2TJEFirE9kXmAw9t1JKaakIvGvrn4sTcLGQvWN7+mg2Q==
+ bh=oarzm2/jVwiNYJr9uy5o/gwsG2v3quQDA8W/x1n8z+I=;
+ b=bqOycomKY8gSdDOGjEZc8Ai/kC8ASrVdApODESDPtKhVaq5G1UA+Z45hZGXiB1eEtdFnwn8DPPcTDg5nOPvVRwqxNh6Hh7RUoixG/jdDuYFx0ihTRlRcUrRF+kPSHdnURIQHPH8LMYclO6jPpmIWw+/9feJ/ac/Lca0nhspQ7wPre0P3zow+gkqf//f5cW2IuMHejD5PXyIeKq0ZbBd+6m1dBccvwrfeQJDAZxYLMSBELlnBr/fLv3/WaIKHZV9/79Kmjepq2Fxwo5NjQhmoxu8zSW5aaZLmb/yXsx20EWTG6Z2hQdr9e6H8etznaoThL/6lFLUlqJX8vj9y3x7TOw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by CY8PR11MB7081.namprd11.prod.outlook.com (2603:10b6:930:53::13)
+Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
+ by LV3PR11MB8529.namprd11.prod.outlook.com (2603:10b6:408:1b3::9)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.27; Wed, 15 May
- 2024 22:46:26 +0000
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::1a0f:84e3:d6cd:e51]) by BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::1a0f:84e3:d6cd:e51%3]) with mapi id 15.20.7544.052; Wed, 15 May 2024
- 22:46:26 +0000
-Date: Wed, 15 May 2024 22:45:38 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v2 6/6] drm/xe: Add VM bind IOCTL error injection
-Message-ID: <ZkU7Ep2JrHN8UzI0@DUT025-TGLU.fm.intel.com>
-References: <20240515004010.100091-1-matthew.brost@intel.com>
- <20240515004010.100091-7-matthew.brost@intel.com>
- <CH0PR11MB54442A8068E820E1A295CFDCE5EC2@CH0PR11MB5444.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CH0PR11MB54442A8068E820E1A295CFDCE5EC2@CH0PR11MB5444.namprd11.prod.outlook.com>
-X-ClientProxiedBy: SJ0PR13CA0176.namprd13.prod.outlook.com
- (2603:10b6:a03:2c7::31) To BL3PR11MB6508.namprd11.prod.outlook.com
- (2603:10b6:208:38f::5)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.55; Thu, 16 May
+ 2024 00:01:02 +0000
+Received: from CH3PR11MB8441.namprd11.prod.outlook.com
+ ([fe80::bc66:f083:da56:8550]) by CH3PR11MB8441.namprd11.prod.outlook.com
+ ([fe80::bc66:f083:da56:8550%4]) with mapi id 15.20.7587.028; Thu, 16 May 2024
+ 00:01:02 +0000
+Message-ID: <5a2f8adf-ed56-4765-8a13-a85f87f0d009@intel.com>
+Date: Wed, 15 May 2024 17:00:58 -0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] drm/xe/guc: Improve robustness of GuC log dumping
+ to dmesg
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ <Intel-Xe@Lists.FreeDesktop.Org>
+References: <20240508224927.11341-1-John.C.Harrison@Intel.com>
+ <20240508224927.11341-3-John.C.Harrison@Intel.com>
+ <b978eca4-d69f-4d67-b3f2-34ccfbd1b506@intel.com>
+ <9da5ca75-58bb-485d-a0fa-909a5d31f8c7@intel.com>
+ <9000fac5-b49d-4c1b-b09f-f8b0a2cf60c8@intel.com>
+Content-Language: en-GB
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <9000fac5-b49d-4c1b-b09f-f8b0a2cf60c8@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BY5PR20CA0036.namprd20.prod.outlook.com
+ (2603:10b6:a03:1f4::49) To CH3PR11MB8441.namprd11.prod.outlook.com
+ (2603:10b6:610:1bc::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|CY8PR11MB7081:EE_
-X-MS-Office365-Filtering-Correlation-Id: a6673c4f-2532-4743-9f54-08dc7530da62
+X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|LV3PR11MB8529:EE_
+X-MS-Office365-Filtering-Correlation-Id: e756e9fd-d117-4e61-4b03-08dc753b4625
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|376005|1800799015;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?On7CMw2krEB8qIhY17ctK2hZvdQhiKp3tS3jmMGPw6jbxSoSR/UGEuwPWdOb?=
- =?us-ascii?Q?ZY8TgdDwhl922hQBOXt8Pj0ICF5CdSyjcx7yX96+zYuSlhkRH1LDWdIdODOE?=
- =?us-ascii?Q?YdHdE43qFmbPHuAZqWFlj4N/nBvfbbDpRI0MVOZBGSDVN7UMUqJQfyHA/L9Q?=
- =?us-ascii?Q?dKfAByaSYtNccYwudOB2lTuJlKyivvI5gD+Ln5yA4Z2p/W6vwgNeiVKTE7rI?=
- =?us-ascii?Q?ZuusWtrRrL3OgQ3avw+hd6A23mxU7C0gbT6ad2IOhJ5hTGD4u6V+LC9FBt+w?=
- =?us-ascii?Q?cTJf4NwqYK28v0pwKDTOdR1ECuVdbvHqgZodMnme+hiUdZBovR+FI1+tF0N4?=
- =?us-ascii?Q?bgW3lkAkYUVh+BTxxk/4ujnWSs2zYZRQW6+P0aQQzFeUylm4+6xSBd7uler2?=
- =?us-ascii?Q?QFnaNnRguSBxrKwItuClYXNSGXJtIefwVbCkvhHhVJXCoyrGsX2D1sAdrFw6?=
- =?us-ascii?Q?wab7fjWRCmQDvXHBfuN/aNk9Po+OjRldis4YeDL9WQhs9MWfpb8LhvJkylu9?=
- =?us-ascii?Q?Y861JCrLLw5ZdPXKpZgoX6OlOjBL1zDRl2p5b0MeK7CfGZzM44fFmLsLkSIi?=
- =?us-ascii?Q?um9H6qn0uCsxsItPWG2BahT/n9ebjL1ygDLJSlWhdh9uqXdU6hz0JtKd6RpD?=
- =?us-ascii?Q?stJsthC1humN3zS/1YhjvjapZIb4eRrh/goCCalv5ZFISGts01V8S+5CjSTv?=
- =?us-ascii?Q?1uOLD0jqBIT6gzNWTQw6FCmmZSJpm0De4tE9HjUQT7/EukwLRrrjPX1RTe3m?=
- =?us-ascii?Q?hnjPrd3iSsErYczvN8SPA0r0WUCp9kYr29BcJZkPVCzyK2wbQ7S3OLiBlgol?=
- =?us-ascii?Q?IiU0jRuJaB/fFmhzAsUXXwUwpMAGeDqadZfNhSSv9aeDyCCBjOfE2KYS7UqO?=
- =?us-ascii?Q?5fkBF7ae0NiItlBe/AiA+s/WAd1iNjbo3f9sF33Jga4QU6xC0mPMRq2JLvRZ?=
- =?us-ascii?Q?1KyWIPuiIVcaGbFFUW9zpIsaQSKzjjgkHg/yWHophpWP2n7Wu6NB+hv7oDq7?=
- =?us-ascii?Q?/4EKCyLlMC00ybf8Jtmoa6gdjCgtLW/Do7LSm8ObJ0s8mPvDYURuPBpfpLhl?=
- =?us-ascii?Q?sA+PpSygwkaCK+cfflZxvm9lhish4n9mT2PJ7ZDXi7rNQXfp7/LgHm+EVsoj?=
- =?us-ascii?Q?d3nda/OaNUVV2b+JSA8s3esKC+HQy/v2Xz66WS/cp58h4jOJyv2fz42LGu8N?=
- =?us-ascii?Q?4nCnEnfU7sX4yCtI3/MQpO6zCOzG+WwwTbvo9xHBuMBquAiUZBrcV2bk1hbS?=
- =?us-ascii?Q?Huwwmh8D8DyvaPC4H37GCpPR7YzZxDnGXF6VXomN5w=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|366007|376005;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?cWU2UnJFUysvclY0ZHNkNFNrNjFDVmJvNEFqYzVEQXROVEEreWJPSjZoSDNV?=
+ =?utf-8?B?Y2d2TElXZUxIYTNPUWRHMUo5TlJoVTRSUUtRbnRpMWYvSXBqcGhIVFBTblBz?=
+ =?utf-8?B?ai9Td1pLd2xnTk1OaWJCaEZtS0FvZVJRQmhSM1VjT3hETnNGQ1J2SmNQcEVy?=
+ =?utf-8?B?NzQ3QjdDSFFFMHp0dW5sejY4UVV3TTN5WVArdUJMSlArL0tZNzFKZ1MyQlVS?=
+ =?utf-8?B?RllnRnZQRVo0cElIblVSVmxRNTJQRFExeHpGekFsZUVLcDZaL2s0T3hWUndS?=
+ =?utf-8?B?MnpUaS90aFNBT0J4aXhVVktjblZoR1FsZnZpMXdEN0hpeTRtai9PS3RBUGlH?=
+ =?utf-8?B?M2YrZGkrbWN0d01hajY5MElFSWxPVUkwQkxTaDl5WkJ4NHZ5SWNWbEdxWEhI?=
+ =?utf-8?B?emQ3OThiWXFzYktVZXI3dGpDcGd5VjJPQ0dVelNmWGxBS0Fib05CeERlTHNw?=
+ =?utf-8?B?RkZSTktGdHM5UnA0bnhtZ1diQVV0QVpPbUFzbUowOHJXb1A1NnV1c2FYcWt3?=
+ =?utf-8?B?N1U4b09MRGZydDhkYVJMcUU5L1NmRlMxVW9VcUZGb0grWHBHd0JuVElFMXNx?=
+ =?utf-8?B?aERWZ0Q2NTNncXlJdHpzU3FSZVdiejlzTERVZjA5RDcxbmhYMlZiSnZaQ2Y3?=
+ =?utf-8?B?NG1ybnY5YUpYWjFDWTE3amRZaHR1RkMzTzFpQWdVOVV3RDJkM1BTcy9lU3dX?=
+ =?utf-8?B?cjlFeWpHYjB3bTNNdXU4WE5aR21HbWhEYjJuWjU3QlZYTnhBRHRtYUw4ZTBt?=
+ =?utf-8?B?ZjYzdGRvalI3KzlrK0o3UEVQVldnS3J5TWNTN1pUSlYyRmZ0SmoydVJzeFVJ?=
+ =?utf-8?B?aVlBUlFBa2VVTEc0REZFdVNOU0R0dTNjUWUyY1MyVzdhY0VDRlpwNS9QYjRr?=
+ =?utf-8?B?bmthT1ExRFIyUEE5cjRlWmxZMTR4QkhEeWRNSzdBM0dBTS8xTWY5Z21way8y?=
+ =?utf-8?B?VnRYeU5tYWl2aFg0NzV4UUErRzh3U0Jhcm9uKzh3d210bjFseExIS0dUbHJI?=
+ =?utf-8?B?Sk9aOVdFOVlyd01ObkkxSkU4S0h6b2wzUWJuU3hRK3ZJbzgxeGUzYjFoU0pE?=
+ =?utf-8?B?YnlzelBlY1hWblY1ZWUrdDdMQndJeFpnZG1aVitTckgvV0x4cVppNmJKZE9N?=
+ =?utf-8?B?TGtDd3BndVp5QUtLa2ZMakVKaXNlMHpBcEdISkN6alBPNDc2K2hPK3FCaGl2?=
+ =?utf-8?B?THNBMEQzYzVoQmthUVI5MFgxTER0WEpGR3VEV0w3QldpUS8xbzJWVjczSTRR?=
+ =?utf-8?B?OWk5L3RndjFiRm9zQUJheEcwOWRoTDNGRE5abnJVKzJ2UDd1RzEyalBsa3NE?=
+ =?utf-8?B?U0p0MURhanNxTjZlZXpncmhUZnFYSWhUSlpSekg5bHdCaXc2SGNFc1V0S0ZW?=
+ =?utf-8?B?Q1Nzanl4Q1YvM1NOQkE5UmpZaVBDN2ZaYWVCUHRvakZqVHdMWjlLMFcxOUV0?=
+ =?utf-8?B?YUpDVGFiT2FUQmNOUXNnanR0RytmalM4UUg3dDBzTnBOdm5reGdxblBrUk8w?=
+ =?utf-8?B?L1VnUXdDWGZHUUJYd09XYnArdlFuSFJSaEwrcDVvTXlxNGIrZEZFU0VWQjlE?=
+ =?utf-8?B?WS9RdWlJbFlhRHF4dHpHZUppaTdUcGwvbTJGeWQxZllwOFRBRC9sLzZmY25m?=
+ =?utf-8?Q?4ztC3boVAfAOelUvbB6o0eXsX6qyRh8VW6wNp5Cf4vGI=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FlDH+9ZJlccS5mvd6d7LdZvWXlqlxw5zEM/q4awYBw0V//4hk+oiVtjRemzL?=
- =?us-ascii?Q?tFAkfglrpl8sISdfYbM1p62NHw1Y1wgL6LviPRs2Nzjv3fc7bfdnlP007YBz?=
- =?us-ascii?Q?6lDTIjf9Vk9xwzBwZHrwX+bsOkZQaB4kAl+zUPcHxWCaSZfekWadLmLWw6ot?=
- =?us-ascii?Q?JXeAwyakUP9eqdT3ijGmCk81MY0Th0BQA/X4aO+8unQdH3Uz91BaPLDTc/gK?=
- =?us-ascii?Q?riVMdOrswSZQ2ctTcgpLv8ULD0VKNQZQkj/TEDku0yHBLgjTV8BcFD7tEAvS?=
- =?us-ascii?Q?BO5xm/DQpvx97KDGOU5sQ5Pg/mfuK75ReQU5D61gh7a9a6MA+0AAk7BP7X2K?=
- =?us-ascii?Q?7a8SI5ocsyyhHCehNj6hS1K/3/2RKYuXs7eBK2EjyMHettaPb9RMYXUnEFV1?=
- =?us-ascii?Q?D1eSOoSHfcjp8b1FzewVPxPSeseGIOQ6rKvBp+5wS73AynVrnxt0YU0hn08n?=
- =?us-ascii?Q?A3MQCs83H8IjBW9KZbg/VvObXfXoZSldlNboIUtAiPlypU0PqVYaCoWkof4Z?=
- =?us-ascii?Q?Fl53UmPnJA4Olj/7FBIU6yoLv+lwFRFmDepYJ7iaUqj9SAOZ1oakS8Uc1+0o?=
- =?us-ascii?Q?MMbJ22BZfx6pA06ZLEWGwQUd949QjV1N10KfCK9h3O94HJY2FyoBxNdnr9yl?=
- =?us-ascii?Q?e/9nQxU/4vV1IbGSD8TVYwGl1rOfFtOWkJ/5k/1w1Xg8QFlS7csic9s9BJ/9?=
- =?us-ascii?Q?QuJrTNqAW5vNjjTME8i1NvhRiIoGF0z74/977OyNDcL+Tz04Kv5xi7wzStMx?=
- =?us-ascii?Q?Lh3Dh+5J6ohDGrrSZwnf9CsqVK8lhfUutQPs5nQWwV63paiuZ9We43uUVZAD?=
- =?us-ascii?Q?HJnxUACV0SaLjhUlzfOkftGGpjgHYY+cGSgMFaZEFIpPcQPSmtF0RygujIKH?=
- =?us-ascii?Q?JA7mf47HxIBPPTQSHADkAbqmP1J/Ck0HILrgwSNyCDwUW6aOX4XgSnirCwJ/?=
- =?us-ascii?Q?QTcMcg84cdS3s6vEQnU1hXoD5/olb1tkY06AQulKx+YuMD+C3Cs64dHEUikC?=
- =?us-ascii?Q?Q60fVz8CAmlXQneOvBQx1C/urnZCNeWoGy23VJuLDrA0ZAGm0FmXLysFy73R?=
- =?us-ascii?Q?GhEY1a3YJXhsPezRftvunxYadSBcDoqWmqpQaP3SL4qq8D8vwVOSztyV6wSq?=
- =?us-ascii?Q?v+k3jgY3BmBx/gSXo0sCmn42y6SQz1wovblOA6qK8VIdLMVws/4r2QCix2Ys?=
- =?us-ascii?Q?uyl7GuVitLgjPqAPK4IfSP8J3l/LhGt110qfmlTXySitAPK+sIp+CH0QemV2?=
- =?us-ascii?Q?3X/vVzkTaa1Bo3c5qJfRiXAJmbifPrGCeE8Qmo+Lmd8QBfbBf+9235n3EgKQ?=
- =?us-ascii?Q?MBIsDz36iXApcrhF9rogLjwN0gmINJDN52/jPiJJf5z8JJ/FBFEO4sI5aDXX?=
- =?us-ascii?Q?Mdz65gC8CiYZNHWaJ3ZtiHYWsr3RSDBGoWHW8Eu9Mg1sK7o9MZ1DXt8BGoPU?=
- =?us-ascii?Q?xIckyXeunxwy8GV5rSdP/F6Qxood7fyqtUPLjFDTe3KkHz19wuOmNFI0eNnj?=
- =?us-ascii?Q?4cQiiJzrB8B+Zhyf6JJmhpj6D5hxRlZHLnQXb9LtnmA9eY5MrLDFfGIl2/gG?=
- =?us-ascii?Q?16BbH9aQtmQgjCc1czE/MDcvow5DPPuAjDAG1ypClRvKeWV70kjt9atditgq?=
- =?us-ascii?Q?AA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6673c4f-2532-4743-9f54-08dc7530da62
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aDZadDNnVVkrWmdLM2xxRkNkekhMUFZYWWR5SEJ2WmI0Mnc3RGF2ZkRFWnd3?=
+ =?utf-8?B?TTJFQnI0QzN4N1JKTkJTcjU4WFhudUJ0YUhIa3FHVVdGVnNnUlJZdUFtTDhC?=
+ =?utf-8?B?RVFkT1lQZ2VSMGIwZXVmSEJLMHlGcWdkalgxMGtmVE9OSmU3SDZ0YXJpaGVk?=
+ =?utf-8?B?MUhPQVhXSHRLKzhrTUhCUjVnMndsa0ViajRhN2pzMW1UbkJyT2paQUxwSzk1?=
+ =?utf-8?B?VmNreVFYRmJCMFJxWCsrd0tEQk1JQ1RNcUFUTHdoeWVLVlZidW4zUVp0anNs?=
+ =?utf-8?B?NXZISDBnSytZOURwK3YwYkhQUzcvVW5WR3dLR3NlU05yMm9YUFpKVC91ZWFq?=
+ =?utf-8?B?YkZoSmZReWVKVmdqWWNBcVBWNGpTTFhqbjR0dWVzaWw2b0Z6b2NoS2kwTDFi?=
+ =?utf-8?B?OFdTM3IvalY2eTNGNm9DUTN4ajJjeWQxV2ZKUU5ORUgvTGJPZHAwcDBXcHlq?=
+ =?utf-8?B?YnBoUC8wbitESDVrdGx3SjhzT1EzL0UwT0VvMTdqSitHdExFVHhrTlFYZVJv?=
+ =?utf-8?B?S1Y1UHBFK3MvMkc3V2Z3UFAxblBKL1RIVDhCY3VPU08xYXFyQ0lRQitjNklw?=
+ =?utf-8?B?S3RVeE1Uc2E4WGIzM3luWlNTNEw1c29qR1ZUSXhtVFEycUc5dEFhMEIzUHQ2?=
+ =?utf-8?B?SE91L1Z2NmNwbmpMSVp4RktWTTJnT2MyM0h6aWthdjJmeEhCazFtbGdyLzNV?=
+ =?utf-8?B?QXlSVzVHSytwd3R6V2RsS21LYmJUNWQvNjNMRWZQU2w1VGwzOE1iQ3pEUDBR?=
+ =?utf-8?B?U0cvLzlYU1owZkttanhQdjJWTi92WDdsTk1hNWExdzlRc1dBU2U5Q1ZEYWp0?=
+ =?utf-8?B?STV2ODlSbmNOUEtad1JRNUpQeGZsUW5Ea0hWbzAxMmk1V0IweXFFVThUQy96?=
+ =?utf-8?B?NzZ4Qk9TMTM5Y1ZEUlE5dFRrWXRsUVEzR2pqelQxWVcrUXA3N2hVK2g0U1pK?=
+ =?utf-8?B?NmF4L0FER1RQYW1DdzZ1alh5aWMvMytJbFkxL20zdUFjQWpLRkhraTRRUm5s?=
+ =?utf-8?B?aVdxUWpxS2ZXNWlKU3l2WlIzR0JyTVRrMW5sNnhsMDVacytQM1RJd0JoZ1pM?=
+ =?utf-8?B?ZElLVlcxTnFBcGh1cDR3Q3p1bzIyUmpnQ0JhZ2ZzQU1QOVBSblBiT0N0eitM?=
+ =?utf-8?B?T1ArTEt5bkUwcnZDUkg2RE40bVppRWtRV3BBUmM4TDAxb2pvKzdRNWFsZUo4?=
+ =?utf-8?B?cEFkSXF4T2srcmhDOWNzTmNzTWZjc1RDUlkyTUdJazNjU2VKOS9hVFBramhO?=
+ =?utf-8?B?dkNXdkI0REdTMjVKU3luQU40Y0lwZENvb2QvMjhCMTB6ZnQ1UURRUmpDRzNZ?=
+ =?utf-8?B?OFhTaG5oM1Rta1VucXlwYzZFa1JVRjhDUysrdUpZRWZzcHpGNm5jNmdZd0J4?=
+ =?utf-8?B?YU11dnVzOXl4SG1DT0FpSHVOcUcwTnRvcStwRVIxUWtobnpxRW9UeTlyaFVP?=
+ =?utf-8?B?N2RDdUZTdkZhZEZ5bEtZL2dkTVFTUkRXVU1OZElxNHR4QmJuYzNNdEFmNTVL?=
+ =?utf-8?B?MWl1VjRjM1hpVnFUOWlZTFc4YTZ1eU14Sk5mbFgwVjNNNFU2SGkxWXNtMGxW?=
+ =?utf-8?B?ZmMrU1phTXp2elkrYUpaT0NKTmg3OExlbXJiZnhqT3FPelZOUG1nLzhUQnYv?=
+ =?utf-8?B?bkgvOUxiQ0hhZlJtNFVKcDliOVpVQS9xejBOSThkOXJnN2xaa2xOdS9ZS3p1?=
+ =?utf-8?B?dW50d2pJRmNzWVBnZTVibk4xZ3FuaXBCQnJJV1hZSFJqSm1CVXFkYjdsdTNq?=
+ =?utf-8?B?STk5WG12QVdxOW85M3N1cW5oeUduUm5QZkZYTUVKMk5UWkF4R0pNS0x2Z1F4?=
+ =?utf-8?B?WE91OUlBU3B1S2FzbnRIY3NSNTVzVm1JNEs0TWEwWkRxb01DUkpxbUFreEpC?=
+ =?utf-8?B?OXJDRWlmZ2ErUlFkTGJzV1E4K0VFR09jSHhZTjZrd3VmZXZCNWJPeXpFTmdZ?=
+ =?utf-8?B?aVkrQUhhRGE0czZISWVZanNxU0FsTDlLUFBnc2JMRnlsWWJwUU9qS2JFODJj?=
+ =?utf-8?B?a3NFZTBscWxvcjhsdzBCeC9WSlZ0VmR3YmdpcFlzTmpvaWdsaHRXSTAvWEJC?=
+ =?utf-8?B?TVowUFJHcU9QNkFINnhOc3N3QTZIYTcrYXJBNThoWHhwQ2tnT09tTW5ibFFY?=
+ =?utf-8?B?MENHTllFRnk1VXN5MzNaU0piZWFvc2lBMnhtaHkwQ2tuUDlGVmtyL2gxanVP?=
+ =?utf-8?B?V3c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e756e9fd-d117-4e61-4b03-08dc753b4625
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2024 22:46:26.3801 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2024 00:01:02.2334 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: azgqznuFw9sAekYCoOv9+6z2LhkLIzytMgpL1YIo5SJQEOAnQetSsa90e12iUTNq/2OXEQt+TGKtOFUycIBxWQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7081
+X-MS-Exchange-CrossTenant-UserPrincipalName: XcHxSbYtMsaRf4b6gCw4yUeoWZSOFx/J20R+LdCRzWhLDfxbtmP4O5hnOJhPChRllVjbUJCO80RwG+4IfYT5lathVr4bhmhO6bhEfRWo6X4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8529
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,210 +198,290 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 15, 2024 at 03:29:18PM -0600, Cavitt, Jonathan wrote:
-> -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Matthew Brost
-> Sent: Tuesday, May 14, 2024 5:40 PM
-> To: intel-xe@lists.freedesktop.org
-> Cc: Brost, Matthew <matthew.brost@intel.com>
-> Subject: [PATCH v2 6/6] drm/xe: Add VM bind IOCTL error injection
-> > 
-> > Add VM bind IOCTL error injection which steals MSB of the bind flags
-> > field which if set injects errors at various points in the VM bind
-> > IOCTL. Intended to validate error paths. Enabled by CONFIG_DRM_XE_DEBUG.
-> > 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> 
-> I have a minor nit lower down, but nothing worth blocking over:
-> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> 
-> > ---
-> >  drivers/gpu/drm/xe/xe_device_types.h | 12 ++++++++++++
-> >  drivers/gpu/drm/xe/xe_pt.c           | 12 ++++++++++++
-> >  drivers/gpu/drm/xe/xe_vm.c           | 24 ++++++++++++++++++++++++
-> >  drivers/gpu/drm/xe/xe_vm_types.h     | 14 ++++++++++++++
-> >  4 files changed, 62 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> > index 0af739981ebf..6c8c55e9addd 100644
-> > --- a/drivers/gpu/drm/xe/xe_device_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> > @@ -22,6 +22,10 @@
-> >  #include "xe_sriov_types.h"
-> >  #include "xe_step_types.h"
-> >  
-> > +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-> > +#define TEST_VM_OPS_ERROR
-> > +#endif
-> > +
-> >  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
-> >  #include "soc/intel_pch.h"
-> >  #include "intel_display_core.h"
-> > @@ -471,6 +475,14 @@ struct xe_device {
-> >  		int mode;
-> >  	} wedged;
-> >  
-> > +#ifdef TEST_VM_OPS_ERROR
-> > +	/**
-> > +	 * @vm_inject_error_position: inject errors at different places in VM
-> > +	 * bind IOCTL based on this value
-> > +	 */
-> > +	u8 vm_inject_error_position;
-> > +#endif
-> > +
-> >  	/* private: */
-> >  
-> >  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
-> > diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> > index 7f792b7feb06..0907aeaa25ed 100644
-> > --- a/drivers/gpu/drm/xe/xe_pt.c
-> > +++ b/drivers/gpu/drm/xe/xe_pt.c
-> > @@ -1865,6 +1865,12 @@ int xe_pt_update_ops_prepare(struct xe_tile *tile, struct xe_vma_ops *vops)
-> >  	xe_tile_assert(tile, pt_update_ops->current_op <=
-> >  		       pt_update_ops->num_ops);
-> >  
-> > +#ifdef TEST_VM_OPS_ERROR
-> > +	if (vops->inject_error &&
-> > +	    vops->vm->xe->vm_inject_error_position == FORCE_OP_ERROR_PREPARE)
-> > +		return -ENOSPC;
-> > +#endif
-> > +
-> >  	return 0;
-> >  }
-> >  
-> > @@ -2005,6 +2011,12 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
-> >  		return dma_fence_get_stub();
-> >  	}
-> >  
-> > +#ifdef TEST_VM_OPS_ERROR
-> > +	if (vops->inject_error &&
-> > +	    vm->xe->vm_inject_error_position == FORCE_OP_ERROR_RUN)
-> > +		return ERR_PTR(-ENOSPC);
-> > +#endif
-> > +
-> >  	if (pt_update_ops->needs_invalidation) {
-> >  		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
-> >  		if (!ifence) {
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> > index 7fa533902bda..2bac8539d024 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > @@ -2467,6 +2467,12 @@ static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
-> >  			return err;
-> >  	}
-> >  
-> > +#ifdef TEST_VM_OPS_ERROR
-> > +	if (vops->inject_error &&
-> > +	    vm->xe->vm_inject_error_position == FORCE_OP_ERROR_LOCK)
-> > +		return -ENOSPC;
-> > +#endif
-> > +
-> >  	return 0;
-> >  }
-> >  
-> > @@ -2703,11 +2709,20 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
-> >  	return err;
-> >  }
-> >  
-> > +#ifdef TEST_VM_OPS_ERROR
-> > +#define SUPPORTED_FLAGS	\
-> > +	(FORCE_OP_ERROR | \
-> > +	 DRM_XE_VM_BIND_FLAG_READONLY | \
-> > +	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | \
-> > +	 DRM_XE_VM_BIND_FLAG_NULL | \
-> > +	 DRM_XE_VM_BIND_FLAG_DUMPABLE) 
-> > +#else
-> >  #define SUPPORTED_FLAGS	\
-> >  	(DRM_XE_VM_BIND_FLAG_READONLY | \
-> >  	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | \
-> >  	 DRM_XE_VM_BIND_FLAG_NULL | \
-> >  	 DRM_XE_VM_BIND_FLAG_DUMPABLE)
-> > +#endif
-> 
-> 
-> I'm aware this is basically the only correct way of doing this,
-> but the fact that both instances of SUPPORTED_FLAGS are
-> the same save for the presence or absence of
-> FORCE_OP_ERROR rubs me the wrong way.
-> 
-> I know we can't just "append" to SUPPORTED_FLAGS, but
-> maybe we can use a stub?  Something like:
-> 
-> #define SUPPORTED_FLAGS_STUB  \
-> 	(DRM_XE_VM_BIND_FLAG_READONLY | \
->  	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | \
->  	 DRM_XE_VM_BIND_FLAG_NULL | \
->  	 DRM_XE_VM_BIND_FLAG_DUMPABLE)
-> #ifdef TEST_VM_OPS_ERROR
-> #define SUPPORTED_FLAGS  \
-> 	(SUPPORTED_FLAGS_STUB)
-> #else
-> #define SUPPORTED_FLAGS  \
-> 	(SUPPORTED_FLAGS_STUB |\
-> 	 FORCE_OP_ERROR)
-> #endif
-> 
-> Feel free to disregard this, it's just a suggestion.
+On 5/14/2024 14:05, Michal Wajdeczko wrote:
+> On 14.05.2024 20:31, John Harrison wrote:
+>> On 5/14/2024 09:01, Michal Wajdeczko wrote:
+>>> On 09.05.2024 00:49, John.C.Harrison@Intel.com wrote:
+>>>> From: John Harrison <John.C.Harrison@Intel.com>
+>>>>
+>>>> There is a debug mechanism for dumping the GuC log as an ASCII hex
+>>>> stream via dmesg. This is extremely useful for situations where it is
+>>>> not possibe to query the log from debugfs (self tests, bugs that cause
+>>>> the driver to fail to load, system hangs, etc.). However, dumping via
+>>>> dmesg is not the most reliable. The dmesg buffer is limited in size,
+>>>> can be rate limited and a simple hex stream is hard to parse by tools.
+>>>>
+>>>> So add extra information to the dump to make it more robust and
+>>>> parsable. This includes adding start and end tags to delimit the dump,
+>>>> using longer lines to reduce the per line overhead, adding a rolling
+>>>> count to check for missing lines and interleaved concurrent dumps and
+>>>> adding other important information such as the GuC version number and
+>>>> timestamp offset.
+>>>>
+>>>> v2: Remove pm get/put as unnecessary (review feedback from Matthew B).
+>>>> v3: Add firmware filename and 'wanted' version number.
+>>>>
+>>>> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>>>> ---
+>>>>    drivers/gpu/drm/xe/regs/xe_guc_regs.h |  1 +
+>>>>    drivers/gpu/drm/xe/xe_guc_log.c       | 85 ++++++++++++++++++++++-----
+>>>>    2 files changed, 71 insertions(+), 15 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+>>>> b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+>>>> index 11682e675e0f..45fb3707fabe 100644
+>>>> --- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+>>>> +++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+>>>> @@ -82,6 +82,7 @@
+>>>>    #define   HUC_LOADING_AGENT_GUC            REG_BIT(1)
+>>>>    #define   GUC_WOPCM_OFFSET_VALID        REG_BIT(0)
+>>>>    #define GUC_MAX_IDLE_COUNT            XE_REG(0xc3e4)
+>>>> +#define GUC_PMTIMESTAMP                XE_REG(0xc3e8)
+>>>>      #define GUC_SEND_INTERRUPT            XE_REG(0xc4c8)
+>>>>    #define   GUC_SEND_TRIGGER            REG_BIT(0)
+>>>> diff --git a/drivers/gpu/drm/xe/xe_guc_log.c
+>>>> b/drivers/gpu/drm/xe/xe_guc_log.c
+>>>> index a37ee3419428..7e7e2fdc9a11 100644
+>>>> --- a/drivers/gpu/drm/xe/xe_guc_log.c
+>>>> +++ b/drivers/gpu/drm/xe/xe_guc_log.c
+>>>> @@ -7,11 +7,19 @@
+>>>>      #include <drm/drm_managed.h>
+>>>>    +#include "regs/xe_guc_regs.h"
+>>>>    #include "xe_bo.h"
+>>>>    #include "xe_gt.h"
+>>>>    #include "xe_map.h"
+>>>> +#include "xe_mmio.h"
+>>>>    #include "xe_module.h"
+>>>>    +static struct xe_guc *
+>>>> +log_to_guc(struct xe_guc_log *log)
+>>>> +{
+>>>> +    return container_of(log, struct xe_guc, log);
+>>>> +}
+>>>> +
+>>>>    static struct xe_gt *
+>>>>    log_to_gt(struct xe_guc_log *log)
+>>> as you have log_to_guc() then this log_to_gt() could be updated to:
+>>>
+>>>      return guc_to_gt(log_to_guc(log));
+>> Is there any point? The existing version works fine so why replace a
+>> single indirection with a double indirection?
+> compiler can inline that, but from our POV we will have single place
+> that must know exact placement of the .log member in our xe tree
+>
+>>
+>>>>    {
+>>>> @@ -49,32 +57,79 @@ static size_t guc_log_size(void)
+>>>>            CAPTURE_BUFFER_SIZE;
+>>>>    }
+>>>>    +#define BYTES_PER_WORD        sizeof(u32)
+>>>> +#define WORDS_PER_DUMP        8
+>>>> +#define DUMPS_PER_LINE        4
+>>>> +#define LINES_PER_READ        4
+>>>> +#define WORDS_PER_READ        (WORDS_PER_DUMP * DUMPS_PER_LINE *
+>>>> LINES_PER_READ)
+>>>> +
+>>> as you are heavily updating this function, maybe it's good time to add
+>>> kernel-doc for it ?
+>> Good idea. Will do.
+>>
+>>>>    void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
+>>>>    {
+>>>> +    static int g_count;
+>>>> +    struct xe_gt *gt = log_to_gt(log);
+>>>> +    struct xe_guc *guc = log_to_guc(log);
+>>>> +    struct xe_uc_fw_version *ver_f =
+>>>> &guc->fw.versions.found[XE_UC_FW_VER_RELEASE];
+>>>> +    struct xe_uc_fw_version *ver_w = &guc->fw.versions.wanted;
+>>>>        struct xe_device *xe = log_to_xe(log);
+>>>>        size_t size;
+>>>> -    int i, j;
+>>>> +    char line_buff[DUMPS_PER_LINE * WORDS_PER_DUMP * 9 + 1];
+>>>> +    int l_count = g_count++;
+>>>> +    int line = 0;
+>>>> +    int i, j, k;
+>>>> +    u64 ktime;
+>>>> +    u32 stamp;
+>>>>          xe_assert(xe, log->bo);
+>>>>          size = log->bo->size;
+>>>>    -#define DW_PER_READ        128
+>>>> -    xe_assert(xe, !(size % (DW_PER_READ * sizeof(u32))));
+>>>> -    for (i = 0; i < size / sizeof(u32); i += DW_PER_READ) {
+>>>> -        u32 read[DW_PER_READ];
+>>>> -
+>>>> -        xe_map_memcpy_from(xe, read, &log->bo->vmap, i * sizeof(u32),
+>>>> -                   DW_PER_READ * sizeof(u32));
+>>>> -#define DW_PER_PRINT        4
+>>>> -        for (j = 0; j < DW_PER_READ / DW_PER_PRINT; ++j) {
+>>>> -            u32 *print = read + j * DW_PER_PRINT;
+>>>> -
+>>>> -            drm_printf(p, "0x%08x 0x%08x 0x%08x 0x%08x\n",
+>>>> -                   *(print + 0), *(print + 1),
+>>>> -                   *(print + 2), *(print + 3));
+>>>> +    drm_printf(p, "[Capture/%d.%d] Dumping GuC log for %ps...\n",
+>>>> +           l_count, line++, __builtin_return_address(0));
+>>> this function is also used in debugfs outputs and prefixing all lines
+>>> with "[Capture/n.m]" is pointless there (and will also make collecting
+>>> GuC log over debugfs even more inefficient)
+>>>
+>>> and as you likely don't want to have separate print functions (one for
+>>> reliable dmesg, other for debugfs) then maybe consider use of cascaded
+>>> drm_printer as proposed in [1] - it will also make your code tidier
+>>>
+>>> [1] https://patchwork.freedesktop.org/series/133613/
+>> As already discussed, the intention was to keep this as simple as
+>> possible and not over engineer a stop gap measure. Yes, the debugfs
+>> version gets some extra overhead (but mitigated by using longer lines).
+> but OTOH exposing useless data over debugfs could be perceived as signs
+> of bad design and/or laziness, no?
+Meaning just the 'Capture X/Y' prefix or all the meta data as well? The 
+meta data is absolutely not  useless data.
 
-That's a good suggestion. Will change.
+For the Capture prefix, if you are so set on removing it then feel free 
+to post a patch on top. Personally, I do not consider it useless. See below.
 
-Matt
+>> But size of the debugfs file is really not an issue, and it does provide
+>> extra robustness.
+> hmm, are you suggesting that reading over debugfs is not robust and
+> requires extra protection? and it is xe driver specific issue?
+Not debugfs itself, but copying files around afterwards. It might be 
+extremely unlikely but it is not impossible. Many file formats have CRCs 
+and such built in for that reason.
 
-> -Jonathan Cavitt
-> 
-> 
-> >  #define XE_64K_PAGE_MASK 0xffffull
-> >  #define ALL_DRM_XE_SYNCS_FLAGS (DRM_XE_SYNCS_FLAG_WAIT_FOR_OP)
-> >  
-> > @@ -3055,6 +3070,15 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-> >  		err = vm_bind_ioctl_ops_parse(vm, ops[i], &vops);
-> >  		if (err)
-> >  			goto unwind_ops;
-> > +
-> > +#ifdef TEST_VM_OPS_ERROR
-> > +		if (flags & FORCE_OP_ERROR) {
-> > +			vops.inject_error = true;
-> > +			vm->xe->vm_inject_error_position =
-> > +				(vm->xe->vm_inject_error_position + 1) %
-> > +				FORCE_OP_ERROR_COUNT;
-> > +		}
-> > +#endif
-> >  	}
-> >  
-> >  	/* Nothing to do */
-> > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-> > index 39bfa259c7be..2ba7d9ad5ba6 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> > @@ -23,6 +23,16 @@ struct xe_user_fence;
-> >  struct xe_vm;
-> >  struct xe_vm_pgtable_update_op;
-> >  
-> > +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-> > +#define TEST_VM_OPS_ERROR
-> > +#define FORCE_OP_ERROR	BIT(31)
-> > +
-> > +#define FORCE_OP_ERROR_LOCK	0
-> > +#define FORCE_OP_ERROR_PREPARE	1
-> > +#define FORCE_OP_ERROR_RUN	2
-> > +#define FORCE_OP_ERROR_COUNT	3
-> > +#endif
-> > +
-> >  #define XE_VMA_READ_ONLY	DRM_GPUVA_USERBITS
-> >  #define XE_VMA_DESTROYED	(DRM_GPUVA_USERBITS << 1)
-> >  #define XE_VMA_ATOMIC_PTE_BIT	(DRM_GPUVA_USERBITS << 2)
-> > @@ -361,6 +371,10 @@ struct xe_vma_ops {
-> >  	u32 num_syncs;
-> >  	/** @pt_update_ops: page table update operations */
-> >  	struct xe_vm_pgtable_update_ops pt_update_ops[XE_MAX_TILES_PER_DEVICE];
-> > +#ifdef TEST_VM_OPS_ERROR
-> > +	/** @inject_error: inject error to test error handling */
-> > +	bool inject_error;
-> > +#endif
-> >  };
-> >  
-> >  #endif
-> > -- 
-> > 2.34.1
-> > 
-> > 
+>
+>> The prefix is also trivially easy to remove the prefix
+>> if desired with "cut -d ' ' -f 2' < in > out".
+> equally we can trivially avoid adding this prefix
+Not that trivially.
+
+>
+>>>> +
+>>>> +    drm_printf(p, "[Capture/%d.%d] GuC version %u.%u.%u (wanted
+>>>> %u.%u.%u)\n",
+>>>> +           l_count, line++,
+>>>> +           ver_f->major, ver_f->minor, ver_f->patch,
+>>>> +           ver_w->major, ver_w->minor, ver_w->patch);
+>>> hmm, what's the relation between "wanted version" and actual "guc log
+>>> buffer format" ? IMO it doesn't really matter what driver wanted to
+>>> load, this supposed to be "GuC-log-print" so then only actually running
+>>> version matters as it implies schema version needed for proper decoding.
+>> It is not necessary but it is potentially useful information that can be
+>> added pretty much for free, so why not?
+> because this function (undocumented) is still named as xe_guc_log_print
+> and is located in xe_guc_log.c which strongly suggests that it is about
+> GuC log, not anything else from the GuC
+>
+> if you need combo print function, place it in guc.c and name properly
+It is about the GuC log. It is for dumping everything and anything that 
+is required to get a properly decoded and understood GuC log in a single 
+file. When we get time to implement VFDs, all of this data would be 
+added to the log structure itself as driver specified data blocks.
+
+>
+>>>> +    drm_printf(p, "[Capture/%d.%d] GuC firmware: %s\n", l_count,
+>>>> line++, guc->fw.path);
+>>> again, why do we want include firmware filename here? it's not relevant
+>>> to the log buffer content/format (as we already have 'found version')
+>> Actually, it is important. The filename gives the GuC platform. And that
+>> is required to know what quirks need to be applied when decoding the
+>> log. E.g. context switch logs on a TGL platform are truncated because
+>> the hardware has fewer bits for the context id. The decoder needs to
+>> know that to correctly track context switching.
+> then you should explicitly capture the platform name, as firmware file
+> name could be provided by the user as modparam xe.guc_firmware_path and
+> named anything like foo.bin
+If the that is happening then it is probably a custom build firmware 
+file and requires a matching custom build of the schema in which case 
+nothing will work unless the person doing the decode is passing custom 
+options to the decoder anyway. And if an end user is arbitrarily 
+renaming files for no valid reason, then they won't get their bug 
+investigated. Besides, there is no driver side state that identifies the 
+GuC platform. It is not necessarily the same as the actual hardware 
+platform because multiple hardware platforms share the same GuC 
+firmware. Indeed, there are also multiple GuC platform builds that can 
+be run on a single hardware platform.
+
+>
+>>> maybe more interesting thing would be status of the GuC firmware?
+>>> whether it is still running and writing logs or it is already dead
+>> Not sure how you would get that information? Unless the GuC is actually
+>> in reset for the duration of the dump, there is no way to know whether
+>> it is alive, actively logging, idle, or what.
+> we could start with capturing GUC_STATUS(0xc000)
+>
+> but we can also assume that captured log snapshot is always incomplete
+> due to a living nature of the GuC firmware (so there is expected
+> mismatch between what we can find in header vs actual last log entry)
+Which is why the decoder script has support for detecting unexpected 
+wrap points and re-wrapping the log before passing it to the actual 
+decoder executable.
+
+But you still have to do a single atomic-as-possible dump of the buffer 
+into a single log file to get as close as possible to coherency. The 
+more separate reads you split it into, the more likely you are to have 
+inconsistencies.
+
+John.
+
+>
+>>>> +
+>>>> +    ktime = ktime_get_boottime_ns();
+>>>> +    drm_printf(p, "[Capture/%d.%d] Kernel timestamp: 0x%08llX
+>>>> [%llu]\n",
+>>>> +           l_count, line++, ktime, ktime);
+>>>> +
+>>>> +    stamp = xe_mmio_read32(gt, GUC_PMTIMESTAMP);
+>>>> +    drm_printf(p, "[Capture/%d.%d] GuC timestamp: 0x%08X [%u]\n",
+>>>> +           l_count, line++, stamp, stamp);
+>>>> +
+>>>> +    drm_printf(p, "[Capture/%d.%d] CS timestamp frequency: %u Hz\n",
+>>>> +           l_count, line++, gt->info.reference_clock);
+>>>> +
+>>>> +    xe_assert(xe, !(size % (WORDS_PER_READ * BYTES_PER_WORD)));
+>>>> +    for (i = 0; i < size / BYTES_PER_WORD; i += WORDS_PER_READ) {
+>>>> +        u32 read[WORDS_PER_READ];
+>>>> +
+>>>> +        xe_map_memcpy_from(xe, read, &log->bo->vmap, i *
+>>>> BYTES_PER_WORD,
+>>>> +                   WORDS_PER_READ * BYTES_PER_WORD);
+>>>> +
+>>>> +        for (j = 0; j < WORDS_PER_READ; ) {
+>>>> +            u32 done = 0;
+>>>> +
+>>>> +            for (k = 0; k < DUMPS_PER_LINE; k++) {
+>>>> +                line_buff[done++] = ' ';
+>>>> +                done += hex_dump_to_buffer(read + j,
+>>>> +                               sizeof(*read) * (WORDS_PER_READ - j),
+>>>> +                               WORDS_PER_DUMP * BYTES_PER_WORD,
+>>>> +                               BYTES_PER_WORD,
+>>>> +                               line_buff + done,
+>>>> +                               sizeof(line_buff) - done,
+>>>> +                               false);
+>>>> +                j += WORDS_PER_DUMP;
+>>>> +            }
+>>> as there could be many holes (zeros) in full GuC log, did you consider
+>>> to skip such lines and update custom parser to understand that?
+>> As per other response, in a real world live system, there won't be big
+>> chunks of zeros. And if you are specifically debugging a start of day
+>> issue then you can just use a smaller log size.
+>>
+>> Rather than attempting to implement some kind of simple RLE, a real and
+>> significant benefit would be to re-use the compression mechanism we had
+>> in i915. That is a lot more effort, though. So that could be done as a
+>> follow up, but it is not worth holding up the current set of trivial
+>> fixes for some long term goal.
+>>
+>>>> +
+>>>> +            drm_printf(p, "[Capture/%d.%d]%s\n", l_count, line++,
+>>>> line_buff);
+>>>>            }
+>>>>        }
+>>>> +
+>>>> +    drm_printf(p, "[Capture/%d.%d] Done.\n", l_count, line++);
+>>>>    }
+>>> per BKM shouldn't we #undef not used any more local macros ?
+>> One could. It didn't seem necessary given that this is the end of the file.
+>>
+>> John.
+>>
+>>>>      int xe_guc_log_init(struct xe_guc_log *log)
+
