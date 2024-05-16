@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0F83C25B7B
-	for <intel-xe@archiver.kernel.org>; Thu, 16 May 2024 18:24:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32A9CC25B7E
+	for <intel-xe@archiver.kernel.org>; Thu, 16 May 2024 18:24:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FCD410ECC4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 691A110ED7E;
 	Thu, 16 May 2024 18:24:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QWud12yN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V0O+jw+q";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3ABBE10ECC4
- for <intel-xe@lists.freedesktop.org>; Thu, 16 May 2024 18:24:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74A0210ED99
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 May 2024 18:24:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715883843; x=1747419843;
+ t=1715883841; x=1747419841;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=GPb0YVxMmLTGj5jaw7s0tqYfcsTI6S71Op2YoZ3Utt0=;
- b=QWud12yNFsjX7l4VDU5Z5j9Q7VtKAeJtL4ihGACYNkLLSV2hB1uDkMBL
- BOdFcP6KOxV7N081Bwi0KFRG5yzczQ3eaFnTsQa5/O4ZsQmfk4eGDhmlO
- 1bN+pGFOUgUwloAqirqaNsWq8HliOgErCi8W82itk4L6AL1plIHbGyPjh
- 8UOlTLG8LME94BNOTG87/xRabe0aZW1wjmZyQdVIRqZiOULEUyybWU08X
- rBRs0QkC/l6+yEDwnnYV/IjmMPjZsGC48+8UCpHoJNUjiTtbPqEiSvwsT
- qSzTRdJ7yQX+/PM47czZHNnecTMu4fPY+0GXC5zdVCbRzli4mM3z+moHT g==;
-X-CSE-ConnectionGUID: qehJRA/QS96PfWfkHcZpqQ==
-X-CSE-MsgGUID: JtN2AX8ORzqvue7KF296yw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="23159935"
-X-IronPort-AV: E=Sophos;i="6.08,165,1712646000"; d="scan'208";a="23159935"
+ bh=2LZQSAfTxBNFf07bWZ2b3txzU4rrmpwRP3n8tFT6UD8=;
+ b=V0O+jw+q2hULLttBKUarUL/emQxhsraYMZDaZ2QFB4h1rhdReIYQxmDa
+ U/vXA5SSoveycMmo4OL4/D859t2uFEKKVdV37FWsknHVNZ/b+owcUDe2c
+ IE82e7oZZz6229T/J1gmW/yTdVOFGVGTgXjjDLqqPNPPGhaDR/e0kRXlv
+ OtDT2pDvJgLknQzMQUGJnNcPYCTJ7ZFic6oE2Jkm4B5P+iafTCkOUUu+5
+ F3rl3iLu8ScQMnymai+NeghciRBZ03CvlMXssZyimACoAc3D7Vlfwl3Va
+ mxNcbtZYNyyaDgvxl99rA4KVzAWqSrIsuPUIS7waynzca8Z+xtDQcSRgH w==;
+X-CSE-ConnectionGUID: dpe2/aFUTpmmyDlLKvYAeQ==
+X-CSE-MsgGUID: bznAS6r0SFCuPOc/cUM3hw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="23159927"
+X-IronPort-AV: E=Sophos;i="6.08,165,1712646000"; d="scan'208";a="23159927"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2024 11:24:03 -0700
-X-CSE-ConnectionGUID: islaRuldT3m33lrUqQMMnw==
-X-CSE-MsgGUID: YTLo8PeoQH65oTnvgS8Nhw==
+ 16 May 2024 11:24:01 -0700
+X-CSE-ConnectionGUID: 2e4s9DIrSrefssi9xNDDew==
+X-CSE-MsgGUID: pcBjDvdGSc65G/nyvpa6+g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,165,1712646000"; d="scan'208";a="32065422"
+X-IronPort-AV: E=Sophos;i="6.08,165,1712646000"; d="scan'208";a="32065385"
 Received: from unknown (HELO fedora..) ([10.245.246.241])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2024 11:24:02 -0700
+ 16 May 2024 11:24:00 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v3 13/21] drm/exec: Rework contended locking
-Date: Thu, 16 May 2024 20:23:31 +0200
-Message-ID: <20240516182339.3482-14-thomas.hellstrom@linux.intel.com>
+Subject: [CI v3 11/21] drm/ttm, drm/xe: Add a shrinker for xe bos
+Date: Thu, 16 May 2024 20:23:29 +0200
+Message-ID: <20240516182339.3482-12-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240516182339.3482-1-thomas.hellstrom@linux.intel.com>
 References: <20240516182339.3482-1-thomas.hellstrom@linux.intel.com>
@@ -66,578 +66,896 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Rather than relying on the TTM watermark accounting add a shrinker
+for xe_bos in TT or system memory.
+
+Leverage the newly added TTM per-page shrinking and shmem backup
+support.
+
+Although xe doesn't fully support WONTNEED (purgeable) bos yet,
+introduce and add shrinker support for purgeable ttm_tts.
+
+v2:
+- Cleanups bugfixes and a KUNIT shrinker test.
+- Add writeback support, and activate if kswapd.
+
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  | 16 ++++++-------
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c        |  6 ++---
- drivers/gpu/drm/amd/amdgpu/amdgpu_csa.c       |  4 ++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c       |  8 +++----
- drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c       |  8 +++----
- drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c     |  4 ++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c  |  8 +++----
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c          |  2 +-
- drivers/gpu/drm/drm_exec.c                    | 23 +++++++++++++------
- drivers/gpu/drm/drm_gpuvm.c                   |  8 +++----
- drivers/gpu/drm/imagination/pvr_job.c         |  2 +-
- drivers/gpu/drm/msm/msm_gem_submit.c          |  2 +-
- drivers/gpu/drm/nouveau/nouveau_uvmm.c        |  2 +-
- drivers/gpu/drm/tests/drm_exec_test.c         | 12 +++++-----
- drivers/gpu/drm/xe/xe_gt_pagefault.c          |  4 ++--
- drivers/gpu/drm/xe/xe_vm.c                    | 10 ++++----
- include/drm/drm_exec.h                        | 19 +++++++++++----
- 17 files changed, 78 insertions(+), 60 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo_util.c     |  75 +++++++++
+ drivers/gpu/drm/xe/Makefile           |   1 +
+ drivers/gpu/drm/xe/tests/xe_bo.c      | 118 ++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_bo_test.c |   1 +
+ drivers/gpu/drm/xe/tests/xe_bo_test.h |   1 +
+ drivers/gpu/drm/xe/xe_bo.c            | 128 +++++++++++++--
+ drivers/gpu/drm/xe/xe_bo.h            |   4 +
+ drivers/gpu/drm/xe/xe_device.c        |   8 +
+ drivers/gpu/drm/xe/xe_device_types.h  |   2 +
+ drivers/gpu/drm/xe/xe_shrinker.c      | 224 ++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_shrinker.h      |  18 +++
+ include/drm/ttm/ttm_bo.h              |   3 +
+ 12 files changed, 567 insertions(+), 16 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_shrinker.c
+ create mode 100644 drivers/gpu/drm/xe/xe_shrinker.h
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-index e4d4e55c08ad..4a08a692aa1f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-@@ -1152,12 +1152,12 @@ static int reserve_bo_and_vm(struct kgd_mem *mem,
- 	drm_exec_init(&ctx->exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
- 	drm_exec_until_all_locked(&ctx->exec) {
- 		ret = amdgpu_vm_lock_pd(vm, &ctx->exec, 2);
--		drm_exec_retry_on_contention(&ctx->exec);
-+		ret = drm_exec_retry_on_contention(&ctx->exec, ret);
- 		if (unlikely(ret))
- 			goto error;
- 
- 		ret = drm_exec_prepare_obj(&ctx->exec, &bo->tbo.base, 1);
--		drm_exec_retry_on_contention(&ctx->exec);
-+		ret = drm_exec_retry_on_contention(&ctx->exec, ret);
- 		if (unlikely(ret))
- 			goto error;
- 	}
-@@ -1199,14 +1199,14 @@ static int reserve_bo_and_cond_vms(struct kgd_mem *mem,
- 
- 			ret = amdgpu_vm_lock_pd(entry->bo_va->base.vm,
- 						&ctx->exec, 2);
--			drm_exec_retry_on_contention(&ctx->exec);
-+			ret = drm_exec_retry_on_contention(&ctx->exec, ret);
- 			if (unlikely(ret))
- 				goto error;
- 			++ctx->n_vms;
- 		}
- 
- 		ret = drm_exec_prepare_obj(&ctx->exec, &bo->tbo.base, 1);
--		drm_exec_retry_on_contention(&ctx->exec);
-+		ret = drm_exec_retry_on_contention(&ctx->exec, ret);
- 		if (unlikely(ret))
- 			goto error;
- 	}
-@@ -2619,7 +2619,7 @@ static int validate_invalid_user_pages(struct amdkfd_process_info *process_info)
- 		list_for_each_entry(peer_vm, &process_info->vm_list_head,
- 				    vm_list_node) {
- 			ret = amdgpu_vm_lock_pd(peer_vm, &exec, 2);
--			drm_exec_retry_on_contention(&exec);
-+			ret = drm_exec_retry_on_contention(&exec, ret);
- 			if (unlikely(ret))
- 				goto unreserve_out;
- 		}
-@@ -2631,7 +2631,7 @@ static int validate_invalid_user_pages(struct amdkfd_process_info *process_info)
- 
- 			gobj = &mem->bo->tbo.base;
- 			ret = drm_exec_prepare_obj(&exec, gobj, 1);
--			drm_exec_retry_on_contention(&exec);
-+			ret = drm_exec_retry_on_contention(&exec, ret);
- 			if (unlikely(ret))
- 				goto unreserve_out;
- 		}
-@@ -2875,7 +2875,7 @@ int amdgpu_amdkfd_gpuvm_restore_process_bos(void *info, struct dma_fence __rcu *
- 		list_for_each_entry(peer_vm, &process_info->vm_list_head,
- 				    vm_list_node) {
- 			ret = amdgpu_vm_lock_pd(peer_vm, &exec, 2);
--			drm_exec_retry_on_contention(&exec);
-+			ret = drm_exec_retry_on_contention(&exec, ret);
- 			if (unlikely(ret)) {
- 				pr_err("Locking VM PD failed, ret: %d\n", ret);
- 				goto ttm_reserve_fail;
-@@ -2891,7 +2891,7 @@ int amdgpu_amdkfd_gpuvm_restore_process_bos(void *info, struct dma_fence __rcu *
- 
- 			gobj = &mem->bo->tbo.base;
- 			ret = drm_exec_prepare_obj(&exec, gobj, 1);
--			drm_exec_retry_on_contention(&exec);
-+			ret = drm_exec_retry_on_contention(&exec, ret);
- 			if (unlikely(ret)) {
- 				pr_err("drm_exec_prepare_obj failed, ret: %d\n", ret);
- 				goto ttm_reserve_fail;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index ec888fc6ead8..299e46a6d934 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -897,7 +897,7 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
- 
- 	drm_exec_until_all_locked(&p->exec) {
- 		r = amdgpu_vm_lock_pd(&fpriv->vm, &p->exec, 1 + p->gang_size);
--		drm_exec_retry_on_contention(&p->exec);
-+		r = drm_exec_retry_on_contention(&p->exec, r);
- 		if (unlikely(r))
- 			goto out_free_user_pages;
- 
-@@ -905,7 +905,7 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
- 			/* One fence for TTM and one for each CS job */
- 			r = drm_exec_prepare_obj(&p->exec, &e->bo->tbo.base,
- 						 1 + p->gang_size);
--			drm_exec_retry_on_contention(&p->exec);
-+			r = drm_exec_retry_on_contention(&p->exec, r);
- 			if (unlikely(r))
- 				goto out_free_user_pages;
- 
-@@ -915,7 +915,7 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
- 		if (p->uf_bo) {
- 			r = drm_exec_prepare_obj(&p->exec, &p->uf_bo->tbo.base,
- 						 1 + p->gang_size);
--			drm_exec_retry_on_contention(&p->exec);
-+			r = drm_exec_retry_on_contention(&p->exec, r);
- 			if (unlikely(r))
- 				goto out_free_user_pages;
- 		}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_csa.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_csa.c
-index cfdf558b48b6..8b2b86c7a6c5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_csa.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_csa.c
-@@ -74,7 +74,7 @@ int amdgpu_map_static_csa(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 		r = amdgpu_vm_lock_pd(vm, &exec, 0);
- 		if (likely(!r))
- 			r = drm_exec_lock_obj(&exec, &bo->tbo.base);
--		drm_exec_retry_on_contention(&exec);
-+		r = drm_exec_retry_on_contention(&exec, r);
- 		if (unlikely(r)) {
- 			DRM_ERROR("failed to reserve CSA,PD BOs: err=%d\n", r);
- 			goto error;
-@@ -114,7 +114,7 @@ int amdgpu_unmap_static_csa(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 		r = amdgpu_vm_lock_pd(vm, &exec, 0);
- 		if (likely(!r))
- 			r = drm_exec_lock_obj(&exec, &bo->tbo.base);
--		drm_exec_retry_on_contention(&exec);
-+		r = drm_exec_retry_on_contention(&exec, r);
- 		if (unlikely(r)) {
- 			DRM_ERROR("failed to reserve CSA,PD BOs: err=%d\n", r);
- 			goto error;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-index 67c234bcf89f..17e16c971e21 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-@@ -239,12 +239,12 @@ static void amdgpu_gem_object_close(struct drm_gem_object *obj,
- 	drm_exec_init(&exec, DRM_EXEC_IGNORE_DUPLICATES, 0);
- 	drm_exec_until_all_locked(&exec) {
- 		r = drm_exec_prepare_obj(&exec, &bo->tbo.base, 1);
--		drm_exec_retry_on_contention(&exec);
-+		r = drm_exec_retry_on_contention(&exec, r);
- 		if (unlikely(r))
- 			goto out_unlock;
- 
- 		r = amdgpu_vm_lock_pd(vm, &exec, 0);
--		drm_exec_retry_on_contention(&exec);
-+		r = drm_exec_retry_on_contention(&exec, r);
- 		if (unlikely(r))
- 			goto out_unlock;
- 	}
-@@ -776,13 +776,13 @@ int amdgpu_gem_va_ioctl(struct drm_device *dev, void *data,
- 	drm_exec_until_all_locked(&exec) {
- 		if (gobj) {
- 			r = drm_exec_lock_obj(&exec, gobj);
--			drm_exec_retry_on_contention(&exec);
-+			r = drm_exec_retry_on_contention(&exec, r);
- 			if (unlikely(r))
- 				goto error;
- 		}
- 
- 		r = amdgpu_vm_lock_pd(&fpriv->vm, &exec, 2);
--		drm_exec_retry_on_contention(&exec);
-+		r = drm_exec_retry_on_contention(&exec, r);
- 		if (unlikely(r))
- 			goto error;
- 	}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-index 5ca5c47ab54e..1b1a5147606e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-@@ -1221,12 +1221,12 @@ int amdgpu_mes_ctx_map_meta_data(struct amdgpu_device *adev,
- 	drm_exec_until_all_locked(&exec) {
- 		r = drm_exec_lock_obj(&exec,
- 				      &ctx_data->meta_data_obj->tbo.base);
--		drm_exec_retry_on_contention(&exec);
-+		r = drm_exec_retry_on_contention(&exec, r);
- 		if (unlikely(r))
- 			goto error_fini_exec;
- 
- 		r = amdgpu_vm_lock_pd(vm, &exec, 0);
--		drm_exec_retry_on_contention(&exec);
-+		r = drm_exec_retry_on_contention(&exec, r);
- 		if (unlikely(r))
- 			goto error_fini_exec;
- 	}
-@@ -1292,12 +1292,12 @@ int amdgpu_mes_ctx_unmap_meta_data(struct amdgpu_device *adev,
- 	drm_exec_until_all_locked(&exec) {
- 		r = drm_exec_lock_obj(&exec,
- 				      &ctx_data->meta_data_obj->tbo.base);
--		drm_exec_retry_on_contention(&exec);
-+		r = drm_exec_retry_on_contention(&exec, r);
- 		if (unlikely(r))
- 			goto out_unlock;
- 
- 		r = amdgpu_vm_lock_pd(vm, &exec, 0);
--		drm_exec_retry_on_contention(&exec);
-+		r = drm_exec_retry_on_contention(&exec, r);
- 		if (unlikely(r))
- 			goto out_unlock;
- 	}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c
-index e22cb2b5cd92..72b8213e352c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c
-@@ -77,7 +77,7 @@ int amdgpu_seq64_map(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 		r = amdgpu_vm_lock_pd(vm, &exec, 0);
- 		if (likely(!r))
- 			r = drm_exec_lock_obj(&exec, &bo->tbo.base);
--		drm_exec_retry_on_contention(&exec);
-+		r = drm_exec_retry_on_contention(&exec, r);
- 		if (unlikely(r))
- 			goto error;
- 	}
-@@ -138,7 +138,7 @@ void amdgpu_seq64_unmap(struct amdgpu_device *adev, struct amdgpu_fpriv *fpriv)
- 		r = amdgpu_vm_lock_pd(vm, &exec, 0);
- 		if (likely(!r))
- 			r = drm_exec_lock_obj(&exec, &bo->tbo.base);
--		drm_exec_retry_on_contention(&exec);
-+		r = drm_exec_retry_on_contention(&exec, r);
- 		if (unlikely(r))
- 			goto error;
- 	}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c
-index e01c1c8e64c4..63392ce43945 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c
-@@ -89,12 +89,12 @@ static int map_ring_data(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 	drm_exec_init(&exec, 0, 0);
- 	drm_exec_until_all_locked(&exec) {
- 		r = drm_exec_lock_obj(&exec, &bo->tbo.base);
--		drm_exec_retry_on_contention(&exec);
-+		r = drm_exec_retry_on_contention(&exec, r);
- 		if (unlikely(r))
- 			goto error_fini_exec;
- 
- 		r = amdgpu_vm_lock_pd(vm, &exec, 0);
--		drm_exec_retry_on_contention(&exec);
-+		r = drm_exec_retry_on_contention(&exec, r);
- 		if (unlikely(r))
- 			goto error_fini_exec;
- 	}
-@@ -152,12 +152,12 @@ static int unmap_ring_data(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 	drm_exec_init(&exec, 0, 0);
- 	drm_exec_until_all_locked(&exec) {
- 		r = drm_exec_lock_obj(&exec, &bo->tbo.base);
--		drm_exec_retry_on_contention(&exec);
-+		r = drm_exec_retry_on_contention(&exec, r);
- 		if (unlikely(r))
- 			goto out_unlock;
- 
- 		r = amdgpu_vm_lock_pd(vm, &exec, 0);
--		drm_exec_retry_on_contention(&exec);
-+		r = drm_exec_retry_on_contention(&exec, r);
- 		if (unlikely(r))
- 			goto out_unlock;
- 	}
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index 386875e6eb96..a3aa7fd22f6a 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -1499,7 +1499,7 @@ static int svm_range_reserve_bos(struct svm_validate_context *ctx, bool intr)
- 			vm = drm_priv_to_vm(pdd->drm_priv);
- 
- 			r = amdgpu_vm_lock_pd(vm, &ctx->exec, 2);
--			drm_exec_retry_on_contention(&ctx->exec);
-+			r = drm_exec_retry_on_contention(&ctx->exec, r);
- 			if (unlikely(r)) {
- 				pr_debug("failed %d to reserve bo\n", r);
- 				goto unreserve_out;
-diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
-index 2da094bdf8a4..2a28cbccaec7 100644
---- a/drivers/gpu/drm/drm_exec.c
-+++ b/drivers/gpu/drm/drm_exec.c
-@@ -48,7 +48,8 @@
-  */
- 
- /* Dummy value used to initially enter the retry loop */
--#define DRM_EXEC_DUMMY ((void *)~0)
-+#define DRM_EXEC_DUMMY ERR_PTR(-ESTALE)
-+#define DRM_EXEC_CONTENDED ERR_PTR(-EDEADLK)
- 
- /* Unlock all objects and drop references */
- static void drm_exec_unlock_all(struct drm_exec *exec)
-@@ -131,8 +132,7 @@ bool drm_exec_cleanup(struct drm_exec *exec)
- 		return true;
- 	}
- 
--	drm_exec_unlock_all(exec);
--	exec->num_objects = 0;
-+	exec->contended = NULL;
- 	return true;
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index 9388fc19a518..ba4d5c255b28 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -930,3 +930,78 @@ long ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
+ 	ttm_resource_cursor_fini(&cursor);
+ 	return sofar;
  }
- EXPORT_SYMBOL(drm_exec_cleanup);
-@@ -194,6 +194,19 @@ static int drm_exec_lock_contended(struct drm_exec *exec)
- 	return ret;
- }
- 
-+int drm_exec_handle_contended(struct drm_exec *exec)
++EXPORT_SYMBOL(ttm_lru_walk_for_evict);
++
++/**
++ * ttm_bo_try_shrink - LRU walk helper to shrink a ttm buffer object.
++ * @walk: The struct xe_ttm_lru_walk that describes the walk.
++ * @bo: The buffer object.
++ * @purge: Whether to attempt to purge the bo content since it's no
++ * longer needed.
++ * @writeback: If !@purge, attempt to write out to persistent storage.
++ *
++ * The function uses the ttm_tt_back_up functionality to back up or
++ * purge a struct ttm_tt. If the bo is not in system, it's first
++ * moved there.
++ *
++ * Return: The number of pages shrunken or purged, or
++ * negative error code on failure.
++ */
++long ttm_bo_try_shrink(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo,
++		       bool purge, bool writeback)
 +{
-+	int ret;
++	static const struct ttm_place sys_placement_flags = {
++		.fpfn = 0,
++		.lpfn = 0,
++		.mem_type = TTM_PL_SYSTEM,
++		.flags = 0,
++	};
++	static struct ttm_placement sys_placement = {
++		.num_placement = 1,
++		.placement = &sys_placement_flags,
++	};
++	struct ttm_operation_ctx *ctx = walk->ctx;
++	struct ttm_tt *tt = bo->ttm;
++	long lret;
 +
-+	drm_exec_unlock_all(exec);
-+	exec->num_objects = 0;
-+	ret = drm_exec_lock_contended(exec);
-+	exec->contended = DRM_EXEC_CONTENDED;
++	dma_resv_assert_held(bo->base.resv);
 +
-+	return ret;
++	if (!tt || !ttm_tt_is_populated(tt))
++		return 0;
++
++	if (bo->resource->mem_type != TTM_PL_SYSTEM) {
++		int ret = ttm_bo_validate(bo, &sys_placement, ctx);
++
++		if (ret) {
++			if (ret == -EINTR || ret == -EDEADLK ||
++			    ret == -ERESTARTSYS)
++				return ret;
++			return 0;
++		}
++	}
++
++	if (ctx->no_wait_gpu &&
++	    !dma_resv_test_signaled(bo->base.resv,
++				    DMA_RESV_USAGE_BOOKKEEP))
++		return 0;
++
++	lret = dma_resv_wait_timeout(bo->base.resv,
++				     DMA_RESV_USAGE_BOOKKEEP,
++				     ctx->interruptible,
++				     MAX_SCHEDULE_TIMEOUT);
++	if (lret < 0) {
++		if (lret == -ERESTARTSYS)
++			return lret;
++		return 0;
++	}
++
++	if (bo->deleted)
++		lret = ttm_tt_backup(bo->bdev, tt, true, writeback);
++	else
++		lret = ttm_tt_backup(bo->bdev, tt, purge, writeback);
++	if (lret < 0 && lret != -EINTR)
++		return 0;
++
++	return lret;
 +}
-+EXPORT_SYMBOL(drm_exec_handle_contended);
++EXPORT_SYMBOL(ttm_bo_try_shrink);
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index b620389761d5..99daf95b2c27 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -130,6 +130,7 @@ xe-y += xe_bb.o \
+ 	xe_ring_ops.o \
+ 	xe_sa.o \
+ 	xe_sched_job.o \
++	xe_shrinker.o \
+ 	xe_step.o \
+ 	xe_sync.o \
+ 	xe_tile.o \
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+index 9f3c02826464..7576d362020f 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+@@ -6,6 +6,8 @@
+ #include <kunit/test.h>
+ #include <kunit/visibility.h>
+ 
++#include <uapi/linux/sysinfo.h>
 +
- /**
-  * drm_exec_lock_obj - lock a GEM object for use
-  * @exec: the drm_exec object with the state
-@@ -209,10 +222,6 @@ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
- {
- 	int ret;
- 
--	ret = drm_exec_lock_contended(exec);
--	if (unlikely(ret))
--		return ret;
--
- 	if (exec->prelocked == obj) {
- 		drm_gem_object_put(exec->prelocked);
- 		exec->prelocked = NULL;
-diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
-index f9eb56f24bef..0923d6ae18e2 100644
---- a/drivers/gpu/drm/drm_gpuvm.c
-+++ b/drivers/gpu/drm/drm_gpuvm.c
-@@ -1254,18 +1254,18 @@ drm_gpuvm_exec_lock(struct drm_gpuvm_exec *vm_exec)
- 
- 	drm_exec_until_all_locked(exec) {
- 		ret = drm_gpuvm_prepare_vm(gpuvm, exec, num_fences);
--		drm_exec_retry_on_contention(exec);
-+		ret = drm_exec_retry_on_contention(exec, ret);
- 		if (ret)
- 			goto err;
- 
- 		ret = drm_gpuvm_prepare_objects(gpuvm, exec, num_fences);
--		drm_exec_retry_on_contention(exec);
-+		ret = drm_exec_retry_on_contention(exec, ret);
- 		if (ret)
- 			goto err;
- 
- 		if (vm_exec->extra.fn) {
- 			ret = vm_exec->extra.fn(vm_exec);
--			drm_exec_retry_on_contention(exec);
-+			ret = drm_exec_retry_on_contention(exec, ret);
- 			if (ret)
- 				goto err;
- 		}
-@@ -1346,7 +1346,7 @@ drm_gpuvm_exec_lock_range(struct drm_gpuvm_exec *vm_exec,
- 	drm_exec_until_all_locked(exec) {
- 		ret = drm_gpuvm_prepare_range(gpuvm, exec, addr, range,
- 					      vm_exec->num_fences);
--		drm_exec_retry_on_contention(exec);
-+		ret = drm_exec_retry_on_contention(exec, ret);
- 		if (ret)
- 			goto err;
- 	}
-diff --git a/drivers/gpu/drm/imagination/pvr_job.c b/drivers/gpu/drm/imagination/pvr_job.c
-index 78c2f3c6dce0..6e0ce6c4576c 100644
---- a/drivers/gpu/drm/imagination/pvr_job.c
-+++ b/drivers/gpu/drm/imagination/pvr_job.c
-@@ -574,7 +574,7 @@ prepare_job_resvs_for_each(struct drm_exec *exec, struct pvr_job_data *job_data,
- 	drm_exec_until_all_locked(exec) {
- 		int err = jobs_lock_all_objs(exec, job_data, job_count);
- 
--		drm_exec_retry_on_contention(exec);
-+		err = drm_exec_retry_on_contention(exec, err);
- 		if (err)
- 			return err;
- 	}
-diff --git a/drivers/gpu/drm/msm/msm_gem_submit.c b/drivers/gpu/drm/msm/msm_gem_submit.c
-index fba78193127d..01992b43ea4b 100644
---- a/drivers/gpu/drm/msm/msm_gem_submit.c
-+++ b/drivers/gpu/drm/msm/msm_gem_submit.c
-@@ -259,7 +259,7 @@ static int submit_lock_objects(struct msm_gem_submit *submit)
- 		for (unsigned i = 0; i < submit->nr_bos; i++) {
- 			struct drm_gem_object *obj = submit->bos[i].obj;
- 			ret = drm_exec_prepare_obj(&submit->exec, obj, 1);
--			drm_exec_retry_on_contention(&submit->exec);
-+			ret = drm_exec_retry_on_contention(&submit->exec, ret);
- 			if (ret)
- 				goto error;
- 		}
-diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-index ee02cd833c5e..0c871634fdfb 100644
---- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-@@ -1350,7 +1350,7 @@ nouveau_uvmm_bind_job_submit(struct nouveau_job *job,
- 	drm_exec_init(exec, vme->flags, 0);
- 	drm_exec_until_all_locked(exec) {
- 		ret = bind_lock_validate(job, exec, vme->num_fences);
--		drm_exec_retry_on_contention(exec);
-+		ret = drm_exec_retry_on_contention(exec, ret);
- 		if (ret) {
- 			op = list_last_op(&bind_job->ops);
- 			goto unwind;
-diff --git a/drivers/gpu/drm/tests/drm_exec_test.c b/drivers/gpu/drm/tests/drm_exec_test.c
-index 81f928a429ba..28558fdb08df 100644
---- a/drivers/gpu/drm/tests/drm_exec_test.c
-+++ b/drivers/gpu/drm/tests/drm_exec_test.c
-@@ -63,7 +63,7 @@ static void test_lock(struct kunit *test)
- 	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
- 	drm_exec_until_all_locked(&exec) {
- 		ret = drm_exec_lock_obj(&exec, &gobj);
--		drm_exec_retry_on_contention(&exec);
-+		ret = drm_exec_retry_on_contention(&exec, ret);
- 		KUNIT_EXPECT_EQ(test, ret, 0);
- 		if (ret)
- 			break;
-@@ -83,14 +83,14 @@ static void test_lock_unlock(struct kunit *test)
- 	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
- 	drm_exec_until_all_locked(&exec) {
- 		ret = drm_exec_lock_obj(&exec, &gobj);
--		drm_exec_retry_on_contention(&exec);
-+		ret = drm_exec_retry_on_contention(&exec, ret);
- 		KUNIT_EXPECT_EQ(test, ret, 0);
- 		if (ret)
- 			break;
- 
- 		drm_exec_unlock_obj(&exec, &gobj);
- 		ret = drm_exec_lock_obj(&exec, &gobj);
--		drm_exec_retry_on_contention(&exec);
-+		ret = drm_exec_retry_on_contention(&exec, ret);
- 		KUNIT_EXPECT_EQ(test, ret, 0);
- 		if (ret)
- 			break;
-@@ -110,13 +110,13 @@ static void test_duplicates(struct kunit *test)
- 	drm_exec_init(&exec, DRM_EXEC_IGNORE_DUPLICATES, 0);
- 	drm_exec_until_all_locked(&exec) {
- 		ret = drm_exec_lock_obj(&exec, &gobj);
--		drm_exec_retry_on_contention(&exec);
-+		ret = drm_exec_retry_on_contention(&exec, ret);
- 		KUNIT_EXPECT_EQ(test, ret, 0);
- 		if (ret)
- 			break;
- 
- 		ret = drm_exec_lock_obj(&exec, &gobj);
--		drm_exec_retry_on_contention(&exec);
-+		ret = drm_exec_retry_on_contention(&exec, ret);
- 		KUNIT_EXPECT_EQ(test, ret, 0);
- 		if (ret)
- 			break;
-@@ -137,7 +137,7 @@ static void test_prepare(struct kunit *test)
- 	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
- 	drm_exec_until_all_locked(&exec) {
- 		ret = drm_exec_prepare_obj(&exec, &gobj, 1);
--		drm_exec_retry_on_contention(&exec);
-+		ret = drm_exec_retry_on_contention(&exec, ret);
- 		KUNIT_EXPECT_EQ(test, ret, 0);
- 		if (ret)
- 			break;
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 040dd142c49c..20ec1ab1b52d 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -200,7 +200,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
- 	drm_exec_init(&exec, 0, 0);
- 	drm_exec_until_all_locked(&exec) {
- 		ret = xe_pf_begin(&exec, vma, atomic, tile->id);
--		drm_exec_retry_on_contention(&exec);
-+		ret = drm_exec_retry_on_contention(&exec, ret);
- 		if (ret)
- 			goto unlock_dma_resv;
- 
-@@ -543,7 +543,7 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
- 	drm_exec_init(&exec, 0, 0);
- 	drm_exec_until_all_locked(&exec) {
- 		ret = xe_pf_begin(&exec, vma, true, tile->id);
--		drm_exec_retry_on_contention(&exec);
-+		ret = drm_exec_retry_on_contention(&exec, ret);
- 		if (ret)
- 			break;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index e2ec148c9c33..335524e803e7 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -501,7 +501,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
- 		bool done = false;
- 
- 		err = xe_preempt_work_begin(&exec, vm, &done);
--		drm_exec_retry_on_contention(&exec);
-+		err = drm_exec_retry_on_contention(&exec, err);
- 		if (err || done) {
- 			drm_exec_fini(&exec);
- 			if (err && xe_vm_validate_should_retry(&exec, err, &end))
-@@ -1052,7 +1052,7 @@ static void xe_vma_destroy_unlocked(struct xe_vma *vma)
- 	drm_exec_init(&exec, 0, 0);
- 	drm_exec_until_all_locked(&exec) {
- 		err = xe_vm_lock_vma(&exec, vma);
--		drm_exec_retry_on_contention(&exec);
-+		err = drm_exec_retry_on_contention(&exec, err);
- 		if (XE_WARN_ON(err))
- 			break;
- 	}
-@@ -2148,11 +2148,11 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
- 			err = 0;
- 			if (!bo->vm) {
- 				err = drm_exec_lock_obj(&exec, xe_vm_obj(vm));
--				drm_exec_retry_on_contention(&exec);
-+				err = drm_exec_retry_on_contention(&exec, err);
- 			}
- 			if (!err) {
- 				err = drm_exec_lock_obj(&exec, &bo->ttm.base);
--				drm_exec_retry_on_contention(&exec);
-+				err = drm_exec_retry_on_contention(&exec, err);
- 			}
- 			if (err) {
- 				drm_exec_fini(&exec);
-@@ -2884,7 +2884,7 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
- 		      DRM_EXEC_IGNORE_DUPLICATES, 0);
- 	drm_exec_until_all_locked(&exec) {
- 		err = vm_bind_ioctl_ops_lock_and_prep(&exec, vm, vops);
--		drm_exec_retry_on_contention(&exec);
-+		err = drm_exec_retry_on_contention(&exec, err);
- 		if (err)
- 			goto unlock;
- 
-diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
-index aa786b828a0a..a3490794ef35 100644
---- a/include/drm/drm_exec.h
-+++ b/include/drm/drm_exec.h
-@@ -51,6 +51,8 @@ struct drm_exec {
- 	struct drm_gem_object *prelocked;
+ #include "tests/xe_bo_test.h"
+ #include "tests/xe_pci_test.h"
+ #include "tests/xe_test.h"
+@@ -350,3 +352,119 @@ void xe_bo_evict_kunit(struct kunit *test)
+ 	xe_call_for_each_device(evict_test_run_device);
+ }
+ EXPORT_SYMBOL_IF_KUNIT(xe_bo_evict_kunit);
++
++struct xe_bo_link {
++	struct list_head link;
++	struct xe_bo *bo;
++};
++
++#define XE_BO_SHRINK_SIZE ((unsigned long)SZ_64M)
++
++/*
++ * Try to create system bos corresponding to twice the amount
++ * of available system memory to test shrinker functionality.
++ * If no swap space is available to accommodate the
++ * memory overcommit, mark bos purgeable.
++ */
++static int shrink_test_run_device(struct xe_device *xe)
++{
++	struct kunit *test = xe_cur_kunit();
++	LIST_HEAD(bos);
++	struct xe_bo_link *link, *next;
++	struct sysinfo si;
++	size_t total, alloced;
++	unsigned int interrupted = 0, successful = 0;
++
++	si_meminfo(&si);
++	total = si.freeram * si.mem_unit;
++
++	kunit_info(test, "Free ram is %lu bytes. Will allocate twice of that.\n",
++		   total);
++
++	total <<= 1;
++	for (alloced = 0; alloced < total ; alloced += XE_BO_SHRINK_SIZE) {
++		struct xe_bo *bo;
++		unsigned int mem_type;
++
++		link = kzalloc(sizeof(*link), GFP_KERNEL);
++		if (!link) {
++			KUNIT_FAIL(test, "Unexpeced link allocation failure\n");
++			break;
++		}
++
++		INIT_LIST_HEAD(&link->link);
++
++		/* We can create bos using WC caching here. But it is slower. */
++		bo = xe_bo_create_user(xe, NULL, NULL, XE_BO_SHRINK_SIZE,
++				       DRM_XE_GEM_CPU_CACHING_WB,
++				       ttm_bo_type_device,
++				       XE_BO_FLAG_SYSTEM);
++		if (IS_ERR(bo)) {
++			if (bo != ERR_PTR(-ENOMEM) && bo != ERR_PTR(-ENOSPC) &&
++			    bo != ERR_PTR(-EINTR) && bo != ERR_PTR(-ERESTARTSYS))
++				KUNIT_FAIL(test, "Error creating bo: %pe\n", bo);
++			kfree(link);
++			break;
++		}
++		link->bo = bo;
++		list_add_tail(&link->link, &bos);
++		xe_bo_lock(bo, false);
++
++		/*
++		 * If we're low on swap entries, we can't shrink unless the bo
++		 * is marked purgeable.
++		 */
++		if (get_nr_swap_pages() < (XE_BO_SHRINK_SIZE >> PAGE_SHIFT) * 128) {
++			struct xe_ttm_tt *xe_tt =
++				container_of(bo->ttm.ttm, typeof(*xe_tt), ttm);
++			long num_pages = xe_tt->ttm.num_pages;
++
++			xe_tt->purgeable = true;
++			xe_shrinker_mod_pages(xe->mem.shrinker, -num_pages,
++					      num_pages);
++		}
++
++		mem_type = bo->ttm.resource->mem_type;
++		xe_bo_unlock(bo);
++		if (mem_type != XE_PL_TT)
++			KUNIT_FAIL(test, "Bo in incorrect memory type: %u\n",
++				   bo->ttm.resource->mem_type);
++		cond_resched();
++		if (signal_pending(current))
++			break;
++	}
++
++	/* Read back and destroy bos */
++	list_for_each_entry_safe_reverse(link, next, &bos, link) {
++		static struct ttm_operation_ctx ctx = {.interruptible = true};
++		struct xe_bo *bo = link->bo;
++		int ret;
++
++		if (!signal_pending(current)) {
++			xe_bo_lock(bo, NULL);
++			ret = ttm_bo_validate(&bo->ttm, &tt_placement, &ctx);
++			xe_bo_unlock(bo);
++			if (ret && ret != -EINTR)
++				KUNIT_FAIL(test, "Validation failed: %pe\n",
++					   ERR_PTR(ret));
++			else if (ret)
++				interrupted++;
++			else
++				successful++;
++		}
++		xe_bo_put(link->bo);
++		list_del(&link->link);
++		kfree(link);
++		cond_resched();
++	}
++	kunit_info(test, "Readbacks interrupted: %u successful: %u\n",
++		   interrupted, successful);
++
++	return 0;
++}
++
++void xe_bo_shrink_kunit(struct kunit *test)
++{
++	xe_call_for_each_device(shrink_test_run_device);
++}
++EXPORT_SYMBOL_IF_KUNIT(xe_bo_shrink_kunit);
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo_test.c b/drivers/gpu/drm/xe/tests/xe_bo_test.c
+index a324cde77db8..317fa923e287 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo_test.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo_test.c
+@@ -10,6 +10,7 @@
+ static struct kunit_case xe_bo_tests[] = {
+ 	KUNIT_CASE(xe_ccs_migrate_kunit),
+ 	KUNIT_CASE(xe_bo_evict_kunit),
++	KUNIT_CASE_SLOW(xe_bo_shrink_kunit),
+ 	{}
  };
  
-+int drm_exec_handle_contended(struct drm_exec *exec);
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo_test.h b/drivers/gpu/drm/xe/tests/xe_bo_test.h
+index 0113ab45066a..7f44d14a45c5 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo_test.h
++++ b/drivers/gpu/drm/xe/tests/xe_bo_test.h
+@@ -10,5 +10,6 @@ struct kunit;
+ 
+ void xe_ccs_migrate_kunit(struct kunit *test);
+ void xe_bo_evict_kunit(struct kunit *test);
++void xe_bo_shrink_kunit(struct kunit *test);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 03f7fe7acf8c..9a0ca2cab7b6 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -10,6 +10,7 @@
+ #include <drm/drm_drv.h>
+ #include <drm/drm_gem_ttm_helper.h>
+ #include <drm/drm_managed.h>
++#include <drm/ttm/ttm_backup.h>
+ #include <drm/ttm/ttm_device.h>
+ #include <drm/ttm/ttm_placement.h>
+ #include <drm/ttm/ttm_tt.h>
+@@ -25,6 +26,7 @@
+ #include "xe_pm.h"
+ #include "xe_preempt_fence.h"
+ #include "xe_res_cursor.h"
++#include "xe_shrinker.h"
+ #include "xe_trace.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_vm.h"
+@@ -278,11 +280,15 @@ static void xe_evict_flags(struct ttm_buffer_object *tbo,
+ 	}
+ }
+ 
++/* struct xe_ttm_tt - Subclassed ttm_tt for xe */
+ struct xe_ttm_tt {
+ 	struct ttm_tt ttm;
+-	struct device *dev;
++	/** @xe - The xe device */
++	struct xe_device *xe;
+ 	struct sg_table sgt;
+ 	struct sg_table *sg;
++	/** @purgeable - Whether the bo is purgeable (WONTNEED) */
++	bool purgeable;
+ };
+ 
+ static int xe_tt_map_sg(struct ttm_tt *tt)
+@@ -291,7 +297,8 @@ static int xe_tt_map_sg(struct ttm_tt *tt)
+ 	unsigned long num_pages = tt->num_pages;
+ 	int ret;
+ 
+-	XE_WARN_ON(tt->page_flags & TTM_TT_FLAG_EXTERNAL);
++	XE_WARN_ON((tt->page_flags & TTM_TT_FLAG_EXTERNAL) &&
++		   !(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE));
+ 
+ 	if (xe_tt->sg)
+ 		return 0;
+@@ -299,13 +306,13 @@ static int xe_tt_map_sg(struct ttm_tt *tt)
+ 	ret = sg_alloc_table_from_pages_segment(&xe_tt->sgt, tt->pages,
+ 						num_pages, 0,
+ 						(u64)num_pages << PAGE_SHIFT,
+-						xe_sg_segment_size(xe_tt->dev),
++						xe_sg_segment_size(xe_tt->xe->drm.dev),
+ 						GFP_KERNEL);
+ 	if (ret)
+ 		return ret;
+ 
+ 	xe_tt->sg = &xe_tt->sgt;
+-	ret = dma_map_sgtable(xe_tt->dev, xe_tt->sg, DMA_BIDIRECTIONAL,
++	ret = dma_map_sgtable(xe_tt->xe->drm.dev, xe_tt->sg, DMA_BIDIRECTIONAL,
+ 			      DMA_ATTR_SKIP_CPU_SYNC);
+ 	if (ret) {
+ 		sg_free_table(xe_tt->sg);
+@@ -321,7 +328,7 @@ static void xe_tt_unmap_sg(struct ttm_tt *tt)
+ 	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
+ 
+ 	if (xe_tt->sg) {
+-		dma_unmap_sgtable(xe_tt->dev, xe_tt->sg,
++		dma_unmap_sgtable(xe_tt->xe->drm.dev, xe_tt->sg,
+ 				  DMA_BIDIRECTIONAL, 0);
+ 		sg_free_table(xe_tt->sg);
+ 		xe_tt->sg = NULL;
+@@ -336,21 +343,41 @@ struct sg_table *xe_bo_sg(struct xe_bo *bo)
+ 	return xe_tt->sg;
+ }
+ 
++/*
++ * Account ttm pages against the device shrinker's shrinkable and
++ * purgeable counts.
++ */
++static void xe_ttm_tt_account(struct ttm_tt *tt, bool add)
++{
++	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
++	long num_pages = tt->num_pages;
 +
- /**
-  * drm_exec_obj() - Return the object for a give drm_exec index
-  * @exec: Pointer to the drm_exec context
-@@ -117,11 +119,18 @@ __PASTE(__drm_exec_, __LINE__):						\
-  * Control flow helper to continue when a contention was detected and we need to
-  * clean up and re-start the loop to prepare all GEM objects.
-  */
--#define drm_exec_retry_on_contention(exec)			\
--	do {							\
--		if (unlikely(drm_exec_is_contended(exec)))	\
--			goto *__drm_exec_retry_ptr;		\
--	} while (0)
-+#define drm_exec_retry_on_contention(exec, _ret)		\
-+	({							\
-+		int __ret = (_ret);				\
-+								\
-+		if (unlikely(drm_exec_is_contended(exec))) {		\
-+			WARN_ON(__ret != -EDEADLK);			\
-+			__ret = drm_exec_handle_contended(exec);	\
-+			if (!__ret)					\
-+				goto *__drm_exec_retry_ptr;		\
-+		}							\
-+		__ret;						\
-+	})
++	if (!add)
++		num_pages = -num_pages;
++
++	if (xe_tt->purgeable)
++		xe_shrinker_mod_pages(xe_tt->xe->mem.shrinker, 0, num_pages);
++	else
++		xe_shrinker_mod_pages(xe_tt->xe->mem.shrinker, num_pages, 0);
++}
++
+ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+ 				       u32 page_flags)
+ {
+ 	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
+ 	struct xe_device *xe = xe_bo_device(bo);
+-	struct xe_ttm_tt *tt;
++	struct xe_ttm_tt *xe_tt;
++	struct ttm_tt *tt;
+ 	unsigned long extra_pages;
+ 	enum ttm_caching caching;
+ 	int err;
+ 
+-	tt = kzalloc(sizeof(*tt), GFP_KERNEL);
+-	if (!tt)
++	xe_tt = kzalloc(sizeof(*xe_tt), GFP_KERNEL);
++	if (!xe_tt)
+ 		return NULL;
+ 
+-	tt->dev = xe->drm.dev;
++	tt = &xe_tt->ttm;
++	xe_tt->xe = xe;
+ 
+ 	extra_pages = 0;
+ 	if (xe_bo_needs_ccs_pages(bo))
+@@ -378,42 +405,101 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+ 	    (xe->info.graphics_verx100 >= 1270 && bo->flags & XE_BO_FLAG_PAGETABLE))
+ 		caching = ttm_write_combined;
+ 
+-	err = ttm_tt_init(&tt->ttm, &bo->ttm, page_flags, caching, extra_pages);
++	if (ttm_bo->type != ttm_bo_type_sg)
++		page_flags |= TTM_TT_FLAG_EXTERNAL | TTM_TT_FLAG_EXTERNAL_MAPPABLE;
++
++	err = ttm_tt_init(tt, &bo->ttm, page_flags, caching, extra_pages);
+ 	if (err) {
+-		kfree(tt);
++		kfree(xe_tt);
++		return NULL;
++	}
++
++	tt->backup = ttm_backup_shmem_create(tt->num_pages << PAGE_SHIFT);
++	if (IS_ERR(tt->backup)) {
++		ttm_tt_fini(tt);
++		kfree(xe_tt);
+ 		return NULL;
+ 	}
+ 
+-	return &tt->ttm;
++	return tt;
+ }
+ 
+ static int xe_ttm_tt_populate(struct ttm_device *ttm_dev, struct ttm_tt *tt,
+ 			      struct ttm_operation_ctx *ctx)
+ {
++	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
+ 	int err;
+ 
+ 	/*
+ 	 * dma-bufs are not populated with pages, and the dma-
+ 	 * addresses are set up when moved to XE_PL_TT.
+ 	 */
+-	if (tt->page_flags & TTM_TT_FLAG_EXTERNAL)
++	if ((tt->page_flags & TTM_TT_FLAG_EXTERNAL) &&
++	    !(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE))
+ 		return 0;
+ 
+ 	err = ttm_pool_alloc(&ttm_dev->pool, tt, ctx);
+ 	if (err)
+ 		return err;
+ 
+-	return err;
++	xe_tt->purgeable = false;
++	xe_ttm_tt_account(tt, true);
++
++	return 0;
+ }
+ 
+ static void xe_ttm_tt_unpopulate(struct ttm_device *ttm_dev, struct ttm_tt *tt)
+ {
+-	if (tt->page_flags & TTM_TT_FLAG_EXTERNAL)
++	if ((tt->page_flags & TTM_TT_FLAG_EXTERNAL) &&
++	    !(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE))
+ 		return;
+ 
+ 	xe_tt_unmap_sg(tt);
+ 
+-	return ttm_pool_free(&ttm_dev->pool, tt);
++	ttm_pool_free(&ttm_dev->pool, tt);
++	xe_ttm_tt_account(tt, false);
++}
++
++/**
++ * xe_bo_shrink() - Try to shrink an xe bo.
++ * @walk:  - The walk parameters
++ * @bo: The TTM buffer object
++ * @purge: Only consider purgeable bos.
++ * @writeback: Try to write back to persistent storage.
++ *
++ * Try to shrink- or purge a bo, and if it succeeds, unmap dma.
++ * Note that we need to be able to handle also non xe bos
++ * (ghost bos), but only if the struct ttm_tt is embedded in
++ * a struct xe_ttm_tt.
++ *
++ * Return: The number of pages shrunken or purged, or negative error
++ * code on failure.
++ */
++long xe_bo_shrink(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo,
++		  bool purge, bool writeback)
++{
++	struct ttm_tt *tt = bo->ttm;
++	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
++	struct ttm_place place = {.mem_type = bo->resource->mem_type};
++	struct xe_device *xe = xe_tt->xe;
++	long lret;
++
++	if (!tt || !ttm_tt_is_populated(tt) ||
++	    !(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE) ||
++	    (purge && !xe_tt->purgeable))
++		return 0L;
++
++	if (!ttm_bo_eviction_valuable(bo, &place))
++		return 0L;
++
++	lret = ttm_bo_try_shrink(walk, bo, xe_tt->purgeable, writeback);
++	if (lret > 0) {
++		xe_assert(xe, !ttm_tt_is_populated(tt));
++
++		xe_ttm_tt_account(tt, false);
++	}
++
++	return lret;
+ }
+ 
+ static void xe_ttm_tt_destroy(struct ttm_device *ttm_dev, struct ttm_tt *tt)
+@@ -1229,6 +1315,7 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+ 	struct ttm_operation_ctx ctx = {
+ 		.interruptible = true,
+ 		.no_wait_gpu = false,
++		.gfp_retry_mayfail = true,
+ 	};
+ 	struct ttm_placement *placement;
+ 	uint32_t alignment;
+@@ -1672,6 +1759,8 @@ int xe_bo_pin_external(struct xe_bo *bo)
+ 	}
+ 
+ 	ttm_bo_pin(&bo->ttm);
++	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
++		xe_ttm_tt_account(bo->ttm.ttm, false);
+ 
+ 	/*
+ 	 * FIXME: If we always use the reserve / unreserve functions for locking
+@@ -1730,6 +1819,8 @@ int xe_bo_pin(struct xe_bo *bo)
+ 	}
+ 
+ 	ttm_bo_pin(&bo->ttm);
++	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
++		xe_ttm_tt_account(bo->ttm.ttm, false);
+ 
+ 	/*
+ 	 * FIXME: If we always use the reserve / unreserve functions for locking
+@@ -1765,6 +1856,9 @@ void xe_bo_unpin_external(struct xe_bo *bo)
+ 	}
+ 
+ 	ttm_bo_unpin(&bo->ttm);
++	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
++		xe_ttm_tt_account(bo->ttm.ttm, true);
++
+ 
+ 	/*
+ 	 * FIXME: If we always use the reserve / unreserve functions for locking
+@@ -1794,6 +1888,8 @@ void xe_bo_unpin(struct xe_bo *bo)
+ 	}
+ 
+ 	ttm_bo_unpin(&bo->ttm);
++	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
++		xe_ttm_tt_account(bo->ttm.ttm, true);
+ }
  
  /**
-  * drm_exec_is_contended - check for contention
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 6de894c728f5..220e71086e65 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -63,6 +63,7 @@
+ #define XE_BO_PROPS_INVALID	(-1)
+ 
+ struct sg_table;
++struct xe_ttm_lru_walk;
+ 
+ struct xe_bo *xe_bo_alloc(void);
+ void xe_bo_free(struct xe_bo *bo);
+@@ -315,6 +316,9 @@ static inline unsigned int xe_sg_segment_size(struct device *dev)
+ 
+ #define i915_gem_object_flush_if_display(obj)		((void)(obj))
+ 
++long xe_bo_shrink(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo,
++		  bool purge, bool writeback);
++
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ /**
+  * xe_bo_is_mem_type - Whether the bo currently resides in the given
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 8da90934c900..7080558adb80 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -42,6 +42,7 @@
+ #include "xe_pcode.h"
+ #include "xe_pm.h"
+ #include "xe_query.h"
++#include "xe_shrinker.h"
+ #include "xe_sriov.h"
+ #include "xe_tile.h"
+ #include "xe_ttm_stolen_mgr.h"
+@@ -239,6 +240,9 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
+ 	if (xe->unordered_wq)
+ 		destroy_workqueue(xe->unordered_wq);
+ 
++	if (!IS_ERR_OR_NULL(xe->mem.shrinker))
++		xe_shrinker_destroy(xe->mem.shrinker);
++
+ 	ttm_device_fini(&xe->ttm);
+ }
+ 
+@@ -268,6 +272,10 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 	if (err)
+ 		goto err;
+ 
++	xe->mem.shrinker = xe_shrinker_create(xe);
++	if (IS_ERR(xe->mem.shrinker))
++		return ERR_CAST(xe->mem.shrinker);
++
+ 	xe->info.devid = pdev->device;
+ 	xe->info.revid = pdev->revision;
+ 	xe->info.force_execlist = xe_modparam.force_execlist;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 5c5e36de452a..fc4f4d17a89f 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -319,6 +319,8 @@ struct xe_device {
+ 		struct xe_mem_region vram;
+ 		/** @mem.sys_mgr: system TTM manager */
+ 		struct ttm_resource_manager sys_mgr;
++		/** @mem.sys_mgr: system memory shrinker. */
++		struct xe_shrinker *shrinker;
+ 	} mem;
+ 
+ 	/** @sriov: device level virtualization data */
+diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shrinker.c
+new file mode 100644
+index 000000000000..4913cba7700b
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_shrinker.c
+@@ -0,0 +1,224 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2024 Intel Corporation
++ */
++
++#include <linux/shrinker.h>
++#include <linux/swap.h>
++
++#include <drm/ttm/ttm_bo.h>
++#include <drm/ttm/ttm_tt.h>
++
++#include "xe_bo.h"
++#include "xe_shrinker.h"
++
++/**
++ * struct xe_shrinker - per-device shrinker
++ * @xe: Back pointer to the device.
++ * @lock: Lock protecting accounting.
++ * @shrinkable_pages: Number of pages that are currently shrinkable.
++ * @purgeable_pages: Number of pages that are currently purgeable.
++ * @shrink: Pointer to the mm shrinker.
++ */
++struct xe_shrinker {
++	struct xe_device *xe;
++	rwlock_t lock;
++	long shrinkable_pages;
++	long purgeable_pages;
++	struct shrinker *shrink;
++};
++
++/**
++ * struct xe_shrink_lru_walk - lru_walk subclass for shrinker
++ * @walk: The embedded base class.
++ * @xe: Pointer to the xe device.
++ * @purge: Purgeable only request from the srinker.
++ * @writeback: Try to write back to persistent storage.
++ */
++struct xe_shrink_lru_walk {
++	struct ttm_lru_walk walk;
++	struct xe_device *xe;
++	bool purge;
++	bool writeback;
++};
++
++static struct xe_shrinker *to_xe_shrinker(struct shrinker *shrink)
++{
++	return shrink->private_data;
++}
++
++static struct xe_shrink_lru_walk *
++to_xe_shrink_lru_walk(struct ttm_lru_walk *walk)
++{
++	return container_of(walk, struct xe_shrink_lru_walk, walk);
++}
++
++/**
++ * xe_shrinker_mod_pages() - Modify shrinker page accounting
++ * @shrinker: Pointer to the struct xe_shrinker.
++ * @shrinkable: Shrinkable pages delta. May be negative.
++ * @purgeable: Purgeable page delta. May be negative.
++ *
++ * Modifies the shrinkable and purgeable pages accounting.
++ */
++void
++xe_shrinker_mod_pages(struct xe_shrinker *shrinker, long shrinkable, long purgeable)
++{
++	write_lock(&shrinker->lock);
++	shrinker->shrinkable_pages += shrinkable;
++	shrinker->purgeable_pages += purgeable;
++	write_unlock(&shrinker->lock);
++}
++
++static long xe_shrinker_process_bo(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
++{
++	struct xe_shrink_lru_walk *shrink_walk = to_xe_shrink_lru_walk(walk);
++
++	return xe_bo_shrink(walk, bo, shrink_walk->purge, shrink_walk->writeback);
++}
++
++static long xe_shrinker_walk(struct xe_shrink_lru_walk *shrink_walk, long target)
++{
++	struct xe_device *xe = shrink_walk->xe;
++	struct ttm_resource_manager *man;
++	unsigned int mem_type;
++	long sofar = 0;
++	long lret;
++
++	for (mem_type = XE_PL_SYSTEM; mem_type <= XE_PL_TT; ++mem_type) {
++		man = ttm_manager_type(&xe->ttm, mem_type);
++		if (!man || !man->use_tt)
++			continue;
++
++		lret = ttm_lru_walk_for_evict(&shrink_walk->walk, &xe->ttm, man, target);
++		if (lret < 0)
++			return lret;
++
++		sofar += lret;
++		if (sofar >= target)
++			break;
++	}
++
++	return sofar;
++}
++
++static unsigned long
++xe_shrinker_count(struct shrinker *shrink, struct shrink_control *sc)
++{
++	struct xe_shrinker *shrinker = to_xe_shrinker(shrink);
++	unsigned long num_pages;
++
++	num_pages = get_nr_swap_pages();
++	read_lock(&shrinker->lock);
++	num_pages = min_t(unsigned long, num_pages, shrinker->shrinkable_pages);
++	num_pages += shrinker->purgeable_pages;
++	read_unlock(&shrinker->lock);
++
++	return num_pages ? num_pages : SHRINK_EMPTY;
++}
++
++static const struct ttm_lru_walk_ops xe_shrink_ops = {
++	.process_bo = xe_shrinker_process_bo,
++};
++
++static unsigned long xe_shrinker_scan(struct shrinker *shrink, struct shrink_control *sc)
++{
++	struct xe_shrinker *shrinker = to_xe_shrinker(shrink);
++	bool is_kswapd = current_is_kswapd();
++	struct ttm_operation_ctx ctx = {
++		.interruptible = false,
++		.no_wait_gpu = !is_kswapd,
++	};
++	unsigned long nr_to_scan, freed = 0;
++	struct xe_shrink_lru_walk shrink_walk = {
++		.walk = {
++			.ops = &xe_shrink_ops,
++			.ctx = &ctx,
++			.trylock_only = true,
++		},
++		.xe = shrinker->xe,
++		.purge = true,
++		.writeback = is_kswapd,
++	};
++	bool purgeable;
++	long ret;
++
++	sc->nr_scanned = 0;
++	nr_to_scan = sc->nr_to_scan;
++
++	read_lock(&shrinker->lock);
++	purgeable = !!shrinker->purgeable_pages;
++	read_unlock(&shrinker->lock);
++
++	while (purgeable && freed < nr_to_scan) {
++		ret = xe_shrinker_walk(&shrink_walk, nr_to_scan);
++		if (ret <= 0)
++			break;
++
++		freed += ret;
++	}
++
++	sc->nr_scanned = freed;
++	if (freed < nr_to_scan)
++		nr_to_scan -= freed;
++	else
++		nr_to_scan = 0;
++	if (!nr_to_scan)
++		return freed ? freed : SHRINK_STOP;
++
++	shrink_walk.purge = false;
++	nr_to_scan = sc->nr_to_scan;
++	while (freed < nr_to_scan) {
++		ret = xe_shrinker_walk(&shrink_walk, nr_to_scan);
++		if (ret <= 0)
++			break;
++
++		freed += ret;
++	}
++
++	sc->nr_scanned = freed;
++
++	return freed ? freed : SHRINK_STOP;
++}
++
++/**
++ * xe_shrinker_create() - Create an xe per-device shrinker
++ * @xe: Pointer to the xe device.
++ *
++ * Returns: A pointer to the created shrinker on success,
++ * Negative error code on failure.
++ */
++struct xe_shrinker *xe_shrinker_create(struct xe_device *xe)
++{
++	struct xe_shrinker *shrinker = kzalloc(sizeof(*shrinker), GFP_KERNEL);
++
++	if (!shrinker)
++		return ERR_PTR(-ENOMEM);
++
++	shrinker->shrink = shrinker_alloc(0, "xe system shrinker");
++	if (!shrinker->shrink) {
++		kfree(shrinker);
++		return ERR_PTR(-ENOMEM);
++	}
++
++	shrinker->xe = xe;
++	rwlock_init(&shrinker->lock);
++	shrinker->shrink->count_objects = xe_shrinker_count;
++	shrinker->shrink->scan_objects = xe_shrinker_scan;
++	shrinker->shrink->private_data = shrinker;
++	shrinker_register(shrinker->shrink);
++
++	return shrinker;
++}
++
++/**
++ * xe_shrinker_destroy() - Destroy an xe per-device shrinker
++ * @shrinker: Pointer to the shrinker to destroy.
++ */
++void xe_shrinker_destroy(struct xe_shrinker *shrinker)
++{
++	xe_assert(shrinker->xe, !shrinker->shrinkable_pages);
++	xe_assert(shrinker->xe, !shrinker->purgeable_pages);
++	shrinker_free(shrinker->shrink);
++	kfree(shrinker);
++}
+diff --git a/drivers/gpu/drm/xe/xe_shrinker.h b/drivers/gpu/drm/xe/xe_shrinker.h
+new file mode 100644
+index 000000000000..28a038f4fcbf
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_shrinker.h
+@@ -0,0 +1,18 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2024 Intel Corporation
++ */
++
++#ifndef _XE_SHRINKER_H_
++#define _XE_SHRINKER_H_
++
++struct xe_shrinker;
++struct xe_device;
++
++void xe_shrinker_mod_pages(struct xe_shrinker *shrinker, long shrinkable, long purgeable);
++
++struct xe_shrinker *xe_shrinker_create(struct xe_device *xe);
++
++void xe_shrinker_destroy(struct xe_shrinker *shrinker);
++
++#endif
+diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+index 30c3a5fd9099..da2bf3ca3ee3 100644
+--- a/include/drm/ttm/ttm_bo.h
++++ b/include/drm/ttm/ttm_bo.h
+@@ -222,6 +222,9 @@ struct ttm_lru_walk {
+ long ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
+ 			    struct ttm_resource_manager *man, long target);
+ 
++long ttm_bo_try_shrink(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo,
++		       bool purge, bool writeback);
++
+ /**
+  * ttm_bo_get - reference a struct ttm_buffer_object
+  *
 -- 
 2.44.0
 
