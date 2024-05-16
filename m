@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE550C25B74
-	for <intel-xe@archiver.kernel.org>; Thu, 16 May 2024 06:44:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56B5DC25B74
+	for <intel-xe@archiver.kernel.org>; Thu, 16 May 2024 06:49:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6971510E3E5;
-	Thu, 16 May 2024 06:44:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VMPudkOS";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B6F410E37F
- for <intel-xe@lists.freedesktop.org>; Thu, 16 May 2024 06:44:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715841878; x=1747377878;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=f0F8Trfwyomc4lH15OKx0LR+LX20P0q3RLQVomKxSvc=;
- b=VMPudkOSA1jW0D/cjbpDNmToInuTbAOZGqYY56g7+IJiP0yHaufDo2IF
- ZMwSeSuyDM5otpAEV7+imkkGpKLnHVmjSbMNHhUIhG8APQFqGww691FIc
- Pc4Gs0D+jgs7AA0Gt5rNL6CxEFZT1REwHMf7ZfLx9/inNqGBcO/loVoG5
- wwdp1/2gRAxwoPq5Aw9hTOM9Kqwwo1aaF+nXRwpjA54ZuDR5gY0ALsZWA
- mVcu7T+TALMnbVq2gzPoBK4badbmWIqonMRcRJKUtM0236287kJEa+h6X
- hpyOAG/jXYb9aRaO2Mm8QZXRL0xqbx6sZmHfgSfBDc+qinJHG+UYDo7uT w==;
-X-CSE-ConnectionGUID: FfsR3OvfT2uGrRmeGgpA4Q==
-X-CSE-MsgGUID: me8HigLCQ6GPIwrwy7Yqrw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="11878115"
-X-IronPort-AV: E=Sophos;i="6.08,163,1712646000"; d="scan'208";a="11878115"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2024 23:44:38 -0700
-X-CSE-ConnectionGUID: sz8r25XlTCOwCPeXfQEssA==
-X-CSE-MsgGUID: af8yuKXyTBaE+DXT46mnqw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,163,1712646000"; d="scan'208";a="35880845"
-Received: from mklonows-mobl1.ger.corp.intel.com (HELO fedora..)
- ([10.245.246.188])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2024 23:44:37 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI v2 20/21] drm/ttm: Use drm_exec_trylock for bo initialization
-Date: Thu, 16 May 2024 08:44:08 +0200
-Message-ID: <20240516064410.22151-21-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240516064410.22151-1-thomas.hellstrom@linux.intel.com>
-References: <20240516064410.22151-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9D1410E37F;
+	Thu, 16 May 2024 06:49:30 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6047710E37F;
+ Thu, 16 May 2024 06:49:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_xe_bo_shrinker_and_e?=
+ =?utf-8?q?xhaustive_eviction_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 16 May 2024 06:49:29 -0000
+Message-ID: <171584216939.2120091.13104317856567946309@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240516064410.22151-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240516064410.22151-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,48 +36,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Buffer object initialization may be part of a drm_exec transaction.
-Rather than using dma_resv_trylock, use drm_exec_trylock_obj().
+== Series Details ==
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/ttm/ttm_bo.c | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+Series: xe bo shrinker and exhaustive eviction (rev3)
+URL   : https://patchwork.freedesktop.org/series/133643/
+State : success
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index 3f1247fc657d..ed67c3b4a6a3 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -919,7 +919,10 @@ int ttm_bo_init_reserved(struct ttm_device *bdev, struct ttm_buffer_object *bo,
- 	 * since otherwise lockdep will be angered in radeon.
- 	 */
- 	if (!resv)
--		WARN_ON(!dma_resv_trylock(bo->base.resv));
-+		if (ctx->exec)
-+			WARN_ON(drm_exec_trylock_obj(ctx->exec, &bo->base));
-+		else
-+			WARN_ON(!dma_resv_trylock(bo->base.resv));
- 	else
- 		dma_resv_assert_held(resv);
- 
-@@ -930,8 +933,12 @@ int ttm_bo_init_reserved(struct ttm_device *bdev, struct ttm_buffer_object *bo,
- 	return 0;
- 
- err_unlock:
--	if (!resv)
--		dma_resv_unlock(bo->base.resv);
-+	if (!resv) {
-+		if (ctx->exec)
-+			drm_exec_unlock_obj(ctx->exec, &bo->base);
-+		else
-+			dma_resv_unlock(bo->base.resv);
-+	}
- 
- err_put:
- 	ttm_bo_put(bo);
--- 
-2.44.0
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 220fb645d6cd drm-tip: 2024y-05m-16d-02h-50m-18s UTC integration manifest
+=== git am output follows ===
+Applying: drm/ttm: Allow TTM LRU list nodes of different types
+Applying: drm/ttm: Slightly clean up LRU list iteration
+Applying: drm/ttm: Use LRU hitches
+Applying: drm/ttm, drm/amdgpu, drm/xe: Consider hitch moves within bulk sublist moves
+Applying: drm/exec: Rework contended locking
+Applying: drm/ttm: Provide a generic LRU walker helper
+Applying: drm/ttm: Use restartable LRU and sleeping locks for swapping.
+Applying: drm/ttm: sleeping evict lock.
+Applying: drm/ttm: Add a virtual base class for graphics memory backup
+Applying: drm/ttm/pool: Provide a helper to shrink pages.
+Applying: drm/ttm: Use fault-injection to test error paths
+Applying: drm/ttm, drm/xe: Add a shrinker for xe bos
+Applying: dma-buf/dma-resv: Introduce dma_resv_trylock_ctx()
+Applying: drm/exec: drm_exec_trylock()
+Applying: drm/exec: Add a snapshot capability.
+Applying: drm/exec: Introduce an evict mode
+Applying: drm/ttm: Support drm_exec locking for eviction and swapping
+Applying: drm/ttm: Convert ttm vm to using drm_exec.
+Applying: drm/xe: Use drm_exec for fault locking
+Applying: drm/ttm: Use drm_exec_trylock for bo initialization
+Applying: drm/xe: Initial support for drm exec locking during validate.
+
 
