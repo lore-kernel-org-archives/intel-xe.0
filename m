@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 470A3C25B74
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5BDDC25B7A
 	for <intel-xe@archiver.kernel.org>; Thu, 16 May 2024 06:44:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DD0910E37F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7060710E3E5;
 	Thu, 16 May 2024 06:44:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MdvEcvQ/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SWXCg4dB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAAF010E638
- for <intel-xe@lists.freedesktop.org>; Thu, 16 May 2024 06:44:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AA7810E37F
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 May 2024 06:44:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715841874; x=1747377874;
+ t=1715841879; x=1747377879;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=v5+2V64r4Nu6cx4P05ec58QsmjwEGKXOBGTKABrnFAE=;
- b=MdvEcvQ/7uAjItx+tPsNnr+awmzdYCHZaiMyT5jUqnyswaYua5V103fp
- azG588iaG+JOHE9+v/bMtZ9tHYhEp1qy42hp37Sh3GwcLK1Diy2q6owTT
- wL/vQCMhgu5btleR07tGBy6QYbXS70lGNr26CwTvt6NAHuOY8ixJSSkvQ
- 5n8M2cFAu5sEW+8/31IawuLf+xS9eqZTnS/Q9mn+MEghxGvyHsZ/FJeGv
- FzkzZDzmD1xmVEH9DTIwPHfXauvtPrDIOEVx/S7zE/UQtOZG4K8oOqVbt
- uU+WRw4axKCEcnqktzraWTCMB8Uhnb5yk61Iijrsw6Gy2HvnJQOLZFXSM g==;
-X-CSE-ConnectionGUID: LGbCPD61RV+S3BmsQlolGQ==
-X-CSE-MsgGUID: Y9b3lIxJSUqnhwxUPZhFuQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="11878107"
-X-IronPort-AV: E=Sophos;i="6.08,163,1712646000"; d="scan'208";a="11878107"
+ bh=u186PCKRHBIL5DpvtnIaAnsLqVk71nqdjo5rEeqWkEk=;
+ b=SWXCg4dBUhZ1OGgt6HUFfkQZgaXqDLnFfcTXNNZTotfD0yGGRamklIRF
+ uUqcN9YxpiipwOLrc3sbBtL+i4x+qELlwYReh3S4YE84fKmqMSgEf5xXD
+ KDB+1BhGk6Eu+RkwFyf8/lm2/7y8ZEArjg9LKzkcNeEnTdKFbk2fZbsss
+ ZqBXPRJhAhzl1/P4VnuTuNrJyjZIY8fOUBQzhZ1NgYlXaNEMDxq4Bqnup
+ SXRMtBBs2UMeXHO5qiXYCtOLPPeJVBCpJJClEZj6CHYyogQH52vXjmRLG
+ vFirioADT+RjEzwsDA7I1sAvX2gJy/q+GwPhLc0vqyzlC0/6ZZnDVvHvr w==;
+X-CSE-ConnectionGUID: Gqy3fH9CSae3velUliL8tw==
+X-CSE-MsgGUID: TAlyLJ9vS/KqdiDIjDlAMQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="11878116"
+X-IronPort-AV: E=Sophos;i="6.08,163,1712646000"; d="scan'208";a="11878116"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2024 23:44:33 -0700
-X-CSE-ConnectionGUID: 0xmEKruxSYK1aGrCC7Tm2w==
-X-CSE-MsgGUID: YQwbSDmPQpaM25nCfuYcnA==
+ 15 May 2024 23:44:39 -0700
+X-CSE-ConnectionGUID: lu97Pw71S/G8qJ3N3fE74g==
+X-CSE-MsgGUID: lZ1ftucwQOOYXFx8XcuIFQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,163,1712646000"; d="scan'208";a="35880829"
+X-IronPort-AV: E=Sophos;i="6.08,163,1712646000"; d="scan'208";a="35880846"
 Received: from mklonows-mobl1.ger.corp.intel.com (HELO fedora..)
  ([10.245.246.188])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2024 23:44:33 -0700
+ 15 May 2024 23:44:38 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v2 15/21] drm/exec: Add a snapshot capability.
-Date: Thu, 16 May 2024 08:44:03 +0200
-Message-ID: <20240516064410.22151-16-thomas.hellstrom@linux.intel.com>
+Subject: [CI v2 21/21] drm/xe: Initial support for drm exec locking during
+ validate.
+Date: Thu, 16 May 2024 08:44:09 +0200
+Message-ID: <20240516064410.22151-22-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240516064410.22151-1-thomas.hellstrom@linux.intel.com>
 References: <20240516064410.22151-1-thomas.hellstrom@linux.intel.com>
@@ -69,107 +70,217 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/drm_exec.c | 38 +++++++++++++++++++++++++++++++++++++-
- include/drm/drm_exec.h     | 11 ++++++++++-
- 2 files changed, 47 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 2 +-
+ drivers/gpu/drm/xe/tests/xe_bo.c       | 6 +++---
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c  | 4 ++--
+ drivers/gpu/drm/xe/tests/xe_migrate.c  | 2 +-
+ drivers/gpu/drm/xe/xe_bo.c             | 8 +++++---
+ drivers/gpu/drm/xe/xe_bo.h             | 4 +++-
+ drivers/gpu/drm/xe/xe_dma_buf.c        | 2 +-
+ drivers/gpu/drm/xe/xe_ggtt.c           | 2 +-
+ drivers/gpu/drm/xe/xe_gt_pagefault.c   | 2 +-
+ drivers/gpu/drm/xe/xe_vm.c             | 4 ++--
+ 10 files changed, 20 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
-index 1a62ee24c1b8..dec5300ef3a5 100644
---- a/drivers/gpu/drm/drm_exec.c
-+++ b/drivers/gpu/drm/drm_exec.c
-@@ -57,6 +57,7 @@ static void drm_exec_unlock_all(struct drm_exec *exec)
- 	struct drm_gem_object *obj;
- 	unsigned long index;
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 36e15c4961c1..85f37dd7ecb1 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -289,7 +289,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 	if (IS_DGFX(xe))
+ 		ret = xe_bo_migrate(bo, XE_PL_VRAM0);
+ 	else
+-		ret = xe_bo_validate(bo, NULL, true);
++		ret = xe_bo_validate(bo, NULL, true, NULL);
+ 	if (!ret)
+ 		ttm_bo_pin(&bo->ttm);
+ 	ttm_bo_unreserve(&bo->ttm);
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+index 7576d362020f..410579f75a39 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+@@ -30,7 +30,7 @@ static int ccs_test_migrate(struct xe_tile *tile, struct xe_bo *bo,
+ 	u32 offset;
  
-+	WARN_ON(exec->snap);
- 	drm_exec_for_each_locked_object_reverse(exec, index, obj) {
- 		dma_resv_unlock(obj->resv);
- 		drm_gem_object_put(obj);
-@@ -289,7 +290,6 @@ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
- 		goto error_unlock;
+ 	/* Move bo to VRAM if not already there. */
+-	ret = xe_bo_validate(bo, NULL, false);
++	ret = xe_bo_validate(bo, NULL, false, NULL);
+ 	if (ret) {
+ 		KUNIT_FAIL(test, "Failed to validate bo.\n");
+ 		return ret;
+@@ -276,7 +276,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
+ 		if (i) {
+ 			down_read(&vm->lock);
+ 			xe_vm_lock(vm, false);
+-			err = xe_bo_validate(bo, bo->vm, false);
++			err = xe_bo_validate(bo, bo->vm, false, NULL);
+ 			xe_vm_unlock(vm);
+ 			up_read(&vm->lock);
+ 			if (err) {
+@@ -285,7 +285,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
+ 				goto cleanup_all;
+ 			}
+ 			xe_bo_lock(external, false);
+-			err = xe_bo_validate(external, NULL, false);
++			err = xe_bo_validate(external, NULL, false, NULL);
+ 			xe_bo_unlock(external);
+ 			if (err) {
+ 				KUNIT_FAIL(test, "external bo valid err=%pe\n",
+diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+index e7f9b531c465..ef88b4dd184c 100644
+--- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+@@ -81,7 +81,7 @@ static void check_residency(struct kunit *test, struct xe_bo *exported,
+ 	}
  
- 	return 0;
--
- error_unlock:
- 	dma_resv_unlock(obj->resv);
- 	return ret;
-@@ -383,5 +383,41 @@ int drm_exec_prepare_array(struct drm_exec *exec,
- }
- EXPORT_SYMBOL(drm_exec_prepare_array);
+ 	/* Re-validate the importer. This should move also exporter in. */
+-	ret = xe_bo_validate(imported, NULL, false);
++	ret = xe_bo_validate(imported, NULL, false, NULL);
+ 	if (ret) {
+ 		if (ret != -EINTR && ret != -ERESTARTSYS)
+ 			KUNIT_FAIL(test, "Validating importer failed with err=%d.\n",
+@@ -157,7 +157,7 @@ static void xe_test_dmabuf_import_same_driver(struct xe_device *xe)
  
-+void drm_exec_restore(struct drm_exec *exec, struct drm_exec_snapshot *snap)
-+{
-+	struct drm_gem_object *obj;
-+	unsigned int index;
-+
-+	exec->snap = snap->saved_snap;
-+
-+	drm_exec_for_each_locked_object_reverse(exec, index, obj) {
-+		if (index + 1 == snap->num_locked)
-+			break;
-+
-+		dma_resv_unlock(obj->resv);
-+		drm_gem_object_put(obj);
-+		exec->objects[index] = NULL;
-+	}
-+
-+	exec->num_objects = snap->num_locked;
-+
-+	if (!exec->prelocked)
-+		exec->prelocked = snap->prelocked;
-+	else
-+		drm_gem_object_put(snap->prelocked);
-+}
-+EXPORT_SYMBOL(drm_exec_restore);
-+
-+void drm_exec_snapshot(struct drm_exec *exec, struct drm_exec_snapshot *snap)
-+{
-+	snap->num_locked = exec->num_objects;
-+	snap->prelocked = exec->prelocked;
-+	if (snap->prelocked)
-+		drm_gem_object_get(snap->prelocked);
-+	snap->saved_snap = exec->snap;
-+	exec->snap = snap;
-+}
-+EXPORT_SYMBOL(drm_exec_snapshot);
-+
- MODULE_DESCRIPTION("DRM execution context");
- MODULE_LICENSE("Dual MIT/GPL");
-diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
-index a37c851a178b..0ef326f2f5f0 100644
---- a/include/drm/drm_exec.h
-+++ b/include/drm/drm_exec.h
-@@ -19,7 +19,6 @@ struct drm_exec {
- 	 * @flags: Flags to control locking behavior
- 	 */
- 	u32                     flags;
--
- 	/**
- 	 * @ticket: WW ticket used for acquiring locks
- 	 */
-@@ -49,6 +48,13 @@ struct drm_exec {
- 	 * @prelocked: already locked GEM object due to contention
- 	 */
- 	struct drm_gem_object *prelocked;
-+	struct drm_exec_snapshot *snap;
-+};
-+
-+struct drm_exec_snapshot {
-+	struct drm_exec_snapshot *saved_snap;
-+	struct drm_gem_object *prelocked;
-+	unsigned long num_locked;
- };
+ 			/* Is everything where we expect it to be? */
+ 			xe_bo_lock(import_bo, false);
+-			err = xe_bo_validate(import_bo, NULL, false);
++			err = xe_bo_validate(import_bo, NULL, false, NULL);
  
- int drm_exec_handle_contended(struct drm_exec *exec);
-@@ -156,5 +162,8 @@ int drm_exec_prepare_array(struct drm_exec *exec,
- 			   struct drm_gem_object **objects,
- 			   unsigned int num_objects,
- 			   unsigned int num_fences);
-+void drm_exec_snapshot(struct drm_exec *exec, struct drm_exec_snapshot *snap);
-+void drm_exec_restore(struct drm_exec *exec, struct drm_exec_snapshot *snap);
-+
+ 			/* Pinning in VRAM is not allowed. */
+ 			if (!is_dynamic(params) &&
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index b6e7f80c3774..0feb99d3ef7d 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -90,7 +90,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+ 		return;
+ 	}
  
- #endif
+-	err = xe_bo_validate(remote, NULL, false);
++	err = xe_bo_validate(remote, NULL, false, NULL);
+ 	if (err) {
+ 		KUNIT_FAIL(test, "Failed to validate system bo for %s: %i\n",
+ 			   str, err);
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 27d7d36401b5..f33120f3a829 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1755,7 +1755,7 @@ int xe_bo_pin_external(struct xe_bo *bo)
+ 	xe_assert(xe, xe_bo_is_user(bo));
+ 
+ 	if (!xe_bo_is_pinned(bo)) {
+-		err = xe_bo_validate(bo, NULL, false);
++		err = xe_bo_validate(bo, NULL, false, NULL);
+ 		if (err)
+ 			return err;
+ 
+@@ -1801,7 +1801,7 @@ int xe_bo_pin(struct xe_bo *bo)
+ 	/* We only expect at most 1 pin */
+ 	xe_assert(xe, !xe_bo_is_pinned(bo));
+ 
+-	err = xe_bo_validate(bo, NULL, false);
++	err = xe_bo_validate(bo, NULL, false, NULL);
+ 	if (err)
+ 		return err;
+ 
+@@ -1917,11 +1917,13 @@ void xe_bo_unpin(struct xe_bo *bo)
+  * Return: 0 on success, negative error code on failure. May return
+  * -EINTR or -ERESTARTSYS if internal waits are interrupted by a signal.
+  */
+-int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict)
++int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict,
++		   struct drm_exec *exec)
+ {
+ 	struct ttm_operation_ctx ctx = {
+ 		.interruptible = true,
+ 		.no_wait_gpu = false,
++		.exec = exec,
+ 	};
+ 
+ 	if (vm) {
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 220e71086e65..a6ddaff8ce74 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -62,6 +62,7 @@
+ 
+ #define XE_BO_PROPS_INVALID	(-1)
+ 
++struct drm_exec;
+ struct sg_table;
+ struct xe_ttm_lru_walk;
+ 
+@@ -164,7 +165,8 @@ int xe_bo_pin_external(struct xe_bo *bo);
+ int xe_bo_pin(struct xe_bo *bo);
+ void xe_bo_unpin_external(struct xe_bo *bo);
+ void xe_bo_unpin(struct xe_bo *bo);
+-int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict);
++int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict,
++		   struct drm_exec *exec);
+ 
+ static inline bool xe_bo_is_pinned(struct xe_bo *bo)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+index 68f309f5e981..ce84aa70cca8 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -102,7 +102,7 @@ static struct sg_table *xe_dma_buf_map(struct dma_buf_attachment *attach,
+ 		if (!attach->peer2peer)
+ 			r = xe_bo_migrate(bo, XE_PL_TT);
+ 		else
+-			r = xe_bo_validate(bo, NULL, false);
++			r = xe_bo_validate(bo, NULL, false, NULL);
+ 		if (r)
+ 			return ERR_PTR(r);
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 0d541f55b4fc..ba9b2c3236ab 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -400,7 +400,7 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 		return 0;
+ 	}
+ 
+-	err = xe_bo_validate(bo, NULL, false);
++	err = xe_bo_validate(bo, NULL, false, NULL);
+ 	if (err)
+ 		return err;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 20ec1ab1b52d..3971bf567f78 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -117,7 +117,7 @@ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
+ 			return err;
+ 	} else if (bo) {
+ 		/* Create backing store if needed */
+-		err = xe_bo_validate(bo, vm, true);
++		err = xe_bo_validate(bo, vm, true, NULL);
+ 		if (err)
+ 			return err;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 335524e803e7..ea2308ff76c4 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -380,7 +380,7 @@ static int xe_gpuvm_validate(struct drm_gpuvm_bo *vm_bo, struct drm_exec *exec)
+ 		list_move_tail(&gpuva_to_vma(gpuva)->combined_links.rebind,
+ 			       &vm->rebind_list);
+ 
+-	ret = xe_bo_validate(gem_to_xe_bo(vm_bo->obj), vm, false);
++	ret = xe_bo_validate(gem_to_xe_bo(vm_bo->obj), vm, false, exec);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -2698,7 +2698,7 @@ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
+ 		if (!bo->vm)
+ 			err = drm_exec_lock_obj(exec, &bo->ttm.base);
+ 		if (!err && validate)
+-			err = xe_bo_validate(bo, xe_vma_vm(vma), true);
++			err = xe_bo_validate(bo, xe_vma_vm(vma), true, exec);
+ 	}
+ 
+ 	return err;
 -- 
 2.44.0
 
