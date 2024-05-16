@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 064CCC25B74
-	for <intel-xe@archiver.kernel.org>; Thu, 16 May 2024 11:06:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15BB8C25B74
+	for <intel-xe@archiver.kernel.org>; Thu, 16 May 2024 11:06:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF8CE10EC69;
-	Thu, 16 May 2024 11:06:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6DBC10EC6A;
+	Thu, 16 May 2024 11:06:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SsJNUInm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lr04lwy8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F7F410EC69
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 015F410EC6A
  for <intel-xe@lists.freedesktop.org>; Thu, 16 May 2024 11:06:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1715857562; x=1747393562;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=XPVwkxxP6xLP6A+NNfVvCwGw/cB2thPVyMBL/ixaaWg=;
- b=SsJNUInmmxOKhduxXDLGrCh0mHGbCkV7KsSl1HRhRQUlif44KPtvdx2+
- zz4W8bohHte0yWLJFknK6C0mgLXvFtnlCDfUWRzgolbF55KiycRPtYPiN
- 9tUAE2fpm7nxTLfgGKd9fhcRpcG8WKxtOuhQ11y+R/W+VSMWkuBCweis1
- uSDAaaWkKHL2xyop6Ny8iKdcCyZs1Eglx7hS7Mzz51QIXhZmCq4jTWvzP
- Yy+EGpdMO541vxulaQm1D+4knJuTthCbUDDq7I4/8j/urp0W+W0mz9jQv
- 0e8Ic2KeW4Nsr/t557ES5y6+WzrP4P8C4Eetq9GkqFuG72n2pVzIdso/1 Q==;
-X-CSE-ConnectionGUID: 3SHmFKGAR5mvzSdYbHZN7Q==
-X-CSE-MsgGUID: oQbpL4RIQzKmDuuBONbA6w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="12082114"
-X-IronPort-AV: E=Sophos;i="6.08,164,1712646000"; d="scan'208";a="12082114"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=1pFJEUAq4d3voFHuiaVYGMYbJT5/mzeT52Z34ZZi57I=;
+ b=Lr04lwy8P1K51vf7rlBTujfcbpvoP1k/27baU7A9o2Mm4zxCXJQguJ50
+ mkeq/ZTc8xt2SwK37DRirqSjOvmu5eFhIoc7wG2XLheUw0g9vWSPoH8dp
+ AD361DmgWknRUFmiOBX+x9r0U4t1Ol7czIw/o1HUuZkACYXVEDdVZmgmy
+ zOB14PZqQEQPnpjZA01zfXqy46cw8s4fRv7cNo/Y2vqsnndBFxGye5/Yt
+ xeyiAY3JIjtCZe/odxCrLpaJ6gpXlPa8vXigWmCnufbRXip12kcZH66mF
+ 17/lWUjzoue137hdK1eeSws0jbD26XAPjmgwJdAIqjM8ZB2TgZd+GCzi5 Q==;
+X-CSE-ConnectionGUID: Iy2B1jeUSM+zbClb0f6PnQ==
+X-CSE-MsgGUID: ery2eu3qRnatKJKK6lbv3A==
+X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="12082115"
+X-IronPort-AV: E=Sophos;i="6.08,164,1712646000"; d="scan'208";a="12082115"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2024 04:06:01 -0700
-X-CSE-ConnectionGUID: CzWHbFn2RxSd/tKeOSso2A==
-X-CSE-MsgGUID: paMrtDY3SlOTj7CNPIdzMw==
+ 16 May 2024 04:06:02 -0700
+X-CSE-ConnectionGUID: ZZE6zlu3RKWeSF3nbk82/g==
+X-CSE-MsgGUID: er9PR8kqQz2csA7CjTuTUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,164,1712646000"; d="scan'208";a="62229137"
+X-IronPort-AV: E=Sophos;i="6.08,164,1712646000"; d="scan'208";a="62229140"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.25.139])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2024 04:06:00 -0700
+ 16 May 2024 04:06:01 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2 0/6] Add support for VF to query its configuration
-Date: Thu, 16 May 2024 13:05:40 +0200
-Message-Id: <20240516110546.2216-1-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Subject: [PATCH v2 1/6] drm/xe/guc: Add VF2GUC_MATCH_VERSION to ABI
+Date: Thu, 16 May 2024 13:05:41 +0200
+Message-Id: <20240516110546.2216-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240516110546.2216-1-michal.wajdeczko@intel.com>
+References: <20240516110546.2216-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -65,35 +68,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-v1: https://patchwork.freedesktop.org/series/133509/
+In upcoming patches we will add a version negotiation between
+the VF driver and the GuC firmware. Add necessary definitions
+to our GuC firmware ABI header.
+
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
 v2: explicitly refer to MMIO HXG Message (Piotr)
-    use proper kernel-doc format (Piotr, CI.hooks)
+---
+ .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    | 67 +++++++++++++++++++
+ 1 file changed, 67 insertions(+)
 
-Michal Wajdeczko (6):
-  drm/xe/guc: Add VF2GUC_MATCH_VERSION to ABI
-  drm/xe/guc: Add VF2GUC_VF_RESET to ABI
-  drm/xe/guc: Add VF2GUC_QUERY_SINGLE_KLV to ABI
-  drm/xe/vf: Add support for VF to query its configuration
-  drm/xe/vf: Custom hardware config load step if VF
-  drm/xe/vf: Expose SR-IOV VF attributes to GT debugfs
-
- drivers/gpu/drm/xe/Makefile                   |   2 +
- .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    | 160 ++++
- drivers/gpu/drm/xe/xe_gt_debugfs.c            |   3 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c           | 747 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.h           |  23 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c   |  72 ++
- drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.h   |  14 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h     |  82 ++
- drivers/gpu/drm/xe/xe_gt_types.h              |   3 +
- drivers/gpu/drm/xe/xe_guc.c                   |  36 +
- 10 files changed, 1142 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf.c
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf.h
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.h
- create mode 100644 drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-
+diff --git a/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
+index c1ad09b36453..fb1c402a1cb3 100644
+--- a/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_actions_sriov_abi.h
+@@ -213,6 +213,73 @@
+ #define   GUC_PF_NOTIFY_VF_PAUSE_DONE			3u
+ #define   GUC_PF_NOTIFY_VF_FIXUP_DONE			4u
+ 
++/**
++ * DOC: VF2GUC_MATCH_VERSION
++ *
++ * This action is used to match VF interface version used by VF and GuC.
++ *
++ * This message must be sent as `MMIO HXG Message`_.
++ *
++ *  +---+-------+--------------------------------------------------------------+
++ *  |   | Bits  | Description                                                  |
++ *  +===+=======+==============================================================+
++ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_HOST_                                |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_REQUEST_                                 |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 27:16 | DATA0 = MBZ                                                  |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |  15:0 | ACTION = _`GUC_ACTION_VF2GUC_MATCH_VERSION` = 0x5500         |
++ *  +---+-------+--------------------------------------------------------------+
++ *  | 1 | 31:24 | **BRANCH** - branch ID of the VF interface                   |
++ *  |   |       | (use BRANCH_ANY to request latest version supported by GuC)  |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 23:16 | **MAJOR** - major version of the VF interface                |
++ *  |   |       | (use MAJOR_ANY to request latest version supported by GuC)   |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |  15:8 | **MINOR** - minor version of the VF interface                |
++ *  |   |       | (use MINOR_ANY to request latest version supported by GuC)   |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |   7:0 | **MBZ**                                                      |
++ *  +---+-------+--------------------------------------------------------------+
++ *
++ *  +---+-------+--------------------------------------------------------------+
++ *  |   | Bits  | Description                                                  |
++ *  +===+=======+==============================================================+
++ *  | 0 |    31 | ORIGIN = GUC_HXG_ORIGIN_GUC_                                 |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 30:28 | TYPE = GUC_HXG_TYPE_RESPONSE_SUCCESS_                        |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |  27:0 | DATA0 = MBZ                                                  |
++ *  +---+-------+--------------------------------------------------------------+
++ *  | 1 | 31:24 | **BRANCH** - branch ID of the VF interface                   |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   | 23:16 | **MAJOR** - major version of the VF interface                |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |  15:8 | **MINOR** - minor version of the VF interface                |
++ *  |   +-------+--------------------------------------------------------------+
++ *  |   |   7:0 | **PATCH** - patch version of the VF interface                |
++ *  +---+-------+--------------------------------------------------------------+
++ */
++#define GUC_ACTION_VF2GUC_MATCH_VERSION			0x5500u
++
++#define VF2GUC_MATCH_VERSION_REQUEST_MSG_LEN		(GUC_HXG_REQUEST_MSG_MIN_LEN + 1u)
++#define VF2GUC_MATCH_VERSION_REQUEST_MSG_0_MBZ		GUC_HXG_REQUEST_MSG_0_DATA0
++#define VF2GUC_MATCH_VERSION_REQUEST_MSG_1_BRANCH	(0xffu << 24)
++#define   GUC_VERSION_BRANCH_ANY			0
++#define VF2GUC_MATCH_VERSION_REQUEST_MSG_1_MAJOR	(0xffu << 16)
++#define   GUC_VERSION_MAJOR_ANY				0
++#define VF2GUC_MATCH_VERSION_REQUEST_MSG_1_MINOR	(0xffu << 8)
++#define   GUC_VERSION_MINOR_ANY				0
++#define VF2GUC_MATCH_VERSION_REQUEST_MSG_1_MBZ		(0xffu << 0)
++
++#define VF2GUC_MATCH_VERSION_RESPONSE_MSG_LEN		(GUC_HXG_RESPONSE_MSG_MIN_LEN + 1u)
++#define VF2GUC_MATCH_VERSION_RESPONSE_MSG_0_MBZ		GUC_HXG_RESPONSE_MSG_0_DATA0
++#define VF2GUC_MATCH_VERSION_RESPONSE_MSG_1_BRANCH	(0xffu << 24)
++#define VF2GUC_MATCH_VERSION_RESPONSE_MSG_1_MAJOR	(0xffu << 16)
++#define VF2GUC_MATCH_VERSION_RESPONSE_MSG_1_MINOR	(0xffu << 8)
++#define VF2GUC_MATCH_VERSION_RESPONSE_MSG_1_PATCH	(0xffu << 0)
++
+ /**
+  * DOC: PF2GUC_UPDATE_VGT_POLICY
+  *
 -- 
 2.43.0
 
