@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F886C27C4E
-	for <intel-xe@archiver.kernel.org>; Thu, 16 May 2024 18:24:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 264F1C25B7A
+	for <intel-xe@archiver.kernel.org>; Thu, 16 May 2024 18:24:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BF6C10EDA9;
-	Thu, 16 May 2024 18:24:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 434CD10EDAD;
+	Thu, 16 May 2024 18:24:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Htcn8Voo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HmYxD4LA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F6EE10ED99
- for <intel-xe@lists.freedesktop.org>; Thu, 16 May 2024 18:24:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A08010ED99
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 May 2024 18:24:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715883842; x=1747419842;
+ t=1715883850; x=1747419850;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=kIbCgfsnJqyWE46yS4a6QVTc2cK35spNOUGCUPBYEAM=;
- b=Htcn8Voo+ahpesDCPDnavC156JYVPLj5thi/mC2FC7F7p0kG+9CGois1
- 5JvjvyRzyBMH5lRnIyMBzNiGwi8UFv18FE0VvVI1H4a1fgMtm4uk37gMr
- F21Yln4c1Sb/ziZ/RHxVQSdZW1HXQIwoiYkF1s0CV6YKSgeOs3Q1MmnAV
- b4PkQcBf8QTlacKYqRuMpnuPx6ziHUaZH0bqtV6XnxrT4JGU5KYkHBg3S
- iywhMvN+ruaGxgubUGREVhgu7gd6996dGUTQekfkC4HuXTVs/EU+xd5bU
- uiGRCJwEuZ4BH9ZXC51DWBSSFhJJNxrkqTKoTsF7g/QIJPlEMAmHBQhfY Q==;
-X-CSE-ConnectionGUID: AdrE0DMZTCiRXPsL7EQ8OQ==
-X-CSE-MsgGUID: vlYya6ocQamOoichoZVe8g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="23159932"
-X-IronPort-AV: E=Sophos;i="6.08,165,1712646000"; d="scan'208";a="23159932"
+ bh=u186PCKRHBIL5DpvtnIaAnsLqVk71nqdjo5rEeqWkEk=;
+ b=HmYxD4LAKcLqfth2urmYaS5rEuFlqOM8JkXfjv+TfX2K2/0BO2Bu4wkY
+ CmRYtnQlO7YrqYyrgi+HWa87SbFf6eRubjiGN7Age3sRyFYxJPWKtN1vG
+ 0V9EuaZndYnn8wQZrIWsLdIAkwhgA3fnFVeJbNvIjOJQB409lxKD4HM3e
+ ns0mlgihsmRIhwLn3QLYgt2ARWcnTsPBFigBcutv7hQsKeY31A2lsPJ32
+ wlur69M7faEU9Xv3S95TP/5BAbK7KGRqZCckBQ0V6mffCh7TxX6YgRZMd
+ E4BjJAlVxSyu+dqUxoQUVJSXYNC1gU+YIA76HcJweLw/COCf8zrYnJVEt Q==;
+X-CSE-ConnectionGUID: ylutRhLFR6KfzfvLvhO19Q==
+X-CSE-MsgGUID: 1YPD7h48SyKaH9D4ZlWAvA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="23159964"
+X-IronPort-AV: E=Sophos;i="6.08,165,1712646000"; d="scan'208";a="23159964"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2024 11:24:02 -0700
-X-CSE-ConnectionGUID: vhCwd29vSv2/9vukgyJoig==
-X-CSE-MsgGUID: 8vUGiZZgS+6QAvtrSs9+XQ==
+ 16 May 2024 11:24:10 -0700
+X-CSE-ConnectionGUID: iGG54MubTLWLM0+r+guKQQ==
+X-CSE-MsgGUID: M9wDx2zaT8a2bApdUrEmhA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,165,1712646000"; d="scan'208";a="32065405"
+X-IronPort-AV: E=Sophos;i="6.08,165,1712646000"; d="scan'208";a="32065530"
 Received: from unknown (HELO fedora..) ([10.245.246.241])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2024 11:24:01 -0700
+ 16 May 2024 11:24:09 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v3 12/21] dma-buf/dma-resv: Introduce dma_resv_trylock_ctx()
-Date: Thu, 16 May 2024 20:23:30 +0200
-Message-ID: <20240516182339.3482-13-thomas.hellstrom@linux.intel.com>
+Subject: [CI v3 21/21] drm/xe: Initial support for drm exec locking during
+ validate.
+Date: Thu, 16 May 2024 20:23:39 +0200
+Message-ID: <20240516182339.3482-22-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240516182339.3482-1-thomas.hellstrom@linux.intel.com>
 References: <20240516182339.3482-1-thomas.hellstrom@linux.intel.com>
@@ -66,57 +67,219 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For the drm_exec_trylock() functionality, there is a need to be able
-to trylock a dma-resv object as part of a drm_exec transaction.
-Therefore expose a variant of dma_resv_trylock that also takes
-a struct ww_acquire_ctx parameter.
-
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- include/linux/dma-resv.h | 23 ++++++++++++++++++++++-
- 1 file changed, 22 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 2 +-
+ drivers/gpu/drm/xe/tests/xe_bo.c       | 6 +++---
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c  | 4 ++--
+ drivers/gpu/drm/xe/tests/xe_migrate.c  | 2 +-
+ drivers/gpu/drm/xe/xe_bo.c             | 8 +++++---
+ drivers/gpu/drm/xe/xe_bo.h             | 4 +++-
+ drivers/gpu/drm/xe/xe_dma_buf.c        | 2 +-
+ drivers/gpu/drm/xe/xe_ggtt.c           | 2 +-
+ drivers/gpu/drm/xe/xe_gt_pagefault.c   | 2 +-
+ drivers/gpu/drm/xe/xe_vm.c             | 4 ++--
+ 10 files changed, 20 insertions(+), 16 deletions(-)
 
-diff --git a/include/linux/dma-resv.h b/include/linux/dma-resv.h
-index 8d0e34dad446..68dae8f2a22c 100644
---- a/include/linux/dma-resv.h
-+++ b/include/linux/dma-resv.h
-@@ -405,6 +405,27 @@ static inline int dma_resv_lock_slow_interruptible(struct dma_resv *obj,
- 	return ww_mutex_lock_slow_interruptible(&obj->lock, ctx);
- }
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 36e15c4961c1..85f37dd7ecb1 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -289,7 +289,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 	if (IS_DGFX(xe))
+ 		ret = xe_bo_migrate(bo, XE_PL_VRAM0);
+ 	else
+-		ret = xe_bo_validate(bo, NULL, true);
++		ret = xe_bo_validate(bo, NULL, true, NULL);
+ 	if (!ret)
+ 		ttm_bo_pin(&bo->ttm);
+ 	ttm_bo_unreserve(&bo->ttm);
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+index 7576d362020f..410579f75a39 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+@@ -30,7 +30,7 @@ static int ccs_test_migrate(struct xe_tile *tile, struct xe_bo *bo,
+ 	u32 offset;
  
-+/**
-+ * dma_resv_trylock_ctx - trylock the reservation object
-+ * @obj: the reservation object
-+ * @ctx: The ww acquire context or NULL.
-+ *
-+ * Tries to lock the reservation object for exclusive access and modification.
-+ * Note, that the lock is only against other writers, readers will run
-+ * concurrently with a writer under RCU. The seqlock is used to notify readers
-+ * if they overlap with a writer. The context parameter ensures that other
-+ * ww transactions can perform deadlock backoff if necessary, and that
-+ * subsequent attempts to dma_resv_lock() @obj for @ctx will return
-+ * -EALREADY.
-+ *
-+ * Return: true if the lock was acquired, false otherwise.
-+ */
-+static inline bool __must_check
-+dma_resv_trylock_ctx(struct dma_resv *obj, struct ww_acquire_ctx *ctx)
-+{
-+	return ww_mutex_trylock(&obj->lock, ctx);
-+}
-+
- /**
-  * dma_resv_trylock - trylock the reservation object
-  * @obj: the reservation object
-@@ -421,7 +442,7 @@ static inline int dma_resv_lock_slow_interruptible(struct dma_resv *obj,
+ 	/* Move bo to VRAM if not already there. */
+-	ret = xe_bo_validate(bo, NULL, false);
++	ret = xe_bo_validate(bo, NULL, false, NULL);
+ 	if (ret) {
+ 		KUNIT_FAIL(test, "Failed to validate bo.\n");
+ 		return ret;
+@@ -276,7 +276,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
+ 		if (i) {
+ 			down_read(&vm->lock);
+ 			xe_vm_lock(vm, false);
+-			err = xe_bo_validate(bo, bo->vm, false);
++			err = xe_bo_validate(bo, bo->vm, false, NULL);
+ 			xe_vm_unlock(vm);
+ 			up_read(&vm->lock);
+ 			if (err) {
+@@ -285,7 +285,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
+ 				goto cleanup_all;
+ 			}
+ 			xe_bo_lock(external, false);
+-			err = xe_bo_validate(external, NULL, false);
++			err = xe_bo_validate(external, NULL, false, NULL);
+ 			xe_bo_unlock(external);
+ 			if (err) {
+ 				KUNIT_FAIL(test, "external bo valid err=%pe\n",
+diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+index e7f9b531c465..ef88b4dd184c 100644
+--- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+@@ -81,7 +81,7 @@ static void check_residency(struct kunit *test, struct xe_bo *exported,
+ 	}
+ 
+ 	/* Re-validate the importer. This should move also exporter in. */
+-	ret = xe_bo_validate(imported, NULL, false);
++	ret = xe_bo_validate(imported, NULL, false, NULL);
+ 	if (ret) {
+ 		if (ret != -EINTR && ret != -ERESTARTSYS)
+ 			KUNIT_FAIL(test, "Validating importer failed with err=%d.\n",
+@@ -157,7 +157,7 @@ static void xe_test_dmabuf_import_same_driver(struct xe_device *xe)
+ 
+ 			/* Is everything where we expect it to be? */
+ 			xe_bo_lock(import_bo, false);
+-			err = xe_bo_validate(import_bo, NULL, false);
++			err = xe_bo_validate(import_bo, NULL, false, NULL);
+ 
+ 			/* Pinning in VRAM is not allowed. */
+ 			if (!is_dynamic(params) &&
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index b6e7f80c3774..0feb99d3ef7d 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -90,7 +90,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+ 		return;
+ 	}
+ 
+-	err = xe_bo_validate(remote, NULL, false);
++	err = xe_bo_validate(remote, NULL, false, NULL);
+ 	if (err) {
+ 		KUNIT_FAIL(test, "Failed to validate system bo for %s: %i\n",
+ 			   str, err);
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 27d7d36401b5..f33120f3a829 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1755,7 +1755,7 @@ int xe_bo_pin_external(struct xe_bo *bo)
+ 	xe_assert(xe, xe_bo_is_user(bo));
+ 
+ 	if (!xe_bo_is_pinned(bo)) {
+-		err = xe_bo_validate(bo, NULL, false);
++		err = xe_bo_validate(bo, NULL, false, NULL);
+ 		if (err)
+ 			return err;
+ 
+@@ -1801,7 +1801,7 @@ int xe_bo_pin(struct xe_bo *bo)
+ 	/* We only expect at most 1 pin */
+ 	xe_assert(xe, !xe_bo_is_pinned(bo));
+ 
+-	err = xe_bo_validate(bo, NULL, false);
++	err = xe_bo_validate(bo, NULL, false, NULL);
+ 	if (err)
+ 		return err;
+ 
+@@ -1917,11 +1917,13 @@ void xe_bo_unpin(struct xe_bo *bo)
+  * Return: 0 on success, negative error code on failure. May return
+  * -EINTR or -ERESTARTSYS if internal waits are interrupted by a signal.
   */
- static inline bool __must_check dma_resv_trylock(struct dma_resv *obj)
+-int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict)
++int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict,
++		   struct drm_exec *exec)
  {
--	return ww_mutex_trylock(&obj->lock, NULL);
-+	return dma_resv_trylock_ctx(obj, NULL);
- }
+ 	struct ttm_operation_ctx ctx = {
+ 		.interruptible = true,
+ 		.no_wait_gpu = false,
++		.exec = exec,
+ 	};
  
- /**
+ 	if (vm) {
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 220e71086e65..a6ddaff8ce74 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -62,6 +62,7 @@
+ 
+ #define XE_BO_PROPS_INVALID	(-1)
+ 
++struct drm_exec;
+ struct sg_table;
+ struct xe_ttm_lru_walk;
+ 
+@@ -164,7 +165,8 @@ int xe_bo_pin_external(struct xe_bo *bo);
+ int xe_bo_pin(struct xe_bo *bo);
+ void xe_bo_unpin_external(struct xe_bo *bo);
+ void xe_bo_unpin(struct xe_bo *bo);
+-int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict);
++int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict,
++		   struct drm_exec *exec);
+ 
+ static inline bool xe_bo_is_pinned(struct xe_bo *bo)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+index 68f309f5e981..ce84aa70cca8 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -102,7 +102,7 @@ static struct sg_table *xe_dma_buf_map(struct dma_buf_attachment *attach,
+ 		if (!attach->peer2peer)
+ 			r = xe_bo_migrate(bo, XE_PL_TT);
+ 		else
+-			r = xe_bo_validate(bo, NULL, false);
++			r = xe_bo_validate(bo, NULL, false, NULL);
+ 		if (r)
+ 			return ERR_PTR(r);
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 0d541f55b4fc..ba9b2c3236ab 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -400,7 +400,7 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 		return 0;
+ 	}
+ 
+-	err = xe_bo_validate(bo, NULL, false);
++	err = xe_bo_validate(bo, NULL, false, NULL);
+ 	if (err)
+ 		return err;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 20ec1ab1b52d..3971bf567f78 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -117,7 +117,7 @@ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
+ 			return err;
+ 	} else if (bo) {
+ 		/* Create backing store if needed */
+-		err = xe_bo_validate(bo, vm, true);
++		err = xe_bo_validate(bo, vm, true, NULL);
+ 		if (err)
+ 			return err;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 335524e803e7..ea2308ff76c4 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -380,7 +380,7 @@ static int xe_gpuvm_validate(struct drm_gpuvm_bo *vm_bo, struct drm_exec *exec)
+ 		list_move_tail(&gpuva_to_vma(gpuva)->combined_links.rebind,
+ 			       &vm->rebind_list);
+ 
+-	ret = xe_bo_validate(gem_to_xe_bo(vm_bo->obj), vm, false);
++	ret = xe_bo_validate(gem_to_xe_bo(vm_bo->obj), vm, false, exec);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -2698,7 +2698,7 @@ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
+ 		if (!bo->vm)
+ 			err = drm_exec_lock_obj(exec, &bo->ttm.base);
+ 		if (!err && validate)
+-			err = xe_bo_validate(bo, xe_vma_vm(vma), true);
++			err = xe_bo_validate(bo, xe_vma_vm(vma), true, exec);
+ 	}
+ 
+ 	return err;
 -- 
 2.44.0
 
