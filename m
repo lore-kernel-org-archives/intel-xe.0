@@ -4,39 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6C36C25B77
-	for <intel-xe@archiver.kernel.org>; Sun, 19 May 2024 11:41:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7E4AC25B78
+	for <intel-xe@archiver.kernel.org>; Mon, 20 May 2024 13:07:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D623110E0B7;
-	Sun, 19 May 2024 11:41:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 086C510E701;
+	Mon, 20 May 2024 13:07:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="Dd5jX4BX";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="F8J6rGhR";
 	dkim-atps=neutral
-Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8A9310E0B7
- for <intel-xe@lists.freedesktop.org>; Sun, 19 May 2024 11:41:01 +0000 (UTC)
-Received: internal info suppressed
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1716118862; bh=Rcmt6xQAQuYUU1TKZoncYYBe44yD+Oju8F6CyUmb7KY=;
- h=From:To:Cc:Subject:Date:From;
- b=Dd5jX4BXQgpnTNX5PkwT9JuMZEKaoxCBwvS+bJ9qFDIQOobwt5lzYZdX3vaQt1ghk
- 51pyWmyskldK36ZwLlT9Xivca7aMTm4ezClnuEfnz715X+iUm29XMyjXY0/S5LsQI3
- O9XtBOYYbZGIVLoMKXrqahqK1zifH63P6d832g7/rM2MvMyz2lr8PAn7aFOIRXJAkY
- XlA1KsjHqwzXpg5Q5CHFOQ1hG1/kcGpXzPR/T3rHXTIVSNettCOOCLTmHwxDUBw00D
- 8FaJdB9q2v9C7s/bnb2KUqZCvO+l2cy6OeJdPJk7QbZEG+QrJ/onTtCLg0+Uz3S/8X
- 8Hp8z+fScy+HA==
-Received: from fkassabri-vm-u22.habana-labs.com (localhost [127.0.0.1])
- by fkassabri-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
- ESMTP id 44JBemSh277341; Sun, 19 May 2024 14:40:48 +0300
-From: Farah Kassabri <fkassabri@habana.ai>
-To: intel-xe@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com
-Subject: [PATCH v2 5/5] drm/xe: add wopcm region size to the device info
-Date: Sun, 19 May 2024 14:40:44 +0300
-Message-Id: <20240519114044.277328-1-fkassabri@habana.ai>
-X-Mailer: git-send-email 2.34.1
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6062210E1A6;
+ Fri, 17 May 2024 16:23:25 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id 3056CCE1B3A;
+ Fri, 17 May 2024 16:23:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70342C2BD10;
+ Fri, 17 May 2024 16:23:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1715962993;
+ bh=uNwlZVn0k6bBYrUn2NOTbtyZjAe9hAwPUWGNLiaSzKs=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=F8J6rGhR6abMw+H3e0sNsBE3c0HR9drUMq7zelYKMTQHa0vv/MIG2W8+/hD/7XTI+
+ 9VkRoCKMyZzVY3LjQAv7zTKPKrfWjp+PaYpWL+HZIXKwJ9PpfHkWCOm8/AnprKJTiS
+ x71fH3FEiRuBcJ7Snaffb4mCRWAYWAV32gCoEeO44TUBKDap7ZLHPJJXjD0QMTmCNO
+ ZUj+MK/eDva4zMj4VegTwZ0y/H/lyuO2Nk/KqN8YnLbubwD8YFqugReL9OgeiAJUxc
+ u0pTJlCPPo4/7T1+KTMYWfO14b9TwwHb+K7KeD4YmO6RNA3DpP+PsNxwbeXmOHuVhd
+ +qE7xoo2PLRTA==
+Date: Fri, 17 May 2024 09:23:12 -0700
+From: "Darrick J. Wong" <djwong@kernel.org>
+To: Steven Rostedt <rostedt@goodmis.org>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+ Linux trace kernel <linux-trace-kernel@vger.kernel.org>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org,
+ linux-block@vger.kernel.org, linux-cxl@vger.kernel.org,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, virtualization@lists.linux.dev,
+ linux-rdma@vger.kernel.org, linux-pm@vger.kernel.org,
+ iommu@lists.linux.dev, linux-tegra@vger.kernel.org,
+ netdev@vger.kernel.org, linux-hyperv@vger.kernel.org,
+ ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ ath11k@lists.infradead.org, ath12k@lists.infradead.org,
+ brcm80211@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com,
+ linux-usb@vger.kernel.org, linux-bcachefs@vger.kernel.org,
+ linux-nfs@vger.kernel.org, ocfs2-devel@lists.linux.dev,
+ linux-cifs@vger.kernel.org, linux-xfs@vger.kernel.org,
+ linux-edac@vger.kernel.org, selinux@vger.kernel.org,
+ linux-btrfs@vger.kernel.org, linux-erofs@lists.ozlabs.org,
+ linux-f2fs-devel@lists.sourceforge.net, linux-hwmon@vger.kernel.org,
+ io-uring@vger.kernel.org, linux-sound@vger.kernel.org,
+ bpf@vger.kernel.org, linux-wpan@vger.kernel.org,
+ dev@openvswitch.org, linux-s390@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, Julia Lawall <Julia.Lawall@inria.fr>
+Subject: Re: [PATCH] tracing/treewide: Remove second parameter of
+ __assign_str()
+Message-ID: <20240517162312.GZ360919@frogsfrogsfrogs>
+References: <20240516133454.681ba6a0@rorschach.local.home>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240516133454.681ba6a0@rorschach.local.home>
+X-Mailman-Approved-At: Mon, 20 May 2024 13:07:34 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,166 +83,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As each product may have different wopcm region size,
-it's better to have this information as part of the device
-descriptor, that way we won't need to keep adding more
-else cases to the function which retrieve that size for
-future products.
+On Thu, May 16, 2024 at 01:34:54PM -0400, Steven Rostedt wrote:
+> From: "Steven Rostedt (Google)" <rostedt@goodmis.org>
+> 
+> [
+>    This is a treewide change. I will likely re-create this patch again in
+>    the second week of the merge window of v6.10 and submit it then. Hoping
+>    to keep the conflicts that it will cause to a minimum.
+> ]
+> 
+> With the rework of how the __string() handles dynamic strings where it
+> saves off the source string in field in the helper structure[1], the
+> assignment of that value to the trace event field is stored in the helper
+> value and does not need to be passed in again.
+> 
+> This means that with:
+> 
+>   __string(field, mystring)
+> 
+> Which use to be assigned with __assign_str(field, mystring), no longer
+> needs the second parameter and it is unused. With this, __assign_str()
+> will now only get a single parameter.
+> 
+> There's over 700 users of __assign_str() and because coccinelle does not
+> handle the TRACE_EVENT() macro I ended up using the following sed script:
+> 
+>   git grep -l __assign_str | while read a ; do
+>       sed -e 's/\(__assign_str([^,]*[^ ,]\) *,[^;]*/\1)/' $a > /tmp/test-file;
+>       mv /tmp/test-file $a;
+>   done
+> 
+> I then searched for __assign_str() that did not end with ';' as those
+> were multi line assignments that the sed script above would fail to catch.
+> 
+> Note, the same updates will need to be done for:
+> 
+>   __assign_str_len()
+>   __assign_rel_str()
+>   __assign_rel_str_len()
+> 
+> I tested this with both an allmodconfig and an allyesconfig (build only for both).
+> 
+> [1] https://lore.kernel.org/linux-trace-kernel/20240222211442.634192653@goodmis.org/
+> 
+> Cc: Masami Hiramatsu <mhiramat@kernel.org>
+> Cc: Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+> Cc: Linus Torvalds <torvalds@linux-foundation.org>
+> Cc: Julia Lawall <Julia.Lawall@inria.fr>
+> Signed-off-by: Steven Rostedt (Google) <rostedt@goodmis.org>
 
-Signed-off-by: Farah Kassabri <fkassabri@habana.ai>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+/me finds this pretty magical, but such is the way of macros.
+Thanks for being much smarter about them than me. :)
 
-Changes in v2:
-Keep xe_wopcm_size function and change it to just return
-the wopcm size from the descriptor.
+Acked-by: Darrick J. Wong <djwong@kernel.org>	# xfs
 
----
- drivers/gpu/drm/xe/xe_device_types.h       |  2 ++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c |  2 +-
- drivers/gpu/drm/xe/xe_pci.c                | 12 +++++++++++-
- drivers/gpu/drm/xe/xe_wopcm.c              | 12 +-----------
- 4 files changed, 15 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 2e62450d86e1..fa3c7ca2f2d4 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -230,6 +230,8 @@ struct xe_device {
- 		u32 media_verx100;
- 		/** @info.mem_region_mask: mask of valid memory regions */
- 		u32 mem_region_mask;
-+		/** @info.wopcm_size: wopcm region size */
-+		u32 wopcm_size;
- 		/** @info.platform: XE platform enum */
- 		enum xe_platform platform;
- 		/** @info.subplatform: XE subplatform enum */
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index 79116ad58620..fd391ba77fa5 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -1932,7 +1932,7 @@ int xe_gt_sriov_pf_config_print_available_ggtt(struct xe_gt *gt, struct drm_prin
- 	const struct drm_mm *mm = &ggtt->mm;
- 	const struct drm_mm_node *entry;
- 	u64 alignment = pf_get_ggtt_alignment(gt);
--	u64 hole_min_start = xe_wopcm_size(gt_to_xe(gt));
-+	u64 hole_min_start = gt_to_xe(gt)->info.wopcm_size;
- 	u64 hole_start, hole_end, hole_size;
- 	u64 spare, avail, total = 0;
- 	char buf[10];
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index a0cf5dd803c2..55f977124647 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -57,6 +57,8 @@ struct xe_device_desc {
- 
- 	enum xe_platform platform;
- 
-+	u32 wopcm_size;
-+
- 	u8 require_force_probe:1;
- 	u8 is_dgfx:1;
- 
-@@ -221,6 +223,7 @@ static const struct xe_device_desc tgl_desc = {
- 	.has_display = true,
- 	.has_llc = true,
- 	.require_force_probe = true,
-+	.wopcm_size = SZ_2M,
- };
- 
- static const struct xe_device_desc rkl_desc = {
-@@ -282,6 +285,7 @@ static const struct xe_device_desc dg1_desc = {
- 	.has_display = true,
- 	.has_heci_gscfi = 1,
- 	.require_force_probe = true,
-+	.wopcm_size = SZ_4M,
- };
- 
- static const u16 dg2_g10_ids[] = { XE_DG2_G10_IDS(NOP), XE_ATS_M150_IDS(NOP), 0 };
-@@ -306,6 +310,7 @@ static const struct xe_device_desc ats_m_desc = {
- 
- 	DG2_FEATURES,
- 	.has_display = false,
-+	.wopcm_size = SZ_2M,
- };
- 
- static const struct xe_device_desc dg2_desc = {
-@@ -315,6 +320,7 @@ static const struct xe_device_desc dg2_desc = {
- 
- 	DG2_FEATURES,
- 	.has_display = true,
-+	.wopcm_size = SZ_2M,
- };
- 
- static const struct xe_device_desc pvc_desc = {
-@@ -324,6 +330,7 @@ static const struct xe_device_desc pvc_desc = {
- 	.has_display = false,
- 	.has_heci_gscfi = 1,
- 	.require_force_probe = true,
-+	.wopcm_size = SZ_4M,
- };
- 
- static const struct xe_device_desc mtl_desc = {
-@@ -331,18 +338,21 @@ static const struct xe_device_desc mtl_desc = {
- 	.require_force_probe = true,
- 	PLATFORM(XE_METEORLAKE),
- 	.has_display = true,
-+	.wopcm_size = SZ_4M,
- };
- 
- static const struct xe_device_desc lnl_desc = {
- 	PLATFORM(XE_LUNARLAKE),
- 	.has_display = true,
- 	.require_force_probe = true,
-+	.wopcm_size = SZ_2M,
- };
- 
- static const struct xe_device_desc bmg_desc __maybe_unused = {
- 	DGFX_FEATURES,
- 	PLATFORM(XE_BATTLEMAGE),
- 	.require_force_probe = true,
-+	.wopcm_size = SZ_4M,
- };
- 
- #undef PLATFORM
-@@ -567,7 +577,7 @@ static int xe_info_init_early(struct xe_device *xe,
- 	xe->info.skip_guc_pc = desc->skip_guc_pc;
- 	xe->info.skip_mtcfg = desc->skip_mtcfg;
- 	xe->info.skip_pcode = desc->skip_pcode;
--
-+	xe->info.wopcm_size = desc->wopcm_size;
- 	xe->info.enable_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
- 				  xe_modparam.enable_display &&
- 				  desc->has_display;
-diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
-index d3a99157e523..35878b5384a1 100644
---- a/drivers/gpu/drm/xe/xe_wopcm.c
-+++ b/drivers/gpu/drm/xe/xe_wopcm.c
-@@ -45,14 +45,6 @@
-  * The top part of the WOPCM is reserved for hardware contexts (e.g. RC6
-  * context).
-  */
--
--/* Default WOPCM size is 2MB from Gen11, 1MB on previous platforms */
--/* FIXME: Larger size require for 2 tile PVC, do a proper probe sooner or later */
--#define DGFX_WOPCM_SIZE			SZ_4M
--/* FIXME: Larger size require for MTL, do a proper probe sooner or later */
--#define MTL_WOPCM_SIZE			SZ_4M
--#define WOPCM_SIZE			SZ_2M
--
- #define MAX_WOPCM_SIZE			SZ_8M
- 
- /* 16KB WOPCM (RSVD WOPCM) is reserved from HuC firmware top. */
-@@ -179,9 +171,7 @@ static int __wopcm_init_regs(struct xe_device *xe, struct xe_gt *gt,
- 
- u32 xe_wopcm_size(struct xe_device *xe)
- {
--	return IS_DGFX(xe) ? DGFX_WOPCM_SIZE :
--		xe->info.platform == XE_METEORLAKE ? MTL_WOPCM_SIZE :
--		WOPCM_SIZE;
-+	return xe->info.wopcm_size;
- }
- 
- /**
--- 
-2.34.1
-
+--D
