@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3F02C25B7C
-	for <intel-xe@archiver.kernel.org>; Fri, 17 May 2024 20:43:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5687C25B7A
+	for <intel-xe@archiver.kernel.org>; Fri, 17 May 2024 20:43:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4824610EF7C;
-	Fri, 17 May 2024 20:43:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7494610EF6C;
+	Fri, 17 May 2024 20:43:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CbwLsBDy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RnEv3WJO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28FD310E028;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8CCB10EF70;
  Fri, 17 May 2024 20:43:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715978590; x=1747514590;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=hAPiXQn+hSroy0iFGWgjUKfIDHtBYzwsv/uDpC1kSk4=;
- b=CbwLsBDyKkiR377DRdB5Vbxewf0xDBZKIS185pZUvEPRdI+cmiWYwZgN
- WsSgnDYbo6ZhA+Pl5BrAx/vFvalElPy2cbOEmLeb1fNAnU4zT+HjBQakT
- l1BdAImcV95HVvUBiCEKUBU7+2E8pJ6W0BJ/H49jgo/GiBknmUW2Plr5O
- +0kwmTVr+bBPZ8AQozGSzw45y/AmxnCBujeBA8VCA/mMI6VSJg7Mrg3+S
- FAgXtMjVLm1ISoFUHHfEzs0B9lo1gz8kPp4AkoJtvy4Q5wPHXdoz8ZZLs
- 8l6EFRwwTfHFPszZTduQWtwRtsSB+skKz3bCWZKZK3wggzKOvXksLJxgK A==;
-X-CSE-ConnectionGUID: 1ph1bl2CSOOz+q7wjTfbLg==
-X-CSE-MsgGUID: mR6WYfaJRe+UucAaE6bDcg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11075"; a="12027909"
-X-IronPort-AV: E=Sophos;i="6.08,168,1712646000"; d="scan'208";a="12027909"
+ t=1715978591; x=1747514591;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=jAAH7nca/REOs/C6Nd0bQTUOEodfvlodNhpWGM+TVfo=;
+ b=RnEv3WJOSl71dEEGAEAoZHHZ5kVtBIRmgq3nO3a5ej/2mEO3A303rhcs
+ EMTRmvHwDayoPYh9l+Ribe+0PuYeWhOTZYhGLqqhPuhsoefsAolZdboYx
+ XqEQgfVrtH8m99JDWfDamRz23IgIMRhEpYDaE7HRtiNDwVWiUHLy98BtP
+ 0daQga2L/akzlP4ITGSpiR5X+0jhEYW6fb5Yef8lPpcf9pUeTeyNmSJAe
+ mra7m1q+ggBealDwXfps1fc5DByZgKiarpITDIRCp9mP8z8oQXP1OySCH
+ qDe5cjFNAX8RiE7OA0UnbOvtzdD5UTdwW+UvWzPBe5vg/P1U75hXTsQfU Q==;
+X-CSE-ConnectionGUID: Ssqit79XQ8SifQMZ2Hx3bQ==
+X-CSE-MsgGUID: lQSA/knhSYac33LURs6tEg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11075"; a="12027916"
+X-IronPort-AV: E=Sophos;i="6.08,168,1712646000"; d="scan'208";a="12027916"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2024 13:43:09 -0700
-X-CSE-ConnectionGUID: OlkRe8f7TDOHaGqf6fQoiw==
-X-CSE-MsgGUID: YCAaraHLR6eqyQNz4NE/Yg==
+ 17 May 2024 13:43:10 -0700
+X-CSE-ConnectionGUID: lzXoQudATgO5H+OM7e5OeQ==
+X-CSE-MsgGUID: YrgdTVU+Qbmw1F5oUeJ4IQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,168,1712646000"; d="scan'208";a="55125232"
+X-IronPort-AV: E=Sophos;i="6.08,168,1712646000"; d="scan'208";a="55125242"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 May 2024 13:43:09 -0700
@@ -45,11 +45,15 @@ From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Tvrtko Ursulin <tursulin@ursulin.net>,
  Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- dri-devel@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v5 0/8] drm/xe: Per client usage
-Date: Fri, 17 May 2024 13:43:02 -0700
-Message-ID: <20240517204310.88854-1-lucas.demarchi@intel.com>
+ dri-devel@lists.freedesktop.org,
+ Francois Dugast <francois.dugast@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v5 3/8] drm/xe/lrc: Add helper to capture context timestamp
+Date: Fri, 17 May 2024 13:43:05 -0700
+Message-ID: <20240517204310.88854-4-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240517204310.88854-1-lucas.demarchi@intel.com>
+References: <20240517204310.88854-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,92 +70,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-v5 of of https://lore.kernel.org/all/20240515214258.59209-1-lucas.demarchi@intel.com
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-Add per-client usage statistics to xe. This ports xe to use the common
-method in drm to export the usage to userspace per client (where 1
-client == 1 drm fd open).
+Add a helper to capture CTX_TIMESTAMP from the context image so it can
+be used to calculate the runtime.
 
-However instead of using the current format measured in nsec, this
-creates a new one. The intention here is not to mix the GPU clock domain
-with the CPU clock. It allows to cover a few more use cases without
-extra complications.
+v2: Add kernel-doc to clarify expectation from caller
 
-This version is tested on an ADL-P and also checked gputop with i915 to
-make sure not regressed. Last patch also contains the documentation for
-the new key and sample output as requested in v1.
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Reviewed-by: Francois Dugast <francois.dugast@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_lrc_layout.h |  1 +
+ drivers/gpu/drm/xe/xe_lrc.c             | 12 ++++++++++++
+ drivers/gpu/drm/xe/xe_lrc.h             | 14 ++++++++++++++
+ drivers/gpu/drm/xe/xe_lrc_types.h       |  3 +++
+ 4 files changed, 30 insertions(+)
 
-The pre-existent drm-cycles-<keystr> is used as is, which allows gputop
-to work with xe.
-
-This last patch still has some open discussion from v2, so we may need
-to hold it a little more.
-
-v2:
-  - Create a new drm-total-cycles instead of re-using drm-engine with a
-    different unit
-  - Add documentation for the new interface and clarify usage of
-    xe_lrc_update_timestamp()
-
-v3:
-  - Fix bugs in "drm/xe: Add helper to accumulate exec queue runtime" -
-    see commit message
-  - Reorder commits so the ones that are useful in other patch series
-    come first
-
-v4:
-  - Fix some comments and documentation
-  - Add 2 patches so we cache on the gt the mask of engines visible to
-    userspace and the per-class capacity. Previously we were doing this
-    during the query, but besides not being very efficient as pointed
-    by Tvrtko, we were also not handling correclty reserved engines and
-    engines "hidden" by e.g. ccs_mode.  So move that part to be executed
-    on init and when changing the available engines.
-  - Simplify the fdinfo output loop since now we have the information
-    cached on gt. This also moves the read of the gpu timestamp out
-    of the loop as suggested by Tvrtko and using the helpers implemented
-    in the new patches.
-
-v5:
-  - Fix kernel-doc
-  - Move pm_runtime_put() earlier in the function as it's not needed
-    anymore after interacting with the HW.
-
-Lucas De Marchi (6):
-  drm/xe: Promote xe_hw_engine_class_to_str()
-  drm/xe: Add XE_ENGINE_CLASS_OTHER to str conversion
-  drm/xe: Add helper to capture engine timestamp
-  drm/xe: Cache data about user-visible engines
-  drm/xe: Add helper to return any available hw engine
-  drm/xe/client: Print runtime to fdinfo
-
-Umesh Nerlige Ramappa (2):
-  drm/xe/lrc: Add helper to capture context timestamp
-  drm/xe: Add helper to accumulate exec queue runtime
-
- Documentation/gpu/drm-usage-stats.rst         |  21 ++-
- Documentation/gpu/xe/index.rst                |   1 +
- Documentation/gpu/xe/xe-drm-usage-stats.rst   |  10 ++
- drivers/gpu/drm/xe/regs/xe_lrc_layout.h       |   1 +
- drivers/gpu/drm/xe/xe_device_types.h          |   3 +
- drivers/gpu/drm/xe/xe_drm_client.c            | 121 +++++++++++++++++-
- drivers/gpu/drm/xe/xe_exec_queue.c            |  37 ++++++
- drivers/gpu/drm/xe/xe_exec_queue.h            |   1 +
- drivers/gpu/drm/xe/xe_execlist.c              |   1 +
- drivers/gpu/drm/xe/xe_gt.c                    |  34 +++++
- drivers/gpu/drm/xe/xe_gt.h                    |  20 +++
- drivers/gpu/drm/xe/xe_gt_ccs_mode.c           |   1 +
- drivers/gpu/drm/xe/xe_gt_types.h              |  21 ++-
- drivers/gpu/drm/xe/xe_guc_submit.c            |   2 +
- drivers/gpu/drm/xe/xe_hw_engine.c             |  27 ++++
- drivers/gpu/drm/xe/xe_hw_engine.h             |   3 +
- drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c |  18 ---
- drivers/gpu/drm/xe/xe_lrc.c                   |  12 ++
- drivers/gpu/drm/xe/xe_lrc.h                   |  14 ++
- drivers/gpu/drm/xe/xe_lrc_types.h             |   3 +
- 20 files changed, 329 insertions(+), 22 deletions(-)
- create mode 100644 Documentation/gpu/xe/xe-drm-usage-stats.rst
-
+diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+index e6ca8bbda8f4..045dfd09db99 100644
+--- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
++++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+@@ -11,6 +11,7 @@
+ #define CTX_RING_TAIL			(0x06 + 1)
+ #define CTX_RING_START			(0x08 + 1)
+ #define CTX_RING_CTL			(0x0a + 1)
++#define CTX_TIMESTAMP			(0x22 + 1)
+ #define CTX_INDIRECT_RING_STATE		(0x26 + 1)
+ #define CTX_PDP0_UDW			(0x30 + 1)
+ #define CTX_PDP0_LDW			(0x32 + 1)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 9b0a4078add3..f679cb9aaea7 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -844,6 +844,7 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 	lrc->tile = gt_to_tile(hwe->gt);
+ 	lrc->ring.size = ring_size;
+ 	lrc->ring.tail = 0;
++	lrc->ctx_timestamp = 0;
+ 
+ 	xe_hw_fence_ctx_init(&lrc->fence_ctx, hwe->gt,
+ 			     hwe->fence_irq, hwe->name);
+@@ -898,6 +899,8 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 				     RING_CTL_SIZE(lrc->ring.size) | RING_VALID);
+ 	}
+ 
++	xe_lrc_write_ctx_reg(lrc, CTX_TIMESTAMP, 0);
++
+ 	if (xe->info.has_asid && vm)
+ 		xe_lrc_write_ctx_reg(lrc, PVC_CTX_ASID, vm->usm.asid);
+ 
+@@ -1576,3 +1579,12 @@ void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot)
+ 		xe_bo_put(snapshot->lrc_bo);
+ 	kfree(snapshot);
+ }
++
++u32 xe_lrc_update_timestamp(struct xe_lrc *lrc, u32 *old_ts)
++{
++	*old_ts = lrc->ctx_timestamp;
++
++	lrc->ctx_timestamp = xe_lrc_read_ctx_reg(lrc, CTX_TIMESTAMP);
++
++	return lrc->ctx_timestamp;
++}
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index e0e841963c23..b9da1031083b 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -66,4 +66,18 @@ void xe_lrc_snapshot_capture_delayed(struct xe_lrc_snapshot *snapshot);
+ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer *p);
+ void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot);
+ 
++/**
++ * xe_lrc_update_timestamp - readout LRC timestamp and update cached value
++ * @lrc: logical ring context for this exec queue
++ * @old_ts: pointer where to save the previous timestamp
++ *
++ * Read the current timestamp for this LRC and update the cached value. The
++ * previous cached value is also returned in @old_ts so the caller can calculate
++ * the delta between 2 updates. Note that this is not intended to be called from
++ * any place, but just by the paths updating the drm client utilization.
++ *
++ * Returns the current LRC timestamp
++ */
++u32 xe_lrc_update_timestamp(struct xe_lrc *lrc, u32 *old_ts);
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
+index cdbf03faef15..0fa055da6b27 100644
+--- a/drivers/gpu/drm/xe/xe_lrc_types.h
++++ b/drivers/gpu/drm/xe/xe_lrc_types.h
+@@ -45,6 +45,9 @@ struct xe_lrc {
+ 
+ 	/** @fence_ctx: context for hw fence */
+ 	struct xe_hw_fence_ctx fence_ctx;
++
++	/** @ctx_timestamp: readout value of CTX_TIMESTAMP on last update */
++	u32 ctx_timestamp;
+ };
+ 
+ struct xe_lrc_snapshot;
 -- 
 2.43.0
 
