@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AA94C25B7E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78BF9C25B7C
 	for <intel-xe@archiver.kernel.org>; Fri, 17 May 2024 07:42:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32DC810EE21;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 092D010EE1E;
 	Fri, 17 May 2024 07:42:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UVQI83J6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BSjJn+os";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D556910EE26
- for <intel-xe@lists.freedesktop.org>; Fri, 17 May 2024 07:41:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A40110EE1C
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 May 2024 07:41:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715931718; x=1747467718;
+ t=1715931714; x=1747467714;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=aqcoCRU4N9DS91+gSoR8uJldzTDKB8mTwUeVmzq4VKc=;
- b=UVQI83J6K7HYEwM2KiwZ70J5hGDrOxOUWQh/MG4AL+nAX2T+LTn8MG53
- 7UnAP7ZhkBhuG/MPfuKpYOhiy/gRkl/z6Mp4C7l0V/pOp6R0ibnCqrU4z
- 5kxCyZ5v6zCFZ/gsGpjfxD723fpakjxSQZhUaRbg8ZP2vLb0xkt0a4m6d
- /Ykjrem/F/MEvF/aU1Fj5uIXD8NAOSvrP4YyFak8yaBS05iemoy8vgBsb
- NlbjdwL6EMCsbPdDhKpv9MzmcU4OYh5bE+hqEGmqgBtV+uP04osoUqevw
- jPiJJxLJfa3LIX4ANiWT/o/e2dC6aRSLEGob3MqqZMubKrHLO55hW6uv2 g==;
-X-CSE-ConnectionGUID: X0AEvKOWQXy0zWwUeAHT1Q==
-X-CSE-MsgGUID: sIJ/Jth6SRK4cnUm7PU9Fg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="11897605"
-X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="11897605"
+ bh=4aw2V53LSmkmGHbhnDxKIecNH3PW7eQC7uKIg1ipZCA=;
+ b=BSjJn+osnHSyQRXCKDutvkTWwPps+bVM3hM13Irc7BxlSieVeUZCHu3r
+ +3H4ooAe/Y/PLUl0dbu9lkyBoo61F+XaPfpZ+e2JTP3+LghLMF+P0qlSn
+ TEmBJsmLMSmQyVnyyK5x+9O4LqZ+fZnMrKA5VcaVZCuTYIJpSfnBPvs2B
+ wdQrn1z8kbw2qG+bVB73i4+EHjvK8HUsb9z3KgO5uakAQVyFyuGTdDDki
+ rS5eECyBZ3FVZzlMXlGXfT7NsHkcVlNlQNKgjDtjQEYar5wp1z1vsDJGC
+ yUmROkjMI2khzeUwqlAzqpEVUDt93UjiBnNXZAZS2ZoDFnn1/nMDLxh3o g==;
+X-CSE-ConnectionGUID: GeDP4nPFS7qOa/ByBiV7Og==
+X-CSE-MsgGUID: su1/LACXT5W0rWVMnQN3Qg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="11897600"
+X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="11897600"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2024 00:41:58 -0700
-X-CSE-ConnectionGUID: Nv+JJCcZS2aWst1sl8wQHQ==
-X-CSE-MsgGUID: BY4FmHvnS+SJk8cdTBjtKQ==
+ 17 May 2024 00:41:54 -0700
+X-CSE-ConnectionGUID: lYMhd63SSiSsocFLINmXyw==
+X-CSE-MsgGUID: xB5Sw/wOQsG2ZuzSOmB3sw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="36213140"
+X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="36213126"
 Received: from maurocar-mobl2.ger.corp.intel.com (HELO fedora..)
  ([10.245.246.17])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2024 00:41:57 -0700
+ 17 May 2024 00:41:53 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v4 20/21] drm/ttm: Use drm_exec_trylock for bo initialization
-Date: Fri, 17 May 2024 09:41:29 +0200
-Message-ID: <20240517074130.2908-21-thomas.hellstrom@linux.intel.com>
+Subject: [CI v4 16/21] drm/exec: Introduce an evict mode
+Date: Fri, 17 May 2024 09:41:25 +0200
+Message-ID: <20240517074130.2908-17-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240517074130.2908-1-thomas.hellstrom@linux.intel.com>
 References: <20240517074130.2908-1-thomas.hellstrom@linux.intel.com>
@@ -67,54 +67,233 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Buffer object initialization may be part of a drm_exec transaction.
-Rather than using dma_resv_trylock, use drm_exec_trylock_obj().
+Locking for eviction is in some way different from locking for
+submission:
+
+1) We can't lock objects that are already locked for submission,
+hence DRM_EXEC_IGNORE_DUPLICATES must be unset.
+2) We must be able to re-lock objects locked for eviction,
+either for submission or for yet another eviction, in
+particular objects sharing a single resv must be considered.
+3) There is no point to keep a contending object after the
+transaction restart. We don't know whether we actuall want to use
+it again.
+
+So introduce a drm_exec evict mode, and for now instead of
+explicitly setting it using a function call or implement separate
+locking functions that use evict mode, assume evict mode if
+there is a snapshot registered. This can easily be changed later.
+
+To keep track of resvs locked for eviction, use a pointer set
+implemented by an xarray. This is probably not the most efficient
+data structure but used as an easy-to-implement first approach.
+If the set is empty (evict mode never used), the performance-
+and memory usage impact will be very small.
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/ttm/ttm_bo.c | 21 ++++++++++++++++-----
- 1 file changed, 16 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/drm_exec.c | 78 ++++++++++++++++++++++++++++++++++----
+ include/drm/drm_exec.h     |  4 ++
+ 2 files changed, 75 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index d4b35856f907..618c41d15fef 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -924,10 +924,17 @@ int ttm_bo_init_reserved(struct ttm_device *bdev, struct ttm_buffer_object *bo,
- 	/* passed reservation objects should already be locked,
- 	 * since otherwise lockdep will be angered in radeon.
- 	 */
--	if (!resv)
--		WARN_ON(!dma_resv_trylock(bo->base.resv));
--	else
-+	if (!resv) {
-+		if (ctx->exec) {
-+			ret = drm_exec_trylock_obj(ctx->exec, &bo->base);
-+			if (ret)
-+				goto err_put;
-+		} else {
-+			WARN_ON(!dma_resv_trylock(bo->base.resv));
-+		}
-+	} else {
- 		dma_resv_assert_held(resv);
-+	}
+diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
+index 334d2f9109a6..48c18fa7403c 100644
+--- a/drivers/gpu/drm/drm_exec.c
++++ b/drivers/gpu/drm/drm_exec.c
+@@ -65,6 +65,10 @@ static void drm_exec_unlock_all(struct drm_exec *exec)
  
- 	ret = ttm_bo_validate(bo, placement, ctx);
- 	if (unlikely(ret))
-@@ -936,8 +943,12 @@ int ttm_bo_init_reserved(struct ttm_device *bdev, struct ttm_buffer_object *bo,
+ 	drm_gem_object_put(exec->prelocked);
+ 	exec->prelocked = NULL;
++
++	/* garbage collect */
++	xa_destroy(&exec->resv_set);
++	xa_init(&exec->resv_set);
+ }
+ 
+ /**
+@@ -92,6 +96,8 @@ void drm_exec_init(struct drm_exec *exec, u32 flags, unsigned nr)
+ 	exec->contended = DRM_EXEC_DUMMY;
+ 	exec->prelocked = NULL;
+ 	exec->snap = NULL;
++	exec->drop_contended = false;
++	xa_init(&exec->resv_set);
+ }
+ EXPORT_SYMBOL(drm_exec_init);
+ 
+@@ -110,6 +116,7 @@ void drm_exec_fini(struct drm_exec *exec)
+ 		drm_gem_object_put(exec->contended);
+ 		ww_acquire_fini(&exec->ticket);
+ 	}
++	xa_destroy(&exec->resv_set);
+ }
+ EXPORT_SYMBOL(drm_exec_fini);
+ 
+@@ -139,6 +146,30 @@ bool drm_exec_cleanup(struct drm_exec *exec)
+ }
+ EXPORT_SYMBOL(drm_exec_cleanup);
+ 
++static unsigned long drm_exec_resv_to_key(const struct dma_resv *resv)
++{
++	return (unsigned long)resv / __alignof__(typeof(*resv));
++}
++
++static void
++drm_exec_resv_set_erase(struct drm_exec *exec, unsigned long key)
++{
++	if (xa_load(&exec->resv_set, key))
++		xa_erase(&exec->resv_set, key);
++}
++
++static bool drm_exec_in_evict_mode(struct drm_exec *exec)
++{
++	return !!exec->snap;
++}
++
++static void drm_exec_set_evict_mode(struct drm_exec *exec,
++				    struct drm_exec_snapshot *snap)
++{
++	exec->snap = snap;
++	exec->flags &= ~DRM_EXEC_IGNORE_DUPLICATES;
++}
++
+ /* Track the locked object in the array */
+ static int drm_exec_obj_locked(struct drm_exec *exec,
+ 			       struct drm_gem_object *obj)
+@@ -158,6 +189,15 @@ static int drm_exec_obj_locked(struct drm_exec *exec,
+ 	drm_gem_object_get(obj);
+ 	exec->objects[exec->num_objects++] = obj;
+ 
++	/*
++	 * Errors here are not fatal, It means the object we locked
++	 * for eviction can't be locked again. If that is problematic
++	 * we may need to reconsider this.
++	 */
++	if (drm_exec_in_evict_mode(exec))
++		(void)xa_store(&exec->resv_set, drm_exec_resv_to_key(obj->resv),
++			       obj->resv, GFP_KERNEL | __GFP_RETRY_MAYFAIL |
++			       __GFP_NOWARN);
  	return 0;
+ }
  
- err_unlock:
--	if (!resv)
--		dma_resv_unlock(bo->base.resv);
-+	if (!resv) {
-+		if (ctx->exec)
-+			drm_exec_unlock_obj(ctx->exec, &bo->base);
-+		else
-+			dma_resv_unlock(bo->base.resv);
+@@ -181,6 +221,9 @@ static int drm_exec_lock_contended(struct drm_exec *exec)
+ 		dma_resv_lock_slow(obj->resv, &exec->ticket);
+ 	}
+ 
++	if (exec->drop_contended)
++		goto error_unlock;
++
+ 	ret = drm_exec_obj_locked(exec, obj);
+ 	if (unlikely(ret))
+ 		goto error_unlock;
+@@ -233,10 +276,19 @@ int drm_exec_trylock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
+ 	}
+ 
+ 	if (!dma_resv_trylock_ctx(obj->resv, &exec->ticket)) {
+-		if (dma_resv_locking_ctx(obj->resv) == &exec->ticket)
+-			return (exec->flags & DRM_EXEC_IGNORE_DUPLICATES) ? 0 : -EALREADY;
+-		else
++		if (dma_resv_locking_ctx(obj->resv) == &exec->ticket) {
++			unsigned long key = drm_exec_resv_to_key(obj->resv);
++
++			if (exec->flags & DRM_EXEC_IGNORE_DUPLICATES ||
++			    xa_load(&exec->resv_set, key)) {
++				if (!drm_exec_in_evict_mode(exec))
++					drm_exec_resv_set_erase(exec, key);
++				return 0;
++			}
++			return -EALREADY;
++		} else {
+ 			return -EBUSY;
++		}
+ 	}
+ 
+ 	ret = drm_exec_obj_locked(exec, obj);
+@@ -276,12 +328,20 @@ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
+ 	if (unlikely(ret == -EDEADLK)) {
+ 		drm_gem_object_get(obj);
+ 		exec->contended = obj;
++		exec->drop_contended = drm_exec_in_evict_mode(exec);
+ 		return -EDEADLK;
+ 	}
+ 
+-	if (unlikely(ret == -EALREADY) &&
+-	    exec->flags & DRM_EXEC_IGNORE_DUPLICATES)
+-		return 0;
++	if (unlikely(ret == -EALREADY)) {
++		unsigned long key = drm_exec_resv_to_key(obj->resv);
++
++		if (exec->flags & DRM_EXEC_IGNORE_DUPLICATES ||
++		    xa_load(&exec->resv_set, key)) {
++			if (!drm_exec_in_evict_mode(exec))
++				drm_exec_resv_set_erase(exec, key);
++			return 0;
++		}
 +	}
  
- err_put:
- 	ttm_bo_put(bo);
+ 	if (unlikely(ret))
+ 		return ret;
+@@ -312,6 +372,7 @@ void drm_exec_unlock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
+ 
+ 	for (i = exec->num_objects; i--;) {
+ 		if (exec->objects[i] == obj) {
++			drm_exec_resv_set_erase(exec, drm_exec_resv_to_key(obj->resv));
+ 			dma_resv_unlock(obj->resv);
+ 			for (++i; i < exec->num_objects; ++i)
+ 				exec->objects[i - 1] = exec->objects[i];
+@@ -395,12 +456,14 @@ void drm_exec_restore(struct drm_exec *exec, struct drm_exec_snapshot *snap)
+ 		if (index + 1 == snap->num_locked)
+ 			break;
+ 
++		xa_erase(&exec->resv_set, drm_exec_resv_to_key(obj->resv));
+ 		dma_resv_unlock(obj->resv);
+ 		drm_gem_object_put(obj);
+ 		exec->objects[index] = NULL;
+ 	}
+ 
+ 	exec->num_objects = snap->num_locked;
++	exec->flags = snap->flags;
+ 
+ 	if (!exec->prelocked)
+ 		exec->prelocked = snap->prelocked;
+@@ -415,8 +478,9 @@ void drm_exec_snapshot(struct drm_exec *exec, struct drm_exec_snapshot *snap)
+ 	snap->prelocked = exec->prelocked;
+ 	if (snap->prelocked)
+ 		drm_gem_object_get(snap->prelocked);
++	snap->flags = exec->flags;
+ 	snap->saved_snap = exec->snap;
+-	exec->snap = snap;
++	drm_exec_set_evict_mode(exec, snap);
+ }
+ EXPORT_SYMBOL(drm_exec_snapshot);
+ 
+diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
+index 0ef326f2f5f0..b9bdf2031dfe 100644
+--- a/include/drm/drm_exec.h
++++ b/include/drm/drm_exec.h
+@@ -5,6 +5,7 @@
+ 
+ #include <linux/compiler.h>
+ #include <linux/ww_mutex.h>
++#include <linux/xarray.h>
+ 
+ #define DRM_EXEC_INTERRUPTIBLE_WAIT	BIT(0)
+ #define DRM_EXEC_IGNORE_DUPLICATES	BIT(1)
+@@ -49,12 +50,15 @@ struct drm_exec {
+ 	 */
+ 	struct drm_gem_object *prelocked;
+ 	struct drm_exec_snapshot *snap;
++	struct xarray resv_set;
++	bool drop_contended;
+ };
+ 
+ struct drm_exec_snapshot {
+ 	struct drm_exec_snapshot *saved_snap;
+ 	struct drm_gem_object *prelocked;
+ 	unsigned long num_locked;
++	u32 flags;
+ };
+ 
+ int drm_exec_handle_contended(struct drm_exec *exec);
 -- 
 2.44.0
 
