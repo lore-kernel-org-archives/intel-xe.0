@@ -4,52 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17627C04FFE
-	for <intel-xe@archiver.kernel.org>; Fri, 17 May 2024 07:36:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D9E6C25B7A
+	for <intel-xe@archiver.kernel.org>; Fri, 17 May 2024 07:41:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D237D10EE10;
-	Fri, 17 May 2024 07:36:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3646310EE1C;
+	Fri, 17 May 2024 07:41:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RFniJ324";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qh3z+yAg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 493C010EE10
- for <intel-xe@lists.freedesktop.org>; Fri, 17 May 2024 07:36:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4132F10EE19
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 May 2024 07:41:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715931408; x=1747467408;
- h=date:from:to:cc:subject:message-id;
- bh=oPzs3ww+aS0mvKTTSVOUOAeMu3OFD8vX21bcFkAqE5U=;
- b=RFniJ324A5hWXplQhiVXf3VXAU1MSz0QJ9r25UEH5YnC3s+xLaUzzP1t
- BN7ztViqfmM6Zq76VpOvgKa4lyba2UOy8NWhBojOm4OnvHFNocm+pVoO2
- sUp4wC1qZJvk+r9uW93vj+fQ/XLC5eQ52w+JcuoqnS/dQ2tQI0s2+9wzL
- hBl+YIBLtIa8li+8lh7oVcw3BCYb7jVyphwXQUn7sPlLvI9yo+0Ook8PA
- elICih8ZWTHG79NyW16bAZ+1mVpmPxGGcetvXQPLd4eQoD/XjrSa4Jkc6
- Aqc8t5FGgxsq45j/R39VLsWK7xxO9msROGAxXyDatI8+pmAo142SVdRLF w==;
-X-CSE-ConnectionGUID: TBs6J+E9Se697hLjTXcw3A==
-X-CSE-MsgGUID: TgYop5YmQAWMcwH3J6/8dg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="23505461"
-X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="23505461"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2024 00:36:48 -0700
-X-CSE-ConnectionGUID: 69yRyAsrR12S8tiibSf66Q==
-X-CSE-MsgGUID: KgGgqUDLQ12YYu17CbG6Eg==
+ t=1715931701; x=1747467701;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=xGT10fh77PgxZHHuFUPtaucsHjtplZRUbKu5l2Km930=;
+ b=Qh3z+yAggm4kbn3vOs7B2fUjmvKBn2lWyk7VRfrfFVOXmGldBAQrEUeB
+ k3z+y5uK/HMn+mzSzDsma3Aoyw8ZYv2OQoOlhjMUH1v2mlnxEXxACpeWh
+ MWrhCxmTPN0JUQdEdkQM0bLC4+s30imTT72ok4LRhvWAter51jTzJY6CT
+ soed/8c47gAjJl+AqDNtdLq/SnM7uhDGZ1+NI3B/pxUWKjwvA238kYc02
+ t4d82VjRfy8xiJojR77LABuQyREHqkPyLVg3dzqJXAs7Ikd6JFdqMv/GT
+ hOxKj2pfereAuqM3T1UwitMyLNd9o++58LThrapoZltX6/wx+YsgChEg+ A==;
+X-CSE-ConnectionGUID: NtHY5DpgS7u1cXU2hjDKUg==
+X-CSE-MsgGUID: Jf1pRvqjQluHbj0PM+4KGg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="11897574"
+X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="11897574"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2024 00:41:41 -0700
+X-CSE-ConnectionGUID: rH/oebWeQDerkVWzUxHYug==
+X-CSE-MsgGUID: VK0UC7LHSuGtRM4at5rb2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="31526782"
-Received: from unknown (HELO 108735ec233b) ([10.239.97.151])
- by orviesa010.jf.intel.com with ESMTP; 17 May 2024 00:36:47 -0700
-Received: from kbuild by 108735ec233b with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1s7s8y-0000Ov-21;
- Fri, 17 May 2024 07:36:44 +0000
-Date: Fri, 17 May 2024 15:36:01 +0800
-From: kernel test robot <lkp@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- 63d8cb8fe3ddf74627003f99ad085887baf91e60
-Message-ID: <202405171559.7T6wmqkz-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="36213088"
+Received: from maurocar-mobl2.ger.corp.intel.com (HELO fedora..)
+ ([10.245.246.17])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2024 00:41:40 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [CI v4 01/21] drm/ttm: Allow TTM LRU list nodes of different types
+Date: Fri, 17 May 2024 09:41:10 +0200
+Message-ID: <20240517074130.2908-2-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240517074130.2908-1-thomas.hellstrom@linux.intel.com>
+References: <20240517074130.2908-1-thomas.hellstrom@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,158 +67,311 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 63d8cb8fe3ddf74627003f99ad085887baf91e60  drm/xe/vf: Expose SR-IOV VF attributes to GT debugfs
+To be able to handle list unlocking while traversing the LRU
+list, we want the iterators not only to point to the next
+position of the list traversal, but to insert themselves as
+list nodes at that point to work around the fact that the
+next node might otherwise disappear from the list while
+the iterator is pointing to it.
 
-elapsed time: 727m
+These list nodes need to be easily distinguishable from other
+list nodes so that others traversing the list can skip
+over them.
 
-configs tested: 139
-configs skipped: 3
+So declare a struct ttm_lru_item, with a struct list_head member
+and a type enum. This will slightly increase the size of a
+struct ttm_resource.
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+Changes in previous series:
+- Update enum ttm_lru_item_type documentation.
 
-tested configs:
-alpha                             allnoconfig   gcc  
-alpha                            allyesconfig   gcc  
-alpha                               defconfig   gcc  
-arc                              allmodconfig   gcc  
-arc                               allnoconfig   gcc  
-arc                              allyesconfig   gcc  
-arc                                 defconfig   gcc  
-arc                   randconfig-001-20240517   gcc  
-arc                   randconfig-002-20240517   gcc  
-arm                              allmodconfig   gcc  
-arm                               allnoconfig   clang
-arm                              allyesconfig   gcc  
-arm                                 defconfig   clang
-arm                   randconfig-001-20240517   clang
-arm                   randconfig-002-20240517   clang
-arm                   randconfig-003-20240517   clang
-arm                   randconfig-004-20240517   clang
-arm64                            allmodconfig   clang
-arm64                             allnoconfig   gcc  
-arm64                               defconfig   gcc  
-arm64                 randconfig-001-20240517   clang
-arm64                 randconfig-002-20240517   gcc  
-arm64                 randconfig-003-20240517   clang
-arm64                 randconfig-004-20240517   clang
-csky                             allmodconfig   gcc  
-csky                              allnoconfig   gcc  
-csky                             allyesconfig   gcc  
-csky                                defconfig   gcc  
-csky                  randconfig-001-20240517   gcc  
-csky                  randconfig-002-20240517   gcc  
-hexagon                          allmodconfig   clang
-hexagon                           allnoconfig   clang
-hexagon                          allyesconfig   clang
-hexagon                             defconfig   clang
-hexagon               randconfig-001-20240517   clang
-hexagon               randconfig-002-20240517   clang
-i386                             allmodconfig   gcc  
-i386                              allnoconfig   gcc  
-i386                             allyesconfig   gcc  
-i386         buildonly-randconfig-001-20240517   clang
-i386         buildonly-randconfig-002-20240517   clang
-i386         buildonly-randconfig-003-20240517   gcc  
-i386         buildonly-randconfig-004-20240517   clang
-i386         buildonly-randconfig-005-20240517   clang
-i386         buildonly-randconfig-006-20240517   gcc  
-i386                                defconfig   clang
-i386                  randconfig-001-20240517   gcc  
-i386                  randconfig-002-20240517   gcc  
-i386                  randconfig-003-20240517   gcc  
-i386                  randconfig-004-20240517   gcc  
-i386                  randconfig-005-20240517   gcc  
-i386                  randconfig-006-20240517   gcc  
-i386                  randconfig-011-20240517   gcc  
-i386                  randconfig-012-20240517   clang
-i386                  randconfig-013-20240517   gcc  
-i386                  randconfig-014-20240517   gcc  
-i386                  randconfig-015-20240517   clang
-i386                  randconfig-016-20240517   clang
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                           defconfig   gcc  
-loongarch             randconfig-001-20240517   gcc  
-loongarch             randconfig-002-20240517   gcc  
-m68k                             allmodconfig   gcc  
-m68k                              allnoconfig   gcc  
-m68k                             allyesconfig   gcc  
-m68k                                defconfig   gcc  
-microblaze                       allmodconfig   gcc  
-microblaze                        allnoconfig   gcc  
-microblaze                       allyesconfig   gcc  
-microblaze                          defconfig   gcc  
-mips                              allnoconfig   gcc  
-mips                             allyesconfig   gcc  
-nios2                            allmodconfig   gcc  
-nios2                             allnoconfig   gcc  
-nios2                            allyesconfig   gcc  
-nios2                               defconfig   gcc  
-nios2                 randconfig-001-20240517   gcc  
-nios2                 randconfig-002-20240517   gcc  
-openrisc                          allnoconfig   gcc  
-openrisc                         allyesconfig   gcc  
-openrisc                            defconfig   gcc  
-parisc                           allmodconfig   gcc  
-parisc                            allnoconfig   gcc  
-parisc                           allyesconfig   gcc  
-parisc                              defconfig   gcc  
-parisc                randconfig-001-20240517   gcc  
-parisc                randconfig-002-20240517   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                          allyesconfig   clang
-powerpc               randconfig-001-20240517   clang
-powerpc               randconfig-002-20240517   clang
-powerpc               randconfig-003-20240517   gcc  
-powerpc64             randconfig-001-20240517   gcc  
-powerpc64             randconfig-002-20240517   gcc  
-powerpc64             randconfig-003-20240517   clang
-riscv                            allmodconfig   clang
-riscv                             allnoconfig   gcc  
-riscv                            allyesconfig   clang
-riscv                               defconfig   clang
-riscv                 randconfig-001-20240517   clang
-riscv                 randconfig-002-20240517   gcc  
-s390                             allmodconfig   clang
-s390                              allnoconfig   clang
-s390                             allyesconfig   gcc  
-s390                                defconfig   clang
-s390                  randconfig-001-20240517   clang
-s390                  randconfig-002-20240517   clang
-sh                               allmodconfig   gcc  
-sh                                allnoconfig   gcc  
-sh                               allyesconfig   gcc  
-sh                                  defconfig   gcc  
-sh                    randconfig-001-20240517   gcc  
-sh                    randconfig-002-20240517   gcc  
-sparc                            allmodconfig   gcc  
-sparc                             allnoconfig   gcc  
-sparc                               defconfig   gcc  
-sparc64                          allmodconfig   gcc  
-sparc64                          allyesconfig   gcc  
-sparc64                             defconfig   gcc  
-sparc64               randconfig-001-20240517   gcc  
-sparc64               randconfig-002-20240517   gcc  
-um                               allmodconfig   clang
-um                                allnoconfig   clang
-um                               allyesconfig   gcc  
-um                                  defconfig   clang
-um                             i386_defconfig   gcc  
-um                    randconfig-001-20240517   clang
-um                    randconfig-002-20240517   gcc  
-um                           x86_64_defconfig   clang
-x86_64                            allnoconfig   clang
-x86_64                           allyesconfig   clang
-x86_64                              defconfig   gcc  
-x86_64                          rhel-8.3-rust   clang
-xtensa                            allnoconfig   gcc  
-xtensa                randconfig-001-20240517   gcc  
-xtensa                randconfig-002-20240517   gcc  
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+Cc: <dri-devel@lists.freedesktop.org>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/ttm/ttm_device.c   |  4 +-
+ drivers/gpu/drm/ttm/ttm_resource.c | 89 +++++++++++++++++++++++-------
+ include/drm/ttm/ttm_resource.h     | 54 +++++++++++++++++-
+ 3 files changed, 125 insertions(+), 22 deletions(-)
 
+diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
+index 434cf0258000..09411978a13a 100644
+--- a/drivers/gpu/drm/ttm/ttm_device.c
++++ b/drivers/gpu/drm/ttm/ttm_device.c
+@@ -274,14 +274,14 @@ static void ttm_device_clear_lru_dma_mappings(struct ttm_device *bdev,
+ 	struct ttm_resource *res;
+ 
+ 	spin_lock(&bdev->lru_lock);
+-	while ((res = list_first_entry_or_null(list, typeof(*res), lru))) {
++	while ((res = ttm_lru_first_res_or_null(list))) {
+ 		struct ttm_buffer_object *bo = res->bo;
+ 
+ 		/* Take ref against racing releases once lru_lock is unlocked */
+ 		if (!ttm_bo_get_unless_zero(bo))
+ 			continue;
+ 
+-		list_del_init(&res->lru);
++		list_del_init(&bo->resource->lru.link);
+ 		spin_unlock(&bdev->lru_lock);
+ 
+ 		if (bo->ttm)
+diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
+index 4a66b851b67d..db9a7a3717c4 100644
+--- a/drivers/gpu/drm/ttm/ttm_resource.c
++++ b/drivers/gpu/drm/ttm/ttm_resource.c
+@@ -70,8 +70,8 @@ void ttm_lru_bulk_move_tail(struct ttm_lru_bulk_move *bulk)
+ 			dma_resv_assert_held(pos->last->bo->base.resv);
+ 
+ 			man = ttm_manager_type(pos->first->bo->bdev, i);
+-			list_bulk_move_tail(&man->lru[j], &pos->first->lru,
+-					    &pos->last->lru);
++			list_bulk_move_tail(&man->lru[j], &pos->first->lru.link,
++					    &pos->last->lru.link);
+ 		}
+ 	}
+ }
+@@ -84,14 +84,38 @@ ttm_lru_bulk_move_pos(struct ttm_lru_bulk_move *bulk, struct ttm_resource *res)
+ 	return &bulk->pos[res->mem_type][res->bo->priority];
+ }
+ 
++/* Return the previous resource on the list (skip over non-resource list items) */
++static struct ttm_resource *ttm_lru_prev_res(struct ttm_resource *cur)
++{
++	struct ttm_lru_item *lru = &cur->lru;
++
++	do {
++		lru = list_prev_entry(lru, link);
++	} while (!ttm_lru_item_is_res(lru));
++
++	return ttm_lru_item_to_res(lru);
++}
++
++/* Return the next resource on the list (skip over non-resource list items) */
++static struct ttm_resource *ttm_lru_next_res(struct ttm_resource *cur)
++{
++	struct ttm_lru_item *lru = &cur->lru;
++
++	do {
++		lru = list_next_entry(lru, link);
++	} while (!ttm_lru_item_is_res(lru));
++
++	return ttm_lru_item_to_res(lru);
++}
++
+ /* Move the resource to the tail of the bulk move range */
+ static void ttm_lru_bulk_move_pos_tail(struct ttm_lru_bulk_move_pos *pos,
+ 				       struct ttm_resource *res)
+ {
+ 	if (pos->last != res) {
+ 		if (pos->first == res)
+-			pos->first = list_next_entry(res, lru);
+-		list_move(&res->lru, &pos->last->lru);
++			pos->first = ttm_lru_next_res(res);
++		list_move(&res->lru.link, &pos->last->lru.link);
+ 		pos->last = res;
+ 	}
+ }
+@@ -122,11 +146,11 @@ static void ttm_lru_bulk_move_del(struct ttm_lru_bulk_move *bulk,
+ 		pos->first = NULL;
+ 		pos->last = NULL;
+ 	} else if (pos->first == res) {
+-		pos->first = list_next_entry(res, lru);
++		pos->first = ttm_lru_next_res(res);
+ 	} else if (pos->last == res) {
+-		pos->last = list_prev_entry(res, lru);
++		pos->last = ttm_lru_prev_res(res);
+ 	} else {
+-		list_move(&res->lru, &pos->last->lru);
++		list_move(&res->lru.link, &pos->last->lru.link);
+ 	}
+ }
+ 
+@@ -155,7 +179,7 @@ void ttm_resource_move_to_lru_tail(struct ttm_resource *res)
+ 	lockdep_assert_held(&bo->bdev->lru_lock);
+ 
+ 	if (bo->pin_count) {
+-		list_move_tail(&res->lru, &bdev->pinned);
++		list_move_tail(&res->lru.link, &bdev->pinned);
+ 
+ 	} else	if (bo->bulk_move) {
+ 		struct ttm_lru_bulk_move_pos *pos =
+@@ -166,7 +190,7 @@ void ttm_resource_move_to_lru_tail(struct ttm_resource *res)
+ 		struct ttm_resource_manager *man;
+ 
+ 		man = ttm_manager_type(bdev, res->mem_type);
+-		list_move_tail(&res->lru, &man->lru[bo->priority]);
++		list_move_tail(&res->lru.link, &man->lru[bo->priority]);
+ 	}
+ }
+ 
+@@ -197,9 +221,9 @@ void ttm_resource_init(struct ttm_buffer_object *bo,
+ 	man = ttm_manager_type(bo->bdev, place->mem_type);
+ 	spin_lock(&bo->bdev->lru_lock);
+ 	if (bo->pin_count)
+-		list_add_tail(&res->lru, &bo->bdev->pinned);
++		list_add_tail(&res->lru.link, &bo->bdev->pinned);
+ 	else
+-		list_add_tail(&res->lru, &man->lru[bo->priority]);
++		list_add_tail(&res->lru.link, &man->lru[bo->priority]);
+ 	man->usage += res->size;
+ 	spin_unlock(&bo->bdev->lru_lock);
+ }
+@@ -221,7 +245,7 @@ void ttm_resource_fini(struct ttm_resource_manager *man,
+ 	struct ttm_device *bdev = man->bdev;
+ 
+ 	spin_lock(&bdev->lru_lock);
+-	list_del_init(&res->lru);
++	list_del_init(&res->lru.link);
+ 	man->usage -= res->size;
+ 	spin_unlock(&bdev->lru_lock);
+ }
+@@ -472,14 +496,16 @@ struct ttm_resource *
+ ttm_resource_manager_first(struct ttm_resource_manager *man,
+ 			   struct ttm_resource_cursor *cursor)
+ {
+-	struct ttm_resource *res;
++	struct ttm_lru_item *lru;
+ 
+ 	lockdep_assert_held(&man->bdev->lru_lock);
+ 
+ 	for (cursor->priority = 0; cursor->priority < TTM_MAX_BO_PRIORITY;
+ 	     ++cursor->priority)
+-		list_for_each_entry(res, &man->lru[cursor->priority], lru)
+-			return res;
++		list_for_each_entry(lru, &man->lru[cursor->priority], link) {
++			if (ttm_lru_item_is_res(lru))
++				return ttm_lru_item_to_res(lru);
++		}
+ 
+ 	return NULL;
+ }
+@@ -498,15 +524,40 @@ ttm_resource_manager_next(struct ttm_resource_manager *man,
+ 			  struct ttm_resource_cursor *cursor,
+ 			  struct ttm_resource *res)
+ {
++	struct ttm_lru_item *lru = &res->lru;
++
+ 	lockdep_assert_held(&man->bdev->lru_lock);
+ 
+-	list_for_each_entry_continue(res, &man->lru[cursor->priority], lru)
+-		return res;
++	list_for_each_entry_continue(lru, &man->lru[cursor->priority], link) {
++		if (ttm_lru_item_is_res(lru))
++			return ttm_lru_item_to_res(lru);
++	}
+ 
+ 	for (++cursor->priority; cursor->priority < TTM_MAX_BO_PRIORITY;
+ 	     ++cursor->priority)
+-		list_for_each_entry(res, &man->lru[cursor->priority], lru)
+-			return res;
++		list_for_each_entry(lru, &man->lru[cursor->priority], link) {
++			if (ttm_lru_item_is_res(lru))
++				ttm_lru_item_to_res(lru);
++		}
++
++	return NULL;
++}
++
++/**
++ * ttm_lru_first_res_or_null() - Return the first resource on an lru list
++ * @head: The list head of the lru list.
++ *
++ * Return: Pointer to the first resource on the lru list or NULL if
++ * there is none.
++ */
++struct ttm_resource *ttm_lru_first_res_or_null(struct list_head *head)
++{
++	struct ttm_lru_item *lru;
++
++	list_for_each_entry(lru, head, link) {
++		if (ttm_lru_item_is_res(lru))
++			return ttm_lru_item_to_res(lru);
++	}
+ 
+ 	return NULL;
+ }
+diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
+index 69769355139f..1511d91e290d 100644
+--- a/include/drm/ttm/ttm_resource.h
++++ b/include/drm/ttm/ttm_resource.h
+@@ -49,6 +49,43 @@ struct io_mapping;
+ struct sg_table;
+ struct scatterlist;
+ 
++/**
++ * enum ttm_lru_item_type - enumerate ttm_lru_item subclasses
++ */
++enum ttm_lru_item_type {
++	/** @TTM_LRU_RESOURCE: The resource subclass */
++	TTM_LRU_RESOURCE,
++	/** @TTM_LRU_HITCH: The iterator hitch subclass */
++	TTM_LRU_HITCH
++};
++
++/**
++ * struct ttm_lru_item - The TTM lru list node base class
++ * @link: The list link
++ * @type: The subclass type
++ */
++struct ttm_lru_item {
++	struct list_head link;
++	enum ttm_lru_item_type type;
++};
++
++/**
++ * ttm_lru_item_init() - initialize a struct ttm_lru_item
++ * @item: The item to initialize
++ * @type: The subclass type
++ */
++static inline void ttm_lru_item_init(struct ttm_lru_item *item,
++				     enum ttm_lru_item_type type)
++{
++	item->type = type;
++	INIT_LIST_HEAD(&item->link);
++}
++
++static inline bool ttm_lru_item_is_res(const struct ttm_lru_item *item)
++{
++	return item->type == TTM_LRU_RESOURCE;
++}
++
+ struct ttm_resource_manager_func {
+ 	/**
+ 	 * struct ttm_resource_manager_func member alloc
+@@ -217,9 +254,21 @@ struct ttm_resource {
+ 	/**
+ 	 * @lru: Least recently used list, see &ttm_resource_manager.lru
+ 	 */
+-	struct list_head lru;
++	struct ttm_lru_item lru;
+ };
+ 
++/**
++ * ttm_lru_item_to_res() - Downcast a struct ttm_lru_item to a struct ttm_resource
++ * @item: The struct ttm_lru_item to downcast
++ *
++ * Return: Pointer to the embedding struct ttm_resource
++ */
++static inline struct ttm_resource *
++ttm_lru_item_to_res(struct ttm_lru_item *item)
++{
++	return container_of(item, struct ttm_resource, lru);
++}
++
+ /**
+  * struct ttm_resource_cursor
+  *
+@@ -393,6 +442,9 @@ ttm_resource_manager_next(struct ttm_resource_manager *man,
+ 			  struct ttm_resource_cursor *cursor,
+ 			  struct ttm_resource *res);
+ 
++struct ttm_resource *
++ttm_lru_first_res_or_null(struct list_head *head);
++
+ /**
+  * ttm_resource_manager_for_each_res - iterate over all resources
+  * @man: the resource manager
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.44.0
+
