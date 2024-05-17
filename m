@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57081C04FFE
-	for <intel-xe@archiver.kernel.org>; Fri, 17 May 2024 07:41:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0753EC25B78
+	for <intel-xe@archiver.kernel.org>; Fri, 17 May 2024 07:41:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0A0510EE19;
-	Fri, 17 May 2024 07:41:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A720310EE1D;
+	Fri, 17 May 2024 07:41:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d6QqCiAz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DCAI4xry";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C7A210EE19
- for <intel-xe@lists.freedesktop.org>; Fri, 17 May 2024 07:41:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD1BB10EE1B
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 May 2024 07:41:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715931700; x=1747467700;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=cZhRqhih48dNADIq6seKC+BqlH2GrtqE4V3HP1wrnHA=;
- b=d6QqCiAznS2reuN20Ru7Tm/PFgiA10FhG1XzxBYp7gDLG/tPwM2NZFm7
- kuii7lvHUt/8hWLUn8cg9UpBZl8fpQ3WJfBd8DaDUzxApcn2NoGLVsjw9
- Ys7yWhVRQ8SeHzLQABjRVhBRiIK6SEbCoidhdo/C0IYU775f0vcx8HHG7
- Fy4/ZZaMPF8XPOlJ1jazcZ0yiuOxXbgrQdVu0PU3qlq9uXCJJonfIRMzd
- sQGrgIHpeez0DgK6d/K0iNE8gscNvDYITzSTL/SzPRbp9eB2U+eef57hP
- hvfB3P8A18BRkB/dom7wNpa8cuOJvd6zuO/ZYKkrRKF1+vcpdjELVJ/rH w==;
-X-CSE-ConnectionGUID: 005t7pQJTueo9bNh+j606w==
-X-CSE-MsgGUID: BODaV2NLT/C2ibolTmiD0A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="11897572"
-X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="11897572"
+ t=1715931705; x=1747467705;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=j+hi3r8uQs+UZ9qbQeJuuRbRwGKJXMcOzC8Fz1HoqIU=;
+ b=DCAI4xryXGhzOzsbrB0FPCR+gBRt66Im6l5dONRMkewlTSdOTBSKIIxq
+ ozHmghZx6TjiEdsWThaJ+rILkB0HxzqX0pDCdmhUpShE7jrZS/XUMoLYZ
+ ljhEh87Ql/IuxpD56tq4RzIQR+5pB+9o4JTUETkuacy9fNnoDJNf2XJiD
+ 25EFEu9u7mj1hpPnwclWEKLySkqzb9MsLRCqzitRCJ9KJ/QbXUJMAbG7x
+ G3WENCdzRxbc4R9YyTVcmufE7rSkZ4QjtSkLS1CFR6rXIoS6NtF5GYL3w
+ mvGFx0lhFcdlmhWPVg6alu4hWb/5myofgZXgcegzYzH7ISbqopOLhHGvy w==;
+X-CSE-ConnectionGUID: qLc1zmmNSj2O6nqmXWP5LA==
+X-CSE-MsgGUID: neuq+R5YRsSilalY/d92Zg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="11897583"
+X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="11897583"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2024 00:41:40 -0700
-X-CSE-ConnectionGUID: JXddNVbpSheLA67dKDZA5w==
-X-CSE-MsgGUID: xuXdiwnQT4+gr7aUc5qX0g==
+ 17 May 2024 00:41:45 -0700
+X-CSE-ConnectionGUID: Ju7RZwmoQPGAY2ApqHW48w==
+X-CSE-MsgGUID: YWl2su4kTV2As/fccXR79g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="36213086"
+X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="36213098"
 Received: from maurocar-mobl2.ger.corp.intel.com (HELO fedora..)
  ([10.245.246.17])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2024 00:41:39 -0700
+ 17 May 2024 00:41:44 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v4 00/21] xe bo shrinker and exhaustive eviction
-Date: Fri, 17 May 2024 09:41:09 +0200
-Message-ID: <20240517074130.2908-1-thomas.hellstrom@linux.intel.com>
+Subject: [CI v4 05/21] drm/ttm: Provide a generic LRU walker helper
+Date: Fri, 17 May 2024 09:41:14 +0200
+Message-ID: <20240517074130.2908-6-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240517074130.2908-1-thomas.hellstrom@linux.intel.com>
+References: <20240517074130.2908-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -65,99 +67,238 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-CI testing of shrinker- and eviction patches
+Provide a generic LRU walker in TTM, in the spirit of drm_gem_lru_scan()
+but building on the restartable TTM LRU functionality.
 
-v2:
-- Checkpatch error removal
-v3:
-- Fix incorrect patch order
-- Fix compilation errors in other drivers
-v4:
-- Fix an uninitialized drm_exec member
+The LRU walker optionally supports locking objects as part of
+a drm_exec locking transaction, and can thus be used for both
+exhaustive eviction and shrinking. And, in fact, direct
+shrinking in the case where we fail to populate system memory
+objects and want to retry by shrinking purgeable or evictable
+local objects, which a shrinker is not capable of doing.
 
-Thomas Hellström (21):
-  drm/ttm: Allow TTM LRU list nodes of different types
-  drm/ttm: Slightly clean up LRU list iteration
-  drm/ttm: Use LRU hitches
-  drm/ttm, drm/amdgpu, drm/xe: Consider hitch moves within bulk sublist
-    moves
-  drm/ttm: Provide a generic LRU walker helper
-  drm/ttm: Use restartable LRU and sleeping locks for swapping.
-  drm/ttm: sleeping evict lock.
-  drm/ttm: Add a virtual base class for graphics memory backup
-  drm/ttm/pool: Provide a helper to shrink pages.
-  drm/ttm: Use fault-injection to test error paths
-  drm/ttm, drm/xe: Add a shrinker for xe bos
-  dma-buf/dma-resv: Introduce dma_resv_trylock_ctx()
-  drm/exec: Rework contended locking
-  drm/exec: drm_exec_trylock()
-  drm/exec: Add a snapshot capability.
-  drm/exec: Introduce an evict mode
-  drm/ttm: Support drm_exec locking for eviction and swapping
-  drm/ttm: Convert ttm vm to using drm_exec.
-  drm/xe: Use drm_exec for fault locking
-  drm/ttm: Use drm_exec_trylock for bo initialization
-  drm/xe: Initial support for drm exec locking during validate.
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+Cc: <dri-devel@lists.freedesktop.org>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/ttm/ttm_bo_util.c | 162 ++++++++++++++++++++++++++++++
+ include/drm/ttm/ttm_bo.h          |  32 ++++++
+ 2 files changed, 194 insertions(+)
 
- drivers/gpu/drm/Kconfig                       |  10 +
- .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  |  16 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c        |   6 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_csa.c       |   4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c       |  12 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c       |   8 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c     |   4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c  |   8 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        |   4 +
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c          |   2 +-
- drivers/gpu/drm/drm_exec.c                    | 170 ++++++-
- drivers/gpu/drm/drm_gpuvm.c                   |   8 +-
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |   4 +-
- drivers/gpu/drm/imagination/pvr_job.c         |   2 +-
- drivers/gpu/drm/msm/msm_gem_submit.c          |   2 +-
- drivers/gpu/drm/nouveau/nouveau_gem.c         |   4 +-
- drivers/gpu/drm/nouveau/nouveau_uvmm.c        |   2 +-
- drivers/gpu/drm/radeon/radeon_gem.c           |   4 +-
- drivers/gpu/drm/tests/drm_exec_test.c         |  12 +-
- drivers/gpu/drm/ttm/Makefile                  |   2 +-
- drivers/gpu/drm/ttm/ttm_backup_shmem.c        | 137 +++++
- drivers/gpu/drm/ttm/ttm_bo.c                  | 480 ++++++++----------
- drivers/gpu/drm/ttm/ttm_bo_util.c             | 266 ++++++++++
- drivers/gpu/drm/ttm/ttm_bo_vm.c               | 101 ++--
- drivers/gpu/drm/ttm/ttm_device.c              |  29 +-
- drivers/gpu/drm/ttm/ttm_pool.c                | 412 ++++++++++++++-
- drivers/gpu/drm/ttm/ttm_resource.c            | 265 ++++++++--
- drivers/gpu/drm/ttm/ttm_tt.c                  |  37 ++
- drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c    |   6 +-
- drivers/gpu/drm/xe/Makefile                   |   1 +
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |   2 +-
- drivers/gpu/drm/xe/tests/xe_bo.c              | 124 ++++-
- drivers/gpu/drm/xe/tests/xe_bo_test.c         |   1 +
- drivers/gpu/drm/xe/tests/xe_bo_test.h         |   1 +
- drivers/gpu/drm/xe/tests/xe_dma_buf.c         |   4 +-
- drivers/gpu/drm/xe/tests/xe_migrate.c         |   2 +-
- drivers/gpu/drm/xe/xe_bo.c                    | 173 +++++--
- drivers/gpu/drm/xe/xe_bo.h                    |   8 +-
- drivers/gpu/drm/xe/xe_device.c                |   8 +
- drivers/gpu/drm/xe/xe_device_types.h          |   2 +
- drivers/gpu/drm/xe/xe_dma_buf.c               |   2 +-
- drivers/gpu/drm/xe/xe_ggtt.c                  |   2 +-
- drivers/gpu/drm/xe/xe_gt_pagefault.c          |   6 +-
- drivers/gpu/drm/xe/xe_shrinker.c              | 224 ++++++++
- drivers/gpu/drm/xe/xe_shrinker.h              |  18 +
- drivers/gpu/drm/xe/xe_vm.c                    |  18 +-
- include/drm/drm_exec.h                        |  35 +-
- include/drm/ttm/ttm_backup.h                  | 136 +++++
- include/drm/ttm/ttm_bo.h                      |  59 ++-
- include/drm/ttm/ttm_pool.h                    |   5 +
- include/drm/ttm/ttm_resource.h                | 102 +++-
- include/drm/ttm/ttm_tt.h                      |  20 +
- include/linux/dma-resv.h                      |  23 +-
- 53 files changed, 2470 insertions(+), 523 deletions(-)
- create mode 100644 drivers/gpu/drm/ttm/ttm_backup_shmem.c
- create mode 100644 drivers/gpu/drm/xe/xe_shrinker.c
- create mode 100644 drivers/gpu/drm/xe/xe_shrinker.h
- create mode 100644 include/drm/ttm/ttm_backup.h
-
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index 0b3f4267130c..9388fc19a518 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -768,3 +768,165 @@ int ttm_bo_pipeline_gutting(struct ttm_buffer_object *bo)
+ 	ttm_tt_destroy(bo->bdev, ttm);
+ 	return ret;
+ }
++
++static bool ttm_lru_walk_trylock(struct ttm_lru_walk *walk,
++				 struct ttm_buffer_object *bo,
++				 bool *needs_unlock)
++{
++	struct ttm_operation_ctx *ctx = walk->ctx;
++
++	*needs_unlock = false;
++
++	if (dma_resv_trylock(bo->base.resv)) {
++		*needs_unlock = true;
++		return true;
++	}
++
++	if (bo->base.resv == ctx->resv && ctx->allow_res_evict) {
++		dma_resv_assert_held(bo->base.resv);
++		return true;
++	}
++
++	return false;
++}
++
++static int ttm_lru_walk_ticketlock(struct ttm_lru_walk *walk,
++				   struct ttm_buffer_object *bo,
++				   bool *needs_unlock)
++{
++	struct dma_resv *resv = bo->base.resv;
++	int ret;
++
++	if (walk->ctx->interruptible)
++		ret = dma_resv_lock_interruptible(resv, walk->ticket);
++	else
++		ret = dma_resv_lock(resv, walk->ticket);
++
++	if (ret == -EDEADLK)
++		ret = -ENOSPC;
++
++	if (!ret) {
++		*needs_unlock = true;
++		/* Only a single ticketlock per loop */
++		walk->ticket = NULL;
++	}
++
++	return ret;
++}
++
++static void ttm_lru_walk_unlock(struct ttm_buffer_object *bo, bool locked)
++{
++	if (locked)
++		dma_resv_unlock(bo->base.resv);
++}
++
++/**
++ * ttm_lru_walk_for_evict() - Perform a LRU list walk, with actions taken on
++ * valid items.
++ * @walk: describe the walks and actions taken
++ * @bdev: The TTM device.
++ * @man: The struct ttm_resource manager whose LRU lists we're walking.
++ * @target: The end condition for the walk.
++ *
++ * The LRU lists of @man are walk, and for each struct ttm_resource encountered,
++ * the corresponding ttm_buffer_object is locked and taken a reference on, and
++ * the LRU lock is dropped. the LRU lock may be dropped before locking and, in
++ * that case, it's verified that the item actually remains on the LRU list after
++ * the lock, and that the buffer object hasn't changed.
++ *
++ * With a locked object, the actions indicated by @walk->process_bo are
++ * performed, and after that, the bo is unlocked, the refcount dropped and the
++ * next struct ttm_resource is processed. Here we rely on TTM's restartable
++ * LRU list implementation.
++ *
++ * Typically @walk->process_bo() would return the number of pages evicted, and
++ * that when the total exceeds @target, or when the LRU list has been walked
++ * in full, iteration is terminated. It's also terminated on error.
++ *
++ * Buffer object dma_resv locking:
++ * This locking is performed using the combined interpretation of @walk->exec and
++ * @walk->ctx according to the following.
++ * 1) Sleeping locks: Sleeping locks are used exclusively if @walk->exec is true.
++ * The buffer object are not unlocked. That is the caller's responsibility.
++ * 2) Assuming bo is already locked: This assumption is made iff @walk->exec is false,
++ * @walk->ctx->allow_res_evict is true and bo->base.resv == @walk->ctx->resv.
++ * This is for cases where it is desired to evict bos sharing a reservation lock
++ * that is already held by the process. Thes bo locks are not unlocked during
++ * the walk.
++ * 3) Trylocking. Trylocking is done in all other cases. If trylocking fails, the
++ * iteration skips the current item and continues. Trylocks are always unlocked
++ * by the walk.
++ *
++ * Note that the way dma_resv individualization is done, locking needs to be done
++ * either with the LRU lock held (trylocking only) or with a reference on the
++ * object.
++ *
++ * Return: (Typically) The number of pages evicted or negative error code on error.
++ */
++long ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
++			    struct ttm_resource_manager *man, long target)
++{
++	struct ttm_resource_cursor cursor;
++	struct ttm_resource *res;
++	long sofar = 0;
++	long lret;
++
++	spin_lock(&bdev->lru_lock);
++	ttm_resource_manager_for_each_res(man, &cursor, res) {
++		struct ttm_buffer_object *bo = res->bo;
++		bool bo_needs_unlock = false;
++		bool bo_locked = false;
++		int mem_type;
++
++		if (!bo || bo->resource != res)
++			continue;
++
++		if (ttm_lru_walk_trylock(walk, bo, &bo_needs_unlock))
++			bo_locked = true;
++		else if ((!walk->ticket) || walk->ctx->no_wait_gpu ||
++			 walk->trylock_only)
++			continue;
++
++		if (!ttm_bo_get_unless_zero(bo)) {
++			ttm_lru_walk_unlock(bo, bo_needs_unlock);
++			continue;
++		}
++
++		mem_type = res->mem_type;
++		spin_unlock(&bdev->lru_lock);
++
++		lret = 0;
++		if (!bo_locked && walk->ticket)
++			lret = ttm_lru_walk_ticketlock(walk, bo, &bo_needs_unlock);
++
++		/*
++		 * Note that in between the release of the lru lock and the
++		 * ticketlock, the bo may have switched resource,
++		 * and also memory type, since the resource may have been
++		 * freed and allocated again with a different memory type.
++		 * In that case, just skip it.
++		 */
++		if (!lret && bo->resource == res && res->mem_type == mem_type)
++			lret = walk->ops->process_bo(walk, bo);
++
++		ttm_lru_walk_unlock(bo, bo_needs_unlock);
++		ttm_bo_put(bo);
++		if (lret == -EBUSY)
++			lret = 0;
++		if (lret < 0) {
++			sofar = lret;
++			goto out;
++		}
++
++		sofar += lret;
++		if (sofar >= target)
++			goto out;
++
++		cond_resched();
++		spin_lock(&bdev->lru_lock);
++	}
++	spin_unlock(&bdev->lru_lock);
++out:
++	ttm_resource_cursor_fini(&cursor);
++	return sofar;
++}
+diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+index 6ccf96c91f3a..8c542ebbe698 100644
+--- a/include/drm/ttm/ttm_bo.h
++++ b/include/drm/ttm/ttm_bo.h
+@@ -190,6 +190,38 @@ struct ttm_operation_ctx {
+ 	uint64_t bytes_moved;
+ };
+ 
++struct ttm_lru_walk;
++
++/** struct ttm_lru_walk_ops - Operations for a LRU walk. */
++struct ttm_lru_walk_ops {
++	/**
++	 * process_bo - Process this bo.
++	 * @walk: struct ttm_lru_walk describing the walk.
++	 * @bo: A locked and referenced buffer object.
++	 *
++	 * Return: Negative error code on error, Number of processed pages on
++	 * success. 0 also indicates success.
++	 */
++	long (*process_bo)(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo);
++};
++
++/**
++ * struct ttm_lru_walk - Structure describing a LRU walk.
++ * @ops: Pointer to the ops structure.
++ * @ctx: Pointer to the struct ttm_operation_ctx.
++ * @ticket: The struct ww_acquire_ctx if any.
++ * @tryock_only: Only use trylock for locking.
++ */
++struct ttm_lru_walk {
++	const struct ttm_lru_walk_ops *ops;
++	struct ttm_operation_ctx *ctx;
++	struct ww_acquire_ctx *ticket;
++	bool trylock_only;
++};
++
++long ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
++			    struct ttm_resource_manager *man, long target);
++
+ /**
+  * ttm_bo_get - reference a struct ttm_buffer_object
+  *
 -- 
 2.44.0
 
