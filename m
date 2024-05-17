@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4138EC25B78
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87FDCC25B7B
 	for <intel-xe@archiver.kernel.org>; Fri, 17 May 2024 07:41:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA8B310EE1C;
-	Fri, 17 May 2024 07:41:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2881710EE20;
+	Fri, 17 May 2024 07:41:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f2TeNq6+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h3f+5+Wp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCA5910EE1B
- for <intel-xe@lists.freedesktop.org>; Fri, 17 May 2024 07:41:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9978810EE1B
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 May 2024 07:41:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715931704; x=1747467704;
+ t=1715931707; x=1747467707;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=DjplpT6Uu+gB1chvf+mAaPs+MLDkvE+/8Pf96vnQtI4=;
- b=f2TeNq6+RaX12B+CHyvcR84sIMeP4O+8QxDczoaFwJFWijTU2Y65ZbeT
- DCV4Ye5Cgh9R28LFmJS9Kyma5Ze7/7awjjx/4F58FzG5IkR+gqBvo3+CV
- PPNeBithA8umJNuNKvfGn/GPvluB1Y65IzNzCE1WL3qeyGkfOXZSvg+YZ
- 1s9XKB9wgE3zc6BhZPiedQWXVRQIraVucxfOSAuHurdSUcZVulzdEI0Uy
- DPJX7s8/rl665lyCSlSilLEM+9flsg6SRKycCC2v3qaHBAjwKJmBNrous
- H68BdMtfgxc9wUiKUjr/0nIbSm7rXpm07AjHYw6GWyWDO9lUjIryV1V8i Q==;
-X-CSE-ConnectionGUID: lzDLDKD6QViI++PFoTQESA==
-X-CSE-MsgGUID: igzyOaQHQ2y6lb0/rz2NRw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="11897578"
-X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="11897578"
+ bh=r3+pM/y80m776HzHOShXWDHFU7ee6v7h/c9NnEjWIeM=;
+ b=h3f+5+WpMYIxzTw32rmUUhQ6G8GINdOjYBJPBySp9+ULfrQdgc+WRRCH
+ s1mJygcrIgPM9bo0LEFgfXRwTTTzqHXmfcw4JNebYJfCrVXvhTbYxkJYn
+ h2oFY1If6As0yOELBOxp30hjSWfELc+oYtrly+KJD9gQ7iISRysf7Z3oQ
+ dqnDVCY1iiu3AXJij5DLHiYbbvRrEuaE5ZCavF8YuHyr2G+ODgaOb5Ps5
+ uuWs98eNj9DQDnweOKBg4n6Qf5odyLbkisKpc8oMMH0ilqQYL5aDs2qD6
+ m39dXhEc9W+34La5EZ3PYL7BnWgu2HTCHmYlWlXcafi+EHzmi2UY/Rshs g==;
+X-CSE-ConnectionGUID: vpkYlim9SWWgjt0ldV9wZA==
+X-CSE-MsgGUID: Mzxy09cBRcCm77YmcHRutA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="11897585"
+X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="11897585"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2024 00:41:44 -0700
-X-CSE-ConnectionGUID: yiEtFwkCRBirNP5NCGZrZg==
-X-CSE-MsgGUID: xAnhuInwSWW8tb2Rk9Qmeg==
+ 17 May 2024 00:41:46 -0700
+X-CSE-ConnectionGUID: QgQTTgdXSna92ScwSG+X1g==
+X-CSE-MsgGUID: PJm1DwnbSw6RsEPGqgPlUQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="36213096"
+X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="36213105"
 Received: from maurocar-mobl2.ger.corp.intel.com (HELO fedora..)
  ([10.245.246.17])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2024 00:41:43 -0700
+ 17 May 2024 00:41:45 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v4 04/21] drm/ttm, drm/amdgpu,
- drm/xe: Consider hitch moves within bulk sublist moves
-Date: Fri, 17 May 2024 09:41:13 +0200
-Message-ID: <20240517074130.2908-5-thomas.hellstrom@linux.intel.com>
+Subject: [CI v4 07/21] drm/ttm: sleeping evict lock.
+Date: Fri, 17 May 2024 09:41:16 +0200
+Message-ID: <20240517074130.2908-8-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240517074130.2908-1-thomas.hellstrom@linux.intel.com>
 References: <20240517074130.2908-1-thomas.hellstrom@linux.intel.com>
@@ -68,356 +67,484 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To address the problem with hitches moving when bulk move
-sublists are lru-bumped, register the list cursors with the
-ttm_lru_bulk_move structure when traversing its list, and
-when lru-bumping the list, move the cursor hitch to the tail.
-This also means it's mandatory for drivers to call
-ttm_lru_bulk_move_init() and ttm_lru_bulk_move_fini() when
-initializing and finalizing the bulk move structure, so add
-those calls to the amdgpu- and xe driver.
-
-Compared to v1 this is slightly more code but less fragile
-and hopefully easier to understand.
-
-Changes in previous series:
-- Completely rework the functionality
-- Avoid a NULL pointer dereference assigning manager->mem_type
-- Remove some leftover code causing build problems
-v2:
-- For hitch bulk tail moves, store the mem_type in the cursor
-  instead of with the manager.
-
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-Cc: <dri-devel@lists.freedesktop.org>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c |  4 ++
- drivers/gpu/drm/ttm/ttm_resource.c     | 90 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.c             |  4 ++
- include/drm/ttm/ttm_resource.h         | 59 +++++++++++------
- 4 files changed, 136 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo.c       | 340 +++++++++++------------------
+ drivers/gpu/drm/ttm/ttm_device.c   |   1 -
+ drivers/gpu/drm/ttm/ttm_resource.c |  20 +-
+ include/drm/ttm/ttm_bo.h           |   8 +-
+ 4 files changed, 131 insertions(+), 238 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index 4e2391c83d7c..6293f3b54b4a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -2422,6 +2422,8 @@ int amdgpu_vm_init(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 	if (r)
- 		return r;
- 
-+	ttm_lru_bulk_move_init(&vm->lru_bulk_move);
-+
- 	vm->is_compute_context = false;
- 
- 	vm->use_cpu_for_update = !!(adev->vm_manager.vm_update_mode &
-@@ -2486,6 +2488,7 @@ int amdgpu_vm_init(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- error_free_delayed:
- 	dma_fence_put(vm->last_tlb_flush);
- 	dma_fence_put(vm->last_unlocked);
-+	ttm_lru_bulk_move_fini(&adev->mman.bdev, &vm->lru_bulk_move);
- 	amdgpu_vm_fini_entities(vm);
- 
- 	return r;
-@@ -2642,6 +2645,7 @@ void amdgpu_vm_fini(struct amdgpu_device *adev, struct amdgpu_vm *vm)
- 		}
- 	}
- 
-+	ttm_lru_bulk_move_fini(&adev->mman.bdev, &vm->lru_bulk_move);
- }
- 
- /**
-diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
-index 9c8b6499edfb..9b80bdcf2216 100644
---- a/drivers/gpu/drm/ttm/ttm_resource.c
-+++ b/drivers/gpu/drm/ttm/ttm_resource.c
-@@ -33,6 +33,49 @@
- 
- #include <drm/drm_util.h>
- 
-+/* Detach the cursor from the bulk move list*/
-+static void
-+ttm_resource_cursor_clear_bulk(struct ttm_resource_cursor *cursor)
-+{
-+	cursor->bulk = NULL;
-+	list_del_init(&cursor->bulk_link);
-+}
-+
-+/* Move the cursor to the end of the bulk move list it's in */
-+static void ttm_resource_cursor_move_bulk_tail(struct ttm_lru_bulk_move *bulk,
-+					       struct ttm_resource_cursor *cursor)
-+{
-+	struct ttm_lru_bulk_move_pos *pos;
-+
-+	if (WARN_ON_ONCE(bulk != cursor->bulk)) {
-+		list_del_init(&cursor->bulk_link);
-+		return;
-+	}
-+
-+	pos = &bulk->pos[cursor->mem_type][cursor->priority];
-+	if (pos)
-+		list_move(&cursor->hitch.link, &pos->last->lru.link);
-+	ttm_resource_cursor_clear_bulk(cursor);
-+}
-+
-+/* Move all cursors attached to a bulk move to its end */
-+static void ttm_bulk_move_adjust_cursors(struct ttm_lru_bulk_move *bulk)
-+{
-+	struct ttm_resource_cursor *cursor, *next;
-+
-+	list_for_each_entry_safe(cursor, next, &bulk->cursor_list, bulk_link)
-+		ttm_resource_cursor_move_bulk_tail(bulk, cursor);
-+}
-+
-+/* Remove a cursor from an empty bulk move list */
-+static void ttm_bulk_move_drop_cursors(struct ttm_lru_bulk_move *bulk)
-+{
-+	struct ttm_resource_cursor *cursor, *next;
-+
-+	list_for_each_entry_safe(cursor, next, &bulk->cursor_list, bulk_link)
-+		ttm_resource_cursor_clear_bulk(cursor);
-+}
-+
- /**
-  * ttm_resource_cursor_fini_locked() - Finalize the LRU list cursor usage
-  * @cursor: The struct ttm_resource_cursor to finalize.
-@@ -45,6 +88,7 @@ void ttm_resource_cursor_fini_locked(struct ttm_resource_cursor *cursor)
- {
- 	lockdep_assert_held(&cursor->man->bdev->lru_lock);
- 	list_del_init(&cursor->hitch.link);
-+	ttm_resource_cursor_clear_bulk(cursor);
- }
- 
- /**
-@@ -73,9 +117,27 @@ void ttm_resource_cursor_fini(struct ttm_resource_cursor *cursor)
- void ttm_lru_bulk_move_init(struct ttm_lru_bulk_move *bulk)
- {
- 	memset(bulk, 0, sizeof(*bulk));
-+	INIT_LIST_HEAD(&bulk->cursor_list);
- }
- EXPORT_SYMBOL(ttm_lru_bulk_move_init);
- 
-+/**
-+ * ttm_lru_bulk_move_fini - finalize a bulk move structure
-+ * @bdev: The struct ttm_device
-+ * @bulk: the structure to finalize
-+ *
-+ * Sanity checks that bulk moves don't have any
-+ * resources left and hence no cursors attached.
-+ */
-+void ttm_lru_bulk_move_fini(struct ttm_device *bdev,
-+			    struct ttm_lru_bulk_move *bulk)
-+{
-+	spin_lock(&bdev->lru_lock);
-+	ttm_bulk_move_drop_cursors(bulk);
-+	spin_unlock(&bdev->lru_lock);
-+}
-+EXPORT_SYMBOL(ttm_lru_bulk_move_fini);
-+
- /**
-  * ttm_lru_bulk_move_tail - bulk move range of resources to the LRU tail.
-  *
-@@ -88,6 +150,7 @@ void ttm_lru_bulk_move_tail(struct ttm_lru_bulk_move *bulk)
- {
- 	unsigned i, j;
- 
-+	ttm_bulk_move_adjust_cursors(bulk);
- 	for (i = 0; i < TTM_NUM_MEM_TYPES; ++i) {
- 		for (j = 0; j < TTM_MAX_BO_PRIORITY; ++j) {
- 			struct ttm_lru_bulk_move_pos *pos = &bulk->pos[i][j];
-@@ -419,6 +482,7 @@ void ttm_resource_manager_init(struct ttm_resource_manager *man,
- 	man->bdev = bdev;
- 	man->size = size;
- 	man->usage = 0;
-+	man->mem_type = TTM_NUM_MEM_TYPES;
- 
- 	for (i = 0; i < TTM_MAX_BO_PRIORITY; ++i)
- 		INIT_LIST_HEAD(&man->lru[i]);
-@@ -515,6 +579,29 @@ void ttm_resource_manager_debug(struct ttm_resource_manager *man,
- }
- EXPORT_SYMBOL(ttm_resource_manager_debug);
- 
-+static void
-+ttm_resource_cursor_check_bulk(struct ttm_resource_cursor *cursor,
-+			       struct ttm_lru_item *next_lru)
-+{
-+	struct ttm_resource *next = ttm_lru_item_to_res(next_lru);
-+	struct ttm_lru_bulk_move *bulk = NULL;
-+	struct ttm_buffer_object *bo = next->bo;
-+
-+	lockdep_assert_held(&cursor->man->bdev->lru_lock);
-+	if (bo && bo->resource == next)
-+		bulk = bo->bulk_move;
-+
-+	if (cursor->bulk != bulk) {
-+		if (bulk) {
-+			list_move_tail(&cursor->bulk_link, &bulk->cursor_list);
-+			cursor->mem_type = next->mem_type;
-+		} else {
-+			list_del_init(&cursor->bulk_link);
-+		}
-+		cursor->bulk = bulk;
-+	}
-+}
-+
- /**
-  * ttm_resource_manager_first() - Start iterating over the resources
-  * of a resource manager
-@@ -535,6 +622,7 @@ ttm_resource_manager_first(struct ttm_resource_manager *man,
- 	cursor->priority = 0;
- 	cursor->man = man;
- 	ttm_lru_item_init(&cursor->hitch, TTM_LRU_HITCH);
-+	INIT_LIST_HEAD(&cursor->bulk_link);
- 	list_add(&cursor->hitch.link, &man->lru[cursor->priority]);
- 
- 	return ttm_resource_manager_next(cursor);
-@@ -559,6 +647,7 @@ ttm_resource_manager_next(struct ttm_resource_cursor *cursor)
- 		lru = &cursor->hitch;
- 		list_for_each_entry_continue(lru, &man->lru[cursor->priority], link) {
- 			if (ttm_lru_item_is_res(lru)) {
-+				ttm_resource_cursor_check_bulk(cursor, lru);
- 				list_move(&cursor->hitch.link, &lru->link);
- 				return ttm_lru_item_to_res(lru);
- 			}
-@@ -568,6 +657,7 @@ ttm_resource_manager_next(struct ttm_resource_cursor *cursor)
- 			break;
- 
- 		list_move(&cursor->hitch.link, &man->lru[cursor->priority]);
-+		ttm_resource_cursor_clear_bulk(cursor);
- 	}
- 
- 	ttm_resource_cursor_fini_locked(cursor);
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index c5b1694b292f..e2ec148c9c33 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1339,6 +1339,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 
- 	INIT_WORK(&vm->destroy_work, vm_destroy_work_func);
- 
-+	ttm_lru_bulk_move_init(&vm->lru_bulk_move);
-+
- 	INIT_LIST_HEAD(&vm->preempt.exec_queues);
- 	vm->preempt.min_run_period_ms = 10;	/* FIXME: Wire up to uAPI */
- 
-@@ -1456,6 +1458,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 	mutex_destroy(&vm->snap_mutex);
- 	for_each_tile(tile, xe, id)
- 		xe_range_fence_tree_fini(&vm->rftree[id]);
-+	ttm_lru_bulk_move_fini(&xe->ttm, &vm->lru_bulk_move);
- 	kfree(vm);
- 	if (!(flags & XE_VM_FLAG_MIGRATION))
- 		xe_pm_runtime_put(xe);
-@@ -1599,6 +1602,7 @@ static void vm_destroy_work_func(struct work_struct *w)
- 		XE_WARN_ON(vm->pt_root[id]);
- 
- 	trace_xe_vm_free(vm);
-+	ttm_lru_bulk_move_fini(&xe->ttm, &vm->lru_bulk_move);
- 	kfree(vm);
- }
- 
-diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
-index 8fac781f641e..1c7140aa5d4e 100644
---- a/include/drm/ttm/ttm_resource.h
-+++ b/include/drm/ttm/ttm_resource.h
-@@ -211,6 +211,9 @@ struct ttm_resource_manager {
- 	 * bdev->lru_lock.
- 	 */
- 	uint64_t usage;
-+
-+	/** @mem_type: The memory type used for this manager. */
-+	unsigned int mem_type;
- };
- 
- /**
-@@ -269,26 +272,6 @@ ttm_lru_item_to_res(struct ttm_lru_item *item)
- 	return container_of(item, struct ttm_resource, lru);
+diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+index 4dbd53852773..56bae5c68d85 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo.c
++++ b/drivers/gpu/drm/ttm/ttm_bo.c
+@@ -224,80 +224,6 @@ static void ttm_bo_flush_all_fences(struct ttm_buffer_object *bo)
+ 	dma_resv_iter_end(&cursor);
  }
  
 -/**
-- * struct ttm_resource_cursor
+- * ttm_bo_cleanup_refs
+- * If bo idle, remove from lru lists, and unref.
+- * If not idle, block if possible.
 - *
-- * @man: The resource manager currently being iterated over.
-- * @hitch: A hitch list node inserted before the next resource
-- * to iterate over.
-- * @priority: the current priority
+- * Must be called with lru_lock and reservation held, this function
+- * will drop the lru lock and optionally the reservation lock before returning.
 - *
-- * Cursor to iterate over the resources in a manager.
+- * @bo:                    The buffer object to clean-up
+- * @interruptible:         Any sleeps should occur interruptibly.
+- * @no_wait_gpu:           Never wait for gpu. Return -EBUSY instead.
+- * @unlock_resv:           Unlock the reservation lock as well.
 - */
--struct ttm_resource_cursor {
--	struct ttm_resource_manager *man;
--	struct ttm_lru_item hitch;
--	unsigned int priority;
--};
 -
--void ttm_resource_cursor_fini_locked(struct ttm_resource_cursor *cursor);
+-static int ttm_bo_cleanup_refs(struct ttm_buffer_object *bo,
+-			       bool interruptible, bool no_wait_gpu,
+-			       bool unlock_resv)
+-{
+-	struct dma_resv *resv = &bo->base._resv;
+-	int ret;
 -
--void ttm_resource_cursor_fini(struct ttm_resource_cursor *cursor);
+-	if (dma_resv_test_signaled(resv, DMA_RESV_USAGE_BOOKKEEP))
+-		ret = 0;
+-	else
+-		ret = -EBUSY;
 -
- /**
-  * struct ttm_lru_bulk_move_pos
-  *
-@@ -304,8 +287,9 @@ struct ttm_lru_bulk_move_pos {
+-	if (ret && !no_wait_gpu) {
+-		long lret;
+-
+-		if (unlock_resv)
+-			dma_resv_unlock(bo->base.resv);
+-		spin_unlock(&bo->bdev->lru_lock);
+-
+-		lret = dma_resv_wait_timeout(resv, DMA_RESV_USAGE_BOOKKEEP,
+-					     interruptible,
+-					     30 * HZ);
+-
+-		if (lret < 0)
+-			return lret;
+-		else if (lret == 0)
+-			return -EBUSY;
+-
+-		spin_lock(&bo->bdev->lru_lock);
+-		if (unlock_resv && !dma_resv_trylock(bo->base.resv)) {
+-			/*
+-			 * We raced, and lost, someone else holds the reservation now,
+-			 * and is probably busy in ttm_bo_cleanup_memtype_use.
+-			 *
+-			 * Even if it's not the case, because we finished waiting any
+-			 * delayed destruction would succeed, so just return success
+-			 * here.
+-			 */
+-			spin_unlock(&bo->bdev->lru_lock);
+-			return 0;
+-		}
+-		ret = 0;
+-	}
+-
+-	if (ret) {
+-		if (unlock_resv)
+-			dma_resv_unlock(bo->base.resv);
+-		spin_unlock(&bo->bdev->lru_lock);
+-		return ret;
+-	}
+-
+-	spin_unlock(&bo->bdev->lru_lock);
+-	ttm_bo_cleanup_memtype_use(bo);
+-
+-	if (unlock_resv)
+-		dma_resv_unlock(bo->base.resv);
+-
+-	return 0;
+-}
+-
+ /*
+  * Block for the dma_resv object to become idle, lock the buffer and clean up
+  * the resource and tt object.
+@@ -505,151 +431,133 @@ bool ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
+ }
+ EXPORT_SYMBOL(ttm_bo_eviction_valuable);
  
- /**
-  * struct ttm_lru_bulk_move
+-/*
+- * Check the target bo is allowable to be evicted or swapout, including cases:
 - *
-  * @pos: first/last lru entry for resources in the each domain/priority
-+ * @cursor_list: The list of cursors currently traversing any of
-+ * the sublists of @pos. Protected by the ttm device's lru_lock.
-  *
-  * Container for the current bulk move state. Should be used with
-  * ttm_lru_bulk_move_init() and ttm_bo_set_bulk_move().
-@@ -315,8 +299,39 @@ struct ttm_lru_bulk_move_pos {
-  */
- struct ttm_lru_bulk_move {
- 	struct ttm_lru_bulk_move_pos pos[TTM_NUM_MEM_TYPES][TTM_MAX_BO_PRIORITY];
-+	struct list_head cursor_list;
- };
+- * a. if share same reservation object with ctx->resv, have assumption
+- * reservation objects should already be locked, so not lock again and
+- * return true directly when either the opreation allow_reserved_eviction
+- * or the target bo already is in delayed free list;
+- *
+- * b. Otherwise, trylock it.
+- */
+-static bool ttm_bo_evict_swapout_allowable(struct ttm_buffer_object *bo,
+-					   struct ttm_operation_ctx *ctx,
+-					   const struct ttm_place *place,
+-					   bool *locked, bool *busy)
++int ttm_bo_evict_first(struct ttm_device *bdev, struct ttm_resource_manager *man,
++		       struct ttm_operation_ctx *ctx)
+ {
+-	bool ret = false;
++	struct ttm_resource_cursor cursor;
++	struct ttm_resource *res;
++	struct ttm_buffer_object *bo;
++	int ret = 0;
  
-+/**
-+ * struct ttm_resource_cursor
-+ * @man: The resource manager currently being iterated over
-+ * @hitch: A hitch list node inserted before the next resource
-+ * to iterate over.
-+ * @bulk_link: A list link for the list of cursors traversing the
-+ * bulk sublist of @bulk. Protected by the ttm device's lru_lock.
-+ * @bulk: Pointer to struct ttm_lru_bulk_move whose subrange @hitch is
-+ * inserted to. NULL if none. Never dereference this pointer since
-+ * the struct ttm_lru_bulk_move object pointed to might have been
-+ * freed. The pointer is only for comparison.
-+ * @mem_type: The memory type of the LRU list being traversed.
-+ * This field is valid iff @bulk != NULL.
-+ * @priority: the current priority
-+ *
-+ * Cursor to iterate over the resources in a manager.
-+ */
-+struct ttm_resource_cursor {
-+	struct ttm_resource_manager *man;
-+	struct ttm_lru_item hitch;
-+	struct list_head bulk_link;
-+	struct ttm_lru_bulk_move *bulk;
-+	unsigned int mem_type;
-+	unsigned int priority;
+-	if (bo->pin_count) {
+-		*locked = false;
+-		if (busy)
+-			*busy = false;
+-		return false;
++	spin_lock(&bdev->lru_lock);
++	res = ttm_resource_manager_first(man, &cursor);
++	if (!res) {
++		ret = -ENOENT;
++		goto out_no_ref;
+ 	}
++	bo = res->bo;
++	if (!ttm_bo_get_unless_zero(bo))
++		goto out_no_ref;
++	spin_unlock(&bdev->lru_lock);
++	dma_resv_lock(bo->base.resv, NULL);
++	if (bo->resource != res)
++		goto out_bad_res;
+ 
+-	if (bo->base.resv == ctx->resv) {
+-		dma_resv_assert_held(bo->base.resv);
+-		if (ctx->allow_res_evict)
+-			ret = true;
+-		*locked = false;
+-		if (busy)
+-			*busy = false;
++	if (bo->deleted) {
++		ret = ttm_bo_wait_ctx(bo, ctx);
++		if (ret)
++			ttm_bo_cleanup_memtype_use(bo);
+ 	} else {
+-		ret = dma_resv_trylock(bo->base.resv);
+-		*locked = ret;
+-		if (busy)
+-			*busy = !ret;
+-	}
+-
+-	if (ret && place && (bo->resource->mem_type != place->mem_type ||
+-		!bo->bdev->funcs->eviction_valuable(bo, place))) {
+-		ret = false;
+-		if (*locked) {
+-			dma_resv_unlock(bo->base.resv);
+-			*locked = false;
+-		}
++		ret = ttm_bo_evict(bo, ctx);
+ 	}
+-
++out_bad_res:
++	dma_resv_unlock(bo->base.resv);
++	ttm_bo_put(bo);
++	ttm_resource_cursor_fini(&cursor);
+ 	return ret;
+-}
+-
+-/**
+- * ttm_mem_evict_wait_busy - wait for a busy BO to become available
+- *
+- * @busy_bo: BO which couldn't be locked with trylock
+- * @ctx: operation context
+- * @ticket: acquire ticket
+- *
+- * Try to lock a busy buffer object to avoid failing eviction.
+- */
+-static int ttm_mem_evict_wait_busy(struct ttm_buffer_object *busy_bo,
+-				   struct ttm_operation_ctx *ctx,
+-				   struct ww_acquire_ctx *ticket)
+-{
+-	int r;
+-
+-	if (!busy_bo || !ticket)
+-		return -EBUSY;
+ 
+-	if (ctx->interruptible)
+-		r = dma_resv_lock_interruptible(busy_bo->base.resv,
+-							  ticket);
+-	else
+-		r = dma_resv_lock(busy_bo->base.resv, ticket);
+-
+-	/*
+-	 * TODO: It would be better to keep the BO locked until allocation is at
+-	 * least tried one more time, but that would mean a much larger rework
+-	 * of TTM.
+-	 */
+-	if (!r)
+-		dma_resv_unlock(busy_bo->base.resv);
+-
+-	return r == -EDEADLK ? -EBUSY : r;
++out_no_ref:
++	ttm_resource_cursor_fini_locked(&cursor);
++	spin_unlock(&bdev->lru_lock);
++	return -ENOENT;
+ }
+ 
+-int ttm_mem_evict_first(struct ttm_device *bdev,
+-			struct ttm_resource_manager *man,
+-			const struct ttm_place *place,
+-			struct ttm_operation_ctx *ctx,
+-			struct ww_acquire_ctx *ticket)
++struct ttm_bo_evict_walk {
++	struct ttm_lru_walk walk;
++	const struct ttm_place *place;
++	struct ttm_buffer_object *evictor;
++	struct ttm_resource **res;
++	unsigned long evicted;
 +};
 +
-+void ttm_resource_cursor_fini_locked(struct ttm_resource_cursor *cursor);
++static long ttm_bo_evict_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
+ {
+-	struct ttm_buffer_object *bo = NULL, *busy_bo = NULL;
+-	struct ttm_resource_cursor cursor;
+-	struct ttm_resource *res;
+-	bool locked = false;
+-	int ret;
++	struct ttm_bo_evict_walk *evict_walk =
++		container_of(walk, typeof(*evict_walk), walk);
++	long lret;
+ 
+-	spin_lock(&bdev->lru_lock);
+-	ttm_resource_manager_for_each_res(man, &cursor, res) {
+-		bool busy;
+-
+-		if (!ttm_bo_evict_swapout_allowable(res->bo, ctx, place,
+-						    &locked, &busy)) {
+-			if (busy && !busy_bo && ticket !=
+-			    dma_resv_locking_ctx(res->bo->base.resv))
+-				busy_bo = res->bo;
+-			continue;
+-		}
++	if (!bo->bdev->funcs->eviction_valuable(bo, evict_walk->place))
++		return 0;
+ 
+-		if (ttm_bo_get_unless_zero(res->bo)) {
+-			bo = res->bo;
+-			break;
+-		}
+-		if (locked)
+-			dma_resv_unlock(res->bo->base.resv);
++	if (bo->deleted) {
++		lret = ttm_bo_wait_ctx(bo, walk->ctx);
++		if (!lret)
++			ttm_bo_cleanup_memtype_use(bo);
++	} else {
++		lret = ttm_bo_evict(bo, walk->ctx);
+ 	}
+-	ttm_resource_cursor_fini_locked(&cursor);
+ 
+-	if (!bo) {
+-		if (busy_bo && !ttm_bo_get_unless_zero(busy_bo))
+-			busy_bo = NULL;
+-		spin_unlock(&bdev->lru_lock);
+-		ret = ttm_mem_evict_wait_busy(busy_bo, ctx, ticket);
+-		if (busy_bo)
+-			ttm_bo_put(busy_bo);
+-		return ret;
+-	}
++	if (lret)
++		goto out;
+ 
+-	if (bo->deleted) {
+-		ret = ttm_bo_cleanup_refs(bo, ctx->interruptible,
+-					  ctx->no_wait_gpu, locked);
+-		ttm_bo_put(bo);
+-		return ret;
+-	}
++	evict_walk->evicted++;
++	if (evict_walk->res)
++		lret = ttm_resource_alloc(evict_walk->evictor, evict_walk->place,
++					  evict_walk->res);
++	if (lret == 0)
++		return 1;
++out:
++	/* Errors that should terminate the walk. */
++	if (lret == -ENOMEM || lret == -EINTR || lret == -ERESTARTSYS ||
++	    lret == -EAGAIN)
++		return lret;
+ 
+-	spin_unlock(&bdev->lru_lock);
++	return 0;
++}
+ 
+-	ret = ttm_bo_evict(bo, ctx);
+-	if (locked)
+-		ttm_bo_unreserve(bo);
+-	else
+-		ttm_bo_move_to_lru_tail_unlocked(bo);
++static const struct ttm_lru_walk_ops ttm_evict_walk_ops = {
++	.process_bo = ttm_bo_evict_cb,
++};
+ 
+-	ttm_bo_put(bo);
+-	return ret;
++static int ttm_bo_evict_alloc(struct ttm_device *bdev,
++			      struct ttm_resource_manager *man,
++			      const struct ttm_place *place,
++			      struct ttm_buffer_object *evictor,
++			      struct ttm_operation_ctx *ctx,
++			      struct ww_acquire_ctx *ticket,
++			      struct ttm_resource **res)
++{
++	struct ttm_bo_evict_walk evict_walk = {
++		.walk = {
++			.ops = &ttm_evict_walk_ops,
++			.ctx = ctx,
++			.ticket = ticket,
++		},
++		.place = place,
++		.evictor = evictor,
++		.res = res,
++	};
++	long lret;
 +
-+void ttm_resource_cursor_fini(struct ttm_resource_cursor *cursor);
++	evict_walk.walk.trylock_only = true;
++	lret = ttm_lru_walk_for_evict(&evict_walk.walk, bdev, man, 1);
++	if (lret || !ticket)
++		goto out;
 +
++	/* If ticket-locking, repeat while making progress. */
++	evict_walk.walk.trylock_only = false;
++	do {
++		/* The walk may clear the evict_walk.walk.ticket field */
++		evict_walk.walk.ticket = ticket;
++		evict_walk.evicted = 0;
++		lret = ttm_lru_walk_for_evict(&evict_walk.walk, bdev, man, 1);
++	} while (!lret && evict_walk.evicted);
++out:
++	if (lret < 0)
++		return lret;
++	if (lret == 0)
++		return -EBUSY;
++	return 0;
+ }
+ 
  /**
-  * struct ttm_kmap_iter_iomap - Specialization for a struct io_mapping +
-  * struct sg_table backed struct ttm_resource.
-@@ -405,6 +420,8 @@ ttm_resource_manager_cleanup(struct ttm_resource_manager *man)
+@@ -760,6 +668,7 @@ static int ttm_bo_alloc_resource(struct ttm_buffer_object *bo,
+ 	for (i = 0; i < placement->num_placement; ++i) {
+ 		const struct ttm_place *place = &placement->placement[i];
+ 		struct ttm_resource_manager *man;
++		bool may_evict;
  
- void ttm_lru_bulk_move_init(struct ttm_lru_bulk_move *bulk);
- void ttm_lru_bulk_move_tail(struct ttm_lru_bulk_move *bulk);
-+void ttm_lru_bulk_move_fini(struct ttm_device *bdev,
-+			    struct ttm_lru_bulk_move *bulk);
+ 		man = ttm_manager_type(bdev, place->mem_type);
+ 		if (!man || !ttm_resource_manager_used(man))
+@@ -769,22 +678,21 @@ static int ttm_bo_alloc_resource(struct ttm_buffer_object *bo,
+ 				    TTM_PL_FLAG_FALLBACK))
+ 			continue;
  
- void ttm_resource_add_bulk_move(struct ttm_resource *res,
- 				struct ttm_buffer_object *bo);
+-		do {
+-			ret = ttm_resource_alloc(bo, place, res);
+-			if (unlikely(ret && ret != -ENOSPC))
++		may_evict = (force_space && place->mem_type != TTM_PL_SYSTEM);
++		ret = ttm_resource_alloc(bo, place, res);
++		if (ret) {
++			if (ret != -ENOSPC)
+ 				return ret;
+-			if (likely(!ret) || !force_space)
+-				break;
+-
+-			ret = ttm_mem_evict_first(bdev, man, place, ctx,
+-						  ticket);
+-			if (unlikely(ret == -EBUSY))
+-				break;
+-			if (unlikely(ret))
++			if (!may_evict)
++				continue;
++
++			ret = ttm_bo_evict_alloc(bdev, man, place, bo, ctx,
++						 ticket, res);
++			if (ret == -EBUSY)
++				continue;
++			if (ret)
+ 				return ret;
+-		} while (1);
+-		if (ret)
+-			continue;
++		}
+ 
+ 		ret = ttm_bo_add_move_fence(bo, man, ctx->no_wait_gpu);
+ 		if (unlikely(ret)) {
+@@ -796,7 +704,6 @@ static int ttm_bo_alloc_resource(struct ttm_buffer_object *bo,
+ 		}
+ 		return 0;
+ 	}
+-
+ 	return -ENOSPC;
+ }
+ 
+@@ -822,6 +729,9 @@ int ttm_bo_mem_space(struct ttm_buffer_object *bo,
+ 	do {
+ 		ret = ttm_bo_alloc_resource(bo, placement, ctx,
+ 					    force_space, res);
++		if (ret)
++			pr_err("mem space failure %pe, force_space %d\n",
++			       ERR_PTR(ret), force_space);
+ 		force_space = !force_space;
+ 	} while (ret == -ENOSPC && force_space);
+ 
+diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
+index c9d08ecc0f3b..ee575d8a54c0 100644
+--- a/drivers/gpu/drm/ttm/ttm_device.c
++++ b/drivers/gpu/drm/ttm/ttm_device.c
+@@ -152,7 +152,6 @@ int ttm_device_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
+ 	unsigned i;
+ 	long lret;
+ 
+-	spin_lock(&bdev->lru_lock);
+ 	for (i = TTM_PL_SYSTEM; i < TTM_NUM_MEM_TYPES; ++i) {
+ 		man = ttm_manager_type(bdev, i);
+ 		if (!man || !man->use_tt)
+diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
+index 9b80bdcf2216..a68a96a8241b 100644
+--- a/drivers/gpu/drm/ttm/ttm_resource.c
++++ b/drivers/gpu/drm/ttm/ttm_resource.c
+@@ -509,24 +509,10 @@ int ttm_resource_manager_evict_all(struct ttm_device *bdev,
+ 	};
+ 	struct dma_fence *fence;
+ 	int ret;
+-	unsigned i;
+-
+-	/*
+-	 * Can't use standard list traversal since we're unlocking.
+-	 */
+ 
+-	spin_lock(&bdev->lru_lock);
+-	for (i = 0; i < TTM_MAX_BO_PRIORITY; ++i) {
+-		while (!list_empty(&man->lru[i])) {
+-			spin_unlock(&bdev->lru_lock);
+-			ret = ttm_mem_evict_first(bdev, man, NULL, &ctx,
+-						  NULL);
+-			if (ret)
+-				return ret;
+-			spin_lock(&bdev->lru_lock);
+-		}
+-	}
+-	spin_unlock(&bdev->lru_lock);
++	do {
++		ret = ttm_bo_evict_first(bdev, man, &ctx);
++	} while (!ret);
+ 
+ 	spin_lock(&man->move_lock);
+ 	fence = dma_fence_get(man->move);
+diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+index 8c43939e95e9..30c3a5fd9099 100644
+--- a/include/drm/ttm/ttm_bo.h
++++ b/include/drm/ttm/ttm_bo.h
+@@ -415,11 +415,9 @@ long ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
+ 		    pgoff_t target);
+ void ttm_bo_pin(struct ttm_buffer_object *bo);
+ void ttm_bo_unpin(struct ttm_buffer_object *bo);
+-int ttm_mem_evict_first(struct ttm_device *bdev,
+-			struct ttm_resource_manager *man,
+-			const struct ttm_place *place,
+-			struct ttm_operation_ctx *ctx,
+-			struct ww_acquire_ctx *ticket);
++int ttm_bo_evict_first(struct ttm_device *bdev,
++		       struct ttm_resource_manager *man,
++		       struct ttm_operation_ctx *ctx);
+ vm_fault_t ttm_bo_vm_reserve(struct ttm_buffer_object *bo,
+ 			     struct vm_fault *vmf);
+ vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
 -- 
 2.44.0
 
