@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52C5EC25B74
-	for <intel-xe@archiver.kernel.org>; Sat, 18 May 2024 04:42:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBBBDC25B75
+	for <intel-xe@archiver.kernel.org>; Sat, 18 May 2024 04:43:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E893A10E049;
-	Sat, 18 May 2024 04:42:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B029010E034;
+	Sat, 18 May 2024 04:43:10 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 661D910E034;
- Sat, 18 May 2024 04:42:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 386EE10E034;
+ Sat, 18 May 2024 04:43:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Support/debug_for_sl?=
- =?utf-8?q?ow_GuC_loads?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Support/debug_for_slow_Gu?=
+ =?utf-8?q?C_loads?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: john.c.harrison@intel.com
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 18 May 2024 04:42:55 -0000
-Message-ID: <171600737541.2144991.6709102140991066675@8e613ede5ea5>
+Date: Sat, 18 May 2024 04:43:10 -0000
+Message-ID: <171600739022.2143812.4868571415776567489@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240518043700.3264362-1-John.C.Harrison@Intel.com>
 In-Reply-To: <20240518043700.3264362-1-John.C.Harrison@Intel.com>
@@ -44,14 +44,57 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Support/debug for slow GuC loads
 URL   : https://patchwork.freedesktop.org/series/133779/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5e9e7440f7d7 drm-tip: 2024y-05m-17d-19h-38m-17s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Make read_perf_limit_reasons globally accessible
-Applying: drm/xe/guc: Port over the slow GuC loading support from i915
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+57b97a66dd129aea93991dc66cd10477f7a05cf8
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 79d66dc7ba81ea66c4f4238607a03b388bb9c725
+Author: John Harrison <John.C.Harrison@Intel.com>
+Date:   Fri May 17 21:36:59 2024 -0700
+
+    drm/xe/guc: Port over the slow GuC loading support from i915
+    
+    GuC loading can take longer than it is supposed to for various
+    reasons. So add in the code to cope with that and to report it when it
+    happens. There are also many different reasons why GuC loading can
+    fail, so add in the code for checking for those and for reporting
+    issues in a meaningful manner rather than just hitting a timeout and
+    saying 'fail: status = %x'.
+    
+    Also, remove the 'FIXME' comment about an i915 bug that has never been
+    applicable to Xe!
+    
+    v2: Actually report the requested and granted frequencies rather than
+    showing granted twice (review feedback from Badal).
+    v3: Locally code all the timeout and end condition handling because a
+    helper function is not allowed (review feedback from Lucas/Rodrigo).
+    v4: Add more documentation comments and rename a define to add units
+    (review feedback from Lucas).
+    v5: Fix copy/paste error in xe_mmio_wait32_not (review feedback from
+    Lucas) and rebase (no more return value from guc_wait_ucode).
+    
+    Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+    Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 5e9e7440f7d7efd64079148c738fc83600fb477b drm-intel
+8527a5d491e3 drm/xe: Make read_perf_limit_reasons globally accessible
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:54: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#54: 
+rename from drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
+
+total: 0 errors, 1 warnings, 0 checks, 143 lines checked
+79d66dc7ba81 drm/xe/guc: Port over the slow GuC loading support from i915
 
 
