@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7F0CC25B7C
-	for <intel-xe@archiver.kernel.org>; Mon, 20 May 2024 15:45:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECD76C04FFE
+	for <intel-xe@archiver.kernel.org>; Mon, 20 May 2024 15:45:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43DE310E7BB;
-	Mon, 20 May 2024 15:45:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CECC10E7C1;
+	Mon, 20 May 2024 15:45:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bNDy0tSs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FbUcAFzE";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 536A110E58D
- for <intel-xe@lists.freedesktop.org>; Mon, 20 May 2024 15:45:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7122E10E7BB
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 May 2024 15:45:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716219949; x=1747755949;
+ t=1716219956; x=1747755956;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=B+J4/P7Rn4wgKHayIY577pl5IoZNbAsvbKokQY+IjFY=;
- b=bNDy0tSspbPQNs/OmK8qwunn9tGRZjbzNP4rvBSKrTPHyunhoM6/t91z
- fTWi0WL1BPBOPlM8ZtsZCS4PcTrSH7XJ33ya21UXBKb+2Nvvd1YB/gxwf
- yHpqyJBaXmAzdB7KHn2oYL5ZBf3htSrEUB9dcSuT8eWjqDjMf+1/oL3zQ
- kTTbEVeGLRpuXx4oqf+c04fNDrsSRnbZFZbVxjrnMb9ZSbWq3+81vuZo6
- v/wq2//kR8ljJDAvBzqkgur4XqNBfvNLOT/p8bC4hO+7lnYYsiEKbAC7n
- ZLJQUt9EKvEXxuXR/H/w7OVnmgZH5vRcYdU4IpxknDEAY1LgGfeajGWqz Q==;
-X-CSE-ConnectionGUID: gxIaDa53QLWNfdGzVStinQ==
-X-CSE-MsgGUID: rDSyTGFiRoe459bnPBzskg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="34873201"
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="34873201"
+ bh=0amT0QMqrRbjKJDoc89ZGXKA2P0Pxc6I/akPpbUDlJ8=;
+ b=FbUcAFzElayy5mpHzYJ4dhTjCVouNCMpmtMNuGr6CYNQO8LiKTb2jQqG
+ 7PX0YyYijGRdycpebnd3nfnEyjCc8pQYLLBW/9L4ZJ402yZJ/17cR1aBa
+ UeHP95lxk8j+GvudTB6pw/A7bNqNe3BnHmJSsuhJDxhwNhHVjKlku0PQI
+ HSciZUPOGjtM+ql1RzTuZhHBHG8qfuVHg5p7e0EKJEMCFCrqGh8NM67xy
+ C9y4BDeS7a0nOgA05qVljT6FAtNjpBsLonhY9Oa9bq0L7Vu4il/YuvoJl
+ WTct4BzOhW3l1XxxtBUJTZ5hFM0fY3afIYoWMOzq3ZZSjPH4IKHrvzll3 w==;
+X-CSE-ConnectionGUID: 3Rxc78BASQmSlxtNDQZOjg==
+X-CSE-MsgGUID: klx8AKkkTcOYd0HgarvjQw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="34873258"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="34873258"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 08:45:47 -0700
-X-CSE-ConnectionGUID: BdZKqUCOQ6qUvGMlafeWkw==
-X-CSE-MsgGUID: NiKqR+RkTXmmP6BwiNfbwQ==
+ 20 May 2024 08:45:56 -0700
+X-CSE-ConnectionGUID: Jqaba721TWSxtsZcBC5qmA==
+X-CSE-MsgGUID: +BFpT7ONQkuVNzvrzwMCtg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="32610496"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="32610539"
 Received: from unknown (HELO mwauld-desk.intel.com) ([10.245.244.203])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 08:45:47 -0700
+ 20 May 2024 08:45:56 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI v2 11/18] drm/xe/coredump: move over to devm
-Date: Mon, 20 May 2024 16:43:00 +0100
-Message-ID: <20240520154249.52888-29-matthew.auld@intel.com>
+Subject: [CI v2 18/18] drm/xe/display: move device_remove over to drmm
+Date: Mon, 20 May 2024 16:43:07 +0100
+Message-ID: <20240520154249.52888-36-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.45.1
 In-Reply-To: <20240520154249.52888-19-matthew.auld@intel.com>
 References: <20240520154249.52888-19-matthew.auld@intel.com>
@@ -67,50 +67,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Here we are using drmm to ensure we release the coredump when unloading
-the module, however the coredump is very much tied to the struct device
-underneath. We can see this when we hotunplug the device, for which we
-have already got a coredump attached. In such a case the coredump still
-remains and adding another is not possible. However we still register
-the release action via xe_driver_devcoredump_fini(), so in effect two or
-more releases for one dump.  The other consideration is that the
-coredump state is embedded in the xe_driver instance, so technically
-once the drmm release action fires we might free the coredumpe state
-from a different driver instance, assuming we have two release actions
-and they can race. Rather use devm here to remove the coredump when the
-device is released.
+i915 display calls this when releasing the drm_device, match this also
+in xe by using drmm. intel_display_device_remove() is freeing purely
+software state for the drm_device.
 
-References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1679
+v2: fix build error
+
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 ---
- drivers/gpu/drm/xe/xe_devcoredump.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display.c | 20 ++++++++++++++++----
+ drivers/gpu/drm/xe/display/xe_display.h |  4 ++--
+ drivers/gpu/drm/xe/xe_pci.c             |  4 +++-
+ 3 files changed, 21 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index 3d7980232be1..e70aef797193 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -238,13 +238,15 @@ void xe_devcoredump(struct xe_sched_job *job)
- 		      xe_devcoredump_read, xe_devcoredump_free);
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 7065e34a460e..386c356967b4 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -231,8 +231,6 @@ void xe_display_driver_remove(struct xe_device *xe)
+ 		return;
+ 
+ 	intel_display_driver_remove(xe);
+-
+-	intel_display_device_remove(xe);
  }
  
--static void xe_driver_devcoredump_fini(struct drm_device *drm, void *arg)
-+static void xe_driver_devcoredump_fini(void *arg)
- {
-+	struct drm_device *drm = arg;
+ /* IRQ-related functions */
+@@ -374,17 +372,31 @@ void xe_display_pm_resume(struct xe_device *xe)
+ 	intel_power_domains_enable(xe);
+ }
+ 
+-void xe_display_probe(struct xe_device *xe)
++static void display_device_remove(struct drm_device *dev, void *arg)
++{
++	struct xe_device *xe = arg;
 +
- 	dev_coredump_put(drm->dev);
- }
- 
- int xe_devcoredump_init(struct xe_device *xe)
++	intel_display_device_remove(xe);
++}
++
++int xe_display_probe(struct xe_device *xe)
  {
--	return drmm_add_action_or_reset(&xe->drm, xe_driver_devcoredump_fini, xe);
-+	return devm_add_action_or_reset(xe->drm.dev, xe_driver_devcoredump_fini, &xe->drm);
++	int err;
++
+ 	if (!xe->info.enable_display)
+ 		goto no_display;
+ 
+ 	intel_display_device_probe(xe);
+ 
++	err = drmm_add_action_or_reset(&xe->drm, display_device_remove, xe);
++	if (err)
++		return err;
++
+ 	if (has_display(xe))
+-		return;
++		return 0;
+ 
+ no_display:
+ 	xe->info.enable_display = false;
+ 	unset_display_features(xe);
++	return 0;
  }
- #endif
+diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
+index 710e56180b52..e4085f841aa7 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.h
++++ b/drivers/gpu/drm/xe/display/xe_display.h
+@@ -18,7 +18,7 @@ void xe_display_driver_remove(struct xe_device *xe);
+ 
+ int xe_display_create(struct xe_device *xe);
+ 
+-void xe_display_probe(struct xe_device *xe);
++int xe_display_probe(struct xe_device *xe);
+ 
+ int xe_display_init_nommio(struct xe_device *xe);
+ int xe_display_init_noirq(struct xe_device *xe);
+@@ -47,7 +47,7 @@ static inline void xe_display_driver_remove(struct xe_device *xe) {}
+ 
+ static inline int xe_display_create(struct xe_device *xe) { return 0; }
+ 
+-static inline void xe_display_probe(struct xe_device *xe) { }
++static inline int xe_display_probe(struct xe_device *xe) { return 0; }
+ 
+ static inline int xe_display_init_nommio(struct xe_device *xe) { return 0; }
+ static inline int xe_display_init_noirq(struct xe_device *xe) { return 0; }
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 682eafd84901..93c8407de759 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -769,7 +769,9 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	if (err)
+ 		return err;
+ 
+-	xe_display_probe(xe);
++	err = xe_display_probe(xe);
++	if (err)
++		return err;
+ 
+ 	drm_dbg(&xe->drm, "%s %s %04x:%04x dgfx:%d gfx:%s (%d.%02d) media:%s (%d.%02d) display:%s dma_m_s:%d tc:%d gscfi:%d",
+ 		desc->platform_name,
 -- 
 2.45.1
 
