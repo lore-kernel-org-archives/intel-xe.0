@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C857C04FFE
-	for <intel-xe@archiver.kernel.org>; Mon, 20 May 2024 15:45:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C1B7C25B7B
+	for <intel-xe@archiver.kernel.org>; Mon, 20 May 2024 15:45:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C53EE10E4C2;
-	Mon, 20 May 2024 15:45:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E510810E567;
+	Mon, 20 May 2024 15:45:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hS3t0Xnz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BaPgYjf+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C4A810E4C2
- for <intel-xe@lists.freedesktop.org>; Mon, 20 May 2024 15:45:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E53B10E567
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 May 2024 15:45:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716219944; x=1747755944;
+ t=1716219947; x=1747755947;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=t9qVNIJOgUI6GviHq0QaQxSeFY+veWWDDU6f2Z8phsQ=;
- b=hS3t0XnzOxHH8xJzI7xiNFzCJjyiUQFlXEdwm8/4/gSrynBOO/PmpGBE
- bm9S8JWR6JPtR7glfWLzYDf7ixpyafESrkwO3RaAMaiGdjZ8yjkVJ5BjR
- CHlUWFs7jA5aFWNdjBp5NBYkJJ/VbU3xvbds1gKREXXf0/hAQ4y+LwhLb
- hrYWFYVf+DAWD3kl/d7xyMEd9unfPxlbZqMT9lcZZOL6+nO8BJsRdI8Tn
- oWcS/5KBLhXXpJo7NIMewX0hjI75uVH692KlTGsYPTO15/rXX2Vf9F9z8
- ohPTVEttZVCKjeuiQar3x/nOavK08avqhbAmXmeleBkuLyuWm7iNeSWQ2 w==;
-X-CSE-ConnectionGUID: NqeRCHdqQKSG+3ogho6dag==
-X-CSE-MsgGUID: xp1rOM9ASs+q6mmCfGzq2w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="34873160"
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="34873160"
+ bh=njI7Pyzb61a5/R/alq+HXn1YrF4MjNk3UwtCoGRmcIQ=;
+ b=BaPgYjf+etXGU3KB/B7vpw9N6gwyLPEc80KoZIBTZrtPqiFK95ApGSzO
+ fDq2gNMtjvtTiVvJgjL1bVcxfwydKssOGDExQ5BFqywG237dfyvYyu5cB
+ MLTXp1RwUhkflyMEWNuzTOLzbVzEcJcujmImJEIuRTolgF4OFcuUwtKDr
+ jC51FS4Bylyeh4I9+T/PQoomfdsgXPuxnVSfxPdk+yKdOMg3bMThsYmq5
+ O0ynOLfuLmY+PizAyxIDqjkHOgwgcajfcQU8HDo3fLUT2xj0JBHphPZO+
+ Vvp55/+OGJq6o+CBQ3Udjm87z+hARgMzkxRYw+weKQcv5XSF7IurwD+PS Q==;
+X-CSE-ConnectionGUID: /jYoQqZWRGifGDxjmYOA0w==
+X-CSE-MsgGUID: EZBa3KgBRM2nBvV0kP9f7Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="34873192"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="34873192"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 08:45:44 -0700
-X-CSE-ConnectionGUID: 1nlkEINyTUaUbjPLH4Qsow==
-X-CSE-MsgGUID: RgVmIxMATJmFzf94n7styQ==
+ 20 May 2024 08:45:46 -0700
+X-CSE-ConnectionGUID: ySIofeMwTJyMSKyX+blRPA==
+X-CSE-MsgGUID: KsrAZ19gT62cTUDUCniG7A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="32610469"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="32610488"
 Received: from unknown (HELO mwauld-desk.intel.com) ([10.245.244.203])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 08:45:43 -0700
+ 20 May 2024 08:45:46 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Andrzej Hajda <andrzej.hajda@intel.com>
-Subject: [CI v2 08/18] drm/xe/irq: move irq_uninstall over to devm
-Date: Mon, 20 May 2024 16:42:57 +0100
-Message-ID: <20240520154249.52888-26-matthew.auld@intel.com>
+Subject: [CI v2 10/18] drm/xe/device: move xe_device_sanitize over to devm
+Date: Mon, 20 May 2024 16:42:59 +0100
+Message-ID: <20240520154249.52888-28-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.45.1
 In-Reply-To: <20240520154249.52888-19-matthew.auld@intel.com>
 References: <20240520154249.52888-19-matthew.auld@intel.com>
@@ -67,46 +67,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Makes sense to trigger this when the device is removed.
+Disable GuC submission when removing the device.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 ---
- drivers/gpu/drm/xe/xe_irq.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 996806353171..8ee3c300c5e4 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -663,7 +663,7 @@ static irq_handler_t xe_irq_handler(struct xe_device *xe)
- 		return xelp_irq_handler;
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 861b4f73207e..fd203a446709 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -388,7 +388,7 @@ static void xe_driver_flr_fini(void *arg)
+ 		xe_driver_flr(xe);
  }
  
--static void irq_uninstall(struct drm_device *drm, void *arg)
-+static void irq_uninstall(void *arg)
+-static void xe_device_sanitize(struct drm_device *drm, void *arg)
++static void xe_device_sanitize(void *arg)
  {
  	struct xe_device *xe = arg;
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-@@ -723,7 +723,7 @@ int xe_irq_install(struct xe_device *xe)
+ 	struct xe_gt *gt;
+@@ -648,7 +648,7 @@ int xe_device_probe(struct xe_device *xe)
  
- 	xe_irq_postinstall(xe);
+ 	xe_hwmon_register(xe);
  
--	err = drmm_add_action_or_reset(&xe->drm, irq_uninstall, xe);
-+	err = devm_add_action_or_reset(xe->drm.dev, irq_uninstall, xe);
- 	if (err)
- 		goto free_irq_handler;
+-	return drmm_add_action_or_reset(&xe->drm, xe_device_sanitize, xe);
++	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
  
-@@ -737,7 +737,7 @@ int xe_irq_install(struct xe_device *xe)
- 
- void xe_irq_shutdown(struct xe_device *xe)
- {
--	irq_uninstall(&xe->drm, xe);
-+	irq_uninstall(xe);
- }
- 
- void xe_irq_suspend(struct xe_device *xe)
+ err_fini_display:
+ 	xe_display_driver_remove(xe);
 -- 
 2.45.1
 
