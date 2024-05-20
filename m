@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76521C41513
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB9BDC25B7E
 	for <intel-xe@archiver.kernel.org>; Mon, 20 May 2024 15:45:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D5C910E7B6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 027C910E55F;
 	Mon, 20 May 2024 15:45:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JGHm/E34";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LlDHeyND";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDC2310E6E3
- for <intel-xe@lists.freedesktop.org>; Mon, 20 May 2024 15:45:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0518210E7B5
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 May 2024 15:45:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716219951; x=1747755951;
+ t=1716219954; x=1747755954;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tpNnqewLijh25QGkEwnorRsnKuIOMrVv4fTD5A/BlW4=;
- b=JGHm/E34049ooMAuKGU5xczbkoMZek1ODl525qM8dF+J5PlMHaYk/g7r
- 0evadcclhkGRCYuaXyw4nkW/qdQRV51zyoCLnnGmxYfTzsjAn0MH9MBcn
- rJeet1JIVRyAAr9n3Lirol27t422+AG9LKhLfZiYITmuVYYKwgdRdt2eZ
- hRGLfpGXHpGpsoWuKxSu2ggSz0gFVOVDq47i8aSB8zborYh/bwtXRllrY
- yezot6hhMS42ptTdYn6vuQs6LzVZfWVlU95yuUnPOGn38h7rdzuW+Iuzv
- M9azcRcvmkPicBDlWG2CJpyoMH2utKAaDKNesGSHHLWKwKOty9FWyqj7Z g==;
-X-CSE-ConnectionGUID: 0R+U+TmtSOenVyQCl14YSQ==
-X-CSE-MsgGUID: QfrVoTX5TDGYE0PksqnvLA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="34873211"
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="34873211"
+ bh=1k+HrhOaQNOcD1XinUfrdR+K1Ud/c1Vd5Dk9hyPRJDA=;
+ b=LlDHeyNDIQf8L8dmleNsfLvuUwW0cfrVSOFi4RXivA73QUI5Pt0GRbbT
+ jAtVhNb/eGnDlTWO2jSgrri/JlurkKJ0CAOUwakYOjHENS0pjyVjKY1YJ
+ SAcHuHpKAe6nBpIJVjtNe8SyQPzxnCHGAOxGhLLjFrc8oJpCUs1kmGCsa
+ YjOs1rVdooqXM3yEoxyGuRKEnA4+yHCUsuJnLIag3m2VLt65PLEa+uPt6
+ xeqOiFBumGh1MEkBiW9qH6cdVWgk8wEP3fIeWEGgpTu/xXzyt6u1mGXrU
+ EM4OgSub6GVcQPXAQ2k3cngBq+4qv1RHHgY0hU94Pw4G47jO+Z3Bqnufi w==;
+X-CSE-ConnectionGUID: mQwDFEnQT7aysiTlYjwjEQ==
+X-CSE-MsgGUID: eAdKReynSfSNkpmon+vJnQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="34873240"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="34873240"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 08:45:49 -0700
-X-CSE-ConnectionGUID: C2QSc1poRIeleWaBfFErQQ==
-X-CSE-MsgGUID: wL7VR4GTR/Sc4/YKKXhOZA==
+ 20 May 2024 08:45:54 -0700
+X-CSE-ConnectionGUID: ESAOdtrWQUWLcjM6qMSFHw==
+X-CSE-MsgGUID: j+odOceYRaOZPoGbYxNVAQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="32610504"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="32610529"
 Received: from unknown (HELO mwauld-desk.intel.com) ([10.245.244.203])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 08:45:48 -0700
+ 20 May 2024 08:45:53 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI v2 12/18] drm/xe/gt: break out gt_fini into sw vs hw state
-Date: Mon, 20 May 2024 16:43:01 +0100
-Message-ID: <20240520154249.52888-30-matthew.auld@intel.com>
+Subject: [CI v2 16/18] drm/xe/display: move display fini stuff to devm
+Date: Mon, 20 May 2024 16:43:05 +0100
+Message-ID: <20240520154249.52888-34-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.45.1
 In-Reply-To: <20240520154249.52888-19-matthew.auld@intel.com>
 References: <20240520154249.52888-19-matthew.auld@intel.com>
@@ -67,74 +67,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Have a cleaner separation between hw vs sw.
+Match the i915 display handling here with calling both no_irq and
+noaccel when removing the device.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c | 21 +++++++++++++--------
- 1 file changed, 13 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index e69a03ddd255..1abcc94f4b33 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -58,9 +58,17 @@
- #include "xe_wa.h"
- #include "xe_wopcm.h"
- 
-+static void gt_fini(struct drm_device *drm, void *arg)
-+{
-+	struct xe_gt *gt = arg;
-+
-+	destroy_workqueue(gt->ordered_wq);
-+}
-+
- struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
- {
- 	struct xe_gt *gt;
-+	int err;
- 
- 	gt = drmm_kzalloc(&tile_to_xe(tile)->drm, sizeof(*gt), GFP_KERNEL);
- 	if (!gt)
-@@ -69,6 +77,10 @@ struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
- 	gt->tile = tile;
- 	gt->ordered_wq = alloc_ordered_workqueue("gt-ordered-wq", 0);
- 
-+	err = drmm_add_action_or_reset(&gt_to_xe(gt)->drm, gt_fini, gt);
-+	if (err)
-+		return ERR_PTR(err);
-+
- 	return gt;
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index a2c39bcc7677..18fffa894f7d 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -123,9 +123,9 @@ int xe_display_init_nommio(struct xe_device *xe)
+ 	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_nommio, xe);
  }
  
-@@ -91,15 +103,9 @@ void xe_gt_sanitize(struct xe_gt *gt)
-  */
- void xe_gt_remove(struct xe_gt *gt)
+-static void xe_display_fini_noirq(struct drm_device *dev, void *dummy)
++static void xe_display_fini_noirq(void *arg)
  {
--	xe_uc_remove(&gt->uc);
--}
--
--static void gt_fini(struct drm_device *drm, void *arg)
--{
--	struct xe_gt *gt = arg;
- 	int i;
+-	struct xe_device *xe = to_xe_device(dev);
++	struct xe_device *xe = arg;
  
--	destroy_workqueue(gt->ordered_wq);
-+	xe_uc_remove(&gt->uc);
- 
- 	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
- 		xe_hw_fence_irq_finish(&gt->fence_irq[i]);
-@@ -560,7 +566,6 @@ int xe_gt_init(struct xe_gt *gt)
+ 	if (!xe->info.enable_display)
+ 		return;
+@@ -160,12 +160,12 @@ int xe_display_init_noirq(struct xe_device *xe)
  	if (err)
  		return err;
  
--	return drmm_add_action_or_reset(&gt_to_xe(gt)->drm, gt_fini, gt);
+-	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_noirq, NULL);
++	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_noirq, xe);
  }
  
- static int do_gt_reset(struct xe_gt *gt)
+-static void xe_display_fini_noaccel(struct drm_device *dev, void *dummy)
++static void xe_display_fini_noaccel(void *arg)
+ {
+-	struct xe_device *xe = to_xe_device(dev);
++	struct xe_device *xe = arg;
+ 
+ 	if (!xe->info.enable_display)
+ 		return;
+@@ -184,7 +184,7 @@ int xe_display_init_noaccel(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
+-	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_noaccel, NULL);
++	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_noaccel, xe);
+ }
+ 
+ int xe_display_init(struct xe_device *xe)
 -- 
 2.45.1
 
