@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE2F2C25B79
-	for <intel-xe@archiver.kernel.org>; Mon, 20 May 2024 15:45:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 504B0C25B7A
+	for <intel-xe@archiver.kernel.org>; Mon, 20 May 2024 15:45:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2239210E55F;
-	Mon, 20 May 2024 15:45:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B67D210E379;
+	Mon, 20 May 2024 15:45:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QAJxvYlu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a9dzENSR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D7C710E315
- for <intel-xe@lists.freedesktop.org>; Mon, 20 May 2024 15:45:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C37910E43F
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 May 2024 15:45:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716219940; x=1747755940;
+ t=1716219939; x=1747755939;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yiXAP2YTorL+MT9QESUNSuph4LL7iWaw80fYfZKe08o=;
- b=QAJxvYluUneWrydKZNE1Qz+9QDVQFXgfal20TIc6wEzmXsEt1lf1xAtQ
- 48uylkUgWl6c77593bk9Dqo5hhRw/dPmgwrv/UqP9zPPBSyr+qF7rYA0A
- FNoom6NDHqkCJDqnWasSkbCD8RnuMOtgf004U6te+ziL/u0+q8rGJXGCt
- xAn4yXFnG0WEHEeCoVIi7sWFi0yZ/GANPAlSynKo+vLLWlu6jDBTC2WFZ
- 1B+sHmWl2nOgAuNLQ464FT7wEyTeZ/522V7sNRfdMMzy6YMxqK/W09vvD
- KGBihVAYiTMLWAdIRtCn7hUsayontpjNEH5PQrQSPEJweCihV6c9V0WvD w==;
-X-CSE-ConnectionGUID: 3igzTJPwSiCZAhmz5femyw==
-X-CSE-MsgGUID: hYXxhAcCTvS/PmUEVx/D2A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="34873135"
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="34873135"
+ bh=V6eN01xxavMyjgqEfyQi8DL4GKmsn51K2JZ+mLWk3iU=;
+ b=a9dzENSRuHyb65aNyIiY5JdNhlBQ8fflaeQYkjh+bSxrJgBTQl7Q8GNo
+ 4vGAmi2y3BiwMCdsSuhlGgszW9yWjsST5cHsdpzCch+ZaA0Qsg41izMPS
+ OIXdzUqnWxh8Q2cOBsr0i59l5kOrYUURTl1buu8dqujc8tU0uQ8nSz1D+
+ zC3tut+topU+AYGXqswWy5r86YQ9A5Jxj3FOkqDFyeZHBD5gqcGoYvFLO
+ nTHJVz7tki5o0+X/H8dgJXXgijtbXgQZkTBJCK4eyk4zq+bTyT7cQqDUS
+ lCTG3Q3OlALsxykqcfTmzn5o0+u720PQc0xL5rZ25zGDmSnVDOFjpoO2G A==;
+X-CSE-ConnectionGUID: dlX4MZ/jRS+Qq0DDrrgd8w==
+X-CSE-MsgGUID: tCUGZo1ITNGCszeu48vWAA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="34873124"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="34873124"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 08:45:40 -0700
-X-CSE-ConnectionGUID: eMkmJCUTQhqsj/zkmdArQg==
-X-CSE-MsgGUID: u6qAf9DdTjiKlvOEcAr6tg==
+ 20 May 2024 08:45:39 -0700
+X-CSE-ConnectionGUID: PrkPmMReQoS0/hdNGKyf3w==
+X-CSE-MsgGUID: yMrDO6AFTQmYmqJ168vPLQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="32610446"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="32610439"
 Received: from unknown (HELO mwauld-desk.intel.com) ([10.245.244.203])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 08:45:40 -0700
+ 20 May 2024 08:45:38 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI v2 05/18] drm/xe/guc: s/guc_fini/guc_fini_hw/
-Date: Mon, 20 May 2024 16:42:54 +0100
-Message-ID: <20240520154249.52888-23-matthew.auld@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>
+Subject: [CI v2 04/18] drm/xe/guc: move guc_fini over to devm
+Date: Mon, 20 May 2024 16:42:53 +0100
+Message-ID: <20240520154249.52888-22-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.45.1
 In-Reply-To: <20240520154249.52888-19-matthew.auld@intel.com>
 References: <20240520154249.52888-19-matthew.auld@intel.com>
@@ -67,11 +67,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Make it clear that is about cleaning up the HW/FW side, and not software
-state.
+Make sure to actually call this when the device is removed. Currently we
+only trigger it when the driver instance goes away, but that doesn't
+work too well with hotunplug, since device can be removed and re-probed
+with a new driver instance, where the guc_fini() is called too late.
+Move the fini over to devm to ensure this is called when device is
+removed.
 
+References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1717
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 ---
@@ -79,15 +83,15 @@ Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 83122c2e00cd..8ddf460e9c02 100644
+index e52b544ac690..83122c2e00cd 100644
 --- a/drivers/gpu/drm/xe/xe_guc.c
 +++ b/drivers/gpu/drm/xe/xe_guc.c
 @@ -241,7 +241,7 @@ static void guc_write_params(struct xe_guc *guc)
  		xe_mmio_write32(gt, SOFT_SCRATCH(1 + i), guc->params[i]);
  }
  
--static void guc_fini(void *arg)
-+static void guc_fini_hw(void *arg)
+-static void guc_fini(struct drm_device *drm, void *arg)
++static void guc_fini(void *arg)
  {
  	struct xe_guc *guc = arg;
  	struct xe_gt *gt = guc_to_gt(guc);
@@ -95,8 +99,8 @@ index 83122c2e00cd..8ddf460e9c02 100644
  	if (ret)
  		goto out;
  
--	ret = devm_add_action_or_reset(xe->drm.dev, guc_fini, guc);
-+	ret = devm_add_action_or_reset(xe->drm.dev, guc_fini_hw, guc);
+-	ret = drmm_add_action_or_reset(&xe->drm, guc_fini, guc);
++	ret = devm_add_action_or_reset(xe->drm.dev, guc_fini, guc);
  	if (ret)
  		goto out;
  
