@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF6E0C04FFE
-	for <intel-xe@archiver.kernel.org>; Mon, 20 May 2024 18:18:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E9C6C04FFE
+	for <intel-xe@archiver.kernel.org>; Mon, 20 May 2024 18:23:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9732610E7FA;
-	Mon, 20 May 2024 18:18:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E+5xB1xU";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94E3810E835;
- Mon, 20 May 2024 18:18:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716229110; x=1747765110;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=V7BTHV0bB16NMJiAeyaX7nRgAYuA3fHu7DMRZAWW7QE=;
- b=E+5xB1xUCBVUSXkm/AmrHfDuNx6K/+lMYkcsa4Z9tbyVZi9VlcAmuoXo
- bA3EEvPPGcQrP7TfpVibXFegpaBMo+2Rs4Yx/XCET2OADmPbzl8/0U/pJ
- EaZn7v7BHu9d4OSiD4v8jsA1R82+pj1pd785TquMdO6bFcfXzZ8R9/ziP
- t45NAKQloXYtTCotMe53HqZuZMzRlp7KIKbJV6PEF7LL+n0/eIf9HKWn1
- Wq/DAAQpqHUHPwTruvFEI6it+C8S3HGdOW71DKFfORO4I6uUO1W+OcnVM
- neAo+DYcJ5I9yNNiaZjyCEYBq4PZnEGpoi0msqj0nX3qIO/AFFM81hpeu g==;
-X-CSE-ConnectionGUID: SHZRGI8hRpizErc7LPrjoA==
-X-CSE-MsgGUID: rKEHkMTgQQeWKRTVoaO7lA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="34894576"
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="34894576"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 11:18:30 -0700
-X-CSE-ConnectionGUID: gXpyrVtBRJ2t1Q0kLDog7Q==
-X-CSE-MsgGUID: wsX54bvQQo2MrfUjlARzLA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="37466541"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.25.139])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 11:18:28 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 3/3] drm/xe: Cleanup xe_mmio.h
-Date: Mon, 20 May 2024 20:18:14 +0200
-Message-Id: <20240520181814.2392-4-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20240520181814.2392-1-michal.wajdeczko@intel.com>
-References: <20240520181814.2392-1-michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED4D710E3C4;
+	Mon, 20 May 2024 18:23:34 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF44910E3C4;
+ Mon, 20 May 2024 18:23:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Cleanup_xe?=
+ =?utf-8?q?=5Fmmio=2Eh?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 20 May 2024 18:23:32 -0000
+Message-ID: <171622941297.2157358.3908882497583651585@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240520181814.2392-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20240520181814.2392-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,75 +36,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We don't need <linux/delay.h> include since commit 5c09bd6ccd41
-("drm/xe/mmio: Move xe_mmio_wait32() to xe_mmio.c").
+== Series Details ==
 
-We don't need <linux/io-64-nonatomic-lo-hi.h> include since commit
-54c659660d63 ("drm/xe: Make xe_mmio_read|write() functions non-
-inline").
+Series: drm/xe: Cleanup xe_mmio.h
+URL   : https://patchwork.freedesktop.org/series/133824/
+State : success
 
-And since commit 924e6a9789a0 ("drm/xe/uapi: Remove MMIO ioctl")
-we don't need forward declarations of drm_device and drm_file.
+== Summary ==
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_mmio.c | 7 +++++--
- drivers/gpu/drm/xe/xe_mmio.h | 9 +--------
- 2 files changed, 6 insertions(+), 10 deletions(-)
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 1ba62f8cea9c drm-tip: 2024y-05m-20d-04h-37m-14s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915/display: Add missing include to intel_vga.c
+Applying: drm/xe: Don't rely on indirect includes from xe_mmio.h
+Applying: drm/xe: Cleanup xe_mmio.h
 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 05edab0e085d..548dc37e5893 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -3,10 +3,12 @@
-  * Copyright © 2021-2023 Intel Corporation
-  */
- 
--#include <linux/minmax.h>
--
- #include "xe_mmio.h"
- 
-+#include <linux/delay.h>
-+#include <linux/io-64-nonatomic-lo-hi.h>
-+#include <linux/minmax.h>
-+
- #include <drm/drm_managed.h>
- #include <drm/xe_drm.h>
- 
-@@ -19,6 +21,7 @@
- #include "xe_ggtt.h"
- #include "xe_gt.h"
- #include "xe_gt_mcr.h"
-+#include "xe_gt_printk.h"
- #include "xe_macros.h"
- #include "xe_module.h"
- #include "xe_sriov.h"
-diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-index 445ec6a0753e..9ef7deecf38f 100644
---- a/drivers/gpu/drm/xe/xe_mmio.h
-+++ b/drivers/gpu/drm/xe/xe_mmio.h
-@@ -6,17 +6,10 @@
- #ifndef _XE_MMIO_H_
- #define _XE_MMIO_H_
- 
--#include <linux/delay.h>
--#include <linux/io-64-nonatomic-lo-hi.h>
--
--#include "regs/xe_reg_defs.h"
--#include "xe_device_types.h"
--#include "xe_gt_printk.h"
- #include "xe_gt_types.h"
- 
--struct drm_device;
--struct drm_file;
- struct xe_device;
-+struct xe_reg;
- 
- #define LMEM_BAR		2
- 
--- 
-2.43.0
 
