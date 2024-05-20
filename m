@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47530C25B7F
-	for <intel-xe@archiver.kernel.org>; Mon, 20 May 2024 15:45:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44CFBC25B7B
+	for <intel-xe@archiver.kernel.org>; Mon, 20 May 2024 15:45:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C46FC10E7BE;
-	Mon, 20 May 2024 15:45:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7D7310E58D;
+	Mon, 20 May 2024 15:45:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ashDDrZA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d3kqmSei";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B17410E55F
- for <intel-xe@lists.freedesktop.org>; Mon, 20 May 2024 15:45:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0965310E4C2
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 May 2024 15:45:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716219955; x=1747755955;
+ t=1716219946; x=1747755946;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=E2UjfIab0hQwed9jVcwf0dHwQa1B+2Jd3fLpEknH4EA=;
- b=ashDDrZAutGUDhBytUs7n14RyRVFRoHfNDO9n4zMPfCJYpHDZTbviHTT
- 1mDMOnj6Td8QrUlmBVrwhWlgJvEfCenrcBonSLl0t7DxZg0raDB2FgxRj
- yZUYBhLMFRrY7pMwJvGXmLeSJ3EfLB9Nq3a0UiqaLLHjnkexh6QK4EfiO
- +tnpn+2AAJNWTnKdac7e8tz8kKmwOaDyRq86Mpm3BhwNvdSjtFpJgC4cT
- Cz/cVpAtBETDH/emeBD5q+0sKosLEWTJtgfnD1C+NotV8zKIrnlCcTgiJ
- IVJrlesAFmxw7+ec8shxkBA0PGKM5UtUjPE1drZxNYciErTDVQlxodNoL Q==;
-X-CSE-ConnectionGUID: yiNEI/lqRh6fKaxdxYcrtw==
-X-CSE-MsgGUID: ewgICe84RtqfDdC058Kinw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="34873251"
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="34873251"
+ bh=6euySp+QP3Ffahd88M12XxZgpbSux6NV49Ojq3DriAc=;
+ b=d3kqmSeiHWnFybo6YQWXg43gspxF1v9w4SlpaVOy5+jzUMUGQEhOsqu9
+ fikR4DkmttSvwwk3wWjYattZuhJYQkmZFAOt8esP5YJOFCe6FWlRqhPfS
+ 5+ydHESlIeY6ipS7STKNheX67r/x5LL+hOFX9o+h4wFrpdd/FfxuVB31b
+ PJvzTJs28fHdvhXH5tLJX3/jsNR3KtFGoc2AVGKjM2k49FXIfbntoyVmv
+ j4Zq0+jYVt6FpRqLF2kZlHuVNtBzM+oMpnWSPHcwO0XxYTYGdrrPJ+0fU
+ OvIdC7jWn2Opxb+6U0BXUePNczzD5TH6gnAo1BSfG4b0b6Fs21hsJ0rTy g==;
+X-CSE-ConnectionGUID: LlufXQQBSKyDcOCpzXGX7w==
+X-CSE-MsgGUID: qMUvc8XMSGiHPzp+BM+3rg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="34873180"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="34873180"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 08:45:55 -0700
-X-CSE-ConnectionGUID: Y0iErNc1RtiA7nwCqS/fSw==
-X-CSE-MsgGUID: lQAOCcZcRpi5XZN2PExDtQ==
+ 20 May 2024 08:45:45 -0700
+X-CSE-ConnectionGUID: 3w7ZckHgQSiAg6puyf7O3Q==
+X-CSE-MsgGUID: 0mgUtu+QRaqCoREn3zI99Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="32610533"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="32610479"
 Received: from unknown (HELO mwauld-desk.intel.com) ([10.245.244.203])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 08:45:54 -0700
+ 20 May 2024 08:45:45 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI v2 17/18] drm/xe/display: stop calling domains_driver_remove twice
-Date: Mon, 20 May 2024 16:43:06 +0100
-Message-ID: <20240520154249.52888-35-matthew.auld@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>
+Subject: [CI v2 09/18] drm/xe/device: move flr to devm
+Date: Mon, 20 May 2024 16:42:58 +0100
+Message-ID: <20240520154249.52888-27-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.45.1
 In-Reply-To: <20240520154249.52888-19-matthew.auld@intel.com>
 References: <20240520154249.52888-19-matthew.auld@intel.com>
@@ -67,28 +67,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Unclear why we call this twice.
+Should be called when driver is removed, not when this particular driver
+instance is destroyed.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_display.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/xe/xe_device.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 18fffa894f7d..7065e34a460e 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -131,7 +131,6 @@ static void xe_display_fini_noirq(void *arg)
- 		return;
- 
- 	intel_display_driver_remove_noirq(xe);
--	intel_power_domains_driver_remove(xe);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index f17283c9dcb9..861b4f73207e 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -380,7 +380,7 @@ static void xe_driver_flr(struct xe_device *xe)
+ 	xe_mmio_write32(gt, GU_DEBUG, DRIVERFLR_STATUS);
  }
  
- int xe_display_init_noirq(struct xe_device *xe)
+-static void xe_driver_flr_fini(struct drm_device *drm, void *arg)
++static void xe_driver_flr_fini(void *arg)
+ {
+ 	struct xe_device *xe = arg;
+ 
+@@ -585,7 +585,7 @@ int xe_device_probe(struct xe_device *xe)
+ 	err = xe_devcoredump_init(xe);
+ 	if (err)
+ 		return err;
+-	err = drmm_add_action_or_reset(&xe->drm, xe_driver_flr_fini, xe);
++	err = devm_add_action_or_reset(xe->drm.dev, xe_driver_flr_fini, xe);
+ 	if (err)
+ 		return err;
+ 
 -- 
 2.45.1
 
