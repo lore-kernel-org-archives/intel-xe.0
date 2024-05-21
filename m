@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EDF6C25B7C
-	for <intel-xe@archiver.kernel.org>; Tue, 21 May 2024 19:30:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E02C1C25B74
+	for <intel-xe@archiver.kernel.org>; Tue, 21 May 2024 19:31:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FE4010ED32;
-	Tue, 21 May 2024 19:30:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 715FB10F085;
+	Tue, 21 May 2024 19:31:09 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FD6C10E3C3;
- Tue, 21 May 2024 19:30:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22ED310F03B;
+ Tue, 21 May 2024 19:31:06 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Add_proces?=
- =?utf-8?q?s_name_to_devcoredump_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Add_process_nam?=
+ =?utf-8?q?e_to_devcoredump_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 21 May 2024 19:30:54 -0000
-Message-ID: <171631985413.2165162.4739259425104852486@8e613ede5ea5>
+Date: Tue, 21 May 2024 19:31:06 -0000
+Message-ID: <171631986614.2165265.15783353061252135278@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240521183751.184773-1-jose.souza@intel.com>
 In-Reply-To: <20240521183751.184773-1-jose.souza@intel.com>
@@ -48,9 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: a4b74275d657 drm-tip: 2024y-05m-21d-19h-07m-15s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Add process name to devcoredump
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 92153a9c6ce376e9f6ddf03983f101eafbe9c31b
+Author: José Roberto de Souza <jose.souza@intel.com>
+Date:   Tue May 21 11:37:51 2024 -0700
+
+    drm/xe: Add process name to devcoredump
+    
+    Process name help us track what application caused the gpug hang, this
+    is crucial when running several applications at the same time.
+    
+    v2:
+    - handle Xe KMD exec_queues without VM
+    
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
++ /mt/dim checkpatch a4b74275d65738375c23f0585f214b36a8b7c901 drm-intel
+92153a9c6ce3 drm/xe: Add process name to devcoredump
 
 
