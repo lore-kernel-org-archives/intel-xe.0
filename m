@@ -4,57 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98FCFC25B75
-	for <intel-xe@archiver.kernel.org>; Tue, 21 May 2024 20:07:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 701E6C25B74
+	for <intel-xe@archiver.kernel.org>; Tue, 21 May 2024 20:12:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4097A10E0D7;
-	Tue, 21 May 2024 20:07:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F02010E0D7;
+	Tue, 21 May 2024 20:12:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NwbsvWNZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O9SJhpf6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0983E10E1C5
- for <intel-xe@lists.freedesktop.org>; Tue, 21 May 2024 20:07:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2A8210E0D7
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 May 2024 20:12:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716322064; x=1747858064;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=cvRiQhhvEj2ono5ElfDeAsXmXOvRPqvCPQDua4CNH64=;
- b=NwbsvWNZCvGOKIR6ngQfqyjVQv1bfNngSXN5Svtc20cZKvLxr4tY7tx/
- COoZeqRVHsSJcqCGltdPR7wUYqtRbBgz04pVm+aobJRq33dtwDf9g3MZb
- zwGTaa0GFjO6Yzw2jfrUx3x6aRueI/fIAdqM0TupzDElDa4Jvxlh7PIUg
- DYLtnuwbLqequElcHW09CjeOg6HSeKlRhBN+FAcOJOoy+v7MO6hTGid1f
- 8h62fLK+iFySR4N8DaxvqC/1B1q5JE6uaZT9DFsHnr3iqoD1fDjbUiBYp
- ZDm0+EKSK6NS2zC2TkMabwux1xUJ7glJlmfs7ZVatauXhnyOL0vedQJRX g==;
-X-CSE-ConnectionGUID: C5pCK6D0QYafWOXhORsKlg==
-X-CSE-MsgGUID: E+ddevkYT3KoQok/ETkRZw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11079"; a="15493277"
-X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; d="scan'208";a="15493277"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2024 13:07:43 -0700
-X-CSE-ConnectionGUID: tGSqMRGBTaiTUYt0XFvvbg==
-X-CSE-MsgGUID: gIB9kOCHTSK1J0FsZUqtCA==
+ t=1716322374; x=1747858374;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mnqiN2R+YoKcRMIeCk7KwYbR2fqOCqvBLoiva3lLPbs=;
+ b=O9SJhpf6QanvXuLdlv/1frQYcwj7ucAf44iMxJx5aJr8vJLI/moma3Ab
+ ErRlDsai2jCjexNeWmmJSxsLFjApR1euBBp/e7rQjRCoxtfdXkZM/hNfx
+ UrcElH34cVO/fsHQ8buXQaJ5bPFcrKy2OSPzBAhqUzSAsAhQmiDs3eJts
+ oQiTOLvWfMRyu9E7WDISt3yzOVF+oPgvNziouoSBWgbMjN9wICTDC3jQH
+ GVyGLjRwxQmjwrKotMnXPo8v2WE6ny0AgTURbozRdbSysDTKzbji3tQdk
+ TPtP+gvEGWYAgUEeccltHEM1v0olKMe7EWn2iuNOCodGS4osD5bdPV41k w==;
+X-CSE-ConnectionGUID: 6iG/GpyHRSmLYCNFtYT50Q==
+X-CSE-MsgGUID: 3sqJupxiRAKEmlVg6bpVAA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11079"; a="12659335"
+X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; d="scan'208";a="12659335"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2024 13:12:52 -0700
+X-CSE-ConnectionGUID: PV8Fnm4BSzq7P2DIA0KHWg==
+X-CSE-MsgGUID: B0QAiQeKQK2l87RIpR8jNg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; d="scan'208";a="33156874"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.94.252.151])
- ([10.94.252.151])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2024 13:07:42 -0700
-Message-ID: <a429c063-3357-4366-a8ab-ebc604322e5e@linux.intel.com>
-Date: Tue, 21 May 2024 22:07:40 +0200
+X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; d="scan'208";a="32956555"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2024 13:12:51 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH] drm/xe: Properly handle alloc_guc_id() failure
+Date: Tue, 21 May 2024 13:12:46 -0700
+Message-ID: <20240521201246.4749-1-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Properly handle alloc_guc_id() failure
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20240521193739.4298-1-niranjana.vishwanathapura@intel.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20240521193739.4298-1-niranjana.vishwanathapura@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,33 +63,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 5/21/2024 9:37 PM, Niranjana Vishwanathapura wrote:
-> Release the submission_state lock if alloc_guc_id() fails.
->
-> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-
-Wow, this goes all the way back. Make sense to add below tags
+Release the submission_state lock if alloc_guc_id() fails.
 
 Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
 
 Cc: <stable@vger.kernel.org> # v6.8+
-
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_submit.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-> ---
->   drivers/gpu/drm/xe/xe_guc_submit.c | 1 +
->   1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index ad2b8067d071..c0b901c5565b 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -1304,6 +1304,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
->   	return 0;
->   
->   err_entity:
-> +	mutex_unlock(&guc->submission_state.lock);
->   	xe_sched_entity_fini(&ge->entity);
->   err_sched:
->   	xe_sched_fini(&ge->sched);
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index ad2b8067d071..c0b901c5565b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1304,6 +1304,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 	return 0;
+ 
+ err_entity:
++	mutex_unlock(&guc->submission_state.lock);
+ 	xe_sched_entity_fini(&ge->entity);
+ err_sched:
+ 	xe_sched_fini(&ge->sched);
+-- 
+2.43.0
+
