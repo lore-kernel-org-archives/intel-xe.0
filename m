@@ -4,58 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E15B0C25B74
-	for <intel-xe@archiver.kernel.org>; Tue, 21 May 2024 09:25:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36CE8C25B74
+	for <intel-xe@archiver.kernel.org>; Tue, 21 May 2024 09:25:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E562310E966;
-	Tue, 21 May 2024 09:25:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B41FB10E966;
+	Tue, 21 May 2024 09:25:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SyFZFjfz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O0XiDPx1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47B6210E58B;
- Tue, 21 May 2024 09:25:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AA2710E966
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 May 2024 09:25:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716283504; x=1747819504;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=PN09u6C3q1uf46OfLBh9m0AIo08QVgpJQx1BaMl3Iyg=;
- b=SyFZFjfzsVxpzA5arGyVWeaCTO7TR8IvN4GlRVB2ElTNYIz7ZF0sQIen
- oNML4iMqq9w2rO6PhFgxNos9CNIPLuaCf+EPAT7sLtMpgJQYtlYc0BAwU
- CNcAMeN0zAARihFhB+maYa1kc5ZzafZT12YhHfggJMCkuhMC/YrUMa4DH
- FLQRCTIN9J3cbflMJAydDkGl+TF4suucmxB0qjRnL+/vWIH+k7HUr2QHS
- b5CXKKw/ZL2DrlaZsZ4S2thf6xCTxepOXzDX4lCjDZ9QQjWQoAAhyld0k
- tyikDo6zu2W8wA3R9ufc3lwLPjzQ8ctka3rus1driXHM6ZuKGRQz3SIt9 A==;
-X-CSE-ConnectionGUID: ntggaAPKSx6tiDiK5HO7gA==
-X-CSE-MsgGUID: tZUSENOOTKSx048KE6dSQA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="23865585"
-X-IronPort-AV: E=Sophos;i="6.08,177,1712646000"; d="scan'208";a="23865585"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2024 02:25:03 -0700
-X-CSE-ConnectionGUID: VAERtQvkRDeNS7n0o+ob1g==
-X-CSE-MsgGUID: UoeRpWsYToikuWidLrbHUg==
+ t=1716283539; x=1747819539;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MI0rDE3jI+K6kCdVHXfm2gblVYvdfTedXt3StgMYDJY=;
+ b=O0XiDPx1K5PfeprDWEbTUtp4ESKlCE3kKemn2n2AypBFt+C3ylSpvfl9
+ R+ETbbdzVE03jLOz1ffEmB9wV7eCm/SteCAM2OLp/LOHnEhIa9lkipJgx
+ /uyg2ukxxvP7FTnxXalwWZZ+saXNjnkYHjzrrhpWo6mwaThO32n8rjbLT
+ AFrOvt1aikT/+yG/oct5KpdEN7aHLRXtXpM6ISWxD95ccaQBAP4vLVHXe
+ LV/FzA0GhVZTAMb+WCldRP9m0aqLKdfsN1RxbYFuzwTcc8I/ulLnX2T6Q
+ hDIRcnCJQJPHDletBlN47VWtQTrQSMj/gqaIajtqSO2YiQV6VfPB4e5XO g==;
+X-CSE-ConnectionGUID: /w9HuFq7TRyDUDCxPoqRGQ==
+X-CSE-MsgGUID: Ghwm0e7BR3m60HgeUoMysQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="12310791"
+X-IronPort-AV: E=Sophos;i="6.08,177,1712646000"; d="scan'208";a="12310791"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2024 02:25:39 -0700
+X-CSE-ConnectionGUID: 0Qs82sAWS7eod3yancLGNQ==
+X-CSE-MsgGUID: LI+6X51LQ6O2fPuyoH4g8A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,177,1712646000"; d="scan'208";a="32975062"
-Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.160])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2024 02:25:01 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+X-IronPort-AV: E=Sophos;i="6.08,177,1712646000"; d="scan'208";a="32758148"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.82.128])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2024 02:25:38 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: Re: [PATCH 1/3] drm/i915/display: Add missing include to intel_vga.c
-In-Reply-To: <20240520181814.2392-2-michal.wajdeczko@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240520181814.2392-1-michal.wajdeczko@intel.com>
- <20240520181814.2392-2-michal.wajdeczko@intel.com>
-Date: Tue, 21 May 2024 12:24:58 +0300
-Message-ID: <87y183qzyt.fsf@intel.com>
+Subject: [PATCH v2 0/2] Custom GuC initialization if VF
+Date: Tue, 21 May 2024 11:25:16 +0200
+Message-Id: <20240521092518.624-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,36 +64,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 20 May 2024, Michal Wajdeczko <michal.wajdeczko@intel.com> wrote:
-> This compilation unit uses udelay() function without including
-> it's header file. Fix that to break dependency on other code.
->
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
+v1: https://patchwork.freedesktop.org/series/133832/#rev1
+v2: add kernel-doc for xe_guc_submit_init (Himal)
+    only assert guc.major version (John)
 
-Probably won't be an issue to merge this via xe.
+Michal Wajdeczko (2):
+  drm/xe/guc: Allow to initialize submission with limited set of IDs
+  drm/xe/vf: Custom GuC initialization if VF
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 17 ++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.h |  2 ++
+ drivers/gpu/drm/xe/xe_guc.c         | 42 ++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_guc_submit.c  | 17 ++++++++++--
+ drivers/gpu/drm/xe/xe_guc_submit.h  |  2 +-
+ 5 files changed, 76 insertions(+), 4 deletions(-)
 
+-- 
+2.43.0
 
-
-> ---
->  drivers/gpu/drm/i915/display/intel_vga.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i=
-915/display/intel_vga.c
-> index 4b98833bfa8c..0b5916c15307 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vga.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vga.c
-> @@ -3,6 +3,7 @@
->   * Copyright =C2=A9 2019 Intel Corporation
->   */
->=20=20
-> +#include <linux/delay.h>
->  #include <linux/vgaarb.h>
->=20=20
->  #include <video/vga.h>
-
---=20
-Jani Nikula, Intel
