@@ -4,62 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F037C25B74
-	for <intel-xe@archiver.kernel.org>; Tue, 21 May 2024 14:09:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF680C25B74
+	for <intel-xe@archiver.kernel.org>; Tue, 21 May 2024 14:10:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB37B10E1BC;
-	Tue, 21 May 2024 14:09:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AB4010EC49;
+	Tue, 21 May 2024 14:10:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kMIqdDfC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SO6IF96U";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A8F910E107;
- Tue, 21 May 2024 14:09:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D116810EC08;
+ Tue, 21 May 2024 14:10:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716300557; x=1747836557;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=PbuHF+YF9FDJgyPapBo2fDzs313ThRJzfqec0ed9XTc=;
- b=kMIqdDfCXuJfhailLFwtTOZFQOB4JAhfoOPtEIC1bIs1ZbHWpEjf9Kzv
- u9OCZkaiqrOLp9KkPBQE0tVT2CWQS+wWFTUccIFFwfn1qSGS+ARqH7i2O
- a3d2nenNSqvAbb9LQRaUYhMN5hDS1C29JRiP2ufXz2TOJoSLUxRBhZ4km
- POXt3hWs+mSoay5vLeFVtRDY4X1XhU9LzNy7HUl126EKNnitt9aMKbF9W
- 3eQpGf9GJJ632v7IT+ml/ynTcWNUolzeePx8Gxw4zh7k/lLtdD9D3Zgrw
- vITlseaU+lHmQru0sInlKtOvbMXELTEnBkiPkBwFNRrsKcqZwdvJXnksQ w==;
-X-CSE-ConnectionGUID: mgUSF0h0Rhi4VBsBYqCcrQ==
-X-CSE-MsgGUID: /xGMbPf6T2OPvYhe7xQr7A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="12336773"
-X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; d="scan'208";a="12336773"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2024 07:09:15 -0700
-X-CSE-ConnectionGUID: gbFKsSm5QSqVfsXS+TxnSw==
-X-CSE-MsgGUID: o/Oyoh1RQHiShv1Myuqpqw==
+ t=1716300629; x=1747836629;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=kjzULuF+RlW4teVHjQLCoHhAnjqKxp8PzqXvjQkfrSA=;
+ b=SO6IF96UFvlcBNx90iLoXQDEpWfUxirPr9SvCnM4OKvEZjM9GCLbmxCW
+ Efxq03WJfPUnTWXmHoHiMs5pSLrD7WuneBBPg5emNoSPclN7O3Kb/q1Cc
+ GrpzWsPulJZn0SghsqFBxMomqqDMScNlMfEiJK4x/8xsuCnFYxKS9gEt1
+ r/welcrR7KF1lGLLq4kydsWxdDEvCiP5CXj/D9OCGlmfehLqHQyJg9F2q
+ eD/0n2O0Qvy2Y0thIUnnFtsGPeglcGbV5fk3+1CxfpXrsi6w89ueY3B5k
+ vSPYQ44wH2Ct+JJCY1ytw7mmSQ0ODFy3IHdwwHlBsvZpwWWZ7nvvm5OTl g==;
+X-CSE-ConnectionGUID: kcxhdr6RTOyh9w8LjKeTTQ==
+X-CSE-MsgGUID: NM3uKrgXR+qi51h8Q3JATw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="12363661"
+X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; d="scan'208";a="12363661"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2024 07:10:29 -0700
+X-CSE-ConnectionGUID: J+ujbssjSomZzMFkpLjLtw==
+X-CSE-MsgGUID: tH80IJQhS/O72Rj8gCP2+Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; d="scan'208";a="32793388"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2024 07:09:15 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Tvrtko Ursulin <tursulin@ursulin.net>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- dri-devel@lists.freedesktop.org,
- Francois Dugast <francois.dugast@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
- Oak Zeng <oak.zeng@intel.com>
-Subject: Re: [PATCH v5 0/8] drm/xe: Per client usage
-Date: Tue, 21 May 2024 07:09:19 -0700
-Message-ID: <171630031401.152025.4004602891560484893.b4-ty@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240517204310.88854-1-lucas.demarchi@intel.com>
-References: <20240517204310.88854-1-lucas.demarchi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; d="scan'208";a="37522968"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa004.fm.intel.com with ESMTP; 21 May 2024 07:10:27 -0700
+Received: from [10.245.82.128] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.245.82.128])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id CD1A928773;
+ Tue, 21 May 2024 15:10:25 +0100 (IST)
+Message-ID: <19473e9d-8380-4f39-a42b-c522bfbcbfd1@intel.com>
+Date: Tue, 21 May 2024 16:10:25 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] drm/xe: Don't rely on indirect includes from xe_mmio.h
+To: Francois Dugast <francois.dugast@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+References: <20240520181814.2392-1-michal.wajdeczko@intel.com>
+ <20240520181814.2392-3-michal.wajdeczko@intel.com>
+ <ZkypTw2yXt7R2lIu@fdugast-desk>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <ZkypTw2yXt7R2lIu@fdugast-desk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,39 +74,145 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On Fri, 17 May 2024 13:43:02 -0700, Lucas De Marchi wrote:
-> v5 of of https://lore.kernel.org/all/20240515214258.59209-1-lucas.demarchi@intel.com
-> 
-> Add per-client usage statistics to xe. This ports xe to use the common
-> method in drm to export the usage to userspace per client (where 1
-> client == 1 drm fd open).
-> 
-> However instead of using the current format measured in nsec, this
-> creates a new one. The intention here is not to mix the GPU clock domain
-> with the CPU clock. It allows to cover a few more use cases without
-> extra complications.
-> 
-> [...]
 
-Applied to drm-xe-next. Thanks everyone for the reviews and contributions.
+On 21.05.2024 16:01, Francois Dugast wrote:
+> Hi Michal,
+> 
+> On Mon, May 20, 2024 at 08:18:13PM +0200, Michal Wajdeczko wrote:
+>> These compilation units use udelay() or some GT oriented printk
+>> functions without explicitly including proper header files, and
+>> relying on #includes from the xe_mmio.h instead. Fix that.
+>>
+>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/xe_device.c         | 2 ++
+>>  drivers/gpu/drm/xe/xe_gsc.c            | 2 ++
+>>  drivers/gpu/drm/xe/xe_gt_ccs_mode.c    | 1 +
+>>  drivers/gpu/drm/xe/xe_guc_ads.c        | 1 +
+>>  drivers/gpu/drm/xe/xe_huc.c            | 2 ++
+>>  drivers/gpu/drm/xe/xe_mocs.c           | 1 +
+>>  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 1 +
+>>  drivers/gpu/drm/xe/xe_uc_fw.c          | 1 +
+>>  8 files changed, 11 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+>> index 8da90934c900..28a4e0c3b1fe 100644
+>> --- a/drivers/gpu/drm/xe/xe_device.c
+>> +++ b/drivers/gpu/drm/xe/xe_device.c
+>> @@ -5,6 +5,7 @@
+>>  
+>>  #include "xe_device.h"
+>>  
+>> +#include <linux/delay.h>
+>>  #include <linux/units.h>
+>>  
+>>  #include <drm/drm_aperture.h>
+>> @@ -33,6 +34,7 @@
+>>  #include "xe_gsc_proxy.h"
+>>  #include "xe_gt.h"
+>>  #include "xe_gt_mcr.h"
+>> +#include "xe_gt_printk.h"
+> 
+> It is obvious in the occurrences of this include in other compilation
+> units below, but in xe_device.c I am not seeing the need for
+> xe_gt_printk.h, am I missing something?
 
-[1/8] drm/xe: Promote xe_hw_engine_class_to_str()
-      commit: ab689514b6ac518ef6e88afa245b834b0dae15a5
-[2/8] drm/xe: Add XE_ENGINE_CLASS_OTHER to str conversion
-      commit: bd49e50d81b543e678965118a86958d87c045c73
-[3/8] drm/xe/lrc: Add helper to capture context timestamp
-      commit: 9b090d57746d965684f53a1aefcb363bab653ad3
-[4/8] drm/xe: Add helper to capture engine timestamp
-      commit: f2f6b667c67daee6fe2c51b5cec3bb0f1b4c1ce0
-[5/8] drm/xe: Add helper to accumulate exec queue runtime
-      commit: 6109f24f87d75122cf6de50901115cbee4285ce2
-[6/8] drm/xe: Cache data about user-visible engines
-      commit: baa14865529bf1f3c12dc6145bd9109ef289e038
-[7/8] drm/xe: Add helper to return any available hw engine
-      commit: 6aa18d7436b0c11f7e62fd6cdb707eaeab1dc473
-[8/8] drm/xe/client: Print runtime to fdinfo
-      commit: 188ced1e0ff892f0948f20480e2e0122380ae46d
+void xe_device_td_flush(struct xe_device *xe)
+...
+			xe_gt_err_once(gt, "TD flush timeout\n");
 
-Best regards,
--- 
-Lucas De Marchi <lucas.demarchi@intel.com>
+> 
+> Francois
+> 
+>>  #include "xe_hwmon.h"
+>>  #include "xe_irq.h"
+>>  #include "xe_memirq.h"
+>> diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
+>> index 8cc6420a9e7f..80a61934decc 100644
+>> --- a/drivers/gpu/drm/xe/xe_gsc.c
+>> +++ b/drivers/gpu/drm/xe/xe_gsc.c
+>> @@ -5,6 +5,8 @@
+>>  
+>>  #include "xe_gsc.h"
+>>  
+>> +#include <linux/delay.h>
+>> +
+>>  #include <drm/drm_managed.h>
+>>  
+>>  #include <generated/xe_wa_oob.h>
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+>> index a34c9a24dafc..f90cf679c5d7 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+>> @@ -9,6 +9,7 @@
+>>  #include "xe_assert.h"
+>>  #include "xe_gt.h"
+>>  #include "xe_gt_ccs_mode.h"
+>> +#include "xe_gt_printk.h"
+>>  #include "xe_gt_sysfs.h"
+>>  #include "xe_mmio.h"
+>>  
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+>> index 9c33cca4e370..1c60b685dbc6 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+>> @@ -16,6 +16,7 @@
+>>  #include "xe_bo.h"
+>>  #include "xe_gt.h"
+>>  #include "xe_gt_ccs_mode.h"
+>> +#include "xe_gt_printk.h"
+>>  #include "xe_guc.h"
+>>  #include "xe_guc_ct.h"
+>>  #include "xe_hw_engine.h"
+>> diff --git a/drivers/gpu/drm/xe/xe_huc.c b/drivers/gpu/drm/xe/xe_huc.c
+>> index 39a484a57585..b039ff49341b 100644
+>> --- a/drivers/gpu/drm/xe/xe_huc.c
+>> +++ b/drivers/gpu/drm/xe/xe_huc.c
+>> @@ -5,6 +5,8 @@
+>>  
+>>  #include "xe_huc.h"
+>>  
+>> +#include <linux/delay.h>
+>> +
+>>  #include <drm/drm_managed.h>
+>>  
+>>  #include "abi/gsc_pxp_commands_abi.h"
+>> diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+>> index f04754ad911b..de3f2d3f1b04 100644
+>> --- a/drivers/gpu/drm/xe/xe_mocs.c
+>> +++ b/drivers/gpu/drm/xe/xe_mocs.c
+>> @@ -12,6 +12,7 @@
+>>  #include "xe_force_wake.h"
+>>  #include "xe_gt.h"
+>>  #include "xe_gt_mcr.h"
+>> +#include "xe_gt_printk.h"
+>>  #include "xe_mmio.h"
+>>  #include "xe_platform_types.h"
+>>  #include "xe_pm.h"
+>> diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+>> index f77367329760..64592a8e527b 100644
+>> --- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+>> +++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+>> @@ -18,6 +18,7 @@
+>>  #include "xe_bo.h"
+>>  #include "xe_device.h"
+>>  #include "xe_gt.h"
+>> +#include "xe_gt_printk.h"
+>>  #include "xe_mmio.h"
+>>  #include "xe_res_cursor.h"
+>>  #include "xe_sriov.h"
+>> diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+>> index ed819f1df888..12346645a8e5 100644
+>> --- a/drivers/gpu/drm/xe/xe_uc_fw.c
+>> +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+>> @@ -14,6 +14,7 @@
+>>  #include "xe_force_wake.h"
+>>  #include "xe_gsc.h"
+>>  #include "xe_gt.h"
+>> +#include "xe_gt_printk.h"
+>>  #include "xe_map.h"
+>>  #include "xe_mmio.h"
+>>  #include "xe_module.h"
+>> -- 
+>> 2.43.0
+>>
