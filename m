@@ -4,84 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 553D2C25B78
-	for <intel-xe@archiver.kernel.org>; Tue, 21 May 2024 18:07:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8E5FC25B74
+	for <intel-xe@archiver.kernel.org>; Tue, 21 May 2024 18:19:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4A8810E1F6;
-	Tue, 21 May 2024 18:07:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="HnHygO65";
-	dkim-atps=neutral
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com
- [209.85.208.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBB8F10E1F6
- for <intel-xe@lists.freedesktop.org>; Tue, 21 May 2024 18:07:41 +0000 (UTC)
-Received: by mail-ed1-f49.google.com with SMTP id
- 4fb4d7f45d1cf-575070cff74so1396402a12.3
- for <intel-xe@lists.freedesktop.org>; Tue, 21 May 2024 11:07:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1716314860; x=1716919660; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references
- :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
- :subject:date:message-id:reply-to;
- bh=HSHHqF9+86a45LMERrG9B7L07T4eSiePeVoVM2YlIps=;
- b=HnHygO659wdg//IZRDPq47Z3URB2kLMpXc0faGePmTUg53WSrJMGhQFUb+F8gWGdCS
- z5Wu/QiozuBQvvrv1W6yZ6yPLE7nB2slXVYlOtAwl8y8TdsbCYi3RVxmJZINNCTIeciY
- XLMg8lUUAkA4728pZZOCT7V/+cT1hZsTc7+aA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1716314860; x=1716919660;
- h=in-reply-to:content-disposition:mime-version:references
- :mail-followup-to:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=HSHHqF9+86a45LMERrG9B7L07T4eSiePeVoVM2YlIps=;
- b=mv3kGmpJyiG3BDgWbZ+T+hx4oPl97uswsvd0aVWvYsmJ6yTa3EGz/KRibaKPBZpb1D
- 0AqjLoYVBdB2hWnwvkid53fNoNmjQdw3bsRR7w66MDQS3VqiCgLRcI9HThgkLbfkd+rQ
- rupukLpvuw+PF1vIPvSjICgUSCRh5ShDJG2/0FdEBBhs/R2qcfgWLIYK4fuxk9hE72EL
- o0hIuFRkmmDFSRcdXN1L+7LBDj8v38RQQttaSkVIrQ+ea5A+U36pLjnjyEECmK19g8gr
- uJzNNYJZW5GeCECiArjixdoxD5m0LiXbyfHgzu71HeCbi6jBjY99TIPHGvjJwE28fhw6
- JwoA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVLYQLImcG+33CzFSag8uvzfaVuQhX2xH62+3PXXi4y3DWwjbQVIJdTZDESs3a08r94X19VR0DU546R7ViNltaKDlvr2hzJGADBovSegCg=
-X-Gm-Message-State: AOJu0Yy6R7c4c48qZJLfniTAw3glIstxAk9kKQQ1ut2Lnu9cNg48dq5Z
- s2Y1VWNcjozv8UYaLXRp7JU0vlCfqpSEeaCiaxj4tmENjPT5fd+HaR9q7dL8mMI=
-X-Google-Smtp-Source: AGHT+IFRKXct57H1SoEiiz3mRXHTN9XDhZ0JE7tJW8JJy+JXMmTBDEISGYZ5N+PBopuxsq318R4L+g==
-X-Received: by 2002:aa7:ce06:0:b0:575:96a:5ccc with SMTP id
- 4fb4d7f45d1cf-575096a5d0emr10470410a12.3.1716314859880; 
- Tue, 21 May 2024 11:07:39 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-5733bea6586sm17028153a12.14.2024.05.21.11.07.38
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 May 2024 11:07:39 -0700 (PDT)
-Date: Tue, 21 May 2024 20:07:37 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Oded Gabbay <ogabbay@kernel.org>
-Cc: linux-kernel@vger.kernel.org, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Stephen Rothwell <sfr@canb.auug.org.au>,
- Jason Gunthorpe <jgg@nvidia.com>, Ofir Bitton <obitton@habana.ai>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH 1/2] MAINTAINERS: Change habanalabs maintainer and git
- repo path
-Message-ID: <Zkzi6WS90yHna7Lk@phenom.ffwll.local>
-Mail-Followup-To: Oded Gabbay <ogabbay@kernel.org>,
- linux-kernel@vger.kernel.org, David Airlie <airlied@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Stephen Rothwell <sfr@canb.auug.org.au>,
- Jason Gunthorpe <jgg@nvidia.com>, Ofir Bitton <obitton@habana.ai>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-References: <20240515162222.12958-1-ogabbay@kernel.org>
- <20240515162222.12958-2-ogabbay@kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B5B110ED62;
+	Tue, 21 May 2024 18:19:03 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A41B10ED62;
+ Tue, 21 May 2024 18:19:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240515162222.12958-2-ogabbay@kernel.org>
-X-Operating-System: Linux phenom 6.8.9-amd64 
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_flush_gtt_before_sig?=
+ =?utf-8?q?nalling_user_fence_on_media_engines?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andrzej Hajda" <andrzej.hajda@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 21 May 2024 18:19:00 -0000
+Message-ID: <171631554003.2165161.12834296837589841514@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240521-xu_flush_vcs_before_ufence-v1-1-ded38b56c8c9@intel.com>
+In-Reply-To: <20240521-xu_flush_vcs_before_ufence-v1-1-ded38b56c8c9@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,49 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 15, 2024 at 07:22:21PM +0300, Oded Gabbay wrote:
-> Because I left habana, Ofir Bitton is now the habanalabs driver
-> maintainer.
-> 
-> The git repo also changed location to the Habana GitHub website.
-> 
-> Signed-off-by: Oded Gabbay <ogabbay@kernel.org>
+== Series Details ==
 
-Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Series: drm/xe: flush gtt before signalling user fence on media engines
+URL   : https://patchwork.freedesktop.org/series/133884/
+State : success
 
-I'm assuming Ofir will include this in the first pr for drm.git.
--Sima
+== Summary ==
 
-> ---
->  MAINTAINERS | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index abd4dbe2c653..5bd45a919aff 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -9431,11 +9431,11 @@ S:	Maintained
->  F:	block/partitions/efi.*
->  
->  HABANALABS PCI DRIVER
-> -M:	Oded Gabbay <ogabbay@kernel.org>
-> +M:	Ofir Bitton <obitton@habana.ai>
->  L:	dri-devel@lists.freedesktop.org
->  S:	Supported
->  C:	irc://irc.oftc.net/dri-devel
-> -T:	git https://git.kernel.org/pub/scm/linux/kernel/git/ogabbay/linux.git
-> +T:	git https://github.com/HabanaAI/drivers.accel.habanalabs.kernel.git
->  F:	Documentation/ABI/testing/debugfs-driver-habanalabs
->  F:	Documentation/ABI/testing/sysfs-driver-habanalabs
->  F:	drivers/accel/habanalabs/
-> -- 
-> 2.34.1
-> 
+lib/modules/6.9.0-xe/kernel/sound/pci/hda/snd-hda-intel.ko
+lib/modules/6.9.0-xe/kernel/sound/core/
+lib/modules/6.9.0-xe/kernel/sound/core/seq/
+lib/modules/6.9.0-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.9.0-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.9.0-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.9.0-xe/kernel/sound/core/snd.ko
+lib/modules/6.9.0-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.9.0-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.9.0-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.9.0-xe/kernel/sound/soundcore.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/common/
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/amd/
+lib/modules/6.9.0-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/codecs/
+lib/modules/6.9.0-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.9.0-xe/kernel/sound/hda/
+lib/modules/6.9.0-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.9.0-xe/kernel/sound/hda/ext/
+lib/modules/6.9.0-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.9.0-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.9.0-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.9.0-xe/kernel/arch/
+lib/modules/6.9.0-xe/kernel/arch/x86/
+lib/modules/6.9.0-xe/kernel/arch/x86/kernel/
+lib/modules/6.9.0-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/events/
+lib/modules/6.9.0-xe/kernel/arch/x86/events/intel/
+lib/modules/6.9.0-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/kvm/
+lib/modules/6.9.0-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.9.0-xe/kernel/crypto/
+lib/modules/6.9.0-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.9.0-xe/kernel/crypto/cmac.ko
+lib/modules/6.9.0-xe/kernel/crypto/ccm.ko
+lib/modules/6.9.0-xe/kernel/crypto/cryptd.ko
+lib/modules/6.9.0-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.9.0-xe/kernel/crypto/async_tx/
+lib/modules/6.9.0-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.9.0-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.9.0-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.9.0-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.9.0-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.9.0-xe/build
+lib/modules/6.9.0-xe/modules.alias.bin
+lib/modules/6.9.0-xe/modules.builtin
+lib/modules/6.9.0-xe/modules.softdep
+lib/modules/6.9.0-xe/modules.alias
+lib/modules/6.9.0-xe/modules.order
+lib/modules/6.9.0-xe/modules.symbols
+lib/modules/6.9.0-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
+[0Ksection_end:1716315524:package_x86_64_nodebug
+[0K
++ echo -e '\e[0Ksection_end:1716315524:package_x86_64_nodebug\r\e[0K'
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+
