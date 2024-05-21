@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3147AC25B78
-	for <intel-xe@archiver.kernel.org>; Tue, 21 May 2024 15:44:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DAA8C25B74
+	for <intel-xe@archiver.kernel.org>; Tue, 21 May 2024 15:44:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 946B010E5FB;
-	Tue, 21 May 2024 15:44:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F19CA10E5FB;
+	Tue, 21 May 2024 15:44:24 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1440E10E5FB;
- Tue, 21 May 2024 15:44:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B275A10E534;
+ Tue, 21 May 2024 15:44:22 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_add_wopcm_?=
- =?utf-8?q?device_info_and_set_region_into_Guc_registers?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_add_wopcm_devic?=
+ =?utf-8?q?e_info_and_set_region_into_Guc_registers?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Farah Kassabri" <fkassabri@habana.ai>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 21 May 2024 15:44:09 -0000
-Message-ID: <171630624907.2162685.2391640627103006556@8e613ede5ea5>
+Date: Tue, 21 May 2024 15:44:22 -0000
+Message-ID: <171630626273.2162685.7963849732465812888@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240521125314.428775-1-fkassabri@habana.ai>
 In-Reply-To: <20240521125314.428775-1-fkassabri@habana.ai>
@@ -48,9 +48,34 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 413686054e38 drm-tip: 2024y-05m-21d-14h-41m-06s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: add wopcm device info and set region into Guc registers
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4366d4906bcaf3cd39dfde55c337a7568bf1c5c9
+Author: Farah Kassabri <fkassabri@habana.ai>
+Date:   Tue May 21 15:53:14 2024 +0300
+
+    drm/xe: add wopcm device info and set region into Guc registers
+    
+    As each product may have different wopcm region size,
+    it's better to have this information as part of the device
+    descriptor, that way we won't need to keep adding more
+    else cases to the function which retrieve that size for
+    future products.
+    
+    Signed-off-by: Farah Kassabri <fkassabri@habana.ai>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    
+    Changes in v2:
+    Keep the xe_wopcm_size function and return the new attribute
+    from it.
++ /mt/dim checkpatch 413686054e38d01eb91dfb49d665d1ab7d004848 drm-intel
+4366d4906bca drm/xe: add wopcm device info and set region into Guc registers
 
 
