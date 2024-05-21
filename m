@@ -4,69 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3893C25B74
-	for <intel-xe@archiver.kernel.org>; Tue, 21 May 2024 18:28:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F2C6C25B74
+	for <intel-xe@archiver.kernel.org>; Tue, 21 May 2024 18:38:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69A5410EC14;
-	Tue, 21 May 2024 18:28:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E98B810E1CE;
+	Tue, 21 May 2024 18:38:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QAtxdDMS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kMHybRRz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BAAF10EC14
- for <intel-xe@lists.freedesktop.org>; Tue, 21 May 2024 18:28:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D5A710E1CE
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 May 2024 18:38:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716316081; x=1747852081;
- h=date:message-id:from:to:cc:subject:in-reply-to:
- references:mime-version;
- bh=jGKLU+atMIi8GY1aFsb6pSjBZ/LlrhAXWkyY4XVaObY=;
- b=QAtxdDMSunalcmjcUy0OSF5dt/j7mDglI6igR2PNF/yfrh9xtjbN1K11
- VrUEcJgtJ1xIbHjGTfcHDl2utYxoaCdGGmkspDN8fv4/na/WyxzJakfWS
- 72S0x3OURLqeyV4wXesqByZN7puC4eMT2MROv8BM0Rbvnnek5q3KdKk/K
- 20h8qZesYaCSq7UNgwV1NfmgQc+zUHghWfsABBruVjZS8vnqUb+agn/Wk
- PwgRd0NIzvY/Xyg1gR8Vv3CDIQIDq59Xu2GvWbD1lvl+7HQMwigekTns5
- nUlkLP49mPcPY84xAOpdugwmuZqCftIuhI2I9zkaAjFMjzr28adKpwCua g==;
-X-CSE-ConnectionGUID: 5LOMX98tTOyEnM6IYGOVow==
-X-CSE-MsgGUID: HvQxmCaBTlWVrsUX19yZSw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11079"; a="16319789"
-X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; d="scan'208";a="16319789"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2024 11:28:00 -0700
-X-CSE-ConnectionGUID: a0IwUmLLQi27iSHrpZIxew==
-X-CSE-MsgGUID: a2kXb2LqSxC6prEJV/yAWQ==
+ t=1716316680; x=1747852680;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iFtlbI7ptCLLDxyQR81ugbR3yyOxDZ6SzEvOj3t1/+E=;
+ b=kMHybRRzoZdzOj3B3bV+Cne3hgD2DOgFBzBwGW9xLI5DING3ALFxSk/I
+ vKZJQX+yqMTkrA0CEIgrSNq1JJYBLfqht/TuBNhdcRhBSdW6ABaMbKovj
+ JxzhwqusFRtEjtFs/rjX+nBGEIa9Le3L35xVnKn8FOcwtDewzSJIKIUR2
+ YSgOxjr/5kbg9qWAhMPbHuFl7ecHtozl0dVQ9YbTll952zUChFO5DGjfs
+ 87UyAqWK0rIp8bUE8OaWponp/jPaxWhdDIHN8eqkzMGDiunDgkhpXWLGH
+ hNJ1I5CHDG4K3CAXsKKp/toi5mDjsvv0aRTQkv4r+1vpN1HQeETpdlOfd Q==;
+X-CSE-ConnectionGUID: K2vPsumJSySuifzPaaFMPA==
+X-CSE-MsgGUID: AwnfPSO4TNSkNi+bJiP2Yg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11079"; a="30058094"
+X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; d="scan'208";a="30058094"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2024 11:38:00 -0700
+X-CSE-ConnectionGUID: 3c3mD1hoSoGxt7yDsqGX3Q==
+X-CSE-MsgGUID: IEXTX1VISMyufxXxVggmhA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; d="scan'208";a="33446654"
-Received: from vbkhoo-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
- ([10.124.5.208])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2024 11:28:00 -0700
-Date: Tue, 21 May 2024 11:11:01 -0700
-Message-ID: <87v837ox1m.wl-ashutosh.dixit@intel.com>
-From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>, Robert Krzemien
- <robert.krzemien@intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Subject: Re: [PATCH 00/17] Add OA functionality to Xe
-In-Reply-To: <87wmnnoxg8.wl-ashutosh.dixit@intel.com>
-References: <20240315013518.2848986-1-ashutosh.dixit@intel.com>
- <438b276a653bf56fe1e0e131709d615dec86ae3e.camel@intel.com>
- <87frufuc96.wl-ashutosh.dixit@intel.com>
- <96d03111d07e8182e7ecb3c0ca1942c7fef22e6f.camel@intel.com>
- <595ea35d63cd92777b36f6ab87cd1f6483a4b38f.camel@intel.com>
- <851q5v2ljw.wl-ashutosh.dixit@intel.com>
- <8f86d8ea1d555e8261aab25bda0011ff96698522.camel@intel.com>
- <85zfsj15gf.wl-ashutosh.dixit@intel.com>
- <d7af155a3fa20d1e003f5c5ed3ca6abb839bda97.camel@intel.com>
- <87wmnnoxg8.wl-ashutosh.dixit@intel.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
- Emacs/29.3 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
+X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; d="scan'208";a="70431902"
+Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2024 11:37:58 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Subject: [PATCH v2] drm/xe: Add process name to devcoredump
+Date: Tue, 21 May 2024 11:37:51 -0700
+Message-ID: <20240521183751.184773-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.45.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,125 +66,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 21 May 2024 11:02:15 -0700, Dixit, Ashutosh wrote:
->
-> On Tue, 21 May 2024 10:39:17 -0700, Souza, Jose wrote:
-> >
-> > On Tue, 2024-05-21 at 09:43 -0700, Dixit, Ashutosh wrote:
-> > > On Tue, 21 May 2024 09:29:51 -0700, Souza, Jose wrote:
-> > > >
-> > > > On Tue, 2024-05-21 at 09:10 -0700, Dixit, Ashutosh wrote:
-> > > > > On Tue, 21 May 2024 07:47:58 -0700, Souza, Jose wrote:
-> > > > >
-> > > > > Hi Jose,
-> > > > >
-> > > > > > > Other ask, can you remove this 'Failed to remove unknown OA config'
-> > > > > > > debug message from xe_oa_remove_config_ioctl()?
-> > > > > >
-> > > > > > Missed 'Insufficient privileges to remove xe OA config', that need to be
-> > > > > > removed too from xe_oa_remove_config_ioctl().
-> > > > > >
-> > > > > > > Mesa will be using DRM_XE_PERF_OP_REMOVE_CONFIG with config id set to
-> > > > > > > UINT64_MAX to detect if Xe KMD supports OA counters and if application
-> > > > > > > has enough permissions to use it.  So it causes dmesg to be flooded
-> > > > > > > with 'xe 0000:00:02.0: [drm:xe_oa_remove_config_ioctl [xe]] Failed to
-> > > > > > > remove unknown OA config' messages when running tests suites.
-> > > > > > >
-> > > > > > > Or do you have other suggestion of uAPI that I can use.
-> > > > >
-> > > > > OK, so you are relying on ENODEV and EACCES errno's from
-> > > > > DRM_XE_PERF_OP_REMOVE_CONFIG to find out (a) if OA is present and (b) if
-> > > > > you need to be root (actually CAP_PERFMON or CAP_SYS_ADMIN).
-> > > >
-> > > > yep
-> > > >
-> > > > >
-> > > > > This logic in Xe should be close to what we have in i915? What does Mesa do
-> > > > > for i915, or what doesn't work in Xe?
-> > > > >
-> > > > > Here are some pointers:
-> > > > >
-> > > > > * You can execute DRM_XE_DEVICE_QUERY_OA_UNITS to see if OA is present
-> > > > >
-> > > > > * Add/remove OA configs and using the global OAG buffer (time based
-> > > > >   sampling or DRM_XE_OA_PROPERTY_SAMPLE_OA set) are priviliged operations
-> > > > >   (need root). Operations which only need OAR/OAC (OA queries, without
-> > > > >   DRM_XE_OA_PROPERTY_SAMPLE_OA) can be executed by non-root.
-> > > > >
-> > > > > * If "/proc/sys/dev/xe/perf_stream_paranoid" is 0, all operations can be
-> > > > >   executed by non-root users. Otherwise, as I described in the previous
-> > > > >   point.
-> > > >
-> > > > It is possible that process not started by root has CAP_PERFMON:
-> > >
-> > > Yes, correct.
-> > >
-> > > Above I am using "root" loosely as "CAP_PERFMON or CAP_SYS_ADMIN".
-> > >
-> > > So if root sets 'perf_stream_paranoid' to 0, normal users can do OA
-> > > priviliged operations (as described above).
-> > >
-> > > If root sets 'perf_stream_paranoid' to 1, only CAP_PERFMON or CAP_SYS_ADMIN
-> > > users can do OA priviliged operations.
-> >
-> > oh okay so perf_stream_paranoid has a good usage but it do not covers
-> > CAP_PERFMON, see below.
-> >
-> > >
-> > > > "Unprivileged processes with enabled CAP_PERFMON capability are treated
-> > > > as privileged processes with respect to perf_events performance
-> > > > monitoring and observability operations,..."
-> > > >
-> > > > And from what I understood only root can write to perf_stream_paranoid,
-> > > > so I don't see a point in having this file...
-> > >
-> > > So I don't know how this statement follows?
-> > >
-> > > root or superuser is the one which gives the permission to non-CAP_PERFMON
-> > > and non-CAP_SYS_ADMIN users to be able to do priviliged OA operations.
-> >
-> > so if I'm running a process with CAP_PERFMON and read
-> > perf_stream_paranoid and it returns 0
->
-> 0 if fine, everyone can use all OA calls. The issue is with 1.
->
-> > there is no way for UMD to know
-> > that process is allowed to use Xe KMD OA feature without do a uAPI call
-> > that checks for CAP_PERFMON.
-> >
-> > That is why I think is better just do a single
-> > DRM_XE_PERF_OP_REMOVE_CONFIG to detect if feature is present and if
-> > process is allowed to use it. But it generates a bunch of debug messages.
->
-> A process should be able to find out on its own, without help from Xe
-> driver, what it's capabilities (CAP_PERFMON or CAP_SYS_ADMIN or neither)
-> are:
->
-> https://www.google.com/search?q=linux+get+process+capabilities+in+c
-> https://man7.org/linux/man-pages/man3/libcap.3.html
->
-> And therefore, along with perf_stream_paranoid, determine which OA calls it
-> can use.
+Process name help us track what application caused the gpug hang, this
+is crucial when running several applications at the same time.
 
-Also, could you explain why Mesa has to worry about this? As I see it, Mesa
-as library can be linked with processes of different capabilities. And
-depending on perf_stream_paranoid setting on a system, some OA calls might
-or might not be available, the kernel will handle it. So not sure what Mesa
-has to do, except pass the return code from the kernel up to the app.
+v2:
+- handle Xe KMD exec_queues without VM
 
-So what are we trying to do here in Mesa?
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/xe/xe_devcoredump.c       | 12 ++++++++++++
+ drivers/gpu/drm/xe/xe_devcoredump_types.h |  2 ++
+ 2 files changed, 14 insertions(+)
 
-Thanks.
---
-Ashutosh
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index 3d7980232be1c..8e436ff714103 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -110,6 +110,7 @@ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
+ 	drm_printf(&p, "Snapshot time: %lld.%09ld\n", ts.tv_sec, ts.tv_nsec);
+ 	ts = ktime_to_timespec64(ss->boot_time);
+ 	drm_printf(&p, "Uptime: %lld.%09ld\n", ts.tv_sec, ts.tv_nsec);
++	drm_printf(&p, "Process: %s\n", ss->process_name);
+ 	xe_device_snapshot_print(xe, &p);
+ 
+ 	drm_printf(&p, "\n**** GuC CT ****\n");
+@@ -166,12 +167,23 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 	enum xe_hw_engine_id id;
+ 	u32 adj_logical_mask = q->logical_mask;
+ 	u32 width_mask = (0x1 << q->width) - 1;
++	const char *process_name = "no process";
++	struct task_struct *task;
+ 	int i;
+ 	bool cookie;
+ 
+ 	ss->snapshot_time = ktime_get_real();
+ 	ss->boot_time = ktime_get_boottime();
+ 
++	rcu_read_lock();
++	if (q->vm) {
++		task = pid_task(q->vm->xef->drm->pid, PIDTYPE_PID);
++		if (task)
++			process_name = task->comm;
++	}
++	snprintf(ss->process_name, sizeof(ss->process_name), process_name);
++	rcu_read_unlock();
++
+ 	ss->gt = q->gt;
+ 	INIT_WORK(&ss->work, xe_devcoredump_deferred_snap_work);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
+index 6f654b63c7f1c..923cdf72a816a 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
++++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
+@@ -26,6 +26,8 @@ struct xe_devcoredump_snapshot {
+ 	ktime_t snapshot_time;
+ 	/** @boot_time:  Relative boot time so the uptime can be calculated. */
+ 	ktime_t boot_time;
++	/** @process_name: Name of process that triggered this gpu hang */
++	char process_name[TASK_COMM_LEN];
+ 
+ 	/** @gt: Affected GT, used by forcewake for delayed capture */
+ 	struct xe_gt *gt;
+-- 
+2.45.1
 
-> > > > > So basically I think you just need to check for the perf_stream_paranoid
-> > > > > file above. It will tell you both (a) if OA is present (because we are
-> > > > > going to merge the code which creates this file together with OA) and (b)
-> > > > > if you need to be root for particular operations.
-> > > > >
-> > > > > Thanks.
-> > > > > --
-> > > > > Ashutosh
-> > > >
-> >
