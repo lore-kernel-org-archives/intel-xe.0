@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D289BC25B78
-	for <intel-xe@archiver.kernel.org>; Wed, 22 May 2024 18:36:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18ADAC25B78
+	for <intel-xe@archiver.kernel.org>; Wed, 22 May 2024 18:36:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AF1910E48A;
-	Wed, 22 May 2024 18:36:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GyR0DChs";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 090C510E48A;
- Wed, 22 May 2024 18:36:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716403006; x=1747939006;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=2rhgh+BR9bBd83IwdIjhqo7oQ+mkjjxUcF4D9vgGo1E=;
- b=GyR0DChsNnkFShFKOmen4h0ODF3V8sgW6tCM5drtG++8EJ1MBELAC9iN
- rMIZHTrrsYEk0/I1Eaapg2XdcFYZ+jeLwvduvdjEbXPiISZjCP6Zumw+i
- EsuB2iel3fFkgqIKPJquzZKdoFe0UHWqy4PnJZFufQEhkSjKmxN3jXJdf
- XM5S4AKJXZa68PzmE+HeYqAvedVQNb2jzMN8hgtIUFCyZlt8WXqneR5ht
- cvCNrkbTgPyGQN576u+m80HdSPiUb+3W66CW7huft6mixS9iB+H5lZKCB
- fh5b9EA2jL/5+vTGL0NbT8/JVs4ytP+0a4Xyls1neR0Arl6j8eGm1mOr7 Q==;
-X-CSE-ConnectionGUID: 6quRsU79TjeTD0K9jwL0CA==
-X-CSE-MsgGUID: ++LENxvNQzqIbHmSs/sK8Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11080"; a="35190095"
-X-IronPort-AV: E=Sophos;i="6.08,181,1712646000"; d="scan'208";a="35190095"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2024 11:36:44 -0700
-X-CSE-ConnectionGUID: kQPOyKLSTX+MeEW0Ez596A==
-X-CSE-MsgGUID: yiGVV04IQsaXQMwCNKVHBA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,181,1712646000"; d="scan'208";a="56625760"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.230])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2024 11:36:42 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com, lucas.demarchi@intel.com
-Subject: Re: [PATCH 00/10] drm/i915: identify all platforms in display probe
-In-Reply-To: <171640168863.10417.28066664900974969@gjsousa-mobl2>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1716399081.git.jani.nikula@intel.com>
- <171640168863.10417.28066664900974969@gjsousa-mobl2>
-Date: Wed, 22 May 2024 21:36:40 +0300
-Message-ID: <87y181pubr.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAB8710E494;
+	Wed, 22 May 2024 18:36:54 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6351610E544;
+ Wed, 22 May 2024 18:36:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915=3A_identify_all_platf?=
+ =?utf-8?q?orms_in_display_probe?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 22 May 2024 18:36:53 -0000
+Message-ID: <171640301340.2167933.4939190525738516495@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <cover.1716399081.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1716399081.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,34 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 22 May 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Quoting Jani Nikula (2024-05-22 14:33:37-03:00)
->>Add independent platform probe in display, in preparation for breaking
->>free from i915 and xe code.
->>
->>Up next would be adding separate IS_<PLATFORM>() style macros to
->>display. Not included here, because I couldn't come up with nice names
->>yet. IS_DISPLAY_<PLATFORM>() is a bit verbose.
->
-> Drive-by comment: At least for recent hardware, we can use
-> display-specific release names, e.g. IS_XE2LPD() for LNL's display,
-> since theoretically that display IP could be reused in a different
-> platform.
+== Series Details ==
 
-I think we should prefer the IP version checks over adding names like
-xe2lpd which IMO are hard to remember and associate with platforms or IP
-versions.
+Series: drm/i915: identify all platforms in display probe
+URL   : https://patchwork.freedesktop.org/series/133931/
+State : success
 
-And we'll still need the platform checks for a plethora of old
-platforms.
+== Summary ==
+
+lib/modules/6.9.0-xe/kernel/sound/pci/hda/snd-hda-intel.ko
+lib/modules/6.9.0-xe/kernel/sound/core/
+lib/modules/6.9.0-xe/kernel/sound/core/seq/
+lib/modules/6.9.0-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.9.0-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.9.0-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.9.0-xe/kernel/sound/core/snd.ko
+lib/modules/6.9.0-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.9.0-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.9.0-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.9.0-xe/kernel/sound/soundcore.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/common/
+lib/modules/6.9.0-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/amd/
+lib/modules/6.9.0-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.9.0-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.9.0-xe/kernel/sound/soc/codecs/
+lib/modules/6.9.0-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.9.0-xe/kernel/sound/hda/
+lib/modules/6.9.0-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.9.0-xe/kernel/sound/hda/ext/
+lib/modules/6.9.0-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.9.0-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.9.0-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.9.0-xe/kernel/arch/
+lib/modules/6.9.0-xe/kernel/arch/x86/
+lib/modules/6.9.0-xe/kernel/arch/x86/kernel/
+lib/modules/6.9.0-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/events/
+lib/modules/6.9.0-xe/kernel/arch/x86/events/intel/
+lib/modules/6.9.0-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/kvm/
+lib/modules/6.9.0-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.9.0-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.9.0-xe/kernel/crypto/
+lib/modules/6.9.0-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.9.0-xe/kernel/crypto/cmac.ko
+lib/modules/6.9.0-xe/kernel/crypto/ccm.ko
+lib/modules/6.9.0-xe/kernel/crypto/cryptd.ko
+lib/modules/6.9.0-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.9.0-xe/kernel/crypto/async_tx/
+lib/modules/6.9.0-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.9.0-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.9.0-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.9.0-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.9.0-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.9.0-xe/build
+lib/modules/6.9.0-xe/modules.alias.bin
+lib/modules/6.9.0-xe/modules.builtin
+lib/modules/6.9.0-xe/modules.softdep
+lib/modules/6.9.0-xe/modules.alias
+lib/modules/6.9.0-xe/modules.order
+lib/modules/6.9.0-xe/modules.symbols
+lib/modules/6.9.0-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1716403001:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1716403001:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
-BR,
-Jani.
-
-
--- 
-Jani Nikula, Intel
