@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2322C25B77
-	for <intel-xe@archiver.kernel.org>; Wed, 22 May 2024 10:22:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D4A3C25B7A
+	for <intel-xe@archiver.kernel.org>; Wed, 22 May 2024 10:23:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1665110E242;
-	Wed, 22 May 2024 10:22:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B234110E954;
+	Wed, 22 May 2024 10:22:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YsnTNs9f";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DyKJg2Oy";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3295C10F49C
- for <intel-xe@lists.freedesktop.org>; Wed, 22 May 2024 10:22:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 672A510F492
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 May 2024 10:22:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716373327; x=1747909327;
+ t=1716373339; x=1747909339;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=0zwPauFKtJUsviWBWTXrXatbbV42FoC3G8IuN6GAqt4=;
- b=YsnTNs9fFDPqX5IMocdyizViRYiZNzFfJsMZKCIBB1nAPb6xDCdCecob
- QRCxe5gFB+rBHP/3A1Nfkr+owkDUXepJ/0w9cckajujpHWXrDaUIzpkCN
- Xj+ImocuqZhzN2pW3P0pj10CuX2M/pakot6lccWqGggQw9k4KfmdG08y9
- xNOtfvyQihsd3efyItx5f3XujxsNqWIXtXoIovG/i19Qpr2I1VtOpsiX0
- oXds0hQrJcQFavwHiEhHM42D2i7nE/a2kOM4VfY3bbVMh8OmelZLJqAC8
- UZNYLkj1Z8229u/v7S4fe0EaDWAJM4O2Ph1two90r57xGgFHfUL8QZJAg Q==;
-X-CSE-ConnectionGUID: WvLAr6m1TxmywqhuBgb5HQ==
-X-CSE-MsgGUID: 20F1Q6KXTZO0z7x6p32tKw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11079"; a="15562682"
-X-IronPort-AV: E=Sophos;i="6.08,179,1712646000"; d="scan'208";a="15562682"
+ bh=1k+HrhOaQNOcD1XinUfrdR+K1Ud/c1Vd5Dk9hyPRJDA=;
+ b=DyKJg2OyIl+Vo6/to4wBxFt8spfF5iDBgHASq+7780bR0VFrs2N34Pb6
+ 5YAEHJRxrhIYrblZbqtNlOfSBpnwZQ+DInP0qj2IqgtDQhrPxwturccvH
+ v1QkHshkrpSMzHHmQVm6jZe7LM4mhTrxLFnpsg5IWi2EIxSOrmwWMCHKy
+ /jibkXMZwOg2qdX8htqxljF7Bl/qVEm+NXMRQS30V3DAQKcHqeqjx5Rst
+ dODUpEfIST5ZFLbesA2u7NZLBQHXy8t3mL+NJieDrcLBCi4n8VHx0SagM
+ prOudlExtXafbIJq7Q4/E0cWpFaMDayMQUe6IjmV46xD/06LP0WkVC7MQ Q==;
+X-CSE-ConnectionGUID: TJhrugS7QqSoVOoLZ8lEkQ==
+X-CSE-MsgGUID: ZAYTgqinTgaLlNzEmpZfvg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11079"; a="15562709"
+X-IronPort-AV: E=Sophos;i="6.08,179,1712646000"; d="scan'208";a="15562709"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2024 03:22:06 -0700
-X-CSE-ConnectionGUID: SPo7+4WhQDa9lU85wCZ+Rg==
-X-CSE-MsgGUID: iep//5YDQmKQtC7aIPAb4Q==
+ 22 May 2024 03:22:19 -0700
+X-CSE-ConnectionGUID: rm5/604DSluwGfpMFftiZA==
+X-CSE-MsgGUID: o3wJ/rf4ScKj7Gm0wDjhyA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,179,1712646000"; d="scan'208";a="38195232"
+X-IronPort-AV: E=Sophos;i="6.08,179,1712646000"; d="scan'208";a="38195337"
 Received: from unknown (HELO mwauld-desk.intel.com) ([10.245.245.124])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2024 03:22:06 -0700
+ 22 May 2024 03:22:18 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v3 03/18] drm/xe/ggtt: use drm_dev_enter to mark device section
-Date: Wed, 22 May 2024 11:21:46 +0100
-Message-ID: <20240522102143.128069-21-matthew.auld@intel.com>
+Subject: [CI v3 16/18] drm/xe/display: move display fini stuff to devm
+Date: Wed, 22 May 2024 11:21:59 +0100
+Message-ID: <20240522102143.128069-34-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.45.1
 In-Reply-To: <20240522102143.128069-19-matthew.auld@intel.com>
 References: <20240522102143.128069-19-matthew.auld@intel.com>
@@ -65,71 +65,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Device can be hotunplugged before we start destroying gem objects. In
-such a case don't touch the GGTT entries, trigger any invalidations or
-mess around with rpm.  This should already be taken care of when
-removing the device, we just need to take care of dealing with the
-software state, like removing the mm node.
+Match the i915 display handling here with calling both no_irq and
+noaccel when removing the device.
 
-v2: (Andrzej)
-  - Avoid some duplication by tracking the bound status and checking
-    that instead.
-
-References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1717
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-Reviewed-by: Jagmeet Randhawa <jagmeet.randhawa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 18 +++++++++++++++---
- 1 file changed, 15 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 0d541f55b4fc..17e5066763db 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -8,6 +8,7 @@
- #include <linux/io-64-nonatomic-lo-hi.h>
- #include <linux/sizes.h>
- 
-+#include <drm/drm_drv.h>
- #include <drm/drm_managed.h>
- #include <drm/i915_drm.h>
- 
-@@ -433,18 +434,29 @@ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
- void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
- 			 bool invalidate)
- {
--	xe_pm_runtime_get_noresume(tile_to_xe(ggtt->tile));
-+	struct xe_device *xe = tile_to_xe(ggtt->tile);
-+	bool bound;
-+	int idx;
-+
-+	bound = drm_dev_enter(&xe->drm, &idx);
-+	if (bound)
-+		xe_pm_runtime_get_noresume(xe);
- 
- 	mutex_lock(&ggtt->lock);
--	xe_ggtt_clear(ggtt, node->start, node->size);
-+	if (bound)
-+		xe_ggtt_clear(ggtt, node->start, node->size);
- 	drm_mm_remove_node(node);
- 	node->size = 0;
- 	mutex_unlock(&ggtt->lock);
- 
-+	if (!bound)
-+		return;
-+
- 	if (invalidate)
- 		xe_ggtt_invalidate(ggtt);
- 
--	xe_pm_runtime_put(tile_to_xe(ggtt->tile));
-+	xe_pm_runtime_put(xe);
-+	drm_dev_exit(idx);
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index a2c39bcc7677..18fffa894f7d 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -123,9 +123,9 @@ int xe_display_init_nommio(struct xe_device *xe)
+ 	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_nommio, xe);
  }
  
- void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+-static void xe_display_fini_noirq(struct drm_device *dev, void *dummy)
++static void xe_display_fini_noirq(void *arg)
+ {
+-	struct xe_device *xe = to_xe_device(dev);
++	struct xe_device *xe = arg;
+ 
+ 	if (!xe->info.enable_display)
+ 		return;
+@@ -160,12 +160,12 @@ int xe_display_init_noirq(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
+-	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_noirq, NULL);
++	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_noirq, xe);
+ }
+ 
+-static void xe_display_fini_noaccel(struct drm_device *dev, void *dummy)
++static void xe_display_fini_noaccel(void *arg)
+ {
+-	struct xe_device *xe = to_xe_device(dev);
++	struct xe_device *xe = arg;
+ 
+ 	if (!xe->info.enable_display)
+ 		return;
+@@ -184,7 +184,7 @@ int xe_display_init_noaccel(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
+-	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_noaccel, NULL);
++	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_noaccel, xe);
+ }
+ 
+ int xe_display_init(struct xe_device *xe)
 -- 
 2.45.1
 
