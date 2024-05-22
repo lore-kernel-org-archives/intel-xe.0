@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42935C25B78
-	for <intel-xe@archiver.kernel.org>; Wed, 22 May 2024 18:24:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71F92C25B79
+	for <intel-xe@archiver.kernel.org>; Wed, 22 May 2024 18:24:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D492F10E454;
-	Wed, 22 May 2024 18:24:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C27B910E454;
+	Wed, 22 May 2024 18:24:25 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2E2710E454;
- Wed, 22 May 2024 18:24:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B544610E454;
+ Wed, 22 May 2024 18:24:23 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915=3A_identify?=
- =?utf-8?q?_all_platforms_in_display_probe?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_identify_all_?=
+ =?utf-8?q?platforms_in_display_probe?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 22 May 2024 18:24:05 -0000
-Message-ID: <171640224592.2167933.13053825327355888101@8e613ede5ea5>
+Date: Wed, 22 May 2024 18:24:23 -0000
+Message-ID: <171640226374.2167933.12292540594913527960@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <cover.1716399081.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1716399081.git.jani.nikula@intel.com>
@@ -44,22 +44,99 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915: identify all platforms in display probe
 URL   : https://patchwork.freedesktop.org/series/133931/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 42b9a14c5932 drm-tip: 2024y-05m-22d-16h-28m-20s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: move params copy at probe earlier
-Applying: drm/i915/display: change probe for no display case
-Applying: drm/i915/display: check platforms without display one level higher
-Applying: drm/i915/display: change GMD ID display ip ver propagation at probe
-Applying: drm/i915/display: add platform descriptors
-Applying: drm/i915: add LNL PCI IDs
-Applying: drm/i915/display: change display probe to identify GMD ID based platforms
-Applying: drm/i915/display: identify platforms with enum and name
-Applying: drm/i915/display: add support for subplatforms
-Applying: drm/i915/display: add probe message
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 812469294477ea5267e40435e68b607055972930
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Wed May 22 20:33:47 2024 +0300
+
+    drm/i915/display: add probe message
+    
+    Add an info message about which display device was probed.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 42b9a14c5932c577019bf2f5d5ff25d208c1f921 drm-intel
+bbf3cc030150 drm/i915/display: move params copy at probe earlier
+97833b5e90c0 drm/i915/display: change probe for no display case
+805bcc7fb4c2 drm/i915/display: check platforms without display one level higher
+724ea427dce8 drm/i915/display: change GMD ID display ip ver propagation at probe
+34a0ead6cee7 drm/i915/display: add platform descriptors
+-:51: WARNING:LONG_LINE_COMMENT: line length of 104 exceeds 100 columns
+#51: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:211:
++		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C), /* DVO A/B/C */
+
+-:238: WARNING:LONG_LINE_COMMENT: line length of 117 exceeds 100 columns
+#238: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:349:
++		.__runtime_defaults.port_mask = BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* SDVO/HDMI/DP B/C, DP D */
+
+-:252: WARNING:LONG_LINE_COMMENT: line length of 117 exceeds 100 columns
+#252: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:358:
++		.__runtime_defaults.port_mask = BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* SDVO/HDMI/DP B/C, DP D */
+
+-:302: WARNING:LONG_LINE: line length of 142 exceeds 100 columns
+#302: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:400:
++		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
+
+-:328: WARNING:LONG_LINE: line length of 142 exceeds 100 columns
+#328: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:416:
++		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
+
+-:395: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#395: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:455:
++		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D) | BIT(PORT_E),
+
+-:433: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#433: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:477:
++		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D) | BIT(PORT_E),
+
+-:463: WARNING:LONG_LINE_COMMENT: line length of 108 exceeds 100 columns
+#463: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:495:
++		.__runtime_defaults.port_mask = BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* HDMI/DP B/C/D */
+
+-:545: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#545: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:627:
++		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D) | BIT(PORT_E),
+
+total: 0 errors, 9 warnings, 0 checks, 728 lines checked
+96c289c5da11 drm/i915: add LNL PCI IDs
+-:22: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#22: FILE: include/drm/i915_pciids.h:787:
++#define INTEL_LNL_IDS(MACRO__, ...) \
++	MACRO__(0x6420, ## __VA_ARGS__), \
++	MACRO__(0x64A0, ## __VA_ARGS__), \
++	MACRO__(0x64B0, ## __VA_ARGS__)
+
+-:22: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#22: FILE: include/drm/i915_pciids.h:787:
++#define INTEL_LNL_IDS(MACRO__, ...) \
++	MACRO__(0x6420, ## __VA_ARGS__), \
++	MACRO__(0x64A0, ## __VA_ARGS__), \
++	MACRO__(0x64B0, ## __VA_ARGS__)
+
+total: 1 errors, 0 warnings, 1 checks, 10 lines checked
+6e5ed5b39b3c drm/i915/display: change display probe to identify GMD ID based platforms
+-:108: ERROR:CODE_INDENT: code indent should use tabs where possible
+#108: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:1044:
++        if (!info)$
+
+-:108: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#108: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:1044:
++        if (!info)$
+
+total: 1 errors, 1 warnings, 0 checks, 89 lines checked
+aa12486757c9 drm/i915/display: identify platforms with enum and name
+ef72fe55b36c drm/i915/display: add support for subplatforms
+812469294477 drm/i915/display: add probe message
 
 
