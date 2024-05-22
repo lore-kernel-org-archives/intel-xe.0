@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A049C25B78
-	for <intel-xe@archiver.kernel.org>; Wed, 22 May 2024 23:08:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 520D9C25B78
+	for <intel-xe@archiver.kernel.org>; Wed, 22 May 2024 23:09:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCA1810EF64;
-	Wed, 22 May 2024 23:08:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2EE810EF64;
+	Wed, 22 May 2024 23:09:29 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B289310EF64;
- Wed, 22 May 2024 23:08:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1995210EF64;
+ Wed, 22 May 2024 23:09:27 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5BCI=2C1/7=5D_drm/xe=3A_Fix_xe=5Fpm=5Fruntime=5Fget=5Fif=5Facti?=
- =?utf-8?q?ve_return_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5BC?=
+ =?utf-8?q?I=2C1/7=5D_drm/xe=3A_Fix_xe=5Fpm=5Fruntime=5Fget=5Fif=5Factive_re?=
+ =?utf-8?q?turn_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 22 May 2024 23:08:56 -0000
-Message-ID: <171641933672.2168995.15979552318356940282@8e613ede5ea5>
+Date: Wed, 22 May 2024 23:09:27 -0000
+Message-ID: <171641936710.2168995.2392441720993710264@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240522170105.327472-1-rodrigo.vivi@intel.com>
 In-Reply-To: <20240522170105.327472-1-rodrigo.vivi@intel.com>
@@ -49,15 +49,40 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: b912a794bf8a drm-tip: 2024y-05m-22d-19h-34m-06s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Fix xe_pm_runtime_get_if_active return
-Applying: drm/xe: Fix xe_pm_runtime_get_if_in_use documentation
-Applying: drm/xe: Relax runtime pm protection during execution
-Applying: drm/xe: Relax runtime pm protection around VM
-Applying: drm/xe: Prepare display for D3Cold
-Applying: drm/xe: Stop checking for power_lost on D3Cold
-Applying: drm/xe: Enable D3Cold on 'low' VRAM utilization
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 15d901b959d56641b45455e636b1f4b08c97704b
+Author: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date:   Wed May 22 13:01:05 2024 -0400
+
+    drm/xe: Enable D3Cold on 'low' VRAM utilization
+    
+    Now that we eliminated all the mem_access get/put with its
+    locking issues from the inner calls of migration, we can
+    allow D3Cold.
+    
+    Enable it when VRAM utilization is lower then 300Mb. On
+    higher utilization we only allow D3hot so we don't increase
+    so much the latency on runtime resume due to the memory
+    restoration.
+    
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
+    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch b912a794bf8a370cde8be56c138f5c82de0dde8f drm-intel
+fdc3ee969cb8 drm/xe: Fix xe_pm_runtime_get_if_active return
+605483852958 drm/xe: Fix xe_pm_runtime_get_if_in_use documentation
+6cf415ccf059 drm/xe: Relax runtime pm protection during execution
+e854f8dc56b0 drm/xe: Relax runtime pm protection around VM
+b641c1f1f381 drm/xe: Prepare display for D3Cold
+e45bd89bce13 drm/xe: Stop checking for power_lost on D3Cold
+15d901b959d5 drm/xe: Enable D3Cold on 'low' VRAM utilization
 
 
