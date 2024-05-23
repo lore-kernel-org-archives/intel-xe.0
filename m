@@ -4,43 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15FA0C25B79
-	for <intel-xe@archiver.kernel.org>; Thu, 23 May 2024 14:48:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3ABF2C25B75
+	for <intel-xe@archiver.kernel.org>; Thu, 23 May 2024 14:48:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F61210E343;
-	Thu, 23 May 2024 14:48:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=treblig.org header.i=@treblig.org header.b="RO7l+xWm";
-	dkim-atps=neutral
-Received: from mx.treblig.org (mx.treblig.org [46.235.229.95])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0A2310E0A3;
- Wed, 22 May 2024 17:58:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=treblig.org
- ; s=bytemarkmx;
- h=MIME-Version:Message-ID:Date:Subject:From:Content-Type:From
- :Subject; bh=Wbd6zrA/kHzFGZUfOfAivCujWYrNUgCo+i5BpHmbrpQ=; b=RO7l+xWmNB/ayxPi
- tk47ep9m8n4rhaVvauBOexM6xSFIm69KE5wgl+cFv8EexhJykSUZ2o65t4QmBMStXkVtfGw3cI/b6
- q3HyvuFpOJqC7pZLLwkzAZPdo9NcRdibgbguQSRvnHQUkqwB69V6dmAQfPFqvbMQQKb1d3yysRM6Q
- 4ePvQe7e/xSZvQ/sHHykf2guysjaAPFr5vsFa4v2sHbEUBcEHCsRBSwpPopXQcN0JGMCTu3DGDMkU
- QWR4+aMz589J5VxBA4pAn6qAW4DyaTCIZrlfmxTQR0NFhzY+oMUcsdYsUubXuTNLrWWufrAC6L9z0
- CkwDOnwnS/QyZwOt1g==;
-Received: from localhost ([127.0.0.1] helo=dalek.home.treblig.org)
- by mx.treblig.org with esmtp (Exim 4.96)
- (envelope-from <linux@treblig.org>) id 1s9qEb-0025bK-2J;
- Wed, 22 May 2024 17:58:42 +0000
-From: linux@treblig.org
-To: matthew.d.roper@intel.com,
-	lucas.demarchi@intel.com
-Cc: maarten.lankhorst@linux.intel.com, airlied@gmail.com,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, "Dr. David Alan Gilbert" <linux@treblig.org>
-Subject: [PATCH] drm/xe: remove unused struct 'xe_gt_desc'
-Date: Wed, 22 May 2024 18:58:40 +0100
-Message-ID: <20240522175840.382107-1-linux@treblig.org>
-X-Mailer: git-send-email 2.45.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D7DA10E10F;
+	Thu, 23 May 2024 14:48:19 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2DB510E318;
+ Thu, 23 May 2024 14:48:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 23 May 2024 14:47:59 +0000
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_HWMON_support_for_BMG?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 23 May 2024 14:48:13 -0000
+Message-ID: <171647569392.2169849.8989717553487201313@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240523144351.4040131-1-balasubramani.vivekanandan@intel.com>
+In-Reply-To: <20240523144351.4040131-1-balasubramani.vivekanandan@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,39 +35,57 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: "Dr. David Alan Gilbert" <linux@treblig.org>
+== Series Details ==
 
-'xe_gt_desc' is unused since
-commit 1e6c20be6c83 ("drm/xe: Drop extra_gts[] declarations and
-XE_GT_TYPE_REMOTE").
+Series: Add HWMON support for BMG
+URL   : https://patchwork.freedesktop.org/series/133970/
+State : warning
 
-Remove it.
+== Summary ==
 
-Signed-off-by: Dr. David Alan Gilbert <linux@treblig.org>
----
- drivers/gpu/drm/xe/xe_pci.c | 6 ------
- 1 file changed, 6 deletions(-)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3b1ed72a36ad5cd6b8a88f270d1ad8b39e28ea7f
+Author: Karthik Poosa <karthik.poosa@intel.com>
+Date:   Thu May 23 20:13:51 2024 +0530
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index f326dbb1cecd..2ca210480bd1 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -40,12 +40,6 @@ struct xe_subplatform_desc {
- 	const u16 *pciidlist;
- };
- 
--struct xe_gt_desc {
--	enum xe_gt_type type;
--	u32 mmio_adj_limit;
--	u32 mmio_adj_offset;
--};
--
- struct xe_device_desc {
- 	/* Should only ever be set for platforms without GMD_ID */
- 	const struct xe_graphics_desc *graphics;
--- 
-2.45.1
+    drm/xe/hwmon: Expose card power and energy attributes of BMG
+    
+    In BMG there are separate registers for card/platform power and
+    energy.
+    These are exposed through channel 0 i.e power_1/energy1_xxx.
+    
+    Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
++ /mt/dim checkpatch 8e768c3e813ab5519a85997b622edc9a2f79c083 drm-intel
+a1ed8e8964c2 drm/xe/hwmon: Add HWMON support for BMG
+3b1ed72a36ad drm/xe/hwmon: Expose card power and energy attributes of BMG
+-:38: WARNING:BRACES: braces {} are not necessary for any arm of this statement
+#38: FILE: drivers/gpu/drm/xe/xe_hwmon.c:90:
++			if (channel == CHANNEL_PKG) {
+[...]
++			} else {
+[...]
+
+-:60: WARNING:BRACES: braces {} are not necessary for any arm of this statement
+#60: FILE: drivers/gpu/drm/xe/xe_hwmon.c:123:
++			if (channel == CHANNEL_PKG) {
+[...]
++			} else {
+[...]
+
+total: 0 errors, 2 warnings, 0 checks, 49 lines checked
+
 
