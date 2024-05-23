@@ -4,165 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6215C25B75
-	for <intel-xe@archiver.kernel.org>; Thu, 23 May 2024 17:28:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20DAFC25B75
+	for <intel-xe@archiver.kernel.org>; Thu, 23 May 2024 17:30:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C1CD10E13C;
-	Thu, 23 May 2024 17:28:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABF9410EF95;
+	Thu, 23 May 2024 17:30:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cWD+RJI7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aj8KBU9V";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF38210E13C;
- Thu, 23 May 2024 17:28:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 924F110E278
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 May 2024 17:30:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716485283; x=1748021283;
+ t=1716485424; x=1748021424;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=UQd5zwV/yJdYnhrXrvJGdGE46OwWU90dLDbMGUbSIKE=;
- b=cWD+RJI7QqyX+6p2VdXS5xLu+wPYsebaif2JKp70Bity0Ad+BPauY2i6
- cnQcpmGKb4Hx/uw4VxSf5w19G7aO/Ov/O3p2Z9Cy6ZYRM9tHa7TVo5p8k
- 4jnbAmVU7xDai18DhmdberMP3EeXQTi/lYLs+rNYNBXtWBiyBP9Qyg1tx
- jkFybo2sPhZwJSnaH6c9kZlvhlRwEPeuHjG/XdLyqgUyKhoYcxJwdmMDo
- kbnkTy+9v3nYspJErid6pA3/3W3AAEDzdDzebTRp9eAoIWa1qfjrrfEU2
- qaCMQUeHS/Rd1eGsRtYFNazpdDbvgLTsNiQ4UVZmex4irfHWbjRhMTXa4 A==;
-X-CSE-ConnectionGUID: NVHttmThR/Oog1cBC+a9vA==
-X-CSE-MsgGUID: F7Lu9+f3TyqgkaYOxq5jIg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="12697884"
-X-IronPort-AV: E=Sophos;i="6.08,183,1712646000"; d="scan'208";a="12697884"
+ bh=RIehlogBpviHUleQwYZvYPKszubkROJ+1wC6WTYF148=;
+ b=aj8KBU9Vlty7orMbS1eEv4Rd91kz7kFwbBO8vs7K90T+0YVpPz2l2N9M
+ g7c+KdfQM4L2l53n0dNwqP9KR4YQMghOkCfbuvvioW393aj9Nye97ZWoo
+ SC9VnF0Ya4fticgslw33ePDTapKlOHYkzG2h4erKPYGRWl25rjOM394N/
+ zxOZXeA+LK+qK+W1exovYU7tm9b5ieXUnBSdgApRgkihDQMMfT+Uj6P10
+ 8wPgX6LhHfNpSPo6I4lIKUnXxs+ojsFNEmqJKOdZAt4kOaErYt0mGpcKu
+ kf5McNS2jtR09nGtz5thEv/GdTRgEALyewUcwN0SjjF5MRsJKj3Rlb1V9 g==;
+X-CSE-ConnectionGUID: N/shQJkYRnSV66yIhavy6A==
+X-CSE-MsgGUID: D3qN98YBTMeGj4Jr088nSQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="12698482"
+X-IronPort-AV: E=Sophos;i="6.08,183,1712646000"; d="scan'208";a="12698482"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 10:27:28 -0700
-X-CSE-ConnectionGUID: phJ04gB3SpunEe9qpqSdBg==
-X-CSE-MsgGUID: SaTMVdCTTJ22FpnKRqfkCw==
+ 23 May 2024 10:30:03 -0700
+X-CSE-ConnectionGUID: lYWEL0ysQKy7AiuoWj4xYw==
+X-CSE-MsgGUID: ewT0weeBTI6GeMraYPEa3w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,183,1712646000"; d="scan'208";a="33804266"
+X-IronPort-AV: E=Sophos;i="6.08,183,1712646000"; d="scan'208";a="33804824"
 Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
  by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 May 2024 10:27:28 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ 23 May 2024 10:30:03 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
  fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 23 May 2024 10:27:27 -0700
+ 15.1.2507.39; Thu, 23 May 2024 10:30:02 -0700
 Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 23 May 2024 10:27:27 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
+ 15.1.2507.39 via Frontend Transport; Thu, 23 May 2024 10:30:02 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
  by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 23 May 2024 10:27:26 -0700
+ 15.1.2507.39; Thu, 23 May 2024 10:30:02 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=j97XZCsj4S9c0KPBQEKwXj5JrU0gyhh5vPLwqm0qG/EBULqMYvJprF8OQiNz0F6TojMPRKuk0PaAPt07fyhV7YACEX0KCHHxKCBy8pReVqMn+fHMthSnm9NgY0lW4vlzhVHdnv9d1LdOEj+BkBr4S9uYwWom6X6ugV0VCGs/HUVRYZ+QNpUPO9JU7mF5YM91lQC12MSweKQN19XcLXIB5eznmQ5z9Ni2FKWCz9NBYUADhMI95od420/wLTKHitZs22lEzOKuP6rJvsl0AA7bIEU1Cgf5TQY241i8+0ndoTbLaQFZsEOz0Pw2pEBgzB3ZbyK4LxYBpNQSOshVPocY4Q==
+ b=ieWBs5ZxMIq7Mht9r0qMBD7aEvesBHEJJzlot9CNY70hcvMobAmYj7iPuH94qunsyRvzUtuXWtOl1HMAY5Dfd1x3XOR1AQ9t9p5put7y0Gl02M22dsi0lxyQeh9ZcBdX4TXQUUK+Ma19TQvt/LG1SBST0nW2PwWz+gHVQf9UwMuFbeMEM6ItRCu3FYVU0JjOCFTyxu2Xif8zmCWFjNdHFNNCkfT0JefK1In56psP5mke1GRNjKQR3KIPB3URy8XPpE8YRGbMRjl+f51CTSpGwLpM9J2leqzURKn4zfNn4FsfthiN+kioVdlBRncasMIKV+tFvfbJQ4WEOpcYo4dwdg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DvkumoAvQ0V22FgLSpmltlgn0zuKCK1hxFS+t87CuLg=;
- b=PzreHxPb+bn1OoiS70JHAvHOQ09OJqxD2dGTt4XNiQ1/DBsNB9Q37J4Ygm+QAFfweLl6lycbsQXCvKamOEKpkMLZbbgi2CZ3cOHkT3xcXj6miqaL5+BpOnTl+P67a56/XhGLlFuUEBbnuVCBqW421K1gFGyIEsPthyV2JgkVSJ6JQOXMl44d6G8+mwVDklo6N6SsCTPy4ysyFBOtdGN/FEUwth6M65+1vPlCBouFcOSDcDptu1RV1nizWc00xZJugqznxELOdzSLITnxMny+rpvx1Y2Bm5os0dVtXfbm8cF2EIPcOeu5VChb4RP9G/b4WO3+D4tkxoljMZeie8vDyw==
+ bh=HZPFF0n2tn/bXtYcBFIwMlXuAqK51HANGHQAY3Dy8zE=;
+ b=Hg++Pq/yKAlkJBBQD4MLhAuySJTHGf1UiYH5TiQ6CU42reX2R9lJyPcJjC41TR/3Zlxcv18RdE4C6jfmpdkt/Ss82pjO5i791jIkvWhlHatkjQIuPc5EBQpURhLNK1v1ACB7L28jCpnxfLpRQsk5PnEv5QObj3IyOMMhPdvgbwSNOdd6mpCsuRl3k/sRRuePYXC4vC2Gqcnyy8bQ2iag2yeSB/To5LY1W11c/LVp8El4a8agdgaN0phMsADIkXQpQyRnpm1Ry5ZGtU1I8yhqNyVUAbCAer79DhJT0yl6S5P1BGFR2fmXrm+VMmg/5IVyhVMyixc+L1jNK4iZfBFzVQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by SA1PR11MB6734.namprd11.prod.outlook.com (2603:10b6:806:25d::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.19; Thu, 23 May
- 2024 17:27:22 +0000
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::1a0f:84e3:d6cd:e51]) by BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::1a0f:84e3:d6cd:e51%3]) with mapi id 15.20.7587.030; Thu, 23 May 2024
- 17:27:22 +0000
-Date: Thu, 23 May 2024 17:26:59 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: "Zeng, Oak" <oak.zeng@intel.com>
-CC: "Bommu, Krishnaiah" <krishnaiah.bommu@intel.com>,
- "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH i-g-t v3 00/10] tests/intel/xe_svm: Add tests for Shared
- Virtual Memory (SVM)
-Message-ID: <Zk98Y11X/vDAzvH1@DUT025-TGLU.fm.intel.com>
-References: <20240517114658.810283-1-krishnaiah.bommu@intel.com>
- <Zk3ZKogBOM/YVWq9@DUT025-TGLU.fm.intel.com>
- <Zk3aEQd/2n/fuBXC@DUT025-TGLU.fm.intel.com>
- <SA1PR11MB6991921B29B701D3E9E0AE3592EB2@SA1PR11MB6991.namprd11.prod.outlook.com>
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by DS7PR11MB6149.namprd11.prod.outlook.com (2603:10b6:8:9e::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.22; Thu, 23 May
+ 2024 17:30:00 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::cf6f:eb9e:9143:f413]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::cf6f:eb9e:9143:f413%5]) with mapi id 15.20.7587.035; Thu, 23 May 2024
+ 17:30:00 +0000
+Date: Thu, 23 May 2024 13:29:56 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Badal Nilawar <badal.nilawar@intel.com>, 
+ Karthik Poosa <karthik.poosa@intel.com>
+Subject: Re: [PATCH 1/2] drm/xe/hwmon: Add HWMON support for BMG
+Message-ID: <Zk99FOCBzVrDZH06@intel.com>
+References: <20240523144351.4040131-1-balasubramani.vivekanandan@intel.com>
+ <20240523144351.4040131-2-balasubramani.vivekanandan@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <SA1PR11MB6991921B29B701D3E9E0AE3592EB2@SA1PR11MB6991.namprd11.prod.outlook.com>
-X-ClientProxiedBy: BY5PR03CA0018.namprd03.prod.outlook.com
- (2603:10b6:a03:1e0::28) To BL3PR11MB6508.namprd11.prod.outlook.com
- (2603:10b6:208:38f::5)
+In-Reply-To: <20240523144351.4040131-2-balasubramani.vivekanandan@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0219.namprd03.prod.outlook.com
+ (2603:10b6:a03:39f::14) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|SA1PR11MB6734:EE_
-X-MS-Office365-Filtering-Correlation-Id: db88d4a9-4018-4961-dbd8-08dc7b4d9b06
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DS7PR11MB6149:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5023b10f-c616-42bc-1b90-08dc7b4df93a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|376005|1800799015;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?X0UEdiQ17a0ZGpVKykXSvu+Jr0HgR6aYTk20vGjMWJXd6BpB9oo66iuuyhoo?=
- =?us-ascii?Q?tYpQmKbX5l108anQ/KKzWspdT9DbVJttFdW7qyWAY4kPDJOp0gOCLhQzCa63?=
- =?us-ascii?Q?gp7OgrPV1HRqowbrFAv/LeHjdjxoA/jle1jwZK8uVIoWb7WamacgIcdyCOW9?=
- =?us-ascii?Q?dUflXFPE5W783DOUkJJmISQLBJeLI9x2nCdeMpx/z/bIPSIrl7pVHW8ulXRI?=
- =?us-ascii?Q?A+gJIb9p6qElW3e8lOQ3CGW5v8j2svETOJNNlkdfg3eAS44aewyb4EffDkOu?=
- =?us-ascii?Q?z/8Vif1pWRtzAqidvKTQj0xAuLjJBoxHxRMIs7+nL+i8aMFTXnl+w6DMTyql?=
- =?us-ascii?Q?TEsjwEBuMn+rROfZBbqVNUN6fjvL/EFZU7BM6pgSVQlDei28sRhm2i30u3ci?=
- =?us-ascii?Q?6DqZzkI0AcSJofA+wx8PXG+8QxtWIgemjv3SP/JXXkfmexUtZpJB+5b/Dj7q?=
- =?us-ascii?Q?d8qFuK9apcSOOhJw3BS3et9sp6Y/Cq6czSeEQLWR7R0mlDFz//tP9XlvTZhQ?=
- =?us-ascii?Q?oMsq8WHQR4sGVqWahqbAONS9q9iZpZsE7PfhR+SAnLfZAzxtpOl10rIppT72?=
- =?us-ascii?Q?9SKI/tt0htTDV1oU+HBhhWJMcp24msIbgOIn4G0b9vELMCkupBI0dFlDC5F2?=
- =?us-ascii?Q?3oNqzbQkOOXv37rx3fmmr/CVwVdTlaGDfzN92+DUuNyTrjgiSJpKtQ1sM0cY?=
- =?us-ascii?Q?qFY1ZoUQn6jLjxguSdQZFIf2PX+mUj5PiQOTooDCfyMD0iPMlvD9lI/PlSOt?=
- =?us-ascii?Q?Ltj6j5LkwFRjD8C7q3RsRkNVJNAyKxMbwsExX0eFfgK6PbYAknzQoIehDqX1?=
- =?us-ascii?Q?RbvPN5uRc29T2t1/9CzSnr3oyeQnKLrLULW6C5XFnWhZZgCImHLMFYJ+SeAk?=
- =?us-ascii?Q?N9buze0sOnsXe0T/MDE8uLIWT6832ckeOpaz+IkImEg/Vo3N5krYxGyGiB0+?=
- =?us-ascii?Q?FSrVqvlUdv8Q/Fz7re5y/8GmL6SAgAO1Oyb2+yu9d2E2kEbGz9QFLUE5U/qr?=
- =?us-ascii?Q?gi9cYsvVdqmUOlM426GWLcTOOVoWobule0ID5vn+uCJuPzOXWYYBFps/pIwX?=
- =?us-ascii?Q?XN9ThsdgX+jSjfo52tKS+QrcVp+PgjGsRFyWiSdcSsEJ9G3+kOd8iO5nbpXc?=
- =?us-ascii?Q?ybTxDYswXv9Z2D4UQzbkbXNaLYamh2OjOz64T/4z8SA1mzK3ywbNc+LXfkef?=
- =?us-ascii?Q?A8ggsOozH4njznPDliMIVIHq+bYB7C6tWKUKnag/NdmJivjguz6QkbpVucs?=
- =?us-ascii?Q?=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|376005|366007;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?LBl23i+aLVoX3FdU7W9hkLbGj98bhJ9TVtnCpvguj5tKM19UAFtjXqIjPcB/?=
+ =?us-ascii?Q?KSVPC2gclVin+xFPQ/lgD6Mnkzf0aX0gDE4RRuRw9XV2DadztrjA83gyeuRY?=
+ =?us-ascii?Q?h9b08MVaOaFSv3noJM/3a6PQ8DVXO3ElVkuQYHkn6+SFNVbBYhSTJlgEqDjd?=
+ =?us-ascii?Q?CiA+CpRQ/vsK88o/2FJkmypaNzzjY94N8FC83012r55rc+nR0l0cRB0JtZcd?=
+ =?us-ascii?Q?9vofspZGJLrBOCLRgb3mCjYmTJ2X7LP7h7dOVgqPRPYrs7ggfoaRDy8cspmK?=
+ =?us-ascii?Q?IK04OL52djqG7GoCnSG37HO/BEFFkqItkJP6qVb7osvT01KJn9Pvphasx5YF?=
+ =?us-ascii?Q?ZBpL+esD33+xgbzkU6F5iwyRw5pHk69WX2I2N2Adr8lxWz4wHDkGnTPBkrMP?=
+ =?us-ascii?Q?HC0kOO3vpPrC5H3b5cqVo31CUfN38JweWj4Gqnp0T+xzJtuHWwAOCiTnuZlt?=
+ =?us-ascii?Q?46WlcrzBtXZUT4NNzmwjg0dJuYevpimMZY+Kty78hnVh0mYNmJ9FU8o4NeST?=
+ =?us-ascii?Q?JRty/NvVamk5nVdUq5h7X3Rf9wo/Gf2w6VOojYE2BGqcNxFJQsAOi/Y0eEM3?=
+ =?us-ascii?Q?0i6SwgmiGIQ4UCSe0xteY5DkT3OeF3LiDAxaccdJGNDcXfE7bPTh9ArK1hrT?=
+ =?us-ascii?Q?o0ZrG7Fl1/kfxphCZinFOcN+ZGFd9ppaBRWXazm08LTPu/9FOmuH5pl53QOQ?=
+ =?us-ascii?Q?7+acqxqUFSFFBwKFIuuGzu3CbUqJ4NGXtPCZKrgs14yw3fNFol/yOPVsxE/U?=
+ =?us-ascii?Q?2kAXQMaz9gttrgum2+SGYF2wjB0sY/C/koMg2ycR46dXfo+mQEmQLriebBja?=
+ =?us-ascii?Q?jyB39fE6Rk6pvP+HUNe6nuPjMF8h6y+QQUSfgpsqwI37lx/RHDW8IHNLlNxb?=
+ =?us-ascii?Q?ovHRIkBe7jLQi+E1zoCEdCx+vvgK5xhajmmS0rUUH2UBxBbvxoSp4Rxaqb3L?=
+ =?us-ascii?Q?KUNr7yGkXHsV4PzFh1E2iCcPB6BTif0h8TOlusY/vz72sT/e3jCzyHaanDAj?=
+ =?us-ascii?Q?lnRfUhsGhfp4pNwSjoMgeqFssxv8UI3XzhsA7skeXZUv8r939xOuTkfjYwSZ?=
+ =?us-ascii?Q?WNqYuwuHXsjDR3on/7/pc/r/O+N5M+lTz2SUBH/V5fbSICA2ruHXhuATpOb6?=
+ =?us-ascii?Q?HnZxwp8T2Z9VQfFDH0fY8H15sU+9OeP1GJszU22hlLeSjqa43YGr9zPHWNMr?=
+ =?us-ascii?Q?EYIKOO3AjJkuQmXESpmYNwZ5JAu1UktUUVLNHObYS3X+zAVDy1YrYTjyeKAy?=
+ =?us-ascii?Q?djVrawPSpOeVwmYNsYMc9+r9lkWBuoyjOLLJSdCnOA=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IplrD6VjhRJLfBXqcCXOoHfvM7EWcQSVSbEvvm/EgV2hIJ1ZwDQdXUs6vB5Y?=
- =?us-ascii?Q?UUQvQ2t3XR9jOE7/ODfZkroaEyIwUxMzSIBVGzItunBjwQRRsBGLnZk3jEnZ?=
- =?us-ascii?Q?s7k2ASd/RNqMuDcucS4lNUm7nchg4P1GW8ZnUXGa+rs/46ekrgVW4q0k1dUB?=
- =?us-ascii?Q?nFQwAbY73xM09+KlcoZ9E7BqNgxCyuKitermMLJMG6lSQ1OFj0nhzQucaopX?=
- =?us-ascii?Q?G4Yq9f29HJ3sZyCdzHZOJKeYJaBuK3SXLvrodmg1rDQwN5RybFqI/WUPAe59?=
- =?us-ascii?Q?X7YZKANRYxbJ6EZp03qUn8ehNDZfrEsT64+1Qv4OU7J664XnzsHmR51xNHyM?=
- =?us-ascii?Q?CxkvOWys8GjSuyVZNwZEF5HMSKmIlNtSvC0Zpex1Vb3cAfpbYTXZTxmpuCjd?=
- =?us-ascii?Q?qtQhfiZ0GLLW+ul33kz/o1ZVMwds37f0UIHAF9Dev3utoWbM6XjVhf4a2F/D?=
- =?us-ascii?Q?PCu4X22RlplUqB0YQRBiwQD/RqbZLXHUi/hC2Cac+iqDwrIF4MKrFIRlGyVI?=
- =?us-ascii?Q?61Xm/QGuxCRxciY9KdDjmnnPDSDkEqFFKNn4LvBkTlz5w8kJoCVaXP2es55B?=
- =?us-ascii?Q?rHTOuepnD6Q6UdyoX7EM+X/s0cfUZ0hnlPfu99r+lWP1YbuBYNNbmi9mQ3TU?=
- =?us-ascii?Q?v83dtnx3/APzqCocHf4RgFwxJTxYGoXYR9kPJEu97DvaGEPy14qz8Bh5mjKG?=
- =?us-ascii?Q?AcWQ3i2oAJruNvkWvqpeipmYkteXMr3K7NkCM/keYTvgfg9VE+Z2FjrczqtZ?=
- =?us-ascii?Q?hJicJ/7Lfs1HQQkgWwFIFexfVlWktQPrXUCv8EqxyH/GaQqNSdB1kn8aPbmw?=
- =?us-ascii?Q?uL5kFzKAFZirN4JH2BKg2gj8W2nClFnYEb4ravLaqF6HaC/JepWENWIZtmcF?=
- =?us-ascii?Q?xSFpuSNgqKnn3uCWTwQAOxTCXCuy6NxvJWST/cmte9cjZWG0NAbqdkxHoRWR?=
- =?us-ascii?Q?YisWkfXBHz38lAilrToQ7++GEPip6bqZmqeYo6p4zxUJ1LIsw2XzYJLbLbUf?=
- =?us-ascii?Q?eB+jZIz73lYW/6XLUcK9RaGIC+2p7yCajVGmR3VBRgV9nwrRA8ZqB/1QZIB8?=
- =?us-ascii?Q?eu1VMBVn8X74WHNfISv83yyxa4npZP+sqUcOxZXzvDM+hPanezSqlTUUmdLN?=
- =?us-ascii?Q?boZMqrGYo8VdU/5vqa+EfEZA/MOK2ld+FihFaUPPSf9G71wBDJ3GbUnJ6/RI?=
- =?us-ascii?Q?ezsu6P7K5wUWlcJuNJf8okzE1qPOS9at4jKtppi7Ytg3NvDEE5aZdeqxc34k?=
- =?us-ascii?Q?S7kkksH8XaIhfmF37BXCiofaG2uc2ogtdZ5nLJxOB44/CHyNfRZCr3aPsqB1?=
- =?us-ascii?Q?suYULRUV5YlwctB6wXPAxGYPyjF1L3a39Pt6QSZ9z0m6x/EE4RQPoDdtM1RN?=
- =?us-ascii?Q?TnQBVmnQN3AE3Xhtnjx/CAACQs/0XYEZ9VUhgNRG7DNt6CAog3U1XAcYbWvj?=
- =?us-ascii?Q?LtQkxwr7N9dqgAd5Z5SGbDbRFPoP4a2V9dm0baM0Lp+ednVIWzCvsZ9Hqnqa?=
- =?us-ascii?Q?zkCzzkMlMDUOD0wPJz007P+KhHYjkEF70bv7n54pzO/OMir40oAAFARvrPss?=
- =?us-ascii?Q?8SxalHjSHDe6Pbrk+cYBt522IiP8d1ikIkWwIBZ2Bda/cqBmdlAuOTvxhkTm?=
- =?us-ascii?Q?KQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: db88d4a9-4018-4961-dbd8-08dc7b4d9b06
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ZnyTHL9kYFBpFlMjFa0os//hnA9Lm4Przmf1lK7N1c3/cqYrtlxGkWtVLj//?=
+ =?us-ascii?Q?ipCI5jeEL4QRWwgP6msa5Koj3kVlVB/tXA2ISCNABzXtavPAWpsnR/bC0EGK?=
+ =?us-ascii?Q?0DfbLRnW5F2RsGCxxvSQG18BI/TwhWIsy/7JJYtw3WTpNPP4akmuvxoyVn60?=
+ =?us-ascii?Q?FzFKw52kQi1hpTTtA1Ju+QvmT/qW3PzTmnpnWtdYN9QJLCM7dBegQquz3zF0?=
+ =?us-ascii?Q?q74G+m4Fbv2+dSdMeUvJaGDRETS3rF7puLLqc0cUs8Nz3fpNDnack6MjZhVK?=
+ =?us-ascii?Q?Atv/RXf13zcOL49Hz8DLSj6dBuLyU80WS9r47ugvDOqFUB4tW1a9o4oEM7G5?=
+ =?us-ascii?Q?KMN30JxnLvkd26/e5CLexiZDI2AFxX+IjjBz/0seeuQAsLVQ1stag5j0kRqO?=
+ =?us-ascii?Q?wWaNNxRe8KnOwdi4f2R7fSeD1kSAX8Y05weqA8ER8+TdIEuVWq+t3BRJUWfM?=
+ =?us-ascii?Q?YCkNl+x7wGdG1VS/nJaZnjpVI//t9xzJNtb2/3C+MSVQvS0amB5TagVvJd70?=
+ =?us-ascii?Q?rBbfkg+MppHJ2OUOYfc4fVF9R+Q7uK1mm4xX5AKnlPM7oU/eI4xyyy75FXtn?=
+ =?us-ascii?Q?mgMQ+mKLa2o7W+PhGYLJflEVEp/0HDxgvG5QOWxT25G1/cx+jTCXO0eSlhxD?=
+ =?us-ascii?Q?02FJMetfx63OG//QRId0Qg8oKrEpKjFek4vSoihe5Bl7z35uNRDYibXPZpL2?=
+ =?us-ascii?Q?HMPzC+GbNepzZabzoh9hYdhXZdEkhEMePPTD/EGKzT2l4b/+UYpTH0eHtoSD?=
+ =?us-ascii?Q?rLQfedOOh337Oicxba3hw034P6N9L5IFMjIbyi+QpCtzY/5c/J52ci4nKv3m?=
+ =?us-ascii?Q?Ii4b1HM7eVoMZNKOXwDtG1tuxUGQKb+2kArjN0nbjKdiS3PFwECBIhCflC5k?=
+ =?us-ascii?Q?gxos3cdWvuAwwiPmomb6E9QN2e0iu4+3ql9hr4ufZ5EmLe6jNr2QlOJytd6L?=
+ =?us-ascii?Q?XUhnfAwLk6sMVtG8aXjsaJey/+7SDJwOBAPN77UN9avHsxM8E5L8Tvc5SLns?=
+ =?us-ascii?Q?c7qDHQgkejhn5fvlpj/L4mxaO6j0gbHVJZf2UQYMrc7f2V/7072PcIlzPJ+A?=
+ =?us-ascii?Q?caLUvClGCwsP+UK/UGDafWXbrMewUrMkJcL5cStmQYt3rOrbq2PzFFLM8GcG?=
+ =?us-ascii?Q?vb7/IWxg1VczLdsqyEr/JCfJ5m/486ULIx87k0B15hg5aUC6jjQVWNcPkKXT?=
+ =?us-ascii?Q?XOS2cFQvFfayXDJL9PsUM0vSSf9dt/Qh+P7LaxFwVOO3eyTiws4oYN+TDJx5?=
+ =?us-ascii?Q?onQdXem/AgzXb7y5UqmbLtwYNDaVrlNIPR/MlOylz2AVlNZ30d9vJRF8S6DF?=
+ =?us-ascii?Q?rCLLZLHU3ltOF54EstrzICdAtwLDpPbm2fYqrQi00UaXsGQ9Z1swQ1lipZpy?=
+ =?us-ascii?Q?UyTijYzkHdWK0au133V6YQkxq1OMymY1sZ3vlvG+nLyRwVwmxJ1+k64HrD2Y?=
+ =?us-ascii?Q?tBvWYphmq1elQ1fQ8a//VubsyhgEV9Jjdu+wKrR1oVG3Vr06SXN1FgO9ca7e?=
+ =?us-ascii?Q?BUaIx5zJ0OhQydzZC7oiAUgsKlVlhNJTp/m6gZx39JnJ3fgZOGwzM7hm7tlE?=
+ =?us-ascii?Q?UnoGTXRjh0LzRmcHrAyT28xm6B/4OJlvPi62sNXIaVHP2+ktcsRz6Xt6a8gq?=
+ =?us-ascii?Q?vg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5023b10f-c616-42bc-1b90-08dc7b4df93a
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 May 2024 17:27:22.5278 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 May 2024 17:30:00.6088 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8jf06WGihtzERa9NFe3XaSinb+eL8SU3UG+HqhVgjxsgTDMaFmVcEdcDT4buQXyQkxON0Sl5i0pRcwn5nd82bQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6734
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7nCRU0+j9enll74Ay9WZlFogXBOYur0I7fzHckidOoPzAm5vEEBjzf2J0I6zbbVztdxjTjpAKo501158ZuS6RQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6149
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,233 +174,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 22, 2024 at 10:53:05AM -0600, Zeng, Oak wrote:
-> Hi Matt,
+On Thu, May 23, 2024 at 08:13:50PM +0530, Balasubramani Vivekanandan wrote:
+> From: Karthik Poosa <karthik.poosa@intel.com>
 > 
-> We will investigate your tests and see whether we can achieve the same coverage with our approach.
+> Add HWMON support for BMG. Exposing the pkg power, current,
+> energy info.
 > 
-> See also comments inline.
-> 
-> > -----Original Message-----
-> > From: Brost, Matthew <matthew.brost@intel.com>
-> > Sent: Wednesday, May 22, 2024 7:42 AM
-> > To: Bommu, Krishnaiah <krishnaiah.bommu@intel.com>
-> > Cc: igt-dev@lists.freedesktop.org; Brost, Matthew
-> > <matthew.brost@intel.com>; intel-xe@lists.freedesktop.org; Zeng, Oak
-> > <oak.zeng@intel.com>
-> > Subject: Re: [PATCH i-g-t v3 00/10] tests/intel/xe_svm: Add tests for Shared
-> > Virtual Memory (SVM)
-> > 
-> > On Wed, May 22, 2024 at 11:38:18AM +0000, Matthew Brost wrote:
-> > > On Fri, May 17, 2024 at 05:16:48PM +0530, Bommu Krishnaiah wrote:
-> > > > Introduce helper functions for object creation, binding, submission,
-> > > > and destruction, applicable for SVM and other tests
-> > > >
-> > > > xe-basic test is validating the helper function introduced in 'lib/xe/xe_util:
-> > helper function'
-> > > >
-> > > > svm test cases:
-> > > > svm-basic-malloc
-> > > > svm-basic-mmap
-> > > > svm-random-access
-> > > > svm-huge-page
-> > > > svm-atomic-access
-> > > > svm-atomic-access
-> > > > svm_invalid_va
-> > > > svm-mprotect
-> > > > svm-benchmark
-> > > > svm-sparse-access
-> > > >
-> > >
-> > > There's a lot here I dislike. Let me be direct.
-> > >
-> > > Firstly, this isn't an SVM test; it explicitly binds userptrs and BOs. So using
-> > > SVM prefixes in the test names doesn't make sense. 
-> 
-> It is SVM test. Those test use BO for command (batch) buffer. But the buffer GPU read/write is malloc'ed or mmap'ed. So it does test SVM/system allocator functionality.
-> 
+> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+> Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 
-I did miss that read/write addresses are malloc'd or mmap'd.
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-However, I don't see a huge bind anywhere in the series. Buffer Objects
-(BOs) are only unmapped, not returned to the system allocator bindings,
-creating holes in the system allocator space. Additionally, BO addresses
-are statically assigned, which does not align with the system allocator
-design of calling malloc to reserve address space. This was the source
-of my confusion.
-
-> Malloc'ed and mmap'ed memory can also be used for command buffer. We can add a test case. 
+> ---
+>  drivers/gpu/drm/xe/regs/xe_pcode_regs.h |  5 +++++
+>  drivers/gpu/drm/xe/xe_hwmon.c           | 16 ++++++++++++----
+>  2 files changed, 17 insertions(+), 4 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+> index 3dae858508c8..beba16d592fc 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+> @@ -18,4 +18,9 @@
+>  #define PVC_GT0_PLATFORM_ENERGY_STATUS          XE_REG(0x28106c)
+>  #define PVC_GT0_PACKAGE_POWER_SKU               XE_REG(0x281080)
+>  
+> +#define BMG_PACKAGE_POWER_SKU			XE_REG(0x138098)
+> +#define BMG_PACKAGE_POWER_SKU_UNIT		XE_REG(0x1380dc)
+> +#define BMG_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
+> +#define BMG_PACKAGE_RAPL_LIMIT			XE_REG(0x138440)
+> +
+>  #endif /* _XE_PCODE_REGS_H_ */
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> index dca275117232..8daa070d7b1a 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> @@ -86,19 +86,25 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
+>  
+>  	switch (hwmon_reg) {
+>  	case REG_PKG_RAPL_LIMIT:
+> -		if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG)
+> +		if (xe->info.platform == XE_BATTLEMAGE && channel == CHANNEL_PKG)
+> +			return BMG_PACKAGE_RAPL_LIMIT;
+> +		else if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG)
+>  			return PVC_GT0_PACKAGE_RAPL_LIMIT;
+>  		else if ((xe->info.platform == XE_DG2) && (channel == CHANNEL_PKG))
+>  			return PCU_CR_PACKAGE_RAPL_LIMIT;
+>  		break;
+>  	case REG_PKG_POWER_SKU:
+> -		if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG)
+> +		if (xe->info.platform == XE_BATTLEMAGE)
+> +			return BMG_PACKAGE_POWER_SKU;
+> +		else if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG)
+>  			return PVC_GT0_PACKAGE_POWER_SKU;
+>  		else if ((xe->info.platform == XE_DG2) && (channel == CHANNEL_PKG))
+>  			return PCU_CR_PACKAGE_POWER_SKU;
+>  		break;
+>  	case REG_PKG_POWER_SKU_UNIT:
+> -		if (xe->info.platform == XE_PVC)
+> +		if (xe->info.platform == XE_BATTLEMAGE)
+> +			return BMG_PACKAGE_POWER_SKU_UNIT;
+> +		else if (xe->info.platform == XE_PVC)
+>  			return PVC_GT0_PACKAGE_POWER_SKU_UNIT;
+>  		else if (xe->info.platform == XE_DG2)
+>  			return PCU_CR_PACKAGE_POWER_SKU_UNIT;
+> @@ -108,7 +114,9 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
+>  			return GT_PERF_STATUS;
+>  		break;
+>  	case REG_PKG_ENERGY_STATUS:
+> -		if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG)
+> +		if (xe->info.platform == XE_BATTLEMAGE && channel == CHANNEL_PKG)
+> +			return BMG_PACKAGE_ENERGY_STATUS;
+> +		else if (xe->info.platform == XE_PVC && channel == CHANNEL_PKG)
+>  			return PVC_GT0_PLATFORM_ENERGY_STATUS;
+>  		else if ((xe->info.platform == XE_DG2) && (channel == CHANNEL_PKG))
+>  			return PCU_CR_PACKAGE_ENERGY_STATUS;
+> -- 
+> 2.25.1
 > 
-> And having RBs with
-> > those
-> > > names makes even less sense. With that; This email is directed at
-> > EVERYONE
-> > > replying to this series.
-> > >
-> > 
-> > Didn't send everyone, CCing interested parties.
-> > 
-> > > At a high level, I've expressed my views on generic helpers hindering the
-> > > ability to create truly powerful tests that provide the necessary coverage
-> > for a
-> > > complex driver. See my thoughts here [1] [2]. I don't see anything here
-> > that
-> > > comes close to addressing my concerns. 
-> 
-> I replied again to [1] with more details. Please take a look.
-> 
-> 
-> These tests are so simple they
-> > won't find
-> > > any bugs in the KMD beyond the implementation being completely broken.
-> > >
-> 
-> Agree those tests in this series are simple. But this is just a start. We plan to do more complex tests which are documented in https://jira.devtools.intel.com/browse/VLK-59767
-> 
-
-So we agree that my concerns raised in [1] [2] about only being able to
-build simple tests with this design were not addressed.
-
-Having plans is not the same as addressing concerns. If you believe you
-can build complex tests achieving good coverage using this design,
-great. Please post that. Until then, I remain unconvinced.
-
-I briefly read the Jira; a lot of it is covered by the code shared. What
-is not can likely be added in a similar way to the HUGE_TLB example I
-shared in the previous email.
-
-One thing I noticed in Jira is that it's written basically as unit tests
-(e.g., test feature A, test feature B). Unit tests are okay, but truly
-powerful tests do a lot of things all at the same time, in parallel.
-This is the advantage of the style of tests I write. Six lines of code
-in my example (data path code, that is; tables and documents added more)
-spawned over 100 tests doing this in the aforementioned way.
-
-> We will also look at your series to see whether we can have the same coverage.
->
-> 
-> > > This is what I think an SVM test should look like [3] (for the record, I have
-> > > shared an eariler baseline of this code too). While it has some complex
-> > coding
-> > > patterns, once understood by a developer, it's quite easy to extend for a
-> > new
-> > > test case. Let me give an example...
-> > >
-> > > Take a look at this diff [4]. It's a few lines of code that add HUGE_TLB
-> > > testing. This simple change spawns over 100 tests of various varieties (e.g.,
-> > a
-> > > single exec with HUGE_TLB, two execs, many execs, multi-threaded
-> > versions,
-> > > multi-process versions, etc...).
-> > >
-> > > Before change:
-> > > ./build/tests/xe_exec_system_allocator --l | wc
-> > >     938     938   32872
-> > >
-> > > After change:
-> > > ./build/tests/xe_exec_system_allocator --l | wc
-> > >    1070    1070   37852
-> > >
-> > > Being extendable like this ultimately reduces maintenance costs over time.
-> > >
-> > > The test I've shared creates true coverage and is just a starting point. It will
-> > > need to become more complex over time as the SVM uAPI grows.
-> > >
-> > > I suggest investing the time to learn how the code I've shared works and
-> > develop
-> > > within that framework. If the same level of coverage/extendability can be
-> > > achieved with helpers, great. Anything less, in either area, I don't think is
-> > > acceptable.
-> 
-> There are two fundamental design difference b/t your approach and the approach we applied here:
-> 
-> 1) Whether to create/use helper functions:
-> 
-> Our helper functions created concept of xe-buffer, xe-command-buffer. I still think with helper functions, we can simply test writing.
-> 
-> 2) use one big test to test many functionalities vs many small tests, each test one functionality
-> 
-> It is obvious, our approach is much easier to maintain and understand.
->
-
-This is an opinion, disrespectful, and rude.
-
-I've provided a concrete example of how the style of tests I've written
-in Xe are quite powerful in this email thread. In my opinion, it has
-been responded to with speculative arguments and opinions rather than
-code.
-
-I have very, very valid reasons for being concerned about testing. This
-series [5] was posted in a completely non-functional, untested state. As
-reminding and to record this publicly, this was developed off a basline
-which was tested with userptr SVM faulting working. I provided the
-working baseline and a flavor of the test I have shared.
-
-Going from a tested working KMD with an IGT to untested broken KMD
-plus a promise of 'obvious, our approach is much easier to maintain and
-understand', well I'll let everyone decide how that looks.
-
-[5] https://patchwork.freedesktop.org/series/132229/
-
-> So the key is, whether we can achieve the same coverage as your series. As said, we will take a closer look of your series and give it a try.
->
-
-I highly suggest you study the code that I shared.
-
-Matt
-
-> Oak
-> 
-> > >
-> > > Matt
-> > >
-> > > I can't find PW links for [1][2] so instead have shared the email thread
-> > subject
-> > > lines. Everyone on this email was on those chains as well.
-> > >
-> > > [1] [PATCH RFC i-g-t 0/2] helper function
-> > > [2] [PATCH] lib/xe/xe_util: Creating the helper functions
-> > > [3]
-> > https://patchwork.freedesktop.org/patch/594807/?series=133846&rev=1
-> > > [4] https://pastebin.com/jUN5BwUy
-> > >
-> > > > svm kernel implimentation:
-> > > > https://gitlab.freedesktop.org/oak/xe-kernel-driver-svm.git
-> > > > branch: origin/drm-xe-next-svm-unify-userptr
-> > > >
-> > > > v2 igt patch: https://patchwork.freedesktop.org/series/133096/
-> > > >
-> > > > Note: xe-basic test is validated without SVM. Remaining tests are not
-> > validated because the SVM driver code is still under development
-> > > >
-> > > > Bommu Krishnaiah (10):
-> > > >   lib/xe/xe_util: Introduce helper functions for buffer creation and
-> > > >     command submission etc
-> > > >   tests/intel/xe_svm: basic xe-basic test
-> > > >   tests/intel/xe_svm: Add SVM basic tests using malloc and mmap
-> > > >   tests/intel/xe_svm: add random access test for SVM
-> > > >   tests/intel/xe_svm: add huge page access test for SVM
-> > > >   tests/intel/xe_svm: Add support for GPU atomic access test for svm
-> > > >   tests/intel/xe_svm: Add svm-invalid-va test to verify SVM
-> > > >     functionality with invalid address access
-> > > >   tests/intel/xe_svm: Add svm-benchmark test to measure SVM
-> > performance
-> > > >     with a simple benchmark
-> > > >   tests/intel/xe_svm: Add svm-mprotect test to verify SVM functionality
-> > > >     with read-only memory access
-> > > >   tests/intel/xe_svm: Add svm-sparse-access test to verify sparsely
-> > > >     accessing two memory locations with SVM
-> > > >
-> > > >  include/drm-uapi/xe_drm.h |   1 +
-> > > >  lib/xe/xe_util.c          | 214 +++++++++++++++++
-> > > >  lib/xe/xe_util.h          |  40 ++++
-> > > >  tests/intel/xe_svm.c      | 476
-> > ++++++++++++++++++++++++++++++++++++++
-> > > >  tests/meson.build         |   1 +
-> > > >  5 files changed, 732 insertions(+)
-> > > >  create mode 100644 tests/intel/xe_svm.c
-> > > >
-> > > > --
-> > > > 2.25.1
-> > > >
