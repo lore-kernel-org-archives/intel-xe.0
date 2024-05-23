@@ -4,58 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D052C25B7E
-	for <intel-xe@archiver.kernel.org>; Thu, 23 May 2024 15:29:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66B8BC25B75
+	for <intel-xe@archiver.kernel.org>; Thu, 23 May 2024 15:34:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D395E10E941;
-	Thu, 23 May 2024 15:29:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="De2TRDCZ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D85010E8CA
- for <intel-xe@lists.freedesktop.org>; Thu, 23 May 2024 15:29:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716478175; x=1748014175;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qIE440pMKCbPVP9Zx9/Q8U5n3bOOKWfTdZ19EDOLZAE=;
- b=De2TRDCZ1005bIXKkyY9j5fVoPNTxweseEVMM6unXBOtGFsKOBVCc9Sz
- EDeBeJWQcj6P6UXCso0tK3bHynLda3aJnNEdunHgUgNeSNrhSeTAjOQW0
- 9sSGY4yfjXSLxTM/phC8/hyKU+3GWxiEVhK5+cIdeQjrziwJ50OAxlnr0
- WyDdTTCQR5fb+C5VmvzsdHPjQ1BIbBUWX2vP5pqXsACj0+L9/5plT950e
- 0fgbVWw6gnGjWHOTF3qMLCghaaf/jCCuL0k2Dv0u9fdK/yeJRP892yEER
- HC69+jRbTnNZMFg+YPnBolb+7xhM/c2kMySd1h3/OwTwMwcjX8VgPkW+o A==;
-X-CSE-ConnectionGUID: yCDgts2yRJe9TO47EphDDw==
-X-CSE-MsgGUID: ic1ba1++T7Cli9SdEV85mQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="11663780"
-X-IronPort-AV: E=Sophos;i="6.08,183,1712646000"; d="scan'208";a="11663780"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 08:29:35 -0700
-X-CSE-ConnectionGUID: urYc0WA8Qju2zbeo0X8CHQ==
-X-CSE-MsgGUID: /IkjoEbDTtGDzv3FsvXUHw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,183,1712646000"; d="scan'208";a="33774226"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO fedora..)
- ([10.245.246.44])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 08:29:34 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v2 3/5] drm/xe: Don't initialize fences at
- xe_sched_job_create()
-Date: Thu, 23 May 2024 17:29:09 +0200
-Message-ID: <20240523152911.28387-4-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240523152911.28387-1-thomas.hellstrom@linux.intel.com>
-References: <20240523152911.28387-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F84010E756;
+	Thu, 23 May 2024 15:34:44 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E072D10E756;
+ Thu, 23 May 2024 15:34:41 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5958519298427164319=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_Add_HWMON_support_for_BMG?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 23 May 2024 15:34:41 -0000
+Message-ID: <171647848191.2169849.14596649593422037025@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240523144351.4040131-1-balasubramani.vivekanandan@intel.com>
+In-Reply-To: <20240523144351.4040131-1-balasubramani.vivekanandan@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,461 +35,203 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Pre-allocate but don't initialize fences at xe_sched_job_create(),
-and initialize / arm them instead at xe_sched_job_arm(). This
-makes it possible to move xe_sched_job_create() with its memory
-allocation out of any lock that is required for fence
-initialization, and that may not allow memory allocation under it.
+--===============5958519298427164319==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Replaces the struct dma_fence_array for parallell jobs with a
-struct dma_fence_chain, since the former doesn't allow
-a split-up between allocation and initialization.
+== Series Details ==
 
-v2:
-- Rebase.
-- Don't always use the first lrc when initializing parallel
-  lrc fences.
-- Use dma_fence_chain_contained() to access the lrc fences.
+Series: Add HWMON support for BMG
+URL   : https://patchwork.freedesktop.org/series/133970/
+State : failure
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue.c       |   5 -
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  10 --
- drivers/gpu/drm/xe/xe_ring_ops.c         |  12 +-
- drivers/gpu/drm/xe/xe_sched_job.c        | 159 +++++++++++++----------
- drivers/gpu/drm/xe/xe_sched_job_types.h  |  18 ++-
- drivers/gpu/drm/xe/xe_trace.h            |   2 +-
- 6 files changed, 113 insertions(+), 93 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index e4607f0e3456..a5969271a964 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -96,11 +96,6 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
- 		}
- 	}
- 
--	if (xe_exec_queue_is_parallel(q)) {
--		q->parallel.composite_fence_ctx = dma_fence_context_alloc(1);
--		q->parallel.composite_fence_seqno = 0;
--	}
--
- 	return q;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index ee78d497d838..f0c40e8ad80a 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -103,16 +103,6 @@ struct xe_exec_queue {
- 		struct xe_guc_exec_queue *guc;
- 	};
- 
--	/**
--	 * @parallel: parallel submission state
--	 */
--	struct {
--		/** @parallel.composite_fence_ctx: context composite fence */
--		u64 composite_fence_ctx;
--		/** @parallel.composite_fence_seqno: seqno for composite fence */
--		u32 composite_fence_seqno;
--	} parallel;
--
- 	/** @sched_props: scheduling properties */
- 	struct {
- 		/** @sched_props.timeslice_us: timeslice period in micro-seconds */
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 2705d1f9d572..f75756e7a87b 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -366,7 +366,7 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
- 
- 	dw[i++] = MI_ARB_ON_OFF | MI_ARB_DISABLE; /* Enabled again below */
- 
--	i = emit_bb_start(job->batch_addr[0], BIT(8), dw, i);
-+	i = emit_bb_start(job->ptrs[0].batch_addr, BIT(8), dw, i);
- 
- 	if (!IS_SRIOV_VF(gt_to_xe(job->q->gt))) {
- 		/* XXX: Do we need this? Leaving for now. */
-@@ -375,7 +375,7 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
- 		dw[i++] = preparser_disable(false);
- 	}
- 
--	i = emit_bb_start(job->batch_addr[1], BIT(8), dw, i);
-+	i = emit_bb_start(job->ptrs[1].batch_addr, BIT(8), dw, i);
- 
- 	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | job->migrate_flush_flags |
- 		MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW;
-@@ -397,7 +397,7 @@ static void emit_job_gen12_gsc(struct xe_sched_job *job)
- 	xe_gt_assert(gt, job->q->width <= 1); /* no parallel submission for GSCCS */
- 
- 	__emit_job_gen12_simple(job, job->q->lrc,
--				job->batch_addr[0],
-+				job->ptrs[0].batch_addr,
- 				xe_sched_job_lrc_seqno(job));
- }
- 
-@@ -413,7 +413,7 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
- 
- 	for (i = 0; i < job->q->width; ++i)
- 		__emit_job_gen12_simple(job, job->q->lrc + i,
--					job->batch_addr[i],
-+					job->ptrs[i].batch_addr,
- 					xe_sched_job_lrc_seqno(job));
- }
- 
-@@ -424,7 +424,7 @@ static void emit_job_gen12_video(struct xe_sched_job *job)
- 	/* FIXME: Not doing parallel handshake for now */
- 	for (i = 0; i < job->q->width; ++i)
- 		__emit_job_gen12_video(job, job->q->lrc + i,
--				       job->batch_addr[i],
-+				       job->ptrs[i].batch_addr,
- 				       xe_sched_job_lrc_seqno(job));
- }
- 
-@@ -434,7 +434,7 @@ static void emit_job_gen12_render_compute(struct xe_sched_job *job)
- 
- 	for (i = 0; i < job->q->width; ++i)
- 		__emit_job_gen12_render_compute(job, job->q->lrc + i,
--						job->batch_addr[i],
-+						job->ptrs[i].batch_addr,
- 						xe_sched_job_lrc_seqno(job));
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-index 8dd612b8b2b0..95c6c0411592 100644
---- a/drivers/gpu/drm/xe/xe_sched_job.c
-+++ b/drivers/gpu/drm/xe/xe_sched_job.c
-@@ -6,7 +6,7 @@
- #include "xe_sched_job.h"
- 
- #include <drm/xe_drm.h>
--#include <linux/dma-fence-array.h>
-+#include <linux/dma-fence-chain.h>
- #include <linux/slab.h>
- 
- #include "xe_device.h"
-@@ -29,7 +29,7 @@ int __init xe_sched_job_module_init(void)
- 	xe_sched_job_slab =
- 		kmem_cache_create("xe_sched_job",
- 				  sizeof(struct xe_sched_job) +
--				  sizeof(u64), 0,
-+				  sizeof(struct xe_job_ptrs), 0,
- 				  SLAB_HWCACHE_ALIGN, NULL);
- 	if (!xe_sched_job_slab)
- 		return -ENOMEM;
-@@ -37,7 +37,7 @@ int __init xe_sched_job_module_init(void)
- 	xe_sched_job_parallel_slab =
- 		kmem_cache_create("xe_sched_job_parallel",
- 				  sizeof(struct xe_sched_job) +
--				  sizeof(u64) *
-+				  sizeof(struct xe_job_ptrs) *
- 				  XE_HW_ENGINE_MAX_INSTANCE, 0,
- 				  SLAB_HWCACHE_ALIGN, NULL);
- 	if (!xe_sched_job_parallel_slab) {
-@@ -79,26 +79,33 @@ static struct xe_device *job_to_xe(struct xe_sched_job *job)
- 	return gt_to_xe(job->q->gt);
- }
- 
-+/* Free unused pre-allocated fences */
-+static void xe_sched_job_free_fences(struct xe_sched_job *job)
-+{
-+	int i;
-+
-+	for (i = 0; i < job->q->width; ++i) {
-+		struct xe_job_ptrs *ptrs = &job->ptrs[i];
-+
-+		if (ptrs->lrc_fence)
-+			xe_lrc_free_seqno_fence(ptrs->lrc_fence);
-+		if (ptrs->chain_fence)
-+			dma_fence_chain_free(ptrs->chain_fence);
-+	}
-+}
-+
- struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
- 					 u64 *batch_addr)
- {
--	struct xe_sched_job *job;
--	struct dma_fence **fences;
- 	bool is_migration = xe_sched_job_is_migration(q);
-+	struct xe_sched_job *job;
- 	int err;
--	int i, j;
-+	int i;
- 	u32 width;
- 
- 	/* only a kernel context can submit a vm-less job */
- 	XE_WARN_ON(!q->vm && !(q->flags & EXEC_QUEUE_FLAG_KERNEL));
- 
--	/* Migration and kernel engines have their own locking */
--	if (!(q->flags & (EXEC_QUEUE_FLAG_KERNEL | EXEC_QUEUE_FLAG_VM))) {
--		lockdep_assert_held(&q->vm->lock);
--		if (!xe_vm_in_lr_mode(q->vm))
--			xe_vm_assert_held(q->vm);
--	}
--
- 	job = job_alloc(xe_exec_queue_is_parallel(q) || is_migration);
- 	if (!job)
- 		return ERR_PTR(-ENOMEM);
-@@ -111,43 +118,25 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
- 	if (err)
- 		goto err_free;
- 
--	if (!xe_exec_queue_is_parallel(q)) {
--		job->fence = xe_lrc_create_seqno_fence(q->lrc);
--		if (IS_ERR(job->fence)) {
--			err = PTR_ERR(job->fence);
--			goto err_sched_job;
--		}
--		job->lrc_seqno = job->fence->seqno;
--	} else {
--		struct dma_fence_array *cf;
-+	for (i = 0; i < q->width; ++i) {
-+		struct dma_fence *fence = xe_lrc_alloc_seqno_fence();
-+		struct dma_fence_chain *chain;
- 
--		fences = kmalloc_array(q->width, sizeof(*fences), GFP_KERNEL);
--		if (!fences) {
--			err = -ENOMEM;
-+		if (IS_ERR(fence)) {
-+			err = PTR_ERR(fence);
- 			goto err_sched_job;
- 		}
-+		job->ptrs[i].lrc_fence = fence;
- 
--		for (j = 0; j < q->width; ++j) {
--			fences[j] = xe_lrc_create_seqno_fence(q->lrc + j);
--			if (IS_ERR(fences[j])) {
--				err = PTR_ERR(fences[j]);
--				goto err_fences;
--			}
--			if (!j)
--				job->lrc_seqno = fences[0]->seqno;
--		}
-+		if (i + 1 == q->width)
-+			continue;
- 
--		cf = dma_fence_array_create(q->width, fences,
--					    q->parallel.composite_fence_ctx,
--					    q->parallel.composite_fence_seqno++,
--					    false);
--		if (!cf) {
--			--q->parallel.composite_fence_seqno;
-+		chain = dma_fence_chain_alloc();
-+		if (!chain) {
- 			err = -ENOMEM;
--			goto err_fences;
-+			goto err_sched_job;
- 		}
--
--		job->fence = &cf->base;
-+		job->ptrs[i].chain_fence = chain;
- 	}
- 
- 	width = q->width;
-@@ -155,7 +144,7 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
- 		width = 2;
- 
- 	for (i = 0; i < width; ++i)
--		job->batch_addr[i] = batch_addr[i];
-+		job->ptrs[i].batch_addr = batch_addr[i];
- 
- 	/* All other jobs require a VM to be open which has a ref */
- 	if (unlikely(q->flags & EXEC_QUEUE_FLAG_KERNEL))
-@@ -165,13 +154,8 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
- 	trace_xe_sched_job_create(job);
- 	return job;
- 
--err_fences:
--	for (j = j - 1; j >= 0; --j) {
--		--q->lrc[j].fence_ctx.next_seqno;
--		dma_fence_put(fences[j]);
--	}
--	kfree(fences);
- err_sched_job:
-+	xe_sched_job_free_fences(job);
- 	drm_sched_job_cleanup(&job->drm);
- err_free:
- 	xe_exec_queue_put(q);
-@@ -193,33 +177,39 @@ void xe_sched_job_destroy(struct kref *ref)
- 
- 	if (unlikely(job->q->flags & EXEC_QUEUE_FLAG_KERNEL))
- 		xe_pm_runtime_put(job_to_xe(job));
-+	xe_sched_job_free_fences(job);
- 	xe_exec_queue_put(job->q);
- 	dma_fence_put(job->fence);
- 	drm_sched_job_cleanup(&job->drm);
- 	job_free(job);
- }
- 
--void xe_sched_job_set_error(struct xe_sched_job *job, int error)
-+/* Set the error status under the fence to avoid racing with signaling */
-+static bool xe_fence_set_error(struct dma_fence *fence, int error)
- {
--	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &job->fence->flags))
--		return;
-+	unsigned long irq_flags;
-+	bool signaled;
- 
--	dma_fence_set_error(job->fence, error);
-+	spin_lock_irqsave(fence->lock, irq_flags);
-+	signaled = test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags);
-+	if (!signaled)
-+		dma_fence_set_error(fence, error);
-+	spin_unlock_irqrestore(fence->lock, irq_flags);
-+
-+	return signaled;
-+}
- 
--	if (dma_fence_is_array(job->fence)) {
--		struct dma_fence_array *array =
--			to_dma_fence_array(job->fence);
--		struct dma_fence **child = array->fences;
--		unsigned int nchild = array->num_fences;
-+void xe_sched_job_set_error(struct xe_sched_job *job, int error)
-+{
-+	if (xe_fence_set_error(job->fence, error))
-+		return;
- 
--		do {
--			struct dma_fence *current_fence = *child++;
-+	if (dma_fence_is_chain(job->fence)) {
-+		struct dma_fence *iter;
- 
--			if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
--				     &current_fence->flags))
--				continue;
--			dma_fence_set_error(current_fence, error);
--		} while (--nchild);
-+		dma_fence_chain_for_each(iter, job->fence)
-+			xe_fence_set_error(dma_fence_chain_contained(iter),
-+					   error);
- 	}
- 
- 	trace_xe_sched_job_set_error(job);
-@@ -234,7 +224,7 @@ bool xe_sched_job_started(struct xe_sched_job *job)
- 
- 	return !__dma_fence_is_later(xe_sched_job_lrc_seqno(job),
- 				     xe_lrc_start_seqno(lrc),
--				     dma_fence_array_first(job->fence)->ops);
-+				     dma_fence_chain_contained(job->fence)->ops);
- }
- 
- bool xe_sched_job_completed(struct xe_sched_job *job)
-@@ -248,13 +238,24 @@ bool xe_sched_job_completed(struct xe_sched_job *job)
- 
- 	return !__dma_fence_is_later(xe_sched_job_lrc_seqno(job),
- 				     xe_lrc_seqno(lrc),
--				     dma_fence_array_first(job->fence)->ops);
-+				     dma_fence_chain_contained(job->fence)->ops);
- }
- 
- void xe_sched_job_arm(struct xe_sched_job *job)
- {
- 	struct xe_exec_queue *q = job->q;
-+	struct dma_fence *fence, *prev;
- 	struct xe_vm *vm = q->vm;
-+	u64 seqno = 0;
-+	int i;
-+
-+	/* Migration and kernel engines have their own locking */
-+	if (IS_ENABLED(CONFIG_LOCKDEP) &&
-+	    !(q->flags & (EXEC_QUEUE_FLAG_KERNEL | EXEC_QUEUE_FLAG_VM))) {
-+		lockdep_assert_held(&q->vm->lock);
-+		if (!xe_vm_in_lr_mode(q->vm))
-+			xe_vm_assert_held(q->vm);
-+	}
- 
- 	if (vm && !xe_sched_job_is_migration(q) && !xe_vm_in_lr_mode(vm) &&
- 	    (vm->batch_invalidate_tlb || vm->tlb_flush_seqno != q->tlb_flush_seqno)) {
-@@ -263,6 +264,25 @@ void xe_sched_job_arm(struct xe_sched_job *job)
- 		job->ring_ops_flush_tlb = true;
- 	}
- 
-+	/* Arm the pre-allocated fences */
-+	for (i = 0; i < q->width; prev = fence, ++i) {
-+		struct dma_fence_chain *chain;
-+
-+		fence = job->ptrs[i].lrc_fence;
-+		xe_lrc_init_seqno_fence(&q->lrc[i], fence);
-+		job->ptrs[i].lrc_fence = NULL;
-+		if (!i) {
-+			job->lrc_seqno = fence->seqno;
-+			continue;
-+		}
-+
-+		chain = job->ptrs[i - 1].chain_fence;
-+		dma_fence_chain_init(chain, prev, fence, seqno++);
-+		job->ptrs[i - 1].chain_fence = NULL;
-+		fence = &chain->base;
-+	}
-+
-+	job->fence = fence;
- 	drm_sched_job_arm(&job->drm);
- }
- 
-@@ -322,7 +342,8 @@ xe_sched_job_snapshot_capture(struct xe_sched_job *job)
- 
- 	snapshot->batch_addr_len = q->width;
- 	for (i = 0; i < q->width; i++)
--		snapshot->batch_addr[i] = xe_device_uncanonicalize_addr(xe, job->batch_addr[i]);
-+		snapshot->batch_addr[i] =
-+			xe_device_uncanonicalize_addr(xe, job->ptrs[i].batch_addr);
- 
- 	return snapshot;
- }
-diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
-index 990ddac55ed6..0d3f76fb05ce 100644
---- a/drivers/gpu/drm/xe/xe_sched_job_types.h
-+++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-@@ -11,6 +11,20 @@
- #include <drm/gpu_scheduler.h>
- 
- struct xe_exec_queue;
-+struct dma_fence;
-+struct dma_fence_chain;
-+
-+/**
-+ * struct xe_job_ptrs - Per hw engine instance data
-+ */
-+struct xe_job_ptrs {
-+	/** @lrc_fence: Pre-allocated uinitialized lrc fence.*/
-+	struct dma_fence *lrc_fence;
-+	/** @chain_fence: Pre-allocated ninitialized fence chain node. */
-+	struct dma_fence_chain *chain_fence;
-+	/** @batch_addr: Batch buffer address. */
-+	u64 batch_addr;
-+};
- 
- /**
-  * struct xe_sched_job - XE schedule job (batch buffer tracking)
-@@ -43,8 +57,8 @@ struct xe_sched_job {
- 	u32 migrate_flush_flags;
- 	/** @ring_ops_flush_tlb: The ring ops need to flush TLB before payload. */
- 	bool ring_ops_flush_tlb;
--	/** @batch_addr: batch buffer address of job */
--	u64 batch_addr[];
-+	/** @ptrs: per instance pointers. */
-+	struct xe_job_ptrs ptrs[];
- };
- 
- struct xe_sched_job_snapshot {
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index 6c6cecc58f63..450f407c66e8 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -272,7 +272,7 @@ DECLARE_EVENT_CLASS(xe_sched_job,
- 			   __entry->flags = job->q->flags;
- 			   __entry->error = job->fence->error;
- 			   __entry->fence = job->fence;
--			   __entry->batch_addr = (u64)job->batch_addr[0];
-+			   __entry->batch_addr = (u64)job->ptrs[0].batch_addr;
- 			   ),
- 
- 		    TP_printk("fence=%p, seqno=%u, lrc_seqno=%u, guc_id=%d, batch_addr=0x%012llx, guc_state=0x%x, flags=0x%x, error=%d",
--- 
-2.44.0
+CI Bug Log - changes from xe-1334-8e768c3e813ab5519a85997b622edc9a2f79c083_BAT -> xe-pw-133970v1_BAT
+====================================================
 
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-133970v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-133970v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-133970v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_intel_bb@reset-bb:
+    - bat-atsm-2:         NOTRUN -> [ABORT][1]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133970v1/bat-atsm-2/igt@xe_intel_bb@reset-bb.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-133970v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race:
+    - bat-dg2-oem2:       [PASS][2] -> [ABORT][3] ([Intel XE#1908])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1334-8e768c3e813ab5519a85997b622edc9a2f79c083/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133970v1/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html
+
+  * igt@xe_huc_copy@huc_copy:
+    - bat-atsm-2:         NOTRUN -> [SKIP][4] ([Intel XE#255])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133970v1/bat-atsm-2/igt@xe_huc_copy@huc_copy.html
+
+  * igt@xe_pm_residency@gt-c6-on-idle:
+    - bat-pvc-2:          NOTRUN -> [SKIP][5] ([Intel XE#531])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133970v1/bat-pvc-2/igt@xe_pm_residency@gt-c6-on-idle.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_exec_threads@threads-mixed-fd-basic:
+    - {bat-lnl-1}:        [ABORT][6] ([Intel XE#1908]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1334-8e768c3e813ab5519a85997b622edc9a2f79c083/bat-lnl-1/igt@xe_exec_threads@threads-mixed-fd-basic.html
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133970v1/bat-lnl-1/igt@xe_exec_threads@threads-mixed-fd-basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#1908]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1908
+  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
+  [Intel XE#531]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/531
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+
+
+Build changes
+-------------
+
+  * Linux: xe-1334-8e768c3e813ab5519a85997b622edc9a2f79c083 -> xe-pw-133970v1
+
+  IGT_7869: e43892a30d594f8bcbcbd42ccffe298313479215 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1334-8e768c3e813ab5519a85997b622edc9a2f79c083: 8e768c3e813ab5519a85997b622edc9a2f79c083
+  xe-pw-133970v1: 133970v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133970v1/index.html
+
+--===============5958519298427164319==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add HWMON support for BMG</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133970/">https://patchwork.freedesktop.org/series/133970/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133970v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133970v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1334-8e768c3e813ab5519a85997b622edc9a2f79c083_BAT -&gt; xe-pw-133970v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-133970v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-133970v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-133970v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_intel_bb@reset-bb:<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133970v1/bat-atsm-2/igt@xe_intel_bb@reset-bb.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-133970v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1334-8e768c3e813ab5519a85997b622edc9a2f79c083/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133970v1/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1908">Intel XE#1908</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_huc_copy@huc_copy:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133970v1/bat-atsm-2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pm_residency@gt-c6-on-idle:</p>
+<ul>
+<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133970v1/bat-pvc-2/igt@xe_pm_residency@gt-c6-on-idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/531">Intel XE#531</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_threads@threads-mixed-fd-basic:<ul>
+<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1334-8e768c3e813ab5519a85997b622edc9a2f79c083/bat-lnl-1/igt@xe_exec_threads@threads-mixed-fd-basic.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1908">Intel XE#1908</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133970v1/bat-lnl-1/igt@xe_exec_threads@threads-mixed-fd-basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1334-8e768c3e813ab5519a85997b622edc9a2f79c083 -&gt; xe-pw-133970v1</li>
+</ul>
+<p>IGT_7869: e43892a30d594f8bcbcbd42ccffe298313479215 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1334-8e768c3e813ab5519a85997b622edc9a2f79c083: 8e768c3e813ab5519a85997b622edc9a2f79c083<br />
+  xe-pw-133970v1: 133970v1</p>
+
+</body>
+</html>
+
+--===============5958519298427164319==--
