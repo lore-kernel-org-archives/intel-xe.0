@@ -4,52 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75682C25B75
-	for <intel-xe@archiver.kernel.org>; Thu, 23 May 2024 13:35:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18ED9C25B75
+	for <intel-xe@archiver.kernel.org>; Thu, 23 May 2024 13:37:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BB7810E769;
-	Thu, 23 May 2024 13:35:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F1A310E335;
+	Thu, 23 May 2024 13:37:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k3PGmiyh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WEEHZqTM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EB2710E8D2
- for <intel-xe@lists.freedesktop.org>; Thu, 23 May 2024 13:35:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D6F710E335;
+ Thu, 23 May 2024 13:37:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716471333; x=1748007333;
+ t=1716471440; x=1748007440;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=h0N/m07IvlI4/1pfhSBYw7PzwYkaaBzHPEbhmbq5kRQ=;
- b=k3PGmiyhZEHa4Tn3ln66kA4MqmB/nwXkE+UE3DVNiTv28piyzBR2xiX/
- nvqLPmMdDaghuUgQ3COvJSNd9Zh1bS4gfCBtbfgsrQ/yw3cyyhKtEXQqT
- QZzxqnoZ/Bx4rxB+rSOH0f7NzTT862wOv2cjLbXVYJDTJaqTW/vTdLc1Z
- vZKDHxvAvq3MEc9h84zVDWi5gCGkngN2mWjPvBCYMThWOabWpuimby/IO
- ODI+LqcYlj6p7dsq6LcFxi2ngLOHIVbtgU0Bmgh8/UKS/aK9+kC8E7dJx
- cShI01q4bGB+D+yXBqGOez/3kLwV5SoVaSvYnYq/rlgAEx1ZYwLsMFe7n Q==;
-X-CSE-ConnectionGUID: fU1M0BE8TrecGBO4mGLieA==
-X-CSE-MsgGUID: f6quBmBSQqKU0GhGL7S+1g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="11661614"
-X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="11661614"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 06:35:12 -0700
-X-CSE-ConnectionGUID: CJhZXbOmTlKp9U2EdthGkQ==
-X-CSE-MsgGUID: qnYoHrKqQ7O7dyamR1XJ2Q==
+ bh=nwUlt7tgledmNyzRkC58TMJbyUeme2oy4ipdEbM0yC8=;
+ b=WEEHZqTMv6kG+BYv1e0AL559AHHEwM/v6RKDatgKgOE6VIrA4fhoo1oB
+ 2by7NJuLH7Y75fgPhi6HiBqRuUCIBKPZxPBJue8L01vOxMmQZbBsx/6h/
+ 2bLeX4WZXnNO1Ab2B2HXRGNygSKqIHPmq/Zpx7E+OsX37LaXBBM1/NJow
+ FNuCJJli+dHb9mvHUTUdEdQraJzd1hgDl1xT47IsAgeyDZFEoCkU/kbPV
+ MluvseKTJ2tyGno5ozGan0Ev3RNXzy3oOu5VjG1827Kt+AuPapLvYnrTA
+ BLgGgexgRsiItQCO8YMEi7msU+1D+Giy7HIx6tcBG3gWC6/m4vZYKvKMV A==;
+X-CSE-ConnectionGUID: By1YHvEgTFueeWJHSdS5jg==
+X-CSE-MsgGUID: ofZw2Q67TUyU/zAgywgQrA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="12971689"
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="12971689"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2024 06:37:18 -0700
+X-CSE-ConnectionGUID: BuJdhoPQROOrhR+HAGlkUA==
+X-CSE-MsgGUID: cYAiUGr7Q7W+B8MsXVN91g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="38068674"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 06:35:11 -0700
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- vinay.belgaumkar@intel.com
-Subject: [PATCH v3 0/2] Enable Coarse Power Gating
-Date: Thu, 23 May 2024 19:17:08 +0530
-Message-Id: <20240523134710.102037-1-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.40.0
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="34141543"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2024 06:37:14 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, jani.nikula@intel.com
+Subject: [PATCH 0/3] amd, i915,
+ xe: drop redundant warnings from driver makefiles
+Date: Thu, 23 May 2024 16:37:04 +0300
+Message-Id: <cover.1716471145.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,28 +74,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable power gating for all units and sub-pipes that
-are disabled by default.
+I'm sending these together, as they're related, and almost identical,
+but I expect them to be merged individually to each driver.
 
-Also standardize power gating registers
+BR,
+Jani.
 
-Rev2: re-phrase commit messages
-      fix review comments
+Jani Nikula (3):
+  drm/i915: drop redundant W=1 warnings from Makefile
+  drm/xe: drop redundant W=1 warnings from Makefile
+  drm/amdgpu: drop redundant W=1 warnings from Makefile
 
-Rev3: set hysteresis value for render and media pg
-      skip CPG for PVC
-
-Riana Tauro (2):
-  drm/xe: Standardize power gate registers
-  drm/xe: Enable Coarse Power Gating
-
- drivers/gpu/drm/xe/regs/xe_gt_regs.h | 12 +++---
- drivers/gpu/drm/xe/xe_gt.c           | 12 ++++--
- drivers/gpu/drm/xe/xe_gt_idle.c      | 57 ++++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_gt_idle.h      |  4 +-
- drivers/gpu/drm/xe/xe_wa.c           | 10 ++---
- 5 files changed, 76 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/Makefile | 18 +-----------------
+ drivers/gpu/drm/i915/Makefile       | 25 +------------------------
+ drivers/gpu/drm/xe/Makefile         | 25 +------------------------
+ 3 files changed, 3 insertions(+), 65 deletions(-)
 
 -- 
-2.40.0
+2.39.2
 
