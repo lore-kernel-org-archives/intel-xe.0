@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 169AEC25B75
-	for <intel-xe@archiver.kernel.org>; Thu, 23 May 2024 15:39:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10602C25B7C
+	for <intel-xe@archiver.kernel.org>; Thu, 23 May 2024 15:39:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAEA510E8A1;
-	Thu, 23 May 2024 15:39:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7F8D10E72C;
+	Thu, 23 May 2024 15:39:37 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 514DD10E7B0;
- Thu, 23 May 2024 15:39:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B32F010E71B;
+ Thu, 23 May 2024 15:39:33 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_remove_unu?=
- =?utf-8?q?sed_struct_=27xe=5Fgt=5Fdesc=27?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_remove_unused_s?=
+ =?utf-8?q?truct_=27xe=5Fgt=5Fdesc=27?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: linux@treblig.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 23 May 2024 15:39:22 -0000
-Message-ID: <171647876232.2169849.4958205718797468241@8e613ede5ea5>
+Date: Thu, 23 May 2024 15:39:33 -0000
+Message-ID: <171647877372.2170280.7526727062417728981@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240522175840.382107-1-linux@treblig.org>
 In-Reply-To: <20240522175840.382107-1-linux@treblig.org>
@@ -48,9 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 8e768c3e813a drm-tip: 2024y-05m-23d-13h-10m-23s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: remove unused struct 'xe_gt_desc'
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 9cf4e43da33d5040f781a97877a849dfb71d35b0
+Author: Dr. David Alan Gilbert <linux@treblig.org>
+Date:   Wed May 22 18:58:40 2024 +0100
+
+    drm/xe: remove unused struct 'xe_gt_desc'
+    
+    'xe_gt_desc' is unused since
+    commit 1e6c20be6c83 ("drm/xe: Drop extra_gts[] declarations and
+    XE_GT_TYPE_REMOTE").
+    
+    Remove it.
+    
+    Signed-off-by: Dr. David Alan Gilbert <linux@treblig.org>
++ /mt/dim checkpatch 8e768c3e813ab5519a85997b622edc9a2f79c083 drm-intel
+9cf4e43da33d drm/xe: remove unused struct 'xe_gt_desc'
 
 
