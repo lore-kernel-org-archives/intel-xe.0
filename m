@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8589FC25B7A
-	for <intel-xe@archiver.kernel.org>; Thu, 23 May 2024 19:23:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23E0CC25B7A
+	for <intel-xe@archiver.kernel.org>; Thu, 23 May 2024 19:23:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15D0D10EC3E;
-	Thu, 23 May 2024 19:23:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D7E810E1D8;
+	Thu, 23 May 2024 19:23:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FY9/U3I+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WzuSqTZz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44AFA10EDB2
- for <intel-xe@lists.freedesktop.org>; Thu, 23 May 2024 19:22:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B9EF10EF62
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 May 2024 19:23:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716492179; x=1748028179;
+ t=1716492182; x=1748028182;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=5FuYVVuXO8SCqh+Hs80NhEofGaX+2yNHqSlRBiYiZTw=;
- b=FY9/U3I+9VDav0nSHeMDt6vAC8xEv/tMvuIONN9Q0mFe6A6q6GbWeRKM
- kUyvXfV0HVN1qyktY6gf5vSYtJInfCSH4HZYJ2vCtKfNhg55Of2twvyWI
- +URXOHQfVF24FlXyF2hdcI9e9yGUBCWp0Kp1IcEoFwQL9P9K54npPrCNh
- Z5btC/vMkhxtzGYDhkj7ifclxQGrYX/USiPlhjVrGd2iG5cnwzDFhLeKJ
- v8SiJGm+GiDz8wtbnia8arGwY3dDjLiW7LSZe2B0+a6NvNhRR2mvAWXwu
- c50vXBTWC+xMCR+YapKfSBSOTIZ0RdV6w3E0PJ3IMuVeCqdHvkevgQvy4 w==;
-X-CSE-ConnectionGUID: 2LBKZDPeT/KkihrjVfaICw==
-X-CSE-MsgGUID: /IIt1f5pQT6j4add902wmQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="13023483"
-X-IronPort-AV: E=Sophos;i="6.08,183,1712646000"; d="scan'208";a="13023483"
+ bh=H/p7lY4/Eq7WATqtb8xy7Kr/r8AvN9bHn3dM/60jguY=;
+ b=WzuSqTZz4dH+vzaKi9X/2XYYpX9fpa4263Twa9bPBfmKFs9oRxXX5L66
+ 1zggaKuiAHlGIpq3g4+ecP6JjbeLhb2HLyCERzcG+fvidf/DabSow3q+x
+ XiGtQ4YYfiPDMfRbAgwJk070IhY0kQIFyqlb/goN3T56SJsoPtnvz32j2
+ UsCua3yd6eMJCd5f94ciwB7Jw+amNlSZM8mMgiZLdm6K1b+V8sTbaxgdd
+ BrfJ+o32wyDCxH3AOBqtr1PbQmhXeIghd9qetrMzwJHV8YvUiWNmLv63m
+ lOG6+gtQ7csTwjPUHIQ4zwYgAbcyof5/fnborf+cjaKUvM9Qtu3Cqp+Ub A==;
+X-CSE-ConnectionGUID: cElx3Y9gRbmTZ2RNxx8AgQ==
+X-CSE-MsgGUID: bF6nupGUTGiUiu6KeE1Oug==
+X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="13023486"
+X-IronPort-AV: E=Sophos;i="6.08,183,1712646000"; d="scan'208";a="13023486"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 12:22:57 -0700
-X-CSE-ConnectionGUID: 4JZ4rZgSTVCEp2T58w/I4A==
-X-CSE-MsgGUID: TU4dIkwiRh2qFBBiDbJQbQ==
+ 23 May 2024 12:22:59 -0700
+X-CSE-ConnectionGUID: vsqWltxbT+GpeovTabBBsw==
+X-CSE-MsgGUID: frAClw8BTTKskkhiinTsDw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,183,1712646000"; d="scan'208";a="33848863"
+X-IronPort-AV: E=Sophos;i="6.08,183,1712646000"; d="scan'208";a="33848871"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.19.248])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 12:22:57 -0700
+ 23 May 2024 12:22:58 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 5/6] drm/xe/vf: Cache value of the GMDID register
-Date: Thu, 23 May 2024 21:22:39 +0200
-Message-Id: <20240523192240.844-6-michal.wajdeczko@intel.com>
+Subject: [PATCH 6/6] drm/xe/vf: Treat GMDID as another runtime register
+Date: Thu, 23 May 2024 21:22:40 +0200
+Message-Id: <20240523192240.844-7-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240523192240.844-1-michal.wajdeczko@intel.com>
 References: <20240523192240.844-1-michal.wajdeczko@intel.com>
@@ -65,87 +65,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Read and cache value of the GMDID register as part of the config
-query that VF driver is doing over MMIO.
-
-While the VF driver likely already obtained the value of the GMDID
-register once during the early driver probe, we couldn't cache it
-then as the GT structures were not ready yet.
-
-Cache it now, in case the driver needs it later when the GuC MMIO
-communication, required to query GMDID from GuC, could be no longer
-desired as it will be replaced by the CTB communication.
-
-While around, assert that we will query GMDID only when applicable.
+While the GMDID registers are not part of the runtime register list
+shared by the PF driver, we may still return cached values from our
+VF specific read32() helper function.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 17 +++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  2 ++
- 2 files changed, 19 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 5b8771f831f7..347ab7060588 100644
+index 347ab7060588..66069eb8c5be 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -284,6 +284,11 @@ static int guc_action_query_single_klv64(struct xe_guc *guc, u32 key, u64 *value
- 	return 0;
- }
+@@ -13,6 +13,7 @@
+ #include "abi/guc_communication_mmio_abi.h"
+ #include "abi/guc_klvs_abi.h"
+ #include "abi/guc_relay_actions_abi.h"
++#include "regs/xe_gt_regs.h"
  
-+static bool has_gmdid(struct xe_device *xe)
-+{
-+	return GRAPHICS_VERx100(xe) >= 1270;
-+}
+ #include "xe_assert.h"
+ #include "xe_device.h"
+@@ -764,6 +765,12 @@ u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg)
+ 	xe_gt_assert(gt, gt->sriov.vf.pf_version.major);
+ 	xe_gt_assert(gt, !reg.vf);
+ 
++	if (reg.addr == GMD_ID.addr) {
++		xe_gt_sriov_dbg_verbose(gt, "gmdid(%#x) = %#x\n",
++					addr, gt->sriov.vf.runtime.gmdid);
++		return gt->sriov.vf.runtime.gmdid;
++	}
 +
- /**
-  * xe_gt_sriov_vf_gmdid - Query GMDID over MMIO.
-  * @gt: the &xe_gt
-@@ -300,6 +305,7 @@ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt)
- 	int err;
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+	xe_gt_assert(gt, !GRAPHICS_VERx100(gt_to_xe(gt)) || has_gmdid(gt_to_xe(gt)));
- 	xe_gt_assert(gt, gt->sriov.vf.guc_version.major > 1 || gt->sriov.vf.guc_version.minor >= 2);
- 
- 	err = guc_action_query_single_klv32(guc, GUC_KLV_GLOBAL_CFG_GMD_ID_KEY, &value);
-@@ -409,6 +415,14 @@ static int vf_get_submission_cfg(struct xe_gt *gt)
- 	return config->num_ctxs ? 0 : -ENODATA;
- }
- 
-+static void vf_cache_gmdid(struct xe_gt *gt)
-+{
-+	xe_gt_assert(gt, has_gmdid(gt_to_xe(gt)));
-+	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+
-+	gt->sriov.vf.runtime.gmdid = xe_gt_sriov_vf_gmdid(gt);
-+}
-+
- /**
-  * xe_gt_sriov_vf_query_config - Query SR-IOV config data over MMIO.
-  * @gt: the &xe_gt
-@@ -436,6 +450,9 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt)
- 	if (unlikely(err))
- 		return err;
- 
-+	if (has_gmdid(xe))
-+		vf_cache_gmdid(gt);
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-index 519492f4b7d0..a57f13b5afcd 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-@@ -52,6 +52,8 @@ struct xe_gt_sriov_vf_selfconfig {
-  * struct xe_gt_sriov_vf_runtime - VF runtime data.
-  */
- struct xe_gt_sriov_vf_runtime {
-+	/** @gmdid: cached value of the GDMID register. */
-+	u32 gmdid;
- 	/** @regs_size: size of runtime register array. */
- 	u32 regs_size;
- 	/** @num_regs: number of runtime registers in the array. */
+ 	rr = vf_lookup_reg(gt, addr);
+ 	if (!rr) {
+ 		xe_gt_WARN(gt, IS_ENABLED(CONFIG_DRM_XE_DEBUG),
 -- 
 2.43.0
 
