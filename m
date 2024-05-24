@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0BB4C25B74
-	for <intel-xe@archiver.kernel.org>; Fri, 24 May 2024 07:20:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDEDAC25B74
+	for <intel-xe@archiver.kernel.org>; Fri, 24 May 2024 07:25:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B462910E3DA;
-	Fri, 24 May 2024 07:20:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bQ7Wmv8b";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AE4310E480
- for <intel-xe@lists.freedesktop.org>; Fri, 24 May 2024 07:20:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716535200; x=1748071200;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=7k7eORB+TkUHtNr3yTT1SXq4Bff77PfJYLACkdiWLZE=;
- b=bQ7Wmv8b0iy4GBmc+W342r9JQ/nTD3sKaP+RcR+7/NSSgPOKjwrReHDf
- n2FqHQziWOPRRt021Dga6Y4Qrn/rHjgBkjeq4SM1ZwJx8TjUZgYsjDVI9
- FPXU125fXDw9dWxxG4o5BQqji5mixOoz+WHOBLyVaCJzYvShsmM/Bl3YM
- ouz4e8szWUIcONLUe4IO1o96wcZNxxoONz7vSJNlOlDlri6En06ocFH2/
- wMiP4Q/C1zHbfMApmnVhylF+gaKgVpH6aScc2UbhMMgNcY0fyRiNlHYda
- +B0O7Swl55Mo5s+H3ekpeiacRTjG4wT03mciRlRZChHTeVI5nabweE4an g==;
-X-CSE-ConnectionGUID: 715LEiokQty1XiIzMMysTw==
-X-CSE-MsgGUID: HqaSk94ETmWubO84mLMeHQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="13130628"
-X-IronPort-AV: E=Sophos;i="6.08,184,1712646000"; d="scan'208";a="13130628"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2024 00:20:00 -0700
-X-CSE-ConnectionGUID: hD4tUfOqQlmvVVuLPavhYg==
-X-CSE-MsgGUID: fooZuaM/RHSgHLi51EsP7A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,184,1712646000"; d="scan'208";a="64751320"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO fedora..)
- ([10.245.246.112])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2024 00:19:59 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v3 5/5] drm/xe: Move job creation out of the struct
- xe_migrate::job_mutex
-Date: Fri, 24 May 2024 09:19:40 +0200
-Message-ID: <20240524071940.83042-6-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240524071940.83042-1-thomas.hellstrom@linux.intel.com>
-References: <20240524071940.83042-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DCA710E073;
+	Fri, 24 May 2024 07:25:52 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F07A10E3FE;
+ Fri, 24 May 2024 07:25:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3856946243155551902=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/xe2lpm=3A_Add_Wa=5F150154?=
+ =?utf-8?q?04425?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 24 May 2024 07:25:49 -0000
+Message-ID: <171653554950.2171858.3674475217068000074@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240524063228.127423-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20240524063228.127423-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,113 +36,206 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In order to be able to run gpu jobs from reclaim context,
-move job creation (where allocation takes place) out of the
-struct xe_migrate::job_mutex, and prime that mutex as reclaim
-tainted.
+--===============3856946243155551902==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Jobs that may need to run from reclaim context include
-CCS metadata extraction at shrinking time.
+== Series Details ==
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_migrate.c | 17 ++++++++---------
- 1 file changed, 8 insertions(+), 9 deletions(-)
+Series: drm/xe/xe2lpm: Add Wa_15015404425
+URL   : https://patchwork.freedesktop.org/series/134000/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index bacb23de411b..cccffaf3db06 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -383,6 +383,9 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
- 	}
- 
- 	mutex_init(&m->job_mutex);
-+	fs_reclaim_acquire(GFP_KERNEL);
-+	might_lock(&m->job_mutex);
-+	fs_reclaim_release(GFP_KERNEL);
- 
- 	err = drmm_add_action_or_reset(&xe->drm, xe_migrate_fini, m);
- 	if (err)
-@@ -807,7 +810,6 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 						  IS_DGFX(xe) ? dst_is_vram : dst_is_pltt,
- 						  src_L0, ccs_ofs, copy_ccs);
- 
--		mutex_lock(&m->job_mutex);
- 		job = xe_bb_create_migration_job(m->q, bb,
- 						 xe_migrate_batch_base(m, usm),
- 						 update_idx);
-@@ -827,6 +829,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 				goto err_job;
- 		}
- 
-+		mutex_lock(&m->job_mutex);
- 		xe_sched_job_arm(job);
- 		dma_fence_put(fence);
- 		fence = dma_fence_get(&job->drm.s_fence->finished);
-@@ -844,7 +847,6 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- err_job:
- 		xe_sched_job_put(job);
- err:
--		mutex_unlock(&m->job_mutex);
- 		xe_bb_free(bb, NULL);
- 
- err_sync:
-@@ -1044,7 +1046,6 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 			flush_flags = MI_FLUSH_DW_CCS;
- 		}
- 
--		mutex_lock(&m->job_mutex);
- 		job = xe_bb_create_migration_job(m->q, bb,
- 						 xe_migrate_batch_base(m, usm),
- 						 update_idx);
-@@ -1067,6 +1068,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 				goto err_job;
- 		}
- 
-+		mutex_lock(&m->job_mutex);
- 		xe_sched_job_arm(job);
- 		dma_fence_put(fence);
- 		fence = dma_fence_get(&job->drm.s_fence->finished);
-@@ -1083,7 +1085,6 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- err_job:
- 		xe_sched_job_put(job);
- err:
--		mutex_unlock(&m->job_mutex);
- 		xe_bb_free(bb, NULL);
- err_sync:
- 		/* Sync partial copies if any. FIXME: job_mutex? */
-@@ -1377,9 +1378,6 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
- 			write_pgtable(tile, bb, 0, &updates[i], pt_update);
- 	}
- 
--	if (!q)
--		mutex_lock(&m->job_mutex);
--
- 	job = xe_bb_create_migration_job(q ?: m->q, bb,
- 					 xe_migrate_batch_base(m, usm),
- 					 update_idx);
-@@ -1420,6 +1418,9 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
- 		if (err)
- 			goto err_job;
- 	}
-+	if (!q)
-+		mutex_lock(&m->job_mutex);
-+
- 	xe_sched_job_arm(job);
- 	fence = dma_fence_get(&job->drm.s_fence->finished);
- 	xe_sched_job_push(job);
-@@ -1435,8 +1436,6 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
- err_job:
- 	xe_sched_job_put(job);
- err_bb:
--	if (!q)
--		mutex_unlock(&m->job_mutex);
- 	xe_bb_free(bb, NULL);
- err:
- 	drm_suballoc_free(sa_bo, NULL);
--- 
-2.44.0
+== Summary ==
 
+CI Bug Log - changes from xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09_BAT -> xe-pw-134000v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-134000v1_BAT:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@xe_dma_buf_sync@export-dma-buf-once-read-sync:
+    - {bat-lnl-1}:        [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09/bat-lnl-1/igt@xe_dma_buf_sync@export-dma-buf-once-read-sync.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134000v1/bat-lnl-1/igt@xe_dma_buf_sync@export-dma-buf-once-read-sync.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-134000v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race:
+    - bat-dg2-oem2:       [PASS][3] -> [ABORT][4] ([Intel XE#1908])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134000v1/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html
+
+  * igt@xe_gt_freq@freq_range_idle:
+    - bat-pvc-2:          NOTRUN -> [SKIP][5] ([Intel XE#1021]) +1 other test skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134000v1/bat-pvc-2/igt@xe_gt_freq@freq_range_idle.html
+
+  * igt@xe_huc_copy@huc_copy:
+    - bat-pvc-2:          NOTRUN -> [SKIP][6] ([Intel XE#255])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134000v1/bat-pvc-2/igt@xe_huc_copy@huc_copy.html
+
+  * igt@xe_intel_bb@render:
+    - bat-pvc-2:          NOTRUN -> [SKIP][7] ([Intel XE#532])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134000v1/bat-pvc-2/igt@xe_intel_bb@render.html
+
+  * igt@xe_pm_residency@gt-c6-on-idle:
+    - bat-pvc-2:          NOTRUN -> [SKIP][8] ([Intel XE#531])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134000v1/bat-pvc-2/igt@xe_pm_residency@gt-c6-on-idle.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#1021]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1021
+  [Intel XE#1908]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1908
+  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
+  [Intel XE#531]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/531
+  [Intel XE#532]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/532
+
+
+Build changes
+-------------
+
+  * Linux: xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09 -> xe-pw-134000v1
+
+  IGT_7871: 1d7b961235e345db20933c057f265898e2e96fd2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09: 1385623a20ad940dab90bfaa4bc01fe599506e09
+  xe-pw-134000v1: 134000v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134000v1/index.html
+
+--===============3856946243155551902==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe2lpm: Add Wa_15015404425</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134000/">https://patchwork.freedesktop.org/series/134000/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134000v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134000v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09_BAT -&gt; xe-pw-134000v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-134000v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@xe_dma_buf_sync@export-dma-buf-once-read-sync:<ul>
+<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09/bat-lnl-1/igt@xe_dma_buf_sync@export-dma-buf-once-read-sync.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134000v1/bat-lnl-1/igt@xe_dma_buf_sync@export-dma-buf-once-read-sync.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-134000v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134000v1/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1908">Intel XE#1908</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_gt_freq@freq_range_idle:</p>
+<ul>
+<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134000v1/bat-pvc-2/igt@xe_gt_freq@freq_range_idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1021">Intel XE#1021</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_huc_copy@huc_copy:</p>
+<ul>
+<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134000v1/bat-pvc-2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_intel_bb@render:</p>
+<ul>
+<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134000v1/bat-pvc-2/igt@xe_intel_bb@render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/532">Intel XE#532</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pm_residency@gt-c6-on-idle:</p>
+<ul>
+<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134000v1/bat-pvc-2/igt@xe_pm_residency@gt-c6-on-idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/531">Intel XE#531</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09 -&gt; xe-pw-134000v1</li>
+</ul>
+<p>IGT_7871: 1d7b961235e345db20933c057f265898e2e96fd2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09: 1385623a20ad940dab90bfaa4bc01fe599506e09<br />
+  xe-pw-134000v1: 134000v1</p>
+
+</body>
+</html>
+
+--===============3856946243155551902==--
