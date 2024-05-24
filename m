@@ -4,58 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AF59C25B7C
-	for <intel-xe@archiver.kernel.org>; Fri, 24 May 2024 13:36:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8A25C25B74
+	for <intel-xe@archiver.kernel.org>; Fri, 24 May 2024 13:36:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD59810EB33;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FDEE10EA84;
 	Fri, 24 May 2024 13:36:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZleuUB2y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DW3HaRkg";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C140C10EA4C;
- Fri, 24 May 2024 13:36:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D19D710EA2E;
+ Fri, 24 May 2024 13:36:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716557769; x=1748093769;
+ t=1716557767; x=1748093767;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=C1PCh2T4eEpUbLo5g4nbRJtpGWGVFLkb+9vWRBO1gF0=;
- b=ZleuUB2yit82aKNd2I/Q7bb/ypM3Ow0CY6Qbb19NwsMPEr6VQarhh/oC
- scIpq+QSWRC+4wv7SqwHz0nJMPP+ydAzrwsQfvoBwqgRqZFKsPZJ+aDXZ
- r4hqh3KpiFYGUWHXsJgiEb0jK/qkzXk2bs33OXjjzSjc3B4H043rcOPlh
- 1grAaNVcDdXjZTuccEg++3txjns7v+IR4YgAnkYP2p/sGK1VtJnVXHh0A
- gfz1kTOuIzaEEhdPzLCH3joDhtksxhwvCRK3bfrEPsQbKscrbcLYZ81KK
- dyE36TRE8fvIepuWAPuR8qLGPZ6qQmzQqnw6xfCaZVOXWGZdtB4fuy6ij w==;
-X-CSE-ConnectionGUID: Fhki6aCGRquCAPo8LhgZOQ==
-X-CSE-MsgGUID: gLjfPaB6Q/Owv3Ifp2uMhQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="13110047"
-X-IronPort-AV: E=Sophos;i="6.08,185,1712646000"; d="scan'208";a="13110047"
+ bh=adL9d0OqQ8jBQXKsqMmD7jTs2GJRfmPiISsOuz0C5Kk=;
+ b=DW3HaRkglrJXnOxhp4uFttMYVgjhcHcFVt8bgPp9hZnj33eFYMCQzZwL
+ IuK/czlpAujUmwhyLQq1TxPd5BtJAgjaZ/dicBGpuIinC8719tbNGC9qJ
+ KI5q1/KrgV+Mc2B2DjtzANmmnTrvlG/pH47RU7Mf/eSlaWXc0eFBEsO72
+ rDI+lCjDY/AhdQKBNPs5oAvs8m11OG9fAVp+YQUE9b0LF6U/toC3PNxAj
+ B8ECQvEgtXFE4OmreiWXHx1Ve078HWujnSfYXV0jyoqWnRM74wWJoHK7z
+ hquyWIJk9pPVqWcY3bIodRa9QURsxaiRDqyYJSU5ZvFfs2+J8GpDJsLhf Q==;
+X-CSE-ConnectionGUID: itEmdULxQIyUzbhuc1HVag==
+X-CSE-MsgGUID: /3GZ7kadT2enPoK5hUgrzA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="13110042"
+X-IronPort-AV: E=Sophos;i="6.08,185,1712646000"; d="scan'208";a="13110042"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2024 06:36:08 -0700
-X-CSE-ConnectionGUID: qddlGSzwSFu/0rNsYyVUkA==
-X-CSE-MsgGUID: HiSQpU6mQJym0tFPAhZvzA==
+ 24 May 2024 06:36:07 -0700
+X-CSE-ConnectionGUID: gU3p0ngVSD+E/AWr6km3fw==
+X-CSE-MsgGUID: 4ImQhWf/QsaqFiI4UxyUXw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,185,1712646000"; d="scan'208";a="64834727"
+X-IronPort-AV: E=Sophos;i="6.08,185,1712646000"; d="scan'208";a="64834723"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.49.231])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2024 06:36:07 -0700
+ 24 May 2024 06:36:05 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 2/2] drm/xe: Use drm_device managed mutex/mm init helpers in
- GGTT
-Date: Fri, 24 May 2024 15:35:18 +0200
-Message-Id: <20240524133518.976-3-michal.wajdeczko@intel.com>
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: [PATCH 1/2] drm: Add DRM-managed drm_mm_init()
+Date: Fri, 24 May 2024 15:35:17 +0200
+Message-Id: <20240524133518.976-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240524133518.976-1-michal.wajdeczko@intel.com>
 References: <20240524133518.976-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,66 +69,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is not need for private release action as there are existing
-drmm_mm_init() and drmm_mutex_init() helpers that can be used.
+Add drmm_mm_init(), a helper that provides managed allocator cleanup.
+The allocator will be cleaned up with the final reference of the DRM
+device.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 23 +++++++++++------------
- 1 file changed, 11 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/drm_managed.c | 27 +++++++++++++++++++++++++++
+ include/drm/drm_managed.h     |  3 +++
+ 2 files changed, 30 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 17e5066763db..7c91fe212dcb 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -96,14 +96,6 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
- 	}
+diff --git a/drivers/gpu/drm/drm_managed.c b/drivers/gpu/drm/drm_managed.c
+index 7646f67bda4e..2fb9656bada3 100644
+--- a/drivers/gpu/drm/drm_managed.c
++++ b/drivers/gpu/drm/drm_managed.c
+@@ -13,6 +13,7 @@
+ #include <linux/spinlock.h>
+ 
+ #include <drm/drm_device.h>
++#include <drm/drm_mm.h>
+ #include <drm/drm_print.h>
+ 
+ #include "drm_internal.h"
+@@ -310,3 +311,29 @@ void __drmm_mutex_release(struct drm_device *dev, void *res)
+ 	mutex_destroy(lock);
  }
- 
--static void ggtt_fini_early(struct drm_device *drm, void *arg)
--{
--	struct xe_ggtt *ggtt = arg;
--
--	mutex_destroy(&ggtt->lock);
--	drm_mm_takedown(&ggtt->mm);
--}
--
- static void ggtt_fini(struct drm_device *drm, void *arg)
- {
- 	struct xe_ggtt *ggtt = arg;
-@@ -141,6 +133,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
- 	struct xe_device *xe = tile_to_xe(ggtt->tile);
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	unsigned int gsm_size;
-+	int err;
- 
- 	if (IS_SRIOV_VF(xe))
- 		gsm_size = SZ_8M; /* GGTT is expected to be 4GiB */
-@@ -189,12 +182,18 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
- 	else
- 		ggtt->pt_ops = &xelp_pt_ops;
- 
--	drm_mm_init(&ggtt->mm, xe_wopcm_size(xe),
--		    ggtt->size - xe_wopcm_size(xe));
--	mutex_init(&ggtt->lock);
-+	err = drmm_mm_init(&xe->drm, &ggtt->mm, xe_wopcm_size(xe),
-+			   ggtt->size - xe_wopcm_size(xe));
-+	if (err)
-+		return err;
+ EXPORT_SYMBOL(__drmm_mutex_release);
 +
-+	err = drmm_mutex_init(&xe->drm, &ggtt->lock);
-+	if (err)
-+		return err;
++static void __drmm_mm_takedown(struct drm_device *dev, void *res)
++{
++	struct drm_mm *mm = res;
 +
- 	primelockdep(ggtt);
++	drm_mm_takedown(mm);
++}
++
++/**
++ * drmm_mm_init - &drm_device managed drm_mm_init()
++ * @dev: DRM device
++ * @mm: the drm_mm structure to initialize
++ * @start: start of the range managed by @mm
++ * @size: end of the range managed by @mm
++ *
++ * This is a &drm_device managed version of drm_mm_init().
++ * The initialized allocator will be cleaned up on the final drm_dev_put().
++ *
++ * Return: 0 on success, or a negative errno code otherwise.
++ */
++int drmm_mm_init(struct drm_device *dev, struct drm_mm *mm, u64 start, u64 size)
++{
++	drm_mm_init(mm, start, size);
++	return drmm_add_action_or_reset(dev, __drmm_mm_takedown, mm);
++}
++EXPORT_SYMBOL(drmm_mm_init);
+diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
+index f547b09ca023..e8c2f29cb88a 100644
+--- a/include/drm/drm_managed.h
++++ b/include/drm/drm_managed.h
+@@ -8,6 +8,7 @@
+ #include <linux/types.h>
  
--	return drmm_add_action_or_reset(&xe->drm, ggtt_fini_early, ggtt);
-+	return 0;
- }
+ struct drm_device;
++struct drm_mm;
+ struct mutex;
  
- static void xe_ggtt_invalidate(struct xe_ggtt *ggtt);
+ typedef void (*drmres_release_t)(struct drm_device *dev, void *res);
+@@ -127,4 +128,6 @@ void __drmm_mutex_release(struct drm_device *dev, void *res);
+ 	drmm_add_action_or_reset(dev, __drmm_mutex_release, lock);	     \
+ })									     \
+ 
++int drmm_mm_init(struct drm_device *dev, struct drm_mm *mm, u64 start, u64 size);
++
+ #endif
 -- 
 2.43.0
 
