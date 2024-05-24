@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCE73C25B74
-	for <intel-xe@archiver.kernel.org>; Fri, 24 May 2024 05:14:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 321D0C25B7A
+	for <intel-xe@archiver.kernel.org>; Fri, 24 May 2024 05:14:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65D2410E00B;
-	Fri, 24 May 2024 05:14:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A1EC10E00B;
+	Fri, 24 May 2024 05:14:58 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73D0F10E00B;
- Fri, 24 May 2024 05:14:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B2FE10E03E;
+ Fri, 24 May 2024 05:14:56 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Don=27t_ac?=
- =?utf-8?q?cumulate_exec=5Fqueue_stats_if_being_killed?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Don=27t_accumul?=
+ =?utf-8?q?ate_exec=5Fqueue_stats_if_being_killed?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 24 May 2024 05:14:43 -0000
-Message-ID: <171652768347.2170280.9954549428291774284@8e613ede5ea5>
+Date: Fri, 24 May 2024 05:14:56 -0000
+Message-ID: <171652769643.2170280.46774685757950008@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240524050921.1340921-1-umesh.nerlige.ramappa@intel.com>
 In-Reply-To: <20240524050921.1340921-1-umesh.nerlige.ramappa@intel.com>
@@ -48,9 +48,25 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 1385623a20ad drm-tip: 2024y-05m-23d-18h-26m-52s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Don't accumulate exec_queue stats if being killed
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e9667c4849fee7e3601f4408e04d9f36d14a06d8
+Author: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Date:   Thu May 23 22:09:21 2024 -0700
+
+    drm/xe: Don't accumulate exec_queue stats if being killed
+    
+    CI run only
+    
+    Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
++ /mt/dim checkpatch 1385623a20ad940dab90bfaa4bc01fe599506e09 drm-intel
+e9667c4849fe drm/xe: Don't accumulate exec_queue stats if being killed
 
 
