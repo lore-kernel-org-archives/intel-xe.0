@@ -4,165 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CEBCC25B74
-	for <intel-xe@archiver.kernel.org>; Fri, 24 May 2024 19:44:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D66ACC25B74
+	for <intel-xe@archiver.kernel.org>; Fri, 24 May 2024 19:45:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AA0310EA92;
-	Fri, 24 May 2024 19:44:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 708A010EA1B;
+	Fri, 24 May 2024 19:45:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aWPaKXEz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AQvqJFqC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F2E710EA1B
- for <intel-xe@lists.freedesktop.org>; Fri, 24 May 2024 19:44:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A96610EA92
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 May 2024 19:45:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716579862; x=1748115862;
+ t=1716579913; x=1748115913;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=p+ERa8EvzlG5FG80qIQkqxOc6ucg6eBIEDsvqukvjo4=;
- b=aWPaKXEzwyIn+udLZixYb0SkJbrUcSL+63/aWJzB6IX2+RSVEVmfP49v
- Hzr1Uf8gjWx88hFwZERthJnWAOo3YSDQCgj5c1qBtCPVbmMI4WIyU79DP
- fZ3YLVhx1A86uYIG4l+vK42sYPwM0ijNa+TWEKPgWLG4sYiNK2hd+X1Z+
- 5KGtb3idLuQYzPrFgQC7SEVFDdVh4kT7z9/2v/7F1jA0FXaFvTpBlrOOn
- TTpeWY5Qd1aGGXSjGv93yaTaxXNSbH0vswW6MkbxhPyJ2r7OuFjeZHUae
- VxZ+x+s7dGPL2PE6tuhDVypbLi1QnWgA/xnd2gqFqR+E3rsvrtoVlmQwK w==;
-X-CSE-ConnectionGUID: J1Eh2aPxT1qskX5zJXeQ6A==
-X-CSE-MsgGUID: gJTiI1fkRiiqVKZ4W+YwTg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11082"; a="35490196"
-X-IronPort-AV: E=Sophos;i="6.08,186,1712646000"; d="scan'208";a="35490196"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2024 12:44:22 -0700
-X-CSE-ConnectionGUID: FbrICTfmQiOHa00PVBRISw==
-X-CSE-MsgGUID: FHrNj4D0T5u8pgESgS890w==
+ bh=8cl663ONyhZS/G1BJCdnx56FUoIi7VmzS8FDwYZKc/o=;
+ b=AQvqJFqCqSKcWM2921Nw3DXTm9YUykJbPkekpmgTM363ktSYkTMEJAYp
+ UkMRnJECZqk5asS/KVmtGEUhh94nTew+XfMjATkIXWt+WBptBeqlnD2ge
+ 2G/jx0xOkJQhDLw3B/ktqLmKmtNXGM5iT84uVl0GhnWgQbWxSx4SStKMp
+ wZW0WFtHWMF1h/ZaASqgAgsFz1KedvQ1K9ak3n7Z1HcGMdVlY8xdpkUip
+ Lc1uP3vENRAGHKvjYQSihP/svSp84dTc9UmT5fc+HTc+vJHXtGauSaiVF
+ gnDy2D2OOnIWSZH8zGUL0O5/vW5TYQi9MLK/bmJTbXAvBgdiX3S4DONq2 Q==;
+X-CSE-ConnectionGUID: oGUwZk4cT5m53eUj6EXQ6Q==
+X-CSE-MsgGUID: WYjhKX90R96oA9wVEapiew==
+X-IronPort-AV: E=McAfee;i="6600,9927,11082"; a="24100298"
+X-IronPort-AV: E=Sophos;i="6.08,186,1712646000"; d="scan'208";a="24100298"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2024 12:45:10 -0700
+X-CSE-ConnectionGUID: aOMpNUl6TaySLedvZy3bcg==
+X-CSE-MsgGUID: 4ORLRegpTXyPm8D/3U60SQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,186,1712646000"; d="scan'208";a="38549505"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 24 May 2024 12:44:21 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.08,186,1712646000"; d="scan'208";a="38913061"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 24 May 2024 12:45:09 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 24 May 2024 12:44:20 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2507.39; Fri, 24 May 2024 12:45:09 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 24 May 2024 12:44:20 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.39; Fri, 24 May 2024 12:45:08 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Fri, 24 May 2024 12:45:08 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 24 May 2024 12:44:20 -0700
+ 15.1.2507.39; Fri, 24 May 2024 12:45:08 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mWsSKixiYBr13/51073PDnMRv0du0KUfQiaVC3ZOQ4sJflvdhQnWhhAAx3q0KP7s+yshwgD9VIB3yqBnjJxzOMSjEgAbEbrJr8m5v5/pNDMFJkBwJk255EFvV7DNdbHQGF0Tnc6xBiS9foCeib3jtJgBO2vBrrp+kAQ1IaB1axRRPFI5pntyzrBXsevPcTuEyq9dxQp1BdyddgTdhdcIDRhBoFIE3wCLALXEaGfSHJevzRAG0TzOYG5pSTASzkcoFBxK+dL63swrgboOcymr6D3hVk+C3gscU+U6JaUQN6ALFxZFB1CRBz8LbeEXLfysBjrDu72lu2SJawNvEcDKwA==
+ b=FQ1JDqfHd5NNmV3ltcD9O9nBMgpJN+s20/Co3mVKzhYad18Ty90xlHoyfHcouNLmTuablu65QeBVLtH+eMQddQ7JJwF0TjFizd5+EEyQjs0O7sdJ5FkXFpyMVY4UjbHLJGlSWfpDljL0KnQD6cydracpYoFs8tJbgsuBDTEOrsplxt8abD4TW4dGwhuEHFtZ5qmcu8Q7VIjsQWuAFu806gHc9a9XT8Dhzz6DFRtFbFT8abW8Jov7fFQEW4mT0bnCHy3ubqQniNydcViVcQhdhx9ThT8rJf3GyZoC8gmfXU1oh0G9P/d6IqAju6RH0xNkbMF2/9/ydVtQcfRxCYWgjA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EA7/lkRU/nNAMPIIqo0iax+7NHSaGaODH2byo4FBHUY=;
- b=lyMFIRpsvccPgLPS4RGChV4KMiEaAcXRpzaBNLthx428dfRTgBK5HaQNGvOahLTteUtOm+bSsMPMNSmOYReVpxEYbBoCJTdSgd8Sot118/94VkWANRGVir42zonKxr39HYNP5vTPVOMC7V8n9SGbEnYrZHGApb0GvmSttDVNC0FzdZaqmZzUrGxWdF71CyyVl32Atxtdri36qfxbFZaIzBk7KdQjoXgP9KimMFANuftL9eIcH3UmmcoBzSCMaHA0ddRn2nBWyVr63JL2Mm+tEpluWqWLvYKHBDbl7S8jTm6E4tQ1Tf9bVJyIr1K5upQQJmUcKotzL0Gdserw8qyFeg==
+ bh=rzJEMVaWmkJiWqzLdVtvTFgxTQNM+dro21oOf+TYKmM=;
+ b=lKpJ1RCLkLVxyJGCf5LSC0aGkzvaORx9R2a7MibaiaDoa1KZMnqayt60c1LgSt8gkiiSGvBD8hOGRdOEu1qYWQ50G6dbh9Q/NKlI4by8m3vwAhJTSkFGwE89se/j3JtQj3kdczYAaUpduDW9CJtCvu27opq3CtzyMVeIYZYkbhg4aMWzDZawfj3Sfqv+c9plGXzE2PbwcYPnb38GljVJ3rlESeuIK40EkDYGM5cDNXlNF7wtU/zEUrtzv5HddICvDXC4Y83ItiOEvqjvjsmf0L/ogjy1rGIwxc7pP1fL7fnG21pmp7IbWBEg98kbq834wTB+sU6GaJ4494fzR7yG7g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by PH8PR11MB6708.namprd11.prod.outlook.com (2603:10b6:510:1c7::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.19; Fri, 24 May
- 2024 19:44:18 +0000
+ by DM4PR11MB8159.namprd11.prod.outlook.com (2603:10b6:8:17d::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.26; Fri, 24 May
+ 2024 19:45:04 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::cf6f:eb9e:9143:f413]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::cf6f:eb9e:9143:f413%5]) with mapi id 15.20.7587.035; Fri, 24 May 2024
- 19:44:18 +0000
-Date: Fri, 24 May 2024 15:44:14 -0400
+ 19:45:04 +0000
+Date: Fri, 24 May 2024 15:45:00 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
 CC: <intel-xe@lists.freedesktop.org>, Matthew Brost <matthew.brost@intel.com>
-Subject: Re: [PATCH v3 1/5] drm/xe: Decouple job seqno and lrc seqno
-Message-ID: <ZlDuDuNDLvrOi8KJ@intel.com>
+Subject: Re: [PATCH v3 3/5] drm/xe: Don't initialize fences at
+ xe_sched_job_create()
+Message-ID: <ZlDuPLAHRJOeVBSH@intel.com>
 References: <20240524071940.83042-1-thomas.hellstrom@linux.intel.com>
- <20240524071940.83042-2-thomas.hellstrom@linux.intel.com>
- <ZlCHal90bzN_jp55@intel.com>
- <dee8dc60b0fc6954d38801b4fc1ef215a0ba933b.camel@linux.intel.com>
+ <20240524071940.83042-4-thomas.hellstrom@linux.intel.com>
+ <ZlCSNtSd67eXcqBk@intel.com>
+ <96e1e573e0be75b29d0935c69a32158d6f20d1d5.camel@linux.intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <dee8dc60b0fc6954d38801b4fc1ef215a0ba933b.camel@linux.intel.com>
-X-ClientProxiedBy: SJ0PR05CA0055.namprd05.prod.outlook.com
- (2603:10b6:a03:33f::30) To MN0PR11MB6059.namprd11.prod.outlook.com
+In-Reply-To: <96e1e573e0be75b29d0935c69a32158d6f20d1d5.camel@linux.intel.com>
+X-ClientProxiedBy: BY3PR05CA0047.namprd05.prod.outlook.com
+ (2603:10b6:a03:39b::22) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH8PR11MB6708:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8f80d27f-a2fa-4231-ef75-08dc7c29e652
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DM4PR11MB8159:EE_
+X-MS-Office365-Filtering-Correlation-Id: 56338d3b-25ba-421a-5787-08dc7c2a01e8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|376005|366007;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?8PWG/Wt4er+4dtJxcsZ/8OZLO0+DgX2rYsVOoS96PxXhx+3Yb6tK02fMqm?=
- =?iso-8859-1?Q?Udvu5Oz6ktuqRStt7uvZo2x0B3Jfxwl52SYRMlbB9pP95k1Sp1SYiI2ytX?=
- =?iso-8859-1?Q?CvLark4gQYhzl9SSbjSCvthh3Z7FkD2rA3eMWGgqEyXqllAUDj+jMT/gsm?=
- =?iso-8859-1?Q?WV+fYhEk96MNVR8yF61oiv7b0S+6zJt42FlouL9HVNt6/sqL9TRPlLugFa?=
- =?iso-8859-1?Q?MDn21sCkuUeO67DzZAqo+mHjToiDY4agIwx4DvlY/yByz18rlnaXtJ35Ug?=
- =?iso-8859-1?Q?Ccw5Q9AIsB032cpJHtabDVJ8pj7dFNlesLYgjP04uY+GN+A9SlYkRbmHU5?=
- =?iso-8859-1?Q?c6OLoSlwZl9mQWj/lJq00UldIFjvI6OzOkTa3lp/IHPSK8x/i2Kxu6xM3h?=
- =?iso-8859-1?Q?BM/Xez9Tu52fTz+x3I9rUT7/QIjGFa03aT0OHElvE2p+RN9bzskSXcNAoW?=
- =?iso-8859-1?Q?TannllnbI0gOPmRQDJi0J1wGzperxueEvf8LqxbdpyRQpQf9bVyWt5cU10?=
- =?iso-8859-1?Q?Xj44Zkc99t4lxPHSRuMgm2z7aIVaT6l+ulQdz0bCdQ+BLag+IsMuFdBbVJ?=
- =?iso-8859-1?Q?tQHjhZS0mgedDnjRz4fcLp6Ht1ul2KkhH8eMPyXt0K6UwL/AmevCm1hUxw?=
- =?iso-8859-1?Q?roakjTiIqW/0L2PupEOPRKCoiUyYv1yNd9foAbYF7FaQeyCBz28gfEbPz3?=
- =?iso-8859-1?Q?KYcCXlPnlwIeBjfm9hpR3NsE9n8gkjTqj+6E+c/SR8qTcrxjSWNd17Q4YM?=
- =?iso-8859-1?Q?Z9JlZdY/l8bvkFAbLTY6DcL+kAbl6vIqBJjrHzDvAMtPrGGQJdy/czLFFH?=
- =?iso-8859-1?Q?pgDka/I/ssDSocM5iXiyOB4+7sOE7bkQxPaZ5xiZRboi68mG0mrDBI+y1E?=
- =?iso-8859-1?Q?rux+W8NFtG5efx+P9upVTDYCfWQevEOx5nyKXP3xILGDUNpeH0XRzNRmj3?=
- =?iso-8859-1?Q?h2st4YFFF6Ofg8HOCChTyz6GF64j5yvwBvJ8b9LkoFY/ddZeEROgLCY1R9?=
- =?iso-8859-1?Q?0ZKjGGYW6nJjLsehEdkpbUOdDC5JCgKujgPJ6DvayhnfDobtJzdI3+LtMw?=
- =?iso-8859-1?Q?jDQU4aVIY6gNyRZAoXmAo75qhtFXOkKuKZuO2SPvCnaZmHhCgbJaigD/9o?=
- =?iso-8859-1?Q?+ddDUXD8zqoX/HFNTT2WagDMjUEPAbsFm6peiYN4RetjEIg6wR9tIT0hmb?=
- =?iso-8859-1?Q?6uBWO0kuhaWAsFQGCoIVq6bscZVK2dV3TI4+O4VVbKO2Ff85K8GuZULEV8?=
- =?iso-8859-1?Q?+vwOXNEaiauV5pqYlGqERjD2aRFsED5rLu30RrVs4ut6uJAxON3YfkUowu?=
- =?iso-8859-1?Q?BruxoBKEy7H+k4gi8/7hf3A/dA=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?cJJZ9SYA9WkXJlfFHZ99XmQZhcBjjHHAleipRSQC/WbzDK3WXHohM9jgRp?=
+ =?iso-8859-1?Q?LNiy9JmDX44HaPfw/7VWW5lYxrJ3o/8YUNOMuxKZu6BYgxIknbMyzZTkCY?=
+ =?iso-8859-1?Q?cf9QBge6rtYLZl3YVsDb1cS8YemL1aCYaYEoZrxMxGqGl5HZIwsOiBvf1f?=
+ =?iso-8859-1?Q?sDkdEeOCAaH1J98N2ggDhpcGwQDbE9VCd9bO+WvPRjKvEburIot3B6ONlY?=
+ =?iso-8859-1?Q?o4ucDVXGmfZZbI9U4n2odxSLIfjm+sWg6pd7rp5mpVRqC4P7l8iwAcE0xL?=
+ =?iso-8859-1?Q?oCN1VRvRlGRUVGpzPr665/Z6FWBQYKiH7cycZ62ibZbgkfm131SWbDR7fF?=
+ =?iso-8859-1?Q?xKg74/GlUH7eZLSMpzYbiFB3GipkVnxlS8O9XQ8YIO3HfBaWwsYeF/4tdD?=
+ =?iso-8859-1?Q?609eN0nXjrnbvaqcxx0sgQBgovDGDJnCzzXxlOy1O8NyVHOm4TsgAQct9i?=
+ =?iso-8859-1?Q?K9R6dxEDKxig+GOo/v5oRZdDjssCRxjKYKZ2p4bs/USqsL/qIcYXmh2XJH?=
+ =?iso-8859-1?Q?ZsNEB17PzKom+KRRCMzptuYrvVs75ESW91hKtpqaIeI9g7G3J31wNjYz4B?=
+ =?iso-8859-1?Q?CuFtDRm+iQrWM6SWfBb/bWCfuEWXXjd7/9+S5lJUvmA/d4nPyalefgRp6b?=
+ =?iso-8859-1?Q?Wt6MCbnDkGrLFl4soOcAtkwt8QnqfGz1PLdUiFC4BxcdOkfVTtiyhKKBka?=
+ =?iso-8859-1?Q?jcjbOkI1K0X2eDVvjTogGwLfvn3Cqcl6zV1680nDhxmVS6VsOprocvvukd?=
+ =?iso-8859-1?Q?z3pssbLYhyqoy1rpUWArNwUCTmuTJIxIYabQu52Cso/FZSUjqSRSYIswLC?=
+ =?iso-8859-1?Q?9ha6mbsfG8CjqDHssnIc9/7/90WTFQDo2gWhleWgc4jpVpm9vP3Dxi7PQM?=
+ =?iso-8859-1?Q?29nYUm18MlKj/hn9E+3Wfr3LcX8BPlanCSy3HdBjIhXOzc3gqAfJhz5A9T?=
+ =?iso-8859-1?Q?fe6U1rVhr+61I5DA/Zj+KckH2SPB4+LWkkAPk+0LBUaJOjOoyvyKg3mz4D?=
+ =?iso-8859-1?Q?bCl+FhMkcbsch4EAkphMqQ5NCsVs5u9DMKbfcrXN7jWAyUNIvP8tTyQM8k?=
+ =?iso-8859-1?Q?WuFt8GhqY1E4Fs+sSutjAmBLrSfTdKuntn50/vYB8LNWcvR5YqoR6rDkpW?=
+ =?iso-8859-1?Q?SqdVM6IsDG6EY/lREoNa4cZSdXHdjz5dAhHH3F0Gdt4O0ljzniO01ItHFQ?=
+ =?iso-8859-1?Q?Yl+7qorGIawjPg70e+Cf4z4fhy+lOq6en892n7xnfX7pU1Tg7g6WHAhSWY?=
+ =?iso-8859-1?Q?Pp6ZDFVt0gZw+vzFjweE99aAKqZVq0XyuBkDPbpfhU6+wwzp2zOYq+qUen?=
+ =?iso-8859-1?Q?Et7lsctS8elXqVHkD2zE3M/CDg=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?0cDNNhWMFcinf4IHKDnkaSWtzC8c9dbFhI7nt29yE6Mue+zTnwfGAsBiuZ?=
- =?iso-8859-1?Q?4UxoN0RuCGCHQ6bZUU/hMrznIzU6Z4aEr3RacjaAAIMRC33hl3hFQVP0i2?=
- =?iso-8859-1?Q?fRjGRlY8eBLMxYYkBKbrHLy7JUzhT0myFOAIi8AxsRdVpKDeZz7voieN9J?=
- =?iso-8859-1?Q?urXIgLUi2ilUf12bVsd9O4kAp06Cd9cxwOHKYE1GEFGoOl2nzpiYDe872B?=
- =?iso-8859-1?Q?2YU65CALzT5/dql6zZ2Wg/mdhhO3tZMn60MD7tq8DFuHTdoNZw4NTzf6wc?=
- =?iso-8859-1?Q?8DwQ/d2CjkzB2SDkO0aojNGEBtCUxMXYn1SajUfwBe08XJHK2v8C1+RlDf?=
- =?iso-8859-1?Q?S35o0lCE3OH/2a3uwXDOgrKMaLU+zCyBSBgh3ehbwPGZpaYKTT3HLgXmOx?=
- =?iso-8859-1?Q?81kUL1cWzykjUYF1FEggbnZzkP+v5ScWbi5HrfwOr86yCEQYmgxxTxL5jT?=
- =?iso-8859-1?Q?44oMUoYkr86JtkQ/AsR71W/XJyLYi7/g08+UzO7ATWqa4VxRfv5WV/MEAq?=
- =?iso-8859-1?Q?mp0ll3xECkxfw0/1+JeAxh5ZEaUMiLjjlLqiUv+FxtiU8vmr/w27LnYfhD?=
- =?iso-8859-1?Q?ySVn61ECte5pqa4xjsmeuLbF9sFHjXTibHqG2rdDx8zvp6ELpvNWPffFw/?=
- =?iso-8859-1?Q?uH/mA2q0wzhYF/WWAJsnD2i0lS9OHbu6u7tPHBt46JvJZS7fYtLXO1cvDj?=
- =?iso-8859-1?Q?3Abc4Z89qDgHW9UP0C1LmFqhqTm7hMpeY8HuOnuZGqJuGntgLSsOdXMlTW?=
- =?iso-8859-1?Q?3F5S1Wa06jZy86So/XMo2puxxl4vcLwhoQtB7DSljva3l/Xrv0zc4RdMLA?=
- =?iso-8859-1?Q?h+WHzmzJX6lpIvlNkNHhPjUIgCNAa6xRCG061IW4t6yL6jED8sstmQK3s2?=
- =?iso-8859-1?Q?H0T4f+xAA1JmYIao9CNLbrXCKWS1P8o//OWp1oMMzuZ9jzZCT2ZxF3d7QJ?=
- =?iso-8859-1?Q?S9vSt1bnJ2SOpUr0/O9ifbHJuUZR07PbDWRjx3wyKt9hPCD4DbodBh+zmG?=
- =?iso-8859-1?Q?OK0aS3vASPsfgFdqLwKWGnkjYCQMaflFUUXqWpxRZBAvh9C+50Xr2rJ0WW?=
- =?iso-8859-1?Q?2TsuB+X1cTKMglArz7n0g8ZDGEreB0Dj6ypXOhDfQo+0LuzWD+o7ZX67b3?=
- =?iso-8859-1?Q?lei6++zevtLlQlqOHuL4Mvyo6acmOSnIl2rOqR05dgl/pVeTo8HxnnfRFZ?=
- =?iso-8859-1?Q?67LDDP/1JOBolvBFX3yWs+8Tzn2V0j5OiAsIx9mxDMvKLydGLSxbJhvtQC?=
- =?iso-8859-1?Q?dG59irz+pT3dpXy88G4I4HxpxkxWaR9huUJy2hZ4pjGYxlumNSG+FHsamM?=
- =?iso-8859-1?Q?SqXqYQdKQ63Uhq19ghoZRGRo4sCGAn2k1GsOwNFAwZ8pqaTE59c9xvPvLS?=
- =?iso-8859-1?Q?NGMtC0E7eqqhBkzXPiPFGz5iP97w3x6deLcNRRROaUhHRce+GpBVq5vW0Z?=
- =?iso-8859-1?Q?v5/dLCRIJF2JhayRhcqOowLalSY7Tm7CGOwmtqpH/Jj+yX61H/QLlQGy4J?=
- =?iso-8859-1?Q?jknF03bF7kJlAtWGlvgRSppuZYrVMDVxJCcBmAzkordrvjnLpvUldKubSn?=
- =?iso-8859-1?Q?mLcwMEK4kRpmlrHNRoyq5z7AGyON7bD8yYUuhKyopcxE5akbzqrlmS0f6U?=
- =?iso-8859-1?Q?d5IoafISlekKL69e6cYNIEyiOkQmYGmwqg9n/tYF0yO1jWWlkk4Z1lkA?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?OKXk63KGZ2wqi+edjyaytck4vDwNHx8cmZdHgssZL4oIUOZyBSkf27GgkK?=
+ =?iso-8859-1?Q?lT6fY2LkJOVoWXv9qYHTN3+6FLi7uedZBpvXYbZsa4EF+wLiX0trrOCyKc?=
+ =?iso-8859-1?Q?zYpHmfe7Z7/shq3BNw3veCVI8NbtATGVLigKWEcKAfzo9EuCUL80zllOpm?=
+ =?iso-8859-1?Q?AEanKJ2KTzlMoTvhYZFlfxbQUg60YepIqqOtS+9bTjYqzhEgnE8px//c2A?=
+ =?iso-8859-1?Q?695ZhZUJvk9wet1nQZhqipu0Bk4x1r8Rnl0ybwhwtvJjx+ALwM5GW01Jt0?=
+ =?iso-8859-1?Q?XSQ4Na7pmjLPx4M0nM+GywPfV8MS5ouVaReBPiyTYIPpCaWZjy8JTXMcFg?=
+ =?iso-8859-1?Q?7ESRVRsxKL6Z3Il/X7CEMY/yv8S7SBIfhfbMAr3gzYvNocEuD41LTj/CFM?=
+ =?iso-8859-1?Q?16rRmfM1u+mNd1XDzi+K5tj8gxesyzSF00GbAFVUClej/v7xad9jPokdP1?=
+ =?iso-8859-1?Q?6YA5Di9Qq3RZ3WeEqZflhm+3viStLbJQUqU3mAEEfCD7UnXljjcrCn4v/K?=
+ =?iso-8859-1?Q?IXvxl/Kv+taTHzV8p5Tv3nnW0VmGFKTxcRrzF5YDgyNV1GJEKgD/ckcK3e?=
+ =?iso-8859-1?Q?+UqcUsf3Y4NZlkvnFwp6UPdhg3m/PJvj+49sBsps6zZbf6ozUJWThiksKs?=
+ =?iso-8859-1?Q?ziLD0+L1lQmAvKTiOxH9OjUI8BXU6tTUcnu9uU5tpIq8wqE3K4Bx9cEkyP?=
+ =?iso-8859-1?Q?HjscBbrgM6QFF5xz9Thpp/D3Lg9yZHHeK5GuLxpbj5xAlLOPtiftOsCq+k?=
+ =?iso-8859-1?Q?bXVoEEptTt+CfLb/sJ2JS59UFUS9Uq8bNPf13yIbJQ06M9N72CW36Hk/q3?=
+ =?iso-8859-1?Q?S0en4X53yS2BpJGs6ks+NFKZiv4zwHa9ibb5SuMrlbhB91gJDkBytL4B19?=
+ =?iso-8859-1?Q?vhJLghgywRDYmsoICB1hTUpcD2ykO4XwuxnIqiAPyhQU3DmAFeGp1wKAgu?=
+ =?iso-8859-1?Q?WCIT723Hxa7xe+puPRXaqMc1YoI4i0+ECLcfZYuuhR8btITcy/2yDEQD+m?=
+ =?iso-8859-1?Q?v5aNSfzOuZhoM49Vs6aeFlAEvmKLMugZmY4pX/PSOskWlmzHI+pdhIRi1O?=
+ =?iso-8859-1?Q?eT98F4Yj926a+c4ru4zDK315tY71W5EzMKgzlV0gD7v+g0cW0dK6le2Uq7?=
+ =?iso-8859-1?Q?aPlK1TtDX93Cy1fSV7dy+jniuRRi+bZB804t1/QAx6gEzwS+PZyLAqpyeS?=
+ =?iso-8859-1?Q?c9LNleO6VlMlMBpUB32fSeBh90loBPfZDPUexQCIMKCp7XcMCfus7EdyOi?=
+ =?iso-8859-1?Q?6nkWxocy8/87UVPtxzqkP9ZTGTl39I5gGdoNDJW1t9vo7QjqHKg0UdcES1?=
+ =?iso-8859-1?Q?K8rUw31mqMeXGZzLzRjLQlJ9YsHfAFBbt6DJ9rKrpase5gFCT5U49NY67v?=
+ =?iso-8859-1?Q?IDq17Kfd+tRMqenuwbAa/+E6H/4rMmqwks8W0b4pXmmqOuNrO59QIHekEF?=
+ =?iso-8859-1?Q?SLAzfpEucmMLKxBmBEIOsqbV1uM0vD8rX9vhNhOPx851d3OoXv/hdrxLcx?=
+ =?iso-8859-1?Q?PR4zsL89F0mqYdmrBD6Qxi2XL+/QwXCZE4jE0qYKXEOQSKE3Xv4sE9Jn7S?=
+ =?iso-8859-1?Q?mZN6yChllGhrlV9RiG62YpxiTPFgy1VED38nbLXSWuuWOCQvxjS1SnMqyg?=
+ =?iso-8859-1?Q?ZH49tJBkUDDazoFt2YZf/B8wlezAD++RdcCA5mX0/vPCEUfVJDJ49NEw?=
  =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f80d27f-a2fa-4231-ef75-08dc7c29e652
+X-MS-Exchange-CrossTenant-Network-Message-Id: 56338d3b-25ba-421a-5787-08dc7c2a01e8
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 May 2024 19:44:18.1247 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 May 2024 19:45:04.4504 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7PHdBCl+VnJK2HYYTaSrE/piz5jRBBaqYIL7aZQSYmfcesBdnpxQrWcKVv1w2H+r1jlPtcxpmIxyst4wwNzE6w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6708
+X-MS-Exchange-CrossTenant-UserPrincipalName: RzQneqtyIBB3a4kNg7qEBFjALh614UD0yTQ7AAojjKMIfYCHFUoim9VRRnPfBp/OaFT6ZDmm11cyzlKf5QVnDg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB8159
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,356 +183,570 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, May 24, 2024 at 02:56:51PM +0200, Thomas Hellström wrote:
-> Hi, Rodrigo,
+On Fri, May 24, 2024 at 03:22:33PM +0200, Thomas Hellström wrote:
+> Hi, Rodrigo.
 > 
-> Thanks for reviewing,
+> Thanks for reviewing.
 > 
-> On Fri, 2024-05-24 at 08:26 -0400, Rodrigo Vivi wrote:
-> > On Fri, May 24, 2024 at 09:19:36AM +0200, Thomas Hellström wrote:
-> > > From: Matthew Brost <matthew.brost@intel.com>
+> On Fri, 2024-05-24 at 09:12 -0400, Rodrigo Vivi wrote:
+> > On Fri, May 24, 2024 at 09:19:38AM +0200, Thomas Hellström wrote:
+> > > Pre-allocate but don't initialize fences at xe_sched_job_create(),
+> > > and initialize / arm them instead at xe_sched_job_arm(). This
+> > > makes it possible to move xe_sched_job_create() with its memory
+> > > allocation out of any lock that is required for fence
+> > > initialization, and that may not allow memory allocation under it.
 > > > 
-> > > Tightly coupling these seqno presents problems if alternative
-> > > fences for
-> > > jobs are used. Decouple these for correctness.
+> > > Replaces the struct dma_fence_array for parallell jobs with a
+> > > struct dma_fence_chain, since the former doesn't allow
+> > > a split-up between allocation and initialization.
+> > 
+> > I'm wondering if it would be possible/better to split this change
+> > in a separate patch.
+> 
+> It's possible to do it as a prereq, but then we'd have to remove all
+> the new code since we'd had to allocate and initialize in _job_create()
+> to be really consistent. So I think it is better here.
+> 
+> > 
 > > > 
 > > > v2:
-> > > - Slightly reword commit message (Thomas)
-> > > - Make sure the lrc fence ops are used in comparison (Thomas)
-> > > - Assume seqno is unsigned rather than signed in format string
-> > > (Thomas)
+> > > - Rebase.
+> > > - Don't always use the first lrc when initializing parallel
+> > >   lrc fences.
+> > > - Use dma_fence_chain_contained() to access the lrc fences.
 > > > 
-> > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > > > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 > > > ---
-> > >  drivers/gpu/drm/xe/xe_exec_queue.c      |  2 +-
-> > >  drivers/gpu/drm/xe/xe_guc_submit.c      |  5 +++--
-> > >  drivers/gpu/drm/xe/xe_ring_ops.c        | 12 ++++++------
-> > >  drivers/gpu/drm/xe/xe_sched_job.c       | 16 ++++++++--------
-> > >  drivers/gpu/drm/xe/xe_sched_job.h       |  5 +++++
-> > >  drivers/gpu/drm/xe/xe_sched_job_types.h |  2 ++
-> > >  drivers/gpu/drm/xe/xe_trace.h           |  7 +++++--
-> > >  7 files changed, 30 insertions(+), 19 deletions(-)
+> > >  drivers/gpu/drm/xe/xe_exec_queue.c       |   5 -
+> > >  drivers/gpu/drm/xe/xe_exec_queue_types.h |  10 --
+> > >  drivers/gpu/drm/xe/xe_ring_ops.c         |  12 +-
+> > >  drivers/gpu/drm/xe/xe_sched_job.c        | 159 +++++++++++++------
+> > > ----
+> > >  drivers/gpu/drm/xe/xe_sched_job_types.h  |  18 ++-
+> > >  drivers/gpu/drm/xe/xe_trace.h            |   2 +-
+> > >  6 files changed, 113 insertions(+), 93 deletions(-)
 > > > 
 > > > diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c
 > > > b/drivers/gpu/drm/xe/xe_exec_queue.c
-> > > index 0fd61fb4d104..e8bf250f5b6a 100644
+> > > index e8bf250f5b6a..e3cebec3de24 100644
 > > > --- a/drivers/gpu/drm/xe/xe_exec_queue.c
 > > > +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> > > @@ -98,7 +98,7 @@ static struct xe_exec_queue
+> > > @@ -96,11 +96,6 @@ static struct xe_exec_queue
 > > > *__xe_exec_queue_alloc(struct xe_device *xe,
+> > >  		}
+> > >  	}
 > > >  
-> > >  	if (xe_exec_queue_is_parallel(q)) {
-> > >  		q->parallel.composite_fence_ctx =
+> > > -	if (xe_exec_queue_is_parallel(q)) {
+> > > -		q->parallel.composite_fence_ctx =
 > > > dma_fence_context_alloc(1);
-> > > -		q->parallel.composite_fence_seqno =
-> > > XE_FENCE_INITIAL_SEQNO;
-> > > +		q->parallel.composite_fence_seqno = 0;
-> > 
-> > Why do you change this case to 0 instead of the -127?
-> > Shouldn't it be a separate patch since it is not directly the new
-> > lrc_seqno
-> > that this patch is introducing? 
-> 
-> This change was done by Matthew, but I think the intention was to
-> explicitly separate the composite fence seqno and the lrc fence seqno
-> to ensure they are different and we'd see any remaining fallouts
-> because of that.
-> 
-> 
-> > 
-> > >  	}
-> > >  
+> > > -		q->parallel.composite_fence_seqno = 0;
+> > > -	}
+> > > -
 > > >  	return q;
-> > > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > > b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > > index 54778189cfd5..53ab98c5ef5e 100644
-> > > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > > @@ -940,8 +940,9 @@ guc_exec_queue_timedout_job(struct
-> > > drm_sched_job *drm_job)
-> > >  		return DRM_GPU_SCHED_STAT_NOMINAL;
-> > >  	}
-> > >  
-> > > -	drm_notice(&xe->drm, "Timedout job: seqno=%u, guc_id=%d,
-> > > flags=0x%lx",
-> > > -		   xe_sched_job_seqno(job), q->guc->id, q->flags);
-> > > +	drm_notice(&xe->drm, "Timedout job: seqno=%u,
-> > > lrc_seqno=%u, guc_id=%d, flags=0x%lx",
-> > > +		   xe_sched_job_seqno(job),
-> > > xe_sched_job_lrc_seqno(job),
-> > > +		   q->guc->id, q->flags);
-> > >  	xe_gt_WARN(q->gt, q->flags & EXEC_QUEUE_FLAG_KERNEL,
-> > >  		   "Kernel-submitted job timed out\n");
-> > >  	xe_gt_WARN(q->gt, q->flags & EXEC_QUEUE_FLAG_VM &&
-> > > !exec_queue_killed(q),
-> > > diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > b/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > index a3ca718456f6..2705d1f9d572 100644
-> > > --- a/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > @@ -398,7 +398,7 @@ static void emit_job_gen12_gsc(struct
-> > > xe_sched_job *job)
-> > >  
-> > >  	__emit_job_gen12_simple(job, job->q->lrc,
-> > >  				job->batch_addr[0],
-> > > -				xe_sched_job_seqno(job));
-> > > +				xe_sched_job_lrc_seqno(job));
-> > 
-> > Looking at this I got a bit confused now.
-> > If you are emitting the job, why you are using the lrc seqno and not
-> > the job seqno?
-> > I mean, the other seqno that remains looks like a fence_seqno and not
-> > a job_seqno,
-> > right? In this case wouldn't it be better if we could rename the
-> > other one to make
-> > it more clear the split so the next developer changes the seqnos
-> > don't get confused
-> > in which to use when/where?
-> 
-> You mean like xe_sched_job_seqno() and xe_sched_composite_seqno()?
-
-hmmm... I hadn't thought about that, but seems better indeed.
-keep this lrc as the job_seqno, and the other one as the composite_seqno.
-
-but it can also be this patch as is and then, an extra patch on top with
-s/xe_sched_job_seqno/xe_sched_job_composite_seqno
-and also rename everywhere else from seqno to composite seqno.
-
-> I'll let Matt comment on that, but it's only parallel jobs that have
-> composite seqnos.
-
-or perhaps parallel_seqno then?! so we don't even have a doubt on when
-to look to this one or to the other one?
-
-But up you you, you got the point.
-
-And thanks for all the explanations. Feel free to use
-
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-with or without the changes in the name.
-
-> 
-> > 
 > > >  }
 > > >  
-> > >  static void emit_job_gen12_copy(struct xe_sched_job *job)
-> > > @@ -407,14 +407,14 @@ static void emit_job_gen12_copy(struct
-> > > xe_sched_job *job)
+> > > diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > > b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > > index ee78d497d838..f0c40e8ad80a 100644
+> > > --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > > +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > > @@ -103,16 +103,6 @@ struct xe_exec_queue {
+> > >  		struct xe_guc_exec_queue *guc;
+> > >  	};
 > > >  
-> > >  	if (xe_sched_job_is_migration(job->q)) {
-> > >  		emit_migration_job_gen12(job, job->q->lrc,
-> > > -					 xe_sched_job_seqno(job));
-> > > +					
-> > > xe_sched_job_lrc_seqno(job));
-> > >  		return;
+> > > -	/**
+> > > -	 * @parallel: parallel submission state
+> > > -	 */
+> > > -	struct {
+> > > -		/** @parallel.composite_fence_ctx: context
+> > > composite fence */
+> > > -		u64 composite_fence_ctx;
+> > > -		/** @parallel.composite_fence_seqno: seqno for
+> > > composite fence */
+> > > -		u32 composite_fence_seqno;
+> > > -	} parallel;
+> > > -
+> > >  	/** @sched_props: scheduling properties */
+> > >  	struct {
+> > >  		/** @sched_props.timeslice_us: timeslice period in
+> > > micro-seconds */
+> > > diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c
+> > > b/drivers/gpu/drm/xe/xe_ring_ops.c
+> > > index 2705d1f9d572..f75756e7a87b 100644
+> > > --- a/drivers/gpu/drm/xe/xe_ring_ops.c
+> > > +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+> > > @@ -366,7 +366,7 @@ static void emit_migration_job_gen12(struct
+> > > xe_sched_job *job,
+> > >  
+> > >  	dw[i++] = MI_ARB_ON_OFF | MI_ARB_DISABLE; /* Enabled again
+> > > below */
+> > >  
+> > > -	i = emit_bb_start(job->batch_addr[0], BIT(8), dw, i);
+> > > +	i = emit_bb_start(job->ptrs[0].batch_addr, BIT(8), dw, i);
+> > >  
+> > >  	if (!IS_SRIOV_VF(gt_to_xe(job->q->gt))) {
+> > >  		/* XXX: Do we need this? Leaving for now. */
+> > > @@ -375,7 +375,7 @@ static void emit_migration_job_gen12(struct
+> > > xe_sched_job *job,
+> > >  		dw[i++] = preparser_disable(false);
 > > >  	}
+> > >  
+> > > -	i = emit_bb_start(job->batch_addr[1], BIT(8), dw, i);
+> > > +	i = emit_bb_start(job->ptrs[1].batch_addr, BIT(8), dw, i);
+> > >  
+> > >  	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | job-
+> > > >migrate_flush_flags |
+> > >  		MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW;
+> > > @@ -397,7 +397,7 @@ static void emit_job_gen12_gsc(struct
+> > > xe_sched_job *job)
+> > >  	xe_gt_assert(gt, job->q->width <= 1); /* no parallel
+> > > submission for GSCCS */
+> > >  
+> > >  	__emit_job_gen12_simple(job, job->q->lrc,
+> > > -				job->batch_addr[0],
+> > > +				job->ptrs[0].batch_addr,
+> > >  				xe_sched_job_lrc_seqno(job));
+> > >  }
+> > >  
+> > > @@ -413,7 +413,7 @@ static void emit_job_gen12_copy(struct
+> > > xe_sched_job *job)
 > > >  
 > > >  	for (i = 0; i < job->q->width; ++i)
 > > >  		__emit_job_gen12_simple(job, job->q->lrc + i,
-> > > -				        job->batch_addr[i],
-> > > -				        xe_sched_job_seqno(job));
-> > > +					job->batch_addr[i],
-> > > +					xe_sched_job_lrc_seqno(job
+> > > -					job->batch_addr[i],
+> > > +					job->ptrs[i].batch_addr,
+> > >  					xe_sched_job_lrc_seqno(job
 > > > ));
 > > >  }
 > > >  
-> > >  static void emit_job_gen12_video(struct xe_sched_job *job)
-> > > @@ -425,7 +425,7 @@ static void emit_job_gen12_video(struct
+> > > @@ -424,7 +424,7 @@ static void emit_job_gen12_video(struct
 > > > xe_sched_job *job)
+> > >  	/* FIXME: Not doing parallel handshake for now */
 > > >  	for (i = 0; i < job->q->width; ++i)
 > > >  		__emit_job_gen12_video(job, job->q->lrc + i,
-> > >  				       job->batch_addr[i],
-> > > -				       xe_sched_job_seqno(job));
-> > > +				      
+> > > -				       job->batch_addr[i],
+> > > +				       job->ptrs[i].batch_addr,
+> > >  				      
 > > > xe_sched_job_lrc_seqno(job));
 > > >  }
 > > >  
-> > >  static void emit_job_gen12_render_compute(struct xe_sched_job
-> > > *job)
-> > > @@ -435,7 +435,7 @@ static void
+> > > @@ -434,7 +434,7 @@ static void
 > > > emit_job_gen12_render_compute(struct xe_sched_job *job)
+> > >  
 > > >  	for (i = 0; i < job->q->width; ++i)
 > > >  		__emit_job_gen12_render_compute(job, job->q->lrc +
 > > > i,
-> > >  						job-
+> > > -						job-
 > > > >batch_addr[i],
-> > > -
-> > > 						xe_sched_job_seqno(job));
-> > > +						xe_sched_job_lrc_s
+> > > +						job-
+> > > >ptrs[i].batch_addr,
+> > >  						xe_sched_job_lrc_s
 > > > eqno(job));
 > > >  }
 > > >  
-> > >  static const struct xe_ring_ops ring_ops_gen12_gsc = {
 > > > diff --git a/drivers/gpu/drm/xe/xe_sched_job.c
 > > > b/drivers/gpu/drm/xe/xe_sched_job.c
-> > > index a4e030f5e019..874450be327e 100644
+> > > index 874450be327e..4537c7f9099f 100644
 > > > --- a/drivers/gpu/drm/xe/xe_sched_job.c
 > > > +++ b/drivers/gpu/drm/xe/xe_sched_job.c
-> > > @@ -117,6 +117,7 @@ struct xe_sched_job *xe_sched_job_create(struct
-> > > xe_exec_queue *q,
-> > >  			err = PTR_ERR(job->fence);
+> > > @@ -6,7 +6,7 @@
+> > >  #include "xe_sched_job.h"
+> > >  
+> > >  #include <drm/xe_drm.h>
+> > > -#include <linux/dma-fence-array.h>
+> > > +#include <linux/dma-fence-chain.h>
+> > >  #include <linux/slab.h>
+> > >  
+> > >  #include "xe_device.h"
+> > > @@ -29,7 +29,7 @@ int __init xe_sched_job_module_init(void)
+> > >  	xe_sched_job_slab =
+> > >  		kmem_cache_create("xe_sched_job",
+> > >  				  sizeof(struct xe_sched_job) +
+> > > -				  sizeof(u64), 0,
+> > > +				  sizeof(struct xe_job_ptrs), 0,
+> > >  				  SLAB_HWCACHE_ALIGN, NULL);
+> > >  	if (!xe_sched_job_slab)
+> > >  		return -ENOMEM;
+> > > @@ -37,7 +37,7 @@ int __init xe_sched_job_module_init(void)
+> > >  	xe_sched_job_parallel_slab =
+> > >  		kmem_cache_create("xe_sched_job_parallel",
+> > >  				  sizeof(struct xe_sched_job) +
+> > > -				  sizeof(u64) *
+> > > +				  sizeof(struct xe_job_ptrs) *
+> > >  				  XE_HW_ENGINE_MAX_INSTANCE, 0,
+> > >  				  SLAB_HWCACHE_ALIGN, NULL);
+> > >  	if (!xe_sched_job_parallel_slab) {
+> > > @@ -79,26 +79,33 @@ static struct xe_device *job_to_xe(struct
+> > > xe_sched_job *job)
+> > >  	return gt_to_xe(job->q->gt);
+> > >  }
+> > >  
+> > > +/* Free unused pre-allocated fences */
+> > > +static void xe_sched_job_free_fences(struct xe_sched_job *job)
+> > > +{
+> > > +	int i;
+> > > +
+> > > +	for (i = 0; i < job->q->width; ++i) {
+> > > +		struct xe_job_ptrs *ptrs = &job->ptrs[i];
+> > > +
+> > > +		if (ptrs->lrc_fence)
+> > > +			xe_lrc_free_seqno_fence(ptrs->lrc_fence);
+> > > +		if (ptrs->chain_fence)
+> > > +			dma_fence_chain_free(ptrs->chain_fence);
+> > > +	}
+> > > +}
+> > > +
+> > >  struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
+> > >  					 u64 *batch_addr)
+> > >  {
+> > > -	struct xe_sched_job *job;
+> > > -	struct dma_fence **fences;
+> > >  	bool is_migration = xe_sched_job_is_migration(q);
+> > > +	struct xe_sched_job *job;
+> > >  	int err;
+> > > -	int i, j;
+> > > +	int i;
+> > >  	u32 width;
+> > >  
+> > >  	/* only a kernel context can submit a vm-less job */
+> > >  	XE_WARN_ON(!q->vm && !(q->flags &
+> > > EXEC_QUEUE_FLAG_KERNEL));
+> > >  
+> > > -	/* Migration and kernel engines have their own locking */
+> > > -	if (!(q->flags & (EXEC_QUEUE_FLAG_KERNEL |
+> > > EXEC_QUEUE_FLAG_VM))) {
+> > > -		lockdep_assert_held(&q->vm->lock);
+> > > -		if (!xe_vm_in_lr_mode(q->vm))
+> > > -			xe_vm_assert_held(q->vm);
+> > > -	}
+> > > -
+> > >  	job = job_alloc(xe_exec_queue_is_parallel(q) ||
+> > > is_migration);
+> > >  	if (!job)
+> > >  		return ERR_PTR(-ENOMEM);
+> > > @@ -111,43 +118,25 @@ struct xe_sched_job
+> > > *xe_sched_job_create(struct xe_exec_queue *q,
+> > >  	if (err)
+> > >  		goto err_free;
+> > >  
+> > > -	if (!xe_exec_queue_is_parallel(q)) {
+> > > -		job->fence = xe_lrc_create_seqno_fence(q->lrc);
+> > > -		if (IS_ERR(job->fence)) {
+> > > -			err = PTR_ERR(job->fence);
+> > > -			goto err_sched_job;
+> > > -		}
+> > > -		job->lrc_seqno = job->fence->seqno;
+> > > -	} else {
+> > > -		struct dma_fence_array *cf;
+> > > +	for (i = 0; i < q->width; ++i) {
+> > > +		struct dma_fence *fence =
+> > > xe_lrc_alloc_seqno_fence();
+> > > +		struct dma_fence_chain *chain;
+> > >  
+> > > -		fences = kmalloc_array(q->width, sizeof(*fences),
+> > > GFP_KERNEL);
+> > > -		if (!fences) {
+> > > -			err = -ENOMEM;
+> > > +		if (IS_ERR(fence)) {
+> > > +			err = PTR_ERR(fence);
 > > >  			goto err_sched_job;
 > > >  		}
-> > > +		job->lrc_seqno = job->fence->seqno;
-> > >  	} else {
-> > >  		struct dma_fence_array *cf;
+> > > +		job->ptrs[i].lrc_fence = fence;
 > > >  
-> > > @@ -132,6 +133,8 @@ struct xe_sched_job *xe_sched_job_create(struct
-> > > xe_exec_queue *q,
-> > >  				err = PTR_ERR(fences[j]);
-> > >  				goto err_fences;
-> > >  			}
-> > > +			if (!j)
-> > > +				job->lrc_seqno = fences[0]->seqno;
-> > 
-> > why the lrc_seqno is = the first fence seqno?
-> 
-> In a parallell job, all LRC fences have the same seqno so we can
-> grab any.
-> 
-> > 
+> > > -		for (j = 0; j < q->width; ++j) {
+> > > -			fences[j] = xe_lrc_create_seqno_fence(q-
+> > > >lrc + j);
+> > > -			if (IS_ERR(fences[j])) {
+> > > -				err = PTR_ERR(fences[j]);
+> > > -				goto err_fences;
+> > > -			}
+> > > -			if (!j)
+> > > -				job->lrc_seqno = fences[0]->seqno;
+> > > -		}
+> > > +		if (i + 1 == q->width)
+> > > +			continue;
+> > >  
+> > > -		cf = dma_fence_array_create(q->width, fences,
+> > > -					    q-
+> > > >parallel.composite_fence_ctx,
+> > > -					    q-
+> > > >parallel.composite_fence_seqno++,
+> > > -					    false);
+> > > -		if (!cf) {
+> > > -			--q->parallel.composite_fence_seqno;
+> > > +		chain = dma_fence_chain_alloc();
+> > > +		if (!chain) {
+> > >  			err = -ENOMEM;
+> > > -			goto err_fences;
+> > > +			goto err_sched_job;
 > > >  		}
-> > >  
-> > >  		cf = dma_fence_array_create(q->width, fences,
-> > > @@ -144,10 +147,6 @@ struct xe_sched_job
-> > > *xe_sched_job_create(struct xe_exec_queue *q,
-> > >  			goto err_fences;
-> > >  		}
-> > >  
-> > > -		/* Sanity check */
-> > > -		for (j = 0; j < q->width; ++j)
-> > > -			xe_assert(job_to_xe(job), cf->base.seqno
-> > > == fences[j]->seqno);
 > > > -
-> > >  		job->fence = &cf->base;
+> > > -		job->fence = &cf->base;
+> > > +		job->ptrs[i].chain_fence = chain;
 > > >  	}
 > > >  
-> > > @@ -229,9 +228,9 @@ bool xe_sched_job_started(struct xe_sched_job
-> > > *job)
-> > >  {
-> > >  	struct xe_lrc *lrc = job->q->lrc;
+> > >  	width = q->width;
+> > > @@ -155,19 +144,14 @@ struct xe_sched_job
+> > > *xe_sched_job_create(struct xe_exec_queue *q,
+> > >  		width = 2;
 > > >  
-> > > -	return !__dma_fence_is_later(xe_sched_job_seqno(job),
-> > > +	return !__dma_fence_is_later(xe_sched_job_lrc_seqno(job),
+> > >  	for (i = 0; i < width; ++i)
+> > > -		job->batch_addr[i] = batch_addr[i];
+> > > +		job->ptrs[i].batch_addr = batch_addr[i];
+> > >  
+> > >  	xe_pm_runtime_get_noresume(job_to_xe(job));
+> > >  	trace_xe_sched_job_create(job);
+> > >  	return job;
+> > >  
+> > > -err_fences:
+> > > -	for (j = j - 1; j >= 0; --j) {
+> > > -		--q->lrc[j].fence_ctx.next_seqno;
+> > > -		dma_fence_put(fences[j]);
+> > > -	}
+> > > -	kfree(fences);
+> > >  err_sched_job:
+> > > +	xe_sched_job_free_fences(job);
+> > >  	drm_sched_job_cleanup(&job->drm);
+> > >  err_free:
+> > >  	xe_exec_queue_put(q);
+> > > @@ -188,6 +172,7 @@ void xe_sched_job_destroy(struct kref *ref)
+> > >  		container_of(ref, struct xe_sched_job, refcount);
+> > >  	struct xe_device *xe = job_to_xe(job);
+> > >  
+> > > +	xe_sched_job_free_fences(job);
+> > >  	xe_exec_queue_put(job->q);
+> > >  	dma_fence_put(job->fence);
+> > >  	drm_sched_job_cleanup(&job->drm);
+> > > @@ -195,27 +180,32 @@ void xe_sched_job_destroy(struct kref *ref)
+> > >  	xe_pm_runtime_put(xe);
+> > >  }
+> > >  
+> > > -void xe_sched_job_set_error(struct xe_sched_job *job, int error)
+> > > +/* Set the error status under the fence to avoid racing with
+> > > signaling */
+> > > +static bool xe_fence_set_error(struct dma_fence *fence, int error)
+> > >  {
+> > > -	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &job->fence-
+> > > >flags))
+> > > -		return;
+> > > +	unsigned long irq_flags;
+> > > +	bool signaled;
+> > >  
+> > > -	dma_fence_set_error(job->fence, error);
+> > > +	spin_lock_irqsave(fence->lock, irq_flags);
+> > > +	signaled = test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence-
+> > > >flags);
+> > > +	if (!signaled)
+> > > +		dma_fence_set_error(fence, error);
+> > > +	spin_unlock_irqrestore(fence->lock, irq_flags);
+> > > +
+> > > +	return signaled;
+> > > +}
+> > >  
+> > > -	if (dma_fence_is_array(job->fence)) {
+> > > -		struct dma_fence_array *array =
+> > > -			to_dma_fence_array(job->fence);
+> > > -		struct dma_fence **child = array->fences;
+> > > -		unsigned int nchild = array->num_fences;
+> > > +void xe_sched_job_set_error(struct xe_sched_job *job, int error)
+> > > +{
+> > > +	if (xe_fence_set_error(job->fence, error))
+> > > +		return;
+> > >  
+> > > -		do {
+> > > -			struct dma_fence *current_fence =
+> > > *child++;
+> > > +	if (dma_fence_is_chain(job->fence)) {
+> > > +		struct dma_fence *iter;
+> > >  
+> > > -			if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+> > > -				     &current_fence->flags))
+> > > -				continue;
+> > > -			dma_fence_set_error(current_fence, error);
+> > > -		} while (--nchild);
+> > > +		dma_fence_chain_for_each(iter, job->fence)
+> > > +			xe_fence_set_error(dma_fence_chain_contain
+> > > ed(iter),
+> > > +					   error);
+> > >  	}
+> > >  
+> > >  	trace_xe_sched_job_set_error(job);
+> > > @@ -230,7 +220,7 @@ bool xe_sched_job_started(struct xe_sched_job
+> > > *job)
+> > >  
+> > >  	return !__dma_fence_is_later(xe_sched_job_lrc_seqno(job),
 > > >  				     xe_lrc_start_seqno(lrc),
-> > > -				     job->fence->ops);
-> > > +				     dma_fence_array_first(job-
+> > > -				     dma_fence_array_first(job-
 > > > >fence)->ops);
+> > > +				    
+> > > dma_fence_chain_contained(job->fence)->ops);
 > > >  }
 > > >  
 > > >  bool xe_sched_job_completed(struct xe_sched_job *job)
-> > > @@ -243,8 +242,9 @@ bool xe_sched_job_completed(struct xe_sched_job
-> > > *job)
-> > >  	 * parallel handshake is done.
-> > >  	 */
+> > > @@ -244,13 +234,24 @@ bool xe_sched_job_completed(struct
+> > > xe_sched_job *job)
 > > >  
-> > > -	return !__dma_fence_is_later(xe_sched_job_seqno(job),
-> > > xe_lrc_seqno(lrc),
-> > > -				     job->fence->ops);
-> > > +	return !__dma_fence_is_later(xe_sched_job_lrc_seqno(job),
-> > > +				     xe_lrc_seqno(lrc),
-> > > +				     dma_fence_array_first(job-
+> > >  	return !__dma_fence_is_later(xe_sched_job_lrc_seqno(job),
+> > >  				     xe_lrc_seqno(lrc),
+> > > -				     dma_fence_array_first(job-
 > > > >fence)->ops);
+> > > +				    
+> > > dma_fence_chain_contained(job->fence)->ops);
+> > >  }
+> > >  
+> > >  void xe_sched_job_arm(struct xe_sched_job *job)
+> > >  {
+> > >  	struct xe_exec_queue *q = job->q;
+> > > +	struct dma_fence *fence, *prev;
+> > >  	struct xe_vm *vm = q->vm;
+> > > +	u64 seqno = 0;
+> > > +	int i;
+> > > +
+> > > +	/* Migration and kernel engines have their own locking */
+> > > +	if (IS_ENABLED(CONFIG_LOCKDEP) &&
+> > > +	    !(q->flags & (EXEC_QUEUE_FLAG_KERNEL |
+> > > EXEC_QUEUE_FLAG_VM))) {
+> > > +		lockdep_assert_held(&q->vm->lock);
+> > > +		if (!xe_vm_in_lr_mode(q->vm))
+> > > +			xe_vm_assert_held(q->vm);
+> > > +	}
+> > >  
+> > >  	if (vm && !xe_sched_job_is_migration(q) &&
+> > > !xe_vm_in_lr_mode(vm) &&
+> > >  	    (vm->batch_invalidate_tlb || vm->tlb_flush_seqno != q-
+> > > >tlb_flush_seqno)) {
+> > > @@ -259,6 +260,25 @@ void xe_sched_job_arm(struct xe_sched_job
+> > > *job)
+> > >  		job->ring_ops_flush_tlb = true;
+> > >  	}
+> > >  
+> > > +	/* Arm the pre-allocated fences */
+> > > +	for (i = 0; i < q->width; prev = fence, ++i) {
+> > > +		struct dma_fence_chain *chain;
+> > > +
+> > > +		fence = job->ptrs[i].lrc_fence;
+> > > +		xe_lrc_init_seqno_fence(&q->lrc[i], fence);
+> > > +		job->ptrs[i].lrc_fence = NULL;
+> > > +		if (!i) {
+> > > +			job->lrc_seqno = fence->seqno;
 > > 
-> > the s/job->fence->ops/dma_fence_array_first(job->fence)->ops
-> > looks like a good canditate for a separate patch, no?!
+> > same question of the first patch remains here...
 > 
-> Since we're now explicitly using the LRC seqno for comparison here, we
-> need to also get at the lrc fence ops, which is the ops of one of the
-> contained fences. (If (job->fence) is not a dma_fence_array, the
-> function just returns (job->fence)).
+> I answered in the first patch thread.
 > 
-> So in all, since we change the first argument to __dma_fence_is_later,
-> it makes sense to also change the third to align.
+> 
+> > 
+> > > +			continue;
+> > 
+> > but here my doubt goes a bit beyond on why you only init
+> > the chain the non-first one.
+> 
+> The fence chain structure combines two fences into one.
+> Either two LRC fences, or a previous fence chain plus a LRC fence.
+> So on the first iteration, we don't yet have two fences to combine, so
+> that step is skipped. There's always one fence chain less than LRC
+> fences, and on non-parallel jobs there is no fence chain at all.
+
+it makes sense. Thanks for all the explanations.
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
 > 
 > Thanks,
 > Thomas
 > 
-> 
-> 
 > > 
-> > >  }
-> > >  
-> > >  void xe_sched_job_arm(struct xe_sched_job *job)
-> > > diff --git a/drivers/gpu/drm/xe/xe_sched_job.h
-> > > b/drivers/gpu/drm/xe/xe_sched_job.h
-> > > index c75018f4660d..002c3b5c0a5c 100644
-> > > --- a/drivers/gpu/drm/xe/xe_sched_job.h
-> > > +++ b/drivers/gpu/drm/xe/xe_sched_job.h
-> > > @@ -73,6 +73,11 @@ static inline u32 xe_sched_job_seqno(struct
-> > > xe_sched_job *job)
-> > >  	return job->fence->seqno;
-> > >  }
-> > >  
-> > > +static inline u32 xe_sched_job_lrc_seqno(struct xe_sched_job *job)
-> > > +{
-> > > +	return job->lrc_seqno;
-> > > +}
+> > > +		}
 > > > +
-> > >  static inline void
-> > >  xe_sched_job_add_migrate_flush(struct xe_sched_job *job, u32
-> > > flags)
-> > >  {
+> > > +		chain = job->ptrs[i - 1].chain_fence;
+> > > +		dma_fence_chain_init(chain, prev, fence, seqno++);
+> > > +		job->ptrs[i - 1].chain_fence = NULL;
+> > > +		fence = &chain->base;
+> > > +	}
+> > > +
+> > > +	job->fence = fence;
+> > >  	drm_sched_job_arm(&job->drm);
+> > >  }
+> > >  
+> > > @@ -318,7 +338,8 @@ xe_sched_job_snapshot_capture(struct
+> > > xe_sched_job *job)
+> > >  
+> > >  	snapshot->batch_addr_len = q->width;
+> > >  	for (i = 0; i < q->width; i++)
+> > > -		snapshot->batch_addr[i] =
+> > > xe_device_uncanonicalize_addr(xe, job->batch_addr[i]);
+> > > +		snapshot->batch_addr[i] =
+> > > +			xe_device_uncanonicalize_addr(xe, job-
+> > > >ptrs[i].batch_addr);
+> > >  
+> > >  	return snapshot;
+> > >  }
 > > > diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h
 > > > b/drivers/gpu/drm/xe/xe_sched_job_types.h
-> > > index 5e12724219fd..990ddac55ed6 100644
+> > > index 990ddac55ed6..0d3f76fb05ce 100644
 > > > --- a/drivers/gpu/drm/xe/xe_sched_job_types.h
 > > > +++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-> > > @@ -37,6 +37,8 @@ struct xe_sched_job {
-> > >  		/** @user_fence.value: write back value */
-> > >  		u64 value;
-> > >  	} user_fence;
-> > > +	/** @lrc_seqno: LRC seqno */
-> > > +	u32 lrc_seqno;
-> > >  	/** @migrate_flush_flags: Additional flush flags for
-> > > migration jobs */
+> > > @@ -11,6 +11,20 @@
+> > >  #include <drm/gpu_scheduler.h>
+> > >  
+> > >  struct xe_exec_queue;
+> > > +struct dma_fence;
+> > > +struct dma_fence_chain;
+> > > +
+> > > +/**
+> > > + * struct xe_job_ptrs - Per hw engine instance data
+> > > + */
+> > > +struct xe_job_ptrs {
+> > > +	/** @lrc_fence: Pre-allocated uinitialized lrc fence.*/
+> > > +	struct dma_fence *lrc_fence;
+> > > +	/** @chain_fence: Pre-allocated ninitialized fence chain
+> > > node. */
+> > > +	struct dma_fence_chain *chain_fence;
+> > > +	/** @batch_addr: Batch buffer address. */
+> > > +	u64 batch_addr;
+> > > +};
+> > >  
+> > >  /**
+> > >   * struct xe_sched_job - XE schedule job (batch buffer tracking)
+> > > @@ -43,8 +57,8 @@ struct xe_sched_job {
 > > >  	u32 migrate_flush_flags;
 > > >  	/** @ring_ops_flush_tlb: The ring ops need to flush TLB
 > > > before payload. */
+> > >  	bool ring_ops_flush_tlb;
+> > > -	/** @batch_addr: batch buffer address of job */
+> > > -	u64 batch_addr[];
+> > > +	/** @ptrs: per instance pointers. */
+> > > +	struct xe_job_ptrs ptrs[];
+> > 
+> > instance and ptrs sounds so generic here...
+> > I'm bad with names as well... but I'm wondering if it wouldn't be
+> > better
+> > to s/xe_sched_job *job/xe_sched_jobs *jobs/
+> > and then this one here is 'a' job: struct xe_job job[];
+> > 
+> > Another bad option xe_batches_and_fences batches_and_fences[]; :/
+> > 
+> > >  };
+> > >  
+> > >  struct xe_sched_job_snapshot {
 > > > diff --git a/drivers/gpu/drm/xe/xe_trace.h
 > > > b/drivers/gpu/drm/xe/xe_trace.h
-> > > index 2d56cfc09e42..6c6cecc58f63 100644
+> > > index 6c6cecc58f63..450f407c66e8 100644
 > > > --- a/drivers/gpu/drm/xe/xe_trace.h
 > > > +++ b/drivers/gpu/drm/xe/xe_trace.h
-> > > @@ -254,6 +254,7 @@ DECLARE_EVENT_CLASS(xe_sched_job,
-> > >  
-> > >  		    TP_STRUCT__entry(
-> > >  			     __field(u32, seqno)
-> > > +			     __field(u32, lrc_seqno)
-> > >  			     __field(u16, guc_id)
-> > >  			     __field(u32, guc_state)
-> > >  			     __field(u32, flags)
-> > > @@ -264,6 +265,7 @@ DECLARE_EVENT_CLASS(xe_sched_job,
-> > >  
-> > >  		    TP_fast_assign(
-> > >  			   __entry->seqno =
-> > > xe_sched_job_seqno(job);
-> > > +			   __entry->lrc_seqno =
-> > > xe_sched_job_lrc_seqno(job);
-> > >  			   __entry->guc_id = job->q->guc->id;
-> > >  			   __entry->guc_state =
-> > >  			   atomic_read(&job->q->guc->state);
-> > > @@ -273,8 +275,9 @@ DECLARE_EVENT_CLASS(xe_sched_job,
-> > >  			   __entry->batch_addr = (u64)job-
+> > > @@ -272,7 +272,7 @@ DECLARE_EVENT_CLASS(xe_sched_job,
+> > >  			   __entry->flags = job->q->flags;
+> > >  			   __entry->error = job->fence->error;
+> > >  			   __entry->fence = job->fence;
+> > > -			   __entry->batch_addr = (u64)job-
 > > > >batch_addr[0];
+> > > +			   __entry->batch_addr = (u64)job-
+> > > >ptrs[0].batch_addr;
 > > >  			   ),
 > > >  
-> > > -		    TP_printk("fence=%p, seqno=%u, guc_id=%d,
-> > > batch_addr=0x%012llx, guc_state=0x%x, flags=0x%x, error=%d",
-> > > -			      __entry->fence, __entry->seqno,
-> > > __entry->guc_id,
-> > > +		    TP_printk("fence=%p, seqno=%u, lrc_seqno=%u,
+> > >  		    TP_printk("fence=%p, seqno=%u, lrc_seqno=%u,
 > > > guc_id=%d, batch_addr=0x%012llx, guc_state=0x%x, flags=0x%x,
 > > > error=%d",
-> > > +			      __entry->fence, __entry->seqno,
-> > > +			      __entry->lrc_seqno, __entry->guc_id,
-> > >  			      __entry->batch_addr, __entry-
-> > > >guc_state,
-> > >  			      __entry->flags, __entry->error)
-> > >  );
 > > > -- 
 > > > 2.44.0
 > > > 
