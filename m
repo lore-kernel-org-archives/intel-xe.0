@@ -4,26 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A255DC25B79
-	for <intel-xe@archiver.kernel.org>; Fri, 24 May 2024 08:13:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC87FC25B79
+	for <intel-xe@archiver.kernel.org>; Fri, 24 May 2024 08:17:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A4A510E236;
-	Fri, 24 May 2024 08:13:18 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1805310E236;
- Fri, 24 May 2024 08:13:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3581715623678626904=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B5D110E1EA;
+	Fri, 24 May 2024 08:17:42 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lw2ZSkdY";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC81A10E4DD;
+ Fri, 24 May 2024 08:17:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716538660; x=1748074660;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=WlMTOyau85J6KQL43oJh8GbFyGgqZeSsAxtEAEdHT2E=;
+ b=lw2ZSkdY0+YSXYCrD8COC9jBQTwWcQrnTETmV9Y5d7iiQIU9Kf2VPYdX
+ 7vP1fJag10EtdXWhdA/XDPB4K/Ze0AzQQMuUKj1C3/Sy9/+AQ+Bb6hX9p
+ Njc4sHjn1qpIFbtBGeOiJUNGx5e6cCn6NFWiAiJDYFE4z4IkzttiLi0Bs
+ 08A5OOiOIMRWWKW9Ox2V3L2ObzIgFveOphDvNB9mjfc0IbXS2CrATRJQU
+ btEyy24ZZc2wrRbm8MSiURjgDiJAa+JwO5ho/hVtL8Z7whOwvC5LZeZb6
+ ESnEUFR4SvgIseoWz8xtQp2Evq/IflFYkzAV3riPMGssnoCeAYrGKuj2F g==;
+X-CSE-ConnectionGUID: aXCLQTZ3REqbBDa9iBE0PA==
+X-CSE-MsgGUID: b65C7QpER9W6UOz51otdJw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="13084050"
+X-IronPort-AV: E=Sophos;i="6.08,184,1712646000"; d="scan'208";a="13084050"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2024 01:17:38 -0700
+X-CSE-ConnectionGUID: TjvT7KosSXySpppgPvRzYg==
+X-CSE-MsgGUID: 2uE4DyCeRnONBdm25CQlAg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,184,1712646000"; d="scan'208";a="33870928"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.108])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2024 01:17:35 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ lucas.demarchi@intel.com
+Subject: Re: [PATCH 05/10] drm/i915/display: add platform descriptors
+In-Reply-To: <Zk-PShUokzY2VbqW@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1716399081.git.jani.nikula@intel.com>
+ <45425c155608403efc149d4a022c0b443aa71200.1716399081.git.jani.nikula@intel.com>
+ <Zk-PShUokzY2VbqW@intel.com>
+Date: Fri, 24 May 2024 11:17:32 +0300
+Message-ID: <87ttinoc83.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Enable_Coarse_Power_Gating?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 24 May 2024 08:13:15 -0000
-Message-ID: <171653839509.2171858.2828979738998605344@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240524070916.143022-1-riana.tauro@intel.com>
-In-Reply-To: <20240524070916.143022-1-riana.tauro@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,274 +67,135 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3581715623678626904==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 23 May 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Wed, May 22, 2024 at 08:33:42PM +0300, Jani Nikula wrote:
+>> We'll need to start identifying the platforms independently in display
+>> code in order to break free from the i915 and xe IS_<PLATFORM>()
+>> macros. This is fairly straightforward, as we already identify most
+>> platforms by PCI ID in display probe anyway.
+>> 
+>> As the first step, add platform descriptors with pointers to display
+>> info. We'll have more platforms than display info, so minimize
+>> duplication:
+>> 
+>> - Add separate skl/kbl/cfl/cml descriptors while they share the display
+>>   info.
+>> 
+>> - Add separate jsl/ehl descriptors while they share the display info.
+>> 
+>> Identify ADL-P (and derivatives) and DG2 descriptors by their names even
+>> though their display info is Xe LPD or HPD.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  .../drm/i915/display/intel_display_device.c   | 558 ++++++++++--------
+>>  1 file changed, 326 insertions(+), 232 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+>> index 56b27546d1b3..d1e03437abb3 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+>> @@ -20,6 +20,10 @@
+>>  __diag_push();
+>>  __diag_ignore_all("-Woverride-init", "Allow field initialization overrides for display info");
+>>  
+>> +struct platform_desc {
+>> +	const struct intel_display_device_info *info;
+>> +};
+>
+> I had to jump to the latest patch to understand why this single item
+> in a new struct... later it makes sense...
 
-== Series Details ==
+Yeah...
 
-Series: Enable Coarse Power Gating
-URL   : https://patchwork.freedesktop.org/series/134001/
-State : success
+>> -#define GEN3_DISPLAY \
+>> +#define GEN3_DISPLAY   \
+>
+> I had noticed a trend in all of your recent series, to replace the long tab
+> or space before '\' with a single space. But then here you change the single
+> space to multiple spaces. Intentional?
 
-== Summary ==
+Accidental.
 
-CI Bug Log - changes from xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09_BAT -> xe-pw-134001v1_BAT
-====================================================
+Emacs wants to indent and align \'s in a specific way, in a nice column
+towards the right. Usually I follow that when adding new stuff manually.
 
-Summary
--------
+Here, that happened on a line I didn't mean to change.
 
-  **SUCCESS**
+In the PCI ID patches I intentionally used a single space because I
+scripted the whole thing, and I couldn't be bothered to figure out how
+to align the \'s any other way! :)
 
-  No regressions found.
+>>  static const struct {
+>>  	u32 devid;
+>> -	const struct intel_display_device_info *info;
+>> +	const struct platform_desc *desc;
+>>  } intel_display_ids[] = {
+>> -	INTEL_I830_IDS(INTEL_DISPLAY_DEVICE, &i830_display),
+>> -	INTEL_I845G_IDS(INTEL_DISPLAY_DEVICE, &i845_display),
+>> -	INTEL_I85X_IDS(INTEL_DISPLAY_DEVICE, &i85x_display),
+>> -	INTEL_I865G_IDS(INTEL_DISPLAY_DEVICE, &i865g_display),
+>> -	INTEL_I915G_IDS(INTEL_DISPLAY_DEVICE, &i915g_display),
+>> -	INTEL_I915GM_IDS(INTEL_DISPLAY_DEVICE, &i915gm_display),
+>> -	INTEL_I945G_IDS(INTEL_DISPLAY_DEVICE, &i945g_display),
+>> -	INTEL_I945GM_IDS(INTEL_DISPLAY_DEVICE, &i945gm_display),
+>> -	INTEL_I965G_IDS(INTEL_DISPLAY_DEVICE, &i965g_display),
+>> -	INTEL_G33_IDS(INTEL_DISPLAY_DEVICE, &g33_display),
+>> -	INTEL_I965GM_IDS(INTEL_DISPLAY_DEVICE, &i965gm_display),
+>> -	INTEL_GM45_IDS(INTEL_DISPLAY_DEVICE, &gm45_display),
+>> -	INTEL_G45_IDS(INTEL_DISPLAY_DEVICE, &g45_display),
+>> -	INTEL_PNV_IDS(INTEL_DISPLAY_DEVICE, &pnv_display),
+>> -	INTEL_ILK_D_IDS(INTEL_DISPLAY_DEVICE, &ilk_d_display),
+>> -	INTEL_ILK_M_IDS(INTEL_DISPLAY_DEVICE, &ilk_m_display),
+>> -	INTEL_SNB_IDS(INTEL_DISPLAY_DEVICE, &snb_display),
+>> -	INTEL_IVB_IDS(INTEL_DISPLAY_DEVICE, &ivb_display),
+>> -	INTEL_HSW_IDS(INTEL_DISPLAY_DEVICE, &hsw_display),
+>> -	INTEL_VLV_IDS(INTEL_DISPLAY_DEVICE, &vlv_display),
+>> -	INTEL_BDW_IDS(INTEL_DISPLAY_DEVICE, &bdw_display),
+>> -	INTEL_CHV_IDS(INTEL_DISPLAY_DEVICE, &chv_display),
+>> -	INTEL_SKL_IDS(INTEL_DISPLAY_DEVICE, &skl_display),
+>> -	INTEL_BXT_IDS(INTEL_DISPLAY_DEVICE, &bxt_display),
+>> -	INTEL_GLK_IDS(INTEL_DISPLAY_DEVICE, &glk_display),
+>> -	INTEL_KBL_IDS(INTEL_DISPLAY_DEVICE, &skl_display),
+>> -	INTEL_CFL_IDS(INTEL_DISPLAY_DEVICE, &skl_display),
+>> -	INTEL_WHL_IDS(INTEL_DISPLAY_DEVICE, &skl_display),
+>> -	INTEL_CML_IDS(INTEL_DISPLAY_DEVICE, &skl_display),
+>> -	INTEL_ICL_IDS(INTEL_DISPLAY_DEVICE, &icl_display),
+>> -	INTEL_EHL_IDS(INTEL_DISPLAY_DEVICE, &jsl_ehl_display),
+>> -	INTEL_JSL_IDS(INTEL_DISPLAY_DEVICE, &jsl_ehl_display),
+>> -	INTEL_TGL_IDS(INTEL_DISPLAY_DEVICE, &tgl_display),
+>> -	INTEL_DG1_IDS(INTEL_DISPLAY_DEVICE, &dg1_display),
+>> -	INTEL_RKL_IDS(INTEL_DISPLAY_DEVICE, &rkl_display),
+>> -	INTEL_ADLS_IDS(INTEL_DISPLAY_DEVICE, &adl_s_display),
+>> -	INTEL_RPLS_IDS(INTEL_DISPLAY_DEVICE, &adl_s_display),
+>> -	INTEL_ADLP_IDS(INTEL_DISPLAY_DEVICE, &xe_lpd_display),
+>> -	INTEL_ADLN_IDS(INTEL_DISPLAY_DEVICE, &xe_lpd_display),
+>> -	INTEL_RPLU_IDS(INTEL_DISPLAY_DEVICE, &xe_lpd_display),
+>> -	INTEL_RPLP_IDS(INTEL_DISPLAY_DEVICE, &xe_lpd_display),
+>> -	INTEL_DG2_IDS(INTEL_DISPLAY_DEVICE, &xe_hpd_display),
+>> +	INTEL_I830_IDS(INTEL_DISPLAY_DEVICE, &i830_desc),
+>
+> But here is what I'm not sure if I completely understand/agree...
+> before this patch is a display device with a display struct
+> but then it becomes a display device with a platform description
+> but a platform that is not used by the driver...
+>
+> I'm probably missing some later jump there.
 
-  
+Yeah, I did not want to put too much stuff in the same patch. I think
+easier to review this way, though I guess I should've made my intentions
+more clear in the commit message! Also, easy to squash if so desired.
 
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-134001v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_evict@evict-beng-small-external:
-    - bat-pvc-2:          NOTRUN -> [FAIL][1] ([Intel XE#1000]) +3 other tests fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html
-
-  * igt@xe_evict@evict-small-external-cm:
-    - bat-pvc-2:          NOTRUN -> [DMESG-FAIL][2] ([Intel XE#482]) +3 other tests dmesg-fail
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-pvc-2/igt@xe_evict@evict-small-external-cm.html
-
-  * igt@xe_exec_fault_mode@twice-userptr-invalidate-imm:
-    - bat-atsm-2:         NOTRUN -> [SKIP][3] ([Intel XE#288]) +32 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html
-
-  * igt@xe_exec_threads@threads-mixed-userptr-invalidate:
-    - bat-dg2-oem2:       [PASS][4] -> [ABORT][5] ([Intel XE#1908])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
-
-  * igt@xe_gt_freq@freq_range_idle:
-    - bat-pvc-2:          NOTRUN -> [SKIP][6] ([Intel XE#1021]) +1 other test skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-pvc-2/igt@xe_gt_freq@freq_range_idle.html
-
-  * igt@xe_huc_copy@huc_copy:
-    - bat-pvc-2:          NOTRUN -> [SKIP][7] ([Intel XE#255])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-pvc-2/igt@xe_huc_copy@huc_copy.html
-    - bat-atsm-2:         NOTRUN -> [SKIP][8] ([Intel XE#255])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-atsm-2/igt@xe_huc_copy@huc_copy.html
-
-  * igt@xe_intel_bb@render:
-    - bat-pvc-2:          NOTRUN -> [SKIP][9] ([Intel XE#532])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-pvc-2/igt@xe_intel_bb@render.html
-
-  * igt@xe_pat@pat-index-xe2:
-    - bat-pvc-2:          NOTRUN -> [SKIP][10] ([Intel XE#977]) +1 other test skip
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-pvc-2/igt@xe_pat@pat-index-xe2.html
-    - bat-atsm-2:         NOTRUN -> [SKIP][11] ([Intel XE#977])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-atsm-2/igt@xe_pat@pat-index-xe2.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-atsm-2:         NOTRUN -> [SKIP][12] ([Intel XE#979]) +1 other test skip
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-atsm-2/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xehpc@render:
-    - bat-pvc-2:          NOTRUN -> [SKIP][13] ([Intel XE#976])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-pvc-2/igt@xe_pat@pat-index-xehpc@render.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-pvc-2:          NOTRUN -> [SKIP][14] ([Intel XE#979])
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-pvc-2/igt@xe_pat@pat-index-xelpg.html
-
-  * igt@xe_pm_residency@gt-c6-on-idle:
-    - bat-pvc-2:          NOTRUN -> [SKIP][15] ([Intel XE#531])
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-pvc-2/igt@xe_pm_residency@gt-c6-on-idle.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_exec_threads@threads-mixed-userptr-invalidate:
-    - {bat-lnl-1}:        [ABORT][16] ([Intel XE#1908]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09/bat-lnl-1/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-lnl-1/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1000]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1000
-  [Intel XE#1021]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1021
-  [Intel XE#1908]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1908
-  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/482
-  [Intel XE#531]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/531
-  [Intel XE#532]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/532
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
-  [Intel XE#976]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/976
-  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
-  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
-
-
-Build changes
--------------
-
-  * Linux: xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09 -> xe-pw-134001v1
-
-  IGT_7871: 1d7b961235e345db20933c057f265898e2e96fd2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09: 1385623a20ad940dab90bfaa4bc01fe599506e09
-  xe-pw-134001v1: 134001v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/index.html
-
---===============3581715623678626904==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+So this one adds the platform descs with just the display struct, and
+later patches add more content in the descs.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+BR,
+Jani.
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enable Coarse Power Gating</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134001/">https://patchwork.freedesktop.org/series/134001/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09_BAT -&gt; xe-pw-134001v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-134001v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_evict@evict-beng-small-external:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1000">Intel XE#1000</a>) +3 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-small-external-cm:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-pvc-2/igt@xe_evict@evict-small-external-cm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/482">Intel XE#482</a>) +3 other tests dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-imm:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_threads@threads-mixed-userptr-invalidate:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1908">Intel XE#1908</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_gt_freq@freq_range_idle:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-pvc-2/igt@xe_gt_freq@freq_range_idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1021">Intel XE#1021</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_huc_copy@huc_copy:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-pvc-2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>)</li>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-atsm-2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_intel_bb@render:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-pvc-2/igt@xe_intel_bb@render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/532">Intel XE#532</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xe2:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-pvc-2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>) +1 other test skip</li>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-atsm-2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-atsm-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc@render:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-pvc-2/igt@xe_pat@pat-index-xehpc@render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/976">Intel XE#976</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-pvc-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pm_residency@gt-c6-on-idle:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-pvc-2/igt@xe_pm_residency@gt-c6-on-idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/531">Intel XE#531</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_exec_threads@threads-mixed-userptr-invalidate:<ul>
-<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09/bat-lnl-1/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1908">Intel XE#1908</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134001v1/bat-lnl-1/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09 -&gt; xe-pw-134001v1</li>
-</ul>
-<p>IGT_7871: 1d7b961235e345db20933c057f265898e2e96fd2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1338-1385623a20ad940dab90bfaa4bc01fe599506e09: 1385623a20ad940dab90bfaa4bc01fe599506e09<br />
-  xe-pw-134001v1: 134001v1</p>
-
-</body>
-</html>
-
---===============3581715623678626904==--
+-- 
+Jani Nikula, Intel
