@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8A25C25B74
-	for <intel-xe@archiver.kernel.org>; Fri, 24 May 2024 13:36:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E8DFC25B74
+	for <intel-xe@archiver.kernel.org>; Fri, 24 May 2024 13:41:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FDEE10EA84;
-	Fri, 24 May 2024 13:36:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DW3HaRkg";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D19D710EA2E;
- Fri, 24 May 2024 13:36:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716557767; x=1748093767;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=adL9d0OqQ8jBQXKsqMmD7jTs2GJRfmPiISsOuz0C5Kk=;
- b=DW3HaRkglrJXnOxhp4uFttMYVgjhcHcFVt8bgPp9hZnj33eFYMCQzZwL
- IuK/czlpAujUmwhyLQq1TxPd5BtJAgjaZ/dicBGpuIinC8719tbNGC9qJ
- KI5q1/KrgV+Mc2B2DjtzANmmnTrvlG/pH47RU7Mf/eSlaWXc0eFBEsO72
- rDI+lCjDY/AhdQKBNPs5oAvs8m11OG9fAVp+YQUE9b0LF6U/toC3PNxAj
- B8ECQvEgtXFE4OmreiWXHx1Ve078HWujnSfYXV0jyoqWnRM74wWJoHK7z
- hquyWIJk9pPVqWcY3bIodRa9QURsxaiRDqyYJSU5ZvFfs2+J8GpDJsLhf Q==;
-X-CSE-ConnectionGUID: itEmdULxQIyUzbhuc1HVag==
-X-CSE-MsgGUID: /3GZ7kadT2enPoK5hUgrzA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="13110042"
-X-IronPort-AV: E=Sophos;i="6.08,185,1712646000"; d="scan'208";a="13110042"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2024 06:36:07 -0700
-X-CSE-ConnectionGUID: gU3p0ngVSD+E/AWr6km3fw==
-X-CSE-MsgGUID: 4ImQhWf/QsaqFiI4UxyUXw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,185,1712646000"; d="scan'208";a="64834723"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.49.231])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2024 06:36:05 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: dri-devel@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: [PATCH 1/2] drm: Add DRM-managed drm_mm_init()
-Date: Fri, 24 May 2024 15:35:17 +0200
-Message-Id: <20240524133518.976-2-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20240524133518.976-1-michal.wajdeczko@intel.com>
-References: <20240524133518.976-1-michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC80F10F31B;
+	Fri, 24 May 2024 13:41:50 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13F7610F31B;
+ Fri, 24 May 2024 13:41:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Add_DRM-managed_drm?=
+ =?utf-8?q?=5Fmm=5Finit=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 24 May 2024 13:41:49 -0000
+Message-ID: <171655810908.2171858.14421811391746694984@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240524133518.976-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20240524133518.976-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,82 +36,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add drmm_mm_init(), a helper that provides managed allocator cleanup.
-The allocator will be cleaned up with the final reference of the DRM
-device.
+== Series Details ==
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
----
- drivers/gpu/drm/drm_managed.c | 27 +++++++++++++++++++++++++++
- include/drm/drm_managed.h     |  3 +++
- 2 files changed, 30 insertions(+)
+Series: Add DRM-managed drm_mm_init()
+URL   : https://patchwork.freedesktop.org/series/134021/
+State : success
 
-diff --git a/drivers/gpu/drm/drm_managed.c b/drivers/gpu/drm/drm_managed.c
-index 7646f67bda4e..2fb9656bada3 100644
---- a/drivers/gpu/drm/drm_managed.c
-+++ b/drivers/gpu/drm/drm_managed.c
-@@ -13,6 +13,7 @@
- #include <linux/spinlock.h>
- 
- #include <drm/drm_device.h>
-+#include <drm/drm_mm.h>
- #include <drm/drm_print.h>
- 
- #include "drm_internal.h"
-@@ -310,3 +311,29 @@ void __drmm_mutex_release(struct drm_device *dev, void *res)
- 	mutex_destroy(lock);
- }
- EXPORT_SYMBOL(__drmm_mutex_release);
-+
-+static void __drmm_mm_takedown(struct drm_device *dev, void *res)
-+{
-+	struct drm_mm *mm = res;
-+
-+	drm_mm_takedown(mm);
-+}
-+
-+/**
-+ * drmm_mm_init - &drm_device managed drm_mm_init()
-+ * @dev: DRM device
-+ * @mm: the drm_mm structure to initialize
-+ * @start: start of the range managed by @mm
-+ * @size: end of the range managed by @mm
-+ *
-+ * This is a &drm_device managed version of drm_mm_init().
-+ * The initialized allocator will be cleaned up on the final drm_dev_put().
-+ *
-+ * Return: 0 on success, or a negative errno code otherwise.
-+ */
-+int drmm_mm_init(struct drm_device *dev, struct drm_mm *mm, u64 start, u64 size)
-+{
-+	drm_mm_init(mm, start, size);
-+	return drmm_add_action_or_reset(dev, __drmm_mm_takedown, mm);
-+}
-+EXPORT_SYMBOL(drmm_mm_init);
-diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
-index f547b09ca023..e8c2f29cb88a 100644
---- a/include/drm/drm_managed.h
-+++ b/include/drm/drm_managed.h
-@@ -8,6 +8,7 @@
- #include <linux/types.h>
- 
- struct drm_device;
-+struct drm_mm;
- struct mutex;
- 
- typedef void (*drmres_release_t)(struct drm_device *dev, void *res);
-@@ -127,4 +128,6 @@ void __drmm_mutex_release(struct drm_device *dev, void *res);
- 	drmm_add_action_or_reset(dev, __drmm_mutex_release, lock);	     \
- })									     \
- 
-+int drmm_mm_init(struct drm_device *dev, struct drm_mm *mm, u64 start, u64 size);
-+
- #endif
--- 
-2.43.0
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 573842e9ab57 drm-tip: 2024y-05m-24d-13h-04m-26s UTC integration manifest
+=== git am output follows ===
+Applying: drm: Add DRM-managed drm_mm_init()
+Applying: drm/xe: Use drm_device managed mutex/mm init helpers in GGTT
+
 
