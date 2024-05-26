@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72BE9C25B75
-	for <intel-xe@archiver.kernel.org>; Sun, 26 May 2024 08:29:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C4F3C25B7C
+	for <intel-xe@archiver.kernel.org>; Sun, 26 May 2024 08:29:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA9A010E284;
-	Sun, 26 May 2024 08:29:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EF5010E284;
+	Sun, 26 May 2024 08:29:41 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 964E010E01F;
- Sun, 26 May 2024 08:29:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 297F010E310;
+ Sun, 26 May 2024 08:29:40 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Add_device?=
- =?utf-8?q?_CXL_capabilities_identification?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Add_device_CXL_?=
+ =?utf-8?q?capabilities_identification?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Farah Kassabri" <fkassabri@habana.ai>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sun, 26 May 2024 08:29:26 -0000
-Message-ID: <171671216661.2211142.12114862349019319388@8e613ede5ea5>
+Date: Sun, 26 May 2024 08:29:40 -0000
+Message-ID: <171671218016.2210639.884349913187586042@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240526082405.658908-1-fkassabri@habana.ai>
 In-Reply-To: <20240526082405.658908-1-fkassabri@habana.ai>
@@ -44,13 +44,45 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Add device CXL capabilities identification
 URL   : https://patchwork.freedesktop.org/series/134047/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 573842e9ab57 drm-tip: 2024y-05m-24d-13h-04m-26s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Add device CXL capabilities identification
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a28050c88422b491c463efe4cc099e735e2efa3d
+Author: Farah Kassabri <fkassabri@habana.ai>
+Date:   Sun May 26 11:24:05 2024 +0300
+
+    drm/xe: Add device CXL capabilities identification
+    
+    As future Intel GPUs will use CXL interface with the host
+    servers, this patch will add check if the xe device has CXL
+    capabilities or not, by reading the PCIe standard DVSEC register
+    and identify the CXL vendor id.
+    
+    Signed-off-by: Farah Kassabri <fkassabri@habana.ai>
++ /mt/dim checkpatch 573842e9ab57ccd8d6bb68ad55ed2e012e3d5d2f drm-intel
+a28050c88422 drm/xe: Add device CXL capabilities identification
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:28: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#28: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 95 lines checked
 
 
