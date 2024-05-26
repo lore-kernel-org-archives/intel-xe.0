@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E30AC25B75
-	for <intel-xe@archiver.kernel.org>; Sun, 26 May 2024 09:24:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FC7DC25B7C
+	for <intel-xe@archiver.kernel.org>; Sun, 26 May 2024 10:32:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81CB910F46A;
-	Sun, 26 May 2024 09:24:57 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6540310F3E3;
- Sun, 26 May 2024 09:24:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6281812713499201698=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BC1610E1A4;
+	Sun, 26 May 2024 10:32:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IdIDQaEB";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85D1510E1A4
+ for <intel-xe@lists.freedesktop.org>; Sun, 26 May 2024 10:32:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716719547; x=1748255547;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=voVRYG6WhYIJqQx9Cjf5/yvGeQTKTRxer7c4upQrRKE=;
+ b=IdIDQaEBG+gL65CxSBCb0Z2wzIw3WhgqYJn0l9mnpfDA0iOqIUTjasFS
+ ExHXipk+V841PSD6DTIfQx0eBJwtb+7TGGppxJnwIQRUJU01BC1Gr8JvD
+ KjYI707znqRGgh5SXd1KJlIFAZ8J/gpI88YJRQWaPL1Jl3qtyQLvGP/C0
+ wZl9rbqXuCAndYm0iMy4CfYNsHSQcbVyoA31OGtmWNq3ao19IJiio1elK
+ G2+2Dhf9ieAjZFIkHvoF6kGRHYogz7I2ncJvxhBgNjf0fomd+Ly5Aqkcy
+ v2FW/pf4r1vnVfBgrFCcgd3vXRCbvMBbRFcua40GaPNzKxnix//axRFfF g==;
+X-CSE-ConnectionGUID: D839ir4CRE2YPne6e+xXDg==
+X-CSE-MsgGUID: gUK9G4joR3yfku+sAyKfyQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11083"; a="13268111"
+X-IronPort-AV: E=Sophos;i="6.08,190,1712646000"; d="scan'208";a="13268111"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2024 03:32:24 -0700
+X-CSE-ConnectionGUID: A0cUkVoESoCXqn2ftYkFJg==
+X-CSE-MsgGUID: ai0rEpWZRLepgYhOCrz1Lw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,190,1712646000"; d="scan'208";a="38878039"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa005.fm.intel.com with ESMTP; 26 May 2024 03:32:23 -0700
+Received: from [10.245.96.165] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.245.96.165])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 7008933E88;
+ Sun, 26 May 2024 11:32:21 +0100 (IST)
+Message-ID: <af704f09-d34b-443a-be00-4764720ec743@intel.com>
+Date: Sun, 26 May 2024 12:32:20 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Add_device_CXL_capabil?=
- =?utf-8?q?ities_identification?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Farah Kassabri" <fkassabri@habana.ai>
-Cc: intel-xe@lists.freedesktop.org
-Date: Sun, 26 May 2024 09:24:55 -0000
-Message-ID: <171671549540.2210639.16712979362969821855@8e613ede5ea5>
-X-Patchwork-Hint: ignore
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Add device CXL capabilities identification
+To: Farah Kassabri <fkassabri@habana.ai>, intel-xe@lists.freedesktop.org
+Cc: farah.kassabri@intel.com
 References: <20240526082405.658908-1-fkassabri@habana.ai>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 In-Reply-To: <20240526082405.658908-1-fkassabri@habana.ai>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,226 +68,199 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6281812713499201698==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Farah,
 
-== Series Details ==
+On 26.05.2024 10:24, Farah Kassabri wrote:
+> As future Intel GPUs will use CXL interface with the host
+> servers, this patch will add check if the xe device has CXL
+> capabilities or not, by reading the PCIe standard DVSEC register
+> and identify the CXL vendor id.
+> 
+> Signed-off-by: Farah Kassabri <fkassabri@habana.ai>
+> ---
+>  drivers/gpu/drm/xe/Makefile          |  3 ++-
+>  drivers/gpu/drm/xe/xe_cxl.c          | 33 ++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_cxl.h          | 14 ++++++++++++
+>  drivers/gpu/drm/xe/xe_device.c       |  5 +++++
+>  drivers/gpu/drm/xe/xe_device_types.h | 10 +++++++++
+>  5 files changed, 64 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/gpu/drm/xe/xe_cxl.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_cxl.h
+> 
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index c9f067b8f54d..faf40ff3c62e 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -146,7 +146,8 @@ xe-y += xe_bb.o \
+>  	xe_vram_freq.o \
+>  	xe_wait_user_fence.o \
+>  	xe_wa.o \
+> -	xe_wopcm.o
+> +	xe_wopcm.o \
+> +	xe_cxl.o \
 
-Series: drm/xe: Add device CXL capabilities identification
-URL   : https://patchwork.freedesktop.org/series/134047/
-State : success
+please keep .o list sorted alphabetically
 
-== Summary ==
+>  
+>  xe-$(CONFIG_HMM_MIRROR) += xe_hmm.o
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_cxl.c b/drivers/gpu/drm/xe/xe_cxl.c
+> new file mode 100644
+> index 000000000000..da47a79ee2c2
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_cxl.c
+> @@ -0,0 +1,33 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2024 Intel Corporation
+> + */
+> +
+> +#include "xe_cxl.h"
+> +
+> +int xe_init_cxl_capabilities(struct xe_device *xe, struct pci_dev *pdev)
 
-CI Bug Log - changes from xe-1341-573842e9ab57ccd8d6bb68ad55ed2e012e3d5d2f_BAT -> xe-pw-134047v1_BAT
-====================================================
+please add kernel-doc for any new public function
 
-Summary
--------
+and as this function is defined in xe_cxl.* then use "xe_cxl_" prefix
 
-  **SUCCESS**
+hmm, do you really need to explicitly pass the pdev as parameter ?
+isn't it already setup and available as to_pci_dev(xe->drm.dev) ?
 
-  No regressions found.
+> +{
+> +	int cxl_dvsec, rc;
 
-  
+pci_find_dvsec_capability() as defined as returning u16, so maybe
+cxl_dvsec can be u16 too ?
 
-Participating hosts (5 -> 4)
-------------------------------
+> +	u16 ctrl;
+> +
+> +	cxl_dvsec = pci_find_dvsec_capability(pdev, PCI_DVSEC_VENDOR_ID_CXL, CXL_DVSEC_PCIE_DEVICE);
+> +	if (cxl_dvsec) {
 
-  Missing    (1): bat-adlp-7 
+I guess the BKM is to do an early return if conditions are not met
 
-Known issues
-------------
+	if (!cxl_dvsec)
+		return 0;
 
-  Here are the changes found in xe-pw-134047v1_BAT that come from known issues:
+	...
+	return 0;
 
-### IGT changes ###
+> +		xe->info.has_cxl_cap = true;
+> +		xe->cxl.dvsec = cxl_dvsec;
+> +
+> +		rc = pci_read_config_word(pdev, cxl_dvsec + CXL_DVSEC_CTRL_OFFSET, &ctrl);
+> +		if (rc < 0) {
+> +			drm_err(&xe->drm, "Failed to read dvsec ctrl register\n");
 
-#### Issues hit ####
+shouldn't we use "DVSEC" in any user facing messages ?
+also maybe printing value of the rc would be good hint for diagnostics ?
 
-  * igt@xe_exec_compute_mode@twice-bindexecqueue-userptr:
-    - bat-atsm-2:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#1908])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1341-573842e9ab57ccd8d6bb68ad55ed2e012e3d5d2f/bat-atsm-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-atsm-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr.html
+> +			return rc;
+> +		}
+> +
+> +		if (ctrl & CXL_DVSEC_MEM_ENABLE)
+> +			xe->cxl.type = (ctrl & BIT(0)) ? 2 : 3;
+> +		else
+> +			xe->cxl.type = 1;
 
-  * igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race:
-    - bat-dg2-oem2:       [PASS][3] -> [ABORT][4] ([Intel XE#1908] / [Intel XE#1939])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1341-573842e9ab57ccd8d6bb68ad55ed2e012e3d5d2f/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html
-    - bat-pvc-2:          NOTRUN -> [INCOMPLETE][5] ([Intel XE#1169])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-pvc-2/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html
+shouldn't we have some defines for these types, or the plan is to always
+use plain numbers everywhere ?
 
-  * igt@xe_gt_freq@freq_range_idle:
-    - bat-pvc-2:          NOTRUN -> [SKIP][6] ([Intel XE#1021]) +1 other test skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-pvc-2/igt@xe_gt_freq@freq_range_idle.html
+> +
+> +		drm_dbg(&xe->drm, "The device has CXL capability, type %u\n", xe->cxl.type);
+> +	}
+> +
+> +	return 0;
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_cxl.h b/drivers/gpu/drm/xe/xe_cxl.h
+> new file mode 100644
+> index 000000000000..971c6e9adc2f
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_cxl.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2024 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_CXL_H_
+> +#define _XE_CXL_H_
+> +
+> +#include "xe_device.h"
+> +#include "../drivers/cxl/cxlpci.h"
 
-  * igt@xe_huc_copy@huc_copy:
-    - bat-pvc-2:          NOTRUN -> [SKIP][7] ([Intel XE#255])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-pvc-2/igt@xe_huc_copy@huc_copy.html
+you don't need to include these headers here,
+just add forward declaration:
 
-  * igt@xe_intel_bb@render:
-    - bat-pvc-2:          NOTRUN -> [SKIP][8] ([Intel XE#532])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-pvc-2/igt@xe_intel_bb@render.html
+struct xe_device;
 
-  * igt@xe_pat@pat-index-xe2:
-    - bat-pvc-2:          NOTRUN -> [SKIP][9] ([Intel XE#977]) +1 other test skip
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-pvc-2/igt@xe_pat@pat-index-xe2.html
+> +
+> +int xe_init_cxl_capabilities(struct xe_device *xe, struct pci_dev *pdev);
+> +
+> +#endif /* _XE_CXL_H_ */
 
-  * igt@xe_pat@pat-index-xehpc@render:
-    - bat-pvc-2:          NOTRUN -> [SKIP][10] ([Intel XE#976])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-pvc-2/igt@xe_pat@pat-index-xehpc@render.html
+it was decided to not use include guard name in closing #endif
 
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-pvc-2:          NOTRUN -> [SKIP][11] ([Intel XE#979])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-pvc-2/igt@xe_pat@pat-index-xelpg.html
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 5acf2c92789f..ca2e47a47b11 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -50,6 +50,7 @@
+>  #include "xe_ttm_sys_mgr.h"
+>  #include "xe_vm.h"
+>  #include "xe_wait_user_fence.h"
+> +#include "xe_cxl.h"
+>  
+>  static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+>  {
+> @@ -312,6 +313,10 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+>  	if (WARN_ON(err))
+>  		goto err;
+>  
+> +	err = xe_init_cxl_capabilities(xe, pdev);
+> +	if (err)
+> +		goto err;
+> +
+>  	return xe;
+>  
+>  err:
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index bc97990fd032..aad56b829ca4 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -285,6 +285,8 @@ struct xe_device {
+>  		u8 has_atomic_enable_pte_bit:1;
+>  		/** @info.has_device_atomics_on_smem: Supports device atomics on SMEM */
+>  		u8 has_device_atomics_on_smem:1;
+> +		/** @info.has_cxl_cap: device has CXL capabilities */
+> +		u8 has_cxl_cap:1;
+>  
+>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+>  		struct {
+> @@ -321,6 +323,14 @@ struct xe_device {
+>  		struct ttm_resource_manager sys_mgr;
+>  	} mem;
+>  
+> +	/** @cxl: cxl info for device */
+> +	struct {
+> +		/** @cxl.dvsec: offset to device DVSEC */
+> +		int dvsec;
 
-  * igt@xe_pm_residency@gt-c6-on-idle:
-    - bat-pvc-2:          NOTRUN -> [SKIP][12] ([Intel XE#531])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-pvc-2/igt@xe_pm_residency@gt-c6-on-idle.html
+do you need full 'int' here or maybe 'u16' is sufficient ?
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+> +		/** @cxl.type: cxl device type */
 
-  [Intel XE#1021]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1021
-  [Intel XE#1169]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1169
-  [Intel XE#1908]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1908
-  [Intel XE#1939]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1939
-  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
-  [Intel XE#531]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/531
-  [Intel XE#532]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/532
-  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
-  [Intel XE#976]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/976
-  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
-  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+shouldn't we use "CXL" in documentation ?
 
+> +		int type;
 
-Build changes
--------------
+u16 ?
 
-  * Linux: xe-1341-573842e9ab57ccd8d6bb68ad55ed2e012e3d5d2f -> xe-pw-134047v1
-
-  IGT_7871: 1d7b961235e345db20933c057f265898e2e96fd2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1341-573842e9ab57ccd8d6bb68ad55ed2e012e3d5d2f: 573842e9ab57ccd8d6bb68ad55ed2e012e3d5d2f
-  xe-pw-134047v1: 134047v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/index.html
-
---===============6281812713499201698==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add device CXL capabilities identification</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134047/">https://patchwork.freedesktop.org/series/134047/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1341-573842e9ab57ccd8d6bb68ad55ed2e012e3d5d2f_BAT -&gt; xe-pw-134047v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 4)</h2>
-<p>Missing    (1): bat-adlp-7 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-134047v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_exec_compute_mode@twice-bindexecqueue-userptr:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1341-573842e9ab57ccd8d6bb68ad55ed2e012e3d5d2f/bat-atsm-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-atsm-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1908">Intel XE#1908</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1341-573842e9ab57ccd8d6bb68ad55ed2e012e3d5d2f/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1908">Intel XE#1908</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1939">Intel XE#1939</a>)</li>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-pvc-2/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1169">Intel XE#1169</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_gt_freq@freq_range_idle:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-pvc-2/igt@xe_gt_freq@freq_range_idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1021">Intel XE#1021</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_huc_copy@huc_copy:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-pvc-2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_intel_bb@render:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-pvc-2/igt@xe_intel_bb@render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/532">Intel XE#532</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xe2:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-pvc-2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc@render:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-pvc-2/igt@xe_pat@pat-index-xehpc@render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/976">Intel XE#976</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-pvc-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pm_residency@gt-c6-on-idle:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134047v1/bat-pvc-2/igt@xe_pm_residency@gt-c6-on-idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/531">Intel XE#531</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1341-573842e9ab57ccd8d6bb68ad55ed2e012e3d5d2f -&gt; xe-pw-134047v1</li>
-</ul>
-<p>IGT_7871: 1d7b961235e345db20933c057f265898e2e96fd2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1341-573842e9ab57ccd8d6bb68ad55ed2e012e3d5d2f: 573842e9ab57ccd8d6bb68ad55ed2e012e3d5d2f<br />
-  xe-pw-134047v1: 134047v1</p>
-
-</body>
-</html>
-
---===============6281812713499201698==--
+> +	} cxl;
+> +
+>  	/** @sriov: device level virtualization data */
+>  	struct {
+>  		/** @sriov.__mode: SR-IOV mode (Don't access directly!) */
