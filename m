@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE4CAC25B75
-	for <intel-xe@archiver.kernel.org>; Mon, 27 May 2024 01:43:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13891C27C50
+	for <intel-xe@archiver.kernel.org>; Mon, 27 May 2024 01:43:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57A0310EE6A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B58210EED8;
 	Mon, 27 May 2024 01:43:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YPgI1KO7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QFUILrq9";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFEEB10EACC
- for <intel-xe@lists.freedesktop.org>; Mon, 27 May 2024 01:43:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3548310EBD0
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 May 2024 01:43:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1716774220; x=1748310220;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=eW0/zMgFkMgxhZWMwpmFnBIP4y2/64NyOHgwFn6OgrA=;
- b=YPgI1KO7onfmlWfOKryy1t/zmO/z1EcJIQkdHrDRSHjVNeHI4yaLVqF4
- VX/XC3/q86bZheA5+rcW+J/Lh560v5Tjcvku9tW86OKggO1/LQO+sRpOw
- dKqxWZ2r1VaveXDcWHu8iBKvnGvt8c6o33GZlEzunby3ypNtSWQxEeNoK
- /dFd9/dSvDBqbae6+/1swB1QdFPN9kaC1COi3CapbQIDqZtNIq2dWR26H
- 55jb1g0kDkiqK31jVijedwQtK2PQgdl280q/rp9IQrnV9DBBMXcnhwyjP
- vBWWpOwFoxL4nfXHlacXqiu7QcnPiZwCpBWbGJ75BhsvyDjnKDWDsqf8C Q==;
-X-CSE-ConnectionGUID: 5+SvpEDJTUmyjdGWNzGnOA==
-X-CSE-MsgGUID: dwUStrK1S+WSoI+3oNqn0Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11084"; a="11707472"
-X-IronPort-AV: E=Sophos;i="6.08,191,1712646000"; d="scan'208";a="11707472"
+ bh=MCkS7fffINpnhuXW0PYk1nv3YduWFZ/53p0ndxHDK4Q=;
+ b=QFUILrq9ESomPcE6Sm7bAYGXQYktrt7j1AWPll4d8GAFeLLeJPs2wo+x
+ +8ynpwVlcBfowL6RHExo2cLp5EYHsTONdnvReSx/+ocG+ioMGlFErnqxM
+ LMJokgPRjDc9UJejGjfi4zecS1WWjsRPFtBzGtF6lSHLswR21JxwG28tI
+ DsNOSpgC6eIC9F2mPpRqV/3NACDljbKrsz8Qb+Sp4BzEqjhA+KmaQ/Ecl
+ LxeqzlcygdExci7TYWTUfzbSg+GZLtl2c9doUamyn7BL966LNK502Zk1r
+ Gq1uC1wmlFtpVs+P+W6vsBF5THD5sW+7P74klgcD50cW1KsLHrgIm9LXv Q==;
+X-CSE-ConnectionGUID: RTQuzq7oSti4kmZD0jrchw==
+X-CSE-MsgGUID: WUDu1pewQjeYXAqTwnMlTA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11084"; a="11707478"
+X-IronPort-AV: E=Sophos;i="6.08,191,1712646000"; d="scan'208";a="11707478"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2024 18:43:38 -0700
-X-CSE-ConnectionGUID: j0IaHcqHQ2q/RBbJWlvsfw==
-X-CSE-MsgGUID: Zn86tuGMSyeIbzkvmzYX7g==
+ 26 May 2024 18:43:39 -0700
+X-CSE-ConnectionGUID: 8BtfwKIRRems8DPIWgellg==
+X-CSE-MsgGUID: UaAJFTsdRpe6FBwiUZiaKQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,191,1712646000"; d="scan'208";a="65821714"
+X-IronPort-AV: E=Sophos;i="6.08,191,1712646000"; d="scan'208";a="65821719"
 Received: from orsosgc001.jf.intel.com ([10.165.21.138])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2024 18:43:38 -0700
+ 26 May 2024 18:43:39 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 12/17] drm/xe/oa/uapi: Query OA unit properties
-Date: Sun, 26 May 2024 18:43:28 -0700
-Message-ID: <20240527014333.603914-13-ashutosh.dixit@intel.com>
+Subject: [PATCH 17/17] drm/xe/oa: Enable Xe2+ overrun mode
+Date: Sun, 26 May 2024 18:43:33 -0700
+Message-ID: <20240527014333.603914-18-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20240527014333.603914-1-ashutosh.dixit@intel.com>
 References: <20240527014333.603914-1-ashutosh.dixit@intel.com>
@@ -65,261 +65,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Implement query for properties of OA units present on a device.
+Enable Xe2+ overrun mode. For Xe2+, when overrun mode is enabled, there are
+no partial reports at the end of buffer, making the OA buffer effectively a
+non-power-of-2 size circular buffer whose size, circ_size, is a multiple of
+the report size.
 
-v2: Clean up reserved/pad fields (Umesh)
-    Follow the same scheme as other query structs
-v3: Skip reporting reserved engines attached to OA units
-v4: Expose oa_buf_size via DRM_XE_PERF_IOCTL_INFO (Umesh)
-v5: Don't expose capabilities as OR of properties (Umesh)
-v6: Add extensions to query output structs: drm_xe_oa_unit,
-    drm_xe_query_oa_units and drm_xe_oa_stream_info
-v7: Change oa_units[] array to __u64 type
+v2: Fix implementation of xe_oa_circ_diff/xe_oa_circ_incr (Umesh)
 
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c    | 13 ++++++
- drivers/gpu/drm/xe/xe_query.c | 77 +++++++++++++++++++++++++++++++
- include/uapi/drm/xe_drm.h     | 85 +++++++++++++++++++++++++++++++++++
- 3 files changed, 175 insertions(+)
+ drivers/gpu/drm/xe/xe_oa.c       | 35 ++++++++++++++++++++++++--------
+ drivers/gpu/drm/xe/xe_oa_types.h |  3 +++
+ 2 files changed, 30 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 36a374c0c4a8..fa1c78c4b30a 100644
+index 5ef4c4abea32..3ed4ca19f9cd 100644
 --- a/drivers/gpu/drm/xe/xe_oa.c
 +++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -1048,6 +1048,17 @@ static long xe_oa_status_locked(struct xe_oa_stream *stream, unsigned long arg)
- 	return 0;
+@@ -111,7 +111,14 @@ static const struct xe_oa_format oa_formats[] = {
+ 
+ static u32 xe_oa_circ_diff(struct xe_oa_stream *stream, u32 tail, u32 head)
+ {
+-	return (tail - head) & (XE_OA_BUFFER_SIZE - 1);
++	return tail >= head ? tail - head :
++		tail + stream->oa_buffer.circ_size - head;
++}
++
++static u32 xe_oa_circ_incr(struct xe_oa_stream *stream, u32 ptr, u32 n)
++{
++	return ptr + n >= stream->oa_buffer.circ_size ?
++		ptr + n - stream->oa_buffer.circ_size : ptr + n;
  }
  
-+static long xe_oa_info_locked(struct xe_oa_stream *stream, unsigned long arg)
-+{
-+	struct drm_xe_oa_stream_info info = { .oa_buf_size = XE_OA_BUFFER_SIZE, };
-+	void __user *uaddr = (void __user *)arg;
-+
-+	if (copy_to_user(uaddr, &info, sizeof(info)))
-+		return -EFAULT;
-+
-+	return 0;
-+}
-+
- static long xe_oa_ioctl_locked(struct xe_oa_stream *stream,
- 			       unsigned int cmd,
- 			       unsigned long arg)
-@@ -1063,6 +1074,8 @@ static long xe_oa_ioctl_locked(struct xe_oa_stream *stream,
- 		return xe_oa_config_locked(stream, arg);
- 	case DRM_XE_PERF_IOCTL_STATUS:
- 		return xe_oa_status_locked(stream, arg);
-+	case DRM_XE_PERF_IOCTL_INFO:
-+		return xe_oa_info_locked(stream, arg);
- 	}
+ static void xe_oa_config_release(struct kref *ref)
+@@ -285,7 +292,7 @@ static int xe_oa_append_report(struct xe_oa_stream *stream, char __user *buf,
  
- 	return -EINVAL;
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 995effcb904b..4e01df6b1b7a 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -602,6 +602,82 @@ query_uc_fw_version(struct xe_device *xe, struct drm_xe_device_query *query)
- 	return 0;
- }
+ 	buf += *offset;
  
-+static size_t calc_oa_unit_query_size(struct xe_device *xe)
-+{
-+	size_t size = sizeof(struct drm_xe_query_oa_units);
-+	struct xe_gt *gt;
-+	int i, id;
-+
-+	for_each_gt(gt, xe, id) {
-+		for (i = 0; i < gt->oa.num_oa_units; i++) {
-+			size += sizeof(struct drm_xe_oa_unit);
-+			size += gt->oa.oa_unit[i].num_engines *
-+				sizeof(struct drm_xe_engine_class_instance);
-+		}
-+	}
-+
-+	return size;
-+}
-+
-+static int query_oa_units(struct xe_device *xe,
-+			  struct drm_xe_device_query *query)
-+{
-+	void __user *query_ptr = u64_to_user_ptr(query->data);
-+	size_t size = calc_oa_unit_query_size(xe);
-+	struct drm_xe_query_oa_units *qoa;
-+	enum xe_hw_engine_id hwe_id;
-+	struct drm_xe_oa_unit *du;
-+	struct xe_hw_engine *hwe;
-+	struct xe_oa_unit *u;
-+	int gt_id, i, j, ret;
-+	struct xe_gt *gt;
-+	u8 *pdu;
-+
-+	if (query->size == 0) {
-+		query->size = size;
-+		return 0;
-+	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-+		return -EINVAL;
-+	}
-+
-+	qoa = kzalloc(size, GFP_KERNEL);
-+	if (!qoa)
-+		return -ENOMEM;
-+
-+	pdu = (u8 *)&qoa->oa_units[0];
-+	for_each_gt(gt, xe, gt_id) {
-+		for (i = 0; i < gt->oa.num_oa_units; i++) {
-+			u = &gt->oa.oa_unit[i];
-+			du = (struct drm_xe_oa_unit *)pdu;
-+
-+			du->oa_unit_id = u->oa_unit_id;
-+			du->oa_unit_type = u->type;
-+			du->oa_timestamp_freq = xe_oa_timestamp_frequency(gt);
-+			du->capabilities = DRM_XE_OA_CAPS_BASE;
-+
-+			j = 0;
-+			for_each_hw_engine(hwe, gt, hwe_id) {
-+				if (!xe_hw_engine_is_reserved(hwe) &&
-+				    xe_oa_unit_id(hwe) == u->oa_unit_id) {
-+					du->eci[j].engine_class =
-+						xe_to_user_engine_class[hwe->class];
-+					du->eci[j].engine_instance = hwe->logical_instance;
-+					du->eci[j].gt_id = gt->info.id;
-+					j++;
-+				}
-+			}
-+			du->num_engines = j;
-+			pdu += sizeof(*du) + j * sizeof(du->eci[0]);
-+			qoa->num_oa_units++;
-+		}
-+	}
-+
-+	ret = copy_to_user(query_ptr, qoa, size);
-+	kfree(qoa);
-+
-+	return ret ? -EFAULT : 0;
-+}
-+
- static int (* const xe_query_funcs[])(struct xe_device *xe,
- 				      struct drm_xe_device_query *query) = {
- 	query_engines,
-@@ -612,6 +688,7 @@ static int (* const xe_query_funcs[])(struct xe_device *xe,
- 	query_gt_topology,
- 	query_engine_cycles,
- 	query_uc_fw_version,
-+	query_oa_units,
- };
+-	oa_buf_end = stream->oa_buffer.vaddr + XE_OA_BUFFER_SIZE;
++	oa_buf_end = stream->oa_buffer.vaddr + stream->oa_buffer.circ_size;
+ 	report_size_partial = oa_buf_end - report;
  
- int xe_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 697a4f9e12e6..8378e5a51d37 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -688,6 +688,7 @@ struct drm_xe_device_query {
- #define DRM_XE_DEVICE_QUERY_GT_TOPOLOGY		5
- #define DRM_XE_DEVICE_QUERY_ENGINE_CYCLES	6
- #define DRM_XE_DEVICE_QUERY_UC_FW_VERSION	7
-+#define DRM_XE_DEVICE_QUERY_OA_UNITS		8
- 	/** @query: The type of data to query */
- 	__u32 query;
+ 	if (report_size_partial < report_size) {
+@@ -311,7 +318,6 @@ static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
+ 	int report_size = stream->oa_buffer.format->size;
+ 	u8 *oa_buf_base = stream->oa_buffer.vaddr;
+ 	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
+-	u32 mask = (XE_OA_BUFFER_SIZE - 1);
+ 	size_t start_offset = *offset;
+ 	unsigned long flags;
+ 	u32 head, tail;
+@@ -322,21 +328,23 @@ static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
+ 	tail = stream->oa_buffer.tail;
+ 	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
  
-@@ -1446,6 +1447,75 @@ enum drm_xe_oa_unit_type {
- 	DRM_XE_OA_UNIT_TYPE_OAM,
- };
+-	xe_assert(stream->oa->xe, head < XE_OA_BUFFER_SIZE && tail < XE_OA_BUFFER_SIZE);
++	xe_assert(stream->oa->xe,
++		  head < stream->oa_buffer.circ_size && tail < stream->oa_buffer.circ_size);
  
-+/**
-+ * struct drm_xe_oa_unit - describe OA unit
-+ */
-+struct drm_xe_oa_unit {
-+	/** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
-+
-+	/** @oa_unit_id: OA unit ID */
-+	__u32 oa_unit_id;
-+
-+	/** @oa_unit_type: OA unit type of @drm_xe_oa_unit_type */
-+	__u32 oa_unit_type;
-+
-+	/** @capabilities: OA capabilities bit-mask */
-+	__u64 capabilities;
-+#define DRM_XE_OA_CAPS_BASE		(1 << 0)
-+
-+	/** @oa_timestamp_freq: OA timestamp freq */
-+	__u64 oa_timestamp_freq;
-+
-+	/** @reserved: MBZ */
-+	__u64 reserved[4];
-+
-+	/** @num_engines: number of engines in @eci array */
-+	__u64 num_engines;
-+
-+	/** @eci: engines attached to this OA unit */
-+	struct drm_xe_engine_class_instance eci[];
-+};
-+
-+/**
-+ * struct drm_xe_query_oa_units - describe OA units
-+ *
-+ * If a query is made with a struct drm_xe_device_query where .query
-+ * is equal to DRM_XE_DEVICE_QUERY_OA_UNITS, then the reply uses struct
-+ * drm_xe_query_oa_units in .data.
-+ *
-+ * OA unit properties for all OA units can be accessed using a code block
-+ * such as the one below:
-+ *
-+ * .. code-block:: C
-+ *
-+ *	struct drm_xe_query_oa_units *qoa;
-+ *	struct drm_xe_oa_unit *oau;
-+ *	u8 *poau;
-+ *
-+ *	// malloc qoa and issue DRM_XE_DEVICE_QUERY_OA_UNITS. Then:
-+ *	poau = (u8 *)&qoa->oa_units[0];
-+ *	for (int i = 0; i < qoa->num_oa_units; i++) {
-+ *		oau = (struct drm_xe_oa_unit *)poau;
-+ *		// Access 'struct drm_xe_oa_unit' fields here
-+ *		poau += sizeof(*oau) + oau->num_engines * sizeof(oau->eci[0]);
-+ *	}
-+ */
-+struct drm_xe_query_oa_units {
-+	/** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
-+	/** @num_oa_units: number of OA units returned in oau[] */
-+	__u32 num_oa_units;
-+	/** @pad: MBZ */
-+	__u32 pad;
-+	/**
-+	 * @oa_units: struct @drm_xe_oa_unit array returned for this device.
-+	 * Written below as a u64 array to avoid problems with nested flexible
-+	 * arrays with some compilers
+-	for (; xe_oa_circ_diff(stream, tail, head); head = (head + report_size) & mask) {
++	for (; xe_oa_circ_diff(stream, tail, head);
++	     head = xe_oa_circ_incr(stream, head, report_size)) {
+ 		u8 *report = oa_buf_base + head;
+ 
+ 		ret = xe_oa_append_report(stream, buf, count, offset, report);
+ 		if (ret)
+ 			break;
+ 
+-		if (is_power_of_2(report_size)) {
++		if (!(stream->oa_buffer.circ_size % report_size)) {
+ 			/* Clear out report id and timestamp to detect unlanded reports */
+ 			oa_report_id_clear(stream, (void *)report);
+ 			oa_timestamp_clear(stream, (void *)report);
+ 		} else {
+-			u8 *oa_buf_end = stream->oa_buffer.vaddr + XE_OA_BUFFER_SIZE;
++			u8 *oa_buf_end = stream->oa_buffer.vaddr + stream->oa_buffer.circ_size;
+ 			u32 part = oa_buf_end - report;
+ 
+ 			/* Zero out the entire report */
+@@ -374,7 +382,6 @@ static void xe_oa_init_oa_buffer(struct xe_oa_stream *stream)
+ 	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_head_ptr,
+ 			gtt_offset & OAG_OAHEADPTR_MASK);
+ 	stream->oa_buffer.head = 0;
+-
+ 	/*
+ 	 * PRM says: "This MMIO must be set before the OATAILPTR register and after the
+ 	 * OAHEADPTR register. This is to enable proper functionality of the overflow bit".
+@@ -1294,6 +1301,18 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+ 	stream->periodic = param->period_exponent > 0;
+ 	stream->period_exponent = param->period_exponent;
+ 
++	/*
++	 * For Xe2+, when overrun mode is enabled, there are no partial reports at the end
++	 * of buffer, making the OA buffer effectively a non-power-of-2 size circular
++	 * buffer whose size, circ_size, is a multiple of the report size
 +	 */
-+	__u64 oa_units[];
-+};
++	if (GRAPHICS_VER(stream->oa->xe) >= 20 &&
++	    stream->hwe->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAG && stream->sample)
++		stream->oa_buffer.circ_size =
++			XE_OA_BUFFER_SIZE - XE_OA_BUFFER_SIZE % stream->oa_buffer.format->size;
++	else
++		stream->oa_buffer.circ_size = XE_OA_BUFFER_SIZE;
 +
- /** enum drm_xe_oa_format_type - OA format types */
- enum drm_xe_oa_format_type {
- 	DRM_XE_OA_FMT_TYPE_OAG,
-@@ -1576,6 +1646,21 @@ struct drm_xe_oa_stream_status {
- 	__u64 reserved[3];
+ 	if (stream->exec_q && engine_supports_mi_query(stream->hwe)) {
+ 		/* If we don't find the context offset, just return error */
+ 		ret = xe_oa_set_ctx_ctrl_offset(stream);
+diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
+index 7775fe91616f..c62811482934 100644
+--- a/drivers/gpu/drm/xe/xe_oa_types.h
++++ b/drivers/gpu/drm/xe/xe_oa_types.h
+@@ -163,6 +163,9 @@ struct xe_oa_buffer {
+ 
+ 	/** @tail: The last verified cached tail where HW has completed writing */
+ 	u32 tail;
++
++	/** @circ_size: The effective circular buffer size, for Xe2+ */
++	u32 circ_size;
  };
  
-+/**
-+ * struct drm_xe_oa_stream_info - OA stream info returned from
-+ * @DRM_XE_PERF_IOCTL_INFO perf fd ioctl
-+ */
-+struct drm_xe_oa_stream_info {
-+	/** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
-+
-+	/** @oa_buf_size: OA buffer size */
-+	__u64 oa_buf_size;
-+
-+	/** @reserved: reserved for future use */
-+	__u64 reserved[3];
-+};
-+
- #if defined(__cplusplus)
- }
- #endif
+ /**
 -- 
 2.41.0
 
