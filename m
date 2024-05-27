@@ -4,50 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81CADC25B74
-	for <intel-xe@archiver.kernel.org>; Mon, 27 May 2024 17:36:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CF30C25B78
+	for <intel-xe@archiver.kernel.org>; Mon, 27 May 2024 17:36:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C26E610E331;
-	Mon, 27 May 2024 17:36:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75BAB10E346;
+	Mon, 27 May 2024 17:36:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DCt6XEst";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HJlIb5jq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F66F10E331
- for <intel-xe@lists.freedesktop.org>; Mon, 27 May 2024 17:36:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A38810E346
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 May 2024 17:36:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716831393; x=1748367393;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=BpgcqwJjAiviKV0bzosGX4qUWyWd8OOH00Zw6Oz1JLg=;
- b=DCt6XEstpRqBqivJAoeDHLgAJRJNopFtsnILfu5qawvI1MU0Rx1QyZyN
- FcUM7S4c27qCmJjNVZ6rlQHEhVaR1TxmoEE0pQkFCdtrfhwqEqZ3gmcmH
- sTQ9I6LiPJxb/hWNlZoe9a+G4h1whpt52R/ARaooPgLXuvVSZYTT7fUNv
- gkI3HKKKoCtMGHvl/z+Qkz93ZEQ3KDHAUp6uWj24fGj+kV3kwH/FSVSuR
- /ar7LYa9/fJl2GCStFsL1E+Z7f5dW+38BAqow9F7xc5uMssGxsJH8BpHT
- ctWy+8qOtlPzYeVTo1RNNP6BSNb3GfM/OGLgy4NxRfMCySx46xdRQalIv A==;
-X-CSE-ConnectionGUID: 7pqlldoXTs+IpHGBxd/xuQ==
-X-CSE-MsgGUID: BIJAqxnWTKaypGCMTM7Nmg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="23722627"
-X-IronPort-AV: E=Sophos;i="6.08,193,1712646000"; d="scan'208";a="23722627"
+ t=1716831394; x=1748367394;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=NQD/QAww5V3DgQflwwL2R9+FjSFb/hUHpgdLwbuxbXc=;
+ b=HJlIb5jqlJ7b90I1bXpB1eTlPA4ymr8QeUq0LXEnE+fizylFzAS4ie12
+ v4rwnocYIQbrTwru4oLfQL6mdhaWL+YBW0lv3gyXbRyfe/iHRsRXaxG9v
+ s7L2wpyLq8k1QFebfgvj9YaJWGQhxgacURhqLIjuJRaI+b51lOmfTOkeE
+ JGZJo86vHjizc2lpXgSxi104n0tl2+QSuVd1wVo05zpQxolldRU5eipkC
+ DENz1iae5qyt681786AbX1OfskcrJmZZy3GhL1zbxxicYjzJmRx8dvZT1
+ TOZROUapBGo+uBKscWFzq/759tflWrvvbr/3snvQFSEqyABmmh2p2X542 g==;
+X-CSE-ConnectionGUID: q07qExcOTOaTqkNye0hWGA==
+X-CSE-MsgGUID: mPztFBlAQbK8z8j/aIma0A==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="23722629"
+X-IronPort-AV: E=Sophos;i="6.08,193,1712646000"; d="scan'208";a="23722629"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2024 10:36:32 -0700
-X-CSE-ConnectionGUID: hhtqwUQ6QkyyULirPbRqKw==
-X-CSE-MsgGUID: 93vbbPtbQOeDAcmeRqJhoA==
+ 27 May 2024 10:36:34 -0700
+X-CSE-ConnectionGUID: CrmYHXpqS4qqKMQFEvykNQ==
+X-CSE-MsgGUID: NsqoFWoTTJ2gbXuxVH1fag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,193,1712646000"; d="scan'208";a="34901662"
+X-IronPort-AV: E=Sophos;i="6.08,193,1712646000"; d="scan'208";a="34901665"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.33.240])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2024 10:36:32 -0700
+ 27 May 2024 10:36:33 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 0/5] VF: Setup VRAM based on received config data
-Date: Mon, 27 May 2024 19:35:49 +0200
-Message-Id: <20240527173554.1108-1-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH 1/5] drm/xe: Move XEHP_MTCFG_ADDR register definition to
+ xe_regs.h
+Date: Mon, 27 May 2024 19:35:50 +0200
+Message-Id: <20240527173554.1108-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240527173554.1108-1-michal.wajdeczko@intel.com>
+References: <20240527173554.1108-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,35 +68,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VF drivers will obtain VRAM configuration from the GuC as part of
-the VF self config. Use that configuration instead of trying to
-read inaccessible registers.
+We should not define registers directly in the code while we have
+dedicated files for all register definitions. Move XEHP_MTCFG_ADDR
+to regs/xe_regs.h
 
-But before doing that, do some cleanup of the VRAM probe code.
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_regs.h | 3 +++
+ drivers/gpu/drm/xe/xe_mmio.c      | 3 ---
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-Michal Wajdeczko (5):
-  drm/xe: Move XEHP_MTCFG_ADDR register definition to xe_regs.h
-  drm/xe: Move BAR definitions to dedicated file
-  drm/xe: Promote VRAM initialization function to own file
-  drm/xe: Rename internal vram helper function
-  drm/xe/vf: Setup VRAM based on received config data
-
- drivers/gpu/drm/xe/Makefile            |   1 +
- drivers/gpu/drm/xe/regs/xe_bars.h      |  11 +
- drivers/gpu/drm/xe/regs/xe_regs.h      |   3 +
- drivers/gpu/drm/xe/xe_device.c         |   3 +-
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c    |  17 ++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.h    |   1 +
- drivers/gpu/drm/xe/xe_mmio.c           | 339 +----------------------
- drivers/gpu/drm/xe/xe_mmio.h           |   2 -
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c |   1 +
- drivers/gpu/drm/xe/xe_vram.c           | 368 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vram.h           |  13 +
- 11 files changed, 421 insertions(+), 338 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_bars.h
- create mode 100644 drivers/gpu/drm/xe/xe_vram.c
- create mode 100644 drivers/gpu/drm/xe/xe_vram.h
-
+diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
+index 722fb6dbb72e..23e33ec84902 100644
+--- a/drivers/gpu/drm/xe/regs/xe_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_regs.h
+@@ -30,6 +30,9 @@
+ #define XEHP_CLOCK_GATE_DIS			XE_REG(0x101014)
+ #define   SGSI_SIDECLK_DIS			REG_BIT(17)
+ 
++#define XEHP_MTCFG_ADDR				XE_REG(0x101800)
++#define   TILE_COUNT				REG_GENMASK(15, 8)
++
+ #define GGC					XE_REG(0x108040)
+ #define   GMS_MASK				REG_GENMASK(15, 8)
+ #define   GGMS_MASK				REG_GENMASK(7, 6)
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 248e93ec6df7..44bff104c011 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -28,9 +28,6 @@
+ #include "xe_sriov.h"
+ #include "xe_tile.h"
+ 
+-#define XEHP_MTCFG_ADDR		XE_REG(0x101800)
+-#define TILE_COUNT		REG_GENMASK(15, 8)
+-
+ #define BAR_SIZE_SHIFT 20
+ 
+ static void
 -- 
 2.43.0
 
