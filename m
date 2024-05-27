@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D8C4C25B74
-	for <intel-xe@archiver.kernel.org>; Mon, 27 May 2024 08:46:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A628AC25B74
+	for <intel-xe@archiver.kernel.org>; Mon, 27 May 2024 08:46:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EFFB10F98B;
-	Mon, 27 May 2024 08:46:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E5E310F98B;
+	Mon, 27 May 2024 08:46:49 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDF9F10F98C;
- Mon, 27 May 2024 08:46:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6B8D10F989;
+ Mon, 27 May 2024 08:46:46 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Add_device_CXL_?=
- =?utf-8?q?capabilities_identification_=28rev3=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_Add_device_CXL_capab?=
+ =?utf-8?q?ilities_identification_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Farah Kassabri" <fkassabri@habana.ai>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 27 May 2024 08:46:17 -0000
-Message-ID: <171679957777.2212026.17258964156916913337@8e613ede5ea5>
+Date: Mon, 27 May 2024 08:46:46 -0000
+Message-ID: <171679960681.2211934.10605183472527140041@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240527084031.840699-1-fkassabri@habana.ai>
 In-Reply-To: <20240527084031.840699-1-fkassabri@habana.ai>
@@ -44,45 +44,66 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Add device CXL capabilities identification (rev3)
 URL   : https://patchwork.freedesktop.org/series/134047/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-51ce9f6cd981d42d7467409d7dbc559a450abc1e
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 22e9dbbba0e9434378b90854ad98d51e971c38bc
-Author: Farah Kassabri <fkassabri@habana.ai>
-Date:   Mon May 27 11:40:31 2024 +0300
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_cxl.c: In function ‘xe_cxl_init_capabilities’:
+../drivers/gpu/drm/xe/xe_cxl.c:30:46: error: ‘PCI_DVSEC_VENDOR_ID_CXL’ undeclared (first use in this function); did you mean ‘PCI_VENDOR_ID_CXL’?
+   30 |  cxl_dvsec = pci_find_dvsec_capability(pdev, PCI_DVSEC_VENDOR_ID_CXL, CXL_DVSEC_PCIE_DEVICE);
+      |                                              ^~~~~~~~~~~~~~~~~~~~~~~
+      |                                              PCI_VENDOR_ID_CXL
+../drivers/gpu/drm/xe/xe_cxl.c:30:46: note: each undeclared identifier is reported only once for each function it appears in
+make[7]: *** [../scripts/Makefile.build:244: drivers/gpu/drm/xe/xe_cxl.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:485: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:485: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:485: drivers/gpu] Error 2
+make[4]: *** Waiting for unfinished jobs....
+make[3]: *** [../scripts/Makefile.build:485: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+make[2]: *** [/kernel/Makefile:1934: .] Error 2
+make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
 
-    drm/xe: Add device CXL capabilities identification
-    
-    As future Intel GPUs will use CXL interface with the host
-    servers, this patch will add check if the xe device has CXL
-    capabilities or not, by reading the PCIe standard DVSEC register
-    and identify the CXL vendor id.
-    
-    Signed-off-by: Farah Kassabri <fkassabri@habana.ai>
-+ /mt/dim checkpatch 3735266734803d913dd698230e05c462806525aa drm-intel
-22e9dbbba0e9 drm/xe: Add device CXL capabilities identification
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:26: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#26: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 110 lines checked
+[08:46:18] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[08:46:23] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
