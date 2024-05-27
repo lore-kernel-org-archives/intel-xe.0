@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C81FBC25B74
-	for <intel-xe@archiver.kernel.org>; Mon, 27 May 2024 21:19:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D578BC25B7C
+	for <intel-xe@archiver.kernel.org>; Mon, 27 May 2024 21:19:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 629AE10EF84;
-	Mon, 27 May 2024 21:19:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C2CF10E56E;
+	Mon, 27 May 2024 21:19:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BxrTqjEX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c/fvayd2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62C4310E56E
- for <intel-xe@lists.freedesktop.org>; Mon, 27 May 2024 21:19:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E54F410E56E
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 May 2024 21:19:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716844778; x=1748380778;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=SJH/GjB0WzQMndPqEOebNThBJUNbFtY1unaJmzd5gWo=;
- b=BxrTqjEX01LRqoImM8f5VTHmlTVOB7oC73NxK7wXiTUzZ2PXlpilKVnS
- BCaXWpXyyt9NJ93Id1fNBMRwjMzoLIQ56/DZKp4iNajvdzuClfc2YpPTk
- R7IdvPkwTHNnml5Jz/sErPrw84Cb5EqJCYl+doDqLvWiRbr/7ngy5TBEB
- yrx1CClewFHdrE2Ly9CJTN/E5frgrasDO/eH73P5WbdOdpIjNwPFs6dvd
- cynh20lAPZ8vZXOlqKw+YXmJSu8ymcZv7AgvpR4s/cY0EbnMr78ssBqSa
- 6V0rADV/xW4mu3OfAt/M9/D2+kFoJgnSgySLMK82Yt0ccbfC1AXVZk0JP A==;
-X-CSE-ConnectionGUID: YK7h68DkQQuMkf3aKwG0vg==
-X-CSE-MsgGUID: kK16Ys+UTwWgLy6cZu4bcA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13296446"
-X-IronPort-AV: E=Sophos;i="6.08,193,1712646000"; d="scan'208";a="13296446"
+ t=1716844780; x=1748380780;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=POeXJO0Ki78dxq9KLiqtFgsERyiXn+HDdOUiF0ybRcs=;
+ b=c/fvayd2M5eBzVg3yCk0NkXYkjW8MiYhZXtfEcQ4At7DaLBlCapDIKwl
+ Gpvl6E2d3JQyn8xDPuajRMTX+IYLK0rF2wnNZBhpIcZMz48t54InM+io4
+ AH9ErE6zQYPe5Vb7leKegzbiQgxp/N77eLKU1bjG4xW+AXsvhgi1vpJIV
+ cRLilIkNKNEjQeH59eeJMh2OX8BwNQ/oflHKHax98/emhcRnW41SPQ13c
+ yDLYHdsGFLQ48OCiSl3M+K7DmmHYJOrOViOKV/nGeHo6hsQXcZ9NBSk3K
+ UF8sFyxNyvMyquEAqp+zXNukIgR9pk8xNO94lXPiZrg+8HtbKibuETaqQ A==;
+X-CSE-ConnectionGUID: CR6VuugUT2ij8qhn2Hdg1g==
+X-CSE-MsgGUID: I2dm0hDFQsa4Ere9xNyNqw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13296450"
+X-IronPort-AV: E=Sophos;i="6.08,193,1712646000"; d="scan'208";a="13296450"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2024 14:19:38 -0700
-X-CSE-ConnectionGUID: lJqoO0VSTXy7XTChlx6h0Q==
-X-CSE-MsgGUID: gdQ4tqw0SECT3OEGkqBOcQ==
+ 27 May 2024 14:19:39 -0700
+X-CSE-ConnectionGUID: onjGBLQxQFuWmNTa3JtYuw==
+X-CSE-MsgGUID: y3bFx4DhQdigVCuML5l6Zg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,193,1712646000"; d="scan'208";a="65666797"
+X-IronPort-AV: E=Sophos;i="6.08,193,1712646000"; d="scan'208";a="65666801"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2024 14:19:38 -0700
+ 27 May 2024 14:19:39 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Subject: [CI 0/2] Test GSC loading with Wa_22019338487
-Date: Mon, 27 May 2024 14:19:26 -0700
-Message-ID: <20240527211928.1179357-1-daniele.ceraolospurio@intel.com>
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Subject: [CI 1/2] drm/xe/lnl: Apply Wa_22019338487
+Date: Mon, 27 May 2024 14:19:27 -0700
+Message-ID: <20240527211928.1179357-2-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240527211928.1179357-1-daniele.ceraolospurio@intel.com>
+References: <20240527211928.1179357-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,29 +66,224 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In my local testing I wasn't able to repro the hang we see with the GSC
-loading with Wa_22019338487 applied, so sending this series to test on
-a bigger pool to confirm if this indeed fixes the issue or if it was
-just a timing change that managed to avoid it on that particular machine.
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 
-This series is not meant for review. The WA is in review separately while
-for the GSC we'll just drop the revert from the for-ci branch.
+This WA requires us to limit media GT frequency requests to a certain
+cap value during driver load as well as after driver unload. Freq limits
+are restored after driver load completes, so perf will not be
+affected during normal operations.
 
-Daniele Ceraolo Spurio (1):
-  Reapply "drm/xe/gsc: define GSC FW for LNL"
-
-Vinay Belgaumkar (1):
-  drm/xe/lnl: Apply Wa_22019338487
-
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
  drivers/gpu/drm/xe/Makefile        |  2 ++
  drivers/gpu/drm/xe/xe_device.c     |  8 ++++++++
  drivers/gpu/drm/xe/xe_gsc.c        |  8 ++++++++
  drivers/gpu/drm/xe/xe_guc_pc.c     | 31 ++++++++++++++++++++++++++++--
  drivers/gpu/drm/xe/xe_guc_pc.h     |  2 ++
- drivers/gpu/drm/xe/xe_uc_fw.c      |  1 +
  drivers/gpu/drm/xe/xe_wa_oob.rules |  1 +
- 7 files changed, 51 insertions(+), 2 deletions(-)
+ 6 files changed, 50 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index d5b137e762ed..3701d1a01e50 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -47,9 +47,11 @@ $(obj)/generated/%_wa_oob.c $(obj)/generated/%_wa_oob.h: $(obj)/xe_gen_wa_oob \
+ 	$(call cmd,wa_oob)
+ 
+ uses_generated_oob := \
++	$(obj)/xe_device.o \
+ 	$(obj)/xe_gsc.o \
+ 	$(obj)/xe_guc.o \
+ 	$(obj)/xe_guc_ads.o \
++	$(obj)/xe_guc_pc.o \
+ 	$(obj)/xe_migrate.o \
+ 	$(obj)/xe_ring_ops.o \
+ 	$(obj)/xe_vm.o \
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index f04b11e45c2d..85c1b0c406a6 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -16,6 +16,7 @@
+ #include <drm/drm_managed.h>
+ #include <drm/drm_print.h>
+ #include <drm/xe_drm.h>
++#include <generated/xe_wa_oob.h>
+ 
+ #include "display/xe_display.h"
+ #include "instructions/xe_gpu_commands.h"
+@@ -37,6 +38,7 @@
+ #include "xe_gt_printk.h"
+ #include "xe_gt_sriov_vf.h"
+ #include "xe_guc.h"
++#include "xe_guc_pc.h"
+ #include "xe_hwmon.h"
+ #include "xe_irq.h"
+ #include "xe_memirq.h"
+@@ -51,6 +53,7 @@
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_ttm_sys_mgr.h"
+ #include "xe_vm.h"
++#include "xe_wa.h"
+ #include "xe_wait_user_fence.h"
+ 
+ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+@@ -337,6 +340,7 @@ static void xe_driver_flr(struct xe_device *xe)
+ {
+ 	const unsigned int flr_timeout = 3 * MICRO; /* specs recommend a 3s wait */
+ 	struct xe_gt *gt = xe_root_mmio_gt(xe);
++	struct xe_guc_pc *pc = &gt->uc.guc.pc;
+ 	int ret;
+ 
+ 	if (xe_mmio_read32(gt, GU_CNTL_PROTECTED) & DRIVERINT_FLR_DIS) {
+@@ -344,6 +348,10 @@ static void xe_driver_flr(struct xe_device *xe)
+ 		return;
+ 	}
+ 
++	/* Set requested freq to mert_freq_cap before FLR */
++	if (XE_WA(gt, 22019338487))
++		pc_set_cur_freq(pc, min(xe_guc_pc_mert_freq_cap(pc), pc->rpe_freq));
++
+ 	drm_dbg(&xe->drm, "Triggering Driver-FLR\n");
+ 
+ 	/*
+diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
+index 80a61934decc..4369e3ff19cf 100644
+--- a/drivers/gpu/drm/xe/xe_gsc.c
++++ b/drivers/gpu/drm/xe/xe_gsc.c
+@@ -22,6 +22,7 @@
+ #include "xe_gt.h"
+ #include "xe_gt_mcr.h"
+ #include "xe_gt_printk.h"
++#include "xe_guc_pc.h"
+ #include "xe_huc.h"
+ #include "xe_map.h"
+ #include "xe_mmio.h"
+@@ -342,6 +343,7 @@ static void gsc_work(struct work_struct *work)
+ 	struct xe_gsc *gsc = container_of(work, typeof(*gsc), work);
+ 	struct xe_gt *gt = gsc_to_gt(gsc);
+ 	struct xe_device *xe = gt_to_xe(gt);
++	struct xe_guc_pc *pc = &gt->uc.guc.pc;
+ 	u32 actions;
+ 	int ret;
+ 
+@@ -370,6 +372,12 @@ static void gsc_work(struct work_struct *work)
+ 	if (actions & GSC_ACTION_SW_PROXY)
+ 		xe_gsc_proxy_request_handler(gsc);
+ 
++	/* Revert the min/max freq limits as we're done with GSC/driver load */
++	if (XE_WA(gt, 22019338487)) {
++		xe_guc_pc_set_max_freq(pc, pc->rp0_freq);
++		xe_guc_pc_set_min_freq(pc, pc->rpe_freq);
++	}
++
+ out:
+ 	xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
+ 	xe_pm_runtime_put(xe);
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 8187dfb2ad6c..3ecfbaa75495 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -8,6 +8,7 @@
+ #include <linux/delay.h>
+ 
+ #include <drm/drm_managed.h>
++#include <generated/xe_wa_oob.h>
+ 
+ #include "abi/guc_actions_abi.h"
+ #include "abi/guc_actions_slpc_abi.h"
+@@ -24,6 +25,7 @@
+ #include "xe_map.h"
+ #include "xe_mmio.h"
+ #include "xe_pcode.h"
++#include "xe_wa.h"
+ 
+ #define MCHBAR_MIRROR_BASE_SNB	0x140000
+ 
+@@ -41,6 +43,8 @@
+ #define GT_FREQUENCY_MULTIPLIER	50
+ #define GT_FREQUENCY_SCALER	3
+ 
++#define LNL_MERT_FREQ_CAP	800
++
+ /**
+  * DOC: GuC Power Conservation (PC)
+  *
+@@ -238,7 +242,7 @@ static void pc_set_manual_rp_ctrl(struct xe_guc_pc *pc, bool enable)
+ 	xe_mmio_write32(gt, RP_CONTROL, state);
+ }
+ 
+-static void pc_set_cur_freq(struct xe_guc_pc *pc, u32 freq)
++void pc_set_cur_freq(struct xe_guc_pc *pc, u32 freq)
+ {
+ 	struct xe_gt *gt = pc_to_gt(pc);
+ 	u32 rpnswreq;
+@@ -674,6 +678,14 @@ static void pc_init_fused_rp_values(struct xe_guc_pc *pc)
+ 		tgl_init_fused_rp_values(pc);
+ }
+ 
++u32 xe_guc_pc_mert_freq_cap(struct xe_guc_pc *pc)
++{
++	if (MEDIA_VERx100(pc_to_xe(pc)) == 2000)
++		return LNL_MERT_FREQ_CAP;
++	else
++		return 0;
++}
++
+ /**
+  * xe_guc_pc_init_early - Initialize RPx values and request a higher GT
+  * frequency to allow faster GuC load times
+@@ -685,7 +697,11 @@ void xe_guc_pc_init_early(struct xe_guc_pc *pc)
+ 
+ 	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
+ 	pc_init_fused_rp_values(pc);
+-	pc_set_cur_freq(pc, pc->rp0_freq);
++
++	if (XE_WA(gt, 22019338487))
++		pc_set_cur_freq(pc, min(xe_guc_pc_mert_freq_cap(pc), pc->rp0_freq));
++	else
++		pc_set_cur_freq(pc, pc->rp0_freq);
+ }
+ 
+ static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
+@@ -716,6 +732,17 @@ static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
+ 	if (pc_get_min_freq(pc) > pc->rp0_freq)
+ 		ret = pc_set_min_freq(pc, pc->rp0_freq);
+ 
++	if (!ret && XE_WA(pc_to_gt(pc), 22019338487)) {
++		/*
++		 * Setting min to RPn disables use of efficient freq
++		 * which could otherwise interfere with this WA for media GT.
++		 * We will also bind max to MERT_FREQ_CAP until driver loads.
++		 */
++		ret = pc_set_min_freq(pc, pc->rpn_freq);
++		if (!ret)
++			ret = pc_set_max_freq(pc, min(pc->rp0_freq, xe_guc_pc_mert_freq_cap(pc)));
++	}
++
+ out:
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.h b/drivers/gpu/drm/xe/xe_guc_pc.h
+index 532cac985a6d..4abdefa36b9a 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.h
++++ b/drivers/gpu/drm/xe/xe_guc_pc.h
+@@ -29,5 +29,7 @@ enum xe_gt_idle_state xe_guc_pc_c_status(struct xe_guc_pc *pc);
+ u64 xe_guc_pc_rc6_residency(struct xe_guc_pc *pc);
+ u64 xe_guc_pc_mc6_residency(struct xe_guc_pc *pc);
+ void xe_guc_pc_init_early(struct xe_guc_pc *pc);
++void pc_set_cur_freq(struct xe_guc_pc *pc, u32 freq);
++u32 xe_guc_pc_mert_freq_cap(struct xe_guc_pc *pc);
+ 
+ #endif /* _XE_GUC_PC_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 12fe88796a49..a6b897030fde 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -27,3 +27,4 @@
+ 16022287689	GRAPHICS_VERSION(2001)
+ 		GRAPHICS_VERSION(2004)
+ 13011645652	GRAPHICS_VERSION(2004)
++22019338487	MEDIA_VERSION(2000)
 -- 
 2.43.0
 
