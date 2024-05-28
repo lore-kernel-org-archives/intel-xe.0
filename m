@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F217C25B7C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA2A5C25B78
 	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 12:34:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F14F510F26E;
-	Tue, 28 May 2024 12:34:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CA3810F4F7;
+	Tue, 28 May 2024 12:34:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jrr1j1t8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dgVoYDVV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BD3B10EA6F
- for <intel-xe@lists.freedesktop.org>; Tue, 28 May 2024 12:34:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E58FD10E93A
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 May 2024 12:34:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716899651; x=1748435651;
+ t=1716899653; x=1748435653;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=XofbqjaR+hdOgbS4cIbvO7jI7rrfG/ooLzrPX1XV0qw=;
- b=Jrr1j1t8XOKR1FZ8WfP/8szEPjDtXCT0pZ5Nxdfq15XgKZRETcXPyuR3
- u6aG6WibgpdFWIBnfQ2vHwqYxvyuznumTZM5vgtnxqAufltOIwIwIj0PA
- Jamt6ab8MPKj9TfBmHv2FckcC/fR2kgp7CQs515fhI8OD8YX5foQQ8nZh
- /X8+WoDvA2iJauwNO8mjzpMgv/dPG/kkH/M2T6f8daR8p6W2TYGyl2QUk
- xVQU9e3OtE2OLhTfncXLI8SexZjJPQk01Z0+VgPTymhebhxrUYoujlt02
- WEU3MJdWjzDthUzC0EpjkmNo7XsjEm9HBlJpsfx3cwH1PxBv4EgTXgzLb g==;
-X-CSE-ConnectionGUID: gQvgGL+5R2aeUGLEs8NkiA==
-X-CSE-MsgGUID: bxSW8tO1SbiyVYbvOW7MiQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13065045"
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="13065045"
+ bh=J315MWDgQXInDc8OsP3at4w8VKdlUB/VDgWc9aZ1qqc=;
+ b=dgVoYDVVplNLlnPWKFSGF59ZwFHt+yEy8KR3wN5jGLhlNs0ovI/VtN/N
+ Xeoy+cVE3hxgbKrVgv9WkyyvZd2PN3Op466fNvofcCWetoIR+8DWWVKVC
+ RqAW/LDp81X2+OHLUB6+0Om+stjoeb4UmqKRsW6hP4Z+JDL8/xxwayS9U
+ 8bRA5j3XhBlLeeH0k9bqOC+f2zsgHtfkvYWX0OjZC2Jm11mJroOe54LyD
+ Isr3a8B9LbFQZy5R9v7jENz55LdtOt68SpMH2dCfmWZxDHeysbeVfDifF
+ p9iDw7GmXNRHUwuPovdZKZ4mkcKn/KiPONo9GNKgxf2Yq39R/pLFQITTx g==;
+X-CSE-ConnectionGUID: T79z70rqQXm2tjea31vcQg==
+X-CSE-MsgGUID: ibfClT8ITPy/UQ9fZkVTwQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13065050"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="13065050"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 05:34:11 -0700
-X-CSE-ConnectionGUID: YD+WdwsbQ8iM4q3Hf6jYDw==
-X-CSE-MsgGUID: tg9bzdJgThSd+Q3+ZSJ2cw==
+ 28 May 2024 05:34:12 -0700
+X-CSE-ConnectionGUID: 4QuQWL6eT6e7p+D4jz7oug==
+X-CSE-MsgGUID: oALZEh0yR0CwmSXIGnmfow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="39880470"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="39880484"
 Received: from maurocar-mobl2.ger.corp.intel.com (HELO fedora..)
  ([10.245.244.233])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 05:34:11 -0700
+ 28 May 2024 05:34:13 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v5 17/22] drm/xe: Use drm_exec for fault locking
-Date: Tue, 28 May 2024 14:33:38 +0200
-Message-ID: <20240528123343.169970-18-thomas.hellstrom@linux.intel.com>
+Subject: [CI v5 19/22] drm/ttm: Use drm_exec_trylock for bo initialization
+Date: Tue, 28 May 2024 14:33:40 +0200
+Message-ID: <20240528123343.169970-20-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240528123343.169970-1-thomas.hellstrom@linux.intel.com>
 References: <20240528123343.169970-1-thomas.hellstrom@linux.intel.com>
@@ -67,8 +67,12 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Similar to how TTM vm does this, convert the drm/xe fault
-handler to use drm_exec locking.
+Buffer object initialization may be part of a drm_exec transaction.
+Rather than using dma_resv_trylock, use drm_exec_trylock_obj().
+
+RFC: This patch indicates to me that we should avoid the -ENOMEM failure
+for drm_exec_trylock, Could probably use a sleeping lock here without
+problems.
 
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
@@ -76,75 +80,50 @@ Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: <dri-devel@lists.freedesktop.org>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 38 +++++++++++++++++++++++---------------
- 1 file changed, 23 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo.c | 22 +++++++++++++++++-----
+ 1 file changed, 17 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 3c56858e0751..b84acf6c46da 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1217,29 +1217,37 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
- 	struct xe_device *xe = to_xe_device(ddev);
- 	struct xe_bo *bo = ttm_to_xe_bo(tbo);
- 	bool needs_rpm = bo->flags & XE_BO_FLAG_VRAM_MASK;
-+	struct drm_exec exec;
- 	vm_fault_t ret;
--	int idx;
-+	int idx, err;
- 
- 	if (needs_rpm)
- 		xe_pm_runtime_get(xe);
- 
--	ret = ttm_bo_vm_reserve(tbo, vmf, NULL);
--	if (ret)
--		goto out;
-+	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 16);
-+	drm_exec_until_all_locked(&exec) {
-+		ret = ttm_bo_vm_reserve(tbo, vmf, &exec);
-+		drm_exec_retry_on_contention(&exec);
-+		if (err)
-+			ret = VM_FAULT_NOPAGE;
-+		if (ret)
-+			goto out;
- 
--	if (drm_dev_enter(ddev, &idx)) {
--		trace_xe_bo_cpu_fault(bo);
-+		if (drm_dev_enter(ddev, &idx)) {
-+			trace_xe_bo_cpu_fault(bo);
- 
--		ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
--					       TTM_BO_VM_NUM_PREFAULT,
--					       NULL);
--		drm_dev_exit(idx);
--	} else {
--		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
-+			ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
-+						       TTM_BO_VM_NUM_PREFAULT,
-+						       &exec);
-+			drm_dev_exit(idx);
-+			drm_exec_retry_on_contention(&exec);
-+			if (err)
-+				ret = VM_FAULT_NOPAGE;
-+		} else {
-+			ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
-+		}
- 	}
- 
--	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
--		goto out;
- 	/*
- 	 * ttm_bo_vm_reserve() already has dma_resv_lock.
+diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+index 8706502edcb1..216aeb6d7941 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo.c
++++ b/drivers/gpu/drm/ttm/ttm_bo.c
+@@ -942,10 +942,18 @@ int ttm_bo_init_reserved(struct ttm_device *bdev, struct ttm_buffer_object *bo,
+ 	/* passed reservation objects should already be locked,
+ 	 * since otherwise lockdep will be angered in radeon.
  	 */
-@@ -1250,8 +1258,8 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
- 		mutex_unlock(&xe->mem_access.vram_userfault.lock);
- 	}
+-	if (!resv)
+-		WARN_ON(!dma_resv_trylock(bo->base.resv));
+-	else
++	if (!resv) {
++		if (ctx->exec) {
++			ret = drm_exec_sanitize_for_trylock(ctx->exec);
++			if (ret)
++				goto err_put;
++			WARN_ON(drm_exec_trylock_obj(ctx->exec, &bo->base));
++		} else {
++			WARN_ON(!dma_resv_trylock(bo->base.resv));
++		}
++	} else {
+ 		dma_resv_assert_held(resv);
++	}
  
--	dma_resv_unlock(tbo->base.resv);
- out:
-+	drm_exec_fini(&exec);
- 	if (needs_rpm)
- 		xe_pm_runtime_put(xe);
+ 	ret = ttm_bo_validate(bo, placement, ctx);
+ 	if (unlikely(ret))
+@@ -954,8 +962,12 @@ int ttm_bo_init_reserved(struct ttm_device *bdev, struct ttm_buffer_object *bo,
+ 	return 0;
  
+ err_unlock:
+-	if (!resv)
+-		dma_resv_unlock(bo->base.resv);
++	if (!resv) {
++		if (ctx->exec)
++			drm_exec_unlock_obj(ctx->exec, &bo->base);
++		else
++			dma_resv_unlock(bo->base.resv);
++	}
+ 
+ err_put:
+ 	ttm_bo_put(bo);
 -- 
 2.44.0
 
