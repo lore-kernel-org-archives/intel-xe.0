@@ -4,27 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA7FCC25B78
-	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 14:33:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DF14C25B78
+	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 14:46:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 750D710E33C;
-	Tue, 28 May 2024 14:33:37 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D96EF10E3E4;
- Tue, 28 May 2024 14:33:35 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id B501E10E0E8;
+	Tue, 28 May 2024 14:46:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QSwLXPAv";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD33B10E0E8;
+ Tue, 28 May 2024 14:46:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716907570; x=1748443570;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=WM1Ru3mLX4zWI02W0VPy8yVNN3HZVq5joCnDe1A1HyA=;
+ b=QSwLXPAvJeO0VBUuxOUE04Wx2KSvcXFWC2LUamm+rtwVyGVg0zj3rIuJ
+ hof3OdS3VoMvtFpHScvKyhucMgqm+3+diM+j25DcUjeac/qn5qdXmJlYU
+ HZi7iXGkOR8XpEZYe3tenPSFrq0W1wS1Ai/Mv0Nj2h+r5Z3iBizNrzQdg
+ PZxbPtxc5jCvXqffeL0/3nynGB8nQqFkly9efUVUEnnnmq3NRNuTwGG/l
+ nD/mHz3dCP5pLyB18v1GDQrQmV6sAr6UO7BhSp5/KJsrWXowiofUOBVXV
+ qaVEDVligAO607jMOXFXHRPR0jBb5YtIVeMuYC/WaeJ+ryHkKl3U/E1wS w==;
+X-CSE-ConnectionGUID: Fcq0NFNyRqSETP1UTMp52w==
+X-CSE-MsgGUID: sIiWD/5dTseYsDrMqIrM3g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13385500"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="13385500"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2024 07:46:09 -0700
+X-CSE-ConnectionGUID: xGs5gK3MRcO4NYbEnddi9A==
+X-CSE-MsgGUID: OXNqiTS6TfG+Z+wOQgedAg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="35116733"
+Received: from maurocar-mobl2.ger.corp.intel.com (HELO [10.245.244.233])
+ ([10.245.244.233])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2024 07:46:05 -0700
+Message-ID: <706e63abf12b9cf76d43cf67999cbb7baa06ebb0.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: replace format-less snprintf() with strscpy()
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Arnd Bergmann <arnd@kernel.org>, Lucas De Marchi
+ <lucas.demarchi@intel.com>,  Oded Gabbay <ogabbay@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?ISO-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>, Matthew
+ Brost <matthew.brost@intel.com>, Francois Dugast
+ <francois.dugast@intel.com>, Himal Prasad Ghimiray
+ <himal.prasad.ghimiray@intel.com>,  intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,  linux-kernel@vger.kernel.org
+Date: Tue, 28 May 2024 16:46:02 +0200
+In-Reply-To: <20240528133251.2310868-1-arnd@kernel.org>
+References: <20240528133251.2310868-1-arnd@kernel.org>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/i915=3A_mem/fsb/rawclk_fre?=
- =?utf-8?q?q_cleanups?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 28 May 2024 14:33:35 -0000
-Message-ID: <171690681589.2216896.16686313905864531220@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <cover.1716906179.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1716906179.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,290 +77,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 2024-05-28 at 15:32 +0200, Arnd Bergmann wrote:
+> From: Arnd Bergmann <arnd@arndb.de>
+>=20
+> Using snprintf() with a format string from task->comm is a bit
+> dangerous since the string may be controlled by unprivileged
+> userspace:
+>=20
+> drivers/gpu/drm/xe/xe_devcoredump.c: In function
+> 'devcoredump_snapshot':
+> drivers/gpu/drm/xe/xe_devcoredump.c:184:9: error: format not a string
+> literal and no format arguments [-Werror=3Dformat-security]
+> =C2=A0 184 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 snprintf(ss-=
+>process_name, sizeof(ss->process_name),
+> process_name);
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 ^~~~~~~~
+>=20
+> In this case there is no reason for an snprintf(), so use a simpler
+> string copy.
+>=20
+> Fixes: b10d0c5e9df7 ("drm/xe: Add process name to devcoredump")
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-Series: drm/i915: mem/fsb/rawclk freq cleanups
-URL   : https://patchwork.freedesktop.org/series/134144/
-State : failure
+Thanks,
 
-== Summary ==
+Will pick up and apply as soon as our CI is fit for fight.
+/Thomas
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[14:32:32] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[14:32:37] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
 
-[14:33:11] Starting KUnit Kernel (1/1)...
-[14:33:11] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[14:33:11] =================== guc_dbm (7 subtests) ===================
-[14:33:11] [PASSED] test_empty
-[14:33:11] [PASSED] test_default
-[14:33:11] ======================== test_size  ========================
-[14:33:11] [PASSED] 4
-[14:33:11] [PASSED] 8
-[14:33:11] [PASSED] 32
-[14:33:11] [PASSED] 256
-[14:33:11] ==================== [PASSED] test_size ====================
-[14:33:11] ======================= test_reuse  ========================
-[14:33:11] [PASSED] 4
-[14:33:11] [PASSED] 8
-[14:33:11] [PASSED] 32
-[14:33:11] [PASSED] 256
-[14:33:11] =================== [PASSED] test_reuse ====================
-[14:33:11] =================== test_range_overlap  ====================
-[14:33:11] [PASSED] 4
-[14:33:11] [PASSED] 8
-[14:33:11] [PASSED] 32
-[14:33:11] [PASSED] 256
-[14:33:11] =============== [PASSED] test_range_overlap ================
-[14:33:11] =================== test_range_compact  ====================
-[14:33:11] [PASSED] 4
-[14:33:11] [PASSED] 8
-[14:33:11] [PASSED] 32
-[14:33:11] [PASSED] 256
-[14:33:11] =============== [PASSED] test_range_compact ================
-[14:33:11] ==================== test_range_spare  =====================
-[14:33:11] [PASSED] 4
-[14:33:11] [PASSED] 8
-[14:33:11] [PASSED] 32
-[14:33:11] [PASSED] 256
-[14:33:11] ================ [PASSED] test_range_spare =================
-[14:33:11] ===================== [PASSED] guc_dbm =====================
-[14:33:11] =================== guc_idm (6 subtests) ===================
-[14:33:11] [PASSED] bad_init
-[14:33:11] [PASSED] no_init
-[14:33:11] [PASSED] init_fini
-[14:33:11] [PASSED] check_used
-[14:33:11] [PASSED] check_quota
-[14:33:11] [PASSED] check_all
-[14:33:11] ===================== [PASSED] guc_idm =====================
-[14:33:11] ================== no_relay (3 subtests) ===================
-[14:33:11] [PASSED] xe_drops_guc2pf_if_not_ready
-[14:33:11] [PASSED] xe_drops_guc2vf_if_not_ready
-[14:33:11] [PASSED] xe_rejects_send_if_not_ready
-[14:33:11] ==================== [PASSED] no_relay =====================
-[14:33:11] ================== pf_relay (14 subtests) ==================
-[14:33:11] [PASSED] pf_rejects_guc2pf_too_short
-[14:33:11] [PASSED] pf_rejects_guc2pf_too_long
-[14:33:11] [PASSED] pf_rejects_guc2pf_no_payload
-[14:33:11] [PASSED] pf_fails_no_payload
-[14:33:11] [PASSED] pf_fails_bad_origin
-[14:33:11] [PASSED] pf_fails_bad_type
-[14:33:11] [PASSED] pf_txn_reports_error
-[14:33:11] [PASSED] pf_txn_sends_pf2guc
-[14:33:11] [PASSED] pf_sends_pf2guc
-[14:33:11] [SKIPPED] pf_loopback_nop
-[14:33:11] [SKIPPED] pf_loopback_echo
-[14:33:11] [SKIPPED] pf_loopback_fail
-[14:33:11] [SKIPPED] pf_loopback_busy
-[14:33:11] [SKIPPED] pf_loopback_retry
-[14:33:11] ==================== [PASSED] pf_relay =====================
-[14:33:11] ================== vf_relay (3 subtests) ===================
-[14:33:11] [PASSED] vf_rejects_guc2vf_too_short
-[14:33:11] [PASSED] vf_rejects_guc2vf_too_long
-[14:33:11] [PASSED] vf_rejects_guc2vf_no_payload
-[14:33:11] ==================== [PASSED] vf_relay =====================
-[14:33:11] ================= pf_service (11 subtests) =================
-[14:33:11] [PASSED] pf_negotiate_any
-[14:33:11] [PASSED] pf_negotiate_base_match
-[14:33:11] [PASSED] pf_negotiate_base_newer
-[14:33:11] [PASSED] pf_negotiate_base_next
-[14:33:11] [SKIPPED] pf_negotiate_base_older
-[14:33:11] [PASSED] pf_negotiate_base_prev
-[14:33:11] [PASSED] pf_negotiate_latest_match
-[14:33:11] [PASSED] pf_negotiate_latest_newer
-[14:33:11] [PASSED] pf_negotiate_latest_next
-[14:33:11] [SKIPPED] pf_negotiate_latest_older
-[14:33:11] [SKIPPED] pf_negotiate_latest_prev
-[14:33:11] =================== [PASSED] pf_service ====================
-[14:33:11] ===================== lmtt (1 subtest) =====================
-[14:33:11] ======================== test_ops  =========================
-[14:33:11] [PASSED] 2-level
-[14:33:11] [PASSED] multi-level
-[14:33:11] ==================== [PASSED] test_ops =====================
-[14:33:11] ====================== [PASSED] lmtt =======================
-[14:33:11] ==================== xe_bo (2 subtests) ====================
-[14:33:11] [SKIPPED] xe_ccs_migrate_kunit
-[14:33:11] [SKIPPED] xe_bo_evict_kunit
-[14:33:11] ===================== [SKIPPED] xe_bo ======================
-[14:33:11] ================== xe_dma_buf (1 subtest) ==================
-[14:33:11] [SKIPPED] xe_dma_buf_kunit
-[14:33:11] =================== [SKIPPED] xe_dma_buf ===================
-[14:33:11] ================== xe_migrate (1 subtest) ==================
-[14:33:11] [SKIPPED] xe_migrate_sanity_kunit
-[14:33:11] =================== [SKIPPED] xe_migrate ===================
-[14:33:11] =================== xe_mocs (2 subtests) ===================
-[14:33:11] [SKIPPED] xe_live_mocs_kernel_kunit
-[14:33:11] [SKIPPED] xe_live_mocs_reset_kunit
-[14:33:11] ==================== [SKIPPED] xe_mocs =====================
-[14:33:11] ==================== args (11 subtests) ====================
-[14:33:11] [PASSED] count_args_test
-[14:33:11] [PASSED] call_args_example
-[14:33:11] [PASSED] call_args_test
-[14:33:11] [PASSED] drop_first_arg_example
-[14:33:11] [PASSED] drop_first_arg_test
-[14:33:11] [PASSED] first_arg_example
-[14:33:11] [PASSED] first_arg_test
-[14:33:11] [PASSED] last_arg_example
-[14:33:11] [PASSED] last_arg_test
-[14:33:11] [PASSED] pick_arg_example
-[14:33:11] [PASSED] sep_comma_example
-[14:33:11] ====================== [PASSED] args =======================
-[14:33:11] =================== xe_pci (2 subtests) ====================
-[14:33:11] [PASSED] xe_gmdid_graphics_ip
-[14:33:11] [PASSED] xe_gmdid_media_ip
-[14:33:11] ===================== [PASSED] xe_pci ======================
-[14:33:11] ==================== xe_rtp (1 subtest) ====================
-[14:33:11] ================== xe_rtp_process_tests  ===================
-[14:33:11] [PASSED] coalesce-same-reg
-[14:33:11] [PASSED] no-match-no-add
-[14:33:11] [PASSED] no-match-no-add-multiple-rules
-[14:33:11] [PASSED] two-regs-two-entries
-[14:33:11] [PASSED] clr-one-set-other
-[14:33:11] [PASSED] set-field
-[14:33:11] [PASSED] conflict-duplicate
-[14:33:11] [PASSED] conflict-not-disjoint
-[14:33:11] [PASSED] conflict-reg-type
-[14:33:11] ============== [PASSED] xe_rtp_process_tests ===============
-stty: 'standard input': Inappropriate ioctl for device
-[14:33:11] ===================== [PASSED] xe_rtp ======================
-[14:33:11] ==================== xe_wa (1 subtest) =====================
-[14:33:11] ======================== xe_wa_gt  =========================
-[14:33:11] [PASSED] TIGERLAKE (B0)
-[14:33:11] [PASSED] DG1 (A0)
-[14:33:11] [PASSED] DG1 (B0)
-[14:33:11] [PASSED] ALDERLAKE_S (A0)
-[14:33:11] [PASSED] ALDERLAKE_S (B0)
-[14:33:11] [PASSED] ALDERLAKE_S (C0)
-[14:33:11] [PASSED] ALDERLAKE_S (D0)
-[14:33:11] [PASSED] ALDERLAKE_P (A0)
-[14:33:11] [PASSED] ALDERLAKE_P (B0)
-[14:33:11] [PASSED] ALDERLAKE_P (C0)
-[14:33:11] [PASSED] ALDERLAKE_S_RPLS (D0)
-[14:33:11] [PASSED] ALDERLAKE_P_RPLU (E0)
-[14:33:11] [PASSED] DG2_G10 (C0)
-[14:33:11] [PASSED] DG2_G11 (B1)
-[14:33:11] [PASSED] DG2_G12 (A1)
-[14:33:11] [PASSED] METEORLAKE (g:A0, m:A0)
-[14:33:11] [PASSED] METEORLAKE (g:A0, m:A0)
-[14:33:11] [PASSED] METEORLAKE (g:A0, m:A0)
-[14:33:11] [PASSED] LUNARLAKE (g:A0, m:A0)
-[14:33:11] [PASSED] LUNARLAKE (g:B0, m:A0)
-[14:33:11] ==================== [PASSED] xe_wa_gt =====================
-[14:33:11] ====================== [PASSED] xe_wa ======================
-[14:33:11] ============================================================
-[14:33:11] Testing complete. Ran 109 tests: passed: 95, skipped: 14
-[14:33:11] Elapsed time: 39.033s total, 4.914s configuring, 33.849s building, 0.217s running
 
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
-ERROR:root:
-WARNING: unmet direct dependencies detected for DRM_DISPLAY_HDMI_STATE_HELPER
-  Depends on [n]: HAS_IOMEM [=y] && DRM [=y] && DRM_DISPLAY_HELPER [=y] && DRM_DISPLAY_HDMI_HELPER [=n]
-  Selected by [y]:
-  - DRM_KUNIT_TEST [=y] && HAS_IOMEM [=y] && DRM [=y] && KUNIT [=y] && MMU [=y]
-
-WARNING: unmet direct dependencies detected for DRM_DISPLAY_HDMI_STATE_HELPER
-  Depends on [n]: HAS_IOMEM [=y] && DRM [=y] && DRM_DISPLAY_HELPER [=y] && DRM_DISPLAY_HDMI_HELPER [=n]
-  Selected by [y]:
-  - DRM_KUNIT_TEST [=y] && HAS_IOMEM [=y] && DRM [=y] && KUNIT [=y] && MMU [=y]
-
-WARNING: unmet direct dependencies detected for DRM_DISPLAY_HDMI_STATE_HELPER
-  Depends on [n]: HAS_IOMEM [=y] && DRM [=y] && DRM_DISPLAY_HELPER [=y] && DRM_DISPLAY_HDMI_HELPER [=n]
-  Selected by [y]:
-  - DRM_KUNIT_TEST [=y] && HAS_IOMEM [=y] && DRM [=y] && KUNIT [=y] && MMU [=y]
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-/usr/bin/ld: drivers/gpu/drm/tests/drm_connector_test.o: in function `drm_test_connector_hdmi_compute_mode_clock_yuv422_12_bpc':
-drm_connector_test.c:(.text+0x570): undefined reference to `drm_hdmi_compute_mode_clock'
-/usr/bin/ld: drivers/gpu/drm/tests/drm_connector_test.o: in function `drm_test_connector_hdmi_compute_mode_clock_yuv422_10_bpc':
-drm_connector_test.c:(.text+0x760): undefined reference to `drm_hdmi_compute_mode_clock'
-/usr/bin/ld: drivers/gpu/drm/tests/drm_connector_test.o: in function `drm_test_connector_hdmi_compute_mode_clock_yuv422_8_bpc':
-drm_connector_test.c:(.text+0x950): undefined reference to `drm_hdmi_compute_mode_clock'
-/usr/bin/ld: drivers/gpu/drm/tests/drm_connector_test.o: in function `drm_test_connector_hdmi_compute_mode_clock_yuv420_12_bpc':
-drm_connector_test.c:(.text+0xb40): undefined reference to `drm_hdmi_compute_mode_clock'
-/usr/bin/ld: drivers/gpu/drm/tests/drm_connector_test.o: in function `drm_test_connector_hdmi_compute_mode_clock_yuv420_10_bpc':
-drm_connector_test.c:(.text+0xd30): undefined reference to `drm_hdmi_compute_mode_clock'
-/usr/bin/ld: drivers/gpu/drm/tests/drm_connector_test.o:drm_connector_test.c:(.text+0xf26): more undefined references to `drm_hdmi_compute_mode_clock' follow
-/usr/bin/ld: drivers/gpu/drm/display/drm_hdmi_state_helper.o: in function `drm_atomic_helper_connector_hdmi_check':
-drm_hdmi_state_helper.c:(.text+0x9d8): undefined reference to `drm_hdmi_avi_infoframe_colorimetry'
-/usr/bin/ld: drm_hdmi_state_helper.c:(.text+0x9ea): undefined reference to `drm_hdmi_avi_infoframe_bars'
-/usr/bin/ld: drm_hdmi_state_helper.c:(.text+0xa54): undefined reference to `drm_hdmi_infoframe_set_hdr_metadata'
-collect2: error: ld returned 1 exit status
-make[3]: *** [../scripts/Makefile.vmlinux:34: vmlinux] Error 1
-make[2]: *** [/kernel/Makefile:1171: vmlinux] Error 2
-make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
-
-[14:33:11] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[14:33:13] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_devcoredump.c | 2 +-
+> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c
+> b/drivers/gpu/drm/xe/xe_devcoredump.c
+> index 1643d44f8bc4..1973bfaece40 100644
+> --- a/drivers/gpu/drm/xe/xe_devcoredump.c
+> +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+> @@ -181,7 +181,7 @@ static void devcoredump_snapshot(struct
+> xe_devcoredump *coredump,
+> =C2=A0		if (task)
+> =C2=A0			process_name =3D task->comm;
+> =C2=A0	}
+> -	snprintf(ss->process_name, sizeof(ss->process_name),
+> process_name);
+> +	strscpy(ss->process_name, process_name);
+> =C2=A0	if (task)
+> =C2=A0		put_task_struct(task);
+> =C2=A0
 
