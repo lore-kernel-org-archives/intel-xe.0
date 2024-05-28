@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFBD6C25B78
-	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 12:34:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DB5FC27C4F
+	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 12:34:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54C30112250;
-	Tue, 28 May 2024 12:34:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5B4B112251;
+	Tue, 28 May 2024 12:34:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="incflmB7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g3S8BBfa";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5794210E93A
- for <intel-xe@lists.freedesktop.org>; Tue, 28 May 2024 12:34:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F046210F199
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 May 2024 12:34:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716899642; x=1748435642;
+ t=1716899647; x=1748435647;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=vGSBfs33EAo6r3NtiWL+vXUkkmhO4gG6wMOVlbZF7YQ=;
- b=incflmB7itctrDE9jPAvmQKIYfIsEIlcXOvVBd6Ep0KJaCR/yCsVm61i
- 9yHNgFsqRAs4t2SBaOdkf2f3khmwtN30aejiVFKsO+231Fm69l1UvRLS6
- zl5zSBP+Xhy7CA+1IUSPCqEhK1B3EICAVKmnQcaGktsN8sDcpPrfWbiOu
- plCFR0BGxTY7K1QTbwNXEPXl6uLZR0hxIXZ/EMrtTr3GgGBibN6Wx76Qf
- qpDgs8oAnm5rfCHURvsHvuMa4UZZWBpiK/KUzmj44do3xjNJdoFm8qATF
- 1DWzRgSOE9rthGUla5MixEYDqTDKdKhx90kcHiQ+d0DathDWjU/4usfiF A==;
-X-CSE-ConnectionGUID: 3+QSIcgjT8GfJZqQCEgA/Q==
-X-CSE-MsgGUID: Ti9wr63YQO6M0XP9ImyaMQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13065019"
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="13065019"
+ bh=liol1cKeUAFcUrXHMGR17vksSxntNZz5PmA4A5lcxtw=;
+ b=g3S8BBfa55K3aYVovxeH5KbkJoHX6X35ukvXEqgzm2a79d5dl0XJhTfE
+ c0kg+J/OIpV3CxmwpfPNf73TwFCeOjLBpgTbfjphkikMke08d9ZeOWXTF
+ ER66ab3mvsACuwSbFKYZ7SGmpMDzX2fePmZVrViczRrCxOEu+nlVOP9/S
+ qLU4GzkMSSNVQ3/qwcm4+cUlkmzAWFFNCrzokHYmQG3JqIVQll6tih6lt
+ 6xdNuAQzufZqnPlJ/O2XEAKffzKEmeYWJs+x3U1DWODEcMyQLNpCMKrvC
+ dmhrLBNv7sJbRa13jN7GfHNQcWpThh71T2cJ+zzarhy7+2P7vtidK1OS2 w==;
+X-CSE-ConnectionGUID: Fee8zBF+RwS1lFfbZOcIIg==
+X-CSE-MsgGUID: z2a8lvW5T96lSQS2uIua2g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13065033"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="13065033"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 05:34:01 -0700
-X-CSE-ConnectionGUID: EAHxmAeGT5igHxqoY9p0jA==
-X-CSE-MsgGUID: Tdv19ZpxTJ69KptwhHw37w==
+ 28 May 2024 05:34:06 -0700
+X-CSE-ConnectionGUID: N3PfObZcRHmjapmY3Yqgrw==
+X-CSE-MsgGUID: SzJzAOXVTQepoiteOg6VdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="39880394"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="39880434"
 Received: from maurocar-mobl2.ger.corp.intel.com (HELO fedora..)
  ([10.245.244.233])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 05:34:01 -0700
+ 28 May 2024 05:34:07 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v5 07/22] drm/ttm: Use the LRU walker for eviction
-Date: Tue, 28 May 2024 14:33:28 +0200
-Message-ID: <20240528123343.169970-8-thomas.hellstrom@linux.intel.com>
+Subject: [CI v5 12/22] dma-buf/dma-resv: Introduce dma_resv_trylock_ctx()
+Date: Tue, 28 May 2024 14:33:33 +0200
+Message-ID: <20240528123343.169970-13-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240528123343.169970-1-thomas.hellstrom@linux.intel.com>
 References: <20240528123343.169970-1-thomas.hellstrom@linux.intel.com>
@@ -67,496 +67,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use the LRU walker for eviction. This helps
-removing a lot of code with weird locking
-semantics.
-
-The functionality is slightly changed so that
-when trylocked buffer objects are exhausted, we
-continue to interleave walks with ticket-locks while
-there is still progress made. The list walks are
-not restarted in-between evictions.
-
-Also provide a separate ttm_bo_evict_first()
-function for its single user. The context of that
-user allows sleeping dma_resv locks.
+For the drm_exec_trylock() functionality, there is a need to be able
+to trylock a dma-resv object as part of a drm_exec transaction.
+Therefore expose a variant of dma_resv_trylock that also takes
+a struct ww_acquire_ctx parameter.
 
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: <dri-devel@lists.freedesktop.org>
+Cc: <linaro-mm-sig@lists.linaro.org>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/ttm/ttm_bo.c       | 350 ++++++++++++-----------------
- drivers/gpu/drm/ttm/ttm_resource.c |  20 +-
- include/drm/ttm/ttm_bo.h           |   8 +-
- 3 files changed, 145 insertions(+), 233 deletions(-)
+ drivers/gpu/drm/drm_exec.c | 53 +++++++++++++++++++++++++++++++++++---
+ include/drm/drm_exec.h     |  1 +
+ include/linux/dma-resv.h   | 23 ++++++++++++++++-
+ 3 files changed, 72 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index 63a91b77f7da..316afe19a325 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -224,80 +224,6 @@ static void ttm_bo_flush_all_fences(struct ttm_buffer_object *bo)
- 	dma_resv_iter_end(&cursor);
- }
+diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
+index 2da094bdf8a4..1244aa58322b 100644
+--- a/drivers/gpu/drm/drm_exec.c
++++ b/drivers/gpu/drm/drm_exec.c
+@@ -139,14 +139,17 @@ EXPORT_SYMBOL(drm_exec_cleanup);
  
--/**
-- * ttm_bo_cleanup_refs
-- * If bo idle, remove from lru lists, and unref.
-- * If not idle, block if possible.
-- *
-- * Must be called with lru_lock and reservation held, this function
-- * will drop the lru lock and optionally the reservation lock before returning.
-- *
-- * @bo:                    The buffer object to clean-up
-- * @interruptible:         Any sleeps should occur interruptibly.
-- * @no_wait_gpu:           Never wait for gpu. Return -EBUSY instead.
-- * @unlock_resv:           Unlock the reservation lock as well.
-- */
--
--static int ttm_bo_cleanup_refs(struct ttm_buffer_object *bo,
--			       bool interruptible, bool no_wait_gpu,
--			       bool unlock_resv)
--{
--	struct dma_resv *resv = &bo->base._resv;
--	int ret;
--
--	if (dma_resv_test_signaled(resv, DMA_RESV_USAGE_BOOKKEEP))
--		ret = 0;
--	else
--		ret = -EBUSY;
--
--	if (ret && !no_wait_gpu) {
--		long lret;
--
--		if (unlock_resv)
--			dma_resv_unlock(bo->base.resv);
--		spin_unlock(&bo->bdev->lru_lock);
--
--		lret = dma_resv_wait_timeout(resv, DMA_RESV_USAGE_BOOKKEEP,
--					     interruptible,
--					     30 * HZ);
--
--		if (lret < 0)
--			return lret;
--		else if (lret == 0)
--			return -EBUSY;
--
--		spin_lock(&bo->bdev->lru_lock);
--		if (unlock_resv && !dma_resv_trylock(bo->base.resv)) {
--			/*
--			 * We raced, and lost, someone else holds the reservation now,
--			 * and is probably busy in ttm_bo_cleanup_memtype_use.
--			 *
--			 * Even if it's not the case, because we finished waiting any
--			 * delayed destruction would succeed, so just return success
--			 * here.
--			 */
--			spin_unlock(&bo->bdev->lru_lock);
--			return 0;
--		}
--		ret = 0;
--	}
--
--	if (ret) {
--		if (unlock_resv)
--			dma_resv_unlock(bo->base.resv);
--		spin_unlock(&bo->bdev->lru_lock);
--		return ret;
--	}
--
--	spin_unlock(&bo->bdev->lru_lock);
--	ttm_bo_cleanup_memtype_use(bo);
--
--	if (unlock_resv)
--		dma_resv_unlock(bo->base.resv);
--
--	return 0;
--}
--
- /*
-  * Block for the dma_resv object to become idle, lock the buffer and clean up
-  * the resource and tt object.
-@@ -505,151 +431,154 @@ bool ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
- }
- EXPORT_SYMBOL(ttm_bo_eviction_valuable);
- 
--/*
-- * Check the target bo is allowable to be evicted or swapout, including cases:
-- *
-- * a. if share same reservation object with ctx->resv, have assumption
-- * reservation objects should already be locked, so not lock again and
-- * return true directly when either the opreation allow_reserved_eviction
-- * or the target bo already is in delayed free list;
-+/**
-+ * ttm_bo_evict_first() - Evict the first bo on the manager's LRU list.
-+ * @bdev: The ttm device.
-+ * @man: The manager whose bo to evict.
-+ * @ctx: The TTM operation ctx governing the eviction.
-  *
-- * b. Otherwise, trylock it.
-+ * Return: 0 if successful or the resource disappeared. Negative error code on error.
-  */
--static bool ttm_bo_evict_swapout_allowable(struct ttm_buffer_object *bo,
--					   struct ttm_operation_ctx *ctx,
--					   const struct ttm_place *place,
--					   bool *locked, bool *busy)
-+int ttm_bo_evict_first(struct ttm_device *bdev, struct ttm_resource_manager *man,
-+		       struct ttm_operation_ctx *ctx)
+ /* Track the locked object in the array */
+ static int drm_exec_obj_locked(struct drm_exec *exec,
+-			       struct drm_gem_object *obj)
++			       struct drm_gem_object *obj,
++			       gfp_t gfp)
  {
--	bool ret = false;
-+	struct ttm_resource_cursor cursor;
-+	struct ttm_buffer_object *bo;
-+	struct ttm_resource *res;
-+	unsigned int mem_type;
-+	int ret = 0;
++	might_alloc(gfp);
++
+ 	if (unlikely(exec->num_objects == exec->max_objects)) {
+ 		size_t size = exec->max_objects * sizeof(void *);
+ 		void *tmp;
  
--	if (bo->pin_count) {
--		*locked = false;
--		if (busy)
--			*busy = false;
--		return false;
-+	spin_lock(&bdev->lru_lock);
-+	res = ttm_resource_manager_first(man, &cursor);
-+	if (!res) {
-+		ret = -ENOENT;
-+		goto out_no_ref;
- 	}
-+	bo = res->bo;
-+	if (!ttm_bo_get_unless_zero(bo))
-+		goto out_no_ref;
-+	mem_type = res->mem_type;
-+	spin_unlock(&bdev->lru_lock);
-+	ret = ttm_bo_reserve(bo, ctx->interruptible, ctx->no_wait_gpu, NULL);
-+	if (ret)
-+		goto out_no_lock;
-+	if (bo->resource != res || res->mem_type != mem_type)
-+		goto out_bad_res;
+ 		tmp = kvrealloc(exec->objects, size, size + PAGE_SIZE,
+-				GFP_KERNEL);
++				gfp);
+ 		if (!tmp)
+ 			return -ENOMEM;
  
--	if (bo->base.resv == ctx->resv) {
--		dma_resv_assert_held(bo->base.resv);
--		if (ctx->allow_res_evict)
--			ret = true;
--		*locked = false;
--		if (busy)
--			*busy = false;
-+	if (bo->deleted) {
-+		ret = ttm_bo_wait_ctx(bo, ctx);
-+		if (ret)
-+			ttm_bo_cleanup_memtype_use(bo);
- 	} else {
--		ret = dma_resv_trylock(bo->base.resv);
--		*locked = ret;
--		if (busy)
--			*busy = !ret;
--	}
--
--	if (ret && place && (bo->resource->mem_type != place->mem_type ||
--		!bo->bdev->funcs->eviction_valuable(bo, place))) {
--		ret = false;
--		if (*locked) {
--			dma_resv_unlock(bo->base.resv);
--			*locked = false;
--		}
-+		ret = ttm_bo_evict(bo, ctx);
+@@ -179,7 +182,7 @@ static int drm_exec_lock_contended(struct drm_exec *exec)
+ 		dma_resv_lock_slow(obj->resv, &exec->ticket);
  	}
--
-+out_bad_res:
-+	dma_resv_unlock(bo->base.resv);
-+out_no_lock:
-+	ttm_bo_put(bo);
-+	ttm_resource_cursor_fini(&cursor);
+ 
+-	ret = drm_exec_obj_locked(exec, obj);
++	ret = drm_exec_obj_locked(exec, obj, GFP_KERNEL);
+ 	if (unlikely(ret))
+ 		goto error_unlock;
+ 
+@@ -194,6 +197,48 @@ static int drm_exec_lock_contended(struct drm_exec *exec)
  	return ret;
-+
-+out_no_ref:
-+	ttm_resource_cursor_fini_locked(&cursor);
-+	spin_unlock(&bdev->lru_lock);
-+	return -ENOENT;
  }
  
- /**
-- * ttm_mem_evict_wait_busy - wait for a busy BO to become available
-- *
-- * @busy_bo: BO which couldn't be locked with trylock
-- * @ctx: operation context
-- * @ticket: acquire ticket
-- *
-- * Try to lock a busy buffer object to avoid failing eviction.
-+ * struct ttm_bo_evict_walk - Parameters for the evict walk.
-  */
--static int ttm_mem_evict_wait_busy(struct ttm_buffer_object *busy_bo,
--				   struct ttm_operation_ctx *ctx,
--				   struct ww_acquire_ctx *ticket)
--{
--	int r;
--
--	if (!busy_bo || !ticket)
--		return -EBUSY;
--
--	if (ctx->interruptible)
--		r = dma_resv_lock_interruptible(busy_bo->base.resv,
--							  ticket);
--	else
--		r = dma_resv_lock(busy_bo->base.resv, ticket);
--
--	/*
--	 * TODO: It would be better to keep the BO locked until allocation is at
--	 * least tried one more time, but that would mean a much larger rework
--	 * of TTM.
--	 */
--	if (!r)
--		dma_resv_unlock(busy_bo->base.resv);
--
--	return r == -EDEADLK ? -EBUSY : r;
--}
-+struct ttm_bo_evict_walk {
-+	/** @walk: The walk base parameters. */
-+	struct ttm_lru_walk walk;
-+	/** @place: The place passed to the resource allocation. */
-+	const struct ttm_place *place;
-+	/** @evictor: The buffer object we're trying to make room for. */
-+	struct ttm_buffer_object *evictor;
-+	/** @res: The allocated resource if any. */
-+	struct ttm_resource **res;
-+	/** @evicted: The number of evicted pages. */
-+	unsigned long evicted;
-+};
- 
--int ttm_mem_evict_first(struct ttm_device *bdev,
--			struct ttm_resource_manager *man,
--			const struct ttm_place *place,
--			struct ttm_operation_ctx *ctx,
--			struct ww_acquire_ctx *ticket)
-+static long ttm_bo_evict_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
- {
--	struct ttm_buffer_object *bo = NULL, *busy_bo = NULL;
--	struct ttm_resource_cursor cursor;
--	struct ttm_resource *res;
--	bool locked = false;
--	int ret;
-+	struct ttm_bo_evict_walk *evict_walk =
-+		container_of(walk, typeof(*evict_walk), walk);
-+	long lret;
- 
--	spin_lock(&bdev->lru_lock);
--	ttm_resource_manager_for_each_res(man, &cursor, res) {
--		bool busy;
--
--		if (!ttm_bo_evict_swapout_allowable(res->bo, ctx, place,
--						    &locked, &busy)) {
--			if (busy && !busy_bo && ticket !=
--			    dma_resv_locking_ctx(res->bo->base.resv))
--				busy_bo = res->bo;
--			continue;
--		}
-+	if (!bo->bdev->funcs->eviction_valuable(bo, evict_walk->place))
-+		return 0;
- 
--		if (ttm_bo_get_unless_zero(res->bo)) {
--			bo = res->bo;
--			break;
--		}
--		if (locked)
--			dma_resv_unlock(res->bo->base.resv);
-+	if (bo->deleted) {
-+		lret = ttm_bo_wait_ctx(bo, walk->ctx);
-+		if (!lret)
-+			ttm_bo_cleanup_memtype_use(bo);
-+	} else {
-+		lret = ttm_bo_evict(bo, walk->ctx);
- 	}
--	ttm_resource_cursor_fini_locked(&cursor);
- 
--	if (!bo) {
--		if (busy_bo && !ttm_bo_get_unless_zero(busy_bo))
--			busy_bo = NULL;
--		spin_unlock(&bdev->lru_lock);
--		ret = ttm_mem_evict_wait_busy(busy_bo, ctx, ticket);
--		if (busy_bo)
--			ttm_bo_put(busy_bo);
--		return ret;
--	}
-+	if (lret)
-+		goto out;
- 
--	if (bo->deleted) {
--		ret = ttm_bo_cleanup_refs(bo, ctx->interruptible,
--					  ctx->no_wait_gpu, locked);
--		ttm_bo_put(bo);
--		return ret;
--	}
-+	evict_walk->evicted++;
-+	if (evict_walk->res)
-+		lret = ttm_resource_alloc(evict_walk->evictor, evict_walk->place,
-+					  evict_walk->res);
-+	if (lret == 0)
-+		return 1;
-+out:
-+	/* Errors that should terminate the walk. */
-+	if (lret == -ENOMEM || lret == -EINTR || lret == -ERESTARTSYS ||
-+	    lret == -EAGAIN)
-+		return lret;
- 
--	spin_unlock(&bdev->lru_lock);
-+	return 0;
-+}
- 
--	ret = ttm_bo_evict(bo, ctx);
--	if (locked)
--		ttm_bo_unreserve(bo);
--	else
--		ttm_bo_move_to_lru_tail_unlocked(bo);
-+static const struct ttm_lru_walk_ops ttm_evict_walk_ops = {
-+	.process_bo = ttm_bo_evict_cb,
-+};
- 
--	ttm_bo_put(bo);
--	return ret;
-+static int ttm_bo_evict_alloc(struct ttm_device *bdev,
-+			      struct ttm_resource_manager *man,
-+			      const struct ttm_place *place,
-+			      struct ttm_buffer_object *evictor,
-+			      struct ttm_operation_ctx *ctx,
-+			      struct ww_acquire_ctx *ticket,
-+			      struct ttm_resource **res)
++/**
++ * drm_exec_trylock_obj - trylock a GEM object for use
++ * @exec: the drm_exec object with the state.
++ * @obj: the GEM object to lock.
++ *
++ * Trylock a GEM object for use and grab a reference to it.
++ *
++ * Returns: -EALREADY when object is already locked (can be suppressed by
++ * setting the DRM_EXEC_IGNORE_DUPLICATES flag), -ENOMEM when memory
++ * allocation failed, and zero for success. If the object was already
++ * locked, or if there was a contended lock, -EBUSY will be returned.
++ */
++int drm_exec_trylock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
 +{
-+	struct ttm_bo_evict_walk evict_walk = {
-+		.walk = {
-+			.ops = &ttm_evict_walk_ops,
-+			.ctx = ctx,
-+			.ticket = ticket,
-+		},
-+		.place = place,
-+		.evictor = evictor,
-+		.res = res,
-+	};
-+	long lret;
++	int ret;
 +
-+	evict_walk.walk.trylock_only = true;
-+	lret = ttm_lru_walk_for_evict(&evict_walk.walk, bdev, man, 1);
-+	if (lret || !ticket)
-+		goto out;
++	might_alloc(GFP_ATOMIC);
 +
-+	/* If ticket-locking, repeat while making progress. */
-+	evict_walk.walk.trylock_only = false;
-+	do {
-+		/* The walk may clear the evict_walk.walk.ticket field */
-+		evict_walk.walk.ticket = ticket;
-+		evict_walk.evicted = 0;
-+		lret = ttm_lru_walk_for_evict(&evict_walk.walk, bdev, man, 1);
-+	} while (!lret && evict_walk.evicted);
-+out:
-+	if (lret < 0)
-+		return lret;
-+	if (lret == 0)
++	if (drm_exec_is_contended(exec))
 +		return -EBUSY;
-+	return 0;
++
++	if (exec->prelocked == obj) {
++		drm_gem_object_put(exec->prelocked);
++		exec->prelocked = NULL;
++		return 0;
++	}
++
++	if (!dma_resv_trylock_ctx(obj->resv, &exec->ticket)) {
++		if (dma_resv_locking_ctx(obj->resv) == &exec->ticket)
++			return (exec->flags & DRM_EXEC_IGNORE_DUPLICATES) ? 0 : -EALREADY;
++		else
++			return -EBUSY;
++	}
++
++	ret = drm_exec_obj_locked(exec, obj, GFP_ATOMIC | __GFP_NOWARN);
++	if (ret)
++		dma_resv_unlock(obj->resv);
++
++	return ret;
++}
++EXPORT_SYMBOL(drm_exec_trylock_obj);
++
+ /**
+  * drm_exec_lock_obj - lock a GEM object for use
+  * @exec: the drm_exec object with the state
+@@ -237,7 +282,7 @@ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
+ 	if (unlikely(ret))
+ 		return ret;
+ 
+-	ret = drm_exec_obj_locked(exec, obj);
++	ret = drm_exec_obj_locked(exec, obj, GFP_KERNEL);
+ 	if (ret)
+ 		goto error_unlock;
+ 
+diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
+index aa786b828a0a..0dd36fb53145 100644
+--- a/include/drm/drm_exec.h
++++ b/include/drm/drm_exec.h
+@@ -139,6 +139,7 @@ void drm_exec_init(struct drm_exec *exec, u32 flags, unsigned nr);
+ void drm_exec_fini(struct drm_exec *exec);
+ bool drm_exec_cleanup(struct drm_exec *exec);
+ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj);
++int drm_exec_trylock_obj(struct drm_exec *exec, struct drm_gem_object *obj);
+ void drm_exec_unlock_obj(struct drm_exec *exec, struct drm_gem_object *obj);
+ int drm_exec_prepare_obj(struct drm_exec *exec, struct drm_gem_object *obj,
+ 			 unsigned int num_fences);
+diff --git a/include/linux/dma-resv.h b/include/linux/dma-resv.h
+index 8d0e34dad446..68dae8f2a22c 100644
+--- a/include/linux/dma-resv.h
++++ b/include/linux/dma-resv.h
+@@ -405,6 +405,27 @@ static inline int dma_resv_lock_slow_interruptible(struct dma_resv *obj,
+ 	return ww_mutex_lock_slow_interruptible(&obj->lock, ctx);
+ }
+ 
++/**
++ * dma_resv_trylock_ctx - trylock the reservation object
++ * @obj: the reservation object
++ * @ctx: The ww acquire context or NULL.
++ *
++ * Tries to lock the reservation object for exclusive access and modification.
++ * Note, that the lock is only against other writers, readers will run
++ * concurrently with a writer under RCU. The seqlock is used to notify readers
++ * if they overlap with a writer. The context parameter ensures that other
++ * ww transactions can perform deadlock backoff if necessary, and that
++ * subsequent attempts to dma_resv_lock() @obj for @ctx will return
++ * -EALREADY.
++ *
++ * Return: true if the lock was acquired, false otherwise.
++ */
++static inline bool __must_check
++dma_resv_trylock_ctx(struct dma_resv *obj, struct ww_acquire_ctx *ctx)
++{
++	return ww_mutex_trylock(&obj->lock, ctx);
++}
++
+ /**
+  * dma_resv_trylock - trylock the reservation object
+  * @obj: the reservation object
+@@ -421,7 +442,7 @@ static inline int dma_resv_lock_slow_interruptible(struct dma_resv *obj,
+  */
+ static inline bool __must_check dma_resv_trylock(struct dma_resv *obj)
+ {
+-	return ww_mutex_trylock(&obj->lock, NULL);
++	return dma_resv_trylock_ctx(obj, NULL);
  }
  
  /**
-@@ -760,6 +689,7 @@ static int ttm_bo_alloc_resource(struct ttm_buffer_object *bo,
- 	for (i = 0; i < placement->num_placement; ++i) {
- 		const struct ttm_place *place = &placement->placement[i];
- 		struct ttm_resource_manager *man;
-+		bool may_evict;
- 
- 		man = ttm_manager_type(bdev, place->mem_type);
- 		if (!man || !ttm_resource_manager_used(man))
-@@ -769,22 +699,21 @@ static int ttm_bo_alloc_resource(struct ttm_buffer_object *bo,
- 				    TTM_PL_FLAG_FALLBACK))
- 			continue;
- 
--		do {
--			ret = ttm_resource_alloc(bo, place, res);
--			if (unlikely(ret && ret != -ENOSPC))
-+		may_evict = (force_space && place->mem_type != TTM_PL_SYSTEM);
-+		ret = ttm_resource_alloc(bo, place, res);
-+		if (ret) {
-+			if (ret != -ENOSPC)
- 				return ret;
--			if (likely(!ret) || !force_space)
--				break;
--
--			ret = ttm_mem_evict_first(bdev, man, place, ctx,
--						  ticket);
--			if (unlikely(ret == -EBUSY))
--				break;
--			if (unlikely(ret))
-+			if (!may_evict)
-+				continue;
-+
-+			ret = ttm_bo_evict_alloc(bdev, man, place, bo, ctx,
-+						 ticket, res);
-+			if (ret == -EBUSY)
-+				continue;
-+			if (ret)
- 				return ret;
--		} while (1);
--		if (ret)
--			continue;
-+		}
- 
- 		ret = ttm_bo_add_move_fence(bo, man, ctx->no_wait_gpu);
- 		if (unlikely(ret)) {
-@@ -796,7 +725,6 @@ static int ttm_bo_alloc_resource(struct ttm_buffer_object *bo,
- 		}
- 		return 0;
- 	}
--
- 	return -ENOSPC;
- }
- 
-diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
-index a03090683e79..6d0c66fc36e3 100644
---- a/drivers/gpu/drm/ttm/ttm_resource.c
-+++ b/drivers/gpu/drm/ttm/ttm_resource.c
-@@ -508,24 +508,10 @@ int ttm_resource_manager_evict_all(struct ttm_device *bdev,
- 	};
- 	struct dma_fence *fence;
- 	int ret;
--	unsigned i;
--
--	/*
--	 * Can't use standard list traversal since we're unlocking.
--	 */
- 
--	spin_lock(&bdev->lru_lock);
--	for (i = 0; i < TTM_MAX_BO_PRIORITY; ++i) {
--		while (!list_empty(&man->lru[i])) {
--			spin_unlock(&bdev->lru_lock);
--			ret = ttm_mem_evict_first(bdev, man, NULL, &ctx,
--						  NULL);
--			if (ret)
--				return ret;
--			spin_lock(&bdev->lru_lock);
--		}
--	}
--	spin_unlock(&bdev->lru_lock);
-+	do {
-+		ret = ttm_bo_evict_first(bdev, man, &ctx);
-+	} while (!ret);
- 
- 	spin_lock(&man->move_lock);
- 	fence = dma_fence_get(man->move);
-diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-index 472a55b69afb..148f49f625e4 100644
---- a/include/drm/ttm/ttm_bo.h
-+++ b/include/drm/ttm/ttm_bo.h
-@@ -415,11 +415,9 @@ long ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
- 		    pgoff_t target);
- void ttm_bo_pin(struct ttm_buffer_object *bo);
- void ttm_bo_unpin(struct ttm_buffer_object *bo);
--int ttm_mem_evict_first(struct ttm_device *bdev,
--			struct ttm_resource_manager *man,
--			const struct ttm_place *place,
--			struct ttm_operation_ctx *ctx,
--			struct ww_acquire_ctx *ticket);
-+int ttm_bo_evict_first(struct ttm_device *bdev,
-+		       struct ttm_resource_manager *man,
-+		       struct ttm_operation_ctx *ctx);
- vm_fault_t ttm_bo_vm_reserve(struct ttm_buffer_object *bo,
- 			     struct vm_fault *vmf);
- vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
 -- 
 2.44.0
 
