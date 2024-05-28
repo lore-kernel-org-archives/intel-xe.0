@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9A02C25B7C
-	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 20:54:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B61BC25B7C
+	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 20:54:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D31E10E192;
-	Tue, 28 May 2024 20:54:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 006FE10E192;
+	Tue, 28 May 2024 20:54:37 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5508010E192;
- Tue, 28 May 2024 20:54:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C69A10E250;
+ Tue, 28 May 2024 20:54:34 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/vf=3A_Postpon?=
- =?utf-8?q?e_GT_topology_initialization_if_VF?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/vf=3A_Postpone_GT_?=
+ =?utf-8?q?topology_initialization_if_VF?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 28 May 2024 20:54:23 -0000
-Message-ID: <171692966334.2217197.1599685621184416763@8e613ede5ea5>
+Date: Tue, 28 May 2024 20:54:34 -0000
+Message-ID: <171692967431.2216896.10045478431204469296@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240528204837.1196-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20240528204837.1196-1-michal.wajdeczko@intel.com>
@@ -48,9 +48,33 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: db83f92349d0 drm-tip: 2024y-05m-28d-20h-40m-59s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/vf: Postpone GT topology initialization if VF
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6a3eaedccfd9e611f14e9be38f416133a11ae27d
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Tue May 28 22:48:37 2024 +0200
+
+    drm/xe/vf: Postpone GT topology initialization if VF
+    
+    We can't properly initialize GT topology without knowing the
+    values of the fuse registers. However, VF drivers will learn
+    those values only after establishing communication with the
+    GuC and the PF. While we need GT topology to correctly setup
+    MCR, which is required to program HW PAT table, both steps are
+    only applicable to the PF driver. For VF driver case, we can
+    postpone all these steps after xe_uc_init_hwconfig().
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Matt Roper <matthew.d.roper@intel.com>
+    Cc: Michał Winiarski <michal.winiarski@intel.com>
++ /mt/dim checkpatch db83f92349d0b60125cb1896e0e8383a15dd46de drm-intel
+6a3eaedccfd9 drm/xe/vf: Postpone GT topology initialization if VF
 
 
