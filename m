@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EEC5C27C50
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D27A8C27C51
 	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 09:56:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05D9F10E7C3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C2B810E829;
 	Tue, 28 May 2024 09:56:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iQ3y/qOa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hHg9KuW6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73B11112094
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF8B7112092
  for <intel-xe@lists.freedesktop.org>; Tue, 28 May 2024 09:55:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1716890130; x=1748426130;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=V7XPQ/fHQHW9AiUsHwha/F+9HM72wUYaJm7UB+Smj6M=;
- b=iQ3y/qOaYMULxpbAnhl9uREHPgllRIAiQ3XQu4LhZmrRrbq1NmylzJzU
- uXZD9Jn1yveLu2R/nPgpjDh+N6L2hThsZXTofIw4y6vzPvaa/2uUFQkQt
- btJPdFPEQBwRpy3s4HupQ1+gyeIPAlwETEQ14h6I1M9r9YlWRm/R2Fjfo
- tqkeW5Y7c2rv+c7ICB3fi3n2sJZC8lRyQ1FCdJP+xx0W1n5iFnctSvdy0
- USbpbWS5BV9TC4Mw0EDSmoj1qsdi0jcWT2CZVmg8TnrcBDjViOnhyHDIe
- /fs4srHbHK0/FosVawEf2mDqZp5thUPFewMRCaM1NPIfEBALj2xwd4mIJ g==;
-X-CSE-ConnectionGUID: E8WrbMVNSCqPFMAtq5RyIA==
-X-CSE-MsgGUID: 7SWv3mJxQYemwbHB7ZaKvA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13345556"
-X-IronPort-AV: E=Sophos;i="6.08,194,1712646000"; d="scan'208";a="13345556"
+ bh=8rHBdqRTZVNb7S1IP+JZ4PJEwB3ejV5kBG8rX4Kdv54=;
+ b=hHg9KuW6itvst+LpRKOLL+Tfe95zSW4V378P2D6Z7iM6B+r5F/vUCkVM
+ noh1wSIlDll4WeidXOSzYuJzWI0+yhp688pqCWUy6Qsrnexu/1YQIxMQb
+ DPU3MWSyxE1t4wb64mpLIHRxgzRnw0nSVbLJJsIDag/6doN1Ft9rvDtdD
+ dI6uTf0/TYwvklkzQNfVnxQcG3+wsl3YaVAgh12geREBD7Ky1g8lmN3Qe
+ jJXYJT7BRHIZ3ge/eofaCtwykaaMSyvEjRNzOWXlgltgyreuhMseHPiv3
+ kcorXUf2dfK6XgG479C4IKe4WCek5Y/mF0CHHgcDR/CS+1a4J+6JFJuye w==;
+X-CSE-ConnectionGUID: T+A+wEJjRW+beeasn3pQgw==
+X-CSE-MsgGUID: Emxq7F/JTHGkAkf9oPArjg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13345566"
+X-IronPort-AV: E=Sophos;i="6.08,194,1712646000"; d="scan'208";a="13345566"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 02:55:24 -0700
-X-CSE-ConnectionGUID: YK81va6uQqW2Ue15HRPgwQ==
-X-CSE-MsgGUID: 7UILDscCSG+yBoBBGotEfg==
+ 28 May 2024 02:55:26 -0700
+X-CSE-ConnectionGUID: iPdDtiksTQuKc8kSbnu+yQ==
+X-CSE-MsgGUID: KJV0tmUGRpqp4N2sNdgexg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,194,1712646000"; d="scan'208";a="34932100"
+X-IronPort-AV: E=Sophos;i="6.08,194,1712646000"; d="scan'208";a="34932105"
 Received: from maurocar-mobl2.ger.corp.intel.com (HELO fedora..)
  ([10.245.244.233])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 02:55:23 -0700
+ 28 May 2024 02:55:26 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v5 13/20] drm/exec: Add a snapshot capability
-Date: Tue, 28 May 2024 11:54:55 +0200
-Message-ID: <20240528095503.90177-14-thomas.hellstrom@linux.intel.com>
+Subject: [CI v5 16/20] drm/ttm: Convert ttm vm to using drm_exec
+Date: Tue, 28 May 2024 11:54:58 +0200
+Message-ID: <20240528095503.90177-17-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240528095503.90177-1-thomas.hellstrom@linux.intel.com>
 References: <20240528095503.90177-1-thomas.hellstrom@linux.intel.com>
@@ -67,23 +67,10 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When validating a buffer object for submission, we might need to lock
-a number of object for eviction to make room for the validation.
-
-This makes it pretty likely that validation will eventually succeed,
-since eventually the validating process will hold most dma_resv locks
-of the buffer objects residing in the memory type being validated for.
-
-However, once validation of a single object has succeeded it might not
-be beneficial to hold on to those locks anymore, and the validator
-would want to drop the locks of all objects taken during validation.
-
-Introduce a drm_exec snapshot functionality that can be used to
-record the locks held at a certain time, and a restore functionality
-that restores the drm_exec state to the snapshot by dropping all
-locks.
-
-Snapshots can be nested if needed.
+TTM faulting may include migration and swapping. Convert
+helpers to support drm_exec locking and enable it
+by converting the ttm_bo_vm_fault() function to include
+a drm_exec loop.
 
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
@@ -91,143 +78,376 @@ Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: <dri-devel@lists.freedesktop.org>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/drm_exec.c | 55 +++++++++++++++++++++++++++++++++++++-
- include/drm/drm_exec.h     | 23 +++++++++++++++-
- 2 files changed, 76 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c    |   4 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c    |   4 +-
+ drivers/gpu/drm/nouveau/nouveau_gem.c      |   4 +-
+ drivers/gpu/drm/radeon/radeon_gem.c        |   4 +-
+ drivers/gpu/drm/ttm/ttm_bo_vm.c            | 101 ++++++++++++++-------
+ drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c |   6 +-
+ drivers/gpu/drm/xe/xe_bo.c                 |   5 +-
+ include/drm/ttm/ttm_bo.h                   |   6 +-
+ 8 files changed, 85 insertions(+), 49 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
-index 1244aa58322b..10528e6c4046 100644
---- a/drivers/gpu/drm/drm_exec.c
-+++ b/drivers/gpu/drm/drm_exec.c
-@@ -56,6 +56,7 @@ static void drm_exec_unlock_all(struct drm_exec *exec)
- 	struct drm_gem_object *obj;
- 	unsigned long index;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+index 67c234bcf89f..8f9f208add61 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+@@ -52,7 +52,7 @@ static vm_fault_t amdgpu_gem_fault(struct vm_fault *vmf)
+ 	vm_fault_t ret;
+ 	int idx;
  
-+	WARN_ON(exec->snap);
- 	drm_exec_for_each_locked_object_reverse(exec, index, obj) {
- 		dma_resv_unlock(obj->resv);
- 		drm_gem_object_put(obj);
-@@ -89,6 +90,7 @@ void drm_exec_init(struct drm_exec *exec, u32 flags, unsigned nr)
- 	exec->num_objects = 0;
- 	exec->contended = DRM_EXEC_DUMMY;
- 	exec->prelocked = NULL;
-+	exec->snap = NULL;
- }
- EXPORT_SYMBOL(drm_exec_init);
+-	ret = ttm_bo_vm_reserve(bo, vmf);
++	ret = ttm_bo_vm_reserve(bo, vmf, NULL);
+ 	if (ret)
+ 		return ret;
  
-@@ -287,7 +289,6 @@ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
- 		goto error_unlock;
+@@ -64,7 +64,7 @@ static vm_fault_t amdgpu_gem_fault(struct vm_fault *vmf)
+ 		}
  
- 	return 0;
--
- error_unlock:
- 	dma_resv_unlock(obj->resv);
- 	return ret;
-@@ -381,5 +382,57 @@ int drm_exec_prepare_array(struct drm_exec *exec,
- }
- EXPORT_SYMBOL(drm_exec_prepare_array);
+ 		ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
+-					       TTM_BO_VM_NUM_PREFAULT);
++					       TTM_BO_VM_NUM_PREFAULT, NULL);
  
-+/**
-+ * drm_exec_restore() - Restore the drm_exec state to the point of a snapshot.
-+ * @exec: The drm_exec object with the state.
-+ * @snap: The snapshot state.
-+ *
-+ * Restores the drm_exec object by means of unlocking and dropping references
-+ * to objects locked after the snapshot.
-+ */
-+void drm_exec_restore(struct drm_exec *exec, struct drm_exec_snapshot *snap)
-+{
-+	struct drm_gem_object *obj;
-+	unsigned int index;
+ 		drm_dev_exit(idx);
+ 	} else {
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+index e6f177183c0f..c66e2b54c9a2 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+@@ -1046,7 +1046,7 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
+ 		     area->vm_flags & VM_WRITE))
+ 		return VM_FAULT_SIGBUS;
+ 
+-	ret = ttm_bo_vm_reserve(bo, vmf);
++	ret = ttm_bo_vm_reserve(bo, vmf, NULL);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -1108,7 +1108,7 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
+ 
+ 	if (drm_dev_enter(dev, &idx)) {
+ 		ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
+-					       TTM_BO_VM_NUM_PREFAULT);
++					       TTM_BO_VM_NUM_PREFAULT, NULL);
+ 		drm_dev_exit(idx);
+ 	} else {
+ 		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index 5a887d67dc0e..bc6901955508 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -46,7 +46,7 @@ static vm_fault_t nouveau_ttm_fault(struct vm_fault *vmf)
+ 	pgprot_t prot;
+ 	vm_fault_t ret;
+ 
+-	ret = ttm_bo_vm_reserve(bo, vmf);
++	ret = ttm_bo_vm_reserve(bo, vmf, NULL);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -56,7 +56,7 @@ static vm_fault_t nouveau_ttm_fault(struct vm_fault *vmf)
+ 
+ 	nouveau_bo_del_io_reserve_lru(bo);
+ 	prot = vm_get_page_prot(vma->vm_flags);
+-	ret = ttm_bo_vm_fault_reserved(vmf, prot, TTM_BO_VM_NUM_PREFAULT);
++	ret = ttm_bo_vm_fault_reserved(vmf, prot, TTM_BO_VM_NUM_PREFAULT, NULL);
+ 	nouveau_bo_add_io_reserve_lru(bo);
+ 	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
+ 		return ret;
+diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon/radeon_gem.c
+index 2ef201a072f1..f29761b7ca97 100644
+--- a/drivers/gpu/drm/radeon/radeon_gem.c
++++ b/drivers/gpu/drm/radeon/radeon_gem.c
+@@ -54,7 +54,7 @@ static vm_fault_t radeon_gem_fault(struct vm_fault *vmf)
+ 
+ 	down_read(&rdev->pm.mclk_lock);
+ 
+-	ret = ttm_bo_vm_reserve(bo, vmf);
++	ret = ttm_bo_vm_reserve(bo, vmf, NULL);
+ 	if (ret)
+ 		goto unlock_mclk;
+ 
+@@ -63,7 +63,7 @@ static vm_fault_t radeon_gem_fault(struct vm_fault *vmf)
+ 		goto unlock_resv;
+ 
+ 	ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
+-				       TTM_BO_VM_NUM_PREFAULT);
++				       TTM_BO_VM_NUM_PREFAULT, NULL);
+ 	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
+ 		goto unlock_mclk;
+ 
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+index 4212b8c91dd4..06ad739051c4 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+@@ -31,6 +31,8 @@
+ 
+ #define pr_fmt(fmt) "[TTM] " fmt
+ 
++#include <drm/drm_exec.h>
 +
-+	exec->snap = snap->saved_snap;
+ #include <drm/ttm/ttm_bo.h>
+ #include <drm/ttm/ttm_placement.h>
+ #include <drm/ttm/ttm_tt.h>
+@@ -39,7 +41,8 @@
+ #include <drm/drm_managed.h>
+ 
+ static vm_fault_t ttm_bo_vm_fault_idle(struct ttm_buffer_object *bo,
+-				struct vm_fault *vmf)
++				       struct vm_fault *vmf,
++				       struct drm_exec *exec)
+ {
+ 	long err = 0;
+ 
+@@ -63,7 +66,10 @@ static vm_fault_t ttm_bo_vm_fault_idle(struct ttm_buffer_object *bo,
+ 		(void)dma_resv_wait_timeout(bo->base.resv,
+ 					    DMA_RESV_USAGE_KERNEL, true,
+ 					    MAX_SCHEDULE_TIMEOUT);
+-		dma_resv_unlock(bo->base.resv);
++		if (exec)
++			drm_exec_unlock_obj(exec, &bo->base);
++		else
++			dma_resv_unlock(bo->base.resv);
+ 		ttm_bo_put(bo);
+ 		return VM_FAULT_RETRY;
+ 	}
+@@ -96,6 +102,7 @@ static unsigned long ttm_bo_io_mem_pfn(struct ttm_buffer_object *bo,
+  * ttm_bo_vm_reserve - Reserve a buffer object in a retryable vm callback
+  * @bo: The buffer object
+  * @vmf: The fault structure handed to the callback
++ * @exec: The drm_exec locking transaction context. May be NULL.
+  *
+  * vm callbacks like fault() and *_mkwrite() allow for the mmap_lock to be dropped
+  * during long waits, and after the wait the callback will be restarted. This
+@@ -114,15 +121,16 @@ static unsigned long ttm_bo_io_mem_pfn(struct ttm_buffer_object *bo,
+  *    VM_FAULT_NOPAGE if blocking wait and retrying was not allowed.
+  */
+ vm_fault_t ttm_bo_vm_reserve(struct ttm_buffer_object *bo,
+-			     struct vm_fault *vmf)
++			     struct vm_fault *vmf, struct drm_exec *exec)
+ {
+-	/*
+-	 * Work around locking order reversal in fault / nopfn
+-	 * between mmap_lock and bo_reserve: Perform a trylock operation
+-	 * for reserve, and if it fails, retry the fault after waiting
+-	 * for the buffer to become unreserved.
+-	 */
+-	if (unlikely(!dma_resv_trylock(bo->base.resv))) {
++	int ret;
 +
-+	drm_exec_for_each_locked_object_reverse(exec, index, obj) {
-+		if (index + 1 == snap->num_locked)
-+			break;
-+
-+		dma_resv_unlock(obj->resv);
-+		drm_gem_object_put(obj);
-+		exec->objects[index] = NULL;
-+	}
-+
-+	exec->num_objects = snap->num_locked;
-+
-+	if (!exec->prelocked)
-+		exec->prelocked = snap->prelocked;
++	if (exec)
++		ret = drm_exec_trylock_obj(exec, &bo->base);
 +	else
-+		drm_gem_object_put(snap->prelocked);
-+}
-+EXPORT_SYMBOL(drm_exec_restore);
++		ret = dma_resv_trylock(bo->base.resv) ? 0 : -EBUSY;
 +
-+/**
-+ * drm_exec_snapshot() - Take a snapshot of the drm_exec state
-+ * @exec: The drm_exec object with the state.
-+ * @snap: The snapshot state.
-+ *
-+ * Records the @exec state in @snap. The @snap object is typically allocated
-+ * in the stack of the caller.
-+ */
-+void drm_exec_snapshot(struct drm_exec *exec, struct drm_exec_snapshot *snap)
-+{
-+	snap->num_locked = exec->num_objects;
-+	snap->prelocked = exec->prelocked;
-+	if (snap->prelocked)
-+		drm_gem_object_get(snap->prelocked);
-+	snap->saved_snap = exec->snap;
-+	exec->snap = snap;
-+}
-+EXPORT_SYMBOL(drm_exec_snapshot);
-+
- MODULE_DESCRIPTION("DRM execution context");
- MODULE_LICENSE("Dual MIT/GPL");
-diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
-index 0dd36fb53145..af5f3ffc7174 100644
---- a/include/drm/drm_exec.h
-+++ b/include/drm/drm_exec.h
-@@ -19,7 +19,6 @@ struct drm_exec {
- 	 * @flags: Flags to control locking behavior
++	if (unlikely(ret == -EBUSY)) {
+ 		/*
+ 		 * If the fault allows retry and this is the first
+ 		 * fault attempt, we try to release the mmap_lock
+@@ -132,16 +140,26 @@ vm_fault_t ttm_bo_vm_reserve(struct ttm_buffer_object *bo,
+ 			if (!(vmf->flags & FAULT_FLAG_RETRY_NOWAIT)) {
+ 				ttm_bo_get(bo);
+ 				mmap_read_unlock(vmf->vma->vm_mm);
+-				if (!dma_resv_lock_interruptible(bo->base.resv,
+-								 NULL))
+-					dma_resv_unlock(bo->base.resv);
++				if (exec) {
++					ret = drm_exec_lock_obj(exec, &bo->base);
++					if (!ret)
++						drm_exec_unlock_obj(exec, &bo->base);
++				} else  {
++					if (!dma_resv_lock_interruptible(bo->base.resv,
++									 NULL))
++						dma_resv_unlock(bo->base.resv);
++				}
+ 				ttm_bo_put(bo);
+ 			}
+ 
+ 			return VM_FAULT_RETRY;
+ 		}
+ 
+-		if (dma_resv_lock_interruptible(bo->base.resv, NULL))
++		if (exec)
++			ret = drm_exec_lock_obj(exec, &bo->base);
++		else
++			ret = dma_resv_lock_interruptible(bo->base.resv, NULL);
++		if (ret)
+ 			return VM_FAULT_NOPAGE;
+ 	}
+ 
+@@ -151,7 +169,10 @@ vm_fault_t ttm_bo_vm_reserve(struct ttm_buffer_object *bo,
  	 */
- 	u32                     flags;
+ 	if (bo->ttm && (bo->ttm->page_flags & TTM_TT_FLAG_EXTERNAL)) {
+ 		if (!(bo->ttm->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE)) {
+-			dma_resv_unlock(bo->base.resv);
++			if (exec)
++				drm_exec_unlock_obj(exec, &bo->base);
++			else
++				dma_resv_unlock(bo->base.resv);
+ 			return VM_FAULT_SIGBUS;
+ 		}
+ 	}
+@@ -167,6 +188,7 @@ EXPORT_SYMBOL(ttm_bo_vm_reserve);
+  * @num_prefault: Maximum number of prefault pages. The caller may want to
+  * specify this based on madvice settings and the size of the GPU object
+  * backed by the memory.
++ * @exec: The struct drm_exec locking transaction context. May be NULL.
+  *
+  * This function inserts one or more page table entries pointing to the
+  * memory backing the buffer object, and then returns a return code
+@@ -180,7 +202,8 @@ EXPORT_SYMBOL(ttm_bo_vm_reserve);
+  */
+ vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
+ 				    pgprot_t prot,
+-				    pgoff_t num_prefault)
++				    pgoff_t num_prefault,
++				    struct drm_exec *exec)
+ {
+ 	struct vm_area_struct *vma = vmf->vma;
+ 	struct ttm_buffer_object *bo = vma->vm_private_data;
+@@ -199,7 +222,7 @@ vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
+ 	 * Wait for buffer data in transit, due to a pipelined
+ 	 * move.
+ 	 */
+-	ret = ttm_bo_vm_fault_idle(bo, vmf);
++	ret = ttm_bo_vm_fault_idle(bo, vmf, exec);
+ 	if (unlikely(ret != 0))
+ 		return ret;
+ 
+@@ -220,7 +243,8 @@ vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
+ 		struct ttm_operation_ctx ctx = {
+ 			.interruptible = true,
+ 			.no_wait_gpu = false,
+-			.force_alloc = true
++			.force_alloc = true,
++			.exec = exec,
+ 		};
+ 
+ 		ttm = bo->ttm;
+@@ -324,25 +348,34 @@ vm_fault_t ttm_bo_vm_fault(struct vm_fault *vmf)
+ 	pgprot_t prot;
+ 	struct ttm_buffer_object *bo = vma->vm_private_data;
+ 	struct drm_device *ddev = bo->base.dev;
++	struct drm_exec exec;
+ 	vm_fault_t ret;
+-	int idx;
 -
- 	/**
- 	 * @ticket: WW ticket used for acquiring locks
- 	 */
-@@ -49,6 +48,25 @@ struct drm_exec {
- 	 * @prelocked: already locked GEM object due to contention
- 	 */
- 	struct drm_gem_object *prelocked;
+-	ret = ttm_bo_vm_reserve(bo, vmf);
+-	if (ret)
+-		return ret;
+-
+-	prot = vma->vm_page_prot;
+-	if (drm_dev_enter(ddev, &idx)) {
+-		ret = ttm_bo_vm_fault_reserved(vmf, prot, TTM_BO_VM_NUM_PREFAULT);
+-		drm_dev_exit(idx);
+-	} else {
+-		ret = ttm_bo_vm_dummy_page(vmf, prot);
++	int idx, err;
 +
-+	/**
-+	 * @snap: Pointer to the last snapshot taken or NULL if none.
-+	 */
-+	struct drm_exec_snapshot *snap;
-+};
++	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 16);
++	drm_exec_until_all_locked(&exec) {
++		ret = ttm_bo_vm_reserve(bo, vmf, &exec);
++		drm_exec_retry_on_contention(&exec);
++		if (err)
++			ret = VM_FAULT_NOPAGE;
++		if (ret)
++			goto out;
 +
-+/**
-+ * struct drm_exec_snapshot - drm_exec snapshot information
-+ */
-+struct drm_exec_snapshot {
-+	/** @saved_snap: Pointer to the previous snapshot or NULL. */
-+	struct drm_exec_snapshot *saved_snap;
-+
-+	/** @prelocked: Refcounted pointer to the prelocked object at snapshot time. */
-+	struct drm_gem_object *prelocked;
-+
-+	/** @num_locked: Number of locked objects at snapshot time. */
-+	unsigned long num_locked;
- };
++		prot = vma->vm_page_prot;
++		if (drm_dev_enter(ddev, &idx)) {
++			ret = ttm_bo_vm_fault_reserved(vmf, prot, TTM_BO_VM_NUM_PREFAULT,
++						       &exec);
++			drm_dev_exit(idx);
++			drm_exec_retry_on_contention(&exec);
++			if (err)
++				ret = VM_FAULT_NOPAGE;
++		} else {
++			ret = ttm_bo_vm_dummy_page(vmf, prot);
++		}
+ 	}
+-	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
+-		return ret;
+-
+-	dma_resv_unlock(bo->base.resv);
  
- /**
-@@ -147,5 +165,8 @@ int drm_exec_prepare_array(struct drm_exec *exec,
- 			   struct drm_gem_object **objects,
- 			   unsigned int num_objects,
- 			   unsigned int num_fences);
-+void drm_exec_snapshot(struct drm_exec *exec, struct drm_exec_snapshot *snap);
-+void drm_exec_restore(struct drm_exec *exec, struct drm_exec_snapshot *snap);
-+
++out:
++	drm_exec_fini(&exec);
+ 	return ret;
+ }
+ EXPORT_SYMBOL(ttm_bo_vm_fault);
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c b/drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c
+index 74ff2812d66a..fc275afd000c 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c
+@@ -388,7 +388,7 @@ vm_fault_t vmw_bo_vm_mkwrite(struct vm_fault *vmf)
+ 	 */
+ 	save_flags = vmf->flags;
+ 	vmf->flags &= ~FAULT_FLAG_ALLOW_RETRY;
+-	ret = ttm_bo_vm_reserve(bo, vmf);
++	ret = ttm_bo_vm_reserve(bo, vmf, NULL);
+ 	vmf->flags = save_flags;
+ 	if (ret)
+ 		return ret;
+@@ -423,7 +423,7 @@ vm_fault_t vmw_bo_vm_fault(struct vm_fault *vmf)
+ 	pgprot_t prot;
+ 	vm_fault_t ret;
  
- #endif
+-	ret = ttm_bo_vm_reserve(bo, vmf);
++	ret = ttm_bo_vm_reserve(bo, vmf, NULL);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -457,7 +457,7 @@ vm_fault_t vmw_bo_vm_fault(struct vm_fault *vmf)
+ 	else
+ 		prot = vm_get_page_prot(vma->vm_flags);
+ 
+-	ret = ttm_bo_vm_fault_reserved(vmf, prot, num_prefault);
++	ret = ttm_bo_vm_fault_reserved(vmf, prot, num_prefault, NULL);
+ 	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 9a0ca2cab7b6..3c56858e0751 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1223,7 +1223,7 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+ 	if (needs_rpm)
+ 		xe_pm_runtime_get(xe);
+ 
+-	ret = ttm_bo_vm_reserve(tbo, vmf);
++	ret = ttm_bo_vm_reserve(tbo, vmf, NULL);
+ 	if (ret)
+ 		goto out;
+ 
+@@ -1231,7 +1231,8 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+ 		trace_xe_bo_cpu_fault(bo);
+ 
+ 		ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
+-					       TTM_BO_VM_NUM_PREFAULT);
++					       TTM_BO_VM_NUM_PREFAULT,
++					       NULL);
+ 		drm_dev_exit(idx);
+ 	} else {
+ 		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
+diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+index 1c9f4880abb9..d749de3aa936 100644
+--- a/include/drm/ttm/ttm_bo.h
++++ b/include/drm/ttm/ttm_bo.h
+@@ -427,10 +427,12 @@ int ttm_bo_evict_first(struct ttm_device *bdev,
+ 		       struct ttm_resource_manager *man,
+ 		       struct ttm_operation_ctx *ctx);
+ vm_fault_t ttm_bo_vm_reserve(struct ttm_buffer_object *bo,
+-			     struct vm_fault *vmf);
++			     struct vm_fault *vmf,
++			     struct drm_exec *exec);
+ vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
+ 				    pgprot_t prot,
+-				    pgoff_t num_prefault);
++				    pgoff_t num_prefault,
++				    struct drm_exec *exec);
+ vm_fault_t ttm_bo_vm_fault(struct vm_fault *vmf);
+ void ttm_bo_vm_open(struct vm_area_struct *vma);
+ void ttm_bo_vm_close(struct vm_area_struct *vma);
 -- 
 2.44.0
 
