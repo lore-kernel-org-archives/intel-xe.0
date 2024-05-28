@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADF9AC27C4F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11D75C25B7C
 	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 12:34:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0130910F26E;
-	Tue, 28 May 2024 12:34:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E70A510EAD6;
+	Tue, 28 May 2024 12:34:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D8rKh8uT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LyGmwX6G";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4C5010E780
- for <intel-xe@lists.freedesktop.org>; Tue, 28 May 2024 12:34:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 840AD10E466
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 May 2024 12:34:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716899649; x=1748435649;
+ t=1716899646; x=1748435646;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=JbpGHkp4ged+AgCHVyxdHqtlQoEZRRD2pBcHnf/8hVk=;
- b=D8rKh8uTTBGXvuEUdc8h5yn9v/uK8QHlUbUjroj3olCxsz/EIMgs9Vyh
- c2oKG5eLDS51nf7LhXqjwwHj+cy+rLBuV68+u76RFgbyVbp8j/oWIcrm0
- wXOxCGbr8RYegKcrvUD8qPTi5KashNe+QoVPMpUEh9ueplEzeXUk+hjHb
- mNp4hCEdyMyP2TI21Hp9D5zhwXst9H0a7FI5bm09354MBa5aKK9Vg9331
- OX/hI9u0O6g2LOV10rrqZSgMZkDWe26DuoZ7q+GBYtwr5dJlIaYEcYYj1
- B9bl3G4haGLPmszJVF/YqrKj1K8CWmrGUGghvBOagJ52Gmht1HBOB0zGB Q==;
-X-CSE-ConnectionGUID: mukBQm3GRx2u9RjeZl8g5g==
-X-CSE-MsgGUID: Ti2I1rtsQNK9FnrI6W9aOA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13065037"
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="13065037"
+ bh=T9q51RQY+HiqpZBeFfT2nIGElUATTxqN9zizyyvDU4w=;
+ b=LyGmwX6GW9U4+k/ok0Ail4XBJLudx+1mU9x7L78Sxpum7PgSzh1/+Yew
+ X0HF+ia/CLD8sGd1oAm+CDonJPT/zdFQKVTqgHjH7aMTzhTz0J+S1eUUV
+ ScoA1aW/AajnTg+qdLyrptkgV+fZUm+GTQiZR7u4EOfcOtj43TSkglYzp
+ qOhDYKoDz1UPmtyCs49oJqL2Eame7hsjVKh4cVCwa8lqkO3w2Q+N7RH9U
+ e1N8XjHB/ZyxWOSi5D/Jb1M+A2qS2D3tujhXI+7r84bxOB8mJsKbC5rWo
+ ShkuVRLdnSdaoOeqXDERlXfLSnRLKYbXUTwP0iDWlB3uC9UPyb3aHQBFN g==;
+X-CSE-ConnectionGUID: pm0pU5x1TFW0Ws+sSNS69g==
+X-CSE-MsgGUID: WQKMXVXQSjG53xs5HdRGpA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13065032"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="13065032"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 05:34:08 -0700
-X-CSE-ConnectionGUID: EpjGXiPmRo2p1R0nifa80w==
-X-CSE-MsgGUID: JCrWx8ugSIeuZ+4w7uyQYA==
+ 28 May 2024 05:34:06 -0700
+X-CSE-ConnectionGUID: Md0N/0kXQOeJZkiYEwQCbg==
+X-CSE-MsgGUID: f5HXUX0iTqSKjTIcwkOFsA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="39880446"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="39880428"
 Received: from maurocar-mobl2.ger.corp.intel.com (HELO fedora..)
  ([10.245.244.233])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 05:34:08 -0700
+ 28 May 2024 05:34:05 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v5 14/22] drm/exec: Introduce an evict mode
-Date: Tue, 28 May 2024 14:33:35 +0200
-Message-ID: <20240528123343.169970-15-thomas.hellstrom@linux.intel.com>
+Subject: [CI v5 11/22] drm/ttm, drm/xe: Add a shrinker for xe bos
+Date: Tue, 28 May 2024 14:33:32 +0200
+Message-ID: <20240528123343.169970-12-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240528123343.169970-1-thomas.hellstrom@linux.intel.com>
 References: <20240528123343.169970-1-thomas.hellstrom@linux.intel.com>
@@ -67,31 +67,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Locking for eviction is in some way different from locking for
-submission:
+Rather than relying on the TTM watermark accounting add a shrinker
+for xe_bos in TT or system memory.
 
-1) We can't lock objects that are already locked for submission,
-hence DRM_EXEC_IGNORE_DUPLICATES must be unset.
-2) We must be able to re-lock objects locked for eviction,
-either for submission or for yet another eviction, in
-particular objects sharing a single resv must be considered.
-3) There is no point to keep a contending object after the
-transaction restart. We don't know whether we actually want to use
-it again.
+Leverage the newly added TTM per-page shrinking and shmem backup
+support.
 
-So introduce a drm_exec evict mode, and for now instead of
-explicitly setting it using a function call or implement separate
-locking functions that use evict mode, assume evict mode if
-there is a snapshot registered. This can easily be changed later.
+Although xe doesn't fully support WONTNEED (purgeable) bos yet,
+introduce and add shrinker support for purgeable ttm_tts.
 
-To keep track of resvs locked for eviction, use a pointer set
-implemented by an xarray. This is probably not the most efficient
-data structure but used as an easy-to-implement first approach.
-If the set is empty (evict mode never used), the performance-
-and memory usage impact will be very small.
-
-TODO: Probably want to implement the set using an open addressing
-hash table.
+v2:
+- Cleanups bugfixes and a KUNIT shrinker test.
+- Add writeback support, and activate if kswapd.
+v3:
+- Move the try_shrink() helper to core TTM.
+- Minor cleanups.
 
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
@@ -99,219 +89,873 @@ Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: <dri-devel@lists.freedesktop.org>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/drm_exec.c | 77 ++++++++++++++++++++++++++++++++++----
- include/drm/drm_exec.h     | 15 ++++++++
- 2 files changed, 85 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo_util.c     |  67 ++++++++
+ drivers/gpu/drm/xe/Makefile           |   1 +
+ drivers/gpu/drm/xe/tests/xe_bo.c      | 118 ++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_bo_test.c |   1 +
+ drivers/gpu/drm/xe/tests/xe_bo_test.h |   1 +
+ drivers/gpu/drm/xe/xe_bo.c            | 128 +++++++++++++--
+ drivers/gpu/drm/xe/xe_bo.h            |   4 +
+ drivers/gpu/drm/xe/xe_device.c        |   8 +
+ drivers/gpu/drm/xe/xe_device_types.h  |   2 +
+ drivers/gpu/drm/xe/xe_shrinker.c      | 224 ++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_shrinker.h      |  18 +++
+ include/drm/ttm/ttm_bo.h              |   3 +
+ 12 files changed, 559 insertions(+), 16 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_shrinker.c
+ create mode 100644 drivers/gpu/drm/xe/xe_shrinker.h
 
-diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
-index 10528e6c4046..c70d8b01effb 100644
---- a/drivers/gpu/drm/drm_exec.c
-+++ b/drivers/gpu/drm/drm_exec.c
-@@ -64,6 +64,10 @@ static void drm_exec_unlock_all(struct drm_exec *exec)
- 
- 	drm_gem_object_put(exec->prelocked);
- 	exec->prelocked = NULL;
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index be200c06cc79..f6460024077d 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -913,3 +913,70 @@ long ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
+ 	ttm_resource_cursor_fini(&cursor);
+ 	return sofar;
+ }
++EXPORT_SYMBOL(ttm_lru_walk_for_evict);
 +
-+	/* garbage collect */
-+	xa_destroy(&exec->resv_set);
-+	xa_init(&exec->resv_set);
- }
- 
- /**
-@@ -91,6 +95,8 @@ void drm_exec_init(struct drm_exec *exec, u32 flags, unsigned nr)
- 	exec->contended = DRM_EXEC_DUMMY;
- 	exec->prelocked = NULL;
- 	exec->snap = NULL;
-+	exec->drop_contended = false;
-+	xa_init(&exec->resv_set);
- }
- EXPORT_SYMBOL(drm_exec_init);
- 
-@@ -109,6 +115,7 @@ void drm_exec_fini(struct drm_exec *exec)
- 		drm_gem_object_put(exec->contended);
- 		ww_acquire_fini(&exec->ticket);
- 	}
-+	xa_destroy(&exec->resv_set);
- }
- EXPORT_SYMBOL(drm_exec_fini);
- 
-@@ -139,6 +146,30 @@ bool drm_exec_cleanup(struct drm_exec *exec)
- }
- EXPORT_SYMBOL(drm_exec_cleanup);
- 
-+static unsigned long drm_exec_resv_to_key(const struct dma_resv *resv)
++/**
++ * ttm_bo_try_shrink - LRU walk helper to shrink a ttm buffer object.
++ * @walk: The struct xe_ttm_lru_walk that describes the walk.
++ * @bo: The buffer object.
++ * @purge: Whether to attempt to purge the bo content since it's no
++ * longer needed.
++ * @writeback: If !@purge, attempt to write out to persistent storage.
++ *
++ * The function uses the ttm_tt_back_up functionality to back up or
++ * purge a struct ttm_tt. If the bo is not in system, it's first
++ * moved there.
++ *
++ * Return: The number of pages shrunken or purged, or
++ * negative error code on failure.
++ */
++long ttm_bo_try_shrink(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo,
++		       bool purge, bool writeback)
 +{
-+	return (unsigned long)resv / __alignof__(typeof(*resv));
-+}
++	static const struct ttm_place sys_placement_flags = {
++		.fpfn = 0,
++		.lpfn = 0,
++		.mem_type = TTM_PL_SYSTEM,
++		.flags = 0,
++	};
++	static struct ttm_placement sys_placement = {
++		.num_placement = 1,
++		.placement = &sys_placement_flags,
++	};
++	struct ttm_operation_ctx *ctx = walk->ctx;
++	struct ttm_tt *tt = bo->ttm;
++	long lret;
 +
-+static void
-+drm_exec_resv_set_erase(struct drm_exec *exec, unsigned long key)
-+{
-+	if (xa_load(&exec->resv_set, key))
-+		xa_erase(&exec->resv_set, key);
-+}
++	dma_resv_assert_held(bo->base.resv);
 +
-+static bool drm_exec_in_evict_mode(struct drm_exec *exec)
-+{
-+	return !!exec->snap;
-+}
++	if (!tt || !ttm_tt_is_populated(tt))
++		return 0;
 +
-+static void drm_exec_set_evict_mode(struct drm_exec *exec,
-+				    struct drm_exec_snapshot *snap)
-+{
-+	exec->snap = snap;
-+	exec->flags &= ~DRM_EXEC_IGNORE_DUPLICATES;
-+}
++	if (bo->resource->mem_type != TTM_PL_SYSTEM) {
++		int ret = ttm_bo_validate(bo, &sys_placement, ctx);
 +
- /* Track the locked object in the array */
- static int drm_exec_obj_locked(struct drm_exec *exec,
- 			       struct drm_gem_object *obj,
-@@ -161,6 +192,14 @@ static int drm_exec_obj_locked(struct drm_exec *exec,
- 	drm_gem_object_get(obj);
- 	exec->objects[exec->num_objects++] = obj;
- 
-+	/*
-+	 * Errors here are not fatal, It means the object we locked
-+	 * for eviction can't be locked again. If that is problematic
-+	 * we may need to reconsider this.
-+	 */
-+	if (drm_exec_in_evict_mode(exec))
-+		(void)xa_store(&exec->resv_set, drm_exec_resv_to_key(obj->resv),
-+			       obj->resv, gfp | __GFP_NOWARN);
- 	return 0;
- }
- 
-@@ -184,6 +223,9 @@ static int drm_exec_lock_contended(struct drm_exec *exec)
- 		dma_resv_lock_slow(obj->resv, &exec->ticket);
- 	}
- 
-+	if (exec->drop_contended)
-+		goto error_unlock;
-+
- 	ret = drm_exec_obj_locked(exec, obj, GFP_KERNEL);
- 	if (unlikely(ret))
- 		goto error_unlock;
-@@ -227,10 +269,19 @@ int drm_exec_trylock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
- 	}
- 
- 	if (!dma_resv_trylock_ctx(obj->resv, &exec->ticket)) {
--		if (dma_resv_locking_ctx(obj->resv) == &exec->ticket)
--			return (exec->flags & DRM_EXEC_IGNORE_DUPLICATES) ? 0 : -EALREADY;
--		else
-+		if (dma_resv_locking_ctx(obj->resv) == &exec->ticket) {
-+			unsigned long key = drm_exec_resv_to_key(obj->resv);
-+
-+			if (exec->flags & DRM_EXEC_IGNORE_DUPLICATES ||
-+			    xa_load(&exec->resv_set, key)) {
-+				if (!drm_exec_in_evict_mode(exec))
-+					drm_exec_resv_set_erase(exec, key);
-+				return 0;
-+			}
-+			return -EALREADY;
-+		} else {
- 			return -EBUSY;
-+		}
- 	}
- 
- 	ret = drm_exec_obj_locked(exec, obj, GFP_ATOMIC | __GFP_NOWARN);
-@@ -274,12 +325,20 @@ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
- 	if (unlikely(ret == -EDEADLK)) {
- 		drm_gem_object_get(obj);
- 		exec->contended = obj;
-+		exec->drop_contended = drm_exec_in_evict_mode(exec);
- 		return -EDEADLK;
- 	}
- 
--	if (unlikely(ret == -EALREADY) &&
--	    exec->flags & DRM_EXEC_IGNORE_DUPLICATES)
--		return 0;
-+	if (unlikely(ret == -EALREADY)) {
-+		unsigned long key = drm_exec_resv_to_key(obj->resv);
-+
-+		if (exec->flags & DRM_EXEC_IGNORE_DUPLICATES ||
-+		    xa_load(&exec->resv_set, key)) {
-+			if (!drm_exec_in_evict_mode(exec))
-+				drm_exec_resv_set_erase(exec, key);
++		if (ret) {
++			if (ret == -EINTR || ret == -EDEADLK ||
++			    ret == -ERESTARTSYS)
++				return ret;
 +			return 0;
 +		}
 +	}
++
++	lret = ttm_bo_wait_ctx(bo, ctx);
++	if (lret < 0) {
++		if (lret == -ERESTARTSYS)
++			return lret;
++		return 0;
++	}
++
++	if (bo->deleted)
++		lret = ttm_tt_backup(bo->bdev, tt, true, writeback);
++	else
++		lret = ttm_tt_backup(bo->bdev, tt, purge, writeback);
++	if (lret < 0 && lret != -EINTR)
++		return 0;
++
++	return lret;
++}
++EXPORT_SYMBOL(ttm_bo_try_shrink);
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index d5b137e762ed..5ad0606acaa5 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -130,6 +130,7 @@ xe-y += xe_bb.o \
+ 	xe_ring_ops.o \
+ 	xe_sa.o \
+ 	xe_sched_job.o \
++	xe_shrinker.o \
+ 	xe_step.o \
+ 	xe_sync.o \
+ 	xe_tile.o \
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+index 9f3c02826464..7576d362020f 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+@@ -6,6 +6,8 @@
+ #include <kunit/test.h>
+ #include <kunit/visibility.h>
  
- 	if (unlikely(ret))
++#include <uapi/linux/sysinfo.h>
++
+ #include "tests/xe_bo_test.h"
+ #include "tests/xe_pci_test.h"
+ #include "tests/xe_test.h"
+@@ -350,3 +352,119 @@ void xe_bo_evict_kunit(struct kunit *test)
+ 	xe_call_for_each_device(evict_test_run_device);
+ }
+ EXPORT_SYMBOL_IF_KUNIT(xe_bo_evict_kunit);
++
++struct xe_bo_link {
++	struct list_head link;
++	struct xe_bo *bo;
++};
++
++#define XE_BO_SHRINK_SIZE ((unsigned long)SZ_64M)
++
++/*
++ * Try to create system bos corresponding to twice the amount
++ * of available system memory to test shrinker functionality.
++ * If no swap space is available to accommodate the
++ * memory overcommit, mark bos purgeable.
++ */
++static int shrink_test_run_device(struct xe_device *xe)
++{
++	struct kunit *test = xe_cur_kunit();
++	LIST_HEAD(bos);
++	struct xe_bo_link *link, *next;
++	struct sysinfo si;
++	size_t total, alloced;
++	unsigned int interrupted = 0, successful = 0;
++
++	si_meminfo(&si);
++	total = si.freeram * si.mem_unit;
++
++	kunit_info(test, "Free ram is %lu bytes. Will allocate twice of that.\n",
++		   total);
++
++	total <<= 1;
++	for (alloced = 0; alloced < total ; alloced += XE_BO_SHRINK_SIZE) {
++		struct xe_bo *bo;
++		unsigned int mem_type;
++
++		link = kzalloc(sizeof(*link), GFP_KERNEL);
++		if (!link) {
++			KUNIT_FAIL(test, "Unexpeced link allocation failure\n");
++			break;
++		}
++
++		INIT_LIST_HEAD(&link->link);
++
++		/* We can create bos using WC caching here. But it is slower. */
++		bo = xe_bo_create_user(xe, NULL, NULL, XE_BO_SHRINK_SIZE,
++				       DRM_XE_GEM_CPU_CACHING_WB,
++				       ttm_bo_type_device,
++				       XE_BO_FLAG_SYSTEM);
++		if (IS_ERR(bo)) {
++			if (bo != ERR_PTR(-ENOMEM) && bo != ERR_PTR(-ENOSPC) &&
++			    bo != ERR_PTR(-EINTR) && bo != ERR_PTR(-ERESTARTSYS))
++				KUNIT_FAIL(test, "Error creating bo: %pe\n", bo);
++			kfree(link);
++			break;
++		}
++		link->bo = bo;
++		list_add_tail(&link->link, &bos);
++		xe_bo_lock(bo, false);
++
++		/*
++		 * If we're low on swap entries, we can't shrink unless the bo
++		 * is marked purgeable.
++		 */
++		if (get_nr_swap_pages() < (XE_BO_SHRINK_SIZE >> PAGE_SHIFT) * 128) {
++			struct xe_ttm_tt *xe_tt =
++				container_of(bo->ttm.ttm, typeof(*xe_tt), ttm);
++			long num_pages = xe_tt->ttm.num_pages;
++
++			xe_tt->purgeable = true;
++			xe_shrinker_mod_pages(xe->mem.shrinker, -num_pages,
++					      num_pages);
++		}
++
++		mem_type = bo->ttm.resource->mem_type;
++		xe_bo_unlock(bo);
++		if (mem_type != XE_PL_TT)
++			KUNIT_FAIL(test, "Bo in incorrect memory type: %u\n",
++				   bo->ttm.resource->mem_type);
++		cond_resched();
++		if (signal_pending(current))
++			break;
++	}
++
++	/* Read back and destroy bos */
++	list_for_each_entry_safe_reverse(link, next, &bos, link) {
++		static struct ttm_operation_ctx ctx = {.interruptible = true};
++		struct xe_bo *bo = link->bo;
++		int ret;
++
++		if (!signal_pending(current)) {
++			xe_bo_lock(bo, NULL);
++			ret = ttm_bo_validate(&bo->ttm, &tt_placement, &ctx);
++			xe_bo_unlock(bo);
++			if (ret && ret != -EINTR)
++				KUNIT_FAIL(test, "Validation failed: %pe\n",
++					   ERR_PTR(ret));
++			else if (ret)
++				interrupted++;
++			else
++				successful++;
++		}
++		xe_bo_put(link->bo);
++		list_del(&link->link);
++		kfree(link);
++		cond_resched();
++	}
++	kunit_info(test, "Readbacks interrupted: %u successful: %u\n",
++		   interrupted, successful);
++
++	return 0;
++}
++
++void xe_bo_shrink_kunit(struct kunit *test)
++{
++	xe_call_for_each_device(shrink_test_run_device);
++}
++EXPORT_SYMBOL_IF_KUNIT(xe_bo_shrink_kunit);
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo_test.c b/drivers/gpu/drm/xe/tests/xe_bo_test.c
+index a324cde77db8..317fa923e287 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo_test.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo_test.c
+@@ -10,6 +10,7 @@
+ static struct kunit_case xe_bo_tests[] = {
+ 	KUNIT_CASE(xe_ccs_migrate_kunit),
+ 	KUNIT_CASE(xe_bo_evict_kunit),
++	KUNIT_CASE_SLOW(xe_bo_shrink_kunit),
+ 	{}
+ };
+ 
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo_test.h b/drivers/gpu/drm/xe/tests/xe_bo_test.h
+index 0113ab45066a..7f44d14a45c5 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo_test.h
++++ b/drivers/gpu/drm/xe/tests/xe_bo_test.h
+@@ -10,5 +10,6 @@ struct kunit;
+ 
+ void xe_ccs_migrate_kunit(struct kunit *test);
+ void xe_bo_evict_kunit(struct kunit *test);
++void xe_bo_shrink_kunit(struct kunit *test);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 03f7fe7acf8c..9a0ca2cab7b6 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -10,6 +10,7 @@
+ #include <drm/drm_drv.h>
+ #include <drm/drm_gem_ttm_helper.h>
+ #include <drm/drm_managed.h>
++#include <drm/ttm/ttm_backup.h>
+ #include <drm/ttm/ttm_device.h>
+ #include <drm/ttm/ttm_placement.h>
+ #include <drm/ttm/ttm_tt.h>
+@@ -25,6 +26,7 @@
+ #include "xe_pm.h"
+ #include "xe_preempt_fence.h"
+ #include "xe_res_cursor.h"
++#include "xe_shrinker.h"
+ #include "xe_trace.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_vm.h"
+@@ -278,11 +280,15 @@ static void xe_evict_flags(struct ttm_buffer_object *tbo,
+ 	}
+ }
+ 
++/* struct xe_ttm_tt - Subclassed ttm_tt for xe */
+ struct xe_ttm_tt {
+ 	struct ttm_tt ttm;
+-	struct device *dev;
++	/** @xe - The xe device */
++	struct xe_device *xe;
+ 	struct sg_table sgt;
+ 	struct sg_table *sg;
++	/** @purgeable - Whether the bo is purgeable (WONTNEED) */
++	bool purgeable;
+ };
+ 
+ static int xe_tt_map_sg(struct ttm_tt *tt)
+@@ -291,7 +297,8 @@ static int xe_tt_map_sg(struct ttm_tt *tt)
+ 	unsigned long num_pages = tt->num_pages;
+ 	int ret;
+ 
+-	XE_WARN_ON(tt->page_flags & TTM_TT_FLAG_EXTERNAL);
++	XE_WARN_ON((tt->page_flags & TTM_TT_FLAG_EXTERNAL) &&
++		   !(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE));
+ 
+ 	if (xe_tt->sg)
+ 		return 0;
+@@ -299,13 +306,13 @@ static int xe_tt_map_sg(struct ttm_tt *tt)
+ 	ret = sg_alloc_table_from_pages_segment(&xe_tt->sgt, tt->pages,
+ 						num_pages, 0,
+ 						(u64)num_pages << PAGE_SHIFT,
+-						xe_sg_segment_size(xe_tt->dev),
++						xe_sg_segment_size(xe_tt->xe->drm.dev),
+ 						GFP_KERNEL);
+ 	if (ret)
  		return ret;
-@@ -310,6 +369,7 @@ void drm_exec_unlock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
  
- 	for (i = exec->num_objects; i--;) {
- 		if (exec->objects[i] == obj) {
-+			drm_exec_resv_set_erase(exec, drm_exec_resv_to_key(obj->resv));
- 			dma_resv_unlock(obj->resv);
- 			for (++i; i < exec->num_objects; ++i)
- 				exec->objects[i - 1] = exec->objects[i];
-@@ -401,12 +461,14 @@ void drm_exec_restore(struct drm_exec *exec, struct drm_exec_snapshot *snap)
- 		if (index + 1 == snap->num_locked)
- 			break;
+ 	xe_tt->sg = &xe_tt->sgt;
+-	ret = dma_map_sgtable(xe_tt->dev, xe_tt->sg, DMA_BIDIRECTIONAL,
++	ret = dma_map_sgtable(xe_tt->xe->drm.dev, xe_tt->sg, DMA_BIDIRECTIONAL,
+ 			      DMA_ATTR_SKIP_CPU_SYNC);
+ 	if (ret) {
+ 		sg_free_table(xe_tt->sg);
+@@ -321,7 +328,7 @@ static void xe_tt_unmap_sg(struct ttm_tt *tt)
+ 	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
  
-+		xa_erase(&exec->resv_set, drm_exec_resv_to_key(obj->resv));
- 		dma_resv_unlock(obj->resv);
- 		drm_gem_object_put(obj);
- 		exec->objects[index] = NULL;
+ 	if (xe_tt->sg) {
+-		dma_unmap_sgtable(xe_tt->dev, xe_tt->sg,
++		dma_unmap_sgtable(xe_tt->xe->drm.dev, xe_tt->sg,
+ 				  DMA_BIDIRECTIONAL, 0);
+ 		sg_free_table(xe_tt->sg);
+ 		xe_tt->sg = NULL;
+@@ -336,21 +343,41 @@ struct sg_table *xe_bo_sg(struct xe_bo *bo)
+ 	return xe_tt->sg;
+ }
+ 
++/*
++ * Account ttm pages against the device shrinker's shrinkable and
++ * purgeable counts.
++ */
++static void xe_ttm_tt_account(struct ttm_tt *tt, bool add)
++{
++	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
++	long num_pages = tt->num_pages;
++
++	if (!add)
++		num_pages = -num_pages;
++
++	if (xe_tt->purgeable)
++		xe_shrinker_mod_pages(xe_tt->xe->mem.shrinker, 0, num_pages);
++	else
++		xe_shrinker_mod_pages(xe_tt->xe->mem.shrinker, num_pages, 0);
++}
++
+ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+ 				       u32 page_flags)
+ {
+ 	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
+ 	struct xe_device *xe = xe_bo_device(bo);
+-	struct xe_ttm_tt *tt;
++	struct xe_ttm_tt *xe_tt;
++	struct ttm_tt *tt;
+ 	unsigned long extra_pages;
+ 	enum ttm_caching caching;
+ 	int err;
+ 
+-	tt = kzalloc(sizeof(*tt), GFP_KERNEL);
+-	if (!tt)
++	xe_tt = kzalloc(sizeof(*xe_tt), GFP_KERNEL);
++	if (!xe_tt)
+ 		return NULL;
+ 
+-	tt->dev = xe->drm.dev;
++	tt = &xe_tt->ttm;
++	xe_tt->xe = xe;
+ 
+ 	extra_pages = 0;
+ 	if (xe_bo_needs_ccs_pages(bo))
+@@ -378,42 +405,101 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+ 	    (xe->info.graphics_verx100 >= 1270 && bo->flags & XE_BO_FLAG_PAGETABLE))
+ 		caching = ttm_write_combined;
+ 
+-	err = ttm_tt_init(&tt->ttm, &bo->ttm, page_flags, caching, extra_pages);
++	if (ttm_bo->type != ttm_bo_type_sg)
++		page_flags |= TTM_TT_FLAG_EXTERNAL | TTM_TT_FLAG_EXTERNAL_MAPPABLE;
++
++	err = ttm_tt_init(tt, &bo->ttm, page_flags, caching, extra_pages);
+ 	if (err) {
+-		kfree(tt);
++		kfree(xe_tt);
++		return NULL;
++	}
++
++	tt->backup = ttm_backup_shmem_create(tt->num_pages << PAGE_SHIFT);
++	if (IS_ERR(tt->backup)) {
++		ttm_tt_fini(tt);
++		kfree(xe_tt);
+ 		return NULL;
  	}
  
- 	exec->num_objects = snap->num_locked;
-+	exec->flags = snap->flags;
- 
- 	if (!exec->prelocked)
- 		exec->prelocked = snap->prelocked;
-@@ -429,8 +491,9 @@ void drm_exec_snapshot(struct drm_exec *exec, struct drm_exec_snapshot *snap)
- 	snap->prelocked = exec->prelocked;
- 	if (snap->prelocked)
- 		drm_gem_object_get(snap->prelocked);
-+	snap->flags = exec->flags;
- 	snap->saved_snap = exec->snap;
--	exec->snap = snap;
-+	drm_exec_set_evict_mode(exec, snap);
+-	return &tt->ttm;
++	return tt;
  }
- EXPORT_SYMBOL(drm_exec_snapshot);
  
-diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
-index af5f3ffc7174..cafeec5dddfe 100644
---- a/include/drm/drm_exec.h
-+++ b/include/drm/drm_exec.h
-@@ -5,6 +5,7 @@
+ static int xe_ttm_tt_populate(struct ttm_device *ttm_dev, struct ttm_tt *tt,
+ 			      struct ttm_operation_ctx *ctx)
+ {
++	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
+ 	int err;
  
- #include <linux/compiler.h>
- #include <linux/ww_mutex.h>
-+#include <linux/xarray.h>
- 
- #define DRM_EXEC_INTERRUPTIBLE_WAIT	BIT(0)
- #define DRM_EXEC_IGNORE_DUPLICATES	BIT(1)
-@@ -53,6 +54,17 @@ struct drm_exec {
- 	 * @snap: Pointer to the last snapshot taken or NULL if none.
+ 	/*
+ 	 * dma-bufs are not populated with pages, and the dma-
+ 	 * addresses are set up when moved to XE_PL_TT.
  	 */
- 	struct drm_exec_snapshot *snap;
+-	if (tt->page_flags & TTM_TT_FLAG_EXTERNAL)
++	if ((tt->page_flags & TTM_TT_FLAG_EXTERNAL) &&
++	    !(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE))
+ 		return 0;
+ 
+ 	err = ttm_pool_alloc(&ttm_dev->pool, tt, ctx);
+ 	if (err)
+ 		return err;
+ 
+-	return err;
++	xe_tt->purgeable = false;
++	xe_ttm_tt_account(tt, true);
 +
-+	/**
-+	 * @resv_set: Set of pointers to locked objects in evict mode.
-+	 */
-+	struct xarray resv_set;
++	return 0;
+ }
+ 
+ static void xe_ttm_tt_unpopulate(struct ttm_device *ttm_dev, struct ttm_tt *tt)
+ {
+-	if (tt->page_flags & TTM_TT_FLAG_EXTERNAL)
++	if ((tt->page_flags & TTM_TT_FLAG_EXTERNAL) &&
++	    !(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE))
+ 		return;
+ 
+ 	xe_tt_unmap_sg(tt);
+ 
+-	return ttm_pool_free(&ttm_dev->pool, tt);
++	ttm_pool_free(&ttm_dev->pool, tt);
++	xe_ttm_tt_account(tt, false);
++}
 +
-+	/**
-+	 * @drop_contended: Drop the contended object after WW transaction
-+	 * relaxation.
-+	 */
-+	bool drop_contended;
- };
++/**
++ * xe_bo_shrink() - Try to shrink an xe bo.
++ * @walk:  - The walk parameters
++ * @bo: The TTM buffer object
++ * @purge: Only consider purgeable bos.
++ * @writeback: Try to write back to persistent storage.
++ *
++ * Try to shrink- or purge a bo, and if it succeeds, unmap dma.
++ * Note that we need to be able to handle also non xe bos
++ * (ghost bos), but only if the struct ttm_tt is embedded in
++ * a struct xe_ttm_tt.
++ *
++ * Return: The number of pages shrunken or purged, or negative error
++ * code on failure.
++ */
++long xe_bo_shrink(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo,
++		  bool purge, bool writeback)
++{
++	struct ttm_tt *tt = bo->ttm;
++	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
++	struct ttm_place place = {.mem_type = bo->resource->mem_type};
++	struct xe_device *xe = xe_tt->xe;
++	long lret;
++
++	if (!tt || !ttm_tt_is_populated(tt) ||
++	    !(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE) ||
++	    (purge && !xe_tt->purgeable))
++		return 0L;
++
++	if (!ttm_bo_eviction_valuable(bo, &place))
++		return 0L;
++
++	lret = ttm_bo_try_shrink(walk, bo, xe_tt->purgeable, writeback);
++	if (lret > 0) {
++		xe_assert(xe, !ttm_tt_is_populated(tt));
++
++		xe_ttm_tt_account(tt, false);
++	}
++
++	return lret;
+ }
+ 
+ static void xe_ttm_tt_destroy(struct ttm_device *ttm_dev, struct ttm_tt *tt)
+@@ -1229,6 +1315,7 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+ 	struct ttm_operation_ctx ctx = {
+ 		.interruptible = true,
+ 		.no_wait_gpu = false,
++		.gfp_retry_mayfail = true,
+ 	};
+ 	struct ttm_placement *placement;
+ 	uint32_t alignment;
+@@ -1672,6 +1759,8 @@ int xe_bo_pin_external(struct xe_bo *bo)
+ 	}
+ 
+ 	ttm_bo_pin(&bo->ttm);
++	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
++		xe_ttm_tt_account(bo->ttm.ttm, false);
+ 
+ 	/*
+ 	 * FIXME: If we always use the reserve / unreserve functions for locking
+@@ -1730,6 +1819,8 @@ int xe_bo_pin(struct xe_bo *bo)
+ 	}
+ 
+ 	ttm_bo_pin(&bo->ttm);
++	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
++		xe_ttm_tt_account(bo->ttm.ttm, false);
+ 
+ 	/*
+ 	 * FIXME: If we always use the reserve / unreserve functions for locking
+@@ -1765,6 +1856,9 @@ void xe_bo_unpin_external(struct xe_bo *bo)
+ 	}
+ 
+ 	ttm_bo_unpin(&bo->ttm);
++	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
++		xe_ttm_tt_account(bo->ttm.ttm, true);
++
+ 
+ 	/*
+ 	 * FIXME: If we always use the reserve / unreserve functions for locking
+@@ -1794,6 +1888,8 @@ void xe_bo_unpin(struct xe_bo *bo)
+ 	}
+ 
+ 	ttm_bo_unpin(&bo->ttm);
++	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
++		xe_ttm_tt_account(bo->ttm.ttm, true);
+ }
  
  /**
-@@ -67,6 +79,9 @@ struct drm_exec_snapshot {
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 6de894c728f5..220e71086e65 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -63,6 +63,7 @@
+ #define XE_BO_PROPS_INVALID	(-1)
  
- 	/** @num_locked: Number of locked objects at snapshot time. */
- 	unsigned long num_locked;
+ struct sg_table;
++struct xe_ttm_lru_walk;
+ 
+ struct xe_bo *xe_bo_alloc(void);
+ void xe_bo_free(struct xe_bo *bo);
+@@ -315,6 +316,9 @@ static inline unsigned int xe_sg_segment_size(struct device *dev)
+ 
+ #define i915_gem_object_flush_if_display(obj)		((void)(obj))
+ 
++long xe_bo_shrink(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo,
++		  bool purge, bool writeback);
 +
-+	/** @flags: The drm_exec flags at snapshot time. */
-+	u32 flags;
- };
- 
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
  /**
+  * xe_bo_is_mem_type - Whether the bo currently resides in the given
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index f04b11e45c2d..8f2480f79abb 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -46,6 +46,7 @@
+ #include "xe_pcode.h"
+ #include "xe_pm.h"
+ #include "xe_query.h"
++#include "xe_shrinker.h"
+ #include "xe_sriov.h"
+ #include "xe_tile.h"
+ #include "xe_ttm_stolen_mgr.h"
+@@ -234,6 +235,9 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
+ 	if (xe->unordered_wq)
+ 		destroy_workqueue(xe->unordered_wq);
+ 
++	if (!IS_ERR_OR_NULL(xe->mem.shrinker))
++		xe_shrinker_destroy(xe->mem.shrinker);
++
+ 	ttm_device_fini(&xe->ttm);
+ }
+ 
+@@ -263,6 +267,10 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 	if (err)
+ 		goto err;
+ 
++	xe->mem.shrinker = xe_shrinker_create(xe);
++	if (IS_ERR(xe->mem.shrinker))
++		return ERR_CAST(xe->mem.shrinker);
++
+ 	xe->info.devid = pdev->device;
+ 	xe->info.revid = pdev->revision;
+ 	xe->info.force_execlist = xe_modparam.force_execlist;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index d834905a3786..d8be103a691d 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -322,6 +322,8 @@ struct xe_device {
+ 		struct xe_mem_region vram;
+ 		/** @mem.sys_mgr: system TTM manager */
+ 		struct ttm_resource_manager sys_mgr;
++		/** @mem.sys_mgr: system memory shrinker. */
++		struct xe_shrinker *shrinker;
+ 	} mem;
+ 
+ 	/** @sriov: device level virtualization data */
+diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shrinker.c
+new file mode 100644
+index 000000000000..4913cba7700b
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_shrinker.c
+@@ -0,0 +1,224 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2024 Intel Corporation
++ */
++
++#include <linux/shrinker.h>
++#include <linux/swap.h>
++
++#include <drm/ttm/ttm_bo.h>
++#include <drm/ttm/ttm_tt.h>
++
++#include "xe_bo.h"
++#include "xe_shrinker.h"
++
++/**
++ * struct xe_shrinker - per-device shrinker
++ * @xe: Back pointer to the device.
++ * @lock: Lock protecting accounting.
++ * @shrinkable_pages: Number of pages that are currently shrinkable.
++ * @purgeable_pages: Number of pages that are currently purgeable.
++ * @shrink: Pointer to the mm shrinker.
++ */
++struct xe_shrinker {
++	struct xe_device *xe;
++	rwlock_t lock;
++	long shrinkable_pages;
++	long purgeable_pages;
++	struct shrinker *shrink;
++};
++
++/**
++ * struct xe_shrink_lru_walk - lru_walk subclass for shrinker
++ * @walk: The embedded base class.
++ * @xe: Pointer to the xe device.
++ * @purge: Purgeable only request from the srinker.
++ * @writeback: Try to write back to persistent storage.
++ */
++struct xe_shrink_lru_walk {
++	struct ttm_lru_walk walk;
++	struct xe_device *xe;
++	bool purge;
++	bool writeback;
++};
++
++static struct xe_shrinker *to_xe_shrinker(struct shrinker *shrink)
++{
++	return shrink->private_data;
++}
++
++static struct xe_shrink_lru_walk *
++to_xe_shrink_lru_walk(struct ttm_lru_walk *walk)
++{
++	return container_of(walk, struct xe_shrink_lru_walk, walk);
++}
++
++/**
++ * xe_shrinker_mod_pages() - Modify shrinker page accounting
++ * @shrinker: Pointer to the struct xe_shrinker.
++ * @shrinkable: Shrinkable pages delta. May be negative.
++ * @purgeable: Purgeable page delta. May be negative.
++ *
++ * Modifies the shrinkable and purgeable pages accounting.
++ */
++void
++xe_shrinker_mod_pages(struct xe_shrinker *shrinker, long shrinkable, long purgeable)
++{
++	write_lock(&shrinker->lock);
++	shrinker->shrinkable_pages += shrinkable;
++	shrinker->purgeable_pages += purgeable;
++	write_unlock(&shrinker->lock);
++}
++
++static long xe_shrinker_process_bo(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
++{
++	struct xe_shrink_lru_walk *shrink_walk = to_xe_shrink_lru_walk(walk);
++
++	return xe_bo_shrink(walk, bo, shrink_walk->purge, shrink_walk->writeback);
++}
++
++static long xe_shrinker_walk(struct xe_shrink_lru_walk *shrink_walk, long target)
++{
++	struct xe_device *xe = shrink_walk->xe;
++	struct ttm_resource_manager *man;
++	unsigned int mem_type;
++	long sofar = 0;
++	long lret;
++
++	for (mem_type = XE_PL_SYSTEM; mem_type <= XE_PL_TT; ++mem_type) {
++		man = ttm_manager_type(&xe->ttm, mem_type);
++		if (!man || !man->use_tt)
++			continue;
++
++		lret = ttm_lru_walk_for_evict(&shrink_walk->walk, &xe->ttm, man, target);
++		if (lret < 0)
++			return lret;
++
++		sofar += lret;
++		if (sofar >= target)
++			break;
++	}
++
++	return sofar;
++}
++
++static unsigned long
++xe_shrinker_count(struct shrinker *shrink, struct shrink_control *sc)
++{
++	struct xe_shrinker *shrinker = to_xe_shrinker(shrink);
++	unsigned long num_pages;
++
++	num_pages = get_nr_swap_pages();
++	read_lock(&shrinker->lock);
++	num_pages = min_t(unsigned long, num_pages, shrinker->shrinkable_pages);
++	num_pages += shrinker->purgeable_pages;
++	read_unlock(&shrinker->lock);
++
++	return num_pages ? num_pages : SHRINK_EMPTY;
++}
++
++static const struct ttm_lru_walk_ops xe_shrink_ops = {
++	.process_bo = xe_shrinker_process_bo,
++};
++
++static unsigned long xe_shrinker_scan(struct shrinker *shrink, struct shrink_control *sc)
++{
++	struct xe_shrinker *shrinker = to_xe_shrinker(shrink);
++	bool is_kswapd = current_is_kswapd();
++	struct ttm_operation_ctx ctx = {
++		.interruptible = false,
++		.no_wait_gpu = !is_kswapd,
++	};
++	unsigned long nr_to_scan, freed = 0;
++	struct xe_shrink_lru_walk shrink_walk = {
++		.walk = {
++			.ops = &xe_shrink_ops,
++			.ctx = &ctx,
++			.trylock_only = true,
++		},
++		.xe = shrinker->xe,
++		.purge = true,
++		.writeback = is_kswapd,
++	};
++	bool purgeable;
++	long ret;
++
++	sc->nr_scanned = 0;
++	nr_to_scan = sc->nr_to_scan;
++
++	read_lock(&shrinker->lock);
++	purgeable = !!shrinker->purgeable_pages;
++	read_unlock(&shrinker->lock);
++
++	while (purgeable && freed < nr_to_scan) {
++		ret = xe_shrinker_walk(&shrink_walk, nr_to_scan);
++		if (ret <= 0)
++			break;
++
++		freed += ret;
++	}
++
++	sc->nr_scanned = freed;
++	if (freed < nr_to_scan)
++		nr_to_scan -= freed;
++	else
++		nr_to_scan = 0;
++	if (!nr_to_scan)
++		return freed ? freed : SHRINK_STOP;
++
++	shrink_walk.purge = false;
++	nr_to_scan = sc->nr_to_scan;
++	while (freed < nr_to_scan) {
++		ret = xe_shrinker_walk(&shrink_walk, nr_to_scan);
++		if (ret <= 0)
++			break;
++
++		freed += ret;
++	}
++
++	sc->nr_scanned = freed;
++
++	return freed ? freed : SHRINK_STOP;
++}
++
++/**
++ * xe_shrinker_create() - Create an xe per-device shrinker
++ * @xe: Pointer to the xe device.
++ *
++ * Returns: A pointer to the created shrinker on success,
++ * Negative error code on failure.
++ */
++struct xe_shrinker *xe_shrinker_create(struct xe_device *xe)
++{
++	struct xe_shrinker *shrinker = kzalloc(sizeof(*shrinker), GFP_KERNEL);
++
++	if (!shrinker)
++		return ERR_PTR(-ENOMEM);
++
++	shrinker->shrink = shrinker_alloc(0, "xe system shrinker");
++	if (!shrinker->shrink) {
++		kfree(shrinker);
++		return ERR_PTR(-ENOMEM);
++	}
++
++	shrinker->xe = xe;
++	rwlock_init(&shrinker->lock);
++	shrinker->shrink->count_objects = xe_shrinker_count;
++	shrinker->shrink->scan_objects = xe_shrinker_scan;
++	shrinker->shrink->private_data = shrinker;
++	shrinker_register(shrinker->shrink);
++
++	return shrinker;
++}
++
++/**
++ * xe_shrinker_destroy() - Destroy an xe per-device shrinker
++ * @shrinker: Pointer to the shrinker to destroy.
++ */
++void xe_shrinker_destroy(struct xe_shrinker *shrinker)
++{
++	xe_assert(shrinker->xe, !shrinker->shrinkable_pages);
++	xe_assert(shrinker->xe, !shrinker->purgeable_pages);
++	shrinker_free(shrinker->shrink);
++	kfree(shrinker);
++}
+diff --git a/drivers/gpu/drm/xe/xe_shrinker.h b/drivers/gpu/drm/xe/xe_shrinker.h
+new file mode 100644
+index 000000000000..28a038f4fcbf
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_shrinker.h
+@@ -0,0 +1,18 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2024 Intel Corporation
++ */
++
++#ifndef _XE_SHRINKER_H_
++#define _XE_SHRINKER_H_
++
++struct xe_shrinker;
++struct xe_device;
++
++void xe_shrinker_mod_pages(struct xe_shrinker *shrinker, long shrinkable, long purgeable);
++
++struct xe_shrinker *xe_shrinker_create(struct xe_device *xe);
++
++void xe_shrinker_destroy(struct xe_shrinker *shrinker);
++
++#endif
+diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+index 148f49f625e4..deaedfb060ed 100644
+--- a/include/drm/ttm/ttm_bo.h
++++ b/include/drm/ttm/ttm_bo.h
+@@ -222,6 +222,9 @@ struct ttm_lru_walk {
+ long ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
+ 			    struct ttm_resource_manager *man, long target);
+ 
++long ttm_bo_try_shrink(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo,
++		       bool purge, bool writeback);
++
+ /**
+  * ttm_bo_get - reference a struct ttm_buffer_object
+  *
 -- 
 2.44.0
 
