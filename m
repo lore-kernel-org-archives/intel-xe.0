@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA8D3C25B78
-	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 12:15:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37726C25B78
+	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 12:34:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81B50112226;
-	Tue, 28 May 2024 12:15:35 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F526112226;
- Tue, 28 May 2024 12:15:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id A12C810E171;
+	Tue, 28 May 2024 12:33:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FFBmBTdl";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB90810E231
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 May 2024 12:33:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716899638; x=1748435638;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=qBbccwff97CV0NmuYiT39l7J1HIT2EGRk1G9jxWfE6k=;
+ b=FFBmBTdlwtzX1IwW/w8ZaDYnOsU3ZUbMrfxI+9o5XAqnDcPxSP/tdtIq
+ doAIG1YcoMp5MYoJT4hMdp7z6dpZaaZ3yc9mTPpvcqdDaVzu8eqms8DAf
+ fmyVwff8so0Fj9dlde97OLjUWWqJAs58t95df/e5Yk3KqBAp0R3EJXO4/
+ OW4SJzB90PtTvwyIcRCK1A5BhGK1VhufIA95CIUdoc8JFd8K7mGOM9IEp
+ 4rRA6bzmOOwnRbGuohxnWRWcJckWgxkYPsExuuXES89KAwPlDuPnEUph8
+ o/hq1ePtQ13A+T1/mEPydvpHwSIllBjM4ahyzgHo88J0zSkJiFOY0/Bpy w==;
+X-CSE-ConnectionGUID: L1DajykHTwmDrLxNJ9htVg==
+X-CSE-MsgGUID: plSdQYjoSMGnTmREekP7HA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13064992"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="13064992"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2024 05:33:56 -0700
+X-CSE-ConnectionGUID: SfKRkcOjR8myY/oJytDgSw==
+X-CSE-MsgGUID: J8G2QDTXSuW6dPbKYLElOg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="39880348"
+Received: from maurocar-mobl2.ger.corp.intel.com (HELO fedora..)
+ ([10.245.244.233])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2024 05:33:55 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [CI v5 01/22] drm/ttm: Allow TTM LRU list nodes of different types
+Date: Tue, 28 May 2024 14:33:22 +0200
+Message-ID: <20240528123343.169970-2-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240528123343.169970-1-thomas.hellstrom@linux.intel.com>
+References: <20240528123343.169970-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_Check_empty_pinned_B?=
- =?utf-8?q?O_list_with_lock_held=2E?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 28 May 2024 12:15:33 -0000
-Message-ID: <171689853345.2216238.17245140017301154859@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240528115408.22094-1-nirmoy.das@intel.com>
-In-Reply-To: <20240528115408.22094-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,290 +64,318 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+To be able to handle list unlocking while traversing the LRU
+list, we want the iterators not only to point to the next
+position of the list traversal, but to insert themselves as
+list nodes at that point to work around the fact that the
+next node might otherwise disappear from the list while
+the iterator is pointing to it.
 
-Series: drm/xe: Check empty pinned BO list with lock held.
-URL   : https://patchwork.freedesktop.org/series/134135/
-State : failure
+These list nodes need to be easily distinguishable from other
+list nodes so that others traversing the list can skip
+over them.
 
-== Summary ==
+So declare a struct ttm_lru_item, with a struct list_head member
+and a type enum. This will slightly increase the size of a
+struct ttm_resource.
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[12:14:31] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[12:14:35] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
+Changes in previous series:
+- Update enum ttm_lru_item_type documentation.
+v3:
+- Introduce ttm_lru_first_res_or_null()
+  (Christian König, Thomas Hellström)
 
-[12:15:02] Starting KUnit Kernel (1/1)...
-[12:15:02] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[12:15:02] =================== guc_dbm (7 subtests) ===================
-[12:15:02] [PASSED] test_empty
-[12:15:02] [PASSED] test_default
-[12:15:02] ======================== test_size  ========================
-[12:15:02] [PASSED] 4
-[12:15:02] [PASSED] 8
-[12:15:02] [PASSED] 32
-[12:15:02] [PASSED] 256
-[12:15:02] ==================== [PASSED] test_size ====================
-[12:15:02] ======================= test_reuse  ========================
-[12:15:02] [PASSED] 4
-[12:15:02] [PASSED] 8
-[12:15:02] [PASSED] 32
-[12:15:02] [PASSED] 256
-[12:15:02] =================== [PASSED] test_reuse ====================
-[12:15:02] =================== test_range_overlap  ====================
-[12:15:02] [PASSED] 4
-[12:15:02] [PASSED] 8
-[12:15:02] [PASSED] 32
-[12:15:02] [PASSED] 256
-[12:15:02] =============== [PASSED] test_range_overlap ================
-[12:15:02] =================== test_range_compact  ====================
-[12:15:02] [PASSED] 4
-[12:15:02] [PASSED] 8
-[12:15:02] [PASSED] 32
-[12:15:02] [PASSED] 256
-[12:15:02] =============== [PASSED] test_range_compact ================
-[12:15:02] ==================== test_range_spare  =====================
-[12:15:02] [PASSED] 4
-[12:15:02] [PASSED] 8
-[12:15:02] [PASSED] 32
-[12:15:02] [PASSED] 256
-[12:15:02] ================ [PASSED] test_range_spare =================
-[12:15:02] ===================== [PASSED] guc_dbm =====================
-[12:15:02] =================== guc_idm (6 subtests) ===================
-[12:15:02] [PASSED] bad_init
-[12:15:02] [PASSED] no_init
-[12:15:02] [PASSED] init_fini
-[12:15:02] [PASSED] check_used
-[12:15:02] [PASSED] check_quota
-[12:15:02] [PASSED] check_all
-[12:15:02] ===================== [PASSED] guc_idm =====================
-[12:15:02] ================== no_relay (3 subtests) ===================
-[12:15:02] [PASSED] xe_drops_guc2pf_if_not_ready
-[12:15:02] [PASSED] xe_drops_guc2vf_if_not_ready
-[12:15:02] [PASSED] xe_rejects_send_if_not_ready
-[12:15:02] ==================== [PASSED] no_relay =====================
-[12:15:02] ================== pf_relay (14 subtests) ==================
-[12:15:02] [PASSED] pf_rejects_guc2pf_too_short
-[12:15:02] [PASSED] pf_rejects_guc2pf_too_long
-[12:15:02] [PASSED] pf_rejects_guc2pf_no_payload
-[12:15:02] [PASSED] pf_fails_no_payload
-[12:15:02] [PASSED] pf_fails_bad_origin
-[12:15:02] [PASSED] pf_fails_bad_type
-[12:15:02] [PASSED] pf_txn_reports_error
-[12:15:02] [PASSED] pf_txn_sends_pf2guc
-[12:15:02] [PASSED] pf_sends_pf2guc
-[12:15:02] [SKIPPED] pf_loopback_nop
-[12:15:02] [SKIPPED] pf_loopback_echo
-[12:15:02] [SKIPPED] pf_loopback_fail
-[12:15:02] [SKIPPED] pf_loopback_busy
-[12:15:02] [SKIPPED] pf_loopback_retry
-[12:15:02] ==================== [PASSED] pf_relay =====================
-[12:15:02] ================== vf_relay (3 subtests) ===================
-[12:15:02] [PASSED] vf_rejects_guc2vf_too_short
-[12:15:02] [PASSED] vf_rejects_guc2vf_too_long
-[12:15:02] [PASSED] vf_rejects_guc2vf_no_payload
-[12:15:02] ==================== [PASSED] vf_relay =====================
-[12:15:02] ================= pf_service (11 subtests) =================
-[12:15:02] [PASSED] pf_negotiate_any
-[12:15:02] [PASSED] pf_negotiate_base_match
-[12:15:02] [PASSED] pf_negotiate_base_newer
-[12:15:02] [PASSED] pf_negotiate_base_next
-[12:15:02] [SKIPPED] pf_negotiate_base_older
-[12:15:02] [PASSED] pf_negotiate_base_prev
-[12:15:02] [PASSED] pf_negotiate_latest_match
-[12:15:02] [PASSED] pf_negotiate_latest_newer
-[12:15:02] [PASSED] pf_negotiate_latest_next
-[12:15:02] [SKIPPED] pf_negotiate_latest_older
-[12:15:02] [SKIPPED] pf_negotiate_latest_prev
-[12:15:02] =================== [PASSED] pf_service ====================
-[12:15:02] ===================== lmtt (1 subtest) =====================
-[12:15:02] ======================== test_ops  =========================
-[12:15:02] [PASSED] 2-level
-[12:15:02] [PASSED] multi-level
-[12:15:02] ==================== [PASSED] test_ops =====================
-[12:15:02] ====================== [PASSED] lmtt =======================
-[12:15:02] ==================== xe_bo (2 subtests) ====================
-[12:15:02] [SKIPPED] xe_ccs_migrate_kunit
-[12:15:02] [SKIPPED] xe_bo_evict_kunit
-[12:15:02] ===================== [SKIPPED] xe_bo ======================
-[12:15:02] ================== xe_dma_buf (1 subtest) ==================
-[12:15:02] [SKIPPED] xe_dma_buf_kunit
-[12:15:02] =================== [SKIPPED] xe_dma_buf ===================
-[12:15:02] ================== xe_migrate (1 subtest) ==================
-[12:15:02] [SKIPPED] xe_migrate_sanity_kunit
-[12:15:02] =================== [SKIPPED] xe_migrate ===================
-[12:15:02] =================== xe_mocs (2 subtests) ===================
-[12:15:02] [SKIPPED] xe_live_mocs_kernel_kunit
-[12:15:02] [SKIPPED] xe_live_mocs_reset_kunit
-[12:15:02] ==================== [SKIPPED] xe_mocs =====================
-[12:15:02] ==================== args (11 subtests) ====================
-[12:15:02] [PASSED] count_args_test
-[12:15:02] [PASSED] call_args_example
-[12:15:02] [PASSED] call_args_test
-[12:15:02] [PASSED] drop_first_arg_example
-[12:15:02] [PASSED] drop_first_arg_test
-[12:15:02] [PASSED] first_arg_example
-[12:15:02] [PASSED] first_arg_test
-[12:15:02] [PASSED] last_arg_example
-[12:15:02] [PASSED] last_arg_test
-[12:15:02] [PASSED] pick_arg_example
-[12:15:02] [PASSED] sep_comma_example
-[12:15:02] ====================== [PASSED] args =======================
-[12:15:02] =================== xe_pci (2 subtests) ====================
-[12:15:02] [PASSED] xe_gmdid_graphics_ip
-[12:15:02] [PASSED] xe_gmdid_media_ip
-[12:15:02] ===================== [PASSED] xe_pci ======================
-[12:15:02] ==================== xe_rtp (1 subtest) ====================
-[12:15:02] ================== xe_rtp_process_tests  ===================
-[12:15:02] [PASSED] coalesce-same-reg
-[12:15:02] [PASSED] no-match-no-add
-[12:15:02] [PASSED] no-match-no-add-multiple-rules
-[12:15:02] [PASSED] two-regs-two-entries
-[12:15:02] [PASSED] clr-one-set-other
-[12:15:02] [PASSED] set-field
-[12:15:02] [PASSED] conflict-duplicate
-[12:15:02] [PASSED] conflict-not-disjoint
-[12:15:02] [PASSED] conflict-reg-type
-[12:15:02] ============== [PASSED] xe_rtp_process_tests ===============
-stty: 'standard input': Inappropriate ioctl for device
-[12:15:02] ===================== [PASSED] xe_rtp ======================
-[12:15:02] ==================== xe_wa (1 subtest) =====================
-[12:15:02] ======================== xe_wa_gt  =========================
-[12:15:02] [PASSED] TIGERLAKE (B0)
-[12:15:02] [PASSED] DG1 (A0)
-[12:15:02] [PASSED] DG1 (B0)
-[12:15:02] [PASSED] ALDERLAKE_S (A0)
-[12:15:02] [PASSED] ALDERLAKE_S (B0)
-[12:15:02] [PASSED] ALDERLAKE_S (C0)
-[12:15:02] [PASSED] ALDERLAKE_S (D0)
-[12:15:02] [PASSED] ALDERLAKE_P (A0)
-[12:15:02] [PASSED] ALDERLAKE_P (B0)
-[12:15:02] [PASSED] ALDERLAKE_P (C0)
-[12:15:02] [PASSED] ALDERLAKE_S_RPLS (D0)
-[12:15:02] [PASSED] ALDERLAKE_P_RPLU (E0)
-[12:15:02] [PASSED] DG2_G10 (C0)
-[12:15:02] [PASSED] DG2_G11 (B1)
-[12:15:02] [PASSED] DG2_G12 (A1)
-[12:15:02] [PASSED] METEORLAKE (g:A0, m:A0)
-[12:15:02] [PASSED] METEORLAKE (g:A0, m:A0)
-[12:15:02] [PASSED] METEORLAKE (g:A0, m:A0)
-[12:15:02] [PASSED] LUNARLAKE (g:A0, m:A0)
-[12:15:02] [PASSED] LUNARLAKE (g:B0, m:A0)
-[12:15:02] ==================== [PASSED] xe_wa_gt =====================
-[12:15:02] ====================== [PASSED] xe_wa ======================
-[12:15:02] ============================================================
-[12:15:02] Testing complete. Ran 109 tests: passed: 95, skipped: 14
-[12:15:02] Elapsed time: 31.095s total, 4.265s configuring, 26.559s building, 0.224s running
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: <dri-devel@lists.freedesktop.org>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/ttm/ttm_device.c   |  4 +-
+ drivers/gpu/drm/ttm/ttm_resource.c | 89 +++++++++++++++++++++++-------
+ include/drm/ttm/ttm_resource.h     | 54 +++++++++++++++++-
+ 3 files changed, 125 insertions(+), 22 deletions(-)
 
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
-ERROR:root:
-WARNING: unmet direct dependencies detected for DRM_DISPLAY_HDMI_STATE_HELPER
-  Depends on [n]: HAS_IOMEM [=y] && DRM [=y] && DRM_DISPLAY_HELPER [=y] && DRM_DISPLAY_HDMI_HELPER [=n]
-  Selected by [y]:
-  - DRM_KUNIT_TEST [=y] && HAS_IOMEM [=y] && DRM [=y] && KUNIT [=y] && MMU [=y]
-
-WARNING: unmet direct dependencies detected for DRM_DISPLAY_HDMI_STATE_HELPER
-  Depends on [n]: HAS_IOMEM [=y] && DRM [=y] && DRM_DISPLAY_HELPER [=y] && DRM_DISPLAY_HDMI_HELPER [=n]
-  Selected by [y]:
-  - DRM_KUNIT_TEST [=y] && HAS_IOMEM [=y] && DRM [=y] && KUNIT [=y] && MMU [=y]
-
-WARNING: unmet direct dependencies detected for DRM_DISPLAY_HDMI_STATE_HELPER
-  Depends on [n]: HAS_IOMEM [=y] && DRM [=y] && DRM_DISPLAY_HELPER [=y] && DRM_DISPLAY_HDMI_HELPER [=n]
-  Selected by [y]:
-  - DRM_KUNIT_TEST [=y] && HAS_IOMEM [=y] && DRM [=y] && KUNIT [=y] && MMU [=y]
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-/usr/bin/ld: drivers/gpu/drm/tests/drm_connector_test.o: in function `drm_test_connector_hdmi_compute_mode_clock_yuv422_12_bpc':
-drm_connector_test.c:(.text+0x570): undefined reference to `drm_hdmi_compute_mode_clock'
-/usr/bin/ld: drivers/gpu/drm/tests/drm_connector_test.o: in function `drm_test_connector_hdmi_compute_mode_clock_yuv422_10_bpc':
-drm_connector_test.c:(.text+0x760): undefined reference to `drm_hdmi_compute_mode_clock'
-/usr/bin/ld: drivers/gpu/drm/tests/drm_connector_test.o: in function `drm_test_connector_hdmi_compute_mode_clock_yuv422_8_bpc':
-drm_connector_test.c:(.text+0x950): undefined reference to `drm_hdmi_compute_mode_clock'
-/usr/bin/ld: drivers/gpu/drm/tests/drm_connector_test.o: in function `drm_test_connector_hdmi_compute_mode_clock_yuv420_12_bpc':
-drm_connector_test.c:(.text+0xb40): undefined reference to `drm_hdmi_compute_mode_clock'
-/usr/bin/ld: drivers/gpu/drm/tests/drm_connector_test.o: in function `drm_test_connector_hdmi_compute_mode_clock_yuv420_10_bpc':
-drm_connector_test.c:(.text+0xd30): undefined reference to `drm_hdmi_compute_mode_clock'
-/usr/bin/ld: drivers/gpu/drm/tests/drm_connector_test.o:drm_connector_test.c:(.text+0xf26): more undefined references to `drm_hdmi_compute_mode_clock' follow
-/usr/bin/ld: drivers/gpu/drm/display/drm_hdmi_state_helper.o: in function `drm_atomic_helper_connector_hdmi_check':
-drm_hdmi_state_helper.c:(.text+0x9d8): undefined reference to `drm_hdmi_avi_infoframe_colorimetry'
-/usr/bin/ld: drm_hdmi_state_helper.c:(.text+0x9ea): undefined reference to `drm_hdmi_avi_infoframe_bars'
-/usr/bin/ld: drm_hdmi_state_helper.c:(.text+0xa54): undefined reference to `drm_hdmi_infoframe_set_hdr_metadata'
-collect2: error: ld returned 1 exit status
-make[3]: *** [../scripts/Makefile.vmlinux:34: vmlinux] Error 1
-make[2]: *** [/kernel/Makefile:1171: vmlinux] Error 2
-make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
-
-[12:15:02] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[12:15:04] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
+index 434cf0258000..09411978a13a 100644
+--- a/drivers/gpu/drm/ttm/ttm_device.c
++++ b/drivers/gpu/drm/ttm/ttm_device.c
+@@ -274,14 +274,14 @@ static void ttm_device_clear_lru_dma_mappings(struct ttm_device *bdev,
+ 	struct ttm_resource *res;
+ 
+ 	spin_lock(&bdev->lru_lock);
+-	while ((res = list_first_entry_or_null(list, typeof(*res), lru))) {
++	while ((res = ttm_lru_first_res_or_null(list))) {
+ 		struct ttm_buffer_object *bo = res->bo;
+ 
+ 		/* Take ref against racing releases once lru_lock is unlocked */
+ 		if (!ttm_bo_get_unless_zero(bo))
+ 			continue;
+ 
+-		list_del_init(&res->lru);
++		list_del_init(&bo->resource->lru.link);
+ 		spin_unlock(&bdev->lru_lock);
+ 
+ 		if (bo->ttm)
+diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
+index 4a66b851b67d..db9a7a3717c4 100644
+--- a/drivers/gpu/drm/ttm/ttm_resource.c
++++ b/drivers/gpu/drm/ttm/ttm_resource.c
+@@ -70,8 +70,8 @@ void ttm_lru_bulk_move_tail(struct ttm_lru_bulk_move *bulk)
+ 			dma_resv_assert_held(pos->last->bo->base.resv);
+ 
+ 			man = ttm_manager_type(pos->first->bo->bdev, i);
+-			list_bulk_move_tail(&man->lru[j], &pos->first->lru,
+-					    &pos->last->lru);
++			list_bulk_move_tail(&man->lru[j], &pos->first->lru.link,
++					    &pos->last->lru.link);
+ 		}
+ 	}
+ }
+@@ -84,14 +84,38 @@ ttm_lru_bulk_move_pos(struct ttm_lru_bulk_move *bulk, struct ttm_resource *res)
+ 	return &bulk->pos[res->mem_type][res->bo->priority];
+ }
+ 
++/* Return the previous resource on the list (skip over non-resource list items) */
++static struct ttm_resource *ttm_lru_prev_res(struct ttm_resource *cur)
++{
++	struct ttm_lru_item *lru = &cur->lru;
++
++	do {
++		lru = list_prev_entry(lru, link);
++	} while (!ttm_lru_item_is_res(lru));
++
++	return ttm_lru_item_to_res(lru);
++}
++
++/* Return the next resource on the list (skip over non-resource list items) */
++static struct ttm_resource *ttm_lru_next_res(struct ttm_resource *cur)
++{
++	struct ttm_lru_item *lru = &cur->lru;
++
++	do {
++		lru = list_next_entry(lru, link);
++	} while (!ttm_lru_item_is_res(lru));
++
++	return ttm_lru_item_to_res(lru);
++}
++
+ /* Move the resource to the tail of the bulk move range */
+ static void ttm_lru_bulk_move_pos_tail(struct ttm_lru_bulk_move_pos *pos,
+ 				       struct ttm_resource *res)
+ {
+ 	if (pos->last != res) {
+ 		if (pos->first == res)
+-			pos->first = list_next_entry(res, lru);
+-		list_move(&res->lru, &pos->last->lru);
++			pos->first = ttm_lru_next_res(res);
++		list_move(&res->lru.link, &pos->last->lru.link);
+ 		pos->last = res;
+ 	}
+ }
+@@ -122,11 +146,11 @@ static void ttm_lru_bulk_move_del(struct ttm_lru_bulk_move *bulk,
+ 		pos->first = NULL;
+ 		pos->last = NULL;
+ 	} else if (pos->first == res) {
+-		pos->first = list_next_entry(res, lru);
++		pos->first = ttm_lru_next_res(res);
+ 	} else if (pos->last == res) {
+-		pos->last = list_prev_entry(res, lru);
++		pos->last = ttm_lru_prev_res(res);
+ 	} else {
+-		list_move(&res->lru, &pos->last->lru);
++		list_move(&res->lru.link, &pos->last->lru.link);
+ 	}
+ }
+ 
+@@ -155,7 +179,7 @@ void ttm_resource_move_to_lru_tail(struct ttm_resource *res)
+ 	lockdep_assert_held(&bo->bdev->lru_lock);
+ 
+ 	if (bo->pin_count) {
+-		list_move_tail(&res->lru, &bdev->pinned);
++		list_move_tail(&res->lru.link, &bdev->pinned);
+ 
+ 	} else	if (bo->bulk_move) {
+ 		struct ttm_lru_bulk_move_pos *pos =
+@@ -166,7 +190,7 @@ void ttm_resource_move_to_lru_tail(struct ttm_resource *res)
+ 		struct ttm_resource_manager *man;
+ 
+ 		man = ttm_manager_type(bdev, res->mem_type);
+-		list_move_tail(&res->lru, &man->lru[bo->priority]);
++		list_move_tail(&res->lru.link, &man->lru[bo->priority]);
+ 	}
+ }
+ 
+@@ -197,9 +221,9 @@ void ttm_resource_init(struct ttm_buffer_object *bo,
+ 	man = ttm_manager_type(bo->bdev, place->mem_type);
+ 	spin_lock(&bo->bdev->lru_lock);
+ 	if (bo->pin_count)
+-		list_add_tail(&res->lru, &bo->bdev->pinned);
++		list_add_tail(&res->lru.link, &bo->bdev->pinned);
+ 	else
+-		list_add_tail(&res->lru, &man->lru[bo->priority]);
++		list_add_tail(&res->lru.link, &man->lru[bo->priority]);
+ 	man->usage += res->size;
+ 	spin_unlock(&bo->bdev->lru_lock);
+ }
+@@ -221,7 +245,7 @@ void ttm_resource_fini(struct ttm_resource_manager *man,
+ 	struct ttm_device *bdev = man->bdev;
+ 
+ 	spin_lock(&bdev->lru_lock);
+-	list_del_init(&res->lru);
++	list_del_init(&res->lru.link);
+ 	man->usage -= res->size;
+ 	spin_unlock(&bdev->lru_lock);
+ }
+@@ -472,14 +496,16 @@ struct ttm_resource *
+ ttm_resource_manager_first(struct ttm_resource_manager *man,
+ 			   struct ttm_resource_cursor *cursor)
+ {
+-	struct ttm_resource *res;
++	struct ttm_lru_item *lru;
+ 
+ 	lockdep_assert_held(&man->bdev->lru_lock);
+ 
+ 	for (cursor->priority = 0; cursor->priority < TTM_MAX_BO_PRIORITY;
+ 	     ++cursor->priority)
+-		list_for_each_entry(res, &man->lru[cursor->priority], lru)
+-			return res;
++		list_for_each_entry(lru, &man->lru[cursor->priority], link) {
++			if (ttm_lru_item_is_res(lru))
++				return ttm_lru_item_to_res(lru);
++		}
+ 
+ 	return NULL;
+ }
+@@ -498,15 +524,40 @@ ttm_resource_manager_next(struct ttm_resource_manager *man,
+ 			  struct ttm_resource_cursor *cursor,
+ 			  struct ttm_resource *res)
+ {
++	struct ttm_lru_item *lru = &res->lru;
++
+ 	lockdep_assert_held(&man->bdev->lru_lock);
+ 
+-	list_for_each_entry_continue(res, &man->lru[cursor->priority], lru)
+-		return res;
++	list_for_each_entry_continue(lru, &man->lru[cursor->priority], link) {
++		if (ttm_lru_item_is_res(lru))
++			return ttm_lru_item_to_res(lru);
++	}
+ 
+ 	for (++cursor->priority; cursor->priority < TTM_MAX_BO_PRIORITY;
+ 	     ++cursor->priority)
+-		list_for_each_entry(res, &man->lru[cursor->priority], lru)
+-			return res;
++		list_for_each_entry(lru, &man->lru[cursor->priority], link) {
++			if (ttm_lru_item_is_res(lru))
++				ttm_lru_item_to_res(lru);
++		}
++
++	return NULL;
++}
++
++/**
++ * ttm_lru_first_res_or_null() - Return the first resource on an lru list
++ * @head: The list head of the lru list.
++ *
++ * Return: Pointer to the first resource on the lru list or NULL if
++ * there is none.
++ */
++struct ttm_resource *ttm_lru_first_res_or_null(struct list_head *head)
++{
++	struct ttm_lru_item *lru;
++
++	list_for_each_entry(lru, head, link) {
++		if (ttm_lru_item_is_res(lru))
++			return ttm_lru_item_to_res(lru);
++	}
+ 
+ 	return NULL;
+ }
+diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
+index 69769355139f..1511d91e290d 100644
+--- a/include/drm/ttm/ttm_resource.h
++++ b/include/drm/ttm/ttm_resource.h
+@@ -49,6 +49,43 @@ struct io_mapping;
+ struct sg_table;
+ struct scatterlist;
+ 
++/**
++ * enum ttm_lru_item_type - enumerate ttm_lru_item subclasses
++ */
++enum ttm_lru_item_type {
++	/** @TTM_LRU_RESOURCE: The resource subclass */
++	TTM_LRU_RESOURCE,
++	/** @TTM_LRU_HITCH: The iterator hitch subclass */
++	TTM_LRU_HITCH
++};
++
++/**
++ * struct ttm_lru_item - The TTM lru list node base class
++ * @link: The list link
++ * @type: The subclass type
++ */
++struct ttm_lru_item {
++	struct list_head link;
++	enum ttm_lru_item_type type;
++};
++
++/**
++ * ttm_lru_item_init() - initialize a struct ttm_lru_item
++ * @item: The item to initialize
++ * @type: The subclass type
++ */
++static inline void ttm_lru_item_init(struct ttm_lru_item *item,
++				     enum ttm_lru_item_type type)
++{
++	item->type = type;
++	INIT_LIST_HEAD(&item->link);
++}
++
++static inline bool ttm_lru_item_is_res(const struct ttm_lru_item *item)
++{
++	return item->type == TTM_LRU_RESOURCE;
++}
++
+ struct ttm_resource_manager_func {
+ 	/**
+ 	 * struct ttm_resource_manager_func member alloc
+@@ -217,9 +254,21 @@ struct ttm_resource {
+ 	/**
+ 	 * @lru: Least recently used list, see &ttm_resource_manager.lru
+ 	 */
+-	struct list_head lru;
++	struct ttm_lru_item lru;
+ };
+ 
++/**
++ * ttm_lru_item_to_res() - Downcast a struct ttm_lru_item to a struct ttm_resource
++ * @item: The struct ttm_lru_item to downcast
++ *
++ * Return: Pointer to the embedding struct ttm_resource
++ */
++static inline struct ttm_resource *
++ttm_lru_item_to_res(struct ttm_lru_item *item)
++{
++	return container_of(item, struct ttm_resource, lru);
++}
++
+ /**
+  * struct ttm_resource_cursor
+  *
+@@ -393,6 +442,9 @@ ttm_resource_manager_next(struct ttm_resource_manager *man,
+ 			  struct ttm_resource_cursor *cursor,
+ 			  struct ttm_resource *res);
+ 
++struct ttm_resource *
++ttm_lru_first_res_or_null(struct list_head *head);
++
+ /**
+  * ttm_resource_manager_for_each_res - iterate over all resources
+  * @man: the resource manager
+-- 
+2.44.0
 
