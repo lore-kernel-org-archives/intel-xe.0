@@ -4,27 +4,167 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC8D1C25B78
-	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 22:03:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DAD0C25B78
+	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 22:16:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4630510E6FE;
-	Tue, 28 May 2024 22:03:06 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C34410E6FE;
- Tue, 28 May 2024 22:03:05 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C174410E428;
+	Tue, 28 May 2024 22:16:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jLimYR5h";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99CF110E428
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 May 2024 22:15:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716934559; x=1748470559;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=6UfMRMB7WBwDuCM1EClmMelf2gnKmeCCKtme+49hT6g=;
+ b=jLimYR5hhiAFEkr27f3+WkswtMqb1iRKpyAXL4PxE7MtDmBisVRSaTE5
+ vHc5K49PyuQPdsQgLuJSLbyPvlzS33srTfCjl/iVud1Lv4ardztEn6m56
+ v8EEP1FNjDBwkE1MTLYlBt/rZ20AZX6/0SmilmekSyca0zvVDRfYnWbvX
+ 5zplY6o2Cx0yrv/l3gNtUBxSKGBHyhU1/k3EpQdtRYKweRmZy66UaMy18
+ oTv76mSen7UhH7v3OqlGDMmynIUv4Pfz3iqEGYqsEac734EuH/IbEyrmg
+ G5hj5XWwj0PeUfoiqwzxZ7NKNfpdRhWZAxeOnz1POgk6j3DgpZydWSzS+ g==;
+X-CSE-ConnectionGUID: 8Sr/OWgXTVWZeKhJSDmbpg==
+X-CSE-MsgGUID: zC2wdjGYSJWWf+yO0s44Tg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13534837"
+X-IronPort-AV: E=Sophos;i="6.08,196,1712646000"; d="scan'208";a="13534837"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2024 15:15:59 -0700
+X-CSE-ConnectionGUID: KbfwGwnjQ06q/oXugDktrQ==
+X-CSE-MsgGUID: Luu/ZokdQyyMU9Ph+LwLEA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,196,1712646000"; d="scan'208";a="39638222"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 28 May 2024 15:15:59 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 28 May 2024 15:15:58 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 28 May 2024 15:15:58 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Tue, 28 May 2024 15:15:58 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.40) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Tue, 28 May 2024 15:15:58 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=POJoH29mG5BV69i8+nXCyFN4YN6vIRNyaK/hM+l+wvSlrZjLS4QvGPBJrCAj+RacBGsN86hZYdzg9YjSVw3/xkTeoNfLi6Nw5M5aKinLYY+Ztmp8Wod7KKvvjqTwxvKDMqN6KN3yJCrMJDX8mDYqU+qoqWK7B5gHUfYs2gCIOswQkOrGSgxDcPYoTqW4zUruh/d1yAerwTJx7T+3X1PfYgq+0OSQiyfQyF/aT5jYqDxUsSNLsAqLJbmkk6baB4GYv24j2C/8Mqpnv8Tcbpq42uyEHlRkUPfPpBITSIzZBwZCSkYg3THunS1tLgUX1RAgrARe1z0fODraMmduZ5ROPw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LgDN6uLBTFFjZC+lMNIsV7Al4SdBkUUHCJ1L9YxQUVk=;
+ b=RauVPAZpXcHbVwm75q5s4b9DBGOJ5FZpPVV3NKuqdLS3k0ewkfLOYCJCd2OlabRBoupZquJbGekq4s8ze8OKmAWz1Zs4VwQBckF5BZomUsFqQOey4rAwcpcsNrHZziOuiUbAUWeOkK1aXu6Rn52GWSkCIyUsPjaYK871AnItmy9FIgOCInqE4C9SlTyWe2eGxGSEKmJn06RwYtoR14zXXaWqoxWtGVvqvNtqR8yY0ryDmW9yphqmcO80NNDCHBha6ctNxQHxbBQBft24GnRLqx0Lv1GSjQ35/8Ci4ODZlE7VWoDXUz2qMO+1c0TnFY+/kZqXh5XR6vpV/OVsfGg/lQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by CH0PR11MB5233.namprd11.prod.outlook.com (2603:10b6:610:e0::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.30; Tue, 28 May
+ 2024 22:15:50 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::1a0f:84e3:d6cd:e51]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::1a0f:84e3:d6cd:e51%3]) with mapi id 15.20.7611.030; Tue, 28 May 2024
+ 22:15:50 +0000
+Date: Tue, 28 May 2024 22:15:06 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+CC: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 4/5] drm/xe: Rename internal vram helper function
+Message-ID: <ZlZXaouXdtj852Aq@DUT025-TGLU.fm.intel.com>
+References: <20240527173554.1108-1-michal.wajdeczko@intel.com>
+ <20240527173554.1108-5-michal.wajdeczko@intel.com>
+ <20240528213515.GI4990@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240528213515.GI4990@mdroper-desk1.amr.corp.intel.com>
+X-ClientProxiedBy: BY3PR04CA0023.namprd04.prod.outlook.com
+ (2603:10b6:a03:217::28) To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Test_GSC_loading_with_Wa=5F220?=
- =?utf-8?q?19338487_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 28 May 2024 22:03:05 -0000
-Message-ID: <171693378517.2217197.11141054373979532920@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240528215523.1202083-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20240528215523.1202083-1-daniele.ceraolospurio@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|CH0PR11MB5233:EE_
+X-MS-Office365-Filtering-Correlation-Id: f717db84-b77b-4be2-cd4c-08dc7f63bba6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|366007|1800799015;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Vqd6k43+PpqsuI20ob6VREHRTX+GGjfqZJyXGBBGX2vXqaEhhiYzWY78tcdK?=
+ =?us-ascii?Q?mfis9LjsAPcguFQzRJAP0X8YFmi2shyZuXCDi9V8Jyr2S9+Ey7xvLcujFVOM?=
+ =?us-ascii?Q?AE29lA/MNz5cVH80NlWvl63nwh1udyUDxTe6Pi5cL/FRXUYOiFbSPMjZh5Qq?=
+ =?us-ascii?Q?/qzCdxtvLuJkXOZraLREEwHGUhMv0hPtoB/vDMqYXvyAsty9eGHwpIAKz8Il?=
+ =?us-ascii?Q?/mwBFmXYZ1/54QLercyAhx8gxBuz1FjkVPNi0Lp37AczqM7bjB4QnlJTMqOs?=
+ =?us-ascii?Q?Cs389k2joPzLRuy8MBBSiMx1D0h+87fPeHHyGZT9ZY6WcBbWRpbZgbs8im6E?=
+ =?us-ascii?Q?n5Zd7IC+qT14Q34J6wmCbPM/7dl59qAB0Y/E57K7c1iDT4vM2i5XnMWSp0O5?=
+ =?us-ascii?Q?7Pnml4bmwd2eYvJUQwgFLRz/f8omer02CzmJbW9RWokaUFSDSp6rkTnaRQdq?=
+ =?us-ascii?Q?yGKWfrX7StdL1l/0/AYAMICc8g6UZyLdxyoOgqk+eR8fyQ5TLOfdSZgcq+JC?=
+ =?us-ascii?Q?gvPtT8u4c3OOW1bEiytobebm8QNSQ9eXnGvU0WR6sKKsDLtJ9AiIp16XsbOE?=
+ =?us-ascii?Q?bfVK7ymMjxJa2YnZPMjfZKig1zVRcFGpo/fIfdIV/fLfvCkWW/N7FOINdiCq?=
+ =?us-ascii?Q?Nt56UBc/T5qMl3cCI+BBciEFx1jNIO72kmjIdU5cfIaac7d5BPumoeFPPUBT?=
+ =?us-ascii?Q?HGHWc+0wSLmXbB2owuiFXXlmMXGRDl7Qkw+x8ZAb8TzS/Two1wSxXHAXx4X3?=
+ =?us-ascii?Q?aFGl7EPYitmoZ53rgqDTBTgBOspoKcsD50dL7G6doE7dWtw0H5rYmNyvhy/m?=
+ =?us-ascii?Q?doFQIeWSS8WnOC5G2Jg88SmLBsF1Z8RpSuKYxkkl1LuUR6aXhC8c/TmTI0AF?=
+ =?us-ascii?Q?qZwYg8cHGG6FxDBERV0v0RcOTX0I5kswNw9/S56UVOeYX/aYAbkYSGKokp6k?=
+ =?us-ascii?Q?cPSCT2yyKKjNVRkAedkY7IJOonab042/ix94CuKw3Di4mXAeg/J+tSMdM0Hs?=
+ =?us-ascii?Q?M2h2rIT1N4vrOo2S4n3hgoZ+xazTR9usgGA9f21esJqztUKbBiJPKZ597Ypf?=
+ =?us-ascii?Q?fPxG6slyXUUk1rW45kSWlPcZE90yBGSDxcaIh74IRE3orOaNG8nO/pIsHOUx?=
+ =?us-ascii?Q?iKKgJ/de4/VJYnjsQYoAhW4VGhHMYtyOP0uSDaM73TxH/bVMtbtHbv23Mx6w?=
+ =?us-ascii?Q?q7hlK6KMwBbfTCxCiV20vwIact+TEq1b9XEgczq9gERPVyYWWbRuy5GEFX69?=
+ =?us-ascii?Q?4Y96G71gKXr4XBYI5m6MxREz6Q92OVGVDCB66sgjLQ=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?HiktTQv8UqNYdpVcn1ja+MTh+l4HVxjv2cencq3jBzfnsPBlDN2Xu4v6JiMf?=
+ =?us-ascii?Q?9hutNSitpp2xSMFqlDeI76Yfqne0E0e7lswuUpaJOyhrqFONpCVv2rE8ufNm?=
+ =?us-ascii?Q?hOx6hlzJ15MHlapaJo70U4f+0qkmmAPQjQmn5r1j/6RpFQ9uhLbSzxXvheTI?=
+ =?us-ascii?Q?pS4dlQvmUmeVsOli0Z3eoJYctTwYYdbVOElJdBYAeKOUkxD9H4/2+VjFhhYu?=
+ =?us-ascii?Q?V2+gHSgcB5FIgsEUJRrpWk01w/d2qs+Q9RczQUsyg/0s6Llq6QB9JM08hm6S?=
+ =?us-ascii?Q?f5HZuwV5EP8GIt3ogmOqo18tSf7AzaFFgF/Xd/AYdLS5zLARhdFJnYfgvfGQ?=
+ =?us-ascii?Q?dCptap41Jk5iLrLlsLB8DSpn+1+PPIJkg4I1Y0i1YN0I3Qr2s6Xqe0hTJvns?=
+ =?us-ascii?Q?0M7Sr4SgdeJXY7eSCrYvEhEX7cZS9ak+9R3r9pHALKSb3JVdDQCpfu9+877L?=
+ =?us-ascii?Q?ifj90cLwxs8j8mMvrDErOAjcBgVF9/2/uuhEXPyWjd41LCPi730YJ1mz2s7y?=
+ =?us-ascii?Q?VO+2hfhssMKdZG8XSzAqSedY2ZS1/9JibOJwrjgKJXIiatuV6axsNUkmMC7d?=
+ =?us-ascii?Q?QfWR6fa2/MIUBweso8M3CYjjpWBPXfKIvilfB9KUzJk06BOtZ1Gzl85W/FOT?=
+ =?us-ascii?Q?QddTkOtEtFScVznVFJic4c1yVEVXbPAebSoJNjpsgsWI4gKPybh+qkn4TNoY?=
+ =?us-ascii?Q?0dLTqBfgoEzydWv7r13jAURnY4xfNXvOM97hnAIO6+fPH9e3OLIyznOfRBRg?=
+ =?us-ascii?Q?ZNd+SvbgHc4hPnNG16iIE3eZ78iEZ/AaDphj/NYSamMnlw92F9sNkS0uELh6?=
+ =?us-ascii?Q?Hgc13NXgBj/hJ2iOXibAMKOx+upQnBZSVoJFhk+pWwwPtMQswAT5ePpt6lgM?=
+ =?us-ascii?Q?kxm9IoHTJSqtbxrf7W3JDgHoW9RcUNwTcovbfHhGdMnTyXtVLR3xCcM/dIKe?=
+ =?us-ascii?Q?a16LsSepLRGS+f10gMw8yWfVlkNVLSH9PKciz5Kbr9dp2RI0HGWnGvc9FvsU?=
+ =?us-ascii?Q?epxx+DqzckSNOWnPmR1CrqSRh2LpV+bwFG/y4QUzaNivZ+cTPzScB0p+jbgs?=
+ =?us-ascii?Q?t2yuA0BWctHDGf5w08YOq9AWHKkOdFtNWs86dSQOhaPG2hYix9jp2Y97avHN?=
+ =?us-ascii?Q?8meYmY/4KhQV2b77BIodx3abYvZkzYqFtsf35uM/5+H8sqa+aSC3hl8rhiu1?=
+ =?us-ascii?Q?WtUPfPeDiwQcPUjp6M2rEhpW1vCkd2QlNr78AtOXsIRRF+ofQRVMzROGPqPP?=
+ =?us-ascii?Q?WUFwfWRgYYRFtv+Kit3ZUROKxdNzTJb8Y9YrgFsY2O9iXzRBb3+zxGuzTTQY?=
+ =?us-ascii?Q?LVTxbVIkMD4gyVLEKbfTCn9Dma5XpdfaIgr+AV0AG1V7AfsGkBPTI5WAbIGt?=
+ =?us-ascii?Q?J/WKlW5n7g67jWTv0HcnJbjGVGqnEKag/r9fNLUZv+RI58PvxokwEjtAVuLx?=
+ =?us-ascii?Q?HwSk6moEgvt5HZWTL/+9y3B7cCBNC6QH0HWM94tmwomPbsgsMCjctJA/3iP3?=
+ =?us-ascii?Q?E9nvnmjN8Ejb2/+T68gunzKv7gOK0LQvk/sL2m8vhVASqchGhJaYhFfsVj0b?=
+ =?us-ascii?Q?IzrxkUxsz9Fxf25iifa16f6TH2oQNOEm2fy6gFnc620PJPinPwUU77E6mAfi?=
+ =?us-ascii?Q?mg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f717db84-b77b-4be2-cd4c-08dc7f63bba6
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2024 22:15:50.7814 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AsZp2OIvY2pF27QmVW2r1NXtCXvN7N6hn0XPJrsjZvzhIR5c+0dI8tDeBUXie7itXbgbvt5FBnFguj7jgHzAzg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5233
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,290 +176,90 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, May 28, 2024 at 02:35:15PM -0700, Matt Roper wrote:
+> On Mon, May 27, 2024 at 07:35:53PM +0200, Michal Wajdeczko wrote:
+> > Drop no longer applicable "xe_mmio_" prefix and downgrade the
+> > existing kernel-doc for internal function to normal comment.
+> 
+> As noted on the previous patch, there are several other functions with
+> "xe_" prefixes even though they're static (xe_resize_vram_bar,
+> xe_pci_resource_valid, xe_determine_lmem_bar_size, and the
+> xe_mmio_tile_vram_size you're updating here).  Maybe we should drop the
+> "xe_" prefix from all of them (and "xe_mmio" from this one) before the
+> movement of VRAM code to a new file?
+> 
 
-Series: Test GSC loading with Wa_22019338487 (rev2)
-URL   : https://patchwork.freedesktop.org/series/134099/
-State : failure
+We have talked about this before and I think the consensous was "xe_"
+prefixes for static functions are fine, perhaps even desired. I can't
+find a reference but I do recall a discussion on the list about this.
 
-== Summary ==
+I think the maintainers should make / document a rule wrt to "xe_"
+prefixes before we start making changes in this area as it is not clear.
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[22:02:09] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[22:02:13] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
+Matt
 
-[22:02:40] Starting KUnit Kernel (1/1)...
-[22:02:40] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[22:02:40] =================== guc_dbm (7 subtests) ===================
-[22:02:40] [PASSED] test_empty
-[22:02:40] [PASSED] test_default
-[22:02:40] ======================== test_size  ========================
-[22:02:40] [PASSED] 4
-[22:02:40] [PASSED] 8
-[22:02:40] [PASSED] 32
-[22:02:40] [PASSED] 256
-[22:02:40] ==================== [PASSED] test_size ====================
-[22:02:40] ======================= test_reuse  ========================
-[22:02:40] [PASSED] 4
-[22:02:40] [PASSED] 8
-[22:02:40] [PASSED] 32
-[22:02:40] [PASSED] 256
-[22:02:40] =================== [PASSED] test_reuse ====================
-[22:02:40] =================== test_range_overlap  ====================
-[22:02:40] [PASSED] 4
-[22:02:40] [PASSED] 8
-[22:02:40] [PASSED] 32
-[22:02:40] [PASSED] 256
-[22:02:40] =============== [PASSED] test_range_overlap ================
-[22:02:40] =================== test_range_compact  ====================
-[22:02:40] [PASSED] 4
-[22:02:40] [PASSED] 8
-[22:02:40] [PASSED] 32
-[22:02:40] [PASSED] 256
-[22:02:40] =============== [PASSED] test_range_compact ================
-[22:02:40] ==================== test_range_spare  =====================
-[22:02:40] [PASSED] 4
-[22:02:40] [PASSED] 8
-[22:02:40] [PASSED] 32
-[22:02:40] [PASSED] 256
-[22:02:40] ================ [PASSED] test_range_spare =================
-[22:02:40] ===================== [PASSED] guc_dbm =====================
-[22:02:40] =================== guc_idm (6 subtests) ===================
-[22:02:40] [PASSED] bad_init
-[22:02:40] [PASSED] no_init
-[22:02:40] [PASSED] init_fini
-[22:02:40] [PASSED] check_used
-[22:02:40] [PASSED] check_quota
-[22:02:40] [PASSED] check_all
-[22:02:40] ===================== [PASSED] guc_idm =====================
-[22:02:40] ================== no_relay (3 subtests) ===================
-[22:02:40] [PASSED] xe_drops_guc2pf_if_not_ready
-[22:02:40] [PASSED] xe_drops_guc2vf_if_not_ready
-[22:02:40] [PASSED] xe_rejects_send_if_not_ready
-[22:02:40] ==================== [PASSED] no_relay =====================
-[22:02:40] ================== pf_relay (14 subtests) ==================
-[22:02:40] [PASSED] pf_rejects_guc2pf_too_short
-[22:02:40] [PASSED] pf_rejects_guc2pf_too_long
-[22:02:40] [PASSED] pf_rejects_guc2pf_no_payload
-[22:02:40] [PASSED] pf_fails_no_payload
-[22:02:40] [PASSED] pf_fails_bad_origin
-[22:02:40] [PASSED] pf_fails_bad_type
-[22:02:40] [PASSED] pf_txn_reports_error
-[22:02:40] [PASSED] pf_txn_sends_pf2guc
-[22:02:40] [PASSED] pf_sends_pf2guc
-[22:02:40] [SKIPPED] pf_loopback_nop
-[22:02:40] [SKIPPED] pf_loopback_echo
-[22:02:40] [SKIPPED] pf_loopback_fail
-[22:02:40] [SKIPPED] pf_loopback_busy
-[22:02:40] [SKIPPED] pf_loopback_retry
-[22:02:40] ==================== [PASSED] pf_relay =====================
-[22:02:40] ================== vf_relay (3 subtests) ===================
-[22:02:40] [PASSED] vf_rejects_guc2vf_too_short
-[22:02:40] [PASSED] vf_rejects_guc2vf_too_long
-[22:02:40] [PASSED] vf_rejects_guc2vf_no_payload
-[22:02:40] ==================== [PASSED] vf_relay =====================
-[22:02:40] ================= pf_service (11 subtests) =================
-[22:02:40] [PASSED] pf_negotiate_any
-[22:02:40] [PASSED] pf_negotiate_base_match
-[22:02:40] [PASSED] pf_negotiate_base_newer
-[22:02:40] [PASSED] pf_negotiate_base_next
-[22:02:40] [SKIPPED] pf_negotiate_base_older
-[22:02:40] [PASSED] pf_negotiate_base_prev
-[22:02:40] [PASSED] pf_negotiate_latest_match
-[22:02:40] [PASSED] pf_negotiate_latest_newer
-[22:02:40] [PASSED] pf_negotiate_latest_next
-[22:02:40] [SKIPPED] pf_negotiate_latest_older
-[22:02:40] [SKIPPED] pf_negotiate_latest_prev
-[22:02:40] =================== [PASSED] pf_service ====================
-[22:02:40] ===================== lmtt (1 subtest) =====================
-[22:02:40] ======================== test_ops  =========================
-[22:02:40] [PASSED] 2-level
-[22:02:40] [PASSED] multi-level
-[22:02:40] ==================== [PASSED] test_ops =====================
-[22:02:40] ====================== [PASSED] lmtt =======================
-[22:02:40] ==================== xe_bo (2 subtests) ====================
-[22:02:40] [SKIPPED] xe_ccs_migrate_kunit
-[22:02:40] [SKIPPED] xe_bo_evict_kunit
-[22:02:40] ===================== [SKIPPED] xe_bo ======================
-[22:02:40] ================== xe_dma_buf (1 subtest) ==================
-[22:02:40] [SKIPPED] xe_dma_buf_kunit
-[22:02:40] =================== [SKIPPED] xe_dma_buf ===================
-[22:02:40] ================== xe_migrate (1 subtest) ==================
-[22:02:40] [SKIPPED] xe_migrate_sanity_kunit
-[22:02:40] =================== [SKIPPED] xe_migrate ===================
-[22:02:40] =================== xe_mocs (2 subtests) ===================
-[22:02:40] [SKIPPED] xe_live_mocs_kernel_kunit
-[22:02:40] [SKIPPED] xe_live_mocs_reset_kunit
-[22:02:40] ==================== [SKIPPED] xe_mocs =====================
-[22:02:40] ==================== args (11 subtests) ====================
-[22:02:40] [PASSED] count_args_test
-[22:02:40] [PASSED] call_args_example
-[22:02:40] [PASSED] call_args_test
-[22:02:40] [PASSED] drop_first_arg_example
-[22:02:40] [PASSED] drop_first_arg_test
-[22:02:40] [PASSED] first_arg_example
-[22:02:40] [PASSED] first_arg_test
-[22:02:40] [PASSED] last_arg_example
-[22:02:40] [PASSED] last_arg_test
-[22:02:40] [PASSED] pick_arg_example
-[22:02:40] [PASSED] sep_comma_example
-[22:02:40] ====================== [PASSED] args =======================
-[22:02:40] =================== xe_pci (2 subtests) ====================
-[22:02:40] [PASSED] xe_gmdid_graphics_ip
-[22:02:40] [PASSED] xe_gmdid_media_ip
-[22:02:40] ===================== [PASSED] xe_pci ======================
-[22:02:40] ==================== xe_rtp (1 subtest) ====================
-[22:02:40] ================== xe_rtp_process_tests  ===================
-[22:02:40] [PASSED] coalesce-same-reg
-[22:02:40] [PASSED] no-match-no-add
-[22:02:40] [PASSED] no-match-no-add-multiple-rules
-[22:02:40] [PASSED] two-regs-two-entries
-[22:02:40] [PASSED] clr-one-set-other
-[22:02:40] [PASSED] set-field
-[22:02:40] [PASSED] conflict-duplicate
-[22:02:40] [PASSED] conflict-not-disjoint
-[22:02:40] [PASSED] conflict-reg-type
-[22:02:40] ============== [PASSED] xe_rtp_process_tests ===============
-stty: 'standard input': Inappropriate ioctl for device
-[22:02:40] ===================== [PASSED] xe_rtp ======================
-[22:02:40] ==================== xe_wa (1 subtest) =====================
-[22:02:40] ======================== xe_wa_gt  =========================
-[22:02:40] [PASSED] TIGERLAKE (B0)
-[22:02:40] [PASSED] DG1 (A0)
-[22:02:40] [PASSED] DG1 (B0)
-[22:02:40] [PASSED] ALDERLAKE_S (A0)
-[22:02:40] [PASSED] ALDERLAKE_S (B0)
-[22:02:40] [PASSED] ALDERLAKE_S (C0)
-[22:02:40] [PASSED] ALDERLAKE_S (D0)
-[22:02:40] [PASSED] ALDERLAKE_P (A0)
-[22:02:40] [PASSED] ALDERLAKE_P (B0)
-[22:02:40] [PASSED] ALDERLAKE_P (C0)
-[22:02:40] [PASSED] ALDERLAKE_S_RPLS (D0)
-[22:02:40] [PASSED] ALDERLAKE_P_RPLU (E0)
-[22:02:40] [PASSED] DG2_G10 (C0)
-[22:02:40] [PASSED] DG2_G11 (B1)
-[22:02:40] [PASSED] DG2_G12 (A1)
-[22:02:40] [PASSED] METEORLAKE (g:A0, m:A0)
-[22:02:40] [PASSED] METEORLAKE (g:A0, m:A0)
-[22:02:40] [PASSED] METEORLAKE (g:A0, m:A0)
-[22:02:40] [PASSED] LUNARLAKE (g:A0, m:A0)
-[22:02:40] [PASSED] LUNARLAKE (g:B0, m:A0)
-[22:02:40] ==================== [PASSED] xe_wa_gt =====================
-[22:02:40] ====================== [PASSED] xe_wa ======================
-[22:02:40] ============================================================
-[22:02:40] Testing complete. Ran 109 tests: passed: 95, skipped: 14
-[22:02:40] Elapsed time: 31.020s total, 4.232s configuring, 26.517s building, 0.217s running
-
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
-ERROR:root:
-WARNING: unmet direct dependencies detected for DRM_DISPLAY_HDMI_STATE_HELPER
-  Depends on [n]: HAS_IOMEM [=y] && DRM [=y] && DRM_DISPLAY_HELPER [=y] && DRM_DISPLAY_HDMI_HELPER [=n]
-  Selected by [y]:
-  - DRM_KUNIT_TEST [=y] && HAS_IOMEM [=y] && DRM [=y] && KUNIT [=y] && MMU [=y]
-
-WARNING: unmet direct dependencies detected for DRM_DISPLAY_HDMI_STATE_HELPER
-  Depends on [n]: HAS_IOMEM [=y] && DRM [=y] && DRM_DISPLAY_HELPER [=y] && DRM_DISPLAY_HDMI_HELPER [=n]
-  Selected by [y]:
-  - DRM_KUNIT_TEST [=y] && HAS_IOMEM [=y] && DRM [=y] && KUNIT [=y] && MMU [=y]
-
-WARNING: unmet direct dependencies detected for DRM_DISPLAY_HDMI_STATE_HELPER
-  Depends on [n]: HAS_IOMEM [=y] && DRM [=y] && DRM_DISPLAY_HELPER [=y] && DRM_DISPLAY_HDMI_HELPER [=n]
-  Selected by [y]:
-  - DRM_KUNIT_TEST [=y] && HAS_IOMEM [=y] && DRM [=y] && KUNIT [=y] && MMU [=y]
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-/usr/bin/ld: drivers/gpu/drm/tests/drm_connector_test.o: in function `drm_test_connector_hdmi_compute_mode_clock_yuv422_12_bpc':
-drm_connector_test.c:(.text+0x570): undefined reference to `drm_hdmi_compute_mode_clock'
-/usr/bin/ld: drivers/gpu/drm/tests/drm_connector_test.o: in function `drm_test_connector_hdmi_compute_mode_clock_yuv422_10_bpc':
-drm_connector_test.c:(.text+0x760): undefined reference to `drm_hdmi_compute_mode_clock'
-/usr/bin/ld: drivers/gpu/drm/tests/drm_connector_test.o: in function `drm_test_connector_hdmi_compute_mode_clock_yuv422_8_bpc':
-drm_connector_test.c:(.text+0x950): undefined reference to `drm_hdmi_compute_mode_clock'
-/usr/bin/ld: drivers/gpu/drm/tests/drm_connector_test.o: in function `drm_test_connector_hdmi_compute_mode_clock_yuv420_12_bpc':
-drm_connector_test.c:(.text+0xb40): undefined reference to `drm_hdmi_compute_mode_clock'
-/usr/bin/ld: drivers/gpu/drm/tests/drm_connector_test.o: in function `drm_test_connector_hdmi_compute_mode_clock_yuv420_10_bpc':
-drm_connector_test.c:(.text+0xd30): undefined reference to `drm_hdmi_compute_mode_clock'
-/usr/bin/ld: drivers/gpu/drm/tests/drm_connector_test.o:drm_connector_test.c:(.text+0xf26): more undefined references to `drm_hdmi_compute_mode_clock' follow
-/usr/bin/ld: drivers/gpu/drm/display/drm_hdmi_state_helper.o: in function `drm_atomic_helper_connector_hdmi_check':
-drm_hdmi_state_helper.c:(.text+0x9d8): undefined reference to `drm_hdmi_avi_infoframe_colorimetry'
-/usr/bin/ld: drm_hdmi_state_helper.c:(.text+0x9ea): undefined reference to `drm_hdmi_avi_infoframe_bars'
-/usr/bin/ld: drm_hdmi_state_helper.c:(.text+0xa54): undefined reference to `drm_hdmi_infoframe_set_hdr_metadata'
-collect2: error: ld returned 1 exit status
-make[3]: *** [../scripts/Makefile.vmlinux:34: vmlinux] Error 1
-make[2]: *** [/kernel/Makefile:1171: vmlinux] Error 2
-make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
-
-[22:02:40] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[22:02:42] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+> 
+> Matt
+> > 
+> > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_vram.c | 12 ++++++------
+> >  1 file changed, 6 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+> > index d8b81e4e050c..411e8d23fd4d 100644
+> > --- a/drivers/gpu/drm/xe/xe_vram.c
+> > +++ b/drivers/gpu/drm/xe/xe_vram.c
+> > @@ -192,8 +192,8 @@ static inline u64 get_flat_ccs_offset(struct xe_gt *gt, u64 tile_size)
+> >  	return offset;
+> >  }
+> >  
+> > -/**
+> > - * xe_mmio_tile_vram_size() - Collect vram size and offset information
+> > +/*
+> > + * tile_vram_size() - Collect vram size and offset information
+> >   * @tile: tile to get info for
+> >   * @vram_size: available vram (size - device reserved portions)
+> >   * @tile_size: actual vram size
+> > @@ -211,8 +211,8 @@ static inline u64 get_flat_ccs_offset(struct xe_gt *gt, u64 tile_size)
+> >   * NOTE: multi-tile bases will include the tile offset.
+> >   *
+> >   */
+> > -static int xe_mmio_tile_vram_size(struct xe_tile *tile, u64 *vram_size,
+> > -				  u64 *tile_size, u64 *tile_offset)
+> > +static int tile_vram_size(struct xe_tile *tile, u64 *vram_size,
+> > +			  u64 *tile_size, u64 *tile_offset)
+> >  {
+> >  	struct xe_device *xe = tile_to_xe(tile);
+> >  	struct xe_gt *gt = tile->primary_gt;
+> > @@ -287,7 +287,7 @@ int xe_vram_probe(struct xe_device *xe)
+> >  
+> >  	/* Get the size of the root tile's vram for later accessibility comparison */
+> >  	tile = xe_device_get_root_tile(xe);
+> > -	err = xe_mmio_tile_vram_size(tile, &vram_size, &tile_size, &tile_offset);
+> > +	err = tile_vram_size(tile, &vram_size, &tile_size, &tile_offset);
+> >  	if (err)
+> >  		return err;
+> >  
+> > @@ -302,7 +302,7 @@ int xe_vram_probe(struct xe_device *xe)
+> >  
+> >  	/* tile specific ranges */
+> >  	for_each_tile(tile, xe, id) {
+> > -		err = xe_mmio_tile_vram_size(tile, &vram_size, &tile_size, &tile_offset);
+> > +		err = tile_vram_size(tile, &vram_size, &tile_size, &tile_offset);
+> >  		if (err)
+> >  			return err;
+> >  
+> > -- 
+> > 2.43.0
+> > 
+> > 
+> 
+> -- 
+> Matt Roper
+> Graphics Software Engineer
+> Linux GPU Platform Enablement
+> Intel Corporation
