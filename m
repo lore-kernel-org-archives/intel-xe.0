@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1E13C27C44
-	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 09:56:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53B12C27C4F
+	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 09:56:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45D9610E7C3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBC0410E8FA;
 	Tue, 28 May 2024 09:56:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DXSnylzK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y71V2oCO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F94210E739
- for <intel-xe@lists.freedesktop.org>; Tue, 28 May 2024 09:55:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2662112051
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 May 2024 09:55:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716890118; x=1748426118;
+ t=1716890129; x=1748426129;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=x+27eBShM9N8y9seRdQ7YZp/ZaEfV5hWmImaaFr9wFo=;
- b=DXSnylzKZTcs+f896CDhlvNe08XAaYipoQAwVICthKTO6n2XWEP2hhtK
- 34XCVM7mt21rWzScQBdVZ9RJcY1zxLGWELsK7R3+GCZomnKWbAAi2c6vm
- kKVn8vAofaZLh1elKdX5DpxIhhCYu44LwFZWzAR5KZTeL1OigGlkQZiWi
- qd0XfVKky6XK0lRmwj0lymN7eJLMP7zrCFikkuQrBH5OT4DGZpmCyJnzP
- VNLQ/6aYqhannyh/fJVH+JjZuJjgvS+BXfhgng6Ggq31CJUe5Y2FHlmHK
- zQnPYqXHoMOHrtnjqQumLYzefLm/j40MOwhozQ4+B00JyTVm3zqYMJzce Q==;
-X-CSE-ConnectionGUID: PlSn+yACRuO5sOEpPfX73g==
-X-CSE-MsgGUID: V7it/eeDSr63RPB/L1ZpCQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13345542"
-X-IronPort-AV: E=Sophos;i="6.08,194,1712646000"; d="scan'208";a="13345542"
+ bh=liol1cKeUAFcUrXHMGR17vksSxntNZz5PmA4A5lcxtw=;
+ b=Y71V2oCOko6VpBojH2Pplzp/szyJuGYhpVs/8n+Oht6N6O8re2lN1bzj
+ o1kdUHkn75zHpzaJGRBQYjOsr5vrlAG/bTXoG8cwTU32fDN2ISWdNn/lp
+ Km7G6lfVQe3IZsr2lPFVZNOcsp25V+AKt91oXzU+FjcBzdieyktFIJOu5
+ DwZUhOO+cqVMjxkXHCKgZLvKunvJxy9xZgZqWlBSfR6DJ3VybA8KgGXsD
+ EVg4FEsw9PysXpi7825jFzOqTyJ0y3nG4yOOHh5K2bHM0nrgqczNqAtAr
+ rfQLVCRrXThezesloFYS7RviGBUFNS3vaJXAKK9pqXjwDle4d6hVCxAuu Q==;
+X-CSE-ConnectionGUID: ALDUjCuzTSOAsLePiTz2/A==
+X-CSE-MsgGUID: TJa1zkTnSC+XR5cuchc1rw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13345551"
+X-IronPort-AV: E=Sophos;i="6.08,194,1712646000"; d="scan'208";a="13345551"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 02:55:17 -0700
-X-CSE-ConnectionGUID: iXeQIbf+S/6Zl4zds7Faww==
-X-CSE-MsgGUID: qu9VGY9iQ82JZEvrFmsVWw==
+ 28 May 2024 02:55:23 -0700
+X-CSE-ConnectionGUID: Z1q2JeINTlWh+23tsPeu0Q==
+X-CSE-MsgGUID: QH7vpPS9QJ6Pcn9DTVg4ZQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,194,1712646000"; d="scan'208";a="34932072"
+X-IronPort-AV: E=Sophos;i="6.08,194,1712646000"; d="scan'208";a="34932094"
 Received: from maurocar-mobl2.ger.corp.intel.com (HELO fedora..)
  ([10.245.244.233])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 02:55:17 -0700
+ 28 May 2024 02:55:22 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v5 05/20] drm/ttm: Provide a generic LRU walker helper
-Date: Tue, 28 May 2024 11:54:47 +0200
-Message-ID: <20240528095503.90177-6-thomas.hellstrom@linux.intel.com>
+Subject: [CI v5 12/20] dma-buf/dma-resv: Introduce dma_resv_trylock_ctx()
+Date: Tue, 28 May 2024 11:54:54 +0200
+Message-ID: <20240528095503.90177-13-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240528095503.90177-1-thomas.hellstrom@linux.intel.com>
 References: <20240528095503.90177-1-thomas.hellstrom@linux.intel.com>
@@ -67,227 +67,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Provide a generic LRU walker in TTM, in the spirit of drm_gem_lru_scan()
-but building on the restartable TTM LRU functionality.
-
-The LRU walker optionally supports locking objects as part of
-a ww mutex locking transaction, to mimic to some extent the
-current functionality in ttm. However any -EDEADLK return
-is converted to -ENOMEM, so that the driver will need to back
-off and possibly retry without being able to keep the
-ticket.
-
-v3:
-- Move the helper to core ttm.
-- Remove the drm_exec usage from it for now, it will be
-  reintroduced later in the series.
+For the drm_exec_trylock() functionality, there is a need to be able
+to trylock a dma-resv object as part of a drm_exec transaction.
+Therefore expose a variant of dma_resv_trylock that also takes
+a struct ww_acquire_ctx parameter.
 
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: <dri-devel@lists.freedesktop.org>
+Cc: <linaro-mm-sig@lists.linaro.org>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/ttm/ttm_bo_util.c | 145 ++++++++++++++++++++++++++++++
- include/drm/ttm/ttm_bo.h          |  32 +++++++
- 2 files changed, 177 insertions(+)
+ drivers/gpu/drm/drm_exec.c | 53 +++++++++++++++++++++++++++++++++++---
+ include/drm/drm_exec.h     |  1 +
+ include/linux/dma-resv.h   | 23 ++++++++++++++++-
+ 3 files changed, 72 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-index 0b3f4267130c..be200c06cc79 100644
---- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-@@ -768,3 +768,148 @@ int ttm_bo_pipeline_gutting(struct ttm_buffer_object *bo)
- 	ttm_tt_destroy(bo->bdev, ttm);
+diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
+index 2da094bdf8a4..1244aa58322b 100644
+--- a/drivers/gpu/drm/drm_exec.c
++++ b/drivers/gpu/drm/drm_exec.c
+@@ -139,14 +139,17 @@ EXPORT_SYMBOL(drm_exec_cleanup);
+ 
+ /* Track the locked object in the array */
+ static int drm_exec_obj_locked(struct drm_exec *exec,
+-			       struct drm_gem_object *obj)
++			       struct drm_gem_object *obj,
++			       gfp_t gfp)
+ {
++	might_alloc(gfp);
++
+ 	if (unlikely(exec->num_objects == exec->max_objects)) {
+ 		size_t size = exec->max_objects * sizeof(void *);
+ 		void *tmp;
+ 
+ 		tmp = kvrealloc(exec->objects, size, size + PAGE_SIZE,
+-				GFP_KERNEL);
++				gfp);
+ 		if (!tmp)
+ 			return -ENOMEM;
+ 
+@@ -179,7 +182,7 @@ static int drm_exec_lock_contended(struct drm_exec *exec)
+ 		dma_resv_lock_slow(obj->resv, &exec->ticket);
+ 	}
+ 
+-	ret = drm_exec_obj_locked(exec, obj);
++	ret = drm_exec_obj_locked(exec, obj, GFP_KERNEL);
+ 	if (unlikely(ret))
+ 		goto error_unlock;
+ 
+@@ -194,6 +197,48 @@ static int drm_exec_lock_contended(struct drm_exec *exec)
  	return ret;
  }
-+
-+static bool ttm_lru_walk_trylock(struct ttm_lru_walk *walk,
-+				 struct ttm_buffer_object *bo,
-+				 bool *needs_unlock)
+ 
++/**
++ * drm_exec_trylock_obj - trylock a GEM object for use
++ * @exec: the drm_exec object with the state.
++ * @obj: the GEM object to lock.
++ *
++ * Trylock a GEM object for use and grab a reference to it.
++ *
++ * Returns: -EALREADY when object is already locked (can be suppressed by
++ * setting the DRM_EXEC_IGNORE_DUPLICATES flag), -ENOMEM when memory
++ * allocation failed, and zero for success. If the object was already
++ * locked, or if there was a contended lock, -EBUSY will be returned.
++ */
++int drm_exec_trylock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
 +{
-+	struct ttm_operation_ctx *ctx = walk->ctx;
-+
-+	*needs_unlock = false;
-+
-+	if (dma_resv_trylock(bo->base.resv)) {
-+		*needs_unlock = true;
-+		return true;
-+	}
-+
-+	if (bo->base.resv == ctx->resv && ctx->allow_res_evict) {
-+		dma_resv_assert_held(bo->base.resv);
-+		return true;
-+	}
-+
-+	return false;
-+}
-+
-+static int ttm_lru_walk_ticketlock(struct ttm_lru_walk *walk,
-+				   struct ttm_buffer_object *bo,
-+				   bool *needs_unlock)
-+{
-+	struct dma_resv *resv = bo->base.resv;
 +	int ret;
 +
-+	if (walk->ctx->interruptible)
-+		ret = dma_resv_lock_interruptible(resv, walk->ticket);
-+	else
-+		ret = dma_resv_lock(resv, walk->ticket);
++	might_alloc(GFP_ATOMIC);
 +
-+	if (ret == -EDEADLK)
-+		ret = -ENOSPC;
++	if (drm_exec_is_contended(exec))
++		return -EBUSY;
 +
-+	if (!ret) {
-+		*needs_unlock = true;
-+		/* Only a single ticketlock per loop */
-+		walk->ticket = NULL;
++	if (exec->prelocked == obj) {
++		drm_gem_object_put(exec->prelocked);
++		exec->prelocked = NULL;
++		return 0;
 +	}
++
++	if (!dma_resv_trylock_ctx(obj->resv, &exec->ticket)) {
++		if (dma_resv_locking_ctx(obj->resv) == &exec->ticket)
++			return (exec->flags & DRM_EXEC_IGNORE_DUPLICATES) ? 0 : -EALREADY;
++		else
++			return -EBUSY;
++	}
++
++	ret = drm_exec_obj_locked(exec, obj, GFP_ATOMIC | __GFP_NOWARN);
++	if (ret)
++		dma_resv_unlock(obj->resv);
 +
 +	return ret;
 +}
-+
-+static void ttm_lru_walk_unlock(struct ttm_buffer_object *bo, bool locked)
-+{
-+	if (locked)
-+		dma_resv_unlock(bo->base.resv);
-+}
-+
-+/**
-+ * ttm_lru_walk_for_evict() - Perform a LRU list walk, with actions taken on
-+ * valid items.
-+ * @walk: describe the walks and actions taken
-+ * @bdev: The TTM device.
-+ * @man: The struct ttm_resource manager whose LRU lists we're walking.
-+ * @target: The end condition for the walk.
-+ *
-+ * The LRU lists of @man are walk, and for each struct ttm_resource encountered,
-+ * the corresponding ttm_buffer_object is locked and taken a reference on, and
-+ * the LRU lock is dropped. the LRU lock may be dropped before locking and, in
-+ * that case, it's verified that the item actually remains on the LRU list after
-+ * the lock, and that the buffer object didn't switch resource in between.
-+ *
-+ * With a locked object, the actions indicated by @walk->process_bo are
-+ * performed, and after that, the bo is unlocked, the refcount dropped and the
-+ * next struct ttm_resource is processed. Here, the walker relies on
-+ * TTM's restartable LRU list implementation.
-+ *
-+ * Typically @walk->process_bo() would return the number of pages evicted,
-+ * swapped or shrunken, so that when the total exceeds @target, or when the
-+ * LRU list has been walked in full, iteration is terminated. It's also terminated
-+ * on error. Note that the definition of @target is done by the caller, it
-+ * could have a different meaning than the number of pages.
-+ *
-+ * Note that the way dma_resv individualization is done, locking needs to be done
-+ * either with the LRU lock held (trylocking only) or with a reference on the
-+ * object.
-+ *
-+ * Return: The progress made towards target or negative error code on error.
-+ */
-+long ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
-+			    struct ttm_resource_manager *man, long target)
-+{
-+	struct ttm_resource_cursor cursor;
-+	struct ttm_resource *res;
-+	long sofar = 0;
-+	long lret;
-+
-+	spin_lock(&bdev->lru_lock);
-+	ttm_resource_manager_for_each_res(man, &cursor, res) {
-+		struct ttm_buffer_object *bo = res->bo;
-+		bool bo_needs_unlock = false;
-+		bool bo_locked = false;
-+		int mem_type;
-+
-+		if (!bo || bo->resource != res)
-+			continue;
-+
-+		if (ttm_lru_walk_trylock(walk, bo, &bo_needs_unlock))
-+			bo_locked = true;
-+		else if ((!walk->ticket) || walk->ctx->no_wait_gpu ||
-+			 walk->trylock_only)
-+			continue;
-+
-+		if (!ttm_bo_get_unless_zero(bo)) {
-+			ttm_lru_walk_unlock(bo, bo_needs_unlock);
-+			continue;
-+		}
-+
-+		mem_type = res->mem_type;
-+		spin_unlock(&bdev->lru_lock);
-+
-+		lret = 0;
-+		if (!bo_locked && walk->ticket)
-+			lret = ttm_lru_walk_ticketlock(walk, bo, &bo_needs_unlock);
-+
-+		/*
-+		 * Note that in between the release of the lru lock and the
-+		 * ticketlock, the bo may have switched resource,
-+		 * and also memory type, since the resource may have been
-+		 * freed and allocated again with a different memory type.
-+		 * In that case, just skip it.
-+		 */
-+		if (!lret && bo->resource == res && res->mem_type == mem_type)
-+			lret = walk->ops->process_bo(walk, bo);
-+
-+		ttm_lru_walk_unlock(bo, bo_needs_unlock);
-+		ttm_bo_put(bo);
-+		if (lret == -EBUSY)
-+			lret = 0;
-+		sofar = (lret < 0) ? lret : sofar + lret;
-+		if (sofar < 0 || sofar >= target)
-+			goto out;
-+
-+		cond_resched();
-+		spin_lock(&bdev->lru_lock);
-+	}
-+	spin_unlock(&bdev->lru_lock);
-+out:
-+	ttm_resource_cursor_fini(&cursor);
-+	return sofar;
-+}
-diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-index 6ccf96c91f3a..8b032298d66e 100644
---- a/include/drm/ttm/ttm_bo.h
-+++ b/include/drm/ttm/ttm_bo.h
-@@ -190,6 +190,38 @@ struct ttm_operation_ctx {
- 	uint64_t bytes_moved;
- };
- 
-+struct ttm_lru_walk;
-+
-+/** struct ttm_lru_walk_ops - Operations for a LRU walk. */
-+struct ttm_lru_walk_ops {
-+	/**
-+	 * process_bo - Process this bo.
-+	 * @walk: struct ttm_lru_walk describing the walk.
-+	 * @bo: A locked and referenced buffer object.
-+	 *
-+	 * Return: Negative error code on error, Number of processed pages on
-+	 * success. 0 also indicates success.
-+	 */
-+	long (*process_bo)(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo);
-+};
-+
-+/**
-+ * struct ttm_lru_walk - Structure describing a LRU walk.
-+ */
-+struct ttm_lru_walk {
-+	/** @ops: Pointer to the ops structure. */
-+	const struct ttm_lru_walk_ops *ops;
-+	/** @ctx: Pointer to the struct ttm_operation_ctx. */
-+	struct ttm_operation_ctx *ctx;
-+	/** @ticket: The struct ww_acquire_ctx if any. */
-+	struct ww_acquire_ctx *ticket;
-+	/** @tryock_only: Only use trylock for locking. */
-+	bool trylock_only;
-+};
-+
-+long ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
-+			    struct ttm_resource_manager *man, long target);
++EXPORT_SYMBOL(drm_exec_trylock_obj);
 +
  /**
-  * ttm_bo_get - reference a struct ttm_buffer_object
-  *
+  * drm_exec_lock_obj - lock a GEM object for use
+  * @exec: the drm_exec object with the state
+@@ -237,7 +282,7 @@ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
+ 	if (unlikely(ret))
+ 		return ret;
+ 
+-	ret = drm_exec_obj_locked(exec, obj);
++	ret = drm_exec_obj_locked(exec, obj, GFP_KERNEL);
+ 	if (ret)
+ 		goto error_unlock;
+ 
+diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
+index aa786b828a0a..0dd36fb53145 100644
+--- a/include/drm/drm_exec.h
++++ b/include/drm/drm_exec.h
+@@ -139,6 +139,7 @@ void drm_exec_init(struct drm_exec *exec, u32 flags, unsigned nr);
+ void drm_exec_fini(struct drm_exec *exec);
+ bool drm_exec_cleanup(struct drm_exec *exec);
+ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj);
++int drm_exec_trylock_obj(struct drm_exec *exec, struct drm_gem_object *obj);
+ void drm_exec_unlock_obj(struct drm_exec *exec, struct drm_gem_object *obj);
+ int drm_exec_prepare_obj(struct drm_exec *exec, struct drm_gem_object *obj,
+ 			 unsigned int num_fences);
+diff --git a/include/linux/dma-resv.h b/include/linux/dma-resv.h
+index 8d0e34dad446..68dae8f2a22c 100644
+--- a/include/linux/dma-resv.h
++++ b/include/linux/dma-resv.h
+@@ -405,6 +405,27 @@ static inline int dma_resv_lock_slow_interruptible(struct dma_resv *obj,
+ 	return ww_mutex_lock_slow_interruptible(&obj->lock, ctx);
+ }
+ 
++/**
++ * dma_resv_trylock_ctx - trylock the reservation object
++ * @obj: the reservation object
++ * @ctx: The ww acquire context or NULL.
++ *
++ * Tries to lock the reservation object for exclusive access and modification.
++ * Note, that the lock is only against other writers, readers will run
++ * concurrently with a writer under RCU. The seqlock is used to notify readers
++ * if they overlap with a writer. The context parameter ensures that other
++ * ww transactions can perform deadlock backoff if necessary, and that
++ * subsequent attempts to dma_resv_lock() @obj for @ctx will return
++ * -EALREADY.
++ *
++ * Return: true if the lock was acquired, false otherwise.
++ */
++static inline bool __must_check
++dma_resv_trylock_ctx(struct dma_resv *obj, struct ww_acquire_ctx *ctx)
++{
++	return ww_mutex_trylock(&obj->lock, ctx);
++}
++
+ /**
+  * dma_resv_trylock - trylock the reservation object
+  * @obj: the reservation object
+@@ -421,7 +442,7 @@ static inline int dma_resv_lock_slow_interruptible(struct dma_resv *obj,
+  */
+ static inline bool __must_check dma_resv_trylock(struct dma_resv *obj)
+ {
+-	return ww_mutex_trylock(&obj->lock, NULL);
++	return dma_resv_trylock_ctx(obj, NULL);
+ }
+ 
+ /**
 -- 
 2.44.0
 
