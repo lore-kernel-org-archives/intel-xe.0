@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7C94C41513
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7992C27C51
 	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 12:34:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 254E710F199;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D57A10F4F7;
 	Tue, 28 May 2024 12:34:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kFPBIWrQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ccf7GPGu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B07F10E334
- for <intel-xe@lists.freedesktop.org>; Tue, 28 May 2024 12:34:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E9E310E171
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 May 2024 12:34:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716899654; x=1748435654;
+ t=1716899652; x=1748435652;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=RKIfLUoCTTU00EjWp6JDdyOC2yyyCd7dhE8FjAQTsP4=;
- b=kFPBIWrQJnLDT9UXCSAmh49ovQ4Fx31QH8ac+FDmJSwcfH+dVxGt9Vhy
- x+a3PBtiraAvNbCWI+EZ1sb1LOJq9NDk4rFN9DTgTFq1wPv9H/EWiJxC6
- JVm27c5fAmb81Tw1m7/r2jKXBVyJYdCzdMn1b5lUj3v1k3y/Dz3cMw4V8
- lXPex24wmtijnfeAH9lQS09wjO1BQmeZ8HXdNlyUHo7CcTqTSG46zfLIf
- o3lC859evFSajnszo9Z4e8R9jCkLlHj18JnLOJVMCkLIctqrIaDfK+btU
- ElPW2sf36hFodk1+h/rzSnezW6kOqPP+XafIIGieDJE1a2MO75lCRUw9J g==;
-X-CSE-ConnectionGUID: /ihEEMKxS2276wmDkrW1Uw==
-X-CSE-MsgGUID: zbFosrddTm+Q8Weq14bFJw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13065059"
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="13065059"
+ bh=9fTaxeuFq+AzUMVyJ5BRpPJ8qLUYV9hdeCe+HSLTqe8=;
+ b=Ccf7GPGuwcSj18dEKwbqf/PMyyUWMI/iGEVA0WHFMfYetLUzh6BqInzK
+ Q2gDuHGhsgMBFgkWg4bDtVChyzO2hB9OcVlUqXCjPzvMNqJZBy5b6Kj7c
+ NzAzrZ7LsfroqF0q4PvmQyLCCL4hXWoxLJCdOTn8F3rQDeHNK5E143+eD
+ Twcu9Jrfg3IwLXrN00+T4IzhZC/xN0YB2RqiGAHgXgo66NsRCS17Ib7Sq
+ wVb//zkKfUiFhp7pwijFiDl0SUAtHFuDpKga0gFLR9h+S2e3G6hF5dBkO
+ I+MDTsK0wcTayYjZKyRFteziu0yRVHKtC26e1dwuIBW3LYrQK6FP30+zu A==;
+X-CSE-ConnectionGUID: SMGTCthrT6mB44RTG/O+6w==
+X-CSE-MsgGUID: GHiWoj63SOKt6iT/WfI4xA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13065047"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="13065047"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 05:34:14 -0700
-X-CSE-ConnectionGUID: MPILNn+TRtusmDGodNacLg==
-X-CSE-MsgGUID: eQhZOz/lTG+3AYptwBIMSg==
+ 28 May 2024 05:34:12 -0700
+X-CSE-ConnectionGUID: vqndTVkgQLClF8/q4lvrtg==
+X-CSE-MsgGUID: XL4p1jIITeimzSUS97bs5w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="39880510"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="39880477"
 Received: from maurocar-mobl2.ger.corp.intel.com (HELO fedora..)
  ([10.245.244.233])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 05:34:14 -0700
+ 28 May 2024 05:34:12 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v5 21/22] HAX: Add a missing include
-Date: Tue, 28 May 2024 14:33:42 +0200
-Message-ID: <20240528123343.169970-22-thomas.hellstrom@linux.intel.com>
+Subject: [CI v5 18/22] drm/exec: Introduce drm_exec_sanitize_for_trylock
+Date: Tue, 28 May 2024 14:33:39 +0200
+Message-ID: <20240528123343.169970-19-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240528123343.169970-1-thomas.hellstrom@linux.intel.com>
 References: <20240528123343.169970-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,23 +67,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a missing include that causes xe CI kunit failures.
----
- lib/iomap.c | 1 +
- 1 file changed, 1 insertion(+)
+In some situations, we don't want to allow memory allocation or locking
+of a contended lock to cause a drm_exec_trylock_obj() to fail.
 
-diff --git a/lib/iomap.c b/lib/iomap.c
-index 4f8b31baa575..a296303b833d 100644
---- a/lib/iomap.c
-+++ b/lib/iomap.c
-@@ -6,6 +6,7 @@
-  */
- #include <linux/pci.h>
- #include <linux/io.h>
-+#include <linux/iomap.h>
- #include <linux/kmsan-checks.h>
+Introduce a function to move the point-of-failure if desired.
+
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/drm_exec.c | 33 +++++++++++++++++++++++++++++++++
+ include/drm/drm_exec.h     |  2 +-
+ 2 files changed, 34 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
+index c70d8b01effb..98c49d864984 100644
+--- a/drivers/gpu/drm/drm_exec.c
++++ b/drivers/gpu/drm/drm_exec.c
+@@ -189,6 +189,10 @@ static int drm_exec_obj_locked(struct drm_exec *exec,
+ 		exec->objects = tmp;
+ 		exec->max_objects += PAGE_SIZE / sizeof(void *);
+ 	}
++
++	if (!obj)
++		return 0;
++
+ 	drm_gem_object_get(obj);
+ 	exec->objects[exec->num_objects++] = obj;
  
- #include <linux/export.h>
+@@ -241,6 +245,35 @@ static int drm_exec_lock_contended(struct drm_exec *exec)
+ 	return ret;
+ }
+ 
++/**
++ * drm_exec_sanitize_for_trylock() - Sanitize the drm_exec state for a
++ * traditional trylock.
++ * @exec: The drm_exec object.
++ *
++ * drm_exec_trylock_obj() might fail because there is a contended lock
++ * in the transaction, or because of memory allocation failure.
++ * Calling this function before a drm_exec_trylock_obj() and with no
++ * drm_exec interactions inbetween the calls, will ensure that does not
++ * happen. Any failures will be reported by this function.
++ *
++ * Return: -EINTR if a wait for contended lock was interrupted by a signal,
++ * -ENOMEM on memory allocation failure.
++ */
++int drm_exec_sanitize_for_trylock(struct drm_exec *exec)
++{
++	int ret;
++
++	might_sleep();
++	might_alloc(GFP_KERNEL);
++
++	ret = drm_exec_lock_contended(exec);
++	if (ret)
++		return ret;
++
++	return drm_exec_obj_locked(exec, NULL, GFP_KERNEL);
++}
++EXPORT_SYMBOL(drm_exec_sanitize_for_trylock);
++
+ /**
+  * drm_exec_trylock_obj - trylock a GEM object for use
+  * @exec: the drm_exec object with the state.
+diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
+index cafeec5dddfe..a236d2bf91a8 100644
+--- a/include/drm/drm_exec.h
++++ b/include/drm/drm_exec.h
+@@ -182,6 +182,6 @@ int drm_exec_prepare_array(struct drm_exec *exec,
+ 			   unsigned int num_fences);
+ void drm_exec_snapshot(struct drm_exec *exec, struct drm_exec_snapshot *snap);
+ void drm_exec_restore(struct drm_exec *exec, struct drm_exec_snapshot *snap);
+-
++int drm_exec_sanitize_for_trylock(struct drm_exec *exec);
+ 
+ #endif
 -- 
 2.44.0
 
