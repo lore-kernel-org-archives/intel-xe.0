@@ -4,165 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3D29C25B78
-	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 21:50:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03F31C25B78
+	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 21:55:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 299E31128CB;
-	Tue, 28 May 2024 21:50:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5CA41121F7;
+	Tue, 28 May 2024 21:55:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YU5v+iID";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GkfG2yU/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6AB61128CB
- for <intel-xe@lists.freedesktop.org>; Tue, 28 May 2024 21:50:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A01B1127E2
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 May 2024 21:55:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716933023; x=1748469023;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=69EF8URXXIq/ucv9aBRJVwhglZ5DwhgZN0Zn5aLi9FM=;
- b=YU5v+iID54dT8bhNNO99qLQxVWaaAiqrX68l5rE7DlnbTFh9pwx6iHAV
- VVc3j06AYSTPDCBC5hC7OAGVNIifFtoCZwLd57u+NubReV1uFhDi3LpxX
- +jxjEYSlbeVb2OBhrtJgLiLJUoT8mB3r5Wai8DlKYgD8sz/kBhH6PZItE
- U/i6fCAKxrNs8DbU7iYCD4LQyBIa9kA/snKWaarxjBu0+mJal0pPoANvS
- GUzY9gMCEcJE/kwWYdEOxt8osxWa9xpqWJo5rsyvSBdCIS/jHc5dXAGNW
- KRBmgE5CB57vBe01XX3mcHylh/oHT1ANa5JQYJ3VVHjU1/R+5d4D6CdYN Q==;
-X-CSE-ConnectionGUID: T92srygLT6SxKkKim1SBzw==
-X-CSE-MsgGUID: v2yKhWWURWScY8UVHPt0EA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="24436450"
-X-IronPort-AV: E=Sophos;i="6.08,196,1712646000"; d="scan'208";a="24436450"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 14:50:22 -0700
-X-CSE-ConnectionGUID: xnnxHOsjRC+SSEgjkmgRXQ==
-X-CSE-MsgGUID: 1JSwNSKpRKCb1q3IVWUe4g==
+ t=1716933334; x=1748469334;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=POeXJO0Ki78dxq9KLiqtFgsERyiXn+HDdOUiF0ybRcs=;
+ b=GkfG2yU/KD5EG/cON/HJ9i1c31tFI2mmMhTJRGu15bmdaZqq0xzzRZuE
+ 02GYOW5G3vwry9KDOOs0y3vSjFEKBLA+0KXKpWDt5gMuKChChKFyGaGDn
+ gzFLncvrls7R3a3KvgxZotdLjyVjHuvOtrcZD7gA5v14saXTALzvrTVQD
+ j1dXamXAr5J9yaAz+KWBYsGfWTlupQ2unsiSo7YQw2jGUz62FraaEukLI
+ f3Fet3uaA3WTFarG9PHBcEAWW/U9yHApkmK/SwGvl5nHCO0agKwSLWG+5
+ 5nNK/PpWHKv1Bou+ewWXAgPCd0tPp7emsdhNgvZ1Uqjltt3F2qOFGgJz5 w==;
+X-CSE-ConnectionGUID: nzZ2PMtcTxydMIzp5krBig==
+X-CSE-MsgGUID: ndJoHQKNRZm8r/76hRPhag==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13079775"
+X-IronPort-AV: E=Sophos;i="6.08,196,1712646000"; d="scan'208";a="13079775"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2024 14:55:34 -0700
+X-CSE-ConnectionGUID: +292FmjhTQmmG7uVulH5Tw==
+X-CSE-MsgGUID: jUo3lg4WRhirGaCgtdeUqg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,196,1712646000"; d="scan'208";a="39728975"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 28 May 2024 14:50:21 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 28 May 2024 14:50:20 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 28 May 2024 14:50:20 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 28 May 2024 14:50:20 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 28 May 2024 14:50:20 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lTrPZ+hqD46ieIvf2FjlsfMlWXNaFZ+KjlBGLlEksIItAErKWAYzKhCllF+PpKPDWa9mIhnKWLflPqKzmPcScIJUPJjVXBd5WhFxnEN24veTxAIn80DSXlybWLsHFmP6N/DadwGKqg8MmlNkKod65N1FlGVL5iDN2BeExPujfHl17Mep/Gj1Ib00bDg4RfXW+kPhE8VtefF4Sq0eN89rZTjjmiAUDFInV1Aa3h5i6EowJpMKO8pH8k6E3LSTHzTaLejQVXAx/IlBnamMopGZARUNKRhjXIXOp8vOXJCByh7LZb4+nRRAA14ioFm1UjCcCy+POIHS0ioja+ZtY74fQA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Kpm6LINvpSSahNRR7F/2AUsZE+QiiLV7qHEFvR8ohMI=;
- b=JCNFnPjOTsM2RysH6UP3oyyCR9HgI4C/dsNrcG0JWwP3582ZZ0PCjkAVbYa3K2aL20w4lnOABy2wqM9bixmAvH7I9UaXsrIPL1QzwXetOkC/sKaQgvm/dJdntVLmXrq32jTLncpNvlrh64gu7M3JAzVHrE4VdlqIXCAORqt2YAlZ+gH8wXt2pFQq9N3eX6oD8LuVtWt8qU4Cw2SJo/3BjTmfr43HRAVQzEQQG40yupELF+kCZdIMOno8DC4DhoWMpsqE9d0GzUGPOyyDU3/gv87eRv2zmqLTyNJv3qLmLnrWsVsVwZIqi589W/qvIEZkJcqO7CCBTONfFDXlWzknCg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by SA1PR11MB5827.namprd11.prod.outlook.com (2603:10b6:806:236::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.29; Tue, 28 May
- 2024 21:50:18 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::8dd1:f169:5266:e16e%6]) with mapi id 15.20.7611.030; Tue, 28 May 2024
- 21:50:18 +0000
-Date: Tue, 28 May 2024 14:50:15 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 5/5] drm/xe/vf: Setup VRAM based on received config data
-Message-ID: <20240528215015.GJ4990@mdroper-desk1.amr.corp.intel.com>
-References: <20240527173554.1108-1-michal.wajdeczko@intel.com>
- <20240527173554.1108-6-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240527173554.1108-6-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0107.namprd05.prod.outlook.com
- (2603:10b6:a03:334::22) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+X-IronPort-AV: E=Sophos;i="6.08,196,1712646000"; d="scan'208";a="66399959"
+Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2024 14:55:34 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [CI v2 1/3] drm/xe/lnl: Apply Wa_22019338487
+Date: Tue, 28 May 2024 14:55:21 -0700
+Message-ID: <20240528215523.1202083-2-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240528215523.1202083-1-daniele.ceraolospurio@intel.com>
+References: <20240528215523.1202083-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SA1PR11MB5827:EE_
-X-MS-Office365-Filtering-Correlation-Id: 391b86ea-6fe4-4f31-918b-08dc7f602a0e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|366007|376005;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?p6GoAsRxvadz5DDmn8wA+rGDBGh/mQFiFSC76hRiiYys77RFlncKvdflZLPP?=
- =?us-ascii?Q?57EQg9rn0lYRXLxuEyVG78qkbFMNPbG2JZVI9yFoW0/kukzsJAKTbTUlIMzk?=
- =?us-ascii?Q?FnVpEfL87AxeKmUvfmGZybvCXJ0ocM5dC8lWOGuNg5Vy5nAgwBd952/gTaGf?=
- =?us-ascii?Q?6HlH8okiHIEcedcr5tzgeBfXVjSxiWhPnGTozUSHCmF5ZFJHP5JhpwVnTEOn?=
- =?us-ascii?Q?hCb4wu3RLOnbjP4StlLaWMBwSByWkEW+jfbNK/hbHv5YWR0aMxqZnhSEsYs/?=
- =?us-ascii?Q?6Dg9uP8hRkEq/gOJLasNNzoHt4sgJfaezEl3jfvrkHUlp0Q7560CJg9fyaAc?=
- =?us-ascii?Q?njQ2gY3GNHcNTyGnAqgwz4/zws4/yiVrasl3OJbGkcG4Goxqb8F6X8z7hod2?=
- =?us-ascii?Q?WqRdnf5QIkXBOr9iaMDxlwJNeg1tm3BWFybgOZilcLecI6YMdoV+zR8Litqt?=
- =?us-ascii?Q?brW+1VHzgdpdro8iXQI2MWSU7q5pSmMpkXxXYkJKj/bdPSgQuRTU8yvBiR6v?=
- =?us-ascii?Q?v63a6Ay1T6Qziz5IPsb8aO0uUvtKdM9F5kwxrbyMsHeFGtER+qAC+JhEIfTa?=
- =?us-ascii?Q?4svjxHow5HogeKabD1lLB5dWxHz0OVeV33n08qicvGKwAZzhuvTsnlORliCu?=
- =?us-ascii?Q?Wp1uW4dIGBVakmyC/KYLC1aDaSdYlrgtSv00ibspMs24w42zk2moNQJQBGlz?=
- =?us-ascii?Q?zGRPQGS2Ed+MvwZKNw4jtlEW4VBbZFGW/zyd/reXQnc4wj6no1pWzXGiyWoS?=
- =?us-ascii?Q?aj+MSw1QaoMoWcpGxFdCxI/X4Jl8Y7epC3WP4V/PBYhUltgELwle+y+oGAaG?=
- =?us-ascii?Q?eeMa8lQqQw9kTsA0Xji5akVRfxNeKHnntNS3cMjnwFSLJxakp6JkgyCBDPDi?=
- =?us-ascii?Q?b80xpO9n2pHsuRmg0Q+o0JWcCO0D93hskmcg44Voq7WVBMFfuhUuxKKblll6?=
- =?us-ascii?Q?Ox/4mzU3yPEwDHUA4uk7va9n0yeWU7TLTz7hphCd/ZeDvD5h88XPNDcanZ1b?=
- =?us-ascii?Q?Bi3vluvtpape+ymByZjAlwPSP49G95nKAR9xjPjisSDbNJabmLhH8QKryAfk?=
- =?us-ascii?Q?sp0HM9xfVzJu1E8fS/6fVsg93vOjty+srjFVLhXSNUCeRtdAEgR+3B3Yk4ju?=
- =?us-ascii?Q?Dotyi3rJf4YLsShYVNCI97vtJAY71RDhEK/S/4SVJFx4mVDf+BRUdU3w+oEs?=
- =?us-ascii?Q?Hqe+KBv+RjnQoTFK0hnHEMOtwuSZjq8oeSXKxQirY4V23YGiGGM1vLCu7l35?=
- =?us-ascii?Q?bdj95RZZ51TGMN4qH5b3SpAOna4YaIrTmLBicu6blw=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?YBfDS5VmZkd9SDKnXhb0bkwf1VyEIQGElUGqbUEDkdfnrx3teGPBBe06giWQ?=
- =?us-ascii?Q?5LgrYhRbmhh6HM38U76T2VNg304r0YxzPTWC3VJMcptgt764Tg/f3s+4AASQ?=
- =?us-ascii?Q?ketLI10ifqyTQEaFj1XIw+OhwZhCa4BmxAPgAofHPlibxFOQtPXeYnv4qzIZ?=
- =?us-ascii?Q?acV1tnmym1MEazbOrPchSaxJebRyzAu40meUX2UCZS9UT00KqgBPhrdWcWQT?=
- =?us-ascii?Q?pqNTz96KarzrVBBvHjRFIRc78k9GDfZ+XyBcY3vj3mNiq4sC+748FsncFQtx?=
- =?us-ascii?Q?ERZfWxP/J0D8oIA92l9M1J6C8VAR1q0FelDI+JmUlS2uJGsRjq+5YKyEIgxY?=
- =?us-ascii?Q?eiWz+NZEy+ajcjXVGwSUBwKFsl1m6a7IK7mhEq3NLsh3K1DG0fxdvKJMsWzI?=
- =?us-ascii?Q?ybBpSQfRAcI9JHG15PRuAwd220TIrKqyv/t7/KBEjX9NgjbbdtBxJTwhtU4Q?=
- =?us-ascii?Q?zNppokxohpAbA5L6Eb1PO4EL3e8fMhQ1RZciaf3CA6lsL3wzrzd2jXRJgezh?=
- =?us-ascii?Q?Rvifa8uzxIDoB3PxYF8A7jPL2h3aFg7UziPRwuzwuDAOMcNeA+Zr2KqZEW7I?=
- =?us-ascii?Q?4dRz/IEyYWqlQA6wJPdwbpypZmTmhqqM7lYCBt3doKAIrZ7fTJZsRWeyCWh9?=
- =?us-ascii?Q?GLFBYE2GSvEtWTMXalnOVNOt9Nyi4fp2JKGGfgZ1x038DroHFN2YZovbaIlH?=
- =?us-ascii?Q?0rdjoFAqBKv+Qhh5uzfGr+UGQr/+gMLX+rG1kd2rS8xT8Vj+t978J/xbk7a1?=
- =?us-ascii?Q?KSlVh+U5vrnLN2ISO6V4dnvQiZucGD0PnMgQfy8W60XKI66Y8MWbvHpACG/o?=
- =?us-ascii?Q?yMFSKvor8xppH6YrLJpE3YEuE7pM8+kJXNeyXlSU8kGgmmWhdRO7Eqrk8twB?=
- =?us-ascii?Q?V3Fo2NXulJlLHc9PJ1U4dOoJLrWsLkV7p73AHdsN4wnf6uj++5A/xbKe9iBw?=
- =?us-ascii?Q?HopU4YtAPcFXn5s1vUC7J9AebVjeHFFuKuHepUAKN+CB4xZzJysrG4k1zveE?=
- =?us-ascii?Q?kyoR6sencaxXiyW7f70mgMW+e2ACBUPG5wIPwlkHWgKJNPqx2dEy+WGZb7I0?=
- =?us-ascii?Q?4HS7Yav1fGjDnGjT0ibFXIaJpe5jjKssFGdEU2ABoZ1l+0RA26aPJDFG/uHt?=
- =?us-ascii?Q?w+4eZriunH2+5zCw8wLFI0LoW/hk5t/czH+n244gsjD9kAJChIwRnVMqmRvt?=
- =?us-ascii?Q?dojjeLfegGsAEyGrkME3fGd2/tthtuviKCMLXP6Rv8OWCyihJ9BT+JGl4w9+?=
- =?us-ascii?Q?XiEuukftibMbVSBeB9yVq/lvdjeMdglwqPFeJTpyaESi9u6DNtG1g/jN4LNS?=
- =?us-ascii?Q?A1/qm6SI9mMwUx1ObwPJXkMHGrur8SnC5nSNMa55HjlKDIbOZ98XxHOOYpcw?=
- =?us-ascii?Q?KWYm0/AkntwJjVroWHswOscWz8w2iT5Jtc22QGRx9MOnuXAaDAMe4Fvxrb/l?=
- =?us-ascii?Q?NCxEg/CluBkIEjqU0j5iWTNh7nXf02Zazz9yJwN8pRBaGfPduRAFOx81cx60?=
- =?us-ascii?Q?nOTjIYg0m20MJr5Oq5uiNeDaTM/a21vSULKByJksG4UBS9RIfRzDsTJ6J/dM?=
- =?us-ascii?Q?bmswswdWDoID89JMKvOVS4rr6SJ5KWrMql6P5UVLonbj8q7ap+JoQDfZ6DZf?=
- =?us-ascii?Q?ow=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 391b86ea-6fe4-4f31-918b-08dc7f602a0e
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2024 21:50:17.9931 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cBzzgUPgEYTBf3kSO4L8/MJ0kGAOmZ7YC26EP2C5gvqHwEawMIj7gAd+0VYTOnNkhUzsO0/Wnwzv9VV+ukMqyErSfihwdr3p3Q6bdpkPElk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5827
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,106 +65,224 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, May 27, 2024 at 07:35:54PM +0200, Michal Wajdeczko wrote:
-> VF drivers will obtain VRAM configuration from the GuC as part of
-> the VF self config. Use that configuration instead of trying to
-> read inaccessible registers.
-> 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+This WA requires us to limit media GT frequency requests to a certain
+cap value during driver load as well as after driver unload. Freq limits
+are restored after driver load completes, so perf will not be
+affected during normal operations.
 
-> ---
->  drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 17 +++++++++++++++++
->  drivers/gpu/drm/xe/xe_gt_sriov_vf.h |  1 +
->  drivers/gpu/drm/xe/xe_vram.c        | 18 ++++++++++++++++++
->  3 files changed, 36 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> index da7c64f6285b..41e46a00c01e 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> @@ -478,6 +478,23 @@ u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt)
->  	return gt->sriov.vf.self_config.num_ctxs;
->  }
->  
-> +/**
-> + * xe_gt_sriov_vf_lmem - VF LMEM configuration.
-> + * @gt: the &xe_gt
-> + *
-> + * This function is for VF use only.
-> + *
-> + * Return: size of the LMEM assigned to VF.
-> + */
-> +u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt)
-> +{
-> +	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-> +	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
-> +	xe_gt_assert(gt, gt->sriov.vf.self_config.lmem_size);
-> +
-> +	return gt->sriov.vf.self_config.lmem_size;
-> +}
-> +
->  static int vf_balloon_ggtt(struct xe_gt *gt)
->  {
->  	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-> index 7a04bcaffe9f..0de7f8cbcfa6 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-> @@ -20,6 +20,7 @@ int xe_gt_sriov_vf_prepare_ggtt(struct xe_gt *gt);
->  
->  u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
->  u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
-> +u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
->  u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg);
->  
->  void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p);
-> diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-> index 411e8d23fd4d..ccc4791c0e34 100644
-> --- a/drivers/gpu/drm/xe/xe_vram.c
-> +++ b/drivers/gpu/drm/xe/xe_vram.c
-> @@ -15,8 +15,10 @@
->  #include "xe_device.h"
->  #include "xe_force_wake.h"
->  #include "xe_gt_mcr.h"
-> +#include "xe_gt_sriov_vf.h"
->  #include "xe_mmio.h"
->  #include "xe_module.h"
-> +#include "xe_sriov.h"
->  #include "xe_vram.h"
->  
->  #define BAR_SIZE_SHIFT 20
-> @@ -220,6 +222,22 @@ static int tile_vram_size(struct xe_tile *tile, u64 *vram_size,
->  	int err;
->  	u32 reg;
->  
-> +	if (IS_SRIOV_VF(xe)) {
-> +		struct xe_tile *t;
-> +		int id;
-> +
-> +		offset = 0;
-> +		for_each_tile(t, xe, id)
-> +			for_each_if(t->id < tile->id)
-> +				offset += xe_gt_sriov_vf_lmem(t->primary_gt);
-> +
-> +		*tile_size = xe_gt_sriov_vf_lmem(gt);
-> +		*vram_size = *tile_size;
-> +		*tile_offset = offset;
-> +
-> +		return 0;
-> +	}
-> +
->  	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->  	if (err)
->  		return err;
-> -- 
-> 2.43.0
-> 
-> 
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ drivers/gpu/drm/xe/Makefile        |  2 ++
+ drivers/gpu/drm/xe/xe_device.c     |  8 ++++++++
+ drivers/gpu/drm/xe/xe_gsc.c        |  8 ++++++++
+ drivers/gpu/drm/xe/xe_guc_pc.c     | 31 ++++++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_guc_pc.h     |  2 ++
+ drivers/gpu/drm/xe/xe_wa_oob.rules |  1 +
+ 6 files changed, 50 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index d5b137e762ed..3701d1a01e50 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -47,9 +47,11 @@ $(obj)/generated/%_wa_oob.c $(obj)/generated/%_wa_oob.h: $(obj)/xe_gen_wa_oob \
+ 	$(call cmd,wa_oob)
+ 
+ uses_generated_oob := \
++	$(obj)/xe_device.o \
+ 	$(obj)/xe_gsc.o \
+ 	$(obj)/xe_guc.o \
+ 	$(obj)/xe_guc_ads.o \
++	$(obj)/xe_guc_pc.o \
+ 	$(obj)/xe_migrate.o \
+ 	$(obj)/xe_ring_ops.o \
+ 	$(obj)/xe_vm.o \
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index f04b11e45c2d..85c1b0c406a6 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -16,6 +16,7 @@
+ #include <drm/drm_managed.h>
+ #include <drm/drm_print.h>
+ #include <drm/xe_drm.h>
++#include <generated/xe_wa_oob.h>
+ 
+ #include "display/xe_display.h"
+ #include "instructions/xe_gpu_commands.h"
+@@ -37,6 +38,7 @@
+ #include "xe_gt_printk.h"
+ #include "xe_gt_sriov_vf.h"
+ #include "xe_guc.h"
++#include "xe_guc_pc.h"
+ #include "xe_hwmon.h"
+ #include "xe_irq.h"
+ #include "xe_memirq.h"
+@@ -51,6 +53,7 @@
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_ttm_sys_mgr.h"
+ #include "xe_vm.h"
++#include "xe_wa.h"
+ #include "xe_wait_user_fence.h"
+ 
+ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+@@ -337,6 +340,7 @@ static void xe_driver_flr(struct xe_device *xe)
+ {
+ 	const unsigned int flr_timeout = 3 * MICRO; /* specs recommend a 3s wait */
+ 	struct xe_gt *gt = xe_root_mmio_gt(xe);
++	struct xe_guc_pc *pc = &gt->uc.guc.pc;
+ 	int ret;
+ 
+ 	if (xe_mmio_read32(gt, GU_CNTL_PROTECTED) & DRIVERINT_FLR_DIS) {
+@@ -344,6 +348,10 @@ static void xe_driver_flr(struct xe_device *xe)
+ 		return;
+ 	}
+ 
++	/* Set requested freq to mert_freq_cap before FLR */
++	if (XE_WA(gt, 22019338487))
++		pc_set_cur_freq(pc, min(xe_guc_pc_mert_freq_cap(pc), pc->rpe_freq));
++
+ 	drm_dbg(&xe->drm, "Triggering Driver-FLR\n");
+ 
+ 	/*
+diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
+index 80a61934decc..4369e3ff19cf 100644
+--- a/drivers/gpu/drm/xe/xe_gsc.c
++++ b/drivers/gpu/drm/xe/xe_gsc.c
+@@ -22,6 +22,7 @@
+ #include "xe_gt.h"
+ #include "xe_gt_mcr.h"
+ #include "xe_gt_printk.h"
++#include "xe_guc_pc.h"
+ #include "xe_huc.h"
+ #include "xe_map.h"
+ #include "xe_mmio.h"
+@@ -342,6 +343,7 @@ static void gsc_work(struct work_struct *work)
+ 	struct xe_gsc *gsc = container_of(work, typeof(*gsc), work);
+ 	struct xe_gt *gt = gsc_to_gt(gsc);
+ 	struct xe_device *xe = gt_to_xe(gt);
++	struct xe_guc_pc *pc = &gt->uc.guc.pc;
+ 	u32 actions;
+ 	int ret;
+ 
+@@ -370,6 +372,12 @@ static void gsc_work(struct work_struct *work)
+ 	if (actions & GSC_ACTION_SW_PROXY)
+ 		xe_gsc_proxy_request_handler(gsc);
+ 
++	/* Revert the min/max freq limits as we're done with GSC/driver load */
++	if (XE_WA(gt, 22019338487)) {
++		xe_guc_pc_set_max_freq(pc, pc->rp0_freq);
++		xe_guc_pc_set_min_freq(pc, pc->rpe_freq);
++	}
++
+ out:
+ 	xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
+ 	xe_pm_runtime_put(xe);
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 8187dfb2ad6c..3ecfbaa75495 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -8,6 +8,7 @@
+ #include <linux/delay.h>
+ 
+ #include <drm/drm_managed.h>
++#include <generated/xe_wa_oob.h>
+ 
+ #include "abi/guc_actions_abi.h"
+ #include "abi/guc_actions_slpc_abi.h"
+@@ -24,6 +25,7 @@
+ #include "xe_map.h"
+ #include "xe_mmio.h"
+ #include "xe_pcode.h"
++#include "xe_wa.h"
+ 
+ #define MCHBAR_MIRROR_BASE_SNB	0x140000
+ 
+@@ -41,6 +43,8 @@
+ #define GT_FREQUENCY_MULTIPLIER	50
+ #define GT_FREQUENCY_SCALER	3
+ 
++#define LNL_MERT_FREQ_CAP	800
++
+ /**
+  * DOC: GuC Power Conservation (PC)
+  *
+@@ -238,7 +242,7 @@ static void pc_set_manual_rp_ctrl(struct xe_guc_pc *pc, bool enable)
+ 	xe_mmio_write32(gt, RP_CONTROL, state);
+ }
+ 
+-static void pc_set_cur_freq(struct xe_guc_pc *pc, u32 freq)
++void pc_set_cur_freq(struct xe_guc_pc *pc, u32 freq)
+ {
+ 	struct xe_gt *gt = pc_to_gt(pc);
+ 	u32 rpnswreq;
+@@ -674,6 +678,14 @@ static void pc_init_fused_rp_values(struct xe_guc_pc *pc)
+ 		tgl_init_fused_rp_values(pc);
+ }
+ 
++u32 xe_guc_pc_mert_freq_cap(struct xe_guc_pc *pc)
++{
++	if (MEDIA_VERx100(pc_to_xe(pc)) == 2000)
++		return LNL_MERT_FREQ_CAP;
++	else
++		return 0;
++}
++
+ /**
+  * xe_guc_pc_init_early - Initialize RPx values and request a higher GT
+  * frequency to allow faster GuC load times
+@@ -685,7 +697,11 @@ void xe_guc_pc_init_early(struct xe_guc_pc *pc)
+ 
+ 	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
+ 	pc_init_fused_rp_values(pc);
+-	pc_set_cur_freq(pc, pc->rp0_freq);
++
++	if (XE_WA(gt, 22019338487))
++		pc_set_cur_freq(pc, min(xe_guc_pc_mert_freq_cap(pc), pc->rp0_freq));
++	else
++		pc_set_cur_freq(pc, pc->rp0_freq);
+ }
+ 
+ static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
+@@ -716,6 +732,17 @@ static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
+ 	if (pc_get_min_freq(pc) > pc->rp0_freq)
+ 		ret = pc_set_min_freq(pc, pc->rp0_freq);
+ 
++	if (!ret && XE_WA(pc_to_gt(pc), 22019338487)) {
++		/*
++		 * Setting min to RPn disables use of efficient freq
++		 * which could otherwise interfere with this WA for media GT.
++		 * We will also bind max to MERT_FREQ_CAP until driver loads.
++		 */
++		ret = pc_set_min_freq(pc, pc->rpn_freq);
++		if (!ret)
++			ret = pc_set_max_freq(pc, min(pc->rp0_freq, xe_guc_pc_mert_freq_cap(pc)));
++	}
++
+ out:
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.h b/drivers/gpu/drm/xe/xe_guc_pc.h
+index 532cac985a6d..4abdefa36b9a 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.h
++++ b/drivers/gpu/drm/xe/xe_guc_pc.h
+@@ -29,5 +29,7 @@ enum xe_gt_idle_state xe_guc_pc_c_status(struct xe_guc_pc *pc);
+ u64 xe_guc_pc_rc6_residency(struct xe_guc_pc *pc);
+ u64 xe_guc_pc_mc6_residency(struct xe_guc_pc *pc);
+ void xe_guc_pc_init_early(struct xe_guc_pc *pc);
++void pc_set_cur_freq(struct xe_guc_pc *pc, u32 freq);
++u32 xe_guc_pc_mert_freq_cap(struct xe_guc_pc *pc);
+ 
+ #endif /* _XE_GUC_PC_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 12fe88796a49..a6b897030fde 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -27,3 +27,4 @@
+ 16022287689	GRAPHICS_VERSION(2001)
+ 		GRAPHICS_VERSION(2004)
+ 13011645652	GRAPHICS_VERSION(2004)
++22019338487	MEDIA_VERSION(2000)
 -- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+2.43.0
+
