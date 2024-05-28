@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 413E7C25B78
-	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 10:38:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02A1AC25B78
+	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 10:38:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A927B10E13B;
-	Tue, 28 May 2024 10:38:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A1E010E13B;
+	Tue, 28 May 2024 10:38:51 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7195110EDF5;
- Tue, 28 May 2024 10:38:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A1F310E468;
+ Tue, 28 May 2024 10:38:50 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Add_engine?=
- =?utf-8?q?_name_to_the_engine_reset_and_cat-err_log_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Add_engine_name?=
+ =?utf-8?q?_to_the_engine_reset_and_cat-err_log_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nirmoy Das" <nirmoy.das@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 28 May 2024 10:38:38 -0000
-Message-ID: <171689271846.2216237.13718062939911694225@8e613ede5ea5>
+Date: Tue, 28 May 2024 10:38:50 -0000
+Message-ID: <171689273017.2216238.9927011764095834181@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240528101445.27688-1-nirmoy.das@intel.com>
 In-Reply-To: <20240528101445.27688-1-nirmoy.das@intel.com>
@@ -48,9 +48,31 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5ba74aaea55b drm-tip: 2024y-05m-28d-09h-56m-00s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Add engine name to the engine reset and cat-err log
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 406deccc19f62be6f2f1268a30faf8ac25aab902
+Author: Nirmoy Das <nirmoy.das@intel.com>
+Date:   Tue May 28 12:14:45 2024 +0200
+
+    drm/xe: Add engine name to the engine reset and cat-err log
+    
+    Add engine name to the engine reset and cat error log
+    which should be useful while debugging.
+    
+    v2: Add logical mask and engine class(Matt)
+        Use xe_gt_{info|dbg} (Michal)
+    
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
++ /mt/dim checkpatch 5ba74aaea55bf295898f2a4f69c59fe12e84e842 drm-intel
+406deccc19f6 drm/xe: Add engine name to the engine reset and cat-err log
 
 
