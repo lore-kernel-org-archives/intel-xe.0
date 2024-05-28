@@ -4,68 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E229EC25B78
-	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 08:08:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70D2DC25B78
+	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 09:16:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACF4610E138;
-	Tue, 28 May 2024 08:08:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DEB810E1F9;
+	Tue, 28 May 2024 09:16:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JXseJqRU";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="qxh/gN/4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0069110E081;
- Tue, 28 May 2024 08:08:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716883683; x=1748419683;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=H5uqyfCi9h+AJ0qVFdanza242AjorkZqI/hhy5vQl20=;
- b=JXseJqRUS7d2Q2LSsKfR9p9FKaS46PYGdlCV7MjYDmZn+g0FvtYCepPC
- jBcqlef2iuLpb555YHQ73cd+vOs+kKCSwVLv9HLfrOitB99+RHWK2imB6
- PI4feOb5kDHsnAife8f7VALwJh2gpBHgHNd5ppMkrKvOLRQ8qEtzO5zTT
- d5xNNSgaL8P4l2dhn3BF8oG48ji8xdPk9mKzBbYLGAwKSmb/6xrqQKjdz
- oZrq6fogxLcvADyshMP1PLDi3XDPkOzAUTLG5C7bDe5kfPOj5v+7V3b3s
- /QojP4xTqGfR2xTOWbLoPaJZrYDoGPr0aDJGmrcDruQwGw+d+rPVnwfoW Q==;
-X-CSE-ConnectionGUID: 6G57iAJbRBqRrtCzVqu2SA==
-X-CSE-MsgGUID: bzs66FtsTNSw0/9e1Z50sw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="11722749"
-X-IronPort-AV: E=Sophos;i="6.08,194,1712646000"; d="scan'208";a="11722749"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 01:08:02 -0700
-X-CSE-ConnectionGUID: 0BqBf2STRq2Bp4xZ1JFnPg==
-X-CSE-MsgGUID: +/DjLD4WShybFzzLvEWaKw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,194,1712646000"; d="scan'208";a="35049826"
-Received: from maurocar-mobl2.ger.corp.intel.com (HELO [10.245.244.233])
- ([10.245.244.233])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 01:08:01 -0700
-Message-ID: <3716d43462188590743060755b37e3d060f7600f.camel@linux.intel.com>
-Subject: Re: [RFC PATCH v3 13/21] drm/exec: Rework contended locking
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2073.outbound.protection.outlook.com [40.107.92.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8C8410E1F9;
+ Tue, 28 May 2024 09:16:20 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZzTTfLRD1nREew5wA5J6kHRGmtNt6Z9np4YKYTQqw5fqW5YI+Hz4hRC45FEXkvX2T5dKeEVXO7TRh1JwD5PHDhzOyt56yyuDsH57+1zvISrD639CoMhoBb22OTjxxcPMOkH4cKeqCl0P/GQuYnVZsONblq0r88o1w/P35vh43f5Uc2pov0rcdgcOfvkg+/EES+4klafUuDN15e6Nu8BJSnw/2vcDRD5WzQTwzMHO1PzyWFOBauWR75trCRfXhwM3zK8e8GG8p3xp+1a6OHoT3dbOc1AabIKPUdXtJd2ZQz9wyKtUPmZG6APXAv8+raS1CG98xdBvnfP8DgVKO6tanA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zQOBcuxNW+RyQrxefWQ/ycezhrzDMmTFwlSittfZHWY=;
+ b=kGaGm7FNpwhldEbwN8lUg1fAS7O6glgYjPpjiOshQD7jvtN9gJfefVrp244t7HMw7BCMXfugRXjFp1ScEpuXnn2BR8J8RjXc2RQLikPjRFKwkwjwDkMvL0CWXyTDLpb+KseTTVDi5AcI2rSWFBho7/OWklMEsEQEG5xiwtCzDx/HBtKQzi1a4DjunnfNfiregkU4GT9SEXRFUEu54gB+uYHPT8sXnCwt/i8ZGrQFe9fywezxFeI+ZnaYUuyJs9MnLsLAGQ60bQUTZXd5tPYLSoRMB6jELpVK/opeG5HC/GZeV7SCjhXa1dIuoIBhCqv+TWzDSqD7/kR4+DUy2a3dxA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zQOBcuxNW+RyQrxefWQ/ycezhrzDMmTFwlSittfZHWY=;
+ b=qxh/gN/4/wx6mBR2iGav7fSigE6iy5fexsxU3+kbdDlYMUMI/iVN0THtScNV7dcFka9R0Cu0qxPfQ/ZImSPFa+I29s7K1fcaujAuya0MTAZVvOCLmCev2Rv8rkN4C0LktFhQKitTgaIcGCweKkV6N0v6jN7Y7Fcx0OV1S5oSnVQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by MN2PR12MB4472.namprd12.prod.outlook.com (2603:10b6:208:267::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.30; Tue, 28 May
+ 2024 09:16:14 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%2]) with mapi id 15.20.7633.017; Tue, 28 May 2024
+ 09:16:14 +0000
+Message-ID: <aa97bfdd-961d-40f2-89ed-81ae8347494e@amd.com>
+Date: Tue, 28 May 2024 11:16:08 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 01/21] drm/ttm: Allow TTM LRU list nodes of different
+ types
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  intel-xe@lists.freedesktop.org
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>, Matthew Brost
- <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org
-Date: Tue, 28 May 2024 10:07:58 +0200
-In-Reply-To: <5d6f1197-3303-4197-a4d6-ff1fe4d7f1f9@amd.com>
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org
 References: <20240521071639.77614-1-thomas.hellstrom@linux.intel.com>
- <20240521071639.77614-14-thomas.hellstrom@linux.intel.com>
- <fb9efb6b-fd2f-424e-8c9c-8ca590ee714a@amd.com>
- <3f3d7fb84a11e8341a79331a0a682df0f3e8897d.camel@linux.intel.com>
- <e0fb45b9-69a8-4e36-a518-30380583fcd2@amd.com>
- <b5dfb6280aa6a9fd0d2449027b8bf14276f1baab.camel@linux.intel.com>
- <dc1262b26f16daabcf0a9b7018f7605da4202d41.camel@linux.intel.com>
- <5d6f1197-3303-4197-a4d6-ff1fe4d7f1f9@amd.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+ <20240521071639.77614-2-thomas.hellstrom@linux.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20240521071639.77614-2-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0223.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:e4::6) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MN2PR12MB4472:EE_
+X-MS-Office365-Filtering-Correlation-Id: ef5ac502-be33-4dd3-c484-08dc7ef6d280
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|366007|1800799015;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?czlHTUFLcTNrUnpyVXcreG8xWnRtNDBKT1oxRW1HdVZJUzdVWWRLYVQxbWtt?=
+ =?utf-8?B?YWljVWNlK1hQMVlVK1FZOFFmY25iUHRsODI4M1R6eWcwb2t1aUtQUVI0Umhu?=
+ =?utf-8?B?QTloZ2VOZUZJRFhQQkJyM1pwVkZDMExRQWVnL3J5K3dGSHhGUEp0OGFJbGow?=
+ =?utf-8?B?WkpLcEIyNUNTVTduTENWR3dZU05KREs0UVFRdXcrVllMOG1oWFJHR2dPZVpN?=
+ =?utf-8?B?VkEzMHpjcGRYOFM3SFZVTkhaR2psRFhNSzVMc1QzSzNyY0xtbjdLcHRIYlFq?=
+ =?utf-8?B?UDBJaDhWdGtyelVGUmI5dzZlWHhsQ09od2tXREpkTEwzbTNCTExITGMyd2Jp?=
+ =?utf-8?B?cDhVSk5UV0w0SFZvbmNRV3kzM1JIbDRxTXpHejRLRzJpaTJaZkNHRzhFbFBQ?=
+ =?utf-8?B?RVYvck5nRzdpNjN2N01pdGpkcEg1OWVkQWhGbzZ6WWMzcU9qWG5qZ1ZaNjIx?=
+ =?utf-8?B?T3JoOGxwVE95VFkyL3RpNXlRVVZkMlZqVVFLWXJsK3R6b0l0Y1ZZYTBuZGxq?=
+ =?utf-8?B?SUExelNOUGQ1b1huSkdtUzRjajVvZFFYZFIydzJ4bVByL2xCR3VvcEk4R2pC?=
+ =?utf-8?B?d3J3dDQ1ZTNya0p3Mmw4dDlQM2VGWkVhY2E1UzlEcTlWcE03cllST1p6bmxl?=
+ =?utf-8?B?VWt3akJwWkJiS3dzR0kwUms3RVg5OHMvdnB0cCtMSTBRMmZpWVJwQytjL3Fp?=
+ =?utf-8?B?QzZnZm42cVA5RVNnL2RyK0QwUGhKN0J3TzdhWk5VZEJBWXBUMkRCT3ZqT29P?=
+ =?utf-8?B?OS82RkhLNEJrTktsQUVoTHBUalNYSzV5VW5EQUVyajV4RGxJajFPWndkYXEr?=
+ =?utf-8?B?LzYxYkFlUTR2MHNpNVo4dDI2ZHlmNXFhTG1McXZSTE9NMUEzSmI0dmE5M0M2?=
+ =?utf-8?B?TDlWR0tlR1RlM1Nub21oMmpzM0RVaWdkM3BTRDFrSno2UDFVTUgrem1NQjVh?=
+ =?utf-8?B?SzIva2hXTy8ybFFTY1ZHMlNVUE5XdVFTdlF5UXZGUU9XRzJ0Y2k1Z3RwN2Yv?=
+ =?utf-8?B?SUwwaDF1OXZJYjczKzdhYWNBWkx1VUUyUXU5aWZhUUVCYjZPSXI0UzgvejNz?=
+ =?utf-8?B?amdoL1hiQXN4cUF2d1VWbzhKZ2UwQUdxWmFYK2xYWXFJc2tXOEs5Yis2R0N1?=
+ =?utf-8?B?NmpicXhqMkFwbm02VnA5aDYyQmRqS2V4a01tNzNYTmtMM0dpOElLR04rRTBo?=
+ =?utf-8?B?RU9RVWhTME1tSTNpS09SbDJDZmNoQlpESStRL2ZHNmsvaFZhSmFDWjhBeWpK?=
+ =?utf-8?B?WXdRT3B2RE5WMk0rRUlsY2lFUTZYdjRKRHJZUUtaUFRPRS84eUVFME0wZHBq?=
+ =?utf-8?B?N04zVVU5SkNjM2dyRnd2WDRHZmxQRXl2RVAzbDBaZjBCUzJRQk43MGlpZloz?=
+ =?utf-8?B?MW51WVpKSllhTVFuK1dzRktmZVdXUUdOS3Yrdk5vb3B0TWZDSzdFd2ZJdUZC?=
+ =?utf-8?B?cGQ1YVh3UWZldTVkK0Z3dUU2TzhCUnF4cHdpSUswdllURnBaUlI5OFdvOU92?=
+ =?utf-8?B?OUtZdTNFeE9QMlRLUXdsd25IZmNuSHNGQkFIbFU5d2twVGpDajNPOUtTbnhC?=
+ =?utf-8?B?TVlEZnQ4b29NT0tRWFdwVlZ6ODltTFZqSENVU0JuRDFjMGQyeHd4RC9peWlY?=
+ =?utf-8?B?Qk03YlBBT0Y3Rk5sUkR3VXprL0d3WS96MjM5R3pRU2Roaks2UWpVeUgxOVV0?=
+ =?utf-8?B?eWlLN0I4YTZ0dEw2bVVQRkNEWlM5TkZMREVNV3hJcUd4ZHlzVmhVbURRPT0=?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R1o4YnhGV3R4UDhuc3htVi85ekhXQS8xTUFwZWh2MmxId2l3UzRpN0Z1cFJX?=
+ =?utf-8?B?Ni9zRm5qV1daaElxU1lpZUtpbWNCNG43RHExSmFSdmE5a29ZZFoyZTNTYjlH?=
+ =?utf-8?B?cW02KzFLTnQzWG1KN2U0R0dMM241WHZIRE41Q0dxTnpOL2lWSUFuR00xWmgx?=
+ =?utf-8?B?TEg3N1RoTjMwajlBZHRpeHZtNC9qaC9hMHFERVZaTmxCdkQ2QmVQOVBEWC9u?=
+ =?utf-8?B?cURXbjhqNDQxM0loVkdYeUFuTlRCbXFCa3kwMjJmZ21VQUhzUzBZd0E3djFt?=
+ =?utf-8?B?UE95MlRaVjV5dkVzWnVuU2hkRVpTclVCeFRWcEE0Z1pqZTIrUGs4akU5aklT?=
+ =?utf-8?B?ZVlTM0FwQ2dCVUJSVTh3RE5CL00zcE03VlZPbnJhY0FzclRFdXA0U2lFaUdy?=
+ =?utf-8?B?MWM2T3JtRVY0OWtWc2xLRWZKZHMzanJDbHBxbnByTU5rbHBndFIyandBT2wz?=
+ =?utf-8?B?N2tKa1R2dmQ3RnFTalBMM1IzMUlqNWI5a3pFM2ExQzNnZWFKeEdxUDNJbjRC?=
+ =?utf-8?B?RTZIMFRIOG5Ud01IN2VNUFJmK0hrdGNnV2puZEw4NlhHWE1oQWYxRkFXdFNw?=
+ =?utf-8?B?QkNWR1JnVldwdDY4eFk3WnRQU2k0M0dhYzdWcUFSV1JLRTgyZzluQmV5VVZ4?=
+ =?utf-8?B?S0Z2YzVhTGJQNWw1YTEyK1ZmUFZvWEl5Z1RVaUxOejV2K3gzRldIakNsbVVm?=
+ =?utf-8?B?eWNUVjM2YjhsUENPVkxHdVNVTHFyMTliS3JGZ1g3YU5lMEhuRXpjYlg1SC8r?=
+ =?utf-8?B?eit2MHE3aFJjekVZRzZ5aVB3R0Z6VytpK1dtRUdQS1ZjZnZ0cHVGNDVQM2dp?=
+ =?utf-8?B?NVA3eXJTbzFKZ2JTWFVoREwyaEJOSHo1UjI0TWxnVEt5aURpUTA3TmdXZVQ3?=
+ =?utf-8?B?a0EzZUs0RGN1c0ZSZW1VQ3lNQVBLVHZWSlpyT0tBOGg0OE5hLytHZXVOUWNN?=
+ =?utf-8?B?aytvYmlJb29XNnduZUtyemxnVnY4Y01mL3BTRFMrMHJqZUZRYUVSd2IrQ1Jt?=
+ =?utf-8?B?UDVkNm84WGZOT1dqTHBLRTVPN2dud3B2dkVmOCtWblJYUHZENEpReGxDTk9L?=
+ =?utf-8?B?WjYyVWpCOWdMNTdZSldzZHdEN2ovYy9oWFZzNXNNdTFPQVJXb1AyVkRha2NX?=
+ =?utf-8?B?Z1I5SC9QMTlkNHdOSHZUVWp1TkxGL0JKZk1zZjg3dFFoT1QrZmlSaVJCZW90?=
+ =?utf-8?B?REg4b3QwTG5yRHFEbWF6bmdtWWRtcGlDZjFNSU9sby9IR1B3WlhmMXRucUho?=
+ =?utf-8?B?L29qZE5oMWFjOWtKdlNXWWQwektYQzJURG9TYTRnU1p5TzBaRmk0OGhQS3Bl?=
+ =?utf-8?B?MlZKb0hzRnJ5b1hZbTlMeHRFQ1dUb0cvZEZRMWFnQTNaQjNMV3VWdzZOOFZn?=
+ =?utf-8?B?TVFMMXREWFdHVWY2aUNzYjlGVGlCazIwUDRIQ3pQOUt3K2ZjdHk0a1RoWDd0?=
+ =?utf-8?B?SUhsTEtmbDNEajhlaEw3b25UTDJUUUZZNVRIc2pXcE14VnFtby9zZWxwRzlS?=
+ =?utf-8?B?NXlPcTRTUDZJZ1hTV2RBUGhSY3pqN2FIMEFBdDZHSk45V2M0ZnZrK0dkNFY4?=
+ =?utf-8?B?OTJhNHBTaUJSWURJdHNFcDMwSDlrcDV2TTlCZXdjVnhpUXIvOHZzUlh4aEli?=
+ =?utf-8?B?RnZMb2tVdHJGME5XRFArZ3FxL0cyM1kxZlB0QW1ML1F5TzhTZjZHamhkN25M?=
+ =?utf-8?B?bzZRS3p0bllSa0hUaTFoM2FWK0V5bTlYVGs1MmU2MnRXWWdLL3Ryc0NPUmkx?=
+ =?utf-8?B?VUNCZldYN05BUjFlRDNGM0szb2theVY4amphVEttbXdORHZWcWMyTFNoZDdR?=
+ =?utf-8?B?RDhnZVgwZFhqQ1pZcHZHYk9WUUk0Nzh6dWxBNXdDWktScStaQ2JFWEgrcDRq?=
+ =?utf-8?B?Rjk4eDRpYkw0SWdCSGNqemZqNGZQaDFTSjd1M2lBV3czWWN2VkFFSEtEdE1V?=
+ =?utf-8?B?RmNRL0RFVWFpMjNlSWtJUThrLzJtbS9jemNWUUk5MkNiaEhYbTVZaThESTMv?=
+ =?utf-8?B?ZHBwa1A3ZzNncndOWGhCRmRHejhSRHh4NUV6bmZoWElWZ21SeGUxdGxONEhU?=
+ =?utf-8?B?LzRpdWlXNVgvbkVNNk41US9VTVpyK2M1VUVTV0hLMzM0V21iZkIxMDBzdkhk?=
+ =?utf-8?Q?4fIyY3ZlOXqjenRx7WasayF7k?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ef5ac502-be33-4dd3-c484-08dc7ef6d280
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2024 09:16:14.1408 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9b4pnZk2zITXruXYMzL8TD6/6Qis0h6DwssFiwLdWGSd7RRR0pJxMXWOX7ClYsoW
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4472
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,1381 +160,317 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2024-05-28 at 08:51 +0200, Christian K=C3=B6nig wrote:
-> Hi Thomas,
->=20
-> Am 28.05.24 um 08:36 schrieb Thomas Hellstr=C3=B6m:
-> > Hi, Christian.
-> >=20
-> > I'd appreciate if you could respond to the below, since it is a bit
-> > hard to try to design around a problem I don't believe exists, and
-> > come
-> > up with a good solution for that.
-> >=20
-> > In short.
-> > 1) To prefault userptr we have to exit the ww transaction anyway.
->=20
-> Yeah and I would rather like to have that handling in drm_exec at
-> some time.
->=20
-> Basically a GEM object with outdated struct pages backing it can be=20
-> handled in the same loop at the ww transaction.
+Am 21.05.24 um 09:16 schrieb Thomas Hellström:
+> To be able to handle list unlocking while traversing the LRU
+> list, we want the iterators not only to point to the next
+> position of the list traversal, but to insert themselves as
+> list nodes at that point to work around the fact that the
+> next node might otherwise disappear from the list while
+> the iterator is pointing to it.
+>
+> These list nodes need to be easily distinguishable from other
+> list nodes so that others traversing the list can skip
+> over them.
+>
+> So declare a struct ttm_lru_item, with a struct list_head member
+> and a type enum. This will slightly increase the size of a
+> struct ttm_resource.
+>
+> Changes in previous series:
+> - Update enum ttm_lru_item_type documentation.
+> v3:
+> - Introduce ttm_lru_first_res_or_null()
+>    (Christian König, Thomas Hellström)
+>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: <dri-devel@lists.freedesktop.org>
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-OK.
+Reviewed-by: Christian König <christian.koenig@amd.com>
 
->=20
-> > 2) Any contended lock held at loop start is completely encapsulated
-> > in
-> > the ww transaction and can and will be unlocked when exiting it, so
-> > this patch doesn't introduce any additional problems for userptr
-> > handling AFAICT.
->=20
-> The drm_exec object was intentionally design to not have anything
-> locked=20
-> at the beginning of the loop. See the discussion I had with Sima
-> around=20
-> that when pushing the drm_exec object upstream.
->=20
-> I would really like to stick with that design and honestly don't see
-> the=20
-> reason to change that. Contenting on a trylock seem to be much more=20
-> questionable.
-
-The change here is to make sure we *don't* have contention in a
-trylock, which is otherwise inherent in the current drm_exec design.
-
-What I'm trying to say here is that we end up with the contended lock
-grabbed at loop start you already conceptually have a conflicting lock
-held (the we_class::acquire_key). Both these can be resolved.
-
->=20
-> > 3) The need for a fully capable ww transaction helper moving
-> > forward.
-> > If we need a tool that also does userptr locking, then I think we
-> > need
-> > to separate that from the ww transaction tool and only pass the
-> > latter
-> > around to TTM.
->=20
-> drm_exec is *not* meant to be a ww_transaction helper.
->=20
-> The functionality here is to support drivers in their CS interface
-> and=20
-> that includes userptr handling as well as a couple of other things.
-
-Then if so, I don't think drm_exec is the correct functionality to pass
-to TTM to resolve the eviction issues, but rather a ww transaction
-helper that can be used standalone *and* by drm_exec. Now the
-functionality would be more or less what drm exec is today, but
-slightly augmented.
-
-But then IMHO instead of changing name and more or less replicating
-what drm_exec is today wouldn't it be a better idea to subclass
-drm_exec into a full-fledged CS helper at the time when that
-functionality is indeed added?
-
-/Thomas
-
->=20
-> Regards,
-> Christian.
->=20
-> >=20
-> > Thanks,
-> > Thomas
-> >=20
-> > On Wed, 2024-05-22 at 19:42 +0200, Thomas Hellstr=C3=B6m wrote:
-> > > On Wed, 2024-05-22 at 18:52 +0200, Christian K=C3=B6nig wrote:
-> > > > Am 22.05.24 um 16:32 schrieb Thomas Hellstr=C3=B6m:
-> > > > > On Wed, 2024-05-22 at 07:52 +0200, Christian K=C3=B6nig wrote:
-> > > > > > Am 21.05.24 um 09:16 schrieb Thomas Hellstr=C3=B6m:
-> > > > > > > If contention and backoff occurs during a drm_exec ww
-> > > > > > > transaction,
-> > > > > > > the contended lock is not locked again until the next
-> > > > > > > orinary
-> > > > > > > attempt to lock a dma_resv lock. However, with the
-> > > > > > > introduction
-> > > > > > > of
-> > > > > > > drm_exec_trylock(), that doesn't work, since the locking
-> > > > > > > of
-> > > > > > > the
-> > > > > > > contended lock needs to be a sleeping lock. Neither can
-> > > > > > > we
-> > > > > > > ignore
-> > > > > > > locking the contended lock during a trylock since that
-> > > > > > > would
-> > > > > > > violate
-> > > > > > > at least the ww_mutex annotations.
-> > > > > > >=20
-> > > > > > > So resolve this by actually locking the contended lock
-> > > > > > > during
-> > > > > > > drm_exec_retry_on_contention(). However, this introduces
-> > > > > > > a
-> > > > > > > new
-> > > > > > > point
-> > > > > > > of failure since locking the contended lock may return -
-> > > > > > > EINTR.
-> > > > > > >=20
-> > > > > > > Hence drm_exec_retry_on_contention() must take an error
-> > > > > > > parameter
-> > > > > > > and
-> > > > > > > also return a value indicating success.
-> > > > > > After thinking more about that I have to pretty clearly NAK
-> > > > > > this.
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=20
-> > > > > I thought we were beyond upfront NAKing in the first reply :/
-> > > > Well my memory could fail me, but I mentioned concerns on this
-> > > > approach
-> > > > before.
-> > > >=20
-> > > > I was a bit annoyed seeing that again. But could as well be
-> > > > that my
-> > > > response never got out or that I'm mixing things up.
-> > > I haven't seen it at least. Last discussion on this I saw was
-> > > here. I didn't see a follow-up on that.
-> > >=20
-> > > https://lore.kernel.org/dri-devel/953c157bf69df12d831a781f0f638d93717=
-bb044.camel@linux.intel.com/
-> > >=20
-> > >=20
-> > > > > > It's an intentional design decision to guarantee that at
-> > > > > > the
-> > > > > > start of
-> > > > > > the loop no object is locked.
-> > > > > >=20
-> > > > > > This is because Sima and I wanted to integrate userptr
-> > > > > > handling
-> > > > > > into
-> > > > > > drm_exec as well in the long term.
-> > > > > First I agree the interface looks worse with this patch.
-> > > > > But I thought generic userptr handling were going to end up
-> > > > > as a
-> > > > > gpuvm
-> > > > > helper (without using GEM objects) as we've discussed
-> > > > > previously.
-> > > > We might be talking past each other. That sounds like SVM, e.g.
-> > > > on
-> > > > demand paging.
-> > > >=20
-> > > > What I mean is pre-faulting during command submission like
-> > > > radeon,
-> > > > amdgpu and i915 do for the userptr handling.
-> > > Yes, then we're talking about the same thing.
-> > >=20
-> > > We discussed in this thread here, started by Dave.
-> > >=20
-> > > https://lore.kernel.org/dri-devel/CAPM=3D9twPgn+fpbkig0Vhjt=3DcJdHQFb=
-NH_Z=3DsRhSZwuvLKhavbA@mail.gmail.com/
-> > >=20
-> > > I still think the right place is in drm_gpuvm for this sort of
-> > > stuff.
-> > > And I think that's the concluding argument by Sima as well.
-> > >=20
-> > > In any case, If the planned drm_exec development is to be a full
-> > > execbuf helper, I think we need a capable sub-helper for ONLY the
-> > > ww
-> > > transaction locking as well, with support for the various locking
-> > > primitives. In particular if we're going to be able to port i915
-> > > ww
-> > > transaction locking over. There are more uses of the ww locking
-> > > transacions than execbuf.
-> > >=20
-> > > > For that you need to re-start the whole handling similar to how
-> > > > you
-> > > > need
-> > > > to re-start for the mutex locking when you detect that the page
-> > > > array
-> > > > is
-> > > > stale, the difference is that you are not allowed to hold any
-> > > > resv
-> > > > locks
-> > > > while pre-faulting.
-> > > >=20
-> > > > That's why it is a requirement that the drm_exec loop starts
-> > > > without
-> > > > any
-> > > > locks held.
-> > > But wouldn't you need an outer (userptr) loop and an inner
-> > > (ww_transaction) loop for this? Why would we want to re-validate
-> > > userptrs on -EDEADLKS?
-> > >=20
-> > > > > Anyway if still there would be helpers in drm_exec for some
-> > > > > other
-> > > > > generic userptr solution, those need to be done before the
-> > > > > ww_acquire_ctx_init(). The contended locking here is done
-> > > > > after,
-> > > > > so
-> > > > > I
-> > > > > can't really see how these would clash.
-> > > > Yes, that indeed was a problem. The ww_acquire_ctx_init() was
-> > > > intentionally moved into drm_exec_cleanup() to partially
-> > > > prevent
-> > > > that
-> > > > issue.
-> > > >=20
-> > > > I haven't fully figured out how to do handle everything
-> > > > exactly,
-> > > > but
-> > > > at
-> > > > least in principle it can be made work. With this change here
-> > > > it
-> > > > becomes
-> > > > impossible.
-> > > >=20
-> > > > > Still, If we need to come up with another solution, I think
-> > > > > it's
-> > > > > fair
-> > > > > we clearly sort out why.
-> > > > >=20
-> > > > > > I think we should just document that drm_exec_trylock()
-> > > > > > can't
-> > > > > > be
-> > > > > > used
-> > > > > > to
-> > > > > > lock the first BO in the loop and explicitly WARN if that's
-> > > > > > the
-> > > > > > case.
-> > > > > Unfortunately that's not sufficient for the general use-case.
-> > > > > If
-> > > > > we
-> > > > > want to keep the ttm_bo_vm approach of dropping the mmap lock
-> > > > > when
-> > > > > there is contention on the bo resv, we need to be able to
-> > > > > trylock
-> > > > > on
-> > > > > first lock.
-> > > > Mhm, why exactly do we still have that dance in the first
-> > > > place?
-> > > >=20
-> > > > I mean we have sorted out the mmap() and dma_resv() locking
-> > > > order
-> > > > long
-> > > > ago. See dma_resv_lockdep() which is enforcing that.
-> > > I explained that in my reply here:
-> > >=20
-> > > https://lore.kernel.org/dri-devel/953c157bf69df12d831a781f0f638d93717=
-bb044.camel@linux.intel.com/
-> > >=20
-> > > We shouldn't be holding the mmap lock when waiting for stuff. In
-> > > particular not while waiting for mutexes that may be blocked by
-> > > gpu
-> > > activity.
-> > >=20
-> > > > > =C2=A0=C2=A0 Also bo creation is using trylock but might be able =
-to use
-> > > > > a sleeping lock there. But if that sleeping lock triggers an
-> > > > > -
-> > > > > EDEADLK
-> > > > > (DEBUG_WW_MUTEX_SLOWPATH) we have the weird situation of
-> > > > > referencing an
-> > > > > object that never was fully created as a contending object.
-> > > > I wanted to eliminate that as well by not validating the BO
-> > > > during
-> > > > initialization any more.
-> > > > So bo creation would then be:
-> > > >=20
-> > > > ttm_bo_init(bo)
-> > > >=20
-> > > > drm_exec_while_not_all_locked() {
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_exec_prepare_object(bo, 1);
-> > > >=20
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo_validate(bo);
-> > > > }
-> > > >=20
-> > > > if (r)
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo_put(bo);
-> > > >=20
-> > > > return r;
-> > > >=20
-> > > > I have that on a branch here somewhere prepared, but never got
-> > > > the
-> > > > time
-> > > > to clean it up.
-> > > Still, bo creation and validation may be part of a ww transaction
-> > > as
-> > > well, like page-table bos (Although those are pre-locked so
-> > > perhaps
-> > > not
-> > > a good example). But in the general case, I'm not sure this is
-> > > sufficient for all use-cases.
-> > >=20
-> > > /Thomas
-> > >=20
-> > >=20
-> > >=20
-> > > > Regards,
-> > > > Christian.
-> > > >=20
-> > > > > So the only really working alternative solution I can see is
-> > > > > that
-> > > > > drm_exec_trylock simply fails if there is a contended lock
-> > > > > and
-> > > > > we'd
-> > > > > need to live with the weird bo creation situation described
-> > > > > above.
-> > > > >=20
-> > > > > /Thomas
-> > > > >=20
-> > > > > > Regards,
-> > > > > > Christian.
-> > > > > >=20
-> > > > > > > Cc: Christian K=C3=B6nig<christian.koenig@amd.com>
-> > > > > > > Cc: Somalapuram Amaranath<Amaranath.Somalapuram@amd.com>
-> > > > > > > Cc: Matthew Brost<matthew.brost@intel.com>
-> > > > > > > Cc:<dri-devel@lists.freedesktop.org>
-> > > > > > > Signed-off-by: Thomas
-> > > > > > > Hellstr=C3=B6m<thomas.hellstrom@linux.intel.com>
-> > > > > > > ---
-> > > > > > > =C2=A0=C2=A0=C2=A0 .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm=
-.c=C2=A0 | 16
-> > > > > > > ++++---
-> > > > > > > --
-> > > > > > > =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 6
-> > > > > > > ++--
-> > > > > > > =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_csa.c=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +-
-> > > > > > > -
-> > > > > > > =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 8
-> > > > > > > ++---
-> > > > > > > =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 8
-> > > > > > > ++---
-> > > > > > > =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +-
-> > > > > > > -
-> > > > > > > =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm=
-.c=C2=A0 |=C2=A0 8
-> > > > > > > ++---
-> > > > > > > =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/amd/amdkfd/kfd_svm.c=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 +-
-> > > > > > > =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/drm_exec.c=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 | 35
-> > > > > > > ++++++++++++++-----
-> > > > > > > =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/drm_gpuvm.c=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0 8
-> > > > > > > ++---
-> > > > > > > =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/imagination/pvr_job.c=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 +-
-> > > > > > > =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/msm/msm_gem_submit.c=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 +-
-> > > > > > > =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/nouveau/nouveau_uvmm.c=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 +-
-> > > > > > > =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/tests/drm_exec_test.c=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 12
-> > > > > > > +++----
-> > > > > > > =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/xe/xe_gt_pagefault.c=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +-
-> > > > > > > -
-> > > > > > > =C2=A0=C2=A0=C2=A0 drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 | 10
-> > > > > > > +++---
-> > > > > > > =C2=A0=C2=A0=C2=A0 include/drm/drm_exec.h=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 23
-> > > > > > > +++++++++---
-> > > > > > > =C2=A0=C2=A0=C2=A0 17 files changed, 92 insertions(+), 62 del=
-etions(-)
-> > > > > > >=20
-> > > > > > > diff --git
-> > > > > > > a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> > > > > > > b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> > > > > > > index e4d4e55c08ad..4a08a692aa1f 100644
-> > > > > > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> > > > > > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> > > > > > > @@ -1152,12 +1152,12 @@ static int
-> > > > > > > reserve_bo_and_vm(struct
-> > > > > > > kgd_mem
-> > > > > > > *mem,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_init(&ctx->exec,
-> > > > > > > DRM_EXEC_INTERRUPTIBLE_WAIT,
-> > > > > > > 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(&ctx->exec=
-) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		ret =3D amdgpu_vm_lock_pd(vm, &ctx-=
->exec,
-> > > > > > > 2);
-> > > > > > > -		drm_exec_retry_on_contention(&ctx-
-> > > > > > > >exec);
-> > > > > > > +		ret =3D drm_exec_retry_on_contention(&ctx-
-> > > > > > > > exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(ret))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto error;
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		ret =3D drm_exec_prepare_obj(&ctx->=
-exec,
-> > > > > > > &bo-
-> > > > > > > > tbo.base, 1);
-> > > > > > > -		drm_exec_retry_on_contention(&ctx-
-> > > > > > > >exec);
-> > > > > > > +		ret =3D drm_exec_retry_on_contention(&ctx-
-> > > > > > > > exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(ret))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto error;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	}
-> > > > > > > @@ -1199,14 +1199,14 @@ static int
-> > > > > > > reserve_bo_and_cond_vms(struct
-> > > > > > > kgd_mem *mem,
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			ret =3D amdgpu_vm_lock_pd(entry-
-> > > > > > > > bo_va-
-> > > > > > > > base.vm,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0						&ctx-
-> > > > > > > >exec,
-> > > > > > > 2);
-> > > > > > > -
-> > > > > > > 			drm_exec_retry_on_contention(&ctx-
-> > > > > > > > exec);
-> > > > > > > +			ret =3D
-> > > > > > > drm_exec_retry_on_contention(&ctx-
-> > > > > > > > exec, ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			if (unlikely(ret))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				goto error;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			++ctx->n_vms;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		}
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		ret =3D drm_exec_prepare_obj(&ctx->=
-exec,
-> > > > > > > &bo-
-> > > > > > > > tbo.base, 1);
-> > > > > > > -		drm_exec_retry_on_contention(&ctx-
-> > > > > > > >exec);
-> > > > > > > +		ret =3D drm_exec_retry_on_contention(&ctx-
-> > > > > > > > exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(ret))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto error;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	}
-> > > > > > > @@ -2619,7 +2619,7 @@ static int
-> > > > > > > validate_invalid_user_pages(struct
-> > > > > > > amdkfd_process_info *process_info)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		list_for_each_entry(peer_vm,
-> > > > > > > &process_info-
-> > > > > > > > vm_list_head,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				=C2=A0=C2=A0=C2=A0 vm_list_node) =
-{
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			ret =3D amdgpu_vm_lock_pd(peer_vm,
-> > > > > > > &exec,
-> > > > > > > 2);
-> > > > > > > -
-> > > > > > > 			drm_exec_retry_on_contention(&exec);
-> > > > > > > +			ret =3D
-> > > > > > > drm_exec_retry_on_contention(&exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			if (unlikely(ret))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				goto unreserve_out;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		}
-> > > > > > > @@ -2631,7 +2631,7 @@ static int
-> > > > > > > validate_invalid_user_pages(struct
-> > > > > > > amdkfd_process_info *process_info)
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			gobj =3D &mem->bo->tbo.base;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			ret =3D
-> > > > > > > drm_exec_prepare_obj(&exec,
-> > > > > > > gobj,
-> > > > > > > 1);
-> > > > > > > -
-> > > > > > > 			drm_exec_retry_on_contention(&exec);
-> > > > > > > +			ret =3D
-> > > > > > > drm_exec_retry_on_contention(&exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			if (unlikely(ret))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				goto unreserve_out;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		}
-> > > > > > > @@ -2875,7 +2875,7 @@ int
-> > > > > > > amdgpu_amdkfd_gpuvm_restore_process_bos(void *info,
-> > > > > > > struct
-> > > > > > > dma_fence __rcu *
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		list_for_each_entry(peer_vm,
-> > > > > > > &process_info-
-> > > > > > > > vm_list_head,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				=C2=A0=C2=A0=C2=A0 vm_list_node) =
-{
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			ret =3D amdgpu_vm_lock_pd(peer_vm,
-> > > > > > > &exec,
-> > > > > > > 2);
-> > > > > > > -
-> > > > > > > 			drm_exec_retry_on_contention(&exec);
-> > > > > > > +			ret =3D
-> > > > > > > drm_exec_retry_on_contention(&exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			if (unlikely(ret)) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				pr_err("Locking VM PD
-> > > > > > > failed,
-> > > > > > > ret:
-> > > > > > > %d\n", ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				goto ttm_reserve_fail;
-> > > > > > > @@ -2891,7 +2891,7 @@ int
-> > > > > > > amdgpu_amdkfd_gpuvm_restore_process_bos(void *info,
-> > > > > > > struct
-> > > > > > > dma_fence __rcu *
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			gobj =3D &mem->bo->tbo.base;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			ret =3D
-> > > > > > > drm_exec_prepare_obj(&exec,
-> > > > > > > gobj,
-> > > > > > > 1);
-> > > > > > > -
-> > > > > > > 			drm_exec_retry_on_contention(&exec);
-> > > > > > > +			ret =3D
-> > > > > > > drm_exec_retry_on_contention(&exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			if (unlikely(ret)) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				pr_err("drm_exec_prepare
-> > > > > > > _obj
-> > > > > > > failed, ret: %d\n", ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				goto ttm_reserve_fail;
-> > > > > > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> > > > > > > b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> > > > > > > index ec888fc6ead8..299e46a6d934 100644
-> > > > > > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> > > > > > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> > > > > > > @@ -897,7 +897,7 @@ static int
-> > > > > > > amdgpu_cs_parser_bos(struct
-> > > > > > > amdgpu_cs_parser *p,
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(&p->exec) =
-{
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		r =3D amdgpu_vm_lock_pd(&fpriv->vm,=
- &p-
-> > > > > > > >exec,
-> > > > > > > 1
-> > > > > > > + p-
-> > > > > > > > gang_size);
-> > > > > > > -		drm_exec_retry_on_contention(&p->exec);
-> > > > > > > +		r =3D drm_exec_retry_on_contention(&p-
-> > > > > > > >exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto out_free_user_pages;
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > @@ -905,7 +905,7 @@ static int
-> > > > > > > amdgpu_cs_parser_bos(struct
-> > > > > > > amdgpu_cs_parser *p,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			/* One fence for TTM and one for
-> > > > > > > each
-> > > > > > > CS
-> > > > > > > job */
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			r =3D drm_exec_prepare_obj(&p-
-> > > > > > > >exec,
-> > > > > > > &e-
-> > > > > > > > bo-
-> > > > > > > > tbo.base,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0						 1 + p-
-> > > > > > > > gang_size);
-> > > > > > > -			drm_exec_retry_on_contention(&p-
-> > > > > > > > exec);
-> > > > > > > +			r =3D
-> > > > > > > drm_exec_retry_on_contention(&p-
-> > > > > > > > exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			if (unlikely(r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				goto
-> > > > > > > out_free_user_pages;
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > @@ -915,7 +915,7 @@ static int
-> > > > > > > amdgpu_cs_parser_bos(struct
-> > > > > > > amdgpu_cs_parser *p,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (p->uf_bo) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			r =3D drm_exec_prepare_obj(&p-
-> > > > > > > >exec,
-> > > > > > > &p-
-> > > > > > > > uf_bo->tbo.base,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0						 1 + p-
-> > > > > > > > gang_size);
-> > > > > > > -			drm_exec_retry_on_contention(&p-
-> > > > > > > > exec);
-> > > > > > > +			r =3D
-> > > > > > > drm_exec_retry_on_contention(&p-
-> > > > > > > > exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			if (unlikely(r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				goto
-> > > > > > > out_free_user_pages;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		}
-> > > > > > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_csa.c
-> > > > > > > b/drivers/gpu/drm/amd/amdgpu/amdgpu_csa.c
-> > > > > > > index cfdf558b48b6..8b2b86c7a6c5 100644
-> > > > > > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_csa.c
-> > > > > > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_csa.c
-> > > > > > > @@ -74,7 +74,7 @@ int amdgpu_map_static_csa(struct
-> > > > > > > amdgpu_device
-> > > > > > > *adev, struct amdgpu_vm *vm,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		r =3D amdgpu_vm_lock_pd(vm, &exec, =
-0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (likely(!r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			r =3D drm_exec_lock_obj(&exec,
-> > > > > > > &bo-
-> > > > > > > > tbo.base);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		r =3D drm_exec_retry_on_contention(&exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(r)) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			DRM_ERROR("failed to reserve
-> > > > > > > CSA,PD
-> > > > > > > BOs:
-> > > > > > > err=3D%d\n", r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto error;
-> > > > > > > @@ -114,7 +114,7 @@ int amdgpu_unmap_static_csa(struct
-> > > > > > > amdgpu_device *adev, struct amdgpu_vm *vm,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		r =3D amdgpu_vm_lock_pd(vm, &exec, =
-0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (likely(!r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			r =3D drm_exec_lock_obj(&exec,
-> > > > > > > &bo-
-> > > > > > > > tbo.base);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		r =3D drm_exec_retry_on_contention(&exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(r)) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			DRM_ERROR("failed to reserve
-> > > > > > > CSA,PD
-> > > > > > > BOs:
-> > > > > > > err=3D%d\n", r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto error;
-> > > > > > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-> > > > > > > b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-> > > > > > > index 67c234bcf89f..17e16c971e21 100644
-> > > > > > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-> > > > > > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-> > > > > > > @@ -239,12 +239,12 @@ static void
-> > > > > > > amdgpu_gem_object_close(struct
-> > > > > > > drm_gem_object *obj,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_init(&exec, DRM_EXEC_IGNORE=
-_DUPLICATES,
-> > > > > > > 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(&exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		r =3D drm_exec_prepare_obj(&exec, &=
-bo-
-> > > > > > > > tbo.base,
-> > > > > > > 1);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		r =3D drm_exec_retry_on_contention(&exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto out_unlock;
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		r =3D amdgpu_vm_lock_pd(vm, &exec, =
-0);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		r =3D drm_exec_retry_on_contention(&exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto out_unlock;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	}
-> > > > > > > @@ -776,13 +776,13 @@ int amdgpu_gem_va_ioctl(struct
-> > > > > > > drm_device
-> > > > > > > *dev, void *data,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(&exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (gobj) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			r =3D drm_exec_lock_obj(&exec,
-> > > > > > > gobj);
-> > > > > > > -
-> > > > > > > 			drm_exec_retry_on_contention(&exec);
-> > > > > > > +			r =3D
-> > > > > > > drm_exec_retry_on_contention(&exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			if (unlikely(r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				goto error;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		}
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		r =3D amdgpu_vm_lock_pd(&fpriv->vm,=
- &exec,
-> > > > > > > 2);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		r =3D drm_exec_retry_on_contention(&exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto error;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	}
-> > > > > > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-> > > > > > > b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-> > > > > > > index 5ca5c47ab54e..1b1a5147606e 100644
-> > > > > > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-> > > > > > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-> > > > > > > @@ -1221,12 +1221,12 @@ int
-> > > > > > > amdgpu_mes_ctx_map_meta_data(struct
-> > > > > > > amdgpu_device *adev,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(&exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		r =3D drm_exec_lock_obj(&exec,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &c=
-tx_data-
-> > > > > > > > meta_data_obj-
-> > > > > > > > tbo.base);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		r =3D drm_exec_retry_on_contention(&exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto error_fini_exec;
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		r =3D amdgpu_vm_lock_pd(vm, &exec, =
-0);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		r =3D drm_exec_retry_on_contention(&exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto error_fini_exec;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	}
-> > > > > > > @@ -1292,12 +1292,12 @@ int
-> > > > > > > amdgpu_mes_ctx_unmap_meta_data(struct
-> > > > > > > amdgpu_device *adev,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(&exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		r =3D drm_exec_lock_obj(&exec,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &c=
-tx_data-
-> > > > > > > > meta_data_obj-
-> > > > > > > > tbo.base);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		r =3D drm_exec_retry_on_contention(&exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto out_unlock;
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		r =3D amdgpu_vm_lock_pd(vm, &exec, =
-0);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		r =3D drm_exec_retry_on_contention(&exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto out_unlock;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	}
-> > > > > > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c
-> > > > > > > b/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c
-> > > > > > > index e22cb2b5cd92..72b8213e352c 100644
-> > > > > > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c
-> > > > > > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_seq64.c
-> > > > > > > @@ -77,7 +77,7 @@ int amdgpu_seq64_map(struct
-> > > > > > > amdgpu_device
-> > > > > > > *adev,
-> > > > > > > struct amdgpu_vm *vm,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		r =3D amdgpu_vm_lock_pd(vm, &exec, =
-0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (likely(!r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			r =3D drm_exec_lock_obj(&exec,
-> > > > > > > &bo-
-> > > > > > > > tbo.base);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		r =3D drm_exec_retry_on_contention(&exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto error;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	}
-> > > > > > > @@ -138,7 +138,7 @@ void amdgpu_seq64_unmap(struct
-> > > > > > > amdgpu_device
-> > > > > > > *adev, struct amdgpu_fpriv *fpriv)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		r =3D amdgpu_vm_lock_pd(vm, &exec, =
-0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (likely(!r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			r =3D drm_exec_lock_obj(&exec,
-> > > > > > > &bo-
-> > > > > > > > tbo.base);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		r =3D drm_exec_retry_on_contention(&exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto error;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	}
-> > > > > > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c
-> > > > > > > b/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c
-> > > > > > > index e01c1c8e64c4..63392ce43945 100644
-> > > > > > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c
-> > > > > > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c
-> > > > > > > @@ -89,12 +89,12 @@ static int map_ring_data(struct
-> > > > > > > amdgpu_device
-> > > > > > > *adev, struct amdgpu_vm *vm,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_init(&exec, 0, 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(&exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		r =3D drm_exec_lock_obj(&exec, &bo-
-> > > > > > > >tbo.base);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		r =3D drm_exec_retry_on_contention(&exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto error_fini_exec;
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		r =3D amdgpu_vm_lock_pd(vm, &exec, =
-0);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		r =3D drm_exec_retry_on_contention(&exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto error_fini_exec;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	}
-> > > > > > > @@ -152,12 +152,12 @@ static int unmap_ring_data(struct
-> > > > > > > amdgpu_device *adev, struct amdgpu_vm *vm,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_init(&exec, 0, 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(&exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		r =3D drm_exec_lock_obj(&exec, &bo-
-> > > > > > > >tbo.base);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		r =3D drm_exec_retry_on_contention(&exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto out_unlock;
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		r =3D amdgpu_vm_lock_pd(vm, &exec, =
-0);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		r =3D drm_exec_retry_on_contention(&exec,
-> > > > > > > r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (unlikely(r))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto out_unlock;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	}
-> > > > > > > diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> > > > > > > b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> > > > > > > index 386875e6eb96..a3aa7fd22f6a 100644
-> > > > > > > --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> > > > > > > +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> > > > > > > @@ -1499,7 +1499,7 @@ static int
-> > > > > > > svm_range_reserve_bos(struct
-> > > > > > > svm_validate_context *ctx, bool intr)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			vm =3D drm_priv_to_vm(pdd-
-> > > > > > > >drm_priv);
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			r =3D amdgpu_vm_lock_pd(vm, &ctx-
-> > > > > > > > exec,
-> > > > > > > 2);
-> > > > > > > -
-> > > > > > > 			drm_exec_retry_on_contention(&ctx-
-> > > > > > > > exec);
-> > > > > > > +			r =3D
-> > > > > > > drm_exec_retry_on_contention(&ctx-
-> > > > > > > > exec, r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			if (unlikely(r)) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				pr_debug("failed %d to
-> > > > > > > reserve
-> > > > > > > bo\n", r);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				goto unreserve_out;
-> > > > > > > diff --git a/drivers/gpu/drm/drm_exec.c
-> > > > > > > b/drivers/gpu/drm/drm_exec.c
-> > > > > > > index 2da094bdf8a4..3770a5d30213 100644
-> > > > > > > --- a/drivers/gpu/drm/drm_exec.c
-> > > > > > > +++ b/drivers/gpu/drm/drm_exec.c
-> > > > > > > @@ -28,12 +28,12 @@
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 *	drm_exec_init(&exec,
-> > > > > > > DRM_EXEC_INTERRUPTIBLE_WAIT);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 *	drm_exec_until_all_locked(&exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 *		ret =3D drm_exec_prepare_obj(&exe=
-c, boA,
-> > > > > > > 1);
-> > > > > > > - *		drm_exec_retry_on_contention(&exec);
-> > > > > > > + *		ret =3D
-> > > > > > > drm_exec_retry_on_contention(&exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 *		if (ret)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 *			goto error;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 *
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 *		ret =3D drm_exec_prepare_obj(&exe=
-c, boB,
-> > > > > > > 1);
-> > > > > > > - *		drm_exec_retry_on_contention(&exec);
-> > > > > > > + *		ret =3D
-> > > > > > > drm_exec_retry_on_contention(&exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 *		if (ret)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 *			goto error;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 *	}
-> > > > > > > @@ -48,7 +48,8 @@
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 */
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0 /* Dummy value used to initially enter the=
- retry loop
-> > > > > > > */
-> > > > > > > -#define DRM_EXEC_DUMMY ((void *)~0)
-> > > > > > > +#define DRM_EXEC_DUMMY ERR_PTR(-ESTALE)
-> > > > > > > +#define DRM_EXEC_CONTENDED ERR_PTR(-EDEADLK)
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0 /* Unlock all objects and drop references =
-*/
-> > > > > > > =C2=A0=C2=A0=C2=A0 static void drm_exec_unlock_all(struct drm=
-_exec
-> > > > > > > *exec)
-> > > > > > > @@ -131,8 +132,7 @@ bool drm_exec_cleanup(struct drm_exec
-> > > > > > > *exec)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		return true;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	}
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > -	drm_exec_unlock_all(exec);
-> > > > > > > -	exec->num_objects =3D 0;
-> > > > > > > +	exec->contended =3D NULL;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	return true;
-> > > > > > > =C2=A0=C2=A0=C2=A0 }
-> > > > > > > =C2=A0=C2=A0=C2=A0 EXPORT_SYMBOL(drm_exec_cleanup);
-> > > > > > > @@ -194,6 +194,27 @@ static int
-> > > > > > > drm_exec_lock_contended(struct
-> > > > > > > drm_exec *exec)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	return ret;
-> > > > > > > =C2=A0=C2=A0=C2=A0 }
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > +/**
-> > > > > > > + * drm_exec_handle_contended() - Perform cleanup before
-> > > > > > > a ww
-> > > > > > > transaction restart
-> > > > > > > + * @exec: Pointer to the drm_exec object.
-> > > > > > > + *
-> > > > > > > + * Unlocks all held resvs and re-locks the contended
-> > > > > > > object.
-> > > > > > > + *
-> > > > > > > + * Return: 0 on success, negative error code on failure.
-> > > > > > > + */
-> > > > > > > +int drm_exec_handle_contended(struct drm_exec *exec)
-> > > > > > > +{
-> > > > > > > +	int ret;
-> > > > > > > +
-> > > > > > > +	drm_exec_unlock_all(exec);
-> > > > > > > +	exec->num_objects =3D 0;
-> > > > > > > +	ret =3D drm_exec_lock_contended(exec);
-> > > > > > > +	exec->contended =3D DRM_EXEC_CONTENDED;
-> > > > > > > +
-> > > > > > > +	return ret;
-> > > > > > > +}
-> > > > > > > +EXPORT_SYMBOL(drm_exec_handle_contended);
-> > > > > > > +
-> > > > > > > =C2=A0=C2=A0=C2=A0 /**
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 * drm_exec_lock_obj - lock a GEM obj=
-ect for use
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 * @exec: the drm_exec object with th=
-e state
-> > > > > > > @@ -209,10 +230,6 @@ int drm_exec_lock_obj(struct
-> > > > > > > drm_exec
-> > > > > > > *exec,
-> > > > > > > struct drm_gem_object *obj)
-> > > > > > > =C2=A0=C2=A0=C2=A0 {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	int ret;
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > -	ret =3D drm_exec_lock_contended(exec);
-> > > > > > > -	if (unlikely(ret))
-> > > > > > > -		return ret;
-> > > > > > > -
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	if (exec->prelocked =3D=3D obj) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		drm_gem_object_put(exec->prelocked)=
-;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		exec->prelocked =3D NULL;
-> > > > > > > diff --git a/drivers/gpu/drm/drm_gpuvm.c
-> > > > > > > b/drivers/gpu/drm/drm_gpuvm.c
-> > > > > > > index f9eb56f24bef..0923d6ae18e2 100644
-> > > > > > > --- a/drivers/gpu/drm/drm_gpuvm.c
-> > > > > > > +++ b/drivers/gpu/drm/drm_gpuvm.c
-> > > > > > > @@ -1254,18 +1254,18 @@ drm_gpuvm_exec_lock(struct
-> > > > > > > drm_gpuvm_exec
-> > > > > > > *vm_exec)
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		ret =3D drm_gpuvm_prepare_vm(gpuvm,=
- exec,
-> > > > > > > num_fences);
-> > > > > > > -		drm_exec_retry_on_contention(exec);
-> > > > > > > +		ret =3D drm_exec_retry_on_contention(exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (ret)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto err;
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		ret =3D drm_gpuvm_prepare_objects(g=
-puvm,
-> > > > > > > exec,
-> > > > > > > num_fences);
-> > > > > > > -		drm_exec_retry_on_contention(exec);
-> > > > > > > +		ret =3D drm_exec_retry_on_contention(exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (ret)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto err;
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (vm_exec->extra.fn) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			ret =3D vm_exec-
-> > > > > > > >extra.fn(vm_exec);
-> > > > > > > -
-> > > > > > > 			drm_exec_retry_on_contention(exec);
-> > > > > > > +			ret =3D
-> > > > > > > drm_exec_retry_on_contention(exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			if (ret)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				goto err;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		}
-> > > > > > > @@ -1346,7 +1346,7 @@ drm_gpuvm_exec_lock_range(struct
-> > > > > > > drm_gpuvm_exec *vm_exec,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		ret =3D drm_gpuvm_prepare_range(gpu=
-vm,
-> > > > > > > exec,
-> > > > > > > addr,
-> > > > > > > range,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 v=
-m_exec-
-> > > > > > > > num_fences);
-> > > > > > > -		drm_exec_retry_on_contention(exec);
-> > > > > > > +		ret =3D drm_exec_retry_on_contention(exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (ret)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto err;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	}
-> > > > > > > diff --git a/drivers/gpu/drm/imagination/pvr_job.c
-> > > > > > > b/drivers/gpu/drm/imagination/pvr_job.c
-> > > > > > > index 78c2f3c6dce0..6e0ce6c4576c 100644
-> > > > > > > --- a/drivers/gpu/drm/imagination/pvr_job.c
-> > > > > > > +++ b/drivers/gpu/drm/imagination/pvr_job.c
-> > > > > > > @@ -574,7 +574,7 @@ prepare_job_resvs_for_each(struct
-> > > > > > > drm_exec
-> > > > > > > *exec, struct pvr_job_data *job_data,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		int err =3D jobs_lock_all_objs(exec=
-,
-> > > > > > > job_data,
-> > > > > > > job_count);
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > -		drm_exec_retry_on_contention(exec);
-> > > > > > > +		err =3D drm_exec_retry_on_contention(exec,
-> > > > > > > err);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (err)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			return err;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	}
-> > > > > > > diff --git a/drivers/gpu/drm/msm/msm_gem_submit.c
-> > > > > > > b/drivers/gpu/drm/msm/msm_gem_submit.c
-> > > > > > > index fba78193127d..01992b43ea4b 100644
-> > > > > > > --- a/drivers/gpu/drm/msm/msm_gem_submit.c
-> > > > > > > +++ b/drivers/gpu/drm/msm/msm_gem_submit.c
-> > > > > > > @@ -259,7 +259,7 @@ static int submit_lock_objects(struct
-> > > > > > > msm_gem_submit *submit)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		for (unsigned i =3D 0; i < submit->=
-nr_bos;
-> > > > > > > i++)
-> > > > > > > {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			struct drm_gem_object *obj =3D
-> > > > > > > submit-
-> > > > > > > > bos[i].obj;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			ret =3D
-> > > > > > > drm_exec_prepare_obj(&submit-
-> > > > > > > > exec,
-> > > > > > > obj, 1);
-> > > > > > > -
-> > > > > > > 			drm_exec_retry_on_contention(&su
-> > > > > > > bmit-
-> > > > > > > > exec);
-> > > > > > > +			ret =3D
-> > > > > > > drm_exec_retry_on_contention(&submit->exec, ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			if (ret)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				goto error;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		}
-> > > > > > > diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> > > > > > > b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> > > > > > > index ee02cd833c5e..0c871634fdfb 100644
-> > > > > > > --- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> > > > > > > +++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> > > > > > > @@ -1350,7 +1350,7 @@ nouveau_uvmm_bind_job_submit(struct
-> > > > > > > nouveau_job *job,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_init(exec, vme->flags, 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		ret =3D bind_lock_validate(job, exe=
-c, vme-
-> > > > > > > > num_fences);
-> > > > > > > -		drm_exec_retry_on_contention(exec);
-> > > > > > > +		ret =3D drm_exec_retry_on_contention(exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (ret) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			op =3D list_last_op(&bind_job-
-> > > > > > > >ops);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto unwind;
-> > > > > > > diff --git a/drivers/gpu/drm/tests/drm_exec_test.c
-> > > > > > > b/drivers/gpu/drm/tests/drm_exec_test.c
-> > > > > > > index 81f928a429ba..28558fdb08df 100644
-> > > > > > > --- a/drivers/gpu/drm/tests/drm_exec_test.c
-> > > > > > > +++ b/drivers/gpu/drm/tests/drm_exec_test.c
-> > > > > > > @@ -63,7 +63,7 @@ static void test_lock(struct kunit
-> > > > > > > *test)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_init(&exec,
-> > > > > > > DRM_EXEC_INTERRUPTIBLE_WAIT,
-> > > > > > > 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(&exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		ret =3D drm_exec_lock_obj(&exec, &g=
-obj);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		ret =3D
-> > > > > > > drm_exec_retry_on_contention(&exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		KUNIT_EXPECT_EQ(test, ret, 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (ret)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			break;
-> > > > > > > @@ -83,14 +83,14 @@ static void test_lock_unlock(struct
-> > > > > > > kunit
-> > > > > > > *test)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_init(&exec,
-> > > > > > > DRM_EXEC_INTERRUPTIBLE_WAIT,
-> > > > > > > 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(&exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		ret =3D drm_exec_lock_obj(&exec, &g=
-obj);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		ret =3D
-> > > > > > > drm_exec_retry_on_contention(&exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		KUNIT_EXPECT_EQ(test, ret, 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (ret)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			break;
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		drm_exec_unlock_obj(&exec, &gobj);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		ret =3D drm_exec_lock_obj(&exec, &g=
-obj);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		ret =3D
-> > > > > > > drm_exec_retry_on_contention(&exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		KUNIT_EXPECT_EQ(test, ret, 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (ret)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			break;
-> > > > > > > @@ -110,13 +110,13 @@ static void test_duplicates(struct
-> > > > > > > kunit
-> > > > > > > *test)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_init(&exec, DRM_EXEC_IGNORE=
-_DUPLICATES,
-> > > > > > > 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(&exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		ret =3D drm_exec_lock_obj(&exec, &g=
-obj);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		ret =3D
-> > > > > > > drm_exec_retry_on_contention(&exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		KUNIT_EXPECT_EQ(test, ret, 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (ret)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			break;
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		ret =3D drm_exec_lock_obj(&exec, &g=
-obj);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		ret =3D
-> > > > > > > drm_exec_retry_on_contention(&exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		KUNIT_EXPECT_EQ(test, ret, 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (ret)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			break;
-> > > > > > > @@ -137,7 +137,7 @@ static void test_prepare(struct kunit
-> > > > > > > *test)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_init(&exec,
-> > > > > > > DRM_EXEC_INTERRUPTIBLE_WAIT,
-> > > > > > > 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(&exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		ret =3D drm_exec_prepare_obj(&exec,=
- &gobj,
-> > > > > > > 1);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		ret =3D
-> > > > > > > drm_exec_retry_on_contention(&exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		KUNIT_EXPECT_EQ(test, ret, 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (ret)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			break;
-> > > > > > > diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> > > > > > > b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> > > > > > > index 040dd142c49c..20ec1ab1b52d 100644
-> > > > > > > --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> > > > > > > +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> > > > > > > @@ -200,7 +200,7 @@ static int handle_pagefault(struct
-> > > > > > > xe_gt
-> > > > > > > *gt,
-> > > > > > > struct pagefault *pf)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_init(&exec, 0, 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(&exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		ret =3D xe_pf_begin(&exec, vma, ato=
-mic,
-> > > > > > > tile-
-> > > > > > > > id);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		ret =3D
-> > > > > > > drm_exec_retry_on_contention(&exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (ret)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto unlock_dma_resv;
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > @@ -543,7 +543,7 @@ static int handle_acc(struct xe_gt
-> > > > > > > *gt,
-> > > > > > > struct
-> > > > > > > acc *acc)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_init(&exec, 0, 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(&exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		ret =3D xe_pf_begin(&exec, vma, tru=
-e,
-> > > > > > > tile-
-> > > > > > > > id);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		ret =3D
-> > > > > > > drm_exec_retry_on_contention(&exec,
-> > > > > > > ret);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (ret)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			break;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	}
-> > > > > > > diff --git a/drivers/gpu/drm/xe/xe_vm.c
-> > > > > > > b/drivers/gpu/drm/xe/xe_vm.c
-> > > > > > > index e2ec148c9c33..335524e803e7 100644
-> > > > > > > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > > > > > > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > > > > > > @@ -501,7 +501,7 @@ static void
-> > > > > > > preempt_rebind_work_func(struct
-> > > > > > > work_struct *w)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		bool done =3D false;
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		err =3D xe_preempt_work_begin(&exec=
-, vm,
-> > > > > > > &done);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		err =3D
-> > > > > > > drm_exec_retry_on_contention(&exec,
-> > > > > > > err);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (err || done) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			drm_exec_fini(&exec);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			if (err &&
-> > > > > > > xe_vm_validate_should_retry(&exec, err, &end))
-> > > > > > > @@ -1052,7 +1052,7 @@ static void
-> > > > > > > xe_vma_destroy_unlocked(struct
-> > > > > > > xe_vma *vma)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_init(&exec, 0, 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(&exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		err =3D xe_vm_lock_vma(&exec, vma);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		err =3D
-> > > > > > > drm_exec_retry_on_contention(&exec,
-> > > > > > > err);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (XE_WARN_ON(err))
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			break;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	}
-> > > > > > > @@ -2148,11 +2148,11 @@ static struct xe_vma
-> > > > > > > *new_vma(struct
-> > > > > > > xe_vm
-> > > > > > > *vm, struct drm_gpuva_op_map *op,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			err =3D 0;
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			if (!bo->vm) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				err =3D
-> > > > > > > drm_exec_lock_obj(&exec,
-> > > > > > > xe_vm_obj(vm));
-> > > > > > > -
-> > > > > > > 				drm_exec_retry_on_conten
-> > > > > > > tion
-> > > > > > > (&
-> > > > > > > exec);
-> > > > > > > +				err =3D
-> > > > > > > drm_exec_retry_on_contention(&exec, err);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			}
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			if (!err) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				err =3D
-> > > > > > > drm_exec_lock_obj(&exec,
-> > > > > > > &bo->ttm.base);
-> > > > > > > -
-> > > > > > > 				drm_exec_retry_on_conten
-> > > > > > > tion
-> > > > > > > (&
-> > > > > > > exec);
-> > > > > > > +				err =3D
-> > > > > > > drm_exec_retry_on_contention(&exec, err);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			}
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			if (err) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0				drm_exec_fini(&exec);
-> > > > > > > @@ -2884,7 +2884,7 @@ static int
-> > > > > > > vm_bind_ioctl_ops_execute(struct
-> > > > > > > xe_vm *vm,
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 DRM_=
-EXEC_IGNORE_DUPLICATES, 0);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_exec_until_all_locked(&exec) {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		err =3D
-> > > > > > > vm_bind_ioctl_ops_lock_and_prep(&exec,
-> > > > > > > vm,
-> > > > > > > vops);
-> > > > > > > -		drm_exec_retry_on_contention(&exec);
-> > > > > > > +		err =3D
-> > > > > > > drm_exec_retry_on_contention(&exec,
-> > > > > > > err);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0		if (err)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0			goto unlock;
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > diff --git a/include/drm/drm_exec.h
-> > > > > > > b/include/drm/drm_exec.h
-> > > > > > > index aa786b828a0a..fafb40d96e38 100644
-> > > > > > > --- a/include/drm/drm_exec.h
-> > > > > > > +++ b/include/drm/drm_exec.h
-> > > > > > > @@ -51,6 +51,8 @@ struct drm_exec {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0	struct drm_gem_object *prelocked;
-> > > > > > > =C2=A0=C2=A0=C2=A0 };
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > +int drm_exec_handle_contended(struct drm_exec *exec);
-> > > > > > > +
-> > > > > > > =C2=A0=C2=A0=C2=A0 /**
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 * drm_exec_obj() - Return the object=
- for a give
-> > > > > > > drm_exec
-> > > > > > > index
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 * @exec: Pointer to the drm_exec con=
-text
-> > > > > > > @@ -113,15 +115,26 @@ __PASTE(__drm_exec_,
-> > > > > > > __LINE__):						\
-> > > > > > > =C2=A0=C2=A0=C2=A0 /**
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 * drm_exec_retry_on_contention - res=
-tart the loop to
-> > > > > > > grap
-> > > > > > > all
-> > > > > > > locks
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 * @exec: drm_exec object
-> > > > > > > + * @_ret: The current error status
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 *
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 * Control flow helper to continue wh=
-en a contention
-> > > > > > > was
-> > > > > > > detected
-> > > > > > > and we need to
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 * clean up and re-start the loop to =
-prepare all GEM
-> > > > > > > objects.
-> > > > > > > + *
-> > > > > > > + * Return: If no loop restart occurred: The error
-> > > > > > > status.
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 */
-> > > > > > > -#define
-> > > > > > > drm_exec_retry_on_contention(exec)			\
-> > > > > > > -	do
-> > > > > > > {							\
-> > > > > > > -		if
-> > > > > > > (unlikely(drm_exec_is_contended(exec)))	\
-> > > > > > > -			goto
-> > > > > > > *__drm_exec_retry_ptr;		\
-> > > > > > > -	} while (0)
-> > > > > > > +#define drm_exec_retry_on_contention(exec,
-> > > > > > > _ret)			\
-> > > > > > > +	({					=09
-> > > > > > > =09
-> > > > > > > 	\
-> > > > > > > +		struct drm_exec *__exec =3D
-> > > > > > > (exec);			\
-> > > > > > > +		int __ret =3D
-> > > > > > > (_ret);					\
-> > > > > > > +						=09
-> > > > > > > =09
-> > > > > > > 	\
-> > > > > > > +		if
-> > > > > > > (unlikely(drm_exec_is_contended(__exec)))
-> > > > > > > {		\
-> > > > > > > +			WARN_ON(__ret !=3D -
-> > > > > > > EDEADLK);			\
-> > > > > > > +			__ret =3D
-> > > > > > > drm_exec_handle_contended(__exec);	\
-> > > > > > > +			if
-> > > > > > > (!__ret)					\
-> > > > > > > +				goto
-> > > > > > > *__drm_exec_retry_ptr;		\
-> > > > > > > +		}				=09
-> > > > > > > =09
-> > > > > > > 	\
-> > > > > > > +		__ret;				=09
-> > > > > > > =09
-> > > > > > > 	\
-> > > > > > > +	})
-> > > > > > > =C2=A0=C2=A0=C2=A0=20
-> > > > > > > =C2=A0=C2=A0=C2=A0 /**
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 * drm_exec_is_contended - check for =
-contention
->=20
+> ---
+>   drivers/gpu/drm/ttm/ttm_device.c   |  4 +-
+>   drivers/gpu/drm/ttm/ttm_resource.c | 89 +++++++++++++++++++++++-------
+>   include/drm/ttm/ttm_resource.h     | 54 +++++++++++++++++-
+>   3 files changed, 125 insertions(+), 22 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
+> index 434cf0258000..09411978a13a 100644
+> --- a/drivers/gpu/drm/ttm/ttm_device.c
+> +++ b/drivers/gpu/drm/ttm/ttm_device.c
+> @@ -274,14 +274,14 @@ static void ttm_device_clear_lru_dma_mappings(struct ttm_device *bdev,
+>   	struct ttm_resource *res;
+>   
+>   	spin_lock(&bdev->lru_lock);
+> -	while ((res = list_first_entry_or_null(list, typeof(*res), lru))) {
+> +	while ((res = ttm_lru_first_res_or_null(list))) {
+>   		struct ttm_buffer_object *bo = res->bo;
+>   
+>   		/* Take ref against racing releases once lru_lock is unlocked */
+>   		if (!ttm_bo_get_unless_zero(bo))
+>   			continue;
+>   
+> -		list_del_init(&res->lru);
+> +		list_del_init(&bo->resource->lru.link);
+>   		spin_unlock(&bdev->lru_lock);
+>   
+>   		if (bo->ttm)
+> diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
+> index 4a66b851b67d..db9a7a3717c4 100644
+> --- a/drivers/gpu/drm/ttm/ttm_resource.c
+> +++ b/drivers/gpu/drm/ttm/ttm_resource.c
+> @@ -70,8 +70,8 @@ void ttm_lru_bulk_move_tail(struct ttm_lru_bulk_move *bulk)
+>   			dma_resv_assert_held(pos->last->bo->base.resv);
+>   
+>   			man = ttm_manager_type(pos->first->bo->bdev, i);
+> -			list_bulk_move_tail(&man->lru[j], &pos->first->lru,
+> -					    &pos->last->lru);
+> +			list_bulk_move_tail(&man->lru[j], &pos->first->lru.link,
+> +					    &pos->last->lru.link);
+>   		}
+>   	}
+>   }
+> @@ -84,14 +84,38 @@ ttm_lru_bulk_move_pos(struct ttm_lru_bulk_move *bulk, struct ttm_resource *res)
+>   	return &bulk->pos[res->mem_type][res->bo->priority];
+>   }
+>   
+> +/* Return the previous resource on the list (skip over non-resource list items) */
+> +static struct ttm_resource *ttm_lru_prev_res(struct ttm_resource *cur)
+> +{
+> +	struct ttm_lru_item *lru = &cur->lru;
+> +
+> +	do {
+> +		lru = list_prev_entry(lru, link);
+> +	} while (!ttm_lru_item_is_res(lru));
+> +
+> +	return ttm_lru_item_to_res(lru);
+> +}
+> +
+> +/* Return the next resource on the list (skip over non-resource list items) */
+> +static struct ttm_resource *ttm_lru_next_res(struct ttm_resource *cur)
+> +{
+> +	struct ttm_lru_item *lru = &cur->lru;
+> +
+> +	do {
+> +		lru = list_next_entry(lru, link);
+> +	} while (!ttm_lru_item_is_res(lru));
+> +
+> +	return ttm_lru_item_to_res(lru);
+> +}
+> +
+>   /* Move the resource to the tail of the bulk move range */
+>   static void ttm_lru_bulk_move_pos_tail(struct ttm_lru_bulk_move_pos *pos,
+>   				       struct ttm_resource *res)
+>   {
+>   	if (pos->last != res) {
+>   		if (pos->first == res)
+> -			pos->first = list_next_entry(res, lru);
+> -		list_move(&res->lru, &pos->last->lru);
+> +			pos->first = ttm_lru_next_res(res);
+> +		list_move(&res->lru.link, &pos->last->lru.link);
+>   		pos->last = res;
+>   	}
+>   }
+> @@ -122,11 +146,11 @@ static void ttm_lru_bulk_move_del(struct ttm_lru_bulk_move *bulk,
+>   		pos->first = NULL;
+>   		pos->last = NULL;
+>   	} else if (pos->first == res) {
+> -		pos->first = list_next_entry(res, lru);
+> +		pos->first = ttm_lru_next_res(res);
+>   	} else if (pos->last == res) {
+> -		pos->last = list_prev_entry(res, lru);
+> +		pos->last = ttm_lru_prev_res(res);
+>   	} else {
+> -		list_move(&res->lru, &pos->last->lru);
+> +		list_move(&res->lru.link, &pos->last->lru.link);
+>   	}
+>   }
+>   
+> @@ -155,7 +179,7 @@ void ttm_resource_move_to_lru_tail(struct ttm_resource *res)
+>   	lockdep_assert_held(&bo->bdev->lru_lock);
+>   
+>   	if (bo->pin_count) {
+> -		list_move_tail(&res->lru, &bdev->pinned);
+> +		list_move_tail(&res->lru.link, &bdev->pinned);
+>   
+>   	} else	if (bo->bulk_move) {
+>   		struct ttm_lru_bulk_move_pos *pos =
+> @@ -166,7 +190,7 @@ void ttm_resource_move_to_lru_tail(struct ttm_resource *res)
+>   		struct ttm_resource_manager *man;
+>   
+>   		man = ttm_manager_type(bdev, res->mem_type);
+> -		list_move_tail(&res->lru, &man->lru[bo->priority]);
+> +		list_move_tail(&res->lru.link, &man->lru[bo->priority]);
+>   	}
+>   }
+>   
+> @@ -197,9 +221,9 @@ void ttm_resource_init(struct ttm_buffer_object *bo,
+>   	man = ttm_manager_type(bo->bdev, place->mem_type);
+>   	spin_lock(&bo->bdev->lru_lock);
+>   	if (bo->pin_count)
+> -		list_add_tail(&res->lru, &bo->bdev->pinned);
+> +		list_add_tail(&res->lru.link, &bo->bdev->pinned);
+>   	else
+> -		list_add_tail(&res->lru, &man->lru[bo->priority]);
+> +		list_add_tail(&res->lru.link, &man->lru[bo->priority]);
+>   	man->usage += res->size;
+>   	spin_unlock(&bo->bdev->lru_lock);
+>   }
+> @@ -221,7 +245,7 @@ void ttm_resource_fini(struct ttm_resource_manager *man,
+>   	struct ttm_device *bdev = man->bdev;
+>   
+>   	spin_lock(&bdev->lru_lock);
+> -	list_del_init(&res->lru);
+> +	list_del_init(&res->lru.link);
+>   	man->usage -= res->size;
+>   	spin_unlock(&bdev->lru_lock);
+>   }
+> @@ -472,14 +496,16 @@ struct ttm_resource *
+>   ttm_resource_manager_first(struct ttm_resource_manager *man,
+>   			   struct ttm_resource_cursor *cursor)
+>   {
+> -	struct ttm_resource *res;
+> +	struct ttm_lru_item *lru;
+>   
+>   	lockdep_assert_held(&man->bdev->lru_lock);
+>   
+>   	for (cursor->priority = 0; cursor->priority < TTM_MAX_BO_PRIORITY;
+>   	     ++cursor->priority)
+> -		list_for_each_entry(res, &man->lru[cursor->priority], lru)
+> -			return res;
+> +		list_for_each_entry(lru, &man->lru[cursor->priority], link) {
+> +			if (ttm_lru_item_is_res(lru))
+> +				return ttm_lru_item_to_res(lru);
+> +		}
+>   
+>   	return NULL;
+>   }
+> @@ -498,15 +524,40 @@ ttm_resource_manager_next(struct ttm_resource_manager *man,
+>   			  struct ttm_resource_cursor *cursor,
+>   			  struct ttm_resource *res)
+>   {
+> +	struct ttm_lru_item *lru = &res->lru;
+> +
+>   	lockdep_assert_held(&man->bdev->lru_lock);
+>   
+> -	list_for_each_entry_continue(res, &man->lru[cursor->priority], lru)
+> -		return res;
+> +	list_for_each_entry_continue(lru, &man->lru[cursor->priority], link) {
+> +		if (ttm_lru_item_is_res(lru))
+> +			return ttm_lru_item_to_res(lru);
+> +	}
+>   
+>   	for (++cursor->priority; cursor->priority < TTM_MAX_BO_PRIORITY;
+>   	     ++cursor->priority)
+> -		list_for_each_entry(res, &man->lru[cursor->priority], lru)
+> -			return res;
+> +		list_for_each_entry(lru, &man->lru[cursor->priority], link) {
+> +			if (ttm_lru_item_is_res(lru))
+> +				ttm_lru_item_to_res(lru);
+> +		}
+> +
+> +	return NULL;
+> +}
+> +
+> +/**
+> + * ttm_lru_first_res_or_null() - Return the first resource on an lru list
+> + * @head: The list head of the lru list.
+> + *
+> + * Return: Pointer to the first resource on the lru list or NULL if
+> + * there is none.
+> + */
+> +struct ttm_resource *ttm_lru_first_res_or_null(struct list_head *head)
+> +{
+> +	struct ttm_lru_item *lru;
+> +
+> +	list_for_each_entry(lru, head, link) {
+> +		if (ttm_lru_item_is_res(lru))
+> +			return ttm_lru_item_to_res(lru);
+> +	}
+>   
+>   	return NULL;
+>   }
+> diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
+> index 69769355139f..1511d91e290d 100644
+> --- a/include/drm/ttm/ttm_resource.h
+> +++ b/include/drm/ttm/ttm_resource.h
+> @@ -49,6 +49,43 @@ struct io_mapping;
+>   struct sg_table;
+>   struct scatterlist;
+>   
+> +/**
+> + * enum ttm_lru_item_type - enumerate ttm_lru_item subclasses
+> + */
+> +enum ttm_lru_item_type {
+> +	/** @TTM_LRU_RESOURCE: The resource subclass */
+> +	TTM_LRU_RESOURCE,
+> +	/** @TTM_LRU_HITCH: The iterator hitch subclass */
+> +	TTM_LRU_HITCH
+> +};
+> +
+> +/**
+> + * struct ttm_lru_item - The TTM lru list node base class
+> + * @link: The list link
+> + * @type: The subclass type
+> + */
+> +struct ttm_lru_item {
+> +	struct list_head link;
+> +	enum ttm_lru_item_type type;
+> +};
+> +
+> +/**
+> + * ttm_lru_item_init() - initialize a struct ttm_lru_item
+> + * @item: The item to initialize
+> + * @type: The subclass type
+> + */
+> +static inline void ttm_lru_item_init(struct ttm_lru_item *item,
+> +				     enum ttm_lru_item_type type)
+> +{
+> +	item->type = type;
+> +	INIT_LIST_HEAD(&item->link);
+> +}
+> +
+> +static inline bool ttm_lru_item_is_res(const struct ttm_lru_item *item)
+> +{
+> +	return item->type == TTM_LRU_RESOURCE;
+> +}
+> +
+>   struct ttm_resource_manager_func {
+>   	/**
+>   	 * struct ttm_resource_manager_func member alloc
+> @@ -217,9 +254,21 @@ struct ttm_resource {
+>   	/**
+>   	 * @lru: Least recently used list, see &ttm_resource_manager.lru
+>   	 */
+> -	struct list_head lru;
+> +	struct ttm_lru_item lru;
+>   };
+>   
+> +/**
+> + * ttm_lru_item_to_res() - Downcast a struct ttm_lru_item to a struct ttm_resource
+> + * @item: The struct ttm_lru_item to downcast
+> + *
+> + * Return: Pointer to the embedding struct ttm_resource
+> + */
+> +static inline struct ttm_resource *
+> +ttm_lru_item_to_res(struct ttm_lru_item *item)
+> +{
+> +	return container_of(item, struct ttm_resource, lru);
+> +}
+> +
+>   /**
+>    * struct ttm_resource_cursor
+>    *
+> @@ -393,6 +442,9 @@ ttm_resource_manager_next(struct ttm_resource_manager *man,
+>   			  struct ttm_resource_cursor *cursor,
+>   			  struct ttm_resource *res);
+>   
+> +struct ttm_resource *
+> +ttm_lru_first_res_or_null(struct list_head *head);
+> +
+>   /**
+>    * ttm_resource_manager_for_each_res - iterate over all resources
+>    * @man: the resource manager
 
