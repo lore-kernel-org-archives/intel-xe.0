@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 649EEC27C44
-	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 09:55:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09E04C27C51
+	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 09:55:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DE2510FE9D;
-	Tue, 28 May 2024 09:55:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BE99112051;
+	Tue, 28 May 2024 09:55:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nEg4emkX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g7OS3JD4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83A9A10E7C3
- for <intel-xe@lists.freedesktop.org>; Tue, 28 May 2024 09:55:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B7A910E58D
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 May 2024 09:55:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716890116; x=1748426116;
+ t=1716890130; x=1748426130;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ZvZ1BphXYciURwEKa+fmU+EBguAVfZYndYSE48drrxo=;
- b=nEg4emkXaVZKuX671ivK2jJVRgb5YUnEGG3uiPfcYZ+V4SfsOCX48XaU
- 721ax0+N4GThr/TOiW9/uvUIfVMm8ld5ornWWF6xAi5aREDBCdOmbQNkI
- 2wYRcY8K2E3JnooIEh/mQ/xklQm6/Q6XEe0/IhUypSYzrmAtxLBqq7JQf
- CWP+n0tqKKD/3TptgusVMEGbqHU79oLU4x1Ctu3aykrirUK0IdhNVTQbq
- QHqMF5bjkbNSbtQD4GSufra/JOgQgIEq1YgrFq8RUoM324rQQc9yUiFuB
- 3e9d9iEIO2curVc1j2K0C9DTdEsgb6GLaIe+TTUwJr9vRmSmSjQoM5UPU g==;
-X-CSE-ConnectionGUID: +1VWNXwDQvSYa1h+YGOhWg==
-X-CSE-MsgGUID: 4BqTZ3WwRWepJdiG1RCOZA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13345531"
-X-IronPort-AV: E=Sophos;i="6.08,194,1712646000"; d="scan'208";a="13345531"
+ bh=JbpGHkp4ged+AgCHVyxdHqtlQoEZRRD2pBcHnf/8hVk=;
+ b=g7OS3JD45gV0tPRoD6Jdtz8J6G5blQiTmYaZGPYZJToCisZXZGgRdSM8
+ S7Z/Xpt8MgaPvp9sAihfBla28isIusxmNf8TJo5sWtnXcLz1qkYVoK9cE
+ FhoRe1fOT9Rdcp/AT15dPg5IWEeSs1auOzgXeylsT04FOvAZLqj8hdaL3
+ IECIr6+j5Lq4ZSbubXHrfr97lHdDH6fZHMQ138ynSNJyoBmm3kO9Ju/Bn
+ HrSw4UaScH5G2xsA15C5ajdpG0N1wMeLeeuwxxr8GEiQk1zX43/D8Mnke
+ 0qSpuQ9Y4Kjz7C9hi3mXQPWM/rVHAMkOaKZj6UVj/TZUeP5iTQ31c/7Vr Q==;
+X-CSE-ConnectionGUID: w7usoEvwSSSRwzuNn5rj3g==
+X-CSE-MsgGUID: oGCGt2AzTm2VzaG+ErPokA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13345557"
+X-IronPort-AV: E=Sophos;i="6.08,194,1712646000"; d="scan'208";a="13345557"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 02:55:16 -0700
-X-CSE-ConnectionGUID: O7vuLh5NSH22zLYogwPBnw==
-X-CSE-MsgGUID: OHTbct0/RgGCD5GRTZo2KA==
+ 28 May 2024 02:55:25 -0700
+X-CSE-ConnectionGUID: vWUl9ZWaS5qXlVj+9LNwow==
+X-CSE-MsgGUID: wJhRpHLOTTmMRLg69d0T3g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,194,1712646000"; d="scan'208";a="34932066"
+X-IronPort-AV: E=Sophos;i="6.08,194,1712646000"; d="scan'208";a="34932101"
 Received: from maurocar-mobl2.ger.corp.intel.com (HELO fedora..)
  ([10.245.244.233])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 02:55:15 -0700
+ 28 May 2024 02:55:24 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v5 03/20] drm/ttm: Use LRU hitches
-Date: Tue, 28 May 2024 11:54:45 +0200
-Message-ID: <20240528095503.90177-4-thomas.hellstrom@linux.intel.com>
+Subject: [CI v5 14/20] drm/exec: Introduce an evict mode
+Date: Tue, 28 May 2024 11:54:56 +0200
+Message-ID: <20240528095503.90177-15-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240528095503.90177-1-thomas.hellstrom@linux.intel.com>
 References: <20240528095503.90177-1-thomas.hellstrom@linux.intel.com>
@@ -67,31 +67,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Have iterators insert themselves into the list they are iterating
-over using hitch list nodes. Since only the iterator owner
-can remove these list nodes from the list, it's safe to unlock
-the list and when continuing, use them as a starting point. Due to
-the way LRU bumping works in TTM, newly added items will not be
-missed, and bumped items will be iterated over a second time before
-reaching the end of the list.
+Locking for eviction is in some way different from locking for
+submission:
 
-The exception is list with bulk move sublists. When bumping a
-sublist, a hitch that is part of that sublist will also be moved
-and we might miss items if restarting from it. This will be
-addressed in a later patch.
+1) We can't lock objects that are already locked for submission,
+hence DRM_EXEC_IGNORE_DUPLICATES must be unset.
+2) We must be able to re-lock objects locked for eviction,
+either for submission or for yet another eviction, in
+particular objects sharing a single resv must be considered.
+3) There is no point to keep a contending object after the
+transaction restart. We don't know whether we actually want to use
+it again.
 
-Changes in previous series:
-- Updated ttm_resource_cursor_fini() documentation.
-v2:
-- Don't reorder ttm_resource_manager_first() and _next().
-  (Christian König).
-- Use list_add instead of list_move
-  (Christian König)
-v3:
-- Split into two patches, one cleanup, one new functionality
-  (Christian König)
-- use ttm_resource_cursor_fini_locked() instead of open-coding
-  (Matthew Brost)
+So introduce a drm_exec evict mode, and for now instead of
+explicitly setting it using a function call or implement separate
+locking functions that use evict mode, assume evict mode if
+there is a snapshot registered. This can easily be changed later.
+
+To keep track of resvs locked for eviction, use a pointer set
+implemented by an xarray. This is probably not the most efficient
+data structure but used as an easy-to-implement first approach.
+If the set is empty (evict mode never used), the performance-
+and memory usage impact will be very small.
+
+TODO: Probably want to implement the set using an open addressing
+hash table.
 
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
@@ -99,183 +99,219 @@ Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: <dri-devel@lists.freedesktop.org>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/ttm/ttm_bo.c       |  1 +
- drivers/gpu/drm/ttm/ttm_device.c   |  9 +++--
- drivers/gpu/drm/ttm/ttm_resource.c | 56 +++++++++++++++++++++++++-----
- include/drm/ttm/ttm_resource.h     |  9 +++--
- 4 files changed, 62 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/drm_exec.c | 77 ++++++++++++++++++++++++++++++++++----
+ include/drm/drm_exec.h     | 15 ++++++++
+ 2 files changed, 85 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index 6396dece0db1..43eda720657f 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -621,6 +621,7 @@ int ttm_mem_evict_first(struct ttm_device *bdev,
- 		if (locked)
- 			dma_resv_unlock(res->bo->base.resv);
- 	}
-+	ttm_resource_cursor_fini_locked(&cursor);
+diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
+index 10528e6c4046..c70d8b01effb 100644
+--- a/drivers/gpu/drm/drm_exec.c
++++ b/drivers/gpu/drm/drm_exec.c
+@@ -64,6 +64,10 @@ static void drm_exec_unlock_all(struct drm_exec *exec)
  
- 	if (!bo) {
- 		if (busy_bo && !ttm_bo_get_unless_zero(busy_bo))
-diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
-index 09411978a13a..f9e9b1ec8c8a 100644
---- a/drivers/gpu/drm/ttm/ttm_device.c
-+++ b/drivers/gpu/drm/ttm/ttm_device.c
-@@ -170,12 +170,17 @@ int ttm_device_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
- 			num_pages = PFN_UP(bo->base.size);
- 			ret = ttm_bo_swapout(bo, ctx, gfp_flags);
- 			/* ttm_bo_swapout has dropped the lru_lock */
--			if (!ret)
-+			if (!ret) {
-+				ttm_resource_cursor_fini(&cursor);
- 				return num_pages;
--			if (ret != -EBUSY)
-+			}
-+			if (ret != -EBUSY) {
-+				ttm_resource_cursor_fini(&cursor);
- 				return ret;
-+			}
- 		}
+ 	drm_gem_object_put(exec->prelocked);
+ 	exec->prelocked = NULL;
++
++	/* garbage collect */
++	xa_destroy(&exec->resv_set);
++	xa_init(&exec->resv_set);
+ }
+ 
+ /**
+@@ -91,6 +95,8 @@ void drm_exec_init(struct drm_exec *exec, u32 flags, unsigned nr)
+ 	exec->contended = DRM_EXEC_DUMMY;
+ 	exec->prelocked = NULL;
+ 	exec->snap = NULL;
++	exec->drop_contended = false;
++	xa_init(&exec->resv_set);
+ }
+ EXPORT_SYMBOL(drm_exec_init);
+ 
+@@ -109,6 +115,7 @@ void drm_exec_fini(struct drm_exec *exec)
+ 		drm_gem_object_put(exec->contended);
+ 		ww_acquire_fini(&exec->ticket);
  	}
-+	ttm_resource_cursor_fini_locked(&cursor);
- 	spin_unlock(&bdev->lru_lock);
++	xa_destroy(&exec->resv_set);
+ }
+ EXPORT_SYMBOL(drm_exec_fini);
+ 
+@@ -139,6 +146,30 @@ bool drm_exec_cleanup(struct drm_exec *exec)
+ }
+ EXPORT_SYMBOL(drm_exec_cleanup);
+ 
++static unsigned long drm_exec_resv_to_key(const struct dma_resv *resv)
++{
++	return (unsigned long)resv / __alignof__(typeof(*resv));
++}
++
++static void
++drm_exec_resv_set_erase(struct drm_exec *exec, unsigned long key)
++{
++	if (xa_load(&exec->resv_set, key))
++		xa_erase(&exec->resv_set, key);
++}
++
++static bool drm_exec_in_evict_mode(struct drm_exec *exec)
++{
++	return !!exec->snap;
++}
++
++static void drm_exec_set_evict_mode(struct drm_exec *exec,
++				    struct drm_exec_snapshot *snap)
++{
++	exec->snap = snap;
++	exec->flags &= ~DRM_EXEC_IGNORE_DUPLICATES;
++}
++
+ /* Track the locked object in the array */
+ static int drm_exec_obj_locked(struct drm_exec *exec,
+ 			       struct drm_gem_object *obj,
+@@ -161,6 +192,14 @@ static int drm_exec_obj_locked(struct drm_exec *exec,
+ 	drm_gem_object_get(obj);
+ 	exec->objects[exec->num_objects++] = obj;
+ 
++	/*
++	 * Errors here are not fatal, It means the object we locked
++	 * for eviction can't be locked again. If that is problematic
++	 * we may need to reconsider this.
++	 */
++	if (drm_exec_in_evict_mode(exec))
++		(void)xa_store(&exec->resv_set, drm_exec_resv_to_key(obj->resv),
++			       obj->resv, gfp | __GFP_NOWARN);
  	return 0;
  }
-diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
-index 8bfbddddc0e8..9c8b6499edfb 100644
---- a/drivers/gpu/drm/ttm/ttm_resource.c
-+++ b/drivers/gpu/drm/ttm/ttm_resource.c
-@@ -33,6 +33,37 @@
  
- #include <drm/drm_util.h>
- 
-+/**
-+ * ttm_resource_cursor_fini_locked() - Finalize the LRU list cursor usage
-+ * @cursor: The struct ttm_resource_cursor to finalize.
-+ *
-+ * The function pulls the LRU list cursor off any lists it was previusly
-+ * attached to. Needs to be called with the LRU lock held. The function
-+ * can be called multiple times after eachother.
-+ */
-+void ttm_resource_cursor_fini_locked(struct ttm_resource_cursor *cursor)
-+{
-+	lockdep_assert_held(&cursor->man->bdev->lru_lock);
-+	list_del_init(&cursor->hitch.link);
-+}
-+
-+/**
-+ * ttm_resource_cursor_fini() - Finalize the LRU list cursor usage
-+ * @cursor: The struct ttm_resource_cursor to finalize.
-+ *
-+ * The function pulls the LRU list cursor off any lists it was previusly
-+ * attached to. Needs to be called without the LRU list lock held. The
-+ * function can be called multiple times after eachother.
-+ */
-+void ttm_resource_cursor_fini(struct ttm_resource_cursor *cursor)
-+{
-+	spinlock_t *lru_lock = &cursor->man->bdev->lru_lock;
-+
-+	spin_lock(lru_lock);
-+	ttm_resource_cursor_fini_locked(cursor);
-+	spin_unlock(lru_lock);
-+}
-+
- /**
-  * ttm_lru_bulk_move_init - initialize a bulk move structure
-  * @bulk: the structure to init
-@@ -485,12 +516,15 @@ void ttm_resource_manager_debug(struct ttm_resource_manager *man,
- EXPORT_SYMBOL(ttm_resource_manager_debug);
- 
- /**
-- * ttm_resource_manager_first
-- *
-+ * ttm_resource_manager_first() - Start iterating over the resources
-+ * of a resource manager
-  * @man: resource manager to iterate over
-  * @cursor: cursor to record the position
-  *
-- * Returns the first resource from the resource manager.
-+ * Initializes the cursor and starts iterating. When done iterating,
-+ * the caller must explicitly call ttm_resource_cursor_fini().
-+ *
-+ * Return: The first resource from the resource manager.
-  */
- struct ttm_resource *
- ttm_resource_manager_first(struct ttm_resource_manager *man,
-@@ -500,13 +534,15 @@ ttm_resource_manager_first(struct ttm_resource_manager *man,
- 
- 	cursor->priority = 0;
- 	cursor->man = man;
--	cursor->cur = &man->lru[cursor->priority];
-+	ttm_lru_item_init(&cursor->hitch, TTM_LRU_HITCH);
-+	list_add(&cursor->hitch.link, &man->lru[cursor->priority]);
-+
- 	return ttm_resource_manager_next(cursor);
- }
- 
- /**
-- * ttm_resource_manager_next
-- *
-+ * ttm_resource_manager_next() - Continue iterating over the resource manager
-+ * resources
-  * @cursor: cursor to record the position
-  *
-  * Return: the next resource from the resource manager.
-@@ -520,10 +556,10 @@ ttm_resource_manager_next(struct ttm_resource_cursor *cursor)
- 	lockdep_assert_held(&man->bdev->lru_lock);
- 
- 	for (;;) {
--		lru = list_entry(cursor->cur, typeof(*lru), link);
-+		lru = &cursor->hitch;
- 		list_for_each_entry_continue(lru, &man->lru[cursor->priority], link) {
- 			if (ttm_lru_item_is_res(lru)) {
--				cursor->cur = &lru->link;
-+				list_move(&cursor->hitch.link, &lru->link);
- 				return ttm_lru_item_to_res(lru);
- 			}
- 		}
-@@ -531,9 +567,11 @@ ttm_resource_manager_next(struct ttm_resource_cursor *cursor)
- 		if (++cursor->priority >= TTM_MAX_BO_PRIORITY)
- 			break;
- 
--		cursor->cur = &man->lru[cursor->priority];
-+		list_move(&cursor->hitch.link, &man->lru[cursor->priority]);
+@@ -184,6 +223,9 @@ static int drm_exec_lock_contended(struct drm_exec *exec)
+ 		dma_resv_lock_slow(obj->resv, &exec->ticket);
  	}
  
-+	ttm_resource_cursor_fini_locked(cursor);
++	if (exec->drop_contended)
++		goto error_unlock;
 +
- 	return NULL;
- }
+ 	ret = drm_exec_obj_locked(exec, obj, GFP_KERNEL);
+ 	if (unlikely(ret))
+ 		goto error_unlock;
+@@ -227,10 +269,19 @@ int drm_exec_trylock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
+ 	}
  
-diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
-index 7d81fd5b5b83..8fac781f641e 100644
---- a/include/drm/ttm/ttm_resource.h
-+++ b/include/drm/ttm/ttm_resource.h
-@@ -273,17 +273,22 @@ ttm_lru_item_to_res(struct ttm_lru_item *item)
-  * struct ttm_resource_cursor
-  *
-  * @man: The resource manager currently being iterated over.
-- * @cur: The list head the cursor currently points to.
-+ * @hitch: A hitch list node inserted before the next resource
-+ * to iterate over.
-  * @priority: the current priority
-  *
-  * Cursor to iterate over the resources in a manager.
-  */
- struct ttm_resource_cursor {
- 	struct ttm_resource_manager *man;
--	struct list_head *cur;
-+	struct ttm_lru_item hitch;
- 	unsigned int priority;
+ 	if (!dma_resv_trylock_ctx(obj->resv, &exec->ticket)) {
+-		if (dma_resv_locking_ctx(obj->resv) == &exec->ticket)
+-			return (exec->flags & DRM_EXEC_IGNORE_DUPLICATES) ? 0 : -EALREADY;
+-		else
++		if (dma_resv_locking_ctx(obj->resv) == &exec->ticket) {
++			unsigned long key = drm_exec_resv_to_key(obj->resv);
++
++			if (exec->flags & DRM_EXEC_IGNORE_DUPLICATES ||
++			    xa_load(&exec->resv_set, key)) {
++				if (!drm_exec_in_evict_mode(exec))
++					drm_exec_resv_set_erase(exec, key);
++				return 0;
++			}
++			return -EALREADY;
++		} else {
+ 			return -EBUSY;
++		}
+ 	}
+ 
+ 	ret = drm_exec_obj_locked(exec, obj, GFP_ATOMIC | __GFP_NOWARN);
+@@ -274,12 +325,20 @@ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
+ 	if (unlikely(ret == -EDEADLK)) {
+ 		drm_gem_object_get(obj);
+ 		exec->contended = obj;
++		exec->drop_contended = drm_exec_in_evict_mode(exec);
+ 		return -EDEADLK;
+ 	}
+ 
+-	if (unlikely(ret == -EALREADY) &&
+-	    exec->flags & DRM_EXEC_IGNORE_DUPLICATES)
+-		return 0;
++	if (unlikely(ret == -EALREADY)) {
++		unsigned long key = drm_exec_resv_to_key(obj->resv);
++
++		if (exec->flags & DRM_EXEC_IGNORE_DUPLICATES ||
++		    xa_load(&exec->resv_set, key)) {
++			if (!drm_exec_in_evict_mode(exec))
++				drm_exec_resv_set_erase(exec, key);
++			return 0;
++		}
++	}
+ 
+ 	if (unlikely(ret))
+ 		return ret;
+@@ -310,6 +369,7 @@ void drm_exec_unlock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
+ 
+ 	for (i = exec->num_objects; i--;) {
+ 		if (exec->objects[i] == obj) {
++			drm_exec_resv_set_erase(exec, drm_exec_resv_to_key(obj->resv));
+ 			dma_resv_unlock(obj->resv);
+ 			for (++i; i < exec->num_objects; ++i)
+ 				exec->objects[i - 1] = exec->objects[i];
+@@ -401,12 +461,14 @@ void drm_exec_restore(struct drm_exec *exec, struct drm_exec_snapshot *snap)
+ 		if (index + 1 == snap->num_locked)
+ 			break;
+ 
++		xa_erase(&exec->resv_set, drm_exec_resv_to_key(obj->resv));
+ 		dma_resv_unlock(obj->resv);
+ 		drm_gem_object_put(obj);
+ 		exec->objects[index] = NULL;
+ 	}
+ 
+ 	exec->num_objects = snap->num_locked;
++	exec->flags = snap->flags;
+ 
+ 	if (!exec->prelocked)
+ 		exec->prelocked = snap->prelocked;
+@@ -429,8 +491,9 @@ void drm_exec_snapshot(struct drm_exec *exec, struct drm_exec_snapshot *snap)
+ 	snap->prelocked = exec->prelocked;
+ 	if (snap->prelocked)
+ 		drm_gem_object_get(snap->prelocked);
++	snap->flags = exec->flags;
+ 	snap->saved_snap = exec->snap;
+-	exec->snap = snap;
++	drm_exec_set_evict_mode(exec, snap);
+ }
+ EXPORT_SYMBOL(drm_exec_snapshot);
+ 
+diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
+index af5f3ffc7174..cafeec5dddfe 100644
+--- a/include/drm/drm_exec.h
++++ b/include/drm/drm_exec.h
+@@ -5,6 +5,7 @@
+ 
+ #include <linux/compiler.h>
+ #include <linux/ww_mutex.h>
++#include <linux/xarray.h>
+ 
+ #define DRM_EXEC_INTERRUPTIBLE_WAIT	BIT(0)
+ #define DRM_EXEC_IGNORE_DUPLICATES	BIT(1)
+@@ -53,6 +54,17 @@ struct drm_exec {
+ 	 * @snap: Pointer to the last snapshot taken or NULL if none.
+ 	 */
+ 	struct drm_exec_snapshot *snap;
++
++	/**
++	 * @resv_set: Set of pointers to locked objects in evict mode.
++	 */
++	struct xarray resv_set;
++
++	/**
++	 * @drop_contended: Drop the contended object after WW transaction
++	 * relaxation.
++	 */
++	bool drop_contended;
  };
  
-+void ttm_resource_cursor_fini_locked(struct ttm_resource_cursor *cursor);
-+
-+void ttm_resource_cursor_fini(struct ttm_resource_cursor *cursor);
-+
  /**
-  * struct ttm_lru_bulk_move_pos
-  *
+@@ -67,6 +79,9 @@ struct drm_exec_snapshot {
+ 
+ 	/** @num_locked: Number of locked objects at snapshot time. */
+ 	unsigned long num_locked;
++
++	/** @flags: The drm_exec flags at snapshot time. */
++	u32 flags;
+ };
+ 
+ /**
 -- 
 2.44.0
 
