@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57752C41513
-	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 14:26:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8888C25B78
+	for <intel-xe@archiver.kernel.org>; Tue, 28 May 2024 14:26:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C7D6112268;
-	Tue, 28 May 2024 14:26:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C3971122DF;
+	Tue, 28 May 2024 14:26:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bqo9Crs5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SBf2gMEM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4263410FA16;
- Tue, 28 May 2024 14:25:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B9B3112322;
+ Tue, 28 May 2024 14:25:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716906354; x=1748442354;
+ t=1716906333; x=1748442333;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UFPLV0K/QJCW5a0HP8MWN60r/LumKh0UVZF2JRSXmAc=;
- b=Bqo9Crs59LxTA9H9zB/p+P0PW6BfZbaBnBeb/y44bRtp12p/4fjO0PUK
- QBcz2/ZN9g/IpjVWZq88OsYnLaFvxjt/iDD9IMIXkrblTBb7fr18JTsna
- wE1Mah+FyL6kINwBlxAjli1YGdTj/IJL6BitSXvatjjtth2LAollioLPH
- 3X5rasre3ONbDQURbIWO75EOnPW0QOZAJs6nSxL3QodGq9nGmyJyvyOkP
- SYhq5Quyw3G4zE5gZShDCVG0/Oooxcyw1cVtY1mcf8jBsMiHzQFIUBZbi
- eagRicUxZKDxo20L2+olKDP/yaRJYBAaMOscEsgp9359Dh5a2bfUlAnTo w==;
-X-CSE-ConnectionGUID: p7hjyCYuTEC/sbvf8je/Tg==
-X-CSE-MsgGUID: /7baVOe4RimSrm9CeRieJw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="35769089"
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="35769089"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 07:25:54 -0700
-X-CSE-ConnectionGUID: hLmegPWrQICcUBlFcltK5g==
-X-CSE-MsgGUID: 9eRDaR3PTWCoIhwn+Pgvfw==
+ bh=O6HWgoD/wpft4AU++fKecGnRzpy3dHCYx2nguyLMtKw=;
+ b=SBf2gMEMfySFLDLQ7dWYCoACcXVeFkpUg9Fi/GXj6p0rIbsxVM59UwRv
+ efYC0t1M+9otiMOyiK/dgpOCYO6M2aGIxwO2B914CHvUO9qwDPFkxWCfe
+ iJVY3xQBd5EhK3IT8sb3O0E9iAGlzQwCXi0gXsPVq1SYTMuLcjwhfwhUd
+ qECiEETS08O1fNCEvsOiuBHY2smEiDQb2lREK59fi+SDIESMZ648a062b
+ g8aqWcirQrR+O9CR0ykfxMhuZ0DVmssdqgvxUebxtakGs586vPVKXyXiP
+ zqA2W1XsSCgNa4avwJfSQZpPpnjV+8RE0TaMP4ihE9IS8FJx49HeJ3gOM Q==;
+X-CSE-ConnectionGUID: aC3k1N+zRu2mDFilIA/TDg==
+X-CSE-MsgGUID: +JZ5DSylRnCOXuAVMk4ZmQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="24381077"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="24381077"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2024 07:25:33 -0700
+X-CSE-ConnectionGUID: FQ75DlZeTZyQcWMku8pzfg==
+X-CSE-MsgGUID: UzJu8LXmTomHhyqO/IC3bg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="39615106"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="39531133"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.13])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 07:25:52 -0700
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2024 07:25:31 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 09/12] drm/i915/cdclk: use i9xx_fsb_freq() for rawclk_freq
- initialization
-Date: Tue, 28 May 2024 17:24:58 +0300
-Message-Id: <83e668584c898e445552275a09cc4fa55d68f62a.1716906179.git.jani.nikula@intel.com>
+Subject: [PATCH 05/12] drm/i915/dram: rearrange mem freq init
+Date: Tue, 28 May 2024 17:24:54 +0300
+Message-Id: <b5d045df9cc2cba746cfd3d29990b132ddbaf023.1716906179.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1716906179.git.jani.nikula@intel.com>
 References: <cover.1716906179.git.jani.nikula@intel.com>
@@ -71,86 +70,140 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of duplicating the CLKCFG parsing, reuse i9xx_fsb_freq() to
-figure out rawclk_freq where applicable.
+Follow the same style in mem freq init as in fsb freq init, returning
+the value instead of assigning in multiple places.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 46 ++--------------------
- 1 file changed, 3 insertions(+), 43 deletions(-)
+ drivers/gpu/drm/i915/soc/intel_dram.c | 59 ++++++++++++---------------
+ 1 file changed, 25 insertions(+), 34 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index b78154c82a71..c731c489c925 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -23,6 +23,7 @@
- 
- #include <linux/time.h>
- 
-+#include "soc/intel_dram.h"
- #include "hsw_ips.h"
- #include "i915_reg.h"
- #include "intel_atomic.h"
-@@ -3529,10 +3530,8 @@ static int vlv_hrawclk(struct drm_i915_private *dev_priv)
- 				      CCK_DISPLAY_REF_CLOCK_CONTROL);
+diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
+index 1a4db52ac258..266ed6cfa485 100644
+--- a/drivers/gpu/drm/i915/soc/intel_dram.c
++++ b/drivers/gpu/drm/i915/soc/intel_dram.c
+@@ -48,7 +48,7 @@ static bool pnv_is_ddr3(struct drm_i915_private *i915)
+ 	return intel_uncore_read(&i915->uncore, CSHRDDR3CTL) & CSHRDDR3CTL_DDR3;
  }
  
--static int i9xx_hrawclk(struct drm_i915_private *dev_priv)
-+static int i9xx_hrawclk(struct drm_i915_private *i915)
+-static void pnv_detect_mem_freq(struct drm_i915_private *dev_priv)
++static unsigned int pnv_mem_freq(struct drm_i915_private *dev_priv)
  {
--	u32 clkcfg;
--
- 	/*
- 	 * hrawclock is 1/4 the FSB frequency
- 	 *
-@@ -3543,46 +3542,7 @@ static int i9xx_hrawclk(struct drm_i915_private *dev_priv)
- 	 * don't know which registers have that information,
- 	 * and all the relevant docs have gone to bit heaven :(
- 	 */
--	clkcfg = intel_de_read(dev_priv, CLKCFG) & CLKCFG_FSB_MASK;
--
--	if (IS_MOBILE(dev_priv)) {
--		switch (clkcfg) {
--		case CLKCFG_FSB_400:
--			return 100000;
--		case CLKCFG_FSB_533:
--			return 133333;
--		case CLKCFG_FSB_667:
--			return 166667;
--		case CLKCFG_FSB_800:
--			return 200000;
--		case CLKCFG_FSB_1067:
--			return 266667;
--		case CLKCFG_FSB_1333:
--			return 333333;
--		default:
--			MISSING_CASE(clkcfg);
--			return 133333;
--		}
--	} else {
--		switch (clkcfg) {
--		case CLKCFG_FSB_400_ALT:
--			return 100000;
--		case CLKCFG_FSB_533:
--			return 133333;
--		case CLKCFG_FSB_667:
--			return 166667;
--		case CLKCFG_FSB_800:
--			return 200000;
--		case CLKCFG_FSB_1067_ALT:
--			return 266667;
--		case CLKCFG_FSB_1333_ALT:
--			return 333333;
--		case CLKCFG_FSB_1600_ALT:
--			return 400000;
--		default:
--			return 133333;
--		}
--	}
-+	return DIV_ROUND_CLOSEST(i9xx_fsb_freq(i915), 4);
+ 	u32 tmp;
+ 
+@@ -56,44 +56,38 @@ static void pnv_detect_mem_freq(struct drm_i915_private *dev_priv)
+ 
+ 	switch (tmp & CLKCFG_MEM_MASK) {
+ 	case CLKCFG_MEM_533:
+-		dev_priv->mem_freq = 533;
+-		break;
++		return 533;
+ 	case CLKCFG_MEM_667:
+-		dev_priv->mem_freq = 667;
+-		break;
++		return 667;
+ 	case CLKCFG_MEM_800:
+-		dev_priv->mem_freq = 800;
+-		break;
++		return 800;
+ 	}
++
++	return 0;
  }
  
- /**
+-static void ilk_detect_mem_freq(struct drm_i915_private *dev_priv)
++static unsigned int ilk_mem_freq(struct drm_i915_private *dev_priv)
+ {
+ 	u16 ddrpll;
+ 
+ 	ddrpll = intel_uncore_read16(&dev_priv->uncore, DDRMPLL1);
+ 	switch (ddrpll & 0xff) {
+ 	case 0xc:
+-		dev_priv->mem_freq = 800;
+-		break;
++		return 800;
+ 	case 0x10:
+-		dev_priv->mem_freq = 1066;
+-		break;
++		return 1066;
+ 	case 0x14:
+-		dev_priv->mem_freq = 1333;
+-		break;
++		return 1333;
+ 	case 0x18:
+-		dev_priv->mem_freq = 1600;
+-		break;
++		return 1600;
+ 	default:
+ 		drm_dbg(&dev_priv->drm, "unknown memory frequency 0x%02x\n",
+ 			ddrpll & 0xff);
+-		dev_priv->mem_freq = 0;
+-		break;
++		return 0;
+ 	}
+ }
+ 
+-static void chv_detect_mem_freq(struct drm_i915_private *i915)
++static unsigned int chv_mem_freq(struct drm_i915_private *i915)
+ {
+ 	u32 val;
+ 
+@@ -103,15 +97,13 @@ static void chv_detect_mem_freq(struct drm_i915_private *i915)
+ 
+ 	switch ((val >> 2) & 0x7) {
+ 	case 3:
+-		i915->mem_freq = 2000;
+-		break;
++		return 2000;
+ 	default:
+-		i915->mem_freq = 1600;
+-		break;
++		return 1600;
+ 	}
+ }
+ 
+-static void vlv_detect_mem_freq(struct drm_i915_private *i915)
++static unsigned int vlv_mem_freq(struct drm_i915_private *i915)
+ {
+ 	u32 val;
+ 
+@@ -122,27 +114,26 @@ static void vlv_detect_mem_freq(struct drm_i915_private *i915)
+ 	switch ((val >> 6) & 3) {
+ 	case 0:
+ 	case 1:
+-		i915->mem_freq = 800;
+-		break;
++		return 800;
+ 	case 2:
+-		i915->mem_freq = 1066;
+-		break;
++		return 1066;
+ 	case 3:
+-		i915->mem_freq = 1333;
+-		break;
++		return 1333;
+ 	}
++
++	return 0;
+ }
+ 
+ static void detect_mem_freq(struct drm_i915_private *i915)
+ {
+ 	if (IS_PINEVIEW(i915))
+-		pnv_detect_mem_freq(i915);
++		i915->mem_freq = pnv_mem_freq(i915);
+ 	else if (GRAPHICS_VER(i915) == 5)
+-		ilk_detect_mem_freq(i915);
++		i915->mem_freq = ilk_mem_freq(i915);
+ 	else if (IS_CHERRYVIEW(i915))
+-		chv_detect_mem_freq(i915);
++		i915->mem_freq = chv_mem_freq(i915);
+ 	else if (IS_VALLEYVIEW(i915))
+-		vlv_detect_mem_freq(i915);
++		i915->mem_freq = vlv_mem_freq(i915);
+ 
+ 	if (IS_PINEVIEW(i915))
+ 		i915->is_ddr3 = pnv_is_ddr3(i915);
 -- 
 2.39.2
 
