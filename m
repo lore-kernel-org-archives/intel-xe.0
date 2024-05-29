@@ -4,65 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 362AAC25B75
-	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 11:25:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4E84C25B75
+	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 11:50:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFFDA112EC5;
-	Wed, 29 May 2024 11:25:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1B681134AC;
+	Wed, 29 May 2024 11:50:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jfyqLgCe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JourbTBV";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FF3A112EC5
- for <intel-xe@lists.freedesktop.org>; Wed, 29 May 2024 11:25:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD1881134AC
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 May 2024 11:50:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716981943; x=1748517943;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=KRv97oGG9DqIYhpUnJ7akjC9boZJtItC0q70lQfSTTo=;
- b=jfyqLgCeUZsgyJQrzUM2FFmJiS3S9EyjjlGDJX2E72vECGz7dTkvgd52
- Q3TmocBpULk7rqarBa46bSTBGHTMH6Pz5wJgjSoJMwhr2DbSqSnm3bI3Y
- WxoCnw++I4CPFq4Qy6X6FfMPVDctZp+dmDhUDbQwKvLGCNUvOLSCUSl7I
- oLjWSlhQW0fPPSO7TyQ+Q0fNJft8MuTNsu5gSD4AewVKHsiK5Xe5JAZBV
- xU2QEGT7k6LV9BQiGOjnHZBYNHgqsNHbIko9jFE9w5Ud3MYB6Q9blcCCM
- vnk1jHAYj7rU+f6kzCjAwvF/41RhMh1KGdbUll1wklb/nDXC4w4bhQtVB Q==;
-X-CSE-ConnectionGUID: /nGdJeCbTXGAQCt0KwmHNg==
-X-CSE-MsgGUID: gEq+eScUSGq0SO0ViZ+VKQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13506399"
-X-IronPort-AV: E=Sophos;i="6.08,198,1712646000"; d="scan'208";a="13506399"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 04:25:42 -0700
-X-CSE-ConnectionGUID: jr/Xr1SkSHOrpSdHVz/IwA==
-X-CSE-MsgGUID: 1muTUeSjTTuPw6CB1eYq9A==
+ t=1716983422; x=1748519422;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=R02qc3Twe9sYRC9WgOUcHiA0byQ6r9ms76MeUyHwA64=;
+ b=JourbTBVfxzMSezDNnYQEfxGMHNbrVgTnGYc0lvxy24DqNzx3Ri3HCVK
+ yngFtCjyI39OaLtkmhULtkORcna2ExvAA89qiaMyICJsuC3Fn1mB9+bUc
+ 6ap51bBz5ZJTDT1uMLHL/S9oXUMUcVc6rJFxkzGqqcnDuVEZNe04XOBlI
+ vfFGNdJBKWGSK+rVxmdl9POaBoSQRbk2w7mt1Gx4891d6/nuvDeMHLEfo
+ Bph5pcsJG8PeVLRNUuE1gkoZrk3DVbJ7aIn0K67M9Qmq4/5SOTCtuom3w
+ hJhf/S4Ziszmi/FeU9c5Ynx32V77RfLlIlUl44xPe0d7J3U3q92caGFc+ g==;
+X-CSE-ConnectionGUID: 2BA8s1atQL6zNh3BrIVJaQ==
+X-CSE-MsgGUID: pzXGfiEQQ4ewmHFhK3Y2vg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="11748274"
+X-IronPort-AV: E=Sophos;i="6.08,198,1712646000"; d="scan'208";a="11748274"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2024 04:50:21 -0700
+X-CSE-ConnectionGUID: uFrGWSPxTEO2RriA/HWIYQ==
+X-CSE-MsgGUID: PrLrux16RvCN42hvzhjR7w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,198,1712646000"; d="scan'208";a="35377482"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa008.fm.intel.com with ESMTP; 29 May 2024 04:25:33 -0700
-Received: from [10.245.119.62] (mwajdecz-MOBL.ger.corp.intel.com
- [10.245.119.62])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id AE79627BB3;
- Wed, 29 May 2024 12:25:23 +0100 (IST)
-Message-ID: <46164a96-f72c-4991-a41d-eea299540d75@intel.com>
-Date: Wed, 29 May 2024 13:25:03 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] drm/xe: Rename internal vram helper function
-To: Matthew Brost <matthew.brost@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,198,1712646000"; d="scan'208";a="35474838"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.86])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2024 04:50:18 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>, Matthew Brost
+ <matthew.brost@intel.com>, Matt Roper <matthew.d.roper@intel.com>, Thomas
+ =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, Lucas De
+ Marchi <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 4/5] drm/xe: Rename internal vram helper function
+In-Reply-To: <46164a96-f72c-4991-a41d-eea299540d75@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240527173554.1108-1-michal.wajdeczko@intel.com>
  <20240527173554.1108-5-michal.wajdeczko@intel.com>
  <20240528213515.GI4990@mdroper-desk1.amr.corp.intel.com>
  <ZlZXaouXdtj852Aq@DUT025-TGLU.fm.intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <ZlZXaouXdtj852Aq@DUT025-TGLU.fm.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+ <46164a96-f72c-4991-a41d-eea299540d75@intel.com>
+Date: Wed, 29 May 2024 14:50:23 +0300
+Message-ID: <87bk4okfb4.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,137 +74,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-++ maintainers
+On Wed, 29 May 2024, Michal Wajdeczko <michal.wajdeczko@intel.com> wrote:
+> ++ maintainers
+>
+> On 29.05.2024 00:15, Matthew Brost wrote:
+>> We have talked about this before and I think the consensous was "xe_"
+>> prefixes for static functions are fine, perhaps even desired. I can't
+>
+> IMO use of "xe_foo" prefix for static functions is inconsistent (as its
+> name suggests that it is public function while OTOH it is declared as
+> static) and may mislead that it could be used in other compilation unit.
+>
+> thus use of "xe_" (for static) should be rather discouraged but also at
+> the same time it shouldn't be treated as showstopper (with the hope
+> better name will be provided later)
+>
+>> find a reference but I do recall a discussion on the list about this.
+>> 
+>> I think the maintainers should make / document a rule wrt to "xe_"
+>> prefixes before we start making changes in this area as it is not clear.
 
-On 29.05.2024 00:15, Matthew Brost wrote:
-> On Tue, May 28, 2024 at 02:35:15PM -0700, Matt Roper wrote:
->> On Mon, May 27, 2024 at 07:35:53PM +0200, Michal Wajdeczko wrote:
->>> Drop no longer applicable "xe_mmio_" prefix and downgrade the
->>> existing kernel-doc for internal function to normal comment.
->>
->> As noted on the previous patch, there are several other functions with
->> "xe_" prefixes even though they're static (xe_resize_vram_bar,
->> xe_pci_resource_valid, xe_determine_lmem_bar_size, and the
->> xe_mmio_tile_vram_size you're updating here).  Maybe we should drop the
->> "xe_" prefix from all of them (and "xe_mmio" from this one) before the
->> movement of VRAM code to a new file?
+IMO the prefix is useful even for static functions for a few reasons:
 
-agree on doing all renames for consistency, but this time I just didn't
-want to make too many cleanups in one shot, my focus was to do clear
-code separation first
+- C has no namespaces. The use of prefixes in the kernel global
+  functions and macros is inconsistent at best. Prefixes avoid clashes.
 
->>
-> 
-> We have talked about this before and I think the consensous was "xe_"
-> prefixes for static functions are fine, perhaps even desired. I can't
+- It's quite handy to be able to just glance at a backtrace to see where
+  it's originating from. With a bunch of generic non-prefixed functions
+  in there, you kind of lose track, and have to look at the source.
 
-IMO use of "xe_foo" prefix for static functions is inconsistent (as its
-name suggests that it is public function while OTOH it is declared as
-static) and may mislead that it could be used in other compilation unit.
+- During refactoring, it's not uncommon to make functions
+  static/non-static, and having to rename at that point is a bit
+  tedious.
 
-thus use of "xe_" (for static) should be rather discouraged but also at
-the same time it shouldn't be treated as showstopper (with the hope
-better name will be provided later)
+That said, we haven't required this in i915. Also platform acronym
+prefixes are common especially in display code. Some people have started
+adding single underscore prefixes for static functions in a few places,
+but I pretty much frown on that.
 
-> find a reference but I do recall a discussion on the list about this.
-> 
-> I think the maintainers should make / document a rule wrt to "xe_"
-> prefixes before we start making changes in this area as it is not clear.
+> before we start writing rules for static functions, better to focus only
+> on rules for public naming convention for the components, like:
+>
+> files:
+> 	GOOD
+> 		xe_foo.ch
+> 		xe_foo_types.h
+> 		xe_foo_helpers.h
+> 	FINE
+> 		xe_gt_foo.ch
+> 	BAD
+> 		foo.ch
+>
+> types:
+> 	GOOD
+> 		struct xe_foo_xxx
+> 		enum xe_foo_yyy
+> 		typedef xe_foo_zzz
+> 	BAD
+> 		struct foo
+> 		struct xe_bar
+>
+> functions:
+> 	GOOD
+> 		xe_foo_bar(struct xe_foo *foo, ...)
+> 	FINE
+> 		xe_foo_bar(struct xe_device *xe, ...)
+> 		xe_gt_foo_bar(struct xe_gt *gt, ...)
+> 	BAD
+> 		xe_foo_bar(..., struct xe_foo *foo)
+> 		xe_bar_foo(struct xe_foo *foo, ...)
 
-before we start writing rules for static functions, better to focus only
-on rules for public naming convention for the components, like:
+And sometimes you want to prefer names that are easy to pronounce and
+make sense over names that strictly adhere to rules...
 
-files:
-	GOOD
-		xe_foo.ch
-		xe_foo_types.h
-		xe_foo_helpers.h
-	FINE
-		xe_gt_foo.ch
-	BAD
-		foo.ch
+BR,
+Jani.
 
-types:
-	GOOD
-		struct xe_foo_xxx
-		enum xe_foo_yyy
-		typedef xe_foo_zzz
-	BAD
-		struct foo
-		struct xe_bar
 
-functions:
-	GOOD
-		xe_foo_bar(struct xe_foo *foo, ...)
-	FINE
-		xe_foo_bar(struct xe_device *xe, ...)
-		xe_gt_foo_bar(struct xe_gt *gt, ...)
-	BAD
-		xe_foo_bar(..., struct xe_foo *foo)
-		xe_bar_foo(struct xe_foo *foo, ...)
-
-> 
-> Matt
-> 
->>
->> Matt
->>>
->>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>> ---
->>>  drivers/gpu/drm/xe/xe_vram.c | 12 ++++++------
->>>  1 file changed, 6 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
->>> index d8b81e4e050c..411e8d23fd4d 100644
->>> --- a/drivers/gpu/drm/xe/xe_vram.c
->>> +++ b/drivers/gpu/drm/xe/xe_vram.c
->>> @@ -192,8 +192,8 @@ static inline u64 get_flat_ccs_offset(struct xe_gt *gt, u64 tile_size)
->>>  	return offset;
->>>  }
->>>  
->>> -/**
->>> - * xe_mmio_tile_vram_size() - Collect vram size and offset information
->>> +/*
->>> + * tile_vram_size() - Collect vram size and offset information
->>>   * @tile: tile to get info for
->>>   * @vram_size: available vram (size - device reserved portions)
->>>   * @tile_size: actual vram size
->>> @@ -211,8 +211,8 @@ static inline u64 get_flat_ccs_offset(struct xe_gt *gt, u64 tile_size)
->>>   * NOTE: multi-tile bases will include the tile offset.
->>>   *
->>>   */
->>> -static int xe_mmio_tile_vram_size(struct xe_tile *tile, u64 *vram_size,
->>> -				  u64 *tile_size, u64 *tile_offset)
->>> +static int tile_vram_size(struct xe_tile *tile, u64 *vram_size,
->>> +			  u64 *tile_size, u64 *tile_offset)
->>>  {
->>>  	struct xe_device *xe = tile_to_xe(tile);
->>>  	struct xe_gt *gt = tile->primary_gt;
->>> @@ -287,7 +287,7 @@ int xe_vram_probe(struct xe_device *xe)
->>>  
->>>  	/* Get the size of the root tile's vram for later accessibility comparison */
->>>  	tile = xe_device_get_root_tile(xe);
->>> -	err = xe_mmio_tile_vram_size(tile, &vram_size, &tile_size, &tile_offset);
->>> +	err = tile_vram_size(tile, &vram_size, &tile_size, &tile_offset);
->>>  	if (err)
->>>  		return err;
->>>  
->>> @@ -302,7 +302,7 @@ int xe_vram_probe(struct xe_device *xe)
->>>  
->>>  	/* tile specific ranges */
->>>  	for_each_tile(tile, xe, id) {
->>> -		err = xe_mmio_tile_vram_size(tile, &vram_size, &tile_size, &tile_offset);
->>> +		err = tile_vram_size(tile, &vram_size, &tile_size, &tile_offset);
->>>  		if (err)
->>>  			return err;
->>>  
->>> -- 
->>> 2.43.0
->>>
->>>
->>
->> -- 
->> Matt Roper
->> Graphics Software Engineer
->> Linux GPU Platform Enablement
->> Intel Corporation
+-- 
+Jani Nikula, Intel
