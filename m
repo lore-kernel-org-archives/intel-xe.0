@@ -4,51 +4,180 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C941FC25B75
-	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 21:49:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA2D5C25B75
+	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 21:56:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6005C10E037;
-	Wed, 29 May 2024 21:49:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45F5311A6CD;
+	Wed, 29 May 2024 21:56:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M2RQGsTV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QL1Im6bc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47E1B10E037
- for <intel-xe@lists.freedesktop.org>; Wed, 29 May 2024 21:49:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDB3711A6CD
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 May 2024 21:56:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717019349; x=1748555349;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Xx3F5GdIIObQFhsqFQaKu+eqnskSvtp7U/vYVrU/Fow=;
- b=M2RQGsTVVxfm+qJ2eK1GhnK9Mn4dGC0GLHFVQq78Z84fiXgC2N0CJfs1
- F0iMPDVQLtyzlzpL2C26sXuVWS+VAdJ9mOHdSWYFJg1AgVM+XKZKLWkbc
- YlWycX864lcfir7aWrq6njI4k0OCUiNSK3laxxsTA1ALx93vKOXzRPhvI
- CEpaIkw9oo/jY+b723vUfZII/qa37IsjgCXx18eCLFaYnYwx+yI3NyQAP
- 6pefRLr1+vrtiUJ5UcYZYs11J/q4hSzoLK5KYuK+D82e8jUgUhTQGmRqZ
- zxPEL0gp7klw6Z/IeNvLJ9DMu89rEYzJ0dvp6Fa5LdOH6tWCOaHyT/Z0L A==;
-X-CSE-ConnectionGUID: wUDZOrXeRl+gKdxhUah5iw==
-X-CSE-MsgGUID: F2PjjIdEQw+/y6v9Bo08qg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="24010921"
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="24010921"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 14:49:08 -0700
-X-CSE-ConnectionGUID: lS64K6i0QtubDDG3pW4k8Q==
-X-CSE-MsgGUID: MWCH0Z9mT8miJKJ0jo5aGg==
+ t=1717019771; x=1748555771;
+ h=from:to:cc:subject:date:message-id:
+ content-transfer-encoding:mime-version;
+ bh=P1XJK3gmc5016oN12WW2ppNetF9kQmIFghm4/cp86M0=;
+ b=QL1Im6bcWhMdkcsKodbzE4NVE6qux55MxCOpoD24kkaABHPSSdCNBr6p
+ uT//xm+X7XrMo2pra8pCK86n1OfAKHvLGvqJzYMCxvMBXpeaHdkqWxwq+
+ ljSlxLQZ7E1oy4bvZ+e4LMbg59Uiyk02yO1qKAaqE8eqrVouWz9HdsZWb
+ VE/qybSpbTaBiT6lC2M3cyWhvd0DX5cq2AdDOeXgG3LoXFoaov6tUDoJg
+ 6X7P8V0MZbIia2sWbMhUAi5yKyHdpq82Dxj1w83Y3iJ1DtqKvTiAi8f9P
+ jagrcdlR/QIzAQ++K/dMPaDXgKqp+sr/ZHDEGLeca0NbG3L9ILrIVr99e Q==;
+X-CSE-ConnectionGUID: Rf8N15ijQa2EizqgXZCUrw==
+X-CSE-MsgGUID: vLb+KQvXRTeSHmGYPWcNhQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="13585080"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="13585080"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2024 14:56:11 -0700
+X-CSE-ConnectionGUID: 5wQZu+HCSPyK9wlBoC/4gg==
+X-CSE-MsgGUID: tBtOg+EyQGyafcjesrK4yQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="35678517"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 14:49:09 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/xe: Decouple xe_exec_queue and xe_lrc
-Date: Wed, 29 May 2024 14:49:02 -0700
-Message-ID: <20240529214902.22486-1-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.43.0
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="35656962"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 29 May 2024 14:56:10 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 29 May 2024 14:56:10 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 29 May 2024 14:56:09 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Wed, 29 May 2024 14:56:09 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.42) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Wed, 29 May 2024 14:56:09 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cC4An0Tsv5Drm/PO4VQKUlS+TL/5I1WMhX9yWDXDPNFKIhOA7DcGB4byRYay8R/i4VDUQwi+1wibR92sTW2YSrj4cJAlAaRd4r04Ix4Mm1qL8/O7GT21lI8ARWYgYlDV7dT1G9P5eXCEkB6psvjH7bqbtXtllvAFwGFdg97iBN4ugaHxRzMl+aMQ+IVvMlHOLzEicwVS52GzsB+Sf/wObAIhox1D8O+pdnvia/q9p3YNYAG0P6vjVGMLA/ZSp9jrP80OUcU9r9MvQTFRnJAIKM2n8gztlGH1DemM8n8RB+7rsjmggaVY1KCkYEs7y0htjEUrwzXIsuTDvUWPXuOy+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=l8QQ5rL5t97ibiITlWHJf7vzsk0yyaYH7hG93Fb6u2s=;
+ b=AkRIpqT5/yq877aX0V0chgFcJ+wt3QOxfAXfI09wZ6uTiDaMdQtSWfS/3DJhTTDq9XV+TB1Sc1BjlMd/b9Cyy6aQ1iDc9VaDgUoFzcGcdZjvbB2DvGHOXjHK1mYk0cUOWk5k8jJWaAFPCyY6n8KbkhxDpGSNAdTDRb2/BzmUM3aYpedgK+kp3rfau7/quVdnnK8NAwBofm0+j5PvLrQX0TTtyg0t0qO6Wfwb5TsCBwXcBmGTu+BLIYpL0rhTxMSC60KWE/6agYFVj2WbubijHESw3Qlh7XI2VJYQ9LIzJeSf3GQa+tk7pqFW4Muq7VyKgImZsYdunlEPpCMaPjmdLA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by IA1PR11MB6073.namprd11.prod.outlook.com (2603:10b6:208:3d7::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.28; Wed, 29 May
+ 2024 21:56:07 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::cf6f:eb9e:9143:f413]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::cf6f:eb9e:9143:f413%4]) with mapi id 15.20.7633.018; Wed, 29 May 2024
+ 21:56:07 +0000
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, Paulo Zanoni
+ <paulo.zanoni@intel.com>, Francois Dugast <francois.dugast@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH] drm/xe: Add missing runtime outer protection
+Date: Wed, 29 May 2024 17:56:03 -0400
+Message-ID: <20240529215603.105082-1-rodrigo.vivi@intel.com>
+X-Mailer: git-send-email 2.45.1
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0PR13CA0110.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c5::25) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|IA1PR11MB6073:EE_
+X-MS-Office365-Filtering-Correlation-Id: f1239ec8-65bf-4f32-c298-08dc802a24c9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|1800799015|366007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?cERxUUpRNlI3djhHSFJhVytRWHZ0bnJVUmNFTWE4cTlQeHdiQXVna0xmeC94?=
+ =?utf-8?B?VExCUUN4enBhenBGU1dPUmdXVVpMalVOclpUNnU2dzROSXkySDlYZ0toYTBB?=
+ =?utf-8?B?REg4NG04aitzMG95aC9VOHArQ29hOW55QnNBWVhSbXZobEU0d2p6MHNsMU1R?=
+ =?utf-8?B?WmZiVGtCMjlrL1NiM1VxaloyN2VOV0MrbEg5Uy9YNU5jenZxbysyNGo5UUVS?=
+ =?utf-8?B?VHZNSTcvVjVDakZFenM0QVNpNGxVeGVRbVl0dUFFTndkQUJzUnhva0R0bU85?=
+ =?utf-8?B?bHBvcHF4VjMwUEE4WkYwWDNtWm1TQm1WdjA3Y3doYkVtb3ZVZ2pLQTVSb2tz?=
+ =?utf-8?B?emZEbXYwYWdlMXRDV3JNeitmT082QUxVME5uT25QUXcxNndpYmZGTGgwSTdI?=
+ =?utf-8?B?ZnZyWjRqem40czYxSWxqMkZ1aTI4OEZwc3MvTWVOREo3TzkydnFxMnkwcnNm?=
+ =?utf-8?B?V3hDcllSOVJhZ05CMmZXbVRUS2hEdktaSGp4ZFBrQTZHOThGcC8yaW5Hemxn?=
+ =?utf-8?B?SFV3bmtzYnJQY2F4T21GNHRidExrUTBPbnhQcHJ2Unp3cjROc0sxU01NNmRU?=
+ =?utf-8?B?YjJkQWJJS3dvaVU3aW1CUFcrcmxWcjJIQUpnRVlIY1FSczVhM21UU0pGSUgv?=
+ =?utf-8?B?NTVuK1phV1JwR0hrQWFsUk9KRXlRM2hwdDhPTDFaMG5oQkcyLzcxQU0xQkRY?=
+ =?utf-8?B?L3RqM2R0MUNMaFA2Y0pIbDhrTlNkcm9MVDluelJXcFhjaCtub3NRTVVvLzZO?=
+ =?utf-8?B?RTRzNG5za01sL3ZMbVBSbUpXS2NYSm1iMDJkeGpJWnRqMVR3cnFwblVFdjBH?=
+ =?utf-8?B?N2lteDJYRmcvUFhnc09iUVROQ2VDMGZ1MjBrajQvb1FXaDVHdDVzUjIwSytM?=
+ =?utf-8?B?aFJNREpSQ2xvRU9NRGhDYkhVSFQ1RXZuSkJFZDllM1N6a29hNkNERzJYa2ls?=
+ =?utf-8?B?RVh1KzhneWx1aERyakREU0xaUTZYS0N6Z0pOSzJVZVZJZXhIbUFjeU9UTHps?=
+ =?utf-8?B?eWFpQjFRLy9jaXQ1S0FobUtuYnVLYjNYRGxib2ZzanV1cHNBZmg1VkFRYldt?=
+ =?utf-8?B?TXgzNkNsenFOS3J3NlNFaTJhNVVLMjBabGh5bi9Na1ExR1U5dERKR3ZKMzBX?=
+ =?utf-8?B?ZDErck44WGNEU2U2UTNrU3pwVWV1VjZqdEhuYkYzWjFyUjREblNRT0N3eHZQ?=
+ =?utf-8?B?UWRqdlB0MzNzcWE0a2kxRUt3ckNtSUR4clQwMjB3SnlybVFzRHF5akN1SXBh?=
+ =?utf-8?B?ZkYrVHEyZ1Z0cEpJK1BrcURBT2NObnk2alF2YmFCQkhqUk16ZkhzNy9NSjc1?=
+ =?utf-8?B?L0QyK1U1NjRMeHlwY1lJWmRnMXBBbFZoc2t5Nk92QS84Q0ljdDFmb01Xcnln?=
+ =?utf-8?B?cW1xVXhnekdSZUxuTHlkWi81UU45SG1tRUpINmpRVERUbjZIM2tvbk9xbVla?=
+ =?utf-8?B?WUxlZE9TTVdRNk1leGd5ckd0dVJIQ3VUL2JHQXFoMnpBSTZ2b0YzOHZhQ2Zi?=
+ =?utf-8?B?R2c2NlgzUWhoSjNkT2xYWGdpb1lkRktnSzdkZjNhNDhkQ3M4bWFVTEd3amtB?=
+ =?utf-8?B?SmxEM1plUDlJNUlaVlRid0xpZ0FmeEcyMFRKd0EzYWo1Si96YmQxWVMzays5?=
+ =?utf-8?B?UGo1TFBySS92dlVYajhJb0l3M3I2TE5ZRFBjck42YjlheWgyUlRWR3JtelVW?=
+ =?utf-8?B?RGpqRTlvOUxnMjZpWThZR0RyLzZxZFFvUGFYMjFBLy9NNU91TXlIdk1BPT0=?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N0YxQ242d0wxdnNvb2VvdXRlb1VQOWlHU1lRWm5Pd1FJRnhYb3JMc0R2VjhP?=
+ =?utf-8?B?ZmZGclozRGdIZk5XTHZHOGFpTmdpOGpyR3VrOXExTnhOcXNIMnhzdWlLVnhq?=
+ =?utf-8?B?anYrYjdXQmFRMFhFTmp5NWgra2wwSE5EYWQ0WDVKcEdkd08zL01RNm1WeDBi?=
+ =?utf-8?B?MEp3TlF6WWVJNThnM25Ca1p5cnMrbVplZmZhRkJzb3VyV1RUTjJrQWtURkRs?=
+ =?utf-8?B?U0ZIclNZU2R2Z0pHWnB2dkZ4L3hvaHY1Qkt2bHZub2txLy9waFBrYW9GTXkw?=
+ =?utf-8?B?TzBQTWVWbENzSVV4KzY1M0Y1NTQyNC8vZ05rRzJNY2VhSmVYTmltZHFTZjBl?=
+ =?utf-8?B?alJGakhLazlNSkdSSk85eW1IMEdaOG9SNWdEdlhrL0ptTFpQcld4OE1YeUpl?=
+ =?utf-8?B?RVg2WVRqdHJYTUg3SmdBazQzQmppTWVHZFBBMXArUlQ5UXRTSDVWeVU4UjBV?=
+ =?utf-8?B?Vzl1TUwvSUdGa2pRNTlIcnZmQUZiTW9YSXNvV3FvZnIweGVlT0FERlZsbUw1?=
+ =?utf-8?B?R1JWeER2bFA0dERCZTlLb0dCaWx3aHpPazJLS1RuZ25GanpBNkxDaTlxTzIv?=
+ =?utf-8?B?S1NTLzM1MkFGM0hrZTRuU0JHbjl4dzZYZVp0bFhkbzFvR2tOV2U2OU1rU0Ex?=
+ =?utf-8?B?QTZjYTVDWnFYaWk1ZENPNEI1eVhINzB0em1URTl0K2E2aWx1WXhtV0E0Qktx?=
+ =?utf-8?B?TUU5RTByR2pBRDBwSVdxOXdwNjBTYTkxWC9Fc28vejg1WkV6aW9FYWhWbVZS?=
+ =?utf-8?B?eHY5aS96Um1aeDVhdzNwY3NrR3cyaWNnckZoQlN4YnFlUWFpZGZwNGZqcTRt?=
+ =?utf-8?B?NmdOS1VNS21wTjBheVZQa0F1eXZidXludmh0anZ2aGEwUjZjWjhJZTk3UEU2?=
+ =?utf-8?B?SzhyYmR2UTUraWJoSU9NejBDUFBNTzhmQms5UjdZYUJQOTJwajlkNk44emVw?=
+ =?utf-8?B?WHllMWkramZOcEZrcGl3UklNa3pwajA3eWFlYkdLR2doT2dmNlBOaFg2dE85?=
+ =?utf-8?B?bENpUXpQbS9JaXZYemU3WmN0dFJ1a0NIWGt1L0hFWmFFK0NvMStmNSs5MlNq?=
+ =?utf-8?B?ck91RDdac3hWRU51ejdlcndSbjlMQ3d6UHRWTGxWWmFpMTV2MXBnVDBKUTg5?=
+ =?utf-8?B?ZE00L3A2RHhSRGduS2w3T0NweHdUOHlMcGd0cmswOGVjSmhGUDluM0ZieVZz?=
+ =?utf-8?B?aHpPMnZKb1RqbmxkeGo5blp0M1RvVVBJMklqaE1qd2dPNHFlY3JjcFd0WkI4?=
+ =?utf-8?B?NFFnQkVBQTBTWS94R2dRZjhTRzBFSkhpK2E5LzVRZE9HY0k3RzlpcldlY0hY?=
+ =?utf-8?B?dS9ob1k2RElwMGQvekFBOHF0aDhacjZrR0tsYUw3bWUzVTdrZzRBU3lxb253?=
+ =?utf-8?B?R0tiNEk3MGVnM0pPenpqb01PMDgvQUtrYnJUQWRwRno1a3hGMDQ2YUZkQm5s?=
+ =?utf-8?B?OEtuS1hUTWNQT01Od3FEcjM3S0tTQjEvMDJra0sySkJ6bXJiWG1wOE5hS3RB?=
+ =?utf-8?B?cW5sbG5JdXI0VzFhSHhCUmNlbWtJWHV6ZkxWVWNVRks5QlJMNUpab0FJbTZS?=
+ =?utf-8?B?ZG0wQXo1cE9hSlB5VXBIQzhJNVdwc2FZN2R3NW1GNFFLSmVZcXNGclZLdkRl?=
+ =?utf-8?B?b0ZaUHdYVzVFOThBcnYzN2IveDV5WlpZcEw0SWRucGFYd2RMU1lsU1JHTEJv?=
+ =?utf-8?B?Vy9IRDl1dHBaN2pJSTFkaUwrRHZLK3NVNWNLRW9pR29RNWhybWRyR2p0ZGMv?=
+ =?utf-8?B?S0lCbUR0NUhJc2hMYmVNM3Fod2E3aHlJL05VMGlYN2ZoMUNTZ2pRR0NJQzZG?=
+ =?utf-8?B?MWkwNHNRaElrNEZoUk1KVGp0U2tWMEc3RENsdHVCV081cE16eXhNbHRra1Z3?=
+ =?utf-8?B?NzRYeFRaUzlBYzN0VjJsL051UDFPby9RbGZwbnBPek12WGpaWUs5dTdTcmtu?=
+ =?utf-8?B?ZEVlOTIrZGlZR2VrenJIYWpQcWhZa1c5NTRBbUEydnFRc3F4d2poa1dOanlo?=
+ =?utf-8?B?TkxhUFdGUmZsaWJ5YWhYdEVWRC9zcFVudmhRY3hsYXhyY1ErTkJrVkRhSEkw?=
+ =?utf-8?B?SFNqMHhma2ZqY2dyN0tiZy91SUhoU21PSUsxM1p6c1hHMVNOVFBxM2o4a1dx?=
+ =?utf-8?Q?ejkz0hwYiKnqeHcV6G9cKbDcx?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f1239ec8-65bf-4f32-c298-08dc802a24c9
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 May 2024 21:56:07.5764 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wzVUxwsX4Y36YaULdGhaQOGU4T0loojLIb4hF9xVDewU5dc9gfLgaja2GlY1hJoVPvPqzH/bG60bTNJP7K37gg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6073
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,577 +192,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Decouple xe_lrc from xe_exec_queue and reference count xe_lrc.
-Removing hard coupling between xe_exec_queue and xe_lrc allows
-flexible design where the user interface xe_exec_queue can be
-destroyed independent of the hardware/firmware interface xe_lrc.
+TTM BO destroy is called unlocked as a ref count worker when it
+gets 0 users. When that happens we could be runtime suspended,
+and waking up from inner locked places like ggtt_remove_node,
+could potentially lead to deadlocks. Our warning system against
+this case hit this case:
 
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+[ 2295.891269] xe 0000:03:00.0: Missing outer runtime PM protection
+[snip]
+[ 2295.891604]  ? xe_pm_runtime_get_noresume+0x5c/0x70 [xe]
+[ 2295.891717]  ? report_bug+0x18d/0x1c0
+[ 2295.891722]  ? handle_bug+0x3c/0x80
+[ 2295.891724]  ? exc_invalid_op+0x13/0x60
+[ 2295.891726]  ? asm_exc_invalid_op+0x16/0x20
+[ 2295.891730]  ? xe_pm_runtime_get_noresume+0x5c/0x70 [xe]
+[ 2295.891816]  xe_ggtt_remove_node+0x93/0xf0 [xe]
+[ 2295.891870]  xe_ttm_bo_destroy+0xe9/0xf0 [xe]
+[ 2295.891935]  process_one_work+0x225/0x730
+[ 2295.891940]  worker_thread+0x1d8/0x3c0
+
+Add this outer protection to avoid any potential deadlock.
+
+Reported-by: Paulo Zanoni <paulo.zanoni@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c       | 26 +++++++-------
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 +-
- drivers/gpu/drm/xe/xe_execlist.c         | 10 +++---
- drivers/gpu/drm/xe/xe_gt.c               |  4 +--
- drivers/gpu/drm/xe/xe_guc_submit.c       | 30 ++++++++--------
- drivers/gpu/drm/xe/xe_hw_engine.c        | 10 +++---
- drivers/gpu/drm/xe/xe_hw_engine_types.h  |  2 +-
- drivers/gpu/drm/xe/xe_lrc.c              | 44 +++++++++++++++++++-----
- drivers/gpu/drm/xe/xe_lrc.h              | 19 ++++++++--
- drivers/gpu/drm/xe/xe_lrc_types.h        |  5 +++
- drivers/gpu/drm/xe/xe_ring_ops.c         | 10 +++---
- drivers/gpu/drm/xe/xe_sched_job.c        |  6 ++--
- 12 files changed, 109 insertions(+), 59 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index a2daae10ccc6..27215075c799 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -86,7 +86,7 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 2bae01ce4e5b..a902f23bec0c 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1066,6 +1066,8 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
+ 	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
+ 	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
  
- 	if (extensions) {
- 		/*
--		 * may set q->usm, must come before xe_lrc_init(),
-+		 * may set q->usm, must come before xe_lrc_create(),
- 		 * may overwrite q->sched_props, must come before q->ops->init()
- 		 */
- 		err = exec_queue_user_extensions(xe, q, extensions, 0);
-@@ -104,9 +104,11 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
- 	int i, err;
- 
- 	for (i = 0; i < q->width; ++i) {
--		err = xe_lrc_init(q->lrc + i, q->hwe, q, q->vm, SZ_16K);
--		if (err)
-+		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K);
-+		if (IS_ERR(q->lrc[i])) {
-+			err = PTR_ERR(q->lrc[i]);
- 			goto err_lrc;
-+		}
- 	}
- 
- 	err = q->ops->init(q);
-@@ -117,7 +119,7 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
- 
- err_lrc:
- 	for (i = i - 1; i >= 0; --i)
--		xe_lrc_finish(q->lrc + i);
-+		xe_lrc_put(q->lrc[i]);
- 	return err;
- }
- 
-@@ -198,7 +200,7 @@ void xe_exec_queue_fini(struct xe_exec_queue *q)
- 	int i;
- 
- 	for (i = 0; i < q->width; ++i)
--		xe_lrc_finish(q->lrc + i);
-+		xe_lrc_put(q->lrc[i]);
- 	__xe_exec_queue_free(q);
- }
- 
-@@ -701,7 +703,7 @@ bool xe_exec_queue_is_lr(struct xe_exec_queue *q)
- 
- static s32 xe_exec_queue_num_job_inflight(struct xe_exec_queue *q)
- {
--	return q->lrc->fence_ctx.next_seqno - xe_lrc_seqno(q->lrc) - 1;
-+	return q->lrc[0]->fence_ctx.next_seqno - xe_lrc_seqno(q->lrc[0]) - 1;
- }
- 
- /**
-@@ -712,7 +714,7 @@ static s32 xe_exec_queue_num_job_inflight(struct xe_exec_queue *q)
-  */
- bool xe_exec_queue_ring_full(struct xe_exec_queue *q)
- {
--	struct xe_lrc *lrc = q->lrc;
-+	struct xe_lrc *lrc = q->lrc[0];
- 	s32 max_job = lrc->ring.size / MAX_JOB_SIZE_BYTES;
- 
- 	return xe_exec_queue_num_job_inflight(q) >= max_job;
-@@ -738,16 +740,16 @@ bool xe_exec_queue_is_idle(struct xe_exec_queue *q)
- 		int i;
- 
- 		for (i = 0; i < q->width; ++i) {
--			if (xe_lrc_seqno(&q->lrc[i]) !=
--			    q->lrc[i].fence_ctx.next_seqno - 1)
-+			if (xe_lrc_seqno(q->lrc[i]) !=
-+			    q->lrc[i]->fence_ctx.next_seqno - 1)
- 				return false;
- 		}
- 
- 		return true;
- 	}
- 
--	return xe_lrc_seqno(&q->lrc[0]) ==
--		q->lrc[0].fence_ctx.next_seqno - 1;
-+	return xe_lrc_seqno(q->lrc[0]) ==
-+		q->lrc[0]->fence_ctx.next_seqno - 1;
- }
- 
- /**
-@@ -779,7 +781,7 @@ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q)
- 	 * the LRCs and reading them in different time could also introduce
- 	 * errors.
- 	 */
--	lrc = &q->lrc[0];
-+	lrc = q->lrc[0];
- 	new_ts = xe_lrc_update_timestamp(lrc, &old_ts);
- 	q->run_ticks += (new_ts - old_ts) * q->width;
- }
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index e81704c7c030..18d8b2a60928 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -146,7 +146,7 @@ struct xe_exec_queue {
- 	/** @run_ticks: hw engine class run time in ticks for this exec queue */
- 	u64 run_ticks;
- 	/** @lrc: logical ring context for this exec queue */
--	struct xe_lrc lrc[];
-+	struct xe_lrc *lrc[];
- };
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index 8e5c591fcecd..db906117db6d 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -109,7 +109,7 @@ static void __xe_execlist_port_start(struct xe_execlist_port *port,
- 			port->last_ctx_id = 1;
- 	}
- 
--	__start_lrc(port->hwe, exl->q->lrc, port->last_ctx_id);
-+	__start_lrc(port->hwe, exl->q->lrc[0], port->last_ctx_id);
- 	port->running_exl = exl;
- 	exl->has_run = true;
- }
-@@ -123,14 +123,14 @@ static void __xe_execlist_port_idle(struct xe_execlist_port *port)
- 	if (!port->running_exl)
- 		return;
- 
--	xe_lrc_write_ring(&port->hwe->kernel_lrc, noop, sizeof(noop));
--	__start_lrc(port->hwe, &port->hwe->kernel_lrc, 0);
-+	xe_lrc_write_ring(port->hwe->kernel_lrc, noop, sizeof(noop));
-+	__start_lrc(port->hwe, port->hwe->kernel_lrc, 0);
- 	port->running_exl = NULL;
- }
- 
- static bool xe_execlist_is_idle(struct xe_execlist_exec_queue *exl)
- {
--	struct xe_lrc *lrc = exl->q->lrc;
-+	struct xe_lrc *lrc = exl->q->lrc[0];
- 
- 	return lrc->ring.tail == lrc->ring.old_tail;
- }
-@@ -333,7 +333,7 @@ static int execlist_exec_queue_init(struct xe_exec_queue *q)
- 	exl->q = q;
- 
- 	err = drm_sched_init(&exl->sched, &drm_sched_ops, NULL, 1,
--			     q->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
-+			     q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES,
- 			     XE_SCHED_HANG_LIMIT, XE_SCHED_JOB_TIMEOUT,
- 			     NULL, NULL, q->hwe->name,
- 			     gt_to_xe(q->gt)->drm.dev);
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 34c1896807e9..9e9da887f4ca 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -297,8 +297,8 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
- 		}
- 
- 		xe_map_memcpy_from(xe, default_lrc,
--				   &q->lrc[0].bo->vmap,
--				   xe_lrc_pphwsp_offset(&q->lrc[0]),
-+				   &q->lrc[0]->bo->vmap,
-+				   xe_lrc_pphwsp_offset(q->lrc[0]),
- 				   xe_gt_lrc_size(gt, hwe->class));
- 
- 		gt->default_lrc[hwe->class] = default_lrc;
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index e22bd6b09a74..30b3619c2f26 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -490,7 +490,7 @@ static void __register_mlrc_exec_queue(struct xe_guc *guc,
- 	action[len++] = info->hwlrca_hi;
- 
- 	for (i = 1; i < q->width; ++i) {
--		struct xe_lrc *lrc = q->lrc + i;
-+		struct xe_lrc *lrc = q->lrc[i];
- 
- 		action[len++] = lower_32_bits(xe_lrc_descriptor(lrc));
- 		action[len++] = upper_32_bits(xe_lrc_descriptor(lrc));
-@@ -527,7 +527,7 @@ static void register_exec_queue(struct xe_exec_queue *q)
- {
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 	struct xe_device *xe = guc_to_xe(guc);
--	struct xe_lrc *lrc = q->lrc;
-+	struct xe_lrc *lrc = q->lrc[0];
- 	struct guc_ctxt_registration_info info;
- 
- 	xe_assert(xe, !exec_queue_registered(q));
-@@ -586,7 +586,7 @@ static int wq_wait_for_space(struct xe_exec_queue *q, u32 wqi_size)
- {
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 	struct xe_device *xe = guc_to_xe(guc);
--	struct iosys_map map = xe_lrc_parallel_map(q->lrc);
-+	struct iosys_map map = xe_lrc_parallel_map(q->lrc[0]);
- 	unsigned int sleep_period_ms = 1;
- 
- #define AVAILABLE_SPACE \
-@@ -614,7 +614,7 @@ static int wq_noop_append(struct xe_exec_queue *q)
- {
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 	struct xe_device *xe = guc_to_xe(guc);
--	struct iosys_map map = xe_lrc_parallel_map(q->lrc);
-+	struct iosys_map map = xe_lrc_parallel_map(q->lrc[0]);
- 	u32 len_dw = wq_space_until_wrap(q) / sizeof(u32) - 1;
- 
- 	if (wq_wait_for_space(q, wq_space_until_wrap(q)))
-@@ -634,7 +634,7 @@ static void wq_item_append(struct xe_exec_queue *q)
- {
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 	struct xe_device *xe = guc_to_xe(guc);
--	struct iosys_map map = xe_lrc_parallel_map(q->lrc);
-+	struct iosys_map map = xe_lrc_parallel_map(q->lrc[0]);
- #define WQ_HEADER_SIZE	4	/* Includes 1 LRC address too */
- 	u32 wqi[XE_HW_ENGINE_MAX_INSTANCE + (WQ_HEADER_SIZE - 1)];
- 	u32 wqi_size = (q->width + (WQ_HEADER_SIZE - 1)) * sizeof(u32);
-@@ -650,12 +650,12 @@ static void wq_item_append(struct xe_exec_queue *q)
- 
- 	wqi[i++] = FIELD_PREP(WQ_TYPE_MASK, WQ_TYPE_MULTI_LRC) |
- 		FIELD_PREP(WQ_LEN_MASK, len_dw);
--	wqi[i++] = xe_lrc_descriptor(q->lrc);
-+	wqi[i++] = xe_lrc_descriptor(q->lrc[0]);
- 	wqi[i++] = FIELD_PREP(WQ_GUC_ID_MASK, q->guc->id) |
--		FIELD_PREP(WQ_RING_TAIL_MASK, q->lrc->ring.tail / sizeof(u64));
-+		FIELD_PREP(WQ_RING_TAIL_MASK, q->lrc[0]->ring.tail / sizeof(u64));
- 	wqi[i++] = 0;
- 	for (j = 1; j < q->width; ++j) {
--		struct xe_lrc *lrc = q->lrc + j;
-+		struct xe_lrc *lrc = q->lrc[0] + j;
- 
- 		wqi[i++] = lrc->ring.tail / sizeof(u64);
- 	}
-@@ -670,7 +670,7 @@ static void wq_item_append(struct xe_exec_queue *q)
- 
- 	xe_device_wmb(xe);
- 
--	map = xe_lrc_parallel_map(q->lrc);
-+	map = xe_lrc_parallel_map(q->lrc[0]);
- 	parallel_write(xe, map, wq_desc.tail, q->guc->wqi_tail);
- }
- 
-@@ -679,7 +679,7 @@ static void submit_exec_queue(struct xe_exec_queue *q)
- {
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 	struct xe_device *xe = guc_to_xe(guc);
--	struct xe_lrc *lrc = q->lrc;
-+	struct xe_lrc *lrc = q->lrc[0];
- 	u32 action[3];
- 	u32 g2h_len = 0;
- 	u32 num_g2h = 0;
-@@ -1236,7 +1236,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 		  msecs_to_jiffies(q->sched_props.job_timeout_ms);
- 	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
- 			    get_submit_wq(guc),
--			    q->lrc[0].ring.size / MAX_JOB_SIZE_BYTES, 64,
-+			    q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES, 64,
- 			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
- 			    q->name, gt_to_xe(q->gt)->drm.dev);
- 	if (err)
-@@ -1464,7 +1464,7 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
- 				ban = true;
- 			}
- 		} else if (xe_exec_queue_is_lr(q) &&
--			   (xe_lrc_ring_head(q->lrc) != xe_lrc_ring_tail(q->lrc))) {
-+			   (xe_lrc_ring_head(q->lrc[0]) != xe_lrc_ring_tail(q->lrc[0]))) {
- 			ban = true;
- 		}
- 
-@@ -1529,7 +1529,7 @@ static void guc_exec_queue_start(struct xe_exec_queue *q)
- 
- 		trace_xe_exec_queue_resubmit(q);
- 		for (i = 0; i < q->width; ++i)
--			xe_lrc_set_ring_head(q->lrc + i, q->lrc[i].ring.tail);
-+			xe_lrc_set_ring_head(q->lrc[i], q->lrc[i]->ring.tail);
- 		xe_sched_resubmit_jobs(sched);
- 	}
- 
-@@ -1775,7 +1775,7 @@ guc_exec_queue_wq_snapshot_capture(struct xe_exec_queue *q,
- {
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 	struct xe_device *xe = guc_to_xe(guc);
--	struct iosys_map map = xe_lrc_parallel_map(q->lrc);
-+	struct iosys_map map = xe_lrc_parallel_map(q->lrc[0]);
- 	int i;
- 
- 	snapshot->guc.wqi_head = q->guc->wqi_head;
-@@ -1855,7 +1855,7 @@ xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q)
- 
- 	if (snapshot->lrc) {
- 		for (i = 0; i < q->width; ++i) {
--			struct xe_lrc *lrc = q->lrc + i;
-+			struct xe_lrc *lrc = q->lrc[i];
- 
- 			snapshot->lrc[i] = xe_lrc_snapshot_capture(lrc);
- 		}
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 9eef789be897..0a83506e1ad8 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -268,7 +268,7 @@ static void hw_engine_fini(struct drm_device *drm, void *arg)
- 
- 	if (hwe->exl_port)
- 		xe_execlist_port_destroy(hwe->exl_port);
--	xe_lrc_finish(&hwe->kernel_lrc);
-+	xe_lrc_put(hwe->kernel_lrc);
- 
- 	hwe->gt = NULL;
- }
-@@ -527,9 +527,11 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
- 		goto err_name;
- 	}
- 
--	err = xe_lrc_init(&hwe->kernel_lrc, hwe, NULL, NULL, SZ_16K);
--	if (err)
-+	hwe->kernel_lrc = xe_lrc_create(hwe, NULL, SZ_16K);
-+	if (IS_ERR(hwe->kernel_lrc)) {
-+		err = PTR_ERR(hwe->kernel_lrc);
- 		goto err_hwsp;
-+	}
- 
- 	if (!xe_device_uc_enabled(xe)) {
- 		hwe->exl_port = xe_execlist_port_create(xe, hwe);
-@@ -554,7 +556,7 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
- 	return drmm_add_action_or_reset(&xe->drm, hw_engine_fini, hwe);
- 
- err_kernel_lrc:
--	xe_lrc_finish(&hwe->kernel_lrc);
-+	xe_lrc_put(hwe->kernel_lrc);
- err_hwsp:
- 	xe_bo_unpin_map_no_vm(hwe->hwsp);
- err_name:
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-index b2f64b92a636..580bbd7e83b2 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-@@ -137,7 +137,7 @@ struct xe_hw_engine {
- 	/** @hwsp: hardware status page buffer object */
- 	struct xe_bo *hwsp;
- 	/** @kernel_lrc: Kernel LRC (should be replaced /w an xe_engine) */
--	struct xe_lrc kernel_lrc;
-+	struct xe_lrc *kernel_lrc;
- 	/** @exl_port: execlists port */
- 	struct xe_execlist_port *exl_port;
- 	/** @fence_irq: fence IRQ to run when a hw engine IRQ is received */
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index e91967070478..26922e1bac82 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -808,11 +808,20 @@ static void xe_lrc_set_ppgtt(struct xe_lrc *lrc, struct xe_vm *vm)
- 	xe_lrc_write_ctx_reg(lrc, CTX_PDP0_LDW, lower_32_bits(desc));
- }
- 
-+static void xe_lrc_finish(struct xe_lrc *lrc)
-+{
-+	xe_hw_fence_ctx_finish(&lrc->fence_ctx);
-+	xe_bo_lock(lrc->bo, false);
-+	xe_bo_unpin(lrc->bo);
-+	xe_bo_unlock(lrc->bo);
-+	xe_bo_put(lrc->bo);
-+}
++	xe_pm_runtime_get(xe);
 +
- #define PVC_CTX_ASID		(0x2e + 1)
- #define PVC_CTX_ACC_CTR_THOLD	(0x2a + 1)
+ 	if (bo->ttm.base.import_attach)
+ 		drm_prime_gem_destroy(&bo->ttm.base, NULL);
+ 	drm_gem_object_release(&bo->ttm.base);
+@@ -1089,6 +1091,8 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
+ 	mutex_unlock(&xe->mem_access.vram_userfault.lock);
  
--int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
--		struct xe_exec_queue *q, struct xe_vm *vm, u32 ring_size)
-+static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
-+		       struct xe_vm *vm, u32 ring_size)
- {
- 	struct xe_gt *gt = hwe->gt;
- 	struct xe_tile *tile = gt_to_tile(gt);
-@@ -823,6 +832,7 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	u32 lrc_size;
- 	int err;
- 
-+	kref_init(&lrc->refcount);
- 	lrc->flags = 0;
- 	lrc_size = ring_size + xe_gt_lrc_size(gt, hwe->class);
- 	if (xe_gt_has_indirect_ring_state(gt))
-@@ -935,13 +945,31 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	return err;
+ 	kfree(bo);
++
++	xe_pm_runtime_put(xe);
  }
  
--void xe_lrc_finish(struct xe_lrc *lrc)
-+struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
-+			     u32 ring_size)
- {
--	xe_hw_fence_ctx_finish(&lrc->fence_ctx);
--	xe_bo_lock(lrc->bo, false);
--	xe_bo_unpin(lrc->bo);
--	xe_bo_unlock(lrc->bo);
--	xe_bo_put(lrc->bo);
-+	struct xe_lrc *lrc;
-+	int err;
-+
-+	lrc = kzalloc(sizeof(*lrc), GFP_KERNEL);
-+	if (!lrc)
-+		return ERR_PTR(-ENOMEM);
-+
-+	err = xe_lrc_init(lrc, hwe, vm, ring_size);
-+	if (err) {
-+		kfree(lrc);
-+		return ERR_PTR(err);
-+	}
-+
-+	return lrc;
-+}
-+
-+void xe_lrc_destroy(struct kref *ref)
-+{
-+	struct xe_lrc *lrc = container_of(ref, struct xe_lrc, refcount);
-+
-+	xe_lrc_finish(lrc);
-+	kfree(lrc);
- }
- 
- void xe_lrc_set_ring_tail(struct xe_lrc *lrc, u32 tail)
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index c2df6bfd1889..ebe0e362e434 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -7,6 +7,8 @@
- 
- #include <linux/types.h>
- 
-+#include "xe_lrc_types.h"
-+
- struct drm_printer;
- struct xe_bb;
- struct xe_device;
-@@ -20,9 +22,20 @@ struct xe_vm;
- 
- #define LRC_PPHWSP_SCRATCH_ADDR (0x34 * 4)
- 
--int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
--		struct xe_exec_queue *q, struct xe_vm *vm, u32 ring_size);
--void xe_lrc_finish(struct xe_lrc *lrc);
-+struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
-+			     u32 ring_size);
-+void xe_lrc_destroy(struct kref *ref);
-+
-+static inline struct xe_lrc *xe_lrc_get(struct xe_lrc *lrc)
-+{
-+	kref_get(&lrc->refcount);
-+	return lrc;
-+}
-+
-+static inline void xe_lrc_put(struct xe_lrc *lrc)
-+{
-+	kref_put(&lrc->refcount, xe_lrc_destroy);
-+}
- 
- size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class);
- u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc);
-diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
-index 0fa055da6b27..71ecb453f811 100644
---- a/drivers/gpu/drm/xe/xe_lrc_types.h
-+++ b/drivers/gpu/drm/xe/xe_lrc_types.h
-@@ -6,6 +6,8 @@
- #ifndef _XE_LRC_TYPES_H_
- #define _XE_LRC_TYPES_H_
- 
-+#include <linux/kref.h>
-+
- #include "xe_hw_fence_types.h"
- 
- struct xe_bo;
-@@ -30,6 +32,9 @@ struct xe_lrc {
- #define XE_LRC_FLAG_INDIRECT_RING_STATE		0x1
- 	u32 flags;
- 
-+	/** @refcount: ref count of this lrc */
-+	struct kref refcount;
-+
- 	/** @ring: submission ring state */
- 	struct {
- 		/** @ring.size: size of submission ring */
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 550c3eafbc1d..2a607c141d65 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -396,7 +396,7 @@ static void emit_job_gen12_gsc(struct xe_sched_job *job)
- 
- 	xe_gt_assert(gt, job->q->width <= 1); /* no parallel submission for GSCCS */
- 
--	__emit_job_gen12_simple(job, job->q->lrc,
-+	__emit_job_gen12_simple(job, job->q->lrc[0],
- 				job->ptrs[0].batch_addr,
- 				xe_sched_job_lrc_seqno(job));
- }
-@@ -406,13 +406,13 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
- 	int i;
- 
- 	if (xe_sched_job_is_migration(job->q)) {
--		emit_migration_job_gen12(job, job->q->lrc,
-+		emit_migration_job_gen12(job, job->q->lrc[0],
- 					 xe_sched_job_lrc_seqno(job));
- 		return;
- 	}
- 
- 	for (i = 0; i < job->q->width; ++i)
--		__emit_job_gen12_simple(job, job->q->lrc + i,
-+		__emit_job_gen12_simple(job, job->q->lrc[i],
- 					job->ptrs[i].batch_addr,
- 					xe_sched_job_lrc_seqno(job));
- }
-@@ -423,7 +423,7 @@ static void emit_job_gen12_video(struct xe_sched_job *job)
- 
- 	/* FIXME: Not doing parallel handshake for now */
- 	for (i = 0; i < job->q->width; ++i)
--		__emit_job_gen12_video(job, job->q->lrc + i,
-+		__emit_job_gen12_video(job, job->q->lrc[i],
- 				       job->ptrs[i].batch_addr,
- 				       xe_sched_job_lrc_seqno(job));
- }
-@@ -433,7 +433,7 @@ static void emit_job_gen12_render_compute(struct xe_sched_job *job)
- 	int i;
- 
- 	for (i = 0; i < job->q->width; ++i)
--		__emit_job_gen12_render_compute(job, job->q->lrc + i,
-+		__emit_job_gen12_render_compute(job, job->q->lrc[i],
- 						job->ptrs[i].batch_addr,
- 						xe_sched_job_lrc_seqno(job));
- }
-diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-index 29f3201d7dfa..5c013904877a 100644
---- a/drivers/gpu/drm/xe/xe_sched_job.c
-+++ b/drivers/gpu/drm/xe/xe_sched_job.c
-@@ -216,7 +216,7 @@ void xe_sched_job_set_error(struct xe_sched_job *job, int error)
- 
- bool xe_sched_job_started(struct xe_sched_job *job)
- {
--	struct xe_lrc *lrc = job->q->lrc;
-+	struct xe_lrc *lrc = job->q->lrc[0];
- 
- 	return !__dma_fence_is_later(xe_sched_job_lrc_seqno(job),
- 				     xe_lrc_start_seqno(lrc),
-@@ -225,7 +225,7 @@ bool xe_sched_job_started(struct xe_sched_job *job)
- 
- bool xe_sched_job_completed(struct xe_sched_job *job)
- {
--	struct xe_lrc *lrc = job->q->lrc;
-+	struct xe_lrc *lrc = job->q->lrc[0];
- 
- 	/*
- 	 * Can safely check just LRC[0] seqno as that is last seqno written when
-@@ -265,7 +265,7 @@ void xe_sched_job_arm(struct xe_sched_job *job)
- 		struct dma_fence_chain *chain;
- 
- 		fence = job->ptrs[i].lrc_fence;
--		xe_lrc_init_seqno_fence(&q->lrc[i], fence);
-+		xe_lrc_init_seqno_fence(q->lrc[i], fence);
- 		job->ptrs[i].lrc_fence = NULL;
- 		if (!i) {
- 			job->lrc_seqno = fence->seqno;
+ static void xe_gem_object_free(struct drm_gem_object *obj)
 -- 
-2.43.0
+2.45.1
 
