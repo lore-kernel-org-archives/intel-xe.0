@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44302C25B7C
-	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 17:54:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 969F5C25B75
+	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 17:55:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0D2310E5A5;
-	Wed, 29 May 2024 17:54:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32764112CFC;
+	Wed, 29 May 2024 17:55:29 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC1F610E5A5;
- Wed, 29 May 2024 17:54:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5A80112D41;
+ Wed, 29 May 2024 17:55:27 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EHooks=3A_failure_for_drm/xe=3A_replace_format-less_?=
- =?utf-8?q?snprintf=28=29_with_strscpy=28=29_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_replace_format?=
+ =?utf-8?q?-less_snprintf=28=29_with_strscpy=28=29_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Arnd Bergmann" <arnd@kernel.org>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 29 May 2024 17:54:01 -0000
-Message-ID: <171700524183.2233681.13266958676336897363@8e613ede5ea5>
+Date: Wed, 29 May 2024 17:55:27 -0000
+Message-ID: <171700532780.2233681.14002331992936576145@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240528133251.2310868-1-arnd@kernel.org>
 In-Reply-To: <20240528133251.2310868-1-arnd@kernel.org>
@@ -44,73 +44,29 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: replace format-less snprintf() with strscpy() (rev2)
 URL   : https://patchwork.freedesktop.org/series/134140/
-State : failure
+State : success
 
 == Summary ==
 
-run-parts: executing /workspace/ci/hooks/00-showenv
-+ export
-+ grep -Ei '(^|\W)CI_'
-declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64-default"
-declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
-declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
-declare -x CI_WORKSPACE_DIR="/workspace"
-run-parts: executing /workspace/ci/hooks/10-build-W1
-+ SRC_DIR=/workspace/kernel
-+ RESTORE_DISPLAY_CONFIG=0
-+ '[' -n /workspace/kernel/build64-default ']'
-+ BUILD_DIR=/workspace/kernel/build64-default
-+ cd /workspace/kernel
-++ nproc
-+ make -j48 O=/workspace/kernel/build64-default modules_prepare
-make[1]: Entering directory '/workspace/kernel/build64-default'
-  GEN     Makefile
-  UPD     include/generated/compile.h
-  UPD     include/config/kernel.release
-mkdir -p /workspace/kernel/build64-default/tools/objtool && make O=/workspace/kernel/build64-default subdir=tools/objtool --no-print-directory -C objtool 
-  UPD     include/generated/utsrelease.h
-  HOSTCC  /workspace/kernel/build64-default/tools/objtool/fixdep.o
-  CALL    ../scripts/checksyscalls.sh
-  HOSTLD  /workspace/kernel/build64-default/tools/objtool/fixdep-in.o
-  LINK    /workspace/kernel/build64-default/tools/objtool/fixdep
-  INSTALL libsubcmd_headers
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/exec-cmd.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/help.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/pager.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/parse-options.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/run-command.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/sigchain.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/subcmd-config.o
-  LD      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd-in.o
-  AR      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd.a
-  CC      /workspace/kernel/build64-default/tools/objtool/weak.o
-  CC      /workspace/kernel/build64-default/tools/objtool/check.o
-  CC      /workspace/kernel/build64-default/tools/objtool/special.o
-  CC      /workspace/kernel/build64-default/tools/objtool/builtin-check.o
-  CC      /workspace/kernel/build64-default/tools/objtool/elf.o
-  CC      /workspace/kernel/build64-default/tools/objtool/objtool.o
-  CC      /workspace/kernel/build64-default/tools/objtool/orc_gen.o
-  CC      /workspace/kernel/build64-default/tools/objtool/orc_dump.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libstring.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libctype.o
-  CC      /workspace/kernel/build64-default/tools/objtool/str_error_r.o
-  CC      /workspace/kernel/build64-default/tools/objtool/librbtree.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/special.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/decode.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/orc.o
-  LD      /workspace/kernel/build64-default/tools/objtool/arch/x86/objtool-in.o
-  LD      /workspace/kernel/build64-default/tools/objtool/objtool-in.o
-  LINK    /workspace/kernel/build64-default/tools/objtool/objtool
-make[1]: Leaving directory '/workspace/kernel/build64-default'
-++ nproc
-+ make -j48 O=/workspace/kernel/build64-default M=drivers/gpu/drm/xe W=1
-make[1]: Entering directory '/workspace/kernel/build64-default'
-../scripts/Makefile.build:41: drivers/gpu/drm/xe/Makefile: No such file or directory
-make[3]: *** No rule to make target 'drivers/gpu/drm/xe/Makefile'.  Stop.
-make[2]: *** [/workspace/kernel/Makefile:1934: drivers/gpu/drm/xe] Error 2
-make[1]: *** [/workspace/kernel/Makefile:240: __sub-make] Error 2
-make[1]: Leaving directory '/workspace/kernel/build64-default'
-make: *** [Makefile:240: __sub-make] Error 2
-run-parts: /workspace/ci/hooks/10-build-W1 exited with return code 2
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 55d6179b96e0390025f2ba101c03b94b50cab7a1
+Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
+Fast mode used, each commit won't be checked separately.
+Okay!
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
