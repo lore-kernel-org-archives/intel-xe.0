@@ -4,67 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 729E1C25B75
-	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 12:45:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8721DC25B75
+	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 12:45:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDEC210E7D0;
-	Wed, 29 May 2024 12:45:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2759510E7D0;
+	Wed, 29 May 2024 12:45:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lv96yKKL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CsgGZw0d";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7735112A99
- for <intel-xe@lists.freedesktop.org>; Wed, 29 May 2024 12:45:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B47910EC61
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 May 2024 12:45:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716986716; x=1748522716;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=FZ4+DRfu5kGzvqgdQDydiIA1no0Hx0BViM/Myt46/SQ=;
- b=Lv96yKKLWLHEyQIxjWFSWEYrTkYlaitILA79tEXUZdb9walqQ4BG3Pvc
- +ZoPEGWCNpEVTlXCA1QSkVAx5Yf+mEQsSmWG1gIXHuCQ0fa6hRGNMpWkW
- MuLYB9eAtUTjqK7+NuAOxdb7JsW+DHewiLAxFiYLEoEYP0n/s2bK7zAV/
- zUamlHRnjuSOsXehQBlxpju/kQUoeMBb27l5HWyMOL91jsZiPNKUe46x4
- YTxALlbi9LwH4TfTZ4DMg8C5/m/D6X8B6erHScifPDCW/f3N7PA+2MkkX
- KXsEuy1XecMDZTk9nFJuLZa1qf6aEaXZjqV1oRL87tX8XCRVuFB5JFI4S g==;
-X-CSE-ConnectionGUID: tyAYt9UITSeGpKlLHqFpEg==
-X-CSE-MsgGUID: bjausW4mQMiy1swcyefd4w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="13550692"
-X-IronPort-AV: E=Sophos;i="6.08,198,1712646000"; d="scan'208";a="13550692"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 05:45:15 -0700
-X-CSE-ConnectionGUID: RP+pZ1+BTc+UthTsks0Plg==
-X-CSE-MsgGUID: 7gTbCVVeTrWaSUrIMrx6jw==
+ t=1716986736; x=1748522736;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=7gaQT26Upz8+Vix329f+nACFENO8A5QWG2AuVbzclto=;
+ b=CsgGZw0d7KfgGr2q4tArpZcrNuJ2KHmBAp/G1JKgoLWtb9F97vaWvnI5
+ CLmhZCDz+ebmfY9pjGh9rNH1ZrdOzPfU05Y06q3an89uFd5MCLe+bY6Ul
+ x7KqKU7IY5ChcazmffR3Yrvu/j+3XKbN9t1dPEm8FRvS77zdZAUhdv0zf
+ IvlKHfo7szJyBtLzuARixR2wmla7fflbLDbA4f+HZ7JT8QjNzdb+rmra1
+ E8LLzLeEgvZvG1oRT8xjo+l1RVE+g2Oems71ZhmQJnkXLnWGyaaOg0ALv
+ 9TlpcJHrD6nVoUEumhUn+U7UddtxHlUPXLUicqs/DDmKusF7VWuo7/bD0 Q==;
+X-CSE-ConnectionGUID: OZadDLjcTPWXWYsay2WURw==
+X-CSE-MsgGUID: jn+qktJ4SF+mpFrFS/4YRQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="38771278"
+X-IronPort-AV: E=Sophos;i="6.08,198,1712646000"; d="scan'208";a="38771278"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2024 05:45:36 -0700
+X-CSE-ConnectionGUID: KwWAik/wSGudGeQknHnk6g==
+X-CSE-MsgGUID: WpbabKDEQtaueNVxB+f2yA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,198,1712646000"; d="scan'208";a="39858311"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa005.fm.intel.com with ESMTP; 29 May 2024 05:45:13 -0700
-Received: from [10.245.119.62] (mwajdecz-MOBL.ger.corp.intel.com
- [10.245.119.62])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id EC4E527BC4;
- Wed, 29 May 2024 13:45:07 +0100 (IST)
-Message-ID: <c368cc90-2d0f-4e6e-9cdb-8ccef42e2d0d@intel.com>
-Date: Wed, 29 May 2024 14:45:02 +0200
+X-IronPort-AV: E=Sophos;i="6.08,198,1712646000"; d="scan'208";a="40421925"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.86])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2024 05:45:34 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/xe/xe2lpm: Add Wa_15015404425
+In-Reply-To: <SJ1PR11MB6204A8233ECBFB718C875E8E81F22@SJ1PR11MB6204.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240524063228.127423-1-tejas.upadhyay@intel.com>
+ <87bk4pkr2g.fsf@intel.com>
+ <SJ1PR11MB6204A8233ECBFB718C875E8E81F22@SJ1PR11MB6204.namprd11.prod.outlook.com>
+Date: Wed, 29 May 2024 15:45:41 +0300
+Message-ID: <878qzskcqy.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] drm/xe: Rename internal vram helper function
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-References: <20240527173554.1108-1-michal.wajdeczko@intel.com>
- <20240527173554.1108-5-michal.wajdeczko@intel.com>
- <20240528213515.GI4990@mdroper-desk1.amr.corp.intel.com>
- <ZlZXaouXdtj852Aq@DUT025-TGLU.fm.intel.com>
- <46164a96-f72c-4991-a41d-eea299540d75@intel.com> <87bk4okfb4.fsf@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <87bk4okfb4.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,104 +68,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, 29 May 2024, "Upadhyay, Tejas" <tejas.upadhyay@intel.com> wrote:
+>> -----Original Message-----
+>> From: Jani Nikula <jani.nikula@linux.intel.com>
+>> Sent: Wednesday, May 29, 2024 1:06 PM
+>> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
+>> xe@lists.freedesktop.org
+>> Cc: Upadhyay, Tejas <tejas.upadhyay@intel.com>
+>> Subject: Re: [PATCH] drm/xe/xe2lpm: Add Wa_15015404425
+>> 
+>> On Fri, 24 May 2024, Tejas Upadhyay <tejas.upadhyay@intel.com> wrote:
+>> > Wa_15015404425 applies to xe2_lpm all steppings
+>> >
+>> > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+>> > ---
+>> >  drivers/gpu/drm/xe/regs/xe_regs.h |  1 +
+>> >  drivers/gpu/drm/xe/xe_mmio.c      | 18 ++++++++++++++++++
+>> >  2 files changed, 19 insertions(+)
+>> >
+>> > diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h
+>> > b/drivers/gpu/drm/xe/regs/xe_regs.h
+>> > index 722fb6dbb72e..07c8a23bd7c2 100644
+>> > --- a/drivers/gpu/drm/xe/regs/xe_regs.h
+>> > +++ b/drivers/gpu/drm/xe/regs/xe_regs.h
+>> > @@ -42,6 +42,7 @@
+>> >  #define STOLEN_RESERVED				XE_REG(0x1082c0)
+>> >  #define   WOPCM_SIZE_MASK			REG_GENMASK64(9,
+>> 7)
+>> >
+>> > +#define MEDIA_DUMMY_REG
+>> 	XE_REG(0x138000)
+>> >  #define MTL_RP_STATE_CAP			XE_REG(0x138000)
+>> >
+>> >  #define MTL_GT_RPE_FREQUENCY			XE_REG(0x13800c)
+>> > diff --git a/drivers/gpu/drm/xe/xe_mmio.c
+>> > b/drivers/gpu/drm/xe/xe_mmio.c index ff7a7cf99530..e1dc87078387
+>> 100644
+>> > --- a/drivers/gpu/drm/xe/xe_mmio.c
+>> > +++ b/drivers/gpu/drm/xe/xe_mmio.c
+>> > @@ -450,6 +450,21 @@ int xe_mmio_init(struct xe_device *xe)
+>> >  	return devm_add_action_or_reset(xe->drm.dev, mmio_fini, xe);  }
+>> >
+>> > +static void mmio_flush_pending_writes(struct xe_gt *gt) {
+>> > +	struct xe_device *xe = gt_to_xe(gt);
+>> > +
+>> > +	if (!(xe->info.platform == XE_LUNARLAKE))
+>> > +		return;
+>> > +
+>> > +	if (xe_gt_is_media_type(gt) &&  MEDIA_VER(xe) == 20) {
+>> > +		int itr = 4;
+>> > +		/* 4 dummy writes */
+>> > +		while (itr--)
+>> 
+>> If you need to do something N times, the paradigm loop is:
+>> 
+>> 	for (i = 0; i < N; i++)
+>> 
+>> and nobody has to pause to consider the loop condition.
+>
+> Thanks for comment. However I don't understand whats adding pause
+> here, for() is also adding similar pause and variable.
+
+Mental pause when reading the code. The for loop is so ubiquitous for
+counting that you know it's correct. The while loop, less so.
+
+BR,
+Jani.
 
 
-On 29.05.2024 13:50, Jani Nikula wrote:
-> On Wed, 29 May 2024, Michal Wajdeczko <michal.wajdeczko@intel.com> wrote:
->> ++ maintainers
->>
->> On 29.05.2024 00:15, Matthew Brost wrote:
->>> We have talked about this before and I think the consensous was "xe_"
->>> prefixes for static functions are fine, perhaps even desired. I can't
->>
->> IMO use of "xe_foo" prefix for static functions is inconsistent (as its
->> name suggests that it is public function while OTOH it is declared as
->> static) and may mislead that it could be used in other compilation unit.
->>
->> thus use of "xe_" (for static) should be rather discouraged but also at
->> the same time it shouldn't be treated as showstopper (with the hope
->> better name will be provided later)
->>
->>> find a reference but I do recall a discussion on the list about this.
->>>
->>> I think the maintainers should make / document a rule wrt to "xe_"
->>> prefixes before we start making changes in this area as it is not clear.
-> 
-> IMO the prefix is useful even for static functions for a few reasons:
-> 
-> - C has no namespaces. The use of prefixes in the kernel global
->   functions and macros is inconsistent at best. Prefixes avoid clashes.
-
-good point but I guess any new global function will be named in a way
-that will minimize risk of clash
-
-> 
-> - It's quite handy to be able to just glance at a backtrace to see where
->   it's originating from. With a bunch of generic non-prefixed functions
->   in there, you kind of lose track, and have to look at the source.
-
-if you are unlucky and not all static functions were inlined then still
-the backtrace shall include top level public xe_foo() function
-
-> 
-> - During refactoring, it's not uncommon to make functions
->   static/non-static, and having to rename at that point is a bit
->   tedious.
-
-another good reason to avoid refactoring and come with good design in
-the first place ;)
-
-> 
-> That said, we haven't required this in i915. Also platform acronym
-> prefixes are common especially in display code. Some people have started
-> adding single underscore prefixes for static functions in a few places,
-> but I pretty much frown on that.
-
-and sometimes static functions names are defined/added to clarify the
-flow or function logic, and strict adhere to rules to have a prefix
-might make it less clear, so some room for common sense is still needed
-
-> 
->> before we start writing rules for static functions, better to focus only
->> on rules for public naming convention for the components, like:
->>
->> files:
->> 	GOOD
->> 		xe_foo.ch
->> 		xe_foo_types.h
->> 		xe_foo_helpers.h
->> 	FINE
->> 		xe_gt_foo.ch
->> 	BAD
->> 		foo.ch
->>
->> types:
->> 	GOOD
->> 		struct xe_foo_xxx
->> 		enum xe_foo_yyy
->> 		typedef xe_foo_zzz
->> 	BAD
->> 		struct foo
->> 		struct xe_bar
->>
->> functions:
->> 	GOOD
->> 		xe_foo_bar(struct xe_foo *foo, ...)
->> 	FINE
->> 		xe_foo_bar(struct xe_device *xe, ...)
->> 		xe_gt_foo_bar(struct xe_gt *gt, ...)
->> 	BAD
->> 		xe_foo_bar(..., struct xe_foo *foo)
->> 		xe_bar_foo(struct xe_foo *foo, ...)
-> 
-> And sometimes you want to prefer names that are easy to pronounce and
-> make sense over names that strictly adhere to rules...
-
-but then it should be treated as an exception, to be approved by the
-maintainer, from general guidelines that maintainers can still document
-
-> 
-> BR,
-> Jani.
-> 
-> 
+-- 
+Jani Nikula, Intel
