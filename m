@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91DCCC25B75
-	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 09:12:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B34DCC27C43
+	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 09:20:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36C5510E74C;
-	Wed, 29 May 2024 09:12:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B0A010E036;
+	Wed, 29 May 2024 09:20:25 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9348210E74C;
- Wed, 29 May 2024 09:12:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C68710E139;
+ Wed, 29 May 2024 09:20:14 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_drm/xe=3A_Check_empt?=
- =?utf-8?q?y_pinned_BO_list_with_lock_held=2E_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/client=3A_Che?=
+ =?utf-8?q?ck_return_value_of_xe=5Fforce=5Fwake=5Fget_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nirmoy Das" <nirmoy.das@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 29 May 2024 09:12:00 -0000
-Message-ID: <171697392059.2232183.449742512892405277@8e613ede5ea5>
+Date: Wed, 29 May 2024 09:20:14 -0000
+Message-ID: <171697441456.2232184.14385027191527383663@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240528115408.22094-1-nirmoy.das@intel.com>
-In-Reply-To: <20240528115408.22094-1-nirmoy.das@intel.com>
+References: <20240528101132.14788-1-nirmoy.das@intel.com>
+In-Reply-To: <20240528101132.14788-1-nirmoy.das@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,22 +42,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Check empty pinned BO list with lock held. (rev2)
-URL   : https://patchwork.freedesktop.org/series/134135/
-State : failure
+Series: drm/xe/client: Check return value of xe_force_wake_get (rev2)
+URL   : https://patchwork.freedesktop.org/series/134121/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-tip' with base: ===
 Base commit: b84122b07cfd drm-tip: 2024y-05m-29d-09h-06m-15s UTC integration manifest
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/xe_bo.c:1758
-error: drivers/gpu/drm/xe/xe_bo.c: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: drm/xe: Check empty pinned BO list with lock held.
-Patch failed at 0001 drm/xe: Check empty pinned BO list with lock held.
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/xe/client: Check return value of xe_force_wake_get
 
 
