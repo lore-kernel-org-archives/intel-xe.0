@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49DE0C25B75
-	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 22:16:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82F24C25B7E
+	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 22:32:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEBEB10E060;
-	Wed, 29 May 2024 22:16:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NLKDsFjc";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEFE610E060
- for <intel-xe@lists.freedesktop.org>; Wed, 29 May 2024 22:16:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717021004; x=1748557004;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=mzbmfWueeCaS6Q4CBAUqypPalXVmd2sQKHYhq1g5pJk=;
- b=NLKDsFjcnDVGOq7CVJiJfKFrX2zRLAtK7jPcCby7aykLODSe1iZd+7Mq
- g75zlxTX84yC+JSWloytVqsna9MV5wku6EBAHnafINJorQPVPDQ5a++bU
- rFMIlTU6kszHqLXL3LSaHfZ9WDNahXw1gm8OYkLXFtrGdufhuFgBK2z5c
- gMU0W6r/dHCnzg7h5L29+GvcIr89YChGZBvTpkiSi+ElyG/Vlwvc5F98T
- M/ipZF2rGYzHtqDU8JkGkUbHPEqn8AuLMtKK1X2Imqpe6BVc2+QFMQ1IH
- JRQpQQYef61GmWEzeFoEck1LrHv2ComGEaF7J/FxW94UlExq3JXdq5/qJ A==;
-X-CSE-ConnectionGUID: z+PeJgYaQ4uwzHgtJ4NPLg==
-X-CSE-MsgGUID: uDeJJOtdS/2urKNG8Qsc0w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="13410898"
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="13410898"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 15:16:43 -0700
-X-CSE-ConnectionGUID: 3aLO1na4QBCOdlr4hmpIFA==
-X-CSE-MsgGUID: ymiBa6E5TICKrv9ytL4UsQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="40593054"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 15:16:44 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com
-Subject: [PATCH v4] drm/xe: Remove unwanted mutex locking
-Date: Wed, 29 May 2024 15:16:39 -0700
-Message-ID: <20240529221639.23117-1-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0869F11A7E0;
+	Wed, 29 May 2024 22:32:30 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45DE611A7E0;
+ Wed, 29 May 2024 22:32:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4220471033178073521=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Remove_unwanted_mutex_?=
+ =?utf-8?q?locking_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 29 May 2024 22:32:27 -0000
+Message-ID: <171702194727.2235474.2906680162498950110@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240529213925.22239-1-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20240529213925.22239-1-niranjana.vishwanathapura@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,52 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Do not hold xef->exec_queue.lock mutex while parsing the xarray
-xef->exec_queue.xa in xe_file_close() as it is not needed and
-will cause an unwanted dependency between this lock and the vm->lock.
+--===============4220471033178073521==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This lock protects the exec queue lookup and reference taking which
-doesn't apply to this code path. When FD is closing, IOCTLs presumably
-can't be modifying the xarray.
+== Series Details ==
 
-v2: Update commit text (Matt Brost)
-v3: Add more code comment (Rodrigo Vivi)
-v4: Further expand code comment (Rodirgo Vivi)
+Series: drm/xe: Remove unwanted mutex locking (rev3)
+URL   : https://patchwork.freedesktop.org/series/134199/
+State : success
 
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Jagmeet Randhawa <jagmeet.randhawa@intel.com>
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index f04b11e45c2d..ab96c50c6af4 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -96,12 +96,16 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
- 	struct xe_exec_queue *q;
- 	unsigned long idx;
- 
--	mutex_lock(&xef->exec_queue.lock);
-+	/*
-+	 * No need for exec_queue.lock here as there is no contention for it
-+	 * when FD is closing as IOCTLs presumably can't be modifying the
-+	 * xarray. Taking exec_queue.lock here causes undue dependency on
-+	 * vm->lock taken during xe_exec_queue_kill().
-+	 */
- 	xa_for_each(&xef->exec_queue.xa, idx, q) {
- 		xe_exec_queue_kill(q);
- 		xe_exec_queue_put(q);
- 	}
--	mutex_unlock(&xef->exec_queue.lock);
- 	xa_destroy(&xef->exec_queue.xa);
- 	mutex_destroy(&xef->exec_queue.lock);
- 	mutex_lock(&xef->vm.lock);
--- 
-2.43.0
+CI Bug Log - changes from xe-1374-55d6179b96e0390025f2ba101c03b94b50cab7a1_BAT -> xe-pw-134199v3_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-1374-55d6179b96e0390025f2ba101c03b94b50cab7a1 -> xe-pw-134199v3
+
+  IGT_7873: b9bcded9123ac56ce05748de6c4870fb49451b87 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1374-55d6179b96e0390025f2ba101c03b94b50cab7a1: 55d6179b96e0390025f2ba101c03b94b50cab7a1
+  xe-pw-134199v3: 134199v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134199v3/index.html
+
+--===============4220471033178073521==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Remove unwanted mutex locking (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134199/">https://patchwork.freedesktop.org/series/134199/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134199v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134199v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1374-55d6179b96e0390025f2ba101c03b94b50cab7a1_BAT -&gt; xe-pw-134199v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1374-55d6179b96e0390025f2ba101c03b94b50cab7a1 -&gt; xe-pw-134199v3</li>
+</ul>
+<p>IGT_7873: b9bcded9123ac56ce05748de6c4870fb49451b87 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1374-55d6179b96e0390025f2ba101c03b94b50cab7a1: 55d6179b96e0390025f2ba101c03b94b50cab7a1<br />
+  xe-pw-134199v3: 134199v3</p>
+
+</body>
+</html>
+
+--===============4220471033178073521==--
