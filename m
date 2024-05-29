@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBDB3C27C43
-	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 01:05:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EBC1C25B78
+	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 01:05:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CBC8112C91;
-	Wed, 29 May 2024 01:05:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E51F112C84;
+	Wed, 29 May 2024 01:05:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LGOTQ7zR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y9Gc7JZ7";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 774E9112C85
- for <intel-xe@lists.freedesktop.org>; Wed, 29 May 2024 01:05:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB01F112C8C
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 May 2024 01:05:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716944717; x=1748480717;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=e2y1T6V2lWm+wUolxQPBquPQpkmIdyPsB5HJwamGJyc=;
- b=LGOTQ7zRAAAJSGQVauQnKDqeCY9zLTCsf5g1c0O73Lk5ZDs/Wsoky3nw
- XM6ZK3apF6jLDg73uh73kNn0mcd1EnIfwRN3T+YYKpveWZVKEvtIN8ARV
- MVIS7bJCxcT4eQpsO+691NwCFNwKQmajWaPk19jBpdMqLp+VUJ/iz8lZP
- 6VuNEllp3Y26eIHkLfBuE5czJMJ9TkFEdNK0mficIz7KWnggIPPsCixej
- I++uYbx8JJdmFtb8e/xy9HcDO+uIBU5kK+iDslnGBJaYmRlYLtVfoIV5K
- 0ls+tSMJTTGeZPWxqIKgCu9ggWJiMZBP9LeNgsY8bq3vOeVbhZSfVQ2Fr A==;
-X-CSE-ConnectionGUID: YcCalLqgQxu7ZTU0Heu+ig==
-X-CSE-MsgGUID: NbjZt46TSFWzhRJSVIaDGw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="30849781"
-X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="30849781"
+ t=1716944727; x=1748480727;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=upPJFoNxK0SzAJoSrENiBJTo5OFfyqa7vyshnAfpwcs=;
+ b=Y9Gc7JZ7/Iz+XBKbteFvMoJ7PC6mbZz5wsJeZBN/brBJxLTgDYW3Duub
+ uRxkk66E2NL/SLyES6QwgQ0caGjsvQgpxiEWpi3R41ysJB9kVA+VhJj03
+ 7No/jXK3aws56P6GYQpFuSc3hzpUunEYRUfEI80hhcQlaQJW/fkbEucrd
+ HoCYUsMqPiTvxY1bwhxz5FuRlzlit3J9eLdBgVAub8JwLwClzWaaeg6rp
+ bybxuj+ankjuGl3IPfB6pXKh24Xl/rPVhlcNZ1mO3uDypcvMioc3h6S9T
+ PLhhP2FAskOA+29lerAsEoYYtzLlTvCpL/Tqh/4K4XKn02OCcPFoMQMdf A==;
+X-CSE-ConnectionGUID: TxyQlTueRLaPuOOBIj4mIQ==
+X-CSE-MsgGUID: g9e7IlUrQ82h+iMmLVNn6A==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="30849784"
+X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="30849784"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 May 2024 18:05:17 -0700
-X-CSE-ConnectionGUID: i8jwUXDAQJWBJcMedg2/tA==
-X-CSE-MsgGUID: p7pTs4jTQS2+wtv1k/Yprg==
+X-CSE-ConnectionGUID: ST25a4slSHatcITR5BWj9g==
+X-CSE-MsgGUID: mh7ZhKw9Qs2oX69wEU5Ccw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="72700485"
+X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="72700494"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 May 2024 18:05:17 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v3 01/26] mm/hmm: let users to tag specific PFNs
-Date: Tue, 28 May 2024 21:18:59 -0400
-Message-Id: <20240529011924.4125173-1-oak.zeng@intel.com>
+Subject: [CI v3 07/26] drm: move xe_sg_segment_size to drm layer
+Date: Tue, 28 May 2024 21:19:05 -0400
+Message-Id: <20240529011924.4125173-7-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
+In-Reply-To: <20240529011924.4125173-1-oak.zeng@intel.com>
+References: <20240529011924.4125173-1-oak.zeng@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,135 +66,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Leon Romanovsky <leonro@nvidia.com>
+Move this helper function to drm layer and rename it to
+drm_gem_dma_max_sg_segment, so it can be used by the coming
+drm patches also. No functional changes.
 
-Introduce new sticky flag, which isn't overwritten by HMM range fault.
-Such flag allows users to tag specific PFNs with extra data in addition
-to already filled by HMM.
-
-Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@intel.com>
+Cc: Brian Welty <brian.welty@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- include/linux/hmm.h |  3 +++
- mm/hmm.c            | 34 +++++++++++++++++++++-------------
- 2 files changed, 24 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c       |  3 ++-
+ drivers/gpu/drm/xe/xe_bo.h       | 24 ------------------------
+ drivers/gpu/drm/xe/xe_device.c   |  3 ++-
+ drivers/gpu/drm/xe/xe_hmm.c      |  3 ++-
+ include/drm/drm_gem_dma_helper.h | 25 +++++++++++++++++++++++++
+ 5 files changed, 31 insertions(+), 27 deletions(-)
 
-diff --git a/include/linux/hmm.h b/include/linux/hmm.h
-index 126a36571667..b90902baa593 100644
---- a/include/linux/hmm.h
-+++ b/include/linux/hmm.h
-@@ -23,6 +23,7 @@ struct mmu_interval_notifier;
-  * HMM_PFN_WRITE - if the page memory can be written to (requires HMM_PFN_VALID)
-  * HMM_PFN_ERROR - accessing the pfn is impossible and the device should
-  *                 fail. ie poisoned memory, special pages, no vma, etc
-+ * HMM_PFN_STICKY - Flag preserved on input-to-output transformation
-  *
-  * On input:
-  * 0                 - Return the current state of the page, do not fault it.
-@@ -36,6 +37,8 @@ enum hmm_pfn_flags {
- 	HMM_PFN_VALID = 1UL << (BITS_PER_LONG - 1),
- 	HMM_PFN_WRITE = 1UL << (BITS_PER_LONG - 2),
- 	HMM_PFN_ERROR = 1UL << (BITS_PER_LONG - 3),
-+	/* Sticky lag, carried from Input to Output */
-+	HMM_PFN_STICKY = 1UL << (BITS_PER_LONG - 7),
- 	HMM_PFN_ORDER_SHIFT = (BITS_PER_LONG - 8),
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 03f7fe7acf8c..a838ce520c2e 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -9,6 +9,7 @@
  
- 	/* Input flags */
-diff --git a/mm/hmm.c b/mm/hmm.c
-index 277ddcab4947..9645a72beec0 100644
---- a/mm/hmm.c
-+++ b/mm/hmm.c
-@@ -44,8 +44,10 @@ static int hmm_pfns_fill(unsigned long addr, unsigned long end,
- {
- 	unsigned long i = (addr - range->start) >> PAGE_SHIFT;
+ #include <drm/drm_drv.h>
+ #include <drm/drm_gem_ttm_helper.h>
++#include <drm/drm_gem_dma_helper.h>
+ #include <drm/drm_managed.h>
+ #include <drm/ttm/ttm_device.h>
+ #include <drm/ttm/ttm_placement.h>
+@@ -299,7 +300,7 @@ static int xe_tt_map_sg(struct ttm_tt *tt)
+ 	ret = sg_alloc_table_from_pages_segment(&xe_tt->sgt, tt->pages,
+ 						num_pages, 0,
+ 						(u64)num_pages << PAGE_SHIFT,
+-						xe_sg_segment_size(xe_tt->dev),
++						drm_gem_dma_max_sg_segment(xe_tt->dev),
+ 						GFP_KERNEL);
+ 	if (ret)
+ 		return ret;
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 6de894c728f5..90261c77ad13 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -289,30 +289,6 @@ void xe_bo_put_commit(struct llist_head *deferred);
  
--	for (; addr < end; addr += PAGE_SIZE, i++)
--		range->hmm_pfns[i] = cpu_flags;
-+	for (; addr < end; addr += PAGE_SIZE, i++) {
-+		range->hmm_pfns[i] &= HMM_PFN_STICKY;
-+		range->hmm_pfns[i] |= cpu_flags;
-+	}
- 	return 0;
+ struct sg_table *xe_bo_sg(struct xe_bo *bo);
+ 
+-/*
+- * xe_sg_segment_size() - Provides upper limit for sg segment size.
+- * @dev: device pointer
+- *
+- * Returns the maximum segment size for the 'struct scatterlist'
+- * elements.
+- */
+-static inline unsigned int xe_sg_segment_size(struct device *dev)
+-{
+-	struct scatterlist __maybe_unused sg;
+-	size_t max = BIT_ULL(sizeof(sg.length) * 8) - 1;
+-
+-	max = min_t(size_t, max, dma_max_mapping_size(dev));
+-
+-	/*
+-	 * The iommu_dma_map_sg() function ensures iova allocation doesn't
+-	 * cross dma segment boundary. It does so by padding some sg elements.
+-	 * This can cause overflow, ending up with sg->length being set to 0.
+-	 * Avoid this by ensuring maximum segment size is half of 'max'
+-	 * rounded down to PAGE_SIZE.
+-	 */
+-	return round_down(max / 2, PAGE_SIZE);
+-}
+-
+ #define i915_gem_object_flush_if_display(obj)		((void)(obj))
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index b2d5c7341238..eed317d1b4a2 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -11,6 +11,7 @@
+ #include <drm/drm_aperture.h>
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_gem_ttm_helper.h>
++#include <drm/drm_gem_dma_helper.h>
+ #include <drm/drm_ioctl.h>
+ #include <drm/drm_managed.h>
+ #include <drm/drm_print.h>
+@@ -406,7 +407,7 @@ static int xe_set_dma_info(struct xe_device *xe)
+ 	unsigned int mask_size = xe->info.dma_mask_size;
+ 	int err;
+ 
+-	dma_set_max_seg_size(xe->drm.dev, xe_sg_segment_size(xe->drm.dev));
++	dma_set_max_seg_size(xe->drm.dev, drm_gem_dma_max_sg_segment(xe->drm.dev));
+ 
+ 	err = dma_set_mask(xe->drm.dev, DMA_BIT_MASK(mask_size));
+ 	if (err)
+diff --git a/drivers/gpu/drm/xe/xe_hmm.c b/drivers/gpu/drm/xe/xe_hmm.c
+index 2c32dc46f7d4..f99746c4bd6b 100644
+--- a/drivers/gpu/drm/xe/xe_hmm.c
++++ b/drivers/gpu/drm/xe/xe_hmm.c
+@@ -3,6 +3,7 @@
+  * Copyright © 2024 Intel Corporation
+  */
+ 
++#include <drm/drm_gem_dma_helper.h>
+ #include <linux/scatterlist.h>
+ #include <linux/mmu_notifier.h>
+ #include <linux/dma-mapping.h>
+@@ -96,7 +97,7 @@ static int xe_build_sg(struct xe_device *xe, struct hmm_range *range,
+ 	}
+ 
+ 	ret = sg_alloc_table_from_pages_segment(st, pages, npages, 0, npages << PAGE_SHIFT,
+-						xe_sg_segment_size(dev), GFP_KERNEL);
++						drm_gem_dma_max_sg_segment(dev), GFP_KERNEL);
+ 	if (ret)
+ 		goto free_pages;
+ 
+diff --git a/include/drm/drm_gem_dma_helper.h b/include/drm/drm_gem_dma_helper.h
+index a827bde494f6..ff7403b103ad 100644
+--- a/include/drm/drm_gem_dma_helper.h
++++ b/include/drm/drm_gem_dma_helper.h
+@@ -5,6 +5,7 @@
+ #include <drm/drm_file.h>
+ #include <drm/drm_ioctl.h>
+ #include <drm/drm_gem.h>
++#include <linux/dma-mapping.h>
+ 
+ struct drm_mode_create_dumb;
+ 
+@@ -133,6 +134,30 @@ static inline int drm_gem_dma_object_mmap(struct drm_gem_object *obj, struct vm_
+ 	return drm_gem_dma_mmap(dma_obj, vma);
  }
  
-@@ -202,8 +204,10 @@ static int hmm_vma_handle_pmd(struct mm_walk *walk, unsigned long addr,
- 		return hmm_vma_fault(addr, end, required_fault, walk);
- 
- 	pfn = pmd_pfn(pmd) + ((addr & ~PMD_MASK) >> PAGE_SHIFT);
--	for (i = 0; addr < end; addr += PAGE_SIZE, i++, pfn++)
--		hmm_pfns[i] = pfn | cpu_flags;
-+	for (i = 0; addr < end; addr += PAGE_SIZE, i++, pfn++) {
-+		hmm_pfns[i] &= HMM_PFN_STICKY;
-+		hmm_pfns[i] |= pfn | cpu_flags;
-+	}
- 	return 0;
- }
- #else /* CONFIG_TRANSPARENT_HUGEPAGE */
-@@ -236,7 +240,7 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
- 			hmm_pte_need_fault(hmm_vma_walk, pfn_req_flags, 0);
- 		if (required_fault)
- 			goto fault;
--		*hmm_pfn = 0;
-+		*hmm_pfn = *hmm_pfn & HMM_PFN_STICKY;
- 		return 0;
- 	}
- 
-@@ -253,14 +257,14 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
- 			cpu_flags = HMM_PFN_VALID;
- 			if (is_writable_device_private_entry(entry))
- 				cpu_flags |= HMM_PFN_WRITE;
--			*hmm_pfn = swp_offset_pfn(entry) | cpu_flags;
-+			*hmm_pfn = (*hmm_pfn & HMM_PFN_STICKY) | swp_offset_pfn(entry) | cpu_flags;
- 			return 0;
- 		}
- 
- 		required_fault =
- 			hmm_pte_need_fault(hmm_vma_walk, pfn_req_flags, 0);
- 		if (!required_fault) {
--			*hmm_pfn = 0;
-+			*hmm_pfn = *hmm_pfn & HMM_PFN_STICKY;
- 			return 0;
- 		}
- 
-@@ -304,11 +308,11 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
- 			pte_unmap(ptep);
- 			return -EFAULT;
- 		}
--		*hmm_pfn = HMM_PFN_ERROR;
-+		*hmm_pfn = (*hmm_pfn & HMM_PFN_STICKY) | HMM_PFN_ERROR;
- 		return 0;
- 	}
- 
--	*hmm_pfn = pte_pfn(pte) | cpu_flags;
-+	*hmm_pfn = (*hmm_pfn & HMM_PFN_STICKY) | pte_pfn(pte) | cpu_flags;
- 	return 0;
- 
- fault:
-@@ -453,8 +457,10 @@ static int hmm_vma_walk_pud(pud_t *pudp, unsigned long start, unsigned long end,
- 		}
- 
- 		pfn = pud_pfn(pud) + ((addr & ~PUD_MASK) >> PAGE_SHIFT);
--		for (i = 0; i < npages; ++i, ++pfn)
--			hmm_pfns[i] = pfn | cpu_flags;
-+		for (i = 0; i < npages; ++i, ++pfn) {
-+			hmm_pfns[i] &= HMM_PFN_STICKY;
-+			hmm_pfns[i] |= pfn | cpu_flags;
-+		}
- 		goto out_unlock;
- 	}
- 
-@@ -512,8 +518,10 @@ static int hmm_vma_walk_hugetlb_entry(pte_t *pte, unsigned long hmask,
- 	}
- 
- 	pfn = pte_pfn(entry) + ((start & ~hmask) >> PAGE_SHIFT);
--	for (; addr < end; addr += PAGE_SIZE, i++, pfn++)
--		range->hmm_pfns[i] = pfn | cpu_flags;
-+	for (; addr < end; addr += PAGE_SIZE, i++, pfn++) {
-+		range->hmm_pfns[i] &= HMM_PFN_STICKY;
-+		range->hmm_pfns[i] |= pfn | cpu_flags;
-+	}
- 
- 	spin_unlock(ptl);
- 	return 0;
++/*
++ * drm_gem_dma_max_sg_segment() - Provides upper limit for sg segment size.
++ * @dev: device pointer
++ *
++ * Returns the maximum segment size for the 'struct scatterlist'
++ * elements.
++ */
++static inline unsigned int drm_gem_dma_max_sg_segment(struct device *dev)
++{
++	struct scatterlist __maybe_unused sg;
++	size_t max = BIT_ULL(sizeof(sg.length) * 8) - 1;
++
++	max = min_t(size_t, max, dma_max_mapping_size(dev));
++
++	/*
++	 * The iommu_dma_map_sg() function ensures iova allocation doesn't
++	 * cross dma segment boundary. It does so by padding some sg elements.
++	 * This can cause overflow, ending up with sg->length being set to 0.
++	 * Avoid this by ensuring maximum segment size is half of 'max'
++	 * rounded down to PAGE_SIZE.
++	 */
++	return round_down(max / 2, PAGE_SIZE);
++}
++
+ /*
+  * Driver ops
+  */
 -- 
 2.26.3
 
