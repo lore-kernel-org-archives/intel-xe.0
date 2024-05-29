@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF8ACC25B78
-	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 01:07:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13D8EC27C43
+	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 01:14:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B8C7112C85;
-	Wed, 29 May 2024 01:07:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G9qnvEqt";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56C0A112C89
- for <intel-xe@lists.freedesktop.org>; Wed, 29 May 2024 01:05:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716944732; x=1748480732;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=5H+5k/SVWJxWYRJ4g27v6GOLDY0ysFZiiMdePdaHzfY=;
- b=G9qnvEqtC6/8DwHThV5h3YUt69kNTTKWyV24ufIQSjLKYhdGU7ZB9NYw
- FygR4ETxpb7KKK6TPI7ZAHpLontX0O+7r63La7KmkHAeYC6grzTsWOT/c
- ifWXq706qE1Y41tx84s7oH/9VVgyZBzfLKxyBPGeNHHuza/wbWmo9ZyY4
- sLmb9BxTNDL0JKSZxJ7BRLUAOX4nkoRLuI+DpfQUVyCGbcWjbEQRA6alr
- xZrvjYboOLkQUIAvqbFBUvhh5Eywod+QjhY+8a+k9bdc1gPtVZoulBRl9
- e9IUtTVlIhcsFzv9u3lzkrhTZpk+Ksxf/xicEBisJwU8En1/0eONz81pm g==;
-X-CSE-ConnectionGUID: MkX4NRlfRPK5VLBoGH4kEQ==
-X-CSE-MsgGUID: seumPm8RQNqdfkW/2bw46g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="30849801"
-X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="30849801"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 18:05:18 -0700
-X-CSE-ConnectionGUID: 1SW9QZpcSIqPqu5t8zn4Ng==
-X-CSE-MsgGUID: H77UsgLoSeOZxYZCpUGunA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="72700508"
-Received: from szeng-desk.jf.intel.com ([10.165.21.149])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 18:05:18 -0700
-From: Oak Zeng <oak.zeng@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI v3 19/26] drm/xe: Update VM trace events
-Date: Tue, 28 May 2024 21:19:17 -0400
-Message-Id: <20240529011924.4125173-19-oak.zeng@intel.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20240529011924.4125173-1-oak.zeng@intel.com>
-References: <20240529011924.4125173-1-oak.zeng@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9D0B10E4AC;
+	Wed, 29 May 2024 01:14:46 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 281E710E4AC;
+ Wed, 29 May 2024 01:14:45 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_series_starting_with?=
+ =?utf-8?q?_=5BCI=2Cv3=2C01/26=5D_mm/hmm=3A_let_users_to_tag_specific_PFNs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Oak Zeng" <oak.zeng@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 29 May 2024 01:14:45 -0000
+Message-ID: <171694528516.2229880.14914195190886859167@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240529011924.4125173-1-oak.zeng@intel.com>
+In-Reply-To: <20240529011924.4125173-1-oak.zeng@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,124 +36,30 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
+== Series Details ==
 
-The trace events have changed moving to a single job per VM bind IOCTL,
-update the trace events align with old behavior as much as possible.
+Series: series starting with [CI,v3,01/26] mm/hmm: let users to tag specific PFNs
+URL   : https://patchwork.freedesktop.org/series/134167/
+State : failure
 
-Cc: Oak Zeng <oak.zeng@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_trace.h | 10 ++++-----
- drivers/gpu/drm/xe/xe_vm.c    | 42 +++++++++++++++++++++++++++++++++--
- 2 files changed, 45 insertions(+), 7 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index 450f407c66e8..0f5b9df889b9 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -426,11 +426,6 @@ DEFINE_EVENT(xe_vma, xe_vma_acc,
- 	     TP_ARGS(vma)
- );
- 
--DEFINE_EVENT(xe_vma, xe_vma_fail,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
- DEFINE_EVENT(xe_vma, xe_vma_bind,
- 	     TP_PROTO(struct xe_vma *vma),
- 	     TP_ARGS(vma)
-@@ -544,6 +539,11 @@ DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_exit,
- 	     TP_ARGS(vm)
- );
- 
-+DEFINE_EVENT(xe_vm, xe_vm_ops_fail,
-+	     TP_PROTO(struct xe_vm *vm),
-+	     TP_ARGS(vm)
-+);
-+
- /* GuC */
- DECLARE_EVENT_CLASS(xe_guc_ct_flow_control,
- 		    TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u32 len),
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 551048bff9ce..a205a72f411b 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2476,6 +2476,38 @@ static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
- 	return 0;
- }
- 
-+static void op_trace(struct xe_vma_op *op)
-+{
-+	switch (op->base.op) {
-+	case DRM_GPUVA_OP_MAP:
-+		trace_xe_vma_bind(op->map.vma);
-+		break;
-+	case DRM_GPUVA_OP_REMAP:
-+		trace_xe_vma_unbind(gpuva_to_vma(op->base.remap.unmap->va));
-+		if (op->remap.prev)
-+			trace_xe_vma_bind(op->remap.prev);
-+		if (op->remap.next)
-+			trace_xe_vma_bind(op->remap.next);
-+		break;
-+	case DRM_GPUVA_OP_UNMAP:
-+		trace_xe_vma_unbind(gpuva_to_vma(op->base.unmap.va));
-+		break;
-+	case DRM_GPUVA_OP_PREFETCH:
-+		trace_xe_vma_bind(gpuva_to_vma(op->base.prefetch.va));
-+		break;
-+	default:
-+		XE_WARN_ON("NOT POSSIBLE");
-+	}
-+}
-+
-+static void trace_xe_vm_ops_execute(struct xe_vma_ops *vops)
-+{
-+	struct xe_vma_op *op;
-+
-+	list_for_each_entry(op, &vops->list, link)
-+		op_trace(op);
-+}
-+
- static int vm_ops_setup_tile_args(struct xe_vm *vm, struct xe_vma_ops *vops)
- {
- 	struct xe_exec_queue *q = vops->q;
-@@ -2519,8 +2551,10 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
- 	if (number_tiles > 1) {
- 		fences = kmalloc_array(number_tiles, sizeof(*fences),
- 				       GFP_KERNEL);
--		if (!fences)
--			return ERR_PTR(-ENOMEM);
-+		if (!fences) {
-+			fence = ERR_PTR(-ENOMEM);
-+			goto err_trace;
-+		}
- 	}
- 
- 	for_each_tile(tile, vm->xe, id) {
-@@ -2534,6 +2568,8 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
- 		}
- 	}
- 
-+	trace_xe_vm_ops_execute(vops);
-+
- 	for_each_tile(tile, vm->xe, id) {
- 		if (!vops->pt_update_ops[id].num_ops)
- 			continue;
-@@ -2580,6 +2616,8 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
- 	kfree(fences);
- 	kfree(cf);
- 
-+err_trace:
-+	trace_xe_vm_ops_fail(vm);
- 	return fence;
- }
- 
--- 
-2.26.3
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c148f6df1b62 drm-tip: 2024y-05m-28d-22h-13m-38s UTC integration manifest
+=== git am output follows ===
+error: patch failed: include/linux/dma-map-ops.h:428
+error: include/linux/dma-map-ops.h: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: mm/hmm: let users to tag specific PFNs
+Applying: dma-mapping: provide an interface to allocate IOVA
+Applying: dma-mapping: provide callbacks to link/unlink pages to specific IOVA
+Patch failed at 0003 dma-mapping: provide callbacks to link/unlink pages to specific IOVA
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 
