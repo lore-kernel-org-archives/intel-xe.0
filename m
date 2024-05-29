@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A37A2C25B75
-	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 20:15:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0261FC25B75
+	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 20:15:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D2DD10E0C7;
-	Wed, 29 May 2024 20:15:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9D4E10E2F6;
+	Wed, 29 May 2024 20:15:48 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91CD010E0C7;
- Wed, 29 May 2024 20:15:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 994EA10E2F6;
+ Wed, 29 May 2024 20:15:46 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Remove_unw?=
- =?utf-8?q?anted_mutex_locking_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Remove_unwanted?=
+ =?utf-8?q?_mutex_locking_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 29 May 2024 20:15:35 -0000
-Message-ID: <171701373559.2235474.5120803754358778619@8e613ede5ea5>
+Date: Wed, 29 May 2024 20:15:46 -0000
+Message-ID: <171701374662.2234143.9872793037472373061@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240529183319.19731-1-niranjana.vishwanathapura@intel.com>
 In-Reply-To: <20240529183319.19731-1-niranjana.vishwanathapura@intel.com>
@@ -48,9 +48,35 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 55d6179b96e0 drm-tip: 2024y-05m-29d-17h-29m-17s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Remove unwanted mutex locking
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 06757aca82edd6208cf541ec2325c1fe6b5cf34e
+Author: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Date:   Wed May 29 11:33:19 2024 -0700
+
+    drm/xe: Remove unwanted mutex locking
+    
+    Do not hold xef->exec_queue.lock mutex while parsing the xarray
+    xef->exec_queue.xa in xe_file_close() as it is not needed and
+    will cause an unwanted dependency between this lock and the vm->lock.
+    
+    This lock protects the exec queue lookup and reference taking which
+    doesn't apply to this code path. When FD is closing, IOCTLs presumably
+    can't be modifying the xarray.
+    
+    v2: Update commit text
+    
+    Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Jagmeet Randhawa <jagmeet.randhawa@intel.com>
++ /mt/dim checkpatch 55d6179b96e0390025f2ba101c03b94b50cab7a1 drm-intel
+06757aca82ed drm/xe: Remove unwanted mutex locking
 
 
