@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 083A1C25B75
-	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 17:40:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 916BCC25B75
+	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 17:40:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2880010EAE7;
-	Wed, 29 May 2024 17:40:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D84B310EAE7;
+	Wed, 29 May 2024 17:40:53 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5109510E644;
- Wed, 29 May 2024 17:40:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B7E810F9ED;
+ Wed, 29 May 2024 17:40:51 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_replace_fo?=
- =?utf-8?q?rmat-less_snprintf=28=29_with_strscpy=28=29_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_replace_format-?=
+ =?utf-8?q?less_snprintf=28=29_with_strscpy=28=29_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Arnd Bergmann" <arnd@kernel.org>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 29 May 2024 17:40:37 -0000
-Message-ID: <171700443733.2233681.7525968346398463562@8e613ede5ea5>
+Date: Wed, 29 May 2024 17:40:51 -0000
+Message-ID: <171700445130.2234143.3563041077608249594@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240528133251.2310868-1-arnd@kernel.org>
 In-Reply-To: <20240528133251.2310868-1-arnd@kernel.org>
@@ -44,13 +44,46 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: replace format-less snprintf() with strscpy() (rev2)
 URL   : https://patchwork.freedesktop.org/series/134140/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 55d6179b96e0 drm-tip: 2024y-05m-29d-17h-29m-17s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: replace format-less snprintf() with strscpy()
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6ace848605f9ac54bf691cb53c8386b6894898dd
+Author: Arnd Bergmann <arnd@arndb.de>
+Date:   Tue May 28 15:32:36 2024 +0200
+
+    drm/xe: replace format-less snprintf() with strscpy()
+    
+    Using snprintf() with a format string from task->comm is a bit
+    dangerous since the string may be controlled by unprivileged
+    userspace:
+    
+    drivers/gpu/drm/xe/xe_devcoredump.c: In function 'devcoredump_snapshot':
+    drivers/gpu/drm/xe/xe_devcoredump.c:184:9: error: format not a string literal and no format arguments [-Werror=format-security]
+      184 |         snprintf(ss->process_name, sizeof(ss->process_name), process_name);
+          |         ^~~~~~~~
+    
+    In this case there is no reason for an snprintf(), so use a simpler
+    string copy.
+    
+    Fixes: b10d0c5e9df7 ("drm/xe: Add process name to devcoredump")
+    Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+    Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch 55d6179b96e0390025f2ba101c03b94b50cab7a1 drm-intel
+6ace848605f9 drm/xe: replace format-less snprintf() with strscpy()
+-:15: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#15: 
+  184 |         snprintf(ss->process_name, sizeof(ss->process_name), process_name);
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
 
 
