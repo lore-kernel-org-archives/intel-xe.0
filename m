@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0E22C41513
-	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 01:06:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57BCAC27C4F
+	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 01:06:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68207112C87;
-	Wed, 29 May 2024 01:06:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E0B4112C8A;
+	Wed, 29 May 2024 01:06:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DlOVhKCc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dw7yZmq1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 730FF112C85
- for <intel-xe@lists.freedesktop.org>; Wed, 29 May 2024 01:05:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AC7D112C85
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 May 2024 01:05:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716944733; x=1748480733;
+ t=1716944729; x=1748480729;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=IDzzHo1x91DU9pspOOKTtrmfYl4iuwEmwwQHONhORqE=;
- b=DlOVhKCcwr38/UKDPDwGtGTu5gzM2HGQlSRWeOj6L8tCavsWjIT1dpQh
- 6F9VK6hM5XvMG7J1NJBOSVfnyDOO3k5ZDqT6Dw4Q/WTjW3Qorr4eMPR8E
- or3PTpr0zF5gMqmaR1QJScp9CgCEGu6zCAWtKDwlSanZhzuuasdyVk/fg
- xRN+boMbx03dh/OqXyIr2IMiwqya/rvgrULgVN+/6DaUiFsvJ5E2H8gvC
- vtU16HKxDeeNw2tsteDUVi4ojUZc0Xg+qTxfd6gKqLlePK6XQlw7/0cDK
- ZlLvUuNnUFKoaecC1KX31rr06qS87mrYHZWM536bPTowbGIeGTRZb3uwN Q==;
-X-CSE-ConnectionGUID: /bn1dWvkRB+bCEaubbRHHQ==
-X-CSE-MsgGUID: qsL9roX9SVStfZ6UcJHl4A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="30849807"
-X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="30849807"
+ bh=bE9rFQc5Cd2g55RYnQeQDmpD4JmKLx36EB5Eqh31SNs=;
+ b=dw7yZmq1e/vlvh12hi4TA7uRf0iq57fbuz/vccB1zhXbYBO6JK4CW5J2
+ 8TVD0HOYMjvGuPNXfzauQbnHGYbsBd6eMl9cVBMwKewj+A+S9gs+S5i/P
+ CMpdn85sHBDx6K2Hq9PD80jfO/v+fd5LYOen2v3JsZ80cJSBv7MXF+lOh
+ 0/4tZmpjlF2lj79NkiPhbWmuJZXJ9Y1C5m7jB66RKRsuI6FkjplawWTvl
+ zF0Bqpacirjz0QgesgWnWA98A1uz7uGQ69tTekkIRedw9TpXEfvQcMuOo
+ Zo+R7xgTfpakFGXTbUBXA3bbp5D4Njp79y6j3xrHvGedrTryivghAVg5I w==;
+X-CSE-ConnectionGUID: 9tB+6y89SwW8daH2YhE+Aw==
+X-CSE-MsgGUID: DlstXWvPQemtLXEUwQt9sQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="30849791"
+X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="30849791"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 May 2024 18:05:18 -0700
-X-CSE-ConnectionGUID: LAZBSJOJSEu+SbgCA5EsoQ==
-X-CSE-MsgGUID: dxII6kEiTma3lJ4LJW271w==
+X-CSE-ConnectionGUID: 77yTnm99SEGhDFpNJ/EgUw==
+X-CSE-MsgGUID: gkBN1iBGR6W5aFSfBhJsCA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="72700514"
+X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="72700489"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 18:05:18 -0700
+ 28 May 2024 18:05:17 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v3 23/26] drm/xe/uapi: Add DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATOR
- flag
-Date: Tue, 28 May 2024 21:19:21 -0400
-Message-Id: <20240529011924.4125173-23-oak.zeng@intel.com>
+Subject: [CI v3 04/26] iommu/dma: Provide an interface to allow preallocate
+ IOVA
+Date: Tue, 28 May 2024 21:19:02 -0400
+Message-Id: <20240529011924.4125173-4-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240529011924.4125173-1-oak.zeng@intel.com>
 References: <20240529011924.4125173-1-oak.zeng@intel.com>
@@ -66,563 +66,166 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
+From: Leon Romanovsky <leonro@nvidia.com>
 
-Add the DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATOR flag, which is used to
-create unpopulated virtual memory areas (VMAs) without memory backing or
-GPU page tables. These VMAs are referred to as system allocator VMAs.
-The idea is that upon a page fault, the memory backing and GPU page
-tables will be populated.
+Separate IOVA allocation to dedicated callback so it will allow
+cache of IOVA and reuse it in fast paths for devices which support
+ODP (on-demand-paging) mechanism.
 
-System allocator VMAs only update GPUVM state; they do not have an
-internal page table (PT) state, nor do they have GPU mappings.
-
-It is expected that system allocator VMAs will be mixed with buffer
-object (BO) VMAs within a single VM. In other words, system allocations
-and runtime allocations can be mixed within a single user-mode driver
-(UMD) program.
-
-Expected usage:
-
-- Bind the entire virtual address (VA) space upon program load using the
-  DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATOR flag and DRM_XE_VM_BIND_OP_MAP op.
-- If a buffer object (BO) requires GPU mapping, reserve an address range
-  using mmap, unbind the address range from system allocator using
-  DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATOR flag and DRM_XE_VM_BIND_OP_UNMAP op,
-  and bind the BO to the reserved address using existing bind IOCTLs
-  (runtime allocation).
-- If a BO no longer requires GPU mapping, bind the mapping address with
-  the DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATOR flag.
-- Any malloc'd address accessed by the GPU will be faulted in via the
-  SVM implementation (system allocation).
-- Upon freeing any malloc'd data, the SVM implementation will remove GPU
-  mappings.
-
-v1:
-  fix commit message (Oak)
-  rebase with lastest xekmd, fix conflict in xe_analyze_vm (Oak)
-
-FIXME: Not enforcing DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATOR for fault mode VMs
-
-FIXME: Only supporting 1 to 1 mapping between user address space and
-GPU address space
-
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c       |  73 +++++++++++++++++----
- drivers/gpu/drm/xe/xe_vm.c       | 107 ++++++++++++++++++++-----------
- drivers/gpu/drm/xe/xe_vm.h       |   8 ++-
- drivers/gpu/drm/xe/xe_vm_types.h |   3 +
- include/uapi/drm/xe_drm.h        |  11 +++-
- 5 files changed, 147 insertions(+), 55 deletions(-)
+ drivers/iommu/dma-iommu.c | 50 +++++++++++++++++++++++++++++----------
+ 1 file changed, 38 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index e4dd385ee954..3f6b1d8f437b 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -1064,6 +1064,11 @@ static int op_add_deps(struct xe_vm *vm, struct xe_vma_op *op,
- {
- 	int err = 0;
- 
-+	/*
-+	 * No need to check for is_system_allocator here as vma_add_deps is a
-+	 * NOP if VMA is_system_allocator
-+	 */
-+
- 	switch (op->base.op) {
- 	case DRM_GPUVA_OP_MAP:
- 		if (!op->map.immediate && xe_vm_in_fault_mode(vm))
-@@ -1671,6 +1676,7 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
- 	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
- 	int err;
- 
-+	xe_tile_assert(tile, !xe_vma_is_system_allocator(vma));
- 	xe_bo_assert_held(xe_vma_bo(vma));
- 
- 	vm_dbg(&xe_vma_vm(vma)->xe->drm,
-@@ -1737,6 +1743,7 @@ static int unbind_op_prepare(struct xe_tile *tile,
- 	if (!((vma->tile_present | vma->tile_staged) & BIT(tile->id)))
- 		return 0;
- 
-+	xe_tile_assert(tile, !xe_vma_is_system_allocator(vma));
- 	xe_bo_assert_held(xe_vma_bo(vma));
- 
- 	vm_dbg(&xe_vma_vm(vma)->xe->drm,
-@@ -1783,15 +1790,21 @@ static int op_prepare(struct xe_vm *vm,
- 
- 	switch (op->base.op) {
- 	case DRM_GPUVA_OP_MAP:
--		if (!op->map.immediate && xe_vm_in_fault_mode(vm))
-+		if ((!op->map.immediate && xe_vm_in_fault_mode(vm)) ||
-+		    op->map.is_system_allocator)
- 			break;
- 
- 		err = bind_op_prepare(vm, tile, pt_update_ops, op->map.vma);
- 		pt_update_ops->wait_vm_kernel = true;
- 		break;
- 	case DRM_GPUVA_OP_REMAP:
--		err = unbind_op_prepare(tile, pt_update_ops,
--					gpuva_to_vma(op->base.remap.unmap->va));
-+	{
-+		struct xe_vma *old = gpuva_to_vma(op->base.remap.unmap->va);
-+
-+		if (xe_vma_is_system_allocator(old))
-+			break;
-+
-+		err = unbind_op_prepare(tile, pt_update_ops, old);
- 
- 		if (!err && op->remap.prev) {
- 			err = bind_op_prepare(vm, tile, pt_update_ops,
-@@ -1804,15 +1817,28 @@ static int op_prepare(struct xe_vm *vm,
- 			pt_update_ops->wait_vm_bookkeep = true;
- 		}
- 		break;
-+	}
- 	case DRM_GPUVA_OP_UNMAP:
--		err = unbind_op_prepare(tile, pt_update_ops,
--					gpuva_to_vma(op->base.unmap.va));
-+	{
-+		struct xe_vma *vma = gpuva_to_vma(op->base.unmap.va);
-+
-+		if (xe_vma_is_system_allocator(vma))
-+			break;
-+
-+		err = unbind_op_prepare(tile, pt_update_ops, vma);
- 		break;
-+	}
- 	case DRM_GPUVA_OP_PREFETCH:
--		err = bind_op_prepare(vm, tile, pt_update_ops,
--				      gpuva_to_vma(op->base.prefetch.va));
-+	{
-+		struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
-+
-+		if (xe_vma_is_system_allocator(vma))
-+			break;
-+
-+		err = bind_op_prepare(vm, tile, pt_update_ops, vma);
- 		pt_update_ops->wait_vm_kernel = true;
- 		break;
-+	}
- 	default:
- 		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
- 	}
-@@ -1873,6 +1899,8 @@ static void bind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
- 			   struct xe_vm_pgtable_update_ops *pt_update_ops,
- 			   struct xe_vma *vma, struct dma_fence *fence)
- {
-+	xe_tile_assert(tile, !xe_vma_is_system_allocator(vma));
-+
- 	if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
- 		dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
- 				   pt_update_ops->wait_vm_bookkeep ?
-@@ -1899,6 +1927,8 @@ static void unbind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
- 			     struct xe_vm_pgtable_update_ops *pt_update_ops,
- 			     struct xe_vma *vma, struct dma_fence *fence)
- {
-+	xe_tile_assert(tile, !xe_vma_is_system_allocator(vma));
-+
- 	if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
- 		dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
- 				   pt_update_ops->wait_vm_bookkeep ?
-@@ -1926,14 +1956,20 @@ static void op_commit(struct xe_vm *vm,
- 
- 	switch (op->base.op) {
- 	case DRM_GPUVA_OP_MAP:
--		if (!op->map.immediate && xe_vm_in_fault_mode(vm))
-+		if ((!op->map.immediate && xe_vm_in_fault_mode(vm)) ||
-+		    op->map.is_system_allocator)
- 			break;
- 
- 		bind_op_commit(vm, tile, pt_update_ops, op->map.vma, fence);
- 		break;
- 	case DRM_GPUVA_OP_REMAP:
--		unbind_op_commit(vm, tile, pt_update_ops,
--				 gpuva_to_vma(op->base.remap.unmap->va), fence);
-+	{
-+		struct xe_vma *old = gpuva_to_vma(op->base.remap.unmap->va);
-+
-+		if (xe_vma_is_system_allocator(old))
-+			break;
-+
-+		unbind_op_commit(vm, tile, pt_update_ops, old, fence);
- 
- 		if (op->remap.prev)
- 			bind_op_commit(vm, tile, pt_update_ops, op->remap.prev,
-@@ -1942,14 +1978,23 @@ static void op_commit(struct xe_vm *vm,
- 			bind_op_commit(vm, tile, pt_update_ops, op->remap.next,
- 				       fence);
- 		break;
-+	}
- 	case DRM_GPUVA_OP_UNMAP:
--		unbind_op_commit(vm, tile, pt_update_ops,
--				 gpuva_to_vma(op->base.unmap.va), fence);
-+	{
-+		struct xe_vma *vma = gpuva_to_vma(op->base.unmap.va);
-+
-+		if (!xe_vma_is_system_allocator(vma))
-+			unbind_op_commit(vm, tile, pt_update_ops, vma, fence);
- 		break;
-+	}
- 	case DRM_GPUVA_OP_PREFETCH:
--		bind_op_commit(vm, tile, pt_update_ops,
--			       gpuva_to_vma(op->base.prefetch.va), fence);
-+	{
-+		struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
-+
-+		if (!xe_vma_is_system_allocator(vma))
-+			bind_op_commit(vm, tile, pt_update_ops, vma, fence);
- 		break;
-+	}
- 	default:
- 		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index a205a72f411b..efd9fc921d9c 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -891,9 +891,10 @@ static void xe_vma_free(struct xe_vma *vma)
- 		kfree(vma);
- }
- 
--#define VMA_CREATE_FLAG_READ_ONLY	BIT(0)
--#define VMA_CREATE_FLAG_IS_NULL		BIT(1)
--#define VMA_CREATE_FLAG_DUMPABLE	BIT(2)
-+#define VMA_CREATE_FLAG_READ_ONLY		BIT(0)
-+#define VMA_CREATE_FLAG_IS_NULL			BIT(1)
-+#define VMA_CREATE_FLAG_DUMPABLE		BIT(2)
-+#define VMA_CREATE_FLAG_IS_SYSTEM_ALLOCATOR	BIT(3)
- 
- static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 				    struct xe_bo *bo,
-@@ -907,6 +908,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 	bool read_only = (flags & VMA_CREATE_FLAG_READ_ONLY);
- 	bool is_null = (flags & VMA_CREATE_FLAG_IS_NULL);
- 	bool dumpable = (flags & VMA_CREATE_FLAG_DUMPABLE);
-+	bool is_system_allocator =
-+		(flags & VMA_CREATE_FLAG_IS_SYSTEM_ALLOCATOR);
- 
- 	xe_assert(vm->xe, start < end);
- 	xe_assert(vm->xe, end < vm->size);
-@@ -915,7 +918,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 	 * Allocate and ensure that the xe_vma_is_userptr() return
- 	 * matches what was allocated.
+diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
+index e4cb26f6a943..4339c8136176 100644
+--- a/drivers/iommu/dma-iommu.c
++++ b/drivers/iommu/dma-iommu.c
+@@ -356,7 +356,7 @@ int iommu_dma_init_fq(struct iommu_domain *domain)
+ 	atomic_set(&cookie->fq_timer_on, 0);
+ 	/*
+ 	 * Prevent incomplete fq state being observable. Pairs with path from
+-	 * __iommu_dma_unmap() through iommu_dma_free_iova() to queue_iova()
++	 * __iommu_dma_unmap() through __iommu_dma_free_iova() to queue_iova()
  	 */
--	if (!bo && !is_null) {
-+	if (!bo && !is_null && !is_system_allocator) {
- 		struct xe_userptr_vma *uvma = kzalloc(sizeof(*uvma), GFP_KERNEL);
- 
- 		if (!uvma)
-@@ -927,6 +930,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 		if (!vma)
- 			return ERR_PTR(-ENOMEM);
- 
-+		if (is_system_allocator)
-+			vma->gpuva.flags |= XE_VMA_SYSTEM_ALLOCATOR;
- 		if (is_null)
- 			vma->gpuva.flags |= DRM_GPUVA_SPARSE;
- 		if (bo)
-@@ -969,7 +974,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 		drm_gpuva_link(&vma->gpuva, vm_bo);
- 		drm_gpuvm_bo_put(vm_bo);
- 	} else /* userptr or null */ {
--		if (!is_null) {
-+		if (!is_null && !is_system_allocator) {
- 			struct xe_userptr *userptr = &to_userptr_vma(vma)->userptr;
- 			u64 size = end - start + 1;
- 			int err;
-@@ -1019,7 +1024,7 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
- 		 */
- 		mmu_interval_notifier_remove(&userptr->notifier);
- 		xe_vm_put(vm);
--	} else if (xe_vma_is_null(vma)) {
-+	} else if (xe_vma_is_null(vma) || xe_vma_is_system_allocator(vma)) {
- 		xe_vm_put(vm);
- 	} else {
- 		xe_bo_put(xe_vma_bo(vma));
-@@ -1058,7 +1063,7 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
- 		spin_lock(&vm->userptr.invalidated_lock);
- 		list_del(&to_userptr_vma(vma)->userptr.invalidate_link);
- 		spin_unlock(&vm->userptr.invalidated_lock);
--	} else if (!xe_vma_is_null(vma)) {
-+	} else if (!xe_vma_is_null(vma) && !xe_vma_is_system_allocator(vma)) {
- 		xe_bo_assert_held(xe_vma_bo(vma));
- 
- 		drm_gpuva_unlink(&vma->gpuva);
-@@ -1983,6 +1988,8 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 			op->map.read_only =
- 				flags & DRM_XE_VM_BIND_FLAG_READONLY;
- 			op->map.is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
-+			op->map.is_system_allocator = flags &
-+				DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATOR;
- 			op->map.dumpable = flags & DRM_XE_VM_BIND_FLAG_DUMPABLE;
- 			op->map.pat_index = pat_index;
- 		} else if (__op->op == DRM_GPUVA_OP_PREFETCH) {
-@@ -2175,6 +2182,8 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 				VMA_CREATE_FLAG_IS_NULL : 0;
- 			flags |= op->map.dumpable ?
- 				VMA_CREATE_FLAG_DUMPABLE : 0;
-+			flags |= op->map.is_system_allocator ?
-+				VMA_CREATE_FLAG_IS_SYSTEM_ALLOCATOR : 0;
- 
- 			vma = new_vma(vm, &op->base.map, op->map.pat_index,
- 				      flags);
-@@ -2182,7 +2191,8 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 				return PTR_ERR(vma);
- 
- 			op->map.vma = vma;
--			if (op->map.immediate || !xe_vm_in_fault_mode(vm))
-+			if ((op->map.immediate || !xe_vm_in_fault_mode(vm)) &&
-+			    !op->map.is_system_allocator)
- 				xe_vma_ops_incr_pt_update_ops(vops,
- 							      op->tile_mask);
- 			break;
-@@ -2191,21 +2201,24 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 		{
- 			struct xe_vma *old =
- 				gpuva_to_vma(op->base.remap.unmap->va);
-+			bool skip = xe_vma_is_system_allocator(old);
- 
- 			op->remap.start = xe_vma_start(old);
- 			op->remap.range = xe_vma_size(old);
- 
--			if (op->base.remap.prev) {
--				flags |= op->base.remap.unmap->va->flags &
--					XE_VMA_READ_ONLY ?
--					VMA_CREATE_FLAG_READ_ONLY : 0;
--				flags |= op->base.remap.unmap->va->flags &
--					DRM_GPUVA_SPARSE ?
--					VMA_CREATE_FLAG_IS_NULL : 0;
--				flags |= op->base.remap.unmap->va->flags &
--					XE_VMA_DUMPABLE ?
--					VMA_CREATE_FLAG_DUMPABLE : 0;
-+			flags |= op->base.remap.unmap->va->flags &
-+				XE_VMA_READ_ONLY ?
-+				VMA_CREATE_FLAG_READ_ONLY : 0;
-+			flags |= op->base.remap.unmap->va->flags &
-+				DRM_GPUVA_SPARSE ?
-+				VMA_CREATE_FLAG_IS_NULL : 0;
-+			flags |= op->base.remap.unmap->va->flags &
-+				XE_VMA_DUMPABLE ?
-+				VMA_CREATE_FLAG_DUMPABLE : 0;
-+			flags |= xe_vma_is_system_allocator(old) ?
-+				VMA_CREATE_FLAG_IS_SYSTEM_ALLOCATOR : 0;
- 
-+			if (op->base.remap.prev) {
- 				vma = new_vma(vm, op->base.remap.prev,
- 					      old->pat_index, flags);
- 				if (IS_ERR(vma))
-@@ -2217,9 +2230,10 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 				 * Userptr creates a new SG mapping so
- 				 * we must also rebind.
- 				 */
--				op->remap.skip_prev = !xe_vma_is_userptr(old) &&
-+				op->remap.skip_prev = skip ||
-+					(!xe_vma_is_userptr(old) &&
- 					IS_ALIGNED(xe_vma_end(vma),
--						   xe_vma_max_pte_size(old));
-+						   xe_vma_max_pte_size(old)));
- 				if (op->remap.skip_prev) {
- 					xe_vma_set_pte_size(vma, xe_vma_max_pte_size(old));
- 					op->remap.range -=
-@@ -2235,16 +2249,6 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 			}
- 
- 			if (op->base.remap.next) {
--				flags |= op->base.remap.unmap->va->flags &
--					XE_VMA_READ_ONLY ?
--					VMA_CREATE_FLAG_READ_ONLY : 0;
--				flags |= op->base.remap.unmap->va->flags &
--					DRM_GPUVA_SPARSE ?
--					VMA_CREATE_FLAG_IS_NULL : 0;
--				flags |= op->base.remap.unmap->va->flags &
--					XE_VMA_DUMPABLE ?
--					VMA_CREATE_FLAG_DUMPABLE : 0;
--
- 				vma = new_vma(vm, op->base.remap.next,
- 					      old->pat_index, flags);
- 				if (IS_ERR(vma))
-@@ -2256,9 +2260,10 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 				 * Userptr creates a new SG mapping so
- 				 * we must also rebind.
- 				 */
--				op->remap.skip_next = !xe_vma_is_userptr(old) &&
-+				op->remap.skip_next = skip ||
-+					(!xe_vma_is_userptr(old) &&
- 					IS_ALIGNED(xe_vma_start(vma),
--						   xe_vma_max_pte_size(old));
-+						   xe_vma_max_pte_size(old)));
- 				if (op->remap.skip_next) {
- 					xe_vma_set_pte_size(vma, xe_vma_max_pte_size(old));
- 					op->remap.range -=
-@@ -2271,14 +2276,27 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 					xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
- 				}
- 			}
--			xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
-+			if (!skip)
-+				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
- 			break;
- 		}
- 		case DRM_GPUVA_OP_UNMAP:
-+		{
-+			struct xe_vma *vma = gpuva_to_vma(op->base.unmap.va);
-+
-+			if (!xe_vma_is_system_allocator(vma))
-+				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
-+			break;
-+		}
- 		case DRM_GPUVA_OP_PREFETCH:
-+		{
-+			struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
-+
- 			/* FIXME: Need to skip some prefetch ops */
--			xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
-+			if (!xe_vma_is_system_allocator(vma))
-+				xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
- 			break;
-+		}
- 		default:
- 			drm_warn(&vm->xe->drm, "NOT POSSIBLE");
- 		}
-@@ -2713,7 +2731,8 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
- 	(DRM_XE_VM_BIND_FLAG_READONLY | \
- 	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | \
- 	 DRM_XE_VM_BIND_FLAG_NULL | \
--	 DRM_XE_VM_BIND_FLAG_DUMPABLE)
-+	 DRM_XE_VM_BIND_FLAG_DUMPABLE | \
-+	 DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATOR)
- #define XE_64K_PAGE_MASK 0xffffull
- #define ALL_DRM_XE_SYNCS_FLAGS (DRM_XE_SYNCS_FLAG_WAIT_FOR_OP)
- 
-@@ -2761,9 +2780,17 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 		u64 obj_offset = (*bind_ops)[i].obj_offset;
- 		u32 prefetch_region = (*bind_ops)[i].prefetch_mem_region_instance;
- 		bool is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
-+		bool is_system_allocator = flags &
-+			DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATOR;
- 		u16 pat_index = (*bind_ops)[i].pat_index;
- 		u16 coh_mode;
- 
-+		/* FIXME: Disabling system allocator for now */
-+		if (XE_IOCTL_DBG(xe, is_system_allocator)) {
-+			err = -EOPNOTSUPP;
-+			goto free_bind_ops;
-+		}
-+
- 		if (XE_IOCTL_DBG(xe, pat_index >= xe->pat.n_entries)) {
- 			err = -EINVAL;
- 			goto free_bind_ops;
-@@ -2784,13 +2811,14 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 
- 		if (XE_IOCTL_DBG(xe, op > DRM_XE_VM_BIND_OP_PREFETCH) ||
- 		    XE_IOCTL_DBG(xe, flags & ~SUPPORTED_FLAGS) ||
--		    XE_IOCTL_DBG(xe, obj && is_null) ||
--		    XE_IOCTL_DBG(xe, obj_offset && is_null) ||
-+		    XE_IOCTL_DBG(xe, obj && (is_null || is_system_allocator)) ||
-+		    XE_IOCTL_DBG(xe, obj_offset &&
-+				 (is_null || is_system_allocator)) ||
- 		    XE_IOCTL_DBG(xe, op != DRM_XE_VM_BIND_OP_MAP &&
--				 is_null) ||
-+				 (is_null || is_system_allocator)) ||
- 		    XE_IOCTL_DBG(xe, !obj &&
- 				 op == DRM_XE_VM_BIND_OP_MAP &&
--				 !is_null) ||
-+				 !is_null && !is_system_allocator) ||
- 		    XE_IOCTL_DBG(xe, !obj &&
- 				 op == DRM_XE_VM_BIND_OP_UNMAP_ALL) ||
- 		    XE_IOCTL_DBG(xe, addr &&
-@@ -3155,6 +3183,7 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
- 	int ret;
- 
- 	xe_assert(xe, !xe_vma_is_null(vma));
-+	xe_assert(xe, !xe_vma_is_system_allocator(vma));
- 	trace_xe_vma_invalidate(vma);
- 
- 	vm_dbg(&xe_vma_vm(vma)->xe->drm,
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index c864dba35e1d..1a5aed678214 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -151,6 +151,11 @@ static inline bool xe_vma_is_null(struct xe_vma *vma)
- 	return vma->gpuva.flags & DRM_GPUVA_SPARSE;
+ 	smp_wmb();
+ 	WRITE_ONCE(cookie->fq_domain, domain);
+@@ -760,7 +760,7 @@ static int dma_info_to_prot(enum dma_data_direction dir, bool coherent,
+ 	}
  }
  
-+static inline bool xe_vma_is_system_allocator(struct xe_vma *vma)
+-static dma_addr_t iommu_dma_alloc_iova(struct iommu_domain *domain,
++static dma_addr_t __iommu_dma_alloc_iova(struct iommu_domain *domain,
+ 		size_t size, u64 dma_limit, struct device *dev)
+ {
+ 	struct iommu_dma_cookie *cookie = domain->iova_cookie;
+@@ -806,7 +806,7 @@ static dma_addr_t iommu_dma_alloc_iova(struct iommu_domain *domain,
+ 	return (dma_addr_t)iova << shift;
+ }
+ 
+-static void iommu_dma_free_iova(struct iommu_dma_cookie *cookie,
++static void __iommu_dma_free_iova(struct iommu_dma_cookie *cookie,
+ 		dma_addr_t iova, size_t size, struct iommu_iotlb_gather *gather)
+ {
+ 	struct iova_domain *iovad = &cookie->iovad;
+@@ -843,7 +843,7 @@ static void __iommu_dma_unmap(struct device *dev, dma_addr_t dma_addr,
+ 
+ 	if (!iotlb_gather.queued)
+ 		iommu_iotlb_sync(domain, &iotlb_gather);
+-	iommu_dma_free_iova(cookie, dma_addr, size, &iotlb_gather);
++	__iommu_dma_free_iova(cookie, dma_addr, size, &iotlb_gather);
+ }
+ 
+ static dma_addr_t __iommu_dma_map(struct device *dev, phys_addr_t phys,
+@@ -866,12 +866,12 @@ static dma_addr_t __iommu_dma_map(struct device *dev, phys_addr_t phys,
+ 
+ 	size = iova_align(iovad, size + iova_off);
+ 
+-	iova = iommu_dma_alloc_iova(domain, size, dma_mask, dev);
++	iova = __iommu_dma_alloc_iova(domain, size, dma_mask, dev);
+ 	if (!iova)
+ 		return DMA_MAPPING_ERROR;
+ 
+ 	if (iommu_map(domain, iova, phys - iova_off, size, prot, GFP_ATOMIC)) {
+-		iommu_dma_free_iova(cookie, iova, size, NULL);
++		__iommu_dma_free_iova(cookie, iova, size, NULL);
+ 		return DMA_MAPPING_ERROR;
+ 	}
+ 	return iova + iova_off;
+@@ -975,7 +975,7 @@ static struct page **__iommu_dma_alloc_noncontiguous(struct device *dev,
+ 		return NULL;
+ 
+ 	size = iova_align(iovad, size);
+-	iova = iommu_dma_alloc_iova(domain, size, dev->coherent_dma_mask, dev);
++	iova = __iommu_dma_alloc_iova(domain, size, dev->coherent_dma_mask, dev);
+ 	if (!iova)
+ 		goto out_free_pages;
+ 
+@@ -1009,7 +1009,7 @@ static struct page **__iommu_dma_alloc_noncontiguous(struct device *dev,
+ out_free_sg:
+ 	sg_free_table(sgt);
+ out_free_iova:
+-	iommu_dma_free_iova(cookie, iova, size, NULL);
++	__iommu_dma_free_iova(cookie, iova, size, NULL);
+ out_free_pages:
+ 	__iommu_dma_free_pages(pages, count);
+ 	return NULL;
+@@ -1441,7 +1441,7 @@ static int iommu_dma_map_sg(struct device *dev, struct scatterlist *sg,
+ 	if (!iova_len)
+ 		return __finalise_sg(dev, sg, nents, 0);
+ 
+-	iova = iommu_dma_alloc_iova(domain, iova_len, dma_get_mask(dev), dev);
++	iova = __iommu_dma_alloc_iova(domain, iova_len, dma_get_mask(dev), dev);
+ 	if (!iova) {
+ 		ret = -ENOMEM;
+ 		goto out_restore_sg;
+@@ -1458,7 +1458,7 @@ static int iommu_dma_map_sg(struct device *dev, struct scatterlist *sg,
+ 	return __finalise_sg(dev, sg, nents, iova);
+ 
+ out_free_iova:
+-	iommu_dma_free_iova(cookie, iova, iova_len, NULL);
++	__iommu_dma_free_iova(cookie, iova, iova_len, NULL);
+ out_restore_sg:
+ 	__invalidate_sg(sg, nents);
+ out:
+@@ -1719,6 +1719,30 @@ static size_t iommu_dma_max_mapping_size(struct device *dev)
+ 	return SIZE_MAX;
+ }
+ 
++static dma_addr_t iommu_dma_alloc_iova(struct device *dev, size_t size)
 +{
-+	return vma->gpuva.flags & XE_VMA_SYSTEM_ALLOCATOR;
++	struct iommu_domain *domain = iommu_get_dma_domain(dev);
++	struct iommu_dma_cookie *cookie = domain->iova_cookie;
++	struct iova_domain *iovad = &cookie->iovad;
++	dma_addr_t dma_mask = dma_get_mask(dev);
++
++	size = iova_align(iovad, size);
++	return __iommu_dma_alloc_iova(domain, size, dma_mask, dev);
 +}
 +
- static inline bool xe_vma_has_no_bo(struct xe_vma *vma)
- {
- 	return !xe_vma_bo(vma);
-@@ -158,7 +163,8 @@ static inline bool xe_vma_has_no_bo(struct xe_vma *vma)
++static void iommu_dma_free_iova(struct device *dev, dma_addr_t iova,
++				size_t size)
++{
++	struct iommu_domain *domain = iommu_get_dma_domain(dev);
++	struct iommu_dma_cookie *cookie = domain->iova_cookie;
++	struct iova_domain *iovad = &cookie->iovad;
++	struct iommu_iotlb_gather iotlb_gather;
++
++	size = iova_align(iovad, size);
++	iommu_iotlb_gather_init(&iotlb_gather);
++	__iommu_dma_free_iova(cookie, iova, size, &iotlb_gather);
++}
++
+ static const struct dma_map_ops iommu_dma_ops = {
+ 	.flags			= DMA_F_PCI_P2PDMA_SUPPORTED,
+ 	.alloc			= iommu_dma_alloc,
+@@ -1742,6 +1766,8 @@ static const struct dma_map_ops iommu_dma_ops = {
+ 	.get_merge_boundary	= iommu_dma_get_merge_boundary,
+ 	.opt_mapping_size	= iommu_dma_opt_mapping_size,
+ 	.max_mapping_size       = iommu_dma_max_mapping_size,
++	.alloc_iova		= iommu_dma_alloc_iova,
++	.free_iova		= iommu_dma_free_iova,
+ };
  
- static inline bool xe_vma_is_userptr(struct xe_vma *vma)
- {
--	return xe_vma_has_no_bo(vma) && !xe_vma_is_null(vma);
-+	return xe_vma_has_no_bo(vma) && !xe_vma_is_null(vma) &&
-+		!xe_vma_is_system_allocator(vma);
- }
+ /*
+@@ -1790,7 +1816,7 @@ static struct iommu_dma_msi_page *iommu_dma_get_msi_page(struct device *dev,
+ 	if (!msi_page)
+ 		return NULL;
  
- /**
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 27d651093d30..e1d3dd699380 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -32,6 +32,7 @@ struct xe_vm_pgtable_update_op;
- #define XE_VMA_PTE_64K		(DRM_GPUVA_USERBITS << 6)
- #define XE_VMA_PTE_COMPACT	(DRM_GPUVA_USERBITS << 7)
- #define XE_VMA_DUMPABLE		(DRM_GPUVA_USERBITS << 8)
-+#define XE_VMA_SYSTEM_ALLOCATOR	(DRM_GPUVA_USERBITS << 9)
+-	iova = iommu_dma_alloc_iova(domain, size, dma_get_mask(dev), dev);
++	iova = __iommu_dma_alloc_iova(domain, size, dma_get_mask(dev), dev);
+ 	if (!iova)
+ 		goto out_free_page;
  
- /** struct xe_userptr - User pointer */
- struct xe_userptr {
-@@ -284,6 +285,8 @@ struct xe_vma_op_map {
- 	bool read_only;
- 	/** @is_null: is NULL binding */
- 	bool is_null;
-+	/** @is_system_allocator: is system allocator binding */
-+	bool is_system_allocator;
- 	/** @dumpable: whether BO is dumped on GPU hang */
- 	bool dumpable;
- 	/** @pat_index: The pat index to use for this operation. */
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index d7b0903c22b2..af8ee6f929d4 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -885,6 +885,12 @@ struct drm_xe_vm_destroy {
-  *    will only be valid for DRM_XE_VM_BIND_OP_MAP operations, the BO
-  *    handle MBZ, and the BO offset MBZ. This flag is intended to
-  *    implement VK sparse bindings.
-+ *  - %DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATOR - When the system allocator flag is
-+ *    set, no mappings are created rather the range is reserved for system
-+ *    allocations which will be populated on GPU page faults. Only valid on VMs
-+ *    with DRM_XE_VM_CREATE_FLAG_FAULT_MODE set. The system allocator flag are
-+ *    only valid for DRM_XE_VM_BIND_OP_MAP operations, the BO handle MBZ, and
-+ *    the BO offset MBZ.
-  */
- struct drm_xe_vm_bind_op {
- 	/** @extensions: Pointer to the first extension struct, if any */
-@@ -937,7 +943,9 @@ struct drm_xe_vm_bind_op {
- 	 * on the @pat_index. For such mappings there is no actual memory being
- 	 * mapped (the address in the PTE is invalid), so the various PAT memory
- 	 * attributes likely do not apply.  Simply leaving as zero is one
--	 * option (still a valid pat_index).
-+	 * option (still a valid pat_index). Same applies to
-+	 * DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATOR bindings as for such mapping
-+	 * there is no actual memory being mapped.
- 	 */
- 	__u16 pat_index;
+@@ -1804,7 +1830,7 @@ static struct iommu_dma_msi_page *iommu_dma_get_msi_page(struct device *dev,
+ 	return msi_page;
  
-@@ -975,6 +983,7 @@ struct drm_xe_vm_bind_op {
- #define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(1 << 1)
- #define DRM_XE_VM_BIND_FLAG_NULL	(1 << 2)
- #define DRM_XE_VM_BIND_FLAG_DUMPABLE	(1 << 3)
-+#define DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATOR	(1 << 4)
- 	/** @flags: Bind flags */
- 	__u32 flags;
- 
+ out_free_iova:
+-	iommu_dma_free_iova(cookie, iova, size, NULL);
++	__iommu_dma_free_iova(cookie, iova, size, NULL);
+ out_free_page:
+ 	kfree(msi_page);
+ 	return NULL;
 -- 
 2.26.3
 
