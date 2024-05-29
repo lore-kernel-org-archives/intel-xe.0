@@ -4,58 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D5E8C25B75
-	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 05:00:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC07AC25B7C
+	for <intel-xe@archiver.kernel.org>; Wed, 29 May 2024 05:06:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C090610F413;
-	Wed, 29 May 2024 05:00:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 486F7112366;
+	Wed, 29 May 2024 05:06:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="msUXNIEa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YVwbq/rx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8345510E7FC
- for <intel-xe@lists.freedesktop.org>; Wed, 29 May 2024 05:00:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95385112366
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 May 2024 05:06:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716958836; x=1748494836;
- h=date:message-id:from:to:cc:subject:in-reply-to:
- references:mime-version;
- bh=ZkJFrfSX5mdW/VMhBxtCecXfvfjABMWBGZGjgqiLRuI=;
- b=msUXNIEa32P1S+we+xWnTTMIrGp2ncMr59hobCgSo8qH07BTQeKp5Rpp
- NWztFeQ1nDWMcEUgidyc0RCD9DFstlOjxR3jgYBqvHBzaveYz4SDc1piL
- hrckI18Dg56Hve7m+2MozjNp2TX7YP7NZUIdTLNUwPhF7XhzC+QCA2iAy
- ZsPVGlg+T/KfCl5RKamjG2TQ1R8ezHXF6ioPVcg+KdTaZ1WyQSnzlmnQX
- RCcgfkrS+JQRcIFNCr2YC5vnikOi13ZLrFnCMXiZa67I6JBFR7KG2WFy0
- C8Wu3DEoR6IHWFqw9/hY7ftRTKt/xSb96lLMysr6YDKeW6AUseDORPu3e Q==;
-X-CSE-ConnectionGUID: JuugJPlvSX+9RbR7CPsq7g==
-X-CSE-MsgGUID: P6F1MHalR4W5zrwufmVA2Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13181567"
-X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="13181567"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 22:00:35 -0700
-X-CSE-ConnectionGUID: 3/pRtbZNQzO2/L3HwJkPJg==
-X-CSE-MsgGUID: FUbQUVf1SKWaI+XF9BeJCg==
+ t=1716959204; x=1748495204;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4xIz8meYVlvy7qYulRNGK6dY/676qH+ij/egDm1k+rU=;
+ b=YVwbq/rxZjg+tgNhgiJQ2IUQpOPc9a1yn5Sc50U1zCPuTgJV7c0drMo3
+ 5HnxF6/yPyg3/KpS0UV5ayLN0+zkOC5uS09vA84xeskMXfly3RTd0aAXj
+ 2YORz80IeJFaMFdd41hvhPi8gVYFW1iTiudrbN6XmjwzhjWaa4K2rcMj7
+ MMYpnucQrvlbiU+90BJNL13PZDepx6CcBS1bAGfYnabjKrHomWGUSq0/8
+ NWIuWzJYxJK9DKhR1vCzzZXeEOI+PoS2oQNbbqaazOKpf+aoJrwFB3Ldy
+ 5v7BjCTSrudJf/QmWb2oVTpXhZ8XxRu1p7T3jBK5tp/5VRTFdcDO+a4by g==;
+X-CSE-ConnectionGUID: lgDfTaLlQUK5OXM4Qickwg==
+X-CSE-MsgGUID: uCh5fo6fRDKkoWFf/Ky7ow==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13216920"
+X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="13216920"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2024 22:06:43 -0700
+X-CSE-ConnectionGUID: LTKtLUU+Q1usAtYT2dNGxg==
+X-CSE-MsgGUID: 11wKcPJhST+dWBRS6GeaDA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="35248684"
-Received: from zhaomin2-mobl1.ccr.corp.intel.com (HELO adixit-arch.intel.com)
- ([10.124.81.153])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 22:00:35 -0700
-Date: Tue, 28 May 2024 21:55:00 -0700
-Message-ID: <87wmndnrob.wl-ashutosh.dixit@intel.com>
-From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Jose Souza <jose.souza@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: Re: [PATCH 07/17] drm/xe/oa: OA stream initialization (OAG)
-In-Reply-To: <cc7eec53-abc4-4e2c-baf1-e20e84a39c28@intel.com>
-References: <20240527014333.603914-1-ashutosh.dixit@intel.com>	<20240527014333.603914-8-ashutosh.dixit@intel.com>	<0cd6f261-2345-4cc5-b95c-b2c28dc79fa5@intel.com>	<8734q2pkus.wl-ashutosh.dixit@intel.com>	<e33226a0-f0ef-4dee-9ac1-3778c3a61829@intel.com>	<855xuyjw8k.wl-ashutosh.dixit@intel.com>	<4e2d7cb9-22e3-48cb-9aec-aaa07ad2f8df@intel.com>	<854jaijtj6.wl-ashutosh.dixit@intel.com>	<cc7eec53-abc4-4e2c-baf1-e20e84a39c28@intel.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
- Emacs/29.3 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
+X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="58484657"
+Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2024 22:06:41 -0700
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Subject: [PATCH v2 0/2] Add HWMON support for BMG
+Date: Wed, 29 May 2024 10:37:56 +0530
+Message-Id: <20240529050758.442056-1-balasubramani.vivekanandan@intel.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,132 +64,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 28 May 2024 00:43:42 -0700, Lionel Landwerlin wrote:
->
+v2:
+ Fixed checkpatch issues
 
-Hi Lionel/Jose,
+Karthik Poosa (2):
+  drm/xe/hwmon: Add HWMON support for BMG
+  drm/xe/hwmon: Expose card power and energy attributes of BMG
 
-> On 28/05/2024 10:16, Dixit, Ashutosh wrote:
-> > On Mon, 27 May 2024 23:39:50 -0700, Lionel Landwerlin wrote:
-> >> On 28/05/2024 09:17, Dixit, Ashutosh wrote:
-> >>> On Mon, 27 May 2024 22:47:13 -0700, Lionel Landwerlin wrote:
-> >>>
-> >>>> On 28/05/2024 08:27, Dixit, Ashutosh wrote:
-> >>>>> On Mon, 27 May 2024 00:04:21 -0700, Lionel Landwerlin wrote:
-> >>>>>
-> >>>>>>> +static int xe_oa_stream_init(struct xe_oa_stream *stream,
-> >>>>>>> +			     struct xe_oa_open_param *param)
-> >>>>>>> +{
-> >>>>> /snip/
-> >>>>>
-> >>>>>>> +	stream->k_exec_q = xe_exec_queue_create(stream->oa->xe, NULL,
-> >>>>>>> +						BIT(stream->hwe->logical_instance), 1,
-> >>>>>>> +						stream->hwe, EXEC_QUEUE_FLAG_KERNEL, 0);
-> >>>>>> Hi Ashutosh,
-> >>>>>>
-> >>>>>> On i915 the changes of configuration were pipelined in the application's
-> >>>>>> execution just like any other submission.
-> >>>>>>
-> >>>>>> Creating another queue completely unsynchronized from the application's
-> >>>>>> submissions makes this non usable in my opinion.
-> >>>>> As we discussed previously, the plan here is to provide a drm_xe_sync array,
-> >>>>> through stream properties, which can use to synchronize OA programming with
-> >>>>> workload submisson.
-> >>>>>
-> >>>>> Would that not work? If not, we can do what was done in i915. But note that
-> >>>>> i915 still has unresolved hangs, which I believe are due to the spinner
-> >>>>> running on the application engine (iirc repeatedly opening/closing an OA
-> >>>>> stream will hang in i915, though it could be due to other i915
-> >>>>> complexity). That is why thought using drm_xe_sync array is both safer and
-> >>>>> more standard way of doing what we want to achieve.
-> >>>>>
-> >>>>> Basically the output sync object will be signalled after registers are
-> >>>>> programmed and also any additional OA programming delay (which is
-> >>>>> implemented in i915 using the spinner).
-> >>>>>
-> >>>>> This would be done both for OA stream open and changing OA stream
-> >>>>> configuration.
-> >>> That is true. But now that I have other stuff like gpuvis wrapped up, I
-> >>> plan to start looking these couple of missing uapi pieces (hold preemption
-> >>> and synchronization, likely in that order).
-> >>>
-> >>> Because synchronization is not implemented I add the delay below:
-> >>>
-> >>>           static int xe_oa_emit_oa_config(struct xe_oa_stream *stream)
-> >>>           {
-> >>>           #define NOA_PROGRAM_ADDITIONAL_DELAY_US 500
-> >>>                   struct xe_oa_config_bo *oa_bo;
-> >>>                   int err, us = NOA_PROGRAM_ADDITIONAL_DELAY_US;
-> >>>
-> >>>                   oa_bo = xe_oa_alloc_config_buffer(stream);
-> >>>                   if (IS_ERR(oa_bo)) {
-> >>>                           err = PTR_ERR(oa_bo);
-> >>>                           goto exit;
-> >>>                   }
-> >>>
-> >>>                   err = xe_oa_submit_bb(stream, oa_bo->bb);
-> >>>
-> >>>                   /* Additional empirical delay needed for NOA programming after registers are written */
-> >>>                   usleep_range(us, 2 * us);
-> >>>           exit:
-> >>>                   return err;
-> >>>           }
-> >>>
-> >>> I need understand this is temporaty band-aid, since it stalls the
-> >>> submission pipeline and needs to be replaced by proper synchronization.
-> >>>
-> >>>> Just letting you know, because we cannot use the current ioctl because it
-> >>>> doesn't behave as we expect
-> >>> You wouldn't be able to merge the Mesa PR as per the current uapi now and
-> >>> then add additional Mesa patches, when we implement these couple of missing
-> >>> uapi features in KMD?
-> >>
-> >> We could merge only the stuff that parse the reports, that's enough to have
-> >> perfetto work.
-> > Hi Lionel, so this means the OAG buffer stuff, correct?
->
-> Correct
->
-> >> But all of the VK_KHR_performance_query won't work as far as I can tell.
-> > And this is the OAR stuff, synchronization and hold preemption?
-> >
->
-> This is actually a mix of OAG/OAR. We do read a couple of OAG registers
-> that don't come as part of MI_REPORT_PERF_COUNT.
->
-> We will need a way to tell when you've added the feature we need for
-> VK_KHR_performance_query.
->
-> I don't think we want to test this at runtime given some of the ioctl
-> take time.
+ drivers/gpu/drm/xe/regs/xe_pcode_regs.h |  7 +++++++
+ drivers/gpu/drm/xe/xe_hwmon.c           | 28 +++++++++++++++++++------
+ 2 files changed, 29 insertions(+), 6 deletions(-)
 
-Hmm, you mean like a version? We have capability bits in Xe and could
-potentially add a bit if needed. It is in the oa_unit query so like init
-time, not runtime.
+-- 
+2.25.1
 
-
-> > Yes even if we can merge the OAG stuff first, that will get most of KMD OA
-> > code merged and then we can merge the remaining stuff later. Since it's a
-> > pain to maintain the code out of tree, that's why even if I can merge the
-> > OAG stuff (together with Mesa) which is the majority of the OA KMD code
-> > anyway, that would be a big relief.
-
-So, do you think you Mesa guys can give us an ack to merge the uapi we have
-now? And add the missing uapi bits in the second round of OA uapi changes?
-Or is there anything else you want us to do in this first round?
-
-For the second round, here is the list I have:
-
-* hold preemption (needs some investigation as to feasibility)
-* xe_sync for OA stream configuration and reconfiguration
-* Equivalent of DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_UUID. I am still trying
-  to figure out if this is really needed. See here:
-
-  https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29312#note_2429650
-
-  Since this seems to be using some MDAPI metrics in Mesa, I think it
-  should be ok to do this in the second round too.
-
-Thanks.
---
-Ashutosh
