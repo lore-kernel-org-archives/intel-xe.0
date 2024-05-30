@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95222C27C43
-	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 14:08:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9C62C25B74
+	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 14:09:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CF5310E1D4;
-	Thu, 30 May 2024 14:08:57 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5920F10E1D4;
- Thu, 30 May 2024 14:08:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7349071474500369897=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CF6210E1D4;
+	Thu, 30 May 2024 14:09:42 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bib9PyJa";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BB6610E1D4
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 May 2024 14:09:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1717078181; x=1748614181;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WRionAYGqYlGghnDLPBZPZ9ie7mZ9gcm/smZXU2UdbY=;
+ b=Bib9PyJaFGbg7E4g0EvtnaJRbN192osNok/IdJiIUvV0JTiOIJy2Rpa6
+ xEVpy0NVUaP3qj+TfUtQuU6ttyxxEi9/yar9uVP5V2JAdw69zk6UnComf
+ pVDy62yI7/f09rGJ26G07Re48vnNvJKbYCTOubpvGOVOImXr8bv7AaUha
+ jO0Do7c/Po3m9k//chryH1KCKq/yAWVnkqui0mDg+vQkAQSPhZkEiAy+Q
+ RjBqcrcVthobhHsU9DmDUqbPeTQcVLiSSWYr1FHTv7twoBzOIDgnsWKig
+ xsQUiPzOtL63HEU0bIyfxOYvsCGLt4oQEUjmXzzn2FRgGIoP0SwkoN0LU A==;
+X-CSE-ConnectionGUID: R685QIoATzCt7ApJo/AkNw==
+X-CSE-MsgGUID: 8IFuuhqaTD6fiC4siO4ecg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="13327269"
+X-IronPort-AV: E=Sophos;i="6.08,201,1712646000"; d="scan'208";a="13327269"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2024 07:09:39 -0700
+X-CSE-ConnectionGUID: FAhRubBnTNqtW7HV0ACBBA==
+X-CSE-MsgGUID: 1h80baZTT7+33jamMXuvnw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,201,1712646000"; d="scan'208";a="35767106"
+Received: from himal-super-server.iind.intel.com ([10.145.169.168])
+ by orviesa010.jf.intel.com with ESMTP; 30 May 2024 07:09:38 -0700
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>
+Subject: [PATCH] drm/xe: Fix xe_force_wake_assert_held for enum
+ XE_FORCEWAKE_ALL
+Date: Thu, 30 May 2024 19:55:33 +0530
+Message-Id: <20240530142533.875437-1-himal.prasad.ghimiray@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm=3A_move_Intel_drm_headers_to?=
- =?utf-8?q?_a_subdirectory_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 30 May 2024 14:08:54 -0000
-Message-ID: <171707813435.2238782.4994545273365622923@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <cover.1717075103.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1717075103.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +63,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7349071474500369897==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Make sure that the assertion condition covers the wakefulness of all
+domains for XE_FORCEWAKE_ALL.
 
-== Series Details ==
+Fixes: c73acc1eeba5 ("drm/xe: Use Xe assert macros instead of XE_WARN_ON macro")
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Badal Nilawar <badal.nilawar@intel.com>
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+---
+ drivers/gpu/drm/xe/xe_force_wake.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Series: drm: move Intel drm headers to a subdirectory (rev4)
-URL   : https://patchwork.freedesktop.org/series/132263/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.h b/drivers/gpu/drm/xe/xe_force_wake.h
+index 83cb157da7cc..9008928b187f 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.h
++++ b/drivers/gpu/drm/xe/xe_force_wake.h
+@@ -32,7 +32,7 @@ static inline void
+ xe_force_wake_assert_held(struct xe_force_wake *fw,
+ 			  enum xe_force_wake_domains domain)
+ {
+-	xe_gt_assert(fw->gt, fw->awake_domains & domain);
++	xe_gt_assert(fw->gt, (fw->awake_domains & domain) == domain);
+ }
+ 
+ #endif
+-- 
+2.25.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-1375-4a32411a2b73e515af2cc54034ef686e03df8385_BAT -> xe-pw-132263v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1375-4a32411a2b73e515af2cc54034ef686e03df8385 -> xe-pw-132263v4
-
-  IGT_7873: b9bcded9123ac56ce05748de6c4870fb49451b87 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1375-4a32411a2b73e515af2cc54034ef686e03df8385: 4a32411a2b73e515af2cc54034ef686e03df8385
-  xe-pw-132263v4: 132263v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132263v4/index.html
-
---===============7349071474500369897==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: move Intel drm headers to a subdirectory (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132263/">https://patchwork.freedesktop.org/series/132263/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132263v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-132263v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1375-4a32411a2b73e515af2cc54034ef686e03df8385_BAT -&gt; xe-pw-132263v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1375-4a32411a2b73e515af2cc54034ef686e03df8385 -&gt; xe-pw-132263v4</li>
-</ul>
-<p>IGT_7873: b9bcded9123ac56ce05748de6c4870fb49451b87 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1375-4a32411a2b73e515af2cc54034ef686e03df8385: 4a32411a2b73e515af2cc54034ef686e03df8385<br />
-  xe-pw-132263v4: 132263v4</p>
-
-</body>
-</html>
-
---===============7349071474500369897==--
