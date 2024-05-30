@@ -4,171 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DEF0C25B75
-	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 00:50:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 805EEC25B75
+	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 00:51:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDA2B10E34A;
-	Thu, 30 May 2024 00:50:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AC5Q6bvj";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5073C10E34A
- for <intel-xe@lists.freedesktop.org>; Thu, 30 May 2024 00:50:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717030241; x=1748566241;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=FFjS+jsPsNuf5wbvgK4vqLgsgVmOiSkQOnnE3IB5OdY=;
- b=AC5Q6bvjHbhKJWtpqsoctBAuim6hgkTTHm/rjPBSSYf7MC+k/f9bY8BH
- fJ38AkwflwBtOQc+oV60umtO+S/7obOM7+WlHBUlKS3Dr6hKdlD8AvGgN
- Eo9yoVRS2tJwQ48c/Cd6WmHBu6ktxJHSsMyXpFEJHGmazeCmbbQidKo0T
- kYcyhpJkUa7RD9wCDzKGo044UaWUb7t6p9naxPHyoTz2hHYmzulkuf0C1
- 12mAlqRqqv8XvcH44SD7X8OcySpQld2ir9C2XEOysSVQ4sYBulJSJ5gX9
- pqVBNDlWqg+t40h4YG7eLcQ8muhI5kbvbV1NWVtMML+k37GPZN7KPTZjP g==;
-X-CSE-ConnectionGUID: 9pCwCcd9QmO8XGcxhqujeQ==
-X-CSE-MsgGUID: HmGK3itJS06ylgsiXIMqww==
-X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="13352438"
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="13352438"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 17:50:41 -0700
-X-CSE-ConnectionGUID: QLr0X/MxQuGMFegXq6ZLIQ==
-X-CSE-MsgGUID: +JiuB8gcQNOqjS3Ro0/pkQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="40161527"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 29 May 2024 17:50:40 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 29 May 2024 17:50:40 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 29 May 2024 17:50:39 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 29 May 2024 17:50:39 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.40) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 29 May 2024 17:50:39 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Cc5doLZYKqPfzzxOgeOdft3IVZvl7Z09bzHCG0DQpvg1W2YC6rDtd8UKirDePMYVOVLKTKjxcaJ638lcA6J0bvVevqUu8jKYFuM2ZjF72deBKg+sahgvs8yNHeRjnqyME9q0aq4WsAFN0xp01A4GEJGPleZTqUHtoIcDXSn9Rat2YLamXH6e5pvL7MYH7xmW9lBlZfxxSR30YlOpSxyzeiNPalRvUVpie/xzeeGFwq4IOKfid2QL+O7Xe3oS4f5MX1DLyagdoYHhfPSiPgrI2hCdW9GdWCgEMOgi9V2/zUFqRtN93q133A/NG9WUbBCmeuZyk38/SkSDIEtKoIPWcg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2xMFnGLky3twOn6hkwqnNuVFMZtfS4Tdg5FPkIHvNo4=;
- b=ieKm66ivHnvoaprVFZjgYZSqfM/+OCKRCDewQdpKNmoBlqRyDXEcsAq8VxJ+FCEmt1Q1bG8Z19ytMpmbXdMeSf7J5ArpfJBiElRi45laRi95lKU9QwHbeYbiqsPIZoNZ5YQ8wtJJ1CWqu8tolCkI5VVXl2KkYCdBfxflABUY3Oojy8csUEmiy0NmgP88dFmTNEW8vH5U3S6FOKNQPFChsv13RBmEXSDfqaUmT4yipnNd3FlKxT6zKA0tbshRphJmiLHHvBq/0eBbhmIXpKlctLwrdzTeEkOE9Y3t112foO0QngBjZn1Yzwea22XHgOgQHLiPSTmLV0PEwsGm3jpomQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7SPRMB0092.namprd11.prod.outlook.com (2603:10b6:510:2b1::6)
- by BL1PR11MB5318.namprd11.prod.outlook.com (2603:10b6:208:312::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.21; Thu, 30 May
- 2024 00:50:37 +0000
-Received: from PH7SPRMB0092.namprd11.prod.outlook.com
- ([fe80::2ad4:4a5:b333:6ff7]) by PH7SPRMB0092.namprd11.prod.outlook.com
- ([fe80::2ad4:4a5:b333:6ff7%2]) with mapi id 15.20.7633.018; Thu, 30 May 2024
- 00:50:37 +0000
-Date: Thu, 30 May 2024 00:49:49 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Zeng, 
- Oak" <oak.zeng@intel.com>, "thomas.hellstrom@linux.intel.com"
- <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH v3 3/5] drm/xe: Convert multiple bind ops into single job
-Message-ID: <ZlfNLV4XxPfY/9bU@DUT025-TGLU.fm.intel.com>
-References: <20240529183148.1713695-1-matthew.brost@intel.com>
- <20240529183148.1713695-4-matthew.brost@intel.com>
- <ff4c4590de0714b72278fee242460c3a2982d2fd.camel@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ff4c4590de0714b72278fee242460c3a2982d2fd.camel@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0147.namprd05.prod.outlook.com
- (2603:10b6:a03:33d::32) To PH7SPRMB0092.namprd11.prod.outlook.com
- (2603:10b6:510:2b1::6)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34F4810E2C9;
+	Thu, 30 May 2024 00:51:17 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D7C410E2C9;
+ Thu, 30 May 2024 00:51:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7SPRMB0092:EE_|BL1PR11MB5318:EE_
-X-MS-Office365-Filtering-Correlation-Id: 07676e35-5347-4593-6dc5-08dc80428502
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|1800799015|366007;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?Wi5FWOY2+mVq49pOnpZpklJF1ICt+xeCfAYn0UEy+IY0gCq2vwpZSqlxZU?=
- =?iso-8859-1?Q?KasidWhq2Gk08c53FAAkXupf28zmCOGP8a5fcYrBvpnNqmVAW1Lyeewhhh?=
- =?iso-8859-1?Q?lx1Nk+WoFMMuYfai7GhfZkrxmJhvSY2HW5hbUiZCLyv2iwJSk7P5kCdKA1?=
- =?iso-8859-1?Q?/ketra5TjgZ9H6M3lEJX+nRq9+ESxFYeiYhE2I4DZewhiDGuEQCdT70Q2n?=
- =?iso-8859-1?Q?uEqI+sMvawaRM1rPTBuunrP8lIhA83GCAZZbVk67ydtqm1H7cFVlLEYlZr?=
- =?iso-8859-1?Q?N1oGJkc8A+fqV4q8hkU5/8rvtIu/XU56jSpzjxDDZC/dVfRdIkUbDqtFH5?=
- =?iso-8859-1?Q?yN2DnsDY1MrsLXJ5sxkVpRk+wWTxQHRUwbJu3MQHCLJwjlMXSubVfjA0bD?=
- =?iso-8859-1?Q?1wR/RFqpKx7lmxN/sXlt1WuDgqAam6nKdpwYn+X0XREMWQihf5qS4KY66L?=
- =?iso-8859-1?Q?mw/N1PsZT6HAdDAsfaCiv3bwuoS18pGTOBUeDug+rmyAHBPlvR/yjW6NpX?=
- =?iso-8859-1?Q?MIBilgxdz8g4sldXTp5Msy8XlteIu3Kw0UfG93AjoP/EhrMtqer8W1I9De?=
- =?iso-8859-1?Q?H81eSkBFjyg9hP7QFUZ5Who4qO9FrpDUqTh8dNlkik87Af/+HsL3TS071H?=
- =?iso-8859-1?Q?gjYNZfQJ1fLNBkgOjnwjUP+31E38Ydk5oJwD8INwu+JZ9A7aez85FR0Lr7?=
- =?iso-8859-1?Q?7SigRuWCwQQrSTA8D8kiKO0PozL+JminKASU1Yg0QCXjVgNn/sVb15Q2UV?=
- =?iso-8859-1?Q?KNaWHTSsZsG31QRjaH+HZ0XLIkDJ8riyQjdHHmrzHDPAA4hC5gzN0D6GoP?=
- =?iso-8859-1?Q?ySbKKVme0BDYkUCpwO5wbjRE1L8/5k6vMkDajwsVdOoH7QvBIJbDiw1voL?=
- =?iso-8859-1?Q?WgwyagdKeNhEEVPAqxYVSE9cM/Hrxmatx4/1DFuF8TgmAXFzHCJN/p7eRn?=
- =?iso-8859-1?Q?BWPz2ti2Pn7fWlHmov0X+RQuogUq9N3DU6LEPC/PGaYxE4UaBPuBD5CClz?=
- =?iso-8859-1?Q?L2QycyjkFIjeQk78HoOxuCtnofDQLrhuaLr844awtQkqvcAzcM+8OH77nE?=
- =?iso-8859-1?Q?0vsvQRo3PH2nQOrl9TCsewzaUWMWEYbwmwG7jwQsT0qaeUQbeaYK71240s?=
- =?iso-8859-1?Q?Giwv0okcYrlBlhTnfvhvDpisFD8Q0ei0uptb+8nsldIQhN7AlcnGBQ0vpu?=
- =?iso-8859-1?Q?FpBoICPbziFCrpx/8ZOoC3Q393Xf8W5MS5KWJnpGTkkNTpQ2hCfsCHxC8g?=
- =?iso-8859-1?Q?Q/F3pDGdQzpRb0eup3KtZjQeMHlgmRief11aqwg+1atsxTYq4h0/PUty8z?=
- =?iso-8859-1?Q?kc3cLXxDQs8FMUBXNqWWT9vCIQ=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7SPRMB0092.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?VTZlE1yvnhbxlLMbMOp+f2K05me88FeYy7qO4Q/OahdgAfAaPj/hP7zBlT?=
- =?iso-8859-1?Q?z62G06TnKWRhc7g/ANfVD1K7U0A1EUnRxmxUu3AgdpP+iJNSCfzSs17via?=
- =?iso-8859-1?Q?JEH7KgXBrB9aPeZrw/vs3gfC+3VVmrRZbeEiXdermSnMTe2qXpPzcBM/yw?=
- =?iso-8859-1?Q?gfSqochd06bnDhzKZDX7uOVkT0Dek6gGp8dJgqIjhtJ7KrK/y3Mgyi3tf3?=
- =?iso-8859-1?Q?PeVgfRqnpLa5FXlef3+ZgywjRpSwPNwxEfSANSYG+mt7myqE7rOLlC5bYk?=
- =?iso-8859-1?Q?OQEHXioL0z7miiu+hdwEuDUphO3EYwXWUKD7piqHQ5y6KF1hdoiGOQwtpC?=
- =?iso-8859-1?Q?8TlluxOX6Hmlo2ISXEPuez3ylZXP9XVjcQyk5IsA2LNBXXBnk2WGO8fH7N?=
- =?iso-8859-1?Q?jvwH1Ia0QnqDYbmVh6ChtPmTwDipxrWEKQVO5VZcp5jrfLaeE2L4pRyXn1?=
- =?iso-8859-1?Q?0uOhCjncAOM0n18G32NzLMiJMRROdQ0amCfmqgQiRSYm85hJHurydVVDcH?=
- =?iso-8859-1?Q?xJto6OYiKnRvCk4eyEOR00UtwU5d0L9OkVB8A4TO7Cuv44j489xdQ68aXf?=
- =?iso-8859-1?Q?xmOjMCX0w7+fIGFSJeE1VtdI5X/1OVAmStvNh+5sw7VdJylpECSeFVsnLK?=
- =?iso-8859-1?Q?VginqQhG9fUr1+OlJUkej1Ow6RU5Q1e3sIUjnV0QedWGJfqnTFnksRDqBs?=
- =?iso-8859-1?Q?ul4yzlGv90VLHvDpLTIcq2aKwuP657UoWYvY0kblwvBmaCu8wKLC7wg4R5?=
- =?iso-8859-1?Q?YE0OHIdWUlhD8ZGG11MM+dzUInIISAmMpbdBDO6GJ7+6CcplFeFrEKap8Z?=
- =?iso-8859-1?Q?GJz1xurgH99bW16BaUG2vrl5cecAoX6LxneA2Mfww1umKeRk7Tb7p8gq6L?=
- =?iso-8859-1?Q?7oDs2VecpGm+LCdbNkFXr4mJHGYZK+qEG261AGgvXf6YWoGOEHBXtrGHIX?=
- =?iso-8859-1?Q?FwV+gi+wCJBGaZ9Gi2HglRUTv2LmUuQ0clJI45h2av/8QJMV5pzoVyI9Df?=
- =?iso-8859-1?Q?27P+BG0sCj9Xuln1sKi7xcbhUgLJpKaV+IKEvklz/hfraoLJUjFglIwwqL?=
- =?iso-8859-1?Q?qULq2Jq+OKNuVgYQofFv8k6RS5SNSIIzb/077NFXgHyQPDQG9jYKICc09k?=
- =?iso-8859-1?Q?ck7JXLMcnmwU/5Dk1qWPXI15ledHC7pj/CrpVtDJ+kRs2X0OEqi3L4SVUn?=
- =?iso-8859-1?Q?/k255wkogaBQUG+wVVfWCQS029n8iGf5CYFeLaSDILg1IC7APXiQPBDK2n?=
- =?iso-8859-1?Q?GwjMrZsy3LE/c+5qTjQRAH0Bm1uFYWLZNRI4IXMC6QE6GIM1sEV2wYyW7Z?=
- =?iso-8859-1?Q?A+hujQNwx93s3be8QYaMfRQmJG4dyh0piRcY8NCJnuAVi/+uKjnr8Svueg?=
- =?iso-8859-1?Q?s5KgV144cXzTCgsm6MRjRCclvAjPeXlM53sxGG6+0A4LKzaPPdYWRWZrmK?=
- =?iso-8859-1?Q?9n4jcdjmhJX0cBQJ+RPlqhrEIP4ZbleyDkUDTaeRHEjLAgwgfjLJjp4Gzw?=
- =?iso-8859-1?Q?VdvBFQ0TcWQOuGNr5Y1FFuSADwK1NM990z0RHWVULuh3384hcuVFQbd+KT?=
- =?iso-8859-1?Q?5faADzs8tjNX2kI74lqkIjJ1nTkY7jyI26WAkTmhUFHbKk0LSonA/Rof4v?=
- =?iso-8859-1?Q?HY0SClbDYxLAr4+9C1VqldB54UCFGlNowjRyjlsq9+SbZFad76Meh5fg?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 07676e35-5347-4593-6dc5-08dc80428502
-X-MS-Exchange-CrossTenant-AuthSource: PH7SPRMB0092.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2024 00:50:36.9024 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jh43DhV8HafjPheTjfnsafbXsorIx5Q9+onSsX3Q9hjqw0q8V25hK55MpVlFNH4hT5QaHuE69lrLHpJhLAM4CA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5318
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5BC?=
+ =?utf-8?q?I=2Cv3=2C01/26=5D_mm/hmm=3A_let_users_to_tag_specific_PFNs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Oak Zeng" <oak.zeng@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 30 May 2024 00:51:15 -0000
+Message-ID: <171703027557.2236029.3124383715963598788@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240530004732.84898-1-oak.zeng@intel.com>
+In-Reply-To: <20240530004732.84898-1-oak.zeng@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,239 +36,456 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 29, 2024 at 06:32:12PM -0600, Zanoni, Paulo R wrote:
-> On Wed, 2024-05-29 at 11:31 -0700, Matthew Brost wrote:
-> > This aligns with the uAPI of an array of binds or single bind that
-> > results in multiple GPUVA ops to be considered a single atomic
-> > operations.
-> > 
-> > The implemenation is roughly:
-> > - xe_vma_ops is a list of xe_vma_op (GPUVA op)
-> > - each xe_vma_op resolves to 0-3 PT ops
-> > - xe_vma_ops creates a single job
-> > - if at any point during binding a failure occurs, xe_vma_ops contains
-> >   the information necessary unwind the PT and VMA (GPUVA) state
-> > 
-> > v2:
-> >  - add missing dma-resv slot reservation (CI, testing)
-> > 
-> > Cc: Oak Zeng <oak.zeng@intel.com>
-> > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_bo_types.h |    2 +
-> >  drivers/gpu/drm/xe/xe_migrate.c  |  296 ++++----
-> >  drivers/gpu/drm/xe/xe_migrate.h  |   32 +-
-> >  drivers/gpu/drm/xe/xe_pt.c       | 1108 +++++++++++++++++++-----------
-> >  drivers/gpu/drm/xe/xe_pt.h       |   14 +-
-> >  drivers/gpu/drm/xe/xe_pt_types.h |   36 +
-> >  drivers/gpu/drm/xe/xe_vm.c       |  519 +++-----------
-> >  drivers/gpu/drm/xe/xe_vm.h       |    2 +
-> >  drivers/gpu/drm/xe/xe_vm_types.h |   45 +-
-> >  9 files changed, 1032 insertions(+), 1022 deletions(-)
-> > 
-> 
-> (snip)
-> 
-> > 
-> > -/**
-> > - * __xe_pt_bind_vma() - Build and connect a page-table tree for the vma
-> > - * address range.
-> > - * @tile: The tile to bind for.
-> > - * @vma: The vma to bind.
-> > - * @q: The exec_queue with which to do pipelined page-table updates.
-> > - * @syncs: Entries to sync on before binding the built tree to the live vm tree.
-> > - * @num_syncs: Number of @sync entries.
-> > - * @rebind: Whether we're rebinding this vma to the same address range without
-> > - * an unbind in-between.
-> > - *
-> > - * This function builds a page-table tree (see xe_pt_stage_bind() for more
-> > - * information on page-table building), and the xe_vm_pgtable_update entries
-> > - * abstracting the operations needed to attach it to the main vm tree. It
-> > - * then takes the relevant locks and updates the metadata side of the main
-> > - * vm tree and submits the operations for pipelined attachment of the
-> > - * gpu page-table to the vm main tree, (which can be done either by the
-> > - * cpu and the GPU).
-> > - *
-> > - * Return: A valid dma-fence representing the pipelined attachment operation
-> > - * on success, an error pointer on error.
-> > - */
-> > -struct dma_fence *
-> > -__xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue *q,
-> > -		 struct xe_sync_entry *syncs, u32 num_syncs,
-> > -		 bool rebind)
-> > -{
-> > -	struct xe_vm_pgtable_update entries[XE_VM_MAX_LEVEL * 2 + 1];
-> > -	struct xe_pt_migrate_pt_update bind_pt_update = {
-> > -		.base = {
-> > -			.ops = xe_vma_is_userptr(vma) ? &userptr_bind_ops : &bind_ops,
-> > -			.vma = vma,
-> > -			.tile_id = tile->id,
-> > -		},
-> > -		.bind = true,
-> > -	};
-> > -	struct xe_vm *vm = xe_vma_vm(vma);
-> > -	u32 num_entries;
-> > -	struct dma_fence *fence;
-> > -	struct invalidation_fence *ifence = NULL;
-> > -	struct xe_range_fence *rfence;
-> > -	int err;
-> > -
-> > -	bind_pt_update.locked = false;
-> > -	xe_bo_assert_held(xe_vma_bo(vma));
-> > -	xe_vm_assert_held(vm);
-> > -
-> > -	vm_dbg(&xe_vma_vm(vma)->xe->drm,
-> > -	       "Preparing bind, with range [%llx...%llx) engine %p.\n",
-> > -	       xe_vma_start(vma), xe_vma_end(vma), q);
-> > -
-> > -	err = xe_pt_prepare_bind(tile, vma, entries, &num_entries);
-> > -	if (err)
-> > -		goto err;
-> > -
-> > -	err = dma_resv_reserve_fences(xe_vm_resv(vm), 1);
-> > -	if (!err && !xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
-> > -		err = dma_resv_reserve_fences(xe_vma_bo(vma)->ttm.base.resv, 1);
-> > -	if (err)
-> > -		goto err;
-> > -
-> > -	xe_tile_assert(tile, num_entries <= ARRAY_SIZE(entries));
-> > -
-> > -	xe_vm_dbg_print_entries(tile_to_xe(tile), entries, num_entries);
-> > -	xe_pt_calc_rfence_interval(vma, &bind_pt_update, entries,
-> > -				   num_entries);
-> > -
-> > -	/*
-> > -	 * If rebind, we have to invalidate TLB on !LR vms to invalidate
-> > -	 * cached PTEs point to freed memory. on LR vms this is done
-> > -	 * automatically when the context is re-enabled by the rebind worker,
-> > -	 * or in fault mode it was invalidated on PTE zapping.
-> > -	 *
-> > -	 * If !rebind, and scratch enabled VMs, there is a chance the scratch
-> > -	 * PTE is already cached in the TLB so it needs to be invalidated.
-> > -	 * on !LR VMs this is done in the ring ops preceding a batch, but on
-> > -	 * non-faulting LR, in particular on user-space batch buffer chaining,
-> > -	 * it needs to be done here.
-> > -	 */
-> > -	if ((!rebind && xe_vm_has_scratch(vm) && xe_vm_in_preempt_fence_mode(vm))) {
-> > -		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
-> > -		if (!ifence)
-> > -			return ERR_PTR(-ENOMEM);
-> > -	} else if (rebind && !xe_vm_in_lr_mode(vm)) {
-> > -		/* We bump also if batch_invalidate_tlb is true */
-> > -		vm->tlb_flush_seqno++;
-> 
-> This was the only thing actually setting a value of "tlb_flush_seqno"
-> to anything in the driver. Now the only thing that remains setting any
-> value to tlb_flush_seqno is xe_sched_job_arm() where we have:
-> 
-> q->tlb_flush_seqno = vm->tlb_flush_seqno;
-> 
-> (but there seems to be no line ever initializing vm->tlb_flush_seqno)
-> 
+== Series Details ==
 
-This is initialized to zero on the zalloc of the xe_vm structure.
+Series: series starting with [CI,v3,01/26] mm/hmm: let users to tag specific PFNs
+URL   : https://patchwork.freedesktop.org/series/134215/
+State : warning
 
-> Something may be wrong here. We're not setting initial values but we're
-> copying values and checking them in an "if" statement.
-> 
-> The following compiles:
->
+== Summary ==
 
-Sure but this doesn't correctly set job->ring_ops_flush_tlb now. The
-idea here is if we can defer the TLB flush to next job rather than a GuC
-command after we change the page tables we do that. Roughly, on binds in
-dma-fence mode we can always defer, in some bind cases in LR mode we can
-defer, and on unbinds we always use the GuC.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f394c75ee71643b62a31b99ee3ea81b695238214
+Author: Oak Zeng <oak.zeng@intel.com>
+Date:   Wed May 29 20:47:32 2024 -0400
 
-This patch broke this in the rebase. The fix in bind_op_prepare should
-look like:
+    drm/xe: use drm_hmmptr in xe
+    
+    drm_hmmptr was created to move some userptr and svm logic
+    such as mmu notifier registration, range population etc
+    to drm layer, so those logic can be shared b/t vendor
+    drivers.
+    
+    This patch apply the drm_hmmptr to xekmd driver. drm_hmmptr
+    is the parent class of xe_userptr.
+    
+    Most of the changes are straight forward, such as some
+    xe_userptr members are now moved to drm_hmmptr. Since
+    drm_hmmptr doesn't use scatter-gather table for dma
+    address anymore, we changed to the dma-address cursor
+    from the sg cursor during page table building.
+    
+    xe_hmm.c and xe_hmm.h are removed, as the logic is
+    now moved to drm_svm.c
+    
+    Signed-off-by: Oak Zeng <oak.zeng@intel.com>
++ /mt/dim checkpatch 55d6179b96e0390025f2ba101c03b94b50cab7a1 drm-intel
+bc3046f88f1e mm/hmm: let users to tag specific PFNs
+0e08e7fa4a8a dma-mapping: provide an interface to allocate IOVA
+-:73: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#73: FILE: include/linux/dma-mapping.h:170:
++}
++static inline void dma_free_iova(struct dma_iova_attrs *iova)
 
-                /*
-                 * If rebind, we have to invalidate TLB on !LR vms to invalidate
-                 * cached PTEs point to freed memory. on LR vms this is done
--                * automatically when the context is re-enabled by the rebind
--                * worker, or in fault mode it was invalidated on PTE zapping.
-+                * automatically when the context is re-enabled by the rebind worker,
-+                * or in fault mode it was invalidated on PTE zapping.
-                 *
--                * If !rebind, and scratch enabled VMs, there is a chance the
--                * scratch PTE is already cached in the TLB so it needs to be
--                * invalidated. on !LR VMs this is done in the ring ops
--                * preceding a batch, but on non-faulting LR, in particular on
--                * user-space batch buffer chaining, it needs to be done here.
-+                * If !rebind, and scratch enabled VMs, there is a chance the scratch
-+                * PTE is already cached in the TLB so it needs to be invalidated.
-+                * on !LR VMs this is done in the ring ops preceding a batch, but on
-+                * non-faulting LR, in particular on user-space batch buffer chaining,
-+                * it needs to be done here.
-                 */
--               pt_update_ops->needs_invalidation |=
--                       (pt_op->rebind && !xe_vm_in_lr_mode(vm) &&
--                       !vm->batch_invalidate_tlb) ||
--                       (!pt_op->rebind && vm->scratch_pt[tile->id] &&
--                        xe_vm_in_preempt_fence_mode(vm));
-+               if ((!pt_op->rebind && xe_vm_has_scratch(vm) &&
-+                    xe_vm_in_preempt_fence_mode(vm)))
-+                       pt_update_ops->needs_invalidation = true;
-+               else if (rebind && !xe_vm_in_lr_mode(vm))
-+                       /* We bump also if batch_invalidate_tlb is true */
-+                       vm->tlb_flush_seqno++;
+total: 0 errors, 0 warnings, 1 checks, 83 lines checked
+d6f35ec71d2d dma-mapping: provide callbacks to link/unlink pages to specific IOVA
+-:59: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#59: FILE: include/linux/dma-mapping.h:176:
+ }
++static inline dma_addr_t dma_link_range(struct page *page, unsigned long offset,
 
-Will fix in next rev.
+-:65: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#65: FILE: include/linux/dma-mapping.h:182:
++}
++static inline void dma_unlink_range(struct dma_iova_attrs *iova,
 
-Matt
+total: 0 errors, 0 warnings, 2 checks, 123 lines checked
+9bd2ddc4e8cd iommu/dma: Provide an interface to allow preallocate IOVA
+-:31: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#31: FILE: drivers/iommu/dma-iommu.c:762:
++static dma_addr_t __iommu_dma_alloc_iova(struct iommu_domain *domain,
+ 		size_t size, u64 dma_limit, struct device *dev)
+
+-:40: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#40: FILE: drivers/iommu/dma-iommu.c:808:
++static void __iommu_dma_free_iova(struct iommu_dma_cookie *cookie,
+ 		dma_addr_t iova, size_t size, struct iommu_iotlb_gather *gather)
+
+total: 0 errors, 0 warnings, 2 checks, 132 lines checked
+e80879f31d0b iommu/dma: Prepare map/unmap page functions to receive IOVA
+-:197: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#197: FILE: drivers/iommu/dma-iommu.c:1658:
++	*handle = __iommu_dma_map(dev, page_to_phys(page), 0, size, ioprot,
+ 			dev->coherent_dma_mask);
+
+total: 0 errors, 0 warnings, 1 checks, 171 lines checked
+0330423a5149 iommu/dma: Implement link/unlink page callbacks
+a4154deb4767 drm: move xe_sg_segment_size to drm layer
+d64d0c98d892 drm: Move GPUVA_START/LAST to drm_gpuvm.h
+-:41: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'node' - possible side-effects?
+#41: FILE: include/drm/drm_gpuvm.h:42:
++#define GPUVA_LAST(node) ((node)->va.addr + (node)->va.range - 1)
+
+-:42: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'node' - possible side-effects?
+#42: FILE: include/drm/drm_gpuvm.h:43:
++#define GPUVA_END(node) ((node)->va.addr + (node)->va.range)
+
+total: 0 errors, 0 warnings, 2 checks, 19 lines checked
+5ca221e158d0 drm/svm: add a mm field to drm_gpuvm struct
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#9: 
+Add a mm_struct field to drm_gpuvm. This is only used by shared virtual memory,
+
+total: 0 errors, 1 warnings, 0 checks, 19 lines checked
+e89d08977db9 drm/svm: introduce drm_mem_region concept
+-:35: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#35: 
+new file mode 100644
+
+-:40: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'include/drm/drm_svm.h', please use '/*' instead
+#40: FILE: include/drm/drm_svm.h:1:
++// SPDX-License-Identifier: MIT
+
+-:40: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#40: FILE: include/drm/drm_svm.h:1:
++// SPDX-License-Identifier: MIT
+
+-:76: ERROR:FLEXIBLE_ARRAY: Use C99 flexible arrays - see https://docs.kernel.org/process/deprecated.html#zero-length-and-one-element-arrays
+#76: FILE: include/drm/drm_svm.h:37:
++	} addr_vec[1];
++};
+
+-:90: WARNING:SPACING: Unnecessary space before function pointer arguments
+#90: FILE: include/drm/drm_svm.h:51:
++	int (*drm_mem_region_alloc_pages) (struct drm_mem_region *mr,
+
+-:91: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#91: FILE: include/drm/drm_svm.h:52:
++	int (*drm_mem_region_alloc_pages) (struct drm_mem_region *mr,
++						unsigned long npags, unsigned long *pfns);
+
+-:96: WARNING:SPACING: Unnecessary space before function pointer arguments
+#96: FILE: include/drm/drm_svm.h:57:
++	void (*drm_mem_region_free_page) (struct page *page);
+
+-:107: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#107: FILE: include/drm/drm_svm.h:68:
++	struct dma_fence* (*drm_mem_region_migrate)(struct migrate_vec *src_vec,
++			struct migrate_vec *dst_vec);
+
+-:189: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#189: FILE: include/drm/drm_svm.h:150:
++	BUG_ON((pfn << PAGE_SHIFT) < mr->hpa_base );
+
+-:189: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#189: FILE: include/drm/drm_svm.h:150:
++	BUG_ON((pfn << PAGE_SHIFT) < mr->hpa_base );
+
+-:190: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#190: FILE: include/drm/drm_svm.h:151:
++	BUG_ON((pfn << PAGE_SHIFT) >=  mr->hpa_base + mr->usable_size);
+
+total: 2 errors, 7 warnings, 2 checks, 156 lines checked
+a4a84ff69a7a drm/svm: introduce hmmptr and helper functions
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:58: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#58: 
+new file mode 100644
+
+-:68: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#68: FILE: drivers/gpu/drm/drm_svm.c:6:
++
++
+
+-:157: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#157: FILE: drivers/gpu/drm/drm_svm.c:95:
++	BUG_ON(page_idx + npages > tpages);
+
+-:160: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#160: FILE: drivers/gpu/drm/drm_svm.c:98:
++		BUG_ON(!page);
+
+-:161: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#161: FILE: drivers/gpu/drm/drm_svm.c:99:
++		BUG_ON(is_device_private_page(page));
+
+-:174: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#174: FILE: drivers/gpu/drm/drm_svm.c:112:
++int drm_svm_hmmptr_init(struct drm_hmmptr *hmmptr,
++		const struct mmu_interval_notifier_ops *ops)
+
+-:200: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#200: FILE: drivers/gpu/drm/drm_svm.c:138:
++	ret = mmu_interval_notifier_insert(&hmmptr->notifier, current->mm,
++		start, end - start, ops);
+
+-:275: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#275: FILE: drivers/gpu/drm/drm_svm.c:213:
++	BUG_ON(start < __hmmptr_start(hmmptr));
+
+-:276: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#276: FILE: drivers/gpu/drm/drm_svm.c:214:
++	BUG_ON(end > __hmmptr_end(hmmptr));
+
+-:330: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#330: FILE: include/drm/drm_svm.h:12:
  
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> index e81704c7c030a..dd51b59e4433f 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> @@ -136,11 +136,6 @@ struct xe_exec_queue {
->         const struct xe_ring_ops *ring_ops;
->         /** @entity: DRM sched entity for this exec queue (1 to 1 relationship) */
->         struct drm_sched_entity *entity;
-> -       /**
-> -        * @tlb_flush_seqno: The seqno of the last rebind tlb flush performed
-> -        * Protected by @vm's resv. Unused if @vm == NULL.
-> -        */
-> -       u64 tlb_flush_seqno;
->         /** @old_run_ticks: prior hw engine class run time in ticks for this exec queue */
->         u64 old_run_ticks;
->         /** @run_ticks: hw engine class run time in ticks for this exec queue */
-> diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-> index 29f3201d7dfac..6c3cb7e295ac7 100644
-> --- a/drivers/gpu/drm/xe/xe_sched_job.c
-> +++ b/drivers/gpu/drm/xe/xe_sched_job.c
-> @@ -254,9 +254,8 @@ void xe_sched_job_arm(struct xe_sched_job *job)
->         }
->  
->         if (vm && !xe_sched_job_is_migration(q) && !xe_vm_in_lr_mode(vm) &&
-> -           (vm->batch_invalidate_tlb || vm->tlb_flush_seqno != q->tlb_flush_seqno)) {
-> +           vm->batch_invalidate_tlb) {
->                 xe_vm_assert_held(vm);
-> -               q->tlb_flush_seqno = vm->tlb_flush_seqno;
->                 job->ring_ops_flush_tlb = true;
->         }
->  
-> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-> index 27d651093d307..03e839efb234e 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> @@ -263,11 +263,6 @@ struct xe_vm {
->                 bool capture_once;
->         } error_capture;
->  
-> -       /**
-> -        * @tlb_flush_seqno: Required TLB flush seqno for the next exec.
-> -        * protected by the vm resv.
-> -        */
-> -       u64 tlb_flush_seqno;
->         /** @batch_invalidate_tlb: Always invalidate TLB before batch start */
->         bool batch_invalidate_tlb;
->         /** @xef: XE file handle for tracking this VM's drm client */
-> 
-> 
-> 
++
+
+-:383: WARNING:SPACING: Unnecessary space before function pointer arguments
+#383: FILE: include/drm/drm_svm.h:203:
++	struct drm_gpuva * (*get_gpuva) (struct drm_hmmptr *hmmptr);
+
+-:387: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#387: FILE: include/drm/drm_svm.h:207:
++int drm_svm_hmmptr_init(struct drm_hmmptr *hmmptr,
++		const struct mmu_interval_notifier_ops *ops);
+
+-:391: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#391: FILE: include/drm/drm_svm.h:211:
++int drm_svm_hmmptr_populate(struct drm_hmmptr *hmmptr, void *owner,
++		u64 start, u64 end, bool write);
+
+total: 0 errors, 7 warnings, 6 checks, 337 lines checked
+981f0b935803 drm/svm: Introduce helper to remap drm memory region
+-:90: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#90: FILE: drivers/gpu/drm/drm_svm.c:295:
++		drm_err(drm, "Failed to remap memory region %p, errno %d\n",
++				mr, ret);
+
+-:96: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#96: FILE: drivers/gpu/drm/drm_svm.c:301:
++	drm_info(drm, "Registered device memory [%llx-%llx] to devm, remapped to %pr\n",
++			mr->dpa_base, mr->dpa_base + mr->usable_size, res);
+
+total: 0 errors, 0 warnings, 2 checks, 67 lines checked
+c57566060c29 drm/svm: handle CPU page fault
+-:69: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#69: FILE: drivers/gpu/drm/drm_svm.c:287:
++static int __drm_svm_alloc_host_pages(struct vm_area_struct *vma,
++							 unsigned long *mpfn)
+
+-:94: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#94: FILE: drivers/gpu/drm/drm_svm.c:312:
++static struct migrate_vec *__generate_migrate_vec_vram(unsigned long *mpfn, bool is_migrate_src, unsigned long npages)
+
+-:112: ERROR:SPACING: space required before the open parenthesis '('
+#112: FILE: drivers/gpu/drm/drm_svm.c:330:
++	for(i = 0, j = 0; i < npages; i++) {
+
+-:126: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#126: FILE: drivers/gpu/drm/drm_svm.c:344:
++static struct migrate_vec *__generate_migrate_vec_sram(struct device *dev, unsigned long *mpfn,
++		bool is_migrate_src, unsigned long npages)
+
+-:143: ERROR:SPACING: spaces required around that '=' (ctx:WxV)
+#143: FILE: drivers/gpu/drm/drm_svm.c:361:
++	for(i = 0, k =0 ; i < npages; i++) {
+ 	             ^
+
+-:143: ERROR:SPACING: space required before the open parenthesis '('
+#143: FILE: drivers/gpu/drm/drm_svm.c:361:
++	for(i = 0, k =0 ; i < npages; i++) {
+
+-:168: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#168: FILE: drivers/gpu/drm/drm_svm.c:386:
++static void __free_migrate_vec_sram(struct device *dev, struct migrate_vec *vec, bool is_migrate_src)
+
+-:173: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#173: FILE: drivers/gpu/drm/drm_svm.c:391:
++	BUG_ON(vec->mr != NULL);
+
+-:173: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "vec->mr"
+#173: FILE: drivers/gpu/drm/drm_svm.c:391:
++	BUG_ON(vec->mr != NULL);
+
+-:184: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#184: FILE: drivers/gpu/drm/drm_svm.c:402:
++	BUG_ON(vec->mr == NULL);
+
+-:184: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!vec->mr"
+#184: FILE: drivers/gpu/drm/drm_svm.c:402:
++	BUG_ON(vec->mr == NULL);
+
+-:188: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#188: FILE: drivers/gpu/drm/drm_svm.c:406:
++}
++/**
+
+-:286: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#286: FILE: drivers/gpu/drm/drm_svm.c:504:
++}
++static struct dev_pagemap_ops drm_devm_pagemap_ops = {
+
+total: 3 errors, 4 warnings, 6 checks, 263 lines checked
+b09616ca0f1c drm/svm: Migrate a range of hmmptr to vram
+-:39: ERROR:SPACING: space required before the open parenthesis '('
+#39: FILE: drivers/gpu/drm/drm_svm.c:560:
++	for(i = 0; i < npages; i++) {
+
+-:59: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#59: FILE: drivers/gpu/drm/drm_svm.c:580:
++int drm_svm_migrate_hmmptr_to_vram(struct drm_gpuvm *vm,
++		struct drm_mem_region *mr,
+
+-:82: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#82: FILE: drivers/gpu/drm/drm_svm.c:603:
++	BUG_ON(start < GPUVA_START(gpuva));
+
+-:83: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#83: FILE: drivers/gpu/drm/drm_svm.c:604:
++	BUG_ON(end > GPUVA_END(gpuva));
+
+-:90: CHECK:SPACING: spaces preferred around that '*' (ctx:VxW)
+#90: FILE: drivers/gpu/drm/drm_svm.c:611:
++	buf = kvcalloc(npages, 2* sizeof(*migrate.src), GFP_KERNEL);
+ 	                        ^
+
+-:91: ERROR:SPACING: space required before the open parenthesis '('
+#91: FILE: drivers/gpu/drm/drm_svm.c:612:
++	if(!buf)
+
+-:99: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#99: FILE: drivers/gpu/drm/drm_svm.c:620:
++		drm_warn(drm, "vma setup returned %d for range [%lx - %lx]\n",
++				ret, start, end);
+
+-:109: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#109: FILE: drivers/gpu/drm/drm_svm.c:630:
++		drm_warn(drm, "Partial migration for range [%lx - %lx], range is %ld pages, migrate only %ld pages\n",
++				start, end, npages, migrate.cpages);
+
+-:164: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#164: FILE: include/drm/drm_svm.h:215:
++int drm_svm_migrate_hmmptr_to_vram(struct drm_gpuvm *vm,
++		struct drm_mem_region *mr,
+
+total: 2 errors, 2 warnings, 5 checks, 131 lines checked
+53e4de7cf2a8 drm/svm: Add DRM SVM documentation
+-:217: WARNING:TYPO_SPELLING: 'delibrately' may be misspelled - perhaps 'deliberately'?
+#217: FILE: drivers/gpu/drm/drm_svm.c:147:
++ * in DRM SVM design. We delibrately choose this implementation option to achieve true
+                          ^^^^^^^^^^^
+
+-:315: WARNING:LONG_LINE_COMMENT: line length of 121 exceeds 100 columns
+#315: FILE: drivers/gpu/drm/drm_svm.c:245:
++ * In GPU page fault handler:                                                                           munmap from user:
+
+-:318: WARNING:LONG_LINE_COMMENT: line length of 121 exceeds 100 columns
+#318: FILE: drivers/gpu/drm/drm_svm.c:248:
++ * Mmap_read_lock()                                                                                     mmap_write_lock()
+
+-:319: WARNING:LONG_LINE_COMMENT: line length of 168 exceeds 100 columns
+#319: FILE: drivers/gpu/drm/drm_svm.c:249:
++ * call drm_svm_migrate_hmmptr_to_vram to migrate hmmptr if needed                                      mmu_notifier_invalidate_range_start(), call hmmptr->invalidate()
+
+-:320: WARNING:LONG_LINE_COMMENT: line length of 136 exceeds 100 columns
+#320: FILE: drivers/gpu/drm/drm_svm.c:250:
++ * hmmptr.notifier_seq = mmu_interval_read_begin(&hmmptr.notifier)                                          down_write(page_table_lock);
+
+-:321: WARNING:LONG_LINE_COMMENT: line length of 131 exceeds 100 columns
+#321: FILE: drivers/gpu/drm/drm_svm.c:251:
++ * call drm_svm_populate_hmmptr to populate hmmptr                                                          mmu_interval_set_seq();
+
+-:322: WARNING:LONG_LINE_COMMENT: line length of 145 exceeds 100 columns
+#322: FILE: drivers/gpu/drm/drm_svm.c:252:
++ * Mmap_read_unlock                                                                                         invalidate hmmptr from GPU page table
+
+-:323: WARNING:LONG_LINE_COMMENT: line length of 134 exceeds 100 columns
+#323: FILE: drivers/gpu/drm/drm_svm.c:253:
++ *                                                                                                          up_write(page_table_lock);
+
+-:324: WARNING:LONG_LINE_COMMENT: line length of 139 exceeds 100 columns
+#324: FILE: drivers/gpu/drm/drm_svm.c:254:
++ * dma_resv_lock()                                                                                      mmu_notifier_invalidate_range_end()
+
+-:325: WARNING:LONG_LINE_COMMENT: line length of 126 exceeds 100 columns
+#325: FILE: drivers/gpu/drm/drm_svm.c:255:
++ * down_read(page_table_lock);                                                                            mmap_write_unlock();
+
+total: 0 errors, 10 warnings, 0 checks, 360 lines checked
+c54223667b3f drm/xe: s/xe_tile_migrate_engine/xe_tile_migrate_exec_queue
+211a7aaf6e02 drm/xe: Add xe_vm_pgtable_update_op to xe_vma_ops
+25e62c8526cd drm/xe: Convert multiple bind ops into single job
+-:13: WARNING:TYPO_SPELLING: 'implemenation' may be misspelled - perhaps 'implementation'?
+#13: 
+The implemenation is roughly:
+    ^^^^^^^^^^^^^
+
+-:885: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 15)
+#885: FILE: drivers/gpu/drm/xe/xe_pt.c:1163:
++	if (uvma->userptr.initial_bind && !xe_vm_in_fault_mode(vm))
++               return 0;
+
+-:886: ERROR:CODE_INDENT: code indent should use tabs where possible
+#886: FILE: drivers/gpu/drm/xe/xe_pt.c:1164:
++               return 0;$
+
+-:886: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#886: FILE: drivers/gpu/drm/xe/xe_pt.c:1164:
++               return 0;$
+
+-:1667: WARNING:BLOCK_COMMENT_STYLE: Block comments should align the * on each line
+#1667: FILE: drivers/gpu/drm/xe/xe_pt.c:1898:
++ * installing job fence in various places.
++  *
+
+-:1668: WARNING:BLOCK_COMMENT_STYLE: Block comments should align the * on each line
+#1668: FILE: drivers/gpu/drm/xe/xe_pt.c:1899:
++  *
++ * Return: fence on success, negative ERR_PTR on error.
+
+-:1800: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#1800: FILE: drivers/gpu/drm/xe/xe_pt.c:2031:
++ }$
+
+total: 1 errors, 6 warnings, 0 checks, 2532 lines checked
+f04332685569 drm/xe: Update VM trace events
+c316f6986241 drm/xe: Update PT layer with better error handling
+9e9fcf221575 drm/xe: Retry BO allocation
+314c773e48e5 drm/xe: Rework GPU page fault handling
+f1be750203f3 drm/xe/uapi: Add DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATOR flag
+-:40: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#40: 
+FIXME: Not enforcing DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATOR for fault mode VMs
+
+total: 0 errors, 1 warnings, 0 checks, 451 lines checked
+fb91b8c587bb drm/xe: Add dma_addr res cursor
+f8d69d83215a drm/xe: Use drm_mem_region for xe
+-:162: WARNING:LONG_LINE: line length of 134 exceeds 100 columns
+#162: FILE: drivers/gpu/drm/xe/xe_mmio.c:329:
++			 tile->id, &tile->mem.vram.actual_physical_size, &tile->mem.vram.drm_mr.usable_size, &tile->mem.vram.io_size);
+
+-:165: WARNING:LONG_LINE: line length of 132 exceeds 100 columns
+#165: FILE: drivers/gpu/drm/xe/xe_mmio.c:331:
++			 &tile->mem.vram.drm_mr.dpa_base, tile->mem.vram.drm_mr.dpa_base + (u64)tile->mem.vram.actual_physical_size,
+
+total: 0 errors, 2 warnings, 0 checks, 140 lines checked
+f394c75ee716 drm/xe: use drm_hmmptr in xe
+-:52: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#52: 
+deleted file mode 100644
+
+-:338: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#338: FILE: drivers/gpu/drm/xe/xe_pt.c:673:
++			xe_res_first_dma(to_userptr_vma(vma)->userptr.hmmptr.iova.addr,
+ 					xe_vma_size(vma), &curs);
+
+-:402: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#402: FILE: drivers/gpu/drm/xe/xe_vm.c:79:
++	ret = drm_svm_hmmptr_populate(hmmptr, NULL, xe_vma_start(vma),
++			 xe_vma_end(vma), !xe_vma_read_only(vma));
+
+-:464: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#464: FILE: drivers/gpu/drm/xe/xe_vm.c:1015:
++			err = drm_svm_hmmptr_init(&userptr->hmmptr,
++				 &vma_userptr_notifier_ops);
+
+total: 0 errors, 1 warnings, 3 checks, 209 lines checked
+
+
