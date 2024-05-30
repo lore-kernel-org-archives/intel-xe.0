@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64E47C25B7E
-	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 10:58:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69F2EC25B74
+	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 11:17:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6DA310E7F0;
-	Thu, 30 May 2024 10:58:34 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27A4D10E7F0;
- Thu, 30 May 2024 10:58:32 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F44889F4F;
+	Thu, 30 May 2024 11:17:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="brm/YHNM";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCCB011AC8E
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 May 2024 11:17:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1717067857; x=1748603857;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=dvNDUqGzjHzC/hfSjc7fXobPvTeXCd7KhzBonhx1N88=;
+ b=brm/YHNMFK48TmSqDkdCfcAMdIwShMoZMuvxLwJeLpOlDfBH4tU+iZIZ
+ i/ulFIH2QfgxM/txre/nwS0Q4bgnDZ1swuU2xi6xJ8kLDZ9G8obPCwFVW
+ wXWkx9YiB/qTMl64jhJu5JuSLRSq8peeSHQ38KutgBb8m33ccV7Vd37OK
+ wgEKtShz7Kj7F2ifjB7NPvUz0GU1zJZl1XWfqZPBgbNg7oj4FObo77/R1
+ 88T3Z6v20TDUkhuehbBxzJ9rTmc0xgYXJqeP6uZA18MtEGjbJwuKaNts8
+ 4kryoLLtKetDpazlUh8YPqgto5zr5XdSA3BAOfeUmc30oaBqH3n+4A+zw Q==;
+X-CSE-ConnectionGUID: F7uiSZgAS6C0QaCBUDB4iw==
+X-CSE-MsgGUID: d17FYDlzT1+NoG1p27LB2g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="24154690"
+X-IronPort-AV: E=Sophos;i="6.08,201,1712646000"; d="scan'208";a="24154690"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2024 04:17:36 -0700
+X-CSE-ConnectionGUID: 0+nWM3QnTqCPLNuSM50fIA==
+X-CSE-MsgGUID: y8U+yM6wTTeGa0zFxtTMdQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,201,1712646000"; d="scan'208";a="35774575"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO [10.245.245.63])
+ ([10.245.245.63])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2024 04:17:34 -0700
+Message-ID: <e28c1e17fd9a6b7153432ff204ada2102706fb28.camel@linux.intel.com>
+Subject: Re: [PATCH v2] drm/xe: flush gtt before signalling user fence on
+ all engines
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Date: Thu, 30 May 2024 13:17:32 +0200
+In-Reply-To: <20240522-xu_flush_vcs_before_ufence-v2-1-9ac3e9af0323@intel.com>
+References: <20240522-xu_flush_vcs_before_ufence-v2-1-9ac3e9af0323@intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/xe2lpm=3A_Add_permanent?=
- =?utf-8?q?_Wa=5F14020756599?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 30 May 2024 10:58:32 -0000
-Message-ID: <171706671216.2238127.6116030491167635806@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240530105229.490430-1-tejas.upadhyay@intel.com>
-In-Reply-To: <20240530105229.490430-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,216 +71,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi, All.
 
-Series: drm/xe/xe2lpm: Add permanent Wa_14020756599
-URL   : https://patchwork.freedesktop.org/series/134245/
-State : failure
+I was looking at this patch for drm-xe-fixes but it doesn't look
+correct to me.
 
-== Summary ==
+First, AFAICT, the "emit flush imm ggtt" means that we're flushing
+outstanding / posted writes, and then write a DW to a ggtt address, so
+we're not really "flushing gtt"
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[10:57:57] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[10:58:02] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
+Second, I don't think we have anything left that explicitly flushes the
+posted write of the user-fence value?
 
-[10:58:28] Starting KUnit Kernel (1/1)...
-[10:58:28] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[10:58:28] =================== guc_dbm (7 subtests) ===================
-[10:58:28] [PASSED] test_empty
-[10:58:28] [PASSED] test_default
-[10:58:28] ======================== test_size  ========================
-[10:58:28] [PASSED] 4
-[10:58:28] [PASSED] 8
-[10:58:28] [PASSED] 32
-[10:58:28] [PASSED] 256
-[10:58:28] ==================== [PASSED] test_size ====================
-[10:58:28] ======================= test_reuse  ========================
-[10:58:28] [PASSED] 4
-[10:58:28] [PASSED] 8
-[10:58:28] [PASSED] 32
-[10:58:28] [PASSED] 256
-[10:58:28] =================== [PASSED] test_reuse ====================
-[10:58:28] =================== test_range_overlap  ====================
-[10:58:28] [PASSED] 4
-[10:58:28] [PASSED] 8
-[10:58:28] [PASSED] 32
-[10:58:28] [PASSED] 256
-[10:58:28] =============== [PASSED] test_range_overlap ================
-[10:58:28] =================== test_range_compact  ====================
-[10:58:28] [PASSED] 4
-[10:58:28] [PASSED] 8
-[10:58:28] [PASSED] 32
-[10:58:28] [PASSED] 256
-[10:58:28] =============== [PASSED] test_range_compact ================
-[10:58:28] ==================== test_range_spare  =====================
-[10:58:28] [PASSED] 4
-[10:58:28] [PASSED] 8
-[10:58:28] [PASSED] 32
-[10:58:28] [PASSED] 256
-[10:58:28] ================ [PASSED] test_range_spare =================
-[10:58:28] ===================== [PASSED] guc_dbm =====================
-[10:58:28] =================== guc_idm (6 subtests) ===================
-[10:58:28] [PASSED] bad_init
-[10:58:28] [PASSED] no_init
-[10:58:28] [PASSED] init_fini
-[10:58:28] [PASSED] check_used
-[10:58:28] [PASSED] check_quota
-[10:58:28] [PASSED] check_all
-[10:58:28] ===================== [PASSED] guc_idm =====================
-[10:58:28] ================== no_relay (3 subtests) ===================
-[10:58:28] [PASSED] xe_drops_guc2pf_if_not_ready
-[10:58:28] [PASSED] xe_drops_guc2vf_if_not_ready
-[10:58:28] [PASSED] xe_rejects_send_if_not_ready
-[10:58:28] ==================== [PASSED] no_relay =====================
-[10:58:28] ================== pf_relay (14 subtests) ==================
-[10:58:28] [PASSED] pf_rejects_guc2pf_too_short
-[10:58:28] [PASSED] pf_rejects_guc2pf_too_long
-[10:58:28] [PASSED] pf_rejects_guc2pf_no_payload
-[10:58:28] [PASSED] pf_fails_no_payload
-[10:58:28] [PASSED] pf_fails_bad_origin
-[10:58:28] [PASSED] pf_fails_bad_type
-[10:58:28] [PASSED] pf_txn_reports_error
-[10:58:28] [PASSED] pf_txn_sends_pf2guc
-[10:58:28] [PASSED] pf_sends_pf2guc
-[10:58:28] [SKIPPED] pf_loopback_nop
-[10:58:28] [SKIPPED] pf_loopback_echo
-[10:58:28] [SKIPPED] pf_loopback_fail
-[10:58:28] [SKIPPED] pf_loopback_busy
-[10:58:28] [SKIPPED] pf_loopback_retry
-[10:58:28] ==================== [PASSED] pf_relay =====================
-[10:58:28] ================== vf_relay (3 subtests) ===================
-[10:58:28] [PASSED] vf_rejects_guc2vf_too_short
-[10:58:28] [PASSED] vf_rejects_guc2vf_too_long
-[10:58:28] [PASSED] vf_rejects_guc2vf_no_payload
-[10:58:28] ==================== [PASSED] vf_relay =====================
-[10:58:28] ================= pf_service (11 subtests) =================
-[10:58:28] [PASSED] pf_negotiate_any
-[10:58:28] [PASSED] pf_negotiate_base_match
-[10:58:28] [PASSED] pf_negotiate_base_newer
-[10:58:28] [PASSED] pf_negotiate_base_next
-[10:58:28] [SKIPPED] pf_negotiate_base_older
-[10:58:28] [PASSED] pf_negotiate_base_prev
-[10:58:28] [PASSED] pf_negotiate_latest_match
-[10:58:28] [PASSED] pf_negotiate_latest_newer
-[10:58:28] [PASSED] pf_negotiate_latest_next
-[10:58:28] [SKIPPED] pf_negotiate_latest_older
-[10:58:28] [SKIPPED] pf_negotiate_latest_prev
-[10:58:28] =================== [PASSED] pf_service ====================
-[10:58:28] ===================== lmtt (1 subtest) =====================
-[10:58:28] ======================== test_ops  =========================
-[10:58:28] [PASSED] 2-level
-[10:58:28] [PASSED] multi-level
-[10:58:28] ==================== [PASSED] test_ops =====================
-[10:58:28] ====================== [PASSED] lmtt =======================
-[10:58:28] ==================== xe_bo (2 subtests) ====================
-[10:58:28] [SKIPPED] xe_ccs_migrate_kunit
-[10:58:28] [SKIPPED] xe_bo_evict_kunit
-[10:58:28] ===================== [SKIPPED] xe_bo ======================
-[10:58:28] ================== xe_dma_buf (1 subtest) ==================
-[10:58:28] [SKIPPED] xe_dma_buf_kunit
-[10:58:28] =================== [SKIPPED] xe_dma_buf ===================
-[10:58:28] ================== xe_migrate (1 subtest) ==================
-[10:58:28] [SKIPPED] xe_migrate_sanity_kunit
-[10:58:28] =================== [SKIPPED] xe_migrate ===================
-[10:58:28] =================== xe_mocs (2 subtests) ===================
-[10:58:28] [SKIPPED] xe_live_mocs_kernel_kunit
-[10:58:28] [SKIPPED] xe_live_mocs_reset_kunit
-[10:58:28] ==================== [SKIPPED] xe_mocs =====================
-[10:58:28] ==================== args (11 subtests) ====================
-[10:58:28] [PASSED] count_args_test
-[10:58:28] [PASSED] call_args_example
-[10:58:28] [PASSED] call_args_test
-[10:58:28] [PASSED] drop_first_arg_example
-[10:58:28] [PASSED] drop_first_arg_test
-[10:58:28] [PASSED] first_arg_example
-[10:58:28] [PASSED] first_arg_test
-[10:58:28] [PASSED] last_arg_example
-[10:58:28] [PASSED] last_arg_test
-[10:58:28] [PASSED] pick_arg_example
-[10:58:28] [PASSED] sep_comma_example
-[10:58:28] ====================== [PASSED] args =======================
-[10:58:28] =================== xe_pci (2 subtests) ====================
-[10:58:28] [PASSED] xe_gmdid_graphics_ip
-[10:58:28] [PASSED] xe_gmdid_media_ip
-[10:58:28] ===================== [PASSED] xe_pci ======================
-[10:58:28] ==================== xe_rtp (1 subtest) ====================
-[10:58:28] ================== xe_rtp_process_tests  ===================
-[10:58:28] [PASSED] coalesce-same-reg
-[10:58:28] [PASSED] no-match-no-add
-[10:58:28] [PASSED] no-match-no-add-multiple-rules
-[10:58:28] [PASSED] two-regs-two-entries
-[10:58:28] [PASSED] clr-one-set-other
-[10:58:28] [PASSED] set-field
-[10:58:28] [PASSED] conflict-duplicate
-[10:58:28] [PASSED] conflict-not-disjoint
-[10:58:28] [PASSED] conflict-reg-type
-[10:58:28] ============== [PASSED] xe_rtp_process_tests ===============
-stty: 'standard input': Inappropriate ioctl for device
-[10:58:28] ===================== [PASSED] xe_rtp ======================
-[10:58:28] ==================== xe_wa (1 subtest) =====================
-[10:58:28] ======================== xe_wa_gt  =========================
-[10:58:28] [ERROR] Test: xe_wa_gt: missing subtest result line!
-[10:58:28] 
-[10:58:28] Pid: 195, comm: kunit_try_catch Tainted: G        W        N 6.10.0-rc1
-[10:58:28] RIP: 0033:xe_rtp_match_rcs_when_media2000+0xc/0x30
-[10:58:28] RSP: 00000000a0883de8  EFLAGS: 00010297
-[10:58:28] RAX: 0000000000000000 RBX: 00000000604f19a0 RCX: 00000000604f19a0
-[10:58:28] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000061ab0028
-[10:58:28] RBP: 00000000604f19b0 R08: 0000000000000001 R09: 0000000000000000
-[10:58:28] R10: 0000000000000000 R11: 0000000000000001 R12: 00000000604ee5c0
-[10:58:28] R13: 0000000062074000 R14: 0000000061ab0028 R15: 0000000000000000
-[10:58:28] Kernel panic - not syncing: Segfault with no mm
-[10:58:28] [ERROR] Test: xe_wa_gt: 0 tests run!
-[10:58:28] ================= [NO TESTS RUN] xe_wa_gt ==================
-[10:58:28] [ERROR] Test: xe_wa: missing subtest result line!
-[10:58:28] # module: xe_test
-[10:58:28] ===================== [CRASHED] xe_wa ======================
-[10:58:28] ============================================================
-[10:58:28] Testing complete. Ran 90 tests: passed: 75, crashed: 1, skipped: 14, errors: 3
-The kernel seems to have crashed; you can decode the stack traces with:
-$ scripts/decode_stacktrace.sh .kunit/vmlinux .kunit < .kunit/test.log | tee .kunit/decoded.log | /kernel/tools/testing/kunit/kunit.py parse
-[10:58:28] Elapsed time: 30.699s total, 4.240s configuring, 26.034s building, 0.425s running
+and finally the seqno fence now gets flushed before the user-fence.
+Perhaps that's not a bad thing, though.
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+/Thomas
 
+
+On Wed, 2024-05-22 at 09:27 +0200, Andrzej Hajda wrote:
+> Tests show that user fence signalling requires kind of write barrier,
+> otherwise not all writes performed by the workload will be available
+> to userspace. It is already done for render and compute, we need it
+> also for the rest: video, gsc, copy.
+>=20
+> v2: added gsc and copy engines, added fixes and r-b tags
+>=20
+> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1488
+> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel
+> GPUs")
+> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+> Changes in v2:
+> - Added fixes and r-b tags
+> - Link to v1:
+> https://lore.kernel.org/r/20240521-xu_flush_vcs_before_ufence-v1-1-ded38b=
+56c8c9@intel.com
+> ---
+> Matthew,
+>=20
+> I have extended patch to copy and gsc engines. I have kept your r-b,
+> since the change is similar, I hope it is OK.
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_ring_ops.c | 8 ++++----
+> =C2=A01 file changed, 4 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c
+> b/drivers/gpu/drm/xe/xe_ring_ops.c
+> index a3ca718456f6..a46a1257a24f 100644
+> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
+> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+> @@ -234,13 +234,13 @@ static void __emit_job_gen12_simple(struct
+> xe_sched_job *job, struct xe_lrc *lrc
+> =C2=A0
+> =C2=A0	i =3D emit_bb_start(batch_addr, ppgtt_flag, dw, i);
+> =C2=A0
+> +	i =3D emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno,
+> false, dw, i);
+> +
+> =C2=A0	if (job->user_fence.used)
+> =C2=A0		i =3D emit_store_imm_ppgtt_posted(job-
+> >user_fence.addr,
+> =C2=A0						job-
+> >user_fence.value,
+> =C2=A0						dw, i);
+> =C2=A0
+> -	i =3D emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno,
+> false, dw, i);
+> -
+> =C2=A0	i =3D emit_user_interrupt(dw, i);
+> =C2=A0
+> =C2=A0	xe_gt_assert(gt, i <=3D MAX_JOB_SIZE_DW);
+> @@ -293,13 +293,13 @@ static void __emit_job_gen12_video(struct
+> xe_sched_job *job, struct xe_lrc *lrc,
+> =C2=A0
+> =C2=A0	i =3D emit_bb_start(batch_addr, ppgtt_flag, dw, i);
+> =C2=A0
+> +	i =3D emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno,
+> false, dw, i);
+> +
+> =C2=A0	if (job->user_fence.used)
+> =C2=A0		i =3D emit_store_imm_ppgtt_posted(job-
+> >user_fence.addr,
+> =C2=A0						job-
+> >user_fence.value,
+> =C2=A0						dw, i);
+> =C2=A0
+> -	i =3D emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno,
+> false, dw, i);
+> -
+> =C2=A0	i =3D emit_user_interrupt(dw, i);
+> =C2=A0
+> =C2=A0	xe_gt_assert(gt, i <=3D MAX_JOB_SIZE_DW);
+>=20
+> ---
+> base-commit: 188ced1e0ff892f0948f20480e2e0122380ae46d
+> change-id: 20240521-xu_flush_vcs_before_ufence-a7b45d94cf33
+>=20
+> Best regards,
 
