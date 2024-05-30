@@ -4,60 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14D29C27C43
-	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 11:19:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCD3EC25B74
+	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 11:59:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A04A010E14C;
-	Thu, 30 May 2024 11:19:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1557D11B592;
+	Thu, 30 May 2024 11:59:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HshLAiJy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FViXhqpE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 731BC10E14C;
- Thu, 30 May 2024 11:19:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC1F2112326
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 May 2024 11:58:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717067945; x=1748603945;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=VLVydp5L7H7d9uI3AMj5FIEnIjJUaSNHohOQcfMkZ8g=;
- b=HshLAiJyueMQKSt2+gx6RBH7jXG53KQB2DTzwmhQqomeoUuqWfQkQHHO
- HpWZncNJaS5LMZyJlb8fhakP1aaj7OfpNFD8WS6Zmkqd20EGj73tNcITy
- qNbUzFxG06s7GGc95c7CtaKHug6yPf47adFFaJsUtSqKpGXzWczxi93Di
- QLtnu+gzDFO6h+qPtDMvxryRoYTeppJRNAbTSRKCZeXRQR5qQX7ilkG+k
- zHwsCjKnKzyqul8TPzEj1AjCANfS12T22oQrJU9rMsMDwkARcpJVNlmlK
- ggCmAMiPi3oIrBrWAxkTL8xOwO11zjrfi52Ej5aw+qEMtqyGv752QMcAI Q==;
-X-CSE-ConnectionGUID: nFBiIXDeRUmhdHYny7eC4w==
-X-CSE-MsgGUID: MQfJ/5YOQQSlhu73mtzOvw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="16488747"
-X-IronPort-AV: E=Sophos;i="6.08,201,1712646000"; d="scan'208";a="16488747"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2024 04:19:04 -0700
-X-CSE-ConnectionGUID: rcrsg0l0Rj6kem/F79u5HA==
-X-CSE-MsgGUID: IIYkgBYqT92RFDCg+F9Vqg==
+ t=1717070339; x=1748606339;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=PYlVRU/0uXcMvb72M/rHDfe/e41nr7cZdO4Fupyc4Ec=;
+ b=FViXhqpEpEF9MYS1fBX/6FrJpcNPjgt5EHU31HPLzrCHw/FBburfCvgo
+ inNNvxbeG78u9xcYV5Bw2jI8SCZ6nzhAJjXJcv5d+SMLhnQ67oM/atxwR
+ WIvrWXsPwoqv3KyiVVJA9cbfI5/Z5q9TxMHo+ulFzCRkKS7mZkjyWPpE7
+ h1dGSXhiPkvcZMDm/JRpJn0vlfE+WPCTYcKrWkiZ1RAg/LniUZv24Tsr3
+ WXpScE9un74ZAjqTrqMgMXACva4fou4jQPTMYJfpKlvS/Pzjo8Pp+sge+
+ +E5idDv2Vkdew7VUA9lYKWiLtIy5gDQbKDfByfgRF7kXd2DbLk8YxxUQV Q==;
+X-CSE-ConnectionGUID: j4Vd+koFSsCXFVeuAgdiFQ==
+X-CSE-MsgGUID: omfBQehwSAaOxvRxFAUcKg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="13365876"
+X-IronPort-AV: E=Sophos;i="6.08,201,1712646000"; d="scan'208";a="13365876"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2024 04:58:51 -0700
+X-CSE-ConnectionGUID: DBn2J1onQZyKazFsu0cjDw==
+X-CSE-MsgGUID: i1xDiq0EQAqmLtCF2HZNWw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,201,1712646000"; d="scan'208";a="35853504"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa009.fm.intel.com with ESMTP; 30 May 2024 04:19:03 -0700
-Received: from [10.246.25.139] (mwajdecz-MOBL.ger.corp.intel.com
- [10.246.25.139])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id EB7EE1242C;
- Thu, 30 May 2024 12:19:01 +0100 (IST)
-Message-ID: <6d9d3977-fcf7-40ae-85f2-bd730217d98d@intel.com>
-Date: Thu, 30 May 2024 13:19:01 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_CI=2EFULL=3A_failure_for_drm/xe=3A_Split_?=
- =?UTF-8?Q?MCR_initialization?=
-To: intel-xe@lists.freedesktop.org, I915-ci-infra@lists.freedesktop.org
-References: <20240529162945.1240-1-michal.wajdeczko@intel.com>
- <171701078174.2234143.1195067952768312508@8e613ede5ea5>
-Content-Language: en-US
+X-IronPort-AV: E=Sophos;i="6.08,201,1712646000"; d="scan'208";a="40232982"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.25.139])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2024 04:58:48 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <171701078174.2234143.1195067952768312508@8e613ede5ea5>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH v2] drm/xe: Split MCR initialization
+Date: Thu, 30 May 2024 13:58:14 +0200
+Message-Id: <20240530115814.1284-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240529162945.1240-1-michal.wajdeczko@intel.com>
+References: <20240529162945.1240-1-michal.wajdeczko@intel.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,69 +70,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+The initialization order of GT topology, MCR, PAT and GuC HWconfig
+as done today by native/PF driver, can't be followed as-is by the
+VF driver, since fuse registers used in GT topology discovery will
+be obtained by the VF driver from the GuC in HWconfig step.
 
+While native/PF drivers need to program the HW PAT table prior to
+loading the GuC, this requires only multicast writes support from
+the MCR code, which could be initialized separately from the full
+MCR support that requires the GT topology to setup steering data.
 
-On 29.05.2024 21:26, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: drm/xe: Split MCR initialization
-> URL   : https://patchwork.freedesktop.org/series/134196/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from xe-1372-fc8c84173ee4de00aaea8235be8442b50af5454a_full -> xe-pw-134196v1_full
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with xe-pw-134196v1_full absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in xe-pw-134196v1_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   
-> 
-> Participating hosts (3 -> 3)
-> ------------------------------
-> 
->   No changes in participating hosts
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in xe-pw-134196v1_full:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@xe_live_ktest@xe_mocs@xe_live_mocs_kernel_kunit:
->     - shard-adlp:         NOTRUN -> [FAIL][1] +2 other tests fail
->    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134196v1/shard-adlp-8/igt@xe_live_ktest@xe_mocs@xe_live_mocs_kernel_kunit.html
+Split MCR initialization into two steps to avoid introducing VF
+specific code paths. This also fixes duplicated spin_lock inits.
 
-this seems to be a recent regression from the build known as
-xe-1371-da00654c89411daac601fd16ac6c45e48639d334, which points to [1]
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Michał Winiarski <michal.winiarski@intel.com>
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+---
+v2: elaborate on 'basic MCR functionality' (Matt)
+---
+ drivers/gpu/drm/xe/xe_gt.c     |  6 ++++--
+ drivers/gpu/drm/xe/xe_gt_mcr.c | 29 +++++++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_gt_mcr.h |  1 +
+ 3 files changed, 28 insertions(+), 8 deletions(-)
 
-[1]
-https://cgit.freedesktop.org/drm/drm-tip/commit/?id=da00654c89411daac601fd16ac6c45e48639d334
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 9e9da887f4ca..9309ff2bfa69 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -502,8 +502,7 @@ int xe_gt_init_hwconfig(struct xe_gt *gt)
+ 	if (err)
+ 		goto out;
+ 
+-	xe_gt_topology_init(gt);
+-	xe_gt_mcr_init(gt);
++	xe_gt_mcr_init_early(gt);
+ 	xe_pat_init(gt);
+ 
+ 	err = xe_uc_init(&gt->uc);
+@@ -514,6 +513,9 @@ int xe_gt_init_hwconfig(struct xe_gt *gt)
+ 	if (err)
+ 		goto out_fw;
+ 
++	xe_gt_topology_init(gt);
++	xe_gt_mcr_init(gt);
++
+ out_fw:
+ 	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+ out:
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+index 577bd7043740..386ac3269909 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.c
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+@@ -375,17 +375,34 @@ static const struct {
+ 	[IMPLICIT_STEERING] = { "IMPLICIT", NULL },
+ };
+ 
+-void xe_gt_mcr_init(struct xe_gt *gt)
++/**
++ * xe_gt_mcr_init_early - Early initialization of the MCR support
++ * @gt: GT structure
++ *
++ * Perform early software only initialization of the MCR lock to allow
++ * the synchronization on accessing the STEER_SEMAPHORE register and
++ * use the xe_gt_mcr_multicast_write() function.
++ */
++void xe_gt_mcr_init_early(struct xe_gt *gt)
+ {
+-	struct xe_device *xe = gt_to_xe(gt);
+-
+ 	BUILD_BUG_ON(IMPLICIT_STEERING + 1 != NUM_STEERING_TYPES);
+ 	BUILD_BUG_ON(ARRAY_SIZE(xe_steering_types) != NUM_STEERING_TYPES);
+ 
+-	if (IS_SRIOV_VF(xe))
+-		return;
+-
+ 	spin_lock_init(&gt->mcr_lock);
++}
++
++/**
++ * xe_gt_mcr_init - Normal initialization of the MCR support
++ * @gt: GT structure
++ *
++ * Perform normal initialization of the MCR for all usages.
++ */
++void xe_gt_mcr_init(struct xe_gt *gt)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++
++	if (IS_SRIOV_VF(xe))
++		return;
+ 
+ 	if (gt->info.type == XE_GT_TYPE_MEDIA) {
+ 		drm_WARN_ON(&xe->drm, MEDIA_VER(xe) < 13);
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.h b/drivers/gpu/drm/xe/xe_gt_mcr.h
+index e7d03e001a49..8d119a0d5493 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.h
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.h
+@@ -12,6 +12,7 @@
+ struct drm_printer;
+ struct xe_gt;
+ 
++void xe_gt_mcr_init_early(struct xe_gt *gt);
+ void xe_gt_mcr_init(struct xe_gt *gt);
+ 
+ void xe_gt_mcr_set_implicit_defaults(struct xe_gt *gt);
+-- 
+2.43.0
 
-
-> Build changes
-> -------------
-> 
->   * Linux: xe-1372-fc8c84173ee4de00aaea8235be8442b50af5454a -> xe-pw-134196v1
-> 
->   IGT_7873: b9bcded9123ac56ce05748de6c4870fb49451b87 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
->   xe-1372-fc8c84173ee4de00aaea8235be8442b50af5454a: fc8c84173ee4de00aaea8235be8442b50af5454a
->   xe-pw-134196v1: 134196v1
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134196v1/index.html
-> 
