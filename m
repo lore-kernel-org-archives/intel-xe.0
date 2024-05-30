@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC419C27C53
-	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 00:33:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D43B0C27C52
+	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 00:33:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E95610F3F0;
-	Thu, 30 May 2024 00:33:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15EFC10F5ED;
+	Thu, 30 May 2024 00:33:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EePiAmsI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wm9D40R0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0159510F0AF
- for <intel-xe@lists.freedesktop.org>; Thu, 30 May 2024 00:33:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF6A010F0AF
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 May 2024 00:33:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717029212; x=1748565212;
+ t=1717029213; x=1748565213;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=0mL+uZ7/1P3lD/u5h8IQIx1iH/Gafy4gibfnE3Ycl00=;
- b=EePiAmsImbpfIM3eET7jY76GGl/omkYGGWV5F+IpNJlS4aolUfTbh/gI
- zvgpogpwh1k2FusV93KnxIm1SkMi9Fmwa79qx/64nrt1ht3TXarGmbBeH
- GxvlNveiUzSuAf8msSG/w+iiMcZYbfzpbLgKC0R2uRMUljrdHceBqhoR8
- /4BofLexcjFTXtKtnyNO3UQ21pllQB3DuBPEkCPRf5Ybf3izti8dOf4cV
- cjKH3QEdypv9e0ofqXxf32zcFPEoUKDhGBUMwG7SCz0ZFCYpwuu6sb9HE
- ln2MaJ5LH1bYGVzG36MxBUWJAo9+pStBCM/uM22DqsNQR/rUSj7l05NU2 A==;
-X-CSE-ConnectionGUID: l7/FD24zRaCp0dNwhoKiRw==
-X-CSE-MsgGUID: 88eYMDN1T0uFxLHWB+zosA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="30975398"
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="30975398"
+ bh=5H+5k/SVWJxWYRJ4g27v6GOLDY0ysFZiiMdePdaHzfY=;
+ b=Wm9D40R0H+uwbJ60q9VbZqCCfKYnyEgVA6cGTSE28XyvNjBtgosBZ0rb
+ 1T5rMxvSbOnsbxwO6BZGlzdDRiE8M/nNy8xeUXaLjeXQnpOh2Jw/ORA9T
+ N7a17sLMBkmt8QyvqsDyzbkLPDyBKI1rxQTMRMPJvLyGLKEuEUykS2rYs
+ 6wNQni1u9eZ0fEsIuHomfK3zqPro7bJlKACTzBT1wXNQXzoXcTcIBtfBK
+ awwaISfsNeFXVkSsiu1/MiGMe8uTYNNNrsmXmvYvOLiP1OsPgp3OHUMuE
+ UfO3YrvdyabExnE4Rrr/tqCsa/nJh1bNUKeiiXPW+QwA0gN4Qz3puwj48 Q==;
+X-CSE-ConnectionGUID: vUNQFbOqQwuyktE5/vAw2Q==
+X-CSE-MsgGUID: F0aEIG6USsCq562CiQC36g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="30975396"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="30975396"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 17:33:24 -0700
-X-CSE-ConnectionGUID: bD+5cOx9SGCHiGVGPq0HZQ==
-X-CSE-MsgGUID: aiwWD64UQxuTWzoilArpiA==
+ 29 May 2024 17:33:23 -0700
+X-CSE-ConnectionGUID: P+g+JNhrQb6t0Wh2tGoaoA==
+X-CSE-MsgGUID: NNcaj36wQuawXlBeI+Vm3g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="40088753"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="40088749"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 17:33:23 -0700
+ 29 May 2024 17:33:22 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v3 22/26] drm/xe: Rework GPU page fault handling
-Date: Wed, 29 May 2024 20:47:28 -0400
-Message-Id: <20240530004732.84898-22-oak.zeng@intel.com>
+Subject: [CI v3 19/26] drm/xe: Update VM trace events
+Date: Wed, 29 May 2024 20:47:25 -0400
+Message-Id: <20240530004732.84898-19-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240530004732.84898-1-oak.zeng@intel.com>
 References: <20240530004732.84898-1-oak.zeng@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,217 +68,119 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matthew Brost <matthew.brost@intel.com>
 
-Add helper function to implement VMA (user binding) page faults, remove
-unnecessary userptr.invalidate_link list del operation, retry on memory
-pressure, remove unnecessary xe_vma_userptr_check_repin after rebinding,
-remove unnecessary TLB invalidation, and always use vm->lock in write
-mode. Changes help facilitate SVM page faults.
+The trace events have changed moving to a single job per VM bind IOCTL,
+update the trace events align with old behavior as much as possible.
 
+Cc: Oak Zeng <oak.zeng@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 148 +++++++++++++--------------
- 1 file changed, 69 insertions(+), 79 deletions(-)
+ drivers/gpu/drm/xe/xe_trace.h | 10 ++++-----
+ drivers/gpu/drm/xe/xe_vm.c    | 42 +++++++++++++++++++++++++++++++++--
+ 2 files changed, 45 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 040dd142c49c..fb62f3398800 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -125,126 +125,116 @@ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index 450f407c66e8..0f5b9df889b9 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -426,11 +426,6 @@ DEFINE_EVENT(xe_vma, xe_vma_acc,
+ 	     TP_ARGS(vma)
+ );
+ 
+-DEFINE_EVENT(xe_vma, xe_vma_fail,
+-	     TP_PROTO(struct xe_vma *vma),
+-	     TP_ARGS(vma)
+-);
+-
+ DEFINE_EVENT(xe_vma, xe_vma_bind,
+ 	     TP_PROTO(struct xe_vma *vma),
+ 	     TP_ARGS(vma)
+@@ -544,6 +539,11 @@ DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_exit,
+ 	     TP_ARGS(vm)
+ );
+ 
++DEFINE_EVENT(xe_vm, xe_vm_ops_fail,
++	     TP_PROTO(struct xe_vm *vm),
++	     TP_ARGS(vm)
++);
++
+ /* GuC */
+ DECLARE_EVENT_CLASS(xe_guc_ct_flow_control,
+ 		    TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u32 len),
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 551048bff9ce..a205a72f411b 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2476,6 +2476,38 @@ static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
  	return 0;
  }
  
--static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
-+static int handle_vma_pagefault(struct xe_tile *tile, struct pagefault *pf,
-+				struct xe_vma *vma)
++static void op_trace(struct xe_vma_op *op)
++{
++	switch (op->base.op) {
++	case DRM_GPUVA_OP_MAP:
++		trace_xe_vma_bind(op->map.vma);
++		break;
++	case DRM_GPUVA_OP_REMAP:
++		trace_xe_vma_unbind(gpuva_to_vma(op->base.remap.unmap->va));
++		if (op->remap.prev)
++			trace_xe_vma_bind(op->remap.prev);
++		if (op->remap.next)
++			trace_xe_vma_bind(op->remap.next);
++		break;
++	case DRM_GPUVA_OP_UNMAP:
++		trace_xe_vma_unbind(gpuva_to_vma(op->base.unmap.va));
++		break;
++	case DRM_GPUVA_OP_PREFETCH:
++		trace_xe_vma_bind(gpuva_to_vma(op->base.prefetch.va));
++		break;
++	default:
++		XE_WARN_ON("NOT POSSIBLE");
++	}
++}
++
++static void trace_xe_vm_ops_execute(struct xe_vma_ops *vops)
++{
++	struct xe_vma_op *op;
++
++	list_for_each_entry(op, &vops->list, link)
++		op_trace(op);
++}
++
+ static int vm_ops_setup_tile_args(struct xe_vm *vm, struct xe_vma_ops *vops)
  {
--	struct xe_device *xe = gt_to_xe(gt);
--	struct xe_tile *tile = gt_to_tile(gt);
-+	struct xe_vm *vm = xe_vma_vm(vma);
- 	struct drm_exec exec;
--	struct xe_vm *vm;
--	struct xe_vma *vma = NULL;
- 	struct dma_fence *fence;
--	bool write_locked;
--	int ret = 0;
-+	ktime_t end = 0;
-+	int err;
- 	bool atomic;
- 
--	/* SW isn't expected to handle TRTT faults */
--	if (pf->trva_fault)
--		return -EFAULT;
--
--	/* ASID to VM */
--	mutex_lock(&xe->usm.lock);
--	vm = xa_load(&xe->usm.asid_to_vm, pf->asid);
--	if (vm && xe_vm_in_fault_mode(vm))
--		xe_vm_get(vm);
--	else
--		vm = NULL;
--	mutex_unlock(&xe->usm.lock);
--	if (!vm)
--		return -EINVAL;
--
--retry_userptr:
--	/*
--	 * TODO: Avoid exclusive lock if VM doesn't have userptrs, or
--	 * start out read-locked?
--	 */
--	down_write(&vm->lock);
--	write_locked = true;
--	vma = lookup_vma(vm, pf->page_addr);
--	if (!vma) {
--		ret = -EINVAL;
--		goto unlock_vm;
--	}
--
--	if (!xe_vma_is_userptr(vma) ||
--	    !xe_vma_userptr_check_repin(to_userptr_vma(vma))) {
--		downgrade_write(&vm->lock);
--		write_locked = false;
--	}
-+	lockdep_assert_held_write(&vm->lock);
- 
- 	trace_xe_vma_pagefault(vma);
--
- 	atomic = access_is_atomic(pf->access_type);
- 
- 	/* Check if VMA is valid */
- 	if (vma_is_valid(tile, vma) && !atomic)
--		goto unlock_vm;
--
--	/* TODO: Validate fault */
-+		return 0;
- 
--	if (xe_vma_is_userptr(vma) && write_locked) {
-+retry_userptr:
-+	if (xe_vma_is_userptr(vma) &&
-+	    xe_vma_userptr_check_repin(to_userptr_vma(vma))) {
- 		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
- 
--		spin_lock(&vm->userptr.invalidated_lock);
--		list_del_init(&uvma->userptr.invalidate_link);
--		spin_unlock(&vm->userptr.invalidated_lock);
--
--		ret = xe_vma_userptr_pin_pages(uvma);
--		if (ret)
--			goto unlock_vm;
--
--		downgrade_write(&vm->lock);
--		write_locked = false;
-+		err = xe_vma_userptr_pin_pages(uvma);
-+		if (err)
-+			return err;
+ 	struct xe_exec_queue *q = vops->q;
+@@ -2519,8 +2551,10 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
+ 	if (number_tiles > 1) {
+ 		fences = kmalloc_array(number_tiles, sizeof(*fences),
+ 				       GFP_KERNEL);
+-		if (!fences)
+-			return ERR_PTR(-ENOMEM);
++		if (!fences) {
++			fence = ERR_PTR(-ENOMEM);
++			goto err_trace;
++		}
  	}
  
- 	/* Lock VM and BOs dma-resv */
- 	drm_exec_init(&exec, 0, 0);
- 	drm_exec_until_all_locked(&exec) {
--		ret = xe_pf_begin(&exec, vma, atomic, tile->id);
-+		err = xe_pf_begin(&exec, vma, atomic, tile->id);
- 		drm_exec_retry_on_contention(&exec);
--		if (ret)
-+		if (xe_vm_validate_should_retry(&exec, err, &end))
-+			err = -EAGAIN;
-+		if (err)
- 			goto unlock_dma_resv;
- 
- 		/* Bind VMA only to the GT that has faulted */
- 		trace_xe_vma_pf_bind(vma);
- 		fence = xe_vma_rebind(vm, vma, BIT(tile->id));
- 		if (IS_ERR(fence)) {
--			ret = PTR_ERR(fence);
-+			err = PTR_ERR(fence);
-+			if (xe_vm_validate_should_retry(&exec, err, &end))
-+				err = -EAGAIN;
- 			goto unlock_dma_resv;
+ 	for_each_tile(tile, vm->xe, id) {
+@@ -2534,6 +2568,8 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
  		}
  	}
  
--	/*
--	 * XXX: Should we drop the lock before waiting? This only helps if doing
--	 * GPU binds which is currently only done if we have to wait for more
--	 * than 10ms on a move.
--	 */
- 	dma_fence_wait(fence, false);
- 	dma_fence_put(fence);
--
--	if (xe_vma_is_userptr(vma))
--		ret = xe_vma_userptr_check_repin(to_userptr_vma(vma));
- 	vma->tile_invalidated &= ~BIT(tile->id);
++	trace_xe_vm_ops_execute(vops);
++
+ 	for_each_tile(tile, vm->xe, id) {
+ 		if (!vops->pt_update_ops[id].num_ops)
+ 			continue;
+@@ -2580,6 +2616,8 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
+ 	kfree(fences);
+ 	kfree(cf);
  
- unlock_dma_resv:
- 	drm_exec_fini(&exec);
--unlock_vm:
--	if (!ret)
--		vm->usm.last_fault_vma = vma;
--	if (write_locked)
--		up_write(&vm->lock);
--	else
--		up_read(&vm->lock);
--	if (ret == -EAGAIN)
-+	if (err == -EAGAIN)
- 		goto retry_userptr;
- 
--	if (!ret) {
--		ret = xe_gt_tlb_invalidation_vma(gt, NULL, vma);
--		if (ret >= 0)
--			ret = 0;
-+	return err;
-+}
-+
-+static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_tile *tile = gt_to_tile(gt);
-+	struct xe_vm *vm;
-+	struct xe_vma *vma = NULL;
-+	int err;
-+
-+	/* SW isn't expected to handle TRTT faults */
-+	if (pf->trva_fault)
-+		return -EFAULT;
-+
-+	/* ASID to VM */
-+	mutex_lock(&xe->usm.lock);
-+	vm = xa_load(&xe->usm.asid_to_vm, pf->asid);
-+	if (vm && xe_vm_in_fault_mode(vm))
-+		xe_vm_get(vm);
-+	else
-+		vm = NULL;
-+	mutex_unlock(&xe->usm.lock);
-+	if (!vm)
-+		return -EINVAL;
-+
-+	/*
-+	 * TODO: Change to read lock? Using write lock for simplicity.
-+	 */
-+	down_write(&vm->lock);
-+
-+	if (xe_vm_is_closed_or_banned(vm)) {
-+		err = -ENOENT;
-+		goto unlock_vm;
-+	}
-+
-+	vma = lookup_vma(vm, pf->page_addr);
-+	if (!vma) {
-+		err = -EINVAL;
-+		goto unlock_vm;
- 	}
-+
-+	err = handle_vma_pagefault(tile, pf, vma);
-+
-+unlock_vm:
-+	if (!err)
-+		vm->usm.last_fault_vma = vma;
-+	up_write(&vm->lock);
- 	xe_vm_put(vm);
- 
--	return ret;
-+	return err;
++err_trace:
++	trace_xe_vm_ops_fail(vm);
+ 	return fence;
  }
  
- static int send_pagefault_reply(struct xe_guc *guc,
 -- 
 2.26.3
 
