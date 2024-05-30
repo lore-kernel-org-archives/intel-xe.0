@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D43B0C27C52
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFF36C27C44
 	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 00:33:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15EFC10F5ED;
-	Thu, 30 May 2024 00:33:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D072010F4B6;
+	Thu, 30 May 2024 00:33:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wm9D40R0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V9RJfXw8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF6A010F0AF
- for <intel-xe@lists.freedesktop.org>; Thu, 30 May 2024 00:33:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E262510F01D
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 May 2024 00:33:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717029213; x=1748565213;
+ t=1717029212; x=1748565212;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=5H+5k/SVWJxWYRJ4g27v6GOLDY0ysFZiiMdePdaHzfY=;
- b=Wm9D40R0H+uwbJ60q9VbZqCCfKYnyEgVA6cGTSE28XyvNjBtgosBZ0rb
- 1T5rMxvSbOnsbxwO6BZGlzdDRiE8M/nNy8xeUXaLjeXQnpOh2Jw/ORA9T
- N7a17sLMBkmt8QyvqsDyzbkLPDyBKI1rxQTMRMPJvLyGLKEuEUykS2rYs
- 6wNQni1u9eZ0fEsIuHomfK3zqPro7bJlKACTzBT1wXNQXzoXcTcIBtfBK
- awwaISfsNeFXVkSsiu1/MiGMe8uTYNNNrsmXmvYvOLiP1OsPgp3OHUMuE
- UfO3YrvdyabExnE4Rrr/tqCsa/nJh1bNUKeiiXPW+QwA0gN4Qz3puwj48 Q==;
-X-CSE-ConnectionGUID: vUNQFbOqQwuyktE5/vAw2Q==
-X-CSE-MsgGUID: F0aEIG6USsCq562CiQC36g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="30975396"
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="30975396"
+ bh=VNbR5kD2Hcf/pNcAcZOgOOyjsiVEBCgFvIzx1upwOMQ=;
+ b=V9RJfXw8Tee22Bp76qHlnVg9CXoGcfOkXPM+UHS0KTezG5LK0MFvsPkq
+ uxBL3HwWfPSwb2TxlYo1RqO68fCqW6G1CFHiCXJxnIWc+1J7PVdPzD+Pm
+ iEKEphRZShk4ysw2SHhpodV5Ugbm+vxKY1OIAvLHvCJhfHoLC0TQS5JFS
+ ukS64Ivam83RGmgONpW85Y9Yex1wTnlIMA54OzWh73UKPx4bK6D1AsQ+n
+ qmoWpTmm/DJFwRPgnYCWwts1w7Vyck34clC5/3UDf/hvGQR2w0xjqs7xk
+ nMbergfsva5dUVbw/7Nyb00Hl6mNRVcN/jw/k0QH8vhw77jUuU5F8vvBm A==;
+X-CSE-ConnectionGUID: 0BZTxnJAQrOHqMh/Zd2hAg==
+X-CSE-MsgGUID: tH9a+59kSG2wpE1Vgbgb2w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="30975389"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="30975389"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 May 2024 17:33:23 -0700
-X-CSE-ConnectionGUID: P+g+JNhrQb6t0Wh2tGoaoA==
-X-CSE-MsgGUID: NNcaj36wQuawXlBeI+Vm3g==
+X-CSE-ConnectionGUID: AV1s/CEYR+yKnpkGtaAIpA==
+X-CSE-MsgGUID: pXqIzDpTQfyHw7KydvXijQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="40088749"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="40088741"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 May 2024 17:33:22 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v3 19/26] drm/xe: Update VM trace events
-Date: Wed, 29 May 2024 20:47:25 -0400
-Message-Id: <20240530004732.84898-19-oak.zeng@intel.com>
+Subject: [CI v3 14/26] drm/svm: Migrate a range of hmmptr to vram
+Date: Wed, 29 May 2024 20:47:20 -0400
+Message-Id: <20240530004732.84898-14-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240530004732.84898-1-oak.zeng@intel.com>
 References: <20240530004732.84898-1-oak.zeng@intel.com>
@@ -66,121 +66,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
+Introduce a helper function drm_svm_migrate_hmmptr_to_vram to migrate
+any sub-range of a hmmptr to vram. The range has to be at page boundary.
+This supposed to be called by driver to migrate a hmmptr to vram.
 
-The trace events have changed moving to a single job per VM bind IOCTL,
-update the trace events align with old behavior as much as possible.
-
-Cc: Oak Zeng <oak.zeng@intel.com>
+Cc: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Jason Gunthorpe <jgg@nvidia.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Felix Kuehling <felix.kuehling@amd.com>
+Cc: Brian Welty <brian.welty@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: <dri-devel@lists.freedesktop.org>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/xe/xe_trace.h | 10 ++++-----
- drivers/gpu/drm/xe/xe_vm.c    | 42 +++++++++++++++++++++++++++++++++--
- 2 files changed, 45 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/drm_svm.c | 122 ++++++++++++++++++++++++++++++++++++++
+ include/drm/drm_svm.h     |   3 +
+ 2 files changed, 125 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index 450f407c66e8..0f5b9df889b9 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -426,11 +426,6 @@ DEFINE_EVENT(xe_vma, xe_vma_acc,
- 	     TP_ARGS(vma)
- );
- 
--DEFINE_EVENT(xe_vma, xe_vma_fail,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
- DEFINE_EVENT(xe_vma, xe_vma_bind,
- 	     TP_PROTO(struct xe_vma *vma),
- 	     TP_ARGS(vma)
-@@ -544,6 +539,11 @@ DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_exit,
- 	     TP_ARGS(vm)
- );
- 
-+DEFINE_EVENT(xe_vm, xe_vm_ops_fail,
-+	     TP_PROTO(struct xe_vm *vm),
-+	     TP_ARGS(vm)
-+);
-+
- /* GuC */
- DECLARE_EVENT_CLASS(xe_guc_ct_flow_control,
- 		    TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u32 len),
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 551048bff9ce..a205a72f411b 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2476,6 +2476,38 @@ static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
+diff --git a/drivers/gpu/drm/drm_svm.c b/drivers/gpu/drm/drm_svm.c
+index 024a071f0869..18a8fc7fd444 100644
+--- a/drivers/gpu/drm/drm_svm.c
++++ b/drivers/gpu/drm/drm_svm.c
+@@ -551,3 +551,125 @@ int drm_svm_register_mem_region(const struct drm_device *drm, struct drm_mem_reg
  	return 0;
  }
- 
-+static void op_trace(struct xe_vma_op *op)
+ EXPORT_SYMBOL_GPL(drm_svm_register_mem_region);
++
++static void __drm_svm_init_device_pages(unsigned long *pfn, unsigned long npages)
 +{
-+	switch (op->base.op) {
-+	case DRM_GPUVA_OP_MAP:
-+		trace_xe_vma_bind(op->map.vma);
-+		break;
-+	case DRM_GPUVA_OP_REMAP:
-+		trace_xe_vma_unbind(gpuva_to_vma(op->base.remap.unmap->va));
-+		if (op->remap.prev)
-+			trace_xe_vma_bind(op->remap.prev);
-+		if (op->remap.next)
-+			trace_xe_vma_bind(op->remap.next);
-+		break;
-+	case DRM_GPUVA_OP_UNMAP:
-+		trace_xe_vma_unbind(gpuva_to_vma(op->base.unmap.va));
-+		break;
-+	case DRM_GPUVA_OP_PREFETCH:
-+		trace_xe_vma_bind(gpuva_to_vma(op->base.prefetch.va));
-+		break;
-+	default:
-+		XE_WARN_ON("NOT POSSIBLE");
++	struct page *page;
++	int i;
++
++	for(i = 0; i < npages; i++) {
++		page = pfn_to_page(pfn[i]);
++		zone_device_page_init(page);
++		pfn[i] = migrate_pfn(pfn[i]);
 +	}
 +}
 +
-+static void trace_xe_vm_ops_execute(struct xe_vma_ops *vops)
++/**
++ * drm_svm_migrate_hmmptr_to_vram() - migrate a sub-range of a hmmptr to vram
++ * Must be called with mmap_read_lock held.
++ *
++ * @vm: the vm that the hmmptr belongs to
++ * @mr: the destination memory region we want to migrate to
++ * @hmmptr: the hmmptr to migrate.
++ * @start: start(virtual address, inclusive) of the range to migrate
++ * @end: end(virtual address, exclusive) of the range to migrate
++ *
++ * Returns: negative errno on faiure, 0 on success
++ */
++int drm_svm_migrate_hmmptr_to_vram(struct drm_gpuvm *vm,
++		struct drm_mem_region *mr,
++		struct drm_hmmptr *hmmptr, unsigned long start, unsigned long end)
 +{
-+	struct xe_vma_op *op;
++	struct drm_device *drm = mr->mr_ops.drm_mem_region_get_device(mr);
++	struct drm_gpuva *gpuva = hmmptr->get_gpuva(hmmptr);
++	struct mm_struct *mm = vm->mm;
++	unsigned long npages = __npages_in_range(start, end);
++	struct vm_area_struct *vas;
++	struct migrate_vma migrate = {
++		.start		= ALIGN_DOWN(start, PAGE_SIZE),
++		.end		= ALIGN(end, PAGE_SIZE),
++		.pgmap_owner	= mr->mr_ops.drm_mem_region_pagemap_owner(mr),
++		.flags          = MIGRATE_VMA_SELECT_SYSTEM,
++	};
++	struct device *dev = drm->dev;
++	struct dma_fence *fence;
++	struct migrate_vec *src;
++	struct migrate_vec *dst;
++	int ret = 0;
++	void *buf;
 +
-+	list_for_each_entry(op, &vops->list, link)
-+		op_trace(op);
++	mmap_assert_locked(mm);
++
++	BUG_ON(start < GPUVA_START(gpuva));
++	BUG_ON(end > GPUVA_END(gpuva));
++
++	vas = find_vma_intersection(mm, start, end);
++	if (!vas)
++		return -ENOENT;
++
++	migrate.vma = vas;
++	buf = kvcalloc(npages, 2* sizeof(*migrate.src), GFP_KERNEL);
++	if(!buf)
++		return -ENOMEM;
++
++	migrate.src = buf;
++	migrate.dst = migrate.src + npages;
++	ret = migrate_vma_setup(&migrate);
++	if (ret) {
++		drm_warn(drm, "vma setup returned %d for range [%lx - %lx]\n",
++				ret, start, end);
++		goto free_buf;
++	}
++
++	/**
++	 * Partial migration is just normal. Print a message for now.
++	 * Once this behavior is verified, delete this warning.
++	 */
++	if (migrate.cpages != npages)
++		drm_warn(drm, "Partial migration for range [%lx - %lx], range is %ld pages, migrate only %ld pages\n",
++				start, end, npages, migrate.cpages);
++
++	ret = mr->mr_ops.drm_mem_region_alloc_pages(mr, migrate.cpages, migrate.dst);
++	if (ret) {
++		memset(migrate.dst, 0, sizeof(*migrate.dst));
++		goto migrate_pages;
++	}
++
++	__drm_svm_init_device_pages(migrate.dst, migrate.cpages);
++
++	src = __generate_migrate_vec_sram(dev, migrate.src, true, npages);
++	if (!src) {
++		ret = VM_FAULT_OOM;
++		goto free_device_pages;
++	}
++
++	dst = __generate_migrate_vec_vram(migrate.dst, false, migrate.cpages);
++	if (!dst) {
++		ret = VM_FAULT_OOM;
++		goto free_migrate_src;
++	}
++
++	fence = mr->mr_ops.drm_mem_region_migrate(src, dst);
++	if (IS_ERR(fence)) {
++		ret = VM_FAULT_SIGBUS;
++		goto free_migrate_dst;
++	}
++	dma_fence_wait(fence, false);
++	dma_fence_put(fence);
++
++free_migrate_dst:
++	__free_migrate_vec_vram(dst);
++free_migrate_src:
++	__free_migrate_vec_sram(dev, src, true);
++
++free_device_pages:
++	if (ret)
++		__drm_svm_free_pages(migrate.dst, migrate.cpages);
++migrate_pages:
++	migrate_vma_pages(&migrate);
++	migrate_vma_finalize(&migrate);
++free_buf:
++	kvfree(buf);
++	return ret;
 +}
-+
- static int vm_ops_setup_tile_args(struct xe_vm *vm, struct xe_vma_ops *vops)
- {
- 	struct xe_exec_queue *q = vops->q;
-@@ -2519,8 +2551,10 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
- 	if (number_tiles > 1) {
- 		fences = kmalloc_array(number_tiles, sizeof(*fences),
- 				       GFP_KERNEL);
--		if (!fences)
--			return ERR_PTR(-ENOMEM);
-+		if (!fences) {
-+			fence = ERR_PTR(-ENOMEM);
-+			goto err_trace;
-+		}
- 	}
- 
- 	for_each_tile(tile, vm->xe, id) {
-@@ -2534,6 +2568,8 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
- 		}
- 	}
- 
-+	trace_xe_vm_ops_execute(vops);
-+
- 	for_each_tile(tile, vm->xe, id) {
- 		if (!vops->pt_update_ops[id].num_ops)
- 			continue;
-@@ -2580,6 +2616,8 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
- 	kfree(fences);
- 	kfree(cf);
- 
-+err_trace:
-+	trace_xe_vm_ops_fail(vm);
- 	return fence;
- }
- 
++EXPORT_SYMBOL_GPL(drm_svm_migrate_hmmptr_to_vram);
+diff --git a/include/drm/drm_svm.h b/include/drm/drm_svm.h
+index fd257f25b415..9e8764e5fb59 100644
+--- a/include/drm/drm_svm.h
++++ b/include/drm/drm_svm.h
+@@ -211,3 +211,6 @@ void drm_svm_hmmptr_release(struct drm_hmmptr *hmmptr);
+ void drm_svm_hmmptr_map_dma_pages(struct drm_hmmptr *hmmptr, u64 page_idx, u64 npages);
+ int drm_svm_hmmptr_populate(struct drm_hmmptr *hmmptr, void *owner,
+ 		u64 start, u64 end, bool write);
++int drm_svm_migrate_hmmptr_to_vram(struct drm_gpuvm *vm,
++		struct drm_mem_region *mr,
++		struct drm_hmmptr *hmmptr, unsigned long start, unsigned long end);
 -- 
 2.26.3
 
