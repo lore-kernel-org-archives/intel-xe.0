@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B960EC27C50
-	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 00:33:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC419C27C53
+	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 00:33:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12F9710F0AF;
-	Thu, 30 May 2024 00:33:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E95610F3F0;
+	Thu, 30 May 2024 00:33:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IGiLmTDU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EePiAmsI";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C6251123A9
- for <intel-xe@lists.freedesktop.org>; Thu, 30 May 2024 00:33:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0159510F0AF
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 May 2024 00:33:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717029210; x=1748565210;
+ t=1717029212; x=1748565212;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=3sVnceMl9jxZ+ecUv2+3br5arTnHXaNyqiH1qk1dpao=;
- b=IGiLmTDUMu5rvrFF6lH5ocRof3QCcb923HedrPQ8UOUl/Fgsh5nZej1R
- yTNg2WaNaLu1VPM6Oc7FwzbW+Ga76ojR91UADdnghJpzRL5znhTWufq+j
- fmfEka5ULgYWTMgeIw2H2D0pDK1t4sUzJimo47mY1DMMZC0w9afzPplMy
- mQThJVvn6gC5VGQXgC1iNbGD8sWm1aU5tugV0BNlc83NBHTFLBKxRdibi
- RQ3KHi+uL3QVoHeew4jNyFhHJ2nwH2RD4jpCwCaxK9UPyCiiByKZOMpJs
- cnFsHRQaDXIZd3PGuOsGq9sk8taA1/HP4GtH8x9m2vKQuHAegcMqOvW4t w==;
-X-CSE-ConnectionGUID: loeSnjwWR6yZqCJyuC5xNg==
-X-CSE-MsgGUID: AoCutndbTsGAqZqvd++bMA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="30975376"
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="30975376"
+ bh=0mL+uZ7/1P3lD/u5h8IQIx1iH/Gafy4gibfnE3Ycl00=;
+ b=EePiAmsImbpfIM3eET7jY76GGl/omkYGGWV5F+IpNJlS4aolUfTbh/gI
+ zvgpogpwh1k2FusV93KnxIm1SkMi9Fmwa79qx/64nrt1ht3TXarGmbBeH
+ GxvlNveiUzSuAf8msSG/w+iiMcZYbfzpbLgKC0R2uRMUljrdHceBqhoR8
+ /4BofLexcjFTXtKtnyNO3UQ21pllQB3DuBPEkCPRf5Ybf3izti8dOf4cV
+ cjKH3QEdypv9e0ofqXxf32zcFPEoUKDhGBUMwG7SCz0ZFCYpwuu6sb9HE
+ ln2MaJ5LH1bYGVzG36MxBUWJAo9+pStBCM/uM22DqsNQR/rUSj7l05NU2 A==;
+X-CSE-ConnectionGUID: l7/FD24zRaCp0dNwhoKiRw==
+X-CSE-MsgGUID: 88eYMDN1T0uFxLHWB+zosA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="30975398"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="30975398"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 17:33:22 -0700
-X-CSE-ConnectionGUID: Zsqwl9+GQTu6iUE7xT0lFw==
-X-CSE-MsgGUID: ckJQJMkoT1yY3U16uOp84A==
+ 29 May 2024 17:33:24 -0700
+X-CSE-ConnectionGUID: bD+5cOx9SGCHiGVGPq0HZQ==
+X-CSE-MsgGUID: aiwWD64UQxuTWzoilArpiA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="40088728"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="40088753"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 17:33:21 -0700
+ 29 May 2024 17:33:23 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v3 05/26] iommu/dma: Prepare map/unmap page functions to receive
- IOVA
-Date: Wed, 29 May 2024 20:47:11 -0400
-Message-Id: <20240530004732.84898-5-oak.zeng@intel.com>
+Subject: [CI v3 22/26] drm/xe: Rework GPU page fault handling
+Date: Wed, 29 May 2024 20:47:28 -0400
+Message-Id: <20240530004732.84898-22-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240530004732.84898-1-oak.zeng@intel.com>
 References: <20240530004732.84898-1-oak.zeng@intel.com>
@@ -66,205 +65,219 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Leon Romanovsky <leonro@nvidia.com>
+From: Matthew Brost <matthew.brost@intel.com>
 
-Extend the existing map_page/unmap_page function implementations to get
-preallocated IOVA. In such case, the IOVA allocation needs to be
-skipped, but rest of the code stays the same.
+Add helper function to implement VMA (user binding) page faults, remove
+unnecessary userptr.invalidate_link list del operation, retry on memory
+pressure, remove unnecessary xe_vma_userptr_check_repin after rebinding,
+remove unnecessary TLB invalidation, and always use vm->lock in write
+mode. Changes help facilitate SVM page faults.
 
-Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/iommu/dma-iommu.c | 68 ++++++++++++++++++++++++++-------------
- 1 file changed, 45 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 148 +++++++++++++--------------
+ 1 file changed, 69 insertions(+), 79 deletions(-)
 
-diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
-index a9e84ae29762..7be2999169bd 100644
---- a/drivers/iommu/dma-iommu.c
-+++ b/drivers/iommu/dma-iommu.c
-@@ -822,7 +822,7 @@ static void __iommu_dma_free_iova(struct iommu_dma_cookie *cookie,
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 040dd142c49c..fb62f3398800 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -125,126 +125,116 @@ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
+ 	return 0;
  }
  
- static void __iommu_dma_unmap(struct device *dev, dma_addr_t dma_addr,
--		size_t size)
-+			      size_t size, bool free_iova)
+-static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
++static int handle_vma_pagefault(struct xe_tile *tile, struct pagefault *pf,
++				struct xe_vma *vma)
  {
- 	struct iommu_domain *domain = iommu_get_dma_domain(dev);
- 	struct iommu_dma_cookie *cookie = domain->iova_cookie;
-@@ -841,17 +841,19 @@ static void __iommu_dma_unmap(struct device *dev, dma_addr_t dma_addr,
+-	struct xe_device *xe = gt_to_xe(gt);
+-	struct xe_tile *tile = gt_to_tile(gt);
++	struct xe_vm *vm = xe_vma_vm(vma);
+ 	struct drm_exec exec;
+-	struct xe_vm *vm;
+-	struct xe_vma *vma = NULL;
+ 	struct dma_fence *fence;
+-	bool write_locked;
+-	int ret = 0;
++	ktime_t end = 0;
++	int err;
+ 	bool atomic;
  
- 	if (!iotlb_gather.queued)
- 		iommu_iotlb_sync(domain, &iotlb_gather);
--	__iommu_dma_free_iova(cookie, dma_addr, size, &iotlb_gather);
-+	if (free_iova)
-+		__iommu_dma_free_iova(cookie, dma_addr, size, &iotlb_gather);
- }
+-	/* SW isn't expected to handle TRTT faults */
+-	if (pf->trva_fault)
+-		return -EFAULT;
+-
+-	/* ASID to VM */
+-	mutex_lock(&xe->usm.lock);
+-	vm = xa_load(&xe->usm.asid_to_vm, pf->asid);
+-	if (vm && xe_vm_in_fault_mode(vm))
+-		xe_vm_get(vm);
+-	else
+-		vm = NULL;
+-	mutex_unlock(&xe->usm.lock);
+-	if (!vm)
+-		return -EINVAL;
+-
+-retry_userptr:
+-	/*
+-	 * TODO: Avoid exclusive lock if VM doesn't have userptrs, or
+-	 * start out read-locked?
+-	 */
+-	down_write(&vm->lock);
+-	write_locked = true;
+-	vma = lookup_vma(vm, pf->page_addr);
+-	if (!vma) {
+-		ret = -EINVAL;
+-		goto unlock_vm;
+-	}
+-
+-	if (!xe_vma_is_userptr(vma) ||
+-	    !xe_vma_userptr_check_repin(to_userptr_vma(vma))) {
+-		downgrade_write(&vm->lock);
+-		write_locked = false;
+-	}
++	lockdep_assert_held_write(&vm->lock);
  
- static dma_addr_t __iommu_dma_map(struct device *dev, phys_addr_t phys,
--		size_t size, int prot, u64 dma_mask)
-+				  dma_addr_t iova, size_t size, int prot,
-+				  u64 dma_mask)
- {
- 	struct iommu_domain *domain = iommu_get_dma_domain(dev);
- 	struct iommu_dma_cookie *cookie = domain->iova_cookie;
- 	struct iova_domain *iovad = &cookie->iovad;
- 	size_t iova_off = iova_offset(iovad, phys);
--	dma_addr_t iova;
-+	bool no_iova = !iova;
+ 	trace_xe_vma_pagefault(vma);
+-
+ 	atomic = access_is_atomic(pf->access_type);
  
- 	if (static_branch_unlikely(&iommu_deferred_attach_enabled) &&
- 	    iommu_deferred_attach(dev, domain))
-@@ -864,12 +866,14 @@ static dma_addr_t __iommu_dma_map(struct device *dev, phys_addr_t phys,
+ 	/* Check if VMA is valid */
+ 	if (vma_is_valid(tile, vma) && !atomic)
+-		goto unlock_vm;
+-
+-	/* TODO: Validate fault */
++		return 0;
  
- 	size = iova_align(iovad, size + iova_off);
+-	if (xe_vma_is_userptr(vma) && write_locked) {
++retry_userptr:
++	if (xe_vma_is_userptr(vma) &&
++	    xe_vma_userptr_check_repin(to_userptr_vma(vma))) {
+ 		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
  
--	iova = __iommu_dma_alloc_iova(domain, size, dma_mask, dev);
-+	if (no_iova)
-+		iova = __iommu_dma_alloc_iova(domain, size, dma_mask, dev);
- 	if (!iova)
- 		return DMA_MAPPING_ERROR;
- 
- 	if (iommu_map(domain, iova, phys - iova_off, size, prot, GFP_ATOMIC)) {
--		__iommu_dma_free_iova(cookie, iova, size, NULL);
-+		if (no_iova)
-+			__iommu_dma_free_iova(cookie, iova, size, NULL);
- 		return DMA_MAPPING_ERROR;
- 	}
- 	return iova + iova_off;
-@@ -1034,7 +1038,7 @@ static void *iommu_dma_alloc_remap(struct device *dev, size_t size,
- 	return vaddr;
- 
- out_unmap:
--	__iommu_dma_unmap(dev, *dma_handle, size);
-+	__iommu_dma_unmap(dev, *dma_handle, size, true);
- 	__iommu_dma_free_pages(pages, PAGE_ALIGN(size) >> PAGE_SHIFT);
- 	return NULL;
- }
-@@ -1063,7 +1067,7 @@ static void iommu_dma_free_noncontiguous(struct device *dev, size_t size,
- {
- 	struct dma_sgt_handle *sh = sgt_handle(sgt);
- 
--	__iommu_dma_unmap(dev, sgt->sgl->dma_address, size);
-+	__iommu_dma_unmap(dev, sgt->sgl->dma_address, size, true);
- 	__iommu_dma_free_pages(sh->pages, PAGE_ALIGN(size) >> PAGE_SHIFT);
- 	sg_free_table(&sh->sgt);
- 	kfree(sh);
-@@ -1134,9 +1138,11 @@ static void iommu_dma_sync_sg_for_device(struct device *dev,
- 			arch_sync_dma_for_device(sg_phys(sg), sg->length, dir);
- }
- 
--static dma_addr_t iommu_dma_map_page(struct device *dev, struct page *page,
--		unsigned long offset, size_t size, enum dma_data_direction dir,
--		unsigned long attrs)
-+static dma_addr_t __iommu_dma_map_pages(struct device *dev, struct page *page,
-+					unsigned long offset, dma_addr_t iova,
-+					size_t size,
-+					enum dma_data_direction dir,
-+					unsigned long attrs)
- {
- 	phys_addr_t phys = page_to_phys(page) + offset;
- 	bool coherent = dev_is_dma_coherent(dev);
-@@ -1144,7 +1150,7 @@ static dma_addr_t iommu_dma_map_page(struct device *dev, struct page *page,
- 	struct iommu_domain *domain = iommu_get_dma_domain(dev);
- 	struct iommu_dma_cookie *cookie = domain->iova_cookie;
- 	struct iova_domain *iovad = &cookie->iovad;
--	dma_addr_t iova, dma_mask = dma_get_mask(dev);
-+	dma_addr_t addr, dma_mask = dma_get_mask(dev);
- 
- 	/*
- 	 * If both the physical buffer start address and size are
-@@ -1188,14 +1194,23 @@ static dma_addr_t iommu_dma_map_page(struct device *dev, struct page *page,
- 	if (!coherent && !(attrs & DMA_ATTR_SKIP_CPU_SYNC))
- 		arch_sync_dma_for_device(phys, size, dir);
- 
--	iova = __iommu_dma_map(dev, phys, size, prot, dma_mask);
--	if (iova == DMA_MAPPING_ERROR && is_swiotlb_buffer(dev, phys))
-+	addr = __iommu_dma_map(dev, phys, iova, size, prot, dma_mask);
-+	if (addr == DMA_MAPPING_ERROR && is_swiotlb_buffer(dev, phys))
- 		swiotlb_tbl_unmap_single(dev, phys, size, dir, attrs);
--	return iova;
-+	return addr;
- }
- 
--static void iommu_dma_unmap_page(struct device *dev, dma_addr_t dma_handle,
--		size_t size, enum dma_data_direction dir, unsigned long attrs)
-+static dma_addr_t iommu_dma_map_page(struct device *dev, struct page *page,
-+				     unsigned long offset, size_t size,
-+				     enum dma_data_direction dir,
-+				     unsigned long attrs)
-+{
-+	return __iommu_dma_map_pages(dev, page, offset, 0, size, dir, attrs);
-+}
-+
-+static void __iommu_dma_unmap_pages(struct device *dev, dma_addr_t dma_handle,
-+				    size_t size, enum dma_data_direction dir,
-+				    unsigned long attrs, bool free_iova)
- {
- 	struct iommu_domain *domain = iommu_get_dma_domain(dev);
- 	phys_addr_t phys;
-@@ -1207,12 +1222,19 @@ static void iommu_dma_unmap_page(struct device *dev, dma_addr_t dma_handle,
- 	if (!(attrs & DMA_ATTR_SKIP_CPU_SYNC) && !dev_is_dma_coherent(dev))
- 		arch_sync_dma_for_cpu(phys, size, dir);
- 
--	__iommu_dma_unmap(dev, dma_handle, size);
-+	__iommu_dma_unmap(dev, dma_handle, size, free_iova);
- 
- 	if (unlikely(is_swiotlb_buffer(dev, phys)))
- 		swiotlb_tbl_unmap_single(dev, phys, size, dir, attrs);
- }
- 
-+static void iommu_dma_unmap_page(struct device *dev, dma_addr_t dma_handle,
-+				 size_t size, enum dma_data_direction dir,
-+				 unsigned long attrs)
-+{
-+	__iommu_dma_unmap_pages(dev, dma_handle, size, dir, attrs, true);
-+}
-+
- /*
-  * Prepare a successfully-mapped scatterlist to give back to the caller.
-  *
-@@ -1515,13 +1537,13 @@ static void iommu_dma_unmap_sg(struct device *dev, struct scatterlist *sg,
+-		spin_lock(&vm->userptr.invalidated_lock);
+-		list_del_init(&uvma->userptr.invalidate_link);
+-		spin_unlock(&vm->userptr.invalidated_lock);
+-
+-		ret = xe_vma_userptr_pin_pages(uvma);
+-		if (ret)
+-			goto unlock_vm;
+-
+-		downgrade_write(&vm->lock);
+-		write_locked = false;
++		err = xe_vma_userptr_pin_pages(uvma);
++		if (err)
++			return err;
  	}
  
- 	if (end)
--		__iommu_dma_unmap(dev, start, end - start);
-+		__iommu_dma_unmap(dev, start, end - start, true);
+ 	/* Lock VM and BOs dma-resv */
+ 	drm_exec_init(&exec, 0, 0);
+ 	drm_exec_until_all_locked(&exec) {
+-		ret = xe_pf_begin(&exec, vma, atomic, tile->id);
++		err = xe_pf_begin(&exec, vma, atomic, tile->id);
+ 		drm_exec_retry_on_contention(&exec);
+-		if (ret)
++		if (xe_vm_validate_should_retry(&exec, err, &end))
++			err = -EAGAIN;
++		if (err)
+ 			goto unlock_dma_resv;
+ 
+ 		/* Bind VMA only to the GT that has faulted */
+ 		trace_xe_vma_pf_bind(vma);
+ 		fence = xe_vma_rebind(vm, vma, BIT(tile->id));
+ 		if (IS_ERR(fence)) {
+-			ret = PTR_ERR(fence);
++			err = PTR_ERR(fence);
++			if (xe_vm_validate_should_retry(&exec, err, &end))
++				err = -EAGAIN;
+ 			goto unlock_dma_resv;
+ 		}
+ 	}
+ 
+-	/*
+-	 * XXX: Should we drop the lock before waiting? This only helps if doing
+-	 * GPU binds which is currently only done if we have to wait for more
+-	 * than 10ms on a move.
+-	 */
+ 	dma_fence_wait(fence, false);
+ 	dma_fence_put(fence);
+-
+-	if (xe_vma_is_userptr(vma))
+-		ret = xe_vma_userptr_check_repin(to_userptr_vma(vma));
+ 	vma->tile_invalidated &= ~BIT(tile->id);
+ 
+ unlock_dma_resv:
+ 	drm_exec_fini(&exec);
+-unlock_vm:
+-	if (!ret)
+-		vm->usm.last_fault_vma = vma;
+-	if (write_locked)
+-		up_write(&vm->lock);
+-	else
+-		up_read(&vm->lock);
+-	if (ret == -EAGAIN)
++	if (err == -EAGAIN)
+ 		goto retry_userptr;
+ 
+-	if (!ret) {
+-		ret = xe_gt_tlb_invalidation_vma(gt, NULL, vma);
+-		if (ret >= 0)
+-			ret = 0;
++	return err;
++}
++
++static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++	struct xe_tile *tile = gt_to_tile(gt);
++	struct xe_vm *vm;
++	struct xe_vma *vma = NULL;
++	int err;
++
++	/* SW isn't expected to handle TRTT faults */
++	if (pf->trva_fault)
++		return -EFAULT;
++
++	/* ASID to VM */
++	mutex_lock(&xe->usm.lock);
++	vm = xa_load(&xe->usm.asid_to_vm, pf->asid);
++	if (vm && xe_vm_in_fault_mode(vm))
++		xe_vm_get(vm);
++	else
++		vm = NULL;
++	mutex_unlock(&xe->usm.lock);
++	if (!vm)
++		return -EINVAL;
++
++	/*
++	 * TODO: Change to read lock? Using write lock for simplicity.
++	 */
++	down_write(&vm->lock);
++
++	if (xe_vm_is_closed_or_banned(vm)) {
++		err = -ENOENT;
++		goto unlock_vm;
++	}
++
++	vma = lookup_vma(vm, pf->page_addr);
++	if (!vma) {
++		err = -EINVAL;
++		goto unlock_vm;
+ 	}
++
++	err = handle_vma_pagefault(tile, pf, vma);
++
++unlock_vm:
++	if (!err)
++		vm->usm.last_fault_vma = vma;
++	up_write(&vm->lock);
+ 	xe_vm_put(vm);
+ 
+-	return ret;
++	return err;
  }
  
- static dma_addr_t iommu_dma_map_resource(struct device *dev, phys_addr_t phys,
- 		size_t size, enum dma_data_direction dir, unsigned long attrs)
- {
--	return __iommu_dma_map(dev, phys, size,
-+	return __iommu_dma_map(dev, phys, 0, size,
- 			dma_info_to_prot(dir, false, attrs) | IOMMU_MMIO,
- 			dma_get_mask(dev));
- }
-@@ -1529,7 +1551,7 @@ static dma_addr_t iommu_dma_map_resource(struct device *dev, phys_addr_t phys,
- static void iommu_dma_unmap_resource(struct device *dev, dma_addr_t handle,
- 		size_t size, enum dma_data_direction dir, unsigned long attrs)
- {
--	__iommu_dma_unmap(dev, handle, size);
-+	__iommu_dma_unmap(dev, handle, size, true);
- }
- 
- static void __iommu_dma_free(struct device *dev, size_t size, void *cpu_addr)
-@@ -1566,7 +1588,7 @@ static void __iommu_dma_free(struct device *dev, size_t size, void *cpu_addr)
- static void iommu_dma_free(struct device *dev, size_t size, void *cpu_addr,
- 		dma_addr_t handle, unsigned long attrs)
- {
--	__iommu_dma_unmap(dev, handle, size);
-+	__iommu_dma_unmap(dev, handle, size, true);
- 	__iommu_dma_free(dev, size, cpu_addr);
- }
- 
-@@ -1632,7 +1654,7 @@ static void *iommu_dma_alloc(struct device *dev, size_t size,
- 	if (!cpu_addr)
- 		return NULL;
- 
--	*handle = __iommu_dma_map(dev, page_to_phys(page), size, ioprot,
-+	*handle = __iommu_dma_map(dev, page_to_phys(page), 0, size, ioprot,
- 			dev->coherent_dma_mask);
- 	if (*handle == DMA_MAPPING_ERROR) {
- 		__iommu_dma_free(dev, size, cpu_addr);
+ static int send_pagefault_reply(struct xe_guc *guc,
 -- 
 2.26.3
 
