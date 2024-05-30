@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24639C25B74
-	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 16:40:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CA54C25B74
+	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 16:41:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6612911250B;
-	Thu, 30 May 2024 16:40:32 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDFEB10E2B2;
- Thu, 30 May 2024 16:40:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22B1612B44D;
+	Thu, 30 May 2024 16:41:45 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YxbksFJn";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AA1112B42B;
+ Thu, 30 May 2024 16:41:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1717087302; x=1748623302;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=51pmR43MM9IvMIrVencztXFO4krhieSdMWJ2cCW7oMY=;
+ b=YxbksFJnc/7DXsxXAZb+/O2Caku+dfW28XlqKytV5WhbKxdw81HKB5qS
+ Uq+mJ/sSsu0DhiK3BMqqE74qav3bQahRkCwe0f4W6qnsAEEZtjjKA0ySE
+ 92jvnSlVAKEVwxfta3CwYpN1ISlPozc+S3f5OZpjGjDqwvkXE3r9YtwEz
+ bRWYP4O9OK0lmpVlYj0FQ6OiE1J6SsV9pQ+WMY6JW7C5xLFT0pN4ywDRU
+ jZOyIixxG6ZaEdryR1uiEgCwjgffwtpltzynMcsNjUewd64yXXMU/EYk7
+ ORjAiBN6VrdTbJT2Y5B4HK4+wHqlmScNvKsAo9ZPfn9DhfC3q0TqPk+jx Q==;
+X-CSE-ConnectionGUID: EpI2eQv/QYCISX3uDsJdPg==
+X-CSE-MsgGUID: ejxDh7ZWRzORcSmZqwWqcQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="13431214"
+X-IronPort-AV: E=Sophos;i="6.08,202,1712646000"; d="scan'208";a="13431214"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2024 09:41:40 -0700
+X-CSE-ConnectionGUID: /PhTuRJWTZCi4oDVf99c1w==
+X-CSE-MsgGUID: Vrv0jbswSY2aeSpLq1RNDw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,202,1712646000"; d="scan'208";a="35807250"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO fedora)
+ ([10.245.245.63])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2024 09:41:36 -0700
+Date: Thu, 30 May 2024 18:41:24 +0200
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-xe-fixes
+Message-ID: <ZlisNHzgoq9nVg6g@fedora>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EHooks=3A_failure_for_Tracing_cleanup_and_add_mmio_t?=
- =?utf-8?q?racing?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Radhakrishna Sripada" <radhakrishna.sripada@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 30 May 2024 16:40:11 -0000
-Message-ID: <171708721197.2238782.2392326394550568409@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240530151313.2284182-1-radhakrishna.sripada@intel.com>
-In-Reply-To: <20240530151313.2284182-1-radhakrishna.sripada@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,81 +71,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Dave, Sima
 
-Series: Tracing cleanup and add mmio tracing
-URL   : https://patchwork.freedesktop.org/series/134258/
-State : failure
+The drm-xe-fixes for -rc2
 
-== Summary ==
+Only three fixes so far. I'm holding back one additional
+fix to be able to sort out whether it's correct or need more work.
 
-run-parts: executing /workspace/ci/hooks/00-showenv
-+ export
-+ grep -Ei '(^|\W)CI_'
-declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64-default"
-declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
-declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
-declare -x CI_WORKSPACE_DIR="/workspace"
-run-parts: executing /workspace/ci/hooks/10-build-W1
-+ SRC_DIR=/workspace/kernel
-+ RESTORE_DISPLAY_CONFIG=0
-+ '[' -n /workspace/kernel/build64-default ']'
-+ BUILD_DIR=/workspace/kernel/build64-default
-+ cd /workspace/kernel
-++ nproc
-+ make -j48 O=/workspace/kernel/build64-default modules_prepare
-make[1]: Entering directory '/workspace/kernel/build64-default'
-  GEN     Makefile
-  UPD     include/generated/compile.h
-  UPD     include/config/kernel.release
-mkdir -p /workspace/kernel/build64-default/tools/objtool && make O=/workspace/kernel/build64-default subdir=tools/objtool --no-print-directory -C objtool 
-  UPD     include/generated/utsrelease.h
-  HOSTCC  /workspace/kernel/build64-default/tools/objtool/fixdep.o
-  CALL    ../scripts/checksyscalls.sh
-  HOSTLD  /workspace/kernel/build64-default/tools/objtool/fixdep-in.o
-  LINK    /workspace/kernel/build64-default/tools/objtool/fixdep
-  INSTALL libsubcmd_headers
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/exec-cmd.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/help.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/pager.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/parse-options.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/run-command.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/sigchain.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/subcmd-config.o
-  LD      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd-in.o
-  AR      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd.a
-  CC      /workspace/kernel/build64-default/tools/objtool/weak.o
-  CC      /workspace/kernel/build64-default/tools/objtool/check.o
-  CC      /workspace/kernel/build64-default/tools/objtool/special.o
-  CC      /workspace/kernel/build64-default/tools/objtool/builtin-check.o
-  CC      /workspace/kernel/build64-default/tools/objtool/elf.o
-  CC      /workspace/kernel/build64-default/tools/objtool/objtool.o
-  CC      /workspace/kernel/build64-default/tools/objtool/orc_gen.o
-  CC      /workspace/kernel/build64-default/tools/objtool/orc_dump.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libstring.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libctype.o
-  CC      /workspace/kernel/build64-default/tools/objtool/str_error_r.o
-  CC      /workspace/kernel/build64-default/tools/objtool/librbtree.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/special.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/decode.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/orc.o
-  LD      /workspace/kernel/build64-default/tools/objtool/arch/x86/objtool-in.o
-  LD      /workspace/kernel/build64-default/tools/objtool/objtool-in.o
-  LINK    /workspace/kernel/build64-default/tools/objtool/objtool
-make[1]: Leaving directory '/workspace/kernel/build64-default'
-++ nproc
-+ make -j48 O=/workspace/kernel/build64-default M=drivers/gpu/drm/xe W=1
-make[1]: Entering directory '/workspace/kernel/build64-default'
-../scripts/Makefile.build:41: drivers/gpu/drm/xe/Makefile: No such file or directory
-make[3]: *** No rule to make target 'drivers/gpu/drm/xe/Makefile'.  Stop.
-make[2]: *** [/workspace/kernel/Makefile:1934: drivers/gpu/drm/xe] Error 2
-make[1]: *** [/workspace/kernel/Makefile:240: __sub-make] Error 2
-make[1]: Leaving directory '/workspace/kernel/build64-default'
-make: *** [Makefile:240: __sub-make] Error 2
-run-parts: /workspace/ci/hooks/10-build-W1 exited with return code 2
+drm-xe-fixes-2024-05-30:
+Driver Changes:
+- One pcode polling timeout change
+- One fix for deadlocks for faulting VMs
+- One error-path lock imbalance fix
 
+The following changes since commit 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0:
 
+  Linux 6.10-rc1 (2024-05-26 15:20:12 -0700)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2024-05-30
+
+for you to fetch changes up to 6c5cd0807c79eb4c0cda70b48f6be668a241d584:
+
+  drm/xe: Properly handle alloc_guc_id() failure (2024-05-28 08:53:45 +0200)
+
+----------------------------------------------------------------
+Driver Changes:
+- One pcode polling timeout change
+- One fix for deadlocks for faulting VMs
+- One error-path lock imbalance fix
+
+----------------------------------------------------------------
+Himal Prasad Ghimiray (1):
+      drm/xe: Change pcode timeout to 50msec while polling again
+
+Matthew Brost (1):
+      drm/xe: Only use reserved BCS instances for usm migrate exec queue
+
+Niranjana Vishwanathapura (1):
+      drm/xe: Properly handle alloc_guc_id() failure
+
+ drivers/gpu/drm/xe/xe_guc_submit.c |  1 +
+ drivers/gpu/drm/xe/xe_migrate.c    | 12 +++++-------
+ drivers/gpu/drm/xe/xe_pcode.c      |  2 +-
+ 3 files changed, 7 insertions(+), 8 deletions(-)
