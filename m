@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CA54C25B74
-	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 16:41:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83792C25B74
+	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 16:42:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22B1612B44D;
-	Thu, 30 May 2024 16:41:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YxbksFJn";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AA1112B42B;
- Thu, 30 May 2024 16:41:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717087302; x=1748623302;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=51pmR43MM9IvMIrVencztXFO4krhieSdMWJ2cCW7oMY=;
- b=YxbksFJnc/7DXsxXAZb+/O2Caku+dfW28XlqKytV5WhbKxdw81HKB5qS
- Uq+mJ/sSsu0DhiK3BMqqE74qav3bQahRkCwe0f4W6qnsAEEZtjjKA0ySE
- 92jvnSlVAKEVwxfta3CwYpN1ISlPozc+S3f5OZpjGjDqwvkXE3r9YtwEz
- bRWYP4O9OK0lmpVlYj0FQ6OiE1J6SsV9pQ+WMY6JW7C5xLFT0pN4ywDRU
- jZOyIixxG6ZaEdryR1uiEgCwjgffwtpltzynMcsNjUewd64yXXMU/EYk7
- ORjAiBN6VrdTbJT2Y5B4HK4+wHqlmScNvKsAo9ZPfn9DhfC3q0TqPk+jx Q==;
-X-CSE-ConnectionGUID: EpI2eQv/QYCISX3uDsJdPg==
-X-CSE-MsgGUID: ejxDh7ZWRzORcSmZqwWqcQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="13431214"
-X-IronPort-AV: E=Sophos;i="6.08,202,1712646000"; d="scan'208";a="13431214"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2024 09:41:40 -0700
-X-CSE-ConnectionGUID: /PhTuRJWTZCi4oDVf99c1w==
-X-CSE-MsgGUID: Vrv0jbswSY2aeSpLq1RNDw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,202,1712646000"; d="scan'208";a="35807250"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO fedora)
- ([10.245.245.63])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2024 09:41:36 -0700
-Date: Thu, 30 May 2024 18:41:24 +0200
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-fixes
-Message-ID: <ZlisNHzgoq9nVg6g@fedora>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39EFE12B41E;
+	Thu, 30 May 2024 16:42:16 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81EA212B41E;
+ Thu, 30 May 2024 16:41:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Tracing_cleanup_and_add_?=
+ =?utf-8?q?mmio_tracing?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Radhakrishna Sripada" <radhakrishna.sripada@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 30 May 2024 16:41:56 -0000
+Message-ID: <171708731652.2238782.4461566672186546432@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240530151313.2284182-1-radhakrishna.sripada@intel.com>
+In-Reply-To: <20240530151313.2284182-1-radhakrishna.sripada@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,51 +36,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima
+== Series Details ==
 
-The drm-xe-fixes for -rc2
+Series: Tracing cleanup and add mmio tracing
+URL   : https://patchwork.freedesktop.org/series/134258/
+State : success
 
-Only three fixes so far. I'm holding back one additional
-fix to be able to sort out whether it's correct or need more work.
+== Summary ==
 
-drm-xe-fixes-2024-05-30:
-Driver Changes:
-- One pcode polling timeout change
-- One fix for deadlocks for faulting VMs
-- One error-path lock imbalance fix
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast d02534bf06ad39143f8ed786e49a01e482812cd6
+Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
+Fast mode used, each commit won't be checked separately.
+Okay!
 
-The following changes since commit 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0:
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-  Linux 6.10-rc1 (2024-05-26 15:20:12 -0700)
 
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2024-05-30
-
-for you to fetch changes up to 6c5cd0807c79eb4c0cda70b48f6be668a241d584:
-
-  drm/xe: Properly handle alloc_guc_id() failure (2024-05-28 08:53:45 +0200)
-
-----------------------------------------------------------------
-Driver Changes:
-- One pcode polling timeout change
-- One fix for deadlocks for faulting VMs
-- One error-path lock imbalance fix
-
-----------------------------------------------------------------
-Himal Prasad Ghimiray (1):
-      drm/xe: Change pcode timeout to 50msec while polling again
-
-Matthew Brost (1):
-      drm/xe: Only use reserved BCS instances for usm migrate exec queue
-
-Niranjana Vishwanathapura (1):
-      drm/xe: Properly handle alloc_guc_id() failure
-
- drivers/gpu/drm/xe/xe_guc_submit.c |  1 +
- drivers/gpu/drm/xe/xe_migrate.c    | 12 +++++-------
- drivers/gpu/drm/xe/xe_pcode.c      |  2 +-
- 3 files changed, 7 insertions(+), 8 deletions(-)
