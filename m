@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90CF3C27C4F
-	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 00:34:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C34FC27C44
+	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 00:34:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1870D10EAD0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4AC510E257;
 	Thu, 30 May 2024 00:34:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K2/IGu/2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A+S3iIwX";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1380010ED68
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1EEB10ED68
  for <intel-xe@lists.freedesktop.org>; Thu, 30 May 2024 00:33:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717029211; x=1748565211;
+ t=1717029212; x=1748565212;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=j7OaMlrtl5DJ1317Oi1LsShTZ7xshGaP7rSGk9zSIfo=;
- b=K2/IGu/28++Lv1is+Q+xmkqwWNL/6L5CQgD1PFku/AMNbRYca+IXMY+C
- Ugwahf5ibiuJ4iJF64mvcxvFAilxaTWydn84jFLmfnSTqmAlsau9X0glJ
- 5tz6iewShIhQo5Jr3p4fUGWa6FsQtxkZmoFq2NWYG/5QaPjCgvKZPjwhY
- Q+J1nAENIClE6T8Ks6UNpnxtSY9Ac2W2vnowJQ89jXOivyps/mt/97DzR
- STVqqnqtp+/vsKRgyb7ArIUIhUWJziu03Vo62wRy9JsFT4iL5ZeRtBnUf
- 2A29U3UZQMNoiVWJb200HZk/yg2HT5Ln0ToZ2dQmFcmnU/oMFk7R43les w==;
-X-CSE-ConnectionGUID: mMrNN6UgQRa+uVwh+Rci/w==
-X-CSE-MsgGUID: 7D4QX7FATHqR86KZbfiPCA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="30975391"
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="30975391"
+ bh=RrLylQ/tYoezVZ+ns5lJZ42QDEtog6umORjjP81r7BU=;
+ b=A+S3iIwXkCcHYlTkJiNR3U4WmfHiVCCiwCXC7ZXGgoJHB/bBpWfVX8Ts
+ vURxvmkKtb8lhM0CoLM/JwTfHVfMArbjRdCovNZ1m/PVGqGYVIZ3Xnt4G
+ WAg9Dy7W65APjg6dXna9CE42pDVM2rrbzHWNztn2EDVaL9P7Qk6V72xtf
+ 6Cp1lFF2JKTib6p0+rVEH1lkJkESz/UC+RtmMcYFmrr2ZBgvXUv4gecL8
+ QtxH4h87LZVUhASSYfnzntNF3CdzNhfTdld6S5n/Adi9gx/qrwvM8HqMj
+ oTDkrsuVRpHyPqx7NQ4jY2kFL2ecWt6cO8djEwsGR93yRrYSxwBNPe5fy Q==;
+X-CSE-ConnectionGUID: qPOnT9XQRXO8uWGWTTt4Xw==
+X-CSE-MsgGUID: OS8GZGUSTxavMDZzkh/Mog==
+X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="30975401"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="30975401"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 17:33:23 -0700
-X-CSE-ConnectionGUID: VLxeWN+bTEm7QPc0j1bUqg==
-X-CSE-MsgGUID: 5NispZ7QTVWcGNZf+pHoCQ==
+ 29 May 2024 17:33:24 -0700
+X-CSE-ConnectionGUID: kyra2U6zQmC1mRwv+0AI6A==
+X-CSE-MsgGUID: b2668nkwThqlTnuWzVmWfw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="40088742"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="40088758"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 17:33:22 -0700
+ 29 May 2024 17:33:23 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v3 15/26] drm/svm: Add DRM SVM documentation
-Date: Wed, 29 May 2024 20:47:21 -0400
-Message-Id: <20240530004732.84898-15-oak.zeng@intel.com>
+Subject: [CI v3 25/26] drm/xe: Use drm_mem_region for xe
+Date: Wed, 29 May 2024 20:47:31 -0400
+Message-Id: <20240530004732.84898-25-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240530004732.84898-1-oak.zeng@intel.com>
 References: <20240530004732.84898-1-oak.zeng@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,406 +65,219 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The purpose of DRM SVM design is to provide helpers and infrastructure
-to facilitate driver implementation of SVM (shared virtual memory)
-function.
+drm_mem_region was introduced to move some memory management
+codes to drm layer so it can be shared b/t different vendor
+drivers. This patch apply drm_mem_region concept to xekmd
+driver.
 
-The overview part described the helpers that DRM layer provdes and the
-virtual function interfaces that driver has to implement if driver use
-drm SVM layer to implement SVM functionality.
-
-Unlike legacy DRM BO (buffer object) based physical memory management,
-DRM SVM use a complete page centric memory management. This has
-fundamental impact to the memory allocate, free, eviction and migration
-logic. It also requires the driver to support range (which is required
-to be page boundary) based GPU page table update and invalidation. The
-page centric design section described this design.
-
-Lock design is one of the key of the design, which is described in the
-lock design section.
-
-There are other sections described the memory attributes API design and
-the memory eviction design.
-
-Create a DRM SVM section in drm-mm.rst and generate SVM documents under
-this document section.
+drm_mem_region is the parent class of xe_mem_region. Some
+xe_mem_region member such as dpa_base is deleted as it
+is already in the parent class.
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- Documentation/gpu/drm-mm.rst |  42 +++++
- drivers/gpu/drm/drm_svm.c    | 309 +++++++++++++++++++++++++++++++++++
- 2 files changed, 351 insertions(+)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |  2 +-
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |  2 +-
+ drivers/gpu/drm/xe/xe_bo.c                    |  6 +++---
+ drivers/gpu/drm/xe/xe_device_types.h          | 11 ++---------
+ drivers/gpu/drm/xe/xe_migrate.c               |  6 +++---
+ drivers/gpu/drm/xe/xe_mmio.c                  | 12 ++++++------
+ drivers/gpu/drm/xe/xe_query.c                 |  2 +-
+ drivers/gpu/drm/xe/xe_tile.c                  |  2 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |  2 +-
+ 9 files changed, 19 insertions(+), 26 deletions(-)
 
-diff --git a/Documentation/gpu/drm-mm.rst b/Documentation/gpu/drm-mm.rst
-index d55751cad67c..fa968abb9387 100644
---- a/Documentation/gpu/drm-mm.rst
-+++ b/Documentation/gpu/drm-mm.rst
-@@ -573,3 +573,45 @@ Scheduler Function References
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 36e15c4961c1..7abf10ec2690 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -272,7 +272,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 		 * accessible.  This is important on small-bar systems where
+ 		 * only some subset of VRAM is CPU accessible.
+ 		 */
+-		if (tile->mem.vram.io_size < tile->mem.vram.usable_size) {
++		if (tile->mem.vram.io_size < tile->mem.vram.drm_mr.usable_size) {
+ 			ret = -EINVAL;
+ 			goto err;
+ 		}
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index 9eaa29e733e1..2612b78d69cf 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -86,7 +86,7 @@ initial_plane_bo(struct xe_device *xe,
+ 		 * We don't currently expect this to ever be placed in the
+ 		 * stolen portion.
+ 		 */
+-		if (phys_base >= tile0->mem.vram.usable_size) {
++		if (phys_base >= tile0->mem.vram.drm_mr.usable_size) {
+ 			drm_err(&xe->drm,
+ 				"Initial plane programming using invalid range, phys_base=%pa\n",
+ 				&phys_base);
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index d2763448ebaa..17afc18e413e 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -173,7 +173,7 @@ static void add_vram(struct xe_device *xe, struct xe_bo *bo,
+ 	xe_assert(xe, *c < ARRAY_SIZE(bo->placements));
  
- .. kernel-doc:: drivers/gpu/drm/scheduler/sched_entity.c
-    :export:
-+
-+DRM SVM
-+======
-+
-+Overview
-+-------
-+
-+.. kernel-doc:: drivers/gpu/drm/drm_svm.c
-+   :doc: Overview
-+
-+Page centric design
-+------------------
-+
-+.. kernel-doc:: drivers/gpu/drm/drm_svm.c
-+   :doc: page centric design
-+
-+Lock design
-+-----------
-+
-+.. kernel-doc:: drivers/gpu/drm/drm_svm.c
-+   :doc: lock design
-+
-+Memory hints
-+-----------
-+
-+.. kernel-doc:: drivers/gpu/drm/drm_svm.c
-+   :doc: Memory hints
-+
-+Memory eviction
-+-----------
-+
-+.. kernel-doc:: drivers/gpu/drm/drm_svm.c
-+   :doc: pag granularity eviction
-+
-+Function References
-+-----------------------------
-+
-+.. kernel-doc:: include/drm/drm_svm.h
-+   :internal:
-+
-+.. kernel-doc:: drivers/gpu/drm/drm_svm.c
-+   :export:
-diff --git a/drivers/gpu/drm/drm_svm.c b/drivers/gpu/drm/drm_svm.c
-index 18a8fc7fd444..6077e8c5e8f5 100644
---- a/drivers/gpu/drm/drm_svm.c
-+++ b/drivers/gpu/drm/drm_svm.c
-@@ -17,6 +17,315 @@
- #include <linux/pci.h>
- #include <linux/mm.h>
+ 	vram = to_xe_ttm_vram_mgr(ttm_manager_type(&xe->ttm, mem_type))->vram;
+-	xe_assert(xe, vram && vram->usable_size);
++	xe_assert(xe, vram && vram->drm_mr.usable_size);
+ 	io_size = vram->io_size;
  
-+/**
-+ * DOC: Overview
-+ *
-+ * Shared Virtual Memory (SVM) allows the programmer to use a shared virtual
-+ * address space between threads executing on CPUs and GPUs. It abstracts
-+ * away from the user the location of the backing memory, and hence simplifies
-+ * the user programming model. In a non-SVM memory model, user need to explicitly
-+ * decide memory placement such as device or system memory, also user need to
-+ * explicitly migrate memory b/t device and system memory. Under SVM, KMD takes
-+ * care of memory migration implicitly.
-+ *
-+ * SVM makes use of default OS memory allocation and mapping interface such as
-+ * malloc() and mmap(). The pointer returned from malloc() and mmap() can be
-+ * directly used on both CPU and GPU program. Any CPU program local variables
-+ * or global variables can also be used by GPU program.
-+ *
-+ * SVM also provides API to set virtual address range based memory attributes
-+ * such as preferred memory location, memory migration granularity, and memory
-+ * atomic attributes etc. This is similar to Linux madvise API.
-+ *
-+ * DRM SVM implementation is based on Linux kernel Heterogeneous Memory Management
-+ * (HMM) framework. HMM provides address space mirroring and data migration helpers.
-+ *
-+ * This is the DRM layer abstraction of the SVM implementation. The target of this
-+ * abstraction is to provide common SVM functions which can be shared between all
-+ * DRM drivers. The key functionality of DRM layer is to provide a infrastructure
-+ * for driver to achieve process space mirroring and data migration.
-+ *
-+ * The DRM abstraction is based on two concepts:
-+ *
-+ * 1) DRM memory region: represents physical memory on GPU devices. Memory region
-+ * has operations(callback functions) such as allocate/free memory, memory copy etc.
-+ *
-+ * 2) hmmptr: similar to userptr with the exception that a hmmptr can be migrated
-+ * b/t system memory and device memories. Currently hmmptr is a very thin layer deal
-+ * with mmu notifier register/unregister and page population. The hmmptr invalidation
-+ * and gpu page table update is left to driver.
-+ *
-+ * See more details of those concepts in the kernel DOC in drm_svm.h.
-+ *
-+ * The DRM SVM layer provides helper functions for driver writer to:
-+ *
-+ * 1) register a DRM memory region, along which some driver callback functions to
-+ * allocate/free device memory, migrate memory b/t system memory and GPU device memory
-+ * etc.
-+ *
-+ * 2) create a :c:type:`drm_hmmptr`: Create a hmmptr and register mmu interval notifier
-+ * for this hmmptr.
-+ *
-+ * 3) populate a :c:type:`drm_hmmptr`: Populate the CPU page table, for the purpose of
-+ * address space mirroring.
-+ *
-+ * 4) migrate a range of :c:type:`drm_hmmptr` to GPU device memory
-+ *
-+ * Note migration of hmmptr (or partial of hmmptr) is DRM internal, triggered by CPU
-+ * page fault. This is not exposed to driver.
-+ *
-+ * With above DRM facilities, it is very simple for vendors to implement a SVM system
-+ * alloator driver:
-+ *
-+ * 1) Implement GPU device memory allocation and free callback functions
-+ *
-+ * 2) Implement a vendor specific data migration callback function using GPU HW such as DMA
-+ *
-+ * 3) Implement a vendor specific hmmptr GPU page table invalidation callback function
-+ *
-+ * 4) On device initialization, register GPU device memory to DRM using the DRM memory
-+ * region registration helper
-+ *
-+ * 4) In GPU page fault handler, call drm helpers to create hmmptr if necessary, migrate
-+ * range of hmmptr to GPU device memory per migration policy, and populate range of hmmptr
-+ * to program/mirror the hmmptr range in GPU page table. Resume GPU HW execution.
-+ *
-+ *
-+ * There are 3 events which can trigger SVM subsystem in actions:
-+ *
-+ * 1. A mmu notifier callback
-+ *
-+ * Since SVM need to mirror the program's CPU virtual address space from GPU side,
-+ * when program's CPU address space changes, SVM need to make an identical change
-+ * from GPU side. SVM/hmm use mmu interval notifier to achieve this. SVM register
-+ * a mmu interval notifier call back function to core mm, and whenever a CPU side
-+ * virtual address space is changed (i.e., when a virtual address range is unmapped
-+ * from CPU calling munmap), the registered callback function will be called from
-+ * core mm. SVM then mirror the CPU address space change from GPU side, i.e., unmap
-+ * or invalidate the virtual address range from GPU page table.
-+ *
-+ * This part of the work is mainly left to driver. Driver need to implement the GPU
-+ * page table invalidation function. The invalidation has to be virtual address range
-+ * based, instead of invalidate the whole hmmptr on each callback.
-+ *
-+ * 2. A GPU page fault
-+ *
-+ * At the very beginning of a process's life, no virtual address of the process
-+ * is mapped on GPU page table. So when GPU access any virtual address of the process
-+ * a GPU page fault is triggered. SVM then decide the best memory location of the
-+ * fault address (mainly from performance consideration. Some times also consider
-+ * correctness requirement such as whether GPU can perform atomics operation to
-+ * certain memory location), migrate memory if necessary, and map the fault address
-+ * to GPU page table.
-+ *
-+ * This part of work is also mainly left to driver implementor for flexibility consideration.
-+ * Driver can call DRM SVM layer helper to migrate a sub-range of a hmmptr to device
-+ * memory, and call DRM helper to populate the physical pages of a hmmptr.
-+ *
-+ * 3. A CPU page fault
-+ *
-+ * A CPU page fault is usually managed by Linux core mm. But in a CPU and GPU
-+ * mix programming environment, the backing store of a virtual address range
-+ * can be in GPU's local memory which is not visible to CPU (DEVICE_PRIVATE),
-+ * so CPU page fault handler need to migrate such pages to system memory for
-+ * CPU to be able to access them. Such memory migration is device specific.
-+ * HMM has a callback function (migrate_to_ram function of the dev_pagemap_ops)
-+ * for device driver to implement.
-+ *
-+ * This part of the work is mainly done at DRM abstraction layer. DRM layer
-+ * call the vendor specific memory region data migration callback function
-+ * to migrate data from GPU memory to system memory, if needed. The whole
-+ * CPU page fault processing is transparent to driver implementation.
-+ *
-+ */
-+
-+/**
-+ * DOC: page centric design
-+ *
-+ * Unlike the non-SVM memory allocator (such as gem_create, vm_bind etc), there
-+ * is no buffer object (BO, such as struct ttm_buffer_object, struct drm_gem_object),
-+ * in DRM SVM design. We delibrately choose this implementation option to achieve true
-+ * page granularity memory placement, allocation, free, validation, eviction and migration.
-+ * In a BO centric world, all above operate at a granularity of buffer object, e.g.,
-+ * you can't evict or migrate partial of a BO.
-+ *
-+ * The drm buddy allocator is essentially buddy block granularity, e.g., user can’t
-+ * return a few pages of memory back to buddy (so other users can use the freed pages)
-+ * until user finishes the whole buddy block. The minimal free size is buddy block.
-+ *
-+ * To achieve the goal, a drm page cache layer is introduced. DRM page cache layer
-+ * provide interface for user to allocate and free memory at page granularity. DRM
-+ * page cache layer allocate memory from DRM buddy if it can't meet user's memory
-+ * allocation request with the cached pages. DRM page cache free a buddy block when
-+ * all the pages in a block are freed by users.
-+ *
-+ * Both TTM-based driver and SVM are now required to allocate memory from DRM page
-+ * cache layer instead of directly from DRM buddy. This is necessary to achieve goal
-+ * because, in the direct DRM buddy scheme, pages freed from TTM-based driver and
-+ * from SVM, are kept locally until the whole DRM buddy block is freed. So SVM can't
-+ * use TTM freed pages until the whole DRM buddy block is freed, and vice versa.
-+ *
-+ * To support a true page granularity design, SVM subsystem implemented page granularity
-+ * migration, eviction, page table update and invalidation.
-+ *
-+ * Legacy driver can stay with BO-based scheme, but a lot of driver internal interfaces
-+ * such as page table codes are modified to support page granularity scheme so those
-+ * interfaces can be shared b/t SVM and BO-based driver.
-+ *
-+ * TTM-based driver can still free memory at coarse grain granularity such as only free
-+ * when the BO is finished; while system allocator will apply the page granularity memory
-+ * free.
-+ *
-+ * Currently page cache layer track the usage of each page using a simple bitmap scheme.
-+ * When all pages in a block are not used anymore, it returns this block back to drm
-+ * buddy subsystem. This scheme can be fine tunned.
-+ *
-+ * See more in :doc: Page granularity eviction
-+ *
-+ */
-+
-+/**
-+ * DOC: lock design
-+ *
-+ * Since under the picture of SVM, CPU program and GPU program share one virtual
-+ * address space, we need rather complex lock design to avoid race conditions.
-+ * For example, while GPU is accessing a virtual address range, the same range
-+ * could be munmapped from CPU side, or the backing store of the same range
-+ * could be moved to another physical place due to memory pressure. The lock
-+ * design essentially need to serialize the GPU page table invalidate, data
-+ * migration, CPU page table population and GPU page table re-validation.
-+ *
-+ * There are multiple locks involved in this scheme:
-+ *
-+ * 1. mm mmap_lock
-+ * mm's mmap_lock is a read write semaphore used to protect mm's address
-+ * space. Linux core mm hold this lock whenever it need to change process
-+ * space's memory mapping, for example, during a user munmap process, or
-+ * during a page migration triggered by kernel NUMA balance. MMU interval
-+ * notifier callback function is called mmap_lock hold.
-+ *
-+ * Driver is required to hold mmap_read_lock when it calls the DRM hmmptr
-+ * population helper to populate CPU page tables.
-+ *
-+ * 2. driver's gpuvm dma-resv
-+ * driver's dma reservation object is used protect GPU page table update.
-+ * This is usually per GPUVM based, e.g., for xekmd this is xe_vm's dma-resv.
-+ * For BO type vma, dma resv is enough for page table update. For userptr
-+ * and hmmptr, besides dma resv, we need an extra page_table_lock to avoid
-+ * page table update collision with userptr invalidation. See below.
-+ *
-+ * 3. driver's page_table_lock
-+ * page_table_lock is used to protect userptr/hmmptr GPU page table update,
-+ * to avoid a update collision with userptr invalidation. So page_table_lock
-+ * is required in the userptr invalidate callback function. Notifier_lock
-+ * is the "user_lock" in the documentation of mmu_interval_read_begin(),
-+ * which is a hard requirement per mmu notifier design. In xekmd design,
-+ * this lock is xe_vm::userptr::notifier_lock.
-+ *
-+ * Note currently the page_table_lock is a coarse grain lock design which
-+ * is whole GPU VM based. This coarse grain design can be fine tunned to
-+ * a per page table based fine grain lock, similar to the core mm split
-+ * page table lock.
-+ *
-+ * Lock order
-+ * Acquiring locks in the same order can avoid deadlocks. The locking
-+ * order of above locks are:
-+ *
-+ * mmap_lock => gpuvm::dma-resv => page_table_lock
-+ *
-+ * This lock order is a hard requirement per existing codes. For example,
-+ * the mmap_lock and dma-resv order is explicitly defined in dma_resv_lockdep().
-+ *
-+ *
-+ * Use case, pseudo codes:
-+ *
-+ * Take the concurrent GPU page fault handler and user munmap as an example,
-+ * the locking codes looks broadly like below:
-+ *
-+ * In GPU page fault handler:                                                                           munmap from user:
-+ *
-+ * again:
-+ * Mmap_read_lock()                                                                                     mmap_write_lock()
-+ * call drm_svm_migrate_hmmptr_to_vram to migrate hmmptr if needed                                      mmu_notifier_invalidate_range_start(), call hmmptr->invalidate()
-+ * hmmptr.notifier_seq = mmu_interval_read_begin(&hmmptr.notifier)                                          down_write(page_table_lock);
-+ * call drm_svm_populate_hmmptr to populate hmmptr                                                          mmu_interval_set_seq();
-+ * Mmap_read_unlock                                                                                         invalidate hmmptr from GPU page table
-+ *                                                                                                          up_write(page_table_lock);
-+ * dma_resv_lock()                                                                                      mmu_notifier_invalidate_range_end()
-+ * down_read(page_table_lock);                                                                            mmap_write_unlock();
-+ * if (!mmu_interval_read_retry() {
-+ *     //collision with userptr invalidation, retry
-+ *     up_read(page_table_lock);
-+ *     dma_resv_unlock()
-+ *     goto again;
-+ * }
-+ *
-+ * update_gpu_page_table()
-+ * up_read(page_table_lock);
-+ * dma_resv_unlock()
-+ *
-+ *
-+ * In above codes, we hold mmap_read_lock to populate hmmptr because we
-+ * need to walk the CPU page table. Since the munmap hold a mmap_write_lock,
-+ * the hmmptr population can't colide with munmap.
-+ *
-+ * After that, we update GPU page table with the hmmptr pfns/pages populated
-+ * above. We hold both dma-resv object to protect and page_table_lock for GPU
-+ * page table update.
-+ *
-+ * Since we don't hold the mmap_lock during GPU page table update, user
-+ * might perform munmap simultaneously which can cause userptr invalidation.
-+ * If such collision happens, we will have to retry hmmptr population.
-+ *
-+ * Once we confirmed there is no need to retry, we can update GPU page table
-+ * safely without have to worry about munmap/hmmptr->invalidate(), because
-+ * during this retry confirmation and GPU page table update we hold the
-+ * page_table_lock. The same page_table_lock is also hold in the hmmptr->invalidate
-+ * callback.
-+ */
-+
-+/**
-+ * DOC: Memory hints: TBD
-+ */
-+
-+/**
-+ * DOC: Page granularity eviction
-+ *
-+ * One of the DRM SVM design requirement is to evict memory at true page granularity.
-+ * To achieve this goal, we removed buffer object concept in DRM SVM design. This
-+ * means we won't build SVM upon TTM infrastructure like amdgpu or xekmd does.
-+ *
-+ * Even though this approach is true page granularity, it does create a problem for
-+ * memory eviction when there is memory pressure: memory allocated by SVM and memory
-+ * allocated by TTM should be able to mutually evict from each other. TTM's resource
-+ * manager maintains a LRU list for each memory type and this list is used to pick up
-+ * the memory eviction victim. Since we don't use TTM for SVM implementation, SVM
-+ * allocated memory can't be added to TTM resource manager's LRU list. Thus SVM
-+ * allocated memory and TTM allocated memory are not mutually evictable.
-+ *
-+ * We solve this problem by creating a shared LRU list b/t SVM and TTM, or any other
-+ * resource manager. This is named drm evictable LRU.
-+ *
-+ * The basic idea is, abstract a drm_lru_entity structure which is supposed to be
-+ * embedded in ttm_resource structure, or any other resource manager such as used
-+ * in SVM implementation. So a LRU entity can represent memory resource used by
-+ * both TTM and SVM.
-+ *
-+ * The resource LRU list is a list of drm_lru_entity. drm_lru_entity has eviction
-+ * function pointers which can be used to call back drivers' specific eviction
-+ * function to evict a memory resource.
-+ *
-+ * Driver specific eviction function from both TTM and SVM should follow the same
-+ * lock order to avoid any lock inversion. The current plan is, SVM subsystem to
-+ * follow exactly the same locking order used in TTM-based eviction process.
-+ *
-+ * A device-wide global drm_lru_manager is introduced to manage a shared LRU list
-+ * between TTM and SVM. drm lru manager provides a evict_first function to evict
-+ * the first memory resource from LRU list. This function can be called from TTM,
-+ * SVM, thus all the memory allocated in the drm sub-system can be mutually evicted.
-+ *
-+ */
-+
- static u64 __npages_in_range(unsigned long start, unsigned long end)
- {
- 	return (PAGE_ALIGN(end) - PAGE_ALIGN_DOWN(start)) >> PAGE_SHIFT;
+ 	/*
+@@ -184,7 +184,7 @@ static void add_vram(struct xe_device *xe, struct xe_bo *bo,
+ 			XE_BO_FLAG_GGTT))
+ 		place.flags |= TTM_PL_FLAG_CONTIGUOUS;
+ 
+-	if (io_size < vram->usable_size) {
++	if (io_size < vram->drm_mr.usable_size) {
+ 		if (bo_flags & XE_BO_FLAG_NEEDS_CPU_ACCESS) {
+ 			place.fpfn = 0;
+ 			place.lpfn = io_size >> PAGE_SHIFT;
+@@ -1638,7 +1638,7 @@ uint64_t vram_region_gpu_offset(struct ttm_resource *res)
+ 	if (res->mem_type == XE_PL_STOLEN)
+ 		return xe_ttm_stolen_gpu_offset(xe);
+ 
+-	return res_to_mem_region(res)->dpa_base;
++	return res_to_mem_region(res)->drm_mr.dpa_base;
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index f1c09824b145..cf61b52e6d84 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -11,6 +11,7 @@
+ #include <drm/drm_device.h>
+ #include <drm/drm_file.h>
+ #include <drm/ttm/ttm_device.h>
++#include <drm/drm_svm.h>
+ 
+ #include "xe_devcoredump_types.h"
+ #include "xe_heci_gsc.h"
+@@ -69,6 +70,7 @@ struct xe_pat_ops;
+  * device, such as HBM memory or CXL extension memory.
+  */
+ struct xe_mem_region {
++	struct drm_mem_region drm_mr;
+ 	/** @io_start: IO start address of this VRAM instance */
+ 	resource_size_t io_start;
+ 	/**
+@@ -81,15 +83,6 @@ struct xe_mem_region {
+ 	 * configuration is known as small-bar.
+ 	 */
+ 	resource_size_t io_size;
+-	/** @dpa_base: This memory regions's DPA (device physical address) base */
+-	resource_size_t dpa_base;
+-	/**
+-	 * @usable_size: usable size of VRAM
+-	 *
+-	 * Usable size of VRAM excluding reserved portions
+-	 * (e.g stolen mem)
+-	 */
+-	resource_size_t usable_size;
+ 	/**
+ 	 * @actual_physical_size: Actual VRAM size
+ 	 *
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index d9caf2071a88..a7857d2c562f 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -126,7 +126,7 @@ static u64 xe_migrate_vram_ofs(struct xe_device *xe, u64 addr)
+ 	 * Remove the DPA to get a correct offset into identity table for the
+ 	 * migrate offset
+ 	 */
+-	addr -= xe->mem.vram.dpa_base;
++	addr -= xe->mem.vram.drm_mr.dpa_base;
+ 	return addr + (256ULL << xe_pt_shift(2));
+ }
+ 
+@@ -261,8 +261,8 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 		 * Use 1GB pages, it shouldn't matter the physical amount of
+ 		 * vram is less, when we don't access it.
+ 		 */
+-		for (pos = xe->mem.vram.dpa_base;
+-		     pos < xe->mem.vram.actual_physical_size + xe->mem.vram.dpa_base;
++		for (pos = xe->mem.vram.drm_mr.dpa_base;
++		     pos < xe->mem.vram.actual_physical_size + xe->mem.vram.drm_mr.dpa_base;
+ 		     pos += SZ_1G, ofs += 8)
+ 			xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 248e93ec6df7..c842df946438 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -160,7 +160,7 @@ static int xe_determine_lmem_bar_size(struct xe_device *xe)
+ 		return -EIO;
+ 
+ 	/* XXX: Need to change when xe link code is ready */
+-	xe->mem.vram.dpa_base = 0;
++	xe->mem.vram.drm_mr.dpa_base = 0;
+ 
+ 	/* set up a map to the total memory area. */
+ 	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.io_size);
+@@ -319,16 +319,16 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 			return -ENODEV;
+ 		}
+ 
+-		tile->mem.vram.dpa_base = xe->mem.vram.dpa_base + tile_offset;
+-		tile->mem.vram.usable_size = vram_size;
++		tile->mem.vram.drm_mr.dpa_base = xe->mem.vram.drm_mr.dpa_base + tile_offset;
++		tile->mem.vram.drm_mr.usable_size = vram_size;
+ 		tile->mem.vram.mapping = xe->mem.vram.mapping + tile_offset;
+ 
+-		if (tile->mem.vram.io_size < tile->mem.vram.usable_size)
++		if (tile->mem.vram.io_size < tile->mem.vram.drm_mr.usable_size)
+ 			drm_info(&xe->drm, "Small BAR device\n");
+ 		drm_info(&xe->drm, "VRAM[%u, %u]: Actual physical size %pa, usable size exclude stolen %pa, CPU accessible size %pa\n", id,
+-			 tile->id, &tile->mem.vram.actual_physical_size, &tile->mem.vram.usable_size, &tile->mem.vram.io_size);
++			 tile->id, &tile->mem.vram.actual_physical_size, &tile->mem.vram.drm_mr.usable_size, &tile->mem.vram.io_size);
+ 		drm_info(&xe->drm, "VRAM[%u, %u]: DPA range: [%pa-%llx], io range: [%pa-%llx]\n", id, tile->id,
+-			 &tile->mem.vram.dpa_base, tile->mem.vram.dpa_base + (u64)tile->mem.vram.actual_physical_size,
++			 &tile->mem.vram.drm_mr.dpa_base, tile->mem.vram.drm_mr.dpa_base + (u64)tile->mem.vram.actual_physical_size,
+ 			 &tile->mem.vram.io_start, tile->mem.vram.io_start + (u64)tile->mem.vram.io_size);
+ 
+ 		/* calculate total size using tile size to get the correct HW sizing */
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 995effcb904b..8b3d63420cef 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -334,7 +334,7 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+ 	config->num_params = num_params;
+ 	config->info[DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID] =
+ 		xe->info.devid | (xe->info.revid << 16);
+-	if (xe_device_get_root_tile(xe)->mem.vram.usable_size)
++	if (xe_device_get_root_tile(xe)->mem.vram.drm_mr.usable_size)
+ 		config->info[DRM_XE_QUERY_CONFIG_FLAGS] =
+ 			DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM;
+ 	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 15ea0a942f67..109f3118e821 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -132,7 +132,7 @@ static int tile_ttm_mgr_init(struct xe_tile *tile)
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	int err;
+ 
+-	if (tile->mem.vram.usable_size) {
++	if (tile->mem.vram.drm_mr.usable_size) {
+ 		err = xe_ttm_vram_mgr_init(tile, tile->mem.vram_mgr);
+ 		if (err)
+ 			return err;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index fe3779fdba2c..dd31b24fb07d 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -364,7 +364,7 @@ int xe_ttm_vram_mgr_init(struct xe_tile *tile, struct xe_ttm_vram_mgr *mgr)
+ 
+ 	mgr->vram = vram;
+ 	return __xe_ttm_vram_mgr_init(xe, mgr, XE_PL_VRAM0 + tile->id,
+-				      vram->usable_size, vram->io_size,
++				      vram->drm_mr.usable_size, vram->io_size,
+ 				      PAGE_SIZE);
+ }
+ 
 -- 
 2.26.3
 
