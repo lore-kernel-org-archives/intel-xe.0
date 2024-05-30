@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F6DBC27C43
-	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 15:13:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 167CBC27C43
+	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 15:14:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D70D510E8DB;
-	Thu, 30 May 2024 15:13:19 +0000 (UTC)
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4571410E8DB;
- Thu, 30 May 2024 15:13:10 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E92410E0D7;
+	Thu, 30 May 2024 15:14:47 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="COvkrDE6";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 718AB10E8EC
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 May 2024 15:14:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1717082086; x=1748618086;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=qoF8pfZGgpMFLbE3BlfOBafwWLJWP8Y1uuwz26PWRQA=;
+ b=COvkrDE65lwohDnDnAX04eUGztIsx7MQkYUogiG0BYqhu8k2kIEmzej+
+ uSjr6ePOC2y36Wu7Js2HBvqmwaztjccaFv1UyfS+yB16t1AXlmYw76inq
+ 7tmXAAugus5kdESaU8HDuhG4KWaiVMClvihsjF0/W9VrYnEYNRsgAjgKh
+ swFtLX8yiu1jBs2ZyVxsAVLeL5NvDW/TqbaESJhhCvdjfPXx9KV1kbEtV
+ itckvkqeHMWFkQQUG7YUoTvqqF5+MbPzzlUkx+kIdLFwkRDCl198aHHTK
+ 6RB1kPY0M6k0YEx+z2ZEQMv3BANgdTIh98AIKGXt3gpPLDrHPMrbN5VQi w==;
+X-CSE-ConnectionGUID: XU6MkeuFSBWcm1uqVjv50Q==
+X-CSE-MsgGUID: nUABJT8iSFK1prcY9E7jUw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="24695859"
+X-IronPort-AV: E=Sophos;i="6.08,201,1712646000"; d="scan'208";a="24695859"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2024 08:14:41 -0700
+X-CSE-ConnectionGUID: wiDF4VunS3WlRpy4DHn3nQ==
+X-CSE-MsgGUID: rPyvZ7yxRn+LzX55wJN0/A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,201,1712646000"; d="scan'208";a="36326436"
+Received: from invictus.jf.intel.com ([10.165.21.201])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2024 08:14:41 -0700
+From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com,
+ Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v3 1/6] drm/xe/trace: Extract bo, vm, vma traces
+Date: Thu, 30 May 2024 08:13:08 -0700
+Message-Id: <20240530151313.2284182-2-radhakrishna.sripada@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240530151313.2284182-1-radhakrishna.sripada@intel.com>
+References: <20240530151313.2284182-1-radhakrishna.sripada@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EHooks=3A_failure_for_drm/xe=3A_Fix_xe=5Fforce=5Fwak?=
- =?utf-8?q?e=5Fassert=5Fheld_for_enum_XE=5FFORCEWAKE=5FALL?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 30 May 2024 15:13:10 -0000
-Message-ID: <171708199028.2238285.11694246867872983185@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240530142533.875437-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20240530142533.875437-1-himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,81 +66,586 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+xe_trace.h is starting to get over crowded. Move the traces
+related to bo, vm, vma's to its own file.
 
-Series: drm/xe: Fix xe_force_wake_assert_held for enum XE_FORCEWAKE_ALL
-URL   : https://patchwork.freedesktop.org/series/134254/
-State : failure
+Suggested-by: Jani Nikula <jani.nikula@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+---
+ drivers/gpu/drm/xe/Makefile          |   1 +
+ drivers/gpu/drm/xe/xe_bo.c           |   2 +-
+ drivers/gpu/drm/xe/xe_gt_pagefault.c |   2 +-
+ drivers/gpu/drm/xe/xe_migrate.c      |   2 +-
+ drivers/gpu/drm/xe/xe_trace.h        | 212 ------------------------
+ drivers/gpu/drm/xe/xe_trace_bo.c     |   9 +
+ drivers/gpu/drm/xe/xe_trace_bo.h     | 236 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.c           |   2 +-
+ 8 files changed, 250 insertions(+), 216 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_trace_bo.c
+ create mode 100644 drivers/gpu/drm/xe/xe_trace_bo.h
 
-== Summary ==
-
-run-parts: executing /workspace/ci/hooks/00-showenv
-+ export
-+ grep -Ei '(^|\W)CI_'
-declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64-default"
-declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
-declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
-declare -x CI_WORKSPACE_DIR="/workspace"
-run-parts: executing /workspace/ci/hooks/10-build-W1
-+ SRC_DIR=/workspace/kernel
-+ RESTORE_DISPLAY_CONFIG=0
-+ '[' -n /workspace/kernel/build64-default ']'
-+ BUILD_DIR=/workspace/kernel/build64-default
-+ cd /workspace/kernel
-++ nproc
-+ make -j48 O=/workspace/kernel/build64-default modules_prepare
-make[1]: Entering directory '/workspace/kernel/build64-default'
-  GEN     Makefile
-  UPD     include/generated/compile.h
-  UPD     include/config/kernel.release
-mkdir -p /workspace/kernel/build64-default/tools/objtool && make O=/workspace/kernel/build64-default subdir=tools/objtool --no-print-directory -C objtool 
-  UPD     include/generated/utsrelease.h
-  HOSTCC  /workspace/kernel/build64-default/tools/objtool/fixdep.o
-  CALL    ../scripts/checksyscalls.sh
-  HOSTLD  /workspace/kernel/build64-default/tools/objtool/fixdep-in.o
-  LINK    /workspace/kernel/build64-default/tools/objtool/fixdep
-  INSTALL libsubcmd_headers
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/exec-cmd.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/help.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/pager.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/parse-options.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/run-command.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/subcmd-config.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/sigchain.o
-  LD      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd-in.o
-  AR      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd.a
-  CC      /workspace/kernel/build64-default/tools/objtool/weak.o
-  CC      /workspace/kernel/build64-default/tools/objtool/check.o
-  CC      /workspace/kernel/build64-default/tools/objtool/special.o
-  CC      /workspace/kernel/build64-default/tools/objtool/builtin-check.o
-  CC      /workspace/kernel/build64-default/tools/objtool/elf.o
-  CC      /workspace/kernel/build64-default/tools/objtool/objtool.o
-  CC      /workspace/kernel/build64-default/tools/objtool/orc_gen.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/special.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/decode.o
-  CC      /workspace/kernel/build64-default/tools/objtool/orc_dump.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/orc.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libstring.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libctype.o
-  CC      /workspace/kernel/build64-default/tools/objtool/str_error_r.o
-  CC      /workspace/kernel/build64-default/tools/objtool/librbtree.o
-  LD      /workspace/kernel/build64-default/tools/objtool/arch/x86/objtool-in.o
-  LD      /workspace/kernel/build64-default/tools/objtool/objtool-in.o
-  LINK    /workspace/kernel/build64-default/tools/objtool/objtool
-make[1]: Leaving directory '/workspace/kernel/build64-default'
-++ nproc
-+ make -j48 O=/workspace/kernel/build64-default M=drivers/gpu/drm/xe W=1
-make[1]: Entering directory '/workspace/kernel/build64-default'
-../scripts/Makefile.build:41: drivers/gpu/drm/xe/Makefile: No such file or directory
-make[3]: *** No rule to make target 'drivers/gpu/drm/xe/Makefile'.  Stop.
-make[2]: *** [/workspace/kernel/Makefile:1934: drivers/gpu/drm/xe] Error 2
-make[1]: *** [/workspace/kernel/Makefile:240: __sub-make] Error 2
-make[1]: Leaving directory '/workspace/kernel/build64-default'
-make: *** [Makefile:240: __sub-make] Error 2
-run-parts: /workspace/ci/hooks/10-build-W1 exited with return code 2
-
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index ae07f3d6a068..fa9960acfe53 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -135,6 +135,7 @@ xe-y += xe_bb.o \
+ 	xe_tile.o \
+ 	xe_tile_sysfs.o \
+ 	xe_trace.o \
++	xe_trace_bo.o \
+ 	xe_ttm_sys_mgr.o \
+ 	xe_ttm_stolen_mgr.o \
+ 	xe_ttm_vram_mgr.o \
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 2bae01ce4e5b..74294f1b05bc 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -25,7 +25,7 @@
+ #include "xe_pm.h"
+ #include "xe_preempt_fence.h"
+ #include "xe_res_cursor.h"
+-#include "xe_trace.h"
++#include "xe_trace_bo.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_vm.h"
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 040dd142c49c..dead920de5f1 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -19,7 +19,7 @@
+ #include "xe_guc.h"
+ #include "xe_guc_ct.h"
+ #include "xe_migrate.h"
+-#include "xe_trace.h"
++#include "xe_trace_bo.h"
+ #include "xe_vm.h"
+ 
+ struct pagefault {
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index cccffaf3db06..da3305834448 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -32,7 +32,7 @@
+ #include "xe_res_cursor.h"
+ #include "xe_sched_job.h"
+ #include "xe_sync.h"
+-#include "xe_trace.h"
++#include "xe_trace_bo.h"
+ #include "xe_vm.h"
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index 450f407c66e8..9493cc3d6d82 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -12,8 +12,6 @@
+ #include <linux/tracepoint.h>
+ #include <linux/types.h>
+ 
+-#include "xe_bo.h"
+-#include "xe_bo_types.h"
+ #include "xe_exec_queue_types.h"
+ #include "xe_gpu_scheduler_types.h"
+ #include "xe_gt_tlb_invalidation_types.h"
+@@ -76,58 +74,6 @@ DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_timeout,
+ 	     TP_ARGS(fence)
+ );
+ 
+-DECLARE_EVENT_CLASS(xe_bo,
+-		    TP_PROTO(struct xe_bo *bo),
+-		    TP_ARGS(bo),
+-
+-		    TP_STRUCT__entry(
+-			     __field(size_t, size)
+-			     __field(u32, flags)
+-			     __field(struct xe_vm *, vm)
+-			     ),
+-
+-		    TP_fast_assign(
+-			   __entry->size = bo->size;
+-			   __entry->flags = bo->flags;
+-			   __entry->vm = bo->vm;
+-			   ),
+-
+-		    TP_printk("size=%zu, flags=0x%02x, vm=%p",
+-			      __entry->size, __entry->flags, __entry->vm)
+-);
+-
+-DEFINE_EVENT(xe_bo, xe_bo_cpu_fault,
+-	     TP_PROTO(struct xe_bo *bo),
+-	     TP_ARGS(bo)
+-);
+-
+-TRACE_EVENT(xe_bo_move,
+-	    TP_PROTO(struct xe_bo *bo, uint32_t new_placement, uint32_t old_placement,
+-		     bool move_lacks_source),
+-	    TP_ARGS(bo, new_placement, old_placement, move_lacks_source),
+-	    TP_STRUCT__entry(
+-		     __field(struct xe_bo *, bo)
+-		     __field(size_t, size)
+-		     __field(u32, new_placement)
+-		     __field(u32, old_placement)
+-		     __array(char, device_id, 12)
+-		     __field(bool, move_lacks_source)
+-			),
+-
+-	    TP_fast_assign(
+-		   __entry->bo      = bo;
+-		   __entry->size = bo->size;
+-		   __entry->new_placement = new_placement;
+-		   __entry->old_placement = old_placement;
+-		   strscpy(__entry->device_id, dev_name(xe_bo_device(__entry->bo)->drm.dev), 12);
+-		   __entry->move_lacks_source = move_lacks_source;
+-		   ),
+-	    TP_printk("move_lacks_source:%s, migrate object %p [size %zu] from %s to %s device_id:%s",
+-		      __entry->move_lacks_source ? "yes" : "no", __entry->bo, __entry->size,
+-		      xe_mem_type_to_name[__entry->old_placement],
+-		      xe_mem_type_to_name[__entry->new_placement], __entry->device_id)
+-);
+-
+ DECLARE_EVENT_CLASS(xe_exec_queue,
+ 		    TP_PROTO(struct xe_exec_queue *q),
+ 		    TP_ARGS(q),
+@@ -386,164 +332,6 @@ DEFINE_EVENT(xe_hw_fence, xe_hw_fence_free,
+ 	     TP_ARGS(fence)
+ );
+ 
+-DECLARE_EVENT_CLASS(xe_vma,
+-		    TP_PROTO(struct xe_vma *vma),
+-		    TP_ARGS(vma),
+-
+-		    TP_STRUCT__entry(
+-			     __field(struct xe_vma *, vma)
+-			     __field(u32, asid)
+-			     __field(u64, start)
+-			     __field(u64, end)
+-			     __field(u64, ptr)
+-			     ),
+-
+-		    TP_fast_assign(
+-			   __entry->vma = vma;
+-			   __entry->asid = xe_vma_vm(vma)->usm.asid;
+-			   __entry->start = xe_vma_start(vma);
+-			   __entry->end = xe_vma_end(vma) - 1;
+-			   __entry->ptr = xe_vma_userptr(vma);
+-			   ),
+-
+-		    TP_printk("vma=%p, asid=0x%05x, start=0x%012llx, end=0x%012llx, userptr=0x%012llx,",
+-			      __entry->vma, __entry->asid, __entry->start,
+-			      __entry->end, __entry->ptr)
+-)
+-
+-DEFINE_EVENT(xe_vma, xe_vma_flush,
+-	     TP_PROTO(struct xe_vma *vma),
+-	     TP_ARGS(vma)
+-);
+-
+-DEFINE_EVENT(xe_vma, xe_vma_pagefault,
+-	     TP_PROTO(struct xe_vma *vma),
+-	     TP_ARGS(vma)
+-);
+-
+-DEFINE_EVENT(xe_vma, xe_vma_acc,
+-	     TP_PROTO(struct xe_vma *vma),
+-	     TP_ARGS(vma)
+-);
+-
+-DEFINE_EVENT(xe_vma, xe_vma_fail,
+-	     TP_PROTO(struct xe_vma *vma),
+-	     TP_ARGS(vma)
+-);
+-
+-DEFINE_EVENT(xe_vma, xe_vma_bind,
+-	     TP_PROTO(struct xe_vma *vma),
+-	     TP_ARGS(vma)
+-);
+-
+-DEFINE_EVENT(xe_vma, xe_vma_pf_bind,
+-	     TP_PROTO(struct xe_vma *vma),
+-	     TP_ARGS(vma)
+-);
+-
+-DEFINE_EVENT(xe_vma, xe_vma_unbind,
+-	     TP_PROTO(struct xe_vma *vma),
+-	     TP_ARGS(vma)
+-);
+-
+-DEFINE_EVENT(xe_vma, xe_vma_userptr_rebind_worker,
+-	     TP_PROTO(struct xe_vma *vma),
+-	     TP_ARGS(vma)
+-);
+-
+-DEFINE_EVENT(xe_vma, xe_vma_userptr_rebind_exec,
+-	     TP_PROTO(struct xe_vma *vma),
+-	     TP_ARGS(vma)
+-);
+-
+-DEFINE_EVENT(xe_vma, xe_vma_rebind_worker,
+-	     TP_PROTO(struct xe_vma *vma),
+-	     TP_ARGS(vma)
+-);
+-
+-DEFINE_EVENT(xe_vma, xe_vma_rebind_exec,
+-	     TP_PROTO(struct xe_vma *vma),
+-	     TP_ARGS(vma)
+-);
+-
+-DEFINE_EVENT(xe_vma, xe_vma_userptr_invalidate,
+-	     TP_PROTO(struct xe_vma *vma),
+-	     TP_ARGS(vma)
+-);
+-
+-DEFINE_EVENT(xe_vma, xe_vma_invalidate,
+-	     TP_PROTO(struct xe_vma *vma),
+-	     TP_ARGS(vma)
+-);
+-
+-DEFINE_EVENT(xe_vma, xe_vma_evict,
+-	     TP_PROTO(struct xe_vma *vma),
+-	     TP_ARGS(vma)
+-);
+-
+-DEFINE_EVENT(xe_vma, xe_vma_userptr_invalidate_complete,
+-	     TP_PROTO(struct xe_vma *vma),
+-	     TP_ARGS(vma)
+-);
+-
+-DECLARE_EVENT_CLASS(xe_vm,
+-		    TP_PROTO(struct xe_vm *vm),
+-		    TP_ARGS(vm),
+-
+-		    TP_STRUCT__entry(
+-			     __field(struct xe_vm *, vm)
+-			     __field(u32, asid)
+-			     ),
+-
+-		    TP_fast_assign(
+-			   __entry->vm = vm;
+-			   __entry->asid = vm->usm.asid;
+-			   ),
+-
+-		    TP_printk("vm=%p, asid=0x%05x",  __entry->vm,
+-			      __entry->asid)
+-);
+-
+-DEFINE_EVENT(xe_vm, xe_vm_kill,
+-	     TP_PROTO(struct xe_vm *vm),
+-	     TP_ARGS(vm)
+-);
+-
+-DEFINE_EVENT(xe_vm, xe_vm_create,
+-	     TP_PROTO(struct xe_vm *vm),
+-	     TP_ARGS(vm)
+-);
+-
+-DEFINE_EVENT(xe_vm, xe_vm_free,
+-	     TP_PROTO(struct xe_vm *vm),
+-	     TP_ARGS(vm)
+-);
+-
+-DEFINE_EVENT(xe_vm, xe_vm_cpu_bind,
+-	     TP_PROTO(struct xe_vm *vm),
+-	     TP_ARGS(vm)
+-);
+-
+-DEFINE_EVENT(xe_vm, xe_vm_restart,
+-	     TP_PROTO(struct xe_vm *vm),
+-	     TP_ARGS(vm)
+-);
+-
+-DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_enter,
+-	     TP_PROTO(struct xe_vm *vm),
+-	     TP_ARGS(vm)
+-);
+-
+-DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_retry,
+-	     TP_PROTO(struct xe_vm *vm),
+-	     TP_ARGS(vm)
+-);
+-
+-DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_exit,
+-	     TP_PROTO(struct xe_vm *vm),
+-	     TP_ARGS(vm)
+-);
+-
+ /* GuC */
+ DECLARE_EVENT_CLASS(xe_guc_ct_flow_control,
+ 		    TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u32 len),
+diff --git a/drivers/gpu/drm/xe/xe_trace_bo.c b/drivers/gpu/drm/xe/xe_trace_bo.c
+new file mode 100644
+index 000000000000..6320168677e8
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_trace_bo.c
+@@ -0,0 +1,9 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright © 2022 Intel Corporation
++ */
++
++#ifndef __CHECKER__
++#define CREATE_TRACE_POINTS
++#include "xe_trace_bo.h"
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
+new file mode 100644
+index 000000000000..6d90f3f42d54
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_trace_bo.h
+@@ -0,0 +1,236 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright © 2022 Intel Corporation
++ */
++
++#undef TRACE_SYSTEM
++#define TRACE_SYSTEM xe
++
++#if !defined(_XE_TRACE_BO_H_) || defined(TRACE_HEADER_MULTI_READ)
++#define _XE_TRACE_BO_H_
++
++#include <linux/tracepoint.h>
++#include <linux/types.h>
++
++#include "xe_bo.h"
++#include "xe_bo_types.h"
++#include "xe_vm.h"
++
++DECLARE_EVENT_CLASS(xe_bo,
++		    TP_PROTO(struct xe_bo *bo),
++		    TP_ARGS(bo),
++
++		    TP_STRUCT__entry(
++			     __field(size_t, size)
++			     __field(u32, flags)
++			     __field(struct xe_vm *, vm)
++			     ),
++
++		    TP_fast_assign(
++			   __entry->size = bo->size;
++			   __entry->flags = bo->flags;
++			   __entry->vm = bo->vm;
++			   ),
++
++		    TP_printk("size=%zu, flags=0x%02x, vm=%p",
++			      __entry->size, __entry->flags, __entry->vm)
++);
++
++DEFINE_EVENT(xe_bo, xe_bo_cpu_fault,
++	     TP_PROTO(struct xe_bo *bo),
++	     TP_ARGS(bo)
++);
++
++TRACE_EVENT(xe_bo_move,
++	    TP_PROTO(struct xe_bo *bo, uint32_t new_placement, uint32_t old_placement,
++		     bool move_lacks_source),
++	    TP_ARGS(bo, new_placement, old_placement, move_lacks_source),
++	    TP_STRUCT__entry(
++		     __field(struct xe_bo *, bo)
++		     __field(size_t, size)
++		     __field(u32, new_placement)
++		     __field(u32, old_placement)
++		     __array(char, device_id, 12)
++		     __field(bool, move_lacks_source)
++			),
++
++	    TP_fast_assign(
++		   __entry->bo      = bo;
++		   __entry->size = bo->size;
++		   __entry->new_placement = new_placement;
++		   __entry->old_placement = old_placement;
++		   strscpy(__entry->device_id, dev_name(xe_bo_device(__entry->bo)->drm.dev), 12);
++		   __entry->move_lacks_source = move_lacks_source;
++		   ),
++	    TP_printk("move_lacks_source:%s, migrate object %p [size %zu] from %s to %s device_id:%s",
++		      __entry->move_lacks_source ? "yes" : "no", __entry->bo, __entry->size,
++		      xe_mem_type_to_name[__entry->old_placement],
++		      xe_mem_type_to_name[__entry->new_placement], __entry->device_id)
++);
++
++DECLARE_EVENT_CLASS(xe_vma,
++		    TP_PROTO(struct xe_vma *vma),
++		    TP_ARGS(vma),
++
++		    TP_STRUCT__entry(
++			     __field(struct xe_vma *, vma)
++			     __field(u32, asid)
++			     __field(u64, start)
++			     __field(u64, end)
++			     __field(u64, ptr)
++			     ),
++
++		    TP_fast_assign(
++			   __entry->vma = vma;
++			   __entry->asid = xe_vma_vm(vma)->usm.asid;
++			   __entry->start = xe_vma_start(vma);
++			   __entry->end = xe_vma_end(vma) - 1;
++			   __entry->ptr = xe_vma_userptr(vma);
++			   ),
++
++		    TP_printk("vma=%p, asid=0x%05x, start=0x%012llx, end=0x%012llx, userptr=0x%012llx,",
++			      __entry->vma, __entry->asid, __entry->start,
++			      __entry->end, __entry->ptr)
++)
++
++DEFINE_EVENT(xe_vma, xe_vma_flush,
++	     TP_PROTO(struct xe_vma *vma),
++	     TP_ARGS(vma)
++);
++
++DEFINE_EVENT(xe_vma, xe_vma_pagefault,
++	     TP_PROTO(struct xe_vma *vma),
++	     TP_ARGS(vma)
++);
++
++DEFINE_EVENT(xe_vma, xe_vma_acc,
++	     TP_PROTO(struct xe_vma *vma),
++	     TP_ARGS(vma)
++);
++
++DEFINE_EVENT(xe_vma, xe_vma_fail,
++	     TP_PROTO(struct xe_vma *vma),
++	     TP_ARGS(vma)
++);
++
++DEFINE_EVENT(xe_vma, xe_vma_bind,
++	     TP_PROTO(struct xe_vma *vma),
++	     TP_ARGS(vma)
++);
++
++DEFINE_EVENT(xe_vma, xe_vma_pf_bind,
++	     TP_PROTO(struct xe_vma *vma),
++	     TP_ARGS(vma)
++);
++
++DEFINE_EVENT(xe_vma, xe_vma_unbind,
++	     TP_PROTO(struct xe_vma *vma),
++	     TP_ARGS(vma)
++);
++
++DEFINE_EVENT(xe_vma, xe_vma_userptr_rebind_worker,
++	     TP_PROTO(struct xe_vma *vma),
++	     TP_ARGS(vma)
++);
++
++DEFINE_EVENT(xe_vma, xe_vma_userptr_rebind_exec,
++	     TP_PROTO(struct xe_vma *vma),
++	     TP_ARGS(vma)
++);
++
++DEFINE_EVENT(xe_vma, xe_vma_rebind_worker,
++	     TP_PROTO(struct xe_vma *vma),
++	     TP_ARGS(vma)
++);
++
++DEFINE_EVENT(xe_vma, xe_vma_rebind_exec,
++	     TP_PROTO(struct xe_vma *vma),
++	     TP_ARGS(vma)
++);
++
++DEFINE_EVENT(xe_vma, xe_vma_userptr_invalidate,
++	     TP_PROTO(struct xe_vma *vma),
++	     TP_ARGS(vma)
++);
++
++DEFINE_EVENT(xe_vma, xe_vma_invalidate,
++	     TP_PROTO(struct xe_vma *vma),
++	     TP_ARGS(vma)
++);
++
++DEFINE_EVENT(xe_vma, xe_vma_evict,
++	     TP_PROTO(struct xe_vma *vma),
++	     TP_ARGS(vma)
++);
++
++DEFINE_EVENT(xe_vma, xe_vma_userptr_invalidate_complete,
++	     TP_PROTO(struct xe_vma *vma),
++	     TP_ARGS(vma)
++);
++
++DECLARE_EVENT_CLASS(xe_vm,
++		    TP_PROTO(struct xe_vm *vm),
++		    TP_ARGS(vm),
++
++		    TP_STRUCT__entry(
++			     __field(struct xe_vm *, vm)
++			     __field(u32, asid)
++			     ),
++
++		    TP_fast_assign(
++			   __entry->vm = vm;
++			   __entry->asid = vm->usm.asid;
++			   ),
++
++		    TP_printk("vm=%p, asid=0x%05x",  __entry->vm,
++			      __entry->asid)
++);
++
++DEFINE_EVENT(xe_vm, xe_vm_kill,
++	     TP_PROTO(struct xe_vm *vm),
++	     TP_ARGS(vm)
++);
++
++DEFINE_EVENT(xe_vm, xe_vm_create,
++	     TP_PROTO(struct xe_vm *vm),
++	     TP_ARGS(vm)
++);
++
++DEFINE_EVENT(xe_vm, xe_vm_free,
++	     TP_PROTO(struct xe_vm *vm),
++	     TP_ARGS(vm)
++);
++
++DEFINE_EVENT(xe_vm, xe_vm_cpu_bind,
++	     TP_PROTO(struct xe_vm *vm),
++	     TP_ARGS(vm)
++);
++
++DEFINE_EVENT(xe_vm, xe_vm_restart,
++	     TP_PROTO(struct xe_vm *vm),
++	     TP_ARGS(vm)
++);
++
++DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_enter,
++	     TP_PROTO(struct xe_vm *vm),
++	     TP_ARGS(vm)
++);
++
++DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_retry,
++	     TP_PROTO(struct xe_vm *vm),
++	     TP_ARGS(vm)
++);
++
++DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_exit,
++	     TP_PROTO(struct xe_vm *vm),
++	     TP_ARGS(vm)
++);
++
++#endif
++
++/* This part must be outside protection */
++#undef TRACE_INCLUDE_PATH
++#undef TRACE_INCLUDE_FILE
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
++#define TRACE_INCLUDE_FILE xe_trace_bo
++#include <trace/define_trace.h>
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 26b409e1b0f0..c2100d26b4e3 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -36,7 +36,7 @@
+ #include "xe_pt.h"
+ #include "xe_res_cursor.h"
+ #include "xe_sync.h"
+-#include "xe_trace.h"
++#include "xe_trace_bo.h"
+ #include "xe_wa.h"
+ #include "xe_hmm.h"
+ 
+-- 
+2.34.1
 
