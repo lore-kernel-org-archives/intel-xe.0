@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7A64C25B7E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7A8FC27C4F
 	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 00:33:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BB3F10FF55;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DD5810FE21;
 	Thu, 30 May 2024 00:33:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MfhpQ9s3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NFvCAeFZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C73E210ED68
- for <intel-xe@lists.freedesktop.org>; Thu, 30 May 2024 00:33:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2E5210FCDD
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 May 2024 00:33:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717029213; x=1748565213;
+ t=1717029211; x=1748565211;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=+sytI5tJt9veOJxfqsu3OmrMjNSejBexY+PNZsvepQk=;
- b=MfhpQ9s395SaKC9kYkA8c2B29RY7VtrB89IdOGH3ZPo1ofA4Vnx7dgA9
- 7K3ArRd3w+kz82hqk+zwwB5HfskVF0Ldx72l8zqSK6YGn1Lr4JSpnxjDM
- 87tStr3j27jvV7elYsQRq41VUWZCKI1MGhDUIGmTu3UOmUKzku+2nq4Uk
- F/uj893Nf9d+PNJdDQHsAvHoZ4RuGfgXg2xNh6jww6c46kJ3Cs4+A2osF
- Zi41bh8SIg49LvHcguKGa7Se5BbdrTNGQXYoSpQJv/cd0nkyS47GiuS1+
- ezWOZyrlfqbORsHpMahlta/1R384aQwgA+fD3upGS6awhsP+UyVnJdOvP A==;
-X-CSE-ConnectionGUID: Ix9yjV3SSA6eJ87n3Y/YJA==
-X-CSE-MsgGUID: 0i6dKJRxQzK2piI++JbLyQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="30975397"
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="30975397"
+ bh=NXAcD9c0Vrj0jsfXW1HTZ/6Uh2nAHt+6K+hgGU2R01g=;
+ b=NFvCAeFZ3zzKhfbH8VusxwguLOftHiQUWnzhm1Jm0Vgucjkkus30lZ72
+ CJ7ih8uwR4ICqGKlyKjqhhqmWUB7eEVOuL+nBisWPNTje0yssyq2xDTDT
+ LPDHaRMoWQ15/9lAP9DCW62O8AyoIIUTFEuthrJeL5fadKA3if217l/np
+ YUYw3tXQO0pJspq1cib/iI8wY5g4C44+D9hLLHA6q+LWnD/ajXAIMukmh
+ +U5hvpmcbAV6J2bN/wFSpg1a8s2xn0Osqr7kW63Cf05mK0cKUI42V/IWw
+ gFeAUx7wurHlFH1tVkhUgwbEOWJac7xdHME3P7Hpbd3TRYzwKwIXjSuIf Q==;
+X-CSE-ConnectionGUID: gm46I9xrSN2jnsOK5EwU/g==
+X-CSE-MsgGUID: IFdhhSDOSFuucT2dqql6Ug==
+X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="30975392"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="30975392"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 17:33:24 -0700
-X-CSE-ConnectionGUID: jOj8PpAGQUmT+2BEmxQvSw==
-X-CSE-MsgGUID: wTaOZK7FSUqJKRcvKFMl9w==
+ 29 May 2024 17:33:23 -0700
+X-CSE-ConnectionGUID: lxi1NN4zQ9OufUUz2C5u2w==
+X-CSE-MsgGUID: lgOMHBrYTGe8tLc9xgxLGA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="40088752"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="40088743"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 17:33:23 -0700
+ 29 May 2024 17:33:22 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v3 21/26] drm/xe: Retry BO allocation
-Date: Wed, 29 May 2024 20:47:27 -0400
-Message-Id: <20240530004732.84898-21-oak.zeng@intel.com>
+Subject: [CI v3 16/26] drm/xe:
+ s/xe_tile_migrate_engine/xe_tile_migrate_exec_queue
+Date: Wed, 29 May 2024 20:47:22 -0400
+Message-Id: <20240530004732.84898-16-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240530004732.84898-1-oak.zeng@intel.com>
 References: <20240530004732.84898-1-oak.zeng@intel.com>
@@ -67,53 +68,49 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matthew Brost <matthew.brost@intel.com>
 
-TTM doesn't support fair eviction via WW locking, this mitigated in by
-using retry loops in exec and preempt rebind worker. Extend this retry
-loop to BO allocation. Once TTM supports fair eviction this patch can be
-reverted.
+Engine is old nomenclature, replace with exec queue.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_migrate.c | 9 ++++-----
+ drivers/gpu/drm/xe/xe_migrate.h | 2 +-
+ 2 files changed, 5 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index d5823aab9fb8..d2763448ebaa 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1930,6 +1930,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
- 	struct xe_file *xef = to_xe_file(file);
- 	struct drm_xe_gem_create *args = data;
- 	struct xe_vm *vm = NULL;
-+	ktime_t end = 0;
- 	struct xe_bo *bo;
- 	unsigned int bo_flags;
- 	u32 handle;
-@@ -1995,11 +1996,14 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
- 		vm = xe_vm_lookup(xef, args->vm_id);
- 		if (XE_IOCTL_DBG(xe, !vm))
- 			return -ENOENT;
-+	}
-+
-+retry:
-+	if (vm) {
- 		err = xe_vm_lock(vm, true);
- 		if (err)
- 			goto out_vm;
- 	}
--
- 	bo = xe_bo_create_user(xe, NULL, vm, args->size, args->cpu_caching,
- 			       ttm_bo_type_device, bo_flags);
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index cccffaf3db06..384d33feac6a 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -84,15 +84,14 @@ struct xe_migrate {
+ #define MAX_PTE_PER_SDI 0x1FE
  
-@@ -2008,6 +2012,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ /**
+- * xe_tile_migrate_engine() - Get this tile's migrate engine.
++ * xe_tile_migrate_exec_queue() - Get this tile's migrate exec queue.
+  * @tile: The tile.
+  *
+- * Returns the default migrate engine of this tile.
+- * TODO: Perhaps this function is slightly misplaced, and even unneeded?
++ * Returns the default migrate exec queue of this tile.
+  *
+- * Return: The default migrate engine
++ * Return: The default migrate exec queue
+  */
+-struct xe_exec_queue *xe_tile_migrate_engine(struct xe_tile *tile)
++struct xe_exec_queue *xe_tile_migrate_exec_queue(struct xe_tile *tile)
+ {
+ 	return tile->migrate->q;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 951f19318ea4..a5bcaafe4a99 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -106,5 +106,5 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
  
- 	if (IS_ERR(bo)) {
- 		err = PTR_ERR(bo);
-+		if (xe_vm_validate_should_retry(NULL, err, &end))
-+			goto retry;
- 		goto out_vm;
- 	}
+ void xe_migrate_wait(struct xe_migrate *m);
  
+-struct xe_exec_queue *xe_tile_migrate_engine(struct xe_tile *tile);
++struct xe_exec_queue *xe_tile_migrate_exec_queue(struct xe_tile *tile);
+ #endif
 -- 
 2.26.3
 
