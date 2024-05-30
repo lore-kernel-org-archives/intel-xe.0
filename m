@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6892BC27C51
-	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 00:33:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B960EC27C50
+	for <intel-xe@archiver.kernel.org>; Thu, 30 May 2024 00:33:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D87710F256;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12F9710F0AF;
 	Thu, 30 May 2024 00:33:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KxLg27d/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IGiLmTDU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0F8910EAA9
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C6251123A9
  for <intel-xe@lists.freedesktop.org>; Thu, 30 May 2024 00:33:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1717029210; x=1748565210;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=0RZkghL0gJTreqNfBpg1kA+Nq3zeaJRZB1ktEY083uw=;
- b=KxLg27d/yidDYI2siGcjiNjQ9JS+xERiCki5i93LYCOJlDZ5VFPS2sJD
- 0t3I9Nvi9L1mBrVUVDcdlOkJxLloyWctSX9EYE0d3Y8/i5w1gs/kYAqwZ
- wzc5J1CrNtSanPDGOtTGrdRL+fucAukrJO5xGoCOYbcIG/E+MHr6l1hi9
- 1ZHuoIptIDkcmBADa/jIbdbXZCrgUGpMpAW+sG2u50CJBrD3hkdtv3IV3
- 4b6WXwQmmWo5K/l1djvCYDEqpw37c30CsKqoJ3FNrodKC2VatdrzKpfFf
- VqDXn5p+xngXAot5ahUiNdRzk6EjyzBAZpX8jDmtOAhBZqcFX6tD8a4z4 w==;
-X-CSE-ConnectionGUID: KVijIBfbTjWxlPHB66uoTA==
-X-CSE-MsgGUID: lT4ViV8bRNWOaGRxUUk9fQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="30975381"
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="30975381"
+ bh=3sVnceMl9jxZ+ecUv2+3br5arTnHXaNyqiH1qk1dpao=;
+ b=IGiLmTDUMu5rvrFF6lH5ocRof3QCcb923HedrPQ8UOUl/Fgsh5nZej1R
+ yTNg2WaNaLu1VPM6Oc7FwzbW+Ga76ojR91UADdnghJpzRL5znhTWufq+j
+ fmfEka5ULgYWTMgeIw2H2D0pDK1t4sUzJimo47mY1DMMZC0w9afzPplMy
+ mQThJVvn6gC5VGQXgC1iNbGD8sWm1aU5tugV0BNlc83NBHTFLBKxRdibi
+ RQ3KHi+uL3QVoHeew4jNyFhHJ2nwH2RD4jpCwCaxK9UPyCiiByKZOMpJs
+ cnFsHRQaDXIZd3PGuOsGq9sk8taA1/HP4GtH8x9m2vKQuHAegcMqOvW4t w==;
+X-CSE-ConnectionGUID: loeSnjwWR6yZqCJyuC5xNg==
+X-CSE-MsgGUID: AoCutndbTsGAqZqvd++bMA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="30975376"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="30975376"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 17:33:23 -0700
-X-CSE-ConnectionGUID: SZEAFp4xQ3+d6561KL/lCw==
-X-CSE-MsgGUID: BQh0Tez/RumM5LxdvU97Ng==
+ 29 May 2024 17:33:22 -0700
+X-CSE-ConnectionGUID: Zsqwl9+GQTu6iUE7xT0lFw==
+X-CSE-MsgGUID: ckJQJMkoT1yY3U16uOp84A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="40088735"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="40088728"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 May 2024 17:33:21 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI v3 10/26] drm/svm: introduce drm_mem_region concept
-Date: Wed, 29 May 2024 20:47:16 -0400
-Message-Id: <20240530004732.84898-10-oak.zeng@intel.com>
+Subject: [CI v3 05/26] iommu/dma: Prepare map/unmap page functions to receive
+ IOVA
+Date: Wed, 29 May 2024 20:47:11 -0400
+Message-Id: <20240530004732.84898-5-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240530004732.84898-1-oak.zeng@intel.com>
 References: <20240530004732.84898-1-oak.zeng@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,197 +66,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As its name indicates, a drm_mem_region represent a memory region on
-a drm device, e.g., a GPU's HBM memory.
+From: Leon Romanovsky <leonro@nvidia.com>
 
-In a memory region, we have address information of this region, from
-both CPU (hpa_base) and GPU (dpa_base) perspectives. It also has some
-interfaces for drm to callback driver to allocate/free memory from
-this region, migrate data to/from this memory region, get a pagemap
-owner of a memory region, and get the drm device which own the memory
-region
+Extend the existing map_page/unmap_page function implementations to get
+preallocated IOVA. In such case, the IOVA allocation needs to be
+skipped, but rest of the code stays the same.
 
-This is introduced for system allocator implementation, so the memory
-allocation and free interfaces are page based.
-
-A few helper functions are also introduced:
-1) drm_mem_region_pfn_to_dpa: calculate device physical address from
-   a page's pfn
-2) drm_page_to_mem_region: retrieve drm memory region that a page
-   resides in
-
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
 ---
- include/drm/drm_svm.h | 156 ++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 156 insertions(+)
- create mode 100644 include/drm/drm_svm.h
+ drivers/iommu/dma-iommu.c | 68 ++++++++++++++++++++++++++-------------
+ 1 file changed, 45 insertions(+), 23 deletions(-)
 
-diff --git a/include/drm/drm_svm.h b/include/drm/drm_svm.h
-new file mode 100644
-index 000000000000..2f8658538b4b
---- /dev/null
-+++ b/include/drm/drm_svm.h
-@@ -0,0 +1,156 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright Â© 2024 Intel Corporation
-+ */
-+
-+#include <linux/compiler_types.h>
-+#include <linux/memremap.h>
-+#include <linux/types.h>
-+
-+struct dma_fence;
-+struct drm_mem_region;
-+
-+/**
-+ * struct migrate_vec - a migration vector is an array of addresses,
-+ * each of which represents one page.
-+ * When it is system memory page, the address is a dmap-mapped address.
-+ * When it is vram page, the address is device physical address.
-+ */
-+struct migrate_vec {
-+	/**
-+	 * @mr: the memory region that pages reside.
-+	 * When it is system memory page, mr is NULL.
-+	 */
-+	struct drm_mem_region *mr;
-+	/** @npages: number of pages */
-+	u64 npages;
-+	/**
-+	 * @addr_vec: address vector
-+	 * each item in addr_vec is an address of a page
-+	 */
-+	union {
-+		/** @dma_addr: dma-mapped address of the page, only valid for system pages*/
-+		dma_addr_t dma_addr;
-+		/** @dpa: device physical address of the page, only valid for vram page*/
-+		phys_addr_t dpa;
-+	} addr_vec[1];
-+};
-+
-+/**
-+ * struct drm_mem_region_ops - memory region operations such as memory allocation
-+ * and migration etc. Driver is supposed to implement those operations.
-+ */
-+struct drm_mem_region_ops {
-+	/**
-+	 * @drm_mem_region_alloc_pages: Called from drm to driver to allocate
-+	 * device VRAM memory
-+	 * @mr: The memory region where to allocate device VRAM memory from
-+	 * @npages: number of pages to allocate
-+	 * @pfns: Used to return pfns of each page
-+	 */
-+	int (*drm_mem_region_alloc_pages) (struct drm_mem_region *mr,
-+						unsigned long npags, unsigned long *pfns);
-+	/**
-+	 * @drm_mem_region_free_page: Called from drm to free one page of device memory
-+	 * @page: point to the page to free
-+	 */
-+	void (*drm_mem_region_free_page) (struct page *page);
-+	/**
-+	 * @drm_mem_region_migrate: Called from drm to migrate memory from src to
-+	 * dst. Driver is supposed to implement this function using device hardware
-+	 * accelerators such as DMA. DRM subsystem call this function to migrate
-+	 * memory b/t system memory and device memory region
-+	 *
-+	 * @src_vec: source migration vector
-+	 * @dst_vec: destination migration vector
-+	 */
-+	struct dma_fence* (*drm_mem_region_migrate)(struct migrate_vec *src_vec,
-+			struct migrate_vec *dst_vec);
-+	/**
-+	 * @drm_mem_region_pagemap_owner: Return the pagemap owner of a memory
-+	 * region. Pagemap owner is the owner of the device memory. It is
-+	 * defined by device driver and opaque to drm layer. Drm uses pagemap
-+	 * owner to set up page migrations (see hmm function migrate_vma_setup)
-+	 * and range population (see hmm functio hmm_range_fault). Driver has
-+	 * the freedom to choose the right pagemap owner.
-+	 *
-+	 * @mr: the memory region which we want to get the page map owner
-+	 */
-+	void* (*drm_mem_region_pagemap_owner)(struct drm_mem_region *mr);
-+	/**
-+	 * @drm_mem_region_get_device: Return the drm device which has this memory
-+	 * region.
-+	 *
-+	 * @mr: the memory region
-+	 */
-+	struct drm_device* (*drm_mem_region_get_device)(struct drm_mem_region *mr);
-+};
-+
-+/**
-+ * struct drm_mem_region - memory region structure
-+ * This is used to describe a memory region in drm
-+ * device, such as HBM memory or CXL extension memory.
-+ *
-+ * drm_mem_region is converted from the xe_mem_region
-+ * concept. xe_mem_region is moved to drm layer and renamed
-+ * as drm_mem_region.
-+ *
-+ * drm_mem_region is supposed to be embedded in some driver struct such as
-+ * "struct xe_tile" or "struct amdgpu_device"
-+ */
-+struct drm_mem_region {
-+	/** @dev_private: device private data which is opaque to drm layer */
-+	void *dev_private;
-+	/** @dpa_base: This memory regions's DPA (device physical address) base */
-+	resource_size_t dpa_base;
-+	/**
-+	 * @usable_size: usable size of VRAM
-+	 *
-+	 * Usable size of VRAM excluding reserved portions
-+	 * (e.g stolen mem)
-+	 */
-+	resource_size_t usable_size;
-+	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
-+	struct dev_pagemap pagemap;
-+	/**
-+	 * @hpa_base: base host physical address
-+	 *
-+	 * This is generated when remap device memory as ZONE_DEVICE
-+	 */
-+	resource_size_t hpa_base;
-+	/**
-+	 * @mr_ops: memory region operation function pointers
-+	 */
-+	struct drm_mem_region_ops mr_ops;
-+};
-+
-+/**
-+ * drm_page_to_mem_region() - Get a page's memory region
-+ *
-+ * @page: a struct page pointer pointing to a page in vram memory region
-+ */
-+static inline struct drm_mem_region *drm_page_to_mem_region(struct page *page)
+diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
+index a9e84ae29762..7be2999169bd 100644
+--- a/drivers/iommu/dma-iommu.c
++++ b/drivers/iommu/dma-iommu.c
+@@ -822,7 +822,7 @@ static void __iommu_dma_free_iova(struct iommu_dma_cookie *cookie,
+ }
+ 
+ static void __iommu_dma_unmap(struct device *dev, dma_addr_t dma_addr,
+-		size_t size)
++			      size_t size, bool free_iova)
+ {
+ 	struct iommu_domain *domain = iommu_get_dma_domain(dev);
+ 	struct iommu_dma_cookie *cookie = domain->iova_cookie;
+@@ -841,17 +841,19 @@ static void __iommu_dma_unmap(struct device *dev, dma_addr_t dma_addr,
+ 
+ 	if (!iotlb_gather.queued)
+ 		iommu_iotlb_sync(domain, &iotlb_gather);
+-	__iommu_dma_free_iova(cookie, dma_addr, size, &iotlb_gather);
++	if (free_iova)
++		__iommu_dma_free_iova(cookie, dma_addr, size, &iotlb_gather);
+ }
+ 
+ static dma_addr_t __iommu_dma_map(struct device *dev, phys_addr_t phys,
+-		size_t size, int prot, u64 dma_mask)
++				  dma_addr_t iova, size_t size, int prot,
++				  u64 dma_mask)
+ {
+ 	struct iommu_domain *domain = iommu_get_dma_domain(dev);
+ 	struct iommu_dma_cookie *cookie = domain->iova_cookie;
+ 	struct iova_domain *iovad = &cookie->iovad;
+ 	size_t iova_off = iova_offset(iovad, phys);
+-	dma_addr_t iova;
++	bool no_iova = !iova;
+ 
+ 	if (static_branch_unlikely(&iommu_deferred_attach_enabled) &&
+ 	    iommu_deferred_attach(dev, domain))
+@@ -864,12 +866,14 @@ static dma_addr_t __iommu_dma_map(struct device *dev, phys_addr_t phys,
+ 
+ 	size = iova_align(iovad, size + iova_off);
+ 
+-	iova = __iommu_dma_alloc_iova(domain, size, dma_mask, dev);
++	if (no_iova)
++		iova = __iommu_dma_alloc_iova(domain, size, dma_mask, dev);
+ 	if (!iova)
+ 		return DMA_MAPPING_ERROR;
+ 
+ 	if (iommu_map(domain, iova, phys - iova_off, size, prot, GFP_ATOMIC)) {
+-		__iommu_dma_free_iova(cookie, iova, size, NULL);
++		if (no_iova)
++			__iommu_dma_free_iova(cookie, iova, size, NULL);
+ 		return DMA_MAPPING_ERROR;
+ 	}
+ 	return iova + iova_off;
+@@ -1034,7 +1038,7 @@ static void *iommu_dma_alloc_remap(struct device *dev, size_t size,
+ 	return vaddr;
+ 
+ out_unmap:
+-	__iommu_dma_unmap(dev, *dma_handle, size);
++	__iommu_dma_unmap(dev, *dma_handle, size, true);
+ 	__iommu_dma_free_pages(pages, PAGE_ALIGN(size) >> PAGE_SHIFT);
+ 	return NULL;
+ }
+@@ -1063,7 +1067,7 @@ static void iommu_dma_free_noncontiguous(struct device *dev, size_t size,
+ {
+ 	struct dma_sgt_handle *sh = sgt_handle(sgt);
+ 
+-	__iommu_dma_unmap(dev, sgt->sgl->dma_address, size);
++	__iommu_dma_unmap(dev, sgt->sgl->dma_address, size, true);
+ 	__iommu_dma_free_pages(sh->pages, PAGE_ALIGN(size) >> PAGE_SHIFT);
+ 	sg_free_table(&sh->sgt);
+ 	kfree(sh);
+@@ -1134,9 +1138,11 @@ static void iommu_dma_sync_sg_for_device(struct device *dev,
+ 			arch_sync_dma_for_device(sg_phys(sg), sg->length, dir);
+ }
+ 
+-static dma_addr_t iommu_dma_map_page(struct device *dev, struct page *page,
+-		unsigned long offset, size_t size, enum dma_data_direction dir,
+-		unsigned long attrs)
++static dma_addr_t __iommu_dma_map_pages(struct device *dev, struct page *page,
++					unsigned long offset, dma_addr_t iova,
++					size_t size,
++					enum dma_data_direction dir,
++					unsigned long attrs)
+ {
+ 	phys_addr_t phys = page_to_phys(page) + offset;
+ 	bool coherent = dev_is_dma_coherent(dev);
+@@ -1144,7 +1150,7 @@ static dma_addr_t iommu_dma_map_page(struct device *dev, struct page *page,
+ 	struct iommu_domain *domain = iommu_get_dma_domain(dev);
+ 	struct iommu_dma_cookie *cookie = domain->iova_cookie;
+ 	struct iova_domain *iovad = &cookie->iovad;
+-	dma_addr_t iova, dma_mask = dma_get_mask(dev);
++	dma_addr_t addr, dma_mask = dma_get_mask(dev);
+ 
+ 	/*
+ 	 * If both the physical buffer start address and size are
+@@ -1188,14 +1194,23 @@ static dma_addr_t iommu_dma_map_page(struct device *dev, struct page *page,
+ 	if (!coherent && !(attrs & DMA_ATTR_SKIP_CPU_SYNC))
+ 		arch_sync_dma_for_device(phys, size, dir);
+ 
+-	iova = __iommu_dma_map(dev, phys, size, prot, dma_mask);
+-	if (iova == DMA_MAPPING_ERROR && is_swiotlb_buffer(dev, phys))
++	addr = __iommu_dma_map(dev, phys, iova, size, prot, dma_mask);
++	if (addr == DMA_MAPPING_ERROR && is_swiotlb_buffer(dev, phys))
+ 		swiotlb_tbl_unmap_single(dev, phys, size, dir, attrs);
+-	return iova;
++	return addr;
+ }
+ 
+-static void iommu_dma_unmap_page(struct device *dev, dma_addr_t dma_handle,
+-		size_t size, enum dma_data_direction dir, unsigned long attrs)
++static dma_addr_t iommu_dma_map_page(struct device *dev, struct page *page,
++				     unsigned long offset, size_t size,
++				     enum dma_data_direction dir,
++				     unsigned long attrs)
 +{
-+	return container_of(page->pgmap, struct drm_mem_region, pagemap);
++	return __iommu_dma_map_pages(dev, page, offset, 0, size, dir, attrs);
 +}
 +
-+/**
-+ * drm_mem_region_pfn_to_dpa() - Calculate page's dpa from pfn
-+ *
-+ * @mr: The memory region that page resides in
-+ * @pfn: page frame number of the page
-+ *
-+ * Returns: the device physical address of the page
-+ */
-+static inline u64 drm_mem_region_pfn_to_dpa(struct drm_mem_region *mr, u64 pfn)
++static void __iommu_dma_unmap_pages(struct device *dev, dma_addr_t dma_handle,
++				    size_t size, enum dma_data_direction dir,
++				    unsigned long attrs, bool free_iova)
+ {
+ 	struct iommu_domain *domain = iommu_get_dma_domain(dev);
+ 	phys_addr_t phys;
+@@ -1207,12 +1222,19 @@ static void iommu_dma_unmap_page(struct device *dev, dma_addr_t dma_handle,
+ 	if (!(attrs & DMA_ATTR_SKIP_CPU_SYNC) && !dev_is_dma_coherent(dev))
+ 		arch_sync_dma_for_cpu(phys, size, dir);
+ 
+-	__iommu_dma_unmap(dev, dma_handle, size);
++	__iommu_dma_unmap(dev, dma_handle, size, free_iova);
+ 
+ 	if (unlikely(is_swiotlb_buffer(dev, phys)))
+ 		swiotlb_tbl_unmap_single(dev, phys, size, dir, attrs);
+ }
+ 
++static void iommu_dma_unmap_page(struct device *dev, dma_addr_t dma_handle,
++				 size_t size, enum dma_data_direction dir,
++				 unsigned long attrs)
 +{
-+	u64 dpa;
-+	u64 offset;
-+
-+	BUG_ON((pfn << PAGE_SHIFT) < mr->hpa_base );
-+	BUG_ON((pfn << PAGE_SHIFT) >=  mr->hpa_base + mr->usable_size);
-+	offset = (pfn << PAGE_SHIFT) - mr->hpa_base;
-+	dpa = mr->dpa_base + offset;
-+
-+	return dpa;
++	__iommu_dma_unmap_pages(dev, dma_handle, size, dir, attrs, true);
 +}
++
+ /*
+  * Prepare a successfully-mapped scatterlist to give back to the caller.
+  *
+@@ -1515,13 +1537,13 @@ static void iommu_dma_unmap_sg(struct device *dev, struct scatterlist *sg,
+ 	}
+ 
+ 	if (end)
+-		__iommu_dma_unmap(dev, start, end - start);
++		__iommu_dma_unmap(dev, start, end - start, true);
+ }
+ 
+ static dma_addr_t iommu_dma_map_resource(struct device *dev, phys_addr_t phys,
+ 		size_t size, enum dma_data_direction dir, unsigned long attrs)
+ {
+-	return __iommu_dma_map(dev, phys, size,
++	return __iommu_dma_map(dev, phys, 0, size,
+ 			dma_info_to_prot(dir, false, attrs) | IOMMU_MMIO,
+ 			dma_get_mask(dev));
+ }
+@@ -1529,7 +1551,7 @@ static dma_addr_t iommu_dma_map_resource(struct device *dev, phys_addr_t phys,
+ static void iommu_dma_unmap_resource(struct device *dev, dma_addr_t handle,
+ 		size_t size, enum dma_data_direction dir, unsigned long attrs)
+ {
+-	__iommu_dma_unmap(dev, handle, size);
++	__iommu_dma_unmap(dev, handle, size, true);
+ }
+ 
+ static void __iommu_dma_free(struct device *dev, size_t size, void *cpu_addr)
+@@ -1566,7 +1588,7 @@ static void __iommu_dma_free(struct device *dev, size_t size, void *cpu_addr)
+ static void iommu_dma_free(struct device *dev, size_t size, void *cpu_addr,
+ 		dma_addr_t handle, unsigned long attrs)
+ {
+-	__iommu_dma_unmap(dev, handle, size);
++	__iommu_dma_unmap(dev, handle, size, true);
+ 	__iommu_dma_free(dev, size, cpu_addr);
+ }
+ 
+@@ -1632,7 +1654,7 @@ static void *iommu_dma_alloc(struct device *dev, size_t size,
+ 	if (!cpu_addr)
+ 		return NULL;
+ 
+-	*handle = __iommu_dma_map(dev, page_to_phys(page), size, ioprot,
++	*handle = __iommu_dma_map(dev, page_to_phys(page), 0, size, ioprot,
+ 			dev->coherent_dma_mask);
+ 	if (*handle == DMA_MAPPING_ERROR) {
+ 		__iommu_dma_free(dev, size, cpu_addr);
 -- 
 2.26.3
 
