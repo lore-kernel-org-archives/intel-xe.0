@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83250C25B75
-	for <intel-xe@archiver.kernel.org>; Fri, 31 May 2024 14:17:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3BB4C25B75
+	for <intel-xe@archiver.kernel.org>; Fri, 31 May 2024 14:17:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3169010E645;
-	Fri, 31 May 2024 14:17:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 972C110E002;
+	Fri, 31 May 2024 14:17:54 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15AE489BA3;
- Fri, 31 May 2024 14:17:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2B5B10E002;
+ Fri, 31 May 2024 14:17:52 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_MAINTAINERS=3A_Updat?=
- =?utf-8?q?e_Xe_driver_maintainers?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_MAINTAINERS=3A_Update_Xe_?=
+ =?utf-8?q?driver_maintainers?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 31 May 2024 14:17:40 -0000
-Message-ID: <171716506008.2241947.18442820637989895239@8e613ede5ea5>
+Date: Fri, 31 May 2024 14:17:52 -0000
+Message-ID: <171716507279.2241947.7945493067434712657@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240531141051.504610-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20240531141051.504610-1-thomas.hellstrom@linux.intel.com>
@@ -48,9 +48,31 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 71fb583af6de drm-tip: 2024y-05m-31d-13h-29m-19s UTC integration manifest
-=== git am output follows ===
-Applying: MAINTAINERS: Update Xe driver maintainers
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 242e7ff47b6d117ee6f5b431cf4cf11bfff8fa31
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Fri May 31 16:10:51 2024 +0200
+
+    MAINTAINERS: Update Xe driver maintainers
+    
+    Add Rodrigo Vivi as an Xe driver maintainer.
+    
+    Cc: David Airlie <airlied@gmail.com>
+    Cc: Daniel Vetter <daniel@ffwll.ch>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: dri-devel@lists.freedesktop.org
+    Cc: linux-kernel@vger.kernel.org
+    
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch 71fb583af6dea41793b38d947a991f06156f7f11 drm-intel
+242e7ff47b6d MAINTAINERS: Update Xe driver maintainers
 
 
