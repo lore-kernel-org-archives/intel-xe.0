@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E814C25B75
-	for <intel-xe@archiver.kernel.org>; Fri, 31 May 2024 11:05:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00195C25B75
+	for <intel-xe@archiver.kernel.org>; Fri, 31 May 2024 11:06:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEFE710E485;
-	Fri, 31 May 2024 11:05:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BFF110E1D2;
+	Fri, 31 May 2024 11:06:04 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02FE910E40B;
- Fri, 31 May 2024 11:05:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B25AE10E1D2;
+ Fri, 31 May 2024 11:06:01 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xe2lpm=3A_Add?=
- =?utf-8?q?_permanent_Wa=5F14020756599_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/xe2lpm=3A_Add_perm?=
+ =?utf-8?q?anent_Wa=5F14020756599_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 31 May 2024 11:05:50 -0000
-Message-ID: <171715355001.2241151.7305752370994193496@8e613ede5ea5>
+Date: Fri, 31 May 2024 11:06:01 -0000
+Message-ID: <171715356172.2241151.12238335219251427887@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240531110022.551477-1-tejas.upadhyay@intel.com>
 In-Reply-To: <20240531110022.551477-1-tejas.upadhyay@intel.com>
@@ -48,9 +48,36 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 31f09e05d45e drm-tip: 2024y-05m-31d-10h-53m-53s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe2lpm: Add permanent Wa_14020756599
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c83eab3aaf8388086f6daac67acfa4f74904802b
+Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Date:   Fri May 31 16:30:22 2024 +0530
+
+    drm/xe/xe2lpm: Add permanent Wa_14020756599
+    
+    For xe2_lpm Wa_14020756599 is applied to all steppings and
+    when RCS is present on graphics GT.
+    
+    V4:
+      - Make it part of lrc wa
+      - Check for RCS as rtp rule
+    V3(MattR):
+      - Rename rtp api name
+      - Use MEDIA_VERx100
+    V2:
+      - Remove engine filter video decode
+      - Fix typo GRAPHICS/MEDIA/s - Himal
+    
+    Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
++ /mt/dim checkpatch 31f09e05d45e315e17cafb2ab24c7ec2879466e8 drm-intel
+c83eab3aaf83 drm/xe/xe2lpm: Add permanent Wa_14020756599
 
 
