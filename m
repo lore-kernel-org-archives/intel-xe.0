@@ -4,168 +4,166 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6054C27C4F
-	for <intel-xe@archiver.kernel.org>; Fri, 31 May 2024 16:32:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36990C25B75
+	for <intel-xe@archiver.kernel.org>; Fri, 31 May 2024 16:36:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2620610E0E4;
-	Fri, 31 May 2024 16:32:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DCF210E0E4;
+	Fri, 31 May 2024 16:36:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k45jcRxZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WCbKZeBW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 104B210E0E4
- for <intel-xe@lists.freedesktop.org>; Fri, 31 May 2024 16:32:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF6EB10E0E4
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 May 2024 16:36:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717173124; x=1748709124;
+ t=1717173405; x=1748709405;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=A80m08I0/hmc73n+xeHT9t4+0E/KJNID44dTfH3o/eg=;
- b=k45jcRxZLMGVrgdqSOTVHUndfu64Clg+C4CWAZe6gvgkZrGm+Q8JVdeQ
- 1dzOsICMT5txJVlkb/F3y9r5VvymZWily9S8deDRqDnXiWwYKeHU3hHbz
- bO768xqLWPn5CJL3QyNJxCQ7L4+G/gbzeoB3RdvgPlvyplKPX693LAbvh
- TZqx17LnxI9hysQPTN19DG3OG3UcHCoFmyKJrlIbDIAmiLzvjnwGkFPTL
- vUlP6zMrsPsVRan4c9KB5sWE8aQgsJREgjYD6Kpm7ZE9igFj9pFACCdFa
- E5ujNGNZwaafwednJGTxTgzuI5CUpdo+ehsrlPlJRnOM1HnGaT/xLjKtr g==;
-X-CSE-ConnectionGUID: po0HLrTjRF+oviIRYh+T7A==
-X-CSE-MsgGUID: KbU3lFWvR2C34X1GuebVTg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11089"; a="17571505"
-X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="17571505"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2024 09:31:42 -0700
-X-CSE-ConnectionGUID: hrAzxsZKQd2arQmjsl/ROQ==
-X-CSE-MsgGUID: og3DY2ibTUi8y7LJh5biLA==
+ bh=fVLKyV+AgmZ2PXRjZBC71o90daTSScc2llUkaPie/rU=;
+ b=WCbKZeBWBkoyFy9CfR9iulkj0QKJiOBj9zMr/y63tkzeDdtqEbniuU3o
+ vdCSNNxSMXBri1K2haXLGYTRSQZlrLuAuvqGIHmkZuBVH9miS6uSGG0Z9
+ Uuv1NNGKpyIrcNpJDTN6RQpsmO0Xx44eqLPap9+SiGHKxKMNO888BRYSw
+ LtDQT5gshKZUTu1SOX+3r9U7OUEwNhomkC9NR33+UbYyFxlRqkfD4YZp6
+ SNNu+0GkOwuq67RLOGJbXZjpmPgMKv9nyUwDlhiHghOpkztRuXPJd+JRV
+ kizzc86bBsRfCBgfI4Y2r4XQMyIwqLLVQG+sbIR4xugduLHLV5ALTbvwh w==;
+X-CSE-ConnectionGUID: rUyqvnfQRBeZIfNhIIURlg==
+X-CSE-MsgGUID: 7n8pRDcFTKifPba9oXGa5g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11089"; a="24845640"
+X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="24845640"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2024 09:36:44 -0700
+X-CSE-ConnectionGUID: 8DzE4FucTIePcCQqs2JAjg==
+X-CSE-MsgGUID: vDnOiqXmS7yQSqZ3U7CVVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="67412646"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 31 May 2024 09:31:43 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="40650050"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 31 May 2024 09:36:44 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 31 May 2024 09:31:42 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2507.39; Fri, 31 May 2024 09:36:43 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 31 May 2024 09:31:41 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 31 May 2024 09:31:41 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.40) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Fri, 31 May 2024 09:36:43 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 31 May 2024 09:31:41 -0700
+ 15.1.2507.39; Fri, 31 May 2024 09:36:43 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jY8hljwedWqUNxOqEMXg/ZjSpSHEirQ9gZJ36NRwqw2Qr7DtbBLkbNxktZZu+pu/2bzkOmHRilOH/1zb6QHuXZAOjQiruf/B83aAX68Nf9oZ+gOMCvgNk2OlYEqO5v/TgE9PWHERm5ygDJNwqIxGJzcRSPCqGemxn9VUAf/zF8XSR/lhJPiUeF9+P2UJHRnmjaf57SxO3b1dxpczPfRez4k1hQq8wvTZvq6kAcL7M+WQxLlRa2jhPzqNTPVhYyovqC/gJHA6FbK2oOlD96R06bmzcvcyYlXt5TfGV65IXwhBIMuaxjg6a/IRtswom3BQcuSQLOq53iT3Or6VvZtnlg==
+ b=hn78egdRLfIFr/E4eWEZ6ZbmrliswV3DT2TLmRYgruWnJXSpNXigIi2BOgO5tiMHuZRlkt7SyUv1c05LRHSGM7qzXAoQPkgFthFr+Pe0yMst9ib0LkKSxa3kzCnOxDzjTdH+pXELgXtmHDsaQx2otV7pIIFLP/08MakPRtnLvjw6uL9A3egAzCHDfq44W8fgbTFLs4dQlX4J4+ODQkUuYwkD4SC3d5QDISsC614vkFqqYIkKYv2ATP3aLCF7+MfJp5DYIUH7HT0Om5NT+6aKeBUXkHIdtAfnlcyqa8M4l3tMKMbNgHBSiYRx61PlCjZjyIwJo86KcphL94RSEMliWw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eUbPMUp085wZLa8j3oTF4jDz4VfkaxTyNUOr2ut42o4=;
- b=CXTmf8oaDzQ0ycHySSB2fgxclEqdTkbeg72VU+ka/QPY+2mTkATf/ugEppoyF7hDfQcfD6feY3Joac/nrew3k5fReXqvjFyJGwI2BcG6xPbWQZtxgDdqx7dPlxXfglKj8AZbPz6fcWshSsp9mg3m6tYZukCH4yOnIkGBiCkPA1g33FOh3qzo6DkK0RdCIimQ9EYMof8xNDYOiu9FbnTuhgS/uBwxHK407IbPxQcWkK7/U5DpqxHstLcifGB5mDKBZrPDPyaS8l2vF44kergAiVkwE7ItvRg0VV+sp1bRImPQoYn8Yv1xIxpnjK2ITgd2y6H9unMA905tN2Sp11kfNQ==
+ bh=pas+vLytX4ZipOmDepS/G+BvlljfWyvRutu5fml1hJA=;
+ b=EAJGAij3eF4ZBRn+vBHABYH3VofElo/vK+PjsZq/6MA350GLBA6UzKyk4KJj5RHQcoo5ZjwmnG/TWjUjCtzVYffs+AL/hF0SIvnr7Oc+qYM1INhyXBNqfWBaIiIQanYaFYric17SrB/yaXmU12kwzc441CZEYIYUYSwxT5ri6uM5v8YrYDXETCihGzm19bHq/6piNCaT/nYQ/H169bKq2CZKHoPYTdgSZFFD1Hh8RGozSFLKQF7+uieB4TDVW54xyJm++4QIwByhSsoItUZiqQNwgs27SMz/AkBFOC2DrbrULbzsyAVCYQEV+O1h79uD3UPLnZiBj7dhRlUVH+7Xag==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by DM4PR11MB6285.namprd11.prod.outlook.com (2603:10b6:8:a8::21) with
+Received: from PH7SPRMB0092.namprd11.prod.outlook.com (2603:10b6:510:2b1::6)
+ by IA0PR11MB8420.namprd11.prod.outlook.com (2603:10b6:208:482::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.21; Fri, 31 May
- 2024 16:31:39 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::cf6f:eb9e:9143:f413]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::cf6f:eb9e:9143:f413%4]) with mapi id 15.20.7633.018; Fri, 31 May 2024
- 16:31:38 +0000
-Date: Fri, 31 May 2024 12:31:34 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.25; Fri, 31 May
+ 2024 16:36:39 +0000
+Received: from PH7SPRMB0092.namprd11.prod.outlook.com
+ ([fe80::2ad4:4a5:b333:6ff7]) by PH7SPRMB0092.namprd11.prod.outlook.com
+ ([fe80::2ad4:4a5:b333:6ff7%2]) with mapi id 15.20.7633.018; Fri, 31 May 2024
+ 16:36:39 +0000
+Date: Fri, 31 May 2024 16:36:10 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, Paulo Zanoni <paulo.r.zanoni@intel.com>, 
  Francois Dugast <francois.dugast@intel.com>, Thomas
  =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
 Subject: Re: [PATCH] drm/xe: Fix missing runtime outer protection for
  ggtt_remove_node
-Message-ID: <Zln7ZnxjwWjbkABK@intel.com>
+Message-ID: <Zln8epd2JBtrLBOE@DUT025-TGLU.fm.intel.com>
 References: <20240531160205.206604-1-rodrigo.vivi@intel.com>
  <Zln3o08O5Oz+SwQ3@DUT025-TGLU.fm.intel.com>
+ <Zln7ZnxjwWjbkABK@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <Zln3o08O5Oz+SwQ3@DUT025-TGLU.fm.intel.com>
-X-ClientProxiedBy: SJ2PR07CA0010.namprd07.prod.outlook.com
- (2603:10b6:a03:505::27) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+In-Reply-To: <Zln7ZnxjwWjbkABK@intel.com>
+X-ClientProxiedBy: BYAPR06CA0009.namprd06.prod.outlook.com
+ (2603:10b6:a03:d4::22) To PH7SPRMB0092.namprd11.prod.outlook.com
+ (2603:10b6:510:2b1::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DM4PR11MB6285:EE_
-X-MS-Office365-Filtering-Correlation-Id: cc109c79-79c2-49fb-1527-08dc818f2550
+X-MS-TrafficTypeDiagnostic: PH7SPRMB0092:EE_|IA0PR11MB8420:EE_
+X-MS-Office365-Filtering-Correlation-Id: d5c60e6e-cf09-40eb-c076-08dc818fd84c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|1800799015|376005;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?k7MvHVb68vPKCZ7TL1Tdj9krz3IGuT/UtQxtAigsGEvfarBdsXRohZ9jBn?=
- =?iso-8859-1?Q?wZpgw3+gg+kwwpMlCXP1QYgexxLyksfRw5ze+Q0sSAE13HyXxZ8Gu4xBdm?=
- =?iso-8859-1?Q?QuVgryvnwSuCK4FdsvG0X4mrDsT3F/Z+nEg23EVJk01kUGYMr2jod3d8KZ?=
- =?iso-8859-1?Q?Ca9dKF8wnE5glyELJC3sb/OlZRU/1cLjCBN39fpcvMWR0zQeEkpbalRyIf?=
- =?iso-8859-1?Q?SQ4YdCCj9MPKG5E34/zDKbLdHissF/nEDxon35NDhaaqfBxcExTfOluHdr?=
- =?iso-8859-1?Q?xud8AC1sVg1PW9m1XeMZXFNHPKOPX6XIcBPaylwbSqxuj1cGBLQmKia3CP?=
- =?iso-8859-1?Q?kxduhv2KD7PtIeJxmkCo0esnCXR3xkzUGgjMrFG07qYvwouwK87SnzvDDg?=
- =?iso-8859-1?Q?bxxHnR+HUZVc7guxO7G6tXWeObJZ+Z+z3ZDFlUIzxQsM1UKBTVjftcnZu6?=
- =?iso-8859-1?Q?k1uK6bfuWqufScsOH7puYccyRsgc2KTm4y70iO1U+8RzStoOffM5GJdNno?=
- =?iso-8859-1?Q?KzxWyLsgyWZAl/cJKE+GPSmucZE7lNep+jo8OuR7DH+i/oBtkMIheokDMd?=
- =?iso-8859-1?Q?VxIGckBmJTXN6nt3RUL78lf2b7JHtKqBCHDmypIVMgFa//iv8lub1t4Zqi?=
- =?iso-8859-1?Q?RAheBXaZLtB1N5cV5DTy2NLI017lwVabEx1WiZU8zDMAPCb8BirZd7XVqy?=
- =?iso-8859-1?Q?X/yFLRLwl8FVYB0vWCYUk+rLMJLKEMTIiNX2KbWK0bcH1CrACw/ks7HoG+?=
- =?iso-8859-1?Q?QuwWB8wAwuKc7osJZJnG2Vo6ksGt2uj9QkYfy6SpYo40EEb5c/mlrg3pwa?=
- =?iso-8859-1?Q?v4irbv+mRCbr/VXQYRieyiADam6ATdUjFJVyMj4FgW0yutae8NXufBiIS2?=
- =?iso-8859-1?Q?Wxk4yXHccheynxT+lrTVxC+AQ1xEEPX1ry20p4s8ZMm+aLobF4kCj5lzmd?=
- =?iso-8859-1?Q?MDLuzqJqjsL9Rzgkf67D/lZzD5JU6N3tCA+aNHI0ZnvxppRrhaYBttUF+2?=
- =?iso-8859-1?Q?1AKwvVzrRsPyj0N3KglDTN7+/1jJj4IVTt0tsa165QY2QfBie37X0ocGKe?=
- =?iso-8859-1?Q?jx9Hk22Lll5rD7q4Rqffq1YXm9Mc+mHpaUaJLGee/vRb42+XglIK3TUVxa?=
- =?iso-8859-1?Q?y0uVAfRPFceMMDmmDGOOdtmntZI6DuDO9xI1W8iOfYrPKbEr+Nc2/MnKRU?=
- =?iso-8859-1?Q?lWoxU7j9ds1Ci50u2IWnkXxG/q/XXoNGvHE58QussSq+DpAIDhIR+qMBB5?=
- =?iso-8859-1?Q?XwgwgYhuAN6t5C//4yqYhMyuBOwFlVN0rhLs7Fcl8=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|366007|376005;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?rguB2Epn0Zlz+bUw0/WobMfucBIxgPHp/K+cznndacQntlAXA6RwCcRM75?=
+ =?iso-8859-1?Q?69KlvNJzWkxdBEGNloAIsvvi9ndwaaQy63B8iOsWUJNVQxxm3C74TsmtHn?=
+ =?iso-8859-1?Q?s4J8AuVwmeSNiBAlKxyR/yhp8Cu+O/OFpDZfoAg27azEuxtuJq2YXG6amq?=
+ =?iso-8859-1?Q?ydqDbS83E51P0ULy1QwtLM/ibRLVk6xTVsqiwaJJ3MIK2fgKsBm65le6AD?=
+ =?iso-8859-1?Q?lIKJFh5SOF6wnZJWl8q6DOCTyYifqO8VVlw8gsOepu6VV+S9O2u2hw36TC?=
+ =?iso-8859-1?Q?LMkGSS3uDvy3TPwihBy9Jp+wYtmOj/NRWFT4xHHLhYB44xNr57W0uV9JWS?=
+ =?iso-8859-1?Q?FZhbiczq/88AoeS6XaQJtN3e9cWYZMYKxrAKXXAcRWzDVDrfcs/zvMwW2J?=
+ =?iso-8859-1?Q?YfLSsD7X24B1ilJCxX4IVCT4sVWTjZpevsU3183jctOWvfkLCvRwVn0wlj?=
+ =?iso-8859-1?Q?2XOaZLz01sJWZV4J1mRoxCoPgZ9l1tJv7zNyJcG8nqUq472dCM+A9w80d1?=
+ =?iso-8859-1?Q?q8YCUjhmEwLMXg4ijnwGWBtZx7JCjizpPxIYPhQhsz9si+k6GiPV8ZlkPn?=
+ =?iso-8859-1?Q?to9IcqJkheLF2atIMQ0QtK5Qg8B50eT7n+C2nQ2yacKT+UI7MV+Rv7bNqh?=
+ =?iso-8859-1?Q?80u+yVn//JbXY42nN9obfMRC5e/Zm29537isvK4kzdXvC2+42XV+VjBKE6?=
+ =?iso-8859-1?Q?0vfjZVUjn44Nmdbb4danq45KT8zL14jn7SpOsBsPANMHGZMzumEOJywIrR?=
+ =?iso-8859-1?Q?HwxzYMTYF6jMglIBDBUOGss/4yflmKKeBPl7SpnqMXAJyfdvaiNR6E62lS?=
+ =?iso-8859-1?Q?53pLrkvMPt++LPIgJrVS72qsY1b83w71WgcP4YlC6JvGlf2dhFpBmLwfVY?=
+ =?iso-8859-1?Q?VRYYO47XEtnyWhNpn+6yHJq2LlqEJ49nwwaTVYjDSF7Cb5nd8NbfReTogI?=
+ =?iso-8859-1?Q?yvxxQUp0vy1X0oSmoXjyptXUAOwCu0uGQ3geN3fUJBJ/JjRP/kSnD6koeE?=
+ =?iso-8859-1?Q?iYp42NCFQbsz7n1w92yVOGKPh89vJYtlAeWBwK1TUGxHKvZc9aoJCaX9JG?=
+ =?iso-8859-1?Q?Uc0j9i5jlWnsIH4xVNq/ef2sPF3lmqxq/5y9DfAKsv6iB1HBX41+mi9Zi9?=
+ =?iso-8859-1?Q?kl9z/DOZ/x44Zt1UmUjnhWBOFf48daMdBP6s5fm6GQLjQu7ZYkcr0y5uOV?=
+ =?iso-8859-1?Q?5UgBPJjLggYa9SFKKE5BLc5SglLaYYsG1R5oe1chxm3ryyiTdfx9nSSh2i?=
+ =?iso-8859-1?Q?aXK8ItbUV+trOK+0nSI4TRw6zeM5zRQpS5oOgj1iA=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7SPRMB0092.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?sRDpuMwTmINOx9kSOYzScUtZQ3NHhJutCdwswwocJINd81r2Rp1yCD9sT9?=
- =?iso-8859-1?Q?LFcI1T9gqhUcRZFRp9Iya9xwUyb0tOIdYAlvOFZVMR/z2BM+cCSFkC2qIj?=
- =?iso-8859-1?Q?p4eWkeYMLeCGr6sFGi3iDaZCAMIUJhWqRrNea+KthWD5MjNpQ+baIj9Rv8?=
- =?iso-8859-1?Q?veP0V7BR2Dr041W1WlyAsOS87VmXB5sFC5YzTLnNKCtZEeDm6EIYc+jshQ?=
- =?iso-8859-1?Q?9wBtDw3WjUU4WXDDxumf3t0U89rnlAmoGS4wdguExEFOV+sV9ISdDvGONy?=
- =?iso-8859-1?Q?x1+I3IYaH4YUhCggNkRvtgaBM+ImdFgXw9Vp3Qfbdxr4+njntEfH1I99sr?=
- =?iso-8859-1?Q?0Q5PBl4221FlWsMINJ4cmy2u1YevwN8Xil8EFFTdbasJuC02J2I10MUJDM?=
- =?iso-8859-1?Q?d5ZtZI6coGo+6Fy1LQRva7e6Nk75Bt0sN+gr/DJUx06mXXXU4ILRjihgkD?=
- =?iso-8859-1?Q?gd9jUp5w6KhKts9VKCQswRMZruDKESObytXxHruISTf+anR2mCcRVLzEFD?=
- =?iso-8859-1?Q?b0MTp7KAABYxgJ5QXrttETaHKDD0RBbtLAeNqYhCmATg3sYbNPA5fzR2qV?=
- =?iso-8859-1?Q?xw+s6FB78lz8/oY3x5+yEVg4TjtA20eqvlVbOrjPxKZ6qu++f120xnTW+H?=
- =?iso-8859-1?Q?su/O4DPX77SqLgXVBDAcrgEuuRmHcAZccR1uHX9KqBYIQuWASGFLuohRnD?=
- =?iso-8859-1?Q?9BDHUGkK1obOdvKyKury4i9+5f4T+OvulfLODLhIwLC1UXNX/FFhUGJT9r?=
- =?iso-8859-1?Q?Im6TVftlJSi12YmBis5BVoW85+yEQwAAzeXP+0eiDK8RfN82R0oivwXP5I?=
- =?iso-8859-1?Q?3AzFEX/rqaNJvTHjcxZtQp4QqdgTRFCBFk/vFiTG5P/WwD0xoyPvVvmDvu?=
- =?iso-8859-1?Q?SmZw/lDovHvJn5qoHnZJKOBpS9vVut/qxDjts/GeSRBebO9V3qT1vkfkF5?=
- =?iso-8859-1?Q?7GXWbcvgt5xttzLzGbllh0o5mcwkLRRMzOylBfk9g51hpvcJzdU/Ixr9sm?=
- =?iso-8859-1?Q?dShrSPNj5aRon+0j8tlcCrRiZc4tfy6DSTmsglDR3yLNR9jkHJD5muwqqk?=
- =?iso-8859-1?Q?+looh3nbl8RfhErCREMaMhkOHhPOxzi+M8qeCZTR6/VbhLk7Wx2foiyoJH?=
- =?iso-8859-1?Q?wriBPR22y51lwZ5tLpXFE6a0Vv67G7NHOOWSiszYplmMr947z6T9ypR7nz?=
- =?iso-8859-1?Q?YAKwVNn7iM6GbT6pENPB7VNBjJqA/YL8uu09Rj1FVeDbrjlEZpBU1kg7ri?=
- =?iso-8859-1?Q?0Zb7+Lg0kMBUVTxjK9qX1JHOiSYxvp3JxMxzE+Ld7zNHODK/7aBaoeO/Q8?=
- =?iso-8859-1?Q?JI36cy83pbP7aakb33IQoOsBLch+uND4Qc0ENm63XKMoahTLa3RHc3rNP8?=
- =?iso-8859-1?Q?8V9Z2pqxxczMq+E1cLeOUGvjOASYJv6xquookQ8jH9sTLjzswaJAl2J1h+?=
- =?iso-8859-1?Q?fulWML4mmlxw8yyMuORyJJSYnCgVW1IwROvJwWlbnBlZEMDxYkk39BTrcd?=
- =?iso-8859-1?Q?IsBVaF1BfZyq0XtGEcFrPo5WqaPAGIsrvGZUY3ePISqsltogkxuAbXBdPs?=
- =?iso-8859-1?Q?++QguQLRTh9c+BlO6tV1DSSuiZ14hS1SPp/zlnZFrI0X32t5OanhXEIVZv?=
- =?iso-8859-1?Q?2Gt0wxtdcrd9piJfv3vsd4xYroz8eHXELE?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: cc109c79-79c2-49fb-1527-08dc818f2550
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?eHfWV71hthBk+uDSwHcmwOH3UYClLVLfh+4fDTJELCyvOStzzLQXv+TcKz?=
+ =?iso-8859-1?Q?LbJRC4NOfOaBQZms+WCcKoLHToSlmtGqhOQiJZEOIwR4I6Keo6lIZxf9fO?=
+ =?iso-8859-1?Q?vA9I/yYKctaXqAJJRAWTIMDTkU4T0ZdOTXFvzLUAKI10vJe9I56MbgMrjQ?=
+ =?iso-8859-1?Q?Kxi5AoRtF+tYzbAeqcCp0y+eBDJsOatjzWVs0zGuR2xDA2zSPlBNFIfjZr?=
+ =?iso-8859-1?Q?3BsC4UoUxJFnhKfBBFA0NC+hlLfzYsKe5QDztMcE2Ldx0vozR3ky0XypES?=
+ =?iso-8859-1?Q?0r60iyoi7V+aP+a1DyxAtj0qLlvdtVbi2Ee3hGwlo2WQJCyswXoYABnD/7?=
+ =?iso-8859-1?Q?5+KNs9eyoa3nWVZDge40siF8ez7JDUtXoXa8caW9rIyfGEBrhzQiZBcali?=
+ =?iso-8859-1?Q?SxvKJgLh1r/YVy0ZDbzhlz+5EJOtt9QH6O45c6YZtvIEA3/4Z7uBiWbbCd?=
+ =?iso-8859-1?Q?PjAoG2t+E8B1+8ZjrK45nbi+R5lWiu5mFaNJbX/dUu+Tc1Fha/9dbgZCvi?=
+ =?iso-8859-1?Q?8bfApL1ON/qCSVXkIhH1aDcCviNPcb63KQS7RZjKsTFSZeJ4alvbR8g8cg?=
+ =?iso-8859-1?Q?QBQP3MMlWERhkQpartYUlCopB8OpmkNlYAx4NX1BKEVhXe9LrPiMzoBMrz?=
+ =?iso-8859-1?Q?bkCQRtcwNv4Tv2pvZxFUbKgVHMQVv0KK+fkiZqKGyL9Ff4EgKX2hq3406/?=
+ =?iso-8859-1?Q?x++ZcgFVSDbwQmEYsE2B1eNRdHFn3z7yTXESInvPHbPCx+QjoDiMazjQFO?=
+ =?iso-8859-1?Q?YPFHi57bSLhvn8+IkweXDvpvCAGA+56PR6gNLoIJ+sRPXzRsQxbJtvD9lo?=
+ =?iso-8859-1?Q?o/fmCYyG5tOUKICqT8OnQGWFzNNTD3pR4UkwwZ4XOhvBS9fwMewwig9gV5?=
+ =?iso-8859-1?Q?9tfO0hq4m7ppb3cMbCh7G+u/qls6cWgeWfMZ0LiYX7JnoWD3g2XrLf3TC+?=
+ =?iso-8859-1?Q?iGdVRwCaP7ZBDExjAnUkHIibjHAj6+88ufLDYsoes6BvxjbasdKJsyIDYJ?=
+ =?iso-8859-1?Q?a3kCJ4U5dX4L69FDodCRGVO3uTOJfC3d5WdSH/0ujIO+9VqoZ8ekE89fJ0?=
+ =?iso-8859-1?Q?1owP0odpWbE67m1t0pDE2NpzrFy0ez/pl8Q6bHAxZM+y38mQeKFMPuQbfP?=
+ =?iso-8859-1?Q?3BUfpm3r1vPBd1zrNJ6dD6oidt2CBVi8GWp2c9P7lEDX80vETp9bSiJyFu?=
+ =?iso-8859-1?Q?79GIqB1Hpe8u3O8HqU+hKJ4f6EIkZt9F3OyNOEAVQDMD83Weh/3ZXERC4m?=
+ =?iso-8859-1?Q?12/N0XNcXdMm6RmsFZeh5elcH7XKJUE0ASCish0PtTHZXfE3ibKlHereaP?=
+ =?iso-8859-1?Q?HdOcp6rgsvP62Ayhhg9OaTFrr6UtT3W5NWcbxFlWIZd5zdXVMuZUIrDs1p?=
+ =?iso-8859-1?Q?E76SB6wY0LtpsogWo1X+uf6URqOAAeD67qhkNODywFB/O58SarO5YBGLO9?=
+ =?iso-8859-1?Q?FDf++EPOa8hfxUNyBI0CE5exB6koBs+yy37e1rKH95Ciz1XDloAtYAJaWo?=
+ =?iso-8859-1?Q?og0z6UARUdoTEZVgE6EWT8upLV0TxtxohUYxOQVC0+i7b4dpHPHN93x6EA?=
+ =?iso-8859-1?Q?5QzpdC6lJdDgWaHwkgQinuNy4ainG8uEOAJUkZH2jEyfxbG9g3lPOVj2Oi?=
+ =?iso-8859-1?Q?mFyIJB82GjH/BXudgQJONeubpZvbGivFOAtTvdyjuIIC/0uaYuQ0tU5g?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d5c60e6e-cf09-40eb-c076-08dc818fd84c
+X-MS-Exchange-CrossTenant-AuthSource: PH7SPRMB0092.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2024 16:31:38.8874 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2024 16:36:38.9834 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0eyiohonGsty0Ys7ItUxCF3IpCSDeyeudLE/Ark/k2ArHRnLA2KX0V+3tcqG402x/Sf8bLbCgkO3JHFsUB0t3w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6285
+X-MS-Exchange-CrossTenant-UserPrincipalName: OjcZm9uLuxq16Z85ipHT1fjW2Wct8rxxcG7D4ACm8oD2S7hF9XGJmG26606JKYoK0Y64DFN5F24zTLhXCUFpVg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB8420
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -181,152 +179,170 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, May 31, 2024 at 04:15:31PM +0000, Matthew Brost wrote:
-> On Fri, May 31, 2024 at 12:02:05PM -0400, Rodrigo Vivi wrote:
-> > Defer the ggtt node removal to a thread if runtime_pm is not active.
+On Fri, May 31, 2024 at 12:31:34PM -0400, Rodrigo Vivi wrote:
+> On Fri, May 31, 2024 at 04:15:31PM +0000, Matthew Brost wrote:
+> > On Fri, May 31, 2024 at 12:02:05PM -0400, Rodrigo Vivi wrote:
+> > > Defer the ggtt node removal to a thread if runtime_pm is not active.
+> > > 
+> > > The ggtt node removal can be called from multiple places, including
+> > > places where we cannot protect with outer callers and places we are
+> > > within other locks. So, try to grab the runtime reference if the
+> > > device is already active, otherwise defer the removal to a separate
+> > > thread from where we are sure we can wake the device up.
+> > > 
+> > > Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
+> > > Cc: Francois Dugast <francois.dugast@intel.com>
+> > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_ggtt.c | 56 ++++++++++++++++++++++++++++++++----
+> > >  1 file changed, 51 insertions(+), 5 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> > > index b01a670fecb8..d63bf1a744b5 100644
+> > > --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> > > +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> > > @@ -443,16 +443,14 @@ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+> > >  	return __xe_ggtt_insert_bo_at(ggtt, bo, 0, U64_MAX);
+> > >  }
+> > >  
+> > > -void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
+> > > -			 bool invalidate)
+> > > +static void ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
+> > > +			     bool invalidate)
+> > >  {
+> > >  	struct xe_device *xe = tile_to_xe(ggtt->tile);
+> > >  	bool bound;
+> > >  	int idx;
+> > >  
+> > >  	bound = drm_dev_enter(&xe->drm, &idx);
+> > > -	if (bound)
+> > > -		xe_pm_runtime_get_noresume(xe);
+> > >  
+> > >  	mutex_lock(&ggtt->lock);
+> > >  	if (bound)
+> > > @@ -467,10 +465,58 @@ void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
+> > >  	if (invalidate)
+> > >  		xe_ggtt_invalidate(ggtt);
+> > >  
+> > > -	xe_pm_runtime_put(xe);
+> > >  	drm_dev_exit(idx);
+> > >  }
+> > >  
+> > > +struct remove_node_work {
+> > > +	struct work_struct work;
+> > > +	struct xe_ggtt *ggtt;
+> > > +	struct drm_mm_node *node;
+> > > +	bool invalidate;
+> > > +};
+> > > +
+> > > +static void ggtt_remove_node_work_func(struct work_struct *work)
+> > > +{
+> > > +	struct remove_node_work *remove_node = container_of(work, struct remove_node_work, work);
+> > > +	struct xe_device *xe = tile_to_xe(remove_node->ggtt->tile);
+> > > +
+> > > +	xe_pm_runtime_get(xe);
+> > > +	ggtt_remove_node(remove_node->ggtt, remove_node->node, remove_node->invalidate);
+> > > +	xe_pm_runtime_put(xe);
+> > > +
+> > > +	kfree(remove_node);
+> > > +}
+> > > +
+> > > +static void ggtt_queue_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
+> > > +				   bool invalidate)
+> > > +{
+> > > +	struct remove_node_work *remove_node;
+> > > +
+> > > +	remove_node = kmalloc(sizeof(*remove_node), GFP_KERNEL);
 > > 
-> > The ggtt node removal can be called from multiple places, including
-> > places where we cannot protect with outer callers and places we are
-> > within other locks. So, try to grab the runtime reference if the
-> > device is already active, otherwise defer the removal to a separate
-> > thread from where we are sure we can wake the device up.
+> > Are we sure this code cannot be in an atomic context or in the path of a
+> > dma-fence? If either of the former is true, then we cannot allocate
+> > memory here. 
+> 
+> not sure tbh
+> 
+
+Me either, we need some deeper thought to answer. Given that is fairly
+deep layer I say it is convincible the latter could be true or become
+true at some point. The former likely isn't given that we use mutexes
+in this path. I'd say best to design this with that in mind.
+
+> > Alternatively, we could use GFP_ATOMIC or preallocate
+> > 'remove_node_work' as part of the initial GGTT node allocation. The
+> > latter requires a bit more memory, but GGTT allocations are heavyweight
+> > objects, and using a bit more memory seems fine to me.
+> 
+> I had thought about simply going with GFP_ATOMIC.
+> 
+> The pre-allocation doesn't work. Unless we encapsulate the drm_mm_node
+> into a xe_mm_node with the removal info in it.
+> 
+
+I was thinking a xe_mm_node subclass.
+
+> > Also if we do the
+> > later, maybe just add the node to a list and kick a dedicated work item
+> > which process all nodes on the list.
+> 
+> The list with the single worker also sounds elegant solution here,
+> to process all the removals in the same way. But for simplicity,
+> if GFP_ATOMIC works I would prefer to go with this that minimizes
+> the thread and it has 1:1 work:item.
+> 
+
+I'll leave GFP_ATOMIC vs. xe_mm_node subclass to you.
+
 > > 
-> > Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
-> > Cc: Francois Dugast <francois.dugast@intel.com>
-> > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_ggtt.c | 56 ++++++++++++++++++++++++++++++++----
-> >  1 file changed, 51 insertions(+), 5 deletions(-)
+> > > +	if (!remove_node)
+> > > +		return;
+> > > +
+> > > +	INIT_WORK(&remove_node->work, ggtt_remove_node_work_func);
+> > > +	remove_node->ggtt = ggtt;
+> > > +	remove_node->node = node;
+> > > +	remove_node->invalidate = invalidate;
+> > > +
+> > > +	queue_work(system_unbound_wq, &remove_node->work);
 > > 
-> > diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> > index b01a670fecb8..d63bf1a744b5 100644
-> > --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> > +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> > @@ -443,16 +443,14 @@ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
-> >  	return __xe_ggtt_insert_bo_at(ggtt, bo, 0, U64_MAX);
-> >  }
-> >  
-> > -void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
-> > -			 bool invalidate)
-> > +static void ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
-> > +			     bool invalidate)
-> >  {
-> >  	struct xe_device *xe = tile_to_xe(ggtt->tile);
-> >  	bool bound;
-> >  	int idx;
-> >  
-> >  	bound = drm_dev_enter(&xe->drm, &idx);
-> > -	if (bound)
-> > -		xe_pm_runtime_get_noresume(xe);
-> >  
-> >  	mutex_lock(&ggtt->lock);
-> >  	if (bound)
-> > @@ -467,10 +465,58 @@ void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
-> >  	if (invalidate)
-> >  		xe_ggtt_invalidate(ggtt);
-> >  
-> > -	xe_pm_runtime_put(xe);
-> >  	drm_dev_exit(idx);
-> >  }
-> >  
-> > +struct remove_node_work {
-> > +	struct work_struct work;
-> > +	struct xe_ggtt *ggtt;
-> > +	struct drm_mm_node *node;
-> > +	bool invalidate;
-> > +};
-> > +
-> > +static void ggtt_remove_node_work_func(struct work_struct *work)
-> > +{
-> > +	struct remove_node_work *remove_node = container_of(work, struct remove_node_work, work);
-> > +	struct xe_device *xe = tile_to_xe(remove_node->ggtt->tile);
-> > +
-> > +	xe_pm_runtime_get(xe);
-> > +	ggtt_remove_node(remove_node->ggtt, remove_node->node, remove_node->invalidate);
-> > +	xe_pm_runtime_put(xe);
-> > +
-> > +	kfree(remove_node);
-> > +}
-> > +
-> > +static void ggtt_queue_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
-> > +				   bool invalidate)
-> > +{
-> > +	struct remove_node_work *remove_node;
-> > +
-> > +	remove_node = kmalloc(sizeof(*remove_node), GFP_KERNEL);
+> > I think we need to be careful with system wq usage. Recently we have had
+> > two bugs [1][2] exposed in 6.9 in which we deadlocked by using system
+> > wqs. I think it is likely safer to use a driver dedicated queue here.
 > 
-> Are we sure this code cannot be in an atomic context or in the path of a
-> dma-fence? If either of the former is true, then we cannot allocate
-> memory here. 
+> ouch! probably good to create a dedicated wq for xe_ggtt so we don't
+> interfeer with anything else.
+>
 
-not sure tbh
++1 or use an existing Xe wq. Again I'll leave this to you.
 
-> Alternatively, we could use GFP_ATOMIC or preallocate
-> 'remove_node_work' as part of the initial GGTT node allocation. The
-> latter requires a bit more memory, but GGTT allocations are heavyweight
-> objects, and using a bit more memory seems fine to me.
-
-I had thought about simply going with GFP_ATOMIC.
-
-The pre-allocation doesn't work. Unless we encapsulate the drm_mm_node
-into a xe_mm_node with the removal info in it.
-
-> Also if we do the
-> later, maybe just add the node to a list and kick a dedicated work item
-> which process all nodes on the list.
-
-The list with the single worker also sounds elegant solution here,
-to process all the removals in the same way. But for simplicity,
-if GFP_ATOMIC works I would prefer to go with this that minimizes
-the thread and it has 1:1 work:item.
-
-> 
-> > +	if (!remove_node)
-> > +		return;
-> > +
-> > +	INIT_WORK(&remove_node->work, ggtt_remove_node_work_func);
-> > +	remove_node->ggtt = ggtt;
-> > +	remove_node->node = node;
-> > +	remove_node->invalidate = invalidate;
-> > +
-> > +	queue_work(system_unbound_wq, &remove_node->work);
-> 
-> I think we need to be careful with system wq usage. Recently we have had
-> two bugs [1][2] exposed in 6.9 in which we deadlocked by using system
-> wqs. I think it is likely safer to use a driver dedicated queue here.
-
-ouch! probably good to create a dedicated wq for xe_ggtt so we don't
-interfeer with anything else.
-
-> 
-> Other than these questions, design of patch (try grabbing a PM, if we
-> can't defer to worker) LGTM.
-> 
-> Matt
-> 
-> [1] https://patchwork.freedesktop.org/series/133210/
-> [2] https://patchwork.freedesktop.org/patch/586095/?series=131904&rev=1
-> 
-> > +}
-> > +
-> > +void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
-> > +			 bool invalidate)
-> > +{
-> > +	struct xe_device *xe = tile_to_xe(ggtt->tile);
-> > +
-> > +	if (xe_pm_runtime_get_if_active(xe)) {
-> > +		ggtt_remove_node(ggtt, node, invalidate);
-> > +		xe_pm_runtime_put(xe);
-> > +	} else {
-> > +		ggtt_queue_remove_node(ggtt, node, invalidate);
-> > +	}
-> > +}
-> > +
-> >  void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
-> >  {
-> >  	if (XE_WARN_ON(!bo->ggtt_node.size))
-> > -- 
-> > 2.45.1
+Matt
+ 
 > > 
+> > Other than these questions, design of patch (try grabbing a PM, if we
+> > can't defer to worker) LGTM.
+> > 
+> > Matt
+> > 
+> > [1] https://patchwork.freedesktop.org/series/133210/
+> > [2] https://patchwork.freedesktop.org/patch/586095/?series=131904&rev=1
+> > 
+> > > +}
+> > > +
+> > > +void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
+> > > +			 bool invalidate)
+> > > +{
+> > > +	struct xe_device *xe = tile_to_xe(ggtt->tile);
+> > > +
+> > > +	if (xe_pm_runtime_get_if_active(xe)) {
+> > > +		ggtt_remove_node(ggtt, node, invalidate);
+> > > +		xe_pm_runtime_put(xe);
+> > > +	} else {
+> > > +		ggtt_queue_remove_node(ggtt, node, invalidate);
+> > > +	}
+> > > +}
+> > > +
+> > >  void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+> > >  {
+> > >  	if (XE_WARN_ON(!bo->ggtt_node.size))
+> > > -- 
+> > > 2.45.1
+> > > 
