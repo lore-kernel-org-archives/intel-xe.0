@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDDAFC27C4F
-	for <intel-xe@archiver.kernel.org>; Fri, 31 May 2024 19:59:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DB18C25B75
+	for <intel-xe@archiver.kernel.org>; Fri, 31 May 2024 20:00:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F5B010E142;
-	Fri, 31 May 2024 19:59:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C102D10E142;
+	Fri, 31 May 2024 20:00:16 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EBD610E148;
- Fri, 31 May 2024 19:59:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A82F910E142;
+ Fri, 31 May 2024 20:00:11 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Fix_missing_run?=
- =?utf-8?q?time_outer_protection_for_ggtt=5Fremove=5Fnode_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_Fix_missing_runtime_?=
+ =?utf-8?q?outer_protection_for_ggtt=5Fremove=5Fnode_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 31 May 2024 19:59:38 -0000
-Message-ID: <171718557832.2243384.5457848680028582622@8e613ede5ea5>
+Date: Fri, 31 May 2024 20:00:11 -0000
+Message-ID: <171718561168.2241151.7376145376235564523@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240531195315.217230-1-rodrigo.vivi@intel.com>
 In-Reply-To: <20240531195315.217230-1-rodrigo.vivi@intel.com>
@@ -44,44 +44,64 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Fix missing runtime outer protection for ggtt_remove_node (rev2)
 URL   : https://patchwork.freedesktop.org/series/134308/
-State : success
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-51ce9f6cd981d42d7467409d7dbc559a450abc1e
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit c6102ce810597d340f3a9396092c69bd07846e90
-Author: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date:   Fri May 31 15:53:15 2024 -0400
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_ggtt.c: In function ‘ggtt_queue_remove_node’:
+../drivers/gpu/drm/xe/xe_ggtt.c:504:13: error: ‘xe’ undeclared (first use in this function)
+  504 |  queue_work(xe->unordered_wq, &remove_node->work);
+      |             ^~
+../drivers/gpu/drm/xe/xe_ggtt.c:504:13: note: each undeclared identifier is reported only once for each function it appears in
+make[7]: *** [../scripts/Makefile.build:244: drivers/gpu/drm/xe/xe_ggtt.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:485: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:485: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:485: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:485: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+make[2]: *** [/kernel/Makefile:1934: .] Error 2
+make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
 
-    drm/xe: Fix missing runtime outer protection for ggtt_remove_node
-    
-    Defer the ggtt node removal to a thread if runtime_pm is not active.
-    
-    The ggtt node removal can be called from multiple places, including
-    places where we cannot protect with outer callers and places we are
-    within other locks. So, try to grab the runtime reference if the
-    device is already active, otherwise defer the removal to a separate
-    thread from where we are sure we can wake the device up.
-    
-    v2: - use xe wq instead of system wq (Matt and CI)
-        - Avoid GFP_KERNEL to be future proof since this removal can
-        be called from outside our drivers and we don't want to block
-        if atomic is needed. (Matt)
-    
-    Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
-    Cc: Francois Dugast <francois.dugast@intel.com>
-    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-    Cc: Matthew Brost <matthew.brost@intel.com>
-    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-+ /mt/dim checkpatch 71fb583af6dea41793b38d947a991f06156f7f11 drm-intel
-c6102ce81059 drm/xe: Fix missing runtime outer protection for ggtt_remove_node
+[19:59:39] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[19:59:43] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
