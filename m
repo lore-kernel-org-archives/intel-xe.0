@@ -4,66 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF38EC25B75
-	for <intel-xe@archiver.kernel.org>; Fri, 31 May 2024 14:33:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE883C25B75
+	for <intel-xe@archiver.kernel.org>; Fri, 31 May 2024 14:34:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40F9710E18B;
-	Fri, 31 May 2024 14:33:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8298E10E18B;
+	Fri, 31 May 2024 14:34:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jahwtncv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TRbRk+dU";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5160C10E18B
- for <intel-xe@lists.freedesktop.org>; Fri, 31 May 2024 14:33:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CF0810E18B
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 May 2024 14:34:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717166016; x=1748702016;
+ t=1717166071; x=1748702071;
  h=content-transfer-encoding:in-reply-to:references:subject:
  from:to:cc:date:message-id:mime-version;
- bh=3FsFkJmBnoIUzjAwXlqIo2ivWQCfWn4lh/71izb8tAw=;
- b=jahwtncvyaSduD6IFgEncqOU9v3UP0VH+OI8JxN5K3dU6iYp3jTjzcmk
- eFw2ywcH89N5qCHbuBqjDM5VTtJixf1CPsZ+3qTIISCkZFMgZCHmr+LUW
- Vyv241M2VZcxCQ/kPCBwWXwYgSYkC/dklIJLsCbSlGIk1q+pkKn3HbfS5
- ycNs8QkJEIZYhR2UO812RXILsP4IcsRuR8XQsi40BKAGOi6e7iU1BpUxX
- zJO1+6iK6GgVGv3Tm1NsOge6RcgVikfUCZNKChJE4d0ncMNmQQYNC7b7h
- ZA1BthHVRkd74hnW8oxYXdLdNsY6bLOdCMLe6VmI4eoQVDbDttSFn8HW1 Q==;
-X-CSE-ConnectionGUID: FSxPSjYwS8+W8w0HpA0Jtw==
-X-CSE-MsgGUID: G/6+SeW9TtCWrNCjZOTI8A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="13937617"
-X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="13937617"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2024 07:33:34 -0700
-X-CSE-ConnectionGUID: Pes2dXobTDqCV0Oh9qxHQA==
-X-CSE-MsgGUID: 6TIDcnwPRkKOqHffBYJULw==
+ bh=5nH7U3ZVzdAA68B1znawLDgNRqGfCwhfaJz7N3Uacc0=;
+ b=TRbRk+dUYi+JOZLs2GD5uLmtalJHtECNhbg1gexAyKYKKu9w1k86AfH2
+ 55a8tltTmHQ0ikpR9lgIRTejr/M7MU+DBJr5YmZZ1Rd4j6IbtKkIzRq5K
+ UXUPkW/BIC09YxOR6xbsKUIkeXGXl9rHgpE3I87JnuJPkvdwHmloA5sJ7
+ gJ3qa5OD3GumGmQfUhPE+0YXuls3n1FlslaCrxdLNX/rQObv0U3p9TPw9
+ prwT7jkjdc8IkV1i0g+6667HsS3AzJ5Rv9a6+NQHH2a8F1N4XRI2QFYi7
+ wHn4Jo2RH85u7w1oaIWDTfHHzyPgxEUMkKqgWdVt1iu+njr6PWDvsmNBT w==;
+X-CSE-ConnectionGUID: VWKxedS1TIuGW9hAMREuqQ==
+X-CSE-MsgGUID: lZSWVVcrTSiD1pAzm/LuUA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="11839403"
+X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="11839403"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2024 07:34:30 -0700
+X-CSE-ConnectionGUID: tKVFm7RVRjyBJpYrGSHxlQ==
+X-CSE-MsgGUID: qipScyMLRyS+EgmqgBqilw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="67028375"
+X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="41096562"
 Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 31 May 2024 07:33:34 -0700
+ by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 31 May 2024 07:34:31 -0700
 Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
  ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 31 May 2024 07:33:33 -0700
+ 15.1.2507.39; Fri, 31 May 2024 07:34:30 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
  ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 31 May 2024 07:33:33 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ 15.1.2507.39; Fri, 31 May 2024 07:34:29 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 31 May 2024 07:33:33 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.174)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Fri, 31 May 2024 07:34:29 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.41) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 31 May 2024 07:33:32 -0700
+ 15.1.2507.39; Fri, 31 May 2024 07:34:29 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EK6ufAruLQWmKN6dPF3RgIP1OfSp0OjnlBkj/yB/a4pIMZzAze9Q9CUiQPqt0WCmQaIM2TDSoYz1DcAZtbpcK/pMtMigM8w5AzIOv3Ok5O4MEqdn/6FhjV2jEMTJEUtVOhl+R1kH4KR4VLc+kxo7+ujrg27+MhI7Lt8S5ChM4vh5zcWeek0tqHEs12ukEkSNjTMqLZfbZDAKq+89x25sS6LBWoq3sBxhdlnumuuTp2kVr8ug5Ef5EQHds6OKlCfkYiLl8kQnombNT8yOf9EsAahS29DC2pvmY34AQdH2d6hAzd2yyslknzPD/Q+p/R/tjhrMz77uqP/BD/v/nbFGEA==
+ b=HZY424HAPMtdw1go/MH8qJ0X85Yf3Bv82OSNj8o/K5hneFhOhwMfehlstNA/gSMW2sgcqX9lNmBHO07hkq9ej/3SXcHPEdlSFgDmVA/a3Y2UMFkGhIkAlns5HZgpj44D5J0wXR/nCq8T8cn07fBeu+3DlMQ5w+RAtr2UDqrfUcFvPpfs/itZstSA4msCg395Am3N5sDndSWL6A1y+4tGf+MOXuCC27ghCdCfqzDdwXQXzKkQvmGQfKUlpvLLkOmiZaBZXNL2kf5Q+V8eSJM1dSkzxZzFVq9uCCvWbasvwyRDp5OgsSGrysrbkxlrvbuXnquW7YYzPHRJN8aqWIalig==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cDwa5OKbPWitr+DlyeCFbZ+feflyM5B8QHx3r36y08E=;
- b=O+AQ2cG8/9caLcLgxXGtfQoKZfTSE6G2FAe2FEe4aYK6BZvJ1/+kmAr1IUB7kWJT9+wPEh3Ik2vGH4k68I2yOLz3RGZs0YzkqiOLdAAL8YWDnWHaN6LqqcT5aAPNkQeIHGdiM6wg91V3MaoExpSX8E4xmOgPQ9OhbGx/elHtBhZuu6Q53+5F/CzqBXYi7ojVXGiNHqXwIVO67d0e7w58kYd+WZ3xHGcavByEHM2YblKFFPOBD3lh+fAsZoU/X7foy8ZtHvwNib2+wO0Of1ZOSRBsEpfDhNPh5yAEv1d2+HUR1msaD3AQkwPYIb4xaHD+uLNqeGiywxEgYopxRtIXUA==
+ bh=2nnFqc2AIALFgbUXXp/6V+oCI4VcrgfgTsXeyXqKuNs=;
+ b=Zb48T/774xN/I1kxYeOxRaYDOZCRnjKiwokmrWwCvvfHvvKEf20hr42RjPTGz1KyNFJY4JS2U7hy87A1sIdDqVdGQ3SuHdg0yHuFOz/ElFrc9SoSPss9tBRnIiYfa4eh+nlBFxY7zl0voFB4xKt7UfZGsr+ZbeKwRlg9kUtYvTgi1myF4/uR19Yl6wnYoWWYKobsj9YMZJqWKLk9u3IwOQ4sHxBqVbUnLy+AzlFdJyFmexf+j75aYJ6taGJ7PcGwqv9EuH+hULNpa0ofetLVIkVtw+rxkk5G2/2L30A4Fuh8CuuntJwOSYzBoDen8uefcBUogOxqOSul9PFoEZdTqQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -73,114 +73,114 @@ Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
  by CY8PR11MB7171.namprd11.prod.outlook.com (2603:10b6:930:92::16)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.30; Fri, 31 May
- 2024 14:33:23 +0000
+ 2024 14:34:27 +0000
 Received: from PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::7e8b:2e5:8ce4:2350%4]) with mapi id 15.20.7611.016; Fri, 31 May 2024
- 14:33:21 +0000
+ 14:34:27 +0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240530151313.2284182-2-radhakrishna.sripada@intel.com>
+In-Reply-To: <20240530151313.2284182-3-radhakrishna.sripada@intel.com>
 References: <20240530151313.2284182-1-radhakrishna.sripada@intel.com>
- <20240530151313.2284182-2-radhakrishna.sripada@intel.com>
-Subject: Re: [PATCH v3 1/6] drm/xe/trace: Extract bo, vm, vma traces
+ <20240530151313.2284182-3-radhakrishna.sripada@intel.com>
+Subject: Re: [PATCH v3 2/6] drm/xe/trace: Extract guc related traces
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
  <intel-xe@lists.freedesktop.org>
 CC: <lucas.demarchi@intel.com>, Radhakrishna Sripada
  <radhakrishna.sripada@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Date: Fri, 31 May 2024 11:33:16 -0300
-Message-ID: <171716599640.5017.8848009252260135408@gjsousa-mobl2>
+Date: Fri, 31 May 2024 11:34:23 -0300
+Message-ID: <171716606385.5017.5467907168383575126@gjsousa-mobl2>
 User-Agent: alot/0.10
-X-ClientProxiedBy: SJ0PR05CA0070.namprd05.prod.outlook.com
- (2603:10b6:a03:332::15) To PH8PR11MB8287.namprd11.prod.outlook.com
+X-ClientProxiedBy: BY3PR03CA0017.namprd03.prod.outlook.com
+ (2603:10b6:a03:39a::22) To PH8PR11MB8287.namprd11.prod.outlook.com
  (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|CY8PR11MB7171:EE_
-X-MS-Office365-Filtering-Correlation-Id: 012e7d85-c6b2-46f9-46c7-08dc817e9ee1
+X-MS-Office365-Filtering-Correlation-Id: f9a78230-c66c-4115-b8c3-08dc817ec675
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|366007|1800799015;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?S0paaTFUM2d0dVJneUF2RWQrdGR3SmFLVWc2OGRmU3Q4dDkyb2Z1cjNoWlBt?=
- =?utf-8?B?ZHorVk5LdENtUm1KRzJ0NGYzWVp1V1VCdXpodG9aN3dtMWhwOWJuemtISjFU?=
- =?utf-8?B?RGY3REx3Ry9pYWhwK3VQR1ZwUDlXenFwcm9sMGl5NTVSenN4QXpzZEJwc2s3?=
- =?utf-8?B?aTNFWDhSQVNoRXY4TkpKZGZybSt2aVRKUXJLRk1kMjErcElWLy9mbWozU2lu?=
- =?utf-8?B?Y1c1N0dsaFlEV2o5WU9lRjNNS0NrUlM2RkpvUEZQYVBSZXRhODcrTmFZM2VK?=
- =?utf-8?B?cllzQVd4cVM5bzhMWWJ1UVVMampoL1VDazdlOU5BLy8xUDc2TzIrRWp2a2ky?=
- =?utf-8?B?VkFCZHZ4Znp4YndRRUFqWFVqKys4VnhrUHhnWGU1WWhFUE1SeURWTTZYZlZG?=
- =?utf-8?B?VTlMT2NyZTBsYzRYZ25CZU1WRDAvSEdBaEthNTBWR3ppNTNoMEI1U3VPcFVx?=
- =?utf-8?B?em02bFBYYWdRWXR2YWhoYjZTRkdUQVAwbE9Ub2hjNVJEZHJ3TlpBbTFCZlJR?=
- =?utf-8?B?cFErRFgrV3lNQTBVTU1SRmV0Y3AzZlBNRnpaSDFZWnpTYkIrMVUySUFUWlE5?=
- =?utf-8?B?VGRuei9PZHF4YzlCbEozb1luUGhSVStXeGh4ZVpPRnN3MG1oZmVyRHRnYjlI?=
- =?utf-8?B?SUVRZ3JDb1VRVjdOT0NMQVBuTmc3R3oyeXVIZ2FYaUpvZ25YTkEwSmZLR2pk?=
- =?utf-8?B?SFRGNlFGNjhRWHpzN2R0QmZxMW53RS9UdXJhWEFoOUtqdC81QVFHK0h4cFhI?=
- =?utf-8?B?aEVhS1ZLdTc0TFhHU25uK0NldEVnWWE5RHpyaUN4WHdERGkzSkplb2xxM0tQ?=
- =?utf-8?B?Nmk3VnFDMkFOaWkyU3RMemNoekU2d2xwMEwyaXlkd24rTXlZTTNyenVGeEcr?=
- =?utf-8?B?dmprLzJhZVI0MUZMaU5VRGJ0Y3puUnI0cUJ0dVNzWkphOHhGNHV4ZGdSUjRO?=
- =?utf-8?B?THVYWHI5YmdDZ1M4REhxWVFDNWlUU1UzNkJ2T0h1QWZXMHhUd1UyWCtVWjQ1?=
- =?utf-8?B?bXZMOXRHcEYzSjQyY2ltY2x5N1QrUndMUGpXSng5c29SbFVvZHhPTm40V2lL?=
- =?utf-8?B?dS9lNkJ2cXZPWStrWXhENTNMME5CUnVrV1FlK0RpMDVTWml1L1NYRWp3dkd0?=
- =?utf-8?B?N0IwMlRUaWFJQ3lib3ZmaWZ2Umw4aFVndXVGcU42UVRUUis3TDVaSDQ3TkhO?=
- =?utf-8?B?Yyt5bGllRWFDS3ZxTFRvR0xCdGx6TlFEZjBZTkREY2oxOFlSTXZ1T2tjUGJQ?=
- =?utf-8?B?RDQ0Q0pUUjNEK1lkZzV3bSs2Wi9yc3drUVRCazJUWjJOZTV3TWI4cmRaYm1B?=
- =?utf-8?B?bEdubTJoY0FhMmhsUnc4R3IvSWREaDN4VThGbHJGNEpnNldLRGFmL21YeHlJ?=
- =?utf-8?B?YWpWR3lQb0Zkczg4NjR1UmY1eHBRVks2K3c0OEx6ZlVsL05hd1NOamhxcXNk?=
- =?utf-8?B?T0puRitIYmdtdmc5aXRFcjBrMDNDZDEyTnM3S21SM2M1dW5VdzZyWXBjb3BQ?=
- =?utf-8?B?RXY4dGxDYkN2WTVtdnhkTks1azVObWFOUUFJMzFtUW1nVTJsZldvWmwrSXZu?=
- =?utf-8?B?STZqQ2ErcTZOWDM4YWZ1YUMzZ0lUMEtVNitvOTdzdFNDaUNwOXBsVnZNQktC?=
- =?utf-8?B?NE9xTXN1c0s1dFBSQWNLWTZMRW5BOXE1R3VJUnowYnMrQW9IS0RCQjVsRWJM?=
- =?utf-8?B?WWw2OUNKN21sNVFBVzFZc3BKZDVFT0hjTU1RbWVhZXpTS1kzZGR4TDd3PT0=?=
+X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|1800799015|376005;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dmRyajRtVnNnNFZSY0JTcUp1VG83Vm0yWUsyaGNwU0NjLzRhTXc0SWJzN21L?=
+ =?utf-8?B?OWJrb0hMcUh6M1ZEajhrYW10UEFmcGdialBDZXpRRDZONzFyZkl1dDVpbkU0?=
+ =?utf-8?B?b1hsbDNWOGVpOHhoeWhWWFFVTDRuMTlpei81dUxaR2tYRHl4Z3pLUTliNEpK?=
+ =?utf-8?B?dFhMbndJV1NIeXhGanJmVGYxN1Rrd2FCK3lPMUJOQVoxZzJ2WE82dzlFRllE?=
+ =?utf-8?B?N25iUllhRXlQREhQeEtQVkYvckc5aTI2TkRreVJqS2M0Wmhvd2tpR3ZqN1J3?=
+ =?utf-8?B?NkdvS3lUZ3ZmYmRlbnNsTStQR2x4WDFvMjEwMG9PZ0NCWTM0a0JnRVl6blR6?=
+ =?utf-8?B?dTdsbFV2VE5oQVFEdEYvRmxvREFBTWozWDFkd0FBaEVBV25WekNtTk1oMmc1?=
+ =?utf-8?B?c2dvUGtWRVM3azFsdHhaMFdmc1RGbjVZTXpiakxyTUJyY0FkalQyRUl6TkNx?=
+ =?utf-8?B?M3NrNXlyZjZTdGF4SHlEd05uRndiQU5RSVVLZE9FRUhiZVBOL3ZMM3BPUkhp?=
+ =?utf-8?B?UEVHVFo2SWhwa2NRZHpSQVl0V3ZEbGRVb2VYTW55TDdndnBPU3RtaXdpbzN0?=
+ =?utf-8?B?ejhpVTBhdkZDakFSekdJNGx4cS9xdzVmY05YLzdPZytobVVOczhRaldTRjVq?=
+ =?utf-8?B?eHExaGhOV01OV0pNak9BK1B3NVdSRjBGQkJtR3BaMGtZV3JHRmNoWTFEdVM5?=
+ =?utf-8?B?NW9RVy9DdXQwVTBZeTRzcm9FM3dWWm5SNm1lTkRTbm5RN2o3RmxrSGhoU2lK?=
+ =?utf-8?B?Vlh3Um50aWFqWmQ0Qjg3UzJmVHBRRmtldUpzOG4wSldPbUpDMU1JdFZjOWxI?=
+ =?utf-8?B?NjRHQmtZbktrSFNjRW5uZEhCWHpmUTJKUUJXbldSaHBWRzNmWGVLUWk1WWpQ?=
+ =?utf-8?B?ZTFwOFBac1g2NzhGRDN6RUd6RnRjQjhOSHBTWDZ1dGdWaTMrazVhOTNlbGc0?=
+ =?utf-8?B?OFQ5Rk0rdVo5WFErV0VwWmwzU3ljSG8zYTd2YnBIQ1JCYUg5Sms1ckIrVUl4?=
+ =?utf-8?B?UDdCeCtieGpRdzNla2pXMGdxdVN1Q3lVb2JvemhlTVlaeXBoczFHOUNKNFFE?=
+ =?utf-8?B?bXM2SGsxaENzd1JxZ3drWEhQNDhmSk1GMGJsY1Bsdlpyd1dqS1p0eFA3MDJp?=
+ =?utf-8?B?cVdTZmFJZ2xmTEpwdCsxVFU4WHFIQWRSYWRyc3g2K2RxUjNjTjZhM1ZDOS9I?=
+ =?utf-8?B?a1B5bnhwNTRUS3htaldaTHVURkcyWXNlRVo4YWN3bGtWNFJ4bXUwOGZJbTN4?=
+ =?utf-8?B?R1ZHZmx3NmFjWk43d2p5UXdjczRxaC92QWRKM1pob1hrM3VlQk9GQjRISEdm?=
+ =?utf-8?B?YjYrdUxCd0Y2cisxVG5TcUtpcHR5dkxKODA5N0lONUNiM3VEODQybTJvYWF2?=
+ =?utf-8?B?RFRZblMrb3lTRU1wTWJwVXNZRzBNbFNlSjBMd2ExSmFMK0NoNXZ6dFhXUGhq?=
+ =?utf-8?B?SElaRkljWFFSaXg4ZGl6bG1RaExnNVBIcFNhTWIrRjhoRHpXUGpYdVUyWHBM?=
+ =?utf-8?B?Yk5QRTJ4eVVmZm92TVJCNXB4QmthWTdCY20zd1FmN25BTDNkZXB6dk1WUnNH?=
+ =?utf-8?B?Vks2bjFGZzhVZE5FWTRmOWYxZSt1djlQeXg4aThNdkV4emtEOHZWakFGRUlG?=
+ =?utf-8?B?b2Q0dTdSL3pNeHZXZzFJM3FNVmJTUlFNemxSMERnMVlPdktjUkN6NnVxcGNt?=
+ =?utf-8?B?a0t1SHJSb2djWThxU3cyM21haHRScGVNczBiZlByRkdob2tFY05zSm9BPT0=?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1101; 
+ SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Wm1jYmVDWldrc3dnbUJMU3pFNzh5VnNEQ0RSV1pYeTZjaGE3VGhCNUQ1bWFx?=
- =?utf-8?B?Uy9icWVJV3p4amRTZzEzRW5yZkF0WklNdjdvckdMTEhpWnVmU25rT0QzK3B6?=
- =?utf-8?B?ekM5RzI4NW5LbnRuTGszTW5pSE8xTDF2S2VCUFZpMmdkZWFHVVlWcFpGM1Yv?=
- =?utf-8?B?U1lyQTlmOHRiN01XNUlJRTBER0lkVjRBU3MvYWJwa0ZsQks0ZDh3T3RzWjdJ?=
- =?utf-8?B?cklVR3hzUmg3dlJzR0VsM3NhY25tRS9iOWtiS2xvdVZhSUtMME82WWxXYWs0?=
- =?utf-8?B?OTJkcEp5WWs0UGZ0UEI1bWpIWTlBRkFHOFl3bzlDV2VxZ1hHSFVDUzlONUlS?=
- =?utf-8?B?bTh2aXRtV2E0Q2lMaitKK3ZEN3o3UWw2eXQzSnZXK3VtWDdsSmwxa3VRYWRy?=
- =?utf-8?B?aHg1T2FGM1ZQZ0d4ZnJtSHlFOUo0aDJPM2dKWWNrN1QwY2UvWW5DZHhLRmUy?=
- =?utf-8?B?MDg0YVNVdmE4WndFWGNhR00vMlNjZ1ZOZnJBZlVzU3k3WnBGcCtTdG1naEly?=
- =?utf-8?B?bzhiWjR1Ry9vNm9KeVRsdU45SC9wZVFUUDcvTjZtRE04WmNCWjZNWmhPZUI4?=
- =?utf-8?B?c1kyTjBaRE1GSzJBelE5SnZkcWo5S1JmSTdUVjhUTVRiYU1OdFhkMHZ5Wk96?=
- =?utf-8?B?amdKMWtHNHd2VTFKQjZzZHo0OEN2QUtvVnhTSnhoam1jTnRtblBQZ2NkZVVm?=
- =?utf-8?B?UTk0elB5a2dWWktCS3Jud1k0TTYvZkYwWUFMMWpOMitzSS9rcUdjTmFURVRk?=
- =?utf-8?B?eXF1a05OUGhBQXlHN0o0bXB3NCtxWDNzRmF4L0Z3eFU2RkFVNXNlVlZkcGlJ?=
- =?utf-8?B?cmsrbDV0NGxXcHIvTTUxRHpFQVQ2ejh3TnBsQk9Vb1dPbDNkVG56SFdEd1RC?=
- =?utf-8?B?YTJkakpZT01MdWdMK000L095RWpJTGVpSzlGSmFrSUpraEVnc2xxQjBCWGh5?=
- =?utf-8?B?dzRQTzdSb1dsVzk1NVpzSE9BbUR0UmdaczRORE5DNEJBM25KSElxWDZWb3dm?=
- =?utf-8?B?S3NGaDVxYmUxN0lHT1FQbG13Y2o3ejVVRTFWZ2VJZHNpSGtmRnZFYVV6V2g4?=
- =?utf-8?B?MENhS2lLSnpEVnR0a1BmZy9jT1ZVSXpxQ0RnaE5yV2FkMWlyUUFNcUdLTFFn?=
- =?utf-8?B?QmtwZWRoL2ppUVFNY1Zkc0piZjhXWENGQ1ViK0JWQzl0TDBMWERHSkp4bUJm?=
- =?utf-8?B?VWpnK0hWbTZqbjFqZGlSZ1dKcWUxSGU4WVIwdXQ1eVBoNnBxMW51VWgzd09j?=
- =?utf-8?B?SlV6aDh2UE9zZWo5RWZWTy9Kb0xSS25ZSzdHNGFXVGUvek5MUVFHMzJteHd4?=
- =?utf-8?B?RlUzSUU3U3llYWJyaTRiMnlQcmxqVjFyTUpvZWp1dlgzd1VyblpkYzlMNDEx?=
- =?utf-8?B?bVdIOFpidDhuZ25od2JGRHlxVGhLSitsUmtON3FwWTRTTUVGQ3Ixc203QThB?=
- =?utf-8?B?TVdlZlZsa296bjVIVi9DUzlPMEJxZS9zVStvVnIrUWRJYi8zcTVCWm5iS2R4?=
- =?utf-8?B?ZlpGb1ZsNitQdWhwdVp5RGVER3VCaGJZbzQveEtIMXpQOWxqcFBxa2pBd1FX?=
- =?utf-8?B?ODNjUEVkU0ptNEhtS0VPdEdLdW1tVHVKcTlBWW5OUGtudjNsV0ZXTnhZd1VR?=
- =?utf-8?B?QWRtbGREYXg2bTcvMmpwQStSdFA2UkVnUWxNSVRRcVNUaTJIOEVPY1JOQ3Nz?=
- =?utf-8?B?ZGNQVnNVRjU4eUtQY3Y5Z1pNemNnL2pEZFErNHdsVTRIL3ZucnpFS0ZEVXV3?=
- =?utf-8?B?Snh1MXNPQkRVUlpzWnBycitGeHhXcUZMS05OTDV4Y2JSL0tmOS9pM0NYelBp?=
- =?utf-8?B?UmZzM0RxSnJMb1VnK3JZNDJPbzY0NlFQQ2o3STE3UnlSZzRVajFrRno0K3ha?=
- =?utf-8?B?dmJkTWEzSFcxK3VnUUtVRUl1RzR1Vkx2Wm9aODJPVi8wMWx6MUExcGJpdnJm?=
- =?utf-8?B?NUl2UEo4RSs1RkROM3hEQm5rYTNpME1nTFJXU1YvYURBYTU1c3lPYnZwdi92?=
- =?utf-8?B?dTFvTTRWZmdTMklsSXFBbVAzN1FHamRTeGpUM1pMT0dGUHRuMXA5NXhrdHNW?=
- =?utf-8?B?TzRDa1h0TElpaFhCM1h2Zm9hd2c4eEZTSVpWN1M1c1QvMFJTZDJTbW51NWFx?=
- =?utf-8?B?REN5UGNHUW41Y09JOCtXSFlQZG4xNFZKK2xjZlFQR1pZVjlVWlVjTXUrL2Va?=
- =?utf-8?B?NVE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 012e7d85-c6b2-46f9-46c7-08dc817e9ee1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TWloQm5ZblNRenhQOHlMOVZEYXNMaHNxdzlsUERuRTNTaWdhZ2srR0Z2QWdq?=
+ =?utf-8?B?RzVaUXY4NXZTbVFaSGJyaVh4UzEvbGdqTEJXS2pQRzlZbjRKNzgrNTNhenY4?=
+ =?utf-8?B?MEhFejZiVjh0Nm9mMnZ5VSs3MEdPb0NGV1NHVDhTTExPeW1lV3hmSXQzbE53?=
+ =?utf-8?B?czZlNTVSSmdodEx4RkFTWXdnYy9YVCsvcGUrRmEvNHpZMjBKMURTdFdqUitl?=
+ =?utf-8?B?SDdVODluVEZrRC9DUmtUbi9TRjlrZXFiL2tGeFQ0UVU0SGpEVEgvM3M4ZEVa?=
+ =?utf-8?B?N2RuR3QreE05Y3F5eWlDWmJ5L1hqVFdQMWxDdHFNNS9UWnk5cXRYc0FOUWd3?=
+ =?utf-8?B?MDEzcjFWZVlVWUxmNmtZSmZEZmJ2SzhXV0ViUHpQaEEvZnBPU3lXalk4RFRz?=
+ =?utf-8?B?dGZaRDlBQXZ6anYyLzZIYUY1N005SlFtTVF6NEFYV01SUGp5M0doSTR3aHhs?=
+ =?utf-8?B?NXppN1pLZU9mOUVWVnNNUnUxYndRcFkvYUp3OHZxd3ZHYVJwOFhRY2lLZFdS?=
+ =?utf-8?B?SEJnbW41djlRQnBxblVOZm0xWFdxem80aGIxK0h1MCtHSkRMMUhrUTRuWkdG?=
+ =?utf-8?B?NWt0MlMvLy9PTlArY3JYci84NDFIa3hKTlgzeG9uSFMvRlZGQ09kSmlJQXVi?=
+ =?utf-8?B?d01tcEVOcVBRZ1FGek1wWUFHaHRNa1R2MjFFUVBMekd2Y3k1MVFSZzVleis4?=
+ =?utf-8?B?ZjV2SThXVEtBWHhtZk9aNFlmRWlJSW16eDhLcWxNemRzSURlTFlKOXN2aW1o?=
+ =?utf-8?B?ZXA5VFQ5N3B0NExNNENhejFJRDRzTFlGUEsxM0tzRGRLOFE1UTdTM1pxVWFr?=
+ =?utf-8?B?UWFUbk5OcGJPbWsrNnkyam1MQXlMMW5KOVRRZzZzUkZRSStZcHkrQlEvT2l4?=
+ =?utf-8?B?ZzQvTVRjK3hsdzI3UFBNOUdDazE0T2pKbkdQVnIrOG5KeHV6V095WDdQRnQ4?=
+ =?utf-8?B?RXk3UUtFMEo0Q3p5ZGo2OUE2dnpJUHRkcmQ3Sk0yYmY5UTV6eE5YTGF0UFRv?=
+ =?utf-8?B?WjNOU29CZXZTZC9OVGNUWVhQVVp4RFJ6NXNVbEVWbFZEQVNhc3M4T1dFTm5y?=
+ =?utf-8?B?Zzl3WGhReFhvenF4eHlHU0VGbXFZWDEwb1k5ZHMxcFlCcG1qeGtsV3J1Q1lr?=
+ =?utf-8?B?ajZSMkRCN3ZMOGdSUVhHY24rWlNpMjNML2dhaGxpZ2NKa2NwQVRYYXU3Z2xP?=
+ =?utf-8?B?Y2VpSGFMYTBMVVE2TzFxZ1pJT2VDRExxSk43K2dVOHBLbXVFUWJnOFA2R0x1?=
+ =?utf-8?B?YUlZMHNFWW5oSngxVWFPbGxiZnBQdnpzUGx0Z1FpMVdLeVNkRVEyc2dyTlJQ?=
+ =?utf-8?B?UGtpOTNYSjdsT1RCaytjTFM3VWNYQmZ5VGpOeUp1Q0ZQdlRhcGpieTFYN3l2?=
+ =?utf-8?B?TnM0MTE2Sy9aUFErNm44T04xeVlhbEhRK2dSM0V4bGFjTng2eGIyRWphaE9U?=
+ =?utf-8?B?UHFMRXBkcVpmZ0ZnS0xLSDNON3JmZ2lrdEFGdGZ6aG1VT1NyZ1ZTeGg3dWt2?=
+ =?utf-8?B?S2pZZTZIcWYrTEE2V3ZNbFQvQjZqTjVEbmlEaTVvOWtWcVEzYXJHTzR3QTFr?=
+ =?utf-8?B?TzJsMHFQTlIyS29RV0VQd3NQdXJuclg3NHhrbmtTamNjRVB1WnNHQ3hGZGll?=
+ =?utf-8?B?dmQ1SThxd3RPS0t6OCtXa091QXJGODlhWEdHUU1JZmNXeWthSmJwaXlkeHY0?=
+ =?utf-8?B?aG1UWUtLSzl2UVM1OFhScmMxRUVnTmZZNDRoVFJFRE0wUTJWOGRLVS9sRDQ3?=
+ =?utf-8?B?L1g3dmpCN0ZRbzZEaGRUd0F4OTdpOUZxSUk1YUwyc2djRTBSOW9peTZXK1NG?=
+ =?utf-8?B?WnpxWDlHOXhlUXovdkZWVXZKYkMvYjAvcUR5ZmhHdGp0aDhrck5hNGVWL09Y?=
+ =?utf-8?B?RTg5Nmh1cnlQY1ZRSFZwQ2c4V2RSVjFWWnRCa3pHbjV4K3Voc2F3U0FSWDZr?=
+ =?utf-8?B?NEt0aGJ1Nk5YWjM4a0hUYUU1dlVrR2E3SWlzSWhweDlrbEFkYWFkL2hCeEhv?=
+ =?utf-8?B?ZzF6QllKWWd0M28rckNYaFc1M0gwUlpJc0diMlZqTngyay9KdlllNkxZbTcz?=
+ =?utf-8?B?V3ZPVkFtb1ZMbG5jNlVMcit2bndwaWU5R3pJckpTSysya3VmK1kyTlYyNGtP?=
+ =?utf-8?B?MFArbFU0NjFGdVMxWHc0OFdWYTFPWDl0OXlIektpMTFOdmVTZ1gzVnNJdi9S?=
+ =?utf-8?B?WHc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f9a78230-c66c-4115-b8c3-08dc817ec675
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2024 14:33:21.4584 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2024 14:34:27.8277 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vu4no9s0cn/aHaMnOplZosh7QKoTRU3BaXEAvSxgNcFOxrKDeicRpcs9ifLrKcYR/zBcB7RYnVmwPfWB+VOzYA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: wC6DoUXhxGxikvKBrhIyqEkabPKtarYjufX8vz49Q89H1mdce8Tjd3tQ8lRCSX4PKcEyJVKdg8LuDLHZ+U9+cg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7171
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -197,331 +197,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Quoting Radhakrishna Sripada (2024-05-30 12:13:08-03:00)
+Quoting Radhakrishna Sripada (2024-05-30 12:13:09-03:00)
 >xe_trace.h is starting to get over crowded. Move the traces
->related to bo, vm, vma's to its own file.
+>related to guc to its own file.
 >
 >Suggested-by: Jani Nikula <jani.nikula@intel.com>
 >Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 >Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 >---
-> drivers/gpu/drm/xe/Makefile          |   1 +
-> drivers/gpu/drm/xe/xe_bo.c           |   2 +-
-> drivers/gpu/drm/xe/xe_gt_pagefault.c |   2 +-
-> drivers/gpu/drm/xe/xe_migrate.c      |   2 +-
-> drivers/gpu/drm/xe/xe_trace.h        | 212 ------------------------
-> drivers/gpu/drm/xe/xe_trace_bo.c     |   9 +
-> drivers/gpu/drm/xe/xe_trace_bo.h     | 236 +++++++++++++++++++++++++++
-> drivers/gpu/drm/xe/xe_vm.c           |   2 +-
-> 8 files changed, 250 insertions(+), 216 deletions(-)
-> create mode 100644 drivers/gpu/drm/xe/xe_trace_bo.c
-> create mode 100644 drivers/gpu/drm/xe/xe_trace_bo.h
+> drivers/gpu/drm/xe/Makefile       |   1 +
+> drivers/gpu/drm/xe/xe_guc_ct.c    |   2 +-
+> drivers/gpu/drm/xe/xe_trace.h     |  80 -----------------------
+> drivers/gpu/drm/xe/xe_trace_guc.c |   9 +++
+> drivers/gpu/drm/xe/xe_trace_guc.h | 103 ++++++++++++++++++++++++++++++
+> 5 files changed, 114 insertions(+), 81 deletions(-)
+> create mode 100644 drivers/gpu/drm/xe/xe_trace_guc.c
+> create mode 100644 drivers/gpu/drm/xe/xe_trace_guc.h
 >
 >diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->index ae07f3d6a068..fa9960acfe53 100644
+>index fa9960acfe53..db77b9823f7c 100644
 >--- a/drivers/gpu/drm/xe/Makefile
 >+++ b/drivers/gpu/drm/xe/Makefile
->@@ -135,6 +135,7 @@ xe-y +=3D xe_bb.o \
->         xe_tile.o \
+>@@ -136,6 +136,7 @@ xe-y +=3D xe_bb.o \
 >         xe_tile_sysfs.o \
 >         xe_trace.o \
->+        xe_trace_bo.o \
+>         xe_trace_bo.o \
+>+        xe_trace_guc.o \
 >         xe_ttm_sys_mgr.o \
 >         xe_ttm_stolen_mgr.o \
 >         xe_ttm_vram_mgr.o \
->diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
->index 2bae01ce4e5b..74294f1b05bc 100644
->--- a/drivers/gpu/drm/xe/xe_bo.c
->+++ b/drivers/gpu/drm/xe/xe_bo.c
->@@ -25,7 +25,7 @@
+>diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct=
+.c
+>index c1f258348f5c..78f79df638d5 100644
+>--- a/drivers/gpu/drm/xe/xe_guc_ct.c
+>+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+>@@ -29,7 +29,7 @@
+> #include "xe_guc_submit.h"
+> #include "xe_map.h"
 > #include "xe_pm.h"
-> #include "xe_preempt_fence.h"
-> #include "xe_res_cursor.h"
 >-#include "xe_trace.h"
->+#include "xe_trace_bo.h"
-> #include "xe_ttm_stolen_mgr.h"
-> #include "xe_vm.h"
+>+#include "xe_trace_guc.h"
 >=20
->diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_=
-gt_pagefault.c
->index 040dd142c49c..dead920de5f1 100644
->--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
->+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
->@@ -19,7 +19,7 @@
-> #include "xe_guc.h"
-> #include "xe_guc_ct.h"
-> #include "xe_migrate.h"
->-#include "xe_trace.h"
->+#include "xe_trace_bo.h"
-> #include "xe_vm.h"
->=20
-> struct pagefault {
->diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migra=
-te.c
->index cccffaf3db06..da3305834448 100644
->--- a/drivers/gpu/drm/xe/xe_migrate.c
->+++ b/drivers/gpu/drm/xe/xe_migrate.c
->@@ -32,7 +32,7 @@
-> #include "xe_res_cursor.h"
-> #include "xe_sched_job.h"
-> #include "xe_sync.h"
->-#include "xe_trace.h"
->+#include "xe_trace_bo.h"
-> #include "xe_vm.h"
->=20
-> /**
+> /* Used when a CT send wants to block and / or receive data */
+> struct g2h_fence {
 >diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
->index 450f407c66e8..9493cc3d6d82 100644
+>index 9493cc3d6d82..8e00f0cdeb75 100644
 >--- a/drivers/gpu/drm/xe/xe_trace.h
 >+++ b/drivers/gpu/drm/xe/xe_trace.h
->@@ -12,8 +12,6 @@
-> #include <linux/tracepoint.h>
-> #include <linux/types.h>
->=20
->-#include "xe_bo.h"
->-#include "xe_bo_types.h"
-> #include "xe_exec_queue_types.h"
-> #include "xe_gpu_scheduler_types.h"
-> #include "xe_gt_tlb_invalidation_types.h"
->@@ -76,58 +74,6 @@ DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_in=
-validation_fence_timeout,
+>@@ -332,86 +332,6 @@ DEFINE_EVENT(xe_hw_fence, xe_hw_fence_free,
 >              TP_ARGS(fence)
 > );
 >=20
->-DECLARE_EVENT_CLASS(xe_bo,
->-                    TP_PROTO(struct xe_bo *bo),
->-                    TP_ARGS(bo),
->-
->-                    TP_STRUCT__entry(
->-                             __field(size_t, size)
->-                             __field(u32, flags)
->-                             __field(struct xe_vm *, vm)
->-                             ),
->-
->-                    TP_fast_assign(
->-                           __entry->size =3D bo->size;
->-                           __entry->flags =3D bo->flags;
->-                           __entry->vm =3D bo->vm;
->-                           ),
->-
->-                    TP_printk("size=3D%zu, flags=3D0x%02x, vm=3D%p",
->-                              __entry->size, __entry->flags, __entry->vm)
->-);
->-
->-DEFINE_EVENT(xe_bo, xe_bo_cpu_fault,
->-             TP_PROTO(struct xe_bo *bo),
->-             TP_ARGS(bo)
->-);
->-
->-TRACE_EVENT(xe_bo_move,
->-            TP_PROTO(struct xe_bo *bo, uint32_t new_placement, uint32_t o=
-ld_placement,
->-                     bool move_lacks_source),
->-            TP_ARGS(bo, new_placement, old_placement, move_lacks_source),
->-            TP_STRUCT__entry(
->-                     __field(struct xe_bo *, bo)
->-                     __field(size_t, size)
->-                     __field(u32, new_placement)
->-                     __field(u32, old_placement)
->-                     __array(char, device_id, 12)
->-                     __field(bool, move_lacks_source)
->-                        ),
->-
->-            TP_fast_assign(
->-                   __entry->bo      =3D bo;
->-                   __entry->size =3D bo->size;
->-                   __entry->new_placement =3D new_placement;
->-                   __entry->old_placement =3D old_placement;
->-                   strscpy(__entry->device_id, dev_name(xe_bo_device(__en=
-try->bo)->drm.dev), 12);
->-                   __entry->move_lacks_source =3D move_lacks_source;
->-                   ),
->-            TP_printk("move_lacks_source:%s, migrate object %p [size %zu]=
- from %s to %s device_id:%s",
->-                      __entry->move_lacks_source ? "yes" : "no", __entry-=
->bo, __entry->size,
->-                      xe_mem_type_to_name[__entry->old_placement],
->-                      xe_mem_type_to_name[__entry->new_placement], __entr=
-y->device_id)
->-);
->-
-> DECLARE_EVENT_CLASS(xe_exec_queue,
->                     TP_PROTO(struct xe_exec_queue *q),
->                     TP_ARGS(q),
->@@ -386,164 +332,6 @@ DEFINE_EVENT(xe_hw_fence, xe_hw_fence_free,
->              TP_ARGS(fence)
-> );
->=20
->-DECLARE_EVENT_CLASS(xe_vma,
->-                    TP_PROTO(struct xe_vma *vma),
->-                    TP_ARGS(vma),
->-
->-                    TP_STRUCT__entry(
->-                             __field(struct xe_vma *, vma)
->-                             __field(u32, asid)
->-                             __field(u64, start)
->-                             __field(u64, end)
->-                             __field(u64, ptr)
->-                             ),
->-
->-                    TP_fast_assign(
->-                           __entry->vma =3D vma;
->-                           __entry->asid =3D xe_vma_vm(vma)->usm.asid;
->-                           __entry->start =3D xe_vma_start(vma);
->-                           __entry->end =3D xe_vma_end(vma) - 1;
->-                           __entry->ptr =3D xe_vma_userptr(vma);
->-                           ),
->-
->-                    TP_printk("vma=3D%p, asid=3D0x%05x, start=3D0x%012llx=
-, end=3D0x%012llx, userptr=3D0x%012llx,",
->-                              __entry->vma, __entry->asid, __entry->start=
-,
->-                              __entry->end, __entry->ptr)
->-)
->-
->-DEFINE_EVENT(xe_vma, xe_vma_flush,
->-             TP_PROTO(struct xe_vma *vma),
->-             TP_ARGS(vma)
->-);
->-
->-DEFINE_EVENT(xe_vma, xe_vma_pagefault,
->-             TP_PROTO(struct xe_vma *vma),
->-             TP_ARGS(vma)
->-);
->-
->-DEFINE_EVENT(xe_vma, xe_vma_acc,
->-             TP_PROTO(struct xe_vma *vma),
->-             TP_ARGS(vma)
->-);
->-
->-DEFINE_EVENT(xe_vma, xe_vma_fail,
->-             TP_PROTO(struct xe_vma *vma),
->-             TP_ARGS(vma)
->-);
->-
->-DEFINE_EVENT(xe_vma, xe_vma_bind,
->-             TP_PROTO(struct xe_vma *vma),
->-             TP_ARGS(vma)
->-);
->-
->-DEFINE_EVENT(xe_vma, xe_vma_pf_bind,
->-             TP_PROTO(struct xe_vma *vma),
->-             TP_ARGS(vma)
->-);
->-
->-DEFINE_EVENT(xe_vma, xe_vma_unbind,
->-             TP_PROTO(struct xe_vma *vma),
->-             TP_ARGS(vma)
->-);
->-
->-DEFINE_EVENT(xe_vma, xe_vma_userptr_rebind_worker,
->-             TP_PROTO(struct xe_vma *vma),
->-             TP_ARGS(vma)
->-);
->-
->-DEFINE_EVENT(xe_vma, xe_vma_userptr_rebind_exec,
->-             TP_PROTO(struct xe_vma *vma),
->-             TP_ARGS(vma)
->-);
->-
->-DEFINE_EVENT(xe_vma, xe_vma_rebind_worker,
->-             TP_PROTO(struct xe_vma *vma),
->-             TP_ARGS(vma)
->-);
->-
->-DEFINE_EVENT(xe_vma, xe_vma_rebind_exec,
->-             TP_PROTO(struct xe_vma *vma),
->-             TP_ARGS(vma)
->-);
->-
->-DEFINE_EVENT(xe_vma, xe_vma_userptr_invalidate,
->-             TP_PROTO(struct xe_vma *vma),
->-             TP_ARGS(vma)
->-);
->-
->-DEFINE_EVENT(xe_vma, xe_vma_invalidate,
->-             TP_PROTO(struct xe_vma *vma),
->-             TP_ARGS(vma)
->-);
->-
->-DEFINE_EVENT(xe_vma, xe_vma_evict,
->-             TP_PROTO(struct xe_vma *vma),
->-             TP_ARGS(vma)
->-);
->-
->-DEFINE_EVENT(xe_vma, xe_vma_userptr_invalidate_complete,
->-             TP_PROTO(struct xe_vma *vma),
->-             TP_ARGS(vma)
->-);
->-
->-DECLARE_EVENT_CLASS(xe_vm,
->-                    TP_PROTO(struct xe_vm *vm),
->-                    TP_ARGS(vm),
->-
->-                    TP_STRUCT__entry(
->-                             __field(struct xe_vm *, vm)
->-                             __field(u32, asid)
->-                             ),
->-
->-                    TP_fast_assign(
->-                           __entry->vm =3D vm;
->-                           __entry->asid =3D vm->usm.asid;
->-                           ),
->-
->-                    TP_printk("vm=3D%p, asid=3D0x%05x",  __entry->vm,
->-                              __entry->asid)
->-);
->-
->-DEFINE_EVENT(xe_vm, xe_vm_kill,
->-             TP_PROTO(struct xe_vm *vm),
->-             TP_ARGS(vm)
->-);
->-
->-DEFINE_EVENT(xe_vm, xe_vm_create,
->-             TP_PROTO(struct xe_vm *vm),
->-             TP_ARGS(vm)
->-);
->-
->-DEFINE_EVENT(xe_vm, xe_vm_free,
->-             TP_PROTO(struct xe_vm *vm),
->-             TP_ARGS(vm)
->-);
->-
->-DEFINE_EVENT(xe_vm, xe_vm_cpu_bind,
->-             TP_PROTO(struct xe_vm *vm),
->-             TP_ARGS(vm)
->-);
->-
->-DEFINE_EVENT(xe_vm, xe_vm_restart,
->-             TP_PROTO(struct xe_vm *vm),
->-             TP_ARGS(vm)
->-);
->-
->-DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_enter,
->-             TP_PROTO(struct xe_vm *vm),
->-             TP_ARGS(vm)
->-);
->-
->-DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_retry,
->-             TP_PROTO(struct xe_vm *vm),
->-             TP_ARGS(vm)
->-);
->-
->-DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_exit,
->-             TP_PROTO(struct xe_vm *vm),
->-             TP_ARGS(vm)
->-);
->-
-> /* GuC */
-> DECLARE_EVENT_CLASS(xe_guc_ct_flow_control,
->                     TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u=
+>-/* GuC */
+>-DECLARE_EVENT_CLASS(xe_guc_ct_flow_control,
+>-                    TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u=
 32 len),
->diff --git a/drivers/gpu/drm/xe/xe_trace_bo.c b/drivers/gpu/drm/xe/xe_trac=
-e_bo.c
+>-                    TP_ARGS(_head, _tail, size, space, len),
+>-
+>-                    TP_STRUCT__entry(
+>-                             __field(u32, _head)
+>-                             __field(u32, _tail)
+>-                             __field(u32, size)
+>-                             __field(u32, space)
+>-                             __field(u32, len)
+>-                             ),
+>-
+>-                    TP_fast_assign(
+>-                           __entry->_head =3D _head;
+>-                           __entry->_tail =3D _tail;
+>-                           __entry->size =3D size;
+>-                           __entry->space =3D space;
+>-                           __entry->len =3D len;
+>-                           ),
+>-
+>-                    TP_printk("h2g flow control: head=3D%u, tail=3D%u, si=
+ze=3D%u, space=3D%u, len=3D%u",
+>-                              __entry->_head, __entry->_tail, __entry->si=
+ze,
+>-                              __entry->space, __entry->len)
+>-);
+>-
+>-DEFINE_EVENT(xe_guc_ct_flow_control, xe_guc_ct_h2g_flow_control,
+>-             TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u32 len)=
+,
+>-             TP_ARGS(_head, _tail, size, space, len)
+>-);
+>-
+>-DEFINE_EVENT_PRINT(xe_guc_ct_flow_control, xe_guc_ct_g2h_flow_control,
+>-                   TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u3=
+2 len),
+>-                   TP_ARGS(_head, _tail, size, space, len),
+>-
+>-                   TP_printk("g2h flow control: head=3D%u, tail=3D%u, siz=
+e=3D%u, space=3D%u, len=3D%u",
+>-                             __entry->_head, __entry->_tail, __entry->siz=
+e,
+>-                             __entry->space, __entry->len)
+>-);
+>-
+>-DECLARE_EVENT_CLASS(xe_guc_ctb,
+>-                    TP_PROTO(u8 gt_id, u32 action, u32 len, u32 _head, u3=
+2 tail),
+>-                    TP_ARGS(gt_id, action, len, _head, tail),
+>-
+>-                    TP_STRUCT__entry(
+>-                                __field(u8, gt_id)
+>-                                __field(u32, action)
+>-                                __field(u32, len)
+>-                                __field(u32, tail)
+>-                                __field(u32, _head)
+>-                    ),
+>-
+>-                    TP_fast_assign(
+>-                            __entry->gt_id =3D gt_id;
+>-                            __entry->action =3D action;
+>-                            __entry->len =3D len;
+>-                            __entry->tail =3D tail;
+>-                            __entry->_head =3D _head;
+>-                    ),
+>-
+>-                    TP_printk("gt%d: H2G CTB: action=3D0x%x, len=3D%d, ta=
+il=3D%d, head=3D%d\n",
+>-                              __entry->gt_id, __entry->action, __entry->l=
+en,
+>-                              __entry->tail, __entry->_head)
+>-);
+>-
+>-DEFINE_EVENT(xe_guc_ctb, xe_guc_ctb_h2g,
+>-             TP_PROTO(u8 gt_id, u32 action, u32 len, u32 _head, u32 tail)=
+,
+>-             TP_ARGS(gt_id, action, len, _head, tail)
+>-);
+>-
+>-DEFINE_EVENT_PRINT(xe_guc_ctb, xe_guc_ctb_g2h,
+>-                   TP_PROTO(u8 gt_id, u32 action, u32 len, u32 _head, u32=
+ tail),
+>-                   TP_ARGS(gt_id, action, len, _head, tail),
+>-
+>-                   TP_printk("gt%d: G2H CTB: action=3D0x%x, len=3D%d, tai=
+l=3D%d, head=3D%d\n",
+>-                             __entry->gt_id, __entry->action, __entry->le=
+n,
+>-                             __entry->tail, __entry->_head)
+>-
+>-);
+>-
+> #endif
+>=20
+> /* This part must be outside protection */
+>diff --git a/drivers/gpu/drm/xe/xe_trace_guc.c b/drivers/gpu/drm/xe/xe_tra=
+ce_guc.c
 >new file mode 100644
->index 000000000000..6320168677e8
+>index 000000000000..f2e2b6bd165d
 >--- /dev/null
->+++ b/drivers/gpu/drm/xe/xe_trace_bo.c
+>+++ b/drivers/gpu/drm/xe/xe_trace_guc.c
 >@@ -0,0 +1,9 @@
 >+// SPDX-License-Identifier: GPL-2.0-only
 >+/*
@@ -533,15 +362,15 @@ s/2022/2024/
 >+
 >+#ifndef __CHECKER__
 >+#define CREATE_TRACE_POINTS
->+#include "xe_trace_bo.h"
+>+#include "xe_trace_guc.h"
 >+#endif
->diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trac=
-e_bo.h
+>diff --git a/drivers/gpu/drm/xe/xe_trace_guc.h b/drivers/gpu/drm/xe/xe_tra=
+ce_guc.h
 >new file mode 100644
->index 000000000000..6d90f3f42d54
+>index 000000000000..fb4976499812
 >--- /dev/null
->+++ b/drivers/gpu/drm/xe/xe_trace_bo.h
->@@ -0,0 +1,236 @@
+>+++ b/drivers/gpu/drm/xe/xe_trace_guc.h
+>@@ -0,0 +1,103 @@
 >+/* SPDX-License-Identifier: GPL-2.0-only */
 >+/*
 >+ * Copyright =C2=A9 2022 Intel Corporation
@@ -555,231 +384,105 @@ Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 >+#undef TRACE_SYSTEM
 >+#define TRACE_SYSTEM xe
 >+
->+#if !defined(_XE_TRACE_BO_H_) || defined(TRACE_HEADER_MULTI_READ)
->+#define _XE_TRACE_BO_H_
+>+#if !defined(_XE_TRACE_GUC_H_) || defined(TRACE_HEADER_MULTI_READ)
+>+#define _XE_TRACE_GUC_H_
 >+
 >+#include <linux/tracepoint.h>
 >+#include <linux/types.h>
 >+
->+#include "xe_bo.h"
->+#include "xe_bo_types.h"
->+#include "xe_vm.h"
+>+#include "xe_guc_exec_queue_types.h"
 >+
->+DECLARE_EVENT_CLASS(xe_bo,
->+                    TP_PROTO(struct xe_bo *bo),
->+                    TP_ARGS(bo),
+>+DECLARE_EVENT_CLASS(xe_guc_ct_flow_control,
+>+                    TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u=
+32 len),
+>+                    TP_ARGS(_head, _tail, size, space, len),
 >+
 >+                    TP_STRUCT__entry(
->+                             __field(size_t, size)
->+                             __field(u32, flags)
->+                             __field(struct xe_vm *, vm)
+>+                             __field(u32, _head)
+>+                             __field(u32, _tail)
+>+                             __field(u32, size)
+>+                             __field(u32, space)
+>+                             __field(u32, len)
 >+                             ),
 >+
 >+                    TP_fast_assign(
->+                           __entry->size =3D bo->size;
->+                           __entry->flags =3D bo->flags;
->+                           __entry->vm =3D bo->vm;
+>+                           __entry->_head =3D _head;
+>+                           __entry->_tail =3D _tail;
+>+                           __entry->size =3D size;
+>+                           __entry->space =3D space;
+>+                           __entry->len =3D len;
 >+                           ),
 >+
->+                    TP_printk("size=3D%zu, flags=3D0x%02x, vm=3D%p",
->+                              __entry->size, __entry->flags, __entry->vm)
+>+                    TP_printk("h2g flow control: head=3D%u, tail=3D%u, si=
+ze=3D%u, space=3D%u, len=3D%u",
+>+                              __entry->_head, __entry->_tail, __entry->si=
+ze,
+>+                              __entry->space, __entry->len)
 >+);
 >+
->+DEFINE_EVENT(xe_bo, xe_bo_cpu_fault,
->+             TP_PROTO(struct xe_bo *bo),
->+             TP_ARGS(bo)
->+);
->+
->+TRACE_EVENT(xe_bo_move,
->+            TP_PROTO(struct xe_bo *bo, uint32_t new_placement, uint32_t o=
-ld_placement,
->+                     bool move_lacks_source),
->+            TP_ARGS(bo, new_placement, old_placement, move_lacks_source),
->+            TP_STRUCT__entry(
->+                     __field(struct xe_bo *, bo)
->+                     __field(size_t, size)
->+                     __field(u32, new_placement)
->+                     __field(u32, old_placement)
->+                     __array(char, device_id, 12)
->+                     __field(bool, move_lacks_source)
->+                        ),
->+
->+            TP_fast_assign(
->+                   __entry->bo      =3D bo;
->+                   __entry->size =3D bo->size;
->+                   __entry->new_placement =3D new_placement;
->+                   __entry->old_placement =3D old_placement;
->+                   strscpy(__entry->device_id, dev_name(xe_bo_device(__en=
-try->bo)->drm.dev), 12);
->+                   __entry->move_lacks_source =3D move_lacks_source;
->+                   ),
->+            TP_printk("move_lacks_source:%s, migrate object %p [size %zu]=
- from %s to %s device_id:%s",
->+                      __entry->move_lacks_source ? "yes" : "no", __entry-=
->bo, __entry->size,
->+                      xe_mem_type_to_name[__entry->old_placement],
->+                      xe_mem_type_to_name[__entry->new_placement], __entr=
-y->device_id)
->+);
->+
->+DECLARE_EVENT_CLASS(xe_vma,
->+                    TP_PROTO(struct xe_vma *vma),
->+                    TP_ARGS(vma),
->+
->+                    TP_STRUCT__entry(
->+                             __field(struct xe_vma *, vma)
->+                             __field(u32, asid)
->+                             __field(u64, start)
->+                             __field(u64, end)
->+                             __field(u64, ptr)
->+                             ),
->+
->+                    TP_fast_assign(
->+                           __entry->vma =3D vma;
->+                           __entry->asid =3D xe_vma_vm(vma)->usm.asid;
->+                           __entry->start =3D xe_vma_start(vma);
->+                           __entry->end =3D xe_vma_end(vma) - 1;
->+                           __entry->ptr =3D xe_vma_userptr(vma);
->+                           ),
->+
->+                    TP_printk("vma=3D%p, asid=3D0x%05x, start=3D0x%012llx=
-, end=3D0x%012llx, userptr=3D0x%012llx,",
->+                              __entry->vma, __entry->asid, __entry->start=
+>+DEFINE_EVENT(xe_guc_ct_flow_control, xe_guc_ct_h2g_flow_control,
+>+             TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u32 len)=
 ,
->+                              __entry->end, __entry->ptr)
->+)
->+
->+DEFINE_EVENT(xe_vma, xe_vma_flush,
->+             TP_PROTO(struct xe_vma *vma),
->+             TP_ARGS(vma)
+>+             TP_ARGS(_head, _tail, size, space, len)
 >+);
 >+
->+DEFINE_EVENT(xe_vma, xe_vma_pagefault,
->+             TP_PROTO(struct xe_vma *vma),
->+             TP_ARGS(vma)
+>+DEFINE_EVENT_PRINT(xe_guc_ct_flow_control, xe_guc_ct_g2h_flow_control,
+>+                   TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u3=
+2 len),
+>+                   TP_ARGS(_head, _tail, size, space, len),
+>+
+>+                   TP_printk("g2h flow control: head=3D%u, tail=3D%u, siz=
+e=3D%u, space=3D%u, len=3D%u",
+>+                             __entry->_head, __entry->_tail, __entry->siz=
+e,
+>+                             __entry->space, __entry->len)
 >+);
 >+
->+DEFINE_EVENT(xe_vma, xe_vma_acc,
->+             TP_PROTO(struct xe_vma *vma),
->+             TP_ARGS(vma)
->+);
->+
->+DEFINE_EVENT(xe_vma, xe_vma_fail,
->+             TP_PROTO(struct xe_vma *vma),
->+             TP_ARGS(vma)
->+);
->+
->+DEFINE_EVENT(xe_vma, xe_vma_bind,
->+             TP_PROTO(struct xe_vma *vma),
->+             TP_ARGS(vma)
->+);
->+
->+DEFINE_EVENT(xe_vma, xe_vma_pf_bind,
->+             TP_PROTO(struct xe_vma *vma),
->+             TP_ARGS(vma)
->+);
->+
->+DEFINE_EVENT(xe_vma, xe_vma_unbind,
->+             TP_PROTO(struct xe_vma *vma),
->+             TP_ARGS(vma)
->+);
->+
->+DEFINE_EVENT(xe_vma, xe_vma_userptr_rebind_worker,
->+             TP_PROTO(struct xe_vma *vma),
->+             TP_ARGS(vma)
->+);
->+
->+DEFINE_EVENT(xe_vma, xe_vma_userptr_rebind_exec,
->+             TP_PROTO(struct xe_vma *vma),
->+             TP_ARGS(vma)
->+);
->+
->+DEFINE_EVENT(xe_vma, xe_vma_rebind_worker,
->+             TP_PROTO(struct xe_vma *vma),
->+             TP_ARGS(vma)
->+);
->+
->+DEFINE_EVENT(xe_vma, xe_vma_rebind_exec,
->+             TP_PROTO(struct xe_vma *vma),
->+             TP_ARGS(vma)
->+);
->+
->+DEFINE_EVENT(xe_vma, xe_vma_userptr_invalidate,
->+             TP_PROTO(struct xe_vma *vma),
->+             TP_ARGS(vma)
->+);
->+
->+DEFINE_EVENT(xe_vma, xe_vma_invalidate,
->+             TP_PROTO(struct xe_vma *vma),
->+             TP_ARGS(vma)
->+);
->+
->+DEFINE_EVENT(xe_vma, xe_vma_evict,
->+             TP_PROTO(struct xe_vma *vma),
->+             TP_ARGS(vma)
->+);
->+
->+DEFINE_EVENT(xe_vma, xe_vma_userptr_invalidate_complete,
->+             TP_PROTO(struct xe_vma *vma),
->+             TP_ARGS(vma)
->+);
->+
->+DECLARE_EVENT_CLASS(xe_vm,
->+                    TP_PROTO(struct xe_vm *vm),
->+                    TP_ARGS(vm),
+>+DECLARE_EVENT_CLASS(xe_guc_ctb,
+>+                    TP_PROTO(u8 gt_id, u32 action, u32 len, u32 _head, u3=
+2 tail),
+>+                    TP_ARGS(gt_id, action, len, _head, tail),
 >+
 >+                    TP_STRUCT__entry(
->+                             __field(struct xe_vm *, vm)
->+                             __field(u32, asid)
->+                             ),
+>+                                __field(u8, gt_id)
+>+                                __field(u32, action)
+>+                                __field(u32, len)
+>+                                __field(u32, tail)
+>+                                __field(u32, _head)
+>+                    ),
 >+
 >+                    TP_fast_assign(
->+                           __entry->vm =3D vm;
->+                           __entry->asid =3D vm->usm.asid;
->+                           ),
+>+                            __entry->gt_id =3D gt_id;
+>+                            __entry->action =3D action;
+>+                            __entry->len =3D len;
+>+                            __entry->tail =3D tail;
+>+                            __entry->_head =3D _head;
+>+                    ),
 >+
->+                    TP_printk("vm=3D%p, asid=3D0x%05x",  __entry->vm,
->+                              __entry->asid)
+>+                    TP_printk("gt%d: H2G CTB: action=3D0x%x, len=3D%d, ta=
+il=3D%d, head=3D%d\n",
+>+                              __entry->gt_id, __entry->action, __entry->l=
+en,
+>+                              __entry->tail, __entry->_head)
 >+);
 >+
->+DEFINE_EVENT(xe_vm, xe_vm_kill,
->+             TP_PROTO(struct xe_vm *vm),
->+             TP_ARGS(vm)
+>+DEFINE_EVENT(xe_guc_ctb, xe_guc_ctb_h2g,
+>+             TP_PROTO(u8 gt_id, u32 action, u32 len, u32 _head, u32 tail)=
+,
+>+             TP_ARGS(gt_id, action, len, _head, tail)
 >+);
 >+
->+DEFINE_EVENT(xe_vm, xe_vm_create,
->+             TP_PROTO(struct xe_vm *vm),
->+             TP_ARGS(vm)
->+);
+>+DEFINE_EVENT_PRINT(xe_guc_ctb, xe_guc_ctb_g2h,
+>+                   TP_PROTO(u8 gt_id, u32 action, u32 len, u32 _head, u32=
+ tail),
+>+                   TP_ARGS(gt_id, action, len, _head, tail),
 >+
->+DEFINE_EVENT(xe_vm, xe_vm_free,
->+             TP_PROTO(struct xe_vm *vm),
->+             TP_ARGS(vm)
->+);
+>+                   TP_printk("gt%d: G2H CTB: action=3D0x%x, len=3D%d, tai=
+l=3D%d, head=3D%d\n",
+>+                             __entry->gt_id, __entry->action, __entry->le=
+n,
+>+                             __entry->tail, __entry->_head)
 >+
->+DEFINE_EVENT(xe_vm, xe_vm_cpu_bind,
->+             TP_PROTO(struct xe_vm *vm),
->+             TP_ARGS(vm)
->+);
->+
->+DEFINE_EVENT(xe_vm, xe_vm_restart,
->+             TP_PROTO(struct xe_vm *vm),
->+             TP_ARGS(vm)
->+);
->+
->+DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_enter,
->+             TP_PROTO(struct xe_vm *vm),
->+             TP_ARGS(vm)
->+);
->+
->+DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_retry,
->+             TP_PROTO(struct xe_vm *vm),
->+             TP_ARGS(vm)
->+);
->+
->+DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_exit,
->+             TP_PROTO(struct xe_vm *vm),
->+             TP_ARGS(vm)
 >+);
 >+
 >+#endif
@@ -788,21 +491,8 @@ y->device_id)
 >+#undef TRACE_INCLUDE_PATH
 >+#undef TRACE_INCLUDE_FILE
 >+#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
->+#define TRACE_INCLUDE_FILE xe_trace_bo
+>+#define TRACE_INCLUDE_FILE xe_trace_guc
 >+#include <trace/define_trace.h>
->diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
->index 26b409e1b0f0..c2100d26b4e3 100644
->--- a/drivers/gpu/drm/xe/xe_vm.c
->+++ b/drivers/gpu/drm/xe/xe_vm.c
->@@ -36,7 +36,7 @@
-> #include "xe_pt.h"
-> #include "xe_res_cursor.h"
-> #include "xe_sync.h"
->-#include "xe_trace.h"
->+#include "xe_trace_bo.h"
-> #include "xe_wa.h"
-> #include "xe_hmm.h"
->=20
 >--=20
 >2.34.1
 >
