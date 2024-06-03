@@ -4,54 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D89AC25B75
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Jun 2024 08:32:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D495C25B76
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Jun 2024 08:45:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2514510E301;
-	Mon,  3 Jun 2024 08:32:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6A1310E309;
+	Mon,  3 Jun 2024 08:45:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YBIp9s07";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fihaDEbC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B2B010E301
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Jun 2024 08:32:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D57510E309
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Jun 2024 08:45:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717403535; x=1748939535;
+ t=1717404346; x=1748940346;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=yEKjZVt1HS3wZrxvcjf/MgS2g3E4tKZ0B6yvHDz+1YY=;
- b=YBIp9s07TVaDHHvoLgGMSpXwcv4apLvddfj646ejmVZobyCsVicnb1LN
- VDxGk+b2T2wIp3kL0SQQnjoAXZql7mJFkzPwuHoHsUvwoGb8ZJuvrWyiq
- 6jbd/tb4ZZA+fZzFO2noGIVjV0IRmAUcee0fgLgKhCvIGfs8dTIKaiT31
- KwBy352gooWhLDe8LZq+cv59rC48j25aCkFFm8bUW4SAroepjVFj1r0w6
- plTLH3TXRuOLdBMxCSEPWvEl/MTGs0aqrQAWqQEqiqm5yKZyDc+mnH5GG
- r4Zrv0oGxlu7baMOz19sRj/nAi6TdjC0+qfJxdCVpa/QbVyYPHfsC2T0e w==;
-X-CSE-ConnectionGUID: I3xEcpggSB6zL025SLFA2Q==
-X-CSE-MsgGUID: ZDJffon9QjOad9zadrnSsA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11091"; a="24512265"
-X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; d="scan'208";a="24512265"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2024 01:32:15 -0700
-X-CSE-ConnectionGUID: sWrKW4JISPmQCHiRYe1NJA==
-X-CSE-MsgGUID: YmIVfskQTgOx/NAg0F+vMg==
+ bh=0e5oc8HYP0qNWgtJFqks1cLcVrC0GQKRwF0weyLtpw4=;
+ b=fihaDEbCtwB3pQjkuNZyN1W1pod5Hmcq8JFpaxg9Y3KZBScXqdaecdbe
+ F/ZHrnO1cTGobaLDVs4EUZEBHgSYohe7JLDbVzmL+ZzZQigO0+0Yr8aPW
+ /q5KiqhqdvEja2v66zBn6llMxnlo3CAM8rvloPlDgtAXVhrh9wVjxKrGh
+ p2Z5aW2EHi6WBy7UB7XTw9BpIKl8sNhhRZHXw3MlUeaK+jV+AGlNLPx9k
+ R7QyEXp25xU7DHoc0+se7LDCm227Hh3uZr0BAB1i9GEHFnH+AtMvllGw/
+ 1ofk+LntgHguMKAHnuUTQNTIhXRN482f/Ms8ZUJyHN0Ld/Fvi1JG4Ffu1 w==;
+X-CSE-ConnectionGUID: Y9XOvjebT1yd5TX9IvIjjQ==
+X-CSE-MsgGUID: edoL3LKtQwaT3WU67Vc2SQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11091"; a="14008673"
+X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; d="scan'208";a="14008673"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2024 01:45:46 -0700
+X-CSE-ConnectionGUID: rXekES9BReqKwPIZ8sEsOA==
+X-CSE-MsgGUID: B+IOdGftQu+TH0uzLNsW2Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; d="scan'208";a="74299143"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2024 01:32:13 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; d="scan'208";a="41745454"
+Received: from himal-super-server.iind.intel.com ([10.145.169.168])
+ by orviesa005.jf.intel.com with ESMTP; 03 Jun 2024 01:45:45 -0700
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Nirmoy Das <nirmoy.das@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH] drm/xe: Use missing lock in relay_needs_worker
-Date: Mon,  3 Jun 2024 10:17:23 +0200
-Message-ID: <20240603081723.18775-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.42.0
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>
+Subject: [PATCH v2 1/3] drm/xe: Cleanup force wake registers bit definitions
+Date: Mon,  3 Jun 2024 14:31:45 +0530
+Message-Id: <20240603090147.1098639-1-himal.prasad.ghimiray@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,34 +65,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add missing lock that is protecting relay->incoming_actions.
+- Remove unused bit definitions.
+- Driver uses BIT(0) for waking/sleeping the domain and since the
+registers are masked respective mask bit BIT(16) needs to be set. Use
+defines for these bits and use them in domain initialization.
 
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Badal Nilawar <badal.nilawar@intel.com>
+Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_relay.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  7 ++++---
+ drivers/gpu/drm/xe/xe_force_wake.c   | 18 ++++++++++++------
+ 2 files changed, 16 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_relay.c b/drivers/gpu/drm/xe/xe_guc_relay.c
-index c3bbaf474f9a..ade6162dc259 100644
---- a/drivers/gpu/drm/xe/xe_guc_relay.c
-+++ b/drivers/gpu/drm/xe/xe_guc_relay.c
-@@ -761,7 +761,14 @@ static void relay_process_incoming_action(struct xe_guc_relay *relay)
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index d09b2473259f..441747f2d28a 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -487,9 +487,10 @@
+ 	((ccs) << ((cslice) * CCS_MODE_CSLICE_WIDTH))
  
- static bool relay_needs_worker(struct xe_guc_relay *relay)
- {
--	return !list_empty(&relay->incoming_actions);
-+	bool is_empty;
+ #define FORCEWAKE_ACK_GT			XE_REG(0x130044)
+-#define   FORCEWAKE_KERNEL			BIT(0)
+-#define   FORCEWAKE_USER			BIT(1)
+-#define   FORCEWAKE_KERNEL_FALLBACK		BIT(15)
 +
-+	spin_lock(&relay->lock);
-+	is_empty = list_empty(&relay->incoming_actions);
-+	spin_unlock(&relay->lock);
-+
-+	return !is_empty;
-+
++/* Applicable for all FORCEWAKE_DOMAIN and FORCEWAKE_ACK_DOMAIN regs */
++#define   FORCEWAKE_THREAD_XE			BIT(0)
++#define   FORCEWAKE_THREAD_XE_MASK		BIT(16)
+ 
+ #define MTL_MEDIA_PERF_LIMIT_REASONS		XE_REG(0x138030)
+ #define MTL_MEDIA_MC6				XE_REG(0x138048)
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
+index 9bbe8a5040da..64721c01f30d 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.c
++++ b/drivers/gpu/drm/xe/xe_force_wake.c
+@@ -52,13 +52,15 @@ void xe_force_wake_init_gt(struct xe_gt *gt, struct xe_force_wake *fw)
+ 			    XE_FW_DOMAIN_ID_GT,
+ 			    FORCEWAKE_GT,
+ 			    FORCEWAKE_ACK_GT_MTL,
+-			    BIT(0), BIT(16));
++			    FORCEWAKE_THREAD_XE,
++			    FORCEWAKE_THREAD_XE_MASK);
+ 	} else {
+ 		domain_init(&fw->domains[XE_FW_DOMAIN_ID_GT],
+ 			    XE_FW_DOMAIN_ID_GT,
+ 			    FORCEWAKE_GT,
+ 			    FORCEWAKE_ACK_GT,
+-			    BIT(0), BIT(16));
++			    FORCEWAKE_THREAD_XE,
++			    FORCEWAKE_THREAD_XE_MASK);
+ 	}
  }
  
- static void relay_kick_worker(struct xe_guc_relay *relay)
+@@ -74,7 +76,8 @@ void xe_force_wake_init_engines(struct xe_gt *gt, struct xe_force_wake *fw)
+ 			    XE_FW_DOMAIN_ID_RENDER,
+ 			    FORCEWAKE_RENDER,
+ 			    FORCEWAKE_ACK_RENDER,
+-			    BIT(0), BIT(16));
++			    FORCEWAKE_THREAD_XE,
++			    FORCEWAKE_THREAD_XE_MASK);
+ 
+ 	for (i = XE_HW_ENGINE_VCS0, j = 0; i <= XE_HW_ENGINE_VCS7; ++i, ++j) {
+ 		if (!(gt->info.engine_mask & BIT(i)))
+@@ -84,7 +87,8 @@ void xe_force_wake_init_engines(struct xe_gt *gt, struct xe_force_wake *fw)
+ 			    XE_FW_DOMAIN_ID_MEDIA_VDBOX0 + j,
+ 			    FORCEWAKE_MEDIA_VDBOX(j),
+ 			    FORCEWAKE_ACK_MEDIA_VDBOX(j),
+-			    BIT(0), BIT(16));
++			    FORCEWAKE_THREAD_XE,
++			    FORCEWAKE_THREAD_XE_MASK);
+ 	}
+ 
+ 	for (i = XE_HW_ENGINE_VECS0, j = 0; i <= XE_HW_ENGINE_VECS3; ++i, ++j) {
+@@ -95,7 +99,8 @@ void xe_force_wake_init_engines(struct xe_gt *gt, struct xe_force_wake *fw)
+ 			    XE_FW_DOMAIN_ID_MEDIA_VEBOX0 + j,
+ 			    FORCEWAKE_MEDIA_VEBOX(j),
+ 			    FORCEWAKE_ACK_MEDIA_VEBOX(j),
+-			    BIT(0), BIT(16));
++			    FORCEWAKE_THREAD_XE,
++			    FORCEWAKE_THREAD_XE_MASK);
+ 	}
+ 
+ 	if (gt->info.engine_mask & BIT(XE_HW_ENGINE_GSCCS0))
+@@ -103,7 +108,8 @@ void xe_force_wake_init_engines(struct xe_gt *gt, struct xe_force_wake *fw)
+ 			    XE_FW_DOMAIN_ID_GSC,
+ 			    FORCEWAKE_GSC,
+ 			    FORCEWAKE_ACK_GSC,
+-			    BIT(0), BIT(16));
++			    FORCEWAKE_THREAD_XE,
++			    FORCEWAKE_THREAD_XE_MASK);
+ }
+ 
+ static void domain_wake(struct xe_gt *gt, struct xe_force_wake_domain *domain)
 -- 
-2.42.0
+2.25.1
 
