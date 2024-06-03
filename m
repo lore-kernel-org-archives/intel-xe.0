@@ -4,66 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10E78C25B76
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Jun 2024 08:47:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40EB8C25B75
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Jun 2024 08:57:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B04E10E325;
-	Mon,  3 Jun 2024 08:47:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ry2ub1j0";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D846410E325
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Jun 2024 08:47:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717404458; x=1748940458;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=+O066of/c8S2Syn2USIWdnQjZjK6ECHrku4XxwOkVX8=;
- b=Ry2ub1j08BeyraFrHzEqiLkNqd5hpV5cffSqnTh1jiaM7/HaLE5BcbDc
- LXv7J3k4LYBimuwhHwzlJ9ciZmCSkrxvesVMIkL2rOEOMLLANFUeeO/2e
- ORx+XF5umoFQBMsGj3lc8oz4CwS1C55Z3dQ4EZnXEGCItb16AxMQ8CwJ0
- 0A2uhExJniv+GYDAcwI1p4bp1Fdy3/MTIMYzYmhPCUXn0iY9NUn2I1anR
- 5rpuIJBSDZPG+DFyK/d0e7Kiwsupl3FkQwLUbFCH4fgUcb98UZnt255Z6
- s4CwdPgllb3nwNAgT6ET8ueoJdEqqHMlQk71+YOD2liWF7RG3HkqmPNwh g==;
-X-CSE-ConnectionGUID: xwgEQOpfRQmIgfmP7wtRQQ==
-X-CSE-MsgGUID: i4GmrxFvT8K4ZUeEnxYnMQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11091"; a="25288792"
-X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; d="scan'208";a="25288792"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2024 01:47:37 -0700
-X-CSE-ConnectionGUID: pkYLky1zSpqhtyFxhQxFxQ==
-X-CSE-MsgGUID: en1pkR+FQf6xk9qcjkpQSg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; d="scan'208";a="41361903"
-Received: from unknown (HELO [10.245.245.174]) ([10.245.245.174])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2024 01:47:35 -0700
-Message-ID: <8c242b147e2bebb614ea145ccc1a799423114043.camel@linux.intel.com>
-Subject: Re: [PATCH v2] drm/xe: flush gtt before signalling user fence on
- all engines
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, Matthew Brost
- <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Lucas De Marchi
- <lucas.demarchi@intel.com>,  Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Matthew Auld <matthew.auld@intel.com>
-Date: Mon, 03 Jun 2024 10:47:32 +0200
-In-Reply-To: <2f068913-5010-41a6-b24a-2a8057fa8e1c@intel.com>
-References: <20240522-xu_flush_vcs_before_ufence-v2-1-9ac3e9af0323@intel.com>
- <e28c1e17fd9a6b7153432ff204ada2102706fb28.camel@linux.intel.com>
- <Zljle1kB6gR51RX4@DUT025-TGLU.fm.intel.com>
- <93ca58d4cbbd37cd93ce82959a8da30efd91307a.camel@linux.intel.com>
- <2f068913-5010-41a6-b24a-2a8057fa8e1c@intel.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9D5510E348;
+	Mon,  3 Jun 2024 08:57:41 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE8D5891BA;
+ Mon,  3 Jun 2024 08:57:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6611560740343357744=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_use_non-posted_writes_?=
+ =?utf-8?q?for_user_fence_signalling?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andrzej Hajda" <andrzej.hajda@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 03 Jun 2024 08:57:39 -0000
+Message-ID: <171740505997.2261299.5543600941225313974@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240603-fix_user_fence_posted-v1-1-61c76ef69cea@intel.com>
+In-Reply-To: <20240603-fix_user_fence_posted-v1-1-61c76ef69cea@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,202 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+--===============6611560740343357744==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Mon, 2024-06-03 at 10:11 +0200, Andrzej Hajda wrote:
->=20
->=20
-> On 03.06.2024 09:35, Thomas Hellstr=C3=B6m wrote:
-> > On Thu, 2024-05-30 at 20:45 +0000, Matthew Brost wrote:
-> > > On Thu, May 30, 2024 at 01:17:32PM +0200, Thomas Hellstr=C3=B6m wrote=
-:
-> > > > Hi, All.
-> > > >=20
-> > > > I was looking at this patch for drm-xe-fixes but it doesn't
-> > > > look
-> > > > correct to me.
-> > > >=20
-> > > > First, AFAICT, the "emit flush imm ggtt" means that we're
-> > > > flushing
-> > > > outstanding / posted writes, and then write a DW to a ggtt
-> > > > address,
-> > > > so
-> > > > we're not really "flushing gtt"
-> > > >=20
-> > > So, is this a bad name? I think I agree. It could have been a
-> > > holdover
-> > > from the i915 names. Maybe we should do a cleanup in xe_ring_ops
-> > > soon?
-> > >=20
-> > > Or are you saying that the existing emit_flush_imm_ggtt is not
-> > > sufficient to ensure all writes from batches are visible? If this
-> > > were
-> > > true, I would think we'd have all sorts of problems popping up.
-> > It was more the title of the patch that says "flush gtt" when I
-> > think
-> > it should say "flush writes" or something similar.
-> >=20
-> >=20
-> > > > Second, I don't think we have anything left that explicitly
-> > > > flushes
-> > > > the
-> > > > posted write of the user-fence value?
-> > > >=20
-> > > I think this might be true. So there could be a case where we get
-> > > an
-> > > IRQ
-> > > and the user fence value is not yet visible?
-> > Yes, exactly.
-> >=20
-> > > Not an expert ring programming but are instructions to store a
-> > > dword
-> > > which make these immediately visible? If so, I think that is what
-> > > should
-> > > be used.
-> > There are various options here, using various variants of
-> > MI_FLUSH_DW
-> > and pipe_control, and I'm not sure what would be the most
-> > performant
-> > but I think the simplest solution would be to revert the patch and
-> > just
-> > emit an additional MI_FLUSH_DW as a write barrier before emitting
-> > the
-> > posted userptr value.
->=20
-> As the patch already landed I have posted fix for it:
-> https://patchwork.freedesktop.org/series/134354/
->=20
-> Regards
-> Andrzej
+== Series Details ==
 
-I'm still concerned about the userptr write happening after the regular
-seqno write. Let's say the user requests a userptr write to a bo.=20
+Series: drm/xe: use non-posted writes for user fence signalling
+URL   : https://patchwork.freedesktop.org/series/134354/
+State : success
 
-1) The LRC fence signals.
-2) Bo is evicted / userptr invalidated. pages returned to system.
-3) The user-fence writes to pages that we no longer own, or causes a
-fault.
+== Summary ==
 
-/Thomas
+CI Bug Log - changes from xe-1393-fe3d637a9c72b22297da0c731fa5e217bd182d2d_BAT -> xe-pw-134354v1_BAT
+====================================================
 
->=20
-> >=20
-> > >=20
-> > >=20
-> > > We should also probably check how downstream i915 did this too.
-> > >=20
-> > > > and finally the seqno fence now gets flushed before the user-
-> > > > fence.
-> > > > Perhaps that's not a bad thing, though.
-> > > >=20
-> > > I don't think this is an issue, I can't think of a case where
-> > > this
-> > > reordering would create a problem.
-> > >=20
-> > > Matt
-> > /Thomas
-> >=20
-> > > =C2=A0=20
-> > > > /Thomas
-> > > >=20
-> > > >=20
-> > > > On Wed, 2024-05-22 at 09:27 +0200, Andrzej Hajda wrote:
-> > > > > Tests show that user fence signalling requires kind of write
-> > > > > barrier,
-> > > > > otherwise not all writes performed by the workload will be
-> > > > > available
-> > > > > to userspace. It is already done for render and compute, we
-> > > > > need
-> > > > > it
-> > > > > also for the rest: video, gsc, copy.
-> > > > >=20
-> > > > > v2: added gsc and copy engines, added fixes and r-b tags
-> > > > >=20
-> > > > > Closes:
-> > > > > https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1488
-> > > > > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for
-> > > > > Intel
-> > > > > GPUs")
-> > > > > Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> > > > > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> > > > > ---
-> > > > > Changes in v2:
-> > > > > - Added fixes and r-b tags
-> > > > > - Link to v1:
-> > > > > https://lore.kernel.org/r/20240521-xu_flush_vcs_before_ufence-v1-=
-1-ded38b56c8c9@intel.com
-> > > > > ---
-> > > > > Matthew,
-> > > > >=20
-> > > > > I have extended patch to copy and gsc engines. I have kept
-> > > > > your
-> > > > > r-b,
-> > > > > since the change is similar, I hope it is OK.
-> > > > > ---
-> > > > > =C2=A0=C2=A0drivers/gpu/drm/xe/xe_ring_ops.c | 8 ++++----
-> > > > > =C2=A0=C2=A01 file changed, 4 insertions(+), 4 deletions(-)
-> > > > >=20
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > > > b/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > > > index a3ca718456f6..a46a1257a24f 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > > > +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > > > @@ -234,13 +234,13 @@ static void
-> > > > > __emit_job_gen12_simple(struct
-> > > > > xe_sched_job *job, struct xe_lrc *lrc
-> > > > > =C2=A0=20
-> > > > > =C2=A0=C2=A0	i =3D emit_bb_start(batch_addr, ppgtt_flag, dw, i);
-> > > > > =C2=A0=20
-> > > > > +	i =3D emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc),
-> > > > > seqno,
-> > > > > false, dw, i);
-> > > > > +
-> > > > > =C2=A0=C2=A0	if (job->user_fence.used)
-> > > > > =C2=A0=C2=A0		i =3D emit_store_imm_ppgtt_posted(job-
-> > > > > > user_fence.addr,
-> > > > > =C2=A0=C2=A0						job-
-> > > > > > user_fence.value,
-> > > > > =C2=A0=C2=A0						dw, i);
-> > > > > =C2=A0=20
-> > > > > -	i =3D emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc),
-> > > > > seqno,
-> > > > > false, dw, i);
-> > > > > -
-> > > > > =C2=A0=C2=A0	i =3D emit_user_interrupt(dw, i);
-> > > > > =C2=A0=20
-> > > > > =C2=A0=C2=A0	xe_gt_assert(gt, i <=3D MAX_JOB_SIZE_DW);
-> > > > > @@ -293,13 +293,13 @@ static void
-> > > > > __emit_job_gen12_video(struct
-> > > > > xe_sched_job *job, struct xe_lrc *lrc,
-> > > > > =C2=A0=20
-> > > > > =C2=A0=C2=A0	i =3D emit_bb_start(batch_addr, ppgtt_flag, dw, i);
-> > > > > =C2=A0=20
-> > > > > +	i =3D emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc),
-> > > > > seqno,
-> > > > > false, dw, i);
-> > > > > +
-> > > > > =C2=A0=C2=A0	if (job->user_fence.used)
-> > > > > =C2=A0=C2=A0		i =3D emit_store_imm_ppgtt_posted(job-
-> > > > > > user_fence.addr,
-> > > > > =C2=A0=C2=A0						job-
-> > > > > > user_fence.value,
-> > > > > =C2=A0=C2=A0						dw, i);
-> > > > > =C2=A0=20
-> > > > > -	i =3D emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc),
-> > > > > seqno,
-> > > > > false, dw, i);
-> > > > > -
-> > > > > =C2=A0=C2=A0	i =3D emit_user_interrupt(dw, i);
-> > > > > =C2=A0=20
-> > > > > =C2=A0=C2=A0	xe_gt_assert(gt, i <=3D MAX_JOB_SIZE_DW);
-> > > > >=20
-> > > > > ---
-> > > > > base-commit: 188ced1e0ff892f0948f20480e2e0122380ae46d
-> > > > > change-id: 20240521-xu_flush_vcs_before_ufence-a7b45d94cf33
-> > > > >=20
-> > > > > Best regards,
->=20
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-1393-fe3d637a9c72b22297da0c731fa5e217bd182d2d -> xe-pw-134354v1
+
+  IGT_7877: 23b8b8a0168e1b5141e29346be1f83fdbed31037 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1393-fe3d637a9c72b22297da0c731fa5e217bd182d2d: fe3d637a9c72b22297da0c731fa5e217bd182d2d
+  xe-pw-134354v1: 134354v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134354v1/index.html
+
+--===============6611560740343357744==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: use non-posted writes for user fence signalling</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134354/">https://patchwork.freedesktop.org/series/134354/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134354v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134354v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1393-fe3d637a9c72b22297da0c731fa5e217bd182d2d_BAT -&gt; xe-pw-134354v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1393-fe3d637a9c72b22297da0c731fa5e217bd182d2d -&gt; xe-pw-134354v1</li>
+</ul>
+<p>IGT_7877: 23b8b8a0168e1b5141e29346be1f83fdbed31037 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1393-fe3d637a9c72b22297da0c731fa5e217bd182d2d: fe3d637a9c72b22297da0c731fa5e217bd182d2d<br />
+  xe-pw-134354v1: 134354v1</p>
+
+</body>
+</html>
+
+--===============6611560740343357744==--
