@@ -4,58 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84209C25B75
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Jun 2024 14:19:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C0FCC25B75
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Jun 2024 14:28:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A0858924B;
-	Mon,  3 Jun 2024 14:19:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3DF410E00B;
+	Mon,  3 Jun 2024 14:28:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ESiehVk0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VdN1UYDX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62CEA8924B
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Jun 2024 14:19:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94C6A10E00B
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Jun 2024 14:27:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717424362; x=1748960362;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=dShy4XpRHQ6LffBNCWJJ/ZfNZJKsrKEgEbw6IPOlm+Q=;
- b=ESiehVk0xfErZFszzT2316veQA+NRjsa3Gp0Z/wrnIPJODCTWWG6Lsyb
- DK0p0mhkI1bRh9lgX6uj7MFXuI5zV5iE+SZmgZPLtKNA68apOobv0NZf0
- d5BIh0uMoPtd/DNtZMF0xQhFXvtUoLRRBQTBl3mvj64WyWLIBIyOsQFDv
- hnhJUJunPPs3ZIYl0jX/VPk+OhNOuI8N8hNUP0c+0AaPYHM5P9jk+xrYW
- /YIohNEG3oE2/LGH5AcxSOQ6ojgoySR7HMc/E6CTTkNMkX77Y08McW5YC
- 7a/kwCDksYFISEcXZSX3mdcgv5dOLsLvWGzfC8Fyo8w73BhLYucAuTi5t Q==;
-X-CSE-ConnectionGUID: wbfzgX7FROyBCC+cCpF8AA==
-X-CSE-MsgGUID: p36eX4x2QbS3o7/mC7yFKQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="14144059"
-X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; d="scan'208";a="14144059"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2024 07:19:21 -0700
-X-CSE-ConnectionGUID: BDYsQnjWRy+WcKmY0OjsHg==
-X-CSE-MsgGUID: pFTtY7pRQoCzMVjlbvS2BA==
+ t=1717424879; x=1748960879;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rfeG2quDfbVufcRCq0jo6ETCJJsPy9N5RrzAn5Rw0kc=;
+ b=VdN1UYDXBlTNCVCj2ZAtmWAUe6GeFu7taVmvZZy+HlQ+gI3An9RcNT8z
+ fns1dahCqMIk3O873X1sZ+aNRf7J4XG5EMMG9cTHIqY9kdk+MZ/QjaUV+
+ V7tSuRQH8GGEBKzbv9yIzUiYBk1xNT3WOF2rgtGBHG1FaCxm7r93EjqaI
+ oXne8SY8amYyBCdTHLTTIrgXWO1Cxy/bo0t3Ukvz0jrVXEOM/EGFtTcp+
+ /kp/Mk6NlbiQah69nStgOkDfaO3kpJyGRadlspW+vSdgj1N0Afjcfrhsn
+ Ee/wSISyW8A1G3UMeE2IotpRgTQrhd0qyRq9aNAZsk9nsMTG1SbEW0CCp w==;
+X-CSE-ConnectionGUID: +VXyMqLGTvi2DsN7TmKTZg==
+X-CSE-MsgGUID: Ok9ZBW86QkWx8LTYGr62jw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="13670499"
+X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; d="scan'208";a="13670499"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2024 07:27:59 -0700
+X-CSE-ConnectionGUID: /XiMSaw/RfWCMCLI/ZLIVw==
+X-CSE-MsgGUID: VA/Si0nsSAWV5XLQB0C4hQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; d="scan'208";a="36868974"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa008.fm.intel.com with ESMTP; 03 Jun 2024 07:19:21 -0700
-Received: from [10.246.19.248] (mwajdecz-MOBL.ger.corp.intel.com
- [10.246.19.248])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 2B197125B4;
- Mon,  3 Jun 2024 15:19:19 +0100 (IST)
-Message-ID: <452de901-f35e-49df-8e5f-c4ce676ece0b@intel.com>
-Date: Mon, 3 Jun 2024 16:19:13 +0200
+X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; d="scan'208";a="68055255"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by fmviesa001.fm.intel.com with ESMTP; 03 Jun 2024 07:27:58 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH] drm/xe: validate client of BO inside lock
+Date: Mon,  3 Jun 2024 19:58:23 +0530
+Message-Id: <20240603142823.720213-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Use missing lock in relay_needs_worker
-To: Nirmoy Das <nirmoy.das@intel.com>, intel-xe@lists.freedesktop.org
-References: <20240603081723.18775-1-nirmoy.das@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20240603081723.18775-1-nirmoy.das@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,42 +63,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+As client of BO getting referenced inside lock of BOs
+list, its good practice to move these WARN_ONs also
+under same lock to validate existance of bo->client.
 
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+ drivers/gpu/drm/xe/xe_drm_client.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-On 03.06.2024 10:17, Nirmoy Das wrote:
-> Add missing lock that is protecting relay->incoming_actions.
+diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
+index 4a19b771e3a0..7881b02fa117 100644
+--- a/drivers/gpu/drm/xe/xe_drm_client.c
++++ b/drivers/gpu/drm/xe/xe_drm_client.c
+@@ -131,10 +131,9 @@ void __xe_drm_client_free(struct kref *kref)
+ void xe_drm_client_add_bo(struct xe_drm_client *client,
+ 			  struct xe_bo *bo)
+ {
++	spin_lock(&client->bos_lock);
+ 	XE_WARN_ON(bo->client);
+ 	XE_WARN_ON(!list_empty(&bo->client_link));
+-
+-	spin_lock(&client->bos_lock);
+ 	bo->client = xe_drm_client_get(client);
+ 	list_add_tail(&bo->client_link, &client->bos_list);
+ 	spin_unlock(&client->bos_lock);
+-- 
+2.25.1
 
-good catch!
-
-> 
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_guc_relay.c | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_relay.c b/drivers/gpu/drm/xe/xe_guc_relay.c
-> index c3bbaf474f9a..ade6162dc259 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_relay.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_relay.c
-> @@ -761,7 +761,14 @@ static void relay_process_incoming_action(struct xe_guc_relay *relay)
->  
->  static bool relay_needs_worker(struct xe_guc_relay *relay)
->  {
-> -	return !list_empty(&relay->incoming_actions);
-> +	bool is_empty;
-> +
-> +	spin_lock(&relay->lock);
-> +	is_empty = list_empty(&relay->incoming_actions);
-> +	spin_unlock(&relay->lock);
-> +
-> +	return !is_empty;
-> +
->  }
-
-alternate solution could be to just rely on the new return value from
-relay_process_incoming_action() that could tell us if there was nothing
-to dequeue so then we wont start new worker (at potential cost of one
-extra worker cycle to see that), but this LGTM too, so
-
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
