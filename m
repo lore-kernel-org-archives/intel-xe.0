@@ -4,52 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC722C25B78
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Jun 2024 18:46:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DA5FC25B78
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Jun 2024 18:48:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3FE710E494;
-	Tue,  4 Jun 2024 18:46:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c/+/9tqF";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4C3D10E494
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Jun 2024 18:46:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717526793; x=1749062793;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/D6RhWW+AvYG4/Qse1sc7CRVS5AQEe+Rgz0TR2sZj1s=;
- b=c/+/9tqF86ze6+5zUNtn6MUiqfb2Z5kVXy0hTyx7HskO6Nmn80agTj0/
- sj6OLDT/a9TldsE7XVDAaSq/bOipUQYFTxNVihv8gFTC7iHCNfsJcpqTE
- uV00OpjzOtoTbB9MX2Ydo/YrkjSrrvbouToH7atw59Af2rXQf0W/qmgEY
- YTh60Nif0eA0UcZyz3OOeb0+FZ2keZYcLXEVe+dkqc61D9rrMTR+6rDGP
- xGYcnWJ1HejaCvd5JuVDlK1imfagc/kMq6a3/AbUoJoMJCFvLXpmGNGyM
- T6j1/mrZj2DrfIMdKFOFLlnNxestCGBOY3YnWl15xvLRwI+AZC/sqrcV3 A==;
-X-CSE-ConnectionGUID: vOC6rv9iT16O/PW0fw0dIg==
-X-CSE-MsgGUID: p1fzESAGT+2iQmMS9PC4cg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="24757181"
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="24757181"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 11:46:32 -0700
-X-CSE-ConnectionGUID: nPfzBb+eQWCxChbyus6XzQ==
-X-CSE-MsgGUID: 8x6tqgKaRoG8YLxPJzFAVQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="37394087"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 11:46:32 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH] drm/xe: Drop EXEC_QUEUE_FLAG_BANNED
-Date: Tue,  4 Jun 2024 11:47:00 -0700
-Message-Id: <20240604184700.1946918-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD06610E5C0;
+	Tue,  4 Jun 2024 18:48:30 +0000 (UTC)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB02010E5C6;
+ Tue,  4 Jun 2024 18:48:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/bmg=3A_Add_PCI_IDs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 04 Jun 2024 18:48:28 -0000
+Message-ID: <171752690870.2264328.17592219259579417667@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240603145430.1260817-1-balasubramani.vivekanandan@intel.com>
+In-Reply-To: <20240603145430.1260817-1-balasubramani.vivekanandan@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,116 +35,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Clean up laying violation of setting q->flags EXEC_QUEUE_FLAG_BANNED bit
-in GuC backend. Move banned to GuC owned bit and report banned status to
-upper layers via reset_status vfunc. This is a slight change in behavior
-as reset_status returns true if wedged or killed bits set too, but in
-all of these cases submission to queue is no longer allowed.
+== Series Details ==
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_exec.c             |  2 +-
- drivers/gpu/drm/xe/xe_exec_queue.c       |  2 +-
- drivers/gpu/drm/xe/xe_exec_queue_types.h | 12 +++++-------
- drivers/gpu/drm/xe/xe_guc_submit.c       | 10 ++++++----
- 4 files changed, 13 insertions(+), 13 deletions(-)
+Series: drm/xe/bmg: Add PCI IDs
+URL   : https://patchwork.freedesktop.org/series/134387/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index 97eeb973e897..4cf6c6ab4866 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -141,7 +141,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 			 q->width != args->num_batch_buffer))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_DBG(xe, q->flags & EXEC_QUEUE_FLAG_BANNED)) {
-+	if (XE_IOCTL_DBG(xe, q->ops->reset_status(q))) {
- 		err = -ECANCELED;
- 		goto err_exec_queue;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 27215075c799..cf45df0328da 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -677,7 +677,7 @@ int xe_exec_queue_get_property_ioctl(struct drm_device *dev, void *data,
- 
- 	switch (args->property) {
- 	case DRM_XE_EXEC_QUEUE_GET_PROPERTY_BAN:
--		args->value = !!(q->flags & EXEC_QUEUE_FLAG_BANNED);
-+		args->value = q->ops->reset_status(q);
- 		ret = 0;
- 		break;
- 	default:
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 18d8b2a60928..f0c5f82ce7e3 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -70,18 +70,16 @@ struct xe_exec_queue {
- 	 */
- 	struct dma_fence *last_fence;
- 
--/* queue no longer allowed to submit */
--#define EXEC_QUEUE_FLAG_BANNED			BIT(0)
- /* queue used for kernel submission only */
--#define EXEC_QUEUE_FLAG_KERNEL			BIT(1)
-+#define EXEC_QUEUE_FLAG_KERNEL			BIT(0)
- /* kernel engine only destroyed at driver unload */
--#define EXEC_QUEUE_FLAG_PERMANENT		BIT(2)
-+#define EXEC_QUEUE_FLAG_PERMANENT		BIT(1)
- /* for VM jobs. Caller needs to hold rpm ref when creating queue with this flag */
--#define EXEC_QUEUE_FLAG_VM			BIT(3)
-+#define EXEC_QUEUE_FLAG_VM			BIT(2)
- /* child of VM queue for multi-tile VM jobs */
--#define EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD	BIT(4)
-+#define EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD	BIT(3)
- /* kernel exec_queue only, set priority to highest level */
--#define EXEC_QUEUE_FLAG_HIGH_PRIORITY		BIT(5)
-+#define EXEC_QUEUE_FLAG_HIGH_PRIORITY		BIT(4)
- 
- 	/**
- 	 * @flags: flags for this exec queue, should statically setup aside from ban
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 47aab04cf34f..4464ba337d12 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -61,6 +61,7 @@ exec_queue_to_guc(struct xe_exec_queue *q)
- #define EXEC_QUEUE_STATE_RESET			(1 << 6)
- #define EXEC_QUEUE_STATE_KILLED			(1 << 7)
- #define EXEC_QUEUE_STATE_WEDGED			(1 << 8)
-+#define EXEC_QUEUE_STATE_BANNED			(1 << 9)
- 
- static bool exec_queue_registered(struct xe_exec_queue *q)
- {
-@@ -134,12 +135,12 @@ static void set_exec_queue_destroyed(struct xe_exec_queue *q)
- 
- static bool exec_queue_banned(struct xe_exec_queue *q)
- {
--	return (q->flags & EXEC_QUEUE_FLAG_BANNED);
-+	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_BANNED;
- }
- 
- static void set_exec_queue_banned(struct xe_exec_queue *q)
- {
--	q->flags |= EXEC_QUEUE_FLAG_BANNED;
-+	atomic_or(EXEC_QUEUE_STATE_BANNED, &q->guc->state);
- }
- 
- static bool exec_queue_suspended(struct xe_exec_queue *q)
-@@ -189,8 +190,9 @@ static void set_exec_queue_wedged(struct xe_exec_queue *q)
- 
- static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
- {
--	return exec_queue_banned(q) || (atomic_read(&q->guc->state) &
--		(EXEC_QUEUE_STATE_WEDGED | EXEC_QUEUE_STATE_KILLED));
-+	return (atomic_read(&q->guc->state) &
-+		(EXEC_QUEUE_STATE_WEDGED | EXEC_QUEUE_STATE_KILLED |
-+		 EXEC_QUEUE_STATE_BANNED));
- }
- 
- #ifdef CONFIG_PROVE_LOCKING
--- 
-2.34.1
+== Summary ==
+
+lib/modules/6.10.0-rc2-xe/kernel/sound/core/seq/
+lib/modules/6.10.0-rc2-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soundcore.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/common/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/amd/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/codecs/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/hda/
+lib/modules/6.10.0-rc2-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/hda/ext/
+lib/modules/6.10.0-rc2-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kernel/
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/events/
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/events/intel/
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kvm/
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/
+lib/modules/6.10.0-rc2-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/cmac.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/ccm.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/cryptd.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/
+lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.10.0-rc2-xe/build
+lib/modules/6.10.0-rc2-xe/modules.alias.bin
+lib/modules/6.10.0-rc2-xe/modules.builtin
+lib/modules/6.10.0-rc2-xe/modules.softdep
+lib/modules/6.10.0-rc2-xe/modules.alias
+lib/modules/6.10.0-rc2-xe/modules.order
+lib/modules/6.10.0-rc2-xe/modules.symbols
+lib/modules/6.10.0-rc2-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
+[0Ksection_end:1717526897:package_x86_64_nodebug
+[0K
++ echo -e '\e[0Ksection_end:1717526897:package_x86_64_nodebug\r\e[0K'
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
