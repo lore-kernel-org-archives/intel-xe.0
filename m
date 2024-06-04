@@ -4,60 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7581AC27C50
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Jun 2024 11:46:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54F25C25B7E
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Jun 2024 12:03:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7202510E45C;
-	Tue,  4 Jun 2024 11:46:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08C2F10E46B;
+	Tue,  4 Jun 2024 12:03:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l3aavDl7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HIG4tz/n";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 372A310E2DC;
- Tue,  4 Jun 2024 11:46:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E53FD10E46B
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Jun 2024 12:03:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717501589; x=1749037589;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=B6mGfkHk/ONVHEvv+VUBgDOYuJrU5FPKHTHcBVWJUUM=;
- b=l3aavDl7oZedUAEMAziIVNhAuoqJZim6q1r1aSYFRSA8vjuK5nNoyDv6
- 9lQ0o1JGq30MvsKUOTjK7WsDNvZBlex62wOXK1/07QuceKFtF9kSNIsbu
- ZhPA5I44h/vfd2r+hsQS2zmpOqSESg0fKlbQuZqD4v3xwrAQ7qN9jnnQp
- //moFPCRJWyU2Qxs9OCJ72RBe5R5lixAkAjU5IHpOh/YqqTDmt9szQ7ha
- Y/xjouEMFLkm6Uy0NTm3hDubholDiMj7O5HbRR8OuCt4PtpnE5uqIUHle
- E2beOmEq/tCZjiNxuLl/aZSE8pZ3PTvgRlaQnAfxSqHfQqZ4ZF/SXJGrV Q==;
-X-CSE-ConnectionGUID: 0LVOQeHUSE+4XIYSESadRg==
-X-CSE-MsgGUID: X+WDZq8ARmeyL1+WRPvp6Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="13921071"
-X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="13921071"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 04:46:29 -0700
-X-CSE-ConnectionGUID: IAYD4eeWS6qNJEHAk5ZsVQ==
-X-CSE-MsgGUID: +Q7SFRAKRmenykonZ0UGiA==
+ t=1717502636; x=1749038636;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=2od7ZyQqzpp+ZlJQKbZZ8kHM8KoDAZz+e/kE+7YYdxo=;
+ b=HIG4tz/nYGIyf0FbEDy3IlNEyDAWaPnHplcyS1pWKPWEDY/ShrN+7cRz
+ ZmyoqpZYrxpsGZMC+0LpDiZenxV5hu20w9FXhMvHabk9GEJyoTJbAMV8h
+ JJYhZvnCMeCyJusNhvOQwnWwlUxXEPKp8jNnYLqKCSz1AEVnLqi8cLkI9
+ DUlzzMpJQ13kfx4lPcDBOI6FtBY0z9tGEbGy2iFQsQ85QyKEqQucOMdU0
+ UZ1EH6GVNAl7IO5rL8c4A5x4sD597S4xKZxfVtmVet+NWsH8KWR8+SBGf
+ LPKHm+2kDWSGXj69Aaz1tvV/nkwfORTCmbswSkcB2kl8OE/kVfg0nO7+o g==;
+X-CSE-ConnectionGUID: 1rCkVk7lSrK8Yl9gnRbYKQ==
+X-CSE-MsgGUID: ekiZQMSfScuZvNOSWjqAFw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="24618763"
+X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="24618763"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2024 05:03:55 -0700
+X-CSE-ConnectionGUID: 2hbi35J5RW2CebJkWFa1+Q==
+X-CSE-MsgGUID: QIq8vKotRReUaaPjdcdsuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="37270719"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.123])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 04:46:24 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- ville.syrjala@linux.intel.com
-Subject: Re: [PATCH 07/12] drm/i915: extend the fsb_freq initialization to
- more platforms
-In-Reply-To: <87cyp3ixek.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1716906179.git.jani.nikula@intel.com>
- <31252aa5da27d111b9156904ab4f97325431303d.1716906179.git.jani.nikula@intel.com>
- <20240529213955.GV4990@mdroper-desk1.amr.corp.intel.com>
- <87cyp3ixek.fsf@intel.com>
-Date: Tue, 04 Jun 2024 14:46:18 +0300
-Message-ID: <87ed9dc4mt.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="37151302"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa010.jf.intel.com with ESMTP; 04 Jun 2024 05:03:54 -0700
+Received: from [10.94.248.185] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.94.248.185])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 2669C1241A;
+ Tue,  4 Jun 2024 13:03:52 +0100 (IST)
+Message-ID: <6ff79cf8-9132-4163-92e4-9d6cda9e8189@intel.com>
+Date: Tue, 4 Jun 2024 14:03:50 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/guc: Drop redundant ARAT timer enabling
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ John Harrison <John.C.Harrison@intel.com>
+References: <20240603190747.1372-1-michal.wajdeczko@intel.com>
+ <Zl5jO5P4M4/0ckga@DUT025-TGLU.fm.intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <Zl5jO5P4M4/0ckga@DUT025-TGLU.fm.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,132 +74,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 30 May 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Wed, 29 May 2024, Matt Roper <matthew.d.roper@intel.com> wrote:
->> On Tue, May 28, 2024 at 05:24:56PM +0300, Jani Nikula wrote:
->>> Initialize fsb frequency for more platforms to be able to use it for GT
->>> clock and rawclk frequency initialization.
->>> 
->>> Note: There's a discrepancy between existing pnv_fsb_freq() and
->>> i9xx_hrawclk() regarding CLKCFG interpretation. Presume all PNV is
->>> mobile.
+
+
+On 04.06.2024 02:43, Matthew Brost wrote:
+> On Mon, Jun 03, 2024 at 09:07:47PM +0200, Michal Wajdeczko wrote:
+>> This interrupt is enabled by default and there is no need to
+>> re-enable it as there is no other code in the Xe driver that
+>> could change this setting.
 >>
->> Do you just mean we assume PNV always treats CLKCFG the same way mobile
->> platforms do?  Because we have both mobile and non-mobile platforms
->> defined in the driver (pnv_m_info vs pnv_g_info) and that matches
->> https://ark.intel.com/content/www/us/en/ark/products/codename/32201/products-formerly-pineview.html
->> that lists both desktop and mobile.
->
-> Yeah. The problem is, current code in intel_dram.c and intel_cdclk.c
-> interpret the CLKCFG register differently for desktop PNV. At least one
-> of them is wrong. Basically I just picked one, and secretly hoped Ville
-> would tell me. ;)
+> 
+> I agree this is likely the wrong location but also think it is little
+> unsafe to rely on default values. I recall having to add this in in i915
+> at one point and without this GuC submission doesn't work. How about
+> moving it to the IRQ layer plus a comment along the lines of should be
+> enabled by default but let's be paranoid and set it anyways?
 
-Ville, do you have any idea about CLKCFG?
+but on i915 restoring the value of the ARAT_EXPIRED_INTRMSK was likely
+more legit as there was another code that could modify this register
+(see intel_rps.c) but on Xe driver we don't have any similar code, so
+not sure if we need to be paranoid
 
-BR,
-Jani.
-
-
->
-> BR,
-> Jani.
->
->
+> 
+> Matt 
+> 
+>> Bspec: 52572
+>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+>> Cc: John Harrison <John.C.Harrison@Intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/xe_guc.c | 3 ---
+>>  1 file changed, 3 deletions(-)
 >>
+>> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+>> index 086a048876ba..f4d728350694 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc.c
+>> @@ -862,9 +862,6 @@ int xe_guc_enable_communication(struct xe_guc *guc)
+>>  			return err;
+>>  	}
+>>  
+>> -	xe_mmio_rmw32(guc_to_gt(guc), PMINTRMSK,
+>> -		      ARAT_EXPIRED_INTRMSK, 0);
+>> -
+>>  	err = xe_guc_ct_enable(&guc->ct);
+>>  	if (err)
+>>  		return err;
+>> -- 
+>> 2.43.0
 >>
->> Matt
->>
->>> 
->>> FIXME: What should the default or failure mode be when the value is
->>> unknown?
->>> 
->>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>> ---
->>>  drivers/gpu/drm/i915/soc/intel_dram.c | 54 ++++++++++++++++++++-------
->>>  1 file changed, 40 insertions(+), 14 deletions(-)
->>> 
->>> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
->>> index ace9372244a4..74b5b70e91f9 100644
->>> --- a/drivers/gpu/drm/i915/soc/intel_dram.c
->>> +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
->>> @@ -142,24 +142,50 @@ static void detect_mem_freq(struct drm_i915_private *i915)
->>>  		drm_dbg(&i915->drm, "DDR speed: %d kHz\n", i915->mem_freq);
->>>  }
->>>  
->>> -static unsigned int pnv_fsb_freq(struct drm_i915_private *i915)
->>> +static unsigned int i9xx_fsb_freq(struct drm_i915_private *i915)
->>>  {
->>>  	u32 fsb;
->>>  
->>>  	fsb = intel_uncore_read(&i915->uncore, CLKCFG) & CLKCFG_FSB_MASK;
->>>  
->>> -	switch (fsb) {
->>> -	case CLKCFG_FSB_400:
->>> -		return 400000;
->>> -	case CLKCFG_FSB_533:
->>> -		return 533333;
->>> -	case CLKCFG_FSB_667:
->>> -		return 666667;
->>> -	case CLKCFG_FSB_800:
->>> -		return 800000;
->>> +	if (IS_PINEVIEW(i915) || IS_MOBILE(i915)) {
->>> +		switch (fsb) {
->>> +		case CLKCFG_FSB_400:
->>> +			return 400000;
->>> +		case CLKCFG_FSB_533:
->>> +			return 533333;
->>> +		case CLKCFG_FSB_667:
->>> +			return 666667;
->>> +		case CLKCFG_FSB_800:
->>> +			return 800000;
->>> +		case CLKCFG_FSB_1067:
->>> +			return 1066667;
->>> +		case CLKCFG_FSB_1333:
->>> +			return 1333333;
->>> +		default:
->>> +			MISSING_CASE(fsb);
->>> +			return 1333333;
->>> +		}
->>> +	} else {
->>> +		switch (fsb) {
->>> +		case CLKCFG_FSB_400_ALT:
->>> +			return 400000;
->>> +		case CLKCFG_FSB_533:
->>> +			return 533333;
->>> +		case CLKCFG_FSB_667:
->>> +			return 666667;
->>> +		case CLKCFG_FSB_800:
->>> +			return 800000;
->>> +		case CLKCFG_FSB_1067_ALT:
->>> +			return 1066667;
->>> +		case CLKCFG_FSB_1333_ALT:
->>> +			return 1333333;
->>> +		case CLKCFG_FSB_1600_ALT:
->>> +			return 1600000;
->>> +		default:
->>> +			return 533333;
->>> +		}
->>>  	}
->>> -
->>> -	return 0;
->>>  }
->>>  
->>>  static unsigned int ilk_fsb_freq(struct drm_i915_private *dev_priv)
->>> @@ -193,8 +219,8 @@ static void detect_fsb_freq(struct drm_i915_private *i915)
->>>  {
->>>  	if (GRAPHICS_VER(i915) == 5)
->>>  		i915->fsb_freq = ilk_fsb_freq(i915);
->>> -	else if (IS_PINEVIEW(i915))
->>> -		i915->fsb_freq = pnv_fsb_freq(i915);
->>> +	else if (GRAPHICS_VER(i915) == 3 || GRAPHICS_VER(i915) == 4)
->>> +		i915->fsb_freq = i9xx_fsb_freq(i915);
->>>  
->>>  	if (i915->fsb_freq)
->>>  		drm_dbg(&i915->drm, "FSB frequency: %d kHz\n", i915->fsb_freq);
->>> -- 
->>> 2.39.2
->>> 
-
--- 
-Jani Nikula, Intel
