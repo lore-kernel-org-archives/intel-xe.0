@@ -4,55 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FB51C27C54
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED31FC27C50
 	for <intel-xe@archiver.kernel.org>; Tue,  4 Jun 2024 13:46:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32E5510E492;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A36C10E494;
 	Tue,  4 Jun 2024 13:46:05 +0000 (UTC)
-X-Greylist: delayed 1108 seconds by postgrey-1.36 at gabe;
- Tue, 04 Jun 2024 07:45:58 UTC
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AB0C10E3A0;
- Tue,  4 Jun 2024 07:45:57 +0000 (UTC)
-Received: from i53875b65.versanet.de ([83.135.91.101] helo=diego.localnet)
- by gloria.sntech.de with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <heiko@sntech.de>)
- id 1sEOYO-00059Y-9F; Tue, 04 Jun 2024 09:25:56 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hjcHsHh4";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A279C10E203;
+ Tue,  4 Jun 2024 08:24:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1717489443; x=1749025443;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=+++E6PT7Ikl/BMgbDWFQCaPzsOD33MgC2YSDizKZxfM=;
+ b=hjcHsHh4rR3xAdSXlm3C6G2Kp2/W7ffGHBrhPphJOiggQzNfwXO8w7Y0
+ +o6Pe4ipvC3QSdDEkxjPQk/jbYthOkqDLGEnZmrmuBTDPxn5GibAgd+AN
+ WnK4SkEFNHCoaKG+vzr0H49OXGa0LZGhfi8tXg8odTToCISAsImaiRLmB
+ OSsuys1dgi2CBYqcOMmo1lNUiQX+yeuGO53eyIt2pRDa3juOdh/zeY6Yf
+ 0quJdHyYCpn1dGvYTqQLRGVLApDCKBYPiT00+l7VjF343NaMMMujDEFxR
+ ahmQ1j/hupNokuxh1tJDGH6FnTXE/sDQrfaJBBKw26M5vhneI1qOqBEbz A==;
+X-CSE-ConnectionGUID: aRIn4eBfSyuhC2KB+1+83w==
+X-CSE-MsgGUID: 3qkvFA73QfipblN7OZKDew==
+X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="25418656"
+X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="25418656"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2024 01:24:02 -0700
+X-CSE-ConnectionGUID: QnqcRERvTtiWVVqObAcxXA==
+X-CSE-MsgGUID: PnRo7jT/R82Chm81jYLsGg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="37030218"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com)
+ ([10.237.72.44])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2024 01:23:51 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+ by kekkonen.fi.intel.com (Postfix) with SMTP id E1B7911FA4A;
+ Tue,  4 Jun 2024 11:23:48 +0300 (EEST)
+Date: Tue, 4 Jun 2024 08:23:48 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Corey Minyard <minyard@acm.org>, Allen Pais <apais@linux.microsoft.com>,
  Sebastian Reichel <sebastian.reichel@collabora.com>,
  Perry Yuan <perry.yuan@amd.com>,
  Giovanni Cabiddu <giovanni.cabiddu@intel.com>,
- Herbert Xu <herbert@gondor.apana.org.au>, Nuno Sa <nuno.sa@analog.com>,
- Guenter Roeck <linux@roeck-us.net>, Randy Dunlap <rdunlap@infradead.org>,
- Andi Shyti <andi.shyti@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>,
- Lee Jones <lee@kernel.org>, Samuel Holland <samuel@sholland.org>,
- Elad Nachman <enachman@marvell.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Nuno Sa <nuno.sa@analog.com>, Guenter Roeck <linux@roeck-us.net>,
+ Randy Dunlap <rdunlap@infradead.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Lee Jones <lee@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, Elad Nachman <enachman@marvell.com>,
  Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
  Johannes Berg <johannes.berg@intel.com>,
  Gregory Greenman <gregory.greenman@intel.com>,
- Benjamin Berg <benjamin.berg@intel.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+ Benjamin Berg <benjamin.berg@intel.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
  Robert Richter <rrichter@amd.com>, Vinod Koul <vkoul@kernel.org>,
  Chunfeng Yun <chunfeng.yun@mediatek.com>,
  Linus Walleij <linus.walleij@linaro.org>,
  Hans de Goede <hdegoede@redhat.com>,
- Ilpo =?ISO-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
  Nikita Kravets <teackot@gmail.com>, Jiri Slaby <jirislaby@kernel.org>,
  Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
  Stanley Chang <stanley_chang@realtek.com>,
  Heikki Krogerus <heikki.krogerus@linux.intel.com>,
  Abdel Alkuor <abdelalkuor@geotab.com>,
  Kent Overstreet <kent.overstreet@linux.dev>,
- Eric Biggers <ebiggers@google.com>, Kees Cook <keescook@chromium.org>,
- Ingo Molnar <mingo@kernel.org>,
+ Eric Biggers <ebiggers@google.com>,
+ Kees Cook <keescook@chromium.org>, Ingo Molnar <mingo@kernel.org>,
  "Steven Rostedt (Google)" <rostedt@goodmis.org>,
  Daniel Bristot de Oliveira <bristot@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>, Hugh Dickins <hughd@google.com>,
- Abel Wu <wuyun.abel@bytedance.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Hugh Dickins <hughd@google.com>, Abel Wu <wuyun.abel@bytedance.com>,
  John Johansen <john.johansen@canonical.com>,
  Mimi Zohar <zohar@linux.ibm.com>, Stefan Berger <stefanb@linux.ibm.com>,
  Roberto Sassu <roberto.sassu@huawei.com>,
@@ -83,23 +111,25 @@ To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  linux-trace-kernel@vger.kernel.org, linux-mm@kvack.org,
  apparmor@lists.ubuntu.com, linux-security-module@vger.kernel.org,
  linux-integrity@vger.kernel.org, alsa-devel@alsa-project.org,
- linux-sound@vger.kernel.org,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
+ linux-sound@vger.kernel.org, Michael Ellerman <mpe@ellerman.id.au>,
+ Nicholas Piggin <npiggin@gmail.com>,
  Christophe Leroy <christophe.leroy@csgroup.eu>,
  "Naveen N. Rao" <naveen.n.rao@linux.ibm.com>,
- Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
- x86@kernel.org, "H. Peter Anvin" <hpa@zytor.com>,
- David Howells <dhowells@redhat.com>, "David S. Miller" <davem@davemloft.net>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Sergey Shtylyov <s.shtylyov@omp.ru>, Damien Le Moal <dlemoal@kernel.org>,
- Niklas Cassel <cassel@kernel.org>, Daniel Scally <djrscally@gmail.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+ Thomas Gleixner <tglx@linutronix.de>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+ "H. Peter Anvin" <hpa@zytor.com>, David Howells <dhowells@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Len Brown <lenb@kernel.org>, Sergey Shtylyov <s.shtylyov@omp.ru>,
+ Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>,
+ Daniel Scally <djrscally@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>,
  Florian Fainelli <florian.fainelli@broadcom.com>,
  Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
  Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Heiko Stuebner <heiko@sntech.de>,
  Peter De Schrijver <pdeschrijver@nvidia.com>,
  Prashant Gaikwad <pgaikwad@nvidia.com>,
  Thierry Reding <thierry.reding@gmail.com>,
@@ -108,22 +138,24 @@ Cc: Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
  Mario Limonciello <mario.limonciello@amd.com>,
  Viresh Kumar <viresh.kumar@linaro.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>,
- Jean Delvare <jdelvare@suse.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@redhat.com>, Jean Delvare <jdelvare@suse.com>,
  Alexander Shishkin <alexander.shishkin@linux.intel.com>,
  Pavel Machek <pavel@ucw.cz>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Tony Lindgren <tony@atomide.com>,
- Adrian Hunter <adrian.hunter@intel.com>, Hu Ziji <huziji@marvell.com>,
- Ulf Hansson <ulf.hansson@linaro.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Tony Lindgren <tony@atomide.com>, Adrian Hunter <adrian.hunter@intel.com>,
+ Hu Ziji <huziji@marvell.com>, Ulf Hansson <ulf.hansson@linaro.org>,
  Miquel Raynal <miquel.raynal@bootlin.com>,
  Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Potnuri Bharat Teja <bharat@chelsio.com>, Eric Dumazet <edumazet@google.com>, 
+ Potnuri Bharat Teja <bharat@chelsio.com>,
+ Eric Dumazet <edumazet@google.com>,
  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
  Miri Korenblit <miriam.rachel.korenblit@intel.com>,
  Kalle Valo <kvalo@kernel.org>, Mahesh J Salgaonkar <mahesh@linux.ibm.com>,
@@ -135,15 +167,16 @@ Cc: Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
  Gregory Clement <gregory.clement@bootlin.com>,
  Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
  Sebastian Reichel <sre@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
  Helge Deller <deller@gmx.de>, Brian Foster <bfoster@redhat.com>,
  Zhihao Cheng <chengzhihao1@huawei.com>, Tejun Heo <tj@kernel.org>,
  Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
  Peter Zijlstra <peterz@infradead.org>, Juri Lelli <juri.lelli@redhat.com>,
  Vincent Guittot <vincent.guittot@linaro.org>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>, Ben Segall <bsegall@google.com>, 
- Mel Gorman <mgorman@suse.de>,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ Ben Segall <bsegall@google.com>, Mel Gorman <mgorman@suse.de>,
  Daniel Bristot de Oliveira <bristot@redhat.com>,
  Valentin Schneider <vschneid@redhat.com>,
  Masami Hiramatsu <mhiramat@kernel.org>,
@@ -152,17 +185,19 @@ Cc: Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
  Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
  "Serge E. Hallyn" <serge@hallyn.com>,
  Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
- Clemens Ladisch <clemens@ladisch.de>, Jaroslav Kysela <perex@perex.cz>
+ Clemens Ladisch <clemens@ladisch.de>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Liam Girdwood <lgirdwood@gmail.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>
 Subject: Re: [PATCH v1 1/1] treewide: Align match_string() with
  sysfs_match_string()
-Date: Tue, 04 Jun 2024 09:25:48 +0200
-Message-ID: <10804325.aFP6jjVeTY@diego>
-In-Reply-To: <20240603211538.289765-1-andriy.shevchenko@linux.intel.com>
+Message-ID: <Zl7PFGprypdZi6ql@kekkonen.localdomain>
 References: <20240603211538.289765-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Mailman-Approved-At: Tue, 04 Jun 2024 13:46:00 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240603211538.289765-1-andriy.shevchenko@linux.intel.com>
+X-Mailman-Approved-At: Tue, 04 Jun 2024 13:45:59 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,46 +212,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am Sonntag, 2. Juni 2024, 17:57:12 CEST schrieb Andy Shevchenko:
-> Make two APIs look similar. Hence convert match_string() to be
-> a 2-argument macro. In order to avoid unneeded churn, convert
-> all users as well. There is no functional change intended.
-> 
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> ---
-> 
-> Compile tested with `make allyesconfig` and `make allmodconfig`
-> on x86_64, arm, aarch64, powerpc64 (8 builds total).
-> 
-> I guess the best is to apply it to Linus' tree directly.
-> And now it seems a good timing as there are no new users
-> of this API either in v6.10-rcX, or in Linux Next.
-> 
-> But if you think differently, tell me.
-> 
+Hi Andy,
 
-For the Rockchip clock part
-
->  drivers/clk/rockchip/clk.c                    |  4 +--
-
-[...]
-
-> diff --git a/drivers/clk/rockchip/clk.c b/drivers/clk/rockchip/clk.c
-> index 73d2cbdc716b..30414d081f46 100644
-> --- a/drivers/clk/rockchip/clk.c
-> +++ b/drivers/clk/rockchip/clk.c
-> @@ -266,8 +266,8 @@ static struct clk *rockchip_clk_register_frac_branch(
->  		struct clk *mux_clk;
->  		int ret;
+On Sun, Jun 02, 2024 at 06:57:12PM +0300, Andy Shevchenko wrote:
+> diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
+> index 503773707e01..9cb350de30f0 100644
+> --- a/drivers/acpi/scan.c
+> +++ b/drivers/acpi/scan.c
+> @@ -798,7 +798,7 @@ static bool acpi_info_matches_ids(struct acpi_device_info *info,
+>  	if (!(info->valid & ACPI_VALID_HID))
+>  		return false;
 >  
-> -		frac->mux_frac_idx = match_string(child->parent_names,
-> -						  child->num_parents, name);
-> +		frac->mux_frac_idx = __match_string(child->parent_names,
-> +						    child->num_parents, name);
->  		frac->mux_ops = &clk_mux_ops;
->  		frac->clk_nb.notifier_call = rockchip_clk_frac_notifier_cb;
+> -	index = match_string(ids, -1, info->hardware_id.string);
+> +	index = __match_string(ids, -1, info->hardware_id.string);
+>  	if (index >= 0)
+>  		return true;
 >  
+> @@ -809,7 +809,7 @@ static bool acpi_info_matches_ids(struct acpi_device_info *info,
+>  		return false;
+>  
+>  	for (i = 0; i < cid_list->count; i++) {
+> -		index = match_string(ids, -1, cid_list->ids[i].string);
+> +		index = __match_string(ids, -1, cid_list->ids[i].string);
+>  		if (index >= 0)
+>  			return true;
+>  	}
 
-Acked-by: Heiko Stuebner <heiko@sntech.de>
+Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com> # drivers/acpi
 
-
+-- 
+Sakari Ailus
