@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C0C0C41513
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FB5AC27C50
 	for <intel-xe@archiver.kernel.org>; Tue,  4 Jun 2024 11:17:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF54510E45D;
-	Tue,  4 Jun 2024 11:17:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09EAD10E45E;
+	Tue,  4 Jun 2024 11:17:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mu5/0aWk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hGUohZqP";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 265F910E45B
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Jun 2024 11:17:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5499010E45D
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Jun 2024 11:17:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717499840; x=1749035840;
+ t=1717499841; x=1749035841;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6R9vlAvRtSQX/LxpRqrjuyaUnk7ECzoJrLVXIZ4pQbY=;
- b=mu5/0aWkndAr+EaGtA5l3DIlt2XQ1A/kEYBKxa1Yda/rL7LMLgiUGMB3
- 72v2eCtJIvL+1D0WdkZXTANNOTl36UBNuK1Qm30bS0iq03BoP7p88iYhS
- Q7369WAC2UNPVtLb6b4xtkh5jOFn5v0quyXHzIa13SIRdd7oWBnYae4bO
- X7dBr13EUvnGkKD0VwZn1DRB/9Hf2c1s4YLEhZ4IIVyoEZvSi7wza9qBo
- wjbek0Bc/5exr3PIFG7AOSC3AJfgHiYgwsXdz7k4dRlBUkjiqcTBsfptv
- tP50HJOgl1bq/yE8XwTius88BuOXap3gZoTciVfPG/Iqp1XvTc2naRueg A==;
-X-CSE-ConnectionGUID: TaMDLpm2RRWq00EuwTzqMQ==
-X-CSE-MsgGUID: mQcJDEn6Re+z/mr9gLYW9w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="24701847"
-X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="24701847"
+ bh=l4jrmqr2SK+woJ13dy0yJQwK09NEDzTe0kHn8g2Ynhs=;
+ b=hGUohZqPKj5PV7zR+AVSSYqTX5D444EWMudIY3fqeNmtRCy4vlVW+ceY
+ jStdZKYPJwWV8m9t0M2O+pxAMYhxqSVCyC/L/NIdxTpTei8pFM/twvpxQ
+ DrbN72on7Kv0rV9Gbyh4OCHVayCRV9FdkE5n58xWDVyW7Rd+m25hSDxfj
+ iKYblDw6HdKjexjUZEP/F91dDUnOJxHfnL3+5qBZWKq3ZCrWMrmsi9odF
+ U6z0ATcZwmEv8cKxHT77Qt0pZP8aEATqmGPPhwQmNlR1jrHjriTN/MaqG
+ xD4VhRNBCFjxxkrPAPl5r6EC2fP69wqp2Ij/i1S2ktEWbrBfQCWNuofSm g==;
+X-CSE-ConnectionGUID: 6hZxdepGRjufZtc6vdu2ig==
+X-CSE-MsgGUID: vblnX22MTAqCFwu+9gXlcw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="24701849"
+X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="24701849"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 04:17:20 -0700
-X-CSE-ConnectionGUID: bfFtJhPgS0a1/4iR2JMpuQ==
-X-CSE-MsgGUID: q973crjnTtShtAFxJXqFxw==
+ 04 Jun 2024 04:17:21 -0700
+X-CSE-ConnectionGUID: o7h5kdOIQbePu3C2IZdT5A==
+X-CSE-MsgGUID: ttxvcIyFS2ORhjNUR1/JyA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="37669665"
+X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="37669673"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 04:17:19 -0700
+ 04 Jun 2024 04:17:20 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Nirmoy Das <nirmoy.das@intel.com>
-Subject: [PATCH 2/9] drm/xe/pat: Always call xe_force_wake_put/get in pairs
-Date: Tue,  4 Jun 2024 13:02:18 +0200
-Message-ID: <20240604110225.29495-3-nirmoy.das@intel.com>
+Subject: [PATCH 3/9] drm/xe/xe_reg_sr: Always call xe_force_wake_put/get in
+ pairs
+Date: Tue,  4 Jun 2024 13:02:19 +0200
+Message-ID: <20240604110225.29495-4-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20240604110225.29495-1-nirmoy.das@intel.com>
 References: <20240604110225.29495-1-nirmoy.das@intel.com>
@@ -74,68 +75,49 @@ count accurate.
 
 Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pat.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_reg_sr.c | 20 ++++++++------------
+ 1 file changed, 8 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 4ee32ee1cc88..a5bdf4de845c 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -190,9 +190,9 @@ static void xelp_dump(struct xe_gt *gt, struct drm_printer *p)
- 			   XELP_MEM_TYPE_STR_MAP[mem_type], pat);
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
+index 440ac572f6e5..8fcc08658d89 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.c
++++ b/drivers/gpu/drm/xe/xe_reg_sr.c
+@@ -201,13 +201,11 @@ void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
+ 	xa_for_each(&sr->xa, reg, entry)
+ 		apply_one_mmio(gt, entry);
+ 
+-	err = xe_force_wake_put(&gt->mmio.fw, XE_FORCEWAKE_ALL);
+-	XE_WARN_ON(err);
+-
+-	return;
+-
+ err_force_wake:
+-	xe_gt_err(gt, "Failed to apply, err=%d\n", err);
++	if (err)
++		xe_gt_err(gt, "Failed to whitelist %s registers, err=%d\n",
++			  sr->name, err);
++	XE_WARN_ON(xe_force_wake_put(&gt->mmio.fw, XE_FORCEWAKE_ALL));
+ }
+ 
+ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
+@@ -253,13 +251,11 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
+ 		xe_mmio_write32(gt, RING_FORCE_TO_NONPRIV(mmio_base, slot), addr);
  	}
  
--	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
- err_fw:
- 	xe_assert(xe, !err);
-+	xe_assert(xe, !xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
+-	err = xe_force_wake_put(&gt->mmio.fw, XE_FORCEWAKE_ALL);
+-	XE_WARN_ON(err);
+-
+-	return;
+-
+ err_force_wake:
+-	drm_err(&xe->drm, "Failed to apply, err=%d\n", err);
++	if (err)
++		xe_gt_err(gt, "Failed to whitelist %s registers, err=%d\n",
++			  sr->name, err);
++	XE_WARN_ON(xe_force_wake_put(&gt->mmio.fw, XE_FORCEWAKE_ALL));
  }
  
- static const struct xe_pat_ops xelp_pat_ops = {
-@@ -221,9 +221,9 @@ static void xehp_dump(struct xe_gt *gt, struct drm_printer *p)
- 			   XELP_MEM_TYPE_STR_MAP[mem_type], pat);
- 	}
- 
--	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
- err_fw:
- 	xe_assert(xe, !err);
-+	xe_assert(xe, !xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
- }
- 
- static const struct xe_pat_ops xehp_pat_ops = {
-@@ -250,9 +250,9 @@ static void xehpc_dump(struct xe_gt *gt, struct drm_printer *p)
- 			   REG_FIELD_GET(XEHPC_CLOS_LEVEL_MASK, pat), pat);
- 	}
- 
--	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
- err_fw:
- 	xe_assert(xe, !err);
-+	xe_assert(xe, !xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
- }
- 
- static const struct xe_pat_ops xehpc_pat_ops = {
-@@ -284,9 +284,9 @@ static void xelpg_dump(struct xe_gt *gt, struct drm_printer *p)
- 			   REG_FIELD_GET(XELPG_INDEX_COH_MODE_MASK, pat), pat);
- 	}
- 
--	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
- err_fw:
- 	xe_assert(xe, !err);
-+	xe_assert(xe, !xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
- }
- 
- /*
-@@ -366,9 +366,9 @@ static void xe2_dump(struct xe_gt *gt, struct drm_printer *p)
- 		   REG_FIELD_GET(XE2_COH_MODE, pat),
- 		   pat);
- 
--	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
- err_fw:
- 	xe_assert(xe, !err);
-+	xe_assert(xe, !xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
- }
- 
- static const struct xe_pat_ops xe2_pat_ops = {
+ /**
 -- 
 2.42.0
 
