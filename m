@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 006FFC25B78
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Jun 2024 14:47:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68DDFC27C54
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Jun 2024 14:47:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C08410E4A9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD7BE10E4AE;
 	Tue,  4 Jun 2024 14:47:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G7FLQM+L";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aKU46lRc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45FE010E4AF
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Jun 2024 14:47:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E041F10E4A1
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Jun 2024 14:47:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717512437; x=1749048437;
+ t=1717512434; x=1749048434;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=4LxpPN8VbzxoLLGRee8idTVA6cFjw1E/SGpjJRdHaE4=;
- b=G7FLQM+LFi8u38wjnHcopWCUV8ItRChMMvyMZUCz2m+El6rOwB8M7xid
- Mi7YbKIXhypXqbjg4ArAMZsciLQ2uDOMOVkvkHl0yBRla0e085BZkB5ng
- Fn8ivFTKACvgSBE0/NBmn2quysST/7XP97VIbNVG/niQ6xP5u3G8TbNYj
- RQOLMucXWgCC8zIpjZSc/XSbcgtr7VmzKTxbfyhqicKGCmCz6+XIkuOyM
- jUqSYGu7ZSgYR+DW7DodLIgzKh9MKNo6oN8Pl1SOc+F12ssBW+GcCTGVb
- w01435S9CgKCdw/fYmps7hAatb8apmPjpsf7IGLTN2+Q52nsM9/vwhMjW A==;
-X-CSE-ConnectionGUID: TtJxkfsfS6+k17azW/VLkQ==
-X-CSE-MsgGUID: ugnnuWxoTdeZUlaJ/wZ8NQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="25464254"
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="25464254"
+ bh=x+27eBShM9N8y9seRdQ7YZp/ZaEfV5hWmImaaFr9wFo=;
+ b=aKU46lRcStPpHy4DoP+eYj+00OJglL2+uYH801HItO2KHGjVTd/y7BEt
+ JRi/vE8x8jCYtBreCFVf2P7Z6w2zf/ONekOZa51J7q/w5mYRhc6OQx0KU
+ wLzeYPuNimQD1CINqJPGQtLjJIX1Vj51mSvmJRuEzO5+oi+y7xYnkYxZm
+ +taNS2LH1eTh9RilKCiktoCXHfO4ByEHmzXutmCkcRG738PsAZHFZ9x0W
+ aYjRPV1wfPoBHUKX5T7zzdulTeGtuH1lgMRnjoeV4d024ixYbs3CVumD8
+ OSTTTnNLvpqBLgeTitjXIpX085I6XQh8/+4isg/qKNyIT8Re4qNChxg5Q A==;
+X-CSE-ConnectionGUID: Qqi7EY+mShCY05gBeKufrg==
+X-CSE-MsgGUID: Zb765Hv8RlSw0ekltFMynw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="25464249"
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="25464249"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 07:47:17 -0700
-X-CSE-ConnectionGUID: oGlfqTPtTmqG6F3l9AMNRg==
-X-CSE-MsgGUID: 5XRaBKV8TyChUmuZZKr9SQ==
+ 04 Jun 2024 07:47:14 -0700
+X-CSE-ConnectionGUID: BoPI2xuFSaOm7jWW2KVqoQ==
+X-CSE-MsgGUID: k5QafSteSVaVoaqKuoueAA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="37321298"
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="37321290"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO fedora..)
  ([10.245.245.236])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 07:47:16 -0700
+ 04 Jun 2024 07:47:14 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 08/11] drm/ttm: Add a virtual base class for graphics memory
- backup
-Date: Tue,  4 Jun 2024 16:46:45 +0200
-Message-ID: <20240604144658.69890-9-thomas.hellstrom@linux.intel.com>
+Subject: [CI 05/11] drm/ttm: Provide a generic LRU walker helper
+Date: Tue,  4 Jun 2024 16:46:42 +0200
+Message-ID: <20240604144658.69890-6-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240604144658.69890-1-thomas.hellstrom@linux.intel.com>
 References: <20240604144658.69890-1-thomas.hellstrom@linux.intel.com>
@@ -68,18 +67,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Initially intended for experimenting with different backup
-solutions (shmem vs direct swap cache insertion), abstract
-the backup destination using a virtual base class.
+Provide a generic LRU walker in TTM, in the spirit of drm_gem_lru_scan()
+but building on the restartable TTM LRU functionality.
 
-Also provide a sample implementation for shmem.
+The LRU walker optionally supports locking objects as part of
+a ww mutex locking transaction, to mimic to some extent the
+current functionality in ttm. However any -EDEADLK return
+is converted to -ENOMEM, so that the driver will need to back
+off and possibly retry without being able to keep the
+ticket.
 
-While when settling on a preferred backup solution, one could
-perhaps skip the abstraction, this functionality may actually
-come in handy for configurable dedicated graphics memory
-backup to fast nvme files or similar, whithout affecting
-swap-space. Could indeed be useful for VRAM backup on S4 and
-other cases.
+v3:
+- Move the helper to core ttm.
+- Remove the drm_exec usage from it for now, it will be
+  reintroduced later in the series.
 
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
@@ -87,311 +88,206 @@ Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: <dri-devel@lists.freedesktop.org>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/ttm/Makefile           |   2 +-
- drivers/gpu/drm/ttm/ttm_backup_shmem.c | 137 +++++++++++++++++++++++++
- include/drm/ttm/ttm_backup.h           | 136 ++++++++++++++++++++++++
- 3 files changed, 274 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/ttm/ttm_backup_shmem.c
- create mode 100644 include/drm/ttm/ttm_backup.h
+ drivers/gpu/drm/ttm/ttm_bo_util.c | 145 ++++++++++++++++++++++++++++++
+ include/drm/ttm/ttm_bo.h          |  32 +++++++
+ 2 files changed, 177 insertions(+)
 
-diff --git a/drivers/gpu/drm/ttm/Makefile b/drivers/gpu/drm/ttm/Makefile
-index dad298127226..5e980dd90e41 100644
---- a/drivers/gpu/drm/ttm/Makefile
-+++ b/drivers/gpu/drm/ttm/Makefile
-@@ -4,7 +4,7 @@
- 
- ttm-y := ttm_tt.o ttm_bo.o ttm_bo_util.o ttm_bo_vm.o ttm_module.o \
- 	ttm_execbuf_util.o ttm_range_manager.o ttm_resource.o ttm_pool.o \
--	ttm_device.o ttm_sys_manager.o
-+	ttm_device.o ttm_sys_manager.o ttm_backup_shmem.o
- ttm-$(CONFIG_AGP) += ttm_agp_backend.o
- 
- obj-$(CONFIG_DRM_TTM) += ttm.o
-diff --git a/drivers/gpu/drm/ttm/ttm_backup_shmem.c b/drivers/gpu/drm/ttm/ttm_backup_shmem.c
-new file mode 100644
-index 000000000000..79c2f552863a
---- /dev/null
-+++ b/drivers/gpu/drm/ttm/ttm_backup_shmem.c
-@@ -0,0 +1,137 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index 0b3f4267130c..be200c06cc79 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -768,3 +768,148 @@ int ttm_bo_pipeline_gutting(struct ttm_buffer_object *bo)
+ 	ttm_tt_destroy(bo->bdev, ttm);
+ 	return ret;
+ }
 +
-+#include <drm/ttm/ttm_backup.h>
-+#include <linux/page-flags.h>
-+
-+/**
-+ * struct ttm_backup_shmem - A shmem based ttm_backup subclass.
-+ * @backup: The base struct ttm_backup
-+ * @filp: The associated shmem object
-+ */
-+struct ttm_backup_shmem {
-+	struct ttm_backup backup;
-+	struct file *filp;
-+};
-+
-+static struct ttm_backup_shmem *to_backup_shmem(struct ttm_backup *backup)
++static bool ttm_lru_walk_trylock(struct ttm_lru_walk *walk,
++				 struct ttm_buffer_object *bo,
++				 bool *needs_unlock)
 +{
-+	return container_of(backup, struct ttm_backup_shmem, backup);
++	struct ttm_operation_ctx *ctx = walk->ctx;
++
++	*needs_unlock = false;
++
++	if (dma_resv_trylock(bo->base.resv)) {
++		*needs_unlock = true;
++		return true;
++	}
++
++	if (bo->base.resv == ctx->resv && ctx->allow_res_evict) {
++		dma_resv_assert_held(bo->base.resv);
++		return true;
++	}
++
++	return false;
 +}
 +
-+static void ttm_backup_shmem_drop(struct ttm_backup *backup, unsigned long handle)
++static int ttm_lru_walk_ticketlock(struct ttm_lru_walk *walk,
++				   struct ttm_buffer_object *bo,
++				   bool *needs_unlock)
 +{
-+	handle -= 1;
-+	shmem_truncate_range(file_inode(to_backup_shmem(backup)->filp), handle,
-+			     handle + 1);
-+}
-+
-+static int ttm_backup_shmem_copy_page(struct ttm_backup *backup, struct page *dst,
-+				      unsigned long handle, bool killable)
-+{
-+	struct file *filp = to_backup_shmem(backup)->filp;
-+	struct address_space *mapping = filp->f_mapping;
-+	struct folio *from_folio;
-+
-+	handle -= 1;
-+	from_folio = shmem_read_folio(mapping, handle);
-+	if (IS_ERR(from_folio))
-+		return PTR_ERR(from_folio);
-+
-+	/* Note: Use drm_memcpy_from_wc? */
-+	copy_highpage(dst, folio_file_page(from_folio, handle));
-+	folio_put(from_folio);
-+
-+	return 0;
-+}
-+
-+static unsigned long
-+ttm_backup_shmem_backup_page(struct ttm_backup *backup, struct page *page,
-+			     bool writeback, pgoff_t i, gfp_t page_gfp,
-+			     gfp_t alloc_gfp)
-+{
-+	struct file *filp = to_backup_shmem(backup)->filp;
-+	struct address_space *mapping = filp->f_mapping;
-+	unsigned long handle = 0;
-+	struct folio *to_folio;
++	struct dma_resv *resv = bo->base.resv;
 +	int ret;
 +
-+	to_folio = shmem_read_folio_gfp(mapping, i, alloc_gfp);
-+	if (IS_ERR(to_folio))
-+		return handle;
++	if (walk->ctx->interruptible)
++		ret = dma_resv_lock_interruptible(resv, walk->ticket);
++	else
++		ret = dma_resv_lock(resv, walk->ticket);
 +
-+	folio_mark_accessed(to_folio);
-+	folio_lock(to_folio);
-+	folio_mark_dirty(to_folio);
-+	copy_highpage(folio_file_page(to_folio, i), page);
-+	handle = i + 1;
++	if (ret == -EDEADLK)
++		ret = -ENOSPC;
 +
-+	if (writeback && !folio_mapped(to_folio) && folio_clear_dirty_for_io(to_folio)) {
-+		struct writeback_control wbc = {
-+			.sync_mode = WB_SYNC_NONE,
-+			.nr_to_write = SWAP_CLUSTER_MAX,
-+			.range_start = 0,
-+			.range_end = LLONG_MAX,
-+			.for_reclaim = 1,
-+		};
-+		folio_set_reclaim(to_folio);
-+		ret = mapping->a_ops->writepage(folio_page(to_folio, 0), &wbc);
-+		if (!folio_test_writeback(to_folio))
-+			folio_clear_reclaim(to_folio);
-+		/* If writepage succeeds, it unlocks the folio */
-+		if (ret)
-+			folio_unlock(to_folio);
-+	} else {
-+		folio_unlock(to_folio);
++	if (!ret) {
++		*needs_unlock = true;
++		/* Only a single ticketlock per loop */
++		walk->ticket = NULL;
 +	}
 +
-+	folio_put(to_folio);
-+
-+	return handle;
++	return ret;
 +}
 +
-+static void ttm_backup_shmem_fini(struct ttm_backup *backup)
++static void ttm_lru_walk_unlock(struct ttm_buffer_object *bo, bool locked)
 +{
-+	struct ttm_backup_shmem *sbackup = to_backup_shmem(backup);
-+
-+	fput(sbackup->filp);
-+	kfree(sbackup);
++	if (locked)
++		dma_resv_unlock(bo->base.resv);
 +}
-+
-+static const struct ttm_backup_ops ttm_backup_shmem_ops = {
-+	.drop = ttm_backup_shmem_drop,
-+	.copy_backed_up_page = ttm_backup_shmem_copy_page,
-+	.backup_page = ttm_backup_shmem_backup_page,
-+	.fini = ttm_backup_shmem_fini,
-+};
 +
 +/**
-+ * ttm_backup_shmem_create() - Create a shmem-based struct backup.
-+ * @size: The maximum size (in bytes) to back up.
++ * ttm_lru_walk_for_evict() - Perform a LRU list walk, with actions taken on
++ * valid items.
++ * @walk: describe the walks and actions taken
++ * @bdev: The TTM device.
++ * @man: The struct ttm_resource manager whose LRU lists we're walking.
++ * @target: The end condition for the walk.
 + *
-+ * Create a backup utilizing shmem objects.
++ * The LRU lists of @man are walk, and for each struct ttm_resource encountered,
++ * the corresponding ttm_buffer_object is locked and taken a reference on, and
++ * the LRU lock is dropped. the LRU lock may be dropped before locking and, in
++ * that case, it's verified that the item actually remains on the LRU list after
++ * the lock, and that the buffer object didn't switch resource in between.
 + *
-+ * Return: A pointer to a struct ttm_backup on success,
-+ * an error pointer on error.
++ * With a locked object, the actions indicated by @walk->process_bo are
++ * performed, and after that, the bo is unlocked, the refcount dropped and the
++ * next struct ttm_resource is processed. Here, the walker relies on
++ * TTM's restartable LRU list implementation.
++ *
++ * Typically @walk->process_bo() would return the number of pages evicted,
++ * swapped or shrunken, so that when the total exceeds @target, or when the
++ * LRU list has been walked in full, iteration is terminated. It's also terminated
++ * on error. Note that the definition of @target is done by the caller, it
++ * could have a different meaning than the number of pages.
++ *
++ * Note that the way dma_resv individualization is done, locking needs to be done
++ * either with the LRU lock held (trylocking only) or with a reference on the
++ * object.
++ *
++ * Return: The progress made towards target or negative error code on error.
 + */
-+struct ttm_backup *ttm_backup_shmem_create(loff_t size)
++long ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
++			    struct ttm_resource_manager *man, long target)
 +{
-+	struct ttm_backup_shmem *sbackup =
-+		kzalloc(sizeof(*sbackup), GFP_KERNEL | __GFP_ACCOUNT);
++	struct ttm_resource_cursor cursor;
++	struct ttm_resource *res;
++	long sofar = 0;
++	long lret;
 +
-+	if (!sbackup)
-+		return ERR_PTR(-ENOMEM);
++	spin_lock(&bdev->lru_lock);
++	ttm_resource_manager_for_each_res(man, &cursor, res) {
++		struct ttm_buffer_object *bo = res->bo;
++		bool bo_needs_unlock = false;
++		bool bo_locked = false;
++		int mem_type;
 +
-+	sbackup->filp = shmem_file_setup("ttm shmem backup", size, 0);
-+	if (IS_ERR(sbackup->filp)) {
-+		kfree(sbackup);
-+		return ERR_CAST(sbackup->filp);
++		if (!bo || bo->resource != res)
++			continue;
++
++		if (ttm_lru_walk_trylock(walk, bo, &bo_needs_unlock))
++			bo_locked = true;
++		else if ((!walk->ticket) || walk->ctx->no_wait_gpu ||
++			 walk->trylock_only)
++			continue;
++
++		if (!ttm_bo_get_unless_zero(bo)) {
++			ttm_lru_walk_unlock(bo, bo_needs_unlock);
++			continue;
++		}
++
++		mem_type = res->mem_type;
++		spin_unlock(&bdev->lru_lock);
++
++		lret = 0;
++		if (!bo_locked && walk->ticket)
++			lret = ttm_lru_walk_ticketlock(walk, bo, &bo_needs_unlock);
++
++		/*
++		 * Note that in between the release of the lru lock and the
++		 * ticketlock, the bo may have switched resource,
++		 * and also memory type, since the resource may have been
++		 * freed and allocated again with a different memory type.
++		 * In that case, just skip it.
++		 */
++		if (!lret && bo->resource == res && res->mem_type == mem_type)
++			lret = walk->ops->process_bo(walk, bo);
++
++		ttm_lru_walk_unlock(bo, bo_needs_unlock);
++		ttm_bo_put(bo);
++		if (lret == -EBUSY)
++			lret = 0;
++		sofar = (lret < 0) ? lret : sofar + lret;
++		if (sofar < 0 || sofar >= target)
++			goto out;
++
++		cond_resched();
++		spin_lock(&bdev->lru_lock);
 +	}
-+
-+	sbackup->backup.ops = &ttm_backup_shmem_ops;
-+
-+	return &sbackup->backup;
++	spin_unlock(&bdev->lru_lock);
++out:
++	ttm_resource_cursor_fini(&cursor);
++	return sofar;
 +}
-+EXPORT_SYMBOL_GPL(ttm_backup_shmem_create);
-diff --git a/include/drm/ttm/ttm_backup.h b/include/drm/ttm/ttm_backup.h
-new file mode 100644
-index 000000000000..88e8b97a6fdc
---- /dev/null
-+++ b/include/drm/ttm/ttm_backup.h
-@@ -0,0 +1,136 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
+diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+index 6ccf96c91f3a..8b032298d66e 100644
+--- a/include/drm/ttm/ttm_bo.h
++++ b/include/drm/ttm/ttm_bo.h
+@@ -190,6 +190,38 @@ struct ttm_operation_ctx {
+ 	uint64_t bytes_moved;
+ };
+ 
++struct ttm_lru_walk;
 +
-+#ifndef _TTM_BACKUP_H_
-+#define _TTM_BACKUP_H_
-+
-+#include <linux/mm_types.h>
-+#include <linux/shmem_fs.h>
-+
-+struct ttm_backup;
-+
-+/**
-+ * ttm_backup_handle_to_page_ptr() - Convert handle to struct page pointer
-+ * @handle: The handle to convert.
-+ *
-+ * Converts an opaque handle received from the
-+ * struct ttm_backoup_ops::backup_page() function to an (invalid)
-+ * struct page pointer suitable for a struct page array.
-+ *
-+ * Return: An (invalid) struct page pointer.
-+ */
-+static inline struct page *
-+ttm_backup_handle_to_page_ptr(unsigned long handle)
-+{
-+	return (struct page *)(handle << 1 | 1);
-+}
-+
-+/**
-+ * ttm_backup_page_ptr_is_handle() - Whether a struct page pointer is a handle
-+ * @page: The struct page pointer to check.
-+ *
-+ * Return: true if the struct page pointer is a handld returned from
-+ * ttm_backup_handle_to_page_ptr(). False otherwise.
-+ */
-+static inline bool ttm_backup_page_ptr_is_handle(const struct page *page)
-+{
-+	return (unsigned long)page & 1;
-+}
-+
-+/**
-+ * ttm_backup_page_ptr_to_handle() - Convert a struct page pointer to a handle
-+ * @page: The struct page pointer to convert
-+ *
-+ * Return: The handle that was previously used in
-+ * ttm_backup_handle_to_page_ptr() to obtain a struct page pointer, suitable
-+ * for use as argument in the struct ttm_backup_ops drop() or
-+ * copy_backed_up_page() functions.
-+ */
-+static inline unsigned long
-+ttm_backup_page_ptr_to_handle(const struct page *page)
-+{
-+	WARN_ON(!ttm_backup_page_ptr_is_handle(page));
-+	return (unsigned long)page >> 1;
-+}
-+
-+/** struct ttm_backup_ops - A struct ttm_backup backend operations */
-+struct ttm_backup_ops {
++/** struct ttm_lru_walk_ops - Operations for a LRU walk. */
++struct ttm_lru_walk_ops {
 +	/**
-+	 * drop - release memory associated with a handle
-+	 * @backup: The struct backup pointer used to obtain the handle
-+	 * @handle: The handle obtained from the @backup_page function.
-+	 */
-+	void (*drop)(struct ttm_backup *backup, unsigned long handle);
-+
-+	/**
-+	 * copy_backed_up_page - Copy the contents of a previously backed
-+	 * up page
-+	 * @backup: The struct backup pointer used to back up the page.
-+	 * @dst: The struct page to copy into.
-+	 * @handle: The handle returned when the page was backed up.
-+	 * @intr: Try to perform waits interruptable or at least killable.
++	 * process_bo - Process this bo.
++	 * @walk: struct ttm_lru_walk describing the walk.
++	 * @bo: A locked and referenced buffer object.
 +	 *
-+	 * Return: 0 on success, Negative error code on failure, notably
-+	 * -EINTR if @intr was set to true and a signal is pending.
++	 * Return: Negative error code on error, Number of processed pages on
++	 * success. 0 also indicates success.
 +	 */
-+	int (*copy_backed_up_page)(struct ttm_backup *backup, struct page *dst,
-+				   unsigned long handle, bool intr);
-+
-+	/**
-+	 * backup_page - Backup a page
-+	 * @backup: The struct backup pointer to use.
-+	 * @page: The page to back up.
-+	 * @writeback: Whether to perform immediate writeback of the page.
-+	 * This may have performance implications.
-+	 * @i: A unique integer for each page and each struct backup.
-+	 * This is a hint allowing the backup backend to avoid managing
-+	 * its address space separately.
-+	 * @page_gfp: The gfp value used when the page was allocated.
-+	 * This is used for accounting purposes.
-+	 * @alloc_gfp: The gpf to be used when the backend needs to allocaete
-+	 * memory.
-+	 *
-+	 * Return: A handle on success. 0 on failure.
-+	 * (This is following the swp_entry_t convention).
-+	 *
-+	 * Note: This function could be extended to back up a folio and
-+	 * backends would then split the folio internally if needed.
-+	 * Drawback is that the caller would then have to keep track of
-+	 */
-+	unsigned long (*backup_page)(struct ttm_backup *backup, struct page *page,
-+				     bool writeback, pgoff_t i, gfp_t page_gfp,
-+				     gfp_t alloc_gfp);
-+	/**
-+	 * fini - Free the struct backup resources after last use.
-+	 * @backup: Pointer to the struct backup whose resources to free.
-+	 *
-+	 * After a call to @fini, it's illegal to use the @backup pointer.
-+	 */
-+	void (*fini)(struct ttm_backup *backup);
++	long (*process_bo)(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo);
 +};
 +
 +/**
-+ * struct ttm_backup - Abstract a backup backend.
-+ * @ops: The operations as described above.
-+ *
-+ * The struct ttm_backup is intended to be subclassed by the
-+ * backend implementation.
++ * struct ttm_lru_walk - Structure describing a LRU walk.
 + */
-+struct ttm_backup {
-+	const struct ttm_backup_ops *ops;
++struct ttm_lru_walk {
++	/** @ops: Pointer to the ops structure. */
++	const struct ttm_lru_walk_ops *ops;
++	/** @ctx: Pointer to the struct ttm_operation_ctx. */
++	struct ttm_operation_ctx *ctx;
++	/** @ticket: The struct ww_acquire_ctx if any. */
++	struct ww_acquire_ctx *ticket;
++	/** @tryock_only: Only use trylock for locking. */
++	bool trylock_only;
 +};
 +
-+/**
-+ * ttm_backup_shmem_create() - Create a shmem-based struct backup.
-+ * @size: The maximum size (in bytes) to back up.
-+ *
-+ * Create a backup utilizing shmem objects.
-+ *
-+ * Return: A pointer to a struct ttm_backup on success,
-+ * an error pointer on error.
-+ */
-+struct ttm_backup *ttm_backup_shmem_create(loff_t size);
++long ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
++			    struct ttm_resource_manager *man, long target);
 +
-+#endif
+ /**
+  * ttm_bo_get - reference a struct ttm_buffer_object
+  *
 -- 
 2.44.0
 
