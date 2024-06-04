@@ -4,52 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D7A9C27C50
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Jun 2024 11:17:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1206C25B78
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Jun 2024 11:17:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84B5010E461;
-	Tue,  4 Jun 2024 11:17:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7387610E45A;
+	Tue,  4 Jun 2024 11:17:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ADo6PRRF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JdH4Efi3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CBF510E46A
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Jun 2024 11:17:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BB3F10E46A
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Jun 2024 11:17:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717499848; x=1749035848;
+ t=1717499850; x=1749035850;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MgyclBiUxtjaBKg+caMDYuJ3MvwjE//qkZQd7gM2eVE=;
- b=ADo6PRRFOiY1NRfa8jjGGt4iRk2JTST/O8M6Qpopj9Vz8ihlC1bZqde0
- 0H4lTMHK/Nkn7DfPHepupHcjqcjzckPvdRhPBa2RfSHe2SDjYsn686yNF
- ZOBAt/ZnfabQIDfE18ryQtY8SdhpCVVX24BLekPiQ7lJIZ9SFMXKGQRz6
- hfLzNbf7lhGlE6ZW5RRxpiKazEdX2bztM4JkNyf9N4Syo/KolPShcLQsy
- y9u8mFn/ByLZm5Y+o/UgOJhNMmgVYI6JGzgbP/fM1CbySQ9d+KPYXpVyJ
- xJ/2yHSCGBxDykO52rBxEKu3c3HJ+RLrmH2Xq3bow/37DIihUESo/dx+n g==;
-X-CSE-ConnectionGUID: AiwFaDi+Ttekyui4dhfBnQ==
-X-CSE-MsgGUID: yZQxIgXbTmOzbHOa3aGogA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="24701861"
-X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="24701861"
+ bh=+oc3jmpt6SQIglACK5TwMM+KM//oecjqyinfl6nX/58=;
+ b=JdH4Efi3pdDZBAzdmvUXd5bHKy9kQXd1tAtVlSTQYLHviiB7tZfexjK3
+ v3PPM5wipOdlIHG3pOg5XPtIt5+xCc74n0S+qqw3FuyOxkUys9W+Pfz4T
+ Dei08L7GimSwxKqU78wbnyKlH9YNFtk0QUmCnRHo08oraawKtF/nPeMFn
+ T5DlMINJssPUhOCJ4Hi+HxsqhYNAQt2gw2uBhPpODg5SpNenuL6Emfvq4
+ domMi52BQwB62I96I7M0sYjneh7ODmJu9kk4M1Indtq4C10qHlfqf1dbr
+ jfjc51OtUkOuTljof6qAtSOzvSrIxu5yCyuMdRDmdFFI1KNNV6NhfHIps w==;
+X-CSE-ConnectionGUID: tS3mnQjhSa+cGJ5akET1Gw==
+X-CSE-MsgGUID: Etr5INPYTpypLagI2UOtTg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="24701863"
+X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="24701863"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 04:17:28 -0700
-X-CSE-ConnectionGUID: GZO0JQDkRq6b5hAcygsmQA==
-X-CSE-MsgGUID: Iu94omtzS52loxCo0bqGAg==
+ 04 Jun 2024 04:17:29 -0700
+X-CSE-ConnectionGUID: oH+Ih7/lTkC3oB0puUkmig==
+X-CSE-MsgGUID: vHDcJ/BOTjKcXqa6e/yNKg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="37669721"
+X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="37669738"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 04:17:26 -0700
+ 04 Jun 2024 04:17:28 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Nirmoy Das <nirmoy.das@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 8/9] drm/xe/client: Check return value of xe_force_wake_get
-Date: Tue,  4 Jun 2024 13:02:24 +0200
-Message-ID: <20240604110225.29495-9-nirmoy.das@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+Subject: [PATCH 9/9] drm/xe: Add __must_check for xe_force_wake_get
+Date: Tue,  4 Jun 2024 13:02:25 +0200
+Message-ID: <20240604110225.29495-10-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20240604110225.29495-1-nirmoy.das@intel.com>
 References: <20240604110225.29495-1-nirmoy.das@intel.com>
@@ -71,43 +68,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_force_wake_get() can return error so check it's return value
-before reading gpu_timestamp value.
+Return value of xe_force_wake_get()  should not be ignored. So add
+a __must_check attribute. Also add documentation for all related functions.
 
-v3: Do not skip xe_force_wake_put(Himal)
-v2: set HWE to NULL instead of setting timestamp to 0(Lucas)
-    Add a warn on for xe_force_wake_put(Himal)
-
-Fixes: 188ced1e0ff8 ("drm/xe/client: Print runtime to fdinfo")
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- drivers/gpu/drm/xe/xe_drm_client.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_force_wake.c | 27 +++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_force_wake.h |  4 ++--
+ 2 files changed, 27 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-index 4a19b771e3a0..0d6c7b813af4 100644
---- a/drivers/gpu/drm/xe/xe_drm_client.c
-+++ b/drivers/gpu/drm/xe/xe_drm_client.c
-@@ -264,9 +264,13 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
- 		if (!hwe)
- 			continue;
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
+index 9eef4ebaeccc..4d77f41fbf14 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.c
++++ b/drivers/gpu/drm/xe/xe_force_wake.c
+@@ -138,8 +138,20 @@ static int domain_sleep_wait(struct xe_gt *gt,
+ 					 (ffs(tmp__) - 1))) && \
+ 					 domain__->reg_ctl.addr)
  
--		xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--		gpu_timestamp = xe_hw_engine_read_timestamp(hwe);
--		xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-+		if (xe_force_wake_get(gt_to_fw(gt), XE_FW_GT))
-+			hwe = NULL;
-+
-+		if (hwe)
-+			gpu_timestamp = xe_hw_engine_read_timestamp(hwe);
-+
-+		XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
- 		break;
- 	}
+-int xe_force_wake_get(struct xe_force_wake *fw,
+-		      enum xe_force_wake_domains domains)
++/**
++ * xe_force_wake_get - Wake up the specified force wake domains if any are asleep
++ * @fw: Pointer to the force wake structure
++ * @domains: Bitmask representing the domains to be woken up
++ *
++ * This function ensures that the required domains are active and increments the
++ * reference count for each domain specified. If a domain was not previously active,
++ * it will be woken up. Logs an error message if any domain fails to acknowledge the
++ * wake-up request.
++ *
++ * Return: 0 on success, non-zero on failure.
++ */
++int __must_check xe_force_wake_get(struct xe_force_wake *fw,
++				   enum xe_force_wake_domains domains)
+ {
+ 	struct xe_device *xe = fw_to_xe(fw);
+ 	struct xe_gt *gt = fw_to_gt(fw);
+@@ -168,6 +180,17 @@ int xe_force_wake_get(struct xe_force_wake *fw,
+ 	return ret2;
+ }
  
++/**
++ * xe_force_wake_put - Put the specified force wake domains to sleep when ref count becomes 0
++ * @fw: Pointer to the force wake structure
++ * @domains: Bitmask representing the domains to be put to sleep
++ *
++ * This function decrements the reference count for each domain specified. If a
++ * domain's reference count reaches zero, it will be put to sleep. Logs an error
++ * message if any domain fails to acknowledge the sleep request.
++ *
++ * Return: 0 on success, non-zero on failure.
++ */
+ int xe_force_wake_put(struct xe_force_wake *fw,
+ 		      enum xe_force_wake_domains domains)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.h b/drivers/gpu/drm/xe/xe_force_wake.h
+index 3f918a09f029..90948bf0054f 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.h
++++ b/drivers/gpu/drm/xe/xe_force_wake.h
+@@ -15,8 +15,8 @@ void xe_force_wake_init_gt(struct xe_gt *gt,
+ 			   struct xe_force_wake *fw);
+ void xe_force_wake_init_engines(struct xe_gt *gt,
+ 				struct xe_force_wake *fw);
+-int xe_force_wake_get(struct xe_force_wake *fw,
+-		      enum xe_force_wake_domains domains);
++int __must_check xe_force_wake_get(struct xe_force_wake *fw,
++				   enum xe_force_wake_domains domains);
+ int __must_check xe_force_wake_tryget(struct xe_force_wake *fw,
+ 				      enum xe_force_wake_domains domains);
+ int xe_force_wake_put(struct xe_force_wake *fw,
 -- 
 2.42.0
 
