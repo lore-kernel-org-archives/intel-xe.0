@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2877C27C53
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Jun 2024 08:27:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F41BC27C52
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Jun 2024 08:27:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D09310E444;
-	Tue,  4 Jun 2024 08:27:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE10C10E441;
+	Tue,  4 Jun 2024 08:27:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PuxLgVtC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ycxg4EmN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8167289A72
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Jun 2024 08:27:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2932B10E441
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Jun 2024 08:27:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717489661; x=1749025661;
+ t=1717489658; x=1749025658;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=qUerF/d1rDPz5mwJ0pwkNktJW90GVhV3zAQPVnDy+HY=;
- b=PuxLgVtCbUd4ved0c6iO/nKJPiaHi51UbIodHhh0LagKmEqqFZ8BZUJk
- /eYe1uzv1czTjCpEDFdeg6/SHxiXr0zT3LIIh0w1oJfN2L2KYBK06QjgT
- edkVs45zPYzUubaEJTkQvr4/eW4ZivHz/aEggwMbJJvccGbPKa96T+Kzi
- 85EFxPYT9kCL84xBGxxOplRqrVm0O9IghzqRJnc5bFRvxyvQ9yKcOz35P
- GOfMzZvWPXstDhxSesm7RlcolnPuGLJalxISoG5EvfqozGcdFDPqdBpS3
- eUspDN4pvcDXL7sXjOJZaTvApZ1qZSxI7fxKLSfWjKJqLTdFqRTY9I3lq Q==;
-X-CSE-ConnectionGUID: /d3bDahNRN60rdA4HOaNxQ==
-X-CSE-MsgGUID: fGFcvKnnST6jWrtWpCdUzw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="17857265"
-X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="17857265"
+ bh=6VSOZXNkBNqbEa7t5l8unBWmFDdTavYig+ZUUf1FznY=;
+ b=Ycxg4EmNw3A8FhDamQ4qeiKGUWfZuDV1UDubsVYwohGCEA8EHdT0sxfg
+ xfqQ3aqvQl51n93m701RpPt82mfgOga6eIEDyl8wJrNZQbA788FdsAiHs
+ BnT8lvpH9RY/Aqjbdp/xmWBAfvaBxAHMq4fnc8RCholL0OzYhSWybyWzj
+ PYIdxnSxEsauGkc6a4TwTNYec9YjFXW+ZCNIYp6zbv6UIs3Hwg7ln5uKU
+ 4wFXQ+gzoHnuTHALic/WSbEoySVvPl6v0DrDxuDNW4kbcUJB3vK8C/U7N
+ emqgCQNTfT9Es/dMMezewXDpLkH4w4O/fvTOm9xHRMWVAq9ZNARMgybUX w==;
+X-CSE-ConnectionGUID: wV9VNa0fQACX1aBJrrKjjA==
+X-CSE-MsgGUID: uXOl/H7vRaeLYuilZDsswg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="17857253"
+X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="17857253"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 01:27:41 -0700
-X-CSE-ConnectionGUID: gnIV2ocpT36AJjuDPzFzBw==
-X-CSE-MsgGUID: gkTicSjET/6vPCwGVDE5Yg==
+ 04 Jun 2024 01:27:38 -0700
+X-CSE-ConnectionGUID: sR8ch+VsSjOaDcJoWE5F+w==
+X-CSE-MsgGUID: +YPXbP1MT+aer7c9pg/QRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="37180848"
+X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="37180843"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO fedora..)
  ([10.245.245.236])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 01:27:40 -0700
+ 04 Jun 2024 01:27:37 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 10/11] drm/ttm: Use fault-injection to test error paths
-Date: Tue,  4 Jun 2024 10:27:21 +0200
-Message-ID: <20240604082722.4670-11-thomas.hellstrom@linux.intel.com>
+Subject: [CI 06/11] drm/ttm: Use the LRU walker helper for swapping
+Date: Tue,  4 Jun 2024 10:27:17 +0200
+Message-ID: <20240604082722.4670-7-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240604082722.4670-1-thomas.hellstrom@linux.intel.com>
 References: <20240604082722.4670-1-thomas.hellstrom@linux.intel.com>
@@ -67,10 +67,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use fault-injection to test partial TTM swapout and interrupted swapin.
-Return -EINTR for swapin to test the callers ability to handle and
-restart the swapin, and on swapout perform a partial swapout to test that
-the swapin and release_shrunken functionality.
+Rework the TTM swapping to use the LRU walker helper.
+This helps fixing up the ttm_bo_swapout() interface
+to be consistent about not requiring any locking.
+
+For now mimic the current behaviour of using trylock
+only. We could be using ticket-locks here but defer
+that until it's deemed necessary. The TTM swapout
+functionality is a bit weird anyway since it
+alternates between memory types without exhausting
+TTM_PL_SYSTEM first.
 
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
@@ -78,73 +84,241 @@ Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: <dri-devel@lists.freedesktop.org>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/Kconfig        | 10 ++++++++++
- drivers/gpu/drm/ttm/ttm_pool.c | 17 ++++++++++++++++-
- 2 files changed, 26 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/ttm/ttm_bo.c     | 112 +++++++++++++++++++++----------
+ drivers/gpu/drm/ttm/ttm_device.c |  30 ++-------
+ include/drm/ttm/ttm_bo.h         |   5 +-
+ 3 files changed, 83 insertions(+), 64 deletions(-)
 
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index 9703429de6b9..928cf13ff537 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -259,6 +259,16 @@ config DRM_GPUVM
- 	  GPU-VM representation providing helpers to manage a GPUs virtual
- 	  address space
+diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+index 43eda720657f..63a91b77f7da 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo.c
++++ b/drivers/gpu/drm/ttm/ttm_bo.c
+@@ -1118,11 +1118,23 @@ int ttm_bo_wait_ctx(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx)
+ }
+ EXPORT_SYMBOL(ttm_bo_wait_ctx);
  
-+config DRM_TTM_BACKUP_FAULT_INJECT
-+	bool "Enable fault injection during TTM backup"
-+	depends on DRM_TTM
-+	default n
-+	help
-+	  Inject recoverable failures during TTM backup and recovery of
-+	  backed-up objects. For DRM driver developers only.
+-int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
+-		   gfp_t gfp_flags)
++/**
++ * struct ttm_bo_swapout_walk - Parameters for the swapout walk
++ */
++struct ttm_bo_swapout_walk {
++	/** @walk: The walk base parameters. */
++	struct ttm_lru_walk walk;
++	/** @gfp_flags: The gfp flags to use for ttm_tt_swapout() */
++	gfp_t gfp_flags;
++};
 +
-+	  If in doubt, choose N.
-+
- config DRM_BUDDY
- 	tristate
- 	depends on DRM
-diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-index 38e50cf81b0a..d32a1f2e5e50 100644
---- a/drivers/gpu/drm/ttm/ttm_pool.c
-+++ b/drivers/gpu/drm/ttm/ttm_pool.c
-@@ -431,6 +431,7 @@ static int ttm_pool_restore_tt(struct ttm_pool_tt_restore *restore,
- 			       struct ttm_backup *backup,
- 			       struct ttm_operation_ctx *ctx)
++static long
++ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
  {
-+	static unsigned long __maybe_unused swappedin;
- 	unsigned int i, nr = 1 << restore->order;
- 	int ret = 0;
+-	struct ttm_place place;
+-	bool locked;
++	struct ttm_place place = {.mem_type = bo->resource->mem_type};
++	struct ttm_bo_swapout_walk *swapout_walk =
++		container_of(walk, typeof(*swapout_walk), walk);
++	struct ttm_operation_ctx *ctx = walk->ctx;
+ 	long ret;
  
-@@ -446,6 +447,13 @@ static int ttm_pool_restore_tt(struct ttm_pool_tt_restore *restore,
- 			if (handle == 0)
- 				continue;
+ 	/*
+@@ -1131,28 +1143,29 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
+ 	 * The driver may use the fact that we're moving from SYSTEM
+ 	 * as an indication that we're about to swap out.
+ 	 */
+-	memset(&place, 0, sizeof(place));
+-	place.mem_type = bo->resource->mem_type;
+-	if (!ttm_bo_evict_swapout_allowable(bo, ctx, &place, &locked, NULL))
+-		return -EBUSY;
++	if (!bo->bdev->funcs->eviction_valuable(bo, &place)) {
++		ret = -EBUSY;
++		goto out;
++	}
  
-+			if (IS_ENABLED(CONFIG_DRM_TTM_BACKUP_FAULT_INJECT) &&
-+			    ctx->interruptible &&
-+			    ++swappedin % 100 == 0) {
-+				ret = -EINTR;
-+				break;
-+			}
-+
- 			ret = backup->ops->copy_backed_up_page
- 				(backup, restore->first_page[i],
- 				 handle, ctx->interruptible);
-@@ -892,7 +900,14 @@ long ttm_pool_backup_tt(struct ttm_pool *pool, struct ttm_tt *ttm, bool purge,
+ 	if (!bo->ttm || !ttm_tt_is_populated(bo->ttm) ||
+ 	    bo->ttm->page_flags & TTM_TT_FLAG_EXTERNAL ||
+-	    bo->ttm->page_flags & TTM_TT_FLAG_SWAPPED ||
+-	    !ttm_bo_get_unless_zero(bo)) {
+-		if (locked)
+-			dma_resv_unlock(bo->base.resv);
+-		return -EBUSY;
++	    bo->ttm->page_flags & TTM_TT_FLAG_SWAPPED) {
++		ret = -EBUSY;
++		goto out;
+ 	}
  
- 	alloc_gfp = GFP_KERNEL | __GFP_HIGH | __GFP_NOWARN | __GFP_RETRY_MAYFAIL;
+ 	if (bo->deleted) {
+-		ret = ttm_bo_cleanup_refs(bo, false, false, locked);
+-		ttm_bo_put(bo);
+-		return ret == -EBUSY ? -ENOSPC : ret;
+-	}
++		pgoff_t num_pages = bo->ttm->num_pages;
  
--	for (i = 0; i < ttm->num_pages; ++i) {
-+	num_pages = ttm->num_pages;
+-	/* TODO: Cleanup the locking */
+-	spin_unlock(&bo->bdev->lru_lock);
++		ret = ttm_bo_wait_ctx(bo, ctx);
++		if (ret)
++			goto out;
 +
-+	/* Pretend doing fault injection by shrinking only half of the pages. */
++		ttm_bo_cleanup_memtype_use(bo);
++		ret = num_pages;
++		goto out;
++	}
+ 
+ 	/*
+ 	 * Move to system cached
+@@ -1164,12 +1177,13 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
+ 		memset(&hop, 0, sizeof(hop));
+ 		place.mem_type = TTM_PL_SYSTEM;
+ 		ret = ttm_resource_alloc(bo, &place, &evict_mem);
+-		if (unlikely(ret))
++		if (ret)
+ 			goto out;
+ 
+ 		ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
+-		if (unlikely(ret != 0)) {
+-			WARN(ret == -EMULTIHOP, "Unexpected multihop in swaput - likely driver bug.\n");
++		if (ret) {
++			WARN(ret == -EMULTIHOP,
++			     "Unexpected multihop in swapout - likely driver bug.\n");
+ 			ttm_resource_free(bo, &evict_mem);
+ 			goto out;
+ 		}
+@@ -1179,30 +1193,54 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
+ 	 * Make sure BO is idle.
+ 	 */
+ 	ret = ttm_bo_wait_ctx(bo, ctx);
+-	if (unlikely(ret != 0))
++	if (ret)
+ 		goto out;
+ 
+ 	ttm_bo_unmap_virtual(bo);
+-
+-	/*
+-	 * Swap out. Buffer will be swapped in again as soon as
+-	 * anyone tries to access a ttm page.
+-	 */
+ 	if (bo->bdev->funcs->swap_notify)
+ 		bo->bdev->funcs->swap_notify(bo);
+ 
+ 	if (ttm_tt_is_populated(bo->ttm))
+-		ret = ttm_tt_swapout(bo->bdev, bo->ttm, gfp_flags);
++		ret = ttm_tt_swapout(bo->bdev, bo->ttm, swapout_walk->gfp_flags);
+ out:
++	/* Consider some error codes fatal. Others may continue the walk. */
++	if (ret == -ENOMEM || ret == -EINTR || ret == -ERESTARTSYS ||
++	    ret == -EAGAIN || ret > 0)
++		return ret;
+ 
+-	/*
+-	 * Unreserve without putting on LRU to avoid swapping out an
+-	 * already swapped buffer.
+-	 */
+-	if (locked)
+-		dma_resv_unlock(bo->base.resv);
+-	ttm_bo_put(bo);
+-	return ret == -EBUSY ? -ENOSPC : ret;
++	return 0;
++}
 +
-+	if (IS_ENABLED(CONFIG_DRM_TTM_BACKUP_FAULT_INJECT))
-+		num_pages = DIV_ROUND_UP(num_pages, 2);
++const struct ttm_lru_walk_ops ttm_swap_ops = {
++	.process_bo = ttm_bo_swapout_cb,
++};
 +
-+	for (i = 0; i < num_pages; ++i) {
- 		page = ttm->pages[i];
- 		if (unlikely(!page))
++/**
++ * ttm_bo_swapout() - Swap out buffer objects on the LRU list to shmem.
++ * @bdev: The ttm device.
++ * @ctx: The ttm_operation_ctx governing the swapout operation.
++ * @man: The resource manager whose resources / buffer objects are
++ * goint to be swapped out.
++ * @gfp_flags: The gfp flags used for shmem page allocations.
++ * @target: The desired number of pages to swap out.
++ *
++ * Return: The number of pages actually swapped out, or negative error code
++ * on error.
++ */
++long ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
++		    struct ttm_resource_manager *man, gfp_t gfp_flags,
++		    pgoff_t target)
++{
++	struct ttm_bo_swapout_walk swapout_walk = {
++		.walk = {
++			.ops = &ttm_swap_ops,
++			.ctx = ctx,
++			.trylock_only = true,
++		},
++		.gfp_flags = gfp_flags,
++	};
++
++	return ttm_lru_walk_for_evict(&swapout_walk.walk, bdev, man, target);
+ }
+ 
+ void ttm_bo_tt_destroy(struct ttm_buffer_object *bo)
+diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
+index f9e9b1ec8c8a..ee575d8a54c0 100644
+--- a/drivers/gpu/drm/ttm/ttm_device.c
++++ b/drivers/gpu/drm/ttm/ttm_device.c
+@@ -148,40 +148,20 @@ int ttm_global_swapout(struct ttm_operation_ctx *ctx, gfp_t gfp_flags)
+ int ttm_device_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
+ 		       gfp_t gfp_flags)
+ {
+-	struct ttm_resource_cursor cursor;
+ 	struct ttm_resource_manager *man;
+-	struct ttm_resource *res;
+ 	unsigned i;
+-	int ret;
++	long lret;
+ 
+-	spin_lock(&bdev->lru_lock);
+ 	for (i = TTM_PL_SYSTEM; i < TTM_NUM_MEM_TYPES; ++i) {
+ 		man = ttm_manager_type(bdev, i);
+ 		if (!man || !man->use_tt)
  			continue;
+ 
+-		ttm_resource_manager_for_each_res(man, &cursor, res) {
+-			struct ttm_buffer_object *bo = res->bo;
+-			uint32_t num_pages;
+-
+-			if (!bo || bo->resource != res)
+-				continue;
+-
+-			num_pages = PFN_UP(bo->base.size);
+-			ret = ttm_bo_swapout(bo, ctx, gfp_flags);
+-			/* ttm_bo_swapout has dropped the lru_lock */
+-			if (!ret) {
+-				ttm_resource_cursor_fini(&cursor);
+-				return num_pages;
+-			}
+-			if (ret != -EBUSY) {
+-				ttm_resource_cursor_fini(&cursor);
+-				return ret;
+-			}
+-		}
++		lret = ttm_bo_swapout(bdev, ctx, man, gfp_flags, 1);
++		/* Can be both positive (num_pages) and negative (error) */
++		if (lret)
++			return lret;
+ 	}
+-	ttm_resource_cursor_fini_locked(&cursor);
+-	spin_unlock(&bdev->lru_lock);
+ 	return 0;
+ }
+ EXPORT_SYMBOL(ttm_device_swapout);
+diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+index 8b032298d66e..472a55b69afb 100644
+--- a/include/drm/ttm/ttm_bo.h
++++ b/include/drm/ttm/ttm_bo.h
+@@ -410,8 +410,9 @@ void ttm_bo_kunmap(struct ttm_bo_kmap_obj *map);
+ int ttm_bo_vmap(struct ttm_buffer_object *bo, struct iosys_map *map);
+ void ttm_bo_vunmap(struct ttm_buffer_object *bo, struct iosys_map *map);
+ int ttm_bo_mmap_obj(struct vm_area_struct *vma, struct ttm_buffer_object *bo);
+-int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
+-		   gfp_t gfp_flags);
++long ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
++		    struct ttm_resource_manager *man, gfp_t gfp_flags,
++		    pgoff_t target);
+ void ttm_bo_pin(struct ttm_buffer_object *bo);
+ void ttm_bo_unpin(struct ttm_buffer_object *bo);
+ int ttm_mem_evict_first(struct ttm_device *bdev,
 -- 
 2.44.0
 
