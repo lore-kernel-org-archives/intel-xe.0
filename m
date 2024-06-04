@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7A26C27C52
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Jun 2024 20:26:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDB1BC25B78
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Jun 2024 20:26:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E0E110E5E5;
-	Tue,  4 Jun 2024 20:26:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 792F010E5ED;
+	Tue,  4 Jun 2024 20:26:41 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7EFB10E5EC;
- Tue,  4 Jun 2024 20:26:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B287D10E5ED;
+ Tue,  4 Jun 2024 20:26:39 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Don=27t_ov?=
- =?utf-8?q?ermap_identity_VRAM_mapping_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Don=27t_overmap?=
+ =?utf-8?q?_identity_VRAM_mapping_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 04 Jun 2024 20:26:28 -0000
-Message-ID: <171753278882.2266114.4301552875564641760@8e613ede5ea5>
+Date: Tue, 04 Jun 2024 20:26:39 -0000
+Message-ID: <171753279972.2266113.8258725425693019168@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240603181824.1927675-1-matthew.brost@intel.com>
 In-Reply-To: <20240603181824.1927675-1-matthew.brost@intel.com>
@@ -44,13 +44,49 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Don't overmap identity VRAM mapping (rev2)
 URL   : https://patchwork.freedesktop.org/series/134282/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 596cf447db94 drm-tip: 2024y-06m-04d-20h-11m-26s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Don't overmap identity VRAM mapping
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit fec6e01b749916568cb0a13af4c9627e57069635
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Mon Jun 3 11:18:24 2024 -0700
+
+    drm/xe: Don't overmap identity VRAM mapping
+    
+    Overmapping the identity VRAM mapping is triggering hardware bugs on
+    certain platforms. Use 2M pages for the last unaligned (to 1G) VRAM
+    chunk.
+    
+    v2:
+     - Always use 2M pages for last chunk (Fei Yang)
+     - break loop when 2M pages are used
+     - Add assert for usable_size being 2M aligned
+    
+    Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+    Cc: Fei Yang <fei.yang@intel.com>
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Fei Yang <fei.yang@intel.com>
++ /mt/dim checkpatch 596cf447db94909c4788fd612876520531e439b0 drm-intel
+fec6e01b7499 drm/xe: Don't overmap identity VRAM mapping
+-:43: WARNING:ONE_SEMICOLON: Statements terminations use 1 semicolon
+#43: FILE: drivers/gpu/drm/xe/xe_migrate.c:144:
++	u64 entry, pt30_ofs;;
+
+-:115: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#115: FILE: drivers/gpu/drm/xe/xe_migrate.c:292:
++				break;	/* Ensure pos == vram_limit assert correct */
++			} else {
+
+total: 0 errors, 2 warnings, 0 checks, 105 lines checked
 
 
