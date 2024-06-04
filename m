@@ -4,75 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE780C27C50
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Jun 2024 09:39:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34323C25B78
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Jun 2024 10:44:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7057E10E252;
-	Tue,  4 Jun 2024 09:39:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD46D10E05C;
+	Tue,  4 Jun 2024 10:44:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k37XX26Z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SC4PKizP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A74610E252
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Jun 2024 09:39:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E09E910E05C
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Jun 2024 10:44:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717493966; x=1749029966;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=YwRgf0TDIJVkI7CySxXdrZJlc7UiJfQKk6JGsO9Arfo=;
- b=k37XX26Z9Lr2ZrPfQqnffynwV7ZrMTCcbAudRcF4dCwvdlNSulrhU5bE
- BNqcnrTitTjsUXPwOTMCgASQf3uHh7aK5+72wjF4gCZGtaqBGWZ1aIu/8
- Be8QF/AgoaWPhCxhf74cunoAD8gxVX/FwsdDQ6fxd6Ou2kvXsi0nb+TlT
- EaI3qKOAFyPA5ba3IFTObRPrXPKAHPqw/23ZXgWrNMG6zlg4mhQkzrJb9
- /VxdjjxxfSDa3GKNQ1MQhKQFoCkcq/XGRWWbo7rHfH9p4aW/AXFbAKsdL
- 1fcB+sRRot8I5NfdDFqG7hdrEtb5XWBNISS2lZ/IlYN/pNWaeYWGIDGgL Q==;
-X-CSE-ConnectionGUID: /H56dqfVRJixW91e0TOwSQ==
-X-CSE-MsgGUID: KWSo3Z8/SQqmecXDA+B5NQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="14185557"
-X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="14185557"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 02:39:26 -0700
-X-CSE-ConnectionGUID: Jv1/RvnMR3CNJZaVKLeD3w==
-X-CSE-MsgGUID: h+0LAaD+Rf+UGDCagfsibg==
+ t=1717497893; x=1749033893;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2LbWWBFZNZOHrATGdPbNyTYafDHbrzqQZ/TiS8Dk14I=;
+ b=SC4PKizPRwSL3naVXUgq0Pc6AnT6ciyPXtHB3cv9PU3D4hifc3EseY5J
+ 3knOdGWIWMwS09s3G93Ddb1Bx0iDiIF2J2wMFVoYLsAvxT7d3VKhC+lWg
+ Upf5XK2ax6ga1PRut8k1xCCRLVsBsMhR5JSajV0Nc/Pnn8IvnN4LTqif3
+ LrNN3/fC6Ep5CCnru80bMKyuYNErmTTGwtzbeWlw2CoqrM8n1q8KTBiIg
+ HRpke9us+LMt+TyrKrhvsq03z/+odbTYMBuwzj3cMHAwZdbk8CK+ZD3//
+ QpJQmDsYI8YtzCdv52XSnAgsIMftEEQ5oVsGvp6JlaaYEpAyZFcxG+wi/ w==;
+X-CSE-ConnectionGUID: 64wVWHlTSE2SJXRjGr1OPg==
+X-CSE-MsgGUID: QNBhUJSqQLGeacev6VFj2w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="31536875"
+X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="31536875"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2024 03:44:52 -0700
+X-CSE-ConnectionGUID: Vq6PHHBzSVWVp+f3zoGGdA==
+X-CSE-MsgGUID: rYJzFyX5SH64fT/79Us15Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="37764226"
-Received: from lab-ah.igk.intel.com ([10.102.138.202])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 02:39:06 -0700
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Date: Tue, 04 Jun 2024 11:38:52 +0200
-Subject: [PATCH v2 2/2] drm/xe: flush engine buffers before signalling user
- fence on all engines
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240604-fix_user_fence_posted-v2-2-9276ecef973a@intel.com>
-References: <20240604-fix_user_fence_posted-v2-0-9276ecef973a@intel.com>
-In-Reply-To: <20240604-fix_user_fence_posted-v2-0-9276ecef973a@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="37321941"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by fmviesa009.fm.intel.com with ESMTP; 04 Jun 2024 03:44:50 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Matthew Brost <matthew.brost@intel.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Matthew Auld <matthew.auld@intel.com>, 
- Andrzej Hajda <andrzej.hajda@intel.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1987;
- i=andrzej.hajda@intel.com; h=from:subject:message-id;
- bh=YwRgf0TDIJVkI7CySxXdrZJlc7UiJfQKk6JGsO9Arfo=;
- b=owEB7QES/pANAwAKASNispPeEP3XAcsmYgBmXuC1iunIttrDgGZO4fcEmbhmupmd0TcAEZLPCEWU
- oXUG40KJAbMEAAEKAB0WIQT8qEQxNN2/XeF/A00jYrKT3hD91wUCZl7gtQAKCRAjYrKT3hD91zgsDA
- C1Ll5lShjNKG5gMZW9yh3Sum5unDkYdsVJXbJH1t8wDrvr+lWMuNPurYvMHenDAWCTxiiwQY9aRKQt
- ZvbotW8QWA6AWs5YA6vCnewun7zaxyOFq0JGAQEAnynFdTCmOWAak+ALqS6c55hYmuaH0W0IYTImvH
- yxQNLgPS6vOTYJA1TgJrq2QHE1XfzXI16jKLokqGHxgKXIN6/dvNFlcsoJ6ZxF4BNDFqyZm6N/R5QF
- NBuFsTRRKiwGbXjOvz7rktO/VJsafuuDhA0bJCQ1BPzivfq+bmVap3+P6BulrgK3M8ywtn/K5zFBvI
- vrKqrSOSNOCZvr4DscIxQZU+gN+JJ70ld2aUXMySo9cdIxcS7+BWXMLvhtMO8T/XFi2gUPe4UsxRBS
- vd8S+aTwP2I//+v+/u/jLFg/Q8rh00GZERuYuplja1AR/Vec5mjiqevZxgYywGiFOSdoKw/e1PP6tY
- uemJrF4oGDS4YRDxz7nanlWZ0v3aX4xRtJIAVRe4VrFcQ=
-X-Developer-Key: i=andrzej.hajda@intel.com; a=openpgp;
- fpr=FCA8443134DDBF5DE17F034D2362B293DE10FDD7
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH V2] drm/xe: Access port only after lock acquired
+Date: Tue,  4 Jun 2024 16:15:16 +0530
+Message-Id: <20240604104516.766058-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,67 +64,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Tests show that user fence signalling requires kind of write barrier,
-otherwise not all writes performed by the workload will be available
-to userspace. It is already done for render and compute, we need it
-also for the rest: video, gsc, copy.
+Currently, port is accessed before lock of port is acquired.
+As followed at other places, lets acquire lock before accessing
+for even better sync up.
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+V2:
+  - Add port->active check under lock
+
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_execlist.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index b11b3cd16b5e..db630d27beba 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -80,6 +80,16 @@ static int emit_store_imm_ggtt(u32 addr, u32 value, u32 *dw, int i)
- 	return i;
- }
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index db906117db6d..fcbc3bac1ebe 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -210,15 +210,16 @@ static void xe_execlist_port_wake_locked(struct xe_execlist_port *port,
  
-+static int emit_flush_dw(u32 *dw, int i)
-+{
-+	dw[i++] = MI_FLUSH_DW | MI_FLUSH_IMM_DW;
-+	dw[i++] = 0;
-+	dw[i++] = 0;
-+	dw[i++] = 0;
-+
-+	return i;
-+}
-+
- static int emit_flush_imm_ggtt(u32 addr, u32 value, bool invalidate_tlb,
- 			       u32 *dw, int i)
+ static void xe_execlist_make_active(struct xe_execlist_exec_queue *exl)
  {
-@@ -234,10 +244,12 @@ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc
+-	struct xe_execlist_port *port = exl->port;
++	struct xe_execlist_port *port;
+ 	enum xe_exec_queue_priority priority = exl->q->sched_props.priority;
  
- 	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
+ 	XE_WARN_ON(priority == XE_EXEC_QUEUE_PRIORITY_UNSET);
+ 	XE_WARN_ON(priority < 0);
+-	XE_WARN_ON(priority >= ARRAY_SIZE(exl->port->active));
  
--	if (job->user_fence.used)
-+	if (job->user_fence.used) {
-+		i = emit_flush_dw(dw, i);
- 		i = emit_store_imm_ppgtt_posted(job->user_fence.addr,
- 						job->user_fence.value,
- 						dw, i);
-+	}
+-	spin_lock_irq(&port->lock);
++	spin_lock_irq(&exl->port->lock);
  
- 	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, false, dw, i);
- 
-@@ -293,10 +305,12 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 
- 	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
- 
--	if (job->user_fence.used)
-+	if (job->user_fence.used) {
-+		i = emit_flush_dw(dw, i);
- 		i = emit_store_imm_ppgtt_posted(job->user_fence.addr,
- 						job->user_fence.value,
- 						dw, i);
-+	}
- 
- 	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, false, dw, i);
- 
-
++	XE_WARN_ON(priority >= ARRAY_SIZE(exl->port->active));
++	port = exl->port;
+ 	if (exl->active_priority != priority &&
+ 	    exl->active_priority != XE_EXEC_QUEUE_PRIORITY_UNSET) {
+ 		/* Priority changed, move it to the right list */
 -- 
-2.34.1
+2.25.1
 
