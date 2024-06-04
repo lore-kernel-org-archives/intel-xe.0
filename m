@@ -4,24 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95D3CC25B78
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Jun 2024 18:35:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C3BAC25B78
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Jun 2024 18:36:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C06410E0EA;
-	Tue,  4 Jun 2024 18:35:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4801D10E0EA;
+	Tue,  4 Jun 2024 18:36:05 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BFFA10E0EA;
- Tue,  4 Jun 2024 18:35:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DA9D10E494;
+ Tue,  4 Jun 2024 18:36:02 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/bmg=3A_Add_PC?=
- =?utf-8?q?I_IDs?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/bmg=3A_Add_PCI_IDs?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 04 Jun 2024 18:35:49 -0000
-Message-ID: <171752614931.2264328.6940571502835299166@8e613ede5ea5>
+Date: Tue, 04 Jun 2024 18:36:02 -0000
+Message-ID: <171752616263.2264328.14059520235412665311@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240603145430.1260817-1-balasubramani.vivekanandan@intel.com>
 In-Reply-To: <20240603145430.1260817-1-balasubramani.vivekanandan@intel.com>
@@ -44,13 +43,50 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/bmg: Add PCI IDs
 URL   : https://patchwork.freedesktop.org/series/134387/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 77588a3e3e58 drm-tip: 2024y-06m-04d-16h-44m-06s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/bmg: Add PCI IDs
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e60233b879c434ccee2d0e462c34c5a219839d57
+Author: Matt Roper <matthew.d.roper@intel.com>
+Date:   Mon Jun 3 20:24:30 2024 +0530
+
+    drm/xe/bmg: Add PCI IDs
+    
+    Add the initial set of device IDs for Battlemage.
+    
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+    Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+    Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch 77588a3e3e58917a9b1d992aeef6f02a6b85ded5 drm-intel
+e60233b879c4 drm/xe/bmg: Add PCI IDs
+-:41: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#41: FILE: include/drm/intel/xe_pciids.h:211:
++#define XE_BMG_IDS(MACRO__, ...) \
++	MACRO__(0xE202, ## __VA_ARGS__), \
++	MACRO__(0xE20B, ## __VA_ARGS__), \
++	MACRO__(0xE20C, ## __VA_ARGS__), \
++	MACRO__(0xE20D, ## __VA_ARGS__), \
++	MACRO__(0xE212, ## __VA_ARGS__)
+
+-:41: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#41: FILE: include/drm/intel/xe_pciids.h:211:
++#define XE_BMG_IDS(MACRO__, ...) \
++	MACRO__(0xE202, ## __VA_ARGS__), \
++	MACRO__(0xE20B, ## __VA_ARGS__), \
++	MACRO__(0xE20C, ## __VA_ARGS__), \
++	MACRO__(0xE20D, ## __VA_ARGS__), \
++	MACRO__(0xE212, ## __VA_ARGS__)
+
+total: 1 errors, 0 warnings, 1 checks, 26 lines checked
 
 
