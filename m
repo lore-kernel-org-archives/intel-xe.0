@@ -4,75 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81296C27C52
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Jun 2024 07:30:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 714BFC25B76
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Jun 2024 07:39:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCFF410E181;
-	Wed,  5 Jun 2024 07:30:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PKh3Ag6N";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0569510E6C7
- for <intel-xe@lists.freedesktop.org>; Wed,  5 Jun 2024 07:30:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717572615; x=1749108615;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=fi8r30iwfGb/NJEPMQDjulUaxTBz39KFgu9e9N3/9x4=;
- b=PKh3Ag6NhT7hTjPLgQ31xFflKwstUOM5VR8rwdyOxzzQ7HCu56DrNMp5
- jigh2b7x6RbxEiB0TgPiQ52xn7GjcAxVjtHs7tF0G5Al85r+wD9gfFb1F
- PJyjiXXKn1nKJbEvCDfpvnGMhOGMxu9AbcX/r6HzOEudNPJx8zTU+/yOD
- bJt3GJsbpQA3+idNxvyfRLLhxhruBJYUK321iFr3HBkvDyIAvmMjxLgXB
- CLjORlMaWVd5Nazozgqmd8wODOW9k5cB38EKKeEaMh6jNW6+DctjLmxlv
- PgHIAUU6/nGsYNEZsjwJyf3Vs906SDhVeacBtPOxOX1tfDsduw1VmP866 A==;
-X-CSE-ConnectionGUID: byJYxedgRRKlfuZ+2Edzig==
-X-CSE-MsgGUID: h8/RLfuRSpqFQWMFs+gwkg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="24789018"
-X-IronPort-AV: E=Sophos;i="6.08,215,1712646000"; d="scan'208";a="24789018"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2024 00:30:03 -0700
-X-CSE-ConnectionGUID: VQoGmLkNQqKylIjTlIchaw==
-X-CSE-MsgGUID: V5xI8JiVQG2Ly20cAFN3lA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,215,1712646000"; d="scan'208";a="42453175"
-Received: from lab-ah.igk.intel.com ([10.102.138.202])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2024 00:30:01 -0700
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Date: Wed, 05 Jun 2024 09:29:47 +0200
-Subject: [PATCH v3 1/2] Revert "drm/xe: flush gtt before signalling user
- fence on all engines"
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0637B10E092;
+	Wed,  5 Jun 2024 07:39:17 +0000 (UTC)
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9759D10E092;
+ Wed,  5 Jun 2024 07:39:15 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240605-fix_user_fence_posted-v3-1-06e7932f784a@intel.com>
-References: <20240605-fix_user_fence_posted-v3-0-06e7932f784a@intel.com>
-In-Reply-To: <20240605-fix_user_fence_posted-v3-0-06e7932f784a@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Matthew Brost <matthew.brost@intel.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Matthew Auld <matthew.auld@intel.com>, 
- Andrzej Hajda <andrzej.hajda@intel.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1948;
- i=andrzej.hajda@intel.com; h=from:subject:message-id;
- bh=fi8r30iwfGb/NJEPMQDjulUaxTBz39KFgu9e9N3/9x4=;
- b=owEB7QES/pANAwAKASNispPeEP3XAcsmYgBmYBP2EJZn6KwY0lcfvqy67VkNaLSJS5jbFbhLybMk
- Ds8WvemJAbMEAAEKAB0WIQT8qEQxNN2/XeF/A00jYrKT3hD91wUCZmAT9gAKCRAjYrKT3hD914HxC/
- 45J6WfeIxwv9jtz1d9bexfurRA8sVe7lCsHT26IEstBKCIRN9XVBnaFAVGqRWmWj/uXXuGT5TFeKEY
- Lk1svyUdT5Y6NYlkYmVWY65ltNEyGEPS0yYhiCqmDEiwcc+vFKKPVdwJ0s8K0ObWB2LAmoVJa4BV7f
- Fu4e7kNscza/s6RvSt62TCmV905ss2g2JlQDQkbRDKJ5IvrakMQ2Opnh0scRDqg8wWDqFkyz+nIda8
- lMFPMynVB1BYoru9hqZ58ghaa6FDhpdPjpZD3bPTLfuMb2IOQqATz9/tjC3RV+ZXWFLJoDdWP+1M5S
- KMACGH+XayOz/r9tDIGFyvrXO2ydrxOa6CKavnzKkeF9ToG5gTWsZsBu7oeYuUTovw0JF68+QZ0Qi0
- h6zUOUygrG2yIPhtwtJgyvG9Ar/reX4KhgqZMxFmhNn3REi5mP5JGdhAEPjrBB2Sp8mACVFIz8k4mh
- ecN/5LQ/XnG3oZ+slv5XWGH7SJjBCBBrnSrxxx2sFgw6k=
-X-Developer-Key: i=andrzej.hajda@intel.com; a=openpgp;
- fpr=FCA8443134DDBF5DE17F034D2362B293DE10FDD7
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_Do_not_dereference_N?=
+ =?utf-8?q?ULL_job-=3Efence_in_trace_points?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 05 Jun 2024 07:39:15 -0000
+Message-ID: <171757315561.79.10468550672079286699@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240605055041.2082074-1-matthew.brost@intel.com>
+In-Reply-To: <20240605055041.2082074-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,61 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit 38007fa96419a9db9719f170b9e8a7877821cdd1.
+== Series Details ==
 
-Signaling user-fence after seqno write does not seem to be good solution.
-Instead of changing order separate barrier should be put before user-fence,
-this will be done in separate patch.
+Series: drm/xe: Do not dereference NULL job->fence in trace points
+URL   : https://patchwork.freedesktop.org/series/134484/
+State : success
 
-v2: added fixes tag in case reverted patch gets backported to stable
+== Summary ==
 
-Fixes: 38007fa96419 ("drm/xe: flush gtt before signalling user fence on all engines")
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_ring_ops.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+lib/modules/6.10.0-rc2-xe/kernel/sound/core/seq/
+lib/modules/6.10.0-rc2-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soundcore.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/common/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/amd/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/codecs/
+lib/modules/6.10.0-rc2-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/hda/
+lib/modules/6.10.0-rc2-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/hda/ext/
+lib/modules/6.10.0-rc2-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.10.0-rc2-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kernel/
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/events/
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/events/intel/
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kvm/
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/
+lib/modules/6.10.0-rc2-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/cmac.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/ccm.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/cryptd.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/
+lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.10.0-rc2-xe/build
+lib/modules/6.10.0-rc2-xe/modules.alias.bin
+lib/modules/6.10.0-rc2-xe/modules.builtin
+lib/modules/6.10.0-rc2-xe/modules.softdep
+lib/modules/6.10.0-rc2-xe/modules.alias
+lib/modules/6.10.0-rc2-xe/modules.order
+lib/modules/6.10.0-rc2-xe/modules.symbols
+lib/modules/6.10.0-rc2-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1717573143:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1717573143:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 2a607c141d65..b11b3cd16b5e 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -234,13 +234,13 @@ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc
- 
- 	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
- 
--	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, false, dw, i);
--
- 	if (job->user_fence.used)
- 		i = emit_store_imm_ppgtt_posted(job->user_fence.addr,
- 						job->user_fence.value,
- 						dw, i);
- 
-+	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, false, dw, i);
-+
- 	i = emit_user_interrupt(dw, i);
- 
- 	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
-@@ -293,13 +293,13 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 
- 	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
- 
--	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, false, dw, i);
--
- 	if (job->user_fence.used)
- 		i = emit_store_imm_ppgtt_posted(job->user_fence.addr,
- 						job->user_fence.value,
- 						dw, i);
- 
-+	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, false, dw, i);
-+
- 	i = emit_user_interrupt(dw, i);
- 
- 	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
-
--- 
-2.34.1
 
