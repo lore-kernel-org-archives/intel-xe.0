@@ -4,59 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06C00C25B76
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Jun 2024 10:24:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B047C25B76
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Jun 2024 10:31:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEDAD10E2A5;
-	Wed,  5 Jun 2024 10:24:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B51810E207;
+	Wed,  5 Jun 2024 10:31:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KPmEu4O3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lu/X5gai";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 765B610E28E;
- Wed,  5 Jun 2024 10:24:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7135B10E207
+ for <intel-xe@lists.freedesktop.org>; Wed,  5 Jun 2024 10:31:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717583079; x=1749119079;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=ko25lNUQk0xtQzxdo29wPvNfh9AoAqlS/uYJ/Na9V7c=;
- b=KPmEu4O3ltNJpc5mJSUfid2Wq+h8Y4rnzEjTc9PabKAHw+iacM7StuAL
- n5eoo+fsdccoVWXpldp5j8cs4897xPHJSBRAUAFM5/7pKAMNB+mEMZwet
- ZWa+3fky0fsZlDiZ/FZKmTPQCPgPix0fUaFrMa4KD/9ZIpnz0ldoH4kUA
- oyQEmOPG1EgI/8LG5OAobM7+fl6jOj3feBWy1gP5w1HnsCkR2x+NAM+pu
- IlD6zgw2O5uNYoJOiMoivnz6WOurLiG0ifdWVrtEoQ5/tKnspXQ8omD97
- FNNhT9x4cJLlPfEZee8q5Qx+H+dDAQYoBvu+92dOzwzHv9VcsCObBG0qz g==;
-X-CSE-ConnectionGUID: OLOgw9AwTDSaav+gsvadhw==
-X-CSE-MsgGUID: mpyL3nvTQducwlvk0m1kLA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="31720743"
-X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="31720743"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2024 03:24:38 -0700
-X-CSE-ConnectionGUID: 9KlU85FKSx6WFXIZPx5RLg==
-X-CSE-MsgGUID: 8BY7tRIVSNqBFFISt7akIA==
+ t=1717583460; x=1749119460;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=r7Qn1jMH+d9BcXLUOmMpMHpLoVr0ReYw+U9kS8b+VhE=;
+ b=lu/X5gaieT45hACSss40VSx+eAMrYPiMvrYrz/ibx+ebUMDEQtJlATHS
+ ImyQhoG/Ht1nKRf9EreCpD2Vg9fWMloJ1BqjIRxOryNEPCTYzT9AgWemo
+ psgcNKWC8il5WOOw9BoTRGEFOIQNfIF9aG2YprsXm4lcZVfYEkWOno/p7
+ EEJ265OKSRYNFqNMnqXTlxL8iMkhpSSozqq8qoFS3pKtGLFj1WNtADDT9
+ r+YZkgkPcKUCIsVsODsOK/sQ/mKztFcDVHsHXr6U6vBJgJhAF9UEYCxob
+ 7L5QB6+OF27IW6IHhbj0q4K/PovNK7Bt2RfSu5jmxTRYJqaZAccChG+1k w==;
+X-CSE-ConnectionGUID: 1dH+XbrsTe+WTuXLFYuaQw==
+X-CSE-MsgGUID: DNmhwgLzTuKgHWioelC1wA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="14296983"
+X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="14296983"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2024 03:31:00 -0700
+X-CSE-ConnectionGUID: 8RaMitypSeyZHMRVdFLevQ==
+X-CSE-MsgGUID: mPQ43aLyQVuU7coogY90lw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="37557285"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 05 Jun 2024 03:24:36 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 05 Jun 2024 13:24:34 +0300
-Date: Wed, 5 Jun 2024 13:24:34 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 07/12] drm/i915: extend the fsb_freq initialization to
- more platforms
-Message-ID: <ZmA84kK3SgPSbMOB@intel.com>
-References: <cover.1716906179.git.jani.nikula@intel.com>
- <31252aa5da27d111b9156904ab4f97325431303d.1716906179.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="42663600"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2024 03:30:59 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ Oak Zeng <oak.zeng@intel.com>
+Subject: [RFC] drm/xe: Ensure write lock is held when calling xe_vma_rebind()
+Date: Wed,  5 Jun 2024 12:16:07 +0200
+Message-ID: <20240605101607.29931-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <31252aa5da27d111b9156904ab4f97325431303d.1716906179.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,109 +67,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, May 28, 2024 at 05:24:56PM +0300, Jani Nikula wrote:
-> Initialize fsb frequency for more platforms to be able to use it for GT
-> clock and rawclk frequency initialization.
-> 
-> Note: There's a discrepancy between existing pnv_fsb_freq() and
-> i9xx_hrawclk() regarding CLKCFG interpretation. Presume all PNV is
-> mobile.
-> 
-> FIXME: What should the default or failure mode be when the value is
-> unknown?
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/soc/intel_dram.c | 54 ++++++++++++++++++++-------
->  1 file changed, 40 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-> index ace9372244a4..74b5b70e91f9 100644
-> --- a/drivers/gpu/drm/i915/soc/intel_dram.c
-> +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-> @@ -142,24 +142,50 @@ static void detect_mem_freq(struct drm_i915_private *i915)
->  		drm_dbg(&i915->drm, "DDR speed: %d kHz\n", i915->mem_freq);
->  }
->  
-> -static unsigned int pnv_fsb_freq(struct drm_i915_private *i915)
-> +static unsigned int i9xx_fsb_freq(struct drm_i915_private *i915)
->  {
->  	u32 fsb;
->  
->  	fsb = intel_uncore_read(&i915->uncore, CLKCFG) & CLKCFG_FSB_MASK;
->  
-> -	switch (fsb) {
-> -	case CLKCFG_FSB_400:
-> -		return 400000;
-> -	case CLKCFG_FSB_533:
-> -		return 533333;
-> -	case CLKCFG_FSB_667:
-> -		return 666667;
-> -	case CLKCFG_FSB_800:
-> -		return 800000;
-> +	if (IS_PINEVIEW(i915) || IS_MOBILE(i915)) {
-> +		switch (fsb) {
-> +		case CLKCFG_FSB_400:
-> +			return 400000;
-> +		case CLKCFG_FSB_533:
-> +			return 533333;
-> +		case CLKCFG_FSB_667:
-> +			return 666667;
-> +		case CLKCFG_FSB_800:
-> +			return 800000;
-> +		case CLKCFG_FSB_1067:
-> +			return 1066667;
-> +		case CLKCFG_FSB_1333:
-> +			return 1333333;
-> +		default:
-> +			MISSING_CASE(fsb);
-> +			return 1333333;
-> +		}
-> +	} else {
-> +		switch (fsb) {
-> +		case CLKCFG_FSB_400_ALT:
-> +			return 400000;
-> +		case CLKCFG_FSB_533:
-> +			return 533333;
-> +		case CLKCFG_FSB_667:
-> +			return 666667;
-> +		case CLKCFG_FSB_800:
-> +			return 800000;
-> +		case CLKCFG_FSB_1067_ALT:
-> +			return 1066667;
-> +		case CLKCFG_FSB_1333_ALT:
-> +			return 1333333;
-> +		case CLKCFG_FSB_1600_ALT:
-> +			return 1600000;
-> +		default:
+xe_vma_rebind() expects write vm lock is held so start out with a
+read lock and upgrade if a vma rebind is required.
 
-No MISSING_CASE() here?
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1894
+Fixes: bf69918b7199 ("drm/xe: Use xe_vma_ops to implement page fault rebinds")
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Oak Zeng <oak.zeng@intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 25 +++++++++----------------
+ 1 file changed, 9 insertions(+), 16 deletions(-)
 
-> +			return 533333;
-
-Why a different default value vs. the other branch?
-
-> +		}
->  	}
-> -
-> -	return 0;
->  }
->  
->  static unsigned int ilk_fsb_freq(struct drm_i915_private *dev_priv)
-> @@ -193,8 +219,8 @@ static void detect_fsb_freq(struct drm_i915_private *i915)
->  {
->  	if (GRAPHICS_VER(i915) == 5)
->  		i915->fsb_freq = ilk_fsb_freq(i915);
-> -	else if (IS_PINEVIEW(i915))
-> -		i915->fsb_freq = pnv_fsb_freq(i915);
-> +	else if (GRAPHICS_VER(i915) == 3 || GRAPHICS_VER(i915) == 4)
-> +		i915->fsb_freq = i9xx_fsb_freq(i915);
->  
->  	if (i915->fsb_freq)
->  		drm_dbg(&i915->drm, "FSB frequency: %d kHz\n", i915->fsb_freq);
-> -- 
-> 2.39.2
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 040dd142c49c..543cfa9892f6 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -153,24 +153,15 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+ 		return -EINVAL;
+ 
+ retry_userptr:
+-	/*
+-	 * TODO: Avoid exclusive lock if VM doesn't have userptrs, or
+-	 * start out read-locked?
+-	 */
+-	down_write(&vm->lock);
+-	write_locked = true;
++	/* start out with read-locked and upgrade of vma is needed a rebind */
++	down_read(&vm->lock);
++	write_locked = false;
+ 	vma = lookup_vma(vm, pf->page_addr);
+ 	if (!vma) {
+ 		ret = -EINVAL;
+ 		goto unlock_vm;
+ 	}
+ 
+-	if (!xe_vma_is_userptr(vma) ||
+-	    !xe_vma_userptr_check_repin(to_userptr_vma(vma))) {
+-		downgrade_write(&vm->lock);
+-		write_locked = false;
+-	}
+-
+ 	trace_xe_vma_pagefault(vma);
+ 
+ 	atomic = access_is_atomic(pf->access_type);
+@@ -179,9 +170,14 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+ 	if (vma_is_valid(tile, vma) && !atomic)
+ 		goto unlock_vm;
+ 
++	/* xe_vma_rebind() expects a write lock so upgrade the vm lock */
++	up_read(&vm->lock);
++	down_write(&vm->lock);
++	write_locked = true;
+ 	/* TODO: Validate fault */
+ 
+-	if (xe_vma_is_userptr(vma) && write_locked) {
++	if (xe_vma_is_userptr(vma) &&
++	    xe_vma_userptr_check_repin(to_userptr_vma(vma))) {
+ 		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
+ 
+ 		spin_lock(&vm->userptr.invalidated_lock);
+@@ -191,9 +187,6 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+ 		ret = xe_vma_userptr_pin_pages(uvma);
+ 		if (ret)
+ 			goto unlock_vm;
+-
+-		downgrade_write(&vm->lock);
+-		write_locked = false;
+ 	}
+ 
+ 	/* Lock VM and BOs dma-resv */
 -- 
-Ville Syrjälä
-Intel
+2.42.0
+
