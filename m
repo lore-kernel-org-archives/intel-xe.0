@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C123C25B78
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Jun 2024 01:54:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DE2FC27C50
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Jun 2024 01:54:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39F1C10E67F;
-	Wed,  5 Jun 2024 01:54:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E796410E681;
+	Wed,  5 Jun 2024 01:54:37 +0000 (UTC)
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3512310E67F;
- Wed,  5 Jun 2024 01:54:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9136C10E681;
+ Wed,  5 Jun 2024 01:54:36 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/vm=3A_Simplif?=
- =?utf-8?q?y_if_condition?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/vm=3A_Simplify_if_?=
+ =?utf-8?q?condition?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Thorsten Blum" <thorsten.blum@toblux.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 05 Jun 2024 01:54:25 -0000
-Message-ID: <171755246521.2266944.6914278406329596463@8e613ede5ea5>
+Date: Wed, 05 Jun 2024 01:54:36 -0000
+Message-ID: <171755247659.2266479.9546678874482304024@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240603180005.191578-1-thorsten.blum@toblux.com>
 In-Reply-To: <20240603180005.191578-1-thorsten.blum@toblux.com>
@@ -48,9 +48,33 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 596cf447db94 drm-tip: 2024y-06m-04d-20h-11m-26s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/vm: Simplify if condition
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 50c399b1814a306f06563979e3a6091fcb9c0606
+Author: Thorsten Blum <thorsten.blum@toblux.com>
+Date:   Mon Jun 3 20:00:07 2024 +0200
+
+    drm/xe/vm: Simplify if condition
+    
+    The if condition !A || A && B can be simplified to !A || B.
+    
+    Fixes the following Coccinelle/coccicheck warning reported by
+    excluded_middle.cocci:
+    
+            WARNING !A || A && B is equivalent to !A || B
+    
+    Compile-tested only.
+    
+    Signed-off-by: Thorsten Blum <thorsten.blum@toblux.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 596cf447db94909c4788fd612876520531e439b0 drm-intel
+50c399b1814a drm/xe/vm: Simplify if condition
 
 
