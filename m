@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54B29C27C54
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 18:06:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D62DFC27C54
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 18:06:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFB4310E0CD;
-	Thu,  6 Jun 2024 18:06:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78A7610E0CD;
+	Thu,  6 Jun 2024 18:06:25 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8847B10E0CD;
- Thu,  6 Jun 2024 18:06:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B49CA10E0CD;
+ Thu,  6 Jun 2024 18:06:23 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xe=5Fgt=5Fdeb?=
- =?utf-8?q?ugfs=3A_Use_force=5Freset_for_duplicated_code?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/xe=5Fgt=5Fdebugfs?=
+ =?utf-8?q?=3A_Use_force=5Freset_for_duplicated_code?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 06 Jun 2024 18:06:08 -0000
-Message-ID: <171769716855.23896.15196061985467794398@a6498e030952>
+Date: Thu, 06 Jun 2024 18:06:23 -0000
+Message-ID: <171769718373.23895.8518945892717118108@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240606174304.2987279-1-jonathan.cavitt@intel.com>
 In-Reply-To: <20240606174304.2987279-1-jonathan.cavitt@intel.com>
@@ -48,9 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: cb97aa28be4f drm-tip: 2024y-06m-06d-17h-32m-44s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe_gt_debugfs: Use force_reset for duplicated code
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 325e38ad01ac679c0e596998fae8f0ef521561b7
+Author: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Date:   Thu Jun 6 10:43:04 2024 -0700
+
+    drm/xe/xe_gt_debugfs: Use force_reset for duplicated code
+    
+    force_reset_sync performs the same actions as force_reset, but performs
+    a flush_work afterwards as a means of syncing on the reset.  Use
+    force_reset instead of duplicating the code.
+    
+    Suggested-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+    CC: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch cb97aa28be4f4b914c751ed27bae7782e027826c drm-intel
+325e38ad01ac drm/xe/xe_gt_debugfs: Use force_reset for duplicated code
 
 
