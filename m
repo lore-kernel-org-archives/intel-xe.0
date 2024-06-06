@@ -4,57 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B496AC27C55
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 22:39:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32157C27C54
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 22:39:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68B3310E10F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D899510EB1A;
 	Thu,  6 Jun 2024 22:39:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GjRdK+iI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aDbkYJo/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C036B10E1D6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE6E310E10F
  for <intel-xe@lists.freedesktop.org>; Thu,  6 Jun 2024 22:39:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1717713595; x=1749249595;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SApO99fvGYLNz3uXXXt43xAT9OwPalPrZg2snmvHJXg=;
- b=GjRdK+iIFjHNw8MLqnmjCKLlqtayg7edjrABQzO4OcZSZBcVQCGQCOIl
- ArCsP2Gbm8fDh6k27gJnqwlj87jTqB0HaDOkmrXqqqMJGZG/mSuzjTNOQ
- ozuYJu1UsgU615A2E98+i/eLyo1l4yZm9z1B4/kC9DSHtyGDmEpJC5OeE
- ae6hClqm8fGDNOFAcE27E5zSc8bHW7aMJYmsyOUZnVuB9nX7eTHXlw/Qa
- S+NZ8LqMA7iLxbVlOPO72BZO++HnUo4JWF1x7rHfsN+8KTKpPeaZXmR62
- H71ZBiQLgEktcxFRibc2PtcPFHdzoKHswYUJz8tHeS5CpJGizjL9Lc/Ml Q==;
-X-CSE-ConnectionGUID: senlirBnRMKpKsDhrQQ5TQ==
-X-CSE-MsgGUID: 9PF0R4icSs2m7mgFWgHLVg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="17346520"
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="17346520"
+ bh=WQeCgIXGCyat7tJyrOvgR2MZUKO5IJzPZ0dqO882G6M=;
+ b=aDbkYJo//qHZBsnQxTvpZl/iVgQWW1qgNW2qmvRmyRfTumK5weAvwL5o
+ Hda3DKdQ6hFsY+bvJQqzRePgGE+SO0BuTng6sfbJGWkU+6iJO0cPXDADn
+ VvlsJ/hox6AHnCxl9MgFkn9YKZ29zmu0XgqbEzwrJ09dgijOdF3WWkLtj
+ G9hpQi/bkToWPXhoSji35iKitoRpDZdRcQN2hcuRi9t2P9ycJjs+aX+Si
+ Vkcjcvl7lgPfz351/B/VJCfZ/LKdOiLy4TMI5hXnBKpJN8pW9V+FjTmus
+ noWTNqUznj/bcg21lEXa9uHw2cidv3CxQwpATC39VvXRXGH/uqzXgaUfj Q==;
+X-CSE-ConnectionGUID: 6OZz5kZPQG6gvis9qfhuhg==
+X-CSE-MsgGUID: eY1Lcjt/TeequhPM2393yA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="17346522"
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="17346522"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Jun 2024 15:39:54 -0700
-X-CSE-ConnectionGUID: 3YuyfMdQQkOAYDxysUvHnA==
-X-CSE-MsgGUID: ogG29aUzQ5O+6fBLDMiBoA==
+X-CSE-ConnectionGUID: rZeudWgWQ4KxpQqqhuEmbA==
+X-CSE-MsgGUID: q9FgKG1OSv2qjt72OAjKTg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="37966767"
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="37966774"
 Received: from invictus.jf.intel.com ([10.165.21.201])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Jun 2024 15:39:54 -0700
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: gustavo.sousa@intel.com,
- Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v5 4/6] drm/xe/trace: Print device_id in xe_trace_guc events
-Date: Thu,  6 Jun 2024 15:38:17 -0700
-Message-Id: <20240606223819.3545560-5-radhakrishna.sripada@intel.com>
+ Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Subject: [PATCH v5 6/6] drm/xe: Add reg read/write trace
+Date: Thu,  6 Jun 2024 15:38:19 -0700
+Message-Id: <20240606223819.3545560-7-radhakrishna.sripada@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240606223819.3545560-1-radhakrishna.sripada@intel.com>
 References: <20240606223819.3545560-1-radhakrishna.sripada@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,189 +67,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In multi-gpu environments it is important to know the device
-guc txn belongs to. The tracing information includes the device_id
-to indicate the device the event is associated with.
+This will help debug register read/writes and provides
+a way to trace all the mmio transactions.
 
-v2: Use variable sized variant to display dev name(Gustavo)
-v3: Pass single argument to __assign_str to fix kunit error
+v2: Fix kunit error
+v3: Print devid to help in multi-gpu setup
+v3: rebase and use variable sized variant to display
+    dev name(Gustavo)
+v4: Pass single argument to __asign_str to fix kunit error
 
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c    | 11 +++----
- drivers/gpu/drm/xe/xe_trace_guc.h | 48 ++++++++++++++++++-------------
- 2 files changed, 34 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/xe/xe_mmio.c  | 24 ++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_trace.h | 28 ++++++++++++++++++++++++++++
+ 2 files changed, 48 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 78f79df638d5..ff3fd10cd417 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -528,7 +528,7 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 	/* Update descriptor */
- 	desc_write(xe, h2g, tail, h2g->info.tail);
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 7962eeb9adb7..feba35ad6a3e 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -21,6 +21,8 @@
+ #include "xe_gt_sriov_vf.h"
+ #include "xe_macros.h"
+ #include "xe_sriov.h"
++#include "xe_tile.h"
++#include "xe_trace.h"
  
--	trace_xe_guc_ctb_h2g(gt->info.id, *(action - 1), full_len,
-+	trace_xe_guc_ctb_h2g(xe, gt->info.id, *(action - 1), full_len,
- 			     desc_read(xe, h2g, head), h2g->info.tail);
- 
- 	return 0;
-@@ -641,6 +641,7 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 			      u32 g2h_len, u32 num_g2h,
- 			      struct g2h_fence *g2h_fence)
+ static void tiles_fini(void *arg)
  {
-+	struct xe_device *xe = ct_to_xe(ct);
- 	struct xe_gt *gt = ct_to_gt(ct);
- 	struct drm_printer p = xe_gt_info_printer(gt);
- 	unsigned int sleep_period_ms = 1;
-@@ -668,7 +669,7 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 		if (sleep_period_ms == 1024)
- 			goto broken;
+@@ -124,16 +126,24 @@ u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg reg)
+ {
+ 	struct xe_tile *tile = gt_to_tile(gt);
+ 	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
++	u8 val;
  
--		trace_xe_guc_ct_h2g_flow_control(h2g->info.head, h2g->info.tail,
-+		trace_xe_guc_ct_h2g_flow_control(xe, h2g->info.head, h2g->info.tail,
- 						 h2g->info.size,
- 						 h2g->info.space,
- 						 len + GUC_CTB_HDR_LEN);
-@@ -680,7 +681,7 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 		struct xe_device *xe = ct_to_xe(ct);
- 		struct guc_ctb *g2h = &ct->ctbs.g2h;
- 
--		trace_xe_guc_ct_g2h_flow_control(g2h->info.head,
-+		trace_xe_guc_ct_g2h_flow_control(xe, g2h->info.head,
- 						 desc_read(xe, g2h, tail),
- 						 g2h->info.size,
- 						 g2h->info.space,
-@@ -1170,8 +1171,8 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
- 	g2h->info.head = (head + avail) % g2h->info.size;
- 	desc_write(xe, g2h, head, g2h->info.head);
- 
--	trace_xe_guc_ctb_g2h(ct_to_gt(ct)->info.id, action, len,
--			     g2h->info.head, tail);
-+	trace_xe_guc_ctb_g2h(xe, ct_to_gt(ct)->info.id,
-+			     action, len, g2h->info.head, tail);
- 
- 	return len;
- }
-diff --git a/drivers/gpu/drm/xe/xe_trace_guc.h b/drivers/gpu/drm/xe/xe_trace_guc.h
-index d6830ff21822..3791baad1866 100644
---- a/drivers/gpu/drm/xe/xe_trace_guc.h
-+++ b/drivers/gpu/drm/xe/xe_trace_guc.h
-@@ -9,16 +9,21 @@
- #if !defined(_XE_TRACE_GUC_H_) || defined(TRACE_HEADER_MULTI_READ)
- #define _XE_TRACE_GUC_H_
- 
-+#include <linux/string_helpers.h>
- #include <linux/tracepoint.h>
- #include <linux/types.h>
- 
-+#include "xe_device_types.h"
- #include "xe_guc_exec_queue_types.h"
- 
-+#define __dev_name_xe(xe)	dev_name((xe)->drm.dev)
+-	return readb((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
++	val = readb((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
++	trace_xe_reg_rw(gt, false, addr, val, sizeof(val));
 +
- DECLARE_EVENT_CLASS(xe_guc_ct_flow_control,
--		    TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u32 len),
--		    TP_ARGS(_head, _tail, size, space, len),
-+		    TP_PROTO(struct xe_device *xe, u32 _head, u32 _tail, u32 size, u32 space, u32 len),
-+		    TP_ARGS(xe, _head, _tail, size, space, len),
++	return val;
+ }
  
- 		    TP_STRUCT__entry(
-+			     __string(dev, __dev_name_xe(xe))
- 			     __field(u32, _head)
- 			     __field(u32, _tail)
- 			     __field(u32, size)
-@@ -27,6 +32,7 @@ DECLARE_EVENT_CLASS(xe_guc_ct_flow_control,
- 			     ),
+ u16 xe_mmio_read16(struct xe_gt *gt, struct xe_reg reg)
+ {
+ 	struct xe_tile *tile = gt_to_tile(gt);
+ 	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
++	u16 val;
++
++	val = readw((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
++	trace_xe_reg_rw(gt, false, addr, val, sizeof(val));
  
- 		    TP_fast_assign(
-+			   __assign_str(dev);
- 			   __entry->_head = _head;
- 			   __entry->_tail = _tail;
- 			   __entry->size = size;
-@@ -34,30 +40,31 @@ DECLARE_EVENT_CLASS(xe_guc_ct_flow_control,
- 			   __entry->len = len;
- 			   ),
+-	return readw((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
++	return val;
+ }
  
--		    TP_printk("h2g flow control: head=%u, tail=%u, size=%u, space=%u, len=%u",
--			      __entry->_head, __entry->_tail, __entry->size,
-+		    TP_printk("dev=%s, h2g flow control: head=%u, tail=%u, size=%u, space=%u, len=%u",
-+			      __get_str(dev), __entry->_head, __entry->_tail, __entry->size,
- 			      __entry->space, __entry->len)
+ void xe_mmio_write32(struct xe_gt *gt, struct xe_reg reg, u32 val)
+@@ -141,6 +151,7 @@ void xe_mmio_write32(struct xe_gt *gt, struct xe_reg reg, u32 val)
+ 	struct xe_tile *tile = gt_to_tile(gt);
+ 	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
+ 
++	trace_xe_reg_rw(gt, true, addr, val, sizeof(val));
+ 	writel(val, (reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
+ }
+ 
+@@ -148,11 +159,16 @@ u32 xe_mmio_read32(struct xe_gt *gt, struct xe_reg reg)
+ {
+ 	struct xe_tile *tile = gt_to_tile(gt);
+ 	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
++	u32 val;
+ 
+ 	if (!reg.vf && IS_SRIOV_VF(gt_to_xe(gt)))
+-		return xe_gt_sriov_vf_read32(gt, reg);
++		val = xe_gt_sriov_vf_read32(gt, reg);
++	else
++		val = readl((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
++
++	trace_xe_reg_rw(gt, false, addr, val, sizeof(val));
+ 
+-	return readl((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
++	return val;
+ }
+ 
+ u32 xe_mmio_rmw32(struct xe_gt *gt, struct xe_reg reg, u32 clr, u32 set)
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index f0b3477c0e1a..8d074a828d47 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -347,6 +347,34 @@ DEFINE_EVENT(xe_hw_fence, xe_hw_fence_free,
+ 	     TP_ARGS(fence)
  );
  
- DEFINE_EVENT(xe_guc_ct_flow_control, xe_guc_ct_h2g_flow_control,
--	     TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u32 len),
--	     TP_ARGS(_head, _tail, size, space, len)
-+	     TP_PROTO(struct xe_device *xe, u32 _head, u32 _tail, u32 size, u32 space, u32 len),
-+	     TP_ARGS(xe, _head, _tail, size, space, len)
- );
++TRACE_EVENT(xe_reg_rw,
++	TP_PROTO(struct xe_gt *gt, bool write, u32 reg, u64 val, int len),
++
++	TP_ARGS(gt, write, reg, val, len),
++
++	TP_STRUCT__entry(
++		__string(dev, __dev_name_gt(gt))
++		__field(u64, val)
++		__field(u32, reg)
++		__field(u16, write)
++		__field(u16, len)
++		),
++
++	TP_fast_assign(
++		__assign_str(dev);
++		__entry->val = (u64)val;
++		__entry->reg = reg;
++		__entry->write = write;
++		__entry->len = len;
++		),
++
++	TP_printk("dev=%s, %s reg=0x%x, len=%d, val=(0x%x, 0x%x)",
++		  __get_str(dev), __entry->write ? "write" : "read",
++		  __entry->reg, __entry->len,
++		  (u32)(__entry->val & 0xffffffff),
++		  (u32)(__entry->val >> 32))
++);
++
+ #endif
  
- DEFINE_EVENT_PRINT(xe_guc_ct_flow_control, xe_guc_ct_g2h_flow_control,
--		   TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u32 len),
--		   TP_ARGS(_head, _tail, size, space, len),
-+		   TP_PROTO(struct xe_device *xe, u32 _head, u32 _tail, u32 size, u32 space, u32 len),
-+		   TP_ARGS(xe, _head, _tail, size, space, len),
- 
--		   TP_printk("g2h flow control: head=%u, tail=%u, size=%u, space=%u, len=%u",
--			     __entry->_head, __entry->_tail, __entry->size,
-+		   TP_printk("dev=%s, g2h flow control: head=%u, tail=%u, size=%u, space=%u, len=%u",
-+			     __get_str(dev), __entry->_head, __entry->_tail, __entry->size,
- 			     __entry->space, __entry->len)
- );
- 
- DECLARE_EVENT_CLASS(xe_guc_ctb,
--		    TP_PROTO(u8 gt_id, u32 action, u32 len, u32 _head, u32 tail),
--		    TP_ARGS(gt_id, action, len, _head, tail),
-+		    TP_PROTO(struct xe_device *xe, u8 gt_id, u32 action, u32 len, u32 _head, u32 tail),
-+		    TP_ARGS(xe, gt_id, action, len, _head, tail),
- 
- 		    TP_STRUCT__entry(
-+				__string(dev, __dev_name_xe(xe))
- 				__field(u8, gt_id)
- 				__field(u32, action)
- 				__field(u32, len)
-@@ -66,6 +73,7 @@ DECLARE_EVENT_CLASS(xe_guc_ctb,
- 		    ),
- 
- 		    TP_fast_assign(
-+			    __assign_str(dev);
- 			    __entry->gt_id = gt_id;
- 			    __entry->action = action;
- 			    __entry->len = len;
-@@ -73,22 +81,22 @@ DECLARE_EVENT_CLASS(xe_guc_ctb,
- 			    __entry->_head = _head;
- 		    ),
- 
--		    TP_printk("gt%d: H2G CTB: action=0x%x, len=%d, tail=%d, head=%d\n",
--			      __entry->gt_id, __entry->action, __entry->len,
-+		    TP_printk("dev=%s, gt%d: H2G CTB: action=0x%x, len=%d, tail=%d, head=%d\n",
-+			      __get_str(dev), __entry->gt_id, __entry->action, __entry->len,
- 			      __entry->tail, __entry->_head)
- );
- 
- DEFINE_EVENT(xe_guc_ctb, xe_guc_ctb_h2g,
--	     TP_PROTO(u8 gt_id, u32 action, u32 len, u32 _head, u32 tail),
--	     TP_ARGS(gt_id, action, len, _head, tail)
-+	     TP_PROTO(struct xe_device *xe, u8 gt_id, u32 action, u32 len, u32 _head, u32 tail),
-+	     TP_ARGS(xe, gt_id, action, len, _head, tail)
- );
- 
- DEFINE_EVENT_PRINT(xe_guc_ctb, xe_guc_ctb_g2h,
--		   TP_PROTO(u8 gt_id, u32 action, u32 len, u32 _head, u32 tail),
--		   TP_ARGS(gt_id, action, len, _head, tail),
-+		   TP_PROTO(struct xe_device *xe, u8 gt_id, u32 action, u32 len, u32 _head, u32 tail),
-+		   TP_ARGS(xe, gt_id, action, len, _head, tail),
- 
--		   TP_printk("gt%d: G2H CTB: action=0x%x, len=%d, tail=%d, head=%d\n",
--			     __entry->gt_id, __entry->action, __entry->len,
-+		   TP_printk("dev=%s, gt%d: G2H CTB: action=0x%x, len=%d, tail=%d, head=%d\n",
-+			     __get_str(dev), __entry->gt_id, __entry->action, __entry->len,
- 			     __entry->tail, __entry->_head)
- 
- );
+ /* This part must be outside protection */
 -- 
 2.34.1
 
