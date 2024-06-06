@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EFC4C25B75
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 13:07:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2795CC27C55
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 13:07:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E477E10E94A;
-	Thu,  6 Jun 2024 13:07:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8F7510E942;
+	Thu,  6 Jun 2024 13:07:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f1Vt376q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B/kVCqHT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D12A10E94A
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Jun 2024 13:07:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B788D10E942
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Jun 2024 13:07:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717679221; x=1749215221;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=E9u9nZtnrK95PwGSs4ebwhpZ5Uvp0B/bk0AUQXow7dM=;
- b=f1Vt376qxajDWblo05MKD0g8Tq2YBA4cSEcgi6GoplhHKtWPxL+QMcxZ
- +4Xf8g+BP0y2236sqIdYaKenuhjc8NOga2tIXhi0AUhgXsUv/4fe1pXQH
- nZ58mmRV18y7/BuZtdHmAjMCQhM4aV2K/eF+/JZGHXR4dkdpogSBdIJI0
- m4U+FoCx2SISxlxJonXGh2feJW88RY6AmJEaRWjQsZ2cJri2bGuq+Y4pV
- h5MWk/47uImtwQY85xxs6m2NcDVzVKcsCVqsjG9/OH+iA2GqPxsNNj3st
- 7Bx1VyM6+N/5yMA9oXGKq7Nb8sXTY8fiRX/fFO6qQNS/4bVMmi5ulh7CR w==;
-X-CSE-ConnectionGUID: BSTkTJ9MTjaPUQKUSAGHKg==
-X-CSE-MsgGUID: qCz7rTc3QRuP8o7B70DAjg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="14464240"
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="14464240"
+ t=1717679222; x=1749215222;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=44Fo53ttvtDDGWAEpyv7kphf6l886qNRtfBiAHIRpCQ=;
+ b=B/kVCqHTb669+RiZwMhqMCmpaQHMepbkDvSs4rWPJmPSWcGDfRn8fcOr
+ T6d2OFkaRioLIf2nollHNmIAAfR65zq5wsJ8Ny9BxtKFxPTTNbztzmeZU
+ 1t2xtos5654rF7Ccpba0zfDZchD5RL3r9ZlXa+wvBV60h9db6atBYYgF9
+ 7MGfetJWZSVXxf/VbE8xVIhEPKGGKrA4nHCxhR19ek3s3ajZEfsevY1vd
+ 8EBDjlpKl6Fo3RFB8xV/4VUUt483sbIhW4ET+JFuaFc9dP03PvLw/3Koh
+ jDxfS+m+c4ZxiSizrWq2DmcJ2Z9O6Tem7y4ilYj1IZ20u/eHNTihfJFcY A==;
+X-CSE-ConnectionGUID: 6hAinZIkQPywDZRBRf85cA==
+X-CSE-MsgGUID: iQxAK8GdRbuS//RiRDNilg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="14464250"
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="14464250"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 06:07:01 -0700
-X-CSE-ConnectionGUID: PIKkh/d0RLa+65lwKrQmRQ==
-X-CSE-MsgGUID: nRFLxxgJRPKJvt/uCKxsuw==
+ 06 Jun 2024 06:07:02 -0700
+X-CSE-ConnectionGUID: YhON1I1CTcWxtnIg5dyvnQ==
+X-CSE-MsgGUID: LVTqrlVTQxSeMsIOdgU0nA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="38519326"
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="38519339"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.245.96.165])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 06:07:00 -0700
+ 06 Jun 2024 06:07:01 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2 0/2] Allow CTB G2H processing without G2H IRQ
-Date: Thu,  6 Jun 2024 15:06:37 +0200
-Message-Id: <20240606130639.1504-1-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v2 1/2] drm/xe/guc: Split g2h worker function
+Date: Thu,  6 Jun 2024 15:06:38 +0200
+Message-Id: <20240606130639.1504-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240606130639.1504-1-michal.wajdeczko@intel.com>
+References: <20240606130639.1504-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,17 +67,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-v1: https://patchwork.freedesktop.org/series/134523/#rev1
-v2: use code from g2h worker instead of g2h irq handler (Matt)
+In the next patch we will want to perform the same steps that
+g2h worker function is doing but from the different worker.
 
-Michal Wajdeczko (2):
-  drm/xe/guc: Split g2h worker function
-  drm/xe/guc: Allow CTB G2H processing without G2H IRQ
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_ct.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
- drivers/gpu/drm/xe/xe_guc_ct.c       | 53 ++++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_guc_ct_types.h |  2 ++
- 2 files changed, 53 insertions(+), 2 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index c1f258348f5c..08cf355e2e56 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -1260,9 +1260,8 @@ static int dequeue_one_g2h(struct xe_guc_ct *ct)
+ 	return 1;
+ }
+ 
+-static void g2h_worker_func(struct work_struct *w)
++static void receive_g2h(struct xe_guc_ct *ct)
+ {
+-	struct xe_guc_ct *ct = container_of(w, struct xe_guc_ct, g2h_worker);
+ 	struct xe_gt *gt = ct_to_gt(ct);
+ 	bool ongoing;
+ 	int ret;
+@@ -1311,6 +1310,13 @@ static void g2h_worker_func(struct work_struct *w)
+ 		xe_pm_runtime_put(ct_to_xe(ct));
+ }
+ 
++static void g2h_worker_func(struct work_struct *w)
++{
++	struct xe_guc_ct *ct = container_of(w, struct xe_guc_ct, g2h_worker);
++
++	receive_g2h(ct);
++}
++
+ static void guc_ctb_snapshot_capture(struct xe_device *xe, struct guc_ctb *ctb,
+ 				     struct guc_ctb_snapshot *snapshot,
+ 				     bool atomic)
 -- 
 2.43.0
 
