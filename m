@@ -4,64 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6415C25B75
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 12:49:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91727C27C54
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 12:58:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B35410E93B;
-	Thu,  6 Jun 2024 12:49:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CB9810E93E;
+	Thu,  6 Jun 2024 12:58:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iWLK51Gr";
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="T2B99RB4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D657910E93B
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Jun 2024 12:49:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717678192; x=1749214192;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Ez2ByGNBXClGudQ+UB/nIc/90v+G4wpuUqaib1h2nbs=;
- b=iWLK51Gr7Ajrko4ExtX5unriFBLKkfKOvbP4DFOY3AmEi0GKHM8mM6aT
- BCXvwUI1oexlS/1+9HHTZ4jvebeDF/ZIdNSjf3U5F+vw256InWf0BVXru
- wTvSIXlMZ76M6kzxU4MnH/bXVCIR2zx8CMP0eVqJLJg9KaG7RAAKoCTw6
- Cu/P5tGj/PySM6UJSAO/8Qvu+C/71xWKl0VgJ1h1qfYWSa7uHpoy3cr+i
- L/C6MTfoD6l4IfICpbCqHV9h3zHCGySoEqFzn8xzxiKZZm6hLw9YcbGMX
- 0OieIYj0GyxwMAykB0CpusEkIC1mIr4OxZ4HGO6iUTMQCesXbBJSQiOpT g==;
-X-CSE-ConnectionGUID: wtjkv76cSoCm+8GX0vBJxg==
-X-CSE-MsgGUID: Bqn11QgUQu+HKdpMYkKEEA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="14181865"
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="14181865"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 05:49:51 -0700
-X-CSE-ConnectionGUID: vCvySK65QKe+3oJmxiUo4g==
-X-CSE-MsgGUID: W85SnaX1SxqxRGDVsXqw3A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="37965750"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa008.fm.intel.com with ESMTP; 06 Jun 2024 05:49:49 -0700
-Received: from [10.245.96.165] (mwajdecz-MOBL.ger.corp.intel.com
- [10.245.96.165])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 4B5A272;
- Thu,  6 Jun 2024 13:49:44 +0100 (IST)
-Message-ID: <04a2aea6-9aea-44eb-9619-55bf744df85f@intel.com>
-Date: Thu, 6 Jun 2024 14:49:43 +0200
+X-Greylist: delayed 675 seconds by postgrey-1.36 at gabe;
+ Thu, 06 Jun 2024 12:58:34 UTC
+Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9A4910E93E
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Jun 2024 12:58:34 +0000 (UTC)
+Received: internal info suppressed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
+ t=1717678044; bh=aL1Vsq4T+7/TBIyqVb+hrKFjXJNYJJjFvlOfVUtOc0M=;
+ h=From:To:Cc:Subject:Date:From;
+ b=T2B99RB4LWmUStVMcL+xFamWPs+65qgY/AqDPo1RotEVqdtOoqxlRI/RU/p5wRMXF
+ 8jOuPjQHXLSnjoFyG7JhLjvS/iCt/XwT+4Y85hSO5nH9j8P86DXtenPDLI1vTVZMnM
+ dJ5voMXHbytFNVQpU3cJz/wdyduIge/UWma5e+xttmk6ohogHrv8YmvMxfdp74DjN2
+ zEKDpEhy30psKVaSvCUW+zGgch8H+IcX/e9m5yb6/i9K8pPY9RPYB3vmAQFPjjrGcJ
+ bq97lplBEGxHxp/sX5zAc//F5DfIpwlEHdAmTCpxgLqV1F1qH9YmEq5Y07/0m5pOJo
+ mwmae1uF3Pu6Q==
+Received: from illevi-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by illevi-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
+ id 456Cl5Et822462; Thu, 6 Jun 2024 15:47:05 +0300
+From: Ilia Levi <illevi@habana.ai>
+To: intel-xe@lists.freedesktop.org
+Cc: illevi@habana.ai, obitton@habana.ai, dliberman@habana.ai,
+ dmeriin@habana.ai, matthew.auld@intel.com, matthew.brost@intel.com
+Subject: [PATCH] drm/xe/irq: remove xe_irq_shutdown
+Date: Thu,  6 Jun 2024 15:47:05 +0300
+Message-ID: <20240606124705.822451-1-illevi@habana.ai>
+X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/xe: Ensure caller uses sole domain for
- xe_force_wake_assert_held
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Badal Nilawar <badal.nilawar@intel.com>
-References: <20240606124133.1353738-1-himal.prasad.ghimiray@intel.com>
- <20240606124133.1353738-2-himal.prasad.ghimiray@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20240606124133.1353738-2-himal.prasad.ghimiray@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,40 +54,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+The cleanup is done by devres in irq_uninstall.
 
+Commit bbc9651fe9f4 ("drm/xe/irq: move irq_uninstall over to devm")
+resolved the ordering issue where irq_uninstall (registered with drmm)
+was called after pci_free_irq_vectors (registered with devm upon calling
+pci_alloc_irq_vectors). This happened because drmm action list is
+registered with devm very early in the init flow - before
+pci_alloc_irq_vectors.
 
-On 06.06.2024 14:41, Himal Prasad Ghimiray wrote:
-> xe_force_wake_assert_held() is designed to confirm a particular
-> forcewake domain's wakefulness; it doesn't verify the wakefulness of
-> multiple domains. Make sure the caller doesn't input multiple domains as
-> a parameter, this will ensure caller doesn't use xe_force_wake_assert_held
-> with XE_FORCEWAKE_ALL parameter.
-> 
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Badal Nilawar <badal.nilawar@intel.com>
-> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_force_wake.h | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_force_wake.h b/drivers/gpu/drm/xe/xe_force_wake.h
-> index 83cb157da7cc..cee8ff039f83 100644
-> --- a/drivers/gpu/drm/xe/xe_force_wake.h
-> +++ b/drivers/gpu/drm/xe/xe_force_wake.h
-> @@ -32,6 +32,9 @@ static inline void
->  xe_force_wake_assert_held(struct xe_force_wake *fw,
->  			  enum xe_force_wake_domains domain)
->  {
-> +	/* Ensure caller is not passing multiple domains */
-> +	xe_gt_assert(fw->gt, !(domain & (domain - 1)));
+Now that irq_uninstall is registered with devm, it will be called before
+pci_free_irq_vectors and we can remove xe_irq_shutdown.
 
-as all enumerators but XE_FORCEWAKE_ALL are defined as BIT then maybe it
-is sufficient to just use clear to understand:
+Signed-off-by: Ilia Levi <illevi@habana.ai>
+---
+ drivers/gpu/drm/xe/xe_device.c | 12 ++++--------
+ drivers/gpu/drm/xe/xe_irq.c    |  5 -----
+ drivers/gpu/drm/xe/xe_irq.h    |  1 -
+ 3 files changed, 4 insertions(+), 14 deletions(-)
 
-	xe_gt_assert(fw->gt, domain != XE_FORCEWAKE_ALL);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 94dbfe5cf19c..035576bb20ec 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -619,16 +619,16 @@ int xe_device_probe(struct xe_device *xe)
+ 
+ 	err = xe_device_set_has_flat_ccs(xe);
+ 	if (err)
+-		goto err_irq_shutdown;
++		goto err;
+ 
+ 	err = xe_vram_probe(xe);
+ 	if (err)
+-		goto err_irq_shutdown;
++		goto err;
+ 
+ 	for_each_tile(tile, xe, id) {
+ 		err = xe_tile_init_noalloc(tile);
+ 		if (err)
+-			goto err_irq_shutdown;
++			goto err;
+ 	}
+ 
+ 	/* Allocate and map stolen after potential VRAM resize */
+@@ -642,7 +642,7 @@ int xe_device_probe(struct xe_device *xe)
+ 	 */
+ 	err = xe_display_init_noaccel(xe);
+ 	if (err)
+-		goto err_irq_shutdown;
++		goto err;
+ 
+ 	for_each_gt(gt, xe, id) {
+ 		last_gt = id;
+@@ -681,8 +681,6 @@ int xe_device_probe(struct xe_device *xe)
+ 			break;
+ 	}
+ 
+-err_irq_shutdown:
+-	xe_irq_shutdown(xe);
+ err:
+ 	xe_display_fini(xe);
+ 	return err;
+@@ -709,8 +707,6 @@ void xe_device_remove(struct xe_device *xe)
+ 
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_remove(gt);
+-
+-	xe_irq_shutdown(xe);
+ }
+ 
+ void xe_device_shutdown(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index 8ee3c300c5e4..cccecaa0dffd 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -735,11 +735,6 @@ int xe_irq_install(struct xe_device *xe)
+ 	return err;
+ }
+ 
+-void xe_irq_shutdown(struct xe_device *xe)
+-{
+-	irq_uninstall(xe);
+-}
+-
+ void xe_irq_suspend(struct xe_device *xe)
+ {
+ 	int irq = to_pci_dev(xe->drm.dev)->irq;
+diff --git a/drivers/gpu/drm/xe/xe_irq.h b/drivers/gpu/drm/xe/xe_irq.h
+index bc42bc90d967..067514e13675 100644
+--- a/drivers/gpu/drm/xe/xe_irq.h
++++ b/drivers/gpu/drm/xe/xe_irq.h
+@@ -11,7 +11,6 @@ struct xe_tile;
+ struct xe_gt;
+ 
+ int xe_irq_install(struct xe_device *xe);
+-void xe_irq_shutdown(struct xe_device *xe);
+ void xe_irq_suspend(struct xe_device *xe);
+ void xe_irq_resume(struct xe_device *xe);
+ void xe_irq_enable_hwe(struct xe_gt *gt);
+-- 
+2.43.2
 
-> +
->  	xe_gt_assert(fw->gt, fw->awake_domains & domain);
->  }
->  
