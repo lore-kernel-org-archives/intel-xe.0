@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87015C27C52
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 05:59:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9B72C27C52
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 05:59:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BE9110E050;
-	Thu,  6 Jun 2024 05:59:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8752610E050;
+	Thu,  6 Jun 2024 05:59:15 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCA2910E050;
- Thu,  6 Jun 2024 05:59:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C69C410E545;
+ Thu,  6 Jun 2024 05:59:14 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_xe=5Fgt=5Fidle_fixes_=28rev2?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EHooks=3A_failure_for_xe=5Fgt=5Fidle_fixes_=28rev2?=
  =?utf-8?q?=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Riana Tauro" <riana.tauro@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 06 Jun 2024 05:59:01 -0000
-Message-ID: <171765354176.3535.9252431289753720814@a6498e030952>
+Date: Thu, 06 Jun 2024 05:59:14 -0000
+Message-ID: <171765355481.3618.16791887320427484675@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240606055401.934750-1-riana.tauro@intel.com>
 In-Reply-To: <20240606055401.934750-1-riana.tauro@intel.com>
@@ -44,110 +44,73 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: xe_gt_idle fixes (rev2)
 URL   : https://patchwork.freedesktop.org/series/133519/
-State : success
+State : failure
 
 == Summary ==
 
-lib/modules/6.10.0-rc2-xe/kernel/sound/core/seq/
-lib/modules/6.10.0-rc2-xe/kernel/sound/core/seq/snd-seq.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-seq-device.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-hwdep.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-pcm.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-compress.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-timer.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soundcore.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/sst/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/common/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/amd/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/amd/snd-acp-config.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/amd/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/snd-sof-utils.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/snd-sof-pci.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/snd-sof.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/snd-sof-probes.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/xtensa/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/snd-soc-core.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/snd-soc-acpi.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/codecs/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/hda/
-lib/modules/6.10.0-rc2-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/hda/ext/
-lib/modules/6.10.0-rc2-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/hda/snd-intel-dspcfg.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/hda/snd-hda-core.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kernel/
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kernel/msr.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kernel/cpuid.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/aesni-intel.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/events/
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/events/intel/
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kvm/
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/
-lib/modules/6.10.0-rc2-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/cmac.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/ccm.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/cryptd.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/
-lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.10.0-rc2-xe/build
-lib/modules/6.10.0-rc2-xe/modules.alias.bin
-lib/modules/6.10.0-rc2-xe/modules.builtin
-lib/modules/6.10.0-rc2-xe/modules.softdep
-lib/modules/6.10.0-rc2-xe/modules.alias
-lib/modules/6.10.0-rc2-xe/modules.order
-lib/modules/6.10.0-rc2-xe/modules.symbols
-lib/modules/6.10.0-rc2-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1717653529:package_x86_64_nodebug\r\e[0K'
-+ sync
-[0Ksection_end:1717653529:package_x86_64_nodebug
-[0K
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+run-parts: executing /workspace/ci/hooks/00-showenv
++ export
++ grep -Ei '(^|\W)CI_'
+declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64-default"
+declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
+declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
+declare -x CI_WORKSPACE_DIR="/workspace"
+run-parts: executing /workspace/ci/hooks/10-build-W1
++ SRC_DIR=/workspace/kernel
++ RESTORE_DISPLAY_CONFIG=0
++ '[' -n /workspace/kernel/build64-default ']'
++ BUILD_DIR=/workspace/kernel/build64-default
++ cd /workspace/kernel
+++ nproc
++ make -j48 O=/workspace/kernel/build64-default modules_prepare
+make[1]: Entering directory '/workspace/kernel/build64-default'
+  GEN     Makefile
+  UPD     include/generated/compile.h
+  UPD     include/config/kernel.release
+mkdir -p /workspace/kernel/build64-default/tools/objtool && make O=/workspace/kernel/build64-default subdir=tools/objtool --no-print-directory -C objtool 
+  UPD     include/generated/utsrelease.h
+  HOSTCC  /workspace/kernel/build64-default/tools/objtool/fixdep.o
+  CALL    ../scripts/checksyscalls.sh
+  HOSTLD  /workspace/kernel/build64-default/tools/objtool/fixdep-in.o
+  LINK    /workspace/kernel/build64-default/tools/objtool/fixdep
+  INSTALL libsubcmd_headers
+  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/exec-cmd.o
+  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/help.o
+  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/pager.o
+  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/parse-options.o
+  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/run-command.o
+  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/sigchain.o
+  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/subcmd-config.o
+  LD      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd-in.o
+  AR      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd.a
+  CC      /workspace/kernel/build64-default/tools/objtool/weak.o
+  CC      /workspace/kernel/build64-default/tools/objtool/check.o
+  CC      /workspace/kernel/build64-default/tools/objtool/special.o
+  CC      /workspace/kernel/build64-default/tools/objtool/builtin-check.o
+  CC      /workspace/kernel/build64-default/tools/objtool/elf.o
+  CC      /workspace/kernel/build64-default/tools/objtool/objtool.o
+  CC      /workspace/kernel/build64-default/tools/objtool/orc_gen.o
+  CC      /workspace/kernel/build64-default/tools/objtool/orc_dump.o
+  CC      /workspace/kernel/build64-default/tools/objtool/libstring.o
+  CC      /workspace/kernel/build64-default/tools/objtool/libctype.o
+  CC      /workspace/kernel/build64-default/tools/objtool/str_error_r.o
+  CC      /workspace/kernel/build64-default/tools/objtool/librbtree.o
+  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/special.o
+  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/decode.o
+  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/orc.o
+  LD      /workspace/kernel/build64-default/tools/objtool/arch/x86/objtool-in.o
+  LD      /workspace/kernel/build64-default/tools/objtool/objtool-in.o
+  LINK    /workspace/kernel/build64-default/tools/objtool/objtool
+make[1]: Leaving directory '/workspace/kernel/build64-default'
+++ nproc
++ make -j48 O=/workspace/kernel/build64-default M=drivers/gpu/drm/xe W=1
+make[1]: Entering directory '/workspace/kernel/build64-default'
+../scripts/Makefile.build:41: drivers/gpu/drm/xe/Makefile: No such file or directory
+make[3]: *** No rule to make target 'drivers/gpu/drm/xe/Makefile'.  Stop.
+make[2]: *** [/workspace/kernel/Makefile:1934: drivers/gpu/drm/xe] Error 2
+make[1]: *** [/workspace/kernel/Makefile:240: __sub-make] Error 2
+make[1]: Leaving directory '/workspace/kernel/build64-default'
+make: *** [Makefile:240: __sub-make] Error 2
+run-parts: /workspace/ci/hooks/10-build-W1 exited with return code 2
 
 
