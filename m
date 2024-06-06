@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACFE3C25B75
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 08:46:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAD36C25B75
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 08:46:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42FAD10E03F;
-	Thu,  6 Jun 2024 08:46:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AF7D10E03F;
+	Thu,  6 Jun 2024 08:46:39 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C2B210E03F;
- Thu,  6 Jun 2024 08:46:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E61A10E03F;
+ Thu,  6 Jun 2024 08:46:38 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Cleanup_fo?=
- =?utf-8?q?rce_wake_registers_bit_definitions?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Cleanup_force_w?=
+ =?utf-8?q?ake_registers_bit_definitions?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 06 Jun 2024 08:46:24 -0000
-Message-ID: <171766358463.3938.8376909099052177118@a6498e030952>
+Date: Thu, 06 Jun 2024 08:46:38 -0000
+Message-ID: <171766359812.3990.14247479421202885183@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240606085720.1327152-1-himal.prasad.ghimiray@intel.com>
 In-Reply-To: <20240606085720.1327152-1-himal.prasad.ghimiray@intel.com>
@@ -48,9 +48,36 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: ec3e566521b9 drm-tip: 2024y-06m-06d-03h-10m-20s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Cleanup force wake registers bit definitions
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ebb98c65125c8b3c050dd8d84d32afe6af8b4367
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Thu Jun 6 14:27:20 2024 +0530
+
+    drm/xe: Cleanup force wake registers bit definitions
+    
+    - Remove unused bit definitions.
+    - Driver uses BIT(0) for waking/sleeping the domain and since the
+    registers are masked respective mask bit BIT(16) needs to be set. Use
+    defines for these bits and use them in domain initialization.
+    
+    v3
+    - Use defines within domain_init
+    
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Badal Nilawar <badal.nilawar@intel.com>
+    Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch ec3e566521b91eb773769fa1df899a28063a10e9 drm-intel
+ebb98c65125c drm/xe: Cleanup force wake registers bit definitions
 
 
