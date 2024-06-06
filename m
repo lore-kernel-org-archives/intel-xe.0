@@ -4,63 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB287C27C52
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 18:33:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91480C27C52
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 18:34:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D2E310E0CD;
-	Thu,  6 Jun 2024 18:33:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58FDA10EA60;
+	Thu,  6 Jun 2024 18:34:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dAhBegN2";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ULf0WGTz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EECCB10E0CD;
- Thu,  6 Jun 2024 18:33:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717698808; x=1749234808;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=+2ucsMGGe0SbtCqQj5FtFPB05uivPcWSxkgvJuswIJc=;
- b=dAhBegN2AvrP8bHu6jDzKSR/q77DAGN++1X6Mem443ViYrjTxIgV2hw5
- MoiXWqSrgAjK+qXvSZByQttCzsYGq5NxlgVOg2mZwQu6WB9qCjHCF04uM
- rYPfEtnczW35Ssfkd+ndNbqNJN4PbyQFCrMqmBC+70Gj7powAS1vyVL8f
- 55PNJKr3i6L9iCAxiZIH0FIkD+IPN5X7g023bmtgrNwo4h0cTqAaG/TEn
- N26IeGX9V1eiE4ixU8ZFZOM27y7wMEp10HdBwiZ5d+5c3DbFYAZUJtXQz
- FOJXz8TIRpupys4GRLpwA8/UymeM6d3pEQyLq+QMt8Qp2qZC2PG2WH/5C g==;
-X-CSE-ConnectionGUID: bQ73DcZNQWiDJS1jf3t79Q==
-X-CSE-MsgGUID: tzNio7KfQZSy2fvxD7Zv0Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="14347412"
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="14347412"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 11:33:27 -0700
-X-CSE-ConnectionGUID: WwaENxExTBKvRMtnESH7sw==
-X-CSE-MsgGUID: Ycln1fTPSTuCZjzID8e67w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="42639634"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa004.fm.intel.com with ESMTP; 06 Jun 2024 11:33:25 -0700
-Received: from [10.245.96.165] (mwajdecz-MOBL.ger.corp.intel.com
- [10.245.96.165])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id E00D233BFA;
- Thu,  6 Jun 2024 19:33:23 +0100 (IST)
-Message-ID: <476b5068-16de-4cf8-8f2d-47ee0e9986db@intel.com>
-Date: Thu, 6 Jun 2024 20:33:22 +0200
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47FFE10EA60
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Jun 2024 18:34:18 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 32CA661E68
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Jun 2024 18:34:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA5F3C4AF07
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Jun 2024 18:34:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1717698856;
+ bh=eLA3hGrikxSjRA0dX5ZlSKkNK5iKwOp6dxliFmBtumA=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=ULf0WGTz0swzxQgOAhaYK+hyN5nKqiIblIJujeFu3gROjfwyUwBRyl0PITl1ZJz6B
+ czxSEejDvqR2/gCq2KAEG4MjoRNiQlkrXXb8BL1CNeGnNQzjEI7jgfS2VNuVZa/kOE
+ qmghczPgsyvRxmwLaOcMwK/zJQjnGdKQB53MfN3srzCZfHI6VW4JJiL0LbVrcAuAwW
+ saIVECwUxHqPLLmkAlVSo13GeMRC3NitPhWL8oIVS5iHQd8UgYIeO3k6aFl/oqgdzu
+ XLl90ErlfLehFqZxc6IHmwPRdtWJ80l2okiBtlJ5IDgvFLxmJnZEJPhmYl1XLs97K6
+ rzhVdHKAa5VNw==
+Received: by mail-lj1-f182.google.com with SMTP id
+ 38308e7fff4ca-2e73441edf7so14061131fa.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 06 Jun 2024 11:34:16 -0700 (PDT)
+X-Gm-Message-State: AOJu0Yxw/ckJ26SK33XF+TEHcNuO5sRPz+MOtN2h8TjXKmYEtvvevY2q
+ vkDK8cvd9VxeHm/YLFGCQ97cTvBrs+pmEVUbUn9eLUIpCbetcIkd+kWC2VwEBYcIcKYIRsX5T+8
+ IruDFdy93YDQZ2VnRnxH1fGp6pU4=
+X-Google-Smtp-Source: AGHT+IGmR5hJAgJwzgLflbgZnFKyK2gSaisKSeqI/RO1KbxRjDAVMP2L6QGVJbgbifcrb9x1Q49GG4+1eM9c+JmRo30=
+X-Received: by 2002:a2e:b00d:0:b0:2ea:7d38:d4a9 with SMTP id
+ 38308e7fff4ca-2eadce83856mr3349231fa.52.1717698855540; Thu, 06 Jun 2024
+ 11:34:15 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe: Use drm_device managed mutex/mm init helpers
- in GGTT
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-References: <20240524133518.976-1-michal.wajdeczko@intel.com>
- <20240524133518.976-3-michal.wajdeczko@intel.com>
- <ZmHxBSZBi2vwQr1L@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <ZmHxBSZBi2vwQr1L@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240606124705.822451-1-illevi@habana.ai>
+ <171767982099.22567.196132369501507254@a6498e030952>
+ <efbt3hl22g73r3372agpzowfejrpxzvaiqu2ysscntwa6dtioe@2ao55jz262rs>
+In-Reply-To: <efbt3hl22g73r3372agpzowfejrpxzvaiqu2ysscntwa6dtioe@2ao55jz262rs>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Fri, 7 Jun 2024 03:33:38 +0900
+X-Gmail-Original-Message-ID: <CAK7LNATYmmNj2bmQru22BiOFFbCmAaQ0ohmjyogOUsQmBc+4fw@mail.gmail.com>
+Message-ID: <CAK7LNATYmmNj2bmQru22BiOFFbCmAaQ0ohmjyogOUsQmBc+4fw@mail.gmail.com>
+Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_CI=2EHooks=3A_failure_for_drm=2Fxe=2Firq=3A_remove_xe=5F?=
+ =?UTF-8?Q?irq=5Fshutdown?=
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Ilia Levi <illevi@habana.ai>, 
+ Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>,
+ linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,94 +71,229 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Fri, Jun 7, 2024 at 2:02=E2=80=AFAM Lucas De Marchi <lucas.demarchi@inte=
+l.com> wrote:
+>
+> Cc'ing kbuild + lkml and maintainers.
+>
+> On Thu, Jun 06, 2024 at 01:17:00PM GMT, Patchwork wrote:
+> >=3D=3D Series Details =3D=3D
+> >
+> >Series: drm/xe/irq: remove xe_irq_shutdown
+> >URL   : https://patchwork.freedesktop.org/series/134565/
+> >State : failure
+> >
+> >=3D=3D Summary =3D=3D
+> >
+> >run-parts: executing /workspace/ci/hooks/00-showenv
+> >+ export
+> >+ grep -Ei '(^|\W)CI_'
+> >declare -x CI_KERNEL_BUILD_DIR=3D"/workspace/kernel/build64-default"
+> >declare -x CI_KERNEL_SRC_DIR=3D"/workspace/kernel"
+> >declare -x CI_TOOLS_SRC_DIR=3D"/workspace/ci"
+> >declare -x CI_WORKSPACE_DIR=3D"/workspace"
+> >run-parts: executing /workspace/ci/hooks/10-build-W1
+> >+ SRC_DIR=3D/workspace/kernel
+> >+ RESTORE_DISPLAY_CONFIG=3D0
+> >+ '[' -n /workspace/kernel/build64-default ']'
+> >+ BUILD_DIR=3D/workspace/kernel/build64-default
+> >+ cd /workspace/kernel
+> >++ nproc
+> >+ make -j48 O=3D/workspace/kernel/build64-default modules_prepare
+> >make[1]: Entering directory '/workspace/kernel/build64-default'
+> >  GEN     Makefile
+> >  UPD     include/generated/compile.h
+> >  UPD     include/config/kernel.release
+> >mkdir -p /workspace/kernel/build64-default/tools/objtool && make O=3D/wo=
+rkspace/kernel/build64-default subdir=3Dtools/objtool --no-print-directory =
+-C objtool
+> >  UPD     include/generated/utsrelease.h
+> >  HOSTCC  /workspace/kernel/build64-default/tools/objtool/fixdep.o
+> >  CALL    ../scripts/checksyscalls.sh
+> >  HOSTLD  /workspace/kernel/build64-default/tools/objtool/fixdep-in.o
+> >  LINK    /workspace/kernel/build64-default/tools/objtool/fixdep
+> >  INSTALL libsubcmd_headers
+> >  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/exec=
+-cmd.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/help=
+.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/page=
+r.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/pars=
+e-options.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/run-=
+command.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/sigc=
+hain.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/subc=
+md-config.o
+> >  LD      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libs=
+ubcmd-in.o
+> >  AR      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libs=
+ubcmd.a
+> >  CC      /workspace/kernel/build64-default/tools/objtool/weak.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/check.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/special.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/builtin-check.=
+o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/elf.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/objtool.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/orc_gen.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/orc_dump.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/libstring.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/libctype.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/str_error_r.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/librbtree.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/speci=
+al.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/decod=
+e.o
+> >  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/orc.o
+> >  LD      /workspace/kernel/build64-default/tools/objtool/arch/x86/objto=
+ol-in.o
+> >  LD      /workspace/kernel/build64-default/tools/objtool/objtool-in.o
+> >  LINK    /workspace/kernel/build64-default/tools/objtool/objtool
+> >make[1]: Leaving directory '/workspace/kernel/build64-default'
+> >++ nproc
+> >+ make -j48 O=3D/workspace/kernel/build64-default M=3Ddrivers/gpu/drm/xe=
+ W=3D1
+> >make[1]: Entering directory '/workspace/kernel/build64-default'
+> >../scripts/Makefile.build:41: drivers/gpu/drm/xe/Makefile: No such file =
+or directory
 
 
-On 06.06.2024 19:25, Rodrigo Vivi wrote:
-> On Fri, May 24, 2024 at 03:35:18PM +0200, Michal Wajdeczko wrote:
->> There is not need for private release action as there are existing
->> drmm_mm_init() and drmm_mutex_init() helpers that can be used.
->>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_ggtt.c | 23 +++++++++++------------
->>  1 file changed, 11 insertions(+), 12 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
->> index 17e5066763db..7c91fe212dcb 100644
->> --- a/drivers/gpu/drm/xe/xe_ggtt.c
->> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
->> @@ -96,14 +96,6 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
->>  	}
->>  }
->>  
->> -static void ggtt_fini_early(struct drm_device *drm, void *arg)
->> -{
->> -	struct xe_ggtt *ggtt = arg;
->> -
->> -	mutex_destroy(&ggtt->lock);
->> -	drm_mm_takedown(&ggtt->mm);
->> -}
->> -
->>  static void ggtt_fini(struct drm_device *drm, void *arg)
->>  {
->>  	struct xe_ggtt *ggtt = arg;
->> @@ -141,6 +133,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
->>  	struct xe_device *xe = tile_to_xe(ggtt->tile);
->>  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->>  	unsigned int gsm_size;
->> +	int err;
->>  
->>  	if (IS_SRIOV_VF(xe))
->>  		gsm_size = SZ_8M; /* GGTT is expected to be 4GiB */
->> @@ -189,12 +182,18 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
->>  	else
->>  		ggtt->pt_ops = &xelp_pt_ops;
->>  
->> -	drm_mm_init(&ggtt->mm, xe_wopcm_size(xe),
->> -		    ggtt->size - xe_wopcm_size(xe));
->> -	mutex_init(&ggtt->lock);
->> +	err = drmm_mm_init(&xe->drm, &ggtt->mm, xe_wopcm_size(xe),
->> +			   ggtt->size - xe_wopcm_size(xe));
->> +	if (err)
->> +		return err;
->> +
->> +	err = drmm_mutex_init(&xe->drm, &ggtt->lock);
->> +	if (err)
->> +		return err;
-> 
-> My first impression here is that we would have a bug here if drmm_mm_init
-> works, but drmm_mutex_init fails, but we are likely safe because the
-> probe will also entirely fail if this mutex init fails.
-> 
->> +
->>  	primelockdep(ggtt);
->>  
->> -	return drmm_add_action_or_reset(&xe->drm, ggtt_fini_early, ggtt);
-> 
-> But my question here is, why drmm and not devm for this ggtt case that
-> only makes sense if the hardware/device is up and not about the module
-> or no reason to keep it alive after the probe failure or device removal.
-> 
-> I know that the question is orthogonal to your patch. But if we decide to
-> change the course later and move this towards devm, then we need to
-> get back to the exit function and perhaps regular mutex.
 
-but note that drm_mm alone does not interact with the hw, it's what we
-eventually build on top of it (like here ggtt manager) may touch the hw
 
-> 
-> I mean, really nothing against this patch itself, specially if we are
-> confident that drmm is the way to go with this ggtt. So, I'm not blocking
-> here:
-> 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> 
->> +	return 0;
->>  }
->>  
->>  static void xe_ggtt_invalidate(struct xe_ggtt *ggtt);
->> -- 
->> 2.43.0
->>
+This is because b1992c3772e6 stopped adding VPATH for external module build=
+s.
+
+You can manually add it, though.
+
+
+
+$ make -j48 O=3D/workspace/kernel/build64-default M=3Ddrivers/gpu/drm/xe
+W=3D1 VPATH=3D$(pwd)
+
+
+will work like before.
+
+
+
+
+
+
+
+>
+> This started happening since commit b1992c3772e6 ("kbuild: use $(src)
+> instead of $(srctree)/$(src) for source directory"). For context: after
+> building the entire kernel our CI tries to build just the xe module with
+> additional CFLAGS... in this case by passing W=3D1.
+>
+> Trying to build just xe.ko by path doesn't work:
+>
+>         make O=3Dbuild64 W=3D1 drivers/gpu/drm/xe/xe.ko
+>
+> WARNING: modpost: missing MODULE_DESCRIPTION() in vmlinux.o
+> ERROR: modpost: "ttm_bo_vm_dummy_page" [drivers/gpu/drm/xe/xe.ko] undefin=
+ed!
+> ERROR: modpost: "drm_mode_is_420_also" [drivers/gpu/drm/xe/xe.ko] undefin=
+ed!
+> ERROR: modpost: "drm_dp_downstream_max_dotclock" [drivers/gpu/drm/xe/xe.k=
+o] undefined!
+> ERROR: modpost: "drm_dp_mst_topology_mgr_set_mst" [drivers/gpu/drm/xe/xe.=
+ko] undefined!
+> ERROR: modpost: "drm_atomic_state_init" [drivers/gpu/drm/xe/xe.ko] undefi=
+ned!
+> ERROR: modpost: "drm_atomic_set_fb_for_plane" [drivers/gpu/drm/xe/xe.ko] =
+undefined!
+> ERROR: modpost: "drm_dp_remove_payload_part2" [drivers/gpu/drm/xe/xe.ko] =
+undefined!
+> ERROR: modpost: "drm_dp_channel_eq_ok" [drivers/gpu/drm/xe/xe.ko] undefin=
+ed!
+> ERROR: modpost: "drm_dp_downstream_debug" [drivers/gpu/drm/xe/xe.ko] unde=
+fined!
+> ERROR: modpost: "drm_modeset_lock_all_ctx" [drivers/gpu/drm/xe/xe.ko] und=
+efined!
+> WARNING: modpost: suppressed 507 unresolved symbol warnings because there=
+ were too many)
+> make[3]: *** [../scripts/Makefile.modpost:145: Module.symvers] Error 1
+> make[2]: *** [/home/lucas/p/linux-dim/src/Makefile:1916: single_modules] =
+Error 2
+> make[1]: *** [/home/lucas/p/linux-dim/src/Makefile:240: __sub-make] Error=
+ 2
+> make[1]: Leaving directory '/home/lucas/p/linux-dim/src/build64'
+> make: *** [Makefile:240: __sub-make] Error 2
+
+
+
+If you build a single module, modpost cannot resolve references to
+other modules.
+
+KBUILD_MODPOST_WARN=3D1 turns the errors into warnings, though.
+
+
+$ make O=3D/tmp/abc  drivers/gpu/drm/xe/xe.ko KBUILD_MODPOST_WARN=3D1
+
+
+
+
+
+> Alternatives that seem to work:
+>
+> 1) pass the absolute path to M=3D:
+>
+>         make O=3Dbuild64 W=3D1 M=3D$PWD/drivers/gpu/drm/xe/
+
+
+This is a simpler solution than VPATH=3D$(pwd)
+
+
+
+>
+> 2) just pass the directory:
+>
+>         make O=3Dbuild64 W=3D1 drivers/gpu/drm/xe/
+>
+> I think we avoided (2) due to it not working if we were building commit
+> by commit and something touched things outside xe. But for this current
+> use case it seems it's the more correct approach since Makefile says:
+>
+>         # Use make M=3Ddir or set the environment variable KBUILD_EXTMOD =
+to specify the
+>         # directory of external module to build. Setting M=3D takes prece=
+dence.
+
+
+I agree.
+If you are only interested in extra compiler warnings,
+you do not need to link the final *.ko file.
+
+
+
+
+
+
+
+
+
+
+
+>
+> Lucas De Marchi
+>
+> >make[3]: *** No rule to make target 'drivers/gpu/drm/xe/Makefile'.  Stop=
+.
+> >make[2]: *** [/workspace/kernel/Makefile:1934: drivers/gpu/drm/xe] Error=
+ 2
+> >make[1]: Leaving directory '/workspace/kernel/build64-default'
+> >make[1]: *** [/workspace/kernel/Makefile:240: __sub-make] Error 2
+> >make: *** [Makefile:240: __sub-make] Error 2
+> >run-parts: /workspace/ci/hooks/10-build-W1 exited with return code 2
+> >
+> >
+
+
+
+--=20
+Best Regards
+Masahiro Yamada
