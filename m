@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FDC1C25B75
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 09:52:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2B98C25B75
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 09:56:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31E4910E8B9;
-	Thu,  6 Jun 2024 09:52:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DBB910E8B6;
+	Thu,  6 Jun 2024 09:56:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hm06VNEz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JadF5XbL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77E2810E8B9
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Jun 2024 09:52:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D579E10E8B6
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Jun 2024 09:56:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717667527; x=1749203527;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=GpGQpZpAKaRYohbSCo0kaY5O9Jhjtja9Is0omyQgi4Q=;
- b=hm06VNEzWbY7grlL6gvvPZS4367scAPmbs0q36JA1peabAjKePRJEZfJ
- veso724WpTkwGxGTVPviy6N4TQY4JMKJbOSwWaeRqCB0GOkawyz3S7fSz
- NiwttKTfE7/EqTxERuMzR8Z1/8RiX2NpJW9vgVikGQ6g7pvkFuvazCKpq
- KHGcpB2fMNsn7D+lmrPCPhAsFVUPmgVCNhm7LbcIrP5qbs34yCwl2Zya5
- jYS3wuCIPmIGS3Crv4pEGNYySSeDEjirQQLyQSSgo/L6I75OhqP6riNoY
- PtIelCf+ILEuxYLqUISy9GnoB2O6JS+OKoNh+URZer15D7UHOnzlyfni9 Q==;
-X-CSE-ConnectionGUID: lDz54PykT7C63+05XiKaBA==
-X-CSE-MsgGUID: nL7KHd05RqqJSz746cfB2Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11094"; a="39728389"
-X-IronPort-AV: E=Sophos;i="6.08,218,1712646000"; d="scan'208";a="39728389"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 02:52:06 -0700
-X-CSE-ConnectionGUID: tkOGvcWIR2yNrPdzi0PT+Q==
-X-CSE-MsgGUID: unocwGYvSHmE2ygTg/7D9g==
+ t=1717667789; x=1749203789;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8fLEet6fu7OzCGiPJcQe33XPY2BmCs0AcWeuFVILudo=;
+ b=JadF5XbLTvXxhSSY5fE2r+txfNkHeTY0DjxMXqSXmCNiXoCNTX2kVt4/
+ bmhvo+y0XOKfEimkDBuJDgd3eT6PIkfo9qx9xYmIB5uKnaugeDQbDOr2I
+ HTn5FB2iEoxmnSVGEXMavw32Ber9ZzZ3kBh79Mpbm1VcATM/9fi17+XQU
+ WOdUGYA9e/D8x5VFon122J4mSyOZ9ecLwG30g2BeQ7mHdN81BbnqXbjkI
+ apyeMAlcmT7TJMTAFgiaU42+7VcezKECAbIisCsN5UK/KyTmlw+a6A1js
+ Ln+NEQsJrxiFFxemndzRQH6idTfMjy2MlKJHJVnoJrNQLcta6An/kwgux w==;
+X-CSE-ConnectionGUID: /RxdiY3zRgCAyA2ZijI9Nw==
+X-CSE-MsgGUID: lI8Z6j1aSCax3379B5XlMA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11094"; a="31823901"
+X-IronPort-AV: E=Sophos;i="6.08,218,1712646000"; d="scan'208";a="31823901"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2024 02:56:28 -0700
+X-CSE-ConnectionGUID: JXX2eF4XTSGSdu2C0384RQ==
+X-CSE-MsgGUID: cMBYWbqpTO2YS1ng6oZ6mg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,218,1712646000"; d="scan'208";a="43003559"
-Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa004.jf.intel.com with ESMTP; 06 Jun 2024 02:52:04 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,218,1712646000"; d="scan'208";a="42326691"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2024 02:56:26 -0700
+From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Riana Tauro <riana.tauro@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [CI] drm/xe/xe_gt_idle: use GT forcewake domain assertion
-Date: Thu,  6 Jun 2024 15:38:04 +0530
-Message-Id: <20240606100804.1346992-4-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240606100804.1346992-1-himal.prasad.ghimiray@intel.com>
-References: <20240606100804.1346992-1-himal.prasad.ghimiray@intel.com>
+Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ vinay.belgaumkar@intel.com
+Subject: [PATCH v3 0/2] xe_gt_idle fixes
+Date: Thu,  6 Jun 2024 15:38:40 +0530
+Message-Id: <20240606100842.956072-1-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,35 +65,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Riana Tauro <riana.tauro@intel.com>
+Use GT forcewake domain while disabling c6
+Move disable c6 call from GuC Pc to gt_idle
 
-The rc6 registers used in disable_c6 function belong
-to the GT forcewake domain. Hence change the forcewake
-assertion to check GT forcewake domain.
+Rev2: rebase
+Rev3: add fixes tag
 
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
-Patch is part of series[Link], added to ensure CI passes for [PATCH 1/3] 
-Link: https://lore.kernel.org/intel-xe/171765277681.3535.15897925217208820202@a6498e030952/T/#u
+Riana Tauro (2):
+  drm/xe/xe_gt_idle: use GT forcewake domain assertion
+  drm/xe: move disable_c6 call
 
- drivers/gpu/drm/xe/xe_gt_idle.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gt_idle.c | 8 +++++++-
+ drivers/gpu/drm/xe/xe_guc_pc.c  | 5 -----
+ 2 files changed, 7 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
-index 0109d1d2e9c4..a6ab8bb4571d 100644
---- a/drivers/gpu/drm/xe/xe_gt_idle.c
-+++ b/drivers/gpu/drm/xe/xe_gt_idle.c
-@@ -250,7 +250,7 @@ void xe_gt_idle_enable_c6(struct xe_gt *gt)
- void xe_gt_idle_disable_c6(struct xe_gt *gt)
- {
- 	xe_device_assert_mem_access(gt_to_xe(gt));
--	xe_force_wake_assert_held(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
- 
- 	xe_mmio_write32(gt, RC_CONTROL, 0);
- 	xe_mmio_write32(gt, RC_STATE, 0);
 -- 
-2.25.1
+2.40.0
 
