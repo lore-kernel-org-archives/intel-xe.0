@@ -4,64 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A23A0C27C52
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 22:12:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E03BC27C52
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 22:39:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41F6F10EB17;
-	Thu,  6 Jun 2024 22:12:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 097EF10E1D6;
+	Thu,  6 Jun 2024 22:39:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RvTcer7M";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iI5Lrxs8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B898E10EAE4;
- Thu,  6 Jun 2024 22:12:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00D3610E10F
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Jun 2024 22:39:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717711921; x=1749247921;
- h=message-id:date:mime-version:from:to:cc:subject:
+ t=1717713594; x=1749249594;
+ h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=y/aYmwzATGiYRaVLP5/NPW1anTDo2bYjdI4u7CSBi1c=;
- b=RvTcer7M5QUy+I4Ac0HoH63+pQAE8M0cZ86liYY/lSyk9zUnEZbfDugs
- yig/Vj44jLjKA08DOQPDDx22JnUvXSp5r2cEuNLyj5UrNgWFgepsDi+Mj
- TlEFC5J8Hxx+6V0Q3bG/gv/JEr62MFV1fe/NrnOQdbq4PLE4eL1HanmJ1
- Bi7shgvP7l7KGCTS24ZOMWSbKoALV8rQfO3Lzi0vQb06Y34TeCuAKWG5T
- Y2dkwoOqMGrkzgohVeR/oWzy2dqa/3nF2n7f2YwlE5N8tLvOi0z398ePO
- mJHOuLuliJG1mh6LfNoT0lzfkahs/VkKIVkgDgoxVdgIDFu1XPLlxXz2L g==;
-X-CSE-ConnectionGUID: r7geqBfBQMi+CtX1uwKtcA==
-X-CSE-MsgGUID: r/9Azon3SUyr2KHUKeWl1w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="39818282"
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="39818282"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 15:12:00 -0700
-X-CSE-ConnectionGUID: KIE+JsVITRSoNQblaqCpDA==
-X-CSE-MsgGUID: Nf6G0Q6MS9OdhqXVBcPP5A==
+ bh=LZyuVdEPx6am7ndR4DIyYgso8WzQ8UrpI2Pox2sDcB4=;
+ b=iI5Lrxs83dtbVZpkfJujiBCw4VldZJUlG0RWtpXoK++Ekk/2WWkcgwZn
+ FUWXkt/m96d0+dGAVGeGbYcEHp2/TRCe5nbXmUai6XzaLgMx/E3iU/UO5
+ 7Nrf9hUmvTnW8XnHS3wAfoGPkDUQ3E6Kgjm+GeNVqAGSrrtKsXUdRdiD5
+ 1u+H+AeV+E5+Z+hKg4CXOgkoByYpNZuCa/ki7PRLu/eygh4CUmhwJl8cy
+ 7NUoMxqoGRQE7oX+bt83FayuFXmrkmUMJZlXF9xk4Qs5BtAl5KmNYRIBy
+ fI1HM0/uiRcxLOjEVKcDofE23ndnZIFsoKTp2j1K4f6sQvBld6DB5dO2G A==;
+X-CSE-ConnectionGUID: gXUE2HGDRwO79ufPWlGfLw==
+X-CSE-MsgGUID: EB5ht/m8QFiazOgzRDCVyw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="17346516"
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="17346516"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2024 15:39:53 -0700
+X-CSE-ConnectionGUID: gpHaOIeUQuKvQenxdgAwyA==
+X-CSE-MsgGUID: /VPVwNFpS2ud8GPjgLS71A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="38188039"
-Received: from mmiotk-mobl2.ger.corp.intel.com (HELO [10.249.37.149])
- ([10.249.37.149])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 15:11:56 -0700
-Message-ID: <0251b6ae-bffa-44b2-b698-955712c25a27@linux.intel.com>
-Date: Fri, 7 Jun 2024 00:12:24 +0200
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="37966755"
+Received: from invictus.jf.intel.com ([10.165.21.201])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2024 15:39:52 -0700
+From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: gustavo.sousa@intel.com,
+ Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Subject: [PATCH v5 0/6] Tracing cleanup and add mmio tracing
+Date: Thu,  6 Jun 2024 15:38:13 -0700
+Message-Id: <20240606223819.3545560-1-radhakrishna.sripada@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-next-fixes
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,38 +66,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+xe_trace.h is getting bloated. Group related events to their own
+files. All bo, vm and vma related events have been moved to 
+xe_trace_bo.h. GuC related trace events have been moved to
+xe_trace_guc.h. Patches 1 and 2 splits the trace events into
+seperate files.
 
-Pull request for a single patch lost in the wrong tree.
+In multi gpu environments, it is important to know the device from
+which the event was triggered. Print the device id information along
+with the trace information being printed. Patches 3, 4 and 5 make
+changes to print the device id's if not already captured.
 
-Cheers,
-~Maarten
+Mmio reg read writes are important tracing information that needs to be
+captured and will be helpful in display debug. Patch 6 adds the reg
+read/write tracing support.
 
-drm-misc-next-fixes-2024-06-07:
-drm-misc-next-fixes for v6.10-rc3:
-- Single unused struct removal that should have been in -fixes.
-The following changes since commit 5a507b7d2be15fddb95bf8dee01110b723e2bcd9:
+Earlier versions of patch 6 can be found here:
+v1: https://patchwork.freedesktop.org/series/119312/
+v2: https://patchwork.freedesktop.org/series/132626/
 
-   drm/mst: Fix NULL pointer dereference at drm_dp_add_payload_part2 
-(2024-05-21 16:36:59 -0400)
+v4: Fixes the review comments from Gustavo
+v5: Fixes the kunit error reported.
 
-are available in the Git repository at:
+Radhakrishna Sripada (6):
+  drm/xe/trace: Extract bo, vm, vma traces
+  drm/xe/trace: Extract guc related traces
+  drm/xe/trace: Print device_id in xe_trace_bo events
+  drm/xe/trace: Print device_id in xe_trace_guc events
+  drm/xe/trace: Print device_id in xe_trace events
+  drm/xe: Add reg read/write trace
 
-   https://gitlab.freedesktop.org/drm/misc/kernel.git 
-tags/drm-misc-next-fixes-2024-06-07
+ drivers/gpu/drm/xe/Makefile                 |   2 +
+ drivers/gpu/drm/xe/xe_bo.c                  |   2 +-
+ drivers/gpu/drm/xe/xe_gt_pagefault.c        |   2 +-
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  27 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c              |  13 +-
+ drivers/gpu/drm/xe/xe_migrate.c             |   2 +-
+ drivers/gpu/drm/xe/xe_mmio.c                |  24 +-
+ drivers/gpu/drm/xe/xe_pt.c                  |   8 +-
+ drivers/gpu/drm/xe/xe_trace.h               | 381 ++++----------------
+ drivers/gpu/drm/xe/xe_trace_bo.c            |   9 +
+ drivers/gpu/drm/xe/xe_trace_bo.h            | 248 +++++++++++++
+ drivers/gpu/drm/xe/xe_trace_guc.c           |   9 +
+ drivers/gpu/drm/xe/xe_trace_guc.h           | 111 ++++++
+ drivers/gpu/drm/xe/xe_vm.c                  |   2 +-
+ 14 files changed, 496 insertions(+), 344 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_trace_bo.c
+ create mode 100644 drivers/gpu/drm/xe/xe_trace_bo.h
+ create mode 100644 drivers/gpu/drm/xe/xe_trace_guc.c
+ create mode 100644 drivers/gpu/drm/xe/xe_trace_guc.h
 
-for you to fetch changes up to 539d33b5783804f22a62bd62ff463dfd1cef4265:
+-- 
+2.34.1
 
-   drm/komeda: remove unused struct 'gamma_curve_segment' (2024-05-31 
-12:09:51 +0100)
-
-----------------------------------------------------------------
-drm-misc-next-fixes for v6.10-rc3:
-- Single unused struct removal that should have been in -fixes.
-
-----------------------------------------------------------------
-Dr. David Alan Gilbert (1):
-       drm/komeda: remove unused struct 'gamma_curve_segment'
-
-  drivers/gpu/drm/arm/display/komeda/komeda_color_mgmt.c | 5 -----
-  1 file changed, 5 deletions(-)
