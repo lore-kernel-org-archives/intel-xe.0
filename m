@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF14AC25B75
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 10:01:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC694C27C52
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 10:01:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B1F910E8B7;
-	Thu,  6 Jun 2024 10:01:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9073310E8B7;
+	Thu,  6 Jun 2024 10:01:37 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5E7510E8B7;
- Thu,  6 Jun 2024 10:01:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBCA710E8B7;
+ Thu,  6 Jun 2024 10:01:35 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?b?4pyTIENJLlBhdGNoX2FwcGxpZWQ6IHN1Y2Nlc3MgZm9yIHhlX2d0X2lkbGUgZml4?=
- =?utf-8?b?ZXMgKHJldjMp?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_xe=5Fgt=5Fidle_fixes_=28r?=
+ =?utf-8?q?ev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Riana Tauro" <riana.tauro@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 06 Jun 2024 10:01:20 -0000
-Message-ID: <171766808093.4375.11671066787743138604@a6498e030952>
+Date: Thu, 06 Jun 2024 10:01:35 -0000
+Message-ID: <171766809589.4376.18341929567929001438@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240606100842.956072-1-riana.tauro@intel.com>
 In-Reply-To: <20240606100842.956072-1-riana.tauro@intel.com>
@@ -48,10 +48,36 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: b8a4e08086ac drm-tip: 2024y-06m-06d-09h-23m-30s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe_gt_idle: use GT forcewake domain assertion
-Applying: drm/xe: move disable_c6 call
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 509175708b459b8f59f56d2b9309455e8b5042b1
+Author: Riana Tauro <riana.tauro@intel.com>
+Date:   Thu Jun 6 15:38:42 2024 +0530
+
+    drm/xe: move disable_c6 call
+    
+    disable c6 called in guc_pc_fini_hw is unreachable.
+    
+    GuC PC init returns earlier if skip_guc_pc is true and never
+    registers the finish call thus making disable_c6 unreachable.
+    
+    move this call to gt idle.
+    
+    v2: rebase
+    v3: add fixes tag (Himal)
+    
+    Fixes: 975e4a3795d4 ("drm/xe: Manually setup C6 when skip_guc_pc is set")
+    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch b8a4e08086ace055e193245cd77a6182936d9f03 drm-intel
+6311a1a1f7a4 drm/xe/xe_gt_idle: use GT forcewake domain assertion
+509175708b45 drm/xe: move disable_c6 call
 
 
