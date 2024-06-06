@@ -4,58 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50F80C27C65
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 17:16:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0903FC27C55
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 17:26:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AD6010EA35;
-	Thu,  6 Jun 2024 17:16:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1E4710EA3A;
+	Thu,  6 Jun 2024 17:26:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WC0azKJP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fMFEAPKy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1859810EA2B;
- Thu,  6 Jun 2024 17:15:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 365EC10E159;
+ Thu,  6 Jun 2024 17:26:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717694158; x=1749230158;
- h=date:from:to:cc:subject:message-id;
- bh=eqMGJTLgofPsPKGp4XXpaFMGSwXn/UgaDzRLmPSGfZo=;
- b=WC0azKJPBUkY/WvoYUlG1qlubY73jM2D0qpAgt4T6yKBsloIyXVt9v/q
- M5zUwP2b50+/2iMxyiRUhPQnU/hEB6qnWLse6C/Rhax26q/fZqjn7CCSw
- YxmfmZ9igIOG6ShTKsN/XPdEy4NZyMJif6rtx8ifG+yZtvIBC9oCjC0lN
- hSmdG26ENzZPDVGAJGXBOvrOsVW5H8Sz2cHqS4X6wNV4j6lA+UhfAfGfP
- 2XszXRzVWn81vzc/E2wL0UK8B0f99ZiANAwR2tRm+SNryy16RrPo0muRf
- /Nt+Sjz3s6HXsMa3fNioVNlG7qDVE1/c0jzvvOAtWoESvEp//oRexUbZy Q==;
-X-CSE-ConnectionGUID: ooKs2XijSp2so1ENv3NM/w==
-X-CSE-MsgGUID: qVxoBzR8Q22kao2PtUq/kw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="14605258"
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="14605258"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 10:15:57 -0700
-X-CSE-ConnectionGUID: jVy+AxxpQ5ao8454p4sDQw==
-X-CSE-MsgGUID: 0ucrpR7YQpGH5boD93S5GA==
+ t=1717694783; x=1749230783;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=aeZj7/ORxIPPIvX1Mozpk4aopUxR5DP6VRwrEOcWV6g=;
+ b=fMFEAPKys9HhgFdCdT8ojAqzPKJT8ije+N6jzMeUWvivZgRfZs4tugQP
+ 9jrM+vYQoOQlfbw5rAbdcRNyXqi+7hZQTaASovZtTZq3oDC4dHi/LctnM
+ 52DKCp4OdAiPfa3h4eorSu/GYVCLkSIQoIC9QdOhubHdOYKWlMWiGv/A7
+ lZ7F0LCh6dpo5g/o93FnPwXnp5JhhADdMOYWcp05TpB8R6UE0OxjJJBck
+ wMmwFXu8/9gtnOb6SPMGfvCfe2ycrjMwgEEz739//k4Cif0d3a6c7ktnN
+ WBa3GQaOPmZklznNALspinhOB+p1cr7Iz3kg+Aj5ho8/X1Fy3KRY6gCfe w==;
+X-CSE-ConnectionGUID: PIt0intATBmPuzYHMOuZ8A==
+X-CSE-MsgGUID: I9pM4u2JSuiOTe63E0fm8Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="14565612"
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="14565612"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2024 10:25:31 -0700
+X-CSE-ConnectionGUID: 9cNLORL7TjSfkjfAnEgR9g==
+X-CSE-MsgGUID: 4efz5ptZSUqo1bg+yzoijA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="38485309"
-Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
- by orviesa006.jf.intel.com with ESMTP; 06 Jun 2024 10:15:54 -0700
-Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sFGiN-0003TP-1l;
- Thu, 06 Jun 2024 17:15:51 +0000
-Date: Fri, 07 Jun 2024 01:15:11 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Cc: Linux Memory Management List <linux-mm@kvack.org>,
- amd-gfx@lists.freedesktop.org, bpf@vger.kernel.org,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-mtd@lists.infradead.org, linux-pm@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-trace-kernel@vger.kernel.org
-Subject: [linux-next:master] BUILD REGRESSION
- ee78a17615ad0cfdbbc27182b1047cd36c9d4d5f
-Message-ID: <202406070106.im4Z1j0V-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="61249490"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 06 Jun 2024 10:25:30 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 6 Jun 2024 10:25:30 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 6 Jun 2024 10:25:29 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Thu, 6 Jun 2024 10:25:29 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.173)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Thu, 6 Jun 2024 10:25:29 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZBPRvjZJfbsy/218XVjHGGZhqO2pVNLFmt5GiL0QQ9/osEB0ZctfbUs+cl21FkpBu0yaQecxd44BuwcH42wPtQYyAEkyHg8gVRPfsDaC7CqlmXmzNmYjjNBaB05yahftAuXFv2novtf4au7bjRyqxUFK2TLzhbrjFM2zADFgJwoihJhZX+5uvfhwds15vG0c0GNuxU4GuFdo8P2pvGqaR49PzP3hr+vPqID9UCNzikRV2WqY+SIB4AxlG1bPF9rSpDw1K8sDMeRbYaii4T+pon79YwqUnMvTc6Ro3LrlC1ifs0XTf8vP1jJyNuGspwIbibYVuxckbiqU/7aNeREzGQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lR8umxfN8FdZCpwmQ7wFyeBDBSNU3ILQ6K7EyXhfiTs=;
+ b=dytUbne4wiOZVSOA2y7iapKiPf89Fg7pA2ppF2rKN1ZOK4o5xxBaaLDpXZNx9qxRN3RTrTDtcRIRMD/jcSZRopa2WLzcSU4Ye/dWLBEeyWy5/vLXRIZCovX25rfcttqqdQEffzQpgGthRWbLYAhUvz28tLtSKlej78edDcm2SurIPlfqwPBZTT6ekH8blJeCV7H9zqY0jEnTphXXaYl8i/ViPIbD6I7ixR7aaQuWolidY/dz4vugB20nbFwD0ice6aL7llm40EqSoSAHYAq6VgtMqxx+cnfSxMkgU7QH3OF0bx9z5pGoLM3Fes+c8s+lnBHG724bDhB+4E5hS8gn4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
+ by CH0PR11MB8191.namprd11.prod.outlook.com (2603:10b6:610:181::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.34; Thu, 6 Jun
+ 2024 17:25:27 +0000
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42%5]) with mapi id 15.20.7633.033; Thu, 6 Jun 2024
+ 17:25:27 +0000
+Date: Thu, 6 Jun 2024 13:25:25 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+CC: <dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH 2/2] drm/xe: Use drm_device managed mutex/mm init helpers
+ in GGTT
+Message-ID: <ZmHxBSZBi2vwQr1L@intel.com>
+References: <20240524133518.976-1-michal.wajdeczko@intel.com>
+ <20240524133518.976-3-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240524133518.976-3-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0041.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c2::16) To BYAPR11MB2854.namprd11.prod.outlook.com
+ (2603:10b6:a02:c9::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|CH0PR11MB8191:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6b398b2f-dd2b-44d8-8fa3-08dc864da811
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|1800799015|376005;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?FYm5U1POQE7w22bHQkyFrtp8uKVZJK4eY8h3dQSIkwnSbsETMVZSIs8WFp?=
+ =?iso-8859-1?Q?YbBGg4Bk1ZN+xRNsJ3NlITdPNecsWRhwcAazDyMVEEVQfE+L2BIwujoRBz?=
+ =?iso-8859-1?Q?rKGx/9g6EligPBzrOYFHWF8pNbsvkkj5uoLLw9k9SGxf4kbHsslQjWLalK?=
+ =?iso-8859-1?Q?oK8Z2dj2Jg/+27kuMX55pLMmwyCR1hFbPYCE+LwFtcfG57csQxRNcB/4RR?=
+ =?iso-8859-1?Q?IdhM0JZBc+L7PYVBHC8a6lyAfW1YwsUyMw1WoYPs6JGe6v07RIv6jHrglA?=
+ =?iso-8859-1?Q?KTSRQwtqWnIqdzpIxjS3AKSxqSzY91oJYOI0VfZW+74AcFgr6WzmsTsPgv?=
+ =?iso-8859-1?Q?uhp2OVeDDdpMDFfVcfj7ZMNU9TCiGl86m8vIq/BpJqtwFnhQ8aw8Q9OOJC?=
+ =?iso-8859-1?Q?DucL51WE/cL08hl2vEHMBP+iGqNycfXjpe/vVX21nvdVnaZQ/Wl7NkQ7+q?=
+ =?iso-8859-1?Q?+iVLd3vOf7b3acZPbo6C4EGUqu5rUXEan37E0H7fEZFdMDuBlNrgYXLTmm?=
+ =?iso-8859-1?Q?+rvDJbGzY67euu/ol2g1h2fSUjr9ufY2s1ZcpUqOpFw39OBGUI/V3Cy0Sv?=
+ =?iso-8859-1?Q?gq4UV0r22x97qsJhjlHg5ZweYExnWGuIAPZlvl4XJGKcE4f6OcWiLHDv+d?=
+ =?iso-8859-1?Q?DFYUL7sIykdZmpgEPfc3JvXys7EUnBbmxuz9oXVohPeDJ+Rm4d9gA3GhzQ?=
+ =?iso-8859-1?Q?sv3NPjZavLzks9ytDiosViRlqcTEWOsMrmTstoeSYvmTYeY42enL+uA8PX?=
+ =?iso-8859-1?Q?6UvE3ySvgdGXYTZWk1Wb/DM0Sz2OyJ00H90wz9/m7iBpDZt1eAuc40ol4B?=
+ =?iso-8859-1?Q?D5MhNF9/V+yrFSIxfVYDZaZfmByEp5AS3RkHIVDS6LzoQGBx1nrvFWWLFn?=
+ =?iso-8859-1?Q?lLE6vADxyl9uQXMXT5g5EYdhx9rxCxKbBrrwAGqq2VQ0bC4AJpmSZuaBwx?=
+ =?iso-8859-1?Q?tGaGiI1f5O2th1ff1rMN9aWsT/WMW2n43PjWW/DKsuFevvOsOPuTJbhp44?=
+ =?iso-8859-1?Q?IBE5uOQ+ssI/1Rv4KDDB1fThAjl2DUN75K/9lrVgpiUNNd15VDLW+c6/im?=
+ =?iso-8859-1?Q?R7Xs1pXGuITfMUi7/J2Gc2hHkkrw2xmJ3knNnfV2QYXofrohRwReuVD0jh?=
+ =?iso-8859-1?Q?hUUHrbuXqewJdt/EvDA4dg6UmrWhU74ilXVI9beH/h7F0SNvFq/iYLjmek?=
+ =?iso-8859-1?Q?IwW//XWziv27nxlc8wKbHDw0ovqIWI8Bv/Y0hx4jpNmrNk0Epn3rDaURJ2?=
+ =?iso-8859-1?Q?DtKlELsXiWLSvOxrWv8/JF2ZQphh9ZC4/jBM5RXneKFxat8EZDBNqTd9IE?=
+ =?iso-8859-1?Q?Iqat9xTmsKbKV+XRyi/Wi9fxyaQjbTIHY4apxWu5AVTjmI8=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?r8+MlAXwUuVxXWT1C+ZQrcqzLOHCdKSPaMnvRt7QQHydIbY+0urW3/By49?=
+ =?iso-8859-1?Q?P/fX0VAEIBx7g4blm3xfGvB9sgx2kJzRWYfsGMSYwKYQiBvDUHlcFctEJE?=
+ =?iso-8859-1?Q?bqCOrW2YpJsBMH0VPCVFgz5wjxUcKrDB3ass8hsBnfY7QYhkvjbQ58MZxl?=
+ =?iso-8859-1?Q?srODKRUCgK/dDLavrw44GpLNejwUq/XXDtMTejiwccCsx9TTFr3JPdtzaI?=
+ =?iso-8859-1?Q?gOZ9mdfFB1dj36Bcc678Asweol/n3Ufm+yfN75nyU2bii2teL2p/X6hov8?=
+ =?iso-8859-1?Q?5XnMdqw9jkyKcUDvo7gd/Ie2hUwfck24xVylPmPSK1AUYAiianM1OuL1lx?=
+ =?iso-8859-1?Q?4jRH5NrsRsWMG84KAQ2jlIcAYyvzOoXfOdDW0fZJ+Jhfn6ijt7tFk+PLhv?=
+ =?iso-8859-1?Q?6VQlB1obHYR2kMcH692n/SfmmGtpAGzJ9zzca1QycRkQ3QA2CA8hKbCRpB?=
+ =?iso-8859-1?Q?nlURtxKovFkMyyt3QaRdq7q4Vxg1z8vylmW0SVtpbZQ+BdTaTIYOmo3VQ1?=
+ =?iso-8859-1?Q?hmee56yiN83OdxpXXHU1rAShokaKymiKToBC1aLOw8PNoR6G8MJhIf5PuU?=
+ =?iso-8859-1?Q?6QVpEa9A77QFfNA4i42cLt1ie1BOolzcw+fyKZaHJ2srmIhJk+0Bffxb1M?=
+ =?iso-8859-1?Q?GjifoM02vuHD9Je9wxFu07cHRHXDzrB1QiVCJDo9CO5ihqmuNOcVtGnnK6?=
+ =?iso-8859-1?Q?j0zsa4l2MlLO/lbBTqtWJjT8dj+CdKlU+RrXI3AgSNuiXtyPmFALYRjlgL?=
+ =?iso-8859-1?Q?IVcshKKkl2cyM6BAGWmwFKsmgrPlwKFuuEKk2kxYueVmrXFx+wPEDwMsgj?=
+ =?iso-8859-1?Q?kxPw1SoqjcNjJFcMbMsM3t1/6NCY/w4Z0d0eLiu2syWCX5Aolo8+TfZaQQ?=
+ =?iso-8859-1?Q?sU2ZqMH5qx+N2eisLSpFAk+66iPahUUH1F/6WVHclsFH6ms9wJajDGykGw?=
+ =?iso-8859-1?Q?/26CODLUhUsd1rUFt+PHQvTPobBymFHJFOxCzLBvOCMFr486OgablGYny9?=
+ =?iso-8859-1?Q?C/0Rj3Rb0ZT2ji7k1zBykP48R6IOhOjgQ9M2wwoX35acKAzOgPazNbAYBA?=
+ =?iso-8859-1?Q?jn0IQirMqfTxem4Who4b02IIcO0VkJPIeCAmbiTwcPaeNn5Q2pTEHWEbqu?=
+ =?iso-8859-1?Q?gycw6o2clVpze6fn1RZPwTZM0ziSksQD8zGtlAda50L4tDyNMviqX+oYyY?=
+ =?iso-8859-1?Q?K6YV0JmBQYgfvbdOKqph+2rRW4NP7ScFcCeJeaLHPz6hahoqglHImo+Mcj?=
+ =?iso-8859-1?Q?B9BSs0ocZmUTjI098DFh26EO24tT9EgXXS43pqnUPa3q6kyK/cFKAIlssA?=
+ =?iso-8859-1?Q?yIFHuhDZKssgHObDZbDJp5Pt6pptWVzn7kOerfqEZ8XUmfpec5zWpiuT3J?=
+ =?iso-8859-1?Q?EFSlhSfXL5uXjdfbTNNJsCSNxIL0hWd9Fys8F/JGggM4fj+UAJLAtcUKzp?=
+ =?iso-8859-1?Q?9yjH7uiZAIt63B1F/HC0q+he9k2StCOcEKCaV/P6U9i/MWc2NsldQASYGR?=
+ =?iso-8859-1?Q?UMBP4TE0rt1MAQc03PtLA+05cQWHa3nRhOOJlTkXQVZbTqA7ZaaQUqMArE?=
+ =?iso-8859-1?Q?8UFCUHVnEusuUKF6hDjcrR8CxA9Lo59z8K0fzpkJ2Ikq9lzXDyJXoqPW6s?=
+ =?iso-8859-1?Q?hI1FRiq3pqQxB3kTXvrFXXr0wUVp4MR3v/HBwcTDs/3FXFagsy2RcTQw?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b398b2f-dd2b-44d8-8fa3-08dc864da811
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 17:25:27.2615 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qdahXJUfNLEe30F8TBeTyp0boEu+lvqGXruhQsS7nyA6VLrHbUNqe3bJxgEDlXWSgHqrafr3IHOOGcNcYt7P5g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB8191
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,345 +182,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: ee78a17615ad0cfdbbc27182b1047cd36c9d4d5f  Add linux-next specific files for 20240606
+On Fri, May 24, 2024 at 03:35:18PM +0200, Michal Wajdeczko wrote:
+> There is not need for private release action as there are existing
+> drmm_mm_init() and drmm_mutex_init() helpers that can be used.
+> 
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_ggtt.c | 23 +++++++++++------------
+>  1 file changed, 11 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> index 17e5066763db..7c91fe212dcb 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> @@ -96,14 +96,6 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
+>  	}
+>  }
+>  
+> -static void ggtt_fini_early(struct drm_device *drm, void *arg)
+> -{
+> -	struct xe_ggtt *ggtt = arg;
+> -
+> -	mutex_destroy(&ggtt->lock);
+> -	drm_mm_takedown(&ggtt->mm);
+> -}
+> -
+>  static void ggtt_fini(struct drm_device *drm, void *arg)
+>  {
+>  	struct xe_ggtt *ggtt = arg;
+> @@ -141,6 +133,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+>  	struct xe_device *xe = tile_to_xe(ggtt->tile);
+>  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+>  	unsigned int gsm_size;
+> +	int err;
+>  
+>  	if (IS_SRIOV_VF(xe))
+>  		gsm_size = SZ_8M; /* GGTT is expected to be 4GiB */
+> @@ -189,12 +182,18 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+>  	else
+>  		ggtt->pt_ops = &xelp_pt_ops;
+>  
+> -	drm_mm_init(&ggtt->mm, xe_wopcm_size(xe),
+> -		    ggtt->size - xe_wopcm_size(xe));
+> -	mutex_init(&ggtt->lock);
+> +	err = drmm_mm_init(&xe->drm, &ggtt->mm, xe_wopcm_size(xe),
+> +			   ggtt->size - xe_wopcm_size(xe));
+> +	if (err)
+> +		return err;
+> +
+> +	err = drmm_mutex_init(&xe->drm, &ggtt->lock);
+> +	if (err)
+> +		return err;
 
-Error/Warning reports:
+My first impression here is that we would have a bug here if drmm_mm_init
+works, but drmm_mutex_init fails, but we are likely safe because the
+probe will also entirely fail if this mutex init fails.
 
-https://lore.kernel.org/oe-kbuild-all/202406061744.rZDXfRrG-lkp@intel.com
+> +
+>  	primelockdep(ggtt);
+>  
+> -	return drmm_add_action_or_reset(&xe->drm, ggtt_fini_early, ggtt);
 
-Error/Warning: (recently discovered and may have been fixed)
+But my question here is, why drmm and not devm for this ggtt case that
+only makes sense if the hardware/device is up and not about the module
+or no reason to keep it alive after the probe failure or device removal.
 
-kernel/trace/trace_selftest.c:761: warning: "BYTE_NUMBER" redefined
+I know that the question is orthogonal to your patch. But if we decide to
+change the course later and move this towards devm, then we need to
+get back to the exit function and perhaps regular mutex.
 
-Unverified Error/Warning (likely false positive, please contact us if interested):
+I mean, really nothing against this patch itself, specially if we are
+confident that drmm is the way to go with this ggtt. So, I'm not blocking
+here:
 
-arch/microblaze/boot/dts/system.dts:20.9-23.4: Warning (unit_address_vs_reg): /memory: node has a reg or ranges property, but no unit name
-arch/microblaze/boot/dts/system.dts:272.4-19: Warning (clocks_property): /amba_pl/dma@41e00000:clocks: cell 0 is not a phandle reference
-arch/microblaze/boot/dts/system.dts:284.4-19: Warning (clocks_property): /amba_pl/timer@41c00000:clocks: cell 0 is not a phandle reference
-arch/microblaze/boot/dts/system.dts:339.4-19: Warning (clocks_property): /amba_pl/i2c@40800000:clocks: cell 0 is not a phandle reference
-arch/microblaze/boot/dts/system.dts:483.25-486.6: Warning (unit_address_format): /amba_pl/flash@60000000/partition@0x00000000: unit name should not have leading "0x"
-arch/microblaze/boot/dts/system.dts:483.25-486.6: Warning (unit_address_format): /amba_pl/flash@60000000/partition@0x00000000: unit name should not have leading 0s
-arch/microblaze/boot/dts/system.dts:50.4-19: Warning (clocks_property): /cpus/cpu@0:clocks: cell 0 is not a phandle reference
-arch/microblaze/boot/dts/system.dts:560.4-19: Warning (clocks_property): /amba_pl/serial@44a00000:clocks: cell 0 is not a phandle reference
-arch/microblaze/boot/dts/system.dts:579.15-588.4: Warning (simple_bus_reg): /amba_pl/gpio-restart: missing or empty reg/ranges property
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Error/Warning ids grouped by kconfigs:
-
-gcc_recent_errors
-|-- alpha-randconfig-r123-20240606
-|   `-- drivers-hwmon-cros_ec_hwmon.c:sparse:sparse:cast-to-restricted-__le16
-|-- loongarch-defconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-hubbub-dcn401-dcn401_hubbub.o:warning:objtool:unexpected-relocation-symbol-type-in-.rela.discard.reachable
-|   `-- drivers-thermal-thermal_trip.o:warning:objtool:unexpected-relocation-symbol-type-in-.rela.discard.reachable
-|-- microblaze-buildonly-randconfig-r001-20230308
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(simple_bus_reg):amba_pl-gpio-restart:missing-or-empty-reg-ranges-property
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_format):amba_pl-flash-partition:unit-name-should-not-have-leading
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_format):amba_pl-flash-partition:unit-name-should-not-have-leading-0s
-|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_vs_reg):memory:node-has-a-reg-or-ranges-property-but-no-unit-name
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-dma-41e00000:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-i2c:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-serial-44a00000:clocks:cell-is-not-a-phandle-reference
-|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-timer-41c00000:clocks:cell-is-not-a-phandle-reference
-|   `-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):cpus-cpu:clocks:cell-is-not-a-phandle-reference
-|-- openrisc-randconfig-r121-20240606
-|   `-- drivers-clk-qcom-camcc-sm7150.c:sparse:sparse:symbol-camcc_sm7150_hws-was-not-declared.-Should-it-be-static
-|-- sh-randconfig-c004-20211223
-|   `-- kernel-trace-trace_selftest.c:warning:BYTE_NUMBER-redefined
-|-- sh-randconfig-r111-20240606
-|   |-- include-linux-container_of.h:error:struct-ftrace_ops-has-no-member-named-list
-|   |-- include-linux-list.h:error:struct-ftrace_ops-has-no-member-named-list
-|   |-- include-linux-stddef.h:error:struct-ftrace_ops-has-no-member-named-list
-|   |-- kernel-trace-fgraph.c:error:implicit-declaration-of-function-ftrace_shutdown_subops
-|   |-- kernel-trace-fgraph.c:error:implicit-declaration-of-function-ftrace_startup_subops
-|   `-- kernel-trace-fgraph.c:error:struct-ftrace_ops-has-no-member-named-subop_list
-|-- um-allyesconfig
-|   `-- kernel-bpf-verifier.c:error:pcpu_hot-undeclared-(first-use-in-this-function)
-`-- x86_64-randconfig-161-20240606
-    |-- drivers-gpu-drm-amd-amdgpu-amdgpu_vm.c-amdgpu_vm_bo_update()-error:we-previously-assumed-bo-could-be-null-(see-line-)
-    |-- drivers-gpu-drm-i915-display-intel_dpt.c-intel_dpt_pin_to_ggtt()-error:uninitialized-symbol-vma-.
-    |-- drivers-gpu-drm-i915-display-intel_fb_pin.c-intel_fb_pin_to_dpt()-error:uninitialized-symbol-vma-.
-    `-- drivers-gpu-drm-i915-display-intel_fb_pin.c-intel_fb_pin_to_dpt()-error:vma-dereferencing-possible-ERR_PTR()
-clang_recent_errors
-|-- arm-randconfig-r133-20240606
-|   |-- drivers-mtd-nand-raw-mxc_nand.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-buf-got-void-noderef-__iomem
-|   `-- drivers-mtd-nand-raw-mxc_nand.c:sparse:sparse:incorrect-type-in-initializer-(different-address-spaces)-expected-unsigned-short-noderef-usertype-__iomem-t-got-void-buf
-|-- arm64-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-irq-dce110-irq_service_dce110.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_cursor.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-phy-and-enum-port-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-port-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_dpll_mgr.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-intel_dpll_id-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_hotplug.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_pipe_crc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_tc.c:error:arithmetic-between-different-enumeration-types-(-enum-intel_display_power_domain-and-enum-tc_port-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_vdsc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-skl_universal_plane.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-skl_watermark.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   `-- drivers-gpu-drm-renesas-rcar-du-rcar_cmm.c:error:unused-function-rcar_cmm_read-Werror-Wunused-function
-|-- arm64-randconfig-r113-20240606
-|   |-- kernel-trace-fgraph.c:sparse:sparse:symbol-fgraph_do_direct-was-not-declared.-Should-it-be-static
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash1-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-orig_hash-got-struct-ftrace_hash-noderef-__rcu
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-assigned-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-save_filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-assigned-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-save_notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_filter_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   `-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|-- i386-buildonly-randconfig-001-20240606
-|   `-- drivers-gpu-drm-drm_mm.c:error:function-drm_mm_node_scanned_block-is-not-needed-and-will-not-be-emitted-Werror-Wunneeded-internal-declaration
-|-- i386-buildonly-randconfig-005-20240606
-|   `-- drivers-gpu-drm-drm_mm.c:error:function-drm_mm_node_scanned_block-is-not-needed-and-will-not-be-emitted-Werror-Wunneeded-internal-declaration
-|-- i386-randconfig-006-20240606
-|   `-- drivers-gpu-drm-drm_mm.c:error:function-drm_mm_node_scanned_block-is-not-needed-and-will-not-be-emitted-Werror-Wunneeded-internal-declaration
-|-- i386-randconfig-062-20240606
-|   `-- drivers-hwmon-cros_ec_hwmon.c:sparse:sparse:cast-to-restricted-__le16
-|-- riscv-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-irq-dce110-irq_service_dce110.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_cursor.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-phy-and-enum-port-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-port-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_dpll_mgr.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-intel_dpll_id-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_hotplug.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_pipe_crc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_tc.c:error:arithmetic-between-different-enumeration-types-(-enum-intel_display_power_domain-and-enum-tc_port-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_vdsc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-skl_universal_plane.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   `-- drivers-gpu-drm-i915-display-skl_watermark.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|-- riscv-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-irq-dce110-irq_service_dce110.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
-|-- s390-allmodconfig
-|   |-- drivers-gpu-drm-i915-display-intel_cursor.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-phy-and-enum-port-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_dpll_mgr.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-intel_dpll_id-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_hotplug.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_pipe_crc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_tc.c:error:arithmetic-between-different-enumeration-types-(-enum-intel_display_power_domain-and-enum-tc_port-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-intel_vdsc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   |-- drivers-gpu-drm-i915-display-skl_universal_plane.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|   `-- drivers-gpu-drm-i915-display-skl_watermark.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
-|-- x86_64-randconfig-014-20240606
-|   `-- drivers-gpu-drm-drm_mm.c:error:function-drm_mm_node_scanned_block-is-not-needed-and-will-not-be-emitted-Werror-Wunneeded-internal-declaration
-|-- x86_64-randconfig-076-20240606
-|   `-- drivers-gpu-drm-drm_mm.c:error:function-drm_mm_node_scanned_block-is-not-needed-and-will-not-be-emitted-Werror-Wunneeded-internal-declaration
-`-- x86_64-randconfig-r112-20240606
-    `-- drivers-hwmon-cros_ec_hwmon.c:sparse:sparse:cast-to-restricted-__le16
-
-elapsed time: 742m
-
-configs tested: 179
-configs skipped: 3
-
-tested configs:
-alpha                             allnoconfig   gcc  
-alpha                            allyesconfig   gcc  
-alpha                               defconfig   gcc  
-arc                              allmodconfig   gcc  
-arc                               allnoconfig   gcc  
-arc                              allyesconfig   gcc  
-arc                                 defconfig   gcc  
-arc                   randconfig-001-20240606   gcc  
-arc                   randconfig-002-20240606   gcc  
-arm                              allmodconfig   gcc  
-arm                               allnoconfig   clang
-arm                              allyesconfig   gcc  
-arm                     davinci_all_defconfig   clang
-arm                                 defconfig   clang
-arm                           omap1_defconfig   gcc  
-arm                   randconfig-001-20240606   clang
-arm                   randconfig-002-20240606   clang
-arm                   randconfig-003-20240606   clang
-arm                   randconfig-004-20240606   clang
-arm                           tegra_defconfig   gcc  
-arm64                            allmodconfig   clang
-arm64                             allnoconfig   gcc  
-arm64                               defconfig   gcc  
-arm64                 randconfig-001-20240606   clang
-arm64                 randconfig-002-20240606   gcc  
-arm64                 randconfig-003-20240606   clang
-arm64                 randconfig-004-20240606   clang
-csky                             alldefconfig   gcc  
-csky                             allmodconfig   gcc  
-csky                              allnoconfig   gcc  
-csky                             allyesconfig   gcc  
-csky                                defconfig   gcc  
-csky                  randconfig-001-20240606   gcc  
-csky                  randconfig-002-20240606   gcc  
-hexagon                          allmodconfig   clang
-hexagon                           allnoconfig   clang
-hexagon                          allyesconfig   clang
-hexagon                             defconfig   clang
-hexagon               randconfig-001-20240606   clang
-hexagon               randconfig-002-20240606   clang
-i386                             allmodconfig   gcc  
-i386                              allnoconfig   gcc  
-i386                             allyesconfig   gcc  
-i386         buildonly-randconfig-001-20240606   clang
-i386         buildonly-randconfig-002-20240606   clang
-i386         buildonly-randconfig-003-20240606   clang
-i386         buildonly-randconfig-004-20240606   gcc  
-i386         buildonly-randconfig-005-20240606   clang
-i386         buildonly-randconfig-006-20240606   gcc  
-i386                                defconfig   clang
-i386                  randconfig-001-20240606   clang
-i386                  randconfig-002-20240606   clang
-i386                  randconfig-003-20240606   clang
-i386                  randconfig-004-20240606   clang
-i386                  randconfig-005-20240606   clang
-i386                  randconfig-006-20240606   clang
-i386                  randconfig-011-20240606   clang
-i386                  randconfig-012-20240606   gcc  
-i386                  randconfig-013-20240606   gcc  
-i386                  randconfig-014-20240606   gcc  
-i386                  randconfig-015-20240606   gcc  
-i386                  randconfig-016-20240606   gcc  
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                           defconfig   gcc  
-loongarch             randconfig-001-20240606   gcc  
-loongarch             randconfig-002-20240606   gcc  
-m68k                             allmodconfig   gcc  
-m68k                              allnoconfig   gcc  
-m68k                             allyesconfig   gcc  
-m68k                                defconfig   gcc  
-m68k                          hp300_defconfig   gcc  
-microblaze                       allmodconfig   gcc  
-microblaze                        allnoconfig   gcc  
-microblaze                       allyesconfig   gcc  
-microblaze                          defconfig   gcc  
-mips                              allnoconfig   gcc  
-mips                             allyesconfig   gcc  
-mips                      maltasmvp_defconfig   gcc  
-nios2                            allmodconfig   gcc  
-nios2                             allnoconfig   gcc  
-nios2                            allyesconfig   gcc  
-nios2                               defconfig   gcc  
-nios2                 randconfig-001-20240606   gcc  
-nios2                 randconfig-002-20240606   gcc  
-openrisc                          allnoconfig   gcc  
-openrisc                         allyesconfig   gcc  
-openrisc                            defconfig   gcc  
-parisc                           allmodconfig   gcc  
-parisc                            allnoconfig   gcc  
-parisc                           allyesconfig   gcc  
-parisc                              defconfig   gcc  
-parisc                randconfig-001-20240606   gcc  
-parisc                randconfig-002-20240606   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                          allyesconfig   clang
-powerpc                    gamecube_defconfig   clang
-powerpc                       holly_defconfig   clang
-powerpc                        icon_defconfig   gcc  
-powerpc                 linkstation_defconfig   clang
-powerpc                      obs600_defconfig   clang
-powerpc                      ppc44x_defconfig   clang
-powerpc               randconfig-001-20240606   gcc  
-powerpc               randconfig-002-20240606   gcc  
-powerpc               randconfig-003-20240606   gcc  
-powerpc64             randconfig-001-20240606   clang
-powerpc64             randconfig-002-20240606   clang
-powerpc64             randconfig-003-20240606   gcc  
-riscv                            allmodconfig   clang
-riscv                             allnoconfig   gcc  
-riscv                            allyesconfig   clang
-riscv                               defconfig   clang
-riscv                 randconfig-001-20240606   gcc  
-riscv                 randconfig-002-20240606   clang
-s390                             allmodconfig   clang
-s390                              allnoconfig   clang
-s390                             allyesconfig   gcc  
-s390                                defconfig   clang
-s390                  randconfig-001-20240606   gcc  
-s390                  randconfig-002-20240606   gcc  
-sh                               allmodconfig   gcc  
-sh                                allnoconfig   gcc  
-sh                               allyesconfig   gcc  
-sh                                  defconfig   gcc  
-sh                          r7785rp_defconfig   gcc  
-sh                    randconfig-001-20240606   gcc  
-sh                    randconfig-002-20240606   gcc  
-sh                      rts7751r2d1_defconfig   gcc  
-sh                  sh7785lcr_32bit_defconfig   gcc  
-sparc                            allmodconfig   gcc  
-sparc                             allnoconfig   gcc  
-sparc                               defconfig   gcc  
-sparc64                          allmodconfig   gcc  
-sparc64                          allyesconfig   gcc  
-sparc64                             defconfig   gcc  
-sparc64               randconfig-001-20240606   gcc  
-sparc64               randconfig-002-20240606   gcc  
-um                               allmodconfig   clang
-um                                allnoconfig   clang
-um                               allyesconfig   gcc  
-um                                  defconfig   clang
-um                             i386_defconfig   gcc  
-um                    randconfig-001-20240606   clang
-um                    randconfig-002-20240606   gcc  
-um                           x86_64_defconfig   clang
-x86_64                            allnoconfig   clang
-x86_64                           allyesconfig   clang
-x86_64       buildonly-randconfig-001-20240606   gcc  
-x86_64       buildonly-randconfig-002-20240606   clang
-x86_64       buildonly-randconfig-003-20240606   gcc  
-x86_64       buildonly-randconfig-004-20240606   gcc  
-x86_64       buildonly-randconfig-005-20240606   gcc  
-x86_64       buildonly-randconfig-006-20240606   clang
-x86_64                              defconfig   gcc  
-x86_64                randconfig-001-20240606   gcc  
-x86_64                randconfig-002-20240606   gcc  
-x86_64                randconfig-003-20240606   gcc  
-x86_64                randconfig-004-20240606   clang
-x86_64                randconfig-005-20240606   gcc  
-x86_64                randconfig-006-20240606   gcc  
-x86_64                randconfig-011-20240606   clang
-x86_64                randconfig-012-20240606   gcc  
-x86_64                randconfig-013-20240606   clang
-x86_64                randconfig-014-20240606   clang
-x86_64                randconfig-015-20240606   clang
-x86_64                randconfig-016-20240606   clang
-x86_64                randconfig-071-20240606   clang
-x86_64                randconfig-072-20240606   gcc  
-x86_64                randconfig-073-20240606   clang
-x86_64                randconfig-074-20240606   clang
-x86_64                randconfig-075-20240606   gcc  
-x86_64                randconfig-076-20240606   clang
-x86_64                          rhel-8.3-rust   clang
-xtensa                            allnoconfig   gcc  
-xtensa                  nommu_kc705_defconfig   gcc  
-xtensa                randconfig-001-20240606   gcc  
-xtensa                randconfig-002-20240606   gcc  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> +	return 0;
+>  }
+>  
+>  static void xe_ggtt_invalidate(struct xe_ggtt *ggtt);
+> -- 
+> 2.43.0
+> 
