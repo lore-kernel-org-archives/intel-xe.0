@@ -4,165 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 591B9C27C54
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 17:02:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50F80C27C65
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Jun 2024 17:16:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE16410EA23;
-	Thu,  6 Jun 2024 17:02:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AD6010EA35;
+	Thu,  6 Jun 2024 17:16:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HhJ+e8yI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WC0azKJP";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CB6210EA3D
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Jun 2024 17:02:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1859810EA2B;
+ Thu,  6 Jun 2024 17:15:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717693364; x=1749229364;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=xlN4woytFnRe5H9ztUHbqTIbRkIu0xHZ7JAKqreTz14=;
- b=HhJ+e8yIbxje9Bl5aj4H+j8dR7bb1kPU4TGGEmYAl5JQAUXVoyx4jUcR
- 49VK7ZRXvqTS3kau70ReDvD0RlpyEQf30bN0qjvjEfKUEh4xlZc8EnJ9i
- iCa8WDWWAAsDKAbCgzfvfRnYANmY6sLB3/c3ShvV7uC9AYr0/Vvzui9Ya
- HcrplqoN/RzfgzF1rumNzF7GSXe2DDE9D5cXqhXlSM0Bq4S3ygY42h7iX
- bHxfejtP/yjQTdqGO0coOkO59xmJrRuvkcF3cQDz2RjuraHXlgzVGJU3D
- ZaF979qGojO5ZaJnJaQ/aHV8DHTHz1hM2HNAWH2lxfYKlu4oD7h0YAGbI Q==;
-X-CSE-ConnectionGUID: Et/UIOIJRz2DUdY0V51elQ==
-X-CSE-MsgGUID: shgnxL4LRjmjwhIjsnd5BA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="14602988"
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="14602988"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ t=1717694158; x=1749230158;
+ h=date:from:to:cc:subject:message-id;
+ bh=eqMGJTLgofPsPKGp4XXpaFMGSwXn/UgaDzRLmPSGfZo=;
+ b=WC0azKJPBUkY/WvoYUlG1qlubY73jM2D0qpAgt4T6yKBsloIyXVt9v/q
+ M5zUwP2b50+/2iMxyiRUhPQnU/hEB6qnWLse6C/Rhax26q/fZqjn7CCSw
+ YxmfmZ9igIOG6ShTKsN/XPdEy4NZyMJif6rtx8ifG+yZtvIBC9oCjC0lN
+ hSmdG26ENzZPDVGAJGXBOvrOsVW5H8Sz2cHqS4X6wNV4j6lA+UhfAfGfP
+ 2XszXRzVWn81vzc/E2wL0UK8B0f99ZiANAwR2tRm+SNryy16RrPo0muRf
+ /Nt+Sjz3s6HXsMa3fNioVNlG7qDVE1/c0jzvvOAtWoESvEp//oRexUbZy Q==;
+X-CSE-ConnectionGUID: ooKs2XijSp2so1ENv3NM/w==
+X-CSE-MsgGUID: qVxoBzR8Q22kao2PtUq/kw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="14605258"
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="14605258"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 10:02:43 -0700
-X-CSE-ConnectionGUID: j48CFBFcQoKAiRB+NUru1A==
-X-CSE-MsgGUID: onvtz1PSSwe9/nQKW0S8UQ==
+ 06 Jun 2024 10:15:57 -0700
+X-CSE-ConnectionGUID: jVy+AxxpQ5ao8454p4sDQw==
+X-CSE-MsgGUID: 0ucrpR7YQpGH5boD93S5GA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="42461167"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Jun 2024 10:02:43 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 6 Jun 2024 10:02:42 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 6 Jun 2024 10:02:42 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 6 Jun 2024 10:02:42 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jK6sjlPOwZ3QPwuMqe3PPCiVFwbwrbzzCBjv0DXer/m6i0mLxj4PxqSuWWh9ojR1QIXkvgkuuGW1XeB1XjBfinpI2rxvXstPuJxgD2KBKbcxSs1/q6dTHB3wyN9np/+o58QxMoSWf//4soa/BfZsFWm60SxVm6nTY3i1m95KBMbenCV0X4yxjmnNyD5DY3H8LsMG1n32NB3wYG67pjz0jJGW9U2uCljD0ATlqBJscfYf7aUwNp+2uAYRto30DeRe1bbNEjxxeZskmGVyirrVmU8YE5fe5dpRgsA1UV+B9EfgDWf4GqYTuzICKS1GByq7/55EFJNwSxCkaS7zmGOlEQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5cvjGimyqrF34gZh1Lryisu1bwPoTrIDTGK9+nxBPvY=;
- b=k58ybUNtnkGme6OtVDRmSEM2NoqXoGSM80OfqI5/HSIGhHyGONphk9hkYLkAKh9wGdj36483zYwVGrJkqrXRxT/QMnBNmSKNUcsk4KbR+AIcGKXT8o9O+Kh5R50mCNZIr5YEG7a7xkhsh8ppQ8QAUayeQfh84yl7p1B5Uj3he31/KmoUmNIFtuZPTQzlZVWphkcYKcm5myM5kYnECWcUtZwM+xjQo0UHUhuZrj4HpWnM78wMEyASAuVKIxlUb5O1BhZU9szj3tbXGYOPXATckee+WqhjpQCgmpmSC4HKC7mcDGugWfrtwCGxGVMD+5soY2aMavOvz0Et7Fh6O12jxw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by CO1PR11MB5186.namprd11.prod.outlook.com (2603:10b6:303:9b::24)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.33; Thu, 6 Jun
- 2024 17:02:40 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.7633.021; Thu, 6 Jun 2024
- 17:02:40 +0000
-Date: Thu, 6 Jun 2024 12:02:36 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-CC: Ilia Levi <illevi@habana.ai>, Masahiro Yamada <masahiroy@kernel.org>,
- Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>,
- <linux-kbuild@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: =?utf-8?B?4pyXIENJLkhvb2tz?= =?utf-8?Q?=3A?= failure for
- drm/xe/irq: remove xe_irq_shutdown
-Message-ID: <efbt3hl22g73r3372agpzowfejrpxzvaiqu2ysscntwa6dtioe@2ao55jz262rs>
-References: <20240606124705.822451-1-illevi@habana.ai>
- <171767982099.22567.196132369501507254@a6498e030952>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <171767982099.22567.196132369501507254@a6498e030952>
-X-ClientProxiedBy: MW2PR16CA0045.namprd16.prod.outlook.com
- (2603:10b6:907:1::22) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CO1PR11MB5186:EE_
-X-MS-Office365-Filtering-Correlation-Id: 01de1142-8225-4be6-8594-08dc864a78fa
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|376005|366007;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?tQgxGIZAWJRRFFuNLiLxfw9htPRf+aITZo5YjXQrMpNu4uQIeZnFYzzUSwPY?=
- =?us-ascii?Q?3CyF+bGjle0YGre3gqAPL9a/RY17XkjWgPilx1YWmkxeSIttX2TCZ9zS6Gxa?=
- =?us-ascii?Q?qAPCwd/XXJjUR3HiLYHEE1nciSxL6XK46lry58GR+URq5Om6Q2ej6Pp9sRX4?=
- =?us-ascii?Q?pBCI8F3G8UjzdOQHtXslgDEdwXyEKTdjb0ecuIcrEP4ykcPujjtqhoQ/OjPQ?=
- =?us-ascii?Q?kLcZb9/CFgVZ2kZFpgeJobIHyYJjf/6ydP6ww+a77rzlwlb24/+0RfFTisH7?=
- =?us-ascii?Q?5xEu0Lr8QpSxD6+td/RwkBcGEFM+0lcEo9V3tehdmCBeqzA3kEcjF7JDz2tX?=
- =?us-ascii?Q?UatY2UhTgiNgGNpr1xcd+Zu4ck7+FtQ1DuidPz5kTl1d7BAaPQ2FQrLqMmFh?=
- =?us-ascii?Q?BR8+CjY/Lfty8XG4O7GdCMhvjHZ75HvPAaBFShyN8Od+09BIZvruFFpY1W41?=
- =?us-ascii?Q?OUrfDAS3PRurYlKslCxxtWqOMuD4rHmoscW90p8s3sGSJupDEzh6d7kiREr7?=
- =?us-ascii?Q?C7I1TN9BhAiBjiBluO6rUQGQ+9HSOxhobfTcNLG+T0FuVQ2D2q3jDatIrvK4?=
- =?us-ascii?Q?4tcg43jDzrZXaWPZKGj10dvqCiSxeew0l0Ri+g9KxhaSzmPT8sgCI5ha3GiN?=
- =?us-ascii?Q?+pRnL61gTBkxwKkB+09Iq1zS8VZBmPpGB4Xld0ICBf73TIEEN1AcT+MCX0pW?=
- =?us-ascii?Q?PLMbuyYrqdvF8kylAtDIguoT+Mo7gFjYRjxSxMD/2LQ2elGxr7zrJLmFhEvP?=
- =?us-ascii?Q?HbLVKnVwdaS6P6WzUg1UaurxMLIRxiA0vMDR+kb4/jnt/rJcg4PVJ7H+5cih?=
- =?us-ascii?Q?rVLsDQSpLwdYCm2SxdsuRSVBlz3++lSyFis7DG28ByrFymqg5Sga6PZoQd/T?=
- =?us-ascii?Q?fGIQxHFHAILwqlwUiQY7Xv+3LqK3o896S16r69MGT3SZJsqHM0Qzy4gFxHit?=
- =?us-ascii?Q?pvyZIFiby7iIgNnNPwwamuskHTCUlQu3xnQD3y6SMwOdbuPXYspz0kdhn7H1?=
- =?us-ascii?Q?YAHxThouoYWT0snJNp5CPWIFWt4KOWUCitbjn9JAeTbpGWw7JXK/SQ/NSuvy?=
- =?us-ascii?Q?iAHg9xi6qEsIOSXNmrbvQdcNjg46q1hm+309PMNyWgUedolxnnvytr9hWQUz?=
- =?us-ascii?Q?M3o4WNk40J4lcQMYxY4Xsg6kYfm/w4wA+OVUicf8dP1fZm+iStL0XxTVHi9n?=
- =?us-ascii?Q?sNiNKnqm0s0M5Jd5xnOxl+8lps6SyJF1OFhpi9csW2oUASOPPpTXcveZkvED?=
- =?us-ascii?Q?WU3GC4DMRT8vkJjYPl2V?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?W1cV//WOkGnGeL3FQdbIFUMbZzbcL+Gl4DsAOkgNDWVj4oGjf3Y1YqNFGRcY?=
- =?us-ascii?Q?dD7VPbPm3oGZJLWVElQPDfGz+yzPdHsMFeuecLDmvMgb6TCqRldrN2FkP+V6?=
- =?us-ascii?Q?8+/RxYuYdHwng6rcCmNIuE1F6ny0Mfkuf+vuKwoyDRxyr0W/LTtE8uta7ZPz?=
- =?us-ascii?Q?PGyfXCqZjbrIQXxvrQXu7BJwMjM//8axuCScdti6SKgb1iDF8dTJF3ZPngsA?=
- =?us-ascii?Q?x3nFhFHLd/o+3fgqDXPjw3h5ZKXOiv7vD0E+u0kVdEz5wUdSkY1cpife6DGS?=
- =?us-ascii?Q?BaTyQhKCLV8D2y1+h/swIuikxCDOMhk5ZlLETXmVoB7eaNud+yzPlayhjwdg?=
- =?us-ascii?Q?uOLkDq2A15jrpnrCYHdAqtRLAu7tuJwLD0+cwb6FlN94JHnW9bKwnBuS67sn?=
- =?us-ascii?Q?RkInQuFpRmMegS7VqtL7ntRSqENLmoS4X/ZWJvAJeGYyy+ZRz90XkC95PJ2J?=
- =?us-ascii?Q?DooJDCniOd5JYEcEboL4Ne2yz/ttqliF2KpB6iVUd9mTn8dRMPao+fzE0xZJ?=
- =?us-ascii?Q?xAEzPtJGOuBasmBTUpuBBTnc67F09JyAi1CSybOl7dgTT3C1InyJcxfTgIpu?=
- =?us-ascii?Q?GPe7inT788LPY6a8/9n7rfUIPYA71TpBVKBgX2HkGSK4HAlGrs3i4Vb3mE55?=
- =?us-ascii?Q?zXpSh2kGFq7O1DwKt6cA41V0ElCYqrA8YdgsZxO9AOK4YYqrkFbgFW86nj3h?=
- =?us-ascii?Q?jYxkb3WTF+q7ZJAMNQrm57ppZxw061JQRSfBEAo27/C2PvjaX6F5bloHE+jx?=
- =?us-ascii?Q?bNp65vuegWkDiWf0aRvb/imRm++XOyfONrQWSYuad0UIS3wEvz86zSc14xUO?=
- =?us-ascii?Q?DyPPpm464fPawA4xs4yrbo1zL57a5fp0OQHCv1a3qevbcuTc4W21c4F6jxch?=
- =?us-ascii?Q?BWIskXlPs3VmwdgqFnyqE7jmroVOKtz/Mf5D18IUy8BFaGhaFhbprFFAkct5?=
- =?us-ascii?Q?8K6CtJPX5gQkS7I9jIBn6N7ZPXb9gKXx2N2JX4ExW7KW2obE5bQwu+BgLMq8?=
- =?us-ascii?Q?RmWhzG3hlUNRGkx40ZVvzs5i0H2UyUBdXIjdUXor6+CjMzlGy1s0dSZJWxrq?=
- =?us-ascii?Q?VEX3JBixH6jHzBmBes44z+6r68VhWDLHQ0/1Z3hiZfHCbMltIkfBX9X61KFS?=
- =?us-ascii?Q?OMkidz3aVDbkwhEiUSx7cJtTGb9WYI14JXh6lwvlboyyw8dgBe12O+es3YDO?=
- =?us-ascii?Q?N5M3hi+EXJg8C7OM75FXXnu3X6bIINkG1YR9j3ajzqiXthJGKb7/4g9wnVR4?=
- =?us-ascii?Q?SbSj5zW0DkcBH+oeCms3aJPXF+RxHkKGXOp75YXNyd6g46IIKBGomB+Clb4s?=
- =?us-ascii?Q?L1c4ab0HEBw3YmKuULHRgLy5qQ2QjZh8xDi3vuSqxLTZcWq3ObV7jFzvgOTW?=
- =?us-ascii?Q?QSOcJd8x0QW0KA/v/i+ozdv6YeA8BoXOci8w8bPjSg1Q7xtSNIrhhW/1dYqG?=
- =?us-ascii?Q?o/+//oxhenR+TNxbWmXr+WM2GWUMMbPlwHfhSC0XFmfEY+0P7Fx5AO/XuLwM?=
- =?us-ascii?Q?TG1qniZR3+sOtDnyv2whN2K618+WMvbuAaoAg2Cy0TFNCT/xokVSi2mcajpP?=
- =?us-ascii?Q?qu+rC67z+Y4B1JvweCf/o558bHl/LhI9jCURe1LuIR6EpXOOfvhZEOpIdj3Z?=
- =?us-ascii?Q?lw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 01de1142-8225-4be6-8594-08dc864a78fa
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 17:02:39.7380 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iCS6vZXlFVpj4/ufilyYAVVjJkI6tDJa4YMmm74coUJoC0syIR8QDZMYx16h8IF2kWX1eX7+Gy8/PzMctU+cmoUOuou73Cl8jxEGU670vKI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5186
-X-OriginatorOrg: intel.com
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="38485309"
+Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
+ by orviesa006.jf.intel.com with ESMTP; 06 Jun 2024 10:15:54 -0700
+Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1sFGiN-0003TP-1l;
+ Thu, 06 Jun 2024 17:15:51 +0000
+Date: Fri, 07 Jun 2024 01:15:11 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: Linux Memory Management List <linux-mm@kvack.org>,
+ amd-gfx@lists.freedesktop.org, bpf@vger.kernel.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-mtd@lists.infradead.org, linux-pm@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-trace-kernel@vger.kernel.org
+Subject: [linux-next:master] BUILD REGRESSION
+ ee78a17615ad0cfdbbc27182b1047cd36c9d4d5f
+Message-ID: <202406070106.im4Z1j0V-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,127 +70,345 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Cc'ing kbuild + lkml and maintainers.
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+branch HEAD: ee78a17615ad0cfdbbc27182b1047cd36c9d4d5f  Add linux-next specific files for 20240606
 
-On Thu, Jun 06, 2024 at 01:17:00PM GMT, Patchwork wrote:
->== Series Details ==
->
->Series: drm/xe/irq: remove xe_irq_shutdown
->URL   : https://patchwork.freedesktop.org/series/134565/
->State : failure
->
->== Summary ==
->
->run-parts: executing /workspace/ci/hooks/00-showenv
->+ export
->+ grep -Ei '(^|\W)CI_'
->declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64-default"
->declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
->declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
->declare -x CI_WORKSPACE_DIR="/workspace"
->run-parts: executing /workspace/ci/hooks/10-build-W1
->+ SRC_DIR=/workspace/kernel
->+ RESTORE_DISPLAY_CONFIG=0
->+ '[' -n /workspace/kernel/build64-default ']'
->+ BUILD_DIR=/workspace/kernel/build64-default
->+ cd /workspace/kernel
->++ nproc
->+ make -j48 O=/workspace/kernel/build64-default modules_prepare
->make[1]: Entering directory '/workspace/kernel/build64-default'
->  GEN     Makefile
->  UPD     include/generated/compile.h
->  UPD     include/config/kernel.release
->mkdir -p /workspace/kernel/build64-default/tools/objtool && make O=/workspace/kernel/build64-default subdir=tools/objtool --no-print-directory -C objtool
->  UPD     include/generated/utsrelease.h
->  HOSTCC  /workspace/kernel/build64-default/tools/objtool/fixdep.o
->  CALL    ../scripts/checksyscalls.sh
->  HOSTLD  /workspace/kernel/build64-default/tools/objtool/fixdep-in.o
->  LINK    /workspace/kernel/build64-default/tools/objtool/fixdep
->  INSTALL libsubcmd_headers
->  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/exec-cmd.o
->  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/help.o
->  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/pager.o
->  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/parse-options.o
->  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/run-command.o
->  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/sigchain.o
->  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/subcmd-config.o
->  LD      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd-in.o
->  AR      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd.a
->  CC      /workspace/kernel/build64-default/tools/objtool/weak.o
->  CC      /workspace/kernel/build64-default/tools/objtool/check.o
->  CC      /workspace/kernel/build64-default/tools/objtool/special.o
->  CC      /workspace/kernel/build64-default/tools/objtool/builtin-check.o
->  CC      /workspace/kernel/build64-default/tools/objtool/elf.o
->  CC      /workspace/kernel/build64-default/tools/objtool/objtool.o
->  CC      /workspace/kernel/build64-default/tools/objtool/orc_gen.o
->  CC      /workspace/kernel/build64-default/tools/objtool/orc_dump.o
->  CC      /workspace/kernel/build64-default/tools/objtool/libstring.o
->  CC      /workspace/kernel/build64-default/tools/objtool/libctype.o
->  CC      /workspace/kernel/build64-default/tools/objtool/str_error_r.o
->  CC      /workspace/kernel/build64-default/tools/objtool/librbtree.o
->  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/special.o
->  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/decode.o
->  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/orc.o
->  LD      /workspace/kernel/build64-default/tools/objtool/arch/x86/objtool-in.o
->  LD      /workspace/kernel/build64-default/tools/objtool/objtool-in.o
->  LINK    /workspace/kernel/build64-default/tools/objtool/objtool
->make[1]: Leaving directory '/workspace/kernel/build64-default'
->++ nproc
->+ make -j48 O=/workspace/kernel/build64-default M=drivers/gpu/drm/xe W=1
->make[1]: Entering directory '/workspace/kernel/build64-default'
->../scripts/Makefile.build:41: drivers/gpu/drm/xe/Makefile: No such file or directory
+Error/Warning reports:
 
-This started happening since commit b1992c3772e6 ("kbuild: use $(src)
-instead of $(srctree)/$(src) for source directory"). For context: after
-building the entire kernel our CI tries to build just the xe module with
-additional CFLAGS... in this case by passing W=1.
+https://lore.kernel.org/oe-kbuild-all/202406061744.rZDXfRrG-lkp@intel.com
 
-Trying to build just xe.ko by path doesn't work:
+Error/Warning: (recently discovered and may have been fixed)
 
-	make O=build64 W=1 drivers/gpu/drm/xe/xe.ko
+kernel/trace/trace_selftest.c:761: warning: "BYTE_NUMBER" redefined
 
-WARNING: modpost: missing MODULE_DESCRIPTION() in vmlinux.o
-ERROR: modpost: "ttm_bo_vm_dummy_page" [drivers/gpu/drm/xe/xe.ko] undefined!
-ERROR: modpost: "drm_mode_is_420_also" [drivers/gpu/drm/xe/xe.ko] undefined!
-ERROR: modpost: "drm_dp_downstream_max_dotclock" [drivers/gpu/drm/xe/xe.ko] undefined!
-ERROR: modpost: "drm_dp_mst_topology_mgr_set_mst" [drivers/gpu/drm/xe/xe.ko] undefined!
-ERROR: modpost: "drm_atomic_state_init" [drivers/gpu/drm/xe/xe.ko] undefined!
-ERROR: modpost: "drm_atomic_set_fb_for_plane" [drivers/gpu/drm/xe/xe.ko] undefined!
-ERROR: modpost: "drm_dp_remove_payload_part2" [drivers/gpu/drm/xe/xe.ko] undefined!
-ERROR: modpost: "drm_dp_channel_eq_ok" [drivers/gpu/drm/xe/xe.ko] undefined!
-ERROR: modpost: "drm_dp_downstream_debug" [drivers/gpu/drm/xe/xe.ko] undefined!
-ERROR: modpost: "drm_modeset_lock_all_ctx" [drivers/gpu/drm/xe/xe.ko] undefined!
-WARNING: modpost: suppressed 507 unresolved symbol warnings because there were too many)
-make[3]: *** [../scripts/Makefile.modpost:145: Module.symvers] Error 1
-make[2]: *** [/home/lucas/p/linux-dim/src/Makefile:1916: single_modules] Error 2
-make[1]: *** [/home/lucas/p/linux-dim/src/Makefile:240: __sub-make] Error 2
-make[1]: Leaving directory '/home/lucas/p/linux-dim/src/build64'
-make: *** [Makefile:240: __sub-make] Error 2
+Unverified Error/Warning (likely false positive, please contact us if interested):
 
-Alternatives that seem to work:
+arch/microblaze/boot/dts/system.dts:20.9-23.4: Warning (unit_address_vs_reg): /memory: node has a reg or ranges property, but no unit name
+arch/microblaze/boot/dts/system.dts:272.4-19: Warning (clocks_property): /amba_pl/dma@41e00000:clocks: cell 0 is not a phandle reference
+arch/microblaze/boot/dts/system.dts:284.4-19: Warning (clocks_property): /amba_pl/timer@41c00000:clocks: cell 0 is not a phandle reference
+arch/microblaze/boot/dts/system.dts:339.4-19: Warning (clocks_property): /amba_pl/i2c@40800000:clocks: cell 0 is not a phandle reference
+arch/microblaze/boot/dts/system.dts:483.25-486.6: Warning (unit_address_format): /amba_pl/flash@60000000/partition@0x00000000: unit name should not have leading "0x"
+arch/microblaze/boot/dts/system.dts:483.25-486.6: Warning (unit_address_format): /amba_pl/flash@60000000/partition@0x00000000: unit name should not have leading 0s
+arch/microblaze/boot/dts/system.dts:50.4-19: Warning (clocks_property): /cpus/cpu@0:clocks: cell 0 is not a phandle reference
+arch/microblaze/boot/dts/system.dts:560.4-19: Warning (clocks_property): /amba_pl/serial@44a00000:clocks: cell 0 is not a phandle reference
+arch/microblaze/boot/dts/system.dts:579.15-588.4: Warning (simple_bus_reg): /amba_pl/gpio-restart: missing or empty reg/ranges property
 
-1) pass the absolute path to M=:
+Error/Warning ids grouped by kconfigs:
 
-	make O=build64 W=1 M=$PWD/drivers/gpu/drm/xe/
+gcc_recent_errors
+|-- alpha-randconfig-r123-20240606
+|   `-- drivers-hwmon-cros_ec_hwmon.c:sparse:sparse:cast-to-restricted-__le16
+|-- loongarch-defconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-hubbub-dcn401-dcn401_hubbub.o:warning:objtool:unexpected-relocation-symbol-type-in-.rela.discard.reachable
+|   `-- drivers-thermal-thermal_trip.o:warning:objtool:unexpected-relocation-symbol-type-in-.rela.discard.reachable
+|-- microblaze-buildonly-randconfig-r001-20230308
+|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(simple_bus_reg):amba_pl-gpio-restart:missing-or-empty-reg-ranges-property
+|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_format):amba_pl-flash-partition:unit-name-should-not-have-leading
+|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_format):amba_pl-flash-partition:unit-name-should-not-have-leading-0s
+|   |-- arch-microblaze-boot-dts-system.dts.-.:Warning-(unit_address_vs_reg):memory:node-has-a-reg-or-ranges-property-but-no-unit-name
+|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-dma-41e00000:clocks:cell-is-not-a-phandle-reference
+|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-i2c:clocks:cell-is-not-a-phandle-reference
+|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-serial-44a00000:clocks:cell-is-not-a-phandle-reference
+|   |-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):amba_pl-timer-41c00000:clocks:cell-is-not-a-phandle-reference
+|   `-- arch-microblaze-boot-dts-system.dts.:Warning-(clocks_property):cpus-cpu:clocks:cell-is-not-a-phandle-reference
+|-- openrisc-randconfig-r121-20240606
+|   `-- drivers-clk-qcom-camcc-sm7150.c:sparse:sparse:symbol-camcc_sm7150_hws-was-not-declared.-Should-it-be-static
+|-- sh-randconfig-c004-20211223
+|   `-- kernel-trace-trace_selftest.c:warning:BYTE_NUMBER-redefined
+|-- sh-randconfig-r111-20240606
+|   |-- include-linux-container_of.h:error:struct-ftrace_ops-has-no-member-named-list
+|   |-- include-linux-list.h:error:struct-ftrace_ops-has-no-member-named-list
+|   |-- include-linux-stddef.h:error:struct-ftrace_ops-has-no-member-named-list
+|   |-- kernel-trace-fgraph.c:error:implicit-declaration-of-function-ftrace_shutdown_subops
+|   |-- kernel-trace-fgraph.c:error:implicit-declaration-of-function-ftrace_startup_subops
+|   `-- kernel-trace-fgraph.c:error:struct-ftrace_ops-has-no-member-named-subop_list
+|-- um-allyesconfig
+|   `-- kernel-bpf-verifier.c:error:pcpu_hot-undeclared-(first-use-in-this-function)
+`-- x86_64-randconfig-161-20240606
+    |-- drivers-gpu-drm-amd-amdgpu-amdgpu_vm.c-amdgpu_vm_bo_update()-error:we-previously-assumed-bo-could-be-null-(see-line-)
+    |-- drivers-gpu-drm-i915-display-intel_dpt.c-intel_dpt_pin_to_ggtt()-error:uninitialized-symbol-vma-.
+    |-- drivers-gpu-drm-i915-display-intel_fb_pin.c-intel_fb_pin_to_dpt()-error:uninitialized-symbol-vma-.
+    `-- drivers-gpu-drm-i915-display-intel_fb_pin.c-intel_fb_pin_to_dpt()-error:vma-dereferencing-possible-ERR_PTR()
+clang_recent_errors
+|-- arm-randconfig-r133-20240606
+|   |-- drivers-mtd-nand-raw-mxc_nand.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-buf-got-void-noderef-__iomem
+|   `-- drivers-mtd-nand-raw-mxc_nand.c:sparse:sparse:incorrect-type-in-initializer-(different-address-spaces)-expected-unsigned-short-noderef-usertype-__iomem-t-got-void-buf
+|-- arm64-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-irq-dce110-irq_service_dce110.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_cursor.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-phy-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_dpll_mgr.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-intel_dpll_id-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_hotplug.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_pipe_crc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_tc.c:error:arithmetic-between-different-enumeration-types-(-enum-intel_display_power_domain-and-enum-tc_port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_vdsc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-skl_universal_plane.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-skl_watermark.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   `-- drivers-gpu-drm-renesas-rcar-du-rcar_cmm.c:error:unused-function-rcar_cmm_read-Werror-Wunused-function
+|-- arm64-randconfig-r113-20240606
+|   |-- kernel-trace-fgraph.c:sparse:sparse:symbol-fgraph_do_direct-was-not-declared.-Should-it-be-static
+|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-filter_hash
+|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
+|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
+|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash1-got-struct-ftrace_hash-noderef-__rcu-filter_hash
+|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-filter_hash
+|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
+|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-orig_hash-got-struct-ftrace_hash-noderef-__rcu
+|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-filter_hash
+|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
+|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash
+|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-assigned-filter_hash
+|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-save_filter_hash
+|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash
+|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-assigned-notrace_hash
+|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-save_notrace_hash
+|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_filter_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
+|   `-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
+|-- i386-buildonly-randconfig-001-20240606
+|   `-- drivers-gpu-drm-drm_mm.c:error:function-drm_mm_node_scanned_block-is-not-needed-and-will-not-be-emitted-Werror-Wunneeded-internal-declaration
+|-- i386-buildonly-randconfig-005-20240606
+|   `-- drivers-gpu-drm-drm_mm.c:error:function-drm_mm_node_scanned_block-is-not-needed-and-will-not-be-emitted-Werror-Wunneeded-internal-declaration
+|-- i386-randconfig-006-20240606
+|   `-- drivers-gpu-drm-drm_mm.c:error:function-drm_mm_node_scanned_block-is-not-needed-and-will-not-be-emitted-Werror-Wunneeded-internal-declaration
+|-- i386-randconfig-062-20240606
+|   `-- drivers-hwmon-cros_ec_hwmon.c:sparse:sparse:cast-to-restricted-__le16
+|-- riscv-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-irq-dce110-irq_service_dce110.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_cursor.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-phy-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_dpll_mgr.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-intel_dpll_id-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_hotplug.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_pipe_crc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_tc.c:error:arithmetic-between-different-enumeration-types-(-enum-intel_display_power_domain-and-enum-tc_port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_vdsc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-skl_universal_plane.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   `-- drivers-gpu-drm-i915-display-skl_watermark.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|-- riscv-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-irq-dce110-irq_service_dce110.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|-- s390-allmodconfig
+|   |-- drivers-gpu-drm-i915-display-intel_cursor.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-phy-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_dpll_mgr.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-intel_dpll_id-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_hotplug.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_pipe_crc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_tc.c:error:arithmetic-between-different-enumeration-types-(-enum-intel_display_power_domain-and-enum-tc_port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_vdsc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-skl_universal_plane.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   `-- drivers-gpu-drm-i915-display-skl_watermark.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|-- x86_64-randconfig-014-20240606
+|   `-- drivers-gpu-drm-drm_mm.c:error:function-drm_mm_node_scanned_block-is-not-needed-and-will-not-be-emitted-Werror-Wunneeded-internal-declaration
+|-- x86_64-randconfig-076-20240606
+|   `-- drivers-gpu-drm-drm_mm.c:error:function-drm_mm_node_scanned_block-is-not-needed-and-will-not-be-emitted-Werror-Wunneeded-internal-declaration
+`-- x86_64-randconfig-r112-20240606
+    `-- drivers-hwmon-cros_ec_hwmon.c:sparse:sparse:cast-to-restricted-__le16
 
-2) just pass the directory:
+elapsed time: 742m
 
-	make O=build64 W=1 drivers/gpu/drm/xe/
-	
-I think we avoided (2) due to it not working if we were building commit
-by commit and something touched things outside xe. But for this current
-use case it seems it's the more correct approach since Makefile says:
+configs tested: 179
+configs skipped: 3
 
-	# Use make M=dir or set the environment variable KBUILD_EXTMOD to specify the 
-	# directory of external module to build. Setting M= takes precedence.         
+tested configs:
+alpha                             allnoconfig   gcc  
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+arc                              allmodconfig   gcc  
+arc                               allnoconfig   gcc  
+arc                              allyesconfig   gcc  
+arc                                 defconfig   gcc  
+arc                   randconfig-001-20240606   gcc  
+arc                   randconfig-002-20240606   gcc  
+arm                              allmodconfig   gcc  
+arm                               allnoconfig   clang
+arm                              allyesconfig   gcc  
+arm                     davinci_all_defconfig   clang
+arm                                 defconfig   clang
+arm                           omap1_defconfig   gcc  
+arm                   randconfig-001-20240606   clang
+arm                   randconfig-002-20240606   clang
+arm                   randconfig-003-20240606   clang
+arm                   randconfig-004-20240606   clang
+arm                           tegra_defconfig   gcc  
+arm64                            allmodconfig   clang
+arm64                             allnoconfig   gcc  
+arm64                               defconfig   gcc  
+arm64                 randconfig-001-20240606   clang
+arm64                 randconfig-002-20240606   gcc  
+arm64                 randconfig-003-20240606   clang
+arm64                 randconfig-004-20240606   clang
+csky                             alldefconfig   gcc  
+csky                             allmodconfig   gcc  
+csky                              allnoconfig   gcc  
+csky                             allyesconfig   gcc  
+csky                                defconfig   gcc  
+csky                  randconfig-001-20240606   gcc  
+csky                  randconfig-002-20240606   gcc  
+hexagon                          allmodconfig   clang
+hexagon                           allnoconfig   clang
+hexagon                          allyesconfig   clang
+hexagon                             defconfig   clang
+hexagon               randconfig-001-20240606   clang
+hexagon               randconfig-002-20240606   clang
+i386                             allmodconfig   gcc  
+i386                              allnoconfig   gcc  
+i386                             allyesconfig   gcc  
+i386         buildonly-randconfig-001-20240606   clang
+i386         buildonly-randconfig-002-20240606   clang
+i386         buildonly-randconfig-003-20240606   clang
+i386         buildonly-randconfig-004-20240606   gcc  
+i386         buildonly-randconfig-005-20240606   clang
+i386         buildonly-randconfig-006-20240606   gcc  
+i386                                defconfig   clang
+i386                  randconfig-001-20240606   clang
+i386                  randconfig-002-20240606   clang
+i386                  randconfig-003-20240606   clang
+i386                  randconfig-004-20240606   clang
+i386                  randconfig-005-20240606   clang
+i386                  randconfig-006-20240606   clang
+i386                  randconfig-011-20240606   clang
+i386                  randconfig-012-20240606   gcc  
+i386                  randconfig-013-20240606   gcc  
+i386                  randconfig-014-20240606   gcc  
+i386                  randconfig-015-20240606   gcc  
+i386                  randconfig-016-20240606   gcc  
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                           defconfig   gcc  
+loongarch             randconfig-001-20240606   gcc  
+loongarch             randconfig-002-20240606   gcc  
+m68k                             allmodconfig   gcc  
+m68k                              allnoconfig   gcc  
+m68k                             allyesconfig   gcc  
+m68k                                defconfig   gcc  
+m68k                          hp300_defconfig   gcc  
+microblaze                       allmodconfig   gcc  
+microblaze                        allnoconfig   gcc  
+microblaze                       allyesconfig   gcc  
+microblaze                          defconfig   gcc  
+mips                              allnoconfig   gcc  
+mips                             allyesconfig   gcc  
+mips                      maltasmvp_defconfig   gcc  
+nios2                            allmodconfig   gcc  
+nios2                             allnoconfig   gcc  
+nios2                            allyesconfig   gcc  
+nios2                               defconfig   gcc  
+nios2                 randconfig-001-20240606   gcc  
+nios2                 randconfig-002-20240606   gcc  
+openrisc                          allnoconfig   gcc  
+openrisc                         allyesconfig   gcc  
+openrisc                            defconfig   gcc  
+parisc                           allmodconfig   gcc  
+parisc                            allnoconfig   gcc  
+parisc                           allyesconfig   gcc  
+parisc                              defconfig   gcc  
+parisc                randconfig-001-20240606   gcc  
+parisc                randconfig-002-20240606   gcc  
+parisc64                            defconfig   gcc  
+powerpc                          allmodconfig   gcc  
+powerpc                           allnoconfig   gcc  
+powerpc                          allyesconfig   clang
+powerpc                    gamecube_defconfig   clang
+powerpc                       holly_defconfig   clang
+powerpc                        icon_defconfig   gcc  
+powerpc                 linkstation_defconfig   clang
+powerpc                      obs600_defconfig   clang
+powerpc                      ppc44x_defconfig   clang
+powerpc               randconfig-001-20240606   gcc  
+powerpc               randconfig-002-20240606   gcc  
+powerpc               randconfig-003-20240606   gcc  
+powerpc64             randconfig-001-20240606   clang
+powerpc64             randconfig-002-20240606   clang
+powerpc64             randconfig-003-20240606   gcc  
+riscv                            allmodconfig   clang
+riscv                             allnoconfig   gcc  
+riscv                            allyesconfig   clang
+riscv                               defconfig   clang
+riscv                 randconfig-001-20240606   gcc  
+riscv                 randconfig-002-20240606   clang
+s390                             allmodconfig   clang
+s390                              allnoconfig   clang
+s390                             allyesconfig   gcc  
+s390                                defconfig   clang
+s390                  randconfig-001-20240606   gcc  
+s390                  randconfig-002-20240606   gcc  
+sh                               allmodconfig   gcc  
+sh                                allnoconfig   gcc  
+sh                               allyesconfig   gcc  
+sh                                  defconfig   gcc  
+sh                          r7785rp_defconfig   gcc  
+sh                    randconfig-001-20240606   gcc  
+sh                    randconfig-002-20240606   gcc  
+sh                      rts7751r2d1_defconfig   gcc  
+sh                  sh7785lcr_32bit_defconfig   gcc  
+sparc                            allmodconfig   gcc  
+sparc                             allnoconfig   gcc  
+sparc                               defconfig   gcc  
+sparc64                          allmodconfig   gcc  
+sparc64                          allyesconfig   gcc  
+sparc64                             defconfig   gcc  
+sparc64               randconfig-001-20240606   gcc  
+sparc64               randconfig-002-20240606   gcc  
+um                               allmodconfig   clang
+um                                allnoconfig   clang
+um                               allyesconfig   gcc  
+um                                  defconfig   clang
+um                             i386_defconfig   gcc  
+um                    randconfig-001-20240606   clang
+um                    randconfig-002-20240606   gcc  
+um                           x86_64_defconfig   clang
+x86_64                            allnoconfig   clang
+x86_64                           allyesconfig   clang
+x86_64       buildonly-randconfig-001-20240606   gcc  
+x86_64       buildonly-randconfig-002-20240606   clang
+x86_64       buildonly-randconfig-003-20240606   gcc  
+x86_64       buildonly-randconfig-004-20240606   gcc  
+x86_64       buildonly-randconfig-005-20240606   gcc  
+x86_64       buildonly-randconfig-006-20240606   clang
+x86_64                              defconfig   gcc  
+x86_64                randconfig-001-20240606   gcc  
+x86_64                randconfig-002-20240606   gcc  
+x86_64                randconfig-003-20240606   gcc  
+x86_64                randconfig-004-20240606   clang
+x86_64                randconfig-005-20240606   gcc  
+x86_64                randconfig-006-20240606   gcc  
+x86_64                randconfig-011-20240606   clang
+x86_64                randconfig-012-20240606   gcc  
+x86_64                randconfig-013-20240606   clang
+x86_64                randconfig-014-20240606   clang
+x86_64                randconfig-015-20240606   clang
+x86_64                randconfig-016-20240606   clang
+x86_64                randconfig-071-20240606   clang
+x86_64                randconfig-072-20240606   gcc  
+x86_64                randconfig-073-20240606   clang
+x86_64                randconfig-074-20240606   clang
+x86_64                randconfig-075-20240606   gcc  
+x86_64                randconfig-076-20240606   clang
+x86_64                          rhel-8.3-rust   clang
+xtensa                            allnoconfig   gcc  
+xtensa                  nommu_kc705_defconfig   gcc  
+xtensa                randconfig-001-20240606   gcc  
+xtensa                randconfig-002-20240606   gcc  
 
-Lucas De Marchi
-
->make[3]: *** No rule to make target 'drivers/gpu/drm/xe/Makefile'.  Stop.
->make[2]: *** [/workspace/kernel/Makefile:1934: drivers/gpu/drm/xe] Error 2
->make[1]: Leaving directory '/workspace/kernel/build64-default'
->make[1]: *** [/workspace/kernel/Makefile:240: __sub-make] Error 2
->make: *** [Makefile:240: __sub-make] Error 2
->run-parts: /workspace/ci/hooks/10-build-W1 exited with return code 2
->
->
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
