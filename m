@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2913CC27C77
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 22:02:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7587AC27C75
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 22:02:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D522610E0E8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F49510E0DB;
 	Fri,  7 Jun 2024 22:02:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GovuuJ1+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DLsac4Mt";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44A7A10E0AD
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 234E610E0BF
  for <intel-xe@lists.freedesktop.org>; Fri,  7 Jun 2024 22:02:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717797764; x=1749333764;
+ t=1717797763; x=1749333763;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=acnCYH3i2T2FKiuQ3cllcOgHI13TIHgssFKuFUgTrzw=;
- b=GovuuJ1+AZzBlxl5edEcYPI7puTz0sCojiY4MchbNMxXw7CSUuYtRloq
- vUFUWacTN8rap1RUo8iw/ZrsHoz1dKkmFpaKui+eFHYR43o2tXM2h4DPB
- Vro48pnSub8uadQIqnCIFwDaMMGmWWSsvRqP65NKCbyWjGxaHVvjm3cNL
- 6usFpphYDBMEYTSfYb6fo86MaMb8mcvC6/XPeTH1sCqe88aBd2vT/Rpqv
- mqZNhMcsMJze0AvrmDKa337VWwcCbmzXzudqf1lxu4qQYthUKSYmc1OWl
- uWZvn3DxEwUpPKpXxSjnl7kkzGI2eHNqZuvnK3k/qHjnRN8GNMrB51lva Q==;
-X-CSE-ConnectionGUID: rY/5AiQ2R4aFBf4bwc25dQ==
-X-CSE-MsgGUID: XhMTrniPTVOf3PoWbECtOA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="14657039"
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="14657039"
+ bh=+9tdG9coiP3IKvDKHsHRxr/u+rnKLpEDiVZada8Hoic=;
+ b=DLsac4MtNJOiJ3irCXcVonU9TuZ2Hb93dLPnfl+R48wmc9Ln72h+PkvN
+ 1GtXlq1nMnjh4O2YH41K5uSTTYlXyRqoojNe3xVKiPg529JbqudiIFH42
+ jR0xFXVF6T2HuAWZiYSHgfye+6UZfaUJhe+t92Okr8V4vhFxGY2O7ztQy
+ eRd1rNX/cKbrdaTm5o83TtnooFDmVpcSNsW+VyJc4Fclzw8K+DQvacoAF
+ bC2ARl7SSLvvbutSAzIkeenQ+iRliSELmQdZtiKLOLiYuAMcejZdQNI9N
+ LbfBG4i4fTamYL57P63AAdwFHTjLlG1xtS3nAdmTMrM7Hmd9Kmrm4LrTL A==;
+X-CSE-ConnectionGUID: LGJJMGRsQrCdfBoI6/dqVA==
+X-CSE-MsgGUID: nT2eCddySQ61ajWNYi4XxA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="14657036"
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="14657036"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2024 15:02:43 -0700
-X-CSE-ConnectionGUID: zUB+FoCNTRC+YShFZEYmEQ==
-X-CSE-MsgGUID: BpRWaKxqQy+7Hj9SwvsRkA==
+ 07 Jun 2024 15:02:42 -0700
+X-CSE-ConnectionGUID: +Hbtdj+mQ92ZpO6i5HxNbA==
+X-CSE-MsgGUID: Uu7VXUhwQHWUgiuumudVtA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="38307945"
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="38307942"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2024 15:02:42 -0700
+ 07 Jun 2024 15:02:41 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 5/6] drm/xe: Add xe_gt_clock_interval_to_ms helper
-Date: Fri,  7 Jun 2024 15:03:13 -0700
-Message-Id: <20240607220314.2318154-6-matthew.brost@intel.com>
+Subject: [PATCH v2 2/6] drm/xe: Add MI_COPY_MEM_MEM GPU instruction definitions
+Date: Fri,  7 Jun 2024 15:03:10 -0700
+Message-Id: <20240607220314.2318154-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240607220314.2318154-1-matthew.brost@intel.com>
 References: <20240607220314.2318154-1-matthew.brost@intel.com>
@@ -65,50 +65,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add helper to convert GT clock ticks to msec. Useful for determining if
-timeouts occur by examing GT clock ticks.
+MI_COPY_MEM_MEM GPU instructions are used to copy ctx timestamp from a
+LRC registers to another location at the beginning of every jobs
+execution. Add MI_COPY_MEM_MEM GPU instruction definitions.
+
+v2:
+ - Include MI_COPY_MEM_MEM based on instruction order (Michal)
+ - Fix tabs/spaces issue (Michal)
+ - Use macro for DW definition (Michal)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_clock.c | 18 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_clock.h |  1 +
- 2 files changed, 19 insertions(+)
+ drivers/gpu/drm/xe/instructions/xe_mi_commands.h | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
-index 9ff2061133df..a9392a743fd5 100644
---- a/drivers/gpu/drm/xe/xe_gt_clock.c
-+++ b/drivers/gpu/drm/xe/xe_gt_clock.c
-@@ -79,3 +79,21 @@ int xe_gt_clock_init(struct xe_gt *gt)
- 	gt->info.reference_clock = freq;
- 	return 0;
- }
-+
-+static u64 div_u64_roundup(u64 nom, u32 den)
-+{
-+	return div_u64(nom + den - 1, den);
-+}
-+
-+/**
-+ * xe_gt_clock_interval_to_ms - Convert sampled GT clock ticks to msec
-+ *
-+ * @gt: the &xe_gt
-+ * @count: count of GT clock ticks
-+ *
-+ * Returns: time in msec
-+ */
-+u64 xe_gt_clock_interval_to_ms(struct xe_gt *gt, u64 count)
-+{
-+	return div_u64_roundup(count * MSEC_PER_SEC, gt->info.reference_clock);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt_clock.h b/drivers/gpu/drm/xe/xe_gt_clock.h
-index 44fa0371b973..3adeb7baaca4 100644
---- a/drivers/gpu/drm/xe/xe_gt_clock.h
-+++ b/drivers/gpu/drm/xe/xe_gt_clock.h
-@@ -11,5 +11,6 @@
- struct xe_gt;
+diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+index c74ceb550dce..b7bf99dd4848 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+@@ -59,6 +59,10 @@
+ #define MI_LOAD_REGISTER_MEM		(__MI_INSTR(0x29) | XE_INSTR_NUM_DW(4))
+ #define   MI_LRM_USE_GGTT		REG_BIT(22)
  
- int xe_gt_clock_init(struct xe_gt *gt);
-+u64 xe_gt_clock_interval_to_ms(struct xe_gt *gt, u64 count);
++#define MI_COPY_MEM_MEM			(__MI_INSTR(0x2e) | XE_INSTR_NUM_DW(5))
++#define   MI_COPY_MEM_MEM_SRC_GGTT	REG_BIT(22)
++#define   MI_COPY_MEM_MEM_DST_GGTT	REG_BIT(21)
++
+ #define MI_BATCH_BUFFER_START		__MI_INSTR(0x31)
  
  #endif
 -- 
