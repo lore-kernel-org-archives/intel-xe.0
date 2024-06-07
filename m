@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ECF0C41513
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55CFFC27C75
 	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 20:43:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3FE010ED11;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA2A510ED04;
 	Fri,  7 Jun 2024 20:43:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QpBFXgx7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IsQYsT/p";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FF0C10ED01
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96B0810ED04
  for <intel-xe@lists.freedesktop.org>; Fri,  7 Jun 2024 20:43:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717793006; x=1749329006;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=CYqFIluzhP+wIHlFpwKGd9m/HdoQfwV39vag1oXWbmw=;
- b=QpBFXgx7cbFqe98F6QyiXmLN+NuIbxdBNWYV+dpudeWSr5OE7QzwmLSy
- omPW+vnbTv8VTcPhhz2za0pV+3U2++lo0Wlopk6+vfUPNJEs4mIDl8Hwg
- Wr5PBIGP78xk2vCdf/jmWY17Jm43u4L5DevR59Jj0MTbpk6X+CMRq+SXg
- 3maGcosIPYG0qcFUERKQDQpKIW8K3T0pfHRqmHCWHU17uJBQYCsBIfDnP
- uu+GNlU1ITdyOG2YcCu+96EvB70cfFTmpBeq6fJs47yk5MW71+DY9GAOb
- c6pst+tFae7FVlI86uWCKN4lSzM8RPnZHeRKW7D1NMgyeV4B949LRcid6 Q==;
-X-CSE-ConnectionGUID: Pi6zE8rWRO+FG4jrmNyBjg==
-X-CSE-MsgGUID: UsaoGhhwT6CieElCZvp+nA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="14651039"
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="14651039"
+ t=1717793007; x=1749329007;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=Fysz6KmitZqRvQzoskLcgjKXd9MNwX9gTQnEGGNabEE=;
+ b=IsQYsT/peJ/fTp1DU1K++vYYT8PSvgQLTmkJ75hMLreNooD5MWq9BoOK
+ d8owCuix+Fv76DgCx8ux12NePqYprUPS1qEiH9sr7sgrYRzmbDcrNfA3Y
+ 6yYEgHGcCBIz2fo0gQPTqTtm2WeYNU2IUHQeileVQWH03ww9ynCa04fkg
+ VfCPRFHRve5vtSxlFqJrBXiHM51SoBfnnyqcMKRQlDbTx1wI6aM4UftOg
+ wulQRwoGVL5bN1q8YR1gjVpojgz0WwNaOTIBNzpU/Huxke8jRy+A3gTbE
+ MZMbmcrNB91bogEtlzP7krkOa3ovVMIS/IHt5HGI/cXXjsscGLLXOsDBP w==;
+X-CSE-ConnectionGUID: 8iWFRFI6RCKjJqhriN+mpw==
+X-CSE-MsgGUID: tKUNj1MeSkaNCCx6b2ETtg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="14651041"
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="14651041"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Jun 2024 13:43:26 -0700
-X-CSE-ConnectionGUID: HuuQMXjHRL2/mNcWwE83Aw==
-X-CSE-MsgGUID: d/a+c4ZZSy23SEnBtN4z0g==
+X-CSE-ConnectionGUID: mYa65YFBQKiU892hpt55gw==
+X-CSE-MsgGUID: l8WrlJ7ZQ+eBMTQa51+2aw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="43368433"
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="43368435"
 Received: from orsosgc001.jf.intel.com ([10.165.21.138])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2024 13:43:25 -0700
+ 07 Jun 2024 13:43:26 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v16 00/17] Add OA functionality to Xe
-Date: Fri,  7 Jun 2024 13:43:05 -0700
-Message-ID: <20240607204322.1966831-1-ashutosh.dixit@intel.com>
+Subject: [PATCH 02/17] drm/xe/perf/uapi: Add perf_stream_paranoid sysctl
+Date: Fri,  7 Jun 2024 13:43:07 -0700
+Message-ID: <20240607204322.1966831-3-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20240607204322.1966831-1-ashutosh.dixit@intel.com>
+References: <20240607204322.1966831-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -64,95 +66,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Please see cover letter for v7 here:
-https://patchwork.freedesktop.org/series/121084/#rev7
+Normally only superuser/root can access perf counter data. However,
+superuser can set perf_stream_paranoid sysctl to 0 to allow non-privileged
+users to also access perf data. perf_stream_paranoid is introduced at the
+perf layer to allow different perf stream types to share this access
+mechanism.
 
-For changes in later versions see changelog below.
+Acked-by: José Roberto de Souza <jose.souza@intel.com>
+Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/xe/xe_module.c |  5 +++++
+ drivers/gpu/drm/xe/xe_perf.c   | 28 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_perf.h   |  4 ++++
+ 3 files changed, 37 insertions(+)
 
-This series is also available at:
-        https://gitlab.freedesktop.org/adixit/kernel/-/tree/xe-oa
-
-The series has been tested against this IGT series:
-        https://gitlab.freedesktop.org/adixit/igt-gpu-tools/-/tree/xe-oa
-	or,
-	https://patchwork.freedesktop.org/series/130033/
-
-Opensource consumers using uapi in this series:
-
-gpuvis:
-	https://github.com/mikesart/gpuvis/pull/86 (merged)
-
-mesa:
-	https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29312
-
-Test-with: 20240607200847.1964629-1-ashutosh.dixit@intel.com
-
-v2: Fix build
-v3: Rebase, due to s/xe_engine/xe_exec_queue/
-v4: Re-run for testing
-v5: Address review comments, new patches 11 through 17
-v6: New patches 18 through 21
-v7: Patches are completely redone and don't start with i915 version of the uapi
-v8: See https://patchwork.freedesktop.org/patch/575214/?series=128993&rev=1
-v9: See https://patchwork.freedesktop.org/patch/577441/?series=128993&rev=2
-v10: See https://patchwork.freedesktop.org/patch/577943/?series=128993&rev=3
-v11: See https://patchwork.freedesktop.org/patch/581239/?series=130705&rev=1
-v12: Add last two new patches to enable Xe2+ overrun mode
-v13: Update last two patches after code review completion
-v14: https://patchwork.freedesktop.org/patch/595447/?series=134028&rev=1
-v15: https://patchwork.freedesktop.org/patch/595549/?series=134056&rev=1
-v16: https://patchwork.freedesktop.org/patch/597768/?series=134634&rev=1
-
-Ashutosh Dixit (17):
-  drm/xe/perf/uapi: "Perf" layer to support multiple perf counter stream
-    types
-  drm/xe/perf/uapi: Add perf_stream_paranoid sysctl
-  drm/xe/oa/uapi: Add OA data formats
-  drm/xe/oa/uapi: Initialize OA units
-  drm/xe/oa/uapi: Add/remove OA config perf ops
-  drm/xe/oa/uapi: Define and parse OA stream properties
-  drm/xe/oa: OA stream initialization (OAG)
-  drm/xe/oa/uapi: Expose OA stream fd
-  drm/xe/oa/uapi: Read file_operation
-  drm/xe/oa: Add OAR support
-  drm/xe/oa: Add OAC support
-  drm/xe/oa/uapi: Query OA unit properties
-  drm/xe/oa/uapi: OA buffer mmap
-  drm/xe/oa: Add MMIO trigger support
-  drm/xe/oa: Override GuC RC with OA on PVC
-  drm/xe/oa: Changes to OA_TAKEN
-  drm/xe/oa: Enable Xe2+ overrun mode
-
- drivers/gpu/drm/xe/Makefile                   |    2 +
- .../gpu/drm/xe/instructions/xe_mi_commands.h  |    3 +
- drivers/gpu/drm/xe/regs/xe_engine_regs.h      |    2 +
- drivers/gpu/drm/xe/regs/xe_gt_regs.h          |    3 +
- drivers/gpu/drm/xe/regs/xe_oa_regs.h          |  103 +
- drivers/gpu/drm/xe/xe_device.c                |   19 +-
- drivers/gpu/drm/xe/xe_device_types.h          |    4 +
- drivers/gpu/drm/xe/xe_gt_types.h              |    4 +
- drivers/gpu/drm/xe/xe_guc_pc.c                |   57 +
- drivers/gpu/drm/xe/xe_guc_pc.h                |    3 +
- drivers/gpu/drm/xe/xe_hw_engine_types.h       |    2 +
- drivers/gpu/drm/xe/xe_lrc.c                   |   11 +-
- drivers/gpu/drm/xe/xe_lrc.h                   |    1 +
- drivers/gpu/drm/xe/xe_module.c                |    6 +
- drivers/gpu/drm/xe/xe_oa.c                    | 2370 +++++++++++++++++
- drivers/gpu/drm/xe/xe_oa.h                    |   27 +
- drivers/gpu/drm/xe/xe_oa_types.h              |  232 ++
- drivers/gpu/drm/xe/xe_perf.c                  |   67 +
- drivers/gpu/drm/xe/xe_perf.h                  |   20 +
- drivers/gpu/drm/xe/xe_query.c                 |   77 +
- drivers/gpu/drm/xe/xe_reg_whitelist.c         |   24 +-
- include/uapi/drm/xe_drm.h                     |  291 ++
- 22 files changed, 3321 insertions(+), 7 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_oa_regs.h
- create mode 100644 drivers/gpu/drm/xe/xe_oa.c
- create mode 100644 drivers/gpu/drm/xe/xe_oa.h
- create mode 100644 drivers/gpu/drm/xe/xe_oa_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_perf.c
- create mode 100644 drivers/gpu/drm/xe/xe_perf.h
-
+diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+index 3edeb30d5ccb..893858a2eea0 100644
+--- a/drivers/gpu/drm/xe/xe_module.c
++++ b/drivers/gpu/drm/xe/xe_module.c
+@@ -11,6 +11,7 @@
+ #include "xe_drv.h"
+ #include "xe_hw_fence.h"
+ #include "xe_pci.h"
++#include "xe_perf.h"
+ #include "xe_sched_job.h"
+ 
+ struct xe_modparam xe_modparam = {
+@@ -78,6 +79,10 @@ static const struct init_funcs init_funcs[] = {
+ 		.init = xe_register_pci_driver,
+ 		.exit = xe_unregister_pci_driver,
+ 	},
++	{
++		.init = xe_perf_sysctl_register,
++		.exit = xe_perf_sysctl_unregister,
++	},
+ };
+ 
+ static int __init xe_init(void)
+diff --git a/drivers/gpu/drm/xe/xe_perf.c b/drivers/gpu/drm/xe/xe_perf.c
+index a130076b59aa..37538e98dcc0 100644
+--- a/drivers/gpu/drm/xe/xe_perf.c
++++ b/drivers/gpu/drm/xe/xe_perf.c
+@@ -4,9 +4,13 @@
+  */
+ 
+ #include <linux/errno.h>
++#include <linux/sysctl.h>
+ 
+ #include "xe_perf.h"
+ 
++u32 xe_perf_stream_paranoid = true;
++static struct ctl_table_header *sysctl_header;
++
+ int xe_perf_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ {
+ 	struct drm_xe_perf_param *arg = data;
+@@ -19,3 +23,27 @@ int xe_perf_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		return -EINVAL;
+ 	}
+ }
++
++static struct ctl_table perf_ctl_table[] = {
++	{
++	 .procname = "perf_stream_paranoid",
++	 .data = &xe_perf_stream_paranoid,
++	 .maxlen = sizeof(xe_perf_stream_paranoid),
++	 .mode = 0644,
++	 .proc_handler = proc_dointvec_minmax,
++	 .extra1 = SYSCTL_ZERO,
++	 .extra2 = SYSCTL_ONE,
++	 },
++	{}
++};
++
++int xe_perf_sysctl_register(void)
++{
++	sysctl_header = register_sysctl("dev/xe", perf_ctl_table);
++	return 0;
++}
++
++void xe_perf_sysctl_unregister(void)
++{
++	unregister_sysctl_table(sysctl_header);
++}
+diff --git a/drivers/gpu/drm/xe/xe_perf.h b/drivers/gpu/drm/xe/xe_perf.h
+index 254cc7cf49fe..1ff0a07ebab3 100644
+--- a/drivers/gpu/drm/xe/xe_perf.h
++++ b/drivers/gpu/drm/xe/xe_perf.h
+@@ -11,6 +11,10 @@
+ struct drm_device;
+ struct drm_file;
+ 
++extern u32 xe_perf_stream_paranoid;
++
+ int xe_perf_ioctl(struct drm_device *dev, void *data, struct drm_file *file);
++int xe_perf_sysctl_register(void);
++void xe_perf_sysctl_unregister(void);
+ 
+ #endif
 -- 
 2.41.0
 
