@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07219C27C65
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CD6FC27C77
 	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 20:43:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE20310ED1B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0001910ED1C;
 	Fri,  7 Jun 2024 20:43:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sc6rDGkz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B9n1Aor8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5853110ED12
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5597510ED11
  for <intel-xe@lists.freedesktop.org>; Fri,  7 Jun 2024 20:43:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1717793007; x=1749329007;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=fWBxIbmuGfvP1C/ewrNiAecOoh8WyqCI5JmMyATt6vI=;
- b=Sc6rDGkz8sn8RzRu+4zIaKqW75XnvTNh6msOIce0bTbab46rGwCvXcw3
- QXJqi7Mlwqmv+uLZOHwAJQqmFbfNd63g2qlC1y3LRbU0AOEpcldOqkCSx
- CuRpFC8d9Gte4ohESOue43pBiRJ/lUNdGCIS5hvTVaAnFb1klFJe+TLpq
- mak7IbDpRhdVXy4/AO8JIfVD3zxFD7Juevzy9UQyOjqtV+Z+Oot40CTo4
- iWr1ZBJsoFkztaQCxMRhuWgJdI45DpfdBZzgT5boxz3/egfTh94HyDUhu
- 32+7q/AgFSWYx+G1gOPB9blYYqo9qzBOdpGYvgu/Fl4LtbYIOEBKBO6Tx g==;
-X-CSE-ConnectionGUID: Ibg4c6bSSUKQbbgEia8sLA==
-X-CSE-MsgGUID: NKWfe2bhTXGDgBWGH3sXDA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="14651056"
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="14651056"
+ bh=PKhn+EoJ90WcCtvlX/Z4OJliCyM4AX4frex4UkAPsno=;
+ b=B9n1Aor8CEt4Fw5mTGXAa/zvxmixNg8U7vcCMBefuIZnFT9BsU1k8e+1
+ WWloEHuGlMtVlPW2o5zWYeo6tBKQXc7oRYPZZUvHLSpwnl+98C1y+WUSk
+ c16pLyGMR5Axo3JuXs3HV39rqzO1vljRcIH9d2sP3pFadLrGw6YEDSJLo
+ 8U8BvfuKci5DLT1ATm1yPh3W5XQUPTYvGkk4j0rhfLN/+4cuprYTQ5+c2
+ LySpNgxSSTBVEwWTYYadqPv9CN1LpFEsu5oVia79K5GblIxFveMaEhAub
+ LYfw7+cd3IRUNPNpguFHVENOVxTxf5MaBluPIuK5lTAkNtYXbmaMavOv+ g==;
+X-CSE-ConnectionGUID: i5PTByxnS2+19mVg6tIaqQ==
+X-CSE-MsgGUID: 5ozV6tLJQWqdjYmjHpkqXQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="14651055"
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="14651055"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Jun 2024 13:43:26 -0700
-X-CSE-ConnectionGUID: 7WX2s5N0Su6qyI3a+oICYQ==
-X-CSE-MsgGUID: NN0XbDPoQdeDzSkHZpHBNQ==
+X-CSE-ConnectionGUID: KAC6+KU2Rq+7eYN41v6Oaw==
+X-CSE-MsgGUID: iIW7yFlERi68cA8BT5EMtQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="43368453"
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="43368452"
 Received: from orsosgc001.jf.intel.com ([10.165.21.138])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Jun 2024 13:43:26 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 14/17] drm/xe/oa: Add MMIO trigger support
-Date: Fri,  7 Jun 2024 13:43:19 -0700
-Message-ID: <20240607204322.1966831-15-ashutosh.dixit@intel.com>
+Subject: [PATCH 13/17] drm/xe/oa/uapi: OA buffer mmap
+Date: Fri,  7 Jun 2024 13:43:18 -0700
+Message-ID: <20240607204322.1966831-14-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20240607204322.1966831-1-ashutosh.dixit@intel.com>
 References: <20240607204322.1966831-1-ashutosh.dixit@intel.com>
@@ -65,143 +65,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add MMIO trigger support and allow-list required registers for MMIO trigger
-use case. Registers are whitelisted for the lifetime of the driver but MMIO
-trigger is enabled only for the duration of the stream.
+Allow the OA buffer to be mmap'd to userspace. This is needed for the MMIO
+trigger use case. Even otherwise, with whitelisted OA head/tail ptr
+registers, userspace can receive/interpret OA data from the mmap'd buffer
+without issuing read()'s on the OA stream fd.
 
-Bspec: 45925, 60340, 61228
+v2: Remove unmap_mapping_range from xe_oa_release (Thomas H)
+    Use vm_flags_mod (Umesh)
 
+Suggested-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_oa_regs.h  |  5 +++++
- drivers/gpu/drm/xe/xe_oa.c            | 24 +++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_reg_whitelist.c | 24 +++++++++++++++++++++++-
- 3 files changed, 51 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_oa.c | 46 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 46 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_oa_regs.h b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
-index 2f4293a974d0..d9fcb08f500d 100644
---- a/drivers/gpu/drm/xe/regs/xe_oa_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
-@@ -63,6 +63,10 @@
- #define  OA_OACONTROL_COUNTER_SIZE_MASK		REG_GENMASK(8, 8)
- 
- #define OAG_OA_DEBUG XE_REG(0xdaf8, XE_REG_OPTION_MASKED)
-+#define  OAG_OA_DEBUG_DISABLE_MMIO_TRG			REG_BIT(14)
-+#define  OAG_OA_DEBUG_START_TRIGGER_SCOPE_CONTROL	REG_BIT(13)
-+#define  OAG_OA_DEBUG_DISABLE_START_TRG_2_COUNT_QUAL	REG_BIT(8)
-+#define  OAG_OA_DEBUG_DISABLE_START_TRG_1_COUNT_QUAL	REG_BIT(7)
- #define  OAG_OA_DEBUG_INCLUDE_CLK_RATIO			REG_BIT(6)
- #define  OAG_OA_DEBUG_DISABLE_CLK_RATIO_REPORTS		REG_BIT(5)
- #define  OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS	REG_BIT(1)
-@@ -72,6 +76,7 @@
- #define  OASTATUS_COUNTER_OVERFLOW	REG_BIT(2)
- #define  OASTATUS_BUFFER_OVERFLOW	REG_BIT(1)
- #define  OASTATUS_REPORT_LOST		REG_BIT(0)
-+#define OAG_MMIOTRIGGER			XE_REG(0xdb1c)
- /* OAC unit */
- #define OAC_OACONTROL			XE_REG(0x15114)
- 
 diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 41d59e9959e5..5cb0cbb58a1d 100644
+index 690abe4f934f..41d59e9959e5 100644
 --- a/drivers/gpu/drm/xe/xe_oa.c
 +++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -758,6 +758,13 @@ static int xe_oa_configure_oa_context(struct xe_oa_stream *stream, bool enable)
+@@ -822,6 +822,8 @@ static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream)
+ 		return PTR_ERR(bo);
  
- #define HAS_OA_BPC_REPORTING(xe) (GRAPHICS_VERx100(xe) >= 1255)
+ 	stream->oa_buffer.bo = bo;
++	/* mmap implementation requires OA buffer to be in system memory */
++	xe_assert(stream->oa->xe, bo->vmap.is_iomem == 0);
+ 	stream->oa_buffer.vaddr = bo->vmap.vaddr;
+ 	return 0;
+ }
+@@ -1123,6 +1125,49 @@ static int xe_oa_release(struct inode *inode, struct file *file)
+ 	return 0;
+ }
  
-+static u32 oag_configure_mmio_trigger(const struct xe_oa_stream *stream, bool enable)
++static int xe_oa_mmap(struct file *file, struct vm_area_struct *vma)
 +{
-+	return _MASKED_FIELD(OAG_OA_DEBUG_DISABLE_MMIO_TRG,
-+			     enable && stream && stream->sample ?
-+			     0 : OAG_OA_DEBUG_DISABLE_MMIO_TRG);
++	struct xe_oa_stream *stream = file->private_data;
++	struct xe_bo *bo = stream->oa_buffer.bo;
++	unsigned long start = vma->vm_start;
++	int i, ret;
++
++	if (xe_perf_stream_paranoid && !perfmon_capable()) {
++		drm_dbg(&stream->oa->xe->drm, "Insufficient privilege to map OA buffer\n");
++		return -EACCES;
++	}
++
++	/* Can mmap the entire OA buffer or nothing (no partial OA buffer mmaps) */
++	if (vma->vm_end - vma->vm_start != XE_OA_BUFFER_SIZE) {
++		drm_dbg(&stream->oa->xe->drm, "Wrong mmap size, must be OA buffer size\n");
++		return -EINVAL;
++	}
++
++	/*
++	 * Only support VM_READ, enforce MAP_PRIVATE by checking for
++	 * VM_MAYSHARE, don't copy the vma on fork
++	 */
++	if (vma->vm_flags & (VM_WRITE | VM_EXEC | VM_SHARED | VM_MAYSHARE)) {
++		drm_dbg(&stream->oa->xe->drm, "mmap must be read only\n");
++		return -EINVAL;
++	}
++	vm_flags_mod(vma, VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP | VM_DONTCOPY,
++		     VM_MAYWRITE | VM_MAYEXEC);
++
++	xe_assert(stream->oa->xe, bo->ttm.ttm->num_pages ==
++		  (vma->vm_end - vma->vm_start) >> PAGE_SHIFT);
++	for (i = 0; i < bo->ttm.ttm->num_pages; i++) {
++		ret = remap_pfn_range(vma, start, page_to_pfn(bo->ttm.ttm->pages[i]),
++				      PAGE_SIZE, vma->vm_page_prot);
++		if (ret)
++			break;
++
++		start += PAGE_SIZE;
++	}
++
++	return ret;
 +}
 +
- static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
- {
- 	u32 sqcnt1;
-@@ -773,6 +780,9 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
- 					  _MASKED_BIT_DISABLE(DISABLE_DOP_GATING));
- 	}
- 
-+	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_debug,
-+			oag_configure_mmio_trigger(stream, false));
-+
- 	/* disable the context save/restore or OAR counters */
- 	if (stream->exec_q)
- 		xe_oa_configure_oa_context(stream, false);
-@@ -925,9 +935,17 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
- 	oa_debug = OAG_OA_DEBUG_DISABLE_CLK_RATIO_REPORTS |
- 		OAG_OA_DEBUG_INCLUDE_CLK_RATIO;
- 
-+	if (GRAPHICS_VER(stream->oa->xe) >= 20)
-+		oa_debug |=
-+			/* The three bits below are needed to get PEC counters running */
-+			OAG_OA_DEBUG_START_TRIGGER_SCOPE_CONTROL |
-+			OAG_OA_DEBUG_DISABLE_START_TRG_2_COUNT_QUAL |
-+			OAG_OA_DEBUG_DISABLE_START_TRG_1_COUNT_QUAL;
-+
- 	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_debug,
- 			_MASKED_BIT_ENABLE(oa_debug) |
--			oag_report_ctx_switches(stream));
-+			oag_report_ctx_switches(stream) |
-+			oag_configure_mmio_trigger(stream, true));
- 
- 	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_ctx_ctrl, stream->periodic ?
- 			(OAG_OAGLBCTXCTRL_COUNTER_RESUME |
-@@ -2149,6 +2167,10 @@ static void __xe_oa_init_oa_units(struct xe_gt *gt)
- 			u->type = DRM_XE_OA_UNIT_TYPE_OAM;
- 		}
- 
-+		/* Ensure MMIO trigger remains disabled till there is a stream */
-+		xe_mmio_write32(gt, u->regs.oa_debug,
-+				oag_configure_mmio_trigger(NULL, false));
-+
- 		/* Set oa_unit_ids now to ensure ids remain contiguous */
- 		u->oa_unit_id = gt_to_xe(gt)->oa.oa_unit_ids++;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index 3fa2ece7d228..3996934974fa 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -7,6 +7,7 @@
- 
- #include "regs/xe_engine_regs.h"
- #include "regs/xe_gt_regs.h"
-+#include "regs/xe_oa_regs.h"
- #include "regs/xe_regs.h"
- #include "xe_gt_types.h"
- #include "xe_platform_types.h"
-@@ -63,7 +64,28 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
- 		       ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(WHITELIST(CSBE_DEBUG_STATUS(RENDER_RING_BASE), 0))
- 	},
--
-+	{ XE_RTP_NAME("oa_reg_render"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, XE_RTP_END_VERSION_UNDEFINED),
-+		       ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(WHITELIST(OAG_MMIOTRIGGER,
-+				   RING_FORCE_TO_NONPRIV_ACCESS_RW),
-+			 WHITELIST(OAG_OASTATUS,
-+				   RING_FORCE_TO_NONPRIV_ACCESS_RD),
-+			 WHITELIST(OAG_OAHEADPTR,
-+				   RING_FORCE_TO_NONPRIV_ACCESS_RD |
-+				   RING_FORCE_TO_NONPRIV_RANGE_4))
-+	},
-+	{ XE_RTP_NAME("oa_reg_compute"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, XE_RTP_END_VERSION_UNDEFINED),
-+		       ENGINE_CLASS(COMPUTE)),
-+	  XE_RTP_ACTIONS(WHITELIST(OAG_MMIOTRIGGER,
-+				   RING_FORCE_TO_NONPRIV_ACCESS_RW),
-+			 WHITELIST(OAG_OASTATUS,
-+				   RING_FORCE_TO_NONPRIV_ACCESS_RD),
-+			 WHITELIST(OAG_OAHEADPTR,
-+				   RING_FORCE_TO_NONPRIV_ACCESS_RD |
-+				   RING_FORCE_TO_NONPRIV_RANGE_4))
-+	},
- 	{}
+ static const struct file_operations xe_oa_fops = {
+ 	.owner		= THIS_MODULE,
+ 	.llseek		= no_llseek,
+@@ -1130,6 +1175,7 @@ static const struct file_operations xe_oa_fops = {
+ 	.poll		= xe_oa_poll,
+ 	.read		= xe_oa_read,
+ 	.unlocked_ioctl	= xe_oa_ioctl,
++	.mmap		= xe_oa_mmap,
  };
  
+ static bool engine_supports_mi_query(struct xe_hw_engine *hwe)
 -- 
 2.41.0
 
