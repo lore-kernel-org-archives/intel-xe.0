@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D49BBC27C5E
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 01:56:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6ABCC27C65
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 01:56:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E4E210E284;
-	Fri,  7 Jun 2024 01:56:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A48510EB56;
+	Fri,  7 Jun 2024 01:56:28 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C98D10E284;
- Fri,  7 Jun 2024 01:56:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8800C10EB56;
+ Fri,  7 Jun 2024 01:56:27 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Rework_GPU?=
- =?utf-8?q?_page_fault_handling_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Rework_GPU_page?=
+ =?utf-8?q?_fault_handling_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 07 Jun 2024 01:56:17 -0000
-Message-ID: <171772537724.25144.11208927633760352305@a6498e030952>
+Date: Fri, 07 Jun 2024 01:56:27 -0000
+Message-ID: <171772538755.25144.413835070614472988@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240607015212.2190106-1-matthew.brost@intel.com>
 In-Reply-To: <20240607015212.2190106-1-matthew.brost@intel.com>
@@ -48,9 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: d3c2f5c9ed23 drm-tip: 2024y-06m-07d-01h-23m-52s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Rework GPU page fault handling
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 8684e25d029f59ed3c1756ede539151ce1c71d86
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Thu Jun 6 18:52:12 2024 -0700
+
+    drm/xe: Rework GPU page fault handling
+    
+    Add helper function to implement VMA (user binding) page faults, remove
+    unnecessary userptr.invalidate_link list del operation, retry on memory
+    pressure, remove unnecessary xe_vma_userptr_check_repin after rebinding,
+    remove unnecessary TLB invalidation, and always use vm->lock in write
+    mode. Changes help facilitate SVM page faults.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
++ /mt/dim checkpatch d3c2f5c9ed23d7653741913ee6c38bb0950a8870 drm-intel
+8684e25d029f drm/xe: Rework GPU page fault handling
 
 
