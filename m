@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25FEEC27C55
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 19:32:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B5BBC27C53
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 19:32:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A306B10E100;
-	Fri,  7 Jun 2024 19:32:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2D3610E143;
+	Fri,  7 Jun 2024 19:32:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XXIpaDUw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e5h9wrSF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB49310E143
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Jun 2024 19:32:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9FD310E100
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Jun 2024 19:32:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1717788753; x=1749324753;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=jthJjJ2zKTiLV2PBjpIfe6L6//S4w66QTWO5SgbSzSU=;
- b=XXIpaDUwmNJPY0a198rgfenVx2bJEoByhXqQV1gNdhaN9TYE491ICeg6
- +W9y9WHmXFNXqEsfs7/8l8u2klGDPVl7BpgblZ/dGHNGB2IX8fEqxx8JA
- 2BJLn5hpepZGzD5nzNt57hU7oIjY+VRHdOS56OnM4ujJVyCPqRdQqxG1R
- tRat4LeOYN8dv1mhBaVfQGMFvJLtMVB3KovDBtQjISfE9MKQBRasgLv+H
- TWUT6CiH6OLzWnOtiiFNqSQFPux1KvlNgUiJti1RxTua5mttTOfMTWCla
- FdiUo4SAoR67ruE9iJaeMUZN6hlMq1JdbzLUSP5tTJPXsgrMA6cOZYNOf g==;
-X-CSE-ConnectionGUID: 11MF2KvCQqGDFfH9jCMHnA==
-X-CSE-MsgGUID: n3mO1DxyRQ6QEs4bQyyBjA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="14407269"
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="14407269"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vZq87tyZokTAER8/mH6NnAwxzfu+Sg7w14ZgjqEZJEY=;
+ b=e5h9wrSFLHJ+ygfyZ58XkRXrZMFpq5qK2HxQjzHJgFR7cuhbDwbCV13b
+ ZK4eYRuqiOFRol04u7QbM5QR3yoHpl5cXmlm1u/dZZ43HTIQaPexfw30Y
+ zHFTfPDgGEDCfr/4FCW0Z7LfRMHfKCobqNZgtl1PIoDXttLmd5PHxNWua
+ v9BMIwNtOsmSwcllXArCMQf44unbzu0QQrv8wt39QGLPSkEBldVRCvZIt
+ SXwwpSH5lo5/7sABux7lEa2MfFTSY5g8xZZ+azpA2g61GaLJu3dSn61df
+ qvcvdWSx9dNafhP6KAzLrjaykb8d6X99yp8F58pYaVKN/3LCim7UmlKr2 w==;
+X-CSE-ConnectionGUID: jeC/2XBgS3+7hHvOsf+iHA==
+X-CSE-MsgGUID: e3qv0T5LRD6k2arzMB9CiA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="14407260"
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="14407260"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2024 12:32:32 -0700
-X-CSE-ConnectionGUID: 3D2UOva2SSi1BIdUpy7PYg==
-X-CSE-MsgGUID: naCm+GwKRDahBs06Fn/tkQ==
+ 07 Jun 2024 12:32:30 -0700
+X-CSE-ConnectionGUID: 9dxoUBGVQPKGnmz1n82nIA==
+X-CSE-MsgGUID: y+uAv6mhSFWgfEIWFpgBwA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="39089279"
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="39089268"
 Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2024 12:32:30 -0700
+ 07 Jun 2024 12:32:28 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: linux-kernel@vger.kernel.org,
 	intel-xe@lists.freedesktop.org
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Mukesh Ojha <quic_mojha@quicinc.com>,
+ Johannes Berg <johannes@sipsolutions.net>,
  Jonathan Cavitt <jonathan.cavitt@intel.com>,
  =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Subject: [PATCH v4 2/2] drm/xe: Increase devcoredump timeout
-Date: Fri,  7 Jun 2024 12:32:20 -0700
-Message-ID: <20240607193220.229760-2-jose.souza@intel.com>
+Subject: [PATCH v4 1/2] devcoredump: Add dev_coredumpm_timeout()
+Date: Fri,  7 Jun 2024 12:32:19 -0700
+Message-ID: <20240607193220.229760-1-jose.souza@intel.com>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240607193220.229760-1-jose.souza@intel.com>
-References: <20240607193220.229760-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -70,44 +70,189 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-5 minutes is too short for a regular user to search and understand
-what he needs to do to report capture devcoredump and report a bug to
-us, so here increasing this timeout to 1 hour.
+Add function to set a custom coredump timeout.
+
+For Xe driver usage, current 5 minutes timeout may be too short for
+users to search and understand what needs to be done to capture
+coredump to report bugs.
+
+We have plans to automate(distribute a udev script) it but at the end
+will be up to distros and users to pack it so having a option to
+increase the timeout is a safer option.
+
+v2:
+- replace dev_coredump_timeout_set() by dev_coredumpm_timeout() (Mukesh)
+
+v3:
+- make dev_coredumpm() static inline (Johannes)
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Mukesh Ojha <quic_mojha@quicinc.com>
+Cc: Johannes Berg <johannes@sipsolutions.net>
 Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
 Acked-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/xe/xe_devcoredump.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ drivers/base/devcoredump.c  | 23 ++++++++--------
+ include/linux/devcoredump.h | 54 ++++++++++++++++++++++++++++---------
+ 2 files changed, 54 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index d7f2d19a77c10..62c2b10fbf1d2 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -53,6 +53,9 @@
+diff --git a/drivers/base/devcoredump.c b/drivers/base/devcoredump.c
+index 82aeb09b3d1b5..c795edad1b969 100644
+--- a/drivers/base/devcoredump.c
++++ b/drivers/base/devcoredump.c
+@@ -18,9 +18,6 @@ static struct class devcd_class;
+ /* global disable flag, for security purposes */
+ static bool devcd_disabled;
  
- #ifdef CONFIG_DEV_COREDUMP
+-/* if data isn't read by userspace after 5 minutes then delete it */
+-#define DEVCD_TIMEOUT	(HZ * 60 * 5)
+-
+ struct devcd_entry {
+ 	struct device devcd_dev;
+ 	void *data;
+@@ -328,7 +325,8 @@ void dev_coredump_put(struct device *dev)
+ EXPORT_SYMBOL_GPL(dev_coredump_put);
  
-+/* 1 hour timeout */
-+#define XE_COREDUMP_TIMEOUT_JIFFIES (60 * 60 * HZ)
-+
- static struct xe_device *coredump_to_xe(const struct xe_devcoredump *coredump)
+ /**
+- * dev_coredumpm - create device coredump with read/free methods
++ * dev_coredumpm_timeout - create device coredump with read/free methods with a
++ * custom timeout.
+  * @dev: the struct device for the crashed device
+  * @owner: the module that contains the read/free functions, use %THIS_MODULE
+  * @data: data cookie for the @read/@free functions
+@@ -336,17 +334,20 @@ EXPORT_SYMBOL_GPL(dev_coredump_put);
+  * @gfp: allocation flags
+  * @read: function to read from the given buffer
+  * @free: function to free the given buffer
++ * @timeout: time in jiffies to remove coredump
+  *
+  * Creates a new device coredump for the given device. If a previous one hasn't
+  * been read yet, the new coredump is discarded. The data lifetime is determined
+  * by the device coredump framework and when it is no longer needed the @free
+  * function will be called to free the data.
+  */
+-void dev_coredumpm(struct device *dev, struct module *owner,
+-		   void *data, size_t datalen, gfp_t gfp,
+-		   ssize_t (*read)(char *buffer, loff_t offset, size_t count,
+-				   void *data, size_t datalen),
+-		   void (*free)(void *data))
++void dev_coredumpm_timeout(struct device *dev, struct module *owner,
++			   void *data, size_t datalen, gfp_t gfp,
++			   ssize_t (*read)(char *buffer, loff_t offset,
++					   size_t count, void *data,
++					   size_t datalen),
++			   void (*free)(void *data),
++			   unsigned long timeout)
  {
- 	return container_of(coredump, struct xe_device, devcoredump);
-@@ -247,8 +250,9 @@ void xe_devcoredump(struct xe_sched_job *job)
- 	drm_info(&xe->drm, "Check your /sys/class/drm/card%d/device/devcoredump/data\n",
- 		 xe->drm.primary->index);
+ 	static atomic_t devcd_count = ATOMIC_INIT(0);
+ 	struct devcd_entry *devcd;
+@@ -403,7 +404,7 @@ void dev_coredumpm(struct device *dev, struct module *owner,
+ 	dev_set_uevent_suppress(&devcd->devcd_dev, false);
+ 	kobject_uevent(&devcd->devcd_dev.kobj, KOBJ_ADD);
+ 	INIT_DELAYED_WORK(&devcd->del_wk, devcd_del);
+-	schedule_delayed_work(&devcd->del_wk, DEVCD_TIMEOUT);
++	schedule_delayed_work(&devcd->del_wk, timeout);
+ 	mutex_unlock(&devcd->mutex);
+ 	return;
+  put_device:
+@@ -414,7 +415,7 @@ void dev_coredumpm(struct device *dev, struct module *owner,
+  free:
+ 	free(data);
+ }
+-EXPORT_SYMBOL_GPL(dev_coredumpm);
++EXPORT_SYMBOL_GPL(dev_coredumpm_timeout);
  
--	dev_coredumpm(xe->drm.dev, THIS_MODULE, coredump, 0, GFP_KERNEL,
--		      xe_devcoredump_read, xe_devcoredump_free);
-+	dev_coredumpm_timeout(xe->drm.dev, THIS_MODULE, coredump, 0, GFP_KERNEL,
-+			      xe_devcoredump_read, xe_devcoredump_free,
-+			      XE_COREDUMP_TIMEOUT_JIFFIES);
+ /**
+  * dev_coredumpsg - create device coredump that uses scatterlist as data
+diff --git a/include/linux/devcoredump.h b/include/linux/devcoredump.h
+index c8f7eb6cc1915..56e606eb4640b 100644
+--- a/include/linux/devcoredump.h
++++ b/include/linux/devcoredump.h
+@@ -12,6 +12,9 @@
+ #include <linux/scatterlist.h>
+ #include <linux/slab.h>
+ 
++/* if data isn't read by userspace after 5 minutes then delete it */
++#define DEVCOREDUMP_TIMEOUT	(HZ * 60 * 5)
++
+ /*
+  * _devcd_free_sgtable - free all the memory of the given scatterlist table
+  * (i.e. both pages and scatterlist instances)
+@@ -50,16 +53,17 @@ static inline void _devcd_free_sgtable(struct scatterlist *table)
+ 	kfree(delete_iter);
  }
  
- static void xe_driver_devcoredump_fini(void *arg)
+-
+ #ifdef CONFIG_DEV_COREDUMP
+ void dev_coredumpv(struct device *dev, void *data, size_t datalen,
+ 		   gfp_t gfp);
+ 
+-void dev_coredumpm(struct device *dev, struct module *owner,
+-		   void *data, size_t datalen, gfp_t gfp,
+-		   ssize_t (*read)(char *buffer, loff_t offset, size_t count,
+-				   void *data, size_t datalen),
+-		   void (*free)(void *data));
++void dev_coredumpm_timeout(struct device *dev, struct module *owner,
++			   void *data, size_t datalen, gfp_t gfp,
++			   ssize_t (*read)(char *buffer, loff_t offset,
++					   size_t count, void *data,
++					   size_t datalen),
++			   void (*free)(void *data),
++			   unsigned long timeout);
+ 
+ void dev_coredumpsg(struct device *dev, struct scatterlist *table,
+ 		    size_t datalen, gfp_t gfp);
+@@ -72,12 +76,13 @@ static inline void dev_coredumpv(struct device *dev, void *data,
+ 	vfree(data);
+ }
+ 
+-static inline void
+-dev_coredumpm(struct device *dev, struct module *owner,
+-	      void *data, size_t datalen, gfp_t gfp,
+-	      ssize_t (*read)(char *buffer, loff_t offset, size_t count,
+-			      void *data, size_t datalen),
+-	      void (*free)(void *data))
++void dev_coredumpm_timeout(struct device *dev, struct module *owner,
++			   void *data, size_t datalen, gfp_t gfp,
++			   ssize_t (*read)(char *buffer, loff_t offset,
++					   size_t count, void *data,
++					   size_t datalen),
++			   void (*free)(void *data),
++			   unsigned long timeout)
+ {
+ 	free(data);
+ }
+@@ -92,4 +97,29 @@ static inline void dev_coredump_put(struct device *dev)
+ }
+ #endif /* CONFIG_DEV_COREDUMP */
+ 
++/**
++ * dev_coredumpm - create device coredump with read/free methods
++ * @dev: the struct device for the crashed device
++ * @owner: the module that contains the read/free functions, use %THIS_MODULE
++ * @data: data cookie for the @read/@free functions
++ * @datalen: length of the data
++ * @gfp: allocation flags
++ * @read: function to read from the given buffer
++ * @free: function to free the given buffer
++ *
++ * Creates a new device coredump for the given device. If a previous one hasn't
++ * been read yet, the new coredump is discarded. The data lifetime is determined
++ * by the device coredump framework and when it is no longer needed the @free
++ * function will be called to free the data.
++ */
++static inline void dev_coredumpm(struct device *dev, struct module *owner,
++				 void *data, size_t datalen, gfp_t gfp,
++				 ssize_t (*read)(char *buffer, loff_t offset, size_t count,
++						 void *data, size_t datalen),
++				void (*free)(void *data))
++{
++	dev_coredumpm_timeout(dev, owner, data, datalen, gfp, read, free,
++			      DEVCOREDUMP_TIMEOUT);
++}
++
+ #endif /* __DEVCOREDUMP_H */
 -- 
 2.45.2
 
