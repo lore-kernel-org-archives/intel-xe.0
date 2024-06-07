@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37ECCC27C6E
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 05:11:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89B8AC27C65
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 05:11:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D20B310E2C6;
-	Fri,  7 Jun 2024 05:11:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FDBB10E20E;
+	Fri,  7 Jun 2024 05:11:38 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B36EB10E20E;
- Fri,  7 Jun 2024 05:11:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70EB310E20E;
+ Fri,  7 Jun 2024 05:11:37 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Assert_for_multiple_?=
- =?utf-8?q?or_undefined_forcewake_domains?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Assert_for_multiple_or_un?=
+ =?utf-8?q?defined_forcewake_domains?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 07 Jun 2024 05:11:25 -0000
-Message-ID: <171773708573.25385.15237481087109832553@a6498e030952>
+Date: Fri, 07 Jun 2024 05:11:37 -0000
+Message-ID: <171773709746.25385.10987794704387460390@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240607052213.1391082-1-himal.prasad.ghimiray@intel.com>
 In-Reply-To: <20240607052213.1391082-1-himal.prasad.ghimiray@intel.com>
@@ -48,10 +48,33 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: d3c2f5c9ed23 drm-tip: 2024y-06m-07d-01h-23m-52s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Ensure caller uses sole domain for xe_force_wake_assert_held
-Applying: drm/xe: Check valid domain is passed in xe_force_wake_ref
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 9290515ef4884465091bdfb97d81e01a50ca5189
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Fri Jun 7 10:52:13 2024 +0530
+
+    drm/xe: Check valid domain is passed in xe_force_wake_ref
+    
+    Assert in case of XE_FORCEWAKE_ALL is passed.
+    
+    v2
+    - use domain != XE_FORCEWAKE_ALL (Michal)
+    
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Cc: Badal Nilawar <badal.nilawar@intel.com>
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch d3c2f5c9ed23d7653741913ee6c38bb0950a8870 drm-intel
+f1ea13681d48 drm/xe: Ensure caller uses sole domain for xe_force_wake_assert_held
+9290515ef488 drm/xe: Check valid domain is passed in xe_force_wake_ref
 
 
