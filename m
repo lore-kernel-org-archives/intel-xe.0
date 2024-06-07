@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 734D0C27C55
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 07:13:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7244FC27C53
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 08:07:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3064210E19C;
-	Fri,  7 Jun 2024 07:13:04 +0000 (UTC)
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 671AD10E19C;
- Fri,  7 Jun 2024 07:13:03 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F14510EB82;
+	Fri,  7 Jun 2024 08:07:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="baVMvBUn";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAEE910EB8D;
+ Fri,  7 Jun 2024 08:07:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1717747633; x=1749283633;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=kghIIx4wvZ5com5kFcixZU9s29bZK6YJdALSit1dXM0=;
+ b=baVMvBUnQThT8rDWhMe2CuRW6hlOC6ymrELdfHk2m1pgPzM26hwAxEnA
+ 47fTKFTFOcll8mmqkFuBUigyw+W+YnqyGr+xRXQY37kL4ODAaFG4eiRje
+ y5sevq+UlD+V1WA4E6Fix1QvcC4AE66JSq3kvUTZgiCgEULMVCwNNn/hI
+ e4zYMUykvBmv7ECA2hVtj6m1jZ5jR4x2A/sJzqTJHaTD35nkdc54p00Q7
+ ybFbZWvDW3LuGbublQnYADh17wvpxbwgrj6yIpoGYQmcNMNxubgqlLyzW
+ NN6oESZxaL2B16QCLj2XNKtb6U7Wvne/gQyKw8q1Sf2O7axgxxIYynJyv A==;
+X-CSE-ConnectionGUID: 31iFKGjITCOiooUlSYF3TA==
+X-CSE-MsgGUID: BlLlBeylSJ613KmfbtZuKg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="18310252"
+X-IronPort-AV: E=Sophos;i="6.08,220,1712646000"; d="scan'208";a="18310252"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2024 01:07:12 -0700
+X-CSE-ConnectionGUID: KMIJbqU9ReOWR+MjyIClrA==
+X-CSE-MsgGUID: hIZxFZjHRmWlI/oFhEwP1A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,220,1712646000"; d="scan'208";a="42704869"
+Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.72])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2024 01:07:10 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+	ville.syrjala@linux.intel.com
+Subject: [PATCH 0/2] drm/i915 & drm/xe: drop ACPI_BUTTON
+Date: Fri,  7 Jun 2024 11:07:05 +0300
+Message-Id: <cover.1717747542.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Only_timeout_jobs_if_the?=
- =?utf-8?q?y_run_longer_than_timeout_period?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 07 Jun 2024 07:13:03 -0000
-Message-ID: <171774438342.25385.13034093050902561038@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <20240607065219.2264624-1-matthew.brost@intel.com>
-In-Reply-To: <20240607065219.2264624-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +66,20 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Both in a series because they're related, but they should be merged via
+their own driver trees.
 
-Series: Only timeout jobs if they run longer than timeout period
-URL   : https://patchwork.freedesktop.org/series/134593/
-State : success
+Jani Nikula (2):
+  drm/i915: do not select ACPI_BUTTON
+  drm/xe: do not select ACPI_BUTTON
 
-== Summary ==
+ drivers/gpu/drm/i915/Kconfig | 1 -
+ drivers/gpu/drm/xe/Kconfig   | 1 -
+ 2 files changed, 2 deletions(-)
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast d3c2f5c9ed23d7653741913ee6c38bb0950a8870
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+-- 
+2.39.2
 
