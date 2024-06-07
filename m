@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82382C27C75
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 06:51:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67B69C27C53
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 06:51:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00FCB10EB5D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8689910EB6B;
 	Fri,  7 Jun 2024 06:51:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YpiriKtb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XQQkDvWi";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7303A10E29A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87E4010E297
  for <intel-xe@lists.freedesktop.org>; Fri,  7 Jun 2024 06:51:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1717743110; x=1749279110;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=PsdnAzmfp8+F2qdxWyiRVFCxIdJ7SMrmE6KtWWA5W4U=;
- b=YpiriKtbeNqW9p6kWjLHv6C1MIKuT3d1DaeY2lV+V/a9tkmMYTV25CmA
- CHeg1y3ppmGoMpIfS++hIyGL7mkWAJexOnOvarq2AY6rByXYWiXDrF1tC
- bxxSpKVt0OIEAhkbinqWo87gbz/MLBFev9hfJEA3tqBiaySOW8EOgVEnK
- 2OYNr3vBZOQnb/gysaeJdF8iiLVaesHjwuohiuuU+flC8XfoWtxpRhwkX
- 6HXxG4avY0DEEKBaxXGtVe/fZcbkwLhrShbn2+aOMkSDftp2yysiOi0dF
- abtru3092n7IIEhQxacCjryju/b+LZhBY1qUMPcDzYkD5KcHF1xibCHe8 g==;
-X-CSE-ConnectionGUID: 6SkrPUeKSlqe8lovL+OhHg==
-X-CSE-MsgGUID: pzrKbf2/RouCjjzGsjZF2w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="14254929"
-X-IronPort-AV: E=Sophos;i="6.08,220,1712646000"; d="scan'208";a="14254929"
+ bh=Q+jdBH09aNEq0FH30PenJjtpKknUW4NJirLb3j6Xl/Q=;
+ b=XQQkDvWi5Xjs6spQd5sc61DhSKP/H1FlDu2F8RAQx4Z5/IDafbBkgFef
+ yOBpqZfHZ9fanoZrSUMQgLS3+Z0ugda2Xf2ROnbRXHa/RgFOIrIMYpJXv
+ r62NXArFowEtciFrVvfIgG5feR2l9MyIjG008sbHNQATFDPJTGJNY/bPy
+ 2Q//KeoA0BUlJt1nSDfYojcwGrXGHTHtL7nLfgarn/uzy/2DPzNZyJVIl
+ tdE5vh7ONLR/mj+iaSkaDO+HB7UKUrMcKlVWi2zsMhHimFhnNJyLbK+jU
+ JHQ1U6Ad2SbLC/8AAL9Njxe/2KVlBokq+88rRrxySPhNVY4MiW7n5ZAZY A==;
+X-CSE-ConnectionGUID: ljXrxnkJSc+ah8eSKwLNbA==
+X-CSE-MsgGUID: D+9UXuZMR26N3cOgLNG4Xw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="14254932"
+X-IronPort-AV: E=Sophos;i="6.08,220,1712646000"; d="scan'208";a="14254932"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 23:51:48 -0700
-X-CSE-ConnectionGUID: HsMhGfnQRRSxkHG5q0bfcA==
-X-CSE-MsgGUID: 1Y81P0v9Qh6tae/+9DEi3w==
+ 06 Jun 2024 23:51:49 -0700
+X-CSE-ConnectionGUID: u+ElvJihSeSfJOKsTkMuWg==
+X-CSE-MsgGUID: /aS+NEBOQBOoh9CK2uep8g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,220,1712646000"; d="scan'208";a="75702762"
+X-IronPort-AV: E=Sophos;i="6.08,220,1712646000"; d="scan'208";a="75702763"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Jun 2024 23:51:48 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [RFC PATCH 3/5] drm/xe: Emit ctx timestamp copy in ring ops
-Date: Thu,  6 Jun 2024 23:52:17 -0700
-Message-Id: <20240607065219.2264624-4-matthew.brost@intel.com>
+Subject: [RFC PATCH 4/5] drm/xe: Add ctx timestamp to LRC snapshot
+Date: Thu,  6 Jun 2024 23:52:18 -0700
+Message-Id: <20240607065219.2264624-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240607065219.2264624-1-matthew.brost@intel.com>
 References: <20240607065219.2264624-1-matthew.brost@intel.com>
@@ -65,74 +65,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Copy ctx timestamp at beginning of every GPU job to a saved location.
-Used to determine how long a job has been running on the hardware.
+The ctx timestamp is useful information, add to LRC snapshot.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+ drivers/gpu/drm/xe/xe_lrc.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index db630d27beba..9efb8b5c0b32 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -224,6 +224,19 @@ static u32 get_ppgtt_flag(struct xe_sched_job *job)
- 	return job->q->vm ? BIT(8) : 0;
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 76d61b5d5cb6..47bc15391a2b 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -49,6 +49,8 @@ struct xe_lrc_snapshot {
+ 	} tail;
+ 	u32 start_seqno;
+ 	u32 seqno;
++	u32 ctx_timestamp;
++	u32 ctx_timestamp_job;
+ };
+ 
+ static struct xe_device *
+@@ -1618,6 +1620,8 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
+ 	snapshot->lrc_offset = xe_lrc_pphwsp_offset(lrc);
+ 	snapshot->lrc_size = lrc->bo->size - snapshot->lrc_offset;
+ 	snapshot->lrc_snapshot = NULL;
++	snapshot->ctx_timestamp = xe_lrc_ctx_timestamp(lrc);
++	snapshot->ctx_timestamp_job = xe_lrc_ctx_timestamp_job(lrc);
+ 	return snapshot;
  }
  
-+static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
-+{
-+	dw[i++] = MI_COPY_MEM_MEM | MI_COPY_MEM_MEM_SRC_GGTT |
-+		MI_COPY_MEM_MEM_DST_GGTT;
-+	dw[i++] = xe_lrc_ctx_timestamp_job_ggtt_addr(lrc);
-+	dw[i++] = 0;
-+	dw[i++] = xe_lrc_ctx_timestamp_ggtt_addr(lrc);
-+	dw[i++] = 0;
-+	dw[i++] = MI_NOOP;
-+
-+	return i;
-+}
-+
- /* for engines that don't require any special HW handling (no EUs, no aux inval, etc) */
- static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc,
- 				    u64 batch_addr, u32 seqno)
-@@ -232,6 +245,8 @@ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc
- 	u32 ppgtt_flag = get_ppgtt_flag(job);
- 	struct xe_gt *gt = job->q->gt;
+@@ -1666,6 +1670,9 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
+ 		   snapshot->tail.internal, snapshot->tail.memory);
+ 	drm_printf(p, "\tStart seqno: (memory) %d\n", snapshot->start_seqno);
+ 	drm_printf(p, "\tSeqno: (memory) %d\n", snapshot->seqno);
++	drm_printf(p, "\tTimestamp: 0x%08x\n", snapshot->ctx_timestamp);
++	drm_printf(p, "\tTimestamp job: 0x%08x\n",
++		   snapshot->ctx_timestamp_job);
  
-+	i = emit_copy_timestamp(lrc, dw, i);
-+
- 	if (job->ring_ops_flush_tlb) {
- 		dw[i++] = preparser_disable(true);
- 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
-@@ -283,6 +298,8 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 	struct xe_device *xe = gt_to_xe(gt);
- 	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
- 
-+	i = emit_copy_timestamp(lrc, dw, i);
-+
- 	dw[i++] = preparser_disable(true);
- 
- 	/* hsdes: 1809175790 */
-@@ -332,6 +349,8 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
- 	u32 mask_flags = 0;
- 
-+	i = emit_copy_timestamp(lrc, dw, i);
-+
- 	dw[i++] = preparser_disable(true);
- 	if (lacks_render)
- 		mask_flags = PIPE_CONTROL_3D_ARCH_FLAGS;
-@@ -375,6 +394,8 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
- {
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 
-+	i = emit_copy_timestamp(lrc, dw, i);
-+
- 	i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
- 				seqno, dw, i);
- 
+ 	if (!snapshot->lrc_snapshot)
+ 		return;
 -- 
 2.34.1
 
