@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CD6FC27C77
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1339AC27C55
 	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 20:43:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0001910ED1C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8E2910ED1A;
 	Fri,  7 Jun 2024 20:43:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B9n1Aor8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A9K5oBvm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5597510ED11
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AB7110ED0F
  for <intel-xe@lists.freedesktop.org>; Fri,  7 Jun 2024 20:43:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1717793007; x=1749329007;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=PKhn+EoJ90WcCtvlX/Z4OJliCyM4AX4frex4UkAPsno=;
- b=B9n1Aor8CEt4Fw5mTGXAa/zvxmixNg8U7vcCMBefuIZnFT9BsU1k8e+1
- WWloEHuGlMtVlPW2o5zWYeo6tBKQXc7oRYPZZUvHLSpwnl+98C1y+WUSk
- c16pLyGMR5Axo3JuXs3HV39rqzO1vljRcIH9d2sP3pFadLrGw6YEDSJLo
- 8U8BvfuKci5DLT1ATm1yPh3W5XQUPTYvGkk4j0rhfLN/+4cuprYTQ5+c2
- LySpNgxSSTBVEwWTYYadqPv9CN1LpFEsu5oVia79K5GblIxFveMaEhAub
- LYfw7+cd3IRUNPNpguFHVENOVxTxf5MaBluPIuK5lTAkNtYXbmaMavOv+ g==;
-X-CSE-ConnectionGUID: i5PTByxnS2+19mVg6tIaqQ==
-X-CSE-MsgGUID: 5ozV6tLJQWqdjYmjHpkqXQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="14651055"
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="14651055"
+ bh=JCWHpTMdtF41KgU6AG6km8Kq0Sjn/smxBfcS1iCmn9Y=;
+ b=A9K5oBvmo5Im4IX8HNFodFEL1V1+5ov1BsHph61LGyCh6l6C5GY6LbdH
+ Wa6Gc5HP7LeTXv8pwJo5k11VEzDgW3xcXLliPOkApGLn4+xH8uzgNOscf
+ 6HX94JiHz6hSyNBk4OvlUkI7dmdfzuRhTfAdgfcRH8zrs0xdnKhHHCj5E
+ mCeRKtOYUauzwy7AijGa+5fmjesW5uj/BZYwq8McjMNGs0Jnk21LBqJ03
+ jabnw6/yZhI84RJd/NsewAN8PHoH7Lv5/z6qnAg49P7psO0jUxCdlVT/a
+ +PM+MurYYYUHBCw6w7dO5LByPIJtnYLi35rupPAtA41IBrsCYM4hIkraa w==;
+X-CSE-ConnectionGUID: C7crgnwESIam8LRbjkR+LA==
+X-CSE-MsgGUID: mP2rWOA4T5GkB9MYgnZmgw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="14651054"
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="14651054"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Jun 2024 13:43:26 -0700
-X-CSE-ConnectionGUID: KAC6+KU2Rq+7eYN41v6Oaw==
-X-CSE-MsgGUID: iIW7yFlERi68cA8BT5EMtQ==
+X-CSE-ConnectionGUID: 2kTutpybQRC0MeYFdEVXPg==
+X-CSE-MsgGUID: umGIfDVsSEGbOXt+F9CPFg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="43368452"
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="43368451"
 Received: from orsosgc001.jf.intel.com ([10.165.21.138])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Jun 2024 13:43:26 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 13/17] drm/xe/oa/uapi: OA buffer mmap
-Date: Fri,  7 Jun 2024 13:43:18 -0700
-Message-ID: <20240607204322.1966831-14-ashutosh.dixit@intel.com>
+Subject: [PATCH 12/17] drm/xe/oa/uapi: Query OA unit properties
+Date: Fri,  7 Jun 2024 13:43:17 -0700
+Message-ID: <20240607204322.1966831-13-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20240607204322.1966831-1-ashutosh.dixit@intel.com>
 References: <20240607204322.1966831-1-ashutosh.dixit@intel.com>
@@ -65,92 +65,261 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow the OA buffer to be mmap'd to userspace. This is needed for the MMIO
-trigger use case. Even otherwise, with whitelisted OA head/tail ptr
-registers, userspace can receive/interpret OA data from the mmap'd buffer
-without issuing read()'s on the OA stream fd.
+Implement query for properties of OA units present on a device.
 
-v2: Remove unmap_mapping_range from xe_oa_release (Thomas H)
-    Use vm_flags_mod (Umesh)
+v2: Clean up reserved/pad fields (Umesh)
+    Follow the same scheme as other query structs
+v3: Skip reporting reserved engines attached to OA units
+v4: Expose oa_buf_size via DRM_XE_PERF_IOCTL_INFO (Umesh)
+v5: Don't expose capabilities as OR of properties (Umesh)
+v6: Add extensions to query output structs: drm_xe_oa_unit,
+    drm_xe_query_oa_units and drm_xe_oa_stream_info
+v7: Change oa_units[] array to __u64 type
 
-Suggested-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c | 46 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+ drivers/gpu/drm/xe/xe_oa.c    | 13 ++++++
+ drivers/gpu/drm/xe/xe_query.c | 77 +++++++++++++++++++++++++++++++
+ include/uapi/drm/xe_drm.h     | 85 +++++++++++++++++++++++++++++++++++
+ 3 files changed, 175 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 690abe4f934f..41d59e9959e5 100644
+index 6825979eb781..690abe4f934f 100644
 --- a/drivers/gpu/drm/xe/xe_oa.c
 +++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -822,6 +822,8 @@ static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream)
- 		return PTR_ERR(bo);
- 
- 	stream->oa_buffer.bo = bo;
-+	/* mmap implementation requires OA buffer to be in system memory */
-+	xe_assert(stream->oa->xe, bo->vmap.is_iomem == 0);
- 	stream->oa_buffer.vaddr = bo->vmap.vaddr;
- 	return 0;
- }
-@@ -1123,6 +1125,49 @@ static int xe_oa_release(struct inode *inode, struct file *file)
+@@ -1048,6 +1048,17 @@ static long xe_oa_status_locked(struct xe_oa_stream *stream, unsigned long arg)
  	return 0;
  }
  
-+static int xe_oa_mmap(struct file *file, struct vm_area_struct *vma)
++static long xe_oa_info_locked(struct xe_oa_stream *stream, unsigned long arg)
 +{
-+	struct xe_oa_stream *stream = file->private_data;
-+	struct xe_bo *bo = stream->oa_buffer.bo;
-+	unsigned long start = vma->vm_start;
-+	int i, ret;
++	struct drm_xe_oa_stream_info info = { .oa_buf_size = XE_OA_BUFFER_SIZE, };
++	void __user *uaddr = (void __user *)arg;
 +
-+	if (xe_perf_stream_paranoid && !perfmon_capable()) {
-+		drm_dbg(&stream->oa->xe->drm, "Insufficient privilege to map OA buffer\n");
-+		return -EACCES;
-+	}
++	if (copy_to_user(uaddr, &info, sizeof(info)))
++		return -EFAULT;
 +
-+	/* Can mmap the entire OA buffer or nothing (no partial OA buffer mmaps) */
-+	if (vma->vm_end - vma->vm_start != XE_OA_BUFFER_SIZE) {
-+		drm_dbg(&stream->oa->xe->drm, "Wrong mmap size, must be OA buffer size\n");
-+		return -EINVAL;
-+	}
-+
-+	/*
-+	 * Only support VM_READ, enforce MAP_PRIVATE by checking for
-+	 * VM_MAYSHARE, don't copy the vma on fork
-+	 */
-+	if (vma->vm_flags & (VM_WRITE | VM_EXEC | VM_SHARED | VM_MAYSHARE)) {
-+		drm_dbg(&stream->oa->xe->drm, "mmap must be read only\n");
-+		return -EINVAL;
-+	}
-+	vm_flags_mod(vma, VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP | VM_DONTCOPY,
-+		     VM_MAYWRITE | VM_MAYEXEC);
-+
-+	xe_assert(stream->oa->xe, bo->ttm.ttm->num_pages ==
-+		  (vma->vm_end - vma->vm_start) >> PAGE_SHIFT);
-+	for (i = 0; i < bo->ttm.ttm->num_pages; i++) {
-+		ret = remap_pfn_range(vma, start, page_to_pfn(bo->ttm.ttm->pages[i]),
-+				      PAGE_SIZE, vma->vm_page_prot);
-+		if (ret)
-+			break;
-+
-+		start += PAGE_SIZE;
-+	}
-+
-+	return ret;
++	return 0;
 +}
 +
- static const struct file_operations xe_oa_fops = {
- 	.owner		= THIS_MODULE,
- 	.llseek		= no_llseek,
-@@ -1130,6 +1175,7 @@ static const struct file_operations xe_oa_fops = {
- 	.poll		= xe_oa_poll,
- 	.read		= xe_oa_read,
- 	.unlocked_ioctl	= xe_oa_ioctl,
-+	.mmap		= xe_oa_mmap,
+ static long xe_oa_ioctl_locked(struct xe_oa_stream *stream,
+ 			       unsigned int cmd,
+ 			       unsigned long arg)
+@@ -1063,6 +1074,8 @@ static long xe_oa_ioctl_locked(struct xe_oa_stream *stream,
+ 		return xe_oa_config_locked(stream, arg);
+ 	case DRM_XE_PERF_IOCTL_STATUS:
+ 		return xe_oa_status_locked(stream, arg);
++	case DRM_XE_PERF_IOCTL_INFO:
++		return xe_oa_info_locked(stream, arg);
+ 	}
+ 
+ 	return -EINVAL;
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 995effcb904b..4e01df6b1b7a 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -602,6 +602,82 @@ query_uc_fw_version(struct xe_device *xe, struct drm_xe_device_query *query)
+ 	return 0;
+ }
+ 
++static size_t calc_oa_unit_query_size(struct xe_device *xe)
++{
++	size_t size = sizeof(struct drm_xe_query_oa_units);
++	struct xe_gt *gt;
++	int i, id;
++
++	for_each_gt(gt, xe, id) {
++		for (i = 0; i < gt->oa.num_oa_units; i++) {
++			size += sizeof(struct drm_xe_oa_unit);
++			size += gt->oa.oa_unit[i].num_engines *
++				sizeof(struct drm_xe_engine_class_instance);
++		}
++	}
++
++	return size;
++}
++
++static int query_oa_units(struct xe_device *xe,
++			  struct drm_xe_device_query *query)
++{
++	void __user *query_ptr = u64_to_user_ptr(query->data);
++	size_t size = calc_oa_unit_query_size(xe);
++	struct drm_xe_query_oa_units *qoa;
++	enum xe_hw_engine_id hwe_id;
++	struct drm_xe_oa_unit *du;
++	struct xe_hw_engine *hwe;
++	struct xe_oa_unit *u;
++	int gt_id, i, j, ret;
++	struct xe_gt *gt;
++	u8 *pdu;
++
++	if (query->size == 0) {
++		query->size = size;
++		return 0;
++	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
++		return -EINVAL;
++	}
++
++	qoa = kzalloc(size, GFP_KERNEL);
++	if (!qoa)
++		return -ENOMEM;
++
++	pdu = (u8 *)&qoa->oa_units[0];
++	for_each_gt(gt, xe, gt_id) {
++		for (i = 0; i < gt->oa.num_oa_units; i++) {
++			u = &gt->oa.oa_unit[i];
++			du = (struct drm_xe_oa_unit *)pdu;
++
++			du->oa_unit_id = u->oa_unit_id;
++			du->oa_unit_type = u->type;
++			du->oa_timestamp_freq = xe_oa_timestamp_frequency(gt);
++			du->capabilities = DRM_XE_OA_CAPS_BASE;
++
++			j = 0;
++			for_each_hw_engine(hwe, gt, hwe_id) {
++				if (!xe_hw_engine_is_reserved(hwe) &&
++				    xe_oa_unit_id(hwe) == u->oa_unit_id) {
++					du->eci[j].engine_class =
++						xe_to_user_engine_class[hwe->class];
++					du->eci[j].engine_instance = hwe->logical_instance;
++					du->eci[j].gt_id = gt->info.id;
++					j++;
++				}
++			}
++			du->num_engines = j;
++			pdu += sizeof(*du) + j * sizeof(du->eci[0]);
++			qoa->num_oa_units++;
++		}
++	}
++
++	ret = copy_to_user(query_ptr, qoa, size);
++	kfree(qoa);
++
++	return ret ? -EFAULT : 0;
++}
++
+ static int (* const xe_query_funcs[])(struct xe_device *xe,
+ 				      struct drm_xe_device_query *query) = {
+ 	query_engines,
+@@ -612,6 +688,7 @@ static int (* const xe_query_funcs[])(struct xe_device *xe,
+ 	query_gt_topology,
+ 	query_engine_cycles,
+ 	query_uc_fw_version,
++	query_oa_units,
  };
  
- static bool engine_supports_mi_query(struct xe_hw_engine *hwe)
+ int xe_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 697a4f9e12e6..8378e5a51d37 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -688,6 +688,7 @@ struct drm_xe_device_query {
+ #define DRM_XE_DEVICE_QUERY_GT_TOPOLOGY		5
+ #define DRM_XE_DEVICE_QUERY_ENGINE_CYCLES	6
+ #define DRM_XE_DEVICE_QUERY_UC_FW_VERSION	7
++#define DRM_XE_DEVICE_QUERY_OA_UNITS		8
+ 	/** @query: The type of data to query */
+ 	__u32 query;
+ 
+@@ -1446,6 +1447,75 @@ enum drm_xe_oa_unit_type {
+ 	DRM_XE_OA_UNIT_TYPE_OAM,
+ };
+ 
++/**
++ * struct drm_xe_oa_unit - describe OA unit
++ */
++struct drm_xe_oa_unit {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++	/** @oa_unit_id: OA unit ID */
++	__u32 oa_unit_id;
++
++	/** @oa_unit_type: OA unit type of @drm_xe_oa_unit_type */
++	__u32 oa_unit_type;
++
++	/** @capabilities: OA capabilities bit-mask */
++	__u64 capabilities;
++#define DRM_XE_OA_CAPS_BASE		(1 << 0)
++
++	/** @oa_timestamp_freq: OA timestamp freq */
++	__u64 oa_timestamp_freq;
++
++	/** @reserved: MBZ */
++	__u64 reserved[4];
++
++	/** @num_engines: number of engines in @eci array */
++	__u64 num_engines;
++
++	/** @eci: engines attached to this OA unit */
++	struct drm_xe_engine_class_instance eci[];
++};
++
++/**
++ * struct drm_xe_query_oa_units - describe OA units
++ *
++ * If a query is made with a struct drm_xe_device_query where .query
++ * is equal to DRM_XE_DEVICE_QUERY_OA_UNITS, then the reply uses struct
++ * drm_xe_query_oa_units in .data.
++ *
++ * OA unit properties for all OA units can be accessed using a code block
++ * such as the one below:
++ *
++ * .. code-block:: C
++ *
++ *	struct drm_xe_query_oa_units *qoa;
++ *	struct drm_xe_oa_unit *oau;
++ *	u8 *poau;
++ *
++ *	// malloc qoa and issue DRM_XE_DEVICE_QUERY_OA_UNITS. Then:
++ *	poau = (u8 *)&qoa->oa_units[0];
++ *	for (int i = 0; i < qoa->num_oa_units; i++) {
++ *		oau = (struct drm_xe_oa_unit *)poau;
++ *		// Access 'struct drm_xe_oa_unit' fields here
++ *		poau += sizeof(*oau) + oau->num_engines * sizeof(oau->eci[0]);
++ *	}
++ */
++struct drm_xe_query_oa_units {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++	/** @num_oa_units: number of OA units returned in oau[] */
++	__u32 num_oa_units;
++	/** @pad: MBZ */
++	__u32 pad;
++	/**
++	 * @oa_units: struct @drm_xe_oa_unit array returned for this device.
++	 * Written below as a u64 array to avoid problems with nested flexible
++	 * arrays with some compilers
++	 */
++	__u64 oa_units[];
++};
++
+ /** enum drm_xe_oa_format_type - OA format types */
+ enum drm_xe_oa_format_type {
+ 	DRM_XE_OA_FMT_TYPE_OAG,
+@@ -1576,6 +1646,21 @@ struct drm_xe_oa_stream_status {
+ 	__u64 reserved[3];
+ };
+ 
++/**
++ * struct drm_xe_oa_stream_info - OA stream info returned from
++ * @DRM_XE_PERF_IOCTL_INFO perf fd ioctl
++ */
++struct drm_xe_oa_stream_info {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++	/** @oa_buf_size: OA buffer size */
++	__u64 oa_buf_size;
++
++	/** @reserved: reserved for future use */
++	__u64 reserved[3];
++};
++
+ #if defined(__cplusplus)
+ }
+ #endif
 -- 
 2.41.0
 
