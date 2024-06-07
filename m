@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCE8DC27C79
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 20:43:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC03DC27C53
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 20:48:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 716FB10ED0E;
-	Fri,  7 Jun 2024 20:43:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B775610E08E;
+	Fri,  7 Jun 2024 20:48:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZgZeKcPe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F8sYSCR6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E26910ED07
- for <intel-xe@lists.freedesktop.org>; Fri,  7 Jun 2024 20:43:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5477310E08E
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Jun 2024 20:48:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717793008; x=1749329008;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=Fsg+3/7VrMA7Q/cfevCQkLc9Z5SyF2TQ4UTsiOMkuFY=;
- b=ZgZeKcPeCziT/s3F5A/hkwCuQSZbhmKwyGvk4zcpxClqVNQatouoJZPD
- 5WgxJYqyl+qpH0IJWAYBDqAJlxHK2EW1LPIv8Dr/HKcJUddxcb1BXO6zH
- dFivyN7V6qODH+wdC1I57nJTy1exooGgQJqGNXmqLDACVeIF5z5Xkp+9X
- l8rwocFndYpBkwrgezFUipWVTsi4KcPi7G8RTEis5SGtop8Kd95f94+h9
- hpQvqJW69t+gw6oGmhkivhk9c5beVhdUVoffg2iIUoURnsDaHuZ+C3OGP
- Lk1CCOIReuBzmAeSDZ+kjz0zjR9OoDVUk8h+5T68T5XdohcABmZ9d8NWC A==;
-X-CSE-ConnectionGUID: nm1ceNVtQbeALRn/hTYbRg==
-X-CSE-MsgGUID: XbvlJsuZTgCEoElgC5L25w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="14651059"
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="14651059"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2024 13:43:26 -0700
-X-CSE-ConnectionGUID: NHGcyPbIStae6iswVbjmkA==
-X-CSE-MsgGUID: ZpBNHFlUSKq7IzwXeRh5ag==
+ t=1717793323; x=1749329323;
+ h=date:from:to:cc:subject:message-id;
+ bh=9C5lvWgoDOXGrJBi8hfk/xrrjEgJiitABjhi3JP2qcY=;
+ b=F8sYSCR627FHVwDzb/5bmLhCckiUN2OYU6AuvgeXRR8veMyfk0CQefNK
+ 5EI4yyb2cUcdilMGlklhgbF8p3KclfUIB80efds185/6XP7QQ1FkbZufk
+ Eqmy9AV+0vT8o1KhGkRrpOP2t4YrI5uv6Ju9DPtVPzl+txjYz6Fe5oNgu
+ XXnAu9bWGhVEeCzJJRE4i6kn+vzQm+UXl38G3d+04fF5MPJXQGHb/8sDu
+ i1l0aLD10EhoFTlg/67h/KH1LtnqKHvXXcJkjQu9baX1w3Qyk3jUSczF9
+ pe4BwjlLsJK+gSngBMYwgvUQPzh9uN+kHwniPo2C6YQ7u1qifdSZgZrrZ A==;
+X-CSE-ConnectionGUID: rv3YFGgfShig7BSmIea0Bw==
+X-CSE-MsgGUID: s4MVW+T+TQ+Zc6T4AlDjBg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="14363905"
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="14363905"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2024 13:48:43 -0700
+X-CSE-ConnectionGUID: YnVbW0UvSXiCMxhQDqHqUQ==
+X-CSE-MsgGUID: dAy+29flSAGjmeonbu6ybQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="43368456"
-Received: from orsosgc001.jf.intel.com ([10.165.21.138])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2024 13:43:26 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 17/17] drm/xe/oa: Enable Xe2+ overrun mode
-Date: Fri,  7 Jun 2024 13:43:22 -0700
-Message-ID: <20240607204322.1966831-18-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20240607204322.1966831-1-ashutosh.dixit@intel.com>
-References: <20240607204322.1966831-1-ashutosh.dixit@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="39102891"
+Received: from lkp-server01.sh.intel.com (HELO 472b94a103a1) ([10.239.97.150])
+ by orviesa007.jf.intel.com with ESMTP; 07 Jun 2024 13:48:42 -0700
+Received: from kbuild by 472b94a103a1 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1sFgVr-0000Vc-30;
+ Fri, 07 Jun 2024 20:48:39 +0000
+Date: Sat, 08 Jun 2024 04:47:49 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
+ a9f9b30e1748252d158f78a0c0affdc949671dd1
+Message-ID: <202406080448.W4lM2bYW-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,126 +64,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable Xe2+ overrun mode. For Xe2+, when overrun mode is enabled, there are
-no partial reports at the end of buffer, making the OA buffer effectively a
-non-power-of-2 size circular buffer whose size, circ_size, is a multiple of
-the report size.
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
+branch HEAD: a9f9b30e1748252d158f78a0c0affdc949671dd1  MAINTAINERS: Update Xe driver maintainers
 
-v2: Fix implementation of xe_oa_circ_diff/xe_oa_circ_incr (Umesh)
+elapsed time: 1458m
 
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/xe/xe_oa.c       | 35 ++++++++++++++++++++++++--------
- drivers/gpu/drm/xe/xe_oa_types.h |  3 +++
- 2 files changed, 30 insertions(+), 8 deletions(-)
+configs tested: 55
+configs skipped: 3
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index f4531e2d4de6..d0a46485571a 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -111,7 +111,14 @@ static const struct xe_oa_format oa_formats[] = {
- 
- static u32 xe_oa_circ_diff(struct xe_oa_stream *stream, u32 tail, u32 head)
- {
--	return (tail - head) & (XE_OA_BUFFER_SIZE - 1);
-+	return tail >= head ? tail - head :
-+		tail + stream->oa_buffer.circ_size - head;
-+}
-+
-+static u32 xe_oa_circ_incr(struct xe_oa_stream *stream, u32 ptr, u32 n)
-+{
-+	return ptr + n >= stream->oa_buffer.circ_size ?
-+		ptr + n - stream->oa_buffer.circ_size : ptr + n;
- }
- 
- static void xe_oa_config_release(struct kref *ref)
-@@ -285,7 +292,7 @@ static int xe_oa_append_report(struct xe_oa_stream *stream, char __user *buf,
- 
- 	buf += *offset;
- 
--	oa_buf_end = stream->oa_buffer.vaddr + XE_OA_BUFFER_SIZE;
-+	oa_buf_end = stream->oa_buffer.vaddr + stream->oa_buffer.circ_size;
- 	report_size_partial = oa_buf_end - report;
- 
- 	if (report_size_partial < report_size) {
-@@ -311,7 +318,6 @@ static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
- 	int report_size = stream->oa_buffer.format->size;
- 	u8 *oa_buf_base = stream->oa_buffer.vaddr;
- 	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
--	u32 mask = (XE_OA_BUFFER_SIZE - 1);
- 	size_t start_offset = *offset;
- 	unsigned long flags;
- 	u32 head, tail;
-@@ -322,21 +328,23 @@ static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
- 	tail = stream->oa_buffer.tail;
- 	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
- 
--	xe_assert(stream->oa->xe, head < XE_OA_BUFFER_SIZE && tail < XE_OA_BUFFER_SIZE);
-+	xe_assert(stream->oa->xe,
-+		  head < stream->oa_buffer.circ_size && tail < stream->oa_buffer.circ_size);
- 
--	for (; xe_oa_circ_diff(stream, tail, head); head = (head + report_size) & mask) {
-+	for (; xe_oa_circ_diff(stream, tail, head);
-+	     head = xe_oa_circ_incr(stream, head, report_size)) {
- 		u8 *report = oa_buf_base + head;
- 
- 		ret = xe_oa_append_report(stream, buf, count, offset, report);
- 		if (ret)
- 			break;
- 
--		if (is_power_of_2(report_size)) {
-+		if (!(stream->oa_buffer.circ_size % report_size)) {
- 			/* Clear out report id and timestamp to detect unlanded reports */
- 			oa_report_id_clear(stream, (void *)report);
- 			oa_timestamp_clear(stream, (void *)report);
- 		} else {
--			u8 *oa_buf_end = stream->oa_buffer.vaddr + XE_OA_BUFFER_SIZE;
-+			u8 *oa_buf_end = stream->oa_buffer.vaddr + stream->oa_buffer.circ_size;
- 			u32 part = oa_buf_end - report;
- 
- 			/* Zero out the entire report */
-@@ -374,7 +382,6 @@ static void xe_oa_init_oa_buffer(struct xe_oa_stream *stream)
- 	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_head_ptr,
- 			gtt_offset & OAG_OAHEADPTR_MASK);
- 	stream->oa_buffer.head = 0;
--
- 	/*
- 	 * PRM says: "This MMIO must be set before the OATAILPTR register and after the
- 	 * OAHEADPTR register. This is to enable proper functionality of the overflow bit".
-@@ -1294,6 +1301,18 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
- 	stream->periodic = param->period_exponent > 0;
- 	stream->period_exponent = param->period_exponent;
- 
-+	/*
-+	 * For Xe2+, when overrun mode is enabled, there are no partial reports at the end
-+	 * of buffer, making the OA buffer effectively a non-power-of-2 size circular
-+	 * buffer whose size, circ_size, is a multiple of the report size
-+	 */
-+	if (GRAPHICS_VER(stream->oa->xe) >= 20 &&
-+	    stream->hwe->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAG && stream->sample)
-+		stream->oa_buffer.circ_size =
-+			XE_OA_BUFFER_SIZE - XE_OA_BUFFER_SIZE % stream->oa_buffer.format->size;
-+	else
-+		stream->oa_buffer.circ_size = XE_OA_BUFFER_SIZE;
-+
- 	if (stream->exec_q && engine_supports_mi_query(stream->hwe)) {
- 		/* If we don't find the context offset, just return error */
- 		ret = xe_oa_set_ctx_ctrl_offset(stream);
-diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
-index 7775fe91616f..c62811482934 100644
---- a/drivers/gpu/drm/xe/xe_oa_types.h
-+++ b/drivers/gpu/drm/xe/xe_oa_types.h
-@@ -163,6 +163,9 @@ struct xe_oa_buffer {
- 
- 	/** @tail: The last verified cached tail where HW has completed writing */
- 	u32 tail;
-+
-+	/** @circ_size: The effective circular buffer size, for Xe2+ */
-+	u32 circ_size;
- };
- 
- /**
+The following configs have been built successfully.
+More configs may be tested in the coming days.
+
+tested configs:
+alpha                             allnoconfig   gcc  
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+arc                               allnoconfig   gcc  
+arc                                 defconfig   gcc  
+arm                               allnoconfig   clang
+arm                                 defconfig   clang
+arm64                             allnoconfig   gcc  
+arm64                               defconfig   gcc  
+csky                              allnoconfig   gcc  
+csky                                defconfig   gcc  
+hexagon                          allmodconfig   clang
+hexagon                           allnoconfig   clang
+hexagon                          allyesconfig   clang
+hexagon                             defconfig   clang
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                           defconfig   gcc  
+m68k                             allmodconfig   gcc  
+m68k                              allnoconfig   gcc  
+m68k                             allyesconfig   gcc  
+m68k                                defconfig   gcc  
+microblaze                       allmodconfig   gcc  
+microblaze                        allnoconfig   gcc  
+microblaze                       allyesconfig   gcc  
+microblaze                          defconfig   gcc  
+mips                              allnoconfig   gcc  
+mips                             allyesconfig   gcc  
+nios2                             allnoconfig   gcc  
+nios2                            allyesconfig   gcc  
+nios2                               defconfig   gcc  
+openrisc                          allnoconfig   gcc  
+openrisc                            defconfig   gcc  
+parisc                            allnoconfig   gcc  
+parisc                              defconfig   gcc  
+parisc64                            defconfig   gcc  
+powerpc                           allnoconfig   gcc  
+riscv                             allnoconfig   gcc  
+riscv                               defconfig   clang
+s390                              allnoconfig   clang
+s390                                defconfig   clang
+sh                                allnoconfig   gcc  
+sh                                  defconfig   gcc  
+sparc                             allnoconfig   gcc  
+sparc                               defconfig   gcc  
+sparc64                             defconfig   gcc  
+um                               allmodconfig   clang
+um                                allnoconfig   clang
+um                               allyesconfig   gcc  
+um                                  defconfig   clang
+um                             i386_defconfig   gcc  
+um                           x86_64_defconfig   clang
+x86_64                                  kexec   clang
+x86_64                          rhel-8.3-rust   clang
+xtensa                            allnoconfig   gcc  
+
 -- 
-2.41.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
