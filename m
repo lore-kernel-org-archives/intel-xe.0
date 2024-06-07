@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 578ACC27C53
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A65BC27C75
 	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 18:31:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F180B10ECF1;
-	Fri,  7 Jun 2024 18:31:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 099D610ECF5;
+	Fri,  7 Jun 2024 18:31:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e57CRyu3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jPWGMEd1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3323610ECEA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72E7B10E1D3
  for <intel-xe@lists.freedesktop.org>; Fri,  7 Jun 2024 18:31:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717785068; x=1749321068;
+ t=1717785069; x=1749321069;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jZBQn7SD0CIx8aXi99X6hzXCvQurhppMVNbJhabo1ko=;
- b=e57CRyu3R5fvLENZzqgSCR47vt0++oCjBpOguN9s9rDcLC95M5soAJwb
- 7onzD77lmhdMroYOu188mN6gLXSMcj2TL6+b4WAgSL5DhnNOYBdugD44U
- puy/L1jvdOiSgP1Ftgwt4U/Eiu7VCAo5cohvQ9T396dTBUW55d4WR2ZzH
- nnMXnBL0/8IwWH31kYEn4scYV/eP8hTolvg00cahPRs0YGvRUl//EyGQN
- W5IeMzcFQxe3kNPWtlo6uKBqMU8mDZ9qRjcF/lBhSwm+FJNIRWYI/Csd1
- p5h0KVrfa25OsErofUvlxWUxnsTH8kDGIkfwi3/UKAlXwcGAWCHdUFqiB A==;
-X-CSE-ConnectionGUID: BneidMSvR/ubCeyeY9Zbsg==
-X-CSE-MsgGUID: /E0R52+FQweWmWeJstHsFQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="18314395"
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="18314395"
+ bh=OQzeLyWHbf+c7Exs88lIQNKDGQrOVnALm8TVlwvTe30=;
+ b=jPWGMEd1T/Y8jMTzndElNut0wHExzD2f46kkfAeUDrmywjlbuia+e10x
+ tSdRvUgy8qFaZup8WcGIPMs7QPUEbxmIxUAUapxKU6Q6BdFncBraOuSSa
+ JckUc5x2iKghLj3FoHixTI5MJxXQZu8PoBpK5eHkATJJ74vhbeTGjIDtR
+ eKlWLlQvk+H+2cUfGF4kZkZ97y313qvdLl0WnDX/XfZOWOtwHt8SKRGWx
+ FcdK8R8zWyfVij0hP67pimrtuyKCQcCglWGlDJ36VuQ2Rx08D3//sXTH2
+ tPLfiWqmsDrL8llkfYPoerfat/XTqwzZrH+P3fEXjaht26CDuMNfF81fn w==;
+X-CSE-ConnectionGUID: mrqiaQT7Rmmv9ekDAXGM5Q==
+X-CSE-MsgGUID: mqHQF7luSVOBpKzIOjuKnw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="18314400"
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="18314400"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2024 11:31:07 -0700
-X-CSE-ConnectionGUID: fDEx5UY8Q5O4KECJf8YFlQ==
-X-CSE-MsgGUID: +yJ4HfHdTS+du8hxCLhBnQ==
+ 07 Jun 2024 11:31:08 -0700
+X-CSE-ConnectionGUID: TDid1GfiR+y4g8OomAL80A==
+X-CSE-MsgGUID: fOx+/e4HTE2EB3K0zqDXbA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="43342147"
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="43342161"
 Received: from invictus.jf.intel.com ([10.165.21.201])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Jun 2024 11:31:08 -0700
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v6 1/6] drm/xe/trace: Extract bo, vm, vma traces
-Date: Fri,  7 Jun 2024 11:29:38 -0700
-Message-Id: <20240607182943.3572524-2-radhakrishna.sripada@intel.com>
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: [PATCH v6 5/6] drm/xe/trace: Print device_id in xe_trace events
+Date: Fri,  7 Jun 2024 11:29:42 -0700
+Message-Id: <20240607182943.3572524-6-radhakrishna.sripada@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240607182943.3572524-1-radhakrishna.sripada@intel.com>
 References: <20240607182943.3572524-1-radhakrishna.sripada@intel.com>
@@ -70,586 +70,365 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_trace.h is starting to get over crowded. Move the traces
-related to bo, vm, vma's to its own file.
+In multi-gpu environments it is important to know the device
+gt events belongs to. The tracing information includes the device_id
+to indicate the device the event is associated with.
 
-v2: Update year in License(Gustavo)
+v2: Use variable sized variant to display dev name(Gustavo)
+v3: Pass single argument to __assign_str to fix kunit error
+v4: Remove unused sting_helper library include
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Suggested-by: Jani Nikula <jani.nikula@intel.com>
+Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile          |   1 +
- drivers/gpu/drm/xe/xe_bo.c           |   2 +-
- drivers/gpu/drm/xe/xe_gt_pagefault.c |   2 +-
- drivers/gpu/drm/xe/xe_migrate.c      |   2 +-
- drivers/gpu/drm/xe/xe_trace.h        | 212 ------------------------
- drivers/gpu/drm/xe/xe_trace_bo.c     |   9 +
- drivers/gpu/drm/xe/xe_trace_bo.h     | 236 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.c           |   2 +-
- 8 files changed, 250 insertions(+), 216 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_trace_bo.c
- create mode 100644 drivers/gpu/drm/xe/xe_trace_bo.h
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 27 +++++----
+ drivers/gpu/drm/xe/xe_pt.c                  |  8 ++-
+ drivers/gpu/drm/xe/xe_trace.h               | 64 +++++++++++++--------
+ 3 files changed, 59 insertions(+), 40 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 478acc94a71c..12e93fbcf9eb 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -112,6 +112,7 @@ xe-y += xe_bb.o \
- 	xe_tile.o \
- 	xe_tile_sysfs.o \
- 	xe_trace.o \
-+	xe_trace_bo.o \
- 	xe_ttm_sys_mgr.o \
- 	xe_ttm_stolen_mgr.o \
- 	xe_ttm_vram_mgr.o \
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 2bae01ce4e5b..74294f1b05bc 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -25,7 +25,7 @@
- #include "xe_pm.h"
- #include "xe_preempt_fence.h"
- #include "xe_res_cursor.h"
--#include "xe_trace.h"
-+#include "xe_trace_bo.h"
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_vm.h"
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index 105797776a6c..23d397a246a8 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -22,6 +22,7 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
+ {
+ 	struct xe_gt *gt = container_of(work, struct xe_gt,
+ 					tlb_invalidation.fence_tdr.work);
++	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_gt_tlb_invalidation_fence *fence, *next;
  
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index eaf68f0135c1..9292d5468868 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -19,7 +19,7 @@
- #include "xe_guc.h"
- #include "xe_guc_ct.h"
- #include "xe_migrate.h"
--#include "xe_trace.h"
-+#include "xe_trace_bo.h"
- #include "xe_vm.h"
+ 	spin_lock_irq(&gt->tlb_invalidation.pending_lock);
+@@ -33,7 +34,7 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
+ 		if (msecs_to_jiffies(since_inval_ms) < TLB_TIMEOUT)
+ 			break;
  
- struct pagefault {
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 7e3fb33110d9..ddd50c3f7208 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -32,7 +32,7 @@
- #include "xe_res_cursor.h"
- #include "xe_sched_job.h"
- #include "xe_sync.h"
--#include "xe_trace.h"
-+#include "xe_trace_bo.h"
- #include "xe_vm.h"
+-		trace_xe_gt_tlb_invalidation_fence_timeout(fence);
++		trace_xe_gt_tlb_invalidation_fence_timeout(xe, fence);
+ 		xe_gt_err(gt, "TLB invalidation fence timeout, seqno=%d recv=%d",
+ 			  fence->seqno, gt->tlb_invalidation.seqno_recv);
+ 
+@@ -71,18 +72,18 @@ int xe_gt_tlb_invalidation_init(struct xe_gt *gt)
+ }
+ 
+ static void
+-__invalidation_fence_signal(struct xe_gt_tlb_invalidation_fence *fence)
++__invalidation_fence_signal(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence)
+ {
+-	trace_xe_gt_tlb_invalidation_fence_signal(fence);
++	trace_xe_gt_tlb_invalidation_fence_signal(xe, fence);
+ 	dma_fence_signal(&fence->base);
+ 	dma_fence_put(&fence->base);
+ }
+ 
+ static void
+-invalidation_fence_signal(struct xe_gt_tlb_invalidation_fence *fence)
++invalidation_fence_signal(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence)
+ {
+ 	list_del(&fence->link);
+-	__invalidation_fence_signal(fence);
++	__invalidation_fence_signal(xe, fence);
+ }
  
  /**
+@@ -121,7 +122,7 @@ void xe_gt_tlb_invalidation_reset(struct xe_gt *gt)
+ 
+ 	list_for_each_entry_safe(fence, next,
+ 				 &gt->tlb_invalidation.pending_fences, link)
+-		invalidation_fence_signal(fence);
++		invalidation_fence_signal(gt_to_xe(gt), fence);
+ 	spin_unlock_irq(&gt->tlb_invalidation.pending_lock);
+ 	mutex_unlock(&gt->uc.guc.ct.lock);
+ }
+@@ -144,6 +145,7 @@ static int send_tlb_invalidation(struct xe_guc *guc,
+ 				 u32 *action, int len)
+ {
+ 	struct xe_gt *gt = guc_to_gt(guc);
++	struct xe_device *xe = gt_to_xe(gt);
+ 	int seqno;
+ 	int ret;
+ 
+@@ -157,7 +159,7 @@ static int send_tlb_invalidation(struct xe_guc *guc,
+ 	seqno = gt->tlb_invalidation.seqno;
+ 	if (fence) {
+ 		fence->seqno = seqno;
+-		trace_xe_gt_tlb_invalidation_fence_send(fence);
++		trace_xe_gt_tlb_invalidation_fence_send(xe, fence);
+ 	}
+ 	action[1] = seqno;
+ 	ret = xe_guc_ct_send_locked(&guc->ct, action, len,
+@@ -171,7 +173,7 @@ static int send_tlb_invalidation(struct xe_guc *guc,
+ 		 * we can just go ahead and signal the fence here.
+ 		 */
+ 		if (tlb_invalidation_seqno_past(gt, seqno)) {
+-			__invalidation_fence_signal(fence);
++			__invalidation_fence_signal(xe, fence);
+ 		} else {
+ 			fence->invalidation_time = ktime_get();
+ 			list_add_tail(&fence->link,
+@@ -184,7 +186,7 @@ static int send_tlb_invalidation(struct xe_guc *guc,
+ 		}
+ 		spin_unlock_irq(&gt->tlb_invalidation.pending_lock);
+ 	} else if (ret < 0 && fence) {
+-		__invalidation_fence_signal(fence);
++		__invalidation_fence_signal(xe, fence);
+ 	}
+ 	if (!ret) {
+ 		gt->tlb_invalidation.seqno = (gt->tlb_invalidation.seqno + 1) %
+@@ -294,7 +296,7 @@ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+ 	/* Execlists not supported */
+ 	if (gt_to_xe(gt)->info.force_execlist) {
+ 		if (fence)
+-			__invalidation_fence_signal(fence);
++			__invalidation_fence_signal(xe, fence);
+ 
+ 		return 0;
+ 	}
+@@ -432,6 +434,7 @@ int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno)
+ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ {
+ 	struct xe_gt *gt = guc_to_gt(guc);
++	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_gt_tlb_invalidation_fence *fence, *next;
+ 	unsigned long flags;
+ 
+@@ -468,12 +471,12 @@ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ 
+ 	list_for_each_entry_safe(fence, next,
+ 				 &gt->tlb_invalidation.pending_fences, link) {
+-		trace_xe_gt_tlb_invalidation_fence_recv(fence);
++		trace_xe_gt_tlb_invalidation_fence_recv(xe, fence);
+ 
+ 		if (!tlb_invalidation_seqno_past(gt, fence->seqno))
+ 			break;
+ 
+-		invalidation_fence_signal(fence);
++		invalidation_fence_signal(xe, fence);
+ 	}
+ 
+ 	if (!list_empty(&gt->tlb_invalidation.pending_fences))
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index cd60c009b679..ade9e7a3a0ad 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1137,8 +1137,9 @@ static void invalidation_fence_cb(struct dma_fence *fence,
+ {
+ 	struct invalidation_fence *ifence =
+ 		container_of(cb, struct invalidation_fence, cb);
++	struct xe_device *xe = gt_to_xe(ifence->gt);
+ 
+-	trace_xe_gt_tlb_invalidation_fence_cb(&ifence->base);
++	trace_xe_gt_tlb_invalidation_fence_cb(xe, &ifence->base);
+ 	if (!ifence->fence->error) {
+ 		queue_work(system_wq, &ifence->work);
+ 	} else {
+@@ -1153,8 +1154,9 @@ static void invalidation_fence_work_func(struct work_struct *w)
+ {
+ 	struct invalidation_fence *ifence =
+ 		container_of(w, struct invalidation_fence, work);
++	struct xe_device *xe = gt_to_xe(ifence->gt);
+ 
+-	trace_xe_gt_tlb_invalidation_fence_work_func(&ifence->base);
++	trace_xe_gt_tlb_invalidation_fence_work_func(xe, &ifence->base);
+ 	xe_gt_tlb_invalidation_range(ifence->gt, &ifence->base, ifence->start,
+ 				     ifence->end, ifence->asid);
+ }
+@@ -1166,7 +1168,7 @@ static int invalidation_fence_init(struct xe_gt *gt,
+ {
+ 	int ret;
+ 
+-	trace_xe_gt_tlb_invalidation_fence_create(&ifence->base);
++	trace_xe_gt_tlb_invalidation_fence_create(gt_to_xe(gt), &ifence->base);
+ 
+ 	spin_lock_irq(&gt->tlb_invalidation.lock);
+ 	dma_fence_init(&ifence->base.base, &invalidation_fence_ops,
 diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index e4cba64474e6..ba9cee9e1466 100644
+index 81128c0f31e6..27ba7c416405 100644
 --- a/drivers/gpu/drm/xe/xe_trace.h
 +++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -12,8 +12,6 @@
- #include <linux/tracepoint.h>
- #include <linux/types.h>
+@@ -20,58 +20,64 @@
+ #include "xe_sched_job.h"
+ #include "xe_vm.h"
  
--#include "xe_bo.h"
--#include "xe_bo_types.h"
- #include "xe_exec_queue_types.h"
- #include "xe_gpu_scheduler_types.h"
- #include "xe_gt_tlb_invalidation_types.h"
-@@ -76,58 +74,6 @@ DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_timeout,
- 	     TP_ARGS(fence)
++#define __dev_name_xe(xe)	dev_name((xe)->drm.dev)
++#define __dev_name_gt(gt)	__dev_name_xe(gt_to_xe((gt)))
++#define __dev_name_eq(q)	__dev_name_gt((q)->gt)
++
+ DECLARE_EVENT_CLASS(xe_gt_tlb_invalidation_fence,
+-		    TP_PROTO(struct xe_gt_tlb_invalidation_fence *fence),
+-		    TP_ARGS(fence),
++		    TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
++		    TP_ARGS(xe, fence),
+ 
+ 		    TP_STRUCT__entry(
++			     __string(dev, __dev_name_xe(xe))
+ 			     __field(struct xe_gt_tlb_invalidation_fence *, fence)
+ 			     __field(int, seqno)
+ 			     ),
+ 
+ 		    TP_fast_assign(
++			   __assign_str(dev);
+ 			   __entry->fence = fence;
+ 			   __entry->seqno = fence->seqno;
+ 			   ),
+ 
+-		    TP_printk("fence=%p, seqno=%d",
+-			      __entry->fence, __entry->seqno)
++		    TP_printk("dev=%s, fence=%p, seqno=%d",
++			      __get_str(dev), __entry->fence, __entry->seqno)
  );
  
--DECLARE_EVENT_CLASS(xe_bo,
--		    TP_PROTO(struct xe_bo *bo),
--		    TP_ARGS(bo),
--
--		    TP_STRUCT__entry(
--			     __field(size_t, size)
--			     __field(u32, flags)
--			     __field(struct xe_vm *, vm)
--			     ),
--
--		    TP_fast_assign(
--			   __entry->size = bo->size;
--			   __entry->flags = bo->flags;
--			   __entry->vm = bo->vm;
--			   ),
--
--		    TP_printk("size=%zu, flags=0x%02x, vm=%p",
--			      __entry->size, __entry->flags, __entry->vm)
--);
--
--DEFINE_EVENT(xe_bo, xe_bo_cpu_fault,
--	     TP_PROTO(struct xe_bo *bo),
--	     TP_ARGS(bo)
--);
--
--TRACE_EVENT(xe_bo_move,
--	    TP_PROTO(struct xe_bo *bo, uint32_t new_placement, uint32_t old_placement,
--		     bool move_lacks_source),
--	    TP_ARGS(bo, new_placement, old_placement, move_lacks_source),
--	    TP_STRUCT__entry(
--		     __field(struct xe_bo *, bo)
--		     __field(size_t, size)
--		     __field(u32, new_placement)
--		     __field(u32, old_placement)
--		     __array(char, device_id, 12)
--		     __field(bool, move_lacks_source)
--			),
--
--	    TP_fast_assign(
--		   __entry->bo      = bo;
--		   __entry->size = bo->size;
--		   __entry->new_placement = new_placement;
--		   __entry->old_placement = old_placement;
--		   strscpy(__entry->device_id, dev_name(xe_bo_device(__entry->bo)->drm.dev), 12);
--		   __entry->move_lacks_source = move_lacks_source;
--		   ),
--	    TP_printk("move_lacks_source:%s, migrate object %p [size %zu] from %s to %s device_id:%s",
--		      __entry->move_lacks_source ? "yes" : "no", __entry->bo, __entry->size,
--		      xe_mem_type_to_name[__entry->old_placement],
--		      xe_mem_type_to_name[__entry->new_placement], __entry->device_id)
--);
--
+ DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_create,
+-	     TP_PROTO(struct xe_gt_tlb_invalidation_fence *fence),
+-	     TP_ARGS(fence)
++	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
++	     TP_ARGS(xe, fence)
+ );
+ 
+ DEFINE_EVENT(xe_gt_tlb_invalidation_fence,
+ 	     xe_gt_tlb_invalidation_fence_work_func,
+-	     TP_PROTO(struct xe_gt_tlb_invalidation_fence *fence),
+-	     TP_ARGS(fence)
++	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
++	     TP_ARGS(xe, fence)
+ );
+ 
+ DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_cb,
+-	     TP_PROTO(struct xe_gt_tlb_invalidation_fence *fence),
+-	     TP_ARGS(fence)
++	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
++	     TP_ARGS(xe, fence)
+ );
+ 
+ DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_send,
+-	     TP_PROTO(struct xe_gt_tlb_invalidation_fence *fence),
+-	     TP_ARGS(fence)
++	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
++	     TP_ARGS(xe, fence)
+ );
+ 
+ DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_recv,
+-	     TP_PROTO(struct xe_gt_tlb_invalidation_fence *fence),
+-	     TP_ARGS(fence)
++	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
++	     TP_ARGS(xe, fence)
+ );
+ 
+ DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_signal,
+-	     TP_PROTO(struct xe_gt_tlb_invalidation_fence *fence),
+-	     TP_ARGS(fence)
++	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
++	     TP_ARGS(xe, fence)
+ );
+ 
+ DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_timeout,
+-	     TP_PROTO(struct xe_gt_tlb_invalidation_fence *fence),
+-	     TP_ARGS(fence)
++	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
++	     TP_ARGS(xe, fence)
+ );
+ 
  DECLARE_EVENT_CLASS(xe_exec_queue,
- 		    TP_PROTO(struct xe_exec_queue *q),
+@@ -79,6 +85,7 @@ DECLARE_EVENT_CLASS(xe_exec_queue,
  		    TP_ARGS(q),
-@@ -386,164 +332,6 @@ DEFINE_EVENT(xe_hw_fence, xe_hw_fence_free,
- 	     TP_ARGS(fence)
+ 
+ 		    TP_STRUCT__entry(
++			     __string(dev, __dev_name_eq(q))
+ 			     __field(enum xe_engine_class, class)
+ 			     __field(u32, logical_mask)
+ 			     __field(u8, gt_id)
+@@ -89,6 +96,7 @@ DECLARE_EVENT_CLASS(xe_exec_queue,
+ 			     ),
+ 
+ 		    TP_fast_assign(
++			   __assign_str(dev);
+ 			   __entry->class = q->class;
+ 			   __entry->logical_mask = q->logical_mask;
+ 			   __entry->gt_id = q->gt->info.id;
+@@ -98,8 +106,8 @@ DECLARE_EVENT_CLASS(xe_exec_queue,
+ 			   __entry->flags = q->flags;
+ 			   ),
+ 
+-		    TP_printk("%d:0x%x, gt=%d, width=%d, guc_id=%d, guc_state=0x%x, flags=0x%x",
+-			      __entry->class, __entry->logical_mask,
++		    TP_printk("dev=%s, %d:0x%x, gt=%d, width=%d, guc_id=%d, guc_state=0x%x, flags=0x%x",
++			      __get_str(dev), __entry->class, __entry->logical_mask,
+ 			      __entry->gt_id, __entry->width, __entry->guc_id,
+ 			      __entry->guc_state, __entry->flags)
+ );
+@@ -199,6 +207,7 @@ DECLARE_EVENT_CLASS(xe_sched_job,
+ 		    TP_ARGS(job),
+ 
+ 		    TP_STRUCT__entry(
++			     __string(dev, __dev_name_eq(job->q))
+ 			     __field(u32, seqno)
+ 			     __field(u32, lrc_seqno)
+ 			     __field(u16, guc_id)
+@@ -210,6 +219,7 @@ DECLARE_EVENT_CLASS(xe_sched_job,
+ 			     ),
+ 
+ 		    TP_fast_assign(
++			   __assign_str(dev);
+ 			   __entry->seqno = xe_sched_job_seqno(job);
+ 			   __entry->lrc_seqno = xe_sched_job_lrc_seqno(job);
+ 			   __entry->guc_id = job->q->guc->id;
+@@ -221,8 +231,8 @@ DECLARE_EVENT_CLASS(xe_sched_job,
+ 			   __entry->batch_addr = (u64)job->ptrs[0].batch_addr;
+ 			   ),
+ 
+-		    TP_printk("fence=%p, seqno=%u, lrc_seqno=%u, guc_id=%d, batch_addr=0x%012llx, guc_state=0x%x, flags=0x%x, error=%d",
+-			      __entry->fence, __entry->seqno,
++		    TP_printk("dev=%s, fence=%p, seqno=%u, lrc_seqno=%u, guc_id=%d, batch_addr=0x%012llx, guc_state=0x%x, flags=0x%x, error=%d",
++			      __get_str(dev), __entry->fence, __entry->seqno,
+ 			      __entry->lrc_seqno, __entry->guc_id,
+ 			      __entry->batch_addr, __entry->guc_state,
+ 			      __entry->flags, __entry->error)
+@@ -268,17 +278,19 @@ DECLARE_EVENT_CLASS(xe_sched_msg,
+ 		    TP_ARGS(msg),
+ 
+ 		    TP_STRUCT__entry(
++			     __string(dev, __dev_name_eq(((struct xe_exec_queue *)msg->private_data)))
+ 			     __field(u32, opcode)
+ 			     __field(u16, guc_id)
+ 			     ),
+ 
+ 		    TP_fast_assign(
++			   __assign_str(dev);
+ 			   __entry->opcode = msg->opcode;
+ 			   __entry->guc_id =
+ 			   ((struct xe_exec_queue *)msg->private_data)->guc->id;
+ 			   ),
+ 
+-		    TP_printk("guc_id=%d, opcode=%u", __entry->guc_id,
++		    TP_printk("dev=%s, guc_id=%d, opcode=%u", __get_str(dev), __entry->guc_id,
+ 			      __entry->opcode)
  );
  
--DECLARE_EVENT_CLASS(xe_vma,
--		    TP_PROTO(struct xe_vma *vma),
--		    TP_ARGS(vma),
--
--		    TP_STRUCT__entry(
--			     __field(struct xe_vma *, vma)
--			     __field(u32, asid)
--			     __field(u64, start)
--			     __field(u64, end)
--			     __field(u64, ptr)
--			     ),
--
--		    TP_fast_assign(
--			   __entry->vma = vma;
--			   __entry->asid = xe_vma_vm(vma)->usm.asid;
--			   __entry->start = xe_vma_start(vma);
--			   __entry->end = xe_vma_end(vma) - 1;
--			   __entry->ptr = xe_vma_userptr(vma);
--			   ),
--
--		    TP_printk("vma=%p, asid=0x%05x, start=0x%012llx, end=0x%012llx, userptr=0x%012llx,",
--			      __entry->vma, __entry->asid, __entry->start,
--			      __entry->end, __entry->ptr)
--)
--
--DEFINE_EVENT(xe_vma, xe_vma_flush,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
--DEFINE_EVENT(xe_vma, xe_vma_pagefault,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
--DEFINE_EVENT(xe_vma, xe_vma_acc,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
--DEFINE_EVENT(xe_vma, xe_vma_fail,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
--DEFINE_EVENT(xe_vma, xe_vma_bind,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
--DEFINE_EVENT(xe_vma, xe_vma_pf_bind,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
--DEFINE_EVENT(xe_vma, xe_vma_unbind,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
--DEFINE_EVENT(xe_vma, xe_vma_userptr_rebind_worker,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
--DEFINE_EVENT(xe_vma, xe_vma_userptr_rebind_exec,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
--DEFINE_EVENT(xe_vma, xe_vma_rebind_worker,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
--DEFINE_EVENT(xe_vma, xe_vma_rebind_exec,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
--DEFINE_EVENT(xe_vma, xe_vma_userptr_invalidate,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
--DEFINE_EVENT(xe_vma, xe_vma_invalidate,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
--DEFINE_EVENT(xe_vma, xe_vma_evict,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
--DEFINE_EVENT(xe_vma, xe_vma_userptr_invalidate_complete,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
--DECLARE_EVENT_CLASS(xe_vm,
--		    TP_PROTO(struct xe_vm *vm),
--		    TP_ARGS(vm),
--
--		    TP_STRUCT__entry(
--			     __field(struct xe_vm *, vm)
--			     __field(u32, asid)
--			     ),
--
--		    TP_fast_assign(
--			   __entry->vm = vm;
--			   __entry->asid = vm->usm.asid;
--			   ),
--
--		    TP_printk("vm=%p, asid=0x%05x",  __entry->vm,
--			      __entry->asid)
--);
--
--DEFINE_EVENT(xe_vm, xe_vm_kill,
--	     TP_PROTO(struct xe_vm *vm),
--	     TP_ARGS(vm)
--);
--
--DEFINE_EVENT(xe_vm, xe_vm_create,
--	     TP_PROTO(struct xe_vm *vm),
--	     TP_ARGS(vm)
--);
--
--DEFINE_EVENT(xe_vm, xe_vm_free,
--	     TP_PROTO(struct xe_vm *vm),
--	     TP_ARGS(vm)
--);
--
--DEFINE_EVENT(xe_vm, xe_vm_cpu_bind,
--	     TP_PROTO(struct xe_vm *vm),
--	     TP_ARGS(vm)
--);
--
--DEFINE_EVENT(xe_vm, xe_vm_restart,
--	     TP_PROTO(struct xe_vm *vm),
--	     TP_ARGS(vm)
--);
--
--DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_enter,
--	     TP_PROTO(struct xe_vm *vm),
--	     TP_ARGS(vm)
--);
--
--DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_retry,
--	     TP_PROTO(struct xe_vm *vm),
--	     TP_ARGS(vm)
--);
--
--DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_exit,
--	     TP_PROTO(struct xe_vm *vm),
--	     TP_ARGS(vm)
--);
--
- /* GuC */
- DECLARE_EVENT_CLASS(xe_guc_ct_flow_control,
- 		    TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u32 len),
-diff --git a/drivers/gpu/drm/xe/xe_trace_bo.c b/drivers/gpu/drm/xe/xe_trace_bo.c
-new file mode 100644
-index 000000000000..6d5e66ce4c50
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_trace_bo.c
-@@ -0,0 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef __CHECKER__
-+#define CREATE_TRACE_POINTS
-+#include "xe_trace_bo.h"
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
-new file mode 100644
-index 000000000000..c8bd746d9d41
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_trace_bo.h
-@@ -0,0 +1,236 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#undef TRACE_SYSTEM
-+#define TRACE_SYSTEM xe
-+
-+#if !defined(_XE_TRACE_BO_H_) || defined(TRACE_HEADER_MULTI_READ)
-+#define _XE_TRACE_BO_H_
-+
-+#include <linux/tracepoint.h>
-+#include <linux/types.h>
-+
-+#include "xe_bo.h"
-+#include "xe_bo_types.h"
-+#include "xe_vm.h"
-+
-+DECLARE_EVENT_CLASS(xe_bo,
-+		    TP_PROTO(struct xe_bo *bo),
-+		    TP_ARGS(bo),
-+
-+		    TP_STRUCT__entry(
-+			     __field(size_t, size)
-+			     __field(u32, flags)
-+			     __field(struct xe_vm *, vm)
-+			     ),
-+
-+		    TP_fast_assign(
-+			   __entry->size = bo->size;
-+			   __entry->flags = bo->flags;
-+			   __entry->vm = bo->vm;
-+			   ),
-+
-+		    TP_printk("size=%zu, flags=0x%02x, vm=%p",
-+			      __entry->size, __entry->flags, __entry->vm)
-+);
-+
-+DEFINE_EVENT(xe_bo, xe_bo_cpu_fault,
-+	     TP_PROTO(struct xe_bo *bo),
-+	     TP_ARGS(bo)
-+);
-+
-+TRACE_EVENT(xe_bo_move,
-+	    TP_PROTO(struct xe_bo *bo, uint32_t new_placement, uint32_t old_placement,
-+		     bool move_lacks_source),
-+	    TP_ARGS(bo, new_placement, old_placement, move_lacks_source),
-+	    TP_STRUCT__entry(
-+		     __field(struct xe_bo *, bo)
-+		     __field(size_t, size)
-+		     __field(u32, new_placement)
-+		     __field(u32, old_placement)
-+		     __array(char, device_id, 12)
-+		     __field(bool, move_lacks_source)
-+			),
-+
-+	    TP_fast_assign(
-+		   __entry->bo      = bo;
-+		   __entry->size = bo->size;
-+		   __entry->new_placement = new_placement;
-+		   __entry->old_placement = old_placement;
-+		   strscpy(__entry->device_id, dev_name(xe_bo_device(__entry->bo)->drm.dev), 12);
-+		   __entry->move_lacks_source = move_lacks_source;
-+		   ),
-+	    TP_printk("move_lacks_source:%s, migrate object %p [size %zu] from %s to %s device_id:%s",
-+		      __entry->move_lacks_source ? "yes" : "no", __entry->bo, __entry->size,
-+		      xe_mem_type_to_name[__entry->old_placement],
-+		      xe_mem_type_to_name[__entry->new_placement], __entry->device_id)
-+);
-+
-+DECLARE_EVENT_CLASS(xe_vma,
-+		    TP_PROTO(struct xe_vma *vma),
-+		    TP_ARGS(vma),
-+
-+		    TP_STRUCT__entry(
-+			     __field(struct xe_vma *, vma)
-+			     __field(u32, asid)
-+			     __field(u64, start)
-+			     __field(u64, end)
-+			     __field(u64, ptr)
-+			     ),
-+
-+		    TP_fast_assign(
-+			   __entry->vma = vma;
-+			   __entry->asid = xe_vma_vm(vma)->usm.asid;
-+			   __entry->start = xe_vma_start(vma);
-+			   __entry->end = xe_vma_end(vma) - 1;
-+			   __entry->ptr = xe_vma_userptr(vma);
-+			   ),
-+
-+		    TP_printk("vma=%p, asid=0x%05x, start=0x%012llx, end=0x%012llx, userptr=0x%012llx,",
-+			      __entry->vma, __entry->asid, __entry->start,
-+			      __entry->end, __entry->ptr)
-+)
-+
-+DEFINE_EVENT(xe_vma, xe_vma_flush,
-+	     TP_PROTO(struct xe_vma *vma),
-+	     TP_ARGS(vma)
-+);
-+
-+DEFINE_EVENT(xe_vma, xe_vma_pagefault,
-+	     TP_PROTO(struct xe_vma *vma),
-+	     TP_ARGS(vma)
-+);
-+
-+DEFINE_EVENT(xe_vma, xe_vma_acc,
-+	     TP_PROTO(struct xe_vma *vma),
-+	     TP_ARGS(vma)
-+);
-+
-+DEFINE_EVENT(xe_vma, xe_vma_fail,
-+	     TP_PROTO(struct xe_vma *vma),
-+	     TP_ARGS(vma)
-+);
-+
-+DEFINE_EVENT(xe_vma, xe_vma_bind,
-+	     TP_PROTO(struct xe_vma *vma),
-+	     TP_ARGS(vma)
-+);
-+
-+DEFINE_EVENT(xe_vma, xe_vma_pf_bind,
-+	     TP_PROTO(struct xe_vma *vma),
-+	     TP_ARGS(vma)
-+);
-+
-+DEFINE_EVENT(xe_vma, xe_vma_unbind,
-+	     TP_PROTO(struct xe_vma *vma),
-+	     TP_ARGS(vma)
-+);
-+
-+DEFINE_EVENT(xe_vma, xe_vma_userptr_rebind_worker,
-+	     TP_PROTO(struct xe_vma *vma),
-+	     TP_ARGS(vma)
-+);
-+
-+DEFINE_EVENT(xe_vma, xe_vma_userptr_rebind_exec,
-+	     TP_PROTO(struct xe_vma *vma),
-+	     TP_ARGS(vma)
-+);
-+
-+DEFINE_EVENT(xe_vma, xe_vma_rebind_worker,
-+	     TP_PROTO(struct xe_vma *vma),
-+	     TP_ARGS(vma)
-+);
-+
-+DEFINE_EVENT(xe_vma, xe_vma_rebind_exec,
-+	     TP_PROTO(struct xe_vma *vma),
-+	     TP_ARGS(vma)
-+);
-+
-+DEFINE_EVENT(xe_vma, xe_vma_userptr_invalidate,
-+	     TP_PROTO(struct xe_vma *vma),
-+	     TP_ARGS(vma)
-+);
-+
-+DEFINE_EVENT(xe_vma, xe_vma_invalidate,
-+	     TP_PROTO(struct xe_vma *vma),
-+	     TP_ARGS(vma)
-+);
-+
-+DEFINE_EVENT(xe_vma, xe_vma_evict,
-+	     TP_PROTO(struct xe_vma *vma),
-+	     TP_ARGS(vma)
-+);
-+
-+DEFINE_EVENT(xe_vma, xe_vma_userptr_invalidate_complete,
-+	     TP_PROTO(struct xe_vma *vma),
-+	     TP_ARGS(vma)
-+);
-+
-+DECLARE_EVENT_CLASS(xe_vm,
-+		    TP_PROTO(struct xe_vm *vm),
-+		    TP_ARGS(vm),
-+
-+		    TP_STRUCT__entry(
-+			     __field(struct xe_vm *, vm)
-+			     __field(u32, asid)
-+			     ),
-+
-+		    TP_fast_assign(
-+			   __entry->vm = vm;
-+			   __entry->asid = vm->usm.asid;
-+			   ),
-+
-+		    TP_printk("vm=%p, asid=0x%05x",  __entry->vm,
-+			      __entry->asid)
-+);
-+
-+DEFINE_EVENT(xe_vm, xe_vm_kill,
-+	     TP_PROTO(struct xe_vm *vm),
-+	     TP_ARGS(vm)
-+);
-+
-+DEFINE_EVENT(xe_vm, xe_vm_create,
-+	     TP_PROTO(struct xe_vm *vm),
-+	     TP_ARGS(vm)
-+);
-+
-+DEFINE_EVENT(xe_vm, xe_vm_free,
-+	     TP_PROTO(struct xe_vm *vm),
-+	     TP_ARGS(vm)
-+);
-+
-+DEFINE_EVENT(xe_vm, xe_vm_cpu_bind,
-+	     TP_PROTO(struct xe_vm *vm),
-+	     TP_ARGS(vm)
-+);
-+
-+DEFINE_EVENT(xe_vm, xe_vm_restart,
-+	     TP_PROTO(struct xe_vm *vm),
-+	     TP_ARGS(vm)
-+);
-+
-+DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_enter,
-+	     TP_PROTO(struct xe_vm *vm),
-+	     TP_ARGS(vm)
-+);
-+
-+DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_retry,
-+	     TP_PROTO(struct xe_vm *vm),
-+	     TP_ARGS(vm)
-+);
-+
-+DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_exit,
-+	     TP_PROTO(struct xe_vm *vm),
-+	     TP_ARGS(vm)
-+);
-+
-+#endif
-+
-+/* This part must be outside protection */
-+#undef TRACE_INCLUDE_PATH
-+#undef TRACE_INCLUDE_FILE
-+#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
-+#define TRACE_INCLUDE_FILE xe_trace_bo
-+#include <trace/define_trace.h>
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 99bf7412475c..ffda487653d8 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -36,7 +36,7 @@
- #include "xe_pt.h"
- #include "xe_res_cursor.h"
- #include "xe_sync.h"
--#include "xe_trace.h"
-+#include "xe_trace_bo.h"
- #include "xe_wa.h"
- #include "xe_hmm.h"
+@@ -297,19 +309,21 @@ DECLARE_EVENT_CLASS(xe_hw_fence,
+ 		    TP_ARGS(fence),
  
+ 		    TP_STRUCT__entry(
++			     __string(dev, __dev_name_gt(fence->ctx->gt))
+ 			     __field(u64, ctx)
+ 			     __field(u32, seqno)
+ 			     __field(struct xe_hw_fence *, fence)
+ 			     ),
+ 
+ 		    TP_fast_assign(
++			   __assign_str(dev);
+ 			   __entry->ctx = fence->dma.context;
+ 			   __entry->seqno = fence->dma.seqno;
+ 			   __entry->fence = fence;
+ 			   ),
+ 
+-		    TP_printk("ctx=0x%016llx, fence=%p, seqno=%u",
+-			      __entry->ctx, __entry->fence, __entry->seqno)
++		    TP_printk("dev=%s, ctx=0x%016llx, fence=%p, seqno=%u",
++			      __get_str(dev), __entry->ctx, __entry->fence, __entry->seqno)
+ );
+ 
+ DEFINE_EVENT(xe_hw_fence, xe_hw_fence_create,
 -- 
 2.34.1
 
