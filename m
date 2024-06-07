@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5BCAC27C53
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 07:09:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84935C27C53
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Jun 2024 07:11:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C7ED10EB5D;
-	Fri,  7 Jun 2024 07:09:21 +0000 (UTC)
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E8DD10E199;
- Fri,  7 Jun 2024 07:09:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Only_timeout_jobs_if_they_run_?=
- =?utf-8?q?longer_than_timeout_period?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 07 Jun 2024 07:09:20 -0000
-Message-ID: <171774416047.25386.15372734714964796371@a6498e030952>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3475710E199;
+	Fri,  7 Jun 2024 07:11:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cS8PliF/";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61FD510E199
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Jun 2024 07:10:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1717744259; x=1749280259;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=KfN2Ga6/CXVThPy58lIuH3a1+t92zMwz+gOipyF7hO0=;
+ b=cS8PliF/NEkowyUlD6K/deQ1uMBUOMhkULPmbYF3b6qgFHOVhY3xg8f0
+ J+qSq03RQcFa5fTHio+KmtdRfZ9xctuNyZY186bIfQjt/vZ6pL/oqMgJY
+ JKZiNEUFwxsLVS0zFejFHGMRmRXb0XC0VI9+R7/4ep0fmJbENWO1zIuMM
+ Q26InpPZoOxn6cA2EbRNtXGrItlir72Cp2DpSH6cF1ZOLdZLD9cuDk0Z8
+ OiZPgZPaON+givh1m5WUoRybHIfthQ+JDtNBhQWsWZG0Z0OOw/NbIEHPX
+ snX7RNqNhxajvkwsCInmqHu9fJ1nv/S1aKIbma2Jg4MA1eqE+SF2t6x2m A==;
+X-CSE-ConnectionGUID: UjAegiONQ0+oDgAagnC5Ig==
+X-CSE-MsgGUID: T6XPQsUPT1qlGGOnGQRwMQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="14332640"
+X-IronPort-AV: E=Sophos;i="6.08,220,1712646000"; d="scan'208";a="14332640"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2024 00:10:58 -0700
+X-CSE-ConnectionGUID: YS9gEU7fRAubDLFUagCDMQ==
+X-CSE-MsgGUID: 47j7ntl0SaOk8GMnXANTuw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,220,1712646000"; d="scan'208";a="38219908"
+Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.72])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2024 00:10:57 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+Subject: Re: [RFC PATCH 1/5] drm/xe: Add LRC ctx timestamp support functions
+In-Reply-To: <20240607065219.2264624-2-matthew.brost@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240607065219.2264624-1-matthew.brost@intel.com>
-In-Reply-To: <20240607065219.2264624-1-matthew.brost@intel.com>
+ <20240607065219.2264624-2-matthew.brost@intel.com>
+Date: Fri, 07 Jun 2024 10:10:54 +0300
+Message-ID: <87bk4dmdmp.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +63,20 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 06 Jun 2024, Matthew Brost <matthew.brost@intel.com> wrote:
+> +static inline u32 __xe_lrc_ctx_timestamp_job_offset(struct xe_lrc *lrc)
 
-Series: Only timeout jobs if they run longer than timeout period
-URL   : https://patchwork.freedesktop.org/series/134593/
-State : success
+Please don't use the inline keyword in .c files, no matter how simple
+the function. Just let the compiler do its job of inlining as
+needed. Using inline also silences warnings about unused static
+functions.
 
-== Summary ==
-
-lib/modules/6.10.0-rc2-xe/kernel/sound/core/seq/
-lib/modules/6.10.0-rc2-xe/kernel/sound/core/seq/snd-seq.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-seq-device.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-hwdep.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-pcm.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-compress.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/core/snd-timer.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soundcore.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/sst/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/common/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/amd/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/amd/snd-acp-config.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/amd/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/snd-sof-utils.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/snd-sof-pci.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/snd-sof.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/snd-sof-probes.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/xtensa/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/snd-soc-core.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/snd-soc-acpi.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/codecs/
-lib/modules/6.10.0-rc2-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/hda/
-lib/modules/6.10.0-rc2-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/hda/ext/
-lib/modules/6.10.0-rc2-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/hda/snd-intel-dspcfg.ko
-lib/modules/6.10.0-rc2-xe/kernel/sound/hda/snd-hda-core.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kernel/
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kernel/msr.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kernel/cpuid.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/aesni-intel.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/events/
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/events/intel/
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kvm/
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.10.0-rc2-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/
-lib/modules/6.10.0-rc2-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/cmac.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/ccm.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/cryptd.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/
-lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.10.0-rc2-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.10.0-rc2-xe/build
-lib/modules/6.10.0-rc2-xe/modules.alias.bin
-lib/modules/6.10.0-rc2-xe/modules.builtin
-lib/modules/6.10.0-rc2-xe/modules.softdep
-lib/modules/6.10.0-rc2-xe/modules.alias
-lib/modules/6.10.0-rc2-xe/modules.order
-lib/modules/6.10.0-rc2-xe/modules.symbols
-lib/modules/6.10.0-rc2-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-[0Ksection_end:1717744147:package_x86_64_nodebug
-[0K
-+ echo -e '\e[0Ksection_end:1717744147:package_x86_64_nodebug\r\e[0K'
-+ sync
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+BR,
+Jani.
 
 
+-- 
+Jani Nikula, Intel
