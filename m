@@ -4,66 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DD52C27C5F
-	for <intel-xe@archiver.kernel.org>; Sat,  8 Jun 2024 14:21:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C992C25B76
+	for <intel-xe@archiver.kernel.org>; Sat,  8 Jun 2024 14:23:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D989710E0AE;
-	Sat,  8 Jun 2024 14:21:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BC6410E0C8;
+	Sat,  8 Jun 2024 14:23:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="Qmt9/+I0";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="agJrCo6x";
 	dkim-atps=neutral
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
- [209.85.221.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E95FE10E0AE
- for <intel-xe@lists.freedesktop.org>; Sat,  8 Jun 2024 14:21:55 +0000 (UTC)
-Received: by mail-wr1-f51.google.com with SMTP id
- ffacd0b85a97d-356c4e926a3so2837507f8f.1
- for <intel-xe@lists.freedesktop.org>; Sat, 08 Jun 2024 07:21:55 -0700 (PDT)
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com
+ [209.85.167.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 901B410E0C8
+ for <intel-xe@lists.freedesktop.org>; Sat,  8 Jun 2024 14:23:34 +0000 (UTC)
+Received: by mail-lf1-f53.google.com with SMTP id
+ 2adb3069b0e04-52bc3130ae6so1319400e87.3
+ for <intel-xe@lists.freedesktop.org>; Sat, 08 Jun 2024 07:23:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1717856514; x=1718461314; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-disposition:mime-version
- :message-id:subject:cc:to:from:date:from:to:cc:subject:date
- :message-id:reply-to;
- bh=qKU5If9EmsnT+JAyXQn/aWhyAmFTmp2tnpmiCmiQInA=;
- b=Qmt9/+I06QxJI9PNi1MavyBWHNpJe4BHk44RjHQch9AxWS1Dw3MOoz1MBOE/e6kLGL
- wFkHyHdi7r+MzMx6oXjKt47Bi/FjlJ/sFt9JSa5VpDWP+5oNmU7hGYNq4YE1VBLh3X3N
- GUm0V2/qOoz10rlsLfY/DdEY5OYMNFMdqJcC0IWgPyzi9AKKY5vdfdRYO4zLdcMVew/v
- TyOeP7S9dj7w9X8yw7nJ8dhd8+Ndx82QUYQbH9KN+R21OS7+Gb7i3OvwUVTbtox3KJgX
- vvuxCdW4PQBfXbrkGaMviaW64JEm55KsWWMXsAPHZAzOTJ+dxwyQx+WnEyTfjFnvuBfm
- oqxg==
+ d=linaro.org; s=google; t=1717856612; x=1718461412; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=/t5UMd8/NaA5oqs2HKj0O1Wy44IX5nvKVkn9RccOi6Y=;
+ b=agJrCo6xfyLj6H88JUngOMtGQxYMqmtJewQMEGdRe5plG65LnOX9GCLLn79CRuaJDa
+ L9LIfH9dUK3t3fv3gQrLI8LlxafL6RVEypGGiHA/ignXc+Q8NScrNvOKxl574prHabQj
+ pAI4BTUeENQodiPk088isywd4bjYXCFJQRQ4tMJ5zDPtSVP9v7lEV/0TDOI/QnXTIAqe
+ QdlqaVXjiEi7eu/5zYCGSTJkBwHo/iG3lberIwLVrW6Unzlw5KNsLpb9+8t8Xdq/VGnV
+ cEu+LCs6TL3mTDwe4asZf/qBT8Wk1XUiKjRbmEXv0PDGOPZWyjAu8g4JAdegQIkEB3DO
+ ec+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1717856514; x=1718461314;
- h=content-transfer-encoding:content-disposition:mime-version
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=qKU5If9EmsnT+JAyXQn/aWhyAmFTmp2tnpmiCmiQInA=;
- b=ZyKpbpsy51boZeUEeJE84E/s+iGKhH4oTkQ46iX7ZyLMwOp7Qm8DPwb7VdzzUOa0Eq
- 7m0wxb9U1+q8We3xmDI9xxAULinvlOSFdj9FZrCi5YQZ4U4wHECpXBUGW8vVxewSaj+c
- Y+F5wq2KnwYH+bJmeJZCZHiy9bQV67xpxENxmnUur62usNURRnMYX64DosbNokqB7vCb
- mbkHEeHSpbZtA+6lyG3iWEsy8CCsI6ROPx7LXxFFHKY8w63RHSawAbdbQZwlePidqFxJ
- goV3gEvbiT6XYvt4LRLb0CEXs4ZfzQEvchJlL9Qcdd3ky/D7okPOljriDR6KQmed2aWI
- 31dA==
-X-Gm-Message-State: AOJu0YxOoSUgjIQqe1ymh8wA4xx6Z7Bb6hTE8GPB/orn669A+tSRy2B4
- JUHQNEZSOdOlBSxMKMLq1LGH0RpjZTpQe3Dv8vqD6+Cgl+guvOcm/+mqryVkpk0=
-X-Google-Smtp-Source: AGHT+IGeiyqUVrlQ4+snsuZt1ABT8QRRgExC/NdvJ5o2TOKTSYqDaSPQcSMi9eb+0ngE7mxIwHfkxw==
-X-Received: by 2002:a5d:64c9:0:b0:354:fd51:45fe with SMTP id
- ffacd0b85a97d-35efedc9ec0mr4104546f8f.47.1717856513998; 
- Sat, 08 Jun 2024 07:21:53 -0700 (PDT)
+ d=1e100.net; s=20230601; t=1717856612; x=1718461412;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=/t5UMd8/NaA5oqs2HKj0O1Wy44IX5nvKVkn9RccOi6Y=;
+ b=DQRCPRP6ienSgpe9m8GFDxqmAr41uu8GFaOCGzwMvQQ+xp1Kr1b0XxzBSsXD2eCoku
+ jbvh2LR4j21a703boXfwYX75JmM6bpJ9LGpVvvEMPfLnu9eEfCbx5NICN0Ji2edZ0yJN
+ XOjQpi5CFbhWUNMi4z1vfRiHYSXm8itqXyMr5g5ON+eMruyYCzJE16wNnTXb07oFJCdB
+ mqnsy+pZU+A03X9raoe2i/TwkiGpqjQiFNjGMJIUBO6HCsnP3MiJWLphC4MHdVM8KPwm
+ 1FAIdSynGeU5CGKPO+/iY/Klu663TEI6YWmXOpHnM82oQ8zMOitRaWgLZ2iEzzDP9fTQ
+ zCIw==
+X-Gm-Message-State: AOJu0YzAMtelogsoipK1UVqcTY0TjKSQJZtIWdYPRSyrqEzvES+vtnTQ
+ Rusc8U/PqXqJ2Zl4FZ6yf7bXk0nb+IFZE0MgrZaMBysrZy3f7l0uYzq7KjKPhzU=
+X-Google-Smtp-Source: AGHT+IHM1EJj4nhlDhYQ1Ik6Ne3nzP2jB5BMaR2OJxkwhBCYd2g9m1IMAjuX25lEn34FNIltA20ubA==
+X-Received: by 2002:a05:6512:31d3:b0:52c:8341:7f03 with SMTP id
+ 2adb3069b0e04-52c83417ff7mr597091e87.56.1717856612330; 
+ Sat, 08 Jun 2024 07:23:32 -0700 (PDT)
 Received: from localhost ([102.222.70.76]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-35f1d3d7b11sm224626f8f.28.2024.06.08.07.21.53
+ 5b1f17b1804b1-4215c364bcdsm84990555e9.19.2024.06.08.07.23.31
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 08 Jun 2024 07:21:53 -0700 (PDT)
-Date: Sat, 8 Jun 2024 17:21:50 +0300
+ Sat, 08 Jun 2024 07:23:32 -0700 (PDT)
+Date: Sat, 8 Jun 2024 17:23:28 +0300
 From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [bug report] drm/xe: Perform dma_map when moving system buffer
- objects to TT
-Message-ID: <0134f66e-2fb2-4938-a513-daa80365ace0@moroto.mountain>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [bug report] drm/xe: Introduce a new DRM driver for Intel GPUs
+Message-ID: <8c376f45-def3-4c4c-9d4a-e1f69f9f2a70@moroto.mountain>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,84 +74,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hello Thomas Hellström,
+Hello Matthew Brost,
 
-Commit 75521e8b56e8 ("drm/xe: Perform dma_map when moving system
-buffer objects to TT") from May 2, 2024 (linux-next), leads to the
-following Smatch static checker warning:
+Commit dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel
+GPUs") from Mar 30, 2023 (linux-next), leads to the following Smatch
+static checker warning:
 
-	drivers/gpu/drm/xe/xe_bo.c:672 xe_bo_move()
-	error: we previously assumed 'ttm' could be null (see line 669)
+	drivers/gpu/drm/xe/xe_pt.c:671 xe_pt_stage_bind()
+	error: we previously assumed 'bo' could be null (see line 602)
 
-drivers/gpu/drm/xe/xe_bo.c
-    627 static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
-    628                       struct ttm_operation_ctx *ctx,
-    629                       struct ttm_resource *new_mem,
-    630                       struct ttm_place *hop)
-    631 {
-    632         struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
-    633         struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
-    634         struct ttm_resource *old_mem = ttm_bo->resource;
-    635         u32 old_mem_type = old_mem ? old_mem->mem_type : XE_PL_SYSTEM;
-    636         struct ttm_tt *ttm = ttm_bo->ttm;
-    637         struct xe_migrate *migrate = NULL;
-    638         struct dma_fence *fence;
-    639         bool move_lacks_source;
-    640         bool tt_has_data;
-    641         bool needs_clear;
-    642         bool handle_system_ccs = (!IS_DGFX(xe) && xe_bo_needs_ccs_pages(bo) &&
-    643                                   ttm && ttm_tt_is_populated(ttm)) ? true : false;
-    644         int ret = 0;
-    645 
-    646         /* Bo creation path, moving to system or TT. */
-    647         if ((!old_mem && ttm) && !handle_system_ccs) {
-    648                 if (new_mem->mem_type == XE_PL_TT)
-    649                         ret = xe_tt_map_sg(ttm);
-    650                 if (!ret)
-    651                         ttm_bo_move_null(ttm_bo, new_mem);
-    652                 goto out;
-    653         }
-    654 
-    655         if (ttm_bo->type == ttm_bo_type_sg) {
-    656                 ret = xe_bo_move_notify(bo, ctx);
-    657                 if (!ret)
-    658                         ret = xe_bo_move_dmabuf(ttm_bo, new_mem);
-    659                 return ret;
+drivers/gpu/drm/xe/xe_pt.c
+    596 static int
+    597 xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+    598                  struct xe_vm_pgtable_update *entries, u32 *num_entries)
+    599 {
+    600         struct xe_device *xe = tile_to_xe(tile);
+    601         struct xe_bo *bo = xe_vma_bo(vma);
+    602         bool is_devmem = !xe_vma_is_userptr(vma) && bo &&
+    603                 (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo));
+    604         struct xe_res_cursor curs;
+    605         struct xe_pt_stage_bind_walk xe_walk = {
+    606                 .base = {
+    607                         .ops = &xe_pt_stage_bind_ops,
+    608                         .shifts = xe_normal_pt_shifts,
+    609                         .max_level = XE_PT_HIGHEST_LEVEL,
+    610                 },
+    611                 .vm = xe_vma_vm(vma),
+    612                 .tile = tile,
+    613                 .curs = &curs,
+    614                 .va_curs_start = xe_vma_start(vma),
+    615                 .vma = vma,
+    616                 .wupd.entries = entries,
+    617                 .needs_64K = (xe_vma_vm(vma)->flags & XE_VM_FLAG_64K) && is_devmem,
+    618         };
+    619         struct xe_pt *pt = xe_vma_vm(vma)->pt_root[tile->id];
+    620         int ret;
+    621 
+    622         /**
+    623          * Default atomic expectations for different allocation scenarios are as follows:
+    624          *
+    625          * 1. Traditional API: When the VM is not in LR mode:
+    626          *    - Device atomics are expected to function with all allocations.
+    627          *
+    628          * 2. Compute/SVM API: When the VM is in LR mode:
+    629          *    - Device atomics are the default behavior when the bo is placed in a single region.
+    630          *    - In all other cases device atomics will be disabled with AE=0 until an application
+    631          *      request differently using a ioctl like madvise.
+    632          */
+    633         if (vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT) {
+    634                 if (xe_vm_in_lr_mode(xe_vma_vm(vma))) {
+    635                         if (bo && xe_bo_has_single_placement(bo))
+                                    ^^
+Checks for NULL
+
+    636                                 xe_walk.default_pte |= XE_USM_PPGTT_PTE_AE;
+    637                         /**
+    638                          * If a SMEM+LMEM allocation is backed by SMEM, a device
+    639                          * atomics will cause a gpu page fault and which then
+    640                          * gets migrated to LMEM, bind such allocations with
+    641                          * device atomics enabled.
+    642                          */
+    643                         else if (is_devmem && !xe_bo_has_single_placement(bo))
+                                                                                  ^^
+
+is_devmem ca only be true when bo is valid so it's ok that
+xe_bo_has_single_placement() doesn't check.
+
+    644                                 xe_walk.default_pte |= XE_USM_PPGTT_PTE_AE;
+    645                 } else {
+    646                         xe_walk.default_pte |= XE_USM_PPGTT_PTE_AE;
+    647                 }
+    648 
+    649                 /**
+    650                  * Unset AE if the platform(PVC) doesn't support it on an
+    651                  * allocation
+    652                  */
+    653                 if (!xe->info.has_device_atomics_on_smem && !is_devmem)
+    654                         xe_walk.default_pte &= ~XE_USM_PPGTT_PTE_AE;
+    655         }
+    656 
+    657         if (is_devmem) {
+    658                 xe_walk.default_pte |= XE_PPGTT_PTE_DM;
+    659                 xe_walk.dma_offset = vram_region_gpu_offset(bo->ttm.resource);
     660         }
     661 
-    662         tt_has_data = ttm && (ttm_tt_is_populated(ttm) ||
-    663                               (ttm->page_flags & TTM_TT_FLAG_SWAPPED));
+    662         if (!xe_vma_has_no_bo(vma) && xe_bo_is_stolen(bo))
+    663                 xe_walk.dma_offset = xe_ttm_stolen_gpu_offset(xe_bo_device(bo));
     664 
-    665         move_lacks_source = handle_system_ccs ? (!bo->ccs_cleared)  :
-    666                                                 (!mem_type_is_vram(old_mem_type) && !tt_has_data);
-    667 
-    668         needs_clear = (ttm && ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC) ||
-    669                 (!ttm && ttm_bo->type == ttm_bo_type_device);
-                         ^^^^
-Can ttm be NULL?
+    665         xe_bo_assert_held(bo);
+                                  ^^
+These asserts have a check for NULL
 
-    670 
-    671         if (new_mem->mem_type == XE_PL_TT) {
---> 672                 ret = xe_tt_map_sg(ttm);
-                                           ^^^
-The patch adds an unchecked dereference.  I suspect the NULL check can
-be removed but I don't know.
+    666 
+    667         if (!xe_vma_is_null(vma)) {
+    668                 if (xe_vma_is_userptr(vma))
+    669                         xe_res_first_sg(to_userptr_vma(vma)->userptr.sg, 0,
+    670                                         xe_vma_size(vma), &curs);
+--> 671                 else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
+                                               ^^                     ^^
+Dereferenced
 
-    673                 if (ret)
-    674                         goto out;
-    675         }
-    676 
-    677         if ((move_lacks_source && !needs_clear)) {
-    678                 ttm_bo_move_null(ttm_bo, new_mem);
-    679                 goto out;
-    680         }
-    681 
-    682         if (old_mem_type == XE_PL_SYSTEM && new_mem->mem_type == XE_PL_TT && !handle_system_ccs) {
-    683                 ttm_bo_move_null(ttm_bo, new_mem);
-    684                 goto out;
-    685         }
-    686 
-    687         /*
+    672                         xe_res_first(bo->ttm.resource, xe_vma_bo_offset(vma),
+    673                                      xe_vma_size(vma), &curs);
+    674                 else
+    675                         xe_res_first_sg(xe_bo_sg(bo), xe_vma_bo_offset(vma),
+                                                         ^^
+More unchecked dereferences
+
+    676                                         xe_vma_size(vma), &curs);
+    677         } else {
+    678                 curs.size = xe_vma_size(vma);
+    679         }
+    680 
+    681         ret = xe_pt_walk_range(&pt->base, pt->level, xe_vma_start(vma),
+    682                                xe_vma_end(vma), &xe_walk.base);
+    683 
+    684         *num_entries = xe_walk.wupd.num_used_entries;
+    685         return ret;
+    686 }
 
 regards,
 dan carpenter
