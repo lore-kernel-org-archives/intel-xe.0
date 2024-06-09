@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA6AAC27C55
-	for <intel-xe@archiver.kernel.org>; Sun,  9 Jun 2024 19:28:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5017C27C53
+	for <intel-xe@archiver.kernel.org>; Sun,  9 Jun 2024 19:29:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57FBB10E278;
-	Sun,  9 Jun 2024 19:28:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCFFB10E22D;
+	Sun,  9 Jun 2024 19:29:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FvOBfF4e";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NRPNw8hc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3E6A10E266
- for <intel-xe@lists.freedesktop.org>; Sun,  9 Jun 2024 19:28:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDCBF10E279
+ for <intel-xe@lists.freedesktop.org>; Sun,  9 Jun 2024 19:28:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717961330; x=1749497330;
+ t=1717961333; x=1749497333;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=MrlTFaUKD9oPYPNW55sW3gLBR3qWwC63ss+95qAXt0o=;
- b=FvOBfF4eAoDC2WnMg4tQJYsApki9YOvWvsgh2M5786IjxS+CSzcANpPF
- iojf7zskkl1mf/Q1GXq0Zi+CA7yrTyJm1qT6C0nMYORQepvKq6JOULTEZ
- qo8cIoLf+KxKDrwA0FmPFj/SazlKNzQ3J0ODQB7dW924JLlCcv27Ohdjz
- E85w1q+jlLLkKI2nRsgzTc7vFpIqNfQRHvB1CBgT8WqSwYjH9k2zx2i+e
- GuDBhZLDqlmStdgEQ6NPnCDQ1xmWaEuSYrRH7mwbtL/TEbfkdZadI2VqG
- G4xkrbYeZRGnQvj7/6i+XC8Wa9YOpILk9FB5Vzy+EglaNwshRoUCBx9Vs w==;
-X-CSE-ConnectionGUID: G8kCPS5hTkKLcaigfGhvIA==
-X-CSE-MsgGUID: MFUT236nRwelYrA9Me44qA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11098"; a="14740075"
-X-IronPort-AV: E=Sophos;i="6.08,226,1712646000"; d="scan'208";a="14740075"
+ bh=6VSOZXNkBNqbEa7t5l8unBWmFDdTavYig+ZUUf1FznY=;
+ b=NRPNw8hc3j84jiw8vhWji9wwwM+Y0EioGGb+zt3Ah98UsUNiajzT1SKr
+ wZBOHPpWQzkbVRaKMrrMOM0NQ9pgmiYwstmNwaoG9B+MU+QnzGfLRbW7M
+ nxWFWONavujtOfqc420vN5zmVseDJY/MtFVTlBv/mipRFnLxtG1W4pIgE
+ /2COiAqKDq9UOt42qW958fsJ/O5zfB5cn6ADBkdlE9nALgFM3+8OLS26s
+ RAS4qtGpr2Cqn/Q460Dr0WsNLXQNvEexboH5zao0iUPI97AB2fIIG7KoH
+ 618DESCkGZXbzPZtU0iZRRvD6SzadccXqSa8RcnrnXIUHOlRokE3nibjG g==;
+X-CSE-ConnectionGUID: hkJnzVMES9exm4V6+k0g6A==
+X-CSE-MsgGUID: ArUuTfAAT72cIrJMM7v9rg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11098"; a="14740079"
+X-IronPort-AV: E=Sophos;i="6.08,226,1712646000"; d="scan'208";a="14740079"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2024 12:28:49 -0700
-X-CSE-ConnectionGUID: nGExnkv9QdurlVfoc3IvBQ==
-X-CSE-MsgGUID: oh211EHITz6of+Hl2+QW5Q==
+ 09 Jun 2024 12:28:52 -0700
+X-CSE-ConnectionGUID: BdxKS/MgTHyjXsaLYFgXxA==
+X-CSE-MsgGUID: uaDpASOJQcqnAcM6qfkL2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,226,1712646000"; d="scan'208";a="43276465"
+X-IronPort-AV: E=Sophos;i="6.08,226,1712646000"; d="scan'208";a="43276471"
 Received: from oandoniu-mobl3.ger.corp.intel.com (HELO fedora..)
  ([10.245.245.40])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2024 12:28:49 -0700
+ 09 Jun 2024 12:28:52 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 02/11] drm/ttm: Slightly clean up LRU list iteration
-Date: Sun,  9 Jun 2024 21:28:28 +0200
-Message-ID: <20240609192837.77035-3-thomas.hellstrom@linux.intel.com>
+Subject: [CI 06/11] drm/ttm: Use the LRU walker helper for swapping
+Date: Sun,  9 Jun 2024 21:28:32 +0200
+Message-ID: <20240609192837.77035-7-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240609192837.77035-1-thomas.hellstrom@linux.intel.com>
 References: <20240609192837.77035-1-thomas.hellstrom@linux.intel.com>
@@ -67,10 +67,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To make the transition to using lru hitches easier,
-simplify the ttm_resource_manager_next() interface to only take
-the cursor and reuse ttm_resource_manager_next() functionality
-from ttm_resource_manager_first().
+Rework the TTM swapping to use the LRU walker helper.
+This helps fixing up the ttm_bo_swapout() interface
+to be consistent about not requiring any locking.
+
+For now mimic the current behaviour of using trylock
+only. We could be using ticket-locks here but defer
+that until it's deemed necessary. The TTM swapout
+functionality is a bit weird anyway since it
+alternates between memory types without exhausting
+TTM_PL_SYSTEM first.
 
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
@@ -78,126 +84,241 @@ Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: <dri-devel@lists.freedesktop.org>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/ttm/ttm_resource.c | 48 +++++++++++++-----------------
- include/drm/ttm/ttm_resource.h     | 10 ++++---
- 2 files changed, 27 insertions(+), 31 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo.c     | 112 +++++++++++++++++++++----------
+ drivers/gpu/drm/ttm/ttm_device.c |  30 ++-------
+ include/drm/ttm/ttm_bo.h         |   5 +-
+ 3 files changed, 83 insertions(+), 64 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
-index db9a7a3717c4..8bfbddddc0e8 100644
---- a/drivers/gpu/drm/ttm/ttm_resource.c
-+++ b/drivers/gpu/drm/ttm/ttm_resource.c
-@@ -496,50 +496,44 @@ struct ttm_resource *
- ttm_resource_manager_first(struct ttm_resource_manager *man,
- 			   struct ttm_resource_cursor *cursor)
- {
--	struct ttm_lru_item *lru;
--
- 	lockdep_assert_held(&man->bdev->lru_lock);
- 
--	for (cursor->priority = 0; cursor->priority < TTM_MAX_BO_PRIORITY;
--	     ++cursor->priority)
--		list_for_each_entry(lru, &man->lru[cursor->priority], link) {
--			if (ttm_lru_item_is_res(lru))
--				return ttm_lru_item_to_res(lru);
--		}
--
--	return NULL;
-+	cursor->priority = 0;
-+	cursor->man = man;
-+	cursor->cur = &man->lru[cursor->priority];
-+	return ttm_resource_manager_next(cursor);
+diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+index 43eda720657f..63a91b77f7da 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo.c
++++ b/drivers/gpu/drm/ttm/ttm_bo.c
+@@ -1118,11 +1118,23 @@ int ttm_bo_wait_ctx(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx)
  }
+ EXPORT_SYMBOL(ttm_bo_wait_ctx);
  
- /**
-  * ttm_resource_manager_next
-  *
-- * @man: resource manager to iterate over
-  * @cursor: cursor to record the position
-- * @res: the current resource pointer
-  *
-- * Returns the next resource from the resource manager.
-+ * Return: the next resource from the resource manager.
-  */
- struct ttm_resource *
--ttm_resource_manager_next(struct ttm_resource_manager *man,
--			  struct ttm_resource_cursor *cursor,
--			  struct ttm_resource *res)
-+ttm_resource_manager_next(struct ttm_resource_cursor *cursor)
- {
--	struct ttm_lru_item *lru = &res->lru;
-+	struct ttm_resource_manager *man = cursor->man;
-+	struct ttm_lru_item *lru;
- 
- 	lockdep_assert_held(&man->bdev->lru_lock);
- 
--	list_for_each_entry_continue(lru, &man->lru[cursor->priority], link) {
--		if (ttm_lru_item_is_res(lru))
--			return ttm_lru_item_to_res(lru);
--	}
--
--	for (++cursor->priority; cursor->priority < TTM_MAX_BO_PRIORITY;
--	     ++cursor->priority)
--		list_for_each_entry(lru, &man->lru[cursor->priority], link) {
--			if (ttm_lru_item_is_res(lru))
--				ttm_lru_item_to_res(lru);
-+	for (;;) {
-+		lru = list_entry(cursor->cur, typeof(*lru), link);
-+		list_for_each_entry_continue(lru, &man->lru[cursor->priority], link) {
-+			if (ttm_lru_item_is_res(lru)) {
-+				cursor->cur = &lru->link;
-+				return ttm_lru_item_to_res(lru);
-+			}
- 		}
- 
-+		if (++cursor->priority >= TTM_MAX_BO_PRIORITY)
-+			break;
+-int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
+-		   gfp_t gfp_flags)
++/**
++ * struct ttm_bo_swapout_walk - Parameters for the swapout walk
++ */
++struct ttm_bo_swapout_walk {
++	/** @walk: The walk base parameters. */
++	struct ttm_lru_walk walk;
++	/** @gfp_flags: The gfp flags to use for ttm_tt_swapout() */
++	gfp_t gfp_flags;
++};
 +
-+		cursor->cur = &man->lru[cursor->priority];
++static long
++ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
+ {
+-	struct ttm_place place;
+-	bool locked;
++	struct ttm_place place = {.mem_type = bo->resource->mem_type};
++	struct ttm_bo_swapout_walk *swapout_walk =
++		container_of(walk, typeof(*swapout_walk), walk);
++	struct ttm_operation_ctx *ctx = walk->ctx;
+ 	long ret;
+ 
+ 	/*
+@@ -1131,28 +1143,29 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
+ 	 * The driver may use the fact that we're moving from SYSTEM
+ 	 * as an indication that we're about to swap out.
+ 	 */
+-	memset(&place, 0, sizeof(place));
+-	place.mem_type = bo->resource->mem_type;
+-	if (!ttm_bo_evict_swapout_allowable(bo, ctx, &place, &locked, NULL))
+-		return -EBUSY;
++	if (!bo->bdev->funcs->eviction_valuable(bo, &place)) {
++		ret = -EBUSY;
++		goto out;
 +	}
+ 
+ 	if (!bo->ttm || !ttm_tt_is_populated(bo->ttm) ||
+ 	    bo->ttm->page_flags & TTM_TT_FLAG_EXTERNAL ||
+-	    bo->ttm->page_flags & TTM_TT_FLAG_SWAPPED ||
+-	    !ttm_bo_get_unless_zero(bo)) {
+-		if (locked)
+-			dma_resv_unlock(bo->base.resv);
+-		return -EBUSY;
++	    bo->ttm->page_flags & TTM_TT_FLAG_SWAPPED) {
++		ret = -EBUSY;
++		goto out;
+ 	}
+ 
+ 	if (bo->deleted) {
+-		ret = ttm_bo_cleanup_refs(bo, false, false, locked);
+-		ttm_bo_put(bo);
+-		return ret == -EBUSY ? -ENOSPC : ret;
+-	}
++		pgoff_t num_pages = bo->ttm->num_pages;
+ 
+-	/* TODO: Cleanup the locking */
+-	spin_unlock(&bo->bdev->lru_lock);
++		ret = ttm_bo_wait_ctx(bo, ctx);
++		if (ret)
++			goto out;
 +
- 	return NULL;
++		ttm_bo_cleanup_memtype_use(bo);
++		ret = num_pages;
++		goto out;
++	}
+ 
+ 	/*
+ 	 * Move to system cached
+@@ -1164,12 +1177,13 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
+ 		memset(&hop, 0, sizeof(hop));
+ 		place.mem_type = TTM_PL_SYSTEM;
+ 		ret = ttm_resource_alloc(bo, &place, &evict_mem);
+-		if (unlikely(ret))
++		if (ret)
+ 			goto out;
+ 
+ 		ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
+-		if (unlikely(ret != 0)) {
+-			WARN(ret == -EMULTIHOP, "Unexpected multihop in swaput - likely driver bug.\n");
++		if (ret) {
++			WARN(ret == -EMULTIHOP,
++			     "Unexpected multihop in swapout - likely driver bug.\n");
+ 			ttm_resource_free(bo, &evict_mem);
+ 			goto out;
+ 		}
+@@ -1179,30 +1193,54 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
+ 	 * Make sure BO is idle.
+ 	 */
+ 	ret = ttm_bo_wait_ctx(bo, ctx);
+-	if (unlikely(ret != 0))
++	if (ret)
+ 		goto out;
+ 
+ 	ttm_bo_unmap_virtual(bo);
+-
+-	/*
+-	 * Swap out. Buffer will be swapped in again as soon as
+-	 * anyone tries to access a ttm page.
+-	 */
+ 	if (bo->bdev->funcs->swap_notify)
+ 		bo->bdev->funcs->swap_notify(bo);
+ 
+ 	if (ttm_tt_is_populated(bo->ttm))
+-		ret = ttm_tt_swapout(bo->bdev, bo->ttm, gfp_flags);
++		ret = ttm_tt_swapout(bo->bdev, bo->ttm, swapout_walk->gfp_flags);
+ out:
++	/* Consider some error codes fatal. Others may continue the walk. */
++	if (ret == -ENOMEM || ret == -EINTR || ret == -ERESTARTSYS ||
++	    ret == -EAGAIN || ret > 0)
++		return ret;
+ 
+-	/*
+-	 * Unreserve without putting on LRU to avoid swapping out an
+-	 * already swapped buffer.
+-	 */
+-	if (locked)
+-		dma_resv_unlock(bo->base.resv);
+-	ttm_bo_put(bo);
+-	return ret == -EBUSY ? -ENOSPC : ret;
++	return 0;
++}
++
++const struct ttm_lru_walk_ops ttm_swap_ops = {
++	.process_bo = ttm_bo_swapout_cb,
++};
++
++/**
++ * ttm_bo_swapout() - Swap out buffer objects on the LRU list to shmem.
++ * @bdev: The ttm device.
++ * @ctx: The ttm_operation_ctx governing the swapout operation.
++ * @man: The resource manager whose resources / buffer objects are
++ * goint to be swapped out.
++ * @gfp_flags: The gfp flags used for shmem page allocations.
++ * @target: The desired number of pages to swap out.
++ *
++ * Return: The number of pages actually swapped out, or negative error code
++ * on error.
++ */
++long ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
++		    struct ttm_resource_manager *man, gfp_t gfp_flags,
++		    pgoff_t target)
++{
++	struct ttm_bo_swapout_walk swapout_walk = {
++		.walk = {
++			.ops = &ttm_swap_ops,
++			.ctx = ctx,
++			.trylock_only = true,
++		},
++		.gfp_flags = gfp_flags,
++	};
++
++	return ttm_lru_walk_for_evict(&swapout_walk.walk, bdev, man, target);
  }
  
-diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
-index 1511d91e290d..7d81fd5b5b83 100644
---- a/include/drm/ttm/ttm_resource.h
-+++ b/include/drm/ttm/ttm_resource.h
-@@ -272,11 +272,15 @@ ttm_lru_item_to_res(struct ttm_lru_item *item)
- /**
-  * struct ttm_resource_cursor
-  *
-+ * @man: The resource manager currently being iterated over.
-+ * @cur: The list head the cursor currently points to.
-  * @priority: the current priority
-  *
-  * Cursor to iterate over the resources in a manager.
-  */
- struct ttm_resource_cursor {
-+	struct ttm_resource_manager *man;
-+	struct list_head *cur;
- 	unsigned int priority;
- };
+ void ttm_bo_tt_destroy(struct ttm_buffer_object *bo)
+diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
+index f9e9b1ec8c8a..ee575d8a54c0 100644
+--- a/drivers/gpu/drm/ttm/ttm_device.c
++++ b/drivers/gpu/drm/ttm/ttm_device.c
+@@ -148,40 +148,20 @@ int ttm_global_swapout(struct ttm_operation_ctx *ctx, gfp_t gfp_flags)
+ int ttm_device_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
+ 		       gfp_t gfp_flags)
+ {
+-	struct ttm_resource_cursor cursor;
+ 	struct ttm_resource_manager *man;
+-	struct ttm_resource *res;
+ 	unsigned i;
+-	int ret;
++	long lret;
  
-@@ -438,9 +442,7 @@ struct ttm_resource *
- ttm_resource_manager_first(struct ttm_resource_manager *man,
- 			   struct ttm_resource_cursor *cursor);
- struct ttm_resource *
--ttm_resource_manager_next(struct ttm_resource_manager *man,
--			  struct ttm_resource_cursor *cursor,
--			  struct ttm_resource *res);
-+ttm_resource_manager_next(struct ttm_resource_cursor *cursor);
+-	spin_lock(&bdev->lru_lock);
+ 	for (i = TTM_PL_SYSTEM; i < TTM_NUM_MEM_TYPES; ++i) {
+ 		man = ttm_manager_type(bdev, i);
+ 		if (!man || !man->use_tt)
+ 			continue;
  
- struct ttm_resource *
- ttm_lru_first_res_or_null(struct list_head *head);
-@@ -455,7 +457,7 @@ ttm_lru_first_res_or_null(struct list_head *head);
-  */
- #define ttm_resource_manager_for_each_res(man, cursor, res)		\
- 	for (res = ttm_resource_manager_first(man, cursor); res;	\
--	     res = ttm_resource_manager_next(man, cursor, res))
-+	     res = ttm_resource_manager_next(cursor))
- 
- struct ttm_kmap_iter *
- ttm_kmap_iter_iomap_init(struct ttm_kmap_iter_iomap *iter_io,
+-		ttm_resource_manager_for_each_res(man, &cursor, res) {
+-			struct ttm_buffer_object *bo = res->bo;
+-			uint32_t num_pages;
+-
+-			if (!bo || bo->resource != res)
+-				continue;
+-
+-			num_pages = PFN_UP(bo->base.size);
+-			ret = ttm_bo_swapout(bo, ctx, gfp_flags);
+-			/* ttm_bo_swapout has dropped the lru_lock */
+-			if (!ret) {
+-				ttm_resource_cursor_fini(&cursor);
+-				return num_pages;
+-			}
+-			if (ret != -EBUSY) {
+-				ttm_resource_cursor_fini(&cursor);
+-				return ret;
+-			}
+-		}
++		lret = ttm_bo_swapout(bdev, ctx, man, gfp_flags, 1);
++		/* Can be both positive (num_pages) and negative (error) */
++		if (lret)
++			return lret;
+ 	}
+-	ttm_resource_cursor_fini_locked(&cursor);
+-	spin_unlock(&bdev->lru_lock);
+ 	return 0;
+ }
+ EXPORT_SYMBOL(ttm_device_swapout);
+diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+index 8b032298d66e..472a55b69afb 100644
+--- a/include/drm/ttm/ttm_bo.h
++++ b/include/drm/ttm/ttm_bo.h
+@@ -410,8 +410,9 @@ void ttm_bo_kunmap(struct ttm_bo_kmap_obj *map);
+ int ttm_bo_vmap(struct ttm_buffer_object *bo, struct iosys_map *map);
+ void ttm_bo_vunmap(struct ttm_buffer_object *bo, struct iosys_map *map);
+ int ttm_bo_mmap_obj(struct vm_area_struct *vma, struct ttm_buffer_object *bo);
+-int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
+-		   gfp_t gfp_flags);
++long ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
++		    struct ttm_resource_manager *man, gfp_t gfp_flags,
++		    pgoff_t target);
+ void ttm_bo_pin(struct ttm_buffer_object *bo);
+ void ttm_bo_unpin(struct ttm_buffer_object *bo);
+ int ttm_mem_evict_first(struct ttm_device *bdev,
 -- 
 2.44.0
 
