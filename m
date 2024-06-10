@@ -4,163 +4,200 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE6B7C27C55
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 14:11:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1EB6C27C55
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 14:13:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FCA210E0DA;
-	Mon, 10 Jun 2024 14:11:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B51C10E189;
+	Mon, 10 Jun 2024 14:13:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ScIDw+Kg";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="MZxdnv0A";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3E9510E0DA
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Jun 2024 14:11:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718028672; x=1749564672;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=Xfqq6HmHy+s9mdbNIlUWXbChX9DgkEHJBFSSFk+TTqw=;
- b=ScIDw+KgMlXc4XnbR1wraii/4n9b31cYNonD/933wUG/r5ZjZg0Vvc0M
- gYnEz/UizV7SMqGvWcQbfKH7V6dqFXJs6acVNKtabafgw+MiPOy4hh1ZA
- YM9OGsaW48BpRcl6SyhIS+MNHLIGt8l7lZPuO3HjoCQTtmPIo1wcRd3Pj
- LNX3snalnihprGLd/2IqKfZTNwDM/2TZRCmcvFI7OsIvK71tWBFRtkRkc
- SO6dAIeHsotqq5aqw8075sWX1u93veynUkLtQS6kXJ6VXSM6Zi0DljnGF
- tHXxFBdK/78Lx5L/zPUQsaPahaI/MQs+a7K6iz1an/+Z2SVol5OM/cC8u g==;
-X-CSE-ConnectionGUID: vEBTIJNQSr+KJKcxLApU1g==
-X-CSE-MsgGUID: /Y7GjXVgRGakOMMb0c5T2Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14569396"
-X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="14569396"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2024 07:11:11 -0700
-X-CSE-ConnectionGUID: VD7+F/fBSmmKUJvi8+z4PA==
-X-CSE-MsgGUID: JclzuUKWTHanfj4b3gEbPg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="44012132"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 10 Jun 2024 07:11:12 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 10 Jun 2024 07:11:11 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Mon, 10 Jun 2024 07:11:11 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.41) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Mon, 10 Jun 2024 07:11:10 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LkDcIHYYi9+q1V1E5nfXkDLjNb9TXw0srvDcVhvkNL7Y8JXZd+BLSvC6HPTsFfT0+xllrptMCRGl0Jj0Vdq8tq/Av9jSMx31xg3bdckV9FmYnI7fsEwJLF49QIt0RUgqT9S1vwpJmbQVi/O6QANInjJdrDFDc3P+6j2F8cs8rPZlKehhgw84XOT1wkfW6wteMY8yD5lofaGU3O8R6g/F98SuDf1WqNNeDBMniGjnXlajzgAoR6wU05Bz1wSaGvoa3m+4LjTGa+IZJEJ/JTPo/v3n26+4I3HHrCYOXihzr+H2A7utagABdMm1bWLZOMVt41KZuvT7HGhA0zI1ZbY8ig==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Kxci5Cd48csylHVqA8Z1Wec7umgX8JogATk5Bvwd3Mc=;
- b=JtzAoW6D/DCcfNJmqYnfAtVqAywneFQxrN1iI8kytmDrO9e2cYpQip4bR8Lv7+K36B/AvU/+/NtoPttzazR7Y5sK3SHEYjbHPgl8bweIQ4ugx6XlcFrb8ZtyDDDp9bVUOIBi7VDOeSlbb3dLdLydwgx9zXLJRzq0pYJvM4WSHF1/mGN8VsN7+k/UCnvsqEVDuzwDg0ft5jYJ+fpOFsmRZzNsLb9QbuguW+89Sf1/qK1qoRRSPoCTNwh4psJsbpCDE9wxCqs3UWKfFwHh4SVockk2HsbQT8aoyPAXCs7mfGG1/eZUplh4esZgpj6rvrBw6VKWxdYKt2w0gvlFBWiUTA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7SPRMB0092.namprd11.prod.outlook.com (2603:10b6:510:2b1::6)
- by SA1PR11MB7112.namprd11.prod.outlook.com (2603:10b6:806:2b7::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.17; Mon, 10 Jun
- 2024 14:11:07 +0000
-Received: from PH7SPRMB0092.namprd11.prod.outlook.com
- ([fe80::2ad4:4a5:b333:6ff7]) by PH7SPRMB0092.namprd11.prod.outlook.com
- ([fe80::2ad4:4a5:b333:6ff7%3]) with mapi id 15.20.7633.021; Mon, 10 Jun 2024
- 14:11:07 +0000
-Date: Mon, 10 Jun 2024 14:10:38 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v3 1/6] drm/xe: Add LRC ctx timestamp support functions
-Message-ID: <ZmcJXuiaOBGvH7R1@DUT025-TGLU.fm.intel.com>
-References: <20240608002103.2371696-1-matthew.brost@intel.com>
- <20240608002103.2371696-2-matthew.brost@intel.com>
- <dloqxdmjpfyppmq57mxjbm3rpviu54uu43nykl2kq64oifc4mz@wa7jy3wqtlgw>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <dloqxdmjpfyppmq57mxjbm3rpviu54uu43nykl2kq64oifc4mz@wa7jy3wqtlgw>
-X-ClientProxiedBy: SJ0PR13CA0074.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::19) To PH7SPRMB0092.namprd11.prod.outlook.com
- (2603:10b6:510:2b1::6)
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com
+ [209.85.167.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE4EA10E354
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Jun 2024 08:08:14 +0000 (UTC)
+Received: by mail-lf1-f45.google.com with SMTP id
+ 2adb3069b0e04-52c525257feso2195134e87.1
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Jun 2024 01:08:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1718006892; x=1718611692; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=/L5y1Dv6ivY3eszYnYmdXRYc401x9YYY2yBAmmyUG/k=;
+ b=MZxdnv0AS1cMBB7o+46/rtqyADUD2UQm6yWCeU+MNfUt1szu464nyKHezfPismnCBh
+ A110iF0eqftb8ko4+MfkqkxTaqKqCXhDclW1S8BkjtN8q6kizTyKVKNNbdzgL1ZWmHci
+ zJVEC4jfC+Q6Bx/GkEtJWH0hPJEorkOjyXWZ5DIX8Pi+nW4MM/ghGRIlyoHe4arlBsXg
+ UFCvY80Ko7OW0bHvRoctjD6Rrk3TzHNz7GQnALUqft5SriSDi8ZGpiYpQYkMD4jq/16m
+ 7FhiWvo92FbrDnfGWsOp55fUxPSsHHsReZzNVX0JJF5rv/4zc0VYmeSyOzbGGEJJcI5R
+ aDzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1718006892; x=1718611692;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=/L5y1Dv6ivY3eszYnYmdXRYc401x9YYY2yBAmmyUG/k=;
+ b=L0A5eqtwsYuitM4GKRjJqw126jkhyM6cVtdTj/cutsioJjliDeiTBt8vZRO77tWu0W
+ CvImSMDpQL3xGRtQSIaMoqktPUZiygMMIqEFtAK4ASQay1SLfat+hdyhlQTKDRZMMLxP
+ llKBv3HuXt9ARTzy1hu/muiuaN6loeRtO+Cmo8B+WuRGld8JP74aj0mT6MSEhI4BgoF3
+ J9kK2a/jCpNy18vHSo6KNJAeHFJPU3yGxBFOtPRYR0ThrU2MFqrwaPMv2Pwwv11gD7eM
+ yAcSEwaoMAjJJ7keD63+E+j3eNNIROfxqF53Bsaqr41BErFow9Hu6/J5ksKXWWaUDHmi
+ cAJg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUgjsucV4tLYJ199dPJXJpEzeXUD7LRoPODYiyg2bCb9jieb+Qnlw9k7dITeWxuEPGtNntRoiKOJXAKJKJpte9GGyui31zhl+rOrm6X7Vo=
+X-Gm-Message-State: AOJu0YzV8kjheUOTtfYW1RXnaqpMl8m9rIadtxlLfYI2GJI05K1i9fwh
+ OrZxQ0URinBf/H5t8N9uXGJYrRhCRlYPNbFWNewAcP7NK9UaHNO85dxFpsCmfARiIGZaHf7UJVX
+ LzPd89wtPlbeV7kawHqWluSzIzL/mmRd37jqLjA==
+X-Google-Smtp-Source: AGHT+IEoIIaopVbMhKiBzu+ZFeFG117iZrYhuaSy1PLsnicMvCE0nAaF1iUL9hhnUeVtUHqe9i20V059/u6XmSWe6yI=
+X-Received: by 2002:a05:6512:234d:b0:52b:be9b:cafe with SMTP id
+ 2adb3069b0e04-52bbe9bcbadmr5940256e87.21.1718006892189; Mon, 10 Jun 2024
+ 01:08:12 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7SPRMB0092:EE_|SA1PR11MB7112:EE_
-X-MS-Office365-Filtering-Correlation-Id: f0d30591-c388-41cb-6805-08dc89572c14
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|376005|1800799015;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Nn2I1bjzFPbw3ev1Ilja4V1xM8N4EH8lNQeryY4qrbFXLPxzuj2cHCbtEG2A?=
- =?us-ascii?Q?jJbgSVvjcnmCYkjtzFtivnZzO9kE3B0lUXnIBZUWVfNpopMTn8ck1hNziTrH?=
- =?us-ascii?Q?2PDlsy7lU1CGWJwJtaXXXbqfAHOdquuEpoo0qWG3y6qw7UJZc4rnAVMZiekq?=
- =?us-ascii?Q?mmwpdfVrfNOaj0MQMzumnHqbPJzkhQMp6pV3TatzKprMbhNwiYVuhBDVSqih?=
- =?us-ascii?Q?KEgR4ewXauLnRDRja+baoYJ6BlvRkxOfLcIfwt3zboKOF3Xi5F4DBmrwn+BQ?=
- =?us-ascii?Q?fEsM0fRlmqriRDMdgDrkOPNsg1pcclaF4yRNfnixZThh8DvZsn5OtYyl7+ha?=
- =?us-ascii?Q?bzEu7G81tpB8W0avePC5QfZk1iHr6CCWSlHA5gXdEBzs0r9wX/Eb/nkg8O+y?=
- =?us-ascii?Q?2MmZdfJnEhF6Lcqsfg0NhdTJpnbb9W5QutBwfaVWP1BRbhPREE7bunWrsRtb?=
- =?us-ascii?Q?Dgzn0oWxblzmRqU+C2DEiwoSSG0b46dH5w8+qGxM0W++TGncGNu3Qs9S2yBG?=
- =?us-ascii?Q?QTivtloLQjc2Unq6WymZcYb04udF9P4v5KRUo2Yz7zFVtO32tOfyignAMtFS?=
- =?us-ascii?Q?ePIHuOJxw74KgW22lFQ2C+5RiM927e3gswdu/L8NDl+E9AZXsXRXzIiU1wP1?=
- =?us-ascii?Q?Lpt+GWWNQZBTTsmKxDii0qEl0mqUQqExRlg0sC1je1HFsnajFMMsxJ3jvKT4?=
- =?us-ascii?Q?vxc4SkglLoMnRLQbCbLuibIdEWqphPa82peAe0ecD5yenhT4hlOOZN7ZFDCr?=
- =?us-ascii?Q?KJsUvjcjubwH8+xHvCLp84lLDK9RKkFfkNestqD8suN5RpNYZY1NRrw3z/UJ?=
- =?us-ascii?Q?a4XRbtIdzXdQO44irXI1rlMfaRjylH1gh1BaVIIfcakEM9mBfd7zs6y3TnQ8?=
- =?us-ascii?Q?+XHZCznyL14X6Rxv2zCr+NR7Mf2M7iM2ImYk6QvtTorJVlGaeGJANcG6v85n?=
- =?us-ascii?Q?oEOett5lFIS4wr3lToXti6eVynCXsIugtVHWNBz3fTC1AWJOzce7kC9nGC7k?=
- =?us-ascii?Q?MdMIGY7F9Svfv/Mf9eX+9L1BD+1IE5Pp+CCnekyuF9bbXM3CF699EbrQHex/?=
- =?us-ascii?Q?IXg/EarpPMClv/gtSiUR7OIyXF0jSwRO4GE6mOcs5DY+k3OQoCthvMwuE5BO?=
- =?us-ascii?Q?Dk5BDfcr1vFfJ5e3ONmUDerPMKbouCafYlSnEFnWxQ9J50pTkkqfYT4+/C29?=
- =?us-ascii?Q?+AECou0A7m/WJYgO1UZrlvFwX2g/kLLecxIS9HTuo1eeep726wel9knU8EaG?=
- =?us-ascii?Q?qLz1mlO0+GRCudOtwck5DTytRFEreQT3QYXE8xf0gTOOXM6CftsMN4GlhqQG?=
- =?us-ascii?Q?un5Prxh2UqvIBuVJ3faJ5K0M?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7SPRMB0092.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?J16/VtYqwQluM94UbdrdhQ+QKVQSjzoAlWs9oX5up6q7IrHm5ncpRY9UtrkG?=
- =?us-ascii?Q?5LKjzTK0ijRmpOPtUonYPjaVOfv4A9KrxoqgKKcCWPwSxjozBfKS0yIg9vYh?=
- =?us-ascii?Q?pnbWYtd8bIWnBaROatmT/tXYgS0GyEJGCM2kHtEG8R2aoIes9zirPbG/4lw4?=
- =?us-ascii?Q?Q8iCmWQmsUNYnjDwl2Ww2LFp/FI3wEwJjaduu9c2wcaxu0/1av4PE4b1MVWa?=
- =?us-ascii?Q?ZIGV0V64LppS0xcGQpXEVaMEmldzLqCXd8CvPTNb9SuS4MdKAM0QfoHfTKM8?=
- =?us-ascii?Q?Zknd9Nb4LGizCgKd5GskWKpXTs86AF+eo2ITTk+JzlQbzszAzG5ahYpjgSlE?=
- =?us-ascii?Q?BIto5ccg5+/IFK1xV7e7CyQyl3md3jZ84a/nx9gJdFsgPBpwT0kX7Es/KFWo?=
- =?us-ascii?Q?9Wd8oFnSjjHSI4f+oQEV8hBFCqfKf5qasRm+HYtRKS296NQgwBm2NsTRhUoE?=
- =?us-ascii?Q?pDaCQLlKFgAZh+T5C+hJ6fYkJ+y0zePoY/1cZeMTWP7dj/wzjL7Uk9NsRR4R?=
- =?us-ascii?Q?TTqztH+VBMuAf9LNRpmkigZULVgczMJKQVfM+ok3Bm6/S2JmCdPetuMGLz1l?=
- =?us-ascii?Q?RzNgTZaYgvFUopLCEVll1kNSnxOofclPyp7s+7dp3l9uWn5mVb+3+KGnGnTd?=
- =?us-ascii?Q?eR+nSiv6+Ut2d5XNlusRh0I6mcQENcNETkOPX5A1XtulFLO4OgfWIHI+yQHZ?=
- =?us-ascii?Q?Cm4nEeGAICRnxsWFm7XQoPr72P5+I6ctwlijHs1L/UfttA/rtY3ldxow4a+V?=
- =?us-ascii?Q?Q6JQjYA8VHXxRDxEOeo8pkcrLRcF5AaRJDF/TgH2hlijGZk6/5PooEZbGJq9?=
- =?us-ascii?Q?us0BP+8oeHVCgnUL2LxOvFEoO0WLEO2uLvmaRnCo67t3ABgzW5S7g7mtLAAW?=
- =?us-ascii?Q?SwX5r+sGo/YAYuUNHLK6jvyLJ2Ucb9B/93w6pQHCVXSoTBRYG/xAGfJO3d8N?=
- =?us-ascii?Q?y2wQ0Vv68WVvAq9bsOALAWcoyzsFDK060AIlFLNFCAXANIsvIbY6JVswwK4p?=
- =?us-ascii?Q?wLSJXtCop5MO6lU9jGpVeDFCG3Vmh67qBQZ8XjLU3cefKfgCV46vRSzrcW5R?=
- =?us-ascii?Q?crya8manU/6lmIVbq/76WolWWh0w3R6Fq1MdV0OhbKXQGmUNYOz3XMZDWmoF?=
- =?us-ascii?Q?eM1WG0hmuKNj2pkLXeepXW7mBWUFQqV8uaaMR+NoPcuxQ/X38mqhEwyPc5sF?=
- =?us-ascii?Q?qVxRigSvZTruPXN8spkz3P5B15s5PXIbfnpTGl2/+3GOHCC3I1GCIUa1mv/v?=
- =?us-ascii?Q?Qi68q0QtMeE1pakqeQYTjLQhxpudpSFoXk8mBQ4XnLL+Irhtt6cMWbqgEAnF?=
- =?us-ascii?Q?q0tFKByu3ql+lGHkAXfr/HYAghB5zwuiSPSp4Outf3eqfLzUWD2QHOyPRpX+?=
- =?us-ascii?Q?3z3oUtHUZuM8lCS+iiFrER6jadSHVfsK8t/2Zy9HxdjkaDKLVr18sJFOUjDx?=
- =?us-ascii?Q?K6g8BC/Kubf7msIja4Gbih1Q0wErdVc+Y6wpMbRblHOwvtEOWN9e/JGammy/?=
- =?us-ascii?Q?Hh7UP/pjMrS45uBe941HVst1ykynDD8+P+LPeUgW90H+nbJ/ukkCoPr4CT31?=
- =?us-ascii?Q?3vkW9F7Uu0JFQq1b/6NK1CbPTk+CTMhbmRsZ7lKKfuHw2jJTydeM256RJECL?=
- =?us-ascii?Q?ug=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f0d30591-c388-41cb-6805-08dc89572c14
-X-MS-Exchange-CrossTenant-AuthSource: PH7SPRMB0092.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2024 14:11:07.5400 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zxGB/JAg/HfxssFz3W6j/xFz2Gg8q6c8m28uf8/Ro7qtJt3sAiQulU6uzBIycsWBI8Td8sMCXtUKBQseuAmiZQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7112
-X-OriginatorOrg: intel.com
+References: <20240603211538.289765-1-andriy.shevchenko@linux.intel.com>
+ <87tti9cfry.fsf@intel.com>
+In-Reply-To: <87tti9cfry.fsf@intel.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 10 Jun 2024 10:08:00 +0200
+Message-ID: <CACRpkdZFPG_YLici-BmYfk9HZ36f4WavCN3JNotkk8cPgCODCg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/1] treewide: Align match_string() with
+ sysfs_match_string()
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Corey Minyard <minyard@acm.org>, Allen Pais <apais@linux.microsoft.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Perry Yuan <perry.yuan@amd.com>, 
+ Giovanni Cabiddu <giovanni.cabiddu@intel.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>, 
+ Nuno Sa <nuno.sa@analog.com>, Guenter Roeck <linux@roeck-us.net>, 
+ Randy Dunlap <rdunlap@infradead.org>, Andi Shyti <andi.shyti@kernel.org>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, Lee Jones <lee@kernel.org>, 
+ Samuel Holland <samuel@sholland.org>, Elad Nachman <enachman@marvell.com>, 
+ Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
+ Johannes Berg <johannes.berg@intel.com>, 
+ Gregory Greenman <gregory.greenman@intel.com>,
+ Benjamin Berg <benjamin.berg@intel.com>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Robert Richter <rrichter@amd.com>,
+ Vinod Koul <vkoul@kernel.org>, 
+ Chunfeng Yun <chunfeng.yun@mediatek.com>, Hans de Goede <hdegoede@redhat.com>, 
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Nikita Kravets <teackot@gmail.com>, Jiri Slaby <jirislaby@kernel.org>, 
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>, 
+ Stanley Chang <stanley_chang@realtek.com>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Abdel Alkuor <abdelalkuor@geotab.com>, 
+ Kent Overstreet <kent.overstreet@linux.dev>, Eric Biggers <ebiggers@google.com>,
+ Kees Cook <keescook@chromium.org>, Ingo Molnar <mingo@kernel.org>, 
+ "Steven Rostedt (Google)" <rostedt@goodmis.org>,
+ Daniel Bristot de Oliveira <bristot@kernel.org>, 
+ Andrew Morton <akpm@linux-foundation.org>, Hugh Dickins <hughd@google.com>, 
+ Abel Wu <wuyun.abel@bytedance.com>, John Johansen <john.johansen@canonical.com>,
+ Mimi Zohar <zohar@linux.ibm.com>, Stefan Berger <stefanb@linux.ibm.com>, 
+ Roberto Sassu <roberto.sassu@huawei.com>,
+ Eric Snowberg <eric.snowberg@oracle.com>, 
+ Takashi Iwai <tiwai@suse.de>, Takashi Sakamoto <o-takashi@sakamocchi.jp>, 
+ Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+ Mark Brown <broonie@kernel.org>, 
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ linuxppc-dev@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org, keyrings@vger.kernel.org, 
+ linux-crypto@vger.kernel.org, linux-acpi@vger.kernel.org, 
+ linux-ide@vger.kernel.org, openipmi-developer@lists.sourceforge.net, 
+ linux-clk@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org, qat-linux@intel.com, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org, 
+ linux-leds@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+ linux-omap@vger.kernel.org, linux-mmc@vger.kernel.org, 
+ linux-mtd@lists.infradead.org, netdev@vger.kernel.org, 
+ linux-wireless@vger.kernel.org, linux-pci@vger.kernel.org, 
+ linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org, 
+ linux-gpio@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+ linux-staging@lists.linux.dev, linux-usb@vger.kernel.org, 
+ linux-fbdev@vger.kernel.org, linux-bcachefs@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, cgroups@vger.kernel.org, 
+ linux-trace-kernel@vger.kernel.org, linux-mm@kvack.org, 
+ apparmor@lists.ubuntu.com, linux-security-module@vger.kernel.org, 
+ linux-integrity@vger.kernel.org, alsa-devel@alsa-project.org, 
+ linux-sound@vger.kernel.org, Michael Ellerman <mpe@ellerman.id.au>, 
+ Nicholas Piggin <npiggin@gmail.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>, 
+ "Naveen N. Rao" <naveen.n.rao@linux.ibm.com>,
+ Thomas Gleixner <tglx@linutronix.de>, 
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
+ "H. Peter Anvin" <hpa@zytor.com>, David Howells <dhowells@redhat.com>, 
+ "David S. Miller" <davem@davemloft.net>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
+ Sergey Shtylyov <s.shtylyov@omp.ru>, Damien Le Moal <dlemoal@kernel.org>, 
+ Niklas Cassel <cassel@kernel.org>, Daniel Scally <djrscally@gmail.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+ Heiko Stuebner <heiko@sntech.de>, 
+ Peter De Schrijver <pdeschrijver@nvidia.com>,
+ Prashant Gaikwad <pgaikwad@nvidia.com>, 
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ Huang Rui <ray.huang@amd.com>, "Gautham R. Shenoy" <gautham.shenoy@amd.com>, 
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Viresh Kumar <viresh.kumar@linaro.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, 
+ Danilo Krummrich <dakr@redhat.com>, Jean Delvare <jdelvare@suse.com>, 
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Pavel Machek <pavel@ucw.cz>, 
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Tony Lindgren <tony@atomide.com>, Adrian Hunter <adrian.hunter@intel.com>,
+ Hu Ziji <huziji@marvell.com>, 
+ Ulf Hansson <ulf.hansson@linaro.org>, Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Potnuri Bharat Teja <bharat@chelsio.com>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Miri Korenblit <miriam.rachel.korenblit@intel.com>,
+ Kalle Valo <kvalo@kernel.org>, Mahesh J Salgaonkar <mahesh@linux.ibm.com>,
+ "Oliver O'Halloran" <oohall@gmail.com>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ JC Kuo <jckuo@nvidia.com>, 
+ Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Sebastian Reichel <sre@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+ Helge Deller <deller@gmx.de>, Brian Foster <bfoster@redhat.com>, 
+ Zhihao Cheng <chengzhihao1@huawei.com>, Tejun Heo <tj@kernel.org>, 
+ Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>, 
+ Peter Zijlstra <peterz@infradead.org>, Juri Lelli <juri.lelli@redhat.com>, 
+ Vincent Guittot <vincent.guittot@linaro.org>,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>, 
+ Ben Segall <bsegall@google.com>, Mel Gorman <mgorman@suse.de>, 
+ Daniel Bristot de Oliveira <bristot@redhat.com>,
+ Valentin Schneider <vschneid@redhat.com>, 
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
+ Jason Baron <jbaron@akamai.com>, Jim Cromie <jim.cromie@gmail.com>, 
+ Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>, 
+ "Serge E. Hallyn" <serge@hallyn.com>,
+ Dmitry Kasatkin <dmitry.kasatkin@gmail.com>, 
+ Clemens Ladisch <clemens@ladisch.de>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 10 Jun 2024 14:13:28 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -175,173 +212,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 10, 2024 at 08:49:57AM -0500, Lucas De Marchi wrote:
-> On Fri, Jun 07, 2024 at 05:20:58PM GMT, Matthew Brost wrote:
-> > LRC ctx timestamp support functions are used to determine how long a job
-> > has run on the hardware.
-> > 
-> > v2:
-> > - Don't use static inlines (Jani)
-> > - Kernel doc
-> > - s/ctx_timestamp_job/ctx_job_timestamp
-> > 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> > drivers/gpu/drm/xe/xe_lrc.c | 66 +++++++++++++++++++++++++++++++++++++
-> > drivers/gpu/drm/xe/xe_lrc.h |  5 +++
-> > 2 files changed, 71 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> > index c1bb85d2e243..0fef354c6489 100644
-> > --- a/drivers/gpu/drm/xe/xe_lrc.c
-> > +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> > @@ -652,6 +652,7 @@ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc)
-> > 
-> > #define LRC_SEQNO_PPHWSP_OFFSET 512
-> > #define LRC_START_SEQNO_PPHWSP_OFFSET (LRC_SEQNO_PPHWSP_OFFSET + 8)
-> > +#define LRC_CTX_JOB_TIMESTAMP_OFFSET (LRC_START_SEQNO_PPHWSP_OFFSET + 8)
-> > #define LRC_PARALLEL_PPHWSP_OFFSET 2048
-> > #define LRC_PPHWSP_SIZE SZ_4K
-> > 
-> > @@ -680,6 +681,12 @@ static inline u32 __xe_lrc_start_seqno_offset(struct xe_lrc *lrc)
-> > 	return xe_lrc_pphwsp_offset(lrc) + LRC_START_SEQNO_PPHWSP_OFFSET;
-> > }
-> > 
-> > +static u32 __xe_lrc_ctx_job_timestamp_offset(struct xe_lrc *lrc)
-> > +{
-> > +	/* The start seqno is stored in the driver-defined portion of PPHWSP */
-> > +	return xe_lrc_pphwsp_offset(lrc) + LRC_CTX_JOB_TIMESTAMP_OFFSET;
-> > +}
-> > +
-> > static inline u32 __xe_lrc_parallel_offset(struct xe_lrc *lrc)
-> > {
-> > 	/* The parallel is stored in the driver-defined portion of PPHWSP */
-> > @@ -691,6 +698,11 @@ static inline u32 __xe_lrc_regs_offset(struct xe_lrc *lrc)
-> > 	return xe_lrc_pphwsp_offset(lrc) + LRC_PPHWSP_SIZE;
-> > }
-> > 
-> > +static u32 __xe_lrc_ctx_timestamp_offset(struct xe_lrc *lrc)
-> > +{
-> > +	return __xe_lrc_regs_offset(lrc) + CTX_TIMESTAMP * sizeof(u32);
-> > +}
-> > +
-> > static inline u32 __xe_lrc_indirect_ring_offset(struct xe_lrc *lrc)
-> > {
-> > 	/* Indirect ring state page is at the very end of LRC */
-> > @@ -716,11 +728,65 @@ DECL_MAP_ADDR_HELPERS(pphwsp)
-> > DECL_MAP_ADDR_HELPERS(seqno)
-> > DECL_MAP_ADDR_HELPERS(regs)
-> > DECL_MAP_ADDR_HELPERS(start_seqno)
-> > +DECL_MAP_ADDR_HELPERS(ctx_job_timestamp)
-> > +DECL_MAP_ADDR_HELPERS(ctx_timestamp)
-> > DECL_MAP_ADDR_HELPERS(parallel)
-> > DECL_MAP_ADDR_HELPERS(indirect_ring)
-> > 
-> > #undef DECL_MAP_ADDR_HELPERS
-> > 
-> > +/**
-> > + * xe_lrc_ctx_timestamp_ggtt_addr() - Get ctx timestamp GGTT address
-> > + * @lrc: Pointer to the lrc.
-> > + *
-> > + * Returns: ctx timestamp GGTT address
-> > + */
-> > +u32 xe_lrc_ctx_timestamp_ggtt_addr(struct xe_lrc *lrc)
-> > +{
-> > +	return __xe_lrc_ctx_timestamp_ggtt_addr(lrc);
-> > +}
-> > +
-> > +/**
-> > + * xe_lrc_ctx_timestamp_addr() - Read ctx timestamp value
-> > + * @lrc: Pointer to the lrc.
-> > + *
-> > + * Returns: ctx timestamp value
-> > + */
-> > +u32 xe_lrc_ctx_timestamp(struct xe_lrc *lrc)
-> > +{
-> > +	struct xe_device *xe = lrc_to_xe(lrc);
-> > +	struct iosys_map map;
-> > +
-> > +	map = __xe_lrc_ctx_timestamp_map(lrc);
-> > +	return xe_map_read32(xe, &map);
-> > +}
-> > +
-> > +/**
-> > + * xe_lrc_ctx_job_timestamp_ggtt_addr() - Get ctx job timestamp GGTT address
-> > + * @lrc: Pointer to the lrc.
-> > + *
-> > + * Returns: ctx timestamp job GGTT address
-> > + */
-> > +u32 xe_lrc_ctx_job_timestamp_ggtt_addr(struct xe_lrc *lrc)
-> > +{
-> > +	return __xe_lrc_ctx_job_timestamp_ggtt_addr(lrc);
-> > +}
-> > +
-> > +/**
-> > + * xe_lrc_ctx_job_timestamp_addr() - Read ctx job timestamp value
-> > + * @lrc: Pointer to the lrc.
-> > + *
-> > + * Returns: ctx timestamp job value
-> > + */
-> > +u32 xe_lrc_ctx_job_timestamp(struct xe_lrc *lrc)
-> > +{
-> > +	struct xe_device *xe = lrc_to_xe(lrc);
-> > +	struct iosys_map map;
-> > +
-> > +	map = __xe_lrc_ctx_job_timestamp_map(lrc);
-> > +	return xe_map_read32(xe, &map);
-> > +}
-> > +
-> > u32 xe_lrc_ggtt_addr(struct xe_lrc *lrc)
-> > {
-> > 	return __xe_lrc_pphwsp_ggtt_addr(lrc);
-> > diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-> > index 882c3437ba5c..001af6c79454 100644
-> > --- a/drivers/gpu/drm/xe/xe_lrc.h
-> > +++ b/drivers/gpu/drm/xe/xe_lrc.h
-> > @@ -94,6 +94,11 @@ void xe_lrc_snapshot_capture_delayed(struct xe_lrc_snapshot *snapshot);
-> > void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer *p);
-> > void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot);
-> > 
-> > +u32 xe_lrc_ctx_timestamp_ggtt_addr(struct xe_lrc *lrc);
-> > +u32 xe_lrc_ctx_timestamp(struct xe_lrc *lrc);
-> 
+On Tue, Jun 4, 2024 at 9:46=E2=80=AFAM Jani Nikula <jani.nikula@linux.intel=
+.com> wrote:
 
-Bad timing, just sent v4 at the same time.
+[Maybe slightly off-topic, ranty]
 
-> I  think we have some clash here. See the function below where we
-> read the timestamp and cache it in the LRC. That one does something
-> slightly different, but apparently the same thing. Why are these
-> functions not using similar approch with xe_lrc_read_ctx_reg() rather
-> than defining new helper functions? And why would we return the address
-> and then having another function to read the value?
+> Why do we think it's a good idea to increase and normalize the use of
+> double-underscore function names across the kernel, like
+> __match_string() in this case? It should mean "reserved for the
+> implementation, not to be called directly".
+>
+> If it's to be used directly, it should be named accordingly, right?
 
-xe_lrc_read_ctx_reg(lrc, CTX_TIMESTAMP); is the same as: xe_lrc_ctx_timestamp(lrc);
+It's a huge mess. "__" prefix is just so ambiguous I think it just
+shouldn't be used or prolifierated, and it usually breaks Rusty Russells
+API rules times over.
 
-I used 'DECL_MAP_ADDR_HELPERS' to implement the 4 exported functions
-mainly as I need the GGTT address and that macro spits out a helper
-with the GGTT address.
+Consider __set_bit() from <linux/bitops.h>, used all over the place,
+in contrast with set_bit() for example, what does "__" represent in
+this context that makes __set_bit() different from set_bit()?
 
-fwiw, also xe_lrc_read_ctx_reg is implemented with one of these
-functions from DECL_MAP_ADDR_HELPERS - __xe_lrc_regs_map.
+It means "non-atomic"...
 
-I'd vote, leave patch mainly as is but replace existing
-xe_lrc_read_ctx_reg(lrc, CTX_TIMESTAMP); with
-xe_lrc_ctx_timestamp(lrc);. 
+How does a random contributor know this?
 
-If you want to cleanup the file itself and drop these macros, that seems
-to be an orthogonal issue to my series.
+Yeah, you guess it. By the token of "everybody knows that".
+(Grep, google, repeat for the number of contributors to the kernel.)
 
-Matt
+I was considering to send a script to Torvalds to just change all
+this to set_bit_nonatomic() (etc) but was hesitating because that
+makes the name unambiguous but long. I think I stayed off it
+because changing stuff like that all over the place creates churn
+and churn is bad.
 
-> 
-> Lucas De Marchi
-> 
-> > +u32 xe_lrc_ctx_job_timestamp_ggtt_addr(struct xe_lrc *lrc);
-> > +u32 xe_lrc_ctx_job_timestamp(struct xe_lrc *lrc);
-> > +
-> > /**
-> >  * xe_lrc_update_timestamp - readout LRC timestamp and update cached value
-> >  * @lrc: logical ring context for this exec queue
-> > -- 
-> > 2.34.1
-> > 
+Yours,
+Linus Walleij
