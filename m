@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC2C7C27C53
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 02:31:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95810C27C55
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 02:31:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17AF210E2FD;
-	Mon, 10 Jun 2024 02:31:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2074D10E2FD;
+	Mon, 10 Jun 2024 02:31:39 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76A6C10E2FD;
- Mon, 10 Jun 2024 02:31:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DA7910E2FE;
+ Mon, 10 Jun 2024 02:31:37 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xe2=3A_Enable?=
- =?utf-8?q?_Priority_Mem_Read_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/xe2=3A_Enable_Prio?=
+ =?utf-8?q?rity_Mem_Read_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Pallavi Mishra" <pallavi.mishra@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 10 Jun 2024 02:31:24 -0000
-Message-ID: <171798668448.30400.6676301247976307018@a6498e030952>
+Date: Mon, 10 Jun 2024 02:31:37 -0000
+Message-ID: <171798669704.30401.5495554215874930459@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240530062509.1529357-1-pallavi.mishra@intel.com>
 In-Reply-To: <20240530062509.1529357-1-pallavi.mishra@intel.com>
@@ -48,9 +48,45 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 2bea08bd3129 drm-tip: 2024y-06m-07d-19h-26m-01s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe2: Enable Priority Mem Read
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c839ec73e8f942c4e5292da47cd878da751ab48d
+Author: Pallavi Mishra <pallavi.mishra@intel.com>
+Date:   Thu May 30 11:55:09 2024 +0530
+
+    drm/xe/xe2: Enable Priority Mem Read
+    
+    Enable feature to allow memory reads to take a
+    priority memory path. This will reduce latency
+    on the read path, but may introduce read after
+    write (RAW) hazards as read and writes will no
+    longer be ordered.
+    
+    To avoid RAW hazards, SW can use the MI_MEM_FENCE
+    command or any other MI command that generates
+    non posted memory writes. This will ensure data
+    is coherent in memory prior to execution of
+    commands which read data from memory.
+    
+    No pattern identified in KMD that could lead to a
+    hazard.
+    
+    v2: Modify commit message, enable priority mem
+    read feature for media, modify version range,
+    modify bspec detail (Matt Roper)
+    
+    Bspec: 60298, 60237, 60187, 60188
+    
+    Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
+    Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
++ /mt/dim checkpatch 2bea08bd31298d60d416b2a6ed346bb53dd28037 drm-intel
+c839ec73e8f9 drm/xe/xe2: Enable Priority Mem Read
 
 
