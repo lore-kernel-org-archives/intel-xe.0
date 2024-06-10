@@ -4,54 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68C2EC27C55
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 13:49:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE66EC27C55
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 13:50:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A5BC10E489;
-	Mon, 10 Jun 2024 13:49:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDEED10E14C;
+	Mon, 10 Jun 2024 13:50:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fAJgmIfR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rrf/s9ih";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB11110E1A1
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Jun 2024 13:49:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C61010E14C
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Jun 2024 13:50:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718027384; x=1749563384;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=dWA/+Yvxoyg1ec+GhJ2aAXV3V+WvgtCz5oVO6l+Ysok=;
- b=fAJgmIfRT3k7IfOyjwZqmtoe38lklNUGeNY2LUItTHoqW0e9k1M8kkJp
- qipEBdqZWkCiZNnZ7PNFxW6pHcafkSDxgXjo4w9JV4MUsblKK7SPJC2Xy
- SozLdB1gfvQ1cRMr7wHbNTvW3Rrw5Qw/k1C33vAWk800vRvf6Oe6AHzVj
- SAOhZjEgCQ4tRzP1jH1mDEA3wdh21H40t2c7rS2BU5Yv6m07tTsn43/iU
- GsshN1MH4EB5PPiXirwU7Da2ZSiEWVwF8EBj5qVPd1b9eGg1Fj1ARW9at
- 75XaJqVWzXwYs1JExAdNy5EtnPoMClpf8N32YdpqYIzy6mY4jytneKpgH Q==;
-X-CSE-ConnectionGUID: EsZQnoAdTo6WmLipdPpE9w==
-X-CSE-MsgGUID: qcswAeHHRmCmeyfRcQBBYw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14419836"
-X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="14419836"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2024 06:49:42 -0700
-X-CSE-ConnectionGUID: cOrsqkGqRQKb2ris6AYR2A==
-X-CSE-MsgGUID: uwbwbT5cQp+XJ7VF40/ImA==
+ t=1718027404; x=1749563404;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=7VXbE4MYBtRCmmj5LauBBATzflaDydYwO5DMBGkPlvw=;
+ b=Rrf/s9ihmQExuqokiTzGOrmhxb0+t++WobghakKtbmnNwuyt+dhHZ+Pt
+ h3Nm8/8WekZcS8IqCOS2ZKWUdUg8UsVq3//fLlmyWrZwmynd3Yubatjoh
+ QvfhIe9tkE3fST22fcDukMndWjOYNOZZUijGmLEfpFx9z5AmX0YAhNSYg
+ AtxPDeXktgZCem551R5LZapfZRhLvoBnI5pen6aUg3P2Yk38TE9aumyzv
+ 0S+dQ+P43RoIly5sBrOh6pfOhq6GfewiGbYGYERgLb0u+lF4pO2UQ3i46
+ +AQoz4qq2pquEL+Z82+6F7uYSJd+Oxe8Ml8NQUredwbIBIExkNFvZ2Bg7 g==;
+X-CSE-ConnectionGUID: kSVsojJ9QRaVncNI7SM+Uw==
+X-CSE-MsgGUID: fsP7ZXZARruUxXXGi0pCQA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14860394"
+X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="14860394"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2024 06:50:04 -0700
+X-CSE-ConnectionGUID: B0OZGK+SRmGSbolaEi2H2w==
+X-CSE-MsgGUID: NODSV7aJTeeY3MdmOP1C5g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="76523131"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2024 06:49:42 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 7/7] drm/xe: Sample ctx timestamp to determine if jobs have
- timed out
-Date: Mon, 10 Jun 2024 06:50:11 -0700
-Message-Id: <20240610135011.2605272-8-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240610135011.2605272-1-matthew.brost@intel.com>
-References: <20240610135011.2605272-1-matthew.brost@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="39619137"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 10 Jun 2024 06:50:04 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 10 Jun 2024 06:50:02 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Mon, 10 Jun 2024 06:50:02 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.46) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Mon, 10 Jun 2024 06:50:02 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FopX73V3SQxSeRpV8PAKMmj5ULw2OYg2o/uVy6vJNVZUgqsFQDpvg6tgXPkbxDBWtjcqHAOP7MoD0MYCWVtYK/RD3V+Y9HDy6s7Dz6qPq6XuXva3Or9thPZiwA2bjNgbDJTO9AMR0lb2zeOlgOXOabwUkeXsw6oeD/l3D0cOS4JM05tyQ7HuejM1FlY7y2/IUE8fx41glDYbvQkdRZsdMvZrMEq2uaC0EVF+WXRMcZnlMRcKB/qO3RgYv9ini0poRpM/I1BdwadlHAgKcd27klWMmo3dYbXTNw1QyUGJDED2It9iAob4E6DZzME2isw9HahCTYl5eyEtAHE1+sNq2w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BA8FYK4rmriy39oOkcwEy5e+YoqLNWlWXkcjB/g7OG8=;
+ b=niA3s5g4CORr5NeL+MMquJXF0GIUWorHdKEGnJtDlqWYIMwczDdcGf2qujE03yzWxolfvCusK0i7unARop2t53fhe0nIzAFgtU7jO6Ri+6PkP0A/vTLp4lQPq3g2bOGbR25xYFdwwyIMEhV59YXwZKVGgXIbNR1GhrtbwNgyuHzdxYfKm3ltpnAJfojx2RzJNiITfWnIJkKjDrS9fbz6Rgp/pdKSKJye1q1PEsxrXsa94OsrdmX0xltorkGlGxdN0T5HrsSVy0yd2hJPj5JExT758F8CTv4tPQqjwiMZ2pXmmoJw5DgNah4zjhDKw5r1no5m1FyYQnee9Uh7DdANnw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by DM6PR11MB4611.namprd11.prod.outlook.com (2603:10b6:5:2a5::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.36; Mon, 10 Jun
+ 2024 13:50:00 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.7633.036; Mon, 10 Jun 2024
+ 13:50:00 +0000
+Date: Mon, 10 Jun 2024 08:49:57 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v3 1/6] drm/xe: Add LRC ctx timestamp support functions
+Message-ID: <dloqxdmjpfyppmq57mxjbm3rpviu54uu43nykl2kq64oifc4mz@wa7jy3wqtlgw>
+References: <20240608002103.2371696-1-matthew.brost@intel.com>
+ <20240608002103.2371696-2-matthew.brost@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240608002103.2371696-2-matthew.brost@intel.com>
+X-ClientProxiedBy: MW4PR03CA0211.namprd03.prod.outlook.com
+ (2603:10b6:303:b9::6) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DM6PR11MB4611:EE_
+X-MS-Office365-Filtering-Correlation-Id: d07e1e5c-327f-4976-d4b5-08dc895438da
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|1800799015|376005;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?5luZUJ0XSgud0LW6iXELC12cJBvnxOiv69ZpnO8bkktGp0ZQx7druJWl1Wol?=
+ =?us-ascii?Q?7uPrEEl/w2G4SeniBht1ahAASYsy4lWOEDl6Kn2YpNzDM2OIYjVM7qoK3MmR?=
+ =?us-ascii?Q?0RS5OuSM467lsXcqRDh1LR487x9NGlKa5N5C038Jx0VeAUhJQMR2o7tvtV8V?=
+ =?us-ascii?Q?n5vSzLiXXNzZxzbpU1ZKX/ANfLoa5lXFwhQHmDFWxCBIqKiIyS1rFzd9VwY0?=
+ =?us-ascii?Q?WSV67rO4YvvpwAxqOFQIQGJkenjhDrpm3U4MxoyAS5VgWBc0wsw+TDJ1HGW8?=
+ =?us-ascii?Q?fGT6tlrn1n6Y6xvrfGtQzj4BnUucVffhizTVTvGWd+QxqWfOEz5YLk3/EPvY?=
+ =?us-ascii?Q?P2/47WbEfH4K33V7fNrYjgs0n8n6M9yvOsWlUmjlhEtvXj+i2TiZPc8/+ryR?=
+ =?us-ascii?Q?Dzae9TKukLs0TNN1YtbmZshZ8mFWre/edD8p98g3adYWwosd00/yDCqQ0hOS?=
+ =?us-ascii?Q?byS8kgiIKQWSY9NgOSW36c4fbfnpFg7m47mq/EKNED1mQyOSsdojd7P3iIF4?=
+ =?us-ascii?Q?lu+xQGzuFx2vTLswmODKwtuQ/PBoT5tUZ34l/eR5ViSjHSG41bRmRnd41Qrw?=
+ =?us-ascii?Q?zqNl/Cdae7cQK3kRS3YBaGEMoewFwG4u3lkFCgd0Hpmw3mM4r3s28d8FTvD5?=
+ =?us-ascii?Q?H6k1wsrheNMhZKmaF5o7t9NOe0t6OaYSPDUuzjESgZs1ZC9OA6fMHY8KCbBq?=
+ =?us-ascii?Q?NfNy11L0HwSRfYFOE1Jwj/HTODaSDU6IEZ7uLzsM1mSTUxWrnwbh3TgYPHM3?=
+ =?us-ascii?Q?vPLoKFajkaGlp1QqWIZboG568yHHugLxvsFaH2jI9LPbgoSkl8t7YVAb+DfJ?=
+ =?us-ascii?Q?gStqpgmipbCDwrjKjmDsrnowM1WNwe/DG/qxExlz9gzAXQKVWxgHUYHbGbWQ?=
+ =?us-ascii?Q?QYjh2B6qJr0grpj1ecJSfPSgm0PMSr/JQZjDZMzZDV0WERbBFIHKr47vli+G?=
+ =?us-ascii?Q?BrIPQXk6EKlhXSO15ZXi/wNn/yRgygfqHTaoRYr2jXhBXfqI4lBuhLetyqzN?=
+ =?us-ascii?Q?/cdq/tXBcnnK9kDo9NBYxXYUhfwoUDjp55JUJnZoxV+YteYVjqHLhxMEqcRa?=
+ =?us-ascii?Q?HMvCQhI6dBwKVqPIvd+WdX+pLsQuI+boklQMQbgxo3cAmkdL9qON8vVqWiuW?=
+ =?us-ascii?Q?OZIxNLuXzPxkNKIkn2qiW1qYTthWU4MM9AmDkOkq5H8pr5d+1PvudccLJAmV?=
+ =?us-ascii?Q?PUdJRcrE1HkC+7VocYYU9Kn8x88exzVFTsXxldYDp5YNHy3RB2dU5BlQysoG?=
+ =?us-ascii?Q?HzBnu9/FAGF88lybT1V17s7JKUHq46ryUyjeKAbsD7pDKtSelUao36lqIJM8?=
+ =?us-ascii?Q?Vj4Y+ozhZdtHfYZC0oUQFUvl?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hUQgbq8VSoFAs5DU/EtW1qn7o8eP/+YvqBkd5riEF3mF96xQEoXE2pax4Zdp?=
+ =?us-ascii?Q?juBpQ4fImmDq2/0F8LqmWWDHmPD4gtPNERcGYPEyejBZ4/PJAmDMilU/zoDR?=
+ =?us-ascii?Q?skUS0fFZKgqVGQA5AjuXUNeJFg2rK+0Ew2jBvWlDJYaLEs99VrV5whw6Fsgh?=
+ =?us-ascii?Q?FctI//ot9S81Sc2Dm3SbOIApGNLdBmWhHIhZcIeqnO+BtJ6J201OCDMSiVI7?=
+ =?us-ascii?Q?DLVWcSsENaE9JR63cnhXG2LO8c3ZZ0BdmRtOqz5f0rdRKyxYUrIFYnY7AcJF?=
+ =?us-ascii?Q?C6MmLY/wCFX8CyPIp0KuYVgMQiNpHdovoAFFp+z6fID96ID7fCHRx/M/ZX4p?=
+ =?us-ascii?Q?xJNnqIhw1v/MDmqb9wFnxajnJ8knnLwzwr5O156WHiZZYENJK/TTm7Ml8Vy3?=
+ =?us-ascii?Q?4LCswdN13Is6/1PRcSP57pdiB8yJ2iGrM/jbEWIWW6Hq4O7uhT4tKSRwh1ng?=
+ =?us-ascii?Q?Aa5JlatZFAz+aIqtl4kC9Nwvy1BG9/vkd+YE9WuS3aY9Jb//so7/xTsE1Y+n?=
+ =?us-ascii?Q?cZEPcCAsIWOdiGmnKgNiomxma6etAOFv8D43w0lSJfDn4cUvfQLDX1aENueP?=
+ =?us-ascii?Q?qlExqv3AbjV/ES3TjR20nYA0sK23kKdWG/6DSNdAXerKAC/rIOBJVZUL7+yL?=
+ =?us-ascii?Q?ECPmEl4RmF83MOfRDcxpkEcjHMWQhckx6J27BLgMKb9TdRYy1hDoPz3jNBGM?=
+ =?us-ascii?Q?mHDDcf+40q5eVnf5yR1ElEEwKIaAdxW/OOmfxKZoDsONN996Wu4tpkNP0qlB?=
+ =?us-ascii?Q?XuxxBV0BIxL14WkcGBCio1lMXxcx2B1vKF+aoda2+JzV8+UiMq/d+86B7HLr?=
+ =?us-ascii?Q?TMWbVJpv+7jsPdIolPX+WG5XPkvqLssBPTZx97x9DC6ImRaGOaAcZ5y4MGES?=
+ =?us-ascii?Q?MsSjWEPxL55Ayv3zDCStAnedu61tYd00nUiJd01qwuQ8MiCthW/nUHTNc5xp?=
+ =?us-ascii?Q?U1pXlbnpDROIdguLWvSli4gbK0nIW2oD1+Ga2xDXpV/W195ED8fo4/9U0g5M?=
+ =?us-ascii?Q?DYIulNhOYZYVPpIKkInIVDE36PJ1v8DFAyeW5uQX57acQXj+X/tsSRgFEARs?=
+ =?us-ascii?Q?LzndyqC1hpH6ZtFZYFQ8+INcR6LQ5GKRHPDAHvvrQsNik7P6GFpB9d4niY3f?=
+ =?us-ascii?Q?veTLprtx8+CyRC8xikAkxNQvc+RGnA9yaqmD6UCNQLT+M+5EmDYMGGGofDLZ?=
+ =?us-ascii?Q?Wn/qWnW3y9mWghG/YxhY2ArfxfPh3I5aJSonmkd/ydV7Yb5czewAaIc9Z4CO?=
+ =?us-ascii?Q?S9B6aBaxx0KqsxqSJ8Ru8uyDAxCz0EuoxlNP//kQMtmF3ecwZcm/WMixSwz4?=
+ =?us-ascii?Q?sWvzol9uaCFMzOPFBUgPz55hRP+mhPMyZ48WC70XiVMg4Cpa7SdruqZypQBp?=
+ =?us-ascii?Q?0x/CaVvL4+1na2l9A6Awub4CPyYLKvP0I9mPM9ftTgAtAtPofJ9h7pY+9s03?=
+ =?us-ascii?Q?I5M0rk/qS6/8yFPYbdivFtJDkTKhqWSjx6Ab70ViN0rHc7oA0jw2rhHMfd/N?=
+ =?us-ascii?Q?t6qV+jsCwFW7mnmlQerkwEZm5yAGbuAPuGMXi1lu3zRSG+ao3uBzC7I4zUOF?=
+ =?us-ascii?Q?PFSxYf7hNTfWwQdY32kvncSlZMpLkN0YcsVhO2zH6oxj49zilAe4xAA9jmx6?=
+ =?us-ascii?Q?sw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d07e1e5c-327f-4976-d4b5-08dc895438da
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2024 13:50:00.6440 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: y+D6IWQTP6Y6B4w6qv83Uq6qmBz6p8oLmnIu7tjSd1slwQJEA8x0uk+CpGeP9Hsq1k3E4E7PIu6iPOJi1RIbL/dYsvnqcoZ/5XyajG+NM1w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4611
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,474 +174,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In GuC TDR sample ctx timestamp to determine if jobs have timed out. The
-scheduling enable needs to be toggled to properly sample the timestamp.
-If a job has not been running for longer than the timeout period,
-re-enable scheduling and restart the TDR.
+On Fri, Jun 07, 2024 at 05:20:58PM GMT, Matthew Brost wrote:
+>LRC ctx timestamp support functions are used to determine how long a job
+>has run on the hardware.
+>
+>v2:
+> - Don't use static inlines (Jani)
+> - Kernel doc
+> - s/ctx_timestamp_job/ctx_job_timestamp
+>
+>Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>---
+> drivers/gpu/drm/xe/xe_lrc.c | 66 +++++++++++++++++++++++++++++++++++++
+> drivers/gpu/drm/xe/xe_lrc.h |  5 +++
+> 2 files changed, 71 insertions(+)
+>
+>diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+>index c1bb85d2e243..0fef354c6489 100644
+>--- a/drivers/gpu/drm/xe/xe_lrc.c
+>+++ b/drivers/gpu/drm/xe/xe_lrc.c
+>@@ -652,6 +652,7 @@ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc)
+>
+> #define LRC_SEQNO_PPHWSP_OFFSET 512
+> #define LRC_START_SEQNO_PPHWSP_OFFSET (LRC_SEQNO_PPHWSP_OFFSET + 8)
+>+#define LRC_CTX_JOB_TIMESTAMP_OFFSET (LRC_START_SEQNO_PPHWSP_OFFSET + 8)
+> #define LRC_PARALLEL_PPHWSP_OFFSET 2048
+> #define LRC_PPHWSP_SIZE SZ_4K
+>
+>@@ -680,6 +681,12 @@ static inline u32 __xe_lrc_start_seqno_offset(struct xe_lrc *lrc)
+> 	return xe_lrc_pphwsp_offset(lrc) + LRC_START_SEQNO_PPHWSP_OFFSET;
+> }
+>
+>+static u32 __xe_lrc_ctx_job_timestamp_offset(struct xe_lrc *lrc)
+>+{
+>+	/* The start seqno is stored in the driver-defined portion of PPHWSP */
+>+	return xe_lrc_pphwsp_offset(lrc) + LRC_CTX_JOB_TIMESTAMP_OFFSET;
+>+}
+>+
+> static inline u32 __xe_lrc_parallel_offset(struct xe_lrc *lrc)
+> {
+> 	/* The parallel is stored in the driver-defined portion of PPHWSP */
+>@@ -691,6 +698,11 @@ static inline u32 __xe_lrc_regs_offset(struct xe_lrc *lrc)
+> 	return xe_lrc_pphwsp_offset(lrc) + LRC_PPHWSP_SIZE;
+> }
+>
+>+static u32 __xe_lrc_ctx_timestamp_offset(struct xe_lrc *lrc)
+>+{
+>+	return __xe_lrc_regs_offset(lrc) + CTX_TIMESTAMP * sizeof(u32);
+>+}
+>+
+> static inline u32 __xe_lrc_indirect_ring_offset(struct xe_lrc *lrc)
+> {
+> 	/* Indirect ring state page is at the very end of LRC */
+>@@ -716,11 +728,65 @@ DECL_MAP_ADDR_HELPERS(pphwsp)
+> DECL_MAP_ADDR_HELPERS(seqno)
+> DECL_MAP_ADDR_HELPERS(regs)
+> DECL_MAP_ADDR_HELPERS(start_seqno)
+>+DECL_MAP_ADDR_HELPERS(ctx_job_timestamp)
+>+DECL_MAP_ADDR_HELPERS(ctx_timestamp)
+> DECL_MAP_ADDR_HELPERS(parallel)
+> DECL_MAP_ADDR_HELPERS(indirect_ring)
+>
+> #undef DECL_MAP_ADDR_HELPERS
+>
+>+/**
+>+ * xe_lrc_ctx_timestamp_ggtt_addr() - Get ctx timestamp GGTT address
+>+ * @lrc: Pointer to the lrc.
+>+ *
+>+ * Returns: ctx timestamp GGTT address
+>+ */
+>+u32 xe_lrc_ctx_timestamp_ggtt_addr(struct xe_lrc *lrc)
+>+{
+>+	return __xe_lrc_ctx_timestamp_ggtt_addr(lrc);
+>+}
+>+
+>+/**
+>+ * xe_lrc_ctx_timestamp_addr() - Read ctx timestamp value
+>+ * @lrc: Pointer to the lrc.
+>+ *
+>+ * Returns: ctx timestamp value
+>+ */
+>+u32 xe_lrc_ctx_timestamp(struct xe_lrc *lrc)
+>+{
+>+	struct xe_device *xe = lrc_to_xe(lrc);
+>+	struct iosys_map map;
+>+
+>+	map = __xe_lrc_ctx_timestamp_map(lrc);
+>+	return xe_map_read32(xe, &map);
+>+}
+>+
+>+/**
+>+ * xe_lrc_ctx_job_timestamp_ggtt_addr() - Get ctx job timestamp GGTT address
+>+ * @lrc: Pointer to the lrc.
+>+ *
+>+ * Returns: ctx timestamp job GGTT address
+>+ */
+>+u32 xe_lrc_ctx_job_timestamp_ggtt_addr(struct xe_lrc *lrc)
+>+{
+>+	return __xe_lrc_ctx_job_timestamp_ggtt_addr(lrc);
+>+}
+>+
+>+/**
+>+ * xe_lrc_ctx_job_timestamp_addr() - Read ctx job timestamp value
+>+ * @lrc: Pointer to the lrc.
+>+ *
+>+ * Returns: ctx timestamp job value
+>+ */
+>+u32 xe_lrc_ctx_job_timestamp(struct xe_lrc *lrc)
+>+{
+>+	struct xe_device *xe = lrc_to_xe(lrc);
+>+	struct iosys_map map;
+>+
+>+	map = __xe_lrc_ctx_job_timestamp_map(lrc);
+>+	return xe_map_read32(xe, &map);
+>+}
+>+
+> u32 xe_lrc_ggtt_addr(struct xe_lrc *lrc)
+> {
+> 	return __xe_lrc_pphwsp_ggtt_addr(lrc);
+>diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+>index 882c3437ba5c..001af6c79454 100644
+>--- a/drivers/gpu/drm/xe/xe_lrc.h
+>+++ b/drivers/gpu/drm/xe/xe_lrc.h
+>@@ -94,6 +94,11 @@ void xe_lrc_snapshot_capture_delayed(struct xe_lrc_snapshot *snapshot);
+> void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer *p);
+> void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot);
+>
+>+u32 xe_lrc_ctx_timestamp_ggtt_addr(struct xe_lrc *lrc);
+>+u32 xe_lrc_ctx_timestamp(struct xe_lrc *lrc);
 
-v2:
- - Use GT clock to msec helper (Umesh, off list)
- - s/ctx_timestamp_job/ctx_job_timestamp
-v3:
- - Fix state machine for TDR, mainly decouple sched disable and
-   deregister (testing)
- - Rebase (CI)
-v4:
- - Fix checkpatch && newline issue (CI)
- - Do not deregister on wedged or unregistered (CI)
- - Fix refcounting bugs (CI)
- - Move devcoredump above VM / kernel job check (John H)
- - Add comment for check_timeout state usage (John H)
- - Assert pending disable not inflight when enabling scheduling (John H)
- - Use enable_scheduling in other scheduling enable code (John H)
- - Add comments on a few steps in TDR (John H)
- - Add assert for timestamp overflow protection (John H)
+I  think we have some clash here. See the function below where we
+read the timestamp and cache it in the LRC. That one does something
+slightly different, but apparently the same thing. Why are these
+functions not using similar approch with xe_lrc_read_ctx_reg() rather
+than defining new helper functions? And why would we return the address
+and then having another function to read the value?
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_submit.c | 297 +++++++++++++++++++++++------
- 1 file changed, 238 insertions(+), 59 deletions(-)
+Lucas De Marchi
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 3db0aa40535d..8daf4e076df4 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -23,6 +23,7 @@
- #include "xe_force_wake.h"
- #include "xe_gpu_scheduler.h"
- #include "xe_gt.h"
-+#include "xe_gt_clock.h"
- #include "xe_gt_printk.h"
- #include "xe_guc.h"
- #include "xe_guc_ct.h"
-@@ -62,6 +63,8 @@ exec_queue_to_guc(struct xe_exec_queue *q)
- #define EXEC_QUEUE_STATE_KILLED			(1 << 7)
- #define EXEC_QUEUE_STATE_WEDGED			(1 << 8)
- #define EXEC_QUEUE_STATE_BANNED			(1 << 9)
-+#define EXEC_QUEUE_STATE_CHECK_TIMEOUT		(1 << 10)
-+#define EXEC_QUEUE_STATE_EXTRA_REF		(1 << 11)
- 
- static bool exec_queue_registered(struct xe_exec_queue *q)
- {
-@@ -188,6 +191,31 @@ static void set_exec_queue_wedged(struct xe_exec_queue *q)
- 	atomic_or(EXEC_QUEUE_STATE_WEDGED, &q->guc->state);
- }
- 
-+static bool exec_queue_check_timeout(struct xe_exec_queue *q)
-+{
-+	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_CHECK_TIMEOUT;
-+}
-+
-+static void set_exec_queue_check_timeout(struct xe_exec_queue *q)
-+{
-+	atomic_or(EXEC_QUEUE_STATE_CHECK_TIMEOUT, &q->guc->state);
-+}
-+
-+static void clear_exec_queue_check_timeout(struct xe_exec_queue *q)
-+{
-+	atomic_and(~EXEC_QUEUE_STATE_CHECK_TIMEOUT, &q->guc->state);
-+}
-+
-+static bool exec_queue_extra_ref(struct xe_exec_queue *q)
-+{
-+	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_EXTRA_REF;
-+}
-+
-+static void set_exec_queue_extra_ref(struct xe_exec_queue *q)
-+{
-+	atomic_or(EXEC_QUEUE_STATE_EXTRA_REF, &q->guc->state);
-+}
-+
- static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
- {
- 	return (atomic_read(&q->guc->state) &
-@@ -920,6 +948,107 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
- 	xe_sched_submission_start(sched);
- }
- 
-+#define ADJUST_FIVE_PERCENT(__t)	(((__t) * 105) / 100)
-+
-+static bool check_timeout(struct xe_exec_queue *q, struct xe_sched_job *job)
-+{
-+	struct xe_gt *gt = guc_to_gt(exec_queue_to_guc(q));
-+	u32 ctx_timestamp = xe_lrc_ctx_timestamp(q->lrc[0]);
-+	u32 ctx_job_timestamp = xe_lrc_ctx_job_timestamp(q->lrc[0]);
-+	u32 timeout_ms = q->sched_props.job_timeout_ms;
-+	u32 diff, running_time_ms;
-+
-+	/*
-+	 * Counter wraps at ~223s at the usual 19.2MHz, be paranoid catch
-+	 * possible overflows with a high timeout.
-+	 */
-+	xe_gt_assert(gt, timeout_ms < 100 * MSEC_PER_SEC);
-+
-+	if (ctx_timestamp < ctx_job_timestamp)
-+		diff = ctx_timestamp + U32_MAX - ctx_job_timestamp;
-+	else
-+		diff = ctx_timestamp - ctx_job_timestamp;
-+
-+	/*
-+	 * Ensure timeout is within 5% to account for an GuC scheduling latency
-+	 */
-+	running_time_ms =
-+		ADJUST_FIVE_PERCENT(xe_gt_clock_interval_to_ms(gt, diff));
-+
-+	drm_info(&guc_to_xe(exec_queue_to_guc(q))->drm,
-+		 "Check job timeout: seqno=%u, lrc_seqno=%u, guc_id=%d, running_time_ms=%u, timeout_ms=%u, diff=0x%08x",
-+		 xe_sched_job_seqno(job), xe_sched_job_lrc_seqno(job),
-+		 q->guc->id, running_time_ms, timeout_ms, diff);
-+
-+	return running_time_ms >= timeout_ms;
-+}
-+
-+static void enable_scheduling(struct xe_exec_queue *q)
-+{
-+	MAKE_SCHED_CONTEXT_ACTION(q, ENABLE);
-+	struct xe_guc *guc = exec_queue_to_guc(q);
-+	struct xe_device *xe = guc_to_xe(guc);
-+	int ret;
-+
-+	xe_gt_assert(guc_to_gt(guc), !exec_queue_destroyed(q));
-+	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
-+	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_disable(q));
-+	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_enable(q));
-+
-+	set_exec_queue_pending_enable(q);
-+	set_exec_queue_enabled(q);
-+	trace_xe_exec_queue_scheduling_enable(q);
-+
-+	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
-+		       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, 1);
-+
-+	ret = wait_event_timeout(guc->ct.wq,
-+				 !exec_queue_pending_enable(q) ||
-+				 guc_read_stopped(guc), HZ * 5);
-+	if (!ret || guc_read_stopped(guc)) {
-+		drm_warn(&xe->drm, "Schedule enable failed to respond");
-+		set_exec_queue_banned(q);
-+		xe_gt_reset_async(q->gt);
-+		xe_sched_tdr_queue_imm(&q->guc->sched);
-+	}
-+}
-+
-+static void disable_scheduling(struct xe_exec_queue *q)
-+{
-+	MAKE_SCHED_CONTEXT_ACTION(q, DISABLE);
-+	struct xe_guc *guc = exec_queue_to_guc(q);
-+
-+	xe_gt_assert(guc_to_gt(guc), !exec_queue_destroyed(q));
-+	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
-+	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_disable(q));
-+
-+	clear_exec_queue_enabled(q);
-+	set_exec_queue_pending_disable(q);
-+	trace_xe_exec_queue_scheduling_disable(q);
-+
-+	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
-+		       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, 1);
-+}
-+
-+static void __deregister_exec_queue(struct xe_guc *guc, struct xe_exec_queue *q)
-+{
-+	u32 action[] = {
-+		XE_GUC_ACTION_DEREGISTER_CONTEXT,
-+		q->guc->id,
-+	};
-+
-+	xe_gt_assert(guc_to_gt(guc), !exec_queue_destroyed(q));
-+	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
-+	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_enable(q));
-+	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_disable(q));
-+
-+	set_exec_queue_destroyed(q);
-+	trace_xe_exec_queue_deregister(q);
-+
-+	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
-+		       G2H_LEN_DW_DEREGISTER_CONTEXT, 1);
-+}
-+
- static enum drm_gpu_sched_stat
- guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- {
-@@ -928,9 +1057,10 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	struct xe_exec_queue *q = job->q;
- 	struct xe_gpu_scheduler *sched = &q->guc->sched;
- 	struct xe_device *xe = guc_to_xe(exec_queue_to_guc(q));
-+	struct xe_guc *guc = exec_queue_to_guc(q);
- 	int err = -ETIME;
- 	int i = 0;
--	bool wedged;
-+	bool wedged, skip_timeout_check;
- 
- 	/*
- 	 * TDR has fired before free job worker. Common if exec queue
-@@ -942,49 +1072,53 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 		return DRM_GPU_SCHED_STAT_NOMINAL;
- 	}
- 
--	drm_notice(&xe->drm, "Timedout job: seqno=%u, lrc_seqno=%u, guc_id=%d, flags=0x%lx",
--		   xe_sched_job_seqno(job), xe_sched_job_lrc_seqno(job),
--		   q->guc->id, q->flags);
--	xe_gt_WARN(q->gt, q->flags & EXEC_QUEUE_FLAG_KERNEL,
--		   "Kernel-submitted job timed out\n");
--	xe_gt_WARN(q->gt, q->flags & EXEC_QUEUE_FLAG_VM && !exec_queue_killed(q),
--		   "VM job timed out on non-killed execqueue\n");
--
--	if (!exec_queue_killed(q))
--		xe_devcoredump(job);
--
--	trace_xe_sched_job_timedout(job);
--
--	wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
--
- 	/* Kill the run_job entry point */
- 	xe_sched_submission_stop(sched);
- 
-+	/* Must check all state after stopping scheduler */
-+	skip_timeout_check = exec_queue_reset(q) ||
-+		exec_queue_killed_or_banned_or_wedged(q) ||
-+		exec_queue_destroyed(q);
-+
-+	/* Job hasn't started, can't be timed out */
-+	if (!skip_timeout_check && !xe_sched_job_started(job))
-+		goto rearm;
-+
- 	/*
--	 * Kernel jobs should never fail, nor should VM jobs if they do
--	 * somethings has gone wrong and the GT needs a reset
-+	 * XXX: Sampling timeout doesn't work in wedged mode as we have to
-+	 * modify scheduling state to read timestamp. We could read the
-+	 * timestamp from a register to accumulate current running time but this
-+	 * doesn't work for SRIOV. For now assuming timeouts in wedged mode are
-+	 * genuine timeouts.
- 	 */
--	if (!wedged && (q->flags & EXEC_QUEUE_FLAG_KERNEL ||
--			(q->flags & EXEC_QUEUE_FLAG_VM && !exec_queue_killed(q)))) {
--		if (!xe_sched_invalidate_job(job, 2)) {
--			xe_sched_add_pending_job(sched, job);
--			xe_sched_submission_start(sched);
--			xe_gt_reset_async(q->gt);
--			goto out;
--		}
--	}
-+	wedged = guc_submit_hint_wedged(exec_queue_to_guc(q));
- 
--	/* Engine state now stable, disable scheduling if needed */
-+	/* Engine state now stable, disable scheduling to check timestamp */
- 	if (!wedged && exec_queue_registered(q)) {
--		struct xe_guc *guc = exec_queue_to_guc(q);
- 		int ret;
- 
- 		if (exec_queue_reset(q))
- 			err = -EIO;
--		set_exec_queue_banned(q);
-+
- 		if (!exec_queue_destroyed(q)) {
--			xe_exec_queue_get(q);
--			disable_scheduling_deregister(guc, q);
-+			/*
-+			 * Wait for any pending G2H to flush out before
-+			 * modifying state
-+			 */
-+			ret = wait_event_timeout(guc->ct.wq,
-+						 !exec_queue_pending_enable(q) ||
-+						 guc_read_stopped(guc), HZ * 5);
-+			if (!ret || guc_read_stopped(guc))
-+				goto trigger_reset;
-+
-+			/*
-+			 * Flag communicates to G2H handler that schedule
-+			 * disable originated from a timeout check. The G2H then
-+			 * avoid triggering cleanup or deregistering the exec
-+			 * queue.
-+			 */
-+			set_exec_queue_check_timeout(q);
-+			disable_scheduling(q);
- 		}
- 
- 		/*
-@@ -1000,15 +1134,61 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 					 !exec_queue_pending_disable(q) ||
- 					 guc_read_stopped(guc), HZ * 5);
- 		if (!ret || guc_read_stopped(guc)) {
-+trigger_reset:
- 			drm_warn(&xe->drm, "Schedule disable failed to respond");
--			xe_sched_add_pending_job(sched, job);
--			xe_sched_submission_start(sched);
-+			clear_exec_queue_check_timeout(q);
-+			set_exec_queue_extra_ref(q);
-+			xe_exec_queue_get(q);	/* GT reset owns this */
-+			set_exec_queue_banned(q);
- 			xe_gt_reset_async(q->gt);
- 			xe_sched_tdr_queue_imm(sched);
--			goto out;
-+			goto rearm;
- 		}
- 	}
- 
-+	/*
-+	 * Check if job is actually timed out, if restart job execution and TDR
-+	 */
-+	if (!wedged && !skip_timeout_check && !check_timeout(q, job) &&
-+	    !exec_queue_reset(q) && exec_queue_registered(q)) {
-+		clear_exec_queue_check_timeout(q);
-+		goto sched_enable;
-+	}
-+
-+	drm_notice(&xe->drm, "Timedout job: seqno=%u, lrc_seqno=%u, guc_id=%d, flags=0x%lx",
-+		   xe_sched_job_seqno(job), xe_sched_job_lrc_seqno(job),
-+		   q->guc->id, q->flags);
-+	xe_gt_WARN(q->gt, q->flags & EXEC_QUEUE_FLAG_KERNEL,
-+		   "Kernel-submitted job timed out\n");
-+	xe_gt_WARN(q->gt, q->flags & EXEC_QUEUE_FLAG_VM && !exec_queue_killed(q),
-+		   "VM job timed out on non-killed execqueue\n");
-+
-+	trace_xe_sched_job_timedout(job);
-+
-+	if (!exec_queue_killed(q))
-+		xe_devcoredump(job);
-+
-+	/*
-+	 * Kernel jobs should never fail, nor should VM jobs if they do
-+	 * somethings has gone wrong and the GT needs a reset
-+	 */
-+	if (!wedged && (q->flags & EXEC_QUEUE_FLAG_KERNEL ||
-+			(q->flags & EXEC_QUEUE_FLAG_VM && !exec_queue_killed(q)))) {
-+		if (!xe_sched_invalidate_job(job, 2)) {
-+			clear_exec_queue_check_timeout(q);
-+			xe_gt_reset_async(q->gt);
-+			goto rearm;
-+		}
-+	}
-+
-+	/* Finish cleaning up exec queue via deregister */
-+	set_exec_queue_banned(q);
-+	if (!wedged && exec_queue_registered(q) && !exec_queue_destroyed(q)) {
-+		set_exec_queue_extra_ref(q);
-+		xe_exec_queue_get(q);
-+		__deregister_exec_queue(guc, q);
-+	}
-+
- 	/* Stop fence signaling */
- 	xe_hw_fence_irq_stop(q->fence_irq);
- 
-@@ -1030,7 +1210,19 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	/* Start fence signaling */
- 	xe_hw_fence_irq_start(q->fence_irq);
- 
--out:
-+	return DRM_GPU_SCHED_STAT_NOMINAL;
-+
-+sched_enable:
-+	enable_scheduling(q);
-+rearm:
-+	/*
-+	 * XXX: Ideally want to adjust timeout based on current exection time
-+	 * but there is not currently an easy way to do in DRM scheduler. With
-+	 * some thought, do this in a follow up.
-+	 */
-+	xe_sched_add_pending_job(sched, job);
-+	xe_sched_submission_start(sched);
-+
- 	return DRM_GPU_SCHED_STAT_NOMINAL;
- }
- 
-@@ -1133,7 +1325,6 @@ static void __guc_exec_queue_process_msg_suspend(struct xe_sched_msg *msg)
- 			   guc_read_stopped(guc));
- 
- 		if (!guc_read_stopped(guc)) {
--			MAKE_SCHED_CONTEXT_ACTION(q, DISABLE);
- 			s64 since_resume_ms =
- 				ktime_ms_delta(ktime_get(),
- 					       q->guc->resume_time);
-@@ -1144,12 +1335,7 @@ static void __guc_exec_queue_process_msg_suspend(struct xe_sched_msg *msg)
- 				msleep(wait_ms);
- 
- 			set_exec_queue_suspended(q);
--			clear_exec_queue_enabled(q);
--			set_exec_queue_pending_disable(q);
--			trace_xe_exec_queue_scheduling_disable(q);
--
--			xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
--				       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, 1);
-+			disable_scheduling(q);
- 		}
- 	} else if (q->guc->suspend_pending) {
- 		set_exec_queue_suspended(q);
-@@ -1160,19 +1346,11 @@ static void __guc_exec_queue_process_msg_suspend(struct xe_sched_msg *msg)
- static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
- {
- 	struct xe_exec_queue *q = msg->private_data;
--	struct xe_guc *guc = exec_queue_to_guc(q);
- 
- 	if (guc_exec_queue_allowed_to_change_state(q)) {
--		MAKE_SCHED_CONTEXT_ACTION(q, ENABLE);
--
- 		q->guc->resume_time = RESUME_PENDING;
- 		clear_exec_queue_suspended(q);
--		set_exec_queue_pending_enable(q);
--		set_exec_queue_enabled(q);
--		trace_xe_exec_queue_scheduling_enable(q);
--
--		xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
--			       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, 1);
-+		enable_scheduling(q);
- 	} else {
- 		clear_exec_queue_suspended(q);
- 	}
-@@ -1434,8 +1612,7 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
- 
- 	/* Clean up lost G2H + reset engine state */
- 	if (exec_queue_registered(q)) {
--		if ((exec_queue_banned(q) && exec_queue_destroyed(q)) ||
--		    xe_exec_queue_is_lr(q))
-+		if (exec_queue_extra_ref(q) || xe_exec_queue_is_lr(q))
- 			xe_exec_queue_put(q);
- 		else if (exec_queue_destroyed(q))
- 			__guc_exec_queue_fini(guc, q);
-@@ -1615,11 +1792,13 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q)
- 		if (q->guc->suspend_pending) {
- 			suspend_fence_signal(q);
- 		} else {
--			if (exec_queue_banned(q)) {
-+			if (exec_queue_banned(q) ||
-+			    exec_queue_check_timeout(q)) {
- 				smp_wmb();
- 				wake_up_all(&guc->ct.wq);
- 			}
--			deregister_exec_queue(guc, q);
-+			if (!exec_queue_check_timeout(q))
-+				deregister_exec_queue(guc, q);
- 		}
- 	}
- }
-@@ -1657,7 +1836,7 @@ static void handle_deregister_done(struct xe_guc *guc, struct xe_exec_queue *q)
- 
- 	clear_exec_queue_registered(q);
- 
--	if (exec_queue_banned(q) || xe_exec_queue_is_lr(q))
-+	if (exec_queue_extra_ref(q) || xe_exec_queue_is_lr(q))
- 		xe_exec_queue_put(q);
- 	else
- 		__guc_exec_queue_fini(guc, q);
-@@ -1720,7 +1899,7 @@ int xe_guc_exec_queue_reset_handler(struct xe_guc *guc, u32 *msg, u32 len)
- 	 * guc_exec_queue_timedout_job.
- 	 */
- 	set_exec_queue_reset(q);
--	if (!exec_queue_banned(q))
-+	if (!exec_queue_banned(q) && !exec_queue_check_timeout(q))
- 		xe_guc_exec_queue_trigger_cleanup(q);
- 
- 	return 0;
-@@ -1750,7 +1929,7 @@ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
- 
- 	/* Treat the same as engine reset */
- 	set_exec_queue_reset(q);
--	if (!exec_queue_banned(q))
-+	if (!exec_queue_banned(q) && !exec_queue_check_timeout(q))
- 		xe_guc_exec_queue_trigger_cleanup(q);
- 
- 	return 0;
--- 
-2.34.1
-
+>+u32 xe_lrc_ctx_job_timestamp_ggtt_addr(struct xe_lrc *lrc);
+>+u32 xe_lrc_ctx_job_timestamp(struct xe_lrc *lrc);
+>+
+> /**
+>  * xe_lrc_update_timestamp - readout LRC timestamp and update cached value
+>  * @lrc: logical ring context for this exec queue
+>-- 
+>2.34.1
+>
