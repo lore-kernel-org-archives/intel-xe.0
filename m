@@ -4,200 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1EB6C27C55
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 14:13:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 128FAC27C55
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 14:18:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B51C10E189;
-	Mon, 10 Jun 2024 14:13:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7909D10E189;
+	Mon, 10 Jun 2024 14:18:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="MZxdnv0A";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LF5FH1Rp";
 	dkim-atps=neutral
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com
- [209.85.167.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE4EA10E354
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Jun 2024 08:08:14 +0000 (UTC)
-Received: by mail-lf1-f45.google.com with SMTP id
- 2adb3069b0e04-52c525257feso2195134e87.1
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Jun 2024 01:08:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1718006892; x=1718611692; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=/L5y1Dv6ivY3eszYnYmdXRYc401x9YYY2yBAmmyUG/k=;
- b=MZxdnv0AS1cMBB7o+46/rtqyADUD2UQm6yWCeU+MNfUt1szu464nyKHezfPismnCBh
- A110iF0eqftb8ko4+MfkqkxTaqKqCXhDclW1S8BkjtN8q6kizTyKVKNNbdzgL1ZWmHci
- zJVEC4jfC+Q6Bx/GkEtJWH0hPJEorkOjyXWZ5DIX8Pi+nW4MM/ghGRIlyoHe4arlBsXg
- UFCvY80Ko7OW0bHvRoctjD6Rrk3TzHNz7GQnALUqft5SriSDi8ZGpiYpQYkMD4jq/16m
- 7FhiWvo92FbrDnfGWsOp55fUxPSsHHsReZzNVX0JJF5rv/4zc0VYmeSyOzbGGEJJcI5R
- aDzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1718006892; x=1718611692;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=/L5y1Dv6ivY3eszYnYmdXRYc401x9YYY2yBAmmyUG/k=;
- b=L0A5eqtwsYuitM4GKRjJqw126jkhyM6cVtdTj/cutsioJjliDeiTBt8vZRO77tWu0W
- CvImSMDpQL3xGRtQSIaMoqktPUZiygMMIqEFtAK4ASQay1SLfat+hdyhlQTKDRZMMLxP
- llKBv3HuXt9ARTzy1hu/muiuaN6loeRtO+Cmo8B+WuRGld8JP74aj0mT6MSEhI4BgoF3
- J9kK2a/jCpNy18vHSo6KNJAeHFJPU3yGxBFOtPRYR0ThrU2MFqrwaPMv2Pwwv11gD7eM
- yAcSEwaoMAjJJ7keD63+E+j3eNNIROfxqF53Bsaqr41BErFow9Hu6/J5ksKXWWaUDHmi
- cAJg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUgjsucV4tLYJ199dPJXJpEzeXUD7LRoPODYiyg2bCb9jieb+Qnlw9k7dITeWxuEPGtNntRoiKOJXAKJKJpte9GGyui31zhl+rOrm6X7Vo=
-X-Gm-Message-State: AOJu0YzV8kjheUOTtfYW1RXnaqpMl8m9rIadtxlLfYI2GJI05K1i9fwh
- OrZxQ0URinBf/H5t8N9uXGJYrRhCRlYPNbFWNewAcP7NK9UaHNO85dxFpsCmfARiIGZaHf7UJVX
- LzPd89wtPlbeV7kawHqWluSzIzL/mmRd37jqLjA==
-X-Google-Smtp-Source: AGHT+IEoIIaopVbMhKiBzu+ZFeFG117iZrYhuaSy1PLsnicMvCE0nAaF1iUL9hhnUeVtUHqe9i20V059/u6XmSWe6yI=
-X-Received: by 2002:a05:6512:234d:b0:52b:be9b:cafe with SMTP id
- 2adb3069b0e04-52bbe9bcbadmr5940256e87.21.1718006892189; Mon, 10 Jun 2024
- 01:08:12 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7998310E189
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Jun 2024 14:18:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1718029080; x=1749565080;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=56baq/dSrv8baLAQfkkhiURm8PldWsUvO7t+4dxXpVo=;
+ b=LF5FH1RpuZ/ishQYfA1qkmR/BuquOeIt1GKFlgbpQJIhrE1C54g9wdUD
+ cgfU6HGqg2YhbcovfU3MMtHNuhv24jdGyI4oJW4qQmdb+FjFmmuDQKEKH
+ ddX+4stxUrFDp8AYvZbLdfsBkdZfqMkcyCAMmHtJGa36keYOfNhpyKW8B
+ 4O4S7ytL/iQfRX5qC8xvHdZia3t6gQaRQAykJ3sLVWzA2BwJd96LF5uhz
+ NJD7mEcCQZvcsRQRFI+Y1F9pye1+zCBp6nmu8Mkzmgt2xaJcgmakH0dfs
+ yYaUs7h4WS+4m8EJKW6ol0OKF2LYDWDXaw5gN6Dk56zlYbMU2ERxMR+bF g==;
+X-CSE-ConnectionGUID: DqZEAcslQzW0IjPKfYxlhQ==
+X-CSE-MsgGUID: crjxhQccQOyQ/WBXlRyN5w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14864868"
+X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="14864868"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2024 07:17:52 -0700
+X-CSE-ConnectionGUID: Yq67/V3ERGm1n5KYGFBzTw==
+X-CSE-MsgGUID: O6xrjkxkTo2To86ALpjOhw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="70238691"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2024 07:17:49 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH v5 03/10] drm/xe: Emit ctx timestamp copy in ring ops
+Date: Mon, 10 Jun 2024 07:18:16 -0700
+Message-Id: <20240610141823.2605496-4-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240610141823.2605496-1-matthew.brost@intel.com>
+References: <20240610141823.2605496-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-References: <20240603211538.289765-1-andriy.shevchenko@linux.intel.com>
- <87tti9cfry.fsf@intel.com>
-In-Reply-To: <87tti9cfry.fsf@intel.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 10 Jun 2024 10:08:00 +0200
-Message-ID: <CACRpkdZFPG_YLici-BmYfk9HZ36f4WavCN3JNotkk8cPgCODCg@mail.gmail.com>
-Subject: Re: [PATCH v1 1/1] treewide: Align match_string() with
- sysfs_match_string()
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Corey Minyard <minyard@acm.org>, Allen Pais <apais@linux.microsoft.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Perry Yuan <perry.yuan@amd.com>, 
- Giovanni Cabiddu <giovanni.cabiddu@intel.com>,
- Herbert Xu <herbert@gondor.apana.org.au>, 
- Nuno Sa <nuno.sa@analog.com>, Guenter Roeck <linux@roeck-us.net>, 
- Randy Dunlap <rdunlap@infradead.org>, Andi Shyti <andi.shyti@kernel.org>, 
- Heiner Kallweit <hkallweit1@gmail.com>, Lee Jones <lee@kernel.org>, 
- Samuel Holland <samuel@sholland.org>, Elad Nachman <enachman@marvell.com>, 
- Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
- Johannes Berg <johannes.berg@intel.com>, 
- Gregory Greenman <gregory.greenman@intel.com>,
- Benjamin Berg <benjamin.berg@intel.com>, 
- Bjorn Helgaas <bhelgaas@google.com>, Robert Richter <rrichter@amd.com>,
- Vinod Koul <vkoul@kernel.org>, 
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Hans de Goede <hdegoede@redhat.com>, 
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Nikita Kravets <teackot@gmail.com>, Jiri Slaby <jirislaby@kernel.org>, 
- Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>, 
- Stanley Chang <stanley_chang@realtek.com>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Abdel Alkuor <abdelalkuor@geotab.com>, 
- Kent Overstreet <kent.overstreet@linux.dev>, Eric Biggers <ebiggers@google.com>,
- Kees Cook <keescook@chromium.org>, Ingo Molnar <mingo@kernel.org>, 
- "Steven Rostedt (Google)" <rostedt@goodmis.org>,
- Daniel Bristot de Oliveira <bristot@kernel.org>, 
- Andrew Morton <akpm@linux-foundation.org>, Hugh Dickins <hughd@google.com>, 
- Abel Wu <wuyun.abel@bytedance.com>, John Johansen <john.johansen@canonical.com>,
- Mimi Zohar <zohar@linux.ibm.com>, Stefan Berger <stefanb@linux.ibm.com>, 
- Roberto Sassu <roberto.sassu@huawei.com>,
- Eric Snowberg <eric.snowberg@oracle.com>, 
- Takashi Iwai <tiwai@suse.de>, Takashi Sakamoto <o-takashi@sakamocchi.jp>, 
- Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
- Mark Brown <broonie@kernel.org>, 
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- linuxppc-dev@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org, keyrings@vger.kernel.org, 
- linux-crypto@vger.kernel.org, linux-acpi@vger.kernel.org, 
- linux-ide@vger.kernel.org, openipmi-developer@lists.sourceforge.net, 
- linux-clk@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org, qat-linux@intel.com, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org, 
- linux-leds@vger.kernel.org, linux-sunxi@lists.linux.dev, 
- linux-omap@vger.kernel.org, linux-mmc@vger.kernel.org, 
- linux-mtd@lists.infradead.org, netdev@vger.kernel.org, 
- linux-wireless@vger.kernel.org, linux-pci@vger.kernel.org, 
- linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org, 
- linux-gpio@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
- linux-staging@lists.linux.dev, linux-usb@vger.kernel.org, 
- linux-fbdev@vger.kernel.org, linux-bcachefs@vger.kernel.org, 
- linux-hardening@vger.kernel.org, cgroups@vger.kernel.org, 
- linux-trace-kernel@vger.kernel.org, linux-mm@kvack.org, 
- apparmor@lists.ubuntu.com, linux-security-module@vger.kernel.org, 
- linux-integrity@vger.kernel.org, alsa-devel@alsa-project.org, 
- linux-sound@vger.kernel.org, Michael Ellerman <mpe@ellerman.id.au>, 
- Nicholas Piggin <npiggin@gmail.com>,
- Christophe Leroy <christophe.leroy@csgroup.eu>, 
- "Naveen N. Rao" <naveen.n.rao@linux.ibm.com>,
- Thomas Gleixner <tglx@linutronix.de>, 
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
- Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
- "H. Peter Anvin" <hpa@zytor.com>, David Howells <dhowells@redhat.com>, 
- "David S. Miller" <davem@davemloft.net>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
- Sergey Shtylyov <s.shtylyov@omp.ru>, Damien Le Moal <dlemoal@kernel.org>, 
- Niklas Cassel <cassel@kernel.org>, Daniel Scally <djrscally@gmail.com>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
- Heiko Stuebner <heiko@sntech.de>, 
- Peter De Schrijver <pdeschrijver@nvidia.com>,
- Prashant Gaikwad <pgaikwad@nvidia.com>, 
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, 
- Huang Rui <ray.huang@amd.com>, "Gautham R. Shenoy" <gautham.shenoy@amd.com>, 
- Mario Limonciello <mario.limonciello@amd.com>,
- Viresh Kumar <viresh.kumar@linaro.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, 
- Danilo Krummrich <dakr@redhat.com>, Jean Delvare <jdelvare@suse.com>, 
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Pavel Machek <pavel@ucw.cz>, 
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Tony Lindgren <tony@atomide.com>, Adrian Hunter <adrian.hunter@intel.com>,
- Hu Ziji <huziji@marvell.com>, 
- Ulf Hansson <ulf.hansson@linaro.org>, Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Potnuri Bharat Teja <bharat@chelsio.com>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Miri Korenblit <miriam.rachel.korenblit@intel.com>,
- Kalle Valo <kvalo@kernel.org>, Mahesh J Salgaonkar <mahesh@linux.ibm.com>,
- "Oliver O'Halloran" <oohall@gmail.com>, 
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- JC Kuo <jckuo@nvidia.com>, 
- Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Sebastian Reichel <sre@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
- Helge Deller <deller@gmx.de>, Brian Foster <bfoster@redhat.com>, 
- Zhihao Cheng <chengzhihao1@huawei.com>, Tejun Heo <tj@kernel.org>, 
- Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>, 
- Peter Zijlstra <peterz@infradead.org>, Juri Lelli <juri.lelli@redhat.com>, 
- Vincent Guittot <vincent.guittot@linaro.org>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>, 
- Ben Segall <bsegall@google.com>, Mel Gorman <mgorman@suse.de>, 
- Daniel Bristot de Oliveira <bristot@redhat.com>,
- Valentin Schneider <vschneid@redhat.com>, 
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
- Jason Baron <jbaron@akamai.com>, Jim Cromie <jim.cromie@gmail.com>, 
- Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>, 
- "Serge E. Hallyn" <serge@hallyn.com>,
- Dmitry Kasatkin <dmitry.kasatkin@gmail.com>, 
- Clemens Ladisch <clemens@ladisch.de>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Linus Torvalds <torvalds@linux-foundation.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 10 Jun 2024 14:13:28 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -212,38 +65,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jun 4, 2024 at 9:46=E2=80=AFAM Jani Nikula <jani.nikula@linux.intel=
-.com> wrote:
+Copy ctx timestamp at beginning of every GPU job to a saved location.
+Used to determine how long a job has been running on the hardware.
 
-[Maybe slightly off-topic, ranty]
+v2:
+ - - s/ctx_timestamp_job/ctx_job_timestamp
 
-> Why do we think it's a good idea to increase and normalize the use of
-> double-underscore function names across the kernel, like
-> __match_string() in this case? It should mean "reserved for the
-> implementation, not to be called directly".
->
-> If it's to be used directly, it should be named accordingly, right?
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_ring_ops.c | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-It's a huge mess. "__" prefix is just so ambiguous I think it just
-shouldn't be used or prolifierated, and it usually breaks Rusty Russells
-API rules times over.
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index db630d27beba..0be4f489d3e1 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -224,6 +224,19 @@ static u32 get_ppgtt_flag(struct xe_sched_job *job)
+ 	return job->q->vm ? BIT(8) : 0;
+ }
+ 
++static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
++{
++	dw[i++] = MI_COPY_MEM_MEM | MI_COPY_MEM_MEM_SRC_GGTT |
++		MI_COPY_MEM_MEM_DST_GGTT;
++	dw[i++] = xe_lrc_ctx_job_timestamp_ggtt_addr(lrc);
++	dw[i++] = 0;
++	dw[i++] = xe_lrc_ctx_timestamp_ggtt_addr(lrc);
++	dw[i++] = 0;
++	dw[i++] = MI_NOOP;
++
++	return i;
++}
++
+ /* for engines that don't require any special HW handling (no EUs, no aux inval, etc) */
+ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc,
+ 				    u64 batch_addr, u32 seqno)
+@@ -232,6 +245,8 @@ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc
+ 	u32 ppgtt_flag = get_ppgtt_flag(job);
+ 	struct xe_gt *gt = job->q->gt;
+ 
++	i = emit_copy_timestamp(lrc, dw, i);
++
+ 	if (job->ring_ops_flush_tlb) {
+ 		dw[i++] = preparser_disable(true);
+ 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+@@ -283,6 +298,8 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
+ 
++	i = emit_copy_timestamp(lrc, dw, i);
++
+ 	dw[i++] = preparser_disable(true);
+ 
+ 	/* hsdes: 1809175790 */
+@@ -332,6 +349,8 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
+ 	u32 mask_flags = 0;
+ 
++	i = emit_copy_timestamp(lrc, dw, i);
++
+ 	dw[i++] = preparser_disable(true);
+ 	if (lacks_render)
+ 		mask_flags = PIPE_CONTROL_3D_ARCH_FLAGS;
+@@ -375,6 +394,8 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
+ {
+ 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+ 
++	i = emit_copy_timestamp(lrc, dw, i);
++
+ 	i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+ 				seqno, dw, i);
+ 
+-- 
+2.34.1
 
-Consider __set_bit() from <linux/bitops.h>, used all over the place,
-in contrast with set_bit() for example, what does "__" represent in
-this context that makes __set_bit() different from set_bit()?
-
-It means "non-atomic"...
-
-How does a random contributor know this?
-
-Yeah, you guess it. By the token of "everybody knows that".
-(Grep, google, repeat for the number of contributors to the kernel.)
-
-I was considering to send a script to Torvalds to just change all
-this to set_bit_nonatomic() (etc) but was hesitating because that
-makes the name unambiguous but long. I think I stayed off it
-because changing stuff like that all over the place creates churn
-and churn is bad.
-
-Yours,
-Linus Walleij
