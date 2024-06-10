@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84EA1C27C5E
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 18:38:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70182C27C55
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 18:38:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12AD410E37B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC46B10E3E8;
 	Mon, 10 Jun 2024 18:38:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lW4WiYai";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e8DDKss3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CC7110E37B
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Jun 2024 18:38:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE23F10E3E8
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Jun 2024 18:38:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718044693; x=1749580693;
+ t=1718044696; x=1749580696;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wJSBJ6Kp+mu09iA9sa/OOqqANCwCLLocwAU+oehHJy8=;
- b=lW4WiYai7IRZDt5y7yr5/s4LTqKmm2dNA0mWzZyhOpFJJbYEoTRt9AvO
- 82UZuxt2csSaDP9JOf6VYJ8lgQVwaHb4RkIG6ndGXtvU0z2dMNfe4RFh9
- toyPAFI93Ix+/2bhcQjQUCw/vPqKUe0cc2oItN/B8kvatijHytp984Nyx
- 10c3wrmKFdVrWd+DIMXceXJo8yeMvtgiYtlUpmxtgFECaVuBFlAN1Zo5D
- jOT3CPDCXsJOpImdF8SlpeKoHCaoC3MgdX66PbV+Qge9HeRzquQNJwgv3
- Q81tlToCpCvdRu7HTY10SUDdFTz6tUxOcgz3mWxbGioRfABSdNVixDQY1 A==;
-X-CSE-ConnectionGUID: 4lXx5/58SLu0s64eURKm7g==
-X-CSE-MsgGUID: ZUGd5wlkRxe00oM/ArhEDQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14846258"
-X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="14846258"
+ bh=B9ljaQQ4cc4i+bSjST1L+Jy3s0HLpkQXRpmnVgG8/qw=;
+ b=e8DDKss3yMHWXpzeImOiMBMcl+t5qyzT08r1+Wm/ClhINAkr+6+RFQvt
+ YWQsJf6WqwgmibFQifjvSp+yqGekHxW8qztuhGZJmw4NrCEX3pv7WmNTR
+ 6ga1kaUxf8z6ASTcU2AOW24nFMiFcjKDYiDQBxSib3cEeYwU4CHuMK8t9
+ mgyIuOAza9z2yDVy6hNYFUC4aEsdDSCSzFf7yLPKVYiKhVkxG/bTzfniK
+ NwntX5aaturHPKNsTAloPrAcb/WP55/AUXIGtIlXxJTwSxNKYcYNCeDB9
+ QSX8awsJp31I8u38WmtzXp0KP/J0Ki5VRrwYY1Whlz6v67ewsyEB+jiDW w==;
+X-CSE-ConnectionGUID: Wbtp5Q2pSjGxE6XgMqTcqg==
+X-CSE-MsgGUID: u8XAgNJIR2mcaFkZKCpNkw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14846277"
+X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="14846277"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2024 11:38:13 -0700
-X-CSE-ConnectionGUID: vE4P01NxT+CO1nv4UzeVbg==
-X-CSE-MsgGUID: VhhKH1KwSU65ShCkyY7v/w==
+ 10 Jun 2024 11:38:15 -0700
+X-CSE-ConnectionGUID: goAGNWGISQGb/rih9KUhag==
+X-CSE-MsgGUID: I+wN0l8CSCSRSOMAVn/ktQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="43726877"
+X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="43726883"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.1.253])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2024 11:38:12 -0700
+ 10 Jun 2024 11:38:14 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 2/4] drm/xe: Include additional info on failed force-wake
- operation
-Date: Mon, 10 Jun 2024 20:37:55 +0200
-Message-Id: <20240610183757.1812-3-michal.wajdeczko@intel.com>
+Subject: [PATCH 4/4] drm/xe/vf: Ignore force-wake requests if VF
+Date: Mon, 10 Jun 2024 20:37:57 +0200
+Message-Id: <20240610183757.1812-5-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240610183757.1812-1-michal.wajdeczko@intel.com>
 References: <20240610183757.1812-1-michal.wajdeczko@intel.com>
@@ -67,84 +66,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For debug purposes it might be useful to look at the values of the
-force-wake ack registers in case wake/sleep operations failures.
-
-Move xe_gt_notice() from the caller to the helper function, where
-we have the latest value of force-wake ack register available.
+The control and ack force-wake registers are not accessible for
+the VF drivers. To avoid changing existing code logic that tracks
+woken domains, simply ignore all attempts to access control or ack
+registers if we are running as a VF driver.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_force_wake.c | 35 ++++++++++++++++++++----------
- 1 file changed, 23 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_force_wake.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
-index 2497f0f65aa0..a1d97cce3d56 100644
+index b0baa9094418..4d472192e87b 100644
 --- a/drivers/gpu/drm/xe/xe_force_wake.c
 +++ b/drivers/gpu/drm/xe/xe_force_wake.c
-@@ -102,9 +102,17 @@ static void domain_wake(struct xe_gt *gt, struct xe_force_wake_domain *domain)
- static int domain_wake_wait(struct xe_gt *gt,
- 			    struct xe_force_wake_domain *domain)
+@@ -12,6 +12,7 @@
+ #include "xe_gt.h"
+ #include "xe_gt_printk.h"
+ #include "xe_mmio.h"
++#include "xe_sriov.h"
+ 
+ #define XE_FORCE_WAKE_ACK_TIMEOUT_MS	50
+ 
+@@ -101,6 +102,9 @@ void xe_force_wake_init_engines(struct xe_gt *gt, struct xe_force_wake *fw)
+ 
+ static void __domain_ctl(struct xe_gt *gt, struct xe_force_wake_domain *domain, bool wake)
  {
--	return xe_mmio_wait32(gt, domain->reg_ack, domain->val, domain->val,
--			      XE_FORCE_WAKE_ACK_TIMEOUT_MS * USEC_PER_MSEC,
--			      NULL, true);
-+	u32 value;
-+	int ret;
++	if (IS_SRIOV(gt_to_xe(gt)))
++		return;
 +
-+	ret = xe_mmio_wait32(gt, domain->reg_ack, domain->val, domain->val,
-+			     XE_FORCE_WAKE_ACK_TIMEOUT_MS * USEC_PER_MSEC,
-+			     &value, true);
-+	if (ret)
-+		xe_gt_notice(gt, "Force wake domain %d failed to ack wake (%pe) reg[%#x] = %#x\n",
-+			     domain->id, ERR_PTR(ret), domain->reg_ack.addr, value);
-+
-+	return ret;
+ 	xe_mmio_write32(gt, domain->reg_ctl, domain->mask | (wake ? domain->val : 0));
  }
  
- static void domain_sleep(struct xe_gt *gt, struct xe_force_wake_domain *domain)
-@@ -115,9 +123,18 @@ static void domain_sleep(struct xe_gt *gt, struct xe_force_wake_domain *domain)
- static int domain_sleep_wait(struct xe_gt *gt,
- 			     struct xe_force_wake_domain *domain)
- {
--	return xe_mmio_wait32(gt, domain->reg_ack, domain->val, 0,
--			      XE_FORCE_WAKE_ACK_TIMEOUT_MS * USEC_PER_MSEC,
--			      NULL, true);
-+	u32 value;
-+	int ret;
-+
-+	ret = xe_mmio_wait32(gt, domain->reg_ack, domain->val, 0,
-+			     XE_FORCE_WAKE_ACK_TIMEOUT_MS * USEC_PER_MSEC,
-+			     &value, true);
-+
-+	if (ret)
-+		xe_gt_notice(gt, "Force wake domain %d failed to ack sleep (%pe) reg[%#x] = %#x\n",
-+			     domain->id, ERR_PTR(ret), domain->reg_ack.addr, value);
-+
-+	return ret;
- }
+@@ -109,6 +113,9 @@ static int __domain_wait(struct xe_gt *gt, struct xe_force_wake_domain *domain,
+ 	u32 value;
+ 	int ret;
  
- #define for_each_fw_domain_masked(domain__, mask__, fw__, tmp__) \
-@@ -145,9 +162,6 @@ int xe_force_wake_get(struct xe_force_wake *fw,
- 	for_each_fw_domain_masked(domain, woken, fw, tmp) {
- 		ret = domain_wake_wait(gt, domain);
- 		ret2 |= ret;
--		if (ret)
--			xe_gt_notice(gt, "Force wake domain (%d) failed to ack wake, ret=%d\n",
--				     domain->id, ret);
- 	}
- 	fw->awake_domains |= woken;
- 	spin_unlock_irqrestore(&fw->lock, flags);
-@@ -174,9 +188,6 @@ int xe_force_wake_put(struct xe_force_wake *fw,
- 	for_each_fw_domain_masked(domain, sleep, fw, tmp) {
- 		ret = domain_sleep_wait(gt, domain);
- 		ret2 |= ret;
--		if (ret)
--			xe_gt_notice(gt, "Force wake domain (%d) failed to ack sleep, ret=%d\n",
--				     domain->id, ret);
- 	}
- 	fw->awake_domains &= ~sleep;
- 	spin_unlock_irqrestore(&fw->lock, flags);
++	if (IS_SRIOV(gt_to_xe(gt)))
++		return 0;
++
+ 	ret = xe_mmio_wait32(gt, domain->reg_ack, domain->val, wake ? domain->val : 0,
+ 			     XE_FORCE_WAKE_ACK_TIMEOUT_MS * USEC_PER_MSEC,
+ 			     &value, true);
 -- 
 2.43.0
 
