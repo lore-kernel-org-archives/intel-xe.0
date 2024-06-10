@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86A88C27C55
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 16:11:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 265A5C27C55
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 16:34:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3D2910E4CF;
-	Mon, 10 Jun 2024 16:11:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eq3iEx3t";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03B0710E3C3
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Jun 2024 16:11:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718035905; x=1749571905;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=jthJjJ2zKTiLV2PBjpIfe6L6//S4w66QTWO5SgbSzSU=;
- b=eq3iEx3tAzPnjSEbZRXRu5hIQAVMzb1Pvj8MIpMg6tx+RMazSHzTKBo8
- i6hsGGq+1eXHULXMBXUCkDronG0VXr5VXpbSbaSzpiEmmtaMwYyEAqk7a
- 4Z+X/HP6PvdMlJIH5+0bgyJo5Mv3I0SOD+P0iF6YCXJwc2L3YdZqn36h0
- USDe1KoYDuElPJDjYfwKzD2BFrIdXqV5zt9Bkb1nZAC+XnJknUEubd4vQ
- E7LrMIhGHLUh0NYaZlkASaMS9r0wUVOKXKbFER5W4kHq5kSAecZsV4HaP
- 5wp43fg9buFFceMSF8pbIr1a1wZjd7ECvfXmbw/5Gshg0xNPC0j9fMR89 A==;
-X-CSE-ConnectionGUID: M5IEBjrwREmxroS55DbHAw==
-X-CSE-MsgGUID: nA+IYnqZQJOmhRVzo4dbMQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="32193235"
-X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="32193235"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2024 09:11:45 -0700
-X-CSE-ConnectionGUID: T1Eb7ZF/S9urMerLp+Am7g==
-X-CSE-MsgGUID: IkcbREIBTGWs8Dn1ZLkHMA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="62281526"
-Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2024 09:11:43 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: linux-kernel@vger.kernel.org,
-	intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Subject: [PATCH v5 2/2] drm/xe: Increase devcoredump timeout
-Date: Mon, 10 Jun 2024 09:11:33 -0700
-Message-ID: <20240610161133.156566-2-jose.souza@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240610161133.156566-1-jose.souza@intel.com>
-References: <20240610161133.156566-1-jose.souza@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD38B10E48E;
+	Mon, 10 Jun 2024 16:33:59 +0000 (UTC)
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F24D310E48E;
+ Mon, 10 Jun 2024 16:33:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6223114060311190093=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5BCI=2C1/3?=
+ =?utf-8?q?=5D_drm/xe=3A_poor_man=27s_exhaustive_eviction?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 10 Jun 2024 16:33:57 -0000
+Message-ID: <171803723798.32193.2411734527581251055@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240610152017.43436-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20240610152017.43436-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,47 +36,115 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-5 minutes is too short for a regular user to search and understand
-what he needs to do to report capture devcoredump and report a bug to
-us, so here increasing this timeout to 1 hour.
+--===============6223114060311190093==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Acked-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/xe/xe_devcoredump.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index d7f2d19a77c10..62c2b10fbf1d2 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -53,6 +53,9 @@
- 
- #ifdef CONFIG_DEV_COREDUMP
- 
-+/* 1 hour timeout */
-+#define XE_COREDUMP_TIMEOUT_JIFFIES (60 * 60 * HZ)
-+
- static struct xe_device *coredump_to_xe(const struct xe_devcoredump *coredump)
- {
- 	return container_of(coredump, struct xe_device, devcoredump);
-@@ -247,8 +250,9 @@ void xe_devcoredump(struct xe_sched_job *job)
- 	drm_info(&xe->drm, "Check your /sys/class/drm/card%d/device/devcoredump/data\n",
- 		 xe->drm.primary->index);
- 
--	dev_coredumpm(xe->drm.dev, THIS_MODULE, coredump, 0, GFP_KERNEL,
--		      xe_devcoredump_read, xe_devcoredump_free);
-+	dev_coredumpm_timeout(xe->drm.dev, THIS_MODULE, coredump, 0, GFP_KERNEL,
-+			      xe_devcoredump_read, xe_devcoredump_free,
-+			      XE_COREDUMP_TIMEOUT_JIFFIES);
- }
- 
- static void xe_driver_devcoredump_fini(void *arg)
--- 
-2.45.2
+Series: series starting with [CI,1/3] drm/xe: poor man's exhaustive eviction
+URL   : https://patchwork.freedesktop.org/series/134682/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-1433-cb76029295c9fea629db76e9bb4106c0179d99c1_BAT -> xe-pw-134682v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 3)
+------------------------------
+
+  Missing    (1): bat-adlp-7 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-134682v1_BAT that come from known issues:
+
+### IGT changes ###
+
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+
+
+Build changes
+-------------
+
+  * Linux: xe-1433-cb76029295c9fea629db76e9bb4106c0179d99c1 -> xe-pw-134682v1
+
+  IGT_7880: 73618605b4370cf902267aaf1d25666ff5e26112 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1433-cb76029295c9fea629db76e9bb4106c0179d99c1: cb76029295c9fea629db76e9bb4106c0179d99c1
+  xe-pw-134682v1: 134682v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134682v1/index.html
+
+--===============6223114060311190093==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [CI,1/3] drm/xe: poor man&#x27;s exhaustive eviction</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134682/">https://patchwork.freedesktop.org/series/134682/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134682v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134682v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1433-cb76029295c9fea629db76e9bb4106c0179d99c1_BAT -&gt; xe-pw-134682v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 3)</h2>
+<p>Missing    (1): bat-adlp-7 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-134682v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1433-cb76029295c9fea629db76e9bb4106c0179d99c1 -&gt; xe-pw-134682v1</li>
+</ul>
+<p>IGT_7880: 73618605b4370cf902267aaf1d25666ff5e26112 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1433-cb76029295c9fea629db76e9bb4106c0179d99c1: cb76029295c9fea629db76e9bb4106c0179d99c1<br />
+  xe-pw-134682v1: 134682v1</p>
+
+</body>
+</html>
+
+--===============6223114060311190093==--
