@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AADDEC27C75
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 13:49:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAB3FC27C5E
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 13:49:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 429B910E47B;
-	Mon, 10 Jun 2024 13:49:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BBCA10E475;
+	Mon, 10 Jun 2024 13:49:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W3U7M3KT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PBt33OVt";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AEF610E1A1
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CC9F10E189
  for <intel-xe@lists.freedesktop.org>; Mon, 10 Jun 2024 13:49:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718027383; x=1749563383;
+ t=1718027384; x=1749563384;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=acnCYH3i2T2FKiuQ3cllcOgHI13TIHgssFKuFUgTrzw=;
- b=W3U7M3KTWQBBCfohFljudrxJWSKurKvj5Ts4xAIJEhkhxQugWbk9K4Qi
- D+VTeWvx86HQ0JdMwTTv0wzV4jkFur8mcIk7NTV/rFS6GzN/poUvgqZll
- WLuUq1aTq83fdzwCpd9c1bzEtdNDfR12PQmqinfobLURwG+rYYsV8HMnW
- nGhM+dxvGSDm0gdOL0ZT8tlNt0mglkV9MniGQ333f/rI/WdZHo+KeM8RW
- OLOw5F7NGc9Zrf67UAiKj6bTc+wTnn0nxl1UcYc71lu/vo3G1KNQJJG4B
- uQ2d/+K0pmRswTYboshj+S2LYxtlj0UmzKiPPRBOtJstvjmAkhNgC5Jmy g==;
-X-CSE-ConnectionGUID: 6saFj2qOR1O3mmen//xAGQ==
-X-CSE-MsgGUID: UVBhaUTUS0mG7XuMI2KzUQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14419831"
-X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="14419831"
+ bh=ahlUwscNnEiCx4WjoCLCcHJY4dX/WNkfqSY/lTLtsh0=;
+ b=PBt33OVtiFCG41NPm5DxVtlenWMlYXU0yp2017dgW4yhBSUFSva7z8yo
+ E0QIbGLpP8J+BniKy4mbudUN6Cp0W/j85OsbtDaBGaT+GYmFs7zLeVmWq
+ iOi/j2bgLLTj4CgUo3wNlaZRf3Xk/4rJJHnz3ArkOEoTJCjRGYhCsUyKj
+ BxUkfL+qPNL9ZblWA2+gzOQHEmla/iTNVLWfn0y9UAhwV+hIy3VLIk5jH
+ 7xDGJo5/qRVv9Wo8+oVQunfUp2UqgaPY9fx9uOZgJDYuAt6x5cbZtiO62
+ r5tByGxROvR+qkVI96isbbJ6leJjIO4KT/u99R9CHdJrKuSreZ2d3r0m4 g==;
+X-CSE-ConnectionGUID: oP8FlUi8RSKvyXrRXgC1JQ==
+X-CSE-MsgGUID: P4wvDEu7TLqd3eWMywj+Zg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14419833"
+X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="14419833"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Jun 2024 06:49:42 -0700
-X-CSE-ConnectionGUID: Kn5hONOvSZ27M85+k/FXtQ==
-X-CSE-MsgGUID: RuUOUDyjQWSmCXI9TCl6eg==
+X-CSE-ConnectionGUID: 4NFYN1lNRk2GvDadWL6LPQ==
+X-CSE-MsgGUID: 5JhyYZOfQ9yP9b2HoCg0Gw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="76523125"
+X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="76523127"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Jun 2024 06:49:42 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 2/7] drm/xe: Add xe_gt_clock_interval_to_ms helper
-Date: Mon, 10 Jun 2024 06:50:06 -0700
-Message-Id: <20240610135011.2605272-3-matthew.brost@intel.com>
+Subject: [PATCH v4 4/7] drm/xe: Add GuC state asserts to deregister_exec_queue
+Date: Mon, 10 Jun 2024 06:50:08 -0700
+Message-Id: <20240610135011.2605272-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240610135011.2605272-1-matthew.brost@intel.com>
 References: <20240610135011.2605272-1-matthew.brost@intel.com>
@@ -65,52 +65,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add helper to convert GT clock ticks to msec. Useful for determining if
-timeouts occur by examing GT clock ticks.
+Will help catch bugs in GuC state machine.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_clock.c | 18 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_clock.h |  1 +
- 2 files changed, 19 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
-index 9ff2061133df..a9392a743fd5 100644
---- a/drivers/gpu/drm/xe/xe_gt_clock.c
-+++ b/drivers/gpu/drm/xe/xe_gt_clock.c
-@@ -79,3 +79,21 @@ int xe_gt_clock_init(struct xe_gt *gt)
- 	gt->info.reference_clock = freq;
- 	return 0;
- }
-+
-+static u64 div_u64_roundup(u64 nom, u32 den)
-+{
-+	return div_u64(nom + den - 1, den);
-+}
-+
-+/**
-+ * xe_gt_clock_interval_to_ms - Convert sampled GT clock ticks to msec
-+ *
-+ * @gt: the &xe_gt
-+ * @count: count of GT clock ticks
-+ *
-+ * Returns: time in msec
-+ */
-+u64 xe_gt_clock_interval_to_ms(struct xe_gt *gt, u64 count)
-+{
-+	return div_u64_roundup(count * MSEC_PER_SEC, gt->info.reference_clock);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt_clock.h b/drivers/gpu/drm/xe/xe_gt_clock.h
-index 44fa0371b973..3adeb7baaca4 100644
---- a/drivers/gpu/drm/xe/xe_gt_clock.h
-+++ b/drivers/gpu/drm/xe/xe_gt_clock.h
-@@ -11,5 +11,6 @@
- struct xe_gt;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 766ff8e48dde..e697732f1e74 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1587,6 +1587,11 @@ static void deregister_exec_queue(struct xe_guc *guc, struct xe_exec_queue *q)
+ 		q->guc->id,
+ 	};
  
- int xe_gt_clock_init(struct xe_gt *gt);
-+u64 xe_gt_clock_interval_to_ms(struct xe_gt *gt, u64 count);
++	xe_gt_assert(guc_to_gt(guc), exec_queue_destroyed(q));
++	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
++	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_disable(q));
++	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_enable(q));
++
+ 	trace_xe_exec_queue_deregister(q);
  
- #endif
+ 	xe_guc_ct_send_g2h_handler(&guc->ct, action, ARRAY_SIZE(action));
 -- 
 2.34.1
 
