@@ -4,25 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99D94C27C55
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 16:38:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CCD7C27C55
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 16:38:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37A3D10E18B;
-	Mon, 10 Jun 2024 16:38:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FE0610E4C1;
+	Mon, 10 Jun 2024 16:38:35 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6261210E18B;
- Mon, 10 Jun 2024 16:38:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF9DC10E4C1;
+ Mon, 10 Jun 2024 16:38:31 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5Bv5=2C1/2=5D_devcoredump=3A_Add_dev=5Fcoredumpm=5Ftimeout=28?=
- =?utf-8?q?=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5Bv?=
+ =?utf-8?q?5=2C1/2=5D_devcoredump=3A_Add_dev=5Fcoredumpm=5Ftimeout=28=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 10 Jun 2024 16:38:17 -0000
-Message-ID: <171803749740.32193.15315382482661868825@a6498e030952>
+Date: Mon, 10 Jun 2024 16:38:31 -0000
+Message-ID: <171803751191.32193.7682460951141881762@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240610161133.156566-1-jose.souza@intel.com>
 In-Reply-To: <20240610161133.156566-1-jose.souza@intel.com>
@@ -49,10 +48,31 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 3d66fb77a4da drm-tip: 2024y-06m-10d-14h-38m-39s UTC integration manifest
-=== git am output follows ===
-Applying: devcoredump: Add dev_coredumpm_timeout()
-Applying: drm/xe: Increase devcoredump timeout
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a118249ce29143c5307263aff6cb23c218cddcdb
+Author: José Roberto de Souza <jose.souza@intel.com>
+Date:   Mon Jun 10 09:11:33 2024 -0700
+
+    drm/xe: Increase devcoredump timeout
+    
+    5 minutes is too short for a regular user to search and understand
+    what he needs to do to report capture devcoredump and report a bug to
+    us, so here increasing this timeout to 1 hour.
+    
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+    Acked-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+    Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
++ /mt/dim checkpatch 3d66fb77a4da62a4282f60ddaab2bc5fabfe2fec drm-intel
+1640e05d85b2 devcoredump: Add dev_coredumpm_timeout()
+a118249ce291 drm/xe: Increase devcoredump timeout
 
 
