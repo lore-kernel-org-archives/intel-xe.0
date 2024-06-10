@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6575C27C5E
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 13:54:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E82BFC27C5E
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 13:55:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 579D910E04B;
-	Mon, 10 Jun 2024 13:54:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90EF310E04B;
+	Mon, 10 Jun 2024 13:55:29 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0478E10E04B;
- Mon, 10 Jun 2024 13:54:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C93C510E04B;
+ Mon, 10 Jun 2024 13:55:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Only_timeout_jobs_if_they?=
- =?utf-8?q?_run_longer_than_timeout_period?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Only_timeout_jobs_if_they_run_?=
+ =?utf-8?q?longer_than_timeout_period?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 10 Jun 2024 13:54:41 -0000
-Message-ID: <171802768101.31735.11346849650300656230@a6498e030952>
+Date: Mon, 10 Jun 2024 13:55:10 -0000
+Message-ID: <171802771081.31735.11170999723007983206@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240610135011.2605272-1-matthew.brost@intel.com>
 In-Reply-To: <20240610135011.2605272-1-matthew.brost@intel.com>
@@ -44,66 +44,79 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Only timeout jobs if they run longer than timeout period
 URL   : https://patchwork.freedesktop.org/series/134677/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-51ce9f6cd981d42d7467409d7dbc559a450abc1e
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit ec39258838418f072f5bd72919282e074cd36aea
-Author: Matthew Brost <matthew.brost@intel.com>
-Date:   Mon Jun 10 06:50:11 2024 -0700
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_guc_submit.c: In function ‘check_timeout’:
+../drivers/gpu/drm/xe/xe_guc_submit.c:956:22: error: implicit declaration of function ‘xe_lrc_ctx_timestamp’; did you mean ‘xe_lrc_update_timestamp’? [-Werror=implicit-function-declaration]
+  956 |  u32 ctx_timestamp = xe_lrc_ctx_timestamp(q->lrc[0]);
+      |                      ^~~~~~~~~~~~~~~~~~~~
+      |                      xe_lrc_update_timestamp
+../drivers/gpu/drm/xe/xe_guc_submit.c:957:26: error: implicit declaration of function ‘xe_lrc_ctx_job_timestamp’; did you mean ‘xe_lrc_update_timestamp’? [-Werror=implicit-function-declaration]
+  957 |  u32 ctx_job_timestamp = xe_lrc_ctx_job_timestamp(q->lrc[0]);
+      |                          ^~~~~~~~~~~~~~~~~~~~~~~~
+      |                          xe_lrc_update_timestamp
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:244: drivers/gpu/drm/xe/xe_guc_submit.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_lrc.c: In function ‘xe_lrc_snapshot_capture’:
+../drivers/gpu/drm/xe/xe_lrc.c:1581:28: error: implicit declaration of function ‘xe_lrc_ctx_timestamp’; did you mean ‘xe_lrc_update_timestamp’? [-Werror=implicit-function-declaration]
+ 1581 |  snapshot->ctx_timestamp = xe_lrc_ctx_timestamp(lrc);
+      |                            ^~~~~~~~~~~~~~~~~~~~
+      |                            xe_lrc_update_timestamp
+../drivers/gpu/drm/xe/xe_lrc.c:1582:32: error: implicit declaration of function ‘xe_lrc_ctx_job_timestamp’; did you mean ‘xe_lrc_update_timestamp’? [-Werror=implicit-function-declaration]
+ 1582 |  snapshot->ctx_job_timestamp = xe_lrc_ctx_job_timestamp(lrc);
+      |                                ^~~~~~~~~~~~~~~~~~~~~~~~
+      |                                xe_lrc_update_timestamp
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:244: drivers/gpu/drm/xe/xe_lrc.o] Error 1
+make[6]: *** [../scripts/Makefile.build:485: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:485: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:485: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:485: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [/kernel/Makefile:1934: .] Error 2
+make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
 
-    drm/xe: Sample ctx timestamp to determine if jobs have timed out
-    
-    In GuC TDR sample ctx timestamp to determine if jobs have timed out. The
-    scheduling enable needs to be toggled to properly sample the timestamp.
-    If a job has not been running for longer than the timeout period,
-    re-enable scheduling and restart the TDR.
-    
-    v2:
-     - Use GT clock to msec helper (Umesh, off list)
-     - s/ctx_timestamp_job/ctx_job_timestamp
-    v3:
-     - Fix state machine for TDR, mainly decouple sched disable and
-       deregister (testing)
-     - Rebase (CI)
-    v4:
-     - Fix checkpatch && newline issue (CI)
-     - Do not deregister on wedged or unregistered (CI)
-     - Fix refcounting bugs (CI)
-     - Move devcoredump above VM / kernel job check (John H)
-     - Add comment for check_timeout state usage (John H)
-     - Assert pending disable not inflight when enabling scheduling (John H)
-     - Use enable_scheduling in other scheduling enable code (John H)
-     - Add comments on a few steps in TDR (John H)
-     - Add assert for timestamp overflow protection (John H)
-    
-    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-+ /mt/dim checkpatch 183cef86631f1ea60930365f10582bb963a790f1 drm-intel
-66a84e18ab11 drm/xe: Add ctx timestamp to LRC snapshot
-7e7d4d60f5d6 drm/xe: Add xe_gt_clock_interval_to_ms helper
-de7afa65bac3 drm/xe: Improve unexpected state error messages
-53624491cb1e drm/xe: Add GuC state asserts to deregister_exec_queue
-137b80c80e9b drm/xe: Add pending disable assert to handle_sched_done
-2d43a417f2b9 drm/xe: Add killed, banned, or wedged as stick bit during GuC reset
-ec3925883841 drm/xe: Sample ctx timestamp to determine if jobs have timed out
--:89: CHECK:SPACING: No space is necessary after a cast
-#89: FILE: drivers/gpu/drm/xe/xe_guc_submit.c:951:
-+#define ADJUST_FIVE_PERCENT(__t)	(((__t) * 105) / 100)
-
--:89: ERROR:SPACING: space prohibited after that '*' (ctx:WxW)
-#89: FILE: drivers/gpu/drm/xe/xe_guc_submit.c:951:
-+#define ADJUST_FIVE_PERCENT(__t)	(((__t) * 105) / 100)
-                                 	        ^
-
-total: 1 errors, 0 warnings, 1 checks, 420 lines checked
+[13:54:42] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[13:54:46] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
