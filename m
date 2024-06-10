@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCB9AC27C6E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8845DC27C65
 	for <intel-xe@archiver.kernel.org>; Mon, 10 Jun 2024 14:18:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74E5E10E493;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C50810E483;
 	Mon, 10 Jun 2024 14:18:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ir7oakVA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mv90XedJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EE8910E483
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Jun 2024 14:18:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0758510E467
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Jun 2024 14:18:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1718029081; x=1749565081;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=93JYQmWidhOqURHaWGP9qIgfYTQt2W3nl8OWtjyjqq8=;
- b=Ir7oakVAyxwiHY5Y6m4lRHWy2Z7fvl5KL8NaDRTuOIaLnH8A04IQ9eYr
- 7xdWu3c1QJvZITVspYe/NuzPqwUJgbBiH7Fv3cjIJ6ZXt9vTvTlUJ7e9T
- PhScOiRrbfmjznSlc/a07H4MPCHZPrCiFxqnX2Rwx187j65Y8sRDP4SKG
- xK7DV2/lifIQOG34Q5I/W81xPN3pBvRjS0shW2kMwl5rPE0FweAsEnRdL
- MY2iOijzWuLSf8wsUb8GEVdx9hKwjGq2zksoRlgsS6A/4CNUgwDigwl8L
- 8/5W0DXuk7UrPDx/s2pDzyudW4UO2ZdbFCxaweppc/fmqzxeT0h5YSKR1 g==;
-X-CSE-ConnectionGUID: iCMhuF0xSJOMeJsZb6+Z6g==
-X-CSE-MsgGUID: Mu8Fyjr0R0+A9uWfbQxHNg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14864874"
-X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="14864874"
+ bh=+9tdG9coiP3IKvDKHsHRxr/u+rnKLpEDiVZada8Hoic=;
+ b=Mv90XedJz9x1VEkm8bmrPJ7bqLRGdP0uezLmJGDRxsHLgxDw3fYwagtX
+ QmdZtVEpxagJgR/t2ST9j0h6U+4Y7RCG6+TUGTwOp3FXPymLMiYF7Awk6
+ Mc22JB+/WFDPMz85CkizyQZNEJN7mJG9ifSd0cPAHliBIga8jFMbL9ML8
+ 6ecRHWgEvc0mq/FZM2146VYJz5El0Snh9efFqiPXyRuGFbb64JIPo2Mjn
+ A5ha92d6nwwL3WgIgfuHIvcjYDrwJ7EjTznWofDJhboUiS3JGhD58wdJA
+ gtTqZMuTVM4DSx/kibmbPYW0IJsepzndyUbY74CzExF8VQhp1uSI426Rd A==;
+X-CSE-ConnectionGUID: YeOMJdXjSMqsASrVamoXFw==
+X-CSE-MsgGUID: 52TW/yIQSAykZsyrtPExig==
+X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14864867"
+X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="14864867"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Jun 2024 07:17:52 -0700
-X-CSE-ConnectionGUID: V4vJb9PATvudPctojWCf5Q==
-X-CSE-MsgGUID: avXWbj9LSSKwOsGdQf30aQ==
+X-CSE-ConnectionGUID: 0Z5Uyo6XQZa10y27Wb6+aA==
+X-CSE-MsgGUID: EtzepZAYTmKIWxQx1dtGyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="70238699"
+X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="70238690"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Jun 2024 07:17:49 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v5 09/10] drm/xe: Add killed, banned,
- or wedged as stick bit during GuC reset
-Date: Mon, 10 Jun 2024 07:18:22 -0700
-Message-Id: <20240610141823.2605496-10-matthew.brost@intel.com>
+Subject: [PATCH v5 02/10] drm/xe: Add MI_COPY_MEM_MEM GPU instruction
+ definitions
+Date: Mon, 10 Jun 2024 07:18:15 -0700
+Message-Id: <20240610141823.2605496-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240610141823.2605496-1-matthew.brost@intel.com>
 References: <20240610141823.2605496-1-matthew.brost@intel.com>
@@ -66,28 +66,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-These bits should be persistent across reset, treat them as such.
+MI_COPY_MEM_MEM GPU instructions are used to copy ctx timestamp from a
+LRC registers to another location at the beginning of every jobs
+execution. Add MI_COPY_MEM_MEM GPU instruction definitions.
+
+v2:
+ - Include MI_COPY_MEM_MEM based on instruction order (Michal)
+ - Fix tabs/spaces issue (Michal)
+ - Use macro for DW definition (Michal)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/instructions/xe_mi_commands.h | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 9e1535c2d8f3..3db0aa40535d 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1444,7 +1444,9 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
- 		set_exec_queue_suspended(q);
- 		suspend_fence_signal(q);
- 	}
--	atomic_and(EXEC_QUEUE_STATE_DESTROYED | EXEC_QUEUE_STATE_SUSPENDED,
-+	atomic_and(EXEC_QUEUE_STATE_WEDGED | EXEC_QUEUE_STATE_BANNED |
-+		   EXEC_QUEUE_STATE_KILLED | EXEC_QUEUE_STATE_DESTROYED |
-+		   EXEC_QUEUE_STATE_SUSPENDED,
- 		   &q->guc->state);
- 	q->guc->resume_time = 0;
- 	trace_xe_exec_queue_stop(q);
+diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+index c74ceb550dce..b7bf99dd4848 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+@@ -59,6 +59,10 @@
+ #define MI_LOAD_REGISTER_MEM		(__MI_INSTR(0x29) | XE_INSTR_NUM_DW(4))
+ #define   MI_LRM_USE_GGTT		REG_BIT(22)
+ 
++#define MI_COPY_MEM_MEM			(__MI_INSTR(0x2e) | XE_INSTR_NUM_DW(5))
++#define   MI_COPY_MEM_MEM_SRC_GGTT	REG_BIT(22)
++#define   MI_COPY_MEM_MEM_DST_GGTT	REG_BIT(21)
++
+ #define MI_BATCH_BUFFER_START		__MI_INSTR(0x31)
+ 
+ #endif
 -- 
 2.34.1
 
