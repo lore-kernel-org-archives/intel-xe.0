@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E98BC27C77
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6004BC3DA40
 	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 14:40:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8978310E674;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C49710E671;
 	Tue, 11 Jun 2024 14:40:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BmFGeIEv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DskhVmgS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC59F10E671
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACBDD10E19B
  for <intel-xe@lists.freedesktop.org>; Tue, 11 Jun 2024 14:40:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1718116831; x=1749652831;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=u4UcEdLxtF5Xy4U0DH2Dj3NT4aAc5SnAkQah6zzdyCU=;
- b=BmFGeIEv6IRHK/vsKgcgmO9/DZw4NqotPXjEAjPJHp4VPAwENI5CVKXB
- DZDtNr6Pq+h1k9bAVXdAjmDLvkxsOLlVD1HuFCxHWZ5x37mG80Dr4Vewp
- ETeXuvHpQkskFlmZaJn06rG99/aQ6d7waCr6XYpyJWWQ48+ggFmikjUCd
- 9IvUbMiI0YKnTr1iz5WpGE9v6A4JQQWI3kT54Bw9crlxvKF8xS9wQ9lUk
- JkqHlDKw9KbtWv0lmR53mLMxhY/hJ2fQ/kzlJ2g5/GGgfckMCAoNP6oPY
- G4A4gU7dFLqeswYeJVuJ7hrJmEQAPh+CX+JDb18SjTcg9mH9iddLVeJqS Q==;
-X-CSE-ConnectionGUID: hbUYhwhXSXq27GjWe4zGEg==
-X-CSE-MsgGUID: cOGncQi+SzOE3Dm743ZxaA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="14784565"
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="14784565"
+ bh=5b1ZkcFt0P0ocMUUdikIFBX8xs1DXTKmomecUlWLR8E=;
+ b=DskhVmgS2Tm8azaBnq0LZYSFM0XFLtkbTrjHgp+sRGMnMZDXE+1XaTQe
+ /xsa8hQ5f9Y8Vn3gFuDLyFU1tXpNbInzD7vrpc+/fJgV9GDleNXIU/RvW
+ jQzlBRhdWTtJcM8JnL1Gc5Tp4vuXQT0SoHwUWVnDEwNxT7RLiYSCdCa2t
+ JhVDzS9+4a6P1zb3PQeQMzCmxXZTGeBaWfBwr87FFq3XTbgrSDpEkdSpe
+ 3wl1wpbhJfJ4dJ2hLAT7hRAO68MSoX7VNNsf7I+3zY0jecoNWbpwqIHmc
+ w2JgZsbuKH4Aa7b4YEuaTIQudCybzsqmqXHhWNKXcAykwyLHJCtvWNJqP A==;
+X-CSE-ConnectionGUID: Tm8cE91ZQJKFQp+826FMMw==
+X-CSE-MsgGUID: Fr1oOi08Q/uDlJlnFaIJNg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="14784563"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="14784563"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Jun 2024 07:40:19 -0700
-X-CSE-ConnectionGUID: o4CMteNFQ6Cqv0UaOSyw4A==
-X-CSE-MsgGUID: 4DuqK8gZQc6EiTOokjVa9g==
+X-CSE-ConnectionGUID: 488QCx5tSI6Vn8zoFktUGA==
+X-CSE-MsgGUID: fYGx3G4qRXuRU45stqRvFw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="44590318"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="44590317"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Jun 2024 07:40:19 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 06/11] drm/xe: Improve unexpected state error messages
-Date: Tue, 11 Jun 2024 07:40:48 -0700
-Message-Id: <20240611144053.2805091-7-matthew.brost@intel.com>
+Subject: [PATCH v6 05/11] drm/xe: Add xe_gt_clock_interval_to_ms helper
+Date: Tue, 11 Jun 2024 07:40:47 -0700
+Message-Id: <20240611144053.2805091-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240611144053.2805091-1-matthew.brost@intel.com>
 References: <20240611144053.2805091-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,55 +66,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Include G2H handler name when an unexpected error state messages.
+Add helper to convert GT clock ticks to msec. Useful for determining if
+timeouts occur by examing GT clock ticks.
 
 v6:
-- Use xe_gt_err (Michal)
-- Print runnable state (John H)
+- s/nom/n , s/dom/d (Jonathan)
+- include math64 (CI)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_clock.c | 20 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_clock.h |  1 +
+ 2 files changed, 21 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 4464ba337d12..afd22a8d815d 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1620,6 +1620,7 @@ int xe_guc_sched_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
- 	struct xe_device *xe = guc_to_xe(guc);
- 	struct xe_exec_queue *q;
- 	u32 guc_id = msg[0];
-+	u32 runnable_state = msg[1];
+diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
+index 9ff2061133df..86c2d62b4bdc 100644
+--- a/drivers/gpu/drm/xe/xe_gt_clock.c
++++ b/drivers/gpu/drm/xe/xe_gt_clock.c
+@@ -3,6 +3,8 @@
+  * Copyright © 2022 Intel Corporation
+  */
  
- 	if (unlikely(len < 2)) {
- 		drm_err(&xe->drm, "Invalid length %u", len);
-@@ -1632,8 +1633,10 @@ int xe_guc_sched_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
++#include <linux/math64.h>
++
+ #include "xe_gt_clock.h"
  
- 	if (unlikely(!exec_queue_pending_enable(q) &&
- 		     !exec_queue_pending_disable(q))) {
--		drm_err(&xe->drm, "Unexpected engine state 0x%04x",
--			atomic_read(&q->guc->state));
-+		xe_gt_err(guc_to_gt(guc),
-+			  "SCHED_DONE: Unexpected engine state 0x%04x, guc_id=%d, runnable_state=%u",
-+			  atomic_read(&q->guc->state), q->guc->id,
-+			  runnable_state);
- 		return -EPROTO;
- 	}
+ #include "regs/xe_gt_regs.h"
+@@ -79,3 +81,21 @@ int xe_gt_clock_init(struct xe_gt *gt)
+ 	gt->info.reference_clock = freq;
+ 	return 0;
+ }
++
++static u64 div_u64_roundup(u64 n, u32 d)
++{
++	return div_u64(n + d - 1, d);
++}
++
++/**
++ * xe_gt_clock_interval_to_ms - Convert sampled GT clock ticks to msec
++ *
++ * @gt: the &xe_gt
++ * @count: count of GT clock ticks
++ *
++ * Returns: time in msec
++ */
++u64 xe_gt_clock_interval_to_ms(struct xe_gt *gt, u64 count)
++{
++	return div_u64_roundup(count * MSEC_PER_SEC, gt->info.reference_clock);
++}
+diff --git a/drivers/gpu/drm/xe/xe_gt_clock.h b/drivers/gpu/drm/xe/xe_gt_clock.h
+index 44fa0371b973..3adeb7baaca4 100644
+--- a/drivers/gpu/drm/xe/xe_gt_clock.h
++++ b/drivers/gpu/drm/xe/xe_gt_clock.h
+@@ -11,5 +11,6 @@
+ struct xe_gt;
  
-@@ -1671,8 +1674,9 @@ int xe_guc_deregister_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ int xe_gt_clock_init(struct xe_gt *gt);
++u64 xe_gt_clock_interval_to_ms(struct xe_gt *gt, u64 count);
  
- 	if (!exec_queue_destroyed(q) || exec_queue_pending_disable(q) ||
- 	    exec_queue_pending_enable(q) || exec_queue_enabled(q)) {
--		drm_err(&xe->drm, "Unexpected engine state 0x%04x",
--			atomic_read(&q->guc->state));
-+		xe_gt_err(guc_to_gt(guc),
-+			  "DEREGISTER_DONE: Unexpected engine state 0x%04x, guc_id=%d",
-+			  atomic_read(&q->guc->state), q->guc->id);
- 		return -EPROTO;
- 	}
- 
+ #endif
 -- 
 2.34.1
 
