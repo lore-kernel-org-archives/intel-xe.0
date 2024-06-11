@@ -4,56 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C5EAC27C5E
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 14:30:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F565C27C75
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 14:30:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18B5C10E0BD;
-	Tue, 11 Jun 2024 14:30:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1560B10E173;
+	Tue, 11 Jun 2024 14:30:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ed0fFg0W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W7jEN3e8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B82A10E0BD;
- Tue, 11 Jun 2024 14:30:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E2A310E146;
+ Tue, 11 Jun 2024 14:30:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718116244; x=1749652244;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=NV3ZBcboL58BMtFn5E/N+cU8JxR558q0zAPuujzs4EU=;
- b=Ed0fFg0WCDPkNJ+Cr9A9W/gj1bCcTMrvSoIflNL955QEkXbc04UnvqLk
- BOLhK5hcK0fIUHvtHojRFVR+6PFhG+QR4neBims2xt87ORXg3vUZEMtt4
- IxkCEZUFSKKpFsXmiT9aGIc1i01xrc1K8pEOCVesymsbG18QtN7uW6NCc
- HshR03vI8u15G8PDJpccKAfbOkWJLtG7xmfasUr1pvyYWZxPccBtpU/L4
- sHtpUVfICjzSRCt04jCWCAofaGgDjMC9GsDaHXobamo18cfnJMMliHgqP
- F8I41D5jj/75V/k8wVpnrydB6aBTWPxhwC7N6XkYhnbNpwDDX+QCrKySm Q==;
-X-CSE-ConnectionGUID: f3hEioV4RQez7VuGS/oETg==
-X-CSE-MsgGUID: CvYW7lvsSMapW6YJLol1bA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14957486"
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="14957486"
+ t=1718116245; x=1749652245;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=iQR9YStS7FggKdxkqYsdu0V++xnNM67wMQUDjdil6cA=;
+ b=W7jEN3e81JGR+Y98s8lw0yWXPJYaK3Wt/EOYkxU9Qd7+PLbFVF8n+ZLD
+ JSS+cYMMamTwhtaHc3o+wfWjPCewa9PGtCyXdPFatZ3ue7Lh9r8xg8b64
+ /QwKAxVD7QlAfpD/CPjKOrBbdhcXY79HvL34RgJ4UzUl9lqNJX8yrWinl
+ NpAHzLdS3aLOY3DCvLYXV2pPuTAC4w7GXWrZ9DImSyS1X9wqlU71kRkKp
+ +qic8jbILh0r/5+Ry2ekZ06qaxm6YljzElRU170OjvJ0oB9QyAdkc+PKk
+ SwsXfsK1nNByHgwcl68hr31yTU2MEEjgOQz27z0ih71Z/TFWhYPX33DpS g==;
+X-CSE-ConnectionGUID: Hr0bw8ExTzSgkS8YGhZY0Q==
+X-CSE-MsgGUID: Jd5UF1PlR6mO3nVUF/gcvQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14957511"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="14957511"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 07:30:39 -0700
-X-CSE-ConnectionGUID: 7Hsjn/34Ts6KfCsy3YQBiQ==
-X-CSE-MsgGUID: MCZIBfZbQdmMASKkV6UxaA==
+ 11 Jun 2024 07:30:42 -0700
+X-CSE-ConnectionGUID: hLns3ZKEQ1K7WGSVyATcuQ==
+X-CSE-MsgGUID: Jpp9T/dqSayjLNjiXvnM/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="44357781"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="44357799"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.94.248.185])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 07:30:37 -0700
+ 11 Jun 2024 07:30:41 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>
-Subject: [RFC 0/7] Promote GuC ABI headers to shared location
-Date: Tue, 11 Jun 2024 16:30:01 +0200
-Message-Id: <20240611143008.1900-1-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [RFC 2/7] Documentation/gpu: Separate GuC ABI section
+Date: Tue, 11 Jun 2024 16:30:03 +0200
+Message-Id: <20240611143008.1900-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240611143008.1900-1-michal.wajdeczko@intel.com>
+References: <20240611143008.1900-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -70,58 +67,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There are many GuC ABI definitions named in the same way by the i915
-and Xe drivers, preventing proper generation of the documentation.
+GuC ABI definitions are not strictly tied to the i915 driver.
+Move them to a separate section.
 
-Promote GuC ABI definitions to shared location that can be used by
-both drivers and can be included in documentation.
-
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-
-Michal Wajdeczko (7):
-  drm/xe/guc: Promote GuC ABI headers to shared location
-  Documentation/gpu: Separate GuC ABI section
-  Documentation/gpu: Switch to shared GuC ABI definitions
-  drm/intel/guc: Update CTB communication ABI
-  drm/intel/guc: Add new KLV definitions
-  drm/i915: Use shared GuC ABI definitions
-  drm/xe: Promote SR-IOV GuC ABI definitions to shared location
-
- Documentation/gpu/drivers.rst                 |   1 +
- Documentation/gpu/guc.rst                     |  23 ++
- Documentation/gpu/i915.rst                    |   9 -
- drivers/gpu/drm/i915/Makefile                 |   5 +
- .../gt/uc/abi/guc_communication_ctb_abi.h     | 170 -----------
- .../gt/uc/abi/guc_communication_mmio_abi.h    |  49 ----
- drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h | 112 --------
- .../gpu/drm/i915/gt/uc/abi/guc_messages_abi.h | 264 ------------------
- .../guc}/abi/guc_actions_sriov_abi.h          |   0
- .../guc}/abi/guc_communication_ctb_abi.h      |   2 +
- .../guc}/abi/guc_communication_mmio_abi.h     |   0
- .../drm/{xe => intel/guc}/abi/guc_klvs_abi.h  |  18 +-
- .../{xe => intel/guc}/abi/guc_messages_abi.h  |   0
- .../guc}/abi/guc_relay_actions_abi.h          |   0
- .../guc}/abi/guc_relay_communication_abi.h    |   0
- drivers/gpu/drm/xe/Makefile                   |   5 +
- 16 files changed, 49 insertions(+), 609 deletions(-)
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ Documentation/gpu/drivers.rst |  1 +
+ Documentation/gpu/guc.rst     | 16 ++++++++++++++++
+ Documentation/gpu/i915.rst    |  9 ---------
+ 3 files changed, 17 insertions(+), 9 deletions(-)
  create mode 100644 Documentation/gpu/guc.rst
- delete mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
- delete mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_abi.h
- delete mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
- delete mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_messages_abi.h
- rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_actions_sriov_abi.h (100%)
- rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_communication_ctb_abi.h (98%)
- rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_communication_mmio_abi.h (100%)
- rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_klvs_abi.h (97%)
- rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_messages_abi.h (100%)
- rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_relay_actions_abi.h (100%)
- rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_relay_communication_abi.h (100%)
 
+diff --git a/Documentation/gpu/drivers.rst b/Documentation/gpu/drivers.rst
+index b899cbc5c2b4..294e39e34c32 100644
+--- a/Documentation/gpu/drivers.rst
++++ b/Documentation/gpu/drivers.rst
+@@ -7,6 +7,7 @@ GPU Driver Documentation
+ 
+    amdgpu/index
+    i915
++   guc
+    imagination/index
+    mcde
+    meson
+diff --git a/Documentation/gpu/guc.rst b/Documentation/gpu/guc.rst
+new file mode 100644
+index 000000000000..b0fcb824c15a
+--- /dev/null
++++ b/Documentation/gpu/guc.rst
+@@ -0,0 +1,16 @@
++.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++
++======================
++drm/intel GuC firmware
++======================
++
++The graphics microcontroller (GuC) is available starting from Gen9 hardware.
++
++GuC ABI
++=======
++
++.. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_abi.h
++.. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
++.. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_messages_abi.h
++.. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
++.. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
+diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
+index ad59ae579237..e96fd87ffd94 100644
+--- a/Documentation/gpu/i915.rst
++++ b/Documentation/gpu/i915.rst
+@@ -541,15 +541,6 @@ GuC-based command submission
+ .. kernel-doc:: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+    :doc: GuC-based command submission
+ 
+-GuC ABI
+-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-
+-.. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_messages_abi.h
+-.. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_abi.h
+-.. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+-.. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+-.. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
+-
+ HuC
+ ---
+ .. kernel-doc:: drivers/gpu/drm/i915/gt/uc/intel_huc.c
 -- 
 2.43.0
 
