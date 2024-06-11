@@ -4,50 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 458DAC27C65
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 18:32:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DDF1C27C65
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 18:34:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD64D10E6FF;
-	Tue, 11 Jun 2024 18:32:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R3a34R/n";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07B5C10E6FF
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Jun 2024 18:32:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718130735; x=1749666735;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=I3yv0xGyB2KNXLiwp+WUyecrnT6vrRPKEUDyYdtR9CQ=;
- b=R3a34R/nunTF2ELOoa7KGXynITrP+O9w3DXLw8efJ90+G6IdLL1VIVNL
- ZqQGzSmIGCi3YvnG5YgIsYYgfaL99ORm8BpOj6JJ8qLHp+tMnOzNUYAbK
- V9qUIayBOYeH9uRL3qeZe5yippp6Uyv5IaKiJW1lTOw26iq6qnWiEgTM1
- CeDG61eiEVZcjttKJs+PXCcnoOw20MgcuQPWs0ghg7ATw0rkYRLKceDM9
- s7V8RKdeqScSXqePXzsKQ2EbPjMNDE1mJp4YOmpf54vuTvVOxb8QItJfR
- m87baLCGTebyE73l7sCXghRv5CBN+E2EhZbP9+Z7TNG59KCgr/Grb0SP8 w==;
-X-CSE-ConnectionGUID: dXzEZTJMRK2IaG5Tfz5MaQ==
-X-CSE-MsgGUID: cbDCpu0bRemUJtfxRK2Wfg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="18718890"
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="18718890"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 11:31:59 -0700
-X-CSE-ConnectionGUID: asYofrrMRW6JI8G0Mv1mVg==
-X-CSE-MsgGUID: hFfZa1eyQ+6wJU2fcWfyRg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="40135094"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa008.jf.intel.com with ESMTP; 11 Jun 2024 11:31:58 -0700
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [RFC] drm/i915/display: Update vtotal math to address 32b build
-Date: Wed, 12 Jun 2024 00:02:08 +0530
-Message-ID: <20240611183208.159878-1-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.45.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22DB810E6F9;
+	Tue, 11 Jun 2024 18:34:59 +0000 (UTC)
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B63E10E6F9;
+ Tue, 11 Jun 2024 18:34:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6587090492426305464=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Prepare_Xe_force-wake_code_for_V?=
+ =?utf-8?q?Fs_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 11 Jun 2024 18:34:57 -0000
+Message-ID: <171813089704.68617.11178429753132013728@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240611163537.1944-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20240611163537.1944-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,49 +36,135 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fix few divisions which may not work on 32b builds.
+--===============6587090492426305464==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Use DIV_ROUND_UP, with that expecting deviate params
-from +/- 1 accuracy in value.
+== Series Details ==
 
-Fixes: 1676ecd303ac ("drm/i915: Compute CMRR and calculate vtotal")
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vrr.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+Series: Prepare Xe force-wake code for VFs (rev4)
+URL   : https://patchwork.freedesktop.org/series/134690/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 05f67dc9d98d..5112961f6964 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -122,10 +122,11 @@ is_cmrr_frac_required(struct intel_crtc_state *crtc_state)
- 
- 	actual_refresh_k =
- 		drm_mode_vrefresh(adjusted_mode) * FIXED_POINT_PRECISION;
--	pixel_clock_per_line =
--		adjusted_mode->crtc_clock * 1000 / adjusted_mode->crtc_htotal;
-+	pixel_clock_per_line = DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
-+					    adjusted_mode->crtc_htotal);
- 	calculated_refresh_k =
--		pixel_clock_per_line * FIXED_POINT_PRECISION / adjusted_mode->crtc_vtotal;
-+		DIV_ROUND_UP(pixel_clock_per_line * FIXED_POINT_PRECISION,
-+			     adjusted_mode->crtc_vtotal);
- 
- 	if ((actual_refresh_k - calculated_refresh_k) < CMRR_PRECISION_TOLERANCE)
- 		return false;
-@@ -149,7 +150,8 @@ cmrr_get_vtotal(struct intel_crtc_state *crtc_state, bool video_mode_required)
- 
- 	crtc_state->cmrr.cmrr_n =
- 		desired_refresh_rate * adjusted_mode->crtc_htotal * multiplier_n;
--	vtotal = (adjusted_mode->crtc_clock * 1000 * multiplier_n) / crtc_state->cmrr.cmrr_n;
-+	vtotal = DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000 * multiplier_n,
-+			      crtc_state->cmrr.cmrr_n);
- 	adjusted_pixel_rate = adjusted_mode->crtc_clock * 1000 * multiplier_m;
- 	crtc_state->cmrr.cmrr_m = do_div(adjusted_pixel_rate, crtc_state->cmrr.cmrr_n);
- 
--- 
-2.45.2
+== Summary ==
 
+CI Bug Log - changes from xe-1444-950ce28fe0b31a24c5bddcc337aba9554a41cbb3_BAT -> xe-pw-134690v4_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-134690v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [DMESG-FAIL][1] ([Intel XE#324]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1444-950ce28fe0b31a24c5bddcc337aba9554a41cbb3/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134690v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#1069]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1069
+  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7881 -> IGT_7882
+  * Linux: xe-1444-950ce28fe0b31a24c5bddcc337aba9554a41cbb3 -> xe-pw-134690v4
+
+  IGT_7881: 7881
+  IGT_7882: 257418cba11c724111fe0e983649763c407e5bc9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1444-950ce28fe0b31a24c5bddcc337aba9554a41cbb3: 950ce28fe0b31a24c5bddcc337aba9554a41cbb3
+  xe-pw-134690v4: 134690v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134690v4/index.html
+
+--===============6587090492426305464==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Prepare Xe force-wake code for VFs (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134690/">https://patchwork.freedesktop.org/series/134690/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134690v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134690v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1444-950ce28fe0b31a24c5bddcc337aba9554a41cbb3_BAT -&gt; xe-pw-134690v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-134690v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1444-950ce28fe0b31a24c5bddcc337aba9554a41cbb3/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134690v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7881 -&gt; IGT_7882</li>
+<li>Linux: xe-1444-950ce28fe0b31a24c5bddcc337aba9554a41cbb3 -&gt; xe-pw-134690v4</li>
+</ul>
+<p>IGT_7881: 7881<br />
+  IGT_7882: 257418cba11c724111fe0e983649763c407e5bc9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1444-950ce28fe0b31a24c5bddcc337aba9554a41cbb3: 950ce28fe0b31a24c5bddcc337aba9554a41cbb3<br />
+  xe-pw-134690v4: 134690v4</p>
+
+</body>
+</html>
+
+--===============6587090492426305464==--
