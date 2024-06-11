@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B659FC25B76
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 11:12:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97D0AC27C5E
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 12:47:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FBCF10E5B2;
-	Tue, 11 Jun 2024 11:12:15 +0000 (UTC)
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAEFA10E5D1;
- Tue, 11 Jun 2024 11:12:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2062965424493640050=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0D8A10E08C;
+	Tue, 11 Jun 2024 12:47:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aC0Md1pf";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15D2810E08C
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Jun 2024 12:47:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1718110052; x=1749646052;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=kqay4CZlefGGpLd/tJVTqxfRNJKy4CRis1Ricwt/yAw=;
+ b=aC0Md1pfbtCb6o1i5osUA4CaUhDTi2hpOzZ1if0zJaEGiYY2BI+snjp+
+ AcCWvTmuvHmlrmo2w238Hqm2Yh19m2pwS1FGB1eXveTUbT3kERLPH27xE
+ LgutwBciEdQHwRjNk60rBsk7U3y9xJ9XZ+RFRLQGdAdnAEGMD56EuF71/
+ Ed+r5rHKym35Wsa/ogmkXu3cYqM3vPrqFEFi7WRVGJMCCv1orI+yzOeP/
+ vKJ1qSc6brNozpdaLXDFYtX0xPcHzvS/CYDkqQ7gyew3Wd5xrfdbLgOBW
+ kkS6XX0EvKjEvoeNDuHSbh2sS83uWQiTFcjFqwK4S6ae0ymEKLyni+oIs A==;
+X-CSE-ConnectionGUID: vcjLNifgQEuphI52INcZuw==
+X-CSE-MsgGUID: qO7gG1tNQaCwWXE1UbLBYQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14969482"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="14969482"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2024 05:47:31 -0700
+X-CSE-ConnectionGUID: Uc3YwAuURimFCYiBZpn9Lw==
+X-CSE-MsgGUID: HtNnitauQKmV8n5sm3zxaw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="44336695"
+Received: from unknown (HELO [10.245.245.125]) ([10.245.245.125])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2024 05:47:29 -0700
+Message-ID: <3dd4733f3cc7f322f25354c3e9d4a2dd363d2331.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Use ttm_uncached for BO with NEEDS_UC flag
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>, 
+ intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Date: Tue, 11 Jun 2024 14:47:27 +0200
+In-Reply-To: <20240606195630.1548-1-michal.wajdeczko@intel.com>
+References: <20240606195630.1548-1-michal.wajdeczko@intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Prepare_Xe_force-wake_code_for_V?=
- =?utf-8?q?Fs_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 11 Jun 2024 11:12:12 -0000
-Message-ID: <171810433295.66744.10966458756574009793@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <20240611100757.1856-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20240611100757.1856-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,130 +68,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2062965424493640050==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi, Michal,
 
-== Series Details ==
+On Thu, 2024-06-06 at 21:56 +0200, Michal Wajdeczko wrote:
+> We should honor requested uncached mode also at the TTM layer.
+> Otherwise, we risk losing updates to the memory based interrupts
+> source or status vectors, as those require uncached memory.
+>=20
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_bo.c | 3 +++
+> =C2=A01 file changed, 3 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 2bae01ce4e5b..2573cc118f29 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -378,6 +378,9 @@ static struct ttm_tt *xe_ttm_tt_create(struct
+> ttm_buffer_object *ttm_bo,
+> =C2=A0	=C2=A0=C2=A0=C2=A0 (xe->info.graphics_verx100 >=3D 1270 && bo->fla=
+gs &
+> XE_BO_FLAG_PAGETABLE))
+> =C2=A0		caching =3D ttm_write_combined;
+> =C2=A0
+> +	if (bo->flags & XE_BO_FLAG_NEEDS_UC)
+> +		caching =3D ttm_uncached;
+> +
+> =C2=A0	err =3D ttm_tt_init(&tt->ttm, &bo->ttm, page_flags, caching,
+> extra_pages);
+> =C2=A0	if (err) {
+> =C2=A0		kfree(tt);
 
-Series: Prepare Xe force-wake code for VFs (rev3)
-URL   : https://patchwork.freedesktop.org/series/134690/
-State : success
+To me the preferred method is to teach bo->cpu_caching about the
+uncached mode and then include it in the switch statement above.
 
-== Summary ==
+/Thomas
 
-CI Bug Log - changes from xe-1442-08822e2d2bc3ff3a7a293596a3b2d15353e975d0_BAT -> xe-pw-134690v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-134690v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:
-    - {bat-lnl-1}:        [FAIL][1] ([Intel XE#1069]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1442-08822e2d2bc3ff3a7a293596a3b2d15353e975d0/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134690v3/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1069]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1069
-
-
-Build changes
--------------
-
-  * Linux: xe-1442-08822e2d2bc3ff3a7a293596a3b2d15353e975d0 -> xe-pw-134690v3
-
-  IGT_7880: 73618605b4370cf902267aaf1d25666ff5e26112 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1442-08822e2d2bc3ff3a7a293596a3b2d15353e975d0: 08822e2d2bc3ff3a7a293596a3b2d15353e975d0
-  xe-pw-134690v3: 134690v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134690v3/index.html
-
---===============2062965424493640050==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Prepare Xe force-wake code for VFs (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134690/">https://patchwork.freedesktop.org/series/134690/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134690v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134690v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1442-08822e2d2bc3ff3a7a293596a3b2d15353e975d0_BAT -&gt; xe-pw-134690v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-134690v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:<ul>
-<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1442-08822e2d2bc3ff3a7a293596a3b2d15353e975d0/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1069">Intel XE#1069</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134690v3/bat-lnl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1442-08822e2d2bc3ff3a7a293596a3b2d15353e975d0 -&gt; xe-pw-134690v3</li>
-</ul>
-<p>IGT_7880: 73618605b4370cf902267aaf1d25666ff5e26112 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1442-08822e2d2bc3ff3a7a293596a3b2d15353e975d0: 08822e2d2bc3ff3a7a293596a3b2d15353e975d0<br />
-  xe-pw-134690v3: 134690v3</p>
-
-</body>
-</html>
-
---===============2062965424493640050==--
