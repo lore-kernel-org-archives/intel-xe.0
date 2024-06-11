@@ -4,51 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C5A3C27C75
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 18:07:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 974F0C41513
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 18:07:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3673D10E6FE;
-	Tue, 11 Jun 2024 18:07:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F34110E703;
+	Tue, 11 Jun 2024 18:07:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G/qkDXAL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aJpFYhSm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3FB810E1A3
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Jun 2024 18:07:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C383310E6FE
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Jun 2024 18:07:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718129272; x=1749665272;
+ t=1718129269; x=1749665269;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Q1mlAg/cfKTVq7jD/atyQBe/lsFjHWQdGMBSBzk8OOc=;
- b=G/qkDXALmn1ODS1tgjonq36VYVr/8b3lkoh+25fB34I2SnYdEdoB88SC
- HWj0tzJ4A7s3em27qKJZg0UocTnDTZLDix14KoI0juJZ3h2S2ePP1AmVR
- EUqwb6qNA1P1r8QlsLg83g3JohlCb5FwIfM6B9Jqe94/D8vVbwSQW/z5j
- 9Xk9hUoRb2g1Abkv3bADvbImY9890wObwv/AzuIJoLZdMjJ+xxuEi1v0U
- 3pf9E4rbEL/d4xV8q8AdWbTks/1MZESNx2o9K5vOWtXAeDFXerrhkCFct
- zbtoUiI0vtSXu1X/XXBc3EDEYFoiiG55HpKem3Cl/coT+jF1XIt9UteDr Q==;
-X-CSE-ConnectionGUID: LubXIB3sT8aAZdohgmiiuQ==
-X-CSE-MsgGUID: ZB5y3ewNRfKCf+KMjSX8GA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="32398381"
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="32398381"
+ bh=npnkDBdR7H0OxUVXQhYbPBYl7hgwGb04cqp0wmPfSmA=;
+ b=aJpFYhSmP+jP1upXc+CPkVJVign3FYu92zk8jTU+YqcFeF7+jTCUhyVa
+ SwOKGNx+6+QnblDxcA5mHx+9SOXw/57G86fgUZAMGadZN717oNK/SGwRK
+ jrX/leOzC6dn2Wri1DuW+pQlRFRTs3wJeNYwFqK1H5Kwr+XYuNYi2o67f
+ wRY+MRb9L7Icxjsg6kD8Nf8bPXN//YkRi9TY6x0l6uRzp34jcYOVcn72z
+ RPzI5PYoeARl/C5uxo7eLf2rv7KzmIhljyDJBTnF2WL4XDILXLejwkDb6
+ EOyDKO7jwA2+bCXDnSLYesalYrzHH6EsOojJn1vsNbaarV/Dj61LCR5kM Q==;
+X-CSE-ConnectionGUID: QQ6VgH+rR8CByN4fsoaEgQ==
+X-CSE-MsgGUID: smkaGZkiRFWfSaf8Nx3wrw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="32398376"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="32398376"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 11:07:52 -0700
-X-CSE-ConnectionGUID: GBTM7jpGTYWVPABuHaZdkw==
-X-CSE-MsgGUID: 41Qzt5r2TLKbU9SA1eZWUA==
+ 11 Jun 2024 11:07:48 -0700
+X-CSE-ConnectionGUID: Mf6p4BqNSdOAQco9NH2lTQ==
+X-CSE-MsgGUID: j4E9QlMITbSNx95nujBiag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="39620465"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="39620432"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.94.248.185])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 11:07:51 -0700
+ 11 Jun 2024 11:07:48 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- Badal Nilawar <badal.nilawar@intel.com>
-Subject: [PATCH 4/4] drm/xe/guc: Avoid named enum types in GuC KLV ABI
-Date: Tue, 11 Jun 2024 20:07:35 +0200
-Message-Id: <20240611180735.1988-5-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH 2/4] drm/xe/guc: Update GuC CTB Descriptor ABI
+Date: Tue, 11 Jun 2024 20:07:33 +0200
+Message-Id: <20240611180735.1988-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240611180735.1988-1-michal.wajdeczko@intel.com>
 References: <20240611180735.1988-1-michal.wajdeczko@intel.com>
@@ -68,53 +66,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The xe_guc_klv_ids name just for workaround keys is too generic,
-as workaround keys are not the only keys used by the GuC firmware.
-Other KLVs keys are defined as plain defines or anonymous enums.
+Add missing definition of the GUC_CTB_STATUS_DISABLED bit.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Badal Nilawar <badal.nilawar@intel.com>
 ---
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h | 2 +-
- drivers/gpu/drm/xe/xe_guc_ads.c       | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-index a0b80c9fc5ef..831a2b57f308 100644
---- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-@@ -346,7 +346,7 @@ enum {
- /*
-  * Workaround keys:
-  */
--enum xe_guc_klv_ids {
-+enum {
- 	GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED				= 0x9002,
- 	GUC_WORKAROUND_KLV_ID_GAM_PFQ_SHADOW_TAIL_POLLING				= 0x9005,
- 	GUC_WORKAROUND_KLV_ID_DISABLE_MTP_DURING_ASYNC_COMPUTE				= 0x9007,
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index 1c60b685dbc6..a3de00e92b4e 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -285,7 +285,7 @@ static size_t calculate_golden_lrc_size(struct xe_guc_ads *ads)
- }
- 
- static void guc_waklv_enable_one_word(struct xe_guc_ads *ads,
--				      enum xe_guc_klv_ids klv_id,
-+				      u16 klv_id,
- 				      u32 value,
- 				      u32 *offset, u32 *remain)
- {
-@@ -312,7 +312,7 @@ static void guc_waklv_enable_one_word(struct xe_guc_ads *ads,
- }
- 
- static void guc_waklv_enable_simple(struct xe_guc_ads *ads,
--				    enum xe_guc_klv_ids klv_id, u32 *offset, u32 *remain)
-+				    u16 klv_id, u32 *offset, u32 *remain)
- {
- 	u32 klv_entry[] = {
- 		/* 16:16 key/length */
+diff --git a/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h b/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
+index 8f86a16dc577..ca47205388be 100644
+--- a/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
+@@ -37,6 +37,7 @@
+  *  |   |       |   - _`GUC_CTB_STATUS_OVERFLOW` = 1 (head/tail too large)     |
+  *  |   |       |   - _`GUC_CTB_STATUS_UNDERFLOW` = 2 (truncated message)      |
+  *  |   |       |   - _`GUC_CTB_STATUS_MISMATCH` = 4 (head/tail modified)      |
++ *  |   |       |   - _`GUC_CTB_STATUS_DISABLED` = 8 (explicitly disabled)     |
+  *  +---+-------+--------------------------------------------------------------+
+  *  |...|       | RESERVED = MBZ                                               |
+  *  +---+-------+--------------------------------------------------------------+
+@@ -52,6 +53,7 @@ struct guc_ct_buffer_desc {
+ #define GUC_CTB_STATUS_OVERFLOW				(1 << 0)
+ #define GUC_CTB_STATUS_UNDERFLOW			(1 << 1)
+ #define GUC_CTB_STATUS_MISMATCH				(1 << 2)
++#define GUC_CTB_STATUS_DISABLED				(1 << 3)
+ 	u32 reserved[13];
+ } __packed;
+ static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
 -- 
 2.43.0
 
