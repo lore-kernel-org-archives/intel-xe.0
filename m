@@ -4,61 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4B20C27C75
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 21:14:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8435CC27C65
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 21:24:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7214810E0DE;
-	Tue, 11 Jun 2024 21:14:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a0GE9eRr";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 003D810E0DE
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Jun 2024 21:14:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718140493; x=1749676493;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=u6ggmhHQubUwp1RDC2N/2i61YBQZF88h5atR2Y/NYYE=;
- b=a0GE9eRrjEv9SM0ZGnC4ZQy4Zh3TefwOcSC35ZvuhTNnPMvVD/8D63s8
- ljZlCAlhSGDf6GXkxIweDw3jxhhIkCSXG5i7WxMH49Fhu7t2mylDgrSiu
- 7SrYnGp1z55sGmIUfncRNl6tikO6eHt6iqDRes94IPIIAm/+TZykm9HeW
- C664T+CZhrCtUcaBmQ3XRx0HFH+c41zq0fimWFsBKNfV4OI4A5KCgNwxR
- wQpoj5uSvgplQNoQw1Bz2SuU45dwbghQGrrzfyjkeycdCmr6vO7Rgd9qN
- eCTzpEQFymTMuc7MEUYQk789qmKNfB7drahBSk2jWpB+V8i/OBdcgTqBy g==;
-X-CSE-ConnectionGUID: yiv5xpv1TiCiGI5AGYn86g==
-X-CSE-MsgGUID: NCqUxwAaTzy48jw6aPOf5g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="15006324"
-X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; d="scan'208";a="15006324"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 14:14:52 -0700
-X-CSE-ConnectionGUID: v/9y19SvQcuNdzF/7ltVFw==
-X-CSE-MsgGUID: Oht8lS51RYKUOY49Plne2A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; d="scan'208";a="77025704"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa001.jf.intel.com with ESMTP; 11 Jun 2024 14:14:51 -0700
-Received: from [10.94.248.185] (mwajdecz-MOBL.ger.corp.intel.com
- [10.94.248.185])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id C23AB33BF0;
- Tue, 11 Jun 2024 22:14:36 +0100 (IST)
-Message-ID: <67ea0d7a-1383-46eb-84fe-eb6140063842@intel.com>
-Date: Tue, 11 Jun 2024 23:14:16 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A65E10E0FD;
+	Tue, 11 Jun 2024 21:24:51 +0000 (UTC)
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40E6C10E0FD;
+ Tue, 11 Jun 2024 21:24:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1935749085167672581=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] drm/xe/guc: Avoid named enum types in GuC KLV ABI
-To: John Harrison <john.c.harrison@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Badal Nilawar <badal.nilawar@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_More_GuC_ABI_fixes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 11 Jun 2024 21:24:49 -0000
+Message-ID: <171814108926.68617.16396591979911471379@a6498e030952>
+X-Patchwork-Hint: ignore
 References: <20240611180735.1988-1-michal.wajdeczko@intel.com>
- <20240611180735.1988-5-michal.wajdeczko@intel.com>
- <ff5024c2-a973-4a04-a41f-d0197ea74561@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <ff5024c2-a973-4a04-a41f-d0197ea74561@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240611180735.1988-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,98 +35,203 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============1935749085167672581==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: More GuC ABI fixes
+URL   : https://patchwork.freedesktop.org/series/134734/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-1445-a72dd4fc5dc05b35221d7e220a85e6fce7e414dd_BAT -> xe-pw-134734v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (3 -> 4)
+------------------------------
+
+  Additional (1): bat-adlp-7 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-134734v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-adlp-7:         NOTRUN -> [SKIP][1] ([Intel XE#455])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/bat-adlp-7/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         NOTRUN -> [DMESG-FAIL][2] ([Intel XE#324])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@xe_evict@evict-small-cm:
+    - bat-adlp-7:         NOTRUN -> [SKIP][3] ([Intel XE#261] / [Intel XE#688]) +15 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/bat-adlp-7/igt@xe_evict@evict-small-cm.html
+
+  * igt@xe_evict_ccs@evict-overcommit-simple:
+    - bat-adlp-7:         NOTRUN -> [SKIP][4] ([Intel XE#688]) +1 other test skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/bat-adlp-7/igt@xe_evict_ccs@evict-overcommit-simple.html
+
+  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
+    - bat-adlp-7:         NOTRUN -> [SKIP][5] ([Intel XE#288]) +32 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
+
+  * igt@xe_mmap@vram:
+    - bat-adlp-7:         NOTRUN -> [SKIP][6] ([Intel XE#1008])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/bat-adlp-7/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-xe2:
+    - bat-adlp-7:         NOTRUN -> [SKIP][7] ([Intel XE#977])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/bat-adlp-7/igt@xe_pat@pat-index-xe2.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-adlp-7:         NOTRUN -> [SKIP][8] ([Intel XE#979]) +1 other test skip
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/bat-adlp-7/igt@xe_pat@pat-index-xehpc.html
+
+  
+  [Intel XE#1008]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008
+  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
 
 
-On 11.06.2024 22:16, John Harrison wrote:
-> On 6/11/2024 11:07, Michal Wajdeczko wrote:
->> The xe_guc_klv_ids name just for workaround keys is too generic,
-> So rename it to xe_guc_wa_klv_ids?
+Build changes
+-------------
 
-but the idea is to make GuC ABI headers shareable between i915 and xe,
-see [1], thus having driver specific prefix in the enum is not desired
+  * Linux: xe-1445-a72dd4fc5dc05b35221d7e220a85e6fce7e414dd -> xe-pw-134734v1
 
-what about guc_wa_klv_keys (as we have KEY not ID in the KLV)
+  IGT_7882: 257418cba11c724111fe0e983649763c407e5bc9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1445-a72dd4fc5dc05b35221d7e220a85e6fce7e414dd: a72dd4fc5dc05b35221d7e220a85e6fce7e414dd
+  xe-pw-134734v1: 134734v1
 
-[1] https://patchwork.freedesktop.org/series/134722/
+== Logs ==
 
-> 
->> as workaround keys are not the only keys used by the GuC firmware.
->> Other KLVs keys are defined as plain defines or anonymous enums.
-> Just because other instances are done badly doesn't mean we should break
-> the good one to match.
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/index.html
 
-all these are ABI definitions so IMO there is nothing wrong with using
-plain defines for values expected at the binary interface
+--===============1935749085167672581==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-also using defines allows to have similarly named related definitions
-that we could all place together (like KEY and LEN for each KLV), which
-would be hard to achieve if we will have separate enums for those
 
-> Having a named type gives you an extra level of compiler type checks
-> that you don't get with a u16.
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-fine, but at the end you need to convert to u16 anyway
 
-and hopefully there will be no clash when those WA keys will be used
-where we use another named enum for KLV keys
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>More GuC ABI fixes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134734/">https://patchwork.freedesktop.org/series/134734/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-> 
-> John.
-> 
-> 
->>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: John Harrison <John.C.Harrison@Intel.com>
->> Cc: Badal Nilawar <badal.nilawar@intel.com>
->> ---
->>   drivers/gpu/drm/xe/abi/guc_klvs_abi.h | 2 +-
->>   drivers/gpu/drm/xe/xe_guc_ads.c       | 4 ++--
->>   2 files changed, 3 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
->> b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
->> index a0b80c9fc5ef..831a2b57f308 100644
->> --- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
->> +++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
->> @@ -346,7 +346,7 @@ enum {
->>   /*
->>    * Workaround keys:
->>    */
->> -enum xe_guc_klv_ids {
->> +enum {
->>      
->> GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED                =
->> 0x9002,
->>       GUC_WORKAROUND_KLV_ID_GAM_PFQ_SHADOW_TAIL_POLLING               
->> = 0x9005,
->>      
->> GUC_WORKAROUND_KLV_ID_DISABLE_MTP_DURING_ASYNC_COMPUTE               
->> = 0x9007,
->> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c
->> b/drivers/gpu/drm/xe/xe_guc_ads.c
->> index 1c60b685dbc6..a3de00e92b4e 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
->> @@ -285,7 +285,7 @@ static size_t calculate_golden_lrc_size(struct
->> xe_guc_ads *ads)
->>   }
->>     static void guc_waklv_enable_one_word(struct xe_guc_ads *ads,
->> -                      enum xe_guc_klv_ids klv_id,
->> +                      u16 klv_id,
->>                         u32 value,
->>                         u32 *offset, u32 *remain)
->>   {
->> @@ -312,7 +312,7 @@ static void guc_waklv_enable_one_word(struct
->> xe_guc_ads *ads,
->>   }
->>     static void guc_waklv_enable_simple(struct xe_guc_ads *ads,
->> -                    enum xe_guc_klv_ids klv_id, u32 *offset, u32
->> *remain)
->> +                    u16 klv_id, u32 *offset, u32 *remain)
->>   {
->>       u32 klv_entry[] = {
->>           /* 16:16 key/length */
-> 
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1445-a72dd4fc5dc05b35221d7e220a85e6fce7e414dd_BAT -&gt; xe-pw-134734v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (3 -&gt; 4)</h2>
+<p>Additional (1): bat-adlp-7 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-134734v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/bat-adlp-7/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-small-cm:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/bat-adlp-7/igt@xe_evict@evict-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +15 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict_ccs@evict-overcommit-simple:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/bat-adlp-7/igt@xe_evict_ccs@evict-overcommit-simple.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/bat-adlp-7/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008">Intel XE#1008</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/bat-adlp-7/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134734v1/bat-adlp-7/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>) +1 other test skip</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1445-a72dd4fc5dc05b35221d7e220a85e6fce7e414dd -&gt; xe-pw-134734v1</li>
+</ul>
+<p>IGT_7882: 257418cba11c724111fe0e983649763c407e5bc9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1445-a72dd4fc5dc05b35221d7e220a85e6fce7e414dd: a72dd4fc5dc05b35221d7e220a85e6fce7e414dd<br />
+  xe-pw-134734v1: 134734v1</p>
+
+</body>
+</html>
+
+--===============1935749085167672581==--
