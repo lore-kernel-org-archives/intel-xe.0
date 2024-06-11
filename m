@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2907EC27C65
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C5A3C27C75
 	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 18:07:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E1E710E1A3;
-	Tue, 11 Jun 2024 18:07:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3673D10E6FE;
+	Tue, 11 Jun 2024 18:07:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MmVj5FFh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G/qkDXAL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98CAD10E1A3
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Jun 2024 18:07:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3FB810E1A3
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Jun 2024 18:07:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718129269; x=1749665269;
+ t=1718129272; x=1749665272;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EsMgTseSFZUaX7lFrlQPCmMzt+WHCqLB1CVmLBx3TZ4=;
- b=MmVj5FFhkF0vNWAg/6XjPxovlNNg8AEp0TbzjHrCwIMcc4c9k/MPb3O1
- zRjIg1DfzQuq7vAwNJ1N+K7LnCGD/alMUBj0z9oAi06ERXQXDHlqtw8cC
- JYFnoHOigsdJXoBJ6UlOjhfIHC06RD6EiTB5H2ljbXzq/tA3TyXOV8IpW
- BLw//ABs2xFMsUYke/CRMbiWPrHQxfgW45ZBoHAxOkW0F60qHz4QQq5rg
- 8L/VeZnUoZQ+rajdzWn4bBmwvvsGFvRhPXUUs1Fdm2WQT+AxtEpkwyWsP
- V+fSXeQtbVcMGQA6OSG5e17rsMFYkReJi63Ge1MTrDDewjlJaWxaKtbq5 w==;
-X-CSE-ConnectionGUID: QtoibIc9SGmRavfgvzLLsg==
-X-CSE-MsgGUID: sGih5QljTemqsSJ8OciOXQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="32398375"
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="32398375"
+ bh=Q1mlAg/cfKTVq7jD/atyQBe/lsFjHWQdGMBSBzk8OOc=;
+ b=G/qkDXALmn1ODS1tgjonq36VYVr/8b3lkoh+25fB34I2SnYdEdoB88SC
+ HWj0tzJ4A7s3em27qKJZg0UocTnDTZLDix14KoI0juJZ3h2S2ePP1AmVR
+ EUqwb6qNA1P1r8QlsLg83g3JohlCb5FwIfM6B9Jqe94/D8vVbwSQW/z5j
+ 9Xk9hUoRb2g1Abkv3bADvbImY9890wObwv/AzuIJoLZdMjJ+xxuEi1v0U
+ 3pf9E4rbEL/d4xV8q8AdWbTks/1MZESNx2o9K5vOWtXAeDFXerrhkCFct
+ zbtoUiI0vtSXu1X/XXBc3EDEYFoiiG55HpKem3Cl/coT+jF1XIt9UteDr Q==;
+X-CSE-ConnectionGUID: LubXIB3sT8aAZdohgmiiuQ==
+X-CSE-MsgGUID: ZB5y3ewNRfKCf+KMjSX8GA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="32398381"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="32398381"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 11:07:48 -0700
-X-CSE-ConnectionGUID: +PJqB66xSpW5NKOMWXOOPQ==
-X-CSE-MsgGUID: wxrlpaCUTZuNjzO73GDq5A==
+ 11 Jun 2024 11:07:52 -0700
+X-CSE-ConnectionGUID: GBTM7jpGTYWVPABuHaZdkw==
+X-CSE-MsgGUID: 41Qzt5r2TLKbU9SA1eZWUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="39620415"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="39620465"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.94.248.185])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 11:07:46 -0700
+ 11 Jun 2024 11:07:51 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 1/4] drm/xe/guc: Fixup GuC KLV ABI kernel-doc annotations
-Date: Tue, 11 Jun 2024 20:07:32 +0200
-Message-Id: <20240611180735.1988-2-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>
+Subject: [PATCH 4/4] drm/xe/guc: Avoid named enum types in GuC KLV ABI
+Date: Tue, 11 Jun 2024 20:07:35 +0200
+Message-Id: <20240611180735.1988-5-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240611180735.1988-1-michal.wajdeczko@intel.com>
 References: <20240611180735.1988-1-michal.wajdeczko@intel.com>
@@ -66,61 +68,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The kernel-doc for few KLV was malformed:
-
- guc_klvs_abi.h:70: WARNING: Inline target start-string without end-string.
- guc_klvs_abi.h:74: WARNING: Inline target start-string without end-string.
- guc_klvs_abi.h:78: WARNING: Inline target start-string without end-string.
-
-or it was just unrecognized at all.
+The xe_guc_klv_ids name just for workaround keys is too generic,
+as workaround keys are not the only keys used by the GuC firmware.
+Other KLVs keys are defined as plain defines or anonymous enums.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Badal Nilawar <badal.nilawar@intel.com>
 ---
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h | 2 +-
+ drivers/gpu/drm/xe/xe_guc_ads.c       | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-index 8f9f60b28306..a0b80c9fc5ef 100644
+index a0b80c9fc5ef..831a2b57f308 100644
 --- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
 +++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-@@ -66,23 +66,23 @@
-  *      Refers to 64 bit Global Gfx address of H2G `CT Buffer`_.
-  *      Should be above WOPCM address but below APIC base address for native mode.
-  *
-- * _`GUC_KLV_SELF_CFG_H2G_CTB_DESCRIPTOR_ADDR : 0x0903
-+ * _`GUC_KLV_SELF_CFG_H2G_CTB_DESCRIPTOR_ADDR` : 0x0903
-  *      Refers to 64 bit Global Gfx address of H2G `CTB Descriptor`_.
-  *      Should be above WOPCM address but below APIC base address for native mode.
-  *
-- * _`GUC_KLV_SELF_CFG_H2G_CTB_SIZE : 0x0904
-+ * _`GUC_KLV_SELF_CFG_H2G_CTB_SIZE` : 0x0904
-  *      Refers to size of H2G `CT Buffer`_ in bytes.
-  *      Should be a multiple of 4K.
-  *
-- * _`GUC_KLV_SELF_CFG_G2H_CTB_ADDR : 0x0905
-+ * _`GUC_KLV_SELF_CFG_G2H_CTB_ADDR` : 0x0905
-  *      Refers to 64 bit Global Gfx address of G2H `CT Buffer`_.
-  *      Should be above WOPCM address but below APIC base address for native mode.
-  *
-- * _GUC_KLV_SELF_CFG_G2H_CTB_DESCRIPTOR_ADDR : 0x0906
-+ * _`GUC_KLV_SELF_CFG_G2H_CTB_DESCRIPTOR_ADDR` : 0x0906
-  *      Refers to 64 bit Global Gfx address of G2H `CTB Descriptor`_.
-  *      Should be above WOPCM address but below APIC base address for native mode.
-  *
-- * _GUC_KLV_SELF_CFG_G2H_CTB_SIZE : 0x0907
-+ * _`GUC_KLV_SELF_CFG_G2H_CTB_SIZE` : 0x0907
-  *      Refers to size of G2H `CT Buffer`_ in bytes.
-  *      Should be a multiple of 4K.
-  */
-@@ -114,7 +114,7 @@
+@@ -346,7 +346,7 @@ enum {
  /*
-  * Per context scheduling policy update keys.
+  * Workaround keys:
   */
--enum  {
+-enum xe_guc_klv_ids {
 +enum {
- 	GUC_CONTEXT_POLICIES_KLV_ID_EXECUTION_QUANTUM			= 0x2001,
- 	GUC_CONTEXT_POLICIES_KLV_ID_PREEMPTION_TIMEOUT			= 0x2002,
- 	GUC_CONTEXT_POLICIES_KLV_ID_SCHEDULING_PRIORITY			= 0x2003,
+ 	GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED				= 0x9002,
+ 	GUC_WORKAROUND_KLV_ID_GAM_PFQ_SHADOW_TAIL_POLLING				= 0x9005,
+ 	GUC_WORKAROUND_KLV_ID_DISABLE_MTP_DURING_ASYNC_COMPUTE				= 0x9007,
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index 1c60b685dbc6..a3de00e92b4e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -285,7 +285,7 @@ static size_t calculate_golden_lrc_size(struct xe_guc_ads *ads)
+ }
+ 
+ static void guc_waklv_enable_one_word(struct xe_guc_ads *ads,
+-				      enum xe_guc_klv_ids klv_id,
++				      u16 klv_id,
+ 				      u32 value,
+ 				      u32 *offset, u32 *remain)
+ {
+@@ -312,7 +312,7 @@ static void guc_waklv_enable_one_word(struct xe_guc_ads *ads,
+ }
+ 
+ static void guc_waklv_enable_simple(struct xe_guc_ads *ads,
+-				    enum xe_guc_klv_ids klv_id, u32 *offset, u32 *remain)
++				    u16 klv_id, u32 *offset, u32 *remain)
+ {
+ 	u32 klv_entry[] = {
+ 		/* 16:16 key/length */
 -- 
 2.43.0
 
