@@ -4,27 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DDF1C27C65
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 18:34:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FE9AC41513
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 18:39:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22DB810E6F9;
-	Tue, 11 Jun 2024 18:34:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD5B710E02D;
+	Tue, 11 Jun 2024 18:39:22 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B63E10E6F9;
- Tue, 11 Jun 2024 18:34:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6587090492426305464=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61C6A10E02D;
+ Tue, 11 Jun 2024 18:39:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Prepare_Xe_force-wake_code_for_V?=
- =?utf-8?q?Fs_=28rev4=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5Bv6=2C1/2=5D_devcoredump=3A_Add_dev=5Fcoredumpm=5Ftimeout=28?=
+ =?utf-8?q?=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 11 Jun 2024 18:34:57 -0000
-Message-ID: <171813089704.68617.11178429753132013728@a6498e030952>
+Date: Tue, 11 Jun 2024 18:39:20 -0000
+Message-ID: <171813116039.67160.10095785407207713736@a6498e030952>
 X-Patchwork-Hint: ignore
-References: <20240611163537.1944-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20240611163537.1944-1-michal.wajdeczko@intel.com>
+References: <20240611174716.72660-1-jose.souza@intel.com>
+In-Reply-To: <20240611174716.72660-1-jose.souza@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,131 +41,18 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6587090492426305464==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Prepare Xe force-wake code for VFs (rev4)
-URL   : https://patchwork.freedesktop.org/series/134690/
+Series: series starting with [v6,1/2] devcoredump: Add dev_coredumpm_timeout()
+URL   : https://patchwork.freedesktop.org/series/134732/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1444-950ce28fe0b31a24c5bddcc337aba9554a41cbb3_BAT -> xe-pw-134690v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-134690v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [DMESG-FAIL][1] ([Intel XE#324]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1444-950ce28fe0b31a24c5bddcc337aba9554a41cbb3/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134690v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1069]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1069
-  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 950ce28fe0b3 drm-tip: 2024y-06m-11d-15h-22m-31s UTC integration manifest
+=== git am output follows ===
+Applying: devcoredump: Add dev_coredumpm_timeout()
+Applying: drm/xe: Increase devcoredump timeout
 
 
-Build changes
--------------
-
-  * IGT: IGT_7881 -> IGT_7882
-  * Linux: xe-1444-950ce28fe0b31a24c5bddcc337aba9554a41cbb3 -> xe-pw-134690v4
-
-  IGT_7881: 7881
-  IGT_7882: 257418cba11c724111fe0e983649763c407e5bc9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1444-950ce28fe0b31a24c5bddcc337aba9554a41cbb3: 950ce28fe0b31a24c5bddcc337aba9554a41cbb3
-  xe-pw-134690v4: 134690v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134690v4/index.html
-
---===============6587090492426305464==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Prepare Xe force-wake code for VFs (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134690/">https://patchwork.freedesktop.org/series/134690/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134690v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134690v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1444-950ce28fe0b31a24c5bddcc337aba9554a41cbb3_BAT -&gt; xe-pw-134690v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-134690v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1444-950ce28fe0b31a24c5bddcc337aba9554a41cbb3/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134690v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7881 -&gt; IGT_7882</li>
-<li>Linux: xe-1444-950ce28fe0b31a24c5bddcc337aba9554a41cbb3 -&gt; xe-pw-134690v4</li>
-</ul>
-<p>IGT_7881: 7881<br />
-  IGT_7882: 257418cba11c724111fe0e983649763c407e5bc9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1444-950ce28fe0b31a24c5bddcc337aba9554a41cbb3: 950ce28fe0b31a24c5bddcc337aba9554a41cbb3<br />
-  xe-pw-134690v4: 134690v4</p>
-
-</body>
-</html>
-
---===============6587090492426305464==--
