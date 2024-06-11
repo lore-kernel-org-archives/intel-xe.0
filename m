@@ -4,57 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 001D1C27C65
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 16:22:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D140C27C65
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 16:35:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D88A10E1A6;
-	Tue, 11 Jun 2024 16:22:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D348589D7C;
+	Tue, 11 Jun 2024 16:35:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QY5ZQ+4y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FZmp3RaU";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 622B910E1A6
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Jun 2024 16:22:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FB8510E105
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Jun 2024 16:35:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718122952; x=1749658952;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=/uaqzMT8mJ6AYpaUlmtONvAkqqeAzmuNFkyZrh6d88I=;
- b=QY5ZQ+4yeMoAOducpgIaaqC3Nje0MkxLzJAYxWS+LiMRTkcxbvLqfguG
- ehoxtgCHEP0Ed8FQlIYh4JvPg9nxBHkhoHexTT7qMDS8zkGWJzu5isfU3
- nxT6j+VbZHgPFt/hP32/vgBA/Xmn7Uzn4/Z9gX1yeHxTm3ITeFnOWQ7Aj
- b3QZpvVdCeEMFP8a+fCZuurSwUak3bw1bUADgrgXjFS2/Zg5xEEWp8DBK
- hFiDcn7W+2XqzC6QbBkB9J6sqmFYGO1uMYNpDlRrUVnNqVQfv/p0s5Lhl
- Zy9mY3dmPQWrUstQ3MJBbZye1tNPtD1w43ylyO+4jGbtMfbocTqnlAU8Q w==;
-X-CSE-ConnectionGUID: vOueQqk3QBiBULLsoJanwA==
-X-CSE-MsgGUID: ZK59iuUlQQCizzZC1n7foA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="26262783"
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="26262783"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 09:22:31 -0700
-X-CSE-ConnectionGUID: jrf6lvXHT8ewr4kFlfDD4Q==
-X-CSE-MsgGUID: 4KcD5ZkDTDaaMMJa6lFGEg==
+ t=1718123752; x=1749659752;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PI1+lulu0h6Nw65YiwsjZjg0I1EHtGt1ofA1y0k83q8=;
+ b=FZmp3RaUllpbwwQ2zCk37Guq38R9Oxv8KEHqGJaeo8H31sPhza1Fh+U2
+ l5E/ATt5x2lMAdtQ89Eweg86ZKx95leTbl8r5t2jlna/h8W/1EF3ZPf35
+ vrnaZf6e7rXE7g/eJbNaXY+Fc5F5hwsbvf2f+L6iikvSBuOvZW9nU75F+
+ dh0aKOThCmJZS3GmSwDRcHySXEC61ncXxsDEKJLGzKDga1ql7AIUqRN8t
+ 2yI2hnxedKUdhoNxS7k6l1+d3N10L5l7YQ+d/IUM1SMLacX2Q3wnNH1TW
+ U+TWg+k0t818thgQWluTtZVXdqVJvF5AVdCPJcSrcFYjw45o3pB+QuoNH g==;
+X-CSE-ConnectionGUID: HhE4cF2JRFGZ4XnNdex3Yw==
+X-CSE-MsgGUID: jCr9iF77QvCroeOm8U3KUA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="40247873"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="40247873"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2024 09:35:52 -0700
+X-CSE-ConnectionGUID: toeY4EYlR3WY9qROOmHZfg==
+X-CSE-MsgGUID: RNrXppoXQ8+aXZxgjXXKFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="44614451"
-Received: from unknown (HELO [10.245.245.156]) ([10.245.245.156])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 09:22:29 -0700
-Message-ID: <d0890a8e-bc72-473f-89d6-02d84eb4f493@intel.com>
-Date: Tue, 11 Jun 2024 17:22:08 +0100
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="44388674"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.94.248.185])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2024 09:35:49 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>
+Subject: [PATCH v3 0/5] Prepare Xe force-wake code for VFs
+Date: Tue, 11 Jun 2024 18:35:32 +0200
+Message-Id: <20240611163537.1944-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/irq: remove xe_irq_shutdown
-To: Ilia Levi <illevi@habana.ai>, intel-xe@lists.freedesktop.org
-Cc: obitton@habana.ai, dliberman@habana.ai, dmeriin@habana.ai,
- matthew.brost@intel.com
-References: <20240606124705.822451-1-illevi@habana.ai>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240606124705.822451-1-illevi@habana.ai>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,18 +68,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 06/06/2024 13:47, Ilia Levi wrote:
-> The cleanup is done by devres in irq_uninstall.
-> 
-> Commit bbc9651fe9f4 ("drm/xe/irq: move irq_uninstall over to devm")
-> resolved the ordering issue where irq_uninstall (registered with drmm)
-> was called after pci_free_irq_vectors (registered with devm upon calling
-> pci_alloc_irq_vectors). This happened because drmm action list is
-> registered with devm very early in the init flow - before
-> pci_alloc_irq_vectors.
-> 
-> Now that irq_uninstall is registered with devm, it will be called before
-> pci_free_irq_vectors and we can remove xe_irq_shutdown.
-> 
-> Signed-off-by: Ilia Levi <illevi@habana.ai>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+The control and ack force-wake registers are not accessible for
+the VF drivers. To avoid changing existing code logic that tracks
+woken domains, simply ignore all attempts to access control or ack
+registers if we are running as a VF driver.
+
+But before doing that, make some improvements inside xe_force_wake.c
+
+v1: https://patchwork.freedesktop.org/series/134690/#rev1
+v2: remove ret2 and rename str_wake_sleep helper param (Rodrigo)
+    drop inline from str_wake_sleep helper (Michal)
+v3: kill fw_to_gt() helper (Lucas)
+
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Badal Nilawar <badal.nilawar@intel.com>
+
+Michal Wajdeczko (5):
+  drm/xe: Prefer GT oriented messages in xe_force_wake.c
+  drm/xe: Kill fw_to_gt() helper
+  drm/xe: Include additional info on failed force-wake operation
+  drm/xe: Combine common force-wake code into helpers
+  drm/xe/vf: Ignore force-wake requests if VF
+
+ drivers/gpu/drm/xe/xe_force_wake.c | 78 ++++++++++++++++--------------
+ 1 file changed, 43 insertions(+), 35 deletions(-)
+
+-- 
+2.43.0
+
