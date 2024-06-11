@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 805A0C27C75
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 14:40:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B64AC27C75
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 14:40:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EB3010E678;
-	Tue, 11 Jun 2024 14:40:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39D0110E124;
+	Tue, 11 Jun 2024 14:40:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F11Q+LZp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bKGuJb3M";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8ED7F10E671
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Jun 2024 14:40:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDADA10E67F
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Jun 2024 14:40:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718116833; x=1749652833;
+ t=1718116832; x=1749652832;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ozHUSfHOXLUA/rwDk/5HhNhCJnBMPzyBofGG3sX7D64=;
- b=F11Q+LZp4ZqzxZqUB+uOiRzfWI0cv16Oqm46S+AJZ2LnlnmO6hRBr+Qo
- d+PnDNp/vhn+3G0tglLg6SnJp4k3zZYJItnugmvgttMA3xCD9CDXGyzTd
- VSRuyhiauCZDiHFlYqjZhDUalNjno4DNghjOnuX5+D5Zh+wInmJIruAAl
- Y84Xp7h92CBxlG4c4TkOeKErxdjxvbAVxe5F62rTa5EpDCJHd4idz0uML
- 046xnqkPaG2SbYd4bA/yhXT/3UGNxsZD9RQ0y+FLQubm/ZgmiB+mJK8FT
- VfyrCoGkMqS3dIZCBCh8ZLrKwP/bcuRAkY0WuLZfjG1Sr4BXpiNxmquBa A==;
-X-CSE-ConnectionGUID: TalEWh8xQjGcq/JXWaVhNA==
-X-CSE-MsgGUID: UpF6QPxORyKjfWas21WO1g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="14784561"
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="14784561"
+ bh=A+8+efegt5CKT3GNwIzyQwaIn+0fJXa45p9engR+03s=;
+ b=bKGuJb3MqDDN7fyAL/3qmA6G9n+2O5+C0i2KDbwz84kicn2tzw8ycRZd
+ 6L07Xqs9iUDuLxdjJe8s3R3S/K2T/3z2CFaidEOtIgzn3RWX1kJc0yRoZ
+ idFFp92p8VoSnpaj/F+VXtf/mPySePdQEy1OLtRM8ZLwxKoHpPKFSQ4uI
+ tQDwjauAFha2jRgOXyHeRW5Mw3sF1Dg+lzqXxYjcwNH3PYc+nG7U4vFnO
+ J4ZrdiiGrbiQJp1kTnX/uC08ZqVCI+4EYG6rR0zR2ml4l2Wo9vzDj1fA8
+ VNTTJqNSr3vEMdloWj8Wx5Fs0cuP+ZucZixeAmYeQ85oOus14BwAGvoG/ w==;
+X-CSE-ConnectionGUID: N9q8HGWTTbuFksZ3282CEQ==
+X-CSE-MsgGUID: dWCdhv9aSyWoq1yY6uTFCA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="14784569"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="14784569"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 07:40:19 -0700
-X-CSE-ConnectionGUID: zqQ63VTRRBy/ItOY3iIF7w==
-X-CSE-MsgGUID: sKmsi6S6TjmxCd6ao9Sz0A==
+ 11 Jun 2024 07:40:21 -0700
+X-CSE-ConnectionGUID: rdUABpENSaCsCX8w08uHQg==
+X-CSE-MsgGUID: yyZ7/RXUSaiYBc+/KwAe0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="44590315"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="44590322"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Jun 2024 07:40:19 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 03/11] drm/xe: Emit ctx timestamp copy in ring ops
-Date: Tue, 11 Jun 2024 07:40:45 -0700
-Message-Id: <20240611144053.2805091-4-matthew.brost@intel.com>
+Subject: [PATCH v6 10/11] drm/xe: Add killed, banned,
+ or wedged as stick bit during GuC reset
+Date: Tue, 11 Jun 2024 07:40:52 -0700
+Message-Id: <20240611144053.2805091-11-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240611144053.2805091-1-matthew.brost@intel.com>
 References: <20240611144053.2805091-1-matthew.brost@intel.com>
@@ -65,78 +66,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Copy ctx timestamp at beginning of every GPU job to a saved location.
-Used to determine how long a job has been running on the hardware.
-
-v2:
- - - s/ctx_timestamp_job/ctx_job_timestamp
+These bits should be persistent across reset, treat them as such.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index db630d27beba..0be4f489d3e1 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -224,6 +224,19 @@ static u32 get_ppgtt_flag(struct xe_sched_job *job)
- 	return job->q->vm ? BIT(8) : 0;
- }
- 
-+static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
-+{
-+	dw[i++] = MI_COPY_MEM_MEM | MI_COPY_MEM_MEM_SRC_GGTT |
-+		MI_COPY_MEM_MEM_DST_GGTT;
-+	dw[i++] = xe_lrc_ctx_job_timestamp_ggtt_addr(lrc);
-+	dw[i++] = 0;
-+	dw[i++] = xe_lrc_ctx_timestamp_ggtt_addr(lrc);
-+	dw[i++] = 0;
-+	dw[i++] = MI_NOOP;
-+
-+	return i;
-+}
-+
- /* for engines that don't require any special HW handling (no EUs, no aux inval, etc) */
- static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc,
- 				    u64 batch_addr, u32 seqno)
-@@ -232,6 +245,8 @@ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc
- 	u32 ppgtt_flag = get_ppgtt_flag(job);
- 	struct xe_gt *gt = job->q->gt;
- 
-+	i = emit_copy_timestamp(lrc, dw, i);
-+
- 	if (job->ring_ops_flush_tlb) {
- 		dw[i++] = preparser_disable(true);
- 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
-@@ -283,6 +298,8 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 	struct xe_device *xe = gt_to_xe(gt);
- 	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
- 
-+	i = emit_copy_timestamp(lrc, dw, i);
-+
- 	dw[i++] = preparser_disable(true);
- 
- 	/* hsdes: 1809175790 */
-@@ -332,6 +349,8 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
- 	u32 mask_flags = 0;
- 
-+	i = emit_copy_timestamp(lrc, dw, i);
-+
- 	dw[i++] = preparser_disable(true);
- 	if (lacks_render)
- 		mask_flags = PIPE_CONTROL_3D_ARCH_FLAGS;
-@@ -375,6 +394,8 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
- {
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 
-+	i = emit_copy_timestamp(lrc, dw, i);
-+
- 	i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
- 				seqno, dw, i);
- 
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 25240b50a59c..671c72caf0ff 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1444,7 +1444,9 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
+ 		set_exec_queue_suspended(q);
+ 		suspend_fence_signal(q);
+ 	}
+-	atomic_and(EXEC_QUEUE_STATE_DESTROYED | EXEC_QUEUE_STATE_SUSPENDED,
++	atomic_and(EXEC_QUEUE_STATE_WEDGED | EXEC_QUEUE_STATE_BANNED |
++		   EXEC_QUEUE_STATE_KILLED | EXEC_QUEUE_STATE_DESTROYED |
++		   EXEC_QUEUE_STATE_SUSPENDED,
+ 		   &q->guc->state);
+ 	q->guc->resume_time = 0;
+ 	trace_xe_exec_queue_stop(q);
 -- 
 2.34.1
 
