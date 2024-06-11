@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2F40C27C77
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 14:30:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CDC0C27C75
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Jun 2024 14:30:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D44E410E674;
-	Tue, 11 Jun 2024 14:30:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C98510E679;
+	Tue, 11 Jun 2024 14:30:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oH9+fprJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h3zvft+h";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7927410E17B;
- Tue, 11 Jun 2024 14:30:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC2AF10E15D;
+ Tue, 11 Jun 2024 14:30:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718116249; x=1749652249;
+ t=1718116246; x=1749652246;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=H6rL+QrCgFhaLu5U0XyzVKGo0ekrtV9FzlWiCRFQVCA=;
- b=oH9+fprJ50/9iVuiFA7GBWDsQ2aw5UOTjDyEVgkTUYv0LjKbUvbWawIf
- sNaLC33FNaYD+JMw1/8FnQMtSy5t4UG8q4Wrx5/z8NHStQH5hE2KghXJY
- 4ffr2QsZRbCaGfB39F7dK5bfYQ5UcVm6qMKfSHWjQ/LApPc6TO3V+fCAd
- 0lYYrXK4ZTKTJ0YttGYOACwfAjT2o3sfR8TMhtA7UJcMpqADpyYtixczh
- zaXkpPLBHAYeSHhMZXbJv04dp1tEJ9EQEwYBw9fTsGX/ybakOekFRs6DE
- 7gNnmohb3he5UVWUZIPwA7UNAzMPfwU/2LXnXCQ8BmqMnEJ7xIfdq2ZRG A==;
-X-CSE-ConnectionGUID: Dst+DycTQXOJZ4GpMlNFZw==
-X-CSE-MsgGUID: kh03f66PQma2u/uqt9WUEA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14957547"
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="14957547"
+ bh=UnZ2Cu/7pLhBjf5Y8QmCSv1D9DH32mXmaxEAnYABXaU=;
+ b=h3zvft+ha4Ol1C3fiQUIpyxw08BXpaAqHScmKXYyqtSqionqqauq2UOn
+ 64xdhoyvGlQ2AvzkpOdSns4QYOI9TLO+ceuqBRWZbWqcPSCOp2CaqvBxN
+ enu+rr2WF9PQbW2hyPU/hJnAfbeZcPMwfjWYfuY70jubZJ13IM4wq5VRT
+ QqKYom/Gcm2CAC8jN8xE8vxSU/OIFJ3S42oNPs5NnqaA1AkjZhQX7ljH+
+ aksxbB+Ex8LEIZqEjJVv+eq71PW3iKVVkEo++i/i6UUrmEprIQBbVoOe+
+ rbTgRfoF8gVjw9ku4iQCGcqYgGBhWHSAFLxRj7EaPzeZsFATLesaljTjQ A==;
+X-CSE-ConnectionGUID: e3b3cI8YQsi6SYVFaxY+mw==
+X-CSE-MsgGUID: M4lw/5mISw+iAi4qWOk7Ww==
+X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14957520"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="14957520"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 07:30:47 -0700
-X-CSE-ConnectionGUID: 8Xf7omn1TQKWyauIS3jRhw==
-X-CSE-MsgGUID: wbNSjC59Rz+3jed7AvbRsg==
+ 11 Jun 2024 07:30:44 -0700
+X-CSE-ConnectionGUID: SzV6xvzJTtiP1I723HiFAg==
+X-CSE-MsgGUID: 38OHC8DkRu2B3S/tQS4vFw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="44357827"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="44357809"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.94.248.185])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 07:30:46 -0700
+ 11 Jun 2024 07:30:43 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [RFC 5/7] drm/intel/guc: Add new KLV definitions
-Date: Tue, 11 Jun 2024 16:30:06 +0200
-Message-Id: <20240611143008.1900-6-michal.wajdeczko@intel.com>
+Subject: [RFC 3/7] Documentation/gpu: Switch to shared GuC ABI definitions
+Date: Tue, 11 Jun 2024 16:30:04 +0200
+Message-Id: <20240611143008.1900-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240611143008.1900-1-michal.wajdeczko@intel.com>
 References: <20240611143008.1900-1-michal.wajdeczko@intel.com>
@@ -67,40 +67,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some KLVs were not used by the Xe driver, but are used by the i915.
-Add scheduling policy update key and another workaround key.
+For documentation purposes, use shared GuC ABI definitions instead
+of local i915 definitions.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/intel/guc/abi/guc_klvs_abi.h | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ Documentation/gpu/guc.rst | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/intel/guc/abi/guc_klvs_abi.h b/drivers/gpu/drm/intel/guc/abi/guc_klvs_abi.h
-index 191995e4cb1d..e6dcd8346ac2 100644
---- a/drivers/gpu/drm/intel/guc/abi/guc_klvs_abi.h
-+++ b/drivers/gpu/drm/intel/guc/abi/guc_klvs_abi.h
-@@ -111,6 +111,13 @@
- #define GUC_KLV_SELF_CFG_G2H_CTB_SIZE_KEY		0x0907
- #define GUC_KLV_SELF_CFG_G2H_CTB_SIZE_LEN		1u
+diff --git a/Documentation/gpu/guc.rst b/Documentation/gpu/guc.rst
+index b0fcb824c15a..55ae1476bf9e 100644
+--- a/Documentation/gpu/guc.rst
++++ b/Documentation/gpu/guc.rst
+@@ -9,8 +9,8 @@ The graphics microcontroller (GuC) is available starting from Gen9 hardware.
+ GuC ABI
+ =======
  
-+/*
-+ * Global scheduling policy update keys.
-+ */
-+enum {
-+	GUC_SCHEDULING_POLICIES_KLV_ID_RENDER_COMPUTE_YIELD	= 0x1001,
-+};
-+
- /*
-  * Per context scheduling policy update keys.
-  */
-@@ -347,6 +354,7 @@ enum  {
-  * Workaround keys:
-  */
- enum xe_guc_klv_ids {
-+	GUC_WORKAROUND_KLV_SERIALIZED_RA_MODE						= 0x9001,
- 	GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED				= 0x9002,
- 	GUC_WORKAROUND_KLV_ID_GAM_PFQ_SHADOW_TAIL_POLLING				= 0x9005,
- 	GUC_WORKAROUND_KLV_ID_DISABLE_MTP_DURING_ASYNC_COMPUTE				= 0x9007,
+-.. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_abi.h
+-.. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+-.. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_messages_abi.h
++.. kernel-doc:: drivers/gpu/drm/intel/guc/abi/guc_communication_mmio_abi.h
++.. kernel-doc:: drivers/gpu/drm/intel/guc/abi/guc_communication_ctb_abi.h
++.. kernel-doc:: drivers/gpu/drm/intel/guc/abi/guc_messages_abi.h
+ .. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+-.. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
++.. kernel-doc:: drivers/gpu/drm/intel/guc/abi/guc_klvs_abi.h
 -- 
 2.43.0
 
