@@ -4,180 +4,181 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A979C27C53
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 23:37:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18D52C27C53
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 23:52:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1D8210E012;
-	Wed, 12 Jun 2024 23:37:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1A2E10E0BF;
+	Wed, 12 Jun 2024 23:52:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lL+FLTho";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eoHKchfh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51EBD10E012
- for <Intel-Xe@lists.freedesktop.org>; Wed, 12 Jun 2024 23:37:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 403CA10E0BF
+ for <Intel-Xe@lists.freedesktop.org>; Wed, 12 Jun 2024 23:52:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718235428; x=1749771428;
+ t=1718236362; x=1749772362;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=DdYYlZm1PS80GB9il/bEAs1j5L+KBgBXOJLkK436h34=;
- b=lL+FLTho8ZbiE7SulmEzAUQ4cl3ObG0UuIvRgxczE0yXVZ2ugHWk8hZh
- r4f9wM2FEuL4BlZZNicgjBg/jONhWSlic0ViVRwFdAH30FVpsjrovfNMu
- l57gyNTVDy8nzCM+pjjyby9BXOcR3z8YRGI8yPj4oVfDewkh8rbdeYF1d
- 6tXqkdgPvUFt9/eQj3WAl+ukCLhk4z4KIyQ27jJGhWZPeVxbqngK64z27
- cOZKIrJ710FeiJl5He9Vzo0WFTl/CiESa6OmOin8IRILlRoP+03zBZ036
- 1QuleNN4o7eJgkY5FlGsRw2Znen/U93U8/6gc2KAYfRsn/TWIGAtmVl7C Q==;
-X-CSE-ConnectionGUID: ZSs06b6aRQ2/Pz0bxSCp8Q==
-X-CSE-MsgGUID: vqAGWq48Sx299N5ZBMQT+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="32514181"
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="32514181"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2024 16:36:59 -0700
-X-CSE-ConnectionGUID: 0iupJYThQki1LnCTnb/Y2Q==
-X-CSE-MsgGUID: 7zEXksHnQq2/Dznb0yZjtA==
+ bh=O4KoM/rF2T5TS+5vtKTY05GE9VLwlos7Pk8ZSm1M0MI=;
+ b=eoHKchfhutFsoh+8hpAj1MhHd09G1dHK7EvX2MmUNTr3zlwJ1c0ucZb7
+ OTeLhTy2au5N3H0Mb8YdB2tozCqzr83TI8NTid2M3sZS5AH7JSk4AV5cM
+ nIjnQT+AbquFk0ICt4XQK/2vXO47B8zT1DKt6jGjEIxqtw4Jf37upEpDP
+ vYbHRF6tSI2OTbncnFeZrO3/jPzQg5sXcSu9l7UN2YMw4Is6u/D135f0x
+ VKgwOavGnsKZpmlaLvKnyWR3/wnodHAL7pifDSBCuDhMexGiVXFeOfkr3
+ l+x/lhlvT15qsurQyl71W+ySWmTVxgW0vAeUWm0r/kGgYkR6lthXz8egO g==;
+X-CSE-ConnectionGUID: ETjveirURQaOu5ryURYY3A==
+X-CSE-MsgGUID: sqxhgJcxRaSnHHJZVF7CUg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="18853065"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="18853065"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2024 16:52:41 -0700
+X-CSE-ConnectionGUID: nekvisRkRmOHqCDjClLbgA==
+X-CSE-MsgGUID: 7pEJx5+QTMCFxTzNCHRUlQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="71148729"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Jun 2024 16:37:00 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="44852489"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Jun 2024 16:52:41 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 12 Jun 2024 16:36:59 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.39; Wed, 12 Jun 2024 16:52:40 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 12 Jun 2024 16:36:59 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.46) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Wed, 12 Jun 2024 16:52:40 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.40) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 12 Jun 2024 16:36:58 -0700
+ 15.1.2507.39; Wed, 12 Jun 2024 16:52:39 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UcOSdF837WeLtcTqsNXtqr33iqAO+Jat1/7hczuI/iTqrrLVABI4Mwb/6bp/idKhxwgxhA3PfFM/oaeSJ8xfe8j7dV/Ex13Yf0K4xM6KRWUaVN81b4KK0ZDGPA6DysxgOCm4FCeRf7ly8Yy9qt5KlxAWiYFlYuoC8jQuhDGlNaWhhaZMVvGLAE6bLKBdUGKZRyUy7Inh6lU/R8bE/nnr3pyuvs8wT0bzn5f8mPUPOd6ipYD5c6P5FrcjV6jSSRUSPvE/tt/nfUag+/kLxVRs7eJaMWi4AAbPo54n6j0eP3rh/IhXHUKFsq4CMAIDdqucawkrripOVBl9B2F26KJgFQ==
+ b=N8Iq9Re4Ebd017d3SvCoSKjbetbMW+xJxzlDFW/RF41h7G5Pv6RU0WTmTVV/oXAekwJK8JO+lcWm7XEc+bEvyB9bzRwV724lBL4DUnBFIi/tpRY3TARO0DBWhwVOtbS5nspIeZrAKpiXfvtmX9i7nMIkffACm7cftm/maM0YH1MgJcDirPf0nM3OOPlXTQYRKuaHy5A4DM7O+AA4WlZkEd3t//V3UPXmvoVRdOae+Qo1OxiJXX2/aSs64Wn6KVWHrU8qTI/BgHd/qIAJYb8axdVXqlOJVSxOTOruaZ9zVIO2+HW0pbzgGevxCwXIeMU7j6zmKO3mkqb2j6YNJtn7/w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=y4PH/SsNpOtkxCMnYEIzqyzVshNhHq5I50TZE34foQ8=;
- b=O+nQJ/oBsz7r3TQkuOSIHkXydIopOOJ1Go2YupIlftrfqI2ZpHFQMyTp7X1rsy2B2+Hyviy+YUi1S9OuFL9CuTV8mT83nXl7b5Qfe7LzY578HcZ4MaRojyx2fvI77xrJ0CPEWmrnBtEvPBOVMu4vU9QB6iItnIsDD8N5ktoASumXEREkIZuFIP691W2l+/T/wOT7GO1C6VdWwN7AaFdCyOUyAa3S3FUKVifcK05w4XtiRHKCNgLOpmj69lCIJAsaJMNf/kUQ2RZe6/uYsCrzx2L2AiAANO3cdGrMxNDDvxFzV6ZSn68CQvZlyUo2w7W1vhRhMGSUgLsGLd8rXvDcow==
+ bh=AFev3bzRy+VKjqg4OpnhGEC7MfwlHqSkO8/qcNQ7YVo=;
+ b=Riv5xuuQ1wTi0Ls3xvWN/tkKiC3SVbDsbgOFA2eCOwLXlc/oJYaaTqz9gWtnsQYELRXN1rRr98TpCDTVY/mSNv/lxE8l3f5ybAMGIB7iJEUqQDuSLdUJ/eZ1aZ/2au4rciIdil5TJTw3auiKpC47/xjqGRfMY7vpMVLg/eFGct+iRjgnj7G9v7PUE9hxKgODjOpMJrGnfZWkZDcSGHgtkUuNIJn1bdnF//T+A+CGs1nCeeQtyb6qxjh5kNqlejq74ldM9Fsay8lOol5DwgPGCpjniMrELzsrXJYDNYEcouh28BMuh40T4MXZ36lr7nnUVpmGewoXfL5Pl4Bp5PrIFg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
- by CYXPR11MB8712.namprd11.prod.outlook.com (2603:10b6:930:df::17)
+ by PH7PR11MB6747.namprd11.prod.outlook.com (2603:10b6:510:1b5::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.37; Wed, 12 Jun
- 2024 23:36:51 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.36; Wed, 12 Jun
+ 2024 23:52:32 +0000
 Received: from CH3PR11MB8441.namprd11.prod.outlook.com
  ([fe80::bc66:f083:da56:8550]) by CH3PR11MB8441.namprd11.prod.outlook.com
  ([fe80::bc66:f083:da56:8550%4]) with mapi id 15.20.7633.037; Wed, 12 Jun 2024
- 23:36:51 +0000
-Message-ID: <f25d48a9-e040-4324-ae36-a64f16cd2248@intel.com>
-Date: Wed, 12 Jun 2024 16:36:47 -0700
+ 23:52:32 +0000
+Message-ID: <7dd22bd8-1550-43f1-82b6-83200a46e2da@intel.com>
+Date: Wed, 12 Jun 2024 16:52:30 -0700
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/7] drm/xe/guc: Copy GuC log prior to dumping
+Subject: Re: [PATCH v4 3/7] drm/xe/guc: Use a two stage dump for GuC logs and
+ add more info
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  <Intel-Xe@Lists.FreeDesktop.Org>
 References: <20240611012028.2305024-1-John.C.Harrison@Intel.com>
- <20240611012028.2305024-3-John.C.Harrison@Intel.com>
- <8241acfc-b0f1-4995-bc78-942f1151aadb@intel.com>
+ <20240611012028.2305024-4-John.C.Harrison@Intel.com>
+ <5fc7f334-0f3d-4180-93fa-d40a1c98064c@intel.com>
 Content-Language: en-GB
 From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <8241acfc-b0f1-4995-bc78-942f1151aadb@intel.com>
+In-Reply-To: <5fc7f334-0f3d-4180-93fa-d40a1c98064c@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MW4PR04CA0128.namprd04.prod.outlook.com
- (2603:10b6:303:84::13) To CH3PR11MB8441.namprd11.prod.outlook.com
+X-ClientProxiedBy: MW4PR03CA0246.namprd03.prod.outlook.com
+ (2603:10b6:303:b4::11) To CH3PR11MB8441.namprd11.prod.outlook.com
  (2603:10b6:610:1bc::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|CYXPR11MB8712:EE_
-X-MS-Office365-Filtering-Correlation-Id: e203f563-501d-4ef0-a6a4-08dc8b3888da
+X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|PH7PR11MB6747:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9b923cb6-b66a-4a77-3892-08dc8b3ab9dd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230034|376008|1800799018|366010;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?QUp2N1lUekpSYzdBS1VTMmdUdFJBcXdray9mOEVlYmgvTExuOWNhaXMxRUQw?=
- =?utf-8?B?eUpaRmEydHpOd1l6bDczUHdmVTRuWXpQdUZRMVplWm5SbHlqR3VacDQ1YzRW?=
- =?utf-8?B?S1ZrZ20zNDFFamtKMzFXOHlGMUN2R00vbnFHSGwxNVNMemNUVDZmaU5kc1cy?=
- =?utf-8?B?b2JQWm9DUGl4emE0WlFIWDhYclZ2ZEFUdmZVMWp6NkJsaXJzcVgxVldoU3pj?=
- =?utf-8?B?OVFNQjVvZ3RHMUk0MldBeFdENG5uMktGMEhaTXdnNm9MZFEvRy9wdjVYNzB2?=
- =?utf-8?B?ZXhNUkVxTjdrL3F5RDEwZzAzbDZEdkJzT3JYTGFTTXBPdHBtd2pabHBvUHRt?=
- =?utf-8?B?Z0p4aFZsRXNIUzdVVzI1YndFeVQ1Sy9wMzU5ZTdrMHY5ZXFRWjN1bnc4dDZ1?=
- =?utf-8?B?dUwvcU1DLzBmVWw1bmNJUGlMMkdmaDlpa1g4T0NyZmRldFpSUnkrTkU2MHRI?=
- =?utf-8?B?Ly90RE8zWXF4WEJ6UWZLWk9lbVZncGVDRTNmdDVPSzZRR3pPT0M3YjZFZkJj?=
- =?utf-8?B?SHVVRU5VQndIV25RT1VOTjlwZFlRVDE5S1JSd09xQVV0K2xXTkdtZmdNb0tn?=
- =?utf-8?B?ZTJWQ0FDaTRZUFJjbHRtT1VYbEVNU1ArZ3cxRXRrSGlMU0FJOFpvRDVtdElS?=
- =?utf-8?B?U0JQa0tZbCtxYVdFeW9DNlprVHhkdjlZYmtVelRESmZVMThyNyt2T292VThE?=
- =?utf-8?B?aGJxaHZpTFVjL05Pc0pHbTNFWkpOWmtUVEtKL2ZjNHgzVWtvUkVNZFBXR1VI?=
- =?utf-8?B?NjYyMUZvM1VSN1VEcmd1Rnlhc0hsRjhxOFZ1RzUrdThsdG9vbW9aRGZycnky?=
- =?utf-8?B?OUpDRE5VKzFNMEdZaHdmY0tkUGdMNUJONnZLRHdmbklyRHQvTnJ6Sk1VUDl3?=
- =?utf-8?B?c3RMLzR5L01uemxna1M0eHVnM1BtcGdsNWVWQmpiRDByeFVGTnhDSmhXODV2?=
- =?utf-8?B?YUZnWFpGYVBwNlpSN0QzeHo2MnlWRmpCNjNxUzRhRURpdHlaOXhJbDlCdmNm?=
- =?utf-8?B?Tll3Wk1Xai83QUFGSlRrZEkzUnpNKytFTGgvdytiRGdLeTQ5QXduZWk1MjNo?=
- =?utf-8?B?eHFxR3ZOTzNnSVZUUk9rclB4UkF3SnpqUDVhRHVFUi9xZXlMWjJaRXREQlJF?=
- =?utf-8?B?UlgxaUxqTVFlTnBIK1ZKRElQanFKZHpKQzJpK3p5cURqdWRCZjdoTC92U0tJ?=
- =?utf-8?B?Y3poNVVSU0JKVlNCN212ZC9pbTJKQVdiK2o5RVdGSHlwVFZpZER4R0k2RXdy?=
- =?utf-8?B?eUdUWnNhNjRYajQxMExjZWxKOUpyMFdMK0d6aGl1d2duQXNYMzlyd0ViTFpW?=
- =?utf-8?B?RCtmeFVxemdxbWI0alk5RndpbGJpY2pPL1orQVJDN3BDNzd0OWtIQjlmUXJN?=
- =?utf-8?B?K1N2dFlWSXozdjJNMlhpWHhyeG1CMFdPcFYva1BLbEwvTmJJVHQvcGZMN0R5?=
- =?utf-8?B?ODJVMStnWmVsOW9TN1M5S2RqZFBjNjFFOEJwczV2YXArOHByaVpvZ0NEQXR0?=
- =?utf-8?B?MmZxNGdNVlpiQTAxSzgwSHRkeGNtcFdGclRQaVpKYUw5R21rRVNkNmhoc0gv?=
- =?utf-8?B?QmtxOUZBK05ydVZqYlVEZG1yc1VLMWQ0M2thVFplL21uRVlHbkdsbE10UjlM?=
- =?utf-8?B?YjZ3akhYSlNob0xpQ1ZoZ2ZSVlFJU0lyRy9PcDk5aytuMkNFSHJjeHVNTWNR?=
- =?utf-8?B?MUkyNE01eHN2TFFUYUdvL1JRazgxUzBYbmxHcU52QjJXR1dDbC9JSkN3YkRj?=
- =?utf-8?Q?pddIl/ilqN0E39J5CSL6fv7OA2nFodg+OKcyQda?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UGsxbC90RnYzMzFLdy9mUXUxa3J5UHJwem9RMTZnTUN0UHFLdUJCNlgyNUx3?=
+ =?utf-8?B?RkZvYlAzamhxMTFIV1Q3RDZkbEYzT1phRFBGVUpodHczdXFqUXBOa294K0h1?=
+ =?utf-8?B?aGdxV3pLcjQrZm8zeFE3RHBvV2huaE1UeWRDTHM4QThBajZBUVY4RDhYSU9s?=
+ =?utf-8?B?L2RyUm9pRnZyL3dtM05GSDBDaWVCSCtKRllyLy9iL255ZE1tcFBSbGN4ZDJt?=
+ =?utf-8?B?MkN0elJsOXNQN1pOTU9RUEZIM2J4ZzVDSGt6YkI0SHpKVEc0dGZyckdteGZq?=
+ =?utf-8?B?YVpucVhNOE41YWpwNmRuOHlqdVBCZXNUdHFia3J6azcyRGxtSUxBR2RUTXJW?=
+ =?utf-8?B?cW1qUHo3cys4SkFjbVVOOWYyOUFQdm82dGlqdkVuK3ZiaUtMbk1UQUdCQ0Vn?=
+ =?utf-8?B?cHpKVkhmc3FJT3cxM085ZHdhTy95T1NZS2s2c1A2VVN0dkdDRFpIdjdVNXlm?=
+ =?utf-8?B?bnVpQmNXWFR0SlYzY0F1WjNjNXZ2YjZNcHptNC90NWhvM3JrSTRjUFc5UTFs?=
+ =?utf-8?B?cUhZVGpROUl5eFhBQndFQS9mYkhyNnpBYjlKMy8yYkdLT2NTMmI5a1Rac2ZS?=
+ =?utf-8?B?TE1oWERXVExiZndLWUN4dHZHWGxsZG1GTzA3WkRMQ29DUDJVZmRiSlZhR0Ru?=
+ =?utf-8?B?bDBXd2lHYTNhQm5KZEFHb2VmcU41U3lzdi9iZnVtOTNSc3ZTZmp1RU9KWHJC?=
+ =?utf-8?B?TzE3djc0UHFuSmNDRk80VVNDNHZBbFd1bTRYVEZsYjlLOFB3aTBCYksxOTNZ?=
+ =?utf-8?B?QmNNMFBMb1lLR2dmcTdSRVRaV2toeFpPcGNkaytIRkV4V0MyUDlKVFNpR0tl?=
+ =?utf-8?B?KzlOcDdLOTNMcm10b01mY3VPVDdxeGVJZXpseGdUa2hVOG1sQzRnaWg4Ry9E?=
+ =?utf-8?B?N2VqMzdkMm1HSkhQT082bjArcXhZTms3NzhnczhXZitZWE1ta0RWbjQ3VzJt?=
+ =?utf-8?B?MWxFUk1sTGxkMGlxNDI1V0t1MGtnWElGYlM2WC9leGl0Q3dhcWhIYXZrWnZa?=
+ =?utf-8?B?U1B2TEhnZm5wUCs0aGtuaThZeDN0Q2NTYmQzSXFqbThpL0J4MHdqdlBjQ0hq?=
+ =?utf-8?B?ZUViT1ljSCtFRkF5cTBMZ2lLUHlRVm5FaFkza0ZaUm1JSUNYeWtHMEE1YlFw?=
+ =?utf-8?B?WHhramt3T0t0ektETzBISGZ6cjF3NThYcWtHZWZQWE52MWo5RjdxaWkyTEJi?=
+ =?utf-8?B?NGhaYzYyWVpUdlNRaWVsU0VoV3I5WXdjdjJHeHJXZmRKTTVqRVBXUi9lVWhK?=
+ =?utf-8?B?aDBidkNLRGFFVm93Y2pvbUhOUFMyVURqclNpdnNyNGRrQnB1cEdPVjB3ZVV3?=
+ =?utf-8?B?cjlORzdBejFYRVgrV1Ezd1g0V0ZuMU5nTmI1NDc1ZisyZFU2eW15ZkpCWjQr?=
+ =?utf-8?B?UE5ESC9tdFF6ODdWTU8zNy9sa2NVd0w1b1pWWEJyNjBaVm9XN3F5SERYVjVG?=
+ =?utf-8?B?bXBTNVVZSGpFcGVKckNpWExCODZNc2RGRlJtSjRmRC9hRExCeld6dk9GMHFR?=
+ =?utf-8?B?dzV5RTlaSUo1YmJ3ZnRKSmRmL3RLTUFWRWFpRE9oZkw1N3RiakdpZG9HTkhu?=
+ =?utf-8?B?dVZrbENVRGQxcXNmbjV4Y3p5M2Q5YVRBNVdYVnoza1pQYmhIRlIxekFOcXRP?=
+ =?utf-8?B?NzZLSWlzVEx6ZCsyNG5JRUs5RmFtK1ZjN3RKVVlGMnFFQlE2bWlMT0xLemRt?=
+ =?utf-8?B?dmNhTWpjYUZacUJCYTYzOWIwRVp4VDZzMWxBS1NpWHBGOE9DNmZYMHhHL1VI?=
+ =?utf-8?Q?VnGr/W1LyIdnrVngiWnDIfPHffIXxdhOtvwVmBC?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230034)(376008)(1800799018)(366010); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TFlML0k0SmZ4YzlwMjM4aEhHdzI5K2MvT1JlR3llYjVzb2VsRmc2VlNOZmt0?=
- =?utf-8?B?Y0tnS1BCSFhGdUcyTWx1M2JWMVBJNDE0cEozcThlS2VMOUY2em5xN2R5R2ZV?=
- =?utf-8?B?Z212VWZzNm1Ub29yUXJkV1RscE51eGF3YThWc0tVWkZ2S21UZ2tGTFcxR0RI?=
- =?utf-8?B?RUNTbTJmWkVTVkt0ZCt0TmRnall3VFZQK3NIQWR5QWl1YXdKUWtGM3A1SkFn?=
- =?utf-8?B?VFZJTk1TMVdTZHBXbnhzSVZHdzNiWUk5WGExRm54dUlHQ0hrc09sYm54NG1x?=
- =?utf-8?B?WTN1OWdyV3Z5N1pXM1NPM0JwVjhub0tIZXdFZVE5enI2K3VhLzExVUE2a01S?=
- =?utf-8?B?V2VDVTlQRllsNFEyT0FNQW8zYzc1V1pkYk5JeGJ4WUl5ZE5mOU5SQ3QzcE40?=
- =?utf-8?B?NkUvemlvM05yaDBuV1VHWTBSYm5YcE83bmFna2JPb2V6anR5dlZyTWdLOHVI?=
- =?utf-8?B?akVKeWZHNitpT0JwWERJbzFhaEM5NXViaDhaYkV0LzNtUHp2SDl2Vncxd0V5?=
- =?utf-8?B?eCt4LzloM3RDcHB1MUFaUG1tMzZzNlVGekZUb3pYZEcwSXRsRldyYjkvWUYy?=
- =?utf-8?B?azF5R2VTNlprS0gzem9QMXRsN2V2NlVoclh0OXlUMm1NSjFiWXUrczRmWHFr?=
- =?utf-8?B?MzZTV2NablFQZUtwQ3A3YmtVdUU3L0NwQ3ZKQm1neUtkOUhqZEUxWFViWGY1?=
- =?utf-8?B?SnVUelNsZkRzVWpUdHFUOUM0a0wrei9EeEZNVCswQzMrWEYrd1RDdDJ6SVpq?=
- =?utf-8?B?Y0hoOUx5K1RuSVFKeXg5WTdBWGtNbkZEWHJkOHhKQzVJM0dFWkdRRTRPNk1W?=
- =?utf-8?B?TTJadEExK01FQ25hdzBNNnVNQmRNMG5JeUtlSEdWMlNXb3RjczVhMm1ZbFJx?=
- =?utf-8?B?QmQrRnhSL2xYVWlNWXpBQnEzVG8wVTFGYVdWdU5ndUhwOHJ2dkQ5WkpNN3Bi?=
- =?utf-8?B?bVZFbWpyOWFwUWZ6Z0VEa3oyd1hhZDZWUmRnM0UxZkovNDhZUS9QRG5TcTJ3?=
- =?utf-8?B?WWlzSUFjS28zY3FPTFpZd2EwUkhObnlTTG50WlFQV0dWbXp2OHJKa3l2bUxN?=
- =?utf-8?B?OWluNVdsZVFLbVBiZm1XeHphWnpheHA5dEE5ZS9HWkgxV21IdkUwK0l5djB6?=
- =?utf-8?B?VWlLWEN6Qk5oekVEbWdyWW45UWFueHY5NS9kem9sdU1GcGdWK05RbndPVENq?=
- =?utf-8?B?RHNHcVNCUTluOVA2ZjhjS3k3WWJ1cXQzaEh4Y21NWnZDSnlZcU8yMytCWFUr?=
- =?utf-8?B?ZDQ5UWYwN3NNeElLTkZENWF6eUowdms4RWlzeE9aRGhhZ2NVRW1LKzNNSUtj?=
- =?utf-8?B?T3NYbTZMeWs5MCtBd21pTUU5TkZKVGUySEorc2RVZWY0djEyTlNSQnpVSjQ3?=
- =?utf-8?B?UjdyNVREdDVlajQ2NE43eVVIZW9pRWtJVmgzK0g4ZWduZ2QrdEkzeFlpS2xE?=
- =?utf-8?B?VFE4R2xzRXdTRWVyaTdiY0g1eVdZVmJiZGR5NFNqRlBSZGZvRTRiVWpvWFpZ?=
- =?utf-8?B?MVJEdzE1cWZJRWVtUitSNy9XdWk1eUJmb1pUV21pZDR0MVM3WUIyUHkrRFAv?=
- =?utf-8?B?aFFhSGkwUWF1SWdJRHZsbHJLR20yMEdCV0ZiNWVGWWQva0l2NGhjZVBNRytD?=
- =?utf-8?B?Sm12YXJWdG1nOU9TNjhVWDFnMHg4RDBSTkw3OTAwVWFmZnFDeVdqdjROWnE2?=
- =?utf-8?B?SGM1NVZ5ejJIT0R2bmdwNG0yZUdWTHltMFlnZDMvaUhKZG9xdGh4NnN4OUxJ?=
- =?utf-8?B?KzJtZC9UcTkycFZNd2dzL3NCRFJpSW9FZnZiLzZkbGF4dFhJRzlQcTZkNXJp?=
- =?utf-8?B?VmJPNzFDc0wwTDdpQVl3RTZyS2NSQks0cXBtcXJ5SnNaV3d0TzJoaGZVUURq?=
- =?utf-8?B?SnAxa0VUamFZWWZLZWRRRFE5SGV5Ym9hS2xVU0xnTGZYVnBpbDVNdkVwYUpq?=
- =?utf-8?B?T01tQWJIc1dNclVjem9RMTNuVzhXa1dBZGdka1R6NmhRenVGeDVXbHVxYUE4?=
- =?utf-8?B?Y0R0U1BYWllpUk44aTdJTUpxVzVLeS9xWDhSc08yQ2VoTG5BaGJCSkQ0bmFP?=
- =?utf-8?B?NWtCa2FQSDFMVExNdCs0aWRYSG8vd20yS0daRW1sM0FFMnZLdmVqMjJnd0NR?=
- =?utf-8?B?YmU0VTYvT2dEckRGdEpmblR5d1pNQ0JYVWV5UU9ibzVGVEIzeFIwVUdEVGM5?=
- =?utf-8?B?V2c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e203f563-501d-4ef0-a6a4-08dc8b3888da
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dDRFbXhBb3NOMnFtTmwvUExXUUVMaWREV2t5Qk0yc0o4ZXZVdGlWdXNiREU2?=
+ =?utf-8?B?SGVCOXV5Zk44cmQ3cGhWclY2NmV3NmQxamtwdllPa0Y5TWtNbkh5a3VmL3h3?=
+ =?utf-8?B?dmhjL2gyTTJGNWVWazhDUHhuaTRCOG15NmQvOTd2aHFxWi9GRWsxR3BiVG1F?=
+ =?utf-8?B?SitwVnhtTUNWNm5wWFRwbkVVZzhRbFJMOGRaQVBkSkhPbDMyNEx3U24yNllL?=
+ =?utf-8?B?YWZrRFBmSVF0ejBRM3gyTXU0Z2VTSVUrb2ZaR3Z5T2lrZnI0dkZuRk1MV21H?=
+ =?utf-8?B?akI1Y1lSbHVaU3FRNXdBcWVIOFhvbW8vMmNGMHdjWTFSNTV3Z3o1ZUFoNEhK?=
+ =?utf-8?B?Q2swTHNNZGE1R3cwUEl1dWJ0eVFBSVV5Mk4rYzlYU0dvRFZBSUxMaXdSOFpj?=
+ =?utf-8?B?aGRxMjR4NGRuZGJMSk9YWnlqWmdRZVpTRTNEbDZMd0hlYTRGUy9UMkdseVFR?=
+ =?utf-8?B?YmdVTUE1bHA4a0F4VElWdlgzWVZuNHhJaDRITU4wVHIvam0vMndiNzVHTy9m?=
+ =?utf-8?B?UGVSUUx2NkRCUnBpVVk1ak1JWlExN2x4MkZhSjI0Mmc4cm9ybXBKV1VHRG9H?=
+ =?utf-8?B?bFhHekRkd0lMbUtwRmpXRGpqZE5kczF6OVJ0djljY0NvUjJ5NkdzNEg0dmdv?=
+ =?utf-8?B?UUdFN2tVeFc4QVd4OHNjd2ZyVFVicUI1ZXFnbGJqVDFPYmVsOVNVQ2c3MXM0?=
+ =?utf-8?B?eHpYZkk3VnBzRG43MEcxSnZhRklXK1lYWTFSb3BpcTFsM3Vmc2RoOWZUUlRR?=
+ =?utf-8?B?bVN5aStzZENuVUFaVGtoL1ZmL3A1RVFycTNock5RZjI3ajQ5QmJKdncrdUlR?=
+ =?utf-8?B?QmtRTzUzK3VwNlJacUkyOTY4QllMQURCS0pVNmV2YTZhQVMva042ckgwNGxi?=
+ =?utf-8?B?ZWQvdHZONFBoQWZtaU1Zb3J4N25iSUxJeWN1SkNmcFk4RXdQSk9uOHhzeVVn?=
+ =?utf-8?B?TTNCd1RGT2FaWFF2YmovTzYxVVI4QzZ5UVZaN0dRSSsxZGZiNFk0NFpJWHFz?=
+ =?utf-8?B?THQ3SzhrQ29IcndFZTBQaFNjTzVxc1FRd2REOWhabHE0VmJBVjY1dHJtbEd5?=
+ =?utf-8?B?RXZRNkRoc25PK3dlWEhCTGdTdXdPV1BDRFd1cVFHM2NHSExLRzN1Q3ZzdTRh?=
+ =?utf-8?B?S2lsdE5yd2lLVFhlSURkd1FWeU1CSFZPdXk2Z1c5cmVtbXd5Wmg5OHp4SXRW?=
+ =?utf-8?B?Q0dZZzBqYmdtdHBKMlpDWWZRdFFnNXRtL09mRlh4VDlCK0FXREdiM28wTmJM?=
+ =?utf-8?B?WVJsblpOUVdYYlhuQTExeW5oektYbjlYbmhSZStFN3dZazhLV3ZSUDE3a1l0?=
+ =?utf-8?B?bWZ4MVg0Wi9NMjhyMDMwcThRZExTN215VXBTUGRJV1l5a0hrbXF2SmNyR0Ur?=
+ =?utf-8?B?MEcrSW1XQzNhVlVEcXpsSEFKNFV6WStNUDFEVmtibGZzQ0RVR0ltVkg0c0JB?=
+ =?utf-8?B?dllqSU55S1Zndk5PWmtTai9TOWpsL3FRdUJ3Yno2MDFpZGMwNW5qaFBhakw1?=
+ =?utf-8?B?MjZCazE1bUkyT1RjeUVSUmFOR0lOMDJHbkhNWWkxRVpSb3RFV0hXOG56ZU4x?=
+ =?utf-8?B?RjVXeVFHUWZseHJOTS9hSnA3OFhZTFVVUEljb21oa1lmMnVvT00ycjE2QURw?=
+ =?utf-8?B?MjBRRUViclN5ZHFCN3ZaRHBBekRoK2Z3RzZyaFNKTS9vWjZxOU9xTnB2V3FY?=
+ =?utf-8?B?cTcyN1dpVjRpSm5FUXNaclJuU0t5WktHNEkwNWI2NGJQbUJEVWYxRnFITHll?=
+ =?utf-8?B?cU5JVFBOTkFKK21tQ2lnV2VONDk1bzd1TXFBNWNPVGQrb0JKQzFIZlllamVz?=
+ =?utf-8?B?QkNQcFljZ3N3QTcvZktIenZlUHp0S3hkZW44U052anp3UXEzd1FiNFJvb0pU?=
+ =?utf-8?B?NTlrNDZaYit0OHVtSnAxc3ZHdkdHRkNjMDkrR3lKWEwxSnovUHE5eDJBL3pT?=
+ =?utf-8?B?RkR2MEwrQjhOaFZQNWo3SFB6T1J2ZHBXUlhVbTNRTU1jQkFoYnNpTnIyYktU?=
+ =?utf-8?B?Sng2eG1sOEhJSHErR2hKbHl5Znl1YlBxQXIxY0FtdXdpTWVBaE03MDVDUVlO?=
+ =?utf-8?B?NktNSmV4TzBlTUM5Q0FCcThjbERPUHJ1OWVPenZGZWwxQllVeklmMzJOc3pD?=
+ =?utf-8?B?OXpmVTEyaG9Oa0tnQkNBbmo0MnhRSW5xM2cwZy9sRW5ISExoU2hsMExodG1r?=
+ =?utf-8?B?dFE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9b923cb6-b66a-4a77-3892-08dc8b3ab9dd
 X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2024 23:36:51.2007 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2024 23:52:32.3992 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cLm119aTocO7JcNpshS5KjSoZ8ooSkNe6N8R8mFj0Ho7y0LqaULxVPZg/HtLaTSXS+Qk9+oxUvalREjzNhaQsXLYFa2KhB4gGdHnEuJDAf4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR11MB8712
+X-MS-Exchange-CrossTenant-UserPrincipalName: QVB+GJUvWXLEAvGhvt9h8irM1SCBkatNJH2OqkIaoWiq2eGu67qi9E6VBKT8IaB5f5uGGuWBQQuJwXzd23ouztNTyxpJwelDpDrjuGtycgI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6747
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -193,287 +194,349 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 6/11/2024 15:30, Michal Wajdeczko wrote:
+On 6/11/2024 15:49, Michal Wajdeczko wrote:
+>
 > On 11.06.2024 03:20, John.C.Harrison@Intel.com wrote:
 >> From: John Harrison <John.C.Harrison@Intel.com>
 >>
->> Refactor the hexdump code into a separate function ready to be used
-> maybe this separate function shall be promoted to drm_print_blob() ?
-Maybe. That can happen as a follow up if people see a need for it from 
-outside of the Xe driver. But see below about this being only a stop gap 
-solution.
-
-
+>> Split the GuC log dump into a two stage snapshot and print mechanism.
+>> This allows the log to be captured at the point of an error (which may
+>> be in a resticted context) and then dump it out later (from a regular
+> typo
 >
->> for dumps of other objects. Also change to dumping a host memory copy
->> rather than the live GPU buffer object. Doing so helps prevent
->> inconsistencies due to the log being updated as it is being dumped. It
->> also paves the way for decoupling the save from the print to allow
->> inclusion in error reports such as the devcoredump.
+>> context such as a worker function or a sysfs file handler).
 >>
->> Switch to use the dedicated kernel hexdump helper rather than printf.
->> The helper makes it easier to print out much wider lines which can
->> dramatically reduce the total line count of the dump (useful when
->> dumping to dmesg).
-> as you are changing the format of the output, did you consider switching
-> over to base64 ?
-I don't see it as being worth the effort. The current changes are the 
-low hanging fruit. Switching to base64 encoding seems like a lot more 
-effort. There is not just the encoding effort in the KMD but also the 
-decoding effort in user land to consider. And the ultimate aim is to 
-move to compression. That's the only thing that really makes it feasible 
-to dump BLOBs via dmesg. Moving to compression is definitely worth the 
-effort in both the KMD and the user sides. But that ideally involves 
-also moving to use devcoredump as the unified collection and dumping 
-mechanism. That way only one set of tools need updating to support new 
-formats. But devcoredump support is also not trivial for various reasons 
-beyond simply adding the GuC log buffer to the dump.
-
->
->> Another issue with dumping such a large buffer is that it can be slow,
->> especially if dumping to dmesg over a serial port. So add a yield to
->> prevent the 'task has been stuck for 120s' kernel hang check feature
->> from firing.
+>> Also add a bunch of other useful pieces of information that can help
+>> (or are fundamentally required!) to decode and parse the log.
 >>
 >> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_guc_debugfs.c |   2 +-
->>   drivers/gpu/drm/xe/xe_guc_log.c     | 119 ++++++++++++++++++++++++----
->>   drivers/gpu/drm/xe/xe_guc_log.h     |   2 +-
->>   3 files changed, 106 insertions(+), 17 deletions(-)
+>>   drivers/gpu/drm/xe/regs/xe_guc_regs.h |   1 +
+>>   drivers/gpu/drm/xe/xe_guc_log.c       | 150 ++++++++++++++++++++------
+>>   drivers/gpu/drm/xe/xe_guc_log.h       |   6 ++
+>>   drivers/gpu/drm/xe/xe_guc_log_types.h |  29 +++++
+>>   4 files changed, 155 insertions(+), 31 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c b/drivers/gpu/drm/xe/xe_guc_debugfs.c
->> index d3822cbea273..68f1f728c22c 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
->> @@ -41,7 +41,7 @@ static int guc_log(struct seq_file *m, void *data)
->>   	struct drm_printer p = drm_seq_file_printer(m);
+>> diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+>> index a5fd14307f94..b27b73680c12 100644
+>> --- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+>> +++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+>> @@ -84,6 +84,7 @@
+>>   #define   HUC_LOADING_AGENT_GUC			REG_BIT(1)
+>>   #define   GUC_WOPCM_OFFSET_VALID		REG_BIT(0)
+>>   #define GUC_MAX_IDLE_COUNT			XE_REG(0xc3e4)
+>> +#define GUC_PMTIMESTAMP				XE_REG(0xc3e8)
 >>   
->>   	xe_pm_runtime_get(xe);
->> -	xe_guc_log_print(&guc->log, &p);
->> +	xe_guc_log_print(&guc->log, &p, false);
->>   	xe_pm_runtime_put(xe);
->>   
->>   	return 0;
+>>   #define GUC_SEND_INTERRUPT			XE_REG(0xc4c8)
+>>   #define   GUC_SEND_TRIGGER			REG_BIT(0)
 >> diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
->> index a37ee3419428..a35309926271 100644
+>> index a35309926271..a35d3cc0c369 100644
 >> --- a/drivers/gpu/drm/xe/xe_guc_log.c
 >> +++ b/drivers/gpu/drm/xe/xe_guc_log.c
->> @@ -9,6 +9,7 @@
+>> @@ -7,12 +7,20 @@
 >>   
+>>   #include <drm/drm_managed.h>
+>>   
+>> +#include "regs/xe_guc_regs.h"
 >>   #include "xe_bo.h"
 >>   #include "xe_gt.h"
->> +#include "xe_gt_printk.h"
+>>   #include "xe_gt_printk.h"
 >>   #include "xe_map.h"
+>> +#include "xe_mmio.h"
 >>   #include "xe_module.h"
 >>   
->> @@ -49,32 +50,120 @@ static size_t guc_log_size(void)
->>   		CAPTURE_BUFFER_SIZE;
->>   }
->>   
->> -void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
->> +#define BYTES_PER_WORD		sizeof(u32)
-> by WORD isn't we usually mean u16 ? u32 is DWORD
-It is in Windows land. I'm not aware of the Linux kernel using DWORD as 
-a type. And strictly speaking, isn't 'word' meant to be the native size 
-of the architecture, i.e. 'int'?
+>> +static struct xe_guc *
+>> +log_to_guc(struct xe_guc_log *log)
+> any reason why to split signature into two lines?
+Because the similar log_to_gt underneath was done that way so I figured 
+it would be best to match that. And no, I don't know why that (or indeed 
+the same in many other files) is done that way but it does appear to be 
+the common convention.
 
 >
->> +#define WORDS_PER_DUMP		8
->> +#define DUMPS_PER_LINE		4
->> +#define LINES_PER_READ		4
->> +#define WORDS_PER_READ		(WORDS_PER_DUMP * DUMPS_PER_LINE * LINES_PER_READ)
->> +
->> +static void xe_hexdump_blob(struct xe_device *xe, const void *blob, size_t size,
->> +			    struct drm_printer *p, bool atomic)
 >> +{
->> +	char line_buff[DUMPS_PER_LINE * WORDS_PER_DUMP * 9 + 1];
-> and magic "9" is from ...
-That is the length of the ASCII string - 8 hex digits and one space. 
-With a +1 for the null terminator. I suppose it could be wrapped up as 
-ASCII_LENGTH_PER_WORD.
-
->
->> +	const u32 *blob32 = (const u32 *)blob;
->> +	int i, j, k;
->> +
->> +	if (size % (WORDS_PER_READ * BYTES_PER_WORD)) {
->> +		u32 remain = size % (WORDS_PER_READ * BYTES_PER_WORD);
->> +
->> +		drm_err(&xe->drm, "Invalid size for hexdump: 0x%lX vs 0x%lX (%d * %ld) -> 0x%X\n",
->> +			size, WORDS_PER_READ * BYTES_PER_WORD,
->> +			WORDS_PER_READ, BYTES_PER_WORD, remain);
-> hmm, all this seems to be due to bad coding by the caller
-> maybe just
->
-> 	if (WARN_ON(size % (WORDS_PER_READ * BYTES_PER_WORD)))
-> 		return;
->
-> as this should never happen
-It could just be a WARN and bail. But given that this is all about 
-getting debug output for hard to debug situations, it seems prudent to 
-get what we can out than to just abort and get nothing.
-
->
->> +
->> +		size -= remain;
->> +		if (!size)
->> +			return;
->> +	}
->> +
->> +	for (i = 0; i < size / BYTES_PER_WORD; i += WORDS_PER_READ) {
->> +		const u32 *src = ((const u32 *)blob32) + i;
-> no need to cast, blob32 is already const u32*
-Hmm. I think the intention was to get rid of blob32 and just cast blob 
-here given that this is the only use of blob32.
-
->
->> +
->> +		for (j = 0; j < WORDS_PER_READ; ) {
->> +			u32 done = 0;
->> +
->> +			for (k = 0; k < DUMPS_PER_LINE; k++) {
->> +				line_buff[done++] = ' ';
->> +				done += hex_dump_to_buffer(src + j,
->> +							   sizeof(*src) * (WORDS_PER_READ - j),
->> +							   WORDS_PER_DUMP * BYTES_PER_WORD,
->> +							   BYTES_PER_WORD,
->> +							   line_buff + done,
->> +							   sizeof(line_buff) - done,
->> +							   false);
->> +				j += WORDS_PER_DUMP;
->> +			}
->> +
->> +			drm_printf(p, "%s\n", line_buff);
->> +
->> +			/*
->> +			 * If spewing large amounts of data via a serial console,
->> +			 * this can be a very slow process. So be friendly and try
->> +			 * not to cause 'softlockup on CPU' problems.
->> +			 */
->> +			if (!atomic)
->> +				cond_resched();
->> +		}
->> +	}
+>> +	return container_of(log, struct xe_guc, log);
 >> +}
 >> +
->> +#define GUC_LOG_CHUNK_SIZE	SZ_2M
->> +
-> missing kernel-doc
-Yup.
-
->
->> +void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p, bool atomic)
+>>   static struct xe_gt *
+>>   log_to_gt(struct xe_guc_log *log)
 >>   {
->>   	struct xe_device *xe = log_to_xe(log);
->> -	size_t size;
->> -	int i, j;
->> +	size_t size, remain;
->> +	void **copy;
->> +	int num_chunks, i;
+>> @@ -108,62 +116,142 @@ static void xe_hexdump_blob(struct xe_device *xe, const void *blob, size_t size,
 >>   
->>   	xe_assert(xe, log->bo);
+>>   #define GUC_LOG_CHUNK_SIZE	SZ_2M
 >>   
->> +	/*
->> +	 * NB: kmalloc has a hard limit well below the maximum GuC log buffer size.
->> +	 * Also, can't use vmalloc as might be called from atomic context. So need
->> +	 * to break the buffer up into smaller chunks that can be allocated.
->> +	 */
->>   	size = log->bo->size;
->> +	num_chunks = (size + GUC_LOG_CHUNK_SIZE - 1) / GUC_LOG_CHUNK_SIZE;
-> DIV_ROUND_UP ?
-Yup.
+>> -void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p, bool atomic)
+> no kernel-doc
+>
+>> +struct xe_guc_log_snapshot *xe_guc_log_snapshot_alloc(struct xe_guc_log *log, bool atomic)
+>>   {
+>> -	struct xe_device *xe = log_to_xe(log);
+>> -	size_t size, remain;
+>> -	void **copy;
+>> -	int num_chunks, i;
+>> +	struct xe_guc_log_snapshot *snapshot;
+>> +	size_t remain;
+>> +	int i;
+>>   
+>> -	xe_assert(xe, log->bo);
+>> +	snapshot = kzalloc(sizeof(*snapshot), atomic ? GFP_ATOMIC : GFP_KERNEL);
+>> +	if (!snapshot)
+>> +		return NULL;
+>>   
+>>   	/*
+>>   	 * NB: kmalloc has a hard limit well below the maximum GuC log buffer size.
+>>   	 * Also, can't use vmalloc as might be called from atomic context. So need
+>>   	 * to break the buffer up into smaller chunks that can be allocated.
+>>   	 */
+>> -	size = log->bo->size;
+>> -	num_chunks = (size + GUC_LOG_CHUNK_SIZE - 1) / GUC_LOG_CHUNK_SIZE;
+>> +	snapshot->size = log->bo->size;
+>> +	snapshot->num_chunks = (snapshot->size + GUC_LOG_CHUNK_SIZE - 1) / GUC_LOG_CHUNK_SIZE;
+>>   
+>> -	copy = kcalloc(num_chunks, sizeof(*copy), atomic ? GFP_ATOMIC : GFP_KERNEL);
+>> -	if (!copy) {
+>> -		drm_printf(p, "Failed to allocate array x%d", num_chunks);
+>> -		return;
+>> -	}
+>> +	snapshot->copy = kcalloc(snapshot->num_chunks, sizeof(*snapshot->copy),
+>> +				 atomic ? GFP_ATOMIC : GFP_KERNEL);
+>> +	if (!snapshot->copy)
+>> +		goto fail_snap;
+>>   
+>> -	remain = size;
+>> -	for (i = 0; i < num_chunks; i++) {
+>> +	remain = snapshot->size;
+>> +	for (i = 0; i < snapshot->num_chunks; i++) {
+>>   		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
+>>   
+>> -		copy[i] = kmalloc(size, atomic ? GFP_ATOMIC : GFP_KERNEL);
+>> -		if (!copy[i]) {
+>> -			drm_printf(p, "Failed to allocate %ld at chunk %d of %d",
+>> -				   size, i, num_chunks);
+>> -			goto out;
+>> -		}
+>> +		snapshot->copy[i] = kmalloc(size, atomic ? GFP_ATOMIC : GFP_KERNEL);
+>> +		if (!snapshot->copy[i])
+>> +			goto fail_copy;
+>>   		remain -= size;
+>>   	}
+>>   
+>> -	remain = size;
+>> -	for (i = 0; i < num_chunks; i++) {
+>> +	return snapshot;
+>> +
+>> +fail_copy:
+>> +	for (i = 0; i < snapshot->num_chunks; i++)
+>> +		kfree(snapshot->copy[i]);
+>> +	kfree(snapshot->copy);
+>> +fail_snap:
+>> +	kfree(snapshot);
+>> +	return NULL;
+>> +}
+>> +
+>> +void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot)
+>> +{
+>> +	int i;
+>> +
+>> +	if (!snapshot)
+>> +		return;
+>> +
+>> +	if (!snapshot->copy) {
+>> +		for (i = 0; i < snapshot->num_chunks; i++)
+>> +			kfree(snapshot->copy[i]);
+>> +		kfree(snapshot->copy);
+>> +	}
+>> +
+>> +	kfree(snapshot);
+>> +}
+>> +
+>> +struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log, bool atomic)
+>> +{
+>> +	struct xe_guc_log_snapshot *snapshot;
+>> +	struct xe_device *xe = log_to_xe(log);
+>> +	struct xe_guc *guc = log_to_guc(log);
+>> +	struct xe_gt *gt = log_to_gt(log);
+>> +	size_t remain;
+>> +	int i;
+>> +
+>> +	if (!log->bo) {
+>> +		xe_gt_err(gt, "GuC log not allocated!\n");
+>> +		return NULL;
+>> +	}
+>> +
+>> +	snapshot = xe_guc_log_snapshot_alloc(log, atomic);
+>> +	if (!snapshot) {
+>> +		xe_gt_err(gt, "GuC log snapshot not allocated!\n");
+>> +		return NULL;
+>> +	}
+>> +
+>> +	remain = snapshot->size;
+>> +	for (i = 0; i < snapshot->num_chunks; i++) {
+>>   		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
+>>   
+>> -		xe_map_memcpy_from(xe, copy[i], &log->bo->vmap, i * GUC_LOG_CHUNK_SIZE, size);
+>> +		xe_map_memcpy_from(xe, snapshot->copy[i], &log->bo->vmap,
+>> +				   i * GUC_LOG_CHUNK_SIZE, size);
+>>   		remain -= size;
+>>   	}
+>>   
+>> -	remain = size;
+>> -	for (i = 0; i < num_chunks; i++) {
+>> +	snapshot->ktime = ktime_get_boottime_ns();
+>> +	snapshot->stamp = xe_mmio_read32(gt, GUC_PMTIMESTAMP);
+>> +	snapshot->ref_clk = gt->info.reference_clock;
+>> +	snapshot->level = log->level;
+>> +	snapshot->ver_found = guc->fw.versions.found[XE_UC_FW_VER_RELEASE];
+>> +	snapshot->ver_want = guc->fw.versions.wanted;
+>> +	snapshot->path = guc->fw.path;
+> shouldn't we use kstrdup() instead ?
+The firmware path is always a static string. It is either an actual 
+static const thing from the compiled in table or it has come from the 
+kernel command line as a module parameter. Either way, it is not going 
+to change or disappear for the lifetime of the Xe module. So no reason 
+to waste memory duplicating it.
 
 >
->>   
->> -#define DW_PER_READ		128
->> -	xe_assert(xe, !(size % (DW_PER_READ * sizeof(u32))));
->> -	for (i = 0; i < size / sizeof(u32); i += DW_PER_READ) {
->> -		u32 read[DW_PER_READ];
->> +	copy = kcalloc(num_chunks, sizeof(*copy), atomic ? GFP_ATOMIC : GFP_KERNEL);
->> +	if (!copy) {
->> +		drm_printf(p, "Failed to allocate array x%d", num_chunks);
-> I'm not sure that caller wants this message in it's printer output
-It's better than having no output at all. Which is what you get otherwise.
-
->
+>> +
+>> +	return snapshot;
+>> +}
+>> +
+>> +void xe_guc_log_snapshot_print(struct xe_device *xe, struct xe_guc_log_snapshot *snapshot,
+>> +			       struct drm_printer *p, bool atomic)
+>> +{
+>> +	size_t remain;
+>> +	int i;
+>> +
+>> +	if (!snapshot) {
+>> +		drm_printf(p, "GuC log snapshot not allocated!\n");
 >> +		return;
 >> +	}
+>> +
+>> +	drm_printf(p, "GuC version %u.%u.%u (wanted %u.%u.%u)\n",
+>> +		   snapshot->ver_found.major, snapshot->ver_found.minor, snapshot->ver_found.patch,
+>> +		   snapshot->ver_want.major, snapshot->ver_want.minor, snapshot->ver_want.patch);
+>> +	drm_printf(p, "GuC firmware: %s\n", snapshot->path);
+>> +	drm_printf(p, "Kernel timestamp: 0x%08llX [%llu]\n", snapshot->ktime, snapshot->ktime);
+>> +	drm_printf(p, "GuC timestamp: 0x%08X [%u]\n", snapshot->stamp, snapshot->stamp);
+>> +	drm_printf(p, "CS timestamp frequency: %u Hz\n", snapshot->ref_clk);
+>> +	drm_printf(p, "Log level: %u\n", snapshot->level);
+>> +
+>> +	remain = snapshot->size;
+>> +	for (i = 0; i < snapshot->num_chunks; i++) {
+>>   		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
 >>   
->> -		xe_map_memcpy_from(xe, read, &log->bo->vmap, i * sizeof(u32),
->> -				   DW_PER_READ * sizeof(u32));
->> -#define DW_PER_PRINT		4
->> -		for (j = 0; j < DW_PER_READ / DW_PER_PRINT; ++j) {
->> -			u32 *print = read + j * DW_PER_PRINT;
->> +	remain = size;
->> +	for (i = 0; i < num_chunks; i++) {
->> +		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
-> it's usually bad idea to overlap variable names
-Yeah, but the outer size becomes snapshot->size in the next patch. I 
-could rename the outer one total_size.
+>> -		xe_hexdump_blob(xe, copy[i], size, p, atomic);
+>> +		xe_hexdump_blob(xe, snapshot->copy[i], size, p, atomic);
+> we really should get rid of xe in xe_hexdump_blob
+I'm not seeing why but that can be done as a follow up patch if you 
+really think it is necessary. Personally, I'd rather spend the effort on 
+completely removing it and going with compressed ASCII encoded blobs in 
+devcoredump.
 
 >
->>   
->> -			drm_printf(p, "0x%08x 0x%08x 0x%08x 0x%08x\n",
->> -				   *(print + 0), *(print + 1),
->> -				   *(print + 2), *(print + 3));
->> +		copy[i] = kmalloc(size, atomic ? GFP_ATOMIC : GFP_KERNEL);
->> +		if (!copy[i]) {
->> +			drm_printf(p, "Failed to allocate %ld at chunk %d of %d",
->> +				   size, i, num_chunks);
-> ditto
-Ditto to what? Printing an error message in the output file? As above, 
-it is better than having an empty file with no explanation as to why.
-
->
->> +			goto out;
->>   		}
->> +		remain -= size;
+>>   		remain -= size;
 >>   	}
+>> +}
 >> +
->> +	remain = size;
->> +	for (i = 0; i < num_chunks; i++) {
->> +		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
-> ditto
->
->> +
->> +		xe_map_memcpy_from(xe, copy[i], &log->bo->vmap, i * GUC_LOG_CHUNK_SIZE, size);
->> +		remain -= size;
->> +	}
->> +
->> +	remain = size;
->> +	for (i = 0; i < num_chunks; i++) {
->> +		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
-> ditto
-As above, the outer size is only a temporary thing until the next patch. 
-Whereas these stick around forever.
-
-John.
-
->
->> +
->> +		xe_hexdump_blob(xe, copy[i], size, p, atomic);
->> +		remain -= size;
->> +	}
->> +
->> +out:
->> +	for (i = 0; i < num_chunks; i++)
->> +		kfree(copy[i]);
->> +	kfree(copy);
+>> +void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p, bool atomic)
+>> +{
+>> +	struct xe_guc_log_snapshot *snapshot;
+>>   
+>> -out:
+>> -	for (i = 0; i < num_chunks; i++)
+>> -		kfree(copy[i]);
+>> -	kfree(copy);
+>> +	snapshot = xe_guc_log_snapshot_capture(log, atomic);
+>> +	xe_guc_log_snapshot_print(log_to_xe(log), snapshot, p, atomic);
+>> +	xe_guc_log_snapshot_free(snapshot);
 >>   }
 >>   
 >>   int xe_guc_log_init(struct xe_guc_log *log)
 >> diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
->> index 2d25ab28b4b3..5149b492c3b8 100644
+>> index 5149b492c3b8..6e4d0b369c19 100644
 >> --- a/drivers/gpu/drm/xe/xe_guc_log.h
 >> +++ b/drivers/gpu/drm/xe/xe_guc_log.h
->> @@ -37,7 +37,7 @@ struct drm_printer;
->>   #define GUC_LOG_LEVEL_MAX GUC_VERBOSITY_TO_LOG_LEVEL(GUC_LOG_VERBOSITY_MAX)
+>> @@ -9,6 +9,7 @@
+>>   #include "xe_guc_log_types.h"
+>>   
+>>   struct drm_printer;
+>> +struct xe_device;
+>>   
+>>   #if IS_ENABLED(CONFIG_DRM_XE_LARGE_GUC_BUFFER)
+>>   #define CRASH_BUFFER_SIZE       SZ_1M
+>> @@ -38,6 +39,11 @@ struct drm_printer;
 >>   
 >>   int xe_guc_log_init(struct xe_guc_log *log);
->> -void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p);
->> +void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p, bool atomic);
+>>   void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p, bool atomic);
+>> +struct xe_guc_log_snapshot *xe_guc_log_snapshot_alloc(struct xe_guc_log *log, bool atomic);
+>> +struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log, bool atomic);
+>> +void xe_guc_log_snapshot_print(struct xe_device *xe, struct xe_guc_log_snapshot *snapshot,
+>> +			       struct drm_printer *p, bool atomic);
+>> +void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot);
 >>   
 >>   static inline u32
 >>   xe_guc_log_get_level(struct xe_guc_log *log)
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_log_types.h b/drivers/gpu/drm/xe/xe_guc_log_types.h
+>> index 125080d138a7..e3a6a44c2f18 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_log_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc_log_types.h
+>> @@ -8,8 +8,37 @@
+>>   
+>>   #include <linux/types.h>
+>>   
+>> +#include "xe_uc_fw_types.h"
+>> +
+>>   struct xe_bo;
+>>   
+>> +/**
+>> + * struct xe_guc_log_snapshot:
+>> + * Capture of the GuC log plus various state useful for decoding the log
+>> + */
+>> +struct xe_guc_log_snapshot {
+>> +	/** @size: Size in bytes of the @copy allocation */
+>> +	size_t size;
+>> +	/** @copy: Host memory copy of the log buffer for later dumping, split into chunks */
+>> +	void **copy;
+>> +	/** @num_chunks: Number of chunks withint @copy */
+> typo
+>
+>> +	int num_chunks;
+>> +	/** @ktime: Kernel time the snapshot was taken */
+>> +	u64 ktime;
+>> +	/** @stamp: GuC timestamp at which the snapshot was taken */
+>> +	u32 stamp;
+>> +	/** @ref_clk: GuC timestamp frequency */
+>> +	u32 ref_clk;
+>> +	/** @level: GuC log verbosity level */
+>> +	u32 level;
+>> +	/** @ver_found: GuC firmware version */
+>> +	struct xe_uc_fw_version ver_found;
+> didn't you mention that platform and/or revision is also mandatory to
+> correctly decode GuC log ?
+Yeah, but the platform is not really a GuC related thing. So putting 
+that inside a GuC specific structure seems even more wrong.
+
+>
+>> +	/** @ver_want: GuC firmware version that driver expected */
+>> +	struct xe_uc_fw_version ver_want;
+> I'm still not convinced that it's relevant to the actual GuC log what
+> driver wanted to use - this should be part of the GuC snapshot instead
+>
+>> +	/** @path: Path of GuC firmware blob */
+>> +	const char *path;
+> ditto
+When the snapshot moves into the devcoredump, then all of this gets 
+moved into a GuC specific structure within the core dump. But for now, 
+there is no GuC snapshot. So therefore, they are here. As already 
+stated, this is all stop gap measures until the proper solution is 
+implemented.
+
+John.
+
+>
+>> +};
+>> +
+>>   /**
+>>    * struct xe_guc_log - GuC log
+>>    */
 
