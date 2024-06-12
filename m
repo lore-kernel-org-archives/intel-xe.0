@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4510C2BB85
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 02:15:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C093C41513
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 02:15:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AEBE10E772;
-	Wed, 12 Jun 2024 02:15:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3950B10E769;
+	Wed, 12 Jun 2024 02:15:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="anQLyaR6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bPSXH+yn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1886310E77A
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Jun 2024 02:15:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99AE810E460
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Jun 2024 02:15:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718158540; x=1749694540;
+ t=1718158537; x=1749694537;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=qWAv5aCjCXiQ/wHZqNRETysakqQz1CqV+r6p4QHVLUU=;
- b=anQLyaR6pDpjf4GAmFPOuEBmP2A2GFYS/Bbk9NukX2gkmdlFcuE77TIk
- 5Ezv09D/TX2cX/zvolEVjajlWc3sDjgAqVYTGmHrlIGUi1oIOCUlvYrf5
- nqVzxNbs6W2Vx9Jne9Zt2Gev/moX2hxYvfY9spV5Ajsq+sq79gpKegTK3
- GlLwdy6Pm+4dUOmknLgANiKXp0oB2MLxAxM21fR9WcuJAESJDqKeLp2IL
- qSNP+CseO6ipCCyHgTxoL9S3P5LINoGWTrkbhq2IdXHKlZG4KBINjYn6d
- zVxQAD7WuCBGdXnyc1ejm0tvQ+zuKOjnqt24WsFbmKg29rnhRbanD65yH Q==;
-X-CSE-ConnectionGUID: bhMFT4lPTKq3Pwg3eeRqhQ==
-X-CSE-MsgGUID: yRnorT0QQB6h43zDLj7VyA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="37427818"
-X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; d="scan'208";a="37427818"
+ bh=kAR/rZXQtDK44SKrq3NBFPwI6ghIJjnPv/F32bVH6PM=;
+ b=bPSXH+ynIDtopmtvd3YY4hfzC2F0yBVIGhFya4qaz9uGLG04Iqb/Fpib
+ wAosdRBRAbKFd67gTdx1XwgQ/d6UlVk9+6BXKK8rGOruoY/OTWkPx0zqW
+ ugA8r+M0p4ncC4Ql1ClwpINq60E/MmC0vSxP3maCR8BEqJnuGXUHfzLvt
+ ssb3fa5SuonfTuXTN/hkM/uyPD6BivEjJdE7THHY+7CXcBpqAuCR/o/ZR
+ v8XRXJyWEbCca9j2qrccwj1IF55YFXma7eiijTDm8WhgZ4L+PvSEXN19W
+ tuuF/v0+ZHKIE3Tb/LbBG1LhrcfxAUlCLnpaaZK+Rtog6k/ue/14lKrD+ w==;
+X-CSE-ConnectionGUID: qEvgpSzLSz2vBZxtbKLp2Q==
+X-CSE-MsgGUID: T+1iWLy9R7S8GxkAKIEeZw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="37427791"
+X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; d="scan'208";a="37427791"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Jun 2024 19:15:27 -0700
-X-CSE-ConnectionGUID: jQJC70F7SbKEAE9I4W1pZw==
-X-CSE-MsgGUID: AXgVwAeZScqmYmGlzqZ8tA==
+X-CSE-ConnectionGUID: sjJfwaaHR36m2uOunfeQhQ==
+X-CSE-MsgGUID: joGG87HQSxCR1HkEfDlKMg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; d="scan'208";a="44763653"
+X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; d="scan'208";a="44763625"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Jun 2024 19:15:27 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 34/43] drm/xe/svm: Get drm device from drm memory region
-Date: Tue, 11 Jun 2024 22:25:56 -0400
-Message-Id: <20240612022605.385062-34-oak.zeng@intel.com>
+Subject: [CI 09/43] drm/svm: Mark drm_gpuvm to participate SVM
+Date: Tue, 11 Jun 2024 22:25:31 -0400
+Message-Id: <20240612022605.385062-9-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240612022605.385062-1-oak.zeng@intel.com>
 References: <20240612022605.385062-1-oak.zeng@intel.com>
@@ -66,42 +66,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Implement a function xe_mem_region_to_device to
-get the drm device which has a specific mem region
+A mm_struct field is added to drm_gpuvm. Also add a parameter to
+drm_gpuvm_init to say whether this gpuvm participate svm (shared
+virtual memory with CPU process). Under SVM, CPU program and GPU
+program share one process virtual address space.
 
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Felix Kuehling <felix.kuehling@amd.com>
+Cc: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: <dri-devel@lists.freedesktop.org>
+Suggested-by: Christian König <christian.koenig@amd.com>
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.h | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/drm_gpuvm.c            | 7 ++++++-
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c | 2 +-
+ drivers/gpu/drm/xe/xe_vm.c             | 2 +-
+ include/drm/drm_gpuvm.h                | 8 +++++++-
+ 4 files changed, 15 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index bb07f5669dbb..bae8ebeda20c 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -9,6 +9,7 @@
- #include <drm/drm_util.h>
- 
- #include "xe_device_types.h"
-+#include "xe_tile.h"
- 
- static inline struct xe_device *to_xe_device(const struct drm_device *dev)
+diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
+index 7402ed6f1d33..5f246ca472a8 100644
+--- a/drivers/gpu/drm/drm_gpuvm.c
++++ b/drivers/gpu/drm/drm_gpuvm.c
+@@ -984,6 +984,8 @@ EXPORT_SYMBOL_GPL(drm_gpuvm_resv_object_alloc);
+  * @reserve_offset: the start of the kernel reserved GPU VA area
+  * @reserve_range: the size of the kernel reserved GPU VA area
+  * @ops: &drm_gpuvm_ops called on &drm_gpuvm_sm_map / &drm_gpuvm_sm_unmap
++ * @participate_svm: whether this gpuvm participat shared virtual memory
++ * with CPU mm
+  *
+  * The &drm_gpuvm must be initialized with this function before use.
+  *
+@@ -997,7 +999,7 @@ drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
+ 	       struct drm_gem_object *r_obj,
+ 	       u64 start_offset, u64 range,
+ 	       u64 reserve_offset, u64 reserve_range,
+-	       const struct drm_gpuvm_ops *ops)
++	       const struct drm_gpuvm_ops *ops, bool participate_svm)
  {
-@@ -170,4 +171,11 @@ static inline bool xe_device_wedged(struct xe_device *xe)
+ 	gpuvm->rb.tree = RB_ROOT_CACHED;
+ 	INIT_LIST_HEAD(&gpuvm->rb.list);
+@@ -1016,6 +1018,9 @@ drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
+ 	gpuvm->drm = drm;
+ 	gpuvm->r_obj = r_obj;
  
- void xe_device_declare_wedged(struct xe_device *xe);
- 
-+static inline struct drm_device *xe_mem_region_to_device(struct drm_mem_region *mr)
-+{
-+	struct xe_mem_region *xe_mr = container_of(mr, struct xe_mem_region, drm_mr);
-+	struct xe_tile *tile = xe_mem_region_to_tile(xe_mr);
++	if (participate_svm)
++		gpuvm->mm = current->mm;
 +
-+	return &tile->xe->drm;
-+}
- #endif
+ 	drm_gem_object_get(r_obj);
+ 
+ 	drm_gpuvm_warn_check_overflow(gpuvm, start_offset, range);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+index ee02cd833c5e..0d11f1733e29 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+@@ -1861,7 +1861,7 @@ nouveau_uvmm_ioctl_vm_init(struct drm_device *dev,
+ 		       NOUVEAU_VA_SPACE_END,
+ 		       init->kernel_managed_addr,
+ 		       init->kernel_managed_size,
+-		       &gpuvm_ops);
++		       &gpuvm_ops, false);
+ 	/* GPUVM takes care from here on. */
+ 	drm_gem_object_put(r_obj);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 99bf7412475c..14069fc9d820 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1363,7 +1363,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 	}
+ 
+ 	drm_gpuvm_init(&vm->gpuvm, "Xe VM", DRM_GPUVM_RESV_PROTECTED, &xe->drm,
+-		       vm_resv_obj, 0, vm->size, 0, 0, &gpuvm_ops);
++		       vm_resv_obj, 0, vm->size, 0, 0, &gpuvm_ops, false);
+ 
+ 	drm_gem_object_put(vm_resv_obj);
+ 
+diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
+index 429dc0d82eba..838dd7137f07 100644
+--- a/include/drm/drm_gpuvm.h
++++ b/include/drm/drm_gpuvm.h
+@@ -242,6 +242,12 @@ struct drm_gpuvm {
+ 	 * @drm: the &drm_device this VM lives in
+ 	 */
+ 	struct drm_device *drm;
++	/**
++	 * @mm: the process &mm_struct which create this gpuvm.
++	 * This is only used for shared virtual memory where virtual
++	 * address space is shared b/t CPU and GPU program.
++	 */
++	struct mm_struct *mm;
+ 
+ 	/**
+ 	 * @mm_start: start of the VA space
+@@ -342,7 +348,7 @@ void drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
+ 		    struct drm_gem_object *r_obj,
+ 		    u64 start_offset, u64 range,
+ 		    u64 reserve_offset, u64 reserve_range,
+-		    const struct drm_gpuvm_ops *ops);
++		    const struct drm_gpuvm_ops *ops, bool participate_svm);
+ 
+ /**
+  * drm_gpuvm_get() - acquire a struct drm_gpuvm reference
 -- 
 2.26.3
 
