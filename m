@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFF10C27C78
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 02:15:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 895F2C27C7B
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 02:15:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E91910E766;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D53310E767;
 	Wed, 12 Jun 2024 02:15:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lfGLAqMD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PU1GeEKo";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9161110E1FA
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Jun 2024 02:15:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A616910E1DA
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Jun 2024 02:15:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718158528; x=1749694528;
+ t=1718158527; x=1749694527;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=+AfoRMK0e4CcOd8GeV2P0LyUva/zd7bLJqhPGRhvag4=;
- b=lfGLAqMDZxmpBn6FrMziCobNdkwy1vc2UtYFR6JPJmSBHhgNv/xsSZ78
- sQD6BhCflg1YXZtkdJxkfMma80hWC+T0AeUzHJsvDjsjqIaLN4Wow45tb
- 5TVoj62Vx+mu8ScJb8B9eJAAMS3c0uhJSdHXdYvaT2MaxY3byJYHrAkse
- vSZSPJd/7JwufwDxlaTZJ4kfBUrPxB5IZJmUuyTAUWc+IejkD0IKwT1YR
- 2imRby78e7McBDwmRrENxd2Pn+/zdhLc0fjo1RqKwQGOo6b7dnLqQHluz
- Jv0z2FZhls9MjvFb/OtntvJm30NZtTanCYmphUoiOQH4+PBZmNxWvvEKT A==;
-X-CSE-ConnectionGUID: oxJ/1Sx3TGKOY/mCY32PNQ==
-X-CSE-MsgGUID: kCq/6tu6QDW7w0aHuFWesQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="37427788"
-X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; d="scan'208";a="37427788"
+ bh=5CkwzO55EzMAuk+e+WdVq9SUlqfUv+gGSF7eSYeYvvQ=;
+ b=PU1GeEKoejejTEcjAQXKv+lpoD6OYflo5JruaFA+ej9Qbf690QTwEWbm
+ dDuSioSC6gG6sp/Z9uYl5o1G6I3g5m+rq/UfasKIXL9urA7nC2AaNj1w6
+ blEVUjC99dWLybSe0zYAKp/IKm+3JIDPL5itahGIEyzZOfCIRNIz4yLTK
+ iACk2RVs9y+L3YBFIOn1wjUsBCE8GimqMR8+Wd+KHK/4cLhNY0uZ0KHmP
+ oHC1KyLdBbhhNcuiAHXwj8WWyOVPUIcBfmDa6LjyykE+6bu/89dt7An78
+ poFNF6dtVy/K4Fpp+IO67xbGcbYzj38XS4HPvRPWlDCODn5rmvonHG9gn A==;
+X-CSE-ConnectionGUID: Y9c9dx6qRJWVCQShGQp0Sw==
+X-CSE-MsgGUID: rSQikZOBRJO40HFDF4N5qA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="37427789"
+X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; d="scan'208";a="37427789"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Jun 2024 19:15:27 -0700
-X-CSE-ConnectionGUID: 1+n0R0+tSRGwYCI/1+XD0g==
-X-CSE-MsgGUID: m2MZuY1dQBupG2D/br1qTw==
+X-CSE-ConnectionGUID: GgYmFBvsQ5u+rcr5q7SQOQ==
+X-CSE-MsgGUID: 451vpe0XRqWSibkQ7QuYhQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; d="scan'208";a="44763623"
+X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; d="scan'208";a="44763624"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Jun 2024 19:15:27 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 07/43] drm: move xe_sg_segment_size to drm layer
-Date: Tue, 11 Jun 2024 22:25:29 -0400
-Message-Id: <20240612022605.385062-7-oak.zeng@intel.com>
+Subject: [CI 08/43] drm: Move GPUVA_START/LAST to drm_gpuvm.h
+Date: Tue, 11 Jun 2024 22:25:30 -0400
+Message-Id: <20240612022605.385062-8-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240612022605.385062-1-oak.zeng@intel.com>
 References: <20240612022605.385062-1-oak.zeng@intel.com>
@@ -66,9 +66,8 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move this helper function to drm layer and rename it to
-drm_gem_dma_max_sg_segment, so it can be used by the coming
-drm patches also. No functional changes.
+Move them to .h file so they can be used outside of drm_gpuvm.c.
+Also add a GPUVA_END micro.
 
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@intel.com>
@@ -76,153 +75,38 @@ Cc: Brian Welty <brian.welty@intel.com>
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c       |  3 ++-
- drivers/gpu/drm/xe/xe_bo.h       | 24 ------------------------
- drivers/gpu/drm/xe/xe_device.c   |  3 ++-
- drivers/gpu/drm/xe/xe_hmm.c      |  3 ++-
- include/drm/drm_gem_dma_helper.h | 25 +++++++++++++++++++++++++
- 5 files changed, 31 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/drm_gpuvm.c | 3 ---
+ include/drm/drm_gpuvm.h     | 4 ++++
+ 2 files changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 2bae01ce4e5b..d5823aab9fb8 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -9,6 +9,7 @@
+diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
+index f9eb56f24bef..7402ed6f1d33 100644
+--- a/drivers/gpu/drm/drm_gpuvm.c
++++ b/drivers/gpu/drm/drm_gpuvm.c
+@@ -867,9 +867,6 @@ __drm_gpuvm_bo_list_del(struct drm_gpuvm *gpuvm, spinlock_t *lock,
  
- #include <drm/drm_drv.h>
- #include <drm/drm_gem_ttm_helper.h>
-+#include <drm/drm_gem_dma_helper.h>
- #include <drm/drm_managed.h>
- #include <drm/ttm/ttm_device.h>
- #include <drm/ttm/ttm_placement.h>
-@@ -299,7 +300,7 @@ static int xe_tt_map_sg(struct ttm_tt *tt)
- 	ret = sg_alloc_table_from_pages_segment(&xe_tt->sgt, tt->pages,
- 						num_pages, 0,
- 						(u64)num_pages << PAGE_SHIFT,
--						xe_sg_segment_size(xe_tt->dev),
-+						drm_gem_dma_max_sg_segment(xe_tt->dev),
- 						GFP_KERNEL);
- 	if (ret)
- 		return ret;
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 6de894c728f5..90261c77ad13 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -289,30 +289,6 @@ void xe_bo_put_commit(struct llist_head *deferred);
+ #define to_drm_gpuva(__node)	container_of((__node), struct drm_gpuva, rb.node)
  
- struct sg_table *xe_bo_sg(struct xe_bo *bo);
- 
--/*
-- * xe_sg_segment_size() - Provides upper limit for sg segment size.
-- * @dev: device pointer
-- *
-- * Returns the maximum segment size for the 'struct scatterlist'
-- * elements.
-- */
--static inline unsigned int xe_sg_segment_size(struct device *dev)
--{
--	struct scatterlist __maybe_unused sg;
--	size_t max = BIT_ULL(sizeof(sg.length) * 8) - 1;
+-#define GPUVA_START(node) ((node)->va.addr)
+-#define GPUVA_LAST(node) ((node)->va.addr + (node)->va.range - 1)
 -
--	max = min_t(size_t, max, dma_max_mapping_size(dev));
--
--	/*
--	 * The iommu_dma_map_sg() function ensures iova allocation doesn't
--	 * cross dma segment boundary. It does so by padding some sg elements.
--	 * This can cause overflow, ending up with sg->length being set to 0.
--	 * Avoid this by ensuring maximum segment size is half of 'max'
--	 * rounded down to PAGE_SIZE.
--	 */
--	return round_down(max / 2, PAGE_SIZE);
--}
--
- #define i915_gem_object_flush_if_display(obj)		((void)(obj))
- 
- #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 94dbfe5cf19c..738fe5b03953 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -12,6 +12,7 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_client.h>
- #include <drm/drm_gem_ttm_helper.h>
-+#include <drm/drm_gem_dma_helper.h>
- #include <drm/drm_ioctl.h>
- #include <drm/drm_managed.h>
- #include <drm/drm_print.h>
-@@ -412,7 +413,7 @@ static int xe_set_dma_info(struct xe_device *xe)
- 	unsigned int mask_size = xe->info.dma_mask_size;
- 	int err;
- 
--	dma_set_max_seg_size(xe->drm.dev, xe_sg_segment_size(xe->drm.dev));
-+	dma_set_max_seg_size(xe->drm.dev, drm_gem_dma_max_sg_segment(xe->drm.dev));
- 
- 	err = dma_set_mask(xe->drm.dev, DMA_BIT_MASK(mask_size));
- 	if (err)
-diff --git a/drivers/gpu/drm/xe/xe_hmm.c b/drivers/gpu/drm/xe/xe_hmm.c
-index 2c32dc46f7d4..f99746c4bd6b 100644
---- a/drivers/gpu/drm/xe/xe_hmm.c
-+++ b/drivers/gpu/drm/xe/xe_hmm.c
-@@ -3,6 +3,7 @@
-  * Copyright © 2024 Intel Corporation
+ /* We do not actually use drm_gpuva_it_next(), tell the compiler to not complain
+  * about this.
   */
+diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
+index 00d4e43b76b6..429dc0d82eba 100644
+--- a/include/drm/drm_gpuvm.h
++++ b/include/drm/drm_gpuvm.h
+@@ -38,6 +38,10 @@ struct drm_gpuvm;
+ struct drm_gpuvm_bo;
+ struct drm_gpuvm_ops;
  
-+#include <drm/drm_gem_dma_helper.h>
- #include <linux/scatterlist.h>
- #include <linux/mmu_notifier.h>
- #include <linux/dma-mapping.h>
-@@ -96,7 +97,7 @@ static int xe_build_sg(struct xe_device *xe, struct hmm_range *range,
- 	}
- 
- 	ret = sg_alloc_table_from_pages_segment(st, pages, npages, 0, npages << PAGE_SHIFT,
--						xe_sg_segment_size(dev), GFP_KERNEL);
-+						drm_gem_dma_max_sg_segment(dev), GFP_KERNEL);
- 	if (ret)
- 		goto free_pages;
- 
-diff --git a/include/drm/drm_gem_dma_helper.h b/include/drm/drm_gem_dma_helper.h
-index a827bde494f6..ff7403b103ad 100644
---- a/include/drm/drm_gem_dma_helper.h
-+++ b/include/drm/drm_gem_dma_helper.h
-@@ -5,6 +5,7 @@
- #include <drm/drm_file.h>
- #include <drm/drm_ioctl.h>
- #include <drm/drm_gem.h>
-+#include <linux/dma-mapping.h>
- 
- struct drm_mode_create_dumb;
- 
-@@ -133,6 +134,30 @@ static inline int drm_gem_dma_object_mmap(struct drm_gem_object *obj, struct vm_
- 	return drm_gem_dma_mmap(dma_obj, vma);
- }
- 
-+/*
-+ * drm_gem_dma_max_sg_segment() - Provides upper limit for sg segment size.
-+ * @dev: device pointer
-+ *
-+ * Returns the maximum segment size for the 'struct scatterlist'
-+ * elements.
-+ */
-+static inline unsigned int drm_gem_dma_max_sg_segment(struct device *dev)
-+{
-+	struct scatterlist __maybe_unused sg;
-+	size_t max = BIT_ULL(sizeof(sg.length) * 8) - 1;
++#define GPUVA_START(node) ((node)->va.addr)
++#define GPUVA_LAST(node) ((node)->va.addr + (node)->va.range - 1)
++#define GPUVA_END(node) ((node)->va.addr + (node)->va.range)
 +
-+	max = min_t(size_t, max, dma_max_mapping_size(dev));
-+
-+	/*
-+	 * The iommu_dma_map_sg() function ensures iova allocation doesn't
-+	 * cross dma segment boundary. It does so by padding some sg elements.
-+	 * This can cause overflow, ending up with sg->length being set to 0.
-+	 * Avoid this by ensuring maximum segment size is half of 'max'
-+	 * rounded down to PAGE_SIZE.
-+	 */
-+	return round_down(max / 2, PAGE_SIZE);
-+}
-+
- /*
-  * Driver ops
+ /**
+  * enum drm_gpuva_flags - flags for struct drm_gpuva
   */
 -- 
 2.26.3
