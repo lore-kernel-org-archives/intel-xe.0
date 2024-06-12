@@ -4,181 +4,189 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DEC6C27C53
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 20:50:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69B3FC27C53
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 21:18:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DF2610E916;
-	Wed, 12 Jun 2024 20:50:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D297110E08E;
+	Wed, 12 Jun 2024 21:18:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iKlem/G8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WU0coZd0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28A3910E916
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Jun 2024 20:50:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49AD910E08E;
+ Wed, 12 Jun 2024 21:18:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718225453; x=1749761453;
+ t=1718227092; x=1749763092;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=uVO6BYZb1HNErg0XnLnMVZxhr0Cxk8LHFmzQNpfSOJ8=;
- b=iKlem/G83nCA5OBalfWMbK77GGBOFBrQdacb3wU4yV4ma8UQmAG3/jq3
- weSjaLIH9gO349nyJY2XMakiEzozOxp8pLE8wyvlKBTQdq5YjsWN3bO47
- B2wABoCAWfh0PTZMwTFCdG81XkmpQUi5WScRGe9c3iuEDFjtce5DFelV8
- JpFuEjYSQ0FVLTGIYWfHLJ6dd2X0NQxtUT6gyZ8duQ7pmqfiHJWsak9MZ
- pd/kW11VgpJOqwD+FWF7XiKHHEGLb+8FE77lJi0/BQHXZefC6fBqgLZ3O
- DMaepRgKInHlZuiRsIpG0EneRNbxrM2yD9tCjFo68q+pb0o51r/POOj3D g==;
-X-CSE-ConnectionGUID: wQBrMXQ+TFuqKhaMrJGD9g==
-X-CSE-MsgGUID: 8LrHFnOhRIy7BtxLcpBq6w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="25647928"
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="25647928"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ bh=Mtf8rSAYPzzLtGVyT155nHwMzCe1w5RvB4KO03mh2yQ=;
+ b=WU0coZd0t+rZ0KnynzXFNuiCaX82+b6qicPdN6UzgmE72aWAIjMyyguW
+ +Ollv9kNzfs9P98ddcMCThKi8QGlqE8p71aqXiuhVg2/flylkuDYTFBQx
+ gh7S4JYjMQ5Trc2aOEk2bDRyoEQMhhYUe4BXSK25mwOy9N0TKvtJO7Myr
+ FbUMfKWQ6K/YhtkGy+yBQbbX7P88no//S73+wnub3AiBJzDsBlfj15Y+5
+ Bg6YNeYz49ln0nn7ufNR+2p9r9I8ptpfJByX3wEDG3HdwgDXhE28U3LeY
+ 5YMJYz447zz/SeX/ZwVA5VM6HFag9F9qEtO7PTE1xDOOrCRXdAV9rHvpf A==;
+X-CSE-ConnectionGUID: LmXkmWXzQMm/7Py+SJ2yfg==
+X-CSE-MsgGUID: h/MkRvTjSLW6qj4z0ntxeg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="25651854"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="25651854"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2024 13:50:52 -0700
-X-CSE-ConnectionGUID: otjxCpUFQiaKnPzREqWSug==
-X-CSE-MsgGUID: haLs+XS2TgGvCqrbwJYF8Q==
+ 12 Jun 2024 14:18:12 -0700
+X-CSE-ConnectionGUID: PgBZSjauR++rAPsrGRzqSw==
+X-CSE-MsgGUID: mGRtHFduS4u2SwtDf7oVcw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40008408"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="39806094"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Jun 2024 13:50:52 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Jun 2024 14:18:12 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 12 Jun 2024 13:50:52 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ 15.1.2507.39; Wed, 12 Jun 2024 14:18:11 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 12 Jun 2024 14:18:10 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 12 Jun 2024 13:50:52 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.171)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Wed, 12 Jun 2024 14:18:10 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.40) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 12 Jun 2024 13:50:52 -0700
+ 15.1.2507.39; Wed, 12 Jun 2024 14:18:10 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MJHt0H0xli6o4Nt1Idw7KfAxqvdnZ4+nDumg3sSV+kC+YqlO4X3IP0RGwv01lZIFR2RbUQZ7s3hC+FnphezYBZFWvV3sXiIoMuPLLDKSi1r3SSNWJGOHT8PyALanVLP/tREWWDsha0FetFX117tOEbWqX6J4NiMJYPIlJHU6Z23MTDuGoxALKt3oJfb8PRpwZXMMwLXoHs9a3v5Ugz5xnketZSSRb3VZJq574lTNHbsLpuuxaXQt067aM5d49dui4DmszRY1HG6JsR1rM7icgYU1iiuFxfhGy7yd7H1arX5VpUZCYIwpg8x+4Z3HVPmXdZBLsUqgQg0ZYYGKM3f37A==
+ b=h7FC+LOzUnQIgYrUawwUQddqk/vLX4s4ZEJSHhkdkV8x8UQN4Cz5uqiAGZPdNIPgvQ6KTPyUJ1pPtU98/f/lwKmxvSDreqQCS3K7zOrhOYdqde5GvcyiYn+A3j7jXG/vuTTeAQTNKuRiYeUq6PhCvrMprIeuQz2usp/D3UhczTOVujK7haxeYtp77dkMcKcZra+NfYUouiymDKMIi/CDTEWUQayBpV6zY2bG8gJFlVHjNF5TrRBf05t44jCC0JeENgQ9EXxOYXCm3A7FEt3Xezt9QgJehd8bGj6ZguUnXqEMM3bj6MgSW2TQWbeZj0F+vArtxi/HOwvfiZqgj6dtKg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=G92yILG6sWFWTdokznLNuAmeBqzNywizawawzYdz/Rs=;
- b=DGd5j4w1yKQgSrbZEb2nmdydAY5OiRwVVeNHJuzdCvXKkmZkng8hWoa1R+BrD0Cx7W8guDyDm2Km/yM0z1Ws3BlE/e5B49/tscgKkB9MxfCv9/TC8d4enMUCEHiZ1gNapuCiusHZLgIW/1jiHuTdNhHWcLDK1X93tZc5n6fT8RTJGOAOMNDxPUIO7I/G3Hc3cjfLgb2Honammo4sNsiorQHTyP0tOY6ed/ybUo5uMAvrVbv6QqOuln33a3I8nZSzbMC4c1mL6nv6beaDCag9JRbHl2eLIeZvwdaxWfBaQw1TlKoCSgi2D3iJFOoB2NELHLQwKY1L7AQEq+5TGsn2aw==
+ bh=asli7V8wYq++6Daww/bTjXenl09EcIzCnidfINNwpFE=;
+ b=e6W+BQDqlPL/KjnQ+b/sTO6+naVdqXL9wa4QxLeHgc3lyo7tqCvuSI0755BchpS0c3pL7qj8q+hMxBNN+VFv4xQKIef/MiTe/oS5BkZKN+lFJm8/NzKyhYYscCblbOs96pl49AwqJwl0zhwhwQdLWpH1CD2V9FWZUIz6mfYMvdpZ2Zx2Q7RhO1Y11kWglx12sKbaR8Fxcl3jLbabSdSiLdDvAbMq38tanD/b1O/LgWxUcB0UzsYEKb83eHOkQUlY87A95WJ9bmKqSGS54DuXg0PmuxybQYP55CO8XlHBCEN8PWjMQbaIiCVxYSA/96P6tI2v8hQ9u0KsMRYynrg6yQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
- by BL3PR11MB6313.namprd11.prod.outlook.com (2603:10b6:208:3b0::10)
+ by PH8PR11MB7142.namprd11.prod.outlook.com (2603:10b6:510:22e::22)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.36; Wed, 12 Jun
- 2024 20:50:49 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.33; Wed, 12 Jun
+ 2024 21:18:08 +0000
 Received: from CH3PR11MB8441.namprd11.prod.outlook.com
  ([fe80::bc66:f083:da56:8550]) by CH3PR11MB8441.namprd11.prod.outlook.com
  ([fe80::bc66:f083:da56:8550%4]) with mapi id 15.20.7633.037; Wed, 12 Jun 2024
- 20:50:49 +0000
-Message-ID: <a7f1b756-fdf8-4104-b827-42ac18fc5149@intel.com>
-Date: Wed, 12 Jun 2024 13:50:46 -0700
+ 21:18:08 +0000
+Message-ID: <3a3a5560-ee3a-47e2-a609-faa64ae78475@intel.com>
+Date: Wed, 12 Jun 2024 14:18:04 -0700
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] drm/xe/guc: Avoid named enum types in GuC KLV ABI
+Subject: Re: [RFC 0/7] Promote GuC ABI headers to shared location
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- <intel-xe@lists.freedesktop.org>
-CC: Badal Nilawar <badal.nilawar@intel.com>
-References: <20240611180735.1988-1-michal.wajdeczko@intel.com>
- <20240611180735.1988-5-michal.wajdeczko@intel.com>
- <ff5024c2-a973-4a04-a41f-d0197ea74561@intel.com>
- <67ea0d7a-1383-46eb-84fe-eb6140063842@intel.com>
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+CC: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Lucas De Marchi <lucas.demarchi@intel.com>, Matthew
+ Brost <matthew.brost@intel.com>, Daniele Ceraolo Spurio
+ <daniele.ceraolospurio@intel.com>
+References: <20240611143008.1900-1-michal.wajdeczko@intel.com>
+ <2d9b0d82-3e2f-478a-bc7b-b6e589c70b38@intel.com>
+ <a0d7968d-81c5-4328-8654-9feab682655d@intel.com>
 Content-Language: en-GB
 From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <67ea0d7a-1383-46eb-84fe-eb6140063842@intel.com>
+In-Reply-To: <a0d7968d-81c5-4328-8654-9feab682655d@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MW2PR2101CA0035.namprd21.prod.outlook.com
- (2603:10b6:302:1::48) To CH3PR11MB8441.namprd11.prod.outlook.com
+X-ClientProxiedBy: MW4PR04CA0182.namprd04.prod.outlook.com
+ (2603:10b6:303:86::7) To CH3PR11MB8441.namprd11.prod.outlook.com
  (2603:10b6:610:1bc::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|BL3PR11MB6313:EE_
-X-MS-Office365-Filtering-Correlation-Id: 90025782-706f-4994-a5e5-08dc8b215724
+X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|PH8PR11MB7142:EE_
+X-MS-Office365-Filtering-Correlation-Id: b310377b-ed28-4e06-c334-08dc8b2527f5
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230034|376008|1800799018|366010;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SUhveU9TN09waExlM3hGazBhTlE1TVN1UTFNM1Z3K3hyaTQxdEJhdEljT2ZZ?=
- =?utf-8?B?aGNMbTVqeVZJbzhmTFg1bXRhR0ZSZUxVOE9kNmVZVjlhb3habkJjK1ltUTdP?=
- =?utf-8?B?cnliYnZUanhPYUtWdDlNWG5BMFhLdFJjdmFKdSs5TjNMOWcrUFBkMlFic0VY?=
- =?utf-8?B?MmZQQnI2citPcmpMNEZ4TzNPcDlIdm5GUjlqQUJFUWdvWC91eWp0L2s1TDBF?=
- =?utf-8?B?NkVIWlZaR2ZoWFFsRWxwWXZFR2IrbGZlaXlGRVdKektPV0w3QWh0SDcxZGpp?=
- =?utf-8?B?RXVGN2d0OEJPYTlYbGFZcWFEdnJGK0FJRVcvMVAwSFJLaEt5eWRSdWVkb21B?=
- =?utf-8?B?SnRKd2RDcU5MRVVOQ0ZtbWRDM2liT3hjQlRReUFGOExUZFkwOWhvY0s3c1Ix?=
- =?utf-8?B?TkZiV0pSUUNITG1OMFpHM3FGeUhSK2JMbXFSNXE5a1NpWkxxa1YwSzhpVU5K?=
- =?utf-8?B?Y2hBS2IyNHlaZnROZ2g4S2dHL1Qxd3JCUm04WFdVTXduczZucDBOTUN3dStH?=
- =?utf-8?B?OTZCVUFhYWV6UWVYTkZnRktnU3pCWGpadXN2VURkdFVCVFVPSXE2U3BQRFRK?=
- =?utf-8?B?b1BvM1dXdjVZOXRpWlQrVVVFVXluRlh4ajBWcU9yMWpxN1BhZm16N2I4MnY2?=
- =?utf-8?B?TzdKVHZ2Qmo4TUNlVGloTjFMc3Jmc1lvOEMvcTlhMlY0bVlMMTJIQWg4UFBn?=
- =?utf-8?B?NVdmNzdudHZFRE5RKzMxRjJXc2JzMFJRVXllOEZldVEwYmxWc2RJK05CQ1NJ?=
- =?utf-8?B?ek1vNFRVaFdBYThHNjNjTDFjZXhXc3FtelYrQlBvNS9TcGM4S1NPWHBIQmw3?=
- =?utf-8?B?YWViNDJiYXNjSWwyTEFlOFVpM1k4bVlFWkI4MStNL0RKeitJSnBPVjk3UXBD?=
- =?utf-8?B?NGxsVTd4dVRnZStoUjJoQStoamNqVVlJay8zY2pMOWo0bVRKcWpCL0JJNGV4?=
- =?utf-8?B?WElqcUxzY0E4cEVhb1pzbmhmeERaNUh6SFhRS3lTc3NjYWo3QTZ3d0tnbUVL?=
- =?utf-8?B?WjF3eWlqSU1hT21TS0F5dnF4WTU5TDlkcmVXQ250NHA0eVRJcWZGekdBRStP?=
- =?utf-8?B?Rnh0dVF6bWl5cmtoakp1MzJJakR2U3ZFeGh3VndlZFZSLythYVMyenBGelI2?=
- =?utf-8?B?ME1SVExmOFltdHIzeWxZM2l4ZW5VOC9oalFoZFhsMFdiM25LeTBTRmVidFR6?=
- =?utf-8?B?aDVjaEhJTjl2dllYalZIVWJsMlB4UEV1c0YvUlVxbmlyTlI0Z1NOa1VJL3hy?=
- =?utf-8?B?TXNnL3d6eGkzOEJwSHExTi9QUzRYWXNic1M3MjVZWTRFMnRmNlJPdTJvWW1n?=
- =?utf-8?B?MEpDRXBSK3VPTE14dmZOY0dMT1BMajlwdDdBQjFwbHVGdHJIbFFFZTZueDFi?=
- =?utf-8?B?Z0dWVUo0dG1oRHJzK0tpcTRzb3laZUJhbTZnWE9RMThsaEFUN3BOSENadXNz?=
- =?utf-8?B?L3RGSmtnbTR0YzAwVXJnTUswRU9uY1Izb0xaTnpYbWIyNHlyT0RvdVBCMlVG?=
- =?utf-8?B?Qis0cjl2MERsbmZYRk5XSnJJQ0hZNTQzTVdnaDBVeVhuL2F6cG1XclhxZ1Qr?=
- =?utf-8?B?RFRsd21qSW9MQml0Zy9GL2JhL2Y2YitldFpDaHBWNHdOK1N6bHp0dmVCZFBu?=
- =?utf-8?B?RExLaEdZVDlsa0RKUzRvV0FvQlY1SVBpQzRnNUR5dVBwdjg3OGxxS1JJMUtT?=
- =?utf-8?Q?oV0L5AvEFBDMv1GShi96?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?RWdaM3lkSW9TU1hpQTAvRjJoS3hlVTdwMkpZRFNnUUNjY0J2dWJDOXJKYnhL?=
+ =?utf-8?B?TVVpNGlzdjV5ek5ybFlpTjhJdzFSa25WWGJxa0hvREViWDFMZFR1V1lhcnpU?=
+ =?utf-8?B?T0h0Rmh5ZDBFUmpoR3A2R2VGVFpjVFZkSHkxM3NVUnNTaDJJLzNDZk02NlFp?=
+ =?utf-8?B?NEUyVlNieUVmNlJLZERIbjFwZTZ0dDFlZmJ3bEQ0b3duRitwU0JZcmwyNzVI?=
+ =?utf-8?B?a3QrSGM5MkVUVnJSZ3YreEUyVFgzOUxRenN0MENPRkJwSG82YjZJaUlNM1p6?=
+ =?utf-8?B?RVlUL2UyQ1NpdTZLQVY0ajZMUkZxc0lSb0o2eFZZcG1OakdYdUhyVE9lV2JQ?=
+ =?utf-8?B?b2NvZDU2UGZVT1VnTm1SNHpxQTFjaGVFSERnVUg4eTkxOUdoZUd5dUN4U1Av?=
+ =?utf-8?B?VzVkL3RKWk5RYTNhanF2YVlKSllVT0lTaUEyMDdoa3o2cmNxN0tmeS9KTUd5?=
+ =?utf-8?B?U2ZNa1Vxc1J3SFpLSE1FWTBhMnViOENVZnllZ1VSVUZHSjlTWUFpczZaM2Zt?=
+ =?utf-8?B?bU12dnJFZ2prZExubnZQeHE2blR3dk41d3F0WXJQT3p1bDhpVkcvSlpuZEtI?=
+ =?utf-8?B?djArYVNIYVorbW54K29DZ2U4bWNla0d3UGkrKzh5T3BKcTFmTDZ0STgxQTZi?=
+ =?utf-8?B?U0tmUkw3T2RFTDNXYTZ2NkVScmVrdnRGcHlSMjFUOVdtYTdIcEVSd3BDSStj?=
+ =?utf-8?B?cWVGUHh3R3lCcUJOS1J6b0wxOHZSY1dFUHIvRmNxOGNiVlArRmkyZ3p3bVFG?=
+ =?utf-8?B?YmQxVEo0Skx0Si9EekpFT0pzNTN0NGMzQ2hqVUY3UUR6cGxaOE5ZVk1ETXRS?=
+ =?utf-8?B?R2VOMk1KSUxrMnhXd05WeGxoOWRuQk11Sjh1S3BUb2QySFhRckJjMGg4ckV2?=
+ =?utf-8?B?dUlqRzh1Ym9NcFovN3VyaDBWL2ZtNTJUNng5Z0Y4WXE0VFNmSlpaR1VtYTRV?=
+ =?utf-8?B?aHkvSlNCdVBwbDBxWVllT2VudE1KK3VJZDR1anRJdWJ6Y0prcG9sUlFrOUhW?=
+ =?utf-8?B?azVlNmFRL0VPOVl4dG9PcjYrQkZvMFRkRjZ3N0tOMmcvN1ZMcHFlczIrZFkr?=
+ =?utf-8?B?bWF3cXJHdnE3aTNicXUyTmRMY2FzYkR4MmxSZ0w3bFhPMGR0MXNxRHEvSmdl?=
+ =?utf-8?B?MFZhVGs1OENWZlFTKzl3SFhBWVJPN2ltemIzL2R3ZWM3QklDbDlGdDlsOGRW?=
+ =?utf-8?B?bGZGdVRZUGo0aUdwU0c1WDFIMUZJODZxRDd6bGlOV3NzdGRyVDJ0OUl2M0hj?=
+ =?utf-8?B?UkF2MDIvRlp3b1Q2SDMxNldHcmZqVDdBeWNENGNwR054NVFhbFRaTG9FOHBp?=
+ =?utf-8?B?VXh3L2xWaUg1TmZpV1dCdTdmcm11RDBzbWNwVmZaV3FVS2MvZzFnZzlQNk5s?=
+ =?utf-8?B?SFFRaG5kcWZxVXFTOTVkR1Z2eUVwNDRPbHhHaHpLY0FJOElxblBBeWx1ODRO?=
+ =?utf-8?B?WEpzbUlJZCs5WXdaSUZBamJiSFUvUkJoQlVBMlhBVjZ1aDNoWFhTVDVuUkJ5?=
+ =?utf-8?B?NXN6dHVETkJoZ2dRdlRWTFRmMkNucmNpWXdEWjRnN0g2OTROMTNuS3BIeFZk?=
+ =?utf-8?B?S1dOZzQzSC91U2c4Q2pCaThtOTAvS3VwOHN2aFRnMmlXVFE0c283V0gyRThU?=
+ =?utf-8?B?cEErTGUyTkJwVnV3bWxCQTJod2srR1dkQTRGbEVvMVh0NHhWeHlMVlhFL2Ru?=
+ =?utf-8?B?eDhtRkxDV1BjODhTb3R6cGJhYXQvcUd2KzJqWlVidHk5eHJlT3p3ZmRBWEhu?=
+ =?utf-8?Q?uBjhHc2QadBcJf4Rw3W2VMKqVsiIT+BZF54eyia?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230034)(376008)(1800799018)(366010); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YXIrRWR5eVkyVUlIMmFhMjQ2SE9ReGY2M1BKcWpwV2lTeVdRQ0tLalBkZHF2?=
- =?utf-8?B?YThadGsrVmtrcmNnUGVMdHNuc0JPVFE3YTdtdkNuaDAwK3lvRzE2c0F6dFpO?=
- =?utf-8?B?dTJ1WUVwa1kvcHNPa0FXZDJ1azYyWVRVbCtwM1JDeGtWZFFpbUhHTzlNNUlP?=
- =?utf-8?B?cGgxMFM0K1dkYUZpS2NFcTl0NkhHemx4NjlOS1JXcEtMVXl3NXdnZXpESUNX?=
- =?utf-8?B?Q0xlcElndUJucm5BK3QwbDdEQTVpRHoyaGR4ZXdaZjA4Z216c0ZjV1pkN1hI?=
- =?utf-8?B?cll5dUM4QlBTMlB1b0dTUnVkUjBoZnlFNkJOdjFJblhIS0ZDYjZwWUVjNG5Y?=
- =?utf-8?B?SFlKRDRHVkp6emxsRzJDMEtZYlN1MmRkZnZ3U2M2eFRvNm5hc08xRG9hTVoy?=
- =?utf-8?B?OWhGMkM1WEwwRUZGZFlvYkhtYU8vUFNBS1l3MVRGcThZK2RiYWc5aFBrcnVx?=
- =?utf-8?B?dXM1TDJxdFNSZWtlZm0xZVBHcnh1Sk4zSjhwOFFYZmYyazdKZXN3WjNaNnVS?=
- =?utf-8?B?WGkyblRkald0OUF1c3lHb0gzSzNuWlAwbXJQR0VPcy9kVW9OSDBIV2EvYjd0?=
- =?utf-8?B?R1VQTi9zRlFJdmtlWTk0ZGdFUlRHZlBWOGpJaUg2WWxDdG54QkN4UkNyQTBw?=
- =?utf-8?B?VmloODlLUmtUdUtndjU3dEowRDl1NDk5OG55TWVDNXQ5dDlrbHF5K3lPa0ZS?=
- =?utf-8?B?NUh0UFhkcnp3d2U3ZFUrQlV5bENCYXRxT0g1SXhDVkxwMHVUMVdSa05LK3U2?=
- =?utf-8?B?UU9QbnRsWnYraUNNRUJkcURSTm9qSlVuaXlXSko2dlkvdDYvbjZBbm9QNkw2?=
- =?utf-8?B?Z0VvWXg1QzA2WU15OHZsV1Q0UjRjbFUzYklSZEtpRFhwR1U3VGpyc2c1Unkw?=
- =?utf-8?B?UjdPRHYrUGZ0YnFjQWpqZ0xrYnlZTnJjNmtaKzdyOVRINFdnRG1PQzdDcW03?=
- =?utf-8?B?aVZySVhKcGtNNkEwQVA3Qk5kamNTb2pUT2pxQmpoZjZ6SlBTT3ZRMjh4dVNv?=
- =?utf-8?B?RWF2bFdsYlB6Z0tidm5HSHlNckFWUStSVjI0Z09LYmg0V0QvR1hMV2U2RFlt?=
- =?utf-8?B?d0dBMzVoU3lCMzE2dm1WR1NnWE9rb0NjUGpkdTFZL0xHcU1HZDMrRzFxOFpz?=
- =?utf-8?B?OFNEMHdqNTdYcEE5Smo3Mnc5MWtiYUl5akFMUlkrVkdTSnNTUmFody9kRGJn?=
- =?utf-8?B?LzVxbTJCKzd0K2ZER1VPbm55YXVja3RINk5OVGUvQnJuTWRGVFR0YTREOGpa?=
- =?utf-8?B?VkRITGo3ejF5RzA0cVBUSW1MclNaL3VZTVBlVFNxSlpVNzNORkVzTzJSckFC?=
- =?utf-8?B?TGs3YkQ5SHJZSW05Z3JhNHVkTkV2ZzV6Mmw2RXk0QkRhK05wQ2JvUWloTU84?=
- =?utf-8?B?Sm9TVmV4T1NCRkkwbnhFcE42Tk8xUWIwMWd2SmRoZmRpUGdISzhKWEtSaWR3?=
- =?utf-8?B?NFY0VndsaWxkUXJPTjUwam40aVpxNkRhWkRJOHNFZDlOZzlzT3laWVQyZ0Zm?=
- =?utf-8?B?dlVqUkdIUTdvUWtoKzZnT1RLcytscEdkYWt4ZXRvL0RKdXdTVEtwaVhaYzkx?=
- =?utf-8?B?a1pSZHlXbTU2akZSalRGWXd4aG5iYWVnenZYL0preVJZZTZmTjkzMUxyODNR?=
- =?utf-8?B?Nkp4c3RqWG8waXFRRG9xQmNUK3lUck9TMHRPMGVSRE5uQnl6VFJlUXAwZCtu?=
- =?utf-8?B?aitoSE9UblJra09YUU8zRmg3N3FGcHVQTjJ2aXhjRHRmRGQyRHhlM2NjSWxu?=
- =?utf-8?B?OVNEbTU5RzdpejVKcW9WUWdrZGI0QWpOdUpFUUZaYW90RXlpMHhjRnN2eTVx?=
- =?utf-8?B?VEc4bVlwUEFENFJHaUtqSGpnOGZsY2ZsOTdTeDBva043bWpmRzV6QkdPY3Qr?=
- =?utf-8?B?RHBlS0NVOStYbGxjQStGaCtTMEgySDA1WGowZGVGaTdLQTNZS2JtOXNCVExT?=
- =?utf-8?B?VXlpN1FIdXhjNWVESGRqTndHS0hXMVhuWlZzSkovT3A5MHFSK05STjRXZFdN?=
- =?utf-8?B?TThVNjdKSFRMU1lCZndEemNBdGxUcjJlYUMxRTZiVURrNUpiWUZ4L1JZMmtT?=
- =?utf-8?B?dlhJdURXYWJjMnRLMzdyZFlvcHpFbXZTODEvaGhydURSejY1NTI3ZGpkNW8r?=
- =?utf-8?B?UGVaY0FobXRSbnB1a2JDSXVwMTBOZm9LZ1h2Y2owK2NzSXpsQThIQ0tRZVEy?=
- =?utf-8?B?R0E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 90025782-706f-4994-a5e5-08dc8b215724
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MjJYbVBCS2JWOHdJSUEyeFBxOFR0QkJ6c0l3Qmc0TUo1NWRlazJLcm93bFNQ?=
+ =?utf-8?B?eFlTY2EvTFZQbzAyY2lmU3RYOXQzSnJMeXMyWDczWFgrd25TeXhtdGQ1QzRE?=
+ =?utf-8?B?UjFWUmg0Szcwd0tVRlJBekRQL0ZjVllTd3AxZjludnk0dnkreStJcDJXVmcr?=
+ =?utf-8?B?YW5qYVVQV2RmWVc5RDdZUXpOOWh0c2VvQmV4TGs0cytldzJGWjdTSW5qUDA4?=
+ =?utf-8?B?K3NlUUxBakFLVytRQUFtU0tITTFYQ1o3ZUVmTW5MSmF5eCtiRDBMUng4TGlM?=
+ =?utf-8?B?Ui93WDYrTDFLOHFYWm5hZC9yejhKK2tQZFJPVnU3OHdORVdQcC96MWxJSzYr?=
+ =?utf-8?B?cDdUQS90OXpyL0NoS2hTUmhZMDljWStaUXg5dFZ6KzNGeUt0MEVCRWtjTEt4?=
+ =?utf-8?B?Q2RnUWpqS3VERWg1VENuOUo5enJqMzRhcWlCSjZkeWtpS3FrSHhORnM0VnRD?=
+ =?utf-8?B?TnNUVWo5dThsSUc0M25JYWM3VVhCTUVoWkx1cnV2dGRydjFPanRpQ3hxb0Nl?=
+ =?utf-8?B?VXdtQnpGRjk0NDBWVk9wU3VYeXhXWHFQNHRqUWFQNjBXV1Y0UlljUFIrR1pG?=
+ =?utf-8?B?RG1FaHVMUlhobnZVK0hoNUtRTEI1MVhtYkR2ZThsRU5DdDF1c05vSmluZ2Za?=
+ =?utf-8?B?aU9vdmtoS0h1eE1aSUZ3QmF2VFo5SW9DQzhQZUpZeDBYQ3J2WDFKVnRtSlJ4?=
+ =?utf-8?B?RmpRSlc4VGpXeEdta1VQQUd4K1dIclJ1TDRueEJoU0VFbEFzTGVwc0pwMHlj?=
+ =?utf-8?B?bWF3V1ptYTNRSmpndE81b000TmVpZzNDeW1iV0ZRajljeUNTSnIzbHBkenBa?=
+ =?utf-8?B?ZytZRUJQWThtREZaanBuYi9yZGpSbnNFK08zd25iMFU4dExXUzlxYU1wSHJZ?=
+ =?utf-8?B?TXZIVHRjUVpyd3JvaC91aWN5cTNHNEYrZlljTU1tNWJrLzNwa3JnQk1ibzRM?=
+ =?utf-8?B?K2hWNW5XRTdTZlM1amtoVG9pNzFsZXdFTStZUldnd2EwYnVTYlRVUDJWR3Qz?=
+ =?utf-8?B?c0szT25ROTVPWGdCaDFnOVBTdzZOdnY4M3p6YTliQVlSdEVqb3EzajJnZUNB?=
+ =?utf-8?B?b2F2WE9sZG1SK204S1MvTi9IL3diaUpjYWZjTk5nb01UZHpzUzZLeUF2aU5F?=
+ =?utf-8?B?M2xoYTRNSVVVOG5pN0pwZHQxQS94MUhTejMrV050Q2dUY2lUYityY3hqYmxm?=
+ =?utf-8?B?VFp4bUJZczlnQ2dyZkpVM0NJWHNuaTN4NXR2cW56cmJuKzQwWTBYS0FoVEJ0?=
+ =?utf-8?B?c2NDWVFwS2xWNERWOXFEby9IOEVRZklWSHNBQVdORlE5bW9zQi9JY1J2c2g5?=
+ =?utf-8?B?aStIUk9nYUlmRVAvZlVnR3dtYnZWanQyTTBPaWhWQzdITTV3bFhTTXY3aHNu?=
+ =?utf-8?B?YS9vdWV4a291UFFVcEFPdXJRZVVaZHNDMWNFT1RwRzlCaVVRYlg5OFRvTEdF?=
+ =?utf-8?B?WE92cytQNUpJbUR3dnN6MjF5SDAvNWhTTWtqVFd4ek1BdUk1UHM3YURxY2pm?=
+ =?utf-8?B?eVRIb1VZK0NyYzlTME9abmJoVTl0QkM0dVRldUdRK0dISlpZYTlJemVCanlj?=
+ =?utf-8?B?TjJuNjhVelNuRXVMaUpyNjdOUVN2U1BZNm0xbnJPSFo2dURIcE5LSm9raGhx?=
+ =?utf-8?B?NUZpekhtRVVqNmdvU1JDY0ZpSzd0SkhuTnFVZFgzMTRlaDQwZEFiQzU2dHVu?=
+ =?utf-8?B?a2RhWlpPMzVTaG9nZDk5SFVId01IYTJGYVl2M3lBVFFpRkFXUjRNKzBzRVov?=
+ =?utf-8?B?d0w2ZmU1R0JUK1YvalJzc092cFVwY3ZETUM2MmYrZWk2N0RwVDlxTTZDcGlS?=
+ =?utf-8?B?NSsrQU44ZUphTU1FN1A1VmxiQ2pSRGlPVUJRTWRoWDB3Rm1IL3pacXJZdlVW?=
+ =?utf-8?B?WU9oaEJRS3hyWE1oSllwbERuSWY2c2lNUTJxWU5qQ2xyTDlzbGdYc1VGVTBT?=
+ =?utf-8?B?QzJJQ2VKNXByb1ozckxIZUJyd1JKTkJLK09OdkVlUC9oTVkrVzVsMFFEZzdE?=
+ =?utf-8?B?S2N0WkhYV3pMNWpUS2NEbmE3dU1nUm9kSVZpRzJYb0ZQbVY1QnFaOGFxSC95?=
+ =?utf-8?B?T0t4bEhHTitMUkIwb0J1OEZnbzZLMWdyaFZLVk81aWQ2OXlVWldQd3gwWUJh?=
+ =?utf-8?B?cmZHY1JmSUNxYUZLSVg4WEQreWlaamJjWmNnT2wxV21nZWpNRzI4bWYwMUtB?=
+ =?utf-8?B?TUE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b310377b-ed28-4e06-c334-08dc8b2527f5
 X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2024 20:50:49.3398 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2024 21:18:08.1939 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DlLC7kjQP9DGbSrLD/DOwllKdFskebEgKbsjRxi2DQfQAaIsa46GFxytcroMwc8uAfAdXypOXnl/gHGkjibfpvKhtTASl2CyYTwExFhsJ6U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6313
+X-MS-Exchange-CrossTenant-UserPrincipalName: k15QiJs/ZDpvTpHOYwCRgD5D6OYGqRG6qmuFoJADspUBK2oKfLe+IjW2oASXuJh3sKDcKpw3W74r+iYb/FRjZxw/vZmgsNeX5qSQUGE0+bM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB7142
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -194,58 +202,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 6/11/2024 14:14, Michal Wajdeczko wrote:
-> On 11.06.2024 22:16, John Harrison wrote:
->> On 6/11/2024 11:07, Michal Wajdeczko wrote:
->>> The xe_guc_klv_ids name just for workaround keys is too generic,
->> So rename it to xe_guc_wa_klv_ids?
-> but the idea is to make GuC ABI headers shareable between i915 and xe,
-> see [1], thus having driver specific prefix in the enum is not desired
->
-> what about guc_wa_klv_keys (as we have KEY not ID in the KLV)
-Sure. Although if this is in global space rather than confined to a 
-specific driver then shouldn't it be intel_guc_wa_klv_keys?
+On 6/11/2024 14:45, Michal Wajdeczko wrote:
+> On 11.06.2024 22:32, John Harrison wrote:
+>> On 6/11/2024 07:30, Michal Wajdeczko wrote:
+>>> There are many GuC ABI definitions named in the same way by the i915
+>>> and Xe drivers, preventing proper generation of the documentation.
+>>>
+>>> Promote GuC ABI definitions to shared location that can be used by
+>>> both drivers and can be included in documentation.
+>> I still very strongly feel that this is the wrong place for such
+>> documentation. We do not document any of the hardware registers in the
+>> driver, nor the MI_ instructions, etc. Why is this any different? The
+>> GuC ABI is not under the control of the Linux kernel driver, either i915
+>> or Xe. It is effectively a hardware interface no different to any other
+>> hardware interface. It is already fully documented by the owners of that
+>> interface. Rather than just copying random chunks of that documentation
+>> into the kernel driver, we should just be publishing the official
+>> document itself. Same as we do for the rest of the hardware.
+> so go publish this official document
+My point is that we should be putting effort into making this happen. So 
+far as I know, I am the only person that ever raises this topic. And I 
+do keep raising it only to be told it is too low a priority. If more 
+people actually pushed for it then maybe it would happen.
 
 >
-> [1] https://patchwork.freedesktop.org/series/134722/
->
->>> as workaround keys are not the only keys used by the GuC firmware.
->>> Other KLVs keys are defined as plain defines or anonymous enums.
->> Just because other instances are done badly doesn't mean we should break
->> the good one to match.
-> all these are ABI definitions so IMO there is nothing wrong with using
-> plain defines for values expected at the binary interface
-But there is advantage to keeping things correctly typed at the software 
-level before you get to the binary interface. E.g. you have a helper 
-function specifically for working with w/a KLVs that will produce a 
-compile time warning if passed a scheduler policy key by accident.
+> in the meantime IMO it is useful to show, with really little effort, on
+> what grounds the communication between i915/Xe and GuC works, so
+> everyone, not just selected engineers, can understand and review our
+> implementation and check its correctness
+Simply providing a half sentence description of a bitfield definition 
+does not tell you anything about the correctness or usage of an 
+interface. Sure, you can tell that it is syntactically correct but the 
+compiler can do that for you with the appropriate FIELD definitions. It 
+does not tell you anything about whether you are using the interface 
+properly or even if this is the proper interface to use. You need the 
+full descriptive documentation for that. Are you going to copy all of 
+that into the driver? Then you might as well just publish the document 
+you are copying from and be done.
 
 >
-> also using defines allows to have similarly named related definitions
-> that we could all place together (like KEY and LEN for each KLV), which
-> would be hard to achieve if we will have separate enums for those
-You can put #defines in the middle of an enum. Or you can quite easily 
-and cleanly prefix the relevant defines with a comment to say which key 
-they belong to.
+> furthermore, if you don't like any hw documentation then we should
+> revisit what is already in gpu/i915 section and also reconsider all our
+> efforts to document all non-static driver functions, as those functions
+> are still internal to the driver, not to be used outside
+I do not know what you are arguing for here.
 
-Personally, I find the way that H2G/G2H action definitions are scattered 
-through multiple files and hugely spaced out within those files makes it 
-extremely difficult to work with them. The original single, concise enum 
-of all actions was so much easier to use.
-
->
->> Having a named type gives you an extra level of compiler type checks
->> that you don't get with a u16.
-> fine, but at the end you need to convert to u16 anyway
-But the later you do that conversion, the safer your code is.
-
->
-> and hopefully there will be no clash when those WA keys will be used
-> where we use another named enum for KLV keys
-I'm not following. You are saying that there could be a clash because 
-0x9002 is used for a w/a key and also for a policy key, for example? Or 
-that there could be two intel_guc_wa_klv_key enums that are used for 
-different platforms?
+Xe in general is being pushed to have much better documentation of the 
+code than i915 did. But documentation of the driver is a very different 
+topic to documentation of the hardware.
 
 John.
 
@@ -253,55 +257,57 @@ John.
 >> John.
 >>
 >>
->>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>> Cc: Jani Nikula <jani.nikula@intel.com>
+>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 >>> Cc: John Harrison <John.C.Harrison@Intel.com>
->>> Cc: Badal Nilawar <badal.nilawar@intel.com>
->>> ---
->>>    drivers/gpu/drm/xe/abi/guc_klvs_abi.h | 2 +-
->>>    drivers/gpu/drm/xe/xe_guc_ads.c       | 4 ++--
->>>    2 files changed, 3 insertions(+), 3 deletions(-)
 >>>
->>> diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
->>> b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
->>> index a0b80c9fc5ef..831a2b57f308 100644
->>> --- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
->>> +++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
->>> @@ -346,7 +346,7 @@ enum {
->>>    /*
->>>     * Workaround keys:
->>>     */
->>> -enum xe_guc_klv_ids {
->>> +enum {
->>>       
->>> GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED                =
->>> 0x9002,
->>>        GUC_WORKAROUND_KLV_ID_GAM_PFQ_SHADOW_TAIL_POLLING
->>> = 0x9005,
->>>       
->>> GUC_WORKAROUND_KLV_ID_DISABLE_MTP_DURING_ASYNC_COMPUTE
->>> = 0x9007,
->>> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c
->>> b/drivers/gpu/drm/xe/xe_guc_ads.c
->>> index 1c60b685dbc6..a3de00e92b4e 100644
->>> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
->>> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
->>> @@ -285,7 +285,7 @@ static size_t calculate_golden_lrc_size(struct
->>> xe_guc_ads *ads)
->>>    }
->>>      static void guc_waklv_enable_one_word(struct xe_guc_ads *ads,
->>> -                      enum xe_guc_klv_ids klv_id,
->>> +                      u16 klv_id,
->>>                          u32 value,
->>>                          u32 *offset, u32 *remain)
->>>    {
->>> @@ -312,7 +312,7 @@ static void guc_waklv_enable_one_word(struct
->>> xe_guc_ads *ads,
->>>    }
->>>      static void guc_waklv_enable_simple(struct xe_guc_ads *ads,
->>> -                    enum xe_guc_klv_ids klv_id, u32 *offset, u32
->>> *remain)
->>> +                    u16 klv_id, u32 *offset, u32 *remain)
->>>    {
->>>        u32 klv_entry[] = {
->>>            /* 16:16 key/length */
+>>> Michal Wajdeczko (7):
+>>>     drm/xe/guc: Promote GuC ABI headers to shared location
+>>>     Documentation/gpu: Separate GuC ABI section
+>>>     Documentation/gpu: Switch to shared GuC ABI definitions
+>>>     drm/intel/guc: Update CTB communication ABI
+>>>     drm/intel/guc: Add new KLV definitions
+>>>     drm/i915: Use shared GuC ABI definitions
+>>>     drm/xe: Promote SR-IOV GuC ABI definitions to shared location
+>>>
+>>>    Documentation/gpu/drivers.rst                 |   1 +
+>>>    Documentation/gpu/guc.rst                     |  23 ++
+>>>    Documentation/gpu/i915.rst                    |   9 -
+>>>    drivers/gpu/drm/i915/Makefile                 |   5 +
+>>>    .../gt/uc/abi/guc_communication_ctb_abi.h     | 170 -----------
+>>>    .../gt/uc/abi/guc_communication_mmio_abi.h    |  49 ----
+>>>    drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h | 112 --------
+>>>    .../gpu/drm/i915/gt/uc/abi/guc_messages_abi.h | 264 ------------------
+>>>    .../guc}/abi/guc_actions_sriov_abi.h          |   0
+>>>    .../guc}/abi/guc_communication_ctb_abi.h      |   2 +
+>>>    .../guc}/abi/guc_communication_mmio_abi.h     |   0
+>>>    .../drm/{xe => intel/guc}/abi/guc_klvs_abi.h  |  18 +-
+>>>    .../{xe => intel/guc}/abi/guc_messages_abi.h  |   0
+>>>    .../guc}/abi/guc_relay_actions_abi.h          |   0
+>>>    .../guc}/abi/guc_relay_communication_abi.h    |   0
+>>>    drivers/gpu/drm/xe/Makefile                   |   5 +
+>>>    16 files changed, 49 insertions(+), 609 deletions(-)
+>>>    create mode 100644 Documentation/gpu/guc.rst
+>>>    delete mode 100644
+>>> drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+>>>    delete mode 100644
+>>> drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_abi.h
+>>>    delete mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
+>>>    delete mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_messages_abi.h
+>>>    rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_actions_sriov_abi.h
+>>> (100%)
+>>>    rename drivers/gpu/drm/{xe =>
+>>> intel/guc}/abi/guc_communication_ctb_abi.h (98%)
+>>>    rename drivers/gpu/drm/{xe =>
+>>> intel/guc}/abi/guc_communication_mmio_abi.h (100%)
+>>>    rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_klvs_abi.h (97%)
+>>>    rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_messages_abi.h (100%)
+>>>    rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_relay_actions_abi.h
+>>> (100%)
+>>>    rename drivers/gpu/drm/{xe =>
+>>> intel/guc}/abi/guc_relay_communication_abi.h (100%)
+>>>
 
