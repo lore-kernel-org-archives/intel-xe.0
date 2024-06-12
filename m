@@ -4,52 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0BE1C2BA12
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 02:15:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 968CCC2BA16
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 02:15:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86C1910E76C;
-	Wed, 12 Jun 2024 02:15:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9286310E1DA;
+	Wed, 12 Jun 2024 02:15:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xql9T7bg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nYnSf1qY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5172E10E769
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Jun 2024 02:15:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A23510E753
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Jun 2024 02:15:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718158539; x=1749694539;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=/xNLG3U29OgkyA1tKMaWZ92RWxnb2Y1szOX8Own9nJ0=;
- b=Xql9T7bgFjmj27tjnwmCow8fPvWb43a7U4cJiMRGPkHWjkn174oda3vS
- hu+qW382md/zdmEC0+nR+iyXSw1P2c3+dOjO/gSxTo9ve3vGlp5rDpHyV
- Qcjecus67jgt1XRw6ja1haa5dOj9GgdGLJU9CWOMeOlZh7q4VgdbFFT3B
- qasZRfRTiGAZgRiHU0SbcZ6xLHVP0SIxZN9dqCLpZRvfLeQlOCnbfMl/7
- DOIT+cTvFTxUHiDeR1oZNW9oJZq/cNigYmjQAH6CXrNOQKa6m9w6kVEMU
- wqXdIWOnDLFF7Y3wRnp8xA9Sjfy47F3tWawY+ba6keK44jm+snPXQm+Zv A==;
-X-CSE-ConnectionGUID: yNIwvFgHTE2Rudbm3X2dCg==
-X-CSE-MsgGUID: lJDBX/vPTx+KoU8S/0OzrQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="37427793"
-X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; d="scan'208";a="37427793"
+ t=1718158537; x=1749694537;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bfe/ss9D1ugF3T9zPvM1uOiUBUsBjaZaUG6UuF09ZtQ=;
+ b=nYnSf1qY+vo6/yv2sKSwW0OL2JNP6N+7DDo1dzhAjdvtjA5i6+2r3hMI
+ zlGCVxGAQ8KwoxETQNPruyWIL6RtV1a4oEEqwYYn8TA4vW6CbBsOvFXxv
+ YD5l5FKPSqSrLafoCSrwohbAB+vRdDuvtP6DMf7gywxF5uGIPfqD0QosN
+ 8gHHsfmSqMJn8QH3lwEEalMoM9w9lGNv7PF6gXw7lLuzHWD7bDvIxMkrE
+ upMZen1nOKjCL5Tc4FstmiHtFtUKQVfmDO1ilAQR5HdsalO9wAMSsweZK
+ EwbRnfMj7PklNIogMMdyKr+U++UJw4j43S2OEAW+f15FP0Kqd+URzsBYx g==;
+X-CSE-ConnectionGUID: xR45UwhjQbCWDyD1PNxIfw==
+X-CSE-MsgGUID: 6n62pD3HR+C3dQElSbhyag==
+X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="37427787"
+X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; d="scan'208";a="37427787"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Jun 2024 19:15:27 -0700
-X-CSE-ConnectionGUID: MH3GMvziRbishpsaIn/7vA==
-X-CSE-MsgGUID: 4aoveg5fRVODYvw6H4srCQ==
+X-CSE-ConnectionGUID: BVfI1ZHLR2uzpwYswN49YA==
+X-CSE-MsgGUID: JLi1cjiqQvqTR0MjI5gRZQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; d="scan'208";a="44763618"
+X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; d="scan'208";a="44763615"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Jun 2024 19:15:26 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 03/43] dma-mapping: provide callbacks to link/unlink pages to
- specific IOVA
-Date: Tue, 11 Jun 2024 22:25:25 -0400
-Message-Id: <20240612022605.385062-3-oak.zeng@intel.com>
+Subject: [CI 01/43] mm/hmm: let users to tag specific PFNs
+Date: Tue, 11 Jun 2024 22:25:23 -0400
+Message-Id: <20240612022605.385062-1-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20240612022605.385062-1-oak.zeng@intel.com>
-References: <20240612022605.385062-1-oak.zeng@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,169 +65,133 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Leon Romanovsky <leonro@nvidia.com>
 
-Introduce new DMA link/unlink API to provide a way for advanced users
-to directly map/unmap pages without ned to allocate IOVA on every map
-call.
+Introduce new sticky flag, which isn't overwritten by HMM range fault.
+Such flag allows users to tag specific PFNs with extra data in addition
+to already filled by HMM.
 
 Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
 ---
- include/linux/dma-map-ops.h | 10 +++++++
- include/linux/dma-mapping.h | 13 +++++++++
- kernel/dma/debug.h          |  2 ++
- kernel/dma/direct.h         |  3 ++
- kernel/dma/mapping.c        | 57 +++++++++++++++++++++++++++++++++++++
- 5 files changed, 85 insertions(+)
+ include/linux/hmm.h |  3 +++
+ mm/hmm.c            | 34 +++++++++++++++++++++-------------
+ 2 files changed, 24 insertions(+), 13 deletions(-)
 
-diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
-index 23e5e2f63a1c..292326ac5a12 100644
---- a/include/linux/dma-map-ops.h
-+++ b/include/linux/dma-map-ops.h
-@@ -89,6 +89,13 @@ struct dma_map_ops {
+diff --git a/include/linux/hmm.h b/include/linux/hmm.h
+index 126a36571667..b90902baa593 100644
+--- a/include/linux/hmm.h
++++ b/include/linux/hmm.h
+@@ -23,6 +23,7 @@ struct mmu_interval_notifier;
+  * HMM_PFN_WRITE - if the page memory can be written to (requires HMM_PFN_VALID)
+  * HMM_PFN_ERROR - accessing the pfn is impossible and the device should
+  *                 fail. ie poisoned memory, special pages, no vma, etc
++ * HMM_PFN_STICKY - Flag preserved on input-to-output transformation
+  *
+  * On input:
+  * 0                 - Return the current state of the page, do not fault it.
+@@ -36,6 +37,8 @@ enum hmm_pfn_flags {
+ 	HMM_PFN_VALID = 1UL << (BITS_PER_LONG - 1),
+ 	HMM_PFN_WRITE = 1UL << (BITS_PER_LONG - 2),
+ 	HMM_PFN_ERROR = 1UL << (BITS_PER_LONG - 3),
++	/* Sticky lag, carried from Input to Output */
++	HMM_PFN_STICKY = 1UL << (BITS_PER_LONG - 7),
+ 	HMM_PFN_ORDER_SHIFT = (BITS_PER_LONG - 8),
  
- 	dma_addr_t (*alloc_iova)(struct device *dev, size_t size);
- 	void (*free_iova)(struct device *dev, dma_addr_t dma_addr, size_t size);
-+	dma_addr_t (*link_range)(struct device *dev, struct page *page,
-+				 unsigned long offset, dma_addr_t addr,
-+				 size_t size, enum dma_data_direction dir,
-+				 unsigned long attrs);
-+	void (*unlink_range)(struct device *dev, dma_addr_t dma_handle,
-+			     size_t size, enum dma_data_direction dir,
-+			     unsigned long attrs);
- };
- 
- #ifdef CONFIG_DMA_OPS
-@@ -440,6 +447,9 @@ bool arch_dma_unmap_sg_direct(struct device *dev, struct scatterlist *sg,
- #define arch_dma_unmap_sg_direct(d, s, n)	(false)
- #endif
- 
-+#define arch_dma_link_range_direct arch_dma_map_page_direct
-+#define arch_dma_unlink_range_direct arch_dma_unmap_page_direct
-+
- #ifdef CONFIG_ARCH_HAS_SETUP_DMA_OPS
- void arch_setup_dma_ops(struct device *dev, bool coherent);
- #else
-diff --git a/include/linux/dma-mapping.h b/include/linux/dma-mapping.h
-index 34a3b6420606..223b5477e36e 100644
---- a/include/linux/dma-mapping.h
-+++ b/include/linux/dma-mapping.h
-@@ -113,6 +113,9 @@ static inline int dma_mapping_error(struct device *dev, dma_addr_t dma_addr)
- 
- int dma_alloc_iova(struct dma_iova_attrs *iova);
- void dma_free_iova(struct dma_iova_attrs *iova);
-+dma_addr_t dma_link_range(struct page *page, unsigned long offset,
-+			  struct dma_iova_attrs *iova, dma_addr_t dma_offset);
-+void dma_unlink_range(struct dma_iova_attrs *iova, dma_addr_t dma_offset);
- 
- dma_addr_t dma_map_page_attrs(struct device *dev, struct page *page,
- 		size_t offset, size_t size, enum dma_data_direction dir,
-@@ -170,6 +173,16 @@ static inline int dma_alloc_iova(struct dma_iova_attrs *iova)
- static inline void dma_free_iova(struct dma_iova_attrs *iova)
+ 	/* Input flags */
+diff --git a/mm/hmm.c b/mm/hmm.c
+index 93aebd9cc130..a244071085b1 100644
+--- a/mm/hmm.c
++++ b/mm/hmm.c
+@@ -44,8 +44,10 @@ static int hmm_pfns_fill(unsigned long addr, unsigned long end,
  {
- }
-+static inline dma_addr_t dma_link_range(struct page *page, unsigned long offset,
-+					struct dma_iova_attrs *iova,
-+					dma_addr_t dma_offset)
-+{
-+	return DMA_MAPPING_ERROR;
-+}
-+static inline void dma_unlink_range(struct dma_iova_attrs *iova,
-+				    dma_addr_t dma_offset)
-+{
-+}
- static inline dma_addr_t dma_map_page_attrs(struct device *dev,
- 		struct page *page, size_t offset, size_t size,
- 		enum dma_data_direction dir, unsigned long attrs)
-diff --git a/kernel/dma/debug.h b/kernel/dma/debug.h
-index f525197d3cae..3d529f355c6d 100644
---- a/kernel/dma/debug.h
-+++ b/kernel/dma/debug.h
-@@ -127,4 +127,6 @@ static inline void debug_dma_sync_sg_for_device(struct device *dev,
- {
- }
- #endif /* CONFIG_DMA_API_DEBUG */
-+#define debug_dma_link_range debug_dma_map_page
-+#define debug_dma_unlink_range debug_dma_unmap_page
- #endif /* _KERNEL_DMA_DEBUG_H */
-diff --git a/kernel/dma/direct.h b/kernel/dma/direct.h
-index 18d346118fe8..1c30e1cd607a 100644
---- a/kernel/dma/direct.h
-+++ b/kernel/dma/direct.h
-@@ -125,4 +125,7 @@ static inline void dma_direct_unmap_page(struct device *dev, dma_addr_t addr,
- 		swiotlb_tbl_unmap_single(dev, phys, size, dir,
- 					 attrs | DMA_ATTR_SKIP_CPU_SYNC);
- }
-+
-+#define dma_direct_link_range dma_direct_map_page
-+#define dma_direct_unlink_range dma_direct_unmap_page
- #endif /* _KERNEL_DMA_DIRECT_H */
-diff --git a/kernel/dma/mapping.c b/kernel/dma/mapping.c
-index 4d14637d186b..787d7516434f 100644
---- a/kernel/dma/mapping.c
-+++ b/kernel/dma/mapping.c
-@@ -213,6 +213,63 @@ void dma_free_iova(struct dma_iova_attrs *iova)
- }
- EXPORT_SYMBOL(dma_free_iova);
+ 	unsigned long i = (addr - range->start) >> PAGE_SHIFT;
  
-+/**
-+ * dma_link_range - Link a physical page to DMA address
-+ * @page: The page to be mapped
-+ * @offset: The offset within the page
-+ * @iova: Preallocated IOVA attributes
-+ * @dma_offset: DMA offset form which this page needs to be linked
-+ *
-+ * dma_alloc_iova() allocates IOVA based on the size specified by ther user in
-+ * iova->size. Call this function after IOVA allocation to link @page from
-+ * @offset to get the DMA address. Note that very first call to this function
-+ * will have @dma_offset set to 0 in the IOVA space allocated from
-+ * dma_alloc_iova(). For subsequent calls to this function on same @iova,
-+ * @dma_offset needs to be advanced by the caller with the size of previous
-+ * page that was linked + DMA address returned for the previous page that was
-+ * linked by this function.
-+ */
-+dma_addr_t dma_link_range(struct page *page, unsigned long offset,
-+			  struct dma_iova_attrs *iova, dma_addr_t dma_offset)
-+{
-+	struct device *dev = iova->dev;
-+	size_t size = iova->size;
-+	enum dma_data_direction dir = iova->dir;
-+	unsigned long attrs = iova->attrs;
-+	dma_addr_t addr = iova->addr + dma_offset;
-+	const struct dma_map_ops *ops = get_dma_ops(dev);
-+
-+	if (dma_map_direct(dev, ops) ||
-+	    arch_dma_link_range_direct(dev, page_to_phys(page) + offset + size))
-+		addr = dma_direct_link_range(dev, page, offset, size, dir, attrs);
-+	else if (ops->link_range)
-+		addr = ops->link_range(dev, page, offset, addr, size, dir, attrs);
-+
-+	kmsan_handle_dma(page, offset, size, dir);
-+	debug_dma_link_range(dev, page, offset, size, dir, addr, attrs);
-+	return addr;
-+}
-+EXPORT_SYMBOL(dma_link_range);
-+
-+void dma_unlink_range(struct dma_iova_attrs *iova, dma_addr_t dma_offset)
-+{
-+	struct device *dev = iova->dev;
-+	size_t size = iova->size;
-+	enum dma_data_direction dir = iova->dir;
-+	unsigned long attrs = iova->attrs;
-+	dma_addr_t addr = iova->addr + dma_offset;
-+	const struct dma_map_ops *ops = get_dma_ops(dev);
-+
-+	if (dma_map_direct(dev, ops) ||
-+	    arch_dma_unlink_range_direct(dev, addr + size))
-+		dma_direct_unlink_range(dev, addr, size, dir, attrs);
-+	else if (ops->unlink_range)
-+		ops->unlink_range(dev, addr, size, dir, attrs);
-+
-+	debug_dma_unlink_range(dev, addr, size, dir);
-+}
-+EXPORT_SYMBOL(dma_unlink_range);
-+
- static int __dma_map_sg_attrs(struct device *dev, struct scatterlist *sg,
- 	 int nents, enum dma_data_direction dir, unsigned long attrs)
- {
+-	for (; addr < end; addr += PAGE_SIZE, i++)
+-		range->hmm_pfns[i] = cpu_flags;
++	for (; addr < end; addr += PAGE_SIZE, i++) {
++		range->hmm_pfns[i] &= HMM_PFN_STICKY;
++		range->hmm_pfns[i] |= cpu_flags;
++	}
+ 	return 0;
+ }
+ 
+@@ -202,8 +204,10 @@ static int hmm_vma_handle_pmd(struct mm_walk *walk, unsigned long addr,
+ 		return hmm_vma_fault(addr, end, required_fault, walk);
+ 
+ 	pfn = pmd_pfn(pmd) + ((addr & ~PMD_MASK) >> PAGE_SHIFT);
+-	for (i = 0; addr < end; addr += PAGE_SIZE, i++, pfn++)
+-		hmm_pfns[i] = pfn | cpu_flags;
++	for (i = 0; addr < end; addr += PAGE_SIZE, i++, pfn++) {
++		hmm_pfns[i] &= HMM_PFN_STICKY;
++		hmm_pfns[i] |= pfn | cpu_flags;
++	}
+ 	return 0;
+ }
+ #else /* CONFIG_TRANSPARENT_HUGEPAGE */
+@@ -236,7 +240,7 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
+ 			hmm_pte_need_fault(hmm_vma_walk, pfn_req_flags, 0);
+ 		if (required_fault)
+ 			goto fault;
+-		*hmm_pfn = 0;
++		*hmm_pfn = *hmm_pfn & HMM_PFN_STICKY;
+ 		return 0;
+ 	}
+ 
+@@ -253,14 +257,14 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
+ 			cpu_flags = HMM_PFN_VALID;
+ 			if (is_writable_device_private_entry(entry))
+ 				cpu_flags |= HMM_PFN_WRITE;
+-			*hmm_pfn = swp_offset_pfn(entry) | cpu_flags;
++			*hmm_pfn = (*hmm_pfn & HMM_PFN_STICKY) | swp_offset_pfn(entry) | cpu_flags;
+ 			return 0;
+ 		}
+ 
+ 		required_fault =
+ 			hmm_pte_need_fault(hmm_vma_walk, pfn_req_flags, 0);
+ 		if (!required_fault) {
+-			*hmm_pfn = 0;
++			*hmm_pfn = *hmm_pfn & HMM_PFN_STICKY;
+ 			return 0;
+ 		}
+ 
+@@ -304,11 +308,11 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
+ 			pte_unmap(ptep);
+ 			return -EFAULT;
+ 		}
+-		*hmm_pfn = HMM_PFN_ERROR;
++		*hmm_pfn = (*hmm_pfn & HMM_PFN_STICKY) | HMM_PFN_ERROR;
+ 		return 0;
+ 	}
+ 
+-	*hmm_pfn = pte_pfn(pte) | cpu_flags;
++	*hmm_pfn = (*hmm_pfn & HMM_PFN_STICKY) | pte_pfn(pte) | cpu_flags;
+ 	return 0;
+ 
+ fault:
+@@ -448,8 +452,10 @@ static int hmm_vma_walk_pud(pud_t *pudp, unsigned long start, unsigned long end,
+ 		}
+ 
+ 		pfn = pud_pfn(pud) + ((addr & ~PUD_MASK) >> PAGE_SHIFT);
+-		for (i = 0; i < npages; ++i, ++pfn)
+-			hmm_pfns[i] = pfn | cpu_flags;
++		for (i = 0; i < npages; ++i, ++pfn) {
++			hmm_pfns[i] &= HMM_PFN_STICKY;
++			hmm_pfns[i] |= pfn | cpu_flags;
++		}
+ 		goto out_unlock;
+ 	}
+ 
+@@ -507,8 +513,10 @@ static int hmm_vma_walk_hugetlb_entry(pte_t *pte, unsigned long hmask,
+ 	}
+ 
+ 	pfn = pte_pfn(entry) + ((start & ~hmask) >> PAGE_SHIFT);
+-	for (; addr < end; addr += PAGE_SIZE, i++, pfn++)
+-		range->hmm_pfns[i] = pfn | cpu_flags;
++	for (; addr < end; addr += PAGE_SIZE, i++, pfn++) {
++		range->hmm_pfns[i] &= HMM_PFN_STICKY;
++		range->hmm_pfns[i] |= pfn | cpu_flags;
++	}
+ 
+ 	spin_unlock(ptl);
+ 	return 0;
 -- 
 2.26.3
 
