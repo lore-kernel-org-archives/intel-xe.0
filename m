@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A023CC27C53
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 06:36:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E099DC27C75
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 06:36:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5674E10E285;
-	Wed, 12 Jun 2024 06:36:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A9E710E28B;
+	Wed, 12 Jun 2024 06:36:12 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 731D110E28B;
- Wed, 12 Jun 2024 06:36:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBCF810E28B;
+ Wed, 12 Jun 2024 06:36:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/display=3A_?=
- =?utf-8?q?Update_vtotal_math_to_address_32b_build_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/display=3A_Updat?=
+ =?utf-8?q?e_vtotal_math_to_address_32b_build_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 12 Jun 2024 06:36:00 -0000
-Message-ID: <171817416047.67160.14941243778298843612@a6498e030952>
+Date: Wed, 12 Jun 2024 06:36:10 -0000
+Message-ID: <171817417090.67160.14349763066312276525@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240612062925.271213-1-mitulkumar.ajitkumar.golani@intel.com>
 In-Reply-To: <20240612062925.271213-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -48,9 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 1340288da1f2 drm-tip: 2024y-06m-11d-21h-24m-08s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/display: Update vtotal math to address 32b build
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f935b46a5bf68e0b65968f324fd7bf6baa3cb6b4
+Author: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Date:   Wed Jun 12 11:59:25 2024 +0530
+
+    drm/i915/display: Update vtotal math to address 32b build
+    
+    Fix vtotal division calculation which works for 32b systems.
+    
+    Fixes: 1676ecd303ac ("drm/i915: Compute CMRR and calculate vtotal")
+    Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+    Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+    Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+    Cc: Jani Nikula <jani.nikula@linux.intel.com>
+    Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
++ /mt/dim checkpatch 1340288da1f2a87e92a52d4e86a7247e4687bd62 drm-intel
+f935b46a5bf6 drm/i915/display: Update vtotal math to address 32b build
 
 
