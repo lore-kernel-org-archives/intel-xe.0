@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 322C1C41513
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 09:54:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1F54C27C77
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 09:54:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07A1210E80B;
-	Wed, 12 Jun 2024 09:54:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C89510E813;
+	Wed, 12 Jun 2024 09:54:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dv4Ker3I";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CQqivRdG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D60010E806;
- Wed, 12 Jun 2024 09:54:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D216410E809;
+ Wed, 12 Jun 2024 09:54:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718186068; x=1749722068;
+ t=1718186075; x=1749722075;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gl4jzPmPSJyy0AEG0RNugaL3+9KDXrafHuHGjKc4JQU=;
- b=dv4Ker3IbDqV+9WsjAO8XiRozL8MMiiuil+0uQS97+EuLIzbZXYOGTEu
- ZfnZIQb9LJpNKmgqLDaRdK6oorrKOiIbZvwUMM7Od5L4q3ZnQjrQMWpCA
- 7xUZYj+l4JKy3B8UC/+JRbciLWn9IH/pWy305MekBMu5scwsnvRAG5BoN
- C0XmoZbZb+mgeCFjghZKF79cnZ06yaVX4FwF+Pv8dkYdR/lcaeUqSLYes
- 6NQEtC8eSw70pXPQUtfLc2CYqgtzZ8FW45D0NzqTrG26CXz5Dpv7rOREK
- T4NOaPBTM8/DWSUGNh1RzZ2IjQZOBzMxAWjiYrgen8bRqnPLXjbezC8VJ g==;
-X-CSE-ConnectionGUID: HtB0ifhdTXmQoUN84A7o9A==
-X-CSE-MsgGUID: /VzfgCG7TYKCeYF/Z+Rw8Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="15068913"
-X-IronPort-AV: E=Sophos;i="6.08,232,1712646000"; d="scan'208";a="15068913"
+ bh=To9DU10Zhe8E/I7Qn0M/0vjZR5mT3ISO+qho+zaXReQ=;
+ b=CQqivRdG4z4AL/n+UqnXP8UZH2dfVtDO/cnuFrwzDUHGlsqnD3zkDD1g
+ WKzQbhfGuwSR6+GaKURE07j3oaoaMUoHM7PsbXCcdhyWzWFbVdhlV8Kms
+ Upidd7Y2PLKl1MeTKpZH59dNFYgUd8Ge0sWgswNP7BHWApSwo+GmLtxh1
+ H1X9P1KaE+lIAWmCzZM8wQ1UeARkjgmQDke50cvDR1FXdYjI8F7Of51lR
+ NjEGZLXF+qWA2Zz8CxCb/wzuE8NGyx9Trzho+O+zchmqzOVYfaAHYEHMr
+ BnMWKisXxYOUJ1PVYnaLi4I4+bOwICJ1sZxTpWnC4Ph8tIkoyUyabmd8q g==;
+X-CSE-ConnectionGUID: j3tTnqTJQ3GkoGQibZ+wLA==
+X-CSE-MsgGUID: sUzkI1tAQTugkpOG5jj8eQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="15068941"
+X-IronPort-AV: E=Sophos;i="6.08,232,1712646000"; d="scan'208";a="15068941"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2024 02:54:28 -0700
-X-CSE-ConnectionGUID: nzg2vxkAROiYtC91SyiMTw==
-X-CSE-MsgGUID: MwLYwwX5Sy+urYj10J9c8g==
+ 12 Jun 2024 02:54:34 -0700
+X-CSE-ConnectionGUID: qQ7ze+SwRuaM3SfJ8iReew==
+X-CSE-MsgGUID: fNWL6necQ5uUdNH1llGPxg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,232,1712646000"; d="scan'208";a="40441623"
+X-IronPort-AV: E=Sophos;i="6.08,232,1712646000"; d="scan'208";a="40441635"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa007.jf.intel.com with ESMTP; 12 Jun 2024 02:54:26 -0700
+ by orviesa007.jf.intel.com with ESMTP; 12 Jun 2024 02:54:32 -0700
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: mitulkumar.ajitkumar.golani@intel.com, ankit.k.nautiyal@intel.com,
  suraj.kandpal@intel.com, jani.nikula@linux.intel.com,
  rodrigo.vivi@intel.com, sfr@canb.auug.org.au
-Subject: [PATCH 1/3] drm/dp: Describe target_rr_divider in struct drm_dp_as_sdp
-Date: Wed, 12 Jun 2024 15:24:31 +0530
-Message-ID: <20240612095433.323342-2-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH 3/3] drm/i915/display: Update calculation to avoid overflow
+Date: Wed, 12 Jun 2024 15:24:33 +0530
+Message-ID: <20240612095433.323342-4-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240612095433.323342-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20240612095433.323342-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -68,34 +68,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Describe newly added parameter target_rr_divider in struct
-drm_dp_as_sdp.
+Update calculation to avoid overflow.
 
-Fixes: a20c6d954d75 ("drm/dp: Add refresh rate divider to struct representing AS SDP")
+Fixes: 1676ecd303ac ("drm/i915: Compute CMRR and calculate vtotal")
 Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
 Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
 Cc: Stephen Rothwell <sfr@canb.auug.org.au>
 
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- include/drm/display/drm_dp_helper.h | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-index ea03e1dd26ba..7f2567fa230d 100644
---- a/include/drm/display/drm_dp_helper.h
-+++ b/include/drm/display/drm_dp_helper.h
-@@ -112,6 +112,7 @@ struct drm_dp_vsc_sdp {
-  * @target_rr: Target Refresh
-  * @duration_incr_ms: Successive frame duration increase
-  * @duration_decr_ms: Successive frame duration decrease
-+ * @target_rr_divider: Target refresh rate divider
-  * @mode: Adaptive Sync Operation Mode
-  */
- struct drm_dp_as_sdp {
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index dc9cf7ddafe9..5da9d5b9936e 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -147,10 +147,11 @@ cmrr_get_vtotal(struct intel_crtc_state *crtc_state, bool video_mode_required)
+ 		multiplier_n = 1000;
+ 	}
+ 
+-	crtc_state->cmrr.cmrr_n =
+-		desired_refresh_rate * adjusted_mode->crtc_htotal * multiplier_n;
+-	vtotal = (adjusted_mode->crtc_clock * 1000 * multiplier_n) / crtc_state->cmrr.cmrr_n;
+-	adjusted_pixel_rate = adjusted_mode->crtc_clock * 1000 * multiplier_m;
++	crtc_state->cmrr.cmrr_n = mul_u32_u32(desired_refresh_rate * adjusted_mode->crtc_htotal,
++					      multiplier_n);
++	vtotal = DIV_ROUND_UP_ULL(mul_u32_u32(adjusted_mode->crtc_clock * 1000, multiplier_n),
++				  crtc_state->cmrr.cmrr_n);
++	adjusted_pixel_rate = mul_u32_u32(adjusted_mode->crtc_clock * 1000, multiplier_m);
+ 	crtc_state->cmrr.cmrr_m = do_div(adjusted_pixel_rate, crtc_state->cmrr.cmrr_n);
+ 
+ 	return vtotal;
 -- 
 2.45.2
 
