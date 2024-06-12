@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A52DC27C6E
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 16:16:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18DD5C27C4F
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 16:21:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D69A210E0BB;
-	Thu, 13 Jun 2024 16:16:06 +0000 (UTC)
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 065CE10E0BB;
- Thu, 13 Jun 2024 16:16:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94BF610EAF4;
+	Thu, 13 Jun 2024 16:21:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="CcWQ1xLO";
+	dkim-atps=neutral
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C61D10E079;
+ Wed, 12 Jun 2024 12:57:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=/f17xm0OB0dxnf/jfYAL0tFlrsv0miSg/LIWwpYdXLI=; b=CcWQ1xLOEQbeGg4tLlXmjq4B1f
+ TbbI7V2/p3KwjLZvvJZzv85vn3DjY6bzhZWaPOJzNOjCpBZlc2vnIq+tQbEOprnKakS4HVmZaSBUJ
+ AzNCYWV31rKkis/y4zTrEDzgwTKB4IXum5c7GcWZ7jLNteiIVTRSn1O0o9zNudYh+qurlzLEepbQp
+ moqryDHOEVSMNQhWyty8PdmUgCvqh3lPf1paVkVdY5JsWhK0Bm6Hb5xRxozDBVRxdzjT56UaCwbjy
+ 0i9QJJlUaqMEEnpzDQpDbl0EWHX9Sg5MkkL1fsMu6ixIib1RU204DI6w7U9MDS/PTv0O6gC+DnDiP
+ 6jTy9DZA==;
+Received: from [84.69.19.168] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1sHNXH-002Ja7-VV; Wed, 12 Jun 2024 14:57:08 +0200
+Date: Wed, 12 Jun 2024 12:57:06 +0000
+From: Tvrtko Ursulin <tursulin@igalia.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-gt-next
+Message-ID: <Zmmazub+U9ewH9ts@linux>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/uc=3A_Fix_and_sta?=
- =?utf-8?q?rt_using_xe=5Fuc=5Ffw=5Fsanitize=28=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 13 Jun 2024 16:16:04 -0000
-Message-ID: <171829536402.72831.6135937199666195577@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <20240613153424.2120-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20240613153424.2120-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 13 Jun 2024 16:21:33 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +65,171 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/xe/uc: Fix and start using xe_uc_fw_sanitize()
-URL   : https://patchwork.freedesktop.org/series/134830/
-State : success
+Hi Dave, Sima,
 
-== Summary ==
+Here is the main pull request for drm-intel-gt-next targeting 6.11.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 5123ff6f6fa8412bfba48083f334cbdbb8606cfc
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+First is the new userspace API for allowing upload of custom context
+state used for replaying GPU hang error state captures. This will be
+used by Mesa (see
+https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/27594) for
+debugging GPU hangs captured in the wild on real hardware. So far that
+was only possible under simulation and that via some hacks. Also,
+simulation in general has certain limitations to what hangs it can
+reproduce. As the UAPI it is intended for Mesa developers only, it is
+hidden behind a kconfig and runtime enablement switches.
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Then there are fixes for hangs on Meteorlake due incorrect reduced CCS
+configuration and a missing video engine workaround. Then fixes for a
+couple race conditions in multi GT and breadcrumb handling, and a more
+robust functional level reset by extending the timeout used.
 
+A couple tiny cleanups here and there and finally one back-merge which
+was required to land some display code base refactoring.
 
+Regards,
+
+Tvrtko
+
+drm-intel-gt-next-2024-06-12:
+UAPI Changes:
+
+- Support replaying GPU hangs with captured context image (Tvrtko Ursulin)
+
+Driver Changes:
+
+Fixes/improvements/new stuff:
+
+- Automate CCS Mode setting during engine resets [gt] (Andi Shyti)
+- Revert "drm/i915: Remove extra multi-gt pm-references" (Janusz Krzysztofik)
+- Fix HAS_REGION() usage in intel_gt_probe_lmem() (Ville Syrjälä)
+- Disarm breadcrumbs if engines are already idle [gt] (Chris Wilson)
+- Shadow default engine context image in the context (Tvrtko Ursulin)
+- Support replaying GPU hangs with captured context image (Tvrtko Ursulin)
+- avoid FIELD_PREP warning [guc] (Arnd Bergmann)
+- Fix CCS id's calculation for CCS mode setting [gt] (Andi Shyti)
+- Increase FLR timeout from 3s to 9s (Andi Shyti)
+- Update workaround 14018575942 [mtl] (Angus Chen)
+
+Future platform enablement:
+
+- Enable w/a 16021333562 for DG2, MTL and ARL [guc] (John Harrison)
+
+Miscellaneous:
+
+- Pass the region ID rather than a bitmask to HAS_REGION() (Ville Syrjälä)
+- Remove counter productive REGION_* wrappers (Ville Syrjälä)
+- Fix typo [gem/i915_gem_ttm_move] (Deming Wang)
+- Delete the live_hearbeat_fast selftest [gt] (Krzysztof Niemiec)
+The following changes since commit 431c590c3ab0469dfedad3a832fe73556396ee52:
+
+  drm/tests: Add a unit test for range bias allocation (2024-05-16 12:50:14 +1000)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-gt-next-2024-06-12
+
+for you to fetch changes up to 79655e867ad6dfde2734c67c7704c0dd5bf1e777:
+
+  drm/i915/mtl: Update workaround 14018575942 (2024-06-11 16:06:20 +0200)
+
+----------------------------------------------------------------
+UAPI Changes:
+
+- Support replaying GPU hangs with captured context image (Tvrtko Ursulin)
+
+Driver Changes:
+
+Fixes/improvements/new stuff:
+
+- Automate CCS Mode setting during engine resets [gt] (Andi Shyti)
+- Revert "drm/i915: Remove extra multi-gt pm-references" (Janusz Krzysztofik)
+- Fix HAS_REGION() usage in intel_gt_probe_lmem() (Ville Syrjälä)
+- Disarm breadcrumbs if engines are already idle [gt] (Chris Wilson)
+- Shadow default engine context image in the context (Tvrtko Ursulin)
+- Support replaying GPU hangs with captured context image (Tvrtko Ursulin)
+- avoid FIELD_PREP warning [guc] (Arnd Bergmann)
+- Fix CCS id's calculation for CCS mode setting [gt] (Andi Shyti)
+- Increase FLR timeout from 3s to 9s (Andi Shyti)
+- Update workaround 14018575942 [mtl] (Angus Chen)
+
+Future platform enablement:
+
+- Enable w/a 16021333562 for DG2, MTL and ARL [guc] (John Harrison)
+
+Miscellaneous:
+
+- Pass the region ID rather than a bitmask to HAS_REGION() (Ville Syrjälä)
+- Remove counter productive REGION_* wrappers (Ville Syrjälä)
+- Fix typo [gem/i915_gem_ttm_move] (Deming Wang)
+- Delete the live_hearbeat_fast selftest [gt] (Krzysztof Niemiec)
+
+----------------------------------------------------------------
+Andi Shyti (3):
+      drm/i915/gt: Automate CCS Mode setting during engine resets
+      drm/i915/gt: Fix CCS id's calculation for CCS mode setting
+      drm/i915: Increase FLR timeout from 3s to 9s
+
+Angus Chen (1):
+      drm/i915/mtl: Update workaround 14018575942
+
+Arnd Bergmann (1):
+      drm/i915/guc: avoid FIELD_PREP warning
+
+Chris Wilson (1):
+      drm/i915/gt: Disarm breadcrumbs if engines are already idle
+
+Deming Wang (1):
+      drm/i915/gem/i915_gem_ttm_move: Fix typo
+
+Janusz Krzysztofik (1):
+      Revert "drm/i915: Remove extra multi-gt pm-references"
+
+John Harrison (1):
+      drm/i915/guc: Enable w/a 16021333562 for DG2, MTL and ARL
+
+Niemiec, Krzysztof (1):
+      drm/i915/gt: Delete the live_hearbeat_fast selftest
+
+Tvrtko Ursulin (3):
+      Merge drm/drm-next into drm-intel-gt-next
+      drm/i915: Shadow default engine context image in the context
+      drm/i915: Support replaying GPU hangs with captured context image
+
+Ville Syrjälä (3):
+      drm/i915: Fix HAS_REGION() usage in intel_gt_probe_lmem()
+      drm/i915: Pass the region ID rather than a bitmask to HAS_REGION()
+      drm/i915: Remove counter productive REGION_* wrappers
+
+ drivers/gpu/drm/i915/Kconfig.debug                 |  17 ++++
+ drivers/gpu/drm/i915/gem/i915_gem_context.c        | 113 +++++++++++++++++++++
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |  18 ++++
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c       |   2 +-
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c        |  15 ++-
+ drivers/gpu/drm/i915/gt/intel_context.c            |   2 +
+ drivers/gpu/drm/i915/gt/intel_context.h            |  22 ++++
+ drivers/gpu/drm/i915/gt/intel_context_types.h      |   3 +
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c          |   6 ++
+ drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c        |   8 +-
+ drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.h        |   2 +-
+ drivers/gpu/drm/i915/gt/intel_gt_types.h           |   8 ++
+ drivers/gpu/drm/i915/gt/intel_lrc.c                |   8 +-
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c    |   8 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c        |  12 ++-
+ .../gpu/drm/i915/gt/selftest_engine_heartbeat.c    | 110 --------------------
+ drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h      |   7 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c         |  32 +++---
+ drivers/gpu/drm/i915/i915_drv.h                    |   4 +-
+ drivers/gpu/drm/i915/i915_params.c                 |   5 +
+ drivers/gpu/drm/i915/i915_params.h                 |   3 +-
+ drivers/gpu/drm/i915/i915_pci.c                    |   6 +-
+ drivers/gpu/drm/i915/intel_memory_region.c         |   2 +-
+ drivers/gpu/drm/i915/intel_memory_region.h         |   5 -
+ drivers/gpu/drm/i915/intel_uncore.c                |   9 +-
+ drivers/gpu/drm/i915/selftests/mock_gem_device.c   |   2 +-
+ include/uapi/drm/i915_drm.h                        |  27 +++++
+ 27 files changed, 296 insertions(+), 160 deletions(-)
