@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C902C2BA1A
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 02:16:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F175CC27C78
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 02:16:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78B9B10E766;
-	Wed, 12 Jun 2024 02:16:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0B9310E769;
+	Wed, 12 Jun 2024 02:16:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DOoRgQX4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dZV0naI/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2848710E766
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Jun 2024 02:15:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDC1D10E782
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Jun 2024 02:15:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718158538; x=1749694538;
+ t=1718158541; x=1749694541;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=79hCEqXW6kA5GkI/GVs0qfwzN71FFVwxUiqc/5sw8hI=;
- b=DOoRgQX4gBkFZDYgGLuHBlSN+nwYuno9rQrYiso1j+b7Fwy3Ads5QBIV
- 6zyBmeOA6evxBrjCd6V55eWEJQRVi6Af918l+qX3we5q7JMWzAS+96RdA
- 4aiBASNlIule3Tl9KkGGGTf3EgDnvyCZ0Yyg7ru9lU2MveLvg/5V2d9cs
- W93QM3Mu3c9N+tr/kT1gTb4X0tY/FhEQzEbFBVpy3gHzUEDzWhAA7SpK7
- b34lBXgFopYhVn+taajg2vdzb2MIPHkeefzPnbmQTg7ulYECE4NLlsYPL
- qZgY6Dq/5tPk3ETGxKt4GoipGvZKSbWTebB51koKHL8CTj9gAalW04qas Q==;
-X-CSE-ConnectionGUID: At73+hzESDGjtw1S1/wCKg==
-X-CSE-MsgGUID: a2Yh7BUJS7KNp63dPI0beQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="37427790"
-X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; d="scan'208";a="37427790"
+ bh=zdND83iYHrJFQKCerf1zG73NbPScJxqEO61IJmXVPdw=;
+ b=dZV0naI/05zssn5gUTX5J3zFBBjDOzRxBYrYtB5ZQpSlzkwKj0yanNta
+ EdwomzjE0vredYOOayFRWMazyU9Fp8M6azuaY0u52Sl33Tu4b+jM7thou
+ k49yIfXANctFuPdEHIV7QMJF0l2ua9ujvZVZe9+wqHaJzIp1Q/b3GFk3o
+ HUpJ6pqlv4uR7Am65dTaA16gKi8Bo2cF0p8ttSvDMIkrtG2Gd/VIH6ahZ
+ GW7M+/vC2/nhOpfVHutx9VgUjR2Utp3KGXWXr5B31hCKW/WH5V3jSv/tv
+ N5/OLjMglGXCL0bVIW1K5uPELkv/VU/kNGgh8J6HiEHfhT/hDCmq2AazO w==;
+X-CSE-ConnectionGUID: t0Dw2/dtQpmGRzewP/e8oQ==
+X-CSE-MsgGUID: 21ek1KfETvO5i1JRL5qRUg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="37427820"
+X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; d="scan'208";a="37427820"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Jun 2024 19:15:27 -0700
-X-CSE-ConnectionGUID: duyeLyPLRqaAhesaYGnTQA==
-X-CSE-MsgGUID: +Df7W0OGTFysC6rRM5zuzA==
+X-CSE-ConnectionGUID: thig1W/KS2Sxvua8IXEXmA==
+X-CSE-MsgGUID: H3WucEiFQgK30zx0DzQYng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; d="scan'208";a="44763617"
+X-IronPort-AV: E=Sophos;i="6.08,231,1712646000"; d="scan'208";a="44763641"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 19:15:26 -0700
+ 11 Jun 2024 19:15:27 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 02/43] dma-mapping: provide an interface to allocate IOVA
-Date: Tue, 11 Jun 2024 22:25:24 -0400
-Message-Id: <20240612022605.385062-2-oak.zeng@intel.com>
+Subject: [CI 24/43] drm/xe: Add dma_addr res cursor
+Date: Tue, 11 Jun 2024 22:25:46 -0400
+Message-Id: <20240612022605.385062-24-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240612022605.385062-1-oak.zeng@intel.com>
 References: <20240612022605.385062-1-oak.zeng@intel.com>
@@ -65,127 +65,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Leon Romanovsky <leonro@nvidia.com>
+From: Matthew Brost <matthew.brost@intel.com>
 
-Existing .map_page() callback provides two things at the same time:
-allocates IOVA and links DMA pages. That combination works great for
-most of the callers who use it in control paths, but less effective
-in fast paths.
-
-These advanced callers already manage their data in some sort of
-database and can perform IOVA allocation in advance, leaving range
-linkage operation to be in fast path.
-
-Provide an interface to allocate/deallocate IOVA and next patch
-link/unlink DMA ranges to that specific IOVA.
-
-Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- include/linux/dma-map-ops.h |  3 +++
- include/linux/dma-mapping.h | 20 ++++++++++++++++++++
- kernel/dma/mapping.c        | 30 ++++++++++++++++++++++++++++++
- 3 files changed, 53 insertions(+)
+ drivers/gpu/drm/xe/xe_res_cursor.h | 50 +++++++++++++++++++++++++++++-
+ 1 file changed, 49 insertions(+), 1 deletion(-)
 
-diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
-index 02a1c825896b..23e5e2f63a1c 100644
---- a/include/linux/dma-map-ops.h
-+++ b/include/linux/dma-map-ops.h
-@@ -86,6 +86,9 @@ struct dma_map_ops {
- 	size_t (*max_mapping_size)(struct device *dev);
- 	size_t (*opt_mapping_size)(void);
- 	unsigned long (*get_merge_boundary)(struct device *dev);
-+
-+	dma_addr_t (*alloc_iova)(struct device *dev, size_t size);
-+	void (*free_iova)(struct device *dev, dma_addr_t dma_addr, size_t size);
+diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
+index 655af89b31a9..b17b3375f6d9 100644
+--- a/drivers/gpu/drm/xe/xe_res_cursor.h
++++ b/drivers/gpu/drm/xe/xe_res_cursor.h
+@@ -44,7 +44,9 @@ struct xe_res_cursor {
+ 	u64 remaining;
+ 	void *node;
+ 	u32 mem_type;
++	unsigned int order;
+ 	struct scatterlist *sgl;
++	const dma_addr_t *dma_addr;
+ 	struct drm_buddy *mm;
  };
  
- #ifdef CONFIG_DMA_OPS
-diff --git a/include/linux/dma-mapping.h b/include/linux/dma-mapping.h
-index f693aafe221f..34a3b6420606 100644
---- a/include/linux/dma-mapping.h
-+++ b/include/linux/dma-mapping.h
-@@ -91,6 +91,16 @@ static inline void debug_dma_map_single(struct device *dev, const void *addr,
- }
- #endif /* CONFIG_DMA_API_DEBUG */
- 
-+struct dma_iova_attrs {
-+	/* OUT field */
-+	dma_addr_t addr;
-+	/* IN fields */
-+	struct device *dev;
-+	size_t size;
-+	enum dma_data_direction dir;
-+	unsigned long attrs;
-+};
-+
- #ifdef CONFIG_HAS_DMA
- static inline int dma_mapping_error(struct device *dev, dma_addr_t dma_addr)
+@@ -71,6 +73,7 @@ static inline void xe_res_first(struct ttm_resource *res,
+ 				struct xe_res_cursor *cur)
  {
-@@ -101,6 +111,9 @@ static inline int dma_mapping_error(struct device *dev, dma_addr_t dma_addr)
- 	return 0;
+ 	cur->sgl = NULL;
++	cur->dma_addr = NULL;
+ 	if (!res)
+ 		goto fallback;
+ 
+@@ -161,11 +164,43 @@ static inline void xe_res_first_sg(const struct sg_table *sg,
+ 	cur->start = start;
+ 	cur->remaining = size;
+ 	cur->size = 0;
++	cur->dma_addr = NULL;
+ 	cur->sgl = sg->sgl;
+ 	cur->mem_type = XE_PL_TT;
+ 	__xe_res_sg_next(cur);
  }
  
-+int dma_alloc_iova(struct dma_iova_attrs *iova);
-+void dma_free_iova(struct dma_iova_attrs *iova);
++/**
++ * xe_res_first_dma - initialize a xe_res_cursor with dma_addr array
++ *
++ * @dma_addr: dma_addr array to walk
++ * @start: Start of the range
++ * @size: Size of the range
++ * @order: Order of dma mapping. i.e. PAGE_SIZE << order is mapping size
++ * @cur: cursor object to initialize
++ *
++ * Start walking over the range of allocations between @start and @size.
++ */
++static inline void xe_res_first_dma(const dma_addr_t *dma_addr,
++				    u64 start, u64 size,
++				    unsigned int order,
++				    struct xe_res_cursor *cur)
++{
++	XE_WARN_ON(start);
++	XE_WARN_ON(!dma_addr);
++	XE_WARN_ON(!IS_ALIGNED(start, PAGE_SIZE) ||
++		   !IS_ALIGNED(size, PAGE_SIZE));
 +
- dma_addr_t dma_map_page_attrs(struct device *dev, struct page *page,
- 		size_t offset, size_t size, enum dma_data_direction dir,
- 		unsigned long attrs);
-@@ -150,6 +163,13 @@ void dma_vunmap_noncontiguous(struct device *dev, void *vaddr);
- int dma_mmap_noncontiguous(struct device *dev, struct vm_area_struct *vma,
- 		size_t size, struct sg_table *sgt);
- #else /* CONFIG_HAS_DMA */
-+static inline int dma_alloc_iova(struct dma_iova_attrs *iova)
-+{
-+	return -EOPNOTSUPP;
++	cur->node = NULL;
++	cur->start = start;
++	cur->remaining = size;
++	cur->size = PAGE_SIZE << order;
++	cur->dma_addr = dma_addr;
++	cur->order = order;
++	cur->sgl = NULL;
++	cur->mem_type = XE_PL_TT;
 +}
-+static inline void dma_free_iova(struct dma_iova_attrs *iova)
-+{
-+}
- static inline dma_addr_t dma_map_page_attrs(struct device *dev,
- 		struct page *page, size_t offset, size_t size,
- 		enum dma_data_direction dir, unsigned long attrs)
-diff --git a/kernel/dma/mapping.c b/kernel/dma/mapping.c
-index 81de84318ccc..4d14637d186b 100644
---- a/kernel/dma/mapping.c
-+++ b/kernel/dma/mapping.c
-@@ -183,6 +183,36 @@ void dma_unmap_page_attrs(struct device *dev, dma_addr_t addr, size_t size,
- }
- EXPORT_SYMBOL(dma_unmap_page_attrs);
++
+ /**
+  * xe_res_next - advance the cursor
+  *
+@@ -192,6 +227,13 @@ static inline void xe_res_next(struct xe_res_cursor *cur, u64 size)
+ 		return;
+ 	}
  
-+int dma_alloc_iova(struct dma_iova_attrs *iova)
-+{
-+	struct device *dev = iova->dev;
-+	const struct dma_map_ops *ops = get_dma_ops(dev);
-+
-+	if (dma_map_direct(dev, ops) || !ops->alloc_iova) {
-+		iova->addr = 0;
-+		return 0;
++	if (cur->dma_addr) {
++		cur->size = (PAGE_SIZE << cur->order) -
++			(size - cur->size);
++		cur->start += size;
++		return;
 +	}
 +
-+	iova->addr = ops->alloc_iova(dev, iova->size);
-+	if (dma_mapping_error(dev, iova->addr))
-+		return -ENOMEM;
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL(dma_alloc_iova);
-+
-+void dma_free_iova(struct dma_iova_attrs *iova)
-+{
-+	struct device *dev = iova->dev;
-+	const struct dma_map_ops *ops = get_dma_ops(dev);
-+
-+	if (dma_map_direct(dev, ops) || !ops->free_iova)
-+		return;
-+
-+	ops->free_iova(dev, iova->addr, iova->size);
-+}
-+EXPORT_SYMBOL(dma_free_iova);
-+
- static int __dma_map_sg_attrs(struct device *dev, struct scatterlist *sg,
- 	 int nents, enum dma_data_direction dir, unsigned long attrs)
+ 	if (cur->sgl) {
+ 		cur->start += size;
+ 		__xe_res_sg_next(cur);
+@@ -233,6 +275,12 @@ static inline void xe_res_next(struct xe_res_cursor *cur, u64 size)
+  */
+ static inline u64 xe_res_dma(const struct xe_res_cursor *cur)
  {
+-	return cur->sgl ? sg_dma_address(cur->sgl) + cur->start : cur->start;
++	if (cur->dma_addr)
++		return cur->dma_addr[cur->start >> (PAGE_SHIFT + cur->order)] +
++			(cur->start & ((PAGE_SIZE << cur->order) - 1));
++	else if (cur->sgl)
++		return sg_dma_address(cur->sgl) + cur->start;
++	else
++		return cur->start;
+ }
+ #endif
 -- 
 2.26.3
 
