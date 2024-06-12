@@ -4,57 +4,182 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33F68C27C75
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 20:41:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DEC6C27C53
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 20:50:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2FFB10E10E;
-	Wed, 12 Jun 2024 20:41:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DF2610E916;
+	Wed, 12 Jun 2024 20:50:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IiHUHhqm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iKlem/G8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AB0C10E100;
- Wed, 12 Jun 2024 20:41:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28A3910E916
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Jun 2024 20:50:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718224876; x=1749760876;
- h=date:from:to:cc:subject:message-id;
- bh=SUtRVC2djTtEI8zFSnW33zdaI3PuW7Q9P+96RxyobaE=;
- b=IiHUHhqmkSYPvv9116i+NTty6LHpe3++fY/iRodsL6iu/RzNEMD7zzTz
- +y4AstQBOQKKhFYu95XPXOrmMyIirCd2tebu+4UvBnIP/8H/OYxRE42sQ
- kg64iatc89ZKv6+bG8WlpzxzwRbE3gq4DoePBV122aP01Qk97N7uA6lvI
- JfCAo6HGmMb7lHrf793dNTNkEfkn1RWiwxk4WmwsHFILs+VsSsuPJpkRr
- myIjFWES9rQizKudQXw/4Xy2EA++G1SWW/ZTVJxQDAWf0azjbNLMsaoA4
- s2jnZMUcafee7UXGfz76J7jNI3c6/O3Nw6rAMmiBxMymNMBrPtKv7Sbvi w==;
-X-CSE-ConnectionGUID: pHDOx03aR6OknDJADef/MA==
-X-CSE-MsgGUID: 9rkE5PlnSvOxG2chmkxn0g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14736774"
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14736774"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2024 13:41:16 -0700
-X-CSE-ConnectionGUID: ksN4dkEYToahmIBhpCLmRw==
-X-CSE-MsgGUID: ap5Q3xLKQSaByL+D2Qqg0w==
+ t=1718225453; x=1749761453;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=uVO6BYZb1HNErg0XnLnMVZxhr0Cxk8LHFmzQNpfSOJ8=;
+ b=iKlem/G83nCA5OBalfWMbK77GGBOFBrQdacb3wU4yV4ma8UQmAG3/jq3
+ weSjaLIH9gO349nyJY2XMakiEzozOxp8pLE8wyvlKBTQdq5YjsWN3bO47
+ B2wABoCAWfh0PTZMwTFCdG81XkmpQUi5WScRGe9c3iuEDFjtce5DFelV8
+ JpFuEjYSQ0FVLTGIYWfHLJ6dd2X0NQxtUT6gyZ8duQ7pmqfiHJWsak9MZ
+ pd/kW11VgpJOqwD+FWF7XiKHHEGLb+8FE77lJi0/BQHXZefC6fBqgLZ3O
+ DMaepRgKInHlZuiRsIpG0EneRNbxrM2yD9tCjFo68q+pb0o51r/POOj3D g==;
+X-CSE-ConnectionGUID: wQBrMXQ+TFuqKhaMrJGD9g==
+X-CSE-MsgGUID: 8LrHFnOhRIy7BtxLcpBq6w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="25647928"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="25647928"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2024 13:50:52 -0700
+X-CSE-ConnectionGUID: otjxCpUFQiaKnPzREqWSug==
+X-CSE-MsgGUID: haLs+XS2TgGvCqrbwJYF8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="39972439"
-Received: from lkp-server01.sh.intel.com (HELO 628d7d8b9fc6) ([10.239.97.150])
- by fmviesa010.fm.intel.com with ESMTP; 12 Jun 2024 13:41:13 -0700
-Received: from kbuild by 628d7d8b9fc6 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sHUmM-0001uk-2H;
- Wed, 12 Jun 2024 20:41:10 +0000
-Date: Thu, 13 Jun 2024 04:41:02 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Cc: Linux Memory Management List <linux-mm@kvack.org>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- linux-input@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-trace-kernel@vger.kernel.org
-Subject: [linux-next:master] BUILD REGRESSION
- 03d44168cbd7fc57d5de56a3730427db758fc7f6
-Message-ID: <202406130455.UJoyV0n2-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40008408"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Jun 2024 13:50:52 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 12 Jun 2024 13:50:52 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Wed, 12 Jun 2024 13:50:52 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.171)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Wed, 12 Jun 2024 13:50:52 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MJHt0H0xli6o4Nt1Idw7KfAxqvdnZ4+nDumg3sSV+kC+YqlO4X3IP0RGwv01lZIFR2RbUQZ7s3hC+FnphezYBZFWvV3sXiIoMuPLLDKSi1r3SSNWJGOHT8PyALanVLP/tREWWDsha0FetFX117tOEbWqX6J4NiMJYPIlJHU6Z23MTDuGoxALKt3oJfb8PRpwZXMMwLXoHs9a3v5Ugz5xnketZSSRb3VZJq574lTNHbsLpuuxaXQt067aM5d49dui4DmszRY1HG6JsR1rM7icgYU1iiuFxfhGy7yd7H1arX5VpUZCYIwpg8x+4Z3HVPmXdZBLsUqgQg0ZYYGKM3f37A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=G92yILG6sWFWTdokznLNuAmeBqzNywizawawzYdz/Rs=;
+ b=DGd5j4w1yKQgSrbZEb2nmdydAY5OiRwVVeNHJuzdCvXKkmZkng8hWoa1R+BrD0Cx7W8guDyDm2Km/yM0z1Ws3BlE/e5B49/tscgKkB9MxfCv9/TC8d4enMUCEHiZ1gNapuCiusHZLgIW/1jiHuTdNhHWcLDK1X93tZc5n6fT8RTJGOAOMNDxPUIO7I/G3Hc3cjfLgb2Honammo4sNsiorQHTyP0tOY6ed/ybUo5uMAvrVbv6QqOuln33a3I8nZSzbMC4c1mL6nv6beaDCag9JRbHl2eLIeZvwdaxWfBaQw1TlKoCSgi2D3iJFOoB2NELHLQwKY1L7AQEq+5TGsn2aw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
+ by BL3PR11MB6313.namprd11.prod.outlook.com (2603:10b6:208:3b0::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.36; Wed, 12 Jun
+ 2024 20:50:49 +0000
+Received: from CH3PR11MB8441.namprd11.prod.outlook.com
+ ([fe80::bc66:f083:da56:8550]) by CH3PR11MB8441.namprd11.prod.outlook.com
+ ([fe80::bc66:f083:da56:8550%4]) with mapi id 15.20.7633.037; Wed, 12 Jun 2024
+ 20:50:49 +0000
+Message-ID: <a7f1b756-fdf8-4104-b827-42ac18fc5149@intel.com>
+Date: Wed, 12 Jun 2024 13:50:46 -0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] drm/xe/guc: Avoid named enum types in GuC KLV ABI
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+CC: Badal Nilawar <badal.nilawar@intel.com>
+References: <20240611180735.1988-1-michal.wajdeczko@intel.com>
+ <20240611180735.1988-5-michal.wajdeczko@intel.com>
+ <ff5024c2-a973-4a04-a41f-d0197ea74561@intel.com>
+ <67ea0d7a-1383-46eb-84fe-eb6140063842@intel.com>
+Content-Language: en-GB
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <67ea0d7a-1383-46eb-84fe-eb6140063842@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MW2PR2101CA0035.namprd21.prod.outlook.com
+ (2603:10b6:302:1::48) To CH3PR11MB8441.namprd11.prod.outlook.com
+ (2603:10b6:610:1bc::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|BL3PR11MB6313:EE_
+X-MS-Office365-Filtering-Correlation-Id: 90025782-706f-4994-a5e5-08dc8b215724
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230034|376008|1800799018|366010;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SUhveU9TN09waExlM3hGazBhTlE1TVN1UTFNM1Z3K3hyaTQxdEJhdEljT2ZZ?=
+ =?utf-8?B?aGNMbTVqeVZJbzhmTFg1bXRhR0ZSZUxVOE9kNmVZVjlhb3habkJjK1ltUTdP?=
+ =?utf-8?B?cnliYnZUanhPYUtWdDlNWG5BMFhLdFJjdmFKdSs5TjNMOWcrUFBkMlFic0VY?=
+ =?utf-8?B?MmZQQnI2citPcmpMNEZ4TzNPcDlIdm5GUjlqQUJFUWdvWC91eWp0L2s1TDBF?=
+ =?utf-8?B?NkVIWlZaR2ZoWFFsRWxwWXZFR2IrbGZlaXlGRVdKektPV0w3QWh0SDcxZGpp?=
+ =?utf-8?B?RXVGN2d0OEJPYTlYbGFZcWFEdnJGK0FJRVcvMVAwSFJLaEt5eWRSdWVkb21B?=
+ =?utf-8?B?SnRKd2RDcU5MRVVOQ0ZtbWRDM2liT3hjQlRReUFGOExUZFkwOWhvY0s3c1Ix?=
+ =?utf-8?B?TkZiV0pSUUNITG1OMFpHM3FGeUhSK2JMbXFSNXE5a1NpWkxxa1YwSzhpVU5K?=
+ =?utf-8?B?Y2hBS2IyNHlaZnROZ2g4S2dHL1Qxd3JCUm04WFdVTXduczZucDBOTUN3dStH?=
+ =?utf-8?B?OTZCVUFhYWV6UWVYTkZnRktnU3pCWGpadXN2VURkdFVCVFVPSXE2U3BQRFRK?=
+ =?utf-8?B?b1BvM1dXdjVZOXRpWlQrVVVFVXluRlh4ajBWcU9yMWpxN1BhZm16N2I4MnY2?=
+ =?utf-8?B?TzdKVHZ2Qmo4TUNlVGloTjFMc3Jmc1lvOEMvcTlhMlY0bVlMMTJIQWg4UFBn?=
+ =?utf-8?B?NVdmNzdudHZFRE5RKzMxRjJXc2JzMFJRVXllOEZldVEwYmxWc2RJK05CQ1NJ?=
+ =?utf-8?B?ek1vNFRVaFdBYThHNjNjTDFjZXhXc3FtelYrQlBvNS9TcGM4S1NPWHBIQmw3?=
+ =?utf-8?B?YWViNDJiYXNjSWwyTEFlOFVpM1k4bVlFWkI4MStNL0RKeitJSnBPVjk3UXBD?=
+ =?utf-8?B?NGxsVTd4dVRnZStoUjJoQStoamNqVVlJay8zY2pMOWo0bVRKcWpCL0JJNGV4?=
+ =?utf-8?B?WElqcUxzY0E4cEVhb1pzbmhmeERaNUh6SFhRS3lTc3NjYWo3QTZ3d0tnbUVL?=
+ =?utf-8?B?WjF3eWlqSU1hT21TS0F5dnF4WTU5TDlkcmVXQ250NHA0eVRJcWZGekdBRStP?=
+ =?utf-8?B?Rnh0dVF6bWl5cmtoakp1MzJJakR2U3ZFeGh3VndlZFZSLythYVMyenBGelI2?=
+ =?utf-8?B?ME1SVExmOFltdHIzeWxZM2l4ZW5VOC9oalFoZFhsMFdiM25LeTBTRmVidFR6?=
+ =?utf-8?B?aDVjaEhJTjl2dllYalZIVWJsMlB4UEV1c0YvUlVxbmlyTlI0Z1NOa1VJL3hy?=
+ =?utf-8?B?TXNnL3d6eGkzOEJwSHExTi9QUzRYWXNic1M3MjVZWTRFMnRmNlJPdTJvWW1n?=
+ =?utf-8?B?MEpDRXBSK3VPTE14dmZOY0dMT1BMajlwdDdBQjFwbHVGdHJIbFFFZTZueDFi?=
+ =?utf-8?B?Z0dWVUo0dG1oRHJzK0tpcTRzb3laZUJhbTZnWE9RMThsaEFUN3BOSENadXNz?=
+ =?utf-8?B?L3RGSmtnbTR0YzAwVXJnTUswRU9uY1Izb0xaTnpYbWIyNHlyT0RvdVBCMlVG?=
+ =?utf-8?B?Qis0cjl2MERsbmZYRk5XSnJJQ0hZNTQzTVdnaDBVeVhuL2F6cG1XclhxZ1Qr?=
+ =?utf-8?B?RFRsd21qSW9MQml0Zy9GL2JhL2Y2YitldFpDaHBWNHdOK1N6bHp0dmVCZFBu?=
+ =?utf-8?B?RExLaEdZVDlsa0RKUzRvV0FvQlY1SVBpQzRnNUR5dVBwdjg3OGxxS1JJMUtT?=
+ =?utf-8?Q?oV0L5AvEFBDMv1GShi96?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230034)(376008)(1800799018)(366010); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YXIrRWR5eVkyVUlIMmFhMjQ2SE9ReGY2M1BKcWpwV2lTeVdRQ0tLalBkZHF2?=
+ =?utf-8?B?YThadGsrVmtrcmNnUGVMdHNuc0JPVFE3YTdtdkNuaDAwK3lvRzE2c0F6dFpO?=
+ =?utf-8?B?dTJ1WUVwa1kvcHNPa0FXZDJ1azYyWVRVbCtwM1JDeGtWZFFpbUhHTzlNNUlP?=
+ =?utf-8?B?cGgxMFM0K1dkYUZpS2NFcTl0NkhHemx4NjlOS1JXcEtMVXl3NXdnZXpESUNX?=
+ =?utf-8?B?Q0xlcElndUJucm5BK3QwbDdEQTVpRHoyaGR4ZXdaZjA4Z216c0ZjV1pkN1hI?=
+ =?utf-8?B?cll5dUM4QlBTMlB1b0dTUnVkUjBoZnlFNkJOdjFJblhIS0ZDYjZwWUVjNG5Y?=
+ =?utf-8?B?SFlKRDRHVkp6emxsRzJDMEtZYlN1MmRkZnZ3U2M2eFRvNm5hc08xRG9hTVoy?=
+ =?utf-8?B?OWhGMkM1WEwwRUZGZFlvYkhtYU8vUFNBS1l3MVRGcThZK2RiYWc5aFBrcnVx?=
+ =?utf-8?B?dXM1TDJxdFNSZWtlZm0xZVBHcnh1Sk4zSjhwOFFYZmYyazdKZXN3WjNaNnVS?=
+ =?utf-8?B?WGkyblRkald0OUF1c3lHb0gzSzNuWlAwbXJQR0VPcy9kVW9OSDBIV2EvYjd0?=
+ =?utf-8?B?R1VQTi9zRlFJdmtlWTk0ZGdFUlRHZlBWOGpJaUg2WWxDdG54QkN4UkNyQTBw?=
+ =?utf-8?B?VmloODlLUmtUdUtndjU3dEowRDl1NDk5OG55TWVDNXQ5dDlrbHF5K3lPa0ZS?=
+ =?utf-8?B?NUh0UFhkcnp3d2U3ZFUrQlV5bENCYXRxT0g1SXhDVkxwMHVUMVdSa05LK3U2?=
+ =?utf-8?B?UU9QbnRsWnYraUNNRUJkcURSTm9qSlVuaXlXSko2dlkvdDYvbjZBbm9QNkw2?=
+ =?utf-8?B?Z0VvWXg1QzA2WU15OHZsV1Q0UjRjbFUzYklSZEtpRFhwR1U3VGpyc2c1Unkw?=
+ =?utf-8?B?UjdPRHYrUGZ0YnFjQWpqZ0xrYnlZTnJjNmtaKzdyOVRINFdnRG1PQzdDcW03?=
+ =?utf-8?B?aVZySVhKcGtNNkEwQVA3Qk5kamNTb2pUT2pxQmpoZjZ6SlBTT3ZRMjh4dVNv?=
+ =?utf-8?B?RWF2bFdsYlB6Z0tidm5HSHlNckFWUStSVjI0Z09LYmg0V0QvR1hMV2U2RFlt?=
+ =?utf-8?B?d0dBMzVoU3lCMzE2dm1WR1NnWE9rb0NjUGpkdTFZL0xHcU1HZDMrRzFxOFpz?=
+ =?utf-8?B?OFNEMHdqNTdYcEE5Smo3Mnc5MWtiYUl5akFMUlkrVkdTSnNTUmFody9kRGJn?=
+ =?utf-8?B?LzVxbTJCKzd0K2ZER1VPbm55YXVja3RINk5OVGUvQnJuTWRGVFR0YTREOGpa?=
+ =?utf-8?B?VkRITGo3ejF5RzA0cVBUSW1MclNaL3VZTVBlVFNxSlpVNzNORkVzTzJSckFC?=
+ =?utf-8?B?TGs3YkQ5SHJZSW05Z3JhNHVkTkV2ZzV6Mmw2RXk0QkRhK05wQ2JvUWloTU84?=
+ =?utf-8?B?Sm9TVmV4T1NCRkkwbnhFcE42Tk8xUWIwMWd2SmRoZmRpUGdISzhKWEtSaWR3?=
+ =?utf-8?B?NFY0VndsaWxkUXJPTjUwam40aVpxNkRhWkRJOHNFZDlOZzlzT3laWVQyZ0Zm?=
+ =?utf-8?B?dlVqUkdIUTdvUWtoKzZnT1RLcytscEdkYWt4ZXRvL0RKdXdTVEtwaVhaYzkx?=
+ =?utf-8?B?a1pSZHlXbTU2akZSalRGWXd4aG5iYWVnenZYL0preVJZZTZmTjkzMUxyODNR?=
+ =?utf-8?B?Nkp4c3RqWG8waXFRRG9xQmNUK3lUck9TMHRPMGVSRE5uQnl6VFJlUXAwZCtu?=
+ =?utf-8?B?aitoSE9UblJra09YUU8zRmg3N3FGcHVQTjJ2aXhjRHRmRGQyRHhlM2NjSWxu?=
+ =?utf-8?B?OVNEbTU5RzdpejVKcW9WUWdrZGI0QWpOdUpFUUZaYW90RXlpMHhjRnN2eTVx?=
+ =?utf-8?B?VEc4bVlwUEFENFJHaUtqSGpnOGZsY2ZsOTdTeDBva043bWpmRzV6QkdPY3Qr?=
+ =?utf-8?B?RHBlS0NVOStYbGxjQStGaCtTMEgySDA1WGowZGVGaTdLQTNZS2JtOXNCVExT?=
+ =?utf-8?B?VXlpN1FIdXhjNWVESGRqTndHS0hXMVhuWlZzSkovT3A5MHFSK05STjRXZFdN?=
+ =?utf-8?B?TThVNjdKSFRMU1lCZndEemNBdGxUcjJlYUMxRTZiVURrNUpiWUZ4L1JZMmtT?=
+ =?utf-8?B?dlhJdURXYWJjMnRLMzdyZFlvcHpFbXZTODEvaGhydURSejY1NTI3ZGpkNW8r?=
+ =?utf-8?B?UGVaY0FobXRSbnB1a2JDSXVwMTBOZm9LZ1h2Y2owK2NzSXpsQThIQ0tRZVEy?=
+ =?utf-8?B?R0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90025782-706f-4994-a5e5-08dc8b215724
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2024 20:50:49.3398 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DlLC7kjQP9DGbSrLD/DOwllKdFskebEgKbsjRxi2DQfQAaIsa46GFxytcroMwc8uAfAdXypOXnl/gHGkjibfpvKhtTASl2CyYTwExFhsJ6U=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6313
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,441 +194,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: 03d44168cbd7fc57d5de56a3730427db758fc7f6  Add linux-next specific files for 20240612
+On 6/11/2024 14:14, Michal Wajdeczko wrote:
+> On 11.06.2024 22:16, John Harrison wrote:
+>> On 6/11/2024 11:07, Michal Wajdeczko wrote:
+>>> The xe_guc_klv_ids name just for workaround keys is too generic,
+>> So rename it to xe_guc_wa_klv_ids?
+> but the idea is to make GuC ABI headers shareable between i915 and xe,
+> see [1], thus having driver specific prefix in the enum is not desired
+>
+> what about guc_wa_klv_keys (as we have KEY not ID in the KLV)
+Sure. Although if this is in global space rather than confined to a 
+specific driver then shouldn't it be intel_guc_wa_klv_keys?
 
-Error/Warning reports:
+>
+> [1] https://patchwork.freedesktop.org/series/134722/
+>
+>>> as workaround keys are not the only keys used by the GuC firmware.
+>>> Other KLVs keys are defined as plain defines or anonymous enums.
+>> Just because other instances are done badly doesn't mean we should break
+>> the good one to match.
+> all these are ABI definitions so IMO there is nothing wrong with using
+> plain defines for values expected at the binary interface
+But there is advantage to keeping things correctly typed at the software 
+level before you get to the binary interface. E.g. you have a helper 
+function specifically for working with w/a KLVs that will produce a 
+compile time warning if passed a scheduler policy key by accident.
 
-https://lore.kernel.org/oe-kbuild-all/202406130139.TV8i316r-lkp@intel.com
+>
+> also using defines allows to have similarly named related definitions
+> that we could all place together (like KEY and LEN for each KLV), which
+> would be hard to achieve if we will have separate enums for those
+You can put #defines in the middle of an enum. Or you can quite easily 
+and cleanly prefix the relevant defines with a comment to say which key 
+they belong to.
 
-Error/Warning: (recently discovered and may have been fixed)
+Personally, I find the way that H2G/G2H action definitions are scattered 
+through multiple files and hugely spaced out within those files makes it 
+extremely difficult to work with them. The original single, concise enum 
+of all actions was so much easier to use.
 
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dtb: dma-controller@8380000: Unevaluated properties are not allowed ('compatible' was unexpected)
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dtb: dma-controller@8380000: compatible: ['fsl,ls1028a-qdma', 'fsl,ls1021a-qdma'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dtb: dma-controller@8380000: interrupt-names: ['qdma-error', 'qdma-queue0', 'qdma-queue1', 'qdma-queue2', 'qdma-queue3'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dtb: dma-controller@8380000: interrupts: [[0, 43, 4], [0, 251, 4], [0, 252, 4], [0, 253, 4], [0, 254, 4]] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dtb: dma-controller@8380000: Unevaluated properties are not allowed ('compatible' was unexpected)
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dtb: dma-controller@8380000: compatible: ['fsl,ls1028a-qdma', 'fsl,ls1021a-qdma'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dtb: dma-controller@8380000: interrupt-names: ['qdma-error', 'qdma-queue0', 'qdma-queue1', 'qdma-queue2', 'qdma-queue3'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dtb: dma-controller@8380000: interrupts: [[0, 43, 4], [0, 251, 4], [0, 252, 4], [0, 253, 4], [0, 254, 4]] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dtb: dma-controller@8380000: Unevaluated properties are not allowed ('compatible' was unexpected)
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dtb: dma-controller@8380000: compatible: ['fsl,ls1028a-qdma', 'fsl,ls1021a-qdma'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dtb: dma-controller@8380000: interrupt-names: ['qdma-error', 'qdma-queue0', 'qdma-queue1', 'qdma-queue2', 'qdma-queue3'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dtb: dma-controller@8380000: interrupts: [[0, 43, 4], [0, 251, 4], [0, 252, 4], [0, 253, 4], [0, 254, 4]] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dtb: dma-controller@8380000: Unevaluated properties are not allowed ('compatible' was unexpected)
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dtb: dma-controller@8380000: compatible: ['fsl,ls1028a-qdma', 'fsl,ls1021a-qdma'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dtb: dma-controller@8380000: interrupt-names: ['qdma-error', 'qdma-queue0', 'qdma-queue1', 'qdma-queue2', 'qdma-queue3'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dtb: dma-controller@8380000: interrupts: [[0, 43, 4], [0, 251, 4], [0, 252, 4], [0, 253, 4], [0, 254, 4]] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3.dtb: dma-controller@8380000: Unevaluated properties are not allowed ('compatible' was unexpected)
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3.dtb: dma-controller@8380000: compatible: ['fsl,ls1028a-qdma', 'fsl,ls1021a-qdma'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3.dtb: dma-controller@8380000: interrupt-names: ['qdma-error', 'qdma-queue0', 'qdma-queue1', 'qdma-queue2', 'qdma-queue3'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3.dtb: dma-controller@8380000: interrupts: [[0, 43, 4], [0, 251, 4], [0, 252, 4], [0, 253, 4], [0, 254, 4]] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dtb: dma-controller@8380000: Unevaluated properties are not allowed ('compatible' was unexpected)
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dtb: dma-controller@8380000: compatible: ['fsl,ls1028a-qdma', 'fsl,ls1021a-qdma'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dtb: dma-controller@8380000: interrupt-names: ['qdma-error', 'qdma-queue0', 'qdma-queue1', 'qdma-queue2', 'qdma-queue3'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dtb: dma-controller@8380000: interrupts: [[0, 43, 4], [0, 251, 4], [0, 252, 4], [0, 253, 4], [0, 254, 4]] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dtb: dma-controller@8380000: Unevaluated properties are not allowed ('compatible' was unexpected)
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dtb: dma-controller@8380000: compatible: ['fsl,ls1028a-qdma', 'fsl,ls1021a-qdma'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dtb: dma-controller@8380000: interrupt-names: ['qdma-error', 'qdma-queue0', 'qdma-queue1', 'qdma-queue2', 'qdma-queue3'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dtb: dma-controller@8380000: interrupts: [[0, 43, 4], [0, 251, 4], [0, 252, 4], [0, 253, 4], [0, 254, 4]] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dtb: dma-controller@8380000: Unevaluated properties are not allowed ('compatible' was unexpected)
-arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dtb: dma-controller@8380000: compatible: ['fsl,ls1028a-qdma', 'fsl,ls1021a-qdma'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dtb: dma-controller@8380000: interrupt-names: ['qdma-error', 'qdma-queue0', 'qdma-queue1', 'qdma-queue2', 'qdma-queue3'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dtb: dma-controller@8380000: interrupts: [[0, 43, 4], [0, 251, 4], [0, 252, 4], [0, 253, 4], [0, 254, 4]] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dtb: dma-controller@8380000: Unevaluated properties are not allowed ('compatible' was unexpected)
-arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dtb: dma-controller@8380000: compatible: ['fsl,ls1028a-qdma', 'fsl,ls1021a-qdma'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dtb: dma-controller@8380000: interrupt-names: ['qdma-error', 'qdma-queue0', 'qdma-queue1', 'qdma-queue2', 'qdma-queue3'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dtb: dma-controller@8380000: interrupts: [[0, 43, 4], [0, 251, 4], [0, 252, 4], [0, 253, 4], [0, 254, 4]] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: dma-controller@8380000: Unevaluated properties are not allowed ('compatible' was unexpected)
-arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: dma-controller@8380000: compatible: ['fsl,ls1021a-qdma', 'fsl,ls1043a-qdma'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: dma-controller@8380000: interrupt-names: ['qdma-error', 'qdma-queue0', 'qdma-queue1', 'qdma-queue2', 'qdma-queue3'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: dma-controller@8380000: interrupts: [[0, 153, 4], [0, 39, 4], [0, 40, 4], [0, 41, 4], [0, 42, 4]] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1043a-rdb.dtb: dma-controller@8380000: Unevaluated properties are not allowed ('compatible' was unexpected)
-arch/arm64/boot/dts/freescale/fsl-ls1043a-rdb.dtb: dma-controller@8380000: compatible: ['fsl,ls1021a-qdma', 'fsl,ls1043a-qdma'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1043a-rdb.dtb: dma-controller@8380000: interrupt-names: ['qdma-error', 'qdma-queue0', 'qdma-queue1', 'qdma-queue2', 'qdma-queue3'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1043a-rdb.dtb: dma-controller@8380000: interrupts: [[0, 153, 4], [0, 39, 4], [0, 40, 4], [0, 41, 4], [0, 42, 4]] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1043a-tqmls1043a-mbls10xxa.dtb: dma-controller@8380000: Unevaluated properties are not allowed ('compatible' was unexpected)
-arch/arm64/boot/dts/freescale/fsl-ls1043a-tqmls1043a-mbls10xxa.dtb: dma-controller@8380000: compatible: ['fsl,ls1021a-qdma', 'fsl,ls1043a-qdma'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1043a-tqmls1043a-mbls10xxa.dtb: dma-controller@8380000: interrupt-names: ['qdma-error', 'qdma-queue0', 'qdma-queue1', 'qdma-queue2', 'qdma-queue3'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1043a-tqmls1043a-mbls10xxa.dtb: dma-controller@8380000: interrupts: [[0, 153, 4], [0, 39, 4], [0, 40, 4], [0, 41, 4], [0, 42, 4]] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dtb: dma-controller@8380000: Unevaluated properties are not allowed ('compatible' was unexpected)
-arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dtb: dma-controller@8380000: compatible: ['fsl,ls1046a-qdma', 'fsl,ls1021a-qdma'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dtb: dma-controller@8380000: interrupt-names: ['qdma-error', 'qdma-queue0', 'qdma-queue1', 'qdma-queue2', 'qdma-queue3'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dtb: dma-controller@8380000: interrupts: [[0, 153, 4], [0, 39, 4], [0, 40, 4], [0, 41, 4], [0, 42, 4]] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dtb: dma-controller@8380000: Unevaluated properties are not allowed ('compatible' was unexpected)
-arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dtb: dma-controller@8380000: compatible: ['fsl,ls1046a-qdma', 'fsl,ls1021a-qdma'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dtb: dma-controller@8380000: interrupt-names: ['qdma-error', 'qdma-queue0', 'qdma-queue1', 'qdma-queue2', 'qdma-queue3'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dtb: dma-controller@8380000: interrupts: [[0, 153, 4], [0, 39, 4], [0, 40, 4], [0, 41, 4], [0, 42, 4]] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dtb: dma-controller@8380000: Unevaluated properties are not allowed ('compatible' was unexpected)
-arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dtb: dma-controller@8380000: compatible: ['fsl,ls1046a-qdma', 'fsl,ls1021a-qdma'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dtb: dma-controller@8380000: interrupt-names: ['qdma-error', 'qdma-queue0', 'qdma-queue1', 'qdma-queue2', 'qdma-queue3'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dtb: dma-controller@8380000: interrupts: [[0, 153, 4], [0, 39, 4], [0, 40, 4], [0, 41, 4], [0, 42, 4]] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1046a-tqmls1046a-mbls10xxa.dtb: dma-controller@8380000: Unevaluated properties are not allowed ('compatible' was unexpected)
-arch/arm64/boot/dts/freescale/fsl-ls1046a-tqmls1046a-mbls10xxa.dtb: dma-controller@8380000: compatible: ['fsl,ls1046a-qdma', 'fsl,ls1021a-qdma'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1046a-tqmls1046a-mbls10xxa.dtb: dma-controller@8380000: interrupt-names: ['qdma-error', 'qdma-queue0', 'qdma-queue1', 'qdma-queue2', 'qdma-queue3'] is too long
-arch/arm64/boot/dts/freescale/fsl-ls1046a-tqmls1046a-mbls10xxa.dtb: dma-controller@8380000: interrupts: [[0, 153, 4], [0, 39, 4], [0, 40, 4], [0, 41, 4], [0, 42, 4]] is too long
+>
+>> Having a named type gives you an extra level of compiler type checks
+>> that you don't get with a u16.
+> fine, but at the end you need to convert to u16 anyway
+But the later you do that conversion, the safer your code is.
 
-Error/Warning ids grouped by kconfigs:
+>
+> and hopefully there will be no clash when those WA keys will be used
+> where we use another named enum for KLV keys
+I'm not following. You are saying that there could be a clash because 
+0x9002 is used for a w/a key and also for a policy key, for example? Or 
+that there could be two intel_guc_wa_klv_key enums that are used for 
+different platforms?
 
-gcc_recent_errors
-|-- arm64-randconfig-001-20240612
-|   `-- drivers-pinctrl-pinctrl-keembay.c:error:struct-function_desc-has-no-member-named-name
-|-- arm64-randconfig-003-20240612
-|   `-- drivers-pinctrl-pinctrl-keembay.c:error:struct-function_desc-has-no-member-named-name
-|-- csky-randconfig-002-20240612
-|   |-- kernel-trace-fgraph.c:warning:fgraph_pid_func-defined-but-not-used
-|   |-- kernel-trace-fgraph.c:warning:unused-variable-gops
-|   `-- kernel-trace-fgraph.c:warning:unused-variable-op
-|-- i386-randconfig-061-20240612
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash1-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-orig_hash-got-struct-ftrace_hash-noderef-__rcu
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-assigned-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-save_filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-assigned-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-save_notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_filter_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   `-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|-- loongarch-defconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-hubbub-dcn401-dcn401_hubbub.o:warning:objtool:unexpected-relocation-symbol-type-in-.rela.discard.reachable
-|   `-- drivers-thermal-thermal_trip.o:warning:objtool:unexpected-relocation-symbol-type-in-.rela.discard.reachable
-|-- powerpc64-randconfig-r121-20240612
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash1-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-orig_hash-got-struct-ftrace_hash-noderef-__rcu
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-assigned-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-save_filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-assigned-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-save_notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_filter_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   `-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|-- riscv-randconfig-001-20240612
-|   |-- kernel-trace-fgraph.c:warning:fgraph_pid_func-defined-but-not-used
-|   |-- kernel-trace-fgraph.c:warning:unused-variable-gops
-|   `-- kernel-trace-fgraph.c:warning:unused-variable-op
-|-- sh-randconfig-001-20240612
-|   |-- kernel-trace-fgraph.c:warning:fgraph_pid_func-defined-but-not-used
-|   |-- kernel-trace-fgraph.c:warning:unused-variable-gops
-|   `-- kernel-trace-fgraph.c:warning:unused-variable-op
-`-- x86_64-buildonly-randconfig-001-20240612
-    |-- drivers-input-touchscreen-wacom_w8001.c:warning:Finger-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-    `-- drivers-input-touchscreen-wacom_w8001.c:warning:Pen-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-clang_recent_errors
-|-- arm64-randconfig-051-20240612
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-kbox-a-ls.dtb:dma-controller:Unevaluated-properties-are-not-allowed-(-compatible-was-unexpected)
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-kbox-a-ls.dtb:dma-controller:compatible:fsl-ls1028a-qdma-fsl-ls1021a-qdma-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-kbox-a-ls.dtb:dma-controller:interrupt-names:qdma-error-qdma-queue0-qdma-queue1-qdma-queue2-qdma-queue3-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-kbox-a-ls.dtb:dma-controller:interrupts:is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var1.dtb:dma-controller:Unevaluated-properties-are-not-allowed-(-compatible-was-unexpected)
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var1.dtb:dma-controller:compatible:fsl-ls1028a-qdma-fsl-ls1021a-qdma-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var1.dtb:dma-controller:interrupt-names:qdma-error-qdma-queue0-qdma-queue1-qdma-queue2-qdma-queue3-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var1.dtb:dma-controller:interrupts:is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var2.dtb:dma-controller:Unevaluated-properties-are-not-allowed-(-compatible-was-unexpected)
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var2.dtb:dma-controller:compatible:fsl-ls1028a-qdma-fsl-ls1021a-qdma-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var2.dtb:dma-controller:interrupt-names:qdma-error-qdma-queue0-qdma-queue1-qdma-queue2-qdma-queue3-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var2.dtb:dma-controller:interrupts:is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var3-ads2.dtb:dma-controller:Unevaluated-properties-are-not-allowed-(-compatible-was-unexpected)
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var3-ads2.dtb:dma-controller:compatible:fsl-ls1028a-qdma-fsl-ls1021a-qdma-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var3-ads2.dtb:dma-controller:interrupt-names:qdma-error-qdma-queue0-qdma-queue1-qdma-queue2-qdma-queue3-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var3-ads2.dtb:dma-controller:interrupts:is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var3.dtb:dma-controller:Unevaluated-properties-are-not-allowed-(-compatible-was-unexpected)
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var3.dtb:dma-controller:compatible:fsl-ls1028a-qdma-fsl-ls1021a-qdma-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var3.dtb:dma-controller:interrupt-names:qdma-error-qdma-queue0-qdma-queue1-qdma-queue2-qdma-queue3-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var3.dtb:dma-controller:interrupts:is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var4.dtb:dma-controller:Unevaluated-properties-are-not-allowed-(-compatible-was-unexpected)
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var4.dtb:dma-controller:compatible:fsl-ls1028a-qdma-fsl-ls1021a-qdma-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var4.dtb:dma-controller:interrupt-names:qdma-error-qdma-queue0-qdma-queue1-qdma-queue2-qdma-queue3-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28-var4.dtb:dma-controller:interrupts:is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28.dtb:dma-controller:Unevaluated-properties-are-not-allowed-(-compatible-was-unexpected)
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28.dtb:dma-controller:compatible:fsl-ls1028a-qdma-fsl-ls1021a-qdma-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28.dtb:dma-controller:interrupt-names:qdma-error-qdma-queue0-qdma-queue1-qdma-queue2-qdma-queue3-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-kontron-sl28.dtb:dma-controller:interrupts:is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-qds.dtb:dma-controller:Unevaluated-properties-are-not-allowed-(-compatible-was-unexpected)
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-qds.dtb:dma-controller:compatible:fsl-ls1028a-qdma-fsl-ls1021a-qdma-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-qds.dtb:dma-controller:interrupt-names:qdma-error-qdma-queue0-qdma-queue1-qdma-queue2-qdma-queue3-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-qds.dtb:dma-controller:interrupts:is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-rdb.dtb:dma-controller:Unevaluated-properties-are-not-allowed-(-compatible-was-unexpected)
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-rdb.dtb:dma-controller:compatible:fsl-ls1028a-qdma-fsl-ls1021a-qdma-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-rdb.dtb:dma-controller:interrupt-names:qdma-error-qdma-queue0-qdma-queue1-qdma-queue2-qdma-queue3-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1028a-rdb.dtb:dma-controller:interrupts:is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1043a-qds.dtb:dma-controller:Unevaluated-properties-are-not-allowed-(-compatible-was-unexpected)
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1043a-qds.dtb:dma-controller:compatible:fsl-ls1021a-qdma-fsl-ls1043a-qdma-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1043a-qds.dtb:dma-controller:interrupt-names:qdma-error-qdma-queue0-qdma-queue1-qdma-queue2-qdma-queue3-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1043a-qds.dtb:dma-controller:interrupts:is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1043a-rdb.dtb:dma-controller:Unevaluated-properties-are-not-allowed-(-compatible-was-unexpected)
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1043a-rdb.dtb:dma-controller:compatible:fsl-ls1021a-qdma-fsl-ls1043a-qdma-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1043a-rdb.dtb:dma-controller:interrupt-names:qdma-error-qdma-queue0-qdma-queue1-qdma-queue2-qdma-queue3-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1043a-rdb.dtb:dma-controller:interrupts:is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1043a-tqmls1043a-mbls1xa.dtb:dma-controller:Unevaluated-properties-are-not-allowed-(-compatible-was-unexpected)
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1043a-tqmls1043a-mbls1xa.dtb:dma-controller:compatible:fsl-ls1021a-qdma-fsl-ls1043a-qdma-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1043a-tqmls1043a-mbls1xa.dtb:dma-controller:interrupt-names:qdma-error-qdma-queue0-qdma-queue1-qdma-queue2-qdma-queue3-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1043a-tqmls1043a-mbls1xa.dtb:dma-controller:interrupts:is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1046a-frwy.dtb:dma-controller:Unevaluated-properties-are-not-allowed-(-compatible-was-unexpected)
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1046a-frwy.dtb:dma-controller:compatible:fsl-ls1046a-qdma-fsl-ls1021a-qdma-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1046a-frwy.dtb:dma-controller:interrupt-names:qdma-error-qdma-queue0-qdma-queue1-qdma-queue2-qdma-queue3-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1046a-frwy.dtb:dma-controller:interrupts:is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1046a-qds.dtb:dma-controller:Unevaluated-properties-are-not-allowed-(-compatible-was-unexpected)
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1046a-qds.dtb:dma-controller:compatible:fsl-ls1046a-qdma-fsl-ls1021a-qdma-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1046a-qds.dtb:dma-controller:interrupt-names:qdma-error-qdma-queue0-qdma-queue1-qdma-queue2-qdma-queue3-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1046a-qds.dtb:dma-controller:interrupts:is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1046a-rdb.dtb:dma-controller:Unevaluated-properties-are-not-allowed-(-compatible-was-unexpected)
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1046a-rdb.dtb:dma-controller:compatible:fsl-ls1046a-qdma-fsl-ls1021a-qdma-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1046a-rdb.dtb:dma-controller:interrupt-names:qdma-error-qdma-queue0-qdma-queue1-qdma-queue2-qdma-queue3-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1046a-rdb.dtb:dma-controller:interrupts:is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1046a-tqmls1046a-mbls1xa.dtb:dma-controller:Unevaluated-properties-are-not-allowed-(-compatible-was-unexpected)
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1046a-tqmls1046a-mbls1xa.dtb:dma-controller:compatible:fsl-ls1046a-qdma-fsl-ls1021a-qdma-is-too-long
-|   |-- arch-arm64-boot-dts-freescale-fsl-ls1046a-tqmls1046a-mbls1xa.dtb:dma-controller:interrupt-names:qdma-error-qdma-queue0-qdma-queue1-qdma-queue2-qdma-queue3-is-too-long
-|   `-- arch-arm64-boot-dts-freescale-fsl-ls1046a-tqmls1046a-mbls1xa.dtb:dma-controller:interrupts:is-too-long
-|-- arm64-randconfig-r131-20240612
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash1-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-orig_hash-got-struct-ftrace_hash-noderef-__rcu
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-assigned-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-save_filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-assigned-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-save_notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_filter_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   `-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|-- i386-randconfig-006-20240612
-|   `-- drivers-gpu-drm-drm_mm.c:error:function-drm_mm_node_scanned_block-is-not-needed-and-will-not-be-emitted-Werror-Wunneeded-internal-declaration
-|-- x86_64-randconfig-123-20240612
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-B-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash1-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-new_hash2-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-orig_hash-got-struct-ftrace_hash-noderef-__rcu
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-struct-ftrace_hash-src-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-assigned-filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-filter_hash-got-struct-ftrace_hash-save_filter_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-assigned-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-noderef-__rcu-notrace_hash-got-struct-ftrace_hash-save_notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-|   |-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_filter_hash-got-struct-ftrace_hash-noderef-__rcu-filter_hash
-|   `-- kernel-trace-ftrace.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-ftrace_hash-save_notrace_hash-got-struct-ftrace_hash-noderef-__rcu-notrace_hash
-`-- x86_64-randconfig-161-20240612
-    |-- drivers-gpu-drm-amd-amdgpu-amdgpu_vm.c-amdgpu_vm_bo_update()-error:we-previously-assumed-bo-could-be-null-(see-line-)
-    |-- drivers-gpu-drm-i915-display-intel_dpt.c-intel_dpt_pin_to_ggtt()-error:uninitialized-symbol-vma-.
-    |-- drivers-gpu-drm-i915-display-intel_fb_pin.c-intel_fb_pin_to_dpt()-error:uninitialized-symbol-vma-.
-    `-- drivers-gpu-drm-i915-display-intel_fb_pin.c-intel_fb_pin_to_dpt()-error:vma-dereferencing-possible-ERR_PTR()
+John.
 
-elapsed time: 777m
+>
+>> John.
+>>
+>>
+>>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>> Cc: John Harrison <John.C.Harrison@Intel.com>
+>>> Cc: Badal Nilawar <badal.nilawar@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/xe/abi/guc_klvs_abi.h | 2 +-
+>>>    drivers/gpu/drm/xe/xe_guc_ads.c       | 4 ++--
+>>>    2 files changed, 3 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+>>> b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+>>> index a0b80c9fc5ef..831a2b57f308 100644
+>>> --- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+>>> +++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+>>> @@ -346,7 +346,7 @@ enum {
+>>>    /*
+>>>     * Workaround keys:
+>>>     */
+>>> -enum xe_guc_klv_ids {
+>>> +enum {
+>>>       
+>>> GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED                =
+>>> 0x9002,
+>>>        GUC_WORKAROUND_KLV_ID_GAM_PFQ_SHADOW_TAIL_POLLING
+>>> = 0x9005,
+>>>       
+>>> GUC_WORKAROUND_KLV_ID_DISABLE_MTP_DURING_ASYNC_COMPUTE
+>>> = 0x9007,
+>>> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c
+>>> b/drivers/gpu/drm/xe/xe_guc_ads.c
+>>> index 1c60b685dbc6..a3de00e92b4e 100644
+>>> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
+>>> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+>>> @@ -285,7 +285,7 @@ static size_t calculate_golden_lrc_size(struct
+>>> xe_guc_ads *ads)
+>>>    }
+>>>      static void guc_waklv_enable_one_word(struct xe_guc_ads *ads,
+>>> -                      enum xe_guc_klv_ids klv_id,
+>>> +                      u16 klv_id,
+>>>                          u32 value,
+>>>                          u32 *offset, u32 *remain)
+>>>    {
+>>> @@ -312,7 +312,7 @@ static void guc_waklv_enable_one_word(struct
+>>> xe_guc_ads *ads,
+>>>    }
+>>>      static void guc_waklv_enable_simple(struct xe_guc_ads *ads,
+>>> -                    enum xe_guc_klv_ids klv_id, u32 *offset, u32
+>>> *remain)
+>>> +                    u16 klv_id, u32 *offset, u32 *remain)
+>>>    {
+>>>        u32 klv_entry[] = {
+>>>            /* 16:16 key/length */
 
-configs tested: 179
-configs skipped: 3
-
-tested configs:
-alpha                             allnoconfig   gcc-13.2.0
-alpha                            allyesconfig   gcc-13.2.0
-alpha                               defconfig   gcc-13.2.0
-arc                              allmodconfig   gcc-13.2.0
-arc                               allnoconfig   gcc-13.2.0
-arc                              allyesconfig   gcc-13.2.0
-arc                                 defconfig   gcc-13.2.0
-arc                            hsdk_defconfig   gcc-13.2.0
-arc                   randconfig-001-20240612   gcc-13.2.0
-arc                   randconfig-002-20240612   gcc-13.2.0
-arm                              allmodconfig   gcc-13.2.0
-arm                               allnoconfig   clang-19
-arm                              allyesconfig   gcc-13.2.0
-arm                                 defconfig   clang-14
-arm                         lpc32xx_defconfig   clang-19
-arm                         nhk8815_defconfig   clang-19
-arm                          pxa168_defconfig   clang-19
-arm                   randconfig-001-20240612   gcc-13.2.0
-arm                   randconfig-002-20240612   gcc-13.2.0
-arm                   randconfig-003-20240612   clang-19
-arm                   randconfig-004-20240612   clang-14
-arm                           sunxi_defconfig   gcc-13.2.0
-arm64                            allmodconfig   clang-19
-arm64                             allnoconfig   gcc-13.2.0
-arm64                               defconfig   gcc-13.2.0
-arm64                 randconfig-001-20240612   gcc-13.2.0
-arm64                 randconfig-002-20240612   gcc-13.2.0
-arm64                 randconfig-003-20240612   gcc-13.2.0
-arm64                 randconfig-004-20240612   clang-19
-csky                             allmodconfig   gcc-13.2.0
-csky                              allnoconfig   gcc-13.2.0
-csky                             allyesconfig   gcc-13.2.0
-csky                                defconfig   gcc-13.2.0
-csky                  randconfig-001-20240612   gcc-13.2.0
-csky                  randconfig-002-20240612   gcc-13.2.0
-hexagon                          allmodconfig   clang-19
-hexagon                           allnoconfig   clang-19
-hexagon                          allyesconfig   clang-19
-hexagon                             defconfig   clang-19
-hexagon               randconfig-001-20240612   clang-19
-hexagon               randconfig-002-20240612   clang-19
-i386                             allmodconfig   gcc-13
-i386                              allnoconfig   gcc-13
-i386                             allyesconfig   gcc-13
-i386         buildonly-randconfig-001-20240612   gcc-13
-i386         buildonly-randconfig-002-20240612   gcc-8
-i386         buildonly-randconfig-003-20240612   gcc-13
-i386         buildonly-randconfig-004-20240612   clang-18
-i386         buildonly-randconfig-005-20240612   gcc-13
-i386         buildonly-randconfig-006-20240612   clang-18
-i386                                defconfig   clang-18
-i386                  randconfig-001-20240612   gcc-8
-i386                  randconfig-002-20240612   clang-18
-i386                  randconfig-003-20240612   clang-18
-i386                  randconfig-004-20240612   clang-18
-i386                  randconfig-005-20240612   gcc-13
-i386                  randconfig-006-20240612   clang-18
-i386                  randconfig-011-20240612   clang-18
-i386                  randconfig-012-20240612   clang-18
-i386                  randconfig-013-20240612   clang-18
-i386                  randconfig-014-20240612   gcc-7
-i386                  randconfig-015-20240612   gcc-13
-i386                  randconfig-016-20240612   gcc-7
-loongarch                        allmodconfig   gcc-13.2.0
-loongarch                         allnoconfig   gcc-13.2.0
-loongarch                           defconfig   gcc-13.2.0
-loongarch             randconfig-001-20240612   gcc-13.2.0
-loongarch             randconfig-002-20240612   gcc-13.2.0
-m68k                             allmodconfig   gcc-13.2.0
-m68k                              allnoconfig   gcc-13.2.0
-m68k                             allyesconfig   gcc-13.2.0
-m68k                                defconfig   gcc-13.2.0
-microblaze                       allmodconfig   gcc-13.2.0
-microblaze                        allnoconfig   gcc-13.2.0
-microblaze                       allyesconfig   gcc-13.2.0
-microblaze                          defconfig   gcc-13.2.0
-mips                              allnoconfig   gcc-13.2.0
-mips                             allyesconfig   gcc-13.2.0
-mips                      bmips_stb_defconfig   clang-19
-mips                     decstation_defconfig   gcc-13.2.0
-mips                      maltasmvp_defconfig   gcc-13.2.0
-mips                           rs90_defconfig   gcc-13.2.0
-nios2                            allmodconfig   gcc-13.2.0
-nios2                             allnoconfig   gcc-13.2.0
-nios2                            allyesconfig   gcc-13.2.0
-nios2                               defconfig   gcc-13.2.0
-nios2                 randconfig-001-20240612   gcc-13.2.0
-nios2                 randconfig-002-20240612   gcc-13.2.0
-openrisc                          allnoconfig   gcc-13.2.0
-openrisc                         allyesconfig   gcc-13.2.0
-openrisc                            defconfig   gcc-13.2.0
-parisc                           allmodconfig   gcc-13.2.0
-parisc                            allnoconfig   gcc-13.2.0
-parisc                           allyesconfig   gcc-13.2.0
-parisc                              defconfig   gcc-13.2.0
-parisc                generic-64bit_defconfig   gcc-13.2.0
-parisc                randconfig-001-20240612   gcc-13.2.0
-parisc                randconfig-002-20240612   gcc-13.2.0
-parisc64                            defconfig   gcc-13.2.0
-powerpc                          allmodconfig   gcc-13.2.0
-powerpc                           allnoconfig   gcc-13.2.0
-powerpc                          allyesconfig   clang-19
-powerpc                      cm5200_defconfig   clang-19
-powerpc                      katmai_defconfig   clang-19
-powerpc                   motionpro_defconfig   clang-17
-powerpc                      ppc40x_defconfig   clang-19
-powerpc               randconfig-001-20240612   gcc-13.2.0
-powerpc               randconfig-002-20240612   gcc-13.2.0
-powerpc               randconfig-003-20240612   clang-19
-powerpc64             randconfig-001-20240612   gcc-13.2.0
-powerpc64             randconfig-002-20240612   gcc-13.2.0
-powerpc64             randconfig-003-20240612   clang-14
-riscv                            allmodconfig   clang-19
-riscv                             allnoconfig   gcc-13.2.0
-riscv                            allyesconfig   clang-19
-riscv                               defconfig   clang-19
-riscv                 randconfig-001-20240612   gcc-13.2.0
-riscv                 randconfig-002-20240612   gcc-13.2.0
-s390                             allmodconfig   clang-19
-s390                              allnoconfig   clang-19
-s390                             allyesconfig   gcc-13.2.0
-s390                                defconfig   clang-19
-s390                  randconfig-001-20240612   clang-19
-s390                  randconfig-002-20240612   clang-19
-sh                               alldefconfig   gcc-13.2.0
-sh                               allmodconfig   gcc-13.2.0
-sh                                allnoconfig   gcc-13.2.0
-sh                               allyesconfig   gcc-13.2.0
-sh                                  defconfig   gcc-13.2.0
-sh                    randconfig-001-20240612   gcc-13.2.0
-sh                    randconfig-002-20240612   gcc-13.2.0
-sh                           se7750_defconfig   gcc-13.2.0
-sparc                            allmodconfig   gcc-13.2.0
-sparc                             allnoconfig   gcc-13.2.0
-sparc                               defconfig   gcc-13.2.0
-sparc64                          allmodconfig   gcc-13.2.0
-sparc64                          allyesconfig   gcc-13.2.0
-sparc64                             defconfig   gcc-13.2.0
-sparc64               randconfig-001-20240612   gcc-13.2.0
-sparc64               randconfig-002-20240612   gcc-13.2.0
-um                               allmodconfig   clang-19
-um                                allnoconfig   clang-17
-um                               allyesconfig   gcc-13
-um                                  defconfig   clang-19
-um                             i386_defconfig   gcc-13
-um                    randconfig-001-20240612   gcc-13
-um                    randconfig-002-20240612   clang-16
-um                           x86_64_defconfig   clang-15
-x86_64                            allnoconfig   clang-18
-x86_64                           allyesconfig   clang-18
-x86_64       buildonly-randconfig-001-20240612   gcc-8
-x86_64       buildonly-randconfig-002-20240612   clang-18
-x86_64       buildonly-randconfig-003-20240612   clang-18
-x86_64       buildonly-randconfig-004-20240612   gcc-12
-x86_64       buildonly-randconfig-005-20240612   gcc-13
-x86_64       buildonly-randconfig-006-20240612   clang-18
-x86_64                              defconfig   gcc-13
-x86_64                randconfig-001-20240612   clang-18
-x86_64                randconfig-002-20240612   clang-18
-x86_64                randconfig-003-20240612   gcc-13
-x86_64                randconfig-004-20240612   gcc-13
-x86_64                randconfig-005-20240612   gcc-13
-x86_64                randconfig-006-20240612   clang-18
-x86_64                randconfig-011-20240612   gcc-10
-x86_64                randconfig-012-20240612   clang-18
-x86_64                randconfig-013-20240612   gcc-10
-x86_64                randconfig-014-20240612   clang-18
-x86_64                randconfig-015-20240612   clang-18
-x86_64                randconfig-016-20240612   clang-18
-x86_64                randconfig-071-20240612   clang-18
-x86_64                randconfig-072-20240612   gcc-13
-x86_64                randconfig-073-20240612   gcc-10
-x86_64                randconfig-074-20240612   gcc-13
-x86_64                randconfig-075-20240612   gcc-8
-x86_64                randconfig-076-20240612   gcc-13
-x86_64                          rhel-8.3-rust   clang-18
-xtensa                            allnoconfig   gcc-13.2.0
-xtensa                randconfig-001-20240612   gcc-13.2.0
-xtensa                randconfig-002-20240612   gcc-13.2.0
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
