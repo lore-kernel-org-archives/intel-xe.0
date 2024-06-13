@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E349C27C78
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 763FAC2BA15
 	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 15:21:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 395D710EAD1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 032BC10EACE;
 	Thu, 13 Jun 2024 15:21:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VGkpyqRD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nT2i7yy9";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6E7F10EAD6
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 15:20:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EFA810EAD3
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 15:20:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718292045; x=1749828045;
+ t=1718292046; x=1749828046;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Yl7iJU4zqeQqnWvMPRrubKboT174XjdA/1SvzMk2Ec0=;
- b=VGkpyqRDOziaPzSZ7KNAiXb62VXKCwjRi0y+wULQPq/k2Dc9tBi2oma5
- lsiEdcWG/Mfw7grKUOKxh7pH8bvr0axQEeyPvCdUNJSitDioWcKkQmB+H
- TGH8r6mzuMIOBemukYDuJ/76NIwS1n82FuWpf59vtldqJvDLTdURM6h83
- 4Nk1e8gWdHzC+GhYSbQmi7INGZwyjOY2Dj6mM5uG9JQtJ2lvUxJ9Nmr55
- MF6wgEHVM61Oo+/tJ4DdyUn6GLuKEGoqZBEOgTKOmBANBhcvK9rZ+65ce
- xETgwrpSXUG67irwE/bO4eOy0jZ/L/9ouJwDajefCZWMeJYWLmzDEqFCJ Q==;
-X-CSE-ConnectionGUID: C1/oc3GvRKOxA6j4KPMZ0w==
-X-CSE-MsgGUID: 9LCpn1ImSLe8oxDIXFM4GA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348651"
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348651"
+ bh=EMERQDxYbnkUX4kr4XXSsgz9jdEgwX+PjzJZD6H2lpE=;
+ b=nT2i7yy9O1DXNUSU8/3bBX74ZdjAj0Q01dzYQffoj28j0Sl59Jlouhw3
+ ENt/vbun+u71+OBoUh72ctRKAvfHa5MCqzm2BU/ew/KS2xnTAEKdfOhEY
+ +yFGkPgwUiY7hKCPjjYY6yvD0emU/hca076YUQ1YR5ya82YnHNhZEYWuf
+ IWXrRLy+3OE/JQ3c+10yw0QemIWvMQiQpC1ZsEQo3RB2u3AArmRrNdhUN
+ HLoduZOVDVJEBukBB/JYmYpjqlBLHPuid2MkwB7uzwXyTk58K9lhkSoQN
+ /TYzdfBU4QgY614EOto5dwSvWxGOCdCAAvrsBWrNTgKApD4lgygK2cIoj A==;
+X-CSE-ConnectionGUID: G+SvqGwrS9a1qfzK5I0cZA==
+X-CSE-MsgGUID: 0Vj2df5MTpmVwXOUyAK3WQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348665"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348665"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 08:20:42 -0700
-X-CSE-ConnectionGUID: jh3D2g6IQoC4heesyQ3UfA==
-X-CSE-MsgGUID: CGfgz8ggQiSM96XdAcDwtw==
+ 13 Jun 2024 08:20:43 -0700
+X-CSE-ConnectionGUID: 0kRV1pUQQce1SZCZYeV5FA==
+X-CSE-MsgGUID: KhTlUOGyTAOpnMSpn2STJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135105"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135121"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 08:20:42 -0700
+ 13 Jun 2024 08:20:43 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 19/42] drm/xe: Update PT layer with better error handling
-Date: Thu, 13 Jun 2024 11:31:05 -0400
-Message-Id: <20240613153128.681864-19-oak.zeng@intel.com>
+Subject: [CI 32/42] drm/xe/svm: implement functions to allocate and free
+ device memory
+Date: Thu, 13 Jun 2024 11:31:18 -0400
+Message-Id: <20240613153128.681864-32-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613153128.681864-1-oak.zeng@intel.com>
 References: <20240613153128.681864-1-oak.zeng@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,371 +67,234 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
+Function xe_svm_alloc_pages allocate pages from drm buddy and perform
+house keeping work for all the pages allocated, such as get a page
+refcount, set page's zone_device_data to point to the drm buddy block
+that the page belongs to.
 
-Update PT layer so if a memory allocation for a PTE fails the error can
-be propagated to the user without requiring to be killed.
+Function xe_svm_free_page free one page back to drm buddy allocator.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+v1: Drop buddy block meta data (Matt)
+    Take vram_mgr->lock during buddy operation (Matt)
+    Moving to page granularity memory free (Oak)
+
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@intel.com>
+Cc: Brian Welty <brian.welty@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c | 208 ++++++++++++++++++++++++++++---------
- 1 file changed, 160 insertions(+), 48 deletions(-)
+ drivers/gpu/drm/drm_svm.c   |   1 -
+ drivers/gpu/drm/xe/Makefile |   1 +
+ drivers/gpu/drm/xe/xe_svm.c | 148 ++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_svm.h |  16 ++++
+ 4 files changed, 165 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_svm.c
+ create mode 100644 drivers/gpu/drm/xe/xe_svm.h
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 8c61bb2c034d..62aec1a42249 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -845,19 +845,27 @@ xe_vm_populate_pgtable(struct xe_migrate_pt_update *pt_update, struct xe_tile *t
- 	}
- }
- 
--static void xe_pt_abort_bind(struct xe_vma *vma,
--			     struct xe_vm_pgtable_update *entries,
--			     u32 num_entries)
-+static void xe_pt_cancel_bind(struct xe_vma *vma,
-+			      struct xe_vm_pgtable_update *entries,
-+			      u32 num_entries)
- {
- 	u32 i, j;
- 
- 	for (i = 0; i < num_entries; i++) {
--		if (!entries[i].pt_entries)
-+		struct xe_pt *pt = entries[i].pt;
-+
-+		if (!pt)
- 			continue;
- 
--		for (j = 0; j < entries[i].qwords; j++)
--			xe_pt_destroy(entries[i].pt_entries[j].pt, xe_vma_vm(vma)->flags, NULL);
-+		if (pt->level) {
-+			for (j = 0; j < entries[i].qwords; j++)
-+				xe_pt_destroy(entries[i].pt_entries[j].pt,
-+					      xe_vma_vm(vma)->flags, NULL);
-+		}
-+
- 		kfree(entries[i].pt_entries);
-+		entries[i].pt_entries = NULL;
-+		entries[i].qwords = 0;
- 	}
- }
- 
-@@ -873,10 +881,61 @@ static void xe_pt_commit_locks_assert(struct xe_vma *vma)
- 	xe_vm_assert_held(vm);
- }
- 
--static void xe_pt_commit_bind(struct xe_vma *vma,
--			      struct xe_vm_pgtable_update *entries,
--			      u32 num_entries, bool rebind,
--			      struct llist_head *deferred)
-+static void xe_pt_commit(struct xe_vma *vma,
-+			 struct xe_vm_pgtable_update *entries,
-+			 u32 num_entries, struct llist_head *deferred)
-+{
-+	u32 i, j;
-+
-+	xe_pt_commit_locks_assert(vma);
-+
-+	for (i = 0; i < num_entries; i++) {
-+		struct xe_pt *pt = entries[i].pt;
-+
-+		if (!pt->level)
-+			continue;
-+
-+		for (j = 0; j < entries[i].qwords; j++) {
-+			struct xe_pt *oldpte = entries[i].pt_entries[j].pt;
-+
-+			xe_pt_destroy(oldpte, xe_vma_vm(vma)->flags, deferred);
-+		}
-+	}
-+}
-+
-+static void xe_pt_abort_bind(struct xe_vma *vma,
-+			     struct xe_vm_pgtable_update *entries,
-+			     u32 num_entries, bool rebind)
-+{
-+	int i, j;
-+
-+	xe_pt_commit_locks_assert(vma);
-+
-+	for (i = num_entries - 1; i >= 0; --i) {
-+		struct xe_pt *pt = entries[i].pt;
-+		struct xe_pt_dir *pt_dir;
-+
-+		if (!rebind)
-+			pt->num_live -= entries[i].qwords;
-+
-+		if (!pt->level)
-+			continue;
-+
-+		pt_dir = as_xe_pt_dir(pt);
-+		for (j = 0; j < entries[i].qwords; j++) {
-+			u32 j_ = j + entries[i].ofs;
-+			struct xe_pt *newpte = xe_pt_entry(pt_dir, j_);
-+			struct xe_pt *oldpte = entries[i].pt_entries[j].pt;
-+
-+			pt_dir->children[j_] = oldpte ? &oldpte->base : 0;
-+			xe_pt_destroy(newpte, xe_vma_vm(vma)->flags, NULL);
-+		}
-+	}
-+}
-+
-+static void xe_pt_commit_prepare_bind(struct xe_vma *vma,
-+				      struct xe_vm_pgtable_update *entries,
-+				      u32 num_entries, bool rebind)
- {
- 	u32 i, j;
- 
-@@ -896,12 +955,13 @@ static void xe_pt_commit_bind(struct xe_vma *vma,
- 		for (j = 0; j < entries[i].qwords; j++) {
- 			u32 j_ = j + entries[i].ofs;
- 			struct xe_pt *newpte = entries[i].pt_entries[j].pt;
-+			struct xe_pt *oldpte = NULL;
- 
- 			if (xe_pt_entry(pt_dir, j_))
--				xe_pt_destroy(xe_pt_entry(pt_dir, j_),
--					      xe_vma_vm(vma)->flags, deferred);
-+				oldpte = xe_pt_entry(pt_dir, j_);
- 
- 			pt_dir->children[j_] = &newpte->base;
-+			entries[i].pt_entries[j].pt = oldpte;
- 		}
- 	}
- }
-@@ -925,8 +985,6 @@ xe_pt_prepare_bind(struct xe_tile *tile, struct xe_vma *vma,
- 	err = xe_pt_stage_bind(tile, vma, entries, num_entries);
- 	if (!err)
- 		xe_tile_assert(tile, *num_entries);
--	else /* abort! */
--		xe_pt_abort_bind(vma, entries, *num_entries);
- 
- 	return err;
- }
-@@ -1449,7 +1507,7 @@ xe_pt_stage_unbind_post_descend(struct xe_ptw *parent, pgoff_t offset,
- 				     &end_offset))
- 		return 0;
- 
--	(void)xe_pt_new_shared(&xe_walk->wupd, xe_child, offset, false);
-+	(void)xe_pt_new_shared(&xe_walk->wupd, xe_child, offset, true);
- 	xe_walk->wupd.updates[level].update->qwords = end_offset - offset;
- 
- 	return 0;
-@@ -1517,32 +1575,57 @@ xe_migrate_clear_pgtable_callback(struct xe_migrate_pt_update *pt_update,
- 		memset64(ptr, empty, num_qwords);
- }
- 
-+static void xe_pt_abort_unbind(struct xe_vma *vma,
-+			       struct xe_vm_pgtable_update *entries,
-+			       u32 num_entries)
-+{
-+	int j, i;
-+
-+	xe_pt_commit_locks_assert(vma);
-+
-+	for (j = num_entries - 1; j >= 0; --j) {
-+		struct xe_vm_pgtable_update *entry = &entries[j];
-+		struct xe_pt *pt = entry->pt;
-+		struct xe_pt_dir *pt_dir = as_xe_pt_dir(pt);
-+
-+		pt->num_live += entry->qwords;
-+
-+		if (!pt->level)
-+			continue;
-+
-+		for (i = entry->ofs; i < entry->ofs + entry->qwords; i++)
-+			pt_dir->children[i] =
-+				entries[j].pt_entries[i - entry->ofs].pt ?
-+				&entries[j].pt_entries[i - entry->ofs].pt->base : 0;
-+	}
-+}
-+
- static void
--xe_pt_commit_unbind(struct xe_vma *vma,
--		    struct xe_vm_pgtable_update *entries, u32 num_entries,
--		    struct llist_head *deferred)
-+xe_pt_commit_prepare_unbind(struct xe_vma *vma,
-+			    struct xe_vm_pgtable_update *entries,
-+			    u32 num_entries)
- {
--	u32 j;
-+	int j, i;
- 
- 	xe_pt_commit_locks_assert(vma);
- 
- 	for (j = 0; j < num_entries; ++j) {
- 		struct xe_vm_pgtable_update *entry = &entries[j];
- 		struct xe_pt *pt = entry->pt;
-+		struct xe_pt_dir *pt_dir;
- 
- 		pt->num_live -= entry->qwords;
--		if (pt->level) {
--			struct xe_pt_dir *pt_dir = as_xe_pt_dir(pt);
--			u32 i;
--
--			for (i = entry->ofs; i < entry->ofs + entry->qwords;
--			     i++) {
--				if (xe_pt_entry(pt_dir, i))
--					xe_pt_destroy(xe_pt_entry(pt_dir, i),
--						      xe_vma_vm(vma)->flags, deferred);
-+		if (!pt->level)
-+			continue;
- 
--				pt_dir->children[i] = NULL;
--			}
-+		pt_dir = as_xe_pt_dir(pt);
-+		for (i = entry->ofs; i < entry->ofs + entry->qwords; i++) {
-+			if (xe_pt_entry(pt_dir, i))
-+				entries[j].pt_entries[i - entry->ofs].pt =
-+					xe_pt_entry(pt_dir, i);
-+			else
-+				entries[j].pt_entries[i - entry->ofs].pt = NULL;
-+			pt_dir->children[i] = NULL;
- 		}
- 	}
- }
-@@ -1588,7 +1671,6 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
- {
- 	u32 current_op = pt_update_ops->current_op;
- 	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
--	struct llist_head *deferred = &pt_update_ops->deferred;
- 	int err;
- 
- 	xe_bo_assert_held(xe_vma_bo(vma));
-@@ -1635,11 +1717,12 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
- 			(!pt_op->rebind && vm->scratch_pt[tile->id] &&
- 			 xe_vm_in_preempt_fence_mode(vm));
- 
--		/* FIXME: Don't commit right away */
- 		vma->tile_staged |= BIT(tile->id);
- 		pt_op->vma = vma;
--		xe_pt_commit_bind(vma, pt_op->entries, pt_op->num_entries,
--				  pt_op->rebind, deferred);
-+		xe_pt_commit_prepare_bind(vma, pt_op->entries,
-+					  pt_op->num_entries, pt_op->rebind);
-+	} else {
-+		xe_pt_cancel_bind(vma, pt_op->entries, pt_op->num_entries);
- 	}
- 
- 	return err;
-@@ -1651,7 +1734,6 @@ static int unbind_op_prepare(struct xe_tile *tile,
- {
- 	u32 current_op = pt_update_ops->current_op;
- 	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
--	struct llist_head *deferred = &pt_update_ops->deferred;
- 	int err;
- 
- 	if (!((vma->tile_present | vma->tile_staged) & BIT(tile->id)))
-@@ -1687,9 +1769,7 @@ static int unbind_op_prepare(struct xe_tile *tile,
- 	pt_update_ops->needs_userptr_lock |= xe_vma_is_userptr(vma);
- 	pt_update_ops->needs_invalidation = true;
- 
--	/* FIXME: Don't commit right away */
--	xe_pt_commit_unbind(vma, pt_op->entries, pt_op->num_entries,
--			    deferred);
-+	xe_pt_commit_prepare_unbind(vma, pt_op->entries, pt_op->num_entries);
- 
- 	return 0;
- }
-@@ -1910,7 +1990,7 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
- 	struct invalidation_fence *ifence = NULL;
- 	struct xe_range_fence *rfence;
- 	struct xe_vma_op *op;
--	int err = 0;
-+	int err = 0, i;
- 	struct xe_migrate_pt_update update = {
- 		.ops = pt_update_ops->needs_userptr_lock ?
- 			&userptr_migrate_ops :
-@@ -1930,8 +2010,10 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
- 
- 	if (pt_update_ops->needs_invalidation) {
- 		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
--		if (!ifence)
--			return ERR_PTR(-ENOMEM);
-+		if (!ifence) {
-+			err = -ENOMEM;
-+			goto kill_vm_tile1;
-+		}
- 	}
- 
- 	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
-@@ -1946,6 +2028,15 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
- 		goto free_rfence;
- 	}
- 
-+	/* Point of no return - VM killed if failure after this */
-+	for (i = 0; i < pt_update_ops->current_op; ++i) {
-+		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[i];
-+
-+		xe_pt_commit(pt_op->vma, pt_op->entries,
-+			     pt_op->num_entries, &pt_update_ops->deferred);
-+		pt_op->vma = NULL;	/* skip in xe_pt_update_ops_abort */
-+	}
-+
- 	err = xe_range_fence_insert(&vm->rftree[tile->id], rfence,
- 				    &xe_range_fence_kfree_ops,
- 				    pt_update_ops->start,
-@@ -1981,10 +2072,15 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
- 	if (pt_update_ops->needs_userptr_lock)
- 		up_read(&vm->userptr.notifier_lock);
- 	dma_fence_put(fence);
-+	if (!tile->id)
-+		xe_vm_kill(vops->vm, false);
- free_rfence:
- 	kfree(rfence);
- free_ifence:
- 	kfree(ifence);
-+kill_vm_tile1:
-+	if (err != -EAGAIN && tile->id)
-+		xe_vm_kill(vops->vm, false);
- 
- 	return ERR_PTR(err);
- }
-@@ -2005,12 +2101,10 @@ void xe_pt_update_ops_fini(struct xe_tile *tile, struct xe_vma_ops *vops)
- 	lockdep_assert_held(&vops->vm->lock);
- 	xe_vm_assert_held(vops->vm);
- 
--	/* FIXME: Not 100% correct */
--	for (i = 0; i < pt_update_ops->num_ops; ++i) {
-+	for (i = 0; i < pt_update_ops->current_op; ++i) {
- 		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[i];
- 
--		if (pt_op->bind)
--			xe_pt_free_bind(pt_op->entries, pt_op->num_entries);
-+		xe_pt_free_bind(pt_op->entries, pt_op->num_entries);
- 	}
- 	xe_bo_put_commit(&vops->pt_update_ops[tile->id].deferred);
- }
-@@ -2024,10 +2118,28 @@ void xe_pt_update_ops_fini(struct xe_tile *tile, struct xe_vma_ops *vops)
+diff --git a/drivers/gpu/drm/drm_svm.c b/drivers/gpu/drm/drm_svm.c
+index 967e7addae54..a751cc2c9c91 100644
+--- a/drivers/gpu/drm/drm_svm.c
++++ b/drivers/gpu/drm/drm_svm.c
+@@ -3,7 +3,6 @@
+  * Copyright Â© 2024 Intel Corporation
   */
- void xe_pt_update_ops_abort(struct xe_tile *tile, struct xe_vma_ops *vops)
- {
-+	struct xe_vm_pgtable_update_ops *pt_update_ops =
-+		&vops->pt_update_ops[tile->id];
+ 
+-
+ #include <linux/scatterlist.h>
+ #include <linux/mmu_notifier.h>
+ #include <linux/dma-mapping.h>
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 6457f1b74cd8..cf5ce447648c 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -108,6 +108,7 @@ xe-y += xe_bb.o \
+ 	xe_sa.o \
+ 	xe_sched_job.o \
+ 	xe_step.o \
++	xe_svm.o \
+ 	xe_sync.o \
+ 	xe_tile.o \
+ 	xe_tile_sysfs.o \
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+new file mode 100644
+index 000000000000..a2c52f205ea0
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -0,0 +1,148 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright Â© 2023 Intel Corporation
++ */
++
++#include <linux/mm_types.h>
++#include <linux/sched/mm.h>
++#include <linux/gfp.h>
++#include <drm/drm_buddy.h>
++#include "xe_ttm_vram_mgr_types.h"
++#include "xe_device_types.h"
++#include "xe_device.h"
++#include "xe_tile.h"
++#include "xe_svm.h"
++#include "xe_assert.h"
++
++/** This is a placeholder for compilation. Will introduce function to drm buddy */
++static void drm_buddy_block_free_subrange(struct drm_buddy_block *block, u64 start,
++                        u64 end, struct list_head *block_list)
++{
++}
++
++static u64 block_offset_to_pfn(struct xe_mem_region *mr, u64 offset)
++{
++	/** DRM buddy's block offset is 0-based*/
++	offset += mr->drm_mr.hpa_base;
++
++	return PHYS_PFN(offset);
++}
++
++void xe_svm_free_page(struct page *page)
++{
++	struct drm_buddy_block *block =
++					(struct drm_buddy_block *)page->zone_device_data;
++	struct drm_mem_region *mr = drm_page_to_mem_region(page);
++	struct xe_mem_region *xe_mr = container_of(mr, struct xe_mem_region, drm_mr);
++	struct xe_tile *tile = xe_mem_region_to_tile(xe_mr);
++	struct drm_buddy *mm = &tile->mem.vram_mgr->mm;
++	u64 size = drm_buddy_block_size(mm, block);
++	u64 pages_per_block = size >> PAGE_SHIFT;
++	u64 block_pfn_first =
++					block_offset_to_pfn(xe_mr, drm_buddy_block_offset(block));
++	u64 page_pfn = page_to_pfn(page);
++	u64 page_idx = page_pfn - block_pfn_first;
++	struct list_head blocks = LIST_HEAD_INIT(blocks);
++	struct drm_buddy_block *tmp;
 +	int i;
 +
- 	lockdep_assert_held(&vops->vm->lock);
- 	xe_vm_assert_held(vops->vm);
- 
--	/* FIXME: Just kill VM for now + cleanup PTs */
-+	for (i = pt_update_ops->num_ops - 1; i >= 0; --i) {
-+		struct xe_vm_pgtable_update_op *pt_op =
-+			&pt_update_ops->ops[i];
++	xe_assert(tile->xe, page_idx < pages_per_block);
++	drm_buddy_block_free_subrange(block, page_idx << PAGE_SHIFT,
++            (page_idx << PAGE_SHIFT) + PAGE_SIZE, &blocks);
 +
-+		if (!pt_op->vma || i >= pt_update_ops->current_op)
-+			continue;
++	/**
++	 * page's buddy_block (record in page's zone_device_data) is changed
++	 * due to above partial free. update zone_device_data.
++	 */
++	list_for_each_entry_safe(block, tmp, &blocks, link) {
++		size = drm_buddy_block_size(mm, block);
++		pages_per_block = size >> PAGE_SHIFT;
++		block_pfn_first =
++					block_offset_to_pfn(xe_mr, drm_buddy_block_offset(block));
++		for(i = 0; i < pages_per_block; i++) {
++			struct page *p;
 +
-+		if (pt_op->bind)
-+			xe_pt_abort_bind(pt_op->vma, pt_op->entries,
-+					 pt_op->num_entries,
-+					 pt_op->rebind);
-+		else
-+			xe_pt_abort_unbind(pt_op->vma, pt_op->entries,
-+					   pt_op->num_entries);
++			p = pfn_to_page(block_pfn_first + i);
++			p->zone_device_data = block;
++		}
++	}
++}
++
++/**
++ * __free_blocks() - free all memory blocks
++ *
++ * @mm: drm_buddy that the blocks belongs to
++ * @blocks: memory blocks list head
++ */
++static void __free_blocks(struct drm_buddy *mm, struct list_head *blocks)
++{
++	struct drm_buddy_block *block, *tmp;
++
++	list_for_each_entry_safe(block, tmp, blocks, link)
++		drm_buddy_free_block(mm, block);
++}
++
++/**
++ * xe_svm_alloc_pages() - allocate device pages from buddy allocator
++ *
++ * @mr: which memory region to allocate device memory from
++ * @npages: how many pages to allocate
++ * @pfn: used to return the pfn of all allocated pages. Must be big enough
++ * to hold at @npages entries.
++ *
++ * This function allocate blocks of memory from drm buddy allocator, and
++ * performs initialization work: set struct page::zone_device_data to point
++ * to the memory block; zone_device_page_init each page allocated; add pages
++ * to lru managers lru list for eviction purpose - this is TBD.
++ *
++ * return: 0 on success
++ * error code otherwise
++ */
++int xe_svm_alloc_pages(struct drm_mem_region *mr,
++            unsigned long npages, unsigned long *pfn)
++{
++	struct xe_mem_region *xe_mr = container_of(mr, struct xe_mem_region, drm_mr);
++	struct xe_tile *tile = xe_mem_region_to_tile(xe_mr);
++	struct drm_buddy *mm = &tile->mem.vram_mgr->mm;
++	struct drm_buddy_block *block, *tmp;
++	u64 size = npages << PAGE_SHIFT;
++	int ret = 0, i, j = 0;
++	struct list_head blocks;
++
++	mutex_lock(&tile->mem.vram_mgr->lock);
++	ret = drm_buddy_alloc_blocks(mm, 0, mm->size, size, PAGE_SIZE,
++						&blocks, DRM_BUDDY_CONTIGUOUS_ALLOCATION);
++
++	if (unlikely(ret)) {
++		mutex_unlock(&tile->mem.vram_mgr->lock);
++		return ret;
 +	}
 +
- 	xe_bo_put_commit(&vops->pt_update_ops[tile->id].deferred);
--	xe_vm_kill(vops->vm, false);
-- }
++	ret = drm_buddy_block_trim(mm, size, &blocks);
++	if (ret) {
++		__free_blocks(mm, &blocks);
++		mutex_unlock(&tile->mem.vram_mgr->lock);
++		return ret;
++	}
++	mutex_unlock(&tile->mem.vram_mgr->lock);
++
++	list_for_each_entry_safe(block, tmp, &blocks, link) {
++		u64 block_pfn_first, pages_per_block;
++
++		size = drm_buddy_block_size(mm, block);
++		pages_per_block = size >> PAGE_SHIFT;
++		block_pfn_first =
++					block_offset_to_pfn(xe_mr, drm_buddy_block_offset(block));
++		for(i = 0; i < pages_per_block; i++) {
++			struct page *page;
++
++			pfn[j++] = block_pfn_first + i;
++			page = pfn_to_page(block_pfn_first + i);
++			/**Lock page per hmm requirement, see hmm.rst.*/
++			zone_device_page_init(page);
++			page->zone_device_data = block;
++		}
++	}
++
++	return ret;
 +}
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+new file mode 100644
+index 000000000000..09fef8ea97f3
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -0,0 +1,16 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright Â© 2024 Intel Corporation
++ */
++
++#ifndef _XE_SVM_
++#define _XE_SVM_
++
++struct drm_mem_region;
++struct page;
++
++int xe_svm_alloc_pages(struct drm_mem_region *mr,
++            unsigned long npages, unsigned long *pfn);
++void xe_svm_free_page(struct page *page);
++
++#endif
 -- 
 2.26.3
 
