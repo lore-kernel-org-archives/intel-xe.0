@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4088C2BA16
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 04:14:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A390CC27C79
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 04:14:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AB4210E169;
-	Thu, 13 Jun 2024 04:14:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F93210E1B9;
+	Thu, 13 Jun 2024 04:14:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kdkkn3ht";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mc+gx+Yl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AA0610E921
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 04:13:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D246210E102
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 04:13:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718252031; x=1749788031;
+ t=1718252033; x=1749788033;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Fht2Xvhq9yjTNMULaLvpr8kWPnAXzXyWYhgzmUxbPIE=;
- b=Kdkkn3ht3bc87JB58ALw8CB5B9SCakCSe0r2HwtU3etO7Hn5I+W9H4xL
- vlpU6/M+ZzHWQ+KjTXycxHlpcBsD+z48/jZKU3BmewCS8s+Y7snjkdEY3
- GOsOd9eqnoGq6FpTsHHG1rFYnSzlQRZEXwLvJZej3czdA5rrY3SKyhBnD
- JxBqQEm/1TIrygzVJcaMRTGwXNXAq+/EM+dye5vx47SrYyjfPeoUdJyIr
- dXfkUYFddwoyQuwh42aEN/uoFKN4jZTe05MhoXUOL5PxOWm0n8GtbNg9w
- vvXghDwtP935UQSfkiBTjE/Mnx+3NzJgpPWb3lglUjpRNuuLckeqoEO0b A==;
-X-CSE-ConnectionGUID: 4KMMmUaUTGuzqiwOu1FPQA==
-X-CSE-MsgGUID: 9i+x9sW4T9aTo2O6lI1iRw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14847979"
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14847979"
+ bh=XAJRpBfzo5ZnByXPMeXdEUKzPeXusAh3b/5jS5OrhvQ=;
+ b=Mc+gx+Yl0OamwUmgIOUm8H20GwXnYxL0TMh0EHMp4ExRqDbgEsltnV33
+ wzvqvKKWKM+RHm7hkXZfHLr1MyVm4Sh3SlOx5oZc0XMZc1nOoFtIPMV0J
+ dHvSLwcSL9q+aatMAjtF9QlTluxeSR/eoyj+/AQf28QrIyz+2B5DzAoyz
+ nK2jnq1h0Rl3g9Ot2KStXjMf4AkZrYsKXrlBBNOnKzvGjVpkAYDXaAneS
+ r30ECC5pYLkksU4oJdMcLe9GY8Lq1FuGvtUTvMNwUEUKH4SiKfT0iZVV9
+ 5jLIXUanE4aa4oSe4GZFfcMPIVBoCuMmjcTW5ViC6hmj9Hrt3f9Bmai4P w==;
+X-CSE-ConnectionGUID: LSyFCLzhSL+LV6kpFu3c4w==
+X-CSE-MsgGUID: LiXb/NBFSzCOv8JGZD1tfA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14847990"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14847990"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2024 21:13:48 -0700
-X-CSE-ConnectionGUID: E8Rie0GNRQmuwinznWxTmA==
-X-CSE-MsgGUID: tJpWv71bSMq4aI+VuvkUnA==
+ 12 Jun 2024 21:13:49 -0700
+X-CSE-ConnectionGUID: +CwAsdz0RdOSG5V6EI2ksw==
+X-CSE-MsgGUID: D8qARWEzRYy2kpqVue0Ing==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40476348"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40476364"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Jun 2024 21:13:48 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 27/42] drm/xe: Support range based page table update
-Date: Thu, 13 Jun 2024 00:24:14 -0400
-Message-Id: <20240613042429.637281-27-oak.zeng@intel.com>
+Subject: [CI 38/42] drm/xe/svm: Introduce DRM_XE_SVM kernel config
+Date: Thu, 13 Jun 2024 00:24:25 -0400
+Message-Id: <20240613042429.637281-38-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613042429.637281-1-oak.zeng@intel.com>
 References: <20240613042429.637281-1-oak.zeng@intel.com>
@@ -66,335 +66,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently the page table update interface only supports whole xe_vma
-bind. This works fine for BO based driver. But for system allocator,
-we need to partially bind a vma to GPU page table.
+Introduce a DRM_XE_SVM kernel config entry for
+xe svm feature. xe svm feature allows share
+virtual address space between CPU and GPU program.
 
-GPU page table update interface such as xe_vma_rebind is modified
-to support partial vma bind. Binding range (start, end) parameters
-are added to a few vma bind and page table update functions.
+v1: Improve commit message (Thomas)
+    Avoid using #if directive (Thomas)
 
-VMA unbind is still whole xe_vma based as there is no requirement
-to unbind a vma partiallly.
-
-There is no function change in this patch. It is only a interface
-change as a preparation of the coming system allocator codes.
-
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_pagefault.c |  3 +-
- drivers/gpu/drm/xe/xe_pt.c           | 60 ++++++++++++++++------------
- drivers/gpu/drm/xe/xe_vm.c           | 23 ++++++-----
- drivers/gpu/drm/xe/xe_vm.h           |  2 +-
- 4 files changed, 51 insertions(+), 37 deletions(-)
+ drivers/gpu/drm/xe/Kconfig   | 21 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_tile.c | 11 ++++++++---
+ 2 files changed, 29 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index c3e9331cf1b6..3b98499ad614 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -154,7 +154,8 @@ static int handle_vma_pagefault(struct xe_tile *tile, struct pagefault *pf,
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index 7bbe46a98ff1..27d6145cefa7 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -84,6 +84,27 @@ config DRM_XE_FORCE_PROBE
+ 	  4571.
  
- 		/* Bind VMA only to the GT that has faulted */
- 		trace_xe_vma_pf_bind(vma);
--		fence = xe_vma_rebind(vm, vma, BIT(tile->id));
-+		fence = xe_vma_rebind(vm, vma, xe_vma_start(vma),
-+			    xe_vma_end(vma), BIT(tile->id));
- 		if (IS_ERR(fence)) {
- 			err = PTR_ERR(fence);
- 			if (xe_vm_validate_should_retry(&exec, err, &end))
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 96600ba9e100..91b61fa80acb 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -583,6 +583,8 @@ static const struct xe_pt_walk_ops xe_pt_stage_bind_ops = {
-  * range.
-  * @tile: The tile we're building for.
-  * @vma: The vma indicating the address range.
-+ * @start: start of the address range to bind, must be inside vma's va range
-+ * @end: end of the address range, must be inside vma's va range
-  * @entries: Storage for the update entries used for connecting the tree to
-  * the main tree at commit time.
-  * @num_entries: On output contains the number of @entries used.
-@@ -597,7 +599,7 @@ static const struct xe_pt_walk_ops xe_pt_stage_bind_ops = {
-  * Return 0 on success, negative error code on error.
-  */
- static int
--xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
-+xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma, u64 start, u64 end,
- 		 struct xe_vm_pgtable_update *entries, u32 *num_entries)
- {
- 	struct xe_device *xe = tile_to_xe(tile);
-@@ -614,7 +616,7 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 		.vm = xe_vma_vm(vma),
- 		.tile = tile,
- 		.curs = &curs,
--		.va_curs_start = xe_vma_start(vma),
-+		.va_curs_start = start,
- 		.vma = vma,
- 		.wupd.entries = entries,
- 		.needs_64K = (xe_vma_vm(vma)->flags & XE_VM_FLAG_64K) && is_devmem,
-@@ -622,6 +624,8 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 	struct xe_pt *pt = xe_vma_vm(vma)->pt_root[tile->id];
- 	int ret;
+ 	  Use "!*" to block the probe of the driver for all known devices.
++config DRM_XE_SVM
++	bool "Enable Shared Virtual Memory support in xe"
++	depends on DRM_XE
++	depends on ARCH_ENABLE_MEMORY_HOTPLUG
++	depends on ARCH_ENABLE_MEMORY_HOTREMOVE
++	depends on MEMORY_HOTPLUG
++	depends on MEMORY_HOTREMOVE
++	depends on ARCH_HAS_PTE_DEVMAP
++	depends on SPARSEMEM_VMEMMAP
++	depends on ZONE_DEVICE
++	depends on DEVICE_PRIVATE
++	depends on MMU
++	select HMM_MIRROR
++	select MMU_NOTIFIER
++	default y
++	help
++	  Choose this option if you want Shared Virtual Memory (SVM)
++	  support in xe. With SVM, virtual address space is shared
++	  between CPU and GPU. This means any virtual address such
++	  as malloc or mmap returns, variables on stack, or global
++	  memory pointers, can be used for GPU transparently.
  
-+	xe_assert(xe, start >= xe_vma_start(vma));
-+	xe_assert(xe, end <= xe_vma_end(vma));
- 	/**
- 	 * Default atomic expectations for different allocation scenarios are as follows:
- 	 *
-@@ -668,21 +672,24 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 	xe_bo_assert_held(bo);
- 
- 	if (!xe_vma_is_null(vma)) {
-+		u64 size = end - start;
-+		u64 offset = start - xe_vma_start(vma);
-+		u64 page_idx = offset >> PAGE_SHIFT;
- 		if (xe_vma_is_userptr(vma))
--			xe_res_first_dma(to_userptr_vma(vma)->userptr.hmmptr.dma_addr,
-+			xe_res_first_dma(to_userptr_vma(vma)->userptr.hmmptr.dma_addr + page_idx,
- 					0, xe_vma_size(vma), 0, &curs);
- 		else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
--			xe_res_first(bo->ttm.resource, xe_vma_bo_offset(vma),
--				     xe_vma_size(vma), &curs);
-+			xe_res_first(bo->ttm.resource, xe_vma_bo_offset(vma) + offset,
-+				     size, &curs);
- 		else
--			xe_res_first_sg(xe_bo_sg(bo), xe_vma_bo_offset(vma),
--					xe_vma_size(vma), &curs);
-+			xe_res_first_sg(xe_bo_sg(bo), xe_vma_bo_offset(vma) + offset,
-+					size, &curs);
- 	} else {
- 		curs.size = xe_vma_size(vma);
- 	}
- 
--	ret = xe_pt_walk_range(&pt->base, pt->level, xe_vma_start(vma),
--			       xe_vma_end(vma), &xe_walk.base);
-+	ret = xe_pt_walk_range(&pt->base, pt->level, start,
-+			       end, &xe_walk.base);
- 
- 	*num_entries = xe_walk.wupd.num_used_entries;
- 	return ret;
-@@ -984,13 +991,13 @@ static void xe_pt_free_bind(struct xe_vm_pgtable_update *entries,
- }
- 
- static int
--xe_pt_prepare_bind(struct xe_tile *tile, struct xe_vma *vma,
-+xe_pt_prepare_bind(struct xe_tile *tile, struct xe_vma *vma, u64 start, u64 end,
- 		   struct xe_vm_pgtable_update *entries, u32 *num_entries)
+ menu "drm/Xe Debugging"
+ depends on DRM_XE
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 6c50df281b11..1f938d001094 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -171,8 +171,13 @@ static void __init_drm_mem_region_ops(struct drm_mem_region_ops *ops)
+ int xe_tile_init_noalloc(struct xe_tile *tile)
  {
  	int err;
+-	struct xe_device *xe = tile_to_xe(tile);
+-	struct drm_device *drm = &xe->drm;
++	struct xe_device __maybe_unused *xe;
++	struct drm_device __maybe_unused *drm;
++
++	if (IS_ENABLED(CONFIG_DRM_XE_SVM)) {
++		xe = tile_to_xe(tile);
++		drm = &xe->drm;
++	}
  
- 	*num_entries = 0;
--	err = xe_pt_stage_bind(tile, vma, entries, num_entries);
-+	err = xe_pt_stage_bind(tile, vma, start, end, entries, num_entries);
- 	if (!err)
- 		xe_tile_assert(tile, *num_entries);
- 
-@@ -1643,7 +1650,7 @@ xe_pt_commit_prepare_unbind(struct xe_vma *vma,
- 
- static void
- xe_pt_update_ops_rfence_interval(struct xe_vm_pgtable_update_ops *pt_update_ops,
--				 struct xe_vma *vma)
-+				 u64 start_va, u64 end_va)
- {
- 	u32 current_op = pt_update_ops->current_op;
- 	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
-@@ -1658,8 +1665,8 @@ xe_pt_update_ops_rfence_interval(struct xe_vm_pgtable_update_ops *pt_update_ops,
- 	}
- 
- 	/* Greedy (non-optimal) calculation but simple */
--	start = ALIGN_DOWN(xe_vma_start(vma), 0x1ull << xe_pt_shift(level));
--	last = ALIGN(xe_vma_end(vma), 0x1ull << xe_pt_shift(level)) - 1;
-+	start = ALIGN_DOWN(start_va, 0x1ull << xe_pt_shift(level));
-+	last = ALIGN(end_va, 0x1ull << xe_pt_shift(level)) - 1;
- 
- 	if (start < pt_update_ops->start)
- 		pt_update_ops->start = start;
-@@ -1678,7 +1685,7 @@ static int vma_reserve_fences(struct xe_device *xe, struct xe_vma *vma)
- 
- static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
- 			   struct xe_vm_pgtable_update_ops *pt_update_ops,
--			   struct xe_vma *vma)
-+			   struct xe_vma *vma, u64 start, u64 end)
- {
- 	u32 current_op = pt_update_ops->current_op;
- 	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
-@@ -1686,10 +1693,12 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
- 
- 	xe_tile_assert(tile, !xe_vma_is_system_allocator(vma));
- 	xe_bo_assert_held(xe_vma_bo(vma));
-+	xe_assert(vm->xe, start >= xe_vma_start(vma));
-+	xe_assert(vm->xe, end <= xe_vma_end(vma));
- 
- 	vm_dbg(&xe_vma_vm(vma)->xe->drm,
- 	       "Preparing bind, with range [%llx...%llx)\n",
--	       xe_vma_start(vma), xe_vma_end(vma) - 1);
-+	       start, end - 1);
- 
- 	pt_op->vma = NULL;
- 	pt_op->bind = true;
-@@ -1699,7 +1708,7 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
+ 	err = tile_ttm_mgr_init(tile);
  	if (err)
- 		return err;
+@@ -186,7 +191,7 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
  
--	err = xe_pt_prepare_bind(tile, vma, pt_op->entries,
-+	err = xe_pt_prepare_bind(tile, vma, start, end, pt_op->entries,
- 				 &pt_op->num_entries);
- 	if (!err) {
- 		xe_tile_assert(tile, pt_op->num_entries <=
-@@ -1707,7 +1716,7 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
- 		xe_vm_dbg_print_entries(tile_to_xe(tile), pt_op->entries,
- 					pt_op->num_entries, true);
+ 	err = xe_tile_sysfs_init(tile);
  
--		xe_pt_update_ops_rfence_interval(pt_update_ops, vma);
-+		xe_pt_update_ops_rfence_interval(pt_update_ops, start, end);
- 		++pt_update_ops->current_op;
- 		pt_update_ops->needs_userptr_lock |= xe_vma_is_userptr(vma);
- 
-@@ -1777,7 +1786,7 @@ static int unbind_op_prepare(struct xe_tile *tile,
- 
- 	xe_vm_dbg_print_entries(tile_to_xe(tile), pt_op->entries,
- 				pt_op->num_entries, false);
--	xe_pt_update_ops_rfence_interval(pt_update_ops, vma);
-+	xe_pt_update_ops_rfence_interval(pt_update_ops, xe_vma_start(vma), xe_vma_end(vma));
- 	++pt_update_ops->current_op;
- 	pt_update_ops->needs_userptr_lock |= xe_vma_is_userptr(vma);
- 	pt_update_ops->needs_invalidation = true;
-@@ -1802,7 +1811,8 @@ static int op_prepare(struct xe_vm *vm,
- 		    op->map.is_system_allocator)
- 			break;
- 
--		err = bind_op_prepare(vm, tile, pt_update_ops, op->map.vma);
-+		err = bind_op_prepare(vm, tile, pt_update_ops, op->map.vma,
-+			op->base.map.va.addr, op->base.map.va.addr + op->base.map.va.range);
- 		pt_update_ops->wait_vm_kernel = true;
- 		break;
- 	case DRM_GPUVA_OP_REMAP:
-@@ -1815,13 +1825,13 @@ static int op_prepare(struct xe_vm *vm,
- 		err = unbind_op_prepare(tile, pt_update_ops, old);
- 
- 		if (!err && op->remap.prev) {
--			err = bind_op_prepare(vm, tile, pt_update_ops,
--					      op->remap.prev);
-+			err = bind_op_prepare(vm, tile, pt_update_ops, op->remap.prev,
-+				xe_vma_start(op->remap.prev), xe_vma_end(op->remap.prev));
- 			pt_update_ops->wait_vm_bookkeep = true;
- 		}
- 		if (!err && op->remap.next) {
--			err = bind_op_prepare(vm, tile, pt_update_ops,
--					      op->remap.next);
-+			err = bind_op_prepare(vm, tile, pt_update_ops, op->remap.next,
-+				xe_vma_start(op->remap.next), xe_vma_end(op->remap.next));
- 			pt_update_ops->wait_vm_bookkeep = true;
- 		}
- 		break;
-@@ -1843,7 +1853,7 @@ static int op_prepare(struct xe_vm *vm,
- 		if (xe_vma_is_system_allocator(vma))
- 			break;
- 
--		err = bind_op_prepare(vm, tile, pt_update_ops, vma);
-+		err = bind_op_prepare(vm, tile, pt_update_ops, vma, xe_vma_start(vma), xe_vma_end(vma));
- 		pt_update_ops->wait_vm_kernel = true;
- 		break;
+-	if (xe->info.has_usm) {
++	if (IS_ENABLED(CONFIG_DRM_XE_SVM) && xe->info.has_usm) {
+ 		__init_drm_mem_region_ops(&tile->mem.vram.drm_mr.mr_ops);
+ 		drm_svm_register_mem_region(drm, &tile->mem.vram.drm_mr, MEMORY_DEVICE_PRIVATE);
  	}
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 5ae5b556ec1b..cac538de5a9d 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -803,15 +803,15 @@ static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_mask)
- }
- 
- static void xe_vm_populate_rebind(struct xe_vma_op *op, struct xe_vma *vma,
--				  u8 tile_mask)
-+				  u64 start, u64 end, u8 tile_mask)
- {
- 	INIT_LIST_HEAD(&op->link);
- 	op->tile_mask = tile_mask;
- 	op->base.op = DRM_GPUVA_OP_MAP;
--	op->base.map.va.addr = vma->gpuva.va.addr;
--	op->base.map.va.range = vma->gpuva.va.range;
-+	op->base.map.va.addr = start;
-+	op->base.map.va.range = end - start;
- 	op->base.map.gem.obj = vma->gpuva.gem.obj;
--	op->base.map.gem.offset = vma->gpuva.gem.offset;
-+	op->base.map.gem.offset = vma->gpuva.gem.offset + (start - xe_vma_start(vma));
- 	op->map.vma = vma;
- 	op->map.immediate = true;
- 	op->map.dumpable = vma->gpuva.flags & XE_VMA_DUMPABLE;
-@@ -819,7 +819,7 @@ static void xe_vm_populate_rebind(struct xe_vma_op *op, struct xe_vma *vma,
- }
- 
- static int xe_vm_ops_add_rebind(struct xe_vma_ops *vops, struct xe_vma *vma,
--				u8 tile_mask)
-+				u64 start, u64 end, u8 tile_mask)
- {
- 	struct xe_vma_op *op;
- 
-@@ -827,7 +827,7 @@ static int xe_vm_ops_add_rebind(struct xe_vma_ops *vops, struct xe_vma *vma,
- 	if (!op)
- 		return -ENOMEM;
- 
--	xe_vm_populate_rebind(op, vma, tile_mask);
-+	xe_vm_populate_rebind(op, vma, start, end, tile_mask);
- 	list_add_tail(&op->link, &vops->list);
- 	xe_vma_ops_incr_pt_update_ops(vops, tile_mask);
- 
-@@ -866,8 +866,8 @@ int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
- 		else
- 			trace_xe_vma_rebind_exec(vma);
- 
--		err = xe_vm_ops_add_rebind(&vops, vma,
--					   vma->tile_present);
-+		err = xe_vm_ops_add_rebind(&vops, vma, xe_vma_start(vma),
-+					   xe_vma_end(vma), vma->tile_present);
- 		if (err)
- 			goto free_ops;
- 	}
-@@ -895,7 +895,8 @@ int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
- 	return err;
- }
- 
--struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma, u8 tile_mask)
-+struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma,
-+					    u64 start, u64 end, u8 tile_mask)
- {
- 	struct dma_fence *fence = NULL;
- 	struct xe_vma_ops vops;
-@@ -907,6 +908,8 @@ struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma, u8 tile_ma
- 	lockdep_assert_held(&vm->lock);
- 	xe_vm_assert_held(vm);
- 	xe_assert(vm->xe, xe_vm_in_fault_mode(vm));
-+	xe_assert(vm->xe, start >= xe_vma_start(vma));
-+	xe_assert(vm->xe, end <= xe_vma_end(vma));
- 
- 	xe_vma_ops_init(&vops, vm, NULL, NULL, 0);
- 	for_each_tile(tile, vm->xe, id) {
-@@ -915,7 +918,7 @@ struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma, u8 tile_ma
- 			xe_tile_migrate_exec_queue(tile);
- 	}
- 
--	err = xe_vm_ops_add_rebind(&vops, vma, tile_mask);
-+	err = xe_vm_ops_add_rebind(&vops, vma, start, end, tile_mask);
- 	if (err)
- 		return ERR_PTR(err);
- 
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 7c10f6c60b63..680c0c49b2f4 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -221,7 +221,7 @@ int xe_vm_userptr_check_repin(struct xe_vm *vm);
- 
- int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker);
- struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma,
--				u8 tile_mask);
-+				u64 start, u64 end, u8 tile_mask);
- 
- int xe_vm_invalidate_vma(struct xe_vma *vma, u64 start, u64 end);
- 
 -- 
 2.26.3
 
