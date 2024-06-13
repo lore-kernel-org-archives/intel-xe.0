@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E998BC2BA1A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0B6FC27C78
 	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 15:22:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D6FB10EAD8;
-	Thu, 13 Jun 2024 15:22:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C63910EAD6;
+	Thu, 13 Jun 2024 15:22:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ibuaKmVe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nJwqJs+G";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B23DE10EAC4
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 15:20:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0383310EAC2
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 15:20:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718292044; x=1749828044;
+ t=1718292043; x=1749828043;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=v3Of0hZHT8c/8WCiJz5FPNFG7GD+WG7HzYVxvgzY8Vs=;
- b=ibuaKmVeIAG1unQWgujfaE9qlX7bVGSOpbSlc5f3xQ6ZFSJc2s3lzIAY
- Kf3Y715DyHFwORwIidzIwkK30wojvSu5drvjD/w7ALtYyfUPIMTn5g2PW
- 9wF83wI1XRpcHPMveOnKx499fkHJWsMX/Wv58KnsTBwkCfNibxCfTgxB1
- AKj8sQQFZHzAUOKLn7nyc/UTc4XqVELKaIFEfRt8ezg5TOCITP1ddgLaP
- TrgsFL7VGtz5XJ7QITZjpOwyDXmZ8hH9rqFzpRe8q1R/qmtOftTb86GkZ
- 3Bud9ZLdcucIKsbXcF/pY24zF8u2F7Y/zQRdtaPdoUnYns4H/2o3M/AzH g==;
-X-CSE-ConnectionGUID: tkvc8g65TgWh6fG63tA0vg==
-X-CSE-MsgGUID: kW1THMt6RbCGAsKHmJbOlw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348642"
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348642"
+ bh=/xNLG3U29OgkyA1tKMaWZ92RWxnb2Y1szOX8Own9nJ0=;
+ b=nJwqJs+G8vtgWXvqjg5zxnHF2/r4eqhB/W+wLm96ROz168M0UMiKUv2t
+ o79s4lTVswBE1EwvgjDcok+ctBkCGVeNBwjT/g+UF164fV119mcBYsoXZ
+ Ptb+6CBT4nN1tcgg7yQdTP2SyqHVpAvtvuJZURZYB4anoIt4AnhLWsF+q
+ pfLWP9XWyCiY3Bx4GXZR79QSGJYdw1ND/Zb1fv2GjnZkOEegg+m6bUY3S
+ BgKCs4srEblXKDirHe9trLRyopt7CVOaQ/KOSXgBq0RFUsx1Aj8CWsyCm
+ 83J+qoYSGrQrNzZoFHhBgtWmxddSsxGgtdjuz5IRlQNj5O9L/pFAj7QUp w==;
+X-CSE-ConnectionGUID: Fp0417j6TpGLNSx7h4XfzA==
+X-CSE-MsgGUID: ej0R4Wc2RsWehekTVsYLhw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348631"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348631"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 08:20:41 -0700
-X-CSE-ConnectionGUID: ZRbTCkkLTaKFk5qdzmnBrQ==
-X-CSE-MsgGUID: vIUPhZtRTs6qkvsjCJ67HQ==
+ 13 Jun 2024 08:20:40 -0700
+X-CSE-ConnectionGUID: m27GxEX6QHi2/k0a3FZG3A==
+X-CSE-MsgGUID: q4qWxe4+RsGuX5K83O6ctA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135087"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135063"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 08:20:41 -0700
+ 13 Jun 2024 08:20:40 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 11/42] drm/svm: Introduce helper to remap drm memory region
-Date: Thu, 13 Jun 2024 11:30:57 -0400
-Message-Id: <20240613153128.681864-11-oak.zeng@intel.com>
+Subject: [CI 03/42] dma-mapping: provide callbacks to link/unlink pages to
+ specific IOVA
+Date: Thu, 13 Jun 2024 11:30:49 -0400
+Message-Id: <20240613153128.681864-3-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613153128.681864-1-oak.zeng@intel.com>
 References: <20240613153128.681864-1-oak.zeng@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,132 +66,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Helper function drm_svm_register_mem_region to remap GPU vram
-using devm_memremap_pages, so each GPU vram page is backed by
-struct page.
+From: Leon Romanovsky <leonro@nvidia.com>
 
-Those struct pages are created to allow hmm migrate buffer b/t
-GPU vram and CPU system memory using existing Linux migration
-mechanism (i.e., migrating b/t CPU system memory and hard disk).
+Introduce new DMA link/unlink API to provide a way for advanced users
+to directly map/unmap pages without ned to allocate IOVA on every map
+call.
 
-This is prepare work to enable svm (shared virtual memory) through
-Linux kernel hmm framework. The memory remap's page map type is set
-to MEMORY_DEVICE_PRIVATE for now. This means even though each GPU
-vram page get a struct page and can be mapped in CPU page table,
-but such pages are treated as GPU's private resource, so CPU can't
-access them. If CPU access such page, a page fault is triggered
-and page will be migrate to system memory.
-
-For GPU device which supports coherent memory protocol b/t CPU and
-GPU (such as CXL and CAPI protocol), we can remap device memory as
-MEMORY_DEVICE_COHERENT. This is TBD.
-
-v1: Support a memory type interface for register_mem_region (Himal)
-
-Cc: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Felix Kuehling <felix.kuehling@amd.com>
-Cc: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Leon Romanovsky <leonro@nvidia.com>
-Cc: Brian Welty <brian.welty@intel.com>
-Cc: <dri-devel@lists.freedesktop.org>
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
 ---
- drivers/gpu/drm/drm_svm.c | 56 +++++++++++++++++++++++++++++++++++++++
- include/drm/drm_svm.h     |  3 +++
- 2 files changed, 59 insertions(+)
+ include/linux/dma-map-ops.h | 10 +++++++
+ include/linux/dma-mapping.h | 13 +++++++++
+ kernel/dma/debug.h          |  2 ++
+ kernel/dma/direct.h         |  3 ++
+ kernel/dma/mapping.c        | 57 +++++++++++++++++++++++++++++++++++++
+ 5 files changed, 85 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_svm.c b/drivers/gpu/drm/drm_svm.c
-index 9a164615f866..741874689e32 100644
---- a/drivers/gpu/drm/drm_svm.c
-+++ b/drivers/gpu/drm/drm_svm.c
-@@ -13,6 +13,7 @@
- #include <linux/swap.h>
- #include <linux/bug.h>
- #include <linux/hmm.h>
-+#include <linux/pci.h>
- #include <linux/mm.h>
+diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
+index 23e5e2f63a1c..292326ac5a12 100644
+--- a/include/linux/dma-map-ops.h
++++ b/include/linux/dma-map-ops.h
+@@ -89,6 +89,13 @@ struct dma_map_ops {
  
- static u64 __npages_in_range(unsigned long start, unsigned long end)
-@@ -314,3 +315,58 @@ int drm_svm_hmmptr_populate(struct drm_hmmptr *hmmptr, void *owner, u64 start, u
- 	return ret;
+ 	dma_addr_t (*alloc_iova)(struct device *dev, size_t size);
+ 	void (*free_iova)(struct device *dev, dma_addr_t dma_addr, size_t size);
++	dma_addr_t (*link_range)(struct device *dev, struct page *page,
++				 unsigned long offset, dma_addr_t addr,
++				 size_t size, enum dma_data_direction dir,
++				 unsigned long attrs);
++	void (*unlink_range)(struct device *dev, dma_addr_t dma_handle,
++			     size_t size, enum dma_data_direction dir,
++			     unsigned long attrs);
+ };
+ 
+ #ifdef CONFIG_DMA_OPS
+@@ -440,6 +447,9 @@ bool arch_dma_unmap_sg_direct(struct device *dev, struct scatterlist *sg,
+ #define arch_dma_unmap_sg_direct(d, s, n)	(false)
+ #endif
+ 
++#define arch_dma_link_range_direct arch_dma_map_page_direct
++#define arch_dma_unlink_range_direct arch_dma_unmap_page_direct
++
+ #ifdef CONFIG_ARCH_HAS_SETUP_DMA_OPS
+ void arch_setup_dma_ops(struct device *dev, bool coherent);
+ #else
+diff --git a/include/linux/dma-mapping.h b/include/linux/dma-mapping.h
+index 34a3b6420606..223b5477e36e 100644
+--- a/include/linux/dma-mapping.h
++++ b/include/linux/dma-mapping.h
+@@ -113,6 +113,9 @@ static inline int dma_mapping_error(struct device *dev, dma_addr_t dma_addr)
+ 
+ int dma_alloc_iova(struct dma_iova_attrs *iova);
+ void dma_free_iova(struct dma_iova_attrs *iova);
++dma_addr_t dma_link_range(struct page *page, unsigned long offset,
++			  struct dma_iova_attrs *iova, dma_addr_t dma_offset);
++void dma_unlink_range(struct dma_iova_attrs *iova, dma_addr_t dma_offset);
+ 
+ dma_addr_t dma_map_page_attrs(struct device *dev, struct page *page,
+ 		size_t offset, size_t size, enum dma_data_direction dir,
+@@ -170,6 +173,16 @@ static inline int dma_alloc_iova(struct dma_iova_attrs *iova)
+ static inline void dma_free_iova(struct dma_iova_attrs *iova)
+ {
  }
- EXPORT_SYMBOL_GPL(drm_svm_hmmptr_populate);
-+
-+static struct dev_pagemap_ops drm_devm_pagemap_ops;
-+
-+/**
-+ * drm_svm_register_mem_region: Remap and provide memmap backing for device memory
-+ * @drm: drm device who want to register a memory region
-+ * @mr: memory region to register
-+ * @type: ZONE_DEVICE memory type
-+ *
-+ * This remap device memory to host physical address space and create
-+ * struct page to back device memory
-+ *
-+ * Return: 0 on success standard error code otherwise
-+ */
-+int drm_svm_register_mem_region(const struct drm_device *drm,
-+		struct drm_mem_region *mr, enum memory_type type)
++static inline dma_addr_t dma_link_range(struct page *page, unsigned long offset,
++					struct dma_iova_attrs *iova,
++					dma_addr_t dma_offset)
 +{
-+	struct device *dev = &to_pci_dev(drm->dev)->dev;
-+	struct resource *res;
-+	void *addr;
-+	int ret;
-+
-+	/**FIXME: support MEMORY_DEVICE_COHERENT in the future*/
-+	if (type != MEMORY_DEVICE_PRIVATE)
-+		return -EINVAL;
-+
-+	res = devm_request_free_mem_region(dev, &iomem_resource,
-+					   mr->usable_size);
-+	if (IS_ERR(res)) {
-+		ret = PTR_ERR(res);
-+		return ret;
-+	}
-+
-+	drm_devm_pagemap_ops.page_free = mr->mr_ops.drm_mem_region_free_page;
-+	mr->pagemap.type = type;
-+	mr->pagemap.range.start = res->start;
-+	mr->pagemap.range.end = res->end;
-+	mr->pagemap.nr_range = 1;
-+	mr->pagemap.ops = &drm_devm_pagemap_ops;
-+	mr->pagemap.owner = mr->mr_ops.drm_mem_region_pagemap_owner(mr);
-+	addr = devm_memremap_pages(dev, &mr->pagemap);
-+	if (IS_ERR(addr)) {
-+		devm_release_mem_region(dev, res->start, resource_size(res));
-+		ret = PTR_ERR(addr);
-+		drm_err(drm, "Failed to remap memory region %p, errno %d\n",
-+				mr, ret);
-+		return ret;
-+	}
-+	mr->hpa_base = res->start;
-+
-+	drm_info(drm, "Registered device memory [%llx-%llx] to devm, remapped to %pr\n",
-+			mr->dpa_base, mr->dpa_base + mr->usable_size, res);
-+	return 0;
++	return DMA_MAPPING_ERROR;
 +}
-+EXPORT_SYMBOL_GPL(drm_svm_register_mem_region);
-diff --git a/include/drm/drm_svm.h b/include/drm/drm_svm.h
-index d443f20b5510..04552cc1c67f 100644
---- a/include/drm/drm_svm.h
-+++ b/include/drm/drm_svm.h
-@@ -164,6 +164,9 @@ static inline u64 drm_mem_region_page_to_dpa(struct drm_mem_region *mr, struct p
- 	return dpa;
++static inline void dma_unlink_range(struct dma_iova_attrs *iova,
++				    dma_addr_t dma_offset)
++{
++}
+ static inline dma_addr_t dma_map_page_attrs(struct device *dev,
+ 		struct page *page, size_t offset, size_t size,
+ 		enum dma_data_direction dir, unsigned long attrs)
+diff --git a/kernel/dma/debug.h b/kernel/dma/debug.h
+index f525197d3cae..3d529f355c6d 100644
+--- a/kernel/dma/debug.h
++++ b/kernel/dma/debug.h
+@@ -127,4 +127,6 @@ static inline void debug_dma_sync_sg_for_device(struct device *dev,
+ {
  }
- 
-+int drm_svm_register_mem_region(const struct drm_device *drm,
-+		struct drm_mem_region *mr, enum memory_type type);
+ #endif /* CONFIG_DMA_API_DEBUG */
++#define debug_dma_link_range debug_dma_map_page
++#define debug_dma_unlink_range debug_dma_unmap_page
+ #endif /* _KERNEL_DMA_DEBUG_H */
+diff --git a/kernel/dma/direct.h b/kernel/dma/direct.h
+index 18d346118fe8..1c30e1cd607a 100644
+--- a/kernel/dma/direct.h
++++ b/kernel/dma/direct.h
+@@ -125,4 +125,7 @@ static inline void dma_direct_unmap_page(struct device *dev, dma_addr_t addr,
+ 		swiotlb_tbl_unmap_single(dev, phys, size, dir,
+ 					 attrs | DMA_ATTR_SKIP_CPU_SYNC);
+ }
 +
- /**
-  * struct drm_hmmptr- hmmptr pointer
-  *
++#define dma_direct_link_range dma_direct_map_page
++#define dma_direct_unlink_range dma_direct_unmap_page
+ #endif /* _KERNEL_DMA_DIRECT_H */
+diff --git a/kernel/dma/mapping.c b/kernel/dma/mapping.c
+index 4d14637d186b..787d7516434f 100644
+--- a/kernel/dma/mapping.c
++++ b/kernel/dma/mapping.c
+@@ -213,6 +213,63 @@ void dma_free_iova(struct dma_iova_attrs *iova)
+ }
+ EXPORT_SYMBOL(dma_free_iova);
+ 
++/**
++ * dma_link_range - Link a physical page to DMA address
++ * @page: The page to be mapped
++ * @offset: The offset within the page
++ * @iova: Preallocated IOVA attributes
++ * @dma_offset: DMA offset form which this page needs to be linked
++ *
++ * dma_alloc_iova() allocates IOVA based on the size specified by ther user in
++ * iova->size. Call this function after IOVA allocation to link @page from
++ * @offset to get the DMA address. Note that very first call to this function
++ * will have @dma_offset set to 0 in the IOVA space allocated from
++ * dma_alloc_iova(). For subsequent calls to this function on same @iova,
++ * @dma_offset needs to be advanced by the caller with the size of previous
++ * page that was linked + DMA address returned for the previous page that was
++ * linked by this function.
++ */
++dma_addr_t dma_link_range(struct page *page, unsigned long offset,
++			  struct dma_iova_attrs *iova, dma_addr_t dma_offset)
++{
++	struct device *dev = iova->dev;
++	size_t size = iova->size;
++	enum dma_data_direction dir = iova->dir;
++	unsigned long attrs = iova->attrs;
++	dma_addr_t addr = iova->addr + dma_offset;
++	const struct dma_map_ops *ops = get_dma_ops(dev);
++
++	if (dma_map_direct(dev, ops) ||
++	    arch_dma_link_range_direct(dev, page_to_phys(page) + offset + size))
++		addr = dma_direct_link_range(dev, page, offset, size, dir, attrs);
++	else if (ops->link_range)
++		addr = ops->link_range(dev, page, offset, addr, size, dir, attrs);
++
++	kmsan_handle_dma(page, offset, size, dir);
++	debug_dma_link_range(dev, page, offset, size, dir, addr, attrs);
++	return addr;
++}
++EXPORT_SYMBOL(dma_link_range);
++
++void dma_unlink_range(struct dma_iova_attrs *iova, dma_addr_t dma_offset)
++{
++	struct device *dev = iova->dev;
++	size_t size = iova->size;
++	enum dma_data_direction dir = iova->dir;
++	unsigned long attrs = iova->attrs;
++	dma_addr_t addr = iova->addr + dma_offset;
++	const struct dma_map_ops *ops = get_dma_ops(dev);
++
++	if (dma_map_direct(dev, ops) ||
++	    arch_dma_unlink_range_direct(dev, addr + size))
++		dma_direct_unlink_range(dev, addr, size, dir, attrs);
++	else if (ops->unlink_range)
++		ops->unlink_range(dev, addr, size, dir, attrs);
++
++	debug_dma_unlink_range(dev, addr, size, dir);
++}
++EXPORT_SYMBOL(dma_unlink_range);
++
+ static int __dma_map_sg_attrs(struct device *dev, struct scatterlist *sg,
+ 	 int nents, enum dma_data_direction dir, unsigned long attrs)
+ {
 -- 
 2.26.3
 
