@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DB09C2BA18
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 04:14:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 942A9C27C4F
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 04:14:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32C7D10E128;
-	Thu, 13 Jun 2024 04:14:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 160E110E163;
+	Thu, 13 Jun 2024 04:14:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kiv9RvZY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GUd4/uHY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13BF110E128
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 04:13:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 234D610E102
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 04:13:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718252035; x=1749788035;
+ t=1718252029; x=1749788029;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=IsTerEgEHKwCGsRKv/MURV0uaalhT62tCDhnCoidijw=;
- b=kiv9RvZYnXiCkWhxf8b7n9nYOF6Hr2OiKWI3d279Br7dYq9bJZ4yowCl
- Vh4mPVq2EVU6Ei7p0taAaNgY429HOBeJFBoV3U38DAwXzehcbO9pQ6JQr
- f8GHoQnHrFs5KCDUR1fPlcfaaZ+sDdHfJCmqBHjuM54p8TGmHU2UYWMb1
- pO4eO7c7wH8xq5ggsXgVIdlecPzzBvkQ+2kOLlKEop/A0s/QuFY4P9Sau
- z1rRVgH+2xNf4oO4lnbAFO20GXcPXbk2tqLmpULcyg60d88p49nP3g1D+
- b1dMf2yIiRkAtHc4xs5iVU7sMuOiLUG3N7mTgJT0mxxBMgf248rmUpWlW Q==;
-X-CSE-ConnectionGUID: avHBtpt3Tx2nu/LazaRJCQ==
-X-CSE-MsgGUID: ScQn3DN0SfSCHi8Nva7ktg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14847997"
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14847997"
+ bh=jR6Ze7ImgG7AqysrtmRLIfYjq86G2fDZ3TLKE2UhhCk=;
+ b=GUd4/uHYlfeDLW/PckaefkOW4eKpixDz6bl68QCjM41A7FTaRDB94sHO
+ jeajs37yWvSduWpgsigqM8tcOaIFO5KjnDucTESg8oHUKR4ITFmjhon0n
+ NkU0EXhW3VHDGNVvEdYobqAJt3XC17OGwgZWNczmxBCWE4Cqm8GBOSBnk
+ G/r0aS0OeIFVbn+2sBwN7PuYZi6SLWMPsbXkCt9qQVoock52wxZ7DtVVl
+ Lw+4lzpwcXq/5H3weXS9nojnxv4aqywHecMUr6pb0adRCEEhUp1Mmlhld
+ M9H+FDSWHciY6JSql4ebZF/0b71ZTMvwRF3vVURc/n5uzajmByVqRzvoH w==;
+X-CSE-ConnectionGUID: pQ0gUUiLRI2sxdzmWmQuuw==
+X-CSE-MsgGUID: Y5N2tYkyTZOoTtV/HKyZ/g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14847959"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14847959"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2024 21:13:49 -0700
-X-CSE-ConnectionGUID: T8ITkdaySDK/zfROL1OVDg==
-X-CSE-MsgGUID: LIG7pXb4SJe7VEfOhxXg1A==
+ 12 Jun 2024 21:13:47 -0700
+X-CSE-ConnectionGUID: 1QYB/LvdQRqzMdNzs/t3KQ==
+X-CSE-MsgGUID: fSCIHV+1T/iyzHzVIyZH/Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40476352"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40476325"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2024 21:13:48 -0700
+ 12 Jun 2024 21:13:47 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 30/42] drm/xe/svm: Add faulted userptr VMA garbage collector
-Date: Thu, 13 Jun 2024 00:24:17 -0400
-Message-Id: <20240613042429.637281-30-oak.zeng@intel.com>
+Subject: [CI 09/42] drm/svm: introduce drm_mem_region concept
+Date: Thu, 13 Jun 2024 00:23:56 -0400
+Message-Id: <20240613042429.637281-9-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613042429.637281-1-oak.zeng@intel.com>
 References: <20240613042429.637281-1-oak.zeng@intel.com>
@@ -66,298 +66,213 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
+As its name indicates, a drm_mem_region represent a memory region on
+a drm device, e.g., a GPU's HBM memory.
 
-When a faulted userptr VMA (allocated by page handler) is invalidated
-add to list which a garbage collector will unmap from GPU, destroy
-faulted userptr VMA, and replace with system_allocator VMA.
+In a memory region, we have address information of this region, from
+both CPU (hpa_base) and GPU (dpa_base) perspectives. It has a pagemap
+member which is used to memremap memory region to ZONE_DEVICE. It also
+has some interfaces for drm to callback driver to allocate/free memory from
+this region, migrate data to/from this memory region, get a pagemap
+owner of a memory region, and get the drm device which own the memory
+region.
 
-v1: Run gargabe collector only on MMU_NOTIFY_UNMAP event. For other
-    events, we just invalidate GPU page table but keep the vma because
-    the userptr is still exist. On next GPU access, we will revalidate
-    and rebind this userptr to GPU(Oak)
-v2: rebase
-    support range based userptr invalidation in garbage collector. Allow
-    partial of a userptr to be invalidated (such as trigger by partial
-    munmap of a userptr) (Oak)
-    Fix vm->lock recursive lock issue (Oak)
+This is introduced for system allocator implementation, so the memory
+allocation and free interfaces are page based.
 
+A few helper functions are also introduced:
+1) drm_mem_region_page_to_dpa: calculate device physical address for
+   a page
+2) drm_page_to_mem_region: retrieve drm memory region that a page
+   resides in
+
+v1: use page parameter instead of pfn (Matt)
+Add BUG_ON(mr != drm_page_to_mem_region(page)) (Matt)
+
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Felix Kuehling <felix.kuehling@amd.com>
+Cc: Jason Gunthorpe <jgg@nvidia.com>
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Brian Welty <brian.welty@intel.com>
+Cc: <dri-devel@lists.freedesktop.org>
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_pagefault.c |   1 +
- drivers/gpu/drm/xe/xe_vm.c           | 162 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h           |   8 ++
- drivers/gpu/drm/xe/xe_vm_types.h     |  15 +++
- 4 files changed, 186 insertions(+)
+ include/drm/drm_svm.h | 162 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 162 insertions(+)
+ create mode 100644 include/drm/drm_svm.h
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 0bdde3164cd3..9e47e0c97a1b 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -145,6 +145,7 @@ static int handle_vma_pagefault(struct xe_tile *tile, struct pagefault *pf,
- 	}
- 
- retry_userptr:
-+	xe_vm_userptr_garbage_collector(vm);
- 	if (xe_vma_is_userptr(vma) &&
- 	    xe_vma_userptr_check_repin(to_userptr_vma(vma))) {
- 		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index dba7a64075e9..b1ab86890226 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -690,6 +690,21 @@ static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
- 
- 	xe_vma_userptr_dma_unmap_pages(uvma, range_start, range_end);
- 
-+	if (range->event == MMU_NOTIFY_UNMAP &&
-+	    vma->gpuva.flags & XE_VMA_FAULT_USERPTR &&
-+	    !xe_vm_is_closed(vm) && !xe_vm_is_banned(vm) &&
-+	    !(vma->gpuva.flags & XE_VMA_DESTROYED) && vma->tile_present) {
-+		xe_assert(vm->xe, xe_vm_in_fault_mode(vm));
-+		userptr->invalidate_start = start;
-+		userptr->invalidate_range = range_size;
-+		spin_lock(&vm->userptr.invalidated_lock);
-+		list_move_tail(&userptr->invalidate_link,
-+			       &vm->userptr.fault_invalidated);
-+		spin_unlock(&vm->userptr.invalidated_lock);
+diff --git a/include/drm/drm_svm.h b/include/drm/drm_svm.h
+new file mode 100644
+index 000000000000..a383c7251e2b
+--- /dev/null
++++ b/include/drm/drm_svm.h
+@@ -0,0 +1,162 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright Â© 2024 Intel Corporation
++ */
 +
-+		queue_work(system_wq, &vm->userptr.garbage_collector);
-+	}
++#ifndef _DRM_SVM__
++#define _DRM_SVM__
 +
- 	trace_xe_vma_userptr_invalidate_complete(vma);
- 
- 	return true;
-@@ -1428,6 +1443,8 @@ static void xe_vm_free_scratch(struct xe_vm *vm)
- 	}
- }
- 
-+static void vm_userptr_garbage_collector(struct work_struct *w);
++#include <linux/compiler_types.h>
++#include <linux/memremap.h>
++#include <linux/types.h>
 +
- struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- {
- 	struct drm_gem_object *vm_resv_obj;
-@@ -1453,8 +1470,10 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 
- 	INIT_LIST_HEAD(&vm->userptr.repin_list);
- 	INIT_LIST_HEAD(&vm->userptr.invalidated);
-+	INIT_LIST_HEAD(&vm->userptr.fault_invalidated);
- 	init_rwsem(&vm->userptr.notifier_lock);
- 	spin_lock_init(&vm->userptr.invalidated_lock);
-+	INIT_WORK(&vm->userptr.garbage_collector, vm_userptr_garbage_collector);
- 
- 	INIT_WORK(&vm->destroy_work, vm_destroy_work_func);
- 
-@@ -1609,6 +1628,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 	xe_vm_close(vm);
- 	if (xe_vm_in_preempt_fence_mode(vm))
- 		flush_work(&vm->preempt.rebind_work);
-+	if (xe_vm_in_fault_mode(vm))
-+		flush_work(&vm->userptr.garbage_collector);
- 
- 	down_write(&vm->lock);
- 	for_each_tile(tile, xe, id) {
-@@ -3572,3 +3593,144 @@ struct xe_vma *xe_vm_fault_userptr(struct xe_vm *vm, u64 fault_addr)
- 
- 	return ERR_PTR(err);
- }
++struct dma_fence;
++struct drm_mem_region;
 +
-+static int
-+vm_userptr_garbage_collector_destroy_uvma(struct xe_vm *vm,
-+					  struct xe_userptr_vma *uvma)
-+{
-+	struct xe_userptr *userptr = &uvma->userptr;
-+	struct mm_struct *mm = vm->gpuvm.mm;
-+	struct xe_vma_ops vops;
-+	struct drm_gpuva_ops *ops = NULL;
-+	struct drm_gpuva_op *__op;
-+	struct xe_tile *tile;
-+	u8 id;
-+	int err;
-+
-+	vm_dbg(&vm->xe->drm, "GARBAGE COLLECTOR: addr=0x%016llx, range=0x%016llx",
-+	       userptr->invalidate_start, userptr->invalidate_range);
-+
-+	xe_assert(vm->xe, uvma->vma.gpuva.flags & XE_VMA_FAULT_USERPTR);
-+	lockdep_assert_held_write(&vm->lock);
-+
-+	if (!mmget_not_zero(mm))
-+		return -EFAULT;
-+
-+	kthread_use_mm(mm);
-+
-+	/* Replace xe_userptr_vma sub-range with system_allocator VMA */
-+	ops = drm_gpuvm_sm_map_ops_create(&vm->gpuvm,
-+					  userptr->invalidate_start,
-+					  userptr->invalidate_range, 0, 0);
-+	if (IS_ERR(ops)) {
-+		err = PTR_ERR(ops);
-+		goto err_kthread;
-+	}
-+
-+	drm_gpuva_for_each_op(__op, ops) {
-+		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
-+
-+		if (__op->op == DRM_GPUVA_OP_MAP) {
-+			op->map.immediate = true;
-+			op->map.is_system_allocator = true;
-+		}
-+
-+		print_op(vm->xe, __op);
-+	}
-+
-+	xe_vma_ops_init(&vops, vm, NULL, NULL, 0);
-+	err = vm_bind_ioctl_ops_update_gpuvm_state(vm, ops, NULL, 0, &vops);
-+	if (err)
-+		goto err_kthread;
-+
-+	/*
-+	 * Order behind any user operations and use same exec queue as page
-+	 * fault handler.
++/**
++ * struct migrate_vec - a migration vector is an array of addresses,
++ * each of which represents one page.
++ * When it is system memory page, the address is a dmap-mapped address.
++ * When it is vram page, the address is device physical address.
++ */
++struct migrate_vec {
++	/**
++	 * @mr: the memory region that pages reside.
++	 * When it is system memory page, mr is NULL.
 +	 */
-+	for_each_tile(tile, vm->xe, id) {
-+		vops.pt_update_ops[tile->id].wait_vm_bookkeep = true;
-+		vops.pt_update_ops[tile->id].q =
-+			xe_tile_migrate_exec_queue(tile);
-+	}
-+
-+	err = xe_vma_ops_alloc(&vops);
-+	if (err)
-+		goto err_kthread;
-+
-+	err = vm_bind_ioctl_ops_execute(vm, &vops);
-+
-+	xe_vma_ops_fini(&vops);
-+	kthread_unuse_mm(mm);
-+	mmput(mm);
-+	drm_gpuva_ops_free(&vm->gpuvm, ops);
-+
-+	return err;
-+
-+err_kthread:
-+	kthread_unuse_mm(mm);
-+	mmput(mm);
-+	if (ops)
-+		drm_gpuva_ops_free(&vm->gpuvm, ops);
-+
-+	return err;
-+}
-+
-+static void vm_userptr_garbage_collector_locked(struct xe_vm *vm)
-+{
-+	struct xe_userptr_vma *uvma, *next;
-+	int err;
-+
-+	xe_assert(vm->xe, xe_vm_in_fault_mode(vm));
-+
-+	if (xe_vm_is_closed_or_banned(vm))
-+		return;
-+
-+	/*
-+	 * FIXME: Could create 1 set of VMA ops for all VMAs on
-+	 * fault_invalidated list
++	struct drm_mem_region *mr;
++	/** @npages: number of pages */
++	u64 npages;
++	/**
++	 * @addr_vec: address vector
++	 * each item in addr_vec is an address of a page
 +	 */
-+	spin_lock(&vm->userptr.invalidated_lock);
-+	list_for_each_entry_safe(uvma, next, &vm->userptr.fault_invalidated,
-+				 userptr.invalidate_link) {
-+		list_del_init(&uvma->userptr.invalidate_link);
-+		spin_unlock(&vm->userptr.invalidated_lock);
++	union {
++		/** @dma_addr: dma-mapped address of the page, only valid for system pages*/
++		dma_addr_t dma_addr;
++		/** @dpa: device physical address of the page, only valid for vram page*/
++		phys_addr_t dpa;
++	} addr_vec[1];
++};
 +
-+		err = vm_userptr_garbage_collector_destroy_uvma(vm, uvma);
-+		if (err) {
-+			XE_WARN_ON("Garbage collection failed, killing VM");
-+			xe_vm_kill(vm, true);
-+		}
++/**
++ * struct drm_mem_region_ops - memory region operations such as memory allocation
++ * and migration etc. Driver is supposed to implement those operations.
++ */
++struct drm_mem_region_ops {
++	/**
++	 * @drm_mem_region_alloc_pages: Called from drm to driver to allocate
++	 * device VRAM memory
++	 * @mr: The memory region where to allocate device VRAM memory from
++	 * @npages: number of pages to allocate
++	 * @pfns: Used to return pfns of each page
++	 */
++	int (*drm_mem_region_alloc_pages) (struct drm_mem_region *mr,
++						unsigned long npags, unsigned long *pfns);
++	/**
++	 * @drm_mem_region_free_page: Called from drm to free one page of device memory
++	 * @page: point to the page to free
++	 */
++	void (*drm_mem_region_free_page) (struct page *page);
++	/**
++	 * @drm_mem_region_migrate: Called from drm to migrate memory from src to
++	 * dst. Driver is supposed to implement this function using device hardware
++	 * accelerators such as DMA. DRM subsystem call this function to migrate
++	 * memory b/t system memory and device memory region
++	 *
++	 * @src_vec: source migration vector
++	 * @dst_vec: destination migration vector
++	 */
++	struct dma_fence* (*drm_mem_region_migrate)(struct migrate_vec *src_vec,
++			struct migrate_vec *dst_vec);
++	/**
++	 * @drm_mem_region_pagemap_owner: Return the pagemap owner of a memory
++	 * region. Pagemap owner is the owner of the device memory. It is
++	 * defined by device driver and opaque to drm layer. Drm uses pagemap
++	 * owner to set up page migrations (see hmm function migrate_vma_setup)
++	 * and range population (see hmm functio hmm_range_fault). Driver has
++	 * the freedom to choose the right pagemap owner.
++	 *
++	 * @mr: the memory region which we want to get the page map owner
++	 */
++	void* (*drm_mem_region_pagemap_owner)(struct drm_mem_region *mr);
++	/**
++	 * @drm_mem_region_get_device: Return the drm device which has this memory
++	 * region.
++	 *
++	 * @mr: the memory region
++	 */
++	struct drm_device* (*drm_mem_region_get_device)(struct drm_mem_region *mr);
++};
 +
-+		spin_lock(&vm->userptr.invalidated_lock);
-+	}
-+	spin_unlock(&vm->userptr.invalidated_lock);
-+}
++/**
++ * struct drm_mem_region - memory region structure
++ * This is used to describe a memory region in drm
++ * device, such as HBM memory or CXL extension memory.
++ *
++ * drm_mem_region is converted from the xe_mem_region
++ * concept. xe_mem_region is moved to drm layer and renamed
++ * as drm_mem_region.
++ *
++ * drm_mem_region is supposed to be embedded in some driver struct such as
++ * "struct xe_tile" or "struct amdgpu_device"
++ */
++struct drm_mem_region {
++	/** @dev_private: device private data which is opaque to drm layer */
++	void *dev_private;
++	/** @dpa_base: This memory regions's DPA (device physical address) base */
++	resource_size_t dpa_base;
++	/**
++	 * @usable_size: usable size of VRAM
++	 *
++	 * Usable size of VRAM excluding reserved portions
++	 * (e.g stolen mem)
++	 */
++	resource_size_t usable_size;
++	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
++	struct dev_pagemap pagemap;
++	/**
++	 * @hpa_base: base host physical address
++	 *
++	 * This is generated when remap device memory as ZONE_DEVICE
++	 */
++	resource_size_t hpa_base;
++	/**
++	 * @mr_ops: memory region operation function pointers
++	 */
++	struct drm_mem_region_ops mr_ops;
++};
 +
-+static void vm_userptr_garbage_collector(struct work_struct *w)
++/**
++ * drm_page_to_mem_region() - Get a page's memory region
++ *
++ * @page: a struct page pointer pointing to a page in vram memory region
++ */
++static inline struct drm_mem_region *drm_page_to_mem_region(struct page *page)
 +{
-+	struct xe_vm *vm =
-+		container_of(w, struct xe_vm, userptr.garbage_collector);
-+
-+	down_write(&vm->lock);
-+
-+	if (xe_vm_is_closed_or_banned(vm))
-+		goto unlock;
-+
-+	vm_userptr_garbage_collector_locked(vm);
-+
-+unlock:
-+	up_write(&vm->lock);
++	return container_of(page->pgmap, struct drm_mem_region, pagemap);
 +}
 +
 +/**
-+ * xe_vm_userptr_garbage_collector() - VM userptr garbage collector
-+ * @vm: VM
++ * drm_mem_region_page_to_dpa() - Calculate page's device physical address
 + *
-+ * For all invalidated faulted userptr VMAs (created by page fault handler)
-+ * unmap from GPU, destroy faulted userptr VMA, and replace with
-+ * system_allocator VMA.
++ * @mr: The memory region that page resides in
++ * @page: page to calculate dpa for
++ *
++ * Returns: the device physical address of the page
 + */
-+void xe_vm_userptr_garbage_collector(struct xe_vm *vm)
++static inline u64 drm_mem_region_page_to_dpa(struct drm_mem_region *mr, struct page *page)
 +{
-+	vm_userptr_garbage_collector_locked(vm);
++	u64 pfn = page_to_pfn(page);
++	u64 offset;
++	u64 dpa;
++
++	BUG_ON(mr != drm_page_to_mem_region(page));
++	BUG_ON((pfn << PAGE_SHIFT) < mr->hpa_base );
++	BUG_ON((pfn << PAGE_SHIFT) >=  mr->hpa_base + mr->usable_size);
++	offset = (pfn << PAGE_SHIFT) - mr->hpa_base;
++	dpa = mr->dpa_base + offset;
++
++	return dpa;
 +}
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index a31409b87b8a..b3b6ceec39ba 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -285,6 +285,14 @@ void xe_vm_kill(struct xe_vm *vm, bool unlocked);
-  */
- #define xe_vm_assert_held(vm) dma_resv_assert_held(xe_vm_resv(vm))
- 
-+int xe_vm_populate_dummy_rebind(struct xe_vm *vm, struct xe_vma *vma,
-+				u8 tile_mask);
-+void xe_vma_ops_free(struct xe_vma_ops *vops);
-+struct dma_fence *xe_vm_ops_execute(struct xe_vm *vm, struct xe_vma_ops *vops);
-+
-+void xe_vm_kill(struct xe_vm *vm, bool unlocked);
-+void xe_vm_userptr_garbage_collector(struct xe_vm *vm);
-+
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_VM)
- #define vm_dbg drm_dbg
- #else
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index c1bffa60cefc..6ebe05242997 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -40,6 +40,10 @@ struct xe_userptr {
- 	struct drm_hmmptr hmmptr;
- 	/** @invalidate_link: Link for the vm::userptr.invalidated list */
- 	struct list_head invalidate_link;
-+	/** invalidation start address */
-+	u64 invalidate_start;
-+	/** invalidation range */
-+	u64 invalidate_range;
- 	/** @userptr: link into VM repin list if userptr. */
- 	struct list_head repin_link;
- 	/**
-@@ -212,6 +216,17 @@ struct xe_vm {
- 		 * write mode.
- 		 */
- 		struct list_head invalidated;
-+		/**
-+		 * @userptr.fault_invalidated: List of invalidated userptrs,
-+		 * craeted by page fault, which will be destroy by the garbage
-+		 * collector. Protected from access with the @invalidated_lock.
-+		 */
-+		struct list_head fault_invalidated;
-+		/**
-+		 * @userptr.garbage_collector: worker to implement destroying of
-+		 * userptrs on @userptr.fault_invalidated list.
-+		 */
-+		struct work_struct garbage_collector;
- 	} userptr;
- 
- 	/** @preempt: preempt state */
++#endif
 -- 
 2.26.3
 
