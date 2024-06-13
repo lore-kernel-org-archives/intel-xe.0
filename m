@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1942C27C78
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 04:14:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C1C6C27C4F
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 04:15:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4281010E924;
-	Thu, 13 Jun 2024 04:14:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC96810E048;
+	Thu, 13 Jun 2024 04:15:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g7fIi3kt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VENNG8El";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 103F110E163
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 04:13:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDF3810E169
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 04:13:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718252030; x=1749788030;
+ t=1718252031; x=1749788031;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=hB8fGFQdX23M5i9iDlnVTrzUxMupZN+krT/GcsOHstU=;
- b=g7fIi3ktVeM5KDtlfIQtVvfVQq+8pqaAUQlJ4XdHUw4AqYXp9j0Wb+el
- OuEw5gjhc7pFUDWJsJhMe+sYj0wPDaHN7yzGL+bZtYHHwA3hZ0f2iaFnR
- avvlcb3uvi0tgBp6q9h+9hUf+Ei0SMRE4iNWUuqI6+WFJFccl59MDCgmC
- AKX0E/oWfR6+tzONtA5pzgMTf9l3G8YrblpABSNzHVI9rAxlWZubCmHM7
- MPiE1Khc700g7Lr2mipoZjMvbrkLRcIVOD+FsItREhXcXjKIA9psA6QpU
- /VRg0II13WWOAwPMO2WeBWyNc7Dw8kAe8mkBYOvkOkUtx88k88+0T/yt+ A==;
-X-CSE-ConnectionGUID: M68QswQrQtqLYF0wiKkPeA==
-X-CSE-MsgGUID: axS0MS2aReytu12sMbfHhA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14847967"
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14847967"
+ bh=Ga1Jlme//wJUv7FQcaWwWcFLy9crHLD7u3bUrqA2SLw=;
+ b=VENNG8El15aB9z4NW7OXWD0UHtcZHKh8r6AbOXT5APzMMtM1OVIysdCB
+ RjZj84kkXWdfrBiXlec+RvyWVzkGaneo4COLgZlyjU3oT2zI3D1sfGuCp
+ xClYBnWG0TILRM2GRCKf3YbPjv71ywkZVCNGaQZoOvLndUTW3gV7HtGji
+ gC/fDUesYVJDQnd0ObQDIFpxSNIC5TwM4JHbI1Xls2v/C7MJLAbiwGmSZ
+ vAh++EVek9i3/73DXt+tgVEUL8iCyY53XytJ2JISWy8FvnKuMniuln7xf
+ 98oPr26QcZ3sRha35X7iDp6bTt+EPyfl/aG0aUjLIAXrWvAlycUYqb1CV A==;
+X-CSE-ConnectionGUID: zj4r1i4sTtC4BzBOw+30iA==
+X-CSE-MsgGUID: 1BzuksYNQ1y6B9dHDPIsJw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14847983"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14847983"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2024 21:13:48 -0700
-X-CSE-ConnectionGUID: kgS4BoLwQKmeo5iWLK0YQQ==
-X-CSE-MsgGUID: yUEjebGyQWSDS7q+cK9EeQ==
+ 12 Jun 2024 21:13:49 -0700
+X-CSE-ConnectionGUID: /fjWiBPVRKOZxTmJ4VlATA==
+X-CSE-MsgGUID: VLy3ytMATYiPPnU95K2lCQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40476331"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40476339"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Jun 2024 21:13:48 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 14/42] drm/svm: Add DRM SVM documentation
-Date: Thu, 13 Jun 2024 00:24:01 -0400
-Message-Id: <20240613042429.637281-14-oak.zeng@intel.com>
+Subject: [CI 19/42] drm/xe: Update PT layer with better error handling
+Date: Thu, 13 Jun 2024 00:24:06 -0400
+Message-Id: <20240613042429.637281-19-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613042429.637281-1-oak.zeng@intel.com>
 References: <20240613042429.637281-1-oak.zeng@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,416 +65,371 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The purpose of DRM SVM design is to provide helpers and infrastructure
-to facilitate driver implementation of SVM (shared virtual memory)
-function.
+From: Matthew Brost <matthew.brost@intel.com>
 
-The overview part described the helpers that DRM layer provdes and the
-virtual function interfaces that driver has to implement if driver use
-drm SVM layer to implement SVM functionality.
+Update PT layer so if a memory allocation for a PTE fails the error can
+be propagated to the user without requiring to be killed.
 
-Unlike legacy DRM BO (buffer object) based physical memory management,
-DRM SVM use a complete page centric memory management. This has
-fundamental impact to the memory allocate, free, eviction and migration
-logic. It also requires the driver to support range (which is required
-to be page boundary) based GPU page table update and invalidation. The
-page centric design section described this design.
-
-Lock design is one of the key of the design, which is described in the
-lock design section.
-
-There are other sections described the memory attributes API design and
-the memory eviction design.
-
-Create a DRM SVM section in drm-mm.rst and generate SVM documents under
-this document section.
-
-Cc: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Felix Kuehling <felix.kuehling@amd.com>
-Cc: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Brian Welty <brian.welty@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Cc: <dri-devel@lists.freedesktop.org>
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- Documentation/gpu/drm-mm.rst |  42 +++++
- drivers/gpu/drm/drm_svm.c    | 309 +++++++++++++++++++++++++++++++++++
- 2 files changed, 351 insertions(+)
+ drivers/gpu/drm/xe/xe_pt.c | 208 ++++++++++++++++++++++++++++---------
+ 1 file changed, 160 insertions(+), 48 deletions(-)
 
-diff --git a/Documentation/gpu/drm-mm.rst b/Documentation/gpu/drm-mm.rst
-index d55751cad67c..fa968abb9387 100644
---- a/Documentation/gpu/drm-mm.rst
-+++ b/Documentation/gpu/drm-mm.rst
-@@ -573,3 +573,45 @@ Scheduler Function References
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 4353a3bdf6c8..e4dd385ee954 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -845,19 +845,27 @@ xe_vm_populate_pgtable(struct xe_migrate_pt_update *pt_update, struct xe_tile *t
+ 	}
+ }
  
- .. kernel-doc:: drivers/gpu/drm/scheduler/sched_entity.c
-    :export:
-+
-+DRM SVM
-+======
-+
-+Overview
-+-------
-+
-+.. kernel-doc:: drivers/gpu/drm/drm_svm.c
-+   :doc: Overview
-+
-+Page centric design
-+------------------
-+
-+.. kernel-doc:: drivers/gpu/drm/drm_svm.c
-+   :doc: page centric design
-+
-+Lock design
-+-----------
-+
-+.. kernel-doc:: drivers/gpu/drm/drm_svm.c
-+   :doc: lock design
-+
-+Memory hints
-+-----------
-+
-+.. kernel-doc:: drivers/gpu/drm/drm_svm.c
-+   :doc: Memory hints
-+
-+Memory eviction
-+-----------
-+
-+.. kernel-doc:: drivers/gpu/drm/drm_svm.c
-+   :doc: pag granularity eviction
-+
-+Function References
-+-----------------------------
-+
-+.. kernel-doc:: include/drm/drm_svm.h
-+   :internal:
-+
-+.. kernel-doc:: drivers/gpu/drm/drm_svm.c
-+   :export:
-diff --git a/drivers/gpu/drm/drm_svm.c b/drivers/gpu/drm/drm_svm.c
-index d34809b2bad6..967e7addae54 100644
---- a/drivers/gpu/drm/drm_svm.c
-+++ b/drivers/gpu/drm/drm_svm.c
-@@ -17,6 +17,315 @@
- #include <linux/pci.h>
- #include <linux/mm.h>
- 
-+/**
-+ * DOC: Overview
-+ *
-+ * Shared Virtual Memory (SVM) allows the programmer to use a shared virtual
-+ * address space between threads executing on CPUs and GPUs. It abstracts
-+ * away from the user the location of the backing memory, and hence simplifies
-+ * the user programming model. In a non-SVM memory model, user need to explicitly
-+ * decide memory placement such as device or system memory, also user need to
-+ * explicitly migrate memory b/t device and system memory. Under SVM, KMD takes
-+ * care of memory migration implicitly.
-+ *
-+ * SVM makes use of default OS memory allocation and mapping interface such as
-+ * malloc() and mmap(). The pointer returned from malloc() and mmap() can be
-+ * directly used on both CPU and GPU program. Any CPU program local variables
-+ * or global variables can also be used by GPU program.
-+ *
-+ * SVM also provides API to set virtual address range based memory attributes
-+ * such as preferred memory location, memory migration granularity, and memory
-+ * atomic attributes etc. This is similar to Linux madvise API.
-+ *
-+ * DRM SVM implementation is based on Linux kernel Heterogeneous Memory Management
-+ * (HMM) framework. HMM provides address space mirroring and data migration helpers.
-+ *
-+ * This is the DRM layer abstraction of the SVM implementation. The target of this
-+ * abstraction is to provide common SVM functions which can be shared between all
-+ * DRM drivers. The key functionality of DRM layer is to provide a infrastructure
-+ * for driver to achieve process space mirroring and data migration.
-+ *
-+ * The DRM abstraction is based on two concepts:
-+ *
-+ * 1) DRM memory region: represents physical memory on GPU devices. Memory region
-+ * has operations(callback functions) such as allocate/free memory, memory copy etc.
-+ *
-+ * 2) hmmptr: similar to userptr with the exception that a hmmptr can be migrated
-+ * b/t system memory and device memories. Currently hmmptr is a very thin layer deal
-+ * with mmu notifier register/unregister and page population. The hmmptr invalidation
-+ * and gpu page table update is left to driver.
-+ *
-+ * See more details of those concepts in the kernel DOC in drm_svm.h.
-+ *
-+ * The DRM SVM layer provides helper functions for driver writer to:
-+ *
-+ * 1) register a DRM memory region, along which some driver callback functions to
-+ * allocate/free device memory, migrate memory b/t system memory and GPU device memory
-+ * etc.
-+ *
-+ * 2) create a :c:type:`drm_hmmptr`: Create a hmmptr and register mmu interval notifier
-+ * for this hmmptr.
-+ *
-+ * 3) populate a :c:type:`drm_hmmptr`: Populate the CPU page table, for the purpose of
-+ * address space mirroring.
-+ *
-+ * 4) migrate a range of :c:type:`drm_hmmptr` to GPU device memory
-+ *
-+ * Note migration of hmmptr (or partial of hmmptr) is DRM internal, triggered by CPU
-+ * page fault. This is not exposed to driver.
-+ *
-+ * With above DRM facilities, it is very simple for vendors to implement a SVM system
-+ * alloator driver:
-+ *
-+ * 1) Implement GPU device memory allocation and free callback functions
-+ *
-+ * 2) Implement a vendor specific data migration callback function using GPU HW such as DMA
-+ *
-+ * 3) Implement a vendor specific hmmptr GPU page table invalidation callback function
-+ *
-+ * 4) On device initialization, register GPU device memory to DRM using the DRM memory
-+ * region registration helper
-+ *
-+ * 4) In GPU page fault handler, call drm helpers to create hmmptr if necessary, migrate
-+ * range of hmmptr to GPU device memory per migration policy, and populate range of hmmptr
-+ * to program/mirror the hmmptr range in GPU page table. Resume GPU HW execution.
-+ *
-+ *
-+ * There are 3 events which can trigger SVM subsystem in actions:
-+ *
-+ * 1. A mmu notifier callback
-+ *
-+ * Since SVM need to mirror the program's CPU virtual address space from GPU side,
-+ * when program's CPU address space changes, SVM need to make an identical change
-+ * from GPU side. SVM/hmm use mmu interval notifier to achieve this. SVM register
-+ * a mmu interval notifier call back function to core mm, and whenever a CPU side
-+ * virtual address space is changed (i.e., when a virtual address range is unmapped
-+ * from CPU calling munmap), the registered callback function will be called from
-+ * core mm. SVM then mirror the CPU address space change from GPU side, i.e., unmap
-+ * or invalidate the virtual address range from GPU page table.
-+ *
-+ * This part of the work is mainly left to driver. Driver need to implement the GPU
-+ * page table invalidation function. The invalidation has to be virtual address range
-+ * based, instead of invalidate the whole hmmptr on each callback.
-+ *
-+ * 2. A GPU page fault
-+ *
-+ * At the very beginning of a process's life, no virtual address of the process
-+ * is mapped on GPU page table. So when GPU access any virtual address of the process
-+ * a GPU page fault is triggered. SVM then decide the best memory location of the
-+ * fault address (mainly from performance consideration. Some times also consider
-+ * correctness requirement such as whether GPU can perform atomics operation to
-+ * certain memory location), migrate memory if necessary, and map the fault address
-+ * to GPU page table.
-+ *
-+ * This part of work is also mainly left to driver implementor for flexibility consideration.
-+ * Driver can call DRM SVM layer helper to migrate a sub-range of a hmmptr to device
-+ * memory, and call DRM helper to populate the physical pages of a hmmptr.
-+ *
-+ * 3. A CPU page fault
-+ *
-+ * A CPU page fault is usually managed by Linux core mm. But in a CPU and GPU
-+ * mix programming environment, the backing store of a virtual address range
-+ * can be in GPU's local memory which is not visible to CPU (DEVICE_PRIVATE),
-+ * so CPU page fault handler need to migrate such pages to system memory for
-+ * CPU to be able to access them. Such memory migration is device specific.
-+ * HMM has a callback function (migrate_to_ram function of the dev_pagemap_ops)
-+ * for device driver to implement.
-+ *
-+ * This part of the work is mainly done at DRM abstraction layer. DRM layer
-+ * call the vendor specific memory region data migration callback function
-+ * to migrate data from GPU memory to system memory, if needed. The whole
-+ * CPU page fault processing is transparent to driver implementation.
-+ *
-+ */
-+
-+/**
-+ * DOC: page centric design
-+ *
-+ * Unlike the non-SVM memory allocator (such as gem_create, vm_bind etc), there
-+ * is no buffer object (BO, such as struct ttm_buffer_object, struct drm_gem_object),
-+ * in DRM SVM design. We delibrately choose this implementation option to achieve true
-+ * page granularity memory placement, allocation, free, validation, eviction and migration.
-+ * In a BO centric world, all above operate at a granularity of buffer object, e.g.,
-+ * you can't evict or migrate partial of a BO.
-+ *
-+ * The drm buddy allocator is essentially buddy block granularity, e.g., user can’t
-+ * return a few pages of memory back to buddy (so other users can use the freed pages)
-+ * until user finishes the whole buddy block. The minimal free size is buddy block.
-+ *
-+ * To achieve the goal, a drm page cache layer is introduced. DRM page cache layer
-+ * provide interface for user to allocate and free memory at page granularity. DRM
-+ * page cache layer allocate memory from DRM buddy if it can't meet user's memory
-+ * allocation request with the cached pages. DRM page cache free a buddy block when
-+ * all the pages in a block are freed by users.
-+ *
-+ * Both TTM-based driver and SVM are now required to allocate memory from DRM page
-+ * cache layer instead of directly from DRM buddy. This is necessary to achieve goal
-+ * because, in the direct DRM buddy scheme, pages freed from TTM-based driver and
-+ * from SVM, are kept locally until the whole DRM buddy block is freed. So SVM can't
-+ * use TTM freed pages until the whole DRM buddy block is freed, and vice versa.
-+ *
-+ * To support a true page granularity design, SVM subsystem implemented page granularity
-+ * migration, eviction, page table update and invalidation.
-+ *
-+ * Legacy driver can stay with BO-based scheme, but a lot of driver internal interfaces
-+ * such as page table codes are modified to support page granularity scheme so those
-+ * interfaces can be shared b/t SVM and BO-based driver.
-+ *
-+ * TTM-based driver can still free memory at coarse grain granularity such as only free
-+ * when the BO is finished; while system allocator will apply the page granularity memory
-+ * free.
-+ *
-+ * Currently page cache layer track the usage of each page using a simple bitmap scheme.
-+ * When all pages in a block are not used anymore, it returns this block back to drm
-+ * buddy subsystem. This scheme can be fine tunned.
-+ *
-+ * See more in :doc: Page granularity eviction
-+ *
-+ */
-+
-+/**
-+ * DOC: lock design
-+ *
-+ * Since under the picture of SVM, CPU program and GPU program share one virtual
-+ * address space, we need rather complex lock design to avoid race conditions.
-+ * For example, while GPU is accessing a virtual address range, the same range
-+ * could be munmapped from CPU side, or the backing store of the same range
-+ * could be moved to another physical place due to memory pressure. The lock
-+ * design essentially need to serialize the GPU page table invalidate, data
-+ * migration, CPU page table population and GPU page table re-validation.
-+ *
-+ * There are multiple locks involved in this scheme:
-+ *
-+ * 1. mm mmap_lock
-+ * mm's mmap_lock is a read write semaphore used to protect mm's address
-+ * space. Linux core mm hold this lock whenever it need to change process
-+ * space's memory mapping, for example, during a user munmap process, or
-+ * during a page migration triggered by kernel NUMA balance. MMU interval
-+ * notifier callback function is called mmap_lock hold.
-+ *
-+ * Driver is required to hold mmap_read_lock when it calls the DRM hmmptr
-+ * population helper to populate CPU page tables.
-+ *
-+ * 2. driver's gpuvm dma-resv
-+ * driver's dma reservation object is used protect GPU page table update.
-+ * This is usually per GPUVM based, e.g., for xekmd this is xe_vm's dma-resv.
-+ * For BO type vma, dma resv is enough for page table update. For userptr
-+ * and hmmptr, besides dma resv, we need an extra page_table_lock to avoid
-+ * page table update collision with userptr invalidation. See below.
-+ *
-+ * 3. driver's page_table_lock
-+ * page_table_lock is used to protect userptr/hmmptr GPU page table update,
-+ * to avoid a update collision with userptr invalidation. So page_table_lock
-+ * is required in the userptr invalidate callback function. Notifier_lock
-+ * is the "user_lock" in the documentation of mmu_interval_read_begin(),
-+ * which is a hard requirement per mmu notifier design. In xekmd design,
-+ * this lock is xe_vm::userptr::notifier_lock.
-+ *
-+ * Note currently the page_table_lock is a coarse grain lock design which
-+ * is whole GPU VM based. This coarse grain design can be fine tunned to
-+ * a per page table based fine grain lock, similar to the core mm split
-+ * page table lock.
-+ *
-+ * Lock order
-+ * Acquiring locks in the same order can avoid deadlocks. The locking
-+ * order of above locks are:
-+ *
-+ * mmap_lock => gpuvm::dma-resv => page_table_lock
-+ *
-+ * This lock order is a hard requirement per existing codes. For example,
-+ * the mmap_lock and dma-resv order is explicitly defined in dma_resv_lockdep().
-+ *
-+ *
-+ * Use case, pseudo codes:
-+ *
-+ * Take the concurrent GPU page fault handler and user munmap as an example,
-+ * the locking codes looks broadly like below:
-+ *
-+ * In GPU page fault handler:                                                                           munmap from user:
-+ *
-+ * again:
-+ * Mmap_read_lock()                                                                                     mmap_write_lock()
-+ * call drm_svm_migrate_hmmptr_to_vram to migrate hmmptr if needed                                      mmu_notifier_invalidate_range_start(), call hmmptr->invalidate()
-+ * hmmptr.notifier_seq = mmu_interval_read_begin(&hmmptr.notifier)                                          down_write(page_table_lock);
-+ * call drm_svm_populate_hmmptr to populate hmmptr                                                          mmu_interval_set_seq();
-+ * Mmap_read_unlock                                                                                         invalidate hmmptr from GPU page table
-+ *                                                                                                          up_write(page_table_lock);
-+ * dma_resv_lock()                                                                                      mmu_notifier_invalidate_range_end()
-+ * down_read(page_table_lock);                                                                            mmap_write_unlock();
-+ * if (!mmu_interval_read_retry() {
-+ *     //collision with userptr invalidation, retry
-+ *     up_read(page_table_lock);
-+ *     dma_resv_unlock()
-+ *     goto again;
-+ * }
-+ *
-+ * update_gpu_page_table()
-+ * up_read(page_table_lock);
-+ * dma_resv_unlock()
-+ *
-+ *
-+ * In above codes, we hold mmap_read_lock to populate hmmptr because we
-+ * need to walk the CPU page table. Since the munmap hold a mmap_write_lock,
-+ * the hmmptr population can't colide with munmap.
-+ *
-+ * After that, we update GPU page table with the hmmptr pfns/pages populated
-+ * above. We hold both dma-resv object to protect and page_table_lock for GPU
-+ * page table update.
-+ *
-+ * Since we don't hold the mmap_lock during GPU page table update, user
-+ * might perform munmap simultaneously which can cause userptr invalidation.
-+ * If such collision happens, we will have to retry hmmptr population.
-+ *
-+ * Once we confirmed there is no need to retry, we can update GPU page table
-+ * safely without have to worry about munmap/hmmptr->invalidate(), because
-+ * during this retry confirmation and GPU page table update we hold the
-+ * page_table_lock. The same page_table_lock is also hold in the hmmptr->invalidate
-+ * callback.
-+ */
-+
-+/**
-+ * DOC: Memory hints: TBD
-+ */
-+
-+/**
-+ * DOC: Page granularity eviction
-+ *
-+ * One of the DRM SVM design requirement is to evict memory at true page granularity.
-+ * To achieve this goal, we removed buffer object concept in DRM SVM design. This
-+ * means we won't build SVM upon TTM infrastructure like amdgpu or xekmd does.
-+ *
-+ * Even though this approach is true page granularity, it does create a problem for
-+ * memory eviction when there is memory pressure: memory allocated by SVM and memory
-+ * allocated by TTM should be able to mutually evict from each other. TTM's resource
-+ * manager maintains a LRU list for each memory type and this list is used to pick up
-+ * the memory eviction victim. Since we don't use TTM for SVM implementation, SVM
-+ * allocated memory can't be added to TTM resource manager's LRU list. Thus SVM
-+ * allocated memory and TTM allocated memory are not mutually evictable.
-+ *
-+ * We solve this problem by creating a shared LRU list b/t SVM and TTM, or any other
-+ * resource manager. This is named drm evictable LRU.
-+ *
-+ * The basic idea is, abstract a drm_lru_entity structure which is supposed to be
-+ * embedded in ttm_resource structure, or any other resource manager such as used
-+ * in SVM implementation. So a LRU entity can represent memory resource used by
-+ * both TTM and SVM.
-+ *
-+ * The resource LRU list is a list of drm_lru_entity. drm_lru_entity has eviction
-+ * function pointers which can be used to call back drivers' specific eviction
-+ * function to evict a memory resource.
-+ *
-+ * Driver specific eviction function from both TTM and SVM should follow the same
-+ * lock order to avoid any lock inversion. The current plan is, SVM subsystem to
-+ * follow exactly the same locking order used in TTM-based eviction process.
-+ *
-+ * A device-wide global drm_lru_manager is introduced to manage a shared LRU list
-+ * between TTM and SVM. drm lru manager provides a evict_first function to evict
-+ * the first memory resource from LRU list. This function can be called from TTM,
-+ * SVM, thus all the memory allocated in the drm sub-system can be mutually evicted.
-+ *
-+ */
-+
- static u64 __npages_in_range(unsigned long start, unsigned long end)
+-static void xe_pt_abort_bind(struct xe_vma *vma,
+-			     struct xe_vm_pgtable_update *entries,
+-			     u32 num_entries)
++static void xe_pt_cancel_bind(struct xe_vma *vma,
++			      struct xe_vm_pgtable_update *entries,
++			      u32 num_entries)
  {
- 	return (PAGE_ALIGN(end) - PAGE_ALIGN_DOWN(start)) >> PAGE_SHIFT;
+ 	u32 i, j;
+ 
+ 	for (i = 0; i < num_entries; i++) {
+-		if (!entries[i].pt_entries)
++		struct xe_pt *pt = entries[i].pt;
++
++		if (!pt)
+ 			continue;
+ 
+-		for (j = 0; j < entries[i].qwords; j++)
+-			xe_pt_destroy(entries[i].pt_entries[j].pt, xe_vma_vm(vma)->flags, NULL);
++		if (pt->level) {
++			for (j = 0; j < entries[i].qwords; j++)
++				xe_pt_destroy(entries[i].pt_entries[j].pt,
++					      xe_vma_vm(vma)->flags, NULL);
++		}
++
+ 		kfree(entries[i].pt_entries);
++		entries[i].pt_entries = NULL;
++		entries[i].qwords = 0;
+ 	}
+ }
+ 
+@@ -873,10 +881,61 @@ static void xe_pt_commit_locks_assert(struct xe_vma *vma)
+ 	xe_vm_assert_held(vm);
+ }
+ 
+-static void xe_pt_commit_bind(struct xe_vma *vma,
+-			      struct xe_vm_pgtable_update *entries,
+-			      u32 num_entries, bool rebind,
+-			      struct llist_head *deferred)
++static void xe_pt_commit(struct xe_vma *vma,
++			 struct xe_vm_pgtable_update *entries,
++			 u32 num_entries, struct llist_head *deferred)
++{
++	u32 i, j;
++
++	xe_pt_commit_locks_assert(vma);
++
++	for (i = 0; i < num_entries; i++) {
++		struct xe_pt *pt = entries[i].pt;
++
++		if (!pt->level)
++			continue;
++
++		for (j = 0; j < entries[i].qwords; j++) {
++			struct xe_pt *oldpte = entries[i].pt_entries[j].pt;
++
++			xe_pt_destroy(oldpte, xe_vma_vm(vma)->flags, deferred);
++		}
++	}
++}
++
++static void xe_pt_abort_bind(struct xe_vma *vma,
++			     struct xe_vm_pgtable_update *entries,
++			     u32 num_entries, bool rebind)
++{
++	int i, j;
++
++	xe_pt_commit_locks_assert(vma);
++
++	for (i = num_entries - 1; i >= 0; --i) {
++		struct xe_pt *pt = entries[i].pt;
++		struct xe_pt_dir *pt_dir;
++
++		if (!rebind)
++			pt->num_live -= entries[i].qwords;
++
++		if (!pt->level)
++			continue;
++
++		pt_dir = as_xe_pt_dir(pt);
++		for (j = 0; j < entries[i].qwords; j++) {
++			u32 j_ = j + entries[i].ofs;
++			struct xe_pt *newpte = xe_pt_entry(pt_dir, j_);
++			struct xe_pt *oldpte = entries[i].pt_entries[j].pt;
++
++			pt_dir->children[j_] = oldpte ? &oldpte->base : 0;
++			xe_pt_destroy(newpte, xe_vma_vm(vma)->flags, NULL);
++		}
++	}
++}
++
++static void xe_pt_commit_prepare_bind(struct xe_vma *vma,
++				      struct xe_vm_pgtable_update *entries,
++				      u32 num_entries, bool rebind)
+ {
+ 	u32 i, j;
+ 
+@@ -896,12 +955,13 @@ static void xe_pt_commit_bind(struct xe_vma *vma,
+ 		for (j = 0; j < entries[i].qwords; j++) {
+ 			u32 j_ = j + entries[i].ofs;
+ 			struct xe_pt *newpte = entries[i].pt_entries[j].pt;
++			struct xe_pt *oldpte = NULL;
+ 
+ 			if (xe_pt_entry(pt_dir, j_))
+-				xe_pt_destroy(xe_pt_entry(pt_dir, j_),
+-					      xe_vma_vm(vma)->flags, deferred);
++				oldpte = xe_pt_entry(pt_dir, j_);
+ 
+ 			pt_dir->children[j_] = &newpte->base;
++			entries[i].pt_entries[j].pt = oldpte;
+ 		}
+ 	}
+ }
+@@ -925,8 +985,6 @@ xe_pt_prepare_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 	err = xe_pt_stage_bind(tile, vma, entries, num_entries);
+ 	if (!err)
+ 		xe_tile_assert(tile, *num_entries);
+-	else /* abort! */
+-		xe_pt_abort_bind(vma, entries, *num_entries);
+ 
+ 	return err;
+ }
+@@ -1447,7 +1505,7 @@ xe_pt_stage_unbind_post_descend(struct xe_ptw *parent, pgoff_t offset,
+ 				     &end_offset))
+ 		return 0;
+ 
+-	(void)xe_pt_new_shared(&xe_walk->wupd, xe_child, offset, false);
++	(void)xe_pt_new_shared(&xe_walk->wupd, xe_child, offset, true);
+ 	xe_walk->wupd.updates[level].update->qwords = end_offset - offset;
+ 
+ 	return 0;
+@@ -1515,32 +1573,57 @@ xe_migrate_clear_pgtable_callback(struct xe_migrate_pt_update *pt_update,
+ 		memset64(ptr, empty, num_qwords);
+ }
+ 
++static void xe_pt_abort_unbind(struct xe_vma *vma,
++			       struct xe_vm_pgtable_update *entries,
++			       u32 num_entries)
++{
++	int j, i;
++
++	xe_pt_commit_locks_assert(vma);
++
++	for (j = num_entries - 1; j >= 0; --j) {
++		struct xe_vm_pgtable_update *entry = &entries[j];
++		struct xe_pt *pt = entry->pt;
++		struct xe_pt_dir *pt_dir = as_xe_pt_dir(pt);
++
++		pt->num_live += entry->qwords;
++
++		if (!pt->level)
++			continue;
++
++		for (i = entry->ofs; i < entry->ofs + entry->qwords; i++)
++			pt_dir->children[i] =
++				entries[j].pt_entries[i - entry->ofs].pt ?
++				&entries[j].pt_entries[i - entry->ofs].pt->base : 0;
++	}
++}
++
+ static void
+-xe_pt_commit_unbind(struct xe_vma *vma,
+-		    struct xe_vm_pgtable_update *entries, u32 num_entries,
+-		    struct llist_head *deferred)
++xe_pt_commit_prepare_unbind(struct xe_vma *vma,
++			    struct xe_vm_pgtable_update *entries,
++			    u32 num_entries)
+ {
+-	u32 j;
++	int j, i;
+ 
+ 	xe_pt_commit_locks_assert(vma);
+ 
+ 	for (j = 0; j < num_entries; ++j) {
+ 		struct xe_vm_pgtable_update *entry = &entries[j];
+ 		struct xe_pt *pt = entry->pt;
++		struct xe_pt_dir *pt_dir;
+ 
+ 		pt->num_live -= entry->qwords;
+-		if (pt->level) {
+-			struct xe_pt_dir *pt_dir = as_xe_pt_dir(pt);
+-			u32 i;
+-
+-			for (i = entry->ofs; i < entry->ofs + entry->qwords;
+-			     i++) {
+-				if (xe_pt_entry(pt_dir, i))
+-					xe_pt_destroy(xe_pt_entry(pt_dir, i),
+-						      xe_vma_vm(vma)->flags, deferred);
++		if (!pt->level)
++			continue;
+ 
+-				pt_dir->children[i] = NULL;
+-			}
++		pt_dir = as_xe_pt_dir(pt);
++		for (i = entry->ofs; i < entry->ofs + entry->qwords; i++) {
++			if (xe_pt_entry(pt_dir, i))
++				entries[j].pt_entries[i - entry->ofs].pt =
++					xe_pt_entry(pt_dir, i);
++			else
++				entries[j].pt_entries[i - entry->ofs].pt = NULL;
++			pt_dir->children[i] = NULL;
+ 		}
+ 	}
+ }
+@@ -1586,7 +1669,6 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
+ {
+ 	u32 current_op = pt_update_ops->current_op;
+ 	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
+-	struct llist_head *deferred = &pt_update_ops->deferred;
+ 	int err;
+ 
+ 	xe_bo_assert_held(xe_vma_bo(vma));
+@@ -1633,11 +1715,12 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
+ 			(!pt_op->rebind && vm->scratch_pt[tile->id] &&
+ 			 xe_vm_in_preempt_fence_mode(vm));
+ 
+-		/* FIXME: Don't commit right away */
+ 		vma->tile_staged |= BIT(tile->id);
+ 		pt_op->vma = vma;
+-		xe_pt_commit_bind(vma, pt_op->entries, pt_op->num_entries,
+-				  pt_op->rebind, deferred);
++		xe_pt_commit_prepare_bind(vma, pt_op->entries,
++					  pt_op->num_entries, pt_op->rebind);
++	} else {
++		xe_pt_cancel_bind(vma, pt_op->entries, pt_op->num_entries);
+ 	}
+ 
+ 	return err;
+@@ -1649,7 +1732,6 @@ static int unbind_op_prepare(struct xe_tile *tile,
+ {
+ 	u32 current_op = pt_update_ops->current_op;
+ 	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
+-	struct llist_head *deferred = &pt_update_ops->deferred;
+ 	int err;
+ 
+ 	if (!((vma->tile_present | vma->tile_staged) & BIT(tile->id)))
+@@ -1685,9 +1767,7 @@ static int unbind_op_prepare(struct xe_tile *tile,
+ 	pt_update_ops->needs_userptr_lock |= xe_vma_is_userptr(vma);
+ 	pt_update_ops->needs_invalidation = true;
+ 
+-	/* FIXME: Don't commit right away */
+-	xe_pt_commit_unbind(vma, pt_op->entries, pt_op->num_entries,
+-			    deferred);
++	xe_pt_commit_prepare_unbind(vma, pt_op->entries, pt_op->num_entries);
+ 
+ 	return 0;
+ }
+@@ -1908,7 +1988,7 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 	struct invalidation_fence *ifence = NULL;
+ 	struct xe_range_fence *rfence;
+ 	struct xe_vma_op *op;
+-	int err = 0;
++	int err = 0, i;
+ 	struct xe_migrate_pt_update update = {
+ 		.ops = pt_update_ops->needs_userptr_lock ?
+ 			&userptr_migrate_ops :
+@@ -1928,8 +2008,10 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 
+ 	if (pt_update_ops->needs_invalidation) {
+ 		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
+-		if (!ifence)
+-			return ERR_PTR(-ENOMEM);
++		if (!ifence) {
++			err = -ENOMEM;
++			goto kill_vm_tile1;
++		}
+ 	}
+ 
+ 	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
+@@ -1944,6 +2026,15 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 		goto free_rfence;
+ 	}
+ 
++	/* Point of no return - VM killed if failure after this */
++	for (i = 0; i < pt_update_ops->current_op; ++i) {
++		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[i];
++
++		xe_pt_commit(pt_op->vma, pt_op->entries,
++			     pt_op->num_entries, &pt_update_ops->deferred);
++		pt_op->vma = NULL;	/* skip in xe_pt_update_ops_abort */
++	}
++
+ 	err = xe_range_fence_insert(&vm->rftree[tile->id], rfence,
+ 				    &xe_range_fence_kfree_ops,
+ 				    pt_update_ops->start,
+@@ -1979,10 +2070,15 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 	if (pt_update_ops->needs_userptr_lock)
+ 		up_read(&vm->userptr.notifier_lock);
+ 	dma_fence_put(fence);
++	if (!tile->id)
++		xe_vm_kill(vops->vm, false);
+ free_rfence:
+ 	kfree(rfence);
+ free_ifence:
+ 	kfree(ifence);
++kill_vm_tile1:
++	if (err != -EAGAIN && tile->id)
++		xe_vm_kill(vops->vm, false);
+ 
+ 	return ERR_PTR(err);
+ }
+@@ -2003,12 +2099,10 @@ void xe_pt_update_ops_fini(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 	lockdep_assert_held(&vops->vm->lock);
+ 	xe_vm_assert_held(vops->vm);
+ 
+-	/* FIXME: Not 100% correct */
+-	for (i = 0; i < pt_update_ops->num_ops; ++i) {
++	for (i = 0; i < pt_update_ops->current_op; ++i) {
+ 		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[i];
+ 
+-		if (pt_op->bind)
+-			xe_pt_free_bind(pt_op->entries, pt_op->num_entries);
++		xe_pt_free_bind(pt_op->entries, pt_op->num_entries);
+ 	}
+ 	xe_bo_put_commit(&vops->pt_update_ops[tile->id].deferred);
+ }
+@@ -2022,10 +2116,28 @@ void xe_pt_update_ops_fini(struct xe_tile *tile, struct xe_vma_ops *vops)
+  */
+ void xe_pt_update_ops_abort(struct xe_tile *tile, struct xe_vma_ops *vops)
+ {
++	struct xe_vm_pgtable_update_ops *pt_update_ops =
++		&vops->pt_update_ops[tile->id];
++	int i;
++
+ 	lockdep_assert_held(&vops->vm->lock);
+ 	xe_vm_assert_held(vops->vm);
+ 
+-	/* FIXME: Just kill VM for now + cleanup PTs */
++	for (i = pt_update_ops->num_ops - 1; i >= 0; --i) {
++		struct xe_vm_pgtable_update_op *pt_op =
++			&pt_update_ops->ops[i];
++
++		if (!pt_op->vma || i >= pt_update_ops->current_op)
++			continue;
++
++		if (pt_op->bind)
++			xe_pt_abort_bind(pt_op->vma, pt_op->entries,
++					 pt_op->num_entries,
++					 pt_op->rebind);
++		else
++			xe_pt_abort_unbind(pt_op->vma, pt_op->entries,
++					   pt_op->num_entries);
++	}
++
+ 	xe_bo_put_commit(&vops->pt_update_ops[tile->id].deferred);
+-	xe_vm_kill(vops->vm, false);
+- }
++}
 -- 
 2.26.3
 
