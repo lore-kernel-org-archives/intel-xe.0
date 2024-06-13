@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08594C27C6E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00C75C2BA16
 	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 15:22:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3C2010EAC2;
-	Thu, 13 Jun 2024 15:22:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A44310EAC4;
+	Thu, 13 Jun 2024 15:22:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lyl9Jhbx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L4DkW4aw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CC7510EAE4
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 15:20:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A16C010EAC2
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 15:20:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718292046; x=1749828046;
+ t=1718292043; x=1749828043;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=EzLfd4+G92QB3jZd+UOrLcq9tvY+B/2b+7VOHkEaPxA=;
- b=lyl9Jhbx6EuUfdi6fdP+3ZelZNqr3GWR7HDVZ7L2gprRgDbDrI4LGlWn
- +vkj+mO3IaW1dMqGRpONDSyKjr/2pzdV25xwL1GzWBzwG4+zswZkBBtdd
- Zrtvb5BzcO1gHPm93JUOVGmoGdHxZ/iUMnmn4idzZ0EnWKzwdRQ3NxwmG
- 3eWOTkshyBDKUlA36d2JXCEiJDX4Z4/8qSK0EOUB3t+2+c+kPlEDBG1Ui
- 7qF0XKKfjPpWIQ61oJAWb3F1TArBHcVKdBjCQSjZZtgMSywIhPiV45QV+
- abo9HP61+IEOqQMuW4QMtKE7HF1sViy/FHVzZqiq2BEQXcHkotshZLayc Q==;
-X-CSE-ConnectionGUID: idI09p5rSFeQfgpQ90TEZg==
-X-CSE-MsgGUID: SeoFoYBcRfWooxJTv5nPQA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348671"
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348671"
+ bh=jR6Ze7ImgG7AqysrtmRLIfYjq86G2fDZ3TLKE2UhhCk=;
+ b=L4DkW4awCL4SJQzC+sa8XvrqVodq29YIzqo0mO64kVcidXRl6Gm3vfMG
+ Ei0L3i0lNKOUWfaBtji6RSAfNq7/wYGtnzQWqopRxu3yznxWiHFuItYEf
+ AUK+Gqqj5RODNRfDDS3Tp+IMkeoFKBZTAzR41saCBBruzKW0x6ZcxWDWR
+ Ig242H+ZzshuP+bZ3qlMeSly42oUjuSLtTMEg4C+t+9AFbWaB0jvRFnMO
+ v9suW95BGhv766w0UN3PJYcr+4YcVf10t+qWhAuhaNpbjOib88YpcUAgQ
+ O/TYBRpUIQFOgW+FB8VTPfpRF0qHMNhovUeNq6ebSdKZNYMthaTsBZWFB A==;
+X-CSE-ConnectionGUID: x7s1ds2PTwW5u4lg0XrYlA==
+X-CSE-MsgGUID: BkMMsQO7Q4O8YGDoOdQclQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348640"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348640"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 08:20:43 -0700
-X-CSE-ConnectionGUID: Ro+YDlReQDiAnM7J3q8o1Q==
-X-CSE-MsgGUID: 2HYJX07PRnum1yFhLpbIcw==
+ 13 Jun 2024 08:20:41 -0700
+X-CSE-ConnectionGUID: v6/V2gJcSlO+nxT1JNBLgw==
+X-CSE-MsgGUID: Hsq+yPgMTr63CTvtCd8FmQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135126"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135083"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 08:20:43 -0700
+ 13 Jun 2024 08:20:41 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 37/42] drm/xe/svm: Register xe memory region to drm layer
-Date: Thu, 13 Jun 2024 11:31:23 -0400
-Message-Id: <20240613153128.681864-37-oak.zeng@intel.com>
+Subject: [CI 09/42] drm/svm: introduce drm_mem_region concept
+Date: Thu, 13 Jun 2024 11:30:55 -0400
+Message-Id: <20240613153128.681864-9-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613153128.681864-1-oak.zeng@intel.com>
 References: <20240613153128.681864-1-oak.zeng@intel.com>
@@ -66,78 +66,213 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Register xe memory region to drm layer for SVM purpose.
-This will essentially create struct page backing for
-xe device memory, which will be used by SVM functions.
+As its name indicates, a drm_mem_region represent a memory region on
+a drm device, e.g., a GPU's HBM memory.
 
+In a memory region, we have address information of this region, from
+both CPU (hpa_base) and GPU (dpa_base) perspectives. It has a pagemap
+member which is used to memremap memory region to ZONE_DEVICE. It also
+has some interfaces for drm to callback driver to allocate/free memory from
+this region, migrate data to/from this memory region, get a pagemap
+owner of a memory region, and get the drm device which own the memory
+region.
+
+This is introduced for system allocator implementation, so the memory
+allocation and free interfaces are page based.
+
+A few helper functions are also introduced:
+1) drm_mem_region_page_to_dpa: calculate device physical address for
+   a page
+2) drm_page_to_mem_region: retrieve drm memory region that a page
+   resides in
+
+v1: use page parameter instead of pfn (Matt)
+Add BUG_ON(mr != drm_page_to_mem_region(page)) (Matt)
+
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Felix Kuehling <felix.kuehling@amd.com>
+Cc: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: <dri-devel@lists.freedesktop.org>
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/xe/xe_tile.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ include/drm/drm_svm.h | 162 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 162 insertions(+)
+ create mode 100644 include/drm/drm_svm.h
 
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index 109f3118e821..6c50df281b11 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -3,7 +3,9 @@
-  * Copyright © 2023 Intel Corporation
-  */
- 
+diff --git a/include/drm/drm_svm.h b/include/drm/drm_svm.h
+new file mode 100644
+index 000000000000..a383c7251e2b
+--- /dev/null
++++ b/include/drm/drm_svm.h
+@@ -0,0 +1,162 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright Â© 2024 Intel Corporation
++ */
++
++#ifndef _DRM_SVM__
++#define _DRM_SVM__
++
++#include <linux/compiler_types.h>
 +#include <linux/memremap.h>
- #include <drm/drm_managed.h>
-+#include <drm/drm_svm.h>
- 
- #include "xe_device.h"
- #include "xe_ggtt.h"
-@@ -14,6 +16,7 @@
- #include "xe_tile_sysfs.h"
- #include "xe_ttm_vram_mgr.h"
- #include "xe_wa.h"
-+#include "xe_svm.h"
- 
- /**
-  * DOC: Multi-tile Design
-@@ -142,6 +145,15 @@ static int tile_ttm_mgr_init(struct xe_tile *tile)
- 	return 0;
- }
- 
-+static void __init_drm_mem_region_ops(struct drm_mem_region_ops *ops)
++#include <linux/types.h>
++
++struct dma_fence;
++struct drm_mem_region;
++
++/**
++ * struct migrate_vec - a migration vector is an array of addresses,
++ * each of which represents one page.
++ * When it is system memory page, the address is a dmap-mapped address.
++ * When it is vram page, the address is device physical address.
++ */
++struct migrate_vec {
++	/**
++	 * @mr: the memory region that pages reside.
++	 * When it is system memory page, mr is NULL.
++	 */
++	struct drm_mem_region *mr;
++	/** @npages: number of pages */
++	u64 npages;
++	/**
++	 * @addr_vec: address vector
++	 * each item in addr_vec is an address of a page
++	 */
++	union {
++		/** @dma_addr: dma-mapped address of the page, only valid for system pages*/
++		dma_addr_t dma_addr;
++		/** @dpa: device physical address of the page, only valid for vram page*/
++		phys_addr_t dpa;
++	} addr_vec[1];
++};
++
++/**
++ * struct drm_mem_region_ops - memory region operations such as memory allocation
++ * and migration etc. Driver is supposed to implement those operations.
++ */
++struct drm_mem_region_ops {
++	/**
++	 * @drm_mem_region_alloc_pages: Called from drm to driver to allocate
++	 * device VRAM memory
++	 * @mr: The memory region where to allocate device VRAM memory from
++	 * @npages: number of pages to allocate
++	 * @pfns: Used to return pfns of each page
++	 */
++	int (*drm_mem_region_alloc_pages) (struct drm_mem_region *mr,
++						unsigned long npags, unsigned long *pfns);
++	/**
++	 * @drm_mem_region_free_page: Called from drm to free one page of device memory
++	 * @page: point to the page to free
++	 */
++	void (*drm_mem_region_free_page) (struct page *page);
++	/**
++	 * @drm_mem_region_migrate: Called from drm to migrate memory from src to
++	 * dst. Driver is supposed to implement this function using device hardware
++	 * accelerators such as DMA. DRM subsystem call this function to migrate
++	 * memory b/t system memory and device memory region
++	 *
++	 * @src_vec: source migration vector
++	 * @dst_vec: destination migration vector
++	 */
++	struct dma_fence* (*drm_mem_region_migrate)(struct migrate_vec *src_vec,
++			struct migrate_vec *dst_vec);
++	/**
++	 * @drm_mem_region_pagemap_owner: Return the pagemap owner of a memory
++	 * region. Pagemap owner is the owner of the device memory. It is
++	 * defined by device driver and opaque to drm layer. Drm uses pagemap
++	 * owner to set up page migrations (see hmm function migrate_vma_setup)
++	 * and range population (see hmm functio hmm_range_fault). Driver has
++	 * the freedom to choose the right pagemap owner.
++	 *
++	 * @mr: the memory region which we want to get the page map owner
++	 */
++	void* (*drm_mem_region_pagemap_owner)(struct drm_mem_region *mr);
++	/**
++	 * @drm_mem_region_get_device: Return the drm device which has this memory
++	 * region.
++	 *
++	 * @mr: the memory region
++	 */
++	struct drm_device* (*drm_mem_region_get_device)(struct drm_mem_region *mr);
++};
++
++/**
++ * struct drm_mem_region - memory region structure
++ * This is used to describe a memory region in drm
++ * device, such as HBM memory or CXL extension memory.
++ *
++ * drm_mem_region is converted from the xe_mem_region
++ * concept. xe_mem_region is moved to drm layer and renamed
++ * as drm_mem_region.
++ *
++ * drm_mem_region is supposed to be embedded in some driver struct such as
++ * "struct xe_tile" or "struct amdgpu_device"
++ */
++struct drm_mem_region {
++	/** @dev_private: device private data which is opaque to drm layer */
++	void *dev_private;
++	/** @dpa_base: This memory regions's DPA (device physical address) base */
++	resource_size_t dpa_base;
++	/**
++	 * @usable_size: usable size of VRAM
++	 *
++	 * Usable size of VRAM excluding reserved portions
++	 * (e.g stolen mem)
++	 */
++	resource_size_t usable_size;
++	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
++	struct dev_pagemap pagemap;
++	/**
++	 * @hpa_base: base host physical address
++	 *
++	 * This is generated when remap device memory as ZONE_DEVICE
++	 */
++	resource_size_t hpa_base;
++	/**
++	 * @mr_ops: memory region operation function pointers
++	 */
++	struct drm_mem_region_ops mr_ops;
++};
++
++/**
++ * drm_page_to_mem_region() - Get a page's memory region
++ *
++ * @page: a struct page pointer pointing to a page in vram memory region
++ */
++static inline struct drm_mem_region *drm_page_to_mem_region(struct page *page)
 +{
-+	ops->drm_mem_region_alloc_pages = &xe_svm_alloc_pages;
-+	ops->drm_mem_region_free_page = &xe_svm_free_page;
-+	ops->drm_mem_region_migrate = &xe_svm_migrate;
-+	ops->drm_mem_region_pagemap_owner = &xe_svm_mem_region_to_pagemap_owner;
-+	ops->drm_mem_region_get_device = &xe_mem_region_to_device;
++	return container_of(page->pgmap, struct drm_mem_region, pagemap);
 +}
 +
- /**
-  * xe_tile_init_noalloc - Init tile up to the point where allocations can happen.
-  * @tile: The tile to initialize.
-@@ -159,6 +171,8 @@ static int tile_ttm_mgr_init(struct xe_tile *tile)
- int xe_tile_init_noalloc(struct xe_tile *tile)
- {
- 	int err;
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct drm_device *drm = &xe->drm;
- 
- 	err = tile_ttm_mgr_init(tile);
- 	if (err)
-@@ -172,6 +186,11 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
- 
- 	err = xe_tile_sysfs_init(tile);
- 
-+	if (xe->info.has_usm) {
-+		__init_drm_mem_region_ops(&tile->mem.vram.drm_mr.mr_ops);
-+		drm_svm_register_mem_region(drm, &tile->mem.vram.drm_mr, MEMORY_DEVICE_PRIVATE);
-+	}
++/**
++ * drm_mem_region_page_to_dpa() - Calculate page's device physical address
++ *
++ * @mr: The memory region that page resides in
++ * @page: page to calculate dpa for
++ *
++ * Returns: the device physical address of the page
++ */
++static inline u64 drm_mem_region_page_to_dpa(struct drm_mem_region *mr, struct page *page)
++{
++	u64 pfn = page_to_pfn(page);
++	u64 offset;
++	u64 dpa;
 +
- 	return 0;
- }
- 
++	BUG_ON(mr != drm_page_to_mem_region(page));
++	BUG_ON((pfn << PAGE_SHIFT) < mr->hpa_base );
++	BUG_ON((pfn << PAGE_SHIFT) >=  mr->hpa_base + mr->usable_size);
++	offset = (pfn << PAGE_SHIFT) - mr->hpa_base;
++	dpa = mr->dpa_base + offset;
++
++	return dpa;
++}
++#endif
 -- 
 2.26.3
 
