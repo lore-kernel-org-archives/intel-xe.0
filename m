@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77CE0C27C78
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3DFBC2BA15
 	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 04:14:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C2F510E0E3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83B1110E163;
 	Thu, 13 Jun 2024 04:14:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iAP1WMMe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ba5lJIjA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7420810E048
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5501C10E96D
  for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 04:13:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1718252034; x=1749788034;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=hWb+n3ELaKH/bpVrV5jr/hiJzKnD3HUPaPDJ2FkPpXU=;
- b=iAP1WMMeQAS+gziSkYhRJs/0t0d2+NRfR6TNsR0WHCIaEIPOdl3sSTqa
- 8aN4tMrapzR80NNySQXNGZagR6LIrYb5pY4vJoleWJoJFPvpG+E1oVhUp
- 15tT1mxqO5i/w99+Ns6tYTl4hZxpUHMkU19UPrwIDnvxqAhcce06aBLtD
- l8Y1gm48OKsvaO4/sWvDu93l0qUhQ2fLK0SFd1rzJvPTLpMi4SDKOkwDH
- NMlmf8/GJBVELtKKq3LOhA/o/SbFj5j5T6lbw9Bpd/AgNU7JM0YUOJfrg
- Zg4S11XFgVe/HiiIjZaMj77P5DNmKYuMjLFu+eW2127i7orS9N4HWig7Y A==;
-X-CSE-ConnectionGUID: M1AN6f2CTvSEM3KhJn3QVA==
-X-CSE-MsgGUID: e/n4o/ERT5SU0McitYU54w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14847994"
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14847994"
+ bh=pp2jropjliGxu/84YyHAWbc6T+m/C7qg/JYsmP8A20k=;
+ b=Ba5lJIjAZ0aTKJVUYArGzh2zK54ME2am/7KMlme3f8laFcb39Kds/dom
+ 1t0BahqrLz+lXDqZSiNIgJlW37rBCHd5aK95zkG3rP5h7u1AdmTlfQbLa
+ ObzSYWXCKR++dIl1jiyOCCJCz0KFpqQHYonxuI+49o+pDowGVUWWwxVq1
+ vT0GHA78In0lu9+ksMspdPuiGbg4wTJrOqZ3w+vgGaohSgw6pAAVGR0oL
+ JiNZJidv2Ckc8JdSvRJGyfKQvM7eWLP2rqpHQkXCS9n4ZkpQRYyG12wht
+ zUScY6Q0l3mvxKJDcYR04S42EmJV72RuBtfUea1Ewz90MPpf9zB2iBEXd w==;
+X-CSE-ConnectionGUID: sRNFfGdnSk2+BgO/kWk6Aw==
+X-CSE-MsgGUID: W/4MV9bqTVeIf3wc5HvDrg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14847993"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14847993"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Jun 2024 21:13:49 -0700
-X-CSE-ConnectionGUID: 0FhS8tM1TcSy5UAGN5m9Ew==
-X-CSE-MsgGUID: 7pXLz0/LSkOJRdkGduU3OA==
+X-CSE-ConnectionGUID: ABdLQ3X0RJyMv5hx9PxsTQ==
+X-CSE-MsgGUID: 7a4lcZiAQSOnwOXadc3kAQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40476369"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40476368"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Jun 2024 21:13:48 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 41/42] drm/xe/svm: Introduce hmm_pfn array based resource cursor
-Date: Thu, 13 Jun 2024 00:24:28 -0400
-Message-Id: <20240613042429.637281-41-oak.zeng@intel.com>
+Subject: [CI 40/42] drm/xe/svm: Determine a vma is backed by device memory
+Date: Thu, 13 Jun 2024 00:24:27 -0400
+Message-Id: <20240613042429.637281-40-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613042429.637281-1-oak.zeng@intel.com>
 References: <20240613042429.637281-1-oak.zeng@intel.com>
@@ -66,20 +66,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This type of resource cursor will be used by system allocator or userptr.
-With system allocator, all the backing resource are backed by struct page.
-The resource could be in system memory or in gpu device memory. For
-userptr, the backing resource is always in system memory.
-
-For system memory, the page is already dma-mapped. The dma-mapped
-address is in dma_addr array.
-
-For gpu device memory, we will calculate the device physical address
-using hmm_pfn.
-
-Note we support a mixture placement of system memory and device memory.
-In the resource range, some of the page could be backed by system mem,
-and some by device memory.
+With system allocator, a userptr can now be back by device
+memory also. Introduce a helper function xe_vma_is_devmem
+to determine whether a range of vma is backed by device memory.
 
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
@@ -87,183 +76,60 @@ Cc: Brian Welty <brian.welty@intel.com>
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c         |  5 +-
- drivers/gpu/drm/xe/xe_res_cursor.h | 80 ++++++++++++++++++++----------
- 2 files changed, 57 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/xe/xe_pt.c | 26 ++++++++++++++++++++++++--
+ 1 file changed, 24 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 691ede2faec5..76c4cbe4e984 100644
+index 91b61fa80acb..691ede2faec5 100644
 --- a/drivers/gpu/drm/xe/xe_pt.c
 +++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -698,8 +698,9 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma, u64 start, u64 end,
- 		u64 offset = start - xe_vma_start(vma);
- 		u64 page_idx = offset >> PAGE_SHIFT;
- 		if (xe_vma_is_userptr(vma))
--			xe_res_first_dma(to_userptr_vma(vma)->userptr.hmmptr.dma_addr + page_idx,
--					0, xe_vma_size(vma), 0, &curs);
-+			xe_res_first_hmmptr(to_userptr_vma(vma)->userptr.hmmptr.dma_addr + page_idx,
-+					to_userptr_vma(vma)->userptr.hmmptr.pfn + page_idx,
-+					&tile->mem.vram.drm_mr, size, &curs);
- 		else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
- 			xe_res_first(bo->ttm.resource, xe_vma_bo_offset(vma) + offset,
- 				     size, &curs);
-diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
-index b17b3375f6d9..fae53c093a57 100644
---- a/drivers/gpu/drm/xe/xe_res_cursor.h
-+++ b/drivers/gpu/drm/xe/xe_res_cursor.h
-@@ -25,12 +25,16 @@
- #define _XE_RES_CURSOR_H_
+@@ -3,6 +3,7 @@
+  * Copyright © 2022 Intel Corporation
+  */
  
- #include <linux/scatterlist.h>
-+#include <linux/mm_types.h>
-+#include <linux/memremap.h>
 +#include <linux/hmm.h>
+ #include "xe_pt.h"
  
- #include <drm/drm_mm.h>
- #include <drm/ttm/ttm_placement.h>
- #include <drm/ttm/ttm_range_manager.h>
- #include <drm/ttm/ttm_resource.h>
- #include <drm/ttm/ttm_tt.h>
-+#include <drm/drm_svm.h>
- 
- #include "xe_bo.h"
- #include "xe_device.h"
-@@ -44,10 +48,11 @@ struct xe_res_cursor {
- 	u64 remaining;
- 	void *node;
- 	u32 mem_type;
--	unsigned int order;
- 	struct scatterlist *sgl;
--	const dma_addr_t *dma_addr;
-+	dma_addr_t *dma_addr;
- 	struct drm_buddy *mm;
-+	unsigned long *hmm_pfn;
-+	struct drm_mem_region *mr;
+ #include "regs/xe_gtt_defs.h"
+@@ -578,6 +579,28 @@ static const struct xe_pt_walk_ops xe_pt_stage_bind_ops = {
+ 	.pt_entry = xe_pt_stage_bind_entry,
  };
  
- static struct drm_buddy *xe_res_get_buddy(struct ttm_resource *res)
-@@ -80,6 +85,8 @@ static inline void xe_res_first(struct ttm_resource *res,
- 	XE_WARN_ON(start + size > res->size);
- 
- 	cur->mem_type = res->mem_type;
-+	cur->hmm_pfn = NULL;
-+	cur->mr = NULL;
- 
- 	switch (cur->mem_type) {
- 	case XE_PL_STOLEN:
-@@ -160,6 +167,8 @@ static inline void xe_res_first_sg(const struct sg_table *sg,
- 				   struct xe_res_cursor *cur)
- {
- 	XE_WARN_ON(!sg);
-+	cur->hmm_pfn = NULL;
-+	cur->mr = NULL;
- 	cur->node = NULL;
- 	cur->start = start;
- 	cur->remaining = size;
-@@ -171,34 +180,43 @@ static inline void xe_res_first_sg(const struct sg_table *sg,
- }
- 
- /**
-- * xe_res_first_dma - initialize a xe_res_cursor with dma_addr array
-+ * xe_res_first_hmmptr - initialize a xe_res_cursor for hmmptr
-  *
-- * @dma_addr: dma_addr array to walk
-- * @start: Start of the range
-+ * @dma_addr: dma_addr array to walk, valid when resource is in system mem.
-+ * @hmm_pfn: a hmm_pfn array, each item contains hmm_pfn of a 4k page.
-+ * @mr: memory region that the resource belongs to
-  * @size: Size of the range
-- * @order: Order of dma mapping. i.e. PAGE_SIZE << order is mapping size
-  * @cur: cursor object to initialize
-  *
-- * Start walking over the range of allocations between @start and @size.
-+ * Start walking over the resources used by a hmmptr. For hmmptr,
-+ * the backing resource are all backed by struct page. The resource
-+ * could be in system memory or in gpu device memory.
-+ *
-+ * For system memory, the page is already dma-mapped. The dma-mapped
-+ * address is in dma_addr array.
-+ *
-+ * For gpu device memory, we will calculate the device physical address
-+ * using hmm_pfn.
-+ *
-+ * Note we support a mixture placement of system memory and device memory.
-+ * In the resource range, some of the page could be backed by system mem,
-+ * and some by device memory.
-  */
--static inline void xe_res_first_dma(const dma_addr_t *dma_addr,
--				    u64 start, u64 size,
--				    unsigned int order,
--				    struct xe_res_cursor *cur)
-+static inline void xe_res_first_hmmptr(dma_addr_t *dma_addr,
-+                    unsigned long *hmm_pfn, struct drm_mem_region *mr,
-+				    u64 size, struct xe_res_cursor *cur)
- {
--	XE_WARN_ON(start);
- 	XE_WARN_ON(!dma_addr);
--	XE_WARN_ON(!IS_ALIGNED(start, PAGE_SIZE) ||
--		   !IS_ALIGNED(size, PAGE_SIZE));
-+	XE_WARN_ON(!IS_ALIGNED(size, PAGE_SIZE));
- 
- 	cur->node = NULL;
--	cur->start = start;
- 	cur->remaining = size;
--	cur->size = PAGE_SIZE << order;
-+	cur->size = 0;
- 	cur->dma_addr = dma_addr;
--	cur->order = order;
- 	cur->sgl = NULL;
- 	cur->mem_type = XE_PL_TT;
-+	cur->hmm_pfn = hmm_pfn;
-+	cur->mr = mr;
- }
- 
- /**
-@@ -221,15 +239,19 @@ static inline void xe_res_next(struct xe_res_cursor *cur, u64 size)
- 	if (!cur->remaining)
- 		return;
- 
--	if (cur->size > size) {
--		cur->size -= size;
--		cur->start += size;
-+	if (cur->mr) {
-+		int npages;
-+
-+		XE_WARN_ON(!IS_ALIGNED(size, PAGE_SIZE));
-+
-+		npages = size >> PAGE_SHIFT;
-+		cur->hmm_pfn += npages;
-+		cur->dma_addr += npages;
- 		return;
- 	}
- 
--	if (cur->dma_addr) {
--		cur->size = (PAGE_SIZE << cur->order) -
--			(size - cur->size);
-+	if (cur->size > size) {
-+		cur->size -= size;
- 		cur->start += size;
- 		return;
- 	}
-@@ -275,9 +297,15 @@ static inline void xe_res_next(struct xe_res_cursor *cur, u64 size)
-  */
- static inline u64 xe_res_dma(const struct xe_res_cursor *cur)
- {
--	if (cur->dma_addr)
--		return cur->dma_addr[cur->start >> (PAGE_SHIFT + cur->order)] +
--			(cur->start & ((PAGE_SIZE << cur->order) - 1));
-+	if (cur->mr) {
-+		u64 hmm_pfn = *cur->hmm_pfn;
++static bool xe_vma_is_devmem(struct xe_vma *vma, u64 start)
++{
++	if (xe_vma_is_userptr(vma)) {
++		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
++		struct drm_hmmptr *hmmptr = &uvma->userptr.hmmptr;
++		u64 offset = start - xe_vma_start(vma);
++		u64 page_idx = offset >> PAGE_SHIFT;
++		u64 hmm_pfn = hmmptr->pfn[page_idx];
 +		struct page *page = hmm_pfn_to_page(hmm_pfn);
 +
-+		if (is_device_private_page(page))
-+			return drm_mem_region_page_to_dpa(cur->mr, page);
-+		else
-+			return *cur->dma_addr;
++		/**
++		 * FIXME: Assume there is no mixture system memory and device
++		 * memory placement in the [start, end) range of vma. We might
++		 * need to relook at this in the future.
++		 */
++		return is_device_private_page(page);
++	} else {
++		struct xe_bo *bo = xe_vma_bo(vma);
++		return bo && (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo));
 +	}
- 	else if (cur->sgl)
- 		return sg_dma_address(cur->sgl) + cur->start;
- 	else
++}
++
+ /**
+  * xe_pt_stage_bind() - Build a disconnected page-table tree for a given address
+  * range.
+@@ -604,8 +627,7 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma, u64 start, u64 end,
+ {
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	struct xe_bo *bo = xe_vma_bo(vma);
+-	bool is_devmem = !xe_vma_is_userptr(vma) && bo &&
+-		(xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo));
++	bool is_devmem = xe_vma_is_devmem(vma, start);
+ 	struct xe_res_cursor curs;
+ 	struct xe_pt_stage_bind_walk xe_walk = {
+ 		.base = {
 -- 
 2.26.3
 
