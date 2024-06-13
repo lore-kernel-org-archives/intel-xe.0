@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 281EFC27C6E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A88C5C27C4F
 	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 15:21:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D002610EAB4;
-	Thu, 13 Jun 2024 15:21:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45EAC10EABA;
+	Thu, 13 Jun 2024 15:21:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FGep4Mnl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e42Tv1yI";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 856C410EAC2
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 15:20:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2721010EAE6
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 15:20:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718292044; x=1749828044;
+ t=1718292047; x=1749828047;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=brYisg4dw8THIUubU/GSGwT5CKDHddDTt0kD4Jt4RQE=;
- b=FGep4MnlbAVkCSBD0hwvgCwMwDVSzieahfTAhddRZGcHJ0v+w3uwri0/
- XCVgEzqvVVpLAdp0Oql8GZdy9W73VDfypf8VuAdUPrJHx800RCKBuYpsv
- HpGtoQkPsMrLdIl2aiqxZG6KXtkJ64wgu6TM+T884ulIhf/gLjk4nmV4H
- xWcnCGNuN2Oyt1NZT99BTnv+eaRF8ZVaRRziWM6Cf4LTP1A/PqTchdS6i
- ZLZFEkhfpgqySBbgduDH+TJDpnKpGVzof5aqtKa0y+vj0+9nkgGHk9NgZ
- uATIJjo4Fix/jWcRWFlz2WHWDPw+1lYlsw0j835bw46R6583Tg8t8U+vO g==;
-X-CSE-ConnectionGUID: EyMj2kXQRgSGsaoh+v9OVA==
-X-CSE-MsgGUID: ZwVAH1WCTq2QSst3PP8EHw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348648"
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348648"
+ bh=H5onfj8FTWy1VIdntyfWue3WB0c808n1GvMLWFhgWB4=;
+ b=e42Tv1yIlEy22jSDipii52lBBhXnGqEvgOkXNMPz+6R55fBNyazumRVu
+ 8+JlT/dHMHmO820TU9NNat66XXrMu0OsIDC2gW6krZjF3gBALsT9biKJ1
+ 0RtH7/uxusBfZKHD67/+L97YPExp4i0k7MrpuhtUIt+43uQqYdLc9A+16
+ iSNsxk05jZz/Wym/J+Rg/I/eAi2phXyP40XQxQdY9+khN8pMAG6vwXyfw
+ 1D4dHIjKyUadb00H+ZmgSMQNtD6FcSwzoG4Pqv3IaojuNSPrgRP7F9YJc
+ OpGka3IzykD2EzcA8NNnBunITxxgE8M8RQEXHy7LrZfQ9RtlrxWltl1rt A==;
+X-CSE-ConnectionGUID: QLyeW1BXRkaqeRS/pWIYmg==
+X-CSE-MsgGUID: OE1S9rQdTrWq9sa8C64ALw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348674"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348674"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 08:20:42 -0700
-X-CSE-ConnectionGUID: te3ypbrqRb+IaNJcH4k5sQ==
-X-CSE-MsgGUID: c+f/Vx1fRuaUN2rS1Vr8pw==
+ 13 Jun 2024 08:20:44 -0700
+X-CSE-ConnectionGUID: s287oMftQOWJXxX3AYrdNw==
+X-CSE-MsgGUID: xUM6rYPETw2h/8WTX3PRDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135093"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135129"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 08:20:41 -0700
+ 13 Jun 2024 08:20:43 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 16/42] drm/xe: Add xe_vm_pgtable_update_op to xe_vma_ops
-Date: Thu, 13 Jun 2024 11:31:02 -0400
-Message-Id: <20240613153128.681864-16-oak.zeng@intel.com>
+Subject: [CI 40/42] drm/xe/svm: Determine a vma is backed by device memory
+Date: Thu, 13 Jun 2024 11:31:26 -0400
+Message-Id: <20240613153128.681864-40-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613153128.681864-1-oak.zeng@intel.com>
 References: <20240613153128.681864-1-oak.zeng@intel.com>
@@ -66,229 +66,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
+With system allocator, a userptr can now be back by device
+memory also. Introduce a helper function xe_vma_is_devmem
+to determine whether a range of vma is backed by device memory.
 
-Each xe_vma_op resolves to 0-3 pt_ops. Add storage for the pt_ops to
-xe_vma_ops which is dynamically allocated based the number and types of
-xe_vma_op in the xe_vma_ops list. Allocation only implemented in this
-patch.
-
-This will help with converting xe_vma_ops (multiple xe_vma_op) in a
-atomic update unit.
-
-Cc: Oak Zeng <oak.zeng@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Brian Welty <brian.welty@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt_types.h | 12 ++++++
- drivers/gpu/drm/xe/xe_vm.c       | 66 +++++++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_vm_types.h |  8 ++++
- 3 files changed, 84 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_pt.c | 26 ++++++++++++++++++++++++--
+ 1 file changed, 24 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pt_types.h b/drivers/gpu/drm/xe/xe_pt_types.h
-index cee70cb0f014..2093150f461e 100644
---- a/drivers/gpu/drm/xe/xe_pt_types.h
-+++ b/drivers/gpu/drm/xe/xe_pt_types.h
-@@ -74,4 +74,16 @@ struct xe_vm_pgtable_update {
- 	u32 flags;
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index f6fc2dcb3767..c68ff02a931e 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -3,6 +3,7 @@
+  * Copyright © 2022 Intel Corporation
+  */
+ 
++#include <linux/hmm.h>
+ #include "xe_pt.h"
+ 
+ #include "regs/xe_gtt_defs.h"
+@@ -578,6 +579,28 @@ static const struct xe_pt_walk_ops xe_pt_stage_bind_ops = {
+ 	.pt_entry = xe_pt_stage_bind_entry,
  };
  
-+/** struct xe_vm_pgtable_update_op - Page table update operation */
-+struct xe_vm_pgtable_update_op {
-+	/** @entries: entries to update for this operation */
-+	struct xe_vm_pgtable_update entries[XE_VM_MAX_LEVEL * 2 + 1];
-+	/** @num_entries: number of entries for this update operation */
-+	u32 num_entries;
-+	/** @bind: is a bind */
-+	bool bind;
-+	/** @rebind: is a rebind */
-+	bool rebind;
-+};
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index bcb0a38b31ae..65d4070e9e71 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -712,6 +712,42 @@ int xe_vm_userptr_check_repin(struct xe_vm *vm)
- 		list_empty_careful(&vm->userptr.invalidated)) ? 0 : -EAGAIN;
- }
- 
-+static int xe_vma_ops_alloc(struct xe_vma_ops *vops)
++static bool xe_vma_is_devmem(struct xe_vma *vma, u64 start)
 +{
-+	int i;
++	if (xe_vma_is_userptr(vma)) {
++		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
++		struct drm_hmmptr *hmmptr = &uvma->userptr.hmmptr;
++		u64 offset = start - xe_vma_start(vma);
++		u64 page_idx = offset >> PAGE_SHIFT;
++		u64 hmm_pfn = hmmptr->pfn[page_idx];
++		struct page *page = hmm_pfn_to_page(hmm_pfn);
 +
-+	for (i = 0; i < XE_MAX_TILES_PER_DEVICE; ++i) {
-+		if (!vops->pt_update_ops[i].num_ops)
-+			continue;
-+
-+		vops->pt_update_ops[i].ops =
-+			kmalloc_array(vops->pt_update_ops[i].num_ops,
-+				      sizeof(*vops->pt_update_ops[i].ops),
-+				      GFP_KERNEL);
-+		if (!vops->pt_update_ops[i].ops)
-+			return -ENOMEM;
++		/**
++		 * FIXME: Assume there is no mixture system memory and device
++		 * memory placement in the [start, end) range of vma. We might
++		 * need to relook at this in the future.
++		 */
++		return is_device_private_page(page);
++	} else {
++		struct xe_bo *bo = xe_vma_bo(vma);
++		return bo && (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo));
 +	}
-+
-+	return 0;
 +}
 +
-+static void xe_vma_ops_fini(struct xe_vma_ops *vops)
-+{
-+	int i;
-+
-+	for (i = 0; i < XE_MAX_TILES_PER_DEVICE; ++i)
-+		kfree(vops->pt_update_ops[i].ops);
-+}
-+
-+static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_mask)
-+{
-+	int i;
-+
-+	for (i = 0; i < XE_MAX_TILES_PER_DEVICE; ++i)
-+		if (BIT(i) & tile_mask)
-+			++vops->pt_update_ops[i].num_ops;
-+}
-+
- static void xe_vm_populate_rebind(struct xe_vma_op *op, struct xe_vma *vma,
- 				  u8 tile_mask)
+ /**
+  * xe_pt_stage_bind() - Build a disconnected page-table tree for a given address
+  * range.
+@@ -604,8 +627,7 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma, u64 start, u64 end,
  {
-@@ -739,6 +775,7 @@ static int xe_vm_ops_add_rebind(struct xe_vma_ops *vops, struct xe_vma *vma,
- 
- 	xe_vm_populate_rebind(op, vma, tile_mask);
- 	list_add_tail(&op->link, &vops->list);
-+	xe_vma_ops_incr_pt_update_ops(vops, tile_mask);
- 
- 	return 0;
- }
-@@ -779,6 +816,10 @@ int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
- 			goto free_ops;
- 	}
- 
-+	err = xe_vma_ops_alloc(&vops);
-+	if (err)
-+		goto free_ops;
-+
- 	fence = ops_execute(vm, &vops);
- 	if (IS_ERR(fence)) {
- 		err = PTR_ERR(fence);
-@@ -793,6 +834,7 @@ int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
- 		list_del(&op->link);
- 		kfree(op);
- 	}
-+	xe_vma_ops_fini(&vops);
- 
- 	return err;
- }
-@@ -814,12 +856,20 @@ struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma, u8 tile_ma
- 	if (err)
- 		return ERR_PTR(err);
- 
-+	err = xe_vma_ops_alloc(&vops);
-+	if (err) {
-+		fence = ERR_PTR(err);
-+		goto free_ops;
-+	}
-+
- 	fence = ops_execute(vm, &vops);
- 
-+free_ops:
- 	list_for_each_entry_safe(op, next_op, &vops.list, link) {
- 		list_del(&op->link);
- 		kfree(op);
- 	}
-+	xe_vma_ops_fini(&vops);
- 
- 	return fence;
- }
-@@ -2282,7 +2332,6 @@ static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
- 	return err;
- }
- 
--
- static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
- 				   struct drm_gpuva_ops *ops,
- 				   struct xe_sync_entry *syncs, u32 num_syncs,
-@@ -2334,6 +2383,9 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
- 				return PTR_ERR(vma);
- 
- 			op->map.vma = vma;
-+			if (op->map.immediate || !xe_vm_in_fault_mode(vm))
-+				xe_vma_ops_incr_pt_update_ops(vops,
-+							      op->tile_mask);
- 			break;
- 		}
- 		case DRM_GPUVA_OP_REMAP:
-@@ -2378,6 +2430,8 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
- 					vm_dbg(&xe->drm, "REMAP:SKIP_PREV: addr=0x%016llx, range=0x%016llx",
- 					       (ULL)op->remap.start,
- 					       (ULL)op->remap.range);
-+				} else {
-+					xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
- 				}
- 			}
- 
-@@ -2414,13 +2468,16 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
- 					vm_dbg(&xe->drm, "REMAP:SKIP_NEXT: addr=0x%016llx, range=0x%016llx",
- 					       (ULL)op->remap.start,
- 					       (ULL)op->remap.range);
-+				} else {
-+					xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
- 				}
- 			}
-+			xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
- 			break;
- 		}
- 		case DRM_GPUVA_OP_UNMAP:
- 		case DRM_GPUVA_OP_PREFETCH:
--			/* Nothing to do */
-+			xe_vma_ops_incr_pt_update_ops(vops, op->tile_mask);
- 			break;
- 		default:
- 			drm_warn(&vm->xe->drm, "NOT POSSIBLE");
-@@ -3267,11 +3324,16 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		goto unwind_ops;
- 	}
- 
-+	err = xe_vma_ops_alloc(&vops);
-+	if (err)
-+		goto unwind_ops;
-+
- 	err = vm_bind_ioctl_ops_execute(vm, &vops);
- 
- unwind_ops:
- 	if (err && err != -ENODATA)
- 		vm_bind_ioctl_ops_unwind(vm, ops, args->num_binds);
-+	xe_vma_ops_fini(&vops);
- 	for (i = args->num_binds - 1; i >= 0; --i)
- 		if (ops[i])
- 			drm_gpuva_ops_free(&vm->gpuvm, ops[i]);
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index ce1a63a5e3e7..211c88801182 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -21,6 +21,7 @@ struct xe_bo;
- struct xe_sync_entry;
- struct xe_user_fence;
- struct xe_vm;
-+struct xe_vm_pgtable_update_op;
- 
- #define XE_VMA_READ_ONLY	DRM_GPUVA_USERBITS
- #define XE_VMA_DESTROYED	(DRM_GPUVA_USERBITS << 1)
-@@ -368,6 +369,13 @@ struct xe_vma_ops {
- 	struct xe_sync_entry *syncs;
- 	/** @num_syncs: number of syncs */
- 	u32 num_syncs;
-+	/** @pt_update_ops: page table update operations */
-+	struct {
-+		/** @ops: operations */
-+		struct xe_vm_pgtable_update_op *ops;
-+		/** @num_ops: number of operations */
-+		u32 num_ops;
-+	} pt_update_ops[XE_MAX_TILES_PER_DEVICE];
- };
- 
- #endif
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	struct xe_bo *bo = xe_vma_bo(vma);
+-	bool is_devmem = !xe_vma_is_userptr(vma) && bo &&
+-		(xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo));
++	bool is_devmem = xe_vma_is_devmem(vma, start);
+ 	struct xe_res_cursor curs;
+ 	struct xe_pt_stage_bind_walk xe_walk = {
+ 		.base = {
 -- 
 2.26.3
 
