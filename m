@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AB6CC27C4F
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 15:21:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E349C27C78
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 15:21:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02EAB10EAC4;
-	Thu, 13 Jun 2024 15:21:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 395D710EAD1;
+	Thu, 13 Jun 2024 15:21:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fwawT3Yd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VGkpyqRD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07A4410EABA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6E7F10EAD6
  for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 15:20:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718292044; x=1749828044;
+ t=1718292045; x=1749828045;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=nFJqYxJS3XDL5z6O2JSYSrN/XOG5NbmObj2Vf7jVrEU=;
- b=fwawT3YdsG3BOrUaTYQfzt4Fm1QuftrJgc6Uv/aXnIesHqeTAplNf4fS
- 7RHDCgdZkKZS1cbCWUpokAAB6hBFZpEBKkytoI3Hc909WppWb4B6S9afd
- 6f57SO5UZPt6j9bYarUu/RuwOugPeOblH2zDVGmWc8Q9ITFVODgej8J5+
- lJk+S3Uw8nIeA3B2cMHUa2obTWYdKKkohcfk9e9KdPr2iZ8Y0eX00jW3d
- 1cSzuV6mCzcJREZ9tyqfxRv4qAafGBI01WK5lqNpJrbwy2t5p5hbfSnLi
- C0urMjM5o4uHJLj5SjzIyffQljwbpT3Ljm5JJzQ6mxYkzG4UUd3UZzVt2 Q==;
-X-CSE-ConnectionGUID: zTyYlVtJQROf91r0YfpF9w==
-X-CSE-MsgGUID: DdIQZGIlReyrrklf7CZ+Qw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348644"
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348644"
+ bh=Yl7iJU4zqeQqnWvMPRrubKboT174XjdA/1SvzMk2Ec0=;
+ b=VGkpyqRDOziaPzSZ7KNAiXb62VXKCwjRi0y+wULQPq/k2Dc9tBi2oma5
+ lsiEdcWG/Mfw7grKUOKxh7pH8bvr0axQEeyPvCdUNJSitDioWcKkQmB+H
+ TGH8r6mzuMIOBemukYDuJ/76NIwS1n82FuWpf59vtldqJvDLTdURM6h83
+ 4Nk1e8gWdHzC+GhYSbQmi7INGZwyjOY2Dj6mM5uG9JQtJ2lvUxJ9Nmr55
+ MF6wgEHVM61Oo+/tJ4DdyUn6GLuKEGoqZBEOgTKOmBANBhcvK9rZ+65ce
+ xETgwrpSXUG67irwE/bO4eOy0jZ/L/9ouJwDajefCZWMeJYWLmzDEqFCJ Q==;
+X-CSE-ConnectionGUID: C1/oc3GvRKOxA6j4KPMZ0w==
+X-CSE-MsgGUID: 9LCpn1ImSLe8oxDIXFM4GA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348651"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348651"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 08:20:41 -0700
-X-CSE-ConnectionGUID: Xb8oGYJcRg2PeYvyQf3a9Q==
-X-CSE-MsgGUID: 922gsRO3Tg6YDxEz+ZL9dQ==
+ 13 Jun 2024 08:20:42 -0700
+X-CSE-ConnectionGUID: jh3D2g6IQoC4heesyQ3UfA==
+X-CSE-MsgGUID: CGfgz8ggQiSM96XdAcDwtw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135088"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135105"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 08:20:41 -0700
+ 13 Jun 2024 08:20:42 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 12/42] drm/svm: handle CPU page fault
-Date: Thu, 13 Jun 2024 11:30:58 -0400
-Message-Id: <20240613153128.681864-12-oak.zeng@intel.com>
+Subject: [CI 19/42] drm/xe: Update PT layer with better error handling
+Date: Thu, 13 Jun 2024 11:31:05 -0400
+Message-Id: <20240613153128.681864-19-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613153128.681864-1-oak.zeng@intel.com>
 References: <20240613153128.681864-1-oak.zeng@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,320 +65,371 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Under the picture of svm, CPU and GPU program share the same
-virtual address space. The backing store of this virtual address
-space can be either in system memory or device memory. Since GPU
-device memory is remaped as DEVICE_PRIVATE, CPU can't access it.
-Any CPU access to device memory causes a page fault. Implement
-a page fault handler to migrate memory back to system memory and
-map it to CPU page table so the CPU program can proceed.
+From: Matthew Brost <matthew.brost@intel.com>
 
-Cc: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Felix Kuehling <felix.kuehling@amd.com>
-Cc: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Leon Romanovsky <leonro@nvidia.com>
-Cc: Brian Welty <brian.welty@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Cc: <dri-devel@lists.freedesktop.org>
+Update PT layer so if a memory allocation for a PTE fails the error can
+be propagated to the user without requiring to be killed.
+
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/drm_svm.c | 272 +++++++++++++++++++++++++++++++++++++-
- 1 file changed, 271 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_pt.c | 208 ++++++++++++++++++++++++++++---------
+ 1 file changed, 160 insertions(+), 48 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_svm.c b/drivers/gpu/drm/drm_svm.c
-index 741874689e32..80c5b7146ba6 100644
---- a/drivers/gpu/drm/drm_svm.c
-+++ b/drivers/gpu/drm/drm_svm.c
-@@ -8,6 +8,7 @@
- #include <linux/mmu_notifier.h>
- #include <linux/dma-mapping.h>
- #include <linux/memremap.h>
-+#include <linux/migrate.h>
- #include <drm/drm_gem_dma_helper.h>
- #include <drm/drm_svm.h>
- #include <linux/swap.h>
-@@ -316,7 +317,276 @@ int drm_svm_hmmptr_populate(struct drm_hmmptr *hmmptr, void *owner, u64 start, u
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 8c61bb2c034d..62aec1a42249 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -845,19 +845,27 @@ xe_vm_populate_pgtable(struct xe_migrate_pt_update *pt_update, struct xe_tile *t
+ 	}
  }
- EXPORT_SYMBOL_GPL(drm_svm_hmmptr_populate);
  
--static struct dev_pagemap_ops drm_devm_pagemap_ops;
-+static void __drm_svm_free_pages(unsigned long *mpfn, unsigned long npages)
-+{
-+	struct page *page;
-+	int j;
+-static void xe_pt_abort_bind(struct xe_vma *vma,
+-			     struct xe_vm_pgtable_update *entries,
+-			     u32 num_entries)
++static void xe_pt_cancel_bind(struct xe_vma *vma,
++			      struct xe_vm_pgtable_update *entries,
++			      u32 num_entries)
+ {
+ 	u32 i, j;
+ 
+ 	for (i = 0; i < num_entries; i++) {
+-		if (!entries[i].pt_entries)
++		struct xe_pt *pt = entries[i].pt;
 +
-+	for (j = 0; j < npages; j++) {
-+		page = migrate_pfn_to_page(mpfn[j]);
-+		mpfn[j] = 0;
-+		if (page) {
-+			unlock_page(page);
-+			put_page(page);
-+		}
-+	}
-+}
-+
-+/**
-+ * __drm_svm_alloc_host_pages() - allocate host pages for the fault vma
-+ *
-+ * @vma: the fault vma that we need allocate page for
-+ * @addr: the virtual address that we allocate pages for
-+ * @mpfn: used to output the migration pfns of the allocated pages
-+ * @npages: number of pages to allocate
-+ *
-+ * This function allocate host pages for a specified vma.
-+ *
-+ * When this function returns, the pages are locked.
-+ *
-+ * Return 0 on success
-+ * error code otherwise
-+ */
-+static int __drm_svm_alloc_host_pages(struct vm_area_struct *vma,
-+					unsigned long addr,
-+					u64 npages,
-+					unsigned long *mpfn)
-+{
-+	struct page *page;
-+	int i;
-+
-+	for (i = 0; i < npages; i++) {
-+		page = alloc_page_vma(GFP_HIGHUSER, vma, addr);
-+		if (unlikely(!page))
-+			goto free_allocated;
-+
-+		/**Lock page per hmm requirement, see hmm.rst*/
-+		lock_page(page);
-+
-+		mpfn[i] = migrate_pfn(page_to_pfn(page));
-+		addr += PAGE_SIZE;
-+	}
-+	return 0;
-+
-+free_allocated:
-+	__drm_svm_free_pages(mpfn, i);
-+	return -ENOMEM;
-+}
-+
-+static struct migrate_vec *__generate_migrate_vec_vram(unsigned long *mpfn, bool is_migrate_src, unsigned long npages)
-+{
-+	struct migrate_vec *vec;
-+	int size = sizeof(*vec) + sizeof(vec->addr_vec[1]) * (npages - 1);
-+	struct drm_mem_region *mr;
-+	struct page *page;
-+	u64 dpa;
-+	int i, j;
-+
-+	BUG_ON(is_migrate_src && npages != 1);
-+	vec = kzalloc(size, GFP_KERNEL);
-+	if (!vec)
-+		return NULL;
-+
-+	mr = drm_page_to_mem_region(page);
-+	for(i = 0, j = 0; i < npages; i++) {
-+		/**
-+		 * We only migrate one page from vram to sram on CPU page fault today.
-+		 * If this source page is not marked with _MIGRATE flag, something is
-+		 * wrong. We need to report error to core mm.
-+		 *
-+		 * If we move to multiple pages migration, below logic need a revisit,
-+		 * as it is fine to only migrate some pages (but not all) as indicated
-+		 * by hmm.
-+		 */
-+		if (is_migrate_src && !(mpfn[i] & MIGRATE_PFN_MIGRATE)) {
-+			pr_err("Migrate from vram to sram: MIGRATE_PFN_MIGRATE flag is not set\n");
-+			kfree(vec);
-+			return NULL;
++		if (!pt)
+ 			continue;
+ 
+-		for (j = 0; j < entries[i].qwords; j++)
+-			xe_pt_destroy(entries[i].pt_entries[j].pt, xe_vma_vm(vma)->flags, NULL);
++		if (pt->level) {
++			for (j = 0; j < entries[i].qwords; j++)
++				xe_pt_destroy(entries[i].pt_entries[j].pt,
++					      xe_vma_vm(vma)->flags, NULL);
 +		}
 +
-+		page = migrate_pfn_to_page(mpfn[i]);
-+		if (!page || !is_device_private_page(page)) {
-+			pr_err("No page or wrong page zone in %s\n", __func__);
-+			kfree(vec);
-+			return NULL;
-+		}
-+
-+		dpa = drm_mem_region_page_to_dpa(mr, page);
-+		vec->addr_vec[j++].dpa = dpa;
-+	}
-+	vec->mr = mr;
-+	vec->npages = j;
-+	return vec;
-+}
-+
-+static struct migrate_vec *__generate_migrate_vec_sram(struct device *dev, unsigned long *mpfn,
-+		bool is_migrate_src, unsigned long npages)
+ 		kfree(entries[i].pt_entries);
++		entries[i].pt_entries = NULL;
++		entries[i].qwords = 0;
+ 	}
+ }
+ 
+@@ -873,10 +881,61 @@ static void xe_pt_commit_locks_assert(struct xe_vma *vma)
+ 	xe_vm_assert_held(vm);
+ }
+ 
+-static void xe_pt_commit_bind(struct xe_vma *vma,
+-			      struct xe_vm_pgtable_update *entries,
+-			      u32 num_entries, bool rebind,
+-			      struct llist_head *deferred)
++static void xe_pt_commit(struct xe_vma *vma,
++			 struct xe_vm_pgtable_update *entries,
++			 u32 num_entries, struct llist_head *deferred)
 +{
-+	enum dma_data_direction dir = is_migrate_src ? DMA_TO_DEVICE : DMA_FROM_DEVICE;
-+	struct migrate_vec *vec;
-+	int size = sizeof(*vec) + sizeof(vec->addr_vec[1]) * (npages - 1);
-+	dma_addr_t dma_addr;
-+	struct page *page;
-+	int i, j, k;
++	u32 i, j;
 +
-+	page = migrate_pfn_to_page(mpfn[0]);
-+	if (unlikely(!page))
-+		return NULL;
++	xe_pt_commit_locks_assert(vma);
 +
-+	vec = kzalloc(size, GFP_KERNEL);
-+	if (!vec)
-+		return NULL;
++	for (i = 0; i < num_entries; i++) {
++		struct xe_pt *pt = entries[i].pt;
 +
-+	for(i = 0, k =0 ; i < npages; i++) {
-+		if (is_migrate_src && !(mpfn[i] & MIGRATE_PFN_MIGRATE))
++		if (!pt->level)
 +			continue;
 +
-+		page = migrate_pfn_to_page(mpfn[i]);
-+		if (!page || is_device_private_page(page)) {
-+			pr_err("No page or wrong page zone in %s\n", __func__);
-+			goto undo_dma_mapping;
++		for (j = 0; j < entries[i].qwords; j++) {
++			struct xe_pt *oldpte = entries[i].pt_entries[j].pt;
++
++			xe_pt_destroy(oldpte, xe_vma_vm(vma)->flags, deferred);
 +		}
-+
-+		dma_addr = dma_map_page(dev, page, 0, PAGE_SIZE, dir);
-+		if (unlikely(dma_mapping_error(dev, dma_addr)))
-+			goto undo_dma_mapping;
-+
-+		vec->addr_vec[k++].dma_addr = dma_addr;
 +	}
-+
-+	vec->mr = NULL;
-+	vec->npages = k;
-+	return vec;
-+
-+undo_dma_mapping:
-+	for (j = 0; j < k; j++) {
-+		if (vec->addr_vec[j].dma_addr)
-+			dma_unmap_page(dev, vec->addr_vec[j].dma_addr, PAGE_SIZE, dir);
-+	}
-+	kfree(vec);
-+	return NULL;
 +}
 +
-+static void __free_migrate_vec_sram(struct device *dev, struct migrate_vec *vec, bool is_migrate_src)
++static void xe_pt_abort_bind(struct xe_vma *vma,
++			     struct xe_vm_pgtable_update *entries,
++			     u32 num_entries, bool rebind)
 +{
-+	enum dma_data_direction dir = is_migrate_src ? DMA_TO_DEVICE : DMA_FROM_DEVICE;
++	int i, j;
++
++	xe_pt_commit_locks_assert(vma);
++
++	for (i = num_entries - 1; i >= 0; --i) {
++		struct xe_pt *pt = entries[i].pt;
++		struct xe_pt_dir *pt_dir;
++
++		if (!rebind)
++			pt->num_live -= entries[i].qwords;
++
++		if (!pt->level)
++			continue;
++
++		pt_dir = as_xe_pt_dir(pt);
++		for (j = 0; j < entries[i].qwords; j++) {
++			u32 j_ = j + entries[i].ofs;
++			struct xe_pt *newpte = xe_pt_entry(pt_dir, j_);
++			struct xe_pt *oldpte = entries[i].pt_entries[j].pt;
++
++			pt_dir->children[j_] = oldpte ? &oldpte->base : 0;
++			xe_pt_destroy(newpte, xe_vma_vm(vma)->flags, NULL);
++		}
++	}
++}
++
++static void xe_pt_commit_prepare_bind(struct xe_vma *vma,
++				      struct xe_vm_pgtable_update *entries,
++				      u32 num_entries, bool rebind)
+ {
+ 	u32 i, j;
+ 
+@@ -896,12 +955,13 @@ static void xe_pt_commit_bind(struct xe_vma *vma,
+ 		for (j = 0; j < entries[i].qwords; j++) {
+ 			u32 j_ = j + entries[i].ofs;
+ 			struct xe_pt *newpte = entries[i].pt_entries[j].pt;
++			struct xe_pt *oldpte = NULL;
+ 
+ 			if (xe_pt_entry(pt_dir, j_))
+-				xe_pt_destroy(xe_pt_entry(pt_dir, j_),
+-					      xe_vma_vm(vma)->flags, deferred);
++				oldpte = xe_pt_entry(pt_dir, j_);
+ 
+ 			pt_dir->children[j_] = &newpte->base;
++			entries[i].pt_entries[j].pt = oldpte;
+ 		}
+ 	}
+ }
+@@ -925,8 +985,6 @@ xe_pt_prepare_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 	err = xe_pt_stage_bind(tile, vma, entries, num_entries);
+ 	if (!err)
+ 		xe_tile_assert(tile, *num_entries);
+-	else /* abort! */
+-		xe_pt_abort_bind(vma, entries, *num_entries);
+ 
+ 	return err;
+ }
+@@ -1449,7 +1507,7 @@ xe_pt_stage_unbind_post_descend(struct xe_ptw *parent, pgoff_t offset,
+ 				     &end_offset))
+ 		return 0;
+ 
+-	(void)xe_pt_new_shared(&xe_walk->wupd, xe_child, offset, false);
++	(void)xe_pt_new_shared(&xe_walk->wupd, xe_child, offset, true);
+ 	xe_walk->wupd.updates[level].update->qwords = end_offset - offset;
+ 
+ 	return 0;
+@@ -1517,32 +1575,57 @@ xe_migrate_clear_pgtable_callback(struct xe_migrate_pt_update *pt_update,
+ 		memset64(ptr, empty, num_qwords);
+ }
+ 
++static void xe_pt_abort_unbind(struct xe_vma *vma,
++			       struct xe_vm_pgtable_update *entries,
++			       u32 num_entries)
++{
++	int j, i;
++
++	xe_pt_commit_locks_assert(vma);
++
++	for (j = num_entries - 1; j >= 0; --j) {
++		struct xe_vm_pgtable_update *entry = &entries[j];
++		struct xe_pt *pt = entry->pt;
++		struct xe_pt_dir *pt_dir = as_xe_pt_dir(pt);
++
++		pt->num_live += entry->qwords;
++
++		if (!pt->level)
++			continue;
++
++		for (i = entry->ofs; i < entry->ofs + entry->qwords; i++)
++			pt_dir->children[i] =
++				entries[j].pt_entries[i - entry->ofs].pt ?
++				&entries[j].pt_entries[i - entry->ofs].pt->base : 0;
++	}
++}
++
+ static void
+-xe_pt_commit_unbind(struct xe_vma *vma,
+-		    struct xe_vm_pgtable_update *entries, u32 num_entries,
+-		    struct llist_head *deferred)
++xe_pt_commit_prepare_unbind(struct xe_vma *vma,
++			    struct xe_vm_pgtable_update *entries,
++			    u32 num_entries)
+ {
+-	u32 j;
++	int j, i;
+ 
+ 	xe_pt_commit_locks_assert(vma);
+ 
+ 	for (j = 0; j < num_entries; ++j) {
+ 		struct xe_vm_pgtable_update *entry = &entries[j];
+ 		struct xe_pt *pt = entry->pt;
++		struct xe_pt_dir *pt_dir;
+ 
+ 		pt->num_live -= entry->qwords;
+-		if (pt->level) {
+-			struct xe_pt_dir *pt_dir = as_xe_pt_dir(pt);
+-			u32 i;
+-
+-			for (i = entry->ofs; i < entry->ofs + entry->qwords;
+-			     i++) {
+-				if (xe_pt_entry(pt_dir, i))
+-					xe_pt_destroy(xe_pt_entry(pt_dir, i),
+-						      xe_vma_vm(vma)->flags, deferred);
++		if (!pt->level)
++			continue;
+ 
+-				pt_dir->children[i] = NULL;
+-			}
++		pt_dir = as_xe_pt_dir(pt);
++		for (i = entry->ofs; i < entry->ofs + entry->qwords; i++) {
++			if (xe_pt_entry(pt_dir, i))
++				entries[j].pt_entries[i - entry->ofs].pt =
++					xe_pt_entry(pt_dir, i);
++			else
++				entries[j].pt_entries[i - entry->ofs].pt = NULL;
++			pt_dir->children[i] = NULL;
+ 		}
+ 	}
+ }
+@@ -1588,7 +1671,6 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
+ {
+ 	u32 current_op = pt_update_ops->current_op;
+ 	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
+-	struct llist_head *deferred = &pt_update_ops->deferred;
+ 	int err;
+ 
+ 	xe_bo_assert_held(xe_vma_bo(vma));
+@@ -1635,11 +1717,12 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
+ 			(!pt_op->rebind && vm->scratch_pt[tile->id] &&
+ 			 xe_vm_in_preempt_fence_mode(vm));
+ 
+-		/* FIXME: Don't commit right away */
+ 		vma->tile_staged |= BIT(tile->id);
+ 		pt_op->vma = vma;
+-		xe_pt_commit_bind(vma, pt_op->entries, pt_op->num_entries,
+-				  pt_op->rebind, deferred);
++		xe_pt_commit_prepare_bind(vma, pt_op->entries,
++					  pt_op->num_entries, pt_op->rebind);
++	} else {
++		xe_pt_cancel_bind(vma, pt_op->entries, pt_op->num_entries);
+ 	}
+ 
+ 	return err;
+@@ -1651,7 +1734,6 @@ static int unbind_op_prepare(struct xe_tile *tile,
+ {
+ 	u32 current_op = pt_update_ops->current_op;
+ 	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
+-	struct llist_head *deferred = &pt_update_ops->deferred;
+ 	int err;
+ 
+ 	if (!((vma->tile_present | vma->tile_staged) & BIT(tile->id)))
+@@ -1687,9 +1769,7 @@ static int unbind_op_prepare(struct xe_tile *tile,
+ 	pt_update_ops->needs_userptr_lock |= xe_vma_is_userptr(vma);
+ 	pt_update_ops->needs_invalidation = true;
+ 
+-	/* FIXME: Don't commit right away */
+-	xe_pt_commit_unbind(vma, pt_op->entries, pt_op->num_entries,
+-			    deferred);
++	xe_pt_commit_prepare_unbind(vma, pt_op->entries, pt_op->num_entries);
+ 
+ 	return 0;
+ }
+@@ -1910,7 +1990,7 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 	struct invalidation_fence *ifence = NULL;
+ 	struct xe_range_fence *rfence;
+ 	struct xe_vma_op *op;
+-	int err = 0;
++	int err = 0, i;
+ 	struct xe_migrate_pt_update update = {
+ 		.ops = pt_update_ops->needs_userptr_lock ?
+ 			&userptr_migrate_ops :
+@@ -1930,8 +2010,10 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 
+ 	if (pt_update_ops->needs_invalidation) {
+ 		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
+-		if (!ifence)
+-			return ERR_PTR(-ENOMEM);
++		if (!ifence) {
++			err = -ENOMEM;
++			goto kill_vm_tile1;
++		}
+ 	}
+ 
+ 	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
+@@ -1946,6 +2028,15 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 		goto free_rfence;
+ 	}
+ 
++	/* Point of no return - VM killed if failure after this */
++	for (i = 0; i < pt_update_ops->current_op; ++i) {
++		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[i];
++
++		xe_pt_commit(pt_op->vma, pt_op->entries,
++			     pt_op->num_entries, &pt_update_ops->deferred);
++		pt_op->vma = NULL;	/* skip in xe_pt_update_ops_abort */
++	}
++
+ 	err = xe_range_fence_insert(&vm->rftree[tile->id], rfence,
+ 				    &xe_range_fence_kfree_ops,
+ 				    pt_update_ops->start,
+@@ -1981,10 +2072,15 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 	if (pt_update_ops->needs_userptr_lock)
+ 		up_read(&vm->userptr.notifier_lock);
+ 	dma_fence_put(fence);
++	if (!tile->id)
++		xe_vm_kill(vops->vm, false);
+ free_rfence:
+ 	kfree(rfence);
+ free_ifence:
+ 	kfree(ifence);
++kill_vm_tile1:
++	if (err != -EAGAIN && tile->id)
++		xe_vm_kill(vops->vm, false);
+ 
+ 	return ERR_PTR(err);
+ }
+@@ -2005,12 +2101,10 @@ void xe_pt_update_ops_fini(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 	lockdep_assert_held(&vops->vm->lock);
+ 	xe_vm_assert_held(vops->vm);
+ 
+-	/* FIXME: Not 100% correct */
+-	for (i = 0; i < pt_update_ops->num_ops; ++i) {
++	for (i = 0; i < pt_update_ops->current_op; ++i) {
+ 		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[i];
+ 
+-		if (pt_op->bind)
+-			xe_pt_free_bind(pt_op->entries, pt_op->num_entries);
++		xe_pt_free_bind(pt_op->entries, pt_op->num_entries);
+ 	}
+ 	xe_bo_put_commit(&vops->pt_update_ops[tile->id].deferred);
+ }
+@@ -2024,10 +2118,28 @@ void xe_pt_update_ops_fini(struct xe_tile *tile, struct xe_vma_ops *vops)
+  */
+ void xe_pt_update_ops_abort(struct xe_tile *tile, struct xe_vma_ops *vops)
+ {
++	struct xe_vm_pgtable_update_ops *pt_update_ops =
++		&vops->pt_update_ops[tile->id];
 +	int i;
 +
-+	BUG_ON(vec->mr != NULL);
-+
-+	for (i = 0; i < vec->npages; i++) {
-+		dma_unmap_page(dev, vec->addr_vec[i].dma_addr, PAGE_SIZE, dir);
-+		/** No need to free host pages. migrate_vma_finalize take care */
-+	}
-+	kfree(vec);
-+}
-+
-+static void __free_migrate_vec_vram(struct migrate_vec *vec)
-+{
-+	BUG_ON(vec->mr == NULL);
-+
-+	kfree(vec);
-+}
-+/**
-+ * drm_svm_migrate_to_sram() - Migrate memory back to sram on CPU page fault
-+ *
-+ * @vmf: cpu vm fault structure, contains fault information such as vma etc.
-+ *
-+ * Note, this is in CPU's vm fault handler, caller holds the mmap read lock.
-+ *
-+ * This function migrate one page at the fault address. This is the normal
-+ * core mm page fault scheme. Linux doesn't aggressively prefault at CPU page
-+ * fault time. It only fault-in one page to recover the fault address. Even
-+ * if we migrate more than one page, core mm still only program one pte entry
-+ * (covers one page).See logic in function handle_pte_fault. do_swap_page
-+ * eventually calls to drm_svm_migrate_to_sram in our case.
-+ *
-+ * We call migrate_vma_setup to set up the migration. During migrate_vma_setup,
-+ * device page table is invalidated before migration (by calling the driver registered
-+ * mmu notifier)
-+ *
-+ * We call migrate_vma_finalize to finalize the migration. During migrate_vma_finalize,
-+ * device pages of the source buffer is freed (by calling memory region's
-+ * drm_mem_region_free_page callback function)
-+ *
-+ * Return:
-+ * 0 on success
-+ * VM_FAULT_SIGBUS: failed to migrate page to system memory, application
-+ * will be signaled a SIGBUG
-+ */
-+static vm_fault_t drm_svm_migrate_to_sram(struct vm_fault *vmf)
-+{
-+	struct drm_mem_region *mr = drm_page_to_mem_region(vmf->page);
-+	struct drm_device *drm = mr->mr_ops.drm_mem_region_get_device(mr);
-+	unsigned long src_pfn = 0, dst_pfn = 0;
-+	struct device *dev = drm->dev;
-+	struct vm_area_struct *vma = vmf->vma;
-+	struct migrate_vec *src;
-+	struct migrate_vec *dst;
-+	struct dma_fence *fence;
-+	vm_fault_t ret = 0, r;
-+
-+	struct migrate_vma migrate_vma = {
-+		.vma		= vma,
-+		.start		= ALIGN_DOWN(vmf->address, PAGE_SIZE),
-+		.end		= ALIGN_DOWN(vmf->address, PAGE_SIZE) + PAGE_SIZE,
-+		.src		= &src_pfn,
-+		.dst		= &dst_pfn,
-+		.pgmap_owner	= mr->mr_ops.drm_mem_region_pagemap_owner(mr),
-+		.flags		= MIGRATE_VMA_SELECT_DEVICE_PRIVATE,
-+		.fault_page = vmf->page,
-+	};
-+
-+	if (migrate_vma_setup(&migrate_vma) < 0)
-+		return VM_FAULT_SIGBUS;
-+
-+	if (!migrate_vma.cpages)
-+		return 0;
-+
-+	r = __drm_svm_alloc_host_pages(vma, migrate_vma.start, 1, migrate_vma.dst);
-+	if (r) {
-+		ret = VM_FAULT_OOM;
-+		goto migrate_finalize;
-+	}
-+
-+	src = __generate_migrate_vec_vram(migrate_vma.src, true, 1);
-+	if (!src) {
-+		ret = VM_FAULT_SIGBUS;
-+		goto free_host_pages;
-+	}
-+
-+	dst = __generate_migrate_vec_sram(dev, migrate_vma.dst, false, 1);
-+	if (!dst) {
-+		ret = VM_FAULT_SIGBUS;
-+		goto free_migrate_src;
-+	}
-+
-+	fence = mr->mr_ops.drm_mem_region_migrate(src, dst);
-+	if (IS_ERR(fence)) {
-+		ret = VM_FAULT_SIGBUS;
-+		goto free_migrate_dst;
-+	}
-+	dma_fence_wait(fence, false);
-+	dma_fence_put(fence);
-+
-+	migrate_vma_pages(&migrate_vma);
-+
-+free_migrate_dst:
-+	__free_migrate_vec_sram(dev, dst, false);
-+free_migrate_src:
-+	__free_migrate_vec_vram(src);
-+free_host_pages:
-+	if (ret)
-+		__drm_svm_free_pages(migrate_vma.dst, 1);
-+migrate_finalize:
-+	if (ret)
-+		memset(migrate_vma.dst, 0, sizeof(*migrate_vma.dst));
-+	migrate_vma_finalize(&migrate_vma);
-+	return ret;
-+}
-+static struct dev_pagemap_ops drm_devm_pagemap_ops = {
-+	.migrate_to_ram = drm_svm_migrate_to_sram,
-+};
+ 	lockdep_assert_held(&vops->vm->lock);
+ 	xe_vm_assert_held(vops->vm);
  
- /**
-  * drm_svm_register_mem_region: Remap and provide memmap backing for device memory
+-	/* FIXME: Just kill VM for now + cleanup PTs */
++	for (i = pt_update_ops->num_ops - 1; i >= 0; --i) {
++		struct xe_vm_pgtable_update_op *pt_op =
++			&pt_update_ops->ops[i];
++
++		if (!pt_op->vma || i >= pt_update_ops->current_op)
++			continue;
++
++		if (pt_op->bind)
++			xe_pt_abort_bind(pt_op->vma, pt_op->entries,
++					 pt_op->num_entries,
++					 pt_op->rebind);
++		else
++			xe_pt_abort_unbind(pt_op->vma, pt_op->entries,
++					   pt_op->num_entries);
++	}
++
+ 	xe_bo_put_commit(&vops->pt_update_ops[tile->id].deferred);
+-	xe_vm_kill(vops->vm, false);
+- }
++}
 -- 
 2.26.3
 
