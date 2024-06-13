@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 642DEC27C4F
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 15:20:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83CD0C27C6E
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 15:20:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2F5010EAB4;
-	Thu, 13 Jun 2024 15:20:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 093AA10EABA;
+	Thu, 13 Jun 2024 15:20:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dp8eJHDY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CAx2Ancx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2566F10EACD
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63E8110EABA
  for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 15:20:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1718292043; x=1749828043;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=5CkwzO55EzMAuk+e+WdVq9SUlqfUv+gGSF7eSYeYvvQ=;
- b=dp8eJHDYtbUPlklZo2NlIfFA2YLwC4NbSwkrVPbfy9XtArlCNTZz/BHd
- DU+dPztUTC5QfiZeMi0Pu7LSpIooL7Vm6xdZRoy3DfWwnkT7rldvH4CqP
- TkFdfJs1CcUC+30SqnacPGJPjvD+K1KAX7aoK3QMyBAcNF4fH6p2vbK8j
- QbguObAt1VMg6KpqAOUuSKmGlkVYIm6qarvY7aZTvTFINPgw3+0ADiPXG
- nffnI/nGv1qXyFnMUhALhyOIx0336+3wVV7Qd98MwKdhdFQzu5Yq/RSSL
- LnI1frT7AgLfu+C9vVbnONpp3QeCmuv4JO/V4ZD/ymN4GxQ3IvzplBOK/ A==;
-X-CSE-ConnectionGUID: YDeXcY/4T/aRhU9aKRDhAA==
-X-CSE-MsgGUID: R+veGF5PTF2bYIYZhHIxDQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348634"
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348634"
+ bh=ZeP8O4jFX/EotO+GRLZQnKzOMi9yxaJPUT0rTKKYrnk=;
+ b=CAx2Ancx6li0OzCnFyJRQJ/+XLQogiBbQltaTJOgG92eXkRy1lOS6orl
+ 4uBL+hZ7G3apLV8T0AoHsd52/yBITxGoYuvBVEbinLkY8US3mXGkyy2cS
+ x6zprz3YavaNegCx7ddyOJCrZ/pXs8F6MuL606jKbKcbkLDNZ4N20UPBd
+ TGUznvAW4a8SLVjZMlZR/e7Eu8d8gpVie5+qXkAtpc6ab9b464AXErCzH
+ SV+fhxJ+6kQUa1x9EgmlGZ11h5mdTDXV2e2XV9cOI65Zru3LpjHlueJCd
+ wMLskO1Lfp6VPIf7IFF4C5ga5MDkAg1NQ3KxrzgitLkRRt4IMSxUaQ2Mc Q==;
+X-CSE-ConnectionGUID: 4K529Qr6QMSZlovfA1gUUA==
+X-CSE-MsgGUID: +n9nUXBIQ3yUkCWxq62WeA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348636"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348636"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jun 2024 08:20:41 -0700
-X-CSE-ConnectionGUID: KFaPfAfsR2mWHD5hyWvWQg==
-X-CSE-MsgGUID: EGLqACeoSKG1Na2eQ6x++w==
+X-CSE-ConnectionGUID: kade7wTLR1GyGMosFo2KAA==
+X-CSE-MsgGUID: yFcW+8DfQg6vS1XNGSNVXg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135068"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135067"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jun 2024 08:20:40 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 07/42] drm: Move GPUVA_START/LAST to drm_gpuvm.h
-Date: Thu, 13 Jun 2024 11:30:53 -0400
-Message-Id: <20240613153128.681864-7-oak.zeng@intel.com>
+Subject: [CI 06/42] iommu/dma: Implement link/unlink page callbacks
+Date: Thu, 13 Jun 2024 11:30:52 -0400
+Message-Id: <20240613153128.681864-6-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613153128.681864-1-oak.zeng@intel.com>
 References: <20240613153128.681864-1-oak.zeng@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,48 +65,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move them to .h file so they can be used outside of drm_gpuvm.c.
-Also add a GPUVA_END micro.
+From: Leon Romanovsky <leonro@nvidia.com>
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+Add an implementation of link/unlink interface to perform in map/unmap
+pages in fast patch for pre-allocated IOVA.
+
+Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
 ---
- drivers/gpu/drm/drm_gpuvm.c | 3 ---
- include/drm/drm_gpuvm.h     | 4 ++++
- 2 files changed, 4 insertions(+), 3 deletions(-)
+ drivers/iommu/dma-iommu.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
-index f9eb56f24bef..7402ed6f1d33 100644
---- a/drivers/gpu/drm/drm_gpuvm.c
-+++ b/drivers/gpu/drm/drm_gpuvm.c
-@@ -867,9 +867,6 @@ __drm_gpuvm_bo_list_del(struct drm_gpuvm *gpuvm, spinlock_t *lock,
+diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
+index dbef2581a98c..ddf402e7c8a3 100644
+--- a/drivers/iommu/dma-iommu.c
++++ b/drivers/iommu/dma-iommu.c
+@@ -1766,6 +1766,21 @@ static void iommu_dma_free_iova(struct device *dev, dma_addr_t iova,
+ 	__iommu_dma_free_iova(cookie, iova, size, &iotlb_gather);
+ }
  
- #define to_drm_gpuva(__node)	container_of((__node), struct drm_gpuva, rb.node)
- 
--#define GPUVA_START(node) ((node)->va.addr)
--#define GPUVA_LAST(node) ((node)->va.addr + (node)->va.range - 1)
--
- /* We do not actually use drm_gpuva_it_next(), tell the compiler to not complain
-  * about this.
-  */
-diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
-index 00d4e43b76b6..429dc0d82eba 100644
---- a/include/drm/drm_gpuvm.h
-+++ b/include/drm/drm_gpuvm.h
-@@ -38,6 +38,10 @@ struct drm_gpuvm;
- struct drm_gpuvm_bo;
- struct drm_gpuvm_ops;
- 
-+#define GPUVA_START(node) ((node)->va.addr)
-+#define GPUVA_LAST(node) ((node)->va.addr + (node)->va.range - 1)
-+#define GPUVA_END(node) ((node)->va.addr + (node)->va.range)
++static dma_addr_t iommu_dma_link_range(struct device *dev, struct page *page,
++				       unsigned long offset, dma_addr_t iova,
++				       size_t size, enum dma_data_direction dir,
++				       unsigned long attrs)
++{
++	return __iommu_dma_map_pages(dev, page, offset, iova, size, dir, attrs);
++}
 +
- /**
-  * enum drm_gpuva_flags - flags for struct drm_gpuva
-  */
++static void iommu_dma_unlink_range(struct device *dev, dma_addr_t addr,
++				   size_t size, enum dma_data_direction dir,
++				   unsigned long attrs)
++{
++	__iommu_dma_unmap_pages(dev, addr, size, dir, attrs, false);
++}
++
+ static const struct dma_map_ops iommu_dma_ops = {
+ 	.flags			= DMA_F_PCI_P2PDMA_SUPPORTED |
+ 				  DMA_F_CAN_SKIP_SYNC,
+@@ -1792,6 +1807,8 @@ static const struct dma_map_ops iommu_dma_ops = {
+ 	.max_mapping_size       = iommu_dma_max_mapping_size,
+ 	.alloc_iova		= iommu_dma_alloc_iova,
+ 	.free_iova		= iommu_dma_free_iova,
++	.link_range		= iommu_dma_link_range,
++	.unlink_range		= iommu_dma_unlink_range,
+ };
+ 
+ void iommu_setup_dma_ops(struct device *dev)
 -- 
 2.26.3
 
