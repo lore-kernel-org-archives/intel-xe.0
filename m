@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A40A3C27C75
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 15:22:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E998BC2BA1A
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 15:22:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F9C710EACF;
-	Thu, 13 Jun 2024 15:22:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D6FB10EAD8;
+	Thu, 13 Jun 2024 15:22:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YSTVjxr2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ibuaKmVe";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAB8A10EADD
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 15:20:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B23DE10EAC4
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 15:20:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718292046; x=1749828046;
+ t=1718292044; x=1749828044;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=UYWGDbgUqgREFZlUkuKK0nw3ka6fCnhrMwMVyweuOV0=;
- b=YSTVjxr26LihLxIkuAG3giUfRQllsA2Cxsk1phuI6E4Ro2ATvgYXYDuk
- BJdf6bcbTscd391eOr9q6eO9B6hpoYm5W6DN6haa1WU797LloV3DPPzG2
- 90LaxpR6yPwVzknkR89aFi5YJ1AV4dNlj7sakum7GBjY0cxKN8tvAIYb5
- MCGI1HsF5Slpl0SZim+kwa3fpVBdP7ZRhOUmeG4IUNcJUkib2mOna0G3u
- bX9VgYPkid8rAlwjKFsl2QJDbIF3CNMiF8MXKiVTl/TsSL73XzuTEJaPf
- 3811weCsMw6z8ZjQAR+PPofqk+6wQo66upzQB5vw1lhj2Z25oCWKlc8Rz Q==;
-X-CSE-ConnectionGUID: SRFsht0yTwqocd7l9TN4YQ==
-X-CSE-MsgGUID: k/ZIzYT5SAOESsKdGSDmaA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348660"
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348660"
+ bh=v3Of0hZHT8c/8WCiJz5FPNFG7GD+WG7HzYVxvgzY8Vs=;
+ b=ibuaKmVeIAG1unQWgujfaE9qlX7bVGSOpbSlc5f3xQ6ZFSJc2s3lzIAY
+ Kf3Y715DyHFwORwIidzIwkK30wojvSu5drvjD/w7ALtYyfUPIMTn5g2PW
+ 9wF83wI1XRpcHPMveOnKx499fkHJWsMX/Wv58KnsTBwkCfNibxCfTgxB1
+ AKj8sQQFZHzAUOKLn7nyc/UTc4XqVELKaIFEfRt8ezg5TOCITP1ddgLaP
+ TrgsFL7VGtz5XJ7QITZjpOwyDXmZ8hH9rqFzpRe8q1R/qmtOftTb86GkZ
+ 3Bud9ZLdcucIKsbXcF/pY24zF8u2F7Y/zQRdtaPdoUnYns4H/2o3M/AzH g==;
+X-CSE-ConnectionGUID: tkvc8g65TgWh6fG63tA0vg==
+X-CSE-MsgGUID: kW1THMt6RbCGAsKHmJbOlw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348642"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348642"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 08:20:43 -0700
-X-CSE-ConnectionGUID: cDrVe6iuSWCavcHeE2CjOg==
-X-CSE-MsgGUID: 5pJQnH9OTu+YGCZKsW+cww==
+ 13 Jun 2024 08:20:41 -0700
+X-CSE-ConnectionGUID: ZRbTCkkLTaKFk5qdzmnBrQ==
+X-CSE-MsgGUID: vIUPhZtRTs6qkvsjCJ67HQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135116"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135087"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 08:20:42 -0700
+ 13 Jun 2024 08:20:41 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 28/42] drm/xe/uapi: Add DRM_XE_VM_CREATE_FLAG_PARTICIPATE_SVM flag
-Date: Thu, 13 Jun 2024 11:31:14 -0400
-Message-Id: <20240613153128.681864-28-oak.zeng@intel.com>
+Subject: [CI 11/42] drm/svm: Introduce helper to remap drm memory region
+Date: Thu, 13 Jun 2024 11:30:57 -0400
+Message-Id: <20240613153128.681864-11-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613153128.681864-1-oak.zeng@intel.com>
 References: <20240613153128.681864-1-oak.zeng@intel.com>
@@ -66,69 +66,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When a xe_vm is created with DRM_XE_VM_CREATE_FLAG_PARTICIPATE_SVM,
-xe_vm shares the same process address space with the CPU process who
-create this xe_vm.
+Helper function drm_svm_register_mem_region to remap GPU vram
+using devm_memremap_pages, so each GPU vram page is backed by
+struct page.
 
+Those struct pages are created to allow hmm migrate buffer b/t
+GPU vram and CPU system memory using existing Linux migration
+mechanism (i.e., migrating b/t CPU system memory and hard disk).
+
+This is prepare work to enable svm (shared virtual memory) through
+Linux kernel hmm framework. The memory remap's page map type is set
+to MEMORY_DEVICE_PRIVATE for now. This means even though each GPU
+vram page get a struct page and can be mapped in CPU page table,
+but such pages are treated as GPU's private resource, so CPU can't
+access them. If CPU access such page, a page fault is triggered
+and page will be migrate to system memory.
+
+For GPU device which supports coherent memory protocol b/t CPU and
+GPU (such as CXL and CAPI protocol), we can remap device memory as
+MEMORY_DEVICE_COHERENT. This is TBD.
+
+v1: Support a memory type interface for register_mem_region (Himal)
+
+Cc: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Dave Airlie <airlied@redhat.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Felix Kuehling <felix.kuehling@amd.com>
+Cc: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Leon Romanovsky <leonro@nvidia.com>
 Cc: Brian Welty <brian.welty@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Suggested-by: Christian Konig <Christian.koenig@amd.com>
+Cc: <dri-devel@lists.freedesktop.org>
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c       | 2 ++
- drivers/gpu/drm/xe/xe_vm_types.h | 1 +
- include/uapi/drm/xe_drm.h        | 4 ++++
- 3 files changed, 7 insertions(+)
+ drivers/gpu/drm/drm_svm.c | 56 +++++++++++++++++++++++++++++++++++++++
+ include/drm/drm_svm.h     |  3 +++
+ 2 files changed, 59 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index b11579a3fdc2..39765e4b6b78 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1832,6 +1832,8 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 		flags |= XE_VM_FLAG_LR_MODE;
- 	if (args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
- 		flags |= XE_VM_FLAG_FAULT_MODE;
-+	if (args->flags & DRM_XE_VM_CREATE_FLAG_PARTICIPATE_SVM)
-+		flags |= XE_VM_FLAG_PARTICIPATE_SVM;
+diff --git a/drivers/gpu/drm/drm_svm.c b/drivers/gpu/drm/drm_svm.c
+index 9a164615f866..741874689e32 100644
+--- a/drivers/gpu/drm/drm_svm.c
++++ b/drivers/gpu/drm/drm_svm.c
+@@ -13,6 +13,7 @@
+ #include <linux/swap.h>
+ #include <linux/bug.h>
+ #include <linux/hmm.h>
++#include <linux/pci.h>
+ #include <linux/mm.h>
  
- 	vm = xe_vm_create(xe, flags);
- 	if (IS_ERR(vm))
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 4d9707c19031..165c2ca258de 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -143,6 +143,7 @@ struct xe_vm {
- #define XE_VM_FLAG_BANNED		BIT(5)
- #define XE_VM_FLAG_TILE_ID(flags)	FIELD_GET(GENMASK(7, 6), flags)
- #define XE_VM_FLAG_SET_TILE_ID(tile)	FIELD_PREP(GENMASK(7, 6), (tile)->id)
-+#define XE_VM_FLAG_PARTICIPATE_SVM		BIT(8)
- 	unsigned long flags;
+ static u64 __npages_in_range(unsigned long start, unsigned long end)
+@@ -314,3 +315,58 @@ int drm_svm_hmmptr_populate(struct drm_hmmptr *hmmptr, void *owner, u64 start, u
+ 	return ret;
+ }
+ EXPORT_SYMBOL_GPL(drm_svm_hmmptr_populate);
++
++static struct dev_pagemap_ops drm_devm_pagemap_ops;
++
++/**
++ * drm_svm_register_mem_region: Remap and provide memmap backing for device memory
++ * @drm: drm device who want to register a memory region
++ * @mr: memory region to register
++ * @type: ZONE_DEVICE memory type
++ *
++ * This remap device memory to host physical address space and create
++ * struct page to back device memory
++ *
++ * Return: 0 on success standard error code otherwise
++ */
++int drm_svm_register_mem_region(const struct drm_device *drm,
++		struct drm_mem_region *mr, enum memory_type type)
++{
++	struct device *dev = &to_pci_dev(drm->dev)->dev;
++	struct resource *res;
++	void *addr;
++	int ret;
++
++	/**FIXME: support MEMORY_DEVICE_COHERENT in the future*/
++	if (type != MEMORY_DEVICE_PRIVATE)
++		return -EINVAL;
++
++	res = devm_request_free_mem_region(dev, &iomem_resource,
++					   mr->usable_size);
++	if (IS_ERR(res)) {
++		ret = PTR_ERR(res);
++		return ret;
++	}
++
++	drm_devm_pagemap_ops.page_free = mr->mr_ops.drm_mem_region_free_page;
++	mr->pagemap.type = type;
++	mr->pagemap.range.start = res->start;
++	mr->pagemap.range.end = res->end;
++	mr->pagemap.nr_range = 1;
++	mr->pagemap.ops = &drm_devm_pagemap_ops;
++	mr->pagemap.owner = mr->mr_ops.drm_mem_region_pagemap_owner(mr);
++	addr = devm_memremap_pages(dev, &mr->pagemap);
++	if (IS_ERR(addr)) {
++		devm_release_mem_region(dev, res->start, resource_size(res));
++		ret = PTR_ERR(addr);
++		drm_err(drm, "Failed to remap memory region %p, errno %d\n",
++				mr, ret);
++		return ret;
++	}
++	mr->hpa_base = res->start;
++
++	drm_info(drm, "Registered device memory [%llx-%llx] to devm, remapped to %pr\n",
++			mr->dpa_base, mr->dpa_base + mr->usable_size, res);
++	return 0;
++}
++EXPORT_SYMBOL_GPL(drm_svm_register_mem_region);
+diff --git a/include/drm/drm_svm.h b/include/drm/drm_svm.h
+index d443f20b5510..04552cc1c67f 100644
+--- a/include/drm/drm_svm.h
++++ b/include/drm/drm_svm.h
+@@ -164,6 +164,9 @@ static inline u64 drm_mem_region_page_to_dpa(struct drm_mem_region *mr, struct p
+ 	return dpa;
+ }
  
- 	/** @composite_fence_ctx: context composite fence */
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index af8ee6f929d4..ee09ed1ea3c2 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -830,6 +830,9 @@ struct drm_xe_gem_mmap_offset {
-  *    demand when accessed, and also allows per-VM overcommit of memory.
-  *    The xe driver internally uses recoverable pagefaults to implement
-  *    this.
-+ *  - %DRM_XE_VM_CREATE_FLAG_PARTICIPATE_SVM - This vm participates
-+ *    SVM (shared virtual memory), which means this vm share one process
-+ *    address space with CPU process who create this xe_vm.
-  */
- struct drm_xe_vm_create {
- 	/** @extensions: Pointer to the first extension struct, if any */
-@@ -838,6 +841,7 @@ struct drm_xe_vm_create {
- #define DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE	(1 << 0)
- #define DRM_XE_VM_CREATE_FLAG_LR_MODE	        (1 << 1)
- #define DRM_XE_VM_CREATE_FLAG_FAULT_MODE	(1 << 2)
-+#define DRM_XE_VM_CREATE_FLAG_PARTICIPATE_SVM	(1 << 3)
- 	/** @flags: Flags */
- 	__u32 flags;
- 
++int drm_svm_register_mem_region(const struct drm_device *drm,
++		struct drm_mem_region *mr, enum memory_type type);
++
+ /**
+  * struct drm_hmmptr- hmmptr pointer
+  *
 -- 
 2.26.3
 
