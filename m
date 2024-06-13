@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9B3CC27C4F
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 15:59:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B15DC27C4F
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 15:59:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E231710E0BB;
-	Thu, 13 Jun 2024 15:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C7BF10E02F;
+	Thu, 13 Jun 2024 15:59:20 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39ABC10E0A0;
- Thu, 13 Jun 2024 15:59:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5637510E02F;
+ Thu, 13 Jun 2024 15:59:18 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/uc=3A_Fix_and?=
- =?utf-8?q?_start_using_xe=5Fuc=5Ffw=5Fsanitize=28=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/uc=3A_Fix_and_star?=
+ =?utf-8?q?t_using_xe=5Fuc=5Ffw=5Fsanitize=28=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 13 Jun 2024 15:59:07 -0000
-Message-ID: <171829434723.73458.3486604051408454532@a6498e030952>
+Date: Thu, 13 Jun 2024 15:59:18 -0000
+Message-ID: <171829435835.73458.4066984450103977249@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240613153424.2120-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20240613153424.2120-1-michal.wajdeczko@intel.com>
@@ -48,9 +48,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5123ff6f6fa8 drm-tip: 2024y-06m-13d-15h-38m-17s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/uc: Fix and start using xe_uc_fw_sanitize()
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2756a9441e090eb2549ab0826547902d9fb5919d
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Thu Jun 13 17:34:24 2024 +0200
+
+    drm/xe/uc: Fix and start using xe_uc_fw_sanitize()
+    
+    Helper xe_uc_fw_sanitize() was defined but never used. First fix
+    it by properly exiting also from the LOAD_FAIL state, then use it
+    in GuC and HuC sanitize code.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 5123ff6f6fa8412bfba48083f334cbdbb8606cfc drm-intel
+2756a9441e09 drm/xe/uc: Fix and start using xe_uc_fw_sanitize()
 
 
