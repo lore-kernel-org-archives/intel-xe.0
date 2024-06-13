@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9312EC27C75
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D25A9C27C6E
 	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 15:22:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3755A10EAC2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9699410EAC4;
 	Thu, 13 Jun 2024 15:22:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pjfi/Aju";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b6FZ9YdK";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 002F810EAC2
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 15:20:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0FB710EACD
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 15:20:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718292046; x=1749828046;
+ t=1718292047; x=1749828047;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=p4LU9IVVHOKYvkHMgZztRqGqcrOXHZi1qcEgwDn7kV4=;
- b=Pjfi/AjuEi04bulGM0eY/hLa21lrwdNBPznvqjJzE8nq0lQ0tdm973zr
- g6OvNy+f+8icwKax6uuKCldo8QRDnc43vOenHgfal3OuhdJYVFtqFcpOD
- oRjIQg4uYxROQnRVuVLg8Bbyt3myF7urOPYtg4PxF0k/FXXVfu+c0C041
- jaNafewwb8nlrFAomAuT1Tz7qbKmPv79ISVkxdEySu/MOcYneMy1XoQ+s
- TSzGQvfeL2PM+R7MsNN0qDPaZQ8wsgfR89Ex61ID2rP6u5v9NOTH29Msg
- E++P7aBPN7KBu7yEEqjP1KCWic48vY6YqTSdMJJ4VHaijJ+JCaH0cC+ck A==;
-X-CSE-ConnectionGUID: WTikANY9SSuVv6+LjTts1g==
-X-CSE-MsgGUID: Z5J6jUMuTYuOwxyYWgZdQw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348663"
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348663"
+ bh=EUEwoI/7N8tBKTd7/xaCe14JxpaadGRiis4hd+8DpEU=;
+ b=b6FZ9YdKSB1nRuLAf2Sw3oKgOSV2bfV4Nk+ZUqJguJo4tDi0qwvd1HHp
+ YVZU/NNT89D96h4LjMevns0/4NW+kClqe299AgsFKvyqfAMDK4Nb/fZIH
+ on7iQehhnCqVm0jDc9m5b8jDbSGe6wyyNiP+B3UxoVqHjZ6t6JMDQ5NoY
+ L0euhpKB6ARlqBUlCexL1J6IqrV/aGDIIJXjYXmkASOKJAw4T2hq/73gg
+ Vknrgb4dbvphVGMB46kCl2POAlwA8/ASl+p8EPEao0RBQDxK5CnVrrdtE
+ gYM3xTCdv8M9nRzoKo0tQv/q7ZCyw5uWXa892tH5Lm4452TIppnb3EYDm Q==;
+X-CSE-ConnectionGUID: +QABin6xSoim59esbiS0bw==
+X-CSE-MsgGUID: SRxZv6WRQ+Oe4RUl5TecNA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348670"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348670"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jun 2024 08:20:43 -0700
-X-CSE-ConnectionGUID: pAzcSynwR0+qiE+V/qH2kQ==
-X-CSE-MsgGUID: 4YIuS1Q+QQ6mhjMY+8eyFw==
+X-CSE-ConnectionGUID: AKgrEVGhRpmM85DjMzb0rg==
+X-CSE-MsgGUID: 3weTiWPtQZqxsvZQToPZQQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135120"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135124"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jun 2024 08:20:43 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 31/42] drm/xe: Introduce helper to get tile from memory region
-Date: Thu, 13 Jun 2024 11:31:17 -0400
-Message-Id: <20240613153128.681864-31-oak.zeng@intel.com>
+Subject: [CI 35/42] drm/xe/svm: Add migrate layer functions for SVM support
+Date: Thu, 13 Jun 2024 11:31:21 -0400
+Message-Id: <20240613153128.681864-35-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613153128.681864-1-oak.zeng@intel.com>
 References: <20240613153128.681864-1-oak.zeng@intel.com>
@@ -66,37 +66,176 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce a simple helper to retrieve tile from memory region
+From: Matthew Brost <matthew.brost@intel.com>
 
-v1: move the function to xe_device.h (Matt)
-    improve commit message, add kerneldoc (Thomas)
-v2: move the function to xe_tile.h (Matt)
+Add functions which migrate to / from VRAM accepting a single DPA
+argument (VRAM) and array of dma addresses (SRAM).
+
+FIXME: Support non-contiguous VRAM DPA. The VRAM DPA can be an
+array and we can dynamically map DPAs into contiguous device
+virtual address space like what we did for SRAM, and still use
+one single blitter command for migration
 
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_tile.h | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/xe/xe_migrate.c | 126 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_migrate.h |   5 ++
+ 2 files changed, 131 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
-index 1c9e42ade6b0..091c5a98110a 100644
---- a/drivers/gpu/drm/xe/xe_tile.h
-+++ b/drivers/gpu/drm/xe/xe_tile.h
-@@ -15,4 +15,12 @@ int xe_tile_init_noalloc(struct xe_tile *tile);
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 15c8973c0495..40867d0de20c 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1457,6 +1457,132 @@ void xe_migrate_wait(struct xe_migrate *m)
+ 		dma_fence_wait(m->fence, false);
+ }
  
- void xe_tile_migrate_wait(struct xe_tile *tile);
- 
-+/**
-+ * xe_mem_region_to_tile() - retrieve tile from memory region
-+ * @mr: the memory region we retrieve tile from
-+ */
-+static inline struct xe_tile *xe_mem_region_to_tile(struct xe_mem_region *mr)
++static u32 pte_update_cmd_size(u64 size)
 +{
-+	return container_of(mr, struct xe_tile, mem.vram);
++	u32 dword;
++	u64 entries = DIV_ROUND_UP(size, XE_PAGE_SIZE);
++
++	XE_WARN_ON(size > MAX_PREEMPTDISABLE_TRANSFER);
++	/*
++	 * MI_STORE_DATA_IMM command is used to update page table. Each
++	 * instruction can update maximumly 0x1ff pte entries. To update
++	 * n (n <= 0x1ff) pte entries, we need:
++	 * 1 dword for the MI_STORE_DATA_IMM command header (opcode etc)
++	 * 2 dword for the page table's physical location
++	 * 2*n dword for value of pte to fill (each pte entry is 2 dwords)
++	 */
++	dword = (1 + 2) * DIV_ROUND_UP(entries, 0x1ff);
++	dword += entries * 2;
++
++	return dword;
 +}
++
++static void build_pt_update_batch_sram(struct xe_migrate *m,
++				       struct xe_bb *bb, u32 pt_offset,
++				       dma_addr_t *sram_addr, u32 size)
++{
++	u16 pat_index = tile_to_xe(m->tile)->pat.idx[XE_CACHE_WB];
++	u32 ptes;
++	int i = 0;
++
++	ptes = DIV_ROUND_UP(size, XE_PAGE_SIZE);
++	while (ptes) {
++		u32 chunk = min(0x1ffU, ptes);
++
++		bb->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_NUM_QW(chunk);
++		bb->cs[bb->len++] = pt_offset;
++		bb->cs[bb->len++] = 0;
++
++		pt_offset += chunk * 8;
++		ptes -= chunk;
++
++		while (chunk--) {
++			u64 addr = sram_addr[i++] & PAGE_MASK;
++
++			xe_tile_assert(m->tile, addr);
++			addr = m->q->vm->pt_ops->pte_encode_addr(m->tile->xe,
++								 addr, pat_index,
++								 0, false, 0);
++			bb->cs[bb->len++] = lower_32_bits(addr);
++			bb->cs[bb->len++] = upper_32_bits(addr);
++		}
++	}
++}
++
++struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
++					 unsigned long npages,
++					 dma_addr_t *sram_addr, u64 vram_addr,
++					 bool dst_vram)
++{
++	struct xe_gt *gt = m->tile->primary_gt;
++	struct xe_device *xe = gt_to_xe(gt);
++	struct dma_fence *fence = NULL;
++	u32 batch_size = 2;
++	u64 src_L0_ofs, dst_L0_ofs;
++	u64 round_update_size;
++	struct xe_sched_job *job;
++	struct xe_bb *bb;
++	u32 update_idx, pt_slot = 0;
++	int err;
++
++	round_update_size = min_t(u64, npages * PAGE_SIZE,
++				  MAX_PREEMPTDISABLE_TRANSFER);
++	batch_size += pte_update_cmd_size(round_update_size);
++	batch_size += EMIT_COPY_DW;
++
++	bb = xe_bb_new(gt, batch_size, true);
++	if (IS_ERR(bb)) {
++		err = PTR_ERR(bb);
++		return ERR_PTR(err);
++	}
++
++	build_pt_update_batch_sram(m, bb, pt_slot * XE_PAGE_SIZE,
++				   sram_addr, round_update_size);
++
++	if (dst_vram) {
++		src_L0_ofs = xe_migrate_vm_addr(pt_slot, 0);
++		dst_L0_ofs = xe_migrate_vram_ofs(xe, vram_addr);
++
++	} else {
++		src_L0_ofs = xe_migrate_vram_ofs(xe, vram_addr);
++		dst_L0_ofs = xe_migrate_vm_addr(pt_slot, 0);
++	}
++
++	bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
++	update_idx = bb->len;
++
++	emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, round_update_size,
++		  XE_PAGE_SIZE);
++
++	mutex_lock(&m->job_mutex);
++	job = xe_bb_create_migration_job(m->q, bb,
++					 xe_migrate_batch_base(m, true),
++					 update_idx);
++	if (IS_ERR(job)) {
++		err = PTR_ERR(job);
++		goto err;
++	}
++
++	xe_sched_job_add_migrate_flush(job, 0);
++	xe_sched_job_arm(job);
++	fence = dma_fence_get(&job->drm.s_fence->finished);
++	xe_sched_job_push(job);
++
++	dma_fence_put(m->fence);
++	m->fence = dma_fence_get(fence);
++	mutex_unlock(&m->job_mutex);
++
++	xe_bb_free(bb, fence);
++
++	return fence;
++
++err:
++	mutex_unlock(&m->job_mutex);
++	xe_bb_free(bb, NULL);
++
++	return ERR_PTR(err);
++}
++
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ #include "tests/xe_migrate.c"
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 453e0ecf5034..c6a18be1373f 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -115,4 +115,9 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ void xe_migrate_wait(struct xe_migrate *m);
+ 
+ struct xe_exec_queue *xe_tile_migrate_exec_queue(struct xe_tile *tile);
++
++struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
++					 unsigned long npages,
++					 dma_addr_t *sram_addr, u64 vram_addr,
++					 bool dst_vram);
  #endif
 -- 
 2.26.3
