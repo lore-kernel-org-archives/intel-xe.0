@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D821C27C4F
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 11:48:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B683C27C4F
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 11:52:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8185210E07B;
-	Thu, 13 Jun 2024 11:48:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BC6D10EA5A;
+	Thu, 13 Jun 2024 11:52:32 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3656510E07B;
- Thu, 13 Jun 2024 11:48:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3908612781704968422=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FAD310EA5A;
+ Thu, 13 Jun 2024 11:52:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/pmu=3A_Enable_PMU_interfa?=
- =?utf-8?q?ce_=28rev9=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915=3A_PREEMPT?=
+ =?utf-8?q?=5FRT_related_fixups=2E_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>
+To: "Sebastian Andrzej Siewior" <bigeasy@linutronix.de>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 13 Jun 2024 11:48:10 -0000
-Message-ID: <171827929021.72831.3200506460623468022@a6498e030952>
+Date: Thu, 13 Jun 2024 11:52:29 -0000
+Message-ID: <171827954952.73458.1077570457094718516@a6498e030952>
 X-Patchwork-Hint: ignore
-References: <20240613100411.1579218-1-riana.tauro@intel.com>
-In-Reply-To: <20240613100411.1579218-1-riana.tauro@intel.com>
+References: <20240613102818.4056866-1-bigeasy@linutronix.de>
+In-Reply-To: <20240613102818.4056866-1-bigeasy@linutronix.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,24 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3908612781704968422==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/pmu: Enable PMU interface (rev9)
-URL   : https://patchwork.freedesktop.org/series/119504/
+Series: drm/i915: PREEMPT_RT related fixups. (rev3)
+URL   : https://patchwork.freedesktop.org/series/132082/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1456-dea4e8a3a0889d80afc874513cca0d7f7a25bbcd_BAT -> xe-pw-119504v9_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 9f3ced27c8de drm-tip: 2024y-06m-13d-11h-07m-03s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915: Use preempt_disable/enable_rt() where recommended
+Applying: drm/i915: Don't disable interrupts on PREEMPT_RT during atomic updates
+Applying: drm/i915: Don't check for atomic context on PREEMPT_RT
+Applying: drm/i915: Disable tracing points on PREEMPT_RT
+Applying: drm/i915/gt: Use spin_lock_irq() instead of local_irq_disable() + spin_lock()
+Applying: drm/i915: Drop the irqs_disabled() check
+Applying: drm/i915/guc: Consider also RCU depth in busy loop.
+Applying: Revert "drm/i915: Depend on !PREEMPT_RT."
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1456-dea4e8a3a0889d80afc874513cca0d7f7a25bbcd -> xe-pw-119504v9
-
-  IGT_7884: 3c02edb64e6feef931f1df9898d129b0a92a39eb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1456-dea4e8a3a0889d80afc874513cca0d7f7a25bbcd: dea4e8a3a0889d80afc874513cca0d7f7a25bbcd
-  xe-pw-119504v9: 119504v9
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119504v9/index.html
-
---===============3908612781704968422==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pmu: Enable PMU interface (rev9)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119504/">https://patchwork.freedesktop.org/series/119504/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119504v9/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119504v9/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1456-dea4e8a3a0889d80afc874513cca0d7f7a25bbcd_BAT -&gt; xe-pw-119504v9_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1456-dea4e8a3a0889d80afc874513cca0d7f7a25bbcd -&gt; xe-pw-119504v9</li>
-</ul>
-<p>IGT_7884: 3c02edb64e6feef931f1df9898d129b0a92a39eb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1456-dea4e8a3a0889d80afc874513cca0d7f7a25bbcd: dea4e8a3a0889d80afc874513cca0d7f7a25bbcd<br />
-  xe-pw-119504v9: 119504v9</p>
-
-</body>
-</html>
-
---===============3908612781704968422==--
