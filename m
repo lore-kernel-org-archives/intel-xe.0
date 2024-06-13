@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 889F0C27C4F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B91E9C2BA18
 	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 04:14:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 201BD10E17A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5628810E967;
 	Thu, 13 Jun 2024 04:14:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jvZpir+O";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZgnO3gkH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC95410E0E3
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 04:13:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9ED2B10E048
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 04:13:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718252028; x=1749788028;
+ t=1718252029; x=1749788029;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=kAR/rZXQtDK44SKrq3NBFPwI6ghIJjnPv/F32bVH6PM=;
- b=jvZpir+OSR2hpIQBxdBEu6lFJGObLuOhEsMQ23ZJMuZgSnjLdMQJ7U6c
- 7+j2IhWOA/7xLTifTziKvxbI50MaueCMDZXdnJc1GEvXPzGrGEAmtmWtK
- ZnClVaAkH/+b7pSdeXnyQjMXLi4YDpO4gkFVRJDR62dUhR5zkw1ClH/8I
- sAN0gI9q67RFCVlj6n5rht02/8hwYyTba9dbSE/MAgmNxn9G+APArQroI
- 0yvVZQzN80rKWCwD1cj4docQEjLbcPyMHZtRynGh0H68oLbB9M/oy6hs+
- IDfkgeMzGltaSklBvlX7/ZqILH7GE89hh8iDn4XlenN6a/B1vcdaMd1/C w==;
-X-CSE-ConnectionGUID: DhNwILGZQZyJODMmjjMfww==
-X-CSE-MsgGUID: Ozcf2NB4RUeNhjXYomljuQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14847957"
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14847957"
+ bh=v3Of0hZHT8c/8WCiJz5FPNFG7GD+WG7HzYVxvgzY8Vs=;
+ b=ZgnO3gkHqBQPlNn6bImFwlI9Me0mDKsf7XRYR4NONBYLtFSuog8vrd56
+ WJLWjlLdX9tbdEKnlaJ6eu+oxW5i4G3jCHAXNLeqkxrnp0T9ohR72TKFx
+ WFeWwba9mLvmWjHCiMrLBs0EaCZdPpX569oq7qmeL99EodAXEgW+IrZeh
+ 42S5sl9xonhaJA+NW8kLso6PCNmO5TDXN+9I+nlAkbJ/mi16en46qLQEg
+ fDpZHz/aMchtvvypNYwcpl2K9Rfp+DswGKpt8QIbVowWdku7lyWuKrj86
+ iBGNJNRgpQIbdShMRZQ80QO/XEkeboElO0d0g5NzTXjgyPx0kHmN6+p3q A==;
+X-CSE-ConnectionGUID: 4cBLEuvrT7GSr9YoA/xX/Q==
+X-CSE-MsgGUID: QIXLZ0piRzSU5Jl3UUifjA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14847962"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14847962"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2024 21:13:47 -0700
-X-CSE-ConnectionGUID: WCoOPT6ARfGLV3fHUSzeQA==
-X-CSE-MsgGUID: m0pnjOR6S16Ij8pJn9Q1Iw==
+ 12 Jun 2024 21:13:48 -0700
+X-CSE-ConnectionGUID: wLbVcxvhRCK9mlr1/7NXwQ==
+X-CSE-MsgGUID: J6VW7AK4RNORh7jShWVgHw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40476324"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40476327"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Jun 2024 21:13:47 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 08/42] drm/svm: Mark drm_gpuvm to participate SVM
-Date: Thu, 13 Jun 2024 00:23:55 -0400
-Message-Id: <20240613042429.637281-8-oak.zeng@intel.com>
+Subject: [CI 11/42] drm/svm: Introduce helper to remap drm memory region
+Date: Thu, 13 Jun 2024 00:23:58 -0400
+Message-Id: <20240613042429.637281-11-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613042429.637281-1-oak.zeng@intel.com>
 References: <20240613042429.637281-1-oak.zeng@intel.com>
@@ -66,113 +66,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A mm_struct field is added to drm_gpuvm. Also add a parameter to
-drm_gpuvm_init to say whether this gpuvm participate svm (shared
-virtual memory with CPU process). Under SVM, CPU program and GPU
-program share one process virtual address space.
+Helper function drm_svm_register_mem_region to remap GPU vram
+using devm_memremap_pages, so each GPU vram page is backed by
+struct page.
 
+Those struct pages are created to allow hmm migrate buffer b/t
+GPU vram and CPU system memory using existing Linux migration
+mechanism (i.e., migrating b/t CPU system memory and hard disk).
+
+This is prepare work to enable svm (shared virtual memory) through
+Linux kernel hmm framework. The memory remap's page map type is set
+to MEMORY_DEVICE_PRIVATE for now. This means even though each GPU
+vram page get a struct page and can be mapped in CPU page table,
+but such pages are treated as GPU's private resource, so CPU can't
+access them. If CPU access such page, a page fault is triggered
+and page will be migrate to system memory.
+
+For GPU device which supports coherent memory protocol b/t CPU and
+GPU (such as CXL and CAPI protocol), we can remap device memory as
+MEMORY_DEVICE_COHERENT. This is TBD.
+
+v1: Support a memory type interface for register_mem_region (Himal)
+
+Cc: Daniel Vetter <daniel.vetter@intel.com>
 Cc: Dave Airlie <airlied@redhat.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Christian König <christian.koenig@amd.com>
 Cc: Felix Kuehling <felix.kuehling@amd.com>
 Cc: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Leon Romanovsky <leonro@nvidia.com>
 Cc: Brian Welty <brian.welty@intel.com>
 Cc: <dri-devel@lists.freedesktop.org>
-Suggested-by: Christian König <christian.koenig@amd.com>
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/drm_gpuvm.c            | 7 ++++++-
- drivers/gpu/drm/nouveau/nouveau_uvmm.c | 2 +-
- drivers/gpu/drm/xe/xe_vm.c             | 2 +-
- include/drm/drm_gpuvm.h                | 8 +++++++-
- 4 files changed, 15 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/drm_svm.c | 56 +++++++++++++++++++++++++++++++++++++++
+ include/drm/drm_svm.h     |  3 +++
+ 2 files changed, 59 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
-index 7402ed6f1d33..5f246ca472a8 100644
---- a/drivers/gpu/drm/drm_gpuvm.c
-+++ b/drivers/gpu/drm/drm_gpuvm.c
-@@ -984,6 +984,8 @@ EXPORT_SYMBOL_GPL(drm_gpuvm_resv_object_alloc);
-  * @reserve_offset: the start of the kernel reserved GPU VA area
-  * @reserve_range: the size of the kernel reserved GPU VA area
-  * @ops: &drm_gpuvm_ops called on &drm_gpuvm_sm_map / &drm_gpuvm_sm_unmap
-+ * @participate_svm: whether this gpuvm participat shared virtual memory
-+ * with CPU mm
-  *
-  * The &drm_gpuvm must be initialized with this function before use.
-  *
-@@ -997,7 +999,7 @@ drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
- 	       struct drm_gem_object *r_obj,
- 	       u64 start_offset, u64 range,
- 	       u64 reserve_offset, u64 reserve_range,
--	       const struct drm_gpuvm_ops *ops)
-+	       const struct drm_gpuvm_ops *ops, bool participate_svm)
- {
- 	gpuvm->rb.tree = RB_ROOT_CACHED;
- 	INIT_LIST_HEAD(&gpuvm->rb.list);
-@@ -1016,6 +1018,9 @@ drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
- 	gpuvm->drm = drm;
- 	gpuvm->r_obj = r_obj;
+diff --git a/drivers/gpu/drm/drm_svm.c b/drivers/gpu/drm/drm_svm.c
+index 9a164615f866..741874689e32 100644
+--- a/drivers/gpu/drm/drm_svm.c
++++ b/drivers/gpu/drm/drm_svm.c
+@@ -13,6 +13,7 @@
+ #include <linux/swap.h>
+ #include <linux/bug.h>
+ #include <linux/hmm.h>
++#include <linux/pci.h>
+ #include <linux/mm.h>
  
-+	if (participate_svm)
-+		gpuvm->mm = current->mm;
+ static u64 __npages_in_range(unsigned long start, unsigned long end)
+@@ -314,3 +315,58 @@ int drm_svm_hmmptr_populate(struct drm_hmmptr *hmmptr, void *owner, u64 start, u
+ 	return ret;
+ }
+ EXPORT_SYMBOL_GPL(drm_svm_hmmptr_populate);
 +
- 	drm_gem_object_get(r_obj);
++static struct dev_pagemap_ops drm_devm_pagemap_ops;
++
++/**
++ * drm_svm_register_mem_region: Remap and provide memmap backing for device memory
++ * @drm: drm device who want to register a memory region
++ * @mr: memory region to register
++ * @type: ZONE_DEVICE memory type
++ *
++ * This remap device memory to host physical address space and create
++ * struct page to back device memory
++ *
++ * Return: 0 on success standard error code otherwise
++ */
++int drm_svm_register_mem_region(const struct drm_device *drm,
++		struct drm_mem_region *mr, enum memory_type type)
++{
++	struct device *dev = &to_pci_dev(drm->dev)->dev;
++	struct resource *res;
++	void *addr;
++	int ret;
++
++	/**FIXME: support MEMORY_DEVICE_COHERENT in the future*/
++	if (type != MEMORY_DEVICE_PRIVATE)
++		return -EINVAL;
++
++	res = devm_request_free_mem_region(dev, &iomem_resource,
++					   mr->usable_size);
++	if (IS_ERR(res)) {
++		ret = PTR_ERR(res);
++		return ret;
++	}
++
++	drm_devm_pagemap_ops.page_free = mr->mr_ops.drm_mem_region_free_page;
++	mr->pagemap.type = type;
++	mr->pagemap.range.start = res->start;
++	mr->pagemap.range.end = res->end;
++	mr->pagemap.nr_range = 1;
++	mr->pagemap.ops = &drm_devm_pagemap_ops;
++	mr->pagemap.owner = mr->mr_ops.drm_mem_region_pagemap_owner(mr);
++	addr = devm_memremap_pages(dev, &mr->pagemap);
++	if (IS_ERR(addr)) {
++		devm_release_mem_region(dev, res->start, resource_size(res));
++		ret = PTR_ERR(addr);
++		drm_err(drm, "Failed to remap memory region %p, errno %d\n",
++				mr, ret);
++		return ret;
++	}
++	mr->hpa_base = res->start;
++
++	drm_info(drm, "Registered device memory [%llx-%llx] to devm, remapped to %pr\n",
++			mr->dpa_base, mr->dpa_base + mr->usable_size, res);
++	return 0;
++}
++EXPORT_SYMBOL_GPL(drm_svm_register_mem_region);
+diff --git a/include/drm/drm_svm.h b/include/drm/drm_svm.h
+index d443f20b5510..04552cc1c67f 100644
+--- a/include/drm/drm_svm.h
++++ b/include/drm/drm_svm.h
+@@ -164,6 +164,9 @@ static inline u64 drm_mem_region_page_to_dpa(struct drm_mem_region *mr, struct p
+ 	return dpa;
+ }
  
- 	drm_gpuvm_warn_check_overflow(gpuvm, start_offset, range);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-index ee02cd833c5e..0d11f1733e29 100644
---- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-@@ -1861,7 +1861,7 @@ nouveau_uvmm_ioctl_vm_init(struct drm_device *dev,
- 		       NOUVEAU_VA_SPACE_END,
- 		       init->kernel_managed_addr,
- 		       init->kernel_managed_size,
--		       &gpuvm_ops);
-+		       &gpuvm_ops, false);
- 	/* GPUVM takes care from here on. */
- 	drm_gem_object_put(r_obj);
- 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 99bf7412475c..14069fc9d820 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1363,7 +1363,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 	}
- 
- 	drm_gpuvm_init(&vm->gpuvm, "Xe VM", DRM_GPUVM_RESV_PROTECTED, &xe->drm,
--		       vm_resv_obj, 0, vm->size, 0, 0, &gpuvm_ops);
-+		       vm_resv_obj, 0, vm->size, 0, 0, &gpuvm_ops, false);
- 
- 	drm_gem_object_put(vm_resv_obj);
- 
-diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
-index 429dc0d82eba..838dd7137f07 100644
---- a/include/drm/drm_gpuvm.h
-+++ b/include/drm/drm_gpuvm.h
-@@ -242,6 +242,12 @@ struct drm_gpuvm {
- 	 * @drm: the &drm_device this VM lives in
- 	 */
- 	struct drm_device *drm;
-+	/**
-+	 * @mm: the process &mm_struct which create this gpuvm.
-+	 * This is only used for shared virtual memory where virtual
-+	 * address space is shared b/t CPU and GPU program.
-+	 */
-+	struct mm_struct *mm;
- 
- 	/**
- 	 * @mm_start: start of the VA space
-@@ -342,7 +348,7 @@ void drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
- 		    struct drm_gem_object *r_obj,
- 		    u64 start_offset, u64 range,
- 		    u64 reserve_offset, u64 reserve_range,
--		    const struct drm_gpuvm_ops *ops);
-+		    const struct drm_gpuvm_ops *ops, bool participate_svm);
- 
++int drm_svm_register_mem_region(const struct drm_device *drm,
++		struct drm_mem_region *mr, enum memory_type type);
++
  /**
-  * drm_gpuvm_get() - acquire a struct drm_gpuvm reference
+  * struct drm_hmmptr- hmmptr pointer
+  *
 -- 
 2.26.3
 
