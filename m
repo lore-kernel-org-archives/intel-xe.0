@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 942A9C27C4F
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 04:14:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 262E4C2BA16
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 04:14:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 160E110E163;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7451610E1C8;
 	Thu, 13 Jun 2024 04:14:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GUd4/uHY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DcUQE9p+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 234D610E102
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E887D10E0E3
  for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 04:13:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718252029; x=1749788029;
+ t=1718252030; x=1749788030;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=jR6Ze7ImgG7AqysrtmRLIfYjq86G2fDZ3TLKE2UhhCk=;
- b=GUd4/uHYlfeDLW/PckaefkOW4eKpixDz6bl68QCjM41A7FTaRDB94sHO
- jeajs37yWvSduWpgsigqM8tcOaIFO5KjnDucTESg8oHUKR4ITFmjhon0n
- NkU0EXhW3VHDGNVvEdYobqAJt3XC17OGwgZWNczmxBCWE4Cqm8GBOSBnk
- G/r0aS0OeIFVbn+2sBwN7PuYZi6SLWMPsbXkCt9qQVoock52wxZ7DtVVl
- Lw+4lzpwcXq/5H3weXS9nojnxv4aqywHecMUr6pb0adRCEEhUp1Mmlhld
- M9H+FDSWHciY6JSql4ebZF/0b71ZTMvwRF3vVURc/n5uzajmByVqRzvoH w==;
-X-CSE-ConnectionGUID: pQ0gUUiLRI2sxdzmWmQuuw==
-X-CSE-MsgGUID: Y5N2tYkyTZOoTtV/HKyZ/g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14847959"
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14847959"
+ bh=nFJqYxJS3XDL5z6O2JSYSrN/XOG5NbmObj2Vf7jVrEU=;
+ b=DcUQE9p+ItzHoZNtLmpGl9ITcdtRNcyFl9s2ltA4Ypq0fLAkvmHwUCan
+ nuFRJ3s4MIB5SttJ3RTqdiWRGQnGm/D7+QAY8RH7e9KEsYfpT4wgzaY4T
+ +9rItk4MxGPfwwA0ZPv4o+UkoMo64vxGGJwY9aU9ZwPrGktlmbTNNq3ly
+ 6Qet6V89FR3+YSF6tYQYu/lteDdCJiaGgS5bhmIYVqktV9iKA1uJLqsBS
+ AO41DzN/01IYtu6kltmV419W+l3rvfXjVSAXlHUBAB61FZDR/9mfDRC+v
+ yarNwGK6Wc9BFVKMfqIO5msZieEP94jXrLgM9RPi+Ss2th6YC+l62URtm Q==;
+X-CSE-ConnectionGUID: xYaTJ1BlRFCRu4GRnt6BHQ==
+X-CSE-MsgGUID: CAh3G9qMR/66mjlTXWepiw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14847964"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14847964"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2024 21:13:47 -0700
-X-CSE-ConnectionGUID: 1QYB/LvdQRqzMdNzs/t3KQ==
-X-CSE-MsgGUID: fSCIHV+1T/iyzHzVIyZH/Q==
+ 12 Jun 2024 21:13:48 -0700
+X-CSE-ConnectionGUID: sgL3DLQjTliccm32c2Im5A==
+X-CSE-MsgGUID: FopV5U6KQTWiWdJNCaYVqA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40476325"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40476328"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Jun 2024 21:13:47 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 09/42] drm/svm: introduce drm_mem_region concept
-Date: Thu, 13 Jun 2024 00:23:56 -0400
-Message-Id: <20240613042429.637281-9-oak.zeng@intel.com>
+Subject: [CI 12/42] drm/svm: handle CPU page fault
+Date: Thu, 13 Jun 2024 00:23:59 -0400
+Message-Id: <20240613042429.637281-12-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613042429.637281-1-oak.zeng@intel.com>
 References: <20240613042429.637281-1-oak.zeng@intel.com>
@@ -66,213 +66,320 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As its name indicates, a drm_mem_region represent a memory region on
-a drm device, e.g., a GPU's HBM memory.
+Under the picture of svm, CPU and GPU program share the same
+virtual address space. The backing store of this virtual address
+space can be either in system memory or device memory. Since GPU
+device memory is remaped as DEVICE_PRIVATE, CPU can't access it.
+Any CPU access to device memory causes a page fault. Implement
+a page fault handler to migrate memory back to system memory and
+map it to CPU page table so the CPU program can proceed.
 
-In a memory region, we have address information of this region, from
-both CPU (hpa_base) and GPU (dpa_base) perspectives. It has a pagemap
-member which is used to memremap memory region to ZONE_DEVICE. It also
-has some interfaces for drm to callback driver to allocate/free memory from
-this region, migrate data to/from this memory region, get a pagemap
-owner of a memory region, and get the drm device which own the memory
-region.
-
-This is introduced for system allocator implementation, so the memory
-allocation and free interfaces are page based.
-
-A few helper functions are also introduced:
-1) drm_mem_region_page_to_dpa: calculate device physical address for
-   a page
-2) drm_page_to_mem_region: retrieve drm memory region that a page
-   resides in
-
-v1: use page parameter instead of pfn (Matt)
-Add BUG_ON(mr != drm_page_to_mem_region(page)) (Matt)
-
+Cc: Daniel Vetter <daniel.vetter@intel.com>
 Cc: Dave Airlie <airlied@redhat.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Felix Kuehling <felix.kuehling@amd.com>
 Cc: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Leon Romanovsky <leonro@nvidia.com>
 Cc: Brian Welty <brian.welty@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Cc: <dri-devel@lists.freedesktop.org>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- include/drm/drm_svm.h | 162 ++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 162 insertions(+)
- create mode 100644 include/drm/drm_svm.h
+ drivers/gpu/drm/drm_svm.c | 272 +++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 271 insertions(+), 1 deletion(-)
 
-diff --git a/include/drm/drm_svm.h b/include/drm/drm_svm.h
-new file mode 100644
-index 000000000000..a383c7251e2b
---- /dev/null
-+++ b/include/drm/drm_svm.h
-@@ -0,0 +1,162 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright Â© 2024 Intel Corporation
-+ */
+diff --git a/drivers/gpu/drm/drm_svm.c b/drivers/gpu/drm/drm_svm.c
+index 741874689e32..80c5b7146ba6 100644
+--- a/drivers/gpu/drm/drm_svm.c
++++ b/drivers/gpu/drm/drm_svm.c
+@@ -8,6 +8,7 @@
+ #include <linux/mmu_notifier.h>
+ #include <linux/dma-mapping.h>
+ #include <linux/memremap.h>
++#include <linux/migrate.h>
+ #include <drm/drm_gem_dma_helper.h>
+ #include <drm/drm_svm.h>
+ #include <linux/swap.h>
+@@ -316,7 +317,276 @@ int drm_svm_hmmptr_populate(struct drm_hmmptr *hmmptr, void *owner, u64 start, u
+ }
+ EXPORT_SYMBOL_GPL(drm_svm_hmmptr_populate);
+ 
+-static struct dev_pagemap_ops drm_devm_pagemap_ops;
++static void __drm_svm_free_pages(unsigned long *mpfn, unsigned long npages)
++{
++	struct page *page;
++	int j;
 +
-+#ifndef _DRM_SVM__
-+#define _DRM_SVM__
-+
-+#include <linux/compiler_types.h>
-+#include <linux/memremap.h>
-+#include <linux/types.h>
-+
-+struct dma_fence;
-+struct drm_mem_region;
++	for (j = 0; j < npages; j++) {
++		page = migrate_pfn_to_page(mpfn[j]);
++		mpfn[j] = 0;
++		if (page) {
++			unlock_page(page);
++			put_page(page);
++		}
++	}
++}
 +
 +/**
-+ * struct migrate_vec - a migration vector is an array of addresses,
-+ * each of which represents one page.
-+ * When it is system memory page, the address is a dmap-mapped address.
-+ * When it is vram page, the address is device physical address.
++ * __drm_svm_alloc_host_pages() - allocate host pages for the fault vma
++ *
++ * @vma: the fault vma that we need allocate page for
++ * @addr: the virtual address that we allocate pages for
++ * @mpfn: used to output the migration pfns of the allocated pages
++ * @npages: number of pages to allocate
++ *
++ * This function allocate host pages for a specified vma.
++ *
++ * When this function returns, the pages are locked.
++ *
++ * Return 0 on success
++ * error code otherwise
 + */
-+struct migrate_vec {
-+	/**
-+	 * @mr: the memory region that pages reside.
-+	 * When it is system memory page, mr is NULL.
-+	 */
++static int __drm_svm_alloc_host_pages(struct vm_area_struct *vma,
++					unsigned long addr,
++					u64 npages,
++					unsigned long *mpfn)
++{
++	struct page *page;
++	int i;
++
++	for (i = 0; i < npages; i++) {
++		page = alloc_page_vma(GFP_HIGHUSER, vma, addr);
++		if (unlikely(!page))
++			goto free_allocated;
++
++		/**Lock page per hmm requirement, see hmm.rst*/
++		lock_page(page);
++
++		mpfn[i] = migrate_pfn(page_to_pfn(page));
++		addr += PAGE_SIZE;
++	}
++	return 0;
++
++free_allocated:
++	__drm_svm_free_pages(mpfn, i);
++	return -ENOMEM;
++}
++
++static struct migrate_vec *__generate_migrate_vec_vram(unsigned long *mpfn, bool is_migrate_src, unsigned long npages)
++{
++	struct migrate_vec *vec;
++	int size = sizeof(*vec) + sizeof(vec->addr_vec[1]) * (npages - 1);
 +	struct drm_mem_region *mr;
-+	/** @npages: number of pages */
-+	u64 npages;
-+	/**
-+	 * @addr_vec: address vector
-+	 * each item in addr_vec is an address of a page
-+	 */
-+	union {
-+		/** @dma_addr: dma-mapped address of the page, only valid for system pages*/
-+		dma_addr_t dma_addr;
-+		/** @dpa: device physical address of the page, only valid for vram page*/
-+		phys_addr_t dpa;
-+	} addr_vec[1];
-+};
-+
-+/**
-+ * struct drm_mem_region_ops - memory region operations such as memory allocation
-+ * and migration etc. Driver is supposed to implement those operations.
-+ */
-+struct drm_mem_region_ops {
-+	/**
-+	 * @drm_mem_region_alloc_pages: Called from drm to driver to allocate
-+	 * device VRAM memory
-+	 * @mr: The memory region where to allocate device VRAM memory from
-+	 * @npages: number of pages to allocate
-+	 * @pfns: Used to return pfns of each page
-+	 */
-+	int (*drm_mem_region_alloc_pages) (struct drm_mem_region *mr,
-+						unsigned long npags, unsigned long *pfns);
-+	/**
-+	 * @drm_mem_region_free_page: Called from drm to free one page of device memory
-+	 * @page: point to the page to free
-+	 */
-+	void (*drm_mem_region_free_page) (struct page *page);
-+	/**
-+	 * @drm_mem_region_migrate: Called from drm to migrate memory from src to
-+	 * dst. Driver is supposed to implement this function using device hardware
-+	 * accelerators such as DMA. DRM subsystem call this function to migrate
-+	 * memory b/t system memory and device memory region
-+	 *
-+	 * @src_vec: source migration vector
-+	 * @dst_vec: destination migration vector
-+	 */
-+	struct dma_fence* (*drm_mem_region_migrate)(struct migrate_vec *src_vec,
-+			struct migrate_vec *dst_vec);
-+	/**
-+	 * @drm_mem_region_pagemap_owner: Return the pagemap owner of a memory
-+	 * region. Pagemap owner is the owner of the device memory. It is
-+	 * defined by device driver and opaque to drm layer. Drm uses pagemap
-+	 * owner to set up page migrations (see hmm function migrate_vma_setup)
-+	 * and range population (see hmm functio hmm_range_fault). Driver has
-+	 * the freedom to choose the right pagemap owner.
-+	 *
-+	 * @mr: the memory region which we want to get the page map owner
-+	 */
-+	void* (*drm_mem_region_pagemap_owner)(struct drm_mem_region *mr);
-+	/**
-+	 * @drm_mem_region_get_device: Return the drm device which has this memory
-+	 * region.
-+	 *
-+	 * @mr: the memory region
-+	 */
-+	struct drm_device* (*drm_mem_region_get_device)(struct drm_mem_region *mr);
-+};
-+
-+/**
-+ * struct drm_mem_region - memory region structure
-+ * This is used to describe a memory region in drm
-+ * device, such as HBM memory or CXL extension memory.
-+ *
-+ * drm_mem_region is converted from the xe_mem_region
-+ * concept. xe_mem_region is moved to drm layer and renamed
-+ * as drm_mem_region.
-+ *
-+ * drm_mem_region is supposed to be embedded in some driver struct such as
-+ * "struct xe_tile" or "struct amdgpu_device"
-+ */
-+struct drm_mem_region {
-+	/** @dev_private: device private data which is opaque to drm layer */
-+	void *dev_private;
-+	/** @dpa_base: This memory regions's DPA (device physical address) base */
-+	resource_size_t dpa_base;
-+	/**
-+	 * @usable_size: usable size of VRAM
-+	 *
-+	 * Usable size of VRAM excluding reserved portions
-+	 * (e.g stolen mem)
-+	 */
-+	resource_size_t usable_size;
-+	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
-+	struct dev_pagemap pagemap;
-+	/**
-+	 * @hpa_base: base host physical address
-+	 *
-+	 * This is generated when remap device memory as ZONE_DEVICE
-+	 */
-+	resource_size_t hpa_base;
-+	/**
-+	 * @mr_ops: memory region operation function pointers
-+	 */
-+	struct drm_mem_region_ops mr_ops;
-+};
-+
-+/**
-+ * drm_page_to_mem_region() - Get a page's memory region
-+ *
-+ * @page: a struct page pointer pointing to a page in vram memory region
-+ */
-+static inline struct drm_mem_region *drm_page_to_mem_region(struct page *page)
-+{
-+	return container_of(page->pgmap, struct drm_mem_region, pagemap);
-+}
-+
-+/**
-+ * drm_mem_region_page_to_dpa() - Calculate page's device physical address
-+ *
-+ * @mr: The memory region that page resides in
-+ * @page: page to calculate dpa for
-+ *
-+ * Returns: the device physical address of the page
-+ */
-+static inline u64 drm_mem_region_page_to_dpa(struct drm_mem_region *mr, struct page *page)
-+{
-+	u64 pfn = page_to_pfn(page);
-+	u64 offset;
++	struct page *page;
 +	u64 dpa;
++	int i, j;
 +
-+	BUG_ON(mr != drm_page_to_mem_region(page));
-+	BUG_ON((pfn << PAGE_SHIFT) < mr->hpa_base );
-+	BUG_ON((pfn << PAGE_SHIFT) >=  mr->hpa_base + mr->usable_size);
-+	offset = (pfn << PAGE_SHIFT) - mr->hpa_base;
-+	dpa = mr->dpa_base + offset;
++	BUG_ON(is_migrate_src && npages != 1);
++	vec = kzalloc(size, GFP_KERNEL);
++	if (!vec)
++		return NULL;
 +
-+	return dpa;
++	mr = drm_page_to_mem_region(page);
++	for(i = 0, j = 0; i < npages; i++) {
++		/**
++		 * We only migrate one page from vram to sram on CPU page fault today.
++		 * If this source page is not marked with _MIGRATE flag, something is
++		 * wrong. We need to report error to core mm.
++		 *
++		 * If we move to multiple pages migration, below logic need a revisit,
++		 * as it is fine to only migrate some pages (but not all) as indicated
++		 * by hmm.
++		 */
++		if (is_migrate_src && !(mpfn[i] & MIGRATE_PFN_MIGRATE)) {
++			pr_err("Migrate from vram to sram: MIGRATE_PFN_MIGRATE flag is not set\n");
++			kfree(vec);
++			return NULL;
++		}
++
++		page = migrate_pfn_to_page(mpfn[i]);
++		if (!page || !is_device_private_page(page)) {
++			pr_err("No page or wrong page zone in %s\n", __func__);
++			kfree(vec);
++			return NULL;
++		}
++
++		dpa = drm_mem_region_page_to_dpa(mr, page);
++		vec->addr_vec[j++].dpa = dpa;
++	}
++	vec->mr = mr;
++	vec->npages = j;
++	return vec;
 +}
-+#endif
++
++static struct migrate_vec *__generate_migrate_vec_sram(struct device *dev, unsigned long *mpfn,
++		bool is_migrate_src, unsigned long npages)
++{
++	enum dma_data_direction dir = is_migrate_src ? DMA_TO_DEVICE : DMA_FROM_DEVICE;
++	struct migrate_vec *vec;
++	int size = sizeof(*vec) + sizeof(vec->addr_vec[1]) * (npages - 1);
++	dma_addr_t dma_addr;
++	struct page *page;
++	int i, j, k;
++
++	page = migrate_pfn_to_page(mpfn[0]);
++	if (unlikely(!page))
++		return NULL;
++
++	vec = kzalloc(size, GFP_KERNEL);
++	if (!vec)
++		return NULL;
++
++	for(i = 0, k =0 ; i < npages; i++) {
++		if (is_migrate_src && !(mpfn[i] & MIGRATE_PFN_MIGRATE))
++			continue;
++
++		page = migrate_pfn_to_page(mpfn[i]);
++		if (!page || is_device_private_page(page)) {
++			pr_err("No page or wrong page zone in %s\n", __func__);
++			goto undo_dma_mapping;
++		}
++
++		dma_addr = dma_map_page(dev, page, 0, PAGE_SIZE, dir);
++		if (unlikely(dma_mapping_error(dev, dma_addr)))
++			goto undo_dma_mapping;
++
++		vec->addr_vec[k++].dma_addr = dma_addr;
++	}
++
++	vec->mr = NULL;
++	vec->npages = k;
++	return vec;
++
++undo_dma_mapping:
++	for (j = 0; j < k; j++) {
++		if (vec->addr_vec[j].dma_addr)
++			dma_unmap_page(dev, vec->addr_vec[j].dma_addr, PAGE_SIZE, dir);
++	}
++	kfree(vec);
++	return NULL;
++}
++
++static void __free_migrate_vec_sram(struct device *dev, struct migrate_vec *vec, bool is_migrate_src)
++{
++	enum dma_data_direction dir = is_migrate_src ? DMA_TO_DEVICE : DMA_FROM_DEVICE;
++	int i;
++
++	BUG_ON(vec->mr != NULL);
++
++	for (i = 0; i < vec->npages; i++) {
++		dma_unmap_page(dev, vec->addr_vec[i].dma_addr, PAGE_SIZE, dir);
++		/** No need to free host pages. migrate_vma_finalize take care */
++	}
++	kfree(vec);
++}
++
++static void __free_migrate_vec_vram(struct migrate_vec *vec)
++{
++	BUG_ON(vec->mr == NULL);
++
++	kfree(vec);
++}
++/**
++ * drm_svm_migrate_to_sram() - Migrate memory back to sram on CPU page fault
++ *
++ * @vmf: cpu vm fault structure, contains fault information such as vma etc.
++ *
++ * Note, this is in CPU's vm fault handler, caller holds the mmap read lock.
++ *
++ * This function migrate one page at the fault address. This is the normal
++ * core mm page fault scheme. Linux doesn't aggressively prefault at CPU page
++ * fault time. It only fault-in one page to recover the fault address. Even
++ * if we migrate more than one page, core mm still only program one pte entry
++ * (covers one page).See logic in function handle_pte_fault. do_swap_page
++ * eventually calls to drm_svm_migrate_to_sram in our case.
++ *
++ * We call migrate_vma_setup to set up the migration. During migrate_vma_setup,
++ * device page table is invalidated before migration (by calling the driver registered
++ * mmu notifier)
++ *
++ * We call migrate_vma_finalize to finalize the migration. During migrate_vma_finalize,
++ * device pages of the source buffer is freed (by calling memory region's
++ * drm_mem_region_free_page callback function)
++ *
++ * Return:
++ * 0 on success
++ * VM_FAULT_SIGBUS: failed to migrate page to system memory, application
++ * will be signaled a SIGBUG
++ */
++static vm_fault_t drm_svm_migrate_to_sram(struct vm_fault *vmf)
++{
++	struct drm_mem_region *mr = drm_page_to_mem_region(vmf->page);
++	struct drm_device *drm = mr->mr_ops.drm_mem_region_get_device(mr);
++	unsigned long src_pfn = 0, dst_pfn = 0;
++	struct device *dev = drm->dev;
++	struct vm_area_struct *vma = vmf->vma;
++	struct migrate_vec *src;
++	struct migrate_vec *dst;
++	struct dma_fence *fence;
++	vm_fault_t ret = 0, r;
++
++	struct migrate_vma migrate_vma = {
++		.vma		= vma,
++		.start		= ALIGN_DOWN(vmf->address, PAGE_SIZE),
++		.end		= ALIGN_DOWN(vmf->address, PAGE_SIZE) + PAGE_SIZE,
++		.src		= &src_pfn,
++		.dst		= &dst_pfn,
++		.pgmap_owner	= mr->mr_ops.drm_mem_region_pagemap_owner(mr),
++		.flags		= MIGRATE_VMA_SELECT_DEVICE_PRIVATE,
++		.fault_page = vmf->page,
++	};
++
++	if (migrate_vma_setup(&migrate_vma) < 0)
++		return VM_FAULT_SIGBUS;
++
++	if (!migrate_vma.cpages)
++		return 0;
++
++	r = __drm_svm_alloc_host_pages(vma, migrate_vma.start, 1, migrate_vma.dst);
++	if (r) {
++		ret = VM_FAULT_OOM;
++		goto migrate_finalize;
++	}
++
++	src = __generate_migrate_vec_vram(migrate_vma.src, true, 1);
++	if (!src) {
++		ret = VM_FAULT_SIGBUS;
++		goto free_host_pages;
++	}
++
++	dst = __generate_migrate_vec_sram(dev, migrate_vma.dst, false, 1);
++	if (!dst) {
++		ret = VM_FAULT_SIGBUS;
++		goto free_migrate_src;
++	}
++
++	fence = mr->mr_ops.drm_mem_region_migrate(src, dst);
++	if (IS_ERR(fence)) {
++		ret = VM_FAULT_SIGBUS;
++		goto free_migrate_dst;
++	}
++	dma_fence_wait(fence, false);
++	dma_fence_put(fence);
++
++	migrate_vma_pages(&migrate_vma);
++
++free_migrate_dst:
++	__free_migrate_vec_sram(dev, dst, false);
++free_migrate_src:
++	__free_migrate_vec_vram(src);
++free_host_pages:
++	if (ret)
++		__drm_svm_free_pages(migrate_vma.dst, 1);
++migrate_finalize:
++	if (ret)
++		memset(migrate_vma.dst, 0, sizeof(*migrate_vma.dst));
++	migrate_vma_finalize(&migrate_vma);
++	return ret;
++}
++static struct dev_pagemap_ops drm_devm_pagemap_ops = {
++	.migrate_to_ram = drm_svm_migrate_to_sram,
++};
+ 
+ /**
+  * drm_svm_register_mem_region: Remap and provide memmap backing for device memory
 -- 
 2.26.3
 
