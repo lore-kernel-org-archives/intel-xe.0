@@ -4,181 +4,180 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18D52C27C53
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Jun 2024 23:52:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5763FC27C53
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 00:43:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1A2E10E0BF;
-	Wed, 12 Jun 2024 23:52:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F7D410E013;
+	Thu, 13 Jun 2024 00:43:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eoHKchfh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V2ngwFwy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 403CA10E0BF
- for <Intel-Xe@lists.freedesktop.org>; Wed, 12 Jun 2024 23:52:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2667A10E013
+ for <Intel-Xe@lists.freedesktop.org>; Thu, 13 Jun 2024 00:43:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718236362; x=1749772362;
+ t=1718239432; x=1749775432;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=O4KoM/rF2T5TS+5vtKTY05GE9VLwlos7Pk8ZSm1M0MI=;
- b=eoHKchfhutFsoh+8hpAj1MhHd09G1dHK7EvX2MmUNTr3zlwJ1c0ucZb7
- OTeLhTy2au5N3H0Mb8YdB2tozCqzr83TI8NTid2M3sZS5AH7JSk4AV5cM
- nIjnQT+AbquFk0ICt4XQK/2vXO47B8zT1DKt6jGjEIxqtw4Jf37upEpDP
- vYbHRF6tSI2OTbncnFeZrO3/jPzQg5sXcSu9l7UN2YMw4Is6u/D135f0x
- VKgwOavGnsKZpmlaLvKnyWR3/wnodHAL7pifDSBCuDhMexGiVXFeOfkr3
- l+x/lhlvT15qsurQyl71W+ySWmTVxgW0vAeUWm0r/kGgYkR6lthXz8egO g==;
-X-CSE-ConnectionGUID: ETjveirURQaOu5ryURYY3A==
-X-CSE-MsgGUID: sqxhgJcxRaSnHHJZVF7CUg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="18853065"
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="18853065"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2024 16:52:41 -0700
-X-CSE-ConnectionGUID: nekvisRkRmOHqCDjClLbgA==
-X-CSE-MsgGUID: 7pEJx5+QTMCFxTzNCHRUlQ==
+ bh=gD9PnB9zGuoIoTGNzxadecHNdsJZOzBSma7E/mPrB0A=;
+ b=V2ngwFwyjhcI1wbn+Wa8ocil1pNBFbeqsHc2gUYv+O7FELmKVWsGmLbc
+ e9akpvxEr1XW+cu/7OvUO5FFuqTFG3+kFo66d0VIstDnYlGP6tq2N2aEV
+ lo/rCSbprXw3MaQ8cYK6xZH99aSiSOa5BAIqPM/98Nmh0E/dBk7eyOdVB
+ XAtA9oA6nGjHagXALDbUx5J0nVuVTh5KHbG1+mKWCkLQ/cKQXzwhpPdBf
+ OU0z9p0OATB1MHrZ/3tTGr4ZOx0h9FGNiv3zsGM2si4fpeLT5pGp/uY9u
+ j3q9fTmcVn0R+65eAHLsBsuVhMSmJQmcvWdZSAIzkJzgB7u7siyHWrzre g==;
+X-CSE-ConnectionGUID: LihWy9GsS4aMsaWd2kTHAQ==
+X-CSE-MsgGUID: 4KiVVpYVTL2aUoKuOcYP0w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="18889301"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="18889301"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2024 17:43:51 -0700
+X-CSE-ConnectionGUID: qoOY5p83QSiT93inWrbgwQ==
+X-CSE-MsgGUID: tkefA0Z8SSusgksK6eV/0w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="44852489"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Jun 2024 16:52:41 -0700
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40066388"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Jun 2024 17:43:51 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 12 Jun 2024 16:52:40 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ 15.1.2507.39; Wed, 12 Jun 2024 17:43:50 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 12 Jun 2024 16:52:40 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.40) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Wed, 12 Jun 2024 17:43:50 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.45) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 12 Jun 2024 16:52:39 -0700
+ 15.1.2507.39; Wed, 12 Jun 2024 17:43:50 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N8Iq9Re4Ebd017d3SvCoSKjbetbMW+xJxzlDFW/RF41h7G5Pv6RU0WTmTVV/oXAekwJK8JO+lcWm7XEc+bEvyB9bzRwV724lBL4DUnBFIi/tpRY3TARO0DBWhwVOtbS5nspIeZrAKpiXfvtmX9i7nMIkffACm7cftm/maM0YH1MgJcDirPf0nM3OOPlXTQYRKuaHy5A4DM7O+AA4WlZkEd3t//V3UPXmvoVRdOae+Qo1OxiJXX2/aSs64Wn6KVWHrU8qTI/BgHd/qIAJYb8axdVXqlOJVSxOTOruaZ9zVIO2+HW0pbzgGevxCwXIeMU7j6zmKO3mkqb2j6YNJtn7/w==
+ b=OQJ4IjvEzhq0FCvBY1eJQuVECYrQFQFYypIqiY5LXEvcewLscah3PGY+eNG/RDbkoo9FyAOjXACkA0k0T081figOokl3pwpZUIT2hpvbtyUmnTjiqobygZBb4NOScCdY84gjo6pa+mJ87nQpojJWaQ8QP/aTrjv6367DO7ztaoYTtQzyTmvO5ahWW+e6OY+ufOcSWtqjDFFrK2y7cd1gcyFbJFJoTdiFB36PV1mwZha3AIh36nHe+LDIJ4dTkLiX98lwThkfs35zgH1H6qcQ6YflILY+Ef/7mlJKhWXOkh1u0DrTEpArT0+zHH9VuGEseLgtUOGR4cVu5+KaTsmHSw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AFev3bzRy+VKjqg4OpnhGEC7MfwlHqSkO8/qcNQ7YVo=;
- b=Riv5xuuQ1wTi0Ls3xvWN/tkKiC3SVbDsbgOFA2eCOwLXlc/oJYaaTqz9gWtnsQYELRXN1rRr98TpCDTVY/mSNv/lxE8l3f5ybAMGIB7iJEUqQDuSLdUJ/eZ1aZ/2au4rciIdil5TJTw3auiKpC47/xjqGRfMY7vpMVLg/eFGct+iRjgnj7G9v7PUE9hxKgODjOpMJrGnfZWkZDcSGHgtkUuNIJn1bdnF//T+A+CGs1nCeeQtyb6qxjh5kNqlejq74ldM9Fsay8lOol5DwgPGCpjniMrELzsrXJYDNYEcouh28BMuh40T4MXZ36lr7nnUVpmGewoXfL5Pl4Bp5PrIFg==
+ bh=FjUfBd7TnWbylCndClWN7/qbREzIyslxxetEv5kqJKk=;
+ b=BGFyBCvZPYibDbbEQO6EEsByjb4CbRBUCGso61+F2xfPP0Hu+CpJCRzBvMPQoaHCX3Yd6Q8XqI9zxR8UcJLqKz5tqXTEW8oIVgYQyhun7Q2up1Yw+2dOADBKmjXqXBXj0zuxddOplhldNmlnTG4uKArHmn3zc0PFrqRl4mBLIcsJ7JiCQFObhMNZSAADYP2vvawSqME8uOreWqJUFSb6lkhVOa4eEcpPIOci6RNlqRpgbqNFDctfjsJR/0UQerZXM8igrkv/HCgrX+HqH+KYFCrFhpbauEeHw0RgDEkvLWf8rFXfSMOtif2qQYghOtn1K2gGasq3sGZHZ19KQqyv/A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
- by PH7PR11MB6747.namprd11.prod.outlook.com (2603:10b6:510:1b5::18)
+ by BN9PR11MB5308.namprd11.prod.outlook.com (2603:10b6:408:119::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.36; Wed, 12 Jun
- 2024 23:52:32 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.20; Thu, 13 Jun
+ 2024 00:43:43 +0000
 Received: from CH3PR11MB8441.namprd11.prod.outlook.com
  ([fe80::bc66:f083:da56:8550]) by CH3PR11MB8441.namprd11.prod.outlook.com
- ([fe80::bc66:f083:da56:8550%4]) with mapi id 15.20.7633.037; Wed, 12 Jun 2024
- 23:52:32 +0000
-Message-ID: <7dd22bd8-1550-43f1-82b6-83200a46e2da@intel.com>
-Date: Wed, 12 Jun 2024 16:52:30 -0700
+ ([fe80::bc66:f083:da56:8550%4]) with mapi id 15.20.7633.037; Thu, 13 Jun 2024
+ 00:43:42 +0000
+Message-ID: <59ce06f9-e133-417e-8146-3080bbc40e65@intel.com>
+Date: Wed, 12 Jun 2024 17:43:39 -0700
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/7] drm/xe/guc: Use a two stage dump for GuC logs and
- add more info
+Subject: Re: [PATCH v4 6/7] drm/xe/guc: Dead CT helper
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  <Intel-Xe@Lists.FreeDesktop.Org>
 References: <20240611012028.2305024-1-John.C.Harrison@Intel.com>
- <20240611012028.2305024-4-John.C.Harrison@Intel.com>
- <5fc7f334-0f3d-4180-93fa-d40a1c98064c@intel.com>
+ <20240611012028.2305024-7-John.C.Harrison@Intel.com>
+ <cc9f73d3-3a0c-4dfb-b3df-b2484882055e@intel.com>
 Content-Language: en-GB
 From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <5fc7f334-0f3d-4180-93fa-d40a1c98064c@intel.com>
+In-Reply-To: <cc9f73d3-3a0c-4dfb-b3df-b2484882055e@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MW4PR03CA0246.namprd03.prod.outlook.com
- (2603:10b6:303:b4::11) To CH3PR11MB8441.namprd11.prod.outlook.com
+X-ClientProxiedBy: MW2PR2101CA0011.namprd21.prod.outlook.com
+ (2603:10b6:302:1::24) To CH3PR11MB8441.namprd11.prod.outlook.com
  (2603:10b6:610:1bc::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|PH7PR11MB6747:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9b923cb6-b66a-4a77-3892-08dc8b3ab9dd
+X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|BN9PR11MB5308:EE_
+X-MS-Office365-Filtering-Correlation-Id: e0dec39b-e9e4-497d-8369-08dc8b41dfca
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230034|376008|1800799018|366010;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?UGsxbC90RnYzMzFLdy9mUXUxa3J5UHJwem9RMTZnTUN0UHFLdUJCNlgyNUx3?=
- =?utf-8?B?RkZvYlAzamhxMTFIV1Q3RDZkbEYzT1phRFBGVUpodHczdXFqUXBOa294K0h1?=
- =?utf-8?B?aGdxV3pLcjQrZm8zeFE3RHBvV2huaE1UeWRDTHM4QThBajZBUVY4RDhYSU9s?=
- =?utf-8?B?L2RyUm9pRnZyL3dtM05GSDBDaWVCSCtKRllyLy9iL255ZE1tcFBSbGN4ZDJt?=
- =?utf-8?B?MkN0elJsOXNQN1pOTU9RUEZIM2J4ZzVDSGt6YkI0SHpKVEc0dGZyckdteGZq?=
- =?utf-8?B?YVpucVhNOE41YWpwNmRuOHlqdVBCZXNUdHFia3J6azcyRGxtSUxBR2RUTXJW?=
- =?utf-8?B?cW1qUHo3cys4SkFjbVVOOWYyOUFQdm82dGlqdkVuK3ZiaUtMbk1UQUdCQ0Vn?=
- =?utf-8?B?cHpKVkhmc3FJT3cxM085ZHdhTy95T1NZS2s2c1A2VVN0dkdDRFpIdjdVNXlm?=
- =?utf-8?B?bnVpQmNXWFR0SlYzY0F1WjNjNXZ2YjZNcHptNC90NWhvM3JrSTRjUFc5UTFs?=
- =?utf-8?B?cUhZVGpROUl5eFhBQndFQS9mYkhyNnpBYjlKMy8yYkdLT2NTMmI5a1Rac2ZS?=
- =?utf-8?B?TE1oWERXVExiZndLWUN4dHZHWGxsZG1GTzA3WkRMQ29DUDJVZmRiSlZhR0Ru?=
- =?utf-8?B?bDBXd2lHYTNhQm5KZEFHb2VmcU41U3lzdi9iZnVtOTNSc3ZTZmp1RU9KWHJC?=
- =?utf-8?B?TzE3djc0UHFuSmNDRk80VVNDNHZBbFd1bTRYVEZsYjlLOFB3aTBCYksxOTNZ?=
- =?utf-8?B?QmNNMFBMb1lLR2dmcTdSRVRaV2toeFpPcGNkaytIRkV4V0MyUDlKVFNpR0tl?=
- =?utf-8?B?KzlOcDdLOTNMcm10b01mY3VPVDdxeGVJZXpseGdUa2hVOG1sQzRnaWg4Ry9E?=
- =?utf-8?B?N2VqMzdkMm1HSkhQT082bjArcXhZTms3NzhnczhXZitZWE1ta0RWbjQ3VzJt?=
- =?utf-8?B?MWxFUk1sTGxkMGlxNDI1V0t1MGtnWElGYlM2WC9leGl0Q3dhcWhIYXZrWnZa?=
- =?utf-8?B?U1B2TEhnZm5wUCs0aGtuaThZeDN0Q2NTYmQzSXFqbThpL0J4MHdqdlBjQ0hq?=
- =?utf-8?B?ZUViT1ljSCtFRkF5cTBMZ2lLUHlRVm5FaFkza0ZaUm1JSUNYeWtHMEE1YlFw?=
- =?utf-8?B?WHhramt3T0t0ektETzBISGZ6cjF3NThYcWtHZWZQWE52MWo5RjdxaWkyTEJi?=
- =?utf-8?B?NGhaYzYyWVpUdlNRaWVsU0VoV3I5WXdjdjJHeHJXZmRKTTVqRVBXUi9lVWhK?=
- =?utf-8?B?aDBidkNLRGFFVm93Y2pvbUhOUFMyVURqclNpdnNyNGRrQnB1cEdPVjB3ZVV3?=
- =?utf-8?B?cjlORzdBejFYRVgrV1Ezd1g0V0ZuMU5nTmI1NDc1ZisyZFU2eW15ZkpCWjQr?=
- =?utf-8?B?UE5ESC9tdFF6ODdWTU8zNy9sa2NVd0w1b1pWWEJyNjBaVm9XN3F5SERYVjVG?=
- =?utf-8?B?bXBTNVVZSGpFcGVKckNpWExCODZNc2RGRlJtSjRmRC9hRExCeld6dk9GMHFR?=
- =?utf-8?B?dzV5RTlaSUo1YmJ3ZnRKSmRmL3RLTUFWRWFpRE9oZkw1N3RiakdpZG9HTkhu?=
- =?utf-8?B?dVZrbENVRGQxcXNmbjV4Y3p5M2Q5YVRBNVdYVnoza1pQYmhIRlIxekFOcXRP?=
- =?utf-8?B?NzZLSWlzVEx6ZCsyNG5JRUs5RmFtK1ZjN3RKVVlGMnFFQlE2bWlMT0xLemRt?=
- =?utf-8?B?dmNhTWpjYUZacUJCYTYzOWIwRVp4VDZzMWxBS1NpWHBGOE9DNmZYMHhHL1VI?=
- =?utf-8?Q?VnGr/W1LyIdnrVngiWnDIfPHffIXxdhOtvwVmBC?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?c3lrYTVDQisveEZ0WlVseEhhME5ma0VJK2hqL01ENktZQlVidG5SVjdwSnJD?=
+ =?utf-8?B?eDFMU0NWS1Ewc2VNd3ZiWnpYMkpES2lKaTF0c05lWHhxUEYrU1BJVURrSnpT?=
+ =?utf-8?B?eUlXZGdLeDdSb3pOVFFYbXZmdGwvSGlIWlpjU2JHYXpDWnJLTnBnYjIyUXFH?=
+ =?utf-8?B?ZEVZenJxdE1hcGI1K2hXRTAzaWtNbEhtUitFQlRnUUtQaTVMSC9YUGFzWWNo?=
+ =?utf-8?B?RlZUWGJ5NWl0aDRmdVNESjNycWtITWFGUm1sWVg4Qk5QWjBCZnFEQ1Q1TzRk?=
+ =?utf-8?B?Y1VVb09La1NMMGh2OWJBMVI4UisxZldxQ2Q3UDFKeCtPNmlGSkZSSGsrYWZp?=
+ =?utf-8?B?Vjdic3BaZ2NCMTE3ZE1zWS9oUFZrZzFrTWRBdVJWTXhtYThDdERnY2pxaWxs?=
+ =?utf-8?B?dEt1dE1aYUJqVFlyZHhQZlE2dHVFU0Z5TWJ0TU0zL1ZtNGFwWjJPbUZBaFVL?=
+ =?utf-8?B?VXhsaERGSVBGNTFXK2llNmVrUGFGY1JBL2hOVm5wVkRIbXZSYjkzME9IUUU2?=
+ =?utf-8?B?UEI0MlVaRWdMTkxQZm5HRWRtSGZ6ZWpiS05sNUhlK0pMdkhsZ0VTSEx3L3ll?=
+ =?utf-8?B?VTdua0lIcUZBdWpKNjF1eGNFd05uVVJkVXlLd2lvTVc1WG1SaUp6OUtXVW80?=
+ =?utf-8?B?M1NsdlFIMy9jSE42clc1RXR1RDY1V2tkSVNYSVJFeGU0aHV3a0g4K0RXdVQ2?=
+ =?utf-8?B?V2tqSXlFSm85ZnluYU1rbi8wSi8xTlZQWTMwc3R1Z20wWldkLzhwemtZWG1p?=
+ =?utf-8?B?TlJuV1R3RXZjRWxZRWtHSy9GM1pmS25QMVlnQm5GaVRneGt1ci8vZ1VuWCtl?=
+ =?utf-8?B?Q3lkd2srdU9BSElLK3dNTG9sOUdtQUM1Y0JzdHFoL1VpSy9FeThrWWZ5dFND?=
+ =?utf-8?B?OWEyYThRaCtrWXcxQmNuL3ZubWlaVDg4eWdGZXhIQ2tkRXhPcU1PQzVtQXIz?=
+ =?utf-8?B?S2ZCWkpvUWtuQkpMQmJXckhETGo1dklFelE1UlVYQnIzSWFpZE11VlhZMldq?=
+ =?utf-8?B?aHB4MUpGbzdUUUIwd3NSdHZ5cjFwSmhBTkVHWHpkaGtGZnhTSWlXK0N5N2l0?=
+ =?utf-8?B?bUJWam9rM3dtay9yM0trMytlek13Z2xjRmFDUFBGbTJpVDA3Q21FZzBCZHpa?=
+ =?utf-8?B?VDJRajlIMXIwSkdwdGY4akU5Qm1lVDd3VVh0K2Q0TFVNUTh1RnpmeU5xamFV?=
+ =?utf-8?B?a21LNUJzVU56M2dtekN4WEtHQW1WaFNrajJSekJkQi83MEJ1WGlHbUZUTE1E?=
+ =?utf-8?B?Rmg2bS9hWnZqV09Hb0traEMreGdtbXFoZ0ZkaHllcWRmUXlCYm5SalFjT1hV?=
+ =?utf-8?B?SVJJZFZuZVZZN05sYWFMLzFPTWdNTGo0bXZGVmxqZkVpVGhieFM3d2FvYWhY?=
+ =?utf-8?B?Ty9QdmdXSW0yZVQzREcrU000cVJldm1MZUFxUGRjSGF6ejVyRVJZYVFXVzlj?=
+ =?utf-8?B?N0FyWnFYMUlqMXJJbktZUXpTNjNXTHd5QXdTY3BqU2doZGtMeExVQ1gzMkph?=
+ =?utf-8?B?d1o3ZWFtZDQvV1FiSTRHbkZjS0tQdGxGSWxHSFd6U1VaNGxmMjRyYUp6dkR1?=
+ =?utf-8?B?ZzllUVlvSnZQbVl5Vnc5TFdQZEFiMndsNmJWL3hibVN6Wnd6OHpaSVIzZXU1?=
+ =?utf-8?B?UXpYWkY4aG9RcFM4U2x4NS9JQks4KzdhMWpXTkJuWUtYaGtnWTY4dHlJNWxI?=
+ =?utf-8?B?bWFwdkcxV2hrNEVuQ2huS1lVenc3ZFl6UFMrdDcrYTZ4NlNVRTNPNE1Jenlz?=
+ =?utf-8?Q?tcJdALp/fxxG2D2yVKS3hM+3XDUGl9rFH/YbbN1?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230034)(376008)(1800799018)(366010); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dDRFbXhBb3NOMnFtTmwvUExXUUVMaWREV2t5Qk0yc0o4ZXZVdGlWdXNiREU2?=
- =?utf-8?B?SGVCOXV5Zk44cmQ3cGhWclY2NmV3NmQxamtwdllPa0Y5TWtNbkh5a3VmL3h3?=
- =?utf-8?B?dmhjL2gyTTJGNWVWazhDUHhuaTRCOG15NmQvOTd2aHFxWi9GRWsxR3BiVG1F?=
- =?utf-8?B?SitwVnhtTUNWNm5wWFRwbkVVZzhRbFJMOGRaQVBkSkhPbDMyNEx3U24yNllL?=
- =?utf-8?B?YWZrRFBmSVF0ejBRM3gyTXU0Z2VTSVUrb2ZaR3Z5T2lrZnI0dkZuRk1MV21H?=
- =?utf-8?B?akI1Y1lSbHVaU3FRNXdBcWVIOFhvbW8vMmNGMHdjWTFSNTV3Z3o1ZUFoNEhK?=
- =?utf-8?B?Q2swTHNNZGE1R3cwUEl1dWJ0eVFBSVV5Mk4rYzlYU0dvRFZBSUxMaXdSOFpj?=
- =?utf-8?B?aGRxMjR4NGRuZGJMSk9YWnlqWmdRZVpTRTNEbDZMd0hlYTRGUy9UMkdseVFR?=
- =?utf-8?B?YmdVTUE1bHA4a0F4VElWdlgzWVZuNHhJaDRITU4wVHIvam0vMndiNzVHTy9m?=
- =?utf-8?B?UGVSUUx2NkRCUnBpVVk1ak1JWlExN2x4MkZhSjI0Mmc4cm9ybXBKV1VHRG9H?=
- =?utf-8?B?bFhHekRkd0lMbUtwRmpXRGpqZE5kczF6OVJ0djljY0NvUjJ5NkdzNEg0dmdv?=
- =?utf-8?B?UUdFN2tVeFc4QVd4OHNjd2ZyVFVicUI1ZXFnbGJqVDFPYmVsOVNVQ2c3MXM0?=
- =?utf-8?B?eHpYZkk3VnBzRG43MEcxSnZhRklXK1lYWTFSb3BpcTFsM3Vmc2RoOWZUUlRR?=
- =?utf-8?B?bVN5aStzZENuVUFaVGtoL1ZmL3A1RVFycTNock5RZjI3ajQ5QmJKdncrdUlR?=
- =?utf-8?B?QmtRTzUzK3VwNlJacUkyOTY4QllMQURCS0pVNmV2YTZhQVMva042ckgwNGxi?=
- =?utf-8?B?ZWQvdHZONFBoQWZtaU1Zb3J4N25iSUxJeWN1SkNmcFk4RXdQSk9uOHhzeVVn?=
- =?utf-8?B?TTNCd1RGT2FaWFF2YmovTzYxVVI4QzZ5UVZaN0dRSSsxZGZiNFk0NFpJWHFz?=
- =?utf-8?B?THQ3SzhrQ29IcndFZTBQaFNjTzVxc1FRd2REOWhabHE0VmJBVjY1dHJtbEd5?=
- =?utf-8?B?RXZRNkRoc25PK3dlWEhCTGdTdXdPV1BDRFd1cVFHM2NHSExLRzN1Q3ZzdTRh?=
- =?utf-8?B?S2lsdE5yd2lLVFhlSURkd1FWeU1CSFZPdXk2Z1c5cmVtbXd5Wmg5OHp4SXRW?=
- =?utf-8?B?Q0dZZzBqYmdtdHBKMlpDWWZRdFFnNXRtL09mRlh4VDlCK0FXREdiM28wTmJM?=
- =?utf-8?B?WVJsblpOUVdYYlhuQTExeW5oektYbjlYbmhSZStFN3dZazhLV3ZSUDE3a1l0?=
- =?utf-8?B?bWZ4MVg0Wi9NMjhyMDMwcThRZExTN215VXBTUGRJV1l5a0hrbXF2SmNyR0Ur?=
- =?utf-8?B?MEcrSW1XQzNhVlVEcXpsSEFKNFV6WStNUDFEVmtibGZzQ0RVR0ltVkg0c0JB?=
- =?utf-8?B?dllqSU55S1Zndk5PWmtTai9TOWpsL3FRdUJ3Yno2MDFpZGMwNW5qaFBhakw1?=
- =?utf-8?B?MjZCazE1bUkyT1RjeUVSUmFOR0lOMDJHbkhNWWkxRVpSb3RFV0hXOG56ZU4x?=
- =?utf-8?B?RjVXeVFHUWZseHJOTS9hSnA3OFhZTFVVUEljb21oa1lmMnVvT00ycjE2QURw?=
- =?utf-8?B?MjBRRUViclN5ZHFCN3ZaRHBBekRoK2Z3RzZyaFNKTS9vWjZxOU9xTnB2V3FY?=
- =?utf-8?B?cTcyN1dpVjRpSm5FUXNaclJuU0t5WktHNEkwNWI2NGJQbUJEVWYxRnFITHll?=
- =?utf-8?B?cU5JVFBOTkFKK21tQ2lnV2VONDk1bzd1TXFBNWNPVGQrb0JKQzFIZlllamVz?=
- =?utf-8?B?QkNQcFljZ3N3QTcvZktIenZlUHp0S3hkZW44U052anp3UXEzd1FiNFJvb0pU?=
- =?utf-8?B?NTlrNDZaYit0OHVtSnAxc3ZHdkdHRkNjMDkrR3lKWEwxSnovUHE5eDJBL3pT?=
- =?utf-8?B?RkR2MEwrQjhOaFZQNWo3SFB6T1J2ZHBXUlhVbTNRTU1jQkFoYnNpTnIyYktU?=
- =?utf-8?B?Sng2eG1sOEhJSHErR2hKbHl5Znl1YlBxQXIxY0FtdXdpTWVBaE03MDVDUVlO?=
- =?utf-8?B?NktNSmV4TzBlTUM5Q0FCcThjbERPUHJ1OWVPenZGZWwxQllVeklmMzJOc3pD?=
- =?utf-8?B?OXpmVTEyaG9Oa0tnQkNBbmo0MnhRSW5xM2cwZy9sRW5ISExoU2hsMExodG1r?=
- =?utf-8?B?dFE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9b923cb6-b66a-4a77-3892-08dc8b3ab9dd
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bGNqUDYraER3SFZteUNjRFFMUStRWHBXVnAzUmY5T3Nuck5MOWxKSlBtTURB?=
+ =?utf-8?B?VmROTlFXVHRZa25WelpvbFFndTU2aDc1eis4dHZNY1Y4U1lYZDdjVWRyalFa?=
+ =?utf-8?B?bW5DYUM2ckhhb1BleUtTT2JObDJLZmlUd2I0cGRObDZsZm5JaWNFeVc0RzJE?=
+ =?utf-8?B?Wnpidm13bmJNMDJuWUxPRDR6MGRaSjZaVGg0ZnJucHJXMDFIR2llYXpSeEVN?=
+ =?utf-8?B?VEdXQVdxb0xCVm1DY2VaVmIrT3dDSTZZaDFiYXdIdDl5TWgyY0VUVHVwaE01?=
+ =?utf-8?B?ek5Uc2JaMkpxb0N4c1p3cHFSc2E2QjExQUgzU3UvandvZ3ZlVDlvcVdpSmxv?=
+ =?utf-8?B?RkJKcUJwZ0VnQ3gvL3lFQmZ4VVVSejQzZUpZODhRQ1dkVjc2NFhPaHQ4YmUr?=
+ =?utf-8?B?NG9ZcjhyaXhxdU94amxlR1U5ZkM4T2xLc2JCRWNaVGxObEpmWFR2SW1hU2E5?=
+ =?utf-8?B?K1RjOVQ4QlFGQVhMcGNBRUpsR1VNWnoxSFVvZ3l1cnJucm5lcEtNUEhpdUor?=
+ =?utf-8?B?c1ZlQy8xVHVGT2UrNS9MRk9OOHEvRkE0OXVOYzU0VU1wajZ3L1BSL1FGRnYz?=
+ =?utf-8?B?anJIa0czSHRDY2MzS2lic3pBTGxTSG9hbFBjNWs4YTZjT29FTVEyQ29Bby9w?=
+ =?utf-8?B?b1Z6T09uSEtxTTF0S2JkMTJPVkJCS3NjSnhFOSs1ZW50QzFlM1B3TDk5U1BL?=
+ =?utf-8?B?MlRFUlg4ak5hZVdvOTJNNUFOMFYrako3OFRSdlphU3psalpnVnZLeXU2S2Zv?=
+ =?utf-8?B?UDlIT2tRbDVmam5ISEkyMm5mZmhuMDNqOGZDM09XZE9kTnBJK1RGa3R2enJU?=
+ =?utf-8?B?UGNKbzVxNmowQm5samNpMWNaV2FNUVBxd2ZTWDRSR1BtVm5KbS9qQlM3c2Ew?=
+ =?utf-8?B?T0tMR3dkQThLY2RhS3pwUzc0RGVrRFhqZHQvWWhycXQ3M09LNjdZSkpsN0Vn?=
+ =?utf-8?B?NEV6U2I0NWlocW02VEhLOHBkaGtBTm82MDdNT1pmU09aU1UvMWlPNnlYUEhP?=
+ =?utf-8?B?cTh5M28zdUttMjNIQmxybUhZS2wyMS8zVlZjZ2ovb3FtNkhSR0FxNmpmTjR5?=
+ =?utf-8?B?eDR3djFEUFR0OFNqZklXYTFTVjdyUFFEaytUczJLdTN3b1RWQXNhVUNZdmY3?=
+ =?utf-8?B?NlQ2OUYxT1JkTUJxVUlDYTlJZ3JtdmhoZmtobXZiSWRwRkxHZ1hucmtabXFC?=
+ =?utf-8?B?amRreDBKdWc5TUl4cEJYYjRyYkxwbkNtTG1vVEpaUHlYc1g3OHdhTUxWN1BQ?=
+ =?utf-8?B?YjdyTFoxZDl6VXdnVGJGWmVvMDNLUWNwRkNSTkdxbGN1T1h0VkZsZGFVYmFz?=
+ =?utf-8?B?TExVaWM4UTVTaXVKK1FEaktqWHpxYy9POGsvV08rRVlwU0w1YUVaSE9tU1pE?=
+ =?utf-8?B?bUJkZ0RmZjlKU1drOE1iZUZpbE1YMHRGQ2dQOGVQdjFXaStwZGZWQk9UVUxN?=
+ =?utf-8?B?NFk2UnVQM0xWeit6ZFRsYk5PV0txczVQMUpuOVptT2pjdlFVeS85QWlBWW5K?=
+ =?utf-8?B?V3puRG13T1dqNE1LTEw5bkhYZVhVNGllS29mdkFFY0NKN3hOWENpakRJTmIv?=
+ =?utf-8?B?UU5qMXNrM1hvWmpiU3FIbHdHSG56eUhzQ2pvMU8vZVVQaUFyRFNFS2U0dEwz?=
+ =?utf-8?B?OU1JSjBiS2JOWlFSR0MxdlkvZjJ2VXR4WGlzQkY2KzI0UTBGVXNpeGYzL0RN?=
+ =?utf-8?B?TVc0ZXV2eXY2bG8vZ0sxQUc1TURyWVJRY2JtMXpmWGdCUE9xMHkreFZ4WlAr?=
+ =?utf-8?B?dHNvT0VTaWlXbDQwSFdBZldpSVNlOWNQc1hqblMxRTR6UWdDRER3ekt6a3lC?=
+ =?utf-8?B?cklDLzNCZkZtbGRuK0V1Z2RqS05iZHYyQUdRSjBnd1FZWkc4L0VoOWdjQ1Rh?=
+ =?utf-8?B?RDRJNUpyRkZXYWh4RFo4UUM5WHNBdmN1UXNGRGlZcTAyT3lFRHd6eGpieHdQ?=
+ =?utf-8?B?UUZwV2dKZTRvOVUvZGxncEFLZ0FidGVCQVJaTCtya2dDMGFyQnd4enJzS1RG?=
+ =?utf-8?B?RG1VTGxXcEEyNENNdi9Fc3JhZG9HMEN0NFhtaVEvY1o5VTBJb1R3by94QjQz?=
+ =?utf-8?B?eE9QOVJRZXFhMXZneDBLa0g5L2drRmhSOWhHUUN0MjVadk1PMmdDL2VSVnhj?=
+ =?utf-8?B?eEN2Q3BmUjZreVdKOCsxSzBqeTk0cmJzV1JyWEJ3bFVmaUUrL2hoNE1WK1Mz?=
+ =?utf-8?B?YWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e0dec39b-e9e4-497d-8369-08dc8b41dfca
 X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2024 23:52:32.3992 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2024 00:43:42.4768 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QVB+GJUvWXLEAvGhvt9h8irM1SCBkatNJH2OqkIaoWiq2eGu67qi9E6VBKT8IaB5f5uGGuWBQQuJwXzd23ouztNTyxpJwelDpDrjuGtycgI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6747
+X-MS-Exchange-CrossTenant-UserPrincipalName: DsgLVtNWr+87hTjAvIa1eN5ZG6jmf4f1nrGJgWX5MDa0qG7H60kV0xfr0hiV8rSaiQoGoNrFIoUSgJNPVwtYd9LxEp0cMsp7ptOysa9pJ80=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5308
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -194,349 +193,572 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 6/11/2024 15:49, Michal Wajdeczko wrote:
->
+On 6/11/2024 16:20, Michal Wajdeczko wrote:
 > On 11.06.2024 03:20, John.C.Harrison@Intel.com wrote:
 >> From: John Harrison <John.C.Harrison@Intel.com>
 >>
->> Split the GuC log dump into a two stage snapshot and print mechanism.
->> This allows the log to be captured at the point of an error (which may
->> be in a resticted context) and then dump it out later (from a regular
-> typo
->
->> context such as a worker function or a sysfs file handler).
->>
->> Also add a bunch of other useful pieces of information that can help
->> (or are fundamentally required!) to decode and parse the log.
+>> Add a worker function helper for asynchronously dumping state when an
+>> internal/fatal error is detected in CT processing. Being asynchronous
+>> is required to avoid deadlocks and scheduling-while-atomic or
+>> process-stalled-for-too-long issues. Also check for a bunch more error
+>> conditions and improve the handling of some existing checks.
 >>
 >> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 >> ---
->>   drivers/gpu/drm/xe/regs/xe_guc_regs.h |   1 +
->>   drivers/gpu/drm/xe/xe_guc_log.c       | 150 ++++++++++++++++++++------
->>   drivers/gpu/drm/xe/xe_guc_log.h       |   6 ++
->>   drivers/gpu/drm/xe/xe_guc_log_types.h |  29 +++++
->>   4 files changed, 155 insertions(+), 31 deletions(-)
+>>   .../drm/xe/abi/guc_communication_ctb_abi.h    |   1 +
+>>   drivers/gpu/drm/xe/xe_guc_ct.c                | 257 ++++++++++++++++--
+>>   drivers/gpu/drm/xe/xe_guc_ct_types.h          |  22 ++
+>>   3 files changed, 259 insertions(+), 21 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->> index a5fd14307f94..b27b73680c12 100644
->> --- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->> +++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->> @@ -84,6 +84,7 @@
->>   #define   HUC_LOADING_AGENT_GUC			REG_BIT(1)
->>   #define   GUC_WOPCM_OFFSET_VALID		REG_BIT(0)
->>   #define GUC_MAX_IDLE_COUNT			XE_REG(0xc3e4)
->> +#define GUC_PMTIMESTAMP				XE_REG(0xc3e8)
->>   
->>   #define GUC_SEND_INTERRUPT			XE_REG(0xc4c8)
->>   #define   GUC_SEND_TRIGGER			REG_BIT(0)
->> diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
->> index a35309926271..a35d3cc0c369 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_log.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_log.c
->> @@ -7,12 +7,20 @@
->>   
->>   #include <drm/drm_managed.h>
->>   
->> +#include "regs/xe_guc_regs.h"
->>   #include "xe_bo.h"
->>   #include "xe_gt.h"
->>   #include "xe_gt_printk.h"
+>> diff --git a/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h b/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
+>> index 8f86a16dc577..f58198cf2cf6 100644
+>> --- a/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
+>> +++ b/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
+>> @@ -52,6 +52,7 @@ struct guc_ct_buffer_desc {
+>>   #define GUC_CTB_STATUS_OVERFLOW				(1 << 0)
+>>   #define GUC_CTB_STATUS_UNDERFLOW			(1 << 1)
+>>   #define GUC_CTB_STATUS_MISMATCH				(1 << 2)
+>> +#define GUC_CTB_STATUS_DISABLED				(1 << 3)
+>>   	u32 reserved[13];
+>>   } __packed;
+>>   static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+>> index fd74243c416c..744402f9e774 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+>> @@ -25,12 +25,58 @@
+>>   #include "xe_gt_sriov_pf_monitor.h"
+>>   #include "xe_gt_tlb_invalidation.h"
+>>   #include "xe_guc.h"
+>> +#include "xe_guc_log.h"
+>>   #include "xe_guc_relay.h"
+>>   #include "xe_guc_submit.h"
 >>   #include "xe_map.h"
->> +#include "xe_mmio.h"
->>   #include "xe_module.h"
+>>   #include "xe_pm.h"
+>>   #include "xe_trace.h"
 >>   
->> +static struct xe_guc *
->> +log_to_guc(struct xe_guc_log *log)
-> any reason why to split signature into two lines?
-Because the similar log_to_gt underneath was done that way so I figured 
-it would be best to match that. And no, I don't know why that (or indeed 
-the same in many other files) is done that way but it does appear to be 
-the common convention.
+>> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+>> +enum {
+>> +	CT_DEAD_ALIVE = 0,
+>> +	CT_DEAD_RESET,				/* 0x0001 */
+> all these annotations seem to be wrong as CT_DEAD_RESET is 1 and
+>
+> 	(1 << CT_DEAD_RESET) will be 0x0002
+Doh!
 
 >
->> +{
->> +	return container_of(log, struct xe_guc, log);
->> +}
+>> +	CT_DEAD_SETUP,				/* 0x0002 */
+>> +	CT_DEAD_H2G_WRITE,			/* 0x0004 */
+>> +	CT_DEAD_H2G_HAS_ROOM,			/* 0x0008 */
+>> +	CT_DEAD_G2H_READ,			/* 0x0010 */
+>> +	CT_DEAD_G2H_RECV,			/* 0x0020 */
+>> +	CT_DEAD_G2H_RELEASE,			/* 0x0040 */
+>> +	CT_DEAD_DEADLOCK,			/* 0x0080 */
+>> +	CT_DEAD_PROCESS_FAILED,			/* 0x0100 */
+>> +	CT_DEAD_FAST_G2H,			/* 0x0200 */
+>> +	CT_DEAD_PARSE_G2H_RESPONSE,		/* 0x0400 */
+>> +	CT_DEAD_PARSE_G2H_UNKNOWN,		/* 0x0800 */
+>> +	CT_DEAD_PARSE_G2H_ORIGIN,		/* 0x1000 */
+>> +	CT_DEAD_PARSE_G2H_TYPE,			/* 0x2000 */
+>> +};
 >> +
->>   static struct xe_gt *
->>   log_to_gt(struct xe_guc_log *log)
->>   {
->> @@ -108,62 +116,142 @@ static void xe_hexdump_blob(struct xe_device *xe, const void *blob, size_t size,
->>   
->>   #define GUC_LOG_CHUNK_SIZE	SZ_2M
->>   
->> -void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p, bool atomic)
-> no kernel-doc
->
->> +struct xe_guc_log_snapshot *xe_guc_log_snapshot_alloc(struct xe_guc_log *log, bool atomic)
->>   {
->> -	struct xe_device *xe = log_to_xe(log);
->> -	size_t size, remain;
->> -	void **copy;
->> -	int num_chunks, i;
->> +	struct xe_guc_log_snapshot *snapshot;
->> +	size_t remain;
->> +	int i;
->>   
->> -	xe_assert(xe, log->bo);
->> +	snapshot = kzalloc(sizeof(*snapshot), atomic ? GFP_ATOMIC : GFP_KERNEL);
->> +	if (!snapshot)
->> +		return NULL;
->>   
->>   	/*
->>   	 * NB: kmalloc has a hard limit well below the maximum GuC log buffer size.
->>   	 * Also, can't use vmalloc as might be called from atomic context. So need
->>   	 * to break the buffer up into smaller chunks that can be allocated.
->>   	 */
->> -	size = log->bo->size;
->> -	num_chunks = (size + GUC_LOG_CHUNK_SIZE - 1) / GUC_LOG_CHUNK_SIZE;
->> +	snapshot->size = log->bo->size;
->> +	snapshot->num_chunks = (snapshot->size + GUC_LOG_CHUNK_SIZE - 1) / GUC_LOG_CHUNK_SIZE;
->>   
->> -	copy = kcalloc(num_chunks, sizeof(*copy), atomic ? GFP_ATOMIC : GFP_KERNEL);
->> -	if (!copy) {
->> -		drm_printf(p, "Failed to allocate array x%d", num_chunks);
->> -		return;
->> -	}
->> +	snapshot->copy = kcalloc(snapshot->num_chunks, sizeof(*snapshot->copy),
->> +				 atomic ? GFP_ATOMIC : GFP_KERNEL);
->> +	if (!snapshot->copy)
->> +		goto fail_snap;
->>   
->> -	remain = size;
->> -	for (i = 0; i < num_chunks; i++) {
->> +	remain = snapshot->size;
->> +	for (i = 0; i < snapshot->num_chunks; i++) {
->>   		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
->>   
->> -		copy[i] = kmalloc(size, atomic ? GFP_ATOMIC : GFP_KERNEL);
->> -		if (!copy[i]) {
->> -			drm_printf(p, "Failed to allocate %ld at chunk %d of %d",
->> -				   size, i, num_chunks);
->> -			goto out;
->> -		}
->> +		snapshot->copy[i] = kmalloc(size, atomic ? GFP_ATOMIC : GFP_KERNEL);
->> +		if (!snapshot->copy[i])
->> +			goto fail_copy;
->>   		remain -= size;
->>   	}
->>   
->> -	remain = size;
->> -	for (i = 0; i < num_chunks; i++) {
->> +	return snapshot;
+>> +static void ct_dead_worker_func(struct work_struct *w);
 >> +
->> +fail_copy:
->> +	for (i = 0; i < snapshot->num_chunks; i++)
->> +		kfree(snapshot->copy[i]);
->> +	kfree(snapshot->copy);
->> +fail_snap:
->> +	kfree(snapshot);
->> +	return NULL;
->> +}
->> +
->> +void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot)
->> +{
->> +	int i;
->> +
->> +	if (!snapshot)
->> +		return;
->> +
->> +	if (!snapshot->copy) {
->> +		for (i = 0; i < snapshot->num_chunks; i++)
->> +			kfree(snapshot->copy[i]);
->> +		kfree(snapshot->copy);
->> +	}
->> +
->> +	kfree(snapshot);
->> +}
->> +
->> +struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log, bool atomic)
->> +{
->> +	struct xe_guc_log_snapshot *snapshot;
->> +	struct xe_device *xe = log_to_xe(log);
->> +	struct xe_guc *guc = log_to_guc(log);
->> +	struct xe_gt *gt = log_to_gt(log);
->> +	size_t remain;
->> +	int i;
->> +
->> +	if (!log->bo) {
->> +		xe_gt_err(gt, "GuC log not allocated!\n");
->> +		return NULL;
->> +	}
->> +
->> +	snapshot = xe_guc_log_snapshot_alloc(log, atomic);
->> +	if (!snapshot) {
->> +		xe_gt_err(gt, "GuC log snapshot not allocated!\n");
->> +		return NULL;
->> +	}
->> +
->> +	remain = snapshot->size;
->> +	for (i = 0; i < snapshot->num_chunks; i++) {
->>   		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
->>   
->> -		xe_map_memcpy_from(xe, copy[i], &log->bo->vmap, i * GUC_LOG_CHUNK_SIZE, size);
->> +		xe_map_memcpy_from(xe, snapshot->copy[i], &log->bo->vmap,
->> +				   i * GUC_LOG_CHUNK_SIZE, size);
->>   		remain -= size;
->>   	}
->>   
->> -	remain = size;
->> -	for (i = 0; i < num_chunks; i++) {
->> +	snapshot->ktime = ktime_get_boottime_ns();
->> +	snapshot->stamp = xe_mmio_read32(gt, GUC_PMTIMESTAMP);
->> +	snapshot->ref_clk = gt->info.reference_clock;
->> +	snapshot->level = log->level;
->> +	snapshot->ver_found = guc->fw.versions.found[XE_UC_FW_VER_RELEASE];
->> +	snapshot->ver_want = guc->fw.versions.wanted;
->> +	snapshot->path = guc->fw.path;
-> shouldn't we use kstrdup() instead ?
-The firmware path is always a static string. It is either an actual 
-static const thing from the compiled in table or it has come from the 
-kernel command line as a module parameter. Either way, it is not going 
-to change or disappear for the lifetime of the Xe module. So no reason 
-to waste memory duplicating it.
+>> +#define CT_DEAD(ct, hxg, reason_code) \
+> by hxg we usually mean actual message, not guc_ctb (which, btw shall be
+> named xe_guc_ctb)
+Because it is called by passing in ct->ctbs.g2h or ct->ctbs.h2g. 
+Therefore it seems sensible to name the parameter hxg meaning h2g or g2h.
 
 >
+>> +	do { \
+>> +		struct guc_ctb *_hxg = (hxg); \
+>> +		if (_hxg) \
+>> +			_hxg->info.broken = true; \
+>> +		if (!(ct)->dead.reported) { \
+>> +			struct xe_guc *guc = ct_to_guc(ct); \
+>> +			spin_lock_irq(&ct->dead.lock); \
+>> +			(ct)->dead.reason |= 1 << CT_DEAD_##reason_code; \
+>> +			(ct)->dead.snapshot_log = xe_guc_log_snapshot_capture(&guc->log, true); \
+>> +			(ct)->dead.snapshot_ct = xe_guc_ct_snapshot_capture((ct), true); \
+>> +			spin_unlock_irq(&ct->dead.lock); \
+>> +			queue_work(system_unbound_wq, &(ct)->dead.worker); \
+>> +		} \
+>> +	} while (0)
+> for clarity, can you align trailing \ at the most right column
+Are we actually allowed to do that? I thought the linux kernel style 
+guide explicitly forbade any kind of vertical alignment via whitespace?
+
+>
+>> +#else
+>> +#define CT_DEAD(ct, hxg, reason) \
+>> +	do { \
+>> +		struct guc_ctb *_hxg = (hxg); \
+>> +		if (_hxg) \
+>> +			_hxg->info.broken = true; \
+>> +	} while (0)
+>> +#endif
 >> +
->> +	return snapshot;
->> +}
+>>   /* Used when a CT send wants to block and / or receive data */
+>>   struct g2h_fence {
+>>   	u32 *response_buffer;
+>> @@ -158,6 +204,10 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+>>   	xa_init(&ct->fence_lookup);
+>>   	INIT_WORK(&ct->g2h_worker, g2h_worker_func);
+>>   	INIT_DELAYED_WORK(&ct->safe_mode_worker,  safe_mode_worker_func);
+>> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+>> +	spin_lock_init(&ct->dead.lock);
+>> +	INIT_WORK(&ct->dead.worker, ct_dead_worker_func);
+>> +#endif
+>>   	init_waitqueue_head(&ct->wq);
+>>   	init_waitqueue_head(&ct->g2h_fence_wq);
+>>   
+>> @@ -392,10 +442,18 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+>>   	if (ct_needs_safe_mode(ct))
+>>   		ct_enter_safe_mode(ct);
+>>   
+>> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+>> +	spin_lock_irq(&ct->dead.lock);
+>> +	if (ct->dead.reason)
+>> +		ct->dead.reason |= CT_DEAD_RESET;
+> can you explain why RESET ? it's 'enable' call
+The dump code suppresses further dumps after the first error to prevent 
+spamming dmesg with dump after dump when the system is in a bad state. 
+This is saying that the system has been reset and thus the dump code 
+should re-arm itself and produce more dumps on the next error event.
+
+>
+>> +	spin_unlock_irq(&ct->dead.lock);
+>> +#endif
 >> +
->> +void xe_guc_log_snapshot_print(struct xe_device *xe, struct xe_guc_log_snapshot *snapshot,
->> +			       struct drm_printer *p, bool atomic)
->> +{
->> +	size_t remain;
->> +	int i;
+>>   	return 0;
+>>   
+>>   err_out:
+>>   	xe_gt_err(gt, "Failed to enable GuC CT (%pe)\n", ERR_PTR(err));
+>> +	CT_DEAD(ct, NULL, SETUP);
+>>   
+>>   	return err;
+>>   }
+>> @@ -439,6 +497,19 @@ static bool h2g_has_room(struct xe_guc_ct *ct, u32 cmd_len)
+>>   
+>>   	if (cmd_len > h2g->info.space) {
+>>   		h2g->info.head = desc_read(ct_to_xe(ct), h2g, head);
 >> +
->> +	if (!snapshot) {
->> +		drm_printf(p, "GuC log snapshot not allocated!\n");
+>> +		if (h2g->info.head > h2g->info.size) {
+>> +			struct xe_device *xe = ct_to_xe(ct);
+>> +			u32 desc_status = desc_read(xe, h2g, status);
+>> +
+>> +			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+>> +
+>> +			xe_gt_err(ct_to_gt(ct), "CT: invalid head offset %u >= %u)\n",
+>> +				  h2g->info.head, h2g->info.size);
+>> +			CT_DEAD(ct, h2g, H2G_HAS_ROOM);
+>> +			return false;
+>> +		}
+>> +
+>>   		h2g->info.space = CIRC_SPACE(h2g->info.tail, h2g->info.head,
+>>   					     h2g->info.size) -
+>>   				  h2g->info.resv_space;
+>> @@ -490,8 +561,16 @@ static void __g2h_reserve_space(struct xe_guc_ct *ct, u32 g2h_len, u32 num_g2h)
+>>   static void __g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
+>>   {
+>>   	lockdep_assert_held(&ct->fast_lock);
+>> -	xe_gt_assert(ct_to_gt(ct), ct->ctbs.g2h.info.space + g2h_len <=
+>> -		     ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space);
+>> +	if (ct->ctbs.g2h.info.space + g2h_len >
+>> +	    ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space) {
+>> +		xe_gt_err(ct_to_gt(ct), "Invalid G2H release: %d + %d vs %d - %d -> %d vs %d!\n",
+>> +			  ct->ctbs.g2h.info.space, g2h_len,
+>> +			  ct->ctbs.g2h.info.size, ct->ctbs.g2h.info.resv_space,
+>> +			  ct->ctbs.g2h.info.space + g2h_len,
+>> +			  ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space);
+>> +		CT_DEAD(ct, &ct->ctbs.g2h, G2H_RELEASE);
 >> +		return;
 >> +	}
->> +
->> +	drm_printf(p, "GuC version %u.%u.%u (wanted %u.%u.%u)\n",
->> +		   snapshot->ver_found.major, snapshot->ver_found.minor, snapshot->ver_found.patch,
->> +		   snapshot->ver_want.major, snapshot->ver_want.minor, snapshot->ver_want.patch);
->> +	drm_printf(p, "GuC firmware: %s\n", snapshot->path);
->> +	drm_printf(p, "Kernel timestamp: 0x%08llX [%llu]\n", snapshot->ktime, snapshot->ktime);
->> +	drm_printf(p, "GuC timestamp: 0x%08X [%u]\n", snapshot->stamp, snapshot->stamp);
->> +	drm_printf(p, "CS timestamp frequency: %u Hz\n", snapshot->ref_clk);
->> +	drm_printf(p, "Log level: %u\n", snapshot->level);
->> +
->> +	remain = snapshot->size;
->> +	for (i = 0; i < snapshot->num_chunks; i++) {
->>   		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
 >>   
->> -		xe_hexdump_blob(xe, copy[i], size, p, atomic);
->> +		xe_hexdump_blob(xe, snapshot->copy[i], size, p, atomic);
-> we really should get rid of xe in xe_hexdump_blob
-I'm not seeing why but that can be done as a follow up patch if you 
-really think it is necessary. Personally, I'd rather spend the effort on 
-completely removing it and going with compressed ASCII encoded blobs in 
-devcoredump.
+>>   	ct->ctbs.g2h.info.space += g2h_len;
+>>   	--ct->g2h_outstanding;
+>> @@ -517,12 +596,44 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+>>   	u32 full_len;
+>>   	struct iosys_map map = IOSYS_MAP_INIT_OFFSET(&h2g->cmds,
+>>   							 tail * sizeof(u32));
+>> +	u32 desc_status;
+>>   
+>>   	full_len = len + GUC_CTB_HDR_LEN;
+>>   
+>>   	lockdep_assert_held(&ct->lock);
+>>   	xe_gt_assert(gt, full_len <= GUC_CTB_MSG_MAX_LEN);
+>> -	xe_gt_assert(gt, tail <= h2g->info.size);
+>> +
+>> +	desc_status = desc_read(xe, h2g, status);
+>> +	if (desc_status) {
+>> +		xe_gt_err(gt, "CT write: non-zero status: %u\n", desc_status);
+>> +		goto corrupted;
+>> +	}
+>> +
+>> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+> likely you can use
+>
+> 	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG))
+>
+> and use normal indent
+One could. I guess these checks aren't directly related to the CT_DEAD 
+dumping.
 
 >
->>   		remain -= size;
->>   	}
->> +}
->> +
->> +void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p, bool atomic)
 >> +{
->> +	struct xe_guc_log_snapshot *snapshot;
+>> +	u32 desc_tail = desc_read(xe, h2g, tail);
+>> +	u32 desc_head = desc_read(xe, h2g, head);
+>> +
+>> +	if (tail != desc_tail) {
+>> +		desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_MISMATCH);
+>> +		xe_gt_err(gt, "CT write: tail was modified %u != %u\n", desc_tail, tail);
+>> +		goto corrupted;
+>> +	}
+>> +
+>> +	if (tail > h2g->info.size) {
+>> +		desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+>> +		xe_gt_err(gt, "CT write: tail out of range: %u vs %u\n", tail, h2g->info.size);
+>> +		goto corrupted;
+>> +	}
+>> +
+>> +	if (desc_head >= h2g->info.size) {
+>> +		desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+>> +		xe_gt_err(gt, "CT write: invalid head offset %u >= %u)\n",
+>> +			  desc_head, h2g->info.size);
+>> +		goto corrupted;
+>> +	}
+>> +}
+>> +#endif
 >>   
->> -out:
->> -	for (i = 0; i < num_chunks; i++)
->> -		kfree(copy[i]);
->> -	kfree(copy);
->> +	snapshot = xe_guc_log_snapshot_capture(log, atomic);
->> +	xe_guc_log_snapshot_print(log_to_xe(log), snapshot, p, atomic);
->> +	xe_guc_log_snapshot_free(snapshot);
+>>   	/* Command will wrap, zero fill (NOPs), return and check credits again */
+>>   	if (tail + full_len > h2g->info.size) {
+>> @@ -575,6 +686,10 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+>>   			     desc_read(xe, h2g, head), h2g->info.tail);
+>>   
+>>   	return 0;
+>> +
+>> +corrupted:
+>> +	CT_DEAD(ct, &ct->ctbs.h2g, H2G_WRITE);
+>> +	return -EPIPE;
 >>   }
 >>   
->>   int xe_guc_log_init(struct xe_guc_log *log)
->> diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
->> index 5149b492c3b8..6e4d0b369c19 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_log.h
->> +++ b/drivers/gpu/drm/xe/xe_guc_log.h
->> @@ -9,6 +9,7 @@
->>   #include "xe_guc_log_types.h"
+>>   /*
+>> @@ -685,7 +800,6 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
+>>   			      struct g2h_fence *g2h_fence)
+>>   {
+>>   	struct xe_gt *gt = ct_to_gt(ct);
+>> -	struct drm_printer p = xe_gt_info_printer(gt);
+>>   	unsigned int sleep_period_ms = 1;
+>>   	int ret;
 >>   
->>   struct drm_printer;
->> +struct xe_device;
+>> @@ -738,8 +852,13 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
+>>   			goto broken;
+>>   #undef g2h_avail
 >>   
->>   #if IS_ENABLED(CONFIG_DRM_XE_LARGE_GUC_BUFFER)
->>   #define CRASH_BUFFER_SIZE       SZ_1M
->> @@ -38,6 +39,11 @@ struct drm_printer;
+>> -		if (dequeue_one_g2h(ct) < 0)
+>> +		ret = dequeue_one_g2h(ct);
+>> +		if (ret < 0) {
+>> +			if (ret != -ECANCELED)
+>> +				xe_gt_err(ct_to_gt(ct), "CTB receive failed (%pe)",
+>> +					  ERR_PTR(ret));
+>>   			goto broken;
+>> +		}
 >>   
->>   int xe_guc_log_init(struct xe_guc_log *log);
->>   void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p, bool atomic);
->> +struct xe_guc_log_snapshot *xe_guc_log_snapshot_alloc(struct xe_guc_log *log, bool atomic);
->> +struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log, bool atomic);
->> +void xe_guc_log_snapshot_print(struct xe_device *xe, struct xe_guc_log_snapshot *snapshot,
->> +			       struct drm_printer *p, bool atomic);
->> +void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot);
+>>   		goto try_again;
+>>   	}
+>> @@ -748,8 +867,7 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
 >>   
->>   static inline u32
->>   xe_guc_log_get_level(struct xe_guc_log *log)
->> diff --git a/drivers/gpu/drm/xe/xe_guc_log_types.h b/drivers/gpu/drm/xe/xe_guc_log_types.h
->> index 125080d138a7..e3a6a44c2f18 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_log_types.h
->> +++ b/drivers/gpu/drm/xe/xe_guc_log_types.h
->> @@ -8,8 +8,37 @@
+>>   broken:
+>>   	xe_gt_err(gt, "No forward process on H2G, reset required\n");
+>> -	xe_guc_ct_print(ct, &p, true);
+>> -	ct->ctbs.h2g.info.broken = true;
+>> +	CT_DEAD(ct, &ct->ctbs.h2g, DEADLOCK);
 >>   
->>   #include <linux/types.h>
+>>   	return -EDEADLK;
+>>   }
+>> @@ -976,6 +1094,7 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>>   		else
+>>   			xe_gt_err(gt, "unexpected response %u for FAST_REQ H2G fence 0x%x!\n",
+>>   				  type, fence);
+>> +		CT_DEAD(ct, NULL, PARSE_G2H_RESPONSE);
 >>   
->> +#include "xe_uc_fw_types.h"
->> +
->>   struct xe_bo;
+>>   		return -EPROTO;
+>>   	}
+>> @@ -984,8 +1103,9 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>>   	if (unlikely(!g2h_fence)) {
+>>   		/* Don't tear down channel, as send could've timed out */
+>>   		xe_gt_warn(gt, "G2H fence (%u) not found!\n", fence);
+>> +		CT_DEAD(ct, NULL, PARSE_G2H_UNKNOWN);
+>>   		g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
+>> -		return 0;
+>> +		return -EPROTO;
+>>   	}
 >>   
->> +/**
->> + * struct xe_guc_log_snapshot:
->> + * Capture of the GuC log plus various state useful for decoding the log
->> + */
->> +struct xe_guc_log_snapshot {
->> +	/** @size: Size in bytes of the @copy allocation */
->> +	size_t size;
->> +	/** @copy: Host memory copy of the log buffer for later dumping, split into chunks */
->> +	void **copy;
->> +	/** @num_chunks: Number of chunks withint @copy */
-> typo
->
->> +	int num_chunks;
->> +	/** @ktime: Kernel time the snapshot was taken */
->> +	u64 ktime;
->> +	/** @stamp: GuC timestamp at which the snapshot was taken */
->> +	u32 stamp;
->> +	/** @ref_clk: GuC timestamp frequency */
->> +	u32 ref_clk;
->> +	/** @level: GuC log verbosity level */
->> +	u32 level;
->> +	/** @ver_found: GuC firmware version */
->> +	struct xe_uc_fw_version ver_found;
-> didn't you mention that platform and/or revision is also mandatory to
-> correctly decode GuC log ?
-Yeah, but the platform is not really a GuC related thing. So putting 
-that inside a GuC specific structure seems even more wrong.
+>>   	xe_gt_assert(gt, fence == g2h_fence->seqno);
+>> @@ -1027,7 +1147,7 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>>   	if (unlikely(origin != GUC_HXG_ORIGIN_GUC)) {
+>>   		xe_gt_err(gt, "G2H channel broken on read, origin=%u, reset required\n",
+>>   			  origin);
+>> -		ct->ctbs.g2h.info.broken = true;
+>> +		CT_DEAD(ct, &ct->ctbs.g2h, PARSE_G2H_ORIGIN);
+>>   
+>>   		return -EPROTO;
+>>   	}
+>> @@ -1045,7 +1165,7 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>>   	default:
+>>   		xe_gt_err(gt, "G2H channel broken on read, type=%u, reset required\n",
+>>   			  type);
+>> -		ct->ctbs.g2h.info.broken = true;
+>> +		CT_DEAD(ct, &ct->ctbs.g2h, PARSE_G2H_TYPE);
+>>   
+>>   		ret = -EOPNOTSUPP;
+>>   	}
+>> @@ -1122,9 +1242,11 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>>   		xe_gt_err(gt, "unexpected G2H action 0x%04x\n", action);
+>>   	}
+>>   
+>> -	if (ret)
+>> +	if (ret) {
+>>   		xe_gt_err(gt, "G2H action 0x%04x failed (%pe)\n",
+>>   			  action, ERR_PTR(ret));
+>> +		CT_DEAD(ct, NULL, PROCESS_FAILED);
+> I'm not sure this warrants triggering CT_DEAD
+> or at least I just hope it wont trigger full GuC log dump into dmesg
+> that would kill normal debug/bringup activities
+Feel free to disable it locally if you are working on something that is 
+likely to generate failed notification processing. But that is not 
+something that should ever happen in a live system. So if CI hits one 
+then we want to know how and why.
 
 >
->> +	/** @ver_want: GuC firmware version that driver expected */
->> +	struct xe_uc_fw_version ver_want;
-> I'm still not convinced that it's relevant to the actual GuC log what
-> driver wanted to use - this should be part of the GuC snapshot instead
+>> +	}
+>>   
+>>   	return 0;
+>>   }
+>> @@ -1134,7 +1256,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+>>   	struct xe_device *xe = ct_to_xe(ct);
+>>   	struct xe_gt *gt = ct_to_gt(ct);
+>>   	struct guc_ctb *g2h = &ct->ctbs.g2h;
+>> -	u32 tail, head, len;
+>> +	u32 tail, head, len, desc_status;
+>>   	s32 avail;
+>>   	u32 action;
+>>   	u32 *hxg;
+>> @@ -1153,6 +1275,52 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+>>   
+>>   	xe_gt_assert(gt, xe_guc_ct_enabled(ct));
+>>   
+>> +	desc_status = desc_read(xe, g2h, status);
+>> +	if (desc_status) {
+>> +		if (desc_status & GUC_CTB_STATUS_DISABLED) {
+>> +			/*
+>> +			 * Potentially valid if a CLIENT_RESET request resulted in
+>> +			 * contexts/engines being reset. But should never happen as
+>> +			 * no contexts should be active when CLIENT_RESET is sent.
+>> +			 */
+>> +			xe_gt_err(gt, "CT read: unexpected G2H after GuC has stopped!\n");
+>> +			desc_status &= ~GUC_CTB_STATUS_DISABLED;
+>> +		}
+>> +
+>> +		if (desc_status) {
+>> +			xe_gt_err(gt, "CT read: non-zero status: %u\n", desc_status);
+>> +			goto corrupted;
+>> +		}
+>> +	}
+>> +
+>> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+> again, use if() not #if
 >
->> +	/** @path: Path of GuC firmware blob */
->> +	const char *path;
-> ditto
-When the snapshot moves into the devcoredump, then all of this gets 
-moved into a GuC specific structure within the core dump. But for now, 
-there is no GuC snapshot. So therefore, they are here. As already 
-stated, this is all stop gap measures until the proper solution is 
-implemented.
+>> +{
+>> +	u32 desc_tail = desc_read(xe, g2h, tail);
+>> +	u32 desc_head = desc_read(xe, g2h, head);
+>> +
+>> +	if (g2h->info.head != desc_head) {
+>> +		desc_write(xe, g2h, status, desc_status | GUC_CTB_STATUS_MISMATCH);
+>> +		xe_gt_err(gt, "CT read: head was modified %u != %u\n",
+>> +			  desc_head, g2h->info.head);
+>> +		goto corrupted;
+>> +	}
+>> +
+>> +	if (g2h->info.head > g2h->info.size) {
+>> +		desc_write(xe, g2h, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+>> +		xe_gt_err(gt, "CT read: head out of range: %u vs %u\n",
+>> +			  g2h->info.head, g2h->info.size);
+>> +		goto corrupted;
+>> +	}
+>> +
+>> +	if (desc_tail >= g2h->info.size) {
+>> +		desc_write(xe, g2h, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+>> +		xe_gt_err(gt, "CT read: invalid tail offset %u >= %u)\n",
+>> +			  desc_tail, g2h->info.size);
+>> +		goto corrupted;
+>> +	}
+>> +}
+>> +#endif
+>> +
+>>   	/* Calculate DW available to read */
+>>   	tail = desc_read(xe, g2h, tail);
+>>   	avail = tail - g2h->info.head;
+>> @@ -1169,9 +1337,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+>>   	if (len > avail) {
+>>   		xe_gt_err(gt, "G2H channel broken on read, avail=%d, len=%d, reset required\n",
+>>   			  avail, len);
+>> -		g2h->info.broken = true;
+>> -
+>> -		return -EPROTO;
+>> +		goto corrupted;
+>>   	}
+>>   
+>>   	head = (g2h->info.head + 1) % g2h->info.size;
+>> @@ -1217,6 +1383,10 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+>>   			     g2h->info.head, tail);
+>>   
+>>   	return len;
+>> +
+>> +corrupted:
+>> +	CT_DEAD(ct, &ct->ctbs.g2h, G2H_READ);
+>> +	return -EPROTO;
+>>   }
+>>   
+>>   static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>> @@ -1243,9 +1413,11 @@ static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>>   		xe_gt_warn(gt, "NOT_POSSIBLE");
+>>   	}
+>>   
+>> -	if (ret)
+>> +	if (ret) {
+>>   		xe_gt_err(gt, "G2H action 0x%04x failed (%pe)\n",
+>>   			  action, ERR_PTR(ret));
+>> +		CT_DEAD(ct, NULL, FAST_G2H);
+>
+>
+>> +	}
+>>   }
+>>   
+>>   /**
+>> @@ -1305,7 +1477,6 @@ static int dequeue_one_g2h(struct xe_guc_ct *ct)
+>>   
+>>   static void receive_g2h(struct xe_guc_ct *ct)
+>>   {
+>> -	struct xe_gt *gt = ct_to_gt(ct);
+>>   	bool ongoing;
+>>   	int ret;
+>>   
+>> @@ -1342,9 +1513,8 @@ static void receive_g2h(struct xe_guc_ct *ct)
+>>   		mutex_unlock(&ct->lock);
+>>   
+>>   		if (unlikely(ret == -EPROTO || ret == -EOPNOTSUPP)) {
+>> -			struct drm_printer p = xe_gt_info_printer(gt);
+>> -
+>> -			xe_guc_ct_print(ct, &p, false);
+>> +			xe_gt_err(ct_to_gt(ct), "CT dequeue failed: %d", ret);
+>> +			CT_DEAD(ct, NULL, G2H_RECV);
+>>   			kick_reset(ct);
+>>   		}
+>>   	} while (ret == 1);
+>> @@ -1374,7 +1544,7 @@ static void guc_ctb_snapshot_capture(struct xe_device *xe, struct guc_ctb *ctb,
+>>   				       atomic ? GFP_ATOMIC : GFP_KERNEL);
+>>   
+>>   	if (!snapshot->cmds) {
+>> -		drm_err(&xe->drm, "Skipping CTB commands snapshot. Only CTB info will be available.\n");
+>> +		drm_err(&xe->drm, "Skipping CTB commands snapshot. Only CT info will be available.\n");
+>>   		return;
+>>   	}
+>>   
+>> @@ -1532,3 +1702,48 @@ void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool atomic)
+>>   	xe_guc_ct_snapshot_print(snapshot, p);
+>>   	xe_guc_ct_snapshot_free(snapshot);
+>>   }
+>> +
+>> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+>> +static void ct_dead_print(struct xe_dead_ct *dead)
+>> +{
+>> +	struct xe_guc_ct *ct = container_of(dead, struct xe_guc_ct, dead);
+>> +	struct xe_gt *gt = ct_to_gt(ct);
+>> +	static int g_count;
+>> +	struct drm_printer ip = xe_gt_info_printer(gt);
+>> +	struct drm_printer lp = drm_line_printer(&ip, "Capture", ++g_count);
+>> +
+>> +	if (!dead->reason) {
+>> +		xe_gt_err(gt, "CTB is dead for no reason!?\n");
+>> +		return;
+>> +	}
+>> +
+>> +	drm_printf(&lp, "CTB is dead - reason=0x%X\n", dead->reason);
+>> +
+>> +	xe_guc_log_snapshot_print(ct_to_xe(ct), dead->snapshot_log, &lp, false);
+>> +	xe_guc_ct_snapshot_print(dead->snapshot_ct, &lp);
+>> +
+>> +	drm_printf(&lp, "Done.\n");
+>> +}
+>> +
+>> +static void ct_dead_worker_func(struct work_struct *w)
+>> +{
+>> +	struct xe_guc_ct *ct = container_of(w, struct xe_guc_ct, dead.worker);
+>> +
+>> +	if (!ct->dead.reported) {
+>> +		ct->dead.reported = true;
+>> +		ct_dead_print(&ct->dead);
+>> +	}
+>> +
+>> +	spin_lock_irq(&ct->dead.lock);
+>> +
+>> +	xe_guc_log_snapshot_free(ct->dead.snapshot_log);
+>> +	xe_guc_ct_snapshot_free(ct->dead.snapshot_ct);
+>> +
+>> +	if (ct->dead.reason & CT_DEAD_RESET) {
+>> +		ct->dead.reason = CT_DEAD_ALIVE;
+>> +		ct->dead.reported = false;
+>> +	}
+>> +
+>> +	spin_unlock_irq(&ct->dead.lock);
+>> +}
+>> +#endif
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+>> index 761cb9031298..db1d45b7be2b 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+>> @@ -86,6 +86,24 @@ enum xe_guc_ct_state {
+>>   	XE_GUC_CT_STATE_ENABLED,
+>>   };
+>>   
+>> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+>> +/** struct xe_dead_ct - Information for debugging a dead CT */
+>> +struct xe_dead_ct {
+>> +	/** @lock: protects memory allocation/free operations, and @reason updates */
+>> +	spinlock_t lock;
+>> +	/** @reason: bit mask of CT_DEAD_* reason codes */
+>> +	int reason;
+> if it's bitmask then likely you want unsigned int (or long)
+Yup. No need for long, there aren't that many bits defined yet.
 
 John.
 
 >
+>> +	/** @reported: for preventing multiple dumps per error sequence */
+>> +	bool reported;
+>> +	/** @worker: worker thread to get out of interrupt context before dumping */
+>> +	struct work_struct worker;
+>> +	/** snapshot_ct: copy of CT state and CTB content at point of error */
+>> +	struct xe_guc_ct_snapshot *snapshot_ct;
+>> +	/** snapshot_log: copy of GuC log at point of error */
+>> +	struct xe_guc_log_snapshot *snapshot_log;
 >> +};
+>> +#endif
 >> +
 >>   /**
->>    * struct xe_guc_log - GuC log
->>    */
+>>    * struct xe_guc_ct - GuC command transport (CT) layer
+>>    *
+>> @@ -128,6 +146,10 @@ struct xe_guc_ct {
+>>   	u32 msg[GUC_CTB_MSG_MAX_LEN];
+>>   	/** @fast_msg: Message buffer */
+>>   	u32 fast_msg[GUC_CTB_MSG_MAX_LEN];
+>> +
+>> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+>> +	struct xe_dead_ct dead;
+>> +#endif
+>>   };
+>>   
+>>   #endif
 
