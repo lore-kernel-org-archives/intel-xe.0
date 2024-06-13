@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D003BC27C78
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 04:13:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9E8FC27C6E
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 04:13:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58D3910E961;
-	Thu, 13 Jun 2024 04:13:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6240710E17A;
+	Thu, 13 Jun 2024 04:13:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L43qIc1J";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EAq1zPcc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51F9610E0E3
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF37F10E128
  for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 04:13:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718252029; x=1749788029;
+ t=1718252030; x=1749788030;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=79hCEqXW6kA5GkI/GVs0qfwzN71FFVwxUiqc/5sw8hI=;
- b=L43qIc1JB1y6En5keE3m91X9VzpA6eUjmGfIVEdK2+XahNdpM5WZtfrR
- 9SHLPoxxK3WQWS27W49vkIuZaxkzgWkVcNfpxn74JbDwJQicR6KYVJsdT
- FPF2AzOt3RsJs1qN6QyYmEUGNGV5OqhiCyt1u3Rxko7xEqsVcsXtLFYSW
- HjX8eplGjtTeI+Rt9yAkl2beyegBvSQ+FFhOeWLxvoqUtXiIkqi5XBZss
- paQk/Ti2jFykelPXimhQtxmCBX2uoT80jvpCOfJfjUeVrInqhoiJ+XF4m
- IidQeITBu/1Y1zm0EsWmp6ZLYrihtgp3RnasuY2/FnrxaF61QPaIRIe4G A==;
-X-CSE-ConnectionGUID: xd2k+PQjTlqIMWn+6bqiQg==
-X-CSE-MsgGUID: pZHf+GrDQHOtbZKzH3rGgw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14847960"
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14847960"
+ bh=lFGf9ZfZyXgMzirLSpBrl1nBYQuy8RMdoQpeC4aWh+s=;
+ b=EAq1zPccT8UyZxmNL6G8Is60+gVERwUoEiq1QaSNePaAzkTNcJoq+8HG
+ TXK+ycdNyhoF7spMuBUqkFk/Vg6xTqb+RYm57d9CjunrMuosmORrVpuZS
+ flhUBt/pqTE2WNVpWSIRDWM8rSXchZEPJdsnsjeubxpm8VYvNXcBUCVNL
+ Djhs8sAt1KGQQgtqARr1fDprI6SgzISFpCbgHAl2DVptkA+O06OG4XHAH
+ Z3vQuSp0Zddv86eOhPHs/SxMiIYjHJu7ND6SrB+gKqa8I8DVOeuIcENEL
+ OQgLUuCvBli/g+VY+zZaaSthSz4y8PdryeQhHsODfZRObO+2M4TueBpZh g==;
+X-CSE-ConnectionGUID: 4haN+U36R1KsjA+ZSO9seA==
+X-CSE-MsgGUID: ejnHBNKrTOO77gv+ZWC2Fg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14847965"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14847965"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2024 21:13:47 -0700
-X-CSE-ConnectionGUID: 9yEe3MdERACIt5K/LFETFA==
-X-CSE-MsgGUID: tSfeAGwSQ4Grr1T9q9tZDg==
+ 12 Jun 2024 21:13:48 -0700
+X-CSE-ConnectionGUID: PhUeycHUTVKftWr054X9yw==
+X-CSE-MsgGUID: EglYBZD4RwSc+g+noblbag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40476317"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40476330"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2024 21:13:47 -0700
+ 12 Jun 2024 21:13:48 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 02/42] dma-mapping: provide an interface to allocate IOVA
-Date: Thu, 13 Jun 2024 00:23:49 -0400
-Message-Id: <20240613042429.637281-2-oak.zeng@intel.com>
+Subject: [CI 13/42] drm/svm: Migrate a range of hmmptr to vram
+Date: Thu, 13 Jun 2024 00:24:00 -0400
+Message-Id: <20240613042429.637281-13-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613042429.637281-1-oak.zeng@intel.com>
 References: <20240613042429.637281-1-oak.zeng@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,127 +66,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Leon Romanovsky <leonro@nvidia.com>
+Introduce a helper function drm_svm_migrate_hmmptr_to_vram to migrate
+any sub-range of a hmmptr to vram. The range has to be at page boundary.
+This supposed to be called by driver to migrate a hmmptr to vram.
 
-Existing .map_page() callback provides two things at the same time:
-allocates IOVA and links DMA pages. That combination works great for
-most of the callers who use it in control paths, but less effective
-in fast paths.
-
-These advanced callers already manage their data in some sort of
-database and can perform IOVA allocation in advance, leaving range
-linkage operation to be in fast path.
-
-Provide an interface to allocate/deallocate IOVA and next patch
-link/unlink DMA ranges to that specific IOVA.
-
-Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+Cc: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Felix Kuehling <felix.kuehling@amd.com>
+Cc: Brian Welty <brian.welty@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: <dri-devel@lists.freedesktop.org>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- include/linux/dma-map-ops.h |  3 +++
- include/linux/dma-mapping.h | 20 ++++++++++++++++++++
- kernel/dma/mapping.c        | 30 ++++++++++++++++++++++++++++++
- 3 files changed, 53 insertions(+)
+ drivers/gpu/drm/drm_svm.c | 121 ++++++++++++++++++++++++++++++++++++++
+ include/drm/drm_svm.h     |   3 +
+ 2 files changed, 124 insertions(+)
 
-diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
-index 02a1c825896b..23e5e2f63a1c 100644
---- a/include/linux/dma-map-ops.h
-+++ b/include/linux/dma-map-ops.h
-@@ -86,6 +86,9 @@ struct dma_map_ops {
- 	size_t (*max_mapping_size)(struct device *dev);
- 	size_t (*opt_mapping_size)(void);
- 	unsigned long (*get_merge_boundary)(struct device *dev);
-+
-+	dma_addr_t (*alloc_iova)(struct device *dev, size_t size);
-+	void (*free_iova)(struct device *dev, dma_addr_t dma_addr, size_t size);
- };
- 
- #ifdef CONFIG_DMA_OPS
-diff --git a/include/linux/dma-mapping.h b/include/linux/dma-mapping.h
-index f693aafe221f..34a3b6420606 100644
---- a/include/linux/dma-mapping.h
-+++ b/include/linux/dma-mapping.h
-@@ -91,6 +91,16 @@ static inline void debug_dma_map_single(struct device *dev, const void *addr,
- }
- #endif /* CONFIG_DMA_API_DEBUG */
- 
-+struct dma_iova_attrs {
-+	/* OUT field */
-+	dma_addr_t addr;
-+	/* IN fields */
-+	struct device *dev;
-+	size_t size;
-+	enum dma_data_direction dir;
-+	unsigned long attrs;
-+};
-+
- #ifdef CONFIG_HAS_DMA
- static inline int dma_mapping_error(struct device *dev, dma_addr_t dma_addr)
- {
-@@ -101,6 +111,9 @@ static inline int dma_mapping_error(struct device *dev, dma_addr_t dma_addr)
+diff --git a/drivers/gpu/drm/drm_svm.c b/drivers/gpu/drm/drm_svm.c
+index 80c5b7146ba6..d34809b2bad6 100644
+--- a/drivers/gpu/drm/drm_svm.c
++++ b/drivers/gpu/drm/drm_svm.c
+@@ -640,3 +640,124 @@ int drm_svm_register_mem_region(const struct drm_device *drm,
  	return 0;
  }
- 
-+int dma_alloc_iova(struct dma_iova_attrs *iova);
-+void dma_free_iova(struct dma_iova_attrs *iova);
+ EXPORT_SYMBOL_GPL(drm_svm_register_mem_region);
 +
- dma_addr_t dma_map_page_attrs(struct device *dev, struct page *page,
- 		size_t offset, size_t size, enum dma_data_direction dir,
- 		unsigned long attrs);
-@@ -150,6 +163,13 @@ void dma_vunmap_noncontiguous(struct device *dev, void *vaddr);
- int dma_mmap_noncontiguous(struct device *dev, struct vm_area_struct *vma,
- 		size_t size, struct sg_table *sgt);
- #else /* CONFIG_HAS_DMA */
-+static inline int dma_alloc_iova(struct dma_iova_attrs *iova)
++static void __drm_svm_init_device_pages(unsigned long *pfn, unsigned long npages)
 +{
-+	return -EOPNOTSUPP;
-+}
-+static inline void dma_free_iova(struct dma_iova_attrs *iova)
-+{
-+}
- static inline dma_addr_t dma_map_page_attrs(struct device *dev,
- 		struct page *page, size_t offset, size_t size,
- 		enum dma_data_direction dir, unsigned long attrs)
-diff --git a/kernel/dma/mapping.c b/kernel/dma/mapping.c
-index 81de84318ccc..4d14637d186b 100644
---- a/kernel/dma/mapping.c
-+++ b/kernel/dma/mapping.c
-@@ -183,6 +183,36 @@ void dma_unmap_page_attrs(struct device *dev, dma_addr_t addr, size_t size,
- }
- EXPORT_SYMBOL(dma_unmap_page_attrs);
- 
-+int dma_alloc_iova(struct dma_iova_attrs *iova)
-+{
-+	struct device *dev = iova->dev;
-+	const struct dma_map_ops *ops = get_dma_ops(dev);
++	struct page *page;
++	int i;
 +
-+	if (dma_map_direct(dev, ops) || !ops->alloc_iova) {
-+		iova->addr = 0;
-+		return 0;
++	for(i = 0; i < npages; i++) {
++		page = pfn_to_page(pfn[i]);
++		zone_device_page_init(page);
++		pfn[i] = migrate_pfn(pfn[i]);
 +	}
++}
 +
-+	iova->addr = ops->alloc_iova(dev, iova->size);
-+	if (dma_mapping_error(dev, iova->addr))
++/**
++ * drm_svm_migrate_hmmptr_to_vram() - migrate a sub-range of a hmmptr to vram
++ * Must be called with mmap_read_lock held.
++ *
++ * @vm: the vm that the hmmptr belongs to
++ * @mr: the destination memory region we want to migrate to
++ * @hmmptr: the hmmptr to migrate.
++ * @start: start(CPU virtual address, inclusive) of the range to migrate
++ * @end: end(CPU virtual address, exclusive) of the range to migrate
++ *
++ * Returns: negative errno on faiure, 0 on success
++ */
++int drm_svm_migrate_hmmptr_to_vram(struct drm_gpuvm *vm,
++		struct drm_mem_region *mr,
++		struct drm_hmmptr *hmmptr, unsigned long start, unsigned long end)
++{
++	struct drm_device *drm = mr->mr_ops.drm_mem_region_get_device(mr);
++	struct mm_struct *mm = vm->mm;
++	unsigned long npages = __npages_in_range(start, end);
++	struct vm_area_struct *vas;
++	struct migrate_vma migrate = {
++		.start		= ALIGN_DOWN(start, PAGE_SIZE),
++		.end		= ALIGN(end, PAGE_SIZE),
++		.pgmap_owner	= mr->mr_ops.drm_mem_region_pagemap_owner(mr),
++		.flags          = MIGRATE_VMA_SELECT_SYSTEM,
++	};
++	struct device *dev = drm->dev;
++	struct dma_fence *fence;
++	struct migrate_vec *src;
++	struct migrate_vec *dst;
++	int ret = 0;
++	void *buf;
++
++	mmap_assert_locked(mm);
++
++	BUG_ON(start < __hmmptr_cpu_start(hmmptr));
++	BUG_ON(end > __hmmptr_cpu_end(hmmptr));
++
++	vas = find_vma_intersection(mm, start, end);
++	if (!vas)
++		return -ENOENT;
++
++	migrate.vma = vas;
++	buf = kvcalloc(npages, 2* sizeof(*migrate.src), GFP_KERNEL);
++	if(!buf)
 +		return -ENOMEM;
 +
-+	return 0;
++	migrate.src = buf;
++	migrate.dst = migrate.src + npages;
++	ret = migrate_vma_setup(&migrate);
++	if (ret) {
++		drm_warn(drm, "vma setup returned %d for range [0x%lx - 0x%lx]\n",
++				ret, start, end);
++		goto free_buf;
++	}
++
++	/**
++	 * Partial migration is just normal. Print a message for now.
++	 * Once this behavior is verified, delete this warning.
++	 */
++	if (migrate.cpages != npages)
++		drm_warn(drm, "Partial migration for range [0x%lx - 0x%lx], range is %ld pages, migrate only %ld pages\n",
++				start, end, npages, migrate.cpages);
++
++	ret = mr->mr_ops.drm_mem_region_alloc_pages(mr, migrate.cpages, migrate.dst);
++	if (ret)
++		goto migrate_finalize;
++
++	__drm_svm_init_device_pages(migrate.dst, migrate.cpages);
++
++	src = __generate_migrate_vec_sram(dev, migrate.src, true, npages);
++	if (!src) {
++		ret = -EFAULT;
++		goto free_device_pages;
++	}
++
++	dst = __generate_migrate_vec_vram(migrate.dst, false, migrate.cpages);
++	if (!dst) {
++		ret = -EFAULT;
++		goto free_migrate_src;
++	}
++
++	fence = mr->mr_ops.drm_mem_region_migrate(src, dst);
++	if (IS_ERR(fence)) {
++		ret = -EIO;
++		goto free_migrate_dst;
++	}
++	dma_fence_wait(fence, false);
++	dma_fence_put(fence);
++
++	migrate_vma_pages(&migrate);
++
++free_migrate_dst:
++	__free_migrate_vec_vram(dst);
++free_migrate_src:
++	__free_migrate_vec_sram(dev, src, true);
++free_device_pages:
++	if (ret)
++		__drm_svm_free_pages(migrate.dst, migrate.cpages);
++migrate_finalize:
++	if (ret)
++		memset(migrate.dst, 0, sizeof(*migrate.dst)*migrate.cpages);
++	migrate_vma_finalize(&migrate);
++free_buf:
++	kvfree(buf);
++	return ret;
 +}
-+EXPORT_SYMBOL(dma_alloc_iova);
-+
-+void dma_free_iova(struct dma_iova_attrs *iova)
-+{
-+	struct device *dev = iova->dev;
-+	const struct dma_map_ops *ops = get_dma_ops(dev);
-+
-+	if (dma_map_direct(dev, ops) || !ops->free_iova)
-+		return;
-+
-+	ops->free_iova(dev, iova->addr, iova->size);
-+}
-+EXPORT_SYMBOL(dma_free_iova);
-+
- static int __dma_map_sg_attrs(struct device *dev, struct scatterlist *sg,
- 	 int nents, enum dma_data_direction dir, unsigned long attrs)
- {
++EXPORT_SYMBOL_GPL(drm_svm_migrate_hmmptr_to_vram);
+diff --git a/include/drm/drm_svm.h b/include/drm/drm_svm.h
+index 04552cc1c67f..1cbf83427f2a 100644
+--- a/include/drm/drm_svm.h
++++ b/include/drm/drm_svm.h
+@@ -224,4 +224,7 @@ void drm_svm_hmmptr_map_dma_pages(struct drm_hmmptr *hmmptr, u64 page_idx, u64 n
+ void drm_svm_hmmptr_unmap_dma_pages(struct drm_hmmptr *hmmptr, u64 page_idx, u64 npages);
+ int drm_svm_hmmptr_populate(struct drm_hmmptr *hmmptr, void *owner, u64 start, u64 end,
+             bool write, bool is_mmap_locked);
++int drm_svm_migrate_hmmptr_to_vram(struct drm_gpuvm *vm,
++		struct drm_mem_region *mr,
++		struct drm_hmmptr *hmmptr, unsigned long start, unsigned long end);
+ #endif
 -- 
 2.26.3
 
