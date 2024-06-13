@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70BBBC2BA15
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AD9FC2BA1A
 	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 04:14:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 902AD10E963;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC5AE10E1B9;
 	Thu, 13 Jun 2024 04:14:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hOeSh3aG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Px4aMRrL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1368310E0E3
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 144D210E1C8
  for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 04:13:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1718252035; x=1749788035;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=zdND83iYHrJFQKCerf1zG73NbPScJxqEO61IJmXVPdw=;
- b=hOeSh3aG3SxaqTJb3/wuKsaLIONXLkCxhS6/oV+hRsUugsxzn+Jb5bO+
- 389nkfqRraxw0vWBmCvGIVcwejZFxuWzrwpWZp+zbgqb3atTE55RzGsrf
- thSvrUKSNhoLxNLe4i19ddufhtfXcxH3QpKwKcjxUz5shpjW/2EIAOU3N
- 42i4G8MV1lcTfptaf/DATOXyiWEZbt4vbd/rY9le+KlKz+vViyeSWjuzW
- lkTYYkL9C2J3ht2Lq1kjRVDbPFPrVdIhfFV3JarADaG7vg5P9gO+IC9IR
- +xZIP3ggNw09xOYj4dGom10GhOWsmraW8GeJKgHbvEg75sILqwpxZJ2rJ A==;
-X-CSE-ConnectionGUID: /X6KGrftTC+fex98StZw8A==
-X-CSE-MsgGUID: /Bzg/ePqTauZ1WJxe9vPXw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14847995"
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14847995"
+ bh=TNosnk1nq+dhWIgmK+864zIYjxua5spoNyfqon9VtsI=;
+ b=Px4aMRrLiTZJSwBWId4kOfKjk69xbO7w1bAT2mwRAx6fTY5lRdnC3Jzy
+ 8z7DQ1lLgRl0btTEyp+RrIsHlARRyRbtK8xcQVRCpwR9WsxspxsH2z3AT
+ nTuKsK69f/DnG7q7Sbq92CglIjdlR5c8IOcA9q3YkNvAB5FhKtxOMT/mS
+ k1VehQ8jhHVF1c39I+DnP8GZUx76AbUFemQGnDkgnHTllns6NyY5tH+nJ
+ VlZlu+QOcCjMcU22tLq9WTERJqdIFm7ZnoZUhGtlxxa7jLs6CSxs5MqxP
+ ctJoYIkaQnQc9RSZpwBkVRan+i9yAf3TxUczjY35VB0uYNCsDI3mx9H8t Q==;
+X-CSE-ConnectionGUID: vf17UGN8T3Cig2VGgkEmkw==
+X-CSE-MsgGUID: RcZihprWTHCA9uJy5kE61w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14847998"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14847998"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Jun 2024 21:13:49 -0700
-X-CSE-ConnectionGUID: DmxRw3l+TkWn/LlTAwLSEA==
-X-CSE-MsgGUID: Gjp0DrZlQaa5qwtTnSrqeA==
+X-CSE-ConnectionGUID: UDJe6ajARC6rFp9Cvl06bQ==
+X-CSE-MsgGUID: r/sCnTDlTRShzP2r7ESqww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40476344"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40476360"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Jun 2024 21:13:48 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 23/42] drm/xe: Add dma_addr res cursor
-Date: Thu, 13 Jun 2024 00:24:10 -0400
-Message-Id: <20240613042429.637281-23-oak.zeng@intel.com>
+Subject: [CI 35/42] drm/xe/svm: Add migrate layer functions for SVM support
+Date: Thu, 13 Jun 2024 00:24:22 -0400
+Message-Id: <20240613042429.637281-35-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613042429.637281-1-oak.zeng@intel.com>
 References: <20240613042429.637281-1-oak.zeng@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,104 +68,174 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matthew Brost <matthew.brost@intel.com>
 
+Add functions which migrate to / from VRAM accepting a single DPA
+argument (VRAM) and array of dma addresses (SRAM).
+
+FIXME: Support non-contiguous VRAM DPA. The VRAM DPA can be an
+array and we can dynamically map DPAs into contiguous device
+virtual address space like what we did for SRAM, and still use
+one single blitter command for migration
+
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Brian Welty <brian.welty@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_res_cursor.h | 50 +++++++++++++++++++++++++++++-
- 1 file changed, 49 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_migrate.c | 126 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_migrate.h |   5 ++
+ 2 files changed, 131 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
-index 655af89b31a9..b17b3375f6d9 100644
---- a/drivers/gpu/drm/xe/xe_res_cursor.h
-+++ b/drivers/gpu/drm/xe/xe_res_cursor.h
-@@ -44,7 +44,9 @@ struct xe_res_cursor {
- 	u64 remaining;
- 	void *node;
- 	u32 mem_type;
-+	unsigned int order;
- 	struct scatterlist *sgl;
-+	const dma_addr_t *dma_addr;
- 	struct drm_buddy *mm;
- };
- 
-@@ -71,6 +73,7 @@ static inline void xe_res_first(struct ttm_resource *res,
- 				struct xe_res_cursor *cur)
- {
- 	cur->sgl = NULL;
-+	cur->dma_addr = NULL;
- 	if (!res)
- 		goto fallback;
- 
-@@ -161,11 +164,43 @@ static inline void xe_res_first_sg(const struct sg_table *sg,
- 	cur->start = start;
- 	cur->remaining = size;
- 	cur->size = 0;
-+	cur->dma_addr = NULL;
- 	cur->sgl = sg->sgl;
- 	cur->mem_type = XE_PL_TT;
- 	__xe_res_sg_next(cur);
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index cc8455daa2bb..fa70cf912e60 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1457,6 +1457,132 @@ void xe_migrate_wait(struct xe_migrate *m)
+ 		dma_fence_wait(m->fence, false);
  }
  
-+/**
-+ * xe_res_first_dma - initialize a xe_res_cursor with dma_addr array
-+ *
-+ * @dma_addr: dma_addr array to walk
-+ * @start: Start of the range
-+ * @size: Size of the range
-+ * @order: Order of dma mapping. i.e. PAGE_SIZE << order is mapping size
-+ * @cur: cursor object to initialize
-+ *
-+ * Start walking over the range of allocations between @start and @size.
-+ */
-+static inline void xe_res_first_dma(const dma_addr_t *dma_addr,
-+				    u64 start, u64 size,
-+				    unsigned int order,
-+				    struct xe_res_cursor *cur)
++static u32 pte_update_cmd_size(u64 size)
 +{
-+	XE_WARN_ON(start);
-+	XE_WARN_ON(!dma_addr);
-+	XE_WARN_ON(!IS_ALIGNED(start, PAGE_SIZE) ||
-+		   !IS_ALIGNED(size, PAGE_SIZE));
++	u32 dword;
++	u64 entries = DIV_ROUND_UP(size, XE_PAGE_SIZE);
 +
-+	cur->node = NULL;
-+	cur->start = start;
-+	cur->remaining = size;
-+	cur->size = PAGE_SIZE << order;
-+	cur->dma_addr = dma_addr;
-+	cur->order = order;
-+	cur->sgl = NULL;
-+	cur->mem_type = XE_PL_TT;
++	XE_WARN_ON(size > MAX_PREEMPTDISABLE_TRANSFER);
++	/*
++	 * MI_STORE_DATA_IMM command is used to update page table. Each
++	 * instruction can update maximumly 0x1ff pte entries. To update
++	 * n (n <= 0x1ff) pte entries, we need:
++	 * 1 dword for the MI_STORE_DATA_IMM command header (opcode etc)
++	 * 2 dword for the page table's physical location
++	 * 2*n dword for value of pte to fill (each pte entry is 2 dwords)
++	 */
++	dword = (1 + 2) * DIV_ROUND_UP(entries, 0x1ff);
++	dword += entries * 2;
++
++	return dword;
 +}
 +
- /**
-  * xe_res_next - advance the cursor
-  *
-@@ -192,6 +227,13 @@ static inline void xe_res_next(struct xe_res_cursor *cur, u64 size)
- 		return;
- 	}
- 
-+	if (cur->dma_addr) {
-+		cur->size = (PAGE_SIZE << cur->order) -
-+			(size - cur->size);
-+		cur->start += size;
-+		return;
++static void build_pt_update_batch_sram(struct xe_migrate *m,
++				       struct xe_bb *bb, u32 pt_offset,
++				       dma_addr_t *sram_addr, u32 size)
++{
++	u16 pat_index = tile_to_xe(m->tile)->pat.idx[XE_CACHE_WB];
++	u32 ptes;
++	int i = 0;
++
++	ptes = DIV_ROUND_UP(size, XE_PAGE_SIZE);
++	while (ptes) {
++		u32 chunk = min(0x1ffU, ptes);
++
++		bb->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_NUM_QW(chunk);
++		bb->cs[bb->len++] = pt_offset;
++		bb->cs[bb->len++] = 0;
++
++		pt_offset += chunk * 8;
++		ptes -= chunk;
++
++		while (chunk--) {
++			u64 addr = sram_addr[i++] & PAGE_MASK;
++
++			xe_tile_assert(m->tile, addr);
++			addr = m->q->vm->pt_ops->pte_encode_addr(m->tile->xe,
++								 addr, pat_index,
++								 0, false, 0);
++			bb->cs[bb->len++] = lower_32_bits(addr);
++			bb->cs[bb->len++] = upper_32_bits(addr);
++		}
++	}
++}
++
++struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
++					 unsigned long npages,
++					 dma_addr_t *sram_addr, u64 vram_addr,
++					 bool dst_vram)
++{
++	struct xe_gt *gt = m->tile->primary_gt;
++	struct xe_device *xe = gt_to_xe(gt);
++	struct dma_fence *fence = NULL;
++	u32 batch_size = 2;
++	u64 src_L0_ofs, dst_L0_ofs;
++	u64 round_update_size;
++	struct xe_sched_job *job;
++	struct xe_bb *bb;
++	u32 update_idx, pt_slot = 0;
++	int err;
++
++	round_update_size = min_t(u64, npages * PAGE_SIZE,
++				  MAX_PREEMPTDISABLE_TRANSFER);
++	batch_size += pte_update_cmd_size(round_update_size);
++	batch_size += EMIT_COPY_DW;
++
++	bb = xe_bb_new(gt, batch_size, true);
++	if (IS_ERR(bb)) {
++		err = PTR_ERR(bb);
++		return ERR_PTR(err);
 +	}
 +
- 	if (cur->sgl) {
- 		cur->start += size;
- 		__xe_res_sg_next(cur);
-@@ -233,6 +275,12 @@ static inline void xe_res_next(struct xe_res_cursor *cur, u64 size)
-  */
- static inline u64 xe_res_dma(const struct xe_res_cursor *cur)
- {
--	return cur->sgl ? sg_dma_address(cur->sgl) + cur->start : cur->start;
-+	if (cur->dma_addr)
-+		return cur->dma_addr[cur->start >> (PAGE_SHIFT + cur->order)] +
-+			(cur->start & ((PAGE_SIZE << cur->order) - 1));
-+	else if (cur->sgl)
-+		return sg_dma_address(cur->sgl) + cur->start;
-+	else
-+		return cur->start;
- }
++	build_pt_update_batch_sram(m, bb, pt_slot * XE_PAGE_SIZE,
++				   sram_addr, round_update_size);
++
++	if (dst_vram) {
++		src_L0_ofs = xe_migrate_vm_addr(pt_slot, 0);
++		dst_L0_ofs = xe_migrate_vram_ofs(xe, vram_addr);
++
++	} else {
++		src_L0_ofs = xe_migrate_vram_ofs(xe, vram_addr);
++		dst_L0_ofs = xe_migrate_vm_addr(pt_slot, 0);
++	}
++
++	bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
++	update_idx = bb->len;
++
++	emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, round_update_size,
++		  XE_PAGE_SIZE);
++
++	mutex_lock(&m->job_mutex);
++	job = xe_bb_create_migration_job(m->q, bb,
++					 xe_migrate_batch_base(m, true),
++					 update_idx);
++	if (IS_ERR(job)) {
++		err = PTR_ERR(job);
++		goto err;
++	}
++
++	xe_sched_job_add_migrate_flush(job, 0);
++	xe_sched_job_arm(job);
++	fence = dma_fence_get(&job->drm.s_fence->finished);
++	xe_sched_job_push(job);
++
++	dma_fence_put(m->fence);
++	m->fence = dma_fence_get(fence);
++	mutex_unlock(&m->job_mutex);
++
++	xe_bb_free(bb, fence);
++
++	return fence;
++
++err:
++	mutex_unlock(&m->job_mutex);
++	xe_bb_free(bb, NULL);
++
++	return ERR_PTR(err);
++}
++
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ #include "tests/xe_migrate.c"
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 453e0ecf5034..c6a18be1373f 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -115,4 +115,9 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ void xe_migrate_wait(struct xe_migrate *m);
+ 
+ struct xe_exec_queue *xe_tile_migrate_exec_queue(struct xe_tile *tile);
++
++struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
++					 unsigned long npages,
++					 dma_addr_t *sram_addr, u64 vram_addr,
++					 bool dst_vram);
  #endif
 -- 
 2.26.3
