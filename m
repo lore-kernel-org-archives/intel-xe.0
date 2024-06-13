@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 441EFC27C75
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 15:20:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 803C3C27C6E
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 15:20:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEE0A10EAC4;
-	Thu, 13 Jun 2024 15:20:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D21A910EADE;
+	Thu, 13 Jun 2024 15:20:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LiZo+dmy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kBUQYRYw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 391B610EABA
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 15:20:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 646F810EACE
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 15:20:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718292042; x=1749828042;
+ t=1718292043; x=1749828043;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=79hCEqXW6kA5GkI/GVs0qfwzN71FFVwxUiqc/5sw8hI=;
- b=LiZo+dmymvMarzGdHeN6Plx/KOMBVZg8dWbZCeNgHigIDiPUj7x//HvT
- t4P1WCgxO6feuvqNv7msXm+RffFE47Sk1dZBgs2HNNMHaFIfgzdKiLu5u
- GMBCxMtOYehJH9xQ38lJtKeBTWxeiyimNfbFN1xRWwUwTaIWJ9ijEsyXx
- kKzinArFv0Xjx3Npz+ANubr6Z7PQ2eENx92PdZukYqUCMRns5RZtUtXzN
- HOHOY9ByIg3tUntG6GSixADoo22YelGFroKkXdYdmm6WjTsN1RlzPcSWz
- HuuUc5B1Efki5H8rnhV0PJBwLPVAw4pl8kc5JGa2k8jrwFzoHjv1+bC8V Q==;
-X-CSE-ConnectionGUID: SYXQKo6tQuif4esNyQuaug==
-X-CSE-MsgGUID: 3Y4QQtjJTCuosTB6oSz/kQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348630"
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348630"
+ bh=venrHm8PyOaztmUEh411MgPERF93cLmU+7z2NZOMMF4=;
+ b=kBUQYRYwlLu7Lxu7bbgTPyzCR8uPzXBpJjWgF3S7t4m5zKuCj9q3ray4
+ XQCO1w8en37rfnABvJNpGAFhqR7nrSW9WCXzVJibfcKxoahST4qpVxmeP
+ 61XW8hpaI66PY98bj6J3JPZN3j9BeNCHlOfk0tSMUDgzvfpmgakvHOOdC
+ I6zAGjZNR/lr5v2LlVD+20OWKkCRcXfHu7FRU8H2Wzp/e0McuSXeBkHue
+ INOzB7aK4HLTGTcX1RyEzcJRI45s6a9LHdMW6HW7JFw19+logNuSiwgpL
+ /yBHSGYf+dCOMSSdYdqLvwJttHLcNZvhRsA/v4s4B/HI5MZxu02oYE9vt w==;
+X-CSE-ConnectionGUID: sNe+H2gSQd2efsKkPx8v5g==
+X-CSE-MsgGUID: a3cMnOoUT86YhhA5H0GHww==
+X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348638"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348638"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 08:20:40 -0700
-X-CSE-ConnectionGUID: /WbUat2oTlifMIAOSUY14w==
-X-CSE-MsgGUID: xwZ4AmOdQxGqdyFYOz497Q==
+ 13 Jun 2024 08:20:41 -0700
+X-CSE-ConnectionGUID: B9ywn3ABSPakJF2qeDChOw==
+X-CSE-MsgGUID: bnsN5GELS8SdbKIwMXpIOQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135061"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135070"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jun 2024 08:20:40 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 02/42] dma-mapping: provide an interface to allocate IOVA
-Date: Thu, 13 Jun 2024 11:30:48 -0400
-Message-Id: <20240613153128.681864-2-oak.zeng@intel.com>
+Subject: [CI 08/42] drm/svm: Mark drm_gpuvm to participate SVM
+Date: Thu, 13 Jun 2024 11:30:54 -0400
+Message-Id: <20240613153128.681864-8-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613153128.681864-1-oak.zeng@intel.com>
 References: <20240613153128.681864-1-oak.zeng@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,127 +66,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Leon Romanovsky <leonro@nvidia.com>
+A mm_struct field is added to drm_gpuvm. Also add a parameter to
+drm_gpuvm_init to say whether this gpuvm participate svm (shared
+virtual memory with CPU process). Under SVM, CPU program and GPU
+program share one process virtual address space.
 
-Existing .map_page() callback provides two things at the same time:
-allocates IOVA and links DMA pages. That combination works great for
-most of the callers who use it in control paths, but less effective
-in fast paths.
-
-These advanced callers already manage their data in some sort of
-database and can perform IOVA allocation in advance, leaving range
-linkage operation to be in fast path.
-
-Provide an interface to allocate/deallocate IOVA and next patch
-link/unlink DMA ranges to that specific IOVA.
-
-Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Felix Kuehling <felix.kuehling@amd.com>
+Cc: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Brian Welty <brian.welty@intel.com>
+Cc: <dri-devel@lists.freedesktop.org>
+Suggested-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- include/linux/dma-map-ops.h |  3 +++
- include/linux/dma-mapping.h | 20 ++++++++++++++++++++
- kernel/dma/mapping.c        | 30 ++++++++++++++++++++++++++++++
- 3 files changed, 53 insertions(+)
+ drivers/gpu/drm/drm_gpuvm.c            | 7 ++++++-
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c | 2 +-
+ drivers/gpu/drm/xe/xe_vm.c             | 2 +-
+ include/drm/drm_gpuvm.h                | 8 +++++++-
+ 4 files changed, 15 insertions(+), 4 deletions(-)
 
-diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
-index 02a1c825896b..23e5e2f63a1c 100644
---- a/include/linux/dma-map-ops.h
-+++ b/include/linux/dma-map-ops.h
-@@ -86,6 +86,9 @@ struct dma_map_ops {
- 	size_t (*max_mapping_size)(struct device *dev);
- 	size_t (*opt_mapping_size)(void);
- 	unsigned long (*get_merge_boundary)(struct device *dev);
-+
-+	dma_addr_t (*alloc_iova)(struct device *dev, size_t size);
-+	void (*free_iova)(struct device *dev, dma_addr_t dma_addr, size_t size);
- };
- 
- #ifdef CONFIG_DMA_OPS
-diff --git a/include/linux/dma-mapping.h b/include/linux/dma-mapping.h
-index f693aafe221f..34a3b6420606 100644
---- a/include/linux/dma-mapping.h
-+++ b/include/linux/dma-mapping.h
-@@ -91,6 +91,16 @@ static inline void debug_dma_map_single(struct device *dev, const void *addr,
- }
- #endif /* CONFIG_DMA_API_DEBUG */
- 
-+struct dma_iova_attrs {
-+	/* OUT field */
-+	dma_addr_t addr;
-+	/* IN fields */
-+	struct device *dev;
-+	size_t size;
-+	enum dma_data_direction dir;
-+	unsigned long attrs;
-+};
-+
- #ifdef CONFIG_HAS_DMA
- static inline int dma_mapping_error(struct device *dev, dma_addr_t dma_addr)
+diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
+index 7402ed6f1d33..5f246ca472a8 100644
+--- a/drivers/gpu/drm/drm_gpuvm.c
++++ b/drivers/gpu/drm/drm_gpuvm.c
+@@ -984,6 +984,8 @@ EXPORT_SYMBOL_GPL(drm_gpuvm_resv_object_alloc);
+  * @reserve_offset: the start of the kernel reserved GPU VA area
+  * @reserve_range: the size of the kernel reserved GPU VA area
+  * @ops: &drm_gpuvm_ops called on &drm_gpuvm_sm_map / &drm_gpuvm_sm_unmap
++ * @participate_svm: whether this gpuvm participat shared virtual memory
++ * with CPU mm
+  *
+  * The &drm_gpuvm must be initialized with this function before use.
+  *
+@@ -997,7 +999,7 @@ drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
+ 	       struct drm_gem_object *r_obj,
+ 	       u64 start_offset, u64 range,
+ 	       u64 reserve_offset, u64 reserve_range,
+-	       const struct drm_gpuvm_ops *ops)
++	       const struct drm_gpuvm_ops *ops, bool participate_svm)
  {
-@@ -101,6 +111,9 @@ static inline int dma_mapping_error(struct device *dev, dma_addr_t dma_addr)
- 	return 0;
- }
+ 	gpuvm->rb.tree = RB_ROOT_CACHED;
+ 	INIT_LIST_HEAD(&gpuvm->rb.list);
+@@ -1016,6 +1018,9 @@ drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
+ 	gpuvm->drm = drm;
+ 	gpuvm->r_obj = r_obj;
  
-+int dma_alloc_iova(struct dma_iova_attrs *iova);
-+void dma_free_iova(struct dma_iova_attrs *iova);
++	if (participate_svm)
++		gpuvm->mm = current->mm;
 +
- dma_addr_t dma_map_page_attrs(struct device *dev, struct page *page,
- 		size_t offset, size_t size, enum dma_data_direction dir,
- 		unsigned long attrs);
-@@ -150,6 +163,13 @@ void dma_vunmap_noncontiguous(struct device *dev, void *vaddr);
- int dma_mmap_noncontiguous(struct device *dev, struct vm_area_struct *vma,
- 		size_t size, struct sg_table *sgt);
- #else /* CONFIG_HAS_DMA */
-+static inline int dma_alloc_iova(struct dma_iova_attrs *iova)
-+{
-+	return -EOPNOTSUPP;
-+}
-+static inline void dma_free_iova(struct dma_iova_attrs *iova)
-+{
-+}
- static inline dma_addr_t dma_map_page_attrs(struct device *dev,
- 		struct page *page, size_t offset, size_t size,
- 		enum dma_data_direction dir, unsigned long attrs)
-diff --git a/kernel/dma/mapping.c b/kernel/dma/mapping.c
-index 81de84318ccc..4d14637d186b 100644
---- a/kernel/dma/mapping.c
-+++ b/kernel/dma/mapping.c
-@@ -183,6 +183,36 @@ void dma_unmap_page_attrs(struct device *dev, dma_addr_t addr, size_t size,
- }
- EXPORT_SYMBOL(dma_unmap_page_attrs);
+ 	drm_gem_object_get(r_obj);
  
-+int dma_alloc_iova(struct dma_iova_attrs *iova)
-+{
-+	struct device *dev = iova->dev;
-+	const struct dma_map_ops *ops = get_dma_ops(dev);
-+
-+	if (dma_map_direct(dev, ops) || !ops->alloc_iova) {
-+		iova->addr = 0;
-+		return 0;
-+	}
-+
-+	iova->addr = ops->alloc_iova(dev, iova->size);
-+	if (dma_mapping_error(dev, iova->addr))
-+		return -ENOMEM;
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL(dma_alloc_iova);
-+
-+void dma_free_iova(struct dma_iova_attrs *iova)
-+{
-+	struct device *dev = iova->dev;
-+	const struct dma_map_ops *ops = get_dma_ops(dev);
-+
-+	if (dma_map_direct(dev, ops) || !ops->free_iova)
-+		return;
-+
-+	ops->free_iova(dev, iova->addr, iova->size);
-+}
-+EXPORT_SYMBOL(dma_free_iova);
-+
- static int __dma_map_sg_attrs(struct device *dev, struct scatterlist *sg,
- 	 int nents, enum dma_data_direction dir, unsigned long attrs)
- {
+ 	drm_gpuvm_warn_check_overflow(gpuvm, start_offset, range);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+index ee02cd833c5e..0d11f1733e29 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+@@ -1861,7 +1861,7 @@ nouveau_uvmm_ioctl_vm_init(struct drm_device *dev,
+ 		       NOUVEAU_VA_SPACE_END,
+ 		       init->kernel_managed_addr,
+ 		       init->kernel_managed_size,
+-		       &gpuvm_ops);
++		       &gpuvm_ops, false);
+ 	/* GPUVM takes care from here on. */
+ 	drm_gem_object_put(r_obj);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index ffda487653d8..bcb0a38b31ae 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1363,7 +1363,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 	}
+ 
+ 	drm_gpuvm_init(&vm->gpuvm, "Xe VM", DRM_GPUVM_RESV_PROTECTED, &xe->drm,
+-		       vm_resv_obj, 0, vm->size, 0, 0, &gpuvm_ops);
++		       vm_resv_obj, 0, vm->size, 0, 0, &gpuvm_ops, false);
+ 
+ 	drm_gem_object_put(vm_resv_obj);
+ 
+diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
+index 429dc0d82eba..838dd7137f07 100644
+--- a/include/drm/drm_gpuvm.h
++++ b/include/drm/drm_gpuvm.h
+@@ -242,6 +242,12 @@ struct drm_gpuvm {
+ 	 * @drm: the &drm_device this VM lives in
+ 	 */
+ 	struct drm_device *drm;
++	/**
++	 * @mm: the process &mm_struct which create this gpuvm.
++	 * This is only used for shared virtual memory where virtual
++	 * address space is shared b/t CPU and GPU program.
++	 */
++	struct mm_struct *mm;
+ 
+ 	/**
+ 	 * @mm_start: start of the VA space
+@@ -342,7 +348,7 @@ void drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
+ 		    struct drm_gem_object *r_obj,
+ 		    u64 start_offset, u64 range,
+ 		    u64 reserve_offset, u64 reserve_range,
+-		    const struct drm_gpuvm_ops *ops);
++		    const struct drm_gpuvm_ops *ops, bool participate_svm);
+ 
+ /**
+  * drm_gpuvm_get() - acquire a struct drm_gpuvm reference
 -- 
 2.26.3
 
