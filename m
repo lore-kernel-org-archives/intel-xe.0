@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 325AEC27C4F
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 14:42:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83BD4C27C75
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 15:05:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A96FF10EAB5;
-	Thu, 13 Jun 2024 14:42:46 +0000 (UTC)
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D58C010EAB4;
- Thu, 13 Jun 2024 14:42:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7803893595819053808=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2365710EAC2;
+	Thu, 13 Jun 2024 15:05:36 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HewzeSKG";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2514C10EAC0;
+ Thu, 13 Jun 2024 15:05:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1718291132; x=1749827132;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WDRVVerNM3HKxdOXArpAzHP6P2t32WpOPv5OpmF/oSE=;
+ b=HewzeSKGdNLDE7nkN3UdAAbmXPjM7q1S7gClj4KZx+XPtzzkEd1myvJ8
+ oEPmRbHFsxpax1Bqk6++X37bP5SzOSilf50sPiWuR/Kxx/FsSrQ2iU9yp
+ ymNvCIK60wmQrEgctUDKiwGrSPbreXLYXhnLtGRB6aFaAFv0WJVE1NRYS
+ FU01k9XdzkYdV+lv1F9byqFyR8j3qVieJUHNxLvPim0VfOK/xIVqfQuDT
+ Ca8fNpf/maOU2XkhDK83GFvhzdz93xhF6UUdyzjTEmOlnoVvAMllHahmu
+ 6sK/eJjgd2hilZS+NW+TlBDycvWHDzT6wdtX6W95jK0Y5BIHEJEOLf72i w==;
+X-CSE-ConnectionGUID: Ip4zGOXKSc2YWWk3x74wGQ==
+X-CSE-MsgGUID: 4Op4vWccRM6SuoynmFsclA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="14912798"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="14912798"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jun 2024 08:04:33 -0700
+X-CSE-ConnectionGUID: Ej18vELuSQGmcFKI/DhJzA==
+X-CSE-MsgGUID: OmSwICiGQPyPoDgBukRiPw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40292126"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.158])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jun 2024 08:04:30 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH] drm/i915/dsc: don't mess up splitter state in joiner or dsc
+ config
+Date: Thu, 13 Jun 2024 18:04:24 +0300
+Message-Id: <20240613150424.262567-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Use_fixed_CCS_mode_whe?=
- =?utf-8?q?n_running_in_SR-IOV_mode?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 13 Jun 2024 14:42:43 -0000
-Message-ID: <171828976386.73458.18248957421050741388@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <20240613135445.2076-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20240613135445.2076-1-michal.wajdeczko@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,119 +65,96 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7803893595819053808==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The driver handles splitter (for MSO) and joiner/dsc configuration in
+different places. Avoid messing up the splitter state when
+enabling/disabling joiner or dsc.
 
-== Series Details ==
+Note: We should probably handle splitter for MSO as well as dual-link
+DSI in intel_vdsc.c. Also, we have intel_uncompressed_joiner_enable()
+but no corresponding disable.
 
-Series: drm/xe: Use fixed CCS mode when running in SR-IOV mode
-URL   : https://patchwork.freedesktop.org/series/134824/
-State : success
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1668
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-== Summary ==
+---
 
-CI Bug Log - changes from xe-1457-9f3ced27c8deae54c79db1743e37d2935558e048_BAT -> xe-pw-134824v1_BAT
-====================================================
+I'm not really sure if MSO + bigjoiner is a valid scenario. It certainly
+isn't a common scenario. But let's see if this makes the tests work
+before preventing the combo.
+---
+ drivers/gpu/drm/i915/display/intel_ddi.c       |  5 ++---
+ drivers/gpu/drm/i915/display/intel_vdsc.c      | 12 +++++++++---
+ drivers/gpu/drm/i915/display/intel_vdsc_regs.h |  1 +
+ 3 files changed, 12 insertions(+), 6 deletions(-)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index ba7d0a706a20..7411f028fbcf 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -2416,9 +2416,8 @@ static void intel_ddi_mso_configure(const struct intel_crtc_state *crtc_state)
+ 			dss1 |= SPLITTER_CONFIGURATION_4_SEGMENT;
+ 	}
+ 
+-	intel_de_rmw(i915, ICL_PIPE_DSS_CTL1(pipe),
+-		     SPLITTER_ENABLE | SPLITTER_CONFIGURATION_MASK |
+-		     OVERLAP_PIXELS_MASK, dss1);
++	/* Only touch the splitter */
++	intel_de_rmw(i915, ICL_PIPE_DSS_CTL1(pipe), SPLITTER_STATE, dss1);
+ }
+ 
+ static u8 mtl_get_port_width(u8 lane_count)
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index b9687b7692b8..a8671d3f1d41 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -766,7 +766,9 @@ void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc_state)
+ 		else
+ 			dss_ctl1_val |= UNCOMPRESSED_JOINER_PRIMARY;
+ 
+-		intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder), dss_ctl1_val);
++		/* Avoid touching the splitter */
++		intel_de_rmw(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder),
++			     ~SPLITTER_STATE, dss_ctl1_val);
+ 	}
+ }
+ 
+@@ -793,7 +795,9 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
+ 		if (!intel_crtc_is_joiner_secondary(crtc_state))
+ 			dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
+ 	}
+-	intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder), dss_ctl1_val);
++	/* Avoid touching the splitter */
++	intel_de_rmw(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder),
++		     ~SPLITTER_STATE, dss_ctl1_val);
+ 	intel_de_write(dev_priv, dss_ctl2_reg(crtc, crtc_state->cpu_transcoder), dss_ctl2_val);
+ }
+ 
+@@ -805,7 +809,9 @@ void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
+ 	/* Disable only if either of them is enabled */
+ 	if (old_crtc_state->dsc.compression_enable ||
+ 	    old_crtc_state->joiner_pipes) {
+-		intel_de_write(dev_priv, dss_ctl1_reg(crtc, old_crtc_state->cpu_transcoder), 0);
++		/* Avoid touching the splitter */
++		intel_de_rmw(dev_priv, dss_ctl1_reg(crtc, old_crtc_state->cpu_transcoder),
++			     ~SPLITTER_STATE, 0);
+ 		intel_de_write(dev_priv, dss_ctl2_reg(crtc, old_crtc_state->cpu_transcoder), 0);
+ 	}
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+index f921ad67b587..3734cd96f55e 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+@@ -37,6 +37,7 @@
+ #define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
+ #define  SPLITTER_CONFIGURATION_2_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
+ #define  SPLITTER_CONFIGURATION_4_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
++#define  SPLITTER_STATE				(SPLITTER_ENABLE | SPLITTER_CONFIGURATION_MASK | OVERLAP_PIXELS_MASK)
+ #define  UNCOMPRESSED_JOINER_PRIMARY		(1 << 21)
+ #define  UNCOMPRESSED_JOINER_SECONDARY		(1 << 20)
+ 
+-- 
+2.39.2
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-134824v1_BAT that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
-
-
-Build changes
--------------
-
-  * IGT: IGT_7885 -> IGT_7886
-  * Linux: xe-1457-9f3ced27c8deae54c79db1743e37d2935558e048 -> xe-pw-134824v1
-
-  IGT_7885: 76189d25da1d0b245f288b75ebe44986f8a75b0f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7886: 53b62502a04bd57cbcb3ae85ffc2cdf09b2b22a9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1457-9f3ced27c8deae54c79db1743e37d2935558e048: 9f3ced27c8deae54c79db1743e37d2935558e048
-  xe-pw-134824v1: 134824v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134824v1/index.html
-
---===============7803893595819053808==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Use fixed CCS mode when running in SR-IOV mode</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134824/">https://patchwork.freedesktop.org/series/134824/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134824v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134824v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1457-9f3ced27c8deae54c79db1743e37d2935558e048_BAT -&gt; xe-pw-134824v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-134824v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7885 -&gt; IGT_7886</li>
-<li>Linux: xe-1457-9f3ced27c8deae54c79db1743e37d2935558e048 -&gt; xe-pw-134824v1</li>
-</ul>
-<p>IGT_7885: 76189d25da1d0b245f288b75ebe44986f8a75b0f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7886: 53b62502a04bd57cbcb3ae85ffc2cdf09b2b22a9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1457-9f3ced27c8deae54c79db1743e37d2935558e048: 9f3ced27c8deae54c79db1743e37d2935558e048<br />
-  xe-pw-134824v1: 134824v1</p>
-
-</body>
-</html>
-
---===============7803893595819053808==--
