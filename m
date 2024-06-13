@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D405C27C78
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 04:13:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57B6BC2BA15
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 04:13:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16D4210E048;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA73E10E102;
 	Thu, 13 Jun 2024 04:13:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hc48mMdD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L2wtvLU6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E1CE10E96A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6335A10E969
  for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 04:13:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1718252032; x=1749788032;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=EzLfd4+G92QB3jZd+UOrLcq9tvY+B/2b+7VOHkEaPxA=;
- b=hc48mMdDlPXTQH5rbTv+SkPfyyUdFPTN3R6w8F8TGwStQ4eunxkEZfpr
- mMkMHZhG8Z+bo+TeX4YqCRuxzXSScXNX2AzsGBAlYqDadstwI0LsX1yln
- 5co2MgwK4Dt5yOq6RKrqgKzUZtMK2ZGiJEIMJERtuEcAX6UZ7ue/U+t7p
- rh5PVNcf8OYYdDF+RcC3Pt0bbwn/c8jXAu/bRGbVVzTtdWkX98NyLa6Hm
- yKFdxHkvRxbdsScsT2HTZXgtm3FCrfYmi3cLBO+BWVNzwisd1EBSpRDS4
- wZ5iaBFAUWYSJpC8OZx5v7Eqk0k/kC/W9T9Hko6pBnAwJOfkQ731Ge4YT Q==;
-X-CSE-ConnectionGUID: 6teahCU0RFuWkpKL8gSrFw==
-X-CSE-MsgGUID: vud/ROBkSemaYjIpJ4ZwWA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14847989"
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14847989"
+ bh=syh43Hd0EF26s5ulGApWwiQ1pXKQZ/w6rE0Po8t/W/A=;
+ b=L2wtvLU6nWxgzUhWmNqS0Oq5Uc7i4/Nj+pTHpzeuwoscwmXI7GlYASQk
+ bt8wAU+golikBc5s52too1mZF53TSTF3LpntQ6noidbXeRvo5IdC/QW5b
+ yi2cEiIRmx1MhKvVngD70UNmBV8+AryvmPJWFoM8bLvF4j1pBbOwkc/l9
+ NBCHQyCnrw3xfGZhkU8//genY+wuOg7c6WSxjiKrmqwh67gWQ8jdu+uNj
+ f+eHSxKzZ/AV+FwZb2+v/rVEeTHt5yzSddF7ovCX5oiF+3UQAV3kGmSGG
+ 6TPClo59PulkD/rsg6NEVQwx298mmBMFv51+ZMCEFDSa64z/dswXnTkmz g==;
+X-CSE-ConnectionGUID: EgM7VEevRuWKiNUwU2GWQw==
+X-CSE-MsgGUID: q/EyhCfkRdudBhMfp+Kh9Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14847987"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14847987"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Jun 2024 21:13:49 -0700
-X-CSE-ConnectionGUID: mkX2V0krRrGCRuapHo5aUQ==
-X-CSE-MsgGUID: pyp6QL9IRka21C7OWG7Pcw==
+X-CSE-ConnectionGUID: 77qE9EB5StCnSIvkw3v+sA==
+X-CSE-MsgGUID: YRJ26pZERnClOQV/KqRInA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40476363"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="40476340"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Jun 2024 21:13:48 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 37/42] drm/xe/svm: Register xe memory region to drm layer
-Date: Thu, 13 Jun 2024 00:24:24 -0400
-Message-Id: <20240613042429.637281-37-oak.zeng@intel.com>
+Subject: [CI 20/42] drm/xe: Retry BO allocation
+Date: Thu, 13 Jun 2024 00:24:07 -0400
+Message-Id: <20240613042429.637281-20-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613042429.637281-1-oak.zeng@intel.com>
 References: <20240613042429.637281-1-oak.zeng@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,77 +65,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Register xe memory region to drm layer for SVM purpose.
-This will essentially create struct page backing for
-xe device memory, which will be used by SVM functions.
+From: Matthew Brost <matthew.brost@intel.com>
 
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+TTM doesn't support fair eviction via WW locking, this mitigated in by
+using retry loops in exec and preempt rebind worker. Extend this retry
+loop to BO allocation. Once TTM supports fair eviction this patch can be
+reverted.
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_tile.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ drivers/gpu/drm/xe/xe_bo.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index 109f3118e821..6c50df281b11 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -3,7 +3,9 @@
-  * Copyright © 2023 Intel Corporation
-  */
- 
-+#include <linux/memremap.h>
- #include <drm/drm_managed.h>
-+#include <drm/drm_svm.h>
- 
- #include "xe_device.h"
- #include "xe_ggtt.h"
-@@ -14,6 +16,7 @@
- #include "xe_tile_sysfs.h"
- #include "xe_ttm_vram_mgr.h"
- #include "xe_wa.h"
-+#include "xe_svm.h"
- 
- /**
-  * DOC: Multi-tile Design
-@@ -142,6 +145,15 @@ static int tile_ttm_mgr_init(struct xe_tile *tile)
- 	return 0;
- }
- 
-+static void __init_drm_mem_region_ops(struct drm_mem_region_ops *ops)
-+{
-+	ops->drm_mem_region_alloc_pages = &xe_svm_alloc_pages;
-+	ops->drm_mem_region_free_page = &xe_svm_free_page;
-+	ops->drm_mem_region_migrate = &xe_svm_migrate;
-+	ops->drm_mem_region_pagemap_owner = &xe_svm_mem_region_to_pagemap_owner;
-+	ops->drm_mem_region_get_device = &xe_mem_region_to_device;
-+}
-+
- /**
-  * xe_tile_init_noalloc - Init tile up to the point where allocations can happen.
-  * @tile: The tile to initialize.
-@@ -159,6 +171,8 @@ static int tile_ttm_mgr_init(struct xe_tile *tile)
- int xe_tile_init_noalloc(struct xe_tile *tile)
- {
- 	int err;
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct drm_device *drm = &xe->drm;
- 
- 	err = tile_ttm_mgr_init(tile);
- 	if (err)
-@@ -172,6 +186,11 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
- 
- 	err = xe_tile_sysfs_init(tile);
- 
-+	if (xe->info.has_usm) {
-+		__init_drm_mem_region_ops(&tile->mem.vram.drm_mr.mr_ops);
-+		drm_svm_register_mem_region(drm, &tile->mem.vram.drm_mr, MEMORY_DEVICE_PRIVATE);
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 2bae01ce4e5b..63d7fa4c3db9 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1929,6 +1929,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	struct xe_file *xef = to_xe_file(file);
+ 	struct drm_xe_gem_create *args = data;
+ 	struct xe_vm *vm = NULL;
++	ktime_t end = 0;
+ 	struct xe_bo *bo;
+ 	unsigned int bo_flags;
+ 	u32 handle;
+@@ -1994,11 +1995,14 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 		vm = xe_vm_lookup(xef, args->vm_id);
+ 		if (XE_IOCTL_DBG(xe, !vm))
+ 			return -ENOENT;
 +	}
 +
- 	return 0;
- }
++retry:
++	if (vm) {
+ 		err = xe_vm_lock(vm, true);
+ 		if (err)
+ 			goto out_vm;
+ 	}
+-
+ 	bo = xe_bo_create_user(xe, NULL, vm, args->size, args->cpu_caching,
+ 			       ttm_bo_type_device, bo_flags);
+ 
+@@ -2007,6 +2011,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 
+ 	if (IS_ERR(bo)) {
+ 		err = PTR_ERR(bo);
++		if (xe_vm_validate_should_retry(NULL, err, &end))
++			goto retry;
+ 		goto out_vm;
+ 	}
  
 -- 
 2.26.3
