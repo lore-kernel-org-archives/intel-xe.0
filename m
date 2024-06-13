@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0B6FC27C78
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 15:22:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FD5FC27C4F
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jun 2024 15:22:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C63910EAD6;
-	Thu, 13 Jun 2024 15:22:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7576F10EAD9;
+	Thu, 13 Jun 2024 15:22:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nJwqJs+G";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B1SWXUH5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0383310EAC2
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 15:20:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67AC810EAE7
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Jun 2024 15:20:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718292043; x=1749828043;
+ t=1718292048; x=1749828048;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=/xNLG3U29OgkyA1tKMaWZ92RWxnb2Y1szOX8Own9nJ0=;
- b=nJwqJs+G8vtgWXvqjg5zxnHF2/r4eqhB/W+wLm96ROz168M0UMiKUv2t
- o79s4lTVswBE1EwvgjDcok+ctBkCGVeNBwjT/g+UF164fV119mcBYsoXZ
- Ptb+6CBT4nN1tcgg7yQdTP2SyqHVpAvtvuJZURZYB4anoIt4AnhLWsF+q
- pfLWP9XWyCiY3Bx4GXZR79QSGJYdw1ND/Zb1fv2GjnZkOEegg+m6bUY3S
- BgKCs4srEblXKDirHe9trLRyopt7CVOaQ/KOSXgBq0RFUsx1Aj8CWsyCm
- 83J+qoYSGrQrNzZoFHhBgtWmxddSsxGgtdjuz5IRlQNj5O9L/pFAj7QUp w==;
-X-CSE-ConnectionGUID: Fp0417j6TpGLNSx7h4XfzA==
-X-CSE-MsgGUID: ej0R4Wc2RsWehekTVsYLhw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348631"
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348631"
+ bh=DDINykDjHfpbzfYt5wjDLT19LWlliw7y+CUHdzyRdFA=;
+ b=B1SWXUH5+Nqr+Qo++7c8NoL6xdmemFjdtR2rngzLC9ZOE4SqJizrpelV
+ XULGndpuWbfYM1dunWbIU0SKNCqym3QOYytzCarbdfJWPZ+pRYhLgqXEX
+ q+E2kEdyX1OsC/4zvGICGhJyKrKHQGJNgK4Ma4p8CDv+IrGOoTsQZMGbk
+ gPrFIbYq9Yru7gRKiKj3Uiks/BuO0hI+MJzL40m10+bmL/GKmIu2JONTW
+ svQw7KVB+UFRrgSLXgfcJpp+gjUYnEPeeP1Uskp/qL47LVdjXLKhZiaOG
+ GI690LAABdZRQ3odoVxUk0iMin/dMv7Vx2WWrv68Q/99158/QlqOX0X0S g==;
+X-CSE-ConnectionGUID: SNynPBLST8mogggqXpGcbw==
+X-CSE-MsgGUID: rXeuZZN9TtS/mt0sK6dM1Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15348675"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="15348675"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 08:20:40 -0700
-X-CSE-ConnectionGUID: m27GxEX6QHi2/k0a3FZG3A==
-X-CSE-MsgGUID: q4qWxe4+RsGuX5K83O6ctA==
+ 13 Jun 2024 08:20:44 -0700
+X-CSE-ConnectionGUID: S3DZCOpmT2KXrDzyStpXhg==
+X-CSE-MsgGUID: iBn+Dma2RP67X9GOzy2Nkw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135063"
+X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40135130"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 08:20:40 -0700
+ 13 Jun 2024 08:20:43 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 03/42] dma-mapping: provide callbacks to link/unlink pages to
- specific IOVA
-Date: Thu, 13 Jun 2024 11:30:49 -0400
-Message-Id: <20240613153128.681864-3-oak.zeng@intel.com>
+Subject: [CI 41/42] drm/xe/svm: Introduce hmm_pfn array based resource cursor
+Date: Thu, 13 Jun 2024 11:31:27 -0400
+Message-Id: <20240613153128.681864-41-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240613153128.681864-1-oak.zeng@intel.com>
 References: <20240613153128.681864-1-oak.zeng@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,171 +66,204 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Leon Romanovsky <leonro@nvidia.com>
+This type of resource cursor will be used by system allocator or userptr.
+With system allocator, all the backing resource are backed by struct page.
+The resource could be in system memory or in gpu device memory. For
+userptr, the backing resource is always in system memory.
 
-Introduce new DMA link/unlink API to provide a way for advanced users
-to directly map/unmap pages without ned to allocate IOVA on every map
-call.
+For system memory, the page is already dma-mapped. The dma-mapped
+address is in dma_addr array.
 
-Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+For gpu device memory, we will calculate the device physical address
+using hmm_pfn.
+
+Note we support a mixture placement of system memory and device memory.
+In the resource range, some of the page could be backed by system mem,
+and some by device memory.
+
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Brian Welty <brian.welty@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- include/linux/dma-map-ops.h | 10 +++++++
- include/linux/dma-mapping.h | 13 +++++++++
- kernel/dma/debug.h          |  2 ++
- kernel/dma/direct.h         |  3 ++
- kernel/dma/mapping.c        | 57 +++++++++++++++++++++++++++++++++++++
- 5 files changed, 85 insertions(+)
+ drivers/gpu/drm/xe/xe_pt.c         |  5 +-
+ drivers/gpu/drm/xe/xe_res_cursor.h | 80 ++++++++++++++++++++----------
+ 2 files changed, 57 insertions(+), 28 deletions(-)
 
-diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
-index 23e5e2f63a1c..292326ac5a12 100644
---- a/include/linux/dma-map-ops.h
-+++ b/include/linux/dma-map-ops.h
-@@ -89,6 +89,13 @@ struct dma_map_ops {
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index c68ff02a931e..4a7dab64f9b6 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -698,8 +698,9 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma, u64 start, u64 end,
+ 		u64 offset = start - xe_vma_start(vma);
+ 		u64 page_idx = offset >> PAGE_SHIFT;
+ 		if (xe_vma_is_userptr(vma))
+-			xe_res_first_dma(to_userptr_vma(vma)->userptr.hmmptr.dma_addr + page_idx,
+-					0, xe_vma_size(vma), 0, &curs);
++			xe_res_first_hmmptr(to_userptr_vma(vma)->userptr.hmmptr.dma_addr + page_idx,
++					to_userptr_vma(vma)->userptr.hmmptr.pfn + page_idx,
++					&tile->mem.vram.drm_mr, size, &curs);
+ 		else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
+ 			xe_res_first(bo->ttm.resource, xe_vma_bo_offset(vma) + offset,
+ 				     size, &curs);
+diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
+index b17b3375f6d9..fae53c093a57 100644
+--- a/drivers/gpu/drm/xe/xe_res_cursor.h
++++ b/drivers/gpu/drm/xe/xe_res_cursor.h
+@@ -25,12 +25,16 @@
+ #define _XE_RES_CURSOR_H_
  
- 	dma_addr_t (*alloc_iova)(struct device *dev, size_t size);
- 	void (*free_iova)(struct device *dev, dma_addr_t dma_addr, size_t size);
-+	dma_addr_t (*link_range)(struct device *dev, struct page *page,
-+				 unsigned long offset, dma_addr_t addr,
-+				 size_t size, enum dma_data_direction dir,
-+				 unsigned long attrs);
-+	void (*unlink_range)(struct device *dev, dma_addr_t dma_handle,
-+			     size_t size, enum dma_data_direction dir,
-+			     unsigned long attrs);
+ #include <linux/scatterlist.h>
++#include <linux/mm_types.h>
++#include <linux/memremap.h>
++#include <linux/hmm.h>
+ 
+ #include <drm/drm_mm.h>
+ #include <drm/ttm/ttm_placement.h>
+ #include <drm/ttm/ttm_range_manager.h>
+ #include <drm/ttm/ttm_resource.h>
+ #include <drm/ttm/ttm_tt.h>
++#include <drm/drm_svm.h>
+ 
+ #include "xe_bo.h"
+ #include "xe_device.h"
+@@ -44,10 +48,11 @@ struct xe_res_cursor {
+ 	u64 remaining;
+ 	void *node;
+ 	u32 mem_type;
+-	unsigned int order;
+ 	struct scatterlist *sgl;
+-	const dma_addr_t *dma_addr;
++	dma_addr_t *dma_addr;
+ 	struct drm_buddy *mm;
++	unsigned long *hmm_pfn;
++	struct drm_mem_region *mr;
  };
  
- #ifdef CONFIG_DMA_OPS
-@@ -440,6 +447,9 @@ bool arch_dma_unmap_sg_direct(struct device *dev, struct scatterlist *sg,
- #define arch_dma_unmap_sg_direct(d, s, n)	(false)
- #endif
+ static struct drm_buddy *xe_res_get_buddy(struct ttm_resource *res)
+@@ -80,6 +85,8 @@ static inline void xe_res_first(struct ttm_resource *res,
+ 	XE_WARN_ON(start + size > res->size);
  
-+#define arch_dma_link_range_direct arch_dma_map_page_direct
-+#define arch_dma_unlink_range_direct arch_dma_unmap_page_direct
-+
- #ifdef CONFIG_ARCH_HAS_SETUP_DMA_OPS
- void arch_setup_dma_ops(struct device *dev, bool coherent);
- #else
-diff --git a/include/linux/dma-mapping.h b/include/linux/dma-mapping.h
-index 34a3b6420606..223b5477e36e 100644
---- a/include/linux/dma-mapping.h
-+++ b/include/linux/dma-mapping.h
-@@ -113,6 +113,9 @@ static inline int dma_mapping_error(struct device *dev, dma_addr_t dma_addr)
+ 	cur->mem_type = res->mem_type;
++	cur->hmm_pfn = NULL;
++	cur->mr = NULL;
  
- int dma_alloc_iova(struct dma_iova_attrs *iova);
- void dma_free_iova(struct dma_iova_attrs *iova);
-+dma_addr_t dma_link_range(struct page *page, unsigned long offset,
-+			  struct dma_iova_attrs *iova, dma_addr_t dma_offset);
-+void dma_unlink_range(struct dma_iova_attrs *iova, dma_addr_t dma_offset);
- 
- dma_addr_t dma_map_page_attrs(struct device *dev, struct page *page,
- 		size_t offset, size_t size, enum dma_data_direction dir,
-@@ -170,6 +173,16 @@ static inline int dma_alloc_iova(struct dma_iova_attrs *iova)
- static inline void dma_free_iova(struct dma_iova_attrs *iova)
+ 	switch (cur->mem_type) {
+ 	case XE_PL_STOLEN:
+@@ -160,6 +167,8 @@ static inline void xe_res_first_sg(const struct sg_table *sg,
+ 				   struct xe_res_cursor *cur)
  {
+ 	XE_WARN_ON(!sg);
++	cur->hmm_pfn = NULL;
++	cur->mr = NULL;
+ 	cur->node = NULL;
+ 	cur->start = start;
+ 	cur->remaining = size;
+@@ -171,34 +180,43 @@ static inline void xe_res_first_sg(const struct sg_table *sg,
  }
-+static inline dma_addr_t dma_link_range(struct page *page, unsigned long offset,
-+					struct dma_iova_attrs *iova,
-+					dma_addr_t dma_offset)
-+{
-+	return DMA_MAPPING_ERROR;
-+}
-+static inline void dma_unlink_range(struct dma_iova_attrs *iova,
-+				    dma_addr_t dma_offset)
-+{
-+}
- static inline dma_addr_t dma_map_page_attrs(struct device *dev,
- 		struct page *page, size_t offset, size_t size,
- 		enum dma_data_direction dir, unsigned long attrs)
-diff --git a/kernel/dma/debug.h b/kernel/dma/debug.h
-index f525197d3cae..3d529f355c6d 100644
---- a/kernel/dma/debug.h
-+++ b/kernel/dma/debug.h
-@@ -127,4 +127,6 @@ static inline void debug_dma_sync_sg_for_device(struct device *dev,
- {
- }
- #endif /* CONFIG_DMA_API_DEBUG */
-+#define debug_dma_link_range debug_dma_map_page
-+#define debug_dma_unlink_range debug_dma_unmap_page
- #endif /* _KERNEL_DMA_DEBUG_H */
-diff --git a/kernel/dma/direct.h b/kernel/dma/direct.h
-index 18d346118fe8..1c30e1cd607a 100644
---- a/kernel/dma/direct.h
-+++ b/kernel/dma/direct.h
-@@ -125,4 +125,7 @@ static inline void dma_direct_unmap_page(struct device *dev, dma_addr_t addr,
- 		swiotlb_tbl_unmap_single(dev, phys, size, dir,
- 					 attrs | DMA_ATTR_SKIP_CPU_SYNC);
- }
-+
-+#define dma_direct_link_range dma_direct_map_page
-+#define dma_direct_unlink_range dma_direct_unmap_page
- #endif /* _KERNEL_DMA_DIRECT_H */
-diff --git a/kernel/dma/mapping.c b/kernel/dma/mapping.c
-index 4d14637d186b..787d7516434f 100644
---- a/kernel/dma/mapping.c
-+++ b/kernel/dma/mapping.c
-@@ -213,6 +213,63 @@ void dma_free_iova(struct dma_iova_attrs *iova)
- }
- EXPORT_SYMBOL(dma_free_iova);
  
-+/**
-+ * dma_link_range - Link a physical page to DMA address
-+ * @page: The page to be mapped
-+ * @offset: The offset within the page
-+ * @iova: Preallocated IOVA attributes
-+ * @dma_offset: DMA offset form which this page needs to be linked
+ /**
+- * xe_res_first_dma - initialize a xe_res_cursor with dma_addr array
++ * xe_res_first_hmmptr - initialize a xe_res_cursor for hmmptr
+  *
+- * @dma_addr: dma_addr array to walk
+- * @start: Start of the range
++ * @dma_addr: dma_addr array to walk, valid when resource is in system mem.
++ * @hmm_pfn: a hmm_pfn array, each item contains hmm_pfn of a 4k page.
++ * @mr: memory region that the resource belongs to
+  * @size: Size of the range
+- * @order: Order of dma mapping. i.e. PAGE_SIZE << order is mapping size
+  * @cur: cursor object to initialize
+  *
+- * Start walking over the range of allocations between @start and @size.
++ * Start walking over the resources used by a hmmptr. For hmmptr,
++ * the backing resource are all backed by struct page. The resource
++ * could be in system memory or in gpu device memory.
 + *
-+ * dma_alloc_iova() allocates IOVA based on the size specified by ther user in
-+ * iova->size. Call this function after IOVA allocation to link @page from
-+ * @offset to get the DMA address. Note that very first call to this function
-+ * will have @dma_offset set to 0 in the IOVA space allocated from
-+ * dma_alloc_iova(). For subsequent calls to this function on same @iova,
-+ * @dma_offset needs to be advanced by the caller with the size of previous
-+ * page that was linked + DMA address returned for the previous page that was
-+ * linked by this function.
-+ */
-+dma_addr_t dma_link_range(struct page *page, unsigned long offset,
-+			  struct dma_iova_attrs *iova, dma_addr_t dma_offset)
-+{
-+	struct device *dev = iova->dev;
-+	size_t size = iova->size;
-+	enum dma_data_direction dir = iova->dir;
-+	unsigned long attrs = iova->attrs;
-+	dma_addr_t addr = iova->addr + dma_offset;
-+	const struct dma_map_ops *ops = get_dma_ops(dev);
-+
-+	if (dma_map_direct(dev, ops) ||
-+	    arch_dma_link_range_direct(dev, page_to_phys(page) + offset + size))
-+		addr = dma_direct_link_range(dev, page, offset, size, dir, attrs);
-+	else if (ops->link_range)
-+		addr = ops->link_range(dev, page, offset, addr, size, dir, attrs);
-+
-+	kmsan_handle_dma(page, offset, size, dir);
-+	debug_dma_link_range(dev, page, offset, size, dir, addr, attrs);
-+	return addr;
-+}
-+EXPORT_SYMBOL(dma_link_range);
-+
-+void dma_unlink_range(struct dma_iova_attrs *iova, dma_addr_t dma_offset)
-+{
-+	struct device *dev = iova->dev;
-+	size_t size = iova->size;
-+	enum dma_data_direction dir = iova->dir;
-+	unsigned long attrs = iova->attrs;
-+	dma_addr_t addr = iova->addr + dma_offset;
-+	const struct dma_map_ops *ops = get_dma_ops(dev);
-+
-+	if (dma_map_direct(dev, ops) ||
-+	    arch_dma_unlink_range_direct(dev, addr + size))
-+		dma_direct_unlink_range(dev, addr, size, dir, attrs);
-+	else if (ops->unlink_range)
-+		ops->unlink_range(dev, addr, size, dir, attrs);
-+
-+	debug_dma_unlink_range(dev, addr, size, dir);
-+}
-+EXPORT_SYMBOL(dma_unlink_range);
-+
- static int __dma_map_sg_attrs(struct device *dev, struct scatterlist *sg,
- 	 int nents, enum dma_data_direction dir, unsigned long attrs)
++ * For system memory, the page is already dma-mapped. The dma-mapped
++ * address is in dma_addr array.
++ *
++ * For gpu device memory, we will calculate the device physical address
++ * using hmm_pfn.
++ *
++ * Note we support a mixture placement of system memory and device memory.
++ * In the resource range, some of the page could be backed by system mem,
++ * and some by device memory.
+  */
+-static inline void xe_res_first_dma(const dma_addr_t *dma_addr,
+-				    u64 start, u64 size,
+-				    unsigned int order,
+-				    struct xe_res_cursor *cur)
++static inline void xe_res_first_hmmptr(dma_addr_t *dma_addr,
++                    unsigned long *hmm_pfn, struct drm_mem_region *mr,
++				    u64 size, struct xe_res_cursor *cur)
  {
+-	XE_WARN_ON(start);
+ 	XE_WARN_ON(!dma_addr);
+-	XE_WARN_ON(!IS_ALIGNED(start, PAGE_SIZE) ||
+-		   !IS_ALIGNED(size, PAGE_SIZE));
++	XE_WARN_ON(!IS_ALIGNED(size, PAGE_SIZE));
+ 
+ 	cur->node = NULL;
+-	cur->start = start;
+ 	cur->remaining = size;
+-	cur->size = PAGE_SIZE << order;
++	cur->size = 0;
+ 	cur->dma_addr = dma_addr;
+-	cur->order = order;
+ 	cur->sgl = NULL;
+ 	cur->mem_type = XE_PL_TT;
++	cur->hmm_pfn = hmm_pfn;
++	cur->mr = mr;
+ }
+ 
+ /**
+@@ -221,15 +239,19 @@ static inline void xe_res_next(struct xe_res_cursor *cur, u64 size)
+ 	if (!cur->remaining)
+ 		return;
+ 
+-	if (cur->size > size) {
+-		cur->size -= size;
+-		cur->start += size;
++	if (cur->mr) {
++		int npages;
++
++		XE_WARN_ON(!IS_ALIGNED(size, PAGE_SIZE));
++
++		npages = size >> PAGE_SHIFT;
++		cur->hmm_pfn += npages;
++		cur->dma_addr += npages;
+ 		return;
+ 	}
+ 
+-	if (cur->dma_addr) {
+-		cur->size = (PAGE_SIZE << cur->order) -
+-			(size - cur->size);
++	if (cur->size > size) {
++		cur->size -= size;
+ 		cur->start += size;
+ 		return;
+ 	}
+@@ -275,9 +297,15 @@ static inline void xe_res_next(struct xe_res_cursor *cur, u64 size)
+  */
+ static inline u64 xe_res_dma(const struct xe_res_cursor *cur)
+ {
+-	if (cur->dma_addr)
+-		return cur->dma_addr[cur->start >> (PAGE_SHIFT + cur->order)] +
+-			(cur->start & ((PAGE_SIZE << cur->order) - 1));
++	if (cur->mr) {
++		u64 hmm_pfn = *cur->hmm_pfn;
++		struct page *page = hmm_pfn_to_page(hmm_pfn);
++
++		if (is_device_private_page(page))
++			return drm_mem_region_page_to_dpa(cur->mr, page);
++		else
++			return *cur->dma_addr;
++	}
+ 	else if (cur->sgl)
+ 		return sg_dma_address(cur->sgl) + cur->start;
+ 	else
 -- 
 2.26.3
 
