@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4314C27C6E
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 14:32:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 638FBC27C6E
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 14:33:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73D8610ED7C;
-	Fri, 14 Jun 2024 14:32:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C24E610ED75;
+	Fri, 14 Jun 2024 14:33:07 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4ECA10ED75;
- Fri, 14 Jun 2024 14:32:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B184510E089;
+ Fri, 14 Jun 2024 14:33:05 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/mso=3A_usin?=
- =?utf-8?q?g_joiner_is_not_possible_with_eDP_MSO?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915/mso=3A_using_joi?=
+ =?utf-8?q?ner_is_not_possible_with_eDP_MSO?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 14 Jun 2024 14:32:54 -0000
-Message-ID: <171837557480.77190.10992058116829654724@a6498e030952>
+Date: Fri, 14 Jun 2024 14:33:05 -0000
+Message-ID: <171837558572.77190.1106031389125628764@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240614142311.589089-1-jani.nikula@intel.com>
 In-Reply-To: <20240614142311.589089-1-jani.nikula@intel.com>
@@ -48,9 +48,31 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 00e9498b4534 drm-tip: 2024y-06m-14d-10h-57m-36s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/mso: using joiner is not possible with eDP MSO
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5c95cb19cd6c4f67449547b2ab5bd7ce7b4608c4
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Fri Jun 14 17:23:11 2024 +0300
+
+    drm/i915/mso: using joiner is not possible with eDP MSO
+    
+    It's not possible to use the joiner at the same time with eDP MSO. When
+    a panel needs MSO, it's not optional, so MSO trumps joiner.
+    
+    v3: Only change intel_dp_has_joiner(), leave debugfs alone (Ville)
+    
+    Cc: stable@vger.kernel.org
+    Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+    Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1668
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 00e9498b453447a5afe527bd0e174587b12f66d2 drm-intel
+5c95cb19cd6c drm/i915/mso: using joiner is not possible with eDP MSO
 
 
