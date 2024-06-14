@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF6CDC27C79
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 11:05:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC0AAC27C6E
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 11:12:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99BEA10ED07;
-	Fri, 14 Jun 2024 11:05:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="QFU7igpQ";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="DXFjmJhj";
-	dkim-atps=neutral
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 316C110E144;
- Fri, 14 Jun 2024 11:05:53 +0000 (UTC)
-Date: Fri, 14 Jun 2024 13:05:48 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1718363149;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=wEBB6JSbcpjeUY3MSW0QoGc2O/ynmNn3S/Q407DVQtI=;
- b=QFU7igpQ5bojoHv9A0JJWfKTXX1kLnXkeihI4cKdDynJPEQDSItxgA+x5YWzEYip9E3iTe
- WZ307qbmLFs2wXpa6c1zCqUiohe7C9+R2DBpvPZ34JVQ4wBjs2khOrRBs6c9NpY2smCRYP
- pExW0G6h+vkqAA2CtUAkZRvOlwtnu69+Upr50GgU0SK9UibUZtRBc5XQ12aCGP1iljzslw
- OcT+iPNpB1rni9gUO+UO3uqnmnF8BIerNOyl80+7pp0KK3ITfsrI/PHa/b54xZSqrDAupA
- CvNuNX0TBxfllCyvB1zal22+oReevInz9fkpTywFhI8hvxem6+RrGfq16OV3PA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1718363149;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=wEBB6JSbcpjeUY3MSW0QoGc2O/ynmNn3S/Q407DVQtI=;
- b=DXFjmJhj6bXA7JtRy7DVE8/61SutmSfEU03+gpMewXza02i0SsDWKGrKGW7/AwcFydeMzr
- gV5uBLqVD2Dy/YBw==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [PATCH v2 3/8] drm/i915: Don't check for atomic context on
- PREEMPT_RT
-Message-ID: <20240614110548.m3lloBjv@linutronix.de>
-References: <20240613102818.4056866-1-bigeasy@linutronix.de>
- <20240613102818.4056866-4-bigeasy@linutronix.de>
- <94423591-adba-46d4-a9ba-f377dfab369f@ursulin.net>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8842210ED1C;
+	Fri, 14 Jun 2024 11:12:02 +0000 (UTC)
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9CC910ED08;
+ Fri, 14 Jun 2024 11:11:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5238571642392725616=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <94423591-adba-46d4-a9ba-f377dfab369f@ursulin.net>
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Use_fixed_CCS_mode_whe?=
+ =?utf-8?q?n_running_in_SR-IOV_mode_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 14 Jun 2024 11:11:59 -0000
+Message-ID: <171836351988.77190.11978651224915607971@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240614101415.2208-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20240614101415.2208-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,53 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2024-06-14 09:32:07 [+0100], Tvrtko Ursulin wrote:
-> I think this could be okay-ish in principle, but the commit text is not
-> entirely accurate because there is no direct coupling between the wait
-> helpers and the uncore lock. They can be used from any atomic context.
-> 
-> Okay-ish in principle because there is sufficient testing in Intel's CI on
-> non-PREEMPT_RT kernels to catch any conceptual misuses.
+--===============5238571642392725616==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-You just avoid disabling preemption if you expect to be in atomic
-context to save a few cycles. It wouldn't hurt to disable it anyway. The
-only reason you need it is to remain on the same CPU while reading the
-clock because it is not guaranteed otherwise.
+== Series Details ==
 
-Delays > 50ms are detected at build time.
+Series: drm/xe: Use fixed CCS mode when running in SR-IOV mode (rev2)
+URL   : https://patchwork.freedesktop.org/series/134824/
+State : success
 
-> But see also the caller in skl_pcode_request. It is a bit harder to hit
-> since it is the fallback path. Or gen5_rps_enable which nests under a
-> different lock.
-> 
-> Hmm would there be a different helper, or combination of helpers, which
-> could replace in_atomic() which would do the right thing on both kernels?
-> Something to tell us we are neither under a spin_lock, nor preempt_disable,
-> nor interrupts disabled, nor bottom-half. On either stock or PREEMPT_RT.
+== Summary ==
 
-There is nothing that you can use to deduct that you are under a
-spin-lock. preemptible() works only if you have a preemption counter
-which is not mandatory. It can affect RCU but not in all configurations.
+CI Bug Log - changes from xe-1469-9e00ec95f823e394044b8d9b5cdadd2c71714d91_BAT -> xe-pw-134824v2_BAT
+====================================================
 
-> WARN_ON_ONCE((ATOMIC) && !(!preemptible() || in_hardirq() ||
-> in_serving_softirq())
-> 
-> Would this work?
+Summary
+-------
 
-Nope. None of this triggers if you acquire a spinlock_t. And I can't
-think of something that would always be true.
+  **SUCCESS**
 
-So the question is why do you need to know if the context is atomic?
-The only impact is avoiding disabling preemption. Is it that important
-to avoid it?
-If so would cant_migrate() work? It requires CONFIG_DEBUG_ATOMIC_SLEEP=y
-to do the trick.
+  No regressions found.
 
-> Regards,
-> 
-> Tvrtko
+  
 
-Sebastian
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-1469-9e00ec95f823e394044b8d9b5cdadd2c71714d91 -> xe-pw-134824v2
+
+  IGT_7888: 021538d059575eb9f93d36fea36015cd3f9fca7d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1469-9e00ec95f823e394044b8d9b5cdadd2c71714d91: 9e00ec95f823e394044b8d9b5cdadd2c71714d91
+  xe-pw-134824v2: 134824v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134824v2/index.html
+
+--===============5238571642392725616==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Use fixed CCS mode when running in SR-IOV mode (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134824/">https://patchwork.freedesktop.org/series/134824/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134824v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134824v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1469-9e00ec95f823e394044b8d9b5cdadd2c71714d91_BAT -&gt; xe-pw-134824v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1469-9e00ec95f823e394044b8d9b5cdadd2c71714d91 -&gt; xe-pw-134824v2</li>
+</ul>
+<p>IGT_7888: 021538d059575eb9f93d36fea36015cd3f9fca7d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1469-9e00ec95f823e394044b8d9b5cdadd2c71714d91: 9e00ec95f823e394044b8d9b5cdadd2c71714d91<br />
+  xe-pw-134824v2: 134824v2</p>
+
+</body>
+</html>
+
+--===============5238571642392725616==--
