@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBF64C27C6E
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 14:28:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B4D2C27C6E
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 14:29:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9900010E089;
-	Fri, 14 Jun 2024 14:28:42 +0000 (UTC)
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CB9410E089;
- Fri, 14 Jun 2024 14:28:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5825140247790844772=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE09C10ED6C;
+	Fri, 14 Jun 2024 14:29:11 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CBOxVMxl";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71D4910ED73
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 14:29:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1718375350; x=1749911350;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=hdtBgxz+cU6EtOiabZFAMQg/xlQz5jjQcquYEUjPTe0=;
+ b=CBOxVMxl9wqgW2QU8l8GHadzPPaVvmg5fxpnd/wvdyjZlM/ww47iKXCr
+ Kk5F/WW6tEq5ImbePRjmaXabP0w52lY07bMASBSCtvV9gegXe3/dHfv0A
+ LZRhbwwCtBioFlmNNqOlJTi5FsywbSTmb2ACumaSolSenP0SEC1ovCsIZ
+ a3IIzfP1OMYzhmtK2DICnv87ZWSwuQU0gV8AAyVe1R3OEDpuRdZO/WR/m
+ 3XgspVw/jIby9AQtJpvRmorguf/uoa5UeFIk7BSianP7Rvs4ikP+VqRTF
+ 8FzcPg08r0imG0gPjBH4He4c9WGXILMzSMH47MyqYnPFQ6vypdDcFK/lx w==;
+X-CSE-ConnectionGUID: +4vzFcM5Q3eRFX93vvRRbg==
+X-CSE-MsgGUID: PC+70ctlSTuDNLP54kywcw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="15410911"
+X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="15410911"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2024 07:29:10 -0700
+X-CSE-ConnectionGUID: iJpOvue9Tj+Gnlwwj1Gxiw==
+X-CSE-MsgGUID: UERZf/PISTiKQ+FRe3sZrw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="45445018"
+Received: from apaszkie-mobl2.apaszkie-mobl2 (HELO [10.245.244.139])
+ ([10.245.244.139])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2024 07:29:09 -0700
+Message-ID: <d0dd7c2e-c7c0-4cc9-b600-48101c699b91@intel.com>
+Date: Fri, 14 Jun 2024 15:29:06 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/=7Bttm=2Cxe=7D=3A_Improve_tt?=
- =?utf-8?q?m=5Fbo=5Fvmap=28=29_and_update_xe?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 14 Jun 2024 14:28:38 -0000
-Message-ID: <171837531844.77190.17341734367700859921@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <20240614133556.11378-1-tzimmermann@suse.de>
-In-Reply-To: <20240614133556.11378-1-tzimmermann@suse.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Fix missing runtime outer protection for
+ ggtt_remove_node
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>,
+ Francois Dugast <francois.dugast@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+References: <20240613215357.307061-1-rodrigo.vivi@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20240613215357.307061-1-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,311 +70,377 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5825140247790844772==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 13/06/2024 22:53, Rodrigo Vivi wrote:
+> Defer the ggtt node removal to a thread if runtime_pm is not active.
+> 
+> The ggtt node removal can be called from multiple places, including
+> places where we cannot protect with outer callers and places we are
+> within other locks. So, try to grab the runtime reference if the
+> device is already active, otherwise defer the removal to a separate
+> thread from where we are sure we can wake the device up.
+> 
+> v2: - use xe wq instead of system wq (Matt and CI)
+>      - Avoid GFP_KERNEL to be future proof since this removal can
+>      be called from outside our drivers and we don't want to block
+>      if atomic is needed. (Brost)
+> v3: amend forgot chunk declaring xe_device.
+> v4: Use a xe_ggtt_region to encapsulate the node and remova info,
+>      wihtout the need for any memory allocation at runtime.
+> v5: Actually fill the delayed_removal.invalidate (Brost)
+> v6: - Ensure that ggtt_region is not freed before work finishes (Auld)
+>      - Own wq to ensures that the queued works are flushed before
+>        ggtt_fini (Brost)
+> 
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
+> Cc: Francois Dugast <francois.dugast@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>   drivers/gpu/drm/xe/display/xe_fb_pin.c |  10 +-
+>   drivers/gpu/drm/xe/xe_bo.c             |   2 +-
+>   drivers/gpu/drm/xe/xe_bo.h             |   6 +-
+>   drivers/gpu/drm/xe/xe_bo_types.h       |   6 +-
+>   drivers/gpu/drm/xe/xe_ggtt.c           | 129 ++++++++++++++++++-------
+>   drivers/gpu/drm/xe/xe_ggtt.h           |   1 -
+>   drivers/gpu/drm/xe/xe_ggtt_types.h     |  23 +++++
+>   7 files changed, 130 insertions(+), 47 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> index a2f417209124..b84139b27970 100644
+> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> @@ -153,7 +153,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+>   	}
+>   
+>   	vma->dpt = dpt;
+> -	vma->node = dpt->ggtt_node;
+> +	vma->node = dpt->ggtt_region->node;
+>   	return 0;
+>   }
+>   
+> @@ -203,8 +203,8 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
+>   	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
+>   		align = max_t(u32, align, SZ_64K);
+>   
+> -	if (bo->ggtt_node.size && view->type == I915_GTT_VIEW_NORMAL) {
+> -		vma->node = bo->ggtt_node;
+> +	if (bo->ggtt_region->node.size && view->type == I915_GTT_VIEW_NORMAL) {
+> +		vma->node = bo->ggtt_region->node;
+>   	} else if (view->type == I915_GTT_VIEW_NORMAL) {
+>   		u32 x, size = bo->ttm.base.size;
+>   
+> @@ -322,8 +322,8 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
+>   
+>   	if (vma->dpt)
+>   		xe_bo_unpin_map_no_vm(vma->dpt);
+> -	else if (!drm_mm_node_allocated(&vma->bo->ggtt_node) ||
+> -		 vma->bo->ggtt_node.start != vma->node.start)
+> +	else if (!drm_mm_node_allocated(&vma->bo->ggtt_region->node) ||
+> +		 vma->bo->ggtt_region->node.start != vma->node.start)
+>   		xe_ggtt_remove_node(ggtt, &vma->node, false);
+>   
+>   	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 74294f1b05bc..0bfd6d1eb0be 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -1072,7 +1072,7 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
+>   
+>   	xe_assert(xe, list_empty(&ttm_bo->base.gpuva.list));
+>   
+> -	if (bo->ggtt_node.size)
+> +	if (bo->ggtt_region->node.size)
+>   		xe_ggtt_remove_bo(bo->tile->mem.ggtt, bo);
+>   
+>   #ifdef CONFIG_PROC_FS
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index 6de894c728f5..aeb1ebc0d3fc 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -194,9 +194,9 @@ xe_bo_main_addr(struct xe_bo *bo, size_t page_size)
+>   static inline u32
+>   xe_bo_ggtt_addr(struct xe_bo *bo)
+>   {
+> -	XE_WARN_ON(bo->ggtt_node.size > bo->size);
+> -	XE_WARN_ON(bo->ggtt_node.start + bo->ggtt_node.size > (1ull << 32));
+> -	return bo->ggtt_node.start;
+> +	XE_WARN_ON(bo->ggtt_region->node.size > bo->size);
+> +	XE_WARN_ON(bo->ggtt_region->node.start + bo->ggtt_region->node.size > (1ull << 32));
+> +	return bo->ggtt_region->node.start;
+>   }
+>   
+>   int xe_bo_vmap(struct xe_bo *bo);
+> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+> index 86422e113d39..f45b1c4bbb6d 100644
+> --- a/drivers/gpu/drm/xe/xe_bo_types.h
+> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
+> @@ -14,6 +14,8 @@
+>   #include <drm/ttm/ttm_execbuf_util.h>
+>   #include <drm/ttm/ttm_placement.h>
+>   
+> +#include "xe_ggtt_types.h"
+> +
+>   struct xe_device;
+>   struct xe_vm;
+>   
+> @@ -38,8 +40,8 @@ struct xe_bo {
+>   	struct ttm_place placements[XE_BO_MAX_PLACEMENTS];
+>   	/** @placement: current placement for this BO */
+>   	struct ttm_placement placement;
+> -	/** @ggtt_node: GGTT node if this BO is mapped in the GGTT */
+> -	struct drm_mm_node ggtt_node;
+> +	/** @ggtt_region: GGTT region node if this BO is mapped in the GGTT */
+> +	struct xe_ggtt_region *ggtt_region;
+>   	/** @vmap: iosys map of this buffer */
+>   	struct iosys_map vmap;
+>   	/** @ttm_kmap: TTM bo kmap object for internal use only. Keep off. */
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> index 8ff91fd1b7c8..d0284f2c7cbc 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> @@ -101,6 +101,7 @@ static void ggtt_fini_early(struct drm_device *drm, void *arg)
+>   {
+>   	struct xe_ggtt *ggtt = arg;
+>   
+> +	destroy_workqueue(ggtt->wq);
+>   	mutex_destroy(&ggtt->lock);
+>   	drm_mm_takedown(&ggtt->mm);
+>   }
+> @@ -191,6 +192,8 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+>   	else
+>   		ggtt->pt_ops = &xelp_pt_ops;
+>   
+> +	ggtt->wq = alloc_workqueue("xe-ggtt-wq", 0, 0);
 
-== Series Details ==
+Check for error?
 
-Series: drm/{ttm,xe}: Improve ttm_bo_vmap() and update xe
-URL   : https://patchwork.freedesktop.org/series/134890/
-State : failure
+> +
+>   	drm_mm_init(&ggtt->mm, xe_wopcm_size(xe),
+>   		    ggtt->size - xe_wopcm_size(xe));
+>   	mutex_init(&ggtt->lock);
+> @@ -389,7 +392,7 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+>   {
+>   	u16 cache_mode = bo->flags & XE_BO_FLAG_NEEDS_UC ? XE_CACHE_NONE : XE_CACHE_WB;
+>   	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[cache_mode];
+> -	u64 start = bo->ggtt_node.start;
+> +	u64 start = bo->ggtt_region->node.start;
+>   	u64 offset, pte;
+>   
+>   	for (offset = 0; offset < bo->size; offset += XE_PAGE_SIZE) {
+> @@ -398,18 +401,97 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+>   	}
+>   }
+>   
+> +static void ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
+> +			     bool invalidate)
+> +{
+> +	struct xe_device *xe = tile_to_xe(ggtt->tile);
+> +	struct xe_ggtt_region *ggtt_region = container_of(node,
+> +							  typeof(*ggtt_region),
+> +							  node);
+> +	bool bound;
+> +	int idx;
+> +
+> +	bound = drm_dev_enter(&xe->drm, &idx);
+> +
+> +	mutex_lock(&ggtt->lock);
+> +	if (bound)
+> +		xe_ggtt_clear(ggtt, node->start, node->size);
+> +	drm_mm_remove_node(node);
+> +	node->size = 0;
+> +	mutex_unlock(&ggtt->lock);
+> +
+> +	if (!bound)
+> +		return;
 
-== Summary ==
+Missing the kfree here?
 
-CI Bug Log - changes from xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2_BAT -> xe-pw-134890v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-134890v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-134890v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-134890v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:
-    - bat-atsm-2:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-atsm-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-atsm-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
-
-  * igt@xe_exec_compute_mode@twice-userptr-invalidate:
-    - bat-atsm-2:         [PASS][3] -> [DMESG-WARN][4] +149 other tests dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
-
-  * igt@xe_intel_bb@create-in-region:
-    - bat-dg2-oem2:       [PASS][5] -> [DMESG-WARN][6] +211 other tests dmesg-warn
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html
-
-  * igt@xe_intel_bb@intel-bb-blit-y:
-    - bat-pvc-2:          [PASS][7] -> [DMESG-WARN][8] +160 other tests dmesg-warn
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-pvc-2/igt@xe_intel_bb@intel-bb-blit-y.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-pvc-2/igt@xe_intel_bb@intel-bb-blit-y.html
-
-  * igt@xe_intel_bb@offset-control:
-    - bat-adlp-7:         [PASS][9] -> [DMESG-WARN][10] +170 other tests dmesg-warn
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-adlp-7/igt@xe_intel_bb@offset-control.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-adlp-7/igt@xe_intel_bb@offset-control.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-pvc-2:          [PASS][11] -> [SKIP][12] +2 other tests skip
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-pvc-2/igt@xe_live_ktest@xe_migrate.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-pvc-2/igt@xe_live_ktest@xe_migrate.html
-    - bat-atsm-2:         [PASS][13] -> [SKIP][14] +2 other tests skip
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-pvc-2:          [PASS][15] -> [INCOMPLETE][16] +1 other test incomplete
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-pvc-2/igt@xe_pat@pat-index-xehpc.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-pvc-2/igt@xe_pat@pat-index-xehpc.html
-
-  
-#### Warnings ####
-
-  * igt@xe_evict@evict-beng-small-external:
-    - bat-pvc-2:          [FAIL][17] ([Intel XE#1000]) -> [DMESG-FAIL][18] +3 other tests dmesg-fail
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-edp-1:
-    - {bat-lnl-1}:        [PASS][19] -> [DMESG-WARN][20] +199 other tests dmesg-warn
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-lnl-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-edp-1.html
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-lnl-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-edp-1.html
-
-  * {igt@xe_intel_bb@render@render-ymajor-512}:
-    - bat-adlp-7:         [PASS][21] -> [DMESG-WARN][22] +1 other test dmesg-warn
-   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-adlp-7/igt@xe_intel_bb@render@render-ymajor-512.html
-   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-adlp-7/igt@xe_intel_bb@render@render-ymajor-512.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-134890v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:
-    - bat-dg2-oem2:       [PASS][23] -> [INCOMPLETE][24] ([Intel XE#392])
-   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-dg2-oem2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
-   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-dg2-oem2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
-    - bat-pvc-2:          [PASS][25] -> [INCOMPLETE][26] ([Intel XE#392])
-   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-pvc-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
-   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-pvc-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-adlp-7:         [PASS][27] -> [SKIP][28] ([Intel XE#1192]) +2 other tests skip
-   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-adlp-7/igt@xe_live_ktest@xe_migrate.html
-   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate.html
-    - bat-dg2-oem2:       [PASS][29] -> [SKIP][30] ([Intel XE#1192]) +2 other tests skip
-   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate.html
-   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1000]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1000
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#392]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/392
-
-
-Build changes
--------------
-
-  * IGT: IGT_7888 -> IGT_7889
-  * Linux: xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2 -> xe-pw-134890v1
-
-  IGT_7888: 021538d059575eb9f93d36fea36015cd3f9fca7d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7889: 9dca15da37f2a385b04427eb39cd460224d09c25 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2: 00e9498b453447a5afe527bd0e174587b12f66d2
-  xe-pw-134890v1: 134890v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/index.html
-
---===============5825140247790844772==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/{ttm,xe}: Improve ttm_bo_vmap() and update xe</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134890/">https://patchwork.freedesktop.org/series/134890/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2_BAT -&gt; xe-pw-134890v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-134890v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-134890v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-134890v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-atsm-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-atsm-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">INCOMPLETE</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_compute_mode@twice-userptr-invalidate:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">DMESG-WARN</a> +149 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_intel_bb@create-in-region:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html">DMESG-WARN</a> +211 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_intel_bb@intel-bb-blit-y:</p>
-<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-pvc-2/igt@xe_intel_bb@intel-bb-blit-y.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-pvc-2/igt@xe_intel_bb@intel-bb-blit-y.html">DMESG-WARN</a> +160 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_intel_bb@offset-control:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-adlp-7/igt@xe_intel_bb@offset-control.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-adlp-7/igt@xe_intel_bb@offset-control.html">DMESG-WARN</a> +170 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-pvc-2/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-pvc-2/igt@xe_live_ktest@xe_migrate.html">SKIP</a> +2 other tests skip</li>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html">SKIP</a> +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-pvc-2/igt@xe_pat@pat-index-xehpc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-pvc-2/igt@xe_pat@pat-index-xehpc.html">INCOMPLETE</a> +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_evict@evict-beng-small-external:<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1000">Intel XE#1000</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html">DMESG-FAIL</a> +3 other tests dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-edp-1:</p>
-<ul>
-<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-lnl-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-lnl-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-edp-1.html">DMESG-WARN</a> +199 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>{igt@xe_intel_bb@render@render-ymajor-512}:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-adlp-7/igt@xe_intel_bb@render@render-ymajor-512.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-adlp-7/igt@xe_intel_bb@render@render-ymajor-512.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-134890v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-dg2-oem2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-dg2-oem2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/392">Intel XE#392</a>)</li>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-pvc-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-pvc-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/392">Intel XE#392</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-adlp-7/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +2 other tests skip</li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134890v1/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7888 -&gt; IGT_7889</li>
-<li>Linux: xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2 -&gt; xe-pw-134890v1</li>
-</ul>
-<p>IGT_7888: 021538d059575eb9f93d36fea36015cd3f9fca7d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7889: 9dca15da37f2a385b04427eb39cd460224d09c25 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1470-00e9498b453447a5afe527bd0e174587b12f66d2: 00e9498b453447a5afe527bd0e174587b12f66d2<br />
-  xe-pw-134890v1: 134890v1</p>
-
-</body>
-</html>
-
---===============5825140247790844772==--
+> +
+> +	if (invalidate)
+> +		xe_ggtt_invalidate(ggtt);
+> +
+> +	drm_dev_exit(idx);
+> +	kfree(ggtt_region);
+> +}
+> +
+> +static void ggtt_remove_node_work_func(struct work_struct *work)
+> +{
+> +	struct xe_ggtt_region *ggtt_region = container_of(work,
+> +							  typeof(*ggtt_region),
+> +							  delayed_removal.work);
+> +	struct xe_device *xe = tile_to_xe(ggtt_region->ggtt->tile);
+> +
+> +	xe_pm_runtime_get(xe);
+> +	ggtt_remove_node(ggtt_region->ggtt, &ggtt_region->node,
+> +			 ggtt_region->delayed_removal.invalidate);
+> +	xe_pm_runtime_put(xe);
+> +}
+> +
+> +static void ggtt_queue_remove_node(struct drm_mm_node *node, bool invalidate)
+> +{
+> +	struct xe_ggtt_region *ggtt_region = container_of(node,
+> +							  typeof(*ggtt_region),
+> +							  node);
+> +
+> +	queue_work(ggtt_region->ggtt->wq, &ggtt_region->delayed_removal.work);
+> +}
+> +
+> +void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
+> +			 bool invalidate)
+> +{
+> +	struct xe_device *xe = tile_to_xe(ggtt->tile);
+> +
+> +	if (xe_pm_runtime_get_if_active(xe)) {
+> +		ggtt_remove_node(ggtt, node, invalidate);
+> +		xe_pm_runtime_put(xe);
+> +	} else {
+> +		ggtt_queue_remove_node(node, invalidate);
+> +	}
+> +}
+> +
+> +static struct xe_ggtt_region *ggtt_region_init(struct xe_ggtt *ggtt)
+> +{
+> +	struct xe_ggtt_region *ggtt_region = kzalloc(sizeof(*ggtt_region),
+> +						     GFP_KERNEL);
+> +
+> +	if (!ggtt_region)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	INIT_WORK(&ggtt_region->delayed_removal.work, ggtt_remove_node_work_func);
+> +	ggtt_region->ggtt = ggtt;
+> +
+> +	return ggtt_region;
+> +}
+> +
+>   static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+>   				  u64 start, u64 end)
+>   {
+>   	int err;
+>   	u64 alignment = XE_PAGE_SIZE;
+> +	struct xe_ggtt_region *ggtt_region;
+>   
+>   	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
+>   		alignment = SZ_64K;
+>   
+> -	if (XE_WARN_ON(bo->ggtt_node.size)) {
+> +	if (XE_WARN_ON(bo->ggtt_region->node.size)) {
+>   		/* Someone's already inserted this BO in the GGTT */
+> -		xe_tile_assert(ggtt->tile, bo->ggtt_node.size == bo->size);
+> +		xe_tile_assert(ggtt->tile, bo->ggtt_region->node.size == bo->size);
+>   		return 0;
+>   	}
+>   
+> @@ -417,9 +499,14 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+>   	if (err)
+>   		return err;
+>   
+> +	ggtt_region = ggtt_region_init(ggtt);
+> +	if (IS_ERR(ggtt_region))
+> +		return PTR_ERR(ggtt_region);
+> +	bo->ggtt_region = ggtt_region;
+> +
+>   	xe_pm_runtime_get_noresume(tile_to_xe(ggtt->tile));
+>   	mutex_lock(&ggtt->lock);
+> -	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node, bo->size,
+> +	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_region->node, bo->size,
+>   					  alignment, 0, start, end, 0);
+>   	if (!err)
+>   		xe_ggtt_map_bo(ggtt, bo);
+> @@ -443,43 +530,15 @@ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+>   	return __xe_ggtt_insert_bo_at(ggtt, bo, 0, U64_MAX);
+>   }
+>   
+> -void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
+> -			 bool invalidate)
+> -{
+> -	struct xe_device *xe = tile_to_xe(ggtt->tile);
+> -	bool bound;
+> -	int idx;
+> -
+> -	bound = drm_dev_enter(&xe->drm, &idx);
+> -	if (bound)
+> -		xe_pm_runtime_get_noresume(xe);
+> -
+> -	mutex_lock(&ggtt->lock);
+> -	if (bound)
+> -		xe_ggtt_clear(ggtt, node->start, node->size);
+> -	drm_mm_remove_node(node);
+> -	node->size = 0;
+> -	mutex_unlock(&ggtt->lock);
+> -
+> -	if (!bound)
+> -		return;
+> -
+> -	if (invalidate)
+> -		xe_ggtt_invalidate(ggtt);
+> -
+> -	xe_pm_runtime_put(xe);
+> -	drm_dev_exit(idx);
+> -}
+> -
+>   void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+>   {
+> -	if (XE_WARN_ON(!bo->ggtt_node.size))
+> +	if (XE_WARN_ON(!bo->ggtt_region->node.size))
+>   		return;
+>   
+>   	/* This BO is not currently in the GGTT */
+> -	xe_tile_assert(ggtt->tile, bo->ggtt_node.size == bo->size);
+> +	xe_tile_assert(ggtt->tile, bo->ggtt_region->node.size == bo->size);
+>   
+> -	xe_ggtt_remove_node(ggtt, &bo->ggtt_node,
+> +	xe_ggtt_remove_node(ggtt, &bo->ggtt_region->node,
+>   			    bo->flags & XE_BO_FLAG_GGTT_INVALIDATE);
+>   }
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+> index 4a41a1762358..75511b5f43eb 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.h
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
+> @@ -30,7 +30,6 @@ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
+>   int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+>   			 u64 start, u64 end);
+>   void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
+> -
+>   int xe_ggtt_dump(struct xe_ggtt *ggtt, struct drm_printer *p);
+>   
+>   #ifdef CONFIG_PCI_IOV
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
+> index d8c584d9a8c3..202d7f3085ba 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt_types.h
+> +++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
+> @@ -34,6 +34,29 @@ struct xe_ggtt {
+>   	const struct xe_ggtt_pt_ops *pt_ops;
+>   
+>   	struct drm_mm mm;
+> +	/** @wq: Dedicated unordered work queue to process node removals */
+> +	struct workqueue_struct *wq;
+> +};
+> +
+> +/**
+> + * struct xe_ggtt_region - GGTT region node
+> + * It needs to be initialized before the drm_mm_node insertion in the GGTT.
+> + */
+> +struct xe_ggtt_region {
+> +	/** @ggtt: Back pointer to xe_ggtt where this region will be inserted at */
+> +	struct xe_ggtt *ggtt;
+> +	/** @node: The drm_mm_node itself */
+> +	struct drm_mm_node node;
+> +	/**
+> +	 * @delayed_removal: Information for removal through work thread when
+> +	 * device runtime_pm is suspended
+> +	 */
+> +	struct {
+> +		/** @delayed_removal.work: The work struct for the delayed removal */
+> +		struct work_struct work;
+> +		/** @delayed_removal.invalidate: If it needs invalidation upon removal */
+> +		bool invalidate;
+> +	} delayed_removal;
+>   };
+>   
+>   #endif
