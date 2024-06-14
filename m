@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDB4EC2BA1A
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 21:49:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E846C2BB85
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 21:49:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D85F10EE69;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7BC610EE72;
 	Fri, 14 Jun 2024 21:49:16 +0000 (UTC)
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 141DE10EE6F;
- Fri, 14 Jun 2024 21:47:48 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AatsAdKQ";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90F1610E2C4
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 21:48:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1718401726; x=1749937726;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=YrZ9vnOI4rY/HoEVn/HLYI7x/AE3Y/g0xXNXlewfo2Q=;
+ b=AatsAdKQMfM2wF2CbD/CiWWkaOpQs0kqb+WJ+lAfccTwpHytBu8HkZZW
+ jnpr/RGsRhChMa6MGPEW4oASme8gR0pCraja+3AaPcrgiqG73+kmI62KK
+ MxkA0cqZD7O+JdY6e0jm1IruDuNcxGyk+pH2zlwXJEYzQvDVN7ug85xQP
+ nDx4Zor+MFy7sGViBmPMDdGwsC07XCl1KuGjQc17jetvSKs55GA77Ox9a
+ uZZRAedt7rbqUz5yT54yh7E5mmk7ZhzOeGhxqoMN3guGSVkQ3c81Bg4uB
+ mvM5zjNjjpQDS6TMhOk0THred9MFBdsjK0cRe/jgGvwEMwh7xVKKx02q/ Q==;
+X-CSE-ConnectionGUID: X7BxoBDTRlKMa9dO8fe5YA==
+X-CSE-MsgGUID: Zjss7urMSuWXMoccA+Ub7A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="26728561"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="26728561"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2024 14:48:43 -0700
+X-CSE-ConnectionGUID: tPcd5lZzSOixS1ewQSVYHg==
+X-CSE-MsgGUID: f3mDo+QwRZiPeo3Q+7k7jQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="40579331"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.19.248])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2024 14:48:42 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH 0/2] Prepare RTP for VF rules
+Date: Fri, 14 Jun 2024 23:48:19 +0200
+Message-Id: <20240614214821.2252-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Fix_missing_run?=
- =?utf-8?q?time_outer_protection_for_ggtt=5Fremove=5Fnode_=28rev8=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 14 Jun 2024 21:47:48 -0000
-Message-ID: <171840166807.80883.2545489953951961497@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <20240614214202.18430-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20240614214202.18430-1-rodrigo.vivi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,63 +61,19 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Michal Wajdeczko (2):
+  drm/xe/rtp: Prepare RTP for VF rules
+  drm/xe/kunit: Update RTP test to check VF rules
 
-Series: drm/xe: Fix missing runtime outer protection for ggtt_remove_node (rev8)
-URL   : https://patchwork.freedesktop.org/series/134308/
-State : success
+ drivers/gpu/drm/xe/tests/xe_rtp_test.c | 118 ++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_rtp.c            |  13 ++-
+ drivers/gpu/drm/xe/xe_rtp.h            |  16 ++++
+ drivers/gpu/drm/xe/xe_rtp_types.h      |   2 +
+ 4 files changed, 147 insertions(+), 2 deletions(-)
 
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-51ce9f6cd981d42d7467409d7dbc559a450abc1e
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 147cea01df5cf5db615c7162a68d9dbda5ae7c5f
-Author: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date:   Fri Jun 14 17:42:02 2024 -0400
-
-    drm/xe: Fix missing runtime outer protection for ggtt_remove_node
-    
-    Defer the ggtt node removal to a thread if runtime_pm is not active.
-    
-    The ggtt node removal can be called from multiple places, including
-    places where we cannot protect with outer callers and places we are
-    within other locks. So, try to grab the runtime reference if the
-    device is already active, otherwise defer the removal to a separate
-    thread from where we are sure we can wake the device up.
-    
-    v2: - use xe wq instead of system wq (Matt and CI)
-        - Avoid GFP_KERNEL to be future proof since this removal can
-        be called from outside our drivers and we don't want to block
-        if atomic is needed. (Brost)
-    v3: amend forgot chunk declaring xe_device.
-    v4: Use a xe_ggtt_region to encapsulate the node and remova info,
-        wihtout the need for any memory allocation at runtime.
-    v5: Actually fill the delayed_removal.invalidate (Brost)
-    v6: - Ensure that ggtt_region is not freed before work finishes (Auld)
-        - Own wq to ensures that the queued works are flushed before
-          ggtt_fini (Brost)
-    v7: also free ggtt_region on early !bound return (Auld)
-    v8: Address the null deref (CI)
-    
-    Cc: Matthew Auld <matthew.auld@intel.com>
-    Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
-    Cc: Francois Dugast <francois.dugast@intel.com>
-    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-    Cc: Matthew Brost <matthew.brost@intel.com>
-    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-+ /mt/dim checkpatch ec9bb8956cadc4f9d2a0e81713d921c52d527c1a drm-intel
-147cea01df5c drm/xe: Fix missing runtime outer protection for ggtt_remove_node
-
+-- 
+2.43.0
 
