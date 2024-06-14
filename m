@@ -4,65 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EF7BC27C6E
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 15:12:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FBD4C27C6E
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 15:53:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA1A610E0D4;
-	Fri, 14 Jun 2024 15:12:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42CD410E107;
+	Fri, 14 Jun 2024 15:53:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h2EflMpN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EXHBsfwJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9193C10E0D4
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 15:12:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE7F110EDC2
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 15:53:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718377966; x=1749913966;
+ t=1718380418; x=1749916418;
  h=date:message-id:from:to:cc:subject:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=FfbgqjTyJbHF2f36sre+nOsxCYRY8Wcm/yhEiKjbIsI=;
- b=h2EflMpNjCgvzecHZK3FKCe1P7RrsYpdn12gsT9ypKFQqWisp6xkfRaJ
- 5w28NwFKqUXZWvTXyHZW5FoNI75P+eG1V0PwTXtgDMnDAr0IU/RCeX7O4
- RVxCDJnC+DnuMbPEOky2FPM0cEkj72ivkEd0Zp4JhtoVLfhABCyXs892Z
- +JOYu9E9UEG+B37Ul1j0wFBx5juGPJT9GCl5mhiBvufYkO9k0tSTkLNzD
- z3jtBCknj7Y9/z3KcZmBrmpv+2baCTlCabcTIxSe8Cu8o3GatoTi6gAr1
- BraNl6JIxAE1QfoRM6kQnJzK9o0+mYFYRAzJFvJI7euDCt+tRMTpnH0j/ A==;
-X-CSE-ConnectionGUID: x0GWMc6VTRmbeuJoaCAU6g==
-X-CSE-MsgGUID: 1cbEPh56R3avHDf0GEItAA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="19119307"
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="19119307"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 08:12:46 -0700
-X-CSE-ConnectionGUID: 6Bk6bstBQsCkOyMzliP67g==
-X-CSE-MsgGUID: gwjAUwvoTWWn+JLlzY7XLw==
+ references:mime-version;
+ bh=V5sMHLZTmAR21ClCLuZWtboDp/BjZGIOQxlY7rI6uIE=;
+ b=EXHBsfwJ3ZswGPw9z8zkEg9taf6f9LVBNa9vJ7lKi34yzszTgxFpU4DZ
+ HS5JX0cDJ5j+2SU0yVbaDhgN8031Q+s6MBDMyO/xRPxEIowm9Hd4X2OHR
+ dLqhX9JIXADu/i2X2/DOQTuRbp/RIZkvUEHKod1S55L7iQavN6GTQMfKY
+ KoqpDweAZCPoCTxqLim4jjMRhB7rDaLhSyzXKYueblt9CrReMVhNZvwMs
+ yudAUdXXlc3aSYcqf7Hlha78FgNopczUdUUGmNdT8eSRdKABbL5v8WmYb
+ 2ioF9HqiSFAkzIyqYHA57I9jQljuaoRzamqzPPDyOoDbupfzDHKu9+TiF Q==;
+X-CSE-ConnectionGUID: TEW4hBvtQfGHianzN/ZIMQ==
+X-CSE-MsgGUID: mXgM+mLMRu+6wgoo1+bYuw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="26690585"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="26690585"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2024 08:53:37 -0700
+X-CSE-ConnectionGUID: odsEQtHjQGWLmH1ymatTEQ==
+X-CSE-MsgGUID: 7H07t/n0Rb2VgNvUZ6n3fg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="45483014"
-Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
- ([10.165.21.138])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 08:12:46 -0700
-Date: Fri, 14 Jun 2024 08:12:45 -0700
-Message-ID: <85sexfd0cy.wl-ashutosh.dixit@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="41216536"
+Received: from mridulya-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.125.147.12])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2024 08:53:37 -0700
+Date: Fri, 14 Jun 2024 08:34:30 -0700
+Message-ID: <875xubtu61.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,	Rodrigo Vivi
- <rodrigo.vivi@intel.com>,	Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Michal Wajdeczko
- <michal.wajdeczko@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: Re: [PATCH v15 00/17] Add OA functionality to Xe
-In-Reply-To: <8734pp94hx.wl-ashutosh.dixit@intel.com>
-References: <20240527014333.603914-1-ashutosh.dixit@intel.com>
- <6bee6a666dd0ab8440ca74d692a80788bfb1d748.camel@intel.com>
- <85v82ldew2.wl-ashutosh.dixit@intel.com>
- <8734pp94hx.wl-ashutosh.dixit@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ aravind.iddamsetty@linux.intel.com, rodrigo.vivi@intel.com,
+ umesh.nerlige.ramappa@intel.com, krishnaiah.bommu@intel.com
+Subject: Re: [PATCH v9 0/2] drm/xe/pmu: Enable PMU interface
+In-Reply-To: <af6df0d8-bafa-4fd5-a747-ff9e3092c3c6@intel.com>
+References: <20240613100411.1579218-1-riana.tauro@intel.com>
+ <878qz8u1on.wl-ashutosh.dixit@intel.com>
+ <af6df0d8-bafa-4fd5-a747-ff9e3092c3c6@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
- Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+ Emacs/29.3 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,158 +73,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 06 Jun 2024 13:54:18 -0700, Dixit, Ashutosh wrote:
+On Thu, 13 Jun 2024 22:50:39 -0700, Riana Tauro wrote:
 >
-> On Thu, 06 Jun 2024 12:56:13 -0700, Dixit, Ashutosh wrote:
-> >
+> Hi Ashutosh
 >
-> Hi Lucas / Rodrigo / Thomas,
+> On 6/14/2024 12:09 AM, Dixit, Ashutosh wrote:
+> > On Thu, 13 Jun 2024 03:04:09 -0700, Riana Tauro wrote:
+> >>
+> >
+> > Hi Riana,
+> >
+> >> There are a set of engine group busyness counters provided by HW which are
+> >> perfect fit to be exposed via PMU perf events.
+> >>
+> >> BSPEC: 46559, 46560, 46722, 46729, 52071, 71028
+> >>
+> >> events can be listed using:
+> >> perf list
+> >>    xe_0000_03_00.0/any-engine-group-busy-gt0/         [Kernel PMU event]
+> >>    xe_0000_03_00.0/copy-group-busy-gt0/               [Kernel PMU event]
+> >>    xe_0000_03_00.0/media-group-busy-gt0/              [Kernel PMU event]
+> >>    xe_0000_03_00.0/render-group-busy-gt0/             [Kernel PMU event]
+> >
+> > PMU patches merged previously were dropped in 90a8b23f9b85 ("drm/xe/pmu:
+> > Remove PMU from Xe till uapi is finalized") because PMU uapi was expected
+> > to change. Why are we re-posting these old patches again now, without
+> > including the planned uapi changes?
 >
-> > On Wed, 05 Jun 2024 07:12:54 -0700, Souza, Jose wrote:
-> > >
-> >
-> > Hi Jose,
-> >
-> > > On Sun, 2024-05-26 at 18:43 -0700, Ashutosh Dixit wrote:
-> > > > Please see cover letter for v7 here:
-> > > > https://patchwork.freedesktop.org/series/121084/#rev7
-> > > >
-> > > > For changes in later versions see changelog below.
-> > > >
-> > > > This series is also available at:
-> > > >         https://gitlab.freedesktop.org/adixit/kernel/-/tree/xe-oa
-> > > >
-> > > > The series has been tested against this IGT series:
-> > > >         https://gitlab.freedesktop.org/adixit/igt-gpu-tools/-/tree/=
-xe-oa
-> > > >	or,
-> > > >	https://patchwork.freedesktop.org/series/130033/
-> > > >
-> > > > Opensource consumers using uapi in this series:
-> > > >
-> > > > gpuvis:
-> > > >	https://github.com/mikesart/gpuvis/pull/86
-> > > >
-> > > > mesa:
-> > > >	https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29312
-> > > >
-> > > > Test-with: 20240524031439.106332-1-ashutosh.dixit@intel.com
-> > > >
-> > >
-> > > As first round this uAPI looks good for Mesa usage, second round after
-> > > this ones is merged will add additional features and uAPIs need to
-> > > support all Mesa needs.
-> >
-> > Correct. Copy/paste from another email in this thread, this is what we =
-are
-> > looking at for the second round:
-> >
-> > * hold preemption (needs some investigation as to feasibility)
-> > * xe_sync for OA stream configuration and reconfiguration
-> > * Equivalent of DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_UUID. I am still tr=
-ying
-> >   to figure out if this is really needed. See here:
-> >   https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29312#note_=
-2429650
-> >   Since this seems to be using some MDAPI metrics in Mesa, I think it
-> >   should be ok to do this in the second round too.
-> >
-> > > Acked-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> >
-> > Thanks very much for the Mesa ack. I will start asking the Xe maintaine=
-rs
-> > if this (and gpuvis PR which is also merged) is sufficient to merge this
-> > series now.
->
-> Mesa has now provided their ack for the Xe OA uapi. Also all Mesa Xe OA
-> patches now have R-b. The gpuvis PR mentioned above is also merged. The Xe
-> OA IGT series is also mentioned above.
->
-> So at this point I want to check with you if these things are sufficient =
-to
-> merge these Xe OA patches?
+> The uapi changes were dropped and there are no other upcoming changes for
+> Group busyness. So re-posted the old series.
 
-Gentle ping about this :) Can we try to get this into 6.11?
+What happened to VF busyness (which is why I thought the uapi was going to
+change)?
 
 >
-> Thanks.
-> --
-> Ashutosh
->
-> > > thank you
-> > >
-> > > > v2: Fix build
-> > > > v3: Rebase, due to s/xe_engine/xe_exec_queue/
-> > > > v4: Re-run for testing
-> > > > v5: Address review comments, new patches 11 through 17
-> > > > v6: New patches 18 through 21
-> > > > v7: Patches are completely redone and don't start with i915 version=
- of the uapi
-> > > > v8: See https://patchwork.freedesktop.org/patch/575214/?series=3D12=
-8993&rev=3D1
-> > > > v9: See https://patchwork.freedesktop.org/patch/577441/?series=3D12=
-8993&rev=3D2
-> > > > v10: See https://patchwork.freedesktop.org/patch/577943/?series=3D1=
-28993&rev=3D3
-> > > > v11: See https://patchwork.freedesktop.org/patch/581239/?series=3D1=
-30705&rev=3D1
-> > > > v12: Add last two new patches to enable Xe2+ overrun mode
-> > > > v13: Update last two patches after code review completion
-> > > > v14: https://patchwork.freedesktop.org/patch/595447/?series=3D13402=
-8&rev=3D1
-> > > > v15: https://patchwork.freedesktop.org/patch/595549/?series=3D13405=
-6&rev=3D1
-> > > >
-> > > > Ashutosh Dixit (17):
-> > > >   drm/xe/perf/uapi: "Perf" layer to support multiple perf counter s=
-tream
-> > > >     types
-> > > >   drm/xe/perf/uapi: Add perf_stream_paranoid sysctl
-> > > >   drm/xe/oa/uapi: Add OA data formats
-> > > >   drm/xe/oa/uapi: Initialize OA units
-> > > >   drm/xe/oa/uapi: Add/remove OA config perf ops
-> > > >   drm/xe/oa/uapi: Define and parse OA stream properties
-> > > >   drm/xe/oa: OA stream initialization (OAG)
-> > > >   drm/xe/oa/uapi: Expose OA stream fd
-> > > >   drm/xe/oa/uapi: Read file_operation
-> > > >   drm/xe/oa: Add OAR support
-> > > >   drm/xe/oa: Add OAC support
-> > > >   drm/xe/oa/uapi: Query OA unit properties
-> > > >   drm/xe/oa/uapi: OA buffer mmap
-> > > >   drm/xe/oa: Add MMIO trigger support
-> > > >   drm/xe/oa: Override GuC RC with OA on PVC
-> > > >   drm/xe/oa: Changes to OA_TAKEN
-> > > >   drm/xe/oa: Enable Xe2+ overrun mode
-> > > >
-> > > >  drivers/gpu/drm/xe/Makefile                   |    2 +
-> > > >  .../gpu/drm/xe/instructions/xe_mi_commands.h  |    3 +
-> > > >  drivers/gpu/drm/xe/regs/xe_engine_regs.h      |    2 +
-> > > >  drivers/gpu/drm/xe/regs/xe_gt_regs.h          |    3 +
-> > > >  drivers/gpu/drm/xe/regs/xe_oa_regs.h          |  103 +
-> > > >  drivers/gpu/drm/xe/xe_device.c                |   19 +-
-> > > >  drivers/gpu/drm/xe/xe_device_types.h          |    4 +
-> > > >  drivers/gpu/drm/xe/xe_gt_types.h              |    4 +
-> > > >  drivers/gpu/drm/xe/xe_guc_pc.c                |   57 +
-> > > >  drivers/gpu/drm/xe/xe_guc_pc.h                |    3 +
-> > > >  drivers/gpu/drm/xe/xe_hw_engine_types.h       |    2 +
-> > > >  drivers/gpu/drm/xe/xe_lrc.c                   |   11 +-
-> > > >  drivers/gpu/drm/xe/xe_lrc.h                   |    1 +
-> > > >  drivers/gpu/drm/xe/xe_module.c                |    6 +
-> > > >  drivers/gpu/drm/xe/xe_oa.c                    | 2370 +++++++++++++=
-++++
-> > > >  drivers/gpu/drm/xe/xe_oa.h                    |   27 +
-> > > >  drivers/gpu/drm/xe/xe_oa_types.h              |  232 ++
-> > > >  drivers/gpu/drm/xe/xe_perf.c                  |   67 +
-> > > >  drivers/gpu/drm/xe/xe_perf.h                  |   20 +
-> > > >  drivers/gpu/drm/xe/xe_query.c                 |   77 +
-> > > >  drivers/gpu/drm/xe/xe_reg_whitelist.c         |   24 +-
-> > > >  include/uapi/drm/xe_drm.h                     |  291 ++
-> > > >  22 files changed, 3321 insertions(+), 7 deletions(-)
-> > > >  create mode 100644 drivers/gpu/drm/xe/regs/xe_oa_regs.h
-> > > >  create mode 100644 drivers/gpu/drm/xe/xe_oa.c
-> > > >  create mode 100644 drivers/gpu/drm/xe/xe_oa.h
-> > > >  create mode 100644 drivers/gpu/drm/xe/xe_oa_types.h
-> > > >  create mode 100644 drivers/gpu/drm/xe/xe_perf.c
-> > > >  create mode 100644 drivers/gpu/drm/xe/xe_perf.h
-> > > >
-> > >
+> Thanks,
+> Riana
+> >
+> > Thanks.
+> > --
+> > Ashutosh
