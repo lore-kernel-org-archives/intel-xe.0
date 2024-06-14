@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3815C2BB9A
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 21:47:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01B68C2BA18
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 21:47:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C21610E2C5;
-	Fri, 14 Jun 2024 21:47:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36F6E10E2B3;
+	Fri, 14 Jun 2024 21:47:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IoJEdd5O";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RSBhUtSO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7165710E2BD
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 21:47:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFCEF10EE72
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 21:47:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718401651; x=1749937651;
+ t=1718401655; x=1749937655;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=venrHm8PyOaztmUEh411MgPERF93cLmU+7z2NZOMMF4=;
- b=IoJEdd5OqFPFRc67LM4lmpgpdcY6Fqjtuuv6dXD03lNGcaIyuGWSqrXP
- Dr6b1bh4BISx4VUDDMSgaVZdrfinrqhKY927ys/rs1tJXT9TnWN4RhpZE
- ijQUbj4saegoUQ+Bz8KyuJk8LZIwgzumJNLlRu6IgY3Vum7RfQA0UWxEj
- VbVyefnTej5PBETp8jnbT6n3+d0dqAnIeuRpJzZAdYMKQNIo6moq3F2Hn
- 9E90abhtrer+f6S+F0zm809yTTgUuPVVhRoV2LN7O6Q8eMJyQM+3Mf42M
- xFwJlTyL5o79Iay5n4WtQmRZAZXYfDfEKCvf+nL2oqF2oCtxfdQJoO+Zi w==;
-X-CSE-ConnectionGUID: 6ZZb0bh2RFS3Ux16JdePiQ==
-X-CSE-MsgGUID: ZuQOR4wYTpK7ajg189ZAng==
-X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="25886563"
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="25886563"
+ bh=TzmO+AyGmg5sTawTPolD38drsVaOC+osJZVIsvoT+Sc=;
+ b=RSBhUtSO/OOV+piIuI2PnDW1xAZhdUMUYknc3b95KSZV/b4v0muGFF8o
+ JTp7Pvg7q+Aw+RELkxhVCahXVIZMHtk12AjYDV0wIYxqkdO5tLLzALceM
+ OGc2Z3ZC6NfrRiwnZHTdqpCczuG1lJTjvinzySCvf7dMzH1LheyV8jUDG
+ 2OWrqMsR01UokPM+MzKgxZnD/3RelSGb7kG6ApnyW3OIjK14RgfVDhtrW
+ 4iq3OKFsKGgw/EygxFue4hdMcYtj0NM0M0z+r7umPqMlJXFgYbqoHmNUU
+ GYUa4Q4tcgSE4/vqL+qSayQ81VQS3St/DJBjNWrCgDJHFrPKj79rKeASt Q==;
+X-CSE-ConnectionGUID: HfiAxnPESpKMjmuYFpbkzw==
+X-CSE-MsgGUID: la3b/JIfQu6/mIs+c9bIFg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="25886584"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="25886584"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Jun 2024 14:47:27 -0700
-X-CSE-ConnectionGUID: aT90D/dFRxayFmmLhekvbw==
-X-CSE-MsgGUID: C00n1Fq3RxiwjeM/0a3R9Q==
+X-CSE-ConnectionGUID: FcNSM3zqS16heQHVkaKrvg==
+X-CSE-MsgGUID: Q8OCNAWeRxasjtHfXGvCOQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="45572401"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="45572420"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 14:47:27 -0700
+ 14 Jun 2024 14:47:28 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 09/44] drm/svm: Mark drm_gpuvm to participate SVM
-Date: Fri, 14 Jun 2024 17:57:42 -0400
-Message-Id: <20240614215817.1097633-9-oak.zeng@intel.com>
+Subject: [CI 26/44] drm/xe: Use drm_mem_region for xe
+Date: Fri, 14 Jun 2024 17:57:59 -0400
+Message-Id: <20240614215817.1097633-26-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240614215817.1097633-1-oak.zeng@intel.com>
 References: <20240614215817.1097633-1-oak.zeng@intel.com>
@@ -66,113 +66,245 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A mm_struct field is added to drm_gpuvm. Also add a parameter to
-drm_gpuvm_init to say whether this gpuvm participate svm (shared
-virtual memory with CPU process). Under SVM, CPU program and GPU
-program share one process virtual address space.
+drm_mem_region was introduced to move some memory management
+codes to drm layer so it can be shared b/t different vendor
+drivers. This patch apply drm_mem_region concept to xekmd
+driver.
 
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
+drm_mem_region is the parent class of xe_mem_region. Some
+xe_mem_region member such as dpa_base is deleted as it
+is already in the parent class.
+
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Felix Kuehling <felix.kuehling@amd.com>
-Cc: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
-Cc: <dri-devel@lists.freedesktop.org>
-Suggested-by: Christian König <christian.koenig@amd.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/drm_gpuvm.c            | 7 ++++++-
- drivers/gpu/drm/nouveau/nouveau_uvmm.c | 2 +-
- drivers/gpu/drm/xe/xe_vm.c             | 2 +-
- include/drm/drm_gpuvm.h                | 8 +++++++-
- 4 files changed, 15 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |  2 +-
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |  2 +-
+ drivers/gpu/drm/xe/xe_bo.c                    |  6 ++---
+ drivers/gpu/drm/xe/xe_device_types.h          | 11 ++--------
+ drivers/gpu/drm/xe/xe_migrate.c               |  8 +++----
+ drivers/gpu/drm/xe/xe_query.c                 |  2 +-
+ drivers/gpu/drm/xe/xe_tile.c                  |  2 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |  2 +-
+ drivers/gpu/drm/xe/xe_vram.c                  | 22 +++++++++++--------
+ 9 files changed, 27 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
-index 7402ed6f1d33..5f246ca472a8 100644
---- a/drivers/gpu/drm/drm_gpuvm.c
-+++ b/drivers/gpu/drm/drm_gpuvm.c
-@@ -984,6 +984,8 @@ EXPORT_SYMBOL_GPL(drm_gpuvm_resv_object_alloc);
-  * @reserve_offset: the start of the kernel reserved GPU VA area
-  * @reserve_range: the size of the kernel reserved GPU VA area
-  * @ops: &drm_gpuvm_ops called on &drm_gpuvm_sm_map / &drm_gpuvm_sm_unmap
-+ * @participate_svm: whether this gpuvm participat shared virtual memory
-+ * with CPU mm
-  *
-  * The &drm_gpuvm must be initialized with this function before use.
-  *
-@@ -997,7 +999,7 @@ drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
- 	       struct drm_gem_object *r_obj,
- 	       u64 start_offset, u64 range,
- 	       u64 reserve_offset, u64 reserve_range,
--	       const struct drm_gpuvm_ops *ops)
-+	       const struct drm_gpuvm_ops *ops, bool participate_svm)
- {
- 	gpuvm->rb.tree = RB_ROOT_CACHED;
- 	INIT_LIST_HEAD(&gpuvm->rb.list);
-@@ -1016,6 +1018,9 @@ drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
- 	gpuvm->drm = drm;
- 	gpuvm->r_obj = r_obj;
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index a2f417209124..5c4590c62c08 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -272,7 +272,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 		 * accessible.  This is important on small-bar systems where
+ 		 * only some subset of VRAM is CPU accessible.
+ 		 */
+-		if (tile->mem.vram.io_size < tile->mem.vram.usable_size) {
++		if (tile->mem.vram.io_size < tile->mem.vram.drm_mr.usable_size) {
+ 			ret = -EINVAL;
+ 			goto err;
+ 		}
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index e135b20962d9..c2c079a2b133 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -86,7 +86,7 @@ initial_plane_bo(struct xe_device *xe,
+ 		 * We don't currently expect this to ever be placed in the
+ 		 * stolen portion.
+ 		 */
+-		if (phys_base >= tile0->mem.vram.usable_size) {
++		if (phys_base >= tile0->mem.vram.drm_mr.usable_size) {
+ 			drm_err(&xe->drm,
+ 				"Initial plane programming using invalid range, phys_base=%pa\n",
+ 				&phys_base);
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 8fe78f7b000f..371ea9a5dd16 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -172,7 +172,7 @@ static void add_vram(struct xe_device *xe, struct xe_bo *bo,
+ 	xe_assert(xe, *c < ARRAY_SIZE(bo->placements));
  
-+	if (participate_svm)
-+		gpuvm->mm = current->mm;
-+
- 	drm_gem_object_get(r_obj);
+ 	vram = to_xe_ttm_vram_mgr(ttm_manager_type(&xe->ttm, mem_type))->vram;
+-	xe_assert(xe, vram && vram->usable_size);
++	xe_assert(xe, vram && vram->drm_mr.usable_size);
+ 	io_size = vram->io_size;
  
- 	drm_gpuvm_warn_check_overflow(gpuvm, start_offset, range);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-index ee02cd833c5e..0d11f1733e29 100644
---- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-@@ -1861,7 +1861,7 @@ nouveau_uvmm_ioctl_vm_init(struct drm_device *dev,
- 		       NOUVEAU_VA_SPACE_END,
- 		       init->kernel_managed_addr,
- 		       init->kernel_managed_size,
--		       &gpuvm_ops);
-+		       &gpuvm_ops, false);
- 	/* GPUVM takes care from here on. */
- 	drm_gem_object_put(r_obj);
+ 	/*
+@@ -183,7 +183,7 @@ static void add_vram(struct xe_device *xe, struct xe_bo *bo,
+ 			XE_BO_FLAG_GGTT))
+ 		place.flags |= TTM_PL_FLAG_CONTIGUOUS;
  
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index ffda487653d8..bcb0a38b31ae 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1363,7 +1363,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 	}
+-	if (io_size < vram->usable_size) {
++	if (io_size < vram->drm_mr.usable_size) {
+ 		if (bo_flags & XE_BO_FLAG_NEEDS_CPU_ACCESS) {
+ 			place.fpfn = 0;
+ 			place.lpfn = io_size >> PAGE_SHIFT;
+@@ -1637,7 +1637,7 @@ uint64_t vram_region_gpu_offset(struct ttm_resource *res)
+ 	if (res->mem_type == XE_PL_STOLEN)
+ 		return xe_ttm_stolen_gpu_offset(xe);
  
- 	drm_gpuvm_init(&vm->gpuvm, "Xe VM", DRM_GPUVM_RESV_PROTECTED, &xe->drm,
--		       vm_resv_obj, 0, vm->size, 0, 0, &gpuvm_ops);
-+		       vm_resv_obj, 0, vm->size, 0, 0, &gpuvm_ops, false);
- 
- 	drm_gem_object_put(vm_resv_obj);
- 
-diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
-index 429dc0d82eba..838dd7137f07 100644
---- a/include/drm/drm_gpuvm.h
-+++ b/include/drm/drm_gpuvm.h
-@@ -242,6 +242,12 @@ struct drm_gpuvm {
- 	 * @drm: the &drm_device this VM lives in
- 	 */
- 	struct drm_device *drm;
-+	/**
-+	 * @mm: the process &mm_struct which create this gpuvm.
-+	 * This is only used for shared virtual memory where virtual
-+	 * address space is shared b/t CPU and GPU program.
-+	 */
-+	struct mm_struct *mm;
- 
- 	/**
- 	 * @mm_start: start of the VA space
-@@ -342,7 +348,7 @@ void drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
- 		    struct drm_gem_object *r_obj,
- 		    u64 start_offset, u64 range,
- 		    u64 reserve_offset, u64 reserve_range,
--		    const struct drm_gpuvm_ops *ops);
-+		    const struct drm_gpuvm_ops *ops, bool participate_svm);
+-	return res_to_mem_region(res)->dpa_base;
++	return res_to_mem_region(res)->drm_mr.dpa_base;
+ }
  
  /**
-  * drm_gpuvm_get() - acquire a struct drm_gpuvm reference
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index f1c09824b145..cf61b52e6d84 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -11,6 +11,7 @@
+ #include <drm/drm_device.h>
+ #include <drm/drm_file.h>
+ #include <drm/ttm/ttm_device.h>
++#include <drm/drm_svm.h>
+ 
+ #include "xe_devcoredump_types.h"
+ #include "xe_heci_gsc.h"
+@@ -69,6 +70,7 @@ struct xe_pat_ops;
+  * device, such as HBM memory or CXL extension memory.
+  */
+ struct xe_mem_region {
++	struct drm_mem_region drm_mr;
+ 	/** @io_start: IO start address of this VRAM instance */
+ 	resource_size_t io_start;
+ 	/**
+@@ -81,15 +83,6 @@ struct xe_mem_region {
+ 	 * configuration is known as small-bar.
+ 	 */
+ 	resource_size_t io_size;
+-	/** @dpa_base: This memory regions's DPA (device physical address) base */
+-	resource_size_t dpa_base;
+-	/**
+-	 * @usable_size: usable size of VRAM
+-	 *
+-	 * Usable size of VRAM excluding reserved portions
+-	 * (e.g stolen mem)
+-	 */
+-	resource_size_t usable_size;
+ 	/**
+ 	 * @actual_physical_size: Actual VRAM size
+ 	 *
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 63b4aa2af030..540afc85d289 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -126,7 +126,7 @@ static u64 xe_migrate_vram_ofs(struct xe_device *xe, u64 addr)
+ 	 * Remove the DPA to get a correct offset into identity table for the
+ 	 * migrate offset
+ 	 */
+-	addr -= xe->mem.vram.dpa_base;
++	addr -= xe->mem.vram.drm_mr.dpa_base;
+ 	return addr + (256ULL << xe_pt_shift(2));
+ }
+ 
+@@ -256,21 +256,21 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 		u64 pos, ofs, flags;
+ 		/* XXX: Unclear if this should be usable_size? */
+ 		u64 vram_limit =  xe->mem.vram.actual_physical_size +
+-			xe->mem.vram.dpa_base;
++			xe->mem.vram.drm_mr.dpa_base;
+ 
+ 		level = 2;
+ 		ofs = map_ofs + XE_PAGE_SIZE * level + 256 * 8;
+ 		flags = vm->pt_ops->pte_encode_addr(xe, 0, pat_index, level,
+ 						    true, 0);
+ 
+-		xe_assert(xe, IS_ALIGNED(xe->mem.vram.usable_size, SZ_2M));
++		xe_assert(xe, IS_ALIGNED(xe->mem.vram.drm_mr.usable_size, SZ_2M));
+ 
+ 		/*
+ 		 * Use 1GB pages when possible, last chunk always use 2M
+ 		 * pages as mixing reserved memory (stolen, WOCPM) with a single
+ 		 * mapping is not allowed on certain platforms.
+ 		 */
+-		for (pos = xe->mem.vram.dpa_base; pos < vram_limit;
++		for (pos = xe->mem.vram.drm_mr.dpa_base; pos < vram_limit;
+ 		     pos += SZ_1G, ofs += 8) {
+ 			if (pos + SZ_1G >= vram_limit) {
+ 				u64 pt31_ofs = bo->size - XE_PAGE_SIZE;
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 995effcb904b..8b3d63420cef 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -334,7 +334,7 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+ 	config->num_params = num_params;
+ 	config->info[DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID] =
+ 		xe->info.devid | (xe->info.revid << 16);
+-	if (xe_device_get_root_tile(xe)->mem.vram.usable_size)
++	if (xe_device_get_root_tile(xe)->mem.vram.drm_mr.usable_size)
+ 		config->info[DRM_XE_QUERY_CONFIG_FLAGS] =
+ 			DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM;
+ 	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 15ea0a942f67..109f3118e821 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -132,7 +132,7 @@ static int tile_ttm_mgr_init(struct xe_tile *tile)
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	int err;
+ 
+-	if (tile->mem.vram.usable_size) {
++	if (tile->mem.vram.drm_mr.usable_size) {
+ 		err = xe_ttm_vram_mgr_init(tile, tile->mem.vram_mgr);
+ 		if (err)
+ 			return err;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index fe3779fdba2c..dd31b24fb07d 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -364,7 +364,7 @@ int xe_ttm_vram_mgr_init(struct xe_tile *tile, struct xe_ttm_vram_mgr *mgr)
+ 
+ 	mgr->vram = vram;
+ 	return __xe_ttm_vram_mgr_init(xe, mgr, XE_PL_VRAM0 + tile->id,
+-				      vram->usable_size, vram->io_size,
++				      vram->drm_mr.usable_size, vram->io_size,
+ 				      PAGE_SIZE);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+index 5bcd59190353..ca2b0085281a 100644
+--- a/drivers/gpu/drm/xe/xe_vram.c
++++ b/drivers/gpu/drm/xe/xe_vram.c
+@@ -150,7 +150,7 @@ static int determine_lmem_bar_size(struct xe_device *xe)
+ 		return -EIO;
+ 
+ 	/* XXX: Need to change when xe link code is ready */
+-	xe->mem.vram.dpa_base = 0;
++	xe->mem.vram.drm_mr.dpa_base = 0;
+ 
+ 	/* set up a map to the total memory area. */
+ 	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.io_size);
+@@ -333,17 +333,21 @@ int xe_vram_probe(struct xe_device *xe)
+ 			return -ENODEV;
+ 		}
+ 
+-		tile->mem.vram.dpa_base = xe->mem.vram.dpa_base + tile_offset;
+-		tile->mem.vram.usable_size = vram_size;
++		tile->mem.vram.drm_mr.dpa_base = xe->mem.vram.drm_mr.dpa_base + tile_offset;
++		tile->mem.vram.drm_mr.usable_size = vram_size;
+ 		tile->mem.vram.mapping = xe->mem.vram.mapping + tile_offset;
+ 
+-		if (tile->mem.vram.io_size < tile->mem.vram.usable_size)
++		if (tile->mem.vram.io_size < tile->mem.vram.drm_mr.usable_size)
+ 			drm_info(&xe->drm, "Small BAR device\n");
+-		drm_info(&xe->drm, "VRAM[%u, %u]: Actual physical size %pa, usable size exclude stolen %pa, CPU accessible size %pa\n", id,
+-			 tile->id, &tile->mem.vram.actual_physical_size, &tile->mem.vram.usable_size, &tile->mem.vram.io_size);
+-		drm_info(&xe->drm, "VRAM[%u, %u]: DPA range: [%pa-%llx], io range: [%pa-%llx]\n", id, tile->id,
+-			 &tile->mem.vram.dpa_base, tile->mem.vram.dpa_base + (u64)tile->mem.vram.actual_physical_size,
+-			 &tile->mem.vram.io_start, tile->mem.vram.io_start + (u64)tile->mem.vram.io_size);
++		drm_info(&xe->drm, "VRAM[%u, %u]: Actual physical size %pa, usable size exclude stolen %pa, CPU accessible size %pa\n",
++			 id, tile->id, &tile->mem.vram.actual_physical_size,
++			 &tile->mem.vram.drm_mr.usable_size, &tile->mem.vram.io_size);
++		drm_info(&xe->drm, "VRAM[%u, %u]: DPA range: [%pa-%llx], io range: [%pa-%llx]\n",
++			 id, tile->id, &tile->mem.vram.drm_mr.dpa_base,
++			 tile->mem.vram.drm_mr.dpa_base +
++			 (u64)tile->mem.vram.actual_physical_size,
++			 &tile->mem.vram.io_start,
++			 tile->mem.vram.io_start + (u64)tile->mem.vram.io_size);
+ 
+ 		/* calculate total size using tile size to get the correct HW sizing */
+ 		total_size += tile_size;
 -- 
 2.26.3
 
