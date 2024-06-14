@@ -4,73 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DC4AC27C6E
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 13:36:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AA12C27C79
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 13:36:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2896510ED1F;
-	Fri, 14 Jun 2024 13:36:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBA7D10ED4A;
+	Fri, 14 Jun 2024 13:36:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="LT1Pb7ys";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="lx2sBrbF";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="LT1Pb7ys";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="lx2sBrbF";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="GxAYWM5o";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="qufAt1nZ";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="GxAYWM5o";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="qufAt1nZ";
 	dkim-atps=neutral
 Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0A1810E252;
- Fri, 14 Jun 2024 13:36:02 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6467710E27A;
+ Fri, 14 Jun 2024 13:36:01 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 2CB9433873;
- Fri, 14 Jun 2024 13:36:01 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 0304A3386E;
+ Fri, 14 Jun 2024 13:35:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1718372161; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=CfNtw5Nm4AZDZ+Hc/tZxBivEuvk7CEMf16k5ZsG0+G4=;
- b=LT1Pb7ysssOtXmruS7VcmSly/Ax6CVVgY9JdS4VH6DiKCAcXoR2R1k5ArO1Y+Sog79f9Pg
- 1RzncF71gFVu06LOVjAVt62M/IUFvh5nEYjqDi3FIP6RQAOzpjYH6ruSi7Dn0O/FfO/3wC
- acyV2Biw2bvegDDxPVf0N1LJyaTbPQA=
+ t=1718372159; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=7YxgKklXCUhZY2FpOS+VKkuA6jZlEhJldardPfYZ3Cg=;
+ b=GxAYWM5oeBKBE0hcgqsumG/6J3TSrXNRoHSJh2gLTnwrG/w7eDDeWAuZYRzhdcJX7RFwDu
+ uYwpSLVQ99386xjwh690zD5LutA3ALB/6jRqeNR4VRz2KcbJJmQOWGlhAprksDHk3QqCNg
+ 5i4pAGa13EeiXXYenROqV2w2YM6DPxA=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1718372161;
+ s=susede2_ed25519; t=1718372159;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=CfNtw5Nm4AZDZ+Hc/tZxBivEuvk7CEMf16k5ZsG0+G4=;
- b=lx2sBrbFSDm4acjsvc6sf6/lv7tDfztJoLRLbnm7swRD5fs5ztsPGatFG5DIXSKmayscPK
- i8dLm9Nxf8defkCQ==
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=7YxgKklXCUhZY2FpOS+VKkuA6jZlEhJldardPfYZ3Cg=;
+ b=qufAt1nZ42ignT3HS07EsFxjZDJiW4a3BqLviG7WSC+xezCyqpm39sUJWGYJoQ6FGMld6x
+ T4PtisDcSItWy4CQ==
 Authentication-Results: smtp-out1.suse.de;
-	none
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=GxAYWM5o;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=qufAt1nZ
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1718372161; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=CfNtw5Nm4AZDZ+Hc/tZxBivEuvk7CEMf16k5ZsG0+G4=;
- b=LT1Pb7ysssOtXmruS7VcmSly/Ax6CVVgY9JdS4VH6DiKCAcXoR2R1k5ArO1Y+Sog79f9Pg
- 1RzncF71gFVu06LOVjAVt62M/IUFvh5nEYjqDi3FIP6RQAOzpjYH6ruSi7Dn0O/FfO/3wC
- acyV2Biw2bvegDDxPVf0N1LJyaTbPQA=
+ t=1718372159; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=7YxgKklXCUhZY2FpOS+VKkuA6jZlEhJldardPfYZ3Cg=;
+ b=GxAYWM5oeBKBE0hcgqsumG/6J3TSrXNRoHSJh2gLTnwrG/w7eDDeWAuZYRzhdcJX7RFwDu
+ uYwpSLVQ99386xjwh690zD5LutA3ALB/6jRqeNR4VRz2KcbJJmQOWGlhAprksDHk3QqCNg
+ 5i4pAGa13EeiXXYenROqV2w2YM6DPxA=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1718372161;
+ s=susede2_ed25519; t=1718372159;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=CfNtw5Nm4AZDZ+Hc/tZxBivEuvk7CEMf16k5ZsG0+G4=;
- b=lx2sBrbFSDm4acjsvc6sf6/lv7tDfztJoLRLbnm7swRD5fs5ztsPGatFG5DIXSKmayscPK
- i8dLm9Nxf8defkCQ==
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=7YxgKklXCUhZY2FpOS+VKkuA6jZlEhJldardPfYZ3Cg=;
+ b=qufAt1nZ42ignT3HS07EsFxjZDJiW4a3BqLviG7WSC+xezCyqpm39sUJWGYJoQ6FGMld6x
+ T4PtisDcSItWy4CQ==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id BF5A013AB5;
- Fri, 14 Jun 2024 13:36:00 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 915EF13AB1;
+ Fri, 14 Jun 2024 13:35:58 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id AJp5LUBHbGavPwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 14 Jun 2024 13:36:00 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id FvAKIj5HbGavPwAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 14 Jun 2024 13:35:58 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
  daniel@ffwll.ch, lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
@@ -78,28 +72,32 @@ To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
  kraxel@redhat.com, airlied@redhat.com, suijingfeng@loongson.cn
 Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 5/6] drm/xe: Remove vunmap calls object-freeing code
-Date: Fri, 14 Jun 2024 15:21:59 +0200
-Message-ID: <20240614133556.11378-6-tzimmermann@suse.de>
+Subject: [PATCH 0/6] drm/{ttm,xe}: Improve ttm_bo_vmap() and update xe
+Date: Fri, 14 Jun 2024 15:21:54 +0200
+Message-ID: <20240614133556.11378-1-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240614133556.11378-1-tzimmermann@suse.de>
-References: <20240614133556.11378-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000]; MID_CONTAINS_FROM(1.00)[];
- R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-1.000];
- MIME_GOOD(-0.10)[text/plain]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- FROM_HAS_DN(0.00)[]; ARC_NA(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
- TO_DN_SOME(0.00)[]; RCPT_COUNT_TWELVE(0.00)[16];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,imap1.dmz-prg2.suse.org:helo];
+X-Rspamd-Queue-Id: 0304A3386E
+X-Spamd-Result: default: False [-3.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_MISSING_CHARSET(0.50)[];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; RCPT_COUNT_TWELVE(0.00)[16];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
  FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,gmail.com,ffwll.ch,intel.com,amd.com,redhat.com,loongson.cn];
- RCVD_TLS_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- FROM_EQ_ENVFROM(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
- R_RATELIMIT(0.00)[to_ip_from(RLk1j8fm6pferx3phn9ndszqb3)];
  DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]
+ MIME_TRACE(0.00)[0:+]; ARC_NA(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ DKIM_TRACE(0.00)[suse.de:+]; RCVD_COUNT_TWO(0.00)[2];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns];
+ DWL_DNSWL_BLOCKED(0.00)[suse.de:dkim];
+ DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from,2a07:de40:b281:106:10:150:64:167:received];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com]
+X-Rspamd-Action: no action
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,138 +112,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move calls to unmap the buffer-object memory from the object-release
-code in xe_gem_object_free() to the caller of the release.
+Add ttm_bo_kmap()'s features to ttm_bo_vmap() and convert xe to
+use the latter helper. ttm_bo_vmap() returns mappings in an instance
+of struct iosys_map, which simplifies driver code in several places.
 
-Doing an unmap for a BO requires holding the reservation lock, which
-is not allowed while releasing a GEM object. Without the reservation
-lock, TTM can concurrently evict the buffer object that is to be
-released; making the mapping invalid.
+Patches 1 and 2 allow ttm_bo_vmap() to store the method of allocation
+in the iosys_map instance. This simplifies the unmap and driver code.
 
-Pushing the unmap calls, namely xe_bo_vunmap(), releases the mapped
-pages before the buffer object.
+Patch 3 adds support for partial mappings to ttm_bo_vmap(). That's
+another feature of ttm_bo_kmap(). It is now possible to map only a
+subrange of a buffer object's memory buffer. This requires a trivial
+change to existing callers, so that they still map the full buffer
+range.
 
-While at it, add a warning about buffer mappings to the GEM-object
-release code. The warning message and unmap code can be removed after
-the driver has been audited to not release mapped buffer objects.
+Patch 4 adds support for kmap()-based mappings in certain cases to
+ttm_bo_vmap().
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/xe/display/intel_fb_bo.c | 12 +++++++-----
- drivers/gpu/drm/xe/xe_bo.c               | 14 +++++++++++++-
- drivers/gpu/drm/xe/xe_bo.h               | 23 ++++++++++++-----------
- drivers/gpu/drm/xe/xe_lrc.c              |  1 +
- 4 files changed, 33 insertions(+), 17 deletions(-)
+Patches 5 and 6 convert xe to ttm_bo_vmap(). ttm_bo_vmap() tests if
+the caller holds the object's reservation lock; and therefore cannot
+be called while relasing the buffer object. Patch 5 resolves this
+problem in xe. Patch 6 then replaces ttm_bo_kmap() with ttm_bo_vmap()
+and also updates the callers to use struct iosys_map everywhere.
 
-diff --git a/drivers/gpu/drm/xe/display/intel_fb_bo.c b/drivers/gpu/drm/xe/display/intel_fb_bo.c
-index f835492f73fb4..cf2720dbdd51f 100644
---- a/drivers/gpu/drm/xe/display/intel_fb_bo.c
-+++ b/drivers/gpu/drm/xe/display/intel_fb_bo.c
-@@ -12,12 +12,14 @@
- 
- void intel_fb_bo_framebuffer_fini(struct xe_bo *bo)
- {
--	if (bo->flags & XE_BO_FLAG_PINNED) {
--		/* Unpin our kernel fb first */
--		xe_bo_lock(bo, false);
-+	xe_bo_lock(bo, false);
-+	xe_bo_vunmap(bo);
-+
-+	/* Unpin our kernel fb first */
-+	if (bo->flags & XE_BO_FLAG_PINNED)
- 		xe_bo_unpin(bo);
--		xe_bo_unlock(bo);
--	}
-+
-+	xe_bo_unlock(bo);
- 	xe_bo_put(bo);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 2bae01ce4e5b9..a98d857ff1e5a 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1093,6 +1093,19 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
- 
- static void xe_gem_object_free(struct drm_gem_object *obj)
- {
-+	struct xe_bo *bo = gem_to_xe_bo(obj);
-+
-+	/*
-+	 * Trying to free the object with a mapping in place. Resolve
-+	 * this warning by calling xe_bo_vunmap() in the code that leads
-+	 * ot this object release.
-+	 *
-+	 * TODO: Audit the driver to not release mapped buffer objects and
-+	 *       then remove this block.
-+	 */
-+	if (drm_WARN_ON(obj->dev, !iosys_map_is_null(&bo->vmap)))
-+		__xe_bo_vunmap(bo);
-+
- 	/* Our BO reference counting scheme works as follows:
- 	 *
- 	 * The gem object kref is typically used throughout the driver,
-@@ -1106,7 +1119,6 @@ static void xe_gem_object_free(struct drm_gem_object *obj)
- 	 * driver ttm callbacks is allowed to use the ttm_buffer_object
- 	 * refcount directly if needed.
- 	 */
--	__xe_bo_vunmap(gem_to_xe_bo(obj));
- 	ttm_bo_put(container_of(obj, struct ttm_buffer_object, base));
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 6de894c728f54..5d1f8f13fbf13 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -170,17 +170,6 @@ static inline bool xe_bo_is_pinned(struct xe_bo *bo)
- 	return bo->ttm.pin_count;
- }
- 
--static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
--{
--	if (likely(bo)) {
--		xe_bo_lock(bo, false);
--		xe_bo_unpin(bo);
--		xe_bo_unlock(bo);
--
--		xe_bo_put(bo);
--	}
--}
--
- bool xe_bo_is_xe_bo(struct ttm_buffer_object *bo);
- dma_addr_t __xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size);
- dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size);
-@@ -202,6 +191,18 @@ xe_bo_ggtt_addr(struct xe_bo *bo)
- int xe_bo_vmap(struct xe_bo *bo);
- void xe_bo_vunmap(struct xe_bo *bo);
- 
-+static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
-+{
-+	if (likely(bo)) {
-+		xe_bo_lock(bo, false);
-+		xe_bo_vunmap(bo);
-+		xe_bo_unpin(bo);
-+		xe_bo_unlock(bo);
-+
-+		xe_bo_put(bo);
-+	}
-+}
-+
- bool mem_type_is_vram(u32 mem_type);
- bool xe_bo_is_vram(struct xe_bo *bo);
- bool xe_bo_is_stolen(struct xe_bo *bo);
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 3a68fe6d592ed..8a52797fe79bb 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -812,6 +812,7 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
- {
- 	xe_hw_fence_ctx_finish(&lrc->fence_ctx);
- 	xe_bo_lock(lrc->bo, false);
-+	xe_bo_vunmap(lrc->bo);
- 	xe_bo_unpin(lrc->bo);
- 	xe_bo_unlock(lrc->bo);
- 	xe_bo_put(lrc->bo);
+Tested on Intel ARC hardware.
+
+Future direction: DRM's TTM-based drivers use a mixture of ttm_bo_kmap()
+and ttm_bo_vmap(). After merging these updates for ttm_bo_vmap(), the
+other drivers can be converted and ttm_bo_kmap() can be removed.
+
+Thomas Zimmermann (6):
+  iosys-map: Add allocator flags
+  drm/ttm: Store the bo_kmap_type in struct iosys_map
+  drm/ttm: Support partial buffer mappings for ttm_bo_vmap()
+  drm/ttm: Support kmap for single-page mappings in ttm_bo_vmap()
+  drm/xe: Remove vunmap calls object-freeing code
+  drm/xe: Replace ttm_bo_kmap() with ttm_bo_vmap()
+
+ drivers/gpu/drm/drm_gem_ttm_helper.c          |  2 +-
+ drivers/gpu/drm/drm_gem_vram_helper.c         |  2 +-
+ drivers/gpu/drm/loongson/lsdc_gem.c           |  2 +-
+ drivers/gpu/drm/qxl/qxl_object.c              |  2 +-
+ drivers/gpu/drm/ttm/ttm_bo_util.c             | 94 +++++++++++++------
+ .../compat-i915-headers/gem/i915_gem_object.h | 17 +---
+ drivers/gpu/drm/xe/display/intel_fb_bo.c      | 12 ++-
+ drivers/gpu/drm/xe/xe_bo.c                    | 46 ++++-----
+ drivers/gpu/drm/xe/xe_bo.h                    | 23 ++---
+ drivers/gpu/drm/xe/xe_bo_types.h              |  2 -
+ drivers/gpu/drm/xe/xe_lrc.c                   |  3 +-
+ drivers/gpu/drm/xe/xe_vm.c                    |  2 +-
+ include/drm/ttm/ttm_bo.h                      |  4 +-
+ include/linux/iosys-map.h                     | 13 ++-
+ 14 files changed, 131 insertions(+), 93 deletions(-)
+
 -- 
 2.45.2
 
