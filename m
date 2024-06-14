@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AEB3C27C6E
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 14:39:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2969C27C6E
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 14:46:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF95D10E089;
-	Fri, 14 Jun 2024 14:39:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="coEOpjYW";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D55110E089;
- Fri, 14 Jun 2024 14:39:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718375993; x=1749911993;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=J7uz1x5jYI7lPoTiLt2qtkWfX7SjMOs7CGOUsUyfTM4=;
- b=coEOpjYWNuQ+8l8TxrXdlIRJNXT1cesG3TYFRh0V6skxiCrjbUvedQJS
- fOF01fkF6UwsrS6/QP1slwt9aGqd2LV0okL4k7FOgEausJ3sleiPG1zRL
- 2YIrloa06z0wAohfOdmY9EPQCi8DRf56TZnaz9MR287aKyssyE+sHRMUk
- yHFPpfxZeeK/8H4foDc1dLQw5dNW5z+GV8PQqewjRqYl5vFtukIK4Q0dT
- jvte/sblFoFe+zKsTAwkd9K/3HsRLm2r5kNRgTw+DDUnk5jcSgSoLv9YZ
- gJWjby/E9izBVDAkds4CBQ5hT1lOdzhNC8GlnzIADQ7aSxv1aEhwgC46S w==;
-X-CSE-ConnectionGUID: floPnUwVS2+IXtYLZCtRJw==
-X-CSE-MsgGUID: +76B0ZTjTJeiOPbb8/g0Yw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="32742028"
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="32742028"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 07:39:42 -0700
-X-CSE-ConnectionGUID: s+JFUkSNTyi0qJpVlco4Ow==
-X-CSE-MsgGUID: vPjUpIANQTebIVEa0HgCZA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="40479774"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 14 Jun 2024 07:39:40 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 14 Jun 2024 17:39:39 +0300
-Date: Fri, 14 Jun 2024 17:39:39 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- stable@vger.kernel.org
-Subject: Re: [PATCH] drm/i915/mso: using joiner is not possible with eDP MSO
-Message-ID: <ZmxWKyz8RcqjQ0Mg@intel.com>
-References: <20240614142311.589089-1-jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E26A10E089;
+	Fri, 14 Jun 2024 14:46:13 +0000 (UTC)
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 895E910ED7E;
+ Fri, 14 Jun 2024 14:46:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915/mso=3A_using_joiner_i?=
+ =?utf-8?q?s_not_possible_with_eDP_MSO?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 14 Jun 2024 14:46:11 -0000
+Message-ID: <171837637156.77190.16591381955516623871@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240614142311.589089-1-jani.nikula@intel.com>
 In-Reply-To: <20240614142311.589089-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,48 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jun 14, 2024 at 05:23:11PM +0300, Jani Nikula wrote:
-> It's not possible to use the joiner at the same time with eDP MSO. When
-> a panel needs MSO, it's not optional, so MSO trumps joiner.
-> 
-> v3: Only change intel_dp_has_joiner(), leave debugfs alone (Ville)
-> 
-> Cc: stable@vger.kernel.org
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1668
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+== Series Details ==
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Series: drm/i915/mso: using joiner is not possible with eDP MSO
+URL   : https://patchwork.freedesktop.org/series/134894/
+State : success
 
-> 
-> ---
-> 
-> Just the minimal fix for starters to move things along.
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 9a9bb0f5b7fe..ab33c9de393a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -465,6 +465,10 @@ bool intel_dp_has_joiner(struct intel_dp *intel_dp)
->  	struct intel_encoder *encoder = &intel_dig_port->base;
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  
-> +	/* eDP MSO is not compatible with joiner */
-> +	if (intel_dp->mso_link_count)
-> +		return false;
-> +
->  	return DISPLAY_VER(dev_priv) >= 12 ||
->  		(DISPLAY_VER(dev_priv) == 11 &&
->  		 encoder->port != PORT_A);
-> -- 
-> 2.39.2
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/seq/
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/snd.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soundcore.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/common/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/amd/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/codecs/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/hda/
+lib/modules/6.10.0-rc3-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/hda/ext/
+lib/modules/6.10.0-rc3-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/kernel/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/events/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/events/intel/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/kvm/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/
+lib/modules/6.10.0-rc3-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/cmac.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/ccm.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/cryptd.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/async_tx/
+lib/modules/6.10.0-rc3-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.10.0-rc3-xe/build
+lib/modules/6.10.0-rc3-xe/modules.alias.bin
+lib/modules/6.10.0-rc3-xe/modules.builtin
+lib/modules/6.10.0-rc3-xe/modules.softdep
+lib/modules/6.10.0-rc3-xe/modules.alias
+lib/modules/6.10.0-rc3-xe/modules.order
+lib/modules/6.10.0-rc3-xe/modules.symbols
+lib/modules/6.10.0-rc3-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1718376358:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1718376358:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
