@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A892CC2BA15
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABE9BC2BA2B
 	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 21:48:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15FB610EE69;
-	Fri, 14 Jun 2024 21:48:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCEF910E2BE;
+	Fri, 14 Jun 2024 21:48:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sp6IXSdI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UFXcg82k";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A406010E2E0
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 21:47:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A125710EE6F
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 21:47:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718401658; x=1749937658;
+ t=1718401654; x=1749937654;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=N9ROBsahc0oDavW+XaAix8pYRU1Gb+GK5eqSbJVr1ZM=;
- b=Sp6IXSdIOZegw5gVO95uZzF/P/LRsKrD7+I2EOcbGoNQjjSnvESfidMI
- RRrIfeS+O46LZ0XNc9GHotvM/yTOqh6/ISFsLFQUE/nMP6SZxhkWI/Xsl
- NHESj22rx4eHLDqGsjC+JDZHgkhH6b01TejmkN5d/Jkq+vZ+i+fnAdEca
- cbo5FCRVqP/BseUtZmhZUlVoSaOJ68d2yLjm5uXC45M+uyeHppXr252xv
- aLbnHwJHGsa2JQV8GdrfUJs5UZH7UVuhLmACGDvBymdHnRXu4LXhLEHeZ
- PpsIXMCVArjGjTigGoaNVtUODJbga/taX19R4I4sXYNCtGuWq/hEUuEXY g==;
-X-CSE-ConnectionGUID: w9hsyvdTRECuZgOydtGrUA==
-X-CSE-MsgGUID: GBKWB1UUR7Ow+FwvFWskYw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="25886597"
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="25886597"
+ bh=AXT7CM30nC4cTZ9KF+5ZpQuVJnFCt5crLQ5CX1WSUAg=;
+ b=UFXcg82k2jwLNEreV7WB1ln3bp7GettwoNNFXYqzAz0kUGwatSaWzBmW
+ US2F3MWmWjuddAj2PyyJufM2zRz+0jqD8RQN8QrkySeYE6abrghNLe/lx
+ A5jmfxQoXJTvX+dwrPjfuhHOg8/QC18I1kyn+QoYBRl7otw311sd3tR3y
+ iaFH9Wmm8m88nRa7mP96hcq6Xy1cuDlCNR+wY+rg/moGGMy3q+NNxDSAM
+ NFed8zmBOPI6uUxQ2uJixp8Ghj6Cc6yH+VCU9l3DaKHbT9m+XmC1c+6l3
+ 6pbfFfQaj9WoRkvy96b8HSP2sRiXdroP1wYHAde24mSnQBEzNiaWozFsO Q==;
+X-CSE-ConnectionGUID: f1Xuka+eT8eFxuVnfomDgw==
+X-CSE-MsgGUID: WdxgbnKGTHinRiiHMc8VWA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="25886576"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="25886576"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 14:47:28 -0700
-X-CSE-ConnectionGUID: pPuW46ONRYCYVZIThazZgg==
-X-CSE-MsgGUID: yE8wMTUNRzGbBIzxzIM98g==
+ 14 Jun 2024 14:47:27 -0700
+X-CSE-ConnectionGUID: TddWhDdoTcCBIjOon8kWLQ==
+X-CSE-MsgGUID: C9z9IsuGQ8OowysW4gklFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="45572432"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="45572396"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 14:47:28 -0700
+ 14 Jun 2024 14:47:27 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 38/44] drm/xe/svm: introduce svm migration function
-Date: Fri, 14 Jun 2024 17:58:11 -0400
-Message-Id: <20240614215817.1097633-38-oak.zeng@intel.com>
+Subject: [CI 04/44] iommu/dma: Provide an interface to allow preallocate IOVA
+Date: Fri, 14 Jun 2024 17:57:37 -0400
+Message-Id: <20240614215817.1097633-4-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240614215817.1097633-1-oak.zeng@intel.com>
 References: <20240614215817.1097633-1-oak.zeng@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,101 +65,166 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_svm_migrate is introduced to migrate b/t two migration
-vectors. This will be a callback function registered to
-drm layer for svm memory migration.
+From: Leon Romanovsky <leonro@nvidia.com>
 
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+Separate IOVA allocation to dedicated callback so it will allow
+cache of IOVA and reuse it in fast paths for devices which support
+ODP (on-demand-paging) mechanism.
+
+Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c | 46 +++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_svm.h |  3 +++
- 2 files changed, 49 insertions(+)
+ drivers/iommu/dma-iommu.c | 50 +++++++++++++++++++++++++++++----------
+ 1 file changed, 38 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 5ea851ce5083..76795c572454 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -7,8 +7,10 @@
- #include <linux/sched/mm.h>
- #include <linux/gfp.h>
- #include <drm/drm_buddy.h>
-+#include <drm/drm_svm.h>
- #include "xe_ttm_vram_mgr_types.h"
- #include "xe_device_types.h"
-+#include "xe_migrate.h"
- #include "xe_device.h"
- #include "xe_tile.h"
- #include "xe_svm.h"
-@@ -154,3 +156,47 @@ void *xe_svm_mem_region_to_pagemap_owner(struct drm_mem_region *mr)
- 
- 	return tile->xe;
+diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
+index 43520e7275cc..9ce8298047f5 100644
+--- a/drivers/iommu/dma-iommu.c
++++ b/drivers/iommu/dma-iommu.c
+@@ -357,7 +357,7 @@ int iommu_dma_init_fq(struct iommu_domain *domain)
+ 	atomic_set(&cookie->fq_timer_on, 0);
+ 	/*
+ 	 * Prevent incomplete fq state being observable. Pairs with path from
+-	 * __iommu_dma_unmap() through iommu_dma_free_iova() to queue_iova()
++	 * __iommu_dma_unmap() through __iommu_dma_free_iova() to queue_iova()
+ 	 */
+ 	smp_wmb();
+ 	WRITE_ONCE(cookie->fq_domain, domain);
+@@ -758,7 +758,7 @@ static int dma_info_to_prot(enum dma_data_direction dir, bool coherent,
+ 	}
  }
-+
-+/**
-+ * xe_svm_migrate() - migrate b/t two migration vectors.
-+ * @src_vec: source migration vector
-+ * @dst_vec: dst migration vector
-+ *
-+ * For now this function only support migration b/t system memory
-+ * and device memory. It can be extended to support migration b/t
-+ * two device memory regions.
-+ *
-+ * FIXME: right now it requires vram dpa to be physically contiguous.
-+ * This is guaranteed by the DRM_BUDDY_CONTIGUOUS_ALLOCATION in
-+ * xe_svm_alloc_pages. In the future we can support migration with
-+ * non-contiguous vram. This requires change to xe_migrate_vram
-+ * to map non-contiguous vram to contiguous device virtual address
-+ * space (aka not using identity vram migrate vm mapping)
-+ */
-+struct dma_fence *xe_svm_migrate(struct migrate_vec *src_vec,
-+				 struct migrate_vec *dst_vec)
+ 
+-static dma_addr_t iommu_dma_alloc_iova(struct iommu_domain *domain,
++static dma_addr_t __iommu_dma_alloc_iova(struct iommu_domain *domain,
+ 		size_t size, u64 dma_limit, struct device *dev)
+ {
+ 	struct iommu_dma_cookie *cookie = domain->iova_cookie;
+@@ -804,7 +804,7 @@ static dma_addr_t iommu_dma_alloc_iova(struct iommu_domain *domain,
+ 	return (dma_addr_t)iova << shift;
+ }
+ 
+-static void iommu_dma_free_iova(struct iommu_dma_cookie *cookie,
++static void __iommu_dma_free_iova(struct iommu_dma_cookie *cookie,
+ 		dma_addr_t iova, size_t size, struct iommu_iotlb_gather *gather)
+ {
+ 	struct iova_domain *iovad = &cookie->iovad;
+@@ -841,7 +841,7 @@ static void __iommu_dma_unmap(struct device *dev, dma_addr_t dma_addr,
+ 
+ 	if (!iotlb_gather.queued)
+ 		iommu_iotlb_sync(domain, &iotlb_gather);
+-	iommu_dma_free_iova(cookie, dma_addr, size, &iotlb_gather);
++	__iommu_dma_free_iova(cookie, dma_addr, size, &iotlb_gather);
+ }
+ 
+ static dma_addr_t __iommu_dma_map(struct device *dev, phys_addr_t phys,
+@@ -864,12 +864,12 @@ static dma_addr_t __iommu_dma_map(struct device *dev, phys_addr_t phys,
+ 
+ 	size = iova_align(iovad, size + iova_off);
+ 
+-	iova = iommu_dma_alloc_iova(domain, size, dma_mask, dev);
++	iova = __iommu_dma_alloc_iova(domain, size, dma_mask, dev);
+ 	if (!iova)
+ 		return DMA_MAPPING_ERROR;
+ 
+ 	if (iommu_map(domain, iova, phys - iova_off, size, prot, GFP_ATOMIC)) {
+-		iommu_dma_free_iova(cookie, iova, size, NULL);
++		__iommu_dma_free_iova(cookie, iova, size, NULL);
+ 		return DMA_MAPPING_ERROR;
+ 	}
+ 	return iova + iova_off;
+@@ -973,7 +973,7 @@ static struct page **__iommu_dma_alloc_noncontiguous(struct device *dev,
+ 		return NULL;
+ 
+ 	size = iova_align(iovad, size);
+-	iova = iommu_dma_alloc_iova(domain, size, dev->coherent_dma_mask, dev);
++	iova = __iommu_dma_alloc_iova(domain, size, dev->coherent_dma_mask, dev);
+ 	if (!iova)
+ 		goto out_free_pages;
+ 
+@@ -1007,7 +1007,7 @@ static struct page **__iommu_dma_alloc_noncontiguous(struct device *dev,
+ out_free_sg:
+ 	sg_free_table(sgt);
+ out_free_iova:
+-	iommu_dma_free_iova(cookie, iova, size, NULL);
++	__iommu_dma_free_iova(cookie, iova, size, NULL);
+ out_free_pages:
+ 	__iommu_dma_free_pages(pages, count);
+ 	return NULL;
+@@ -1442,7 +1442,7 @@ static int iommu_dma_map_sg(struct device *dev, struct scatterlist *sg,
+ 	if (!iova_len)
+ 		return __finalise_sg(dev, sg, nents, 0);
+ 
+-	iova = iommu_dma_alloc_iova(domain, iova_len, dma_get_mask(dev), dev);
++	iova = __iommu_dma_alloc_iova(domain, iova_len, dma_get_mask(dev), dev);
+ 	if (!iova) {
+ 		ret = -ENOMEM;
+ 		goto out_restore_sg;
+@@ -1459,7 +1459,7 @@ static int iommu_dma_map_sg(struct device *dev, struct scatterlist *sg,
+ 	return __finalise_sg(dev, sg, nents, iova);
+ 
+ out_free_iova:
+-	iommu_dma_free_iova(cookie, iova, iova_len, NULL);
++	__iommu_dma_free_iova(cookie, iova, iova_len, NULL);
+ out_restore_sg:
+ 	__invalidate_sg(sg, nents);
+ out:
+@@ -1720,6 +1720,30 @@ static size_t iommu_dma_max_mapping_size(struct device *dev)
+ 	return SIZE_MAX;
+ }
+ 
++static dma_addr_t iommu_dma_alloc_iova(struct device *dev, size_t size)
 +{
-+	unsigned long npages = src_vec->npages;
-+	struct xe_mem_region *xe_mr;
-+	struct drm_mem_region *mr;
-+	bool dst_vram = false;
-+	struct xe_tile *tile;
-+	dma_addr_t *sram_addr;
-+	u64 vram_addr;
++	struct iommu_domain *domain = iommu_get_dma_domain(dev);
++	struct iommu_dma_cookie *cookie = domain->iova_cookie;
++	struct iova_domain *iovad = &cookie->iovad;
++	dma_addr_t dma_mask = dma_get_mask(dev);
 +
-+	if (dst_vec->mr) {
-+		mr = dst_vec->mr;
-+		dst_vram = true;
-+		vram_addr = dst_vec->addr_vec[0].dpa;
-+		sram_addr = &src_vec->addr_vec[0].dma_addr;
-+	} else {
-+		mr = src_vec->mr;
-+		vram_addr = src_vec->addr_vec[0].dpa;
-+		sram_addr = &dst_vec->addr_vec[0].dma_addr;
-+	}
-+
-+	xe_mr = container_of(mr, struct xe_mem_region, drm_mr);
-+	tile = xe_mem_region_to_tile(xe_mr);
-+
-+	return xe_migrate_vram(tile->migrate, npages, sram_addr, vram_addr, dst_vram);
++	size = iova_align(iovad, size);
++	return __iommu_dma_alloc_iova(domain, size, dma_mask, dev);
 +}
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 4d7dccb97378..3c53200e85a2 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -8,10 +8,13 @@
++
++static void iommu_dma_free_iova(struct device *dev, dma_addr_t iova,
++				size_t size)
++{
++	struct iommu_domain *domain = iommu_get_dma_domain(dev);
++	struct iommu_dma_cookie *cookie = domain->iova_cookie;
++	struct iova_domain *iovad = &cookie->iovad;
++	struct iommu_iotlb_gather iotlb_gather;
++
++	size = iova_align(iovad, size);
++	iommu_iotlb_gather_init(&iotlb_gather);
++	__iommu_dma_free_iova(cookie, iova, size, &iotlb_gather);
++}
++
+ static const struct dma_map_ops iommu_dma_ops = {
+ 	.flags			= DMA_F_PCI_P2PDMA_SUPPORTED |
+ 				  DMA_F_CAN_SKIP_SYNC,
+@@ -1744,6 +1768,8 @@ static const struct dma_map_ops iommu_dma_ops = {
+ 	.get_merge_boundary	= iommu_dma_get_merge_boundary,
+ 	.opt_mapping_size	= iommu_dma_opt_mapping_size,
+ 	.max_mapping_size       = iommu_dma_max_mapping_size,
++	.alloc_iova		= iommu_dma_alloc_iova,
++	.free_iova		= iommu_dma_free_iova,
+ };
  
- struct drm_mem_region;
- struct page;
-+struct migrate_vec;
+ void iommu_setup_dma_ops(struct device *dev)
+@@ -1786,7 +1812,7 @@ static struct iommu_dma_msi_page *iommu_dma_get_msi_page(struct device *dev,
+ 	if (!msi_page)
+ 		return NULL;
  
- int xe_svm_alloc_pages(struct drm_mem_region *mr,
- 		       unsigned long npages, unsigned long *pfn);
- void xe_svm_free_page(struct page *page);
- void *xe_svm_mem_region_to_pagemap_owner(struct drm_mem_region *mr);
-+struct dma_fence *xe_svm_migrate(struct migrate_vec *src_vec,
-+				 struct migrate_vec *dst_vec);
+-	iova = iommu_dma_alloc_iova(domain, size, dma_get_mask(dev), dev);
++	iova = __iommu_dma_alloc_iova(domain, size, dma_get_mask(dev), dev);
+ 	if (!iova)
+ 		goto out_free_page;
  
- #endif
+@@ -1800,7 +1826,7 @@ static struct iommu_dma_msi_page *iommu_dma_get_msi_page(struct device *dev,
+ 	return msi_page;
+ 
+ out_free_iova:
+-	iommu_dma_free_iova(cookie, iova, size, NULL);
++	__iommu_dma_free_iova(cookie, iova, size, NULL);
+ out_free_page:
+ 	kfree(msi_page);
+ 	return NULL;
 -- 
 2.26.3
 
