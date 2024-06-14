@@ -4,61 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B4D2C27C6E
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 14:29:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6AF4C27C6E
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 14:29:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE09C10ED6C;
-	Fri, 14 Jun 2024 14:29:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BCE710ED74;
+	Fri, 14 Jun 2024 14:29:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CBOxVMxl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IMX5XVpO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71D4910ED73
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 14:29:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A327A10ED73;
+ Fri, 14 Jun 2024 14:29:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718375350; x=1749911350;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=hdtBgxz+cU6EtOiabZFAMQg/xlQz5jjQcquYEUjPTe0=;
- b=CBOxVMxl9wqgW2QU8l8GHadzPPaVvmg5fxpnd/wvdyjZlM/ww47iKXCr
- Kk5F/WW6tEq5ImbePRjmaXabP0w52lY07bMASBSCtvV9gegXe3/dHfv0A
- LZRhbwwCtBioFlmNNqOlJTi5FsywbSTmb2ACumaSolSenP0SEC1ovCsIZ
- a3IIzfP1OMYzhmtK2DICnv87ZWSwuQU0gV8AAyVe1R3OEDpuRdZO/WR/m
- 3XgspVw/jIby9AQtJpvRmorguf/uoa5UeFIk7BSianP7Rvs4ikP+VqRTF
- 8FzcPg08r0imG0gPjBH4He4c9WGXILMzSMH47MyqYnPFQ6vypdDcFK/lx w==;
-X-CSE-ConnectionGUID: +4vzFcM5Q3eRFX93vvRRbg==
-X-CSE-MsgGUID: PC+70ctlSTuDNLP54kywcw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="15410911"
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="15410911"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 07:29:10 -0700
-X-CSE-ConnectionGUID: iJpOvue9Tj+Gnlwwj1Gxiw==
-X-CSE-MsgGUID: UERZf/PISTiKQ+FRe3sZrw==
+ t=1718375353; x=1749911353;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=eRHCYptJCxaHwMeTcb3wUeY2z7hXU9IELgT+aa7VTpo=;
+ b=IMX5XVpOvraRywTs6UcyHwceNQ2stkAtfZ4Fr5Yrk9ePBcO8UX+FePt1
+ C+0Eq/bYY24MAymOgOJIdt/NJ2cc3vu5PIHkPgOhUtsj9XdQWiACDEOJ5
+ R0SeBOVYFJX3qhpSClHfWH4v5Bp+D4ZYSZMGYr6g3ghvkwoFTQBk7BYIb
+ SpAsAadaeb/WrbIJPnZQPmfkvUFYLnFUzD8Nh1D6uXQOVAlevIimfai4e
+ +yHBLgtjL0lvZLZYrIZ9IuZUgFBWA+BvbWN4NkTwY/QkhRzU5y7QOn5OC
+ 52zyG3z8qcvI28gM7k2iDNWQowiI58NoKsFYEPDTrv2lpyKwVMmZkgUN8 g==;
+X-CSE-ConnectionGUID: 6ougLhpuRyK9UqpZyRyKMg==
+X-CSE-MsgGUID: 1zlvdJQVQn2bMYWH3TmQEg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="32740956"
+X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="32740956"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2024 07:29:13 -0700
+X-CSE-ConnectionGUID: mmQG4RMFQlGPR2p8/Rpj5Q==
+X-CSE-MsgGUID: /6sifMcZTYq+91Nn9CrIqA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="45445018"
-Received: from apaszkie-mobl2.apaszkie-mobl2 (HELO [10.245.244.139])
- ([10.245.244.139])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 07:29:09 -0700
-Message-ID: <d0dd7c2e-c7c0-4cc9-b600-48101c699b91@intel.com>
-Date: Fri, 14 Jun 2024 15:29:06 +0100
+X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="40476419"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 14 Jun 2024 07:29:09 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 14 Jun 2024 17:29:08 +0300
+Date: Fri, 14 Jun 2024 17:29:08 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 2/2] drm/i915/dsc: don't mess up splitter state in
+ joiner or dsc config
+Message-ID: <ZmxTtASlDdGFUqyw@intel.com>
+References: <cover.1718360103.git.jani.nikula@intel.com>
+ <aea210a824084a0644de5a546e7ecb6dfc6bdef9.1718360103.git.jani.nikula@intel.com>
+ <Zmwt2l3SFaE1icV8@intel.com> <87y177hals.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Fix missing runtime outer protection for
- ggtt_remove_node
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>,
- Francois Dugast <francois.dugast@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-References: <20240613215357.307061-1-rodrigo.vivi@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240613215357.307061-1-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <87y177hals.fsf@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,374 +72,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 13/06/2024 22:53, Rodrigo Vivi wrote:
-> Defer the ggtt node removal to a thread if runtime_pm is not active.
+On Fri, Jun 14, 2024 at 05:17:51PM +0300, Jani Nikula wrote:
+> On Fri, 14 Jun 2024, Ville Syrj‰l‰ <ville.syrjala@linux.intel.com> wrote:
+> > On Fri, Jun 14, 2024 at 01:16:04PM +0300, Jani Nikula wrote:
+> >> The driver handles splitter (for MSO) and joiner/dsc configuration in
+> >> different places. Avoid messing up the splitter hardware state when
+> >> enabling/disabling joiner or dsc. It should not be possible to enable
+> >> both joiner and splitter at the same time, but add more clarity to the
+> >> register use overall.
+> >> 
+> >> Note: We should probably handle splitter for MSO as well as dual-link
+> >> DSI in intel_vdsc.c. Also, we have intel_uncompressed_joiner_enable()
+> >> but no corresponding disable.
+> >> 
+> >> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> >> ---
+> >>  drivers/gpu/drm/i915/display/intel_ddi.c       |  5 ++---
+> >>  drivers/gpu/drm/i915/display/intel_vdsc.c      | 12 +++++++++---
+> >>  drivers/gpu/drm/i915/display/intel_vdsc_regs.h |  1 +
+> >>  3 files changed, 12 insertions(+), 6 deletions(-)
+> >> 
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> index bb13a3ca8c7c..49509a6599fe 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> @@ -2417,9 +2417,8 @@ static void intel_ddi_mso_configure(const struct intel_crtc_state *crtc_state)
+> >>  			dss1 |= SPLITTER_CONFIGURATION_4_SEGMENT;
+> >>  	}
+> >>  
+> >> -	intel_de_rmw(i915, ICL_PIPE_DSS_CTL1(pipe),
+> >> -		     SPLITTER_ENABLE | SPLITTER_CONFIGURATION_MASK |
+> >> -		     OVERLAP_PIXELS_MASK, dss1);
+> >> +	/* Only touch the splitter */
+> >> +	intel_de_rmw(i915, ICL_PIPE_DSS_CTL1(pipe), SPLITTER_STATE, dss1);
+> >>  }
+> >>  
+> >>  static u8 mtl_get_port_width(u8 lane_count)
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> >> index b9687b7692b8..a8671d3f1d41 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> >> @@ -766,7 +766,9 @@ void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc_state)
+> >>  		else
+> >>  			dss_ctl1_val |= UNCOMPRESSED_JOINER_PRIMARY;
+> >>  
+> >> -		intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder), dss_ctl1_val);
+> >> +		/* Avoid touching the splitter */
+> >> +		intel_de_rmw(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder),
+> >> +			     ~SPLITTER_STATE, dss_ctl1_val);
+> >>  	}
+> >>  }
+> >>  
+> >> @@ -793,7 +795,9 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
+> >>  		if (!intel_crtc_is_joiner_secondary(crtc_state))
+> >>  			dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
+> >>  	}
+> >> -	intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder), dss_ctl1_val);
+> >> +	/* Avoid touching the splitter */
+> >> +	intel_de_rmw(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder),
+> >> +		     ~SPLITTER_STATE, dss_ctl1_val);
+> >>  	intel_de_write(dev_priv, dss_ctl2_reg(crtc, crtc_state->cpu_transcoder), dss_ctl2_val);
+> >>  }
+> >>  
+> >> @@ -805,7 +809,9 @@ void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
+> >>  	/* Disable only if either of them is enabled */
+> >>  	if (old_crtc_state->dsc.compression_enable ||
+> >>  	    old_crtc_state->joiner_pipes) {
+> >> -		intel_de_write(dev_priv, dss_ctl1_reg(crtc, old_crtc_state->cpu_transcoder), 0);
+> >> +		/* Avoid touching the splitter */
+> >> +		intel_de_rmw(dev_priv, dss_ctl1_reg(crtc, old_crtc_state->cpu_transcoder),
+> >> +			     ~SPLITTER_STATE, 0);
+> >>  		intel_de_write(dev_priv, dss_ctl2_reg(crtc, old_crtc_state->cpu_transcoder), 0);
+> >>  	}
+> >>  }
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+> >> index f921ad67b587..3734cd96f55e 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+> >> +++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+> >> @@ -37,6 +37,7 @@
+> >>  #define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
+> >>  #define  SPLITTER_CONFIGURATION_2_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
+> >>  #define  SPLITTER_CONFIGURATION_4_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
+> >> +#define  SPLITTER_STATE				(SPLITTER_ENABLE | SPLITTER_CONFIGURATION_MASK | OVERLAP_PIXELS_MASK)
+> >
+> > Not a big fan of this. I'd rather explicicitly list the bits
+> > we actually want to modify in each call site.
+> >
+> > Also not a big fan of the rmws. I think in the future we might be
+> > able to adjust some DSC stuff via fastsets, and that means no rmws
+> > because we then want to do it via DSB. But not sure if the DSS
+> > registers specifically would be involved in that, and I guess we
+> > already had some rmws in there so it'll require work anyway. So
+> > no hard objection to using rmw for now.
 > 
-> The ggtt node removal can be called from multiple places, including
-> places where we cannot protect with outer callers and places we are
-> within other locks. So, try to grab the runtime reference if the
-> device is already active, otherwise defer the removal to a separate
-> thread from where we are sure we can wake the device up.
+> I'm definitely not a fan of the rmws myself. It's just that there's
+> already rmw for splitter in both dual-link DSI and eDP MSO. And I think
+> they're both bust when combined with DSC.
 > 
-> v2: - use xe wq instead of system wq (Matt and CI)
->      - Avoid GFP_KERNEL to be future proof since this removal can
->      be called from outside our drivers and we don't want to block
->      if atomic is needed. (Brost)
-> v3: amend forgot chunk declaring xe_device.
-> v4: Use a xe_ggtt_region to encapsulate the node and remova info,
->      wihtout the need for any memory allocation at runtime.
-> v5: Actually fill the delayed_removal.invalidate (Brost)
-> v6: - Ensure that ggtt_region is not freed before work finishes (Auld)
->      - Own wq to ensures that the queued works are flushed before
->        ggtt_fini (Brost)
+> I think the proper fix would be to handle everything related to DSS CTL
+> in the same place, but I'm not even sure the modeset sequences for DSI
+> and MSO are flexible enough for that. I don't know. Maybe the stuff
+> could be written in two places as long as the single point of truth
+> knows what to put there and when. Seems a bit involved right now.
 > 
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
-> Cc: Francois Dugast <francois.dugast@intel.com>
-> Cc: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->   drivers/gpu/drm/xe/display/xe_fb_pin.c |  10 +-
->   drivers/gpu/drm/xe/xe_bo.c             |   2 +-
->   drivers/gpu/drm/xe/xe_bo.h             |   6 +-
->   drivers/gpu/drm/xe/xe_bo_types.h       |   6 +-
->   drivers/gpu/drm/xe/xe_ggtt.c           | 129 ++++++++++++++++++-------
->   drivers/gpu/drm/xe/xe_ggtt.h           |   1 -
->   drivers/gpu/drm/xe/xe_ggtt_types.h     |  23 +++++
->   7 files changed, 130 insertions(+), 47 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> index a2f417209124..b84139b27970 100644
-> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> @@ -153,7 +153,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
->   	}
->   
->   	vma->dpt = dpt;
-> -	vma->node = dpt->ggtt_node;
-> +	vma->node = dpt->ggtt_region->node;
->   	return 0;
->   }
->   
-> @@ -203,8 +203,8 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
->   	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
->   		align = max_t(u32, align, SZ_64K);
->   
-> -	if (bo->ggtt_node.size && view->type == I915_GTT_VIEW_NORMAL) {
-> -		vma->node = bo->ggtt_node;
-> +	if (bo->ggtt_region->node.size && view->type == I915_GTT_VIEW_NORMAL) {
-> +		vma->node = bo->ggtt_region->node;
->   	} else if (view->type == I915_GTT_VIEW_NORMAL) {
->   		u32 x, size = bo->ttm.base.size;
->   
-> @@ -322,8 +322,8 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
->   
->   	if (vma->dpt)
->   		xe_bo_unpin_map_no_vm(vma->dpt);
-> -	else if (!drm_mm_node_allocated(&vma->bo->ggtt_node) ||
-> -		 vma->bo->ggtt_node.start != vma->node.start)
-> +	else if (!drm_mm_node_allocated(&vma->bo->ggtt_region->node) ||
-> +		 vma->bo->ggtt_region->node.start != vma->node.start)
->   		xe_ggtt_remove_node(ggtt, &vma->node, false);
->   
->   	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 74294f1b05bc..0bfd6d1eb0be 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -1072,7 +1072,7 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
->   
->   	xe_assert(xe, list_empty(&ttm_bo->base.gpuva.list));
->   
-> -	if (bo->ggtt_node.size)
-> +	if (bo->ggtt_region->node.size)
->   		xe_ggtt_remove_bo(bo->tile->mem.ggtt, bo);
->   
->   #ifdef CONFIG_PROC_FS
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index 6de894c728f5..aeb1ebc0d3fc 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -194,9 +194,9 @@ xe_bo_main_addr(struct xe_bo *bo, size_t page_size)
->   static inline u32
->   xe_bo_ggtt_addr(struct xe_bo *bo)
->   {
-> -	XE_WARN_ON(bo->ggtt_node.size > bo->size);
-> -	XE_WARN_ON(bo->ggtt_node.start + bo->ggtt_node.size > (1ull << 32));
-> -	return bo->ggtt_node.start;
-> +	XE_WARN_ON(bo->ggtt_region->node.size > bo->size);
-> +	XE_WARN_ON(bo->ggtt_region->node.start + bo->ggtt_region->node.size > (1ull << 32));
-> +	return bo->ggtt_region->node.start;
->   }
->   
->   int xe_bo_vmap(struct xe_bo *bo);
-> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-> index 86422e113d39..f45b1c4bbb6d 100644
-> --- a/drivers/gpu/drm/xe/xe_bo_types.h
-> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
-> @@ -14,6 +14,8 @@
->   #include <drm/ttm/ttm_execbuf_util.h>
->   #include <drm/ttm/ttm_placement.h>
->   
-> +#include "xe_ggtt_types.h"
-> +
->   struct xe_device;
->   struct xe_vm;
->   
-> @@ -38,8 +40,8 @@ struct xe_bo {
->   	struct ttm_place placements[XE_BO_MAX_PLACEMENTS];
->   	/** @placement: current placement for this BO */
->   	struct ttm_placement placement;
-> -	/** @ggtt_node: GGTT node if this BO is mapped in the GGTT */
-> -	struct drm_mm_node ggtt_node;
-> +	/** @ggtt_region: GGTT region node if this BO is mapped in the GGTT */
-> +	struct xe_ggtt_region *ggtt_region;
->   	/** @vmap: iosys map of this buffer */
->   	struct iosys_map vmap;
->   	/** @ttm_kmap: TTM bo kmap object for internal use only. Keep off. */
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> index 8ff91fd1b7c8..d0284f2c7cbc 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> @@ -101,6 +101,7 @@ static void ggtt_fini_early(struct drm_device *drm, void *arg)
->   {
->   	struct xe_ggtt *ggtt = arg;
->   
-> +	destroy_workqueue(ggtt->wq);
->   	mutex_destroy(&ggtt->lock);
->   	drm_mm_takedown(&ggtt->mm);
->   }
-> @@ -191,6 +192,8 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
->   	else
->   		ggtt->pt_ops = &xelp_pt_ops;
->   
-> +	ggtt->wq = alloc_workqueue("xe-ggtt-wq", 0, 0);
+> So, uh, is the compromise to drop this SPLITTER_STATE, and have each
+> place rmw into the register just what each place needs?
 
-Check for error?
+I think that's an OK solution for now. Though it might need a bit
+of care to make sure we also clear out all the bits at some point
+if everyone ends up doing rmws.
 
-> +
->   	drm_mm_init(&ggtt->mm, xe_wopcm_size(xe),
->   		    ggtt->size - xe_wopcm_size(xe));
->   	mutex_init(&ggtt->lock);
-> @@ -389,7 +392,7 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
->   {
->   	u16 cache_mode = bo->flags & XE_BO_FLAG_NEEDS_UC ? XE_CACHE_NONE : XE_CACHE_WB;
->   	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[cache_mode];
-> -	u64 start = bo->ggtt_node.start;
-> +	u64 start = bo->ggtt_region->node.start;
->   	u64 offset, pte;
->   
->   	for (offset = 0; offset < bo->size; offset += XE_PAGE_SIZE) {
-> @@ -398,18 +401,97 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
->   	}
->   }
->   
-> +static void ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
-> +			     bool invalidate)
-> +{
-> +	struct xe_device *xe = tile_to_xe(ggtt->tile);
-> +	struct xe_ggtt_region *ggtt_region = container_of(node,
-> +							  typeof(*ggtt_region),
-> +							  node);
-> +	bool bound;
-> +	int idx;
-> +
-> +	bound = drm_dev_enter(&xe->drm, &idx);
-> +
-> +	mutex_lock(&ggtt->lock);
-> +	if (bound)
-> +		xe_ggtt_clear(ggtt, node->start, node->size);
-> +	drm_mm_remove_node(node);
-> +	node->size = 0;
-> +	mutex_unlock(&ggtt->lock);
-> +
-> +	if (!bound)
-> +		return;
+intel_ddi_mso_configure() (+whatever is the DSI counterpart)
+should perhaps be the thing that always clears everything at the 
+start.
 
-Missing the kfree here?
-
-> +
-> +	if (invalidate)
-> +		xe_ggtt_invalidate(ggtt);
-> +
-> +	drm_dev_exit(idx);
-> +	kfree(ggtt_region);
-> +}
-> +
-> +static void ggtt_remove_node_work_func(struct work_struct *work)
-> +{
-> +	struct xe_ggtt_region *ggtt_region = container_of(work,
-> +							  typeof(*ggtt_region),
-> +							  delayed_removal.work);
-> +	struct xe_device *xe = tile_to_xe(ggtt_region->ggtt->tile);
-> +
-> +	xe_pm_runtime_get(xe);
-> +	ggtt_remove_node(ggtt_region->ggtt, &ggtt_region->node,
-> +			 ggtt_region->delayed_removal.invalidate);
-> +	xe_pm_runtime_put(xe);
-> +}
-> +
-> +static void ggtt_queue_remove_node(struct drm_mm_node *node, bool invalidate)
-> +{
-> +	struct xe_ggtt_region *ggtt_region = container_of(node,
-> +							  typeof(*ggtt_region),
-> +							  node);
-> +
-> +	queue_work(ggtt_region->ggtt->wq, &ggtt_region->delayed_removal.work);
-> +}
-> +
-> +void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
-> +			 bool invalidate)
-> +{
-> +	struct xe_device *xe = tile_to_xe(ggtt->tile);
-> +
-> +	if (xe_pm_runtime_get_if_active(xe)) {
-> +		ggtt_remove_node(ggtt, node, invalidate);
-> +		xe_pm_runtime_put(xe);
-> +	} else {
-> +		ggtt_queue_remove_node(node, invalidate);
-> +	}
-> +}
-> +
-> +static struct xe_ggtt_region *ggtt_region_init(struct xe_ggtt *ggtt)
-> +{
-> +	struct xe_ggtt_region *ggtt_region = kzalloc(sizeof(*ggtt_region),
-> +						     GFP_KERNEL);
-> +
-> +	if (!ggtt_region)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	INIT_WORK(&ggtt_region->delayed_removal.work, ggtt_remove_node_work_func);
-> +	ggtt_region->ggtt = ggtt;
-> +
-> +	return ggtt_region;
-> +}
-> +
->   static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
->   				  u64 start, u64 end)
->   {
->   	int err;
->   	u64 alignment = XE_PAGE_SIZE;
-> +	struct xe_ggtt_region *ggtt_region;
->   
->   	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
->   		alignment = SZ_64K;
->   
-> -	if (XE_WARN_ON(bo->ggtt_node.size)) {
-> +	if (XE_WARN_ON(bo->ggtt_region->node.size)) {
->   		/* Someone's already inserted this BO in the GGTT */
-> -		xe_tile_assert(ggtt->tile, bo->ggtt_node.size == bo->size);
-> +		xe_tile_assert(ggtt->tile, bo->ggtt_region->node.size == bo->size);
->   		return 0;
->   	}
->   
-> @@ -417,9 +499,14 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
->   	if (err)
->   		return err;
->   
-> +	ggtt_region = ggtt_region_init(ggtt);
-> +	if (IS_ERR(ggtt_region))
-> +		return PTR_ERR(ggtt_region);
-> +	bo->ggtt_region = ggtt_region;
-> +
->   	xe_pm_runtime_get_noresume(tile_to_xe(ggtt->tile));
->   	mutex_lock(&ggtt->lock);
-> -	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node, bo->size,
-> +	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_region->node, bo->size,
->   					  alignment, 0, start, end, 0);
->   	if (!err)
->   		xe_ggtt_map_bo(ggtt, bo);
-> @@ -443,43 +530,15 @@ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
->   	return __xe_ggtt_insert_bo_at(ggtt, bo, 0, U64_MAX);
->   }
->   
-> -void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
-> -			 bool invalidate)
-> -{
-> -	struct xe_device *xe = tile_to_xe(ggtt->tile);
-> -	bool bound;
-> -	int idx;
-> -
-> -	bound = drm_dev_enter(&xe->drm, &idx);
-> -	if (bound)
-> -		xe_pm_runtime_get_noresume(xe);
-> -
-> -	mutex_lock(&ggtt->lock);
-> -	if (bound)
-> -		xe_ggtt_clear(ggtt, node->start, node->size);
-> -	drm_mm_remove_node(node);
-> -	node->size = 0;
-> -	mutex_unlock(&ggtt->lock);
-> -
-> -	if (!bound)
-> -		return;
-> -
-> -	if (invalidate)
-> -		xe_ggtt_invalidate(ggtt);
-> -
-> -	xe_pm_runtime_put(xe);
-> -	drm_dev_exit(idx);
-> -}
-> -
->   void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
->   {
-> -	if (XE_WARN_ON(!bo->ggtt_node.size))
-> +	if (XE_WARN_ON(!bo->ggtt_region->node.size))
->   		return;
->   
->   	/* This BO is not currently in the GGTT */
-> -	xe_tile_assert(ggtt->tile, bo->ggtt_node.size == bo->size);
-> +	xe_tile_assert(ggtt->tile, bo->ggtt_region->node.size == bo->size);
->   
-> -	xe_ggtt_remove_node(ggtt, &bo->ggtt_node,
-> +	xe_ggtt_remove_node(ggtt, &bo->ggtt_region->node,
->   			    bo->flags & XE_BO_FLAG_GGTT_INVALIDATE);
->   }
->   
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-> index 4a41a1762358..75511b5f43eb 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.h
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
-> @@ -30,7 +30,6 @@ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
->   int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
->   			 u64 start, u64 end);
->   void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
-> -
->   int xe_ggtt_dump(struct xe_ggtt *ggtt, struct drm_printer *p);
->   
->   #ifdef CONFIG_PCI_IOV
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
-> index d8c584d9a8c3..202d7f3085ba 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
-> @@ -34,6 +34,29 @@ struct xe_ggtt {
->   	const struct xe_ggtt_pt_ops *pt_ops;
->   
->   	struct drm_mm mm;
-> +	/** @wq: Dedicated unordered work queue to process node removals */
-> +	struct workqueue_struct *wq;
-> +};
-> +
-> +/**
-> + * struct xe_ggtt_region - GGTT region node
-> + * It needs to be initialized before the drm_mm_node insertion in the GGTT.
-> + */
-> +struct xe_ggtt_region {
-> +	/** @ggtt: Back pointer to xe_ggtt where this region will be inserted at */
-> +	struct xe_ggtt *ggtt;
-> +	/** @node: The drm_mm_node itself */
-> +	struct drm_mm_node node;
-> +	/**
-> +	 * @delayed_removal: Information for removal through work thread when
-> +	 * device runtime_pm is suspended
-> +	 */
-> +	struct {
-> +		/** @delayed_removal.work: The work struct for the delayed removal */
-> +		struct work_struct work;
-> +		/** @delayed_removal.invalidate: If it needs invalidation upon removal */
-> +		bool invalidate;
-> +	} delayed_removal;
->   };
->   
->   #endif
+-- 
+Ville Syrj‰l‰
+Intel
