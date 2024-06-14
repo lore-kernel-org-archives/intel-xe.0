@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3EA9C27C6E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7EEBC3DA40
 	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 21:49:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAB6F10E2C4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2CD610E2C0;
 	Fri, 14 Jun 2024 21:49:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fqLE40KG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aqgUrjWG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96D0610EE73
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 21:47:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CA9D10E2BA
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 21:47:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718401656; x=1749937656;
+ t=1718401653; x=1749937653;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=qSQChppzZpdm6Y3ry3J2KU/oDmjEP+zpNlw97usr2wI=;
- b=fqLE40KGu4weUB3hjJYGCinURqXawM1vbVUdPLQr68N2Nnzn4N3IFgpO
- yERHQhRax9vMhFxT4c+kDZQq2AppeP/Uk34nwZUJyyiOZP0eC2G7j0Gfz
- gBuT+wyvpJ4D/Vz1/kZup79qPYKB+ZclLd+CojZ4o7ovC91n8SEeY8iwJ
- bcSid7gSy9JpVco9sVfqmlyobh1o1hNoGuvQqwIO9/297RExAP1qP3uWj
- l+ls1vOFYoQOLjDDT0CPVOFSWy6UGZtRgxTCovo14YSF0D76gmcmw2SYc
- B02U1hsylJzklB/jMpSpfFN5b1OaKuAYfiRe4zN7u1KyWuYv6ST6DWsaS Q==;
-X-CSE-ConnectionGUID: dxEroauPRFmfpvBxxmTd6g==
-X-CSE-MsgGUID: 0ZsK57Q0S6CTeiYdazT38g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="25886588"
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="25886588"
+ bh=/xNLG3U29OgkyA1tKMaWZ92RWxnb2Y1szOX8Own9nJ0=;
+ b=aqgUrjWGwRYPQISjKlH6+mWS4b+xU/oYa8RdNm3KAmBqsaNnlmIs2NKq
+ hmZtKT/o6weGeGbv903lOw3J/a7PBxp4MzHap+AfYIMMbMpfOK/w8VNTI
+ ljnnrCY9DhnYT9VgRhkXdPDB66QdHcDKtfVNQKvNSncf0qonXFYLpGnb3
+ GI/YGafaaKv7l24U7aDp9DDiYIcdn4rNx65EqTcrwz+KRT/2MZaJYzWg7
+ auFLK+bV0JvG2i/r7AJ4le6GDO4bOxJi2Rs5TYrjNPFYqyXMZ0H7J6liL
+ +IFVLcHz/NE60s2B7+sizi0obvIXolATqdSQ0Sb8Cc7pDU8XK+YvUFK+g A==;
+X-CSE-ConnectionGUID: 8O0zScHtTvm8KrP5GhHYkg==
+X-CSE-MsgGUID: C882+MS7Qa6pt6eCQ3bFQA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="25886570"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="25886570"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Jun 2024 14:47:27 -0700
-X-CSE-ConnectionGUID: K4T835gTQU+5rRa11bUkEQ==
-X-CSE-MsgGUID: gYLLIwQcT9mFgekee0MDOA==
+X-CSE-ConnectionGUID: tHoYitdHSLOKZcQtPFRA1A==
+X-CSE-MsgGUID: oou8t/ASR5+F/USHUg9Bag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="45572422"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="45572395"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 14:47:28 -0700
+ 14 Jun 2024 14:47:27 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 28/44] drm/xe: Moving to range based vma invalidation
-Date: Fri, 14 Jun 2024 17:58:01 -0400
-Message-Id: <20240614215817.1097633-28-oak.zeng@intel.com>
+Subject: [CI 03/44] dma-mapping: provide callbacks to link/unlink pages to
+ specific IOVA
+Date: Fri, 14 Jun 2024 17:57:36 -0400
+Message-Id: <20240614215817.1097633-3-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240614215817.1097633-1-oak.zeng@intel.com>
 References: <20240614215817.1097633-1-oak.zeng@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,298 +66,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-New parameters are introduced to the vma invalidation function to allow
-partially invalidate a vma.
+From: Leon Romanovsky <leonro@nvidia.com>
 
-For userptr invalidation, we now only invalidate the mmu notified range
-instead of the whole vma. This is more efficient than the whole vma based
-invalidation.
+Introduce new DMA link/unlink API to provide a way for advanced users
+to directly map/unmap pages without ned to allocate IOVA on every map
+call.
 
-For other cases, still keep the whole vma invalidation scheme.
-
-One of the consequence of this change is, we now don't have information
-whether a vma is fully invalidated or not, because vma can be partially
-invalidated now. The tile_invalidated member is deleted due to this
-reason.
-
-This is prepare work for system allocator where we want to apply range
-based vma invalidation. It is also reasonable to apply the same scheme
-for userptr invalidation.
-
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c           |  2 +-
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 11 ---------
- drivers/gpu/drm/xe/xe_pt.c           | 16 +++++++++---
- drivers/gpu/drm/xe/xe_pt.h           |  2 +-
- drivers/gpu/drm/xe/xe_vm.c           | 37 +++++++++++++++++++---------
- drivers/gpu/drm/xe/xe_vm.h           |  2 +-
- drivers/gpu/drm/xe/xe_vm_types.h     |  3 ---
- 7 files changed, 41 insertions(+), 32 deletions(-)
+ include/linux/dma-map-ops.h | 10 +++++++
+ include/linux/dma-mapping.h | 13 +++++++++
+ kernel/dma/debug.h          |  2 ++
+ kernel/dma/direct.h         |  3 ++
+ kernel/dma/mapping.c        | 57 +++++++++++++++++++++++++++++++++++++
+ 5 files changed, 85 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 371ea9a5dd16..71670e7397fc 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -514,7 +514,7 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
- 			struct xe_vma *vma = gpuva_to_vma(gpuva);
+diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
+index 23e5e2f63a1c..292326ac5a12 100644
+--- a/include/linux/dma-map-ops.h
++++ b/include/linux/dma-map-ops.h
+@@ -89,6 +89,13 @@ struct dma_map_ops {
  
- 			trace_xe_vma_evict(vma);
--			ret = xe_vm_invalidate_vma(vma);
-+			ret = xe_vm_invalidate_vma(vma, xe_vma_start(vma), xe_vma_end(vma));
- 			if (XE_WARN_ON(ret))
- 				return ret;
- 		}
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 9292d5468868..9e84cff964b8 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -65,12 +65,6 @@ static bool access_is_atomic(enum access_type access_type)
- 	return access_type == ACCESS_TYPE_ATOMIC;
- }
+ 	dma_addr_t (*alloc_iova)(struct device *dev, size_t size);
+ 	void (*free_iova)(struct device *dev, dma_addr_t dma_addr, size_t size);
++	dma_addr_t (*link_range)(struct device *dev, struct page *page,
++				 unsigned long offset, dma_addr_t addr,
++				 size_t size, enum dma_data_direction dir,
++				 unsigned long attrs);
++	void (*unlink_range)(struct device *dev, dma_addr_t dma_handle,
++			     size_t size, enum dma_data_direction dir,
++			     unsigned long attrs);
+ };
  
--static bool vma_is_valid(struct xe_tile *tile, struct xe_vma *vma)
--{
--	return BIT(tile->id) & vma->tile_present &&
--		!(BIT(tile->id) & vma->tile_invalidated);
--}
--
- static bool vma_matches(struct xe_vma *vma, u64 page_addr)
- {
- 	if (page_addr > xe_vma_end(vma) - 1 ||
-@@ -138,10 +132,6 @@ static int handle_vma_pagefault(struct xe_tile *tile, struct pagefault *pf,
- 	trace_xe_vma_pagefault(vma);
- 	atomic = access_is_atomic(pf->access_type);
- 
--	/* Check if VMA is valid */
--	if (vma_is_valid(tile, vma) && !atomic)
--		return 0;
--
- retry_userptr:
- 	if (xe_vma_is_userptr(vma) &&
- 	    xe_vma_userptr_check_repin(to_userptr_vma(vma))) {
-@@ -175,7 +165,6 @@ static int handle_vma_pagefault(struct xe_tile *tile, struct pagefault *pf,
- 
- 	dma_fence_wait(fence, false);
- 	dma_fence_put(fence);
--	vma->tile_invalidated &= ~BIT(tile->id);
- 
- unlock_dma_resv:
- 	drm_exec_fini(&exec);
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index e4b42aa2517f..415386852e3b 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -792,6 +792,8 @@ static const struct xe_pt_walk_ops xe_pt_zap_ptes_ops = {
-  * xe_pt_zap_ptes() - Zap (zero) gpu ptes of an address range
-  * @tile: The tile we're zapping for.
-  * @vma: GPU VMA detailing address range.
-+ * @start: start of the range.
-+ * @end: end of the range.
-  *
-  * Eviction and Userptr invalidation needs to be able to zap the
-  * gpu ptes of a given address range in pagefaulting mode.
-@@ -803,8 +805,11 @@ static const struct xe_pt_walk_ops xe_pt_zap_ptes_ops = {
-  *
-  * Return: Whether ptes were actually updated and a TLB invalidation is
-  * required.
-+ *
-+ * FIXME: double confirm xe_pt_walk_shared support walking of a sub-range of
-+ * vma (vs whole vma)
-  */
--bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma)
-+bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma, u64 start, u64 end)
- {
- 	struct xe_pt_zap_ptes_walk xe_walk = {
- 		.base = {
-@@ -815,13 +820,16 @@ bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma)
- 		.tile = tile,
- 	};
- 	struct xe_pt *pt = xe_vma_vm(vma)->pt_root[tile->id];
--	u8 pt_mask = (vma->tile_present & ~vma->tile_invalidated);
-+	u8 pt_mask = vma->tile_present;
-+
-+	xe_assert(tile_to_xe(tile), start >= xe_vma_start(vma));
-+	xe_assert(tile_to_xe(tile), end <= xe_vma_end(vma));
- 
- 	if (!(pt_mask & BIT(tile->id)))
- 		return false;
- 
--	(void)xe_pt_walk_shared(&pt->base, pt->level, xe_vma_start(vma),
--				xe_vma_end(vma), &xe_walk.base);
-+	(void)xe_pt_walk_shared(&pt->base, pt->level, start,
-+				end, &xe_walk.base);
- 
- 	return xe_walk.needs_invalidate;
- }
-diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
-index 9ab386431cad..aa8ff28e75b0 100644
---- a/drivers/gpu/drm/xe/xe_pt.h
-+++ b/drivers/gpu/drm/xe/xe_pt.h
-@@ -41,6 +41,6 @@ struct dma_fence *xe_pt_update_ops_run(struct xe_tile *tile,
- void xe_pt_update_ops_fini(struct xe_tile *tile, struct xe_vma_ops *vops);
- void xe_pt_update_ops_abort(struct xe_tile *tile, struct xe_vma_ops *vops);
- 
--bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma);
-+bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma, u64 start, u64 end);
- 
+ #ifdef CONFIG_DMA_OPS
+@@ -440,6 +447,9 @@ bool arch_dma_unmap_sg_direct(struct device *dev, struct scatterlist *sg,
+ #define arch_dma_unmap_sg_direct(d, s, n)	(false)
  #endif
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 97c6f25760ac..b0da8821fc9e 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -617,21 +617,31 @@ static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
- {
- 	struct xe_userptr *userptr = container_of(mni, typeof(*userptr), hmmptr.notifier);
- 	struct xe_userptr_vma *uvma = container_of(userptr, typeof(*uvma), userptr);
-+	u64 range_start, range_end, range_size, range_offset;
- 	struct xe_vma *vma = &uvma->vma;
- 	struct xe_vm *vm = xe_vma_vm(vma);
- 	struct dma_resv_iter cursor;
- 	struct dma_fence *fence;
-+	u64 start, end;
- 	long err;
  
-+	range_start = max_t(u64, xe_vma_userptr(vma), range->start);
-+	range_end = min_t(u64, xe_vma_userptr_end(vma), range->end);
-+	range_size = range_end - range_start;
-+	range_offset = range_start - xe_vma_userptr(vma);
++#define arch_dma_link_range_direct arch_dma_map_page_direct
++#define arch_dma_unlink_range_direct arch_dma_unmap_page_direct
 +
- 	xe_assert(vm->xe, xe_vma_is_userptr(vma));
- 	trace_xe_vma_userptr_invalidate(vma);
+ #ifdef CONFIG_ARCH_HAS_SETUP_DMA_OPS
+ void arch_setup_dma_ops(struct device *dev, bool coherent);
+ #else
+diff --git a/include/linux/dma-mapping.h b/include/linux/dma-mapping.h
+index 34a3b6420606..223b5477e36e 100644
+--- a/include/linux/dma-mapping.h
++++ b/include/linux/dma-mapping.h
+@@ -113,6 +113,9 @@ static inline int dma_mapping_error(struct device *dev, dma_addr_t dma_addr)
  
-+	start = xe_vma_start(vma) + range_offset;
-+	end = start + range_size;
+ int dma_alloc_iova(struct dma_iova_attrs *iova);
+ void dma_free_iova(struct dma_iova_attrs *iova);
++dma_addr_t dma_link_range(struct page *page, unsigned long offset,
++			  struct dma_iova_attrs *iova, dma_addr_t dma_offset);
++void dma_unlink_range(struct dma_iova_attrs *iova, dma_addr_t dma_offset);
+ 
+ dma_addr_t dma_map_page_attrs(struct device *dev, struct page *page,
+ 		size_t offset, size_t size, enum dma_data_direction dir,
+@@ -170,6 +173,16 @@ static inline int dma_alloc_iova(struct dma_iova_attrs *iova)
+ static inline void dma_free_iova(struct dma_iova_attrs *iova)
+ {
+ }
++static inline dma_addr_t dma_link_range(struct page *page, unsigned long offset,
++					struct dma_iova_attrs *iova,
++					dma_addr_t dma_offset)
++{
++	return DMA_MAPPING_ERROR;
++}
++static inline void dma_unlink_range(struct dma_iova_attrs *iova,
++				    dma_addr_t dma_offset)
++{
++}
+ static inline dma_addr_t dma_map_page_attrs(struct device *dev,
+ 		struct page *page, size_t offset, size_t size,
+ 		enum dma_data_direction dir, unsigned long attrs)
+diff --git a/kernel/dma/debug.h b/kernel/dma/debug.h
+index f525197d3cae..3d529f355c6d 100644
+--- a/kernel/dma/debug.h
++++ b/kernel/dma/debug.h
+@@ -127,4 +127,6 @@ static inline void debug_dma_sync_sg_for_device(struct device *dev,
+ {
+ }
+ #endif /* CONFIG_DMA_API_DEBUG */
++#define debug_dma_link_range debug_dma_map_page
++#define debug_dma_unlink_range debug_dma_unmap_page
+ #endif /* _KERNEL_DMA_DEBUG_H */
+diff --git a/kernel/dma/direct.h b/kernel/dma/direct.h
+index 18d346118fe8..1c30e1cd607a 100644
+--- a/kernel/dma/direct.h
++++ b/kernel/dma/direct.h
+@@ -125,4 +125,7 @@ static inline void dma_direct_unmap_page(struct device *dev, dma_addr_t addr,
+ 		swiotlb_tbl_unmap_single(dev, phys, size, dir,
+ 					 attrs | DMA_ATTR_SKIP_CPU_SYNC);
+ }
 +
- 	if (!mmu_notifier_range_blockable(range))
- 		return false;
- 
- 	vm_dbg(&xe_vma_vm(vma)->xe->drm,
- 	       "NOTIFIER: addr=0x%016llx, range=0x%016llx",
--		xe_vma_start(vma), xe_vma_size(vma));
-+		start, range_size);
- 
- 	down_write(&vm->userptr.notifier_lock);
- 	mmu_interval_set_seq(mni, cur_seq);
-@@ -674,11 +684,11 @@ static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
- 	XE_WARN_ON(err <= 0);
- 
- 	if (xe_vm_in_fault_mode(vm)) {
--		err = xe_vm_invalidate_vma(vma);
-+		err = xe_vm_invalidate_vma(vma, start, end);
- 		XE_WARN_ON(err);
- 	}
- 
--	xe_vma_userptr_dma_unmap_pages(uvma, xe_vma_userptr(vma), xe_vma_userptr_end(vma));
-+	xe_vma_userptr_dma_unmap_pages(uvma, range_start, range_end);
- 
- 	trace_xe_vma_userptr_invalidate_complete(vma);
- 
-@@ -721,7 +731,8 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
- 					      DMA_RESV_USAGE_BOOKKEEP,
- 					      false, MAX_SCHEDULE_TIMEOUT);
- 
--			err = xe_vm_invalidate_vma(&uvma->vma);
-+			err = xe_vm_invalidate_vma(&uvma->vma, xe_vma_start(&uvma->vma),
-+						   xe_vma_end(&uvma->vma));
- 			xe_vm_unlock(vm);
- 			if (err)
- 				return err;
-@@ -3207,8 +3218,10 @@ void xe_vm_unlock(struct xe_vm *vm)
++#define dma_direct_link_range dma_direct_map_page
++#define dma_direct_unlink_range dma_direct_unmap_page
+ #endif /* _KERNEL_DMA_DIRECT_H */
+diff --git a/kernel/dma/mapping.c b/kernel/dma/mapping.c
+index 4d14637d186b..787d7516434f 100644
+--- a/kernel/dma/mapping.c
++++ b/kernel/dma/mapping.c
+@@ -213,6 +213,63 @@ void dma_free_iova(struct dma_iova_attrs *iova)
  }
+ EXPORT_SYMBOL(dma_free_iova);
  
- /**
-- * xe_vm_invalidate_vma - invalidate GPU mappings for VMA without a lock
-+ * xe_vm_invalidate_vma - invalidate GPU mappings for a range of VMA without a lock
-  * @vma: VMA to invalidate
-+ * @start: start of the range.
-+ * @end: end of the range.
-  *
-  * Walks a list of page tables leaves which it memset the entries owned by this
-  * VMA to zero, invalidates the TLBs, and block until TLBs invalidation is
-@@ -3216,7 +3229,7 @@ void xe_vm_unlock(struct xe_vm *vm)
-  *
-  * Returns 0 for success, negative error code otherwise.
-  */
--int xe_vm_invalidate_vma(struct xe_vma *vma)
-+int xe_vm_invalidate_vma(struct xe_vma *vma, u64 start, u64 end)
++/**
++ * dma_link_range - Link a physical page to DMA address
++ * @page: The page to be mapped
++ * @offset: The offset within the page
++ * @iova: Preallocated IOVA attributes
++ * @dma_offset: DMA offset form which this page needs to be linked
++ *
++ * dma_alloc_iova() allocates IOVA based on the size specified by ther user in
++ * iova->size. Call this function after IOVA allocation to link @page from
++ * @offset to get the DMA address. Note that very first call to this function
++ * will have @dma_offset set to 0 in the IOVA space allocated from
++ * dma_alloc_iova(). For subsequent calls to this function on same @iova,
++ * @dma_offset needs to be advanced by the caller with the size of previous
++ * page that was linked + DMA address returned for the previous page that was
++ * linked by this function.
++ */
++dma_addr_t dma_link_range(struct page *page, unsigned long offset,
++			  struct dma_iova_attrs *iova, dma_addr_t dma_offset)
++{
++	struct device *dev = iova->dev;
++	size_t size = iova->size;
++	enum dma_data_direction dir = iova->dir;
++	unsigned long attrs = iova->attrs;
++	dma_addr_t addr = iova->addr + dma_offset;
++	const struct dma_map_ops *ops = get_dma_ops(dev);
++
++	if (dma_map_direct(dev, ops) ||
++	    arch_dma_link_range_direct(dev, page_to_phys(page) + offset + size))
++		addr = dma_direct_link_range(dev, page, offset, size, dir, attrs);
++	else if (ops->link_range)
++		addr = ops->link_range(dev, page, offset, addr, size, dir, attrs);
++
++	kmsan_handle_dma(page, offset, size, dir);
++	debug_dma_link_range(dev, page, offset, size, dir, addr, attrs);
++	return addr;
++}
++EXPORT_SYMBOL(dma_link_range);
++
++void dma_unlink_range(struct dma_iova_attrs *iova, dma_addr_t dma_offset)
++{
++	struct device *dev = iova->dev;
++	size_t size = iova->size;
++	enum dma_data_direction dir = iova->dir;
++	unsigned long attrs = iova->attrs;
++	dma_addr_t addr = iova->addr + dma_offset;
++	const struct dma_map_ops *ops = get_dma_ops(dev);
++
++	if (dma_map_direct(dev, ops) ||
++	    arch_dma_unlink_range_direct(dev, addr + size))
++		dma_direct_unlink_range(dev, addr, size, dir, attrs);
++	else if (ops->unlink_range)
++		ops->unlink_range(dev, addr, size, dir, attrs);
++
++	debug_dma_unlink_range(dev, addr, size, dir);
++}
++EXPORT_SYMBOL(dma_unlink_range);
++
+ static int __dma_map_sg_attrs(struct device *dev, struct scatterlist *sg,
+ 	 int nents, enum dma_data_direction dir, unsigned long attrs)
  {
- 	struct xe_device *xe = xe_vma_vm(vma)->xe;
- 	struct xe_tile *tile;
-@@ -3227,11 +3240,13 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
- 
- 	xe_assert(xe, !xe_vma_is_null(vma));
- 	xe_assert(xe, !xe_vma_is_system_allocator(vma));
-+	xe_assert(xe, start >= xe_vma_start(vma));
-+	xe_assert(xe, end <= xe_vma_end(vma));
- 	trace_xe_vma_invalidate(vma);
- 
- 	vm_dbg(&xe_vma_vm(vma)->xe->drm,
- 	       "INVALIDATE: addr=0x%016llx, range=0x%016llx",
--		xe_vma_start(vma), xe_vma_size(vma));
-+		start, end - start);
- 
- 	/* Check that we don't race with page-table updates */
- 	if (IS_ENABLED(CONFIG_PROVE_LOCKING)) {
-@@ -3248,14 +3263,16 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
- 	}
- 
- 	for_each_tile(tile, xe, id) {
--		if (xe_pt_zap_ptes(tile, vma)) {
-+		if (xe_pt_zap_ptes(tile, vma, start, end)) {
- 			tile_needs_invalidate |= BIT(id);
- 			xe_device_wmb(xe);
- 			/*
- 			 * FIXME: We potentially need to invalidate multiple
- 			 * GTs within the tile
- 			 */
--			seqno[id] = xe_gt_tlb_invalidation_vma(tile->primary_gt, NULL, vma);
-+			seqno[id] = xe_gt_tlb_invalidation_range(tile->primary_gt, NULL,
-+								 start, end,
-+								 xe_vma_vm(vma)->usm.asid);
- 			if (seqno[id] < 0)
- 				return seqno[id];
- 		}
-@@ -3269,8 +3286,6 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
- 		}
- 	}
- 
--	vma->tile_invalidated = vma->tile_mask;
--
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 89f3306561ad..7c10f6c60b63 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -223,7 +223,7 @@ int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker);
- struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma,
- 				u8 tile_mask);
- 
--int xe_vm_invalidate_vma(struct xe_vma *vma);
-+int xe_vm_invalidate_vma(struct xe_vma *vma, u64 start, u64 end);
- 
- static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
- {
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 976982972a06..4d9707c19031 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -75,9 +75,6 @@ struct xe_vma {
- 		struct work_struct destroy_work;
- 	};
- 
--	/** @tile_invalidated: VMA has been invalidated */
--	u8 tile_invalidated;
--
- 	/** @tile_mask: Tile mask of where to create binding for this VMA */
- 	u8 tile_mask;
- 
 -- 
 2.26.3
 
