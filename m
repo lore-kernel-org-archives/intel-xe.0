@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A25D6C27C77
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 05:57:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EBC3C27C6E
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 06:10:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5587F10EC31;
-	Fri, 14 Jun 2024 05:57:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8439410EC3A;
+	Fri, 14 Jun 2024 06:10:52 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABAE210EC33;
- Fri, 14 Jun 2024 05:57:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E67C10EC3A;
+ Fri, 14 Jun 2024 06:10:49 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Explicitly_cast?=
- =?utf-8?q?_to_u64_to_avoid_overflow?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_Explicitly_cast_to_u?=
+ =?utf-8?q?64_to_avoid_overflow?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 14 Jun 2024 05:57:11 -0000
-Message-ID: <171834463169.77190.13206854261047582307@a6498e030952>
+Date: Fri, 14 Jun 2024 06:10:49 -0000
+Message-ID: <171834544918.77190.17004019316602614429@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240614051556.255455-1-zbigniew.kempczynski@intel.com>
 In-Reply-To: <20240614051556.255455-1-zbigniew.kempczynski@intel.com>
@@ -44,37 +44,110 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Explicitly cast to u64 to avoid overflow
 URL   : https://patchwork.freedesktop.org/series/134869/
-State : warning
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-51ce9f6cd981d42d7467409d7dbc559a450abc1e
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 774a938a9e0598410ee5c399971de5b4fd77732f
-Author: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
-Date:   Fri Jun 14 07:15:56 2024 +0200
-
-    drm/xe: Explicitly cast to u64 to avoid overflow
-    
-    Without casting whole expression will be calculated on u32 what
-    means adding U32_MAX effectively decreases the result by one due to
-    overflow. Fix this and use explicit cast to u64.
-    
-    Signed-off-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
-    Cc: Matthew Brost <matthew.brost@intel.com>
-+ /mt/dim checkpatch a88e8dc2c59464cac89137471031d736a408652f drm-intel
-774a938a9e05 drm/xe: Explicitly cast to u64 to avoid overflow
--:26: CHECK:SPACING: No space is necessary after a cast
-#26: FILE: drivers/gpu/drm/xe/xe_guc_submit.c:970:
-+		diff = (u64) ctx_timestamp + U32_MAX - ctx_job_timestamp;
-
-total: 0 errors, 0 warnings, 1 checks, 8 lines checked
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/seq/
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/snd.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soundcore.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/common/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/amd/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/codecs/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/hda/
+lib/modules/6.10.0-rc3-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/hda/ext/
+lib/modules/6.10.0-rc3-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/kernel/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/events/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/events/intel/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/kvm/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/
+lib/modules/6.10.0-rc3-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/cmac.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/ccm.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/cryptd.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/async_tx/
+lib/modules/6.10.0-rc3-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.10.0-rc3-xe/build
+lib/modules/6.10.0-rc3-xe/modules.alias.bin
+lib/modules/6.10.0-rc3-xe/modules.builtin
+lib/modules/6.10.0-rc3-xe/modules.softdep
+lib/modules/6.10.0-rc3-xe/modules.alias
+lib/modules/6.10.0-rc3-xe/modules.order
+lib/modules/6.10.0-rc3-xe/modules.symbols
+lib/modules/6.10.0-rc3-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1718345432:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1718345432:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
