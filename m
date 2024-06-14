@@ -4,58 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34040C27C75
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 10:16:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6557DC27C6E
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 10:26:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C211A10ECE0;
-	Fri, 14 Jun 2024 10:16:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A10C610ECD0;
+	Fri, 14 Jun 2024 10:26:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GGOasIkS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WmQiE9qd";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A9BF10ECE0;
- Fri, 14 Jun 2024 10:16:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 061F210E17D;
+ Fri, 14 Jun 2024 10:26:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718360180; x=1749896180;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=SRbR1IwU9CZ1nYFqYUz1nE3k/Q6KfIHMEXGRE18xpO4=;
- b=GGOasIkSL8yqq8k0/0Ll7LqfM0cxIgGUOdbfdEM+X5tzDpBNVrQLCmfV
- osb+E8qp/i7ow9KWDAYSf/WneaT/a4+vzYrNUHub4MDaVRyfjLzwB7UV7
- bfTRl9rAKrdp1kk0AJ9iZbvis9+YyJIpMmuwdeY7H8tivipeVDPnekQAa
- LYIHYOotoDfgG6X7BNU5KE9O/xvBMwbbFEUaYK9xg86XA+NV5V1sdRIQ/
- Zh7eRcevnw8gvlI5EIYc7UtEbMnVkZEr1Gv8w8ApINH4d1RCZKIa8EKYs
- UlF8qhgu/v1m8sG9HbVExLXxrC/dCwSXDIEx3QFbM2eOZHx2FdKp++LLn A==;
-X-CSE-ConnectionGUID: UA/IhCyfQq6W+VSAPB/xjA==
-X-CSE-MsgGUID: xklG/TAuRBaelnH+9a6tTw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="25814282"
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="25814282"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 03:16:20 -0700
-X-CSE-ConnectionGUID: mAL6SPjNQEGqvB7l9CQ5aw==
-X-CSE-MsgGUID: +KrJdlLXRHO+1+ZwBp1daA==
+ t=1718360763; x=1749896763;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Cxb7v58cdyetJNW4E0SiH40ZJwg+UWAUax4EBgb+oTs=;
+ b=WmQiE9qdp2GEhjd2H5LGUbRPn4tqiVivWhzsrV+eluqD19b/KcWkM5Ev
+ AT87prDl9qP8pgX+1JK7nwtFM8H3b1lrj49oLfyxgJnAAOKUZABlfWM/w
+ 9A9ostoAX/Xg+lg0PrOVIAU2oFCbWecBoP5v9uvkBFGSeGibjSkvIimhp
+ CIUSm9zru+jHxeno+rfxr8GfIpvjzTynghZVEXyDn4hTyVTxYqPHtpMjw
+ E7kQIzaEN3r7mkOP/oh6ZC1JRYkoFsZq7LLG6rK13CHNndIOnQd+aH5bV
+ s1TgOeJXB6TdftLKKXxkAuZ1l7m4M76iHQCQJGmJLBudV6V/8BpU8SomH A==;
+X-CSE-ConnectionGUID: QliL1hIMQg2jHMTONQ2H4g==
+X-CSE-MsgGUID: sWy86KDxRXSAir4s0x/4vw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="26659441"
+X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="26659441"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2024 03:26:03 -0700
+X-CSE-ConnectionGUID: /AwlJI8TTlCtYbrxiA/QQw==
+X-CSE-MsgGUID: igILMc5KSPiAs7OkqCHbIQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="63658334"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.221])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 03:16:18 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	ville.syrjala@linux.intel.com
-Subject: [PATCH v2 2/2] drm/i915/dsc: don't mess up splitter state in joiner
- or dsc config
-Date: Fri, 14 Jun 2024 13:16:04 +0300
-Message-Id: <aea210a824084a0644de5a546e7ecb6dfc6bdef9.1718360103.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1718360103.git.jani.nikula@intel.com>
-References: <cover.1718360103.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="45415490"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO fedora..)
+ ([10.245.244.153])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2024 03:26:01 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org
+Subject: [PATCH v4 00/12] TTM shrinker helpers and xe buffer object shrinker
+Date: Fri, 14 Jun 2024 12:25:36 +0200
+Message-ID: <20240614102548.4364-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,89 +69,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The driver handles splitter (for MSO) and joiner/dsc configuration in
-different places. Avoid messing up the splitter hardware state when
-enabling/disabling joiner or dsc. It should not be possible to enable
-both joiner and splitter at the same time, but add more clarity to the
-register use overall.
+This series implements TTM shrinker / eviction helpers and an xe bo
+shrinker. It builds on two previous series, *and obsoletes these*. First
 
-Note: We should probably handle splitter for MSO as well as dual-link
-DSI in intel_vdsc.c. Also, we have intel_uncompressed_joiner_enable()
-but no corresponding disable.
+https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg484425.html
 
-Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c       |  5 ++---
- drivers/gpu/drm/i915/display/intel_vdsc.c      | 12 +++++++++---
- drivers/gpu/drm/i915/display/intel_vdsc_regs.h |  1 +
- 3 files changed, 12 insertions(+), 6 deletions(-)
+Second the previous TTM shrinker series
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index bb13a3ca8c7c..49509a6599fe 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2417,9 +2417,8 @@ static void intel_ddi_mso_configure(const struct intel_crtc_state *crtc_state)
- 			dss1 |= SPLITTER_CONFIGURATION_4_SEGMENT;
- 	}
- 
--	intel_de_rmw(i915, ICL_PIPE_DSS_CTL1(pipe),
--		     SPLITTER_ENABLE | SPLITTER_CONFIGURATION_MASK |
--		     OVERLAP_PIXELS_MASK, dss1);
-+	/* Only touch the splitter */
-+	intel_de_rmw(i915, ICL_PIPE_DSS_CTL1(pipe), SPLITTER_STATE, dss1);
- }
- 
- static u8 mtl_get_port_width(u8 lane_count)
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index b9687b7692b8..a8671d3f1d41 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -766,7 +766,9 @@ void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc_state)
- 		else
- 			dss_ctl1_val |= UNCOMPRESSED_JOINER_PRIMARY;
- 
--		intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder), dss_ctl1_val);
-+		/* Avoid touching the splitter */
-+		intel_de_rmw(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder),
-+			     ~SPLITTER_STATE, dss_ctl1_val);
- 	}
- }
- 
-@@ -793,7 +795,9 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
- 		if (!intel_crtc_is_joiner_secondary(crtc_state))
- 			dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
- 	}
--	intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder), dss_ctl1_val);
-+	/* Avoid touching the splitter */
-+	intel_de_rmw(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder),
-+		     ~SPLITTER_STATE, dss_ctl1_val);
- 	intel_de_write(dev_priv, dss_ctl2_reg(crtc, crtc_state->cpu_transcoder), dss_ctl2_val);
- }
- 
-@@ -805,7 +809,9 @@ void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
- 	/* Disable only if either of them is enabled */
- 	if (old_crtc_state->dsc.compression_enable ||
- 	    old_crtc_state->joiner_pipes) {
--		intel_de_write(dev_priv, dss_ctl1_reg(crtc, old_crtc_state->cpu_transcoder), 0);
-+		/* Avoid touching the splitter */
-+		intel_de_rmw(dev_priv, dss_ctl1_reg(crtc, old_crtc_state->cpu_transcoder),
-+			     ~SPLITTER_STATE, 0);
- 		intel_de_write(dev_priv, dss_ctl2_reg(crtc, old_crtc_state->cpu_transcoder), 0);
- 	}
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-index f921ad67b587..3734cd96f55e 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-@@ -37,6 +37,7 @@
- #define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
- #define  SPLITTER_CONFIGURATION_2_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
- #define  SPLITTER_CONFIGURATION_4_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
-+#define  SPLITTER_STATE				(SPLITTER_ENABLE | SPLITTER_CONFIGURATION_MASK | OVERLAP_PIXELS_MASK)
- #define  UNCOMPRESSED_JOINER_PRIMARY		(1 << 21)
- #define  UNCOMPRESSED_JOINER_SECONDARY		(1 << 20)
- 
+https://lore.kernel.org/linux-mm/b7491378-defd-4f1c-31e2-29e4c77e2d67@amd.com/T/
+
+Where the comment about layering
+https://lore.kernel.org/linux-mm/b7491378-defd-4f1c-31e2-29e4c77e2d67@amd.com/T/#ma918844aa8a6efe8768fdcda0c6590d5c93850c9
+
+now addressed, and this version also implements shmem objects for backup
+rather than direct swap-cache insertions, which was used in the previuos
+series. It turns out that with per-page backup / shrinking, shmem objects
+appears to work just as well as direct swap-cache insertions with the
+added benefit that was introduced in the previous TTM shrinker series to
+avoid running out of swap entries isn't really needed.
+
+Patch 1-4 implements restartable LRU list iteration.
+
+Patch 5 implements a LRU walker + resv locking helper
+
+Patch 6 moves TTM swapping over to the walker.
+
+Patch 7 moves TTM eviction over to the walker.
+
+Patch 8 could in theory be skipped but introduces a possibility to easily
+add or test multiple backup backends, like the direct swap-cache
+insertion or even files into fast dedicated nvme storage for for example.
+
+Patch 9 introduces helpers in the ttm_pool code for page-by-page shrinking
+and recovery. It avoids having to temporarily allocate a huge amount of
+memory to be able to shrink a buffer object. It also introduces the
+possibility to immediately write-back pages if needed, since that tends
+to be a bit delayed when left to kswapd.
+
+Patch 10 Adds a simple error injection to the above code to help increase
+test coverage.
+
+Patch 11 Implements an xe bo shrinker and a common helper in TTM for
+shrinking.
+
+Patch 12-21 are really a separate POC series, for introducing drm_exec locking
+in TTM. The patch touches both drm_exec and dma-buf and is for now marked as
+an RFC:
+
+Patch 12 Increases (removes) the XE_PL_TT watermark.
+
+v2:
+- Squash obsolete revision history in the patch commit messages.
+- Fix a couple of review comments by Christian
+- Don't store the mem_type in the TTM managers but in the
+  resource cursor.
+- Rename introduced TTM *back_up* function names to *backup*
+- Add ttm pool recovery fault injection.
+- Shrinker xe kunit test
+- Various bugfixes
+
+v3:
+- Address some review comments from Matthew Brost and Christian König.
+- Use the restartable LRU walk for TTM swapping and eviction.
+- Provide a POC drm_exec locking implementation for exhaustive
+  eviction. (Christian König).
+
+v4:
+- Remove the RFC exhaustive eviction part. While the path to exhaustive
+  eviction is pretty clear and demonstrated in v3, there is still some
+  drm_exec work that needs to be agreed and implemented.
+- Add shrinker power management. On some hw we need to wake when shrinking.
+- Fix the lru walker helper for -EALREADY errors.
+- Add drm/xe: Increase the XE_PL_TT watermark.
+
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: <dri-devel@lists.freedesktop.org>
+
+Thomas Hellström (12):
+  drm/ttm: Allow TTM LRU list nodes of different types
+  drm/ttm: Slightly clean up LRU list iteration
+  drm/ttm: Use LRU hitches
+  drm/ttm, drm/amdgpu, drm/xe: Consider hitch moves within bulk sublist
+    moves
+  drm/ttm: Provide a generic LRU walker helper
+  drm/ttm: Use the LRU walker helper for swapping
+  drm/ttm: Use the LRU walker for eviction
+  drm/ttm: Add a virtual base class for graphics memory backup
+  drm/ttm/pool: Provide a helper to shrink pages
+  drm/ttm: Use fault-injection to test error paths
+  drm/ttm, drm/xe: Add a shrinker for xe bos
+  drm/xe: Increase the XE_PL_TT watermark
+
+ drivers/gpu/drm/Kconfig                |  10 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c |   4 +
+ drivers/gpu/drm/ttm/Makefile           |   2 +-
+ drivers/gpu/drm/ttm/ttm_backup_shmem.c | 137 ++++++++
+ drivers/gpu/drm/ttm/ttm_bo.c           | 463 ++++++++++++-------------
+ drivers/gpu/drm/ttm/ttm_bo_util.c      | 212 +++++++++++
+ drivers/gpu/drm/ttm/ttm_device.c       |  29 +-
+ drivers/gpu/drm/ttm/ttm_pool.c         | 412 +++++++++++++++++++++-
+ drivers/gpu/drm/ttm/ttm_resource.c     | 264 +++++++++++---
+ drivers/gpu/drm/ttm/ttm_tt.c           |  37 ++
+ drivers/gpu/drm/xe/Makefile            |   1 +
+ drivers/gpu/drm/xe/tests/xe_bo.c       | 118 +++++++
+ drivers/gpu/drm/xe/tests/xe_bo_test.c  |   1 +
+ drivers/gpu/drm/xe/tests/xe_bo_test.h  |   1 +
+ drivers/gpu/drm/xe/xe_bo.c             | 139 +++++++-
+ drivers/gpu/drm/xe/xe_bo.h             |   4 +
+ drivers/gpu/drm/xe/xe_device.c         |   8 +
+ drivers/gpu/drm/xe/xe_device_types.h   |   2 +
+ drivers/gpu/drm/xe/xe_shrinker.c       | 287 +++++++++++++++
+ drivers/gpu/drm/xe/xe_shrinker.h       |  18 +
+ drivers/gpu/drm/xe/xe_ttm_sys_mgr.c    |   3 +-
+ drivers/gpu/drm/xe/xe_vm.c             |   4 +
+ include/drm/ttm/ttm_backup.h           | 136 ++++++++
+ include/drm/ttm/ttm_bo.h               |  48 ++-
+ include/drm/ttm/ttm_pool.h             |   5 +
+ include/drm/ttm/ttm_resource.h         |  99 +++++-
+ include/drm/ttm/ttm_tt.h               |  20 ++
+ 27 files changed, 2089 insertions(+), 375 deletions(-)
+ create mode 100644 drivers/gpu/drm/ttm/ttm_backup_shmem.c
+ create mode 100644 drivers/gpu/drm/xe/xe_shrinker.c
+ create mode 100644 drivers/gpu/drm/xe/xe_shrinker.h
+ create mode 100644 include/drm/ttm/ttm_backup.h
+
 -- 
-2.39.2
+2.44.0
 
