@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AB1DC2BA18
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 21:47:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26FD9C27C7B
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 21:47:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB31710EE85;
-	Fri, 14 Jun 2024 21:47:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F48F10EE81;
+	Fri, 14 Jun 2024 21:47:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h0l85Mo+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VoiwJPDn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C290010E2B7
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 21:47:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71B9510E2BE
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 21:47:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718401653; x=1749937653;
+ t=1718401651; x=1749937651;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=SJwljeFqB+ZAlgKKuGqgEU6WHWXkwhc9Xhoct1pllb0=;
- b=h0l85Mo+5RixY0VRtUXC4+mdumIat1dHw24AQjgt3y5Y3DDvoIpVOlhJ
- OeaUqJHWE1VaAHLiN5wTmBJP/Gmi1EKJJJw2Oxw30hdBha7zlpL95Sauq
- TRlTWWQk9UKIg67x1yFrGZ7Ipa8d9206sv7LwGN2xle0d2yxrGWp9n3dS
- qE//XS+nxiEhRvzzVuvF11uLViN8W8tvYNKs73pJSWUlh+fTtkMXVPKHZ
- WuX+S1a7wXCm5psuvz+J4sKBfzsQnuQFXt5snmSnrqHh285zzR+3u0CDY
- J5352uV/UY1nRugoZqP4KPk4P15W6ArJpiiWxhxqAjq4eT2aA291QWZ5b w==;
-X-CSE-ConnectionGUID: Q1v6ZETDSYSItXxbcnUVZg==
-X-CSE-MsgGUID: nlQkZKPPRUa8snOlGQ6XZg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="25886572"
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="25886572"
+ bh=M7f+3VOUZ03PklhAG7jBVDa1wc57FqdovhzMKfryEyA=;
+ b=VoiwJPDnWUA4IhqqZ4l/9vD4MU9fOn4/gDiFJvOB7gRwGlxHRQMvNeST
+ e1o6J28J8hLAZJd8PsNdarhpqRfJcK3yBWiCBdpHZ/SuEkWR7qLQMfZ1f
+ xs/EU7yxhuDdM5QWDyNwuFDTOcCSI4Tq3DBQJVaHFeI4Q9Jkcl6jFk/tL
+ 4iB3/aH66NY/+m2uSXIkmsNM5TlwqiESHCOxytwWM5hAiBX+6V+sYfcLE
+ Tw7u50NvEQr7GbTu6DOddYyFx6JS1Ow3eX2Ipl5fq9je3FKjsdvn9rS5T
+ wp4XDiy2N8Q5fpUO6TwgRYSO4NROpytqeEAYM2s61OyluaOxWTpZeeHyX A==;
+X-CSE-ConnectionGUID: m+58SlvvQEGTvtL8gXZh5Q==
+X-CSE-MsgGUID: AAzY5ejVTYCmW5HaWoI6Iw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="25886567"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="25886567"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Jun 2024 14:47:27 -0700
-X-CSE-ConnectionGUID: yojH3/5hSpufqKFpR1hsaA==
-X-CSE-MsgGUID: L8boA25bSFiDlobvJ3wTfw==
+X-CSE-ConnectionGUID: fyyW97ZJQ9KR1/5+l+/36w==
+X-CSE-MsgGUID: LBhQIoUBRbGnUkl8dRvQ4w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="45572404"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="45572402"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Jun 2024 14:47:27 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 12/44] drm/svm: Introduce helper to remap drm memory region
-Date: Fri, 14 Jun 2024 17:57:45 -0400
-Message-Id: <20240614215817.1097633-12-oak.zeng@intel.com>
+Subject: [CI 10/44] drm/svm: introduce drm_mem_region concept
+Date: Fri, 14 Jun 2024 17:57:43 -0400
+Message-Id: <20240614215817.1097633-10-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240614215817.1097633-1-oak.zeng@intel.com>
 References: <20240614215817.1097633-1-oak.zeng@intel.com>
@@ -66,134 +66,216 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Helper function drm_svm_register_mem_region to remap GPU vram
-using devm_memremap_pages, so each GPU vram page is backed by
-struct page.
+As its name indicates, a drm_mem_region represent a memory region on
+a drm device, e.g., a GPU's HBM memory.
 
-Those struct pages are created to allow hmm migrate buffer b/t
-GPU vram and CPU system memory using existing Linux migration
-mechanism (i.e., migrating b/t CPU system memory and hard disk).
+In a memory region, we have address information of this region, from
+both CPU (hpa_base) and GPU (dpa_base) perspectives. It has a pagemap
+member which is used to memremap memory region to ZONE_DEVICE. It also
+has some interfaces for drm to callback driver to allocate/free memory from
+this region, migrate data to/from this memory region, get a pagemap
+owner of a memory region, and get the drm device which own the memory
+region.
 
-This is prepare work to enable svm (shared virtual memory) through
-Linux kernel hmm framework. The memory remap's page map type is set
-to MEMORY_DEVICE_PRIVATE for now. This means even though each GPU
-vram page get a struct page and can be mapped in CPU page table,
-but such pages are treated as GPU's private resource, so CPU can't
-access them. If CPU access such page, a page fault is triggered
-and page will be migrate to system memory.
+This is introduced for system allocator implementation, so the memory
+allocation and free interfaces are page based.
 
-For GPU device which supports coherent memory protocol b/t CPU and
-GPU (such as CXL and CAPI protocol), we can remap device memory as
-MEMORY_DEVICE_COHERENT. This is TBD.
+A few helper functions are also introduced:
+1) drm_mem_region_page_to_dpa: calculate device physical address for
+   a page
+2) drm_page_to_mem_region: retrieve drm memory region that a page
+   resides in
 
-v1: Support a memory type interface for register_mem_region (Himal)
+v1: use page parameter instead of pfn (Matt)
+Add drm_WARN_ON(mr != drm_page_to_mem_region(page)) (Matt)
 
-Cc: Daniel Vetter <daniel.vetter@intel.com>
 Cc: Dave Airlie <airlied@redhat.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Felix Kuehling <felix.kuehling@amd.com>
 Cc: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Leon Romanovsky <leonro@nvidia.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Brian Welty <brian.welty@intel.com>
 Cc: <dri-devel@lists.freedesktop.org>
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/drm_svm.c | 57 +++++++++++++++++++++++++++++++++++++++
- include/drm/drm_svm.h     |  4 +++
- 2 files changed, 61 insertions(+)
+ include/drm/drm_svm.h | 165 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 165 insertions(+)
+ create mode 100644 include/drm/drm_svm.h
 
-diff --git a/drivers/gpu/drm/drm_svm.c b/drivers/gpu/drm/drm_svm.c
-index b88616491409..2c0cb2f82b28 100644
---- a/drivers/gpu/drm/drm_svm.c
-+++ b/drivers/gpu/drm/drm_svm.c
-@@ -12,6 +12,7 @@
- #include <linux/swap.h>
- #include <linux/bug.h>
- #include <linux/hmm.h>
-+#include <linux/pci.h>
- #include <linux/mm.h>
- 
- static u64 __npages_in_range(unsigned long start, unsigned long end)
-@@ -323,3 +324,59 @@ int drm_svm_hmmptr_populate(struct drm_hmmptr *hmmptr, void *owner, u64 start, u
- 	return ret;
- }
- EXPORT_SYMBOL_GPL(drm_svm_hmmptr_populate);
+diff --git a/include/drm/drm_svm.h b/include/drm/drm_svm.h
+new file mode 100644
+index 000000000000..ceeba53e12b8
+--- /dev/null
++++ b/include/drm/drm_svm.h
+@@ -0,0 +1,165 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright Â© 2024 Intel Corporation
++ */
 +
-+static struct dev_pagemap_ops drm_devm_pagemap_ops;
++#ifndef _DRM_SVM__
++#define _DRM_SVM__
++
++#include <linux/compiler_types.h>
++#include <linux/memremap.h>
++#include <linux/types.h>
++#include <drm/drm_print.h>
++
++struct dma_fence;
++struct drm_mem_region;
 +
 +/**
-+ * drm_svm_register_mem_region: Remap and provide memmap backing for device memory
-+ * @drm: drm device who want to register a memory region
-+ * @mr: memory region to register
-+ * @type: ZONE_DEVICE memory type
-+ *
-+ * This remap device memory to host physical address space and create
-+ * struct page to back device memory
-+ *
-+ * Return: 0 on success standard error code otherwise
++ * struct migrate_vec - a migration vector is an array of addresses,
++ * each of which represents one page.
++ * When it is system memory page, the address is a dmap-mapped address.
++ * When it is vram page, the address is device physical address.
 + */
-+int drm_svm_register_mem_region(const struct drm_device *drm,
-+				struct drm_mem_region *mr,
-+				enum memory_type type)
++struct migrate_vec {
++	/**
++	 * @mr: the memory region that pages reside.
++	 * When it is system memory page, mr is NULL.
++	 */
++	struct drm_mem_region *mr;
++	/** @npages: number of pages */
++	u64 npages;
++	/**
++	 * @addr_vec: address vector
++	 * each item in addr_vec is an address of a page
++	 */
++	union {
++		/** @dma_addr: dma-mapped address of the page, only valid for system pages*/
++		dma_addr_t dma_addr;
++		/** @dpa: device physical address of the page, only valid for vram page*/
++		phys_addr_t dpa;
++	} addr_vec[];
++};
++
++/**
++ * struct drm_mem_region_ops - memory region operations such as memory allocation
++ * and migration etc. Driver is supposed to implement those operations.
++ */
++struct drm_mem_region_ops {
++	/**
++	 * @drm_mem_region_alloc_pages: Called from drm to driver to allocate
++	 * device VRAM memory
++	 * @mr: The memory region where to allocate device VRAM memory from
++	 * @npages: number of pages to allocate
++	 * @pfns: Used to return pfns of each page
++	 */
++	int (*drm_mem_region_alloc_pages)(struct drm_mem_region *mr,
++					  unsigned long npags, unsigned long *pfns);
++	/**
++	 * @drm_mem_region_free_page: Called from drm to free one page of device memory
++	 * @page: point to the page to free
++	 */
++	void (*drm_mem_region_free_page)(struct page *page);
++	/**
++	 * @drm_mem_region_migrate: Called from drm to migrate memory from src to
++	 * dst. Driver is supposed to implement this function using device hardware
++	 * accelerators such as DMA. DRM subsystem call this function to migrate
++	 * memory b/t system memory and device memory region
++	 *
++	 * @src_vec: source migration vector
++	 * @dst_vec: destination migration vector
++	 */
++	struct dma_fence* (*drm_mem_region_migrate)(struct migrate_vec *src_vec,
++						    struct migrate_vec *dst_vec);
++	/**
++	 * @drm_mem_region_pagemap_owner: Return the pagemap owner of a memory
++	 * region. Pagemap owner is the owner of the device memory. It is
++	 * defined by device driver and opaque to drm layer. Drm uses pagemap
++	 * owner to set up page migrations (see hmm function migrate_vma_setup)
++	 * and range population (see hmm functio hmm_range_fault). Driver has
++	 * the freedom to choose the right pagemap owner.
++	 *
++	 * @mr: the memory region which we want to get the page map owner
++	 */
++	void* (*drm_mem_region_pagemap_owner)(struct drm_mem_region *mr);
++	/**
++	 * @drm_mem_region_get_device: Return the drm device which has this memory
++	 * region.
++	 *
++	 * @mr: the memory region
++	 */
++	struct drm_device* (*drm_mem_region_get_device)(struct drm_mem_region *mr);
++};
++
++/**
++ * struct drm_mem_region - memory region structure
++ * This is used to describe a memory region in drm
++ * device, such as HBM memory or CXL extension memory.
++ *
++ * drm_mem_region is converted from the xe_mem_region
++ * concept. xe_mem_region is moved to drm layer and renamed
++ * as drm_mem_region.
++ *
++ * drm_mem_region is supposed to be embedded in some driver struct such as
++ * "struct xe_tile" or "struct amdgpu_device"
++ */
++struct drm_mem_region {
++	/** @dev_private: device private data which is opaque to drm layer */
++	void *dev_private;
++	/** @dpa_base: This memory regions's DPA (device physical address) base */
++	resource_size_t dpa_base;
++	/**
++	 * @usable_size: usable size of VRAM
++	 *
++	 * Usable size of VRAM excluding reserved portions
++	 * (e.g stolen mem)
++	 */
++	resource_size_t usable_size;
++	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
++	struct dev_pagemap pagemap;
++	/**
++	 * @hpa_base: base host physical address
++	 *
++	 * This is generated when remap device memory as ZONE_DEVICE
++	 */
++	resource_size_t hpa_base;
++	/**
++	 * @mr_ops: memory region operation function pointers
++	 */
++	struct drm_mem_region_ops mr_ops;
++};
++
++/**
++ * drm_page_to_mem_region() - Get a page's memory region
++ *
++ * @page: a struct page pointer pointing to a page in vram memory region
++ */
++static inline struct drm_mem_region *drm_page_to_mem_region(struct page *page)
 +{
-+	struct device *dev = &to_pci_dev(drm->dev)->dev;
-+	struct resource *res;
-+	void *addr;
-+	int ret;
-+
-+	/**FIXME: support MEMORY_DEVICE_COHERENT in the future*/
-+	if (type != MEMORY_DEVICE_PRIVATE)
-+		return -EINVAL;
-+
-+	res = devm_request_free_mem_region(dev, &iomem_resource,
-+					   mr->usable_size);
-+	if (IS_ERR(res)) {
-+		ret = PTR_ERR(res);
-+		return ret;
-+	}
-+
-+	drm_devm_pagemap_ops.page_free = mr->mr_ops.drm_mem_region_free_page;
-+	mr->pagemap.type = type;
-+	mr->pagemap.range.start = res->start;
-+	mr->pagemap.range.end = res->end;
-+	mr->pagemap.nr_range = 1;
-+	mr->pagemap.ops = &drm_devm_pagemap_ops;
-+	mr->pagemap.owner = mr->mr_ops.drm_mem_region_pagemap_owner(mr);
-+	addr = devm_memremap_pages(dev, &mr->pagemap);
-+	if (IS_ERR(addr)) {
-+		devm_release_mem_region(dev, res->start, resource_size(res));
-+		ret = PTR_ERR(addr);
-+		drm_err(drm, "Failed to remap memory region %p, errno %d\n",
-+			mr, ret);
-+		return ret;
-+	}
-+	mr->hpa_base = res->start;
-+
-+	drm_info(drm, "Registered device memory [%llx-%llx] to devm, remapped to %pr\n",
-+		 mr->dpa_base, mr->dpa_base + mr->usable_size, res);
-+	return 0;
++	return container_of(page->pgmap, struct drm_mem_region, pagemap);
 +}
-+EXPORT_SYMBOL_GPL(drm_svm_register_mem_region);
-diff --git a/include/drm/drm_svm.h b/include/drm/drm_svm.h
-index 0914b10e0954..40849c16062b 100644
---- a/include/drm/drm_svm.h
-+++ b/include/drm/drm_svm.h
-@@ -166,6 +166,10 @@ static inline u64 drm_mem_region_page_to_dpa(struct drm_mem_region *mr, struct p
- 	return dpa;
- }
- 
-+int drm_svm_register_mem_region(const struct drm_device *drm,
-+				struct drm_mem_region *mr,
-+				enum memory_type type);
 +
- /**
-  * struct drm_hmmptr- hmmptr pointer
-  *
++/**
++ * drm_mem_region_page_to_dpa() - Calculate page's device physical address
++ *
++ * @mr: The memory region that page resides in
++ * @page: page to calculate dpa for
++ *
++ * Returns: the device physical address of the page
++ */
++static inline u64 drm_mem_region_page_to_dpa(struct drm_mem_region *mr, struct page *page)
++{
++	struct drm_device *drm;
++	u64 pfn = page_to_pfn(page);
++	u64 offset;
++	u64 dpa;
++
++	drm = mr->mr_ops.drm_mem_region_get_device(mr);
++	drm_WARN_ON_ONCE(drm, mr != drm_page_to_mem_region(page));
++	drm_WARN_ON_ONCE(drm, (pfn << PAGE_SHIFT) < mr->hpa_base);
++	drm_WARN_ON_ONCE(drm, (pfn << PAGE_SHIFT) >=  mr->hpa_base + mr->usable_size);
++	offset = (pfn << PAGE_SHIFT) - mr->hpa_base;
++	dpa = mr->dpa_base + offset;
++
++	return dpa;
++}
++#endif
 -- 
 2.26.3
 
