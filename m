@@ -4,54 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2CB7C27C77
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 04:26:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4CADC27C6E
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 04:31:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B79F10EC1D;
-	Fri, 14 Jun 2024 04:26:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G/3gAjrT";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A164D10EC1B;
- Fri, 14 Jun 2024 04:25:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718339156; x=1749875156;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=3AbDm2jUUNLaIxg13g0AmBY24t4nDzNQb8+M/XZ1dMA=;
- b=G/3gAjrT0ojOefnstwDSP3fE+YU34oAthV91QsGUxCDT3C20uhnU6Cae
- SkQimNTVPdAh48hJF7+53YpAp0Tnbl+zIc8ZQBh6+/F/SJlT2ql3ScKij
- GcBll9w0avipxJBe/VifbVf6gQrlpe0YXHuahDj1zdcQ8PRS7z1xwNLBu
- 63wRHrITAW60YGDzLuUfZEJvGEfDVM7Ked/Hq5rmT23qj/DOoBvSA2bUI
- E2MbPoAJPjiUGs3k7WEQh1BK4MUFcJjYSoh+KjNjs6awmrnRKXNZ2kM+t
- ZyxsDKeQkUSz9x5ntkbBQt/yjcqvLMWT3E57kNqvnJUOCBp0U8nQQtDrp A==;
-X-CSE-ConnectionGUID: bqdcx28pTdCrhjS56+RCBQ==
-X-CSE-MsgGUID: pxKxqdFaTe6zEeZ4zd0K5g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="37731518"
-X-IronPort-AV: E=Sophos;i="6.08,236,1712646000"; d="scan'208";a="37731518"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 21:25:50 -0700
-X-CSE-ConnectionGUID: Bv0UInopStarZ2v1rr3gLA==
-X-CSE-MsgGUID: PXfAv/FgSJuSYQ0EiMstjQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,236,1712646000"; d="scan'208";a="40343338"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa008.fm.intel.com with ESMTP; 13 Jun 2024 21:25:45 -0700
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: mitulkumar.ajitkumar.golani@intel.com, ankit.k.nautiyal@intel.com,
- suraj.kandpal@intel.com, jani.nikula@linux.intel.com, sfr@canb.auug.org.au,
- lucas.demarchi@intel.com
-Subject: [PATCH v2 0/2] CMRR patch fixes
-Date: Fri, 14 Jun 2024 09:55:56 +0530
-Message-ID: <20240614042558.376983-1-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.45.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F0EE10EC1D;
+	Fri, 14 Jun 2024 04:31:13 +0000 (UTC)
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36BD010EC1D;
+ Fri, 14 Jun 2024 04:31:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_CMRR_patch_fixes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 14 Jun 2024 04:31:11 -0000
+Message-ID: <171833947121.77190.10173382412925618879@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240614042558.376983-1-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20240614042558.376983-1-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,25 +35,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Address following issues regarding CMRR
+== Series Details ==
 
-1. Describe target_rr_divider in struct drm_dp_as_sdp.
-2. Use required macro to avoid overflow.
+Series: CMRR patch fixes
+URL   : https://patchwork.freedesktop.org/series/134864/
+State : success
 
--v2:
-- Remove extra line from commit message.
+== Summary ==
 
-Mitul Golani (2):
-  drm/dp: Describe target_rr_divider in struct drm_dp_as_sdp
-  drm/i915/display: Update calculation to avoid overflow
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: a88e8dc2c594 drm-tip: 2024y-06m-14d-03h-43m-46s UTC integration manifest
+=== git am output follows ===
+Applying: drm/dp: Describe target_rr_divider in struct drm_dp_as_sdp
+Applying: drm/i915/display: Update calculation to avoid overflow
 
- drivers/gpu/drm/i915/display/intel_vrr.c | 9 +++++----
- include/drm/display/drm_dp_helper.h      | 1 +
- 2 files changed, 6 insertions(+), 4 deletions(-)
-
--- 
-2.45.2
 
