@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFD9CC27C6E
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 22:36:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9E08C2BA12
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 22:41:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53EB810E2B9;
-	Fri, 14 Jun 2024 22:36:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D29C010E2B9;
+	Fri, 14 Jun 2024 22:41:28 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6C0010E2B9;
- Fri, 14 Jun 2024 22:36:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7678244635308519575=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FB5610E140;
+ Fri, 14 Jun 2024 22:41:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_Fix_missing_runtime_ou?=
- =?utf-8?q?ter_protection_for_ggtt=5Fremove=5Fnode_=28rev8=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5BCI=2C01/44=5D_mm/hmm=3A_let_users_to_tag_specific_PFNs?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+To: "Oak Zeng" <oak.zeng@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 14 Jun 2024 22:36:47 -0000
-Message-ID: <171840460767.80883.18131358368858503007@a6498e030952>
+Date: Fri, 14 Jun 2024 22:41:17 -0000
+Message-ID: <171840487758.80112.7204225440804106542@a6498e030952>
 X-Patchwork-Hint: ignore
-References: <20240614214202.18430-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20240614214202.18430-1-rodrigo.vivi@intel.com>
+References: <20240614215817.1097633-1-oak.zeng@intel.com>
+In-Reply-To: <20240614215817.1097633-1-oak.zeng@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,167 +40,60 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7678244635308519575==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Fix missing runtime outer protection for ggtt_remove_node (rev8)
-URL   : https://patchwork.freedesktop.org/series/134308/
-State : failure
+Series: series starting with [CI,01/44] mm/hmm: let users to tag specific PFNs
+URL   : https://patchwork.freedesktop.org/series/134917/
+State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-1473-f092ea99230dda54d66611f0c6facaacea827ae8_BAT -> xe-pw-134308v8_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-134308v8_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-134308v8_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-134308v8_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - bat-adlp-7:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1473-f092ea99230dda54d66611f0c6facaacea827ae8/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134308v8/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  * igt@xe_module_load@load:
-    - bat-dg2-oem2:       [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1473-f092ea99230dda54d66611f0c6facaacea827ae8/bat-dg2-oem2/igt@xe_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134308v8/bat-dg2-oem2/igt@xe_module_load@load.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@xe_module_load@load:
-    - {bat-lnl-1}:        [PASS][5] -> [ABORT][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1473-f092ea99230dda54d66611f0c6facaacea827ae8/bat-lnl-1/igt@xe_module_load@load.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134308v8/bat-lnl-1/igt@xe_module_load@load.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: e60c2c927983 drm-tip: 2024y-06m-14d-21h-52m-42s UTC integration manifest
+=== git am output follows ===
+Applying: mm/hmm: let users to tag specific PFNs
+Applying: dma-mapping: provide an interface to allocate IOVA
+Applying: dma-mapping: provide callbacks to link/unlink pages to specific IOVA
+Applying: iommu/dma: Provide an interface to allow preallocate IOVA
+Applying: iommu/dma: Prepare map/unmap page functions to receive IOVA
+Applying: iommu/dma: Implement link/unlink page callbacks
+Applying: mm: Add an empty implementation of zone_device_page_init
+Applying: drm: Move GPUVA_START/LAST to drm_gpuvm.h
+Applying: drm/svm: Mark drm_gpuvm to participate SVM
+Applying: drm/svm: introduce drm_mem_region concept
+Applying: drm/svm: introduce hmmptr and helper functions
+Applying: drm/svm: Introduce helper to remap drm memory region
+Applying: drm/svm: handle CPU page fault
+Applying: drm/svm: Migrate a range of hmmptr to vram
+Applying: drm/svm: Add DRM SVM documentation
+Applying: drm/svm: Introduce DRM_SVM kernel config
+Applying: drm/xe: s/xe_tile_migrate_engine/xe_tile_migrate_exec_queue
+Applying: drm/xe: Add xe_vm_pgtable_update_op to xe_vma_ops
+Applying: drm/xe: Convert multiple bind ops into single job
+Applying: drm/xe: Update VM trace events
+Applying: drm/xe: Update PT layer with better error handling
+Applying: drm/xe: Retry BO allocation
+Applying: drm/xe/uapi: Add DRM_XE_VM_BIND_FLAG_SYSTEM_ALLOCATOR flag
+Applying: drm/xe: Add a helper to calculate userptr end address
+Applying: drm/xe: Add dma_addr res cursor
+Applying: drm/xe: Use drm_mem_region for xe
+Applying: drm/xe: use drm_hmmptr in xe
+Applying: drm/xe: Moving to range based vma invalidation
+Applying: drm/xe: Support range based page table update
+Applying: drm/xe/uapi: Add DRM_XE_VM_CREATE_FLAG_PARTICIPATE_SVM flag
+Applying: drm/xe/svm: Create userptr if page fault occurs on system_allocator VMA
+Applying: drm/xe/svm: Add faulted userptr VMA garbage collector
+Applying: drm/xe: Introduce helper to get tile from memory region
+Applying: drm/xe/svm: implement functions to allocate and free device memory
+Applying: drm/xe/svm: Get drm device from drm memory region
+Applying: drm/xe/svm: Get page map owner of a memory region
+Applying: drm/xe/svm: Add migrate layer functions for SVM support
+Applying: drm/xe/svm: introduce svm migration function
+Applying: drm/xe/svm: Register xe memory region to drm layer
+Applying: drm/xe/svm: Introduce DRM_XE_SVM kernel config
+Applying: drm/xe/svm: Migration from sram to vram for system allocator
+Applying: drm/xe/svm: Determine a vma is backed by device memory
+Applying: drm/xe/svm: Introduce hmm_pfn array based resource cursor
+Applying: drm/xe: Enable system allocator uAPI
 
 
-
-Build changes
--------------
-
-  * Linux: xe-1473-f092ea99230dda54d66611f0c6facaacea827ae8 -> xe-pw-134308v8
-
-  IGT_7889: 9dca15da37f2a385b04427eb39cd460224d09c25 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1473-f092ea99230dda54d66611f0c6facaacea827ae8: f092ea99230dda54d66611f0c6facaacea827ae8
-  xe-pw-134308v8: 134308v8
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134308v8/index.html
-
---===============7678244635308519575==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix missing runtime outer protection for ggtt_remove_node (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134308/">https://patchwork.freedesktop.org/series/134308/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134308v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134308v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1473-f092ea99230dda54d66611f0c6facaacea827ae8_BAT -&gt; xe-pw-134308v8_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-134308v8_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-134308v8_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-134308v8_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1473-f092ea99230dda54d66611f0c6facaacea827ae8/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134308v8/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">INCOMPLETE</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1473-f092ea99230dda54d66611f0c6facaacea827ae8/bat-dg2-oem2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134308v8/bat-dg2-oem2/igt@xe_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1473-f092ea99230dda54d66611f0c6facaacea827ae8/bat-lnl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134308v8/bat-lnl-1/igt@xe_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1473-f092ea99230dda54d66611f0c6facaacea827ae8 -&gt; xe-pw-134308v8</li>
-</ul>
-<p>IGT_7889: 9dca15da37f2a385b04427eb39cd460224d09c25 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1473-f092ea99230dda54d66611f0c6facaacea827ae8: f092ea99230dda54d66611f0c6facaacea827ae8<br />
-  xe-pw-134308v8: 134308v8</p>
-
-</body>
-</html>
-
---===============7678244635308519575==--
