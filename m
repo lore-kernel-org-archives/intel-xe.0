@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1FECC27C6E
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 13:53:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FCFAC27C6E
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 13:54:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 369B010ED4A;
-	Fri, 14 Jun 2024 13:53:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="focGmdku";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 079F610ED3E;
- Fri, 14 Jun 2024 13:53:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718373229; x=1749909229;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=WMbD4+Bn5FJ5jWhO3e2uRYfzLr8g1h4danx9NWiJM7I=;
- b=focGmdkuGW9d6z98ojve+B4/CvUYr2+AzckOfEFg2+/2e2+huzlEdVww
- 8iOZCaoCRLdyVJoGpdUxseoS5n81CVitt/dg9YC1o0ZPpBnli3W+fRb0q
- 1B9kOw2LyNYa+qHM6TuU6Nw6KNWNngXIStJEWCYolrb50uSY62C7mpU9q
- yLsXkaKwh+ewwuSVqfOms1ZRlp+7PmTdHiIwrbHxGB5OszXpJ9W9vwqNT
- WmnNXA3qAFkY22DRXU+StX/iC2p86EdWqfEsWxbdgrBTzL9YMuU/mq8t1
- K1J2S5hYXnP6fHK3AWs2GHPJzFiPJaJCIBnFLg0eugodi7dGTuzX0mXdL g==;
-X-CSE-ConnectionGUID: gpkcZt25S56BNAEMJ+vQnw==
-X-CSE-MsgGUID: a159XNwWQt6aCqfALbVH/w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="12076192"
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="12076192"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 06:53:48 -0700
-X-CSE-ConnectionGUID: K6eZrFBbRvC9l/Is8HwQIA==
-X-CSE-MsgGUID: ctfbKfoNTDe1r/iWumHOmg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="40593884"
-Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.102.138.187])
- by fmviesa010-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2024 06:53:48 -0700
-Date: Fri, 14 Jun 2024 15:53:44 +0200
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 2/2] xe_exec_reset: Add timeslice preempt test
-Message-ID: <20240614135344.offna76wcrb3bn3u@kamilkon-DESK.igk.intel.com>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Matthew Brost <matthew.brost@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20240608001211.2365347-1-matthew.brost@intel.com>
- <20240608001211.2365347-3-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 502D510ED50;
+	Fri, 14 Jun 2024 13:54:45 +0000 (UTC)
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F9CE10ED3E;
+ Fri, 14 Jun 2024 13:54:44 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240608001211.2365347-3-matthew.brost@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?b?4pyTIENJLkJ1aWxkOiBzdWNjZXNzIGZvciBkcm0ve3R0bSx4ZX06IEltcHJvdmUg?=
+ =?utf-8?b?dHRtX2JvX3ZtYXAoKSBhbmQgdXBkYXRlIHhl?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 14 Jun 2024 13:54:44 -0000
+Message-ID: <171837328425.77190.7300994972317876026@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240614133556.11378-1-tzimmermann@suse.de>
+In-Reply-To: <20240614133556.11378-1-tzimmermann@suse.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,94 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Matthew,
-On 2024-06-07 at 17:12:11 -0700, Matthew Brost wrote:
+== Series Details ==
 
-you did Cc to intel-xe list, in that case please add i-g-t
-after PATCH:
+Series: drm/{ttm,xe}: Improve ttm_bo_vmap() and update xe
+URL   : https://patchwork.freedesktop.org/series/134890/
+State : success
 
-[PATCH i-g-t v2 2/2] xe_exec_reset: Add timeslice preempt test
+== Summary ==
 
-> Add tests in which submit multiple preemptable spinners to same hardware
-> engine ensuring a cumulative longer timeout and validating the restart
-> paths in the TDR.
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/seq/
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/snd.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soundcore.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/common/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/amd/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/codecs/
+lib/modules/6.10.0-rc3-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/hda/
+lib/modules/6.10.0-rc3-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/hda/ext/
+lib/modules/6.10.0-rc3-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.10.0-rc3-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/kernel/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/events/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/events/intel/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/kvm/
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.10.0-rc3-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/
+lib/modules/6.10.0-rc3-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/cmac.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/ccm.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/cryptd.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/async_tx/
+lib/modules/6.10.0-rc3-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.10.0-rc3-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.10.0-rc3-xe/build
+lib/modules/6.10.0-rc3-xe/modules.alias.bin
+lib/modules/6.10.0-rc3-xe/modules.builtin
+lib/modules/6.10.0-rc3-xe/modules.softdep
+lib/modules/6.10.0-rc3-xe/modules.alias
+lib/modules/6.10.0-rc3-xe/modules.order
+lib/modules/6.10.0-rc3-xe/modules.symbols
+lib/modules/6.10.0-rc3-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1718373271:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1718373271:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-Please explain what TDR means, like: in the TDR (T... D... R...).
 
-Regards,
-Kamil
-
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  tests/intel/xe_exec_reset.c | 23 +++++++++++++++++++++--
->  1 file changed, 21 insertions(+), 2 deletions(-)
-> 
-> diff --git a/tests/intel/xe_exec_reset.c b/tests/intel/xe_exec_reset.c
-> index 5e9e48adda..144e3b3884 100644
-> --- a/tests/intel/xe_exec_reset.c
-> +++ b/tests/intel/xe_exec_reset.c
-> @@ -100,6 +100,7 @@ static void test_spin(int fd, struct drm_xe_engine_class_instance *eci)
->  #define PARALLEL			(0x1 << 4)
->  #define CAT_ERROR			(0x1 << 5)
->  #define PREEMPT				(0x1 << 6)
-> +#define CANCEL				(0x1 << 7)
->  
->  /**
->   * SUBTEST: %s-cat-error
-> @@ -287,6 +288,12 @@ test_balancer(int fd, int gt, int class, int n_exec_queues, int n_execs,
->   * SUBTEST: cancel-preempt
->   * Description: Test job cancel with a preemptable job
->   *
-> + * SUBTEST: cancel-timeslice-preempt
-> + * Description: Test job cancel with 2 preemptable jobs
-> + *
-> + * SUBTEST: cancel-timeslice-many-preempt
-> + * Description: Test job cancel with many preemptable jobs
-> + *
->   * SUBTEST: gt-reset
->   * Description: Test GT reset
->   *
-> @@ -361,7 +368,7 @@ test_legacy_mode(int fd, struct drm_xe_engine_class_instance *eci,
->  		uint64_t exec_addr;
->  		int e = i % n_exec_queues;
->  
-> -		if (!i) {
-> +		if (!i || flags & CANCEL) {
->  			spin_opts.addr = base_addr + spin_offset;
->  			xe_spin_init(&data[i].spin, &spin_opts);
->  			exec_addr = spin_opts.addr;
-> @@ -411,7 +418,7 @@ test_legacy_mode(int fd, struct drm_xe_engine_class_instance *eci,
->  	xe_vm_unbind_async(fd, vm, 0, 0, addr, bo_size, sync, 1);
->  	igt_assert(syncobj_wait(fd, &sync[0].handle, 1, INT64_MAX, 0, NULL));
->  
-> -	if (!(flags & GT_RESET)) {
-> +	if (!(flags & (GT_RESET | CANCEL))) {
->  		for (i = 1; i < n_execs; i++)
->  			igt_assert_eq(data[i].data, 0xc0ffee);
->  	}
-> @@ -746,6 +753,18 @@ igt_main
->  			break;
->  		}
->  
-> +	igt_subtest("cancel-timeslice-preempt")
-> +		xe_for_each_engine(fd, hwe) {
-> +			test_legacy_mode(fd, hwe, 2, 2, CANCEL | PREEMPT);
-> +			break;
-> +		}
-> +
-> +	igt_subtest("cancel-timeslice-many-preempt")
-> +		xe_for_each_engine(fd, hwe) {
-> +			test_legacy_mode(fd, hwe, 4, 4, CANCEL | PREEMPT);
-> +			break;
-> +		}
-> +
->  	igt_subtest("gt-reset")
->  		xe_for_each_engine(fd, hwe)
->  			test_legacy_mode(fd, hwe, 2, 2, GT_RESET);
-> -- 
-> 2.34.1
-> 
