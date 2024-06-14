@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EDEDC27C6E
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 11:16:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8216C27C6E
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 11:16:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7C1710ED08;
-	Fri, 14 Jun 2024 11:16:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46E9910ED0F;
+	Fri, 14 Jun 2024 11:16:32 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C84410ED08;
- Fri, 14 Jun 2024 11:16:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFEC010ED0F;
+ Fri, 14 Jun 2024 11:16:30 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915=3A_fix_MSO_?=
- =?utf-8?q?vs=2E_joiner_issue?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_fix_MSO_vs=2E?=
+ =?utf-8?q?_joiner_issue?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 14 Jun 2024 11:16:19 -0000
-Message-ID: <171836377924.77190.9072914384749358365@a6498e030952>
+Date: Fri, 14 Jun 2024 11:16:30 -0000
+Message-ID: <171836379091.77190.15891010678653795686@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <cover.1718360103.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1718360103.git.jani.nikula@intel.com>
@@ -44,14 +44,44 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915: fix MSO vs. joiner issue
 URL   : https://patchwork.freedesktop.org/series/134884/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 00e9498b4534 drm-tip: 2024y-06m-14d-10h-57m-36s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/mso: using joiner is not possible with eDP MSO
-Applying: drm/i915/dsc: don't mess up splitter state in joiner or dsc config
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit bd905aee3016dd48dbcc12304c41d2d4f35b8971
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Fri Jun 14 13:16:04 2024 +0300
+
+    drm/i915/dsc: don't mess up splitter state in joiner or dsc config
+    
+    The driver handles splitter (for MSO) and joiner/dsc configuration in
+    different places. Avoid messing up the splitter hardware state when
+    enabling/disabling joiner or dsc. It should not be possible to enable
+    both joiner and splitter at the same time, but add more clarity to the
+    register use overall.
+    
+    Note: We should probably handle splitter for MSO as well as dual-link
+    DSI in intel_vdsc.c. Also, we have intel_uncompressed_joiner_enable()
+    but no corresponding disable.
+    
+    Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 00e9498b453447a5afe527bd0e174587b12f66d2 drm-intel
+cd906e5f98de drm/i915/mso: using joiner is not possible with eDP MSO
+bd905aee3016 drm/i915/dsc: don't mess up splitter state in joiner or dsc config
+-:81: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#81: FILE: drivers/gpu/drm/i915/display/intel_vdsc_regs.h:40:
++#define  SPLITTER_STATE				(SPLITTER_ENABLE | SPLITTER_CONFIGURATION_MASK | OVERLAP_PIXELS_MASK)
+
+total: 0 errors, 1 warnings, 0 checks, 48 lines checked
 
 
