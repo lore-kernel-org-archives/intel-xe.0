@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E6B9C27C6E
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 10:49:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF6CDC27C79
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 11:05:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A0F910E245;
-	Fri, 14 Jun 2024 10:49:49 +0000 (UTC)
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9420B10E245;
- Fri, 14 Jun 2024 10:49:47 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99BEA10ED07;
+	Fri, 14 Jun 2024 11:05:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="QFU7igpQ";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="DXFjmJhj";
+	dkim-atps=neutral
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 316C110E144;
+ Fri, 14 Jun 2024 11:05:53 +0000 (UTC)
+Date: Fri, 14 Jun 2024 13:05:48 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1718363149;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=wEBB6JSbcpjeUY3MSW0QoGc2O/ynmNn3S/Q407DVQtI=;
+ b=QFU7igpQ5bojoHv9A0JJWfKTXX1kLnXkeihI4cKdDynJPEQDSItxgA+x5YWzEYip9E3iTe
+ WZ307qbmLFs2wXpa6c1zCqUiohe7C9+R2DBpvPZ34JVQ4wBjs2khOrRBs6c9NpY2smCRYP
+ pExW0G6h+vkqAA2CtUAkZRvOlwtnu69+Upr50GgU0SK9UibUZtRBc5XQ12aCGP1iljzslw
+ OcT+iPNpB1rni9gUO+UO3uqnmnF8BIerNOyl80+7pp0KK3ITfsrI/PHa/b54xZSqrDAupA
+ CvNuNX0TBxfllCyvB1zal22+oReevInz9fkpTywFhI8hvxem6+RrGfq16OV3PA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1718363149;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=wEBB6JSbcpjeUY3MSW0QoGc2O/ynmNn3S/Q407DVQtI=;
+ b=DXFjmJhj6bXA7JtRy7DVE8/61SutmSfEU03+gpMewXza02i0SsDWKGrKGW7/AwcFydeMzr
+ gV5uBLqVD2Dy/YBw==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH v2 3/8] drm/i915: Don't check for atomic context on
+ PREEMPT_RT
+Message-ID: <20240614110548.m3lloBjv@linutronix.de>
+References: <20240613102818.4056866-1-bigeasy@linutronix.de>
+ <20240613102818.4056866-4-bigeasy@linutronix.de>
+ <94423591-adba-46d4-a9ba-f377dfab369f@ursulin.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Use_fixed_CCS_?=
- =?utf-8?q?mode_when_running_in_SR-IOV_mode_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 14 Jun 2024 10:49:47 -0000
-Message-ID: <171836218760.77190.309430576228658345@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <20240614101415.2208-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20240614101415.2208-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <94423591-adba-46d4-a9ba-f377dfab369f@ursulin.net>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +63,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 2024-06-14 09:32:07 [+0100], Tvrtko Ursulin wrote:
+> I think this could be okay-ish in principle, but the commit text is not
+> entirely accurate because there is no direct coupling between the wait
+> helpers and the uncore lock. They can be used from any atomic context.
+> 
+> Okay-ish in principle because there is sufficient testing in Intel's CI on
+> non-PREEMPT_RT kernels to catch any conceptual misuses.
 
-Series: drm/xe: Use fixed CCS mode when running in SR-IOV mode (rev2)
-URL   : https://patchwork.freedesktop.org/series/134824/
-State : success
+You just avoid disabling preemption if you expect to be in atomic
+context to save a few cycles. It wouldn't hurt to disable it anyway. The
+only reason you need it is to remain on the same CPU while reading the
+clock because it is not guaranteed otherwise.
 
-== Summary ==
+Delays > 50ms are detected at build time.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 9e00ec95f823e394044b8d9b5cdadd2c71714d91
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+> But see also the caller in skl_pcode_request. It is a bit harder to hit
+> since it is the fallback path. Or gen5_rps_enable which nests under a
+> different lock.
+> 
+> Hmm would there be a different helper, or combination of helpers, which
+> could replace in_atomic() which would do the right thing on both kernels?
+> Something to tell us we are neither under a spin_lock, nor preempt_disable,
+> nor interrupts disabled, nor bottom-half. On either stock or PREEMPT_RT.
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+There is nothing that you can use to deduct that you are under a
+spin-lock. preemptible() works only if you have a preemption counter
+which is not mandatory. It can affect RCU but not in all configurations.
 
+> WARN_ON_ONCE((ATOMIC) && !(!preemptible() || in_hardirq() ||
+> in_serving_softirq())
+> 
+> Would this work?
 
+Nope. None of this triggers if you acquire a spinlock_t. And I can't
+think of something that would always be true.
+
+So the question is why do you need to know if the context is atomic?
+The only impact is avoiding disabling preemption. Is it that important
+to avoid it?
+If so would cant_migrate() work? It requires CONFIG_DEBUG_ATOMIC_SLEEP=y
+to do the trick.
+
+> Regards,
+> 
+> Tvrtko
+
+Sebastian
