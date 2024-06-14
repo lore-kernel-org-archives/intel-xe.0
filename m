@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB636C27C7B
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 21:49:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40CD6C41513
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 21:49:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7ABAF10E2B8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD3C110E2BA;
 	Fri, 14 Jun 2024 21:49:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gfcIwkK6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gUY+fNTp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D949510E2B7
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 21:47:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E02BC10E2B7
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 21:47:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718401651; x=1749937651;
+ t=1718401660; x=1749937660;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=DPifIl1kBnLNP3mTT40UrtdoC/i2GkYvJ0icFIvXjzg=;
- b=gfcIwkK6syfkCe2wRF70GaKIqi0ndrlbWWODQWn7qzpIK2nFm4v4LMdh
- gUbk+WSCfbw7Cn6qhq+JoFyGh4AE85Whu5/2Z/lOdKo7vPC15MNVD8f5a
- ceje4bwjtKOtk2LLFuC1qEMKUXUGpCboWecKhFbCM/o8jBSxWjs9A+vyr
- +PRiYZerS6emOHKzqljeTWzWVO/Q9XDCnqkQVjrIsDVUYdrp62gp6dsU9
- W8oBU29ORfOijluOA+rmSn4oD5d/9EjpioD66HNj3UycNHviBPNze2quc
- /dr21LUTXwyjZsDqeRWaKV5B98iQk4buVDEXcKXqfkG3zU4pz/iLK8rVc A==;
-X-CSE-ConnectionGUID: lQrkG3JsQSmpFgKCg4JcTg==
-X-CSE-MsgGUID: RaPgIT6eTuaCN+OULwUcyQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="25886561"
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="25886561"
+ bh=MfFG6yUSDe30tzhW0r74o+cMNMirgCwlgqoBUo30DfM=;
+ b=gUY+fNTpqrBva1wfGyufDDcxP/kfsYQX9+wGD4FBdfwOziKtRLShf8XY
+ ljWfBAOUHomU06tDflC32TQw3tiF+2MmgGAYTz3ZogI1foj+e+dQbEwfD
+ BoG0pzGnVIAG1UWC/lkTjTHCl2pP7w76G7JmGKIYGcK6WOHByvW1MdcvQ
+ yi3vkHIshsJpG5yKIRyTrnhnt4qhVEm8QdudSD7KLsL6CtW36p1BYR6gV
+ nmfbyG9H7Ued680FzBhgmm3DvCPSn68kAPwsLUiZ0piasHD+F/2nG8SZF
+ +2LcDXEfRru07aTqIxVpeoOOHRLmB9XaYbUA6zJSgsiKmKr6PNPz7fVlr g==;
+X-CSE-ConnectionGUID: 3LFFTFOGQEGyRDqB96rhKA==
+X-CSE-MsgGUID: szpt2vsqTzSEqhq1m4khdQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="25886600"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="25886600"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 14:47:27 -0700
-X-CSE-ConnectionGUID: Gg6Isig9RyCLKxk1671UDQ==
-X-CSE-MsgGUID: zhZDeGrTTYekqtSzFdHHqw==
+ 14 Jun 2024 14:47:28 -0700
+X-CSE-ConnectionGUID: gCftYtiHRlSKzFjf+D9NiQ==
+X-CSE-MsgGUID: pbun/F4eTg6bpL871NqscQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="45572399"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="45572434"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 14:47:27 -0700
+ 14 Jun 2024 14:47:28 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 07/44] mm: Add an empty implementation of zone_device_page_init
-Date: Fri, 14 Jun 2024 17:57:40 -0400
-Message-Id: <20240614215817.1097633-7-oak.zeng@intel.com>
+Subject: [CI 40/44] drm/xe/svm: Introduce DRM_XE_SVM kernel config
+Date: Fri, 14 Jun 2024 17:58:13 -0400
+Message-Id: <20240614215817.1097633-40-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240614215817.1097633-1-oak.zeng@intel.com>
 References: <20240614215817.1097633-1-oak.zeng@intel.com>
@@ -66,56 +66,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add an empty implementation of zone_device_page_init when
-CONFIG_ZONE_DEVICE is not enabled and print a warning message
-in this empty implementation.
+Introduce a DRM_XE_SVM kernel config entry for
+xe svm feature. xe svm feature allows share
+virtual address space between CPU and GPU program.
 
-This is to fix some kunit test as showed below. On some architecture
-such as um, ZONE_DEVICE can't be enabled and calling to
-zone_device_page_int would trigger below error:
+v1: Improve commit message (Thomas)
+    Avoid using #if directive (Thomas)
 
-[szeng@szeng-desk kernel]$ ./tools/testing/kunit/kunit.py run --kunitconfig ./drivers/gpu/drm/xe/.kunitconfig
-[11:42:42] Configuring KUnit Kernel ...
-[11:42:42] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=24
-ERROR:root:../drivers/gpu/drm/./drm_svm.c: In function ‘__drm_svm_init_device_pages’:
-../drivers/gpu/drm/./drm_svm.c:978:3: error: implicit declaration of function ‘zone_device_page_init’ [-Werror=implicit-function-declaration]
-  978 |   zone_device_page_init(page);
-      |   ^~~~~~~~~~~~~~~~~~~~~
-
-Cc: Alistair Popple <apopple@nvidia.com>
-Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
-Cc: Lucas Demarchi <lucas.demarchi@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@intel.com>
+Cc: Brian Welty <brian.welty@intel.com>
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+Co-developed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
- include/linux/memremap.h | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/xe/Kconfig   | 11 +++++++++++
+ drivers/gpu/drm/xe/xe_tile.c | 11 ++++++++---
+ 2 files changed, 19 insertions(+), 3 deletions(-)
 
-diff --git a/include/linux/memremap.h b/include/linux/memremap.h
-index 3f7143ade32c..bf7727915a68 100644
---- a/include/linux/memremap.h
-+++ b/include/linux/memremap.h
-@@ -199,6 +199,16 @@ bool pgmap_pfn_valid(struct dev_pagemap *pgmap, unsigned long pfn);
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index 7bbe46a98ff1..29d583ed6cd0 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -84,6 +84,17 @@ config DRM_XE_FORCE_PROBE
+ 	  4571.
  
- unsigned long memremap_compat_align(void);
- #else
-+static inline void zone_device_page_init(struct page *page)
-+{
-+	/*
-+	 * Fail attempts to call zone_device_page_init without
-+	 * ZONE_DEVICE support enabled.
-+	 */
-+	WARN_ON_ONCE(1);
-+	return;
-+}
-+
- static inline void *devm_memremap_pages(struct device *dev,
- 		struct dev_pagemap *pgmap)
+ 	  Use "!*" to block the probe of the driver for all known devices.
++config DRM_XE_SVM
++	bool "Enable Shared Virtual Memory support in xe"
++	depends on DRM_XE
++	depends on DRM_SVM
++	default y
++	help
++	  Choose this option if you want Shared Virtual Memory (SVM)
++	  support in xe. With SVM, virtual address space is shared
++	  between CPU and GPU. This means any virtual address such
++	  as malloc or mmap returns, variables on stack, or global
++	  memory pointers, can be used for GPU transparently.
+ 
+ menu "drm/Xe Debugging"
+ depends on DRM_XE
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 6c50df281b11..1f938d001094 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -171,8 +171,13 @@ static void __init_drm_mem_region_ops(struct drm_mem_region_ops *ops)
+ int xe_tile_init_noalloc(struct xe_tile *tile)
  {
+ 	int err;
+-	struct xe_device *xe = tile_to_xe(tile);
+-	struct drm_device *drm = &xe->drm;
++	struct xe_device __maybe_unused *xe;
++	struct drm_device __maybe_unused *drm;
++
++	if (IS_ENABLED(CONFIG_DRM_XE_SVM)) {
++		xe = tile_to_xe(tile);
++		drm = &xe->drm;
++	}
+ 
+ 	err = tile_ttm_mgr_init(tile);
+ 	if (err)
+@@ -186,7 +191,7 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
+ 
+ 	err = xe_tile_sysfs_init(tile);
+ 
+-	if (xe->info.has_usm) {
++	if (IS_ENABLED(CONFIG_DRM_XE_SVM) && xe->info.has_usm) {
+ 		__init_drm_mem_region_ops(&tile->mem.vram.drm_mr.mr_ops);
+ 		drm_svm_register_mem_region(drm, &tile->mem.vram.drm_mr, MEMORY_DEVICE_PRIVATE);
+ 	}
 -- 
 2.26.3
 
