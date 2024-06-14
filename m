@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BBE6C2BA12
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 21:47:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BABA5C2BA2B
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 21:47:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60A8510E2B8;
-	Fri, 14 Jun 2024 21:47:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F35C710E2B7;
+	Fri, 14 Jun 2024 21:47:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O+Sant3k";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Szo9rzrB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A119610E2E0
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 21:47:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A375310E2B3
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 21:47:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718401654; x=1749937654;
+ t=1718401658; x=1749937658;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ZeP8O4jFX/EotO+GRLZQnKzOMi9yxaJPUT0rTKKYrnk=;
- b=O+Sant3kw0k3Nlm+cCVRyPImkHZUeyGeYfYf3enqDyZNPJy7c6MbK/t4
- PAySdbfc9ucbJZefrh3pJEErXk/x5UTvuNjg8KAhrLt98vm8tNt0S5LHC
- kdfc4g59XojDUjBjT1Wf1LmLbCnbmkwaqBRomQ2xGWK2/5SJAlyX+GKP3
- RdcFVRPPBtQ3lXaExsIr48H51eWnx4+vnH7XcikKp62htH+ib3sd27meQ
- rSIKfRAVgPg7d9QQRz13UP7XmCV1sHKbou7hF5eb0bi5e/k2deJGjH2jz
- 7yN7lrC1NHJva7jvtqgLdZT98pYzHJYJDVY7sXJywQy1Tw6uHjNjHT9go Q==;
-X-CSE-ConnectionGUID: aVv4S0xFS0KjFJxZNETZjQ==
-X-CSE-MsgGUID: XDyHQQQ/R6ejD5SrkA/0Vg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="25886579"
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="25886579"
+ bh=EzLfd4+G92QB3jZd+UOrLcq9tvY+B/2b+7VOHkEaPxA=;
+ b=Szo9rzrBFsC9+w3HLqtR2AKmufajjbrgdvS6nIuyGg6JshPyxSbx35xF
+ uq6qZEHbnxzSBjile8dFMtEaoSzs5/V1Wy970apaYsPhn8YXep+bSy2qV
+ cwHUaOQp0nxrPOhv2yq38TYXySkJQ/5c46lfm/uzJ0A3DRxCps1fD/Bj4
+ 5S4Jja3nAoqGBlD7tKIkRZ/jLL0W7glrHbizvyIQPkOZK5dlfozRV0Odp
+ BHl7YrJwbl3AQ5ITZg1DqEYQHcLYD7v99xnYa42x/PMsd6p+mWrcy7Ylu
+ OvV6rSNTW6HUqeb+biXzYXmMiN7/1+I+4fcCcbfiADXpnzl7e/YHbJMQU A==;
+X-CSE-ConnectionGUID: kpBBJTePQiiqJEQVwapWiw==
+X-CSE-MsgGUID: WCwXROP5QimJCbE+7CDDqw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="25886598"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="25886598"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 14:47:27 -0700
-X-CSE-ConnectionGUID: cbURsDLXQs+0x7Lirsqq0w==
-X-CSE-MsgGUID: IOX5wl/PTjK4XObEd86JqQ==
+ 14 Jun 2024 14:47:28 -0700
+X-CSE-ConnectionGUID: 9BwXXZgJS9iVBqVWiVCy/Q==
+X-CSE-MsgGUID: Zb8SSRC4QN2NQd8nMmkflQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="45572398"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="45572433"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 14:47:27 -0700
+ 14 Jun 2024 14:47:28 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 06/44] iommu/dma: Implement link/unlink page callbacks
-Date: Fri, 14 Jun 2024 17:57:39 -0400
-Message-Id: <20240614215817.1097633-6-oak.zeng@intel.com>
+Subject: [CI 39/44] drm/xe/svm: Register xe memory region to drm layer
+Date: Fri, 14 Jun 2024 17:58:12 -0400
+Message-Id: <20240614215817.1097633-39-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240614215817.1097633-1-oak.zeng@intel.com>
 References: <20240614215817.1097633-1-oak.zeng@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,51 +66,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Leon Romanovsky <leonro@nvidia.com>
+Register xe memory region to drm layer for SVM purpose.
+This will essentially create struct page backing for
+xe device memory, which will be used by SVM functions.
 
-Add an implementation of link/unlink interface to perform in map/unmap
-pages in fast patch for pre-allocated IOVA.
-
-Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Brian Welty <brian.welty@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/iommu/dma-iommu.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ drivers/gpu/drm/xe/xe_tile.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
-index dbef2581a98c..ddf402e7c8a3 100644
---- a/drivers/iommu/dma-iommu.c
-+++ b/drivers/iommu/dma-iommu.c
-@@ -1766,6 +1766,21 @@ static void iommu_dma_free_iova(struct device *dev, dma_addr_t iova,
- 	__iommu_dma_free_iova(cookie, iova, size, &iotlb_gather);
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 109f3118e821..6c50df281b11 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -3,7 +3,9 @@
+  * Copyright © 2023 Intel Corporation
+  */
+ 
++#include <linux/memremap.h>
+ #include <drm/drm_managed.h>
++#include <drm/drm_svm.h>
+ 
+ #include "xe_device.h"
+ #include "xe_ggtt.h"
+@@ -14,6 +16,7 @@
+ #include "xe_tile_sysfs.h"
+ #include "xe_ttm_vram_mgr.h"
+ #include "xe_wa.h"
++#include "xe_svm.h"
+ 
+ /**
+  * DOC: Multi-tile Design
+@@ -142,6 +145,15 @@ static int tile_ttm_mgr_init(struct xe_tile *tile)
+ 	return 0;
  }
  
-+static dma_addr_t iommu_dma_link_range(struct device *dev, struct page *page,
-+				       unsigned long offset, dma_addr_t iova,
-+				       size_t size, enum dma_data_direction dir,
-+				       unsigned long attrs)
++static void __init_drm_mem_region_ops(struct drm_mem_region_ops *ops)
 +{
-+	return __iommu_dma_map_pages(dev, page, offset, iova, size, dir, attrs);
++	ops->drm_mem_region_alloc_pages = &xe_svm_alloc_pages;
++	ops->drm_mem_region_free_page = &xe_svm_free_page;
++	ops->drm_mem_region_migrate = &xe_svm_migrate;
++	ops->drm_mem_region_pagemap_owner = &xe_svm_mem_region_to_pagemap_owner;
++	ops->drm_mem_region_get_device = &xe_mem_region_to_device;
 +}
 +
-+static void iommu_dma_unlink_range(struct device *dev, dma_addr_t addr,
-+				   size_t size, enum dma_data_direction dir,
-+				   unsigned long attrs)
-+{
-+	__iommu_dma_unmap_pages(dev, addr, size, dir, attrs, false);
-+}
-+
- static const struct dma_map_ops iommu_dma_ops = {
- 	.flags			= DMA_F_PCI_P2PDMA_SUPPORTED |
- 				  DMA_F_CAN_SKIP_SYNC,
-@@ -1792,6 +1807,8 @@ static const struct dma_map_ops iommu_dma_ops = {
- 	.max_mapping_size       = iommu_dma_max_mapping_size,
- 	.alloc_iova		= iommu_dma_alloc_iova,
- 	.free_iova		= iommu_dma_free_iova,
-+	.link_range		= iommu_dma_link_range,
-+	.unlink_range		= iommu_dma_unlink_range,
- };
+ /**
+  * xe_tile_init_noalloc - Init tile up to the point where allocations can happen.
+  * @tile: The tile to initialize.
+@@ -159,6 +171,8 @@ static int tile_ttm_mgr_init(struct xe_tile *tile)
+ int xe_tile_init_noalloc(struct xe_tile *tile)
+ {
+ 	int err;
++	struct xe_device *xe = tile_to_xe(tile);
++	struct drm_device *drm = &xe->drm;
  
- void iommu_setup_dma_ops(struct device *dev)
+ 	err = tile_ttm_mgr_init(tile);
+ 	if (err)
+@@ -172,6 +186,11 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
+ 
+ 	err = xe_tile_sysfs_init(tile);
+ 
++	if (xe->info.has_usm) {
++		__init_drm_mem_region_ops(&tile->mem.vram.drm_mr.mr_ops);
++		drm_svm_register_mem_region(drm, &tile->mem.vram.drm_mr, MEMORY_DEVICE_PRIVATE);
++	}
++
+ 	return 0;
+ }
+ 
 -- 
 2.26.3
 
