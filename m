@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26FD9C27C7B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1899C2BA15
 	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 21:47:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F48F10EE81;
-	Fri, 14 Jun 2024 21:47:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4B3510EE80;
+	Fri, 14 Jun 2024 21:47:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VoiwJPDn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PzXyzWHm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71B9510E2BE
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 834D410E2C4
  for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 21:47:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1718401651; x=1749937651;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=M7f+3VOUZ03PklhAG7jBVDa1wc57FqdovhzMKfryEyA=;
- b=VoiwJPDnWUA4IhqqZ4l/9vD4MU9fOn4/gDiFJvOB7gRwGlxHRQMvNeST
- e1o6J28J8hLAZJd8PsNdarhpqRfJcK3yBWiCBdpHZ/SuEkWR7qLQMfZ1f
- xs/EU7yxhuDdM5QWDyNwuFDTOcCSI4Tq3DBQJVaHFeI4Q9Jkcl6jFk/tL
- 4iB3/aH66NY/+m2uSXIkmsNM5TlwqiESHCOxytwWM5hAiBX+6V+sYfcLE
- Tw7u50NvEQr7GbTu6DOddYyFx6JS1Ow3eX2Ipl5fq9je3FKjsdvn9rS5T
- wp4XDiy2N8Q5fpUO6TwgRYSO4NROpytqeEAYM2s61OyluaOxWTpZeeHyX A==;
-X-CSE-ConnectionGUID: m+58SlvvQEGTvtL8gXZh5Q==
-X-CSE-MsgGUID: AAzY5ejVTYCmW5HaWoI6Iw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="25886567"
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="25886567"
+ bh=gNWmJ6qNbL4j0gYsu8S2YNKXejv5O1g3QdTHX6ZJvRs=;
+ b=PzXyzWHma2n+wN90xc9re2/nwRRSGRztC+ead5NpjQ2D9PwzipyMibN7
+ GZySrAciwFZ2WWxc1WbGq7sPWaXPKLzkScrgNXDCbWwjRkFzE8+RHbmTJ
+ UaB4wgyicIZdUf/uhU3PV+e2vZ0gcWx1S0htSLJ+SRgaC3+ubB99sn7cL
+ 1otY5i3kmklUB90qrIecFGPPqAhZzuIrDEmGAR+XZYOd2V6w77SKLFd1X
+ 266dx+O8bLUMNxEPhy643I07bjkcyUQPd+zQ6mmmrpdZF3KeER2lzAA7O
+ 85ijM41zuK78+gCwPWajAWVGWVX6d2uQ/AQdATCsICcYdCaTCQIcwrMXN g==;
+X-CSE-ConnectionGUID: UBxW0IqIRx6THTWmGIuFag==
+X-CSE-MsgGUID: zkp7at1YQMCr/r+MqN20KA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="25886571"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="25886571"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Jun 2024 14:47:27 -0700
-X-CSE-ConnectionGUID: fyyW97ZJQ9KR1/5+l+/36w==
-X-CSE-MsgGUID: LBhQIoUBRbGnUkl8dRvQ4w==
+X-CSE-ConnectionGUID: Iev11nCESkiqh+djOirJcg==
+X-CSE-MsgGUID: 2QVLx4TYQnK2qaaIITtZhQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="45572402"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="45572403"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Jun 2024 14:47:27 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 10/44] drm/svm: introduce drm_mem_region concept
-Date: Fri, 14 Jun 2024 17:57:43 -0400
-Message-Id: <20240614215817.1097633-10-oak.zeng@intel.com>
+Subject: [CI 11/44] drm/svm: introduce hmmptr and helper functions
+Date: Fri, 14 Jun 2024 17:57:44 -0400
+Message-Id: <20240614215817.1097633-11-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240614215817.1097633-1-oak.zeng@intel.com>
 References: <20240614215817.1097633-1-oak.zeng@intel.com>
@@ -66,216 +66,469 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As its name indicates, a drm_mem_region represent a memory region on
-a drm device, e.g., a GPU's HBM memory.
+A hmmptr is a pointer in a CPU program, like a userptr. but unlike
+a userptr, a hmmptr can also be migrated to device local memory. The
+other way to look at is, userptr is a special hmmptr without the
+capability of migration - userptr's backing store is always in system
+memory.
 
-In a memory region, we have address information of this region, from
-both CPU (hpa_base) and GPU (dpa_base) perspectives. It has a pagemap
-member which is used to memremap memory region to ZONE_DEVICE. It also
-has some interfaces for drm to callback driver to allocate/free memory from
-this region, migrate data to/from this memory region, get a pagemap
-owner of a memory region, and get the drm device which own the memory
-region.
+This is built on top of kernel HMM infrastructure thus is called hmmptr.
 
-This is introduced for system allocator implementation, so the memory
-allocation and free interfaces are page based.
+This is the key concept to implement SVM (shared virtual memory) at drm
+drivers. With SVM, all the valid virtual address in a CPU program is
+also valid for GPU program, if the GPUVM participate SVM. This is
+implemented thru hmmptr concept.
 
-A few helper functions are also introduced:
-1) drm_mem_region_page_to_dpa: calculate device physical address for
-   a page
-2) drm_page_to_mem_region: retrieve drm memory region that a page
-   resides in
+Helper functions are introduced to init, release, populate and dma-map
+/unmap hmmptr. Helper will also be introduced to migrate a range of
+hmmptr to device memory. With those helpers, driver can easily
+implement the SVM address space mirroring and migration functionalities.
 
-v1: use page parameter instead of pfn (Matt)
-Add drm_WARN_ON(mr != drm_page_to_mem_region(page)) (Matt)
-
+Cc: Daniel Vetter <daniel.vetter@intel.com>
 Cc: Dave Airlie <airlied@redhat.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Felix Kuehling <felix.kuehling@amd.com>
 Cc: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Leon Romanovsky <leonro@nvidia.com>
 Cc: Brian Welty <brian.welty@intel.com>
+Cc: Krishna Bommu <krishnaiah.bommu@intel.com>
 Cc: <dri-devel@lists.freedesktop.org>
+Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Co-developed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- include/drm/drm_svm.h | 165 ++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 165 insertions(+)
- create mode 100644 include/drm/drm_svm.h
+ drivers/gpu/drm/Makefile  |   1 +
+ drivers/gpu/drm/drm_svm.c | 325 ++++++++++++++++++++++++++++++++++++++
+ include/drm/drm_svm.h     |  63 ++++++++
+ 3 files changed, 389 insertions(+)
+ create mode 100644 drivers/gpu/drm/drm_svm.c
 
-diff --git a/include/drm/drm_svm.h b/include/drm/drm_svm.h
+diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+index 68cc9258ffc4..1e4237d80cff 100644
+--- a/drivers/gpu/drm/Makefile
++++ b/drivers/gpu/drm/Makefile
+@@ -68,6 +68,7 @@ drm-y := \
+ 	drm_prime.o \
+ 	drm_print.o \
+ 	drm_property.o \
++	drm_svm.o \
+ 	drm_syncobj.o \
+ 	drm_sysfs.o \
+ 	drm_trace_points.o \
+diff --git a/drivers/gpu/drm/drm_svm.c b/drivers/gpu/drm/drm_svm.c
 new file mode 100644
-index 000000000000..ceeba53e12b8
+index 000000000000..b88616491409
 --- /dev/null
-+++ b/include/drm/drm_svm.h
-@@ -0,0 +1,165 @@
++++ b/drivers/gpu/drm/drm_svm.c
+@@ -0,0 +1,325 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright Â© 2024 Intel Corporation
 + */
 +
-+#ifndef _DRM_SVM__
-+#define _DRM_SVM__
-+
-+#include <linux/compiler_types.h>
++#include <linux/scatterlist.h>
++#include <linux/mmu_notifier.h>
++#include <linux/dma-mapping.h>
 +#include <linux/memremap.h>
-+#include <linux/types.h>
-+#include <drm/drm_print.h>
++#include <drm/drm_gem_dma_helper.h>
++#include <drm/drm_svm.h>
++#include <linux/swap.h>
++#include <linux/bug.h>
++#include <linux/hmm.h>
++#include <linux/mm.h>
 +
-+struct dma_fence;
-+struct drm_mem_region;
-+
-+/**
-+ * struct migrate_vec - a migration vector is an array of addresses,
-+ * each of which represents one page.
-+ * When it is system memory page, the address is a dmap-mapped address.
-+ * When it is vram page, the address is device physical address.
-+ */
-+struct migrate_vec {
-+	/**
-+	 * @mr: the memory region that pages reside.
-+	 * When it is system memory page, mr is NULL.
-+	 */
-+	struct drm_mem_region *mr;
-+	/** @npages: number of pages */
-+	u64 npages;
-+	/**
-+	 * @addr_vec: address vector
-+	 * each item in addr_vec is an address of a page
-+	 */
-+	union {
-+		/** @dma_addr: dma-mapped address of the page, only valid for system pages*/
-+		dma_addr_t dma_addr;
-+		/** @dpa: device physical address of the page, only valid for vram page*/
-+		phys_addr_t dpa;
-+	} addr_vec[];
-+};
-+
-+/**
-+ * struct drm_mem_region_ops - memory region operations such as memory allocation
-+ * and migration etc. Driver is supposed to implement those operations.
-+ */
-+struct drm_mem_region_ops {
-+	/**
-+	 * @drm_mem_region_alloc_pages: Called from drm to driver to allocate
-+	 * device VRAM memory
-+	 * @mr: The memory region where to allocate device VRAM memory from
-+	 * @npages: number of pages to allocate
-+	 * @pfns: Used to return pfns of each page
-+	 */
-+	int (*drm_mem_region_alloc_pages)(struct drm_mem_region *mr,
-+					  unsigned long npags, unsigned long *pfns);
-+	/**
-+	 * @drm_mem_region_free_page: Called from drm to free one page of device memory
-+	 * @page: point to the page to free
-+	 */
-+	void (*drm_mem_region_free_page)(struct page *page);
-+	/**
-+	 * @drm_mem_region_migrate: Called from drm to migrate memory from src to
-+	 * dst. Driver is supposed to implement this function using device hardware
-+	 * accelerators such as DMA. DRM subsystem call this function to migrate
-+	 * memory b/t system memory and device memory region
-+	 *
-+	 * @src_vec: source migration vector
-+	 * @dst_vec: destination migration vector
-+	 */
-+	struct dma_fence* (*drm_mem_region_migrate)(struct migrate_vec *src_vec,
-+						    struct migrate_vec *dst_vec);
-+	/**
-+	 * @drm_mem_region_pagemap_owner: Return the pagemap owner of a memory
-+	 * region. Pagemap owner is the owner of the device memory. It is
-+	 * defined by device driver and opaque to drm layer. Drm uses pagemap
-+	 * owner to set up page migrations (see hmm function migrate_vma_setup)
-+	 * and range population (see hmm functio hmm_range_fault). Driver has
-+	 * the freedom to choose the right pagemap owner.
-+	 *
-+	 * @mr: the memory region which we want to get the page map owner
-+	 */
-+	void* (*drm_mem_region_pagemap_owner)(struct drm_mem_region *mr);
-+	/**
-+	 * @drm_mem_region_get_device: Return the drm device which has this memory
-+	 * region.
-+	 *
-+	 * @mr: the memory region
-+	 */
-+	struct drm_device* (*drm_mem_region_get_device)(struct drm_mem_region *mr);
-+};
-+
-+/**
-+ * struct drm_mem_region - memory region structure
-+ * This is used to describe a memory region in drm
-+ * device, such as HBM memory or CXL extension memory.
-+ *
-+ * drm_mem_region is converted from the xe_mem_region
-+ * concept. xe_mem_region is moved to drm layer and renamed
-+ * as drm_mem_region.
-+ *
-+ * drm_mem_region is supposed to be embedded in some driver struct such as
-+ * "struct xe_tile" or "struct amdgpu_device"
-+ */
-+struct drm_mem_region {
-+	/** @dev_private: device private data which is opaque to drm layer */
-+	void *dev_private;
-+	/** @dpa_base: This memory regions's DPA (device physical address) base */
-+	resource_size_t dpa_base;
-+	/**
-+	 * @usable_size: usable size of VRAM
-+	 *
-+	 * Usable size of VRAM excluding reserved portions
-+	 * (e.g stolen mem)
-+	 */
-+	resource_size_t usable_size;
-+	/** @pagemap: Used to remap device memory as ZONE_DEVICE */
-+	struct dev_pagemap pagemap;
-+	/**
-+	 * @hpa_base: base host physical address
-+	 *
-+	 * This is generated when remap device memory as ZONE_DEVICE
-+	 */
-+	resource_size_t hpa_base;
-+	/**
-+	 * @mr_ops: memory region operation function pointers
-+	 */
-+	struct drm_mem_region_ops mr_ops;
-+};
-+
-+/**
-+ * drm_page_to_mem_region() - Get a page's memory region
-+ *
-+ * @page: a struct page pointer pointing to a page in vram memory region
-+ */
-+static inline struct drm_mem_region *drm_page_to_mem_region(struct page *page)
++static u64 __npages_in_range(unsigned long start, unsigned long end)
 +{
-+	return container_of(page->pgmap, struct drm_mem_region, pagemap);
++	return (PAGE_ALIGN(end) - PAGE_ALIGN_DOWN(start)) >> PAGE_SHIFT;
 +}
 +
 +/**
-+ * drm_mem_region_page_to_dpa() - Calculate page's device physical address
++ * __mark_range_accessed() - mark a range is accessed, so core mm
++ * have such information for memory eviction or write back to
++ * hard disk
 + *
-+ * @mr: The memory region that page resides in
-+ * @page: page to calculate dpa for
-+ *
-+ * Returns: the device physical address of the page
++ * @hmm_pfn: hmm_pfn array to mark
++ * @npages: how many pages to mark
++ * @write: if write to this range, we mark pages in this range
++ * as dirty
 + */
-+static inline u64 drm_mem_region_page_to_dpa(struct drm_mem_region *mr, struct page *page)
++static void __mark_range_accessed(unsigned long *hmm_pfn, int npages, bool write)
 +{
-+	struct drm_device *drm;
-+	u64 pfn = page_to_pfn(page);
-+	u64 offset;
-+	u64 dpa;
++	struct page *page;
++	u64 i;
 +
-+	drm = mr->mr_ops.drm_mem_region_get_device(mr);
-+	drm_WARN_ON_ONCE(drm, mr != drm_page_to_mem_region(page));
-+	drm_WARN_ON_ONCE(drm, (pfn << PAGE_SHIFT) < mr->hpa_base);
-+	drm_WARN_ON_ONCE(drm, (pfn << PAGE_SHIFT) >=  mr->hpa_base + mr->usable_size);
-+	offset = (pfn << PAGE_SHIFT) - mr->hpa_base;
-+	dpa = mr->dpa_base + offset;
++	for (i = 0; i < npages; i++) {
++		page = hmm_pfn_to_page(hmm_pfn[i]);
++		if (write)
++			set_page_dirty_lock(page);
 +
-+	return dpa;
++		mark_page_accessed(page);
++	}
 +}
-+#endif
++
++static inline u64 __hmmptr_start(struct drm_hmmptr *hmmptr)
++{
++	struct drm_gpuva *gpuva = hmmptr->get_gpuva(hmmptr);
++	u64 start = GPUVA_START(gpuva);
++
++	return start;
++}
++
++static inline u64 __hmmptr_end(struct drm_hmmptr *hmmptr)
++{
++	struct drm_gpuva *gpuva = hmmptr->get_gpuva(hmmptr);
++	u64 end = GPUVA_END(gpuva);
++
++	return end;
++}
++
++static inline u64 __hmmptr_cpu_start(struct drm_hmmptr *hmmptr)
++{
++	struct drm_gpuva *gpuva = hmmptr->get_gpuva(hmmptr);
++
++	/**
++	 * FIXME: xekmd right now use gem.offset for userptr
++	 * Maybe this need to be reconsidered.
++	 */
++	return gpuva->gem.offset;
++}
++
++static inline u64 __hmmptr_cpu_end(struct drm_hmmptr *hmmptr)
++{
++	return __hmmptr_cpu_start(hmmptr) +
++			(__hmmptr_end(hmmptr) - __hmmptr_start(hmmptr));
++}
++
++static inline struct drm_device *__hmmptr_to_drm(struct drm_hmmptr *hmmptr)
++{
++	struct drm_gpuva *gpuva = hmmptr->get_gpuva(hmmptr);
++	struct drm_gpuvm *gpuvm = gpuva->vm;
++	struct drm_device *drm = gpuvm->drm;
++
++	return drm;
++}
++
++/**
++ * drm_svm_hmmptr_unmap_dma_pages() - dma unmap a section (must be page boudary) of
++ * hmmptr from iova space
++ *
++ * @hmmptr: hmmptr to dma unmap
++ * @page_idx: from which page to start the unmapping
++ * @npages: how many pages to unmap
++ */
++void drm_svm_hmmptr_unmap_dma_pages(struct drm_hmmptr *hmmptr, u64 page_idx, u64 npages)
++{
++	u64 tpages = __npages_in_range(__hmmptr_start(hmmptr), __hmmptr_end(hmmptr));
++	struct drm_device *drm = __hmmptr_to_drm(hmmptr);
++	unsigned long *hmm_pfn = hmmptr->pfn;
++	struct page *page;
++	u64 i;
++
++	drm_WARN_ON_ONCE(drm, page_idx + npages > tpages);
++	for (i = 0; i < npages; i++) {
++		page = hmm_pfn_to_page(hmm_pfn[i + page_idx]);
++		if (!page)
++			continue;
++
++		if (!is_device_private_page(page))
++			dma_unlink_range(&hmmptr->iova, (i + page_idx) << PAGE_SHIFT);
++	}
++}
++EXPORT_SYMBOL_GPL(drm_svm_hmmptr_unmap_dma_pages);
++
++/**
++ * drm_svm_hmmptr_map_dma_pages() - dma map a section (must be page boudary) of
++ * hmmptr to iova space
++ *
++ * @hmmptr: hmmptr to dma map
++ * @page_idx: from which page to start the mapping
++ * @npages: how many pages to map
++ */
++void drm_svm_hmmptr_map_dma_pages(struct drm_hmmptr *hmmptr, u64 page_idx, u64 npages)
++{
++	u64 tpages = __npages_in_range(__hmmptr_start(hmmptr), __hmmptr_end(hmmptr));
++	unsigned long *hmm_pfn = hmmptr->pfn;
++	struct drm_device *drm = __hmmptr_to_drm(hmmptr);
++	struct page *page;
++	bool range_is_device_pages;
++	u64 i;
++
++	drm_WARN_ON_ONCE(drm, page_idx + npages > tpages);
++	for (i = page_idx; i < page_idx + npages; i++) {
++		page = hmm_pfn_to_page(hmm_pfn[i]);
++		drm_WARN_ON_ONCE(drm, !page);
++		if (i == page_idx)
++			range_is_device_pages = is_device_private_page(page);
++
++		if (range_is_device_pages != is_device_private_page(page))
++			drm_warn_once(drm, "Found mixed system and device pages plancement\n");
++
++		if (!is_device_private_page(page))
++			hmmptr->dma_addr[i] = dma_link_range(page, 0, &hmmptr->iova,
++							     i << PAGE_SHIFT);
++	}
++}
++EXPORT_SYMBOL_GPL(drm_svm_hmmptr_map_dma_pages);
++
++/**
++ * drm_svm_hmmptr_init() - initialize a hmmptr
++ *
++ * @hmmptr: the hmmptr to initialize
++ * @ops: the mmu interval notifier ops used to invalidate hmmptr
++ */
++int drm_svm_hmmptr_init(struct drm_hmmptr *hmmptr,
++			const struct mmu_interval_notifier_ops *ops)
++{
++	struct drm_gpuva *gpuva = hmmptr->get_gpuva(hmmptr);
++	struct dma_iova_attrs *iova = &hmmptr->iova;
++	struct drm_gpuvm *gpuvm = gpuva->vm;
++	struct drm_device *drm = gpuvm->drm;
++	u64 cpu_va_start = __hmmptr_cpu_start(hmmptr);
++	u64 start = GPUVA_START(gpuva);
++	u64 end = GPUVA_END(gpuva);
++	size_t npages;
++	int ret;
++
++	start = ALIGN_DOWN(start, PAGE_SIZE);
++	end = ALIGN(end, PAGE_SIZE);
++	npages = __npages_in_range(start, end);
++	hmmptr->pfn = kvcalloc(npages, sizeof(*hmmptr->pfn), GFP_KERNEL);
++	if (!hmmptr->pfn)
++		return -ENOMEM;
++
++	hmmptr->dma_addr = kvcalloc(npages, sizeof(*hmmptr->dma_addr), GFP_KERNEL);
++	if (!hmmptr->dma_addr) {
++		ret = -ENOMEM;
++		goto free_pfn;
++	}
++
++	iova->dev = drm->dev;
++	iova->size = end - start;
++	iova->dir = DMA_BIDIRECTIONAL;
++	ret = dma_alloc_iova(iova);
++	if (ret)
++		goto free_dma_addr;
++
++	ret = mmu_interval_notifier_insert(&hmmptr->notifier, current->mm,
++					   cpu_va_start, end - start, ops);
++	if (ret)
++		goto free_iova;
++
++	hmmptr->notifier_seq = LONG_MAX;
++	return 0;
++
++free_iova:
++	dma_free_iova(iova);
++free_dma_addr:
++	kvfree(hmmptr->dma_addr);
++free_pfn:
++	kvfree(hmmptr->pfn);
++	return ret;
++}
++EXPORT_SYMBOL_GPL(drm_svm_hmmptr_init);
++
++/**
++ * drm_svm_hmmptr_release() - release a hmmptr
++ *
++ * @hmmptr: the hmmptr to release
++ */
++void drm_svm_hmmptr_release(struct drm_hmmptr *hmmptr)
++{
++	u64 npages = __npages_in_range(__hmmptr_start(hmmptr), __hmmptr_end(hmmptr));
++
++	drm_svm_hmmptr_unmap_dma_pages(hmmptr, 0, npages);
++	mmu_interval_notifier_remove(&hmmptr->notifier);
++	dma_free_iova(&hmmptr->iova);
++	kvfree(hmmptr->pfn);
++	kvfree(hmmptr->dma_addr);
++}
++EXPORT_SYMBOL_GPL(drm_svm_hmmptr_release);
++
++/**
++ * drm_svm_hmmptr_populate() - Populate physical pages of the range of hmmptr
++ *
++ * @hmmptr: hmmptr to populate
++ * @owner: avoid fault for pages owned by owner, only report the current pfn.
++ * @start: start CPU VA of the range
++ * @end: end CPU VA of the range
++ * @write: Populate range for write purpose
++ * @is_mmap_locked: Whether the caller hold mmap lock
++ *
++ * This function populate the physical pages of a hmmptr range. The
++ * populated physical pages is saved in hmmptr's pfn array.
++ * It is similar to get_user_pages but call hmm_range_fault.
++ *
++ * There are two usage model of this API:
++ *
++ * 1) use it for legacy userptr code: pass owner as NULL, fault-in the range
++ * in system pages
++ *
++ * 2) use it for svm: Usually caller would first migrate a range to device
++ * pages, then call this function with owner as the device pages owner. This way
++ * this function won't cause a fault, only report the range's backing pfns which
++ * is already in device memory.
++ *
++ * This function also read mmu notifier sequence # (
++ * mmu_interval_read_begin), for the purpose of later comparison
++ * (through mmu_interval_read_retry). The usage model is, driver first
++ * call this function to populate a range of a hmmptr, then call
++ * mmu_interval_read_retry to see whether need to retry before programming
++ * GPU page table. Since we only populate a sub-range of the whole hmmptr
++ * here, even if the recorded hmmptr->notifier_seq equals to notifier's
++ * current sequence no, it doesn't means the whole hmmptr is up to date.
++ * Driver is *required* to always call this function before check a retry.
++ *
++ * This must be called with mmap read or write lock held.
++ *
++ * returns: 0 for success; negative error no on failure
++ */
++int drm_svm_hmmptr_populate(struct drm_hmmptr *hmmptr, void *owner, u64 start, u64 end,
++			    bool write, bool is_mmap_locked)
++{
++	unsigned long timeout =
++		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
++	struct hmm_range hmm_range;
++	struct mm_struct *mm = hmmptr->notifier.mm;
++	struct drm_device *drm = __hmmptr_to_drm(hmmptr);
++	int pfn_index, npages;
++	int ret;
++
++	drm_WARN_ON_ONCE(drm, start < __hmmptr_cpu_start(hmmptr));
++	drm_WARN_ON_ONCE(drm, end > __hmmptr_cpu_end(hmmptr));
++	if (!PAGE_ALIGNED(start) || !PAGE_ALIGNED(end))
++		pr_warn("drm svm populate unaligned range [%llx~%llx)\n", start, end);
++
++	if (is_mmap_locked)
++		mmap_assert_locked(mm);
++
++	if (!mmget_not_zero(mm))
++		return -EFAULT;
++
++	hmm_range.notifier = &hmmptr->notifier;
++	hmm_range.start = start;
++	hmm_range.end = end;
++	npages = __npages_in_range(start, end);
++	pfn_index = (start - __hmmptr_cpu_start(hmmptr)) >> PAGE_SHIFT;
++	hmm_range.hmm_pfns = hmmptr->pfn + pfn_index;
++	hmm_range.default_flags = HMM_PFN_REQ_FAULT;
++	if (write)
++		hmm_range.default_flags |= HMM_PFN_REQ_WRITE;
++	hmm_range.dev_private_owner = owner;
++
++	while (true) {
++		hmm_range.notifier_seq = mmu_interval_read_begin(&hmmptr->notifier);
++
++		if (!is_mmap_locked)
++			mmap_read_lock(mm);
++
++		ret = hmm_range_fault(&hmm_range);
++
++		if (!is_mmap_locked)
++			mmap_read_unlock(mm);
++
++		if (ret == -EBUSY) {
++			if (time_after(jiffies, timeout))
++				break;
++
++			continue;
++		}
++		break;
++	}
++
++	mmput(mm);
++
++	if (ret)
++		return ret;
++
++	__mark_range_accessed(hmm_range.hmm_pfns, npages, write);
++	hmmptr->notifier_seq = hmm_range.notifier_seq;
++
++	return ret;
++}
++EXPORT_SYMBOL_GPL(drm_svm_hmmptr_populate);
+diff --git a/include/drm/drm_svm.h b/include/drm/drm_svm.h
+index ceeba53e12b8..0914b10e0954 100644
+--- a/include/drm/drm_svm.h
++++ b/include/drm/drm_svm.h
+@@ -7,7 +7,10 @@
+ #define _DRM_SVM__
+ 
+ #include <linux/compiler_types.h>
++#include <linux/mmu_notifier.h>
++#include <linux/dma-mapping.h>
+ #include <linux/memremap.h>
++#include <drm/drm_gpuvm.h>
+ #include <linux/types.h>
+ #include <drm/drm_print.h>
+ 
+@@ -162,4 +165,64 @@ static inline u64 drm_mem_region_page_to_dpa(struct drm_mem_region *mr, struct p
+ 
+ 	return dpa;
+ }
++
++/**
++ * struct drm_hmmptr- hmmptr pointer
++ *
++ * A hmmptr is a pointer in a CPU program that can be access by GPU program
++ * also, like a userptr. but unlike a userptr, a hmmptr can also be migrated
++ * to device local memory. The other way to look at is, userptr is a special
++ * hmmptr without the capability of migration - userptr's backing store is
++ * always in system memory.
++ *
++ * A hmmptr can have mixed backing pages in system and GPU vram.
++ *
++ * hmmptr is supposed to be embedded in driver's GPU virtual range management
++ * struct such as xe_vma etc. hmmptr itself doesn't have a range. hmmptr
++ * depends on driver's data structure (such as xe_vma) to live in a gpuvm's
++ * process space and RB-tree.
++ *
++ * With hmmptr concept, SVM and traditional userptr can share codes around
++ * mmu notifier, backing store population etc.
++ *
++ * This is built on top of kernel HMM infrastructure thus is called hmmptr.
++ */
++struct drm_hmmptr {
++	/**
++	 * @notifier: MMU notifier for hmmptr
++	 */
++	struct mmu_interval_notifier notifier;
++	/** @notifier_seq: notifier sequence number */
++	unsigned long notifier_seq;
++	/**
++	 * @pfn: An array of pfn used for page population
++	 * Note this is hmm_pfn, not normal core mm pfn
++	 */
++	unsigned long *pfn;
++	/**
++	 * @dma_addr: An array to hold the dma mapped address
++	 * of each page, only used when page is in sram.
++	 */
++	dma_addr_t *dma_addr;
++	/**
++	 * @iova: iova hold the dma-address of this hmmptr.
++	 * iova is only used when the backing pages are in sram.
++	 */
++	struct dma_iova_attrs iova;
++	/**
++	 * @get_gpuva: callback function to get gpuva of this hmmptr
++	 * FIXME: Probably have direct gpuva member in hmmptr
++	 */
++	struct drm_gpuva * (*get_gpuva)(struct drm_hmmptr *hmmptr);
++};
++
++int drm_svm_hmmptr_init(struct drm_hmmptr *hmmptr,
++			const struct mmu_interval_notifier_ops *ops);
++void drm_svm_hmmptr_release(struct drm_hmmptr *hmmptr);
++void drm_svm_hmmptr_map_dma_pages(struct drm_hmmptr *hmmptr,
++				  u64 page_idx, u64 npages);
++void drm_svm_hmmptr_unmap_dma_pages(struct drm_hmmptr *hmmptr,
++				    u64 page_idx, u64 npages);
++int drm_svm_hmmptr_populate(struct drm_hmmptr *hmmptr, void *owner, u64 start,
++			    u64 end, bool write, bool is_mmap_locked);
+ #endif
 -- 
 2.26.3
 
