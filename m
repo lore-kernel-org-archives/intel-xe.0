@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75A5BC27C6E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BBE6C2BA12
 	for <intel-xe@archiver.kernel.org>; Fri, 14 Jun 2024 21:47:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F31D410E2BD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60A8510E2B8;
 	Fri, 14 Jun 2024 21:47:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hY4pS6SN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O+Sant3k";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A498310EE72
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 21:47:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A119610E2E0
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Jun 2024 21:47:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718401658; x=1749937658;
+ t=1718401654; x=1749937654;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=qWAv5aCjCXiQ/wHZqNRETysakqQz1CqV+r6p4QHVLUU=;
- b=hY4pS6SNgg0tBNLgrekxvIi+yX05RBODpgVd+VwtyupY3Rhh/qwf8Mzy
- cqf1DxvcJOiAinpw3XbdHqSSwm6TFCVo7bhO+rcX7s/bWnE/PpVTrXsmb
- K8dJPowo42UO2+X277L6UJCevV0DmXj7n4GS5efc8KtNDCQ7/kMD9NTfB
- pF1QyJFLipC4JAvP53fqDOkRnmSIBVOKoaqGZDXMcdEgpsZKh3xOQ/SGt
- 1cjvBfVE6RQ9bStpSLASGDhbZNWe7lfQsN5k9a/0pRRpZgBKuSma3e5RL
- M9bjeUsPOqrWQIu/PzWd8YfOVGwwVGgSBDX7nwLGczEIQUZSOShnFa0CT g==;
-X-CSE-ConnectionGUID: 2fBPjC4CROuGSZWmytzw8w==
-X-CSE-MsgGUID: 61QIckjmSZe7x77nJ2dy9Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="25886595"
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="25886595"
+ bh=ZeP8O4jFX/EotO+GRLZQnKzOMi9yxaJPUT0rTKKYrnk=;
+ b=O+Sant3kw0k3Nlm+cCVRyPImkHZUeyGeYfYf3enqDyZNPJy7c6MbK/t4
+ PAySdbfc9ucbJZefrh3pJEErXk/x5UTvuNjg8KAhrLt98vm8tNt0S5LHC
+ kdfc4g59XojDUjBjT1Wf1LmLbCnbmkwaqBRomQ2xGWK2/5SJAlyX+GKP3
+ RdcFVRPPBtQ3lXaExsIr48H51eWnx4+vnH7XcikKp62htH+ib3sd27meQ
+ rSIKfRAVgPg7d9QQRz13UP7XmCV1sHKbou7hF5eb0bi5e/k2deJGjH2jz
+ 7yN7lrC1NHJva7jvtqgLdZT98pYzHJYJDVY7sXJywQy1Tw6uHjNjHT9go Q==;
+X-CSE-ConnectionGUID: aVv4S0xFS0KjFJxZNETZjQ==
+X-CSE-MsgGUID: XDyHQQQ/R6ejD5SrkA/0Vg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="25886579"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="25886579"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 14:47:28 -0700
-X-CSE-ConnectionGUID: 1wYZBk+nQoW3BWkkK4O3wA==
-X-CSE-MsgGUID: w/7OzQzvRqCKz6rHB0zT6w==
+ 14 Jun 2024 14:47:27 -0700
+X-CSE-ConnectionGUID: cbURsDLXQs+0x7Lirsqq0w==
+X-CSE-MsgGUID: IOX5wl/PTjK4XObEd86JqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="45572429"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; d="scan'208";a="45572398"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 14:47:28 -0700
+ 14 Jun 2024 14:47:27 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 35/44] drm/xe/svm: Get drm device from drm memory region
-Date: Fri, 14 Jun 2024 17:58:08 -0400
-Message-Id: <20240614215817.1097633-35-oak.zeng@intel.com>
+Subject: [CI 06/44] iommu/dma: Implement link/unlink page callbacks
+Date: Fri, 14 Jun 2024 17:57:39 -0400
+Message-Id: <20240614215817.1097633-6-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20240614215817.1097633-1-oak.zeng@intel.com>
 References: <20240614215817.1097633-1-oak.zeng@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,42 +65,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Implement a function xe_mem_region_to_device to
-get the drm device which has a specific mem region
+From: Leon Romanovsky <leonro@nvidia.com>
 
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+Add an implementation of link/unlink interface to perform in map/unmap
+pages in fast patch for pre-allocated IOVA.
+
+Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
 ---
- drivers/gpu/drm/xe/xe_device.h | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/iommu/dma-iommu.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index bb07f5669dbb..bae8ebeda20c 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -9,6 +9,7 @@
- #include <drm/drm_util.h>
+diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
+index dbef2581a98c..ddf402e7c8a3 100644
+--- a/drivers/iommu/dma-iommu.c
++++ b/drivers/iommu/dma-iommu.c
+@@ -1766,6 +1766,21 @@ static void iommu_dma_free_iova(struct device *dev, dma_addr_t iova,
+ 	__iommu_dma_free_iova(cookie, iova, size, &iotlb_gather);
+ }
  
- #include "xe_device_types.h"
-+#include "xe_tile.h"
- 
- static inline struct xe_device *to_xe_device(const struct drm_device *dev)
- {
-@@ -170,4 +171,11 @@ static inline bool xe_device_wedged(struct xe_device *xe)
- 
- void xe_device_declare_wedged(struct xe_device *xe);
- 
-+static inline struct drm_device *xe_mem_region_to_device(struct drm_mem_region *mr)
++static dma_addr_t iommu_dma_link_range(struct device *dev, struct page *page,
++				       unsigned long offset, dma_addr_t iova,
++				       size_t size, enum dma_data_direction dir,
++				       unsigned long attrs)
 +{
-+	struct xe_mem_region *xe_mr = container_of(mr, struct xe_mem_region, drm_mr);
-+	struct xe_tile *tile = xe_mem_region_to_tile(xe_mr);
-+
-+	return &tile->xe->drm;
++	return __iommu_dma_map_pages(dev, page, offset, iova, size, dir, attrs);
 +}
- #endif
++
++static void iommu_dma_unlink_range(struct device *dev, dma_addr_t addr,
++				   size_t size, enum dma_data_direction dir,
++				   unsigned long attrs)
++{
++	__iommu_dma_unmap_pages(dev, addr, size, dir, attrs, false);
++}
++
+ static const struct dma_map_ops iommu_dma_ops = {
+ 	.flags			= DMA_F_PCI_P2PDMA_SUPPORTED |
+ 				  DMA_F_CAN_SKIP_SYNC,
+@@ -1792,6 +1807,8 @@ static const struct dma_map_ops iommu_dma_ops = {
+ 	.max_mapping_size       = iommu_dma_max_mapping_size,
+ 	.alloc_iova		= iommu_dma_alloc_iova,
+ 	.free_iova		= iommu_dma_free_iova,
++	.link_range		= iommu_dma_link_range,
++	.unlink_range		= iommu_dma_unlink_range,
+ };
+ 
+ void iommu_setup_dma_ops(struct device *dev)
 -- 
 2.26.3
 
