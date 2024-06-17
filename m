@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7607C27C79
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Jun 2024 18:30:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9149C27C79
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Jun 2024 18:30:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C64C10E4A0;
-	Mon, 17 Jun 2024 18:30:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59DF210E4A0;
+	Mon, 17 Jun 2024 18:30:28 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 302BD10E4A0;
- Mon, 17 Jun 2024 18:30:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 009BC10E4A0;
+ Mon, 17 Jun 2024 18:30:27 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/rtp=3A_Allow_?=
- =?utf-8?q?to_OR_rules?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/rtp=3A_Allow_to_OR?=
+ =?utf-8?q?_rules?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 17 Jun 2024 18:30:05 -0000
-Message-ID: <171864900519.99140.9195809924539772142@a6498e030952>
+Date: Mon, 17 Jun 2024 18:30:27 -0000
+Message-ID: <171864902700.99140.12040091430350848268@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240617182518.280975-1-lucas.demarchi@intel.com>
 In-Reply-To: <20240617182518.280975-1-lucas.demarchi@intel.com>
@@ -44,17 +44,70 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/rtp: Allow to OR rules
 URL   : https://patchwork.freedesktop.org/series/134967/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 3b4eab7e82c7 drm-tip: 2024y-06m-17d-15h-27m-09s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/rtp: Allow to match 0 sr entries
-Applying: drm/xe/rtp: Allow to OR rules
-Applying: drm/xe/rtp: Expand max rules/actions per entry
-Applying: drm/xe/rtp: Add match on any GT
-Applying: drm/xe/xe2: Add proper check for media in Wa_14020756599
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit bf93f51021412f041e34b18163f4da6d0c37a1cc
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Mon Jun 17 11:25:18 2024 -0700
+
+    drm/xe/xe2: Add proper check for media in Wa_14020756599
+    
+    A temporary fixup was made in commit 24d0d98af1c3 ("drm/xe/xe2lpm: Fixup
+    Wa_14020756599") due to limitations in the RTP infra. Now that RTP has
+    support for OR condition that change can be removed. RTP now also
+    supports checking any GT, so use that instead of the more specific
+    xe_rtp_match_when_media2000() used in that commit.
+    
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 3b4eab7e82c7a1429e257890553ad571f320b8a3 drm-intel
+eecd91434e2a drm/xe/rtp: Allow to match 0 sr entries
+27035381c236 drm/xe/rtp: Allow to OR rules
+626a71fde440 drm/xe/rtp: Expand max rules/actions per entry
+-:42: WARNING:LONG_LINE: line length of 165 exceeds 100 columns
+#42: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:61:
++#define XE_RTP_PASTE_5(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_4(prefix_, sep_, _XE_TUPLE_TAIL args_)
+
+-:42: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#42: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:61:
++#define XE_RTP_PASTE_5(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_4(prefix_, sep_, _XE_TUPLE_TAIL args_)
+
+-:42: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'prefix_' - possible side-effects?
+#42: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:61:
++#define XE_RTP_PASTE_5(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_4(prefix_, sep_, _XE_TUPLE_TAIL args_)
+
+-:42: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'args_' - possible side-effects?
+#42: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:61:
++#define XE_RTP_PASTE_5(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_4(prefix_, sep_, _XE_TUPLE_TAIL args_)
+
+-:43: WARNING:LONG_LINE: line length of 165 exceeds 100 columns
+#43: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:62:
++#define XE_RTP_PASTE_6(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_5(prefix_, sep_, _XE_TUPLE_TAIL args_)
+
+-:43: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#43: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:62:
++#define XE_RTP_PASTE_6(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_5(prefix_, sep_, _XE_TUPLE_TAIL args_)
+
+-:43: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'prefix_' - possible side-effects?
+#43: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:62:
++#define XE_RTP_PASTE_6(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_5(prefix_, sep_, _XE_TUPLE_TAIL args_)
+
+-:43: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'args_' - possible side-effects?
+#43: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:62:
++#define XE_RTP_PASTE_6(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_5(prefix_, sep_, _XE_TUPLE_TAIL args_)
+
+total: 2 errors, 2 warnings, 4 checks, 24 lines checked
+e982b792c2a4 drm/xe/rtp: Add match on any GT
+bf93f5102141 drm/xe/xe2: Add proper check for media in Wa_14020756599
 
 
