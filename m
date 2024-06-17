@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14AF2C2BD05
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FC50C2BD08
 	for <intel-xe@archiver.kernel.org>; Mon, 17 Jun 2024 22:37:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 461D610E523;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57EF610E524;
 	Mon, 17 Jun 2024 22:37:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VczwSTPY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dsSGXff1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70C0D10E51F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9122C10E506
  for <intel-xe@lists.freedesktop.org>; Mon, 17 Jun 2024 22:37:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1718663821; x=1750199821;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=we3G6fEJ/z1SHUjrR4GKNtHvHCEpnHzeCBbEZmoU78E=;
- b=VczwSTPYg9omTxWssDxS7S/QChcJGnCtJwXf5SB3ZmuJL7h/2B+mbd0i
- 0gx2IXMTAQQm7edrEKlDwTvKsKYvp2V6z25IBIrMp6CCA/up1VIYpWd9W
- PAtB7Tfb0ZvHc6fzCUh2o3M42J8C/FrVfpfcIZdllzMdw9BZ9YI75J6zy
- XLD0liwYNDjYIwtRTgaPAv62bCF37YsnYE4hPlJHdrJNQjoblBf5r3lpE
- 9AjPoovPGR4aja2tTRRoUZzzkPTI6oxK2ZpxG7/4G/X5hnLw00BZ6ByF8
- 2Xrc9Bd2EGGNVh7O5oM288tna0YwfIXqzSCVYTvERiIO7pkiSbez2w34F A==;
-X-CSE-ConnectionGUID: e55KaUusR9yuHOAMxQwBvA==
-X-CSE-MsgGUID: mNvBPLRWS4Cta7Jp1qGcSA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="18428975"
-X-IronPort-AV: E=Sophos;i="6.08,245,1712646000"; d="scan'208";a="18428975"
+ bh=Vk+Dp/h7hfPMLQr/BARfGUBGM0hrz+arFZEdHPEGwGU=;
+ b=dsSGXff1jnhAlq1M8CUd5d9KAFKRE7sLtu+MuoYkjLitfOTHNuDdTWX0
+ Tyun0oK5qWF0A1865/eQhwImPb4BIgU/0BucjkSrMeHYU2UNNeXfep8xH
+ ySvj7X3LEuFP5esw1+prt1Ls5Han1WLJtnKZjte94VEUg67ujpMTN23yE
+ Tmc7qONjwA/MSkg7brIsGvGBW09E9gk9jVowdW+EhLgikglu2qtrL5UwC
+ vZj3CizrC2O0sbzPAMXoV8Bqy4hoBopQzAaYRq+Yj9Ji3R2wTryow0frQ
+ RcunFUVu1V7YyZ5DgatPXKUiIcmt0odI4I2FkM/61LTajoifZeSUomLQB Q==;
+X-CSE-ConnectionGUID: G/8ksrhNQICkwIyTvJDPgA==
+X-CSE-MsgGUID: n1gtSG1lSAqffHCF6MjIxA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="18428976"
+X-IronPort-AV: E=Sophos;i="6.08,245,1712646000"; d="scan'208";a="18428976"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2024 15:36:59 -0700
-X-CSE-ConnectionGUID: rwVx1wtRTPKQqIJ0H0c7rw==
-X-CSE-MsgGUID: /yub1E6dSJyhNc04scW17A==
+ 17 Jun 2024 15:37:00 -0700
+X-CSE-ConnectionGUID: l035UJ5qRVaU/jvlIvVCQA==
+X-CSE-MsgGUID: YtvN9tTASNKDphkodq1HQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,245,1712646000"; d="scan'208";a="72090775"
+X-IronPort-AV: E=Sophos;i="6.08,245,1712646000"; d="scan'208";a="72090776"
 Received: from orsosgc001.jf.intel.com ([10.165.21.138])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jun 2024 15:36:59 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 07/17] drm/xe/oa: OA stream initialization (OAG)
-Date: Mon, 17 Jun 2024 15:36:41 -0700
-Message-ID: <20240617223651.3220399-8-ashutosh.dixit@intel.com>
+Subject: [PATCH 08/17] drm/xe/oa/uapi: Expose OA stream fd
+Date: Mon, 17 Jun 2024 15:36:42 -0700
+Message-ID: <20240617223651.3220399-9-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20240617223651.3220399-1-ashutosh.dixit@intel.com>
 References: <20240617223651.3220399-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,578 +66,481 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Implement majority of OA stream initialization (as part of OA stream open)
-ioctl). OAG buffer is allocated for receiving perf counter samples from
-HW. OAG unit is initialized and the selected OA metric configuration is
-programmed into OAG unit HW using a command/batch buffer.
+The OA stream open perf op returns an fd with its own file_operations for
+the newly initialized OA stream. These file_operations allow userspace to
+enable or disable the stream, as well as apply a different metric
+configuration for the OA stream. Userspace can also poll for data
+availability. OA stream initialization is completed in this commit by
+enabling the OA stream. When sampling is enabled this starts a hrtimer
+which periodically checks for data availablility.
 
+v2: Use stream properties for stream reconfiguration with
+    DRM_XE_PERF_IOCTL_CONFIG
+v3: Hold runtime_pm reference across oa buffer alloc/free
+v4: Fix 32 bit build
+
+Acked-by: José Roberto de Souza <jose.souza@intel.com>
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |   3 +
- drivers/gpu/drm/xe/xe_oa.c           | 393 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_oa_types.h     |  79 ++++++
- 3 files changed, 475 insertions(+)
+ drivers/gpu/drm/xe/xe_oa.c | 380 +++++++++++++++++++++++++++++++++++++
+ include/uapi/drm/xe_drm.h  |   4 +
+ 2 files changed, 384 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 47c26c37608d..6a7bbb410613 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -170,6 +170,8 @@
- 
- #define SQCNT1					XE_REG_MCR(0x8718)
- #define XELPMP_SQCNT1				XE_REG(0x8718)
-+#define   SQCNT1_PMON_ENABLE			REG_BIT(30)
-+#define   SQCNT1_OABPC				REG_BIT(29)
- #define   ENFORCE_RAR				REG_BIT(23)
- 
- #define XEHP_SQCM				XE_REG_MCR(0x8724)
-@@ -429,6 +431,7 @@
- #define ROW_CHICKEN				XE_REG_MCR(0xe4f0, XE_REG_OPTION_MASKED)
- #define   UGM_BACKUP_MODE			REG_BIT(13)
- #define   MDQ_ARBITRATION_MODE			REG_BIT(12)
-+#define   STALL_DOP_GATING_DISABLE		REG_BIT(5)
- #define   EARLY_EOT_DIS				REG_BIT(1)
- 
- #define ROW_CHICKEN2				XE_REG_MCR(0xe4f4, XE_REG_OPTION_MASKED)
 diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 9b23eadf56cd..c2fd2d22677f 100644
+index c2fd2d22677f..a71111859190 100644
 --- a/drivers/gpu/drm/xe/xe_oa.c
 +++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -3,24 +3,34 @@
+@@ -3,8 +3,10 @@
   * Copyright © 2023-2024 Intel Corporation
   */
  
-+#include <linux/delay.h>
++#include <linux/anon_inodes.h>
+ #include <linux/delay.h>
  #include <linux/nospec.h>
++#include <linux/poll.h>
  
-+#include <drm/drm_drv.h>
+ #include <drm/drm_drv.h>
  #include <drm/drm_managed.h>
- #include <drm/xe_drm.h>
- 
-+#include "instructions/xe_mi_commands.h"
- #include "regs/xe_gt_regs.h"
- #include "regs/xe_oa_regs.h"
- #include "xe_assert.h"
-+#include "xe_bb.h"
-+#include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_exec_queue.h"
-+#include "xe_force_wake.h"
- #include "xe_gt.h"
-+#include "xe_gt_mcr.h"
- #include "xe_gt_printk.h"
- #include "xe_macros.h"
- #include "xe_mmio.h"
- #include "xe_oa.h"
- #include "xe_perf.h"
+@@ -29,6 +31,7 @@
  #include "xe_pm.h"
-+#include "xe_sched_job.h"
+ #include "xe_sched_job.h"
  
-+#define DEFAULT_POLL_FREQUENCY_HZ 200
-+#define DEFAULT_POLL_PERIOD_NS (NSEC_PER_SEC / DEFAULT_POLL_FREQUENCY_HZ)
++#define OA_TAKEN(tail, head)	(((tail) - (head)) & (XE_OA_BUFFER_SIZE - 1))
+ #define DEFAULT_POLL_FREQUENCY_HZ 200
+ #define DEFAULT_POLL_PERIOD_NS (NSEC_PER_SEC / DEFAULT_POLL_FREQUENCY_HZ)
  #define XE_OA_UNIT_INVALID U32_MAX
- 
- struct xe_oa_reg {
-@@ -58,6 +68,13 @@ struct xe_oa_open_param {
- 	struct xe_hw_engine *hwe;
- };
- 
-+struct xe_oa_config_bo {
-+	struct llist_node node;
-+
-+	struct xe_oa_config *oa_config;
-+	struct xe_bb *bb;
-+};
-+
- #define DRM_FMT(x) DRM_XE_OA_FMT_TYPE_##x
- 
- static const struct xe_oa_format oa_formats[] = {
-@@ -100,6 +117,378 @@ static void xe_oa_config_put(struct xe_oa_config *oa_config)
- 	kref_put(&oa_config->ref, xe_oa_config_release);
+@@ -147,6 +150,205 @@ static const struct xe_oa_regs *__oa_regs(struct xe_oa_stream *stream)
+ 	return &stream->hwe->oa_unit->regs;
  }
  
-+static struct xe_oa_config *xe_oa_config_get(struct xe_oa_config *oa_config)
++static u32 xe_oa_hw_tail_read(struct xe_oa_stream *stream)
 +{
-+	return kref_get_unless_zero(&oa_config->ref) ? oa_config : NULL;
++	return xe_mmio_read32(stream->gt, __oa_regs(stream)->oa_tail_ptr) &
++		OAG_OATAILPTR_MASK;
 +}
 +
-+static struct xe_oa_config *xe_oa_get_oa_config(struct xe_oa *oa, int metrics_set)
++#define oa_report_header_64bit(__s) \
++	((__s)->oa_buffer.format->header == HDR_64_BIT)
++
++static u64 oa_report_id(struct xe_oa_stream *stream, void *report)
 +{
-+	struct xe_oa_config *oa_config;
-+
-+	rcu_read_lock();
-+	oa_config = idr_find(&oa->metrics_idr, metrics_set);
-+	if (oa_config)
-+		oa_config = xe_oa_config_get(oa_config);
-+	rcu_read_unlock();
-+
-+	return oa_config;
++	return oa_report_header_64bit(stream) ? *(u64 *)report : *(u32 *)report;
 +}
 +
-+static void free_oa_config_bo(struct xe_oa_config_bo *oa_bo)
++static u64 oa_timestamp(struct xe_oa_stream *stream, void *report)
 +{
-+	xe_oa_config_put(oa_bo->oa_config);
-+	xe_bb_free(oa_bo->bb, NULL);
-+	kfree(oa_bo);
++	return oa_report_header_64bit(stream) ?
++		*((u64 *)report + 1) :
++		*((u32 *)report + 1);
 +}
 +
-+static const struct xe_oa_regs *__oa_regs(struct xe_oa_stream *stream)
++static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
 +{
-+	return &stream->hwe->oa_unit->regs;
-+}
++	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
++	int report_size = stream->oa_buffer.format->size;
++	u32 tail, hw_tail;
++	unsigned long flags;
++	bool pollin;
++	u32 partial_report_size;
 +
-+static int xe_oa_submit_bb(struct xe_oa_stream *stream, struct xe_bb *bb)
-+{
-+	struct xe_sched_job *job;
-+	struct dma_fence *fence;
-+	long timeout;
-+	int err = 0;
++	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
 +
-+	/* Kernel configuration is issued on stream->k_exec_q, not stream->exec_q */
-+	job = xe_bb_create_job(stream->k_exec_q, bb);
-+	if (IS_ERR(job)) {
-+		err = PTR_ERR(job);
-+		goto exit;
-+	}
-+
-+	xe_sched_job_arm(job);
-+	fence = dma_fence_get(&job->drm.s_fence->finished);
-+	xe_sched_job_push(job);
-+
-+	timeout = dma_fence_wait_timeout(fence, false, HZ);
-+	dma_fence_put(fence);
-+	if (timeout < 0)
-+		err = timeout;
-+	else if (!timeout)
-+		err = -ETIME;
-+exit:
-+	return err;
-+}
-+
-+static void write_cs_mi_lri(struct xe_bb *bb, const struct xe_oa_reg *reg_data, u32 n_regs)
-+{
-+	u32 i;
-+
-+#define MI_LOAD_REGISTER_IMM_MAX_REGS (126)
-+
-+	for (i = 0; i < n_regs; i++) {
-+		if ((i % MI_LOAD_REGISTER_IMM_MAX_REGS) == 0) {
-+			u32 n_lri = min_t(u32, n_regs - i,
-+					  MI_LOAD_REGISTER_IMM_MAX_REGS);
-+
-+			bb->cs[bb->len++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(n_lri);
-+		}
-+		bb->cs[bb->len++] = reg_data[i].addr.addr;
-+		bb->cs[bb->len++] = reg_data[i].value;
-+	}
-+}
-+
-+static int num_lri_dwords(int num_regs)
-+{
-+	int count = 0;
-+
-+	if (num_regs > 0) {
-+		count += DIV_ROUND_UP(num_regs, MI_LOAD_REGISTER_IMM_MAX_REGS);
-+		count += num_regs * 2;
-+	}
-+
-+	return count;
-+}
-+
-+static void xe_oa_free_oa_buffer(struct xe_oa_stream *stream)
-+{
-+	xe_bo_unpin_map_no_vm(stream->oa_buffer.bo);
-+}
-+
-+static void xe_oa_free_configs(struct xe_oa_stream *stream)
-+{
-+	struct xe_oa_config_bo *oa_bo, *tmp;
-+
-+	xe_oa_config_put(stream->oa_config);
-+	llist_for_each_entry_safe(oa_bo, tmp, stream->oa_config_bos.first, node)
-+		free_oa_config_bo(oa_bo);
-+}
-+
-+#define HAS_OA_BPC_REPORTING(xe) (GRAPHICS_VERx100(xe) >= 1255)
-+
-+static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
-+{
-+	u32 sqcnt1;
++	hw_tail = xe_oa_hw_tail_read(stream);
++	hw_tail -= gtt_offset;
 +
 +	/*
-+	 * Wa_1508761755:xehpsdv, dg2
-+	 * Enable thread stall DOP gating and EU DOP gating.
++	 * The tail pointer increases in 64 byte (cacheline size), not in report_size
++	 * increments. Also report size may not be a power of 2. Compute potential
++	 * partially landed report in OA buffer.
 +	 */
-+	if (stream->oa->xe->info.platform == XE_DG2) {
-+		xe_gt_mcr_multicast_write(stream->gt, ROW_CHICKEN,
-+					  _MASKED_BIT_DISABLE(STALL_DOP_GATING_DISABLE));
-+		xe_gt_mcr_multicast_write(stream->gt, ROW_CHICKEN2,
-+					  _MASKED_BIT_DISABLE(DISABLE_DOP_GATING));
-+	}
++	partial_report_size = OA_TAKEN(hw_tail, stream->oa_buffer.tail);
++	partial_report_size %= report_size;
 +
-+	/* Make sure we disable noa to save power. */
-+	xe_mmio_rmw32(stream->gt, RPM_CONFIG1, GT_NOA_ENABLE, 0);
++	/* Subtract partial amount off the tail */
++	hw_tail = OA_TAKEN(hw_tail, partial_report_size);
 +
-+	sqcnt1 = SQCNT1_PMON_ENABLE |
-+		 (HAS_OA_BPC_REPORTING(stream->oa->xe) ? SQCNT1_OABPC : 0);
-+
-+	/* Reset PMON Enable to save power. */
-+	xe_mmio_rmw32(stream->gt, XELPMP_SQCNT1, sqcnt1, 0);
-+}
-+
-+static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream)
-+{
-+	struct xe_bo *bo;
-+
-+	BUILD_BUG_ON_NOT_POWER_OF_2(XE_OA_BUFFER_SIZE);
-+	BUILD_BUG_ON(XE_OA_BUFFER_SIZE < SZ_128K || XE_OA_BUFFER_SIZE > SZ_16M);
-+
-+	bo = xe_bo_create_pin_map(stream->oa->xe, stream->gt->tile, NULL,
-+				  XE_OA_BUFFER_SIZE, ttm_bo_type_kernel,
-+				  XE_BO_FLAG_SYSTEM | XE_BO_FLAG_GGTT);
-+	if (IS_ERR(bo))
-+		return PTR_ERR(bo);
-+
-+	stream->oa_buffer.bo = bo;
-+	stream->oa_buffer.vaddr = bo->vmap.vaddr;
-+	return 0;
-+}
-+
-+static struct xe_oa_config_bo *
-+__xe_oa_alloc_config_buffer(struct xe_oa_stream *stream, struct xe_oa_config *oa_config)
-+{
-+	struct xe_oa_config_bo *oa_bo;
-+	size_t config_length;
-+	struct xe_bb *bb;
-+
-+	oa_bo = kzalloc(sizeof(*oa_bo), GFP_KERNEL);
-+	if (!oa_bo)
-+		return ERR_PTR(-ENOMEM);
-+
-+	config_length = num_lri_dwords(oa_config->regs_len);
-+	config_length = ALIGN(sizeof(u32) * config_length, XE_PAGE_SIZE) / sizeof(u32);
-+
-+	bb = xe_bb_new(stream->gt, config_length, false);
-+	if (IS_ERR(bb))
-+		goto err_free;
-+
-+	write_cs_mi_lri(bb, oa_config->regs, oa_config->regs_len);
-+
-+	oa_bo->bb = bb;
-+	oa_bo->oa_config = xe_oa_config_get(oa_config);
-+	llist_add(&oa_bo->node, &stream->oa_config_bos);
-+
-+	return oa_bo;
-+err_free:
-+	kfree(oa_bo);
-+	return ERR_CAST(bb);
-+}
-+
-+static struct xe_oa_config_bo *xe_oa_alloc_config_buffer(struct xe_oa_stream *stream)
-+{
-+	struct xe_oa_config *oa_config = stream->oa_config;
-+	struct xe_oa_config_bo *oa_bo;
-+
-+	/* Look for the buffer in the already allocated BOs attached to the stream */
-+	llist_for_each_entry(oa_bo, stream->oa_config_bos.first, node) {
-+		if (oa_bo->oa_config == oa_config &&
-+		    memcmp(oa_bo->oa_config->uuid, oa_config->uuid,
-+			   sizeof(oa_config->uuid)) == 0)
-+			goto out;
-+	}
-+
-+	oa_bo = __xe_oa_alloc_config_buffer(stream, oa_config);
-+out:
-+	return oa_bo;
-+}
-+
-+static int xe_oa_emit_oa_config(struct xe_oa_stream *stream)
-+{
-+#define NOA_PROGRAM_ADDITIONAL_DELAY_US 500
-+	struct xe_oa_config_bo *oa_bo;
-+	int err, us = NOA_PROGRAM_ADDITIONAL_DELAY_US;
-+
-+	oa_bo = xe_oa_alloc_config_buffer(stream);
-+	if (IS_ERR(oa_bo)) {
-+		err = PTR_ERR(oa_bo);
-+		goto exit;
-+	}
-+
-+	err = xe_oa_submit_bb(stream, oa_bo->bb);
-+
-+	/* Additional empirical delay needed for NOA programming after registers are written */
-+	usleep_range(us, 2 * us);
-+exit:
-+	return err;
-+}
-+
-+static u32 oag_report_ctx_switches(const struct xe_oa_stream *stream)
-+{
-+	/* If user didn't require OA reports, ask HW not to emit ctx switch reports */
-+	return _MASKED_FIELD(OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS,
-+			     stream->sample ?
-+			     0 : OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS);
-+}
-+
-+static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
-+{
-+	u32 oa_debug, sqcnt1;
++	tail = hw_tail;
 +
 +	/*
-+	 * Wa_1508761755:xehpsdv, dg2
-+	 * EU NOA signals behave incorrectly if EU clock gating is enabled.
-+	 * Disable thread stall DOP gating and EU DOP gating.
++	 * Walk the stream backward until we find a report with report id and timestamp
++	 * not 0. We can't tell whether a report has fully landed in memory before the
++	 * report id and timestamp of the following report have landed.
++	 *
++	 * This is assuming that the writes of the OA unit land in memory in the order
++	 * they were written.  If not : (╯°□°）╯︵ ┻━┻
 +	 */
-+	if (stream->oa->xe->info.platform == XE_DG2) {
-+		xe_gt_mcr_multicast_write(stream->gt, ROW_CHICKEN,
-+					  _MASKED_BIT_ENABLE(STALL_DOP_GATING_DISABLE));
-+		xe_gt_mcr_multicast_write(stream->gt, ROW_CHICKEN2,
-+					  _MASKED_BIT_ENABLE(DISABLE_DOP_GATING));
++	while (OA_TAKEN(tail, stream->oa_buffer.tail) >= report_size) {
++		void *report = stream->oa_buffer.vaddr + tail;
++
++		if (oa_report_id(stream, report) || oa_timestamp(stream, report))
++			break;
++
++		tail = OA_TAKEN(tail, report_size);
 +	}
 +
-+	/* Disable clk ratio reports */
-+	oa_debug = OAG_OA_DEBUG_DISABLE_CLK_RATIO_REPORTS |
-+		OAG_OA_DEBUG_INCLUDE_CLK_RATIO;
++	if (OA_TAKEN(hw_tail, tail) > report_size)
++		drm_dbg(&stream->oa->xe->drm,
++			"unlanded report(s) head=0x%x tail=0x%x hw_tail=0x%x\n",
++			stream->oa_buffer.head, tail, hw_tail);
 +
-+	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_debug,
-+			_MASKED_BIT_ENABLE(oa_debug) |
-+			oag_report_ctx_switches(stream));
++	stream->oa_buffer.tail = tail;
 +
-+	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_ctx_ctrl, stream->periodic ?
-+			(OAG_OAGLBCTXCTRL_COUNTER_RESUME |
-+			 OAG_OAGLBCTXCTRL_TIMER_ENABLE |
-+			 REG_FIELD_PREP(OAG_OAGLBCTXCTRL_TIMER_PERIOD_MASK,
-+					stream->period_exponent)) : 0);
++	pollin = OA_TAKEN(stream->oa_buffer.tail,
++			  stream->oa_buffer.head) >= report_size;
 +
-+	/*
-+	 * Initialize Super Queue Internal Cnt Register
-+	 * Set PMON Enable in order to collect valid metrics
-+	 * Enable bytes per clock reporting
-+	 */
-+	sqcnt1 = SQCNT1_PMON_ENABLE |
-+		 (HAS_OA_BPC_REPORTING(stream->oa->xe) ? SQCNT1_OABPC : 0);
++	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
 +
-+	xe_mmio_rmw32(stream->gt, XELPMP_SQCNT1, 0, sqcnt1);
-+
-+	return xe_oa_emit_oa_config(stream);
++	return pollin;
 +}
 +
-+static int xe_oa_stream_init(struct xe_oa_stream *stream,
-+			     struct xe_oa_open_param *param)
++static enum hrtimer_restart xe_oa_poll_check_timer_cb(struct hrtimer *hrtimer)
 +{
-+	struct xe_oa_unit *u = param->hwe->oa_unit;
-+	struct xe_gt *gt = param->hwe->gt;
-+	int ret;
++	struct xe_oa_stream *stream =
++		container_of(hrtimer, typeof(*stream), poll_check_timer);
 +
-+	stream->exec_q = param->exec_q;
-+	stream->poll_period_ns = DEFAULT_POLL_PERIOD_NS;
-+	stream->hwe = param->hwe;
-+	stream->gt = stream->hwe->gt;
-+	stream->oa_buffer.format = &stream->oa->oa_formats[param->oa_format];
-+
-+	stream->sample = param->sample;
-+	stream->periodic = param->period_exponent > 0;
-+	stream->period_exponent = param->period_exponent;
-+
-+	stream->oa_config = xe_oa_get_oa_config(stream->oa, param->metric_set);
-+	if (!stream->oa_config) {
-+		drm_dbg(&stream->oa->xe->drm, "Invalid OA config id=%i\n", param->metric_set);
-+		ret = -EINVAL;
-+		goto exit;
++	if (xe_oa_buffer_check_unlocked(stream)) {
++		stream->pollin = true;
++		wake_up(&stream->poll_wq);
 +	}
 +
-+	/* Take runtime pm ref and forcewake to disable RC6 */
-+	xe_pm_runtime_get(stream->oa->xe);
-+	XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL));
++	hrtimer_forward_now(hrtimer, ns_to_ktime(stream->poll_period_ns));
 +
-+	ret = xe_oa_alloc_oa_buffer(stream);
-+	if (ret)
-+		goto err_fw_put;
++	return HRTIMER_RESTART;
++}
 +
-+	stream->k_exec_q = xe_exec_queue_create(stream->oa->xe, NULL,
-+						BIT(stream->hwe->logical_instance), 1,
-+						stream->hwe, EXEC_QUEUE_FLAG_KERNEL, 0);
-+	if (IS_ERR(stream->k_exec_q)) {
-+		ret = PTR_ERR(stream->k_exec_q);
-+		drm_err(&stream->oa->xe->drm, "gt%d, hwe %s, xe_exec_queue_create failed=%d",
-+			stream->gt->info.id, stream->hwe->name, ret);
-+		goto err_free_oa_buf;
++static void xe_oa_init_oa_buffer(struct xe_oa_stream *stream)
++{
++	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
++	u32 oa_buf = gtt_offset | OABUFFER_SIZE_16M | OAG_OABUFFER_MEMORY_SELECT;
++	unsigned long flags;
++
++	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
++
++	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_status, 0);
++	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_head_ptr,
++			gtt_offset & OAG_OAHEADPTR_MASK);
++	stream->oa_buffer.head = 0;
++
++	/*
++	 * PRM says: "This MMIO must be set before the OATAILPTR register and after the
++	 * OAHEADPTR register. This is to enable proper functionality of the overflow bit".
++	 */
++	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_buffer, oa_buf);
++	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_tail_ptr,
++			gtt_offset & OAG_OATAILPTR_MASK);
++
++	/* Mark that we need updated tail pointer to read from */
++	stream->oa_buffer.tail = 0;
++
++	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
++
++	/* Zero out the OA buffer since we rely on zero report id and timestamp fields */
++	memset(stream->oa_buffer.vaddr, 0, stream->oa_buffer.bo->size);
++}
++
++static u32 __format_to_oactrl(const struct xe_oa_format *format, int counter_sel_mask)
++{
++	return ((format->counter_select << (ffs(counter_sel_mask) - 1)) & counter_sel_mask) |
++		REG_FIELD_PREP(OA_OACONTROL_REPORT_BC_MASK, format->bc_report) |
++		REG_FIELD_PREP(OA_OACONTROL_COUNTER_SIZE_MASK, format->counter_size);
++}
++
++static void xe_oa_enable(struct xe_oa_stream *stream)
++{
++	const struct xe_oa_format *format = stream->oa_buffer.format;
++	const struct xe_oa_regs *regs;
++	u32 val;
++
++	/*
++	 * BSpec: 46822: Bit 0. Even if stream->sample is 0, for OAR to function, the OA
++	 * buffer must be correctly initialized
++	 */
++	xe_oa_init_oa_buffer(stream);
++
++	regs = __oa_regs(stream);
++	val = __format_to_oactrl(format, regs->oa_ctrl_counter_select_mask) |
++		OAG_OACONTROL_OA_COUNTER_ENABLE;
++
++	xe_mmio_write32(stream->gt, regs->oa_ctrl, val);
++}
++
++static void xe_oa_disable(struct xe_oa_stream *stream)
++{
++	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_ctrl, 0);
++	if (xe_mmio_wait32(stream->gt, __oa_regs(stream)->oa_ctrl,
++			   OAG_OACONTROL_OA_COUNTER_ENABLE, 0, 50000, NULL, false))
++		drm_err(&stream->oa->xe->drm,
++			"wait for OA to be disabled timed out\n");
++
++	if (GRAPHICS_VERx100(stream->oa->xe) <= 1270 && GRAPHICS_VERx100(stream->oa->xe) != 1260) {
++		/* <= XE_METEORLAKE except XE_PVC */
++		xe_mmio_write32(stream->gt, OA_TLB_INV_CR, 1);
++		if (xe_mmio_wait32(stream->gt, OA_TLB_INV_CR, 1, 0, 50000, NULL, false))
++			drm_err(&stream->oa->xe->drm,
++				"wait for OA tlb invalidate timed out\n");
 +	}
++}
 +
-+	ret = xe_oa_enable_metric_set(stream);
-+	if (ret) {
-+		drm_dbg(&stream->oa->xe->drm, "Unable to enable metric set\n");
-+		goto err_put_k_exec_q;
-+	}
++static __poll_t xe_oa_poll_locked(struct xe_oa_stream *stream,
++				  struct file *file, poll_table *wait)
++{
++	__poll_t events = 0;
 +
-+	drm_dbg(&stream->oa->xe->drm, "opening stream oa config uuid=%s\n",
-+		stream->oa_config->uuid);
++	poll_wait(file, &stream->poll_wq, wait);
 +
-+	WRITE_ONCE(u->exclusive_stream, stream);
++	/*
++	 * We don't explicitly check whether there's something to read here since this
++	 * path may be hot depending on what else userspace is polling, or on the timeout
++	 * in use. We rely on hrtimer xe_oa_poll_check_timer_cb to notify us when there
++	 * are samples to read
++	 */
++	if (stream->pollin)
++		events |= EPOLLIN;
 +
-+	spin_lock_init(&stream->oa_buffer.ptr_lock);
-+	mutex_init(&stream->stream_lock);
++	return events;
++}
 +
-+	return 0;
++static __poll_t xe_oa_poll(struct file *file, poll_table *wait)
++{
++	struct xe_oa_stream *stream = file->private_data;
++	__poll_t ret;
 +
-+err_put_k_exec_q:
++	mutex_lock(&stream->stream_lock);
++	ret = xe_oa_poll_locked(stream, file, wait);
++	mutex_unlock(&stream->stream_lock);
++
++	return ret;
++}
++
+ static int xe_oa_submit_bb(struct xe_oa_stream *stream, struct xe_bb *bb)
+ {
+ 	struct xe_sched_job *job;
+@@ -246,6 +448,27 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+ 	xe_mmio_rmw32(stream->gt, XELPMP_SQCNT1, sqcnt1, 0);
+ }
+ 
++static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
++{
++	struct xe_oa_unit *u = stream->hwe->oa_unit;
++	struct xe_gt *gt = stream->hwe->gt;
++
++	if (WARN_ON(stream != u->exclusive_stream))
++		return;
++
++	WRITE_ONCE(u->exclusive_stream, NULL);
++
 +	xe_oa_disable_metric_set(stream);
 +	xe_exec_queue_put(stream->k_exec_q);
-+err_free_oa_buf:
++
 +	xe_oa_free_oa_buffer(stream);
-+err_fw_put:
++
 +	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
 +	xe_pm_runtime_put(stream->oa->xe);
++
 +	xe_oa_free_configs(stream);
-+exit:
-+	return ret;
 +}
 +
-+static int xe_oa_stream_open_ioctl_locked(struct xe_oa *oa,
-+					  struct xe_oa_open_param *param)
-+{
-+	struct xe_oa_stream *stream;
-+	int stream_fd;
-+	int ret;
-+
-+	/* We currently only allow exclusive access */
-+	if (param->hwe->oa_unit->exclusive_stream) {
-+		drm_dbg(&oa->xe->drm, "OA unit already in use\n");
-+		ret = -EBUSY;
-+		goto exit;
-+	}
-+
-+	stream = kzalloc(sizeof(*stream), GFP_KERNEL);
-+	if (!stream) {
-+		ret = -ENOMEM;
-+		goto exit;
-+	}
-+
-+	stream->oa = oa;
-+	ret = xe_oa_stream_init(stream, param);
-+	if (ret)
-+		goto err_free;
-+
-+	/* Hold a reference on the drm device till stream_fd is released */
-+	drm_dev_get(&stream->oa->xe->drm);
-+
-+	return stream_fd;
-+err_free:
-+	kfree(stream);
-+exit:
-+	return ret;
-+}
-+
- /**
-  * xe_oa_timestamp_frequency - Return OA timestamp frequency
-  * @gt: @xe_gt
-@@ -440,6 +829,10 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, u64 data, struct drm_file *f
- 		oa_freq_hz = div64_u64(NSEC_PER_SEC, oa_period);
- 		drm_dbg(&oa->xe->drm, "Using periodic sampling freq %lld Hz\n", oa_freq_hz);
- 	}
-+
-+	mutex_lock(&param.hwe->gt->oa.gt_lock);
-+	ret = xe_oa_stream_open_ioctl_locked(oa, &param);
-+	mutex_unlock(&param.hwe->gt->oa.gt_lock);
- err_exec_q:
- 	if (ret < 0 && param.exec_q)
- 		xe_exec_queue_put(param.exec_q);
-diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
-index f8a45015cf49..6700383b1a52 100644
---- a/drivers/gpu/drm/xe/xe_oa_types.h
-+++ b/drivers/gpu/drm/xe/xe_oa_types.h
-@@ -14,6 +14,8 @@
- #include <drm/xe_drm.h>
- #include "regs/xe_reg_defs.h"
+ static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream)
+ {
+ 	struct xe_bo *bo;
+@@ -383,6 +606,148 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
+ 	return xe_oa_emit_oa_config(stream);
+ }
  
-+#define XE_OA_BUFFER_SIZE SZ_16M
++static void xe_oa_stream_enable(struct xe_oa_stream *stream)
++{
++	stream->pollin = false;
 +
- enum xe_oa_report_header {
- 	HDR_32_BIT = 0,
- 	HDR_64_BIT,
-@@ -144,4 +146,81 @@ struct xe_oa {
- 	/** @oa_unit_ids: tracks oa unit ids assigned across gt's */
- 	u16 oa_unit_ids;
- };
++	xe_oa_enable(stream);
 +
-+/** @xe_oa_buffer: State of the stream OA buffer */
-+struct xe_oa_buffer {
-+	/** @format: data format */
-+	const struct xe_oa_format *format;
++	if (stream->sample)
++		hrtimer_start(&stream->poll_check_timer,
++			      ns_to_ktime(stream->poll_period_ns),
++			      HRTIMER_MODE_REL_PINNED);
++}
 +
-+	/** @format: xe_bo backing the OA buffer */
-+	struct xe_bo *bo;
++static void xe_oa_stream_disable(struct xe_oa_stream *stream)
++{
++	xe_oa_disable(stream);
 +
-+	/** @vaddr: mapped vaddr of the OA buffer */
-+	u8 *vaddr;
++	if (stream->sample)
++		hrtimer_cancel(&stream->poll_check_timer);
++}
 +
-+	/** @ptr_lock: Lock protecting reads/writes to head/tail pointers */
-+	spinlock_t ptr_lock;
++static void xe_oa_enable_locked(struct xe_oa_stream *stream)
++{
++	if (stream->enabled)
++		return;
 +
-+	/** @head: Cached head to read from */
-+	u32 head;
++	stream->enabled = true;
 +
-+	/** @tail: The last verified cached tail where HW has completed writing */
-+	u32 tail;
++	xe_oa_stream_enable(stream);
++}
++
++static void xe_oa_disable_locked(struct xe_oa_stream *stream)
++{
++	if (!stream->enabled)
++		return;
++
++	stream->enabled = false;
++
++	xe_oa_stream_disable(stream);
++}
++
++static long xe_oa_config_locked(struct xe_oa_stream *stream, u64 arg)
++{
++	struct drm_xe_ext_set_property ext;
++	long ret = stream->oa_config->id;
++	struct xe_oa_config *config;
++	int err;
++
++	err = __copy_from_user(&ext, u64_to_user_ptr(arg), sizeof(ext));
++	if (XE_IOCTL_DBG(stream->oa->xe, err))
++		return -EFAULT;
++
++	if (XE_IOCTL_DBG(stream->oa->xe, ext.pad) ||
++	    XE_IOCTL_DBG(stream->oa->xe, ext.base.name != DRM_XE_OA_EXTENSION_SET_PROPERTY) ||
++	    XE_IOCTL_DBG(stream->oa->xe, ext.base.next_extension) ||
++	    XE_IOCTL_DBG(stream->oa->xe, ext.property != DRM_XE_OA_PROPERTY_OA_METRIC_SET))
++		return -EINVAL;
++
++	config = xe_oa_get_oa_config(stream->oa, ext.value);
++	if (!config)
++		return -ENODEV;
++
++	if (config != stream->oa_config) {
++		err = xe_oa_emit_oa_config(stream);
++		if (!err)
++			config = xchg(&stream->oa_config, config);
++		else
++			ret = err;
++	}
++
++	xe_oa_config_put(config);
++
++	return ret;
++}
++
++static long xe_oa_ioctl_locked(struct xe_oa_stream *stream,
++			       unsigned int cmd,
++			       unsigned long arg)
++{
++	switch (cmd) {
++	case DRM_XE_PERF_IOCTL_ENABLE:
++		xe_oa_enable_locked(stream);
++		return 0;
++	case DRM_XE_PERF_IOCTL_DISABLE:
++		xe_oa_disable_locked(stream);
++		return 0;
++	case DRM_XE_PERF_IOCTL_CONFIG:
++		return xe_oa_config_locked(stream, arg);
++	}
++
++	return -EINVAL;
++}
++
++static long xe_oa_ioctl(struct file *file,
++			unsigned int cmd,
++			unsigned long arg)
++{
++	struct xe_oa_stream *stream = file->private_data;
++	long ret;
++
++	mutex_lock(&stream->stream_lock);
++	ret = xe_oa_ioctl_locked(stream, cmd, arg);
++	mutex_unlock(&stream->stream_lock);
++
++	return ret;
++}
++
++static void xe_oa_destroy_locked(struct xe_oa_stream *stream)
++{
++	if (stream->enabled)
++		xe_oa_disable_locked(stream);
++
++	xe_oa_stream_destroy(stream);
++
++	if (stream->exec_q)
++		xe_exec_queue_put(stream->exec_q);
++
++	kfree(stream);
++}
++
++static int xe_oa_release(struct inode *inode, struct file *file)
++{
++	struct xe_oa_stream *stream = file->private_data;
++	struct xe_gt *gt = stream->gt;
++
++	mutex_lock(&gt->oa.gt_lock);
++	xe_oa_destroy_locked(stream);
++	mutex_unlock(&gt->oa.gt_lock);
++
++	/* Release the reference the perf stream kept on the driver */
++	drm_dev_put(&gt_to_xe(gt)->drm);
++
++	return 0;
++}
++
++static const struct file_operations xe_oa_fops = {
++	.owner		= THIS_MODULE,
++	.llseek		= no_llseek,
++	.release	= xe_oa_release,
++	.poll		= xe_oa_poll,
++	.unlocked_ioctl	= xe_oa_ioctl,
 +};
 +
-+/**
-+ * struct xe_oa_stream - state for a single open stream FD
-+ */
-+struct xe_oa_stream {
-+	/** @oa: xe_oa backpointer */
-+	struct xe_oa *oa;
+ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+ 			     struct xe_oa_open_param *param)
+ {
+@@ -436,6 +801,10 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+ 
+ 	WRITE_ONCE(u->exclusive_stream, stream);
+ 
++	hrtimer_init(&stream->poll_check_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
++	stream->poll_check_timer.function = xe_oa_poll_check_timer_cb;
++	init_waitqueue_head(&stream->poll_wq);
 +
-+	/** @gt: gt associated with the oa stream */
-+	struct xe_gt *gt;
+ 	spin_lock_init(&stream->oa_buffer.ptr_lock);
+ 	mutex_init(&stream->stream_lock);
+ 
+@@ -479,10 +848,21 @@ static int xe_oa_stream_open_ioctl_locked(struct xe_oa *oa,
+ 	if (ret)
+ 		goto err_free;
+ 
++	stream_fd = anon_inode_getfd("[xe_oa]", &xe_oa_fops, stream, 0);
++	if (stream_fd < 0) {
++		ret = stream_fd;
++		goto err_destroy;
++	}
 +
-+	/** @hwe: hardware engine associated with this oa stream */
-+	struct xe_hw_engine *hwe;
++	if (!param->disabled)
++		xe_oa_enable_locked(stream);
 +
-+	/** @stream_lock: Lock serializing stream operations */
-+	struct mutex stream_lock;
-+
-+	/** @sample: true if DRM_XE_OA_PROP_SAMPLE_OA is provided */
-+	bool sample;
-+
-+	/** @exec_q: Exec queue corresponding to DRM_XE_OA_PROPERTY_EXEC_QUEUE_ID */
-+	struct xe_exec_queue *exec_q;
-+
-+	/** @k_exec_q: kernel exec_q used for OA programming batch submissions */
-+	struct xe_exec_queue *k_exec_q;
-+
-+	/** @enabled: Whether the stream is currently enabled */
-+	bool enabled;
-+
-+	/** @oa_config: OA configuration used by the stream */
-+	struct xe_oa_config *oa_config;
-+
-+	/** @oa_config_bos: List of struct @xe_oa_config_bo's */
-+	struct llist_head oa_config_bos;
-+
-+	/** @poll_check_timer: Timer to periodically check for data in the OA buffer */
-+	struct hrtimer poll_check_timer;
-+
-+	/** @poll_wq: Wait queue for waiting for OA data to be available */
-+	wait_queue_head_t poll_wq;
-+
-+	/** @pollin: Whether there is data available to read */
-+	bool pollin;
-+
-+	/** @periodic: Whether periodic sampling is currently enabled */
-+	bool periodic;
-+
-+	/** @period_exponent: OA unit sampling frequency is derived from this */
-+	int period_exponent;
-+
-+	/** @oa_buffer: OA buffer for the stream */
-+	struct xe_oa_buffer oa_buffer;
-+
-+	/** @poll_period_ns: hrtimer period for checking OA buffer for available data */
-+	u64 poll_period_ns;
-+};
- #endif
+ 	/* Hold a reference on the drm device till stream_fd is released */
+ 	drm_dev_get(&stream->oa->xe->drm);
+ 
+ 	return stream_fd;
++err_destroy:
++	xe_oa_stream_destroy(stream);
+ err_free:
+ 	kfree(stream);
+ exit:
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 307409f968e2..1e09f786b3e6 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -1478,6 +1478,10 @@ enum drm_xe_oa_format_type {
+  * @drm_xe_user_extension base.name set to @DRM_XE_OA_EXTENSION_SET_PROPERTY.
+  * @param field in struct @drm_xe_perf_param points to the first
+  * @drm_xe_ext_set_property struct.
++ *
++ * Exactly the same mechanism is also used for stream reconfiguration using
++ * the @DRM_XE_PERF_IOCTL_CONFIG perf fd ioctl, though only a subset of
++ * properties below can be specified for stream reconfiguration.
+  */
+ enum drm_xe_oa_property_id {
+ #define DRM_XE_OA_EXTENSION_SET_PROPERTY	0
 -- 
 2.41.0
 
