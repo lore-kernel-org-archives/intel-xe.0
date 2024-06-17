@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 121D9C2BB9A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CDFAC2BB85
 	for <intel-xe@archiver.kernel.org>; Mon, 17 Jun 2024 22:37:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAC3E10E51A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1CD110E51C;
 	Mon, 17 Jun 2024 22:37:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CAIm/wfn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cf6QlHFf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A9A710E524
- for <intel-xe@lists.freedesktop.org>; Mon, 17 Jun 2024 22:37:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0327D10E51A
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Jun 2024 22:37:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1718663821; x=1750199821;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=SopJ+qvByY8u+iheTACLed3w3CkkLkTinpOvuhPlTWY=;
- b=CAIm/wfnGipStCjrHZEgH92mSWNhy7JYemveBh5PbuBs8Iw3b8f8RMHe
- xydNlepz6ARIha+V7dINHC7GfYhiGA9t1IT1iWYJlydlEihJGVuy2+8q6
- sg9eWbpCVRF2c9oAzS7KJ13Uqn+iEqJPOyUZhdkeqbJYSlnhfnf9w3Azk
- vDX2Aewpn+iYoYv5+mTI7vgc5dcSqd9+za06Zyf9L8JRsEoyi3Adx73UY
- ZQyDGG3SOKVdtYiZmPj+PUqOmk30Yn2Ov6DUotcfwnJ8LYkidPQIiww/a
- trSeJzSdm0OjCV3ZWIz89PXn/viISVVEFztTuJsJgMpUNOVmg9ptk2Yg+ Q==;
-X-CSE-ConnectionGUID: KO23JoD7TLSYKGl03F2snA==
-X-CSE-MsgGUID: zbVPZvj/SsCjiWXlmn97LA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="18428985"
-X-IronPort-AV: E=Sophos;i="6.08,245,1712646000"; d="scan'208";a="18428985"
+ bh=V+xi+PnkrLrMRxyIXx4Lwhln6mj/Ebq0mhPmgquNJ2s=;
+ b=cf6QlHFfa7sy+z33+ijsyyWHc7ArxEvY5/DgWrrAlgofT11XcP6u49GD
+ dZgGTLHdPdPAXr08w7wFRctjM6zxup6SokCEAp9sSrFzqKonYW44ivGTX
+ D3thhOtKbu/VDvJxLBQ7Hf2sUNCsGQsDCbRilEt+4Hx8N9F/rIzs/HQGH
+ tLu3+HoDOl+BlOt9W/37O5drRDMv4btsCrNWbiLNAAt9aHcrn84jyCEv8
+ Og+VsVc/fy+qlbU0eBZsCHWWW29kbdpTo1KFKpjeWz02YfPwOpqnng1z7
+ r7ZHuT8ErljgUOZskurl1T20eg1AaWTvo450Jjw3b2UsukcUMVjY17Cs/ A==;
+X-CSE-ConnectionGUID: K+5X2IbXSrOGaUC/b5Qvgw==
+X-CSE-MsgGUID: /WB8S7sTQQ6sVzsF/OebYQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="18428979"
+X-IronPort-AV: E=Sophos;i="6.08,245,1712646000"; d="scan'208";a="18428979"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jun 2024 15:37:00 -0700
-X-CSE-ConnectionGUID: sDuplyVuTZeR9u92qKY+zQ==
-X-CSE-MsgGUID: haKVBdcjTIOfhxoNNLkElA==
+X-CSE-ConnectionGUID: MS77WPaxRQSh874ymgmdwQ==
+X-CSE-MsgGUID: Of/2Z19mQK6UVU9lW9kzqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,245,1712646000"; d="scan'208";a="72090784"
+X-IronPort-AV: E=Sophos;i="6.08,245,1712646000"; d="scan'208";a="72090779"
 Received: from orsosgc001.jf.intel.com ([10.165.21.138])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jun 2024 15:36:59 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 16/17] drm/xe/oa: Changes to OA_TAKEN
-Date: Mon, 17 Jun 2024 15:36:50 -0700
-Message-ID: <20240617223651.3220399-17-ashutosh.dixit@intel.com>
+Subject: [PATCH 11/17] drm/xe/oa: Add OAC support
+Date: Mon, 17 Jun 2024 15:36:45 -0700
+Message-ID: <20240617223651.3220399-12-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20240617223651.3220399-1-ashutosh.dixit@intel.com>
 References: <20240617223651.3220399-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,93 +65,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rename OA_TAKEN to xe_oa_circ_diff, since xe_oa_circ_diff better describes
-what the macro actually does. Also convert to function and add xe_oa_stream
-arg. These will be used in the following patch.
+Similar to OAR, allow userspace to execute MI_REPORT_PERF_COUNT on compute
+engines of a specified exec queue.
 
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c | 22 +++++++++++++---------
- 1 file changed, 13 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |  1 +
+ drivers/gpu/drm/xe/regs/xe_oa_regs.h     |  3 +
+ drivers/gpu/drm/xe/xe_oa.c               | 74 +++++++++++++++++++++++-
+ 3 files changed, 75 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index cdc68d373165..c38db2a74614 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -130,6 +130,7 @@
+ 
+ #define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244, XE_REG_OPTION_MASKED)
+ #define	  CTX_CTRL_OAC_CONTEXT_ENABLE		REG_BIT(8)
++#define	  CTX_CTRL_RUN_ALONE			REG_BIT(7)
+ #define	  CTX_CTRL_INDIRECT_RING_STATE_ENABLE	REG_BIT(4)
+ #define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	REG_BIT(3)
+ #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
+diff --git a/drivers/gpu/drm/xe/regs/xe_oa_regs.h b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+index 99bad563d51d..2c9e1214e2af 100644
+--- a/drivers/gpu/drm/xe/regs/xe_oa_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+@@ -69,6 +69,9 @@
+ #define  OASTATUS_COUNTER_OVERFLOW	REG_BIT(2)
+ #define  OASTATUS_BUFFER_OVERFLOW	REG_BIT(1)
+ #define  OASTATUS_REPORT_LOST		REG_BIT(0)
++/* OAC unit */
++#define OAC_OACONTROL			XE_REG(0x15114)
++
+ /* OAM unit */
+ #define OAM_HEAD_POINTER_OFFSET			(0x1a0)
+ #define OAM_TAIL_POINTER_OFFSET			(0x1a4)
 diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index be6502066e53..2d398b7231c1 100644
+index d9285c976dbb..42b0ba014e35 100644
 --- a/drivers/gpu/drm/xe/xe_oa.c
 +++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -36,7 +36,6 @@
- #include "xe_pm.h"
- #include "xe_sched_job.h"
+@@ -396,6 +396,19 @@ static u32 __format_to_oactrl(const struct xe_oa_format *format, int counter_sel
+ 		REG_FIELD_PREP(OA_OACONTROL_COUNTER_SIZE_MASK, format->counter_size);
+ }
  
--#define OA_TAKEN(tail, head)	(((tail) - (head)) & (XE_OA_BUFFER_SIZE - 1))
- #define DEFAULT_POLL_FREQUENCY_HZ 200
- #define DEFAULT_POLL_PERIOD_NS (NSEC_PER_SEC / DEFAULT_POLL_FREQUENCY_HZ)
- #define XE_OA_UNIT_INVALID U32_MAX
-@@ -113,6 +112,11 @@ static const struct xe_oa_format oa_formats[] = {
- 	[XE_OA_FORMAT_PEC36u64_G1_4_G2_32]	= { 4, 320, DRM_FMT(PEC), HDR_64_BIT, 1, 0 },
- };
- 
-+static u32 xe_oa_circ_diff(struct xe_oa_stream *stream, u32 tail, u32 head)
++static u32 __oa_ccs_select(struct xe_oa_stream *stream)
 +{
-+	return (tail - head) & (XE_OA_BUFFER_SIZE - 1);
++	u32 val;
++
++	if (stream->hwe->class != XE_ENGINE_CLASS_COMPUTE)
++		return 0;
++
++	val = REG_FIELD_PREP(OAG_OACONTROL_OA_CCS_SELECT_MASK, stream->hwe->instance);
++	xe_assert(stream->oa->xe,
++		  REG_FIELD_GET(OAG_OACONTROL_OA_CCS_SELECT_MASK, val) == stream->hwe->instance);
++	return val;
 +}
 +
- static void xe_oa_config_release(struct kref *ref)
+ static void xe_oa_enable(struct xe_oa_stream *stream)
  {
- 	struct xe_oa_config *oa_config =
-@@ -217,11 +221,11 @@ static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
- 	 * increments. Also report size may not be a power of 2. Compute potential
- 	 * partially landed report in OA buffer.
- 	 */
--	partial_report_size = OA_TAKEN(hw_tail, stream->oa_buffer.tail);
-+	partial_report_size = xe_oa_circ_diff(stream, hw_tail, stream->oa_buffer.tail);
- 	partial_report_size %= report_size;
+ 	const struct xe_oa_format *format = stream->oa_buffer.format;
+@@ -410,7 +423,7 @@ static void xe_oa_enable(struct xe_oa_stream *stream)
  
- 	/* Subtract partial amount off the tail */
--	hw_tail = OA_TAKEN(hw_tail, partial_report_size);
-+	hw_tail = xe_oa_circ_diff(stream, hw_tail, partial_report_size);
+ 	regs = __oa_regs(stream);
+ 	val = __format_to_oactrl(format, regs->oa_ctrl_counter_select_mask) |
+-		OAG_OACONTROL_OA_COUNTER_ENABLE;
++		__oa_ccs_select(stream) | OAG_OACONTROL_OA_COUNTER_ENABLE;
  
- 	tail = hw_tail;
+ 	xe_mmio_write32(stream->gt, regs->oa_ctrl, val);
+ }
+@@ -694,6 +707,57 @@ static int xe_oa_configure_oar_context(struct xe_oa_stream *stream, bool enable)
+ 	return xe_oa_load_with_lri(stream, &reg_lri);
+ }
  
-@@ -233,24 +237,24 @@ static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
- 	 * This is assuming that the writes of the OA unit land in memory in the order
- 	 * they were written.  If not : (╯°□°）╯︵ ┻━┻
- 	 */
--	while (OA_TAKEN(tail, stream->oa_buffer.tail) >= report_size) {
-+	while (xe_oa_circ_diff(stream, tail, stream->oa_buffer.tail) >= report_size) {
- 		void *report = stream->oa_buffer.vaddr + tail;
++static int xe_oa_configure_oac_context(struct xe_oa_stream *stream, bool enable)
++{
++	const struct xe_oa_format *format = stream->oa_buffer.format;
++	struct xe_lrc *lrc = stream->exec_q->lrc[0];
++	u32 regs_offset = xe_lrc_regs_offset(lrc) / sizeof(u32);
++	u32 oacontrol = __format_to_oactrl(format, OAR_OACONTROL_COUNTER_SEL_MASK) |
++		(enable ? OAR_OACONTROL_COUNTER_ENABLE : 0);
++	struct flex regs_context[] = {
++		{
++			OACTXCONTROL(stream->hwe->mmio_base),
++			stream->oa->ctx_oactxctrl_offset[stream->hwe->class] + 1,
++			enable ? OA_COUNTER_RESUME : 0,
++		},
++		{
++			RING_CONTEXT_CONTROL(stream->hwe->mmio_base),
++			regs_offset + CTX_CONTEXT_CONTROL,
++			_MASKED_FIELD(CTX_CTRL_OAC_CONTEXT_ENABLE,
++				      enable ? CTX_CTRL_OAC_CONTEXT_ENABLE : 0) |
++			_MASKED_FIELD(CTX_CTRL_RUN_ALONE,
++				      enable ? CTX_CTRL_RUN_ALONE : 0),
++		},
++	};
++	struct xe_oa_reg reg_lri = { OAC_OACONTROL, oacontrol };
++	int err;
++
++	/* Set ccs select to enable programming of OAC_OACONTROL */
++	xe_mmio_write32(stream->gt, __oa_regs(stream)->oa_ctrl, __oa_ccs_select(stream));
++
++	/* Modify stream hwe context image with regs_context */
++	err = xe_oa_modify_ctx_image(stream, stream->exec_q->lrc[0],
++				     regs_context, ARRAY_SIZE(regs_context));
++	if (err)
++		return err;
++
++	/* Apply reg_lri using LRI */
++	return xe_oa_load_with_lri(stream, &reg_lri);
++}
++
++static int xe_oa_configure_oa_context(struct xe_oa_stream *stream, bool enable)
++{
++	switch (stream->hwe->class) {
++	case XE_ENGINE_CLASS_RENDER:
++		return xe_oa_configure_oar_context(stream, enable);
++	case XE_ENGINE_CLASS_COMPUTE:
++		return xe_oa_configure_oac_context(stream, enable);
++	default:
++		/* Video engines do not support MI_REPORT_PERF_COUNT */
++		return 0;
++	}
++}
++
+ #define HAS_OA_BPC_REPORTING(xe) (GRAPHICS_VERx100(xe) >= 1255)
  
- 		if (oa_report_id(stream, report) || oa_timestamp(stream, report))
- 			break;
+ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+@@ -713,7 +777,7 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
  
--		tail = OA_TAKEN(tail, report_size);
-+		tail = xe_oa_circ_diff(stream, tail, report_size);
+ 	/* disable the context save/restore or OAR counters */
+ 	if (stream->exec_q)
+-		xe_oa_configure_oar_context(stream, false);
++		xe_oa_configure_oa_context(stream, false);
+ 
+ 	/* Make sure we disable noa to save power. */
+ 	xe_mmio_rmw32(stream->gt, RPM_CONFIG1, GT_NOA_ENABLE, 0);
+@@ -881,8 +945,9 @@ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
+ 
+ 	xe_mmio_rmw32(stream->gt, XELPMP_SQCNT1, 0, sqcnt1);
+ 
++	/* Configure OAR/OAC */
+ 	if (stream->exec_q) {
+-		ret = xe_oa_configure_oar_context(stream, true);
++		ret = xe_oa_configure_oa_context(stream, true);
+ 		if (ret)
+ 			return ret;
+ 	}
+@@ -1556,6 +1621,9 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, u64 data, struct drm_file *f
+ 		param.exec_q = xe_exec_queue_lookup(xef, param.exec_queue_id);
+ 		if (XE_IOCTL_DBG(oa->xe, !param.exec_q))
+ 			return -ENOENT;
++
++		if (param.exec_q->width > 1)
++			drm_dbg(&oa->xe->drm, "exec_q->width > 1, programming only exec_q->lrc[0]\n");
  	}
  
--	if (OA_TAKEN(hw_tail, tail) > report_size)
-+	if (xe_oa_circ_diff(stream, hw_tail, tail) > report_size)
- 		drm_dbg(&stream->oa->xe->drm,
- 			"unlanded report(s) head=0x%x tail=0x%x hw_tail=0x%x\n",
- 			stream->oa_buffer.head, tail, hw_tail);
- 
- 	stream->oa_buffer.tail = tail;
- 
--	pollin = OA_TAKEN(stream->oa_buffer.tail,
--			  stream->oa_buffer.head) >= report_size;
-+	pollin = xe_oa_circ_diff(stream, stream->oa_buffer.tail,
-+				 stream->oa_buffer.head) >= report_size;
- 
- 	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
- 
-@@ -323,7 +327,7 @@ static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
- 
- 	xe_assert(stream->oa->xe, head < XE_OA_BUFFER_SIZE && tail < XE_OA_BUFFER_SIZE);
- 
--	for (; OA_TAKEN(tail, head); head = (head + report_size) & mask) {
-+	for (; xe_oa_circ_diff(stream, tail, head); head = (head + report_size) & mask) {
- 		u8 *report = oa_buf_base + head;
- 
- 		ret = xe_oa_append_report(stream, buf, count, offset, report);
+ 	/*
 -- 
 2.41.0
 
