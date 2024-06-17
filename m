@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4FCEC41513
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Jun 2024 14:59:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFCA0C27C79
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Jun 2024 15:00:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D28410E40B;
-	Mon, 17 Jun 2024 14:59:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 705C610E40C;
+	Mon, 17 Jun 2024 15:00:20 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0F5810E40B;
- Mon, 17 Jun 2024 14:59:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFCC010E40B;
+ Mon, 17 Jun 2024 15:00:18 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_FW_guard_class?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_FW_guard_class?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 17 Jun 2024 14:59:57 -0000
-Message-ID: <171863639765.99140.10226787120203054529@a6498e030952>
+Date: Mon, 17 Jun 2024 15:00:18 -0000
+Message-ID: <171863641884.99140.11796949449179968048@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240617143430.641-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20240617143430.641-1-michal.wajdeczko@intel.com>
@@ -43,15 +43,37 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: FW guard class
 URL   : https://patchwork.freedesktop.org/series/134958/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: c00c42124545 drm-tip: 2024y-06m-17d-11h-03m-17s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Introduce force-wake guard class
-Applying: drm/xe: Use new FW guard in xe_mocs.c
-Applying: drm/xe: Use new FW guard in xe_pat.c
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 668dd1f4af6faff4e2e43db52498cad45087c4a9
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Mon Jun 17 16:34:30 2024 +0200
+
+    drm/xe: Use new FW guard in xe_pat.c
+    
+    Start using new FW guard to minimize risk of leaking force-wake
+    references.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch c00c421245452a4a82a893cd2e1bfd9663a761fb drm-intel
+e2b4b475362c drm/xe: Introduce force-wake guard class
+-:99: WARNING:NEW_TYPEDEFS: do not add new typedefs
+#99: FILE: drivers/gpu/drm/xe/xe_force_wake_types.h:96:
++typedef struct xe_force_wake_guard class_xe_fw_t;
+
+total: 0 errors, 1 warnings, 0 checks, 74 lines checked
+57eebd6cf5a2 drm/xe: Use new FW guard in xe_mocs.c
+668dd1f4af6f drm/xe: Use new FW guard in xe_pat.c
 
 
