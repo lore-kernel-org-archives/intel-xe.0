@@ -4,58 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C990BC27C6E
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Jun 2024 08:50:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1164C2BA18
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Jun 2024 10:07:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75FAD10E216;
-	Mon, 17 Jun 2024 08:50:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C7F310E333;
+	Mon, 17 Jun 2024 10:07:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VN/aPI21";
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="gjQPPusg";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="pxxNurUR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 933A810E216;
- Mon, 17 Jun 2024 08:50:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718614223; x=1750150223;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=LmtJFs5U0H0MHRB7Sc+aeWxh+Em43v/yWk9NqtJAg+k=;
- b=VN/aPI21CoHN5NAjEgueotE3rOvLm/pHujuIC4jQuCHNpiaEdIz8m/q9
- buNVirduCzEjKwjuzb/QvA61S8TUaKolUdfFN644EUPTeRvTh9RCxc6sf
- jEVc3XbSgobcu2Aw/agNwx20fx39A+LC8I4Ame111sLrkcdheeM/y9OOd
- +A7UsYIFzFVV2r4B7aQme/PBxyGlgKnc54wf5iRJVNSFvM9wIRYfH21mt
- LQuA+TE0KQpTm9nruXH0vl4/McK9D3Zu+nES9q4v8tsMGWUnppsQbquFL
- 3kMejqcQolVLLIqmk9eI82ttcZzRJxKw0LOadaqADO4S1eATKX7f5GwW0 g==;
-X-CSE-ConnectionGUID: XY20NB8qRg6OCu+KqyqTgA==
-X-CSE-MsgGUID: yGC2kEXbSvuVjc+wKXzPtA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11105"; a="32972301"
-X-IronPort-AV: E=Sophos;i="6.08,244,1712646000"; d="scan'208";a="32972301"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2024 01:50:23 -0700
-X-CSE-ConnectionGUID: jdK0h3yUR5+gTl6YaRjp2A==
-X-CSE-MsgGUID: AmOFWqcEQKGx2DN0GD2KPw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,244,1712646000"; d="scan'208";a="41828741"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.85])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2024 01:50:21 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43C0610E330;
+ Mon, 17 Jun 2024 10:07:57 +0000 (UTC)
+Date: Mon, 17 Jun 2024 12:07:52 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1718618874;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=MMep09BdhvDqVlUNraj2OoQSIAbdm2okslJojZW/qL0=;
+ b=gjQPPusggwz03UKYVTZo5UzOGpQWuGp/rLkQmQvlyN1lS0f53EBhC4hovCZR2zeJcRdQQq
+ elKF03XNG5CL7hA7b2wwTBm1HGPfY7JHdx4ql68rC9H+Oth+2w2Y02ZP8YCXJsq0CBmr76
+ +BtyyeFNovIlU5kBSO7UVePN2CIM5YYME8lWKoKfXs4dk3NYc04rhjJi3rMR04cVNpJQa7
+ 7Xl/BtjWqJ+8v8lefSnabS29ViOJ+fNwdvzJvrzfNiD5nKobBHyFwOg9mo7t3fOpDYZHbu
+ 3PyvfxhDpnZd5tjCDPXbpsaJ/CkfQGT7+JDUf1wWQiD2WgOZjyWX/O1VdSpd0w==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1718618874;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=MMep09BdhvDqVlUNraj2OoQSIAbdm2okslJojZW/qL0=;
+ b=pxxNurURvrlMLFZXMc2CUP56NpMYFQhRWhCXuv/fG6AQtXKg+qePITdo5JtPbgA/aaF2Z/
+ VLf0foeWX9/+8HDA==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Tvrtko Ursulin <tursulin@ursulin.net>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- stable@vger.kernel.org
-Subject: Re: [PATCH] drm/i915/mso: using joiner is not possible with eDP MSO
-In-Reply-To: <ZmxWKyz8RcqjQ0Mg@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240614142311.589089-1-jani.nikula@intel.com>
- <ZmxWKyz8RcqjQ0Mg@intel.com>
-Date: Mon, 17 Jun 2024 11:50:17 +0300
-Message-ID: <87sexcgdh2.fsf@intel.com>
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH v2 3/8] drm/i915: Don't check for atomic context on
+ PREEMPT_RT
+Message-ID: <20240617100752.9XDTS0R5@linutronix.de>
+References: <20240613102818.4056866-1-bigeasy@linutronix.de>
+ <20240613102818.4056866-4-bigeasy@linutronix.de>
+ <94423591-adba-46d4-a9ba-f377dfab369f@ursulin.net>
+ <20240614110548.m3lloBjv@linutronix.de>
+ <fa38f377-a00a-4e0c-b416-54a1c3f15d4d@ursulin.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+In-Reply-To: <fa38f377-a00a-4e0c-b416-54a1c3f15d4d@ursulin.net>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,57 +68,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 14 Jun 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Fri, Jun 14, 2024 at 05:23:11PM +0300, Jani Nikula wrote:
->> It's not possible to use the joiner at the same time with eDP MSO. When
->> a panel needs MSO, it's not optional, so MSO trumps joiner.
->>=20
->> v3: Only change intel_dp_has_joiner(), leave debugfs alone (Ville)
->>=20
->> Cc: stable@vger.kernel.org
->> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
->> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1668
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On 2024-06-14 13:19:25 [+0100], Tvrtko Ursulin wrote:
+> > So the question is why do you need to know if the context is atomic?
+> > The only impact is avoiding disabling preemption. Is it that important
+> > to avoid it?
+> > If so would cant_migrate() work? It requires CONFIG_DEBUG_ATOMIC_SLEEP=y
+> > to do the trick.
+> 
+> ... catching misuse of atomic wait helpers step 2 - are you calling it from
+> a non-atomic context without the real need. So should use the non-atomic
+> helper instead.
+> 
+> When i915 development was very active and with a lot of contributors it was
+> beneficial to catch these things which code review would easily miss.
+> 
+> Now that the pace is much, much slower, it is probably not very important.
+> So this patch is acceptable for what I am concerned and:
+> 
+> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> 
+> Actually please also add the PREEMPT_RT angle to the comment above
+> _WAIT_FOR_ATOMIC_CHECK. Sometimes lines change and git blame makes it hard
+> to find the commit text.
 
-Thanks, pushed to din with
+Do you want me the repost the series? Are the bots happy enough?
+I have the following as far this patch:
 
-    Fixes: bc71194e8897 ("drm/i915/edp: enable eDP MSO during link training=
-")
-    Cc: <stable@vger.kernel.org> # v5.13+
+------->8--------------
 
-BR,
-Jani.
+The !in_atomic() check in _wait_for_atomic() triggers on PREEMPT_RT
+because the uncore::lock is a spinlock_t and does not disable
+preemption or interrupts.
 
->
->>=20
->> ---
->>=20
->> Just the minimal fix for starters to move things along.
->> ---
->>  drivers/gpu/drm/i915/display/intel_dp.c | 4 ++++
->>  1 file changed, 4 insertions(+)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i=
-915/display/intel_dp.c
->> index 9a9bb0f5b7fe..ab33c9de393a 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -465,6 +465,10 @@ bool intel_dp_has_joiner(struct intel_dp *intel_dp)
->>  	struct intel_encoder *encoder =3D &intel_dig_port->base;
->>  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->>=20=20
->> +	/* eDP MSO is not compatible with joiner */
->> +	if (intel_dp->mso_link_count)
->> +		return false;
->> +
->>  	return DISPLAY_VER(dev_priv) >=3D 12 ||
->>  		(DISPLAY_VER(dev_priv) =3D=3D 11 &&
->>  		 encoder->port !=3D PORT_A);
->> --=20
->> 2.39.2
+Changing the uncore:lock to a raw_spinlock_t doubles the worst case
+latency on an otherwise idle testbox during testing.
 
---=20
-Jani Nikula, Intel
+Ignore _WAIT_FOR_ATOMIC_CHECK() on PREEMPT_RT.
+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Link: https://lore.kernel.org/all/20211006164628.s2mtsdd2jdbfyf7g@linutronix.de/
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+---
+ drivers/gpu/drm/i915/i915_utils.h | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+index 06ec6ceb61d57..f0d3c5cdc1b1b 100644
+--- a/drivers/gpu/drm/i915/i915_utils.h
++++ b/drivers/gpu/drm/i915/i915_utils.h
+@@ -273,8 +273,13 @@ wait_remaining_ms_from_jiffies(unsigned long timestamp_jiffies, int to_wait_ms)
+ 						   (Wmax))
+ #define wait_for(COND, MS)		_wait_for((COND), (MS) * 1000, 10, 1000)
+ 
+-/* If CONFIG_PREEMPT_COUNT is disabled, in_atomic() always reports false. */
+-#if defined(CONFIG_DRM_I915_DEBUG) && defined(CONFIG_PREEMPT_COUNT)
++/*
++ * If CONFIG_PREEMPT_COUNT is disabled, in_atomic() always reports false.
++ * On PREEMPT_RT the context isn't becoming atomic because it is used in an
++ * interrupt handler or because a spinlock_t is acquired. This leads warnings
++ * which don't occur otherwise and is therefore disabled.
++ */
++#if defined(CONFIG_DRM_I915_DEBUG) && defined(CONFIG_PREEMPT_COUNT) && !defined(CONFIG_PREEMPT_RT)
+ # define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) WARN_ON_ONCE((ATOMIC) && !in_atomic())
+ #else
+ # define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) do { } while (0)
+
+> Regards,
+> 
+> Tvrtko
+
+Sebastian
