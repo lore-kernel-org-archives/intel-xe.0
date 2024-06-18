@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 151BAC27C4F
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Jun 2024 17:35:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4568FC27C4F
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Jun 2024 17:46:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB29E10E75A;
-	Tue, 18 Jun 2024 17:35:57 +0000 (UTC)
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 512FD10E755;
- Tue, 18 Jun 2024 17:35:56 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Convert_multiple_bind_op?=
- =?utf-8?q?s_to_1_job_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEB8310E76F;
+	Tue, 18 Jun 2024 17:46:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WTGnuAbT";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D07A10E769;
+ Tue, 18 Jun 2024 17:46:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1718732812; x=1750268812;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=XFkSf917M5jaLADDBly7MJCVGGUSz1H1UBZVZhkOG5E=;
+ b=WTGnuAbT59tM7y/5KuwNItgRFpHeBHS6fRgwhTItT+ZdzajeCeHknlqk
+ vlUd0DQhjIvCdZOtFd24tQJNBqC3NHRDWYaDmRmcfnLYM5lpLS3fQKkHf
+ tzMG8cWnohSwDPunkQ39WlTZaxSz5kQTCD0tRxWs4ZFvLl7XGSEi2jfdI
+ AGEQdv+AseKI84Y/zkPh32VF3eQDnOX4WiYfK+5EnwmEI36VyYncpfCnJ
+ HDnWfR1ghGteaMeckkO0xgzYt3C+YqwwuZOTpNKTtc+tpQIOIs4g8OBnB
+ 3o0P6VmMkXPLhHLsQ1Lm7nxZm2F6fonr4agBNMF6xHo4yVsRfq7nBWTnD A==;
+X-CSE-ConnectionGUID: UhnF7ORGQhuVnI7yQJHc/A==
+X-CSE-MsgGUID: sBIKWX+KTbuGZZj7wjQdCg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="15603466"
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="15603466"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2024 10:46:52 -0700
+X-CSE-ConnectionGUID: IZLdSM6kShe39YZOKgzvjQ==
+X-CSE-MsgGUID: O7Oy+FYxTK2mz7SZezQCkQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="46004929"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2024 10:46:51 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: igt-dev@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 18 Jun 2024 17:35:56 -0000
-Message-ID: <171873215633.104452.4301005957505261892@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <20240618171509.3336601-1-matthew.brost@intel.com>
-In-Reply-To: <20240618171509.3336601-1-matthew.brost@intel.com>
+Subject: [PATCH i-g-t v3 0/2] Job cancel tests
+Date: Tue, 18 Jun 2024 10:47:26 -0700
+Message-Id: <20240618174728.3336865-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +61,19 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Tests following, merged, series:
+[1] https://patchwork.freedesktop.org/series/134724/
 
-Series: Convert multiple bind ops to 1 job (rev4)
-URL   : https://patchwork.freedesktop.org/series/133034/
-State : success
+Matthew Brost (2):
+  xe_exec_reset: Add job cancel tests
+  xe_exec_reset: Add timeslice preempt test
 
-== Summary ==
+ tests/intel/xe_exec_reset.c | 44 ++++++++++++++++++++++++++++++++++---
+ 1 file changed, 41 insertions(+), 3 deletions(-)
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast fd8ad6cbb953a61cdbb7d7a10a13a2b5c8752c4c
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+-- 
+2.34.1
 
