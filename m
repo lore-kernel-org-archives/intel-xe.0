@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86A21C27C79
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B11B0C2BB85
 	for <intel-xe@archiver.kernel.org>; Tue, 18 Jun 2024 01:46:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 506F310E013;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 752AB10E1BF;
 	Tue, 18 Jun 2024 01:46:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gzRSDBlW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TsWcMVNh";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 398FD10E205
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Jun 2024 01:46:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6462F10E013
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Jun 2024 01:46:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718675181; x=1750211181;
+ t=1718675180; x=1750211180;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=HEvt7+Fn5xM/c7kQCEB/t9DSGnNYM0vqEAnWEL9I2YA=;
- b=gzRSDBlW4IotFMx//KEWGjs3KIE4VRkb6hMQqtMophO7Ai78eCLd7vRL
- PNWfuF8LpVOyxGJbP4J329Z+P+fp20JV89LNo52LA/8VPuiYwRtStnW21
- A176Ju+AKPfkZzPHY3YEO7updTjnk5woejD7WKBSTCW4AR+nWQTggLTw6
- gdWmCqV1WgQoid+Cu4Th3WUIyveqV7OrYDXs5xJVSbJsxbI4SepcyGPSF
- /t8Amu37mMsts3/dicKmlUxpuTOKAk4Otovn7gkftaAx4HIPfPaYoZdHW
- YCthyw5toQdiAmDFcz60QYKY6mx+i74W78+fp727jk5Js7QYEVgLI28jr g==;
-X-CSE-ConnectionGUID: 7OmOcNKUQEil2p3ATOxE0g==
-X-CSE-MsgGUID: l3sLCzGHSBe8EECIuY5pDg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="38051504"
-X-IronPort-AV: E=Sophos;i="6.08,246,1712646000"; d="scan'208";a="38051504"
+ bh=SmvBMeRDKYVv1sqpN4DaNwg9Y4MA8Va9W7RrStUk9T8=;
+ b=TsWcMVNhKN2BE465LMN2DlNH+01QPmy6Tt5y2iVFIyxtjCt/rHWQQv/G
+ jwqnbkM3dMZ9/YCE9ohYNl6NrQ3bL3AY5UKJTdjb0syb1YBBiSSK39W3L
+ lmtRPqpNaU32NzywBjj9odE8RYNP61bRBNYr0ugegouXzgVBkV6p9sgYQ
+ uLxcmJ3A9ItGNhBg3nVUPkEPNL7C4+va8FN+yfnu0XSQWYcEwiDo6bh1j
+ lO2eblRtPcku4objWWoucrfxWPjFZ9H97qJzJ2AWSKQdFTedWbZoYxFzC
+ a2sazMxGcyy8AUQ5vG3oMWXMXHU0ixLDpQ0jFMDte2P8PY99WtilfcsPC Q==;
+X-CSE-ConnectionGUID: ZIN4LFPsQVWIJyHIRSEkbg==
+X-CSE-MsgGUID: BTG1288iStijezEKwo34kA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="38051492"
+X-IronPort-AV: E=Sophos;i="6.08,246,1712646000"; d="scan'208";a="38051492"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2024 18:46:20 -0700
-X-CSE-ConnectionGUID: VtVBlcJcQuajAuGcZejpvg==
-X-CSE-MsgGUID: u2QLbouPQbeNHnIHxuTakw==
+ 17 Jun 2024 18:46:19 -0700
+X-CSE-ConnectionGUID: STaY3iQARuq6FK6t64S0KA==
+X-CSE-MsgGUID: ePIciLj8QNm+LMiaYlWXww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,246,1712646000"; d="scan'208";a="41314325"
+X-IronPort-AV: E=Sophos;i="6.08,246,1712646000"; d="scan'208";a="41314312"
 Received: from orsosgc001.jf.intel.com ([10.165.21.138])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2024 18:46:20 -0700
+ 17 Jun 2024 18:46:19 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 13/17] drm/xe/oa/uapi: OA buffer mmap
-Date: Mon, 17 Jun 2024 18:46:05 -0700
-Message-ID: <20240618014609.3233427-14-ashutosh.dixit@intel.com>
+Subject: [PATCH 01/17] drm/xe/perf/uapi: "Perf" layer to support multiple perf
+ counter stream types
+Date: Mon, 17 Jun 2024 18:45:53 -0700
+Message-ID: <20240618014609.3233427-2-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20240618014609.3233427-1-ashutosh.dixit@intel.com>
 References: <20240618014609.3233427-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,93 +67,234 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow the OA buffer to be mmap'd to userspace. This is needed for the MMIO
-trigger use case. Even otherwise, with whitelisted OA head/tail ptr
-registers, userspace can receive/interpret OA data from the mmap'd buffer
-without issuing read()'s on the OA stream fd.
+In Xe, the plan is to support multiple types of perf counter streams (OA is
+only one type of these streams). Rather than introduce NxM ioctls for
+these (N perf streams with M ioctl's per perf stream), we decide to
+multiplex these (N different stream types and the M ops for each of these
+stream types) through a single PERF ioctl. This multiplexing is the purpose
+of the PERF layer.
 
-v2: Remove unmap_mapping_range from xe_oa_release (Thomas H)
-    Use vm_flags_mod (Umesh)
+In addition to PERF DRM ioctl's, another set of ioctl's on the PERF fd are
+defined. These are expected to be common to different PERF stream types and
+therefore defined at the PERF layer itself.
+
+v2: Add param_size to 'struct drm_xe_perf_param' (Umesh)
+v3: Rename 'enum drm_xe_perf_ops' to
+    'enum drm_xe_perf_ioctls' (Guy Zadicario)
+    Add DRM_ prefix to ioctl names to indicate uapi names
+v4: Add 'enum drm_xe_perf_op' previously missed out (Guy Zadicario)
+v5: Squash the ops and PERF layer patches into a single patch (Umesh)
+    Remove param_size from struct 'drm_xe_perf_param' (Umesh)
+v6: Add DRM_XE_PERF_IOCTL_STATUS
+v7: Add DRM_XE_PERF_IOCTL_INFO
+v8: Fix Copyright years, fix DRM_XE_PERF_TYPE_MAX, move '#include
+    "xe_perf.h"' to xe_perf.c, add kernel doc (Michal)
 
 Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Suggested-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Acked-by: Guy Zadicario <gzadicario@habana.ai>
+Acked-by: José Roberto de Souza <jose.souza@intel.com>
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c | 46 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+ drivers/gpu/drm/xe/Makefile    |  1 +
+ drivers/gpu/drm/xe/xe_device.c |  2 ++
+ drivers/gpu/drm/xe/xe_perf.c   | 34 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_perf.h   | 14 ++++++++
+ include/uapi/drm/xe_drm.h      | 66 ++++++++++++++++++++++++++++++++++
+ 5 files changed, 117 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_perf.c
+ create mode 100644 drivers/gpu/drm/xe/xe_perf.h
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 038caeb7c9e7..00654213cd93 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -824,6 +824,8 @@ static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream)
- 		return PTR_ERR(bo);
- 
- 	stream->oa_buffer.bo = bo;
-+	/* mmap implementation requires OA buffer to be in system memory */
-+	xe_assert(stream->oa->xe, bo->vmap.is_iomem == 0);
- 	stream->oa_buffer.vaddr = bo->vmap.vaddr;
- 	return 0;
- }
-@@ -1125,6 +1127,49 @@ static int xe_oa_release(struct inode *inode, struct file *file)
- 	return 0;
- }
- 
-+static int xe_oa_mmap(struct file *file, struct vm_area_struct *vma)
-+{
-+	struct xe_oa_stream *stream = file->private_data;
-+	struct xe_bo *bo = stream->oa_buffer.bo;
-+	unsigned long start = vma->vm_start;
-+	int i, ret;
-+
-+	if (xe_perf_stream_paranoid && !perfmon_capable()) {
-+		drm_dbg(&stream->oa->xe->drm, "Insufficient privilege to map OA buffer\n");
-+		return -EACCES;
-+	}
-+
-+	/* Can mmap the entire OA buffer or nothing (no partial OA buffer mmaps) */
-+	if (vma->vm_end - vma->vm_start != XE_OA_BUFFER_SIZE) {
-+		drm_dbg(&stream->oa->xe->drm, "Wrong mmap size, must be OA buffer size\n");
-+		return -EINVAL;
-+	}
-+
-+	/*
-+	 * Only support VM_READ, enforce MAP_PRIVATE by checking for
-+	 * VM_MAYSHARE, don't copy the vma on fork
-+	 */
-+	if (vma->vm_flags & (VM_WRITE | VM_EXEC | VM_SHARED | VM_MAYSHARE)) {
-+		drm_dbg(&stream->oa->xe->drm, "mmap must be read only\n");
-+		return -EINVAL;
-+	}
-+	vm_flags_mod(vma, VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP | VM_DONTCOPY,
-+		     VM_MAYWRITE | VM_MAYEXEC);
-+
-+	xe_assert(stream->oa->xe, bo->ttm.ttm->num_pages ==
-+		  (vma->vm_end - vma->vm_start) >> PAGE_SHIFT);
-+	for (i = 0; i < bo->ttm.ttm->num_pages; i++) {
-+		ret = remap_pfn_range(vma, start, page_to_pfn(bo->ttm.ttm->pages[i]),
-+				      PAGE_SIZE, vma->vm_page_prot);
-+		if (ret)
-+			break;
-+
-+		start += PAGE_SIZE;
-+	}
-+
-+	return ret;
-+}
-+
- static const struct file_operations xe_oa_fops = {
- 	.owner		= THIS_MODULE,
- 	.llseek		= no_llseek,
-@@ -1132,6 +1177,7 @@ static const struct file_operations xe_oa_fops = {
- 	.poll		= xe_oa_poll,
- 	.read		= xe_oa_read,
- 	.unlocked_ioctl	= xe_oa_ioctl,
-+	.mmap		= xe_oa_mmap,
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index cbf961b90237..f99492449e5d 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -95,6 +95,7 @@ xe-y += xe_bb.o \
+ 	xe_pat.o \
+ 	xe_pci.o \
+ 	xe_pcode.o \
++	xe_perf.o \
+ 	xe_pm.o \
+ 	xe_preempt_fence.o \
+ 	xe_pt.o \
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 64691a56d59c..a44093cbbb71 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -44,6 +44,7 @@
+ #include "xe_module.h"
+ #include "xe_pat.h"
+ #include "xe_pcode.h"
++#include "xe_perf.h"
+ #include "xe_pm.h"
+ #include "xe_query.h"
+ #include "xe_sriov.h"
+@@ -141,6 +142,7 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
+ 			  DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_WAIT_USER_FENCE, xe_wait_user_fence_ioctl,
+ 			  DRM_RENDER_ALLOW),
++	DRM_IOCTL_DEF_DRV(XE_PERF, xe_perf_ioctl, DRM_RENDER_ALLOW),
  };
  
- static bool engine_supports_mi_query(struct xe_hw_engine *hwe)
+ static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
+diff --git a/drivers/gpu/drm/xe/xe_perf.c b/drivers/gpu/drm/xe/xe_perf.c
+new file mode 100644
+index 000000000000..2963174ecd0e
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_perf.c
+@@ -0,0 +1,34 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023-2024 Intel Corporation
++ */
++
++#include <linux/errno.h>
++
++#include <drm/xe_drm.h>
++
++#include "xe_perf.h"
++
++/**
++ * xe_perf_ioctl - The top level perf layer ioctl
++ * @dev: @drm_device
++ * @data: pointer to struct @drm_xe_perf_param
++ * @file: @drm_file
++ *
++ * The function is called for different perf streams types and allows execution
++ * of different operations supported by those perf stream types.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_perf_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
++{
++	struct drm_xe_perf_param *arg = data;
++
++	if (arg->extensions)
++		return -EINVAL;
++
++	switch (arg->perf_type) {
++	default:
++		return -EINVAL;
++	}
++}
+diff --git a/drivers/gpu/drm/xe/xe_perf.h b/drivers/gpu/drm/xe/xe_perf.h
+new file mode 100644
+index 000000000000..e7e258eaf0a9
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_perf.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023-2024 Intel Corporation
++ */
++
++#ifndef _XE_PERF_H_
++#define _XE_PERF_H_
++
++struct drm_device;
++struct drm_file;
++
++int xe_perf_ioctl(struct drm_device *dev, void *data, struct drm_file *file);
++
++#endif
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index d7b0903c22b2..c1626027dc69 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -80,6 +80,7 @@ extern "C" {
+  *  - &DRM_IOCTL_XE_EXEC_QUEUE_GET_PROPERTY
+  *  - &DRM_IOCTL_XE_EXEC
+  *  - &DRM_IOCTL_XE_WAIT_USER_FENCE
++ *  - &DRM_IOCTL_XE_PERF
+  */
+ 
+ /*
+@@ -100,6 +101,8 @@ extern "C" {
+ #define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x08
+ #define DRM_XE_EXEC			0x09
+ #define DRM_XE_WAIT_USER_FENCE		0x0a
++#define DRM_XE_PERF			0x0b
++
+ /* Must be kept compact -- no holes */
+ 
+ #define DRM_IOCTL_XE_DEVICE_QUERY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEVICE_QUERY, struct drm_xe_device_query)
+@@ -113,6 +116,7 @@ extern "C" {
+ #define DRM_IOCTL_XE_EXEC_QUEUE_GET_PROPERTY	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_GET_PROPERTY, struct drm_xe_exec_queue_get_property)
+ #define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
+ #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
++#define DRM_IOCTL_XE_PERF			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_PERF, struct drm_xe_perf_param)
+ 
+ /**
+  * DOC: Xe IOCTL Extensions
+@@ -1370,6 +1374,68 @@ struct drm_xe_wait_user_fence {
+ 	__u64 reserved[2];
+ };
+ 
++/**
++ * enum drm_xe_perf_type - Perf stream types
++ */
++enum drm_xe_perf_type {
++	__DRM_XE_PERF_TYPE_MAX, /* non-ABI */
++};
++
++/**
++ * enum drm_xe_perf_op - Perf stream ops
++ */
++enum drm_xe_perf_op {
++	/** @DRM_XE_PERF_OP_STREAM_OPEN: Open a perf counter stream */
++	DRM_XE_PERF_OP_STREAM_OPEN,
++
++	/** @DRM_XE_PERF_OP_ADD_CONFIG: Add perf stream config */
++	DRM_XE_PERF_OP_ADD_CONFIG,
++
++	/** @DRM_XE_PERF_OP_REMOVE_CONFIG: Remove perf stream config */
++	DRM_XE_PERF_OP_REMOVE_CONFIG,
++};
++
++/**
++ * struct drm_xe_perf_param - Input of &DRM_XE_PERF
++ *
++ * The perf layer enables multiplexing perf counter streams of multiple
++ * types. The actual params for a particular stream operation are supplied
++ * via the @param pointer (use __copy_from_user to get these params).
++ */
++struct drm_xe_perf_param {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++	/** @perf_type: Perf stream type, of enum @drm_xe_perf_type */
++	__u64 perf_type;
++	/** @perf_op: Perf op, of enum @drm_xe_perf_op */
++	__u64 perf_op;
++	/** @param: Pointer to actual stream params */
++	__u64 param;
++};
++
++/**
++ * enum drm_xe_perf_ioctls - Perf fd ioctl's
++ *
++ * Information exchanged between userspace and kernel for perf fd ioctl's
++ * is stream type specific
++ */
++enum drm_xe_perf_ioctls {
++	/** @DRM_XE_PERF_IOCTL_ENABLE: Enable data capture for a stream */
++	DRM_XE_PERF_IOCTL_ENABLE = _IO('i', 0x0),
++
++	/** @DRM_XE_PERF_IOCTL_DISABLE: Disable data capture for a stream */
++	DRM_XE_PERF_IOCTL_DISABLE = _IO('i', 0x1),
++
++	/** @DRM_XE_PERF_IOCTL_CONFIG: Change stream configuration */
++	DRM_XE_PERF_IOCTL_CONFIG = _IO('i', 0x2),
++
++	/** @DRM_XE_PERF_IOCTL_STATUS: Return stream status */
++	DRM_XE_PERF_IOCTL_STATUS = _IO('i', 0x3),
++
++	/** @DRM_XE_PERF_IOCTL_INFO: Return stream info */
++	DRM_XE_PERF_IOCTL_INFO = _IO('i', 0x4),
++};
++
+ #if defined(__cplusplus)
+ }
+ #endif
 -- 
 2.41.0
 
