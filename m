@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B91BC27C4F
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Jun 2024 11:19:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2614C2BA15
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Jun 2024 11:35:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 456AF10E630;
-	Tue, 18 Jun 2024 11:19:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Da6H7m7O";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E16010E630;
- Tue, 18 Jun 2024 11:19:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718709548; x=1750245548;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=A3ytfMRbqVMxH9cTRrdXhMFiiHn/SEwxFjo8jlcslhc=;
- b=Da6H7m7OtjJKY56DPJkgq/w0p2nnKyR7PP3gK9dx5ge2s/t7gL2j+ybS
- dlqdsEONkMlNxn19KnXhQ4BGesEteNklXK/qOCl8Ii0evca3qRav/JkBK
- tGoIB/z8eYlrVtyVaflXu58aI1zjNOkrz6XHwV1aPdm4MPdi4uQGveFfm
- PIXJ2wwTLDwHY9kHMnqZBzSCY9Ul3BR0hcggwci4aZRDzn1sKFRjt3gMe
- GdGY6Jjm8X9QaxwDHy/7XOs3yYodI+gygRpykSl5rCC7GuL+gigUVq4C2
- qNzqGo5e3wK4MVeiKlt3eHndr1XUx/L4FXxfk0grW4ggd/IsGCiM+mMWE A==;
-X-CSE-ConnectionGUID: RQ/xfK7QQYawT7HWuHDP9Q==
-X-CSE-MsgGUID: B4lNEVkfT8aTdSOWTs/oZg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="19359346"
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="19359346"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 04:19:07 -0700
-X-CSE-ConnectionGUID: tXfD+fY9QUOJ8JauUvnMwg==
-X-CSE-MsgGUID: 1xNxxBigSm6dxl21xC/ITQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="78976332"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 04:19:06 -0700
-Date: Tue, 18 Jun 2024 14:19:15 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/3] drm/i915: Pass intel_display to the encoder
- suspend/shutdown helpers
-Message-ID: <ZnFtM5zQuXxw4mTz@ideak-desk.fi.intel.com>
-References: <20240617170356.4000251-1-imre.deak@intel.com>
- <20240617170356.4000251-2-imre.deak@intel.com>
- <87frtahb8z.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B51F10E117;
+	Tue, 18 Jun 2024 11:35:47 +0000 (UTC)
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2BF310E117;
+ Tue, 18 Jun 2024 11:35:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4872298405084254646=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87frtahb8z.fsf@intel.com>
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_Use_ttm=5Funcached_for?=
+ =?utf-8?q?_BO_with_NEEDS=5FUC_flag_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 18 Jun 2024 11:35:45 -0000
+Message-ID: <171871054579.103379.9406133499403683961@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240618104947.729-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20240618104947.729-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,147 +36,172 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jun 18, 2024 at 12:05:16PM +0300, Jani Nikula wrote:
-> On Mon, 17 Jun 2024, Imre Deak <imre.deak@intel.com> wrote:
-> > Pass intel_display to the encoder suspend/shutdown helpers instead of
-> > drm_i915_private for better isolation. This assumes that HAS_DISPLAY()
-> > will also take an intel_display parameter in the future (or that the
-> > HAS_DISPLAY() check will be moved to a caller of these functions).
-> 
-> You can already do that! HAS_DISPLAY() takes either i915 or display. So
-> maybe make that change now.
+--===============4872298405084254646==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Ah the _Generic() magic, nice! Will change this.
+== Series Details ==
 
-> In the future, only display code should have HAS_DISPLAY() anyway, not
-> i915 or xe core. It's not an option that the caller does the checks.
+Series: drm/xe: Use ttm_uncached for BO with NEEDS_UC flag (rev2)
+URL   : https://patchwork.freedesktop.org/series/134580/
+State : failure
 
-Ok.
+== Summary ==
 
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_encoder.c | 22 +++++++++++---------
-> >  drivers/gpu/drm/i915/display/intel_encoder.h |  7 +++----
-> >  drivers/gpu/drm/i915/i915_driver.c           |  6 +++---
-> >  3 files changed, 18 insertions(+), 17 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_encoder.c b/drivers/gpu/drm/i915/display/intel_encoder.c
-> > index 8a1dccb893a37..8e73d18a522d4 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_encoder.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_encoder.c
-> > @@ -38,8 +38,9 @@ void intel_encoder_link_check_queue_work(struct intel_encoder *encoder, int dela
-> >  			 &encoder->link_check_work, msecs_to_jiffies(delay_ms));
-> >  }
-> >  
-> > -void intel_encoder_suspend_all(struct drm_i915_private *i915)
-> > +void intel_encoder_suspend_all(struct intel_display *display)
-> >  {
-> > +	struct drm_i915_private *i915 = to_i915(display->drm);
-> >  	struct intel_encoder *encoder;
-> >  
-> >  	if (!HAS_DISPLAY(i915))
-> > @@ -49,19 +50,20 @@ void intel_encoder_suspend_all(struct drm_i915_private *i915)
-> >  	 * TODO: check and remove holding the modeset locks if none of
-> >  	 * the encoders depends on this.
-> >  	 */
-> > -	drm_modeset_lock_all(&i915->drm);
-> > -	for_each_intel_encoder(&i915->drm, encoder)
-> > +	drm_modeset_lock_all(display->drm);
-> > +	for_each_intel_encoder(display->drm, encoder)
-> >  		if (encoder->suspend)
-> >  			encoder->suspend(encoder);
-> > -	drm_modeset_unlock_all(&i915->drm);
-> > +	drm_modeset_unlock_all(display->drm);
-> >  
-> > -	for_each_intel_encoder(&i915->drm, encoder)
-> > +	for_each_intel_encoder(display->drm, encoder)
-> >  		if (encoder->suspend_complete)
-> >  			encoder->suspend_complete(encoder);
-> >  }
-> >  
-> > -void intel_encoder_shutdown_all(struct drm_i915_private *i915)
-> > +void intel_encoder_shutdown_all(struct intel_display *display)
-> >  {
-> > +	struct drm_i915_private *i915 = to_i915(display->drm);
-> >  	struct intel_encoder *encoder;
-> >  
-> >  	if (!HAS_DISPLAY(i915))
-> > @@ -71,13 +73,13 @@ void intel_encoder_shutdown_all(struct drm_i915_private *i915)
-> >  	 * TODO: check and remove holding the modeset locks if none of
-> >  	 * the encoders depends on this.
-> >  	 */
-> > -	drm_modeset_lock_all(&i915->drm);
-> > -	for_each_intel_encoder(&i915->drm, encoder)
-> > +	drm_modeset_lock_all(display->drm);
-> > +	for_each_intel_encoder(display->drm, encoder)
-> >  		if (encoder->shutdown)
-> >  			encoder->shutdown(encoder);
-> > -	drm_modeset_unlock_all(&i915->drm);
-> > +	drm_modeset_unlock_all(display->drm);
-> >  
-> > -	for_each_intel_encoder(&i915->drm, encoder)
-> > +	for_each_intel_encoder(display->drm, encoder)
-> >  		if (encoder->shutdown_complete)
-> >  			encoder->shutdown_complete(encoder);
-> >  }
-> > diff --git a/drivers/gpu/drm/i915/display/intel_encoder.h b/drivers/gpu/drm/i915/display/intel_encoder.h
-> > index e6cd74576f78e..3fa5589f0b1ce 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_encoder.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_encoder.h
-> > @@ -6,8 +6,7 @@
-> >  #ifndef __INTEL_ENCODER_H__
-> >  #define __INTEL_ENCODER_H__
-> >  
-> > -struct drm_i915_private;
-> > -
-> 
-> Ah, this is why you missed the superfluous space. ;)
-> 
-> BR,
-> Jani.
-> 
-> > +struct intel_display;
-> >  struct intel_encoder;
-> >  
-> >  void intel_encoder_link_check_init(struct intel_encoder *encoder,
-> > @@ -15,7 +14,7 @@ void intel_encoder_link_check_init(struct intel_encoder *encoder,
-> >  void intel_encoder_link_check_queue_work(struct intel_encoder *encoder, int delay_ms);
-> >  void intel_encoder_link_check_flush_work(struct intel_encoder *encoder);
-> >  
-> > -void intel_encoder_suspend_all(struct drm_i915_private *i915);
-> > -void intel_encoder_shutdown_all(struct drm_i915_private *i915);
-> > +void intel_encoder_suspend_all(struct intel_display *display);
-> > +void intel_encoder_shutdown_all(struct intel_display *display);
-> >  
-> >  #endif /* __INTEL_ENCODER_H__ */
-> > diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> > index e9e38ed246f66..fb8e9c2fcea53 100644
-> > --- a/drivers/gpu/drm/i915/i915_driver.c
-> > +++ b/drivers/gpu/drm/i915/i915_driver.c
-> > @@ -956,8 +956,8 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
-> >  	if (HAS_DISPLAY(i915))
-> >  		intel_display_driver_suspend_access(i915);
-> >  
-> > -	intel_encoder_suspend_all(i915);
-> > -	intel_encoder_shutdown_all(i915);
-> > +	intel_encoder_suspend_all(&i915->display);
-> > +	intel_encoder_shutdown_all(&i915->display);
-> >  
-> >  	intel_dmc_suspend(i915);
-> >  
-> > @@ -1040,7 +1040,7 @@ static int i915_drm_suspend(struct drm_device *dev)
-> >  	if (HAS_DISPLAY(dev_priv))
-> >  		intel_display_driver_suspend_access(dev_priv);
-> >  
-> > -	intel_encoder_suspend_all(dev_priv);
-> > +	intel_encoder_suspend_all(&dev_priv->display);
-> >  
-> >  	/* Must be called before GGTT is suspended. */
-> >  	intel_dpt_suspend(dev_priv);
-> 
-> -- 
-> Jani Nikula, Intel
+CI Bug Log - changes from xe-1489-b3cee15446d95e97d9d663cdcbc611e698354165_BAT -> xe-pw-134580v2_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-134580v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-134580v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-134580v2_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@b-dp3:
+    - bat-dg2-oem2:       [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1489-b3cee15446d95e97d9d663cdcbc611e698354165/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@b-dp3.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134580v2/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@b-dp3.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-134580v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-dg2-oem2:       [PASS][3] -> [ABORT][4] ([Intel XE#1553])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1489-b3cee15446d95e97d9d663cdcbc611e698354165/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134580v2/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3:
+    - bat-dg2-oem2:       [PASS][5] -> [DMESG-WARN][6] ([Intel XE#1553])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1489-b3cee15446d95e97d9d663cdcbc611e698354165/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134580v2/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html
+
+  
+  [Intel XE#1553]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1553
+
+
+Build changes
+-------------
+
+  * Linux: xe-1489-b3cee15446d95e97d9d663cdcbc611e698354165 -> xe-pw-134580v2
+
+  IGT_7890: a137e386eba9f46f838315f5d93b87561691d45e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1489-b3cee15446d95e97d9d663cdcbc611e698354165: b3cee15446d95e97d9d663cdcbc611e698354165
+  xe-pw-134580v2: 134580v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134580v2/index.html
+
+--===============4872298405084254646==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Use ttm_uncached for BO with NEEDS_UC flag (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134580/">https://patchwork.freedesktop.org/series/134580/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134580v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134580v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1489-b3cee15446d95e97d9d663cdcbc611e698354165_BAT -&gt; xe-pw-134580v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-134580v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-134580v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-134580v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@b-dp3:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1489-b3cee15446d95e97d9d663cdcbc611e698354165/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@b-dp3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134580v2/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@b-dp3.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-134580v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1489-b3cee15446d95e97d9d663cdcbc611e698354165/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134580v2/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1553">Intel XE#1553</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1489-b3cee15446d95e97d9d663cdcbc611e698354165/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134580v2/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1553">Intel XE#1553</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1489-b3cee15446d95e97d9d663cdcbc611e698354165 -&gt; xe-pw-134580v2</li>
+</ul>
+<p>IGT_7890: a137e386eba9f46f838315f5d93b87561691d45e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1489-b3cee15446d95e97d9d663cdcbc611e698354165: b3cee15446d95e97d9d663cdcbc611e698354165<br />
+  xe-pw-134580v2: 134580v2</p>
+
+</body>
+</html>
+
+--===============4872298405084254646==--
