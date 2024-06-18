@@ -4,71 +4,168 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88061C27C4F
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Jun 2024 20:00:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1B9CC27C4F
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Jun 2024 20:10:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED86210E78C;
-	Tue, 18 Jun 2024 20:00:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FEEA10E1E8;
+	Tue, 18 Jun 2024 20:10:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M2Lsz6gm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R4VzF83B";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A1DB10E1E8
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Jun 2024 20:00:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4259510E011;
+ Tue, 18 Jun 2024 20:10:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718740803; x=1750276803;
- h=date:message-id:from:to:cc:subject:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=9J30UiSYeVten//br26KW8XQt3IlyeXbzEPdTakjhUk=;
- b=M2Lsz6gmL61Zl9bwHJbrDKcQa7IyOdkgeXx4qYWCr1dVGyEGM9XI9iYn
- H63WzvWPpe4jXmBwFilUzWNiyBWswsUWsj65qG9z10CiSXrYH8XeXV8mn
- 215B/7qAgRqM4UAcf81va+h50ffMrW2A+YXtE44DgxR/zJHBBG7hqL6cU
- nRsOUu+OJPYC9Q2oAJ2W4P8tUWXVerKGFOMuoYC7ceNRo/8/HsxqfblbI
- QNGn2RQkDV4XaDRweDrYpOsHjUjuMQnPPzQYbYy1vhoPYGe5L8z1SnhOe
- 03EMckqDaPCB+mpnEl+Rf7LWoNm2aO/TGZfISuVXJkdszVhBEQPfOfU7w A==;
-X-CSE-ConnectionGUID: 1DM5rSsjRKmNXe0VdDusrw==
-X-CSE-MsgGUID: RhCxC7nBQf+Z0DV3v/sj/w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="15767014"
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="15767014"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 13:00:03 -0700
-X-CSE-ConnectionGUID: ChBxQzL0Rx2xMhv+XyZe9A==
-X-CSE-MsgGUID: fXF6Fp6VQP+BKtV9pDwnTg==
+ t=1718741413; x=1750277413;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=Bb2jQU2dv7NoPSdS9VVz5Z9G6Sc9bb1owTO06o7qcrM=;
+ b=R4VzF83B/1fqH+sa8dzLiHmsmUAvJEa0VTFDTs3TfOaNJPxS+uCpC5nZ
+ OEDMYmbQkaxlJZLup8WvLEI8FZh61PYPgw1B03VRt/rtw4QHzin8Nr12x
+ xf7MprGM5tkecvbXlO4QO7F5uD0/Q1R0aZfqbilW552w3oPvLQUFpHdlU
+ FXwplhsBHZiho6UNIvqoTLVPmmLVavpVLkiCAKoJ1XzvJuhwFZ67OwCIl
+ kZ60mtstjN4h4yWeMKxqxTwuWy6IDmF5YwVJKkb2izsEfjh1GWfY/YxGc
+ zmq3nc36Kncwpmp9wrXnW5yoKfv6gvASKKgyq0A5zdeymlpL2nFn5/W37 w==;
+X-CSE-ConnectionGUID: I3CU8zUUTp2wOp3jTj5FBA==
+X-CSE-MsgGUID: rqVI5ZBKQ+meGY83XSJdkg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="19519450"
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="19519450"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2024 13:10:12 -0700
+X-CSE-ConnectionGUID: ZrbCjKqVTLWGLhbKGcV0Jw==
+X-CSE-MsgGUID: aCKwVedySL2BUumAV1hqEA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="72875155"
-Received: from vishrutm-mobl11.amr.corp.intel.com (HELO adixit-arch.intel.com)
- ([10.125.97.201])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 13:00:01 -0700
-Date: Tue, 18 Jun 2024 12:54:59 -0700
-Message-ID: <87bk3yyqjw.wl-ashutosh.dixit@intel.com>
-From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: "Souza, Jose" <jose.souza@intel.com>,
- "Wajdeczko, Michal" <Michal.Wajdeczko@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH v15 00/17] Add OA functionality to Xe
-In-Reply-To: <ZnCrLR1i6ksKiMTs@intel.com>
-References: <20240527014333.603914-1-ashutosh.dixit@intel.com>
- <6bee6a666dd0ab8440ca74d692a80788bfb1d748.camel@intel.com>
- <85v82ldew2.wl-ashutosh.dixit@intel.com>
- <8734pp94hx.wl-ashutosh.dixit@intel.com>
- <85sexfd0cy.wl-ashutosh.dixit@intel.com>
- <ZnCQK5ZFiTlj6CRv@intel.com>
- <87h6drz3dy.wl-ashutosh.dixit@intel.com>
- <87543a50eb8056fbc1e9894d2c149bdc818d7124.camel@intel.com>
- <ZnCrLR1i6ksKiMTs@intel.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
- Emacs/29.3 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="64912537"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 18 Jun 2024 13:10:12 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 18 Jun 2024 13:10:11 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Tue, 18 Jun 2024 13:10:11 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Tue, 18 Jun 2024 13:10:11 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FmDMZ235IWeux7mfHxFGc8K6EDuifKHZxAVba0fqaKMbvMM34VHZAHfbzXMxFPo3kO+xg1cfKtCheBv5NT16Th7f0RVQ26+03MbkzkF+dm7aa+8Iv42XFyr3xphUNhB3jaN2o8t/aSoi+IgMpMeSWUBtblQGxgag/vHryhoWhcvBKwaExJUTHag3CPmEm/eVs6xXh8LlaY3BFC0PUbQLVF5ckxsWDVR01aiOKkaGeV0bSsMjmqFb3AEF7tR8LMazJNuKBNyG+t8c1PxUqI8LkhWaoHl6OC9H/ZRUQBjAAW4GrNgM4LXlBlvvLvVOjsNQX/ayXo+Ol1mCzEgsku4fwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7mCDXJ5jEFMGZJbD6moESl3pAlD1p0SW1lPdaF5ihZI=;
+ b=PetO6gJP726mK/C5Na8P6njLyC5D2WIavw249hfhRjxdugu3b5tr0KLTmEZp77z34onkODnif577ET7/owY+DjZ05r2tjmz3uJELwFWH66MyzN/4aRqdnJJX15lgiO7apaFkN7Qq/v9QVqJTy1Ri+lQsV4oA8a0/5ne+QJXSHm9ADiqaw5VDAJJkh/Ri78pukoSAKsFIipnWJ1F90KJxkO5PPy8lz+8DbWeus10nKNujNuQWQk7WoReXQTz6OAKFtoMMLPwRnTFpxcF2Y6SxU4zy4Mbxg3mIUrU/hYRE1cq4m+lMbO2lTtyn4bOrY8E7zwhHIQLzD02jNInAZlVNXQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
+ by DS0PR11MB6325.namprd11.prod.outlook.com (2603:10b6:8:cf::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.31; Tue, 18 Jun
+ 2024 20:10:08 +0000
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42%5]) with mapi id 15.20.7677.030; Tue, 18 Jun 2024
+ 20:10:08 +0000
+Date: Tue, 18 Jun 2024 16:10:03 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+ <tzimmermann@suse.de>
+CC: <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <ankit.k.nautiyal@intel.com>,
+ <suraj.kandpal@intel.com>, <jani.nikula@linux.intel.com>,
+ <sfr@canb.auug.org.au>, <lucas.demarchi@intel.com>
+Subject: Re: [PATCH v2 1/2] drm/dp: Describe target_rr_divider in struct
+ drm_dp_as_sdp
+Message-ID: <ZnHpm1NJDiBlZNdz@intel.com>
+References: <20240614042558.376983-1-mitulkumar.ajitkumar.golani@intel.com>
+ <20240614042558.376983-2-mitulkumar.ajitkumar.golani@intel.com>
+ <ZmyfoMYRfKJv16KD@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ZmyfoMYRfKJv16KD@intel.com>
+X-ClientProxiedBy: BYAPR06CA0069.namprd06.prod.outlook.com
+ (2603:10b6:a03:14b::46) To BYAPR11MB2854.namprd11.prod.outlook.com
+ (2603:10b6:a02:c9::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|DS0PR11MB6325:EE_
+X-MS-Office365-Filtering-Correlation-Id: 36174ebd-4dfb-4f8e-2eb7-08dc8fd2a670
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230037|376011|1800799021|366013;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?k1Vmhp4opDF/8W8hSUj2xq2GU1QwRg6uZwzecDEaMqsDgnH2pwD3Lh8Yz639?=
+ =?us-ascii?Q?QAYBxTW6NArhrKn4UnWLB8dfvV6TSlt1m9nhE5zVc3R+o4x4LmK2qSe+iQ8I?=
+ =?us-ascii?Q?PS8kjsg2wphAHe+WTILpKPGCi+t0GR3mC85KLvZJL0AwiVT7LjnsRCKaeJMp?=
+ =?us-ascii?Q?ekR1RPA5egpz48JTh98tcfnli7m+7pwZCm9f2iyi6AZIjFrjXGopxFlUJZSN?=
+ =?us-ascii?Q?khVLM0T0kpvK8vbiDxMEuTC8K1FKG2iP7yvSmdj6K0HyQnngXWMTZuwNBjU9?=
+ =?us-ascii?Q?uUT8njF21mbHTGXOF2is9FolLSwvBCwDT3I+ZAS0WpmJkKuyiG3SmGjtJ+1T?=
+ =?us-ascii?Q?OjMMp1sUkSm6Eugo3fFRMEk0A+GnZcxeazU698EAieckYMr+LVVSxIBlUjz/?=
+ =?us-ascii?Q?CpZTtFXpXxBGhYaKKPtjtAOGCMHob6LGksx3kQA8MRo64yqoFqOMdDFoSK7m?=
+ =?us-ascii?Q?8OE5nbQnRqoVFmI0wkGer88c4Pn+XZacMza2odor1MkTf8plyLW1dMUwFyeN?=
+ =?us-ascii?Q?icdkc60Ac3EFG5uCxFn672QPOx0GL/adj6qIQpOhwb+PK3IeapMyL0qK/hEu?=
+ =?us-ascii?Q?Negxzo08OJdQxOXN5Sggq4e/dDSX2jGboBO8RV4T1zXQfOpr1bzwZIT/evr7?=
+ =?us-ascii?Q?YFY91ZL8Aw+8ubvdmKpZrAH3BEtWdB5u2O3VWeFMKyqeh24t/ose2QBtbI5K?=
+ =?us-ascii?Q?wi7s2MM7P6BdATqDz4nqRPcGfOgfBiHQhetyN9Q6MLaGj90izdLBChEZXKcw?=
+ =?us-ascii?Q?8rFSv8rtzluNHd8a3YOL/tBV/OVjmeO5CaQ2/vjk2iXgUbtzTimoWjf/SPvA?=
+ =?us-ascii?Q?NTnJPGbllcEFHdePAzTvz3kccHrvxKQS+UVopqrdpq/ARBCleF9Bh0LJWqfJ?=
+ =?us-ascii?Q?mHlsYbgXB0Dj926saCIJeBr+qfavWtU/w/UXeUKUQeqsIyaJPbv/uaqVyHdO?=
+ =?us-ascii?Q?dA4FBimZxWLF5LpMRkHhncBDZLVqvragzITx8QEtc8RMdQBonGx5dY4QzUaZ?=
+ =?us-ascii?Q?WJ5g6obxbkigB5uCagUSERe5qqNY4Hv9cabKQH8eVFHga82476sA4T5pbkAG?=
+ =?us-ascii?Q?LFXZDsLCPFtTBHLEB0mzvN/iPkCqM3KDOdJV+Ya2YSwaiLmCyZEsunmCntAe?=
+ =?us-ascii?Q?m0XOenjOu/aVsyAfnpP4T7ZNgrB6Ac1JwuQeFJ8Smn7J7ynKDXEmOSTVPr2c?=
+ =?us-ascii?Q?wIj5erOBRWtWh4kLCV33z4miVnTtHewID3PH50sVf8mn0/F4+kzGpei1ExUt?=
+ =?us-ascii?Q?T06+Yn4HYOQxsBsEDlJLn4xjN3GNXN8slv5kRTwObyK9G4nq/iEh00xI4k3U?=
+ =?us-ascii?Q?CBwefbyulSj6yfkawkg/IWA9?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230037)(376011)(1800799021)(366013); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?q1/LEeNUourdHJvApH4Okorv0x+PiDZxjmwRUwOZPqIMg7clUlO/Gi1LSIEq?=
+ =?us-ascii?Q?bVUuXDB4weBVfUcYF3XMwpeU93JQjWgC699Csinxe5HwYb1ajVk4pFyiX6BK?=
+ =?us-ascii?Q?HtEJDzfNE2FEUA2fNcuasHGmKWuaMSCStIuH7QQKJG5qa/DpEBEHAV/xvyE1?=
+ =?us-ascii?Q?eYB9KErESbz6Ma5XFQiv+VUlw6guQZxJbcMYY+8vEmz3qCW823mMr2AHlW0b?=
+ =?us-ascii?Q?sJnqp15wJ3mRfPZbzSj8qUDrdB3zs+NbOigCYcUqIE/EIFWEb4VyVuT7R1SJ?=
+ =?us-ascii?Q?eaUMvr5zcDVWJADb8sXNP+ZiUgicOAJGVBMzEExReIwZtA7JLnw8ONoaoLzx?=
+ =?us-ascii?Q?jFnTjHw0wUz6FHTW5lISoLyPJkPcHFu9tw19bSb4HonKbGpQKCYiTGFk1jpc?=
+ =?us-ascii?Q?rsYiOcvEcRX5GppRM/dERi+Vx9Ej0vl0MbEAWoN0N61kfZmsMYUpDvN9bTnp?=
+ =?us-ascii?Q?ZIwQhMUMarYkQAKDZLQXrHL7MVWXtOUQveYJOKEeaVMBvXIkkD8PirhB7W4S?=
+ =?us-ascii?Q?InJXSlZudjnFVVJgzjgIPcRUmEoAXCvytrOHfQIPSTOtT1JhUhZ5n2oEGiGj?=
+ =?us-ascii?Q?1YydQuIK4V+GSIKRGjVwYGNlmoagn00clizv2AruQBUSF9J2chzr5zDqd+EL?=
+ =?us-ascii?Q?Zwk4rbFKDyIALWCPMvbgW661+/bbmJUz7khcVZTFhRrXyT2x7RLVuRMtUUDM?=
+ =?us-ascii?Q?gcJAdfXT5kJFjI3UaHBtQzfCk/pgLbh+7R0DtmVkTNWsXuUANjqQD/7321Xb?=
+ =?us-ascii?Q?0t105XlhYJEiOvE+GQin38fCoRFfIdZ91IAtVhG/HibrpSVNmdxnYjMsYlZo?=
+ =?us-ascii?Q?G+3+h6KEklAe8Zu0gfT5umtjJOIh63Nebf2obIVEFOnFpGMWvrMgXLRDnJU+?=
+ =?us-ascii?Q?DB3yXEFt9E7LSJlSFGn8SmyA5pKzldl3WI5YProhGFzPyxmW9sNJ5FJfPrwa?=
+ =?us-ascii?Q?CW6Ky7SKj9MkB+CEn6KHoMYL5TD5+5Hb+G+TGDcSXxCM4HM5qLFgLTDNkYCq?=
+ =?us-ascii?Q?N9DrK8Rv7Eon6LAVuqD0V9w0Vgz1RQLpLt3rKyy7UEEe5Zbw/IbA7RWZ6/9z?=
+ =?us-ascii?Q?u3VoPfwKcJV99b7KiIUHa4gO5T3+v5gH7dM1bSRBq8ipr59KkwUHKo/49eUp?=
+ =?us-ascii?Q?oe7H6g+HiQ0lEkt9DQF3VrMznH9YCj+yzOOH/RBfHhdU+80QLRd0VoMUe48C?=
+ =?us-ascii?Q?skezbrdrfyx1Vg+Ac92lc6ufw2OJtJIlkQhFAuEP9UNBpgOpk4TmxEDVDHHO?=
+ =?us-ascii?Q?HYaaHrOgLm8uq8WR8qIvr8f+9H/I2xGImLDzCRR5g35fdJ5WOybJcRrcGIIL?=
+ =?us-ascii?Q?JW83+qgpffDJXWM1axcQa9eCMO6HXrbquPT69nyzvnJ1J4f6H8ChWCSsZUU6?=
+ =?us-ascii?Q?DsRB/uhhfgsG4ejVKBfsbHMwkLkPTE7+GKJwNpDzI7l3HdokgZiQZfAhC0pC?=
+ =?us-ascii?Q?dh1JyMmTmLSM212gO0pQsgM8Bwys6+XewfF9IAR5ont3Imf8/T+E3VXinRvW?=
+ =?us-ascii?Q?DsJSaXZ4DiYH2MH8Ek9IO4plWc0Aj6gcX2g/BLy1yVCaqHgfgR8gaIXfZ2ln?=
+ =?us-ascii?Q?1sBKTb2ZAK3PEOrZQwk3/Un3RD/m/1FRrFxEax5l?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 36174ebd-4dfb-4f8e-2eb7-08dc8fd2a670
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2024 20:10:08.0417 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PMBwBkVr3/v/qf6A12oQ2knHyA4rOzHsYXplM6lzhL5jUC7llAWHxTh14EoO4ghCg66egC+cCNOW9MYpVMwD1g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6325
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,246 +180,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 17 Jun 2024 14:31:25 -0700, Rodrigo Vivi wrote:
->
-> On Mon, Jun 17, 2024 at 05:14:28PM -0400, Souza, Jose wrote:
-> > On Mon, 2024-06-17 at 14:05 -0700, Dixit, Ashutosh wrote:
-> > > On Mon, 17 Jun 2024 12:36:11 -0700, Rodrigo Vivi wrote:
-> > > >
-> > >
-> > > Hi Rodrigo,
-> > >
-> > > Thanks for responding :)
-> > >
-> > > > On Fri, Jun 14, 2024 at 08:12:45AM -0700, Dixit, Ashutosh wrote:
-> > > > > On Thu, 06 Jun 2024 13:54:18 -0700, Dixit, Ashutosh wrote:
-> > > > > >
-> > > > > > On Thu, 06 Jun 2024 12:56:13 -0700, Dixit, Ashutosh wrote:
-> > > > > > >
-> > > > > >
-> > > > > > Hi Lucas / Rodrigo / Thomas,
-> > > > > >
-> > > > > > > On Wed, 05 Jun 2024 07:12:54 -0700, Souza, Jose wrote:
-> > > > > > > >
-> > > > > > >
-> > > > > > > Hi Jose,
-> > > > > > >
-> > > > > > > > On Sun, 2024-05-26 at 18:43 -0700, Ashutosh Dixit wrote:
-> > > > > > > > > Please see cover letter for v7 here:
-> > > > > > > > > https://patchwork.freedesktop.org/series/121084/#rev7
-> > > > > > > > >
-> > > > > > > > > For changes in later versions see changelog below.
-> > > > > > > > >
-> > > > > > > > > This series is also available at:
-> > > > > > > > >         https://gitlab.freedesktop.org/adixit/kernel/-/tr=
-ee/xe-oa
-> > > > > > > > >
-> > > > > > > > > The series has been tested against this IGT series:
-> > > > > > > > >         https://gitlab.freedesktop.org/adixit/igt-gpu-too=
-ls/-/tree/xe-oa
-> > > > > > > > >	or,
-> > > > > > > > >	https://patchwork.freedesktop.org/series/130033/
-> > > > > > > > >
-> > > > > > > > > Opensource consumers using uapi in this series:
-> > > > > > > > >
-> > > > > > > > > gpuvis:
-> > > > > > > > >	https://github.com/mikesart/gpuvis/pull/86
-> > > > > > > > >
-> > > > > > > > > mesa:
-> > > > > > > > >	https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests=
-/29312
-> > > > > > > > >
-> > > > > > > > > Test-with: 20240524031439.106332-1-ashutosh.dixit@intel.c=
-om
-> > > > > > > > >
-> > > > > > > >
-> > > > > > > > As first round this uAPI looks good for Mesa usage, second =
-round after
-> > > > > > > > this ones is merged will add additional features and uAPIs =
-need to
-> > > > > > > > support all Mesa needs.
-> > > > > > >
-> > > > > > > Correct. Copy/paste from another email in this thread, this i=
-s what we are
-> > > > > > > looking at for the second round:
-> > > > > > >
-> > > > > > > * hold preemption (needs some investigation as to feasibility)
-> > > > > > > * xe_sync for OA stream configuration and reconfiguration
-> > > > > > > * Equivalent of DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_UUID. I a=
-m still trying
-> > > > > > >   to figure out if this is really needed. See here:
-> > > > > > >   https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/2=
-9312#note_2429650
-> > > > > > >   Since this seems to be using some MDAPI metrics in Mesa, I =
-think it
-> > > > > > >   should be ok to do this in the second round too.
-> > > > > > >
-> > > > > > > > Acked-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> > > > > > >
-> > > > > > > Thanks very much for the Mesa ack. I will start asking the Xe=
- maintainers
-> > > > > > > if this (and gpuvis PR which is also merged) is sufficient to=
- merge this
-> > > > > > > series now.
-> > > > > >
-> > > > > > Mesa has now provided their ack for the Xe OA uapi. Also all Me=
-sa Xe OA
-> > > > > > patches now have R-b. The gpuvis PR mentioned above is also mer=
-ged. The Xe
-> > > > > > OA IGT series is also mentioned above.
-> > > > > >
-> > > > > > So at this point I want to check with you if these things are s=
-ufficient to
-> > > > > > merge these Xe OA patches?
-> > > > >
-> > > > > Gentle ping about this :) Can we try to get this into 6.11?
-> > > >
-> > > > Sorry for taking so long to get to this one here.
-> > > >
-> > > > Is the Mesa MR really ready to get merged right after we merge this=
- kernel series?
-> > > > Are all of the patches there really reviewed? I couldn't make a sen=
-se of the open
-> > > > MR discussions and I noticed the MR is still marked as 'Draft:'.
-> > >
-> > > +Jose: Hi Jose could you please answer Rodrigo's questions above.
-> >
-> > According to Jordan, now that Xe KMD is part of Linux stable we need to=
- follow the same process as i915 for uAPI additions.
-> > So we need to wait for uAPI changes to land to drm-next to then be able=
- to merge on Mesa.
-> > After that happens I will remove the 'draft mode' and assign to Mesa bo=
-t to merge it.
-> >
-> > But all patches are reviewed.
->
-> Thanks for the confirmation.
->
-> Ashutosh, could you please send a rebased version?
->
-> when applying v17:
-> $ dim b4-shazam 171817017582.68617.16794933743922778441@a6498e030952
-> [snip]
-> Applying: drm/xe/oa: Add OAR support
-> Patch failed at 0010 drm/xe/oa: Add OAR support
-> error: patch failed: drivers/gpu/drm/xe/xe_lrc.c:649
->
-> Then we wait for CI and push.
->
-> in case someone else push that, feel free to use:
->
-> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+On Fri, Jun 14, 2024 at 03:53:04PM -0400, Rodrigo Vivi wrote:
+> On Fri, Jun 14, 2024 at 09:55:57AM +0530, Mitul Golani wrote:
+> > Describe newly added parameter target_rr_divider in struct
+> > drm_dp_as_sdp.
+> > 
+> > -v2:
+> > Remove extra line from commit message.(Lucas)
+> > 
+> > Fixes: a20c6d954d75 ("drm/dp: Add refresh rate divider to struct representing AS SDP")
+> > Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> > Cc: Arun R Murthy <arun.r.murthy@intel.com>
+> > Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+> > Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> > Cc: Jani Nikula <jani.nikula@intel.com>
+> > Cc: Stephen Rothwell <sfr@canb.auug.org.au>
+> > Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> > Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> > ---
+> >  include/drm/display/drm_dp_helper.h | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+> > index ea03e1dd26ba..7f2567fa230d 100644
+> > --- a/include/drm/display/drm_dp_helper.h
+> > +++ b/include/drm/display/drm_dp_helper.h
+> > @@ -112,6 +112,7 @@ struct drm_dp_vsc_sdp {
+> >   * @target_rr: Target Refresh
+> >   * @duration_incr_ms: Successive frame duration increase
+> >   * @duration_decr_ms: Successive frame duration decrease
+> > + * @target_rr_divider: Target refresh rate divider
+> 
+> Maarten, Maxime, or Thomas,
+> the patch introducing this target_rr_divider is in drm-intel-next.
+> Ack on adding this through drm-intel-next as well?
 
-Thanks Rodrigo. I went ahead and merged this series. Thanks all, for your
-inputs and support.
+I got Maxime's ack on irc to go ahead here. But I just noticed
+that this actually conflicts with commit c7ce956bb6d0 ("drm/dp: Fix
+documentation warning") which is only applied on drm-misc-next.
 
-Thanks.
---
-Ashutosh
+With that, I prefer to hold so the branches are in sync again
+so we send a patch that applies cleanly.
 
->
->
-> >
-> > >
-> > > >
-> > > > But once we are sure that Mesa is ready and all Michal's concerns o=
-n the latest
-> > > > version of the kernel series are solved, then we can definitely mer=
-ge.
-> > >
-> > > I addressed Michal's concerns in v17. Except one, which you responded=
- to
-> > > right now and which we are not considering a blocker for merging the
-> > > series.
-> > >
-> > > >
-> > > > Deadline for 6.11 is Wednesday next week(Jun/26).
-> > > >
-> > > > Thanks,
-> > > > Rodrigo.
-> > >
-> > > Let's wait to hear from Jose and then go from there.
-> > >
-> > > Thanks.
-> > > --
-> > > Ashutosh
-> > >
-> > >
-> > > > > > > > thank you
-> > > > > > > >
-> > > > > > > > > v2: Fix build
-> > > > > > > > > v3: Rebase, due to s/xe_engine/xe_exec_queue/
-> > > > > > > > > v4: Re-run for testing
-> > > > > > > > > v5: Address review comments, new patches 11 through 17
-> > > > > > > > > v6: New patches 18 through 21
-> > > > > > > > > v7: Patches are completely redone and don't start with i9=
-15 version of the uapi
-> > > > > > > > > v8: See https://patchwork.freedesktop.org/patch/575214/?s=
-eries=3D128993&rev=3D1
-> > > > > > > > > v9: See https://patchwork.freedesktop.org/patch/577441/?s=
-eries=3D128993&rev=3D2
-> > > > > > > > > v10: See https://patchwork.freedesktop.org/patch/577943/?=
-series=3D128993&rev=3D3
-> > > > > > > > > v11: See https://patchwork.freedesktop.org/patch/581239/?=
-series=3D130705&rev=3D1
-> > > > > > > > > v12: Add last two new patches to enable Xe2+ overrun mode
-> > > > > > > > > v13: Update last two patches after code review completion
-> > > > > > > > > v14: https://patchwork.freedesktop.org/patch/595447/?seri=
-es=3D134028&rev=3D1
-> > > > > > > > > v15: https://patchwork.freedesktop.org/patch/595549/?seri=
-es=3D134056&rev=3D1
-> > > > > > > > >
-> > > > > > > > > Ashutosh Dixit (17):
-> > > > > > > > >   drm/xe/perf/uapi: "Perf" layer to support multiple perf=
- counter stream
-> > > > > > > > >     types
-> > > > > > > > >   drm/xe/perf/uapi: Add perf_stream_paranoid sysctl
-> > > > > > > > >   drm/xe/oa/uapi: Add OA data formats
-> > > > > > > > >   drm/xe/oa/uapi: Initialize OA units
-> > > > > > > > >   drm/xe/oa/uapi: Add/remove OA config perf ops
-> > > > > > > > >   drm/xe/oa/uapi: Define and parse OA stream properties
-> > > > > > > > >   drm/xe/oa: OA stream initialization (OAG)
-> > > > > > > > >   drm/xe/oa/uapi: Expose OA stream fd
-> > > > > > > > >   drm/xe/oa/uapi: Read file_operation
-> > > > > > > > >   drm/xe/oa: Add OAR support
-> > > > > > > > >   drm/xe/oa: Add OAC support
-> > > > > > > > >   drm/xe/oa/uapi: Query OA unit properties
-> > > > > > > > >   drm/xe/oa/uapi: OA buffer mmap
-> > > > > > > > >   drm/xe/oa: Add MMIO trigger support
-> > > > > > > > >   drm/xe/oa: Override GuC RC with OA on PVC
-> > > > > > > > >   drm/xe/oa: Changes to OA_TAKEN
-> > > > > > > > >   drm/xe/oa: Enable Xe2+ overrun mode
-> > > > > > > > >
-> > > > > > > > >  drivers/gpu/drm/xe/Makefile                   |    2 +
-> > > > > > > > >  .../gpu/drm/xe/instructions/xe_mi_commands.h  |    3 +
-> > > > > > > > >  drivers/gpu/drm/xe/regs/xe_engine_regs.h      |    2 +
-> > > > > > > > >  drivers/gpu/drm/xe/regs/xe_gt_regs.h          |    3 +
-> > > > > > > > >  drivers/gpu/drm/xe/regs/xe_oa_regs.h          |  103 +
-> > > > > > > > >  drivers/gpu/drm/xe/xe_device.c                |   19 +-
-> > > > > > > > >  drivers/gpu/drm/xe/xe_device_types.h          |    4 +
-> > > > > > > > >  drivers/gpu/drm/xe/xe_gt_types.h              |    4 +
-> > > > > > > > >  drivers/gpu/drm/xe/xe_guc_pc.c                |   57 +
-> > > > > > > > >  drivers/gpu/drm/xe/xe_guc_pc.h                |    3 +
-> > > > > > > > >  drivers/gpu/drm/xe/xe_hw_engine_types.h       |    2 +
-> > > > > > > > >  drivers/gpu/drm/xe/xe_lrc.c                   |   11 +-
-> > > > > > > > >  drivers/gpu/drm/xe/xe_lrc.h                   |    1 +
-> > > > > > > > >  drivers/gpu/drm/xe/xe_module.c                |    6 +
-> > > > > > > > >  drivers/gpu/drm/xe/xe_oa.c                    | 2370 +++=
-++++++++++++++
-> > > > > > > > >  drivers/gpu/drm/xe/xe_oa.h                    |   27 +
-> > > > > > > > >  drivers/gpu/drm/xe/xe_oa_types.h              |  232 ++
-> > > > > > > > >  drivers/gpu/drm/xe/xe_perf.c                  |   67 +
-> > > > > > > > >  drivers/gpu/drm/xe/xe_perf.h                  |   20 +
-> > > > > > > > >  drivers/gpu/drm/xe/xe_query.c                 |   77 +
-> > > > > > > > >  drivers/gpu/drm/xe/xe_reg_whitelist.c         |   24 +-
-> > > > > > > > >  include/uapi/drm/xe_drm.h                     |  291 ++
-> > > > > > > > >  22 files changed, 3321 insertions(+), 7 deletions(-)
-> > > > > > > > >  create mode 100644 drivers/gpu/drm/xe/regs/xe_oa_regs.h
-> > > > > > > > >  create mode 100644 drivers/gpu/drm/xe/xe_oa.c
-> > > > > > > > >  create mode 100644 drivers/gpu/drm/xe/xe_oa.h
-> > > > > > > > >  create mode 100644 drivers/gpu/drm/xe/xe_oa_types.h
-> > > > > > > > >  create mode 100644 drivers/gpu/drm/xe/xe_perf.c
-> > > > > > > > >  create mode 100644 drivers/gpu/drm/xe/xe_perf.h
-> > > > > > > > >
-> > > > > > > >
-> >
+> 
+> >   * @mode: Adaptive Sync Operation Mode
+> >   */
+> >  struct drm_dp_as_sdp {
+> > -- 
+> > 2.45.2
+> > 
