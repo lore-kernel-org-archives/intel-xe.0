@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3371FC2BB85
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Jun 2024 13:49:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 196A3C2BA18
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Jun 2024 14:23:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1B8510E68A;
-	Tue, 18 Jun 2024 13:49:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB8B710E6A9;
+	Tue, 18 Jun 2024 14:23:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HKiQMt2i";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fPiY35GU";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70CFD10E6A2;
- Tue, 18 Jun 2024 13:49:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6B2510E6A7;
+ Tue, 18 Jun 2024 14:23:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718718560; x=1750254560;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ldu8y7PyV+NSqKBiJbMz2jbn8we3ONeEZPUU7TewjJI=;
- b=HKiQMt2i90P9CL8rt32SlDivt5wbMhqR79bXf5W87oav8gosdcVyQSC0
- VU3xROL2NvMDOCqAmdGnrNnEJCu0YAEmFMcRE4qI1tI8MHF9/14naeNFJ
- jZnJsZdxi/Wc45OL6buqW8iIL8oeCsltq3QTM+CmDu+5WeFePdh35AnbZ
- /zr+o24D5rYWFUyYy1aIogGWC5M4QL4FFZ3IkebJIYejkcf2eiRIlMWKL
- m10O+bOM7davHBr1vD4zsvN4onQvvZqlia7vpmXe78Gv7MyYkVFtL9CKx
- oqFBOpJVvTndzh9d+LlvhQdUlOcbVO9+UtBXpW6zKZiS0NJmrQ3Taf525 w==;
-X-CSE-ConnectionGUID: TKY1YOvwT/2AovNnf49s3A==
-X-CSE-MsgGUID: nZ+gk4rQT7C95W6GqpwTNQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="26717383"
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="26717383"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 06:49:07 -0700
-X-CSE-ConnectionGUID: +dKoufjVR++lWIp4EXhmew==
-X-CSE-MsgGUID: 7L4pYUGXSrOI+DPxte1qdQ==
+ t=1718720584; x=1750256584;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DDNP4QXQZtfYniMBUu0lKauH0P4hOOaP2bIwKgoJFeA=;
+ b=fPiY35GUGF3q75csbfp7P6PeUV0IzfpPXGvvA9+RZ4SrDBQdSOEgKBDb
+ ii+91KbMQbDO7bSktuYRetbB3R2ueJbpTjqyfRH3cFCV1pgcqECG6VNJE
+ 1FC8gnu4LgQ1BX0GEHBmwuW+zlQWiyKJ6Eox/ZQNkAYsqY199fs1FItE9
+ GrH2cQfP3IUYoxhD+h4qPZZJHVmegllo30XMpBGU0b9m2T9SAd6E+qQBq
+ 9i1rKJ/SRB71kXDad9NzkumdL55CtQIhKZ8uOA9V8cn6inTU4ZqycxV2P
+ lrN6rjGYYBdZLcoZBQY0G0MWLoXLuHGDcm8SfsGvi9GHxktvoYvvEvGm/ w==;
+X-CSE-ConnectionGUID: YqyjmcypTHymN2hYTMRlMQ==
+X-CSE-MsgGUID: VlNjfz+IR1mKRVTqN/JFpg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="15365249"
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="15365249"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2024 07:23:03 -0700
+X-CSE-ConnectionGUID: jZZ/T5vUS/mE/9+Z6Naubw==
+X-CSE-MsgGUID: 4vTHfwzVS+yI9HHMVjIllA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="41659496"
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="41495443"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.176])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 06:49:03 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v2 3/3] drm/xe: Use the encoder suspend helper also used
- by the i915 driver
-In-Reply-To: <20240618125255.4080303-3-imre.deak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240618125255.4080303-1-imre.deak@intel.com>
- <20240618125255.4080303-3-imre.deak@intel.com>
-Date: Tue, 18 Jun 2024 16:49:00 +0300
-Message-ID: <87tthqfjjn.fsf@intel.com>
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2024 07:23:00 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com,
+ ville.syrjala@linux.intel.com, maarten.lankhorst@linux.intel.com,
+ lucas.demarchi@intel.com
+Subject: [PATCH 0/6] drm/i915/display: platform identification with
+ display->is.<PLATFORM>
+Date: Tue, 18 Jun 2024 17:22:50 +0300
+Message-Id: <cover.1718719962.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,68 +70,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 18 Jun 2024, Imre Deak <imre.deak@intel.com> wrote:
-> Use the suspend encoders helper which is also used by the i915 driver.
-> This fixes an issue in the xe driver where the encoder
-> suspend_complete() hook is not called and was an overlook when this hook
-> was added in commit b61fad5f7e5d ("drm/i915/tc: Call TypeC port
-> flush_work/cleanup without modeset locks held") for i915, but not added
-> to the xe driver (which was still in a separate source tree at the above
-> point).
->
-> v2: Fix checkpatch warn in commit log. (Rodrigo)
->
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+Long story short, we'll need to identify platforms in display code using
+some other way than i915 core IS_<PLATFORM>() macros if we ever want to
+make a strict separation between the display and non-display parts.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+I tossed some ideas around (see the bottom of this mail), Lucas liked
+something similar to what I have here. Essentially with this, you can
+replace platform checks like IS_TIGERLAKE(i915) with
+display->is.TIGERLAKE and subplatform checks like IS_RAPTORLAKE_S(i915)
+with display->is.ALDERLAKE_S_RAPTORLAKE_S.
 
-> ---
->  drivers/gpu/drm/xe/display/xe_display.c | 18 ++----------------
->  1 file changed, 2 insertions(+), 16 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index 78cccbe289475..8b83dcff72e17 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -23,6 +23,7 @@
->  #include "intel_display_types.h"
->  #include "intel_dmc.h"
->  #include "intel_dp.h"
-> +#include "intel_encoder.h"
->  #include "intel_fbdev.h"
->  #include "intel_hdcp.h"
->  #include "intel_hotplug.h"
-> @@ -270,21 +271,6 @@ void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
->  		gen11_de_irq_postinstall(xe);
->  }
->  
-> -static void intel_suspend_encoders(struct xe_device *xe)
-> -{
-> -	struct drm_device *dev = &xe->drm;
-> -	struct intel_encoder *encoder;
-> -
-> -	if (has_display(xe))
-> -		return;
-> -
-> -	drm_modeset_lock_all(dev);
-> -	for_each_intel_encoder(dev, encoder)
-> -		if (encoder->suspend)
-> -			encoder->suspend(encoder);
-> -	drm_modeset_unlock_all(dev);
-> -}
-> -
->  static bool suspend_to_idle(void)
->  {
->  #if IS_ENABLED(CONFIG_ACPI_SLEEP)
-> @@ -315,7 +301,7 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
->  
->  	intel_hpd_cancel_work(xe);
->  
-> -	intel_suspend_encoders(xe);
-> +	intel_encoder_suspend_all(&xe->display);
->  
->  	intel_opregion_suspend(xe, s2idle ? PCI_D1 : PCI_D3cold);
+It would be possible to drop the ALDERLAKE_S or "parent" platform part
+there, but I think it's useful in many cases to be explicit it's a
+subplatform we're talking about.
+
+It's also possible to convert all of this to lowercase if desired,
+i.e. display->is.tigerlake and display->is.alderlake_s_raptorlake_s.
+
+There's one more wrinkle I didn't address; currently IS_HASWELL_ULT()
+and IS_BROADWELL_ULT() also match the ULX variants. This is not the case
+here yet.
+
+Thoughts?
+
+BR,
+Jani.
+
+
+void foo(void)
+{
+	/*
+	 * Examples with a platform check (Tigerlake) and a subplatform check
+	 * (Alderlake S subplatform Raptorlake S).
+	 */
+
+	/*
+	 * is_<platform>(display). Same as i915 core, but lowercase.
+	 *
+	 * Pros:
+	 * - Easy to convert
+	 * - Short
+	 *
+	 * Cons:
+	 * - Need to keep defining new macros for new platfoms and subplatforms
+	 */
+	if (is_tigerlake(display) || is_alderlake_s_raptorlake_s(display)) {
+	}
+
+	/*
+	 * is_platform(display, <platform>) check.
+	 *
+	 * Alternatively is_plat() or is_display() or something else?
+	 *
+	 * Pros:
+	 * - Can be made to handle both platforms and subplatforms by
+	 *   renumbering subplatforms enum
+	 * - No need to define new macros for new platforms
+	 *
+	 * Cons:
+	 * - A bit long
+	 */
+	if (is_platform(display, INTEL_DISPLAY_TIGERLAKE) ||
+	    is_platform(display, INTEL_DISPLAY_ALDERLAKE_S_RAPTORLAKE_S)) {
+	}
+
+	/*
+	 * An is_platform() with a macro wrapper to abbreviate param.
+	 *
+	 * Pros:
+	 * - Shorter
+	 *
+	 * Cons:
+	 * - Throws off cscope and gnu global
+	 */
+	if (is_platform(display, TIGERLAKE) ||
+	    is_platform(display, ALDERLAKE_S_RAPTORLAKE_S)) {
+	}
+
+	/*
+	 * Functions to return platform/subplatforms.
+	 *
+	 * Pros:
+	 * - No need to define new macros for new platforms
+	 *
+	 * Cons:
+	 * - Long
+	 * - Need separate checks for platform/subplatform
+	 */
+	if (intel_platform(display) == INTEL_DISPLAY_TIGERLAKE ||
+	    intel_subplatform(display) == INTEL_DISPLAY_ALDERLAKE_S_RAPTORLAKE_S) {
+	}
+
+	/*
+	 * Initialize bitfields in display according to platform/subplatform
+	 *
+	 * Pros:
+	 * - Really short
+	 * - Does not pollute namespace with is_something
+	 *
+	 * Cons:
+	 * - Pollutes top level struct intel_display
+	 * - Kind of belongs in display device or runtime info, but that would
+	 *   again be too long to be helpful
+	 */
+	if (display->is_tigerlake || display->alderlake_s_raptorlake_s) {
+	}
+}
+
+
+Jani Nikula (6):
+  drm/i915/display: use a macro to initialize subplatforms
+  drm/i915/display: use a macro to define platform enumerations
+  drm/i915/display: join the platform and subplatform macros
+  drm/i915/display: add "display is" structure with platform members
+  drm/i915/display: add "is" member to struct intel_display
+  drm/i915/display: remove the display platform enum as unnecessary
+
+ .../gpu/drm/i915/display/intel_display_core.h |   3 +
+ .../drm/i915/display/intel_display_device.c   |  79 ++++++---
+ .../drm/i915/display/intel_display_device.h   | 165 +++++++++---------
+ 3 files changed, 136 insertions(+), 111 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.39.2
+
