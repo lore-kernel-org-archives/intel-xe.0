@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E06AC2BC81
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Jun 2024 14:23:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEE52C2BA18
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Jun 2024 14:23:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6489710E6B8;
-	Tue, 18 Jun 2024 14:23:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8977510E6BD;
+	Tue, 18 Jun 2024 14:23:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WOdrLs2n";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="THNT4DLP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0351F10E6AF;
- Tue, 18 Jun 2024 14:23:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2D1810E6B7;
+ Tue, 18 Jun 2024 14:23:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718720614; x=1750256614;
+ t=1718720620; x=1750256620;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eqzp0UIeFDdm6i16hkas4t202GRI0dEzo2njO9rF7FU=;
- b=WOdrLs2n+2/nC307Te+qGWMOEamhnam2ydArF81oGH+QAjyNyui7GVhZ
- i5Ph/bmzLhD5ods11VckKVP8YhtXyw+ihfGuUancyn8fOhsU3U67noUYS
- d1V792fjhy5RgRw8QPfPhCbw46NN+vF7YVUI3h3HJKtndo4+ktRvlGCMo
- VkZKCVW1+8UAgjk1sSxweD6UXwCbfC5j79CHrsZ9cp3FdNrOaJ9K0ud2Y
- 9hxqm2KJrCc8Rxotjj3YzoHvfNgcArNQDdm7UJ/MJ+LD1kczA7oqs5Cid
- eu1D5Jn3Wscf0ZgBGgNSzHQgJKGghgt/pHNHq1ZVzXh5ajNWMstDpSYQR g==;
-X-CSE-ConnectionGUID: PKuioJmiSBaSFdYJJOCLWQ==
-X-CSE-MsgGUID: W9fULUJmTMWmCY1nKzNsPw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="15365334"
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="15365334"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 07:23:21 -0700
-X-CSE-ConnectionGUID: jtLi4Fs5Sgmt1TXNXjcNGw==
-X-CSE-MsgGUID: q02BdYV1TB6FoWB2CsrDfw==
+ bh=11GmTxZaDLJIPN1u8UDPB0RE+kNDxZfY5bbOPj5AIAk=;
+ b=THNT4DLPrX7CYYcQtefMeI7rFdMtZNFcNmiZYQo7ZXEXgnCEh+GZ1KhT
+ lVRCcc+UZp2iCKbds7hXHl+/oXqYm4wIuMgzBqQuVrQgeSPIU2N3N8kRa
+ idZImGoesjLGwDlA0QgIZpheDbkVXjW5srol+oKkiwKBnw7SfQPQDlyo8
+ 2cNt1zGjz3ynGYNtKSy+Z96mVYFTuvUTF/86rUYl/XdUhkTQ00Z4d+SfC
+ yDFeuFkymG5sskp+crbLln0Qob6C6o41lAbIO/D53twJX2uhPeS67dmvM
+ yDt4rgGCFGXrKIt8HGRw3RW6ws4secsYB42pHmBUbjIPztYUdL1frEU8R Q==;
+X-CSE-ConnectionGUID: BIcF2owNRq6HqMQTpjQ5nw==
+X-CSE-MsgGUID: hddM6/e/Qc+heGHvjUwcdQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="27016885"
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="27016885"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2024 07:23:40 -0700
+X-CSE-ConnectionGUID: /M9gn+uKRGe9LXDVeAKDVw==
+X-CSE-MsgGUID: u1HJGlu1TDqTuLKBiJekpg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="41495499"
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="41687859"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.176])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 07:23:19 -0700
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2024 07:23:37 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com,
  ville.syrjala@linux.intel.com, maarten.lankhorst@linux.intel.com,
  lucas.demarchi@intel.com
-Subject: [PATCH 3/6] drm/i915/display: join the platform and subplatform macros
-Date: Tue, 18 Jun 2024 17:22:53 +0300
-Message-Id: <e1f5f421c45a271f8fd0ca45956f70aeca855b5b.1718719962.git.jani.nikula@intel.com>
+Subject: [PATCH 6/6] drm/i915/display: remove the display platform enum as
+ unnecessary
+Date: Tue, 18 Jun 2024 17:22:56 +0300
+Message-Id: <323aa570a2cf58cede7fa0ca8bb46a273bad3395.1718719962.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1718719962.git.jani.nikula@intel.com>
 References: <cover.1718719962.git.jani.nikula@intel.com>
@@ -71,103 +72,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We'll want to use the subplatforms similar to platforms.
+The display platform enums are not really needed for anything. Remove.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../drm/i915/display/intel_display_device.c   |  2 +-
- .../drm/i915/display/intel_display_device.h   | 51 +++++++++----------
- 2 files changed, 25 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_device.c | 12 +++---------
+ drivers/gpu/drm/i915/display/intel_display_device.h | 11 -----------
+ 2 files changed, 3 insertions(+), 20 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index d900c30907ac..80563af7ac71 100644
+index 954caea38005..6a71e7a8b686 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_device.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -21,7 +21,7 @@ __diag_push();
- __diag_ignore_all("-Woverride-init", "Allow field initialization overrides for display info");
+@@ -22,26 +22,22 @@ __diag_ignore_all("-Woverride-init", "Allow field initialization overrides for d
  
  struct subplatform_desc {
--	enum intel_display_subplatform subplatform;
-+	enum intel_display_platform subplatform;
+ 	struct intel_display_is is;
+-	enum intel_display_platform subplatform;
  	const char *name;
  	const u16 *pciidlist;
  };
+ 
+ #define SUBPLATFORM(_platform, _subplatform)				\
+-	.subplatform = (INTEL_DISPLAY_##_platform##_##_subplatform),	\
+ 	.name = #_subplatform,						\
+ 	.is._platform##_##_subplatform = 1
+ 
+ struct platform_desc {
+ 	struct intel_display_is is;
+-	enum intel_display_platform platform;
+ 	const char *name;
+ 	const struct subplatform_desc *subplatforms;
+ 	const struct intel_display_device_info *info; /* NULL for GMD ID */
+ };
+ 
+ #define PLATFORM(_platform)			 \
+-	.platform = (INTEL_DISPLAY_##_platform), \
+ 	.name = #_platform,			 \
+ 	.is._platform = 1
+ 
+@@ -1261,7 +1257,7 @@ find_subplatform_desc(struct pci_dev *pdev, const struct platform_desc *desc)
+ 	const struct subplatform_desc *sp;
+ 	const u16 *id;
+ 
+-	for (sp = desc->subplatforms; sp && sp->subplatform; sp++)
++	for (sp = desc->subplatforms; sp && sp->pciidlist; sp++)
+ 		for (id = sp->pciidlist; *id; id++)
+ 			if (*id == pdev->device)
+ 				return sp;
+@@ -1323,14 +1319,12 @@ void intel_display_device_probe(struct drm_i915_private *i915)
+ 	       &DISPLAY_INFO(i915)->__runtime_defaults,
+ 	       sizeof(*DISPLAY_RUNTIME_INFO(i915)));
+ 
+-	drm_WARN_ON(&i915->drm, !desc->platform || !desc->name);
+-	DISPLAY_RUNTIME_INFO(i915)->platform = desc->platform;
++	drm_WARN_ON(&i915->drm, !desc->name);
+ 	display->is = desc->is;
+ 
+ 	subdesc = find_subplatform_desc(pdev, desc);
+ 	if (subdesc) {
+-		drm_WARN_ON(&i915->drm, !subdesc->subplatform || !subdesc->name);
+-		DISPLAY_RUNTIME_INFO(i915)->subplatform = subdesc->subplatform;
++		drm_WARN_ON(&i915->drm, !subdesc->name);
+ 		merge_display_is(&display->is, &subdesc->is);
+ 	}
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index aca3dfd5e7af..50485235ef09 100644
+index 73070c8487ff..97033d26c1b3 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_device.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -69,7 +69,29 @@ struct drm_printer;
- 	/* Display ver 20 (based on GMD ID) */ \
- 	func(LUNARLAKE) \
- 	/* Display ver 14.1 (based on GMD ID) */ \
--	func(BATTLEMAGE)
-+	func(BATTLEMAGE) \
-+	/* Subplatforms */ \
-+	func(HASWELL_ULT) \
-+	func(HASWELL_ULX) \
-+	func(BROADWELL_ULT) \
-+	func(BROADWELL_ULX) \
-+	func(SKYLAKE_ULT) \
-+	func(SKYLAKE_ULX) \
-+	func(KABYLAKE_ULT) \
-+	func(KABYLAKE_ULX) \
-+	func(COFFEELAKE_ULT) \
-+	func(COFFEELAKE_ULX) \
-+	func(COMETLAKE_ULT) \
-+	func(COMETLAKE_ULX) \
-+	func(ICELAKE_PORT_F) \
-+	func(TIGERLAKE_UY) \
-+	func(ALDERLAKE_S_RAPTORLAKE_S) \
-+	func(ALDERLAKE_P_ALDERLAKE_N) \
-+	func(ALDERLAKE_P_RAPTORLAKE_P) \
-+	func(ALDERLAKE_P_RAPTORLAKE_U) \
-+	func(DG2_G10) \
-+	func(DG2_G11) \
-+	func(DG2_G12)
+@@ -93,14 +93,6 @@ struct drm_printer;
+ 	func(DG2_G11) \
+ 	func(DG2_G12)
  
- #define ENUM(x) INTEL_DISPLAY_ ## x,
- 
-@@ -79,31 +101,6 @@ enum intel_display_platform {
- 
- #undef ENUM
- 
--enum intel_display_subplatform {
--	INTEL_DISPLAY_SUBPLATFORM_UNINITIALIZED = 0,
--	INTEL_DISPLAY_HASWELL_ULT,
--	INTEL_DISPLAY_HASWELL_ULX,
--	INTEL_DISPLAY_BROADWELL_ULT,
--	INTEL_DISPLAY_BROADWELL_ULX,
--	INTEL_DISPLAY_SKYLAKE_ULT,
--	INTEL_DISPLAY_SKYLAKE_ULX,
--	INTEL_DISPLAY_KABYLAKE_ULT,
--	INTEL_DISPLAY_KABYLAKE_ULX,
--	INTEL_DISPLAY_COFFEELAKE_ULT,
--	INTEL_DISPLAY_COFFEELAKE_ULX,
--	INTEL_DISPLAY_COMETLAKE_ULT,
--	INTEL_DISPLAY_COMETLAKE_ULX,
--	INTEL_DISPLAY_ICELAKE_PORT_F,
--	INTEL_DISPLAY_TIGERLAKE_UY,
--	INTEL_DISPLAY_ALDERLAKE_S_RAPTORLAKE_S,
--	INTEL_DISPLAY_ALDERLAKE_P_ALDERLAKE_N,
--	INTEL_DISPLAY_ALDERLAKE_P_RAPTORLAKE_P,
--	INTEL_DISPLAY_ALDERLAKE_P_RAPTORLAKE_U,
--	INTEL_DISPLAY_DG2_G10,
--	INTEL_DISPLAY_DG2_G11,
--	INTEL_DISPLAY_DG2_G12,
+-#define ENUM(x) INTEL_DISPLAY_ ## x,
+-
+-enum intel_display_platform {
+-	INTEL_DISPLAY_PLATFORMS(ENUM)
 -};
 -
- #define DEV_INFO_DISPLAY_FOR_EACH_FLAG(func) \
- 	/* Keep in alphabetical order */ \
- 	func(cursor_needs_physical); \
-@@ -203,7 +200,7 @@ enum intel_display_subplatform {
+-#undef ENUM
+-
+ #define MEMBER(name) u32 name:1;
+ 
+ struct intel_display_is {
+@@ -207,9 +199,6 @@ struct intel_display_is {
+ 	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
  
  struct intel_display_runtime_info {
- 	enum intel_display_platform platform;
--	enum intel_display_subplatform subplatform;
-+	enum intel_display_platform subplatform;
- 
+-	enum intel_display_platform platform;
+-	enum intel_display_platform subplatform;
+-
  	struct intel_display_ip_ver {
  		u16 ver;
+ 		u16 rel;
 -- 
 2.39.2
 
