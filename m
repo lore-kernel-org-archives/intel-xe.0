@@ -4,58 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18D76C2BA18
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Jun 2024 12:54:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46FABC27C4F
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Jun 2024 12:57:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D22B810E674;
-	Tue, 18 Jun 2024 12:54:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="qsQnPaYw";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="dNtFSRD2";
-	dkim-atps=neutral
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51EBE10E21D;
- Tue, 18 Jun 2024 12:54:35 +0000 (UTC)
-Date: Tue, 18 Jun 2024 14:54:30 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1718715271;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=3NCyVAzTVmTZEdqHusiCbGnwJ3hzwWpCH3MjDKPpU+A=;
- b=qsQnPaYwyGWpADXrTpFRV6kVQnPh30eebOM8+S9k0ScHXbApPkn8h/IB7cQi9llnsZX5l+
- w5mS+kpI9fSDLOqKpsKZMOeL+ouoEu4k9B/Lm+1nOVBhWg3xWRY1gQAt8etdLR0CMylV2W
- SsYWHbE+5Qih7Om+AtImCN0+SIzkI9ycKn+VksqCCR8iGqeA6UnJYQ9c9cUzRoaqelKfF+
- QwLnTrHc9af1OmI+GpjSXowb21CwF3qsXnshbqXcniXz3RNyt+Z9LKGIdCmiPobMERTJoz
- G8geC6J5Vg+LnUODEKQYT8e7q8Hs0q4DhS5wMMy5feIFq6E/qfo/1bzd2o82Jw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1718715271;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=3NCyVAzTVmTZEdqHusiCbGnwJ3hzwWpCH3MjDKPpU+A=;
- b=dNtFSRD2r8wsQQ3ucAEEAyrSZE7d4GR+QXLjljWVYBG92iZyem6Memgc8FRcNo/+Gn+acn
- 8un8bneASEm6RmDQ==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [PATCH v2 3/8] drm/i915: Don't check for atomic context on
- PREEMPT_RT
-Message-ID: <20240618125430.9gWIUg9A@linutronix.de>
-References: <20240613102818.4056866-1-bigeasy@linutronix.de>
- <20240613102818.4056866-4-bigeasy@linutronix.de>
- <94423591-adba-46d4-a9ba-f377dfab369f@ursulin.net>
- <20240614110548.m3lloBjv@linutronix.de>
- <fa38f377-a00a-4e0c-b416-54a1c3f15d4d@ursulin.net>
- <20240617100752.9XDTS0R5@linutronix.de>
- <b740d56d-a744-4d35-b3f2-1166b8df2aef@ursulin.net>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E4D510E674;
+	Tue, 18 Jun 2024 12:57:22 +0000 (UTC)
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9B1410E674;
+ Tue, 18 Jun 2024 12:57:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <b740d56d-a744-4d35-b3f2-1166b8df2aef@ursulin.net>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
+ =?utf-8?q?_=5Bv2=2C1/3=5D_drm/i915=3A_Move_encoder_suspend/shutdown_helpers?=
+ =?utf-8?q?_to_intel=5Fencoder=2Ec?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 18 Jun 2024 12:57:20 -0000
+Message-ID: <171871544088.103670.63408768523319690@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240618125255.4080303-1-imre.deak@intel.com>
+In-Reply-To: <20240618125255.4080303-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,20 +37,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2024-06-18 10:00:09 [+0100], Tvrtko Ursulin wrote:
-> I did a re-test but am not 100% certain yet. CI looks frustratingly noisy at
-> the moment.
-> 
-> igt@debugfs_test@read_all_entries appears to be a fluke which is not new.
-> 
-> But igt@gem_exec_parallel@engines@basic from the latest run seem new.
-> 
-> So I queued another re-test.
+== Series Details ==
 
-Okay. If you want me to repost the whole series or just parts of it,
-just say so.
+Series: series starting with [v2,1/3] drm/i915: Move encoder suspend/shutdown helpers to intel_encoder.c
+URL   : https://patchwork.freedesktop.org/series/135013/
+State : success
 
-Sebastian
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 5a093f17293a drm-tip: 2024y-06m-18d-10h-34m-33s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915: Move encoder suspend/shutdown helpers to intel_encoder.c
+Applying: drm/i915: Pass intel_display to the encoder suspend/shutdown helpers
+Applying: drm/xe: Use the encoder suspend helper also used by the i915 driver
+
+
