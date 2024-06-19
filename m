@@ -4,75 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E549DC2BA15
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 10:28:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C61F7C2BA1A
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 10:29:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9CAF10EC1E;
-	Wed, 19 Jun 2024 10:28:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FB0110EC22;
+	Wed, 19 Jun 2024 10:29:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="f+hwavdf";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="ZapTdZx3";
 	dkim-atps=neutral
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6753210EC1F
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Jun 2024 10:28:44 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-42172ed3487so46583555e9.0
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Jun 2024 03:28:44 -0700 (PDT)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
+ [209.85.128.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4D8510EC1E
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Jun 2024 10:29:52 +0000 (UTC)
+Received: by mail-wm1-f48.google.com with SMTP id
+ 5b1f17b1804b1-4218008c613so49137845e9.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Jun 2024 03:29:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1718792922; x=1719397722;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1718792991; x=1719397791;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=cP9U9cAEESd9Gge2UJBtGjXdmnCNDDOh1lsPLCHcpjw=;
- b=f+hwavdfLOOQnwOWTBQQvI0F1+2F2jqiyVIb4Q81aMIfGejCXBJWw4/UKST/qf34cy
- a0rmK7lNXzt+VXMPOJ4n5nHzm6mAZaCZKQ+guMaxYepZuwYCX0Bp/MGCAQA6HBQsPyzi
- BqNy07r0Im3er/pLn+JIhgt66WD5OSMRcExD+67rvAEv02goyo+eys4XNfGDdhJbzDjo
- MiEsjEas0m6co1mO/C8Wh2GL4R0Uwpudnnu9dJYDxA/oYkjd2oyoSqC2CGqQCGkQLo9y
- WjYafQ1FYMjycX2CTawSqS2rSju4AWuu5GAWwYQtjujIy5AcBvp28MC8rr4PhZHHV3oR
- aY5A==
+ bh=D7FOnG7ghLNUlIRVuhbxGcw1YdQeoztBhQMpmc4Rrsk=;
+ b=ZapTdZx3pMRRyPuHr4wSXrEmivI77p0cMA41d6j3L/GA+iaZZdaj4l9+SSgxZKGAWb
+ j6BRjRF7XYFzsAITJVWlXy2yp2KVB6bEXVfmx24scwNYI+tzyAGv46p8xYOSzQuL0SAA
+ U0h31VVeZcrl0Z4wmUeGydFuUGZO46WNVby+HPvY0xysrhUgLHSIbIjQBkSlxk7z1TTO
+ E1r9D3dYh0h2YrNsPwOpP56MNBxt/9QC4x9IrA40pCVa9tCZovMEw9X/2Uxb0kcPTWHT
+ jTx+t/amXqDdrnetGlJo++ICOSDcArUQ2hO2gTE1luYcu4dxBB2rQwrPVWbpBfPvvYzY
+ Sq2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1718792922; x=1719397722;
+ d=1e100.net; s=20230601; t=1718792991; x=1719397791;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=cP9U9cAEESd9Gge2UJBtGjXdmnCNDDOh1lsPLCHcpjw=;
- b=X9h6htwl7gEZgX9DhflkXUz6lWsuR/m7pfcgvhciMbUdZSiyoIahiQt445cnq9P5VP
- 5TZJdVwE3pyIXW+PWHQqhJlmaf+uBRZQSSat0PTwl+V8+QRg7L11HMPS4BPectNz4S/Z
- UKJJ0b0Bf4Gvfn+9fqxrmHdCpwS3BUap0pf8N44GtxPSWSqRHC+BaThkQ+cvSX2hoGQa
- qWrKnrz+iHkTn5CAuQx6mku5xe9KZD1cJHLI6Bvwc0fMvD5fhXdGZRL6C70E/ZiAZUKW
- AVt0D7bUIbCgruuoIvPdTMjTJmi54X022BpI/eDdRwz8SqCTmE1XnIBGTOzw8iB/a6v8
- cv2g==
+ bh=D7FOnG7ghLNUlIRVuhbxGcw1YdQeoztBhQMpmc4Rrsk=;
+ b=EDmPoKkyix36YKFsg4dOj5N8UOlG4lAgxiad6IMUy9q/q0hekUVq8a9tTu7dwcXbiW
+ QYprVCbhJYbtV6cR8tzWI2ueOfd1UFGpZFoz9ziVmKMkiWRPquvlq0D5kU9G0iDCklLe
+ mmw1TbqZmedvpGfQGX4heBI8xDQdUXEsLSiGaV0YvJFTj3QV78XSQpQrE3iG+ALsmerQ
+ vgIztdGmFj2DxW+deGuW7Ao5f9UGKyVShwBEBuwlhxmVk12Cwgf6wZGXuSN3dKleUAOX
+ VvfMVk85UvsFbEDp1/kijiEpO4DDG3SZf4bPgU3wGrvFHviqACb46AXi+gozI0inAXyM
+ UfMA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXr5u4BCVwUV4CwKFcjU03uQ64ROPDc+SWVhziMErVSQSD8d6TDhiCLgdLZGc6h6tz4PAxU41yPF9utIrMab3JWjVp4V8EWeHledhAplrU=
-X-Gm-Message-State: AOJu0Yz2HjLMRVPivt4J3BLCH2sA704ssLsR9ncrRvFIPXqDYGyGwM3n
- 3kCo/ZlsiKbQQXw4N23rZqJCbltrt3aJSnluOEF/JmUZXxNiW5FgWfs0wLe0vy4=
-X-Google-Smtp-Source: AGHT+IHRo/2yoGOWG8mFsmODDfB63LXvrmYqwqs5DTCIUi0wXPtf6w56dvhvRe5J1oq8MLB4UTGu6Q==
-X-Received: by 2002:a05:600c:2d49:b0:421:cc89:dd5d with SMTP id
- 5b1f17b1804b1-4247517615cmr13793635e9.9.1718792922440; 
- Wed, 19 Jun 2024 03:28:42 -0700 (PDT)
+ AJvYcCWlvA/uZxQYEgpzYXDbg+0KAoLA3plYGLdUtmNTBq60wC+vR9M52nx4S7pZYUektPLCgFDx+CMWIKHDyui6Eqd6FsOVrHanYFoX9QurCiQ=
+X-Gm-Message-State: AOJu0YynvoHeFBXSHCahafuOgGWl7FBUXqGKWv6LxVm+yiQY8Lnj4pJW
+ 2MeWPTaAj8ZYJqSi6TTLHbj2vmwfApUE7IByvRPiBRSbrdotPyBuZnkFAZ6fy1s=
+X-Google-Smtp-Source: AGHT+IFkv2KRV4gnTG0Y/mSJBveqNLf6VWju6YigxoWBZXkVh+VrcZqz1lPhfG+DVUcqdF15k8GvDQ==
+X-Received: by 2002:a5d:4b4b:0:b0:360:79d2:a822 with SMTP id
+ ffacd0b85a97d-363170ecbcfmr1560945f8f.14.1718792990952; 
+ Wed, 19 Jun 2024 03:29:50 -0700 (PDT)
 Received: from [192.168.0.101] ([84.69.19.168])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-422f5f33bdasm227220795e9.8.2024.06.19.03.28.41
+ ffacd0b85a97d-3607509c7e5sm16892038f8f.30.2024.06.19.03.29.50
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 19 Jun 2024 03:28:42 -0700 (PDT)
-Message-ID: <773519fb-3dd9-4c80-87f5-da2cd075deb5@ursulin.net>
-Date: Wed, 19 Jun 2024 11:28:41 +0100
+ Wed, 19 Jun 2024 03:29:50 -0700 (PDT)
+Message-ID: <1417502f-1f9a-4839-b4ce-f27ed40c0320@ursulin.net>
+Date: Wed, 19 Jun 2024 11:29:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/8] drm/i915: Drop the irqs_disabled() check
+Subject: Re: [PATCH v2 8/8] Revert "drm/i915: Depend on !PREEMPT_RT."
 Content-Language: en-GB
 To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>
 References: <20240613102818.4056866-1-bigeasy@linutronix.de>
- <20240613102818.4056866-7-bigeasy@linutronix.de>
+ <20240613102818.4056866-9-bigeasy@linutronix.de>
 From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20240613102818.4056866-7-bigeasy@linutronix.de>
+In-Reply-To: <20240613102818.4056866-9-bigeasy@linutronix.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -91,45 +90,28 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 On 13/06/2024 11:20, Sebastian Andrzej Siewior wrote:
-> The !irqs_disabled() check triggers on PREEMPT_RT even with
-> i915_sched_engine::lock acquired. The reason is the lock is transformed
-> into a sleeping lock on PREEMPT_RT and does not disable interrupts.
+> Once the known issues are addressed, it should be safe to enable the
+> driver.
 > 
-> There is no need to check for disabled interrupts. The lockdep
-> annotation below already check if the lock has been acquired by the
-> caller and will yell if the interrupts are not disabled.
-> 
-> Remove the !irqs_disabled() check.
-> 
-> Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 > Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 > ---
->   drivers/gpu/drm/i915/i915_request.c | 2 --
->   1 file changed, 2 deletions(-)
+>   drivers/gpu/drm/i915/Kconfig | 1 -
+>   1 file changed, 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index 519e096c607cd..466b5ee8ed6d2 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -608,7 +608,6 @@ bool __i915_request_submit(struct i915_request *request)
->   
->   	RQ_TRACE(request, "\n");
->   
-> -	GEM_BUG_ON(!irqs_disabled());
->   	lockdep_assert_held(&engine->sched_engine->lock);
->   
->   	/*
-> @@ -717,7 +716,6 @@ void __i915_request_unsubmit(struct i915_request *request)
->   	 */
->   	RQ_TRACE(request, "\n");
->   
-> -	GEM_BUG_ON(!irqs_disabled());
->   	lockdep_assert_held(&engine->sched_engine->lock);
->   
->   	/*
+> diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+> index 5932024f8f954..a02162d6b710e 100644
+> --- a/drivers/gpu/drm/i915/Kconfig
+> +++ b/drivers/gpu/drm/i915/Kconfig
+> @@ -3,7 +3,6 @@ config DRM_I915
+>   	tristate "Intel 8xx/9xx/G3x/G4x/HD Graphics"
+>   	depends on DRM
+>   	depends on X86 && PCI
+> -	depends on !PREEMPT_RT
+>   	select INTEL_GTT if X86
+>   	select INTERVAL_TREE
+>   	# we need shmfs for the swappable backing store, and in particular
 
-Maarten can you r-b since it seems this one originated from your 
-testing? Otherwise:
+Cool!
 
 Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
