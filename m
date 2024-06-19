@@ -4,175 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99613C27C79
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 18:46:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 118EDC27C79
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 18:53:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36D6310ED8B;
-	Wed, 19 Jun 2024 18:46:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B43D610ED94;
+	Wed, 19 Jun 2024 18:53:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SbPjH0+r";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GMoqXTnP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA6E110ED8B
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Jun 2024 18:46:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEE2510ED94
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Jun 2024 18:53:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718822785; x=1750358785;
+ t=1718823231; x=1750359231;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=fIs1ifYuAB4KUvEbZwxuDAZo81BYhhwtDkQk1u5B7f8=;
- b=SbPjH0+r1C4wglOyA+RvMifJoq141xIj+ekJ1CnJapfu4CdfaoWw0np6
- ZA+ahGZrnMxv0JBHT0ABr4b97ky9qjrmYCVap7Sd45mSGSFbRHvqOrHXM
- Sear4elQ1JCMYeOBEfZDl0zvBMLGSjDxMLcuwdmo8GLpa+ldBb1vdAonM
- UYuysjRdiwZULZYoMXQ6PGNayr3mLASQhhhwsgr7EZH5y2IBCd9qpwFEk
- futZjzGuZb3nvdPWBPXOyra2sEM3TKchgl/5D5GQjXabLjFtA8hopXse2
- PJ1fWEMZFYl6rNJm+v6Bwa9mVufsBDccRhiiiU8rfcPGuL4Rgx/qSe5RR Q==;
-X-CSE-ConnectionGUID: Jg6gLCtVTvmS8e2RKCVR/A==
-X-CSE-MsgGUID: AXn35Pw4THaokbvWuE74qA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11108"; a="27184399"
-X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; d="scan'208";a="27184399"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2024 11:46:25 -0700
-X-CSE-ConnectionGUID: dDDjCKCZQYWm/WlXFzdkhg==
-X-CSE-MsgGUID: 3lLtclB+QtukuUA4KzOA4w==
+ in-reply-to:mime-version;
+ bh=5i65yiMQ99M/oajCDrLDhlIOM2oV4q0KOXn+eNBKc6U=;
+ b=GMoqXTnPkdVDlszEU1c5cKzOPaFjlHeboYXpJDfHmNZ5ighMzfvp8gLL
+ sG/BQB2eu8UdMypYHEvOgcikckRCBRjr2hj/ero6xvb4quDVqEechVAly
+ X52vKrUVaayK2YhuZZH+OGBhfRxlarcAmj558CvTzRF9bH5WrIc/gNwXd
+ CZaYW4XaMhZRHbb+4gsH1vhvG/rEhJbl6ziXKBROtIPgJoBCHqWNaKCAH
+ JDYBxIapYSeGPVzywzCvk/xu0eXCSLbaLhZmixMawVklXt1SlPXGkE/rg
+ C+NV9LZ/FmHpShtecH8ibW1UowJnlKJcQJTNc1gquoIUz0/xilfQBSHEm g==;
+X-CSE-ConnectionGUID: akExEuROTTONusG+BuOSQQ==
+X-CSE-MsgGUID: nu+Rp/dEQ3uXufaNmAEBCA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11108"; a="12152157"
+X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; d="scan'208";a="12152157"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2024 11:53:50 -0700
+X-CSE-ConnectionGUID: 9wAShXxlQE6IlSyEmFRzZw==
+X-CSE-MsgGUID: iamDE5KkTWmBOjEJQan8+Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; d="scan'208";a="41957449"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 19 Jun 2024 11:46:25 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; d="scan'208";a="46527675"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 19 Jun 2024 11:53:50 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 19 Jun 2024 11:46:24 -0700
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.39; Wed, 19 Jun 2024 11:53:49 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 19 Jun 2024 11:46:24 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 19 Jun 2024 11:46:24 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Wed, 19 Jun 2024 11:53:49 -0700
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.42) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 19 Jun 2024 11:46:24 -0700
+ 15.1.2507.39; Wed, 19 Jun 2024 11:53:49 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ICscaX3dyyYazro76vzKomvSn3QmatIt/m3LpsX+W70DD8U7B9AIuxEyeeAyjPmjSTW78fUp9FTQZi4WzFmq+37t2HMNDBrRNJHTlqlT7T0trzyxBFFf7mZ2KwWSf7yhFCD45hc2qfvM8rjMve2qzHP/EgT3EqSOqCG+xjGjUyUmqk/iAkMC4gCbB0yLRNq9h/jvof9e4G+BBWq2FYps0Ojh/E7dfz6mKEC+LhsS0PHcYGUrLJ7IhG3yGMOv9D2tAEXgBweHFhxJO7waSFQ/NG2+AcBJtqdr82CazTuQrONlQ7DkXvOOd6cuDiKm/x0lQY1MsYAh+IzJfiXgEG69MA==
+ b=bP3zDEopMsQpQLChg/MmxgcEHzUllgpEHrfOIpaM8aItc1Y5XGbMovMPZ5SAnFaHYRn57/O8mkotHbjm85pE52dziQxoqNCWUHBPIHE+coCSaMzjiEuvYoNDUUCZPeor/Wi263fqW0SKBXJ4esgKxnJhgFLr7CkAp0xxDtgxp8ux5jaIZ41CMJotYZojIjX51EUI5ecbwxxN5X+h6Bi5bS5Kqoe5LrQu2vVcwKmWPS0+WoxzUoEJ88CIZNGQTb//HP6Pnf+qPN7RWiZgGxBImg9cZ4/tqha3nHK/ojaTF6Hyoh/eWEjHeD+Xd/a1wG//9t9cwo7YbNwu6DtR/8W0eQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Z+ZJf8wVZxoJUfLzrv1AZbnc6PrcdUr6BmaiM9RCYoQ=;
- b=VTnT+qMMCE3UliDp/EwSqhrzTpXv++qqxodT98n54rgZIJk28dtHh2N8yIGsRtMhfOOP7RuucXARdlgBmPwO30W51cPdVpjTe8Fw8+qR7+L2H3J4SIswzA3gTCM04/oQaZakb2HfxZIWOIR1Cnipkt2u18Nrhyh0D02l6M5+NTLnJHE6pHJ7kRV/HIBq/JDoK07VSP2F7NkJsmfxd0yJj0+vfM+CqX62gSnnbEpRJBLBcWKv9Q0r9PbBdy3aJccmowMHydpDcIytZSwE70C8EdJ09wiP2bmhZ7t7cuMSDfKySz0/eleaSWeZ9Oaoiv5vmV3v779Swhjat9KOwZxrjg==
+ bh=QgAARCLuQvgA45VjAcsyiFmphm1HfjRKGN+IhsrHuFM=;
+ b=biYabjdAR7R9YjrPmtqMv5INP/qCArmD+FHpWu2TrQ3Fqb6/X2KW9/Y4IO4KH+tRywr4Z6DhlZeFOUxEuP2R+hb5NJKqB0AGiDm0FhdibjGom4yqSaSWGNELvDTocRaFQcrpgc0CYMuxwH6rIzeXxkv1bJpDzzshhDyT3ZtjoKDYrp+wBhSE4D+4y1zoFVqKzk6yPvblJs2wPYpCelbsllQP+CS5qKkNNdRrYvF/HCAb+zrfgEz48Q+njp4X3LGZUNoWvFMuwJhXT/BJTclCw10hSu0TBeNb6lQybjRPBzrvNKk/i8hM9qyCCdoh4LTOUURC9UrN99ZeftwRAxxTdQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
- by DS7PR11MB6223.namprd11.prod.outlook.com (2603:10b6:8:98::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.19; Wed, 19 Jun
- 2024 18:46:21 +0000
+ by LV2PR11MB5976.namprd11.prod.outlook.com (2603:10b6:408:17c::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.31; Wed, 19 Jun
+ 2024 18:53:46 +0000
 Received: from BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42%5]) with mapi id 15.20.7677.030; Wed, 19 Jun 2024
- 18:46:21 +0000
-Date: Wed, 19 Jun 2024 14:46:18 -0400
+ 18:53:46 +0000
+Date: Wed, 19 Jun 2024 14:53:40 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: Lucas De Marchi <lucas.demarchi@intel.com>, Nirmoy Das
- <nirmoy.das@intel.com>, Matthew Brost <matthew.brost@intel.com>, "Michal
- Wajdeczko" <michal.wajdeczko@intel.com>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [RFC 0/3] FW guard class
-Message-ID: <ZnMneufY9h2NRsRq@intel.com>
-References: <20240617143430.641-1-michal.wajdeczko@intel.com>
- <ZnBxSFpuGjc9c9KJ@DUT025-TGLU.fm.intel.com>
- <ZnB51-d3XtwUfPfT@intel.com>
- <d2f2afa7-8fd2-466d-9044-11814183a819@intel.com>
- <ZnDHIba3eBe1+p8y@DUT025-TGLU>
- <h7yjiengrjzue7acsaghy3r3fimgp4v5ntyujytd2ddqt3kxgs@erajfxzizsns>
- <ZnHtdMLEHFAHMqRr@intel.com>
- <db44e9c4f5ee7a57ab083772cb7f6684d1a31169.camel@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v6 1/2] drm/xe/lnl: Apply Wa_22019338487
+Message-ID: <ZnMpNOooDy4OsMki@intel.com>
+References: <20240619012617.3756043-1-vinay.belgaumkar@intel.com>
+ <20240619012617.3756043-2-vinay.belgaumkar@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <db44e9c4f5ee7a57ab083772cb7f6684d1a31169.camel@linux.intel.com>
-X-ClientProxiedBy: SJ0PR03CA0084.namprd03.prod.outlook.com
- (2603:10b6:a03:331::29) To BYAPR11MB2854.namprd11.prod.outlook.com
+In-Reply-To: <20240619012617.3756043-2-vinay.belgaumkar@intel.com>
+X-ClientProxiedBy: BYAPR02CA0043.namprd02.prod.outlook.com
+ (2603:10b6:a03:54::20) To BYAPR11MB2854.namprd11.prod.outlook.com
  (2603:10b6:a02:c9::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|DS7PR11MB6223:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3cbccfe6-ac75-4004-4c23-08dc90901cdf
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|LV2PR11MB5976:EE_
+X-MS-Office365-Filtering-Correlation-Id: e8100992-41fd-4f3e-96ea-08dc90912628
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230037|366013|376011|1800799021;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?yzAuGKPo60auVmCOj3jxAJEUk9Fkwf2F4V+X3RwNNEzBBpMArUTmgsZnym?=
- =?iso-8859-1?Q?OfiKSp4iaFxYN35qnV5rtcPcXfZXPgFoVULwhDCLAQEEw9ixsEwg8GW/NP?=
- =?iso-8859-1?Q?H5hSQ8F3uzUn2I3oo9aMHzLdredZJd4dcoSISS7xoMPMZkhWcIFcat+pDH?=
- =?iso-8859-1?Q?mrHkJSoUe7MEPkJx4Wyhnun1Tln+gQ1nDoZwwu8z975kkLL+DfmvOXmLoa?=
- =?iso-8859-1?Q?eewZJ9DRawMju8ykmpLN5e66qP1euHhclY5U94fZbapgpEr91ooB9cjzuD?=
- =?iso-8859-1?Q?pLHXxqTrDIABrzAg9ocpzTeVnd7pGm9J3GJe3I0CIGkuDBtb5DdnQHkz1s?=
- =?iso-8859-1?Q?BvA5AGtf5LJY0/doqjwcEH/qkfO8PvnmNlUgjM7FudQR7AezdxABP3IleH?=
- =?iso-8859-1?Q?NaiSkh1eWxeZPAoCjst35CvADluodSzEKm2i+oQBhUzR14dzo4feGiEUps?=
- =?iso-8859-1?Q?dIMmolyW3Y0ze5G1BjO/QnR37HL9bfUvoCF8wGayAmkFPIof1fmTcYZHj+?=
- =?iso-8859-1?Q?wWZe+iLv6IvzWIV2j4juUkHErPpzG7cETWc4f6cKJR/WUAzeCIgn5B2NWK?=
- =?iso-8859-1?Q?t1+IGgxfZvw8bAnfeA+VXVk+pGRsmLHXjzEw7xrUnU0Ct50FKpeWQEEKQT?=
- =?iso-8859-1?Q?1ybEfN52c77D/KsNhAAAidpkbp7HGf1tnpA+jPIhT/W3AOnyv5TQyZAang?=
- =?iso-8859-1?Q?eFw5EPA3MuAVVhylvPNKkrI4ll32Whr8oPIEn60CCI176e7E+LthnxJSlM?=
- =?iso-8859-1?Q?55shMaR57TGHWiXjYno7J0Cpib81ZQK3xwJTyLXLJFm5OAti2k9N+6XsXO?=
- =?iso-8859-1?Q?ce4zHZFhVXdzwbWm6/HS329QRlD4KhK9M2e3WiplKBKy5LpPVNPCQnM3ml?=
- =?iso-8859-1?Q?nTMIq2X3IIY47UMpImE2ftG2UghjTTCR3OMj7oAD35YKmQvWg2HJJh+IIU?=
- =?iso-8859-1?Q?OsWxJE2pA2/k0aoGORh2np0+4bdaXYXOPXomcdlpGZ2E4FRzAan6bJ4ScE?=
- =?iso-8859-1?Q?ZstehANomc9mZoUBSy5LhEbLwKK/t1nLVSz+CYXyLiO4xvICVQWCPbbMtz?=
- =?iso-8859-1?Q?sSdXQP01ikirVaiT276girAVFQxr51AU7OWz8bNIC+WK4vGtyjRMTGNpuv?=
- =?iso-8859-1?Q?6QD+T5ZLm8cBFdYworrQRNMJhhaa1Usl09iV3suZRnPnf4mqCXoN9MLkLC?=
- =?iso-8859-1?Q?qN2srhkjqEpktPR5/UKlE/Lpw1KdZJSjhLLl5rSZ4Ns5sHMNZPdT+BAUuU?=
- =?iso-8859-1?Q?ZoJvXoTik+cl5m51lfQW0FcGFCJzDue0D1iMV2dxalHREJNmLWveFlmPkt?=
- =?iso-8859-1?Q?GYLB?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?cI1E5JokI/LQqW6w/Bi50n+t+meKEDuzhFHd/fPR/RWcIZv/nk6HZIJYMzaJ?=
+ =?us-ascii?Q?zwhr440ux7VlvmKeVX+kVVJUo2lGhgSQxSa1RR9V5BbKv0n6egWpumJgWalC?=
+ =?us-ascii?Q?VW86uZu0gILIat5Lr9xBnx0KFyXdo98yOtRc+6cQf/N/55AOIRVU9Atrc4HH?=
+ =?us-ascii?Q?l3Tjv19XkWLk7ULx8KlPltKOuIA7xUxHseq9WkhOkF3TLZp3izllgpKjG2GU?=
+ =?us-ascii?Q?bBE9f8V/vf/aksBOeU1Omca1hg9NPxIK0Eq3YAaSZnjAheCKGJEL4+hy6JRi?=
+ =?us-ascii?Q?SdqyjI3zniFTSH9A0Q0PPln4GzXVRwwli+e49kBo8rfskjL58Pn33C3J7pyY?=
+ =?us-ascii?Q?kZ77t0/jSMhcGczczoy+D+e1HxjTbmmFAbmBW4ZrVqAqk3+MBP+j/b+ChQRd?=
+ =?us-ascii?Q?kxqWCdIFIFXxi5LoTyKx2vnLQGBhCOsahftrueGEBx6+1rdpWPZBVcILqsQv?=
+ =?us-ascii?Q?tOn/lkLv9yfJf40KeVRSw8zsg1TbBc6YYkR4uIomXW+DrW4YR30qmnrLb1pj?=
+ =?us-ascii?Q?6YTCj1JuNVIrM05OkJaDoxx0qtbZ8f7dZr42+yi+Gsk3HNQkzoZu1sefqzob?=
+ =?us-ascii?Q?Iul+mphq8AamgJlXK/a/sZLakF02h2s6EW78ywx0ohwEoShPrRLZYaryEBGT?=
+ =?us-ascii?Q?O72c6r7d3L8hV9JFI0pu+yDkt5tg1xO2Dwqe968k9LVTaF5ScaYx1xBngR+L?=
+ =?us-ascii?Q?XS5ux6XrjSDbZYN5jeyWR1EFf2TLHzVeWG/yzXEY5FGhrf4YzX+DhXVP8bK0?=
+ =?us-ascii?Q?Jf9i03J8Pg15TEmWv+aqRMG4VUwu2kiX57Fs2a3HO6yBi9ODo34QhhSrVQkv?=
+ =?us-ascii?Q?JNZUhuVKO2x9gg5t5HEdEecudxkoLFTo2Cx+0FiJnmfjUEQXvkKjdolScLRC?=
+ =?us-ascii?Q?mCGV9XBfLgolPw8iVW14YdCpMuc8bXvUi3RmEX3C8wCVBg1IghbfO4tV/J1a?=
+ =?us-ascii?Q?ELzUf2b1ryWTbXOLsi5c7VKZ/VOOvd1UVxJmmw6W/Jc+91oCaJt1dotgOR3T?=
+ =?us-ascii?Q?udJL12dgCDe23DV14aF339RTde/frov8quexhk2Qej+bU5627zD4goQYNDhK?=
+ =?us-ascii?Q?IKuuom/IxTjlyJOenU8xQxwjAGcI7426JaFndCpUOX0KTLS8drIYXyw7+RkR?=
+ =?us-ascii?Q?GpNa9m3akFNEgDBHcuSKh8sx9tAsBFIW/jBus3Df5FFEO1U6xradpf7qjvrz?=
+ =?us-ascii?Q?PDpXCyoZ7YTMVfqbQoNMDl7oibWWy2zlmFn2wh5j3tBB/Q/+EeQquVQ8gXMk?=
+ =?us-ascii?Q?knkBXwLsq53OVMbsxxZxuhfdus9AQlVKNBxwWwJygs1irdOmpjXImZ/KXwNP?=
+ =?us-ascii?Q?Djgw5DNGxqVVGsJr1hg55+6D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230037)(366013)(376011)(1800799021); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?cviYP4lBnhX6wsto8Nc9xZdkIxOO2NWRUfqwB+GpUduw2bKFUHTmPMRKoZ?=
- =?iso-8859-1?Q?47LC5Jv75RtdtfizJg+FmNmlEXgr119ZUVzmnpiGX7uK/p5cANcrB/e4o5?=
- =?iso-8859-1?Q?uXXB6hIeQPR0GmROFUZn+qqRLecue98G1FRgmO6rYB+pN2tIjpwsWbYkSC?=
- =?iso-8859-1?Q?QSurbTJUq8QFFAACUZM0Qg/t2dZP4rDCWp7lXVxdSs7QM3vpYu9Lro+Xks?=
- =?iso-8859-1?Q?g6XeOWzdtZYiCscy4VmQEm3aDX/59ex3xEqtr+CMqFwH57Eb52HxctFaK0?=
- =?iso-8859-1?Q?q04M16xbIn31uvH2BVk12eCiB4A2GFLMYVa4SPvQ/XHV1AER3YWCdqP8CO?=
- =?iso-8859-1?Q?cjEq0sQkWglhpxAemTeECxkGmU4o+1xR0tQDFthy3XHPrKLfFfqA8nqUR6?=
- =?iso-8859-1?Q?iIp+GNA1B/Lin/5aHBdWNSxrOf5iUQEu3FLhkHbiYv3kKH/soT4LKa0x9c?=
- =?iso-8859-1?Q?eNYlnMUX7NTB5qaYq7jBu0dDArX/ZiWjE1cd4IJHV7jI+ErcKY/JNhIiEF?=
- =?iso-8859-1?Q?IYXvvUlQPLq3b7dj6rRt9u/TWfC9ngVRRxIa/B45qVB3rPwOTrSMhC6Q0Q?=
- =?iso-8859-1?Q?iOyvkiHqIKn2Hd5h6MXUfwOiC0/hN923PqGCro9qkkF93TJOTVPoKVYZwI?=
- =?iso-8859-1?Q?C22Z5UJKmkR6TFMnvBSgQCro8nC9xx4Tj0ncX6okLroOQE9Kn+unQrP8+l?=
- =?iso-8859-1?Q?3DlrltfCxRHd4Ysnqti9rOn6WYabbQAvR/hSR1Pv8NxlIgzeScMcidZrql?=
- =?iso-8859-1?Q?3OmeYUoY6POb+TGP2PS6Xo9S0v0wbv56BSglm+wfDzQh19nCGt6D2Slxq+?=
- =?iso-8859-1?Q?Hvc701G8Ar3ZEZB0jn6HcuaOzHbGfZWQWehiepBbDW58dRKilqjgKM87yk?=
- =?iso-8859-1?Q?hVlzOBpFvYos6CbScu3jN09uKOYKEfmRQtJ/ooskvAnkNNPnc6GDBoNmfC?=
- =?iso-8859-1?Q?ZUBEYuXwvpEVeSP6Poh+k8TxFOpubQMjFQNsM6TzTtyvZAufBzL5SkBrFt?=
- =?iso-8859-1?Q?uiDkwdlLibA6olSHFuMpyaKd+BOTD5lAruFe+HEl3g7cGK0FFEeV/vdkm1?=
- =?iso-8859-1?Q?nCqV4j/kvGL+kiLfTiPoToF641DBhi3t4CGcrgypNgYySxWwVYBjpy4y/9?=
- =?iso-8859-1?Q?1vAoihcDJDqLPcI2EvCqGoX6k0EE4SFG8o/xwi3XU7KpCdZ8SaOany+BrN?=
- =?iso-8859-1?Q?jNG5IBs9IaQxAwWEUQaHZqip46ltEhYoroo+Zq9Rn9hLyJHV1w+clLHedn?=
- =?iso-8859-1?Q?ditIv8UAfyiiRh4SlROu9fU4PG4Gb/hS8dZMbOkSJKxBT2GjX9Ad+uBP28?=
- =?iso-8859-1?Q?KGxcWZ00BVPesvLbSiLX4BeD0STCOFuVAFeAHPt9Gc/STTTls2dZ2rFqhY?=
- =?iso-8859-1?Q?XEVJ8HCddmSzdjxPIM2rVHVyaAs8Ay0PvrOMGUQfF6q0ca4dQJVw5nH7Xg?=
- =?iso-8859-1?Q?ff90d/jCGiJ0kKYhsQQ2mFoD1xpX8OR6Qa30QYcprvXyY+Qbgvckc/zxtL?=
- =?iso-8859-1?Q?TW8MNyYMn0iNWee4HQ1ql69FomkD+n9gVlYK+9+Od43Z3UuS96MLZDs0Bo?=
- =?iso-8859-1?Q?2cdXXp9YCqqKS1JZe0SYKLEtfsiurLg3zDslOf76LwITqhBM4iEEmWijpx?=
- =?iso-8859-1?Q?l7KVU0mBCT7+JC5m6Lvl0e0ewynKpI8/2jQtalRzPTfmHdGwAEqY5Rbw?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3cbccfe6-ac75-4004-4c23-08dc90901cdf
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mPZzJJNbHAzllmrv4pbiAXP/FHFu9J5IAqD8GJsGgDf1MgykMsoLIcVSGGIc?=
+ =?us-ascii?Q?Erpnq5RUgoipX+uA0UveJZQz8EchcHTbKYkpJ4Qduu5ReO/ctWbuUEpF+qvF?=
+ =?us-ascii?Q?EpCu2TTYKFKDK8So3NeIyeYKIwQvmhpHjlzwhWFdJAsM/3ypX66XEC5RYN6y?=
+ =?us-ascii?Q?1CpLs8a75VATU+whRQjvT2i0EJS5aYM+LCrAuOAozZLsp3ocw5devveZmG+l?=
+ =?us-ascii?Q?QMRCHdxMx1bQMk43nSQUQG0DyzTOPvbquNmOhBIzVB+E5saltUnPYieYaX0D?=
+ =?us-ascii?Q?3hs8inl857l+siggSbru+fRT21aqsgpcmBc+3lI4NTPqMuqBkEmD+0aguHZS?=
+ =?us-ascii?Q?M2OhUKWo60wkKuSAdeo1MWBMzvzbJv274W5c5mazmZwf0rXC06omlE9htLaZ?=
+ =?us-ascii?Q?QyTs3AuFkYX77rKIhSgxsq7oLTcKBhFD7Ifc8hJhSmGoXDBH/hhA3N77Z/PG?=
+ =?us-ascii?Q?oTR6VxwCyH6C7eS6Vbr6aW2hW4ZACjxtl5wuv5J8YOssQNwCByTM9nCW6xPE?=
+ =?us-ascii?Q?/uu4LEvif360eX5OSMMQSLkT8ESGRineKktp10/jj5N6wbPb3OQ1AzXiYNKO?=
+ =?us-ascii?Q?RgSKz35Uykci1/nLCAMs6loYZD/mxsSCtw+gFFmF34DUqusvRF4l5u6knx7R?=
+ =?us-ascii?Q?+ixy8BQEuMIMoF/GZZDh5Wwza7vxI6kQHwrOI9fjOdZM89pvZQnlf82JkUOF?=
+ =?us-ascii?Q?hrwNYuypzSjSRWNf2MXHqPU8g1xpVnpUPo4u9iQRDPUCBTKLpkTczhmUHgGd?=
+ =?us-ascii?Q?Y7t7v4hCxStCvy4Mp1i6QM1+kVK9UuIknmIvZgjwpMvM5RUln3C+F4p3XhWe?=
+ =?us-ascii?Q?QxcTVnQe6FNcWW5liB+hi2YsbC2nx0O1W4mtPw48W6DarUMCvJ9+mNJ/GNwx?=
+ =?us-ascii?Q?CDebu9131Rn6ig5JQEy8H1vvp4FyrZX1hIMWv37PVDlpoi3qDW+WnMbBLENX?=
+ =?us-ascii?Q?6G5JHwcr0tgCBNMBNrxP4PowrxfwtMiVwB3JWhbGI0j2YarNPdYi/Id+mnng?=
+ =?us-ascii?Q?oNQFvpa/2ZHV5xXpjWp93Zq52HnfnLMWVHER+ueCpG3zwNDcP4PJWXZbVo3i?=
+ =?us-ascii?Q?clsh1uEmqCGTP9dkE6H8vbAiwiG7bn/v6DAgTdC1qfpdNd1C1qWX34NyqPeF?=
+ =?us-ascii?Q?aV7zcBCQDFXGb1asXOcOWhNyX2QNOdWJMl+xzHhsUOcxJcRIG0P2dmfuBrns?=
+ =?us-ascii?Q?F3Oz2CeSP7TXkkOAk2bUqyt7xUb9GEJAELInJ8rVpMagSREuAv69Zly9a3/c?=
+ =?us-ascii?Q?4EyM+qDUvgfpW4Y9Ej9LZG72GjvEg47eWxTUsuL5eSnHF2G6+Xa9p/oNnf7+?=
+ =?us-ascii?Q?CQd2GHptHmgALV/WVQL5gpRYO8rEHgtTMP1WqSgtwsAXMdaqKGM++cdOmU88?=
+ =?us-ascii?Q?4di0uH2GQbfyU8tMvJXyFOWdcAEYElqGt0fFLC0MCY7pHbB/7S10tALF8SSq?=
+ =?us-ascii?Q?3U7xrxzROzNJv60X0rKJBleAK7UqkRBUo58rdulRyYSnO1DAX0JS+e5/7SMV?=
+ =?us-ascii?Q?RtiDqmDbsBF1qI1Smh8LeURmI+h+tYyUG06oQ+4BVdecCLuhq62ak/XmQGg2?=
+ =?us-ascii?Q?2fASVkhjaHbhUINvIhQ3sqitGvmZCS7P7M9GMboys/Kv4XYeT2wzdI+HCJdM?=
+ =?us-ascii?Q?0A=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e8100992-41fd-4f3e-96ea-08dc90912628
 X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2024 18:46:21.5858 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2024 18:53:46.6653 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WjNTKES1kLeNd1AoqB1oHU/nNw6rRkDNwNVp41QqrRIweyg4G2LExgZosQ6rYbltZqmtFcomNys3VNph8NCSfw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6223
+X-MS-Exchange-CrossTenant-UserPrincipalName: wrdpCvsd5wdl1zP8pCZOIp/fFcSqXWZ2L/7GSL1E3hEGsul5ztNJ5ZOjndiKp24TUXgDYgIh2V9dMRqtdM+Bqg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB5976
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -188,320 +174,489 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 19, 2024 at 08:40:54AM +0200, Thomas Hellström wrote:
-> Hi, Rodrigo,
+On Tue, Jun 18, 2024 at 06:26:16PM -0700, Vinay Belgaumkar wrote:
+> This WA requires us to limit media GT frequency requests to a certain
+> cap value during driver load. Freq limits are restored after load
+> completes, so perf will not be affected during normal operations.
 > 
-> On Tue, 2024-06-18 at 16:26 -0400, Rodrigo Vivi wrote:
-> > On Mon, Jun 17, 2024 at 07:54:41PM -0500, Lucas De Marchi wrote:
-> > > On Mon, Jun 17, 2024 at 11:30:41PM GMT, Matthew Brost wrote:
-> > > > On Mon, Jun 17, 2024 at 09:24:42PM +0200, Michal Wajdeczko wrote:
-> > > > > 
-> > > > > 
-> > > > > On 17.06.2024 20:00, Rodrigo Vivi wrote:
-> > > > > > On Mon, Jun 17, 2024 at 05:24:24PM +0000, Matthew Brost
-> > > > > > wrote:
-> > > > > > > On Mon, Jun 17, 2024 at 04:34:27PM +0200, Michal Wajdeczko
-> > > > > > > wrote:
-> > > > > > > > There is support for 'classes' with constructor and
-> > > > > > > > destructor
-> > > > > > > > semantics that can be used for any scope-based resource
-> > > > > > > > management,
-> > > > > > > > like device force-wake management.
-> > > > > > > > 
-> > > > > > > > Add necessary definitions explicitly, since existing
-> > > > > > > > macros from
-> > > > > > > > linux/cleanup.h can't deal with our specific requirements
-> > > > > > > > yet.
-> > > > > > > > 
-> > > > > > > > This should allow us to use:
-> > > > > > > > 
-> > > > > > > > 	scoped_guard(xe_fw, fw, XE_FW_GT)
-> > > > > > > > 		foo();
-> > > > > > > > or
-> > > > > > > > 	CLASS(xe_fw, var)(fw, XE_FW_GT);
-> > > > > > > > 
-> > > > > > > > without any concern of leaking the force-wake references.
-> > > > > > > > 
-> > > > > > > > Note: this is preliminary code as right now it's unclear
-> > > > > > > > how to
-> > > > > > > > correctly handle errors from the force-wake functions.
-> > > > > > > > 
-> > > > > > > 
-> > > > > > > I'm personally don't like this at all. IMO it obfuscate the
-> > > > > > > code with
-> > > > > > > little real benefit. This is just an opinion though, others
-> > > > > > > opinions may
-> > > > > > > differ from mine.
-> > > > > 
-> > > > > except that is more robust than hand-crafted code that is error
-> > > > > prone,
-> > > > > like this snippet from wedged_mode_set():
-> > > > > 
-> > > > > 	xe_pm_runtime_get(xe);
-> > > > > 	for_each_gt(gt, xe, id) {
-> > > > > 		ret = xe_guc_ads(...);
-> > > > > 		if (ret) {
-> > > > > 			xe_gt_err(gt, "...");
-> > > > > 			return -EIO;
-> > > > > 		}
-> > > > > 	}
-> > > > > 	xe_pm_runtime_put(xe);
-> > > > > 
-> > > > > and thanks to PM guard class we could avoid such mistakes for
-> > > > > free:
-> > > > > 
-> > > > > 	scoped_guard(xe_pm, xe) {
-> > > > > 		for_each_gt(gt, xe, id) {
-> > > > > 			ret = xe_guc_ads(...);
-> > > > > 			if (ret) {
-> > > > > 				xe_gt_err(gt, "...");
-> > > > > 				return -EIO;
-> > > > 
-> > > > Just responding with a question here - haven't looked at the rest
-> > > > of the
-> > > > comments.
-> > > > 
-> > > > How is this not still a bug? Looking at scoped_guard, it appears
-> > > > to be a
-> > > > magic macro for loop which acquires / releases a lock or in your
-> > > > purposed case a PM or FW ref. Doesn't the 'return -EIO' skip the
-> > > > release
-> > > > step? I see coding patterns like above in the kernel [1] so I do
-> > > > assume
-> > > 
-> > > with __attribute__((cleanup)), the compiler guarantees that
-> > > it's executed when the variable goes out of scope. What you are
-> > > probably
-> > > missing is the use of CLASS() declaring a variable inside the for,
-> > > which
-> > > uses attribute cleanup:
-> > > 
-> > > 	for (CLASS(_name, scope)(args),
-> > > 	     ...
-> > > 
-> > > GCC's doc:
-> > > 
-> > > https://gcc.gnu.org/onlinedocs/gcc/Common-Variable-Attributes.html
-> > > 
-> > > 	The cleanup attribute runs a function when the variable
-> > > goes out
-> > > 	of scope. This attribute can only be applied to auto
-> > > function
-> > > 	scope variables; it may not be applied to parameters or
-> > > 	variables with static storage duration. The function must
-> > > take
-> > > 	one parameter, a pointer to a type compatible with the
-> > > variable.
-> > > 	The return value of the function (if any) is ignored.
-> > > 
-> > > 	When multiple variables in the same scope have cleanup
-> > > 	attributes, at exit from the scope their associated
-> > > cleanup
-> > > 	functions are run in reverse order of definition (last
-> > > defined,
-> > > 	first cleanup).
-> > > 
-> > > 	If -fexceptions is enabled, then cleanup_function is run
-> > > during
-> > > 	the stack unwinding that happens during the processing of
-> > > the
-> > > 	exception. Note that the cleanup attribute does not allow
-> > > the
-> > > 	exception to be caught, only to perform an action. It is
-> > > 	undefined what happens if cleanup_function does not return
-> > > 	normally.
-> > > 
-> > > This was only possible with the recent change in the kernel raising
-> > > the minimum C std to gnu11 (uapi is still c90 for compatibility):
-> > > 
-> > > 	commit e8c07082a810fbb9db303a2b66b66b8d7e588b53
-> > > 	Author: Arnd Bergmann <arnd@arndb.de>
-> > > 	Date:   Tue Mar 8 22:56:14 2022 +0100
-> > > 
-> > > 	    Kbuild: move to -std=gnu11
-> > > 
-> > > 	    During a patch discussion, Linus brought up the option
-> > > of changing
-> > > 	    the C standard version from gnu89 to gnu99, which
-> > > allows using variable
-> > > 	    declaration inside of a for() loop. While the C99, C11
-> > > and later standards
-> > > 	    introduce many other features, most of these are
-> > > already available in
-> > > 	    gnu89 as GNU extensions as well.
-> > > 
-> > > > this works, just confused how it works.
-> > > > 
-> > > > With that, any code which isn't easily understandable IMO is a
-> > > > negative
-> > > > ROI as it just creates confusion in the long / makes problems
-> > > > harder to
-> > > > understand. Again this is just my opinion.
-> > > 
-> > > I think that is mainly about getting used to the pattern. I think
-> > > we
-> > > just have to be careful not to overshoot on trying to use
-> > > everywhere.
-> > > For example, I don't know why there's already a second use in a
-> > > separate
-> > > thread when we are still discussing it on this one.
-> > > 
-> > > A very positive thing is that this is not xe's own invention and
-> > > comes
-> > > from core kernel, maybe from the hottest path that is the
-> > > scheduling and
-> > > locking. So I very much disagree with arguments raised here about
-> > > a) this is an alien thing and b) performance will be severely
-> > > impacted
-> > 
-> > just for the record:
-> > a) the alien thing is i915's with_runtime_pm... this is part of core
-> > kernel, so
-> > it is not an alien thing. I still don't like C++isms, but that is
-> > just a preference
-> > not a blocker.
-> > 
-> > b) it is an overhead, but I really doubt that this would impact
-> > performance.
-> > Only data would show.
-> > 
-> > > 
-> > > I've used __attribute__((cleanup)) in several userspace projects in
-> > > the
-> > > past and it does help avoiding problems on the error path that is
-> > > usually not very well tested (and xe's track record on error path
-> > > is not
-> > > very good either: those were the main issues being submitted in
-> > > drm-xe-fixes
-> > > for the last release). So if we have a way to improve (and that
-> > > I've already seen
-> > > being used successfully), I prefer failing on trying than on
-> > > repeating
-> > > the same mistakes. 
-> > 
-> > Pretty much agreeing here! Specially because this is a Linux core
-> > kernel
-> > infra available. Let's try.
-> > 
-> > Cc Nirmoy Das <nirmoy.das@intel.com>
-> > 
-> > who is looking at the forcewake stuff and to solve the flow.
-> > Specially to get his eyes here and see if this would cover all the
-> > needed
-> > cases for the forcewake.
-> > 
-> > If this series were suggesting another with_runtime_pm macro, then I
-> > would
-> > push back hard.
+> During normal driver operation, this WA requires dummy writes to media
+> offset 0x380D8C after every ~63 GGTT writes. This will ensure completion
+> of the LMEM writes originating from Gunit.
 > 
-> Does this mean you think the functionality of "with_runtime_pm" is bad
-> or the fact that it is driver specific and not part of the core?
+> During driver unload(before FLR), the WA requires that we set requested
+> frequency to the cap value again.
+> 
+> v3: Do not use WA number in function name. Call WA wrapper from xe_device.
+> Rename some variables, check for locks in the correct function (Rodrigo).
+> Ensure reset path is also covered for this WA.
+> 
+> v4: Fix BAT failure
+> 
+> v5: Add a function pointer for ggtt_ops (Michal W)
+> 
 
-because it is driver specific.
-just my regular rant with this, and other driver specific things,
-like almost everything in i915_utils.h
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> ---
+>  drivers/gpu/drm/xe/Makefile          |  3 ++
+>  drivers/gpu/drm/xe/xe_device.c       |  3 ++
+>  drivers/gpu/drm/xe/xe_ggtt.c         | 40 ++++++++++++++--
+>  drivers/gpu/drm/xe/xe_ggtt.h         |  1 +
+>  drivers/gpu/drm/xe/xe_ggtt_types.h   | 12 +++--
+>  drivers/gpu/drm/xe/xe_gsc.c          |  5 ++
+>  drivers/gpu/drm/xe/xe_gt.c           | 24 ++++++++++
+>  drivers/gpu/drm/xe/xe_gt.h           |  1 +
+>  drivers/gpu/drm/xe/xe_guc_pc.c       | 71 +++++++++++++++++++++++++++-
+>  drivers/gpu/drm/xe/xe_guc_pc.h       |  1 +
+>  drivers/gpu/drm/xe/xe_guc_pc_types.h |  4 ++
+>  drivers/gpu/drm/xe/xe_wa_oob.rules   |  1 +
+>  12 files changed, 157 insertions(+), 9 deletions(-)
 > 
-> Overall, scoped_guard looks fine with me and will probably come in very
-> handy in some cases, but I don't think it's necessary with a complete
-> "driver transition" other than when / if it's used for FW, PM etc. For
-> locks I'm pretty sure that there are callsites where conversion will be
-> pretty hard. Also need to read up a bit to check how interruptible
-> locks and trylocks are supported, and if the answer is "they are not"
-> we must make sure this doesn't for example encourage the use of
-> uninterruptible mutex locks where they should really be interruptible.
-> 
-> /Thomas
-> 
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 20dc9759bb3c..b1e03bfe4a68 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -24,9 +24,12 @@ $(obj)/generated/%_wa_oob.c $(obj)/generated/%_wa_oob.h: $(obj)/xe_gen_wa_oob \
+>  	$(call cmd,wa_oob)
 >  
-> 
-> 
-> 
-> > 
-> > >  In kmod my only regret is that I didn't start it
-> > > earlier, during the bootstrap of the project.
-> > > 
-> > > 
-> > > Lucas De Marchi
-> > > 
-> > > 
-> > > > 
-> > > > Matt
-> > > > 
-> > > > [1]
-> > > > https://elixir.bootlin.com/linux/latest/source/drivers/iio/imu/bmi323/bmi323_core.c#L1544
-> > > > 
-> > > > > 			}
-> > > > > 		}
-> > > > > 	}
-> > > > > 
-> > > > > > 
-> > > > > > Well, on the positive side, it is not adding a driver only
-> > > > > > thing like
-> > > > > > i915's with_runtime_pm() macro.
-> > > > > > 
-> > > > > > But I'm also not sure if I like the overall idea anyway:
-> > > > > > 
-> > > > > > - I don't like adding C++isms in a pure C code. Specially
-> > > > > > something not
-> > > > > > so standard and common that will decrease the ramp-up time
-> > > > > > for newcomers.
-> > > > > 
-> > > > > does it mean that the use of other guard patterns seen
-> > > > > elsewhere in the
-> > > > > tree is now prohibited on the Xe driver ? like:
-> > > > > 
-> > > > > 	scoped_guard(mutex, &lock)
-> > > > > 		foo();
-> > > > > 
-> > > > > 	scoped_guard(spinlock, &lock)
-> > > > > 		foo();
-> > > > > 	...
-> > > > > 
-> > > > > > - It looks like and extra overhead on the object creation
-> > > > > > destruction.
-> > > > > 
-> > > > > from cleanup.h doc is sounds there is none:
-> > > > > 
-> > > > >  "And through the magic of value-propagation and dead-code-
-> > > > > elimination,
-> > > > > it eliminates the actual cleanup call and compiles into:"
-> > > > > 
-> > > > > 
-> > > > > > - It looks not flexible for handling different cases... like
-> > > > > > forcewake for
-> > > > > > instance where we might want to ignore the ack timeout in
-> > > > > > some cases.
-> > > > > 
-> > > > > there is scoped_cond_guard() that likely will be able to deal
-> > > > > with it,
-> > > > > but I guess we first need to cleanup existing force_wake api as
-> > > > > expected
-> > > > > flow is not clear and there are different approaches in the
-> > > > > driver how
-> > > > > to deal with errors
-> > > > > 
-> > > > > > 
-> > > > > > > 
-> > > > > > > Matt
-> > > > > > > 
-> > > > > > > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > > > > > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > > > > > > 
-> > > > > > > > Michal Wajdeczko (3):
-> > > > > > > >   drm/xe: Introduce force-wake guard class
-> > > > > > > >   drm/xe: Use new FW guard in xe_mocs.c
-> > > > > > > >   drm/xe: Use new FW guard in xe_pat.c
-> > > > > > > > 
-> > > > > > > >  drivers/gpu/drm/xe/xe_force_wake.h       | 48
-> > > > > > > > +++++++++++++++++++
-> > > > > > > >  drivers/gpu/drm/xe/xe_force_wake_types.h | 12 +++++
-> > > > > > > >  drivers/gpu/drm/xe/xe_mocs.c             | 12 +----
-> > > > > > > >  drivers/gpu/drm/xe/xe_pat.c              | 60 ++++++++--
-> > > > > > > > --------------
-> > > > > > > >  4 files changed, 82 insertions(+), 50 deletions(-)
-> > > > > > > > 
-> > > > > > > > --
-> > > > > > > > 2.43.0
-> > > > > > > > 
+>  uses_generated_oob := \
+> +	$(obj)/xe_ggtt.o \
+>  	$(obj)/xe_gsc.o \
+> +	$(obj)/xe_gt.o \
+>  	$(obj)/xe_guc.o \
+>  	$(obj)/xe_guc_ads.o \
+> +	$(obj)/xe_guc_pc.o \
+>  	$(obj)/xe_migrate.o \
+>  	$(obj)/xe_ring_ops.o \
+>  	$(obj)/xe_vm.o \
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 75d4c8ae9234..2172b7d0e36a 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -676,6 +676,9 @@ int xe_device_probe(struct xe_device *xe)
+>  
+>  	xe_hwmon_register(xe);
+>  
+> +	for_each_gt(gt, xe, id)
+> +		xe_gt_sanitize_freq(gt);
+> +
+>  	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
+>  
+>  err_fini_display:
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> index 8ff91fd1b7c8..c345298d4a14 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> @@ -11,6 +11,7 @@
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_managed.h>
+>  #include <drm/intel/i915_drm.h>
+> +#include <generated/xe_wa_oob.h>
+>  
+>  #include "regs/xe_gt_regs.h"
+>  #include "regs/xe_gtt_defs.h"
+> @@ -23,8 +24,10 @@
+>  #include "xe_gt_sriov_vf.h"
+>  #include "xe_gt_tlb_invalidation.h"
+>  #include "xe_map.h"
+> +#include "xe_mmio.h"
+>  #include "xe_pm.h"
+>  #include "xe_sriov.h"
+> +#include "xe_wa.h"
+>  #include "xe_wopcm.h"
+>  
+>  static u64 xelp_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
+> @@ -69,6 +72,21 @@ static unsigned int probe_gsm_size(struct pci_dev *pdev)
+>  	return ggms ? SZ_1M << ggms : 0;
+>  }
+>  
+> +static void ggtt_update_access_counter(struct xe_ggtt *ggtt)
+> +{
+> +	/*
+> +	 * Wa_22019338487: GMD_ID is a RO register, a dummy write forces gunit
+> +	 * to wait for completion of prior GTT writes before letting this through.
+> +	 * This needs to be done for all GGTT writes originating from the CPU.
+> +	 */
+> +	lockdep_assert_held(&ggtt->lock);
+> +
+> +	if ((++ggtt->access_count % 63) == 0) {
+> +		xe_mmio_write32(ggtt->tile->media_gt, GMD_ID, 0x0);
+> +		ggtt->access_count = 0;
+> +	}
+> +}
+> +
+>  void xe_ggtt_set_pte(struct xe_ggtt *ggtt, u64 addr, u64 pte)
+>  {
+>  	xe_tile_assert(ggtt->tile, !(addr & XE_PTE_MASK));
+> @@ -77,6 +95,12 @@ void xe_ggtt_set_pte(struct xe_ggtt *ggtt, u64 addr, u64 pte)
+>  	writeq(pte, &ggtt->gsm[addr >> XE_PTE_SHIFT]);
+>  }
+>  
+> +void xe_ggtt_set_pte_and_flush(struct xe_ggtt *ggtt, u64 addr, u64 pte)
+> +{
+> +	xe_ggtt_set_pte(ggtt, addr, pte);
+> +	ggtt_update_access_counter(ggtt);
+> +}
+> +
+>  static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
+>  {
+>  	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[XE_CACHE_WB];
+> @@ -92,7 +116,7 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
+>  		scratch_pte = 0;
+>  
+>  	while (start < end) {
+> -		xe_ggtt_set_pte(ggtt, start, scratch_pte);
+> +		ggtt->pt_ops->set_pte(ggtt, start, scratch_pte);
+>  		start += XE_PAGE_SIZE;
+>  	}
+>  }
+> @@ -124,10 +148,17 @@ static void primelockdep(struct xe_ggtt *ggtt)
+>  
+>  static const struct xe_ggtt_pt_ops xelp_pt_ops = {
+>  	.pte_encode_bo = xelp_ggtt_pte_encode_bo,
+> +	.set_pte = xe_ggtt_set_pte,
+>  };
+>  
+>  static const struct xe_ggtt_pt_ops xelpg_pt_ops = {
+>  	.pte_encode_bo = xelpg_ggtt_pte_encode_bo,
+> +	.set_pte = xe_ggtt_set_pte,
+> +};
+> +
+> +static const struct xe_ggtt_pt_ops xelpg_pt_wa_ops = {
+> +	.pte_encode_bo = xelpg_ggtt_pte_encode_bo,
+> +	.set_pte = xe_ggtt_set_pte_and_flush,
+>  };
+>  
+>  /*
+> @@ -187,7 +218,8 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+>  		ggtt->size = GUC_GGTT_TOP;
+>  
+>  	if (GRAPHICS_VERx100(xe) >= 1270)
+> -		ggtt->pt_ops = &xelpg_pt_ops;
+> +		ggtt->pt_ops = ggtt->tile->media_gt && XE_WA(ggtt->tile->media_gt, 22019338487) ?
+> +			       &xelpg_pt_wa_ops : &xelpg_pt_ops;
+>  	else
+>  		ggtt->pt_ops = &xelp_pt_ops;
+>  
+> @@ -394,7 +426,7 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+>  
+>  	for (offset = 0; offset < bo->size; offset += XE_PAGE_SIZE) {
+>  		pte = ggtt->pt_ops->pte_encode_bo(bo, offset, pat_index);
+> -		xe_ggtt_set_pte(ggtt, start + offset, pte);
+> +		ggtt->pt_ops->set_pte(ggtt, start + offset, pte);
+>  	}
+>  }
+>  
+> @@ -502,7 +534,7 @@ static void xe_ggtt_assign_locked(struct xe_ggtt *ggtt, const struct drm_mm_node
+>  		return;
+>  
+>  	while (start < end) {
+> -		xe_ggtt_set_pte(ggtt, start, pte);
+> +		ggtt->pt_ops->set_pte(ggtt, start, pte);
+>  		start += XE_PAGE_SIZE;
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+> index 4a41a1762358..0e36ed4cd68a 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.h
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
+> @@ -11,6 +11,7 @@
+>  struct drm_printer;
+>  
+>  void xe_ggtt_set_pte(struct xe_ggtt *ggtt, u64 addr, u64 pte);
+> +void xe_ggtt_set_pte_and_flush(struct xe_ggtt *ggtt, u64 addr, u64 pte);
+>  int xe_ggtt_init_early(struct xe_ggtt *ggtt);
+>  int xe_ggtt_init(struct xe_ggtt *ggtt);
+>  void xe_ggtt_printk(struct xe_ggtt *ggtt, const char *prefix);
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
+> index d8c584d9a8c3..5d3de08831f3 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt_types.h
+> +++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
+> @@ -13,10 +13,6 @@
+>  struct xe_bo;
+>  struct xe_gt;
+>  
+> -struct xe_ggtt_pt_ops {
+> -	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset, u16 pat_index);
+> -};
+> -
+>  struct xe_ggtt {
+>  	struct xe_tile *tile;
+>  
+> @@ -34,6 +30,14 @@ struct xe_ggtt {
+>  	const struct xe_ggtt_pt_ops *pt_ops;
+>  
+>  	struct drm_mm mm;
+> +
+> +	/** @access_count: counts GGTT writes */
+> +	unsigned int access_count;
+> +};
+> +
+> +struct xe_ggtt_pt_ops {
+> +	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset, u16 pat_index);
+> +	void (*set_pte)(struct xe_ggtt *ggtt, u64 addr, u64 pte);
+>  };
+>  
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
+> index 80a61934decc..f8239a13fa2b 100644
+> --- a/drivers/gpu/drm/xe/xe_gsc.c
+> +++ b/drivers/gpu/drm/xe/xe_gsc.c
+> @@ -22,6 +22,7 @@
+>  #include "xe_gt.h"
+>  #include "xe_gt_mcr.h"
+>  #include "xe_gt_printk.h"
+> +#include "xe_guc_pc.h"
+>  #include "xe_huc.h"
+>  #include "xe_map.h"
+>  #include "xe_mmio.h"
+> @@ -284,6 +285,10 @@ static int gsc_upload_and_init(struct xe_gsc *gsc)
+>  		return ret;
+>  
+>  	xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_TRANSFERRED);
+> +
+> +	/* GSC load is done, restore expected GT frequencies */
+> +	xe_gt_sanitize_freq(gt);
+> +
+>  	xe_gt_dbg(gt, "GSC FW async load completed\n");
+>  
+>  	/* HuC auth failure is not fatal */
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index 57d84751e160..759634cff1d8 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> @@ -9,6 +9,7 @@
+>  
+>  #include <drm/drm_managed.h>
+>  #include <drm/xe_drm.h>
+> +#include <generated/xe_wa_oob.h>
+>  
+>  #include "instructions/xe_gfxpipe_commands.h"
+>  #include "instructions/xe_mi_commands.h"
+> @@ -54,6 +55,7 @@
+>  #include "xe_sriov.h"
+>  #include "xe_tuning.h"
+>  #include "xe_uc.h"
+> +#include "xe_uc_fw.h"
+>  #include "xe_vm.h"
+>  #include "xe_wa.h"
+>  #include "xe_wopcm.h"
+> @@ -678,6 +680,9 @@ static int do_gt_restart(struct xe_gt *gt)
+>  	/* Get CCS mode in sync between sw/hw */
+>  	xe_gt_apply_ccs_mode(gt);
+>  
+> +	/* Restore GT freq to expected values */
+> +	xe_gt_sanitize_freq(gt);
+> +
+>  	return 0;
+>  }
+>  
+> @@ -801,6 +806,25 @@ int xe_gt_suspend(struct xe_gt *gt)
+>  	return err;
+>  }
+>  
+> +/**
+> + * xe_gt_sanitize_freq() - Restore saved frequencies if necessary.
+> + * @gt: the GT object
+> + *
+> + * Called after driver init/GSC load completes to restore GT frequencies if we
+> + * limited them for any WAs.
+> + */
+> +int xe_gt_sanitize_freq(struct xe_gt *gt)
+> +{
+> +	int ret = 0;
+> +
+> +	if ((!xe_uc_fw_is_available(&gt->uc.gsc.fw) ||
+> +	    xe_uc_fw_is_loaded(&gt->uc.gsc.fw)) &&
+> +	    XE_WA(gt, 22019338487))
+> +		ret = xe_guc_pc_restore_stashed_freq(&gt->uc.guc.pc);
+> +
+> +	return ret;
+> +}
+> +
+>  int xe_gt_resume(struct xe_gt *gt)
+>  {
+>  	int err;
+> diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+> index 9073ac68a777..1123fdfc4ebc 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.h
+> +++ b/drivers/gpu/drm/xe/xe_gt.h
+> @@ -56,6 +56,7 @@ int xe_gt_suspend(struct xe_gt *gt);
+>  int xe_gt_resume(struct xe_gt *gt);
+>  void xe_gt_reset_async(struct xe_gt *gt);
+>  void xe_gt_sanitize(struct xe_gt *gt);
+> +int xe_gt_sanitize_freq(struct xe_gt *gt);
+>  void xe_gt_remove(struct xe_gt *gt);
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+> index 2b45a9cd3ec0..edf4a29a2aa3 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+> @@ -8,6 +8,7 @@
+>  #include <linux/delay.h>
+>  
+>  #include <drm/drm_managed.h>
+> +#include <generated/xe_wa_oob.h>
+>  
+>  #include "abi/guc_actions_slpc_abi.h"
+>  #include "regs/xe_gt_regs.h"
+> @@ -25,6 +26,7 @@
+>  #include "xe_mmio.h"
+>  #include "xe_pcode.h"
+>  #include "xe_pm.h"
+> +#include "xe_wa.h"
+>  
+>  #define MCHBAR_MIRROR_BASE_SNB	0x140000
+>  
+> @@ -42,6 +44,8 @@
+>  #define GT_FREQUENCY_MULTIPLIER	50
+>  #define GT_FREQUENCY_SCALER	3
+>  
+> +#define LNL_MERT_FREQ_CAP	800
+> +
+>  /**
+>   * DOC: GuC Power Conservation (PC)
+>   *
+> @@ -695,6 +699,16 @@ static void pc_init_fused_rp_values(struct xe_guc_pc *pc)
+>  		tgl_init_fused_rp_values(pc);
+>  }
+>  
+> +static u32 pc_max_freq_cap(struct xe_guc_pc *pc)
+> +{
+> +	struct xe_gt *gt = pc_to_gt(pc);
+> +
+> +	if (XE_WA(gt, 22019338487))
+> +		return min(LNL_MERT_FREQ_CAP, pc->rp0_freq);
+> +	else
+> +		return pc->rp0_freq;
+> +}
+> +
+>  /**
+>   * xe_guc_pc_init_early - Initialize RPx values and request a higher GT
+>   * frequency to allow faster GuC load times
+> @@ -706,7 +720,7 @@ void xe_guc_pc_init_early(struct xe_guc_pc *pc)
+>  
+>  	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
+>  	pc_init_fused_rp_values(pc);
+> -	pc_set_cur_freq(pc, pc->rp0_freq);
+> +	pc_set_cur_freq(pc, pc_max_freq_cap(pc));
+>  }
+>  
+>  static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
+> @@ -762,6 +776,53 @@ static int pc_adjust_requested_freq(struct xe_guc_pc *pc)
+>  	return ret;
+>  }
+>  
+> +static int pc_set_mert_freq_cap(struct xe_guc_pc *pc)
+> +{
+> +	int ret = 0;
+> +
+> +	if (XE_WA(pc_to_gt(pc), 22019338487)) {
+> +		/*
+> +		 * Get updated min/max and stash them.
+> +		 */
+> +		ret = xe_guc_pc_get_min_freq(pc, &pc->stashed_min_freq);
+> +		if (!ret)
+> +			ret = xe_guc_pc_get_max_freq(pc, &pc->stashed_max_freq);
+> +		if (ret)
+> +			return ret;
+> +
+> +		/*
+> +		 * Ensure min and max are bound by MERT_FREQ_CAP until driver loads.
+> +		 */
+> +		mutex_lock(&pc->freq_lock);
+> +		ret = pc_set_min_freq(pc, min(pc->rpe_freq, pc_max_freq_cap(pc)));
+> +		if (!ret)
+> +			ret = pc_set_max_freq(pc, min(pc->rp0_freq, pc_max_freq_cap(pc)));
+> +		mutex_unlock(&pc->freq_lock);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * xe_guc_pc_restore_stashed_freq - Set min/max back to stashed values
+> + * @pc: The GuC PC
+> + *
+> + * Returns: 0 on success,
+> + *          error code on failure
+> + */
+> +int xe_guc_pc_restore_stashed_freq(struct xe_guc_pc *pc)
+> +{
+> +	int ret = 0;
+> +
+> +	mutex_lock(&pc->freq_lock);
+> +	ret = pc_set_max_freq(pc, pc->stashed_max_freq);
+> +	if (!ret)
+> +		ret = pc_set_min_freq(pc, pc->stashed_min_freq);
+> +	mutex_unlock(&pc->freq_lock);
+> +
+> +	return ret;
+> +}
+> +
+>  /**
+>   * xe_guc_pc_gucrc_disable - Disable GuC RC
+>   * @pc: Xe_GuC_PC instance
+> @@ -911,6 +972,10 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+>  	if (ret)
+>  		goto out;
+>  
+> +	ret = pc_set_mert_freq_cap(pc);
+> +	if (ret)
+> +		goto out;
+> +
+>  	if (xe->info.platform == XE_PVC) {
+>  		xe_guc_pc_gucrc_disable(pc);
+>  		ret = 0;
+> @@ -959,6 +1024,10 @@ static void xe_guc_pc_fini_hw(void *arg)
+>  	XE_WARN_ON(xe_force_wake_get(gt_to_fw(pc_to_gt(pc)), XE_FORCEWAKE_ALL));
+>  	XE_WARN_ON(xe_guc_pc_gucrc_disable(pc));
+>  	XE_WARN_ON(xe_guc_pc_stop(pc));
+> +
+> +	/* Bind requested freq to mert_freq_cap before unload */
+> +	pc_set_cur_freq(pc, min(pc_max_freq_cap(pc), pc->rpe_freq));
+> +
+>  	xe_force_wake_put(gt_to_fw(pc_to_gt(pc)), XE_FORCEWAKE_ALL);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.h b/drivers/gpu/drm/xe/xe_guc_pc.h
+> index 8a7b91ce1b3e..55fdb55ab688 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_pc.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_pc.h
+> @@ -32,5 +32,6 @@ enum xe_gt_idle_state xe_guc_pc_c_status(struct xe_guc_pc *pc);
+>  u64 xe_guc_pc_rc6_residency(struct xe_guc_pc *pc);
+>  u64 xe_guc_pc_mc6_residency(struct xe_guc_pc *pc);
+>  void xe_guc_pc_init_early(struct xe_guc_pc *pc);
+> +int xe_guc_pc_restore_stashed_freq(struct xe_guc_pc *pc);
+>  
+>  #endif /* _XE_GUC_PC_H_ */
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pc_types.h b/drivers/gpu/drm/xe/xe_guc_pc_types.h
+> index 2afd0dbc3542..13810be015db 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_pc_types.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_pc_types.h
+> @@ -25,6 +25,10 @@ struct xe_guc_pc {
+>  	u32 user_requested_min;
+>  	/** @user_requested_max: Stash the maximum requested freq by user */
+>  	u32 user_requested_max;
+> +	/** @stashed_min_freq: Stash the current minimum freq */
+> +	u32 stashed_min_freq;
+> +	/** @stashed_max_freq: Stash the current maximum freq */
+> +	u32 stashed_max_freq;
+>  	/** @freq_lock: Let's protect the frequencies */
+>  	struct mutex freq_lock;
+>  	/** @freq_ready: Only handle freq changes, if they are really ready */
+> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+> index 12fe88796a49..a6b897030fde 100644
+> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
+> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+> @@ -27,3 +27,4 @@
+>  16022287689	GRAPHICS_VERSION(2001)
+>  		GRAPHICS_VERSION(2004)
+>  13011645652	GRAPHICS_VERSION(2004)
+> +22019338487	MEDIA_VERSION(2000)
+> -- 
+> 2.38.1
 > 
