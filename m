@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58F2BC27C4F
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 01:27:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BF96C27C4F
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 01:32:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1232E10E046;
-	Wed, 19 Jun 2024 01:27:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mrgKuR4m";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 945EB10E19E
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Jun 2024 01:27:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718760469; x=1750296469;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8THKLH2UN0b1lK37uVqg8HhnCTphbckD1nYOoGjFZr8=;
- b=mrgKuR4mMmRfggWmPMUL/Vsr52jBgdh6q5ZnHX14Y/JWEXmzJGrTVHQG
- wq976N5GepnQRZe9vv1yEnWJh9WibRD+EmajY3124nQtxzLZ23IQNo6vp
- woh+qWtkXYRhaoRg7vomqBgp3Bd9mxC9U2hNkKzMkDqzutbc5HrAAyKrz
- IwnSha4+A6O6/tIZfVEqKuYgB7KpmkG4jp3ptiNPQcmt6yBo6zq3yC+rG
- Q8gLXTq+h5IuRG01dzdqs4ieRZz4u8rGtjJZY902cpiKv/BxW8PzaLkv4
- tNAVQkcEKbLou4rL4q2aM0Fq2+mPKPhgd2kJn7P/2HpBKsiFpZcR42vnZ w==;
-X-CSE-ConnectionGUID: 84a6CPeYTE2pUqGsipKUow==
-X-CSE-MsgGUID: TWh7QqnMSE+eeRm0Y4TKOQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="26799232"
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="26799232"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 18:27:48 -0700
-X-CSE-ConnectionGUID: 8bSfXCxaS9a1gmYEj4UlLw==
-X-CSE-MsgGUID: HbaOUw6nRcOioydje5anzQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="46124227"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
- by fmviesa003.fm.intel.com with ESMTP; 18 Jun 2024 18:27:48 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v6 2/2] drm/xe/guc: Request max GT freq during resume
-Date: Tue, 18 Jun 2024 18:26:17 -0700
-Message-Id: <20240619012617.3756043-3-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20240619012617.3756043-1-vinay.belgaumkar@intel.com>
-References: <20240619012617.3756043-1-vinay.belgaumkar@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1850010E046;
+	Wed, 19 Jun 2024 01:32:11 +0000 (UTC)
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A12E10E046;
+ Wed, 19 Jun 2024 01:32:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Apply_Wa=5F220193384?=
+ =?utf-8?q?87_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 19 Jun 2024 01:32:09 -0000
+Message-ID: <171876072923.104453.15915967829888791582@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240619012617.3756043-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20240619012617.3756043-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,95 +36,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We already request max freq in the load path, moving it
-to __xe_guc_upload will ensure this speeds up GuC load in
-the resume path as well.
+== Series Details ==
 
-v2: Rename xe_guc_pc_init_early since we now call it per
-GuC load (Michal W)
+Series: Apply Wa_22019338487 (rev4)
+URL   : https://patchwork.freedesktop.org/series/134921/
+State : success
 
-v3: Keep pc_init_early() and init RPx values there (Rodrigo)
+== Summary ==
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/xe/xe_guc.c    |  4 +++-
- drivers/gpu/drm/xe/xe_guc_pc.c | 15 +++++++++++++--
- drivers/gpu/drm/xe/xe_guc_pc.h |  1 +
- 3 files changed, 17 insertions(+), 3 deletions(-)
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: dda50ece82ce drm-tip: 2024y-06m-18d-19h-50m-45s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/lnl: Apply Wa_22019338487
+Applying: drm/xe/guc: Request max GT freq during resume
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 7ecb509c87d7..51ed6002c900 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -699,6 +699,9 @@ static int __xe_guc_upload(struct xe_guc *guc)
- {
- 	int ret;
- 
-+	/* Raise GT freq to speed up HuC/GuC load */
-+	xe_guc_pc_raise_unslice(&guc->pc);
-+
- 	guc_write_params(guc);
- 	guc_prepare_xfer(guc);
- 
-@@ -784,7 +787,6 @@ int xe_guc_min_load_for_hwconfig(struct xe_guc *guc)
- 
- 	xe_guc_ads_populate_minimal(&guc->ads);
- 
--	/* Raise GT freq to speed up HuC/GuC load */
- 	xe_guc_pc_init_early(&guc->pc);
- 
- 	ret = __xe_guc_upload(guc);
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index edf4a29a2aa3..d88f5e960fbd 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -710,17 +710,28 @@ static u32 pc_max_freq_cap(struct xe_guc_pc *pc)
- }
- 
- /**
-- * xe_guc_pc_init_early - Initialize RPx values and request a higher GT
-+ * xe_guc_pc_raise_unslice - Initialize RPx values and request a higher GT
-  * frequency to allow faster GuC load times
-  * @pc: Xe_GuC_PC instance
-  */
-+void xe_guc_pc_raise_unslice(struct xe_guc_pc *pc)
-+{
-+	struct xe_gt *gt = pc_to_gt(pc);
-+
-+	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
-+	pc_set_cur_freq(pc, pc_max_freq_cap(pc));
-+}
-+
-+/**
-+ * xe_guc_pc_init_early - Initialize RPx values
-+ * @pc: Xe_GuC_PC instance
-+ */
- void xe_guc_pc_init_early(struct xe_guc_pc *pc)
- {
- 	struct xe_gt *gt = pc_to_gt(pc);
- 
- 	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
- 	pc_init_fused_rp_values(pc);
--	pc_set_cur_freq(pc, pc_max_freq_cap(pc));
- }
- 
- static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.h b/drivers/gpu/drm/xe/xe_guc_pc.h
-index 55fdb55ab688..efda432fadfc 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.h
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.h
-@@ -33,5 +33,6 @@ u64 xe_guc_pc_rc6_residency(struct xe_guc_pc *pc);
- u64 xe_guc_pc_mc6_residency(struct xe_guc_pc *pc);
- void xe_guc_pc_init_early(struct xe_guc_pc *pc);
- int xe_guc_pc_restore_stashed_freq(struct xe_guc_pc *pc);
-+void xe_guc_pc_raise_unslice(struct xe_guc_pc *pc);
- 
- #endif /* _XE_GUC_PC_H_ */
--- 
-2.38.1
 
