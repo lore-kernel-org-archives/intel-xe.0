@@ -4,58 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85DACC27C4F
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Jun 2024 23:55:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC749C27C4F
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 01:07:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43CAC10E81D;
-	Tue, 18 Jun 2024 23:55:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 746E510E19E;
+	Wed, 19 Jun 2024 01:07:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jjIn9juS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HLKd5RyK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB98A10E81C;
- Tue, 18 Jun 2024 23:55:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6438310E19E
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Jun 2024 01:07:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718754931; x=1750290931;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=zXLcOd8f/IUUZWBIjRO5fkxslRG/F3OnbgS9d0uMKXg=;
- b=jjIn9juSyAae8PnION7txFotUeACJuvQQ+UWSPG5bLZlGMnVgsOqN1uP
- +HqFIelBO3X8/HIK4EPTzL0J7AkJPAxk8dntye3I/SjvAi4KE7n1cSWbm
- N/kNtvBb9U5emoVWlCRCxNcs7bbp102c1/l2JFDcKuYgVXcPRupJxFtvI
- HXVIa4DT9N8Vg4R4jPCwscanawxmK4d9vfuJB2g0HYmewkZ2T82N1jD0T
- iY3rINgeiLNugE7IJ+ISOOUoHABMVzXn3G3hIRGrS+mxYbvUXhpxINF+z
- R3wPX6i1nO+Xtil+bXtL4urDO9EE3/i//y71bTu3wmAx/EnlodwNiVcOg g==;
-X-CSE-ConnectionGUID: zqQ8GsDMR7erRo4fUQNhNg==
-X-CSE-MsgGUID: a65IMJRRS4yF3RYOpIFZVg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="27086554"
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="27086554"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 16:55:30 -0700
-X-CSE-ConnectionGUID: djeRHtVPSXWB3YKZHEZGiA==
-X-CSE-MsgGUID: LL6VSOT4THy4ys1LL4hZEQ==
+ t=1718759272; x=1750295272;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HG6d/dr/ViI19RqxG+6uO6+PdwiZFysHcI7PySGRREM=;
+ b=HLKd5RyKyE0CKxinBdVXbnG4AyteDQs/XB0aUVLxnXold1OUAMvQre0F
+ 3xKvBeewXQL8+tyIh1QEdIvmLZtq78S7IiYBp+L4OtvJCCdN16vgekdFU
+ rm2ofjNDv36VqQDCRe2PJb6DvxObmL+XU4OlZrN2cDFOmxKoe5/lfD9AM
+ e2nNjebeQKYtie5XKg1Qpdw3oy83TZzmbPaFOTAu9D5vJEArNzf39h7/m
+ k7j9BPOd/XYnYUQNire8NpEXQm4BLfPwDWwD65w5XHEvbz63AQwkwQn/6
+ D+19CRuVSNGl2GfDftyQLjvADi/YkY2ha5Y4Q6cxfvkx89AOqQNVE8V+K w==;
+X-CSE-ConnectionGUID: /P7LCXwuQ+ygGfgvYrGYJg==
+X-CSE-MsgGUID: Z56U9dvxSPG79adwuEEhIA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="15804505"
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="15804505"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2024 18:07:51 -0700
+X-CSE-ConnectionGUID: JrRrJWGTQ1SejjX0xFlK9g==
+X-CSE-MsgGUID: sU7hqhAyROeNVDIPmTK+qw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="72933203"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
- by fmviesa001.fm.intel.com with ESMTP; 18 Jun 2024 16:55:28 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sJife-00062q-1n;
- Tue, 18 Jun 2024 23:55:26 +0000
-Date: Wed, 19 Jun 2024 07:54:38 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, jani.nikula@intel.com
-Subject: Re: [PATCH 5/5] drm/i915/frontbuffer: make struct intel_frontbuffer
- opaque
-Message-ID: <202406190757.Uv3UaYyb-lkp@intel.com>
-References: <ba2e3e16b5c47f7e6d434d8fa815e965458a98d5.1718633874.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="41840949"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
+ by orviesa009.jf.intel.com with ESMTP; 18 Jun 2024 18:07:52 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v5 0/2] Apply Wa_22019338487
+Date: Tue, 18 Jun 2024 18:06:40 -0700
+Message-Id: <20240619010642.3744702-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ba2e3e16b5c47f7e6d434d8fa815e965458a98d5.1718633874.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,113 +64,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Jani,
+Apply WA for LNL and also ensure frequency request is raised in the
+resume path as well. The WA applies to the resume path too.
 
-kernel test robot noticed the following build errors:
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-intel/for-linux-next-fixes drm-tip/drm-tip drm-xe/drm-xe-next linus/master v6.10-rc4 next-20240618]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Vinay Belgaumkar (2):
+  drm/xe/lnl: Apply Wa_22019338487
+  drm/xe/guc: Request max GT freq during resume
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-i915-frontbuffer-un-inline-frontbuffer-bits-checks/20240617-223108
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/ba2e3e16b5c47f7e6d434d8fa815e965458a98d5.1718633874.git.jani.nikula%40intel.com
-patch subject: [PATCH 5/5] drm/i915/frontbuffer: make struct intel_frontbuffer opaque
-config: x86_64-randconfig-003-20240619 (https://download.01.org/0day-ci/archive/20240619/202406190757.Uv3UaYyb-lkp@intel.com/config)
-compiler: gcc-8 (Ubuntu 8.4.0-3ubuntu2) 8.4.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240619/202406190757.Uv3UaYyb-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406190757.Uv3UaYyb-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from include/linux/err.h:5,
-                    from include/linux/dma-fence.h:16,
-                    from include/linux/dma-fence-array.h:15,
-                    from drivers/gpu/drm/i915/i915_gem.c:28:
-   drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h: In function 'i915_gem_object_flush_frontbuffer':
->> include/linux/rcupdate.h:463:9: error: dereferencing pointer to incomplete type 'struct intel_frontbuffer'
-     typeof(*p) *local = (typeof(*p) *__force)READ_ONCE(p); \
-            ^
-   include/linux/compiler.h:77:42: note: in definition of macro 'unlikely'
-    # define unlikely(x) __builtin_expect(!!(x), 0)
-                                             ^
-   include/linux/rcupdate.h:582:31: note: in expansion of macro '__rcu_access_pointer'
-    #define rcu_access_pointer(p) __rcu_access_pointer((p), __UNIQUE_ID(rcu), __rcu)
-                                  ^~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h:24:15: note: in expansion of macro 'rcu_access_pointer'
-     if (unlikely(rcu_access_pointer(obj->frontbuffer)))
-                  ^~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h: In function 'i915_gem_object_get_frontbuffer':
->> include/linux/rcupdate.h:463:9: error: dereferencing pointer to incomplete type 'struct intel_frontbuffer'
-     typeof(*p) *local = (typeof(*p) *__force)READ_ONCE(p); \
-            ^
-   include/linux/compiler.h:76:40: note: in definition of macro 'likely'
-    # define likely(x) __builtin_expect(!!(x), 1)
-                                           ^
-   include/linux/rcupdate.h:582:31: note: in expansion of macro '__rcu_access_pointer'
-    #define rcu_access_pointer(p) __rcu_access_pointer((p), __UNIQUE_ID(rcu), __rcu)
-                                  ^~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h:50:14: note: in expansion of macro 'rcu_access_pointer'
-     if (likely(!rcu_access_pointer(obj->frontbuffer)))
-                 ^~~~~~~~~~~~~~~~~~
---
-   In file included from include/linux/array_size.h:5,
-                    from include/linux/kernel.h:16,
-                    from include/linux/sched/mm.h:5,
-                    from drivers/gpu/drm/i915/i915_vma.c:25:
-   drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h: In function 'i915_gem_object_flush_frontbuffer':
->> include/linux/rcupdate.h:463:9: error: dereferencing pointer to incomplete type 'struct intel_frontbuffer'
-     typeof(*p) *local = (typeof(*p) *__force)READ_ONCE(p); \
-            ^
-   include/linux/compiler.h:77:42: note: in definition of macro 'unlikely'
-    # define unlikely(x) __builtin_expect(!!(x), 0)
-                                             ^
-   include/linux/rcupdate.h:582:31: note: in expansion of macro '__rcu_access_pointer'
-    #define rcu_access_pointer(p) __rcu_access_pointer((p), __UNIQUE_ID(rcu), __rcu)
-                                  ^~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h:24:15: note: in expansion of macro 'rcu_access_pointer'
-     if (unlikely(rcu_access_pointer(obj->frontbuffer)))
-                  ^~~~~~~~~~~~~~~~~~
-
-
-vim +463 include/linux/rcupdate.h
-
-76c8eaafe4f061 Paul E. McKenney        2021-04-21  460  
-24ba53017e188e Chun-Hung Tseng         2021-09-15  461  #define __rcu_access_pointer(p, local, space) \
-ca5ecddfa8fcbd Paul E. McKenney        2010-04-28  462  ({ \
-24ba53017e188e Chun-Hung Tseng         2021-09-15 @463  	typeof(*p) *local = (typeof(*p) *__force)READ_ONCE(p); \
-423a86a610cad1 Joel Fernandes (Google  2018-12-12  464) 	rcu_check_sparse(p, space); \
-24ba53017e188e Chun-Hung Tseng         2021-09-15  465  	((typeof(*p) __force __kernel *)(local)); \
-ca5ecddfa8fcbd Paul E. McKenney        2010-04-28  466  })
-24ba53017e188e Chun-Hung Tseng         2021-09-15  467  #define __rcu_dereference_check(p, local, c, space) \
-ca5ecddfa8fcbd Paul E. McKenney        2010-04-28  468  ({ \
-ac59853c06993a Pranith Kumar           2014-11-13  469  	/* Dependency order vs. p above. */ \
-24ba53017e188e Chun-Hung Tseng         2021-09-15  470  	typeof(*p) *local = (typeof(*p) *__force)READ_ONCE(p); \
-f78f5b90c4ffa5 Paul E. McKenney        2015-06-18  471  	RCU_LOCKDEP_WARN(!(c), "suspicious rcu_dereference_check() usage"); \
-423a86a610cad1 Joel Fernandes (Google  2018-12-12  472) 	rcu_check_sparse(p, space); \
-24ba53017e188e Chun-Hung Tseng         2021-09-15  473  	((typeof(*p) __force __kernel *)(local)); \
-ca5ecddfa8fcbd Paul E. McKenney        2010-04-28  474  })
-24ba53017e188e Chun-Hung Tseng         2021-09-15  475  #define __rcu_dereference_protected(p, local, c, space) \
-ca5ecddfa8fcbd Paul E. McKenney        2010-04-28  476  ({ \
-f78f5b90c4ffa5 Paul E. McKenney        2015-06-18  477  	RCU_LOCKDEP_WARN(!(c), "suspicious rcu_dereference_protected() usage"); \
-423a86a610cad1 Joel Fernandes (Google  2018-12-12  478) 	rcu_check_sparse(p, space); \
-ca5ecddfa8fcbd Paul E. McKenney        2010-04-28  479  	((typeof(*p) __force __kernel *)(p)); \
-ca5ecddfa8fcbd Paul E. McKenney        2010-04-28  480  })
-24ba53017e188e Chun-Hung Tseng         2021-09-15  481  #define __rcu_dereference_raw(p, local) \
-995f1405610bd8 Paul E. McKenney        2016-07-01  482  ({ \
-995f1405610bd8 Paul E. McKenney        2016-07-01  483  	/* Dependency order vs. p above. */ \
-24ba53017e188e Chun-Hung Tseng         2021-09-15  484  	typeof(p) local = READ_ONCE(p); \
-24ba53017e188e Chun-Hung Tseng         2021-09-15  485  	((typeof(*p) __force __kernel *)(local)); \
-995f1405610bd8 Paul E. McKenney        2016-07-01  486  })
-24ba53017e188e Chun-Hung Tseng         2021-09-15  487  #define rcu_dereference_raw(p) __rcu_dereference_raw(p, __UNIQUE_ID(rcu))
-ca5ecddfa8fcbd Paul E. McKenney        2010-04-28  488  
+ drivers/gpu/drm/xe/Makefile          |  3 +
+ drivers/gpu/drm/xe/xe_device.c       |  3 +
+ drivers/gpu/drm/xe/xe_ggtt.c         | 40 +++++++++++--
+ drivers/gpu/drm/xe/xe_ggtt.h         |  1 +
+ drivers/gpu/drm/xe/xe_ggtt_types.h   | 12 ++--
+ drivers/gpu/drm/xe/xe_gsc.c          |  5 ++
+ drivers/gpu/drm/xe/xe_gt.c           | 24 ++++++++
+ drivers/gpu/drm/xe/xe_gt.h           |  1 +
+ drivers/gpu/drm/xe/xe_guc.c          |  4 +-
+ drivers/gpu/drm/xe/xe_guc_pc.c       | 84 +++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_guc_pc.h       |  2 +
+ drivers/gpu/drm/xe/xe_guc_pc_types.h |  4 ++
+ drivers/gpu/drm/xe/xe_wa_oob.rules   |  1 +
+ 13 files changed, 173 insertions(+), 11 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.38.1
+
