@@ -4,27 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01BA3C27C53
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 15:18:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DE80C27C53
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 15:42:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C298110ECFD;
-	Wed, 19 Jun 2024 15:18:28 +0000 (UTC)
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 873FD10ED00;
- Wed, 19 Jun 2024 15:18:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1983412650436767061=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20ED310ED10;
+	Wed, 19 Jun 2024 15:42:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="P9lj9TwI";
+	dkim-atps=neutral
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3BED10ED0D;
+ Wed, 19 Jun 2024 15:42:12 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id F3AE1CE2052;
+ Wed, 19 Jun 2024 15:42:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D45E6C2BBFC;
+ Wed, 19 Jun 2024 15:42:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1718811729;
+ bh=wUiNH26UGdmNoRmA3TBLgvIuccoLFzLb69Q1BsJxvjo=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=P9lj9TwIHjAJWHBsV/RhOH68Gr1ifwfjWHCoxxjJMyUOK7V0qzXoOkkhnttVaSJf8
+ FWz0gSmdgRIFWAFSvEV4RqEaP2Noub2p67INx+m14s+VNTOXBoADohWed5aZDRivZa
+ JbC5la9qcXzCj4bzBjmTO9X+N38QcT9t2bFCiESyOg+1pVoWqKXtiEDNndsjTtIikj
+ z1Hz79c0RAHOAVE0nxGjZ+7T39eFk6N3aalg0xd4QaT4ky6lWnMrxZssYFsAM0EweN
+ gFlJh2rYnjKRyvPDOtq2klUCYXJOLBjxlQcfebEH5AkNM37SpUo6+2HwCMhxQK/TaJ
+ 1hsnWXWRKs5Nw==
+Date: Wed, 19 Jun 2024 08:42:07 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v16 9/9] drm/i915: Compute CMRR and calculate vtotal
+Message-ID: <20240619154207.GA1125704@thelio-3990X>
+References: <20240610072203.24956-1-mitulkumar.ajitkumar.golani@intel.com>
+ <20240610072203.24956-10-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B1/2=5D_d?=
- =?utf-8?q?rm/xe/bmg=3A_implement_Wa=5F16023588340?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 19 Jun 2024 15:18:27 -0000
-Message-ID: <171881030754.124989.2107091900480118908@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <20240619143127.110045-3-matthew.auld@intel.com>
-In-Reply-To: <20240619143127.110045-3-matthew.auld@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240610072203.24956-10-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,139 +54,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1983412650436767061==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Mitul,
 
-== Series Details ==
+On Mon, Jun 10, 2024 at 12:52:02PM +0530, Mitul Golani wrote:
+...
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 4ad99a54aa83..05f67dc9d98d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -12,6 +12,9 @@
+>  #include "intel_vrr_regs.h"
+>  #include "intel_dp.h"
+>  
+> +#define FIXED_POINT_PRECISION		100
+> +#define CMRR_PRECISION_TOLERANCE	10
+> +
+>  bool intel_vrr_is_capable(struct intel_connector *connector)
+>  {
+>  	const struct drm_display_info *info = &connector->base.display_info;
+> @@ -107,6 +110,52 @@ int intel_vrr_vmax_vblank_start(const struct intel_crtc_state *crtc_state)
+>  	return crtc_state->vrr.vmax - intel_vrr_vblank_exit_length(crtc_state);
+>  }
+>  
+> +static bool
+> +is_cmrr_frac_required(struct intel_crtc_state *crtc_state)
+> +{
+> +	int calculated_refresh_k, actual_refresh_k, pixel_clock_per_line;
+> +	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> +	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+> +
+> +	if (!HAS_CMRR(i915))
+> +		return false;
+> +
+> +	actual_refresh_k =
+> +		drm_mode_vrefresh(adjusted_mode) * FIXED_POINT_PRECISION;
+> +	pixel_clock_per_line =
+> +		adjusted_mode->crtc_clock * 1000 / adjusted_mode->crtc_htotal;
+> +	calculated_refresh_k =
+> +		pixel_clock_per_line * FIXED_POINT_PRECISION / adjusted_mode->crtc_vtotal;
+> +
+> +	if ((actual_refresh_k - calculated_refresh_k) < CMRR_PRECISION_TOLERANCE)
+> +		return false;
+> +
+> +	return true;
+> +}
+> +
+> +static unsigned int
+> +cmrr_get_vtotal(struct intel_crtc_state *crtc_state, bool video_mode_required)
+> +{
+> +	int multiplier_m = 1, multiplier_n = 1, vtotal, desired_refresh_rate;
+> +	long long adjusted_pixel_rate;
+> +	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> +
+> +	desired_refresh_rate = drm_mode_vrefresh(adjusted_mode);
+> +
+> +	if (video_mode_required) {
+> +		multiplier_m = 1001;
+> +		multiplier_n = 1000;
+> +	}
+> +
+> +	crtc_state->cmrr.cmrr_n =
+> +		desired_refresh_rate * adjusted_mode->crtc_htotal * multiplier_n;
+> +	vtotal = (adjusted_mode->crtc_clock * 1000 * multiplier_n) / crtc_state->cmrr.cmrr_n;
+> +	adjusted_pixel_rate = adjusted_mode->crtc_clock * 1000 * multiplier_m;
+> +	crtc_state->cmrr.cmrr_m = do_div(adjusted_pixel_rate, crtc_state->cmrr.cmrr_n);
+> +
+> +	return vtotal;
+> +}
 
-Series: series starting with [1/2] drm/xe/bmg: implement Wa_16023588340
-URL   : https://patchwork.freedesktop.org/series/135061/
-State : success
+This change is now in -next as commit 1676ecd303ac ("drm/i915: Compute
+CMRR and calculate vtotal"), where it breaks the xe build for 32-bit
+platforms with:
 
-== Summary ==
+  $ make -skj"$(nproc)" ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- allmodconfig drivers/gpu/drm/xe/i915-display/intel_vrr.o
+  In file included from arch/arm/include/asm/div64.h:107,
+                   from include/linux/math.h:6,
+                   from include/linux/kernel.h:27,
+                   from include/linux/cpumask.h:11,
+                   from include/linux/smp.h:13,
+                   from include/linux/lockdep.h:14,
+                   from include/linux/spinlock.h:63,
+                   from include/linux/kref.h:16,
+                   from include/drm/drm_device.h:5,
+                   from include/drm/drm_drv.h:35,
+                   from drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:13,
+                   from drivers/gpu/drm/i915/display/intel_vrr.c:7:
+  drivers/gpu/drm/i915/display/intel_vrr.c: In function 'cmrr_get_vtotal':
+  include/asm-generic/div64.h:222:35: error: comparison of distinct pointer types lacks a cast [-Werror]
+    222 |         (void)(((typeof((n)) *)0) == ((uint64_t *)0));  \
+        |                                   ^~
+  drivers/gpu/drm/i915/display/intel_vrr.c:155:35: note: in expansion of macro 'do_div'
+    155 |         crtc_state->cmrr.cmrr_m = do_div(adjusted_pixel_rate, crtc_state->cmrr.cmrr_n);
+        |                                   ^~~~~~
+  cc1: all warnings being treated as errors
 
-CI Bug Log - changes from xe-1497-207282b212f760b65686198827bbb9b429a1ab90_BAT -> xe-pw-135061v1_BAT
-====================================================
+Also, is do_div() correct here? It is different from the other div_()
+macros in that the "return value" is the remainder, not the result of
+the division.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-135061v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_intel_bb@blit-simple:
-    - bat-atsm-2:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#2110])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1497-207282b212f760b65686198827bbb9b429a1ab90/bat-atsm-2/igt@xe_intel_bb@blit-simple.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135061v1/bat-atsm-2/igt@xe_intel_bb@blit-simple.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-atsm-2:         [PASS][3] -> [SKIP][4] ([Intel XE#2109]) +2 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1497-207282b212f760b65686198827bbb9b429a1ab90/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135061v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html
-
-  
-  [Intel XE#2109]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2109
-  [Intel XE#2110]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2110
-
-
-Build changes
--------------
-
-  * Linux: xe-1497-207282b212f760b65686198827bbb9b429a1ab90 -> xe-pw-135061v1
-
-  IGT_7892: 7892
-  xe-1497-207282b212f760b65686198827bbb9b429a1ab90: 207282b212f760b65686198827bbb9b429a1ab90
-  xe-pw-135061v1: 135061v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135061v1/index.html
-
---===============1983412650436767061==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe/bmg: implement Wa_16023588340</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135061/">https://patchwork.freedesktop.org/series/135061/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135061v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135061v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1497-207282b212f760b65686198827bbb9b429a1ab90_BAT -&gt; xe-pw-135061v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-135061v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_intel_bb@blit-simple:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1497-207282b212f760b65686198827bbb9b429a1ab90/bat-atsm-2/igt@xe_intel_bb@blit-simple.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135061v1/bat-atsm-2/igt@xe_intel_bb@blit-simple.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2110">Intel XE#2110</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1497-207282b212f760b65686198827bbb9b429a1ab90/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135061v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2109">Intel XE#2109</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1497-207282b212f760b65686198827bbb9b429a1ab90 -&gt; xe-pw-135061v1</li>
-</ul>
-<p>IGT_7892: 7892<br />
-  xe-1497-207282b212f760b65686198827bbb9b429a1ab90: 207282b212f760b65686198827bbb9b429a1ab90<br />
-  xe-pw-135061v1: 135061v1</p>
-
-</body>
-</html>
-
---===============1983412650436767061==--
+Cheers,
+Nathan
