@@ -4,63 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5904BC27C53
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 08:36:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AC52C27C53
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 09:44:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08C9710EAFB;
-	Wed, 19 Jun 2024 08:36:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A95AF10E058;
+	Wed, 19 Jun 2024 09:44:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U1XS1qUH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gsPQA6vV";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDB8310E147;
- Wed, 19 Jun 2024 08:36:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D77D410E058
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Jun 2024 09:44:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718786211; x=1750322211;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=anE/3sn+GpPB4s7jIFcFVEICXelX/Fc75xz5r/MgPx4=;
- b=U1XS1qUHgN7Y9u3e6EbD3PUfbR6twcSOG7O7pb3d8B7nhyEe23wibjRH
- rSEVwcsOfDnBKfvosmzL1DpHW1bVbcpzoemdEkWG9x2Kj658fT7A+FcPb
- HijTl5ANMMftb3VuHKxsdUTK+zVirqOcoz47Uf4kDjtSmCxbahXTZe/ll
- e1XycRJxSP5RtCanlWyp+tPifdc31K9/IvpVO2BdOGV39kcDZ26Pzo5nB
- ZnSbMxweRtJw2WDAkkPRoJc6z1AAAsUQlOoR/Qxle3LWywzag6ievmHk0
- mnIXDwV5QbDaZuF0E+z4DtpnZv0sSfi1QZjZRyRKT8kV03vAnvjOwZ1QS g==;
-X-CSE-ConnectionGUID: HX0O3CbaS5OyjtRX2Hrp5w==
-X-CSE-MsgGUID: OCgW7rWsTKGEXsYvYVu2ww==
-X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="27116887"
-X-IronPort-AV: E=Sophos;i="6.08,249,1712646000"; d="scan'208";a="27116887"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2024 01:36:50 -0700
-X-CSE-ConnectionGUID: U7imXg9xSn6Go7/F/s/90A==
-X-CSE-MsgGUID: XTj9okNrR72IERd7Z2FXmA==
+ t=1718790290; x=1750326290;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Vbj7p5Kv2PlOAlzRk/9gZ0O71Nta5ESS1BsEPT2sgJE=;
+ b=gsPQA6vVvcGB3TV15sclG3xbB1dhaEvZoL6iMgOBLKJX4EmQ4l/D+lcI
+ y/ysY7U9A5TECtCkNJDnOJaF1y0iVy0hdqPdsI+LtQ+i1p94Phmfd0jX9
+ RnfrxqdOxg9S8Hg/ynVleUewB5IEGZgHCKDa90Y+kxHbgqqtK4mb8qpxH
+ CBcyUwy4P6EhmZkBaJ/LycPhItvFLHete46HoFMvlY2ygycVJg9QOfE/8
+ au0oMq/Esh2g1DXqm874CTdr98GH6ZqZhuzxR/grQIn+rgGVmTIXtvikW
+ R6LeAZOr4BsU3EC9mzBZ9Kl0YlMGjKtASY5Qk7dVMablG7OmnmlovapXd Q==;
+X-CSE-ConnectionGUID: yM6ccTSqS12slusEUYeX5Q==
+X-CSE-MsgGUID: FYTF3yu3Rhazm0MaxZXPaA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="26346449"
+X-IronPort-AV: E=Sophos;i="6.08,250,1712646000"; d="scan'208";a="26346449"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2024 02:44:49 -0700
+X-CSE-ConnectionGUID: 3/eRM99MQvCIZeXZw7qzhA==
+X-CSE-MsgGUID: 9tfS7OI8TEqKsRYQ7nI0FQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,249,1712646000"; d="scan'208";a="42554341"
-Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.245.122])
- ([10.245.245.122])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2024 01:36:48 -0700
-Message-ID: <0926e844f86fe52299fdddb2ad5fe41f23faf74d.camel@linux.intel.com>
-Subject: Re: [PATCH v5 06/12] drm/ttm: Use the LRU walker helper for swapping
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Christian =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, Somalapuram Amaranath
- <Amaranath.Somalapuram@amd.com>, dri-devel@lists.freedesktop.org
-Date: Wed, 19 Jun 2024 10:36:45 +0200
-In-Reply-To: <ZnJdPV9uIF+HD/B/@DUT025-TGLU.fm.intel.com>
-References: <20240618071820.130917-1-thomas.hellstrom@linux.intel.com>
- <20240618071820.130917-7-thomas.hellstrom@linux.intel.com>
- <ZnJdPV9uIF+HD/B/@DUT025-TGLU.fm.intel.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+X-IronPort-AV: E=Sophos;i="6.08,250,1712646000"; d="scan'208";a="46772784"
+Received: from maurocar-mobl2.ger.corp.intel.com (HELO [10.245.245.146])
+ ([10.245.245.146])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2024 02:44:47 -0700
+Message-ID: <70cbe0f4-5275-4716-b78b-c48fd86e281e@intel.com>
+Date: Wed, 19 Jun 2024 10:44:45 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Use ttm_uncached for BO with NEEDS_UC flag
+To: Matt Roper <matthew.d.roper@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-xe@lists.freedesktop.org, Pallavi Mishra <pallavi.mishra@intel.com>,
+ =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>,
+ Oak Zeng <oak.zeng@intel.com>
+References: <20240606195630.1548-1-michal.wajdeczko@intel.com>
+ <3dd4733f3cc7f322f25354c3e9d4a2dd363d2331.camel@linux.intel.com>
+ <1b002473-552a-4392-b2b4-b0bdff61c59c@intel.com>
+ <20240617202838.GL2905419@mdroper-desk1.amr.corp.intel.com>
+ <9c3ee93c4f5fffa5d5dd61ea71066fa231ab3ec5.camel@linux.intel.com>
+ <20240618164323.GN2905419@mdroper-desk1.amr.corp.intel.com>
+ <8bc380197b6129a458fb177d263ddf4fc7e2dda9.camel@linux.intel.com>
+ <20240618185458.GK2906448@mdroper-desk1.amr.corp.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20240618185458.GK2906448@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,340 +80,247 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2024-06-19 at 04:23 +0000, Matthew Brost wrote:
-> On Tue, Jun 18, 2024 at 09:18:14AM +0200, Thomas Hellstr=C3=B6m wrote:
-> > Rework the TTM swapping to use the LRU walker helper.
-> > This helps fixing up the ttm_bo_swapout() interface
-> > to be consistent about not requiring any locking.
-> >=20
-> > For now mimic the current behaviour of using trylock
-> > only. We could be using ticket-locks here but defer
-> > that until it's deemed necessary. The TTM swapout
-> > functionality is a bit weird anyway since it
-> > alternates between memory types without exhausting
-> > TTM_PL_SYSTEM first.
-> >=20
-> > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> > Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Cc: <dri-devel@lists.freedesktop.org>
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > ---
-> > =C2=A0drivers/gpu/drm/ttm/ttm_bo.c=C2=A0=C2=A0=C2=A0=C2=A0 | 112 ++++++=
-+++++++++++++++------
-> > ----
-> > =C2=A0drivers/gpu/drm/ttm/ttm_device.c |=C2=A0 30 ++-------
-> > =C2=A0include/drm/ttm/ttm_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0=C2=A0 5 +-
-> > =C2=A03 files changed, 83 insertions(+), 64 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
-> > b/drivers/gpu/drm/ttm/ttm_bo.c
-> > index 43eda720657f..63a91b77f7da 100644
-> > --- a/drivers/gpu/drm/ttm/ttm_bo.c
-> > +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-> > @@ -1118,11 +1118,23 @@ int ttm_bo_wait_ctx(struct
-> > ttm_buffer_object *bo, struct ttm_operation_ctx *ctx)
-> > =C2=A0}
-> > =C2=A0EXPORT_SYMBOL(ttm_bo_wait_ctx);
-> > =C2=A0
-> > -int ttm_bo_swapout(struct ttm_buffer_object *bo, struct
-> > ttm_operation_ctx *ctx,
-> > -		=C2=A0=C2=A0 gfp_t gfp_flags)
-> > +/**
-> > + * struct ttm_bo_swapout_walk - Parameters for the swapout walk
-> > + */
-> > +struct ttm_bo_swapout_walk {
-> > +	/** @walk: The walk base parameters. */
-> > +	struct ttm_lru_walk walk;
-> > +	/** @gfp_flags: The gfp flags to use for ttm_tt_swapout()
-> > */
-> > +	gfp_t gfp_flags;
-> > +};
-> > +
-> > +static long
-> > +ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct
-> > ttm_buffer_object *bo)
-> > =C2=A0{
-> > -	struct ttm_place place;
-> > -	bool locked;
-> > +	struct ttm_place place =3D {.mem_type =3D bo->resource-
-> > >mem_type};
-> > +	struct ttm_bo_swapout_walk *swapout_walk =3D
-> > +		container_of(walk, typeof(*swapout_walk), walk);
-> > +	struct ttm_operation_ctx *ctx =3D walk->ctx;
-> > =C2=A0	long ret;
-> > =C2=A0
-> > =C2=A0	/*
-> > @@ -1131,28 +1143,29 @@ int ttm_bo_swapout(struct ttm_buffer_object
-> > *bo, struct ttm_operation_ctx *ctx,
-> > =C2=A0	 * The driver may use the fact that we're moving from
-> > SYSTEM
-> > =C2=A0	 * as an indication that we're about to swap out.
-> > =C2=A0	 */
-> > -	memset(&place, 0, sizeof(place));
-> > -	place.mem_type =3D bo->resource->mem_type;
-> > -	if (!ttm_bo_evict_swapout_allowable(bo, ctx, &place,
-> > &locked, NULL))
-> > -		return -EBUSY;
-> > +	if (!bo->bdev->funcs->eviction_valuable(bo, &place)) {
-> > +		ret =3D -EBUSY;
-> > +		goto out;
-> > +	}
-> > =C2=A0
-> > =C2=A0	if (!bo->ttm || !ttm_tt_is_populated(bo->ttm) ||
-> > =C2=A0	=C2=A0=C2=A0=C2=A0 bo->ttm->page_flags & TTM_TT_FLAG_EXTERNAL ||
-> > -	=C2=A0=C2=A0=C2=A0 bo->ttm->page_flags & TTM_TT_FLAG_SWAPPED ||
-> > -	=C2=A0=C2=A0=C2=A0 !ttm_bo_get_unless_zero(bo)) {
-> > -		if (locked)
-> > -			dma_resv_unlock(bo->base.resv);
-> > -		return -EBUSY;
-> > +	=C2=A0=C2=A0=C2=A0 bo->ttm->page_flags & TTM_TT_FLAG_SWAPPED) {
-> > +		ret =3D -EBUSY;
->=20
-> I think answers my -EBUSY question from here [1]. In these cases we
-> continue LRU walk as eviction of the BO is not valuable.
->=20
-> [1]
-> https://patchwork.freedesktop.org/patch/599606/?series=3D131815&rev=3D5#c=
-omment_1091419
->=20
-> > +		goto out;
-> > =C2=A0	}
-> > =C2=A0
-> > =C2=A0	if (bo->deleted) {
-> > -		ret =3D ttm_bo_cleanup_refs(bo, false, false,
-> > locked);
-> > -		ttm_bo_put(bo);
-> > -		return ret =3D=3D -EBUSY ? -ENOSPC : ret;
-> > -	}
-> > +		pgoff_t num_pages =3D bo->ttm->num_pages;
-> > =C2=A0
-> > -	/* TODO: Cleanup the locking */
-> > -	spin_unlock(&bo->bdev->lru_lock);
-> > +		ret =3D ttm_bo_wait_ctx(bo, ctx);
-> > +		if (ret)
-> > +			goto out;
-> > +
-> > +		ttm_bo_cleanup_memtype_use(bo);
-> > +		ret =3D num_pages;
-> > +		goto out;
-> > +	}
-> > =C2=A0
-> > =C2=A0	/*
-> > =C2=A0	 * Move to system cached
-> > @@ -1164,12 +1177,13 @@ int ttm_bo_swapout(struct ttm_buffer_object
-> > *bo, struct ttm_operation_ctx *ctx,
-> > =C2=A0		memset(&hop, 0, sizeof(hop));
-> > =C2=A0		place.mem_type =3D TTM_PL_SYSTEM;
-> > =C2=A0		ret =3D ttm_resource_alloc(bo, &place, &evict_mem);
-> > -		if (unlikely(ret))
-> > +		if (ret)
-> > =C2=A0			goto out;
-> > =C2=A0
-> > =C2=A0		ret =3D ttm_bo_handle_move_mem(bo, evict_mem, true,
-> > ctx, &hop);
-> > -		if (unlikely(ret !=3D 0)) {
-> > -			WARN(ret =3D=3D -EMULTIHOP, "Unexpected
-> > multihop in swaput - likely driver bug.\n");
-> > +		if (ret) {
-> > +			WARN(ret =3D=3D -EMULTIHOP,
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0 "Unexpected multihop in swapout -
-> > likely driver bug.\n");
-> > =C2=A0			ttm_resource_free(bo, &evict_mem);
-> > =C2=A0			goto out;
-> > =C2=A0		}
-> > @@ -1179,30 +1193,54 @@ int ttm_bo_swapout(struct ttm_buffer_object
-> > *bo, struct ttm_operation_ctx *ctx,
-> > =C2=A0	 * Make sure BO is idle.
-> > =C2=A0	 */
-> > =C2=A0	ret =3D ttm_bo_wait_ctx(bo, ctx);
-> > -	if (unlikely(ret !=3D 0))
-> > +	if (ret)
-> > =C2=A0		goto out;
-> > =C2=A0
-> > =C2=A0	ttm_bo_unmap_virtual(bo);
-> > -
-> > -	/*
-> > -	 * Swap out. Buffer will be swapped in again as soon as
-> > -	 * anyone tries to access a ttm page.
-> > -	 */
-> > =C2=A0	if (bo->bdev->funcs->swap_notify)
-> > =C2=A0		bo->bdev->funcs->swap_notify(bo);
-> > =C2=A0
-> > =C2=A0	if (ttm_tt_is_populated(bo->ttm))
-> > -		ret =3D ttm_tt_swapout(bo->bdev, bo->ttm,
-> > gfp_flags);
-> > +		ret =3D ttm_tt_swapout(bo->bdev, bo->ttm,
-> > swapout_walk->gfp_flags);
-> > =C2=A0out:
-> > +	/* Consider some error codes fatal. Others may continue
-> > the walk. */
-> > +	if (ret =3D=3D -ENOMEM || ret =3D=3D -EINTR || ret =3D=3D -ERESTARTSY=
-S
-> > ||
-> > +	=C2=A0=C2=A0=C2=A0 ret =3D=3D -EAGAIN || ret > 0)
-> > +		return ret;
->=20
-> Would it be more robust / clear to do the inverse of this? i.e.
-> Return 0
-> on non-fatal error codes?
+On 18/06/2024 19:54, Matt Roper wrote:
+> On Tue, Jun 18, 2024 at 08:29:24PM +0200, Thomas Hellström wrote:
+>> Hi, Matt
+>>
+>> On Tue, 2024-06-18 at 09:43 -0700, Matt Roper wrote:
+>>> On Tue, Jun 18, 2024 at 02:38:01PM +0200, Thomas Hellström wrote:
+>>>> Hi,
+>>>>
+>>>> On Mon, 2024-06-17 at 13:28 -0700, Matt Roper wrote:
+>>>>> On Wed, Jun 12, 2024 at 08:03:24PM +0200, Michal Wajdeczko wrote:
+>>>>>> Hi Thomas,
+>>>>>>
+>>>>>> On 11.06.2024 14:47, Thomas Hellström wrote:
+>>>>>>> Hi, Michal,
+>>>>>>>
+>>>>>>> On Thu, 2024-06-06 at 21:56 +0200, Michal Wajdeczko wrote:
+>>>>>>>> We should honor requested uncached mode also at the TTM
+>>>>>>>> layer.
+>>>>>>>> Otherwise, we risk losing updates to the memory based
+>>>>>>>> interrupts
+>>>>>>>> source or status vectors, as those require uncached memory.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Michal Wajdeczko
+>>>>>>>> <michal.wajdeczko@intel.com>
+>>>>>>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>>>>>>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>>>>>>>> ---
+>>>>>>>>   drivers/gpu/drm/xe/xe_bo.c | 3 +++
+>>>>>>>>   1 file changed, 3 insertions(+)
+>>>>>>>>
+>>>>>>>> diff --git a/drivers/gpu/drm/xe/xe_bo.c
+>>>>>>>> b/drivers/gpu/drm/xe/xe_bo.c
+>>>>>>>> index 2bae01ce4e5b..2573cc118f29 100644
+>>>>>>>> --- a/drivers/gpu/drm/xe/xe_bo.c
+>>>>>>>> +++ b/drivers/gpu/drm/xe/xe_bo.c
+>>>>>>>> @@ -378,6 +378,9 @@ static struct ttm_tt
+>>>>>>>> *xe_ttm_tt_create(struct
+>>>>>>>> ttm_buffer_object *ttm_bo,
+>>>>>>>>   	    (xe->info.graphics_verx100 >= 1270 && bo-
+>>>>>>>>> flags &
+>>>>>>>> XE_BO_FLAG_PAGETABLE))
+>>>>>>>>   		caching = ttm_write_combined;
+>>>>>>>>   
+>>>>>>>> +	if (bo->flags & XE_BO_FLAG_NEEDS_UC)
+>>>>>>>> +		caching = ttm_uncached;
+>>>>>>>> +
+>>>>>>>>   	err = ttm_tt_init(&tt->ttm, &bo->ttm, page_flags,
+>>>>>>>> caching,
+>>>>>>>> extra_pages);
+>>>>>>>>   	if (err) {
+>>>>>>>>   		kfree(tt);
+>>>>>>>
+>>>>>>> To me the preferred method is to teach bo->cpu_caching about
+>>>>>>> the
+>>>>>>> uncached mode and then include it in the switch statement
+>>>>>>> above.
+>>>>>>>
+>>>>>>
+>>>>>> but bo->cpu_caching is currently documented as:
+>>>>>>
+>>>>>> /**
+>>>>>>   * @cpu_caching: CPU caching mode. Currently only used for
+>>>>>> userspace
+>>>>>>   * objects.
+>>>>>>   */
+>>>>>>
+>>>>>> and value 0 is implicitly reserved as kind of default, so
+>>>>>> 'teaching'
+>>>>>> would likely mean either extending uapi with something like:
+>>>>>>
+>>>>>>    #define DRM_XE_GEM_CPU_CACHING_WB                      1
+>>>>>>    #define DRM_XE_GEM_CPU_CACHING_WC                      2
+>>>>>> + #define DRM_XE_GEM_CPU_CACHING_UC                      3
+>>>>>>
+>>>>>> which will introduce lot of undesired right now code changes,
+>>>>>> or we
+>>>>>> will
+>>>>>> introduce internal only flag:
+>>>>>>
+>>>>>> + #define XE_CPU_CACHING_UC                      ((u16)~0)
+>>>>>>
+>>>>>> but that doesn't look like a clean solution.
+>>>>>>
+>>>>>>
+>>>>>> OTOH, just above this new diff chunk, there is already a code
+>>>>>> that
+>>>>>> updates caching mode outside the "switch statement above":
+>>>>>>
+>>>>>> 	if ((!bo->cpu_caching && bo->flags &
+>>>>>> XE_BO_FLAG_SCANOUT)
+>>>>>>>>
+>>>>>> 	    (xe->info.graphics_verx100 >= 1270 &&
+>>>>>> 	     bo->flags & XE_BO_FLAG_PAGETABLE))
+>>>>>> 		caching = ttm_write_combined;
+>>>>>>
+>>>>>> so maybe as a short term solution we can keep this patch as
+>>>>>> it's
+>>>>>> doing
+>>>>>> similar last resort stuff and return to 'preferred way' later:
+>>>>>>
+>>>>>> 	if (!bo->cpu_caching && bo->flags &
+>>>>>> XE_BO_FLAG_NEEDS_UC)
+>>>>>> 		caching = ttm_uncached;
+>>>>>
+>>>>> Yeah, cpu_caching is a "uapi only" thing at the moment (and even
+>>>>> then
+>>>>> is
+>>>>> only set in some situations).  Given the current design and
+>>>>> assumptions
+>>>>> of the code, maybe it would be more clear to add an assertion
+>>>>> like
+>>>>> this
+>>>>> to help document why this is special?
+>>>>>
+>>>>>          if (bo->flags & XE_BO_FLAG_NEEDS_UC) {
+>>>>>                  /*
+>>>>>                   * Valid only for internally-created buffers
+>>>>> only,
+>>>>> for
+>>>>>                   * which cpu_caching is never initialized.
+>>>>>                   */
+>>>>>                  xe_assert(xe, bo->cpu_caching == 0);
+>>>>>                  caching = ttm_uncached;
+>>>>>          }
+>>>>>
+>>>>> If we decide we want a more general redesign of cpu_caching
+>>>>> behavior,
+>>>>> that would probably be a separate change from the direct
+>>>>> functional
+>>>>> fix
+>>>>> here.
+>>>>
+>>>> I do think the change should have actually been done before the
+>>>> scanout
+>>>> caching hack. We shouldn't be building special cases like this, but
+>>>> rather fix what's missing.
+>>>
+>>> I think things happened the other way around.  The scanout caching
+>>> adjustment pre-dates the existence of bo->cpu_caching in the driver.
+>>> When bo->cpu_caching got added in commit 622f709ca629 ("drm/xe/uapi:
+>>> Add
+>>> support for CPU caching mode"), it intentionally left kernel objects
+>>> set
+>>> to 0 by design.
+>>
+>> I don't really see a discussion around the kernel objects in the commit
+>> message, it mentions "currently" in the caching mode doc, but that
+>> sounds more like a documentation of current status than a guideline.
+>> Ofc, it might be in the review discussion but I haven't looked too
+>> closely TBH.
+>>
+>> Hmm. This commit raises some questions. Do you remember the reason for
+>> leaving out the kernel bos? Was it because kernel bos relies on
+>> implicit caching mode selection whereas the user-space bo caching mode
+>> selection is now explicit? Otherwise it's pretty standard in the driver
+>> to map the DRM_XE user-space flags / enums to XE_ internal ones.
 
-Hm. I'll check how that will turn out.
+Yeah, no real reason IIRC. I don't remember exactly, but I don't think 
+there was a huge need for kmd internal objects needing explicit caching 
+at the time, and didn't seem worth adding just for that scanout case.
 
->=20
-> > =C2=A0
-> > -	/*
-> > -	 * Unreserve without putting on LRU to avoid swapping out
-> > an
-> > -	 * already swapped buffer.
-> > -	 */
-> > -	if (locked)
-> > -		dma_resv_unlock(bo->base.resv);
-> > -	ttm_bo_put(bo);
-> > -	return ret =3D=3D -EBUSY ? -ENOSPC : ret;
-> > +	return 0;
-> > +}
-> > +
-> > +const struct ttm_lru_walk_ops ttm_swap_ops =3D {
-> > +	.process_bo =3D ttm_bo_swapout_cb,
-> > +};
-> > +
-> > +/**
-> > + * ttm_bo_swapout() - Swap out buffer objects on the LRU list to
-> > shmem.
-> > + * @bdev: The ttm device.
-> > + * @ctx: The ttm_operation_ctx governing the swapout operation.
-> > + * @man: The resource manager whose resources / buffer objects are
-> > + * goint to be swapped out.
-> > + * @gfp_flags: The gfp flags used for shmem page allocations.
-> > + * @target: The desired number of pages to swap out.
-> > + *
-> > + * Return: The number of pages actually swapped out, or negative
-> > error code
-> > + * on error.
-> > + */
-> > +long ttm_bo_swapout(struct ttm_device *bdev, struct
-> > ttm_operation_ctx *ctx,
-> > +		=C2=A0=C2=A0=C2=A0 struct ttm_resource_manager *man, gfp_t
-> > gfp_flags,
-> > +		=C2=A0=C2=A0=C2=A0 pgoff_t target)
-> > +{
-> > +	struct ttm_bo_swapout_walk swapout_walk =3D {
-> > +		.walk =3D {
-> > +			.ops =3D &ttm_swap_ops,
-> > +			.ctx =3D ctx,
-> > +			.trylock_only =3D true,
-> > +		},
-> > +		.gfp_flags =3D gfp_flags,
-> > +	};
-> > +
-> > +	return ttm_lru_walk_for_evict(&swapout_walk.walk, bdev,
-> > man, target);
-> > =C2=A0}
-> > =C2=A0
-> > =C2=A0void ttm_bo_tt_destroy(struct ttm_buffer_object *bo)
-> > diff --git a/drivers/gpu/drm/ttm/ttm_device.c
-> > b/drivers/gpu/drm/ttm/ttm_device.c
-> > index f9e9b1ec8c8a..ee575d8a54c0 100644
-> > --- a/drivers/gpu/drm/ttm/ttm_device.c
-> > +++ b/drivers/gpu/drm/ttm/ttm_device.c
-> > @@ -148,40 +148,20 @@ int ttm_global_swapout(struct
-> > ttm_operation_ctx *ctx, gfp_t gfp_flags)
-> > =C2=A0int ttm_device_swapout(struct ttm_device *bdev, struct
-> > ttm_operation_ctx *ctx,
-> > =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gfp_t gfp_flags)
-> > =C2=A0{
-> > -	struct ttm_resource_cursor cursor;
-> > =C2=A0	struct ttm_resource_manager *man;
-> > -	struct ttm_resource *res;
-> > =C2=A0	unsigned i;
-> > -	int ret;
-> > +	long lret;
-> > =C2=A0
-> > -	spin_lock(&bdev->lru_lock);
-> > =C2=A0	for (i =3D TTM_PL_SYSTEM; i < TTM_NUM_MEM_TYPES; ++i) {
-> > =C2=A0		man =3D ttm_manager_type(bdev, i);
-> > =C2=A0		if (!man || !man->use_tt)
-> > =C2=A0			continue;
-> > =C2=A0
-> > -		ttm_resource_manager_for_each_res(man, &cursor,
-> > res) {
-> > -			struct ttm_buffer_object *bo =3D res->bo;
-> > -			uint32_t num_pages;
-> > -
-> > -			if (!bo || bo->resource !=3D res)
-> > -				continue;
-> > -
-> > -			num_pages =3D PFN_UP(bo->base.size);
-> > -			ret =3D ttm_bo_swapout(bo, ctx, gfp_flags);
-> > -			/* ttm_bo_swapout has dropped the lru_lock
-> > */
-> > -			if (!ret) {
-> > -				ttm_resource_cursor_fini(&cursor);
-> > -				return num_pages;
-> > -			}
-> > -			if (ret !=3D -EBUSY) {
-> > -				ttm_resource_cursor_fini(&cursor);
-> > -				return ret;
-> > -			}
-> > -		}
-> > +		lret =3D ttm_bo_swapout(bdev, ctx, man, gfp_flags,
-> > 1);
->=20
-> With a target of 1 this will evict exactly 1 various sized BO which
-> seems to match the current behavior.
->=20
-> Just curious what is the usage of this function which evicts 1 BO
-> from
-> the device?
+> 
+> Unfortunately I don't remember the details here very well myself; I know
+> this patch went through a lot of revisions and morphed a fair bit during
+> the review cycles.  Adding a couple extra Cc's of people who were more
+> actively involved in the review and may have a clearer memory of how we
+> initially settled on the userspace-only design.
+> 
+> +cc Jose, Oak
+> 
+> 
+> Matt
+> 
+>>
+>> (As a complete side note it looks like the system pages for VRAM-only
+>> user-bo eviction are now forced to be write-combined by the uAPI?)
 
-I think it evicts one bo at a time until the 50% system target is met,
-alternating between TTM devices and, unfortunately, memory regions.
+Yeah, originally we had smem_cpu_caching, where it had to be left as 
+zero for vram objects. vram caching was then implicit and always wc. I 
+think internally kmd would use wb if it was evicted and vram-only, idea 
+was also to potentially allow umd to also control this with 
+smem_cpu_caching.
 
-That could probably be improved upon, but beyond the scope of this
-series since with the shrinker, we can't really exercise that on xe.
+There was some discussion here: 
+https://lore.kernel.org/intel-xe/30454ab26b8df746cfcdc4c1a0548e7c1e676ac0.camel@intel.com/
 
-/Thomas
+Feedback was rather to have single cpu_caching value which would always 
+be respected when mmapping the object. If the cpu_caching is wc then the 
+mmap is always wc, and not sometimes wc and sometimes wb, depending on 
+if it's evicted or not which userspace is unaware of. The downside is 
+that wc for evicted vram is going to be common and maybe not ideal. 
+Maybe this can be revisited?
 
-
->=20
-> Matt=20
->=20
-> > +		/* Can be both positive (num_pages) and negative
-> > (error) */
-> > +		if (lret)
-> > +			return lret;
-> > =C2=A0	}
-> > -	ttm_resource_cursor_fini_locked(&cursor);
-> > -	spin_unlock(&bdev->lru_lock);
-> > =C2=A0	return 0;
-> > =C2=A0}
-> > =C2=A0EXPORT_SYMBOL(ttm_device_swapout);
-> > diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-> > index 8b032298d66e..472a55b69afb 100644
-> > --- a/include/drm/ttm/ttm_bo.h
-> > +++ b/include/drm/ttm/ttm_bo.h
-> > @@ -410,8 +410,9 @@ void ttm_bo_kunmap(struct ttm_bo_kmap_obj
-> > *map);
-> > =C2=A0int ttm_bo_vmap(struct ttm_buffer_object *bo, struct iosys_map
-> > *map);
-> > =C2=A0void ttm_bo_vunmap(struct ttm_buffer_object *bo, struct iosys_map
-> > *map);
-> > =C2=A0int ttm_bo_mmap_obj(struct vm_area_struct *vma, struct
-> > ttm_buffer_object *bo);
-> > -int ttm_bo_swapout(struct ttm_buffer_object *bo, struct
-> > ttm_operation_ctx *ctx,
-> > -		=C2=A0=C2=A0 gfp_t gfp_flags);
-> > +long ttm_bo_swapout(struct ttm_device *bdev, struct
-> > ttm_operation_ctx *ctx,
-> > +		=C2=A0=C2=A0=C2=A0 struct ttm_resource_manager *man, gfp_t
-> > gfp_flags,
-> > +		=C2=A0=C2=A0=C2=A0 pgoff_t target);
-> > =C2=A0void ttm_bo_pin(struct ttm_buffer_object *bo);
-> > =C2=A0void ttm_bo_unpin(struct ttm_buffer_object *bo);
-> > =C2=A0int ttm_mem_evict_first(struct ttm_device *bdev,
-> > --=20
-> > 2.44.0
-> >=20
-
+>>
+>>>
+>>> We can certainly change the design now if everyone agrees that it
+>>> makes
+>>> the code cleaner,
+>>
+>> This is probably a bigger change than I originally though and requires
+>> some additional consideration of the above.
+>>
+>>>   but I think that the general refactoring and
+>>> repurposing of bo->cpu_caching is orthogonal to the functional fix
+>>> that
+>>> Michal is providing here.
+>>
+>> Generally I think that if something is missing to be able to cleanly
+>> add a fix, then we should definitely try our best to add that something
+>> _first_. In this case it turns out, though, that it requires some
+>> additional afterthought.
+>>
+>> So for the patch
+>>
+>> Acked-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>
+>>
+>>
+>>>
+>>> +Cc Pallavi, Matt Auld as the authors of the original design in case
+>>> they have any thoughts on extending the usage of bo->cpu_caching.
+>>>
+>>>
+>>> Matt
+>>>
+>>>>
+>>>> Can't we make bo->cpu_caching valid also for kernel bos with a new
+>>>> enum
+>>>> and do the translation in the ioctl?
+>>>>
+>>>> /Thomas
+>>>>
+>>>>
+>>>>>
+>>>>>
+>>>>> Matt
+>>>>>
+>>>>>>
+>>>>>> Michal
+>>>>>
+>>>>
+>>>
+>>
+> 
