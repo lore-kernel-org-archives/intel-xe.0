@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2B28C27C53
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 22:10:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31BECC27C53
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 22:22:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BA1D10E296;
-	Wed, 19 Jun 2024 22:10:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 612CD10E28F;
+	Wed, 19 Jun 2024 22:22:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EwLtROGa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kbRv/tR7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D88510E296
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Jun 2024 22:10:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38D8910E28F
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Jun 2024 22:22:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718835027; x=1750371027;
+ t=1718835721; x=1750371721;
  h=date:message-id:from:to:cc:subject:in-reply-to:
- references:mime-version;
- bh=r7VuVG+VrUY4LhZL0O02JUN1r2na72c/VaU0bRstYFg=;
- b=EwLtROGaCa7FmAMjk7kKvKa95py0z1YtEfl2tjMQaPl5f+grBo8KnIER
- vpyoulDFCjVQ7W/U+h2Ht0G3u+jop9yZ7xn9XBqldU0MHb/l+loICipGt
- 38jwn3oLknH9UYWxTKhUOBmB/2ajickZP6u32HMRtcjs1b5HmMsJ3NvNK
- 8MpTudJsJIqkMYLKXS1Lm1ced/60696deZ/N1oOpB3cjwd3MyWPP/x1QE
- zcLDobqIMGcdztKCKtBxd1ibP0nPA0ZmyzlDl4XDD+n78Lh0U0bOZr9tY
- 1soN17cycC+3k9mM3TDzPWL6R/izxay4BgMkrMpU5I6lrgvUsnoLnH4OS w==;
-X-CSE-ConnectionGUID: /5ixa+bNR2ie72bQb5HSTg==
-X-CSE-MsgGUID: 5a1/qrt3Q82biBqu39AKnQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11108"; a="15929529"
-X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; d="scan'208";a="15929529"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2024 15:10:26 -0700
-X-CSE-ConnectionGUID: L7vvcObaRAm4J4U+c9SEFw==
-X-CSE-MsgGUID: PR98GeJFT6aTZzcnIAy+VQ==
+ references:mime-version:content-transfer-encoding;
+ bh=qdRA3Y3I75/W40ZWDtTdmVkFDZOZKzxoW7HPoEZNXBA=;
+ b=kbRv/tR7A4BEXFflUO446YInGju20WD/NUS/jkDnikFTc4r4xFTLpqDU
+ f81aNwmEbOn/urQjqsQqf4Vaai6iFcvBGq45LakLw5g1imnM6etMgOUJt
+ jTn/YixKwQSuiZtkxlwttwH8zu6sn3BcxP14BphCvUemBWiLNFPo7PQwa
+ N5eOG6qV64WSbbcJBzWsKRFJ03U1HwQgWIx1jrAokpafhMe8ukLQvcgG5
+ 0Zner9xqUcSvLA75E+2u0JqVmtaZ2FzRyqoTXfpc3nePRLJ9//iXji2oQ
+ 6z5JyuLFd8f5eBMBkcip/D4DcjR+H3H1d0BvlIeZQjuXb6CpTj63USj1P A==;
+X-CSE-ConnectionGUID: dg+jXJYcQYSuQLYNTWRjfg==
+X-CSE-MsgGUID: P0Ecn17rQr+mLqueJSS7GQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11108"; a="15919238"
+X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; d="scan'208";a="15919238"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2024 15:22:01 -0700
+X-CSE-ConnectionGUID: A2rBvGlUSvCtfU0Y/62meg==
+X-CSE-MsgGUID: RtzJiQOmS8STzxoobo1tzQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; d="scan'208";a="72785140"
+X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; d="scan'208";a="47174522"
 Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
  ([10.165.21.138])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2024 15:10:26 -0700
-Date: Wed, 19 Jun 2024 15:10:25 -0700
-Message-ID: <858qz0r3ce.wl-ashutosh.dixit@intel.com>
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2024 15:22:01 -0700
+Date: Wed, 19 Jun 2024 15:22:00 -0700
+Message-ID: <857cekr2t3.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 5/9] drm/xe/vf: Don't initialize OA if VF
-In-Reply-To: <85a5jgr3zj.wl-ashutosh.dixit@intel.com>
-References: <20240619214557.905-1-michal.wajdeczko@intel.com>
- <20240619214557.905-6-michal.wajdeczko@intel.com>
- <85a5jgr3zj.wl-ashutosh.dixit@intel.com>
+To: =?ISO-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/xe/oa: Call xe_oa_emit_oa_config() with new config
+ when updating config
+In-Reply-To: <20240619192854.199289-1-jose.souza@intel.com>
+References: <20240619192854.199289-1-jose.souza@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,53 +71,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 19 Jun 2024 14:56:32 -0700, Dixit, Ashutosh wrote:
+On Wed, 19 Jun 2024 12:28:54 -0700, Jos=E9 Roberto de Souza wrote:
 >
-> On Wed, 19 Jun 2024 14:45:53 -0700, Michal Wajdeczko wrote:
-> >
-> > We don't support Observation Architecture on the VF device.
-> >
-> > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_oa.c | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-> > index 34206e0b6a08..f54a97954452 100644
-> > --- a/drivers/gpu/drm/xe/xe_oa.c
-> > +++ b/drivers/gpu/drm/xe/xe_oa.c
-> > @@ -35,6 +35,7 @@
-> >  #include "xe_perf.h"
-> >  #include "xe_pm.h"
-> >  #include "xe_sched_job.h"
-> > +#include "xe_sriov.h"
-> >
-> >  #define DEFAULT_POLL_FREQUENCY_HZ 200
-> >  #define DEFAULT_POLL_PERIOD_NS (NSEC_PER_SEC / DEFAULT_POLL_FREQUENCY_HZ)
-> > @@ -2385,6 +2386,9 @@ int xe_oa_init(struct xe_device *xe)
-> >	if (XE_WARN_ON(!xe_device_uc_enabled(xe)) || XE_WARN_ON(GRAPHICS_VER(xe) < 12))
-> >		return 0;
-> >
-> > +	if (IS_SRIOV_VF(xe))
-> > +		return 0;
-> > +
->
-> Do we want to add XE_WARN_ON's
 
-Though maybe not, if we don't want to see the WARN_ON when loading the VF driver...
+Hi Jose,
 
-> or combine this if statement with the previous one?
+> When UMD ask config to be updated, xe_oa_config_locked() was calling
+> xe_oa_emit_oa_config() that would use stream->oa_config but that is
+> only changed to the next oa_config after xe_oa_emit_oa_config() finish.
+> So it was setting the same config for all DRM_XE_PERF_IOCTL_CONFIG
+> calls.
 >
-> In any case:
+> Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_oa.c | 11 +++++------
+>  1 file changed, 5 insertions(+), 6 deletions(-)
 >
-> Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> index 34206e0b6a08e..a2da54d49f1ce 100644
+> --- a/drivers/gpu/drm/xe/xe_oa.c
+> +++ b/drivers/gpu/drm/xe/xe_oa.c
+> @@ -887,9 +887,8 @@ __xe_oa_alloc_config_buffer(struct xe_oa_stream *stre=
+am, struct xe_oa_config *oa
+>	return ERR_CAST(bb);
+>  }
 >
+> -static struct xe_oa_config_bo *xe_oa_alloc_config_buffer(struct xe_oa_st=
+ream *stream)
+> +static struct xe_oa_config_bo *xe_oa_alloc_config_buffer(struct xe_oa_st=
+ream *stream, struct xe_oa_config *oa_config)
+
+Nice catch and thanks for the patch.
+
+Just fix the reported checkpatch warning here ("line length of 117 exceeds
+100 columns"). With that this is:
+
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+
+I think no need for "Fixes" tag(s) because this will get into the same
+kernel version. Thanks.
+
+
+>  {
+> -	struct xe_oa_config *oa_config =3D stream->oa_config;
+>	struct xe_oa_config_bo *oa_bo;
 >
-> >	oa->xe = xe;
-> >	oa->oa_formats = oa_formats;
-> >
-> > --
-> > 2.43.0
-> >
+>	/* Look for the buffer in the already allocated BOs attached to the strea=
+m */
+> @@ -905,13 +904,13 @@ static struct xe_oa_config_bo *xe_oa_alloc_config_b=
+uffer(struct xe_oa_stream *st
+>	return oa_bo;
+>  }
+>
+> -static int xe_oa_emit_oa_config(struct xe_oa_stream *stream)
+> +static int xe_oa_emit_oa_config(struct xe_oa_stream *stream, struct xe_o=
+a_config *config)
+>  {
+>  #define NOA_PROGRAM_ADDITIONAL_DELAY_US 500
+>	struct xe_oa_config_bo *oa_bo;
+>	int err, us =3D NOA_PROGRAM_ADDITIONAL_DELAY_US;
+>
+> -	oa_bo =3D xe_oa_alloc_config_buffer(stream);
+> +	oa_bo =3D xe_oa_alloc_config_buffer(stream, config);
+>	if (IS_ERR(oa_bo)) {
+>		err =3D PTR_ERR(oa_bo);
+>		goto exit;
+> @@ -989,7 +988,7 @@ static int xe_oa_enable_metric_set(struct xe_oa_strea=
+m *stream)
+>			return ret;
+>	}
+>
+> -	return xe_oa_emit_oa_config(stream);
+> +	return xe_oa_emit_oa_config(stream, stream->oa_config);
+>  }
+>
+>  static void xe_oa_stream_enable(struct xe_oa_stream *stream)
+> @@ -1054,7 +1053,7 @@ static long xe_oa_config_locked(struct xe_oa_stream=
+ *stream, u64 arg)
+>		return -ENODEV;
+>
+>	if (config !=3D stream->oa_config) {
+> -		err =3D xe_oa_emit_oa_config(stream);
+> +		err =3D xe_oa_emit_oa_config(stream, config);
+>		if (!err)
+>			config =3D xchg(&stream->oa_config, config);
+>		else
+> --
+> 2.45.2
+>
