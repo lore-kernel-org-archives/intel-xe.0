@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3B1DC27C53
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 07:01:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FFA2C27C79
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 07:01:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA8B210E055;
-	Wed, 19 Jun 2024 07:01:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4423310E9B1;
+	Wed, 19 Jun 2024 07:01:26 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4252410E055;
- Wed, 19 Jun 2024 07:01:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B88A10E9B1;
+ Wed, 19 Jun 2024 07:01:25 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xelpgp=3A_Ext?=
- =?utf-8?q?end_Wa=5F14019877138_to_graphics_12=2E74?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/xelpgp=3A_Extend_W?=
+ =?utf-8?q?a=5F14019877138_to_graphics_12=2E74?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Sai Teja Pottumuttu" <sai.teja.pottumuttu@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 19 Jun 2024 07:01:15 -0000
-Message-ID: <171878047527.106196.9107359221019877263@a6498e030952>
+Date: Wed, 19 Jun 2024 07:01:25 -0000
+Message-ID: <171878048524.106475.11233099593413665150@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240619065614.131151-1-sai.teja.pottumuttu@intel.com>
 In-Reply-To: <20240619065614.131151-1-sai.teja.pottumuttu@intel.com>
@@ -48,9 +48,25 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: fcea62a0d695 drm-tip: 2024y-06m-19d-05h-21m-41s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xelpgp: Extend Wa_14019877138 to graphics 12.74
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 22c6c1eab9aadd1e455bcb949a366357c17e1ff5
+Author: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+Date:   Wed Jun 19 12:26:14 2024 +0530
+
+    drm/xe/xelpgp: Extend Wa_14019877138 to graphics 12.74
+    
+    Wa_14019877138 is also needed for xe_lpgp graphics 12.74
+    
+    Signed-off-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
++ /mt/dim checkpatch fcea62a0d6954dcce241d22785597ba416a18076 drm-intel
+22c6c1eab9aa drm/xe/xelpgp: Extend Wa_14019877138 to graphics 12.74
 
 
