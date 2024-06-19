@@ -4,75 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCCACC2BA1A
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 10:27:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E549DC2BA15
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 10:28:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E90110EC21;
-	Wed, 19 Jun 2024 10:27:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9CAF10EC1E;
+	Wed, 19 Jun 2024 10:28:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="RrO5nW6m";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="f+hwavdf";
 	dkim-atps=neutral
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
- [209.85.128.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D86F10EC1E
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Jun 2024 10:27:35 +0000 (UTC)
-Received: by mail-wm1-f50.google.com with SMTP id
- 5b1f17b1804b1-4217926991fso57531545e9.3
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Jun 2024 03:27:35 -0700 (PDT)
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
+ [209.85.128.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6753210EC1F
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Jun 2024 10:28:44 +0000 (UTC)
+Received: by mail-wm1-f53.google.com with SMTP id
+ 5b1f17b1804b1-42172ed3487so46583555e9.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Jun 2024 03:28:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1718792853; x=1719397653;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1718792922; x=1719397722;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=Mv6hTqDSR4GlhI2tL0JZjMBqw/kg6/83wxC7YG6ceYc=;
- b=RrO5nW6m0jfcX9voHs480hAg6kj1ciGA5qdJy9tH13LeMRSIh9JSBuRWO9BmXpzUdn
- BC+Gc/GjzvMWu1YrpD5hYyfkBGKBy8oJlhKtVanNT/01W5Wx2mG/X7OcTZHeAApFPaUG
- dUB9+ixYxREZnxc+fmeY4na0H52MnZP5x0aat2CmZk+hbvP8VsKGSO2Iaq/gAARdtVgs
- i0jds6vCEqdYVBq8MD2uorTy/yuBAgPDAoXSmtKNJwia5o1Drk4JDWxCP764XhEMFYmS
- BBnc6bJIpaHSSXc5yid/ye0JO51vv+cLv5U8YMg0hG0uJOoxH1It8O4tCzFnTJm9n/ZJ
- 2HDg==
+ bh=cP9U9cAEESd9Gge2UJBtGjXdmnCNDDOh1lsPLCHcpjw=;
+ b=f+hwavdfLOOQnwOWTBQQvI0F1+2F2jqiyVIb4Q81aMIfGejCXBJWw4/UKST/qf34cy
+ a0rmK7lNXzt+VXMPOJ4n5nHzm6mAZaCZKQ+guMaxYepZuwYCX0Bp/MGCAQA6HBQsPyzi
+ BqNy07r0Im3er/pLn+JIhgt66WD5OSMRcExD+67rvAEv02goyo+eys4XNfGDdhJbzDjo
+ MiEsjEas0m6co1mO/C8Wh2GL4R0Uwpudnnu9dJYDxA/oYkjd2oyoSqC2CGqQCGkQLo9y
+ WjYafQ1FYMjycX2CTawSqS2rSju4AWuu5GAWwYQtjujIy5AcBvp28MC8rr4PhZHHV3oR
+ aY5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1718792853; x=1719397653;
+ d=1e100.net; s=20230601; t=1718792922; x=1719397722;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Mv6hTqDSR4GlhI2tL0JZjMBqw/kg6/83wxC7YG6ceYc=;
- b=u3oqPSjqNf1GJHM9mw1s3ME76wJxEmEa7SoOk7UZ//+wC8kd3vBvW0KU/0xdHjfT0Q
- sUaiGn4A76Z8fViv44lyqajoJTY7NCdavlEJusEZfnQ0wYgIZ8aznZknQ7a0J97YDUnf
- TSdLh4/r9LH9M84LJNti5IeBHnwaxeuF5vu5MXcZQyth+aWo7GBdmFBJzrrNm4MR5hgv
- Dn8LFKIPUE0ClYpdA/5apUS6OkYoHV2ypUk37Z2EHyhu8xLECy8R4allboPUSD2GtQEk
- yE61I+Liysyv4llYpZX3+ia9I2R5egC9UzoqrFC6RPHGwafdpEN+981hp2jaP9xxrAyV
- GTPw==
+ bh=cP9U9cAEESd9Gge2UJBtGjXdmnCNDDOh1lsPLCHcpjw=;
+ b=X9h6htwl7gEZgX9DhflkXUz6lWsuR/m7pfcgvhciMbUdZSiyoIahiQt445cnq9P5VP
+ 5TZJdVwE3pyIXW+PWHQqhJlmaf+uBRZQSSat0PTwl+V8+QRg7L11HMPS4BPectNz4S/Z
+ UKJJ0b0Bf4Gvfn+9fqxrmHdCpwS3BUap0pf8N44GtxPSWSqRHC+BaThkQ+cvSX2hoGQa
+ qWrKnrz+iHkTn5CAuQx6mku5xe9KZD1cJHLI6Bvwc0fMvD5fhXdGZRL6C70E/ZiAZUKW
+ AVt0D7bUIbCgruuoIvPdTMjTJmi54X022BpI/eDdRwz8SqCTmE1XnIBGTOzw8iB/a6v8
+ cv2g==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUak7W+n4Dpya3p3ACiG4HimOD2mVKpz+WxQSp4FC0i2TzS3P61x6k08dfpr7PxW0NZZVS1wQP/ZRYLanjmVV+wmdxjFnQU9B8UMaD6YP8=
-X-Gm-Message-State: AOJu0YwPRBFEsTAiclGqTKJJuiB4wx4jRPmTJjCQ+Qy07sZRXP2aIS4P
- Euf8Wild5TQuguPNIstR15eQV3t63MsGSiF5JLNF88SVIDUt4Hs9JV57UuxzmQs=
-X-Google-Smtp-Source: AGHT+IHuWfxQ4Gvep462D2lvIRKHE6+f2j74HAZHUy1JquYx3R3qOeJ5cSt6hhzsDubzXs4raSsGkw==
-X-Received: by 2002:a05:600c:15cc:b0:421:8445:4f8d with SMTP id
- 5b1f17b1804b1-4247529e08amr12377755e9.38.1718792853257; 
- Wed, 19 Jun 2024 03:27:33 -0700 (PDT)
+ AJvYcCXr5u4BCVwUV4CwKFcjU03uQ64ROPDc+SWVhziMErVSQSD8d6TDhiCLgdLZGc6h6tz4PAxU41yPF9utIrMab3JWjVp4V8EWeHledhAplrU=
+X-Gm-Message-State: AOJu0Yz2HjLMRVPivt4J3BLCH2sA704ssLsR9ncrRvFIPXqDYGyGwM3n
+ 3kCo/ZlsiKbQQXw4N23rZqJCbltrt3aJSnluOEF/JmUZXxNiW5FgWfs0wLe0vy4=
+X-Google-Smtp-Source: AGHT+IHRo/2yoGOWG8mFsmODDfB63LXvrmYqwqs5DTCIUi0wXPtf6w56dvhvRe5J1oq8MLB4UTGu6Q==
+X-Received: by 2002:a05:600c:2d49:b0:421:cc89:dd5d with SMTP id
+ 5b1f17b1804b1-4247517615cmr13793635e9.9.1718792922440; 
+ Wed, 19 Jun 2024 03:28:42 -0700 (PDT)
 Received: from [192.168.0.101] ([84.69.19.168])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-422f641f522sm220574375e9.48.2024.06.19.03.27.32
+ 5b1f17b1804b1-422f5f33bdasm227220795e9.8.2024.06.19.03.28.41
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 19 Jun 2024 03:27:32 -0700 (PDT)
-Message-ID: <0a483838-0a7a-47f0-a816-41ccfff4f560@ursulin.net>
-Date: Wed, 19 Jun 2024 11:27:32 +0100
+ Wed, 19 Jun 2024 03:28:42 -0700 (PDT)
+Message-ID: <773519fb-3dd9-4c80-87f5-da2cd075deb5@ursulin.net>
+Date: Wed, 19 Jun 2024 11:28:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/8] drm/i915: Disable tracing points on PREEMPT_RT
+Subject: Re: [PATCH v2 6/8] drm/i915: Drop the irqs_disabled() check
 Content-Language: en-GB
 To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>,
- Luca Abeni <lucabe72@gmail.com>, Steven Rostedt <rostedt@goodmis.org>
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 References: <20240613102818.4056866-1-bigeasy@linutronix.de>
- <20240613102818.4056866-5-bigeasy@linutronix.de>
+ <20240613102818.4056866-7-bigeasy@linutronix.de>
 From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20240613102818.4056866-5-bigeasy@linutronix.de>
+In-Reply-To: <20240613102818.4056866-7-bigeasy@linutronix.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -91,66 +91,45 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 On 13/06/2024 11:20, Sebastian Andrzej Siewior wrote:
-> Luca Abeni reported this:
-> | BUG: scheduling while atomic: kworker/u8:2/15203/0x00000003
-> | CPU: 1 PID: 15203 Comm: kworker/u8:2 Not tainted 4.19.1-rt3 #10
-> | Call Trace:
-> |  rt_spin_lock+0x3f/0x50
-> |  gen6_read32+0x45/0x1d0 [i915]
-> |  g4x_get_vblank_counter+0x36/0x40 [i915]
-> |  trace_event_raw_event_i915_pipe_update_start+0x7d/0xf0 [i915]
+> The !irqs_disabled() check triggers on PREEMPT_RT even with
+> i915_sched_engine::lock acquired. The reason is the lock is transformed
+> into a sleeping lock on PREEMPT_RT and does not disable interrupts.
 > 
-> The tracing events use trace_intel_pipe_update_start() among other events
-> use functions acquire spinlock_t locks which are transformed into
-> sleeping locks on PREEMPT_RT. A few trace points use
-> intel_get_crtc_scanline(), others use ->get_vblank_counter() wich also
-> might acquire a sleeping locks on PREEMPT_RT.
-> At the time the arguments are evaluated within trace point, preemption
-> is disabled and so the locks must not be acquired on PREEMPT_RT.
+> There is no need to check for disabled interrupts. The lockdep
+> annotation below already check if the lock has been acquired by the
+> caller and will yell if the interrupts are not disabled.
 > 
-> Based on this I don't see any other way than disable trace points on
-> PREMPT_RT.
+> Remove the !irqs_disabled() check.
 > 
-> Reported-by: Luca Abeni <lucabe72@gmail.com>
-> Cc: Steven Rostedt <rostedt@goodmis.org>
+> Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 > Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 > ---
->   drivers/gpu/drm/i915/display/intel_display_trace.h | 4 ++++
->   drivers/gpu/drm/i915/i915_trace.h                  | 4 ++++
->   2 files changed, 8 insertions(+)
+>   drivers/gpu/drm/i915/i915_request.c | 2 --
+>   1 file changed, 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/gpu/drm/i915/display/intel_display_trace.h
-> index 49a5e6d9dc0d7..b15c999d91e68 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_trace.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
-> @@ -9,6 +9,10 @@
->   #if !defined(__INTEL_DISPLAY_TRACE_H__) || defined(TRACE_HEADER_MULTI_READ)
->   #define __INTEL_DISPLAY_TRACE_H__
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 519e096c607cd..466b5ee8ed6d2 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -608,7 +608,6 @@ bool __i915_request_submit(struct i915_request *request)
 >   
-> +#if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
-> +#define NOTRACE
-> +#endif
-> +
->   #include <linux/string_helpers.h>
->   #include <linux/types.h>
->   #include <linux/tracepoint.h>
-> diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
-> index ce1cbee1b39dd..247e7d9448d70 100644
-> --- a/drivers/gpu/drm/i915/i915_trace.h
-> +++ b/drivers/gpu/drm/i915/i915_trace.h
-> @@ -6,6 +6,10 @@
->   #if !defined(_I915_TRACE_H_) || defined(TRACE_HEADER_MULTI_READ)
->   #define _I915_TRACE_H_
+>   	RQ_TRACE(request, "\n");
 >   
-> +#if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
-> +#define NOTRACE
-> +#endif
-> +
->   #include <linux/stringify.h>
->   #include <linux/types.h>
->   #include <linux/tracepoint.h>
+> -	GEM_BUG_ON(!irqs_disabled());
+>   	lockdep_assert_held(&engine->sched_engine->lock);
+>   
+>   	/*
+> @@ -717,7 +716,6 @@ void __i915_request_unsubmit(struct i915_request *request)
+>   	 */
+>   	RQ_TRACE(request, "\n");
+>   
+> -	GEM_BUG_ON(!irqs_disabled());
+>   	lockdep_assert_held(&engine->sched_engine->lock);
+>   
+>   	/*
 
-If tracing experts said this is the way then it is fine by me.
+Maarten can you r-b since it seems this one originated from your 
+testing? Otherwise:
 
 Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
