@@ -4,170 +4,187 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69CBBC27C53
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 22:53:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF5E3C27C53
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 22:56:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06BE310E296;
-	Wed, 19 Jun 2024 22:53:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 503CF10E296;
+	Wed, 19 Jun 2024 22:56:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y2bG15sp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XTMXLzdZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A83D10E296;
- Wed, 19 Jun 2024 22:53:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7339910E296
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Jun 2024 22:56:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718837588; x=1750373588;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=VtGwwNYqkqm6hNoe8wXA9GuMkKmL9m2h90/77esDu8Q=;
- b=Y2bG15spgB1gxbZ4d5K7arMMHv9FklhNG5VLTvDomgtoBC0wh/xiYm0s
- 0JJ9mobE6LhiET6hh73cGRKZbcrAjBgpaujwhc4qWVWbGLWne9zLwEcEY
- usaapvcki7iWLY14U5CbmhoPrT3g0UaxIsrlBky5S8vne6ZSwrVSbA7dB
- B+gHWZoUzYm+xfpMJ7Y6wVp7OREc7jRNEl62D9vECPCL8jkPl/L044aVv
- aa/gMzfB5FlawO2DR7Ie4def5WDi3sE4Gu5czdS/m+SyKuXy7eCUQ+MUD
- +/jSoGQztWA/4TnM3P78hRjn1QZ3Ka74KenSbt5Mh+Hvl2R7agfikqjTd w==;
-X-CSE-ConnectionGUID: Iu6w5ZZARXur/ZcwI2QH+g==
-X-CSE-MsgGUID: 5EW2zjxVTIiyXJEIjZd0Rw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11108"; a="26428923"
-X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; d="scan'208";a="26428923"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2024 15:53:07 -0700
-X-CSE-ConnectionGUID: Nz1gh1F+TrOAaVRjA5G/Lw==
-X-CSE-MsgGUID: m7LzCQMAREKO4slwT9R3Yg==
+ t=1718837783; x=1750373783;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=lDMXIZ9p64wmJPGDVxmyRDxFE53yEDqS4tNMGx6vDdc=;
+ b=XTMXLzdZLVm0ujHLTtlV/P3SBGqgBULpQuFnnS7lF4Tswukdz6YDwMHn
+ MsGbfIJ4UpPfBg09hCQlRVyX5REkNkJXVu70stTq0d2T92FJEr5StJjII
+ maiSQQ6xg8hnwQkLzOTxYLY49n7FxnOaY/zR6JJmlA4Xi633esa3NBwq2
+ ZVpYfMEUZPz7pT4Ox+4JyRfQL6ZLFHVEEC4YTFoF/5xzyJk/4+zCgE2vs
+ h6nV8i1tpTr8mHBklzZh4BNzOUM2V0yGbOsTE6U29mehr5gUhKoisBWI8
+ nBJckbH8FNHUIKf9tLVIwQpiJcW48O9nvRnLMjaHW5+hpkei4F3AfOQQe w==;
+X-CSE-ConnectionGUID: SEU9bhDpRQWJySCnPNg7/Q==
+X-CSE-MsgGUID: 3AJfXCbsREuOxAIeARl9NA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11108"; a="15768438"
+X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; d="scan'208";a="15768438"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2024 15:56:22 -0700
+X-CSE-ConnectionGUID: gubmWvGrQTyJhHQjMvhRlw==
+X-CSE-MsgGUID: UbSHke+tQP6sAKoFM0c4qA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; d="scan'208";a="47002126"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 19 Jun 2024 15:53:08 -0700
+X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; d="scan'208";a="42711968"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 19 Jun 2024 15:56:22 -0700
 Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 19 Jun 2024 15:53:06 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ 15.1.2507.39; Wed, 19 Jun 2024 15:56:21 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 19 Jun 2024 15:53:06 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.39; Wed, 19 Jun 2024 15:56:20 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 19 Jun 2024 15:53:06 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Wed, 19 Jun 2024 15:56:20 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.40) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 19 Jun 2024 15:53:06 -0700
+ 15.1.2507.39; Wed, 19 Jun 2024 15:56:20 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iOZhlKwsfpLKYsh/GWXccAX4o3alThtnuJF7Lu2768h25WbmncjDfp7anEBggteJT7/ZAsA6/NIhP56WvZoxuG6lSqeSZX2VjvqodsxTeg/aU5D3/UXhsiN4ck5gj52Ob4+omcgLYzRr7/+MtZtVhWWs1wMJ4GRlkJ5lG+dGh4+AxL71WhIDc96OBlR/S4HnemhXBWHGy9RX1nDteYqFfatPUMvCyGgaimjefm95ON/9OWTwQZHRgkgpkDW09wZ1eFnaptEIoirVjFzs27SOF70w2lwgIcJw2t3f4dNLnFWlgSB+VO7N1okGzeAUAvsmeGpVg6cJqgErhq9G4tJS+g==
+ b=gKWOwbxfBRREIG3epBf1jqFLivh1QDEfz9FF6aTvvVGUQnCAomLAdAQWd+uluXBOe8rBxOWUxXawLGD0HE2acf7pXEyfIapYgcG/wNgx0XM2lstOY+kV8haFd69DAGksL9FXTT7+YaVS4WAS7IqWbrFBKXtugpbSFxlWtOIYNDoSyjq6cUGYBqeFY6SbNeCrz6qPL68R+Bt/5Pg0jIfiLkMdqznAud2bPr6rvshS/5Z/dalTOrydlEt3YLA+47MffwbYjFG7qN3NMlbM32fgluOorgajhpLVmUDtGyD+wOmXXPvMOMaXNtOyDPtg2hlL/2y+Y3QzOQ0PsBilYGf/YA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Jljkc+0CIL5zdspWw0SPAkts5T6fdZaJO+ZFq1QkJJU=;
- b=DrPXAMpcp5l8I0KGICblZ1As+uI0SfVoXP9R7s0RjbjoJQ9ELTP9ONU8ojcaLJz5Vr4g1huGMUq4vzmpCsh8KCxqWIwQNSePzwiHgy1/xDZCXt2unAvG64ZPdQOMr8xYNn6XIIikJeXEZ03kg8MqcMUwa111whlVHP5+QINHdDSDSpkKBXvXzH2uv+fi+v9rr6uRaEbJQmGok4sqdaSGW7QLltfGBHKTafhbEDMxREPPKjRx2/1jKp5/FALKdR5D74bmn+6tr1RPihaRsg0isRP6JayqZT5tr/lpvXVy+HXS7FOxmOI1xKkTOBZaIwqIwKu9sllN6PTDW5BVIAH74w==
+ bh=rI8uOPGb1MOw2RqVgorWipwOA38RempNSOq+NpqKxk0=;
+ b=Qmk9HflIXZwB3ACGqHbHv40MYXjUjQu5QF8TIVfxy7dvKUK645cfNzxGdL6jV/M4k0ub0VpATES+wqBtv4fhSI9AqmkOvYB/EC28iOv4h30tH7M5ySBpUEgn0Rebu5R7FxEblgmSFZcSLcHC9ogtvpXf639vxfosCXePlJXje7cNsUPvyNl/IyL0UXdaAM/c1UEpKfaC9ypQF7rri5l3zCQ2grUlNn8WBKLkgiIeQnYqsjrzzajuntLVirRvGwmIjOi1kvFnXXZ981jpji3ZWFXA5EaKNqotfBVeBUUuo+/XE2vWMtjasdNjTjA1mM2RlvxeF3vCZmAjHiSXWX4ehQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SA0PR11MB4557.namprd11.prod.outlook.com (2603:10b6:806:96::7) with
+Received: from IA1PR11MB8200.namprd11.prod.outlook.com (2603:10b6:208:454::6)
+ by DS0PR11MB7767.namprd11.prod.outlook.com (2603:10b6:8:138::5) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.19; Wed, 19 Jun
- 2024 22:52:59 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.7677.027; Wed, 19 Jun 2024
- 22:52:59 +0000
-Date: Wed, 19 Jun 2024 22:52:16 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Christian =?iso-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, Somalapuram Amaranath
- <Amaranath.Somalapuram@amd.com>, <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH v5 07/12] drm/ttm: Use the LRU walker for eviction
-Message-ID: <ZnNhIE6IhRuls2uA@DUT025-TGLU.fm.intel.com>
-References: <20240618071820.130917-1-thomas.hellstrom@linux.intel.com>
- <20240618071820.130917-8-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.31; Wed, 19 Jun
+ 2024 22:56:12 +0000
+Received: from IA1PR11MB8200.namprd11.prod.outlook.com
+ ([fe80::b6d:5228:91bf:469e]) by IA1PR11MB8200.namprd11.prod.outlook.com
+ ([fe80::b6d:5228:91bf:469e%6]) with mapi id 15.20.7677.030; Wed, 19 Jun 2024
+ 22:56:11 +0000
+Message-ID: <b90925ed-1d88-4ef5-9f54-0027f38a2b76@intel.com>
+Date: Wed, 19 Jun 2024 18:56:07 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 3/4] drm/xe/guc: Add capture size check in GuC log
+ buffer
+Content-Language: en-US
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ <intel-xe@lists.freedesktop.org>, John Harrison <john.c.harrison@intel.com>
+References: <20240607000719.1012422-1-zhanjun.dong@intel.com>
+ <20240607000719.1012422-4-zhanjun.dong@intel.com>
+ <8c58b7df-6d4d-45ce-9b55-0d352e132148@intel.com>
+ <39bf8731-fc40-4edc-a014-89841d5d5375@intel.com>
+ <32df3a98-ed81-4a07-aa7e-17abcc136aa8@intel.com>
+From: "Dong, Zhanjun" <zhanjun.dong@intel.com>
+In-Reply-To: <32df3a98-ed81-4a07-aa7e-17abcc136aa8@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240618071820.130917-8-thomas.hellstrom@linux.intel.com>
-X-ClientProxiedBy: BYAPR08CA0010.namprd08.prod.outlook.com
- (2603:10b6:a03:100::23) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-ClientProxiedBy: SJ0PR03CA0141.namprd03.prod.outlook.com
+ (2603:10b6:a03:33c::26) To IA1PR11MB8200.namprd11.prod.outlook.com
+ (2603:10b6:208:454::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA0PR11MB4557:EE_
-X-MS-Office365-Filtering-Correlation-Id: cccdde19-63b0-4f79-8c64-08dc90b290ef
+X-MS-TrafficTypeDiagnostic: IA1PR11MB8200:EE_|DS0PR11MB7767:EE_
+X-MS-Office365-Filtering-Correlation-Id: c49ae47b-a837-4c8b-5ae8-08dc90b3038e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230037|1800799021|366013|376011;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?RhBGxTgbF+gD5fOkO1q8Zr61hn8N1KfauVirK38yHawWPrccX0RVtn93Um?=
- =?iso-8859-1?Q?mwuZinYcQ4h+b/AJN+ozC9L2Ka9VY5EAkwHgCVJXC4ZUKU4xiJYuDvCJg5?=
- =?iso-8859-1?Q?oPuNv/wzof9SsDR8n0dLSb7CDCA/6a8EQmrCpScUKFiqaXgsfWg6mkV/5V?=
- =?iso-8859-1?Q?+3I5WxjBZkrJPBzRiYyb4nkYKy9+sobgn10vA59d/tkm1Mp5fxNaJ8yCsE?=
- =?iso-8859-1?Q?I7nc4+Hg+9oUhs2bE1vgItGU5JCH1Ty0PQRlwwKtPwEgiVG/kv8NE6tobx?=
- =?iso-8859-1?Q?B+lSyudL4RK8YZ4kxPJwdxoGSfKc2qhBjuHRcwvbpyPKVtF/wWmw2WYoPW?=
- =?iso-8859-1?Q?CPP8gYHM0SoarL/8GiUNaghZB7YAPr1J536315rKnIcwRYRkZ0PX7r04FS?=
- =?iso-8859-1?Q?1mFIskSg9PoidAXFtdzWaZ7G5sxVz/YT1oKpfT5cuupZLy8xASSCv+KKST?=
- =?iso-8859-1?Q?yLBOHgifq+UT85OSbBfYmH1xLnmcqdW+tzQkcjbr3rUir6avUyesIqq2F/?=
- =?iso-8859-1?Q?3zxumswDbVJmdXU/EAkW+hU9IbVnbCA3cDWX5qJ1A8v3jPGuj+VHvtsqqP?=
- =?iso-8859-1?Q?8JGWY2iirkZ33hvpN216ykDbNWTo2FGq8RsbxYgg6DKdhYjWnF7Xa2Ayc6?=
- =?iso-8859-1?Q?3HuJs35ZIVNJOqCiW0vtBLr9kWUA9rKJwKkDU4f8qB2LFbjs/836oYh72T?=
- =?iso-8859-1?Q?o2/tIH3x9JbK4QO4SRD3werHfHIUpxows0pv64yHiAm2fdipXpSFbfFQoc?=
- =?iso-8859-1?Q?/8GO9lkR+4eRi2z77+Bltq+zNFUXwgjS5gIzQ1qsenj52MTjPAWQ9zME5W?=
- =?iso-8859-1?Q?rzu2Kn8AOfXwlZxia64PoWXueKCuy7NGmei/xIk3lznMzyH9CJA6zZ9iDA?=
- =?iso-8859-1?Q?TuqzoQoCaOIDQxVF6newnpJdLOGFPsCMItXK15SjiY8lwcxCBPD4Jvvlyd?=
- =?iso-8859-1?Q?UEu+mSw3RRAGRSayyGFo0TY8ecWknpNTvX5OEjrNXe14eaeGda8Q16ypPX?=
- =?iso-8859-1?Q?xoLlZkX7c8aAlmzqqjeeWOkMbjIEVdaXMeV7/4NgYiJ0g01je4WiDpJ4Is?=
- =?iso-8859-1?Q?4kclr0xFVKZxkCNKA+WykSgABU9LOp0hPkvVzyxoBQ3g/5jKf5/PULRr2M?=
- =?iso-8859-1?Q?2o6zp8MGvTMwR8GxPuacYFFFAS4ZxH9O25SIWmo6Mfjs5mx5je0HGdg8q4?=
- =?iso-8859-1?Q?4wFxPfoPTGyTVlXuSV75pRNoP7fKKMpVmLPqqt9QzFOVJJj+D92mVQpb3d?=
- =?iso-8859-1?Q?GFQ/WOeX/dVd1mQI0kuSpLKgj96HoEqBY4SWWkGD/c0/xzh0hARfT2BbDY?=
- =?iso-8859-1?Q?z6XqxxYqXJzSG1MIXzmwxrNMUv8iq+GbXNEgR7lGihvUNU1gzv/Mahcny9?=
- =?iso-8859-1?Q?UoIHmT+zMZ?=
+X-Microsoft-Antispam: BCL:0;ARA:13230037|366013|1800799021|376011;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?aDdLNThnZmo2MWxCRjRlckFDYkZ0U2tqM05DSk1FaktQSzFKTU9RdWM0R3Fs?=
+ =?utf-8?B?MW5jMlQrMnFaK2N4aGVEaFp2ZGx3QXdpNGQ3OWlZdUlsUFRMK0tpY1BqUUV3?=
+ =?utf-8?B?cFp4S2VQSktTczJpSDZyd2pTKzI3ZnlvR0swaThwK2NWWkdqamR4NmZWTXJa?=
+ =?utf-8?B?dTZuSTdKZ0U3eDBLZytud2w5YUNWNEFueTJxUlY2UzRvZnErQjFNdkhnMjFi?=
+ =?utf-8?B?c2JYWW1KcnRnaDVaTVh3SUhkUVMrckdrMTNHdVRFM3ErbnlnSU5ETDZNQWR3?=
+ =?utf-8?B?QzhQOWlqaGFJWTcxcmhZTWFoK0F5azNkUTk4OE1yTjNWOFByV2dKOUtTYnJi?=
+ =?utf-8?B?aHdjN21TQmFvWWswOGpmbEJIZEVxWmRORGtpN3FSMjZhUG85bUQ0Qk4vM3JK?=
+ =?utf-8?B?bE5ndVJMd0ZweG9rUnZpVUlJa3RacVBGcUd1KzhURjJKeEd3WUsyQTFzRlZy?=
+ =?utf-8?B?aW1yYUx4ZVVVLy82ZWltY3lvUmhhYnNtRzBYUEZBaG9pdkFJQ2hmLzRzOXdE?=
+ =?utf-8?B?Ny93Tm1mdWNoOVRsa0hnY3ZMSWcxYTRuWDJCSlpkMmtiNkcwY1JKRFk5WENI?=
+ =?utf-8?B?R0JVbzZhSnkyOXllcFdpMG9YZkgyelJ3ekpOSGlmRkRZdHhFYngvV3NxelZ5?=
+ =?utf-8?B?RHR3dmVwNng3aUN0RVpJYnUxSHphUW5RQ3AyVGZwVUVEcWF3WWphbUpQSGtY?=
+ =?utf-8?B?UExQeGtNdmMrbjJFNHc0aEsrT01EZDRTTVczRFRicEpNamJmTXJnQ0lQcGNt?=
+ =?utf-8?B?ZUs1K1poWUQ5czlzTXVELzU1L1g1ajNzTjBMTkZRUFRDT1hnNWh1RUQ0d3pQ?=
+ =?utf-8?B?YWZFV1NWU2dmVnFaeFByci8wa0Y1TmhHbllXOGJzRk1hZktqZlFaL0ZjRTEx?=
+ =?utf-8?B?WWN3THBHT1VIVTZ3bnBJcG5kb1RkZnRPTHRQOXZVbmc5aFRhN0NqUjNZemxD?=
+ =?utf-8?B?YXNJaHFTZFZvZ1JvWVdXU1dwVmNMVzZkKzBtL2NITjlWQTUyRVF0aUFjSDdz?=
+ =?utf-8?B?UnY0cm5Lb0dkWmVHdThrL1FjY2tqc0lkY2plRXJBSFpyRW4xdnRYa3paS2Mw?=
+ =?utf-8?B?dnZLYVVZaWF0R2d0RGRXL1MxOEI5RkZRSG1OeVVhNFI0eVlVaC9JZktVelMr?=
+ =?utf-8?B?cGNZWUV0enBiRDk1TEIwYmFacW15aDJaRmhxVHZiaEFMaXlaWVZPL2JHaEJO?=
+ =?utf-8?B?cnlGbzFlaUtJbkdDSzdDV0NqNUpmN0haR2lhL01kRUQ0VFVyVGpQM0h5b3dI?=
+ =?utf-8?B?dEc3eXFuRzlyZXJ5OWF6MktFenNNT0tVa1p0eW5zOGk5NksyRmRXSjRtbk1a?=
+ =?utf-8?B?Z3dYb1djdmtlUHBGekYrWHVoZkRiamlORkJwdFFrUG9WcnVHMFpsbGJvYU1E?=
+ =?utf-8?B?ekRqWkRhaXBZOWJVS1ZNNzJEdHlPWXNQd3NoUHpaS3ZSdS9HaEpjZ04vM25q?=
+ =?utf-8?B?TGowRlZPWCtHWW1TMTN5OXg3a3JtNUozTFdlayt0TTl4RGc5cXR1Mk5PajBj?=
+ =?utf-8?B?S1F6UDh4WDlBVzdhcDBTK29RbFNFNHhCWDh4SWhtS0J0VDlyYkl1Y29GajZ5?=
+ =?utf-8?B?NmVpR2tYMVNtR1ZmcytkU1RaMHRZVTFON3JTenBXaTlFZ0pMaWhQdjVJRThZ?=
+ =?utf-8?B?RXhIRFdyV3VEc0xMWEF0eVJ4c01NMHpkd0VvbDhDT1BsM1FBYTMwYk1KbXd5?=
+ =?utf-8?B?VGJrTmU0MUxzT254RDZrblROT3F4dWdtNGJ0R2gyTW00Wi9acjdXOFE2Tmk5?=
+ =?utf-8?Q?FOX6aq1YNeiDRTM2zM=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230037)(1800799021)(366013)(376011); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB8200.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230037)(366013)(1800799021)(376011); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?JB4EiA/Z6AkYUoB/HI3RhP3nCols9Z8lmaAcM5YRSaaIEOH9S0mtt9grH9?=
- =?iso-8859-1?Q?V1+JfnuuBZE34oN8DRnsLgOOPtbOEWL3S96a5DfPbw3mcVuz3195/1iIvM?=
- =?iso-8859-1?Q?p3MiwXswsAsoTvUR+ZDtoYu5rOzFdKMeG9RZRq7P3HdQfaoS7J5zAfykYA?=
- =?iso-8859-1?Q?RZXWrtHuwN31u2RYnpJDNEnKR/U/rb5+020pqhouLXF/Ds4IKZf1c7Y/VV?=
- =?iso-8859-1?Q?pVd+vdDZp/wu5Bla3aSaln21q7/lXf4h0E4dFY3mMCigWX0ilFoPc2oZ7C?=
- =?iso-8859-1?Q?Rl46Q9kjUcsIWyyHEmbiXjEUyxIa3op80Jw+SAAsm/ak6tsrIStSXUPbL5?=
- =?iso-8859-1?Q?cmMajlUyxVwjc8FM7iDbeJi8upLg2gk/iENJoD8zdcTJ2PARmXvSQjW88w?=
- =?iso-8859-1?Q?mLizg8de1HZFBsZhZEL7MOMs0bVntJY7XNS7fYW9KItHJ8w3WlscILsFR8?=
- =?iso-8859-1?Q?LTUhyeHULTzZIyXx4wvSHMCRKTDnewfXbNOks5vQseIn8YLoe46vaLWdQk?=
- =?iso-8859-1?Q?PeOCvRu6JQOhsHWuqOav+VemCvBTyn/JL1GvNFeY9x63il/Ku/CDPk1Ygn?=
- =?iso-8859-1?Q?HmrVtmar9+gr3L5rPY5OzFdACwn8FCxpEKpo5VFYjespV8dgCm7ObrKybJ?=
- =?iso-8859-1?Q?TqMmG/kXgvMBfYvC9ReedZWbmcQ/FBR1B03plEDajTUT3eo3tFw993GyLd?=
- =?iso-8859-1?Q?rtCoZ1eDma6rURKlSCCdCNDsOdo6CfhybMg1vEvjODZqOvzcJgmiyrzpu3?=
- =?iso-8859-1?Q?v5FZF8cT9I5+lT6WuQu1eZW1T+wUL0nZyXIX3v4Wzru3N18Zeg2LxaPTGp?=
- =?iso-8859-1?Q?XbCmS+sLzmGaKwau/gZ+mLnwX8qgHUcOlyGKEp+NovxdB7wPhwJUxcO35T?=
- =?iso-8859-1?Q?hp1WTwIVgmn06qe0WCLeX3Fj23cXW+nWVIFyLmNgJohWr8MVz90NofD0BH?=
- =?iso-8859-1?Q?S10n9KwRhdkzQBznnaBtvco20fzrm2zJ0XIoxC/U5MrZKJG7tkTVoi+4TE?=
- =?iso-8859-1?Q?kdoiTvjPHwfFMPOwJ85AYknJSbrJc4NmgBVKjMqhQWu88ksyabCZRd4lFh?=
- =?iso-8859-1?Q?kwbOvozn3UwJid8Y+oFUgc4im1JqJXbjqRLeRsbG8WakNLLgSoJLyYSCLq?=
- =?iso-8859-1?Q?NzbvEMEUtX7PayIapgzYPBHU2UGvo6tsERqXbwk4mdp60g2/O/+Hqf2gv5?=
- =?iso-8859-1?Q?cBGGHzUoQfoNaYXfbzcVZx+sOF/e84vx1ax3FD1Vn3C7DMraK7RYaGw4QW?=
- =?iso-8859-1?Q?lRgqX1DjjElqgK4vyTtOMjeOE2uiUDLunGRqHJVzXe9P0rDA9VV10Iw6Os?=
- =?iso-8859-1?Q?MsA2XE/gvUIUtGfS4LNwSdCU+e8sB08NcD6TeEk1P7SnYK5VZZx4V6D/+R?=
- =?iso-8859-1?Q?8FFNwJqcmp4Tgb0g8O14r+4/ZzlhiSbpq4HWYgSPv4B28FwGyqSAs9cMtx?=
- =?iso-8859-1?Q?TbvldqvIP7Ll7GefcyniNA1gYjB/T9YYBqBA5+D4GDYaKscO4tbRZGzbIR?=
- =?iso-8859-1?Q?JRGW/j2sp5hcXgTByPXPtrgCXSiU+QTLXmy47U2tbBm4friVvqBng6EO/E?=
- =?iso-8859-1?Q?qfDC4nXwq0MVHlTxua8PGIL93MUcHZIAw+9+fVP5/0MsGlKlLO1/Y2DOV+?=
- =?iso-8859-1?Q?JbtynqBHD4f2GfZNzKydHcnf/ATxRzf1gi18oMy4aWjQSLTd/IHFGw1g?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: cccdde19-63b0-4f79-8c64-08dc90b290ef
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UlEyVzFxbmw1Rjh5ZEU4UXFybnhkS0RSdWZ3djdySHpETEV6YkdkTVQ2UFZp?=
+ =?utf-8?B?ZWlIeXJjU0hvS0lrMkZhMS9WWDJpM3NQeHFZT3c1UWg0S3pPbUkwL1VPOXlE?=
+ =?utf-8?B?VElGdFVKUnJGb0JlblM2WThwZjlidHE0RSsyK0RpcWRJUUFhdFdDV2E4d3JN?=
+ =?utf-8?B?V1dRaHRCaFd5YUh2TkV0eXVtbE9NWUpzNW1vT1Vsc1RNR2VaL1NkMXh1c1Zi?=
+ =?utf-8?B?dER0K0NJVXB2T2RUbzlUL0ZuSGZiWGloTVVqUWFzTlRlRnpubysyZGFhRVBw?=
+ =?utf-8?B?aTFzSlE4QXphZURDb242N3g0UDl4WUpvY1h4TmkxZ1JiV01WQ01QTlUvRmJp?=
+ =?utf-8?B?d2RlekFMVzBYZEU2SVhabHR2MFNLMGQ0N3Zha0NjSk5KTnllOXdFMjVPRmRC?=
+ =?utf-8?B?TVluN3pBaWc5eHo1QTZ2RHVOWGdIbjVraEhrUmRwU2o4NS9TeDRISndOQU9V?=
+ =?utf-8?B?dlArazJLYll4elBXb3RQd1EwRXU4c1QyS1o3c0pWQnQwQVNLNHNScG1PREVY?=
+ =?utf-8?B?UzQ2NGJhaCs5V1NOYXVWK2FVK0NnenUwV2lNYWxxeFV4bjhIUU1ybU85SHVB?=
+ =?utf-8?B?cVZNOFI4SmFyN1owaEpyK1hYek93a24vZ1J4YlhNVzA0bVl0Q3NOZ29JQU10?=
+ =?utf-8?B?NTl5Y1A2L29pR3JBcUZtYkVUbGdiVnJlVmlKVnU5TElwUVZ6Wkd2ZkFHRXZ4?=
+ =?utf-8?B?OTBZblNyU2pNVWdPZTJmbVBHRmVmVHpPd1JaOUpPWEQzaHV1UUJJeERxTExW?=
+ =?utf-8?B?Q1lJcHZQYjBqa3RGeE5zeWVVcG1aemdrbE5XU0NIMXZ0VnEyZytpcEpNWURF?=
+ =?utf-8?B?Vm1nRTNQOWt2N1E3QlIrQ3NmaFVzRkJhZ3kzSEhFSTdFSFdFVnQ1dDlKNUEx?=
+ =?utf-8?B?VWhrbGR4cG9zbjFRd1hPNUEzWkYySm5Zbm12c2toWHV0K0RjTUoyek9iL3RC?=
+ =?utf-8?B?THloVXltUTJ5RHRNSms2Ny8ycXpTK0dNcVhRUThISVdKRTJUTnlZTG8vYk9i?=
+ =?utf-8?B?R0RsRnhtWDFFQ1FCTXIyUVo4TEk3dE1FOXN5ZnVZa0lta0JOSm1WK0FBb0ZR?=
+ =?utf-8?B?YmRUdHI1S1NVaTUySkF0UExuQUxPd1pnUEVUOVhYVURtSGpHY2pqTGlMd1VK?=
+ =?utf-8?B?YmxWb01YTkhEWDNZSHpDZ1RUeFdUaHg0WGxZQUcvenBzdG5xcmhrcGJUNDB0?=
+ =?utf-8?B?c0E1WUJ4L2JSeFpRTnNpRnU1M2d1aEI3ekVZMGh5MTBXVEJKL241RGxzUEpY?=
+ =?utf-8?B?SEkzRjJubVBWbVVBdTF4YWVrUWluclc3SmRrajJUaW01Y3A3SUM4aXpWb1Bl?=
+ =?utf-8?B?RUhCSUFnZks4akg4L0sxRWFtNzl4NzVqaE9PeTMwZXlMY2phbEVNS05nb3Q0?=
+ =?utf-8?B?eTJvTXBFUmtQMTZLRjArbmlRVWtDc09JMnBHSk5wcGFVRnhaZXYrVWhpTnND?=
+ =?utf-8?B?djVUazk2cVJTS0VTckVRWlBUUzR1bkNXV3BJMkhOcDJRZ3RyS1lHWktmM0s1?=
+ =?utf-8?B?blMyTUFmUzU3MW15a3RaVExzeFZDbGtGZno0QkIxQXpUOEpLQUwvWTJWc0la?=
+ =?utf-8?B?S0ZaWFU5T21tY2pJSk9HK3JRSDdwd2tXa2psUkQ0WnNjUFc3bkxHWmJtNGFp?=
+ =?utf-8?B?QmtIZGdNa1NKSDBweStUeGFlNGsyOHM2L0lwZFhKNnZCaFB6MWJ4T0V5TWJz?=
+ =?utf-8?B?bTBUeU95bDdSMjVodytKVFdpSVRqMWVYUTYxdmNvQjBFcE5kN3oza0JFN1hl?=
+ =?utf-8?B?NEU2Wk1KREs1RjdUclVueW5IZnoyMmdlRTdXaGlzOFRlS1ptbHJxSm55bnk4?=
+ =?utf-8?B?MjR2VER4WERBREVBOFRGc2ptUUUyMTdBblRNRlFJOENVUVR2MC9vQXpwS1Fu?=
+ =?utf-8?B?WFVxNGZXZ2NaZkJvZVdrS0FCNnZFKzY2T1lRbGFsSTRuTVBobjIvMFZMeHhy?=
+ =?utf-8?B?UnRtSXZFWm5Ga3RLaVBKbVVLRFJjWVJhTHVFVW0wdDhjYjlYbEpWSitUajMz?=
+ =?utf-8?B?dml3RjMxNVFiNXQ2cHdEejJicEc1RVQ3QTBnR3FzSElPQ1lZaDR3WGVlODNl?=
+ =?utf-8?B?YjFlcnB1TmtQY2ZBK2hkbU1LQTA1Y0JvbUpCaTh1KzNMZ1dHdDFIRThQYjdI?=
+ =?utf-8?B?Z2o5dkhjTi9IcGt0YU04d1dncU4vT043UmFVeHUzamJOd0NKbDdYOFpFRFB4?=
+ =?utf-8?B?R0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c49ae47b-a837-4c8b-5ae8-08dc90b3038e
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB8200.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2024 22:52:59.1777 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2024 22:56:11.4611 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HX4pJhbdA8fAnkCbABFph15C6ALfLoZb4LzZ+QSvMsp7qFTtRmEO9m60AjPOmPVEC5BGz7m5IdERBI5OWyZwRw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4557
+X-MS-Exchange-CrossTenant-UserPrincipalName: cVG2A2MBNjd0pbItXRGczl38sgb7CkYvdW+pbH/0BVy9tcUZDqDZw2vhJZ9Gv/yMViFIko3djlgK7k0DJ3XH/g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7767
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -183,538 +200,173 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jun 18, 2024 at 09:18:15AM +0200, Thomas Hellstr�m wrote:
-> Use the LRU walker for eviction. This helps
-> removing a lot of code with weird locking
-> semantics.
+
+
+On 2024-06-19 6:28 p.m., Michal Wajdeczko wrote:
 > 
-> The functionality is slightly changed so that
-> when trylocked buffer objects are exhausted, we
-> continue to interleave walks with ticket-locks while
-> there is still progress made. The list walks are
-> not restarted in-between evictions.
 > 
-> Also provide a separate ttm_bo_evict_first()
-> function for its single user. The context of that
-> user allows sleeping dma_resv locks.
+> On 19.06.2024 21:44, Dong, Zhanjun wrote:
+>> Please see my comments inline below.
+>>
+>> Zhanjun
+>>
+>> On 2024-06-14 8:13 a.m., Michal Wajdeczko wrote:
+>>>
+>>>
+>>> On 07.06.2024 02:07, Zhanjun Dong wrote:
+>>>> The capture-nodes is included in GuC log buffer, add the size check
+>>>> for capture region in the whole GuC log buffer.
+>>>> Add capture output size check before allocating the shared buffer.
+>>>>
+>>>> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+>>>> ---
+>>>>    drivers/gpu/drm/xe/xe_gt_printk.h     |   3 +
+...
+
+>>>> diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h
+>>>> b/drivers/gpu/drm/xe/xe_guc_fwif.h
+>>>> index 04b03c398191..908298791c93 100644
+>>>> --- a/drivers/gpu/drm/xe/xe_guc_fwif.h
+>>>> +++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
+>>>> @@ -250,6 +250,54 @@ struct guc_engine_usage {
+>>>>        struct guc_engine_usage_record
+>>>> engines[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
+>>>>    } __packed;
+>>>>    +/* GuC logging structures */
+>>>> +
+>>>> +enum guc_log_buffer_type {
+>>>> +    GUC_DEBUG_LOG_BUFFER,
+>>>> +    GUC_CRASH_DUMP_LOG_BUFFER,
+>>>> +    GUC_CAPTURE_LOG_BUFFER,
+>>>> +    GUC_MAX_LOG_BUFFER
+>>>
+>>> this last enumerator is not real buffer type, so better at least name it
+>>> in a different way (at least add __ prefix?
+>>>
+>>> or best, since it looks like ABI definitions, just move it out of the
+>>> enum to benefit from compiler checks that John prefers:
+>>>
+>>> enum guc_log_buffer_type {
+>>>      GUC_LOG_BUFFER_DEBUG        = 0,
+>>>      GUC_LOG_BUFFER_CRASH_DUMP    = 1,
+>>>      GUC_LOG_BUFFER_CAPTURE_LOG    = 2,
+>>> };
+>>> #define NUM_GUC_LOG_BUFFER_TYPES    3
+>>>
+>> Will changed to:
+>> /* GuC logging structures */
+>> enum guc_log_buffer_type {
+>>      GUC_DEBUG_LOG_BUFFER,
+>>      GUC_CRASH_DUMP_LOG_BUFFER,
+>>      GUC_CAPTURE_LOG_BUFFER,
+>>
+>>      GUC_LOG_BUFFER_TYPE_MAX
+>> };
+>> The empty line speprate real type vs MAX
 > 
-I'm inclined to RB this as I think I've made sense of it all but just
-have a few questions / nits first + one small bug.
-
-> Cc: Christian K�nig <christian.koenig@amd.com>
-> Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: <dri-devel@lists.freedesktop.org>
-> Signed-off-by: Thomas Hellstr�m <thomas.hellstrom@linux.intel.com>
-> ---
->  drivers/gpu/drm/ttm/ttm_bo.c       | 350 ++++++++++++-----------------
->  drivers/gpu/drm/ttm/ttm_resource.c |  20 +-
->  include/drm/ttm/ttm_bo.h           |   8 +-
->  3 files changed, 145 insertions(+), 233 deletions(-)
+> empty line is not enough to let the compiler see the difference between
+> real _type_ and _max_ definition
 > 
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-> index 63a91b77f7da..316afe19a325 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-> @@ -224,80 +224,6 @@ static void ttm_bo_flush_all_fences(struct ttm_buffer_object *bo)
->  	dma_resv_iter_end(&cursor);
->  }
->  
-> -/**
-> - * ttm_bo_cleanup_refs
-> - * If bo idle, remove from lru lists, and unref.
-> - * If not idle, block if possible.
-> - *
-> - * Must be called with lru_lock and reservation held, this function
-> - * will drop the lru lock and optionally the reservation lock before returning.
-> - *
-> - * @bo:                    The buffer object to clean-up
-> - * @interruptible:         Any sleeps should occur interruptibly.
-> - * @no_wait_gpu:           Never wait for gpu. Return -EBUSY instead.
-> - * @unlock_resv:           Unlock the reservation lock as well.
-> - */
-> -
-> -static int ttm_bo_cleanup_refs(struct ttm_buffer_object *bo,
-> -			       bool interruptible, bool no_wait_gpu,
-> -			       bool unlock_resv)
-> -{
-> -	struct dma_resv *resv = &bo->base._resv;
-> -	int ret;
-> -
-> -	if (dma_resv_test_signaled(resv, DMA_RESV_USAGE_BOOKKEEP))
-> -		ret = 0;
-> -	else
-> -		ret = -EBUSY;
-> -
-> -	if (ret && !no_wait_gpu) {
-> -		long lret;
-> -
-> -		if (unlock_resv)
-> -			dma_resv_unlock(bo->base.resv);
-> -		spin_unlock(&bo->bdev->lru_lock);
-> -
-> -		lret = dma_resv_wait_timeout(resv, DMA_RESV_USAGE_BOOKKEEP,
-> -					     interruptible,
-> -					     30 * HZ);
-> -
-> -		if (lret < 0)
-> -			return lret;
-> -		else if (lret == 0)
-> -			return -EBUSY;
-> -
-> -		spin_lock(&bo->bdev->lru_lock);
-> -		if (unlock_resv && !dma_resv_trylock(bo->base.resv)) {
-> -			/*
-> -			 * We raced, and lost, someone else holds the reservation now,
-> -			 * and is probably busy in ttm_bo_cleanup_memtype_use.
-> -			 *
-> -			 * Even if it's not the case, because we finished waiting any
-> -			 * delayed destruction would succeed, so just return success
-> -			 * here.
-> -			 */
-> -			spin_unlock(&bo->bdev->lru_lock);
-> -			return 0;
-> -		}
-> -		ret = 0;
-> -	}
-> -
-> -	if (ret) {
-> -		if (unlock_resv)
-> -			dma_resv_unlock(bo->base.resv);
-> -		spin_unlock(&bo->bdev->lru_lock);
-> -		return ret;
-> -	}
-> -
-> -	spin_unlock(&bo->bdev->lru_lock);
-> -	ttm_bo_cleanup_memtype_use(bo);
-> -
-> -	if (unlock_resv)
-> -		dma_resv_unlock(bo->base.resv);
-> -
-> -	return 0;
-> -}
-> -
->  /*
->   * Block for the dma_resv object to become idle, lock the buffer and clean up
->   * the resource and tt object.
-> @@ -505,151 +431,154 @@ bool ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
->  }
->  EXPORT_SYMBOL(ttm_bo_eviction_valuable);
->  
-> -/*
-> - * Check the target bo is allowable to be evicted or swapout, including cases:
-> - *
-> - * a. if share same reservation object with ctx->resv, have assumption
-> - * reservation objects should already be locked, so not lock again and
-> - * return true directly when either the opreation allow_reserved_eviction
-> - * or the target bo already is in delayed free list;
-> +/**
-> + * ttm_bo_evict_first() - Evict the first bo on the manager's LRU list.
-> + * @bdev: The ttm device.
-> + * @man: The manager whose bo to evict.
-> + * @ctx: The TTM operation ctx governing the eviction.
->   *
-> - * b. Otherwise, trylock it.
-> + * Return: 0 if successful or the resource disappeared. Negative error code on error.
->   */
-> -static bool ttm_bo_evict_swapout_allowable(struct ttm_buffer_object *bo,
-> -					   struct ttm_operation_ctx *ctx,
-> -					   const struct ttm_place *place,
-> -					   bool *locked, bool *busy)
-> +int ttm_bo_evict_first(struct ttm_device *bdev, struct ttm_resource_manager *man,
-> +		       struct ttm_operation_ctx *ctx)
->  {
-> -	bool ret = false;
-> +	struct ttm_resource_cursor cursor;
-> +	struct ttm_buffer_object *bo;
-> +	struct ttm_resource *res;
-> +	unsigned int mem_type;
-> +	int ret = 0;
->  
-> -	if (bo->pin_count) {
-> -		*locked = false;
-> -		if (busy)
-> -			*busy = false;
-> -		return false;
-> +	spin_lock(&bdev->lru_lock);
-> +	res = ttm_resource_manager_first(man, &cursor);
-> +	if (!res) {
-> +		ret = -ENOENT;
-
-Nit, this assignment is not needed a out_no_ref just returns -ENOENT.
-
-> +		goto out_no_ref;
->  	}
-> +	bo = res->bo;
-> +	if (!ttm_bo_get_unless_zero(bo))
-> +		goto out_no_ref;
-> +	mem_type = res->mem_type;
-> +	spin_unlock(&bdev->lru_lock);
-> +	ret = ttm_bo_reserve(bo, ctx->interruptible, ctx->no_wait_gpu, NULL);
-> +	if (ret)
-> +		goto out_no_lock;
-> +	if (bo->resource != res || res->mem_type != mem_type)
-
-So 'bo->resource != res' is checking between dropping of the LRU lock
-and grabbing the dma-resv lock in ttm_bo_reserve, the BO's backing
-resource has changed (i.e. someone else could've evicted to BO). Is
-that correct? Also in this case 'res' could be stale memory and not safe
-to dereference, right?
-
-I'm confused about 'res->mem_type != mem_type' though. Looking through
-the code is res->mem_type not immutable? I think I only see
-res->mem_type assigned in ttm_resource_init.
-
-> +		goto out_bad_res;
-
-s/out_bad_res/out_bo_moved
-
-Would that be more accurate?
-
->  
-> -	if (bo->base.resv == ctx->resv) {
-> -		dma_resv_assert_held(bo->base.resv);
-> -		if (ctx->allow_res_evict)
-> -			ret = true;
-> -		*locked = false;
-> -		if (busy)
-> -			*busy = false;
-> +	if (bo->deleted) {
-> +		ret = ttm_bo_wait_ctx(bo, ctx);
-> +		if (ret)
-
-This should be 'if (!ret)', right? We should cleanup once the BO is
-idle.
-
-> +			ttm_bo_cleanup_memtype_use(bo);
->  	} else {
-> -		ret = dma_resv_trylock(bo->base.resv);
-> -		*locked = ret;
-> -		if (busy)
-> -			*busy = !ret;
-> -	}
-> -
-> -	if (ret && place && (bo->resource->mem_type != place->mem_type ||
-> -		!bo->bdev->funcs->eviction_valuable(bo, place))) {
-> -		ret = false;
-> -		if (*locked) {
-> -			dma_resv_unlock(bo->base.resv);
-> -			*locked = false;
-> -		}
-> +		ret = ttm_bo_evict(bo, ctx);
->  	}
-> -
-> +out_bad_res:
-> +	dma_resv_unlock(bo->base.resv);
-> +out_no_lock:
-> +	ttm_bo_put(bo);
-> +	ttm_resource_cursor_fini(&cursor);
->  	return ret;
-> +
-> +out_no_ref:
-> +	ttm_resource_cursor_fini_locked(&cursor);
-> +	spin_unlock(&bdev->lru_lock);
-> +	return -ENOENT;
->  }
->  
->  /**
-> - * ttm_mem_evict_wait_busy - wait for a busy BO to become available
-> - *
-> - * @busy_bo: BO which couldn't be locked with trylock
-> - * @ctx: operation context
-> - * @ticket: acquire ticket
-> - *
-> - * Try to lock a busy buffer object to avoid failing eviction.
-> + * struct ttm_bo_evict_walk - Parameters for the evict walk.
->   */
-> -static int ttm_mem_evict_wait_busy(struct ttm_buffer_object *busy_bo,
-> -				   struct ttm_operation_ctx *ctx,
-> -				   struct ww_acquire_ctx *ticket)
-> -{
-> -	int r;
-> -
-> -	if (!busy_bo || !ticket)
-> -		return -EBUSY;
-> -
-> -	if (ctx->interruptible)
-> -		r = dma_resv_lock_interruptible(busy_bo->base.resv,
-> -							  ticket);
-> -	else
-> -		r = dma_resv_lock(busy_bo->base.resv, ticket);
-> -
-> -	/*
-> -	 * TODO: It would be better to keep the BO locked until allocation is at
-> -	 * least tried one more time, but that would mean a much larger rework
-> -	 * of TTM.
-> -	 */
-> -	if (!r)
-> -		dma_resv_unlock(busy_bo->base.resv);
-> -
-> -	return r == -EDEADLK ? -EBUSY : r;
-> -}
-> +struct ttm_bo_evict_walk {
-> +	/** @walk: The walk base parameters. */
-> +	struct ttm_lru_walk walk;
-> +	/** @place: The place passed to the resource allocation. */
-> +	const struct ttm_place *place;
-> +	/** @evictor: The buffer object we're trying to make room for. */
-> +	struct ttm_buffer_object *evictor;
-> +	/** @res: The allocated resource if any. */
-> +	struct ttm_resource **res;
-> +	/** @evicted: The number of evicted pages. */
-
-s/pages/BOs or resources
-
-Another option would be 'forward_progess' or something like that given
-the usage in this patch.
-
-> +	unsigned long evicted;
-> +};
->  
-> -int ttm_mem_evict_first(struct ttm_device *bdev,
-> -			struct ttm_resource_manager *man,
-> -			const struct ttm_place *place,
-> -			struct ttm_operation_ctx *ctx,
-> -			struct ww_acquire_ctx *ticket)
-> +static long ttm_bo_evict_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
->  {
-> -	struct ttm_buffer_object *bo = NULL, *busy_bo = NULL;
-> -	struct ttm_resource_cursor cursor;
-> -	struct ttm_resource *res;
-> -	bool locked = false;
-> -	int ret;
-> +	struct ttm_bo_evict_walk *evict_walk =
-> +		container_of(walk, typeof(*evict_walk), walk);
-> +	long lret;
->  
-> -	spin_lock(&bdev->lru_lock);
-> -	ttm_resource_manager_for_each_res(man, &cursor, res) {
-> -		bool busy;
-> -
-> -		if (!ttm_bo_evict_swapout_allowable(res->bo, ctx, place,
-> -						    &locked, &busy)) {
-> -			if (busy && !busy_bo && ticket !=
-> -			    dma_resv_locking_ctx(res->bo->base.resv))
-> -				busy_bo = res->bo;
-> -			continue;
-> -		}
-> +	if (!bo->bdev->funcs->eviction_valuable(bo, evict_walk->place))
-> +		return 0;
->  
-> -		if (ttm_bo_get_unless_zero(res->bo)) {
-> -			bo = res->bo;
-> -			break;
-> -		}
-> -		if (locked)
-> -			dma_resv_unlock(res->bo->base.resv);
-> +	if (bo->deleted) {
-> +		lret = ttm_bo_wait_ctx(bo, walk->ctx);
-> +		if (!lret)
-> +			ttm_bo_cleanup_memtype_use(bo);
-> +	} else {
-> +		lret = ttm_bo_evict(bo, walk->ctx);
->  	}
-> -	ttm_resource_cursor_fini_locked(&cursor);
->  
-> -	if (!bo) {
-> -		if (busy_bo && !ttm_bo_get_unless_zero(busy_bo))
-> -			busy_bo = NULL;
-> -		spin_unlock(&bdev->lru_lock);
-> -		ret = ttm_mem_evict_wait_busy(busy_bo, ctx, ticket);
-> -		if (busy_bo)
-> -			ttm_bo_put(busy_bo);
-> -		return ret;
-> -	}
-> +	if (lret)
-> +		goto out;
->  
-> -	if (bo->deleted) {
-> -		ret = ttm_bo_cleanup_refs(bo, ctx->interruptible,
-> -					  ctx->no_wait_gpu, locked);
-> -		ttm_bo_put(bo);
-> -		return ret;
-> -	}
-> +	evict_walk->evicted++;
-> +	if (evict_walk->res)
-> +		lret = ttm_resource_alloc(evict_walk->evictor, evict_walk->place,
-> +					  evict_walk->res);
-> +	if (lret == 0)
-> +		return 1;
-> +out:
-> +	/* Errors that should terminate the walk. */
-> +	if (lret == -ENOMEM || lret == -EINTR || lret == -ERESTARTSYS ||
-> +	    lret == -EAGAIN)
-> +		return lret;
-
-Same comment as the previous patch, the inverse of this might be more
-clear. Also if the condition is the same, a helper may make sense.
-
->  
-> -	spin_unlock(&bdev->lru_lock);
-> +	return 0;
-> +}
->  
-> -	ret = ttm_bo_evict(bo, ctx);
-> -	if (locked)
-> -		ttm_bo_unreserve(bo);
-> -	else
-> -		ttm_bo_move_to_lru_tail_unlocked(bo);
-> +static const struct ttm_lru_walk_ops ttm_evict_walk_ops = {
-> +	.process_bo = ttm_bo_evict_cb,
-> +};
->  
-> -	ttm_bo_put(bo);
-> -	return ret;
-> +static int ttm_bo_evict_alloc(struct ttm_device *bdev,
-> +			      struct ttm_resource_manager *man,
-> +			      const struct ttm_place *place,
-> +			      struct ttm_buffer_object *evictor,
-> +			      struct ttm_operation_ctx *ctx,
-> +			      struct ww_acquire_ctx *ticket,
-> +			      struct ttm_resource **res)
-> +{
-> +	struct ttm_bo_evict_walk evict_walk = {
-> +		.walk = {
-> +			.ops = &ttm_evict_walk_ops,
-> +			.ctx = ctx,
-> +			.ticket = ticket,
-> +		},
-> +		.place = place,
-> +		.evictor = evictor,
-> +		.res = res,
-> +	};
-> +	long lret;
-> +
-> +	evict_walk.walk.trylock_only = true;
-> +	lret = ttm_lru_walk_for_evict(&evict_walk.walk, bdev, man, 1);
-> +	if (lret || !ticket)
-> +		goto out;
-> +
-> +	/* If ticket-locking, repeat while making progress. */
-> +	evict_walk.walk.trylock_only = false;
-> +	do {
-> +		/* The walk may clear the evict_walk.walk.ticket field */
-> +		evict_walk.walk.ticket = ticket;
-> +		evict_walk.evicted = 0;
-> +		lret = ttm_lru_walk_for_evict(&evict_walk.walk, bdev, man, 1);
-> +	} while (!lret && evict_walk.evicted);
-> +out:
-> +	if (lret < 0)
-> +		return lret;
-> +	if (lret == 0)
-> +		return -EBUSY;
-> +	return 0;
->  }
->  
->  /**
-> @@ -760,6 +689,7 @@ static int ttm_bo_alloc_resource(struct ttm_buffer_object *bo,
->  	for (i = 0; i < placement->num_placement; ++i) {
->  		const struct ttm_place *place = &placement->placement[i];
->  		struct ttm_resource_manager *man;
-> +		bool may_evict;
->  
->  		man = ttm_manager_type(bdev, place->mem_type);
->  		if (!man || !ttm_resource_manager_used(man))
-> @@ -769,22 +699,21 @@ static int ttm_bo_alloc_resource(struct ttm_buffer_object *bo,
->  				    TTM_PL_FLAG_FALLBACK))
->  			continue;
->  
-> -		do {
-> -			ret = ttm_resource_alloc(bo, place, res);
-> -			if (unlikely(ret && ret != -ENOSPC))
-> +		may_evict = (force_space && place->mem_type != TTM_PL_SYSTEM);
-> +		ret = ttm_resource_alloc(bo, place, res);
-> +		if (ret) {
-> +			if (ret != -ENOSPC)
->  				return ret;
-> -			if (likely(!ret) || !force_space)
-> -				break;
-> -
-> -			ret = ttm_mem_evict_first(bdev, man, place, ctx,
-> -						  ticket);
-> -			if (unlikely(ret == -EBUSY))
-> -				break;
-> -			if (unlikely(ret))
-> +			if (!may_evict)
-> +				continue;
-> +
-> +			ret = ttm_bo_evict_alloc(bdev, man, place, bo, ctx,
-> +						 ticket, res);
-> +			if (ret == -EBUSY)
-> +				continue;
-> +			if (ret)
->  				return ret;
-> -		} while (1);
-> -		if (ret)
-> -			continue;
-> +		}
->  
->  		ret = ttm_bo_add_move_fence(bo, man, ctx->no_wait_gpu);
->  		if (unlikely(ret)) {
-> @@ -796,7 +725,6 @@ static int ttm_bo_alloc_resource(struct ttm_buffer_object *bo,
->  		}
->  		return 0;
->  	}
-> -
-
-Nit, seems unrelated.
-
-Matt
-
->  	return -ENOSPC;
->  }
->  
-> diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
-> index a03090683e79..6d0c66fc36e3 100644
-> --- a/drivers/gpu/drm/ttm/ttm_resource.c
-> +++ b/drivers/gpu/drm/ttm/ttm_resource.c
-> @@ -508,24 +508,10 @@ int ttm_resource_manager_evict_all(struct ttm_device *bdev,
->  	};
->  	struct dma_fence *fence;
->  	int ret;
-> -	unsigned i;
-> -
-> -	/*
-> -	 * Can't use standard list traversal since we're unlocking.
-> -	 */
->  
-> -	spin_lock(&bdev->lru_lock);
-> -	for (i = 0; i < TTM_MAX_BO_PRIORITY; ++i) {
-> -		while (!list_empty(&man->lru[i])) {
-> -			spin_unlock(&bdev->lru_lock);
-> -			ret = ttm_mem_evict_first(bdev, man, NULL, &ctx,
-> -						  NULL);
-> -			if (ret)
-> -				return ret;
-> -			spin_lock(&bdev->lru_lock);
-> -		}
-> -	}
-> -	spin_unlock(&bdev->lru_lock);
-> +	do {
-> +		ret = ttm_bo_evict_first(bdev, man, &ctx);
-> +	} while (!ret);
->  
->  	spin_lock(&man->move_lock);
->  	fence = dma_fence_get(man->move);
-> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-> index 472a55b69afb..148f49f625e4 100644
-> --- a/include/drm/ttm/ttm_bo.h
-> +++ b/include/drm/ttm/ttm_bo.h
-> @@ -415,11 +415,9 @@ long ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
->  		    pgoff_t target);
->  void ttm_bo_pin(struct ttm_buffer_object *bo);
->  void ttm_bo_unpin(struct ttm_buffer_object *bo);
-> -int ttm_mem_evict_firevictedst(struct ttm_device *bdev,
-> -			struct ttm_resource_manager *man,
-> -			const struct ttm_place *place,
-> -			struct ttm_operation_ctx *ctx,
-> -			struct ww_acquire_ctx *ticket);
-> +int ttm_bo_evict_first(struct ttm_device *bdev,
-> +		       struct ttm_resource_manager *man,
-> +		       struct ttm_operation_ctx *ctx);
->  vm_fault_t ttm_bo_vm_reserve(struct ttm_buffer_object *bo,
->  			     struct vm_fault *vmf);
->  vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
-> -- 
-> 2.44.0
+>> I would prefer to stay within the enum, which make add new type easier,
+>> the MAX will be updated by compiler automatically, no need to manually
+>> add 1 to NUM_xxx macro.
 > 
+> but this is (or should be) a stable ABI so we shouldn't rely on the
+> compiler to automatically making any changes to any of these defs.
+> 
+> and as of today we have exactly 3 types defined as:
+> 
+>      GUC_LOG_BUFFER_DEBUG        = 0,
+>      GUC_LOG_BUFFER_CRASH_DUMP    = 1,
+>      GUC_LOG_BUFFER_CAPTURE_LOG    = 2,
+> 
+> so if you want to use enum to get some help from the compiler, like to
+> check that in your implementation you are not using bad types, then
+> there should be no other enumerators in this enum, as otherwise you kill
+> that feature
+> 
+> also note that your approach will not work if for some reason the new
+> type will be defined as something different than 3, like:
+> 
+>      GUC_LOG_BUFFER_FUTURE    = 345
+> 
+> so while will have 4 TYPES, your automatic MAX will be 346, making it
+> almost useless
+That's true, it is a stable ABI.
+Will be changed to John style.
+
+> 
+>>
+>>>> +};
+>>>> +
+>>>> +/*
+>>>> + * struct guc_log_buffer_state - GuC log buffer state
+>>>
+>>> this is not a kernel-doc format, intentional or typo ?
+>>>
+>>>> + *
+>>>> + * Below state structure is used for coordination of retrieval of
+>>>> GuC firmware
+>>>> + * logs. Separate state is maintained for each log buffer type.
+>>>> + * read_ptr points to the location where Xe read last in log buffer and
+>>>> + * is read only for GuC firmware. write_ptr is incremented by GuC
+>>>> with number
+>>>> + * of bytes written for each log entry and is read only for Xe.
+>>>> + * When any type of log buffer becomes half full, GuC sends a flush
+>>>> interrupt.
+>>>> + * GuC firmware expects that while it is writing to 2nd half of the
+>>>> buffer,
+>>>> + * first half would get consumed by Host and then get a flush completed
+>>>> + * acknowledgment from Host, so that it does not end up doing any
+>
+
+...
+
+>>>> +    }
+>>>> +
+>>>> +    return overflow;
+>>>> +}
+>>>> +
+>>>> +unsigned int xe_guc_get_log_buffer_size(struct xe_guc_log *log,
+>>>> +                    enum guc_log_buffer_type type)
+>>>> +{
+>>>> +    switch (type) {
+>>>> +    case GUC_DEBUG_LOG_BUFFER:
+>>>> +        return xe_guc_log_section_size_debug(log);
+>>>> +    case GUC_CRASH_DUMP_LOG_BUFFER:
+>>>> +        return xe_guc_log_section_size_crash(log);
+>>>> +    case GUC_CAPTURE_LOG_BUFFER:
+>>>> +        return xe_guc_log_section_size_capture(log);
+>>>> +    default:
+>>>> +        MISSING_CASE(type);
+>>>
+>>> there should be no need for 'default' case if you properly define your
+>>> enum type
+>> Compiler could check static error, while 'default' here can cover
+>> run-time errors. I would prefer to have it for public funcitons.
+> 
+> but this is still driver only function, called only from your code,
+> where you should be using only valid enumerators, so no need for any
+> random runtime protection (unless you already abuse this function by
+> using random integers as params)
+> 
+By switch to John style, this default case could be removed.
+
+> 
+>>>
+>>>> +    }
+>>>> +
+>>>> +    return 0;
+>>>> +}
+>>>> +
+>>>> +size_t xe_guc_get_log_buffer_offset(struct xe_guc_log *log,
+>>>> +                    enum guc_log_buffer_type type)
+>>>> +{
+>>>> +    enum guc_log_buffer_type i;
+>>>> +    size_t offset = PAGE_SIZE;/* for the log_buffer_states */
+>>>> +
+>>>> +    for (i = GUC_DEBUG_LOG_BUFFER; i < GUC_MAX_LOG_BUFFER; ++i) {
+>>>> +        if (i == type)
+>>>> +            break;
+
+...
