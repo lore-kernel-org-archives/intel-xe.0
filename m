@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FE02C27C53
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 21:51:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A224AC2BA1A
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 21:51:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C842010E27F;
-	Wed, 19 Jun 2024 21:51:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59DA310E27F;
+	Wed, 19 Jun 2024 21:51:24 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7456610E27F;
- Wed, 19 Jun 2024 21:51:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16C8210E27F;
+ Wed, 19 Jun 2024 21:51:23 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Adapt_the_driver_to_?=
- =?utf-8?q?boot_on_the_VF_device?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Adapt_the_driver_to_boot_?=
+ =?utf-8?q?on_the_VF_device?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 19 Jun 2024 21:51:08 -0000
-Message-ID: <171883386847.124989.16180645048494568824@a6498e030952>
+Date: Wed, 19 Jun 2024 21:51:23 -0000
+Message-ID: <171883388309.125140.12733429488261399130@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240619214557.905-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20240619214557.905-1-michal.wajdeczko@intel.com>
@@ -48,17 +48,34 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 66d8ec4c6e7d drm-tip: 2024y-06m-19d-17h-22m-17s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/vf: Disable features that do not apply to VFs
-Applying: drm/xe/vf: Don't run any save-restore RTP actions if VF
-Applying: drm/xe/vf: Don't apply tile workarounds if VF
-Applying: drm/xe/vf: Don't change hwe IRQ masks if using memory IRQs
-Applying: drm/xe/vf: Don't initialize OA if VF
-Applying: drm/xe/vf: Don't support gtidle if VF
-Applying: drm/xe/vf: Don't use register based TLB invalidation if VF
-Applying: drm/xe/vf: Skip engine ring enabling if VF
-Applying: drm/xe/vf: Custom HuC initialization if VF
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ec0b4f84716bb5724d96eccd7b7dda23d98b5491
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Wed Jun 19 23:45:57 2024 +0200
+
+    drm/xe/vf: Custom HuC initialization if VF
+    
+    The HuC firmware is loaded and initialized by the PF driver. Make
+    sure VF driver performs only limited data structure initialization.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch 66d8ec4c6e7d124a021a3a8d038ed9e739cc9359 drm-intel
+22830edd94b3 drm/xe/vf: Disable features that do not apply to VFs
+32c875231145 drm/xe/vf: Don't run any save-restore RTP actions if VF
+2f471e98e625 drm/xe/vf: Don't apply tile workarounds if VF
+6d5169ed46ea drm/xe/vf: Don't change hwe IRQ masks if using memory IRQs
+3dfcaf22b7be drm/xe/vf: Don't initialize OA if VF
+4fc8ba301446 drm/xe/vf: Don't support gtidle if VF
+07370b779a30 drm/xe/vf: Don't use register based TLB invalidation if VF
+957f29ad012e drm/xe/vf: Skip engine ring enabling if VF
+ec0b4f84716b drm/xe/vf: Custom HuC initialization if VF
 
 
