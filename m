@@ -4,170 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EAC6C27C53
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 04:24:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1796FC27C53
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Jun 2024 06:41:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8ECE910E859;
-	Wed, 19 Jun 2024 04:24:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B446410E975;
+	Wed, 19 Jun 2024 06:41:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TQQ44SPN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RbC/4Hzt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09FE010E859;
- Wed, 19 Jun 2024 04:24:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 616BB10E975
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Jun 2024 06:41:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718771043; x=1750307043;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=4rjgKYX6qgjBVoxRvi/wxdWvkz1hyaXIEfMGgmdo3Fs=;
- b=TQQ44SPNHpcgm1b3Dy1/QkqPx/KO2z5ioaiHJnV0gMBP4FgZ4hNezHQG
- WiE4U5ELrh5GP6G/idiZSU+BMwoF0nJJigSacW4EZQhr+vlK9gbS0+Xpw
- CoEvzLeBKvYTHP1DtuLcuvc2k4udeHfQglHs2ObuIOS1V973KPjVaousB
- hBfiDUizNaGMg9dlHEWiSe0aumDSh/3lIrR2DUhWNSaiNF4gdtkT+iRkQ
- gxPY562Wz475upopC3Dp78cDHvw2cxspDLX+aIFxpMkGj2zdJlQ3xk7+b
- fXWvI33s3CwG0/CGHL2wFu/1DKc6hFDy59PNDCRq0InixsnkacBWaK3Ve Q==;
-X-CSE-ConnectionGUID: O0CMOFN/R1W5URsnP3rdHw==
-X-CSE-MsgGUID: 2AnlCJ1PS9yWBYpHg4uRtg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="27105190"
-X-IronPort-AV: E=Sophos;i="6.08,249,1712646000"; d="scan'208";a="27105190"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 21:24:03 -0700
-X-CSE-ConnectionGUID: Eis7PuhGTxKVVRn8RgYUdw==
-X-CSE-MsgGUID: ft+iwOkGR3GrhcW+VSRqPw==
+ t=1718779270; x=1750315270;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=pF5SHYZHSEnW51znRGpSvJfgI1EXHn+ZErQNNO7BOuY=;
+ b=RbC/4HztMLQ0z0Kuof9RESpqQJAn4AKfvmR5bmd+Dg8ecchhJ3A8mQir
+ 8dPvZQjzyVA9Z8WQ9HlRvlziWtvlbM+p2quMwaDA0gTRiNj03vUjYANhp
+ /UdyJAeXzrqfC8M/rhBtR0ElVEfN9FuuCAX9Aseu4uJcRPxNyov2SWAGd
+ LMzIWg67RJFJTA7BtfPgNiprlECgE7ir5Ns2gE9E/1UKAxNIX7VdNlT88
+ VweUP1lDX874vGufGfsDsCrDm03Av/Vjd5tIDHG+2yW9B/Ji+NSIu4Jhc
+ lGLdo5xNCZcQIrsEQFfpDNVoVQ0x0+dqFzcbdZIeyuOEzcvwz7LkyXQqW A==;
+X-CSE-ConnectionGUID: gmVTmHYTR3+dJlYuNTY2SA==
+X-CSE-MsgGUID: LE594NcdQdmHBXO0uM8B7g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="38214009"
+X-IronPort-AV: E=Sophos;i="6.08,249,1712646000"; d="scan'208";a="38214009"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2024 23:41:09 -0700
+X-CSE-ConnectionGUID: /gwcPQi4TcesfHeZSbao9g==
+X-CSE-MsgGUID: ogeYj24URzKFYaVuF2mYDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,249,1712646000"; d="scan'208";a="46696132"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 18 Jun 2024 21:24:03 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 18 Jun 2024 21:24:02 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 18 Jun 2024 21:24:01 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 18 Jun 2024 21:24:01 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 18 Jun 2024 21:24:01 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mBO8hyRcLI7nZedSdgTH7SXTilkbnyavyWFwQ78/KmbKH+W6ODh4+3WJwyGLg3HDuyGyWCuT8JbCsbqLHRmQwPpNEhImB2Zub1frko7jaqtYXZ3hJ+a0RABc2LLdT7W2fr/Kn9JPTQ7u9izR00Vn6vRYeXHGvP17I+asgdZHePwJsvgV3OY0//G1F5v+MuPa1xMFbZCnLS8C1fWTh15JnflHSXcDICCZb4L1npWuVdhDLLGXaTpyAJSFCHPKm/hpFvAg6UQAfjcD6pIq1LSyROTWxzWPFadOu7jQb3E7QPRLFx2DvlyIgoeamHu6EpKbqZMfQ0uClHfHfARrEhQH1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=geBJ3H0nAQnsvPcI711jF947T1N47BErMf/5Da/9nw0=;
- b=Slkc8mW4XL6U3vVryhiryv1cvcAqvMcsTJQyj+wAkZ62QJmTSolz84UT1R1gSqz8k/ExBF5fwd+5AESsyrJ72ffiY/Vr6xRhcUBcPTP+Z3FMIiGKtVioJfRin4UC/1DYnKlm/k0X8apC1zPwyOuvdSgL6XPs91oDMJBSxzwYr6InMNzpSoa81CUDueRkul3o/9YdwaTgNT++HaSuTyqltjy7KUxuX6njiMYk8cvRMEPFFTTLqAN7T9UROY8DQ1LXf15XsMngvVHyfaDKMSA0sY0Y6erVIsZyWVnYVzt4062LsY1q3PQ22LNkoZxiIGnhf7dMvGa58tFfeQHDDxff4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by IA0PR11MB7883.namprd11.prod.outlook.com (2603:10b6:208:3de::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.19; Wed, 19 Jun
- 2024 04:23:59 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.7677.027; Wed, 19 Jun 2024
- 04:23:59 +0000
-Date: Wed, 19 Jun 2024 04:23:25 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Christian =?iso-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, Somalapuram Amaranath
- <Amaranath.Somalapuram@amd.com>, <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH v5 06/12] drm/ttm: Use the LRU walker helper for swapping
-Message-ID: <ZnJdPV9uIF+HD/B/@DUT025-TGLU.fm.intel.com>
-References: <20240618071820.130917-1-thomas.hellstrom@linux.intel.com>
- <20240618071820.130917-7-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240618071820.130917-7-thomas.hellstrom@linux.intel.com>
-X-ClientProxiedBy: BY5PR17CA0024.namprd17.prod.outlook.com
- (2603:10b6:a03:1b8::37) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-IronPort-AV: E=Sophos;i="6.08,249,1712646000"; d="scan'208";a="73014806"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.245.122])
+ ([10.245.245.122])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2024 23:41:07 -0700
+Message-ID: <db44e9c4f5ee7a57ab083772cb7f6684d1a31169.camel@linux.intel.com>
+Subject: Re: [RFC 0/3] FW guard class
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>, Michal Wajdeczko
+ <michal.wajdeczko@intel.com>, intel-xe@lists.freedesktop.org
+Date: Wed, 19 Jun 2024 08:40:54 +0200
+In-Reply-To: <ZnHtdMLEHFAHMqRr@intel.com>
+References: <20240617143430.641-1-michal.wajdeczko@intel.com>
+ <ZnBxSFpuGjc9c9KJ@DUT025-TGLU.fm.intel.com> <ZnB51-d3XtwUfPfT@intel.com>
+ <d2f2afa7-8fd2-466d-9044-11814183a819@intel.com>
+ <ZnDHIba3eBe1+p8y@DUT025-TGLU>
+ <h7yjiengrjzue7acsaghy3r3fimgp4v5ntyujytd2ddqt3kxgs@erajfxzizsns>
+ <ZnHtdMLEHFAHMqRr@intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA0PR11MB7883:EE_
-X-MS-Office365-Filtering-Correlation-Id: e518cf6c-c295-4edd-9f6b-08dc9017a424
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230037|376011|366013|1800799021;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?Zly0VR95qq2J/6ZQQR1JksCNVqoM4EmmOwtP8pI7zlsgg2dMbXpr4Z6aMh?=
- =?iso-8859-1?Q?NwWh2q0ocjuyzkH3Fsz4bEknawba9Yx+iH+hH4yuwVU32wTQxVGCWDrGg9?=
- =?iso-8859-1?Q?Wvei7qebQYrY/QsSh86nVc9awVONIo93MJuBDw9ShGEiNLRroZditeTHR6?=
- =?iso-8859-1?Q?OqAj1rNk2AvtGJDpMs6mkOUhFj860SXQU9L8EBx8GNvNb4fVXIM7kMRT3x?=
- =?iso-8859-1?Q?P7JV3P+H7jRyC2A3RpyxFfTV3EwDD5WseT89AiLsAn+UHG2djVys3JDjws?=
- =?iso-8859-1?Q?qi/VCXCX6kfyVOHgbFFpVOpNmQRxfhmWEHggDnQFPShUBRZRr4Vtgm+64q?=
- =?iso-8859-1?Q?BrdP61a3y05wC1BO8uMQ/BtIUh6sg6azhRWnKNvF62j5KJ/vJL9BU9gh/C?=
- =?iso-8859-1?Q?c1clJwmNj+x893YEGOdchmms8P9UalvauqR3LBW9LHc7WEFK41swa0Tb/w?=
- =?iso-8859-1?Q?f41LRk01d1vw2vMpziR0Daazcgg76WtGRKbqHKqFSoBFVhJqu1PPc03mbw?=
- =?iso-8859-1?Q?APnY+0RulA26cITn3edg25sMgao9VbEByh1Z+fwm1DPF+vzCZP5R2fwTKX?=
- =?iso-8859-1?Q?VbuegIxNd2y17XawGMmyGhUqSQRF2aw18srv3kY+5AVQT5MG24BrhZ9J3J?=
- =?iso-8859-1?Q?LfjygGCorCqcYX3lNFiyKboQoBzN4xViuS/Sjb+lOhU8vVO+Io7oQWun5u?=
- =?iso-8859-1?Q?lHQX1I+PZmHRfUGVNp5ZQm/tNHH47UXT5fyyGpjTPTEkx5j91u1/UsXpgL?=
- =?iso-8859-1?Q?ntanZItuU1LmOFHdyCnr0pvFqC1KtRe+GlvFcWJiUHYL6juu/iV/CC5mHW?=
- =?iso-8859-1?Q?tJa3kNGEvlCq0ofA+QZl7NYXg3/S/xRYvytTz6dOIl2lPP09qcqUCsgxH6?=
- =?iso-8859-1?Q?0sTF+2Vt0IVOdKh1Pa4k78TcLXvmeTGpSXkuPa88McS+yFYS17+DJCvcxy?=
- =?iso-8859-1?Q?BAOnGzzf/GwtJMeluev8IH1uzcngIdKcRbarjVGbUDCuV0OCMHmgCe4QLW?=
- =?iso-8859-1?Q?3pSkIqEY9DK91TZfJA5IaLwJEj2fAhd5X5lL1R8dHtVtQuKTOggO/j5UHS?=
- =?iso-8859-1?Q?dkU64kDJ4E4Z0esbN5ZGk30DwOKLS3ItSrhcYPWa/iqgmfEtDTA69nv7vx?=
- =?iso-8859-1?Q?S6BNrXYs/hvrJsP2JZNmb1JzFoxoY5J2SCW2ilJ/sGDWpv+QL34nUNzFc2?=
- =?iso-8859-1?Q?0smrgjzMcHdjyJ8TbgBVUdt7DRW6jClBLnszDcEE3xAHCQoEEQLUqKQxFf?=
- =?iso-8859-1?Q?+3WuNfLmHQzQK6AXGSg2JIh+tHwSBE7wEsM5DQXT3p/iB5Iz6hmuH46m/P?=
- =?iso-8859-1?Q?CmZ3?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230037)(376011)(366013)(1800799021); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?4N70lHtjV3z9pUpNSgncJ2AjjKJcfKo4Kn+xsOxwFGBY1gBazRYUI0zBMN?=
- =?iso-8859-1?Q?OY6xleTGhVUZzDCdhSrQKSvOFkVyLS9gBPueX7qppe/QxB+ZlAY2MSwLGc?=
- =?iso-8859-1?Q?59+VUp8HHWLluMR/CYMPamFtanfLBDY9JWH3r5085gcIYpH2cg0eVz4QHe?=
- =?iso-8859-1?Q?wrhLwn0ctUf4fECBHPsBkJgaAm9E8IQs5EHiV8wetzJtxEK9eEmlmsytzD?=
- =?iso-8859-1?Q?+iohVuyD8clr+IZouFWMaYPWepb8D1jGP7Ap48ZLhWRmHlU8CQT6wejB9g?=
- =?iso-8859-1?Q?psk7YU3cFS4Nft3/xF9OQG5dwPJ6iszlaUCLaEi7QRe1lWDslXawbzus8L?=
- =?iso-8859-1?Q?ULNZBRrWSNgR0VkJWYWQJnY0coVC2Ph8NZPVHM2Z8swqiXcc69ehjGWeJE?=
- =?iso-8859-1?Q?ZbSsWn5nJM37uKEWJXxGNQX3U+XZc6Ts7K9a+tv0NuUSHn9nxjNYqcImhT?=
- =?iso-8859-1?Q?qdm27RdfCU1gZ7QEaUMNMziZSx+N3JrmNtMjqiaqovtZlMK/6b0O7YzVyk?=
- =?iso-8859-1?Q?2yORD8MHLZj/YNr8pBnQnSiYBINqzgbzhz/wesPnGk6dVHOEM/jju97f7f?=
- =?iso-8859-1?Q?zsgclKAG58lA8p6ZwPwTRAIOj4SJ1kl3TGP83OzaWOCKJhXUN/j05TqhzQ?=
- =?iso-8859-1?Q?9YhqKVTWdkFjLcpS3YRPXOE4M9cxrP7gK7X0ZhQ5HGlcP4FV91slg/Tr6C?=
- =?iso-8859-1?Q?o/JywAd4q/K1w1RS21cFByzHrHuAuPQiSqyAS3jZDv1/dOKuq7nQbPrK6e?=
- =?iso-8859-1?Q?CRunM554OEIGu7A7eaOSVPOjshaUOZ79E7uRKQER/HlnK44XQXc+1VO/x3?=
- =?iso-8859-1?Q?APUPb28VFtV0WqsHgY8XFdH7vrbtKA+KA78rVitFMhZ+ZjM5+KMs66cRQq?=
- =?iso-8859-1?Q?5cncqGI+5yCKZw8oLca5YDVB4KlFLVt6Hl7aOt4OBlJeql1WRxfJWgTKur?=
- =?iso-8859-1?Q?fg+bw66wzf5hHSzzZeynlsJMdWNI7o7PpV9TDrnp8P4SlFLask0jM/Dci7?=
- =?iso-8859-1?Q?k4i/DT0X30/YIntRPtyz2A9IMd/jSHB469/nTP96mtCvuj8UoLQ8G5yTLv?=
- =?iso-8859-1?Q?SgBfT3kdrscku5eKCoE9UXE8eznL4Tc7g1Zagnsapw0F7I2jzEpZcs/4XV?=
- =?iso-8859-1?Q?k1Yx4C62wMsrMnl1kCOV2U7/WoVYbT6m/rgqzCsN1DWEIyKJYJOuBCDSnd?=
- =?iso-8859-1?Q?MsBcS+UIfXYp/oc7FX16V7VYs+sQzEuXQM9YX4fKRys1HR8yKc7uf4zhvg?=
- =?iso-8859-1?Q?45cTtZVE/poJHzkO5rWv2q08qMOgyB0t2nbV9HQO7h256WR+qK+WOZa2Qq?=
- =?iso-8859-1?Q?m5I9JZX7oU2Wq6ixMkIx3SszE2ec67MmLvOftYMNlXQ7gJuFq+6/4subWO?=
- =?iso-8859-1?Q?PvAtwLUsZ5ffPNupsBH22v4PntlEeOard8UAkd2ilVpKbQjFPY5ZL9RKz4?=
- =?iso-8859-1?Q?1AtcbkIxk2sVFecmdcDCKgI0iKBY0T2GrmykTuu1B142Sv8qIP7HdCDB2w?=
- =?iso-8859-1?Q?BSfTuZz4CPKxNP+Gq8Nu2oALktzV0qCbu9w1fXl/Hsyw59R2hDjvudDtJa?=
- =?iso-8859-1?Q?Uvzobd9OTPvGW+kIBQzsVdDit+6dwW8GDPKCNaCDptYKXKc90UhIPY1JjB?=
- =?iso-8859-1?Q?ePSXYU2QYiYnUNGVoGp0Q5pyEOIAN9Vn+9cL7AZft4/osIoZxjBnZokw?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e518cf6c-c295-4edd-9f6b-08dc9017a424
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2024 04:23:59.3602 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sydKjmZJCV4XnjfEqUeRyi+9nh8HHu+vAIYNCPtICp7ye8YfbFS5SLtOvK6nbPypIQ7jUtfHvMNN1w8qdqcbLA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7883
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -182,278 +78,320 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jun 18, 2024 at 09:18:14AM +0200, Thomas Hellström wrote:
-> Rework the TTM swapping to use the LRU walker helper.
-> This helps fixing up the ttm_bo_swapout() interface
-> to be consistent about not requiring any locking.
-> 
-> For now mimic the current behaviour of using trylock
-> only. We could be using ticket-locks here but defer
-> that until it's deemed necessary. The TTM swapout
-> functionality is a bit weird anyway since it
-> alternates between memory types without exhausting
-> TTM_PL_SYSTEM first.
-> 
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: <dri-devel@lists.freedesktop.org>
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> ---
->  drivers/gpu/drm/ttm/ttm_bo.c     | 112 +++++++++++++++++++++----------
->  drivers/gpu/drm/ttm/ttm_device.c |  30 ++-------
->  include/drm/ttm/ttm_bo.h         |   5 +-
->  3 files changed, 83 insertions(+), 64 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-> index 43eda720657f..63a91b77f7da 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-> @@ -1118,11 +1118,23 @@ int ttm_bo_wait_ctx(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx)
->  }
->  EXPORT_SYMBOL(ttm_bo_wait_ctx);
->  
-> -int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
-> -		   gfp_t gfp_flags)
-> +/**
-> + * struct ttm_bo_swapout_walk - Parameters for the swapout walk
-> + */
-> +struct ttm_bo_swapout_walk {
-> +	/** @walk: The walk base parameters. */
-> +	struct ttm_lru_walk walk;
-> +	/** @gfp_flags: The gfp flags to use for ttm_tt_swapout() */
-> +	gfp_t gfp_flags;
-> +};
-> +
-> +static long
-> +ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
->  {
-> -	struct ttm_place place;
-> -	bool locked;
-> +	struct ttm_place place = {.mem_type = bo->resource->mem_type};
-> +	struct ttm_bo_swapout_walk *swapout_walk =
-> +		container_of(walk, typeof(*swapout_walk), walk);
-> +	struct ttm_operation_ctx *ctx = walk->ctx;
->  	long ret;
->  
->  	/*
-> @@ -1131,28 +1143,29 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
->  	 * The driver may use the fact that we're moving from SYSTEM
->  	 * as an indication that we're about to swap out.
->  	 */
-> -	memset(&place, 0, sizeof(place));
-> -	place.mem_type = bo->resource->mem_type;
-> -	if (!ttm_bo_evict_swapout_allowable(bo, ctx, &place, &locked, NULL))
-> -		return -EBUSY;
-> +	if (!bo->bdev->funcs->eviction_valuable(bo, &place)) {
-> +		ret = -EBUSY;
-> +		goto out;
-> +	}
->  
->  	if (!bo->ttm || !ttm_tt_is_populated(bo->ttm) ||
->  	    bo->ttm->page_flags & TTM_TT_FLAG_EXTERNAL ||
-> -	    bo->ttm->page_flags & TTM_TT_FLAG_SWAPPED ||
-> -	    !ttm_bo_get_unless_zero(bo)) {
-> -		if (locked)
-> -			dma_resv_unlock(bo->base.resv);
-> -		return -EBUSY;
-> +	    bo->ttm->page_flags & TTM_TT_FLAG_SWAPPED) {
-> +		ret = -EBUSY;
+Hi, Rodrigo,
 
-I think answers my -EBUSY question from here [1]. In these cases we
-continue LRU walk as eviction of the BO is not valuable.
+On Tue, 2024-06-18 at 16:26 -0400, Rodrigo Vivi wrote:
+> On Mon, Jun 17, 2024 at 07:54:41PM -0500, Lucas De Marchi wrote:
+> > On Mon, Jun 17, 2024 at 11:30:41PM GMT, Matthew Brost wrote:
+> > > On Mon, Jun 17, 2024 at 09:24:42PM +0200, Michal Wajdeczko wrote:
+> > > >=20
+> > > >=20
+> > > > On 17.06.2024 20:00, Rodrigo Vivi wrote:
+> > > > > On Mon, Jun 17, 2024 at 05:24:24PM +0000, Matthew Brost
+> > > > > wrote:
+> > > > > > On Mon, Jun 17, 2024 at 04:34:27PM +0200, Michal Wajdeczko
+> > > > > > wrote:
+> > > > > > > There is support for 'classes' with constructor and
+> > > > > > > destructor
+> > > > > > > semantics that can be used for any scope-based resource
+> > > > > > > management,
+> > > > > > > like device force-wake management.
+> > > > > > >=20
+> > > > > > > Add necessary definitions explicitly, since existing
+> > > > > > > macros from
+> > > > > > > linux/cleanup.h can't deal with our specific requirements
+> > > > > > > yet.
+> > > > > > >=20
+> > > > > > > This should allow us to use:
+> > > > > > >=20
+> > > > > > > 	scoped_guard(xe_fw, fw, XE_FW_GT)
+> > > > > > > 		foo();
+> > > > > > > or
+> > > > > > > 	CLASS(xe_fw, var)(fw, XE_FW_GT);
+> > > > > > >=20
+> > > > > > > without any concern of leaking the force-wake references.
+> > > > > > >=20
+> > > > > > > Note: this is preliminary code as right now it's unclear
+> > > > > > > how to
+> > > > > > > correctly handle errors from the force-wake functions.
+> > > > > > >=20
+> > > > > >=20
+> > > > > > I'm personally don't like this at all. IMO it obfuscate the
+> > > > > > code with
+> > > > > > little real benefit. This is just an opinion though, others
+> > > > > > opinions may
+> > > > > > differ from mine.
+> > > >=20
+> > > > except that is more robust than hand-crafted code that is error
+> > > > prone,
+> > > > like this snippet from wedged_mode_set():
+> > > >=20
+> > > > 	xe_pm_runtime_get(xe);
+> > > > 	for_each_gt(gt, xe, id) {
+> > > > 		ret =3D xe_guc_ads(...);
+> > > > 		if (ret) {
+> > > > 			xe_gt_err(gt, "...");
+> > > > 			return -EIO;
+> > > > 		}
+> > > > 	}
+> > > > 	xe_pm_runtime_put(xe);
+> > > >=20
+> > > > and thanks to PM guard class we could avoid such mistakes for
+> > > > free:
+> > > >=20
+> > > > 	scoped_guard(xe_pm, xe) {
+> > > > 		for_each_gt(gt, xe, id) {
+> > > > 			ret =3D xe_guc_ads(...);
+> > > > 			if (ret) {
+> > > > 				xe_gt_err(gt, "...");
+> > > > 				return -EIO;
+> > >=20
+> > > Just responding with a question here - haven't looked at the rest
+> > > of the
+> > > comments.
+> > >=20
+> > > How is this not still a bug? Looking at scoped_guard, it appears
+> > > to be a
+> > > magic macro for loop which acquires / releases a lock or in your
+> > > purposed case a PM or FW ref. Doesn't the 'return -EIO' skip the
+> > > release
+> > > step? I see coding patterns like above in the kernel [1] so I do
+> > > assume
+> >=20
+> > with __attribute__((cleanup)), the compiler guarantees that
+> > it's executed when the variable goes out of scope. What you are
+> > probably
+> > missing is the use of CLASS() declaring a variable inside the for,
+> > which
+> > uses attribute cleanup:
+> >=20
+> > 	for (CLASS(_name, scope)(args),
+> > 	=C2=A0=C2=A0=C2=A0=C2=A0 ...
+> >=20
+> > GCC's doc:
+> >=20
+> > https://gcc.gnu.org/onlinedocs/gcc/Common-Variable-Attributes.html
+> >=20
+> > 	The cleanup attribute runs a function when the variable
+> > goes out
+> > 	of scope. This attribute can only be applied to auto
+> > function
+> > 	scope variables; it may not be applied to parameters or
+> > 	variables with static storage duration. The function must
+> > take
+> > 	one parameter, a pointer to a type compatible with the
+> > variable.
+> > 	The return value of the function (if any) is ignored.
+> >=20
+> > 	When multiple variables in the same scope have cleanup
+> > 	attributes, at exit from the scope their associated
+> > cleanup
+> > 	functions are run in reverse order of definition (last
+> > defined,
+> > 	first cleanup).
+> >=20
+> > 	If -fexceptions is enabled, then cleanup_function is run
+> > during
+> > 	the stack unwinding that happens during the processing of
+> > the
+> > 	exception. Note that the cleanup attribute does not allow
+> > the
+> > 	exception to be caught, only to perform an action. It is
+> > 	undefined what happens if cleanup_function does not return
+> > 	normally.
+> >=20
+> > This was only possible with the recent change in the kernel raising
+> > the minimum C std to gnu11 (uapi is still c90 for compatibility):
+> >=20
+> > 	commit e8c07082a810fbb9db303a2b66b66b8d7e588b53
+> > 	Author: Arnd Bergmann <arnd@arndb.de>
+> > 	Date:=C2=A0=C2=A0 Tue Mar 8 22:56:14 2022 +0100
+> >=20
+> > 	=C2=A0=C2=A0=C2=A0 Kbuild: move to -std=3Dgnu11
+> >=20
+> > 	=C2=A0=C2=A0=C2=A0 During a patch discussion, Linus brought up the opt=
+ion
+> > of changing
+> > 	=C2=A0=C2=A0=C2=A0 the C standard version from gnu89 to gnu99, which
+> > allows using variable
+> > 	=C2=A0=C2=A0=C2=A0 declaration inside of a for() loop. While the C99, =
+C11
+> > and later standards
+> > 	=C2=A0=C2=A0=C2=A0 introduce many other features, most of these are
+> > already available in
+> > 	=C2=A0=C2=A0=C2=A0 gnu89 as GNU extensions as well.
+> >=20
+> > > this works, just confused how it works.
+> > >=20
+> > > With that, any code which isn't easily understandable IMO is a
+> > > negative
+> > > ROI as it just creates confusion in the long / makes problems
+> > > harder to
+> > > understand. Again this is just my opinion.
+> >=20
+> > I think that is mainly about getting used to the pattern. I think
+> > we
+> > just have to be careful not to overshoot on trying to use
+> > everywhere.
+> > For example, I don't know why there's already a second use in a
+> > separate
+> > thread when we are still discussing it on this one.
+> >=20
+> > A very positive thing is that this is not xe's own invention and
+> > comes
+> > from core kernel, maybe from the hottest path that is the
+> > scheduling and
+> > locking. So I very much disagree with arguments raised here about
+> > a) this is an alien thing and b) performance will be severely
+> > impacted
+>=20
+> just for the record:
+> a) the alien thing is i915's with_runtime_pm... this is part of core
+> kernel, so
+> it is not an alien thing. I still don't like C++isms, but that is
+> just a preference
+> not a blocker.
+>=20
+> b) it is an overhead, but I really doubt that this would impact
+> performance.
+> Only data would show.
+>=20
+> >=20
+> > I've used __attribute__((cleanup)) in several userspace projects in
+> > the
+> > past and it does help avoiding problems on the error path that is
+> > usually not very well tested (and xe's track record on error path
+> > is not
+> > very good either: those were the main issues being submitted in
+> > drm-xe-fixes
+> > for the last release). So if we have a way to improve (and that
+> > I've already seen
+> > being used successfully), I prefer failing on trying than on
+> > repeating
+> > the same mistakes.=20
+>=20
+> Pretty much agreeing here! Specially because this is a Linux core
+> kernel
+> infra available. Let's try.
+>=20
+> Cc Nirmoy Das <nirmoy.das@intel.com>
+>=20
+> who is looking at the forcewake stuff and to solve the flow.
+> Specially to get his eyes here and see if this would cover all the
+> needed
+> cases for the forcewake.
+>=20
+> If this series were suggesting another with_runtime_pm macro, then I
+> would
+> push back hard.
 
-[1] https://patchwork.freedesktop.org/patch/599606/?series=131815&rev=5#comment_1091419
+Does this mean you think the functionality of "with_runtime_pm" is bad
+or the fact that it is driver specific and not part of the core?
 
-> +		goto out;
->  	}
->  
->  	if (bo->deleted) {
-> -		ret = ttm_bo_cleanup_refs(bo, false, false, locked);
-> -		ttm_bo_put(bo);
-> -		return ret == -EBUSY ? -ENOSPC : ret;
-> -	}
-> +		pgoff_t num_pages = bo->ttm->num_pages;
->  
-> -	/* TODO: Cleanup the locking */
-> -	spin_unlock(&bo->bdev->lru_lock);
-> +		ret = ttm_bo_wait_ctx(bo, ctx);
-> +		if (ret)
-> +			goto out;
-> +
-> +		ttm_bo_cleanup_memtype_use(bo);
-> +		ret = num_pages;
-> +		goto out;
-> +	}
->  
->  	/*
->  	 * Move to system cached
-> @@ -1164,12 +1177,13 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
->  		memset(&hop, 0, sizeof(hop));
->  		place.mem_type = TTM_PL_SYSTEM;
->  		ret = ttm_resource_alloc(bo, &place, &evict_mem);
-> -		if (unlikely(ret))
-> +		if (ret)
->  			goto out;
->  
->  		ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
-> -		if (unlikely(ret != 0)) {
-> -			WARN(ret == -EMULTIHOP, "Unexpected multihop in swaput - likely driver bug.\n");
-> +		if (ret) {
-> +			WARN(ret == -EMULTIHOP,
-> +			     "Unexpected multihop in swapout - likely driver bug.\n");
->  			ttm_resource_free(bo, &evict_mem);
->  			goto out;
->  		}
-> @@ -1179,30 +1193,54 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
->  	 * Make sure BO is idle.
->  	 */
->  	ret = ttm_bo_wait_ctx(bo, ctx);
-> -	if (unlikely(ret != 0))
-> +	if (ret)
->  		goto out;
->  
->  	ttm_bo_unmap_virtual(bo);
-> -
-> -	/*
-> -	 * Swap out. Buffer will be swapped in again as soon as
-> -	 * anyone tries to access a ttm page.
-> -	 */
->  	if (bo->bdev->funcs->swap_notify)
->  		bo->bdev->funcs->swap_notify(bo);
->  
->  	if (ttm_tt_is_populated(bo->ttm))
-> -		ret = ttm_tt_swapout(bo->bdev, bo->ttm, gfp_flags);
-> +		ret = ttm_tt_swapout(bo->bdev, bo->ttm, swapout_walk->gfp_flags);
->  out:
-> +	/* Consider some error codes fatal. Others may continue the walk. */
-> +	if (ret == -ENOMEM || ret == -EINTR || ret == -ERESTARTSYS ||
-> +	    ret == -EAGAIN || ret > 0)
-> +		return ret;
+Overall, scoped_guard looks fine with me and will probably come in very
+handy in some cases, but I don't think it's necessary with a complete
+"driver transition" other than when / if it's used for FW, PM etc. For
+locks I'm pretty sure that there are callsites where conversion will be
+pretty hard. Also need to read up a bit to check how interruptible
+locks and trylocks are supported, and if the answer is "they are not"
+we must make sure this doesn't for example encourage the use of
+uninterruptible mutex locks where they should really be interruptible.
 
-Would it be more robust / clear to do the inverse of this? i.e. Return 0
-on non-fatal error codes?
+/Thomas
 
->  
-> -	/*
-> -	 * Unreserve without putting on LRU to avoid swapping out an
-> -	 * already swapped buffer.
-> -	 */
-> -	if (locked)
-> -		dma_resv_unlock(bo->base.resv);
-> -	ttm_bo_put(bo);
-> -	return ret == -EBUSY ? -ENOSPC : ret;
-> +	return 0;
-> +}
-> +
-> +const struct ttm_lru_walk_ops ttm_swap_ops = {
-> +	.process_bo = ttm_bo_swapout_cb,
-> +};
-> +
-> +/**
-> + * ttm_bo_swapout() - Swap out buffer objects on the LRU list to shmem.
-> + * @bdev: The ttm device.
-> + * @ctx: The ttm_operation_ctx governing the swapout operation.
-> + * @man: The resource manager whose resources / buffer objects are
-> + * goint to be swapped out.
-> + * @gfp_flags: The gfp flags used for shmem page allocations.
-> + * @target: The desired number of pages to swap out.
-> + *
-> + * Return: The number of pages actually swapped out, or negative error code
-> + * on error.
-> + */
-> +long ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
-> +		    struct ttm_resource_manager *man, gfp_t gfp_flags,
-> +		    pgoff_t target)
-> +{
-> +	struct ttm_bo_swapout_walk swapout_walk = {
-> +		.walk = {
-> +			.ops = &ttm_swap_ops,
-> +			.ctx = ctx,
-> +			.trylock_only = true,
-> +		},
-> +		.gfp_flags = gfp_flags,
-> +	};
-> +
-> +	return ttm_lru_walk_for_evict(&swapout_walk.walk, bdev, man, target);
->  }
->  
->  void ttm_bo_tt_destroy(struct ttm_buffer_object *bo)
-> diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
-> index f9e9b1ec8c8a..ee575d8a54c0 100644
-> --- a/drivers/gpu/drm/ttm/ttm_device.c
-> +++ b/drivers/gpu/drm/ttm/ttm_device.c
-> @@ -148,40 +148,20 @@ int ttm_global_swapout(struct ttm_operation_ctx *ctx, gfp_t gfp_flags)
->  int ttm_device_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
->  		       gfp_t gfp_flags)
->  {
-> -	struct ttm_resource_cursor cursor;
->  	struct ttm_resource_manager *man;
-> -	struct ttm_resource *res;
->  	unsigned i;
-> -	int ret;
-> +	long lret;
->  
-> -	spin_lock(&bdev->lru_lock);
->  	for (i = TTM_PL_SYSTEM; i < TTM_NUM_MEM_TYPES; ++i) {
->  		man = ttm_manager_type(bdev, i);
->  		if (!man || !man->use_tt)
->  			continue;
->  
-> -		ttm_resource_manager_for_each_res(man, &cursor, res) {
-> -			struct ttm_buffer_object *bo = res->bo;
-> -			uint32_t num_pages;
-> -
-> -			if (!bo || bo->resource != res)
-> -				continue;
-> -
-> -			num_pages = PFN_UP(bo->base.size);
-> -			ret = ttm_bo_swapout(bo, ctx, gfp_flags);
-> -			/* ttm_bo_swapout has dropped the lru_lock */
-> -			if (!ret) {
-> -				ttm_resource_cursor_fini(&cursor);
-> -				return num_pages;
-> -			}
-> -			if (ret != -EBUSY) {
-> -				ttm_resource_cursor_fini(&cursor);
-> -				return ret;
-> -			}
-> -		}
-> +		lret = ttm_bo_swapout(bdev, ctx, man, gfp_flags, 1);
+=20
 
-With a target of 1 this will evict exactly 1 various sized BO which
-seems to match the current behavior.
 
-Just curious what is the usage of this function which evicts 1 BO from
-the device?
 
-Matt 
+>=20
+> > =C2=A0In kmod my only regret is that I didn't start it
+> > earlier, during the bootstrap of the project.
+> >=20
+> >=20
+> > Lucas De Marchi
+> >=20
+> >=20
+> > >=20
+> > > Matt
+> > >=20
+> > > [1]
+> > > https://elixir.bootlin.com/linux/latest/source/drivers/iio/imu/bmi323=
+/bmi323_core.c#L1544
+> > >=20
+> > > > 			}
+> > > > 		}
+> > > > 	}
+> > > >=20
+> > > > >=20
+> > > > > Well, on the positive side, it is not adding a driver only
+> > > > > thing like
+> > > > > i915's with_runtime_pm() macro.
+> > > > >=20
+> > > > > But I'm also not sure if I like the overall idea anyway:
+> > > > >=20
+> > > > > - I don't like adding C++isms in a pure C code. Specially
+> > > > > something not
+> > > > > so standard and common that will decrease the ramp-up time
+> > > > > for newcomers.
+> > > >=20
+> > > > does it mean that the use of other guard patterns seen
+> > > > elsewhere in the
+> > > > tree is now prohibited on the Xe driver ? like:
+> > > >=20
+> > > > 	scoped_guard(mutex, &lock)
+> > > > 		foo();
+> > > >=20
+> > > > 	scoped_guard(spinlock, &lock)
+> > > > 		foo();
+> > > > 	...
+> > > >=20
+> > > > > - It looks like and extra overhead on the object creation
+> > > > > destruction.
+> > > >=20
+> > > > from cleanup.h doc is sounds there is none:
+> > > >=20
+> > > > =C2=A0"And through the magic of value-propagation and dead-code-
+> > > > elimination,
+> > > > it eliminates the actual cleanup call and compiles into:"
+> > > >=20
+> > > >=20
+> > > > > - It looks not flexible for handling different cases... like
+> > > > > forcewake for
+> > > > > instance where we might want to ignore the ack timeout in
+> > > > > some cases.
+> > > >=20
+> > > > there is scoped_cond_guard() that likely will be able to deal
+> > > > with it,
+> > > > but I guess we first need to cleanup existing force_wake api as
+> > > > expected
+> > > > flow is not clear and there are different approaches in the
+> > > > driver how
+> > > > to deal with errors
+> > > >=20
+> > > > >=20
+> > > > > >=20
+> > > > > > Matt
+> > > > > >=20
+> > > > > > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > > > > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > > > > > >=20
+> > > > > > > Michal Wajdeczko (3):
+> > > > > > > =C2=A0 drm/xe: Introduce force-wake guard class
+> > > > > > > =C2=A0 drm/xe: Use new FW guard in xe_mocs.c
+> > > > > > > =C2=A0 drm/xe: Use new FW guard in xe_pat.c
+> > > > > > >=20
+> > > > > > > =C2=A0drivers/gpu/drm/xe/xe_force_wake.h=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 48
+> > > > > > > +++++++++++++++++++
+> > > > > > > =C2=A0drivers/gpu/drm/xe/xe_force_wake_types.h | 12 +++++
+> > > > > > > =C2=A0drivers/gpu/drm/xe/xe_mocs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 12 +----
+> > > > > > > =C2=A0drivers/gpu/drm/xe/xe_pat.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 60 ++++++++--
+> > > > > > > --------------
+> > > > > > > =C2=A04 files changed, 82 insertions(+), 50 deletions(-)
+> > > > > > >=20
+> > > > > > > --
+> > > > > > > 2.43.0
+> > > > > > >=20
 
-> +		/* Can be both positive (num_pages) and negative (error) */
-> +		if (lret)
-> +			return lret;
->  	}
-> -	ttm_resource_cursor_fini_locked(&cursor);
-> -	spin_unlock(&bdev->lru_lock);
->  	return 0;
->  }
->  EXPORT_SYMBOL(ttm_device_swapout);
-> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-> index 8b032298d66e..472a55b69afb 100644
-> --- a/include/drm/ttm/ttm_bo.h
-> +++ b/include/drm/ttm/ttm_bo.h
-> @@ -410,8 +410,9 @@ void ttm_bo_kunmap(struct ttm_bo_kmap_obj *map);
->  int ttm_bo_vmap(struct ttm_buffer_object *bo, struct iosys_map *map);
->  void ttm_bo_vunmap(struct ttm_buffer_object *bo, struct iosys_map *map);
->  int ttm_bo_mmap_obj(struct vm_area_struct *vma, struct ttm_buffer_object *bo);
-> -int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
-> -		   gfp_t gfp_flags);
-> +long ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
-> +		    struct ttm_resource_manager *man, gfp_t gfp_flags,
-> +		    pgoff_t target);
->  void ttm_bo_pin(struct ttm_buffer_object *bo);
->  void ttm_bo_unpin(struct ttm_buffer_object *bo);
->  int ttm_mem_evict_first(struct ttm_device *bdev,
-> -- 
-> 2.44.0
-> 
