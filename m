@@ -4,62 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3084C27C79
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Jun 2024 08:02:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4528C27C79
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Jun 2024 08:29:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9441E10E2DB;
-	Thu, 20 Jun 2024 08:02:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 482FF10E873;
+	Thu, 20 Jun 2024 08:29:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LpD5F6Fe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rv2Bv9Wl";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C42E10E2DB;
- Thu, 20 Jun 2024 08:02:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 117D710E85C
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Jun 2024 08:29:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718870562; x=1750406562;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=6z51tK8pGRhA6LSDdrUFyamK7bWXLfILBTvRrRhhd6U=;
- b=LpD5F6Fe2L8Jf5YSAov2q5VdAqLEeIGrl7BkQskNTr0AHzn4lBcM6PL8
- SOcGOi6Ws4Eh9O7D2dCokflyOsNR1ev6pScfr9l0i7tg3dy21BcqpKvGE
- ujwMjwfIEmG+9UjM6CAwuJWPruB1MzaTfe0uSEwZ27YhAQ3QCIB/kaup6
- UfbWW+/E/HTkcmlKVznygQztisyhLjDTjAaA2RwSZNy0cpK5bH0vo6b2q
- 9k6YEwZzWa9W9gWHJMnTYJaYs9HMLyPk6qkiJ8bxkDyeyWF4YI1zYW1d7
- B7QOIGkjeVpyMpJjB2XCdqhr9nLkgwZ5nsHViv52Vn6gL6pqfJIWbc1Jm w==;
-X-CSE-ConnectionGUID: 3zfwNf4CTq+2Y0f71D/SNg==
-X-CSE-MsgGUID: h0UoirczTk+jy721c4mZ0Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11108"; a="26518586"
-X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; d="scan'208";a="26518586"
+ t=1718872156; x=1750408156;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=LLhl2cdw80RSty7urosXczhRfhZocWumm0PsXIqdh3o=;
+ b=Rv2Bv9WlN12Y2SgNx11AJFRm8ZMdjGrrWb74GTx6HlWe+YJS8uoK3g8n
+ 3fxu3BGuEf6YhcYGobs/I2xzxmrI3vs5j/7lcYEthebK6I4abS2JV0dp8
+ mhaaw6AYs+FJXCMODJ5WMfzQ/zK6QGXDmkvjLImu6VM9a2IOsUfQvqY2j
+ 4AjvqA2JN+i7dJGFTvjOcMdhNkcR4/r98NBnA64P6JlRTqyEooh18pR+L
+ gZ3FwAIERS9Ab5pibTNBtv0c6KDwOm/ABw2B8YgtsmoW1ASDQM1txLJ0r
+ LRXFEtJg4aTVdXIdGOGFAlWpJPmnnsoOfXc4rtrXTTo/OT6ixtGFjhA/8 g==;
+X-CSE-ConnectionGUID: jape7CdBT+ywnlSoR4hAhA==
+X-CSE-MsgGUID: vt5bGDlWRwuadhoh9nS5ng==
+X-IronPort-AV: E=McAfee;i="6700,10204,11108"; a="12159194"
+X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; d="scan'208";a="12159194"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2024 01:02:41 -0700
-X-CSE-ConnectionGUID: lVvEIgHARkOWJZ2oqyY3Cg==
-X-CSE-MsgGUID: l+nFTdE4Tx2lM6GNfOGjAQ==
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2024 01:29:15 -0700
+X-CSE-ConnectionGUID: ZCwkljH2RCmVaAAhDswNAQ==
+X-CSE-MsgGUID: Y4s6KC+qSFqkCXAXv1+5hQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; d="scan'208";a="46615026"
-Received: from dhhellew-desk2.ger.corp.intel.com.ger.corp.intel.com (HELO
- fedora) ([10.245.245.217])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2024 01:02:38 -0700
-Date: Thu, 20 Jun 2024 10:02:27 +0200
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-fixes
-Message-ID: <ZnPiE4ROqBowa1nS@fedora>
+X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; d="scan'208";a="46618240"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa005.fm.intel.com with ESMTP; 20 Jun 2024 01:29:13 -0700
+Received: from [10.246.49.231] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.246.49.231])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id A9B2B2FC75;
+ Thu, 20 Jun 2024 09:29:11 +0100 (IST)
+Message-ID: <b8e74985-db87-4f7c-8c8b-f990c3bd1b1c@intel.com>
+Date: Thu, 20 Jun 2024 10:29:11 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [linux-next:master 6397/7105] drivers/gpu/drm/xe/xe_oa.c:293
+ xe_oa_add_config_ioctl() error: we previously assumed 'oa->xe' could be null
+ (see line 292)
+To: Dan Carpenter <dan.carpenter@linaro.org>, oe-kbuild@lists.linux.dev,
+ Ashutosh Dixit <ashutosh.dixit@intel.com>
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+ intel-xe@lists.freedesktop.org,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+References: <1275c783-1fc4-4706-add8-3bc5d27b09fc@moroto.mountain>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <1275c783-1fc4-4706-add8-3bc5d27b09fc@moroto.mountain>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,35 +76,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Dave, Sima
 
-A single fix this week.
 
-Thanks,
-Thomas
+On 20.06.2024 08:59, Dan Carpenter wrote:
+> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+> head:   2102cb0d050d34d50b9642a3a50861787527e922
+> commit: cdf02fe1a94a768cbcd20f5c4e1a1d805f4a06c0 [6397/7105] drm/xe/oa/uapi: Add/remove OA config perf ops
+> config: x86_64-randconfig-161-20240620 (https://download.01.org/0day-ci/archive/20240620/202406200703.72WIWhEJ-lkp@intel.com/config)
+> compiler: gcc-13 (Ubuntu 13.2.0-4ubuntu3) 13.2.0
+> 
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+> | Closes: https://lore.kernel.org/r/202406200703.72WIWhEJ-lkp@intel.com/
+> 
+> smatch warnings:
+> drivers/gpu/drm/xe/xe_oa.c:293 xe_oa_add_config_ioctl() error: we previously assumed 'oa->xe' could be null (see line 292)
+> drivers/gpu/drm/xe/xe_oa.c:392 xe_oa_remove_config_ioctl() error: we previously assumed 'oa->xe' could be null (see line 391)
 
-drm-xe-fixes-2024-06-20:
-Driver Changes:
-- Fix for invalid register access
-The following changes since commit 6ba59ff4227927d3a8530fc2973b80e94b54d58f:
+the fix was already posted earlier [1]
 
-  Linux 6.10-rc4 (2024-06-16 13:40:16 -0700)
+[1] https://patchwork.freedesktop.org/patch/599969/?series=135074&rev=1
 
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2024-06-20
-
-for you to fetch changes up to d21d44dbdde83c4a8553c95de1853e63e88d7954:
-
-  drm/xe/vf: Don't touch GuC irq registers if using memory irqs (2024-06-20 09:22:37 +0200)
-
-----------------------------------------------------------------
-Driver Changes:
-- Fix for invalid register access
-
-----------------------------------------------------------------
-Michal Wajdeczko (1):
-      drm/xe/vf: Don't touch GuC irq registers if using memory irqs
-
- drivers/gpu/drm/xe/xe_guc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> vim +293 drivers/gpu/drm/xe/xe_oa.c
+> 
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  283  int xe_oa_add_config_ioctl(struct drm_device *dev, u64 data, struct drm_file *file)
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  284  {
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  285  	struct xe_oa *oa = &to_xe_device(dev)->oa;
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  286  	struct drm_xe_oa_config param;
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  287  	struct drm_xe_oa_config *arg = &param;
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  288  	struct xe_oa_config *oa_config, *tmp;
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  289  	struct xe_oa_reg *regs;
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  290  	int err, id;
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  291  
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17 @292  	if (!oa->xe) {
+>                                                      ^^^^^^
+> Pointer is NULL
+> 
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17 @293  		drm_dbg(&oa->xe->drm, "xe oa interface not available for this system\n");
+>                                                                 ^^^^^^^^^^^^
+> Dereferenced.
+> 
+> "Real Fact": This is drm_dbg() but the dev_dbg() macro has magic sanity
+> checking where instead of checking for if the device is NULL, it checks
+> for if the (drm < (void *)PAGE_SIZE).  That catches this sort of bug.
+> Hyrum’s Law applies here where people have taken advantage of this to
+> deliberately pass garbage pointers to dev_dbg().
+> 
+> I feel like in a different life I could have had a career writing facts
+> for Snapple bottle caps.  My talents are wasted.
+> 
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  294  		return -ENODEV;
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  295  	}
+> 
+> [ snip ]
+> 
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  384  int xe_oa_remove_config_ioctl(struct drm_device *dev, u64 data, struct drm_file *file)
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  385  {
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  386  	struct xe_oa *oa = &to_xe_device(dev)->oa;
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  387  	struct xe_oa_config *oa_config;
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  388  	u64 arg, *ptr = u64_to_user_ptr(data);
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  389  	int ret;
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  390  
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17 @391  	if (!oa->xe) {
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17 @392  		drm_dbg(&oa->xe->drm, "xe oa interface not available for this system\n");
+>                                                                 ^^^^^^^^^^^^
+> Same.
+> 
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  393  		return -ENODEV;
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  394  	}
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  395  
+> cdf02fe1a94a76 Ashutosh Dixit 2024-06-17  396  	if (xe_perf_stream_paranoid && !perfmon_capable()) {
+> 
