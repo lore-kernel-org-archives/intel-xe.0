@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDE98C2BB85
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FD44C2D0CE
 	for <intel-xe@archiver.kernel.org>; Thu, 20 Jun 2024 16:08:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CBC810EADE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1132210EADC;
 	Thu, 20 Jun 2024 16:08:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TV4kQwb5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aGdqEABH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C2F810EAC9
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3424D10EACB
  for <intel-xe@lists.freedesktop.org>; Thu, 20 Jun 2024 16:08:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1718899695; x=1750435695;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yH3qBbOIn/Tr9yD2bzJDWH555rKKa8YSDffWS0Wh3A0=;
- b=TV4kQwb55WRrj/Ge9rSdO/Qsgvr/Fc6FeqdNL+6N92qGWHxeByIvC94Y
- RoPmDEWz+aaQYYCX73SKl7aybORFHYTfyIGGKeAAPWm+BP2ergST+i/qC
- AICa5+O6WUYuLa6u84UpFr+aPRxxwdpai6UNviGYzFnaAmG/KluUMe7Sb
- GpYDipl/Vj28V0N/3Fk7ga6Wsc4uynEYgTeP2bOVICatFOaOHIdVU99fs
- b275lA8f9cITNgM2NIhWoZPFzINHEDU1GZW38amJucCUzhklZ1d542rz3
- DtsAT6EBHL5eO3vQLknC8pgDh6ToIBQXjHF31mfp6apiSCPFJEqoi3GP4 A==;
-X-CSE-ConnectionGUID: Bt1D9wWHTbuSFLgmo8Rznw==
-X-CSE-MsgGUID: wNL1CfzgR/Kj7U2JeTYF8g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11109"; a="15867179"
-X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="15867179"
+ bh=rxBvHf4YWFQtxKF2NKRFcsfGuRHCXc8T5BAlG4Ov2mE=;
+ b=aGdqEABHngplCs1AtTbOfVrGiUCHF0E+Jf2TWiiNZPwNUhXOj9vk7VR0
+ TbUga0ItA/fv+B9kEcEy2ZQpSiQEb3rj6t14EO/je4Eh8ktzAPe+u2b+a
+ BhJXZhEKF6ABc8siULAbHSSfCsYg23+uePlSW/vKV1T3jh1jxfsa8Rytq
+ KldBLvFnqYYWf8sLCTie5aZhhlL24Ge14eRTr+P7domkb+t58/ljzRSRM
+ xpJNYHrS8ZXevLdti2h3VneZ8nejQSh1Rmf7ZpyCDfTWIV3DyIdl06AX6
+ uzqxhC1c1GLZU1vbM4vedtAtrKZyDCxeN0G9vBHhX5eDcjIaYpbpBx2tp A==;
+X-CSE-ConnectionGUID: ruuT4q/MQ9CbZDWzUAD2OQ==
+X-CSE-MsgGUID: EBKnGC+7SB6ospsA2jMMBQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11109"; a="15867180"
+X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="15867180"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Jun 2024 09:08:14 -0700
-X-CSE-ConnectionGUID: hMd3x1FURJGN+jMiGOdnvg==
-X-CSE-MsgGUID: pM+17tVcRLW8cJ3ud98stA==
+X-CSE-ConnectionGUID: F1PUnZtZSPqxe/FNox/JpQ==
+X-CSE-MsgGUID: Ll12NWcoS3iOgpfucfHDzg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="42098422"
+X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="42098425"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
  by fmviesa006.fm.intel.com with ESMTP; 20 Jun 2024 09:08:14 -0700
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v10 3/5] drm/xe/guc: Add capture size check in GuC log buffer
-Date: Thu, 20 Jun 2024 09:08:09 -0700
-Message-Id: <20240620160811.2774704-4-zhanjun.dong@intel.com>
+Subject: [PATCH v10 4/5] drm/xe/guc: Extract GuC error capture lists
+Date: Thu, 20 Jun 2024 09:08:10 -0700
+Message-Id: <20240620160811.2774704-5-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240620160811.2774704-1-zhanjun.dong@intel.com>
 References: <20240620160811.2774704-1-zhanjun.dong@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,496 +65,1038 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The capture-nodes is included in GuC log buffer, add the size check
-for capture region in the whole GuC log buffer.
-Add capture output size check before allocating the shared buffer.
+Upon the G2H Notify-Err-Capture event, parse through the
+GuC Log Buffer (error-capture-subregion) and generate one or
+more capture-nodes. A single node represents a single "engine-
+instance-capture-dump" and contains at least 3 register lists:
+global, engine-class and engine-instance. An internal link
+list is maintained to store one or more nodes.
+
+Because the link-list node generation happen before the call
+to devcoredump, duplicate global and engine-class register
+lists for each engine-instance register dump if we find
+dependent-engine resets in a engine-capture-group.
+
+To avoid dynamically allocate the output nodes during gt reset,
+pre-allocate a fixed number of empty nodes up front (at the
+time of ADS registration) that we can consume from or return to
+an internal cached list of nodes.
 
 Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
 ---
- drivers/gpu/drm/xe/abi/guc_log_abi.h  |  59 ++++++++
- drivers/gpu/drm/xe/xe_guc_capture.c   |  81 ++++++++++
- drivers/gpu/drm/xe/xe_guc_log.c       | 205 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_log.h       |  17 ++-
- drivers/gpu/drm/xe/xe_guc_log_types.h |  18 +++
- 5 files changed, 379 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/xe/abi/guc_log_abi.h
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h  |   8 +
+ drivers/gpu/drm/xe/xe_guc_capture.c       | 678 +++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_guc_capture.h       |   1 +
+ drivers/gpu/drm/xe/xe_guc_capture_types.h |  45 ++
+ drivers/gpu/drm/xe/xe_guc_ct.c            |   2 +
+ drivers/gpu/drm/xe/xe_guc_submit.c        |  65 ++-
+ drivers/gpu/drm/xe/xe_guc_submit.h        |   2 +
+ 7 files changed, 783 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_log_abi.h b/drivers/gpu/drm/xe/abi/guc_log_abi.h
-new file mode 100644
-index 000000000000..3f284f25b5e0
---- /dev/null
-+++ b/drivers/gpu/drm/xe/abi/guc_log_abi.h
-@@ -0,0 +1,59 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef _ABI_GUC_LOG_ABI_H
-+#define _ABI_GUC_LOG_ABI_H
-+
-+#include <linux/types.h>
-+
-+/* GuC logging buffer types */
-+enum guc_log_buffer_type {
-+	GUC_LOG_BUFFER_CRASH_DUMP,
-+	GUC_LOG_BUFFER_DEBUG,
-+	GUC_LOG_BUFFER_CAPTURE,
+diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+index 43ad4652c2b2..b54fe40fc5a9 100644
+--- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+@@ -176,6 +176,14 @@ enum xe_guc_sleep_state_status {
+ #define GUC_LOG_CONTROL_VERBOSITY_MASK	(0xF << GUC_LOG_CONTROL_VERBOSITY_SHIFT)
+ #define GUC_LOG_CONTROL_DEFAULT_LOGGING	(1 << 8)
+ 
++enum xe_guc_state_capture_event_status {
++	XE_GUC_STATE_CAPTURE_EVENT_STATUS_SUCCESS = 0x0,
++	XE_GUC_STATE_CAPTURE_EVENT_STATUS_NOSPACE = 0x1,
 +};
 +
-+#define GUC_LOG_BUFFER_TYPE_MAX		3
++#define XE_GUC_STATE_CAPTURE_EVENT_STATUS_MASK      0x000000FF
++#define XE_GUC_ACTION_STATE_CAPTURE_NOTIFICATION_DATA_LEN 1
 +
-+/*
-+ * struct guc_log_buffer_state - GuC log buffer state
-+ *
-+ * Below state structure is used for coordination of retrieval of GuC firmware
-+ * logs. Separate state is maintained for each log buffer type.
-+ * read_ptr points to the location where Xe read last in log buffer and
-+ * is read only for GuC firmware. write_ptr is incremented by GuC with number
-+ * of bytes written for each log entry and is read only for Xe.
-+ * When any type of log buffer becomes half full, GuC sends a flush interrupt.
-+ * GuC firmware expects that while it is writing to 2nd half of the buffer,
-+ * first half would get consumed by Host and then get a flush completed
-+ * acknowledgment from Host, so that it does not end up doing any overwrite
-+ * causing loss of logs. So when buffer gets half filled & Xe has requested
-+ * for interrupt, GuC will set flush_to_file field, set the sampled_write_ptr
-+ * to the value of write_ptr and raise the interrupt.
-+ * On receiving the interrupt Xe should read the buffer, clear flush_to_file
-+ * field and also update read_ptr with the value of sample_write_ptr, before
-+ * sending an acknowledgment to GuC. marker & version fields are for internal
-+ * usage of GuC and opaque to Xe. buffer_full_cnt field is incremented every
-+ * time GuC detects the log buffer overflow.
-+ */
-+struct guc_log_buffer_state {
-+	u32 marker[2];
-+	u32 read_ptr;
-+	u32 write_ptr;
-+	u32 size;
-+	u32 sampled_write_ptr;
-+	u32 wrap_offset;
-+	union {
-+		struct {
-+			u32 flush_to_file:1;
-+			u32 buffer_full_cnt:4;
-+			u32 reserved:27;
-+		};
-+		u32 flags;
-+	};
-+	u32 version;
-+} __packed;
-+
-+#endif
+ #define XE_GUC_TLB_INVAL_TYPE_SHIFT 0
+ #define XE_GUC_TLB_INVAL_MODE_SHIFT 8
+ /* Flush PPC or SMRO caches along with TLB invalidation request */
 diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
-index 9c473aceb402..c2a08d4a6751 100644
+index c2a08d4a6751..dc5421e950e5 100644
 --- a/drivers/gpu/drm/xe/xe_guc_capture.c
 +++ b/drivers/gpu/drm/xe/xe_guc_capture.c
-@@ -22,6 +22,7 @@
- #include "xe_gt_mcr.h"
- #include "xe_gt_printk.h"
- #include "xe_guc.h"
-+#include "xe_guc_ads.h"
- #include "xe_guc_capture.h"
- #include "xe_guc_capture_types.h"
- #include "xe_guc_ct.h"
-@@ -558,6 +559,85 @@ size_t xe_guc_capture_ads_input_worst_size(struct xe_guc *guc)
- 	return PAGE_ALIGN(total_size);
+@@ -140,6 +140,8 @@ static const char * const capture_engine_class_names[] = {
+ 	"GSC-Other",
+ };
+ 
++static void guc_capture_create_prealloc_nodes(struct xe_guc *guc);
++
+ static const struct __guc_mmio_reg_descr_group *
+ guc_capture_get_one_list(const struct __guc_mmio_reg_descr_group *reglists,
+ 			 u32 owner, u32 type, u32 id)
+@@ -449,6 +451,12 @@ xe_guc_capture_getlist(struct xe_guc *guc, u32 owner, u32 type, u32 classid, voi
+ 		return cache->status;
+ 	}
+ 
++	/*
++	 * ADS population of input registers is a good
++	 * time to pre-allocate cachelist output nodes
++	 */
++	guc_capture_create_prealloc_nodes(guc);
++
+ 	ret = xe_guc_capture_getlistsize(guc, owner, type, classid, &size);
+ 	if (ret) {
+ 		cache->is_valid = true;
+@@ -638,6 +646,672 @@ static void check_guc_capture_size(struct xe_guc *guc)
+ 			  buffer_size, spare_size, capture_size);
  }
  
-+static int
-+guc_capture_output_size_est(struct xe_guc *guc)
++static void
++guc_capture_add_node_to_list(struct __guc_capture_parsed_output *node,
++			     struct list_head *list)
 +{
-+	struct xe_gt *gt = guc_to_gt(guc);
-+	struct xe_hw_engine *hwe;
-+	enum xe_hw_engine_id id;
++	list_add_tail(&node->link, list);
++}
 +
-+	int capture_size = 0;
-+	size_t tmp = 0;
++static void
++guc_capture_add_node_to_outlist(struct xe_guc_state_capture *gc,
++				struct __guc_capture_parsed_output *node)
++{
++	guc_capture_add_node_to_list(node, &gc->outlist);
++}
 +
-+	if (!guc->capture)
-+		return -ENODEV;
++static void
++guc_capture_add_node_to_cachelist(struct xe_guc_state_capture *gc,
++				  struct __guc_capture_parsed_output *node)
++{
++	guc_capture_add_node_to_list(node, &gc->cachelist);
++}
 +
-+	/*
-+	 * If every single engine-instance suffered a failure in quick succession but
-+	 * were all unrelated, then a burst of multiple error-capture events would dump
-+	 * registers for every one engine instance, one at a time. In this case, GuC
-+	 * would even dump the global-registers repeatedly.
-+	 *
-+	 * For each engine instance, there would be 1 x guc_state_capture_group_t output
-+	 * followed by 3 x guc_state_capture_t lists. The latter is how the register
-+	 * dumps are split across different register types (where the '3' are global vs class
-+	 * vs instance).
-+	 */
-+	for_each_hw_engine(hwe, gt, id) {
-+		capture_size += sizeof(struct guc_state_capture_group_header_t) +
-+					 (3 * sizeof(struct guc_state_capture_header_t));
++static void
++guc_capture_init_node(struct xe_guc *guc, struct __guc_capture_parsed_output *node)
++{
++	struct guc_mmio_reg *tmp[GUC_CAPTURE_LIST_TYPE_MAX];
++	int i;
 +
-+		if (!guc_capture_getlistsize(guc, 0, GUC_CAPTURE_LIST_TYPE_GLOBAL, 0, &tmp, true))
-+			capture_size += tmp;
-+
-+		if (!guc_capture_getlistsize(guc, 0, GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS,
-+					     hwe->class, &tmp, true)) {
-+			capture_size += tmp;
-+		}
-+		if (!guc_capture_getlistsize(guc, 0, GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE,
-+					     hwe->class, &tmp, true)) {
-+			capture_size += tmp;
-+		}
++	for (i = 0; i < GUC_CAPTURE_LIST_TYPE_MAX; ++i) {
++		tmp[i] = node->reginfo[i].regs;
++		memset(tmp[i], 0, sizeof(struct guc_mmio_reg) *
++		       guc->capture->max_mmio_per_node);
 +	}
++	memset(node, 0, sizeof(*node));
++	for (i = 0; i < GUC_CAPTURE_LIST_TYPE_MAX; ++i)
++		node->reginfo[i].regs = tmp[i];
 +
-+	return capture_size;
++	INIT_LIST_HEAD(&node->link);
 +}
 +
 +/*
-+ * Add on a 3x multiplier to allow for multiple back-to-back captures occurring
-+ * before the Xe can read the data out and process it
++ * KMD Init time flows:
++ * --------------------
++ *     --> alloc A: GuC input capture regs lists (registered to GuC via ADS).
++ *                  xe_guc_ads acquires the register lists by calling
++ *                  xe_guc_capture_list_size and xe_guc_capture_list_get 'n' times,
++ *                  where n = 1 for global-reg-list +
++ *                            num_engine_classes for class-reg-list +
++ *                            num_engine_classes for instance-reg-list
++ *                               (since all instances of the same engine-class type
++ *                                have an identical engine-instance register-list).
++ *                  ADS module also calls separately for PF vs VF.
++ *
++ *     --> alloc B: GuC output capture buf (registered via guc_init_params(log_param))
++ *                  Size = #define CAPTURE_BUFFER_SIZE (warns if on too-small)
++ *                  Note2: 'x 3' to hold multiple capture groups
++ *
++ * GUC Runtime notify capture:
++ * --------------------------
++ *     --> G2H STATE_CAPTURE_NOTIFICATION
++ *                   L--> xe_guc_capture_process
++ *                           L--> Loop through B (head..tail) and for each engine instance's
++ *                                err-state-captured register-list we find, we alloc 'C':
++ *      --> alloc C: A capture-output-node structure that includes misc capture info along
++ *                   with 3 register list dumps (global, engine-class and engine-instance)
++ *                   This node is created from a pre-allocated list of blank nodes in
++ *                   guc->capture->cachelist and populated with the error-capture
++ *                   data from GuC and then it's added into guc->capture->outlist linked
++ *                   list. This list is used for matchup and printout by xe_devcoredump_read
++ *                   and xe_hw_engine_snapshot_print, (when user invokes the devcoredump sysfs).
++ *
++ * GUC --> notify context reset:
++ * -----------------------------
++ *     --> guc_exec_queue_timedout_job
++ *                   L--> xe_devcoredump
++ *                          L--> devcoredump_snapshot(..IS_GUC_CAPTURE)
++ *                               --> xe_hw_engine_snapshot_capture(..IS_GUC_CAPTURE)
++ *                               L--> xe_hw_engine_snapshot_from_capture is where
++ *                                    detach C from internal linked list and add it into
++ *                                    xe_hw_engine_snapshot struct (if the context and
++ *                                    engine of the event notification matches a node
++ *                                    in the link list).
++ *
++ * User Sysfs / Debugfs
++ * --------------------
++ *      --> xe_devcoredump_read->
++ *             L--> xxx_snapshot_print
++ *                    L--> xe_hw_engine_snapshot_print
++ *                         register lists values of the xe_hw_engine_snapshot
++ *                         saved from the error-engine-dump.
++ *
 + */
-+#define GUC_CAPTURE_OVERBUFFER_MULTIPLIER 3
 +
-+static void check_guc_capture_size(struct xe_guc *guc)
++static int guc_capture_buf_cnt(struct __guc_capture_bufstate *buf)
 +{
-+	int capture_size = guc_capture_output_size_est(guc);
-+	int spare_size = capture_size * GUC_CAPTURE_OVERBUFFER_MULTIPLIER;
-+	u32 buffer_size = xe_guc_log_section_size_capture(&guc->log);
++	if (buf->wr >= buf->rd)
++		return (buf->wr - buf->rd);
++	return (buf->size - buf->rd) + buf->wr;
++}
++
++static int guc_capture_buf_cnt_to_end(struct __guc_capture_bufstate *buf)
++{
++	if (buf->rd > buf->wr)
++		return (buf->size - buf->rd);
++	return (buf->wr - buf->rd);
++}
++
++/*
++ * GuC's error-capture output is a ring buffer populated in a byte-stream fashion:
++ *
++ * The GuC Log buffer region for error-capture is managed like a ring buffer.
++ * The GuC firmware dumps error capture logs into this ring in a byte-stream flow.
++ * Additionally, as per the current and foreseeable future, all packed error-
++ * capture output structures are dword aligned.
++ *
++ * That said, if the GuC firmware is in the midst of writing a structure that is larger
++ * than one dword but the tail end of the err-capture buffer-region has lesser space left,
++ * we would need to extract that structure one dword at a time straddled across the end,
++ * onto the start of the ring.
++ *
++ * Below function, guc_capture_log_remove_dw is a helper for that. All callers of this
++ * function would typically do a straight-up memcpy from the ring contents and will only
++ * call this helper if their structure-extraction is straddling across the end of the
++ * ring. GuC firmware does not add any padding. The reason for the no-padding is to ease
++ * scalability for future expansion of output data types without requiring a redesign
++ * of the flow controls.
++ */
++static int
++guc_capture_log_remove_dw(struct xe_guc *guc, struct __guc_capture_bufstate *buf,
++			  u32 *dw)
++{
++	int tries = 2;
++	int avail = 0;
++
++	if (!guc_capture_buf_cnt(buf))
++		return 0;
++
++	while (tries--) {
++		avail = guc_capture_buf_cnt_to_end(buf);
++		if (avail >= sizeof(u32)) {
++			*dw = xe_map_rd(guc_to_xe(guc), &guc->log.bo->vmap,
++					buf->data_offset + buf->rd, u32);
++			buf->rd += 4;
++			return 4;
++		}
++		if (avail)
++			xe_gt_dbg(guc_to_gt(guc), "Register capture log not dword aligned, skipping.\n");
++		buf->rd = 0;
++	}
++
++	return 0;
++}
++
++static bool
++guc_capture_data_extracted(struct xe_guc *guc, struct __guc_capture_bufstate *b,
++			   int size, void *dest)
++{
++	if (guc_capture_buf_cnt_to_end(b) >= size) {
++		xe_map_memcpy_from(guc_to_xe(guc), dest, &guc->log.bo->vmap,
++				   b->data_offset + b->rd, size);
++		b->rd += size;
++		return true;
++	}
++	return false;
++}
++
++static int
++guc_capture_log_get_group_hdr(struct xe_guc *guc, struct __guc_capture_bufstate *buf,
++			      struct guc_state_capture_group_header_t *ghdr)
++{
++	int read = 0;
++	int fullsize = sizeof(struct guc_state_capture_group_header_t);
++
++	if (fullsize > guc_capture_buf_cnt(buf))
++		return -1;
++
++	if (guc_capture_data_extracted(guc, buf, fullsize, (void *)ghdr))
++		return 0;
++
++	read += guc_capture_log_remove_dw(guc, buf, &ghdr->owner);
++	read += guc_capture_log_remove_dw(guc, buf, &ghdr->info);
++	if (read != fullsize)
++		return -1;
++
++	return 0;
++}
++
++static int
++guc_capture_log_get_data_hdr(struct xe_guc *guc, struct __guc_capture_bufstate *buf,
++			     struct guc_state_capture_header_t *hdr)
++{
++	int read = 0;
++	int fullsize = sizeof(struct guc_state_capture_header_t);
++
++	if (fullsize > guc_capture_buf_cnt(buf))
++		return -1;
++
++	if (guc_capture_data_extracted(guc, buf, fullsize, (void *)hdr))
++		return 0;
++
++	read += guc_capture_log_remove_dw(guc, buf, &hdr->owner);
++	read += guc_capture_log_remove_dw(guc, buf, &hdr->info);
++	read += guc_capture_log_remove_dw(guc, buf, &hdr->lrca);
++	read += guc_capture_log_remove_dw(guc, buf, &hdr->guc_id);
++	read += guc_capture_log_remove_dw(guc, buf, &hdr->num_mmios);
++	if (read != fullsize)
++		return -1;
++
++	return 0;
++}
++
++static int
++guc_capture_log_get_register(struct xe_guc *guc, struct __guc_capture_bufstate *buf,
++			     struct guc_mmio_reg *reg)
++{
++	int read = 0;
++	int fullsize = sizeof(struct guc_mmio_reg);
++
++	if (fullsize > guc_capture_buf_cnt(buf))
++		return -1;
++
++	if (guc_capture_data_extracted(guc, buf, fullsize, (void *)reg))
++		return 0;
++
++	read += guc_capture_log_remove_dw(guc, buf, &reg->offset);
++	read += guc_capture_log_remove_dw(guc, buf, &reg->value);
++	read += guc_capture_log_remove_dw(guc, buf, &reg->flags);
++	read += guc_capture_log_remove_dw(guc, buf, &reg->mask);
++	if (read != fullsize)
++		return -1;
++
++	return 0;
++}
++
++static struct __guc_capture_parsed_output *
++guc_capture_get_prealloc_node(struct xe_guc *guc)
++{
++	struct __guc_capture_parsed_output *found = NULL;
++
++	if (!list_empty(&guc->capture->cachelist)) {
++		struct __guc_capture_parsed_output *n, *ntmp;
++
++		/* get first avail node from the cache list */
++		list_for_each_entry_safe(n, ntmp, &guc->capture->cachelist, link) {
++			found = n;
++			break;
++		}
++	} else {
++		struct __guc_capture_parsed_output *n, *ntmp;
++
++		/* traverse down and steal back the oldest node already allocated */
++		list_for_each_entry_safe(n, ntmp, &guc->capture->outlist, link) {
++			found = n;
++		}
++	}
++	if (found) {
++		list_del(&found->link);
++		guc_capture_init_node(guc, found);
++	}
++
++	return found;
++}
++
++static struct __guc_capture_parsed_output *
++guc_capture_clone_node(struct xe_guc *guc, struct __guc_capture_parsed_output *original,
++		       u32 keep_reglist_mask)
++{
++	struct __guc_capture_parsed_output *new;
++	int i;
++
++	new = guc_capture_get_prealloc_node(guc);
++	if (!new)
++		return NULL;
++	if (!original)
++		return new;
++
++	new->is_partial = original->is_partial;
++
++	/* copy reg-lists that we want to clone */
++	for (i = 0; i < GUC_CAPTURE_LIST_TYPE_MAX; ++i) {
++		if (keep_reglist_mask & BIT(i)) {
++			XE_WARN_ON(original->reginfo[i].num_regs  >
++				   guc->capture->max_mmio_per_node);
++
++			memcpy(new->reginfo[i].regs, original->reginfo[i].regs,
++			       original->reginfo[i].num_regs * sizeof(struct guc_mmio_reg));
++
++			new->reginfo[i].num_regs = original->reginfo[i].num_regs;
++			new->reginfo[i].vfid  = original->reginfo[i].vfid;
++
++			if (i == GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS) {
++				new->eng_class = original->eng_class;
++			} else if (i == GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE) {
++				new->eng_inst = original->eng_inst;
++				new->guc_id = original->guc_id;
++				new->lrca = original->lrca;
++			}
++		}
++	}
++
++	return new;
++}
++
++static int
++guc_capture_extract_reglists(struct xe_guc *guc, struct __guc_capture_bufstate *buf)
++{
++	struct xe_gt *gt = guc_to_gt(guc);
++	struct guc_state_capture_group_header_t ghdr = {0};
++	struct guc_state_capture_header_t hdr = {0};
++	struct __guc_capture_parsed_output *node = NULL;
++	struct guc_mmio_reg *regs = NULL;
++	int i, numlists, numregs, ret = 0;
++	enum guc_capture_type datatype;
++	struct guc_mmio_reg tmp;
++	bool is_partial = false;
++
++	i = guc_capture_buf_cnt(buf);
++	if (!i)
++		return -ENODATA;
++
++	if (i % sizeof(u32)) {
++		xe_gt_warn(gt, "Got mis-aligned register capture entries\n");
++		ret = -EIO;
++		goto bailout;
++	}
++
++	/* first get the capture group header */
++	if (guc_capture_log_get_group_hdr(guc, buf, &ghdr)) {
++		ret = -EIO;
++		goto bailout;
++	}
++	/*
++	 * we would typically expect a layout as below where n would be expected to be
++	 * anywhere between 3 to n where n > 3 if we are seeing multiple dependent engine
++	 * instances being reset together.
++	 * ____________________________________________
++	 * | Capture Group                            |
++	 * | ________________________________________ |
++	 * | | Capture Group Header:                | |
++	 * | |  - num_captures = 5                  | |
++	 * | |______________________________________| |
++	 * | ________________________________________ |
++	 * | | Capture1:                            | |
++	 * | |  Hdr: GLOBAL, numregs=a              | |
++	 * | | ____________________________________ | |
++	 * | | | Reglist                          | | |
++	 * | | | - reg1, reg2, ... rega           | | |
++	 * | | |__________________________________| | |
++	 * | |______________________________________| |
++	 * | ________________________________________ |
++	 * | | Capture2:                            | |
++	 * | |  Hdr: CLASS=RENDER/COMPUTE, numregs=b| |
++	 * | | ____________________________________ | |
++	 * | | | Reglist                          | | |
++	 * | | | - reg1, reg2, ... regb           | | |
++	 * | | |__________________________________| | |
++	 * | |______________________________________| |
++	 * | ________________________________________ |
++	 * | | Capture3:                            | |
++	 * | |  Hdr: INSTANCE=RCS, numregs=c        | |
++	 * | | ____________________________________ | |
++	 * | | | Reglist                          | | |
++	 * | | | - reg1, reg2, ... regc           | | |
++	 * | | |__________________________________| | |
++	 * | |______________________________________| |
++	 * | ________________________________________ |
++	 * | | Capture4:                            | |
++	 * | |  Hdr: CLASS=RENDER/COMPUTE, numregs=d| |
++	 * | | ____________________________________ | |
++	 * | | | Reglist                          | | |
++	 * | | | - reg1, reg2, ... regd           | | |
++	 * | | |__________________________________| | |
++	 * | |______________________________________| |
++	 * | ________________________________________ |
++	 * | | Capture5:                            | |
++	 * | |  Hdr: INSTANCE=CCS0, numregs=e       | |
++	 * | | ____________________________________ | |
++	 * | | | Reglist                          | | |
++	 * | | | - reg1, reg2, ... rege           | | |
++	 * | | |__________________________________| | |
++	 * | |______________________________________| |
++	 * |__________________________________________|
++	 */
++	is_partial = FIELD_GET(CAP_GRP_HDR_CAPTURE_TYPE, ghdr.info);
++	numlists = FIELD_GET(CAP_GRP_HDR_NUM_CAPTURES, ghdr.info);
++
++	while (numlists--) {
++		if (guc_capture_log_get_data_hdr(guc, buf, &hdr)) {
++			ret = -EIO;
++			break;
++		}
++
++		datatype = FIELD_GET(CAP_HDR_CAPTURE_TYPE, hdr.info);
++		if (datatype > GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE) {
++			/* unknown capture type - skip over to next capture set */
++			numregs = FIELD_GET(CAP_HDR_NUM_MMIOS, hdr.num_mmios);
++			while (numregs--) {
++				if (guc_capture_log_get_register(guc, buf, &tmp)) {
++					ret = -EIO;
++					break;
++				}
++			}
++			continue;
++		} else if (node) {
++			/*
++			 * Based on the current capture type and what we have so far,
++			 * decide if we should add the current node into the internal
++			 * linked list for match-up when xe_devcoredump calls later
++			 * (and alloc a blank node for the next set of reglists)
++			 * or continue with the same node or clone the current node
++			 * but only retain the global or class registers (such as the
++			 * case of dependent engine resets).
++			 */
++			if (datatype == GUC_CAPTURE_LIST_TYPE_GLOBAL) {
++				guc_capture_add_node_to_outlist(guc->capture, node);
++				node = NULL;
++			} else if (datatype == GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS &&
++				   node->reginfo[GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS].num_regs) {
++				/* Add to list, clone node and duplicate global list */
++				guc_capture_add_node_to_outlist(guc->capture, node);
++				node = guc_capture_clone_node(guc, node,
++							      GCAP_PARSED_REGLIST_INDEX_GLOBAL);
++			} else if (datatype == GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE &&
++				   node->reginfo[GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE].num_regs) {
++				/* Add to list, clone node and duplicate global + class lists */
++				guc_capture_add_node_to_outlist(guc->capture, node);
++				node = guc_capture_clone_node(guc, node,
++							      (GCAP_PARSED_REGLIST_INDEX_GLOBAL |
++							      GCAP_PARSED_REGLIST_INDEX_ENGCLASS));
++			}
++		}
++
++		if (!node) {
++			node = guc_capture_get_prealloc_node(guc);
++			if (!node) {
++				ret = -ENOMEM;
++				break;
++			}
++			if (datatype != GUC_CAPTURE_LIST_TYPE_GLOBAL)
++				xe_gt_dbg(gt, "Register capture missing global dump: %08x!\n",
++					  datatype);
++		}
++		node->is_partial = is_partial;
++		node->reginfo[datatype].vfid = FIELD_GET(CAP_HDR_CAPTURE_VFID, hdr.owner);
++
++		switch (datatype) {
++		case GUC_CAPTURE_LIST_TYPE_ENGINE_INSTANCE:
++			node->eng_class = FIELD_GET(CAP_HDR_ENGINE_CLASS, hdr.info);
++			node->eng_inst = FIELD_GET(CAP_HDR_ENGINE_INSTANCE, hdr.info);
++			node->lrca = hdr.lrca;
++			node->guc_id = hdr.guc_id;
++			break;
++		case GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS:
++			node->eng_class = FIELD_GET(CAP_HDR_ENGINE_CLASS, hdr.info);
++			break;
++		default:
++			break;
++		}
++
++		numregs = FIELD_GET(CAP_HDR_NUM_MMIOS, hdr.num_mmios);
++		if (numregs > guc->capture->max_mmio_per_node) {
++			xe_gt_dbg(gt, "Register capture list extraction clipped by prealloc!\n");
++			numregs = guc->capture->max_mmio_per_node;
++		}
++		node->reginfo[datatype].num_regs = numregs;
++		regs = node->reginfo[datatype].regs;
++		i = 0;
++		while (numregs--) {
++			if (guc_capture_log_get_register(guc, buf, &regs[i++])) {
++				ret = -EIO;
++				break;
++			}
++		}
++	}
++
++bailout:
++	if (node) {
++		/* If we have data, add to linked list for match-up when xe_devcoredump calls */
++		for (i = GUC_CAPTURE_LIST_TYPE_GLOBAL; i < GUC_CAPTURE_LIST_TYPE_MAX; ++i) {
++			if (node->reginfo[i].regs) {
++				guc_capture_add_node_to_outlist(guc->capture, node);
++				node = NULL;
++				break;
++			}
++		}
++		if (node) /* else return it back to cache list */
++			guc_capture_add_node_to_cachelist(guc->capture, node);
++	}
++	return ret;
++}
++
++static int __guc_capture_flushlog_complete(struct xe_guc *guc)
++{
++	u32 action[] = {
++		XE_GUC_ACTION_LOG_BUFFER_FILE_FLUSH_COMPLETE,
++		GUC_LOG_BUFFER_CAPTURE
++	};
++
++	return xe_guc_ct_send_g2h_handler(&guc->ct, action, ARRAY_SIZE(action));
++}
++
++static void __guc_capture_process_output(struct xe_guc *guc)
++{
++	unsigned int buffer_size, read_offset, write_offset, full_count;
++	struct xe_uc *uc = container_of(guc, typeof(*uc), guc);
++	struct guc_log_buffer_state log_buf_state_local;
++	struct __guc_capture_bufstate buf;
++	bool new_overflow;
++	int ret;
++	u32 log_buf_state_offset;
++	u32 src_data_offset;
++
++	log_buf_state_offset = sizeof(struct guc_log_buffer_state) * GUC_LOG_BUFFER_CAPTURE;
++	src_data_offset = xe_guc_get_log_buffer_offset(&guc->log, GUC_LOG_BUFFER_CAPTURE);
 +
 +	/*
-+	 * NOTE: capture_size is much smaller than the capture region
-+	 * allocation (DG2: <80K vs 1MB).
-+	 * Additionally, its based on space needed to fit all engines getting
-+	 * reset at once within the same G2H handler task slot. This is very
-+	 * unlikely. However, if GuC really does run out of space for whatever
-+	 * reason, we will see an separate warning message when processing the
-+	 * G2H event capture-notification, search for:
-+	 * xe_guc_STATE_CAPTURE_EVENT_STATUS_NOSPACE.
++	 * Make a copy of the state structure, inside GuC log buffer
++	 * (which is uncached mapped), on the stack to avoid reading
++	 * from it multiple times.
 +	 */
-+	if (capture_size < 0)
-+		xe_gt_dbg(guc_to_gt(guc),
-+			  "Failed to calculate error state capture buffer minimum size: %d!\n",
-+			  capture_size);
-+	if (capture_size > buffer_size)
-+		xe_gt_dbg(guc_to_gt(guc), "Error state capture buffer maybe small: %d < %d\n",
-+			  buffer_size, capture_size);
-+	else if (spare_size > buffer_size)
-+		xe_gt_dbg(guc_to_gt(guc),
-+			  "Error state capture buffer lacks spare size: %d < %d (min = %d)\n",
-+			  buffer_size, spare_size, capture_size);
++	xe_map_memcpy_from(guc_to_xe(guc), &log_buf_state_local, &guc->log.bo->vmap,
++			   log_buf_state_offset, sizeof(struct guc_log_buffer_state));
++
++	buffer_size = xe_guc_get_log_buffer_size(&guc->log, GUC_LOG_BUFFER_CAPTURE);
++	read_offset = log_buf_state_local.read_ptr;
++	write_offset = log_buf_state_local.sampled_write_ptr;
++	full_count = log_buf_state_local.buffer_full_cnt;
++
++	/* Bookkeeping stuff */
++	guc->log.stats[GUC_LOG_BUFFER_CAPTURE].flush += log_buf_state_local.flush_to_file;
++	new_overflow = xe_guc_check_log_buf_overflow(&guc->log, GUC_LOG_BUFFER_CAPTURE,
++						     full_count);
++
++	/* Now copy the actual logs. */
++	if (unlikely(new_overflow)) {
++		/* copy the whole buffer in case of overflow */
++		read_offset = 0;
++		write_offset = buffer_size;
++	} else if (unlikely((read_offset > buffer_size) ||
++			(write_offset > buffer_size))) {
++		xe_gt_err(guc_to_gt(guc),
++			  "Register capture buffer in invalid state: read = 0x%X, size = 0x%X!\n",
++			  read_offset, buffer_size);
++		/* copy whole buffer as offsets are unreliable */
++		read_offset = 0;
++		write_offset = buffer_size;
++	}
++
++	buf.size = buffer_size;
++	buf.rd = read_offset;
++	buf.wr = write_offset;
++	buf.data_offset = src_data_offset;
++
++	if (!xe_guc_read_stopped(guc)) {
++		do {
++			ret = guc_capture_extract_reglists(guc, &buf);
++		} while (ret >= 0);
++	}
++
++	/* Update the state of log buffer err-cap state */
++	xe_map_wr(guc_to_xe(guc), &guc->log.bo->vmap,
++		  log_buf_state_offset + offsetof(struct guc_log_buffer_state, read_ptr), u32,
++		  write_offset);
++	/* Clear the flush_to_file from local first, the local was loaded by above
++	 * xe_map_memcpy_from.
++	 */
++	log_buf_state_local.flush_to_file = 0;
++	/* Then write out the "updated local" through xe_map_wr() */
++	xe_map_wr(guc_to_xe(guc), &guc->log.bo->vmap,
++		  log_buf_state_offset + offsetof(struct guc_log_buffer_state, flags), u32,
++		  log_buf_state_local.flags);
++	__guc_capture_flushlog_complete(guc);
++}
++
++/*
++ * xe_guc_capture_process - Process GuC register captured data
++ * @guc: The GuC object
++ *
++ * When GuC captured data is ready, GuC will send message
++ * XE_GUC_ACTION_STATE_CAPTURE_NOTIFICATION to host, this function will be
++ * called to process the data comes with the message.
++ *
++ * Returns: None
++ */
++void xe_guc_capture_process(struct xe_guc *guc)
++{
++	if (guc->capture)
++		__guc_capture_process_output(guc);
++}
++
++static struct __guc_capture_parsed_output *
++guc_capture_alloc_one_node(struct xe_guc *guc)
++{
++	struct drm_device *drm = guc_to_drm(guc);
++	struct __guc_capture_parsed_output *new;
++	int i;
++
++	new = drmm_kzalloc(drm, sizeof(*new), GFP_KERNEL);
++	if (!new)
++		return NULL;
++
++	for (i = 0; i < GUC_CAPTURE_LIST_TYPE_MAX; ++i) {
++		new->reginfo[i].regs = drmm_kzalloc(drm, guc->capture->max_mmio_per_node *
++					       sizeof(struct guc_mmio_reg), GFP_KERNEL);
++		if (!new->reginfo[i].regs) {
++			while (i)
++				drmm_kfree(drm, new->reginfo[--i].regs);
++			drmm_kfree(drm, new);
++			return NULL;
++		}
++	}
++	guc_capture_init_node(guc, new);
++
++	return new;
++}
++
++static void
++__guc_capture_create_prealloc_nodes(struct xe_guc *guc)
++{
++	struct __guc_capture_parsed_output *node = NULL;
++	int i;
++
++	for (i = 0; i < PREALLOC_NODES_MAX_COUNT; ++i) {
++		node = guc_capture_alloc_one_node(guc);
++		if (!node) {
++			xe_gt_warn(guc_to_gt(guc), "Register capture pre-alloc-cache failure\n");
++			/* dont free the priors, use what we got and cleanup at shutdown */
++			return;
++		}
++		guc_capture_add_node_to_cachelist(guc->capture, node);
++	}
++}
++
++static int
++guc_get_max_reglist_count(struct xe_guc *guc)
++{
++	int i, j, k, tmp, maxregcount = 0;
++
++	for (i = 0; i < GUC_CAPTURE_LIST_INDEX_MAX; ++i) {
++		for (j = 0; j < GUC_CAPTURE_LIST_TYPE_MAX; ++j) {
++			for (k = 0; k < GUC_MAX_ENGINE_CLASSES; ++k) {
++				if (j == GUC_CAPTURE_LIST_TYPE_GLOBAL && k > 0)
++					continue;
++
++				tmp = guc_cap_list_num_regs(guc->capture, i, j, k);
++				if (tmp > maxregcount)
++					maxregcount = tmp;
++			}
++		}
++	}
++	if (!maxregcount)
++		maxregcount = PREALLOC_NODES_DEFAULT_NUMREGS;
++
++	return maxregcount;
++}
++
++static void
++guc_capture_create_prealloc_nodes(struct xe_guc *guc)
++{
++	/* skip if we've already done the pre-alloc */
++	if (guc->capture->max_mmio_per_node)
++		return;
++
++	guc->capture->max_mmio_per_node = guc_get_max_reglist_count(guc);
++	__guc_capture_create_prealloc_nodes(guc);
 +}
 +
  /*
   * xe_guc_capture_init - Init for GuC register capture
   * @guc: The GuC object
-@@ -575,5 +655,6 @@ int xe_guc_capture_init(struct xe_guc *guc)
+@@ -654,7 +1328,9 @@ int xe_guc_capture_init(struct xe_guc *guc)
+ 		return -ENOMEM;
  
  	guc->capture->reglists = guc_capture_get_device_reglist(guc);
- 
-+	check_guc_capture_size(guc);
+-
+ 	check_guc_capture_size(guc);
++	INIT_LIST_HEAD(&guc->capture->outlist);
++	INIT_LIST_HEAD(&guc->capture->cachelist);
++
  	return 0;
  }
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-index a37ee3419428..0188bc0a2b84 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.c
-+++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@ -9,9 +9,22 @@
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.h b/drivers/gpu/drm/xe/xe_guc_capture.h
+index ead5a1d2b5ad..3d54e71cfba8 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.h
++++ b/drivers/gpu/drm/xe/xe_guc_capture.h
+@@ -36,6 +36,7 @@ struct __guc_mmio_reg_descr_group {
+ 	struct __guc_mmio_reg_descr *extlist; /* only used for steered registers */
+ };
  
- #include "xe_bo.h"
- #include "xe_gt.h"
-+#include "xe_gt_printk.h"
-+#include "xe_guc.h"
- #include "xe_map.h"
- #include "xe_module.h"
++void xe_guc_capture_process(struct xe_guc *guc);
+ int xe_guc_capture_getlist(struct xe_guc *guc, u32 owner, u32 type, u32 classid, void **outptr);
+ int xe_guc_capture_getlistsize(struct xe_guc *guc, u32 owner, u32 type, u32 classid, size_t *size);
+ int xe_guc_capture_getnullheader(struct xe_guc *guc, void **outptr, size_t *size);
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture_types.h b/drivers/gpu/drm/xe/xe_guc_capture_types.h
+index 0eedb539348a..14890e51bad4 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_capture_types.h
+@@ -10,6 +10,51 @@
  
-+#define GUC_LOG_DEFAULT_CRASH_BUFFER_SIZE	CRASH_BUFFER_SIZE
-+#define GUC_LOG_DEFAULT_DEBUG_BUFFER_SIZE	DEBUG_BUFFER_SIZE
-+#define GUC_LOG_DEFAULT_CAPTURE_BUFFER_SIZE	CAPTURE_BUFFER_SIZE
-+
-+struct guc_log_section {
-+	u32 max;
-+	u32 flag;
-+	u32 default_val;
-+	const char *name;
+ #include "xe_guc_fwif.h"
+ 
++/*
++ * struct __guc_capture_bufstate
++ *
++ * Book-keeping structure used to track read and write pointers
++ * as we extract error capture data from the GuC-log-buffer's
++ * error-capture region as a stream of dwords.
++ */
++struct __guc_capture_bufstate {
++	u32 size;
++	u32 data_offset;
++	u32 rd;
++	u32 wr;
 +};
 +
- static struct xe_gt *
- log_to_gt(struct xe_guc_log *log)
- {
-@@ -96,3 +109,195 @@ int xe_guc_log_init(struct xe_guc_log *log)
++/*
++ * struct __guc_capture_parsed_output - extracted error capture node
++ *
++ * A single unit of extracted error-capture output data grouped together
++ * at an engine-instance level. We keep these nodes in a linked list.
++ * See cachelist and outlist below.
++ */
++struct __guc_capture_parsed_output {
++	/*
++	 * A single set of 3 capture lists: a global-list
++	 * an engine-class-list and an engine-instance list.
++	 * outlist in __guc_capture_parsed_output will keep
++	 * a linked list of these nodes that will eventually
++	 * be detached from outlist and attached into to
++	 * xe_codedump in response to a context reset
++	 */
++	struct list_head link;
++	bool is_partial;
++	u32 eng_class;
++	u32 eng_inst;
++	u32 guc_id;
++	u32 lrca;
++	struct gcap_reg_list_info {
++		u32 vfid;
++		u32 num_regs;
++		struct guc_mmio_reg *regs;
++	} reginfo[GUC_CAPTURE_LIST_TYPE_MAX];
++#define GCAP_PARSED_REGLIST_INDEX_GLOBAL   BIT(GUC_CAPTURE_LIST_TYPE_GLOBAL)
++#define GCAP_PARSED_REGLIST_INDEX_ENGCLASS BIT(GUC_CAPTURE_LIST_TYPE_ENGINE_CLASS)
++};
++
+ /*
+  * struct __guc_capture_ads_cache
+  *
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index b4137fe195a4..2d5b56f6fb63 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -1089,6 +1089,8 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 		/* Selftest only at the moment */
+ 		break;
+ 	case XE_GUC_ACTION_STATE_CAPTURE_NOTIFICATION:
++		ret = xe_guc_error_capture_handler(guc, payload, adj_len);
++		break;
+ 	case XE_GUC_ACTION_NOTIFY_FLUSH_LOG_BUFFER_TO_FILE:
+ 		/* FIXME: Handle this */
+ 		break;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 74552391dc5a..3319e7993cc2 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -27,6 +27,7 @@
+ #include "xe_gt_clock.h"
+ #include "xe_gt_printk.h"
+ #include "xe_guc.h"
++#include "xe_guc_capture.h"
+ #include "xe_guc_ct.h"
+ #include "xe_guc_exec_queue_types.h"
+ #include "xe_guc_id_mgr.h"
+@@ -800,7 +801,7 @@ static void guc_exec_queue_free_job(struct drm_sched_job *drm_job)
+ 	xe_sched_job_put(job);
+ }
  
+-static int guc_read_stopped(struct xe_guc *guc)
++int xe_guc_read_stopped(struct xe_guc *guc)
+ {
+ 	return atomic_read(&guc->submission_state.stopped);
+ }
+@@ -822,7 +823,7 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
+ 	set_min_preemption_timeout(guc, q);
+ 	smp_rmb();
+ 	ret = wait_event_timeout(guc->ct.wq, !exec_queue_pending_enable(q) ||
+-				 guc_read_stopped(guc), HZ * 5);
++				 xe_guc_read_stopped(guc), HZ * 5);
+ 	if (!ret) {
+ 		struct xe_gpu_scheduler *sched = &q->guc->sched;
+ 
+@@ -937,7 +938,7 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
+ 		 */
+ 		ret = wait_event_timeout(guc->ct.wq,
+ 					 !exec_queue_pending_disable(q) ||
+-					 guc_read_stopped(guc), HZ * 5);
++					 xe_guc_read_stopped(guc), HZ * 5);
+ 		if (!ret) {
+ 			drm_warn(&xe->drm, "Schedule disable failed to respond");
+ 			xe_sched_submission_start(sched);
+@@ -1005,8 +1006,8 @@ static void enable_scheduling(struct xe_exec_queue *q)
+ 
+ 	ret = wait_event_timeout(guc->ct.wq,
+ 				 !exec_queue_pending_enable(q) ||
+-				 guc_read_stopped(guc), HZ * 5);
+-	if (!ret || guc_read_stopped(guc)) {
++				 xe_guc_read_stopped(guc), HZ * 5);
++	if (!ret || xe_guc_read_stopped(guc)) {
+ 		xe_gt_warn(guc_to_gt(guc), "Schedule enable failed to respond");
+ 		set_exec_queue_banned(q);
+ 		xe_gt_reset_async(q->gt);
+@@ -1109,8 +1110,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 			 */
+ 			ret = wait_event_timeout(guc->ct.wq,
+ 						 !exec_queue_pending_enable(q) ||
+-						 guc_read_stopped(guc), HZ * 5);
+-			if (!ret || guc_read_stopped(guc))
++						 xe_guc_read_stopped(guc), HZ * 5);
++			if (!ret || xe_guc_read_stopped(guc))
+ 				goto trigger_reset;
+ 
+ 			/*
+@@ -1134,8 +1135,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 		smp_rmb();
+ 		ret = wait_event_timeout(guc->ct.wq,
+ 					 !exec_queue_pending_disable(q) ||
+-					 guc_read_stopped(guc), HZ * 5);
+-		if (!ret || guc_read_stopped(guc)) {
++					 xe_guc_read_stopped(guc), HZ * 5);
++		if (!ret || xe_guc_read_stopped(guc)) {
+ trigger_reset:
+ 			if (!ret)
+ 				xe_gt_warn(guc_to_gt(guc), "Schedule disable failed to respond");
+@@ -1307,7 +1308,7 @@ static void suspend_fence_signal(struct xe_exec_queue *q)
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 
+ 	xe_assert(xe, exec_queue_suspended(q) || exec_queue_killed(q) ||
+-		  guc_read_stopped(guc));
++		  xe_guc_read_stopped(guc));
+ 	xe_assert(xe, q->guc->suspend_pending);
+ 
+ 	q->guc->suspend_pending = false;
+@@ -1323,9 +1324,9 @@ static void __guc_exec_queue_process_msg_suspend(struct xe_sched_msg *msg)
+ 	if (guc_exec_queue_allowed_to_change_state(q) && !exec_queue_suspended(q) &&
+ 	    exec_queue_enabled(q)) {
+ 		wait_event(guc->ct.wq, q->guc->resume_time != RESUME_PENDING ||
+-			   guc_read_stopped(guc));
++			   xe_guc_read_stopped(guc));
+ 
+-		if (!guc_read_stopped(guc)) {
++		if (!xe_guc_read_stopped(guc)) {
+ 			s64 since_resume_ms =
+ 				ktime_ms_delta(ktime_get(),
+ 					       q->guc->resume_time);
+@@ -1439,7 +1440,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 
+ 	q->entity = &ge->entity;
+ 
+-	if (guc_read_stopped(guc))
++	if (xe_guc_read_stopped(guc))
+ 		xe_sched_stop(sched);
+ 
+ 	mutex_unlock(&guc->submission_state.lock);
+@@ -1566,7 +1567,7 @@ static void guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+ 
+ 	wait_event(q->guc->suspend_wait, !q->guc->suspend_pending ||
+-		   guc_read_stopped(guc));
++		   xe_guc_read_stopped(guc));
+ }
+ 
+ static void guc_exec_queue_resume(struct xe_exec_queue *q)
+@@ -1677,7 +1678,7 @@ int xe_guc_submit_reset_prepare(struct xe_guc *guc)
+ 
+ void xe_guc_submit_reset_wait(struct xe_guc *guc)
+ {
+-	wait_event(guc->ct.wq, !guc_read_stopped(guc));
++	wait_event(guc->ct.wq, !xe_guc_read_stopped(guc));
+ }
+ 
+ void xe_guc_submit_stop(struct xe_guc *guc)
+@@ -1686,7 +1687,7 @@ void xe_guc_submit_stop(struct xe_guc *guc)
+ 	unsigned long index;
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 
+-	xe_assert(xe, guc_read_stopped(guc) == 1);
++	xe_assert(xe, xe_guc_read_stopped(guc) == 1);
+ 
+ 	mutex_lock(&guc->submission_state.lock);
+ 
+@@ -1724,7 +1725,7 @@ int xe_guc_submit_start(struct xe_guc *guc)
+ 	unsigned long index;
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 
+-	xe_assert(xe, guc_read_stopped(guc) == 1);
++	xe_assert(xe, xe_guc_read_stopped(guc) == 1);
+ 
+ 	mutex_lock(&guc->submission_state.lock);
+ 	atomic_dec(&guc->submission_state.stopped);
+@@ -1915,6 +1916,36 @@ int xe_guc_exec_queue_reset_handler(struct xe_guc *guc, u32 *msg, u32 len)
  	return 0;
  }
-+
-+static void _guc_log_init_sizes(struct xe_guc_log *log)
-+{
-+	struct xe_guc *guc = log_to_guc(log);
-+	static const struct guc_log_section sections[GUC_LOG_BUFFER_TYPE_MAX] = {
-+		{
-+			GUC_LOG_CRASH_MASK >> GUC_LOG_CRASH_SHIFT,
-+			GUC_LOG_LOG_ALLOC_UNITS,
-+			GUC_LOG_DEFAULT_CRASH_BUFFER_SIZE,
-+			"crash dump"
-+		},
-+		{
-+			GUC_LOG_DEBUG_MASK >> GUC_LOG_DEBUG_SHIFT,
-+			GUC_LOG_LOG_ALLOC_UNITS,
-+			GUC_LOG_DEFAULT_DEBUG_BUFFER_SIZE,
-+			"debug",
-+		},
-+		{
-+			GUC_LOG_CAPTURE_MASK >> GUC_LOG_CAPTURE_SHIFT,
-+			GUC_LOG_CAPTURE_ALLOC_UNITS,
-+			GUC_LOG_DEFAULT_CAPTURE_BUFFER_SIZE,
-+			"capture",
-+		}
-+	};
-+	int i;
-+
-+	for (i = 0; i < GUC_LOG_BUFFER_TYPE_MAX; i++)
-+		log->sizes[i].bytes = sections[i].default_val;
-+
-+	/* If debug size > 1MB then bump default crash size to keep the same units */
-+	if (log->sizes[GUC_LOG_BUFFER_DEBUG].bytes >= SZ_1M &&
-+	    GUC_LOG_DEFAULT_CRASH_BUFFER_SIZE < SZ_1M)
-+		log->sizes[GUC_LOG_BUFFER_CRASH_DUMP].bytes = SZ_1M;
-+
-+	/* Prepare the GuC API structure fields: */
-+	for (i = 0; i < GUC_LOG_BUFFER_TYPE_MAX; i++) {
-+		/* Convert to correct units */
-+		if ((log->sizes[i].bytes % SZ_1M) == 0) {
-+			log->sizes[i].units = SZ_1M;
-+			log->sizes[i].flag = sections[i].flag;
-+		} else {
-+			log->sizes[i].units = SZ_4K;
-+			log->sizes[i].flag = 0;
-+		}
-+
-+		xe_gt_assert_msg(log_to_gt(log),
-+				 IS_ALIGNED(log->sizes[i].bytes, log->sizes[i].units),
-+				 "Mis-aligned log %s size: 0x%X vs 0x%X!\n",
-+				 sections[i].name, log->sizes[i].bytes, log->sizes[i].units);
-+
-+		log->sizes[i].count = log->sizes[i].bytes / log->sizes[i].units;
-+
-+		if (!log->sizes[i].count) {
-+			xe_gt_err(guc_to_gt(guc), "Zero log %s size!\n", sections[i].name);
-+		} else {
-+			/* Size is +1 unit */
-+			log->sizes[i].count--;
-+		}
-+
-+		/* Clip to field size */
-+		if (log->sizes[i].count > sections[i].max) {
-+			xe_gt_err(guc_to_gt(guc), "log %s size too large: %d vs %d!\n",
-+				  sections[i].name, log->sizes[i].count + 1, sections[i].max + 1);
-+			log->sizes[i].count = sections[i].max;
-+		}
-+	}
-+
-+	if (log->sizes[GUC_LOG_BUFFER_CRASH_DUMP].units != log->sizes[GUC_LOG_BUFFER_DEBUG].units) {
-+		xe_gt_err(guc_to_gt(guc), "Unit mismatch for crash and debug sections: %d vs %d!\n",
-+			  log->sizes[GUC_LOG_BUFFER_CRASH_DUMP].units,
-+			  log->sizes[GUC_LOG_BUFFER_DEBUG].units);
-+		log->sizes[GUC_LOG_BUFFER_CRASH_DUMP].units =
-+			log->sizes[GUC_LOG_BUFFER_DEBUG].units;
-+		log->sizes[GUC_LOG_BUFFER_CRASH_DUMP].count = 0;
-+	}
-+
-+	log->sizes_initialised = true;
-+}
-+
-+static void guc_log_init_sizes(struct xe_guc_log *log)
-+{
-+	if (log->sizes_initialised)
-+		return;
-+
-+	_guc_log_init_sizes(log);
-+}
-+
-+static u32 xe_guc_log_section_size_crash(struct xe_guc_log *log)
-+{
-+	guc_log_init_sizes(log);
-+
-+	return log->sizes[GUC_LOG_BUFFER_CRASH_DUMP].bytes;
-+}
-+
-+static u32 xe_guc_log_section_size_debug(struct xe_guc_log *log)
-+{
-+	guc_log_init_sizes(log);
-+
-+	return log->sizes[GUC_LOG_BUFFER_DEBUG].bytes;
-+}
-+
-+/**
-+ * xe_guc_log_section_size_capture - Get capture buffer size in log sections.
-+ * @log: The log object.
+ 
++/*
++ * xe_guc_error_capture_handler - Handler of GuC captured message
++ * @guc: The GuC object
++ * @msg: Point to the message
++ * @len: The message length
 + *
-+ * This function will return the capture buffer size in log sections.
++ * When GuC captured data is ready, GuC will send message
++ * XE_GUC_ACTION_STATE_CAPTURE_NOTIFICATION to host, this function will be
++ * called 1st to check status before process the data comes with the message.
 + *
-+ * Return: capture buffer size.
++ * Returns: None
 + */
-+u32 xe_guc_log_section_size_capture(struct xe_guc_log *log)
++int xe_guc_error_capture_handler(struct xe_guc *guc, u32 *msg, u32 len)
 +{
-+	guc_log_init_sizes(log);
++	u32 status;
 +
-+	return log->sizes[GUC_LOG_BUFFER_CAPTURE].bytes;
-+}
-+
-+/**
-+ * xe_guc_check_log_buf_overflow - Check if log buffer overflowed
-+ * @log: The log object.
-+ * @type: The log buffer type
-+ * @full_cnt: The count of buffer full
-+ *
-+ * This function will check count of buffer full against previous, mismatch
-+ * indicate overflowed.
-+ * Update the sampled_overflow counter, if the 4 bit counter overflowed, add
-+ * up 16 to correct the value.
-+ *
-+ * Return: True if overflowed.
-+ */
-+bool xe_guc_check_log_buf_overflow(struct xe_guc_log *log, enum guc_log_buffer_type type,
-+				   unsigned int full_cnt)
-+{
-+	unsigned int prev_full_cnt = log->stats[type].sampled_overflow;
-+	bool overflow = false;
-+
-+	if (full_cnt != prev_full_cnt) {
-+		overflow = true;
-+
-+		log->stats[type].overflow = full_cnt;
-+		log->stats[type].sampled_overflow += full_cnt - prev_full_cnt;
-+
-+		if (full_cnt < prev_full_cnt) {
-+			/* buffer_full_cnt is a 4 bit counter */
-+			log->stats[type].sampled_overflow += 16;
-+		}
-+		xe_gt_notice(log_to_gt(log), "log buffer overflow\n");
++	if (unlikely(len != XE_GUC_ACTION_STATE_CAPTURE_NOTIFICATION_DATA_LEN)) {
++		xe_gt_dbg(guc_to_gt(guc), "Invalid length %u", len);
++		return -EPROTO;
 +	}
 +
-+	return overflow;
-+}
++	status = msg[0] & XE_GUC_STATE_CAPTURE_EVENT_STATUS_MASK;
++	if (status == XE_GUC_STATE_CAPTURE_EVENT_STATUS_NOSPACE)
++		xe_gt_warn(guc_to_gt(guc), "G2H-Error capture no space");
 +
-+/**
-+ * xe_guc_get_log_buffer_size - Get log buffer size for a type.
-+ * @log: The log object.
-+ * @type: The log buffer type
-+ *
-+ * Return: buffer size.
-+ */
-+u32 xe_guc_get_log_buffer_size(struct xe_guc_log *log, enum guc_log_buffer_type type)
-+{
-+	switch (type) {
-+	case GUC_LOG_BUFFER_CRASH_DUMP:
-+		return xe_guc_log_section_size_crash(log);
-+	case GUC_LOG_BUFFER_DEBUG:
-+		return xe_guc_log_section_size_debug(log);
-+	case GUC_LOG_BUFFER_CAPTURE:
-+		return xe_guc_log_section_size_capture(log);
-+	}
++	xe_guc_capture_process(guc);
++
 +	return 0;
 +}
 +
-+/**
-+ * xe_guc_get_log_buffer_offset - Get offset in log buffer for a type.
-+ * @log: The log object.
-+ * @type: The log buffer type
-+ *
-+ * This function will return the offset in the log buffer for a type.
-+ * Return: buffer offset.
-+ */
-+u32 xe_guc_get_log_buffer_offset(struct xe_guc_log *log, enum guc_log_buffer_type type)
-+{
-+	enum guc_log_buffer_type i;
-+	u32 offset = PAGE_SIZE;/* for the log_buffer_states */
-+
-+	for (i = GUC_LOG_BUFFER_CRASH_DUMP; i < GUC_LOG_BUFFER_TYPE_MAX; ++i) {
-+		if (i == type)
-+			break;
-+		offset += xe_guc_get_log_buffer_size(log, i);
-+	}
-+
-+	return offset;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
-index 2d25ab28b4b3..ea9e79ccd314 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.h
-+++ b/drivers/gpu/drm/xe/xe_guc_log.h
-@@ -7,6 +7,7 @@
- #define _XE_GUC_LOG_H_
+ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+ 					       u32 len)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index 4ad5f4c1b084..d92256de473e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -19,12 +19,14 @@ void xe_guc_submit_reset_wait(struct xe_guc *guc);
+ void xe_guc_submit_stop(struct xe_guc *guc);
+ int xe_guc_submit_start(struct xe_guc *guc);
  
- #include "xe_guc_log_types.h"
-+#include "xe_guc_types.h"
++int xe_guc_read_stopped(struct xe_guc *guc);
+ int xe_guc_sched_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ int xe_guc_deregister_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ int xe_guc_exec_queue_reset_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+ 					       u32 len);
+ int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 len);
++int xe_guc_error_capture_handler(struct xe_guc *guc, u32 *msg, u32 len);
  
- struct drm_printer;
- 
-@@ -17,7 +18,7 @@ struct drm_printer;
- #else
- #define CRASH_BUFFER_SIZE	SZ_8K
- #define DEBUG_BUFFER_SIZE	SZ_64K
--#define CAPTURE_BUFFER_SIZE	SZ_16K
-+#define CAPTURE_BUFFER_SIZE	SZ_1M
- #endif
- /*
-  * While we're using plain log level in i915, GuC controls are much more...
-@@ -36,6 +37,11 @@ struct drm_printer;
- #define GUC_VERBOSITY_TO_LOG_LEVEL(x)	((x) + 2)
- #define GUC_LOG_LEVEL_MAX GUC_VERBOSITY_TO_LOG_LEVEL(GUC_LOG_VERBOSITY_MAX)
- 
-+static inline struct xe_guc *log_to_guc(struct xe_guc_log *log)
-+{
-+	return container_of(log, struct xe_guc, log);
-+}
-+
- int xe_guc_log_init(struct xe_guc_log *log);
- void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p);
- 
-@@ -45,4 +51,13 @@ xe_guc_log_get_level(struct xe_guc_log *log)
- 	return log->level;
- }
- 
-+u32 xe_guc_log_section_size_capture(struct xe_guc_log *log);
-+
-+bool xe_guc_check_log_buf_overflow(struct xe_guc_log *log,
-+				   enum guc_log_buffer_type type,
-+				   unsigned int full_cnt);
-+
-+u32 xe_guc_get_log_buffer_size(struct xe_guc_log *log, enum guc_log_buffer_type type);
-+u32 xe_guc_get_log_buffer_offset(struct xe_guc_log *log, enum guc_log_buffer_type type);
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_log_types.h b/drivers/gpu/drm/xe/xe_guc_log_types.h
-index 125080d138a7..79aa602a3d75 100644
---- a/drivers/gpu/drm/xe/xe_guc_log_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_log_types.h
-@@ -7,6 +7,7 @@
- #define _XE_GUC_LOG_TYPES_H_
- 
- #include <linux/types.h>
-+#include "abi/guc_log_abi.h"
- 
- struct xe_bo;
- 
-@@ -18,6 +19,23 @@ struct xe_guc_log {
- 	u32 level;
- 	/** @bo: XE BO for GuC log */
- 	struct xe_bo *bo;
-+
-+	/* @sizes: Allocation settings */
-+	struct {
-+		u32 bytes;	/* Size in bytes */
-+		u32 units;	/* GuC API units - 1MB or 4KB */
-+		u32 count;	/* Number of API units */
-+		u32 flag;	/* GuC API units flag */
-+	} sizes[GUC_LOG_BUFFER_TYPE_MAX];
-+	/* @sizes_initialised: sizes initialised */
-+	bool sizes_initialised;
-+
-+	/* @stats: logging related stats */
-+	struct {
-+		u32 sampled_overflow;
-+		u32 overflow;
-+		u32 flush;
-+	} stats[GUC_LOG_BUFFER_TYPE_MAX];
- };
- 
- #endif
+ struct xe_guc_submit_exec_queue_snapshot *
+ xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q);
 -- 
 2.34.1
 
