@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48BA4C27C79
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Jun 2024 21:21:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DADBDC27C79
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Jun 2024 21:21:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDE7C10E0C9;
-	Thu, 20 Jun 2024 21:21:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 879BC10E0E4;
+	Thu, 20 Jun 2024 21:21:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eRN50O5M";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jCVzWju1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FD2E10E0C9
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Jun 2024 21:21:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E03310E0E4
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Jun 2024 21:21:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718918470; x=1750454470;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=a2vGsPJlVB7qrnNj6dyYpn2W+BRLldAGt+PJodvPRw8=;
- b=eRN50O5MPTylzr+WzubzlvCIExakVEfGFCTD1GbUYvbjIfjnBG0g+BOD
- 5dndI4sQPiG/Q9VX09nasqJU0JMx+BPM2XDD5+4SZalkIOOF23WvrHl6Z
- R/7W0gncDEBv0QnCjcF1oZaeOgFJmQfUPN/R+R039LdmV/vcBJtLnxR83
- bXChvFZ4JrEhFTDqGJ/qdQhoYd079yZKfPjygE2ZvC2tTEQMNYa3FYkz0
- gPjdJYTnq9U9zDf3bBZVgnqTloAXhgX4m/SfofJdx0dDUlzUX13zEuzYN
- ysGfljvvCHPwsPjGvglmYZ65Im7pyuphVaSsr7q54TM/aEz1RK47ToUdx Q==;
-X-CSE-ConnectionGUID: 1Z6YF50pSuaz+rmWUaAVUw==
-X-CSE-MsgGUID: m4C3n6bBR9qvjdRAgdhlvw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11109"; a="19811208"
-X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="19811208"
+ t=1718918473; x=1750454473;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=R8dbb3VgmZF9CuqsKQAVTfcfpL/OtdrfBMNafCLJTlQ=;
+ b=jCVzWju105aB1jut8vKla03YbjoKLq8c9BU2VVn2UHQsQZqHE27m97uH
+ RxUuqx6Ge2URtikepueh0nNCBC/eo7xAPCpaDITXfXxFx/QeotwGE1hez
+ g9WC7Li3bdi5ifPXP9hbok618dgwZPSrHh4aJKx02vo4tMU7goGvzSKsL
+ 6gGdi+kTobI3O6gXwMn+6zPdr40nQt7MOfEi1/nxbisExSW1JyvYW/CfZ
+ 0+zklT4DGU0E21s+trPpx9dBSoBUyhj76max+xD/L1S0gtlRMHzsK94Aw
+ 9q8TOMBpXv4gL6sH/rbocuGQJcsrnfIZ/bS3HMOuKfxH0PDSjjiXqmGWK g==;
+X-CSE-ConnectionGUID: +VTnouU4TTO8ZEHEjDuVAw==
+X-CSE-MsgGUID: o/CKXmb6SWqKAvgWMKKvdw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11109"; a="19811220"
+X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="19811220"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2024 14:21:09 -0700
-X-CSE-ConnectionGUID: 8MOhQ6d+R4SQOCIHqLqJew==
-X-CSE-MsgGUID: 1ZgJ0dg9RzyHsMLS8Hd0aA==
+ 20 Jun 2024 14:21:13 -0700
+X-CSE-ConnectionGUID: O+/3UEV/SGGXe8PSeYfgZQ==
+X-CSE-MsgGUID: omxrtjujROGy8RpYc062Tw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="79883651"
+X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="79883669"
 Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2024 14:21:08 -0700
+ 20 Jun 2024 14:21:12 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
  david.e.box@linux.intel.com, pavel.e.popov@intel.com
 Cc: michael.j.ruhl@intel.com
-Subject: [PATCH v2 0/6] Support PMT features in Xe
-Date: Thu, 20 Jun 2024 17:20:44 -0400
-Message-ID: <20240620212055.3314064-1-michael.j.ruhl@intel.com>
+Subject: [PATCH v2 2/6] platform/x86/intel/vsec: Add PMT read callbacks
+Date: Thu, 20 Jun 2024 17:20:46 -0400
+Message-ID: <20240620212055.3314064-3-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240620212055.3314064-1-michael.j.ruhl@intel.com>
+References: <20240620212055.3314064-1-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,54 +67,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DG2 and Battlemage have the Intel Platform Monitoring Technology (PMT)
-feature available, but not in the "standard" (pci endpoint) way.
+From: "David E. Box" <david.e.box@linux.intel.com>
 
-Add support to the vsec and Xe drivers to allow access to the PMT space
-for the DG2 and BMG devices.
+Some PMT providers require device specific actions before their telemetry
+can be read. Provide assignable PMT read callbacks to allow providers to
+perform those actions.
 
-The intel_vsec_register() function allows drivers to provide telemetry
-header information (usually found at probe time), to allow the PMT
-driver to probe the telemetry features.
+Signed-off-by: David E. Box <david.e.box@linux.intel.com>
+---
+ drivers/platform/x86/intel/vsec.c | 1 +
+ include/linux/intel_vsec.h        | 5 +++++
+ 2 files changed, 6 insertions(+)
 
-Battlemage has a shared memory area (selected by index), so a callback
-function is required to access the appropriate PMT data.
-
-V2:
-  Re-worked DG2 support patches using a base_adjust rather than a
-  quirk.
-  Updated GUID decode, for correct decode.
-
-David E. Box (3):
-  platform/x86/intel/vsec.h: Move to include/linux
-  platform/x86/intel/vsec: Add PMT read callbacks
-  platform/x86/intel/pmt: Use PMT callbacks
-
-Michael J. Ruhl (3):
-  drm/xe/vsec: Support BMG devices
-  platform/x86/intel/pmt: Add support for PMT base adjust
-  drm/xe/vsec: Add support for DG2
-
- MAINTAINERS                                   |   1 +
- drivers/gpu/drm/xe/Makefile                   |   1 +
- drivers/gpu/drm/xe/xe_device.c                |   5 +
- drivers/gpu/drm/xe/xe_device_types.h          |   5 +
- drivers/gpu/drm/xe/xe_vsec.c                  | 295 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_vsec.h                  |  13 +
- drivers/platform/x86/intel/pmc/core_ssram.c   |   2 +-
- drivers/platform/x86/intel/pmt/class.c        |  28 +-
- drivers/platform/x86/intel/pmt/class.h        |  11 +-
- drivers/platform/x86/intel/pmt/crashlog.c     |   2 +-
- drivers/platform/x86/intel/pmt/telemetry.c    |  21 +-
- drivers/platform/x86/intel/sdsi.c             |   3 +-
- drivers/platform/x86/intel/tpmi.c             |   3 +-
- drivers/platform/x86/intel/vsec.c             |   9 +-
- .../vsec.h => include/linux/intel_vsec.h      |  18 +-
- 15 files changed, 390 insertions(+), 27 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_vsec.c
- create mode 100644 drivers/gpu/drm/xe/xe_vsec.h
- rename drivers/platform/x86/intel/vsec.h => include/linux/intel_vsec.h (88%)
-
+diff --git a/drivers/platform/x86/intel/vsec.c b/drivers/platform/x86/intel/vsec.c
+index 2b46807f868b..7b5cc9993974 100644
+--- a/drivers/platform/x86/intel/vsec.c
++++ b/drivers/platform/x86/intel/vsec.c
+@@ -212,6 +212,7 @@ static int intel_vsec_add_dev(struct pci_dev *pdev, struct intel_vsec_header *he
+ 	intel_vsec_dev->num_resources = header->num_entries;
+ 	intel_vsec_dev->quirks = info->quirks;
+ 	intel_vsec_dev->base_addr = info->base_addr;
++	intel_vsec_dev->priv_data = info->priv_data;
+ 
+ 	if (header->id == VSEC_ID_SDSI)
+ 		intel_vsec_dev->ida = &intel_vsec_sdsi_ida;
+diff --git a/include/linux/intel_vsec.h b/include/linux/intel_vsec.h
+index ff7998cadab4..003301783331 100644
+--- a/include/linux/intel_vsec.h
++++ b/include/linux/intel_vsec.h
+@@ -67,10 +67,15 @@ enum intel_vsec_quirks {
+ 	VSEC_QUIRK_EARLY_HW     = BIT(4),
+ };
+ 
++struct pmt_callbacks {
++	int (*read_telem)(void *args, u32 guid, u64 *data, u32 count);
++};
++
+ /* Platform specific data */
+ struct intel_vsec_platform_info {
+ 	struct device *parent;
+ 	struct intel_vsec_header **headers;
++	void *priv_data;
+ 	unsigned long caps;
+ 	unsigned long quirks;
+ 	u64 base_addr;
 -- 
 2.44.0
 
