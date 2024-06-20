@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B166C2BA18
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Jun 2024 06:28:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A871C27C79
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Jun 2024 06:28:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B603910E30B;
-	Thu, 20 Jun 2024 06:28:32 +0000 (UTC)
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C89D10E325;
- Thu, 20 Jun 2024 06:28:31 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C083310E494;
+	Thu, 20 Jun 2024 06:28:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dvoiLSov";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D92D10E4E7;
+ Thu, 20 Jun 2024 06:28:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1718864921; x=1750400921;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=nQ4+nP6bQtUBNCLMRPxUsBtNg3TjI0JVTMI+1kHKIac=;
+ b=dvoiLSovn04QaKsxiDhIq63KT1AoogeGNzv095geVVxyzUV0zY1WJLhF
+ Too8rHfRU49QG24d/TF1oalWanqTmhBqfxDSABpNMjoE/OpUtTRnPgw/x
+ vk7CJiTG0NCucM/01fZ2Ad8wxlR7MWIYLM3f7/N2qd6/Wwu0JDBMzROwH
+ 04NGlL1xC7oOcTQnxG4TEn3kj0tB6Lmc3UWnTvbYcQ2ItWuDprqrBkLIj
+ AlkkIkjfQg1Q3meMzBCEyvVUNbxselVrm8Z3hpDlG1Kl8QJzzcwxO7NxE
+ UFUHpaDlkX4DZNgNJ7t4mfOcYnRXu5mFaViDUgcJ1PzUkpxJSE+fEHghw g==;
+X-CSE-ConnectionGUID: JyUfOtSKRpSCyT0gvBAXRg==
+X-CSE-MsgGUID: Tljxy8boSaiJzYt6vXD43w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11108"; a="27243846"
+X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; d="scan'208";a="27243846"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2024 23:28:40 -0700
+X-CSE-ConnectionGUID: BzS5KsE3TzOFpcgk2LxE+w==
+X-CSE-MsgGUID: yk375xy2RpK2ictTa/b+iA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; d="scan'208";a="47279337"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa004.jf.intel.com with ESMTP; 19 Jun 2024 23:28:38 -0700
+Received: from [10.246.49.231] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.246.49.231])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id ACF3B12591;
+ Thu, 20 Jun 2024 07:28:25 +0100 (IST)
+Message-ID: <fdd378cc-e300-4515-8425-989d31ecbc96@intel.com>
+Date: Thu, 20 Jun 2024 08:28:15 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Adapt_the_driver_to_boot_?=
- =?utf-8?q?on_the_VF_device_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 20 Jun 2024 06:28:31 -0000
-Message-ID: <171886491137.127285.7731695141010937404@a6498e030952>
-X-Patchwork-Hint: ignore
+User-Agent: Mozilla Thunderbird
+Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_CI=2EBAT=3A_failure_for_Adapt_the_driver_?=
+ =?UTF-8?Q?to_boot_on_the_VF_device?=
+To: intel-xe@lists.freedesktop.org, I915-ci-infra@lists.freedesktop.org
 References: <20240619214557.905-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20240619214557.905-1-michal.wajdeczko@intel.com>
+ <171883574375.124989.1656310321456214041@a6498e030952>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <171883574375.124989.1656310321456214041@a6498e030952>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,47 +69,67 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: Adapt the driver to boot on the VF device (rev2)
-URL   : https://patchwork.freedesktop.org/series/135080/
-State : success
-
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-51ce9f6cd981d42d7467409d7dbc559a450abc1e
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 54b8d642fb4a64caa4eb0c88bad2acfaefe717b4
-Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Date:   Wed Jun 19 23:45:57 2024 +0200
-
-    drm/xe/vf: Custom HuC initialization if VF
-    
-    The HuC firmware is loaded and initialized by the PF driver. Make
-    sure VF driver performs only limited data structure initialization.
-    
-    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-+ /mt/dim checkpatch 66d8ec4c6e7d124a021a3a8d038ed9e739cc9359 drm-intel
-71827a2d0fce drm/xe/vf: Disable features that do not apply to VFs
-996b77deb3e7 drm/xe/vf: Don't run any save-restore RTP actions if VF
-b0efdb318180 drm/xe/vf: Don't apply tile workarounds if VF
-414bd03f1cd9 drm/xe/vf: Don't change hwe IRQ masks if using memory IRQs
-87d246fe0a12 drm/xe/vf: Don't initialize OA if VF
-7571436dc079 drm/xe/vf: Don't support gtidle if VF
-575dbc01cfac drm/xe/vf: Don't use register based TLB invalidation if VF
-aff533881141 drm/xe/vf: Skip engine ring enabling if VF
-54b8d642fb4a drm/xe/vf: Custom HuC initialization if VF
 
 
+On 20.06.2024 00:22, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: Adapt the driver to boot on the VF device
+> URL   : https://patchwork.freedesktop.org/series/135080/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from xe-1500-66d8ec4c6e7d124a021a3a8d038ed9e739cc9359_BAT -> xe-pw-135080v1_BAT
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with xe-pw-135080v1_BAT absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in xe-pw-135080v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   
+> 
+> Participating hosts (5 -> 0)
+> ------------------------------
+> 
+>   ERROR: It appears as if the changes made in xe-pw-135080v1_BAT prevented too many machines from booting.
+> 
+>   Missing    (5): bat-pvc-2 bat-lnl-1 bat-dg2-oem2 bat-adlp-7 bat-atsm-2 
+
+that must be some unrelated CI reporting glitch (as it can't be that bad
+if we got some FULL results); already triggered rerun
+
+> 
+> 
+> Changes
+> -------
+> 
+>   No changes found
+> 
+> 
+> Build changes
+> -------------
+> 
+>   * IGT: IGT_7892 -> IGT_7893
+>   * Linux: xe-1500-66d8ec4c6e7d124a021a3a8d038ed9e739cc9359 -> xe-pw-135080v1
+> 
+>   IGT_7892: 7892
+>   IGT_7893: a1840ca4270b765883d3b71a710b6af85ded8235 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+>   xe-1500-66d8ec4c6e7d124a021a3a8d038ed9e739cc9359: 66d8ec4c6e7d124a021a3a8d038ed9e739cc9359
+>   xe-pw-135080v1: 135080v1
+> 
+> == Logs ==
+> 
+> For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135080v1/index.html
+> 
