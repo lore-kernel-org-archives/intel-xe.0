@@ -4,60 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5FF7C27C79
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Jun 2024 13:06:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9ABB6C2BA18
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Jun 2024 13:12:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96AD110E9BD;
-	Thu, 20 Jun 2024 13:06:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A30D210E9C7;
+	Thu, 20 Jun 2024 13:12:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jLJATCs4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pg6UOquC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D027810E9BF;
- Thu, 20 Jun 2024 13:06:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4789189950
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Jun 2024 13:11:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718888768; x=1750424768;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=blcdu6LUUax5ZPHL9Bk8yfAUyB+4FTYFdB7ZNKtGWDc=;
- b=jLJATCs4i3DyKOLsJyS8dS92Ae2FwHXsLq/E5etobV7Mqich5I9Sqovj
- XuycrcBFC1DRJ4SDWmvU4eCMTfCiMfKpjNDsMLXxzB+WpNFjv+CGaaD1G
- AVF0b8Uh9A+A/BOuCxfrq6WOkz/BZHp9lneW5/RDaRMwy4VfbBg+V2Ij2
- 2IU2iPZUL24EeN20Gbn5Z38vayVqOuD3Uptklt6wnBRuL7c6qZ/aoDJVG
- u3boPNMWXm9D4VW630TXhK1RMN8kiFWL73fYiMDIva4ZvETY8u9NOI9jF
- auZIOYrIjMf+RmiJNoFEStp+r7y+blrjkXcaRT/nU45E2hLRnVQQRogVm w==;
-X-CSE-ConnectionGUID: 1u9RokuPTHC9JApBIrogQw==
-X-CSE-MsgGUID: kH+Q7i/AR+W3MV8v8QUpMw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11108"; a="16002755"
-X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="16002755"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2024 06:05:55 -0700
-X-CSE-ConnectionGUID: MODbD/2sSXaaguox65r+jQ==
-X-CSE-MsgGUID: V4iclbrFQwOQ2LARdgg1Iw==
+ t=1718889119; x=1750425119;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=7jBCReqSeSIPBO9uDMj53sp6WI2BXfVShEFx31BK9BQ=;
+ b=Pg6UOquClfHBU4MPjbgIK5wwYj3Y8f0AyIcY/FNJufOJ2pREJ4OT1Ksb
+ zoFEkBiN1fXq31J0dMdhmZRUrvkipuZil2+OBcHje3/VpNrI0glBqjMkv
+ aTJBwwpv6x5+tlScHgYQ0or73zhieylTS3/CZ+eo0BznCtlrypFRUj+lA
+ 55E+clXqd9QpNp8CB1TeAXxib3dLi8CzcSZ6auyPRQgdynnIQtVYCBEDe
+ Bcn2EribuR9blBr2rAObOBh6qmC24nBaFIXf1jKWQJgEL1WQi7qUGOte0
+ XRSUDLLrL23dQBX1yrQ+ufg086NGrY+KnA2DiP8kZsgWPYbElNsCOdDC8 A==;
+X-CSE-ConnectionGUID: FkGK56yCSkGi/EWyG85EvA==
+X-CSE-MsgGUID: m507cXFjRY+k//PF52ExMQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11108"; a="41268354"
+X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="41268354"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2024 06:11:45 -0700
+X-CSE-ConnectionGUID: Z8gnxoDfSIWgZise/v9zqw==
+X-CSE-MsgGUID: 8iZz4SGIS3CeGkbTTMN3LQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="47177421"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.95])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2024 06:05:52 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- ville.syrjala@linux.intel.com, maarten.lankhorst@linux.intel.com,
- lucas.demarchi@intel.com
-Subject: Re: [PATCH 5/6] drm/i915/display: add "is" member to struct
- intel_display
-In-Reply-To: <ZnMlKgX7Fd4Edtnf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1718719962.git.jani.nikula@intel.com>
- <450b5883a7783d0967c3da8ce853af0c2da8082f.1718719962.git.jani.nikula@intel.com>
- <ZnMlKgX7Fd4Edtnf@intel.com>
-Date: Thu, 20 Jun 2024 16:05:46 +0300
-Message-ID: <87o77vepcl.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="42131165"
+Received: from dneilan-mobl1.ger.corp.intel.com (HELO [10.245.244.11])
+ ([10.245.244.11])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2024 06:11:45 -0700
+Message-ID: <fcfa6c00b3b29fc169c148f8ffa08640c35b28a5.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: fix error handling in xe_migrate_update_pgtables
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org
+Date: Thu, 20 Jun 2024 15:11:28 +0200
+In-Reply-To: <20240620102025.127699-2-matthew.auld@intel.com>
+References: <20240620102025.127699-2-matthew.auld@intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,109 +71,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 19 Jun 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Tue, Jun 18, 2024 at 05:22:55PM +0300, Jani Nikula wrote:
->> Facilitate using display->is.HASWELL etc. for identifying platforms and
->> subplatforms. Merge platform and subplatform members together.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  .../gpu/drm/i915/display/intel_display_core.h |  3 +++
->>  .../drm/i915/display/intel_display_device.c   | 19 +++++++++++++++++++
->>  2 files changed, 22 insertions(+)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
->> index 7715fc329057..35bea92893af 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
->> @@ -286,6 +286,9 @@ struct intel_display {
->>  	/* drm device backpointer */
->>  	struct drm_device *drm;
->>  
->> +	/* Platform identification */
->> +	struct intel_display_is is;
->> +
->>  	/* Display functions */
->>  	struct {
->>  		/* Top level crtc-ish functions */
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
->> index 0c275d85bd30..954caea38005 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
->> @@ -1269,8 +1269,25 @@ find_subplatform_desc(struct pci_dev *pdev, const struct platform_desc *desc)
->>  	return NULL;
->>  }
->>  
->> +static void mem_or(void *_dst, const void *_src, size_t size)
->> +{
->> +	const u8 *src = _src;
->> +	u8 *dst = _dst;
->> +	size_t i;
->> +
->> +	for (i = 0; i < size; i++)
->> +		dst[i] |= src[i];
->
-> I confess that here I got a bit lost. But I believe it is just a matter of
-> adding a few comments in the code or perhaps adjusting function names...
->
-> If my coffee is working well still, what we are doing here is ensuring that:
->
-> is.HASWELL returns true regardless the subplatform this is coming from...
-> like is.HASWELL_ULT or is.HASWELL_ULX.
->
-> But since you are only doing dst |= src and not doing src |= dst and also
-> not calling this function for different subplatforms, then individually
-> is.HASWELL_ULT is false for ULX platform and vice-versa.
+On Thu, 2024-06-20 at 11:20 +0100, Matthew Auld wrote:
+> Don't call drm_suballoc_free with sa_bo pointing to PTR_ERR.
+>=20
+> References:
+> https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2120
+> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel
+> GPUs")
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: <stable@vger.kernel.org> # v6.8+
 
-The subplatform stuff here only ever applies to one subplatform, not
-multiple. The "ULX is also ULT" is not handled yet, and maybe I'd like
-to handle that in some special way, because I like the simplicity of
-only having one subplatform in effect at a time.
+LGTM.
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
->
-> Perhaps the name 'merge' is not a good one?
->
->> +}
->> +
->> +static void merge_display_is(struct intel_display_is *dst,
->> +			     const struct intel_display_is *src)
->> +{
->> +	mem_or(dst, src, sizeof(*dst));
->
-> and/or perhaps we don't need this extra indirection here?
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_migrate.c | 8 ++++----
+> =C2=A01 file changed, 4 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c
+> b/drivers/gpu/drm/xe/xe_migrate.c
+> index 05f933787860..c9f5673353ee 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> @@ -1358,7 +1358,7 @@ xe_migrate_update_pgtables(struct xe_migrate
+> *m,
+> =C2=A0						 GFP_KERNEL, true,
+> 0);
+> =C2=A0			if (IS_ERR(sa_bo)) {
+> =C2=A0				err =3D PTR_ERR(sa_bo);
+> -				goto err;
+> +				goto err_bb;
+> =C2=A0			}
+> =C2=A0
+> =C2=A0			ppgtt_ofs =3D NUM_KERNEL_PDE +
+> @@ -1406,7 +1406,7 @@ xe_migrate_update_pgtables(struct xe_migrate
+> *m,
+> =C2=A0					 update_idx);
+> =C2=A0	if (IS_ERR(job)) {
+> =C2=A0		err =3D PTR_ERR(job);
+> -		goto err_bb;
+> +		goto err_sa;
+> =C2=A0	}
+> =C2=A0
+> =C2=A0	/* Wait on BO move */
+> @@ -1458,10 +1458,10 @@ xe_migrate_update_pgtables(struct xe_migrate
+> *m,
+> =C2=A0
+> =C2=A0err_job:
+> =C2=A0	xe_sched_job_put(job);
+> +err_sa:
+> +	drm_suballoc_free(sa_bo, NULL);
+> =C2=A0err_bb:
+> =C2=A0	xe_bb_free(bb, NULL);
+> -err:
+> -	drm_suballoc_free(sa_bo, NULL);
+> =C2=A0	return ERR_PTR(err);
+> =C2=A0}
+> =C2=A0
 
-I added the extra indirection only because "mem_or" is something that
-could exist as a generic thing. "just do bitwise OR from src to dst".
-
-BR,
-Jani.
-
->
->> +}
->> +
->>  void intel_display_device_probe(struct drm_i915_private *i915)
->>  {
->> +	struct intel_display *display = &i915->display;
->>  	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
->>  	const struct intel_display_device_info *info;
->>  	struct intel_display_ip_ver ip_ver = {};
->> @@ -1308,11 +1325,13 @@ void intel_display_device_probe(struct drm_i915_private *i915)
->>  
->>  	drm_WARN_ON(&i915->drm, !desc->platform || !desc->name);
->>  	DISPLAY_RUNTIME_INFO(i915)->platform = desc->platform;
->> +	display->is = desc->is;
->>  
->>  	subdesc = find_subplatform_desc(pdev, desc);
->>  	if (subdesc) {
->>  		drm_WARN_ON(&i915->drm, !subdesc->subplatform || !subdesc->name);
->>  		DISPLAY_RUNTIME_INFO(i915)->subplatform = subdesc->subplatform;
->> +		merge_display_is(&display->is, &subdesc->is);
->>  	}
->>  
->>  	if (ip_ver.ver || ip_ver.rel || ip_ver.step)
->> -- 
->> 2.39.2
->> 
-
--- 
-Jani Nikula, Intel
