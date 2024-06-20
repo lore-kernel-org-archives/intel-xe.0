@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F981C27C79
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Jun 2024 16:26:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEC92C27C79
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Jun 2024 16:27:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9E4710EB2C;
-	Thu, 20 Jun 2024 16:26:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 760FD10EB30;
+	Thu, 20 Jun 2024 16:27:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DKF157es";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NXAvT8z7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C223610EB2C
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Jun 2024 16:26:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50C5E10EB30
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Jun 2024 16:27:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718900784; x=1750436784;
+ t=1718900861; x=1750436861;
  h=date:message-id:from:to:cc:subject:in-reply-to:
- references:mime-version;
- bh=wPpTqpyJa8OmSweqISZZPSh3+CFvvW0k4lVvhlovpp4=;
- b=DKF157esOqdyyjULG6FMAEGCL49BfgVc0LE5TUEiUsMkXdzOjmny9zUr
- UJFkmj/K7asaBfcOyQzhhabFVHEMQhvWNHpCd8zMOTaW53PjIOwYzjNgO
- yiQCzLy5BOprtDgZnkcG/2rkrCVTY05SwxauwG5u/i/13iTnoQW/Dupey
- sEgFv2n8oFohQwE1Fs7cBePGKwRuc1Bqmp1pdhsFYjDSGIZ0hRbxGsZ01
- eADmxKfMLTIRDNCJQfXzWjTILDa8JvuNMAEv7ghIB49otyPEJsoPX0DWz
- dpRznJrC+J1N2nIS7+xhidx6jryp009NBQE9BhSk6rZTbVot3hgpJRdUI Q==;
-X-CSE-ConnectionGUID: TH0L9YytSAawLupDPhIC/A==
-X-CSE-MsgGUID: RN46xtIjRrWRwDqwP6rcuA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11109"; a="12166602"
-X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="12166602"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2024 09:26:23 -0700
-X-CSE-ConnectionGUID: dpAlOiL+SGGu4IT67Cg+WQ==
-X-CSE-MsgGUID: b5x4o5FYRN6KMCaxHC38wg==
+ references:mime-version:content-transfer-encoding;
+ bh=Flsj3SBWwr2PE6eJg9WPBhu+DIqR3Xp1I2WGA77hbo0=;
+ b=NXAvT8z7xoZ9D8JugcsPyw6mH++bYDaQGo8zbZWFVUZgxscHQpVbJZvE
+ OYwfVkp0hGZ9C3NzhebrEezK69jT6U3BP3bLdkDGahgXXEokA6dXxOaOS
+ 5quxxpUEeSxfF4S864TFEDceGNwQPubyqytrmDB+UuzeYUSUqe9sKNCIR
+ BByuQssJ+PBPucOPBX47VHh94Gm4uQWe7oZuhDkhdYrBPB3pnNfslc25f
+ KCT4zts+nHURaGJ6A+hCwessuMC0hRtjRUIkrwscMR7wgaHz+NI0NiXH7
+ Dsmg0PO32qIUBjgNTwxU2z4v1M6Bp7Shnr9YL5iMHXjha+1DSfu7w0rPj Q==;
+X-CSE-ConnectionGUID: usLOSlN7Q++MZW6ej6q0Dw==
+X-CSE-MsgGUID: DnCbDOb4TNeooYuKMlWQDA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11109"; a="26529293"
+X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="26529293"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2024 09:27:40 -0700
+X-CSE-ConnectionGUID: Ca3Yms5pS/2FdpTixMxhYw==
+X-CSE-MsgGUID: n4FbAVXnTvGsqCP8biyt1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="42202661"
+X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="42404116"
 Received: from vishrutm-mobl11.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.125.97.201])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2024 09:26:22 -0700
-Date: Thu, 20 Jun 2024 09:16:03 -0700
-Message-ID: <87r0crr3ng.wl-ashutosh.dixit@intel.com>
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2024 09:27:40 -0700
+Date: Thu, 20 Jun 2024 09:16:42 -0700
+Message-ID: <87plsbr3md.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: <intel-xe@lists.freedesktop.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Subject: Re: [PATCH] drm/xe/oa: Fix potential NPD when OA is not initialized
-In-Reply-To: <878qz0zm1l.wl-ashutosh.dixit@intel.com>
-References: <20240619175427.861-1-michal.wajdeczko@intel.com>
- <878qz0zm1l.wl-ashutosh.dixit@intel.com>
+To: =?ISO-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/xe/oa: Call xe_oa_emit_oa_config() with new config
+ when updating config
+In-Reply-To: <857cekr2t3.wl-ashutosh.dixit@intel.com>
+References: <20240619192854.199289-1-jose.souza@intel.com>
+ <857cekr2t3.wl-ashutosh.dixit@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/29.3 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,16 +72,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 19 Jun 2024 13:59:18 -0700, Dixit, Ashutosh wrote:
+On Wed, 19 Jun 2024 15:22:00 -0700, Dixit, Ashutosh wrote:
 >
-> On Wed, 19 Jun 2024 10:54:27 -0700, Michal Wajdeczko wrote:
+> On Wed, 19 Jun 2024 12:28:54 -0700, Jos=E9 Roberto de Souza wrote:
 > >
-> > If oa->xe can be NULL then we shall not use it as a valid pointer.
 >
-> Hi Michal, thanks for catching this:
+> Hi Jose,
+>
+> > When UMD ask config to be updated, xe_oa_config_locked() was calling
+> > xe_oa_emit_oa_config() that would use stream->oa_config but that is
+> > only changed to the next oa_config after xe_oa_emit_oa_config() finish.
+> > So it was setting the same config for all DRM_XE_PERF_IOCTL_CONFIG
+> > calls.
+> >
+> > Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_oa.c | 11 +++++------
+> >  1 file changed, 5 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> > index 34206e0b6a08e..a2da54d49f1ce 100644
+> > --- a/drivers/gpu/drm/xe/xe_oa.c
+> > +++ b/drivers/gpu/drm/xe/xe_oa.c
+> > @@ -887,9 +887,8 @@ __xe_oa_alloc_config_buffer(struct xe_oa_stream *st=
+ream, struct xe_oa_config *oa
+> >	return ERR_CAST(bb);
+> >  }
+> >
+> > -static struct xe_oa_config_bo *xe_oa_alloc_config_buffer(struct xe_oa_=
+stream *stream)
+> > +static struct xe_oa_config_bo *xe_oa_alloc_config_buffer(struct xe_oa_=
+stream *stream, struct xe_oa_config *oa_config)
+>
+> Nice catch and thanks for the patch.
+>
+> Just fix the reported checkpatch warning here ("line length of 117 exceeds
+> 100 columns"). With that this is:
 >
 > Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+>
+> I think no need for "Fixes" tag(s) because this will get into the same
+> kernel version. Thanks.
 
-Hi Michal, once again thanks for the patch. Merged now to drm-xe-next.
+I fixed up the checkpatch warning and merged the patch to drm-xe-next.
+
+Thanks once again.
 --
 Ashutosh
