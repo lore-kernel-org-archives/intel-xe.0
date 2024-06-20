@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BED42C2BBCA
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Jun 2024 21:21:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0FC2C2BA18
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Jun 2024 21:21:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7085410E157;
-	Thu, 20 Jun 2024 21:21:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B91810E181;
+	Thu, 20 Jun 2024 21:21:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="anpUxpb2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iDIMq+rh";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 924C810E0C9
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Jun 2024 21:21:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC14710E181
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Jun 2024 21:21:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718918471; x=1750454471;
+ t=1718918480; x=1750454480;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5bN6GDW+jIUWREsZGg3CxhpxdC0DWE0q3FMsuWgUuHk=;
- b=anpUxpb2tMBCo1I9SOjPV4HzQfdomySAVeYSzToPYsggO+cpHI99Nk9t
- O1JyFpPpI5JXEJ73o1n8QXI8FaL8xq4k0ulpERuxtwhR3VBsVvnLIdQHT
- KwFMbowYDcbMx4HbHf1RDGyjfaDYaJLG3gh2U8ba+2bHFT8zHVwdRKvIE
- Xb8DmcSi9rvqzItlyomKoAGx6nA51KT/sjs4T605Gv1OUdQGrNn1h/dmg
- tm53nLmR6EH0AAJqlj1bxrO7iZP/H1Vu4yaAgWDi+YoAW00gPP/CpL+HW
- HnmPDiXRZLp00J/YQpYvL3g4H8gG4/la6eiGyHKNaj+z4rfOPTyQvXrbE A==;
-X-CSE-ConnectionGUID: CRZ1lZy3Q2SBlvs9PmMijw==
-X-CSE-MsgGUID: b01VtwNZRUmuRvDj2KL0lg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11109"; a="19811215"
-X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="19811215"
+ bh=2/V0+eg6RbZGazyrpMTfIkCUbzLzr9C9iNcfwfdec7o=;
+ b=iDIMq+rhR9TDAj0BQC0nNDKPoaxUYXyOA+waF9xkS9y2BJezDp4ZSprn
+ b+3Z/y38XJ78jObMs0ZeFA9rNIyP3RebNqJzl/MeQm6Sr3CKL3uSGJTIJ
+ gObIN3p0jgRxhW0wWmPQbO8tgAw0fO2bAy6XqPFXuJQe/UNl5czffaM5K
+ PThhY3xXAnl3U0FlOrQ4fociuQGYpmQCTl4+593LO/IEnnxrW0uT9VKV7
+ VD4qjNJeFQO1am3JT0nL1WJlnEGWO7bmXrd+Xu5PVvfXWOA8pSZPNvosE
+ zh9tKdCniTtFzMNORxJQWoBqgA4jIetjWa4/cVBXTldw+Qkr7ZZHBKpCX A==;
+X-CSE-ConnectionGUID: 5pthCQMnRe227Yi0Vj6+uw==
+X-CSE-MsgGUID: 60ECL/nKQSKLVx8lbfoSsw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11109"; a="19811235"
+X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="19811235"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2024 14:21:11 -0700
-X-CSE-ConnectionGUID: yl3bNE3NQ6mnKMukQw7fAw==
-X-CSE-MsgGUID: YinZY4reRmKC25Wi9uxW3w==
+ 20 Jun 2024 14:21:20 -0700
+X-CSE-ConnectionGUID: i1QSU+2ETO+j/uHyfOB+CA==
+X-CSE-MsgGUID: JtOIJARjQAW82pRsEYgiKg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="79883662"
+X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="79883697"
 Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2024 14:21:10 -0700
+ 20 Jun 2024 14:21:19 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
  david.e.box@linux.intel.com, pavel.e.popov@intel.com
 Cc: michael.j.ruhl@intel.com
-Subject: [PATCH v2 1/6] platform/x86/intel/vsec.h: Move to include/linux
-Date: Thu, 20 Jun 2024 17:20:45 -0400
-Message-ID: <20240620212055.3314064-2-michael.j.ruhl@intel.com>
+Subject: [PATCH v2 6/6] drm/xe/vsec: Add support for DG2
+Date: Thu, 20 Jun 2024 17:20:50 -0400
+Message-ID: <20240620212055.3314064-7-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240620212055.3314064-1-michael.j.ruhl@intel.com>
 References: <20240620212055.3314064-1-michael.j.ruhl@intel.com>
@@ -67,234 +67,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: "David E. Box" <david.e.box@linux.intel.com>
+DG2 needs to adjust the discovery offset WRT the GT BAR not the
+P2SB bar so add the base_adjust value to allow for the difference
+to be used.
 
-Some drivers outside of PDX86 need access to the vsec header. Move it to
-include/linux to make it easier to include.
+Update xe_vsec.c to include DG2 header information.
 
-Signed-off-by: David E. Box <david.e.box@linux.intel.com>
+Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- MAINTAINERS                                           |  1 +
- drivers/platform/x86/intel/pmc/core_ssram.c           |  2 +-
- drivers/platform/x86/intel/pmt/class.c                |  2 +-
- drivers/platform/x86/intel/pmt/class.h                |  2 +-
- drivers/platform/x86/intel/pmt/crashlog.c             |  2 +-
- drivers/platform/x86/intel/pmt/telemetry.c            |  2 +-
- drivers/platform/x86/intel/sdsi.c                     |  3 +--
- drivers/platform/x86/intel/tpmi.c                     |  3 +--
- drivers/platform/x86/intel/vsec.c                     |  7 +++----
- .../x86/intel/vsec.h => include/linux/intel_vsec.h    | 11 +++++++++--
- 10 files changed, 20 insertions(+), 15 deletions(-)
- rename drivers/platform/x86/intel/vsec.h => include/linux/intel_vsec.h (92%)
+ drivers/gpu/drm/xe/xe_vsec.c | 81 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 81 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d0738dd0a625..693bb4ac14a8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11413,6 +11413,7 @@ INTEL VENDOR SPECIFIC EXTENDED CAPABILITIES DRIVER
- M:	David E. Box <david.e.box@linux.intel.com>
- S:	Supported
- F:	drivers/platform/x86/intel/vsec.*
-+F:	include/linux/intel_vsec.h
+diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+index a8afef731379..a0a154657816 100644
+--- a/drivers/gpu/drm/xe/xe_vsec.c
++++ b/drivers/gpu/drm/xe/xe_vsec.c
+@@ -15,6 +15,16 @@
  
- INTEL VIRTUAL BUTTON DRIVER
- M:	AceLan Kao <acelan.kao@canonical.com>
-diff --git a/drivers/platform/x86/intel/pmc/core_ssram.c b/drivers/platform/x86/intel/pmc/core_ssram.c
-index 1bde86c54eb9..baddaaec25ee 100644
---- a/drivers/platform/x86/intel/pmc/core_ssram.c
-+++ b/drivers/platform/x86/intel/pmc/core_ssram.c
-@@ -9,11 +9,11 @@
-  */
+ #define SOC_BASE		0x280000
  
- #include <linux/cleanup.h>
-+#include <linux/intel_vsec.h>
- #include <linux/pci.h>
- #include <linux/io-64-nonatomic-lo-hi.h>
++/* from drivers/platform/x86/intel/pmt/telemetry.c */
++#define TELEM_BASE_OFFSET	0x8
++
++#define DG2_PMT_BASE		0xE8000
++#define DG2_DISCOVERY_START	0x6000
++#define DG2_TELEM_START		0x4000
++
++#define DG2_DISCOVERY_OFFSET	(SOC_BASE + DG2_PMT_BASE + DG2_DISCOVERY_START)
++#define DG2_TELEM_OFFSET	(SOC_BASE + DG2_PMT_BASE + DG2_TELEM_START)
++
+ #define BMG_PMT_BASE		0xDB000
+ #define BMG_DISCOVERY_OFFSET	(SOC_BASE + BMG_PMT_BASE)
  
- #include "core.h"
--#include "../vsec.h"
- #include "../pmt/telemetry.h"
+@@ -27,6 +37,20 @@
+ #define SG_REMAP_ACCESS(_mem)	((_mem) << 24)
+ #define SG_REMAP_BITS		GENMASK(31, 24)
  
- #define SSRAM_HDR_SIZE		0x100
-diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/intel/pmt/class.c
-index 4b53940a64e2..d7939b28e937 100644
---- a/drivers/platform/x86/intel/pmt/class.c
-+++ b/drivers/platform/x86/intel/pmt/class.c
-@@ -9,12 +9,12 @@
-  */
++static struct intel_vsec_header dg2_telemetry = {
++	.length = 0x10,
++	.id = VSEC_ID_TELEMETRY,
++	.num_entries = 1,
++	.entry_size = 3,
++	.tbir = GFX_BAR,
++	.offset = DG2_DISCOVERY_OFFSET,
++};
++
++static struct intel_vsec_header *dg2_capabilities[] = {
++	&dg2_telemetry,
++	NULL
++};
++
+ static struct intel_vsec_header bmg_telemetry = {
+ 	.length = 0x10,
+ 	.id = VSEC_ID_TELEMETRY,
+@@ -43,10 +67,16 @@ static struct intel_vsec_header *bmg_capabilities[] = {
  
- #include <linux/kernel.h>
-+#include <linux/intel_vsec.h>
- #include <linux/io-64-nonatomic-lo-hi.h>
- #include <linux/module.h>
- #include <linux/mm.h>
- #include <linux/pci.h>
+ enum xe_vsec {
+ 	XE_VSEC_UNKNOWN = 0,
++	XE_VSEC_DG2,
+ 	XE_VSEC_BMG,
+ };
  
--#include "../vsec.h"
- #include "class.h"
+ static struct intel_vsec_platform_info xe_vsec_info[] = {
++	[XE_VSEC_DG2] = {
++		.caps = VSEC_CAP_TELEMETRY,
++		.headers = dg2_capabilities,
++		.quirks = VSEC_QUIRK_EARLY_HW,
++	},
+ 	[XE_VSEC_BMG] = {
+ 		.caps = VSEC_CAP_TELEMETRY,
+ 		.headers = bmg_capabilities,
+@@ -166,6 +196,7 @@ struct pmt_callbacks xe_pmt_cb = {
+ };
  
- #define PMT_XA_START		1
-diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/intel/pmt/class.h
-index d23c63b73ab7..d6f9ccaf28c8 100644
---- a/drivers/platform/x86/intel/pmt/class.h
-+++ b/drivers/platform/x86/intel/pmt/class.h
-@@ -2,13 +2,13 @@
- #ifndef _INTEL_PMT_CLASS_H
- #define _INTEL_PMT_CLASS_H
+ static const int vsec_platforms[] = {
++	[XE_DG2] = XE_VSEC_DG2,
+ 	[XE_BATTLEMAGE] = XE_VSEC_BMG,
+ };
  
-+#include <linux/intel_vsec.h>
- #include <linux/xarray.h>
- #include <linux/types.h>
- #include <linux/bits.h>
- #include <linux/err.h>
- #include <linux/io.h>
- 
--#include "../vsec.h"
- #include "telemetry.h"
- 
- /* PMT access types */
-diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x86/intel/pmt/crashlog.c
-index 4014c02cafdb..9079d5dffc03 100644
---- a/drivers/platform/x86/intel/pmt/crashlog.c
-+++ b/drivers/platform/x86/intel/pmt/crashlog.c
-@@ -9,6 +9,7 @@
-  */
- 
- #include <linux/auxiliary_bus.h>
-+#include <linux/intel_vsec.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/pci.h>
-@@ -16,7 +17,6 @@
- #include <linux/uaccess.h>
- #include <linux/overflow.h>
- 
--#include "../vsec.h"
- #include "class.h"
- 
- /* Crashlog discovery header types */
-diff --git a/drivers/platform/x86/intel/pmt/telemetry.c b/drivers/platform/x86/intel/pmt/telemetry.c
-index 09258564dfc4..3478f891ea0b 100644
---- a/drivers/platform/x86/intel/pmt/telemetry.c
-+++ b/drivers/platform/x86/intel/pmt/telemetry.c
-@@ -9,6 +9,7 @@
-  */
- 
- #include <linux/auxiliary_bus.h>
-+#include <linux/intel_vsec.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/pci.h>
-@@ -16,7 +17,6 @@
- #include <linux/uaccess.h>
- #include <linux/overflow.h>
- 
--#include "../vsec.h"
- #include "class.h"
- 
- #define TELEM_SIZE_OFFSET	0x0
-diff --git a/drivers/platform/x86/intel/sdsi.c b/drivers/platform/x86/intel/sdsi.c
-index 277e4f4b20ac..9d137621f0e6 100644
---- a/drivers/platform/x86/intel/sdsi.c
-+++ b/drivers/platform/x86/intel/sdsi.c
-@@ -12,6 +12,7 @@
- #include <linux/bits.h>
- #include <linux/bitfield.h>
- #include <linux/device.h>
-+#include <linux/intel_vsec.h>
- #include <linux/iopoll.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-@@ -22,8 +23,6 @@
- #include <linux/types.h>
- #include <linux/uaccess.h>
- 
--#include "vsec.h"
--
- #define ACCESS_TYPE_BARID		2
- #define ACCESS_TYPE_LOCAL		3
- 
-diff --git a/drivers/platform/x86/intel/tpmi.c b/drivers/platform/x86/intel/tpmi.c
-index 6c0cbccd80bb..b9fa1cbfdcf7 100644
---- a/drivers/platform/x86/intel/tpmi.c
-+++ b/drivers/platform/x86/intel/tpmi.c
-@@ -51,6 +51,7 @@
- #include <linux/debugfs.h>
- #include <linux/delay.h>
- #include <linux/intel_tpmi.h>
-+#include <linux/intel_vsec.h>
- #include <linux/io.h>
- #include <linux/iopoll.h>
- #include <linux/module.h>
-@@ -59,8 +60,6 @@
- #include <linux/sizes.h>
- #include <linux/string_helpers.h>
- 
--#include "vsec.h"
--
- /**
-  * struct intel_tpmi_pfs_entry - TPMI PM Feature Structure (PFS) entry
-  * @tpmi_id:	TPMI feature identifier (what the feature is and its data format).
-diff --git a/drivers/platform/x86/intel/vsec.c b/drivers/platform/x86/intel/vsec.c
-index 0fdfaf3a4f5c..2b46807f868b 100644
---- a/drivers/platform/x86/intel/vsec.c
-+++ b/drivers/platform/x86/intel/vsec.c
-@@ -17,14 +17,13 @@
- #include <linux/bits.h>
- #include <linux/cleanup.h>
- #include <linux/delay.h>
--#include <linux/kernel.h>
- #include <linux/idr.h>
-+#include <linux/intel_vsec.h>
-+#include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/pci.h>
- #include <linux/types.h>
- 
--#include "vsec.h"
--
- #define PMT_XA_START			0
- #define PMT_XA_MAX			INT_MAX
- #define PMT_XA_LIMIT			XA_LIMIT(PMT_XA_START, PMT_XA_MAX)
-@@ -341,7 +340,7 @@ static bool intel_vsec_walk_vsec(struct pci_dev *pdev,
- void intel_vsec_register(struct pci_dev *pdev,
- 			 struct intel_vsec_platform_info *info)
- {
--	if (!pdev || !info)
-+	if (!pdev || !info || !info->headers)
- 		return;
- 
- 	intel_vsec_walk_header(pdev, info);
-diff --git a/drivers/platform/x86/intel/vsec.h b/include/linux/intel_vsec.h
-similarity index 92%
-rename from drivers/platform/x86/intel/vsec.h
-rename to include/linux/intel_vsec.h
-index e23e76129691..ff7998cadab4 100644
---- a/drivers/platform/x86/intel/vsec.h
-+++ b/include/linux/intel_vsec.h
-@@ -1,6 +1,6 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--#ifndef _VSEC_H
--#define _VSEC_H
-+#ifndef _INTEL_VSEC_H
-+#define _INTEL_VSEC_H
- 
- #include <linux/auxiliary_bus.h>
- #include <linux/bits.h>
-@@ -103,6 +103,13 @@ static inline struct intel_vsec_device *auxdev_to_ivdev(struct auxiliary_device
- 	return container_of(auxdev, struct intel_vsec_device, auxdev);
+@@ -177,6 +208,49 @@ static enum xe_vsec get_platform_info(struct xe_device *xe)
+ 	return vsec_platforms[xe->info.platform];
  }
  
-+#if IS_ENABLED(CONFIG_INTEL_VSEC)
- void intel_vsec_register(struct pci_dev *pdev,
- 			 struct intel_vsec_platform_info *info);
-+#else
-+static inline void intel_vsec_register(struct pci_dev *pdev,
-+				       struct intel_vsec_platform_info *info)
++/*
++ * Access the DG2 PMT MMIO discovery table
++ *
++ * The intel_vsec driver does not typically access the discovery table.
++ * Instead, it creates a memory resource for the table and passes it
++ * to the PMT telemetry driver. Each discovery table contains 3 items,
++ *    - GUID
++ *    - Telemetry size
++ *    - Telemetry offset (offset from P2SB BAR, not GT)
++ *
++ * For DG2 we know what the telemetry offset is, but we still need to
++ * use the discovery table to pass the GUID and the size. So figure
++ * out the difference between the P2SB offset and the GT offset and
++ * save this so that the telemetry driver can use it to adjust the
++ * value.
++ */
++static int dg2_adjust_offset(struct pci_dev *pdev, struct device *dev,
++			     struct intel_vsec_platform_info *info)
 +{
++	void __iomem *base;
++	u32 telem_offset;
++	u64 addr;
++
++	/* compile check to verify that quirk has P2SB quirk added */
++
++	addr = pci_resource_start(pdev, GFX_BAR) + info->headers[0]->offset;
++	base = ioremap_wc(addr, 16);
++	if (!base)
++		return -ENOMEM;
++
++	telem_offset = readl(base + TELEM_BASE_OFFSET);
++
++	/* Use the base_addr + P2SB quirk to pass this info */
++	if (telem_offset < DG2_TELEM_OFFSET)
++		info->base_adjust = -(DG2_TELEM_OFFSET - telem_offset);
++	else
++		info->base_adjust = -(telem_offset - DG2_TELEM_OFFSET);
++
++	iounmap(base);
++
++	return 0;
 +}
-+#endif
- #endif
++
+ /**
+  * intel_vsec_init - Initialize resources and add intel_vsec auxiliary
+  * interface
+@@ -188,6 +262,7 @@ void xe_vsec_init(struct xe_device *xe)
+ 	struct device *dev = xe->drm.dev;
+ 	struct pci_dev *pdev = to_pci_dev(dev);
+ 	enum xe_vsec platform;
++	u32 ret;
+ 
+ 	platform = get_platform_info(xe);
+ 	if (platform == XE_VSEC_UNKNOWN)
+@@ -198,6 +273,12 @@ void xe_vsec_init(struct xe_device *xe)
+ 		return;
+ 
+ 	switch (platform) {
++	case XE_VSEC_DG2:
++		ret = dg2_adjust_offset(pdev, dev, info);
++		if (ret)
++			return;
++		break;
++
+ 	case XE_VSEC_BMG:
+ 		info->priv_data = &xe_pmt_cb;
+ 		break;
 -- 
 2.44.0
 
