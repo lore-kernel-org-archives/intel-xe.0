@@ -4,60 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AE15C2BA18
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Jun 2024 14:02:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5CABC41513
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Jun 2024 14:08:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D38EB10EA23;
-	Thu, 20 Jun 2024 14:02:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 421D110EA34;
+	Thu, 20 Jun 2024 14:08:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cpQ2P2yF";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="PmqVKhbO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFC2C10EA20;
- Thu, 20 Jun 2024 14:02:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718892147; x=1750428147;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=RECAOwZvp26Q5+EcRdFgMEkn5ErPxWipANBuyZMHtcg=;
- b=cpQ2P2yFFopAxewVze/hynYB7XbDZ6rtFhzcObLSp1axU3SwTb0q14nj
- jBqQBPO5C8zZENO85zWv4Ppitv2bsquhtBDkQsS45psusKo61ZZ15bNir
- ZugFgMFu2yGhFygfXZewFxunOyWimeeblSjcK++GhE8wTQzsR5eDWmDNq
- KAUZHB5T8NLw7qDfOGvvvy/shGUmJkDBHVNs0HZpIDt0OlwWdFzpjPcdI
- unF+X7kuaia3nEWrJsvss5y3LH3u8ZKNenkrPfN6Ncv3p0NGklRjEuB/R
- 7NkaebG9uFyFL2nuuAPkzy9UHgoqtmO3VK29DmEBIkJELVJPiERTbx54l w==;
-X-CSE-ConnectionGUID: iiBAMUXbQliwWRUwGlIHzA==
-X-CSE-MsgGUID: IPBITd5UQ/iFNfGf1PgT7g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11108"; a="16010296"
-X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="16010296"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2024 07:02:05 -0700
-X-CSE-ConnectionGUID: qDtKSG4OSpagiptM5IZlLQ==
-X-CSE-MsgGUID: HrNmmLPUTY2R5mpXX4Hjqw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,252,1712646000"; d="scan'208";a="42147667"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2024 07:02:03 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>,
- Christian Koenig <christian.koenig@amd.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2052.outbound.protection.outlook.com [40.107.95.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8256610EA32;
+ Thu, 20 Jun 2024 14:08:32 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LKJBP43R4G/ZYZ/8bExgoCD4eVUuEu7t+ZSowSocc9ImF/VpO12uHAODFnPXdhUvHwjPTQJz5bf52nm2KYMGP54sKta4JRW5ne4iHvxOKT2MdQn2re3mz1F4b/guHtwy7meUVVQ2JUJ6WRdAoaTtSY2qsPgRwNi1ZBr3K9/U64OO5C9relZonP4M/H0YMnaTer1b+4B0kYZrbJFiOIV7LVoGNVwXnHF6eImwVqW+2EqgU8k3UcwfYiyXjl7hm8pG0PYKgChwxFGCdNge9BAM9YcE/ljuT6vdy1aF43as3fADOgyMJ3PuW7FRh8wOOWvHLg+Efrp//DaJ//prfXd1Hw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=S+REmhGLUMCos0PWLf9jbHsuhecNTPaW+21p4QI+Qo8=;
+ b=lIYGM67wStGEpgHezcw7Yc8aa0AL6sfNyYjn4+1fy5SrtaJ2BioeNFVUhZgq8FecGA3NPCPNW8UzMVSDlzEkCu6cGQuOPwKedvPh/pI7kb+pY77fgJ/phLjjCBY95VfeBxNhwRFH402E9q1rfDF7FU8Wk3hcvisKqS/MHt5Bb8fPh8xI/Ld1IQdo6oNEt9WaYULhB2O38cnCPei5G9QAsLkw9bEAeNADgYZ38BgmHQMhSKjFWUhRCBPwMVhrv92F8JbfFT0QLwlhwgRioyLEN/IEUAzX3DeEeF6g2UlcIeHW6JhgY27xhQzGMcyreWOdbUEjNWq1tu32GIPId4MPZQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=S+REmhGLUMCos0PWLf9jbHsuhecNTPaW+21p4QI+Qo8=;
+ b=PmqVKhbOVM8itouc0gyop98jt0i69QTeUSjhA5wHKdKlFcASBoLNU8kj295ziL38ixbl1tiXrSMWkMK9liDe5Dly1vwFfAWLOSxHgiMihwPGoSMQx3fkuf8zjBc+TX84rDcJgjbVghkOzyN7c8K5WhPjn/b1rSK1uhBHN92HveQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by CH2PR12MB4040.namprd12.prod.outlook.com (2603:10b6:610:ac::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.30; Thu, 20 Jun
+ 2024 14:08:29 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.7698.017; Thu, 20 Jun 2024
+ 14:08:29 +0000
+Message-ID: <71e4aed6-d9d3-41cd-b043-277e9573cb3f@amd.com>
+Date: Thu, 20 Jun 2024 16:08:24 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 1/2] drm/ttm/pool: Introduce a way to skip clear on
+ free
+To: Nirmoy Das <nirmoy.das@intel.com>, dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH] drm/xe/lnl: Offload system clear page activity to GPU
-Date: Thu, 20 Jun 2024 15:46:52 +0200
-Message-ID: <20240620134656.14380-3-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20240620134656.14380-1-nirmoy.das@intel.com>
 References: <20240620134656.14380-1-nirmoy.das@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
+ <20240620134656.14380-2-nirmoy.das@intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20240620134656.14380-2-nirmoy.das@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR0P281CA0255.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:af::18) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CH2PR12MB4040:EE_
+X-MS-Office365-Filtering-Correlation-Id: f664ccc5-66ea-465b-6e52-08dc9132760e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230037|376011|1800799021|366013;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UWxXS0xtVlFpR29Cb1dib3F4RmFzOERnbEFMR21mc3B6TnZPd2Y3dnJaUmFQ?=
+ =?utf-8?B?TElsUUsxOURhb3U0V2NFVGlFYmhJU00wYWJpWUhvNUZjbTBsbDhUQ3lVdkV5?=
+ =?utf-8?B?aEtSV3lkRVcxa3pCc2NkaU91cHhreXhnUmhteklYS3YyYVNXcGF5TG9BYlB4?=
+ =?utf-8?B?VU5TSWVGMENTMXo1WEUvVjJZR3IyczhLTzdRdHltOWpFU3krbFVqbnBYNVY3?=
+ =?utf-8?B?eHZuN0lWNlErU1NEaFNuMDNKNWl3QmZOME9TamRXZitxNkttL0ZMNjlnbzgv?=
+ =?utf-8?B?MTE1dVBlUnZmVkNaUkd1VGZJVEIvS09uU2NvbHpRZ3lvWDg0dE9oME5MUmZM?=
+ =?utf-8?B?K2JkRWREeUREM25uaU9DTEVCOXkvYW9qejBXdUFvdFNXRDhqczRqWGlDSVNP?=
+ =?utf-8?B?RmFRRzFrY3NZekdjWk1TaldCVTdiUTFYaUZ5bm9CUnJ0UGFvV1BSK2lWN1k4?=
+ =?utf-8?B?UTRreG14RjVxMEYrZG9FOW1YUHVRL29vY2pNZnQ2WnN1cUo2R01Ob2JpdnhV?=
+ =?utf-8?B?TTU0NVB5akRGN1FublowTTFXL3QvdERrRlp0TjI2VUtxTjE1ZktCb3ZrQXZj?=
+ =?utf-8?B?V3RCU0hLTDBBd3VKVG1yOEw3N3BrWHlrUWlsSmprYlJTWkN0R3pYWndRMzJ0?=
+ =?utf-8?B?WkxzMGxBTml1eEkxZ0dxbC9SL3ovVlMxbzcxd3QwMWhOQVNHcnZvWEpXYXRL?=
+ =?utf-8?B?K2RXK1hyanVQRHRUWjkwRnJwdjBvcEFtbFV5WCtOR0VGQ2ZvaHNKcEV6RmQ2?=
+ =?utf-8?B?UTFYdmJFTXF4ZFNEVXFyZ0R1K1dHaXdHZEZCQVlMY0pFemI0bzM1aHRsTFFI?=
+ =?utf-8?B?eUREL0VuWndQQktiUGZTNlpvQlBOMTJSYmJ3bzVXalora2RmOElYRkh0MWZT?=
+ =?utf-8?B?a3BFOGQ5elR0QzNmd2xwLzV5NEVsQ3Fmd3dpMXh6NEpxczVnQ2JwVFZQb3lk?=
+ =?utf-8?B?czU3bkV1OExpcGptc3MzdFR6Z0RNQXR5M0xCd3BEeVNXdzJsUTRqVlhkLzFB?=
+ =?utf-8?B?bGorM1JTc0lSR3lwUitJaWFoMVRXYW1DQVIwYmZLUlRGMUFZRFVvUWlxMGpv?=
+ =?utf-8?B?bVp1ZnUzbGY0d2VPOFNaRzd6YkUwb1ROTjZxcWg1Q3pHM3h6MVJUWmNNSjNs?=
+ =?utf-8?B?eTQ0ZTh3MVg3VWlYWXU3blVMVzlzeVJGbExmWkc5SEVYQ0ZZMlR3TndHMjJQ?=
+ =?utf-8?B?L2djQTY0NWE2eFpaVWJQS0w1UlRhbmxSVXBYSFdGMElXcGJUYWhVT1NMR2F5?=
+ =?utf-8?B?QXJQSmoxOEk4dDRubDdpSEpId2wra0JLeExWZWtrS1Jkc3FuNitZaWt5SjdO?=
+ =?utf-8?B?ZTdySHdBcnNPT1NSbDYyZEZMMVhyeTBoUGVHbC9kSHhzRHJPdDdRUVNLYitq?=
+ =?utf-8?B?STdmRGd2bDNqK2czMGZ1UFVVTk5pYjFLbi9NLzNqZ3JFMlY2OGFBemZuU2Fl?=
+ =?utf-8?B?RlJJZ2F1bTFDYitqWHl5NGdzMmZEbVZKN3NQcnJtTFVYQy94Y0x5SmlGUnBj?=
+ =?utf-8?B?Q3h6dUllL2xsalF5T09TeVhFd2pEdmw3RUV3S0kyZy96ekVCVE5sQkNUa3Vk?=
+ =?utf-8?B?R0FBUk5HbC9qbk1zQlpEN1ZCSHAwRkZ4VGgwcGc4KzBQcTkyRVBIc09nU2Jq?=
+ =?utf-8?B?UGVrSmgwUUdkOE1mSU5BaTJOdzM0bzRaeGc1N0Z5QjRBSTR1d1VTWnVpSlZQ?=
+ =?utf-8?B?NklGYjl3SzVwUENGMXRidDJlemcraGJoSkdQMDdHQTFtMWZmcjRYbExWOWFz?=
+ =?utf-8?Q?wH3qwVJlJOJ4WD+WnbT5D3nRc/jlxY6FUJYcn+V?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230037)(376011)(1800799021)(366013); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NHNhSWlCSnVJNmtIZGRaUlFVQXlYUlBCTDN5NGo3aVRKcmgvaFEzaG1CUExj?=
+ =?utf-8?B?azg3dlNXTzh6elp4QkE5djBQdnhQNUt4MU0vdThTRGxmQ1h1bnRGL3ozU0p2?=
+ =?utf-8?B?SDVzV3Z0OUlCTWxDQWFNNVcwQnlEbmFQT0l3VWZiTHlFdEF2NjJ5cFpGT01T?=
+ =?utf-8?B?dHR2aGNmWlo4NzQ5dnJkOFBPd2RQUmRIUWJwQzJkalRxVHVrZlU2TEdFQUN6?=
+ =?utf-8?B?SjcvR3NOR1NVWmpRYkZzQ3Bxb2EwQTlLdXhXK2MrcVk4NFdUa2RFTnRjOHdh?=
+ =?utf-8?B?amxvSlpwbE9XblJLR1BMNzNNMm8raThaUGpXZGxtc1RCaGtUUGQ2dVRaTW9h?=
+ =?utf-8?B?Y09aNklVRXQ3U0VBVjV0YXBLa1pLUTlXdjh2bkROUGw5cUhqazVxYnMvVHRX?=
+ =?utf-8?B?dXR5OFh3eG0xblJPWFZLZGZuVkJkTXltaHI5YTdZTFVTVmU1RTA4SUhoQm43?=
+ =?utf-8?B?Ym1wdnVmWGhMQ3hEL1dRcU0zS013amdrenJoMjVqY2xsTVlIRFVidmljVWlj?=
+ =?utf-8?B?L1dZRFgxTDU2NWhRRGFMdHFSLzBNMHkrVGxtUXNzQWVqZUZvT24zN3YrampD?=
+ =?utf-8?B?dmg5UzI3QlJYMzE0YjI4Qk1ENGxVSytzM1grdkwzZjM0Z3pKYVpPV0pERzZr?=
+ =?utf-8?B?Wkd3ZWQ2OTQzVUlNSjdpWVNTQXZYWDZHcTl1MW8raWduYThMenhaSUMrV2ZM?=
+ =?utf-8?B?OEk0M3hWbzZSajYrSCtxM2QrV3k5NEZyU3JFWFZ6eDJ2QlVkdEJKekZNVmto?=
+ =?utf-8?B?TFl0dkxVZ0lxbG1tK1MwcUhaR1JrRndCTmVway94alA1WnJoQk9QK0phalU3?=
+ =?utf-8?B?WWZac01PcTBIdldMVitTazgyeWQrSWovaTVEM214aWQyVTNrdHV2ejhQSVVM?=
+ =?utf-8?B?L0N4elNSb01Ec3hwU1MxVSsycmR4c2hvYlM3WHlVQnYwaU40NmhUdTQ5Z3Jn?=
+ =?utf-8?B?TEJ1S1B5T0VaNVhpUmMvNGR1MVhablhrSEZaa0lyYmoxb09IdmovUWZXNGVk?=
+ =?utf-8?B?Q0ZnTHNqaEo5b1E0REJJdzBXRmhFRXF5TCtSL3Z4Z1M4aEwrMXlISHNOMWJZ?=
+ =?utf-8?B?c09GcGZKMEpQeEd0cHFDa0p3d1BlaVhkNC9YRGphVnkxVktaMjA2SWJQSzBO?=
+ =?utf-8?B?UjRIWWRKcGphQmVKMkRPdmV3YUpVc2tCMmtqOFIzckszSENpaUJQYm5oWU5r?=
+ =?utf-8?B?cHo2Wk16U0hic2tGVlBWUWhxck5yQkM4Ull5VWtiZnhjYVZYWTQ5V0dBUEJU?=
+ =?utf-8?B?allzRGFCaEhDeHVnU2VoanJraHJVVVBwbXhsclpBVUJ4ekJkaW5xeXU2eHB2?=
+ =?utf-8?B?eHYxeXpnZnVnSFBXOUVncWVYbEhkRjMxdWZPUjIxM2VKeHFSTm1vSjMrcWVD?=
+ =?utf-8?B?R0ZieTVsYWVORFY1R3dRMTlyMlo4RWZOODFjUy8rc2pGeS9rK3ZFQTQzR3Rk?=
+ =?utf-8?B?OGh2NWg1UWF6cENNcklYbHZ3RGE0YnYxSEwrUHlUbXltOG1pUms0WVc0dXA1?=
+ =?utf-8?B?Lyt4a3dTNmVhMWhQQjFOa29hOWI1YzZYMUNVck1OdmludUdSc21nVUtpbElo?=
+ =?utf-8?B?aDNpNmVPSHNNcmt1UWxpcUphWVYxS2pxWVpkVm5tbnhZZzhILythUDVXaTB1?=
+ =?utf-8?B?VHk5eGVXakVYRkU4UGFkQklpNXNZY283SUZuSkNoZ1BFSFkxY1dBZmx1THNI?=
+ =?utf-8?B?WkEwM3RPVG5uMzFMQThrZ3dqQWhKd0xXcTVjUDVFN05CWXFBTVpEM2pKTzZW?=
+ =?utf-8?B?NDhVSHg5cEt4NEhlWEhISEVTR2x6ZWM5UHpPclkzQzFvbU9sYjk4RnZaTENT?=
+ =?utf-8?B?RFpOMFdYS21HMEY3UWxiSmF6Z2Z0V0Zid2dOMUdGeHMvZWw2Q01LbjgxNXdH?=
+ =?utf-8?B?RFJ5MmNuakh5cS9ScWhtMURFRzcvc0RJRzdTVXpISjJzR1RWeE5DV1ZxcW54?=
+ =?utf-8?B?czM0bnNWZlIvRThXczkwTG5HT1RTUFNmTEduOUJXOVJCMVYveURmNkk2QldX?=
+ =?utf-8?B?UlRrVW1jMlR5MWw3MWlDeDc5VStqdGY2ZTQ0MmVYdDVWWWc3ZVpVOEc2SVBW?=
+ =?utf-8?B?WWFBZDY3MEFMVk5QeDBiRFRhTXV0ZkZNK3JneVJWTDhjc1BwVXZiVFhyZWRW?=
+ =?utf-8?Q?EcoijwfLe2Fps7bMGRF7No+Hj?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f664ccc5-66ea-465b-6e52-08dc9132760e
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jun 2024 14:08:29.6665 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: smhyDs6TuHw86X+waY7W9eegA9OVxoUOmo4I4Mukg88vJOTNPPhttiaWNcQ7oUQ0
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4040
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,211 +161,267 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On LNL because flat CCS, driver will create a migrate job to clear
-CCS meta data. Extend that to also clear pages using GPU with new
-ttm pool flag which allows offloading page clear activity to GPU.
+Am 20.06.24 um 15:46 schrieb Nirmoy Das:
+> Clearing pages can be very slow when using CPU but GPUs can perform this
+> task much faster. With this new pool API driver can decide if it wants to
+> clear pages using GPU. This provides the flexibility to choose the desired
+> clear policy, either during allocation or upon freeing, as per the driver's
+> preference.
 
-This gives very nice improvement for large buffer:
-Without the patch:
- ~/igt-gpu-tools/build/tests/xe_exec_store --run basic-store-benchmark
-IGT-Version: 1.28-g2ed908c0b (x86_64) (Linux: 6.9.0-xe+ x86_64)
-Using IGT_SRANDOM=1718889799 for randomisation
-Opened device: /dev/dri/card0
-Starting subtest: basic-store-benchmark
-Starting dynamic subtest: WC
-Dynamic subtest WC: SUCCESS (0.000s)
-Time taken for size SZ_4K: 4882 us
-Time taken for size SZ_2M: 3679 us
-Time taken for size SZ_64M: 13367 us
-Time taken for size SZ_128M: 21034 us
-Time taken for size SZ_256M: 32940 us
-Time taken for size SZ_1G: 116261 us
-Starting dynamic subtest: WB
-Dynamic subtest WB: SUCCESS (0.000s)
-Time taken for size SZ_4K: 5417 us
-Time taken for size SZ_2M: 5711 us
-Time taken for size SZ_64M: 15718 us
-Time taken for size SZ_128M: 26170 us
-Time taken for size SZ_256M: 50529 us
-Time taken for size SZ_1G: 177933 us
-Subtest basic-store-benchmark: SUCCESS (0.504s)
+We already have the TTM_TT_FLAG_ZERO_ALLOC to indicate if pages needs to 
+be cleared on alloc from the OS.
 
-With the patch:
-sudo  ~/igt-gpu-tools/build/tests/xe_exec_store --run basic-store-benchmark
-IGT-Version: 1.28-g2ed908c0b (x86_64) (Linux: 6.9.0-xe+ x86_64)
-Using IGT_SRANDOM=1718889593 for randomisation
-Opened device: /dev/dri/card0
-Starting subtest: basic-store-benchmark
-Starting dynamic subtest: WC
-Dynamic subtest WC: SUCCESS (0.000s)
-Time taken for size SZ_4K: 4479 us
-Time taken for size SZ_2M: 3291 us
-Time taken for size SZ_64M: 6595 us
-Time taken for size SZ_128M: 9069 us
-Time taken for size SZ_256M: 12681 us
-Time taken for size SZ_1G: 41806 us
-Starting dynamic subtest: WB
-Dynamic subtest WB: SUCCESS (0.000s)
-Time taken for size SZ_4K: 3317 us
-Time taken for size SZ_2M: 6458 us
-Time taken for size SZ_64M: 12802 us
-Time taken for size SZ_128M: 19579 us
-Time taken for size SZ_256M: 38768 us
-Time taken for size SZ_1G: 143250 us
-Subtest basic-store-benchmark: SUCCESS (0.328s)
+I'm not sure if we really need the option to not clear them in the pool 
+as well, but if we really need this I suggest to switch from clear on 
+free to clear on alloc again and just honor the flag.
 
-Cc: Christian Koenig <christian.koenig@amd.com>
-Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c           |  4 ++++
- drivers/gpu/drm/xe/xe_device.c       | 36 +++++++++++++++++++++-------
- drivers/gpu/drm/xe/xe_device_types.h |  2 ++
- drivers/gpu/drm/xe/xe_migrate.c      |  6 ++---
- 4 files changed, 37 insertions(+), 11 deletions(-)
+Alternatively you could also split the pools into cleared and not 
+cleared pages as well.
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 65c696966e96..10ec02412dc4 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -387,6 +387,10 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
- 		caching = ttm_uncached;
- 	}
- 
-+	/* Clear TTM_TT_FLAG_ZERO_ALLOC when GPU is set to clear pages */
-+	if (xe->mem.gpu_page_clear)
-+		page_flags &= ~TTM_TT_FLAG_ZERO_ALLOC;
-+
- 	err = ttm_tt_init(&tt->ttm, &bo->ttm, page_flags, caching, extra_pages);
- 	if (err) {
- 		kfree(tt);
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 75d4c8ae9234..8e8d54c59aae 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -240,8 +240,6 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
- 
- 	if (xe->unordered_wq)
- 		destroy_workqueue(xe->unordered_wq);
--
--	ttm_device_fini(&xe->ttm);
- }
- 
- struct xe_device *xe_device_create(struct pci_dev *pdev,
-@@ -260,12 +258,6 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
- 	if (IS_ERR(xe))
- 		return xe;
- 
--	err = ttm_device_init(&xe->ttm, &xe_ttm_funcs, xe->drm.dev,
--			      xe->drm.anon_inode->i_mapping,
--			      xe->drm.vma_offset_manager, false, false);
--	if (WARN_ON(err))
--		goto err;
--
- 	err = drmm_add_action_or_reset(&xe->drm, xe_device_destroy, NULL);
- 	if (err)
- 		goto err;
-@@ -543,6 +535,13 @@ static int xe_device_set_has_flat_ccs(struct  xe_device *xe)
- 	return xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
- }
- 
-+static void xe_device_destroy_ttm_device(struct drm_device *dev, void *dummy)
-+{
-+	struct xe_device *xe = to_xe_device(dev);
-+
-+	ttm_device_fini(&xe->ttm);
-+}
-+
- int xe_device_probe(struct xe_device *xe)
- {
- 	struct xe_tile *tile;
-@@ -550,6 +549,7 @@ int xe_device_probe(struct xe_device *xe)
- 	int err;
- 	u8 last_gt;
- 	u8 id;
-+	unsigned int ttm_pool_flags = 0;
- 
- 	xe_pat_init_early(xe);
- 
-@@ -572,6 +572,26 @@ int xe_device_probe(struct xe_device *xe)
- 
- 	xe_ttm_sys_mgr_init(xe);
- 
-+	/* On iGFX device with flat CCS we clear CCS metadata, let's extend that
-+	 * and use GPU to clear  pages as well.
-+	 */
-+	if (xe_device_has_flat_ccs(xe) && !IS_DGFX(xe)) {
-+		ttm_pool_flags = TTM_POOL_FLAG_SKIP_CLEAR_ON_FREE;
-+		xe->mem.gpu_page_clear = true;
-+	}
-+
-+	err = ttm_device_init_with_pool_flags(&xe->ttm, &xe_ttm_funcs,
-+					      xe->drm.dev,
-+					      xe->drm.anon_inode->i_mapping,
-+					      xe->drm.vma_offset_manager,
-+					      false, false, ttm_pool_flags);
-+	if (WARN_ON(err))
-+		return err;
-+
-+	err = drmm_add_action_or_reset(&xe->drm, xe_device_destroy_ttm_device, NULL);
-+	if (err)
-+		return err;
-+
- 	for_each_gt(gt, xe, id) {
- 		err = xe_gt_init_early(gt);
- 		if (err)
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index c37be471d11c..ece68c6f3668 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -325,6 +325,8 @@ struct xe_device {
- 		struct xe_mem_region vram;
- 		/** @mem.sys_mgr: system TTM manager */
- 		struct ttm_resource_manager sys_mgr;
-+		/** @gpu_page_clear: clear pages offloaded to GPU */
-+		bool gpu_page_clear;
- 	} mem;
- 
- 	/** @sriov: device level virtualization data */
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 05f933787860..0023f32d147d 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -1003,6 +1003,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 	struct xe_gt *gt = m->tile->primary_gt;
- 	struct xe_device *xe = gt_to_xe(gt);
- 	bool clear_system_ccs = (xe_bo_needs_ccs_pages(bo) && !IS_DGFX(xe)) ? true : false;
-+	bool clear_on_create = xe->mem.gpu_page_clear;
- 	struct dma_fence *fence = NULL;
- 	u64 size = bo->size;
- 	struct xe_res_cursor src_it;
-@@ -1022,7 +1023,6 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 		struct xe_sched_job *job;
- 		struct xe_bb *bb;
- 		u32 batch_size, update_idx;
--
- 		bool usm = xe->info.has_usm;
- 		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
- 
-@@ -1032,7 +1032,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 		batch_size = 2 +
- 			pte_update_size(m, clear_vram, src, &src_it,
- 					&clear_L0, &clear_L0_ofs, &clear_L0_pt,
--					clear_system_ccs ? 0 : emit_clear_cmd_len(gt), 0,
-+					!clear_on_create ? 0 : emit_clear_cmd_len(gt), 0,
- 					avail_pts);
- 
- 		if (xe_device_has_flat_ccs(xe))
-@@ -1060,7 +1060,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
- 		update_idx = bb->len;
- 
--		if (!clear_system_ccs)
-+		if (clear_on_create)
- 			emit_clear(gt, bb, clear_L0_ofs, clear_L0, XE_PAGE_SIZE, clear_vram);
- 
- 		if (xe_device_has_flat_ccs(xe)) {
--- 
-2.42.0
+Regards,
+Christian.
+
+>
+> Cc: Christian Koenig <christian.koenig@amd.com>
+> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> ---
+>   drivers/gpu/drm/ttm/ttm_device.c | 42 +++++++++++++++++++++++----
+>   drivers/gpu/drm/ttm/ttm_pool.c   | 49 +++++++++++++++++++++++++-------
+>   include/drm/ttm/ttm_device.h     |  8 ++++++
+>   include/drm/ttm/ttm_pool.h       | 11 +++++++
+>   4 files changed, 94 insertions(+), 16 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
+> index 434cf0258000..54a3ea825c2e 100644
+> --- a/drivers/gpu/drm/ttm/ttm_device.c
+> +++ b/drivers/gpu/drm/ttm/ttm_device.c
+> @@ -191,15 +191,19 @@ EXPORT_SYMBOL(ttm_device_swapout);
+>    * @vma_manager: A pointer to a vma manager.
+>    * @use_dma_alloc: If coherent DMA allocation API should be used.
+>    * @use_dma32: If we should use GFP_DMA32 for device memory allocations.
+> + * @pool_flags: Desired pool flags
+>    *
+>    * Initializes a struct ttm_device:
+>    * Returns:
+>    * !0: Failure.
+>    */
+> -int ttm_device_init(struct ttm_device *bdev, const struct ttm_device_funcs *funcs,
+> -		    struct device *dev, struct address_space *mapping,
+> -		    struct drm_vma_offset_manager *vma_manager,
+> -		    bool use_dma_alloc, bool use_dma32)
+> +int ttm_device_init_with_pool_flags(struct ttm_device *bdev,
+> +				    const struct ttm_device_funcs *funcs,
+> +				    struct device *dev,
+> +				    struct address_space *mapping,
+> +				    struct drm_vma_offset_manager *vma_manager,
+> +				    bool use_dma_alloc, bool use_dma32,
+> +				    unsigned int pool_flags)
+>   {
+>   	struct ttm_global *glob = &ttm_glob;
+>   	int ret, nid;
+> @@ -227,7 +231,8 @@ int ttm_device_init(struct ttm_device *bdev, const struct ttm_device_funcs *func
+>   	else
+>   		nid = NUMA_NO_NODE;
+>   
+> -	ttm_pool_init(&bdev->pool, dev, nid, use_dma_alloc, use_dma32);
+> +	ttm_pool_init_with_flags(&bdev->pool, dev, nid, use_dma_alloc,
+> +				 use_dma32, pool_flags);
+>   
+>   	bdev->vma_manager = vma_manager;
+>   	spin_lock_init(&bdev->lru_lock);
+> @@ -239,6 +244,33 @@ int ttm_device_init(struct ttm_device *bdev, const struct ttm_device_funcs *func
+>   
+>   	return 0;
+>   }
+> +EXPORT_SYMBOL(ttm_device_init_with_pool_flags);
+> +
+> +
+> +/**
+> + * ttm_device_init
+> + *
+> + * @bdev: A pointer to a struct ttm_device to initialize.
+> + * @funcs: Function table for the device.
+> + * @dev: The core kernel device pointer for DMA mappings and allocations.
+> + * @mapping: The address space to use for this bo.
+> + * @vma_manager: A pointer to a vma manager.
+> + * @use_dma_alloc: If coherent DMA allocation API should be used.
+> + * @use_dma32: If we should use GFP_DMA32 for device memory allocations.
+> + *
+> + * Initializes a struct ttm_device:
+> + * Returns:
+> + * !0: Failure.
+> + */
+> +int ttm_device_init(struct ttm_device *bdev, const struct ttm_device_funcs *funcs,
+> +		    struct device *dev, struct address_space *mapping,
+> +		    struct drm_vma_offset_manager *vma_manager,
+> +		    bool use_dma_alloc, bool use_dma32)
+> +{
+> +	return ttm_device_init_with_pool_flags(bdev, funcs, dev, mapping,
+> +					       vma_manager, use_dma_alloc,
+> +					       use_dma32, 0);
+> +}
+>   EXPORT_SYMBOL(ttm_device_init);
+>   
+>   void ttm_device_fini(struct ttm_device *bdev)
+> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+> index 6e1fd6985ffc..6f33c3e7cdf2 100644
+> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+> @@ -222,15 +222,17 @@ static void ttm_pool_unmap(struct ttm_pool *pool, dma_addr_t dma_addr,
+>   }
+>   
+>   /* Give pages into a specific pool_type */
+> -static void ttm_pool_type_give(struct ttm_pool_type *pt, struct page *p)
+> +static void ttm_pool_type_give(struct ttm_pool_type *pt, struct page *p, bool skip_clear)
+>   {
+>   	unsigned int i, num_pages = 1 << pt->order;
+>   
+> -	for (i = 0; i < num_pages; ++i) {
+> -		if (PageHighMem(p))
+> -			clear_highpage(p + i);
+> -		else
+> -			clear_page(page_address(p + i));
+> +	if (!skip_clear) {
+> +		for (i = 0; i < num_pages; ++i) {
+> +			if (PageHighMem(p))
+> +				clear_highpage(p + i);
+> +			else
+> +				clear_page(page_address(p + i));
+> +		}
+>   	}
+>   
+>   	spin_lock(&pt->lock);
+> @@ -396,7 +398,10 @@ static void ttm_pool_free_range(struct ttm_pool *pool, struct ttm_tt *tt,
+>   	struct page **pages = &tt->pages[start_page];
+>   	unsigned int order;
+>   	pgoff_t i, nr;
+> +	bool skip_clear = false;
+>   
+> +	if (pool->flags & TTM_POOL_FLAG_SKIP_CLEAR_ON_FREE)
+> +		skip_clear = true;
+>   	for (i = start_page; i < end_page; i += nr, pages += nr) {
+>   		struct ttm_pool_type *pt = NULL;
+>   
+> @@ -407,7 +412,7 @@ static void ttm_pool_free_range(struct ttm_pool *pool, struct ttm_tt *tt,
+>   
+>   		pt = ttm_pool_select_type(pool, caching, order);
+>   		if (pt)
+> -			ttm_pool_type_give(pt, *pages);
+> +			ttm_pool_type_give(pt, *pages, skip_clear);
+>   		else
+>   			ttm_pool_free_page(pool, caching, order, *pages);
+>   	}
+> @@ -550,18 +555,21 @@ void ttm_pool_free(struct ttm_pool *pool, struct ttm_tt *tt)
+>   EXPORT_SYMBOL(ttm_pool_free);
+>   
+>   /**
+> - * ttm_pool_init - Initialize a pool
+> + * ttm_pool_init_with_flags - Initialize a pool with flags
+>    *
+>    * @pool: the pool to initialize
+>    * @dev: device for DMA allocations and mappings
+>    * @nid: NUMA node to use for allocations
+>    * @use_dma_alloc: true if coherent DMA alloc should be used
+>    * @use_dma32: true if GFP_DMA32 should be used
+> + * @flags: control flags for the pool
+> + *
+> + * Initialize the pool and its pool types with flags to modify defaults
+>    *
+> - * Initialize the pool and its pool types.
+>    */
+> -void ttm_pool_init(struct ttm_pool *pool, struct device *dev,
+> -		   int nid, bool use_dma_alloc, bool use_dma32)
+> +void ttm_pool_init_with_flags(struct ttm_pool *pool, struct device *dev,
+> +		   int nid, bool use_dma_alloc, bool use_dma32,
+> +		   unsigned int flags)
+>   {
+>   	unsigned int i, j;
+>   
+> @@ -571,6 +579,7 @@ void ttm_pool_init(struct ttm_pool *pool, struct device *dev,
+>   	pool->nid = nid;
+>   	pool->use_dma_alloc = use_dma_alloc;
+>   	pool->use_dma32 = use_dma32;
+> +	pool->flags = flags;
+>   
+>   	for (i = 0; i < TTM_NUM_CACHING_TYPES; ++i) {
+>   		for (j = 0; j < NR_PAGE_ORDERS; ++j) {
+> @@ -585,6 +594,24 @@ void ttm_pool_init(struct ttm_pool *pool, struct device *dev,
+>   		}
+>   	}
+>   }
+> +EXPORT_SYMBOL(ttm_pool_init_with_flags);
+> +
+> +/**
+> + * ttm_pool_init - Initialize a pool
+> + *
+> + * @pool: the pool to initialize
+> + * @dev: device for DMA allocations and mappings
+> + * @nid: NUMA node to use for allocations
+> + * @use_dma_alloc: true if coherent DMA alloc should be used
+> + * @use_dma32: true if GFP_DMA32 should be used
+> + *
+> + * Initialize the pool and its pool types.
+> + */
+> +void ttm_pool_init(struct ttm_pool *pool, struct device *dev,
+> +		   int nid, bool use_dma_alloc, bool use_dma32)
+> +{
+> +	ttm_pool_init_with_flags(pool, dev, nid, use_dma_alloc, use_dma32, 0);
+> +}
+>   EXPORT_SYMBOL(ttm_pool_init);
+>   
+>   /**
+> diff --git a/include/drm/ttm/ttm_device.h b/include/drm/ttm/ttm_device.h
+> index c22f30535c84..1b20c5798e97 100644
+> --- a/include/drm/ttm/ttm_device.h
+> +++ b/include/drm/ttm/ttm_device.h
+> @@ -291,6 +291,14 @@ int ttm_device_init(struct ttm_device *bdev, const struct ttm_device_funcs *func
+>   		    struct device *dev, struct address_space *mapping,
+>   		    struct drm_vma_offset_manager *vma_manager,
+>   		    bool use_dma_alloc, bool use_dma32);
+> +int ttm_device_init_with_pool_flags(struct ttm_device *bdev,
+> +				    const struct ttm_device_funcs *funcs,
+> +				    struct device *dev,
+> +				    struct address_space *mapping,
+> +				    struct drm_vma_offset_manager *vma_manager,
+> +				    bool use_dma_alloc, bool use_dma32,
+> +				    unsigned int pool_flags);
+> +
+>   void ttm_device_fini(struct ttm_device *bdev);
+>   void ttm_device_clear_dma_mappings(struct ttm_device *bdev);
+>   
+> diff --git a/include/drm/ttm/ttm_pool.h b/include/drm/ttm/ttm_pool.h
+> index 160d954a261e..9822996309e5 100644
+> --- a/include/drm/ttm/ttm_pool.h
+> +++ b/include/drm/ttm/ttm_pool.h
+> @@ -66,10 +66,17 @@ struct ttm_pool_type {
+>    * @use_dma_alloc: if coherent DMA allocations should be used
+>    * @use_dma32: if GFP_DMA32 should be used
+>    * @caching: pools for each caching/order
+> + * @flags: flags to control certain pool behaviour
+> + *
+> + * The @flags can be:
+> + *  - %TTM_POOL_FLAG_SKIP_CLEAR_ON_FREE - This flag can be used to
+> + *    skip clear on free when driver decides to do that on it's own.
+>    */
+>   struct ttm_pool {
+>   	struct device *dev;
+>   	int nid;
+> +#define TTM_POOL_FLAG_SKIP_CLEAR_ON_FREE	1 << 0
+> +	unsigned int flags;
+>   
+>   	bool use_dma_alloc;
+>   	bool use_dma32;
+> @@ -85,6 +92,10 @@ void ttm_pool_free(struct ttm_pool *pool, struct ttm_tt *tt);
+>   
+>   void ttm_pool_init(struct ttm_pool *pool, struct device *dev,
+>   		   int nid, bool use_dma_alloc, bool use_dma32);
+> +void ttm_pool_init_with_flags(struct ttm_pool *pool, struct device *dev,
+> +			      int nid, bool use_dma_alloc, bool use_dma32,
+> +			      unsigned int flags);
+> +
+>   void ttm_pool_fini(struct ttm_pool *pool);
+>   
+>   int ttm_pool_debugfs(struct ttm_pool *pool, struct seq_file *m);
 
