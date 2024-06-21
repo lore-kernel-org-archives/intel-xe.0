@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 047AAC27C4F
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Jun 2024 08:49:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1767C27C4F
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Jun 2024 09:08:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8A9C10E2A7;
-	Fri, 21 Jun 2024 08:49:56 +0000 (UTC)
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 431A610E29D;
- Fri, 21 Jun 2024 08:49:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7318315276577317437=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88E1C10F103;
+	Fri, 21 Jun 2024 09:08:49 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Go7iDWqu";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AD1210F104;
+ Fri, 21 Jun 2024 09:08:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1718960929; x=1750496929;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=N3atznNuPU5t191k2mEP2XFpvy46wwWCTvUILW7L7tc=;
+ b=Go7iDWqufvvTwubiTd9rzLyC5EpN9/M95Xsq842XsWk//YQKJr6lm4rg
+ 8pwWQZakMvC6Omqjy9UcxXT85Zeh+m0lXWJ+E4dekl72U9APJQJvtXgTX
+ jBProruBvGXAo4QBZ72OoE0DjPALAGqkMy2xf40YemBTClOWdk0uchDQS
+ nFJWkyS0gJ9jp6EoLoxAfjdYGNvhHuhD1gYY2HpCTqDWdrJdJhTJ/sg/Y
+ U+JQdVqFIpRLx7JqfEu0lromXFs8J22+0L5Tb9vqkYuPpPWqBh/F+IxJT
+ Ko5sQDwLbpDZ+FGHACqrUq+GQL1faWYg8BA3aTow7C5k2eBtCKHWaeIgR g==;
+X-CSE-ConnectionGUID: SwYadqoTTNOCekKJDV4azA==
+X-CSE-MsgGUID: 8nAsyfkDRHW3sDXdKsenHQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11109"; a="38508292"
+X-IronPort-AV: E=Sophos;i="6.08,254,1712646000"; d="scan'208";a="38508292"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2024 02:08:48 -0700
+X-CSE-ConnectionGUID: hSC+ypUlQZGGU3vn/L/dYQ==
+X-CSE-MsgGUID: p62mu+B0Qsaov2GlP4qWnA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,254,1712646000"; d="scan'208";a="42629843"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2024 02:08:46 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Michal Mrozek <michal.mrozek@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH] drm/xe/lnl: Offload system clear page activity to GPU
+Date: Fri, 21 Jun 2024 10:53:48 +0200
+Message-ID: <20240621085348.23372-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915/display=3A_Consider_adj?=
- =?utf-8?q?usted=5Fpixel=5Frate_to_be_u64?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 21 Jun 2024 08:49:55 -0000
-Message-ID: <171895979527.131677.17211846305750173224@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <20240621073454.1421676-1-mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20240621073454.1421676-1-mitulkumar.ajitkumar.golani@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,135 +67,100 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7318315276577317437==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On LNL because of flat CCS, driver will create a migrate job to clear
+CCS meta data. Extend that to also clear pages using GPU with new
+ttm pool flag which allows offloading page clear activity to GPU.
 
-== Series Details ==
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Michal Mrozek <michal.mrozek@intel.com>
+Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c           | 4 ++++
+ drivers/gpu/drm/xe/xe_device.c       | 7 +++++++
+ drivers/gpu/drm/xe/xe_device_types.h | 2 ++
+ drivers/gpu/drm/xe/xe_migrate.c      | 5 +++--
+ 4 files changed, 16 insertions(+), 2 deletions(-)
 
-Series: drm/i915/display: Consider adjusted_pixel_rate to be u64
-URL   : https://patchwork.freedesktop.org/series/135164/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 65c696966e96..10ec02412dc4 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -387,6 +387,10 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+ 		caching = ttm_uncached;
+ 	}
+ 
++	/* Clear TTM_TT_FLAG_ZERO_ALLOC when GPU is set to clear pages */
++	if (xe->mem.gpu_page_clear)
++		page_flags &= ~TTM_TT_FLAG_ZERO_ALLOC;
++
+ 	err = ttm_tt_init(&tt->ttm, &bo->ttm, page_flags, caching, extra_pages);
+ 	if (err) {
+ 		kfree(tt);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 0d57eea8f083..20548a5d3eff 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -636,6 +636,13 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err_irq_shutdown;
+ 
++	/**
++	 * On iGFX device with flat CCS we clear CCS metadata, let's extend that
++	 * and use GPU to clear  pages as well.
++	 */
++	if (xe_device_has_flat_ccs(xe) && !IS_DGFX(xe))
++		xe->mem.gpu_page_clear = true;
++
+ 	err = xe_vram_probe(xe);
+ 	if (err)
+ 		goto err_irq_shutdown;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index c37be471d11c..ece68c6f3668 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -325,6 +325,8 @@ struct xe_device {
+ 		struct xe_mem_region vram;
+ 		/** @mem.sys_mgr: system TTM manager */
+ 		struct ttm_resource_manager sys_mgr;
++		/** @gpu_page_clear: clear pages offloaded to GPU */
++		bool gpu_page_clear;
+ 	} mem;
+ 
+ 	/** @sriov: device level virtualization data */
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 05f933787860..90c5a2e35075 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1003,6 +1003,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 	struct xe_gt *gt = m->tile->primary_gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	bool clear_system_ccs = (xe_bo_needs_ccs_pages(bo) && !IS_DGFX(xe)) ? true : false;
++	bool clear_on_create = xe->mem.gpu_page_clear;
+ 	struct dma_fence *fence = NULL;
+ 	u64 size = bo->size;
+ 	struct xe_res_cursor src_it;
+@@ -1032,7 +1033,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 		batch_size = 2 +
+ 			pte_update_size(m, clear_vram, src, &src_it,
+ 					&clear_L0, &clear_L0_ofs, &clear_L0_pt,
+-					clear_system_ccs ? 0 : emit_clear_cmd_len(gt), 0,
++					!clear_on_create ? 0 : emit_clear_cmd_len(gt), 0,
+ 					avail_pts);
+ 
+ 		if (xe_device_has_flat_ccs(xe))
+@@ -1060,7 +1061,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+ 		update_idx = bb->len;
+ 
+-		if (!clear_system_ccs)
++		if (clear_on_create)
+ 			emit_clear(gt, bb, clear_L0_ofs, clear_L0, XE_PAGE_SIZE, clear_vram);
+ 
+ 		if (xe_device_has_flat_ccs(xe)) {
+-- 
+2.42.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-1512-40deb379b103746ee4c9df5f0f1919bd4703c9cc_BAT -> xe-pw-135164v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-135164v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-FAIL][2] ([Intel XE#324])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1512-40deb379b103746ee4c9df5f0f1919bd4703c9cc/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135164v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
-  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
-
-
-Build changes
--------------
-
-  * IGT: IGT_7894 -> IGT_7895
-  * Linux: xe-1512-40deb379b103746ee4c9df5f0f1919bd4703c9cc -> xe-pw-135164v1
-
-  IGT_7894: 7894
-  IGT_7895: 7895
-  xe-1512-40deb379b103746ee4c9df5f0f1919bd4703c9cc: 40deb379b103746ee4c9df5f0f1919bd4703c9cc
-  xe-pw-135164v1: 135164v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135164v1/index.html
-
---===============7318315276577317437==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Consider adjusted_pixel_rate to be u64</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135164/">https://patchwork.freedesktop.org/series/135164/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135164v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135164v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1512-40deb379b103746ee4c9df5f0f1919bd4703c9cc_BAT -&gt; xe-pw-135164v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-135164v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1512-40deb379b103746ee4c9df5f0f1919bd4703c9cc/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135164v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7894 -&gt; IGT_7895</li>
-<li>Linux: xe-1512-40deb379b103746ee4c9df5f0f1919bd4703c9cc -&gt; xe-pw-135164v1</li>
-</ul>
-<p>IGT_7894: 7894<br />
-  IGT_7895: 7895<br />
-  xe-1512-40deb379b103746ee4c9df5f0f1919bd4703c9cc: 40deb379b103746ee4c9df5f0f1919bd4703c9cc<br />
-  xe-pw-135164v1: 135164v1</p>
-
-</body>
-</html>
-
---===============7318315276577317437==--
