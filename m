@@ -4,57 +4,182 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8B8EC27C4F
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Jun 2024 15:24:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AB68C27C4F
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Jun 2024 15:44:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A7FC10F201;
-	Fri, 21 Jun 2024 15:24:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D78E810F262;
+	Fri, 21 Jun 2024 15:44:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PWGjydEL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hYbDf6Cp";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75D0910F201
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Jun 2024 15:24:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34C9F10F261;
+ Fri, 21 Jun 2024 15:44:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718983443; x=1750519443;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=BHTy4aeZF4Nv0r2QNDMc1gQWk11YhWHKCKZeKxd3MLA=;
- b=PWGjydELMKCej4oC1Jrr5O8AxnGIF5vKGBPdDr+EvlMSWMePGZnoWmNo
- QpTYS0bcYzm31reCYI2NMPwtwY/Db47h5Rz8N1cnF7jzqTZ1WcbK3o9Zc
- t1jBFuSVBiQprAOFo1uaaC3LZxbhb2HMr8Ho6t35k43OS/gH3JyXAIWbD
- fM7UbtJbOkW4J1/0lyep/xU7kxpnfs3eoB6X31vMI3xkTh3IDAdmloM4u
- fK9MoEZ9trkb5PnWmG4/RakoRFnw617S5DIkZKvgEzp+tamtzsoKp83Jo
- 7kKXKcOK1qPJ1KrAde3+QJ2qVSyng0YZfEnGoAUFUaPuCjEAbvl1FB3TP A==;
-X-CSE-ConnectionGUID: aEJ6z393TvK1AJVPzCoc+g==
-X-CSE-MsgGUID: YRcan1x6RiyYuaIXFjGyrw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11110"; a="19908096"
-X-IronPort-AV: E=Sophos;i="6.08,255,1712646000"; d="scan'208";a="19908096"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2024 08:24:03 -0700
-X-CSE-ConnectionGUID: MEUBaxYvSbaGgXRUa7+G3A==
-X-CSE-MsgGUID: jlNFqPOTRmuFPIl+nryucA==
+ t=1718984665; x=1750520665;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=38fHgDOLBZiC8vYThuf8gkhPcb5Nl5yr6Af6HkmJIkg=;
+ b=hYbDf6CpFVu9GvSZ5QiUcj2nBHjJ/mezSb86hmTkUnF3U1CZzp7exXEz
+ oR2bw2EUxkbRhpQp9+pcKqnR/srrBJ50kfcU8AqJebmUeYrClXTi8oOrt
+ q7uK7UjCMDdmm7t8hyaYXwM0pp4YryNOU3C0vSLPEDCnUt5WDV6n+YuGC
+ jjDD3x7sE8ttfmDuM0osbwxcb2U0feZnTvAQ62KJrUwpLRnnhvcsFkoQE
+ sCynzq5CxgtPwugfCdrk09SKjfIW84zBENN7s3weRfeaiozmIFinH3JNR
+ qt4Dh+beJcATZ9L6ndPC5jW7h+qSzRcYq2UfOeKIvKC9M7ft5gOnQMCqp w==;
+X-CSE-ConnectionGUID: vs0wGXRhQJ2ztKQ4uT1Rig==
+X-CSE-MsgGUID: VBUUke5uT5OTuHd8bRi1bg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11110"; a="16152428"
+X-IronPort-AV: E=Sophos;i="6.08,255,1712646000"; d="scan'208";a="16152428"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2024 08:44:24 -0700
+X-CSE-ConnectionGUID: IQnkj3hhTUieCWkF8PiVhA==
+X-CSE-MsgGUID: bYl5YLVBQAO+vjDgoaZ5wQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,255,1712646000"; d="scan'208";a="80124251"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO [10.245.244.53])
- ([10.245.244.53])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2024 08:24:02 -0700
-Message-ID: <cc8cd054-361c-44a9-93e4-c4a48d33f139@intel.com>
-Date: Fri, 21 Jun 2024 16:23:59 +0100
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.08,255,1712646000"; d="scan'208";a="73835383"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 21 Jun 2024 08:44:23 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Fri, 21 Jun 2024 08:44:23 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Fri, 21 Jun 2024 08:44:23 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Fri, 21 Jun 2024 08:44:22 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Q8oficwfV8dwK5MRrzyjgdjianklmpeKcEVZUEl41AoX3IEGD9w30SJR/oXa65xfK0NY1w+t0pE3Da82gLmsXAH3A7gycqDVSDW7/ZiWzbXIQjypxc21+wFOBOvAlpl4VoilmMPgBsmy2wPvK9kSRBjCxH2oRK1OI+jXju0k0a2sHcaQYuPGX7v7v5KQkR1uxB5YwEfbedJDEnwGXaqYhYno8huLEdWFYCgzS6vwIyo5iHvVRORPJdZBpv8AUhDU2a2bajP7v1m8tKL1VSs/+Bs53/5u4Aa00xK4foXMt5Op2UJ7t9luXN83ZgiaeyxXgMLTq39ggxEe1KvFyVIfWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XUOcpfVIPjpuCrDEjiyAV6WImzxdt1R2xza20mi7Fs0=;
+ b=HcxMeZLz/1bLrNPWRnz3OVbiygfevrbC8y+s4pkVtnUvtjQvzDIqXOT7vXji+WBzI7FJ1xMt93KMvXVz+PAXQ7uwee64GKvsQj3x/EgeDuNnONk90vAmXAubT0ZTHdEV2933XGRJrHRC3TDXuv41kS8hg4izNQL2ae85u8FvqVE48Q5hlEdOpGZml9wNYidN5s8qxYxIrSBreRs6P3Cneh5q68Y8J+//0pjeRvmPxWe+0MAcBkDX5V/15pHNvXUSkGKXiyRCDzWYN5O+RCMdQ2fJKO+H0LKJseYZe3lqeLy2w4AXEc2j9r7PN9MWGLx3jKlxsd6Ba0hYAF5CV6hYzw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB6541.namprd11.prod.outlook.com (2603:10b6:8:d3::14) by
+ PH7PR11MB8060.namprd11.prod.outlook.com (2603:10b6:510:24f::6) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7677.27; Fri, 21 Jun 2024 15:44:02 +0000
+Received: from DS0PR11MB6541.namprd11.prod.outlook.com
+ ([fe80::e268:87f2:3bd1:1347]) by DS0PR11MB6541.namprd11.prod.outlook.com
+ ([fe80::e268:87f2:3bd1:1347%5]) with mapi id 15.20.7698.020; Fri, 21 Jun 2024
+ 15:44:02 +0000
+Message-ID: <0f3d8391-ba82-434c-8871-85bb17bac6eb@intel.com>
+Date: Fri, 21 Jun 2024 17:43:56 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/7] drm/xe: Convert multiple bind ops into single job
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20240618171509.3336601-1-matthew.brost@intel.com>
- <20240618171509.3336601-5-matthew.brost@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240618171509.3336601-5-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH] drm/ttm/pool: Revert to clear-on-alloc to honor
+ TTM_TT_FLAG_ZERO_ALLOC
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ <dri-devel@lists.freedesktop.org>
+CC: <intel-xe@lists.freedesktop.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Matthew Auld <matthew.auld@intel.com>
+References: <20240620160147.29819-1-nirmoy.das@intel.com>
+ <98890fd6-43b8-4a08-84e8-1f635abb933d@amd.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@intel.com>
+In-Reply-To: <98890fd6-43b8-4a08-84e8-1f635abb933d@amd.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: ZR2P278CA0090.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:65::14) To DS0PR11MB6541.namprd11.prod.outlook.com
+ (2603:10b6:8:d3::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB6541:EE_|PH7PR11MB8060:EE_
+X-MS-Office365-Filtering-Correlation-Id: a5ff9c26-c63d-4c12-3d86-08dc9208f926
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230037|376011|1800799021|366013;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?NXpMOGd4NUJwTVVLR1NscHZoZmxoSWcvQlVuVkpGWTJNbnpKODJpQjFxUmlF?=
+ =?utf-8?B?OExXTDMzMlpUekExK0xCVXhLY3FoM1NEaUpJK0pDak5rajEzbTQxRHRrS3ZE?=
+ =?utf-8?B?TnJPdStHaXNRMTU0WUJoS21rU1EwaEFUZUVoWGdFREMwQVIrOWVlSU5LSnFk?=
+ =?utf-8?B?dnpxU3pCMjUyK28xMGh1alZONWZQWWVWYUZ6WFo0elZvdUlJeG5UcThjV0p5?=
+ =?utf-8?B?Kzk4dmlzN1ltU0JtK1BhVDlncmUwbTZleUJac3dObER5NFRSQ0lpNUFiVmdH?=
+ =?utf-8?B?M3lFbGdhZ2NoRmZIRHBiaEVyRFhOc25BbWpLNUdzQ2tyQ1RiYk5MdGVETjQv?=
+ =?utf-8?B?RHlpZUJKUnBsb2wxU3BpeUNlSk1OeUZqNE9KTjV0Z1FHZWt5V01nL1puVmov?=
+ =?utf-8?B?dTBIYWIvZkYyUThLRVpaNE9KU05FWVZadUZrL1IrZTFCM0RzN2FVVTJuMnhZ?=
+ =?utf-8?B?T1k4VTRKaVFwZy9JL1dyc1I3WjFleW5SNE5HREsybVFERUVUWjN3cjM3R09P?=
+ =?utf-8?B?cXVmaGtTNmIwR0Z0Ly9QdlVWS2hkQ2xwSW9PLzJxOW5RYXlMRlQxcm5ZOEp0?=
+ =?utf-8?B?TFp6WkZ3OXAwUGcwTU9hKzgyVXRubGFiQTJydC9mV05RQzVtRUN2ZEs3MitH?=
+ =?utf-8?B?NXpGZ2U0a1ZuTXVEaGpiQlZ5OVBoc05tR241cHdhcFl0UG5wQ1FvK0hrdkl4?=
+ =?utf-8?B?cEJEaEFiRWp0bUNxZUc0YkVXN1FyOW1QUUduUXRpTGM5N0dwTldJNU5abTZt?=
+ =?utf-8?B?RFlEc2FtVmdDRmpJYmZCWTdFSEY1ZWVvV1E5QUUwcE1QQjlqYXdDYWhtM0FD?=
+ =?utf-8?B?VFVRSG5HR2Q2eXdzVUpmUllEWlNYVlNueks3SFVNanhoa2crK0gvRk5qTHVT?=
+ =?utf-8?B?SkRUdzJpNG9ybkF1VDVoNVFUdGhGTGhNaXlua2VNRDEvZk4vQXpBSUppdkM1?=
+ =?utf-8?B?ZzRFeUNRUW8zd2QvTUR3U0dqVUdzbloxM3QxZ0JDQVdZMzNOYkJzcFhseEtF?=
+ =?utf-8?B?NFloUWlpcEFhWWV1c054Y1ZBZ3UxT05jbExnQU52SlZIUVkreHNXVW1VMlJF?=
+ =?utf-8?B?SXNnako3eE1NOEh4bzZCLzVibUZrMjFwVVZncU1MaEwza3ZiR2NSMXBsSHJw?=
+ =?utf-8?B?c1ZaakJGdjZNV0VwOUxxMVFwa2F0OFdjZXEvc2h6akZKb3NDc3FTRUV4MmpB?=
+ =?utf-8?B?cFVmcUtMcmdueFVudm1CVWs0blFmUEw1NTIxQll4c0o2V0pwWjJPTGJvMnRI?=
+ =?utf-8?B?OHVhTEJJeVg4M3pIdWlNU21DM2Q3bnhxU0toaEdCUzI4cC9sT1luaG1SNHJx?=
+ =?utf-8?B?QTNmRkNhZEVib3U0RFpzZ3d0TWRBdW96ZXpLUE9EY3ViMzdqeHBIVzRyNDJt?=
+ =?utf-8?B?Smorelg2Q1BWSUxpTW9SNHZPL0tERXdiejYxRlUxUUZvS2JRS3dlVGpkck92?=
+ =?utf-8?B?UFlRRDdmdFh1WmFBZTcvR091dWxLKzh1UXV2UHFSUU1sWjFxcVhFSE5LL24z?=
+ =?utf-8?B?VHllTW1WYzB4dmo1WmtjS3NIR21BRWNCZkNJeFI2U2FSaUF2Tm1RZjZCdUpa?=
+ =?utf-8?B?Uk5GYUlIbi9zVHU1Z1FZN0xKL2V2K3lGUkl0UDlyVS8zZ0w2SWh1WnkxQ0ky?=
+ =?utf-8?B?S2U0QUI5eTZ6byszNWZBQnozUU5EK3NRVE8raVlRbEc0akc5MEpvenVhcG1v?=
+ =?utf-8?B?THVtVWtwZkVHT3ZEd2U4ME5tY0EzU3Y4MGYxRllrTUR1ckQ4K3Qydi9qTlhm?=
+ =?utf-8?Q?7dfe5fI5u1+2ynA/XZObc6XdUal4yK5GflhDkm9?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB6541.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230037)(376011)(1800799021)(366013); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SzcvYTJ1R0E4ZzZHdTdJREg2NnRROS9XallSeTBkckhQS25oTTFYUWRuWDdT?=
+ =?utf-8?B?TzhmRWVZbUJFcGlTWVk5b2pVWktnTEI1ZXJIRE1tbnBQUGtjTDc0SUhxYmth?=
+ =?utf-8?B?YnNSV2k4TzZEWisyMzZGMXI0SGdYTzZmTm80T3JWZEpEYzJ2clh5WEhQVVI1?=
+ =?utf-8?B?RVpUVGMxN2NLTkNoRDB2ZS85bzI2TFA1c0xCSXJleWRNSkJoS0xUMkEvc0Q2?=
+ =?utf-8?B?dVZ0ckkxdVJkSXFxY2dBbGd0YjBqWDlTdlowMHMrbXllQW9TNnhqOTJnVkV2?=
+ =?utf-8?B?ckZCcm1FZkk0VmpzU3UxajdyWTc0K0NQUDRDRlpFMC83QTlBNGZXaFhxa2x6?=
+ =?utf-8?B?REJPWWFtSEExNU93VUlmc2RvYUZFRlFuTGJMMHk1ektIR3RjcHBxNUxBMTU4?=
+ =?utf-8?B?L0cva0hlRTBnLzUxaE43aE5XVUdoRUxrYVlkalYyTG5aWVVBYnJwdk1Sc1kv?=
+ =?utf-8?B?SWtLVUFVTTB3YWRuTDFsTVZNaVFHZnAxRFN2Nnk3b3lLMXNmYzJ6aGZRKzFa?=
+ =?utf-8?B?VDlWN083UFVhbGFaNkYxckExa0lOZUd1Si8rUVYwUGR1UFhkVUpkLzNPbHQx?=
+ =?utf-8?B?K3E5cWZUbzFxM29ZYStHODl0eTVBdzJYNXRZdWRrdEljTVVCdGljczBweHpV?=
+ =?utf-8?B?TkxaVk9RVE41NThMUjVjTHFZa25OUFVPTzRPd041U2FXTVhsVWdTUUd0Q3Yv?=
+ =?utf-8?B?QUVBYWF2Yytqa2s5N3dhQnVZc0MxS3krc3QzYXFHcWYxZGtRNzZwY1lEN2Fp?=
+ =?utf-8?B?NkRSRUV5VVlLWGhIck42Nm9NTXFiWDlHTElwZGovMVladDJLTXEvc3FMd09X?=
+ =?utf-8?B?Z3pXTU03NlVGLzdGOGdJREViSGJvRUtvRTlRc1QvVHdvMU1uNUlYRVhpcGhD?=
+ =?utf-8?B?VHZpZzhYaXViNklmZis0SVdMemt2N3RnMEhrc3c2RnRhQnRROHVOVlZXaXE4?=
+ =?utf-8?B?MHdMb0t6OHpQOGY5VE4zcnAvKzFlSGtseFY3b0NVcFkxOWdLTTlxUVVUaE96?=
+ =?utf-8?B?cWluc0tOVElsck1LME8rblNBYUQ2Q1RyTnVKbHFWb2VYNmFvUGs4ZnJUWmpw?=
+ =?utf-8?B?b1JQNklXOVorL0FuK0E0OXRFTEJ1cktuUmJVYTZia2V3T2U1bW92N215cU91?=
+ =?utf-8?B?MWdHRmFubXNkazIzeUQyUmFUSDdpUVB2VlZ2dWtaUXE4eks0TnprNE04VHlq?=
+ =?utf-8?B?Yy90MnlVaThFNkxnQUdLaTh2TE5TS1RSOFcyaWVaTjZXanZEL25QYXFTNG5N?=
+ =?utf-8?B?NFk0eGNsdzVaZUlERkZkVkFyc1Mzek9vSHB4cFU4RDV3c28rN2lqeEVlMWNE?=
+ =?utf-8?B?TFRhQXJBU2MrTkJOcmdoYlVTWmFHRDhCZjZhY2ZRMkVtSitpbmRpaWdRQ09D?=
+ =?utf-8?B?MUNOR3NFOThiN1l1OWZvMkR4VkVYZGZKN09GVHcwUTlkNmdKOFkrK3lyS3hk?=
+ =?utf-8?B?bGtQajFWbmFuSlhZT2JMSVdmeVZlUFdGdUEybWdnZi83UHRqL2xsazhkK0pK?=
+ =?utf-8?B?eG9ZZ00rNFBDT3huejZUb3kreGJLVTRJOVhLN2VQV3dBTys2OXNURTFrY1Zx?=
+ =?utf-8?B?S3plazBoaXYrY09JUE02MUtmT212dWcwaSttNlVqdEFtZGZHaU85UC9vV1ky?=
+ =?utf-8?B?dWp4ZitMdHFHelNNR0ZVaVFIZzI3VmJ1MVZTUHJCb3FVSkxhQ1o0bGhZNWIx?=
+ =?utf-8?B?OHhuWlZ6NG82cDROd2dOcWhVSVJjdzVscER4ejFEcmZGcndJOHZ6aWVLQ3U5?=
+ =?utf-8?B?NTY1djVLRHJWUks1U1BnY1ZGaUQzaEp0SEo3NlVKZXY5aVU5d05EUGRDTThM?=
+ =?utf-8?B?TGVVZG9CT1IyQzdTZlFVVTAxWkNNNTNBMHBwdEZsUHpLQnZkMVJqT0hSTE1D?=
+ =?utf-8?B?OVNKeWpPVVc4VFVsQnk0WGRlSU1DSGRjaTVOeVBvd0c0eGxRbU9VOUZMR2pj?=
+ =?utf-8?B?cklzWTdUVVM4V2hXYnhOa0hGYkxGekJDZDhLYXBLSTg2ZklVR3JoamlueFM2?=
+ =?utf-8?B?aks5Yjd5V2R2Q3hrdU1ZM1AzUjVZV3k0c2Zud0x4OXE4M3VJWTdieGlwdnoy?=
+ =?utf-8?B?QU5QT0F1Nkc1QnpGaEdVMVF1ZHIzVm9COXFsMEZtME5DL2wvckEvNThaRm1z?=
+ =?utf-8?Q?qjhA9PUn9QMgsHMqUhPzYaq0a?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a5ff9c26-c63d-4c12-3d86-08dc9208f926
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB6541.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jun 2024 15:44:01.9920 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: YcKvRp55adW+AzFkMIAQpctHqJsAdD+aFDiut8AUfL6pmP60j0jeJkylPA34WdRLxbMTN7wMlsvrGa5PFftZMg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8060
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,482 +194,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 18/06/2024 18:15, Matthew Brost wrote:
-> This aligns with the uAPI of an array of binds or single bind that
-> results in multiple GPUVA ops to be considered a single atomic
-> operations.
-> 
-> The implemenation is roughly:
-> - xe_vma_ops is a list of xe_vma_op (GPUVA op)
-> - each xe_vma_op resolves to 0-3 PT ops
-> - xe_vma_ops creates a single job
-> - if at any point during binding a failure occurs, xe_vma_ops contains
->    the information necessary unwind the PT and VMA (GPUVA) state
-> 
-> v2:
->   - add missing dma-resv slot reservation (CI, testing)
-> v4:
->   - Fix TLB invalidation (Paulo)
->   - Add missing xe_sched_job_last_fence_add/test_dep check (Inspection)
-> 
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
+Hi Christian,
 
-<snip>
+On 6/21/2024 4:54 PM, Christian König wrote:
+> Am 20.06.24 um 18:01 schrieb Nirmoy Das:
+>> Currently ttm pool is not honoring TTM_TT_FLAG_ZERO_ALLOC flag and
+>> clearing pages on free. It does help with allocation latency but 
+>> clearing
+>> happens even if drm driver doesn't passes the flag. If clear on free
+>> is needed then a new flag can be added for that purpose.
+>
+> Mhm, thinking more about it that will most likely get push back from 
+> others as well.
 
-> +
-> +static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
-> +			   struct xe_vm_pgtable_update_ops *pt_update_ops,
-> +			   struct xe_vma *vma)
-> +{
-> +	u32 current_op = pt_update_ops->current_op;
-> +	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
-> +	struct llist_head *deferred = &pt_update_ops->deferred;
-> +	int err;
->   
->   	xe_bo_assert_held(xe_vma_bo(vma));
-> -	xe_vm_assert_held(vm);
->   
->   	vm_dbg(&xe_vma_vm(vma)->xe->drm,
-> -	       "Preparing unbind, with range [%llx...%llx) engine %p.\n",
-> -	       xe_vma_start(vma), xe_vma_end(vma), q);
-> -
-> -	num_entries = xe_pt_stage_unbind(tile, vma, entries);
-> -	xe_tile_assert(tile, num_entries <= ARRAY_SIZE(entries));
-> +	       "Preparing bind, with range [%llx...%llx)\n",
-> +	       xe_vma_start(vma), xe_vma_end(vma) - 1);
->   
-> -	xe_vm_dbg_print_entries(tile_to_xe(tile), entries, num_entries);
-> -	xe_pt_calc_rfence_interval(vma, &unbind_pt_update, entries,
-> -				   num_entries);
-> +	pt_op->vma = NULL;
-> +	pt_op->bind = true;
-> +	pt_op->rebind = BIT(tile->id) & vma->tile_present;
->   
-> -	err = dma_resv_reserve_fences(xe_vm_resv(vm), 1);
-> -	if (!err && !xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
-> -		err = dma_resv_reserve_fences(xe_vma_bo(vma)->ttm.base.resv, 1);
-> +	err = vma_reserve_fences(tile_to_xe(tile), vma);
->   	if (err)
-> -		return ERR_PTR(err);
-> +		return err;
->   
-> -	ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
-> -	if (!ifence)
-> -		return ERR_PTR(-ENOMEM);
-> +	err = xe_pt_prepare_bind(tile, vma, pt_op->entries,
-> +				 &pt_op->num_entries);
-> +	if (!err) {
-> +		xe_tile_assert(tile, pt_op->num_entries <=
-> +			       ARRAY_SIZE(pt_op->entries));
-> +		xe_vm_dbg_print_entries(tile_to_xe(tile), pt_op->entries,
-> +					pt_op->num_entries, true);
->   
-> -	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
-> -	if (!rfence) {
-> -		kfree(ifence);
-> -		return ERR_PTR(-ENOMEM);
-> +		xe_pt_update_ops_rfence_interval(pt_update_ops, vma);
-> +		++pt_update_ops->current_op;
-> +		pt_update_ops->needs_userptr_lock |= xe_vma_is_userptr(vma);
-> +
-> +
-> +		/*
-> +		 * If rebind, we have to invalidate TLB on !LR vms to invalidate
-> +		 * cached PTEs point to freed memory. on LR vms this is done
 
-s/on/On/
+Agreed, it is diverting a lot from a known behavior.
 
-> +		 * automatically when the context is re-enabled by the rebind worker,
-> +		 * or in fault mode it was invalidated on PTE zapping.
-> +		 *
-> +		 * If !rebind, and scratch enabled VMs, there is a chance the scratch
-> +		 * PTE is already cached in the TLB so it needs to be invalidated.
-> +		 * on !LR VMs this is done in the ring ops preceding a batch, but on
+>
+> How about the attached patch? We just skip clearing pages when the 
+> driver set the ZERO_ALLOC flag again before freeing them.
+>
+> Maybe rename the flag or add a new one for that, but in general that 
+> looks like the option with the least impact.
 
-ditto
 
-> +		 * non-faulting LR, in particular on user-space batch buffer chaining,
-> +		 * it needs to be done here.
-> +		 */
-> +		if ((!pt_op->rebind && xe_vm_has_scratch(vm) &&
-> +		     xe_vm_in_preempt_fence_mode(vm)))
-> +			pt_update_ops->needs_invalidation = true;
-> +		else if (pt_op->rebind && !xe_vm_in_lr_mode(vm))
-> +			/* We bump also if batch_invalidate_tlb is true */
-> +			vm->tlb_flush_seqno++;
-> +
-> +		/* FIXME: Don't commit right away */
-> +		vma->tile_staged |= BIT(tile->id);
-> +		pt_op->vma = vma;
-> +		xe_pt_commit_bind(vma, pt_op->entries, pt_op->num_entries,
-> +				  pt_op->rebind, deferred);
->   	}
->   
-> +	return err;
-> +}
-> +
-> +static int unbind_op_prepare(struct xe_tile *tile,
-> +			     struct xe_vm_pgtable_update_ops *pt_update_ops,
-> +			     struct xe_vma *vma)
-> +{
-> +	u32 current_op = pt_update_ops->current_op;
-> +	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
-> +	struct llist_head *deferred = &pt_update_ops->deferred;
-> +	int err;
-> +
-> +	if (!((vma->tile_present | vma->tile_staged) & BIT(tile->id)))
-> +		return 0;
-> +
-> +	xe_bo_assert_held(xe_vma_bo(vma));
-> +
-> +	vm_dbg(&xe_vma_vm(vma)->xe->drm,
-> +	       "Preparing unbind, with range [%llx...%llx)\n",
-> +	       xe_vma_start(vma), xe_vma_end(vma) - 1);
-> +
->   	/*
-> -	 * Even if we were already evicted and unbind to destroy, we need to
-> -	 * clear again here. The eviction may have updated pagetables at a
-> -	 * lower level, because it needs to be more conservative.
-> +	 * Wait for invalidation to complete. Can corrupt internal page table
-> +	 * state if an invalidation is running while preparing an unbind.
->   	 */
-> -	fence = xe_migrate_update_pgtables(tile->migrate,
-> -					   vm, NULL, q ? q :
-> -					   vm->q[tile->id],
-> -					   entries, num_entries,
-> -					   syncs, num_syncs,
-> -					   &unbind_pt_update.base);
-> -	if (!IS_ERR(fence)) {
-> -		int err;
-> -
-> -		err = xe_range_fence_insert(&vm->rftree[tile->id], rfence,
-> -					    &xe_range_fence_kfree_ops,
-> -					    unbind_pt_update.base.start,
-> -					    unbind_pt_update.base.last, fence);
-> -		if (err)
-> -			dma_fence_wait(fence, false);
-> +	if (xe_vma_is_userptr(vma) && xe_vm_in_fault_mode(xe_vma_vm(vma)))
-> +		mmu_interval_read_begin(&to_userptr_vma(vma)->userptr.notifier);
->   
-> -		/* TLB invalidation must be done before signaling unbind */
-> -		err = invalidation_fence_init(tile->primary_gt, ifence, fence,
-> -					      xe_vma_start(vma),
-> -					      xe_vma_end(vma),
-> -					      xe_vma_vm(vma)->usm.asid);
-> -		if (err) {
-> -			dma_fence_put(fence);
-> -			kfree(ifence);
-> -			return ERR_PTR(err);
-> +	pt_op->vma = vma;
-> +	pt_op->bind = false;
-> +	pt_op->rebind = false;
-> +
-> +	err = vma_reserve_fences(tile_to_xe(tile), vma);
-> +	if (err)
-> +		return err;
-> +
-> +	pt_op->num_entries = xe_pt_stage_unbind(tile, vma, pt_op->entries);
-> +
-> +	xe_vm_dbg_print_entries(tile_to_xe(tile), pt_op->entries,
-> +				pt_op->num_entries, false);
-> +	xe_pt_update_ops_rfence_interval(pt_update_ops, vma);
-> +	++pt_update_ops->current_op;
-> +	pt_update_ops->needs_userptr_lock |= xe_vma_is_userptr(vma);
-> +	pt_update_ops->needs_invalidation = true;
-> +
-> +	/* FIXME: Don't commit right away */
-> +	xe_pt_commit_unbind(vma, pt_op->entries, pt_op->num_entries,
-> +			    deferred);
-> +
-> +	return 0;
-> +}
-> +
-> +static int op_prepare(struct xe_vm *vm,
-> +		      struct xe_tile *tile,
-> +		      struct xe_vm_pgtable_update_ops *pt_update_ops,
-> +		      struct xe_vma_op *op)
-> +{
-> +	int err = 0;
-> +
-> +	xe_vm_assert_held(vm);
-> +
-> +	switch (op->base.op) {
-> +	case DRM_GPUVA_OP_MAP:
-> +		if (!op->map.immediate && xe_vm_in_fault_mode(vm))
-> +			break;
-> +
-> +		err = bind_op_prepare(vm, tile, pt_update_ops, op->map.vma);
-> +		pt_update_ops->wait_vm_kernel = true;
-> +		break;
-> +	case DRM_GPUVA_OP_REMAP:
-> +		err = unbind_op_prepare(tile, pt_update_ops,
-> +					gpuva_to_vma(op->base.remap.unmap->va));
-> +
-> +		if (!err && op->remap.prev) {
-> +			err = bind_op_prepare(vm, tile, pt_update_ops,
-> +					      op->remap.prev);
-> +			pt_update_ops->wait_vm_bookkeep = true;
->   		}
-> -		fence = &ifence->base.base;
-> +		if (!err && op->remap.next) {
-> +			err = bind_op_prepare(vm, tile, pt_update_ops,
-> +					      op->remap.next);
-> +			pt_update_ops->wait_vm_bookkeep = true;
-> +		}
-> +		break;
-> +	case DRM_GPUVA_OP_UNMAP:
-> +		err = unbind_op_prepare(tile, pt_update_ops,
-> +					gpuva_to_vma(op->base.unmap.va));
-> +		break;
-> +	case DRM_GPUVA_OP_PREFETCH:
-> +		err = bind_op_prepare(vm, tile, pt_update_ops,
-> +				      gpuva_to_vma(op->base.prefetch.va));
-> +		pt_update_ops->wait_vm_kernel = true;
-> +		break;
-> +	default:
-> +		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
-> +	}
->   
-> -		/* add shared fence now for pagetable delayed destroy */
-> -		dma_resv_add_fence(xe_vm_resv(vm), fence,
-> -				   DMA_RESV_USAGE_BOOKKEEP);
-> +	return err;
-> +}
->   
-> -		/* This fence will be installed by caller when doing eviction */
-> -		if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
-> -			dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
-> -					   DMA_RESV_USAGE_BOOKKEEP);
-> -		xe_pt_commit_unbind(vma, entries, num_entries,
-> -				    unbind_pt_update.locked ? &deferred : NULL);
-> -		vma->tile_present &= ~BIT(tile->id);
-> -	} else {
-> -		kfree(rfence);
-> -		kfree(ifence);
-> +static void
-> +xe_pt_update_ops_init(struct xe_vm_pgtable_update_ops *pt_update_ops)
-> +{
-> +	init_llist_head(&pt_update_ops->deferred);
-> +	pt_update_ops->start = ~0x0ull;
-> +	pt_update_ops->last = 0x0ull;
-> +}
-> +
-> +/**
-> + * xe_pt_update_ops_prepare() - Prepare PT update operations
-> + * @tile: Tile of PT update operations
-> + * @vops: VMA operationa
-> + *
-> + * Prepare PT update operations which includes updating internal PT state,
-> + * allocate memory for page tables, populate page table being pruned in, and
-> + * create PT update operations for leaf insertion / removal.
-> + *
-> + * Return: 0 on success, negative error code on error.
-> + */
-> +int xe_pt_update_ops_prepare(struct xe_tile *tile, struct xe_vma_ops *vops)
-> +{
-> +	struct xe_vm_pgtable_update_ops *pt_update_ops =
-> +		&vops->pt_update_ops[tile->id];
-> +	struct xe_vma_op *op;
-> +	int err;
-> +
-> +	lockdep_assert_held(&vops->vm->lock);
-> +	xe_vm_assert_held(vops->vm);
-> +
-> +	xe_pt_update_ops_init(pt_update_ops);
-> +
-> +	err = dma_resv_reserve_fences(xe_vm_resv(vops->vm),
-> +				      tile_to_xe(tile)->info.tile_count);
-> +	if (err)
-> +		return err;
-> +
-> +	list_for_each_entry(op, &vops->list, link) {
-> +		err = op_prepare(vops->vm, tile, pt_update_ops, op);
-> +
-> +		if (err)
-> +			return err;
->   	}
->   
-> -	if (!vma->tile_present)
-> -		list_del_init(&vma->combined_links.rebind);
-> +	xe_tile_assert(tile, pt_update_ops->current_op <=
-> +		       pt_update_ops->num_ops);
-> +
-> +	return 0;
-> +}
-> +
-> +static void bind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
-> +			   struct xe_vm_pgtable_update_ops *pt_update_ops,
-> +			   struct xe_vma *vma, struct dma_fence *fence)
-> +{
-> +	if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
-> +		dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
-> +				   pt_update_ops->wait_vm_bookkeep ?
-> +				   DMA_RESV_USAGE_KERNEL :
-> +				   DMA_RESV_USAGE_BOOKKEEP);
-> +	vma->tile_present |= BIT(tile->id);
-> +	vma->tile_staged &= ~BIT(tile->id);
-> +	if (xe_vma_is_userptr(vma)) {
-> +		lockdep_assert_held_read(&vm->userptr.notifier_lock);
-> +		to_userptr_vma(vma)->userptr.initial_bind = true;
-> +	}
->   
-> -	if (unbind_pt_update.locked) {
-> -		xe_tile_assert(tile, xe_vma_is_userptr(vma));
-> +	/*
-> +	 * Kick rebind worker if this bind triggers preempt fences and not in
-> +	 * the rebind worker
-> +	 */
-> +	if (pt_update_ops->wait_vm_bookkeep &&
-> +	    xe_vm_in_preempt_fence_mode(vm) &&
-> +	    !current->mm)
-> +		xe_vm_queue_rebind_worker(vm);
-> +}
-> +
-> +static void unbind_op_commit(struct xe_vm *vm, struct xe_tile *tile,
-> +			     struct xe_vm_pgtable_update_ops *pt_update_ops,
-> +			     struct xe_vma *vma, struct dma_fence *fence)
-> +{
-> +	if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
-> +		dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
-> +				   pt_update_ops->wait_vm_bookkeep ?
-> +				   DMA_RESV_USAGE_KERNEL :
-> +				   DMA_RESV_USAGE_BOOKKEEP);
-> +	vma->tile_present &= ~BIT(tile->id);
-> +	if (!vma->tile_present) {
-> +		list_del_init(&vma->combined_links.rebind);
-> +		if (xe_vma_is_userptr(vma)) {
-> +			lockdep_assert_held_read(&vm->userptr.notifier_lock);
->   
-> -		if (!vma->tile_present) {
->   			spin_lock(&vm->userptr.invalidated_lock);
->   			list_del_init(&to_userptr_vma(vma)->userptr.invalidate_link);
->   			spin_unlock(&vm->userptr.invalidated_lock);
->   		}
-> -		up_read(&vm->userptr.notifier_lock);
-> -		xe_bo_put_commit(&deferred);
->   	}
-> +}
-> +
-> +static void op_commit(struct xe_vm *vm,
-> +		      struct xe_tile *tile,
-> +		      struct xe_vm_pgtable_update_ops *pt_update_ops,
-> +		      struct xe_vma_op *op, struct dma_fence *fence)
-> +{
-> +	xe_vm_assert_held(vm);
-> +
-> +	switch (op->base.op) {
-> +	case DRM_GPUVA_OP_MAP:
-> +		if (!op->map.immediate && xe_vm_in_fault_mode(vm))
-> +			break;
-> +
-> +		bind_op_commit(vm, tile, pt_update_ops, op->map.vma, fence);
-> +		break;
-> +	case DRM_GPUVA_OP_REMAP:
-> +		unbind_op_commit(vm, tile, pt_update_ops,
-> +				 gpuva_to_vma(op->base.remap.unmap->va), fence);
-> +
-> +		if (op->remap.prev)
-> +			bind_op_commit(vm, tile, pt_update_ops, op->remap.prev,
-> +				       fence);
-> +		if (op->remap.next)
-> +			bind_op_commit(vm, tile, pt_update_ops, op->remap.next,
-> +				       fence);
-> +		break;
-> +	case DRM_GPUVA_OP_UNMAP:
-> +		unbind_op_commit(vm, tile, pt_update_ops,
-> +				 gpuva_to_vma(op->base.unmap.va), fence);
-> +		break;
-> +	case DRM_GPUVA_OP_PREFETCH:
-> +		bind_op_commit(vm, tile, pt_update_ops,
-> +			       gpuva_to_vma(op->base.prefetch.va), fence);
-> +		break;
-> +	default:
-> +		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
-> +	}
-> +}
-> +
-> +static const struct xe_migrate_pt_update_ops migrate_ops = {
-> +	.populate = xe_vm_populate_pgtable,
-> +	.clear = xe_migrate_clear_pgtable_callback,
-> +	.pre_commit = xe_pt_pre_commit,
-> +};
-> +
-> +static const struct xe_migrate_pt_update_ops userptr_migrate_ops = {
-> +	.populate = xe_vm_populate_pgtable,
-> +	.clear = xe_migrate_clear_pgtable_callback,
-> +	.pre_commit = xe_pt_userptr_pre_commit,
-> +};
-> +
-> +/**
-> + * xe_pt_update_ops_run() - Run PT update operations
-> + * @tile: Tile of PT update operations
-> + * @vops: VMA operationa
-> + *
-> + * Run PT update operations which includes committing internal PT state changes,
-> + * creating job for PT update operations for leaf insertion / removal, and
-> + * installing job fence in various places.
-> +  *
-> + * Return: fence on success, negative ERR_PTR on error.
-> + */
-> +struct dma_fence *
-> +xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
-> +{
-> +	struct xe_vm *vm = vops->vm;
-> +	struct xe_vm_pgtable_update_ops *pt_update_ops =
-> +		&vops->pt_update_ops[tile->id];
-> +	struct dma_fence *fence;
-> +	struct invalidation_fence *ifence = NULL;
-> +	struct xe_range_fence *rfence;
-> +	struct xe_vma_op *op;
-> +	int err = 0;
-> +	struct xe_migrate_pt_update update = {
-> +		.ops = pt_update_ops->needs_userptr_lock ?
-> +			&userptr_migrate_ops :
-> +			&migrate_ops,
-> +		.vops = vops,
-> +		.tile_id = tile->id
+I would prefer a few flag (TTM_TT_FLAG_CLEARED_ALLOC ?) which driver can 
+set before freeing. I can resend the patch if you are
 
-Nit: I think needs a comma here.
+fine with it.
 
-> +	};
-> +
-> +	lockdep_assert_held(&vm->lock);
-> +	xe_vm_assert_held(vm);
-> +
-> +	if (!pt_update_ops->current_op) {
-> +		xe_tile_assert(tile, xe_vm_in_fault_mode(vm));
-> +
-> +		return dma_fence_get_stub();
-> +	}
-> +
-> +	if (pt_update_ops->needs_invalidation) {
-> +		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
-> +		if (!ifence)
-> +			return ERR_PTR(-ENOMEM);
-> +	}
-> +
-> +	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
-> +	if (!rfence) {
-> +		err = -ENOMEM;
-> +		goto free_ifence;
-> +	}
-> +
-> +	fence = xe_migrate_update_pgtables(tile->migrate, &update);
-> +	if (IS_ERR(fence)) {
-> +		err = PTR_ERR(fence);
-> +		goto free_rfence;
-> +	}
-> +
-> +	err = xe_range_fence_insert(&vm->rftree[tile->id], rfence,
-> +				    &xe_range_fence_kfree_ops,
-> +				    pt_update_ops->start,
-> +				    pt_update_ops->last, fence);
-> +	if (err)
-> +		dma_fence_wait(fence, false);
 
-Could maybe set err back to zero or don't set it? Just so we don't leave 
-any possible booby traps later?
+Regards,
 
-<snip>
+Nirmoy
+
+
+>
+> Regards,
+> Christian.
+>
+>>
+>> Cc: Christian Koenig <christian.koenig@amd.com>
+>> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>> ---
+>>   drivers/gpu/drm/ttm/ttm_pool.c | 31 +++++++++++++++++--------------
+>>   1 file changed, 17 insertions(+), 14 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c 
+>> b/drivers/gpu/drm/ttm/ttm_pool.c
+>> index 6e1fd6985ffc..cbbd722185ee 100644
+>> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+>> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+>> @@ -224,15 +224,6 @@ static void ttm_pool_unmap(struct ttm_pool 
+>> *pool, dma_addr_t dma_addr,
+>>   /* Give pages into a specific pool_type */
+>>   static void ttm_pool_type_give(struct ttm_pool_type *pt, struct 
+>> page *p)
+>>   {
+>> -    unsigned int i, num_pages = 1 << pt->order;
+>> -
+>> -    for (i = 0; i < num_pages; ++i) {
+>> -        if (PageHighMem(p))
+>> -            clear_highpage(p + i);
+>> -        else
+>> -            clear_page(page_address(p + i));
+>> -    }
+>> -
+>>       spin_lock(&pt->lock);
+>>       list_add(&p->lru, &pt->pages);
+>>       spin_unlock(&pt->lock);
+>> @@ -240,15 +231,26 @@ static void ttm_pool_type_give(struct 
+>> ttm_pool_type *pt, struct page *p)
+>>   }
+>>     /* Take pages from a specific pool_type, return NULL when nothing 
+>> available */
+>> -static struct page *ttm_pool_type_take(struct ttm_pool_type *pt)
+>> +static struct page *ttm_pool_type_take(struct ttm_pool_type *pt, 
+>> bool clear)
+>>   {
+>>       struct page *p;
+>>         spin_lock(&pt->lock);
+>>       p = list_first_entry_or_null(&pt->pages, typeof(*p), lru);
+>>       if (p) {
+>> +        unsigned int i, num_pages = 1 << pt->order;
+>> +
+>>           atomic_long_sub(1 << pt->order, &allocated_pages);
+>>           list_del(&p->lru);
+>> +        if (clear) {
+>> +            for (i = 0; i < num_pages; ++i) {
+>> +                if (PageHighMem(p))
+>> +                    clear_highpage(p + i);
+>> +                else
+>> +                    clear_page(page_address(p + i));
+>> +            }
+>> +        }
+>> +
+>>       }
+>>       spin_unlock(&pt->lock);
+>>   @@ -279,7 +281,7 @@ static void ttm_pool_type_fini(struct 
+>> ttm_pool_type *pt)
+>>       list_del(&pt->shrinker_list);
+>>       spin_unlock(&shrinker_lock);
+>>   -    while ((p = ttm_pool_type_take(pt)))
+>> +    while ((p = ttm_pool_type_take(pt, false)))
+>>           ttm_pool_free_page(pt->pool, pt->caching, pt->order, p);
+>>   }
+>>   @@ -330,7 +332,7 @@ static unsigned int ttm_pool_shrink(void)
+>>       list_move_tail(&pt->shrinker_list, &shrinker_list);
+>>       spin_unlock(&shrinker_lock);
+>>   -    p = ttm_pool_type_take(pt);
+>> +    p = ttm_pool_type_take(pt, false);
+>>       if (p) {
+>>           ttm_pool_free_page(pt->pool, pt->caching, pt->order, p);
+>>           num_pages = 1 << pt->order;
+>> @@ -457,10 +459,11 @@ int ttm_pool_alloc(struct ttm_pool *pool, 
+>> struct ttm_tt *tt,
+>>            num_pages;
+>>            order = min_t(unsigned int, order, __fls(num_pages))) {
+>>           struct ttm_pool_type *pt;
+>> +        bool clear = tt->page_flags & TTM_TT_FLAG_ZERO_ALLOC;
+>>             page_caching = tt->caching;
+>>           pt = ttm_pool_select_type(pool, tt->caching, order);
+>> -        p = pt ? ttm_pool_type_take(pt) : NULL;
+>> +        p = pt ? ttm_pool_type_take(pt, clear) : NULL;
+>>           if (p) {
+>>               r = ttm_pool_apply_caching(caching, pages,
+>>                              tt->caching);
+>> @@ -480,7 +483,7 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct 
+>> ttm_tt *tt,
+>>                   if (num_pages < (1 << order))
+>>                       break;
+>>   -                p = ttm_pool_type_take(pt);
+>> +                p = ttm_pool_type_take(pt, clear);
+>>               } while (p);
+>>           }
