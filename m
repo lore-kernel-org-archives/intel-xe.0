@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CAB4C2BA1A
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Jun 2024 07:33:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B487C27C4F
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Jun 2024 07:34:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D631810EC09;
-	Fri, 21 Jun 2024 07:33:26 +0000 (UTC)
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD13710EC09;
- Fri, 21 Jun 2024 07:33:25 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06AD210EC3B;
+	Fri, 21 Jun 2024 07:34:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L2jLHGGH";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE1F710EC2F;
+ Fri, 21 Jun 2024 07:34:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1718955279; x=1750491279;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=oO5wPK0VwvDSyweozPX1efnwc4s2BgTjlc3nPijL/tM=;
+ b=L2jLHGGHnC+O4lAV7/GbLxhTWf7p6CYM+EBLjp5BJsCtWWm1qsg9P47F
+ r8n8i7h0xpp8i7o7NEKorVH4i9OXMAqs92G1f/LBPhk4FsrmKjwOKy0FD
+ PXG3M6ECLPuONPLFYc5mK7oh5grwwAMoY7d1ReVcb04b9FIuJ4luN+8BR
+ /BRS1N7zW3oBT/CWTtMW8kiBN/bQS0NvW2gKDsyCezr3CVyJfoiwfdyXr
+ gjLX7cuKjxVLWZz8PN7Am988xCFD1qanBe50ZrW4W6V0ZHWKiAPSc54YG
+ 5maYWjHdFM05ihOBj40aEZ1b5ymbJOHang3HRoOwz/tV3NLzjy2J4p5BR Q==;
+X-CSE-ConnectionGUID: caxyL5C6RAaKNUcIfz7sbA==
+X-CSE-MsgGUID: 4sprXNmnRye+EzodW1qKvA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11109"; a="33518822"
+X-IronPort-AV: E=Sophos;i="6.08,254,1712646000"; d="scan'208";a="33518822"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2024 00:34:38 -0700
+X-CSE-ConnectionGUID: P5TgM6JfT7WbLC2qpchWKA==
+X-CSE-MsgGUID: hPWFgmxgTe+bLD1e1q9rYA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,254,1712646000"; d="scan'208";a="47030520"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by fmviesa004.fm.intel.com with ESMTP; 21 Jun 2024 00:34:36 -0700
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, suraj.kandpal@intel.com,
+ ankit.k.nautiyal@intel.com, nathan@kernel.org
+Subject: [PATCH] drm/i915/display: Consider adjusted_pixel_rate to be u64
+Date: Fri, 21 Jun 2024 13:04:54 +0530
+Message-ID: <20240621073454.1421676-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_series_starting_with_=5Bv1=2C1?=
- =?utf-8?q?/1=5D_drm/xe/bo=3A_Fix_fixed_placement_ggtt_pinning_code?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 21 Jun 2024 07:33:25 -0000
-Message-ID: <171895520583.130958.8516067157718237767@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <20240621071506.912055-1-alan.previn.teres.alexis@intel.com>
-In-Reply-To: <20240621071506.912055-1-alan.previn.teres.alexis@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +62,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Consider adjusted_pixel_rate to be a u64 to match the return
+type of mul_u32_u32() and avoid any compiler dependency for
+do_div.
 
-Series: series starting with [v1,1/1] drm/xe/bo: Fix fixed placement ggtt pinning code
-URL   : https://patchwork.freedesktop.org/series/135161/
-State : success
+Fixes: 1676ecd303ac ("drm/i915: Compute CMRR and calculate vtotal")
+Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Nathan Chancellor <nathan@kernel.org>
+Cc: intel-xe@lists.freedesktop.org
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_vrr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-== Summary ==
-
-lib/modules/6.10.0-rc4-xe/kernel/sound/core/seq/
-lib/modules/6.10.0-rc4-xe/kernel/sound/core/seq/snd-seq.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/core/snd-seq-device.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/core/snd-hwdep.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/core/snd.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/core/snd-pcm.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/core/snd-compress.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/core/snd-timer.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soundcore.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/intel/
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/intel/atom/
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/intel/atom/sst/
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/intel/common/
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/amd/
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/amd/snd-acp-config.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/intel/
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/amd/
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/snd-sof-utils.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/snd-sof-pci.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/snd-sof.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/snd-sof-probes.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/xtensa/
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/snd-soc-core.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/snd-soc-acpi.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/codecs/
-lib/modules/6.10.0-rc4-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/hda/
-lib/modules/6.10.0-rc4-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/hda/ext/
-lib/modules/6.10.0-rc4-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/hda/snd-intel-dspcfg.ko
-lib/modules/6.10.0-rc4-xe/kernel/sound/hda/snd-hda-core.ko
-lib/modules/6.10.0-rc4-xe/kernel/arch/
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/kernel/
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/kernel/msr.ko
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/kernel/cpuid.ko
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/crypto/
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/crypto/aesni-intel.ko
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/events/
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/events/intel/
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/kvm/
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.10.0-rc4-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.10.0-rc4-xe/kernel/crypto/
-lib/modules/6.10.0-rc4-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.10.0-rc4-xe/kernel/crypto/cmac.ko
-lib/modules/6.10.0-rc4-xe/kernel/crypto/ccm.ko
-lib/modules/6.10.0-rc4-xe/kernel/crypto/cryptd.ko
-lib/modules/6.10.0-rc4-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.10.0-rc4-xe/kernel/crypto/async_tx/
-lib/modules/6.10.0-rc4-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.10.0-rc4-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.10.0-rc4-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.10.0-rc4-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.10.0-rc4-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.10.0-rc4-xe/build
-lib/modules/6.10.0-rc4-xe/modules.alias.bin
-lib/modules/6.10.0-rc4-xe/modules.builtin
-lib/modules/6.10.0-rc4-xe/modules.softdep
-lib/modules/6.10.0-rc4-xe/modules.alias
-lib/modules/6.10.0-rc4-xe/modules.order
-lib/modules/6.10.0-rc4-xe/modules.symbols
-lib/modules/6.10.0-rc4-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1718955194:package_x86_64_nodebug\r\e[0K'
-+ sync
-[0Ksection_end:1718955194:package_x86_64_nodebug
-[0K
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 6430da25957d..5a0da64c7db3 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -137,7 +137,7 @@ static unsigned int
+ cmrr_get_vtotal(struct intel_crtc_state *crtc_state, bool video_mode_required)
+ {
+ 	int multiplier_m = 1, multiplier_n = 1, vtotal, desired_refresh_rate;
+-	long long adjusted_pixel_rate;
++	u64 adjusted_pixel_rate;
+ 	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+ 
+ 	desired_refresh_rate = drm_mode_vrefresh(adjusted_mode);
+-- 
+2.45.2
 
