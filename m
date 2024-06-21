@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1A50C2BB85
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Jun 2024 19:14:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C9C6C27C4F
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Jun 2024 19:14:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68C7E10E065;
-	Fri, 21 Jun 2024 19:14:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A31E10E071;
+	Fri, 21 Jun 2024 19:14:26 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C13410E064;
- Fri, 21 Jun 2024 19:14:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F47810E071;
+ Fri, 21 Jun 2024 19:14:25 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/oa=3A_Fix_=27?=
- =?utf-8?q?enum_drm=5Fxe=5Fperf=5Ftype=27_kernel_doc_warnings?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/oa=3A_Fix_=27enum_?=
+ =?utf-8?q?drm=5Fxe=5Fperf=5Ftype=27_kernel_doc_warnings?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 21 Jun 2024 19:14:14 -0000
-Message-ID: <171899725458.132113.6931641370473884758@a6498e030952>
+Date: Fri, 21 Jun 2024 19:14:25 -0000
+Message-ID: <171899726527.132113.7964776003264149817@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240621190903.3593781-1-ashutosh.dixit@intel.com>
 In-Reply-To: <20240621190903.3593781-1-ashutosh.dixit@intel.com>
@@ -44,13 +44,37 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/oa: Fix 'enum drm_xe_perf_type' kernel doc warnings
 URL   : https://patchwork.freedesktop.org/series/135195/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 383dc44a7984 drm-tip: 2024y-06m-21d-15h-18m-10s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/oa: Fix 'enum drm_xe_perf_type' kernel doc warnings
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 7a33677dfc13db60537ceffe4df87da18dc4b7d2
+Author: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Date:   Fri Jun 21 12:09:03 2024 -0700
+
+    drm/xe/oa: Fix 'enum drm_xe_perf_type' kernel doc warnings
+    
+    Include kernel doc's for 'enum drm_xe_perf_type' to fix kernel doc
+    warnings.
+    
+    Reported-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
++ /mt/dim checkpatch 383dc44a79848f13f2430c9ed811b5c9b22b882a drm-intel
+7a33677dfc13 drm/xe/oa: Fix 'enum drm_xe_perf_type' kernel doc warnings
+-:9: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#9: 
+Reported-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 12 lines checked
 
 
