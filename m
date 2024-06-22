@@ -4,52 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BF80C27C53
-	for <intel-xe@archiver.kernel.org>; Sat, 22 Jun 2024 15:59:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3D6EC27C53
+	for <intel-xe@archiver.kernel.org>; Sat, 22 Jun 2024 16:03:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3DEC10E287;
-	Sat, 22 Jun 2024 15:59:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 607D410E28B;
+	Sat, 22 Jun 2024 16:03:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FNwbRbwN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dyk5p8iW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9830610E287
- for <intel-xe@lists.freedesktop.org>; Sat, 22 Jun 2024 15:59:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C405310E28B
+ for <intel-xe@lists.freedesktop.org>; Sat, 22 Jun 2024 16:03:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719071965; x=1750607965;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Yrphl4/GVF/c1FnVcX5BuSCTwyYbzy/kGSdHPyd0F6o=;
- b=FNwbRbwNgx5swtueCDhWY6Z725Xt2ogil/nwfkzYzNlh9QODvgReHbd4
- vnw+NFZpCQ8JwPDVqQzGarqTE9o8oI1peFal0LDKlVTzae1fkTkX3tnoZ
- vzgW9cmvx2WAbgY5DJBYpdrXkl/dP0HeBW0chV/wmvhe1rmS3/zu90L8V
- O03491G+tGgRTkO3L4TTzBjxCEafUvaDQUq8tTZSLKshKfTcltlEbnoOK
- L+253JE0RvNszkGDLwLHfmkBT+yoy+FfG1FiAjO2l09uqGpLD+2rgQSaC
- dU5FSVDTzFQZIKd8EaUDgUaOohvP2IeKImGhi8vUh0LRdRp+Osl6r5MTZ Q==;
-X-CSE-ConnectionGUID: /HzdmLZtReeeLwY8PcRPUQ==
-X-CSE-MsgGUID: L9mscbRrQZ2TmTmzLhLlTg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11111"; a="26777502"
-X-IronPort-AV: E=Sophos;i="6.08,258,1712646000"; d="scan'208";a="26777502"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2024 08:59:25 -0700
-X-CSE-ConnectionGUID: 10XvB2iYQj+1EsCcFV4MNQ==
-X-CSE-MsgGUID: kL/4xPZzTjyAbzxo51pRWg==
+ t=1719072184; x=1750608184;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=Ynl0XgT+0di5rilejzxs5qpWfnnc5Fk1NmrCxj3BZdE=;
+ b=dyk5p8iWsmwTW+2jiQfVV8dil8ZxsXwcqsB5Bb0liHzcnDEIk2K2NRBv
+ R8L5KXrDqOPE4ij6zHjbfnc0t9fvYhnMbpmU4ybXNrqUHBG5fWVC/dXRM
+ nxxL1HL5OBPF3pUdddpJ/18Bvg3PY7q2ttSX5BPSDXAb1haqNaDme2ykY
+ 35pFPnXJbO2YHbfeTkWDdr0762VHktl4YntfKuwxP7IRP2QmM6PjKJy13
+ NssjxBtZOGvi9JpR50Xd/pCeQ/RDc9CWt0Hj4fdksXdy8f10DlyqEE9G9
+ iRLO4jHWSzxv9NRE0DRNk8OCZWKTs6te+uxqLHfAdXR/fN8nlpy8OpnPR Q==;
+X-CSE-ConnectionGUID: IDIk9/YLT5O/kgNIcDcOYg==
+X-CSE-MsgGUID: HtRmnp4vQo6ffgUkaz+p/g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11111"; a="19976757"
+X-IronPort-AV: E=Sophos;i="6.08,258,1712646000"; d="scan'208";a="19976757"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2024 09:03:04 -0700
+X-CSE-ConnectionGUID: GZenyGoDRGyglmggGYZZRg==
+X-CSE-MsgGUID: KiKuvtY8T3mAlbhVR2f9EA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,258,1712646000"; d="scan'208";a="73614190"
-Received: from orsosgc001.jf.intel.com ([10.165.21.138])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2024 08:59:25 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2] drm/xe/oa: Fix kernel doc warnings in xe_drm.h
-Date: Sat, 22 Jun 2024 08:59:18 -0700
-Message-ID: <20240622155918.3675409-1-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.41.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.08,258,1712646000"; d="scan'208";a="42972923"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.138])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2024 09:03:04 -0700
+Date: Sat, 22 Jun 2024 09:03:04 -0700
+Message-ID: <8534p5q81z.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/xe/oa: Fix 'enum drm_xe_perf_type' kernel doc warnings
+In-Reply-To: <fa258ff8-86f2-4802-ba54-cd6705ce6e3d@intel.com>
+References: <20240621190903.3593781-1-ashutosh.dixit@intel.com>	<508be309-17c8-419a-92b4-91cd06d2cb6b@intel.com>	<87wmmihtbw.wl-ashutosh.dixit@intel.com>	<fa258ff8-86f2-4802-ba54-cd6705ce6e3d@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,57 +69,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fix kernel doc warnings in xe_drm.h. Also make sure that private/non-abi
-enum definitions are distinct from real enum definitions and don't generate
-kernel doc.
+On Sat, 22 Jun 2024 02:17:11 -0700, Michal Wajdeczko wrote:
+>
 
-v2: Remove __DRM_XE_PERF_TYPE_MAX since it is unused (Michal)
+Hi Michal,
 
-Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/xe/xe_oa.c | 2 +-
- include/uapi/drm/xe_drm.h  | 6 +++---
- 2 files changed, 4 insertions(+), 4 deletions(-)
+>
+>
+> On 21.06.2024 23:36, Dixit, Ashutosh wrote:
+> > On Fri, 21 Jun 2024 12:45:43 -0700, Michal Wajdeczko wrote:
+> >>
+> >
+> > Hi Michal,
+> >
+> >>
+> >> On 21.06.2024 21:09, Ashutosh Dixit wrote:
+> >>> Include kernel doc's for 'enum drm_xe_perf_type' to fix kernel doc
+> >>> warnings.
+> >>>
+> >>> Reported-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> >>> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> >>> ---
+> >>>  include/uapi/drm/xe_drm.h | 5 ++++-
+> >>>  1 file changed, 4 insertions(+), 1 deletion(-)
+> >>>
+> >>> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> >>> index 93e00be44b2d..d831f277f186 100644
+> >>> --- a/include/uapi/drm/xe_drm.h
+> >>> +++ b/include/uapi/drm/xe_drm.h
+> >>> @@ -1379,8 +1379,11 @@ struct drm_xe_wait_user_fence {
+> >>>   * enum drm_xe_perf_type - Perf stream types
+> >>>   */
+> >>>  enum drm_xe_perf_type {
+> >>> +	/** @DRM_XE_PERF_TYPE_OA: OA perf stream type */
+> >>>	DRM_XE_PERF_TYPE_OA,
+> >>> -	__DRM_XE_PERF_TYPE_MAX, /* non-ABI */
+> >>> +
+> >>> +	/** @__DRM_XE_PERF_TYPE_MAX: Non-ABI */
+> >>
+> >> hmm, I would rather not document it at all, by marking it as:
+> >>
+> >>	/* private: */
+> >>
+> >> see https://www.kernel.org/doc/html/next/doc-guide/kernel-doc.html#members
+> >>
+> >>> +	__DRM_XE_PERF_TYPE_MAX,
+> >>>  };
+> >>>
+> >>>  /**
+> >
+> > Unfortunately, not documenting it doesn't seem to work and will result in
+> > kernel-doc error below:
+> >
+> > $ ./scripts/kernel-doc -Werror -none include/uapi/drm/xe_drm.h
+> > include/uapi/drm/xe_drm.h:1388: warning: Enum value '__DRM_XE_PERF_TYPE_MAX' not described in enum 'drm_xe_perf_type'
+> > 1 warnings as Errors
+>
+> hmm, but below diff works for me:
+>
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index 93e00be44b2d..081e584240e6 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -1379,7 +1379,9 @@ struct drm_xe_wait_user_fence {
+>   * enum drm_xe_perf_type - Perf stream types
+>   */
+>  enum drm_xe_perf_type {
+> +       /** @DRM_XE_PERF_TYPE_OA: OA perf stream type */
+>         DRM_XE_PERF_TYPE_OA,
+> +       /* private: */
+>         __DRM_XE_PERF_TYPE_MAX, /* non-ABI */
+>  };
+>
+>
+> make sure you don't use /** private: */ as this might be not recognized
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 4168b51cf7b5..fe6e29fb06b7 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -1692,7 +1692,7 @@ static int xe_oa_user_extensions(struct xe_oa *oa, u64 extension, int ext_number
- 	int err;
- 	u32 idx;
- 
--	if (XE_IOCTL_DBG(oa->xe, ext_number >= DRM_XE_OA_PROPERTY_MAX))
-+	if (XE_IOCTL_DBG(oa->xe, ext_number >= __DRM_XE_OA_PROPERTY_MAX))
- 		return -E2BIG;
- 
- 	err = __copy_from_user(&ext, address, sizeof(ext));
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 93e00be44b2d..6bc543db3e9d 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1379,8 +1379,8 @@ struct drm_xe_wait_user_fence {
-  * enum drm_xe_perf_type - Perf stream types
-  */
- enum drm_xe_perf_type {
-+	/** @DRM_XE_PERF_TYPE_OA: OA perf stream type */
- 	DRM_XE_PERF_TYPE_OA,
--	__DRM_XE_PERF_TYPE_MAX, /* non-ABI */
- };
- 
- /**
-@@ -1612,8 +1612,8 @@ enum drm_xe_oa_property_id {
- 	 */
- 	DRM_XE_OA_PROPERTY_OA_ENGINE_INSTANCE,
- 
--	/** @DRM_XE_OA_PROPERTY_MAX: non-ABI */
--	DRM_XE_OA_PROPERTY_MAX
-+	/* private: non-ABI */
-+	__DRM_XE_OA_PROPERTY_MAX
- };
- 
- /**
--- 
-2.41.0
+Yup that was the issue.
 
+>
+> OTOH, if __DRM_XE_PERF_TYPE_MAX is not a real ABI definition, why did we
+> put this into uabi header?
+
+I have now removed it.
+
+>
+> see also DRM_XE_OA_PROPERTY_MAX that IMO should be either removed from
+> uabi or at least marked as a 'private'
+
+I have fixed this up in v2 here:
+
+https://patchwork.freedesktop.org/series/135225/
+
+It is used internally so can't remove it, but have named it
+__DRM_XE_OA_PROPERTY_MAX and marked it as private.
+
+>
+> + Rodrigo
+
+Thanks.
+--
+Ashutosh
