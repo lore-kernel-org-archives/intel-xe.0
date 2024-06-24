@@ -4,57 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D2EEC2BD05
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Jun 2024 10:22:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B14CFC2BD05
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Jun 2024 10:24:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F050510E3ED;
-	Mon, 24 Jun 2024 10:22:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 733D810E113;
+	Mon, 24 Jun 2024 10:24:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TJ2jg+XV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e/CWAi6p";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 326CA10E3ED;
- Mon, 24 Jun 2024 10:22:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3662910E113
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Jun 2024 10:24:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719224541; x=1750760541;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ts0Dbo7X+RVfVRZmfKRW3Ye0C7PoOTLlLLcDQgqD/hQ=;
- b=TJ2jg+XVHfGGg9hnsG8UitT6TxaPRkkcpQ2IVr6gscEh67NEc/Ks7r5z
- RdvQCKVGImYn5BW4L3F7/LU87rsM4jcfOCN4MB3immoRBfOOIV0PU/7gK
- nwMNE9nfxz++BYPESU1eSSn7maGhj/b/O5J49dV6W7DwXEV6bn+ERQvGc
- RRn9LnOlma9I6qBxgbIZDC7nCb0NN7DL4Af0bAhTzwMRYjtoHECdbHhlH
- GMpLyXcnMrJyEQZLEFrMI4FgfpYQLzmSjWnI081W+MQCdMV0nJInbKARC
- g55yt7c3kbFrUzkR2gacMD9Oc3dZYEvlumKNIP5blSkC6QELjVkyb6SrM Q==;
-X-CSE-ConnectionGUID: qUtA/PGFSS6tpOwBrou8Cg==
-X-CSE-MsgGUID: B53CvS4zS66nuDFRGNHk8A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11112"; a="12210748"
-X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; d="scan'208";a="12210748"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2024 03:22:20 -0700
-X-CSE-ConnectionGUID: chthUd4zSP2a87FLRlMFzg==
-X-CSE-MsgGUID: O8CXg5JoQtWShnI6A3IZrQ==
+ t=1719224660; x=1750760660;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=IVhwT59ndtIP5V6LNQKw/5tXadtXw8+5o4Vi2G7mNJ4=;
+ b=e/CWAi6pG7HjXezPEw+7uz91Qf6LeIEy8CI563TrUyoBYpTvtXCUgAr8
+ STXDvnWQsxjfGQp/S8DhWEUMnJkqTcobVGkLh9eJXP2rBkfHBEjC0DY8Y
+ veePys+TSIx6aM0TqoZaVczRq0SDXfRbRaHr/9zMtlOw/YWYL7+TLQ+11
+ 0wcT6LNKTuw6OwgDsv18xkhhlj04B/whAy4jZmpbxn8ggqr9GiWPjmb5b
+ Zq3i6FfxF4B500Xg+cBte7mZu1p6xgvZqjYCFntUjDtp99JgyRK9xlAUZ
+ UkI1fQySbVeq2NKRsbeeMLLTPMaKtIaFbo3evnZ57S/uJ8zn7BskMiMxX w==;
+X-CSE-ConnectionGUID: Xk1ZkyB0SRKI01Jl1WkxpQ==
+X-CSE-MsgGUID: l5k602/sTs2bIs4MGoJwKw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11112"; a="19960188"
+X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; d="scan'208";a="19960188"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2024 03:24:20 -0700
+X-CSE-ConnectionGUID: TPodJtcKRSOCtO6FzthjUA==
+X-CSE-MsgGUID: 9IlW3LQCQL6JSLDe6ML2wA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; d="scan'208";a="43124880"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2024 03:22:19 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Subject: [PATCH] drm/ttm: Add a flag to allow drivers to skip clear-on-free
-Date: Mon, 24 Jun 2024 12:07:21 +0200
-Message-ID: <20240624100721.24331-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.42.0
+X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; d="scan'208";a="43324074"
+Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
+ ([10.145.162.146])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2024 03:24:17 -0700
+Message-ID: <0b01375a-cd13-454f-bac8-f42d5e19cb22@linux.intel.com>
+Date: Mon, 24 Jun 2024 15:57:18 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 0/2] drm/xe/pmu: Enable PMU interface
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>,
+ Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org,
+ anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ krishnaiah.bommu@intel.com, tvrtko.ursulin@igalia.com,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+References: <20240613100411.1579218-1-riana.tauro@intel.com>
+ <878qz8u1on.wl-ashutosh.dixit@intel.com>
+ <af6df0d8-bafa-4fd5-a747-ff9e3092c3c6@intel.com>
+ <875xubtu61.wl-ashutosh.dixit@intel.com> <ZnR/uGMcxOETqhsm@orsosgc001>
+ <25d256e1-ce8f-41f4-b010-ca28b5eef557@linux.intel.com>
+ <ZnXHNCQcKimE06ar@orsosgc001>
+Content-Language: en-US
+From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+In-Reply-To: <ZnXHNCQcKimE06ar@orsosgc001>
 Content-Type: text/plain; charset=UTF-8
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,89 +78,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add TTM_TT_FLAG_CLEARED_ON_FREE, which DRM drivers can set before
-releasing backing stores if they want to skip clear-on-free.
 
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Suggested-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/ttm/ttm_pool.c | 18 +++++++++++-------
- include/drm/ttm/ttm_tt.h       |  6 +++++-
- 2 files changed, 16 insertions(+), 8 deletions(-)
+On 22/06/24 00:02, Umesh Nerlige Ramappa wrote:
+> On Fri, Jun 21, 2024 at 09:59:11AM +0530, Aravind Iddamsetty wrote:
+>>
+>> On 21/06/24 00:45, Umesh Nerlige Ramappa wrote:
+>>> On Fri, Jun 14, 2024 at 08:34:30AM -0700, Dixit, Ashutosh wrote:
+>>>> On Thu, 13 Jun 2024 22:50:39 -0700, Riana Tauro wrote:
+>>>>>
+>>>>> Hi Ashutosh
+>>>>>
+>>>>> On 6/14/2024 12:09 AM, Dixit, Ashutosh wrote:
+>>>>> > On Thu, 13 Jun 2024 03:04:09 -0700, Riana Tauro wrote:
+>>>>> >>
+>>>>> >
+>>>>> > Hi Riana,
+>>>>> >
+>>>>> >> There are a set of engine group busyness counters provided by HW which are
+>>>>> >> perfect fit to be exposed via PMU perf events.
+>>>>> >>
+>>>>> >> BSPEC: 46559, 46560, 46722, 46729, 52071, 71028
+>>>>> >>
+>>>>> >> events can be listed using:
+>>>>> >> perf list
+>>>>> >>    xe_0000_03_00.0/any-engine-group-busy-gt0/         [Kernel PMU event]
+>>>>> >>    xe_0000_03_00.0/copy-group-busy-gt0/               [Kernel PMU event]
+>>>>> >>    xe_0000_03_00.0/media-group-busy-gt0/              [Kernel PMU event]
+>>>>> >>    xe_0000_03_00.0/render-group-busy-gt0/             [Kernel PMU event]
+>>>>> >
+>>>>> > PMU patches merged previously were dropped in 90a8b23f9b85 ("drm/xe/pmu:
+>>>>> > Remove PMU from Xe till uapi is finalized") because PMU uapi was expected
+>>>>> > to change. Why are we re-posting these old patches again now, without
+>>>>> > including the planned uapi changes?
+>>>>>
+>>>>> The uapi changes were dropped and there are no other upcoming changes for
+>>>>> Group busyness. So re-posted the old series.
+>>>>
+>>>> What happened to VF busyness (which is why I thought the uapi was going to
+>>>> change)?
+>>>
+>>> There are no plans to support group busyness from a VF, so we are just exporting group busyness to maintain parity with i915 for Native/PF behavior. The only change would be to expose the counters in ticks rather than ns. I still have to look at this series to see if that's happening.
+>>
+>> how will the counter ticks be used to get the busyness in time
+>
+> There will be no concept of "busyness in time units". User would just take 2 samples and calculate busyness as a percentage. The counters will be unitless. More info on equation here:
+> https://spec.oneapi.io/level-zero/1.9.3/sysman/api.html#_CPPv418zes_engine_stats_t
+>
+> Percent utilization is calculated by taking two snapshots (s1, s2) and using the equation:
+>
+> util = (s2.activeTime - s1.activeTime) / (s2.timestamp - s1.timestamp)
+>
+> Note that zesEngineGetActivity is used to get single as well as group engine busyness from the KMD.
+>
+> For single engine busyness, KMD will get the information from GuC and that would be a pair of counters - ActiveTicks and TotalActiveTicks corresponding to activeTime and timestamp in the above equation.
+>
+> For group engine busyness, we should follow the same semantics.
 
-diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-index 6e1fd6985ffc..b78ee7524bcf 100644
---- a/drivers/gpu/drm/ttm/ttm_pool.c
-+++ b/drivers/gpu/drm/ttm/ttm_pool.c
-@@ -222,15 +222,18 @@ static void ttm_pool_unmap(struct ttm_pool *pool, dma_addr_t dma_addr,
- }
- 
- /* Give pages into a specific pool_type */
--static void ttm_pool_type_give(struct ttm_pool_type *pt, struct page *p)
-+static void ttm_pool_type_give(struct ttm_pool_type *pt, struct page *p,
-+			       bool cleared)
- {
- 	unsigned int i, num_pages = 1 << pt->order;
- 
--	for (i = 0; i < num_pages; ++i) {
--		if (PageHighMem(p))
--			clear_highpage(p + i);
--		else
--			clear_page(page_address(p + i));
-+	if (!cleared) {
-+		for (i = 0; i < num_pages; ++i) {
-+			if (PageHighMem(p))
-+				clear_highpage(p + i);
-+			else
-+				clear_page(page_address(p + i));
-+		}
- 	}
- 
- 	spin_lock(&pt->lock);
-@@ -394,6 +397,7 @@ static void ttm_pool_free_range(struct ttm_pool *pool, struct ttm_tt *tt,
- 				pgoff_t start_page, pgoff_t end_page)
- {
- 	struct page **pages = &tt->pages[start_page];
-+	bool cleared = tt->page_flags & TTM_TT_FLAG_CLEARED_ON_FREE;
- 	unsigned int order;
- 	pgoff_t i, nr;
- 
-@@ -407,7 +411,7 @@ static void ttm_pool_free_range(struct ttm_pool *pool, struct ttm_tt *tt,
- 
- 		pt = ttm_pool_select_type(pool, caching, order);
- 		if (pt)
--			ttm_pool_type_give(pt, *pages);
-+			ttm_pool_type_give(pt, *pages, cleared);
- 		else
- 			ttm_pool_free_page(pool, caching, order, *pages);
- 	}
-diff --git a/include/drm/ttm/ttm_tt.h b/include/drm/ttm/ttm_tt.h
-index 2b9d856ff388..cfaf49de2419 100644
---- a/include/drm/ttm/ttm_tt.h
-+++ b/include/drm/ttm/ttm_tt.h
-@@ -85,6 +85,9 @@ struct ttm_tt {
- 	 * fault handling abuses the DMA api a bit and dma_map_attrs can't be
- 	 * used to assure pgprot always matches.
- 	 *
-+	 * TTM_TT_FLAG_CLEARED_ON_FREE: Set this if a drm driver handles
-+	 * clearing backing store
-+	 *
- 	 * TTM_TT_FLAG_PRIV_POPULATED: TTM internal only. DO NOT USE. This is
- 	 * set by TTM after ttm_tt_populate() has successfully returned, and is
- 	 * then unset when TTM calls ttm_tt_unpopulate().
-@@ -94,8 +97,9 @@ struct ttm_tt {
- #define TTM_TT_FLAG_EXTERNAL		BIT(2)
- #define TTM_TT_FLAG_EXTERNAL_MAPPABLE	BIT(3)
- #define TTM_TT_FLAG_DECRYPTED		BIT(4)
-+#define TTM_TT_FLAG_CLEARED_ON_FREE	BIT(5)
- 
--#define TTM_TT_FLAG_PRIV_POPULATED	BIT(5)
-+#define TTM_TT_FLAG_PRIV_POPULATED	BIT(6)
- 	uint32_t page_flags;
- 	/** @num_pages: Number of pages in the page array. */
- 	uint32_t num_pages;
--- 
-2.42.0
+does that mean that the counter itself doesn't have any relevance i mean it doesn't present any outcome to the user and rather one should use some formula to get a usable metric.
 
+so from PMU interface point of view can we expose such a interface, my question because most of the interfaces I found in PMU are directly usable by user.
+
+Thanks,
+Aravind.
+>
+> Regards,
+> Umesh
+>
+>>
+>> Regards,
+>> Aravind.
+>>>
+>>> Regards,
+>>> Umesh
+>>>>
+>>>>>
+>>>>> Thanks,
+>>>>> Riana
+>>>>> >
+>>>>> > Thanks.
+>>>>> > --
+>>>>> > Ashutosh
