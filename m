@@ -4,65 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5451C2BD09
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Jun 2024 15:47:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B17C7C2BD09
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Jun 2024 16:32:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80FF110E0DD;
-	Mon, 24 Jun 2024 15:47:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7297110E4EE;
+	Mon, 24 Jun 2024 16:32:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P8RT356T";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HOtw27oA";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 897A910E0DD;
- Mon, 24 Jun 2024 15:47:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41F9110E0D4
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Jun 2024 16:32:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719244056; x=1750780056;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=enfK/3QnqXTuBhBEAmN89vb3We2vFL3DECmSMHTdPe8=;
- b=P8RT356T3t8BxBaPv3IlEonKfcMJdFQd1x+xUNWkdAyAateuGiPm32yy
- MwPYjXp2+9hALn6gerjk9rumR/ASzfCjYQPNuRLcGtWf9EtCogyjaJ4DE
- 5yyn1Eh8Ut7QFD32N18XWeMXRXeSJP7aIJZj2OyxGgAfRaN1Z3gp8hzvG
- TE6sr6AFrYkZhnkHMXNqfqN/OUNkcgqbA+75ozMfkaSllOHbKjrUCMY26
- hn4ov3L82csk4J4uHOFd0Asa5v2kQ5zA9D86yZzKsw9UxY9PSuxVj6Vl+
- UahF0BzO7/WaBh5JJstxyDesDKVQt9HSrckd+9MqeKxtLoppgdn4v+LS7 A==;
-X-CSE-ConnectionGUID: F046NN/JRu6cbEMJp8ZqEA==
-X-CSE-MsgGUID: 48+M5t7QSPetLbUztDszXQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="38736229"
-X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208";a="38736229"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2024 08:47:36 -0700
-X-CSE-ConnectionGUID: XhN1pbPGQ0y6SthCWFUMAw==
-X-CSE-MsgGUID: Va44YLyfQ9uUVSYCOLqMtw==
+ t=1719246757; x=1750782757;
+ h=message-id:date:mime-version:from:subject:to:cc:
+ references:in-reply-to;
+ bh=ZdDwWAPm5FVL/OxDO9PCGYp2/viv3wbH6R9Vzk08dCU=;
+ b=HOtw27oAsnHaSGBu4BnvXnThnk94Sen9K4m7ax8UQLIlgLxWXqHmrT5g
+ SGNvTZkx1m7KMlzvwbklKCEV58MTTSN8WK6wJuDe0dfgFAlQwPyrjBzQ9
+ iLTIB6RfylZGwODXvRVlQy5CBeyxSOUukerXaGs8dS56esIahCJVYjpYj
+ huhp9QT15UXBCdobhpQUy3QGlK7eFnwv5hRerNb151M7VbloHc40xmHvw
+ Lw1XxL4txIxjE8y3OKNS3v0ywRj5xCyClRSuPNwtRnuy3JW9Zgbp96kbx
+ ltfcHMJKbYKAb9u/MzuZ5PFH7wASZABoDRphuuMdIiisHuxsBt8rvYWx6 w==;
+X-CSE-ConnectionGUID: Lh6L2OQsQy+Lnz2qCc1XCw==
+X-CSE-MsgGUID: kEhGRnhwSTuqpjmB0rPhxw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="16052940"
+X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208,217";a="16052940"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2024 09:32:36 -0700
+X-CSE-ConnectionGUID: IaNb1WA/Q2ivLyjJjvxztg==
+X-CSE-MsgGUID: o0A28pMnRlK9+f9wiLjWFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208";a="43425793"
-Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.244.144])
- ([10.245.244.144])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2024 08:47:34 -0700
-Message-ID: <13a9838a7f3ffdb8213b97f2d0f8ba2da6ff78b1.camel@linux.intel.com>
-Subject: Re: [PATCH v5 08/12] drm/ttm: Add a virtual base class for graphics
- memory backup
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Christian =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, Somalapuram Amaranath
- <Amaranath.Somalapuram@amd.com>, dri-devel@lists.freedesktop.org
-Date: Mon, 24 Jun 2024 17:47:31 +0200
-In-Reply-To: <5ea5f9b732906915ea67fe0f3e62f6a8ddfcdd05.camel@linux.intel.com>
-References: <20240618071820.130917-1-thomas.hellstrom@linux.intel.com>
- <20240618071820.130917-9-thomas.hellstrom@linux.intel.com>
- <ZnRH73TPv4v3yg4/@DUT025-TGLU.fm.intel.com>
- <5ea5f9b732906915ea67fe0f3e62f6a8ddfcdd05.camel@linux.intel.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208,217";a="43229022"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.50.115])
+ ([10.246.50.115])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2024 09:32:34 -0700
+Content-Type: multipart/alternative;
+ boundary="------------G8GXZMJ2RjA7E7oZkKAkEtMt"
+Message-ID: <a35afeae-4753-4795-94db-52e9ebe0bb7c@linux.intel.com>
+Date: Mon, 24 Jun 2024 18:32:32 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+Subject: Re: [RFC 0/3] FW guard class
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20240617143430.641-1-michal.wajdeczko@intel.com>
+ <ZnBxSFpuGjc9c9KJ@DUT025-TGLU.fm.intel.com> <ZnB51-d3XtwUfPfT@intel.com>
+ <d2f2afa7-8fd2-466d-9044-11814183a819@intel.com>
+ <ZnDHIba3eBe1+p8y@DUT025-TGLU>
+ <h7yjiengrjzue7acsaghy3r3fimgp4v5ntyujytd2ddqt3kxgs@erajfxzizsns>
+ <ZnHtdMLEHFAHMqRr@intel.com>
+Content-Language: en-US
+In-Reply-To: <ZnHtdMLEHFAHMqRr@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,463 +78,542 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2024-06-24 at 11:26 +0200, Thomas Hellstr=C3=B6m wrote:
-> On Thu, 2024-06-20 at 15:17 +0000, Matthew Brost wrote:
-> > On Tue, Jun 18, 2024 at 09:18:16AM +0200, Thomas Hellstr=C3=B6m wrote:
-> > > Initially intended for experimenting with different backup
-> > > solutions (shmem vs direct swap cache insertion), abstract
-> > > the backup destination using a virtual base class.
-> > >=20
-> > > Also provide a sample implementation for shmem.
-> > >=20
-> > > While when settling on a preferred backup solution, one could
-> > > perhaps skip the abstraction, this functionality may actually
-> > > come in handy for configurable dedicated graphics memory
-> > > backup to fast nvme files or similar, whithout affecting
-> > > swap-space. Could indeed be useful for VRAM backup on S4 and
-> > > other cases.
-> > >=20
-> >=20
-> > Implementation seemly makes sense and matches other similar usages
-> > of
-> > shmem /
-> > folio functions I could find in the kernel.
-> >=20
-> > A few questions / nits below.
-> >=20
-> > > v5:
-> > > - Fix a UAF. (kernel test robot, Dan Carptenter)
-> > >=20
-> > > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> > > Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-> > > Cc: Matthew Brost <matthew.brost@intel.com>
-> > > Cc: <dri-devel@lists.freedesktop.org>
-> > > Signed-off-by: Thomas Hellstr=C3=B6m
-> > > <thomas.hellstrom@linux.intel.com>
-> > > ---
-> > > =C2=A0drivers/gpu/drm/ttm/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> > > =C2=A0drivers/gpu/drm/ttm/ttm_backup_shmem.c | 139
-> > > +++++++++++++++++++++++++
-> > > =C2=A0include/drm/ttm/ttm_backup.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 136
-> > > ++++++++++++++++++++++++
-> > > =C2=A03 files changed, 276 insertions(+), 1 deletion(-)
-> > > =C2=A0create mode 100644 drivers/gpu/drm/ttm/ttm_backup_shmem.c
-> > > =C2=A0create mode 100644 include/drm/ttm/ttm_backup.h
-> > >=20
-> > > diff --git a/drivers/gpu/drm/ttm/Makefile
-> > > b/drivers/gpu/drm/ttm/Makefile
-> > > index dad298127226..5e980dd90e41 100644
-> > > --- a/drivers/gpu/drm/ttm/Makefile
-> > > +++ b/drivers/gpu/drm/ttm/Makefile
-> > > @@ -4,7 +4,7 @@
-> > > =C2=A0
-> > > =C2=A0ttm-y :=3D ttm_tt.o ttm_bo.o ttm_bo_util.o ttm_bo_vm.o
-> > > ttm_module.o
-> > > \
-> > > =C2=A0	ttm_execbuf_util.o ttm_range_manager.o ttm_resource.o
-> > > ttm_pool.o \
-> > > -	ttm_device.o ttm_sys_manager.o
-> > > +	ttm_device.o ttm_sys_manager.o ttm_backup_shmem.o
-> > > =C2=A0ttm-$(CONFIG_AGP) +=3D ttm_agp_backend.o
-> > > =C2=A0
-> > > =C2=A0obj-$(CONFIG_DRM_TTM) +=3D ttm.o
-> > > diff --git a/drivers/gpu/drm/ttm/ttm_backup_shmem.c
-> > > b/drivers/gpu/drm/ttm/ttm_backup_shmem.c
-> > > new file mode 100644
-> > > index 000000000000..f5bc47734d71
-> > > --- /dev/null
-> > > +++ b/drivers/gpu/drm/ttm/ttm_backup_shmem.c
-> > > @@ -0,0 +1,139 @@
-> > > +// SPDX-License-Identifier: MIT
-> > > +/*
-> > > + * Copyright =C2=A9 2024 Intel Corporation
-> > > + */
-> > > +
-> > > +#include <drm/ttm/ttm_backup.h>
-> > > +#include <linux/page-flags.h>
-> > > +
-> > > +/**
-> > > + * struct ttm_backup_shmem - A shmem based ttm_backup subclass.
-> > > + * @backup: The base struct ttm_backup
-> > > + * @filp: The associated shmem object
-> > > + */
-> > > +struct ttm_backup_shmem {
-> > > +	struct ttm_backup backup;
-> > > +	struct file *filp;
-> > > +};
-> > > +
-> > > +static struct ttm_backup_shmem *to_backup_shmem(struct
-> > > ttm_backup
-> > > *backup)
-> > > +{
-> > > +	return container_of(backup, struct ttm_backup_shmem,
-> > > backup);
-> > > +}
-> > > +
-> > > +static void ttm_backup_shmem_drop(struct ttm_backup *backup,
-> > > unsigned long handle)
-> > > +{
-> > > +	handle -=3D 1;
-> >=20
-> > Can you explain the -1 / +1 usage to handle in this code? Is it to
-> > test
-> > that 'pgoff_t i' is indeed just a hint and return a different
-> > handle?
->=20
-> It's IIRC because handle '0' has a reserved usage in the code, so
-> handle becomes file address space + 1.
->=20
-> I need to double-check that so that I don't confuse this with the
-> swap-space backend.
+This is a multi-part message in MIME format.
+--------------G8GXZMJ2RjA7E7oZkKAkEtMt
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Ok, so the reason is that the direct swap-space backend uses
-swp_entry_t as handles and returns the special swp_entry_t '0' as an
-error indication. That is also used by the "backup_page()" callback and
-documented there.
 
-/Thomas
+On 6/18/2024 10:26 PM, Rodrigo Vivi wrote:
+> On Mon, Jun 17, 2024 at 07:54:41PM -0500, Lucas De Marchi wrote:
+>> On Mon, Jun 17, 2024 at 11:30:41PM GMT, Matthew Brost wrote:
+>>> On Mon, Jun 17, 2024 at 09:24:42PM +0200, Michal Wajdeczko wrote:
+>>>> On 17.06.2024 20:00, Rodrigo Vivi wrote:
+>>>>> On Mon, Jun 17, 2024 at 05:24:24PM +0000, Matthew Brost wrote:
+>>>>>> On Mon, Jun 17, 2024 at 04:34:27PM +0200, Michal Wajdeczko wrote:
+>>>>>>> There is support for 'classes' with constructor and destructor
+>>>>>>> semantics that can be used for any scope-based resource management,
+>>>>>>> like device force-wake management.
+>>>>>>>
+>>>>>>> Add necessary definitions explicitly, since existing macros from
+>>>>>>> linux/cleanup.h can't deal with our specific requirements yet.
+>>>>>>>
+>>>>>>> This should allow us to use:
+>>>>>>>
+>>>>>>> 	scoped_guard(xe_fw, fw, XE_FW_GT)
+>>>>>>> 		foo();
+>>>>>>> or
+>>>>>>> 	CLASS(xe_fw, var)(fw, XE_FW_GT);
+>>>>>>>
+>>>>>>> without any concern of leaking the force-wake references.
+>>>>>>>
+>>>>>>> Note: this is preliminary code as right now it's unclear how to
+>>>>>>> correctly handle errors from the force-wake functions.
+>>>>>>>
+>>>>>> I'm personally don't like this at all. IMO it obfuscate the code with
+>>>>>> little real benefit. This is just an opinion though, others opinions may
+>>>>>> differ from mine.
+>>>> except that is more robust than hand-crafted code that is error prone,
+>>>> like this snippet from wedged_mode_set():
+>>>>
+>>>> 	xe_pm_runtime_get(xe);
+>>>> 	for_each_gt(gt, xe, id) {
+>>>> 		ret = xe_guc_ads(...);
+>>>> 		if (ret) {
+>>>> 			xe_gt_err(gt, "...");
+>>>> 			return -EIO;
+>>>> 		}
+>>>> 	}
+>>>> 	xe_pm_runtime_put(xe);
+>>>>
+>>>> and thanks to PM guard class we could avoid such mistakes for free:
+>>>>
+>>>> 	scoped_guard(xe_pm, xe) {
+>>>> 		for_each_gt(gt, xe, id) {
+>>>> 			ret = xe_guc_ads(...);
+>>>> 			if (ret) {
+>>>> 				xe_gt_err(gt, "...");
+>>>> 				return -EIO;
+>>> Just responding with a question here - haven't looked at the rest of the
+>>> comments.
+>>>
+>>> How is this not still a bug? Looking at scoped_guard, it appears to be a
+>>> magic macro for loop which acquires / releases a lock or in your
+>>> purposed case a PM or FW ref. Doesn't the 'return -EIO' skip the release
+>>> step? I see coding patterns like above in the kernel [1] so I do assume
+>> with __attribute__((cleanup)), the compiler guarantees that
+>> it's executed when the variable goes out of scope. What you are probably
+>> missing is the use of CLASS() declaring a variable inside the for, which
+>> uses attribute cleanup:
+>>
+>> 	for (CLASS(_name, scope)(args),
+>> 	     ...
+>>
+>> GCC's doc:
+>>
+>> https://gcc.gnu.org/onlinedocs/gcc/Common-Variable-Attributes.html
+>>
+>> 	The cleanup attribute runs a function when the variable goes out
+>> 	of scope. This attribute can only be applied to auto function
+>> 	scope variables; it may not be applied to parameters or
+>> 	variables with static storage duration. The function must take
+>> 	one parameter, a pointer to a type compatible with the variable.
+>> 	The return value of the function (if any) is ignored.
+>>
+>> 	When multiple variables in the same scope have cleanup
+>> 	attributes, at exit from the scope their associated cleanup
+>> 	functions are run in reverse order of definition (last defined,
+>> 	first cleanup).
+>>
+>> 	If -fexceptions is enabled, then cleanup_function is run during
+>> 	the stack unwinding that happens during the processing of the
+>> 	exception. Note that the cleanup attribute does not allow the
+>> 	exception to be caught, only to perform an action. It is
+>> 	undefined what happens if cleanup_function does not return
+>> 	normally.
+>>
+>> This was only possible with the recent change in the kernel raising
+>> the minimum C std to gnu11 (uapi is still c90 for compatibility):
+>>
+>> 	commit e8c07082a810fbb9db303a2b66b66b8d7e588b53
+>> 	Author: Arnd Bergmann<arnd@arndb.de>
+>> 	Date:   Tue Mar 8 22:56:14 2022 +0100
+>>
+>> 	    Kbuild: move to -std=gnu11
+>>
+>> 	    During a patch discussion, Linus brought up the option of changing
+>> 	    the C standard version from gnu89 to gnu99, which allows using variable
+>> 	    declaration inside of a for() loop. While the C99, C11 and later standards
+>> 	    introduce many other features, most of these are already available in
+>> 	    gnu89 as GNU extensions as well.
+>>
+>>> this works, just confused how it works.
+>>>
+>>> With that, any code which isn't easily understandable IMO is a negative
+>>> ROI as it just creates confusion in the long / makes problems harder to
+>>> understand. Again this is just my opinion.
+>> I think that is mainly about getting used to the pattern. I think we
+>> just have to be careful not to overshoot on trying to use everywhere.
+>> For example, I don't know why there's already a second use in a separate
+>> thread when we are still discussing it on this one.
+>>
+>> A very positive thing is that this is not xe's own invention and comes
+>> from core kernel, maybe from the hottest path that is the scheduling and
+>> locking. So I very much disagree with arguments raised here about
+>> a) this is an alien thing and b) performance will be severely impacted
+> just for the record:
+> a) the alien thing is i915's with_runtime_pm... this is part of core kernel, so
+> it is not an alien thing. I still don't like C++isms, but that is just a preference
+> not a blocker.
+>
+> b) it is an overhead, but I really doubt that this would impact performance.
+> Only data would show.
+>
+>> I've used __attribute__((cleanup)) in several userspace projects in the
+>> past and it does help avoiding problems on the error path that is
+>> usually not very well tested (and xe's track record on error path is not
+>> very good either: those were the main issues being submitted in drm-xe-fixes
+>> for the last release). So if we have a way to improve (and that I've already seen
+>> being used successfully), I prefer failing on trying than on repeating
+>> the same mistakes.
+> Pretty much agreeing here! Specially because this is a Linux core kernel
+> infra available. Let's try.
+>
+> Cc Nirmoy Das<nirmoy.das@intel.com>
+>
+> who is looking at the forcewake stuff and to solve the flow.
+> Specially to get his eyes here and see if this would cover all the needed
+> cases for the forcewake.
+Sorry for late reply. This looks fine for me. We are still missing a 
+corner case where if
 
->=20
->=20
-> >=20
-> > > +	shmem_truncate_range(file_inode(to_backup_shmem(backup)-
-> > > > filp), handle,
-> > > +			=C2=A0=C2=A0=C2=A0=C2=A0 handle + 1);
-> > > +}
-> > > +
-> > > +static int ttm_backup_shmem_copy_page(struct ttm_backup *backup,
-> > > struct page *dst,
-> > > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long handle, bool
-> > > killable)
-> >=20
-> > In the vfunc definition 'killable' is named 'intr'. I'd keep the
-> > naming
-> > consistent.
->=20
-> Sure.
->=20
->=20
-> >=20
-> > > +{
-> > > +	struct file *filp =3D to_backup_shmem(backup)->filp;
-> > > +	struct address_space *mapping =3D filp->f_mapping;
-> > > +	struct folio *from_folio;
-> > > +
-> > > +	handle -=3D 1;
-> > > +	from_folio =3D shmem_read_folio(mapping, handle);
-> > > +	if (IS_ERR(from_folio))
-> > > +		return PTR_ERR(from_folio);
-> > > +
-> > > +	/* Note: Use drm_memcpy_from_wc? */
-> > > +	copy_highpage(dst, folio_file_page(from_folio, handle));
-> > > +	folio_put(from_folio);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static unsigned long
-> > > +ttm_backup_shmem_backup_page(struct ttm_backup *backup, struct
-> > > page *page,
-> > > +			=C2=A0=C2=A0=C2=A0=C2=A0 bool writeback, pgoff_t i, gfp_t
-> > > page_gfp,
-> > > +			=C2=A0=C2=A0=C2=A0=C2=A0 gfp_t alloc_gfp)
-> > > +{
-> > > +	struct file *filp =3D to_backup_shmem(backup)->filp;
-> > > +	struct address_space *mapping =3D filp->f_mapping;
-> > > +	unsigned long handle =3D 0;
-> > > +	struct folio *to_folio;
-> > > +	int ret;
-> > > +
-> > > +	to_folio =3D shmem_read_folio_gfp(mapping, i, alloc_gfp);
-> > > +	if (IS_ERR(to_folio))
-> > > +		return handle;
-> > > +
-> > > +	folio_mark_accessed(to_folio);
-> >=20
-> > Does this not need to be after 'folio_lock'?
->=20
-> It's used unlocked in many places in the kernel AFAICT.
->=20
-> >=20
-> > > +	folio_lock(to_folio);
-> > > +	folio_mark_dirty(to_folio);
-> > > +	copy_highpage(folio_file_page(to_folio, i), page);
-> > > +	handle =3D i + 1;
-> > > +
-> > > +	if (writeback && !folio_mapped(to_folio) &&
-> > > folio_clear_dirty_for_io(to_folio)) {
-> > > +		struct writeback_control wbc =3D {
-> > > +			.sync_mode =3D WB_SYNC_NONE,
-> > > +			.nr_to_write =3D SWAP_CLUSTER_MAX,
-> > > +			.range_start =3D 0,
-> > > +			.range_end =3D LLONG_MAX,
-> > > +			.for_reclaim =3D 1,
-> > > +		};
-> > > +		folio_set_reclaim(to_folio);
-> > > +		ret =3D mapping->a_ops-
-> > > > writepage(folio_page(to_folio, 0), &wbc);
-> > > +		if (!folio_test_writeback(to_folio))
-> > > +			folio_clear_reclaim(to_folio);
-> > > +		/* If writepage succeeds, it unlocks the folio
-> > > */
-> > > +		if (ret)
-> > > +			folio_unlock(to_folio);
-> > > +	} else {
-> > > +		folio_unlock(to_folio);
-> > > +	}
-> > > +
-> > > +	folio_put(to_folio);
-> > > +
-> > > +	return handle;
-> > > +}
-> > > +
-> > > +static void ttm_backup_shmem_fini(struct ttm_backup *backup)
-> > > +{
-> > > +	struct ttm_backup_shmem *sbackup =3D
-> > > to_backup_shmem(backup);
-> > > +
-> > > +	fput(sbackup->filp);
-> > > +	kfree(sbackup);
-> > > +}
-> > > +
-> > > +static const struct ttm_backup_ops ttm_backup_shmem_ops =3D {
-> > > +	.drop =3D ttm_backup_shmem_drop,
-> > > +	.copy_backed_up_page =3D ttm_backup_shmem_copy_page,
-> > > +	.backup_page =3D ttm_backup_shmem_backup_page,
-> > > +	.fini =3D ttm_backup_shmem_fini,
-> > > +};
-> > > +
-> > > +/**
-> > > + * ttm_backup_shmem_create() - Create a shmem-based struct
-> > > backup.
-> > > + * @size: The maximum size (in bytes) to back up.
-> > > + *
-> > > + * Create a backup utilizing shmem objects.
-> > > + *
-> > > + * Return: A pointer to a struct ttm_backup on success,
-> > > + * an error pointer on error.
-> > > + */
-> > > +struct ttm_backup *ttm_backup_shmem_create(loff_t size)
-> > > +{
-> > > +	struct ttm_backup_shmem *sbackup =3D
-> > > +		kzalloc(sizeof(*sbackup), GFP_KERNEL |
-> > > __GFP_ACCOUNT);
-> > > +	struct file *filp;
-> > > +
-> > > +	if (!sbackup)
-> > > +		return ERR_PTR(-ENOMEM);
-> > > +
-> > > +	filp =3D shmem_file_setup("ttm shmem backup", size, 0);
-> > > +	if (IS_ERR(filp)) {
-> > > +		kfree(sbackup);
-> > > +		return ERR_CAST(filp);
-> > > +	}
-> > > +
-> > > +	sbackup->filp =3D filp;
-> > > +	sbackup->backup.ops =3D &ttm_backup_shmem_ops;
-> > > +
-> > > +	return &sbackup->backup;
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(ttm_backup_shmem_create);
-> > > diff --git a/include/drm/ttm/ttm_backup.h
-> > > b/include/drm/ttm/ttm_backup.h
-> > > new file mode 100644
-> > > index 000000000000..88e8b97a6fdc
-> > > --- /dev/null
-> > > +++ b/include/drm/ttm/ttm_backup.h
-> > > @@ -0,0 +1,136 @@
-> > > +/* SPDX-License-Identifier: MIT */
-> > > +/*
-> > > + * Copyright =C2=A9 2024 Intel Corporation
-> > > + */
-> > > +
-> > > +#ifndef _TTM_BACKUP_H_
-> > > +#define _TTM_BACKUP_H_
-> > > +
-> > > +#include <linux/mm_types.h>
-> > > +#include <linux/shmem_fs.h>
-> > > +
-> > > +struct ttm_backup;
-> > > +
-> > > +/**
-> > > + * ttm_backup_handle_to_page_ptr() - Convert handle to struct
-> > > page
-> > > pointer
-> > > + * @handle: The handle to convert.
-> > > + *
-> > > + * Converts an opaque handle received from the
-> > > + * struct ttm_backoup_ops::backup_page() function to an
-> > > (invalid)
-> > > + * struct page pointer suitable for a struct page array.
-> > > + *
-> > > + * Return: An (invalid) struct page pointer.
-> > > + */
-> > > +static inline struct page *
-> > > +ttm_backup_handle_to_page_ptr(unsigned long handle)
-> > > +{
-> > > +	return (struct page *)(handle << 1 | 1);
-> > > +}
-> > > +
-> > > +/**
-> > > + * ttm_backup_page_ptr_is_handle() - Whether a struct page
-> > > pointer
-> > > is a handle
-> > > + * @page: The struct page pointer to check.
-> > > + *
-> > > + * Return: true if the struct page pointer is a handld returned
-> > > from
-> > > + * ttm_backup_handle_to_page_ptr(). False otherwise.
-> > > + */
-> > > +static inline bool ttm_backup_page_ptr_is_handle(const struct
-> > > page
-> > > *page)
-> > > +{
-> > > +	return (unsigned long)page & 1;
-> > > +}
-> > > +
-> > > +/**
-> > > + * ttm_backup_page_ptr_to_handle() - Convert a struct page
-> > > pointer
-> > > to a handle
-> > > + * @page: The struct page pointer to convert
-> > > + *
-> > > + * Return: The handle that was previously used in
-> > > + * ttm_backup_handle_to_page_ptr() to obtain a struct page
-> > > pointer, suitable
-> > > + * for use as argument in the struct ttm_backup_ops drop() or
-> > > + * copy_backed_up_page() functions.
-> > > + */
-> > > +static inline unsigned long
-> > > +ttm_backup_page_ptr_to_handle(const struct page *page)
-> > > +{
-> > > +	WARN_ON(!ttm_backup_page_ptr_is_handle(page));
-> > > +	return (unsigned long)page >> 1;
-> > > +}
-> > > +
-> > > +/** struct ttm_backup_ops - A struct ttm_backup backend
-> > > operations
-> > > */
-> > > +struct ttm_backup_ops {
-> > > +	/**
-> > > +	 * drop - release memory associated with a handle
-> > > +	 * @backup: The struct backup pointer used to obtain the
-> > > handle
-> > > +	 * @handle: The handle obtained from the @backup_page
-> > > function.
-> > > +	 */
-> > > +	void (*drop)(struct ttm_backup *backup, unsigned long
-> > > handle);
-> > > +
-> > > +	/**
-> > > +	 * copy_backed_up_page - Copy the contents of a
-> > > previously
-> > > backed
-> > > +	 * up page
-> > > +	 * @backup: The struct backup pointer used to back up
-> > > the
-> > > page.
-> > > +	 * @dst: The struct page to copy into.
-> > > +	 * @handle: The handle returned when the page was backed
-> > > up.
-> >=20
-> > The above two are arguments flipped in order compared to function
-> > definition.
->=20
-> Will fix.
->=20
-> Thanks, Thomas
->=20
-> >=20
-> > Matt
-> >=20
-> > > +	 * @intr: Try to perform waits interruptable or at least
-> > > killable.
-> > > +	 *
-> > > +	 * Return: 0 on success, Negative error code on failure,
-> > > notably
-> > > +	 * -EINTR if @intr was set to true and a signal is
-> > > pending.
-> > > +	 */
-> > > +	int (*copy_backed_up_page)(struct ttm_backup *backup,
-> > > struct page *dst,
-> > > +				=C2=A0=C2=A0 unsigned long handle, bool
-> > > intr);
-> > > +
-> > > +	/**
-> > > +	 * backup_page - Backup a page
-> > > +	 * @backup: The struct backup pointer to use.
-> > > +	 * @page: The page to back up.
-> > > +	 * @writeback: Whether to perform immediate writeback of
-> > > the page.
-> > > +	 * This may have performance implications.
-> > > +	 * @i: A unique integer for each page and each struct
-> > > backup.
-> > > +	 * This is a hint allowing the backup backend to avoid
-> > > managing
-> > > +	 * its address space separately.
-> > > +	 * @page_gfp: The gfp value used when the page was
-> > > allocated.
-> > > +	 * This is used for accounting purposes.
-> > > +	 * @alloc_gfp: The gpf to be used when the backend needs
-> > > to allocaete
-> > > +	 * memory.
-> > > +	 *
-> > > +	 * Return: A handle on success. 0 on failure.
-> > > +	 * (This is following the swp_entry_t convention).
-> > > +	 *
-> > > +	 * Note: This function could be extended to back up a
-> > > folio and
-> > > +	 * backends would then split the folio internally if
-> > > needed.
-> > > +	 * Drawback is that the caller would then have to keep
-> > > track of
-> > > +	 */
-> > > +	unsigned long (*backup_page)(struct ttm_backup *backup,
-> > > struct page *page,
-> > > +				=C2=A0=C2=A0=C2=A0=C2=A0 bool writeback, pgoff_t i,
-> > > gfp_t page_gfp,
-> > > +				=C2=A0=C2=A0=C2=A0=C2=A0 gfp_t alloc_gfp);
-> > > +	/**
-> > > +	 * fini - Free the struct backup resources after last
-> > > use.
-> > > +	 * @backup: Pointer to the struct backup whose resources
-> > > to free.
-> > > +	 *
-> > > +	 * After a call to @fini, it's illegal to use the
-> > > @backup
-> > > pointer.
-> > > +	 */
-> > > +	void (*fini)(struct ttm_backup *backup);
-> > > +};
-> > > +
-> > > +/**
-> > > + * struct ttm_backup - Abstract a backup backend.
-> > > + * @ops: The operations as described above.
-> > > + *
-> > > + * The struct ttm_backup is intended to be subclassed by the
-> > > + * backend implementation.
-> > > + */
-> > > +struct ttm_backup {
-> > > +	const struct ttm_backup_ops *ops;
-> > > +};
-> > > +
-> > > +/**
-> > > + * ttm_backup_shmem_create() - Create a shmem-based struct
-> > > backup.
-> > > + * @size: The maximum size (in bytes) to back up.
-> > > + *
-> > > + * Create a backup utilizing shmem objects.
-> > > + *
-> > > + * Return: A pointer to a struct ttm_backup on success,
-> > > + * an error pointer on error.
-> > > + */
-> > > +struct ttm_backup *ttm_backup_shmem_create(loff_t size);
-> > > +
-> > > +#endif
-> > > --=20
-> > > 2.44.0
-> > >=20
->=20
+xe_force_wake_get() fails this is not be calling xe_force_wake_put().
+xe_force_wake_get() should revert the counter on failure.
 
+Regards, Nirmoy
+
+> If this series were suggesting another with_runtime_pm macro, then I would
+> push back hard.
+>
+>>   In kmod my only regret is that I didn't start it
+>> earlier, during the bootstrap of the project.
+>>
+>>
+>> Lucas De Marchi
+>>
+>>
+>>> Matt
+>>>
+>>> [1]https://elixir.bootlin.com/linux/latest/source/drivers/iio/imu/bmi323/bmi323_core.c#L1544
+>>>
+>>>> 			}
+>>>> 		}
+>>>> 	}
+>>>>
+>>>>> Well, on the positive side, it is not adding a driver only thing like
+>>>>> i915's with_runtime_pm() macro.
+>>>>>
+>>>>> But I'm also not sure if I like the overall idea anyway:
+>>>>>
+>>>>> - I don't like adding C++isms in a pure C code. Specially something not
+>>>>> so standard and common that will decrease the ramp-up time for newcomers.
+>>>> does it mean that the use of other guard patterns seen elsewhere in the
+>>>> tree is now prohibited on the Xe driver ? like:
+>>>>
+>>>> 	scoped_guard(mutex, &lock)
+>>>> 		foo();
+>>>>
+>>>> 	scoped_guard(spinlock, &lock)
+>>>> 		foo();
+>>>> 	...
+>>>>
+>>>>> - It looks like and extra overhead on the object creation destruction.
+>>>> from cleanup.h doc is sounds there is none:
+>>>>
+>>>>   "And through the magic of value-propagation and dead-code-elimination,
+>>>> it eliminates the actual cleanup call and compiles into:"
+>>>>
+>>>>
+>>>>> - It looks not flexible for handling different cases... like forcewake for
+>>>>> instance where we might want to ignore the ack timeout in some cases.
+>>>> there is scoped_cond_guard() that likely will be able to deal with it,
+>>>> but I guess we first need to cleanup existing force_wake api as expected
+>>>> flow is not clear and there are different approaches in the driver how
+>>>> to deal with errors
+>>>>
+>>>>>> Matt
+>>>>>>
+>>>>>>> Cc: Rodrigo Vivi<rodrigo.vivi@intel.com>
+>>>>>>> Cc: Lucas De Marchi<lucas.demarchi@intel.com>
+>>>>>>>
+>>>>>>> Michal Wajdeczko (3):
+>>>>>>>    drm/xe: Introduce force-wake guard class
+>>>>>>>    drm/xe: Use new FW guard in xe_mocs.c
+>>>>>>>    drm/xe: Use new FW guard in xe_pat.c
+>>>>>>>
+>>>>>>>   drivers/gpu/drm/xe/xe_force_wake.h       | 48 +++++++++++++++++++
+>>>>>>>   drivers/gpu/drm/xe/xe_force_wake_types.h | 12 +++++
+>>>>>>>   drivers/gpu/drm/xe/xe_mocs.c             | 12 +----
+>>>>>>>   drivers/gpu/drm/xe/xe_pat.c              | 60 ++++++++----------------
+>>>>>>>   4 files changed, 82 insertions(+), 50 deletions(-)
+>>>>>>>
+>>>>>>> --
+>>>>>>> 2.43.0
+>>>>>>>
+--------------G8GXZMJ2RjA7E7oZkKAkEtMt
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 6/18/2024 10:26 PM, Rodrigo Vivi
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:ZnHtdMLEHFAHMqRr@intel.com">
+      <pre class="moz-quote-pre" wrap="">On Mon, Jun 17, 2024 at 07:54:41PM -0500, Lucas De Marchi wrote:
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">On Mon, Jun 17, 2024 at 11:30:41PM GMT, Matthew Brost wrote:
+</pre>
+        <blockquote type="cite">
+          <pre class="moz-quote-pre" wrap="">On Mon, Jun 17, 2024 at 09:24:42PM +0200, Michal Wajdeczko wrote:
+</pre>
+          <blockquote type="cite">
+            <pre class="moz-quote-pre" wrap="">On 17.06.2024 20:00, Rodrigo Vivi wrote:
+</pre>
+            <blockquote type="cite">
+              <pre class="moz-quote-pre" wrap="">On Mon, Jun 17, 2024 at 05:24:24PM +0000, Matthew Brost wrote:
+</pre>
+              <blockquote type="cite">
+                <pre class="moz-quote-pre" wrap="">On Mon, Jun 17, 2024 at 04:34:27PM +0200, Michal Wajdeczko wrote:
+</pre>
+                <blockquote type="cite">
+                  <pre class="moz-quote-pre" wrap="">There is support for 'classes' with constructor and destructor
+semantics that can be used for any scope-based resource management,
+like device force-wake management.
+
+Add necessary definitions explicitly, since existing macros from
+linux/cleanup.h can't deal with our specific requirements yet.
+
+This should allow us to use:
+
+	scoped_guard(xe_fw, fw, XE_FW_GT)
+		foo();
+or
+	CLASS(xe_fw, var)(fw, XE_FW_GT);
+
+without any concern of leaking the force-wake references.
+
+Note: this is preliminary code as right now it's unclear how to
+correctly handle errors from the force-wake functions.
+
+</pre>
+                </blockquote>
+                <pre class="moz-quote-pre" wrap="">I'm personally don't like this at all. IMO it obfuscate the code with
+little real benefit. This is just an opinion though, others opinions may
+differ from mine.
+</pre>
+              </blockquote>
+            </blockquote>
+            <pre class="moz-quote-pre" wrap="">except that is more robust than hand-crafted code that is error prone,
+like this snippet from wedged_mode_set():
+
+	xe_pm_runtime_get(xe);
+	for_each_gt(gt, xe, id) {
+		ret = xe_guc_ads(...);
+		if (ret) {
+			xe_gt_err(gt, "...");
+			return -EIO;
+		}
+	}
+	xe_pm_runtime_put(xe);
+
+and thanks to PM guard class we could avoid such mistakes for free:
+
+	scoped_guard(xe_pm, xe) {
+		for_each_gt(gt, xe, id) {
+			ret = xe_guc_ads(...);
+			if (ret) {
+				xe_gt_err(gt, "...");
+				return -EIO;
+</pre>
+          </blockquote>
+          <pre class="moz-quote-pre" wrap="">Just responding with a question here - haven't looked at the rest of the
+comments.
+
+How is this not still a bug? Looking at scoped_guard, it appears to be a
+magic macro for loop which acquires / releases a lock or in your
+purposed case a PM or FW ref. Doesn't the 'return -EIO' skip the release
+step? I see coding patterns like above in the kernel [1] so I do assume
+</pre>
+        </blockquote>
+        <pre class="moz-quote-pre" wrap="">with __attribute__((cleanup)), the compiler guarantees that
+it's executed when the variable goes out of scope. What you are probably
+missing is the use of CLASS() declaring a variable inside the for, which
+uses attribute cleanup:
+
+	for (CLASS(_name, scope)(args),
+	     ...
+
+GCC's doc:
+
+<a class="moz-txt-link-freetext"
+href="https://gcc.gnu.org/onlinedocs/gcc/Common-Variable-Attributes.html">https://gcc.gnu.org/onlinedocs/gcc/Common-Variable-Attributes.html</a>
+
+	The cleanup attribute runs a function when the variable goes out
+	of scope. This attribute can only be applied to auto function
+	scope variables; it may not be applied to parameters or
+	variables with static storage duration. The function must take
+	one parameter, a pointer to a type compatible with the variable.
+	The return value of the function (if any) is ignored.
+
+	When multiple variables in the same scope have cleanup
+	attributes, at exit from the scope their associated cleanup
+	functions are run in reverse order of definition (last defined,
+	first cleanup).
+
+	If -fexceptions is enabled, then cleanup_function is run during
+	the stack unwinding that happens during the processing of the
+	exception. Note that the cleanup attribute does not allow the
+	exception to be caught, only to perform an action. It is
+	undefined what happens if cleanup_function does not return
+	normally.
+
+This was only possible with the recent change in the kernel raising
+the minimum C std to gnu11 (uapi is still c90 for compatibility):
+
+	commit e8c07082a810fbb9db303a2b66b66b8d7e588b53
+	Author: Arnd Bergmann <a class="moz-txt-link-rfc2396E"
+        href="mailto:arnd@arndb.de">&lt;arnd@arndb.de&gt;</a>
+	Date:   Tue Mar 8 22:56:14 2022 +0100
+
+	    Kbuild: move to -std=gnu11
+
+	    During a patch discussion, Linus brought up the option of changing
+	    the C standard version from gnu89 to gnu99, which allows using variable
+	    declaration inside of a for() loop. While the C99, C11 and later standards
+	    introduce many other features, most of these are already available in
+	    gnu89 as GNU extensions as well.
+
+</pre>
+        <blockquote type="cite">
+          <pre class="moz-quote-pre" wrap="">this works, just confused how it works.
+
+With that, any code which isn't easily understandable IMO is a negative
+ROI as it just creates confusion in the long / makes problems harder to
+understand. Again this is just my opinion.
+</pre>
+        </blockquote>
+        <pre class="moz-quote-pre" wrap="">I think that is mainly about getting used to the pattern. I think we
+just have to be careful not to overshoot on trying to use everywhere.
+For example, I don't know why there's already a second use in a separate
+thread when we are still discussing it on this one.
+
+A very positive thing is that this is not xe's own invention and comes
+from core kernel, maybe from the hottest path that is the scheduling and
+locking. So I very much disagree with arguments raised here about
+a) this is an alien thing and b) performance will be severely impacted
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">just for the record:
+a) the alien thing is i915's with_runtime_pm... this is part of core kernel, so
+it is not an alien thing. I still don't like C++isms, but that is just a preference
+not a blocker.
+
+b) it is an overhead, but I really doubt that this would impact performance.
+Only data would show.
+
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">I've used __attribute__((cleanup)) in several userspace projects in the
+past and it does help avoiding problems on the error path that is
+usually not very well tested (and xe's track record on error path is not
+very good either: those were the main issues being submitted in drm-xe-fixes
+for the last release). So if we have a way to improve (and that I've already seen
+being used successfully), I prefer failing on trying than on repeating
+the same mistakes. 
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">Pretty much agreeing here! Specially because this is a Linux core kernel
+infra available. Let's try.
+
+Cc Nirmoy Das <a class="moz-txt-link-rfc2396E"
+      href="mailto:nirmoy.das@intel.com">&lt;nirmoy.das@intel.com&gt;</a>
+
+who is looking at the forcewake stuff and to solve the flow.
+Specially to get his eyes here and see if this would cover all the needed
+cases for the forcewake.</pre>
+    </blockquote>
+    Sorry for late reply. This looks fine for me. We are still missing a
+    corner case where if <br>
+    <pre class="moz-quote-pre" wrap=""><span
+    style="padding: 0px; tab-size: 8;"
+    class="hljs diff colorediffs language-diff"><span
+    class="hljs-addition">xe_force_wake_get() fails this is not be calling </span></span><span
+    style="padding: 0px; tab-size: 8;"
+    class="hljs diff colorediffs language-diff"><span
+    class="hljs-addition">xe_force_wake_put(). </span></span>
+<span style="padding: 0px; tab-size: 8;"
+    class="hljs diff colorediffs language-diff"><span
+    class="hljs-addition">xe_force_wake_get</span></span>() should revert the counter on failure.
+
+<span style="padding: 0px; tab-size: 8;"
+    class="hljs diff colorediffs language-diff"><span
+    class="hljs-addition">
+Regards,
+Nirmoy
+</span></span></pre>
+    <blockquote type="cite" cite="mid:ZnHtdMLEHFAHMqRr@intel.com">
+      <pre class="moz-quote-pre" wrap="">If this series were suggesting another with_runtime_pm macro, then I would
+push back hard.
+
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap=""> In kmod my only regret is that I didn't start it
+earlier, during the bootstrap of the project.
+
+
+Lucas De Marchi
+
+
+</pre>
+        <blockquote type="cite">
+          <pre class="moz-quote-pre" wrap="">Matt
+
+[1] <a class="moz-txt-link-freetext"
+href="https://elixir.bootlin.com/linux/latest/source/drivers/iio/imu/bmi323/bmi323_core.c#L1544">https://elixir.bootlin.com/linux/latest/source/drivers/iio/imu/bmi323/bmi323_core.c#L1544</a>
+
+</pre>
+          <blockquote type="cite">
+            <pre class="moz-quote-pre" wrap="">			}
+		}
+	}
+
+</pre>
+            <blockquote type="cite">
+              <pre class="moz-quote-pre" wrap="">Well, on the positive side, it is not adding a driver only thing like
+i915's with_runtime_pm() macro.
+
+But I'm also not sure if I like the overall idea anyway:
+
+- I don't like adding C++isms in a pure C code. Specially something not
+so standard and common that will decrease the ramp-up time for newcomers.
+</pre>
+            </blockquote>
+            <pre class="moz-quote-pre" wrap="">does it mean that the use of other guard patterns seen elsewhere in the
+tree is now prohibited on the Xe driver ? like:
+
+	scoped_guard(mutex, &amp;lock)
+		foo();
+
+	scoped_guard(spinlock, &amp;lock)
+		foo();
+	...
+
+</pre>
+            <blockquote type="cite">
+              <pre class="moz-quote-pre" wrap="">- It looks like and extra overhead on the object creation destruction.
+</pre>
+            </blockquote>
+            <pre class="moz-quote-pre" wrap="">from cleanup.h doc is sounds there is none:
+
+ "And through the magic of value-propagation and dead-code-elimination,
+it eliminates the actual cleanup call and compiles into:"
+
+
+</pre>
+            <blockquote type="cite">
+              <pre class="moz-quote-pre" wrap="">- It looks not flexible for handling different cases... like forcewake for
+instance where we might want to ignore the ack timeout in some cases.
+</pre>
+            </blockquote>
+            <pre class="moz-quote-pre" wrap="">there is scoped_cond_guard() that likely will be able to deal with it,
+but I guess we first need to cleanup existing force_wake api as expected
+flow is not clear and there are different approaches in the driver how
+to deal with errors
+
+</pre>
+            <blockquote type="cite">
+              <blockquote type="cite">
+                <pre class="moz-quote-pre" wrap="">Matt
+
+</pre>
+                <blockquote type="cite">
+                  <pre class="moz-quote-pre" wrap="">Cc: Rodrigo Vivi <a
+                  class="moz-txt-link-rfc2396E"
+                  href="mailto:rodrigo.vivi@intel.com">&lt;rodrigo.vivi@intel.com&gt;</a>
+Cc: Lucas De Marchi <a class="moz-txt-link-rfc2396E"
+                  href="mailto:lucas.demarchi@intel.com">&lt;lucas.demarchi@intel.com&gt;</a>
+
+Michal Wajdeczko (3):
+  drm/xe: Introduce force-wake guard class
+  drm/xe: Use new FW guard in xe_mocs.c
+  drm/xe: Use new FW guard in xe_pat.c
+
+ drivers/gpu/drm/xe/xe_force_wake.h       | 48 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_force_wake_types.h | 12 +++++
+ drivers/gpu/drm/xe/xe_mocs.c             | 12 +----
+ drivers/gpu/drm/xe/xe_pat.c              | 60 ++++++++----------------
+ 4 files changed, 82 insertions(+), 50 deletions(-)
+
+--
+2.43.0
+
+</pre>
+                </blockquote>
+              </blockquote>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+    </blockquote>
+  </body>
+</html>
+
+--------------G8GXZMJ2RjA7E7oZkKAkEtMt--
