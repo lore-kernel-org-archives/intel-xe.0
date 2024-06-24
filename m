@@ -4,51 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B9DBC2BD05
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Jun 2024 11:46:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96ADAC2BD05
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Jun 2024 11:51:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E85F810E144;
-	Mon, 24 Jun 2024 11:46:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BY+VbMWH";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 481FF10E144
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Jun 2024 11:46:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719229592; x=1750765592;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=mc94eGjd/V8dPNOkVVqCXCuGtOyoVnM5zTps2csvc+U=;
- b=BY+VbMWHzbG7RdbZJ09TnLxD1DjVl1QpaXjN37m8spFiP3z1V4ryKx3U
- IbR5FXmz/BI7eOEASLWxgAMcCzp4P30Rm7dhoJfDRHdiZkmOdaUf1uoWP
- 06CmIwAJoeYWDLriSHEzyXlciCjmpDGxZkrphW4zQw/ggowzsrXNv4wUX
- 6FEPRcRf0RTMYbY0zJStRg2hop+3J8jbiK8pK2IWDdwXlV9luYygXcZfQ
- DQqbvoBE2M63/zXfx4BOf98+ju/vTI10EfqXnqZzcMPXU/aXgoV61gltO
- iIroh6uGif/ap5DOWWRXRwDpjsz3VgdFQUy4GPCIDw15XW2gIE779Y6br A==;
-X-CSE-ConnectionGUID: yYrLPxD6RmmPpdBdvx9eqA==
-X-CSE-MsgGUID: GUgjdE0bQYyKkplggTkGXw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11112"; a="41609537"
-X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; d="scan'208";a="41609537"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2024 04:45:35 -0700
-X-CSE-ConnectionGUID: Wl6WhW0qSmeOGoF5DdCtEw==
-X-CSE-MsgGUID: 62sbzRLFT8ehuFDbfksRCg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; d="scan'208";a="43157851"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.19.248])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2024 04:45:34 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/xe/vf: Track writes to inaccessible registers from VF
-Date: Mon, 24 Jun 2024 13:45:26 +0200
-Message-Id: <20240624114526.1125-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3988110E414;
+	Mon, 24 Jun 2024 11:51:06 +0000 (UTC)
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 910DB10E402;
+ Mon, 24 Jun 2024 11:51:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/vf=3A_Track_w?=
+ =?utf-8?q?rites_to_inaccessible_registers_from_VF?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 24 Jun 2024 11:51:04 -0000
+Message-ID: <171922986458.153309.10069706010665522258@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240624114526.1125-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20240624114526.1125-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,87 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Only limited set of registers is accessible for the VF driver.
-The hardware will silently drop writes to inaccessible registers,
-but to improve our driver lets track all such unexpected writes
-on debug builds.
+== Series Details ==
 
-We will explicitly ignore writes to SOFTWARE_FLAGS_SPR33 since it
-is used by the driver just to mimic wmb and we do not have any
-similar unused scratch register accessible from the VF.
+Series: drm/xe/vf: Track writes to inaccessible registers from VF
+URL   : https://patchwork.freedesktop.org/series/135295/
+State : success
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 22 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.h |  1 +
- drivers/gpu/drm/xe/xe_mmio.c        |  6 +++++-
- 3 files changed, 28 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 41e46a00c01e..36cefe3161e1 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -892,6 +892,28 @@ u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg)
- 	return rr->value;
- }
- 
-+/**
-+ * xe_gt_sriov_vf_write32 - Track writes to an inaccessible registers.
-+ * @gt: the &xe_gt
-+ * @reg: the register to write
-+ * @val: value to write
-+ *
-+ * This function is for VF use only.
-+ * This function is dedicated for registers that VFs can't write directly.
-+ * It will trigger a WARN if running on debug build.
-+ */
-+void xe_gt_sriov_vf_write32(struct xe_gt *gt, struct xe_reg reg, u32 val)
-+{
-+	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
-+
-+	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+	xe_gt_assert(gt, !reg.vf);
-+
-+	xe_gt_WARN(gt, IS_ENABLED(CONFIG_DRM_XE_DEBUG),
-+		   "VF is trying to write %#x to an inaccessible register %#x+%#x\n",
-+		   val, reg.addr, addr - reg.addr);
-+}
-+
- /**
-  * xe_gt_sriov_vf_print_config - Print VF self config.
-  * @gt: the &xe_gt
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-index 0de7f8cbcfa6..e541ce57bec2 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-@@ -22,6 +22,7 @@ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
- u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
- u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
- u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg);
-+void xe_gt_sriov_vf_write32(struct xe_gt *gt, struct xe_reg reg, u32 val);
- 
- void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p);
- void xe_gt_sriov_vf_print_runtime(struct xe_gt *gt, struct drm_printer *p);
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index f92faad4b96d..ff72afd79272 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -151,7 +151,11 @@ void xe_mmio_write32(struct xe_gt *gt, struct xe_reg reg, u32 val)
- 	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
- 
- 	trace_xe_reg_rw(gt, true, addr, val, sizeof(val));
--	writel(val, (reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
-+
-+	if (!reg.vf && IS_SRIOV_VF(gt_to_xe(gt)) && reg.addr != SOFTWARE_FLAGS_SPR33.addr)
-+		xe_gt_sriov_vf_write32(gt, reg, val);
-+	else
-+		writel(val, (reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
- }
- 
- u32 xe_mmio_read32(struct xe_gt *gt, struct xe_reg reg)
--- 
-2.43.0
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: c0c1c2d3681c drm-tip: 2024y-06m-24d-11h-25m-14s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/vf: Track writes to inaccessible registers from VF
+
 
