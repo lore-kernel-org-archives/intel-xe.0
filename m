@@ -4,150 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94BEFC2BD05
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Jun 2024 08:41:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBA8AC2BD09
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Jun 2024 09:06:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29F4F10E3B2;
-	Mon, 24 Jun 2024 08:41:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DBCC10E3C2;
+	Mon, 24 Jun 2024 09:06:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ouA2WPjm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xp/WYfN9";
 	dkim-atps=neutral
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2049.outbound.protection.outlook.com [40.107.93.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7406E10E3B2;
- Mon, 24 Jun 2024 08:41:39 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LkkNgOIEfhoabUrFuqNUwH5WBdrWnEZxePtE52NAh4QffgS6ti6zRa4fry2UmCl1jHwbv60DPPOryjgy+7ipwWymZBNpS6lNOQJr4YNmkQOfZTqyk62A7+H2pU6y8SaUaRO8PNpSdgXxzvTzT0wogO0eSpknvJGp8dHbnR7bJqArD3ZZ7LkJuSySp0DmuKHd02uqgKomLKn3rNTstS6rdyXHNI4ouW/RPG1OTzPiBFscZPIzTxFIWbzeDdOmlKGkwMF/HapskX/iBp9tSatj+DNtvcybhse/7wkWxjN+Er79yACM/6dX/diPb7hUVl0TyEwtcEtKdvJrP6K4biS9Zw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=m6Lhek+xPWg6VYMZljzxFG2D7bs2blBCdIlWSmX4chA=;
- b=a7r2PqNiLK1moFSwKhGcTfaJYfX4eRJrYUDm4XzReh1VNAVvHRwXE5p9l3VyvXk79qN89SNdl0RhLRY9QbG+tVnG27B7/fI19sOz5RnyAVOFtf9zowip5CmkNmdDmtTIRKqkDXputC2IN3Q2C/5gZ37Bw59YouY+crWITH51lfzk7GWg0dO12d/l6wNPlND55T2+navz9jIowFcZ2DLW+F5U9snxe2gw2OCNFcY4MBaIZxFsMxwfbc5gmSl8vX/slx8bWPugCYv4L3UQT4XkCpRVjHSxor7NJrsXW8DEYOVwYQJvLDOBRcO66+F4UELoLuhYgN83mZenXa1N4ksBPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m6Lhek+xPWg6VYMZljzxFG2D7bs2blBCdIlWSmX4chA=;
- b=ouA2WPjmoGLVwx/vwnjkUTEunsgbDjM/2uaFZXk2saSDr71LuoVEIQTihXPkE0QChzy6ABamui4f/VFPfj/7JYHjK7LEBpbreEnfGyfdARHAB8xYuWwnbXZohrAeecwENkOvUV1AxJj4iI120a5obxNh2rCVnH5klqfnXvDS6LU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SA1PR12MB6821.namprd12.prod.outlook.com (2603:10b6:806:25c::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.29; Mon, 24 Jun
- 2024 08:41:37 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.7698.025; Mon, 24 Jun 2024
- 08:41:37 +0000
-Message-ID: <4381f5a5-4a9b-49f3-855b-40dbb91b0d95@amd.com>
-Date: Mon, 24 Jun 2024 10:41:31 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/ttm/pool: Revert to clear-on-alloc to honor
- TTM_TT_FLAG_ZERO_ALLOC
-To: Nirmoy Das <nirmoy.das@intel.com>, dri-devel@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-References: <20240620160147.29819-1-nirmoy.das@intel.com>
- <98890fd6-43b8-4a08-84e8-1f635abb933d@amd.com>
- <0f3d8391-ba82-434c-8871-85bb17bac6eb@intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <0f3d8391-ba82-434c-8871-85bb17bac6eb@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0187.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ca::9) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 830D510E3C0;
+ Mon, 24 Jun 2024 09:06:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1719219995; x=1750755995;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=UeI0V2I/4AlMgFDCbvikPtnGEyBLiuTqh4Iv0y/8qoQ=;
+ b=Xp/WYfN9FOoviD91vopSCQHQ7ZWlx5mhQ//0CPzjzxUjgobUdAqjPEMl
+ 0WlgWH2Di/Onk7UHygsoKBIrQoh57ym3IumfS71fHawoF/OTDn0X914e7
+ xhES+6bffSUdWHf6IGQYogIiMj4YKhPhaNoy0sBrhZRCn3VKok5s4ksgV
+ C1mTMU2UqIALZ9vuzzkZFjtPMIbXGq76tX07yuDxL4FOHTfvUVFyBzLSc
+ TejNvi3e3GEhSm50urOX4ZQpOaV2xVi+x4PFUpy8e8OJGBQNlRmv0vh+l
+ i/1qFav4HQh4fRSW7enlMUmi/SQLf0Owx4Is5Tp/Z8uNpwvNb9cJeFZB0 g==;
+X-CSE-ConnectionGUID: vFUFLLF5RY6C2BMXwcjsCg==
+X-CSE-MsgGUID: 6lg4eIRBQa6ua6CfVjKHjw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11112"; a="16147500"
+X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; d="scan'208";a="16147500"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2024 02:06:34 -0700
+X-CSE-ConnectionGUID: NwgVnq+ERruKgxOc/+hwFw==
+X-CSE-MsgGUID: CIL7Nn87RdWeVf5MJpgmHQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; d="scan'208";a="80764462"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.244.144])
+ ([10.245.244.144])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2024 02:06:32 -0700
+Message-ID: <9d6ba9d54f8c941094cd7f0975d20b90ec7f58a8.camel@linux.intel.com>
+Subject: Re: [PATCH v5 07/12] drm/ttm: Use the LRU walker for eviction
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Somalapuram Amaranath
+ <Amaranath.Somalapuram@amd.com>, dri-devel@lists.freedesktop.org
+Date: Mon, 24 Jun 2024 11:06:29 +0200
+In-Reply-To: <ZnNhIE6IhRuls2uA@DUT025-TGLU.fm.intel.com>
+References: <20240618071820.130917-1-thomas.hellstrom@linux.intel.com>
+ <20240618071820.130917-8-thomas.hellstrom@linux.intel.com>
+ <ZnNhIE6IhRuls2uA@DUT025-TGLU.fm.intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA1PR12MB6821:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4055bbdf-6651-401d-2d86-08dc942975a1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230037|376011|366013|1800799021;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?T00xenUrbDJlK3ZJVEYwSXc2SCtRZWdWQlVRd0IyUEVFL20wWktVVWplSlhW?=
- =?utf-8?B?Q2tjSVArUkFYSnhiSm9ZemdSeC9KV0R6UE4vVFBYUUZ1ZEFEdjVGY2Z2VWxz?=
- =?utf-8?B?MC9jMW1QUHIzWllZbXNZL2Q4YlhFWUI4V1krN1ZGZjQrQkFKVnAvc1g3UzNQ?=
- =?utf-8?B?aGhsQXFReU8wQmpLbkk4MFJrSWJWd3M1dlhiQVZaMWRyOEdnUU9NNkxzRnJw?=
- =?utf-8?B?bXZUQzdicUF3Z1hKTHkydzY5US83ZG9YZjNxdWVkRVRLaGJDU1JSTVNTSHBE?=
- =?utf-8?B?SGZOM2FuNVQwZWd5bGRMblRvVWxaQkIzNytUNVdSRDdDVnVOeFBRTDV3NHR1?=
- =?utf-8?B?MDR6SWFxb1ViZFZVaXlGSnJSanIraW0za3d1V2lIWGhQQm8wcU1Vb2E0N1pJ?=
- =?utf-8?B?dStBcWRhWEhKUGZ3Z09GMUNEU3JQaFd3a1BJb2R3K0FkWXRhQXpFVGJpN05R?=
- =?utf-8?B?R2lweWVtcmNzcVM5RUN0aDZKa3pzWnVLMmhpd3VXY3ExZUlobkJMOWUxeGJt?=
- =?utf-8?B?Qm5GdmgyUTZVK3g5M3FqSEYxS2YyZzBuWmFVcUtUWEx3bjhyS0RqdEoySER1?=
- =?utf-8?B?bWpFUkRRMnpQSkROdGNUZlFDQVN3TkFVR1VldDRvNjhtZnEyT294ZU5rL2tq?=
- =?utf-8?B?RXRvbjEraU9DejA3WGRvWVJLcitrekJtSVp1SVdJNEltYjFTb1plNDhtVHox?=
- =?utf-8?B?Z0hzWkhPNjAzcDRNUktFWm1hTkg0aDMwUkVzM3BoNXI0S0VHTldQSHAyZFp3?=
- =?utf-8?B?S092SzQ2OVA4MGVLQzlkRG8xdmJzdmJhUVQ1cHRObm5HRDhMWWUwQXZRWVZE?=
- =?utf-8?B?NkFJbFB1aUprMkdPZ3BDN2duNGhvTVp5eVgvOFBkbmZTMGVBNWV6Y050ZGtX?=
- =?utf-8?B?SVc2cnNYYmlKYnZKMGtkM3NsVk04bXlSQ3ZJRUh6RW16bklWSFJwTFRhU3Iv?=
- =?utf-8?B?TGVzNnFLcTJQVDFvODFPZGVSeTNqbmdXNjNYcTBMNkNYR1RVVHkwalJsZkVU?=
- =?utf-8?B?eXVyTWFJNjZTTmJwZ1dhRi9XU0dWdGppY3N5RTgweGVxaE9DcDV6enJlL1JR?=
- =?utf-8?B?ZDBvL2FrcmVOVklNNzhNVjBObC9mSVNhVTJPK0FPU1FxS0hOM1dOM1htazdY?=
- =?utf-8?B?RXNSVGVvREJGb0wrMEFUQmhJWjJjU3lRZVdCbWg1UmZmOFFYNWFWcDdvUmJC?=
- =?utf-8?B?TU1DU05hZlZZTWpBeFVmaHlvNlVBQmhHaTBnYUp4TDBIVXlSRG5EK0Z1WU9j?=
- =?utf-8?B?ZnN4RmZHam9kN2h4RGMyMVBGb1JjamxKSzRFUUV6ZjhDcHF1U3RCQlROY2Y2?=
- =?utf-8?B?V2g0L2FjWVV2RmhJdVlSZ0hPN21DVGc0cW5xc25YcEQ4M3hQTEh0aXZCTEI0?=
- =?utf-8?B?Q3QzWDd4OW5hY2htYms3SHJ6RjVUVkhjL0MxbWpyeDZ4ekZjby9PN1BkcC9K?=
- =?utf-8?B?aWpER3lGNDdXRWYzUlRlcE8wTVo4TWlVQzRtR0VTb3pPOEhCZ3cvUEhqNkg3?=
- =?utf-8?B?Umw0USttU1QrT2VhM2dIWWZzcHQwb05DREdaY0tEWGpXYWEvZ2w5Z29iVXRZ?=
- =?utf-8?B?OVNxb1lyQVNGRGF3V3FaM0pmenp2alJiOThpWWxGRFJoU2YvOHVsYWx2S0Yx?=
- =?utf-8?B?aG9zZm1Deis3MGdDTWZZQ0FWZi9WaFdUS2QvaXYyY1p1Sy8zeXpOc09BV0FZ?=
- =?utf-8?B?c01PNkJzdTVQaldSWnV5Q3BJbWxnM1pJV1FjUlZmZVo1WWxja1RYV1duaEVr?=
- =?utf-8?Q?V+F/9LmaK8SL+RO/LDeXe/trXNF1ixLZ40oypNY?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230037)(376011)(366013)(1800799021); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S3NQeEc2VWNlSTR0NDVsUU5Sdi9nSjA0NngyTkxpN0xzN0xhSmVuSnIxd25j?=
- =?utf-8?B?UVVmWnhJbFIxYUVXWlc5d2ZFcGVDYTMzRWlaeFhXd1Qwd1hTR1hLeWpSR3VD?=
- =?utf-8?B?dlBrOUwyWUtWV21xQ2lqWk13K2hINkxtQWxKMGFydy9PR3kvb0tuanlwVzNq?=
- =?utf-8?B?S3MxS01ySjhsR21qZ2U2NlgvekM4ZEJIdFJLdjBYOVdadXB5bHpTengvNDMx?=
- =?utf-8?B?U3lNSDR0ZG8wc2VZcjVIVXVDN3RpdXlOZHJnRFJyZUpWOWxMaEtvb2lkMjl4?=
- =?utf-8?B?NFdBZmQ3YnByYkdFQ3hQUm94eUkzVmd5S1YxMlkyaTcrVEdTR3U1TzB6aU9Q?=
- =?utf-8?B?ejR5ckp5cUxlTXFvby9VWmVqdWloUW1NaU50ZStJQ0lJWFAvZGRRS1JpTFNk?=
- =?utf-8?B?djlqc3RiREZhVGlUZ1l6a1BBcGYwMWRLTkdiczRiNGNGUDVtM1M5QzAzY29u?=
- =?utf-8?B?ZTVrWVI5VE13VzZvTmFQRDQ0cVllbSs4Q2lGSUROYS9odXQ0c29Lc2hkWVo4?=
- =?utf-8?B?STNvNENhVndJUlVlR3VNQnFIdmFWOS90ZlVBT1lxRHh6YmZoUHZUbVczTkdw?=
- =?utf-8?B?NVNibFhPaytEN2ZrRGl5MkxHZnpKUkJYajZ6ZlMvN1dmUXFsbnhCdVh2Vkti?=
- =?utf-8?B?NHNPbU9mYWZURitFb09IVGNwcHpZendwN25JazdHa0NNQlVDL1d3QlhpU1pV?=
- =?utf-8?B?eVk4aXRmb2dpNFhCMWlTeGhFREZ1b2VEZElSTFBueVVocUpsSEp5VHBDMTZx?=
- =?utf-8?B?akZUVGRxSDZWUWkwSUpxVWtRSWJSM05SK0xCUkFEWXZydzIzR3dPVjlLL2p6?=
- =?utf-8?B?VTU5WERBNWNMWjhyeWFnWEM3MlcvR1IvSk5OUjNvcTd2NmQ5djN6REVxaXJE?=
- =?utf-8?B?Nko5ZFpWUHJocEZabmh6US9KUFB4NGs3SmlEd1gwOEcxdkNHVy9tR2dwcFJs?=
- =?utf-8?B?bnpRb2VsT2RrYWJHb3l2OVRNY0pnRTJnUjVIWE5SNk9GN2tPRXRmOEpLRXEx?=
- =?utf-8?B?UGMvTVU5ZFZUK3R6ZllkNnM4dEhHS2FxUlFnR3hyRXQ3UzdqRTBSeDNGcUxo?=
- =?utf-8?B?b2VQQkltWEpNYm1RU1RBZUdiUHlrM1ZiSmhuSHVCQVhJY0V1ZzByNVhWV2JL?=
- =?utf-8?B?RHRmMTVzU3pVUUVZajRVMmFEaTlNRnorMEthNlVyL2dYbllZK005U0Y1Mzlu?=
- =?utf-8?B?bDFxbFlyc3p0clNUSUhpZ0ZGb1pNdGJGNWZPcURLaFVPM2tRbitIV0NEbTJn?=
- =?utf-8?B?ZitYV0Z0WXVPWmV5dUZDb0k5OVpyWjBmK3NhNEhocE5ybXdKaVZhZjFvdlZq?=
- =?utf-8?B?c2c5MnlhaGtlamdjbDdHNzVIeW91bVJsMUhtMlFmK3doaEFReWJZNWd6WlZ4?=
- =?utf-8?B?OXhjUEpSaTZGQ2RKN3ZzY2Y3ZjdENmhweVJEbGxYMkxDTEl6OFVpZmU3UHBE?=
- =?utf-8?B?bWFYYUI4blZudUhjTGVUUnI3RmFIY3J0cm5BeUJOMFFnR2VCTTFZemlTbC8y?=
- =?utf-8?B?ak1HL1pXTThLR0M1dVFXVmZsQmUyUU5WcjdlR0JML05iaHNMUzRhQ0ZycXc5?=
- =?utf-8?B?UFZPSXVBQWFYb2pCOCtSTkJXZ3duVCtVa3RQcnlWN0dJTUFNRGRMK1RlOGlG?=
- =?utf-8?B?M3Vhdk1oZkNBMTRMWmE3MmpRb1hBQjFJL3JMdTh3TjY0U0ZlRHdGNVdNTXY3?=
- =?utf-8?B?ZUlRMk5iOFpFQ0l0L2Q1UzVIajJ5WEl2VnpOZGU1QjdJSzMwRTRPcE5wdTVj?=
- =?utf-8?B?ZEdRMkxSa0V1Y3hCc2dVWUNOeFhRUWdDVXlNSEZaNFZuOWZydS8vdVdBdGc3?=
- =?utf-8?B?dlJSK2JhRmJ4WUtobGdXY28yREQzSlRKdDBqenZEclpqZklNQXhnT3hOaDh5?=
- =?utf-8?B?d2dmV0tYdG5mZmt3MmNSMWhxenNyL1FucUdXQkEwdEhMY0xaU1NFRGgwbUhX?=
- =?utf-8?B?anVUOW1hVFlLY2N2WnJUeldTVjNFWURYYXRGUUpaK1BpRWYzYkJkemVsWjhj?=
- =?utf-8?B?azRFWk5JS1RBWVFnOE8rOGlsNk93OExEc1A5VEM2UTBDbTZzaGJwR2RjYXBs?=
- =?utf-8?B?M0s4eG81Zjk1bDVKbkVsbjJYMDdoNVhJM2tYeVZFYmxLWXNPRzhyWm1VNTJB?=
- =?utf-8?Q?+mDI=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4055bbdf-6651-401d-2d86-08dc942975a1
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2024 08:41:36.9231 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9we5kefV+th17Ja6/QRbjLe5FC0rVr+2/RLrxTxezxziIPT69C7L/t7yS0FWjPWW
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6821
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,149 +75,638 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 21.06.24 um 17:43 schrieb Nirmoy Das:
-> Hi Christian,
->
-> On 6/21/2024 4:54 PM, Christian König wrote:
->> Am 20.06.24 um 18:01 schrieb Nirmoy Das:
->>> Currently ttm pool is not honoring TTM_TT_FLAG_ZERO_ALLOC flag and
->>> clearing pages on free. It does help with allocation latency but 
->>> clearing
->>> happens even if drm driver doesn't passes the flag. If clear on free
->>> is needed then a new flag can be added for that purpose.
->>
->> Mhm, thinking more about it that will most likely get push back from 
->> others as well.
->
->
-> Agreed, it is diverting a lot from a known behavior.
->
->>
->> How about the attached patch? We just skip clearing pages when the 
->> driver set the ZERO_ALLOC flag again before freeing them.
->>
->> Maybe rename the flag or add a new one for that, but in general that 
->> looks like the option with the least impact.
->
->
-> I would prefer a few flag (TTM_TT_FLAG_CLEARED_ALLOC ?) which driver 
-> can set before freeing. I can resend the patch if you are
->
-> fine with it.
+Hi, Matthew
 
+On Wed, 2024-06-19 at 22:52 +0000, Matthew Brost wrote:
+> On Tue, Jun 18, 2024 at 09:18:15AM +0200, Thomas Hellstr=C3=B6m wrote:
+> > Use the LRU walker for eviction. This helps
+> > removing a lot of code with weird locking
+> > semantics.
+> >=20
+> > The functionality is slightly changed so that
+> > when trylocked buffer objects are exhausted, we
+> > continue to interleave walks with ticket-locks while
+> > there is still progress made. The list walks are
+> > not restarted in-between evictions.
+> >=20
+> > Also provide a separate ttm_bo_evict_first()
+> > function for its single user. The context of that
+> > user allows sleeping dma_resv locks.
+> >=20
+> I'm inclined to RB this as I think I've made sense of it all but just
+> have a few questions / nits first + one small bug.
+>=20
+> > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+> > Cc: Matthew Brost <matthew.brost@intel.com>
+> > Cc: <dri-devel@lists.freedesktop.org>
+> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/ttm/ttm_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+| 350 ++++++++++++-------------
+> > ----
+> > =C2=A0drivers/gpu/drm/ttm/ttm_resource.c |=C2=A0 20 +-
+> > =C2=A0include/drm/ttm/ttm_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 8 +-
+> > =C2=A03 files changed, 145 insertions(+), 233 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
+> > b/drivers/gpu/drm/ttm/ttm_bo.c
+> > index 63a91b77f7da..316afe19a325 100644
+> > --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> > +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> > @@ -224,80 +224,6 @@ static void ttm_bo_flush_all_fences(struct
+> > ttm_buffer_object *bo)
+> > =C2=A0	dma_resv_iter_end(&cursor);
+> > =C2=A0}
+> > =C2=A0
+> > -/**
+> > - * ttm_bo_cleanup_refs
+> > - * If bo idle, remove from lru lists, and unref.
+> > - * If not idle, block if possible.
+> > - *
+> > - * Must be called with lru_lock and reservation held, this
+> > function
+> > - * will drop the lru lock and optionally the reservation lock
+> > before returning.
+> > - *
+> > - * @bo:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 The buffer object to cl=
+ean-up
+> > - * @interruptible:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Any=
+ sleeps should occur interruptibly.
+> > - * @no_wait_gpu:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 Never wait for gpu. Return -EBUSY
+> > instead.
+> > - * @unlock_resv:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 Unlock the reservation lock as well.
+> > - */
+> > -
+> > -static int ttm_bo_cleanup_refs(struct ttm_buffer_object *bo,
+> > -			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool interruptible, bool
+> > no_wait_gpu,
+> > -			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool unlock_resv)
+> > -{
+> > -	struct dma_resv *resv =3D &bo->base._resv;
+> > -	int ret;
+> > -
+> > -	if (dma_resv_test_signaled(resv, DMA_RESV_USAGE_BOOKKEEP))
+> > -		ret =3D 0;
+> > -	else
+> > -		ret =3D -EBUSY;
+> > -
+> > -	if (ret && !no_wait_gpu) {
+> > -		long lret;
+> > -
+> > -		if (unlock_resv)
+> > -			dma_resv_unlock(bo->base.resv);
+> > -		spin_unlock(&bo->bdev->lru_lock);
+> > -
+> > -		lret =3D dma_resv_wait_timeout(resv,
+> > DMA_RESV_USAGE_BOOKKEEP,
+> > -					=C2=A0=C2=A0=C2=A0=C2=A0 interruptible,
+> > -					=C2=A0=C2=A0=C2=A0=C2=A0 30 * HZ);
+> > -
+> > -		if (lret < 0)
+> > -			return lret;
+> > -		else if (lret =3D=3D 0)
+> > -			return -EBUSY;
+> > -
+> > -		spin_lock(&bo->bdev->lru_lock);
+> > -		if (unlock_resv && !dma_resv_trylock(bo-
+> > >base.resv)) {
+> > -			/*
+> > -			 * We raced, and lost, someone else holds
+> > the reservation now,
+> > -			 * and is probably busy in
+> > ttm_bo_cleanup_memtype_use.
+> > -			 *
+> > -			 * Even if it's not the case, because we
+> > finished waiting any
+> > -			 * delayed destruction would succeed, so
+> > just return success
+> > -			 * here.
+> > -			 */
+> > -			spin_unlock(&bo->bdev->lru_lock);
+> > -			return 0;
+> > -		}
+> > -		ret =3D 0;
+> > -	}
+> > -
+> > -	if (ret) {
+> > -		if (unlock_resv)
+> > -			dma_resv_unlock(bo->base.resv);
+> > -		spin_unlock(&bo->bdev->lru_lock);
+> > -		return ret;
+> > -	}
+> > -
+> > -	spin_unlock(&bo->bdev->lru_lock);
+> > -	ttm_bo_cleanup_memtype_use(bo);
+> > -
+> > -	if (unlock_resv)
+> > -		dma_resv_unlock(bo->base.resv);
+> > -
+> > -	return 0;
+> > -}
+> > -
+> > =C2=A0/*
+> > =C2=A0 * Block for the dma_resv object to become idle, lock the buffer
+> > and clean up
+> > =C2=A0 * the resource and tt object.
+> > @@ -505,151 +431,154 @@ bool ttm_bo_eviction_valuable(struct
+> > ttm_buffer_object *bo,
+> > =C2=A0}
+> > =C2=A0EXPORT_SYMBOL(ttm_bo_eviction_valuable);
+> > =C2=A0
+> > -/*
+> > - * Check the target bo is allowable to be evicted or swapout,
+> > including cases:
+> > - *
+> > - * a. if share same reservation object with ctx->resv, have
+> > assumption
+> > - * reservation objects should already be locked, so not lock again
+> > and
+> > - * return true directly when either the opreation
+> > allow_reserved_eviction
+> > - * or the target bo already is in delayed free list;
+> > +/**
+> > + * ttm_bo_evict_first() - Evict the first bo on the manager's LRU
+> > list.
+> > + * @bdev: The ttm device.
+> > + * @man: The manager whose bo to evict.
+> > + * @ctx: The TTM operation ctx governing the eviction.
+> > =C2=A0 *
+> > - * b. Otherwise, trylock it.
+> > + * Return: 0 if successful or the resource disappeared. Negative
+> > error code on error.
+> > =C2=A0 */
+> > -static bool ttm_bo_evict_swapout_allowable(struct
+> > ttm_buffer_object *bo,
+> > -					=C2=A0=C2=A0 struct
+> > ttm_operation_ctx *ctx,
+> > -					=C2=A0=C2=A0 const struct ttm_place
+> > *place,
+> > -					=C2=A0=C2=A0 bool *locked, bool
+> > *busy)
+> > +int ttm_bo_evict_first(struct ttm_device *bdev, struct
+> > ttm_resource_manager *man,
+> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *ctx)
+> > =C2=A0{
+> > -	bool ret =3D false;
+> > +	struct ttm_resource_cursor cursor;
+> > +	struct ttm_buffer_object *bo;
+> > +	struct ttm_resource *res;
+> > +	unsigned int mem_type;
+> > +	int ret =3D 0;
+> > =C2=A0
+> > -	if (bo->pin_count) {
+> > -		*locked =3D false;
+> > -		if (busy)
+> > -			*busy =3D false;
+> > -		return false;
+> > +	spin_lock(&bdev->lru_lock);
+> > +	res =3D ttm_resource_manager_first(man, &cursor);
+> > +	if (!res) {
+> > +		ret =3D -ENOENT;
+>=20
+> Nit, this assignment is not needed a out_no_ref just returns -ENOENT.
+>=20
+> > +		goto out_no_ref;
+> > =C2=A0	}
+> > +	bo =3D res->bo;
+> > +	if (!ttm_bo_get_unless_zero(bo))
+> > +		goto out_no_ref;
+> > +	mem_type =3D res->mem_type;
+> > +	spin_unlock(&bdev->lru_lock);
+> > +	ret =3D ttm_bo_reserve(bo, ctx->interruptible, ctx-
+> > >no_wait_gpu, NULL);
+> > +	if (ret)
+> > +		goto out_no_lock;
+> > +	if (bo->resource !=3D res || res->mem_type !=3D mem_type)
+>=20
+> So 'bo->resource !=3D res' is checking between dropping of the LRU lock
+> and grabbing the dma-resv lock in ttm_bo_reserve, the BO's backing
+> resource has changed (i.e. someone else could've evicted to BO). Is
+> that correct? Also in this case 'res' could be stale memory and not
+> safe
+> to dereference, right?
 
-Yeah, please go ahead with that. But probably better name it 
-TTM_TT_FLAG_CLEARED_ON_FREE.
+Yes, that's correct. Although if bo->resource =3D=3D res, it is safe to
+dereference res.
 
-Thanks,
-Christian.
+>=20
+> I'm confused about 'res->mem_type !=3D mem_type' though. Looking
+> through
+> the code is res->mem_type not immutable? I think I only see
+> res->mem_type assigned in ttm_resource_init.
 
->
->
-> Regards,
->
-> Nirmoy
->
->
->>
->> Regards,
->> Christian.
->>
->>>
->>> Cc: Christian Koenig <christian.koenig@amd.com>
->>> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
->>> Cc: Matthew Auld <matthew.auld@intel.com>
->>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->>> ---
->>>   drivers/gpu/drm/ttm/ttm_pool.c | 31 +++++++++++++++++--------------
->>>   1 file changed, 17 insertions(+), 14 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c 
->>> b/drivers/gpu/drm/ttm/ttm_pool.c
->>> index 6e1fd6985ffc..cbbd722185ee 100644
->>> --- a/drivers/gpu/drm/ttm/ttm_pool.c
->>> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
->>> @@ -224,15 +224,6 @@ static void ttm_pool_unmap(struct ttm_pool 
->>> *pool, dma_addr_t dma_addr,
->>>   /* Give pages into a specific pool_type */
->>>   static void ttm_pool_type_give(struct ttm_pool_type *pt, struct 
->>> page *p)
->>>   {
->>> -    unsigned int i, num_pages = 1 << pt->order;
->>> -
->>> -    for (i = 0; i < num_pages; ++i) {
->>> -        if (PageHighMem(p))
->>> -            clear_highpage(p + i);
->>> -        else
->>> -            clear_page(page_address(p + i));
->>> -    }
->>> -
->>>       spin_lock(&pt->lock);
->>>       list_add(&p->lru, &pt->pages);
->>>       spin_unlock(&pt->lock);
->>> @@ -240,15 +231,26 @@ static void ttm_pool_type_give(struct 
->>> ttm_pool_type *pt, struct page *p)
->>>   }
->>>     /* Take pages from a specific pool_type, return NULL when 
->>> nothing available */
->>> -static struct page *ttm_pool_type_take(struct ttm_pool_type *pt)
->>> +static struct page *ttm_pool_type_take(struct ttm_pool_type *pt, 
->>> bool clear)
->>>   {
->>>       struct page *p;
->>>         spin_lock(&pt->lock);
->>>       p = list_first_entry_or_null(&pt->pages, typeof(*p), lru);
->>>       if (p) {
->>> +        unsigned int i, num_pages = 1 << pt->order;
->>> +
->>>           atomic_long_sub(1 << pt->order, &allocated_pages);
->>>           list_del(&p->lru);
->>> +        if (clear) {
->>> +            for (i = 0; i < num_pages; ++i) {
->>> +                if (PageHighMem(p))
->>> +                    clear_highpage(p + i);
->>> +                else
->>> +                    clear_page(page_address(p + i));
->>> +            }
->>> +        }
->>> +
->>>       }
->>>       spin_unlock(&pt->lock);
->>>   @@ -279,7 +281,7 @@ static void ttm_pool_type_fini(struct 
->>> ttm_pool_type *pt)
->>>       list_del(&pt->shrinker_list);
->>>       spin_unlock(&shrinker_lock);
->>>   -    while ((p = ttm_pool_type_take(pt)))
->>> +    while ((p = ttm_pool_type_take(pt, false)))
->>>           ttm_pool_free_page(pt->pool, pt->caching, pt->order, p);
->>>   }
->>>   @@ -330,7 +332,7 @@ static unsigned int ttm_pool_shrink(void)
->>>       list_move_tail(&pt->shrinker_list, &shrinker_list);
->>>       spin_unlock(&shrinker_lock);
->>>   -    p = ttm_pool_type_take(pt);
->>> +    p = ttm_pool_type_take(pt, false);
->>>       if (p) {
->>>           ttm_pool_free_page(pt->pool, pt->caching, pt->order, p);
->>>           num_pages = 1 << pt->order;
->>> @@ -457,10 +459,11 @@ int ttm_pool_alloc(struct ttm_pool *pool, 
->>> struct ttm_tt *tt,
->>>            num_pages;
->>>            order = min_t(unsigned int, order, __fls(num_pages))) {
->>>           struct ttm_pool_type *pt;
->>> +        bool clear = tt->page_flags & TTM_TT_FLAG_ZERO_ALLOC;
->>>             page_caching = tt->caching;
->>>           pt = ttm_pool_select_type(pool, tt->caching, order);
->>> -        p = pt ? ttm_pool_type_take(pt) : NULL;
->>> +        p = pt ? ttm_pool_type_take(pt, clear) : NULL;
->>>           if (p) {
->>>               r = ttm_pool_apply_caching(caching, pages,
->>>                              tt->caching);
->>> @@ -480,7 +483,7 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct 
->>> ttm_tt *tt,
->>>                   if (num_pages < (1 << order))
->>>                       break;
->>>   -                p = ttm_pool_type_take(pt);
->>> +                p = ttm_pool_type_take(pt, clear);
->>>               } while (p);
->>>           }
+It's if someone freed res and then allocated a new resource that ended
+up as bo->resource, but with the same virtual address as res. Not very
+likely but definitely possible. Then if the new resource has the same
+memory type we can go ahead and evict anyway, If not, we skip eviction.
+
+>=20
+> > +		goto out_bad_res;
+>=20
+> s/out_bad_res/out_bo_moved
+>=20
+> Would that be more accurate?
+
+Yes, I could change that.
+
+>=20
+> > =C2=A0
+> > -	if (bo->base.resv =3D=3D ctx->resv) {
+> > -		dma_resv_assert_held(bo->base.resv);
+> > -		if (ctx->allow_res_evict)
+> > -			ret =3D true;
+> > -		*locked =3D false;
+> > -		if (busy)
+> > -			*busy =3D false;
+> > +	if (bo->deleted) {
+> > +		ret =3D ttm_bo_wait_ctx(bo, ctx);
+> > +		if (ret)
+>=20
+> This should be 'if (!ret)', right? We should cleanup once the BO is
+> idle.
+
+Right. Will fix.
+
+>=20
+> > +			ttm_bo_cleanup_memtype_use(bo);
+> > =C2=A0	} else {
+> > -		ret =3D dma_resv_trylock(bo->base.resv);
+> > -		*locked =3D ret;
+> > -		if (busy)
+> > -			*busy =3D !ret;
+> > -	}
+> > -
+> > -	if (ret && place && (bo->resource->mem_type !=3D place-
+> > >mem_type ||
+> > -		!bo->bdev->funcs->eviction_valuable(bo, place))) {
+> > -		ret =3D false;
+> > -		if (*locked) {
+> > -			dma_resv_unlock(bo->base.resv);
+> > -			*locked =3D false;
+> > -		}
+> > +		ret =3D ttm_bo_evict(bo, ctx);
+> > =C2=A0	}
+> > -
+> > +out_bad_res:
+> > +	dma_resv_unlock(bo->base.resv);
+> > +out_no_lock:
+> > +	ttm_bo_put(bo);
+> > +	ttm_resource_cursor_fini(&cursor);
+> > =C2=A0	return ret;
+> > +
+> > +out_no_ref:
+> > +	ttm_resource_cursor_fini_locked(&cursor);
+> > +	spin_unlock(&bdev->lru_lock);
+> > +	return -ENOENT;
+> > =C2=A0}
+> > =C2=A0
+> > =C2=A0/**
+> > - * ttm_mem_evict_wait_busy - wait for a busy BO to become
+> > available
+> > - *
+> > - * @busy_bo: BO which couldn't be locked with trylock
+> > - * @ctx: operation context
+> > - * @ticket: acquire ticket
+> > - *
+> > - * Try to lock a busy buffer object to avoid failing eviction.
+> > + * struct ttm_bo_evict_walk - Parameters for the evict walk.
+> > =C2=A0 */
+> > -static int ttm_mem_evict_wait_busy(struct ttm_buffer_object
+> > *busy_bo,
+> > -				=C2=A0=C2=A0 struct ttm_operation_ctx *ctx,
+> > -				=C2=A0=C2=A0 struct ww_acquire_ctx *ticket)
+> > -{
+> > -	int r;
+> > -
+> > -	if (!busy_bo || !ticket)
+> > -		return -EBUSY;
+> > -
+> > -	if (ctx->interruptible)
+> > -		r =3D dma_resv_lock_interruptible(busy_bo-
+> > >base.resv,
+> > -							=C2=A0 ticket);
+> > -	else
+> > -		r =3D dma_resv_lock(busy_bo->base.resv, ticket);
+> > -
+> > -	/*
+> > -	 * TODO: It would be better to keep the BO locked until
+> > allocation is at
+> > -	 * least tried one more time, but that would mean a much
+> > larger rework
+> > -	 * of TTM.
+> > -	 */
+> > -	if (!r)
+> > -		dma_resv_unlock(busy_bo->base.resv);
+> > -
+> > -	return r =3D=3D -EDEADLK ? -EBUSY : r;
+> > -}
+> > +struct ttm_bo_evict_walk {
+> > +	/** @walk: The walk base parameters. */
+> > +	struct ttm_lru_walk walk;
+> > +	/** @place: The place passed to the resource allocation.
+> > */
+> > +	const struct ttm_place *place;
+> > +	/** @evictor: The buffer object we're trying to make room
+> > for. */
+> > +	struct ttm_buffer_object *evictor;
+> > +	/** @res: The allocated resource if any. */
+> > +	struct ttm_resource **res;
+> > +	/** @evicted: The number of evicted pages. */
+>=20
+> s/pages/BOs or resources
+>=20
+> Another option would be 'forward_progess' or something like that
+> given
+> the usage in this patch.
+
+OK, yes, will take a look and fix.
+
+>=20
+> > +	unsigned long evicted;
+> > +};
+> > =C2=A0
+> > -int ttm_mem_evict_first(struct ttm_device *bdev,
+> > -			struct ttm_resource_manager *man,
+> > -			const struct ttm_place *place,
+> > -			struct ttm_operation_ctx *ctx,
+> > -			struct ww_acquire_ctx *ticket)
+> > +static long ttm_bo_evict_cb(struct ttm_lru_walk *walk, struct
+> > ttm_buffer_object *bo)
+> > =C2=A0{
+> > -	struct ttm_buffer_object *bo =3D NULL, *busy_bo =3D NULL;
+> > -	struct ttm_resource_cursor cursor;
+> > -	struct ttm_resource *res;
+> > -	bool locked =3D false;
+> > -	int ret;
+> > +	struct ttm_bo_evict_walk *evict_walk =3D
+> > +		container_of(walk, typeof(*evict_walk), walk);
+> > +	long lret;
+> > =C2=A0
+> > -	spin_lock(&bdev->lru_lock);
+> > -	ttm_resource_manager_for_each_res(man, &cursor, res) {
+> > -		bool busy;
+> > -
+> > -		if (!ttm_bo_evict_swapout_allowable(res->bo, ctx,
+> > place,
+> > -						=C2=A0=C2=A0=C2=A0 &locked,
+> > &busy)) {
+> > -			if (busy && !busy_bo && ticket !=3D
+> > -			=C2=A0=C2=A0=C2=A0 dma_resv_locking_ctx(res->bo-
+> > >base.resv))
+> > -				busy_bo =3D res->bo;
+> > -			continue;
+> > -		}
+> > +	if (!bo->bdev->funcs->eviction_valuable(bo, evict_walk-
+> > >place))
+> > +		return 0;
+> > =C2=A0
+> > -		if (ttm_bo_get_unless_zero(res->bo)) {
+> > -			bo =3D res->bo;
+> > -			break;
+> > -		}
+> > -		if (locked)
+> > -			dma_resv_unlock(res->bo->base.resv);
+> > +	if (bo->deleted) {
+> > +		lret =3D ttm_bo_wait_ctx(bo, walk->ctx);
+> > +		if (!lret)
+> > +			ttm_bo_cleanup_memtype_use(bo);
+> > +	} else {
+> > +		lret =3D ttm_bo_evict(bo, walk->ctx);
+> > =C2=A0	}
+> > -	ttm_resource_cursor_fini_locked(&cursor);
+> > =C2=A0
+> > -	if (!bo) {
+> > -		if (busy_bo && !ttm_bo_get_unless_zero(busy_bo))
+> > -			busy_bo =3D NULL;
+> > -		spin_unlock(&bdev->lru_lock);
+> > -		ret =3D ttm_mem_evict_wait_busy(busy_bo, ctx,
+> > ticket);
+> > -		if (busy_bo)
+> > -			ttm_bo_put(busy_bo);
+> > -		return ret;
+> > -	}
+> > +	if (lret)
+> > +		goto out;
+> > =C2=A0
+> > -	if (bo->deleted) {
+> > -		ret =3D ttm_bo_cleanup_refs(bo, ctx->interruptible,
+> > -					=C2=A0 ctx->no_wait_gpu,
+> > locked);
+> > -		ttm_bo_put(bo);
+> > -		return ret;
+> > -	}
+> > +	evict_walk->evicted++;
+> > +	if (evict_walk->res)
+> > +		lret =3D ttm_resource_alloc(evict_walk->evictor,
+> > evict_walk->place,
+> > +					=C2=A0 evict_walk->res);
+> > +	if (lret =3D=3D 0)
+> > +		return 1;
+> > +out:
+> > +	/* Errors that should terminate the walk. */
+> > +	if (lret =3D=3D -ENOMEM || lret =3D=3D -EINTR || lret =3D=3D -
+> > ERESTARTSYS ||
+> > +	=C2=A0=C2=A0=C2=A0 lret =3D=3D -EAGAIN)
+> > +		return lret;
+>=20
+> Same comment as the previous patch, the inverse of this might be more
+> clear. Also if the condition is the same, a helper may make sense.
+
+Will fix.
+
+>=20
+> > =C2=A0
+> > -	spin_unlock(&bdev->lru_lock);
+> > +	return 0;
+> > +}
+> > =C2=A0
+> > -	ret =3D ttm_bo_evict(bo, ctx);
+> > -	if (locked)
+> > -		ttm_bo_unreserve(bo);
+> > -	else
+> > -		ttm_bo_move_to_lru_tail_unlocked(bo);
+> > +static const struct ttm_lru_walk_ops ttm_evict_walk_ops =3D {
+> > +	.process_bo =3D ttm_bo_evict_cb,
+> > +};
+> > =C2=A0
+> > -	ttm_bo_put(bo);
+> > -	return ret;
+> > +static int ttm_bo_evict_alloc(struct ttm_device *bdev,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_resource_manager *man,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct ttm_place *place,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_buffer_object *evictor,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *ctx,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ww_acquire_ctx *ticket,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_resource **res)
+> > +{
+> > +	struct ttm_bo_evict_walk evict_walk =3D {
+> > +		.walk =3D {
+> > +			.ops =3D &ttm_evict_walk_ops,
+> > +			.ctx =3D ctx,
+> > +			.ticket =3D ticket,
+> > +		},
+> > +		.place =3D place,
+> > +		.evictor =3D evictor,
+> > +		.res =3D res,
+> > +	};
+> > +	long lret;
+> > +
+> > +	evict_walk.walk.trylock_only =3D true;
+> > +	lret =3D ttm_lru_walk_for_evict(&evict_walk.walk, bdev, man,
+> > 1);
+> > +	if (lret || !ticket)
+> > +		goto out;
+> > +
+> > +	/* If ticket-locking, repeat while making progress. */
+> > +	evict_walk.walk.trylock_only =3D false;
+> > +	do {
+> > +		/* The walk may clear the evict_walk.walk.ticket
+> > field */
+> > +		evict_walk.walk.ticket =3D ticket;
+> > +		evict_walk.evicted =3D 0;
+> > +		lret =3D ttm_lru_walk_for_evict(&evict_walk.walk,
+> > bdev, man, 1);
+> > +	} while (!lret && evict_walk.evicted);
+> > +out:
+> > +	if (lret < 0)
+> > +		return lret;
+> > +	if (lret =3D=3D 0)
+> > +		return -EBUSY;
+> > +	return 0;
+> > =C2=A0}
+> > =C2=A0
+> > =C2=A0/**
+> > @@ -760,6 +689,7 @@ static int ttm_bo_alloc_resource(struct
+> > ttm_buffer_object *bo,
+> > =C2=A0	for (i =3D 0; i < placement->num_placement; ++i) {
+> > =C2=A0		const struct ttm_place *place =3D &placement-
+> > >placement[i];
+> > =C2=A0		struct ttm_resource_manager *man;
+> > +		bool may_evict;
+> > =C2=A0
+> > =C2=A0		man =3D ttm_manager_type(bdev, place->mem_type);
+> > =C2=A0		if (!man || !ttm_resource_manager_used(man))
+> > @@ -769,22 +699,21 @@ static int ttm_bo_alloc_resource(struct
+> > ttm_buffer_object *bo,
+> > =C2=A0				=C2=A0=C2=A0=C2=A0 TTM_PL_FLAG_FALLBACK))
+> > =C2=A0			continue;
+> > =C2=A0
+> > -		do {
+> > -			ret =3D ttm_resource_alloc(bo, place, res);
+> > -			if (unlikely(ret && ret !=3D -ENOSPC))
+> > +		may_evict =3D (force_space && place->mem_type !=3D
+> > TTM_PL_SYSTEM);
+> > +		ret =3D ttm_resource_alloc(bo, place, res);
+> > +		if (ret) {
+> > +			if (ret !=3D -ENOSPC)
+> > =C2=A0				return ret;
+> > -			if (likely(!ret) || !force_space)
+> > -				break;
+> > -
+> > -			ret =3D ttm_mem_evict_first(bdev, man,
+> > place, ctx,
+> > -						=C2=A0 ticket);
+> > -			if (unlikely(ret =3D=3D -EBUSY))
+> > -				break;
+> > -			if (unlikely(ret))
+> > +			if (!may_evict)
+> > +				continue;
+> > +
+> > +			ret =3D ttm_bo_evict_alloc(bdev, man, place,
+> > bo, ctx,
+> > +						 ticket, res);
+> > +			if (ret =3D=3D -EBUSY)
+> > +				continue;
+> > +			if (ret)
+> > =C2=A0				return ret;
+> > -		} while (1);
+> > -		if (ret)
+> > -			continue;
+> > +		}
+> > =C2=A0
+> > =C2=A0		ret =3D ttm_bo_add_move_fence(bo, man, ctx-
+> > >no_wait_gpu);
+> > =C2=A0		if (unlikely(ret)) {
+> > @@ -796,7 +725,6 @@ static int ttm_bo_alloc_resource(struct
+> > ttm_buffer_object *bo,
+> > =C2=A0		}
+> > =C2=A0		return 0;
+> > =C2=A0	}
+> > -
+>=20
+> Nit, seems unrelated.
+
+Yup. Will fix.
+
+>=20
+> Matt
+>=20
+> > =C2=A0	return -ENOSPC;
+> > =C2=A0}
+> > =C2=A0
+> > diff --git a/drivers/gpu/drm/ttm/ttm_resource.c
+> > b/drivers/gpu/drm/ttm/ttm_resource.c
+> > index a03090683e79..6d0c66fc36e3 100644
+> > --- a/drivers/gpu/drm/ttm/ttm_resource.c
+> > +++ b/drivers/gpu/drm/ttm/ttm_resource.c
+> > @@ -508,24 +508,10 @@ int ttm_resource_manager_evict_all(struct
+> > ttm_device *bdev,
+> > =C2=A0	};
+> > =C2=A0	struct dma_fence *fence;
+> > =C2=A0	int ret;
+> > -	unsigned i;
+> > -
+> > -	/*
+> > -	 * Can't use standard list traversal since we're
+> > unlocking.
+> > -	 */
+> > =C2=A0
+> > -	spin_lock(&bdev->lru_lock);
+> > -	for (i =3D 0; i < TTM_MAX_BO_PRIORITY; ++i) {
+> > -		while (!list_empty(&man->lru[i])) {
+> > -			spin_unlock(&bdev->lru_lock);
+> > -			ret =3D ttm_mem_evict_first(bdev, man, NULL,
+> > &ctx,
+> > -						=C2=A0 NULL);
+> > -			if (ret)
+> > -				return ret;
+> > -			spin_lock(&bdev->lru_lock);
+> > -		}
+> > -	}
+> > -	spin_unlock(&bdev->lru_lock);
+> > +	do {
+> > +		ret =3D ttm_bo_evict_first(bdev, man, &ctx);
+> > +	} while (!ret);
+> > =C2=A0
+> > =C2=A0	spin_lock(&man->move_lock);
+> > =C2=A0	fence =3D dma_fence_get(man->move);
+> > diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+> > index 472a55b69afb..148f49f625e4 100644
+> > --- a/include/drm/ttm/ttm_bo.h
+> > +++ b/include/drm/ttm/ttm_bo.h
+> > @@ -415,11 +415,9 @@ long ttm_bo_swapout(struct ttm_device *bdev,
+> > struct ttm_operation_ctx *ctx,
+> > =C2=A0		=C2=A0=C2=A0=C2=A0 pgoff_t target);
+> > =C2=A0void ttm_bo_pin(struct ttm_buffer_object *bo);
+> > =C2=A0void ttm_bo_unpin(struct ttm_buffer_object *bo);
+> > -int ttm_mem_evict_firevictedst(struct ttm_device *bdev,
+> > -			struct ttm_resource_manager *man,
+> > -			const struct ttm_place *place,
+> > -			struct ttm_operation_ctx *ctx,
+> > -			struct ww_acquire_ctx *ticket);
+> > +int ttm_bo_evict_first(struct ttm_device *bdev,
+> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_resource_manager *ma=
+n,
+> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *ctx);
+> > =C2=A0vm_fault_t ttm_bo_vm_reserve(struct ttm_buffer_object *bo,
+> > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 struct vm_fault *vmf);
+> > =C2=A0vm_fault_t ttm_bo_vm_fault_reserved(struct vm_fault *vmf,
+> > --=20
+> > 2.44.0
+> >=20
 
