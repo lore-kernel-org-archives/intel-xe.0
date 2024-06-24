@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E033C2BD09
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Jun 2024 12:36:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AD08C2BD09
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Jun 2024 12:36:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F02B410E420;
-	Mon, 24 Jun 2024 12:36:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC73C10E421;
+	Mon, 24 Jun 2024 12:36:56 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A465110E420;
- Mon, 24 Jun 2024 12:36:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C2CA10E422;
+ Mon, 24 Jun 2024 12:36:56 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_HAX=3A_Try_SR-IOV_on?=
- =?utf-8?q?_ADLP/ATSM?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_HAX=3A_Try_SR-IOV_on_ADLP?=
+ =?utf-8?q?/ATSM?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 24 Jun 2024 12:36:44 -0000
-Message-ID: <171923260467.153041.11720559553393654382@a6498e030952>
+Date: Mon, 24 Jun 2024 12:36:56 -0000
+Message-ID: <171923261618.153309.10667325673115231451@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240624120203.1169-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20240624120203.1169-1-michal.wajdeczko@intel.com>
@@ -48,9 +48,25 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: c0c1c2d3681c drm-tip: 2024y-06m-24d-11h-25m-14s UTC integration manifest
-=== git am output follows ===
-Applying: HAX: Try SR-IOV on ADLP/ATSM
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit fc763a65255b41232a88959c9d427f0db58fd93a
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Mon Jun 24 14:02:03 2024 +0200
+
+    HAX: Try SR-IOV on ADLP/ATSM
+    
+    This is for CI only. DO NOT REVIEW. DO NOT MERGE.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch c0c1c2d3681c4a653c6b2122a8e8ef9fbaaa4398 drm-intel
+fc763a65255b HAX: Try SR-IOV on ADLP/ATSM
 
 
