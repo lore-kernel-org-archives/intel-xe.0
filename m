@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBA8AC2BD09
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Jun 2024 09:06:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C684DC2BD09
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Jun 2024 09:16:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DBCC10E3C2;
-	Mon, 24 Jun 2024 09:06:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F20910E3C7;
+	Mon, 24 Jun 2024 09:16:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xp/WYfN9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j0+N1tcf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 830D510E3C0;
- Mon, 24 Jun 2024 09:06:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C04A10E3C6;
+ Mon, 24 Jun 2024 09:16:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719219995; x=1750755995;
+ t=1719220568; x=1750756568;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=UeI0V2I/4AlMgFDCbvikPtnGEyBLiuTqh4Iv0y/8qoQ=;
- b=Xp/WYfN9FOoviD91vopSCQHQ7ZWlx5mhQ//0CPzjzxUjgobUdAqjPEMl
- 0WlgWH2Di/Onk7UHygsoKBIrQoh57ym3IumfS71fHawoF/OTDn0X914e7
- xhES+6bffSUdWHf6IGQYogIiMj4YKhPhaNoy0sBrhZRCn3VKok5s4ksgV
- C1mTMU2UqIALZ9vuzzkZFjtPMIbXGq76tX07yuDxL4FOHTfvUVFyBzLSc
- TejNvi3e3GEhSm50urOX4ZQpOaV2xVi+x4PFUpy8e8OJGBQNlRmv0vh+l
- i/1qFav4HQh4fRSW7enlMUmi/SQLf0Owx4Is5Tp/Z8uNpwvNb9cJeFZB0 g==;
-X-CSE-ConnectionGUID: vFUFLLF5RY6C2BMXwcjsCg==
-X-CSE-MsgGUID: 6lg4eIRBQa6ua6CfVjKHjw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11112"; a="16147500"
-X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; d="scan'208";a="16147500"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2024 02:06:34 -0700
-X-CSE-ConnectionGUID: NwgVnq+ERruKgxOc/+hwFw==
-X-CSE-MsgGUID: CIL7Nn87RdWeVf5MJpgmHQ==
+ bh=RE75M/bVPOGyIU1yIsuVm6ZRDgl1TQ5tV7YLQN4DnpU=;
+ b=j0+N1tcfy+zKptj65q0Ct+o0C+n+VF+AfR85pF7aQV9ehyUlA3i00s7s
+ P4lRboOSbMJQNRSj938+HIEIYFT8CWqVFi3HQEg3faH6Di0VdaNxLsL5D
+ r3MMLvNTIB+wfULYjuywTFwyRnFfBtfGZUFpXyYffjDZtFZnDpHK3xNsT
+ aNVB3fgOzGAA6IAv9cCbWhHlRgn0tytxL1HErqLw/sA/LXR8w7aDPchNv
+ 6oS7dE6qJO8J2bqtOJcDuh7jeH7tK2ed8jSpSgqWnJDf+wDVt3NWOsS+Z
+ u2EnOf6hHJt4gj/wsSj4BA8zCSG+NoPu1uCJTCroyBOqoqViS4Bw9ik/V A==;
+X-CSE-ConnectionGUID: eeY3ElkVTXmNjpv9wKds3A==
+X-CSE-MsgGUID: FgguT8I+SjSLB/g7B9JDhA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11112"; a="15871385"
+X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; d="scan'208";a="15871385"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2024 02:16:07 -0700
+X-CSE-ConnectionGUID: HZV4LlcSREeYSBrF4BS+3g==
+X-CSE-MsgGUID: IdkpoHoGT/2NG7+n77IAlw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; d="scan'208";a="80764462"
+X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; d="scan'208";a="74466828"
 Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.244.144])
  ([10.245.244.144])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2024 02:06:32 -0700
-Message-ID: <9d6ba9d54f8c941094cd7f0975d20b90ec7f58a8.camel@linux.intel.com>
+ 24 Jun 2024 02:16:06 -0700
+Message-ID: <e649c7504b79a9c264a989bc1a19f690501f5798.camel@linux.intel.com>
 Subject: Re: [PATCH v5 07/12] drm/ttm: Use the LRU walker for eviction
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
 To: Matthew Brost <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org, Christian =?ISO-8859-1?Q?K=F6nig?=
  <christian.koenig@amd.com>, Somalapuram Amaranath
  <Amaranath.Somalapuram@amd.com>, dri-devel@lists.freedesktop.org
-Date: Mon, 24 Jun 2024 11:06:29 +0200
-In-Reply-To: <ZnNhIE6IhRuls2uA@DUT025-TGLU.fm.intel.com>
+Date: Mon, 24 Jun 2024 11:16:04 +0200
+In-Reply-To: <ZnNqy6hxLPEMWqIK@DUT025-TGLU.fm.intel.com>
 References: <20240618071820.130917-1-thomas.hellstrom@linux.intel.com>
  <20240618071820.130917-8-thomas.hellstrom@linux.intel.com>
- <ZnNhIE6IhRuls2uA@DUT025-TGLU.fm.intel.com>
+ <ZnNqy6hxLPEMWqIK@DUT025-TGLU.fm.intel.com>
 Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
  keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
 Organization: Intel Sweden AB, Registration Number: 556189-6027
@@ -75,9 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Matthew
-
-On Wed, 2024-06-19 at 22:52 +0000, Matthew Brost wrote:
+On Wed, 2024-06-19 at 23:33 +0000, Matthew Brost wrote:
 > On Tue, Jun 18, 2024 at 09:18:15AM +0200, Thomas Hellstr=C3=B6m wrote:
 > > Use the LRU walker for eviction. This helps
 > > removing a lot of code with weird locking
@@ -93,9 +91,6 @@ On Wed, 2024-06-19 at 22:52 +0000, Matthew Brost wrote:
 > > function for its single user. The context of that
 > > user allows sleeping dma_resv locks.
 > >=20
-> I'm inclined to RB this as I think I've made sense of it all but just
-> have a few questions / nits first + one small bug.
->=20
 > > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
 > > Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
 > > Cc: Matthew Brost <matthew.brost@intel.com>
@@ -268,9 +263,6 @@ ean-up
 > > +	res =3D ttm_resource_manager_first(man, &cursor);
 > > +	if (!res) {
 > > +		ret =3D -ENOENT;
->=20
-> Nit, this assignment is not needed a out_no_ref just returns -ENOENT.
->=20
 > > +		goto out_no_ref;
 > > =C2=A0	}
 > > +	bo =3D res->bo;
@@ -283,38 +275,7 @@ ean-up
 > > +	if (ret)
 > > +		goto out_no_lock;
 > > +	if (bo->resource !=3D res || res->mem_type !=3D mem_type)
->=20
-> So 'bo->resource !=3D res' is checking between dropping of the LRU lock
-> and grabbing the dma-resv lock in ttm_bo_reserve, the BO's backing
-> resource has changed (i.e. someone else could've evicted to BO). Is
-> that correct? Also in this case 'res' could be stale memory and not
-> safe
-> to dereference, right?
-
-Yes, that's correct. Although if bo->resource =3D=3D res, it is safe to
-dereference res.
-
->=20
-> I'm confused about 'res->mem_type !=3D mem_type' though. Looking
-> through
-> the code is res->mem_type not immutable? I think I only see
-> res->mem_type assigned in ttm_resource_init.
-
-It's if someone freed res and then allocated a new resource that ended
-up as bo->resource, but with the same virtual address as res. Not very
-likely but definitely possible. Then if the new resource has the same
-memory type we can go ahead and evict anyway, If not, we skip eviction.
-
->=20
 > > +		goto out_bad_res;
->=20
-> s/out_bad_res/out_bo_moved
->=20
-> Would that be more accurate?
-
-Yes, I could change that.
-
->=20
 > > =C2=A0
 > > -	if (bo->base.resv =3D=3D ctx->resv) {
 > > -		dma_resv_assert_held(bo->base.resv);
@@ -326,13 +287,6 @@ Yes, I could change that.
 > > +	if (bo->deleted) {
 > > +		ret =3D ttm_bo_wait_ctx(bo, ctx);
 > > +		if (ret)
->=20
-> This should be 'if (!ret)', right? We should cleanup once the BO is
-> idle.
-
-Right. Will fix.
-
->=20
 > > +			ttm_bo_cleanup_memtype_use(bo);
 > > =C2=A0	} else {
 > > -		ret =3D dma_resv_trylock(bo->base.resv);
@@ -417,16 +371,6 @@ Right. Will fix.
 > > +	/** @res: The allocated resource if any. */
 > > +	struct ttm_resource **res;
 > > +	/** @evicted: The number of evicted pages. */
->=20
-> s/pages/BOs or resources
->=20
-> Another option would be 'forward_progess' or something like that
-> given
-> the usage in this patch.
-
-OK, yes, will take a look and fix.
-
->=20
 > > +	unsigned long evicted;
 > > +};
 > > =C2=A0
@@ -513,13 +457,6 @@ OK, yes, will take a look and fix.
 > > ERESTARTSYS ||
 > > +	=C2=A0=C2=A0=C2=A0 lret =3D=3D -EAGAIN)
 > > +		return lret;
->=20
-> Same comment as the previous patch, the inverse of this might be more
-> clear. Also if the condition is the same, a helper may make sense.
-
-Will fix.
-
->=20
 > > =C2=A0
 > > -	spin_unlock(&bdev->lru_lock);
 > > +	return 0;
@@ -638,14 +575,6 @@ Will fix.
 > > =C2=A0		return 0;
 > > =C2=A0	}
 > > -
->=20
-> Nit, seems unrelated.
-
-Yup. Will fix.
-
->=20
-> Matt
->=20
 > > =C2=A0	return -ENOSPC;
 > > =C2=A0}
 > > =C2=A0
@@ -681,6 +610,29 @@ Yup. Will fix.
 > > -	spin_unlock(&bdev->lru_lock);
 > > +	do {
 > > +		ret =3D ttm_bo_evict_first(bdev, man, &ctx);
+>=20
+> Ooo, just noticed this after my initial review.
+>=20
+> This function, ttm_bo_evict_first, will return -ENOENT if
+> ttm_bo_get_unless_zero returns false breaking this loop. I don't
+> think
+> that is the correct behavior. If ttm_bo_get_unless_zero returns false
+> on
+> the head of LRU, that means this is getting destroyed. I don't think
+> in
+> that what we want do to here. Shouldn't continue the LRU walk
+> evicting
+> all other BOs on the LRU list?
+
+OK, yes, I'll take a look to see if it's possible to make that more
+robust.=20
+
+/Thomas
+
+
+>=20
+> Matt=20
+>=20
 > > +	} while (!ret);
 > > =C2=A0
 > > =C2=A0	spin_lock(&man->move_lock);
@@ -694,7 +646,7 @@ Yup. Will fix.
 > > =C2=A0		=C2=A0=C2=A0=C2=A0 pgoff_t target);
 > > =C2=A0void ttm_bo_pin(struct ttm_buffer_object *bo);
 > > =C2=A0void ttm_bo_unpin(struct ttm_buffer_object *bo);
-> > -int ttm_mem_evict_firevictedst(struct ttm_device *bdev,
+> > -int ttm_mem_evict_first(struct ttm_device *bdev,
 > > -			struct ttm_resource_manager *man,
 > > -			const struct ttm_place *place,
 > > -			struct ttm_operation_ctx *ctx,
