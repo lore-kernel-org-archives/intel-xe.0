@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BEFCC2BD09
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Jun 2024 20:57:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35695C2D0D1
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Jun 2024 20:57:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C12110E22B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAED510E160;
 	Mon, 24 Jun 2024 20:57:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d8I9iTLV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J2Z80sqz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7171E10E160
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E400F10E22B
  for <intel-xe@lists.freedesktop.org>; Mon, 24 Jun 2024 20:57:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1719262669; x=1750798669;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=yF+rKq3MZH6WSctf+AMWnkzi1PxXyoABA1sBacb8Djg=;
- b=d8I9iTLVkQdmb2yGjCybkBGmhoBz+k1+8eLSXSJmplHP/MlRRCC7Dt2o
- vObH9VI1X2LgVkwvvZXndDQFIgbtI81KiE4kYIkRvn/IxJUfZQovM2HB9
- QnUX6CtXrOxaFWZnyS/gwJNExB2XpmQ8ZXVT/NVqzxHPcb49vY51NaTIg
- 4X7B1tODPNbz2z7CHpsjpPNeuCP6QV/3oMn4MjYhM0w+Grpuu2iVxFuJn
- ymlcKQ9QWNe9yZKZRgFFk0P40vWbTXfady9psxvL+7VsqaURiLI2LIivO
- +brUHYGgOTWi8iC8WwPmq0zS1hZhe5hL77tVeWsDh2rp/kNn4edK27ETp w==;
-X-CSE-ConnectionGUID: 1pDeprRZST+wivP0kYbG2A==
-X-CSE-MsgGUID: URYUTf+ERh2fKm2L1E4l4g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="12225345"
-X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208";a="12225345"
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=giaTPePMf+ZZlsxhDfOVWwXYrYDcA6bF8JWaEuD3rGw=;
+ b=J2Z80sqzTMLa6iRUCeD21WxTfC8tkNg9xH1sJOl75i+YbWj1u5+MaIee
+ ZhYFm9VSww/Ubta1diP/yED50i5X/vzVdZeS2fKMci44ga11k2cKd4cK7
+ 5r+qGFcZjUK1r3LC40mocZfC+qkdY4sB8zNfTFpICxcAdjyLko42U86yc
+ VK7XbKJQ1bt63hKSZvGfncGDyDslImrt4QGCvjgVScNtAlj+i0Z46fm30
+ goJNMdoSlLJHfG8hEWNkQdHsxfY5w5G+ruGzsb6b+f9MnKMZyzBUXb4k0
+ nQWaJkxzY3fUA7G46CSOR+Y3Eog4A09duu8n/yzZLOnu/Hzk7lmvBfoxr g==;
+X-CSE-ConnectionGUID: VCDMTB7NQve394y8IoTlpQ==
+X-CSE-MsgGUID: ioqsc577TT2QRFSnJwbY4A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="12225346"
+X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208";a="12225346"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2024 13:57:48 -0700
-X-CSE-ConnectionGUID: RfpWObY+T1uohpNr3F428A==
-X-CSE-MsgGUID: Oy+GsW5dQz2/DGL44yPsAQ==
+ 24 Jun 2024 13:57:49 -0700
+X-CSE-ConnectionGUID: jYULd9YrRFmyedRz2IHRYA==
+X-CSE-MsgGUID: KEIcZjWDQPCoKaKCxNwNjQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208";a="43513557"
+X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208";a="43513562"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.19.248])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2024 13:57:47 -0700
+ 24 Jun 2024 13:57:48 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 0/2] PF: Trigger explicit FLR while disabling VFs
-Date: Mon, 24 Jun 2024 22:57:35 +0200
-Message-Id: <20240624205737.1213-1-michal.wajdeczko@intel.com>
+Subject: [PATCH 1/2] drm/xe/pf: Trigger explicit FLR while disabling VFs
+Date: Mon, 24 Jun 2024 22:57:36 +0200
+Message-Id: <20240624205737.1213-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240624205737.1213-1-michal.wajdeczko@intel.com>
+References: <20240624205737.1213-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,19 +65,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the HAX to actually test it on the CI.
+We attempt to unprovision all VFs GuC when disabling them, but
+GuC may reject such request if the target VF was previously active
+but VF driver didn't unload with explicit VF reset H2G action or
+the VMM has not started the VF FLR.
 
-Michal Wajdeczko (2):
-  drm/xe/pf: Trigger explicit FLR while disabling VFs
-  HAX: Try SR-IOV on ADLP/ATSM
+To avoid mismatches between configs maintained the PF and GuC,
+trigger an explicit FLR sequences just before releasing resources.
 
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
  drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c | 21 +++++++++++++++++++++
  drivers/gpu/drm/xe/xe_gt_sriov_pf_control.h |  1 +
- drivers/gpu/drm/xe/xe_module.c              |  1 +
- drivers/gpu/drm/xe/xe_pci.c                 |  2 ++
  drivers/gpu/drm/xe/xe_pci_sriov.c           | 14 ++++++++++++++
- 5 files changed, 39 insertions(+)
+ 3 files changed, 36 insertions(+)
 
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
+index 40b8f881fe04..ebf06e037750 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
+@@ -129,6 +129,27 @@ int xe_gt_sriov_pf_control_stop_vf(struct xe_gt *gt, unsigned int vfid)
+ 	return pf_send_vf_stop(gt, vfid);
+ }
+ 
++/**
++ * xe_gt_sriov_pf_control_trigger_flr - Start a VF FLR sequence.
++ * @gt: the &xe_gt
++ * @vfid: the VF identifier
++ *
++ * This function is for PF only.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_gt_sriov_pf_control_trigger_flr(struct xe_gt *gt, unsigned int vfid)
++{
++	int err;
++
++	/* XXX pf_send_vf_flr_start() expects ct->lock */
++	mutex_lock(&gt->uc.guc.ct.lock);
++	err = pf_send_vf_flr_start(gt, vfid);
++	mutex_unlock(&gt->uc.guc.ct.lock);
++
++	return err;
++}
++
+ /**
+  * DOC: The VF FLR Flow with GuC
+  *
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.h
+index 850a3e37661f..405d1586f991 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.h
+@@ -14,6 +14,7 @@ struct xe_gt;
+ int xe_gt_sriov_pf_control_pause_vf(struct xe_gt *gt, unsigned int vfid);
+ int xe_gt_sriov_pf_control_resume_vf(struct xe_gt *gt, unsigned int vfid);
+ int xe_gt_sriov_pf_control_stop_vf(struct xe_gt *gt, unsigned int vfid);
++int xe_gt_sriov_pf_control_trigger_flr(struct xe_gt *gt, unsigned int vfid);
+ 
+ #ifdef CONFIG_PCI_IOV
+ int xe_gt_sriov_pf_control_process_guc2pf(struct xe_gt *gt, const u32 *msg, u32 len);
+diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
+index 06d0fceb5114..74c8fadc9365 100644
+--- a/drivers/gpu/drm/xe/xe_pci_sriov.c
++++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
+@@ -6,6 +6,7 @@
+ #include "xe_assert.h"
+ #include "xe_device.h"
+ #include "xe_gt_sriov_pf_config.h"
++#include "xe_gt_sriov_pf_control.h"
+ #include "xe_pci_sriov.h"
+ #include "xe_pm.h"
+ #include "xe_sriov.h"
+@@ -37,6 +38,17 @@ static void pf_unprovision_vfs(struct xe_device *xe, unsigned int num_vfs)
+ 			xe_gt_sriov_pf_config_release(gt, n, true);
+ }
+ 
++static void pf_reset_vfs(struct xe_device *xe, unsigned int num_vfs)
++{
++	struct xe_gt *gt;
++	unsigned int id;
++	unsigned int n;
++
++	for_each_gt(gt, xe, id)
++		for (n = 1; n <= num_vfs; n++)
++			xe_gt_sriov_pf_control_trigger_flr(gt, n);
++}
++
+ static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+@@ -94,6 +106,8 @@ static int pf_disable_vfs(struct xe_device *xe)
+ 
+ 	pci_disable_sriov(pdev);
+ 
++	pf_reset_vfs(xe, num_vfs);
++
+ 	pf_unprovision_vfs(xe, num_vfs);
+ 
+ 	/* not needed anymore - see pf_enable_vfs() */
 -- 
 2.43.0
 
