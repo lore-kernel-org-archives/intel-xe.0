@@ -4,66 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B17C7C2BD09
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Jun 2024 16:32:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2C9DC2BD09
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Jun 2024 18:02:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7297110E4EE;
-	Mon, 24 Jun 2024 16:32:38 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HOtw27oA";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41F9110E0D4
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Jun 2024 16:32:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719246757; x=1750782757;
- h=message-id:date:mime-version:from:subject:to:cc:
- references:in-reply-to;
- bh=ZdDwWAPm5FVL/OxDO9PCGYp2/viv3wbH6R9Vzk08dCU=;
- b=HOtw27oAsnHaSGBu4BnvXnThnk94Sen9K4m7ax8UQLIlgLxWXqHmrT5g
- SGNvTZkx1m7KMlzvwbklKCEV58MTTSN8WK6wJuDe0dfgFAlQwPyrjBzQ9
- iLTIB6RfylZGwODXvRVlQy5CBeyxSOUukerXaGs8dS56esIahCJVYjpYj
- huhp9QT15UXBCdobhpQUy3QGlK7eFnwv5hRerNb151M7VbloHc40xmHvw
- Lw1XxL4txIxjE8y3OKNS3v0ywRj5xCyClRSuPNwtRnuy3JW9Zgbp96kbx
- ltfcHMJKbYKAb9u/MzuZ5PFH7wASZABoDRphuuMdIiisHuxsBt8rvYWx6 w==;
-X-CSE-ConnectionGUID: Lh6L2OQsQy+Lnz2qCc1XCw==
-X-CSE-MsgGUID: kEhGRnhwSTuqpjmB0rPhxw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="16052940"
-X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208,217";a="16052940"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2024 09:32:36 -0700
-X-CSE-ConnectionGUID: IaNb1WA/Q2ivLyjJjvxztg==
-X-CSE-MsgGUID: o0A28pMnRlK9+f9wiLjWFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208,217";a="43229022"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.50.115])
- ([10.246.50.115])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2024 09:32:34 -0700
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FA5E10E516;
+	Mon, 24 Jun 2024 18:02:45 +0000 (UTC)
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 262C610E265;
+ Mon, 24 Jun 2024 18:02:44 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="------------G8GXZMJ2RjA7E7oZkKAkEtMt"
-Message-ID: <a35afeae-4753-4795-94db-52e9ebe0bb7c@linux.intel.com>
-Date: Mon, 24 Jun 2024 18:32:32 +0200
+ boundary="===============2638774011814750126=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-Subject: Re: [RFC 0/3] FW guard class
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20240617143430.641-1-michal.wajdeczko@intel.com>
- <ZnBxSFpuGjc9c9KJ@DUT025-TGLU.fm.intel.com> <ZnB51-d3XtwUfPfT@intel.com>
- <d2f2afa7-8fd2-466d-9044-11814183a819@intel.com>
- <ZnDHIba3eBe1+p8y@DUT025-TGLU>
- <h7yjiengrjzue7acsaghy3r3fimgp4v5ntyujytd2ddqt3kxgs@erajfxzizsns>
- <ZnHtdMLEHFAHMqRr@intel.com>
-Content-Language: en-US
-In-Reply-To: <ZnHtdMLEHFAHMqRr@intel.com>
+Subject: =?utf-8?q?=E2=9C=97_CI=2EFULL=3A_failure_for_drm/xe=3A_add_wopcm_device_info?=
+ =?utf-8?q?_and_set_region_into_Guc_registers_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Farah Kassabri" <fkassabri@habana.ai>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 24 Jun 2024 18:02:44 -0000
+Message-ID: <171925216415.153309.3764928531310915435@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240624135954.99565-1-fkassabri@habana.ai>
+In-Reply-To: <20240624135954.99565-1-fkassabri@habana.ai>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,545 +36,431 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------G8GXZMJ2RjA7E7oZkKAkEtMt
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--===============2638774011814750126==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
+== Series Details ==
 
-On 6/18/2024 10:26 PM, Rodrigo Vivi wrote:
-> On Mon, Jun 17, 2024 at 07:54:41PM -0500, Lucas De Marchi wrote:
->> On Mon, Jun 17, 2024 at 11:30:41PM GMT, Matthew Brost wrote:
->>> On Mon, Jun 17, 2024 at 09:24:42PM +0200, Michal Wajdeczko wrote:
->>>> On 17.06.2024 20:00, Rodrigo Vivi wrote:
->>>>> On Mon, Jun 17, 2024 at 05:24:24PM +0000, Matthew Brost wrote:
->>>>>> On Mon, Jun 17, 2024 at 04:34:27PM +0200, Michal Wajdeczko wrote:
->>>>>>> There is support for 'classes' with constructor and destructor
->>>>>>> semantics that can be used for any scope-based resource management,
->>>>>>> like device force-wake management.
->>>>>>>
->>>>>>> Add necessary definitions explicitly, since existing macros from
->>>>>>> linux/cleanup.h can't deal with our specific requirements yet.
->>>>>>>
->>>>>>> This should allow us to use:
->>>>>>>
->>>>>>> 	scoped_guard(xe_fw, fw, XE_FW_GT)
->>>>>>> 		foo();
->>>>>>> or
->>>>>>> 	CLASS(xe_fw, var)(fw, XE_FW_GT);
->>>>>>>
->>>>>>> without any concern of leaking the force-wake references.
->>>>>>>
->>>>>>> Note: this is preliminary code as right now it's unclear how to
->>>>>>> correctly handle errors from the force-wake functions.
->>>>>>>
->>>>>> I'm personally don't like this at all. IMO it obfuscate the code with
->>>>>> little real benefit. This is just an opinion though, others opinions may
->>>>>> differ from mine.
->>>> except that is more robust than hand-crafted code that is error prone,
->>>> like this snippet from wedged_mode_set():
->>>>
->>>> 	xe_pm_runtime_get(xe);
->>>> 	for_each_gt(gt, xe, id) {
->>>> 		ret = xe_guc_ads(...);
->>>> 		if (ret) {
->>>> 			xe_gt_err(gt, "...");
->>>> 			return -EIO;
->>>> 		}
->>>> 	}
->>>> 	xe_pm_runtime_put(xe);
->>>>
->>>> and thanks to PM guard class we could avoid such mistakes for free:
->>>>
->>>> 	scoped_guard(xe_pm, xe) {
->>>> 		for_each_gt(gt, xe, id) {
->>>> 			ret = xe_guc_ads(...);
->>>> 			if (ret) {
->>>> 				xe_gt_err(gt, "...");
->>>> 				return -EIO;
->>> Just responding with a question here - haven't looked at the rest of the
->>> comments.
->>>
->>> How is this not still a bug? Looking at scoped_guard, it appears to be a
->>> magic macro for loop which acquires / releases a lock or in your
->>> purposed case a PM or FW ref. Doesn't the 'return -EIO' skip the release
->>> step? I see coding patterns like above in the kernel [1] so I do assume
->> with __attribute__((cleanup)), the compiler guarantees that
->> it's executed when the variable goes out of scope. What you are probably
->> missing is the use of CLASS() declaring a variable inside the for, which
->> uses attribute cleanup:
->>
->> 	for (CLASS(_name, scope)(args),
->> 	     ...
->>
->> GCC's doc:
->>
->> https://gcc.gnu.org/onlinedocs/gcc/Common-Variable-Attributes.html
->>
->> 	The cleanup attribute runs a function when the variable goes out
->> 	of scope. This attribute can only be applied to auto function
->> 	scope variables; it may not be applied to parameters or
->> 	variables with static storage duration. The function must take
->> 	one parameter, a pointer to a type compatible with the variable.
->> 	The return value of the function (if any) is ignored.
->>
->> 	When multiple variables in the same scope have cleanup
->> 	attributes, at exit from the scope their associated cleanup
->> 	functions are run in reverse order of definition (last defined,
->> 	first cleanup).
->>
->> 	If -fexceptions is enabled, then cleanup_function is run during
->> 	the stack unwinding that happens during the processing of the
->> 	exception. Note that the cleanup attribute does not allow the
->> 	exception to be caught, only to perform an action. It is
->> 	undefined what happens if cleanup_function does not return
->> 	normally.
->>
->> This was only possible with the recent change in the kernel raising
->> the minimum C std to gnu11 (uapi is still c90 for compatibility):
->>
->> 	commit e8c07082a810fbb9db303a2b66b66b8d7e588b53
->> 	Author: Arnd Bergmann<arnd@arndb.de>
->> 	Date:   Tue Mar 8 22:56:14 2022 +0100
->>
->> 	    Kbuild: move to -std=gnu11
->>
->> 	    During a patch discussion, Linus brought up the option of changing
->> 	    the C standard version from gnu89 to gnu99, which allows using variable
->> 	    declaration inside of a for() loop. While the C99, C11 and later standards
->> 	    introduce many other features, most of these are already available in
->> 	    gnu89 as GNU extensions as well.
->>
->>> this works, just confused how it works.
->>>
->>> With that, any code which isn't easily understandable IMO is a negative
->>> ROI as it just creates confusion in the long / makes problems harder to
->>> understand. Again this is just my opinion.
->> I think that is mainly about getting used to the pattern. I think we
->> just have to be careful not to overshoot on trying to use everywhere.
->> For example, I don't know why there's already a second use in a separate
->> thread when we are still discussing it on this one.
->>
->> A very positive thing is that this is not xe's own invention and comes
->> from core kernel, maybe from the hottest path that is the scheduling and
->> locking. So I very much disagree with arguments raised here about
->> a) this is an alien thing and b) performance will be severely impacted
-> just for the record:
-> a) the alien thing is i915's with_runtime_pm... this is part of core kernel, so
-> it is not an alien thing. I still don't like C++isms, but that is just a preference
-> not a blocker.
->
-> b) it is an overhead, but I really doubt that this would impact performance.
-> Only data would show.
->
->> I've used __attribute__((cleanup)) in several userspace projects in the
->> past and it does help avoiding problems on the error path that is
->> usually not very well tested (and xe's track record on error path is not
->> very good either: those were the main issues being submitted in drm-xe-fixes
->> for the last release). So if we have a way to improve (and that I've already seen
->> being used successfully), I prefer failing on trying than on repeating
->> the same mistakes.
-> Pretty much agreeing here! Specially because this is a Linux core kernel
-> infra available. Let's try.
->
-> Cc Nirmoy Das<nirmoy.das@intel.com>
->
-> who is looking at the forcewake stuff and to solve the flow.
-> Specially to get his eyes here and see if this would cover all the needed
-> cases for the forcewake.
-Sorry for late reply. This looks fine for me. We are still missing a 
-corner case where if
+Series: drm/xe: add wopcm device info and set region into Guc registers (rev2)
+URL   : https://patchwork.freedesktop.org/series/133879/
+State : failure
 
-xe_force_wake_get() fails this is not be calling xe_force_wake_put().
-xe_force_wake_get() should revert the counter on failure.
+== Summary ==
 
-Regards, Nirmoy
+CI Bug Log - changes from xe-1521-c0c1c2d3681c4a653c6b2122a8e8ef9fbaaa4398_full -> xe-pw-133879v2_full
+====================================================
 
-> If this series were suggesting another with_runtime_pm macro, then I would
-> push back hard.
->
->>   In kmod my only regret is that I didn't start it
->> earlier, during the bootstrap of the project.
->>
->>
->> Lucas De Marchi
->>
->>
->>> Matt
->>>
->>> [1]https://elixir.bootlin.com/linux/latest/source/drivers/iio/imu/bmi323/bmi323_core.c#L1544
->>>
->>>> 			}
->>>> 		}
->>>> 	}
->>>>
->>>>> Well, on the positive side, it is not adding a driver only thing like
->>>>> i915's with_runtime_pm() macro.
->>>>>
->>>>> But I'm also not sure if I like the overall idea anyway:
->>>>>
->>>>> - I don't like adding C++isms in a pure C code. Specially something not
->>>>> so standard and common that will decrease the ramp-up time for newcomers.
->>>> does it mean that the use of other guard patterns seen elsewhere in the
->>>> tree is now prohibited on the Xe driver ? like:
->>>>
->>>> 	scoped_guard(mutex, &lock)
->>>> 		foo();
->>>>
->>>> 	scoped_guard(spinlock, &lock)
->>>> 		foo();
->>>> 	...
->>>>
->>>>> - It looks like and extra overhead on the object creation destruction.
->>>> from cleanup.h doc is sounds there is none:
->>>>
->>>>   "And through the magic of value-propagation and dead-code-elimination,
->>>> it eliminates the actual cleanup call and compiles into:"
->>>>
->>>>
->>>>> - It looks not flexible for handling different cases... like forcewake for
->>>>> instance where we might want to ignore the ack timeout in some cases.
->>>> there is scoped_cond_guard() that likely will be able to deal with it,
->>>> but I guess we first need to cleanup existing force_wake api as expected
->>>> flow is not clear and there are different approaches in the driver how
->>>> to deal with errors
->>>>
->>>>>> Matt
->>>>>>
->>>>>>> Cc: Rodrigo Vivi<rodrigo.vivi@intel.com>
->>>>>>> Cc: Lucas De Marchi<lucas.demarchi@intel.com>
->>>>>>>
->>>>>>> Michal Wajdeczko (3):
->>>>>>>    drm/xe: Introduce force-wake guard class
->>>>>>>    drm/xe: Use new FW guard in xe_mocs.c
->>>>>>>    drm/xe: Use new FW guard in xe_pat.c
->>>>>>>
->>>>>>>   drivers/gpu/drm/xe/xe_force_wake.h       | 48 +++++++++++++++++++
->>>>>>>   drivers/gpu/drm/xe/xe_force_wake_types.h | 12 +++++
->>>>>>>   drivers/gpu/drm/xe/xe_mocs.c             | 12 +----
->>>>>>>   drivers/gpu/drm/xe/xe_pat.c              | 60 ++++++++----------------
->>>>>>>   4 files changed, 82 insertions(+), 50 deletions(-)
->>>>>>>
->>>>>>> --
->>>>>>> 2.43.0
->>>>>>>
---------------G8GXZMJ2RjA7E7oZkKAkEtMt
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-133879v2_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-133879v2_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (3 -> 3)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-133879v2_full:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@runner@aborted:
+    - shard-adlp:         NOTRUN -> ([FAIL][1], [FAIL][2], [FAIL][3], [FAIL][4], [FAIL][5], [FAIL][6], [FAIL][7], [FAIL][8], [FAIL][9], [FAIL][10], [FAIL][11], [FAIL][12], [FAIL][13], [FAIL][14], [FAIL][15], [FAIL][16], [FAIL][17], [FAIL][18], [FAIL][19], [FAIL][20], [FAIL][21], [FAIL][22], [FAIL][23])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-8/igt@runner@aborted.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-4/igt@runner@aborted.html
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-9/igt@runner@aborted.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-8/igt@runner@aborted.html
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-4/igt@runner@aborted.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-4/igt@runner@aborted.html
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-9/igt@runner@aborted.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-1/igt@runner@aborted.html
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-8/igt@runner@aborted.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-9/igt@runner@aborted.html
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-1/igt@runner@aborted.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-8/igt@runner@aborted.html
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-1/igt@runner@aborted.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-2/igt@runner@aborted.html
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-2/igt@runner@aborted.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-9/igt@runner@aborted.html
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-8/igt@runner@aborted.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-9/igt@runner@aborted.html
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-2/igt@runner@aborted.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-9/igt@runner@aborted.html
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-4/igt@runner@aborted.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-4/igt@runner@aborted.html
+   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-4/igt@runner@aborted.html
+    - shard-dg2-set2:     NOTRUN -> ([FAIL][24], [FAIL][25], [FAIL][26], [FAIL][27], [FAIL][28], [FAIL][29], [FAIL][30], [FAIL][31], [FAIL][32], [FAIL][33], [FAIL][34], [FAIL][35], [FAIL][36], [FAIL][37], [FAIL][38], [FAIL][39], [FAIL][40], [FAIL][41], [FAIL][42], [FAIL][43], [FAIL][44], [FAIL][45], [FAIL][46], [FAIL][47], [FAIL][48])
+   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-434/igt@runner@aborted.html
+   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-466/igt@runner@aborted.html
+   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-436/igt@runner@aborted.html
+   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-464/igt@runner@aborted.html
+   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-463/igt@runner@aborted.html
+   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-466/igt@runner@aborted.html
+   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-434/igt@runner@aborted.html
+   [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-464/igt@runner@aborted.html
+   [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-433/igt@runner@aborted.html
+   [33]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-464/igt@runner@aborted.html
+   [34]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-433/igt@runner@aborted.html
+   [35]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-433/igt@runner@aborted.html
+   [36]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-466/igt@runner@aborted.html
+   [37]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-435/igt@runner@aborted.html
+   [38]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-464/igt@runner@aborted.html
+   [39]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-466/igt@runner@aborted.html
+   [40]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-432/igt@runner@aborted.html
+   [41]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-433/igt@runner@aborted.html
+   [42]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-432/igt@runner@aborted.html
+   [43]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-436/igt@runner@aborted.html
+   [44]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-436/igt@runner@aborted.html
+   [45]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-432/igt@runner@aborted.html
+   [46]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-435/igt@runner@aborted.html
+   [47]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-464/igt@runner@aborted.html
+   [48]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-463/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-133879v2_full that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - {shard-lnl}:        [FAIL][49] ([Intel XE#886]) -> [PASS][50] +5 other tests pass
+   [49]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1521-c0c1c2d3681c4a653c6b2122a8e8ef9fbaaa4398/shard-lnl-3/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [50]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-lnl-4/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  * igt@xe_ccs@suspend-resume@linear-compressed-compfmt0-system-system:
+    - {shard-lnl}:        [DMESG-WARN][51] ([Intel XE#2052]) -> [PASS][52] +3 other tests pass
+   [51]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1521-c0c1c2d3681c4a653c6b2122a8e8ef9fbaaa4398/shard-lnl-1/igt@xe_ccs@suspend-resume@linear-compressed-compfmt0-system-system.html
+   [52]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-lnl-1/igt@xe_ccs@suspend-resume@linear-compressed-compfmt0-system-system.html
+
+  * igt@xe_exec_threads@threads-mixed-shared-vm-basic:
+    - {shard-lnl}:        [INCOMPLETE][53] ([Intel XE#1169] / [Intel XE#1330] / [Intel XE#1622]) -> [PASS][54]
+   [53]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1521-c0c1c2d3681c4a653c6b2122a8e8ef9fbaaa4398/shard-lnl-5/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html
+   [54]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-lnl-2/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html
+
+  * igt@xe_live_ktest@xe_migrate:
+    - {shard-lnl}:        [SKIP][55] ([Intel XE#1192]) -> [PASS][56]
+   [55]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1521-c0c1c2d3681c4a653c6b2122a8e8ef9fbaaa4398/shard-lnl-6/igt@xe_live_ktest@xe_migrate.html
+   [56]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-lnl-5/igt@xe_live_ktest@xe_migrate.html
+
+  * igt@xe_pm@s4-multiple-execs:
+    - {shard-lnl}:        [ABORT][57] ([Intel XE#1358] / [Intel XE#1794]) -> [PASS][58]
+   [57]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1521-c0c1c2d3681c4a653c6b2122a8e8ef9fbaaa4398/shard-lnl-2/igt@xe_pm@s4-multiple-execs.html
+   [58]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-lnl-8/igt@xe_pm@s4-multiple-execs.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#1124]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124
+  [Intel XE#1125]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1125
+  [Intel XE#1127]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1127
+  [Intel XE#1169]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1169
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+  [Intel XE#1330]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1330
+  [Intel XE#1358]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1358
+  [Intel XE#1392]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1392
+  [Intel XE#1399]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1399
+  [Intel XE#1401]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1401
+  [Intel XE#1406]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406
+  [Intel XE#1407]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1407
+  [Intel XE#1421]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1421
+  [Intel XE#1424]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1424
+  [Intel XE#1437]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1437
+  [Intel XE#1439]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1439
+  [Intel XE#1447]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1447
+  [Intel XE#1468]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1468
+  [Intel XE#1522]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1522
+  [Intel XE#1622]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1622
+  [Intel XE#1745]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1745
+  [Intel XE#1760]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1760
+  [Intel XE#1794]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1794
+  [Intel XE#1829]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1829
+  [Intel XE#2052]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2052
+  [Intel XE#305]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/305
+  [Intel XE#306]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/306
+  [Intel XE#307]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/307
+  [Intel XE#309]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/309
+  [Intel XE#323]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/323
+  [Intel XE#330]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/330
+  [Intel XE#366]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/366
+  [Intel XE#367]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/367
+  [Intel XE#373]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/373
+  [Intel XE#374]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/374
+  [Intel XE#378]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/378
+  [Intel XE#498]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/498
+  [Intel XE#579]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/579
+  [Intel XE#584]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/584
+  [Intel XE#599]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/599
+  [Intel XE#651]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/651
+  [Intel XE#656]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/656
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#718]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/718
+  [Intel XE#870]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/870
+  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+  [Intel XE#944]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/944
+  [Intel XE#958]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/958
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7896 -> IGT_7897
+  * Linux: xe-1521-c0c1c2d3681c4a653c6b2122a8e8ef9fbaaa4398 -> xe-pw-133879v2
+
+  IGT_7896: 4e6d29ee4672a172227a58ba614ce6b50223f073 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7897: 9119f9c5dbbb969438b3424dc2f3b30f3b442aab @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1521-c0c1c2d3681c4a653c6b2122a8e8ef9fbaaa4398: c0c1c2d3681c4a653c6b2122a8e8ef9fbaaa4398
+  xe-pw-133879v2: 133879v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/index.html
+
+--===============2638774011814750126==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
 
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 6/18/2024 10:26 PM, Rodrigo Vivi
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:ZnHtdMLEHFAHMqRr@intel.com">
-      <pre class="moz-quote-pre" wrap="">On Mon, Jun 17, 2024 at 07:54:41PM -0500, Lucas De Marchi wrote:
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">On Mon, Jun 17, 2024 at 11:30:41PM GMT, Matthew Brost wrote:
-</pre>
-        <blockquote type="cite">
-          <pre class="moz-quote-pre" wrap="">On Mon, Jun 17, 2024 at 09:24:42PM +0200, Michal Wajdeczko wrote:
-</pre>
-          <blockquote type="cite">
-            <pre class="moz-quote-pre" wrap="">On 17.06.2024 20:00, Rodrigo Vivi wrote:
-</pre>
-            <blockquote type="cite">
-              <pre class="moz-quote-pre" wrap="">On Mon, Jun 17, 2024 at 05:24:24PM +0000, Matthew Brost wrote:
-</pre>
-              <blockquote type="cite">
-                <pre class="moz-quote-pre" wrap="">On Mon, Jun 17, 2024 at 04:34:27PM +0200, Michal Wajdeczko wrote:
-</pre>
-                <blockquote type="cite">
-                  <pre class="moz-quote-pre" wrap="">There is support for 'classes' with constructor and destructor
-semantics that can be used for any scope-based resource management,
-like device force-wake management.
-
-Add necessary definitions explicitly, since existing macros from
-linux/cleanup.h can't deal with our specific requirements yet.
-
-This should allow us to use:
-
-	scoped_guard(xe_fw, fw, XE_FW_GT)
-		foo();
-or
-	CLASS(xe_fw, var)(fw, XE_FW_GT);
-
-without any concern of leaking the force-wake references.
-
-Note: this is preliminary code as right now it's unclear how to
-correctly handle errors from the force-wake functions.
-
-</pre>
-                </blockquote>
-                <pre class="moz-quote-pre" wrap="">I'm personally don't like this at all. IMO it obfuscate the code with
-little real benefit. This is just an opinion though, others opinions may
-differ from mine.
-</pre>
-              </blockquote>
-            </blockquote>
-            <pre class="moz-quote-pre" wrap="">except that is more robust than hand-crafted code that is error prone,
-like this snippet from wedged_mode_set():
-
-	xe_pm_runtime_get(xe);
-	for_each_gt(gt, xe, id) {
-		ret = xe_guc_ads(...);
-		if (ret) {
-			xe_gt_err(gt, "...");
-			return -EIO;
-		}
-	}
-	xe_pm_runtime_put(xe);
-
-and thanks to PM guard class we could avoid such mistakes for free:
-
-	scoped_guard(xe_pm, xe) {
-		for_each_gt(gt, xe, id) {
-			ret = xe_guc_ads(...);
-			if (ret) {
-				xe_gt_err(gt, "...");
-				return -EIO;
-</pre>
-          </blockquote>
-          <pre class="moz-quote-pre" wrap="">Just responding with a question here - haven't looked at the rest of the
-comments.
-
-How is this not still a bug? Looking at scoped_guard, it appears to be a
-magic macro for loop which acquires / releases a lock or in your
-purposed case a PM or FW ref. Doesn't the 'return -EIO' skip the release
-step? I see coding patterns like above in the kernel [1] so I do assume
-</pre>
-        </blockquote>
-        <pre class="moz-quote-pre" wrap="">with __attribute__((cleanup)), the compiler guarantees that
-it's executed when the variable goes out of scope. What you are probably
-missing is the use of CLASS() declaring a variable inside the for, which
-uses attribute cleanup:
-
-	for (CLASS(_name, scope)(args),
-	     ...
-
-GCC's doc:
-
-<a class="moz-txt-link-freetext"
-href="https://gcc.gnu.org/onlinedocs/gcc/Common-Variable-Attributes.html">https://gcc.gnu.org/onlinedocs/gcc/Common-Variable-Attributes.html</a>
-
-	The cleanup attribute runs a function when the variable goes out
-	of scope. This attribute can only be applied to auto function
-	scope variables; it may not be applied to parameters or
-	variables with static storage duration. The function must take
-	one parameter, a pointer to a type compatible with the variable.
-	The return value of the function (if any) is ignored.
-
-	When multiple variables in the same scope have cleanup
-	attributes, at exit from the scope their associated cleanup
-	functions are run in reverse order of definition (last defined,
-	first cleanup).
-
-	If -fexceptions is enabled, then cleanup_function is run during
-	the stack unwinding that happens during the processing of the
-	exception. Note that the cleanup attribute does not allow the
-	exception to be caught, only to perform an action. It is
-	undefined what happens if cleanup_function does not return
-	normally.
-
-This was only possible with the recent change in the kernel raising
-the minimum C std to gnu11 (uapi is still c90 for compatibility):
-
-	commit e8c07082a810fbb9db303a2b66b66b8d7e588b53
-	Author: Arnd Bergmann <a class="moz-txt-link-rfc2396E"
-        href="mailto:arnd@arndb.de">&lt;arnd@arndb.de&gt;</a>
-	Date:   Tue Mar 8 22:56:14 2022 +0100
-
-	    Kbuild: move to -std=gnu11
-
-	    During a patch discussion, Linus brought up the option of changing
-	    the C standard version from gnu89 to gnu99, which allows using variable
-	    declaration inside of a for() loop. While the C99, C11 and later standards
-	    introduce many other features, most of these are already available in
-	    gnu89 as GNU extensions as well.
-
-</pre>
-        <blockquote type="cite">
-          <pre class="moz-quote-pre" wrap="">this works, just confused how it works.
-
-With that, any code which isn't easily understandable IMO is a negative
-ROI as it just creates confusion in the long / makes problems harder to
-understand. Again this is just my opinion.
-</pre>
-        </blockquote>
-        <pre class="moz-quote-pre" wrap="">I think that is mainly about getting used to the pattern. I think we
-just have to be careful not to overshoot on trying to use everywhere.
-For example, I don't know why there's already a second use in a separate
-thread when we are still discussing it on this one.
-
-A very positive thing is that this is not xe's own invention and comes
-from core kernel, maybe from the hottest path that is the scheduling and
-locking. So I very much disagree with arguments raised here about
-a) this is an alien thing and b) performance will be severely impacted
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">just for the record:
-a) the alien thing is i915's with_runtime_pm... this is part of core kernel, so
-it is not an alien thing. I still don't like C++isms, but that is just a preference
-not a blocker.
-
-b) it is an overhead, but I really doubt that this would impact performance.
-Only data would show.
-
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">I've used __attribute__((cleanup)) in several userspace projects in the
-past and it does help avoiding problems on the error path that is
-usually not very well tested (and xe's track record on error path is not
-very good either: those were the main issues being submitted in drm-xe-fixes
-for the last release). So if we have a way to improve (and that I've already seen
-being used successfully), I prefer failing on trying than on repeating
-the same mistakes. 
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">Pretty much agreeing here! Specially because this is a Linux core kernel
-infra available. Let's try.
-
-Cc Nirmoy Das <a class="moz-txt-link-rfc2396E"
-      href="mailto:nirmoy.das@intel.com">&lt;nirmoy.das@intel.com&gt;</a>
-
-who is looking at the forcewake stuff and to solve the flow.
-Specially to get his eyes here and see if this would cover all the needed
-cases for the forcewake.</pre>
-    </blockquote>
-    Sorry for late reply. This looks fine for me. We are still missing a
-    corner case where if <br>
-    <pre class="moz-quote-pre" wrap=""><span
-    style="padding: 0px; tab-size: 8;"
-    class="hljs diff colorediffs language-diff"><span
-    class="hljs-addition">xe_force_wake_get() fails this is not be calling </span></span><span
-    style="padding: 0px; tab-size: 8;"
-    class="hljs diff colorediffs language-diff"><span
-    class="hljs-addition">xe_force_wake_put(). </span></span>
-<span style="padding: 0px; tab-size: 8;"
-    class="hljs diff colorediffs language-diff"><span
-    class="hljs-addition">xe_force_wake_get</span></span>() should revert the counter on failure.
-
-<span style="padding: 0px; tab-size: 8;"
-    class="hljs diff colorediffs language-diff"><span
-    class="hljs-addition">
-Regards,
-Nirmoy
-</span></span></pre>
-    <blockquote type="cite" cite="mid:ZnHtdMLEHFAHMqRr@intel.com">
-      <pre class="moz-quote-pre" wrap="">If this series were suggesting another with_runtime_pm macro, then I would
-push back hard.
-
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap=""> In kmod my only regret is that I didn't start it
-earlier, during the bootstrap of the project.
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id=3D"css-table-select" type=3D"text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
 
-Lucas De Marchi
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: add wopcm device info and set region=
+ into Guc registers (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
+ries/133879/">https://patchwork.freedesktop.org/series/133879/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href=3D"https://intel-gfx-ci.01.org/=
+tree/intel-xe/xe-pw-133879v2/index.html">https://intel-gfx-ci.01.org/tree/i=
+ntel-xe/xe-pw-133879v2/index.html</a></td></tr>
+
+</table>
 
 
-</pre>
-        <blockquote type="cite">
-          <pre class="moz-quote-pre" wrap="">Matt
+    <h1>CI Bug Log - changes from xe-1521-c0c1c2d3681c4a653c6b2122a8e8ef9fb=
+aaa4398_full -&gt; xe-pw-133879v2_full</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-133879v2_full absolutely need =
+to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br=
+ />
+  introduced in xe-pw-133879v2_full, please notify your bug team (I915-ci-i=
+nfra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in C=
+I.</p>
+<h2>Participating hosts (3 -&gt; 3)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-1338=
+79v2_full:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>shard-adlp:         NOTRUN -&gt; (<a href=3D"https://intel-gfx-ci.01.or=
+g/tree/intel-xe/xe-pw-133879v2/shard-adlp-8/igt@runner@aborted.html">FAIL</=
+a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/sha=
+rd-adlp-4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-c=
+i.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-9/igt@runner@aborted.html"=
+>FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-13387=
+9v2/shard-adlp-8/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://inte=
+l-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-4/igt@runner@aborte=
+d.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-p=
+w-133879v2/shard-adlp-4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https=
+://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-9/igt@runner=
+@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-=
+xe/xe-pw-133879v2/shard-adlp-1/igt@runner@aborted.html">FAIL</a>, <a href=
+=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-8/i=
+gt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tr=
+ee/intel-xe/xe-pw-133879v2/shard-adlp-9/igt@runner@aborted.html">FAIL</a>, =
+<a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-a=
+dlp-1/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01=
+.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-8/igt@runner@aborted.html">FAI=
+L</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/=
+shard-adlp-1/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gf=
+x-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-2/igt@runner@aborted.ht=
+ml">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-13=
+3879v2/shard-adlp-2/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://i=
+ntel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-9/igt@runner@abo=
+rted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/x=
+e-pw-133879v2/shard-adlp-8/igt@runner@aborted.html">FAIL</a>, <a href=3D"ht=
+tps://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-9/igt@run=
+ner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/int=
+el-xe/xe-pw-133879v2/shard-adlp-2/igt@runner@aborted.html">FAIL</a>, <a hre=
+f=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-9/=
+igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/t=
+ree/intel-xe/xe-pw-133879v2/shard-adlp-4/igt@runner@aborted.html">FAIL</a>,=
+ <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-=
+adlp-4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.0=
+1.org/tree/intel-xe/xe-pw-133879v2/shard-adlp-4/igt@runner@aborted.html">FA=
+IL</a>)</li>
+<li>shard-dg2-set2:     NOTRUN -&gt; (<a href=3D"https://intel-gfx-ci.01.or=
+g/tree/intel-xe/xe-pw-133879v2/shard-dg2-434/igt@runner@aborted.html">FAIL<=
+/a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/sh=
+ard-dg2-466/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx=
+-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-436/igt@runner@aborted.ht=
+ml">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-13=
+3879v2/shard-dg2-464/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://=
+intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-463/igt@runner@a=
+borted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe=
+/xe-pw-133879v2/shard-dg2-466/igt@runner@aborted.html">FAIL</a>, <a href=3D=
+"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-434/igt=
+@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree=
+/intel-xe/xe-pw-133879v2/shard-dg2-464/igt@runner@aborted.html">FAIL</a>, <=
+a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg=
+2-433/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01=
+.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-464/igt@runner@aborted.html">FA=
+IL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2=
+/shard-dg2-433/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-=
+gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-433/igt@runner@aborted=
+.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw=
+-133879v2/shard-dg2-466/igt@runner@aborted.html">FAIL</a>, <a href=3D"https=
+://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-435/igt@runne=
+r@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel=
+-xe/xe-pw-133879v2/shard-dg2-464/igt@runner@aborted.html">FAIL</a>, <a href=
+=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-466/=
+igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/t=
+ree/intel-xe/xe-pw-133879v2/shard-dg2-432/igt@runner@aborted.html">FAIL</a>=
+, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard=
+-dg2-433/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci=
+.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-432/igt@runner@aborted.html"=
+>FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-13387=
+9v2/shard-dg2-436/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://int=
+el-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-436/igt@runner@abor=
+ted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe=
+-pw-133879v2/shard-dg2-432/igt@runner@aborted.html">FAIL</a>, <a href=3D"ht=
+tps://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-435/igt@ru=
+nner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/in=
+tel-xe/xe-pw-133879v2/shard-dg2-464/igt@runner@aborted.html">FAIL</a>, <a h=
+ref=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-dg2-4=
+63/igt@runner@aborted.html">FAIL</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-133879v2_full that come from known i=
+ssues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
+<ul>
+<li>{shard-lnl}:        <a href=3D"https://intel-gfx-ci.01.org/tree/intel-x=
+e/xe-1521-c0c1c2d3681c4a653c6b2122a8e8ef9fbaaa4398/shard-lnl-3/igt@kms_flip=
+@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href=3D"https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/886">Intel XE#886</a>) -&gt; <a href=3D"https:=
+//intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-lnl-4/igt@kms_flip=
+@basic-flip-vs-wf_vblank.html">PASS</a> +5 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_ccs@suspend-resume@linear-compressed-compfmt0-system-system:</p>
+<ul>
+<li>{shard-lnl}:        <a href=3D"https://intel-gfx-ci.01.org/tree/intel-x=
+e/xe-1521-c0c1c2d3681c4a653c6b2122a8e8ef9fbaaa4398/shard-lnl-1/igt@xe_ccs@s=
+uspend-resume@linear-compressed-compfmt0-system-system.html">DMESG-WARN</a>=
+ (<a href=3D"https://gitlab.freedesktop.org/drm/xe/kernel/issues/2052">Inte=
+l XE#2052</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/x=
+e-pw-133879v2/shard-lnl-1/igt@xe_ccs@suspend-resume@linear-compressed-compf=
+mt0-system-system.html">PASS</a> +3 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_threads@threads-mixed-shared-vm-basic:</p>
+<ul>
+<li>{shard-lnl}:        <a href=3D"https://intel-gfx-ci.01.org/tree/intel-x=
+e/xe-1521-c0c1c2d3681c4a653c6b2122a8e8ef9fbaaa4398/shard-lnl-5/igt@xe_exec_=
+threads@threads-mixed-shared-vm-basic.html">INCOMPLETE</a> (<a href=3D"http=
+s://gitlab.freedesktop.org/drm/xe/kernel/issues/1169">Intel XE#1169</a> / <=
+a href=3D"https://gitlab.freedesktop.org/drm/xe/kernel/issues/1330">Intel X=
+E#1330</a> / <a href=3D"https://gitlab.freedesktop.org/drm/xe/kernel/issues=
+/1622">Intel XE#1622</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree=
+/intel-xe/xe-pw-133879v2/shard-lnl-2/igt@xe_exec_threads@threads-mixed-shar=
+ed-vm-basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>{shard-lnl}:        <a href=3D"https://intel-gfx-ci.01.org/tree/intel-x=
+e/xe-1521-c0c1c2d3681c4a653c6b2122a8e8ef9fbaaa4398/shard-lnl-6/igt@xe_live_=
+ktest@xe_migrate.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/=
+drm/xe/kernel/issues/1192">Intel XE#1192</a>) -&gt; <a href=3D"https://inte=
+l-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-lnl-5/igt@xe_live_ktest@=
+xe_migrate.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pm@s4-multiple-execs:</p>
+<ul>
+<li>{shard-lnl}:        <a href=3D"https://intel-gfx-ci.01.org/tree/intel-x=
+e/xe-1521-c0c1c2d3681c4a653c6b2122a8e8ef9fbaaa4398/shard-lnl-2/igt@xe_pm@s4=
+-multiple-execs.html">ABORT</a> (<a href=3D"https://gitlab.freedesktop.org/=
+drm/xe/kernel/issues/1358">Intel XE#1358</a> / <a href=3D"https://gitlab.fr=
+eedesktop.org/drm/xe/kernel/issues/1794">Intel XE#1794</a>) -&gt; <a href=
+=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133879v2/shard-lnl-8/ig=
+t@xe_pm@s4-multiple-execs.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when comput=
+ing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7896 -&gt; IGT_7897</li>
+<li>Linux: xe-1521-c0c1c2d3681c4a653c6b2122a8e8ef9fbaaa4398 -&gt; xe-pw-133=
+879v2</li>
+</ul>
+<p>IGT_7896: 4e6d29ee4672a172227a58ba614ce6b50223f073 @ https://gitlab.free=
+desktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7897: 9119f9c5dbbb969438b3424dc2f3b30f3b442aab @ https://gitlab.freed=
+esktop.org/drm/igt-gpu-tools.git<br />
+  xe-1521-c0c1c2d3681c4a653c6b2122a8e8ef9fbaaa4398: c0c1c2d3681c4a653c6b212=
+2a8e8ef9fbaaa4398<br />
+  xe-pw-133879v2: 133879v2</p>
 
-[1] <a class="moz-txt-link-freetext"
-href="https://elixir.bootlin.com/linux/latest/source/drivers/iio/imu/bmi323/bmi323_core.c#L1544">https://elixir.bootlin.com/linux/latest/source/drivers/iio/imu/bmi323/bmi323_core.c#L1544</a>
-
-</pre>
-          <blockquote type="cite">
-            <pre class="moz-quote-pre" wrap="">			}
-		}
-	}
-
-</pre>
-            <blockquote type="cite">
-              <pre class="moz-quote-pre" wrap="">Well, on the positive side, it is not adding a driver only thing like
-i915's with_runtime_pm() macro.
-
-But I'm also not sure if I like the overall idea anyway:
-
-- I don't like adding C++isms in a pure C code. Specially something not
-so standard and common that will decrease the ramp-up time for newcomers.
-</pre>
-            </blockquote>
-            <pre class="moz-quote-pre" wrap="">does it mean that the use of other guard patterns seen elsewhere in the
-tree is now prohibited on the Xe driver ? like:
-
-	scoped_guard(mutex, &amp;lock)
-		foo();
-
-	scoped_guard(spinlock, &amp;lock)
-		foo();
-	...
-
-</pre>
-            <blockquote type="cite">
-              <pre class="moz-quote-pre" wrap="">- It looks like and extra overhead on the object creation destruction.
-</pre>
-            </blockquote>
-            <pre class="moz-quote-pre" wrap="">from cleanup.h doc is sounds there is none:
-
- "And through the magic of value-propagation and dead-code-elimination,
-it eliminates the actual cleanup call and compiles into:"
-
-
-</pre>
-            <blockquote type="cite">
-              <pre class="moz-quote-pre" wrap="">- It looks not flexible for handling different cases... like forcewake for
-instance where we might want to ignore the ack timeout in some cases.
-</pre>
-            </blockquote>
-            <pre class="moz-quote-pre" wrap="">there is scoped_cond_guard() that likely will be able to deal with it,
-but I guess we first need to cleanup existing force_wake api as expected
-flow is not clear and there are different approaches in the driver how
-to deal with errors
-
-</pre>
-            <blockquote type="cite">
-              <blockquote type="cite">
-                <pre class="moz-quote-pre" wrap="">Matt
-
-</pre>
-                <blockquote type="cite">
-                  <pre class="moz-quote-pre" wrap="">Cc: Rodrigo Vivi <a
-                  class="moz-txt-link-rfc2396E"
-                  href="mailto:rodrigo.vivi@intel.com">&lt;rodrigo.vivi@intel.com&gt;</a>
-Cc: Lucas De Marchi <a class="moz-txt-link-rfc2396E"
-                  href="mailto:lucas.demarchi@intel.com">&lt;lucas.demarchi@intel.com&gt;</a>
-
-Michal Wajdeczko (3):
-  drm/xe: Introduce force-wake guard class
-  drm/xe: Use new FW guard in xe_mocs.c
-  drm/xe: Use new FW guard in xe_pat.c
-
- drivers/gpu/drm/xe/xe_force_wake.h       | 48 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_force_wake_types.h | 12 +++++
- drivers/gpu/drm/xe/xe_mocs.c             | 12 +----
- drivers/gpu/drm/xe/xe_pat.c              | 60 ++++++++----------------
- 4 files changed, 82 insertions(+), 50 deletions(-)
-
---
-2.43.0
-
-</pre>
-                </blockquote>
-              </blockquote>
-            </blockquote>
-          </blockquote>
-        </blockquote>
-      </blockquote>
-    </blockquote>
-  </body>
+</body>
 </html>
 
---------------G8GXZMJ2RjA7E7oZkKAkEtMt--
+--===============2638774011814750126==--
