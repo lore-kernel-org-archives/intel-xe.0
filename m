@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E848C2BBCA
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Jun 2024 14:13:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB21AC2BBCA
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Jun 2024 14:13:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15EF910E65B;
-	Tue, 25 Jun 2024 14:13:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A25A110E655;
+	Tue, 25 Jun 2024 14:13:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dzrrkUBq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WZ+ozW6h";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2418E10E655
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Jun 2024 14:13:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8097E10E655
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Jun 2024 14:13:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719324793; x=1750860793;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=hNix4HZIH+UvrWsuMWMt2zZghQqKCbb8rws3FzZFCok=;
- b=dzrrkUBq6FYk982XWq5RjMFFlpwIPdd5ZYKq4TMsFeFz+GubVqxlui19
- YHU6T80H3yH9ffoCFf+irt+aX6kMCLmnmaxSNLcczJnr7vttk8yLWyCz8
- cgBIGIMKIKjEUsJSOe/97/+DSr0VBS7e0OOkq34KZzT8Bym7pm2oaLNH5
- DHC8WA5eyUfOwdPv4N/gWcbtL3g8hTGcLnvEXItEZWbUyG5JQTjMLxo1P
- FLFwNImpyvQvJYOFJwzW75jpnnFpA57uKcuNjRXlEPTe1+ijRh3GeuLWi
- BDbY4otArqYhs1jCpRiNPVtPTg8bhFqfzzLdKOveLDNRbSp2L0GxwZ8Jy A==;
-X-CSE-ConnectionGUID: cDzL0MciQY+4xw9vphmo6A==
-X-CSE-MsgGUID: 8zYGXEPaRqmzvq+FrIPqZA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11114"; a="16477095"
-X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="16477095"
+ t=1719324797; x=1750860797;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=a9mBzk9iN2m4EaxNuGtbOu4MsSQopJBznsv3luXhcsU=;
+ b=WZ+ozW6hnQAlihM3GbQBTfDVz6T2mbHgjKz9tSe7i/D+HE9nU8clOmuk
+ XQVZyaF/fQcFbdFd8O3jjqONsmYCqRkq2XtLLvi03idpnMslXo1dGQqrB
+ oHlpAw6J1ZqADQZR079K9S0jJkhe9OXaHADUQGAgZl3aq1SBAMoWBN3GI
+ bOaSZGeS1nb9tCe3zrGAf+VdBIgXCEIvGltEdnsddFjaTpKiTl84SC2Fu
+ MxMlj6ezGWIsH7Ik7lPfuHmMGCaE9ydeRSZIpuNnSiFO/9QtfGYF7QGta
+ IMlJYxuGdW0anPMR/rrLwW3Qugx1GJon1YNoAs+ZzLcL5tF+uLL1QyVhb A==;
+X-CSE-ConnectionGUID: YF4yAd5uQLOi9zE0yKqvLA==
+X-CSE-MsgGUID: cMt6ui8KReibmEdATeIPCA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11114"; a="16477111"
+X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="16477111"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2024 07:13:12 -0700
-X-CSE-ConnectionGUID: +Jy77rlFRJen7nmcgjvGpQ==
-X-CSE-MsgGUID: OmKZ9DFCTHy/sU7KD0YPHg==
+ 25 Jun 2024 07:13:17 -0700
+X-CSE-ConnectionGUID: UrIViS2dRo2FV1KodbS6EA==
+X-CSE-MsgGUID: z8yUNx+jStSscinUPeBmWA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="44319338"
+X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="44319370"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.34.68])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2024 07:13:10 -0700
+ 25 Jun 2024 07:13:15 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 0/3] Small GuC improvements
-Date: Tue, 25 Jun 2024 16:12:55 +0200
-Message-Id: <20240625141258.1257-1-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH 3/3] drm/xe/guc: Print GuC error codes as hex value
+Date: Tue, 25 Jun 2024 16:12:58 +0200
+Message-Id: <20240625141258.1257-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240625141258.1257-1-michal.wajdeczko@intel.com>
+References: <20240625141258.1257-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,15 +67,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Michal Wajdeczko (3):
-  drm/xe/guc: Demote the H2G retry log message to debug
-  drm/xe/guc: Add more GuC error codes to ABI
-  drm/xe/guc: Print GuC error codes as hex value
+We maintain GuC error code values in hex format. Also print them
+in that format for easier matching.
 
- drivers/gpu/drm/xe/abi/guc_errors_abi.h | 31 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_ct.c          |  6 ++---
- 2 files changed, 34 insertions(+), 3 deletions(-)
+While at it, slightly reformat the log and add missing \n.
 
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_ct.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 91a8a969a6ad..873d1bcbedd7 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -882,7 +882,7 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 		goto retry;
+ 	}
+ 	if (g2h_fence.fail) {
+-		xe_gt_err(gt, "H2G send failed, action 0x%04x, error %d, hint %u",
++		xe_gt_err(gt, "H2G request %#x failed: error %#x hint %#x\n",
+ 			  action[0], g2h_fence.error, g2h_fence.hint);
+ 		ret = -EIO;
+ 	}
 -- 
 2.43.0
 
