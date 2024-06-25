@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF697C2BBCA
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Jun 2024 12:51:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 441FEC2BBCA
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Jun 2024 12:51:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AECA910E28E;
-	Tue, 25 Jun 2024 12:51:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0679D10E28E;
+	Tue, 25 Jun 2024 12:51:31 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B4E510E28E;
- Tue, 25 Jun 2024 12:51:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE91710E28E;
+ Tue, 25 Jun 2024 12:51:29 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Support_PMT_features?=
- =?utf-8?q?_in_Xe_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Support_PMT_features_in_X?=
+ =?utf-8?q?e_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Jun 2024 12:51:07 -0000
-Message-ID: <171931986704.153309.14637128938157511803@a6498e030952>
+Date: Tue, 25 Jun 2024 12:51:29 -0000
+Message-ID: <171931988990.153309.9156224409043376929@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240625124554.3358460-1-michael.j.ruhl@intel.com>
 In-Reply-To: <20240625124554.3358460-1-michael.j.ruhl@intel.com>
@@ -44,18 +44,56 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Support PMT features in Xe (rev3)
 URL   : https://patchwork.freedesktop.org/series/133472/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 61dfb30a52fa drm-tip: 2024y-06m-25d-12h-10m-16s UTC integration manifest
-=== git am output follows ===
-Applying: platform/x86/intel/vsec.h: Move to include/linux
-Applying: platform/x86/intel/vsec: Add PMT read callbacks
-Applying: platform/x86/intel/pmt: Use PMT callbacks
-Applying: drm/xe/vsec: Support BMG devices
-Applying: platform/x86/intel/pmt: Add support for PMT base adjust
-Applying: drm/xe/vsec: Add support for DG2
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f7509e5310323d4d83d590d6a69016765192a5f7
+Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
+Date:   Tue Jun 25 08:45:52 2024 -0400
+
+    drm/xe/vsec: Add support for DG2
+    
+    DG2 needs to adjust the discovery offset WRT the GT BAR not the
+    P2SB bar so add the base_adjust value to allow for the difference
+    to be used.
+    
+    Update xe_vsec.c to include DG2 header information.
+    
+    Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
++ /mt/dim checkpatch 61dfb30a52fac9b1bb455a250799611682334cc3 drm-intel
+673dc4be85ca platform/x86/intel/vsec.h: Move to include/linux
+-:191: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#191: 
+rename from drivers/platform/x86/intel/vsec.h
+
+total: 0 errors, 1 warnings, 0 checks, 149 lines checked
+04da03b9b28e platform/x86/intel/vsec: Add PMT read callbacks
+0bebed18ef39 platform/x86/intel/pmt: Use PMT callbacks
+51efb5fc7028 drm/xe/vsec: Support BMG devices
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:71: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#71: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 269 lines checked
+9b9dc44697f7 platform/x86/intel/pmt: Add support for PMT base adjust
+f7509e531032 drm/xe/vsec: Add support for DG2
 
 
