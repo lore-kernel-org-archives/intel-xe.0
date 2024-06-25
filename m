@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16383C2BBCA
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Jun 2024 19:46:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0C0EC2BBCA
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Jun 2024 19:50:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C633810E161;
-	Tue, 25 Jun 2024 19:46:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IQxdVWx/";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 288FA10E07D
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Jun 2024 19:45:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719344757; x=1750880757;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=z8IOtMRTFkzrbf5qX5w5tOMDk/HTOfn3ULns4Gnxzxs=;
- b=IQxdVWx/RfPrFyZ2OikOuqDFEetctDSy7J/oyYPrcucRYIITs9bJEg+K
- e9J67t1wGhHJV4jNjYjLT9buZH3EUADN4LRo2LuYzrhVHtVo8vS1mIZz2
- ouxerctschmb3/31QLvQ5cNxO0zE/NmUxmxZrgtZWEQVAF8FIgMikpF4g
- zgRAGj0YZvsnI2SQC32GIjZaW3ZAWhpvwmBl5kOD16JFwRQbIqD/iYQ6t
- rm6Q1rZtUy3HiQuLiR04iPKzLO8X+uiqSHIVyG9WePZ23384Hd4NedHVr
- l2OzaxuwAkFNoP8OFLdMaxEu5FZ6l7zDDV6n9g76C+ac7sdortOYUNFW+ Q==;
-X-CSE-ConnectionGUID: ZMcqGyiET5mTXCG3dTNSHw==
-X-CSE-MsgGUID: v0k69eIMQDyqVI3+zj/+dw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11114"; a="41807853"
-X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="41807853"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2024 12:45:57 -0700
-X-CSE-ConnectionGUID: 7cTbFTBQQgiYE9rweTWO+g==
-X-CSE-MsgGUID: IhwX0jb/TZyz1HIxi+Hbhg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="43825619"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.34.68])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2024 12:45:56 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 0/1] PF: Trigger explicit FLR while disabling VFs
-Date: Tue, 25 Jun 2024 21:45:45 +0200
-Message-Id: <20240625194546.1301-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7558E10E1F8;
+	Tue, 25 Jun 2024 19:50:16 +0000 (UTC)
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27D7910E161;
+ Tue, 25 Jun 2024 19:50:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_PF=3A_Trigger_explic?=
+ =?utf-8?q?it_FLR_while_disabling_VFs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 25 Jun 2024 19:50:16 -0000
+Message-ID: <171934501616.157680.8181857390185415831@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240625194546.1301-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20240625194546.1301-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,20 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-v1: https://patchwork.freedesktop.org/series/135321/#rev1
-v2: Without the HAX.
+== Series Details ==
 
-Michal Wajdeczko (1):
-  drm/xe/pf: Trigger explicit FLR while disabling VFs
+Series: PF: Trigger explicit FLR while disabling VFs
+URL   : https://patchwork.freedesktop.org/series/135380/
+State : success
 
- drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c | 21 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_control.h |  1 +
- drivers/gpu/drm/xe/xe_pci_sriov.c           | 14 ++++++++++++++
- 3 files changed, 36 insertions(+)
+== Summary ==
 
--- 
-2.43.0
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: edccdf441f1e drm-tip: 2024y-06m-25d-19h-37m-36s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/pf: Trigger explicit FLR while disabling VFs
+
 
