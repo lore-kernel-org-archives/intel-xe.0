@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79074C41513
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CCC4C2BBCA
 	for <intel-xe@archiver.kernel.org>; Tue, 25 Jun 2024 16:58:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DE6510E6E3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 065BD10E6DA;
 	Tue, 25 Jun 2024 16:58:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TyvRwBPW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="THFvhQ/f";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E2F410E6E3
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Jun 2024 16:58:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCFA310E6DA
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Jun 2024 16:58:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719334699; x=1750870699;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=WRMEuEziv7TX9gIgKXhim4XoVnw0XjAtg6/iDHFwFAY=;
- b=TyvRwBPW1hv0FUXDp3Xkomlfgns5Z4HOXcPcpyep7YkDD2JGI0HK/Yxt
- xJ/nb3+DvkLsuvRjNB9lT/idkvqDgIh2wky8aROdXLJJbxrby9b4JpbAy
- m871TvsEAT40yBEgM+kFiCh2PD0Gp1d/4Uge6hDh27tAKL3rnFZqDEEnK
- xQdfnlPWDgK1B+e/IOwx/aiVkOEMWJLNp5fPCzRxgyEo0uZn3K3de8FwW
- RlgWgLxLbKPefw9Un/3M2RtszJBgeGasvlVIhCSd8iteGDZwlgAy/WErU
- E0ErWx8DpIgMmsZeOkzclGuBc3rtBWkNycUPEQ9zCKffdyosL41nlTaZ6 A==;
-X-CSE-ConnectionGUID: GoawMSA2RPqQOVZ6pAhSbw==
-X-CSE-MsgGUID: MCIpTFcTTn6PI/h3sLR/YQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11114"; a="20178749"
-X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="20178749"
+ t=1719334698; x=1750870698;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=jFRqqT1+aahhjSxGP/w27HnpYWx5wsuRG/ykDtT+Y0A=;
+ b=THFvhQ/fh9V7oJKfqN3jo0reKwW0WWSrC54JoQ08zXAPuWxcnckORvvT
+ CEMgYBqUCGMVBIQKXsdiyAZ88eAQ2VH6j+9FAVx8OpKeZZeX6mF9OrPci
+ 8WTYQRX8IxuGl8TjRcjp4mXnSDG7HK2HOurEd6vJS3/DVbHKc54jRrxo3
+ g+dCyx1OKvEu0vPjnnjaoqG+5HK3O98byK4vXRGw4veiNFVzZrxmN7Ata
+ ajU8D5f18v5GfXlwwVRxL+4MorQsCeUMzS2qyIL0op0d/T5jxUm02ZR25
+ 0hEbwZ+MzwytXm2hyG44wOTZkc6XBLbs1qXFovRMQFdLucLKVtS4iJJNw A==;
+X-CSE-ConnectionGUID: itgHHLJUSp+XJPMkEfEd/A==
+X-CSE-MsgGUID: Cfy+fcKnQVurcGN0luIuqw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11114"; a="20178747"
+X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="20178747"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Jun 2024 09:58:18 -0700
-X-CSE-ConnectionGUID: BPaNODMSTI68fGJUMauMDA==
-X-CSE-MsgGUID: QSHa3oTASpmxKtsHuDFjUA==
+X-CSE-ConnectionGUID: zcXHGtdQR/mBQ6+As+LnOQ==
+X-CSE-MsgGUID: ARkL/Ao3TT267HVsFuZfCg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="43524765"
+X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="43524769"
 Received: from xpumcyp04.jf.intel.com ([10.75.202.213])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Jun 2024 09:58:17 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	lucas.demarchi@intel.com
-Subject: [PATCH 0/2] Capture per client stats when destroying an exec queue
-Date: Wed, 26 Jun 2024 00:58:10 +0800
-Message-Id: <20240625165812.58411-1-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH 1/2] drm/xe: Use a helper to get delta run ticks from the exec
+ queue
+Date: Wed, 26 Jun 2024 00:58:11 +0800
+Message-Id: <20240625165812.58411-2-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240625165812.58411-1-umesh.nerlige.ramappa@intel.com>
+References: <20240625165812.58411-1-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,23 +67,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: root <root@xpumcyp04.jf.intel.com>
+As per earlier review feedback - code manipulating exec queue fields
+should not be present in xe_device.c. Use a helper to get the delta run
+ticks from exec queue.
 
-Some utilization stats may be lost if the user did not query the stats
-prior to destorying the queue. Fix that use case
-
+Fixes: ce62827bc294 ("drm/xe: Do not access xe file when updating exec queue run_ticks")
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+---
+ drivers/gpu/drm/xe/xe_drm_client.c |  7 ++-----
+ drivers/gpu/drm/xe/xe_exec_queue.c | 18 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_exec_queue.h |  1 +
+ 3 files changed, 21 insertions(+), 5 deletions(-)
 
-Umesh Nerlige Ramappa (2):
-  drm/xe: Use a helper to get delta run ticks from the exec queue
-  drm/xe: Record utilization before destroying the exec queue
-
- drivers/gpu/drm/xe/xe_drm_client.c       |  7 ++----
- drivers/gpu/drm/xe/xe_exec_queue.c       | 29 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_exec_queue.h       |  1 +
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 ++
- 4 files changed, 34 insertions(+), 5 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
+index 4a19b771e3a0..e0c4a50d372c 100644
+--- a/drivers/gpu/drm/xe/xe_drm_client.c
++++ b/drivers/gpu/drm/xe/xe_drm_client.c
+@@ -251,11 +251,8 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
+ 
+ 	/* Accumulate all the exec queues from this client */
+ 	mutex_lock(&xef->exec_queue.lock);
+-	xa_for_each(&xef->exec_queue.xa, i, q) {
+-		xe_exec_queue_update_run_ticks(q);
+-		xef->run_ticks[q->class] += q->run_ticks - q->old_run_ticks;
+-		q->old_run_ticks = q->run_ticks;
+-	}
++	xa_for_each(&xef->exec_queue.xa, i, q)
++		xef->run_ticks[q->class] += xe_exec_queue_delta_run_ticks(q);
+ 	mutex_unlock(&xef->exec_queue.lock);
+ 
+ 	/* Get the total GPU cycles */
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 0ba37835849b..4d90a16745d2 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -786,6 +786,24 @@ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q)
+ 	q->run_ticks += (new_ts - old_ts) * q->width;
+ }
+ 
++/**
++ * xe_exec_queue_delta_run_ticks() - Get delta of queue run_ticks 
++ * @q: The exec queue
++ *
++ * Update run ticks for the specific queue and then return the delta when
++ * compared to the previous value of run ticks.
++ */
++u64 xe_exec_queue_delta_run_ticks(struct xe_exec_queue *q)
++{
++	u64 delta_ticks;
++
++	xe_exec_queue_update_run_ticks(q);
++	delta_ticks = q->run_ticks - q->old_run_ticks;
++	q->old_run_ticks = q->run_ticks;
++
++	return delta_ticks;
++}
++
+ void xe_exec_queue_kill(struct xe_exec_queue *q)
+ {
+ 	struct xe_exec_queue *eq = q, *next;
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
+index 289a3a51d2a2..42f683e5d88a 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue.h
+@@ -76,5 +76,6 @@ struct dma_fence *xe_exec_queue_last_fence_get(struct xe_exec_queue *e,
+ void xe_exec_queue_last_fence_set(struct xe_exec_queue *e, struct xe_vm *vm,
+ 				  struct dma_fence *fence);
+ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q);
++u64 xe_exec_queue_delta_run_ticks(struct xe_exec_queue *q);
+ 
+ #endif
 -- 
 2.34.1
 
