@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0202FC2BBCA
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Jun 2024 06:34:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BADF6C30658
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Jun 2024 08:09:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0E5A10E296;
-	Tue, 25 Jun 2024 06:34:20 +0000 (UTC)
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09D3010E25C;
- Tue, 25 Jun 2024 06:34:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2083389043270656728=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 471AD10E5D9;
+	Tue, 25 Jun 2024 08:09:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jwhDttSm";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED72B10E2BF;
+ Tue, 25 Jun 2024 08:09:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1719302954; x=1750838954;
+ h=message-id:date:mime-version:subject:from:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=G7F/dnQBKoAMZjp0AH+9n9ZQoAd+ZnWTlzeU0Nz4G0c=;
+ b=jwhDttSmIXH1OCMAfNj561R+ShWSB3wEsWm5XUwvVafH4+Ysbrk4YRs4
+ IbpVJuMau6xpvLly0GxRu0J9N5I5wr5T0kaBv1hT8Nuvk8skuqUmEqi0K
+ 9e2YQeCEN9rgAGSoKmYtNISYzI1fdD660Eo9hc6WEWXuT821XMjglb9x6
+ T/4caVwumAf7csi/wAO8OLjMOCYE6FpH9KqooYEqafqnQlbwTabHYj8d5
+ WbqE8v18cGdAJyqx8s+JATGun8dr8bKpYa98EEKnl5SgC8d9GBA7VMd0/
+ +QK4SsKIoeTnIhIr9V4HJ4GWVlT7fJ0mrOPmg18dwk9IR5Kt2jowLUoNS Q==;
+X-CSE-ConnectionGUID: LLKVb7piQ/e8IF0bomb1Mg==
+X-CSE-MsgGUID: rSJUjowGS+ePftPNk15afA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="19201341"
+X-IronPort-AV: E=Sophos;i="6.08,263,1712646000"; d="scan'208";a="19201341"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2024 01:09:13 -0700
+X-CSE-ConnectionGUID: AyY6atN0Qh+NGz4mlQVUeA==
+X-CSE-MsgGUID: 2dKf1HzYQdKhCZ4b44xyoA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,263,1712646000"; d="scan'208";a="48006321"
+Received: from opintica-mobl1 (HELO [10.245.244.205]) ([10.245.244.205])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2024 01:09:11 -0700
+Message-ID: <53aa0e4e-96f9-4cc8-9d59-73309315808d@intel.com>
+Date: Tue, 25 Jun 2024 09:09:09 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Add_timeout_to_preempt?=
- =?utf-8?q?_fences_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Jun 2024 06:34:20 -0000
-Message-ID: <171929726003.154922.2826553639825158884@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <20240625055120.3997338-1-matthew.brost@intel.com>
-In-Reply-To: <20240625055120.3997338-1-matthew.brost@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm/i915: disable fbc due to Wa_16023588340
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Vinod Govindapillai <vinod.govindapillai@intel.com>,
+ intel-gfx@lists.freedesktop.org, "Nikula, Jani" <jani.nikula@intel.com>
+References: <20240619143127.110045-3-matthew.auld@intel.com>
+ <20240619143127.110045-4-matthew.auld@intel.com>
+Content-Language: en-GB
+In-Reply-To: <20240619143127.110045-4-matthew.auld@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +70,115 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2083389043270656728==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 19/06/2024 15:31, Matthew Auld wrote:
+> On BMG-G21 we need to disable fbc due to complications around the WA.
+> 
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org
+Can this be merged via drm-xe-next? The first patch is the xe centric 
+part of the WA, but here this is touching i915 display and xe.
 
-== Series Details ==
-
-Series: drm/xe: Add timeout to preempt fences (rev3)
-URL   : https://patchwork.freedesktop.org/series/135329/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-1523-cf83cd8ff370955a504fdf1388ea6e257da76a8b_BAT -> xe-pw-135329v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1523-cf83cd8ff370955a504fdf1388ea6e257da76a8b -> xe-pw-135329v3
-
-  IGT_7898: a2600953b16d6628855b89ac40f477b58933b37b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1523-cf83cd8ff370955a504fdf1388ea6e257da76a8b: cf83cd8ff370955a504fdf1388ea6e257da76a8b
-  xe-pw-135329v3: 135329v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135329v3/index.html
-
---===============2083389043270656728==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add timeout to preempt fences (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135329/">https://patchwork.freedesktop.org/series/135329/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135329v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135329v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1523-cf83cd8ff370955a504fdf1388ea6e257da76a8b_BAT -&gt; xe-pw-135329v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1523-cf83cd8ff370955a504fdf1388ea6e257da76a8b -&gt; xe-pw-135329v3</li>
-</ul>
-<p>IGT_7898: a2600953b16d6628855b89ac40f477b58933b37b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1523-cf83cd8ff370955a504fdf1388ea6e257da76a8b: cf83cd8ff370955a504fdf1388ea6e257da76a8b<br />
-  xe-pw-135329v3: 135329v3</p>
-
-</body>
-</html>
-
---===============2083389043270656728==--
+> ---
+>   drivers/gpu/drm/i915/display/intel_display_wa.h |  8 ++++++++
+>   drivers/gpu/drm/i915/display/intel_fbc.c        |  6 ++++++
+>   drivers/gpu/drm/xe/Makefile                     |  4 +++-
+>   drivers/gpu/drm/xe/display/xe_display_wa.c      | 16 ++++++++++++++++
+>   4 files changed, 33 insertions(+), 1 deletion(-)
+>   create mode 100644 drivers/gpu/drm/xe/display/xe_display_wa.c
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
+> index 63201d09852c..be644ab6ae00 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+> @@ -6,8 +6,16 @@
+>   #ifndef __INTEL_DISPLAY_WA_H__
+>   #define __INTEL_DISPLAY_WA_H__
+>   
+> +#include <linux/types.h>
+> +
+>   struct drm_i915_private;
+>   
+>   void intel_display_wa_apply(struct drm_i915_private *i915);
+>   
+> +#ifdef I915
+> +static inline bool intel_display_needs_wa_16023588340(struct drm_i915_private *i915) { return false; }
+> +#else
+> +bool intel_display_needs_wa_16023588340(struct drm_i915_private *i915);
+> +#endif
+> +
+>   #endif
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+> index 67116c9f1464..8488f82143a4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -56,6 +56,7 @@
+>   #include "intel_display_device.h"
+>   #include "intel_display_trace.h"
+>   #include "intel_display_types.h"
+> +#include "intel_display_wa.h"
+>   #include "intel_fbc.h"
+>   #include "intel_fbc_regs.h"
+>   #include "intel_frontbuffer.h"
+> @@ -1237,6 +1238,11 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
+>   		return 0;
+>   	}
+>   
+> +	if (intel_display_needs_wa_16023588340(i915)) {
+> +		plane_state->no_fbc_reason = "Wa_16023588340";
+> +		return 0;
+> +	}
+> +
+>   	/* WaFbcTurnOffFbcWhenHyperVisorIsUsed:skl,bxt */
+>   	if (i915_vtd_active(i915) && (IS_SKYLAKE(i915) || IS_BROXTON(i915))) {
+>   		plane_state->no_fbc_reason = "VT-d enabled";
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 0e16e5029081..f7521fd5db4c 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -34,7 +34,8 @@ uses_generated_oob := \
+>   	$(obj)/xe_ring_ops.o \
+>   	$(obj)/xe_vm.o \
+>   	$(obj)/xe_wa.o \
+> -	$(obj)/xe_ttm_stolen_mgr.o
+> +	$(obj)/xe_ttm_stolen_mgr.o \
+> +	$(obj)/display/xe_display_wa.o \
+>   
+>   $(uses_generated_oob): $(generated_oob)
+>   
+> @@ -192,6 +193,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+>   	display/xe_display.o \
+>   	display/xe_display_misc.o \
+>   	display/xe_display_rps.o \
+> +	display/xe_display_wa.o \
+>   	display/xe_dsb_buffer.o \
+>   	display/xe_fb_pin.o \
+>   	display/xe_hdcp_gsc.o \
+> diff --git a/drivers/gpu/drm/xe/display/xe_display_wa.c b/drivers/gpu/drm/xe/display/xe_display_wa.c
+> new file mode 100644
+> index 000000000000..68e3d1959ad6
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/display/xe_display_wa.c
+> @@ -0,0 +1,16 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2024 Intel Corporation
+> + */
+> +
+> +#include "intel_display_wa.h"
+> +
+> +#include "xe_device.h"
+> +#include "xe_wa.h"
+> +
+> +#include <generated/xe_wa_oob.h>
+> +
+> +bool intel_display_needs_wa_16023588340(struct drm_i915_private *i915)
+> +{
+> +	return XE_WA(xe_root_mmio_gt(i915), 16023588340);
+> +}
