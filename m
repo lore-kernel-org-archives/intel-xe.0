@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4A43C2BBCA
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Jun 2024 05:50:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04CC8C2BBCA
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Jun 2024 05:50:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BF2D10E1C8;
-	Tue, 25 Jun 2024 05:50:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6D0D10E1C8;
+	Tue, 25 Jun 2024 05:50:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="abyNrmOt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sga32MEo";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F034D10E1C8
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Jun 2024 05:50:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65D0510E1C8
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Jun 2024 05:50:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719294613; x=1750830613;
+ t=1719294644; x=1750830644;
  h=from:to:subject:date:message-id:mime-version:
  content-transfer-encoding;
  bh=x1msrfwbrA5ODOsILoK5tgQkgqOMWYrKsCDpcchnIhQ=;
- b=abyNrmOtlSEUg7bfvx7zIv/VIawolXk4hNvmAv9is6cI18U+mXI/2aOr
- ov5lkYsYiG2r1EujlQzyEC/PtFDKyXveCFf2OZJ+JLXRnYNZKrSVH0qng
- oEO5PHSWsw3p5s+qCieciqISaBiXcg3w3YZWNR5Ne73PpEI2IKKD4/u66
- rd/24baRqBkyhJan8G3Sey+GsoMvWqlN2rkjoaWRwUEElExC8+7TKKqXr
- W4PuFMDvwV6+vX2/MHFoFFFnDmWUQZNm7VCoC1DJVADi6xNb6E9rTikz2
- isXlhel0aWmMDhBfSVj8EJJ/JhZJI0dHWV/jKq2Km+ee4kFFjy3k1NOZa Q==;
-X-CSE-ConnectionGUID: +oXfWl5TR/mqIYiDIX/FnQ==
-X-CSE-MsgGUID: m0psWQZXR0uJeu/5SNFjkw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="16048415"
-X-IronPort-AV: E=Sophos;i="6.08,263,1712646000"; d="scan'208";a="16048415"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2024 22:50:12 -0700
-X-CSE-ConnectionGUID: B/dmZvmaRaKlPYKHcn1Nmg==
-X-CSE-MsgGUID: OFSXLqmXQNyh8QDqdr5WIQ==
+ b=Sga32MEoqG7mNT1h3hs1B91xSUuKMDKNm21KmP0hxPXUyAaI6ewJOaU2
+ P4UH7LCVwRyL9nHEKrxj/E3Zg+AvMUg/oGLN0fVJkTIR30YhaDuOdp2P4
+ sNvqis1jvci+KpAuu2PQ1DGmWyveSvg9+bxARVmM4rvWcsLHIOAWyuU8d
+ vdwCMkI1ON3dv9kQ+bmM/2OkEHmmAryDG+OtyJ6RV/5qsPBWdXoF4KorA
+ /hRcAX/zkeZhrfeSyz0bLoUD4ap0Aoy/xJ9IQCPEXD+5Q7b+rVsTuQtSF
+ VE/5CDLl53M3aWET2pl+OGI4yd967PFwoVOIbKmxSZ5pAg50xvoH7Z4/z w==;
+X-CSE-ConnectionGUID: e4LjJUwASW24GIWPE8ToeA==
+X-CSE-MsgGUID: De3bFDYqTFeWjKiH2frPpw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="26982072"
+X-IronPort-AV: E=Sophos;i="6.08,263,1712646000"; d="scan'208";a="26982072"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2024 22:50:43 -0700
+X-CSE-ConnectionGUID: JEZAnIN2RhKRfcbu2L4sPw==
+X-CSE-MsgGUID: 8UIiotTIQUaFQte1aSObSg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,263,1712646000"; d="scan'208";a="43519316"
+X-IronPort-AV: E=Sophos;i="6.08,263,1712646000"; d="scan'208";a="43626417"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2024 22:50:09 -0700
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2024 22:50:43 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Subject: [PATCH v2] drm/xe: Add timeout to preempt fences
-Date: Mon, 24 Jun 2024 22:50:46 -0700
-Message-Id: <20240625055046.3997318-1-matthew.brost@intel.com>
+Date: Mon, 24 Jun 2024 22:51:20 -0700
+Message-Id: <20240625055120.3997338-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
