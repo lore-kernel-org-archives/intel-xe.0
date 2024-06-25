@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91913C2BBCA
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Jun 2024 20:10:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 882FEC2BBCA
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Jun 2024 20:15:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4921A10E008;
-	Tue, 25 Jun 2024 20:10:13 +0000 (UTC)
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A37310E008;
- Tue, 25 Jun 2024 20:10:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41C9910E008;
+	Tue, 25 Jun 2024 20:15:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HrxXKze6";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACE6610E008
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Jun 2024 20:15:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1719346525; x=1750882525;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=bdoqSfVqBLqpyNNWUjwuYJXM8k7udVpNQNLT9GZ6o9A=;
+ b=HrxXKze60qrkIzh+vZUc+tvAmjcmwQgLbznhBlV+fD7oNK4t9En62Y0m
+ eSpVLxDRXov9vhxh00ZrrfPFcPOqV6OxJkQZp94AwcLavizh2oZLkgPU2
+ G9giMuKlDDvmp9i3jpuE6DwDUyeEKQu5hekcnOdyOOY+GLR2c/igXoT6z
+ u0+gbWyAbM6ioxZcQrOeMlRMEbqBhKCVuyrIILgIFX5uC/ZcduJA7T2ka
+ TjHamVhYNZ3/JRt8rv8YhK/OSJsQVC7c6G2WVDcoFBsRMRWnzHMhL6Igc
+ 8oN32RCRkzl+bfYl4G+w6qNwQ92BrdGlJ3LIgNiZsAxQ4EGy24LbB5jkx A==;
+X-CSE-ConnectionGUID: LGT8GOF/QB+vWIktYiuRAA==
+X-CSE-MsgGUID: 4q/CBKvATL2v6AEedNYgfw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11114"; a="16535017"
+X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="16535017"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2024 13:15:25 -0700
+X-CSE-ConnectionGUID: +54JLCPwQSe/WSCeh8CqfA==
+X-CSE-MsgGUID: gKIs9yIWRZig43XYjddixg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="43855738"
+Received: from orsosgc001.jf.intel.com ([10.165.21.138])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2024 13:15:24 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ Jose Souza <jose.souza@intel.com>
+Subject: [PATCH 3/3] drm/xe/oa: Allow preemption to be disabled on the stream
+ exec queue
+Date: Tue, 25 Jun 2024 13:15:18 -0700
+Message-ID: <20240625201518.766925-4-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20240625201518.766925-1-ashutosh.dixit@intel.com>
+References: <20240625201518.766925-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_PF=3A_Trigger_explicit_F?=
- =?utf-8?q?LR_while_disabling_VFs?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Jun 2024 20:10:12 -0000
-Message-ID: <171934621222.153309.17621740461941733981@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <20240625194546.1301-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20240625194546.1301-1-michal.wajdeczko@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +67,142 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Mesa VK_KHR_performance_query use case requires preemption to be disabled
+for the stream exec queue. Implement this functionality here based on the
+new set_no_preempt and clear_no_preempt exec queue ops.
 
-Series: PF: Trigger explicit FLR while disabling VFs
-URL   : https://patchwork.freedesktop.org/series/135380/
-State : success
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/xe/xe_oa.c       | 33 +++++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_oa_types.h |  3 +++
+ include/uapi/drm/xe_drm.h        |  6 ++++++
+ 3 files changed, 41 insertions(+), 1 deletion(-)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast edccdf441f1e061f81e0d1d172aa0f37511bbe4d
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index a68659fd5386..6453c36c4539 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -80,6 +80,7 @@ struct xe_oa_open_param {
+ 	int engine_instance;
+ 	struct xe_exec_queue *exec_q;
+ 	struct xe_hw_engine *hwe;
++	bool no_preempt;
+ };
+ 
+ struct xe_oa_config_bo {
+@@ -1018,6 +1019,13 @@ static int xe_oa_enable_locked(struct xe_oa_stream *stream)
+ 	if (stream->enabled)
+ 		return 0;
+ 
++	if (stream->no_preempt) {
++		int ret = stream->exec_q->ops->set_no_preempt(stream->exec_q);
++
++		if (ret)
++			return ret;
++	}
++
+ 	xe_oa_stream_enable(stream);
+ 
+ 	stream->enabled = true;
+@@ -1026,13 +1034,18 @@ static int xe_oa_enable_locked(struct xe_oa_stream *stream)
+ 
+ static int xe_oa_disable_locked(struct xe_oa_stream *stream)
+ {
++	int ret = 0;
++
+ 	if (!stream->enabled)
+ 		return 0;
+ 
+ 	xe_oa_stream_disable(stream);
+ 
++	if (stream->no_preempt)
++		ret = stream->exec_q->ops->clear_no_preempt(stream->exec_q);
++
+ 	stream->enabled = false;
+-	return 0;
++	return ret;
+ }
+ 
+ static long xe_oa_config_locked(struct xe_oa_stream *stream, u64 arg)
+@@ -1307,6 +1320,7 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+ 	stream->sample = param->sample;
+ 	stream->periodic = param->period_exponent > 0;
+ 	stream->period_exponent = param->period_exponent;
++	stream->no_preempt = param->no_preempt;
+ 
+ 	/*
+ 	 * For Xe2+, when overrun mode is enabled, there are no partial reports at the end
+@@ -1651,6 +1665,13 @@ static int xe_oa_set_prop_engine_instance(struct xe_oa *oa, u64 value,
+ 	return 0;
+ }
+ 
++static int xe_oa_set_no_preempt(struct xe_oa *oa, u64 value,
++				struct xe_oa_open_param *param)
++{
++	param->no_preempt = value;
++	return 0;
++}
++
+ typedef int (*xe_oa_set_property_fn)(struct xe_oa *oa, u64 value,
+ 				     struct xe_oa_open_param *param);
+ static const xe_oa_set_property_fn xe_oa_set_property_funcs[] = {
+@@ -1662,6 +1683,7 @@ static const xe_oa_set_property_fn xe_oa_set_property_funcs[] = {
+ 	[DRM_XE_OA_PROPERTY_OA_DISABLED] = xe_oa_set_prop_disabled,
+ 	[DRM_XE_OA_PROPERTY_EXEC_QUEUE_ID] = xe_oa_set_prop_exec_queue_id,
+ 	[DRM_XE_OA_PROPERTY_OA_ENGINE_INSTANCE] = xe_oa_set_prop_engine_instance,
++	[DRM_XE_OA_PROPERTY_NO_PREEMPT] = xe_oa_set_no_preempt,
+ };
+ 
+ static int xe_oa_user_ext_set_property(struct xe_oa *oa, u64 extension,
+@@ -1766,6 +1788,15 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, u64 data, struct drm_file *f
+ 	if (param.exec_q && !param.sample)
+ 		privileged_op = false;
+ 
++	if (param.no_preempt) {
++		if (!param.exec_q) {
++			drm_dbg(&oa->xe->drm, "Preemption disable without exec_q!\n");
++			ret = -EINVAL;
++			goto err_exec_q;
++		}
++		privileged_op = true;
++	}
++
+ 	if (privileged_op && xe_perf_stream_paranoid && !perfmon_capable()) {
+ 		drm_dbg(&oa->xe->drm, "Insufficient privileges to open xe perf stream\n");
+ 		ret = -EACCES;
+diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
+index 706d45577dae..540c3ec53a6d 100644
+--- a/drivers/gpu/drm/xe/xe_oa_types.h
++++ b/drivers/gpu/drm/xe/xe_oa_types.h
+@@ -235,5 +235,8 @@ struct xe_oa_stream {
+ 
+ 	/** @oa_status: temporary storage for oa_status register value */
+ 	u32 oa_status;
++
++	/** @no_preempt: Whether preemption and timeslicing is disabled for stream exec_q */
++	u32 no_preempt;
+ };
+ #endif
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index b410553faa9b..12eaa8532b5c 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -1611,6 +1611,12 @@ enum drm_xe_oa_property_id {
+ 	 * pass along with @DRM_XE_OA_PROPERTY_EXEC_QUEUE_ID or will default to 0.
+ 	 */
+ 	DRM_XE_OA_PROPERTY_OA_ENGINE_INSTANCE,
++
++	/**
++	 * @DRM_XE_OA_PROPERTY_NO_PREEMPT: Allow preemption and timeslicing
++	 * to be disabled for the stream exec queue.
++	 */
++	DRM_XE_OA_PROPERTY_NO_PREEMPT,
+ };
+ 
+ /**
+-- 
+2.41.0
 
