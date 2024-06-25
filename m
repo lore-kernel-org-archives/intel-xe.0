@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9AFDC2BBCA
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Jun 2024 21:34:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7C52C30653
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Jun 2024 21:37:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62DD810E1DC;
-	Tue, 25 Jun 2024 21:34:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6971B10E745;
+	Tue, 25 Jun 2024 21:37:49 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 061D010E1DC;
- Tue, 25 Jun 2024 21:34:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D3BB10E743;
+ Tue, 25 Jun 2024 21:37:48 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/i915=3A_Skip_programming_F?=
- =?utf-8?q?IA_link_enable_bits_for_MTL+?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915=3A_Skip_program?=
+ =?utf-8?q?ming_FIA_link_enable_bits_for_MTL+?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gustavo Sousa" <gustavo.sousa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Jun 2024 21:34:05 -0000
-Message-ID: <171935124501.158778.14264261739253465789@a6498e030952>
+Date: Tue, 25 Jun 2024 21:37:48 -0000
+Message-ID: <171935146863.158778.3290046344432689953@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240625202652.315936-1-gustavo.sousa@intel.com>
 In-Reply-To: <20240625202652.315936-1-gustavo.sousa@intel.com>
@@ -44,108 +44,25 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915: Skip programming FIA link enable bits for MTL+
 URL   : https://patchwork.freedesktop.org/series/135388/
-State : success
+State : warning
 
 == Summary ==
 
-lib/modules/6.10.0-rc5-xe/kernel/sound/core/seq/
-lib/modules/6.10.0-rc5-xe/kernel/sound/core/seq/snd-seq.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/core/snd-seq-device.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/core/snd-hwdep.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/core/snd.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/core/snd-pcm.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/core/snd-compress.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/core/snd-timer.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soundcore.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/atom/
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/atom/sst/
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/common/
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/amd/
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/amd/snd-acp-config.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/amd/
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/snd-sof-utils.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/snd-sof-pci.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/snd-sof.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/snd-sof-probes.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/xtensa/
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/snd-soc-core.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/snd-soc-acpi.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/codecs/
-lib/modules/6.10.0-rc5-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/hda/
-lib/modules/6.10.0-rc5-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/hda/ext/
-lib/modules/6.10.0-rc5-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/hda/snd-intel-dspcfg.ko
-lib/modules/6.10.0-rc5-xe/kernel/sound/hda/snd-hda-core.ko
-lib/modules/6.10.0-rc5-xe/kernel/arch/
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/kernel/
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/kernel/msr.ko
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/kernel/cpuid.ko
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/aesni-intel.ko
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/events/
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/events/intel/
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/kvm/
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.10.0-rc5-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.10.0-rc5-xe/kernel/crypto/
-lib/modules/6.10.0-rc5-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.10.0-rc5-xe/kernel/crypto/cmac.ko
-lib/modules/6.10.0-rc5-xe/kernel/crypto/ccm.ko
-lib/modules/6.10.0-rc5-xe/kernel/crypto/cryptd.ko
-lib/modules/6.10.0-rc5-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.10.0-rc5-xe/kernel/crypto/async_tx/
-lib/modules/6.10.0-rc5-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.10.0-rc5-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.10.0-rc5-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.10.0-rc5-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.10.0-rc5-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.10.0-rc5-xe/build
-lib/modules/6.10.0-rc5-xe/modules.alias.bin
-lib/modules/6.10.0-rc5-xe/modules.builtin
-lib/modules/6.10.0-rc5-xe/modules.softdep
-lib/modules/6.10.0-rc5-xe/modules.alias
-lib/modules/6.10.0-rc5-xe/modules.order
-lib/modules/6.10.0-rc5-xe/modules.symbols
-lib/modules/6.10.0-rc5-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1719351232:package_x86_64_nodebug\r\e[0K'
-+ sync
-[0Ksection_end:1719351232:package_x86_64_nodebug
-[0K
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast edccdf441f1e061f81e0d1d172aa0f37511bbe4d
+Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
+Fast mode used, each commit won't be checked separately.
 + cleanup
 ++ stat -c %u:%g /kernel
 + chown -R 1003:1003 /kernel
