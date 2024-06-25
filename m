@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0C0EC2BBCA
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Jun 2024 19:50:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D165C2BBCA
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Jun 2024 19:50:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7558E10E1F8;
-	Tue, 25 Jun 2024 19:50:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4305D10E07D;
+	Tue, 25 Jun 2024 19:50:31 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27D7910E161;
- Tue, 25 Jun 2024 19:50:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E17A310E07D;
+ Tue, 25 Jun 2024 19:50:29 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_PF=3A_Trigger_explic?=
- =?utf-8?q?it_FLR_while_disabling_VFs?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_PF=3A_Trigger_explicit_FL?=
+ =?utf-8?q?R_while_disabling_VFs?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Jun 2024 19:50:16 -0000
-Message-ID: <171934501616.157680.8181857390185415831@a6498e030952>
+Date: Tue, 25 Jun 2024 19:50:29 -0000
+Message-ID: <171934502991.157680.16169229344139619285@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240625194546.1301-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20240625194546.1301-1-michal.wajdeczko@intel.com>
@@ -48,9 +48,32 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: edccdf441f1e drm-tip: 2024y-06m-25d-19h-37m-36s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/pf: Trigger explicit FLR while disabling VFs
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 7ced8a827ef5bdf12ec0359a7c945bb446f60407
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Tue Jun 25 21:45:46 2024 +0200
+
+    drm/xe/pf: Trigger explicit FLR while disabling VFs
+    
+    We attempt to unprovision all VFs GuC when disabling them, but
+    GuC may reject such request if the target VF was previously active
+    but VF driver didn't unload with explicit VF reset H2G action or
+    the VMM has not started the VF FLR.
+    
+    To avoid mismatches between configs maintained the PF and GuC,
+    trigger an explicit FLR sequences just before releasing resources.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
++ /mt/dim checkpatch edccdf441f1e061f81e0d1d172aa0f37511bbe4d drm-intel
+7ced8a827ef5 drm/xe/pf: Trigger explicit FLR while disabling VFs
 
 
