@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54D17C30659
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54DC5C41513
 	for <intel-xe@archiver.kernel.org>; Tue, 25 Jun 2024 12:46:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6B4510E647;
-	Tue, 25 Jun 2024 12:46:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1158910E64B;
+	Tue, 25 Jun 2024 12:46:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B3uZyPJf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YqL2YB0f";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7921F10E28E
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Jun 2024 12:46:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09B3310E28E
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Jun 2024 12:46:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719319581; x=1750855581;
+ t=1719319582; x=1750855582;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RjdN4IfJloeYG7JeqDIp1l4Tdzpz6ilznje+kfcRqEY=;
- b=B3uZyPJfHnQhrXQrNzi+fKSWmM7aMKDMzZbocxSW85IdLxEF8WDFD3tY
- kAryWScUCUqs4y51s4MnHRr2iSocBrql1v/68o96oSmEBwracIcuCraHP
- BEnE9P41kuYXVNzHOispngC0PmxcbY2gthyxSqktMGveDj+OYno+S8xti
- FT9ef8pcvdkx7INmNaVaObUdDr64LuPy7epptzndrLV0SjfDNcVUy16oz
- TgmMOSgZ7fTReZlnw2K6jKBLqPKaTjvHxAF1YjCVHsc8OPx3Nk4Mecxep
- RsYg6dtOuYkngBsLb5IjogrUQwpYaBY6R9wRB2Wfu/tJXyHJ1pALnE9wy g==;
-X-CSE-ConnectionGUID: 2IchzitJSf2czUqpKUqsNQ==
-X-CSE-MsgGUID: FRkXOwg5RLCOVDG42LiLsQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="26955329"
-X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="26955329"
+ bh=Tyud/nBVEqmQrX88IJ8N/r/4y3Fg1AyAvFxq0ys9M7o=;
+ b=YqL2YB0flsx3XPJBf4i+eslBS4qkSqyEBVDXa6a4m14ns7qStJVuLlD0
+ eiq+ZKRLoQA/6zsvVgH2eB13eUaRU7U1LQtNv7YfyFr1/ppbHxl7crh6n
+ wm2lb4usU9XrIk/yjPScBdi/JnqwHuTwknxULwuoVNq7UxxYiapKxGo6W
+ idbw1iStpLhWI6n3Ffaec6oRsaoHtmgdmP5rdUirmcuQySRcxeAeuIccz
+ 6tt+F1mu3M+gpYzQSAzl+7oz3PygiigQB/UDOaveMzOYvhOPws1Udpt7l
+ knFRmsxdPjTG1FyMxp4FIZznawSUg3sDXGjnr8xAqmgVlhcz6oqdcWO1p g==;
+X-CSE-ConnectionGUID: Z/xZkNVLTWGzPVSualS2rA==
+X-CSE-MsgGUID: 6cmoaTVHQheJb5x/Z8ofGg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="26955344"
+X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="26955344"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2024 05:46:16 -0700
-X-CSE-ConnectionGUID: QpIEx18qQB2pXbPPuNto7A==
-X-CSE-MsgGUID: DJSRdv2uSVWewEbnxx2FdQ==
+ 25 Jun 2024 05:46:21 -0700
+X-CSE-ConnectionGUID: oSd/GR/CRzK/irdRE7ywYg==
+X-CSE-MsgGUID: ej7vnsaDRaOOVo2Yj4WmvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="48547065"
+X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="48547085"
 Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2024 05:46:15 -0700
+ 25 Jun 2024 05:46:20 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
  david.e.box@linux.intel.com
 Cc: michael.j.ruhl@intel.com
-Subject: [PATCH v3 1/6] platform/x86/intel/vsec.h: Move to include/linux
-Date: Tue, 25 Jun 2024 08:45:47 -0400
-Message-ID: <20240625124554.3358460-2-michael.j.ruhl@intel.com>
+Subject: [PATCH v3 4/6] drm/xe/vsec: Support BMG devices
+Date: Tue, 25 Jun 2024 08:45:50 -0400
+Message-ID: <20240625124554.3358460-5-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240625124554.3358460-1-michael.j.ruhl@intel.com>
 References: <20240625124554.3358460-1-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,234 +68,318 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: "David E. Box" <david.e.box@linux.intel.com>
+Utilize the PMT callback API to add support for the BMG
+devices.
 
-Some drivers outside of PDX86 need access to the vsec header. Move it to
-include/linux to make it easier to include.
-
-Signed-off-by: David E. Box <david.e.box@linux.intel.com>
+Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- MAINTAINERS                                           |  1 +
- drivers/platform/x86/intel/pmc/core_ssram.c           |  2 +-
- drivers/platform/x86/intel/pmt/class.c                |  2 +-
- drivers/platform/x86/intel/pmt/class.h                |  2 +-
- drivers/platform/x86/intel/pmt/crashlog.c             |  2 +-
- drivers/platform/x86/intel/pmt/telemetry.c            |  2 +-
- drivers/platform/x86/intel/sdsi.c                     |  3 +--
- drivers/platform/x86/intel/tpmi.c                     |  3 +--
- drivers/platform/x86/intel/vsec.c                     |  7 +++----
- .../x86/intel/vsec.h => include/linux/intel_vsec.h    | 11 +++++++++--
- 10 files changed, 20 insertions(+), 15 deletions(-)
- rename drivers/platform/x86/intel/vsec.h => include/linux/intel_vsec.h (92%)
+ drivers/gpu/drm/xe/Makefile          |   1 +
+ drivers/gpu/drm/xe/xe_device.c       |   5 +
+ drivers/gpu/drm/xe/xe_device_types.h |   6 +
+ drivers/gpu/drm/xe/xe_vsec.c         | 214 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vsec.h         |  13 ++
+ 5 files changed, 239 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_vsec.c
+ create mode 100644 drivers/gpu/drm/xe/xe_vsec.h
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index cb8355f20b36..4934212474cc 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11413,6 +11413,7 @@ INTEL VENDOR SPECIFIC EXTENDED CAPABILITIES DRIVER
- M:	David E. Box <david.e.box@linux.intel.com>
- S:	Supported
- F:	drivers/platform/x86/intel/vsec.*
-+F:	include/linux/intel_vsec.h
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index b1e03bfe4a68..5860d6db1598 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -129,6 +129,7 @@ xe-y += xe_bb.o \
+ 	xe_vm.o \
+ 	xe_vram.o \
+ 	xe_vram_freq.o \
++	xe_vsec.o \
+ 	xe_wait_user_fence.o \
+ 	xe_wa.o \
+ 	xe_wopcm.o
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index ca5e8435485a..35698ece59d6 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -53,6 +53,7 @@
+ #include "xe_ttm_sys_mgr.h"
+ #include "xe_vm.h"
+ #include "xe_vram.h"
++#include "xe_vsec.h"
+ #include "xe_wait_user_fence.h"
  
- INTEL VIRTUAL BUTTON DRIVER
- M:	AceLan Kao <acelan.kao@canonical.com>
-diff --git a/drivers/platform/x86/intel/pmc/core_ssram.c b/drivers/platform/x86/intel/pmc/core_ssram.c
-index 1bde86c54eb9..baddaaec25ee 100644
---- a/drivers/platform/x86/intel/pmc/core_ssram.c
-+++ b/drivers/platform/x86/intel/pmc/core_ssram.c
-@@ -9,11 +9,11 @@
-  */
+ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+@@ -317,6 +318,8 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 		goto err;
+ 	}
  
- #include <linux/cleanup.h>
++	drmm_mutex_init(&xe->drm, &xe->pmt.lock);
++
+ 	err = xe_display_create(xe);
+ 	if (WARN_ON(err))
+ 		goto err;
+@@ -692,6 +695,8 @@ int xe_device_probe(struct xe_device *xe)
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_sanitize_freq(gt);
+ 
++	xe_vsec_init(xe);
++
+ 	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
+ 
+ err_fini_display:
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index c37be471d11c..11513d8f3a8b 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -451,6 +451,12 @@ struct xe_device {
+ 		struct mutex lock;
+ 	} d3cold;
+ 
++	/** @pmt: Support the PMT driver callback interface */
++	struct {
++		/** @pmt.lock: protect access for telemetry data */
++		struct mutex lock;
++	} pmt;
++
+ 	/**
+ 	 * @pm_callback_task: Track the active task that is running in either
+ 	 * the runtime_suspend or runtime_resume callbacks.
+diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+new file mode 100644
+index 000000000000..a8afef731379
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_vsec.c
+@@ -0,0 +1,214 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright © 2022 - 2024 Intel Corporation
++ */
 +#include <linux/intel_vsec.h>
- #include <linux/pci.h>
- #include <linux/io-64-nonatomic-lo-hi.h>
- 
- #include "core.h"
--#include "../vsec.h"
- #include "../pmt/telemetry.h"
- 
- #define SSRAM_HDR_SIZE		0x100
-diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/intel/pmt/class.c
-index 4b53940a64e2..d7939b28e937 100644
---- a/drivers/platform/x86/intel/pmt/class.c
-+++ b/drivers/platform/x86/intel/pmt/class.c
-@@ -9,12 +9,12 @@
-  */
- 
- #include <linux/kernel.h>
-+#include <linux/intel_vsec.h>
- #include <linux/io-64-nonatomic-lo-hi.h>
- #include <linux/module.h>
- #include <linux/mm.h>
- #include <linux/pci.h>
- 
--#include "../vsec.h"
- #include "class.h"
- 
- #define PMT_XA_START		1
-diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/intel/pmt/class.h
-index d23c63b73ab7..d6f9ccaf28c8 100644
---- a/drivers/platform/x86/intel/pmt/class.h
-+++ b/drivers/platform/x86/intel/pmt/class.h
-@@ -2,13 +2,13 @@
- #ifndef _INTEL_PMT_CLASS_H
- #define _INTEL_PMT_CLASS_H
- 
-+#include <linux/intel_vsec.h>
- #include <linux/xarray.h>
- #include <linux/types.h>
- #include <linux/bits.h>
- #include <linux/err.h>
- #include <linux/io.h>
- 
--#include "../vsec.h"
- #include "telemetry.h"
- 
- /* PMT access types */
-diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x86/intel/pmt/crashlog.c
-index 4014c02cafdb..9079d5dffc03 100644
---- a/drivers/platform/x86/intel/pmt/crashlog.c
-+++ b/drivers/platform/x86/intel/pmt/crashlog.c
-@@ -9,6 +9,7 @@
-  */
- 
- #include <linux/auxiliary_bus.h>
-+#include <linux/intel_vsec.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/pci.h>
-@@ -16,7 +17,6 @@
- #include <linux/uaccess.h>
- #include <linux/overflow.h>
- 
--#include "../vsec.h"
- #include "class.h"
- 
- /* Crashlog discovery header types */
-diff --git a/drivers/platform/x86/intel/pmt/telemetry.c b/drivers/platform/x86/intel/pmt/telemetry.c
-index 09258564dfc4..3478f891ea0b 100644
---- a/drivers/platform/x86/intel/pmt/telemetry.c
-+++ b/drivers/platform/x86/intel/pmt/telemetry.c
-@@ -9,6 +9,7 @@
-  */
- 
- #include <linux/auxiliary_bus.h>
-+#include <linux/intel_vsec.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/pci.h>
-@@ -16,7 +17,6 @@
- #include <linux/uaccess.h>
- #include <linux/overflow.h>
- 
--#include "../vsec.h"
- #include "class.h"
- 
- #define TELEM_SIZE_OFFSET	0x0
-diff --git a/drivers/platform/x86/intel/sdsi.c b/drivers/platform/x86/intel/sdsi.c
-index 277e4f4b20ac..9d137621f0e6 100644
---- a/drivers/platform/x86/intel/sdsi.c
-+++ b/drivers/platform/x86/intel/sdsi.c
-@@ -12,6 +12,7 @@
- #include <linux/bits.h>
- #include <linux/bitfield.h>
- #include <linux/device.h>
-+#include <linux/intel_vsec.h>
- #include <linux/iopoll.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-@@ -22,8 +23,6 @@
- #include <linux/types.h>
- #include <linux/uaccess.h>
- 
--#include "vsec.h"
--
- #define ACCESS_TYPE_BARID		2
- #define ACCESS_TYPE_LOCAL		3
- 
-diff --git a/drivers/platform/x86/intel/tpmi.c b/drivers/platform/x86/intel/tpmi.c
-index 6c0cbccd80bb..b9fa1cbfdcf7 100644
---- a/drivers/platform/x86/intel/tpmi.c
-+++ b/drivers/platform/x86/intel/tpmi.c
-@@ -51,6 +51,7 @@
- #include <linux/debugfs.h>
- #include <linux/delay.h>
- #include <linux/intel_tpmi.h>
-+#include <linux/intel_vsec.h>
- #include <linux/io.h>
- #include <linux/iopoll.h>
- #include <linux/module.h>
-@@ -59,8 +60,6 @@
- #include <linux/sizes.h>
- #include <linux/string_helpers.h>
- 
--#include "vsec.h"
--
- /**
-  * struct intel_tpmi_pfs_entry - TPMI PM Feature Structure (PFS) entry
-  * @tpmi_id:	TPMI feature identifier (what the feature is and its data format).
-diff --git a/drivers/platform/x86/intel/vsec.c b/drivers/platform/x86/intel/vsec.c
-index 0fdfaf3a4f5c..2b46807f868b 100644
---- a/drivers/platform/x86/intel/vsec.c
-+++ b/drivers/platform/x86/intel/vsec.c
-@@ -17,14 +17,13 @@
- #include <linux/bits.h>
- #include <linux/cleanup.h>
- #include <linux/delay.h>
--#include <linux/kernel.h>
- #include <linux/idr.h>
-+#include <linux/intel_vsec.h>
-+#include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/pci.h>
- #include <linux/types.h>
- 
--#include "vsec.h"
--
- #define PMT_XA_START			0
- #define PMT_XA_MAX			INT_MAX
- #define PMT_XA_LIMIT			XA_LIMIT(PMT_XA_START, PMT_XA_MAX)
-@@ -341,7 +340,7 @@ static bool intel_vsec_walk_vsec(struct pci_dev *pdev,
- void intel_vsec_register(struct pci_dev *pdev,
- 			 struct intel_vsec_platform_info *info)
- {
--	if (!pdev || !info)
-+	if (!pdev || !info || !info->headers)
- 		return;
- 
- 	intel_vsec_walk_header(pdev, info);
-diff --git a/drivers/platform/x86/intel/vsec.h b/include/linux/intel_vsec.h
-similarity index 92%
-rename from drivers/platform/x86/intel/vsec.h
-rename to include/linux/intel_vsec.h
-index e23e76129691..ff7998cadab4 100644
---- a/drivers/platform/x86/intel/vsec.h
-+++ b/include/linux/intel_vsec.h
-@@ -1,6 +1,6 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--#ifndef _VSEC_H
--#define _VSEC_H
-+#ifndef _INTEL_VSEC_H
-+#define _INTEL_VSEC_H
- 
- #include <linux/auxiliary_bus.h>
- #include <linux/bits.h>
-@@ -103,6 +103,13 @@ static inline struct intel_vsec_device *auxdev_to_ivdev(struct auxiliary_device
- 	return container_of(auxdev, struct intel_vsec_device, auxdev);
- }
- 
-+#if IS_ENABLED(CONFIG_INTEL_VSEC)
- void intel_vsec_register(struct pci_dev *pdev,
- 			 struct intel_vsec_platform_info *info);
-+#else
-+static inline void intel_vsec_register(struct pci_dev *pdev,
-+				       struct intel_vsec_platform_info *info)
++#include <linux/pci.h>
++
++#include "xe_device.h"
++#include "xe_device_types.h"
++#include "xe_drv.h"
++#include "xe_mmio.h"
++#include "xe_platform_types.h"
++#include "xe_pm.h"
++#include "xe_vsec.h"
++
++#define SOC_BASE		0x280000
++
++#define BMG_PMT_BASE		0xDB000
++#define BMG_DISCOVERY_OFFSET	(SOC_BASE + BMG_PMT_BASE)
++
++#define BMG_TELEMETRY_BASE	0xE0000
++#define BMG_TELEMETRY_OFFSET	(SOC_BASE + BMG_TELEMETRY_BASE)
++
++#define GFX_BAR			0
++
++#define SG_REMAP_INDEX1		XE_REG(SOC_BASE + 0x08)
++#define SG_REMAP_ACCESS(_mem)	((_mem) << 24)
++#define SG_REMAP_BITS		GENMASK(31, 24)
++
++static struct intel_vsec_header bmg_telemetry = {
++	.length = 0x10,
++	.id = VSEC_ID_TELEMETRY,
++	.num_entries = 2,
++	.entry_size = 4,
++	.tbir = GFX_BAR,
++	.offset = BMG_DISCOVERY_OFFSET,
++};
++
++static struct intel_vsec_header *bmg_capabilities[] = {
++	&bmg_telemetry,
++	NULL
++};
++
++enum xe_vsec {
++	XE_VSEC_UNKNOWN = 0,
++	XE_VSEC_BMG,
++};
++
++static struct intel_vsec_platform_info xe_vsec_info[] = {
++	[XE_VSEC_BMG] = {
++		.caps = VSEC_CAP_TELEMETRY,
++		.headers = bmg_capabilities,
++	},
++	{ }
++};
++
++/* GUID Decode information */
++#define GUID_TELEM_ITERATION GENMASK(3, 0)
++#define GUID_SEGMENT GENMASK(7, 4)
++#define GUID_SOC_SKU GENMASK(11, 8)
++#define GUID_DEVICE_ID GENMASK(27, 12)
++#define GUID_CAP_TYPE GENMASK(29, 28)
++#define GUID_RECORD_ID GENMASK(31, 30)
++
++enum record_id {
++	PUNIT,
++	OOBMSM_0,
++	OOBMSM_1
++};
++
++enum capability {
++	CRASHLOG,
++	TELEMETRY,
++	WATCHER
++};
++
++/*
++ * The GUID will have the following bits to decode (high bits first):
++ *
++ * X(2bits) - Record-ID (0-PUNIT, 1-OOBMSM_0, 2-OOBMSM_1)
++ * X(2bits) - Capability Type (Crashlog-0, Telemetry Aggregator-1, Watcher-2)
++ * XXXX(16bits)– Device ID – changes for each down bin SKU’s (0xE2F8 for BMG)
++ * X(4bits) - SOC_SKU (SKU_INDEPENDENT-0, X3-1, X2-2, G31-3),
++ * X(4bits) - Segment (SEGMENT_INDEPENDENT-0, Client-1, Server-2)
++ * X(4bits) - {Telemetry space iteration number (0,1,..)}
++ *
++ */
++static int guid_decode(u32 guid, int *index, u32 *offset)
 +{
++	u32 record_id = (guid & GUID_RECORD_ID) >> 30;
++	u32 cap_type  = (guid & GUID_CAP_TYPE) >> 28;
++	u32 device_id = (guid & GUID_DEVICE_ID) >> 12;
++
++	if (device_id != 0xE2F8)
++		return -ENODEV;
++
++	if (record_id > OOBMSM_1 || cap_type > WATCHER)
++		return -EINVAL;
++
++	*offset = 0;
++
++	if (cap_type == CRASHLOG) {
++		*index = record_id == PUNIT ? 2 : 4;
++		return 0;
++	}
++
++	switch (record_id) {
++	case PUNIT:
++		*index = 0;
++		if (cap_type == TELEMETRY)
++			*offset = 0x0200;
++		else /* if (cap_type == WATCHER) */
++			*offset = 0x14A0;
++		break;
++
++	case OOBMSM_0:
++		*index = 1;
++		if (cap_type == WATCHER)
++			*offset = 0x18D8;
++		break;
++
++	case OOBMSM_1:
++		*index = 1;
++		if (cap_type == TELEMETRY)
++			*offset = 0x1000;
++		break;
++	}
++
++	return 0;
 +}
++
++static int xe_pmt_telem_read(void *args, u32 guid, u64 *data, u32 count)
++{
++	struct xe_device *xe = pdev_to_xe_device((struct pci_dev *)args);
++	void __iomem *telem_addr = xe->tiles[0].mmio.regs + BMG_TELEMETRY_OFFSET;
++	u32 mem_region;
++	u32 offset;
++	int ret;
++
++	ret = guid_decode(guid, &mem_region, &offset);
++	if (ret)
++		return ret;
++
++	telem_addr += offset;
++
++	mutex_lock(&xe->pmt.lock);
++
++	/* indicate that we are not at an appropriate power level */
++	ret = -ENODATA;
++	if (xe_pm_runtime_get_if_active(xe) > 0) {
++		/* set SoC re-mapper index register based on guid memory region */
++		xe_mmio_rmw32(xe->tiles[0].primary_gt, SG_REMAP_INDEX1, SG_REMAP_BITS,
++			      SG_REMAP_ACCESS(mem_region));
++
++		memcpy_fromio(data, telem_addr, count);
++		ret = count;
++		xe_pm_runtime_put(xe);
++	}
++	mutex_unlock(&xe->pmt.lock);
++
++	return ret;
++}
++
++struct pmt_callbacks xe_pmt_cb = {
++	.read_telem = xe_pmt_telem_read,
++};
++
++static const int vsec_platforms[] = {
++	[XE_BATTLEMAGE] = XE_VSEC_BMG,
++};
++
++static enum xe_vsec get_platform_info(struct xe_device *xe)
++{
++	if (xe->info.platform > XE_BATTLEMAGE)
++		return XE_VSEC_UNKNOWN;
++
++	return vsec_platforms[xe->info.platform];
++}
++
++/**
++ * intel_vsec_init - Initialize resources and add intel_vsec auxiliary
++ * interface
++ * @xe: valid xe instance
++ */
++void xe_vsec_init(struct xe_device *xe)
++{
++	struct intel_vsec_platform_info *info;
++	struct device *dev = xe->drm.dev;
++	struct pci_dev *pdev = to_pci_dev(dev);
++	enum xe_vsec platform;
++
++	platform = get_platform_info(xe);
++	if (platform == XE_VSEC_UNKNOWN)
++		return;
++
++	info = &xe_vsec_info[platform];
++	if (!info->headers)
++		return;
++
++	switch (platform) {
++	case XE_VSEC_BMG:
++		info->priv_data = &xe_pmt_cb;
++		break;
++	default:
++		break;
++	}
++
++	/*
++	 * Register a VSEC. Cleanup is handled using device managed
++	 * resources.
++	 */
++	intel_vsec_register(pdev, info);
++}
++MODULE_IMPORT_NS(INTEL_VSEC);
+diff --git a/drivers/gpu/drm/xe/xe_vsec.h b/drivers/gpu/drm/xe/xe_vsec.h
+new file mode 100644
+index 000000000000..3fd29a21cad6
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_vsec.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright © 2022 - 2024 Intel Corporation
++ */
++
++#ifndef _XE_VSEC_H_
++#define _XE_VSEC_H_
++
++struct xe_device;
++
++void xe_vsec_init(struct xe_device *xe);
++
 +#endif
- #endif
 -- 
 2.44.0
 
