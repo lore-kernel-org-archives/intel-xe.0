@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44081C27C4F
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 18:33:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3BB3C27C4F
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 18:39:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB55F10E0A2;
-	Wed, 26 Jun 2024 18:33:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bGRvj7mX";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6C0E10E0A2;
- Wed, 26 Jun 2024 18:33:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719426830; x=1750962830;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=BQF14uez0/AFqQ40yfO7lJFSMkWbuQKk2NLanjLP/Bc=;
- b=bGRvj7mXISfauIrRZPi4LxD36N1pBweQ/a/VxHs9Pv/dTZg0vCPTVGUQ
- XHQE8BQHa2Gplrjydjj8AntglE7Ka4WzEDTyiHT/oL32u1Sq8T5hnU8Xd
- bt3BAb7mQVoParo+5pDLk0uH7Jz5qPtknjIG9AqsNmg/QQP3Q9OkdBYW+
- fSiymhAvI6eh6lVX8Hnom71dkIkt77Z+CZUr+b9DnityTaFaOstXCFBKG
- 86ptQog9JjYlQ0uMZumOTw+yz1luy3YauWqE+1c7bJBkg8GGu2eMdrqTX
- v3V0GpxGWUbUP5uRntQ1yP0U2k3amkNxJhRHCmJTwV+lAzn2ZoJ11wOxv w==;
-X-CSE-ConnectionGUID: Pj0+snA5R1WkmRJoN70OpA==
-X-CSE-MsgGUID: +CipG/MhTCmEGvaNI7Ryug==
-X-IronPort-AV: E=McAfee;i="6700,10204,11115"; a="19408948"
-X-IronPort-AV: E=Sophos;i="6.08,267,1712646000"; d="scan'208";a="19408948"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2024 11:33:49 -0700
-X-CSE-ConnectionGUID: coLeZJpUQHq38kv/jx6RDA==
-X-CSE-MsgGUID: 0JLlUAqpSo2zyyReVk40zA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,267,1712646000"; d="scan'208";a="67312034"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2024 11:33:47 -0700
-Date: Wed, 26 Jun 2024 21:33:58 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915: Skip programming FIA link enable bits for MTL+
-Message-ID: <ZnxfFpm7t8xEhF/c@ideak-desk.fi.intel.com>
-References: <20240625202652.315936-1-gustavo.sousa@intel.com>
- <ZnxAuOVN+ioKxtIR@ideak-desk.fi.intel.com>
- <171942310960.2026.11307370502317050527@gjsousa-mobl2>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 742B510E9A1;
+	Wed, 26 Jun 2024 18:39:28 +0000 (UTC)
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AD6E10E9A1;
+ Wed, 26 Jun 2024 18:39:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <171942310960.2026.11307370502317050527@gjsousa-mobl2>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/oa=3A_Add_NO=5FPREEMPT_?=
+ =?utf-8?q?property_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 26 Jun 2024 18:39:27 -0000
+Message-ID: <171942716730.162140.17279339188117528029@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240626181817.1516229-1-ashutosh.dixit@intel.com>
+In-Reply-To: <20240626181817.1516229-1-ashutosh.dixit@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,70 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 26, 2024 at 02:31:49PM -0300, Gustavo Sousa wrote:
-> Quoting Imre Deak (2024-06-26 13:24:24-03:00)
-> >On Tue, Jun 25, 2024 at 05:26:52PM -0300, Gustavo Sousa wrote:
-> >> Starting with Xe_LPDP, support for Type-C connections is provided by
-> >> PICA and programming PORT_TX_DFLEXDPMLE1(*) registers is not applicable
-> >> anymore. Those registers don't even exist in recent display IPs. As
-> >> such, skip programming them.
-> >> 
-> >> Bspec: 65750, 65448
-> >> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> >
-> >MTL still has a FIA mux and the DP-alt pin configuration is read out
-> 
-> Yep. Maybe I could rephrase the commit message like below?
-> 
->   Starting with Xe_LPDP, although FIA is still used to readout Type-C
->   pin assignment, part of Type-C support is moved to PICA and
->   programming PORT_TX_DFLEXDPMLE1(*) registers is not applicable
->   anymore.
+== Series Details ==
 
-Ok, maybe worth mentioning how things changed.
+Series: drm/xe/oa: Add NO_PREEMPT property (rev6)
+URL   : https://patchwork.freedesktop.org/series/135382/
+State : success
 
-> >from that, but programming DPMLE1 accordingly doesn't seem to be
-> >required indeed (the register still exists but programming it doesn't
-> >make a difference based on my test):
-> 
-> Well, yes, one of the base offsets (0x16f8c0) does exist on MTL, but it
-> maps to a completely different register (according to the register
-> database).
+== Summary ==
 
-0x16f8c0 is in the third FIA instance, which afaics wouldn't be used on
-MTL/ARL with the max 4 TC ports on those. I still assume that the
-registers in the first two FIA instances exist the same way on MTL as on
-earlier platforms, just the DPMLE1 value is not used there.
+lib/modules/6.10.0-rc5-xe/kernel/sound/core/seq/
+lib/modules/6.10.0-rc5-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/core/snd.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soundcore.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/common/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/amd/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/codecs/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/hda/
+lib/modules/6.10.0-rc5-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/hda/ext/
+lib/modules/6.10.0-rc5-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/kernel/
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/events/
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/events/intel/
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/kvm/
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/
+lib/modules/6.10.0-rc5-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/cmac.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/ccm.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/cryptd.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/async_tx/
+lib/modules/6.10.0-rc5-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.10.0-rc5-xe/build
+lib/modules/6.10.0-rc5-xe/modules.alias.bin
+lib/modules/6.10.0-rc5-xe/modules.builtin
+lib/modules/6.10.0-rc5-xe/modules.softdep
+lib/modules/6.10.0-rc5-xe/modules.alias
+lib/modules/6.10.0-rc5-xe/modules.order
+lib/modules/6.10.0-rc5-xe/modules.symbols
+lib/modules/6.10.0-rc5-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1719427155:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1719427155:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-> >Reviewed-by: Imre Deak <imre.deak@intel.com>
-> 
-> Thanks!
-> 
-> Gustavo Sousa
-> 
-> >
-> >> ---
-> >>  drivers/gpu/drm/i915/display/intel_tc.c | 3 +++
-> >>  1 file changed, 3 insertions(+)
-> >> 
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-> >> index 9887967b2ca5..6f2ee7dbc43b 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_tc.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-> >> @@ -393,6 +393,9 @@ void intel_tc_port_set_fia_lane_count(struct intel_digital_port *dig_port,
-> >>          bool lane_reversal = dig_port->saved_port_bits & DDI_BUF_PORT_REVERSAL;
-> >>          u32 val;
-> >>  
-> >> +        if (DISPLAY_VER(i915) >= 14)
-> >> +                return;
-> >> +
-> >>          drm_WARN_ON(&i915->drm,
-> >>                      lane_reversal && tc->mode != TC_PORT_LEGACY);
-> >>  
-> >> -- 
-> >> 2.45.2
-> >>
+
