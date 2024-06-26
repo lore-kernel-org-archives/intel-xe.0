@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13661C3065B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA985C3065A
 	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 00:38:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99F7010E300;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E35210E2FE;
 	Wed, 26 Jun 2024 00:38:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yvxl1BA7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kiyDLr4D";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 212B810E2DF
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Jun 2024 00:38:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED71410E2FE
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Jun 2024 00:38:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1719362325; x=1750898325;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=RcRXYzC/nDuikuweal5gF77tzPRFZwLVKsAucpB42sI=;
- b=Yvxl1BA7HqhCN2eDBY6N50aq3AMcwexCqdeFOpmX8c9yAGcDlZdY4RnX
- I9qqVyCt7XnYKC1YE45g5x440Oxp3xgXfPvNBjeAjymeupivWIahdDi75
- 2V9yp4+JIOU52uFOZdLzhHqkVrOLkHWcLJVR7CYu6z6fFhf2vadfkTum8
- drtPfSn5IJxQ/QgwXbm1JFu1bp9fjV3t+VJdeP/CSE0o+p5mx8cxWP73Z
- Lb1v0wE1CzivtwgXaHV6fy9N3qEoqTlKrtOdjmrfOtHEI98ZwhI1GqAUi
- gq1N7r+CnWoWbTZ39Y9FoJqJfY3rPWhmSGgUYdJK+0fBUdoou9l2fT+hJ A==;
-X-CSE-ConnectionGUID: gRV55rKBQKSvjyrfFaHdxg==
-X-CSE-MsgGUID: O1wAiR+KSZuL8QelMLUHRw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11114"; a="16238394"
-X-IronPort-AV: E=Sophos;i="6.08,265,1712646000"; d="scan'208";a="16238394"
+ bh=9bZQkGr72RSyhR94zCAaOSfYug2jds1xzXuFp6GVJ08=;
+ b=kiyDLr4D6pa16x3p4pdplWR0dK8N005D9TVHMDrgCX7jnEHwIKX3Tdgb
+ 4nbJfjHuxzAfCFzo0LwCx2SOofG2qfrzjNbPxPlGbotY3/wPrIV9Y42AE
+ 783U2qVYI3h+kM59cnTPtTKeh+I1lHS6F7R9iB1Yv+uX2cFkp0RX5rRME
+ 6XX8Cz7bVJQ2BbpSxrCAPstmKDk+LCvOG9WxkTrxl1k2kNXIkUv/E9gUG
+ JlpYu2oqQziuA+EphFEi0p1PZn1TT14LbXaUeR2Rk/Z806tXq0aGk+HJG
+ /RviGJdw3WKQ2qVHAu9YHnGeC5mUxh7GnNqk4zjL8KT4wXJGpNjVvt3ce w==;
+X-CSE-ConnectionGUID: H5n1JAqrSAuFDcv2Mtn8Gg==
+X-CSE-MsgGUID: dtmRGuLNRmqFRfILDhys7Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11114"; a="16238392"
+X-IronPort-AV: E=Sophos;i="6.08,265,1712646000"; d="scan'208";a="16238392"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Jun 2024 17:38:44 -0700
-X-CSE-ConnectionGUID: dz2bxuQJS1WmkhfES7R57g==
-X-CSE-MsgGUID: fw8LdnvNR3a0vEGYyrP01A==
+X-CSE-ConnectionGUID: GCl7QuvjSreVZgWJF8u6Pw==
+X-CSE-MsgGUID: HpyfuygzRpOl4OrYNSQRLg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,265,1712646000"; d="scan'208";a="43629603"
+X-IronPort-AV: E=Sophos;i="6.08,265,1712646000"; d="scan'208";a="43629601"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Jun 2024 17:38:43 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v5 7/7] drm/xe: Add VM bind IOCTL error injection
-Date: Tue, 25 Jun 2024 17:39:20 -0700
-Message-Id: <20240626003920.4060633-8-matthew.brost@intel.com>
+Subject: [PATCH v5 5/7] drm/xe: Update VM trace events
+Date: Tue, 25 Jun 2024 17:39:18 -0700
+Message-Id: <20240626003920.4060633-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240626003920.4060633-1-matthew.brost@intel.com>
 References: <20240626003920.4060633-1-matthew.brost@intel.com>
@@ -65,167 +65,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add VM bind IOCTL error injection which steals MSB of the bind flags
-field which if set injects errors at various points in the VM bind
-IOCTL. Intended to validate error paths. Enabled by CONFIG_DRM_XE_DEBUG.
-
-v4:
- - Change define layout (Jonathan)
+The trace events have changed moving to a single job per VM bind IOCTL,
+update the trace events align with old behavior as much as possible.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h | 12 ++++++++++++
- drivers/gpu/drm/xe/xe_pt.c           | 12 ++++++++++++
- drivers/gpu/drm/xe/xe_vm.c           | 24 +++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_vm_types.h     | 14 ++++++++++++++
- 4 files changed, 61 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_trace_bo.h | 10 ++++----
+ drivers/gpu/drm/xe/xe_vm.c       | 42 ++++++++++++++++++++++++++++++--
+ 2 files changed, 45 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index c37be471d11c..57cbb6889228 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -23,6 +23,10 @@
- #include "xe_sriov_types.h"
- #include "xe_step_types.h"
+diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
+index f39f09ed3495..9b1a1d4304ae 100644
+--- a/drivers/gpu/drm/xe/xe_trace_bo.h
++++ b/drivers/gpu/drm/xe/xe_trace_bo.h
+@@ -117,11 +117,6 @@ DEFINE_EVENT(xe_vma, xe_vma_acc,
+ 	     TP_ARGS(vma)
+ );
  
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-+#define TEST_VM_OPS_ERROR
-+#endif
+-DEFINE_EVENT(xe_vma, xe_vma_fail,
+-	     TP_PROTO(struct xe_vma *vma),
+-	     TP_ARGS(vma)
+-);
+-
+ DEFINE_EVENT(xe_vma, xe_vma_bind,
+ 	     TP_PROTO(struct xe_vma *vma),
+ 	     TP_ARGS(vma)
+@@ -237,6 +232,11 @@ DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_exit,
+ 	     TP_ARGS(vm)
+ );
+ 
++DEFINE_EVENT(xe_vm, xe_vm_ops_fail,
++	     TP_PROTO(struct xe_vm *vm),
++	     TP_ARGS(vm)
++);
 +
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
- #include "soc/intel_pch.h"
- #include "intel_display_core.h"
-@@ -477,6 +481,14 @@ struct xe_device {
- 		int mode;
- 	} wedged;
+ #endif
  
-+#ifdef TEST_VM_OPS_ERROR
-+	/**
-+	 * @vm_inject_error_position: inject errors at different places in VM
-+	 * bind IOCTL based on this value
-+	 */
-+	u8 vm_inject_error_position;
-+#endif
-+
- 	/* private: */
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index a43b558b30f4..7692b8c95151 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -1861,6 +1861,12 @@ int xe_pt_update_ops_prepare(struct xe_tile *tile, struct xe_vma_ops *vops)
- 	xe_tile_assert(tile, pt_update_ops->current_op <=
- 		       pt_update_ops->num_ops);
- 
-+#ifdef TEST_VM_OPS_ERROR
-+	if (vops->inject_error &&
-+	    vops->vm->xe->vm_inject_error_position == FORCE_OP_ERROR_PREPARE)
-+		return -ENOSPC;
-+#endif
-+
- 	return 0;
- }
- 
-@@ -2001,6 +2007,12 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
- 		return dma_fence_get_stub();
- 	}
- 
-+#ifdef TEST_VM_OPS_ERROR
-+	if (vops->inject_error &&
-+	    vm->xe->vm_inject_error_position == FORCE_OP_ERROR_RUN)
-+		return ERR_PTR(-ENOSPC);
-+#endif
-+
- 	if (pt_update_ops->needs_invalidation) {
- 		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
- 		if (!ifence) {
+ /* This part must be outside protection */
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 68f8f975e36e..773f21328f72 100644
+index 36422bc951b6..68f8f975e36e 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2468,6 +2468,12 @@ static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
- 			return err;
- 	}
- 
-+#ifdef TEST_VM_OPS_ERROR
-+	if (vops->inject_error &&
-+	    vm->xe->vm_inject_error_position == FORCE_OP_ERROR_LOCK)
-+		return -ENOSPC;
-+#endif
-+
+@@ -2471,6 +2471,38 @@ static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
  	return 0;
  }
  
-@@ -2704,11 +2710,18 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
- 	return err;
- }
- 
--#define SUPPORTED_FLAGS	\
-+#define SUPPORTED_FLAGS_STUB  \
- 	(DRM_XE_VM_BIND_FLAG_READONLY | \
- 	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | \
- 	 DRM_XE_VM_BIND_FLAG_NULL | \
- 	 DRM_XE_VM_BIND_FLAG_DUMPABLE)
++static void op_trace(struct xe_vma_op *op)
++{
++	switch (op->base.op) {
++	case DRM_GPUVA_OP_MAP:
++		trace_xe_vma_bind(op->map.vma);
++		break;
++	case DRM_GPUVA_OP_REMAP:
++		trace_xe_vma_unbind(gpuva_to_vma(op->base.remap.unmap->va));
++		if (op->remap.prev)
++			trace_xe_vma_bind(op->remap.prev);
++		if (op->remap.next)
++			trace_xe_vma_bind(op->remap.next);
++		break;
++	case DRM_GPUVA_OP_UNMAP:
++		trace_xe_vma_unbind(gpuva_to_vma(op->base.unmap.va));
++		break;
++	case DRM_GPUVA_OP_PREFETCH:
++		trace_xe_vma_bind(gpuva_to_vma(op->base.prefetch.va));
++		break;
++	default:
++		XE_WARN_ON("NOT POSSIBLE");
++	}
++}
 +
-+#ifdef TEST_VM_OPS_ERROR
-+#define SUPPORTED_FLAGS	(SUPPORTED_FLAGS_STUB | FORCE_OP_ERROR)
-+#else
-+#define SUPPORTED_FLAGS	SUPPORTED_FLAGS_STUB
-+#endif
++static void trace_xe_vm_ops_execute(struct xe_vma_ops *vops)
++{
++	struct xe_vma_op *op;
 +
- #define XE_64K_PAGE_MASK 0xffffull
- #define ALL_DRM_XE_SYNCS_FLAGS (DRM_XE_SYNCS_FLAG_WAIT_FOR_OP)
- 
-@@ -3056,6 +3069,15 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		err = vm_bind_ioctl_ops_parse(vm, ops[i], &vops);
- 		if (err)
- 			goto unwind_ops;
++	list_for_each_entry(op, &vops->list, link)
++		op_trace(op);
++}
 +
-+#ifdef TEST_VM_OPS_ERROR
-+		if (flags & FORCE_OP_ERROR) {
-+			vops.inject_error = true;
-+			vm->xe->vm_inject_error_position =
-+				(vm->xe->vm_inject_error_position + 1) %
-+				FORCE_OP_ERROR_COUNT;
+ static int vm_ops_setup_tile_args(struct xe_vm *vm, struct xe_vma_ops *vops)
+ {
+ 	struct xe_exec_queue *q = vops->q;
+@@ -2514,8 +2546,10 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
+ 	if (number_tiles > 1) {
+ 		fences = kmalloc_array(number_tiles, sizeof(*fences),
+ 				       GFP_KERNEL);
+-		if (!fences)
+-			return ERR_PTR(-ENOMEM);
++		if (!fences) {
++			fence = ERR_PTR(-ENOMEM);
++			goto err_trace;
 +		}
-+#endif
  	}
  
- 	/* Nothing to do */
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 27d651093d30..7f9a303e51d8 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -23,6 +23,16 @@ struct xe_user_fence;
- struct xe_vm;
- struct xe_vm_pgtable_update_op;
+ 	for_each_tile(tile, vm->xe, id) {
+@@ -2529,6 +2563,8 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
+ 		}
+ 	}
  
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-+#define TEST_VM_OPS_ERROR
-+#define FORCE_OP_ERROR	BIT(31)
++	trace_xe_vm_ops_execute(vops);
 +
-+#define FORCE_OP_ERROR_LOCK	0
-+#define FORCE_OP_ERROR_PREPARE	1
-+#define FORCE_OP_ERROR_RUN	2
-+#define FORCE_OP_ERROR_COUNT	3
-+#endif
-+
- #define XE_VMA_READ_ONLY	DRM_GPUVA_USERBITS
- #define XE_VMA_DESTROYED	(DRM_GPUVA_USERBITS << 1)
- #define XE_VMA_ATOMIC_PTE_BIT	(DRM_GPUVA_USERBITS << 2)
-@@ -359,6 +369,10 @@ struct xe_vma_ops {
- 	u32 num_syncs;
- 	/** @pt_update_ops: page table update operations */
- 	struct xe_vm_pgtable_update_ops pt_update_ops[XE_MAX_TILES_PER_DEVICE];
-+#ifdef TEST_VM_OPS_ERROR
-+	/** @inject_error: inject error to test error handling */
-+	bool inject_error;
-+#endif
- };
+ 	for_each_tile(tile, vm->xe, id) {
+ 		if (!vops->pt_update_ops[id].num_ops)
+ 			continue;
+@@ -2575,6 +2611,8 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
+ 	kfree(fences);
+ 	kfree(cf);
  
- #endif
++err_trace:
++	trace_xe_vm_ops_fail(vm);
+ 	return fence;
+ }
+ 
 -- 
 2.34.1
 
