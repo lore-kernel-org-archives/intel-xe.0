@@ -4,42 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E39D1C30653
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 10:34:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E74EBC27C4F
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 10:34:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 888A210E09B;
-	Wed, 26 Jun 2024 10:34:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9FE310E833;
+	Wed, 26 Jun 2024 10:34:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="cNL67GcO";
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="newJODU7";
 	dkim-atps=neutral
 Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 000BA10E09B
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Jun 2024 10:34:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E70510E270
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Jun 2024 10:34:12 +0000 (UTC)
 Received: internal info suppressed
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1719398048; bh=RtaJIM2nsM48kjMuN1AAP+5qSzzoKI/g5/FpLRkErPI=;
- h=From:To:Cc:Subject:Date:From;
- b=cNL67GcOdF4PmUPPA3dsR+YpI811yRDVfZvc81Ae1Poyj6UnzZyRNYN3ivaTdK/hr
- rwr0c6biwIODWcq7/ftXBUBBDmqt1a7KMdZK4/edo/xb1AqHwN0N9taQ/Xpz0QgIp2
- 6fs2npahI0U0rp26KprjnAaPxIg8RH1NX3GVOIXdChzKLGmW7tOgaCX/MVHnbPVvDS
- su0Ccz19HCeupObR1Utj+Pa4DeFNgscmuCVxCuLuf4v41kV34wqrD6XmXWLF/Ftyhv
- K4BFvFEtXRAb8bGJFwHCTUm1xmJmPxwnOCHxpy6ApdVKdGKy4ufGXDosKLrUwVg97W
- 6x1GgyPsb4osQ==
+ t=1719398055; bh=ffT3Bz5JUdsmvxA5/timJ+hOGtaKYrgi2WXFub9kzv4=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=newJODU7k3fC6It/RnTEYFc13BFuYgGZszpona7uDWBzuLXReU2OQAt9JDrszQiKE
+ 4tloMEVjP4a0yYcy9c6/+GH3R/QSUCjLIN4TX4Je0rpGad64d3vQh65jSabPHUWK7Z
+ l1pg7CCcBnuuAmJKNm6gpNJqLec0aOEQtG4UBDqqlRTMtDT8KHcUd7ZciPADDjK7zp
+ Hw9qjB/wsYJtxB6PVyX29FhKGlPsHTl0xjqTZnrOeBm2IUtXS1eEx++Rfz5VtY1/yj
+ 9zmRrk//KGItdVXNN9jsj9W4C6HPMq5ti/6FonlcSlTCSTd2UPdqPnq4oOTYKNTCqc
+ vIiq7Ki8iSeIA==
 Received: from dliberman-vm-u22.habana-labs.com (localhost [127.0.0.1])
  by dliberman-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
- ESMTPS id 45QAXuC02801767
+ ESMTPS id 45QAY3Oc2801782
  (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
- Wed, 26 Jun 2024 13:33:56 +0300
+ Wed, 26 Jun 2024 13:34:03 +0300
 Received: (from dliberman@localhost)
- by dliberman-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 45QAXuMp2801765; 
- Wed, 26 Jun 2024 13:33:56 +0300
+ by dliberman-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 45QAY3dw2801781; 
+ Wed, 26 Jun 2024 13:34:03 +0300
 From: Dani Liberman <dliberman@habana.ai>
 To: intel-xe@lists.freedesktop.org
 Cc: dliberman@habana.ai, illevi@habana.ai
-Subject: [PATCH 0/8] Add MSIX functionality to XE
-Date: Wed, 26 Jun 2024 13:33:37 +0300
-Message-Id: <20240626103345.2801735-1-dliberman@habana.ai>
+Subject: [PATCH 1/8] drm/xe/irq: refactor irq flows to support also msix
+Date: Wed, 26 Jun 2024 13:33:38 +0300
+Message-Id: <20240626103345.2801735-2-dliberman@habana.ai>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240626103345.2801735-1-dliberman@habana.ai>
+References: <20240626103345.2801735-1-dliberman@habana.ai>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -56,50 +58,193 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch set enables MSIX workflow. The main changes are:
+When enabling MSIX, there is no need for HW to aggregate interrupts.
+Added a separate MSIX flow that skips unnecessary code in irq init,
+reset, and fini.
 
-1. The code supports both msi and msix, some refactoring had
-   to be done.
-2. Since multiple interrupts are now available there is no need for
-   interrupt aggregation in HW, hence there are new interrupt
-   handlers.
-3. MSIX interrupts are system resources so an interrupt allocator was
-   implemented.
-4. Adding MSIX infra to exec queues.
-5. MSIX in GT also uses memirq, some refactoring had to be done to
-   enable it.
+Signed-off-by: Dani Liberman <dliberman@habana.ai>
+---
+ drivers/gpu/drm/xe/xe_device_types.h |  2 +
+ drivers/gpu/drm/xe/xe_irq.c          | 99 +++++++++++++++++++++-------
+ 2 files changed, 77 insertions(+), 24 deletions(-)
 
-Dani Liberman (3):
-  drm/xe/irq: refactor irq flows to support also msix
-  drm/xe/irq: add msix allocator
-  drm/xe/exec: adding msix infra to exec queue
-
-Ilia Levi (5):
-  drm/xe/irq: add hw engine irq handler
-  drm/xe: move the kernel lrc from hwe to execlist port
-  drm/xe: move memirq out of vf
-  drm/xe: msix support preparations - enable memirq
-  drm/xe: msix support for hw engines
-
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |   3 +
- drivers/gpu/drm/xe/regs/xe_lrc_layout.h  |   3 +
- drivers/gpu/drm/xe/xe_device.c           |   8 +-
- drivers/gpu/drm/xe/xe_device.h           |  12 +
- drivers/gpu/drm/xe/xe_device_types.h     |  12 +-
- drivers/gpu/drm/xe/xe_exec_queue.c       |  41 +++-
- drivers/gpu/drm/xe/xe_exec_queue_types.h |   2 +
- drivers/gpu/drm/xe/xe_execlist.c         |  21 +-
- drivers/gpu/drm/xe/xe_execlist_types.h   |   3 +
- drivers/gpu/drm/xe/xe_guc.c              |   2 +-
- drivers/gpu/drm/xe/xe_hw_engine.c        |  22 +-
- drivers/gpu/drm/xe/xe_hw_engine_types.h  |   2 -
- drivers/gpu/drm/xe/xe_irq.c              | 290 +++++++++++++++++++----
- drivers/gpu/drm/xe/xe_irq.h              |   7 +
- drivers/gpu/drm/xe/xe_lrc.c              |  23 +-
- drivers/gpu/drm/xe/xe_lrc.h              |   2 +-
- drivers/gpu/drm/xe/xe_memirq.c           |  46 ++--
- 17 files changed, 391 insertions(+), 108 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index c37be471d11c..09ce7ba1b4ed 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -306,6 +306,8 @@ struct xe_device {
+ 
+ 		/** @irq.enabled: interrupts enabled on this device */
+ 		bool enabled;
++		/** @irq.msix_enabled: msix interrupts enabled on this device */
++		bool msix_enabled;
+ 	} irq;
+ 
+ 	/** @ttm: ttm device */
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index ab3d5b7a1e8c..663a86edecc0 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -666,28 +666,46 @@ static irq_handler_t xe_irq_handler(struct xe_device *xe)
+ 		return xelp_irq_handler;
+ }
+ 
+-static void irq_uninstall(void *arg)
++static void xe_irq_msi_free(struct xe_device *xe)
+ {
+-	struct xe_device *xe = arg;
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+ 	int irq;
+ 
++	irq = pci_irq_vector(pdev, 0);
++	free_irq(irq, xe);
++}
++
++static void xe_irq_msix_free(struct xe_device *xe)
++{
++
++}
++
++static void xe_irq_free(struct xe_device *xe)
++{
++	if (xe->irq.msix_enabled)
++		xe_irq_msix_free(xe);
++	else
++		xe_irq_msi_free(xe);
++}
++
++static void irq_uninstall(void *arg)
++{
++	struct xe_device *xe = arg;
++
+ 	if (!xe->irq.enabled)
+ 		return;
+ 
+ 	xe->irq.enabled = false;
+ 	xe_irq_reset(xe);
+ 
+-	irq = pci_irq_vector(pdev, 0);
+-	free_irq(irq, xe);
++	xe_irq_free(xe);
+ }
+ 
+-int xe_irq_install(struct xe_device *xe)
++static int xe_irq_msi_request(struct xe_device *xe)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+-	unsigned int irq_flags = PCI_IRQ_MSIX;
+ 	irq_handler_t irq_handler;
+-	int err, irq, nvec;
++	int irq, err;
+ 
+ 	irq_handler = xe_irq_handler(xe);
+ 	if (!irq_handler) {
+@@ -695,32 +713,55 @@ int xe_irq_install(struct xe_device *xe)
+ 		return -EINVAL;
+ 	}
+ 
+-	xe_irq_reset(xe);
++	irq = pci_irq_vector(pdev, 0);
++	err = request_irq(irq, irq_handler, IRQF_SHARED, DRIVER_NAME, xe);
++	if (err < 0) {
++		drm_err(&xe->drm, "Failed to request MSI IRQ %d\n", err);
++		return err;
++	}
++
++	return 0;
++}
++
++static int xe_irq_msix_request(struct xe_device *xe)
++{
++	return 0;
++}
++
++int xe_irq_install(struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++	unsigned int irq_flags = PCI_IRQ_MSIX;
++
++	int err, nvec;
+ 
+ 	nvec = pci_msix_vec_count(pdev);
+-	if (nvec <= 0) {
+-		if (nvec == -EINVAL) {
+-			/* MSIX capability is not supported in the device, using MSI */
+-			irq_flags = PCI_IRQ_MSI;
+-			nvec = 1;
+-		} else {
+-			drm_err(&xe->drm, "MSIX: Failed getting count\n");
+-			return nvec;
+-		}
++	if (nvec > 0) {
++		xe->irq.msix_enabled = true;
++	} else if (nvec == -EINVAL) {
++		/* MSIX capability is not supported in the device, using MSI */
++		irq_flags = PCI_IRQ_MSI;
++		nvec = 1;
++	} else {
++		drm_err(&xe->drm, "MSIX: Failed getting count\n");
++		return nvec;
+ 	}
+ 
++	xe_irq_reset(xe);
++
+ 	err = pci_alloc_irq_vectors(pdev, nvec, nvec, irq_flags);
+ 	if (err < 0) {
+ 		drm_err(&xe->drm, "MSI/MSIX: Failed to enable support %d\n", err);
+ 		return err;
+ 	}
+ 
+-	irq = pci_irq_vector(pdev, 0);
+-	err = request_irq(irq, irq_handler, IRQF_SHARED, DRIVER_NAME, xe);
+-	if (err < 0) {
+-		drm_err(&xe->drm, "Failed to request MSI/MSIX IRQ %d\n", err);
++	if (xe->irq.msix_enabled)
++		err = xe_irq_msix_request(xe);
++	else
++		err = xe_irq_msi_request(xe);
++
++	if (err)
+ 		return err;
+-	}
+ 
+ 	xe->irq.enabled = true;
+ 
+@@ -733,7 +774,7 @@ int xe_irq_install(struct xe_device *xe)
+ 	return 0;
+ 
+ free_irq_handler:
+-	free_irq(irq, xe);
++	xe_irq_free(xe);
+ 
+ 	return err;
+ }
+@@ -743,6 +784,11 @@ void xe_irq_shutdown(struct xe_device *xe)
+ 	irq_uninstall(xe);
+ }
+ 
++static void xe_irq_msix_synchronize_irq(struct xe_device *xe)
++{
++
++}
++
+ void xe_irq_suspend(struct xe_device *xe)
+ {
+ 	int irq = to_pci_dev(xe->drm.dev)->irq;
+@@ -751,7 +797,12 @@ void xe_irq_suspend(struct xe_device *xe)
+ 	xe->irq.enabled = false; /* no new irqs */
+ 	spin_unlock_irq(&xe->irq.lock);
+ 
+-	synchronize_irq(irq); /* flush irqs */
++	/* flush irqs */
++	if (xe->irq.msix_enabled)
++		xe_irq_msix_synchronize_irq(xe);
++	else
++		synchronize_irq(irq);
++
+ 	xe_irq_reset(xe); /* turn irqs off */
+ }
+ 
 -- 
 2.34.1
 
