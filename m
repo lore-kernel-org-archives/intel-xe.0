@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51623C30653
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A003C3065A
 	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 10:34:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97E3C10E270;
-	Wed, 26 Jun 2024 10:34:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 125EE10E83E;
+	Wed, 26 Jun 2024 10:34:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="hXLrisaq";
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="dqEIEnSQ";
 	dkim-atps=neutral
-Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B62910E270
+Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB66A10E838
  for <intel-xe@lists.freedesktop.org>; Wed, 26 Jun 2024 10:34:15 +0000 (UTC)
 Received: internal info suppressed
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1719398058; bh=4PSTy7jgYv6zR0clAUuvGdsr97rU6lUy08kup0t64hw=;
+ t=1719398063; bh=G4mGAsopihx3UrOmMPwpNBMIPrD3QUYaIw4MroIkXjw=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=hXLrisaq+Eu/ucif0/ZF+lXoEf6FU4qMX2PF1+SDTy6T7epXNocQwCFxHjKA6JERT
- r6G7C/ecakerlR/IiXB4o1tEYUmySoEGuQScOoZ2iwVPCApYawWhwdxm9Fo/or4lKV
- JRcnO7h/r2g587EzBd/naTEaX9LpaBUirkZfHN0nPNtMEuZNuCXMHChr/07pVM5KR/
- yaxJXRL58KzAX492SyML877hMG2LwKPsTzW/tcpwlMG5Y/9DHbOMltETzZXmUh1+gm
- 3rWAjzkzIrgx7C13efoUn2wUREictR2VvW7Huv6X7DpShDoYWgXocWkGlkozNjoMdf
- BG/8gGcC4LYEA==
+ b=dqEIEnSQnVJJ8Inal19SUHYTkqSFH7qJxwRhC8TWgFp0wubyObBbuFRNhsT5khZ43
+ jXMxMS29zMukxWEvVkTegEaLFKck9ELyH5juN4IFSfxtoR+PX9JQzT3+xWFbmaeM7Z
+ 0UNGhHhQTOXhYHIIxd5BMF3fLLxR+yfv8F8+bG2K7ocHezW6FhSzloUyeRX8p8rBuF
+ jWahrNMXohAIe9tn8fW20fDhttTwI34uf7LZ0xDINCDw3b2qNHIjIPuVv8cRp5fVI1
+ i5fdSqDEdtZfg10mFbO5rnZqAz0466jjXoouWtUCbtfAMVk2wVtUhcT45M6bt75fGO
+ Ok4uMIkn882NA==
 Received: from dliberman-vm-u22.habana-labs.com (localhost [127.0.0.1])
  by dliberman-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
- ESMTPS id 45QAY65k2801797
+ ESMTPS id 45QAY5iI2801792
  (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
- Wed, 26 Jun 2024 13:34:06 +0300
+ Wed, 26 Jun 2024 13:34:05 +0300
 Received: (from dliberman@localhost)
- by dliberman-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 45QAY6oS2801796; 
- Wed, 26 Jun 2024 13:34:06 +0300
+ by dliberman-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 45QAY5LZ2801791; 
+ Wed, 26 Jun 2024 13:34:05 +0300
 From: Dani Liberman <dliberman@habana.ai>
 To: intel-xe@lists.freedesktop.org
 Cc: dliberman@habana.ai, illevi@habana.ai
-Subject: [PATCH 4/8] drm/xe/exec: adding msix infra to exec queue
-Date: Wed, 26 Jun 2024 13:33:41 +0300
-Message-Id: <20240626103345.2801735-5-dliberman@habana.ai>
+Subject: [PATCH 3/8] drm/xe/irq: add hw engine irq handler
+Date: Wed, 26 Jun 2024 13:33:40 +0300
+Message-Id: <20240626103345.2801735-4-dliberman@habana.ai>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240626103345.2801735-1-dliberman@habana.ai>
 References: <20240626103345.2801735-1-dliberman@habana.ai>
@@ -58,118 +58,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On MSIX platform each exec queue will allocate MSIX.
+From: Ilia Levi <illevi@habana.ai>
 
-Signed-off-by: Dani Liberman <dliberman@habana.ai>
+Introduce a simplified MSIX IRQ handler for HW engines.
+
+Rather than having a single handler for all kinds of interrupts, we
+will allocate different MSIX IRQs which will map directly to the HW
+engine that generated the interrupt.
+
+This patch provides only the handler itself - its usage will be introduced
+later.
+
+Signed-off-by: Ilia Levi <illevi@habana.ai>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c       | 39 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 ++
- drivers/gpu/drm/xe/xe_irq.c              | 11 +++++--
- 3 files changed, 49 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_irq.c | 18 +++++++++++++++++-
+ drivers/gpu/drm/xe/xe_irq.h |  1 +
+ 2 files changed, 18 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 0ba37835849b..e40c5380e292 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -22,6 +22,7 @@
- #include "xe_ring_ops_types.h"
- #include "xe_trace.h"
- #include "xe_vm.h"
-+#include "xe_irq.h"
- 
- enum xe_exec_queue_sched_prop {
- 	XE_EXEC_QUEUE_JOB_TIMEOUT = 0,
-@@ -33,8 +34,40 @@ enum xe_exec_queue_sched_prop {
- static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue *q,
- 				      u64 extensions, int ext_number);
- 
-+static int xe_exec_queue_msix_init(struct xe_device *xe, struct xe_exec_queue *q)
-+{
-+	u32 msix;
-+	int ret = 0;
-+
-+	if (!xe->irq.msix_enabled)
-+		return 0;
-+
-+	ret = xe_request_irq(xe, xe_irq_hwe_handler, q->hwe, q->hwe->name, true, &msix);
-+	if (ret < 0) {
-+		drm_dbg(&xe->drm, "Can't allocate unique MSIX to exec queue (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	q->msix_number = msix;
-+
-+	return 0;
-+}
-+
-+static void xe_exec_queue_msix_fini(struct xe_exec_queue *q)
-+{
-+	struct xe_device *xe = gt_to_xe(q->gt);
-+
-+	if (!xe->irq.msix_enabled)
-+		return;
-+
-+	if (q->msix_number)
-+		xe_free_irq(xe, q->msix_number);
-+}
-+
- static void __xe_exec_queue_free(struct xe_exec_queue *q)
- {
-+	xe_exec_queue_msix_fini(q);
-+
- 	if (q->vm)
- 		xe_vm_put(q->vm);
- 	kfree(q);
-@@ -81,6 +114,12 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
- 	else
- 		q->sched_props.priority = XE_EXEC_QUEUE_PRIORITY_NORMAL;
- 
-+	err = xe_exec_queue_msix_init(xe, q);
-+	if (err) {
-+		kfree(q);
-+		return ERR_PTR(err);
-+	}
-+
- 	if (vm)
- 		q->vm = xe_vm_get(vm);
- 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 201588ec33c3..7da157b0e676 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -56,6 +56,8 @@ struct xe_exec_queue {
- 	 * @logical_mask: logical mask of where job submitted to exec queue can run
- 	 */
- 	u32 logical_mask;
-+	/** @msix_number: msix number */
-+	u32 msix_number;
- 	/** @name: name of this exec queue */
- 	char name[MAX_FENCE_NAME_LEN];
- 	/** @width: width (number BB submitted per exec) of this exec queue */
 diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index e3affc7eba2e..adb8ff60d494 100644
+index 1b71c6abcd2e..e3affc7eba2e 100644
 --- a/drivers/gpu/drm/xe/xe_irq.c
 +++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -903,11 +903,16 @@ void xe_free_irq(struct xe_device *xe, u32 msix)
- 	void *irq_buf;
- 	int irq;
+@@ -828,7 +828,23 @@ void xe_irq_resume(struct xe_device *xe)
+ 		xe_irq_enable_hwe(gt);
+ }
  
-+	/* When removing the driver this function can be called twice for each msix that was
-+	 * allocated for exec queue. First from irq_uninstall() and then from exec queue free.
-+	 * Hence, it is possible that the xarray was already destroyed or the member was removed.
-+	 */
-+	if (xa_empty(&xe->irq.msix_indexes))
-+		return;
+-static int xe_irq_alloc_msix(struct xe_device *xe, void *irq_buf, bool dynamic_msix, u32 *msix)
++/*
++ * This handles MI_USER_INTERRUPT.
++ * In MSI-X mode command streamers raise an interrupt only as a result of
++ * MI_USER_INTERRUPT and MI_FLUSH_DW_NOTIFY commands.
++ * Currently, there is no use-case for MI_FLUSH_DW_NOTIFY.
++ */
++irqreturn_t xe_irq_hwe_handler(int irq, void *arg)
++{
++	struct xe_hw_engine *hwe = arg;
 +
- 	irq_buf = xa_load(&xe->irq.msix_indexes, msix);
--	if (!irq_buf) {
--		drm_err(&xe->drm, "MSIX %u can't be released since it wasn't allocated\n", msix);
-+	if (!irq_buf)
- 		return;
--	}
++	xe_hw_engine_handle_irq(hwe, GT_RENDER_USER_INTERRUPT);
++
++	return IRQ_HANDLED;
++}
++
++static int xe_irq_alloc_msix(struct xe_device *xe, void *irq_buf,
++				bool dynamic_msix, u32 *msix)
+ {
+ 	struct xa_limit limit;
+ 	int ret = 0;
+diff --git a/drivers/gpu/drm/xe/xe_irq.h b/drivers/gpu/drm/xe/xe_irq.h
+index d36daee60157..4278d8be5010 100644
+--- a/drivers/gpu/drm/xe/xe_irq.h
++++ b/drivers/gpu/drm/xe/xe_irq.h
+@@ -20,5 +20,6 @@ void xe_irq_enable_hwe(struct xe_gt *gt);
+ int xe_request_irq(struct xe_device *xe, irq_handler_t handler, void *irq_buf, const char *name,
+ 			bool dynamic_msix, u32 *msix);
+ void xe_free_irq(struct xe_device *xe, u32 msix);
++irqreturn_t xe_irq_hwe_handler(int irq, void *arg);
  
- 	irq = pci_irq_vector(pdev, msix);
- 	if (irq < 0) {
+ #endif
 -- 
 2.34.1
 
