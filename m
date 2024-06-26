@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 787CBC27C4F
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 08:40:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1067DC30653
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 08:40:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23D0610E7BF;
-	Wed, 26 Jun 2024 08:40:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6AB410E7C2;
+	Wed, 26 Jun 2024 08:40:22 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6920D10E7BF;
- Wed, 26 Jun 2024 08:40:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F33510E7C3;
+ Wed, 26 Jun 2024 08:40:21 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915/dp=3A_Wait_?=
- =?utf-8?q?more_before_rearming_FIFO_underrun_during_retrain?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/dp=3A_Wait_more_?=
+ =?utf-8?q?before_rearming_FIFO_underrun_during_retrain?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Jun 2024 08:40:10 -0000
-Message-ID: <171939121042.159665.12373452037402160914@a6498e030952>
+Date: Wed, 26 Jun 2024 08:40:21 -0000
+Message-ID: <171939122145.159665.13193832504290032702@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240626083624.4042544-1-ankit.k.nautiyal@intel.com>
 In-Reply-To: <20240626083624.4042544-1-ankit.k.nautiyal@intel.com>
@@ -44,13 +44,14 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/i915/dp: Wait more before rearming FIFO underrun during retrain
 URL   : https://patchwork.freedesktop.org/series/135414/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: eeab54efcc91 drm-tip: 2024y-06m-26d-07h-56m-44s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915/dp: Wait more before rearming FIFO underrun during retrain
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+remote: The git server, Gitaly, is not available at this time. Please contact your administrator.
+fatal: unable to access 'https://gitlab.freedesktop.org/drm/maintainer-tools/': The requested URL returned error: 503
 
 
