@@ -4,56 +4,180 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA33AC30658
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 14:05:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C46C0C27C4F
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 14:14:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8553910E8BE;
-	Wed, 26 Jun 2024 14:05:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 553DD10E8D4;
+	Wed, 26 Jun 2024 14:14:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fupiluba";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DKRH0g6c";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D3B510E8BE
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Jun 2024 14:05:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6363010E8D4
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Jun 2024 14:14:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719410708; x=1750946708;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=Id6ES34S7cbNZjNLb5oj7DBL52pRIXiNhfaE6/LcSe0=;
- b=FupilubaqGdTMAozDQPMb1qg7ONhSsF0IoB/7hN0YnAG/18Vx0k5anHK
- +zfE4r8OpS2G0NQxAMKszZJGam52he1IBvgjY7UNfN9QLtbijBxnG2OIW
- 6pY1KnlfMKYM8U8B28L5MqiEpxI3oK3BKxQoZkF1sjjOygt2QoP86v61n
- XCJmpbjCMFdu7SxApcv1Klu8Uz4c1XLTpHBVFsRdZxbMBKBv/orf+wdjP
- DPwBUA6BakqHeW8/tk0MNPZpnfyGcOT2ql1XhDi2BoaLFf6wbLsIW5NJE
- VlO5/FV41GVnFgkZqw/gIq458R4ULIKI8vlrIQY9KQ+allwMBLbrimCzu g==;
-X-CSE-ConnectionGUID: vogpKB5YR8u+l3Yj1vXU9Q==
-X-CSE-MsgGUID: R8Gs+9UtTW+JE4bDgvLMlw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11115"; a="16626427"
-X-IronPort-AV: E=Sophos;i="6.08,267,1712646000"; d="scan'208";a="16626427"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2024 07:03:44 -0700
-X-CSE-ConnectionGUID: oxMw6cPLRRynAj/HfnF3Aw==
-X-CSE-MsgGUID: +vUnGdEMST63hhSa7IHfwg==
+ t=1719411244; x=1750947244;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=Lb5zPDEt9w3rlYz/aQZl8BpBA6QOUW8EXh/4n8ULaO0=;
+ b=DKRH0g6cbi3ToINjydXbkI6AoyFV5ZKcrwUI8Wx5GFNQzthOytjzZaPn
+ gz5fdiLAc/64rFAHJdpkx5I7xPn/P2GFoWEDMP++6UQ1GjkL4Z9DJpLmC
+ 3eY/kXrc16WYus1Ztwag/SimJt3p/ekyZOFvs5VULKrv+WZiomIIr+x/Y
+ JU88B03PMkW3mglcg7HRS+74YRmP8RLYCEdhXltxQMQKWVAV5Rpbx11R6
+ 6HbB/CPgv/w6FsALYzJM41nCSljQ1P4o/rMvGmHgKYgjIG2kPkKfY7wy6
+ zep9JEmr4p7hXUSoQf1cHxvBvb5e1Fm7h4pQ2br2Uqz9P8jZZkm87dELP A==;
+X-CSE-ConnectionGUID: xtiXWIrxRX+9uFZWlM1/uQ==
+X-CSE-MsgGUID: U+N9kMOoS0qpvhWRUvyKQQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11115"; a="16446937"
+X-IronPort-AV: E=Sophos;i="6.08,267,1712646000"; d="scan'208";a="16446937"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2024 07:14:03 -0700
+X-CSE-ConnectionGUID: BDYIWW42TD+s5NCwTg2gQg==
+X-CSE-MsgGUID: 6HskgppITz6F5iYzCdoq1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,267,1712646000"; d="scan'208";a="43980065"
-Received: from unknown (HELO [10.245.245.26]) ([10.245.245.26])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2024 07:03:43 -0700
-Message-ID: <6dc343ad-bd46-4402-bd0a-00ed2b366e7c@intel.com>
-Date: Wed, 26 Jun 2024 15:03:41 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/7] drm/xe: Convert multiple bind ops into single job
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20240626003920.4060633-1-matthew.brost@intel.com>
- <20240626003920.4060633-5-matthew.brost@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240626003920.4060633-5-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-IronPort-AV: E=Sophos;i="6.08,267,1712646000"; d="scan'208";a="81559075"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 26 Jun 2024 07:14:02 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 26 Jun 2024 07:14:02 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Wed, 26 Jun 2024 07:14:02 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.45) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Wed, 26 Jun 2024 07:14:02 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=m6oNjNkOjEyqTySlNu+MGGzOsyNmwVF6rPKQxkAy6ht5rb8LqbV4JA/xpsrhZpMShVv4TytQDa8mjt9nF9/JwnxSN5pEl7daA/ylrRS3iEa3IeXAP9pvyyxZlTKFh1teSLothyCWSshUtBPocMhSqUzyMcf8aU/Af+UHZdDiCHoicaX2rt6/rk2zFXytZr6qKMzvmPk8I4g1CMvEqcwlpylWO0F13eWRvz5TTirpWfXvEcV2o47CiGi3q7xXSsEzIK7nSRHce0j4oV+gijLKSyYtBjBvYELX4qAMK/Cj+G4x6wOSVf40KLriX6Zo+1TqJpspJsGmUDE1gBnxAVnnBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=acdxG5mqJCaS7zYhW9+6RUg7UbGdG1JieYAHCrWzJnw=;
+ b=IGbSpGTd/JTqSZbrGapbzlEes8ImT1WXjm3sqAuFLDVid6fItSvqcwj4p92fmAAV1NxLHqVU+W9j0l2lfrzlDxOpCwYK1Q9FzoiObigDYCdBiiA9KSVdahmkOKGJqApHq1U4J59/Zzj+gcoUXPoY8sZ8oVFIEyzNrzeRizl1pfcforRv3rVAMIb8PtCZpfLnWzicsX4Ri21DQ8EQ1Jh2lw3b8H0O+5GiEZGaXYCgUXB6N9Bp/fEjESNr/alqAh62tAGm7pbuuKaIDtCLXsKhnkM3G798mwWUGGhYjEUWUeph2OUKqzLJzNPqfXcQYQf6HBlYF+nDikOu8MbVwWUAiQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
+ by MW4PR11MB6981.namprd11.prod.outlook.com (2603:10b6:303:229::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.35; Wed, 26 Jun
+ 2024 14:14:00 +0000
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::3225:d4ad:74a:6d7a%6]) with mapi id 15.20.7698.017; Wed, 26 Jun 2024
+ 14:14:00 +0000
+Date: Wed, 26 Jun 2024 16:13:56 +0200
+From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 1/2] drm/xe/pf: Disable VFs on remove
+Message-ID: <20240626141356.2m5htc4iqjg3llre@intel.com>
+References: <20240626111827.1389-1-michal.wajdeczko@intel.com>
+ <20240626111827.1389-2-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240626111827.1389-2-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: ZR0P278CA0153.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:41::20) To MN0PR11MB6135.namprd11.prod.outlook.com
+ (2603:10b6:208:3c9::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|MW4PR11MB6981:EE_
+X-MS-Office365-Filtering-Correlation-Id: a33d323d-c958-48aa-471b-08dc95ea398b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230038|366014|376012|1800799022;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?bUxYYWNXR2J5ajlMWEMzVGxGNTFnMFlMS200UzZDbkNmb1BLb1pJTnF0eitS?=
+ =?utf-8?B?UWg5UTAza2t5UEI2Q2c5dW1IQVFBNU9mRmRHUzd2Y3F1SFZ6WlBYVEFXQklF?=
+ =?utf-8?B?NHhBQnVxWStoTzVCTHh6clJqMUJiZ3Q0Wm04bjlWNkJSWDlDNzVKL1BOWEhG?=
+ =?utf-8?B?ZGdTdU52SEp1QUVnV0l1TVJlVWZqam5kN1htaVRZS1JxaDBHSFpXSWRZSEZ0?=
+ =?utf-8?B?RVhmd3Y5Y2daRDVHNTJsT1FvbmkxSVdpVVAzU3FLSGlaa2pqd3M3a0lBNVVC?=
+ =?utf-8?B?dHhvVnZvbjhCODBtVU5OV2dSMkVuQ25kY0J4WlphMmYrazlwVHB3amV5bWIw?=
+ =?utf-8?B?eXg5RDlLQ0VncFRsTGVUSkpGSmlyK0dkenVTOUhuQkxmQ2VVTVQ4dGdhTnI2?=
+ =?utf-8?B?elJzczJjcHhpQSs2TnJuZGRHYWsxL0ZFOGszaDlrQWpIV1FKREduSEp0UnUz?=
+ =?utf-8?B?ZnRzSHREMkoyS1dIZUNWQjhKUDVwZklhLy9PRlhoVXlSMEhmaHphYXg1c2ow?=
+ =?utf-8?B?NkJYbVdkbGN5enJKbTRhRHpQVk9iQW11MkdaRXMvSVBNdnpBa1RHNTNCajhU?=
+ =?utf-8?B?bU4zLzZ2ODg5dmtRd05tblFXdnRGQXY2MktQaUh6dmVqRTB5OGtwcGdKZHZY?=
+ =?utf-8?B?aXVpZkxhZFE3NWtDWDF6RTNHSkhqWDFYQjJpeXZ2QWJib2wzdEN1YTlOQkwx?=
+ =?utf-8?B?VWdUQ3VCQ0czeDFVWXdIMERzdGFRblZPZ29MdmM5ZUI1ZGpGRDMybHF1SGky?=
+ =?utf-8?B?SjB5VEhMSUVKdVFuaEptK3NjeXpVN3J2WGxFanBpT0owdjFLN2srQTJLeUZ6?=
+ =?utf-8?B?dCs3MG5DZGRrYnFzNk1GeHczUkdSZ0J5WjJmU1VOL2ZiSHpDSTNXVmhkVk10?=
+ =?utf-8?B?M0JkOFdmUytMMDRMSFNXTG5WaE5PendqZktjK1JvMXEzVnVoanQ0VVFYN0x3?=
+ =?utf-8?B?Tm5jVHZyUEw4TjVDazZSN0FMYmlGOGZEWkJpNFFobWZJdzExckNTbTRkMXpq?=
+ =?utf-8?B?K3BFQTJ3dDNwQ1lKTUQwbFJVRitrbDNjazFhOUcwZ1JDTUVzV0xxZ1RZWkoz?=
+ =?utf-8?B?QUluMzJON1p2T0dCTUl5Mi9lRTB1WmJ0RlRPUDYxb0NzR2ZHak0wa2JJM0JI?=
+ =?utf-8?B?U05ScDh5NlBPMnltN2RlZ0E0UEtSTEZKZVl4RXFtZW9FK0htdW43QjBYVlVr?=
+ =?utf-8?B?SGJyVlBvdW5MMWFUclF5cVFVRnRlSlpaRVEyQkRvQjJqYkhWYWdkRDNMUklu?=
+ =?utf-8?B?T2FRYjMyL2tJNFJISkR6WlpWQ01tM2Vxb1ZOcHkzVmJzdXJoRTczOFJJbGs2?=
+ =?utf-8?B?WjlCVUg0R1BGaTlHaXlobkkvUWpidjh4N1cyc0VJYkZ0VFZoMHZlWHdJVXRV?=
+ =?utf-8?B?d3FSQyswemFXREZOb3FvOUR2QThxNUNqVEJ1YWlLOVJPVzZlZFZicGZKbkNE?=
+ =?utf-8?B?a3ljZHpQKzJLMllLMUlqZGNzMUYxRVNQbzBBK09wR1ZsM00zSWZKZ2hnQlI0?=
+ =?utf-8?B?dnhWcThsYUMxRXJEMzIrb1M5bEN4aHFLSmJyVmpDMjhuYzg5NEJvRm83U2d2?=
+ =?utf-8?B?VVFpbGdERUJLRFlKbFlJZHU5SEJ2SExYU040WDVRanZYeTZmaFlpUWVkWWRZ?=
+ =?utf-8?B?MjFYelhNS1dCZDNnaTFwN3I0cEI0MGErZFUxbkVwTXUyT1JFUW1tYU9PQmpP?=
+ =?utf-8?B?Nkhmd203OVF3RVNzRkRQT2Q3Y2N6eitvaS9iSVBjbTFnbFNKZDVRT2xwNWRY?=
+ =?utf-8?B?Mld6LzBkUUhYOW1UQmxRb29SZG5ZTUpqeG50eTExblh3SG5kY0pyb3pMZUZG?=
+ =?utf-8?B?S2tWRkNGcE0zalhtM040dz09?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230038)(366014)(376012)(1800799022); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QTNCTVJlVGdsR2RmU09uREZtYWFlcXE0TFVHU2gzTUp5YVd4NGlTUzNhNWpU?=
+ =?utf-8?B?cW5ieG45TWZCekR0amJpMnRiTE1WK04rL0FFZzJLeUl6TVIzVGFGRitkTlZO?=
+ =?utf-8?B?ZFE0dnRHSExxRjFQMEQ3cTlqa2pIRzZ1dUxxTWt3SGRBSjlRaW9mb3llU2hP?=
+ =?utf-8?B?dDEwbHk5NGZmTEQ1bnpnMWhDcDJpQTFBc1ZuSVpUcXhPNkxJanQ5UUY5bEpL?=
+ =?utf-8?B?K3NLKzI0cXpHc2hNdmhOQ1RUbEcxdDZjOEZEQUovOXk1Q0lmTlQ5d1JydmIw?=
+ =?utf-8?B?WmlqRnovVHZaVVhsaVJ3a0VWaklEc1lGVVBVVGxWNWgzZzhXUGhXaDBwaGxh?=
+ =?utf-8?B?bXlBV2d1QngyZ1hHb29CNVlmc3o0ZDZyRE82aVc5bG5QdDZ3VENkWUNYa1ll?=
+ =?utf-8?B?VFpZZUZnZ3pwellPcU8zZUZ1dTQxU0EzMml0d3dsaFFoMVA4YVljQlN6OTZF?=
+ =?utf-8?B?TXJFZVpXaCtXa1lUUklaUitrZjJBdHVWWVM1NmcybmpZSk0xb3RCK2Z2NWFy?=
+ =?utf-8?B?dWlMNDZhb0ZYT1JOaHpFRGIyWkhGNWlTUmp1SWRlbnRmTzZQMUVrdDRtdVZx?=
+ =?utf-8?B?cnRJZ0I1R1FxWm5yTFhXYmpQemtxWFFiY29XVjFzNWR1eVA4M2FSTFJzRWh3?=
+ =?utf-8?B?YmtuRVZZTEZSMkpNdlZFNHFzaGIwYk1tU3ZLOEZvV3FIaWRKaGo4eWt4K3lt?=
+ =?utf-8?B?NFJnbWhsL3hIV3BOUCtDK3dmcWh0SFJlL3hjKzhyam1xdlRoNGw2c3U3Q3hR?=
+ =?utf-8?B?aWw1T2NjYUFTMkd3YWN5WHFjY2duUE9VQWYwTUJjeEtzRVZ0c0R5RzltZU9a?=
+ =?utf-8?B?eDVyaUFIaFgra1EveHBZL0ZZZTVnYkF4TmFObk9WWE5PNW5TTnE4eG5RaWZK?=
+ =?utf-8?B?V0xtVXRuelErK2crTUFROTlKeitIa1VieU5mczNuYUh2VHV4NFcxUU01ZDM1?=
+ =?utf-8?B?bTRaNEk4a0pYaHo4L0JzcFRVQWEzbGN4alRDaXRGeXlkZnIwaG8xUWVFdmxq?=
+ =?utf-8?B?RWJ4Q3Ziay9PVEdiaEhPWkh3eVlDYTFmV1dWcUUzS2NaZkUrZjJzY29ieE5j?=
+ =?utf-8?B?aVlId21zZ09BbHZvMVFpMVlHeURjbTQ3S0dFSVF0ZTRwRjZZdjMyc3RNSCtM?=
+ =?utf-8?B?ZkFRNzRmdHNxc0o5TFRMUm9meXBVWW9qMjJyOUZUcGZMYzdrVkZHVlYvVUdu?=
+ =?utf-8?B?NzREME81OUdUSStqQjdFQUtmaXVZUWYvZ1lXYkR3OEVkUVlueTJQelU0RE1i?=
+ =?utf-8?B?bnRFMW04d1JPaElnZE9aYWQ2WWwxaFd5MVVYaTZZZUtMajFZRWdRcjBsTkV6?=
+ =?utf-8?B?M0tmOVNSM0hrOUh5ZzRIQXM1RnRSKzIwYmhxdTFraEh5c0YzbkFDOFkvU2tQ?=
+ =?utf-8?B?dTBkcE56TzJhMm1SRnE0ZHpIb0ppMkc3TDlaeUQvS3JMcG5VMnFDWVBmYVMy?=
+ =?utf-8?B?NGNiektTSHlXWmJwdlJKUDF6eXZEWjVvb0I4amFDdEYrNXg4VUh0YzBZcFBm?=
+ =?utf-8?B?eWlNeVRCdjNxWE1KWWtZUUFuTzJmdVFCK2hveGxzV1NVTHBWeDRjcVNsU1Rj?=
+ =?utf-8?B?Rms4N2hEVXBxWkFteEI4WTNvbTk3RDExeUhEZjM2RXp1WEJ0UUZtSUh4WjlN?=
+ =?utf-8?B?bkVzSmVIMmRmZHdyR2E2Vk92am5HTkswVWhpRTVEcDJ0czJyYS82c1dwNzlN?=
+ =?utf-8?B?TmFWdmxBVXl2SVdOYXVKbmpnM2tyWG41cDgrdnBqVmM1ellWNlBaYkJrQXBT?=
+ =?utf-8?B?WWlkTzM4WGRnTDFJU1F3ODV6cDZtcEdwaXp5WHR4NHl0ZHJSaFdDaE1kQVgy?=
+ =?utf-8?B?dFAxOGJsbDNNRldlSnFJNnlUR3hPQU1XalBFTnkzd1JSTnYvMzd2NlZ5Q2lJ?=
+ =?utf-8?B?YlJVSGdKczZJcnBkYkdSNDdRWmlSb2FqNEdyazIwZU00dGNYZ05JWFpBcW9H?=
+ =?utf-8?B?Z1daSzk1SDVNb2NvM2JQK2J1cElNbWpBdE9aZkNSZFVxbW13byt3TW4xV2Ux?=
+ =?utf-8?B?NGpNMkxVbjEzSElFN1JPVkRLMHFYQXl6WHpsU3grWVlKNzBpTWttQktTSVZr?=
+ =?utf-8?B?Wm1TT3NhYnVuOGZZZWNXTFZvZnNoR20xSGphQTExQzNnZ3RlaXROeEY1SFhy?=
+ =?utf-8?B?YXVpM2czL242Qmk3RGVWbGlucVM5TDFrWjYweW5mY1FBRk52dEF6V2szY3M5?=
+ =?utf-8?B?Mmc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a33d323d-c958-48aa-471b-08dc95ea398b
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2024 14:14:00.1590 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FOdE/wINIA+xKHLVcxiM+S+Qhn5x/ILXRUfNftViAcJ5wAN2q6awrNm4PhM2PriTdtWrJIq6VPLDw4OtH6LZ4ra62uCx3CKL7rPXqiL2+JQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6981
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,347 +192,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 26/06/2024 01:39, Matthew Brost wrote:
-> This aligns with the uAPI of an array of binds or single bind that
-> results in multiple GPUVA ops to be considered a single atomic
-> operations.
+Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on śro [2024-cze-26 13:18:26 +0200]:
+> We shouldn't leave VFs enabled when unloading the PF driver.
+> Otherwise we will get a message like:
 > 
-> The implemenation is roughly:
-> - xe_vma_ops is a list of xe_vma_op (GPUVA op)
-> - each xe_vma_op resolves to 0-3 PT ops
-> - xe_vma_ops creates a single job
-> - if at any point during binding a failure occurs, xe_vma_ops contains
->    the information necessary unwind the PT and VMA (GPUVA) state
+>  [ ] xe 0000:4d:00.0: driver left SR-IOV enabled after remove
 > 
-> v2:
->   - add missing dma-resv slot reservation (CI, testing)
-> v4:
->   - Fix TLB invalidation (Paulo)
->   - Add missing xe_sched_job_last_fence_add/test_dep check (Inspection)
-> v5:
->   - Invert i, j usage (Matthew Auld)
->   - Add helper to test and add job dep (Matthew Auld)
->   - Return on anything but -ETIME for cpu bind (Matthew Auld)
->   - Return -ENOBUFS if suballoc of BB fails due to size (Matthew Auld)
->   - s/do/Do (Matthew Auld)
->   - Add missing comma (Matthew Auld)
->   - Do not assign return value to xe_range_fence_insert (Matthew Auld)
-> 
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_bo_types.h |    2 +
->   drivers/gpu/drm/xe/xe_migrate.c  |  306 ++++-----
->   drivers/gpu/drm/xe/xe_migrate.h  |   32 +-
->   drivers/gpu/drm/xe/xe_pt.c       | 1102 +++++++++++++++++++-----------
->   drivers/gpu/drm/xe/xe_pt.h       |   14 +-
->   drivers/gpu/drm/xe/xe_pt_types.h |   36 +
->   drivers/gpu/drm/xe/xe_vm.c       |  519 +++-----------
->   drivers/gpu/drm/xe/xe_vm.h       |    2 +
->   drivers/gpu/drm/xe/xe_vm_types.h |   45 +-
->   9 files changed, 1036 insertions(+), 1022 deletions(-)
+>  drivers/gpu/drm/xe/xe_pci.c | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-> index 86422e113d39..02d68873558a 100644
-> --- a/drivers/gpu/drm/xe/xe_bo_types.h
-> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
-> @@ -58,6 +58,8 @@ struct xe_bo {
->   #endif
->   	/** @freed: List node for delayed put. */
->   	struct llist_node freed;
-> +	/** @update_index: Update index if PT BO */
-> +	int update_index;
->   	/** @created: Whether the bo has passed initial creation */
->   	bool created;
->   
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> index af62783d34ac..160bfcd510ae 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -1125,6 +1125,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
->   }
->   
->   static void write_pgtable(struct xe_tile *tile, struct xe_bb *bb, u64 ppgtt_ofs,
-> +			  const struct xe_vm_pgtable_update_op *pt_op,
->   			  const struct xe_vm_pgtable_update *update,
->   			  struct xe_migrate_pt_update *pt_update)
->   {
-> @@ -1159,8 +1160,12 @@ static void write_pgtable(struct xe_tile *tile, struct xe_bb *bb, u64 ppgtt_ofs,
->   		bb->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_NUM_QW(chunk);
->   		bb->cs[bb->len++] = lower_32_bits(addr);
->   		bb->cs[bb->len++] = upper_32_bits(addr);
-> -		ops->populate(pt_update, tile, NULL, bb->cs + bb->len, ofs, chunk,
-> -			      update);
-> +		if (pt_op->bind)
-> +			ops->populate(pt_update, tile, NULL, bb->cs + bb->len,
-> +				      ofs, chunk, update);
-> +		else
-> +			ops->clear(pt_update, tile, NULL, bb->cs + bb->len,
-> +				   ofs, chunk, update);
->   
->   		bb->len += chunk * 2;
->   		ofs += chunk;
-> @@ -1185,114 +1190,58 @@ struct migrate_test_params {
->   
->   static struct dma_fence *
->   xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
-> -			       struct xe_vm *vm, struct xe_bo *bo,
-> -			       const struct  xe_vm_pgtable_update *updates,
-> -			       u32 num_updates, bool wait_vm,
->   			       struct xe_migrate_pt_update *pt_update)
->   {
->   	XE_TEST_DECLARE(struct migrate_test_params *test =
->   			to_migrate_test_params
->   			(xe_cur_kunit_priv(XE_TEST_LIVE_MIGRATE));)
->   	const struct xe_migrate_pt_update_ops *ops = pt_update->ops;
-> -	struct dma_fence *fence;
-> +	struct xe_vm *vm = pt_update->vops->vm;
-> +	struct xe_vm_pgtable_update_ops *pt_update_ops =
-> +		&pt_update->vops->pt_update_ops[pt_update->tile_id];
->   	int err;
-> -	u32 i;
-> +	u32 i, j;
->   
->   	if (XE_TEST_ONLY(test && test->force_gpu))
->   		return ERR_PTR(-ETIME);
->   
-> -	if (bo && !dma_resv_test_signaled(bo->ttm.base.resv,
-> -					  DMA_RESV_USAGE_KERNEL))
-> -		return ERR_PTR(-ETIME);
-> -
-> -	if (wait_vm && !dma_resv_test_signaled(xe_vm_resv(vm),
-> -					       DMA_RESV_USAGE_BOOKKEEP))
-> -		return ERR_PTR(-ETIME);
-> -
->   	if (ops->pre_commit) {
->   		pt_update->job = NULL;
->   		err = ops->pre_commit(pt_update);
->   		if (err)
->   			return ERR_PTR(err);
->   	}
-> -	for (i = 0; i < num_updates; i++) {
-> -		const struct xe_vm_pgtable_update *update = &updates[i];
-> -
-> -		ops->populate(pt_update, m->tile, &update->pt_bo->vmap, NULL,
-> -			      update->ofs, update->qwords, update);
-> -	}
-> -
-> -	if (vm) {
-> -		trace_xe_vm_cpu_bind(vm);
-> -		xe_device_wmb(vm->xe);
-> -	}
-> -
-> -	fence = dma_fence_get_stub();
-> -
-> -	return fence;
-> -}
-> -
-> -static bool no_in_syncs(struct xe_vm *vm, struct xe_exec_queue *q,
-> -			struct xe_sync_entry *syncs, u32 num_syncs)
-> -{
-> -	struct dma_fence *fence;
-> -	int i;
->   
-> -	for (i = 0; i < num_syncs; i++) {
-> -		fence = syncs[i].fence;
-> -
-> -		if (fence && !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
-> -				       &fence->flags))
-> -			return false;
-> -	}
-> -	if (q) {
-> -		fence = xe_exec_queue_last_fence_get(q, vm);
-> -		if (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags)) {
-> -			dma_fence_put(fence);
-> -			return false;
-> +	for (i = 0; i < pt_update_ops->num_ops; ++i) {
-> +		const struct xe_vm_pgtable_update_op *pt_op =
-> +			&pt_update_ops->ops[i];
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index ebff5ea79b1d..4b91a9878f41 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -749,6 +749,11 @@ static void xe_pci_remove(struct pci_dev *pdev)
+>  	if (!xe) /* driver load aborted, nothing to cleanup */
+>  		return;
+>  
+> +#ifdef CONFIG_PCI_IOV
+> +	if (IS_SRIOV_PF(xe))
+> +		xe_pci_sriov_configure(pdev, 0);
+> +#endif
 > +
-> +		for (j = 0; j < pt_op->num_entries; j++) {
-> +			const struct xe_vm_pgtable_update *update =
-> +				&pt_op->entries[j];
-> +
-> +			if (pt_op->bind)
-> +				ops->populate(pt_update, m->tile,
-> +					      &update->pt_bo->vmap, NULL,
-> +					      update->ofs, update->qwords,
-> +					      update);
-> +			else
-> +				ops->clear(pt_update, m->tile,
-> +					   &update->pt_bo->vmap, NULL,
-> +					   update->ofs, update->qwords, update);
->   		}
-> -		dma_fence_put(fence);
->   	}
->   
-> -	return true;
-> +	trace_xe_vm_cpu_bind(vm);
-> +	xe_device_wmb(vm->xe);
-> +
-> +	return dma_fence_get_stub();
->   }
->   
-> -/**
-> - * xe_migrate_update_pgtables() - Pipelined page-table update
-> - * @m: The migrate context.
-> - * @vm: The vm we'll be updating.
-> - * @bo: The bo whose dma-resv we will await before updating, or NULL if userptr.
-> - * @q: The exec queue to be used for the update or NULL if the default
-> - * migration engine is to be used.
-> - * @updates: An array of update descriptors.
-> - * @num_updates: Number of descriptors in @updates.
-> - * @syncs: Array of xe_sync_entry to await before updating. Note that waits
-> - * will block the engine timeline.
-> - * @num_syncs: Number of entries in @syncs.
-> - * @pt_update: Pointer to a struct xe_migrate_pt_update, which contains
-> - * pointers to callback functions and, if subclassed, private arguments to
-> - * those.
-> - *
-> - * Perform a pipelined page-table update. The update descriptors are typically
-> - * built under the same lock critical section as a call to this function. If
-> - * using the default engine for the updates, they will be performed in the
-> - * order they grab the job_mutex. If different engines are used, external
-> - * synchronization is needed for overlapping updates to maintain page-table
-> - * consistency. Note that the meaing of "overlapping" is that the updates
-> - * touch the same page-table, which might be a higher-level page-directory.
-> - * If no pipelining is needed, then updates may be performed by the cpu.
-> - *
-> - * Return: A dma_fence that, when signaled, indicates the update completion.
-> - */
-> -struct dma_fence *
-> -xe_migrate_update_pgtables(struct xe_migrate *m,
-> -			   struct xe_vm *vm,
-> -			   struct xe_bo *bo,
-> -			   struct xe_exec_queue *q,
-> -			   const struct xe_vm_pgtable_update *updates,
-> -			   u32 num_updates,
-> -			   struct xe_sync_entry *syncs, u32 num_syncs,
-> -			   struct xe_migrate_pt_update *pt_update)
-> +static struct dma_fence *
-> +__xe_migrate_update_pgtables(struct xe_migrate *m,
-> +			     struct xe_migrate_pt_update *pt_update,
-> +			     struct xe_vm_pgtable_update_ops *pt_update_ops)
->   {
->   	const struct xe_migrate_pt_update_ops *ops = pt_update->ops;
->   	struct xe_tile *tile = m->tile;
-> @@ -1301,59 +1250,53 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
->   	struct xe_sched_job *job;
->   	struct dma_fence *fence;
->   	struct drm_suballoc *sa_bo = NULL;
-> -	struct xe_vma *vma = pt_update->vma;
->   	struct xe_bb *bb;
-> -	u32 i, batch_size, ppgtt_ofs, update_idx, page_ofs = 0;
-> +	u32 i, j, batch_size = 0, ppgtt_ofs, update_idx, page_ofs = 0;
-> +	u32 num_updates = 0, current_update = 0;
->   	u64 addr;
->   	int err = 0;
-> -	bool usm = !q && xe->info.has_usm;
-> -	bool first_munmap_rebind = vma &&
-> -		vma->gpuva.flags & XE_VMA_FIRST_REBIND;
-> -	struct xe_exec_queue *q_override = !q ? m->q : q;
-> -	u16 pat_index = xe->pat.idx[XE_CACHE_WB];
-> +	bool is_migrate = pt_update_ops->q == m->q;
-> +	bool usm = is_migrate && xe->info.has_usm;
-> +
-> +	for (i = 0; i < pt_update_ops->num_ops; ++i) {
-> +		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[i];
-> +		struct xe_vm_pgtable_update *updates = pt_op->entries;
->   
-> -	/* Use the CPU if no in syncs and engine is idle */
-> -	if (no_in_syncs(vm, q, syncs, num_syncs) && xe_exec_queue_is_idle(q_override)) {
-> -		fence =  xe_migrate_update_pgtables_cpu(m, vm, bo, updates,
-> -							num_updates,
-> -							first_munmap_rebind,
-> -							pt_update);
-> -		if (!IS_ERR(fence) || fence == ERR_PTR(-EAGAIN))
-> -			return fence;
-> +		num_updates += pt_op->num_entries;
-> +		for (j = 0; j < pt_op->num_entries; ++j) {
-> +			u32 num_cmds = DIV_ROUND_UP(updates[j].qwords, 0x1ff);
+>  	xe_device_remove(xe);
+>  	xe_pm_runtime_fini(xe);
+>  	pci_set_drvdata(pdev, NULL);
+>
+LGTM:
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-Why 0x1ff here? Should it not be MAX_PTE_PER_SDI? There is a failure in 
-CI here: 
-https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133034v5/shard-lnl-8/igt@xe_vm@mmap-style-bind-either-side-partial-split-page-hammer.html
+-- 
+> 2.43.0
+> 
 
-Wondering if this is the cause? i.e we think we can fit more stores per 
-MI_STORE_DATA_IMM, since write_pgtable() below is using MAX_PTE_PER_SDI 
-and not 0x1ff?
-
-> +
-> +			/* align noop + MI_STORE_DATA_IMM cmd prefix */
-> +			batch_size += 4 * num_cmds + updates[j].qwords * 2;
-> +		}
->   	}
->   
->   	/* fixed + PTE entries */
->   	if (IS_DGFX(xe))
-> -		batch_size = 2;
-> +		batch_size += 2;
->   	else
-> -		batch_size = 6 + num_updates * 2;
-> -
-> -	for (i = 0; i < num_updates; i++) {
-> -		u32 num_cmds = DIV_ROUND_UP(updates[i].qwords, MAX_PTE_PER_SDI);
-> +		batch_size += 6 + num_updates * 2;
->   
-> -		/* align noop + MI_STORE_DATA_IMM cmd prefix */
-> -		batch_size += 4 * num_cmds + updates[i].qwords * 2;
-> -	}
-> -
-> -	/*
-> -	 * XXX: Create temp bo to copy from, if batch_size becomes too big?
-> -	 *
-> -	 * Worst case: Sum(2 * (each lower level page size) + (top level page size))
-> -	 * Should be reasonably bound..
-> -	 */
-> -	xe_tile_assert(tile, batch_size < SZ_128K);
-> +	bb = xe_bb_new(gt, batch_size, usm);
-
-So do we now validate that batch_size fits within the total pool size 
-somewhere, to avoid triggering the warning in drm_suballoc_new? Did your 
-igt not trigger the warning? Also the below check is not too late?
-
-> +	if (IS_ERR(bb)) {
-> +		/*
-> +		 * BB to large, return -ENOBUFS indicating user should split
-> +		 * array of binds into smaller chunks.
-> +		 */
-> +		if (PTR_ERR(bb) == -EINVAL)
-> +			return ERR_PTR(-ENOBUFS);
->   
-> -	bb = xe_bb_new(gt, batch_size, !q && xe->info.has_usm);
-> -	if (IS_ERR(bb))
->   		return ERR_CAST(bb);
-> +	}
->   
->   	/* For sysmem PTE's, need to map them in our hole.. */
->   	if (!IS_DGFX(xe)) {
->   		ppgtt_ofs = NUM_KERNEL_PDE - 1;
-> -		if (q) {
-> -			xe_tile_assert(tile, num_updates <= NUM_VMUSA_WRITES_PER_UNIT);
-> +		if (!is_migrate) {
-> +			u32 num_units = DIV_ROUND_UP(num_updates,
-> +						     NUM_VMUSA_WRITES_PER_UNIT);
->   
-> -			sa_bo = drm_suballoc_new(&m->vm_update_sa, 1,
-> +			sa_bo = drm_suballoc_new(&m->vm_update_sa, num_units,
->   						 GFP_KERNEL, true, 0);
-
-And maybe here also?
-
->   			if (IS_ERR(sa_bo)) {
->   				err = PTR_ERR(sa_bo);
-> @@ -1373,14 +1316,26 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
->   		bb->cs[bb->len++] = ppgtt_ofs * XE_PAGE_SIZE + page_ofs;
->   		bb->cs[bb->len++] = 0; /* upper_32_bits */
-
-Off camera this is doing:
-
-b->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_NUM_QW(num_updates);
-
-What are certain that num_updates still can be done with single command 
-here?  Do we not need to break it up like we do with write_pgtable? If 
-it's not an issue I think would be good to add an assert to ensure it fits?
-
-<snip>
+-- 
