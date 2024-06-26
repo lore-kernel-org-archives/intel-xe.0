@@ -4,58 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07A63C30659
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 10:13:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E39D1C30653
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 10:34:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABADC10E0A1;
-	Wed, 26 Jun 2024 10:13:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 888A210E09B;
+	Wed, 26 Jun 2024 10:34:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LtwBCfBG";
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="cNL67GcO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E34A810E0A1;
- Wed, 26 Jun 2024 10:13:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719396788; x=1750932788;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=z44h/xkd7bCRHysoERSHfypo3wfUM27Yp5pLwaZ6xkc=;
- b=LtwBCfBGNVKVbl4XnADLM9fEZChpB+TV+OO2R/k93XFxCvyoAJunJdy6
- njWCOfpHv4/8AnC1/rU1LoOtzFIq0TTW1AXFeYl9XhEeGvVM+azJ296Xp
- OtT6gxk+6AYQiUhdg+CHwULdQV8mQMMXwK6eceKPIqeReOQRReQ12pbDC
- bf0P3RHIGLveJG/pLR3D4J+caUqDHpp8LbAezJ7nvCRNZqKGLnNlP72tR
- OmXy8jeYR3J8Ul1HScghuTonwa5yGXWXGp5dgAqLl0VDHBK8h4AOk9IMk
- TTHvqHRXbPiprtp/CPAhlyJRGjwb5mUDvg+lIYwwpBVDv62Wqx/01zVyb Q==;
-X-CSE-ConnectionGUID: 8dhPg8RqRHaZJwK/2lVJ1g==
-X-CSE-MsgGUID: R0oIOKmdRL+gqVt2xYH2vQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11114"; a="33992442"
-X-IronPort-AV: E=Sophos;i="6.08,266,1712646000"; d="scan'208";a="33992442"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2024 03:13:07 -0700
-X-CSE-ConnectionGUID: atCaj4hKRCm/nu9EynfnYA==
-X-CSE-MsgGUID: 6rsJ9iUJRnixguF3DQQVzg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,266,1712646000"; d="scan'208";a="43855937"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.95])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2024 03:13:04 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, mika.kahola@intel.com,
- matthew.d.roper@intel.com
-Subject: Re: [PATCH 5/5] drm/xe: Add intel_pll_algorithm in Makefile
-In-Reply-To: <20240626050056.3996349-6-ankit.k.nautiyal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240626050056.3996349-1-ankit.k.nautiyal@intel.com>
- <20240626050056.3996349-6-ankit.k.nautiyal@intel.com>
-Date: Wed, 26 Jun 2024 13:12:57 +0300
-Message-ID: <87o77oc8ra.fsf@intel.com>
+Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 000BA10E09B
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Jun 2024 10:34:07 +0000 (UTC)
+Received: internal info suppressed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
+ t=1719398048; bh=RtaJIM2nsM48kjMuN1AAP+5qSzzoKI/g5/FpLRkErPI=;
+ h=From:To:Cc:Subject:Date:From;
+ b=cNL67GcOdF4PmUPPA3dsR+YpI811yRDVfZvc81Ae1Poyj6UnzZyRNYN3ivaTdK/hr
+ rwr0c6biwIODWcq7/ftXBUBBDmqt1a7KMdZK4/edo/xb1AqHwN0N9taQ/Xpz0QgIp2
+ 6fs2npahI0U0rp26KprjnAaPxIg8RH1NX3GVOIXdChzKLGmW7tOgaCX/MVHnbPVvDS
+ su0Ccz19HCeupObR1Utj+Pa4DeFNgscmuCVxCuLuf4v41kV34wqrD6XmXWLF/Ftyhv
+ K4BFvFEtXRAb8bGJFwHCTUm1xmJmPxwnOCHxpy6ApdVKdGKy4ufGXDosKLrUwVg97W
+ 6x1GgyPsb4osQ==
+Received: from dliberman-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by dliberman-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
+ ESMTPS id 45QAXuC02801767
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+ Wed, 26 Jun 2024 13:33:56 +0300
+Received: (from dliberman@localhost)
+ by dliberman-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 45QAXuMp2801765; 
+ Wed, 26 Jun 2024 13:33:56 +0300
+From: Dani Liberman <dliberman@habana.ai>
+To: intel-xe@lists.freedesktop.org
+Cc: dliberman@habana.ai, illevi@habana.ai
+Subject: [PATCH 0/8] Add MSIX functionality to XE
+Date: Wed, 26 Jun 2024 13:33:37 +0300
+Message-Id: <20240626103345.2801735-1-dliberman@habana.ai>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,36 +56,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 26 Jun 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> Include the intel_pll_algorithm for xe driver.
+This patch set enables MSIX workflow. The main changes are:
 
-Not how this works. Please build every commit before submitting and
-you'll see the build is broken at patch 2.
+1. The code supports both msi and msix, some refactoring had
+   to be done.
+2. Since multiple interrupts are now available there is no need for
+   interrupt aggregation in HW, hence there are new interrupt
+   handlers.
+3. MSIX interrupts are system resources so an interrupt allocator was
+   implemented.
+4. Adding MSIX infra to exec queues.
+5. MSIX in GT also uses memirq, some refactoring had to be done to
+   enable it.
 
-git rebase -i $tip -x make
+Dani Liberman (3):
+  drm/xe/irq: refactor irq flows to support also msix
+  drm/xe/irq: add msix allocator
+  drm/xe/exec: adding msix infra to exec queue
 
-BR,
-Jani.
+Ilia Levi (5):
+  drm/xe/irq: add hw engine irq handler
+  drm/xe: move the kernel lrc from hwe to execlist port
+  drm/xe: move memirq out of vf
+  drm/xe: msix support preparations - enable memirq
+  drm/xe: msix support for hw engines
 
-
->
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/xe/Makefile | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index 478acc94a71c..30b63c2eadd0 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -261,6 +261,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
->  	i915-display/intel_modeset_setup.o \
->  	i915-display/intel_modeset_verify.o \
->  	i915-display/intel_panel.o \
-> +	i915-display/intel_pll_algorithm.o \
->  	i915-display/intel_pmdemand.o \
->  	i915-display/intel_pps.o \
->  	i915-display/intel_psr.o \
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |   3 +
+ drivers/gpu/drm/xe/regs/xe_lrc_layout.h  |   3 +
+ drivers/gpu/drm/xe/xe_device.c           |   8 +-
+ drivers/gpu/drm/xe/xe_device.h           |  12 +
+ drivers/gpu/drm/xe/xe_device_types.h     |  12 +-
+ drivers/gpu/drm/xe/xe_exec_queue.c       |  41 +++-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |   2 +
+ drivers/gpu/drm/xe/xe_execlist.c         |  21 +-
+ drivers/gpu/drm/xe/xe_execlist_types.h   |   3 +
+ drivers/gpu/drm/xe/xe_guc.c              |   2 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c        |  22 +-
+ drivers/gpu/drm/xe/xe_hw_engine_types.h  |   2 -
+ drivers/gpu/drm/xe/xe_irq.c              | 290 +++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_irq.h              |   7 +
+ drivers/gpu/drm/xe/xe_lrc.c              |  23 +-
+ drivers/gpu/drm/xe/xe_lrc.h              |   2 +-
+ drivers/gpu/drm/xe/xe_memirq.c           |  46 ++--
+ 17 files changed, 391 insertions(+), 108 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.34.1
+
