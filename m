@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2E2FC27C4F
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 10:05:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEA60C30659
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 10:07:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B37F10E81D;
-	Wed, 26 Jun 2024 10:05:34 +0000 (UTC)
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BD6010E81D;
- Wed, 26 Jun 2024 10:05:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3788265947939327252=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92D6B10E825;
+	Wed, 26 Jun 2024 10:07:50 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WsH/om5L";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1B9810E821;
+ Wed, 26 Jun 2024 10:07:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1719396469; x=1750932469;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=CAjuPvAGDkezDjYmLStjN5aZayzuoNwDSa3RssadSvU=;
+ b=WsH/om5LzDFL3UH/aitRvr4OZTBQkdVtWrKj3/FgxDuWAEPvjo3TKU26
+ mo6BO32r/uJeNk1KcYg2zKs1V6rmjngSc4n1LtkAPp10aLlv1iUJahQB7
+ Bs75deTIKpvqPeGTKHfK/fQJ3GV9Iz3XXAD9aeeeJ23ouA6KgCPeJ0P/S
+ or+hNbxTALJi9Mjt+QkgRvIQYV88mPoCt7M9Biql5cbsOs0bP/FwEBKRB
+ DT+RiB+WX7sQCPLeM2rytoVUOY48yBzOKHLpPaJlj8/DT2RFo6o8/UwNi
+ 6Md7OUI7T3T5yjMN2RhBWg9NmGS+1hrKrR+HlrHUj9Ft3fmekL9FSVT/B w==;
+X-CSE-ConnectionGUID: DOJh5uKUQtaC11pFMBFGVQ==
+X-CSE-MsgGUID: BmUtZJo3RmO7e+1kdXCDbg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11114"; a="16587093"
+X-IronPort-AV: E=Sophos;i="6.08,266,1712646000"; d="scan'208";a="16587093"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2024 03:07:48 -0700
+X-CSE-ConnectionGUID: Sck0OZ4DR224zR+DaY6snQ==
+X-CSE-MsgGUID: c7vBSu4YSHyY2eCara4TMg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,266,1712646000"; d="scan'208";a="43768063"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.95])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2024 03:07:46 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, mika.kahola@intel.com,
+ matthew.d.roper@intel.com
+Subject: Re: [PATCH 2/5] drm/i915/snps_phy: Use HDMI PLL algorithm for DG2
+In-Reply-To: <20240626050056.3996349-3-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240626050056.3996349-1-ankit.k.nautiyal@intel.com>
+ <20240626050056.3996349-3-ankit.k.nautiyal@intel.com>
+Date: Wed, 26 Jun 2024 13:07:39 +0300
+Message-ID: <87v81wc904.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/vf=3A_Track_writes_to_ina?=
- =?utf-8?q?ccessible_registers_from_VF_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Jun 2024 10:05:33 -0000
-Message-ID: <171939633363.160231.6605152037681040716@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <20240626084304.1345-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20240626084304.1345-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,147 +67,84 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3788265947939327252==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 26 Jun 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> Try SNPS_PHY HDMI tables computed using the algorithm, before using
+> consolidated tables.
+>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_snps_phy.c | 20 ++++++++-----------
+>  1 file changed, 8 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> index e6df1f92def5..10fe28af0d11 100644
+> --- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> @@ -12,6 +12,7 @@
+>  #include "intel_display_types.h"
+>  #include "intel_snps_phy.h"
+>  #include "intel_snps_phy_regs.h"
+> +#include "intel_pll_algorithm.h"
 
-== Series Details ==
+Keep includes sorted.
 
-Series: drm/xe/vf: Track writes to inaccessible registers from VF (rev2)
-URL   : https://patchwork.freedesktop.org/series/135295/
-State : success
+>  
+>  /**
+>   * DOC: Synopsis PHY support
+> @@ -1787,22 +1788,14 @@ intel_mpllb_tables_get(struct intel_crtc_state *crtc_state,
+>  int intel_mpllb_calc_state(struct intel_crtc_state *crtc_state,
+>  			   struct intel_encoder *encoder)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>  	const struct intel_mpllb_state * const *tables;
+>  	int i;
+>  
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
+> -		if (intel_snps_phy_check_hdmi_link_rate(crtc_state->port_clock)
+> -		    != MODE_OK) {
+> -			/*
+> -			 * FIXME: Can only support fixed HDMI frequencies
+> -			 * until we have a proper algorithm under a valid
+> -			 * license.
+> -			 */
+> -			drm_dbg_kms(&i915->drm, "Can't support HDMI link rate %d\n",
+> -				    crtc_state->port_clock);
+> -			return -EINVAL;
+> -		}
+> +		/* try computed SNPS_PHY HDMI tables before using consolidated tables */
 
-== Summary ==
+Computed tables vs. consolidated tables? Huh?
 
-CI Bug Log - changes from xe-1529-eeab54efcc91d572f99ea6ee3d9f562bb79a08d1_BAT -> xe-pw-135295v2_BAT
-====================================================
+Anyway, I think we have two choices here:
 
-Summary
--------
+- Always use computed values.
 
-  **SUCCESS**
+- Prefer fixed tables, fall back to computed values.
 
-  No regressions found.
+But we definitely should not try to compute first and fall back to fixed
+tables.
 
-  
+> +		if (intel_snps_phy_compute_hdmi_tmds_pll(crtc_state->port_clock,
+> +							 &crtc_state->dpll_hw_state.mpllb) == 0)
+> +			return 0;
+>  	}
+>  
+>  	tables = intel_mpllb_tables_get(crtc_state, encoder);
+> @@ -1991,6 +1984,9 @@ int intel_snps_phy_check_hdmi_link_rate(int clock)
+>  			return MODE_OK;
+>  	}
+>  
+> +	if (clock >= 25175 && clock <= 594000)
+> +		return MODE_OK;
+> +
 
-Participating hosts (5 -> 5)
-------------------------------
+How's this related to the patch at hand?
 
-  No changes in participating hosts
+>  	return MODE_CLOCK_RANGE;
+>  }
 
-Known issues
-------------
-
-  Here are the changes found in xe-pw-135295v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-FAIL][2] ([Intel XE#324])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1529-eeab54efcc91d572f99ea6ee3d9f562bb79a08d1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135295v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_gt_freq@freq_basic_api:
-    - {bat-lnl-1}:        [FAIL][3] -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1529-eeab54efcc91d572f99ea6ee3d9f562bb79a08d1/bat-lnl-1/igt@xe_gt_freq@freq_basic_api.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135295v2/bat-lnl-1/igt@xe_gt_freq@freq_basic_api.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1069]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1069
-  [Intel XE#1330]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1330
-  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
-
-
-Build changes
--------------
-
-  * Linux: xe-1529-eeab54efcc91d572f99ea6ee3d9f562bb79a08d1 -> xe-pw-135295v2
-
-  IGT_7901: dceed442a14a0abd09065cbade94cefe11e00422 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1529-eeab54efcc91d572f99ea6ee3d9f562bb79a08d1: eeab54efcc91d572f99ea6ee3d9f562bb79a08d1
-  xe-pw-135295v2: 135295v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135295v2/index.html
-
---===============3788265947939327252==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/vf: Track writes to inaccessible registers from VF (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135295/">https://patchwork.freedesktop.org/series/135295/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135295v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135295v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1529-eeab54efcc91d572f99ea6ee3d9f562bb79a08d1_BAT -&gt; xe-pw-135295v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-135295v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1529-eeab54efcc91d572f99ea6ee3d9f562bb79a08d1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135295v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_gt_freq@freq_basic_api:<ul>
-<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1529-eeab54efcc91d572f99ea6ee3d9f562bb79a08d1/bat-lnl-1/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135295v2/bat-lnl-1/igt@xe_gt_freq@freq_basic_api.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1529-eeab54efcc91d572f99ea6ee3d9f562bb79a08d1 -&gt; xe-pw-135295v2</li>
-</ul>
-<p>IGT_7901: dceed442a14a0abd09065cbade94cefe11e00422 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1529-eeab54efcc91d572f99ea6ee3d9f562bb79a08d1: eeab54efcc91d572f99ea6ee3d9f562bb79a08d1<br />
-  xe-pw-135295v2: 135295v2</p>
-
-</body>
-</html>
-
---===============3788265947939327252==--
+-- 
+Jani Nikula, Intel
