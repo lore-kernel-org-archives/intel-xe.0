@@ -4,53 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC9C3C2BBCA
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 00:41:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35DB4C30653
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 00:41:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 713C610E134;
-	Wed, 26 Jun 2024 00:41:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFF5910E280;
+	Wed, 26 Jun 2024 00:41:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OGX7YUQa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mVz8SFqa";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08CF810E134
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Jun 2024 00:41:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3323110E280
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Jun 2024 00:41:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719362462; x=1750898462;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=R+FWGheW0dt0wih4jLgaxsa6dI25mebVowVX7cjuoBg=;
- b=OGX7YUQaz9bU8IfzX8iwEkNJRqsISSKo/JJZbHco1RurigZlye8O/cbd
- 1jIA2KkjKLQwCnTBzX4tjBvKTRSn0WkCXkxln0YV38yqpcOADXeWnbrXT
- XylHo0PKyqrz2IrwloqDyu7u9qZeBu15FhqEzH54Lu8YJ4xKoaE2326VU
- 9DxfIMOBhdbURDvPTXCYprsSc5EYyIccAIfuQtVeFLTIvl/utDMQslOps
- v6PJAO2maSU0pQmhU8vPH6F4UbVkXqu2bhBhcIGxZNCvZPpLmeIxG/Ucd
- 9f1RkMj29MuPp1qMAa4PmBNtSvJ4QTm4xfRVp2pNymAGn1upi1HD8X5On g==;
-X-CSE-ConnectionGUID: aBNGN7HtTgKd1Hamh8YNhQ==
-X-CSE-MsgGUID: efTQXDRvRDugtjgZYZ57jQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11114"; a="16557102"
-X-IronPort-AV: E=Sophos;i="6.08,265,1712646000"; d="scan'208";a="16557102"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2024 17:41:02 -0700
-X-CSE-ConnectionGUID: 2A0Hm6bxSoCnmTxQJxK5jw==
-X-CSE-MsgGUID: /AJw26N+RzmFsuglJtc9VQ==
+ t=1719362468; x=1750898468;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=LszRI5kBxV9/RFixaVCypR94uekJ+wwcZXAOpcsludw=;
+ b=mVz8SFqak/aDJX9SL0hYY12lGhOqY8Z3PiNT9l2+WOlii+Z2whBK23nO
+ 0qgSu32W126poUOY5US+a2l4zG0WkRa05A5DOxtCAbC3Wr84CGwjHmrt1
+ hIB5ym7qcKpcEKcnks0wlpbuyQ4y+9RMT5H5COeAJ/Jr2n+uWjrvAnUun
+ iT/xbaRsPMhTAXJk2hozVa31RyvO0bfg5C1W9A8iEKt/SpDbrTlSpLrgh
+ AvvAmEDu8rDBHPA0Eb2LmUvoKdt78KjhW5Vkqoo9omYShc69l6eEIgKNn
+ vW0K6RRKO4864eM6Y9feD8q9nwL84eFB8uz8/AM0tAdUZCXs7h6HRd+FD w==;
+X-CSE-ConnectionGUID: DQG+r9YuRpGiQSTk0O5Ltw==
+X-CSE-MsgGUID: it+s7qFsTryohlAFOe218w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11114"; a="16093005"
+X-IronPort-AV: E=Sophos;i="6.08,265,1712646000"; d="scan'208";a="16093005"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2024 17:41:07 -0700
+X-CSE-ConnectionGUID: DGvyFWhtTBSLyBM7nQPnyg==
+X-CSE-MsgGUID: UMEhnL4gSaye6cV8scDj4g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,265,1712646000"; d="scan'208";a="44478166"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2024 17:40:59 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.auld@intel.com,
-	niranjana.vishwanathapura@intel.com
-Subject: [PATCH v3] drm/xe: Add timeout to preempt fences
-Date: Tue, 25 Jun 2024 17:41:37 -0700
-Message-Id: <20240626004137.4060806-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.08,265,1712646000"; d="scan'208";a="48274255"
+Received: from tlhardin-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.125.225.168])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2024 17:41:07 -0700
+Date: Tue, 25 Jun 2024 17:29:46 -0700
+Message-ID: <87jzich7gl.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Brost, Matthew" <matthew.brost@intel.com>, "Nerlige Ramappa, Umesh"
+ <umesh.nerlige.ramappa@intel.com>, "Landwerlin, Lionel G"
+ <lionel.g.landwerlin@intel.com>
+Subject: Re: [PATCH 3/3] drm/xe/oa: Allow preemption to be disabled on the
+ stream exec queue
+In-Reply-To: <e8ab87c5a4b5d25f11bf9fab3c5a3ad31293ec73.camel@intel.com>
+References: <20240625201518.766925-1-ashutosh.dixit@intel.com>
+ <20240625201518.766925-4-ashutosh.dixit@intel.com>
+ <e8ab87c5a4b5d25f11bf9fab3c5a3ad31293ec73.camel@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/29.3 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,210 +76,183 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To adhere to dma fencing rules that fences must signal within a
-reasonable amount of time, add a 5 second timeout to preempt fences. If
-this timeout occurs, kill the associated VM as this fatal to the VM.
+On Tue, 25 Jun 2024 13:49:07 -0700, Souza, Jose wrote:
+>
 
-v2:
- - Add comment for smp_wmb (Checkpatch)
- - Fix kernel doc typo (Inspection)
- - Add comment for killed check (Niranjana)
-v3:
- - Drop smp_wmb (Matthew Auld)
- - Don't take vm->lock in preempt fence worker (Matthew Auld)
- - Drop RB given changes to patch
+Hi Jose,
 
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  6 ++--
- drivers/gpu/drm/xe/xe_execlist.c         |  3 +-
- drivers/gpu/drm/xe/xe_guc_submit.c       | 39 ++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_preempt_fence.c    | 12 ++++++--
- drivers/gpu/drm/xe/xe_vm.c               | 14 +++++++--
- drivers/gpu/drm/xe/xe_vm.h               |  2 ++
- 6 files changed, 62 insertions(+), 14 deletions(-)
+> On Tue, 2024-06-25 at 13:15 -0700, Ashutosh Dixit wrote:
+> > Mesa VK_KHR_performance_query use case requires preemption to be disabl=
+ed
+> > for the stream exec queue. Implement this functionality here based on t=
+he
+> > new set_no_preempt and clear_no_preempt exec queue ops.
+>
+> Is this planned to land in the same Kernel version as the other OA
+> patches?
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 201588ec33c3..ded9f9396429 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -172,9 +172,11 @@ struct xe_exec_queue_ops {
- 	int (*suspend)(struct xe_exec_queue *q);
- 	/**
- 	 * @suspend_wait: Wait for an exec queue to suspend executing, should be
--	 * call after suspend.
-+	 * call after suspend. In dma-fencing path thus must return within a
-+	 * reasonable amount of time. -ETIME return shall indicate an error
-+	 * waiting for suspend resulting in associated VM getting killed.
- 	 */
--	void (*suspend_wait)(struct xe_exec_queue *q);
-+	int (*suspend_wait)(struct xe_exec_queue *q);
- 	/**
- 	 * @resume: Resume exec queue execution, exec queue must be in a suspended
- 	 * state and dma fence returned from most recent suspend call must be
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index db906117db6d..7502e3486eaf 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -422,10 +422,11 @@ static int execlist_exec_queue_suspend(struct xe_exec_queue *q)
- 	return 0;
- }
- 
--static void execlist_exec_queue_suspend_wait(struct xe_exec_queue *q)
-+static int execlist_exec_queue_suspend_wait(struct xe_exec_queue *q)
- 
- {
- 	/* NIY */
-+	return 0;
- }
- 
- static void execlist_exec_queue_resume(struct xe_exec_queue *q)
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 373447758a60..b06321897cf3 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1301,6 +1301,15 @@ static void __guc_exec_queue_process_msg_set_sched_props(struct xe_sched_msg *ms
- 	kfree(msg);
- }
- 
-+static void __suspend_fence_signal(struct xe_exec_queue *q)
-+{
-+	if (!q->guc->suspend_pending)
-+		return;
-+
-+	q->guc->suspend_pending = false;
-+	wake_up(&q->guc->suspend_wait);
-+}
-+
- static void suspend_fence_signal(struct xe_exec_queue *q)
- {
- 	struct xe_guc *guc = exec_queue_to_guc(q);
-@@ -1310,9 +1319,7 @@ static void suspend_fence_signal(struct xe_exec_queue *q)
- 		  guc_read_stopped(guc));
- 	xe_assert(xe, q->guc->suspend_pending);
- 
--	q->guc->suspend_pending = false;
--	smp_wmb();
--	wake_up(&q->guc->suspend_wait);
-+	__suspend_fence_signal(q);
- }
- 
- static void __guc_exec_queue_process_msg_suspend(struct xe_sched_msg *msg)
-@@ -1465,6 +1472,7 @@ static void guc_exec_queue_kill(struct xe_exec_queue *q)
- {
- 	trace_xe_exec_queue_kill(q);
- 	set_exec_queue_killed(q);
-+	__suspend_fence_signal(q);
- 	xe_guc_exec_queue_trigger_cleanup(q);
- }
- 
-@@ -1561,12 +1569,31 @@ static int guc_exec_queue_suspend(struct xe_exec_queue *q)
- 	return 0;
- }
- 
--static void guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
-+static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
- {
- 	struct xe_guc *guc = exec_queue_to_guc(q);
-+	int ret;
-+
-+	/*
-+	 * Likely don't need to check exec_queue_killed() as we clear
-+	 * suspend_pending upon kill but to be paranoid but races in which
-+	 * suspend_pending is set after kill also check kill here.
-+	 */
-+	ret = wait_event_timeout(q->guc->suspend_wait,
-+				 !q->guc->suspend_pending ||
-+				 exec_queue_killed(q) ||
-+				 guc_read_stopped(guc),
-+				 HZ * 5);
- 
--	wait_event(q->guc->suspend_wait, !q->guc->suspend_pending ||
--		   guc_read_stopped(guc));
-+	if (!ret) {
-+		xe_gt_warn(guc_to_gt(guc),
-+			   "Suspend fence, guc_id=%d, failed to respond",
-+			   q->guc->id);
-+		/* XXX: Trigger GT reset? */
-+		return -ETIME;
-+	}
-+
-+	return 0;
- }
- 
- static void guc_exec_queue_resume(struct xe_exec_queue *q)
-diff --git a/drivers/gpu/drm/xe/xe_preempt_fence.c b/drivers/gpu/drm/xe/xe_preempt_fence.c
-index e8b8ae5c6485..56e709d2fb30 100644
---- a/drivers/gpu/drm/xe/xe_preempt_fence.c
-+++ b/drivers/gpu/drm/xe/xe_preempt_fence.c
-@@ -17,10 +17,16 @@ static void preempt_fence_work_func(struct work_struct *w)
- 		container_of(w, typeof(*pfence), preempt_work);
- 	struct xe_exec_queue *q = pfence->q;
- 
--	if (pfence->error)
-+	if (pfence->error) {
- 		dma_fence_set_error(&pfence->base, pfence->error);
--	else
--		q->ops->suspend_wait(q);
-+	} else if (!q->ops->reset_status(q)) {
-+		int err = q->ops->suspend_wait(q);
-+
-+		if (err)
-+			dma_fence_set_error(&pfence->base, err);
-+	} else {
-+		dma_fence_set_error(&pfence->base, -ENOENT);
-+	}
- 
- 	dma_fence_signal(&pfence->base);
- 	/*
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 5b166fa03684..bf1764249724 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -133,8 +133,10 @@ static int wait_for_existing_preempt_fences(struct xe_vm *vm)
- 		if (q->lr.pfence) {
- 			long timeout = dma_fence_wait(q->lr.pfence, false);
- 
--			if (timeout < 0)
-+			/* Only -ETIME on fence indicates VM needs to be killed */
-+			if (timeout < 0 || q->lr.pfence->error == -ETIME)
- 				return -ETIME;
-+
- 			dma_fence_put(q->lr.pfence);
- 			q->lr.pfence = NULL;
- 		}
-@@ -311,7 +313,15 @@ int __xe_vm_userptr_needs_repin(struct xe_vm *vm)
- 
- #define XE_VM_REBIND_RETRY_TIMEOUT_MS 1000
- 
--static void xe_vm_kill(struct xe_vm *vm, bool unlocked)
-+/**
-+ * xe_vm_kill() - VM Kill
-+ * @vm: The VM.
-+ * @unlocked: Flag indicates the VM's dma-resv is not held
-+ *
-+ * Kill the VM by setting banned flag indicated VM is no longer available for
-+ * use. If in preempt fence mode, also kill all exec queue attached to the VM.
-+ */
-+void xe_vm_kill(struct xe_vm *vm, bool unlocked)
- {
- 	struct xe_exec_queue *q;
- 
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index b481608b12f1..c864dba35e1d 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -259,6 +259,8 @@ static inline struct dma_resv *xe_vm_resv(struct xe_vm *vm)
- 	return drm_gpuvm_resv(&vm->gpuvm);
- }
- 
-+void xe_vm_kill(struct xe_vm *vm, bool unlocked);
-+
- /**
-  * xe_vm_assert_held(vm) - Assert that the vm's reservation object is held.
-  * @vm: The vm
--- 
-2.34.1
+Let's see if we can get them reviewed and merged tomorrow which is the
+cutoff for 6.11. If we can merge tomorrow, they will get in with the other
+OA patches. That is why I was trying to rush this ahead of other things.
 
+> If not would be nice to have some flag indicating that this feature is
+> supported in running kernel, like we have in i915.
+
+Yes, if we don't make it tomorrow's deadline, we'll need to figure
+something out.
+
+> uAPI looks good to me, will implement on Mesa tomorrow.
+>
+> thank you
+>
+> Acked-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+
+Thanks.
+--
+Ashutosh
+
+
+>
+> >
+> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_oa.c       | 33 +++++++++++++++++++++++++++++++-
+> >  drivers/gpu/drm/xe/xe_oa_types.h |  3 +++
+> >  include/uapi/drm/xe_drm.h        |  6 ++++++
+> >  3 files changed, 41 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> > index a68659fd5386..6453c36c4539 100644
+> > --- a/drivers/gpu/drm/xe/xe_oa.c
+> > +++ b/drivers/gpu/drm/xe/xe_oa.c
+> > @@ -80,6 +80,7 @@ struct xe_oa_open_param {
+> >	int engine_instance;
+> >	struct xe_exec_queue *exec_q;
+> >	struct xe_hw_engine *hwe;
+> > +	bool no_preempt;
+> >  };
+> >
+> >  struct xe_oa_config_bo {
+> > @@ -1018,6 +1019,13 @@ static int xe_oa_enable_locked(struct xe_oa_stre=
+am *stream)
+> >	if (stream->enabled)
+> >		return 0;
+> >
+> > +	if (stream->no_preempt) {
+> > +		int ret =3D stream->exec_q->ops->set_no_preempt(stream->exec_q);
+> > +
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> > +
+> >	xe_oa_stream_enable(stream);
+> >
+> >	stream->enabled =3D true;
+> > @@ -1026,13 +1034,18 @@ static int xe_oa_enable_locked(struct xe_oa_str=
+eam *stream)
+> >
+> >  static int xe_oa_disable_locked(struct xe_oa_stream *stream)
+> >  {
+> > +	int ret =3D 0;
+> > +
+> >	if (!stream->enabled)
+> >		return 0;
+> >
+> >	xe_oa_stream_disable(stream);
+> >
+> > +	if (stream->no_preempt)
+> > +		ret =3D stream->exec_q->ops->clear_no_preempt(stream->exec_q);
+> > +
+> >	stream->enabled =3D false;
+> > -	return 0;
+> > +	return ret;
+> >  }
+> >
+> >  static long xe_oa_config_locked(struct xe_oa_stream *stream, u64 arg)
+> > @@ -1307,6 +1320,7 @@ static int xe_oa_stream_init(struct xe_oa_stream =
+*stream,
+> >	stream->sample =3D param->sample;
+> >	stream->periodic =3D param->period_exponent > 0;
+> >	stream->period_exponent =3D param->period_exponent;
+> > +	stream->no_preempt =3D param->no_preempt;
+> >
+> >	/*
+> >	 * For Xe2+, when overrun mode is enabled, there are no partial reports=
+ at the end
+> > @@ -1651,6 +1665,13 @@ static int xe_oa_set_prop_engine_instance(struct=
+ xe_oa *oa, u64 value,
+> >	return 0;
+> >  }
+> >
+> > +static int xe_oa_set_no_preempt(struct xe_oa *oa, u64 value,
+> > +				struct xe_oa_open_param *param)
+> > +{
+> > +	param->no_preempt =3D value;
+> > +	return 0;
+> > +}
+> > +
+> >  typedef int (*xe_oa_set_property_fn)(struct xe_oa *oa, u64 value,
+> >				     struct xe_oa_open_param *param);
+> >  static const xe_oa_set_property_fn xe_oa_set_property_funcs[] =3D {
+> > @@ -1662,6 +1683,7 @@ static const xe_oa_set_property_fn xe_oa_set_prop=
+erty_funcs[] =3D {
+> >	[DRM_XE_OA_PROPERTY_OA_DISABLED] =3D xe_oa_set_prop_disabled,
+> >	[DRM_XE_OA_PROPERTY_EXEC_QUEUE_ID] =3D xe_oa_set_prop_exec_queue_id,
+> >	[DRM_XE_OA_PROPERTY_OA_ENGINE_INSTANCE] =3D xe_oa_set_prop_engine_insta=
+nce,
+> > +	[DRM_XE_OA_PROPERTY_NO_PREEMPT] =3D xe_oa_set_no_preempt,
+> >  };
+> >
+> >  static int xe_oa_user_ext_set_property(struct xe_oa *oa, u64 extension,
+> > @@ -1766,6 +1788,15 @@ int xe_oa_stream_open_ioctl(struct drm_device *d=
+ev, u64 data, struct drm_file *f
+> >	if (param.exec_q && !param.sample)
+> >		privileged_op =3D false;
+> >
+> > +	if (param.no_preempt) {
+> > +		if (!param.exec_q) {
+> > +			drm_dbg(&oa->xe->drm, "Preemption disable without exec_q!\n");
+> > +			ret =3D -EINVAL;
+> > +			goto err_exec_q;
+> > +		}
+> > +		privileged_op =3D true;
+> > +	}
+> > +
+> >	if (privileged_op && xe_perf_stream_paranoid && !perfmon_capable()) {
+> >		drm_dbg(&oa->xe->drm, "Insufficient privileges to open xe perf stream\=
+n");
+> >		ret =3D -EACCES;
+> > diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_o=
+a_types.h
+> > index 706d45577dae..540c3ec53a6d 100644
+> > --- a/drivers/gpu/drm/xe/xe_oa_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_oa_types.h
+> > @@ -235,5 +235,8 @@ struct xe_oa_stream {
+> >
+> >	/** @oa_status: temporary storage for oa_status register value */
+> >	u32 oa_status;
+> > +
+> > +	/** @no_preempt: Whether preemption and timeslicing is disabled for s=
+tream exec_q */
+> > +	u32 no_preempt;
+> >  };
+> >  #endif
+> > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> > index b410553faa9b..12eaa8532b5c 100644
+> > --- a/include/uapi/drm/xe_drm.h
+> > +++ b/include/uapi/drm/xe_drm.h
+> > @@ -1611,6 +1611,12 @@ enum drm_xe_oa_property_id {
+> >	 * pass along with @DRM_XE_OA_PROPERTY_EXEC_QUEUE_ID or will default to=
+ 0.
+> >	 */
+> >	DRM_XE_OA_PROPERTY_OA_ENGINE_INSTANCE,
+> > +
+> > +	/**
+> > +	 * @DRM_XE_OA_PROPERTY_NO_PREEMPT: Allow preemption and timeslicing
+> > +	 * to be disabled for the stream exec queue.
+> > +	 */
+> > +	DRM_XE_OA_PROPERTY_NO_PREEMPT,
+> >  };
+> >
+> >  /**
+>
