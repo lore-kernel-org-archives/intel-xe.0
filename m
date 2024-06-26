@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C641C2BBCA
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 02:13:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45FD9C2BBCA
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 02:18:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4988C10E75B;
-	Wed, 26 Jun 2024 02:13:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nhN3fPar";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B5B510E2DF
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Jun 2024 02:13:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719368030; x=1750904030;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=7HgYG9eVtyiYkyFfiVGfz4qNwW9j5Ca3HkcF3rKQGog=;
- b=nhN3fParmQ7tb8eaMBjILY/6KFR05uglIqgEiX9tltcrS1DG7AivilDT
- xeIn9QbFYwHR9oMY+A4E/X+Wn4uSsWnEPtilXTxsrj6cjIQcQ0/hY4ZlI
- HhO35zWp3K6oDe9V3FOWtC9jGrtmmg/Uy9cZre4r49mY/RQ4xjkquwM14
- WJ26o34h2G9cv8NQUGySocNUGddZ0pqziGqnU+FjBoBOIiNSKzzuzt9hv
- uIdUaDJV8JB/yoBiiN6exvnzsjpq2TvHU3OvUNSZFwmTBS0V7hdQ2N7DU
- TF2S3BgFwEm9Ew2xpHSuSUMHt/H0bX5/AwMG5A4OEhlSU2gKqi2CANE+q g==;
-X-CSE-ConnectionGUID: QL2DiDYnS4aJ+FT/xSnyCg==
-X-CSE-MsgGUID: eHHZ/9fSStSiu4rlrA+rGg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11114"; a="12249517"
-X-IronPort-AV: E=Sophos;i="6.08,265,1712646000"; d="scan'208";a="12249517"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2024 19:13:49 -0700
-X-CSE-ConnectionGUID: f5hG/JA/RVy7hsqdkfTq4Q==
-X-CSE-MsgGUID: Ac1Bju1mTQGvJTQZgSjQvQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,265,1712646000"; d="scan'208";a="74610023"
-Received: from orsosgc001.jf.intel.com ([10.165.21.138])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2024 19:13:49 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH 2/2] drm/xe/oa/uapi: Allow preemption to be disabled on the
- stream exec queue
-Date: Tue, 25 Jun 2024 19:13:43 -0700
-Message-ID: <20240626021343.1054590-3-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20240626021343.1054590-1-ashutosh.dixit@intel.com>
-References: <20240626021343.1054590-1-ashutosh.dixit@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E340A10E103;
+	Wed, 26 Jun 2024 02:18:28 +0000 (UTC)
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0EC510E103;
+ Wed, 26 Jun 2024 02:18:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_Add_timeout_to_preem?=
+ =?utf-8?q?pt_fences_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 26 Jun 2024 02:18:27 -0000
+Message-ID: <171936830785.158965.5136649693550334943@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240626004137.4060806-1-matthew.brost@intel.com>
+In-Reply-To: <20240626004137.4060806-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,184 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Mesa VK_KHR_performance_query use case requires preemption and timeslicing
-to be disabled for the stream exec queue. Implement this functionality
-here.
+== Series Details ==
 
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/xe/xe_oa.c       | 70 +++++++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_oa_types.h |  3 ++
- include/uapi/drm/xe_drm.h        |  6 +++
- 3 files changed, 78 insertions(+), 1 deletion(-)
+Series: drm/xe: Add timeout to preempt fences (rev4)
+URL   : https://patchwork.freedesktop.org/series/135329/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index a68659fd5386..1147035af039 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -80,6 +80,7 @@ struct xe_oa_open_param {
- 	int engine_instance;
- 	struct xe_exec_queue *exec_q;
- 	struct xe_hw_engine *hwe;
-+	bool no_preempt;
- };
- 
- struct xe_oa_config_bo {
-@@ -1013,11 +1014,55 @@ static void xe_oa_stream_disable(struct xe_oa_stream *stream)
- 		hrtimer_cancel(&stream->poll_check_timer);
- }
- 
-+static int xe_oa_enable_preempt_timeslice(struct xe_oa_stream *stream)
-+{
-+	struct xe_exec_queue *q = stream->exec_q;
-+	int ret1, ret2;
-+
-+	/* Best effort recovery: try to revert both to original, irrespective of error */
-+	ret1 = q->ops->set_timeslice(q, stream->hwe->eclass->sched_props.timeslice_us);
-+	ret2 = q->ops->set_preempt_timeout(q, stream->hwe->eclass->sched_props.preempt_timeout_us);
-+	if (ret1 || ret2)
-+		goto err;
-+	return 0;
-+err:
-+	drm_dbg(&stream->oa->xe->drm, "%s failed %d\n", __func__, ret1 ?: ret2);
-+	return ret1 ?: ret2;
-+}
-+
-+static int xe_oa_disable_preempt_timeslice(struct xe_oa_stream *stream)
-+{
-+	struct xe_exec_queue *q = stream->exec_q;
-+	int ret;
-+
-+	/* Setting values to 0 will disable timeslice and preempt_timeout */
-+	ret = q->ops->set_timeslice(q, 0);
-+	if (ret)
-+		goto err;
-+
-+	ret = q->ops->set_preempt_timeout(q, 0);
-+	if (ret)
-+		goto err;
-+
-+	return 0;
-+err:
-+	xe_oa_enable_preempt_timeslice(stream);
-+	drm_dbg(&stream->oa->xe->drm, "%s failed %d\n", __func__, ret);
-+	return ret;
-+}
-+
- static int xe_oa_enable_locked(struct xe_oa_stream *stream)
- {
- 	if (stream->enabled)
- 		return 0;
- 
-+	if (stream->no_preempt) {
-+		int ret = xe_oa_disable_preempt_timeslice(stream);
-+
-+		if (ret)
-+			return ret;
-+	}
-+
- 	xe_oa_stream_enable(stream);
- 
- 	stream->enabled = true;
-@@ -1026,13 +1071,18 @@ static int xe_oa_enable_locked(struct xe_oa_stream *stream)
- 
- static int xe_oa_disable_locked(struct xe_oa_stream *stream)
- {
-+	int ret = 0;
-+
- 	if (!stream->enabled)
- 		return 0;
- 
- 	xe_oa_stream_disable(stream);
- 
-+	if (stream->no_preempt)
-+		ret = xe_oa_enable_preempt_timeslice(stream);
-+
- 	stream->enabled = false;
--	return 0;
-+	return ret;
- }
- 
- static long xe_oa_config_locked(struct xe_oa_stream *stream, u64 arg)
-@@ -1307,6 +1357,7 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
- 	stream->sample = param->sample;
- 	stream->periodic = param->period_exponent > 0;
- 	stream->period_exponent = param->period_exponent;
-+	stream->no_preempt = param->no_preempt;
- 
- 	/*
- 	 * For Xe2+, when overrun mode is enabled, there are no partial reports at the end
-@@ -1651,6 +1702,13 @@ static int xe_oa_set_prop_engine_instance(struct xe_oa *oa, u64 value,
- 	return 0;
- }
- 
-+static int xe_oa_set_no_preempt(struct xe_oa *oa, u64 value,
-+				struct xe_oa_open_param *param)
-+{
-+	param->no_preempt = value;
-+	return 0;
-+}
-+
- typedef int (*xe_oa_set_property_fn)(struct xe_oa *oa, u64 value,
- 				     struct xe_oa_open_param *param);
- static const xe_oa_set_property_fn xe_oa_set_property_funcs[] = {
-@@ -1662,6 +1720,7 @@ static const xe_oa_set_property_fn xe_oa_set_property_funcs[] = {
- 	[DRM_XE_OA_PROPERTY_OA_DISABLED] = xe_oa_set_prop_disabled,
- 	[DRM_XE_OA_PROPERTY_EXEC_QUEUE_ID] = xe_oa_set_prop_exec_queue_id,
- 	[DRM_XE_OA_PROPERTY_OA_ENGINE_INSTANCE] = xe_oa_set_prop_engine_instance,
-+	[DRM_XE_OA_PROPERTY_NO_PREEMPT] = xe_oa_set_no_preempt,
- };
- 
- static int xe_oa_user_ext_set_property(struct xe_oa *oa, u64 extension,
-@@ -1766,6 +1825,15 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, u64 data, struct drm_file *f
- 	if (param.exec_q && !param.sample)
- 		privileged_op = false;
- 
-+	if (param.no_preempt) {
-+		if (!param.exec_q) {
-+			drm_dbg(&oa->xe->drm, "Preemption disable without exec_q!\n");
-+			ret = -EINVAL;
-+			goto err_exec_q;
-+		}
-+		privileged_op = true;
-+	}
-+
- 	if (privileged_op && xe_perf_stream_paranoid && !perfmon_capable()) {
- 		drm_dbg(&oa->xe->drm, "Insufficient privileges to open xe perf stream\n");
- 		ret = -EACCES;
-diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
-index 706d45577dae..540c3ec53a6d 100644
---- a/drivers/gpu/drm/xe/xe_oa_types.h
-+++ b/drivers/gpu/drm/xe/xe_oa_types.h
-@@ -235,5 +235,8 @@ struct xe_oa_stream {
- 
- 	/** @oa_status: temporary storage for oa_status register value */
- 	u32 oa_status;
-+
-+	/** @no_preempt: Whether preemption and timeslicing is disabled for stream exec_q */
-+	u32 no_preempt;
- };
- #endif
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index b410553faa9b..12eaa8532b5c 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1611,6 +1611,12 @@ enum drm_xe_oa_property_id {
- 	 * pass along with @DRM_XE_OA_PROPERTY_EXEC_QUEUE_ID or will default to 0.
- 	 */
- 	DRM_XE_OA_PROPERTY_OA_ENGINE_INSTANCE,
-+
-+	/**
-+	 * @DRM_XE_OA_PROPERTY_NO_PREEMPT: Allow preemption and timeslicing
-+	 * to be disabled for the stream exec queue.
-+	 */
-+	DRM_XE_OA_PROPERTY_NO_PREEMPT,
- };
- 
- /**
--- 
-2.41.0
+== Summary ==
+
+lib/modules/6.10.0-rc5-xe/kernel/sound/core/seq/
+lib/modules/6.10.0-rc5-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/core/snd.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soundcore.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/common/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/amd/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/codecs/
+lib/modules/6.10.0-rc5-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/hda/
+lib/modules/6.10.0-rc5-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/hda/ext/
+lib/modules/6.10.0-rc5-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.10.0-rc5-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/kernel/
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/events/
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/events/intel/
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/kvm/
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.10.0-rc5-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/
+lib/modules/6.10.0-rc5-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/cmac.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/ccm.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/cryptd.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/async_tx/
+lib/modules/6.10.0-rc5-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.10.0-rc5-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.10.0-rc5-xe/build
+lib/modules/6.10.0-rc5-xe/modules.alias.bin
+lib/modules/6.10.0-rc5-xe/modules.builtin
+lib/modules/6.10.0-rc5-xe/modules.softdep
+lib/modules/6.10.0-rc5-xe/modules.alias
+lib/modules/6.10.0-rc5-xe/modules.order
+lib/modules/6.10.0-rc5-xe/modules.symbols
+lib/modules/6.10.0-rc5-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
+[0Ksection_end:1719368295:package_x86_64_nodebug
+[0K
++ echo -e '\e[0Ksection_end:1719368295:package_x86_64_nodebug\r\e[0K'
++ sync
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
