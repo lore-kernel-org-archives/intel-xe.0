@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C72C0C27C4F
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 05:00:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBC02C30658
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 05:00:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99B0310E767;
-	Wed, 26 Jun 2024 05:00:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11E6F10E75E;
+	Wed, 26 Jun 2024 05:00:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bmw3Dbo3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fDRVfiL8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BEAB10E759;
- Wed, 26 Jun 2024 05:00:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC9F910E770;
+ Wed, 26 Jun 2024 05:00:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719378015; x=1750914015;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=EzOgNfh8BxCHoGZYVpJWC0ve6PR6yIzNIEtBfiSEarg=;
- b=bmw3Dbo3VYg2HxT+M72u83F18KoMlEX8zRca2ohDjstlB06IjBlzbuFa
- kNdtu8yNzJwUCwN9ualFyERqoui3MfHVO+GhFkXK/afFPjNXvYEUhPkNn
- bdE2It8QYmr+g+LTGo1DUu8JmLxFGB0thklLWlnhXhp21i0rg/ciNyH7s
- y2vRnSRYGbVgVLI+/pfkp6144MrAn8rs1cKQKFhMUbMpg3c3mjCvtaVf2
- 67XJp0U9T8neR2m++wDiOgLJmJfhj7G/09ulHp32GvwInR4KgnceI0Lw+
- 68of0bP5B1GHf12T7xIxjCrLfT5zJPPY/CJp8s170l+QdevXbN6zrqp0z A==;
-X-CSE-ConnectionGUID: 6Hq3R0DaRniB0T1ozit/tQ==
-X-CSE-MsgGUID: LSoK3lapTN2LDTge7BTXRg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11114"; a="33962352"
-X-IronPort-AV: E=Sophos;i="6.08,265,1712646000"; d="scan'208";a="33962352"
+ t=1719378022; x=1750914022;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=bVFQcUPoBjkRqOpYF+q8nxZwhC1E4dll3yXW73Pliko=;
+ b=fDRVfiL8FW7e5sBM25+qboNDbsFC1EAiMJznEjz9FzTTncgIJKaCnIKD
+ wL88qAsxUSzoHLePxeohc8EZLjyV01hBK1M39mFXgXgY5yTMlRv9xW1P2
+ ldGSrbD6ypn8qt/jtU7F1FDoW68TYFMpMxsA2lLYP8zkoDqA1JVjCnU4R
+ yiwaVLObRV94EEs7XOtc9ywfjD5tzENdcIsB5axvHOlm7L5RMUbOpCURb
+ nnKhzKnIRerRvr5T9ZCYyQ+EPCUfNdSWMPNj6GcRIxXUS27HG/9RtqJ5+
+ GhGkbWcXGqsWioNEYxRgND7bcR9XwHyjNKTdIU3stRiIQQ2U3YYJyOz14 w==;
+X-CSE-ConnectionGUID: +/LZbrInR/C6wf54hu5D/Q==
+X-CSE-MsgGUID: YvI3hdcJTu6mIwjrSuvbwQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11114"; a="33962372"
+X-IronPort-AV: E=Sophos;i="6.08,265,1712646000"; d="scan'208";a="33962372"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2024 22:00:14 -0700
-X-CSE-ConnectionGUID: eDXniAj9RZC6YZlmByXcdg==
-X-CSE-MsgGUID: Tq2+HJRaSFyXO68UE43Mtg==
+ 25 Jun 2024 22:00:21 -0700
+X-CSE-ConnectionGUID: Lbt4jnzuSpu2tpOpGT1cfg==
+X-CSE-MsgGUID: XVX4t4X+RBOQ58STbGEfSA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,265,1712646000"; d="scan'208";a="44588199"
+X-IronPort-AV: E=Sophos;i="6.08,265,1712646000"; d="scan'208";a="44588254"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2024 22:00:12 -0700
+ 25 Jun 2024 22:00:19 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com,
  mika.kahola@intel.com, matthew.d.roper@intel.com
-Subject: [PATCH 0/5] Add HDMI PLL Algorithm for SNPS/C10PHY
-Date: Wed, 26 Jun 2024 10:30:51 +0530
-Message-Id: <20240626050056.3996349-1-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 3/5] drm/i915/cx0_phy_regs: Add C10 registers bits
+Date: Wed, 26 Jun 2024 10:30:54 +0530
+Message-Id: <20240626050056.3996349-4-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20240626050056.3996349-1-ankit.k.nautiyal@intel.com>
+References: <20240626050056.3996349-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,43 +68,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The HDMI PLL programming involves pre-calculated values for specific
-frequencies and an algorithm to compute values for other frequencies.
-While the algorithm itself wasn't part of the driver, tables were
-added based on it for known modes.
+Add C10 register bits to be used for computing HDMI PLLs with
+algorithm.
 
-Some HDMI modes were pruned due to lack of support (for example issues
-[1],[2], and [3]).
-This series adds the algorithm for computing HDMI PLLs for SNPS/C10PHY
-to work with all modes supported by the hardware.
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h | 24 +++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-The original algorithm uses floating-point math, which has been
-converted to integers while preserving precision. As a result,
-the values in the existing computable tables are very close but not
-exact. Testing with DG2 and MTL on various panels revealed no issues.
-
-[1] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9722
-[2] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10654
-[3] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10956
-
-Ankit Nautiyal (5):
-  drm/i915/display: Add support for SNPS PHY HDMI PLL algorithm for DG2
-  drm/i915/snps_phy: Use HDMI PLL algorithm for DG2
-  drm/i915/cx0_phy_regs: Add C10 registers bits
-  drm/i915/pll_algorithm: Compute C10 HDMI PLLs with algorithm
-  drm/xe: Add intel_pll_algorithm in Makefile
-
- drivers/gpu/drm/i915/Makefile                 |   1 +
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  15 +
- .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  24 ++
- .../drm/i915/display/intel_pll_algorithm.c    | 317 ++++++++++++++++++
- .../drm/i915/display/intel_pll_algorithm.h    |  41 +++
- drivers/gpu/drm/i915/display/intel_snps_phy.c |  20 +-
- drivers/gpu/drm/xe/Makefile                   |   1 +
- 7 files changed, 407 insertions(+), 12 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_pll_algorithm.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_pll_algorithm.h
-
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+index ab3ae110b68f..56443bf3e7cf 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+@@ -202,10 +202,34 @@
+ 
+ /* C10 Vendor Registers */
+ #define PHY_C10_VDR_PLL(idx)		(0xC00 + (idx))
++#define   C10_PLL0_SSC_EN		REG_BIT8(0)
++#define   C10_PLL0_DIVCLK_EN		REG_BIT8(1)
++#define   C10_PLL0_DIV5CLK_EN		REG_BIT8(2)
++#define   C10_PLL0_WORDDIV2_EN		REG_BIT8(3)
+ #define   C10_PLL0_FRACEN		REG_BIT8(4)
++#define   C10_PLL0_PMIX_EN		REG_BIT8(5)
++#define   C10_PLL0_ANA_FREQ_VCO_MASK	REG_GENMASK8(7, 6)
++#define   C10_PLL1_DIV_MULTIPLIER_MASK	REG_GENMASK8(7, 0)
++#define   C10_PLL2_MULTIPLIERL_MASK	REG_GENMASK8(7, 0)
+ #define   C10_PLL3_MULTIPLIERH_MASK	REG_GENMASK8(3, 0)
++#define   C10_PLL8_SSC_UP_SPREAD	REG_BIT(5)
++#define   C10_PLL9_FRACN_DENL_MASK	REG_GENMASK8(7, 0)
++#define   C10_PLL10_FRACN_DENH_MASK	REG_GENMASK8(7, 0)
++#define   C10_PLL11_FRACN_QUOT_L_MASK	REG_GENMASK8(7, 0)
++#define   C10_PLL12_FRACN_QUOT_H_MASK	REG_GENMASK8(7, 0)
++#define   C10_PLL13_FRACN_REM_L_MASK	REG_GENMASK8(7, 0)
++#define   C10_PLL14_FRACN_REM_H_MASK	REG_GENMASK8(7, 0)
+ #define   C10_PLL15_TXCLKDIV_MASK	REG_GENMASK8(2, 0)
+ #define   C10_PLL15_HDMIDIV_MASK	REG_GENMASK8(5, 3)
++#define   C10_PLL15_PIXELCLKDIV_MASK	REG_GENMASK8(7, 6)
++#define   C10_PLL16_ANA_CPINT		REG_GENMASK8(6, 0)
++#define   C10_PLL16_ANA_CPINTGS_L	REG_BIT(7)
++#define   C10_PLL17_ANA_CPINTGS_H_MASK	REG_GENMASK8(5, 0)
++#define   C10_PLL17_ANA_CPPROP_L_MASK	REG_GENMASK8(7, 6)
++#define   C10_PLL18_ANA_CPPROP_H_MASK	REG_GENMASK8(4, 0)
++#define   C10_PLL18_ANA_CPPROPGS_L_MASK	REG_GENMASK8(7, 5)
++#define   C10_PLL19_ANA_CPPROPGS_H_MASK	REG_GENMASK8(3, 0)
++#define   C10_PLL19_ANA_V2I_MASK	REG_GENMASK8(5, 4)
+ 
+ #define PHY_C10_VDR_CMN(idx)		(0xC20 + (idx))
+ #define   C10_CMN0_REF_RANGE		REG_FIELD_PREP(REG_GENMASK(4, 0), 1)
 -- 
 2.40.1
 
