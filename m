@@ -4,60 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 139DBC27C4F
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 18:12:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD1CAC27C4F
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Jun 2024 18:18:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B53DB10E0B6;
-	Wed, 26 Jun 2024 18:12:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EFF710E056;
+	Wed, 26 Jun 2024 18:18:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZlS91KCt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fCUN6R13";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18CF010E0B6;
- Wed, 26 Jun 2024 18:12:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6324610E056
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Jun 2024 18:18:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719425545; x=1750961545;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=uFcud2CNZ9VgFs2xDvdrQV4qo4b713G5ZCzzQsE/aM0=;
- b=ZlS91KCtvxeWJiiImBegVbcwQXREMv2LOyWQWaf2hiJnrtE7YjO7RJ3O
- B+TluxwSG+qrDiZzAECwpBXuO45Y5VMb10SUwwLlTSGIobMsr5cW/QGpi
- VDLmzMwXSLuyw/z3jMwwhfuPxXWCi4nVlY+YbAQajederWy6WWg0LRFXO
- 3Ojmg/3I4ByJIzOJ7tWkUzoJqRRNYa9ru3GoU2FGtxU1peKu/LwHCrezf
- bJ1XbYOWAdkHHGZWv91fggfs4rd175v4QkhAKxU8uR0533AQqDFn79tzW
- wiPzSJOdZYQFWN3Mf/hYMk/z5LVIZZKDVjsYxeQCnMk6Hvn/GS+St3Onp A==;
-X-CSE-ConnectionGUID: tbLPH3ZLRuSC2FyfCwKPng==
-X-CSE-MsgGUID: C+lbNRTTT0Od5wVRqfqFnQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11115"; a="27915387"
-X-IronPort-AV: E=Sophos;i="6.08,267,1712646000"; d="scan'208";a="27915387"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2024 11:12:24 -0700
-X-CSE-ConnectionGUID: 6M8cDZT6TGiFuEBxvYqhZA==
-X-CSE-MsgGUID: XZGthyPqT7aDqE3H5HnbLA==
+ t=1719425902; x=1750961902;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=CD+pA+zRoKXrKhBTdX0kG7617j+5v2RjS37uaMoRp8A=;
+ b=fCUN6R13gMe1OGuH1WH4DcMXV9jXNep3QLVTIepc4tZJ7UQYkv0thSv8
+ U9uVdjWkFei6ROVbzaRUv8C4TrWL1irAwnm5FVeQz1I4fRzunYLg9fuAk
+ ih0iIzBdvzmtgkr/rgbDqrC3cLpAWKq48XQeHrqWhkrPg8+gNaBZ2Q5Af
+ P9aeM3jRMWHvd51q+BTF9Uutb5pUmkUcxPdCTmWYRBC/JTibqHkvWvi2q
+ +h80totFepsO1CBv+wBVG8j3njMzZWFhIkTWr+ulmRj3MrJ0vBSMDm/CA
+ iyqnIjKx/c6iPnXHr4xq3Qrcefvkdp4GmIdBlzc7NcVKaHVgxSOIU95pQ g==;
+X-CSE-ConnectionGUID: hyNwWb7fREWrNojq0ngUEg==
+X-CSE-MsgGUID: FopkOxc/RRWa9md85zCMvQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11115"; a="19406447"
+X-IronPort-AV: E=Sophos;i="6.08,267,1712646000"; d="scan'208";a="19406447"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2024 11:18:21 -0700
+X-CSE-ConnectionGUID: C2q9SbQqRU2sz2fKTLMzjQ==
+X-CSE-MsgGUID: XcM55eblSNShkC+r7kYYwQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,267,1712646000"; d="scan'208";a="43970333"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
- by fmviesa007.fm.intel.com with ESMTP; 26 Jun 2024 11:12:22 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sMX80-000FTM-1H;
- Wed, 26 Jun 2024 18:12:20 +0000
-Date: Thu, 27 Jun 2024 02:12:03 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, jani.nikula@linux.intel.com,
- ville.syrjala@linux.intel.com, mika.kahola@intel.com,
- matthew.d.roper@intel.com
-Subject: Re: [PATCH 1/5] drm/i915/display: Add support for SNPS PHY HDMI PLL
- algorithm for DG2
-Message-ID: <202406270107.cweaZpry-lkp@intel.com>
-References: <20240626050056.3996349-2-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,267,1712646000"; d="scan'208";a="48539655"
+Received: from orsosgc001.jf.intel.com ([10.165.21.138])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2024 11:18:21 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH 0/2] drm/xe/oa: Add NO_PREEMPT property
+Date: Wed, 26 Jun 2024 11:18:15 -0700
+Message-ID: <20240626181817.1516229-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240626050056.3996349-2-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,49 +64,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Ankit,
+Add DRM_XE_OA_PROPERTY_NO_PREEMPT property. This is intended to be Xe GuC
+equivalent of i915 property DRM_I915_PERF_PROP_HOLD_PREEMPTION.
 
-kernel test robot noticed the following build errors:
+v2: Introduce no_preempt exec queue op
+v3: Introduce set_no_preempt and clear_no_preempt exec queue op's
+v4: Revert to v1, which doesn't add new exec queue op's
+v5: Same as v4, except added 'uapi' to Patch 2/2 title
+v6: Minor change to debug print in Patch 2/2 and add Jose's ack
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-intel/for-linux-next-fixes drm-tip/drm-tip drm-xe/drm-xe-next linus/master v6.10-rc5 next-20240625]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Ashutosh Dixit (2):
+  drm/xe/oa: Allow stream enable/disable functions to return error
+  drm/xe/oa/uapi: Allow preemption to be disabled on the stream exec
+    queue
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ankit-Nautiyal/drm-i915-display-Add-support-for-SNPS-PHY-HDMI-PLL-algorithm-for-DG2/20240626-131209
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/20240626050056.3996349-2-ankit.k.nautiyal%40intel.com
-patch subject: [PATCH 1/5] drm/i915/display: Add support for SNPS PHY HDMI PLL algorithm for DG2
-config: i386-buildonly-randconfig-006-20240626 (https://download.01.org/0day-ci/archive/20240627/202406270107.cweaZpry-lkp@intel.com/config)
-compiler: gcc-13 (Ubuntu 13.2.0-4ubuntu3) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240627/202406270107.cweaZpry-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406270107.cweaZpry-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   ld: drivers/gpu/drm/i915/display/intel_pll_algorithm.o: in function `get_ana_cp_int_prop.constprop.0':
->> intel_pll_algorithm.c:(.text+0x2b): undefined reference to `__divdi3'
->> ld: intel_pll_algorithm.c:(.text+0xc2): undefined reference to `__divdi3'
-   ld: intel_pll_algorithm.c:(.text+0xef): undefined reference to `__divdi3'
-   ld: intel_pll_algorithm.c:(.text+0x153): undefined reference to `__divdi3'
-   ld: intel_pll_algorithm.c:(.text+0x180): undefined reference to `__divdi3'
-   ld: drivers/gpu/drm/i915/display/intel_pll_algorithm.o:intel_pll_algorithm.c:(.text+0x235): more undefined references to `__divdi3' follow
-   ld: drivers/gpu/drm/i915/display/intel_pll_algorithm.o: in function `get_ana_cp_int_prop.constprop.0':
->> intel_pll_algorithm.c:(.text+0x282): undefined reference to `__udivdi3'
->> ld: intel_pll_algorithm.c:(.text+0x2f2): undefined reference to `__udivdi3'
-   ld: intel_pll_algorithm.c:(.text+0x31b): undefined reference to `__udivdi3'
-   ld: intel_pll_algorithm.c:(.text+0x33e): undefined reference to `__udivdi3'
-   ld: intel_pll_algorithm.c:(.text+0x36c): undefined reference to `__udivdi3'
-   ld: drivers/gpu/drm/i915/display/intel_pll_algorithm.o:intel_pll_algorithm.c:(.text+0x384): more undefined references to `__udivdi3' follow
-   ld: drivers/gpu/drm/i915/display/intel_pll_algorithm.o: in function `intel_snps_phy_compute_hdmi_tmds_pll':
->> intel_pll_algorithm.c:(.text+0x602): undefined reference to `__udivmoddi4'
-   ld: intel_pll_algorithm.c:(.text+0x61e): undefined reference to `__udivdi3'
+ drivers/gpu/drm/xe/xe_oa.c       | 104 ++++++++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_oa_types.h |   3 +
+ include/uapi/drm/xe_drm.h        |   6 ++
+ 3 files changed, 98 insertions(+), 15 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.41.0
+
