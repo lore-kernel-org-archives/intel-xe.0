@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB83FC2BD09
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 16:20:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69E5FC2BD09
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 16:36:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97C1C10E12E;
-	Thu, 27 Jun 2024 16:20:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F026010E13F;
+	Thu, 27 Jun 2024 16:36:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nCumLWdq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZhzqFRJC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9D0010E12E
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Jun 2024 16:20:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79A9310E13F
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Jun 2024 16:36:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719505250; x=1751041250;
+ t=1719506206; x=1751042206;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=wdi2vz/9G6tqaBn1jtOS/FYUijdvFr5UFv2ILjZbYgI=;
- b=nCumLWdqKz90G3PFvT4GTgQrk+i2VK5nkSyVPKpPKO09Laf3n4eLp1yF
- 1m+MUMHwSlDvyN+u9qiU+3SlW60JQm4jC82pbyw//9znSEXt3AWAckwtW
- XnZww88dujOhrpmzpMjZFi6cskBa+3xzFDzKia1YafCwl6vPlkyNSY12C
- 51Z38AAw3yVP8IWSbLp4dY+DwP49icWSFxyiayzNihcHkuRBKDuCKYg9y
- i426pUfW0rFWt5HTGACVZZGAFhhW8MGlv+sxmHAKtfVt/sDjl3cOzXiWM
- 1NHYQNmGsb/8+kx6ozrXE3htRzb6yxK5n5Mh3JXClKmr49CaZ1qj6aSi1 A==;
-X-CSE-ConnectionGUID: 5zrlAnbRRzWy7QCNupR8mg==
-X-CSE-MsgGUID: UBpn2SG9RDS+UBKGhi3gtw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11116"; a="19547231"
-X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; d="scan'208";a="19547231"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2024 09:20:49 -0700
-X-CSE-ConnectionGUID: FpacSGC+RJySvO3589HlFg==
-X-CSE-MsgGUID: LtTeBYsPSp2K+3dzmFX6hg==
+ bh=8f+wPhQliHK9PQYdDZmOQxuuUPuX9Kk276hz5MuwV6w=;
+ b=ZhzqFRJCq8n6x6IZKHK+2eVOyimVxD+5G8q4GLQuK9XH9nhkLRvY4vbN
+ xZgsajVEDwiC0G5VtYnGgHDI2pZiKCbhqYjv69Hwg0vjPmzw5kggFgnvi
+ 5r7oqOviBStI7i4C6/Io64M7HI3NoYRNmQzU7+gD7t0HofPfdOLlVdQPK
+ LYxr8xUO25B3rnyQ2GVqJR8K28ZqToh0VNy2BBHk5nDHmXq9SFS+8QbdN
+ J/1vDHZx/VMixLn9AuqFy2vTScZFfFQnanIEDhHgkdQ99HxPa26GSTdVO
+ hb/l8bKL8B/HFJ83q+4Kxb7G9EYEtle6r4tgzLMj7b2LdqwXG2Zyk8H+E w==;
+X-CSE-ConnectionGUID: 7W+CxiYlQwCIE4qWeZYsyQ==
+X-CSE-MsgGUID: gkmC4LMjRkmMsUYqDWKpHA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11116"; a="12286338"
+X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; d="scan'208";a="12286338"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2024 09:36:46 -0700
+X-CSE-ConnectionGUID: GuXYW+iJQJGZ8so5Pubq1A==
+X-CSE-MsgGUID: YadZhTvwT/iThW6e3EejQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; d="scan'208";a="44333400"
+X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; d="scan'208";a="45193308"
 Received: from unknown (HELO [10.245.245.90]) ([10.245.245.90])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2024 09:20:48 -0700
-Message-ID: <cf35f4ca-8e79-4cd1-ae92-ba70eff1d0e6@intel.com>
-Date: Thu, 27 Jun 2024 17:20:46 +0100
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2024 09:36:45 -0700
+Message-ID: <2434297e-bbf5-456a-886c-4abd9a1aed22@intel.com>
+Date: Thu, 27 Jun 2024 17:36:42 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/7] drm/xe: Convert multiple bind ops into single job
+Subject: Re: [PATCH v6 3/7] drm/xe: Add xe_exec_queue_last_fence_test_dep
 To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
 References: <20240626211546.4099339-1-matthew.brost@intel.com>
- <20240626211546.4099339-5-matthew.brost@intel.com>
+ <20240626211546.4099339-4-matthew.brost@intel.com>
 Content-Language: en-GB
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20240626211546.4099339-5-matthew.brost@intel.com>
+In-Reply-To: <20240626211546.4099339-4-matthew.brost@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,36 +69,66 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On 26/06/2024 22:15, Matthew Brost wrote:
-> This aligns with the uAPI of an array of binds or single bind that
-> results in multiple GPUVA ops to be considered a single atomic
-> operations.
+> Helpful to determine if a bind can immediately use CPU or needs to be
+> deferred a drm scheduler job.
 > 
-> The bind-array-enobufs is roughly:
-> - xe_vma_ops is a list of xe_vma_op (GPUVA op)
-> - each xe_vma_op resolves to 0-3 PT ops
-> - xe_vma_ops creates a single job
-> - if at any point during binding a failure occurs, xe_vma_ops contains
->    the information necessary unwind the PT and VMA (GPUVA) state
-> 
-> v2:
->   - add missing dma-resv slot reservation (CI, testing)
-> v4:
->   - Fix TLB invalidation (Paulo)
->   - Add missing xe_sched_job_last_fence_add/test_dep check (Inspection)
-> v5:
->   - Invert i, j usage (Matthew Auld)
->   - Add helper to test and add job dep (Matthew Auld)
->   - Return on anything but -ETIME for cpu bind (Matthew Auld)
->   - Return -ENOBUFS if suballoc of BB fails due to size (Matthew Auld)
->   - s/do/Do (Matthew Auld)
->   - Add missing comma (Matthew Auld)
->   - Do not assign return value to xe_range_fence_insert (Matthew Auld)
-> v6:
->   - s/0x1ff/MAX_PTE_PER_SDI (Matthew Auld, CI)
->   - Check to large of SA in Xe to avoid triggering WARN (Matthew Auld)
->   - Fix checkpatch issues
-> 
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_exec_queue.c | 23 +++++++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_exec_queue.h |  2 ++
+>   2 files changed, 25 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+> index 0ba37835849b..65b4d1da6c93 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> @@ -906,3 +906,26 @@ void xe_exec_queue_last_fence_set(struct xe_exec_queue *q, struct xe_vm *vm,
+>   	xe_exec_queue_last_fence_put(q, vm);
+>   	q->last_fence = dma_fence_get(fence);
+>   }
+> +
+> +/**
+> + * xe_exec_queue_last_fence_test_dep - Test last fence dependency of queue
+> + * @q: The exec queue
+> + * @vm: The VM the engine does a bind or exec for
+> + *
+> + * Returns:
+> + * 0 on success on dependency, -ETIME on dependency
+
+Could maybe improve the wording here?
+
+"-ETIME if there exists an unsignalled last fence dependency, zero 
+otherwise."
+
+?
 
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
+> + */
+> +int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q, struct xe_vm *vm)
+> +{
+> +	struct dma_fence *fence;
+> +	int err = 0;
+> +
+> +	fence = xe_exec_queue_last_fence_get(q, vm);
+> +	if (fence) {
+> +		err = test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags) ?
+> +			0 : -ETIME;
+> +		dma_fence_put(fence);
+> +	}
+> +
+> +	return err;
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
+> index 289a3a51d2a2..ded77b0f3b90 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.h
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.h
+> @@ -75,6 +75,8 @@ struct dma_fence *xe_exec_queue_last_fence_get(struct xe_exec_queue *e,
+>   					       struct xe_vm *vm);
+>   void xe_exec_queue_last_fence_set(struct xe_exec_queue *e, struct xe_vm *vm,
+>   				  struct dma_fence *fence);
+> +int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q,
+> +				      struct xe_vm *vm);
+>   void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q);
+>   
+>   #endif
