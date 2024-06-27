@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDA2FC2BD09
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 17:16:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B208C3064D
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 17:24:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C0E110EA9D;
-	Thu, 27 Jun 2024 17:16:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A437A10EA9D;
+	Thu, 27 Jun 2024 17:24:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jdT2GY36";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bn3nXIT+";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5F8510EA9D;
- Thu, 27 Jun 2024 17:16:11 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id ED21961E14;
- Thu, 27 Jun 2024 17:16:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CB2DC2BBFC;
- Thu, 27 Jun 2024 17:16:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1719508570;
- bh=sSeDFPLANRtdCM3W5AaKh+hXR3lM6y6nXqJeEH89EL0=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=jdT2GY3651qQ8ySaOjVCeu1i6mUXn4kbzneO/06+6TL90hewAkhxeRwFIfQY2C3+a
- hRPnYCpnbQrMjqi4GjpSn2CqyXE8MVqbgBRTwq9Mat2vjPspxeFhMi1oGL234JB+HW
- vIvEFfR49tfh7YBT6j6zBoVLacpuKruzBkVjDeVeUAci2DvClA1WRoL8SlP+mYLuZv
- vR16hFCG8zK5xThzW2Q3wvVlXPB3bdkcWVEir6e8V60E2gSXokjDUXPEEJKtn2+zQz
- SDzgGknxNP9tUsP9KQkpxeBtklw7JadnygMfF/VyG8pPRiOkVBEn6Y7zBAGXoTBdj3
- eFiEJ7l0D/L/g==
-Date: Thu, 27 Jun 2024 19:16:07 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>,
- Zefan Li <lizefan.x@bytedance.com>, 
- Johannes Weiner <hannes@cmpxchg.org>, Andrew Morton <akpm@linux-foundation.org>,
- Jonathan Corbet <corbet@lwn.net>, David Airlie <airlied@gmail.com>, 
- Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org,
- linux-mm@kvack.org, linux-doc@vger.kernel.org
-Subject: Re: [RFC PATCH 2/6] drm/cgroup: Add memory accounting DRM cgroup
-Message-ID: <20240627-paper-vicugna-of-fantasy-c549ed@houat>
-References: <20240627154754.74828-1-maarten.lankhorst@linux.intel.com>
- <20240627154754.74828-3-maarten.lankhorst@linux.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8FB710EA9D
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Jun 2024 17:23:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1719509039; x=1751045039;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4cfQlIUGmSA4BdhaI8SuNlgcwTNYWeIk7o0K1ajEwWc=;
+ b=Bn3nXIT+5PAnH5lyDteReY/O9ZBSVW1KsP+pVjYoH503Ctx6quCnWB5j
+ iimmeg+WBsBnDYy0jsDrBVAe75kb2qN4PItZ3WRAl0FxKEqfsp8hIq1tw
+ ijTM6kfmVGuwpu8Dn5oolEH4jsxZxuAGQN+5hVCIQvLZb/2AauPnPaj3p
+ +ridvvMBd8S12EI65M/fCu9W5ZJfYOIoJosGd8HMu45SlY1zHlnFVppT8
+ OIuTKJ/+rX+6JiieiZZs9dpijibjMotm9VDSp/4U8cUEF/0qaleQGIaOp
+ XY5XcRyZY76af33Ez4LC8pRFBoIpl9U7xjRd/FWvH76PQShoVfdBYo0dt Q==;
+X-CSE-ConnectionGUID: kTDAZQf9Q/q4nIgucLnzAg==
+X-CSE-MsgGUID: srq3IfHvTaWtStNyBtg/9w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11116"; a="27245543"
+X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; d="scan'208";a="27245543"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2024 10:23:58 -0700
+X-CSE-ConnectionGUID: VJ6oJ+rmQrGm2nBPjTn8gw==
+X-CSE-MsgGUID: Dhkdmh0rRcOXFOURROW88Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; d="scan'208";a="49373447"
+Received: from xpumcyp04.jf.intel.com ([10.75.202.213])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2024 10:23:57 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [CI 0/2] Fixes and cleanup for per client utilization
+Date: Fri, 28 Jun 2024 01:23:46 +0800
+Message-Id: <20240627172348.84991-1-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="4x267kq4clbw44gl"
-Content-Disposition: inline
-In-Reply-To: <20240627154754.74828-3-maarten.lankhorst@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,97 +63,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+From: root <root@xpumcyp04.jf.intel.com>
 
---4x267kq4clbw44gl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed patches posted here for CI run before merging.
 
-Hi,
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-Thanks for working on this!
+Umesh Nerlige Ramappa (2):
+  drm/xe: Use a helper to get delta run ticks from the exec queue
+  drm/xe: Get hwe domain specific FW to read RING_TIMESTAMP
 
-On Thu, Jun 27, 2024 at 05:47:21PM GMT, Maarten Lankhorst wrote:
-> The initial version was based roughly on the rdma and misc cgroup
-> controllers, with a lot of the accounting code borrowed from rdma.
->=20
-> The current version is a complete rewrite with page counter; it uses
-> the same min/low/max semantics as the memory cgroup as a result.
->=20
-> There's a small mismatch as TTM uses u64, and page_counter long pages.
-> In practice it's not a problem. 32-bits systems don't really come with
-> >=3D4GB cards and as long as we're consistently wrong with units, it's
-> fine. The device page size may not be in the same units as kernel page
-> size, and each region might also have a different page size (VRAM vs GART
-> for example).
->=20
-> The interface is simple:
-> - populate drmcgroup_device->regions[..] name and size for each active
->   region, set num_regions accordingly.
-> - Call drm(m)cg_register_device()
-> - Use drmcg_try_charge to check if you can allocate a chunk of memory,
->   use drmcg_uncharge when freeing it. This may return an error code,
->   or -EAGAIN when the cgroup limit is reached. In that case a reference
->   to the limiting pool is returned.
-> - The limiting cs can be used as compare function for
->   drmcs_evict_valuable.
-> - After having evicted enough, drop reference to limiting cs with
->   drmcs_pool_put.
->=20
-> This API allows you to limit device resources with cgroups.
-> You can see the supported cards in /sys/fs/cgroup/drm.capacity
-> You need to echo +drm to cgroup.subtree_control, and then you can
-> partition memory.
->=20
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Co-developed-by: Friedrich Vock <friedrich.vock@gmx.de>
+ drivers/gpu/drm/xe/xe_drm_client.c | 14 +++++++-------
+ drivers/gpu/drm/xe/xe_exec_queue.c | 18 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_exec_queue.h |  1 +
+ drivers/gpu/drm/xe/xe_hw_engine.c  |  5 +++++
+ drivers/gpu/drm/xe/xe_hw_engine.h  |  1 +
+ 5 files changed, 32 insertions(+), 7 deletions(-)
 
-I'm sorry, I should have wrote minutes on the discussion we had with TJ
-and Tvrtko the other day.
-
-We're all very interested in making this happen, but doing a "DRM"
-cgroup doesn't look like the right path to us.
-
-Indeed, we have a significant number of drivers that won't have a
-dedicated memory but will depend on DMA allocations one way or the
-other, and those pools are shared between multiple frameworks (DRM,
-V4L2, DMA-Buf Heaps, at least).
-
-This was also pointed out by Sima some time ago here:
-https://lore.kernel.org/amd-gfx/YCVOl8%2F87bqRSQei@phenom.ffwll.local/
-
-So we'll want that cgroup subsystem to be cross-framework. We settled on
-a "device" cgroup during the discussion, but I'm sure we'll have plenty
-of bikeshedding.
-
-The other thing we agreed on, based on the feedback TJ got on the last
-iterations of his series was to go for memcg for drivers not using DMA
-allocations.
-
-It's the part where I expect some discussion there too :)
-
-So we went back to a previous version of TJ's work, and I've started to
-work on:
-
-  - Integration of the cgroup in the GEM DMA and GEM VRAM helpers (this
-    works on tidss right now)
-
-  - Integration of all heaps into that cgroup but the system one
-    (working on this at the moment)
-
-  - Integration into v4l2 (next on my list)
-
-Maxime
-
---4x267kq4clbw44gl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZn2eVwAKCRDj7w1vZxhR
-xReyAP4+9TGUgVyaERT/3Z2Q6QCqUYta9dlEvaZaPjxpE/PzCgD9GtTKU1rmEBJN
-XhhmHQ04LONiQxG4Qp4fDvfFOussXgY=
-=InwG
------END PGP SIGNATURE-----
-
---4x267kq4clbw44gl--
+--
+2.34.1
