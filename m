@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD8E6C3064D
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 15:58:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E302FC2BD09
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 16:03:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DC8110E0ED;
-	Thu, 27 Jun 2024 15:58:16 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79B7610E6AA;
- Thu, 27 Jun 2024 15:57:54 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>,
- Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
- Andrew Morton <akpm@linux-foundation.org>
-Cc: Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org,
- linux-mm@kvack.org, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [RFC PATCH 0/6] DRM resource management cgroup, try 2.
-Date: Thu, 27 Jun 2024 17:47:19 +0200
-Message-ID: <20240627154754.74828-1-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAD8510E0ED;
+	Thu, 27 Jun 2024 16:03:12 +0000 (UTC)
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D032410E0ED;
+ Thu, 27 Jun 2024 16:03:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_DRM_resource_managem?=
+ =?utf-8?q?ent_cgroup=2C_try_2=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 27 Jun 2024 16:03:11 -0000
+Message-ID: <171950419184.164688.16218465397391909919@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240627154754.74828-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240627154754.74828-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,86 +36,30 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+== Series Details ==
 
-A new version of my attempt at managing VRAM through cgroups.
-Even though it's called the DRM resource management cgroup, it would be trivial
-to rename it to devmem or whatever, since there is nothing DRM specific about it.
+Series: DRM resource management cgroup, try 2.
+URL   : https://patchwork.freedesktop.org/series/135483/
+State : failure
 
-This series allows setting limits on VRAM similar to system memory,
-with min/low/max limits.
-This allows various cgroups to have their own limits for usage.
+== Summary ==
 
-It sounds very abstract, but it can be used to prioritise the foreground
-application (by setting low), or hard partition memory so multiple processes
-sharing a single GPU use a proportional amount of memory each in a fair way,
-or to prevent long running compute jobs from having their memory evicted.
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 70d56bd71f6c drm-tip: 2024y-06m-27d-13h-03m-43s UTC integration manifest
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/ttm/tests/ttm_bo_test.c:252
+error: drivers/gpu/drm/ttm/tests/ttm_bo_test.c: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: mm/page_counter: Move calculating protection values to page_counter
+Applying: drm/cgroup: Add memory accounting DRM cgroup
+Applying: drm/ttm: Handle cgroup based eviction in TTM
+Patch failed at 0003 drm/ttm: Handle cgroup based eviction in TTM
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
-This is a minimal proof of concept to get discussion going again. It works,
-but it only tracks active use of VRAM. In the ideal world, we would track
-it better in a way that also integrates better with the memory cgroup
-controller. Ideally for every VRAM allocation, we would know we could push
-it out to swap if needed, charging the original process not the process evicting.
-
-I'm hoping to restart the discussion, so that we can plug the holes and finally move forward.
-
-New in this version:
-- Complete rewrite using page_counter.
-- Support setting min/low/max, respected in the same way as memory cgroup.
-  (Could be useful to add/allow high? To go over limit for temporary bindings
-   during eviction on GART.)
-- Locking reworked. Fastpath should now be lockless with RCU.
-- Add a second implementation for AMD, to show how easy it is to make it work.
-  (Should we completely move this to TTM instead?)
-- TTM now always respects min/low when evicting, bailing out with -ENOSPC instead
-  where required.
-
-I'm hoping for some good feedback on the path forward for upstreaming. I feel this
-version has a lot better chance of being upstreamed than the previous. It should
-be a lot more scalable thanks to the usage of RCU and page_counter.
-
-Cheers,
-Maarten
-
-Maarten Lankhorst (6):
-  mm/page_counter: Move calculating protection values to page_counter
-  drm/cgroup: Add memory accounting DRM cgroup
-  drm/ttm: Handle cgroup based eviction in TTM
-  drm/xe: Implement cgroup for vram
-  drm/amdgpu: Add cgroups implementation
-  drm/xe: Hack to test with mapped pages instead of vram.
-
- Documentation/admin-guide/cgroup-v2.rst       |  51 ++
- Documentation/gpu/drm-compute.rst             |  54 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu.h           |   2 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       |   6 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c  |   6 +
- drivers/gpu/drm/ttm/tests/ttm_bo_test.c       |  18 +-
- drivers/gpu/drm/ttm/tests/ttm_resource_test.c |   2 +-
- drivers/gpu/drm/ttm/ttm_bo.c                  |  38 +-
- drivers/gpu/drm/ttm/ttm_resource.c            |  28 +-
- drivers/gpu/drm/xe/xe_device.c                |   4 +
- drivers/gpu/drm/xe/xe_device_types.h          |   4 +
- drivers/gpu/drm/xe/xe_ttm_sys_mgr.c           |  14 +
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |  10 +
- include/drm/ttm/ttm_bo.h                      |   3 +-
- include/drm/ttm/ttm_resource.h                |  16 +-
- include/linux/cgroup_drm.h                    | 115 +++
- include/linux/cgroup_subsys.h                 |   4 +
- include/linux/page_counter.h                  |   4 +
- init/Kconfig                                  |   7 +
- kernel/cgroup/Makefile                        |   1 +
- kernel/cgroup/drm.c                           | 813 ++++++++++++++++++
- mm/memcontrol.c                               | 154 +---
- mm/page_counter.c                             | 173 ++++
- 23 files changed, 1355 insertions(+), 172 deletions(-)
- create mode 100644 Documentation/gpu/drm-compute.rst
- create mode 100644 include/linux/cgroup_drm.h
- create mode 100644 kernel/cgroup/drm.c
-
--- 
-2.45.2
 
