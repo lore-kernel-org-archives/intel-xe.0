@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3952DC30653
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94925C30659
 	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 12:41:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF69B10E035;
-	Thu, 27 Jun 2024 12:41:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DD3710E227;
+	Thu, 27 Jun 2024 12:41:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="IyAiN56W";
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="Uujpwns/";
 	dkim-atps=neutral
-Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0B9D10E297
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Jun 2024 12:41:14 +0000 (UTC)
+Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB83C10E029
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Jun 2024 12:41:12 +0000 (UTC)
 Received: internal info suppressed
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1719492071; bh=zoFXPjbx/zOJ5DabBXFm9ssh2rhJKt/rRSRBZO3ixHQ=;
+ t=1719492077; bh=FRCENVL8nL+SC2DY+LmZPRgLGp/JAzNc/9pk7wFyBSo=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=IyAiN56WwfGCoW5E9GoRUEEgs/teQIepoPTfohr6Wa+WCcSiRwOs71sKDQJDXV4IE
- WSIgZ0J9I4o68qWrQRIInf52eWdjzH790LwyPEOV7hLgKB+n+/M3fYEfpHX13OPO3j
- Ki+tFZO/tfwEgAk+lW9i2j/iwKeXXCFqao1ZPYW1kfxgJIVY5pgYz9P2E8/TAxVr/6
- OybFBRAcsup03A9xaXQMbtkJPcdUHDhmcQvMYLkxO/qSWd+W27+qrjxQPoOZ4HaR+T
- SatfOs+EpkfiGhonw1yphmpxX4xkOaW5T3fSl5M+Yee96io/uO4s/FRhGf+REHWmX0
- /67DS1lX55xNQ==
+ b=Uujpwns/RkhDqfXHjdoKqquPySwe1TejeGUkPQ9/WxYD0T1powNc9HYt59na7LNb4
+ 3ysAu++9KpI0jFHHCSReuY9aUAtvVWEY62r37RX4nL243peVmvvOICxH6zk5P4F5E3
+ /yYx6dL4c8djzmIaj/vWBmcgPSek4h0jvObf40FKbkmVU+1SPhDYXQrjNTvkQuLifH
+ hNOS12YTFK183iodZ6oKIVluXKg7vhYwdxCdMygaAKc0Eepc+LWQnWV+QTmCtQ0uLm
+ Lg75MQ1sIsCsi2jTWeSO8KZYnYJgNDtBHjfwdKux/DmqJEWj6jqII9H6VXhuDiPwey
+ Kn2g4+PhqqC8g==
 Received: from dliberman-vm-u22.habana-labs.com (localhost [127.0.0.1])
  by dliberman-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
- ESMTPS id 45RCexkx2923636
+ ESMTPS id 45RCf0qc2923641
  (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
- Thu, 27 Jun 2024 15:40:59 +0300
+ Thu, 27 Jun 2024 15:41:00 +0300
 Received: (from dliberman@localhost)
- by dliberman-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 45RCex2o2923635; 
- Thu, 27 Jun 2024 15:40:59 +0300
+ by dliberman-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 45RCf0hb2923640; 
+ Thu, 27 Jun 2024 15:41:00 +0300
 From: Dani Liberman <dliberman@habana.ai>
 To: intel-xe@lists.freedesktop.org
 Cc: dliberman@habana.ai, illevi@habana.ai, rodrigo.vivi@intel.com
-Subject: [PATCH v2 4/8] drm/xe/exec: adding msix infra to exec queue
-Date: Thu, 27 Jun 2024 15:40:39 +0300
-Message-Id: <20240627124043.2923586-5-dliberman@habana.ai>
+Subject: [PATCH v2 5/8] drm/xe: move the kernel lrc from hwe to execlist port
+Date: Thu, 27 Jun 2024 15:40:40 +0300
+Message-Id: <20240627124043.2923586-6-dliberman@habana.ai>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240627124043.2923586-1-dliberman@habana.ai>
 References: <20240627124043.2923586-1-dliberman@habana.ai>
@@ -58,118 +58,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On MSIX platform each exec queue will allocate MSIX.
+From: Ilia Levi <illevi@habana.ai>
 
-Signed-off-by: Dani Liberman <dliberman@habana.ai>
+The kernel lrc is used solely by the execlist infra.
+We move it to the execlist port struct and initialize it only when
+execlists are used.
+
+Signed-off-by: Ilia Levi <illevi@habana.ai>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c       | 39 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 ++
- drivers/gpu/drm/xe/xe_irq.c              | 11 +++++--
- 3 files changed, 49 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_execlist.c        | 10 ++++++++--
+ drivers/gpu/drm/xe/xe_execlist_types.h  |  2 ++
+ drivers/gpu/drm/xe/xe_hw_engine.c       | 15 ++-------------
+ drivers/gpu/drm/xe/xe_hw_engine_types.h |  2 --
+ 4 files changed, 12 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 0ba37835849b..e40c5380e292 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -22,6 +22,7 @@
- #include "xe_ring_ops_types.h"
- #include "xe_trace.h"
- #include "xe_vm.h"
-+#include "xe_irq.h"
- 
- enum xe_exec_queue_sched_prop {
- 	XE_EXEC_QUEUE_JOB_TIMEOUT = 0,
-@@ -33,8 +34,40 @@ enum xe_exec_queue_sched_prop {
- static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue *q,
- 				      u64 extensions, int ext_number);
- 
-+static int xe_exec_queue_msix_init(struct xe_device *xe, struct xe_exec_queue *q)
-+{
-+	u32 msix;
-+	int ret = 0;
-+
-+	if (!xe->irq.msix_enabled)
-+		return 0;
-+
-+	ret = xe_request_irq(xe, xe_irq_hwe_handler, q->hwe, q->hwe->name, true, &msix);
-+	if (ret < 0) {
-+		drm_dbg(&xe->drm, "Can't allocate unique MSIX to exec queue (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	q->msix_number = msix;
-+
-+	return 0;
-+}
-+
-+static void xe_exec_queue_msix_fini(struct xe_exec_queue *q)
-+{
-+	struct xe_device *xe = gt_to_xe(q->gt);
-+
-+	if (!xe->irq.msix_enabled)
-+		return;
-+
-+	if (q->msix_number)
-+		xe_free_irq(xe, q->msix_number);
-+}
-+
- static void __xe_exec_queue_free(struct xe_exec_queue *q)
- {
-+	xe_exec_queue_msix_fini(q);
-+
- 	if (q->vm)
- 		xe_vm_put(q->vm);
- 	kfree(q);
-@@ -81,6 +114,12 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
- 	else
- 		q->sched_props.priority = XE_EXEC_QUEUE_PRIORITY_NORMAL;
- 
-+	err = xe_exec_queue_msix_init(xe, q);
-+	if (err) {
-+		kfree(q);
-+		return ERR_PTR(err);
-+	}
-+
- 	if (vm)
- 		q->vm = xe_vm_get(vm);
- 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 201588ec33c3..7da157b0e676 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -56,6 +56,8 @@ struct xe_exec_queue {
- 	 * @logical_mask: logical mask of where job submitted to exec queue can run
- 	 */
- 	u32 logical_mask;
-+	/** @msix_number: msix number */
-+	u32 msix_number;
- 	/** @name: name of this exec queue */
- 	char name[MAX_FENCE_NAME_LEN];
- 	/** @width: width (number BB submitted per exec) of this exec queue */
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 28173e946e77..cf4f523b7fae 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -895,11 +895,16 @@ void xe_free_irq(struct xe_device *xe, u32 msix)
- 	void *irq_buf;
- 	int irq;
- 
-+	/* When removing the driver this function can be called twice for each msix that was
-+	 * allocated for exec queue. First from irq_uninstall() and then from exec queue free.
-+	 * Hence, it is possible that the xarray was already destroyed or the member was removed.
-+	 */
-+	if (xa_empty(&xe->irq.msix_indexes))
-+		return;
-+
- 	irq_buf = xa_load(&xe->irq.msix_indexes, msix);
--	if (!irq_buf) {
--		drm_err(&xe->drm, "MSIX %u can't be released since it wasn't allocated\n", msix);
-+	if (!irq_buf)
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index db906117db6d..354f85b591b1 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -123,8 +123,8 @@ static void __xe_execlist_port_idle(struct xe_execlist_port *port)
+ 	if (!port->running_exl)
  		return;
--	}
  
- 	irq = pci_irq_vector(pdev, msix);
- 	if (irq < 0) {
+-	xe_lrc_write_ring(port->hwe->kernel_lrc, noop, sizeof(noop));
+-	__start_lrc(port->hwe, port->hwe->kernel_lrc, 0);
++	xe_lrc_write_ring(port->lrc, noop, sizeof(noop));
++	__start_lrc(port->hwe, port->lrc, 0);
+ 	port->running_exl = NULL;
+ }
+ 
+@@ -262,6 +262,10 @@ struct xe_execlist_port *xe_execlist_port_create(struct xe_device *xe,
+ 
+ 	port->hwe = hwe;
+ 
++	port->lrc = xe_lrc_create(hwe, NULL, SZ_16K);
++	if (IS_ERR(port->lrc))
++		return ERR_PTR(PTR_ERR(port->lrc));
++
+ 	spin_lock_init(&port->lock);
+ 	for (i = 0; i < ARRAY_SIZE(port->active); i++)
+ 		INIT_LIST_HEAD(&port->active[i]);
+@@ -287,6 +291,8 @@ void xe_execlist_port_destroy(struct xe_execlist_port *port)
+ 	spin_lock_irq(&gt_to_xe(port->hwe->gt)->irq.lock);
+ 	port->hwe->irq_handler = NULL;
+ 	spin_unlock_irq(&gt_to_xe(port->hwe->gt)->irq.lock);
++
++	xe_lrc_put(port->lrc);
+ }
+ 
+ static struct dma_fence *
+diff --git a/drivers/gpu/drm/xe/xe_execlist_types.h b/drivers/gpu/drm/xe/xe_execlist_types.h
+index f94bbf4c53e4..415140936f11 100644
+--- a/drivers/gpu/drm/xe/xe_execlist_types.h
++++ b/drivers/gpu/drm/xe/xe_execlist_types.h
+@@ -27,6 +27,8 @@ struct xe_execlist_port {
+ 	struct xe_execlist_exec_queue *running_exl;
+ 
+ 	struct timer_list irq_fail;
++
++	struct xe_lrc *lrc;
+ };
+ 
+ struct xe_execlist_exec_queue {
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 78b50d3a6501..90660d9382a0 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -269,7 +269,6 @@ static void hw_engine_fini(struct drm_device *drm, void *arg)
+ 
+ 	if (hwe->exl_port)
+ 		xe_execlist_port_destroy(hwe->exl_port);
+-	xe_lrc_put(hwe->kernel_lrc);
+ 
+ 	hwe->gt = NULL;
+ }
+@@ -528,21 +527,13 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 		goto err_name;
+ 	}
+ 
+-	hwe->kernel_lrc = xe_lrc_create(hwe, NULL, SZ_16K);
+-	if (IS_ERR(hwe->kernel_lrc)) {
+-		err = PTR_ERR(hwe->kernel_lrc);
+-		goto err_hwsp;
+-	}
+-
+ 	if (!xe_device_uc_enabled(xe)) {
+ 		hwe->exl_port = xe_execlist_port_create(xe, hwe);
+ 		if (IS_ERR(hwe->exl_port)) {
+ 			err = PTR_ERR(hwe->exl_port);
+-			goto err_kernel_lrc;
++			goto err_hwsp;
+ 		}
+-	}
+-
+-	if (xe_device_uc_enabled(xe)) {
++	} else {
+ 		/* GSCCS has a special interrupt for reset */
+ 		if (hwe->class == XE_ENGINE_CLASS_OTHER)
+ 			hwe->irq_handler = xe_gsc_hwe_irq_handler;
+@@ -557,8 +548,6 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 
+ 	return drmm_add_action_or_reset(&xe->drm, hw_engine_fini, hwe);
+ 
+-err_kernel_lrc:
+-	xe_lrc_put(hwe->kernel_lrc);
+ err_hwsp:
+ 	xe_bo_unpin_map_no_vm(hwe->hwsp);
+ err_name:
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+index 70e6434f150d..2b74dd1098a7 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+@@ -136,8 +136,6 @@ struct xe_hw_engine {
+ 	enum xe_force_wake_domains domain;
+ 	/** @hwsp: hardware status page buffer object */
+ 	struct xe_bo *hwsp;
+-	/** @kernel_lrc: Kernel LRC (should be replaced /w an xe_engine) */
+-	struct xe_lrc *kernel_lrc;
+ 	/** @exl_port: execlists port */
+ 	struct xe_execlist_port *exl_port;
+ 	/** @fence_irq: fence IRQ to run when a hw engine IRQ is received */
 -- 
 2.34.1
 
