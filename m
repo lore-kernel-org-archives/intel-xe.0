@@ -4,54 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95F01C3064D
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 20:37:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FDCCC2BD09
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 20:40:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C837C10EB2A;
-	Thu, 27 Jun 2024 20:37:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D53A10E392;
+	Thu, 27 Jun 2024 20:40:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NvoKCj+A";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gVMG4HZ4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A11EB10EB30
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Jun 2024 20:37:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E894B10E392
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Jun 2024 20:40:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719520668; x=1751056668;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=cb+8+ym8R++ZobfEoAck0RHB9VPDwh+4MKfyzS6kKmg=;
- b=NvoKCj+A0XF+EJIx6C6WR6ieFUK+hXojdrjb5SpyC8SGYPAPY5nj21DX
- h6jE6JEASXBH5NiyZFypXOiL1VdT5i7HNKj2KvlEp4UWjI7XaXLEau8Tl
- I2dZ265nCD7DFq6KIJ1QowHTKidkmuJNIayzsqWsnU/8wOuZCjLUufOg4
- h1pV3JtoH1iH7nP15U848bWfI45OfmHYzufbCngo8ztgMnZyjcP8tlEgN
- 9TdZHk4jPazb81lqUpV7A9EstJHVDe7H5TVxvrNllsaRS3WATiR1qYCBS
- DKUDC1foMOyG6IxwWud62NBF2ztvKt7FTEocCp/rbOu2nclGNJWuee7Yl w==;
-X-CSE-ConnectionGUID: t63ImWt9Tfa+9g/R/G6QIw==
-X-CSE-MsgGUID: FG/QlLz3R3GMz9NRq0USDw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11116"; a="27815520"
-X-IronPort-AV: E=Sophos;i="6.09,167,1716274800"; d="scan'208";a="27815520"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2024 13:37:48 -0700
-X-CSE-ConnectionGUID: H9nz2Z11Th+0hs3FotRBwg==
-X-CSE-MsgGUID: FxoJSILrQ/aSyksGkVZwag==
+ t=1719520838; x=1751056838;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=e6etSypJ87wFRVHx1xTYP5PbfE4bUSChyKK1zn9oFhE=;
+ b=gVMG4HZ4yzlCDpEztX7u8Fls04jRo93FPNVIZsKd7SZrWtuGg10Up1Wl
+ CWs4d4uQrDUc/b31qEPd0K307JRFQBQ29DN5c2AUf5bOS7l2jfOwrj0If
+ NHI21HS9COGav+TwFcFRa0qghZeUUC0zzLa0bOWi4rBEMbm5np5x82O53
+ g1wdvI6h/1U5X9DkYwwA6HJrpBuQl/l63JzC0FkXKAtGGGX2ALPqs5U50
+ KWrgxlpEIQCT6ZvSr+d/Tu5mR3YUUPMC3l6sFIbg0h3X1x0rF8pnoVBia
+ wsb28HRVJ5qA78G/rWNaW7LLb3HHSLTc7HGJ2jKdpFfvMAPq8pzTynfjc Q==;
+X-CSE-ConnectionGUID: Iftkw5XsRqWRz0WkQnnjxA==
+X-CSE-MsgGUID: 9nsnxJWfRuSRtV6Z9kPDOg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11116"; a="16419578"
+X-IronPort-AV: E=Sophos;i="6.09,167,1716274800"; d="scan'208";a="16419578"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2024 13:40:37 -0700
+X-CSE-ConnectionGUID: hJV5Sz9SSPej4eFT9g6IfQ==
+X-CSE-MsgGUID: Ae1CoQ1dSOqsD65ZTBrEiA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,167,1716274800"; d="scan'208";a="44911213"
-Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2024 13:37:49 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com
-Subject: [PATCH 2/2] drm/xe/mocs: Clarify difference between hw and sw sizes
-Date: Thu, 27 Jun 2024 13:37:43 -0700
-Message-ID: <20240627203741.2042752-4-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.45.0
-In-Reply-To: <20240627203741.2042752-3-matthew.d.roper@intel.com>
-References: <20240627203741.2042752-3-matthew.d.roper@intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,167,1716274800"; d="scan'208";a="45150094"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa007.jf.intel.com with ESMTP; 27 Jun 2024 13:40:35 -0700
+Received: from [10.246.27.12] (unknown [10.246.27.12])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 62CAC33BCB;
+ Thu, 27 Jun 2024 21:40:33 +0100 (IST)
+Message-ID: <cdf789fa-b486-4f21-9c04-5d6ef53188cf@intel.com>
+Date: Thu, 27 Jun 2024 22:40:32 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] drm/xe/guc: Configure TLB timeout based on CT buffer
+ size
+To: Nirmoy Das <nirmoy.das@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+References: <20240626150109.10878-1-nirmoy.das@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20240626150109.10878-1-nirmoy.das@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,252 +72,166 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It's not very obvious what the difference is between the 'size' and
-'n_entries' fields of the MOCS structure.  Rename both fields slightly
-and add some comments explaining that one is the documentation-defined
-table size, while the other is the number of entries that can be
-programmed into the hardware (and the documented table size can
-potentially be smaller than the number of hardware entries).
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/tests/xe_mocs.c |  8 ++--
- drivers/gpu/drm/xe/xe_mocs.c       | 62 +++++++++++++++++-------------
- 2 files changed, 39 insertions(+), 31 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_mocs.c b/drivers/gpu/drm/xe/tests/xe_mocs.c
-index 1b8617075b37..67c65e88c384 100644
---- a/drivers/gpu/drm/xe/tests/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/tests/xe_mocs.c
-@@ -31,9 +31,9 @@ static int live_mocs_init(struct live_mocs *arg, struct xe_gt *gt)
- 
- 	kunit_info(test, "gt %d", gt->info.id);
- 	kunit_info(test, "gt type %d", gt->info.type);
--	kunit_info(test, "table size %d", arg->table.size);
-+	kunit_info(test, "table size %d", arg->table.table_size);
- 	kunit_info(test, "table uc_index %d", arg->table.uc_index);
--	kunit_info(test, "table n_entries %d", arg->table.n_entries);
-+	kunit_info(test, "table num_mocs_regs %d", arg->table.num_mocs_regs);
- 
- 	return flags;
- }
-@@ -50,7 +50,7 @@ static void read_l3cc_table(struct xe_gt *gt,
- 	ret = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
- 	KUNIT_ASSERT_EQ_MSG(test, ret, 0, "Forcewake Failed.\n");
- 
--	for (i = 0; i < info->n_entries; i++) {
-+	for (i = 0; i < info->num_mocs_regs; i++) {
- 		if (!(i & 1)) {
- 			if (regs_are_mcr(gt))
- 				reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i >> 1));
-@@ -90,7 +90,7 @@ static void read_mocs_table(struct xe_gt *gt,
- 	ret = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
- 	KUNIT_ASSERT_EQ_MSG(test, ret, 0, "Forcewake Failed.\n");
- 
--	for (i = 0; i < info->n_entries; i++) {
-+	for (i = 0; i < info->num_mocs_regs; i++) {
- 		if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
- 		else
-diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index 110ef89cd640..7ff0ac5b799a 100644
---- a/drivers/gpu/drm/xe/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/xe_mocs.c
-@@ -47,8 +47,16 @@ struct xe_mocs_ops {
- };
- 
- struct xe_mocs_info {
--	unsigned int size;
--	unsigned int n_entries;
-+	/*
-+	 * Size of the spec's suggested MOCS programming table.  The list of
-+	 * table entries from the spec can potentially be smaller than the
-+	 * number of hardware registers used to program the MOCS table; in such
-+	 * cases the registers for the remaining indices will be programmed to
-+	 * match unused_entries_index.
-+	 */
-+	unsigned int table_size;
-+	/* Number of MOCS entries supported by the hardware */
-+	unsigned int num_mocs_regs;
- 	const struct xe_mocs_entry *table;
- 	const struct xe_mocs_ops *ops;
- 	u8 uc_index;
-@@ -266,7 +274,7 @@ static void xelp_lncf_dump(struct xe_mocs_info *info, struct xe_gt *gt, struct d
- 
- 	drm_printf(p, "LNCFCMOCS[idx] = [ESC, SCC, L3CC] (value)\n\n");
- 
--	for (i = 0, j = 0; i < (info->n_entries + 1) / 2; i++, j++) {
-+	for (i = 0, j = 0; i < (info->num_mocs_regs + 1) / 2; i++, j++) {
- 		if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i));
- 		else
-@@ -298,7 +306,7 @@ static void xelp_mocs_dump(struct xe_mocs_info *info, unsigned int flags,
- 		drm_printf(p, "Global mocs table configuration:\n");
- 		drm_printf(p, "GLOB_MOCS[idx] = [LeCC, TC, LRUM, AOM, RSC, SCC, PFM, SCF, CoS, SSE] (value)\n\n");
- 
--		for (i = 0; i < info->n_entries; i++) {
-+		for (i = 0; i < info->num_mocs_regs; i++) {
- 			if (regs_are_mcr(gt))
- 				reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
- 			else
-@@ -371,7 +379,7 @@ static void xehp_lncf_dump(struct xe_mocs_info *info, unsigned int flags,
- 
- 	drm_printf(p, "LNCFCMOCS[idx] = [UCL3LOOKUP, GLBGO, L3CC] (value)\n\n");
- 
--	for (i = 0, j = 0; i < (info->n_entries + 1) / 2; i++, j++) {
-+	for (i = 0, j = 0; i < (info->num_mocs_regs + 1) / 2; i++, j++) {
- 		if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i));
- 		else
-@@ -416,7 +424,7 @@ static void pvc_mocs_dump(struct xe_mocs_info *info, unsigned int flags, struct
- 
- 	drm_printf(p, "LNCFCMOCS[idx] = [ L3CC ] (value)\n\n");
- 
--	for (i = 0, j = 0; i < (info->n_entries + 1) / 2; i++, j++) {
-+	for (i = 0, j = 0; i < (info->num_mocs_regs + 1) / 2; i++, j++) {
- 		if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i));
- 		else
-@@ -498,7 +506,7 @@ static void mtl_mocs_dump(struct xe_mocs_info *info, unsigned int flags,
- 	drm_printf(p, "Global mocs table configuration:\n");
- 	drm_printf(p, "GLOB_MOCS[idx] = [IG_PAT, L4_CACHE_POLICY] (value)\n\n");
- 
--	for (i = 0; i < info->n_entries; i++) {
-+	for (i = 0; i < info->num_mocs_regs; i++) {
- 		if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
- 		else
-@@ -541,7 +549,7 @@ static void xe2_mocs_dump(struct xe_mocs_info *info, unsigned int flags,
- 	drm_printf(p, "Global mocs table configuration:\n");
- 	drm_printf(p, "GLOB_MOCS[idx] = [IG_PAT, L3_CLOS, L3_CACHE_POLICY, L4_CACHE_POLICY] (value)\n\n");
- 
--	for (i = 0; i < info->n_entries; i++) {
-+	for (i = 0; i < info->num_mocs_regs; i++) {
- 		if (regs_are_mcr(gt))
- 			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
- 		else
-@@ -571,48 +579,48 @@ static unsigned int get_mocs_settings(struct xe_device *xe,
- 	case XE_LUNARLAKE:
- 	case XE_BATTLEMAGE:
- 		info->ops = &xe2_mocs_ops;
--		info->size = ARRAY_SIZE(xe2_mocs_table);
-+		info->table_size = ARRAY_SIZE(xe2_mocs_table);
- 		info->table = xe2_mocs_table;
--		info->n_entries = XE2_NUM_MOCS_ENTRIES;
-+		info->num_mocs_regs = XE2_NUM_MOCS_ENTRIES;
- 		info->uc_index = 3;
- 		info->wb_index = 4;
- 		info->unused_entries_index = 4;
- 		break;
- 	case XE_PVC:
- 		info->ops = &pvc_mocs_ops;
--		info->size = ARRAY_SIZE(pvc_mocs_desc);
-+		info->table_size = ARRAY_SIZE(pvc_mocs_desc);
- 		info->table = pvc_mocs_desc;
--		info->n_entries = PVC_NUM_MOCS_ENTRIES;
-+		info->num_mocs_regs = PVC_NUM_MOCS_ENTRIES;
- 		info->uc_index = 1;
- 		info->wb_index = 2;
- 		info->unused_entries_index = 2;
- 		break;
- 	case XE_METEORLAKE:
- 		info->ops = &mtl_mocs_ops;
--		info->size = ARRAY_SIZE(mtl_mocs_desc);
-+		info->table_size = ARRAY_SIZE(mtl_mocs_desc);
- 		info->table = mtl_mocs_desc;
--		info->n_entries = MTL_NUM_MOCS_ENTRIES;
-+		info->num_mocs_regs = MTL_NUM_MOCS_ENTRIES;
- 		info->uc_index = 9;
- 		info->unused_entries_index = 1;
- 		break;
- 	case XE_DG2:
- 		info->ops = &xehp_mocs_ops;
--		info->size = ARRAY_SIZE(dg2_mocs_desc);
-+		info->table_size = ARRAY_SIZE(dg2_mocs_desc);
- 		info->table = dg2_mocs_desc;
- 		info->uc_index = 1;
- 		/*
- 		 * Last entry is RO on hardware, don't bother with what was
- 		 * written when checking later
- 		 */
--		info->n_entries = XELP_NUM_MOCS_ENTRIES - 1;
-+		info->num_mocs_regs = XELP_NUM_MOCS_ENTRIES - 1;
- 		info->unused_entries_index = 3;
- 		break;
- 	case XE_DG1:
- 		info->ops = &xelp_mocs_ops;
--		info->size = ARRAY_SIZE(dg1_mocs_desc);
-+		info->table_size = ARRAY_SIZE(dg1_mocs_desc);
- 		info->table = dg1_mocs_desc;
- 		info->uc_index = 1;
--		info->n_entries = XELP_NUM_MOCS_ENTRIES;
-+		info->num_mocs_regs = XELP_NUM_MOCS_ENTRIES;
- 		info->unused_entries_index = 5;
- 		break;
- 	case XE_TIGERLAKE:
-@@ -621,9 +629,9 @@ static unsigned int get_mocs_settings(struct xe_device *xe,
- 	case XE_ALDERLAKE_P:
- 	case XE_ALDERLAKE_N:
- 		info->ops = &xelp_mocs_ops;
--		info->size  = ARRAY_SIZE(gen12_mocs_desc);
-+		info->table_size  = ARRAY_SIZE(gen12_mocs_desc);
- 		info->table = gen12_mocs_desc;
--		info->n_entries = XELP_NUM_MOCS_ENTRIES;
-+		info->num_mocs_regs = XELP_NUM_MOCS_ENTRIES;
- 		info->uc_index = 3;
- 		info->unused_entries_index = 2;
- 		break;
-@@ -643,7 +651,7 @@ static unsigned int get_mocs_settings(struct xe_device *xe,
- 	xe_assert(xe, info->unused_entries_index != 0);
- 
- 	xe_assert(xe, info->ops && info->ops->dump);
--	xe_assert(xe, info->size <= info->n_entries);
-+	xe_assert(xe, info->table_size <= info->num_mocs_regs);
- 
- 	if (!IS_DGFX(xe) || GRAPHICS_VER(xe) >= 20)
- 		flags |= HAS_GLOBAL_MOCS;
-@@ -660,7 +668,7 @@ static unsigned int get_mocs_settings(struct xe_device *xe,
- static u32 get_entry_control(const struct xe_mocs_info *info,
- 			     unsigned int index)
- {
--	if (index < info->size && info->table[index].used)
-+	if (index < info->table_size && info->table[index].used)
- 		return info->table[index].control_value;
- 	return info->table[info->unused_entries_index].control_value;
- }
-@@ -671,9 +679,9 @@ static void __init_mocs_table(struct xe_gt *gt,
- 	unsigned int i;
- 	u32 mocs;
- 
--	mocs_dbg(gt, "mocs entries: %d\n", info->n_entries);
-+	mocs_dbg(gt, "mocs entries: %d\n", info->num_mocs_regs);
- 
--	for (i = 0; i < info->n_entries; i++) {
-+	for (i = 0; i < info->num_mocs_regs; i++) {
- 		mocs = get_entry_control(info, i);
- 
- 		mocs_dbg(gt, "GLOB_MOCS[%d] 0x%x 0x%x\n", i,
-@@ -694,7 +702,7 @@ static void __init_mocs_table(struct xe_gt *gt,
- static u16 get_entry_l3cc(const struct xe_mocs_info *info,
- 			  unsigned int index)
- {
--	if (index < info->size && info->table[index].used)
-+	if (index < info->table_size && info->table[index].used)
- 		return info->table[index].l3cc_value;
- 	return info->table[info->unused_entries_index].l3cc_value;
- }
-@@ -710,9 +718,9 @@ static void init_l3cc_table(struct xe_gt *gt,
- 	unsigned int i;
- 	u32 l3cc;
- 
--	mocs_dbg(gt, "l3cc entries: %d\n", info->n_entries);
-+	mocs_dbg(gt, "l3cc entries: %d\n", info->num_mocs_regs);
- 
--	for (i = 0; i < (info->n_entries + 1) / 2; i++) {
-+	for (i = 0; i < (info->num_mocs_regs + 1) / 2; i++) {
- 		l3cc = l3cc_combine(get_entry_l3cc(info, 2 * i),
- 				    get_entry_l3cc(info, 2 * i + 1));
- 
--- 
-2.45.0
+On 26.06.2024 17:01, Nirmoy Das wrote:
+> GuC TLB invalidation depends on GuC to process the request from the CT
+> queue and then the real time to invalidate TLB. Add a function to return
+> overestimated possible time a TLB inval H2G might take which can be used
+> as timeout value for TLB invalidation wait time.
+> 
+> v3: Pass CT to xe_guc_ct_queue_proc_time_jiffies() (Michal)
+>     Add tlb_timeout_jiffies() that replaces TLB_TIMEOUT(Michal)
+> v2: Address reviews from Michal.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1622
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Suggested-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 30 +++++++++++++++------
+>  drivers/gpu/drm/xe/xe_guc_ct.c              | 16 +++++++++++
+>  drivers/gpu/drm/xe/xe_guc_ct.h              |  2 ++
+>  3 files changed, 40 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+> index e1f1ccb01143..d509b72a6d89 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+> @@ -17,7 +17,22 @@
+>  #include "xe_trace.h"
+>  #include "regs/xe_guc_regs.h"
+>  
+> -#define TLB_TIMEOUT	(HZ / 4)
+> +/**
 
+downgrade to normal comment
+
+> + * TLB inval depends on pending commands in the CT queue and then the real
+> + * invalidation time. Double up the time to process full CT queue
+> + * just to be on the safe side.
+> + */
+> +static long tlb_timeout_jiffies(struct xe_gt *gt)
+> +{
+> +	/* this reflects what HW/GuC needs to process TLB inv request */
+> +	const long hw_tlb_timeout = HZ / 4;
+> +
+> +	/* this estimates actual delay caused by the CTB transport */
+> +	long delay = xe_guc_ct_queue_proc_time_jiffies(&gt->uc.guc.ct);
+> +
+> +	return hw_tlb_timeout + 2 * delay;
+> +}
+> +
+>  
+>  static void xe_gt_tlb_fence_timeout(struct work_struct *work)
+>  {
+> @@ -32,7 +47,7 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
+>  		s64 since_inval_ms = ktime_ms_delta(ktime_get(),
+>  						    fence->invalidation_time);
+>  
+> -		if (msecs_to_jiffies(since_inval_ms) < TLB_TIMEOUT)
+> +		if (msecs_to_jiffies(since_inval_ms) < tlb_timeout_jiffies(gt))
+>  			break;
+>  
+>  		trace_xe_gt_tlb_invalidation_fence_timeout(xe, fence);
+> @@ -47,7 +62,7 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
+>  	if (!list_empty(&gt->tlb_invalidation.pending_fences))
+>  		queue_delayed_work(system_wq,
+>  				   &gt->tlb_invalidation.fence_tdr,
+> -				   TLB_TIMEOUT);
+> +				   tlb_timeout_jiffies(gt));
+>  	spin_unlock_irq(&gt->tlb_invalidation.pending_lock);
+>  }
+>  
+> @@ -183,7 +198,7 @@ static int send_tlb_invalidation(struct xe_guc *guc,
+>  			if (list_is_singular(&gt->tlb_invalidation.pending_fences))
+>  				queue_delayed_work(system_wq,
+>  						   &gt->tlb_invalidation.fence_tdr,
+> -						   TLB_TIMEOUT);
+> +						   tlb_timeout_jiffies(gt));
+>  		}
+>  		spin_unlock_irq(&gt->tlb_invalidation.pending_lock);
+>  	} else if (ret < 0 && fence) {
+> @@ -390,8 +405,7 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+>   * @gt: graphics tile
+>   * @seqno: seqno to wait which was returned from xe_gt_tlb_invalidation
+>   *
+> - * Wait for 200ms for a TLB invalidation to complete, in practice we always
+> - * should receive the TLB invalidation within 200ms.
+> + * Wait for tlb_timeout_jiffies() for a TLB invalidation to complete.
+>   *
+>   * Return: 0 on success, -ETIME on TLB invalidation timeout
+>   */
+> @@ -410,7 +424,7 @@ int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno)
+>  	 */
+>  	ret = wait_event_timeout(guc->ct.wq,
+>  				 tlb_invalidation_seqno_past(gt, seqno),
+> -				 TLB_TIMEOUT);
+> +				 tlb_timeout_jiffies(gt));
+>  	if (!ret) {
+>  		struct drm_printer p = xe_gt_err_printer(gt);
+>  
+> @@ -486,7 +500,7 @@ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>  	if (!list_empty(&gt->tlb_invalidation.pending_fences))
+>  		mod_delayed_work(system_wq,
+>  				 &gt->tlb_invalidation.fence_tdr,
+> -				 TLB_TIMEOUT);
+> +				 tlb_timeout_jiffies(gt));
+>  	else
+>  		cancel_delayed_work(&gt->tlb_invalidation.fence_tdr);
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> index 873d1bcbedd7..df95b0e878ad 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -112,6 +112,22 @@ ct_to_xe(struct xe_guc_ct *ct)
+>  #define CTB_G2H_BUFFER_SIZE	(4 * CTB_H2G_BUFFER_SIZE)
+>  #define G2H_ROOM_BUFFER_SIZE	(CTB_G2H_BUFFER_SIZE / 4)
+>  
+> +/**
+> + * xe_guc_ct_queue_proc_time_jiffies - Return maximum time to process a full
+> + * CT command queue
+> + * @ct: the &xe_guc_ct. Unused at this moment but will be used in the future.
+> + *
+> + * Observation is that A 4KiB buffer full of commands takes a little over a
+
+s/A/a
+
+> + * second to process. Use that to calculate maximum time to process a full CT
+> + * command queue.
+> + *
+> + * Return: Maximum time to process a full CT queue in jiffies.
+> + */
+> +long xe_guc_ct_queue_proc_time_jiffies(struct xe_guc_ct *ct)
+> +{
+> +	return (CTB_H2G_BUFFER_SIZE * HZ) / SZ_4K;
+
+maybe make sure CTB is in 4K blocks
+
+ 	BUILD_BUG_ON(!IS_ALIGNED(CTB_H2G_BUFFER_SIZE, SZ_4));
+
+and to better reflect the time logic:
+
+	return (CTB_H2G_BUFFER_SIZE / SZ_4K) * HZ;
+
+> +}
+> +
+>  static size_t guc_ct_size(void)
+>  {
+>  	return 2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE +
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+> index 105bb8e99a8d..190202fce2d0 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+> @@ -64,4 +64,6 @@ xe_guc_ct_send_block_no_fail(struct xe_guc_ct *ct, const u32 *action, u32 len)
+>  	return xe_guc_ct_send_recv_no_fail(ct, action, len, NULL);
+>  }
+>  
+> +long xe_guc_ct_queue_proc_time_jiffies(struct xe_guc_ct *ct);
+> +
+>  #endif
+
+with that,
+
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
