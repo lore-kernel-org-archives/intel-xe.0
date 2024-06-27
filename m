@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A05C9C2BD09
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 17:24:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A33F3C30653
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 17:24:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C75A410EB05;
-	Thu, 27 Jun 2024 17:24:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32B7610EB15;
+	Thu, 27 Jun 2024 17:24:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GVaLzF/a";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XwxZ9XAe";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B30510EA9D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2957B10EB05
  for <intel-xe@lists.freedesktop.org>; Thu, 27 Jun 2024 17:23:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1719509040; x=1751045040;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=yiE4gnuwckFVtHzOqR4Cmu+YmBxce2vqdFCmgB0Fs5w=;
- b=GVaLzF/aIOaoYWUANT8AnJajCQR4tt/rQTsY7NiKhUGgJMaK3sf3QhfK
- I71MC6wYGMcfO80wOI4B7xmbFb9arDAPs3soj9XFcSN7gzKOAvN0BetUa
- 0QJEaVmjRdHF/+LUbSLjDki0tHtS4uLR3UTuXY9NzfDe4SRA7MxuJQ4wD
- /ktTYvUPV877S5y6vNI69s2F5uZk7iOa/E/LGNNqdvZYMpcaBUTvt3qEO
- +o9PaarvIgLUeLgGgdv7kLr1ipKx6az4OGWUBUicSIcNGYQvNa6JavnFH
- pxbjjp2MhSBAfBagwaCsrZUoC0gXBuQTotB/BbIcPeDpQLdt0swRcH24b Q==;
-X-CSE-ConnectionGUID: ZZ2bKp6oQjuU+PXakNTlrg==
-X-CSE-MsgGUID: LcKQ5mClT6mr6UpxTJn25g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11116"; a="27245542"
-X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; d="scan'208";a="27245542"
+ bh=srj7TcvVQ0pq2FMfOEhErXNTwv9tnqs6bKpt9PABXUo=;
+ b=XwxZ9XAe3OdXQASTARXKBuGic2cYhOQk7ndTlJRf0Zzcw6mH18Tmt6sJ
+ 5nIeBwFPVsGthr4+giSv2Gnds3Cvq98KY+ksL247mIE1AIil4BWBHGPoI
+ M4jNh2DKo2i2TSxHhS3udDGU4fC3wTOG9PeKgVh3A7PrhkRc2eUgCCzjp
+ 433XvNuhMHNO7bt8bQKP4wZsrncMMRrbOcvj641l+dJ4IV5+a8yXHCdyg
+ ELE8MCyYCXa5E2pku5sNPRsbTvILWfZzKrtZF+GygrSCqUntsxn3J9zmA
+ qzDL+ihaYnI9PT42KXwgXqUQ3YYlNv3mKZBcRBqo58gVi69vLaUAWk16G g==;
+X-CSE-ConnectionGUID: zQ5vGk3QQL+nOLhxcsGiGA==
+X-CSE-MsgGUID: mxULxkj4Ryij2tdOQtTJVw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11116"; a="27245544"
+X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; d="scan'208";a="27245544"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Jun 2024 10:23:58 -0700
-X-CSE-ConnectionGUID: NrjMEtruSs2B2skDb2BQfw==
-X-CSE-MsgGUID: +mH3VME5SQ+6yVcdWAEQHA==
+X-CSE-ConnectionGUID: rMTPASF3RrGWeJOa3Sp2CQ==
+X-CSE-MsgGUID: hPF0TAOWQoqs+EITZmwLtA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; d="scan'208";a="49373448"
+X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; d="scan'208";a="49373449"
 Received: from xpumcyp04.jf.intel.com ([10.75.202.213])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Jun 2024 10:23:57 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 1/2] drm/xe: Use a helper to get delta run ticks from the exec
- queue
-Date: Fri, 28 Jun 2024 01:23:47 +0800
-Message-Id: <20240627172348.84991-2-umesh.nerlige.ramappa@intel.com>
+Subject: [CI 2/2] drm/xe: Get hwe domain specific FW to read RING_TIMESTAMP
+Date: Fri, 28 Jun 2024 01:23:48 +0800
+Message-Id: <20240627172348.84991-3-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240627172348.84991-1-umesh.nerlige.ramappa@intel.com>
 References: <20240627172348.84991-1-umesh.nerlige.ramappa@intel.com>
@@ -66,76 +65,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As per earlier review feedback - code manipulating exec queue fields
-should not be present in xe_device.c. Use a helper to get the delta run
-ticks from exec queue.
+Per client engine utilization uses RING_TIMESTAMP to return drm-total-cycles to
+the user. Current code uses XE_FW_GT to read this register on the first
+available engine in a GT. When testing on DG2, it is observed that this value is
+0 when running test on some engines. To resolve that, get the hwe domain
+specific FW for reading the engine timestamp.
 
-v2: Drop the Fixes tag
+v2:
+- update commit message
+- use domain specific FW (Matt)
 
+v3:
+- Drop check for hwe in the helper (Matt, Michal)
+
+Fixes: 188ced1e0ff8 ("drm/xe/client: Print runtime to fdinfo")
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_drm_client.c |  7 ++-----
- drivers/gpu/drm/xe/xe_exec_queue.c | 18 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_exec_queue.h |  1 +
- 3 files changed, 21 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_drm_client.c | 7 +++++--
+ drivers/gpu/drm/xe/xe_hw_engine.c  | 5 +++++
+ drivers/gpu/drm/xe/xe_hw_engine.h  | 1 +
+ 3 files changed, 11 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-index 4a19b771e3a0..e0c4a50d372c 100644
+index e0c4a50d372c..bc120b0b06b8 100644
 --- a/drivers/gpu/drm/xe/xe_drm_client.c
 +++ b/drivers/gpu/drm/xe/xe_drm_client.c
-@@ -251,11 +251,8 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
- 
- 	/* Accumulate all the exec queues from this client */
- 	mutex_lock(&xef->exec_queue.lock);
--	xa_for_each(&xef->exec_queue.xa, i, q) {
--		xe_exec_queue_update_run_ticks(q);
--		xef->run_ticks[q->class] += q->run_ticks - q->old_run_ticks;
--		q->old_run_ticks = q->run_ticks;
--	}
-+	xa_for_each(&xef->exec_queue.xa, i, q)
-+		xef->run_ticks[q->class] += xe_exec_queue_delta_run_ticks(q);
- 	mutex_unlock(&xef->exec_queue.lock);
+@@ -257,13 +257,16 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
  
  	/* Get the total GPU cycles */
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 0ba37835849b..4d90a16745d2 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -786,6 +786,24 @@ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q)
- 	q->run_ticks += (new_ts - old_ts) * q->width;
- }
+ 	for_each_gt(gt, xe, gt_id) {
++		enum xe_force_wake_domains fw;
++
+ 		hwe = xe_gt_any_hw_engine(gt);
+ 		if (!hwe)
+ 			continue;
  
-+/**
-+ * xe_exec_queue_delta_run_ticks() - Get delta of queue run_ticks 
-+ * @q: The exec queue
-+ *
-+ * Update run ticks for the specific queue and then return the delta when
-+ * compared to the previous value of run ticks.
-+ */
-+u64 xe_exec_queue_delta_run_ticks(struct xe_exec_queue *q)
-+{
-+	u64 delta_ticks;
-+
-+	xe_exec_queue_update_run_ticks(q);
-+	delta_ticks = q->run_ticks - q->old_run_ticks;
-+	q->old_run_ticks = q->run_ticks;
-+
-+	return delta_ticks;
-+}
-+
- void xe_exec_queue_kill(struct xe_exec_queue *q)
+-		xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++		fw = xe_hw_engine_to_fw_domain(hwe);
++		xe_force_wake_get(gt_to_fw(gt), fw);
+ 		gpu_timestamp = xe_hw_engine_read_timestamp(hwe);
+-		xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
++		xe_force_wake_put(gt_to_fw(gt), fw);
+ 		break;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 78b50d3a6501..07ed9fd28f19 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -1130,3 +1130,8 @@ u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe)
  {
- 	struct xe_exec_queue *eq = q, *next;
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index 289a3a51d2a2..42f683e5d88a 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -76,5 +76,6 @@ struct dma_fence *xe_exec_queue_last_fence_get(struct xe_exec_queue *e,
- void xe_exec_queue_last_fence_set(struct xe_exec_queue *e, struct xe_vm *vm,
- 				  struct dma_fence *fence);
- void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q);
-+u64 xe_exec_queue_delta_run_ticks(struct xe_exec_queue *q);
+ 	return xe_mmio_read64_2x32(hwe->gt, RING_TIMESTAMP(hwe->mmio_base));
+ }
++
++enum xe_force_wake_domains xe_hw_engine_to_fw_domain(struct xe_hw_engine *hwe)
++{
++	return engine_infos[hwe->engine_id].domain;
++}
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
+index 7f2d27c0ba1a..900c8c991430 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine.h
+@@ -69,5 +69,6 @@ static inline bool xe_hw_engine_is_valid(struct xe_hw_engine *hwe)
+ 
+ const char *xe_hw_engine_class_to_str(enum xe_engine_class class);
+ u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe);
++enum xe_force_wake_domains xe_hw_engine_to_fw_domain(struct xe_hw_engine *hwe);
  
  #endif
 -- 
