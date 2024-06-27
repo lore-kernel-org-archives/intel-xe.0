@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AA5EC2BD09
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 20:42:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4498C2BD09
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 20:42:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53D1710E392;
-	Thu, 27 Jun 2024 20:42:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 827FD10EB35;
+	Thu, 27 Jun 2024 20:42:40 +0000 (UTC)
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62CD710E392;
- Thu, 27 Jun 2024 20:42:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2317210E392;
+ Thu, 27 Jun 2024 20:42:39 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5B1/2=5D_drm/xe/mocs=3A_Update_MOCS_assertions_and_remove_redun?=
- =?utf-8?q?dant_checks?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5B1?=
+ =?utf-8?q?/2=5D_drm/xe/mocs=3A_Update_MOCS_assertions_and_remove_redundant_?=
+ =?utf-8?q?checks?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 27 Jun 2024 20:42:16 -0000
-Message-ID: <171952093640.164687.15880585098746585527@a6498e030952>
+Date: Thu, 27 Jun 2024 20:42:39 -0000
+Message-ID: <171952095914.164687.10159815784723210510@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240627203741.2042752-3-matthew.d.roper@intel.com>
 In-Reply-To: <20240627203741.2042752-3-matthew.d.roper@intel.com>
@@ -49,10 +49,31 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: cab79257e1f2 drm-tip: 2024y-06m-27d-18h-58m-14s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/mocs: Update MOCS assertions and remove redundant checks
-Applying: drm/xe/mocs: Clarify difference between hw and sw sizes
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 9519373dee8e9b981101d1f552c9718e4f8824d2
+Author: Matt Roper <matthew.d.roper@intel.com>
+Date:   Thu Jun 27 13:37:43 2024 -0700
+
+    drm/xe/mocs: Clarify difference between hw and sw sizes
+    
+    It's not very obvious what the difference is between the 'size' and
+    'n_entries' fields of the MOCS structure.  Rename both fields slightly
+    and add some comments explaining that one is the documentation-defined
+    table size, while the other is the number of entries that can be
+    programmed into the hardware (and the documented table size can
+    potentially be smaller than the number of hardware entries).
+    
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
++ /mt/dim checkpatch cab79257e1f25f4b3411210b23fcca4f56daf15d drm-intel
+902f85cebdd2 drm/xe/mocs: Update MOCS assertions and remove redundant checks
+9519373dee8e drm/xe/mocs: Clarify difference between hw and sw sizes
 
 
