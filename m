@@ -4,27 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55BC7C3064D
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Jun 2024 13:28:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1D12C3064D
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Jun 2024 13:49:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFDD310E5E8;
-	Fri, 28 Jun 2024 13:28:24 +0000 (UTC)
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DD3110E2FB;
- Fri, 28 Jun 2024 13:28:24 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C22010E2C9;
+	Fri, 28 Jun 2024 13:49:42 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="fLKsoOZf";
+	dkim-atps=neutral
+X-Greylist: delayed 439 seconds by postgrey-1.36 at gabe;
+ Thu, 27 Jun 2024 17:40:33 UTC
+Received: from out-181.mta1.migadu.com (out-181.mta1.migadu.com
+ [95.215.58.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1367810EB05
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Jun 2024 17:40:32 +0000 (UTC)
+X-Envelope-To: maarten.lankhorst@linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1719509591;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Xr0TR/1FJaHH3ED2Gg8EsjtN43r2N2jhIFfaVjK+ReM=;
+ b=fLKsoOZfoseTaxxUSUzJuxD+k9IEgMWnvbjjxqtg/OrcnHyqUX9qp1tbvuE8zcJlwqiwQb
+ 84rRJrF4qI1qsDXzbtV+ThZCYs8lI+Ylmi1meFS5UblE2HzVtFJajNDNU+DdfCJqO9mafK
+ np2J+8e1AKLwM0WPMmrijVaBEje7zWo=
+X-Envelope-To: intel-xe@lists.freedesktop.org
+X-Envelope-To: linux-kernel@vger.kernel.org
+X-Envelope-To: dri-devel@lists.freedesktop.org
+X-Envelope-To: tj@kernel.org
+X-Envelope-To: lizefan.x@bytedance.com
+X-Envelope-To: hannes@cmpxchg.org
+X-Envelope-To: akpm@linux-foundation.org
+X-Envelope-To: mhocko@kernel.org
+X-Envelope-To: shakeel.butt@linux.dev
+X-Envelope-To: muchun.song@linux.dev
+X-Envelope-To: friedrich.vock@gmx.de
+X-Envelope-To: cgroups@vger.kernel.org
+X-Envelope-To: linux-mm@kvack.org
+Date: Thu, 27 Jun 2024 17:33:05 +0000
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Roman Gushchin <roman.gushchin@linux.dev>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>,
+ Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Michal Hocko <mhocko@kernel.org>, Shakeel Butt <shakeel.butt@linux.dev>,
+ Muchun Song <muchun.song@linux.dev>,
+ Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org,
+ linux-mm@kvack.org
+Subject: Re: [RFC PATCH 1/6] mm/page_counter: Move calculating protection
+ values to page_counter
+Message-ID: <Zn2iUQ4xj0ANHHs6@google.com>
+References: <20240627154754.74828-1-maarten.lankhorst@linux.intel.com>
+ <20240627154754.74828-2-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915=3A_PREEMPT=5FRT?=
- =?utf-8?q?_related_fixups=2E_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sebastian Andrzej Siewior" <bigeasy@linutronix.de>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 28 Jun 2024 13:28:24 -0000
-Message-ID: <171958130405.185636.16391067179760391923@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <20240628130601.1772849-1-bigeasy@linutronix.de>
-In-Reply-To: <20240628130601.1772849-1-bigeasy@linutronix.de>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240627154754.74828-2-maarten.lankhorst@linux.intel.com>
+X-Migadu-Flow: FLOW_OUT
+X-Mailman-Approved-At: Fri, 28 Jun 2024 13:49:41 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,35 +76,18 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Jun 27, 2024 at 05:47:20PM +0200, Maarten Lankhorst wrote:
+> It's a lot of math, and there is nothing memcontrol specific about it.
+> This makes it easier to use inside of the drm cgroup controller.
+> 
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-Series: drm/i915: PREEMPT_RT related fixups. (rev5)
-URL   : https://patchwork.freedesktop.org/series/132082/
-State : warning
+LGTM and I believe it's a good thing to do even without taking the rest
+of the series into account.
 
-== Summary ==
+Acked-by: Roman Gushchin <roman.gushchin@linux.dev>
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 886eeb6d89b58f914ee5045fcac54b59a73d8299
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+Thanks!
