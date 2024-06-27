@@ -4,62 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEFB7C2BD09
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 07:55:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B8C2C2BD09
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 08:04:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BA1610E137;
-	Thu, 27 Jun 2024 07:55:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BE8A10E137;
+	Thu, 27 Jun 2024 08:04:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GWzdpQdY";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="eZcmzIEb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D6A410E12B;
- Thu, 27 Jun 2024 07:55:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719474954; x=1751010954;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=maFTFil7efysC6EQ3GAREvWBjNl0vaOYJ4yx49Dy+tY=;
- b=GWzdpQdY0+fTfcfSl0yWKUbHzLxLVzIt8uB2vp/2KZZVWmbBftlEmdi3
- gvYWS+5ZYeDeDAj5+mubRciGS43tJ0PUi4TkqJHn6cgQ9otC7vE5b2xY4
- H7BOY3jmmOztu8vYrbHq4uYbCVOXPFquGprPmhU/2fMUshYS7Kx1yHenf
- DQ8VVBhnposzQtkiN2ywTS+lrse9kxfzt5pyL3wjxbzH2A0++MIdqZCa8
- 31uO1wahdP5JIolyH5/QHB9iIMA3D9bkm9HMCLyRBFqmirYBbeXASD7ET
- A5MaZeUmooGcR2/OFX/CTRYaJCoUOYvPQIKTUCjUzh0BDb8dHntzW/whe Q==;
-X-CSE-ConnectionGUID: 7fM07jKyQcymKDtEpnqmcw==
-X-CSE-MsgGUID: 9mPYOhTJRBmKTLq7UajmDg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11115"; a="16714983"
-X-IronPort-AV: E=Sophos;i="6.08,269,1712646000"; d="scan'208";a="16714983"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2024 00:55:54 -0700
-X-CSE-ConnectionGUID: wNIgmHwVS3iCI9e38gxQWw==
-X-CSE-MsgGUID: dKSfUaOQS22vFV+p2Hztww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,269,1712646000"; d="scan'208";a="49462800"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO [10.245.245.82])
- ([10.245.245.82])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2024 00:55:52 -0700
-Message-ID: <d5059ec319b09ad76e160870ec9735009d17f1f3.camel@linux.intel.com>
-Subject: Re: [PATCH v3 2/2] drm/xe/lnl: Offload system clear page activity
- to GPU
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Nirmoy Das <nirmoy.das@intel.com>, dri-devel@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Himal Prasad Ghimiray
- <himal.prasad.ghimiray@intel.com>, Matthew Auld <matthew.auld@intel.com>
-Date: Thu, 27 Jun 2024 09:55:49 +0200
-In-Reply-To: <20240624141456.23195-2-nirmoy.das@intel.com>
-References: <20240624141456.23195-1-nirmoy.das@intel.com>
- <20240624141456.23195-2-nirmoy.das@intel.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
+ [209.85.128.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C3D210EA49
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Jun 2024 08:04:06 +0000 (UTC)
+Received: by mail-wm1-f49.google.com with SMTP id
+ 5b1f17b1804b1-424a4bc95f3so2841755e9.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Jun 2024 01:04:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1719475445; x=1720080245; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=n+IdGag1xe1BMKJMq7pfKjIq2jw1ZlKemz6IVZI0gD4=;
+ b=eZcmzIEbOd6qRcMwnjGVFVfM7BJoZJDs4NG8nbD1xFbJUy0xZEBVFPyHMAfi0+jOLG
+ 1Azlz4P8We5SZHNexOzmCU32WagwRqDQ2R2wdyg1ebvRkSEb5tJ+lqAYen+/UAcPLwmt
+ lRdtJgm+8yV9IBU3O4Z3Qhfmv1K2/9467T5xE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1719475445; x=1720080245;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=n+IdGag1xe1BMKJMq7pfKjIq2jw1ZlKemz6IVZI0gD4=;
+ b=lRH69UMJZqFIRbpwucu07+bgueBi5F79lJOKXde6VraHxPAbkRQyHLvY54fdF7/zWM
+ EM7YZ8vRYQ+wo0NNnhGl4/uBfghSGXftge/4Tb6BTB+8xzSIPZH/8juiaxH4sqC566B9
+ mImMBGLNKbUYnlh5nfVUOMzYtTtrJxy3gYQlJFBgDoHcCKEiQ5XIE7x84XJ+60IO3Xpe
+ 1mFb32+ELuJn7Td4hVl1ipWc02cuEbgmN7qppU6qCoXXOqYVQC5DJKXEFDSqrcw7TU6/
+ EWI0AcsoSPDaF0A2PFQeCw/5AcpzyQ5XH4MbAageg7frMP4yyrm678ExkCFYQBmDVbct
+ piyg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVcFrSm9eHbyzU53piwKzV/HbgaM2roKf4k+oKl2hhi3q6lj8H7XiVU6zv2GFmzbJE3umyiUZLNTFvWlVvuvnGcVZ2moBigjiUwDoP0ofQ=
+X-Gm-Message-State: AOJu0Yy0mmJCyf6v2uTzauy6dzSKHQxgGh4svwgan1Z4ANPw4gC8jpgq
+ FEOb1ZSOctCvwmA7rJIQR0F7fBsEUj+L7kvxcnd4TPL+KPbev7EwnkrOkOXVbXs=
+X-Google-Smtp-Source: AGHT+IE1n0Y1MwbvMcqCsmpPYnU8/CZIyd+9tmN/ShVyTNxdSfkO75uhIaa/IK9JW1siEZaF4VJeWA==
+X-Received: by 2002:a05:6000:2a7:b0:366:eb60:bd12 with SMTP id
+ ffacd0b85a97d-366eb60beb4mr8667886f8f.3.1719475445126; 
+ Thu, 27 Jun 2024 01:04:05 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3674357fdbcsm1034489f8f.32.2024.06.27.01.04.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 27 Jun 2024 01:04:04 -0700 (PDT)
+Date: Thu, 27 Jun 2024 10:04:02 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Cc: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org
+Subject: Re: dma_buf_detach lockdep splat
+Message-ID: <Zn0c8l-yQih3j0NE@phenom.ffwll.local>
+References: <40611e5ff8c32b99e7863293a0baac078f323d8f.camel@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <40611e5ff8c32b99e7863293a0baac078f323d8f.camel@linux.intel.com>
+X-Operating-System: Linux phenom 6.8.9-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,263 +83,182 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Nirmoy
+On Wed, Jun 26, 2024 at 05:58:02PM +0200, Thomas Hellström wrote:
+> Hi!
+> 
+> I'm seeing the below lockdep splat 1) with the xe driver in an imported
+> dma-buf object destruction path.
+> 
+> It's not because we hold the dma_resv lock at that point, but rather
+> because we hold *another* dma_resv lock at that point, and the dma_resv
+> detach happens when the object is idle, in this case it was idle at the
+> final put(), and dma_buf_detach() is called in the putting process.
+> 
+> Holding another dma-buf lock might happen as part of
+> drm_exec_unlock_all, or simply if the wider vm dma_resv was held at
+> object put time, so it's not an uncommon pattern, even if the drm_exec
+> instance can be fixed by putting all bos after unlocking them all.
+> 
+> Two solutions coming to mind here:
+> 
+> 1) Provide a dma_buf_detach_locked()
 
-On Mon, 2024-06-24 at 16:14 +0200, Nirmoy Das wrote:
-> On LNL because of flat CCS, driver creates a migrate job to clear
-> CCS meta data. Extend that to also clear system pages using GPU.
-> Inform TTM to allocate pages without __GFP_ZERO to avoid double page
-> clearing by clearing out TTM_TT_FLAG_ZERO_ALLOC flag and set
-> TTM_TT_FLAG_CLEARED_ON_FREE while freeing to skip ttm pool's
-> clearn-on-free as XE now takes care of clearing pages.
->=20
-> To test the patch, I created a small test that tries to submit a job
-> after binding various sizes of buffer which shows good gains for
-> larger
-> buffer. For lower buffer sizes, the result is not very reliable as
-> the
-> results vary a lot.
+This smells way too much like the endless headaches we had with
+drm_gem_object_put_locked and friends against drm_device.struct_mutex. Or
+I'm not understanding what you're doing, because I'm pretty sure you have
+to take the dma_resv lock on final put() of imported objects. Because that
+final put() is of the import wrapper, the exporter (and other importers)
+can still get at that object and so dma_resv_lock is very much needed.
 
-Some concerns below,
+Or it's a completely different final put(), but I have no idea how you get
+that on an imported dma_buf.
 
-also a big security concern.=20
+> 2) Have TTM always take the delayed delete path for imported dma-buf
+> objects.
+> 
+> I'd prefer 1) since I think the correct place to call this is in the
+> TTM callback delete_mem_notify() where the bo is already locked, and I
+> figure non-TTM gem backends may come to suffer from the same problem.
+> 
+> Opinions, suggestions?
 
-The CCS clearing occurs when the bo is moved to TT. But there are
-situations in which the bo is created and populated in system. For
-example if the bo is created using
-DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING, and then mmap'd Then it won't get
-cleared. Since we don't have a dma_mapping of the bo at that time we
-must revert to cpu clear when / that happens.
+Imo 2) or trying to push the object puts outside of the dma_resv_lock. The
+latter is imo natural, since usually you grab references, then lock. And
+this even holds for at least the slow path of lru eviction, because you
+need to drop all locks and then do a ww_mutex_lock_slow, and that requires
+that you can hold references to unlocked objects.
 
->=20
-> With the patch
-> sudo=C2=A0 ~/igt-gpu-tools/build/tests/xe_exec_store --run basic-store-
-> benchmark
-> IGT-Version: 1.28-g2ed908c0b (x86_64) (Linux: 6.10.0-rc2-xe+ x86_64)
-> Using IGT_SRANDOM=3D1719237905 for randomisation
-> Opened device: /dev/dri/card0
-> Starting subtest: basic-store-benchmark
-> Starting dynamic subtest: WC
-> Dynamic subtest WC: SUCCESS (0.000s)
-> Time taken for size SZ_4K: 9493 us
-> Time taken for size SZ_2M: 5503 us
-> Time taken for size SZ_64M: 13016 us
-> Time taken for size SZ_128M: 29464 us
-> Time taken for size SZ_256M: 38408 us
-> Time taken for size SZ_1G: 148758 us
-> Starting dynamic subtest: WB
-> Dynamic subtest WB: SUCCESS (0.000s)
-> Time taken for size SZ_4K: 3889 us
-> Time taken for size SZ_2M: 6091 us
-> Time taken for size SZ_64M: 20920 us
-> Time taken for size SZ_128M: 32394 us
-> Time taken for size SZ_256M: 61710 us
-> Time taken for size SZ_1G: 215437 us
-> Subtest basic-store-benchmark: SUCCESS (0.589s)
->=20
-> With the patch:
-> sudo=C2=A0 ~/igt-gpu-tools/build/tests/xe_exec_store --run basic-store-
-> benchmark
-> IGT-Version: 1.28-g2ed908c0b (x86_64) (Linux: 6.10.0-rc2-xe+ x86_64)
-> Using IGT_SRANDOM=3D1719238062 for randomisation
-> Opened device: /dev/dri/card0
-> Starting subtest: basic-store-benchmark
-> Starting dynamic subtest: WC
-> Dynamic subtest WC: SUCCESS (0.000s)
-> Time taken for size SZ_4K: 11803 us
-> Time taken for size SZ_2M: 4237 us
-> Time taken for size SZ_64M: 8649 us
-> Time taken for size SZ_128M: 14682 us
-> Time taken for size SZ_256M: 22156 us
-> Time taken for size SZ_1G: 74457 us
-> Starting dynamic subtest: WB
-> Dynamic subtest WB: SUCCESS (0.000s)
-> Time taken for size SZ_4K: 5129 us
-> Time taken for size SZ_2M: 12563 us
-> Time taken for size SZ_64M: 14860 us
-> Time taken for size SZ_128M: 26064 us
-> Time taken for size SZ_256M: 47167 us
-> Time taken for size SZ_1G: 170304 us
-> Subtest basic-store-benchmark: SUCCESS (0.417s)
->=20
-> With the patch and init_on_alloc=3D0
-> sudo=C2=A0 ~/igt-gpu-tools/build/tests/xe_exec_store --run basic-store-
-> benchmark
-> IGT-Version: 1.28-g2ed908c0b (x86_64) (Linux: 6.10.0-rc2-xe+ x86_64)
-> Using IGT_SRANDOM=3D1719238219 for randomisation
-> Opened device: /dev/dri/card0
-> Starting subtest: basic-store-benchmark
-> Starting dynamic subtest: WC
-> Dynamic subtest WC: SUCCESS (0.000s)
-> Time taken for size SZ_4K: 4803 us
-> Time taken for size SZ_2M: 9212 us
-> Time taken for size SZ_64M: 9643 us
-> Time taken for size SZ_128M: 13479 us
-> Time taken for size SZ_256M: 22429 us
-> Time taken for size SZ_1G: 83110 us
-> Starting dynamic subtest: WB
-> Dynamic subtest WB: SUCCESS (0.000s)
-> Time taken for size SZ_4K: 4003 us
-> Time taken for size SZ_2M: 4443 us
-> Time taken for size SZ_64M: 12960 us
-> Time taken for size SZ_128M: 13741 us
-> Time taken for size SZ_256M: 26841 us
-> Time taken for size SZ_1G: 84746 us
-> Subtest basic-store-benchmark: SUCCESS (0.290s)
->=20
-> v2: Handle regression on dgfx(Himal)
-> =C2=A0=C2=A0=C2=A0 Update commit message as no ttm API changes needed.
-> v3: Fix Kunit test.
->=20
-> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: "Thomas Hellstr=C3=B6m" <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 | 11 +++++++++++
-> =C2=A0drivers/gpu/drm/xe/xe_device.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-|=C2=A0 7 +++++++
-> =C2=A0drivers/gpu/drm/xe/xe_device_types.h |=C2=A0 2 ++
-> =C2=A0drivers/gpu/drm/xe/xe_migrate.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 5 +++--
-> =C2=A04 files changed, 23 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 65c696966e96..a9ce4347a7d7 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -399,6 +399,7 @@ static struct ttm_tt *xe_ttm_tt_create(struct
-> ttm_buffer_object *ttm_bo,
-> =C2=A0static int xe_ttm_tt_populate(struct ttm_device *ttm_dev, struct
-> ttm_tt *tt,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *ctx)
-> =C2=A0{
-> +	struct xe_device *xe =3D ttm_to_xe_device(ttm_dev);
-> =C2=A0	int err;
-> =C2=A0
-> =C2=A0	/*
-> @@ -408,6 +409,10 @@ static int xe_ttm_tt_populate(struct ttm_device
-> *ttm_dev, struct ttm_tt *tt,
-> =C2=A0	if (tt->page_flags & TTM_TT_FLAG_EXTERNAL)
-> =C2=A0		return 0;
-> =C2=A0
-> +	/* Clear TTM_TT_FLAG_ZERO_ALLOC when GPU is set to clear
-> pages */
-> +	if (xe->mem.gpu_page_clear)
-> +		tt->page_flags &=3D ~TTM_TT_FLAG_ZERO_ALLOC;
-> +
-> =C2=A0	err =3D ttm_pool_alloc(&ttm_dev->pool, tt, ctx);
-> =C2=A0	if (err)
-> =C2=A0		return err;
-> @@ -417,9 +422,15 @@ static int xe_ttm_tt_populate(struct ttm_device
-> *ttm_dev, struct ttm_tt *tt,
-> =C2=A0
-> =C2=A0static void xe_ttm_tt_unpopulate(struct ttm_device *ttm_dev, struct
-> ttm_tt *tt)
-> =C2=A0{
-> +	struct xe_device *xe =3D ttm_to_xe_device(ttm_dev);
-> +
-> =C2=A0	if (tt->page_flags & TTM_TT_FLAG_EXTERNAL)
-> =C2=A0		return;
-> =C2=A0
-> +	/* Add TTM_TT_FLAG_CLEARED_ON_FREE when GPU is set to clear
-> pages */
-> +	if (xe->mem.gpu_page_clear)
-> +		tt->page_flags |=3D TTM_TT_FLAG_CLEARED_ON_FREE;
-> +
-> =C2=A0	xe_tt_unmap_sg(tt);
-> =C2=A0
-> =C2=A0	return ttm_pool_free(&ttm_dev->pool, tt);
-> diff --git a/drivers/gpu/drm/xe/xe_device.c
-> b/drivers/gpu/drm/xe/xe_device.c
-> index ca5e8435485a..c9afff1d0734 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -636,6 +636,13 @@ int xe_device_probe(struct xe_device *xe)
-> =C2=A0	if (err)
-> =C2=A0		goto err_irq_shutdown;
-> =C2=A0
-> +	/**
-> +	 * On iGFX device with flat CCS, we clear CCS metadata,
-> let's extend that
-> +	 * and use GPU to clear pages as well.
-> +	 */
-> +	if (xe_device_has_flat_ccs(xe) && !IS_DGFX(xe))
-> +		xe->mem.gpu_page_clear =3D true;
-> +
-> =C2=A0	err =3D xe_vram_probe(xe);
-> =C2=A0	if (err)
-> =C2=A0		goto err_irq_shutdown;
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h
-> b/drivers/gpu/drm/xe/xe_device_types.h
-> index c37be471d11c..ece68c6f3668 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -325,6 +325,8 @@ struct xe_device {
-> =C2=A0		struct xe_mem_region vram;
-> =C2=A0		/** @mem.sys_mgr: system TTM manager */
-> =C2=A0		struct ttm_resource_manager sys_mgr;
-> +		/** @gpu_page_clear: clear pages offloaded to GPU */
-> +		bool gpu_page_clear;
-> =C2=A0	} mem;
-> =C2=A0
-> =C2=A0	/** @sriov: device level virtualization data */
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c
-> b/drivers/gpu/drm/xe/xe_migrate.c
-> index 05f933787860..61bf3d80e896 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -1003,6 +1003,7 @@ struct dma_fence *xe_migrate_clear(struct
-> xe_migrate *m,
-> =C2=A0	struct xe_gt *gt =3D m->tile->primary_gt;
-> =C2=A0	struct xe_device *xe =3D gt_to_xe(gt);
-> =C2=A0	bool clear_system_ccs =3D (xe_bo_needs_ccs_pages(bo) &&
-> !IS_DGFX(xe)) ? true : false;
-> +	bool clear_on_create =3D xe->mem.gpu_page_clear ||
-> !clear_system_ccs;
+But 2) alone is imo fine, dma_buf have become really big objects that go
+across drivers, extremely similar to struct file, and that is doing the
+delayed final put unconditionally since years too, using task_work. It's
+simply a solid design.
 
-Hm. In what situation is clear_on_create false?=C2=A0
+Cheers, Sima
 
-Previously we had clear_system_ccs to clear *only* ccs, but now that
-situation has changed to clear_also_ccs?
+> [1]
+> [   99.136161] ============================================
+> [   99.136162] WARNING: possible recursive locking detected
+> [   99.136163] 6.10.0-rc2+ #6 Tainted: G     U            
+> [   99.136165] --------------------------------------------
+> [   99.136166] glxgears:sh0/4675 is trying to acquire lock:
+> [   99.136167] ffff9967dcdd91a8 (reservation_ww_class_mutex){+.+.}-
+> {3:3}, at: dma_buf_detach+0x3b/0xf0
+> [   99.136184] 
+>                but task is already holding lock:
+> [   99.136186] ffff9967d8c145a8 (reservation_ww_class_mutex){+.+.}-
+> {3:3}, at: drm_exec_lock_obj+0x49/0x2b0 [drm_exec]
+> [   99.136191] 
+>                other info that might help us debug this:
+> [   99.136192]  Possible unsafe locking scenario:
+> 
+> [   99.136194]        CPU0
+> [   99.136194]        ----
+> [   99.136195]   lock(reservation_ww_class_mutex);
+> [   99.136197]   lock(reservation_ww_class_mutex);
+> [   99.136199] 
+>                 *** DEADLOCK ***
+> 
+> [   99.136199]  May be due to missing lock nesting notation
+> 
+> [   99.136200] 5 locks held by glxgears:sh0/4675:
+> [   99.136202]  #0: ffff9967d8c104c8 (&xef->vm.lock){+.+.}-{3:3}, at:
+> xe_file_close+0xde/0x1c0 [xe]
+> [   99.136272]  #1: ffff9967d5bb7480 (&vm->lock){++++}-{3:3}, at:
+> xe_vm_close_and_put+0x161/0x9b0 [xe]
+> [   99.136350]  #2: ffff9967ef88a970 (&val->lock){.+.+}-{3:3}, at:
+> xe_validation_ctx_init+0x6d/0x70 [xe]
+> [   99.136440]  #3: ffffbd6a085577b8
+> (reservation_ww_class_acquire){+.+.}-{0:0}, at:
+> xe_vma_destroy_unlocked+0x7f/0xe0 [xe]
+> [   99.136546]  #4: ffff9967d8c145a8
+> (reservation_ww_class_mutex){+.+.}-{3:3}, at:
+> drm_exec_lock_obj+0x49/0x2b0 [drm_exec]
+> [   99.136552] 
+>                stack backtrace:
+> [   99.136553] CPU: 10 PID: 4675 Comm: glxgears:sh0 Tainted: G     U  
+> 6.10.0-rc2+ #6
+> [   99.136555] Hardware name: ASUS System Product Name/PRIME B560M-A
+> AC, BIOS 2001 02/01/2023
+> [   99.136557] Call Trace:
+> [   99.136558]  <TASK>
+> [   99.136560]  dump_stack_lvl+0x77/0xb0
+> [   99.136564]  __lock_acquire+0x1232/0x2160
+> [   99.136569]  lock_acquire+0xcb/0x2d0
+> [   99.136570]  ? dma_buf_detach+0x3b/0xf0
+> [   99.136574]  ? __lock_acquire+0x417/0x2160
+> [   99.136577]  __ww_mutex_lock.constprop.0+0xd0/0x13b0
+> [   99.136580]  ? dma_buf_detach+0x3b/0xf0
+> [   99.136584]  ? dma_buf_detach+0x3b/0xf0
+> [   99.136588]  ? ww_mutex_lock+0x2b/0x90
+> [   99.136590]  ww_mutex_lock+0x2b/0x90
+> [   99.136592]  dma_buf_detach+0x3b/0xf0
+> [   99.136595]  drm_prime_gem_destroy+0x2f/0x40 [drm]
+> [   99.136638]  xe_ttm_bo_destroy+0x32/0x220 [xe]
+> [   99.136734]  ? __mutex_unlock_slowpath+0x3a/0x290
+> [   99.136738]  drm_exec_unlock_all+0xa1/0xd0 [drm_exec]
+> [   99.136741]  drm_exec_fini+0x12/0xb0 [drm_exec]
+> [   99.136743]  xe_validation_ctx_fini+0x15/0x40 [xe]
+> [   99.136848]  xe_vma_destroy_unlocked+0xb1/0xe0 [xe]
+> [   99.136954]  xe_vm_close_and_put+0x41a/0x9b0 [xe]
+> [   99.137056]  ? xa_find+0xe3/0x1e0
+> [   99.137060]  xe_file_close+0x10a/0x1c0 [xe]
+> [   99.137157]  drm_file_free+0x22a/0x280 [drm]
+> [   99.137193]  drm_release_noglobal+0x22/0x70 [drm]
+> [   99.137227]  __fput+0xf1/0x2d0
+> [   99.137231]  task_work_run+0x59/0x90
+> [   99.137235]  do_exit+0x330/0xb40
+> [   99.137238]  do_group_exit+0x36/0xa0
+> [   99.137241]  get_signal+0xbd2/0xbe0
+> [   99.137245]  arch_do_signal_or_restart+0x3e/0x240
+> [   99.137249]  syscall_exit_to_user_mode+0x1e7/0x290
+> [   99.137252]  do_syscall_64+0xa1/0x180
+> [   99.137255]  ? _raw_spin_unlock+0x23/0x40
+> [   99.137257]  ? look_up_lock_class+0x6f/0x120
+> [   99.137261]  ? __lock_acquire+0x417/0x2160
+> [   99.137264]  ? lock_acquire+0xcb/0x2d0
+> [   99.137266]  ? __set_task_comm+0x28/0x1e0
+> [   99.137268]  ? find_held_lock+0x2b/0x80
+> [   99.137271]  ? __set_task_comm+0xe1/0x1e0
+> [   99.137273]  ? lock_release+0xca/0x290
+> [   99.137277]  ? __do_sys_prctl+0x245/0xab0
+> [   99.137279]  ? lockdep_hardirqs_on_prepare+0xde/0x190
+> [   99.137281]  ? syscall_exit_to_user_mode+0xb0/0x290
+> [   99.137284]  ? do_syscall_64+0xa1/0x180
+> [   99.137286]  ? cpuset_cpus_allowed+0x36/0x140
+> [   99.137289]  ? find_held_lock+0x2b/0x80
+> [   99.137291]  ? find_held_lock+0x2b/0x80
+> [   99.137294]  ? __sched_setaffinity+0x78/0x240
+> [   99.137297]  ? kfree+0xe2/0x310
+> [   99.137301]  ? kfree+0x202/0x310
+> [   99.137303]  ? __sched_setaffinity+0x78/0x240
+> [   99.137305]  ? __x64_sys_sched_setaffinity+0x69/0xb0
+> [   99.137307]  ? kfree+0xe2/0x310
+> [   99.137310]  ? lockdep_hardirqs_on_prepare+0xde/0x190
+> [   99.137312]  ? syscall_exit_to_user_mode+0xb0/0x290
+> [   99.137315]  ? do_syscall_64+0xa1/0x180
+> [   99.137317]  ? trace_hardirqs_off+0x4b/0xc0
+> [   99.137321]  ? clear_bhb_loop+0x45/0xa0
+> [   99.137325]  ? clear_bhb_loop+0x45/0xa0
+> [   99.137327]  ? clear_bhb_loop+0x45/0xa0
+> [   99.137330]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+> [   99.137333] RIP: 0033:0x7fda70ee6169
+> [   99.137351] Code: Unable to access opcode bytes at 0x7fda70ee613f.
+> [   99.137352] RSP: 002b:00007fda5fdffc80 EFLAGS: 00000246 ORIG_RAX:
+> 00000000000000ca
+> [   99.137354] RAX: fffffffffffffe00 RBX: 0000000000000000 RCX:
+> 00007fda70ee6169
+> [   99.137356] RDX: 0000000000000000 RSI: 0000000000000189 RDI:
+> 0000564a96f45b30
+> [   99.137358] RBP: 00007fda5fdffcb0 R08: 0000000000000000 R09:
+> 00000000ffffffff
+> [   99.137359] R10: 0000000000000000 R11: 0000000000000246 R12:
+> 0000000000000000
+> [   99.137360] R13: 0000000000000000 R14: 0000000000000000 R15:
+> 0000564a96f45b30
+> [   99.137365]  </TASK>
+> 
 
-I think the xe_migrate_clear should not bother whether this is an
-initial clearing or a clearing for other reasons, but rather be passed
-two flags
-
-"clear_bo_data" and "clear_ccs" or something similar, and also we
-should avoid variable names that refer to usage by higher layers of
-which the migrate code should have no knowledge.
-
-/Thomas
-
-
-> =C2=A0	struct dma_fence *fence =3D NULL;
-> =C2=A0	u64 size =3D bo->size;
-> =C2=A0	struct xe_res_cursor src_it;
-> @@ -1032,7 +1033,7 @@ struct dma_fence *xe_migrate_clear(struct
-> xe_migrate *m,
-> =C2=A0		batch_size =3D 2 +
-> =C2=A0			pte_update_size(m, clear_vram, src, &src_it,
-> =C2=A0					&clear_L0, &clear_L0_ofs,
-> &clear_L0_pt,
-> -					clear_system_ccs ? 0 :
-> emit_clear_cmd_len(gt), 0,
-> +					!clear_on_create ? 0 :
-> emit_clear_cmd_len(gt), 0,
-> =C2=A0					avail_pts);
-> =C2=A0
-> =C2=A0		if (xe_device_has_flat_ccs(xe))
-> @@ -1060,7 +1061,7 @@ struct dma_fence *xe_migrate_clear(struct
-> xe_migrate *m,
-> =C2=A0		bb->cs[bb->len++] =3D MI_BATCH_BUFFER_END;
-> =C2=A0		update_idx =3D bb->len;
-> =C2=A0
-> -		if (!clear_system_ccs)
-> +		if (clear_on_create)
-> =C2=A0			emit_clear(gt, bb, clear_L0_ofs, clear_L0,
-> XE_PAGE_SIZE, clear_vram);
-> =C2=A0
-> =C2=A0		if (xe_device_has_flat_ccs(xe)) {
-
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
