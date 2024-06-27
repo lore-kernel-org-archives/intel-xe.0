@@ -4,162 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF8F7C3064D
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 11:54:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 614D1C2BD09
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 12:03:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AFC610E0C1;
-	Thu, 27 Jun 2024 11:54:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34B2A10E03B;
+	Thu, 27 Jun 2024 12:03:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AXe2vaYt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iRKoU5e/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA2EF10E0C1
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Jun 2024 11:54:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D8E410E03B;
+ Thu, 27 Jun 2024 12:03:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719489277; x=1751025277;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=aD+yteKP29CAWx4EsjwFfpAv5j3/FKoPYi+nTjWYCbk=;
- b=AXe2vaYtkTAQK88FZx8+Ly3t+S1WI7iXQ/Z8+SNxvrY4FhMAbldMrgjC
- cwCn2b3F7+zrqBDZ4ii0a594CcY/M6Xd6bkPAzI3Cn5ftcURwZhsZQrX3
- HeJj9zvmxsoGIgPPE5EG38RkzF/a/PZHhSCnK+BFiJqlR/k9wYFbGzh8L
- t+bZLxjPzmznL4+E9YtF6OBKpmFiu9yPG1s3vmjIH9m9Z7HWAUQnA8A/D
- /UuclB/hDC+hEcbSGVliYTMBf2HFKOe85S/WS76UHajT4x8h5n71aaEbQ
- l2AZp/ZNRZsRgBgNo6KpFuuU59/g+7T8rZhG54GdF+DenFQhkHsckpK6o g==;
-X-CSE-ConnectionGUID: VKdUcgSuRQ6wjxcZUZhGiQ==
-X-CSE-MsgGUID: 7zYYCzxnS0GpUB9A2kw0sA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11115"; a="27748666"
-X-IronPort-AV: E=Sophos;i="6.09,270,1716274800"; d="scan'208";a="27748666"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2024 04:54:37 -0700
-X-CSE-ConnectionGUID: Ng+JjEGbTjWJC6sg5ITIOg==
-X-CSE-MsgGUID: 0Qbor02EQmGb4DntG7s0Cw==
+ t=1719489812; x=1751025812;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=oai/ZPxgEQ+OVYVxt4FZy32E6GPPl523kGCZrhsMSLY=;
+ b=iRKoU5e/tuRjHjG9laLYSq8btNUvcyCQW/Ba9TaPA/jLFl36X3U8A4a1
+ TCZP6kD+rJKQJ4jmz6hBjEMTtvWyZpN0L9jOOLWrlvEw0/ROQJtb6Yizn
+ scF4UBL4sapmPsZfQvWqsKofE6VusQkz/XNOgxVthfK27xxJ7zDE+ukUv
+ mbPdK/c3VCMCf3bw1E4dmgNeK3KnHK4bCBHSxPIq77uwI5D9/+FfijIw+
+ yMF1XnK7p73US0DmbVCuGcycn9ux76AV4n4L6Si5QQ22dT9pkrOUzQMvx
+ Zjz1eHULv0ygIBYzhP07lMOuJP9klKMDMF+XhO4OC3qU/KoiLbUCTtNdQ Q==;
+X-CSE-ConnectionGUID: hSTCt0DPStqfJXBfSDL8NQ==
+X-CSE-MsgGUID: l8hcfw+wTsOXWZj9k9lLJg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11115"; a="16444811"
+X-IronPort-AV: E=Sophos;i="6.09,270,1716274800"; d="scan'208";a="16444811"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2024 05:03:32 -0700
+X-CSE-ConnectionGUID: H5heE/GNRXe2L2s7QX80Hg==
+X-CSE-MsgGUID: LO+xovxwQSGLaf9944ck9Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,270,1716274800"; d="scan'208";a="44415786"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 27 Jun 2024 04:54:36 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 27 Jun 2024 04:54:35 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 27 Jun 2024 04:54:35 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.41) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 27 Jun 2024 04:54:25 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Vf30K6ha1rV0M9kk7mZSYoagG09a2jEr80KL9jL2jcbQkHWPJWWNTFPQ72jxYdFLkAYaJ7swnGVYEHI0ekmGV3jJXLBd0MEAbZsERZAA68gdwCsb9ZczLc/daLYd7v4hBsUqoFu9/G8ixQ2RQjkDX7cL3dQFYeguzqWUqks55Tv/3xQ+Np4ccZNvjAEHUq4x6cxq8InUrbbRMCpfYWaWmfoWVsr7SiSSZqqbiwqjvxWTkh0XNK0ngyQ87nWfVs2S38gwmqTxmEmC3epnZWWPmpdlFoS1CEgXuv8O4POoHxyzC0dHCqcz2yIQV7d2CZxgNLXjSWbyTZgZ0WCh64E5uw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M1CdK6YBf54EC/zMttvmPVdrUTjSN+tHOaBRN4uFtTI=;
- b=SH+A9XuI91k+S5ZTNH375/pETEU9IXChH0b3uhSQa7eZ0ulWx6UgWMhuVf3XLHt3sVRyGhHK285NJsMxNvpb9gQ/weDQS3dqVp/fNfh61gLcXG4KSDFEvpcgRT43Q++40IBmGqcq3x7aguaRGfzoNKjLqZkF5758XJ1B9XLo9l+w2DGOZ32XCaJvH9gdHKFanITbT6iUUXKUIESgCH6j5/uabKVC20TR4ApB//cPHHEEiD8zgU94VmqgrmrU5Tz5k6EbyGxPoWzQ30NACE4RKtVEjaQbgtVwFspKbsrNgMCXsSHbcaEb1x5P9/6B02offkRGnni9SXJe4ar0A6rD/Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com (2603:10b6:930:78::8)
- by PH0PR11MB5190.namprd11.prod.outlook.com (2603:10b6:510:3c::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.26; Thu, 27 Jun
- 2024 11:54:23 +0000
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::5461:fa8c:58b8:e10d]) by CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::5461:fa8c:58b8:e10d%4]) with mapi id 15.20.7698.025; Thu, 27 Jun 2024
- 11:54:23 +0000
-Date: Thu, 27 Jun 2024 13:54:15 +0200
-From: Francois Dugast <francois.dugast@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [PATCH] drm/xe/pf: Remove inlined #ifdef CONFIG_PCI_IOV
-Message-ID: <Zn1S50McuqBNSfsi@fdugast-desk>
-References: <20240627104305.1477-1-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240627104305.1477-1-michal.wajdeczko@intel.com>
-Organization: Intel Corporation
-X-ClientProxiedBy: MI1P293CA0025.ITAP293.PROD.OUTLOOK.COM
- (2603:10a6:290:3::11) To CY8PR11MB7828.namprd11.prod.outlook.com
- (2603:10b6:930:78::8)
+X-IronPort-AV: E=Sophos;i="6.09,270,1716274800"; d="scan'208";a="44259725"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.245.93])
+ ([10.245.245.93])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2024 05:03:30 -0700
+Message-ID: <7dd94fb361692eda1e745a9faf08b7b5fe6bff5d.camel@linux.intel.com>
+Subject: Re: [Linaro-mm-sig] Re: dma_buf_detach lockdep splat
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Daniel
+ Vetter <daniel@ffwll.ch>
+Cc: Dmitry Osipenko <dmitry.osipenko@collabora.com>, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linaro-mm-sig@lists.linaro.org
+Date: Thu, 27 Jun 2024 14:03:26 +0200
+In-Reply-To: <37714444-3d12-4a29-96f0-929f8e653b9a@amd.com>
+References: <40611e5ff8c32b99e7863293a0baac078f323d8f.camel@linux.intel.com>
+ <Zn0c8l-yQih3j0NE@phenom.ffwll.local>
+ <37714444-3d12-4a29-96f0-929f8e653b9a@amd.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR11MB7828:EE_|PH0PR11MB5190:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3d0406b0-03b8-45d6-c3f3-08dc969fe2ef
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?yS3azJPppqKHdMqeeJYck6IbNYgqTtucyo2E+BT4FGBANAJlcNBlYz2H78r6?=
- =?us-ascii?Q?50p++5fYaDgHAjCvr6Lps2ABGDVmfRyICsV5J++IKjnQEghe3O3Sq3cn9jz+?=
- =?us-ascii?Q?3wzJ1Aaklc3NDxuFFAuN7oS4HnNM9TDBDXAM3T0/75honSte653jgmBV8gty?=
- =?us-ascii?Q?N5JQJEzAeR6iyL6Kc/Sobjjpx9101jW9PBBN1KCdGsQHfLtgf/pq5Bako4oD?=
- =?us-ascii?Q?MJeOP2UQAzdrLtfgnHaQBPj0dlNQ+AWiiWCyqD3oY/SJUyFqhblhMUwWVTTn?=
- =?us-ascii?Q?uhsxE97RM1ftHhZeH61VDWYf+IRrq28lLZWPWSXxQ10naTEodkJaUDRgnguv?=
- =?us-ascii?Q?zO4SzFAbzxkZ2MCE53jbw1zt5WJ1+pdQ/bZMBChQha2KMrS30zG730Fh60x/?=
- =?us-ascii?Q?MCtMenAK9mynJjjyIf8FhmsdcCc4LY3XBZT6AlBjDQgbpgLxZPtq2hnd7Kmv?=
- =?us-ascii?Q?y1zL5dcVL2DSVEUnARWMmo72nPSF5vy69D/mjSjFJfQax+fY69hrmnavSS6m?=
- =?us-ascii?Q?rRz+YPAMmtZPPDSN7hf4turljlAdUXxf/xy9YlbbDfNvWgus5i9Owq8z2BjD?=
- =?us-ascii?Q?oz08MDynehHXXeP7LB7EF9XoBZoXcag22axC8TZAPX8gmpiW/NA16KKs1FmG?=
- =?us-ascii?Q?5Sb2+Pef674wKPlUeWNgzDSWlWX8eSrQh6z7sUEICApbWBCRUGKIo4adJ96b?=
- =?us-ascii?Q?KpM4edcTjW6964WvGmdTUPY9wVw/VYi9vBokiPLksvPrDxBVsDiZl3v6ottR?=
- =?us-ascii?Q?ZtmC31EkyY9EHaOo01bq5a+taF7hOSSKMIumKsufeSqyPvYcqU5cCCzvaIgC?=
- =?us-ascii?Q?xVgUEQHark1TqZWLTB1k26x3cQ51H4HklbmXnwDH/iDFf81Vi3FTjJyOR7E4?=
- =?us-ascii?Q?wpvHSzIsm7QqbO/HOOhMsK40SpczJLUQjIPMojpkFAdZrAHunLOiFVAIrldJ?=
- =?us-ascii?Q?LHnMv+PqU0+VcVUQB8Q6iS6LtbArT0wnI0alUDYNeYH6biEiyRtqz1XPDS8B?=
- =?us-ascii?Q?p/9C1AUKmjAK0Q+5tGEGZvEsio0FpnK6YG2qHVFkivjIk2Dt8Cj8bHLd4cwo?=
- =?us-ascii?Q?1poxJLIbhP13ZcHhqn8pFReXmktvX+PLYhjAX0PqVy6XpX4R6iB1kU9dNtYn?=
- =?us-ascii?Q?AqHmcEOKiunCOzafI2ffTWtNHrXczyRG5l0yjmU1fW+nJpGH69TZkboET8Ve?=
- =?us-ascii?Q?FhcAvtY8CnYnwQhk3KqmRRr63bguqfEEvrFGphldPH/7+vzak3DiHJ0xxvFx?=
- =?us-ascii?Q?YpUW8pupCRKWGmT+CkcJqjZeK+OCT0Z6haUXmh5UhjwKfCUUZN6n8LnZitmq?=
- =?us-ascii?Q?4yjoGExklnDJ3/HFLk9ITVhnENA6vxnXGJbtcAaedjkUaQ=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB7828.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?2sP2Nf2XsBQg/JTKHRpwnoTtI0dYyW2SpYRMaXt9l4fzFHiPn0MpI7E2D31w?=
- =?us-ascii?Q?6QnV82P+wefjXKIYzZ4nbnG9XvokX6FckN1b3db0r1xwsG7CZrzLo880N5gO?=
- =?us-ascii?Q?ZbvMDfmOJcT5kVSITtjEtWN6QozJyWdmrwOeINkLPsx5I128JL3af4hHqzRx?=
- =?us-ascii?Q?7K7bOalitnwxxtHVIRIK7Zx+0l+w2DZLSIC0mC39oP4kJ79DrsZiAyAOZiWR?=
- =?us-ascii?Q?GWa9LcMK0/oVJ9tZGbUjLvUkCGVlNiV8fRg8ApGc24m/fT/ihzlTjvipv3JN?=
- =?us-ascii?Q?p8N61jKGMbuOq1Vkd6vmjjuiNCgdDp8oq9Llucnr9nwxHHrByftaV7VjXHiX?=
- =?us-ascii?Q?GxF9WJ9yoO38zh36GbwsQmt5WOvS+Fj095f9NS9EhqZJXyASxXu59eMzmNY1?=
- =?us-ascii?Q?afDmjzyDeQKPfqkXl8X4kSzvTyE4NG3zYyYWNwrE+QoYinGLbIF5Or4NmLhr?=
- =?us-ascii?Q?mdV+TkukDVcq/gN4Uqem7rdgQgpJYh1YLJ4u90wRcnsQqwHX2S2EwtDG2GHS?=
- =?us-ascii?Q?oSz7dT0wVVVF0LG9fChPGNFlRhCrDXNLapXCttCzuJhHSTBPzpmoSsmTaqDG?=
- =?us-ascii?Q?4XHYtTBn/rRTCnng7V/SK8OuQScNINFxTZYdRzNcA+rn/kHZRi1CfOrhiXiV?=
- =?us-ascii?Q?IdPshZ2VIeGYCM7+g7NFWhsv+b5owFJmMrekb7Vy+A+ABJNzkXzf+vVPbIeT?=
- =?us-ascii?Q?F8b2hhFIYlq2SjkqRDKUvc+TAFJSVYXk/S+ARdGFWPSap21AY1BykwXXV2/S?=
- =?us-ascii?Q?b2qoc6t1VeXcbeGrjfC9cPbmInZJEq8t7TNa04Wuypv4WbTQVgqK+RzrxEBB?=
- =?us-ascii?Q?EdSYt4N7r9fBVjJq7k8x5zIoi/MhfgQE2NBkQqds3gRVmfWDGpE/d4xlob3T?=
- =?us-ascii?Q?G8IPugzddVCBeNA48yO+rPEhwOFNgU09OiA2POWk46b9KX5+YS0kon8Ax5AM?=
- =?us-ascii?Q?cs4+Shz3m23PCxDEoym5CgnIMepYSGVx/AArobG3hMQPKBzaQ+cZN03BZSg/?=
- =?us-ascii?Q?WliOjzjWs6f7SgH4tYQ4AqQcqG1ouwR5cf/Kbvem4PUwjHjBA6JdHN72zadC?=
- =?us-ascii?Q?YCS9jJ/sNbue6eZP4H3sA19bQ7FdVH3TFwCav+jqNx0oJMNzyw/CEDBc63M6?=
- =?us-ascii?Q?ozymHXm8hAWspLYTKxDp+Aklg1VM+81l28kNoRXFMdA56zozC3a2ON4Lfqh9?=
- =?us-ascii?Q?P9seHtWZXugXd9Gvq/ME9JYcqGyDt8qf1TVdyuHUFEebAxX5byrldZKRZVLs?=
- =?us-ascii?Q?VJ4XHaQBp4f79YrmYvEly/9cH0wxmyMPSKHuW7rO3Xy29sM1hRZXbKdtaHep?=
- =?us-ascii?Q?79SvQNhf1Osd4r4g5feEzdDzjpFJ6jFNa8p8nN1DvLf7odyH/DLDNXUusAHG?=
- =?us-ascii?Q?KKoH1AhcOAukTD3R7M01oL11nFUXqZGEdV0EFV4tyF9lP0ZLlcxIk134LZP4?=
- =?us-ascii?Q?PAQJTTI1kH1DQzqYNp/zpFjroZB75eA/YV5OMhgakmJFza6cTkbfDUYmpBwn?=
- =?us-ascii?Q?a0flbq2+3C/Ond0KesKpC73OxEyqiwaK/JMje4ErcsKJv5pjwIPRe/C3nTJh?=
- =?us-ascii?Q?z1K5k4ptihUENKsWLqQnibVPlb2erWklzv1mIe7cWC4dqFcc0WX5clBdXZw1?=
- =?us-ascii?Q?Uw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3d0406b0-03b8-45d6-c3f3-08dc969fe2ef
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7828.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2024 11:54:23.1981 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 20pK+GCz1ij7lhzmEOIya+f/2Fc8l2a4QN7GXWGEkoeangaDfQZKAgnvuwSVxdwV7bxGzLZV43izK4NAbTA7raQOQfO9gqiNEn1UO1PHGlQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5190
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -174,63 +76,281 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jun 27, 2024 at 12:43:05PM +0200, Michal Wajdeczko wrote:
-> We can remove #ifdef CONFIG_PCI_IOV in .c files if we provide
-> dummy replacement of the xe_pci_sriov_configure() function.
-> 
-> Suggested-by: Jani Nikula <jani.nikula@linux.intel.com>
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+On Thu, 2024-06-27 at 10:25 +0200, Christian K=C3=B6nig wrote:
+> Am 27.06.24 um 10:04 schrieb Daniel Vetter:
+> > On Wed, Jun 26, 2024 at 05:58:02PM +0200, Thomas Hellstr=C3=B6m wrote:
+> > > Hi!
+> > >=20
+> > > I'm seeing the below lockdep splat 1) with the xe driver in an
+> > > imported
+> > > dma-buf object destruction path.
+>=20
+> Mhm strange.
+>=20
+> > >=20
+> > > It's not because we hold the dma_resv lock at that point, but
+> > > rather
+> > > because we hold *another* dma_resv lock at that point, and the
+> > > dma_resv
+> > > detach happens when the object is idle, in this case it was idle
+> > > at the
+> > > final put(), and dma_buf_detach() is called in the putting
+> > > process.
+> > >=20
+> > > Holding another dma-buf lock might happen as part of
+> > > drm_exec_unlock_all, or simply if the wider vm dma_resv was held
+> > > at
+> > > object put time, so it's not an uncommon pattern, even if the
+> > > drm_exec
+> > > instance can be fixed by putting all bos after unlocking them
+> > > all.
+> > >=20
+> > > Two solutions coming to mind here:
+> > >=20
+> > > 1) Provide a dma_buf_detach_locked()
+> > This smells way too much like the endless headaches we had with
+> > drm_gem_object_put_locked and friends against
+> > drm_device.struct_mutex. Or
+> > I'm not understanding what you're doing, because I'm pretty sure
+> > you have
+> > to take the dma_resv lock on final put() of imported objects.
+> > Because that
+> > final put() is of the import wrapper, the exporter (and other
+> > importers)
+> > can still get at that object and so dma_resv_lock is very much
+> > needed.
+> >=20
+> > Or it's a completely different final put(), but I have no idea how
+> > you get
+> > that on an imported dma_buf.
+> >=20
+> > > 2) Have TTM always take the delayed delete path for imported dma-
+> > > buf
+> > > objects.
+> > >=20
+> > > I'd prefer 1) since I think the correct place to call this is in
+> > > the
+> > > TTM callback delete_mem_notify() where the bo is already locked,
+> > > and I
+> > > figure non-TTM gem backends may come to suffer from the same
+> > > problem.
+> > >=20
+> > > Opinions, suggestions?
+> > Imo 2) or trying to push the object puts outside of the
+> > dma_resv_lock.
+>=20
+> IIRC I've stumbled over this issue before with TTM but though that
+> I've=20
+> fixed it.
+>=20
+> I mean no objections from my side to change drm_exec_fini() to
+> something=20
+> like this:
+>=20
+> drm_exec_for_each_locked_object_reverse(exec, index, obj)
+> =C2=A0=C2=A0=C2=A0=C2=A0 dma_resv_unlock(obj->resv);
+>=20
+> drm_exec_for_each_locked_object_reverse(exec, index, obj)
+> =C2=A0=C2=A0=C2=A0=C2=A0 drm_gem_object_put(obj);
+>=20
+> but in general that the last reference is dropped while holding a=20
+> different reservation object is not something special. For example
+> that=20
+> happens all the time in TTMs eviction code.
+>=20
+> So at least for TTM I would say we should move cleanup of imported
+> BOs=20
+> to the worker. But not sure if that covers everything.
 
-Reviewed-by: Francois Dugast <francois.dugast@intel.com>
+I'm fine with this. It covers all the TTM use-cases, I think.
 
-> ---
->  drivers/gpu/drm/xe/xe_pci.c       | 4 ----
->  drivers/gpu/drm/xe/xe_pci_sriov.h | 7 +++++++
->  2 files changed, 7 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 4b91a9878f41..53b67f39c7d5 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -749,10 +749,8 @@ static void xe_pci_remove(struct pci_dev *pdev)
->  	if (!xe) /* driver load aborted, nothing to cleanup */
->  		return;
->  
-> -#ifdef CONFIG_PCI_IOV
->  	if (IS_SRIOV_PF(xe))
->  		xe_pci_sriov_configure(pdev, 0);
-> -#endif
->  
->  	xe_device_remove(xe);
->  	xe_pm_runtime_fini(xe);
-> @@ -1010,9 +1008,7 @@ static struct pci_driver xe_pci_driver = {
->  	.probe = xe_pci_probe,
->  	.remove = xe_pci_remove,
->  	.shutdown = xe_pci_shutdown,
-> -#ifdef CONFIG_PCI_IOV
->  	.sriov_configure = xe_pci_sriov_configure,
-> -#endif
->  #ifdef CONFIG_PM_SLEEP
->  	.driver.pm = &xe_pm_ops,
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.h b/drivers/gpu/drm/xe/xe_pci_sriov.h
-> index 3b8bfbf7e1d9..c76dd0d90495 100644
-> --- a/drivers/gpu/drm/xe/xe_pci_sriov.h
-> +++ b/drivers/gpu/drm/xe/xe_pci_sriov.h
-> @@ -8,6 +8,13 @@
->  
->  struct pci_dev;
->  
-> +#ifdef CONFIG_PCI_IOV
->  int xe_pci_sriov_configure(struct pci_dev *pdev, int num_vfs);
-> +#else
-> +static inline int xe_pci_sriov_configure(struct pci_dev *pdev, int num_vfs)
-> +{
-> +	return 0;
-> +}
-> +#endif
->  
->  #endif
-> -- 
-> 2.43.0
-> 
+Thanks,
+/Thomas
+
+
+>=20
+> Regards,
+> Christian.
+>=20
+> > =C2=A0 The
+> > latter is imo natural, since usually you grab references, then
+> > lock. And
+> > this even holds for at least the slow path of lru eviction, because
+> > you
+> > need to drop all locks and then do a ww_mutex_lock_slow, and that
+> > requires
+> > that you can hold references to unlocked objects.
+> >=20
+> > But 2) alone is imo fine, dma_buf have become really big objects
+> > that go
+> > across drivers, extremely similar to struct file, and that is doing
+> > the
+> > delayed final put unconditionally since years too, using task_work.
+> > It's
+> > simply a solid design.
+> >=20
+> > Cheers, Sima
+> >=20
+> > > [1]
+> > > [=C2=A0=C2=A0 99.136161] =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D
+> > > [=C2=A0=C2=A0 99.136162] WARNING: possible recursive locking detected
+> > > [=C2=A0=C2=A0 99.136163] 6.10.0-rc2+ #6 Tainted: G=C2=A0=C2=A0=C2=A0=
+=C2=A0 U
+> > > [=C2=A0=C2=A0 99.136165] --------------------------------------------
+> > > [=C2=A0=C2=A0 99.136166] glxgears:sh0/4675 is trying to acquire lock:
+> > > [=C2=A0=C2=A0 99.136167] ffff9967dcdd91a8
+> > > (reservation_ww_class_mutex){+.+.}-
+> > > {3:3}, at: dma_buf_detach+0x3b/0xf0
+> > > [=C2=A0=C2=A0 99.136184]
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 but task is already holding lock:
+> > > [=C2=A0=C2=A0 99.136186] ffff9967d8c145a8
+> > > (reservation_ww_class_mutex){+.+.}-
+> > > {3:3}, at: drm_exec_lock_obj+0x49/0x2b0 [drm_exec]
+> > > [=C2=A0=C2=A0 99.136191]
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 other info that might help us debug this:
+> > > [=C2=A0=C2=A0 99.136192]=C2=A0 Possible unsafe locking scenario:
+> > >=20
+> > > [=C2=A0=C2=A0 99.136194]=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 CP=
+U0
+> > > [=C2=A0=C2=A0 99.136194]=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --=
+--
+> > > [=C2=A0=C2=A0 99.136195]=C2=A0=C2=A0 lock(reservation_ww_class_mutex)=
+;
+> > > [=C2=A0=C2=A0 99.136197]=C2=A0=C2=A0 lock(reservation_ww_class_mutex)=
+;
+> > > [=C2=A0=C2=A0 99.136199]
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 *** DEADLOCK ***
+> > >=20
+> > > [=C2=A0=C2=A0 99.136199]=C2=A0 May be due to missing lock nesting not=
+ation
+> > >=20
+> > > [=C2=A0=C2=A0 99.136200] 5 locks held by glxgears:sh0/4675:
+> > > [=C2=A0=C2=A0 99.136202]=C2=A0 #0: ffff9967d8c104c8 (&xef->vm.lock){+=
+.+.}-{3:3},
+> > > at:
+> > > xe_file_close+0xde/0x1c0 [xe]
+> > > [=C2=A0=C2=A0 99.136272]=C2=A0 #1: ffff9967d5bb7480 (&vm->lock){++++}=
+-{3:3}, at:
+> > > xe_vm_close_and_put+0x161/0x9b0 [xe]
+> > > [=C2=A0=C2=A0 99.136350]=C2=A0 #2: ffff9967ef88a970 (&val->lock){.+.+=
+}-{3:3},
+> > > at:
+> > > xe_validation_ctx_init+0x6d/0x70 [xe]
+> > > [=C2=A0=C2=A0 99.136440]=C2=A0 #3: ffffbd6a085577b8
+> > > (reservation_ww_class_acquire){+.+.}-{0:0}, at:
+> > > xe_vma_destroy_unlocked+0x7f/0xe0 [xe]
+> > > [=C2=A0=C2=A0 99.136546]=C2=A0 #4: ffff9967d8c145a8
+> > > (reservation_ww_class_mutex){+.+.}-{3:3}, at:
+> > > drm_exec_lock_obj+0x49/0x2b0 [drm_exec]
+> > > [=C2=A0=C2=A0 99.136552]
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 stack backtrace:
+> > > [=C2=A0=C2=A0 99.136553] CPU: 10 PID: 4675 Comm: glxgears:sh0 Tainted=
+:
+> > > G=C2=A0=C2=A0=C2=A0=C2=A0 U
+> > > 6.10.0-rc2+ #6
+> > > [=C2=A0=C2=A0 99.136555] Hardware name: ASUS System Product Name/PRIM=
+E
+> > > B560M-A
+> > > AC, BIOS 2001 02/01/2023
+> > > [=C2=A0=C2=A0 99.136557] Call Trace:
+> > > [=C2=A0=C2=A0 99.136558]=C2=A0 <TASK>
+> > > [=C2=A0=C2=A0 99.136560]=C2=A0 dump_stack_lvl+0x77/0xb0
+> > > [=C2=A0=C2=A0 99.136564]=C2=A0 __lock_acquire+0x1232/0x2160
+> > > [=C2=A0=C2=A0 99.136569]=C2=A0 lock_acquire+0xcb/0x2d0
+> > > [=C2=A0=C2=A0 99.136570]=C2=A0 ? dma_buf_detach+0x3b/0xf0
+> > > [=C2=A0=C2=A0 99.136574]=C2=A0 ? __lock_acquire+0x417/0x2160
+> > > [=C2=A0=C2=A0 99.136577]=C2=A0 __ww_mutex_lock.constprop.0+0xd0/0x13b=
+0
+> > > [=C2=A0=C2=A0 99.136580]=C2=A0 ? dma_buf_detach+0x3b/0xf0
+> > > [=C2=A0=C2=A0 99.136584]=C2=A0 ? dma_buf_detach+0x3b/0xf0
+> > > [=C2=A0=C2=A0 99.136588]=C2=A0 ? ww_mutex_lock+0x2b/0x90
+> > > [=C2=A0=C2=A0 99.136590]=C2=A0 ww_mutex_lock+0x2b/0x90
+> > > [=C2=A0=C2=A0 99.136592]=C2=A0 dma_buf_detach+0x3b/0xf0
+> > > [=C2=A0=C2=A0 99.136595]=C2=A0 drm_prime_gem_destroy+0x2f/0x40 [drm]
+> > > [=C2=A0=C2=A0 99.136638]=C2=A0 xe_ttm_bo_destroy+0x32/0x220 [xe]
+> > > [=C2=A0=C2=A0 99.136734]=C2=A0 ? __mutex_unlock_slowpath+0x3a/0x290
+> > > [=C2=A0=C2=A0 99.136738]=C2=A0 drm_exec_unlock_all+0xa1/0xd0 [drm_exe=
+c]
+> > > [=C2=A0=C2=A0 99.136741]=C2=A0 drm_exec_fini+0x12/0xb0 [drm_exec]
+> > > [=C2=A0=C2=A0 99.136743]=C2=A0 xe_validation_ctx_fini+0x15/0x40 [xe]
+> > > [=C2=A0=C2=A0 99.136848]=C2=A0 xe_vma_destroy_unlocked+0xb1/0xe0 [xe]
+> > > [=C2=A0=C2=A0 99.136954]=C2=A0 xe_vm_close_and_put+0x41a/0x9b0 [xe]
+> > > [=C2=A0=C2=A0 99.137056]=C2=A0 ? xa_find+0xe3/0x1e0
+> > > [=C2=A0=C2=A0 99.137060]=C2=A0 xe_file_close+0x10a/0x1c0 [xe]
+> > > [=C2=A0=C2=A0 99.137157]=C2=A0 drm_file_free+0x22a/0x280 [drm]
+> > > [=C2=A0=C2=A0 99.137193]=C2=A0 drm_release_noglobal+0x22/0x70 [drm]
+> > > [=C2=A0=C2=A0 99.137227]=C2=A0 __fput+0xf1/0x2d0
+> > > [=C2=A0=C2=A0 99.137231]=C2=A0 task_work_run+0x59/0x90
+> > > [=C2=A0=C2=A0 99.137235]=C2=A0 do_exit+0x330/0xb40
+> > > [=C2=A0=C2=A0 99.137238]=C2=A0 do_group_exit+0x36/0xa0
+> > > [=C2=A0=C2=A0 99.137241]=C2=A0 get_signal+0xbd2/0xbe0
+> > > [=C2=A0=C2=A0 99.137245]=C2=A0 arch_do_signal_or_restart+0x3e/0x240
+> > > [=C2=A0=C2=A0 99.137249]=C2=A0 syscall_exit_to_user_mode+0x1e7/0x290
+> > > [=C2=A0=C2=A0 99.137252]=C2=A0 do_syscall_64+0xa1/0x180
+> > > [=C2=A0=C2=A0 99.137255]=C2=A0 ? _raw_spin_unlock+0x23/0x40
+> > > [=C2=A0=C2=A0 99.137257]=C2=A0 ? look_up_lock_class+0x6f/0x120
+> > > [=C2=A0=C2=A0 99.137261]=C2=A0 ? __lock_acquire+0x417/0x2160
+> > > [=C2=A0=C2=A0 99.137264]=C2=A0 ? lock_acquire+0xcb/0x2d0
+> > > [=C2=A0=C2=A0 99.137266]=C2=A0 ? __set_task_comm+0x28/0x1e0
+> > > [=C2=A0=C2=A0 99.137268]=C2=A0 ? find_held_lock+0x2b/0x80
+> > > [=C2=A0=C2=A0 99.137271]=C2=A0 ? __set_task_comm+0xe1/0x1e0
+> > > [=C2=A0=C2=A0 99.137273]=C2=A0 ? lock_release+0xca/0x290
+> > > [=C2=A0=C2=A0 99.137277]=C2=A0 ? __do_sys_prctl+0x245/0xab0
+> > > [=C2=A0=C2=A0 99.137279]=C2=A0 ? lockdep_hardirqs_on_prepare+0xde/0x1=
+90
+> > > [=C2=A0=C2=A0 99.137281]=C2=A0 ? syscall_exit_to_user_mode+0xb0/0x290
+> > > [=C2=A0=C2=A0 99.137284]=C2=A0 ? do_syscall_64+0xa1/0x180
+> > > [=C2=A0=C2=A0 99.137286]=C2=A0 ? cpuset_cpus_allowed+0x36/0x140
+> > > [=C2=A0=C2=A0 99.137289]=C2=A0 ? find_held_lock+0x2b/0x80
+> > > [=C2=A0=C2=A0 99.137291]=C2=A0 ? find_held_lock+0x2b/0x80
+> > > [=C2=A0=C2=A0 99.137294]=C2=A0 ? __sched_setaffinity+0x78/0x240
+> > > [=C2=A0=C2=A0 99.137297]=C2=A0 ? kfree+0xe2/0x310
+> > > [=C2=A0=C2=A0 99.137301]=C2=A0 ? kfree+0x202/0x310
+> > > [=C2=A0=C2=A0 99.137303]=C2=A0 ? __sched_setaffinity+0x78/0x240
+> > > [=C2=A0=C2=A0 99.137305]=C2=A0 ? __x64_sys_sched_setaffinity+0x69/0xb=
+0
+> > > [=C2=A0=C2=A0 99.137307]=C2=A0 ? kfree+0xe2/0x310
+> > > [=C2=A0=C2=A0 99.137310]=C2=A0 ? lockdep_hardirqs_on_prepare+0xde/0x1=
+90
+> > > [=C2=A0=C2=A0 99.137312]=C2=A0 ? syscall_exit_to_user_mode+0xb0/0x290
+> > > [=C2=A0=C2=A0 99.137315]=C2=A0 ? do_syscall_64+0xa1/0x180
+> > > [=C2=A0=C2=A0 99.137317]=C2=A0 ? trace_hardirqs_off+0x4b/0xc0
+> > > [=C2=A0=C2=A0 99.137321]=C2=A0 ? clear_bhb_loop+0x45/0xa0
+> > > [=C2=A0=C2=A0 99.137325]=C2=A0 ? clear_bhb_loop+0x45/0xa0
+> > > [=C2=A0=C2=A0 99.137327]=C2=A0 ? clear_bhb_loop+0x45/0xa0
+> > > [=C2=A0=C2=A0 99.137330]=C2=A0 entry_SYSCALL_64_after_hwframe+0x76/0x=
+7e
+> > > [=C2=A0=C2=A0 99.137333] RIP: 0033:0x7fda70ee6169
+> > > [=C2=A0=C2=A0 99.137351] Code: Unable to access opcode bytes at
+> > > 0x7fda70ee613f.
+> > > [=C2=A0=C2=A0 99.137352] RSP: 002b:00007fda5fdffc80 EFLAGS: 00000246
+> > > ORIG_RAX:
+> > > 00000000000000ca
+> > > [=C2=A0=C2=A0 99.137354] RAX: fffffffffffffe00 RBX: 0000000000000000 =
+RCX:
+> > > 00007fda70ee6169
+> > > [=C2=A0=C2=A0 99.137356] RDX: 0000000000000000 RSI: 0000000000000189 =
+RDI:
+> > > 0000564a96f45b30
+> > > [=C2=A0=C2=A0 99.137358] RBP: 00007fda5fdffcb0 R08: 0000000000000000 =
+R09:
+> > > 00000000ffffffff
+> > > [=C2=A0=C2=A0 99.137359] R10: 0000000000000000 R11: 0000000000000246 =
+R12:
+> > > 0000000000000000
+> > > [=C2=A0=C2=A0 99.137360] R13: 0000000000000000 R14: 0000000000000000 =
+R15:
+> > > 0000564a96f45b30
+> > > [=C2=A0=C2=A0 99.137365]=C2=A0 </TASK>
+> > >=20
+>=20
+> _______________________________________________
+> Linaro-mm-sig mailing list -- linaro-mm-sig@lists.linaro.org
+> To unsubscribe send an email to linaro-mm-sig-leave@lists.linaro.org
+
