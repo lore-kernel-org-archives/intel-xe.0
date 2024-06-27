@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EED2FC2BD09
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 18:09:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10810C2BD09
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Jun 2024 18:30:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1B2010E30C;
-	Thu, 27 Jun 2024 18:09:34 +0000 (UTC)
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A21FD10E30C;
- Thu, 27 Jun 2024 18:09:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2021990499051598503=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEEF410EB1A;
+	Thu, 27 Jun 2024 18:30:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aaiyTPly";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84CA010E132;
+ Thu, 27 Jun 2024 18:30:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1719513051; x=1751049051;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=g6Ghkty2s2rHU+tKaX4+d+nAU+SizpwAIilUsCM9i+Q=;
+ b=aaiyTPlyRgoHjqjs0RFW2EyUiwNizWWVZmvavz4O/ya3DSkEg70HPiim
+ yprCD96HNhpDRA6SwVwYT9Zun210i3AKk8sGn6ZaXOVAw/5h/MCZNDZoH
+ lNsQydlkcyhwV0JckgHgLCimi9i/Me60cq9H+5//WR9Zy/c7i3tf+vePO
+ M7VxSdK5Fsp/OEDMSVfVCW+0/wH5Tur8JFtyNDMK+05TTGYq4jvCh0Pdj
+ Qo9sbwEBp4t0fB/6Q+osI8g8iqKq37gq2s1tMjNTUxwEMud8+s51uYNnn
+ 0joVKKIwmlM8ivl9/vwr/s27zAo4WeDJdZ244VPYr+V0mjy7h5vpJJ3s9 A==;
+X-CSE-ConnectionGUID: QkFuLfUVRdWSm8yug8b10A==
+X-CSE-MsgGUID: nTc4DLykTfGm7Mvb6vzdNg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11116"; a="20546315"
+X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; d="scan'208";a="20546315"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2024 11:30:48 -0700
+X-CSE-ConnectionGUID: EbafBetyQ3eof5JmFMkqkg==
+X-CSE-MsgGUID: 1eMqwj3URP6YhIXFuQM/rA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; d="scan'208";a="49398752"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.189])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2024 11:30:46 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, mika.kahola@intel.com,
+ matthew.d.roper@intel.com
+Subject: Re: [PATCH 2/5] drm/i915/snps_phy: Use HDMI PLL algorithm for DG2
+In-Reply-To: <0d2f4cb3-c418-46c6-b0ca-8aa1650aeeff@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240626050056.3996349-1-ankit.k.nautiyal@intel.com>
+ <20240626050056.3996349-3-ankit.k.nautiyal@intel.com>
+ <87v81wc904.fsf@intel.com>
+ <0d2f4cb3-c418-46c6-b0ca-8aa1650aeeff@intel.com>
+Date: Thu, 27 Jun 2024 21:30:41 +0300
+Message-ID: <87zfr6b5m6.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Fixes_and_cleanup_for_per_client?=
- =?utf-8?q?_utilization?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 27 Jun 2024 18:09:33 -0000
-Message-ID: <171951177365.164688.15670542650106643851@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <20240627172348.84991-1-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20240627172348.84991-1-umesh.nerlige.ramappa@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,119 +69,121 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2021990499051598503==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 27 Jun 2024, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
+> On 6/26/2024 3:37 PM, Jani Nikula wrote:
+>> On Wed, 26 Jun 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+>>> Try SNPS_PHY HDMI tables computed using the algorithm, before using
+>>> consolidated tables.
+>>>
+>>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/display/intel_snps_phy.c | 20 ++++++++-----------
+>>>   1 file changed, 8 insertions(+), 12 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+>>> index e6df1f92def5..10fe28af0d11 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+>>> @@ -12,6 +12,7 @@
+>>>   #include "intel_display_types.h"
+>>>   #include "intel_snps_phy.h"
+>>>   #include "intel_snps_phy_regs.h"
+>>> +#include "intel_pll_algorithm.h"
+>> Keep includes sorted.
+> Noted. Thanks for pointing this out.
+>>
+>>>   
+>>>   /**
+>>>    * DOC: Synopsis PHY support
+>>> @@ -1787,22 +1788,14 @@ intel_mpllb_tables_get(struct intel_crtc_state *crtc_state,
+>>>   int intel_mpllb_calc_state(struct intel_crtc_state *crtc_state,
+>>>   			   struct intel_encoder *encoder)
+>>>   {
+>>> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>>>   	const struct intel_mpllb_state * const *tables;
+>>>   	int i;
+>>>   
+>>>   	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
+>>> -		if (intel_snps_phy_check_hdmi_link_rate(crtc_state->port_clock)
+>>> -		    != MODE_OK) {
+>>> -			/*
+>>> -			 * FIXME: Can only support fixed HDMI frequencies
+>>> -			 * until we have a proper algorithm under a valid
+>>> -			 * license.
+>>> -			 */
+>>> -			drm_dbg_kms(&i915->drm, "Can't support HDMI link rate %d\n",
+>>> -				    crtc_state->port_clock);
+>>> -			return -EINVAL;
+>>> -		}
+>>> +		/* try computed SNPS_PHY HDMI tables before using consolidated tables */
+>> Computed tables vs. consolidated tables? Huh?
+>>
+>> Anyway, I think we have two choices here:
+>>
+>> - Always use computed values.
+>>
+>> - Prefer fixed tables, fall back to computed values.
+>>
+>> But we definitely should not try to compute first and fall back to fixed
+>> tables.
+>
+> Hmm I was not sure if we need the fixed tables after this and whether we 
+> should remove them altogether.
+>
+> But it makes more sense to use prefer the fixed tables and fall back to 
+> computed values.
+>
+> I'll make the changes in the next version.
+>
+>
+>>
+>>> +		if (intel_snps_phy_compute_hdmi_tmds_pll(crtc_state->port_clock,
+>>> +							 &crtc_state->dpll_hw_state.mpllb) == 0)
+>>> +			return 0;
+>>>   	}
+>>>   
+>>>   	tables = intel_mpllb_tables_get(crtc_state, encoder);
+>>> @@ -1991,6 +1984,9 @@ int intel_snps_phy_check_hdmi_link_rate(int clock)
+>>>   			return MODE_OK;
+>>>   	}
+>>>   
+>>> +	if (clock >= 25175 && clock <= 594000)
+>>> +		return MODE_OK;
+>>> +
+>> How's this related to the patch at hand?
+>
+> Currently we prune the modes if the clock does not match that given in 
+> the table.
+>
+> Now that we support all clocks between 25175 and 594000 we need this, 
+> but perhaps will add as a separate patch.
+>
+> Perhaps I can remove this function all together and put the condition in 
+> hdmi_port_clock valid, in separate patch.
 
-== Series Details ==
+But we already have intel_hdmi_source_max_tmds_clock(), which also takes
+into account platform specifics. For example the fact that 594000 is not
+the max on all platforms.
 
-Series: Fixes and cleanup for per client utilization
-URL   : https://patchwork.freedesktop.org/series/135486/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-1538-42f35e623e6590cf8ec493373e4664ae4e32123c_BAT -> xe-pw-135486v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-135486v1_BAT that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1069]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1069
+BR,
+Jani.
 
 
-Build changes
--------------
-
-  * IGT: IGT_7905 -> IGT_7906
-  * Linux: xe-1538-42f35e623e6590cf8ec493373e4664ae4e32123c -> xe-pw-135486v1
-
-  IGT_7905: 7905
-  IGT_7906: ae91ba26f657bf11264f64bd2dc21f471a5d18f5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1538-42f35e623e6590cf8ec493373e4664ae4e32123c: 42f35e623e6590cf8ec493373e4664ae4e32123c
-  xe-pw-135486v1: 135486v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135486v1/index.html
-
---===============2021990499051598503==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
 
+>
+> Regards,
+>
+> Ankit
+>
+>
+>>
+>>>   	return MODE_CLOCK_RANGE;
+>>>   }
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fixes and cleanup for per client utilization</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135486/">https://patchwork.freedesktop.org/series/135486/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135486v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135486v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1538-42f35e623e6590cf8ec493373e4664ae4e32123c_BAT -&gt; xe-pw-135486v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-135486v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7905 -&gt; IGT_7906</li>
-<li>Linux: xe-1538-42f35e623e6590cf8ec493373e4664ae4e32123c -&gt; xe-pw-135486v1</li>
-</ul>
-<p>IGT_7905: 7905<br />
-  IGT_7906: ae91ba26f657bf11264f64bd2dc21f471a5d18f5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1538-42f35e623e6590cf8ec493373e4664ae4e32123c: 42f35e623e6590cf8ec493373e4664ae4e32123c<br />
-  xe-pw-135486v1: 135486v1</p>
-
-</body>
-</html>
-
---===============2021990499051598503==--
+-- 
+Jani Nikula, Intel
