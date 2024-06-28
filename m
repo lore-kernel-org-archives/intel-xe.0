@@ -4,58 +4,181 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0353C3064D
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Jun 2024 15:39:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D11FC2BD09
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Jun 2024 15:45:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CBAF10EC6A;
-	Fri, 28 Jun 2024 15:39:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B28010E0C2;
+	Fri, 28 Jun 2024 15:45:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BpJ0GVVG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I13fEC8U";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83B5510EC76;
- Fri, 28 Jun 2024 15:39:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D835A10E0C2
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Jun 2024 15:45:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719589142; x=1751125142;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=xM6QEDnEHb0eGKhPRa9JU/tOf388B5JYNkLW7Kv0I6c=;
- b=BpJ0GVVG1XTvqoTmzJOkH+9WGZx7zMJ11648G8gs30sysB9QRf0Y3mFi
- C6Ha1QGFVZ88v918ykP9+D0lQveDYeCxm80wkBauS0Qy8mHmPTimqrr73
- w1vBJHJI7gPmtzVU6TzuMZ+zqfd7GsIUB7u7mpv2ggi4H+zvwryZtJFp9
- 21zOwu/TT5nOTz1LcWtvmJs38T75TitaOdbrYWO9aqM4rWoQi1wkZ+ZZs
- L3rdDPceikJI4XdOczB7xnaktoR2jQamgCpWl6y0+U617ZpX1v2TBqtZ3
- zzFnsmR8/K+yEJnp8YMxuHi924s3XtQqtWH99T+U9aRhNMH2If5XlF1ra g==;
-X-CSE-ConnectionGUID: wiD88UePRJCdFHXMSafmCg==
-X-CSE-MsgGUID: NZf5t8K9Ty2DQIxOo+0nHA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11117"; a="16612346"
-X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; d="scan'208";a="16612346"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2024 08:39:02 -0700
-X-CSE-ConnectionGUID: J+zJks8NRACER40P2JkL6Q==
-X-CSE-MsgGUID: ydQfAkoeTKSDkRnQoEIsUw==
+ t=1719589503; x=1751125503;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=HR1lqztalcqXbjPd5SjPwlr4RdDfge79r1LQURqCRik=;
+ b=I13fEC8UmKpcGoej+qeG8wpURSWDpKILIweJu5a6GmjMsfsctzESjyQP
+ AKDnGEu9r142zUlSrjkrFnDboww9CO8Qa+e6q8H+l2pd+M9y6Z8/sJLDR
+ 2XFxp4GsWHQp1/SwM9LEaOaf90u1jIZlAigafWFEXUg8oGOywcNiABdp8
+ xu6r7W8Qehwk7eJA72i6ZZ71FnDHm/NB5W4XGRebULBpnQ79aVrcUEz8L
+ 4ggjVXoUAW0hI0ss9G/cZL3Gsl95EzM3HR20Cdjy07UuuSO8yFNWSWbg4
+ ihU83j5hG69xCWP/lTxePfsgvjFhGXt7SzmGA6MP0IZkv0py4rh+f+WCD Q==;
+X-CSE-ConnectionGUID: uHdo4H6bTGGhCS5QvcH/CA==
+X-CSE-MsgGUID: GKOAEzD+SYuwfKD0jwCQNQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11117"; a="28170624"
+X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; d="scan'208";a="28170624"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2024 08:45:03 -0700
+X-CSE-ConnectionGUID: HgzPiDoyR6G6iP6YiceG2A==
+X-CSE-MsgGUID: fYDW0luXRKuGFdy8Tn+qPg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; d="scan'208";a="45517890"
-Received: from dhhellew-desk2.ger.corp.intel.com.ger.corp.intel.com (HELO
- fedora..) ([10.245.245.182])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2024 08:39:00 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
- stable@vger.kernel.org
-Subject: [PATCH] drm/ttm: Always take the bo delayed cleanup path for imported
- bos
-Date: Fri, 28 Jun 2024 17:38:48 +0200
-Message-ID: <20240628153848.4989-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.44.0
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; d="scan'208";a="44666240"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 28 Jun 2024 08:45:03 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Fri, 28 Jun 2024 08:45:02 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Fri, 28 Jun 2024 08:45:02 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.172)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Fri, 28 Jun 2024 08:45:02 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=j8M5iOx1g1DaTw4c5sC8vigBLzK7QxfbzzJZujXiWyEOQykUSQiVoBzkJVowgbWQPrWVVjAdX8cjfKeBTmcZO6StZpObzwDioz0ls3Gabztndq9z9k15UnTHxh+Qy+sBCYEqvO2HWIzMcSPRZCkzu96hEcI+Qr5DGbVNRuCnyUCnrJa+LUBvofccScgIUtf/LDSuxaJpdq5UgAvjfpbPbxdOO0el7nIbvrNferd68XcQfevlTpVDMoXSJNMJP24eOraHBFn1lCmktsMUKxZ4to069gzsi+4e4Zppna84Zg3qWuHbo9j0ByAK1PRkDHEQl266Znofk+ZJV+54e+eAJg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TXdds6am6rCz2dzceDJZQmtEhRNpoCFMwwr2whpuWy8=;
+ b=gAY35kcRqagB48q4E9/nyJvCzlVKWXcfai8jHyMqpzceMTh/nY7UEIzwIt7/qr6j5VKGPUxpaMfIIQ2f6A2YotDULb2+4JPYNRM+3iXypObsmCX2TKhx3UC8leR9lt/0x1gz2J66bgI+15YVexBIMSCpiY+KDKvzw2TNwPfPbDfaBcb7Baw4s2/y9Q9JkfeqVcvBgjYKCY8SzTjAv71oLw+pCmQZrpC1wZckff2TWWybW0TcjyGlZGtMSKCb5DRad+IvmUqcEVJKgbC3xKF8N18zgWkCkamx5sOZQGhBc5kFUYnnwfRteHHYhXOcQX7+jt+eWa5X2noJIfRNsbz9MA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by IA1PR11MB6219.namprd11.prod.outlook.com (2603:10b6:208:3e9::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.34; Fri, 28 Jun
+ 2024 15:44:59 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::1a0f:84e3:d6cd:e51]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::1a0f:84e3:d6cd:e51%4]) with mapi id 15.20.7698.025; Fri, 28 Jun 2024
+ 15:44:59 +0000
+Date: Fri, 28 Jun 2024 15:44:12 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <platform-driver-x86@vger.kernel.org>,
+ <david.e.box@linux.intel.com>, <ilpo.jarvinen@linux.intel.com>
+Subject: Re: [PATCH v4 4/6] drm/xe/vsec: Support BMG devices
+Message-ID: <Zn7aTAWKfmATGQnV@DUT025-TGLU.fm.intel.com>
+References: <20240628150945.3363575-1-michael.j.ruhl@intel.com>
+ <20240628150945.3363575-5-michael.j.ruhl@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240628150945.3363575-5-michael.j.ruhl@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0213.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c1::8) To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|IA1PR11MB6219:EE_
+X-MS-Office365-Filtering-Correlation-Id: 613a8a72-b6e7-4111-3e3e-08dc97894441
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?bmtncDYvblhVY2UybGhNNi8rYmJpVEdxUE5wR2FmV0M1THhrZWgrcFkrS2V3?=
+ =?utf-8?B?Ym5DVi9uUDROSExOc2dnOCtNazZFY2t6R2UrTlNsbnRnWDhZWUZRa0RDYWxv?=
+ =?utf-8?B?YW1UTDFQT2lId2hNcUxaVTBvN2l5aVhxc2g2RWpjT21ZNy9WWXVRcFRNL3JV?=
+ =?utf-8?B?T29ySG96eFRWSjdnNGdmNHdrUk8rNlpUOGFia0w3bnNkczd6WmZuL1cvekZl?=
+ =?utf-8?B?U3Z4STk4aFQ3S1c2NCtUaTZhd2xiSGxyY0F0aU1BVzJUY2J5YTk1MUYwZXVL?=
+ =?utf-8?B?RnZNb0JxMjJyRW14K1QyQTBubHFpTmhZb3h3bUM5S0wyeGJtdk8rVCsrc2sy?=
+ =?utf-8?B?MHF6QU5NaWNXT3VBRGIyeWFjTi9lWkJYK2ZpWHA3U3prQURFRmNJbDNVUnNZ?=
+ =?utf-8?B?bWhldmliKzk5Y1QxUmFhUGhsRUpLdEttMXVqMU1oSEdCSkRza2YyU2dPb2Rm?=
+ =?utf-8?B?eW1HTW1CZDBnbmZPYUQrMlNTbmhvMkd2UFp5Zk9wMEk4WGQ4M2Z6RmMwYjgv?=
+ =?utf-8?B?a2xTazA5cm5nQlR6V0tuNUdTQmtIWXRCNGR5R0lMenRmTWFCZklpanJKVko5?=
+ =?utf-8?B?c2NhWW41d2RUaWwwb3dIWkJ0LzhnRFo0TEU2OU1tM3hHN2dPTnJBSEkvNGtB?=
+ =?utf-8?B?SDdtOEtSTko4OXE2TzVUbFJoMGd0ZzArWHhzV0s0bUVKZ0hlMm9VNll3bzQ4?=
+ =?utf-8?B?S3hsOXN3Z0pDcDJCMzFYL0xEd1FwNStHeTFsYVJOY3dxS2l1K0JZVlE3SlFH?=
+ =?utf-8?B?YnpUNnZIVmxsRW8ycTduV2ZIMVQzNGI2R3ZvbER6N3d3bXNTVmZ6TFg5dUpz?=
+ =?utf-8?B?WXRRayt3SGVKeVBWVitOU2pOT25rYTBFUGQ3VS93MTNNaHJRUVg1dHFIMG5Q?=
+ =?utf-8?B?YkhZbTZYNTRBb21pQnk1ZE5rMWIwTm96dHFyOC9VaDlMOXVwTFJSanJsRHlO?=
+ =?utf-8?B?WlZ3V3cxUkxWNEo4bWFzclF5WXpsVzlLL3FjUGVJSDRaVW5LdU1XZDREd0V3?=
+ =?utf-8?B?a1V2UWgzWUpFMFFUbFQ3NnUzVVVDemphUUdjbk5DLzNHY1VySmpmSTRza1dh?=
+ =?utf-8?B?bldkcHlSUFhwcjFYK01hOTJMK3pENVIvZExhM3NmQVNtclRrUnhGK0RoaC9H?=
+ =?utf-8?B?a0hIVU1RS1JVTlRVcnYzWWY5WlFZcU1HaGtXS1B2M0RMWmlqTGdTSXovN3ox?=
+ =?utf-8?B?VmVsSHNRTEcvVWRGZ0w3SzJobHczYVE0ZFdJUkh6Wk5uY09mdHJNREhqWTEz?=
+ =?utf-8?B?TFRESk9rZmhQblBXK1Q2OXRBcGtDSVAvNUZ5emlXQ25HWjRSNEE3bUJ4NjYv?=
+ =?utf-8?B?Zy9wKzcybnhwWWw0TXo0UHBCUkU1WVVLSGlLSUx2Z3dvRnZpd2pJTUIvREhh?=
+ =?utf-8?B?bjlmTmFFUTdyVm9KLzIxNkMwa2duSFFaVWlJNU9jY1dXQjNEem9BTlNNWnlL?=
+ =?utf-8?B?aW9lcDl3eWQycWgrbFhjUEp1SVkzTHk0U2lmcmZnYUZ3em9oaEt3Rm1PV1lL?=
+ =?utf-8?B?UklyYkNJWGdQbm9XK3hpcHdjN05nK3VobkdqTjF3bFZHcGpLYkhwRm4xMHBJ?=
+ =?utf-8?B?cXFBRUV0V1VYRzFZdUNBbGI2ZnJzY3BQV1hSWWpNbzRmL3pidXF5TkdJNXd0?=
+ =?utf-8?B?dnltcVRMRzllYzRLYWFaNUIyRGo2bWgzcmFPd09BejlaN3VVNVNSNEZzMGRr?=
+ =?utf-8?B?TUV6c0g3ZU8rQkZMQUFIUU50WG4xOUt5OXE3dERhYmlqYXl4cGpGWjB0dFBl?=
+ =?utf-8?B?bnJuTm9wdm9iRmREeEVqamQvQUJvZ2N0VjdkZDhzb1JtWnhiUWZNNW53VHFl?=
+ =?utf-8?B?ZU5XazVxeGRLUHhKaE9DQT09?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RGE4ZzRPME9TQzE3QzI5WDlTeEMrQ1RJV2N2UCtuYlN1b09IVnRydFZ4OXow?=
+ =?utf-8?B?SXdoQkhvTnhjMVppVys5KzZ5bThaWmtXbVFrNFVEci9ubGdFRGJkNjhRN1NR?=
+ =?utf-8?B?TUFmSkFWekxDVXl0VlNRcE4rYXdPVlNuY1BKU21nOUhJVURMZmxiRGtWSkM0?=
+ =?utf-8?B?UW90V21zUkltWmtGWjBpbDQ0TmdiZ2dPRW9zL1NtaWpvWm96Mll4aU9FQVRp?=
+ =?utf-8?B?ME9MWFlqd1Q3YXplUXZsZUREd0YvYjFKdk8rVmp5Q3lNQ3pIYTdGQWpYNEJ4?=
+ =?utf-8?B?Qm1tTm9NZ2lFOVRlbU9SL3BiaEJTdisvSlZpUVFTR2xsSmhGZXhXZnh2elhx?=
+ =?utf-8?B?VjhUVnpGbEk3WkltR0FRem1YVEo3dHM1L3Y5Zy9KU05VUXYwSVc1Mm1sTUJm?=
+ =?utf-8?B?SFp4TVMyNm1uMyt5VEtyRDE3Z2R3cXRZL2xYZ2tBTkE0dGMwRnphSWgvV0dj?=
+ =?utf-8?B?U0JMM1VqN21jUzRuWWwwZURPdXRkMnJlZUFqZEI0VHU5dmJ5bmxWcnlwN3pi?=
+ =?utf-8?B?Tk1QNDVBZmhrUUxacXZ4cUZpckZjSzRBZzJpQ25udklxc0lLOTQydW5Oak04?=
+ =?utf-8?B?NzJTMjUyd2xBVUVqTGJ4NDMreEtDcWNEbm44SXpsM0ZkWE1nb0xIY2E3Yy8w?=
+ =?utf-8?B?cW9od0wwV3NpZ1l1UFg0eDN0VXNFeFAvdjByOHltODVVdHc0a1R2Q2lBTS92?=
+ =?utf-8?B?T0FXTHhDYUdwYmNlK3N0a3JaNEpIZDBvR0ZqRG4yUUZXR3hqNjBoeTlKb25B?=
+ =?utf-8?B?SXYrMFN3UFkwTDZWS1lVV1hyYTR3T0FxWGdITTN4RUgxV1dISUVTNmh3Y0Nm?=
+ =?utf-8?B?K2hUb1Y4NkZ1dVJlRU0wMytlSjFlWDNFWCtoaDV4YnNKOG5nVlBkWVA2ODB2?=
+ =?utf-8?B?YzlrVUlZdGZydWRxc1pRQUJGbTducVFOT2lyR0hzMkd6SmNlYkVXU2NqVUdn?=
+ =?utf-8?B?MVFOdFVhN2ZUSytlLzlLVUt3a0RpV1p3d2t5QmN3UW9rbUp3NDZJazZITXg1?=
+ =?utf-8?B?U2NiajYzZk9sK3YrY1dJUkJoYXdta0pybXlnM0pUOTAreUFyRkRTckQ2amVq?=
+ =?utf-8?B?RmZEcGZLd1ZMNW1HNzZ0MkVnWU1tanJISFQzL0h0WkREL1Y2L3YvcXhQTnJk?=
+ =?utf-8?B?NTAvNVJteVUrSCtlS3d5Q0dKWCthT3ZqdEd3OVFPLzFHTlN2Zk5FOEQ1RTZT?=
+ =?utf-8?B?RXlOalRkcjc2VGlXeGI5QVJKVmd4SFR3NldMcjZsY3h1R1RWU0puY3hvU2hl?=
+ =?utf-8?B?dS9BNUVWaE1helhFMXJrWnIvTjNXbmFtb1pPOU9IZHhkTUJ4N0hzN1N0V1BD?=
+ =?utf-8?B?TmZFQlBuZ1JqUDZ3Vm1BbHZmdWxkNjdSa0prUjBDd1hUMzUyaHN0K1I4U3VJ?=
+ =?utf-8?B?WkFCalh0akduNVU4aFZSZnRGL0plQ0Z3R1RZM2swMHBaMU02ZXJuL1RTRVVr?=
+ =?utf-8?B?N0FxeDNsUEhteHlsWUZ1Q1V4SndOK09COTNVdFFJeGRqeVJwK2o3YUxHU1l5?=
+ =?utf-8?B?YnJ0YW1Id0Q1MHZHMFBiRnAyYytGYXFWM2FIMkFFRUV1OWVQczdRVUwrVW1x?=
+ =?utf-8?B?Wm5USlpRSGN1eUdwUU9qcWRPdVozckFIbEVTV3NZbXhpMGh5alV1T3UyaEg0?=
+ =?utf-8?B?dFV2SitNZXFZSUZTa3dkNk9BMWVjVmlLbFViUWxOYUMyamNhOGpkK245UTV6?=
+ =?utf-8?B?UG0zYWQzakRUTTZEc3VtVmJxNUxKa1hEOHYwbm53T1NuOWFCdkVzTGRlMk1o?=
+ =?utf-8?B?OTh5Q1J0SHJydDk4K0I5cEhhTHZVZEY0ckVrbk5jRS9xRlE0TW0zNEtjM3ht?=
+ =?utf-8?B?a2pNWUx6THdQTGhBK3l4bGFTdVgvNnpvUkd2bTYxU2RrMXdPdDdnUkliOGt6?=
+ =?utf-8?B?MVVCZyt1eHlBa2drNjFFUzlNUFQxdWxuM1lCSzQveE1XLzlneGdCUE5NcERD?=
+ =?utf-8?B?dnpTNzBPc1U1dmJUVjdoRU9CREJyRCtWWWtsRDhONGdpZ0w3emxSUVZsQVVY?=
+ =?utf-8?B?RnVkaTRjUXlVZ2VYNEtHV0h6QWNzTUxweFhucGEyM1V3dDRSNHBSS1orbS9G?=
+ =?utf-8?B?MzFVeTJlbTRMTm13ajIzd2IvbUIzc1ZVYjJPeGplZXR2TWZjanVjQkRlUjRB?=
+ =?utf-8?B?OEJWbkw3dEFpQ3NzVUNLZ3NaaVM3dEEvWGJ4TDVFaDhzck9Sb2FtVzBCMEFK?=
+ =?utf-8?B?cEE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 613a8a72-b6e7-4111-3e3e-08dc97894441
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2024 15:44:59.3167 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: S9bj3Pdlw/lUDX54GzwR+ZSBKo0W6VTD/yk3zpYFbCXGEUvvio1ixkK8RYXBNVRklcgUoClVNUm3byNfMndskw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6219
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,138 +193,338 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Bos can be put with multiple unrelated dma-resv locks held. But
-imported bos attempt to grab the bo dma-resv during dma-buf detach
-that typically happens during cleanup. That leads to lockde splats
-similar to the below and a potential ABBA deadlock.
+On Fri, Jun 28, 2024 at 11:09:42AM -0400, Michael J. Ruhl wrote:
+> Utilize the PMT callback API to add support for the BMG
+> devices.
+> 
 
-Fix this by always taking the delayed workqueue cleanup path for
-imported bos.
+I don't really know what this feature is doing, so my comments are
+purely focusing on style / code structure.
 
-Requesting stable fixes from when the Xe driver was introduced,
-since its usage of drm_exec and wide vm dma_resvs appear to be
-the first reliable trigger of this.
+> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+> ---
+>  drivers/gpu/drm/xe/Makefile          |   1 +
+>  drivers/gpu/drm/xe/xe_device.c       |   5 +
+>  drivers/gpu/drm/xe/xe_device_types.h |   6 +
+>  drivers/gpu/drm/xe/xe_vsec.c         | 214 +++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_vsec.h         |  13 ++
+>  5 files changed, 239 insertions(+)
+>  create mode 100644 drivers/gpu/drm/xe/xe_vsec.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_vsec.h
+> 
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index b1e03bfe4a68..5860d6db1598 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -129,6 +129,7 @@ xe-y += xe_bb.o \
+>  	xe_vm.o \
+>  	xe_vram.o \
+>  	xe_vram_freq.o \
+> +	xe_vsec.o \
+>  	xe_wait_user_fence.o \
+>  	xe_wa.o \
+>  	xe_wopcm.o
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index cfda7cb5df2c..05a666c7bbb7 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -53,6 +53,7 @@
+>  #include "xe_ttm_sys_mgr.h"
+>  #include "xe_vm.h"
+>  #include "xe_vram.h"
+> +#include "xe_vsec.h"
+>  #include "xe_wait_user_fence.h"
+>  
+>  static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+> @@ -317,6 +318,8 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+>  		goto err;
+>  	}
+>  
+> +	drmm_mutex_init(&xe->drm, &xe->pmt.lock);
+> +
+>  	err = xe_display_create(xe);
+>  	if (WARN_ON(err))
+>  		goto err;
+> @@ -692,6 +695,8 @@ int xe_device_probe(struct xe_device *xe)
+>  	for_each_gt(gt, xe, id)
+>  		xe_gt_sanitize_freq(gt);
+>  
+> +	xe_vsec_init(xe);
+> +
+>  	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
+>  
+>  err_fini_display:
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index c37be471d11c..11513d8f3a8b 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -451,6 +451,12 @@ struct xe_device {
+>  		struct mutex lock;
+>  	} d3cold;
+>  
+> +	/** @pmt: Support the PMT driver callback interface */
+> +	struct {
+> +		/** @pmt.lock: protect access for telemetry data */
+> +		struct mutex lock;
+> +	} pmt;
+> +
+>  	/**
+>  	 * @pm_callback_task: Track the active task that is running in either
+>  	 * the runtime_suspend or runtime_resume callbacks.
+> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+> new file mode 100644
+> index 000000000000..7db1624a335f
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_vsec.c
+> @@ -0,0 +1,214 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright © 2022 - 2024 Intel Corporation
+> + */
+> +#include <linux/intel_vsec.h>
+> +#include <linux/pci.h>
+> +
+> +#include "xe_device.h"
+> +#include "xe_device_types.h"
+> +#include "xe_drv.h"
+> +#include "xe_mmio.h"
+> +#include "xe_platform_types.h"
+> +#include "xe_pm.h"
+> +#include "xe_vsec.h"
+> +
+> +#define SOC_BASE		0x280000
+> +
+> +#define BMG_PMT_BASE		0xDB000
+> +#define BMG_DISCOVERY_OFFSET	(SOC_BASE + BMG_PMT_BASE)
+> +
+> +#define BMG_TELEMETRY_BASE	0xE0000
+> +#define BMG_TELEMETRY_OFFSET	(SOC_BASE + BMG_TELEMETRY_BASE)
+> +
+> +#define GFX_BAR			0
+> +
+> +#define SG_REMAP_INDEX1		XE_REG(SOC_BASE + 0x08)
+> +#define SG_REMAP_ACCESS(_mem)	((_mem) << 24)
+> +#define SG_REMAP_BITS		GENMASK(31, 24)
+> +
+> +static struct intel_vsec_header bmg_telemetry = {
+> +	.length = 0x10,
+> +	.id = VSEC_ID_TELEMETRY,
+> +	.num_entries = 2,
+> +	.entry_size = 4,
+> +	.tbir = GFX_BAR,
+> +	.offset = BMG_DISCOVERY_OFFSET,
+> +};
+> +
+> +static struct intel_vsec_header *bmg_capabilities[] = {
+> +	&bmg_telemetry,
+> +	NULL
+> +};
+> +
+> +enum xe_vsec {
+> +	XE_VSEC_UNKNOWN = 0,
+> +	XE_VSEC_BMG,
+> +};
+> +
+> +static struct intel_vsec_platform_info xe_vsec_info[] = {
+> +	[XE_VSEC_BMG] = {
+> +		.caps = VSEC_CAP_TELEMETRY,
+> +		.headers = bmg_capabilities,
+> +	},
+> +	{ }
+> +};
+> +
+> +/* GUID Decode information */
+> +#define GUID_TELEM_ITERATION GENMASK(3, 0)
+> +#define GUID_SEGMENT GENMASK(7, 4)
+> +#define GUID_SOC_SKU GENMASK(11, 8)
+> +#define GUID_DEVICE_ID GENMASK(27, 12)
+> +#define GUID_CAP_TYPE GENMASK(29, 28)
+> +#define GUID_RECORD_ID GENMASK(31, 30)
+> +
+> +enum record_id {
+> +	PUNIT,
+> +	OOBMSM_0,
+> +	OOBMSM_1
+> +};
+> +
+> +enum capability {
+> +	CRASHLOG,
+> +	TELEMETRY,
+> +	WATCHER
+> +};
+> +
+> +/*
+> + * The GUID will have the following bits to decode (high bits first):
+> + *
+> + * X(2bits) - Record-ID (0-PUNIT, 1-OOBMSM_0, 2-OOBMSM_1)
+> + * X(2bits) - Capability Type (Crashlog-0, Telemetry Aggregator-1, Watcher-2)
+> + * XXXX(16bits)– Device ID – changes for each down bin SKU’s (0xE2F8 for BMG)
+> + * X(4bits) - SOC_SKU (SKU_INDEPENDENT-0, X3-1, X2-2, G31-3),
+> + * X(4bits) - Segment (SEGMENT_INDEPENDENT-0, Client-1, Server-2)
+> + * X(4bits) - {Telemetry space iteration number (0,1,..)}
+> + *
+> + */
+> +static int guid_decode(u32 guid, int *index, u32 *offset)
+> +{
+> +	u32 record_id = (guid & GUID_RECORD_ID) >> 30;
+> +	u32 cap_type  = (guid & GUID_CAP_TYPE) >> 28;
+> +	u32 device_id = (guid & GUID_DEVICE_ID) >> 12;
 
-[22982.116427] ============================================
-[22982.116428] WARNING: possible recursive locking detected
-[22982.116429] 6.10.0-rc2+ #10 Tainted: G     U  W
-[22982.116430] --------------------------------------------
-[22982.116430] glxgears:sh0/5785 is trying to acquire lock:
-[22982.116431] ffff8c2bafa539a8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: dma_buf_detach+0x3b/0xf0
-[22982.116438]
-               but task is already holding lock:
-[22982.116438] ffff8c2d9aba6da8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: drm_exec_lock_obj+0x49/0x2b0 [drm_exec]
-[22982.116442]
-               other info that might help us debug this:
-[22982.116442]  Possible unsafe locking scenario:
+FIELD_GET(mask, guid);
 
-[22982.116443]        CPU0
-[22982.116444]        ----
-[22982.116444]   lock(reservation_ww_class_mutex);
-[22982.116445]   lock(reservation_ww_class_mutex);
-[22982.116447]
-                *** DEADLOCK ***
+> +
+> +	if (device_id != 0xE2F8)
 
-[22982.116447]  May be due to missing lock nesting notation
+Magic number (0xE2F8)? Can this not be a define?
 
-[22982.116448] 5 locks held by glxgears:sh0/5785:
-[22982.116449]  #0: ffff8c2d9aba58c8 (&xef->vm.lock){+.+.}-{3:3}, at: xe_file_close+0xde/0x1c0 [xe]
-[22982.116507]  #1: ffff8c2e28cc8480 (&vm->lock){++++}-{3:3}, at: xe_vm_close_and_put+0x161/0x9b0 [xe]
-[22982.116578]  #2: ffff8c2e31982970 (&val->lock){.+.+}-{3:3}, at: xe_validation_ctx_init+0x6d/0x70 [xe]
-[22982.116647]  #3: ffffacdc469478a8 (reservation_ww_class_acquire){+.+.}-{0:0}, at: xe_vma_destroy_unlocked+0x7f/0xe0 [xe]
-[22982.116716]  #4: ffff8c2d9aba6da8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: drm_exec_lock_obj+0x49/0x2b0 [drm_exec]
-[22982.116719]
-               stack backtrace:
-[22982.116720] CPU: 8 PID: 5785 Comm: glxgears:sh0 Tainted: G     U  W          6.10.0-rc2+ #10
-[22982.116721] Hardware name: ASUS System Product Name/PRIME B560M-A AC, BIOS 2001 02/01/2023
-[22982.116723] Call Trace:
-[22982.116724]  <TASK>
-[22982.116725]  dump_stack_lvl+0x77/0xb0
-[22982.116727]  __lock_acquire+0x1232/0x2160
-[22982.116730]  lock_acquire+0xcb/0x2d0
-[22982.116732]  ? dma_buf_detach+0x3b/0xf0
-[22982.116734]  ? __lock_acquire+0x417/0x2160
-[22982.116736]  __ww_mutex_lock.constprop.0+0xd0/0x13b0
-[22982.116738]  ? dma_buf_detach+0x3b/0xf0
-[22982.116741]  ? dma_buf_detach+0x3b/0xf0
-[22982.116743]  ? ww_mutex_lock+0x2b/0x90
-[22982.116745]  ww_mutex_lock+0x2b/0x90
-[22982.116747]  dma_buf_detach+0x3b/0xf0
-[22982.116749]  drm_prime_gem_destroy+0x2f/0x40 [drm]
-[22982.116775]  xe_ttm_bo_destroy+0x32/0x220 [xe]
-[22982.116818]  ? __mutex_unlock_slowpath+0x3a/0x290
-[22982.116821]  drm_exec_unlock_all+0xa1/0xd0 [drm_exec]
-[22982.116823]  drm_exec_fini+0x12/0xb0 [drm_exec]
-[22982.116824]  xe_validation_ctx_fini+0x15/0x40 [xe]
-[22982.116892]  xe_vma_destroy_unlocked+0xb1/0xe0 [xe]
-[22982.116959]  xe_vm_close_and_put+0x41a/0x9b0 [xe]
-[22982.117025]  ? xa_find+0xe3/0x1e0
-[22982.117028]  xe_file_close+0x10a/0x1c0 [xe]
-[22982.117074]  drm_file_free+0x22a/0x280 [drm]
-[22982.117099]  drm_release_noglobal+0x22/0x70 [drm]
-[22982.117119]  __fput+0xf1/0x2d0
-[22982.117122]  task_work_run+0x59/0x90
-[22982.117125]  do_exit+0x330/0xb40
-[22982.117127]  do_group_exit+0x36/0xa0
-[22982.117129]  get_signal+0xbd2/0xbe0
-[22982.117131]  arch_do_signal_or_restart+0x3e/0x240
-[22982.117134]  syscall_exit_to_user_mode+0x1e7/0x290
-[22982.117137]  do_syscall_64+0xa1/0x180
-[22982.117139]  ? lock_acquire+0xcb/0x2d0
-[22982.117140]  ? __set_task_comm+0x28/0x1e0
-[22982.117141]  ? find_held_lock+0x2b/0x80
-[22982.117144]  ? __set_task_comm+0xe1/0x1e0
-[22982.117145]  ? lock_release+0xca/0x290
-[22982.117147]  ? __do_sys_prctl+0x245/0xab0
-[22982.117149]  ? lockdep_hardirqs_on_prepare+0xde/0x190
-[22982.117150]  ? syscall_exit_to_user_mode+0xb0/0x290
-[22982.117152]  ? do_syscall_64+0xa1/0x180
-[22982.117154]  ? __lock_acquire+0x417/0x2160
-[22982.117155]  ? reacquire_held_locks+0xd1/0x1f0
-[22982.117156]  ? do_user_addr_fault+0x30c/0x790
-[22982.117158]  ? lock_acquire+0xcb/0x2d0
-[22982.117160]  ? find_held_lock+0x2b/0x80
-[22982.117162]  ? do_user_addr_fault+0x357/0x790
-[22982.117163]  ? lock_release+0xca/0x290
-[22982.117164]  ? do_user_addr_fault+0x361/0x790
-[22982.117166]  ? trace_hardirqs_off+0x4b/0xc0
-[22982.117168]  ? clear_bhb_loop+0x45/0xa0
-[22982.117170]  ? clear_bhb_loop+0x45/0xa0
-[22982.117172]  ? clear_bhb_loop+0x45/0xa0
-[22982.117174]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
-[22982.117176] RIP: 0033:0x7f943d267169
-[22982.117192] Code: Unable to access opcode bytes at 0x7f943d26713f.
-[22982.117193] RSP: 002b:00007f9430bffc80 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
-[22982.117195] RAX: fffffffffffffe00 RBX: 0000000000000000 RCX: 00007f943d267169
-[22982.117196] RDX: 0000000000000000 RSI: 0000000000000189 RDI: 00005622f89579d0
-[22982.117197] RBP: 00007f9430bffcb0 R08: 0000000000000000 R09: 00000000ffffffff
-[22982.117198] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
-[22982.117199] R13: 0000000000000000 R14: 0000000000000000 R15: 00005622f89579d0
-[22982.117202]  </TASK>
+> +		return -ENODEV;
+> +
+> +	if (record_id > OOBMSM_1 || cap_type > WATCHER)
+> +		return -EINVAL;
+> +
+> +	*offset = 0;
+> +
+> +	if (cap_type == CRASHLOG) {
+> +		*index = record_id == PUNIT ? 2 : 4;
+> +		return 0;
+> +	}
+> +
+> +	switch (record_id) {
+> +	case PUNIT:
+> +		*index = 0;
+> +		if (cap_type == TELEMETRY)
+> +			*offset = 0x0200;
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v6.8+
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/ttm/ttm_bo.c | 1 +
- 1 file changed, 1 insertion(+)
+Same comment here for magic numbers.
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index 6396dece0db1..2427be8bc97f 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -346,6 +346,7 @@ static void ttm_bo_release(struct kref *kref)
- 		if (!dma_resv_test_signaled(bo->base.resv,
- 					    DMA_RESV_USAGE_BOOKKEEP) ||
- 		    (want_init_on_free() && (bo->ttm != NULL)) ||
-+		    bo->type == ttm_bo_type_sg ||
- 		    !dma_resv_trylock(bo->base.resv)) {
- 			/* The BO is not idle, resurrect it for delayed destroy */
- 			ttm_bo_flush_all_fences(bo);
--- 
-2.44.0
+> +		else /* if (cap_type == WATCHER) */
+> +			*offset = 0x14A0;
+> +		break;
+> +
+> +	case OOBMSM_0:
+> +		*index = 1;
+> +		if (cap_type == WATCHER)
+> +			*offset = 0x18D8;
+> +		break;
+> +
+> +	case OOBMSM_1:
+> +		*index = 1;
+> +		if (cap_type == TELEMETRY)
+> +			*offset = 0x1000;
+> +		break;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int xe_pmt_telem_read(void *args, u32 guid, u64 *data, u32 count)
+> +{
+> +	struct xe_device *xe = pdev_to_xe_device((struct pci_dev *)args);
+> +	void __iomem *telem_addr = xe->tiles[0].mmio.regs + BMG_TELEMETRY_OFFSET;
 
+Based on 'tiles[0]' this feture only works on a single tile? Or is the
+multi-GT support missing?
+
+Matt
+
+> +	u32 mem_region;
+> +	u32 offset;
+> +	int ret;
+> +
+> +	ret = guid_decode(guid, &mem_region, &offset);
+> +	if (ret)
+> +		return ret;
+> +
+> +	telem_addr += offset;
+> +
+> +	mutex_lock(&xe->pmt.lock);
+> +
+> +	/* indicate that we are not at an appropriate power level */
+> +	ret = -ENODATA;
+> +	if (xe_pm_runtime_get_if_active(xe) > 0) {
+> +		/* set SoC re-mapper index register based on guid memory region */
+> +		xe_mmio_rmw32(xe->tiles[0].primary_gt, SG_REMAP_INDEX1, SG_REMAP_BITS,
+> +			      SG_REMAP_ACCESS(mem_region));
+> +
+> +		memcpy_fromio(data, telem_addr, count);
+> +		ret = count;
+> +		xe_pm_runtime_put(xe);
+> +	}
+> +	mutex_unlock(&xe->pmt.lock);
+> +
+> +	return ret;
+> +}
+> +
+> +struct pmt_callbacks xe_pmt_cb = {
+> +	.read_telem = xe_pmt_telem_read,
+> +};
+> +
+> +static const int vsec_platforms[] = {
+> +	[XE_BATTLEMAGE] = XE_VSEC_BMG,
+> +};
+> +
+> +static enum xe_vsec get_platform_info(struct xe_device *xe)
+> +{
+> +	if (xe->info.platform > XE_BATTLEMAGE)
+> +		return XE_VSEC_UNKNOWN;
+> +
+> +	return vsec_platforms[xe->info.platform];
+> +}
+> +
+> +/**
+> + * xe_vsec_init - Initialize resources and add intel_vsec auxiliary
+> + * interface
+> + * @xe: valid xe instance
+> + */
+> +void xe_vsec_init(struct xe_device *xe)
+> +{
+> +	struct intel_vsec_platform_info *info;
+> +	struct device *dev = xe->drm.dev;
+> +	struct pci_dev *pdev = to_pci_dev(dev);
+> +	enum xe_vsec platform;
+> +
+> +	platform = get_platform_info(xe);
+> +	if (platform == XE_VSEC_UNKNOWN)
+> +		return;
+> +
+> +	info = &xe_vsec_info[platform];
+> +	if (!info->headers)
+> +		return;
+> +
+> +	switch (platform) {
+> +	case XE_VSEC_BMG:
+> +		info->priv_data = &xe_pmt_cb;
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	/*
+> +	 * Register a VSEC. Cleanup is handled using device managed
+> +	 * resources.
+> +	 */
+> +	intel_vsec_register(pdev, info);
+> +}
+> +MODULE_IMPORT_NS(INTEL_VSEC);
+> diff --git a/drivers/gpu/drm/xe/xe_vsec.h b/drivers/gpu/drm/xe/xe_vsec.h
+> new file mode 100644
+> index 000000000000..3fd29a21cad6
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_vsec.h
+> @@ -0,0 +1,13 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright © 2022 - 2024 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_VSEC_H_
+> +#define _XE_VSEC_H_
+> +
+> +struct xe_device;
+> +
+> +void xe_vsec_init(struct xe_device *xe);
+> +
+> +#endif
+> -- 
+> 2.44.0
+> 
