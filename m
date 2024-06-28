@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 871C7C2BD09
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Jun 2024 13:06:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2887C2BD09
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Jun 2024 13:11:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DE4610EC36;
-	Fri, 28 Jun 2024 13:06:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="oHVctR6c";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="8rJrZHGZ";
-	dkim-atps=neutral
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A12310EC42;
- Fri, 28 Jun 2024 13:06:09 +0000 (UTC)
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1719579968;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=QUcBODj2VIRg16LXBIJ8ojuGJ2urgHUrPlIjEZ4VwqM=;
- b=oHVctR6crCWokMLNVI9bgLImu74S5x8bddjOSVcVwQ8+BkrsK2EgBCrWeX0CME2wePYpI2
- feS6uRWD+19Sclq4rKlzeXK+yy5h0gI1F2d4tySckkcIbCdFzrVD/J+BKezYcTM9EFJV1X
- Jf0QsNQL977f+q18SKreuD1+PJiZsrv9R4bNNh8m1CjD07QdqKOnA820xRPOB4aGNRWg13
- j93L4AQOYIj5AXwRpfpccFI/KlNuldi9xW5/U7ZViPU+t29EOK/YnZSNH1jdze+w84X/UL
- dJSxWcujoamFHhrDdLps81RAd88xDezKP738WzZImi0jW2aSqALG4ZXRUYYdiQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1719579968;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=QUcBODj2VIRg16LXBIJ8ojuGJ2urgHUrPlIjEZ4VwqM=;
- b=8rJrZHGZdGCcZIF9Y5ht+Cu3gSiRTeaOrOcc+xTvgbVn/FnuGJz3UQbx/6j/EHRayn2dJ+
- RItX8IET1Xn9owAQ==
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- "John B. Wyatt IV" <jwyatt@redhat.com>
-Subject: [PATCH v3 7/8] drm/i915/guc: Consider also RCU depth in busy loop.
-Date: Fri, 28 Jun 2024 14:58:06 +0200
-Message-ID: <20240628130601.1772849-8-bigeasy@linutronix.de>
-In-Reply-To: <20240628130601.1772849-1-bigeasy@linutronix.de>
-References: <20240628130601.1772849-1-bigeasy@linutronix.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9949010EC4D;
+	Fri, 28 Jun 2024 13:11:17 +0000 (UTC)
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D638E10EC51;
+ Fri, 28 Jun 2024 13:11:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915=3A_PREEMPT?=
+ =?utf-8?q?=5FRT_related_fixups=2E_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sebastian Andrzej Siewior" <bigeasy@linutronix.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 28 Jun 2024 13:11:15 -0000
+Message-ID: <171958027586.185831.15216590919626492801@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240628130601.1772849-1-bigeasy@linutronix.de>
+In-Reply-To: <20240628130601.1772849-1-bigeasy@linutronix.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,39 +36,28 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-intel_guc_send_busy_loop() looks at in_atomic() and irqs_disabled() to
-decide if it should busy-spin while waiting or if it may sleep.
-Both checks will report false on PREEMPT_RT if sleeping spinlocks are
-acquired leading to RCU splats while the function sleeps.
+== Series Details ==
 
-Check also if RCU has been disabled.
+Series: drm/i915: PREEMPT_RT related fixups. (rev5)
+URL   : https://patchwork.freedesktop.org/series/132082/
+State : success
 
-Reported-by: "John B. Wyatt IV" <jwyatt@redhat.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/=
-gt/uc/intel_guc.h
-index 57b9031327767..ff213b79ba83d 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -362,7 +362,7 @@ static inline int intel_guc_send_busy_loop(struct intel=
-_guc *guc,
- {
- 	int err;
- 	unsigned int sleep_period_ms =3D 1;
--	bool not_atomic =3D !in_atomic() && !irqs_disabled();
-+	bool not_atomic =3D !in_atomic() && !irqs_disabled() && !rcu_preempt_dept=
-h();
-=20
- 	/*
- 	 * FIXME: Have caller pass in if we are in an atomic context to avoid
---=20
-2.45.2
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 886eeb6d89b5 drm-tip: 2024y-06m-28d-10h-30m-43s UTC integration manifest
+=== git am output follows ===
+Applying: drm/i915: Use preempt_disable/enable_rt() where recommended
+Applying: drm/i915: Don't disable interrupts on PREEMPT_RT during atomic updates
+Applying: drm/i915: Don't check for atomic context on PREEMPT_RT
+Applying: drm/i915: Disable tracing points on PREEMPT_RT
+Applying: drm/i915/gt: Use spin_lock_irq() instead of local_irq_disable() + spin_lock()
+Applying: drm/i915: Drop the irqs_disabled() check
+Applying: drm/i915/guc: Consider also RCU depth in busy loop.
+Applying: Revert "drm/i915: Depend on !PREEMPT_RT."
+
 
