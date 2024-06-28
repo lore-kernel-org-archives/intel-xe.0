@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06DAEC2BD09
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Jun 2024 15:10:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15FBBC3064D
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Jun 2024 15:10:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C68C310E0C2;
-	Fri, 28 Jun 2024 15:10:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF81210E1A9;
+	Fri, 28 Jun 2024 15:10:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d7TE+ZKN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MiYMvgB7";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C24310E0C2
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Jun 2024 15:10:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 404B210EC61
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Jun 2024 15:10:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719587423; x=1751123423;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=rS7+SSUtzj+FbNrJwN0w9vOL1SB7cEMv1j2v6Y/p8s4=;
- b=d7TE+ZKNMp+OyzslpQUghl3yrDvLhVEOF1svNgEmacTO0C/f85cCeeQf
- vD5gIQVlwoNtH9QQiLqxUt4lnFWPXg3YpvRaMQC++sxXh6RByWJ/vC1SW
- V9lqKde2X1PDcOGQC9hWXlaYp5vcFeVaSvwbzU9xMmgq7HXqhOsQLMb6g
- oEppWNetxa8y+sPb0LhpDa7UNILCllwmmhM3WeNV8m6D9h5QPwV+XYgrQ
- i9LpgTWpt28xONvIWDJk4g30G6dsL3cYPvqUydmwgXS8YXbwndYuZg6T5
- moLdAanDPvXO0A0VjA17USTbFN25Fsu9sf61sAHczhLnMwfUzqz82CS8m g==;
-X-CSE-ConnectionGUID: Lv2UD2O9Tuu+NVYJEPiP6A==
-X-CSE-MsgGUID: y/dmEiZvTf6UY8rpMdmNHg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11117"; a="27460803"
-X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; d="scan'208";a="27460803"
+ t=1719587431; x=1751123431;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=x81i09PBMcVOiSOP9NKPVAuNFzM/iEpE5ATlbAX2gTE=;
+ b=MiYMvgB7WWtF6EaKrcBGPDP10TotIRnTCny0ApNZgS9Y306+Z2CU5ago
+ LO4yq2x9ALun37ubltT/2dMVL9bwdCdsBtaJtarMCn4wWmyOqLWue7ka7
+ ELai3OeZsklA8oP+XA9aisifjdCNAGCb8cUFrSaJuYcJbadjxPbITKwVY
+ OwfKNO+KpgMLZlq9x3hkn8uxiSV1Mn9qTXbsHs7qP5Jwth3cpG38YkrGk
+ dSQicwDK3gUVG6WjRCDwRAPsQQOcYh4bAy37R2AwvACRSHr2BX5SWUyel
+ d1ZUN3Mrlx82wt5F1/nrHv/QEtsU5utXTNNWVTWWFm/9/wqY/qQJzuvPb Q==;
+X-CSE-ConnectionGUID: DcJEHRpFSSCVqLqcjj5jAA==
+X-CSE-MsgGUID: t/aVcl60TvWrRkDYEZZCWA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11117"; a="27460841"
+X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; d="scan'208";a="27460841"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2024 08:10:22 -0700
-X-CSE-ConnectionGUID: pyzN21acSvedS3KmI8CbgQ==
-X-CSE-MsgGUID: 4GMmIuMKTkSQQWb26mfxrA==
+ 28 Jun 2024 08:10:31 -0700
+X-CSE-ConnectionGUID: BtPmuanvRjmI3HSsuWatxA==
+X-CSE-MsgGUID: nQMLXGdNSme9edyBvdhGRw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; d="scan'208";a="44848103"
+X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; d="scan'208";a="44848118"
 Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2024 08:10:21 -0700
+ 28 Jun 2024 08:10:30 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
  david.e.box@linux.intel.com, ilpo.jarvinen@linux.intel.com
 Cc: michael.j.ruhl@intel.com
-Subject: [PATCH v4 0/6] Support PMT features in Xe
-Date: Fri, 28 Jun 2024 11:09:38 -0400
-Message-ID: <20240628150945.3363575-1-michael.j.ruhl@intel.com>
+Subject: [PATCH v4 1/6] platform/x86/intel/vsec.h: Move to include/linux
+Date: Fri, 28 Jun 2024 11:09:39 -0400
+Message-ID: <20240628150945.3363575-2-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240628150945.3363575-1-michael.j.ruhl@intel.com>
+References: <20240628150945.3363575-1-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,58 +67,234 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DG2 and Battlemage have the Intel Platform Monitoring Technology (PMT)
-feature available, but not in the "standard" (pci endpoint) way.
+From: "David E. Box" <david.e.box@linux.intel.com>
 
-Add support to the vsec and Xe drivers to allow access to the PMT space
-for the DG2 and BMG devices.
+Some drivers outside of PDX86 need access to the vsec header. Move it to
+include/linux to make it easier to include.
 
-The intel_vsec_register() function allows drivers to provide telemetry
-header information (usually found at probe time), to allow the PMT
-driver to probe the telemetry features.
+Signed-off-by: David E. Box <david.e.box@linux.intel.com>
+---
+ MAINTAINERS                                           |  1 +
+ drivers/platform/x86/intel/pmc/core_ssram.c           |  2 +-
+ drivers/platform/x86/intel/pmt/class.c                |  2 +-
+ drivers/platform/x86/intel/pmt/class.h                |  2 +-
+ drivers/platform/x86/intel/pmt/crashlog.c             |  2 +-
+ drivers/platform/x86/intel/pmt/telemetry.c            |  2 +-
+ drivers/platform/x86/intel/sdsi.c                     |  3 +--
+ drivers/platform/x86/intel/tpmi.c                     |  3 +--
+ drivers/platform/x86/intel/vsec.c                     |  7 +++----
+ .../x86/intel/vsec.h => include/linux/intel_vsec.h    | 11 +++++++++--
+ 10 files changed, 20 insertions(+), 15 deletions(-)
+ rename drivers/platform/x86/intel/vsec.h => include/linux/intel_vsec.h (92%)
 
-Battlemage has a shared memory area (selected by index), so a callback
-function is required to access the appropriate PMT data.
-
-V2:
-  Re-worked DG2 support patches using a base_adjust rather than a
-  quirk.
-  Updated GUID decode, for correct decode.
-v3:
-  Fixed a documentation issue for the pmt struct.
-v4:
-  Fixed a documentation issue in the xe_vsec.c module
-
-David E. Box (3):
-  platform/x86/intel/vsec.h: Move to include/linux
-  platform/x86/intel/vsec: Add PMT read callbacks
-  platform/x86/intel/pmt: Use PMT callbacks
-
-Michael J. Ruhl (3):
-  drm/xe/vsec: Support BMG devices
-  platform/x86/intel/pmt: Add support for PMT base adjust
-  drm/xe/vsec: Add support for DG2
-
- MAINTAINERS                                   |   1 +
- drivers/gpu/drm/xe/Makefile                   |   1 +
- drivers/gpu/drm/xe/xe_device.c                |   5 +
- drivers/gpu/drm/xe/xe_device_types.h          |   6 +
- drivers/gpu/drm/xe/xe_vsec.c                  | 295 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_vsec.h                  |  13 +
- drivers/platform/x86/intel/pmc/core_ssram.c   |   2 +-
- drivers/platform/x86/intel/pmt/class.c        |  28 +-
- drivers/platform/x86/intel/pmt/class.h        |  11 +-
- drivers/platform/x86/intel/pmt/crashlog.c     |   2 +-
- drivers/platform/x86/intel/pmt/telemetry.c    |  21 +-
- drivers/platform/x86/intel/sdsi.c             |   3 +-
- drivers/platform/x86/intel/tpmi.c             |   3 +-
- drivers/platform/x86/intel/vsec.c             |   9 +-
- .../vsec.h => include/linux/intel_vsec.h      |  18 +-
- 15 files changed, 391 insertions(+), 27 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_vsec.c
- create mode 100644 drivers/gpu/drm/xe/xe_vsec.h
- rename drivers/platform/x86/intel/vsec.h => include/linux/intel_vsec.h (88%)
-
+diff --git a/MAINTAINERS b/MAINTAINERS
+index cd970e09de1b..7bd3b7acd0e0 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -11420,6 +11420,7 @@ INTEL VENDOR SPECIFIC EXTENDED CAPABILITIES DRIVER
+ M:	David E. Box <david.e.box@linux.intel.com>
+ S:	Supported
+ F:	drivers/platform/x86/intel/vsec.*
++F:	include/linux/intel_vsec.h
+ 
+ INTEL VIRTUAL BUTTON DRIVER
+ M:	AceLan Kao <acelan.kao@canonical.com>
+diff --git a/drivers/platform/x86/intel/pmc/core_ssram.c b/drivers/platform/x86/intel/pmc/core_ssram.c
+index 1bde86c54eb9..baddaaec25ee 100644
+--- a/drivers/platform/x86/intel/pmc/core_ssram.c
++++ b/drivers/platform/x86/intel/pmc/core_ssram.c
+@@ -9,11 +9,11 @@
+  */
+ 
+ #include <linux/cleanup.h>
++#include <linux/intel_vsec.h>
+ #include <linux/pci.h>
+ #include <linux/io-64-nonatomic-lo-hi.h>
+ 
+ #include "core.h"
+-#include "../vsec.h"
+ #include "../pmt/telemetry.h"
+ 
+ #define SSRAM_HDR_SIZE		0x100
+diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/intel/pmt/class.c
+index 4b53940a64e2..d7939b28e937 100644
+--- a/drivers/platform/x86/intel/pmt/class.c
++++ b/drivers/platform/x86/intel/pmt/class.c
+@@ -9,12 +9,12 @@
+  */
+ 
+ #include <linux/kernel.h>
++#include <linux/intel_vsec.h>
+ #include <linux/io-64-nonatomic-lo-hi.h>
+ #include <linux/module.h>
+ #include <linux/mm.h>
+ #include <linux/pci.h>
+ 
+-#include "../vsec.h"
+ #include "class.h"
+ 
+ #define PMT_XA_START		1
+diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/intel/pmt/class.h
+index d23c63b73ab7..d6f9ccaf28c8 100644
+--- a/drivers/platform/x86/intel/pmt/class.h
++++ b/drivers/platform/x86/intel/pmt/class.h
+@@ -2,13 +2,13 @@
+ #ifndef _INTEL_PMT_CLASS_H
+ #define _INTEL_PMT_CLASS_H
+ 
++#include <linux/intel_vsec.h>
+ #include <linux/xarray.h>
+ #include <linux/types.h>
+ #include <linux/bits.h>
+ #include <linux/err.h>
+ #include <linux/io.h>
+ 
+-#include "../vsec.h"
+ #include "telemetry.h"
+ 
+ /* PMT access types */
+diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x86/intel/pmt/crashlog.c
+index 4014c02cafdb..9079d5dffc03 100644
+--- a/drivers/platform/x86/intel/pmt/crashlog.c
++++ b/drivers/platform/x86/intel/pmt/crashlog.c
+@@ -9,6 +9,7 @@
+  */
+ 
+ #include <linux/auxiliary_bus.h>
++#include <linux/intel_vsec.h>
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+ #include <linux/pci.h>
+@@ -16,7 +17,6 @@
+ #include <linux/uaccess.h>
+ #include <linux/overflow.h>
+ 
+-#include "../vsec.h"
+ #include "class.h"
+ 
+ /* Crashlog discovery header types */
+diff --git a/drivers/platform/x86/intel/pmt/telemetry.c b/drivers/platform/x86/intel/pmt/telemetry.c
+index 09258564dfc4..3478f891ea0b 100644
+--- a/drivers/platform/x86/intel/pmt/telemetry.c
++++ b/drivers/platform/x86/intel/pmt/telemetry.c
+@@ -9,6 +9,7 @@
+  */
+ 
+ #include <linux/auxiliary_bus.h>
++#include <linux/intel_vsec.h>
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+ #include <linux/pci.h>
+@@ -16,7 +17,6 @@
+ #include <linux/uaccess.h>
+ #include <linux/overflow.h>
+ 
+-#include "../vsec.h"
+ #include "class.h"
+ 
+ #define TELEM_SIZE_OFFSET	0x0
+diff --git a/drivers/platform/x86/intel/sdsi.c b/drivers/platform/x86/intel/sdsi.c
+index 277e4f4b20ac..9d137621f0e6 100644
+--- a/drivers/platform/x86/intel/sdsi.c
++++ b/drivers/platform/x86/intel/sdsi.c
+@@ -12,6 +12,7 @@
+ #include <linux/bits.h>
+ #include <linux/bitfield.h>
+ #include <linux/device.h>
++#include <linux/intel_vsec.h>
+ #include <linux/iopoll.h>
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+@@ -22,8 +23,6 @@
+ #include <linux/types.h>
+ #include <linux/uaccess.h>
+ 
+-#include "vsec.h"
+-
+ #define ACCESS_TYPE_BARID		2
+ #define ACCESS_TYPE_LOCAL		3
+ 
+diff --git a/drivers/platform/x86/intel/tpmi.c b/drivers/platform/x86/intel/tpmi.c
+index 6c0cbccd80bb..b9fa1cbfdcf7 100644
+--- a/drivers/platform/x86/intel/tpmi.c
++++ b/drivers/platform/x86/intel/tpmi.c
+@@ -51,6 +51,7 @@
+ #include <linux/debugfs.h>
+ #include <linux/delay.h>
+ #include <linux/intel_tpmi.h>
++#include <linux/intel_vsec.h>
+ #include <linux/io.h>
+ #include <linux/iopoll.h>
+ #include <linux/module.h>
+@@ -59,8 +60,6 @@
+ #include <linux/sizes.h>
+ #include <linux/string_helpers.h>
+ 
+-#include "vsec.h"
+-
+ /**
+  * struct intel_tpmi_pfs_entry - TPMI PM Feature Structure (PFS) entry
+  * @tpmi_id:	TPMI feature identifier (what the feature is and its data format).
+diff --git a/drivers/platform/x86/intel/vsec.c b/drivers/platform/x86/intel/vsec.c
+index 0fdfaf3a4f5c..2b46807f868b 100644
+--- a/drivers/platform/x86/intel/vsec.c
++++ b/drivers/platform/x86/intel/vsec.c
+@@ -17,14 +17,13 @@
+ #include <linux/bits.h>
+ #include <linux/cleanup.h>
+ #include <linux/delay.h>
+-#include <linux/kernel.h>
+ #include <linux/idr.h>
++#include <linux/intel_vsec.h>
++#include <linux/kernel.h>
+ #include <linux/module.h>
+ #include <linux/pci.h>
+ #include <linux/types.h>
+ 
+-#include "vsec.h"
+-
+ #define PMT_XA_START			0
+ #define PMT_XA_MAX			INT_MAX
+ #define PMT_XA_LIMIT			XA_LIMIT(PMT_XA_START, PMT_XA_MAX)
+@@ -341,7 +340,7 @@ static bool intel_vsec_walk_vsec(struct pci_dev *pdev,
+ void intel_vsec_register(struct pci_dev *pdev,
+ 			 struct intel_vsec_platform_info *info)
+ {
+-	if (!pdev || !info)
++	if (!pdev || !info || !info->headers)
+ 		return;
+ 
+ 	intel_vsec_walk_header(pdev, info);
+diff --git a/drivers/platform/x86/intel/vsec.h b/include/linux/intel_vsec.h
+similarity index 92%
+rename from drivers/platform/x86/intel/vsec.h
+rename to include/linux/intel_vsec.h
+index e23e76129691..ff7998cadab4 100644
+--- a/drivers/platform/x86/intel/vsec.h
++++ b/include/linux/intel_vsec.h
+@@ -1,6 +1,6 @@
+ /* SPDX-License-Identifier: GPL-2.0 */
+-#ifndef _VSEC_H
+-#define _VSEC_H
++#ifndef _INTEL_VSEC_H
++#define _INTEL_VSEC_H
+ 
+ #include <linux/auxiliary_bus.h>
+ #include <linux/bits.h>
+@@ -103,6 +103,13 @@ static inline struct intel_vsec_device *auxdev_to_ivdev(struct auxiliary_device
+ 	return container_of(auxdev, struct intel_vsec_device, auxdev);
+ }
+ 
++#if IS_ENABLED(CONFIG_INTEL_VSEC)
+ void intel_vsec_register(struct pci_dev *pdev,
+ 			 struct intel_vsec_platform_info *info);
++#else
++static inline void intel_vsec_register(struct pci_dev *pdev,
++				       struct intel_vsec_platform_info *info)
++{
++}
++#endif
+ #endif
 -- 
 2.44.0
 
