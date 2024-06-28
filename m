@@ -4,163 +4,190 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36CD1C2BD09
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Jun 2024 18:49:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7B24C2BD09
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Jun 2024 18:50:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC71610ED03;
-	Fri, 28 Jun 2024 18:49:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7571010ED03;
+	Fri, 28 Jun 2024 18:50:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dHawAdki";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l8F/TGIQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 897FC10ED03
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Jun 2024 18:49:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6992C10ED03
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Jun 2024 18:50:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719600547; x=1751136547;
+ t=1719600608; x=1751136608;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=mt6cCh0+OwmNfRz8m+Krb/nptT09XcgAoMVTQZUYauA=;
- b=dHawAdkiFKZG7lFMB57tshQ4Io4A8RG9GtR9CBB0Uygds608pE+z0LcR
- 5kp8p0S0deTDDu9PoNnZ9AMGqwHL88I/tX7iCA+pMZ/3kyFkKHxFNYDyU
- JuqlStm6xlYeC4mY+g0jTPEFAH7XVWJWaogOMZtfMnPTATcBI5+1jYQ0+
- Bqdcj5JYtQgR4jLtsKlV33dNgNu+HZU7ECFstpdVLm96u6TUZbl0aV605
- YsHS35lAy4r/AX6ZRz/QzkLBhihpZ9N0lshVNWt75kkoKQl+SmqE/9L0r
- 9HlGOVDieuTHjMOHJgkMAXHi24z95lNZQYNJeZqtirkxxfQWoA5UHEW4Q w==;
-X-CSE-ConnectionGUID: LM8eP8smT2u96CzLkLUi2A==
-X-CSE-MsgGUID: gNLP445fSUW6P6F843eo4Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11117"; a="16931939"
-X-IronPort-AV: E=Sophos;i="6.09,170,1716274800"; d="scan'208";a="16931939"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2024 11:49:06 -0700
-X-CSE-ConnectionGUID: 9AnJWK+1RhyLq7TTpdLldw==
-X-CSE-MsgGUID: u3dY6VD2TvmoVPWqRbTpuA==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=bUE6JelgFOZWyrDL7uqs1CuC9OvsiDmPrRAMcd2ibTg=;
+ b=l8F/TGIQNwxjFRCH7H02dTv+c++6dSvEzGVYvecVyXWRvdUcGMvUFMIW
+ hhkMWlgHJEqGTRIcocIzpxXfWl2lZ8bfHHiV5P9g96aEbjAt5mLMor0i+
+ DVZfUQFdWYo0UQYv6qmgC8MUkgtFb23SVt6IJuxcNw0WuZ86l69bbl8yf
+ Q5Cs/2At+GS1dbPN7FQn5yhxZWkAWHFyKM2m5qOG3sEeV06VVezgHPUnA
+ Ubd7H62fdkR0ExEJMAvHXIxMHXo1B7HBEM7UAQXXOHlEWKYZh62ChNUak
+ 64YciwiMptrx9JWjDWcfS6IiU34DIIkkRVFoxH1sKm7O5Dg7xLTG7iXIP A==;
+X-CSE-ConnectionGUID: 2kD/J+MUR6Oq19l7ThfkFg==
+X-CSE-MsgGUID: 6xj8Hy5aSmefEV8xH1MHnw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11117"; a="16532180"
+X-IronPort-AV: E=Sophos;i="6.09,170,1716274800"; d="scan'208";a="16532180"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2024 11:50:08 -0700
+X-CSE-ConnectionGUID: q87TiH5CQM+6bdkwIgokHw==
+X-CSE-MsgGUID: O77EfQGDSL+dzHkZ+BUY1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,170,1716274800"; d="scan'208";a="44733336"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 28 Jun 2024 11:49:06 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.09,170,1716274800"; d="scan'208";a="76011229"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 28 Jun 2024 11:50:08 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 28 Jun 2024 11:49:05 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.39; Fri, 28 Jun 2024 11:50:07 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 28 Jun 2024 11:49:05 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ 15.1.2507.39; Fri, 28 Jun 2024 11:50:07 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 28 Jun 2024 11:49:05 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Fri, 28 Jun 2024 11:50:07 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 28 Jun 2024 11:49:05 -0700
+ 15.1.2507.39; Fri, 28 Jun 2024 11:50:07 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BikAp0qMTymGNxsnJF9HPyo6kooUqiXF65Zq25af3jbJCHtNk4zDrfizvYJFqnMhvYe9KGxWEK/qQ/EGn+2CbQRRqgpwaWCZzyhpBq2pTQ20bZpFSBfOhieYWA/0qfWmuiQQVK6Q17a6S3BoIg4WI+6HCGnibK0iNm/EahW0ptuMAEB8D+rUmIWRF3E4FKQhwL9S09JryXuJPslN9WXNVBxUcke0XpnGNCbzJc8dSO7fIDe6K8CN/Tu9A9qdzGOj3nonLmA7o/q4BM+uT2EZpZoHoU6GP/qzv4piaqsLIkrYROQFa521IV307Uwelw3zFLelzxatwEsWI07rXVZuAQ==
+ b=APk1CQLQjM8A1qatKCeGKkTthWUaWm6hmplPHONTtPh9TTiYzef5gVWOZbpeWNr51ocvSeYQmcOyQHcQ8eEuUZiVuM5TGmMdsZBHOxelh+KyxshERfaGU3hgBhFN4jr2yj/qg+P+omXahQHkOJdTPk/uoi4/v5l8RiCkFfu6ZZRKNoNv4EFXmVdwaI6U6urSYddFOygMyUmKvFoM0zUbFDGfmB0XcJYJG05nMVehmGvILB+WwloBs/DHuG4OWundkyStgWnKz+OyiYUina5sxPSLT9wbOp2vnxrOPYY7K18Qhf3ltA6wZyk1Nx0FgPi4Vw/XNAQYlUgdyg/8ro2kEQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6ZkIlv5fj9AhaZgl7Hi6HGaJM1ttXEEhR6k+zXvDA10=;
- b=YW5Hr2VO33ZoqBqefV51e1/Xgc+HFuNag8+voHdX/u/EzLHVa5lpOkFKuJ+ttES9Td/k+cZpRHt59o+EmdlopfOCMI8SK9iQ1aUJ2l720gypddb8Jc+oEz5LWN58KXe+Yej6kAP6BBxznY1WPsMGrXb+z09zgYdClsywwFJqrxMLo9RcJ0JaX/EyMjNUq07/h/t/cQF7Qu6xogp8vSPaidtkzo3kDU8TfmwBKbrBbrMPG7yQs+SJ/r+tALyBC83X8oNIqtFZ9PaumJIJSKCAFjqjXf0Gxu8fKsZxCGw/PHKFpw1n/1NpkJPvvHRCe+h2F34bIWb2d506t9X6RHMChA==
+ bh=I//F8EFi5lPOfROLQ5cXGB917rtR2Bug4hsfCoxcv/o=;
+ b=PyHLQAIfci0I+68vZVbfQKKOKt7QBlZgrl+UeRmyUBCFFgMmWCKzeTathxCUxwBdzNaWHJexSfDrGiyJNWuCwE0WC+P+tQQu0QiyQfytDTcBPidRazcBigVnEkx8FLDTCqsRnfXZTMiubbStgDFeshmYr6TAYiSTcUGwVgV+Fw3y7YCCtbiNzHx87Xszw0Pga1yud/SHarHZd73PMdPhE2SpVNW6KLxIR3vsnzgTWZjMRQjPgkIzuReuHwDOH8ExzApJhUq3IZQAnSqSrlRk63F/KidqQBNltcnCZ3A4NkRU3cGkh/EMG6rN4wnNT28+YQQZ99xSJB1eoGzguEEFbA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
- by CO1PR11MB5075.namprd11.prod.outlook.com (2603:10b6:303:9e::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.34; Fri, 28 Jun
- 2024 18:49:02 +0000
-Received: from BYAPR11MB2854.namprd11.prod.outlook.com
- ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
- ([fe80::8a98:4745:7147:ed42%5]) with mapi id 15.20.7698.033; Fri, 28 Jun 2024
- 18:49:02 +0000
-Date: Fri, 28 Jun 2024 14:48:59 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/xe/bmg: Apply Wa_22019338487
-Message-ID: <Zn8Fm9DT2Qbm9c9-@intel.com>
-References: <20240627002743.1334133-1-vinay.belgaumkar@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
+ by PH0PR11MB5158.namprd11.prod.outlook.com (2603:10b6:510:3b::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.35; Fri, 28 Jun
+ 2024 18:50:00 +0000
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::6387:4b73:8906:7543]) by DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::6387:4b73:8906:7543%5]) with mapi id 15.20.7698.033; Fri, 28 Jun 2024
+ 18:50:00 +0000
+Date: Fri, 28 Jun 2024 11:49:57 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+CC: Riana Tauro <riana.tauro@intel.com>, <intel-xe@lists.freedesktop.org>,
+ <anshuman.gupta@intel.com>, <ashutosh.dixit@intel.com>,
+ <aravind.iddamsetty@linux.intel.com>, <rodrigo.vivi@intel.com>,
+ <krishnaiah.bommu@intel.com>
+Subject: Re: [PATCH v9 2/2] drm/xe/pmu: Enable PMU interface
+Message-ID: <Zn8F1dA9AFoTXTJD@orsosgc001>
+References: <20240613100411.1579218-1-riana.tauro@intel.com>
+ <20240613100411.1579218-3-riana.tauro@intel.com>
+ <ZnSIZf4PIW9CL4LQ@orsosgc001>
+ <dmd5dymg6rfontndtgyrojyyalwyqynjr5cu23mxl5tphlikaj@ez5qv4dbh5fz>
+ <Zn7qVFlzXW6WC+GJ@orsosgc001>
+ <j5rlhmyemfa4zo65d4e6h5vnptlxtvwb2laamdkpg3ras2cegj@rtec425stfif>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20240627002743.1334133-1-vinay.belgaumkar@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0037.namprd13.prod.outlook.com
- (2603:10b6:a03:2c2::12) To BYAPR11MB2854.namprd11.prod.outlook.com
- (2603:10b6:a02:c9::12)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <j5rlhmyemfa4zo65d4e6h5vnptlxtvwb2laamdkpg3ras2cegj@rtec425stfif>
+X-ClientProxiedBy: SJ0P220CA0026.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::30) To DS0PR11MB7408.namprd11.prod.outlook.com
+ (2603:10b6:8:136::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|CO1PR11MB5075:EE_
-X-MS-Office365-Filtering-Correlation-Id: f8262074-9816-4fef-7b9f-08dc97a2fa73
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|PH0PR11MB5158:EE_
+X-MS-Office365-Filtering-Correlation-Id: d3dd8bcf-58c0-4da8-f81e-08dc97a31d26
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?f69/qpvv3I0aCT60hL4MbwDjho+Y6E8FK3Jw5Tm+2xqPsksneKwTeO2AhjH6?=
- =?us-ascii?Q?1ueHYDZyA7hKS2YDJa5UpisBw3esCgkVORqe1GRfZuEDIM6VNVdeFezg4Wd3?=
- =?us-ascii?Q?NkWpqJgXhikWIFDgTjHHJvBK7wm7XXglp9gJRX8ToLnZ+Wwca8zx+yPjeksV?=
- =?us-ascii?Q?6ukWP21deGJkDJ1wHBN5JgLl6bdBmRRb4a7+/12aBh0kK0Z1mCVn7RbQH/2R?=
- =?us-ascii?Q?1//Z+wQmmy+0cWgV7cieJVoys3jq+UZS3Mbd8BGG9Ov29ASu80LhfUKOLDNp?=
- =?us-ascii?Q?bTkQ+TO3TGRDoCIWujeS2+z/a+l84zJUZjF3b+z1CVsGDsVvWN1utRV0a2+F?=
- =?us-ascii?Q?OjieWw2ybcorTQ2Ge9t3EqPD+Guhk+qCvX43+gPnAn23hEvkd8+Bub45ynju?=
- =?us-ascii?Q?lcMswz4eOHETcxYKANeom+6mO0pxOJLGJf2hGmHtvKKQJyyBdeDLFEmYKvdp?=
- =?us-ascii?Q?3KMqOJX5/fA19QN7kfS+aNqkGDCXvroyjxBhpORzNSby0BEpctuD6dA/pPy8?=
- =?us-ascii?Q?ARiggrCoTVhxBbXTsfV6aIM4kIuPvhDmOQwZFkiIttG2u5dyxc1vuu6ZF318?=
- =?us-ascii?Q?kUYrIoggUkbRerqNn+FoUYiLENC79fMSt2JLzldOTSTfXcESLPLclQAET9F0?=
- =?us-ascii?Q?yD4fuYMmm4n113T+a/cVGBeTd7/FfvDYTIVoRzzRSLRsS9gDNrNAthOAUf7+?=
- =?us-ascii?Q?sZI9T7cQGfiSTdlgOJR7J4S5nIzpPupqNBOnUyQ89hdblxfcmr8+QNH0M99u?=
- =?us-ascii?Q?dvSM9vLGjpy8EFlQerKjglRKGIWyXSz6JQyj08ClKTA6XbnyFpvivl9/K6iX?=
- =?us-ascii?Q?+tUL50t+XQW5zFGiMncta+8TkIDX7gR216ZWsEcBfHGN6UP7b/qXBttX3irg?=
- =?us-ascii?Q?cryLS9+gQS9j84ScEoees87LCjsDbwaz4W6ouvYOxxlzwHXCoUiYvgxu1+h+?=
- =?us-ascii?Q?QRI1hr2RUALc1mWgpQ548DQFt3TJVMWWkJtEfUpeU/YSGxtXM1q9JFOQQ1Lb?=
- =?us-ascii?Q?KUI/84DSWV2fvhVWV5wkDDZs8uhhreNttTc7NTaviz44OZgsaYHibd0RUnBP?=
- =?us-ascii?Q?J8mAoEAVrWc4rpMiziw8xv4tannXUKcferw8cgF8/iOX6lZNyg6s04wsaauC?=
- =?us-ascii?Q?SFendS1V+I+rafzhhByRaAXxW/cqe/534z67SLrrZwh9zWDH1hIKrSb3IWXf?=
- =?us-ascii?Q?LuusVlxiWooMhaWuoK82KYBKplxSvfgJprEZrmc6FQbis0qUVzyYXpwicfK9?=
- =?us-ascii?Q?vmFDLPjN1WoTDxkvPlEOs5BYgTdu5rkDPHB8ltb3drPiyaJLFPgOPg6Zq8l7?=
- =?us-ascii?Q?4oJW1fsJ9w0cYtyLhpMwzXCuYtConDXWi6LxCHlmc1yYqA=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?R2tBZHZiNHZrdVJXcDNhZ2pybEtpVjA5aDV6TngwcTFWYlB0SHV6c0NxbmxM?=
+ =?utf-8?B?WXp6ald4M1FWZmZEcVlEWFRlSmQ3QkY3djBDcEJZd2ZycWZybnRHVmxlTWg0?=
+ =?utf-8?B?N1lvM2xjd1JNL3krV014V0F5VVp6SkZFRnVvcFFkNkxmVG5RbHNNNnJkcEZm?=
+ =?utf-8?B?RUlHdCsvQmplbWl4MFh0TUZ3SXUrdUV5aEUwMEQxZGpuWFNNSTBMb3ZiT2Z1?=
+ =?utf-8?B?SVdoZEZON0l2QnJsTG5WZCtZUmthZHNBNitXUm1tZXJSRjlldThKamtVRGU2?=
+ =?utf-8?B?cDFsQ0Uxc0J3V3kwelBQQ3dWdHJVZXEwWisxMFRuS25LcVNTS1pvMC93NlBh?=
+ =?utf-8?B?YU9qTjhRdENCUzUva1BybnNtd201dkMwNC9TRFNSR3Y3MHZzM2FPRFErcHBh?=
+ =?utf-8?B?emx0TFhPdmVFK1BHU2lpTjZITjVpOUd3bFpMUE1iTCtXR0c0REVIYytSTGwz?=
+ =?utf-8?B?bXFaN09kSWNjM3Jtb211c1JsMy9MNXdEVm9OenZZN0ZVbmVXYnZCZVROWC9Z?=
+ =?utf-8?B?UC9jMGN5V1lRN1ZORWRMb0J1ejNhMGZkS3NjeTJKcHkzNmh0aFhXVHBNYjV2?=
+ =?utf-8?B?T3hiTnVoK0o4K2p6RnRpRldhRGZnWFQySndrQUxSNHczL3E3bHRXa1hVNTRE?=
+ =?utf-8?B?QXNFbVE2T1I0NzcrUFVXOHBtdkNrczdEWVdKaDRSQjViRndaMmdyT0xWZmtT?=
+ =?utf-8?B?bUlZRFRvMmZtM3N3bThTeXozVEE2VVhqdnlLNDkrYTdDSWdydE00dXAxejZn?=
+ =?utf-8?B?Ris0YmpQNXAvS1hOc2RGSGZXWWxaUlZ6Q2MrLzh5QmdmU3ZQTkI1ZVhrNS9a?=
+ =?utf-8?B?NVNSNjlKbzA5U0pCUzFybFVVMW5DRkhYWlo0VE5MNWxtVFJQeitVNjY2T3My?=
+ =?utf-8?B?WHg2MDlkYXNBTnVnN3RNeVdOdGJ1RStvTS94eXRYYXJ0aXFqMzlDamJoWVpE?=
+ =?utf-8?B?Yjl4dlFleVUvbnA4c3hkdzgrYTNSanFWVkIzenBQZ2lFSkN5b1pzcmtGc1py?=
+ =?utf-8?B?REYrR0xBWmpmSjExMGMxc2YyMGI0d0g5cU5TWEdza2ErSFhRMEp6aUJ3TnlE?=
+ =?utf-8?B?T1NqUC94ckJGSW9zekNtcjN6SDBDTjVJeVlnWWVCWXIxRzZueU1aV1U2bUs4?=
+ =?utf-8?B?ay9kQWxpTldLczZxbEhFZ1BQbmNYcDZoNG9CbVNuWTE4aTRXcE83Q2VFQnhW?=
+ =?utf-8?B?TDdsZlB6UVUzWFRwK29ETkNHdWNpcTVhM00wRlRWM3VkSHVYRjNhcklHSnNC?=
+ =?utf-8?B?cTNMa1E3OGVQOXJDRHFFTFZhbGZ1UW1lN25velVySG5UMlVKN1ovOE5PNGVM?=
+ =?utf-8?B?TEg2UkZzRUdXNVYwREZyU0Q4TllkY1M1V0dzR1M0NUM3bm9tY054cUxEZkdm?=
+ =?utf-8?B?MzJmbkxZNGlIQ3l1eXdkc1NZQTZIcDVMdmsrb3pqMHFWWTcwT04vQ0kwbDh0?=
+ =?utf-8?B?d2hzZ3ROa0lSd0Z1OVgwbVhSc1VqUFZSRjdmcXNUKzZVWUo2N1JsOE9uSWlN?=
+ =?utf-8?B?UVIwRHg2MlZyZFh6NjlXU0NIeG9jR3p3WEcxTHRNaERrU25vWDdaQmlJMGRP?=
+ =?utf-8?B?Z3FxTXZZVENYVDdQZU1SbWpUeG5HTzZ1TEZHbmRrT2pWTk45aEFqUExNamhi?=
+ =?utf-8?B?VkNITWFkZjdBRlkzWmIyT0ZFMXgyUk5wOGRLS1hpc2VQWjFsdGJkbUd4TzJS?=
+ =?utf-8?B?SFp0Yzd6TVNOcnhEV1p1aG9keU1LWWNMMHpnVXRSbFB1emh3d1k0MXJYUVo1?=
+ =?utf-8?B?YXFsZ3NpWEpaZWlSYXJCcWRaREN2YWcyeUZ6K2pBNmlFdi8xdzZtUWF2c2li?=
+ =?utf-8?B?SDhVcDluN0hKMFM0cVE4UT09?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?BkRQ5LC/WvyxLmtjK5m52LsITM9S+HtARBfSAZVU59B0saLbASYxvj9vDWeT?=
- =?us-ascii?Q?6U30dlKOraNS9HmeU4F8z9ilTTBOfXDn0E9k4LW4Aqm4fmsFcsQID0WVXv2J?=
- =?us-ascii?Q?w/8wIwZePDwAhPkMbofp+rWFPt7gFjJnuprimQ1UPCmlgpswkcFfkVCGHSLS?=
- =?us-ascii?Q?X/mnGatILcwxxNUq/4UsqxO8yhGPx/01LfYZjyfVOcgnJSjFfokAAX3GndFk?=
- =?us-ascii?Q?3d6fsu3IPpe/VcDtz8HGYbnlS568sTsZ0I/NB27LquIfCuDjltjI4CFqQgCy?=
- =?us-ascii?Q?k7oUkjGEPQcIrIX3UZT9JZEPfMXXCWvdkqgspRZc77YTpKyfepUfT/gmrpu7?=
- =?us-ascii?Q?pN3vC2o76IAHIwmlQLCWe4dhv54G11kQd1XVwkQQtl0DBoihd1ZkKhXJ2n/i?=
- =?us-ascii?Q?h3F18PfZf4xnf/K5oa/Q9eETcmg6QMPRrci3y6FyqvK0iS/ADH5SYG/v3P28?=
- =?us-ascii?Q?XGhUfkgAdA5QBquzlZRnePy5XGDTH7Gvf9pr3CMYoWUXpDvQS4CTfpvGk8py?=
- =?us-ascii?Q?R/VS8dqENcRWMZ8fqQDZUNqqf/Ixm/FqgExoI4GSjAcAtVaJum6vvvBAimT2?=
- =?us-ascii?Q?ESRCWRK7lls/dEMj/wwxzOdmjf+0d4Cccc67+M2K/3SAghiohjFHY2Hlst8P?=
- =?us-ascii?Q?fpOHxqPfV8vhhgzmMA6eKE4m3fQGjMiWs3kl/j1hx5uhM/LG5dM28UtEpW5y?=
- =?us-ascii?Q?HeOYp7Cu049vEiWJgSNJ0dUnN9u9ixrOfX6EsN4bO9/VVeJAIFcv4fGG+8wP?=
- =?us-ascii?Q?goC5ohn6UmBpB2m7w0KK71Iz2HdLzMHIAFRjpbXUEtMkAP0W512Y1xdVKE6z?=
- =?us-ascii?Q?paiAJkzCLNRzslhSKJVX6Tuz9j56Kh03JqHSJNQ+1yrZowWP0JsTW5sOeZQQ?=
- =?us-ascii?Q?m691nsuiKSpfUeXOM76Wr0cUnXACrjlHR0mu5l+02KWJ10qa+kY0SoQbHbq2?=
- =?us-ascii?Q?ozfj1IWPG+wW4fHL8MiCDPyE4i6/FEPdFEXrBvKeNvQ27zkGA4rMQr9bWZqQ?=
- =?us-ascii?Q?83tYx5vdsE0wXdH/EC/WVz+I6npcChEyuT6mxF02C8d3xqaC6GKPFFzfela5?=
- =?us-ascii?Q?RSR/A25oSkaX3wUWCdQIYOyfVijF86vWzUFHSbklweQb6iTNKuPxL9IxpKQV?=
- =?us-ascii?Q?7Gigy7hoT0UIPThUA0LQ1FE0baxx8jpn4diBGk9xmBrUMFORneqAdfFC/S95?=
- =?us-ascii?Q?j+NFIbJ1aWn2ueAk60V8gzjjHaw+C7AeEeZeGDzi7kZH/aDT/MOn0VoXU6XT?=
- =?us-ascii?Q?ip+CW7CzxzgWFf28ks4zaZQBbZuTnPXusUDsg0cL3tAZJIXJEPrsNCKjT9OG?=
- =?us-ascii?Q?olGqNQQjmE3W1HcEUoe/1SumeEgcV8IaQlRCxtqMLoCnMWhW4YmmA+n1S0js?=
- =?us-ascii?Q?/Kzey5VIwfYIqEvogS0e3ndtA7wLlPrHCNgeg7TTzVyVa4DAk8VV+dp6Cksz?=
- =?us-ascii?Q?qQ102OYlgGGZYM+DhPsOzX3cM9Kw6u+W1MDqYaYRqQX1W0D9TPg+dso+e6P4?=
- =?us-ascii?Q?IsKX0TxzOtP9H9+fKtUT3nZeo/WHMUUA6Ub65ZE+/GAUfogEgkqKcOHOuFvA?=
- =?us-ascii?Q?5STRLIkdgGMmZgOI4EE4pKn36i+lj9NXAsozNF57?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f8262074-9816-4fef-7b9f-08dc97a2fa73
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UzdrUElvUWFXTStZVnRwZWhveFQ3cDdIUGNwTE1mZStSQ2VYNFRyWWdzVU5E?=
+ =?utf-8?B?c04xU3A5OXJxSGJRNS9QUEI1WkRwWFVrWmsvd1NlZEdrZ25UZWhMNjlFclF6?=
+ =?utf-8?B?NllYQjNKS0tpTzg5NGVodUJHNWRVaFhMTUhPZTVCcUpROU5qSlRESVZtdEg5?=
+ =?utf-8?B?MkNlOUVJL01aWjBuOWtFeFR6L0RjRVh5OXJlTjdQRmhKZ29XZHoxMWJKTWEz?=
+ =?utf-8?B?WWZVTUJXa1ppdlhhYWR4Y3lPZW8xT0pWQ0JILzZVTStpSEtuTzZYem52WVB3?=
+ =?utf-8?B?V2FoTHZPcW1qNGRrNjFHV0kzSFdhR1lYZU4renVSWDNNOFdkVjZPU2RER0Jl?=
+ =?utf-8?B?b3M0WmFxZ21TeGo0RStqOCt0SmlpVXR0ZzNhS1hSd09TSGFNVWc1Q1h3WklX?=
+ =?utf-8?B?T1dpMHZlbkQrRk01dnU0czNNQkdFM0hVZXowU3puTTFDM1ZzSG9sTEE3alVO?=
+ =?utf-8?B?bGhzbm9aSFBRRkxmZE13RFVRMFcva3cvTm44UUNTZ1pPMU9ZU2c3Y0ovNThq?=
+ =?utf-8?B?N3duYWxmb3ZRTFMxZ3JoS2h4R3BDWGs4QWxKOGt1bXdtNTJTOVpvbHpJZWlr?=
+ =?utf-8?B?bndRaHJrTlBFeUhac0MrWnB6TUhjcVpzbjN1SCt4Zk1zTGN3RTFvc3kzMGwv?=
+ =?utf-8?B?N2NuMlpQNCtYU242WjVMZFJqUGt4R3NZakZ5ZGlQNGpoTEV4UmQ1TURndTVn?=
+ =?utf-8?B?LzlFZzRFVmMyN1JYaENkTWx4RUdmUElOVFZyeC9TN2NtcHFWN1BKZnJadmJK?=
+ =?utf-8?B?QmpHOEJ0TXgxempHOS9DN1EzSDNRcFMvdU9sRTErQzBldW8vN0lwSVpMUXdt?=
+ =?utf-8?B?U2txSUYxTXdBbGZtSy9UV0l0anRHSWdHSkk3eitESkczOElZZkducHhOR3Zs?=
+ =?utf-8?B?TXBEYStBTTBQNHFEZVFhcktBbGJibFU0N09pL2RWcDl5TlBCM2M2TVVpd3Mx?=
+ =?utf-8?B?RWlLdENGNHdoRVg3dWVSSmxQU2IrS2oySlZWMWppQ0lDalJKUG9wVWtpWjdS?=
+ =?utf-8?B?TktCa0VHd3hJWVk5T1gvRmVwaXF0STVWbWVGeEZueWRPdnJIQzVEV205emhh?=
+ =?utf-8?B?aHQra3pobWVmWWl2dmpHc3c5dmhRTzUyR2haUWRQckxRd3k5NWdRM0t2eXll?=
+ =?utf-8?B?Z2ZLMVBNMk03QTRLeVVBUi8rTlIzQkNGQ3l3UElpVXphWlJGRm5WdGNEdHpx?=
+ =?utf-8?B?RGE1a293UGxkY2pBb0JoaXQxNThGWlBGRmU5enYwUkp4a3B4UHFYMzRsbTVX?=
+ =?utf-8?B?dXBzZnhaM0I5aUVWWHA4Yk43R0JNWGkya1BvS0l0YW9ZRzRtNkM2ekN1SlNH?=
+ =?utf-8?B?UHcrdXBneDRkWTBLWFQwNzB4Mm9qNWhHbTlVSkZwb00ybDJDRDZJbTZRNjYv?=
+ =?utf-8?B?Wk5waGw5YktLNGk1RDc2Zm5BekJsOEVnM2FxNDRTSy9hYWwrY2NROHM2OU8w?=
+ =?utf-8?B?NlJPMHVzbmtQWTNhZmdCY05VdXNMMzJ6czNQUEI0djhiRTZiQ29tbnNNZWxY?=
+ =?utf-8?B?MFpobUhKNy9Dc1p4ZXd3QlZFL1IzQngyT2ZRVUphc0RtTUVUNm1qc05oRzE5?=
+ =?utf-8?B?OWtKTDBtSTBPM0lYU29hUGpiTitzaERPUzBzSVl6ZTNxM2xTUjdMaC85OTJ4?=
+ =?utf-8?B?QU92NVRFTjFhR1lZRmpmekl4NkZ0R2wyVkd0YkVldDdZSEtJTHBhT0w2bExB?=
+ =?utf-8?B?VG5ubHFkRGxSMEVwNnk1QmxtbkV6RnQ1RnN0b1ErbzFYeFhMc1FLYmNCczdw?=
+ =?utf-8?B?ZHF3TUUwekw2cmhrWnZ1L2ZKMWRBdHpNL0ZwVWx4QmlYVUxkcjVEck54Mzcy?=
+ =?utf-8?B?aHB0V3JtZkpsd0pFN25OdUpvNVZwbVFBaGhtcUFwSmJLNytWNlhjWlQ0Vm9W?=
+ =?utf-8?B?bVhjbmNZR0IrWml5SHg5Zi93cnhMaUlBZEphK25yYkJna2k0RFhWbkduWEtw?=
+ =?utf-8?B?YjB0ankvQnR2bnFwTlNFYUNXZk4wYTQrblNCaFpkb0duMXVDNXBaUmwzMEtF?=
+ =?utf-8?B?SzRkeVVlQXNVMVZjZVFWK3poeXJ4cys3c2FXN0xPQVpaL1h2cGtLMU5LRUhM?=
+ =?utf-8?B?NXJYcHA1MDRzcFZGZ21BK3dwNlBGRnZXQVo5VDd6TUdsdE8renJQSnpKUFJU?=
+ =?utf-8?B?UTBLc0p1UHBHNmxtL1l5d2l0Mnl5M2x5R1F1Yk8ycWJ4RTcwaHFJS0VuZlpL?=
+ =?utf-8?Q?mh7G0jFMy/QdAVaSkprEAIU=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d3dd8bcf-58c0-4da8-f81e-08dc97a31d26
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2024 18:49:02.4315 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2024 18:50:00.6146 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bzGQIdy1Y20GwH+4/NPugDD3G58il3C/L+GQLswHTkNJQHfBANRrLNzOvwL7AvjZ4zvcw1SrgC7tKeLFpTHlVQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5075
+X-MS-Exchange-CrossTenant-UserPrincipalName: bkjv8OAqZ9e7OXugj/sPOLJ6NVQRrfWVD7zxSj5qMO3+If8aCbuaRInehjF7gKrE0RE+dQYNKD2pJ38SRjFK9+I359uXxpGxHAMy4zfhQ3o=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5158
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -176,105 +203,1092 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 26, 2024 at 05:27:43PM -0700, Vinay Belgaumkar wrote:
-> Extend this WA to BMG GT as well. In this case media GT is
-> not affected. The cap frequencies and max allowed ggtt writes
-> are different as well.
-> 
-> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_ggtt.c       | 11 ++++++++---
->  drivers/gpu/drm/xe/xe_guc_pc.c     | 11 ++++++++---
->  drivers/gpu/drm/xe/xe_wa_oob.rules |  1 +
->  3 files changed, 17 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> index 883cfc7f98a8..0cdbc1296e88 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> @@ -74,6 +74,9 @@ static unsigned int probe_gsm_size(struct pci_dev *pdev)
->  
->  static void ggtt_update_access_counter(struct xe_ggtt *ggtt)
->  {
-> +	struct xe_gt *gt = XE_WA(ggtt->tile->primary_gt, 22019338487) ? ggtt->tile->primary_gt :
-> +			   ggtt->tile->media_gt;
-> +	u32 max_gtt_writes = XE_WA(ggtt->tile->primary_gt, 22019338487) ? 1100 : 63;
+On Fri, Jun 28, 2024 at 01:24:42PM -0500, Lucas De Marchi wrote:
+>On Fri, Jun 28, 2024 at 09:52:36AM GMT, Umesh Nerlige Ramappa wrote:
+>>On Fri, Jun 28, 2024 at 10:55:06AM -0500, Lucas De Marchi wrote:
+>>>On Thu, Jun 20, 2024 at 12:52:05PM GMT, Umesh Nerlige Ramappa wrote:
+>>>>On Thu, Jun 13, 2024 at 03:34:11PM +0530, Riana Tauro wrote:
+>>>>>From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+>>>>>
+>>>>>There are a set of engine group busyness counters provided by HW which are
+>>>>>perfect fit to be exposed via PMU perf events.
+>>>>>
+>>>>>BSPEC: 46559, 46560, 46722, 46729, 52071, 71028
+>>>>>
+>>>>>events can be listed using:
+>>>>>perf list
+>>>>>xe_0000_03_00.0/any-engine-group-busy-gt0/         [Kernel PMU event]
+>>>>>xe_0000_03_00.0/copy-group-busy-gt0/               [Kernel PMU event]
+>>>>>xe_0000_03_00.0/media-group-busy-gt0/              [Kernel PMU event]
+>>>>>xe_0000_03_00.0/render-group-busy-gt0/             [Kernel PMU event]
+>>>>>
+>>>>>and can be read using:
+>>>>>
+>>>>>perf stat -e "xe_0000_8c_00.0/render-group-busy-gt0/" -I 1000
+>>>>>       time        counts unit events
+>>>>> 1.001139062            0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+>>>>> 2.003294678            0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+>>>>> 3.005199582            0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+>>>>> 4.007076497            0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+>>>>> 5.008553068            0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+>>>>> 6.010531563        43520 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+>>>>> 7.012468029        44800 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+>>>>> 8.013463515            0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+>>>>> 9.015300183            0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+>>>>>10.017233010            0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+>>>>>10.971934120            0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+>>>>>
+>>>>>The pmu base implementation is taken from i915.
+>>>>>
+>>>>>v2:
+>>>>>Store last known value when device is awake return that while the GT is
+>>>>>suspended and then update the driver copy when read during awake.
+>>>>>
+>>>>>v3:
+>>>>>1. drop init_samples, as storing counters before going to suspend should
+>>>>>be sufficient.
+>>>>>2. ported the "drm/i915/pmu: Make PMU sample array two-dimensional" and
+>>>>>dropped helpers to store and read samples.
+>>>>>3. use xe_device_mem_access_get_if_ongoing to check if device is active
+>>>>>before reading the OA registers.
+>>>>>4. dropped format attr as no longer needed
+>>>>>5. introduce xe_pmu_suspend to call engine_group_busyness_store
+>>>>>6. few other nits.
+>>>>>
+>>>>>v4: minor nits.
+>>>>>
+>>>>>v5: take forcewake when accessing the OAG registers
+>>>>>
+>>>>>v6:
+>>>>>1. drop engine_busyness_sample_type
+>>>>>2. update UAPI documentation
+>>>>>
+>>>>>v7:
+>>>>>1. update UAPI documentation
+>>>>>2. drop MEDIA_GT specific change for media busyness counter.
+>>>>>
+>>>>>v8:
+>>>>>1. rebase
+>>>>>2. replace mem_access_if_ongoing with xe_pm_runtime_get_if_active
+>>>>>3. remove interrupts pmu event
+>>>>>
+>>>>>v9: replace drmm_add_action_or_reset with devm (Matthew Auld)
+>>>>>
+>>>>>Co-developed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>>>Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>>>Co-developed-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+>>>>>Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+>>>>>Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+>>>>>Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+>>>>>Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+>>>>>---
+>>>>>drivers/gpu/drm/xe/Makefile          |   2 +
+>>>>>drivers/gpu/drm/xe/regs/xe_gt_regs.h |   5 +
+>>>>>drivers/gpu/drm/xe/xe_device.c       |   2 +
+>>>>>drivers/gpu/drm/xe/xe_device_types.h |   4 +
+>>>>>drivers/gpu/drm/xe/xe_gt.c           |   2 +
+>>>>>drivers/gpu/drm/xe/xe_module.c       |   5 +
+>>>>>drivers/gpu/drm/xe/xe_pmu.c          | 631 +++++++++++++++++++++++++++
+>>>>>drivers/gpu/drm/xe/xe_pmu.h          |  26 ++
+>>>>>drivers/gpu/drm/xe/xe_pmu_types.h    |  67 +++
+>>>>>include/uapi/drm/xe_drm.h            |  39 ++
+>>>>>10 files changed, 783 insertions(+)
+>>>>>create mode 100644 drivers/gpu/drm/xe/xe_pmu.c
+>>>>>create mode 100644 drivers/gpu/drm/xe/xe_pmu.h
+>>>>>create mode 100644 drivers/gpu/drm/xe/xe_pmu_types.h
+>>>>>
+>>>>>diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+>>>>>index cbf961b90237..83bf1e07669b 100644
+>>>>>--- a/drivers/gpu/drm/xe/Makefile
+>>>>>+++ b/drivers/gpu/drm/xe/Makefile
+>>>>>@@ -278,6 +278,8 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+>>>>>	i915-display/skl_universal_plane.o \
+>>>>>	i915-display/skl_watermark.o
+>>>>>
+>>>>>+xe-$(CONFIG_PERF_EVENTS) += xe_pmu.o
+>>>>>+
+>>>>>ifeq ($(CONFIG_ACPI),y)
+>>>>>	xe-$(CONFIG_DRM_XE_DISPLAY) += \
+>>>>>		i915-display/intel_acpi.o \
+>>>>>diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>>>>>index 47c26c37608d..22821dcd4e1b 100644
+>>>>>--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>>>>>+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>>>>>@@ -390,6 +390,11 @@
+>>>>>#define   INVALIDATION_BROADCAST_MODE_DIS	REG_BIT(12)
+>>>>>#define   GLOBAL_INVALIDATION_MODE		REG_BIT(2)
+>>>>>
+>>>>>+#define XE_OAG_RC0_ANY_ENGINE_BUSY_FREE		XE_REG(0xdb80)
+>>>>>+#define XE_OAG_ANY_MEDIA_FF_BUSY_FREE		XE_REG(0xdba0)
+>>>>>+#define XE_OAG_BLT_BUSY_FREE			XE_REG(0xdbbc)
+>>>>>+#define XE_OAG_RENDER_BUSY_FREE			XE_REG(0xdbdc)
+>>>>>+
+>>>>>#define HALF_SLICE_CHICKEN5			XE_REG_MCR(0xe188, XE_REG_OPTION_MASKED)
+>>>>>#define   DISABLE_SAMPLE_G_PERFORMANCE		REG_BIT(0)
+>>>>>
+>>>>>diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+>>>>>index 64691a56d59c..bb00c8c9ec9b 100644
+>>>>>--- a/drivers/gpu/drm/xe/xe_device.c
+>>>>>+++ b/drivers/gpu/drm/xe/xe_device.c
+>>>>>@@ -668,6 +668,8 @@ int xe_device_probe(struct xe_device *xe)
+>>>>>
+>>>>>	xe_hwmon_register(xe);
+>>>>>
+>>>>>+	xe_pmu_register(&xe->pmu);
+>>>>>+
+>>>>>	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
+>>>>>
+>>>>>err_fini_display:
+>>>>>diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+>>>>>index 52bc461171d5..a5dba7325cf1 100644
+>>>>>--- a/drivers/gpu/drm/xe/xe_device_types.h
+>>>>>+++ b/drivers/gpu/drm/xe/xe_device_types.h
+>>>>>@@ -18,6 +18,7 @@
+>>>>>#include "xe_lmtt_types.h"
+>>>>>#include "xe_memirq_types.h"
+>>>>>#include "xe_platform_types.h"
+>>>>>+#include "xe_pmu.h"
+>>>>>#include "xe_pt_types.h"
+>>>>>#include "xe_sriov_types.h"
+>>>>>#include "xe_step_types.h"
+>>>>>@@ -473,6 +474,9 @@ struct xe_device {
+>>>>>		int mode;
+>>>>>	} wedged;
+>>>>>
+>>>>>+	/** @pmu: performance monitoring unit */
+>>>>>+	struct xe_pmu pmu;
+>>>>>+
+>>>>>	/* private: */
+>>>>>
+>>>>>#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+>>>>>diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+>>>>>index 57d84751e160..477d0ae5f230 100644
+>>>>>--- a/drivers/gpu/drm/xe/xe_gt.c
+>>>>>+++ b/drivers/gpu/drm/xe/xe_gt.c
+>>>>>@@ -782,6 +782,8 @@ int xe_gt_suspend(struct xe_gt *gt)
+>>>>>	if (err)
+>>>>>		goto err_msg;
+>>>>>
+>>>>>+	xe_pmu_suspend(gt);
+>>>>>+
+>>>>>	err = xe_uc_suspend(&gt->uc);
+>>>>>	if (err)
+>>>>>		goto err_force_wake;
+>>>>>diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+>>>>>index 3edeb30d5ccb..26f814f97fc2 100644
+>>>>>--- a/drivers/gpu/drm/xe/xe_module.c
+>>>>>+++ b/drivers/gpu/drm/xe/xe_module.c
+>>>>>@@ -11,6 +11,7 @@
+>>>>>#include "xe_drv.h"
+>>>>>#include "xe_hw_fence.h"
+>>>>>#include "xe_pci.h"
+>>>>>+#include "xe_pmu.h"
+>>>>>#include "xe_sched_job.h"
+>>>>>
+>>>>>struct xe_modparam xe_modparam = {
+>>>>>@@ -74,6 +75,10 @@ static const struct init_funcs init_funcs[] = {
+>>>>>		.init = xe_sched_job_module_init,
+>>>>>		.exit = xe_sched_job_module_exit,
+>>>>>	},
+>>>>>+	{
+>>>>>+		.init = xe_pmu_init,
+>>>>>+		.exit = xe_pmu_exit,
+>>>>>+	},
+>>>>>	{
+>>>>>		.init = xe_register_pci_driver,
+>>>>>		.exit = xe_unregister_pci_driver,
+>>>>>diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+>>>>>new file mode 100644
+>>>>>index 000000000000..64960a358af2
+>>>>>--- /dev/null
+>>>>>+++ b/drivers/gpu/drm/xe/xe_pmu.c
+>>>>>@@ -0,0 +1,631 @@
+>>>>>+// SPDX-License-Identifier: MIT
+>>>>>+/*
+>>>>>+ * Copyright © 2024 Intel Corporation
+>>>>>+ */
+>>>>>+
+>>>>>+#include <drm/drm_drv.h>
+>>>>>+#include <drm/drm_managed.h>
+>>>>>+#include <drm/xe_drm.h>
+>>>>>+
+>>>>>+#include "regs/xe_gt_regs.h"
+>>>>>+#include "xe_device.h"
+>>>>>+#include "xe_force_wake.h"
+>>>>>+#include "xe_gt_clock.h"
+>>>>>+#include "xe_mmio.h"
+>>>>>+#include "xe_macros.h"
+>>>>>+#include "xe_pm.h"
+>>>>>+
+>>>>>+static cpumask_t xe_pmu_cpumask;
+>>>>>+static unsigned int xe_pmu_target_cpu = -1;
+>>>>>+
+>>>>>+static unsigned int config_gt_id(const u64 config)
+>>>>>+{
+>>>>>+	return config >> __XE_PMU_GT_SHIFT;
+>>>>>+}
+>>>>>+
+>>>>>+static u64 config_counter(const u64 config)
+>>>>>+{
+>>>>>+	return config & ~(~0ULL << __XE_PMU_GT_SHIFT);
+>>>>>+}
+>>>>>+
+>>>>>+static void xe_pmu_event_destroy(struct perf_event *event)
+>>>>>+{
+>>>>>+	struct xe_device *xe =
+>>>>>+		container_of(event->pmu, typeof(*xe), pmu.base);
+>>>>>+
+>>>>>+	drm_WARN_ON(&xe->drm, event->parent);
+>>>>>+
+>>>>>+	drm_dev_put(&xe->drm);
+>>>>>+}
+>>>>>+
+>>>>>+static u64 __engine_group_busyness_read(struct xe_gt *gt, int sample_type)
+>>>>>+{
+>>>>>+	u64 val;
+>>>>>+
+>>>>>+	switch (sample_type) {
+>>>>>+	case __XE_SAMPLE_RENDER_GROUP_BUSY:
+>>>>>+		val = xe_mmio_read32(gt, XE_OAG_RENDER_BUSY_FREE);
+>>>>>+		break;
+>>>>>+	case __XE_SAMPLE_COPY_GROUP_BUSY:
+>>>>>+		val = xe_mmio_read32(gt, XE_OAG_BLT_BUSY_FREE);
+>>>>>+		break;
+>>>>>+	case __XE_SAMPLE_MEDIA_GROUP_BUSY:
+>>>>>+		val = xe_mmio_read32(gt, XE_OAG_ANY_MEDIA_FF_BUSY_FREE);
+>>>>>+		break;
+>>>>>+	case __XE_SAMPLE_ANY_ENGINE_GROUP_BUSY:
+>>>>>+		val = xe_mmio_read32(gt, XE_OAG_RC0_ANY_ENGINE_BUSY_FREE);
+>>>>>+		break;
+>>>>>+	default:
+>>>>>+		drm_warn(&gt->tile->xe->drm, "unknown pmu event\n");
+>>>>>+	}
+>>>>>+
+>>>>>+	return xe_gt_clock_cycles_to_ns(gt, val * 16);
+>>>>>+}
+>>>>>+
+>>>>>+static u64 engine_group_busyness_read(struct xe_gt *gt, u64 config)
+>>>>>+{
+>>>>>+	int sample_type = config_counter(config);
+>>>>>+	const unsigned int gt_id = gt->info.id;
+>>>>>+	struct xe_device *xe = gt->tile->xe;
+>>>>>+	struct xe_pmu *pmu = &xe->pmu;
+>>>>>+	unsigned long flags;
+>>>>>+	bool device_awake;
+>>>>>+	u64 val;
+>>>>>+
+>>>>>+	device_awake = xe_pm_runtime_get_if_active(xe);
+>>>>>+	if (device_awake) {
+>>>>>+		XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FW_GT));
+>>>>>+		val = __engine_group_busyness_read(gt, sample_type);
+>>>>>+		XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
+>>>>>+		xe_pm_runtime_put(xe);
+>>>>>+	}
+>>>>>+
+>>>>>+	spin_lock_irqsave(&pmu->lock, flags);
+>>>>>+
+>>>>>+	if (device_awake)
+>>>>>+		pmu->sample[gt_id][sample_type] = val;
+>>>>>+	else
+>>>>>+		val = pmu->sample[gt_id][sample_type];
+>>>>>+
+>>>>>+	spin_unlock_irqrestore(&pmu->lock, flags);
+>>>>>+
+>>>>>+	return val;
+>>>>>+}
+>>>>>+
+>>>>>+static void engine_group_busyness_store(struct xe_gt *gt)
+>>>>>+{
+>>>>>+	struct xe_pmu *pmu = &gt->tile->xe->pmu;
+>>>>>+	unsigned int gt_id = gt->info.id;
+>>>>>+	unsigned long flags;
+>>>>>+	int i;
+>>>>>+
+>>>>>+	spin_lock_irqsave(&pmu->lock, flags);
+>>>>>+
+>>>>>+	for (i = __XE_SAMPLE_RENDER_GROUP_BUSY; i <= __XE_SAMPLE_ANY_ENGINE_GROUP_BUSY; i++)
+>>>>>+		pmu->sample[gt_id][i] = __engine_group_busyness_read(gt, i);
+>>>>>+
+>>>>>+	spin_unlock_irqrestore(&pmu->lock, flags);
+>>>>>+}
+>>>>>+
+>>>>>+static int
+>>>>>+config_status(struct xe_device *xe, u64 config)
+>>>>>+{
+>>>>>+	unsigned int gt_id = config_gt_id(config);
+>>>>>+	struct xe_gt *gt = xe_device_get_gt(xe, gt_id);
+>>>>>+
+>>>>>+	if (gt_id >= XE_PMU_MAX_GT)
+>>>>>+		return -ENOENT;
+>>>>>+
+>>>>>+	switch (config_counter(config)) {
+>>>>>+	case XE_PMU_RENDER_GROUP_BUSY(0):
+>>>>>+	case XE_PMU_COPY_GROUP_BUSY(0):
+>>>>>+	case XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
+>>>>>+		if (gt->info.type == XE_GT_TYPE_MEDIA)
+>>>>>+			return -ENOENT;
+>>>>>+		break;
+>>>>>+	case XE_PMU_MEDIA_GROUP_BUSY(0):
+>>>>>+		if (!(gt->info.engine_mask & (BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VECS0))))
+>>>>>+			return -ENOENT;
+>>>>>+		break;
+>>>>>+	default:
+>>>>>+		return -ENOENT;
+>>>>>+	}
+>>>>>+
+>>>>>+	return 0;
+>>>>>+}
+>>>>>+
+>>>>>+static int xe_pmu_event_init(struct perf_event *event)
+>>>>>+{
+>>>>>+	struct xe_device *xe =
+>>>>>+		container_of(event->pmu, typeof(*xe), pmu.base);
+>>>>>+	struct xe_pmu *pmu = &xe->pmu;
+>>>>>+	int ret;
+>>>>>+
+>>>>>+	if (pmu->closed)
+>>>>>+		return -ENODEV;
+>>>>>+
+>>>>>+	if (event->attr.type != event->pmu->type)
+>>>>>+		return -ENOENT;
+>>>>>+
+>>>>>+	/* unsupported modes and filters */
+>>>>>+	if (event->attr.sample_period) /* no sampling */
+>>>>>+		return -EINVAL;
+>>>>>+
+>>>>>+	if (has_branch_stack(event))
+>>>>>+		return -EOPNOTSUPP;
+>>>>>+
+>>>>>+	if (event->cpu < 0)
+>>>>>+		return -EINVAL;
+>>>>>+
+>>>>>+	/* only allow running on one cpu at a time */
+>>>>>+	if (!cpumask_test_cpu(event->cpu, &xe_pmu_cpumask))
+>>>>>+		return -EINVAL;
+>>>>>+
+>>>>>+	ret = config_status(xe, event->attr.config);
+>>>>>+	if (ret)
+>>>>>+		return ret;
+>>>>>+
+>>>>>+	if (!event->parent) {
+>>>>>+		drm_dev_get(&xe->drm);
+>>>>>+		event->destroy = xe_pmu_event_destroy;
+>>>>>+	}
+>>>>>+
+>>>>>+	return 0;
+>>>>>+}
+>>>>>+
+>>>>>+static u64 __xe_pmu_event_read(struct perf_event *event)
+>>>>>+{
+>>>>>+	struct xe_device *xe =
+>>>>>+		container_of(event->pmu, typeof(*xe), pmu.base);
+>>>>>+	const unsigned int gt_id = config_gt_id(event->attr.config);
+>>>>>+	const u64 config = event->attr.config;
+>>>>>+	struct xe_gt *gt = xe_device_get_gt(xe, gt_id);
+>>>>>+	u64 val;
+>>>>>+
+>>>>>+	switch (config_counter(config)) {
+>>>>>+	case XE_PMU_RENDER_GROUP_BUSY(0):
+>>>>>+	case XE_PMU_COPY_GROUP_BUSY(0):
+>>>>>+	case XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
+>>>>>+	case XE_PMU_MEDIA_GROUP_BUSY(0):
+>>>>>+		val = engine_group_busyness_read(gt, config);
+>>>>>+		break;
+>>>>>+	default:
+>>>>>+		drm_warn(&gt->tile->xe->drm, "unknown pmu event\n");
+>>>>>+	}
+>>>>>+
+>>>>>+	return val;
+>>>>>+}
+>>>>>+
+>>>>>+static void xe_pmu_event_read(struct perf_event *event)
+>>>>>+{
+>>>>>+	struct xe_device *xe =
+>>>>>+		container_of(event->pmu, typeof(*xe), pmu.base);
+>>>>>+	struct hw_perf_event *hwc = &event->hw;
+>>>>>+	struct xe_pmu *pmu = &xe->pmu;
+>>>>>+	u64 prev, new;
+>>>>>+
+>>>>>+	if (pmu->closed) {
+>>>>>+		event->hw.state = PERF_HES_STOPPED;
+>>>>>+		return;
+>>>>>+	}
+>>>>>+again:
+>>>>>+	prev = local64_read(&hwc->prev_count);
+>>>>>+	new = __xe_pmu_event_read(event);
+>>>>>+
+>>>>>+	if (local64_cmpxchg(&hwc->prev_count, prev, new) != prev)
+>>>>>+		goto again;
+>>>>>+
+>>>>>+	local64_add(new - prev, &event->count);
+>>>>>+}
+>>>>>+
+>>>>>+static void xe_pmu_enable(struct perf_event *event)
+>>>>>+{
+>>>>>+	/*
+>>>>>+	 * Store the current counter value so we can report the correct delta
+>>>>>+	 * for all listeners. Even when the event was already enabled and has
+>>>>>+	 * an existing non-zero value.
+>>>>>+	 */
+>>>>>+	local64_set(&event->hw.prev_count, __xe_pmu_event_read(event));
+>>>>>+}
+>>>>>+
+>>>>>+static void xe_pmu_event_start(struct perf_event *event, int flags)
+>>>>>+{
+>>>>>+	struct xe_device *xe =
+>>>>>+		container_of(event->pmu, typeof(*xe), pmu.base);
+>>>>>+	struct xe_pmu *pmu = &xe->pmu;
+>>>>>+
+>>>>>+	if (pmu->closed)
+>>>>>+		return;
+>>>>>+
+>>>>>+	xe_pmu_enable(event);
+>>>>>+	event->hw.state = 0;
+>>>>>+}
+>>>>>+
+>>>>>+static void xe_pmu_event_stop(struct perf_event *event, int flags)
+>>>>>+{
+>>>>>+	if (flags & PERF_EF_UPDATE)
+>>>>>+		xe_pmu_event_read(event);
+>>>>>+
+>>>>>+	event->hw.state = PERF_HES_STOPPED;
+>>>>>+}
+>>>>>+
+>>>>>+static int xe_pmu_event_add(struct perf_event *event, int flags)
+>>>>>+{
+>>>>>+	struct xe_device *xe =
+>>>>>+		container_of(event->pmu, typeof(*xe), pmu.base);
+>>>>>+	struct xe_pmu *pmu = &xe->pmu;
+>>>>>+
+>>>>>+	if (pmu->closed)
+>>>>>+		return -ENODEV;
+>>>>>+
+>>>>>+	if (flags & PERF_EF_START)
+>>>>>+		xe_pmu_event_start(event, flags);
+>>>>>+
+>>>>>+	return 0;
+>>>>>+}
+>>>>>+
+>>>>>+static void xe_pmu_event_del(struct perf_event *event, int flags)
+>>>>>+{
+>>>>>+	xe_pmu_event_stop(event, PERF_EF_UPDATE);
+>>>>>+}
+>>>>>+
+>>>>>+static int xe_pmu_event_event_idx(struct perf_event *event)
+>>>>>+{
+>>>>>+	return 0;
+>>>>>+}
+>>>>>+
+>>>>>+struct xe_ext_attribute {
+>>>>>+	struct device_attribute attr;
+>>>>>+	unsigned long val;
+>>>>>+};
+>>>>>+
+>>>>>+static ssize_t xe_pmu_event_show(struct device *dev,
+>>>>>+				 struct device_attribute *attr, char *buf)
+>>>>>+{
+>>>>>+	struct xe_ext_attribute *eattr;
+>>>>>+
+>>>>>+	eattr = container_of(attr, struct xe_ext_attribute, attr);
+>>>>>+	return sprintf(buf, "config=0x%lx\n", eattr->val);
+>>>>>+}
+>>>>>+
+>>>>>+static ssize_t cpumask_show(struct device *dev,
+>>>>>+			    struct device_attribute *attr, char *buf)
+>>>>>+{
+>>>>>+	return cpumap_print_to_pagebuf(true, buf, &xe_pmu_cpumask);
+>>>>>+}
+>>>>>+
+>>>>>+static DEVICE_ATTR_RO(cpumask);
+>>>>>+
+>>>>>+static struct attribute *xe_cpumask_attrs[] = {
+>>>>>+	&dev_attr_cpumask.attr,
+>>>>>+	NULL,
+>>>>>+};
+>>>>>+
+>>>>>+static const struct attribute_group xe_pmu_cpumask_attr_group = {
+>>>>>+	.attrs = xe_cpumask_attrs,
+>>>>>+};
+>>>>>+
+>>>>>+#define __event(__counter, __name, __unit) \
+>>>>>+{ \
+>>>>>+	.counter = (__counter), \
+>>>>>+	.name = (__name), \
+>>>>>+	.unit = (__unit), \
+>>>>>+}
+>>>>>+
+>>>>>+static struct xe_ext_attribute *
+>>>>>+add_xe_attr(struct xe_ext_attribute *attr, const char *name, u64 config)
+>>>>>+{
+>>>>>+	sysfs_attr_init(&attr->attr.attr);
+>>>>>+	attr->attr.attr.name = name;
+>>>>>+	attr->attr.attr.mode = 0444;
+>>>>>+	attr->attr.show = xe_pmu_event_show;
+>>>>>+	attr->val = config;
+>>>>>+
+>>>>>+	return ++attr;
+>>>>>+}
+>>>>>+
+>>>>>+static struct perf_pmu_events_attr *
+>>>>>+add_pmu_attr(struct perf_pmu_events_attr *attr, const char *name,
+>>>>>+	     const char *str)
+>>>>>+{
+>>>>>+	sysfs_attr_init(&attr->attr.attr);
+>>>>>+	attr->attr.attr.name = name;
+>>>>>+	attr->attr.attr.mode = 0444;
+>>>>>+	attr->attr.show = perf_event_sysfs_show;
+>>>>>+	attr->event_str = str;
+>>>>>+
+>>>>>+	return ++attr;
+>>>>>+}
+>>>>>+
+>>>>>+static struct attribute **
+>>>>>+create_event_attributes(struct xe_pmu *pmu)
+>>>>>+{
+>>>>>+	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
+>>>>>+	static const struct {
+>>>>>+		unsigned int counter;
+>>>>>+		const char *name;
+>>>>>+		const char *unit;
+>>>>>+	} events[] = {
+>>>>>+		__event(0, "render-group-busy", "ns"),
+>>>>>+		__event(1, "copy-group-busy", "ns"),
+>>>>>+		__event(2, "media-group-busy", "ns"),
+>>>>>+		__event(3, "any-engine-group-busy", "ns"),
+>>>>>+	};
+>>>>>+
+>>>>>+	struct perf_pmu_events_attr *pmu_attr = NULL, *pmu_iter;
+>>>>>+	struct xe_ext_attribute *xe_attr = NULL, *xe_iter;
+>>>>>+	struct attribute **attr = NULL, **attr_iter;
+>>>>>+	unsigned int count = 0;
+>>>>>+	unsigned int i, j;
+>>>>>+	struct xe_gt *gt;
+>>>>>+
+>>>>>+	/* Count how many counters we will be exposing. */
+>>>>>+	for_each_gt(gt, xe, j) {
+>>>>>+		for (i = 0; i < ARRAY_SIZE(events); i++) {
+>>>>>+			u64 config = ___XE_PMU_OTHER(j, events[i].counter);
+>>>>>+
+>>>>>+			if (!config_status(xe, config))
+>>>>>+				count++;
+>>>>>+		}
+>>>>>+	}
+>>>>>+
+>>>>>+	/* Allocate attribute objects and table. */
+>>>>>+	xe_attr = kcalloc(count, sizeof(*xe_attr), GFP_KERNEL);
+>>>>>+	if (!xe_attr)
+>>>>>+		goto err_alloc;
+>>>>>+
+>>>>>+	pmu_attr = kcalloc(count, sizeof(*pmu_attr), GFP_KERNEL);
+>>>>>+	if (!pmu_attr)
+>>>>>+		goto err_alloc;
+>>>>>+
+>>>>>+	/* Max one pointer of each attribute type plus a termination entry. */
+>>>>>+	attr = kcalloc(count * 2 + 1, sizeof(*attr), GFP_KERNEL);
+>>>>>+	if (!attr)
+>>>>>+		goto err_alloc;
+>>>>>+
+>>>>>+	xe_iter = xe_attr;
+>>>>>+	pmu_iter = pmu_attr;
+>>>>>+	attr_iter = attr;
+>>>>>+
+>>>>>+	for_each_gt(gt, xe, j) {
+>>>>>+		for (i = 0; i < ARRAY_SIZE(events); i++) {
+>>>>>+			u64 config = ___XE_PMU_OTHER(j, events[i].counter);
+>>>>>+			char *str;
+>>>>>+
+>>>>>+			if (config_status(xe, config))
+>>>>>+				continue;
+>>>>>+
+>>>>>+			str = kasprintf(GFP_KERNEL, "%s-gt%u",
+>>>>>+					events[i].name, j);
+>>>>>+			if (!str)
+>>>>>+				goto err;
+>>>>>+
+>>>>>+			*attr_iter++ = &xe_iter->attr.attr;
+>>>>>+			xe_iter = add_xe_attr(xe_iter, str, config);
+>>>>>+
+>>>>>+			if (events[i].unit) {
+>>>>>+				str = kasprintf(GFP_KERNEL, "%s-gt%u.unit",
+>>>>>+						events[i].name, j);
+>>>>>+				if (!str)
+>>>>>+					goto err;
+>>>>>+
+>>>>>+				*attr_iter++ = &pmu_iter->attr.attr;
+>>>>>+				pmu_iter = add_pmu_attr(pmu_iter, str,
+>>>>>+							events[i].unit);
+>>>>>+			}
+>>>>>+		}
+>>>>>+	}
+>>>>>+
+>>>>>+	pmu->xe_attr = xe_attr;
+>>>>>+	pmu->pmu_attr = pmu_attr;
+>>>>>+
+>>>>>+	return attr;
+>>>>>+
+>>>>>+err:
+>>>>>+	for (attr_iter = attr; *attr_iter; attr_iter++)
+>>>>>+		kfree((*attr_iter)->name);
+>>>>>+
+>>>>>+err_alloc:
+>>>>>+	kfree(attr);
+>>>>>+	kfree(xe_attr);
+>>>>>+	kfree(pmu_attr);
+>>>>>+
+>>>>>+	return NULL;
+>>>>>+}
+>>>>>+
+>>>>>+static void free_event_attributes(struct xe_pmu *pmu)
+>>>>>+{
+>>>>>+	struct attribute **attr_iter = pmu->events_attr_group.attrs;
+>>>>>+
+>>>>>+	for (; *attr_iter; attr_iter++)
+>>>>>+		kfree((*attr_iter)->name);
+>>>>>+
+>>>>>+	kfree(pmu->events_attr_group.attrs);
+>>>>>+	kfree(pmu->xe_attr);
+>>>>>+	kfree(pmu->pmu_attr);
+>>>>>+
+>>>>>+	pmu->events_attr_group.attrs = NULL;
+>>>>>+	pmu->xe_attr = NULL;
+>>>>>+	pmu->pmu_attr = NULL;
+>>>>>+}
+>>>>>+
+>>>>>+static int xe_pmu_cpu_online(unsigned int cpu, struct hlist_node *node)
+>>>>>+{
+>>>>>+	struct xe_pmu *pmu = hlist_entry_safe(node, typeof(*pmu), cpuhp.node);
+>>>>>+
+>>>>>+	/* Select the first online CPU as a designated reader. */
+>>>>>+	if (cpumask_empty(&xe_pmu_cpumask))
+>>>>>+		cpumask_set_cpu(cpu, &xe_pmu_cpumask);
+>>>>>+
+>>>>>+	return 0;
+>>>>>+}
+>>>>>+
+>>>>>+static int xe_pmu_cpu_offline(unsigned int cpu, struct hlist_node *node)
+>>>>>+{
+>>>>>+	struct xe_pmu *pmu = hlist_entry_safe(node, typeof(*pmu), cpuhp.node);
+>>>>>+	unsigned int target = xe_pmu_target_cpu;
+>>>>>+
+>>>>>+	/*
+>>>>>+	 * Unregistering an instance generates a CPU offline event which we must
+>>>>>+	 * ignore to avoid incorrectly modifying the shared xe_pmu_cpumask.
+>>>>>+	 */
+>>>>>+	if (pmu->closed)
+>>>>>+		return 0;
+>>>>>+
+>>>>>+	if (cpumask_test_and_clear_cpu(cpu, &xe_pmu_cpumask)) {
+>>>>>+		target = cpumask_any_but(topology_sibling_cpumask(cpu), cpu);
+>>>>>+
+>>>>>+		/* Migrate events if there is a valid target */
+>>>>>+		if (target < nr_cpu_ids) {
+>>>>>+			cpumask_set_cpu(target, &xe_pmu_cpumask);
+>>>>>+			xe_pmu_target_cpu = target;
+>>>>>+		}
+>>>>>+	}
+>>>>>+
+>>>>>+	if (target < nr_cpu_ids && target != pmu->cpuhp.cpu) {
+>>>>>+		perf_pmu_migrate_context(&pmu->base, cpu, target);
+>>>>>+		pmu->cpuhp.cpu = target;
+>>>>>+	}
+>>>>>+
+>>>>>+	return 0;
+>>>>>+}
+>>>>>+
+>>>>>+static enum cpuhp_state cpuhp_slot = CPUHP_INVALID;
+>>>>>+
+>>>>>+int xe_pmu_init(void)
+>>>>>+{
+>>>>>+	int ret;
+>>>>>+
+>>>>>+	ret = cpuhp_setup_state_multi(CPUHP_AP_ONLINE_DYN,
+>>>>>+				      "perf/x86/intel/xe:online",
+>>>>>+				      xe_pmu_cpu_online,
+>>>>>+				      xe_pmu_cpu_offline);
+>>>>>+	if (ret < 0)
+>>>>>+		pr_notice("Failed to setup cpuhp state for xe PMU! (%d)\n",
+>>>>>+			  ret);
+>>>>>+	else
+>>>>>+		cpuhp_slot = ret;
+>>>>>+
+>>>>>+	return 0;
+>>>>>+}
+>>>>>+
+>>>>>+void xe_pmu_exit(void)
+>>>>>+{
+>>>>>+	if (cpuhp_slot != CPUHP_INVALID)
+>>>>>+		cpuhp_remove_multi_state(cpuhp_slot);
+>>>>>+}
+>>>>>+
+>>>>>+static int xe_pmu_register_cpuhp_state(struct xe_pmu *pmu)
+>>>>>+{
+>>>>>+	if (cpuhp_slot == CPUHP_INVALID)
+>>>>>+		return -EINVAL;
+>>>>>+
+>>>>>+	return cpuhp_state_add_instance(cpuhp_slot, &pmu->cpuhp.node);
+>>>>>+}
+>>>>>+
+>>>>>+static void xe_pmu_unregister_cpuhp_state(struct xe_pmu *pmu)
+>>>>>+{
+>>>>>+	cpuhp_state_remove_instance(cpuhp_slot, &pmu->cpuhp.node);
+>>>>>+}
+>>>>>+
+>>>>>+void xe_pmu_suspend(struct xe_gt *gt)
+>>>>>+{
+>>>>>+	engine_group_busyness_store(gt);
+>>>>>+}
+>>>>>+
+>>>>>+static void xe_pmu_unregister(void *arg)
+>>>>>+{
+>>>>>+	struct xe_pmu *pmu = arg;
+>>>>>+
+>>>>>+	if (!pmu->base.event_init)
+>>>>>+		return;
+>>>>>+
+>>>>>+	/*
+>>>>>+	 * "Disconnect" the PMU callbacks - since all are atomic synchronize_rcu
+>>>>>+	 * ensures all currently executing ones will have exited before we
+>>>>>+	 * proceed with unregistration.
+>>>>>+	 */
+>>>>>+	pmu->closed = true;
+>>>>>+	synchronize_rcu();
+>>>>>+
+>>>>>+	xe_pmu_unregister_cpuhp_state(pmu);
+>>>>>+
+>>>>>+	perf_pmu_unregister(&pmu->base);
+>>>>>+	pmu->base.event_init = NULL;
+>>>>>+	kfree(pmu->base.attr_groups);
+>>>>>+	kfree(pmu->name);
+>>>>>+	free_event_attributes(pmu);
+>>>>>+}
+>>>>>+
+>>>>>+void xe_pmu_register(struct xe_pmu *pmu)
+>>>>>+{
+>>>>>+	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
+>>>>>+	const struct attribute_group *attr_groups[] = {
+>>>>>+		&pmu->events_attr_group,
+>>>>>+		&xe_pmu_cpumask_attr_group,
+>>>>>+		NULL
+>>>>>+	};
+>>>>>+
+>>>>>+	int ret = -ENOMEM;
+>>>>>+
+>>>>>+	spin_lock_init(&pmu->lock);
+>>>>>+	pmu->cpuhp.cpu = -1;
+>>>>>+
+>>>>>+	pmu->name = kasprintf(GFP_KERNEL,
+>>>>>+			      "xe_%s",
+>>>>>+			      dev_name(xe->drm.dev));
+>>>>>+	if (pmu->name)
+>>>>>+		/* tools/perf reserves colons as special. */
+>>>>>+		strreplace((char *)pmu->name, ':', '_');
+>>>>>+
+>>>>>+	if (!pmu->name)
+>>>>>+		goto err;
+>>>>>+
+>>>>>+	pmu->events_attr_group.name = "events";
+>>>>>+	pmu->events_attr_group.attrs = create_event_attributes(pmu);
+>>>>>+	if (!pmu->events_attr_group.attrs)
+>>>>>+		goto err_name;
+>>>>>+
+>>>>>+	pmu->base.attr_groups = kmemdup(attr_groups, sizeof(attr_groups),
+>>>>>+					GFP_KERNEL);
+>>>>>+	if (!pmu->base.attr_groups)
+>>>>>+		goto err_attr;
+>>>>>+
+>>>>>+	pmu->base.module	= THIS_MODULE;
+>>>>>+	pmu->base.task_ctx_nr	= perf_invalid_context;
+>>>>>+	pmu->base.event_init	= xe_pmu_event_init;
+>>>>>+	pmu->base.add		= xe_pmu_event_add;
+>>>>>+	pmu->base.del		= xe_pmu_event_del;
+>>>>>+	pmu->base.start		= xe_pmu_event_start;
+>>>>>+	pmu->base.stop		= xe_pmu_event_stop;
+>>>>>+	pmu->base.read		= xe_pmu_event_read;
+>>>>>+	pmu->base.event_idx	= xe_pmu_event_event_idx;
+>>>>>+
+>>>>>+	ret = perf_pmu_register(&pmu->base, pmu->name, -1);
+>>>>>+	if (ret)
+>>>>>+		goto err_groups;
+>>>>>+
+>>>>>+	ret = xe_pmu_register_cpuhp_state(pmu);
+>>>>>+	if (ret)
+>>>>>+		goto err_unreg;
+>>>>>+
+>>>>>+	ret = devm_add_action_or_reset(xe->drm.dev, xe_pmu_unregister, pmu);
+>>>>>+	if (ret)
+>>>>>+		goto err_cpuhp;
+>>>>>+
+>>>>>+	return;
+>>>>>+
+>>>>>+err_cpuhp:
+>>>>>+	xe_pmu_unregister_cpuhp_state(pmu);
+>>>>>+err_unreg:
+>>>>>+	perf_pmu_unregister(&pmu->base);
+>>>>>+err_groups:
+>>>>>+	kfree(pmu->base.attr_groups);
+>>>>>+err_attr:
+>>>>>+	pmu->base.event_init = NULL;
+>>>>>+	free_event_attributes(pmu);
+>>>>>+err_name:
+>>>>>+	kfree(pmu->name);
+>>>>>+err:
+>>>>>+	drm_notice(&xe->drm, "Failed to register PMU!\n");
+>>>>>+}
+>>>>>diff --git a/drivers/gpu/drm/xe/xe_pmu.h b/drivers/gpu/drm/xe/xe_pmu.h
+>>>>>new file mode 100644
+>>>>>index 000000000000..8afa256f9dac
+>>>>>--- /dev/null
+>>>>>+++ b/drivers/gpu/drm/xe/xe_pmu.h
+>>>>>@@ -0,0 +1,26 @@
+>>>>>+/* SPDX-License-Identifier: MIT */
+>>>>>+/*
+>>>>>+ * Copyright © 2024 Intel Corporation
+>>>>>+ */
+>>>>>+
+>>>>>+#ifndef _XE_PMU_H_
+>>>>>+#define _XE_PMU_H_
+>>>>>+
+>>>>>+#include "xe_pmu_types.h"
+>>>>>+
+>>>>>+struct xe_gt;
+>>>>>+
+>>>>>+#if IS_ENABLED(CONFIG_PERF_EVENTS)
+>>>>>+int xe_pmu_init(void);
+>>>>>+void xe_pmu_exit(void);
+>>>>>+void xe_pmu_register(struct xe_pmu *pmu);
+>>>>>+void xe_pmu_suspend(struct xe_gt *gt);
+>>>>>+#else
+>>>>>+static inline int xe_pmu_init(void) { return 0; }
+>>>>>+static inline void xe_pmu_exit(void) {}
+>>>>>+static inline void xe_pmu_register(struct xe_pmu *pmu) {}
+>>>>>+static inline void xe_pmu_suspend(struct xe_gt *gt) {}
+>>>>>+#endif
+>>>>>+
+>>>>>+#endif
+>>>>>+
+>>>>>diff --git a/drivers/gpu/drm/xe/xe_pmu_types.h b/drivers/gpu/drm/xe/xe_pmu_types.h
+>>>>>new file mode 100644
+>>>>>index 000000000000..e86e8d7e0356
+>>>>>--- /dev/null
+>>>>>+++ b/drivers/gpu/drm/xe/xe_pmu_types.h
+>>>>>@@ -0,0 +1,67 @@
+>>>>>+/* SPDX-License-Identifier: MIT */
+>>>>>+/*
+>>>>>+ * Copyright © 2024 Intel Corporation
+>>>>>+ */
+>>>>>+
+>>>>>+#ifndef _XE_PMU_TYPES_H_
+>>>>>+#define _XE_PMU_TYPES_H_
+>>>>>+
+>>>>>+#include <linux/perf_event.h>
+>>>>>+#include <linux/spinlock_types.h>
+>>>>>+#include <uapi/drm/xe_drm.h>
+>>>>>+
+>>>>>+enum {
+>>>>>+	__XE_SAMPLE_RENDER_GROUP_BUSY,
+>>>>>+	__XE_SAMPLE_COPY_GROUP_BUSY,
+>>>>>+	__XE_SAMPLE_MEDIA_GROUP_BUSY,
+>>>>>+	__XE_SAMPLE_ANY_ENGINE_GROUP_BUSY,
+>>>>>+	__XE_NUM_PMU_SAMPLERS
+>>>>>+};
+>>>>>+
+>>>>>+#define XE_PMU_MAX_GT 2
+>>>>>+
+>>>>>+struct xe_pmu {
+>>>>>+	/**
+>>>>>+	 * @cpuhp: Struct used for CPU hotplug handling.
+>>>>>+	 */
+>>>>>+	struct {
+>>>>>+		struct hlist_node node;
+>>>>>+		unsigned int cpu;
+>>>>>+	} cpuhp;
+>>>>>+	/**
+>>>>>+	 * @base: PMU base.
+>>>>>+	 */
+>>>>>+	struct pmu base;
+>>>>>+	/**
+>>>>>+	 * @closed: xe is unregistering.
+>>>>>+	 */
+>>>>>+	bool closed;
+>>>>>+	/**
+>>>>>+	 * @name: Name as registered with perf core.
+>>>>>+	 */
+>>>>>+	const char *name;
+>>>>>+	/**
+>>>>>+	 * @lock: Lock protecting enable mask and ref count handling.
+>>>>>+	 */
+>>>>>+	spinlock_t lock;
+>>>>>+	/**
+>>>>>+	 * @sample: Current and previous (raw) counters.
+>>>>>+	 *
+>>>>>+	 * These counters are updated when the device is awake.
+>>>>>+	 */
+>>>>>+	u64 sample[XE_PMU_MAX_GT][__XE_NUM_PMU_SAMPLERS];
+>>>>>+	/**
+>>>>>+	 * @events_attr_group: Device events attribute group.
+>>>>>+	 */
+>>>>>+	struct attribute_group events_attr_group;
+>>>>>+	/**
+>>>>>+	 * @xe_attr: Memory block holding device attributes.
+>>>>>+	 */
+>>>>>+	void *xe_attr;
+>>>>>+	/**
+>>>>>+	 * @pmu_attr: Memory block holding device attributes.
+>>>>>+	 */
+>>>>>+	void *pmu_attr;
+>>>>>+};
+>>>>>+
+>>>>>+#endif
+>>>>>diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+>>>>>index d7b0903c22b2..07ca545354f7 100644
+>>>>>--- a/include/uapi/drm/xe_drm.h
+>>>>>+++ b/include/uapi/drm/xe_drm.h
+>>>>>@@ -1370,6 +1370,45 @@ struct drm_xe_wait_user_fence {
+>>>>>	__u64 reserved[2];
+>>>>>};
+>>>>>
+>>>>>+/**
+>>>>>+ * DOC: XE PMU event config IDs
+>>>>>+ *
+>>>>>+ * Check 'man perf_event_open' to use the ID's XE_PMU_XXXX listed in xe_drm.h
+>>>>>+ * in 'struct perf_event_attr' as part of perf_event_open syscall to read a
+>>>>>+ * particular event.
+>>>>>+ *
+>>>>>+ * For example to open the XE_PMU_RENDER_GROUP_BUSY(0):
+>>>>>+ *
+>>>>>+ * .. code-block:: C
+>>>>>+ *
+>>>>>+ *	struct perf_event_attr attr;
+>>>>>+ *	long long count;
+>>>>>+ *	int cpu = 0;
+>>>>>+ *	int fd;
+>>>>>+ *
+>>>>>+ *	memset(&attr, 0, sizeof(struct perf_event_attr));
+>>>>>+ *	attr.type = type; // eg: /sys/bus/event_source/devices/xe_0000_56_00.0/type
+>>>>>+ *	attr.read_format = PERF_FORMAT_TOTAL_TIME_ENABLED;
+>>>>>+ *	attr.use_clockid = 1;
+>>>>>+ *	attr.clockid = CLOCK_MONOTONIC;
+>>>>>+ *	attr.config = XE_PMU_RENDER_GROUP_BUSY(0);
+>>>>>+ *
+>>>>>+ *	fd = syscall(__NR_perf_event_open, &attr, -1, cpu, -1, 0);
+>>>>>+ */
+>>>>>+
+>>>>>+/*
+>>>>>+ * Top bits of every counter are GT id.
+>>>>>+ */
+>>>>>+#define __XE_PMU_GT_SHIFT (56)
+>>>>>+
+>>>>>+#define ___XE_PMU_OTHER(gt, x) \
+>>>>>+	(((__u64)(x)) | ((__u64)(gt) << __XE_PMU_GT_SHIFT))
+>>>>>+
+>>>>>+#define XE_PMU_RENDER_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 0)
+>>>>>+#define XE_PMU_COPY_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 1)
+>>>>>+#define XE_PMU_MEDIA_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 2)
+>>>>>+#define XE_PMU_ANY_ENGINE_GROUP_BUSY(gt)	___XE_PMU_OTHER(gt, 3)
+>>>>
+>>>>+ Lucas for inputs
+>>>>
+>>>>We should align this to the interface planned for other PMU 
+>>>>busyness counters as well as how we do PCEU. i.e.
+>>>>
+>>>>1) counters are in ticks
+>>>>2) total time in ticks is also exported to the user.
+>>>>
+>>>>For 1), I would just append TICKS to the counter names and drop the
+>>>
+>>>this uses perf and as such I believe we should use the terms used by
+>>>perf.
+>>>
+>>>$ sudo perf stat sleep 1
+>>>
+>>>Performance counter stats for 'sleep 1':
+>>>
+>>>            0.91 msec task-clock                       #    0.001 CPUs utilized
+>>>               1      context-switches                 #    1.096 K/sec
+>>>               0      cpu-migrations                   #    0.000 /sec
+>>>              72      page-faults                      #   78.924 K/sec
+>>>------>  2,033,156      cycles                           #    2.229 GHz
+>>>       1,560,992      instructions                     #    0.77  insn per cycle
+>>>         290,814      branches                         #  318.779 M/sec
+>>>          10,449      branch-misses                    #    3.59% of all branches
+>>>
+>>>     1.001580466 seconds time elapsed
+>>>
+>>>     0.000000000 seconds user
+>>>     0.001545000 seconds sys
+>>>
+>>>so... s/ticks/cycles/
+>>>
+>>>I think I said that before, but what's up with all these "group" in the
+>>>names? It's confusing since apparently group and engine class are mixed.
+>>
+>>These are counters defined in the HW and indicate busyness of a 
+>>group of engines (spanning multiple classes) rather than a single 
+>>engine.
+>
+>these would really need to be documented. What we are really exposing
+>are:
+>
+>	#define XE_OAG_RC0_ANY_ENGINE_BUSY_FREE                XE_REG(0xdb80)
+>	#define XE_OAG_ANY_MEDIA_FF_BUSY_FREE          XE_REG(0xdba0)
+>	#define XE_OAG_BLT_BUSY_FREE                   XE_REG(0xdbbc)
+>	#define XE_OAG_RENDER_BUSY_FREE                        XE_REG(0xdbdc)
+>
+>Bspec 46729 for OAG_RENDER_BUSY_FREE:
+>This register counts the time that any render engine is busy.
+>
+>Bspec 46560 for OAG_BLT_BUSY_FREE:
+>This register counts the time thatBLT engine is busy
+>
+>These first 2 match their respective classes
+>
+>Bspec 46559 for OAG_ANY_MEDIA_FF_BUSY_FREE:
+>This register counts the time that any media fixed function is busy.
+>
+>Bspec 46722 for OAG_RC0_ANY_ENGINE_BUSY_FREE:
+>This register counts the time that any engine is truly busy (not simply
+>powered up).
+>
+>And these other 2 span to different classes, already shown by the use of
+>"any". I don't understand how "group" is helping. It's not how the spec
+>documents it. I'd expect "Group" to allow to group arbitrary engines
+>with e.g. a mask.
 
-please explain this threashold difference in the commit message as well.
+I have no real preference here. If group is misleading, we should drop 
+that. AFAIR, the feature itself was referred to as group engine busyness 
+and may have carried over that nomenclature to the API.
 
->  	/*
->  	 * Wa_22019338487: GMD_ID is a RO register, a dummy write forces gunit
->  	 * to wait for completion of prior GTT writes before letting this through.
-> @@ -81,8 +84,8 @@ static void ggtt_update_access_counter(struct xe_ggtt *ggtt)
->  	 */
->  	lockdep_assert_held(&ggtt->lock);
->  
-> -	if ((++ggtt->access_count % 63) == 0) {
-> -		xe_mmio_write32(ggtt->tile->media_gt, GMD_ID, 0x0);
-> +	if ((++ggtt->access_count % max_gtt_writes) == 0) {
-> +		xe_mmio_write32(gt, GMD_ID, 0x0);
->  		ggtt->access_count = 0;
->  	}
->  }
-> @@ -218,7 +221,9 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
->  		ggtt->size = GUC_GGTT_TOP;
->  
->  	if (GRAPHICS_VERx100(xe) >= 1270)
-> -		ggtt->pt_ops = ggtt->tile->media_gt && XE_WA(ggtt->tile->media_gt, 22019338487) ?
-> +		ggtt->pt_ops = (ggtt->tile->media_gt &&
-> +			       XE_WA(ggtt->tile->media_gt, 22019338487)) ||
-> +			       XE_WA(ggtt->tile->primary_gt, 22019338487) ?
-
-it looks that all the decisions of one case or the other is convoluted
-but I really don't have a better suggestion, so let's just move on...
-
-with the commit message fixed:
-
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-
->  			       &xelpg_pt_wa_ops : &xelpg_pt_ops;
->  	else
->  		ggtt->pt_ops = &xelp_pt_ops;
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-> index d88f5e960fbd..16c4b3fadd45 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-> @@ -45,6 +45,7 @@
->  #define GT_FREQUENCY_SCALER	3
->  
->  #define LNL_MERT_FREQ_CAP	800
-> +#define BMG_MERT_FREQ_CAP	2133
->  
->  /**
->   * DOC: GuC Power Conservation (PC)
-> @@ -703,10 +704,14 @@ static u32 pc_max_freq_cap(struct xe_guc_pc *pc)
->  {
->  	struct xe_gt *gt = pc_to_gt(pc);
->  
-> -	if (XE_WA(gt, 22019338487))
-> -		return min(LNL_MERT_FREQ_CAP, pc->rp0_freq);
-> -	else
-> +	if (XE_WA(gt, 22019338487)) {
-> +		if (xe_gt_is_media_type(gt))
-> +			return min(LNL_MERT_FREQ_CAP, pc->rp0_freq);
-> +		else
-> +			return min(BMG_MERT_FREQ_CAP, pc->rp0_freq);
-> +	} else {
->  		return pc->rp0_freq;
-> +	}
->  }
->  
->  /**
-> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-> index a6b897030fde..26066beb4f6f 100644
-> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-> @@ -28,3 +28,4 @@
->  		GRAPHICS_VERSION(2004)
->  13011645652	GRAPHICS_VERSION(2004)
->  22019338487	MEDIA_VERSION(2000)
-> +		GRAPHICS_VERSION(2001)
-> -- 
-> 2.38.1
-> 
+Regards,
+Umesh
+>
+>Lucas De Marchi
+>
+>>The free running counters are directly read from HW.
+>>
+>>Single engine busyness is a different API and wip.
+>>
+>>Regards,
+>>Umesh
+>>>
+>>>We are also missing proper kernel-doc in xe_pmu.c
+>>>
+>>>Lucas De Marchi
+>>>
+>>>>conversion to _ns in __engine_group_busyness_read(). Also, drop 
+>>>>the patch that adds this conversion helper.
+>>>>
+>>>>For 2) define a new counter - total active ticks that would 
+>>>>return the 'CPU' timestamp converted to gpu ticks. The reason I 
+>>>>am insisting on CPU timestamp here is because we want to have a 
+>>>>time base that is ticking even when the GPU is idle.
+>>>>
+>>>>Regards,
+>>>>Umesh
+>>>>
+>>>>>+
+>>>>>#if defined(__cplusplus)
+>>>>>}
+>>>>>#endif
+>>>>>-- 
+>>>>>2.40.0
+>>>>>
