@@ -4,166 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDD94C3064D
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Jun 2024 15:56:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAE9AC3064D
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Jun 2024 16:05:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91F9710EC7E;
-	Fri, 28 Jun 2024 15:56:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C4C210EC92;
+	Fri, 28 Jun 2024 16:05:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j1TLXUwS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bGdKxEvH";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C9E610EC80
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Jun 2024 15:56:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 470EE10EC91
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Jun 2024 16:05:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719590192; x=1751126192;
+ t=1719590727; x=1751126727;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=FSoE8ZvNRjOd85pVopr+beheFppmoonmqt0h7OhSZ8s=;
- b=j1TLXUwS3Vz+SMhBMrwAxSKtAgtJqoaaaYkeyu8qvWblihgBUPvlQmo2
- CnSc+I4p33ErngZqIp92Gx8o33/bviVq3+XDO51C7+U/zOtDqrTNOSSay
- 0W/kvEK5Yu8+7UtzUovrjkT70CgENbIgiXHsB3CxqsYkJbF3l1KW3efrH
- jW0qRS3zgN9dwpY5dT9Rh3TcZEhUDTSuPwN9LYiVy0TOEwfIg+GZcd5td
- u/zBxmQjGqBHo99EfN4t670AlMIQTYup82vuu8wV/uc/4khnVqCvZfd8W
- Hi4fiFsZ6SUADonEaTLUn2NRZ3F2U6DKxb8wlAupjPmX1Sgmm528I56eN Q==;
-X-CSE-ConnectionGUID: j7WbUafBRpSscDDO+iKTQw==
-X-CSE-MsgGUID: wY9WQoqlQ9y2WfNxLLOuKg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11117"; a="20595950"
-X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; d="scan'208";a="20595950"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2024 08:56:31 -0700
-X-CSE-ConnectionGUID: wjZacq16R3aJscIumC5QVg==
-X-CSE-MsgGUID: wmghgeB1Tra4nQERsLEnWw==
+ bh=w6wOcz4PC5dtkJV3cywvlK8B4twRBRj5hgK6HOSHBTE=;
+ b=bGdKxEvHZTTyx4Hs7VEKP+oepn2x6kNbGWKKvWsr02yKbrDpOwuEWExX
+ SpSMjIQsXosPOIjL6DA8QtEgngFQ4XIS4retz1AoK8pSoZCXrTyDk/Oi7
+ EPf76hDKNxG1Kolw7fqiLPhj/R04W3ASFjFJbi5eGHYquwsXuG+qGFoog
+ gtAVrCKtFaoIlSilHb3Bi+cIn+2UeM/n/ggW97trk+9V/BjJK8ypZcnle
+ 3EzPUVhFkIHJTPy2TIUuUjnJX9ol5Cs1I/tLi9zwkITHrccq2Pp/qZVfb
+ fD+WABjUZZYasED0LpOTRly38oMK1RuhzPMz+boKBhd04QnW+z22ha6cH Q==;
+X-CSE-ConnectionGUID: EIgLazbHQPSwGkVJUa5VFg==
+X-CSE-MsgGUID: NJnP4LcOQTi0jbJ9sR7Dkg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11117"; a="16602635"
+X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; d="scan'208";a="16602635"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2024 09:05:26 -0700
+X-CSE-ConnectionGUID: IBZVv/fnRke27nPPJOdwfA==
+X-CSE-MsgGUID: 1g4TmMogTkidV5uN6GwaDA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; d="scan'208";a="75500919"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 28 Jun 2024 08:56:31 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; d="scan'208";a="49740047"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 28 Jun 2024 09:05:26 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 28 Jun 2024 08:56:30 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2507.39; Fri, 28 Jun 2024 09:05:25 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 28 Jun 2024 08:56:30 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 28 Jun 2024 08:56:30 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.47) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Fri, 28 Jun 2024 09:05:25 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 28 Jun 2024 08:56:29 -0700
+ 15.1.2507.39; Fri, 28 Jun 2024 09:05:25 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MddNa0KVnFGjGBM6Kd6pRkVzTXUWHgTp+r5JpDcB3YXJWB2f3GtX++BN6gbBBboxEltFeW9gJSzAOYfn0uHZacYlHnu2kOqqENWLeDMNOSwGUdyuP5Sq9UaeTi5WMxy+K8eJ0e0iM3O0h4fddp/5Alj3Ld5cHEeWmvH9ArTGK2x+teCq4sGBJbA6cLZXH1yrz48Rj/JkEtbdZgZkBZTDaOrTbE7TVtP8NroIdeH5W8XrRnwFwTirKXzzmF++rfAoCf/Yy3Aabj1sXujb6x5B5NYrzzEjlc1Lyepj0xN81/ZGYy3N1akxtvanJrOuBRlyRNl/kC954lVEnmqeAu2yfA==
+ b=U1lkKvj4Pvv4DrX26JnVqkYQTDz0TZrD40lUcamG8PmeceXiwNKE1sTbMpatiR5Hbfj2KZuDuRRJfKdaTqbAWPLHjYtlUCuIvTeTZrCkzdY+WZ1c4mzn81XDb5RMxpC3lqBFM0tOgKHSQTT8G7xwrC3sX6yOxfonKhFieCVgAcKNN3lCEDWJNIUn62q7gIoqXoYLlKgt9xp0UBDblAXmVqzK063vn6Itd2UD3hqXmoOOjLjqS8V9YBGqkGch0x/9QMMnZK2tG45AqZQB0GfM+HugH/TtVuCV3En+3+C/iU2zmZK/wUXG8sBHR73X3Y/6uzkBM9/tcEotcBlnrBi1fw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bSc44642R5t74KvpABca1KWFEPVeFtYjTkXpWSPcc7U=;
- b=elCEc0tQ5AT3cuEuzTOwYTXQKNEpMawJmh2xnq1LGwpnKp3OJhVvitcl1g+pUB52IdVFyITkOfhctQiJSaEzxPXSz8avVAgeooLfQDXlC34tBeETczssdMLjfKp91TGpbg0aJ4HoxRHRSw9sjY4Hl7Npk0ZqsTJy6Fi0U34YGyT2p99hNdQBRMAvKvxrXdCO2dWmKVxCiPBshoYGq6zONN7azI2fuQrninu0IRVNxhjN917dIFG97/EXIlufWwzfjAGYSH4OVT9rHMwjHTh+6xQl7Vp9Ircmq4a5P5iGme7bwElkG9hgxLgOtD6rNn9BJ7ppVZVNhzJWh9GWDKPmBQ==
+ bh=rKi3atwyKF0n5ut1uaxIFkxjU5VblmQM1S0oTF8FZ6Q=;
+ b=fxtqDTzJaHfDqJdcv1qEPhpVWxOp0ZOnD3eD2akyghCRz78TKWqe5hNQwGRmWrpArJp+jjFpaJ69lVJyndTq4Isn9Eknbq2+6E1dAF6Jrs2mFqjPHAaHXWVY4YKPKroC4EsuKjYcefWJs9xFtf04xoondJ2mJKEUG4mPGbOlanJVqhDsC+eOxEVhPgi0lKyBQNeNrJD27H+VvQId22CS0TVgPNhOJeML/6PJvwY+yau96iDpirl/GrNukiJnjuq7GDreBxLA2Nk57lJlo7uOvGYoVM0s+QJTckPo4Nq2TEiXplbej6JsDz7NGtZXl+h+vj9uI10/AY+aqg57g+vbOA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by SJ2PR11MB7501.namprd11.prod.outlook.com (2603:10b6:a03:4d2::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.33; Fri, 28 Jun
- 2024 15:56:20 +0000
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::1a0f:84e3:d6cd:e51]) by BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::1a0f:84e3:d6cd:e51%4]) with mapi id 15.20.7698.025; Fri, 28 Jun 2024
- 15:56:20 +0000
-Date: Fri, 28 Jun 2024 15:55:33 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by CO1PR11MB4820.namprd11.prod.outlook.com (2603:10b6:303:6f::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.32; Fri, 28 Jun
+ 2024 16:05:23 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%7]) with mapi id 15.20.7698.025; Fri, 28 Jun 2024
+ 16:05:23 +0000
+Date: Fri, 28 Jun 2024 11:05:24 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Zhanjun Dong <zhanjun.dong@intel.com>
 CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v6 6/7] drm/xe: Update PT layer with better error handling
-Message-ID: <Zn7c9Ut3Ewn0KeKR@DUT025-TGLU.fm.intel.com>
-References: <20240626211546.4099339-1-matthew.brost@intel.com>
- <20240626211546.4099339-7-matthew.brost@intel.com>
- <5e1beaef-42f7-4eb3-abd0-e13f305dc45c@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+Subject: Re: [PATCH v11 1/5] drm/xe/guc: Prepare GuC register list and update
+ ADS size for error capture
+Message-ID: <i6u5mewr37v7ujevqsevvjcdq3g56jmn4zyquv6qym42i2anvq@ve57hgm3xovu>
+References: <20240624215404.3213075-1-zhanjun.dong@intel.com>
+ <20240624215404.3213075-2-zhanjun.dong@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <5e1beaef-42f7-4eb3-abd0-e13f305dc45c@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0376.namprd03.prod.outlook.com
- (2603:10b6:a03:3a1::21) To BL3PR11MB6508.namprd11.prod.outlook.com
- (2603:10b6:208:38f::5)
+In-Reply-To: <20240624215404.3213075-2-zhanjun.dong@intel.com>
+X-ClientProxiedBy: MW2PR16CA0015.namprd16.prod.outlook.com (2603:10b6:907::28)
+ To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|SJ2PR11MB7501:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5d22954c-7175-47b7-e51b-08dc978ada01
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CO1PR11MB4820:EE_
+X-MS-Office365-Filtering-Correlation-Id: 81f8dba2-beb5-42d6-d25f-08dc978c1de3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Gf/4Y7mmx7VZ8FkfuQMfFZFlnKre15Yff+AhHNKCSCdoig7gBNPweeJjdCHG?=
- =?us-ascii?Q?AXvP36AgYRFftM3XADf8k9G+skU7vA8obYXSQsOqL2wSgbCwcj1MA22urgrY?=
- =?us-ascii?Q?I8uT2fM2SmAdLhXRTyK/6NzqmQQENy5ZNFM6or7sQiL6AaZ0LdYWDtgaeN93?=
- =?us-ascii?Q?wIvf91gsTSLibtNM41mT1/YcN7lUd8ry2BJGitu3dPMl9nz1svawQSVRGG/A?=
- =?us-ascii?Q?H+T8RmaV6ht64SVjLR57WEHGT/VoPdy4PQmX8j9ClCoWcCgbZWzO+Jr9HHAL?=
- =?us-ascii?Q?uy652/I/LqHveLWUPMEZQwXcPr31NmpjFUjSyZbCgt2Jfzs3KTc/8634mCgT?=
- =?us-ascii?Q?dzQ+Lce63XAH2Ql2KE9axPpX0lNnNLLTk/v7yuelf44nJtprPiEoZtDrP6TM?=
- =?us-ascii?Q?WUBca+q5MQW7/2uK3y+sWQe3SogpypHHuU/U/vNNCixu088zqzyOnBsWWbn5?=
- =?us-ascii?Q?DjdA7EFkUcC7SjudUZE3k1Lg/JJH8bsLPuUCJ+7EFIop4KTw7qSy4OQjXJOf?=
- =?us-ascii?Q?knBfGVB5caPSTEu4BXfFJQ0CkpBSfT2MK8dqixi+4dUUWuZH6SyVypNcQ3dJ?=
- =?us-ascii?Q?W2Q2Fd1hvKnbw1yFN9QzF+vMJLy6WMESTjRFASMFT73oKPI+hZ2PsCJY0bTi?=
- =?us-ascii?Q?9uYbgYSMBb6BeSkFy0+zU4TzOMeCIfXy7q3SQhFX1EzKz8UcM97cV5cskvGT?=
- =?us-ascii?Q?Sgd7r5zrcdxmeqBlppWa92Cr+uPJZcnF7j+AbEmkK1gof4XIxfH9CJGQxT/K?=
- =?us-ascii?Q?ksMQgMsfK2bOTtcouR2lEgzLqzSZhgEl6pfj7WAVYw85gjuQctrQ89uBmt7O?=
- =?us-ascii?Q?d76tuAVdPZ++KV8dDQGmFu3il/ObGbKQSWIZSOKkVoLTy9gL+BDXoEbpv/qr?=
- =?us-ascii?Q?9tenRYjKloE3nNk4LgcQuO4W7E5DjYrKxGE6TACm3L3ZtR0xZ7JEORO8UQJj?=
- =?us-ascii?Q?bR8Mx+gKaDN5bVPUR6S92vVRp3zpByVnhOpfxaXCFqWRVB4f7pGPKNqALuP/?=
- =?us-ascii?Q?rrSXFrATideHmy/rU8sM/e4dqckdtIf3Gwan38lUQeTnWYA6VvDs1Q0xq8Tk?=
- =?us-ascii?Q?o/7+BqqVboje572EXbk6HsRRmzizhL3eAdNXq2uO8jqEMhOzAE1/ewB4Ldm3?=
- =?us-ascii?Q?W7AS2AOSZRGzDy3/hx9FW5rZr1PXEv5Y6leaKrG6Ubub7R1OZI18NrMkKaQF?=
- =?us-ascii?Q?OeVLjLLex2aEk5T7Ic78iO1vG3+jUTTxWtONnqq8GeenKWl/JQ2tUEuTuafp?=
- =?us-ascii?Q?2t5frmn86G6VmeWEZWrBUXbn2o86P5IWbGdESJcGc+hQRVyhojyht23D+upQ?=
- =?us-ascii?Q?jK1xeefM4c5ZS2mFV+fUVx2smV4rJcdP0RpB0RGMR6MiUA=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?FsEMcrkX0NOLUMaIO+YJ0kMh8pMMJD70uoKGhwbjwet6kXClkoXqq1xSpJ9m?=
+ =?us-ascii?Q?9hKKtLrOKl6fXZICZGnumFvRCQT8H03Zdqpulun1IZsGoCR+nQjf78ZGR4rX?=
+ =?us-ascii?Q?cOhA+Sn0YHdGbyAY9nM3lo7vjNvC2kHgZaQB/mzz7uKV9oSbIlFOLHUwwPex?=
+ =?us-ascii?Q?Z0H3iAomRPy9T3+R8qeypm7cGTEFuz5eElKbGtB1HMNra4bfz81qNIopvyWC?=
+ =?us-ascii?Q?OZ/WmXRNIpwp0VipoQig2Z6YhdPjMEhk0XIjoQ3OsO+Iyrr92w7migvdoBWH?=
+ =?us-ascii?Q?w9atTKsXBJ/bKsaoKOxPYLSpAUrZPidB6FRSn9NpKkm7r/G1/xeyF1Ur5DqX?=
+ =?us-ascii?Q?D3AtQaF8DEDXcaSUp86m4ABYrfXxWW/irL5YVuSVwEZ7aBruT7i9RDKNchfR?=
+ =?us-ascii?Q?DYLV7Y/HVp0YJBTlS8IAvf1kuo0bs4kqP+Sc3+s1Mm974ASMJ0NncmdVLzWR?=
+ =?us-ascii?Q?yk4BCvZ9/VEw4+s75JcU/jXnP0hQOe4Uc1jvqXexgP0YqJ42dFQemHxIJ5Z5?=
+ =?us-ascii?Q?2mWs80mC5OXYHI0/Zc8+9zwxTjUHloPTCtG3BYkBZIh9vUoBMgUGKCbDCVc/?=
+ =?us-ascii?Q?7O91j9hjngl4xxbCH6FuDbTRPr2kJoVX9zirZwvyzkaJfVeBu8NQvb75HQi+?=
+ =?us-ascii?Q?UAFdngrmdYTsCDS+n14sxWB1PDmdkn/tNvCG+X1ryV0KFVKcdU9nCxs+Cfwj?=
+ =?us-ascii?Q?15R5blO19roBTyHP/W2HBTNlzYYzyRwHVHys3etpaZiwMLDHyXRMRd/0599p?=
+ =?us-ascii?Q?ACSwclD5L0RdRoJfuuUSQLoXxfftgQshPpTso7evK+msRVMORIBgw6cp43Gh?=
+ =?us-ascii?Q?3Tz/sCDxdDj48n3X8f9q4DfA92PeQM60O+vzbKqzJ8v4Y3rfxWjdxfCqjVUV?=
+ =?us-ascii?Q?8aG9fZF3WYfhNlEZKw/fDrt56uIjdp8ikpf9r14PxDDHi3Y4imYQwfoQ17ej?=
+ =?us-ascii?Q?5qBQ/QQg3JgG1K0QdFZYmwGU9OYwgRq0VVk5Qw9DeqOH3iATnUJN7n8QHwyl?=
+ =?us-ascii?Q?YIdmeKu2NmPQEpb0GrqdYyD8UEEmysudARfhNaW0Zkszi/Xp4bG3WFmUBWPG?=
+ =?us-ascii?Q?OB9cjhWs1bkv0b9Npy9uJoMAuytq7JRhwSQC7MJ8E5Ff1yEiqTn+nSZ2u9Wp?=
+ =?us-ascii?Q?u1R9BlcRLTLijlNlrK8ZVswium2FN0uJTpJ3VE/WNA2fJynjE8cJDIvI/UHC?=
+ =?us-ascii?Q?ss7mW2PYVxeaQYAqf9NHd8+FBqm+uYGXkBlWBkB8K7g6AAWWF5EMvZFSy1h7?=
+ =?us-ascii?Q?STO6X3l3kzlCBXGEWysLxi/3rNvN5eWIfZJZS5H5rA+Apm7bkoo66I1EX5Yk?=
+ =?us-ascii?Q?QNQ/EZVuvylLgaqqOpYi6Ul9rAkTj/FSYjD9eJlNWP3x4A=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Mi6Id1DlChxV5cG7q8UxqQmI/3ZuZfLHsSO5vbDmwf27gD8ZeV7XBz63tSZI?=
- =?us-ascii?Q?15RLl+zbXJ43wH6/MT8ktLuOCI5yWTbYbgGcux9AonU/2b74CS2+TwZaxMFH?=
- =?us-ascii?Q?bU4Z+aQOpiM5h2X2nIkngxvrcf0Of8l3t3/euBTvYLfPEsetjNQ8Au0FBpR4?=
- =?us-ascii?Q?E/xPgOsphpOH0b3gyQJ1nduyDpphhMPYQ5MTXBA4NlsLdaYeZCjHFimvhYj3?=
- =?us-ascii?Q?KSAkmPa61O3TfQK2hiGQwTqL0TgyzNH1e/HWSHPs1DZxML7picEeyCD8C850?=
- =?us-ascii?Q?J9asbtTVICgrV3tgINvtVkdP1OTqeIlhSjHa93hAE1aoOjlLMt6nyPJ8HVSQ?=
- =?us-ascii?Q?5gUVf/d/0In9JoWqn+5IeKV17pHDSxFYQ/RwVMdgc5DsXNMEV70Pxgp/lTNT?=
- =?us-ascii?Q?M2iqXPmEv3EPv1Zg+KTz2WtP8qpXH+1oG86L9KPP4EyqBNiwrfr6Q0GYBJWr?=
- =?us-ascii?Q?DMoSbhZ59tV0SIUA6roql/uEOzPnmc0yxiaK80T8MuhotAGdZWa8cDuALqGT?=
- =?us-ascii?Q?sq+YnfquspOXu2iGMMaMDkHMVAwb7zYfAldrNAYV6aqFD2K+bGA5+sU15JhN?=
- =?us-ascii?Q?d2b9iuO7FScyob2JT0Rwxe+EzzdyxTmRrJB2Ka6yLGNTFRz53sjAJmcZ6a9r?=
- =?us-ascii?Q?DArlmfbB22EJ3Drk0/zLua9NW7/+Tih3tFgAyVBsWRVURXZUuIi+V1aopL7c?=
- =?us-ascii?Q?UdWnCp0uZk4iI6eC2u4NjAmpWXB7q9Lypy7aylzU0WRIuO0pKAjBRWtD5z3t?=
- =?us-ascii?Q?K55BhJLsLDiqjOjbQDkka/d4ACsNoZFZsji5NTYZylrLoLYWKVIj5CBJricS?=
- =?us-ascii?Q?9lLIju0nb2pOVPRxmIGXvHI+GmDwCRowE9/hNJR6MeyDxVyYYFHCGQHGKilZ?=
- =?us-ascii?Q?mPN9skAbazB1IaXg8wiFevntG4oevsa36IvBS3HPruvW2ZhsICLgXdw1xWOi?=
- =?us-ascii?Q?8Hk2AWarFr3kWvQZBauYb4zikvWiIeSNZ78ZSY6bS7C5jx+deZYwAZFm/Cr7?=
- =?us-ascii?Q?Mw+HgVYjjom/v8TWgtZ6a01zcGa8yETQs8q8oVP+DJOyi06MTqO8lVF511zr?=
- =?us-ascii?Q?A2DhFLqwh+xO22QgzSUPEHZtdfupfVx+kVwiu1gLcYvWnv1RgweCN/d9KVW3?=
- =?us-ascii?Q?E6GDs2iEPLgWyPWkQ5YGeQMUTOz2/wqbr3mlGjr5876WHJ+EybHF1NLY+L5H?=
- =?us-ascii?Q?gN+UervSzs1gV2S6VWJRgFfOHXXoIftxaHuf4N0/uPzr+cL63LDCG0IAQWTG?=
- =?us-ascii?Q?zzJuWBBOfgOTvM8aM6QPahT87+LLsKfuEHjzADxv2JW7UqqOO4N5FhQoyX5G?=
- =?us-ascii?Q?1m7ReGCvpX+7LduFte8oPA8JKj3dNztgqwYYhJC96Nu17sR4QgtTSLkqu0t4?=
- =?us-ascii?Q?s8ygzajE6SUQBaHO4Dnp+3u8PBBiQCdp9O+77ayQYxyeec4IuMSc7c+Nb6Uy?=
- =?us-ascii?Q?HbXWYaagQTswmKwhFYEErERdDDJtSWI76JCxX26rAHrnkQ2uEgdUHJ0wkDjN?=
- =?us-ascii?Q?EcXW78iM5tyvD18xXe2BWUaUfwyLE96AG1fCf6QTgF3Pj3ouszrCjOwg8BxI?=
- =?us-ascii?Q?/I9MjPJoCWLlozms0xMMs66KDvCm+TUZnL0LOtp+HjsnT7K2M/IvHksKeLxC?=
- =?us-ascii?Q?xA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5d22954c-7175-47b7-e51b-08dc978ada01
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?u40b5HVsAjvwshC6+8z5elNuPX0h4wkj3PSXQTilAU3YJyiHtWLKvsFFC6V/?=
+ =?us-ascii?Q?caZn1ZcClOK+/wFhVCsd4uUuazwefe9aKXrdpc7HFzEkQuIHs3P4kV2p8GhV?=
+ =?us-ascii?Q?BCDio+KeNE7CzGVtTIF6x1AxqJO2YIHljuSEq9kxbYAmRumehYhtHNUw8noQ?=
+ =?us-ascii?Q?iz+1K7hpLbXA8Ucbdve2s+uSOEMQrPZJiF7QimmFqjzmgC2Hp+7fL/iY5HxW?=
+ =?us-ascii?Q?loudvc0BYenSeN1XtVxaPBUYKQ6QUBk0Upd/GG0LTQ5yE1hATrrL2s82wUr/?=
+ =?us-ascii?Q?bVvu0yra4O1YJZgH89C8gwMDZ9w2+tYOKjbp/G++kosNhCyJtZLJT79jYsww?=
+ =?us-ascii?Q?52vO9VVynLZpbsydLKChS7rctPyU81Nrcv7BKyOQ4ALbJ0GIyefUOaYmlapA?=
+ =?us-ascii?Q?GkMn+YH9nBlSGi1FLlthOqoZbRb4Gja0Or3jaHvDp0aret9+Nv7T5g+W7gPq?=
+ =?us-ascii?Q?IplNaS5vzTIBvw3am434MVklP1Z4MGAn+ftGGLZkte1xOJboTgkOwp2Rzlc5?=
+ =?us-ascii?Q?WdNoI8bV1YmGGVROHW7Dha2+5L1vVQm2FMF+NBiRl6/a8l7CxXXhtKUfwLqr?=
+ =?us-ascii?Q?g5XVJXZDvqPwdivcOi9OuyxbKn3Jxuei1vZunqXQZGTmwAqH0pSQAI0tRqWo?=
+ =?us-ascii?Q?bwy48rSfJ0o9B6bwbOTnp1stJ4av4+MlWLQoGjtVy+S8Bsnkv/pWhI9As2tA?=
+ =?us-ascii?Q?CASfniNnsJ/C6yyzS+S1LSFI93Nh5i0IQ95JfoasDvQvmHyCVd/NHbA50TRL?=
+ =?us-ascii?Q?xNkxDsqDXGFBw6SgoFYma+kNWdALI5GBXirTcZBT6JmpgEnQ89eM1e+PzC3B?=
+ =?us-ascii?Q?8tSXg1YgjtNMA2/zJ2zT8nGmbsVLBcxwqA/du6X0M37uI7+rZwMIeUnet/qo?=
+ =?us-ascii?Q?l7cCXZ/gd9iI4nv2bZGovc0y++AxWoRMZykSYjZwUo1js+iY8Yi+vkGV/p68?=
+ =?us-ascii?Q?S5lgUCwTQRNZJ1rVOwTX4+/ZPC62HTSc6exe6la3HRuZO/faOdozhijitIEJ?=
+ =?us-ascii?Q?HMYOW8IU9NaiK5hd3tjo3C9ej7z/2gO0YY92E0fHJKfdD0+YVzGKhzcN3V8c?=
+ =?us-ascii?Q?PYDXpdRRl4SUhAWHcY5UnnphDUloR0eMpT77A6G5mYZqmTVWHre3flchHfny?=
+ =?us-ascii?Q?5Kt+9hd2wsFRINu+xJsaUwuxuEq7okdDmW079XulzOPTUEUQoORAfFMX5OSK?=
+ =?us-ascii?Q?lUe8ZS8GTDRBNRv7XAH+Vm6whhA/vkQyymHQ4bSQ6Qxj6n4iXemr9GGWBFXj?=
+ =?us-ascii?Q?oQ3lZZEAqSNvIijHl70JiEH15/ACjUeFqYpu9BsofLObNefGDoiw7Un6XgJS?=
+ =?us-ascii?Q?UJAOsw2+3SC86UW0m0eemqlGReow2SJ5jIXnEoIMvd0uTgz6xpKiI9TvqnXr?=
+ =?us-ascii?Q?mUY5hthpUUG/hCIz3jmQrIt3wwBB4XKRLffhcQMB42es9OLlA7sCgMLMAQXx?=
+ =?us-ascii?Q?gr/KfrHNkq/01F4xzF7tncqXEWTYTQ8twCV4OqLVuGJ6CAL5QQXCGvc395PC?=
+ =?us-ascii?Q?SClG2MkheJKQ8wdn+kTo+BML2szvBKp0tiRYrMmhvyBxcR0jpyF4LSPI1AvK?=
+ =?us-ascii?Q?U4ZF/SXURtQRFGUNMS8+jpbAR0RAqc2rVPpfkaNHNvRjXkCpmn+6VKGOpP84?=
+ =?us-ascii?Q?yw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 81f8dba2-beb5-42d6-d25f-08dc978c1de3
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2024 15:56:19.9470 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2024 16:05:23.4226 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XPjG85Y/LSqR3vQad+lISXHTLT8mXzaPua6hT4FhDqpBJoTe9keonOdS4Y4aQ1Cp+uXNhIsCzh1COUDADmlbqg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7501
+X-MS-Exchange-CrossTenant-UserPrincipalName: YNn64fK48oLLKbYlYyziRSC+wqYU3o+OHRtdG2Mp+hp93Ns34u7ZLllOnPBnjH0tSdGjJgyhLZvJVCmfULn4n6Pp8iO7FRLCFYR9BPZ0JKg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4820
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -179,422 +175,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jun 28, 2024 at 04:00:57PM +0100, Matthew Auld wrote:
-> On 26/06/2024 22:15, Matthew Brost wrote:
-> > Update PT layer so if a memory allocation for a PTE fails the error can
-> > be propagated to the user without requiring the VM to be killed.
-> > 
-> > v5:
-> >   - change return value invalidation_fence_init to void (Matthew Auld)
-> > 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >   drivers/gpu/drm/xe/xe_pt.c | 227 +++++++++++++++++++++++++++----------
-> >   1 file changed, 164 insertions(+), 63 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> > index f46f46d46819..c043752c0308 100644
-> > --- a/drivers/gpu/drm/xe/xe_pt.c
-> > +++ b/drivers/gpu/drm/xe/xe_pt.c
-> > @@ -846,19 +846,27 @@ xe_vm_populate_pgtable(struct xe_migrate_pt_update *pt_update, struct xe_tile *t
-> >   	}
-> >   }
-> > -static void xe_pt_abort_bind(struct xe_vma *vma,
-> > -			     struct xe_vm_pgtable_update *entries,
-> > -			     u32 num_entries)
-> > +static void xe_pt_cancel_bind(struct xe_vma *vma,
-> > +			      struct xe_vm_pgtable_update *entries,
-> > +			      u32 num_entries)
-> >   {
-> >   	u32 i, j;
-> >   	for (i = 0; i < num_entries; i++) {
-> > -		if (!entries[i].pt_entries)
-> > +		struct xe_pt *pt = entries[i].pt;
-> > +
-> > +		if (!pt)
-> >   			continue;
-> > -		for (j = 0; j < entries[i].qwords; j++)
-> > -			xe_pt_destroy(entries[i].pt_entries[j].pt, xe_vma_vm(vma)->flags, NULL);
-> > +		if (pt->level) {
-> > +			for (j = 0; j < entries[i].qwords; j++)
-> > +				xe_pt_destroy(entries[i].pt_entries[j].pt,
-> > +					      xe_vma_vm(vma)->flags, NULL);
-> > +		}
-> > +
-> >   		kfree(entries[i].pt_entries);
-> > +		entries[i].pt_entries = NULL;
-> > +		entries[i].qwords = 0;
-> >   	}
-> >   }
-> > @@ -874,10 +882,61 @@ static void xe_pt_commit_locks_assert(struct xe_vma *vma)
-> >   	xe_vm_assert_held(vm);
-> >   }
-> > -static void xe_pt_commit_bind(struct xe_vma *vma,
-> > -			      struct xe_vm_pgtable_update *entries,
-> > -			      u32 num_entries, bool rebind,
-> > -			      struct llist_head *deferred)
-> > +static void xe_pt_commit(struct xe_vma *vma,
-> > +			 struct xe_vm_pgtable_update *entries,
-> > +			 u32 num_entries, struct llist_head *deferred)
-> > +{
-> > +	u32 i, j;
-> > +
-> > +	xe_pt_commit_locks_assert(vma);
-> > +
-> > +	for (i = 0; i < num_entries; i++) {
-> > +		struct xe_pt *pt = entries[i].pt;
-> > +
-> > +		if (!pt->level)
-> > +			continue;
-> > +
-> > +		for (j = 0; j < entries[i].qwords; j++) {
-> > +			struct xe_pt *oldpte = entries[i].pt_entries[j].pt;
-> > +
-> > +			xe_pt_destroy(oldpte, xe_vma_vm(vma)->flags, deferred);
-> > +		}
-> > +	}
-> > +}
-> > +
-> > +static void xe_pt_abort_bind(struct xe_vma *vma,
-> > +			     struct xe_vm_pgtable_update *entries,
-> > +			     u32 num_entries, bool rebind)
-> > +{
-> > +	int i, j;
-> > +
-> > +	xe_pt_commit_locks_assert(vma);
-> > +
-> > +	for (i = num_entries - 1; i >= 0; --i) {
-> > +		struct xe_pt *pt = entries[i].pt;
-> > +		struct xe_pt_dir *pt_dir;
-> > +
-> > +		if (!rebind)
-> > +			pt->num_live -= entries[i].qwords;
-> > +
-> > +		if (!pt->level)
-> > +			continue;
-> > +
-> > +		pt_dir = as_xe_pt_dir(pt);
-> > +		for (j = 0; j < entries[i].qwords; j++) {
-> > +			u32 j_ = j + entries[i].ofs;
-> > +			struct xe_pt *newpte = xe_pt_entry(pt_dir, j_);
-> > +			struct xe_pt *oldpte = entries[i].pt_entries[j].pt;
-> > +
-> > +			pt_dir->children[j_] = oldpte ? &oldpte->base : 0;
-> > +			xe_pt_destroy(newpte, xe_vma_vm(vma)->flags, NULL);
-> > +		}
-> > +	}
-> > +}
-> > +
-> > +static void xe_pt_commit_prepare_bind(struct xe_vma *vma,
-> > +				      struct xe_vm_pgtable_update *entries,
-> > +				      u32 num_entries, bool rebind)
-> >   {
-> >   	u32 i, j;
-> > @@ -897,12 +956,13 @@ static void xe_pt_commit_bind(struct xe_vma *vma,
-> >   		for (j = 0; j < entries[i].qwords; j++) {
-> >   			u32 j_ = j + entries[i].ofs;
-> >   			struct xe_pt *newpte = entries[i].pt_entries[j].pt;
-> > +			struct xe_pt *oldpte = NULL;
-> >   			if (xe_pt_entry(pt_dir, j_))
-> > -				xe_pt_destroy(xe_pt_entry(pt_dir, j_),
-> > -					      xe_vma_vm(vma)->flags, deferred);
-> > +				oldpte = xe_pt_entry(pt_dir, j_);
-> 
-> struct xe_pt *oldpte = xe_pt_entry(pt_dir, j_);
-> 
+On Mon, Jun 24, 2024 at 02:54:00PM GMT, Zhanjun Dong wrote:
+>@@ -398,6 +401,12 @@ int xe_guc_ads_init(struct xe_guc_ads *ads)
+> 	struct xe_bo *bo;
+>
+> 	ads->golden_lrc_size = calculate_golden_lrc_size(ads);
+>+	/*
+>+	 * At time of ads init, hwconfig was not loaded, engine info like
+>+	 * engine mask is not ready.
 
-That should work.
+pass by comment: this never really mattered and was just artificially
+done due to delaying the engine_mask initialization. engine_mask comes
+from fuses and possible engines from platform, not from hwconfig.
+This is gone since commit d69c3d4b5382 ("drm/xe/ads: Use flexible-array")
 
-> ?
-> 
-> >   			pt_dir->children[j_] = &newpte->base;
-> > +			entries[i].pt_entries[j].pt = oldpte;
-> >   		}
-> >   	}
-> >   }
-> > @@ -926,8 +986,6 @@ xe_pt_prepare_bind(struct xe_tile *tile, struct xe_vma *vma,
-> >   	err = xe_pt_stage_bind(tile, vma, entries, num_entries);
-> >   	if (!err)
-> >   		xe_tile_assert(tile, *num_entries);
-> > -	else /* abort! */
-> > -		xe_pt_abort_bind(vma, entries, *num_entries);
-> >   	return err;
-> >   }
-> > @@ -1305,10 +1363,10 @@ static void invalidation_fence_work_func(struct work_struct *w)
-> >   				     ifence->end, ifence->asid);
-> >   }
-> > -static int invalidation_fence_init(struct xe_gt *gt,
-> > -				   struct invalidation_fence *ifence,
-> > -				   struct dma_fence *fence,
-> > -				   u64 start, u64 end, u32 asid)
-> > +static void invalidation_fence_init(struct xe_gt *gt,
-> > +				    struct invalidation_fence *ifence,
-> > +				    struct dma_fence *fence,
-> > +				    u64 start, u64 end, u32 asid)
-> >   {
-> >   	int ret;
-> > @@ -1340,8 +1398,6 @@ static int invalidation_fence_init(struct xe_gt *gt,
-> >   	}
-> >   	xe_gt_assert(gt, !ret || ret == -ENOENT);
-> > -
-> > -	return ret && ret != -ENOENT ? ret : 0;
-> >   }
-> >   struct xe_pt_stage_unbind_walk {
-> > @@ -1441,7 +1497,7 @@ xe_pt_stage_unbind_post_descend(struct xe_ptw *parent, pgoff_t offset,
-> >   				     &end_offset))
-> >   		return 0;
-> > -	(void)xe_pt_new_shared(&xe_walk->wupd, xe_child, offset, false);
-> > +	(void)xe_pt_new_shared(&xe_walk->wupd, xe_child, offset, true);
-> 
-> Why do we ignore the error here, especially now that alloc_entries=true?
-> 
+For ADS initialization I believe we still want size 0 when loading guc
+for hwconfig and only calculate it when it's for real. This guc double-load
+is something we may get rid of in future.
 
-We shouldn't. Let me fix that.
-
-> >   	xe_walk->wupd.updates[level].update->qwords = end_offset - offset;
-> >   	return 0;
-> > @@ -1509,32 +1565,57 @@ xe_migrate_clear_pgtable_callback(struct xe_migrate_pt_update *pt_update,
-> >   		memset64(ptr, empty, num_qwords);
-> >   }
-> > +static void xe_pt_abort_unbind(struct xe_vma *vma,
-> > +			       struct xe_vm_pgtable_update *entries,
-> > +			       u32 num_entries)
-> > +{
-> > +	int j, i;
-> 
-> Nit: i, j inversion, and then below.
-> 
-
-Will fix.
-
-> > +
-> > +	xe_pt_commit_locks_assert(vma);
-> > +
-> > +	for (j = num_entries - 1; j >= 0; --j) {
-> > +		struct xe_vm_pgtable_update *entry = &entries[j];
-> > +		struct xe_pt *pt = entry->pt;
-> > +		struct xe_pt_dir *pt_dir = as_xe_pt_dir(pt);
-> > +
-> > +		pt->num_live += entry->qwords;
-> > +
-> > +		if (!pt->level)
-> > +			continue;
-> > +
-> > +		for (i = entry->ofs; i < entry->ofs + entry->qwords; i++)
-> > +			pt_dir->children[i] =
-> > +				entries[j].pt_entries[i - entry->ofs].pt ?
-> > +				&entries[j].pt_entries[i - entry->ofs].pt->base : 0;
-> 
-> s/0/NULL ?
-
-Will fix.
-
-> 
-> > +	}
-> > +}
-> > +
-> >   static void
-> > -xe_pt_commit_unbind(struct xe_vma *vma,
-> > -		    struct xe_vm_pgtable_update *entries, u32 num_entries,
-> > -		    struct llist_head *deferred)
-> > +xe_pt_commit_prepare_unbind(struct xe_vma *vma,
-> > +			    struct xe_vm_pgtable_update *entries,
-> > +			    u32 num_entries)
-> >   {
-> > -	u32 j;
-> > +	int j, i;
-> 
-> And here.
-> 
-
-Will fix.
-
-> >   	xe_pt_commit_locks_assert(vma);
-> >   	for (j = 0; j < num_entries; ++j) {
-> >   		struct xe_vm_pgtable_update *entry = &entries[j];
-> >   		struct xe_pt *pt = entry->pt;
-> > +		struct xe_pt_dir *pt_dir;
-> >   		pt->num_live -= entry->qwords;
-> > -		if (pt->level) {
-> > -			struct xe_pt_dir *pt_dir = as_xe_pt_dir(pt);
-> > -			u32 i;
-> > -
-> > -			for (i = entry->ofs; i < entry->ofs + entry->qwords;
-> > -			     i++) {
-> > -				if (xe_pt_entry(pt_dir, i))
-> > -					xe_pt_destroy(xe_pt_entry(pt_dir, i),
-> > -						      xe_vma_vm(vma)->flags, deferred);
-> > +		if (!pt->level)
-> > +			continue;
-> > -				pt_dir->children[i] = NULL;
-> > -			}
-> > +		pt_dir = as_xe_pt_dir(pt);
-> > +		for (i = entry->ofs; i < entry->ofs + entry->qwords; i++) {
-> > +			if (xe_pt_entry(pt_dir, i))
-> > +				entries[j].pt_entries[i - entry->ofs].pt =
-> > +					xe_pt_entry(pt_dir, i);
-> > +			else
-> > +				entries[j].pt_entries[i - entry->ofs].pt = NULL;
-> 
-> entries[j].pt_entries[i - entry->ofs].pt = xe_pt_entry(pt_dir, i)
-> 
-> ?
-
-Yes.
-
-Thanks for the review will respin for CI with these changes.
-
-Matt
-
-> 
-> Otherwise,
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-> 
-> > +			pt_dir->children[i] = NULL;
-> >   		}
-> >   	}
-> >   }
-> > @@ -1580,7 +1661,6 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
-> >   {
-> >   	u32 current_op = pt_update_ops->current_op;
-> >   	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
-> > -	struct llist_head *deferred = &pt_update_ops->deferred;
-> >   	int err;
-> >   	xe_bo_assert_held(xe_vma_bo(vma));
-> > @@ -1628,11 +1708,12 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
-> >   			/* We bump also if batch_invalidate_tlb is true */
-> >   			vm->tlb_flush_seqno++;
-> > -		/* FIXME: Don't commit right away */
-> >   		vma->tile_staged |= BIT(tile->id);
-> >   		pt_op->vma = vma;
-> > -		xe_pt_commit_bind(vma, pt_op->entries, pt_op->num_entries,
-> > -				  pt_op->rebind, deferred);
-> > +		xe_pt_commit_prepare_bind(vma, pt_op->entries,
-> > +					  pt_op->num_entries, pt_op->rebind);
-> > +	} else {
-> > +		xe_pt_cancel_bind(vma, pt_op->entries, pt_op->num_entries);
-> >   	}
-> >   	return err;
-> > @@ -1644,7 +1725,6 @@ static int unbind_op_prepare(struct xe_tile *tile,
-> >   {
-> >   	u32 current_op = pt_update_ops->current_op;
-> >   	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
-> > -	struct llist_head *deferred = &pt_update_ops->deferred;
-> >   	int err;
-> >   	if (!((vma->tile_present | vma->tile_staged) & BIT(tile->id)))
-> > @@ -1680,9 +1760,7 @@ static int unbind_op_prepare(struct xe_tile *tile,
-> >   	pt_update_ops->needs_userptr_lock |= xe_vma_is_userptr(vma);
-> >   	pt_update_ops->needs_invalidation = true;
-> > -	/* FIXME: Don't commit right away */
-> > -	xe_pt_commit_unbind(vma, pt_op->entries, pt_op->num_entries,
-> > -			    deferred);
-> > +	xe_pt_commit_prepare_unbind(vma, pt_op->entries, pt_op->num_entries);
-> >   	return 0;
-> >   }
-> > @@ -1903,7 +1981,7 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
-> >   	struct invalidation_fence *ifence = NULL;
-> >   	struct xe_range_fence *rfence;
-> >   	struct xe_vma_op *op;
-> > -	int err = 0;
-> > +	int err = 0, i;
-> >   	struct xe_migrate_pt_update update = {
-> >   		.ops = pt_update_ops->needs_userptr_lock ?
-> >   			&userptr_migrate_ops :
-> > @@ -1923,8 +2001,10 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
-> >   	if (pt_update_ops->needs_invalidation) {
-> >   		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
-> > -		if (!ifence)
-> > -			return ERR_PTR(-ENOMEM);
-> > +		if (!ifence) {
-> > +			err = -ENOMEM;
-> > +			goto kill_vm_tile1;
-> > +		}
-> >   	}
-> >   	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
-> > @@ -1939,6 +2019,15 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
-> >   		goto free_rfence;
-> >   	}
-> > +	/* Point of no return - VM killed if failure after this */
-> > +	for (i = 0; i < pt_update_ops->current_op; ++i) {
-> > +		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[i];
-> > +
-> > +		xe_pt_commit(pt_op->vma, pt_op->entries,
-> > +			     pt_op->num_entries, &pt_update_ops->deferred);
-> > +		pt_op->vma = NULL;	/* skip in xe_pt_update_ops_abort */
-> > +	}
-> > +
-> >   	if (xe_range_fence_insert(&vm->rftree[tile->id], rfence,
-> >   				  &xe_range_fence_kfree_ops,
-> >   				  pt_update_ops->start,
-> > @@ -1947,12 +2036,9 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
-> >   	/* tlb invalidation must be done before signaling rebind */
-> >   	if (ifence) {
-> > -		err = invalidation_fence_init(tile->primary_gt, ifence, fence,
-> > -					      pt_update_ops->start,
-> > -					      pt_update_ops->last,
-> > -					      vm->usm.asid);
-> > -		if (err)
-> > -			goto put_fence;
-> > +		invalidation_fence_init(tile->primary_gt, ifence, fence,
-> > +					pt_update_ops->start,
-> > +					pt_update_ops->last, vm->usm.asid);
-> >   		fence = &ifence->base.base;
-> >   	}
-> > @@ -1969,14 +2055,13 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
-> >   	return fence;
-> > -put_fence:
-> > -	if (pt_update_ops->needs_userptr_lock)
-> > -		up_read(&vm->userptr.notifier_lock);
-> > -	dma_fence_put(fence);
-> >   free_rfence:
-> >   	kfree(rfence);
-> >   free_ifence:
-> >   	kfree(ifence);
-> > +kill_vm_tile1:
-> > +	if (err != -EAGAIN && tile->id)
-> > +		xe_vm_kill(vops->vm, false);
-> >   	return ERR_PTR(err);
-> >   }
-> > @@ -1997,12 +2082,10 @@ void xe_pt_update_ops_fini(struct xe_tile *tile, struct xe_vma_ops *vops)
-> >   	lockdep_assert_held(&vops->vm->lock);
-> >   	xe_vm_assert_held(vops->vm);
-> > -	/* FIXME: Not 100% correct */
-> > -	for (i = 0; i < pt_update_ops->num_ops; ++i) {
-> > +	for (i = 0; i < pt_update_ops->current_op; ++i) {
-> >   		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[i];
-> > -		if (pt_op->bind)
-> > -			xe_pt_free_bind(pt_op->entries, pt_op->num_entries);
-> > +		xe_pt_free_bind(pt_op->entries, pt_op->num_entries);
-> >   	}
-> >   	xe_bo_put_commit(&vops->pt_update_ops[tile->id].deferred);
-> >   }
-> > @@ -2016,10 +2099,28 @@ void xe_pt_update_ops_fini(struct xe_tile *tile, struct xe_vma_ops *vops)
-> >    */
-> >   void xe_pt_update_ops_abort(struct xe_tile *tile, struct xe_vma_ops *vops)
-> >   {
-> > +	struct xe_vm_pgtable_update_ops *pt_update_ops =
-> > +		&vops->pt_update_ops[tile->id];
-> > +	int i;
-> > +
-> >   	lockdep_assert_held(&vops->vm->lock);
-> >   	xe_vm_assert_held(vops->vm);
-> > -	/* FIXME: Just kill VM for now + cleanup PTs */
-> > +	for (i = pt_update_ops->num_ops - 1; i >= 0; --i) {
-> > +		struct xe_vm_pgtable_update_op *pt_op =
-> > +			&pt_update_ops->ops[i];
-> > +
-> > +		if (!pt_op->vma || i >= pt_update_ops->current_op)
-> > +			continue;
-> > +
-> > +		if (pt_op->bind)
-> > +			xe_pt_abort_bind(pt_op->vma, pt_op->entries,
-> > +					 pt_op->num_entries,
-> > +					 pt_op->rebind);
-> > +		else
-> > +			xe_pt_abort_unbind(pt_op->vma, pt_op->entries,
-> > +					   pt_op->num_entries);
-> > +	}
-> > +
-> >   	xe_bo_put_commit(&vops->pt_update_ops[tile->id].deferred);
-> > -	xe_vm_kill(vops->vm, false);
-> >   }
+Lucas De Marchi
