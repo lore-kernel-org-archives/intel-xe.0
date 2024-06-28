@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FD48C3065A
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Jun 2024 19:53:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D46C5C30658
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Jun 2024 19:53:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7AE010ED39;
-	Fri, 28 Jun 2024 19:53:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A47F310ED38;
+	Fri, 28 Jun 2024 19:53:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cDzmfqx8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="drrNPkG0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 037C110ED36
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Jun 2024 19:53:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E07710ED39
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Jun 2024 19:53:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719604427; x=1751140427;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=HtVUBkgUvp3WV2KMzg4FrE3KfdlNxhr8bIx1dnxf1Fc=;
- b=cDzmfqx8yMldputMkF796De+AnOtb/OpBLuHfrcSPkzF64eLQwb+2aFh
- oGYl5SV9hFLMqzVTOcL0oOzZEFxUESB2eWOsbHsF8Gm+lrr1Oka/JYaTe
- +RM6MJ47C6ecFms9y2QeLtwqE7BRfu7+JO8bW0beAYa7okz1yUv22EmUu
- IdJa/PXITLyh/MxcgZWyfzC/7IJyvl+zPOKlwVr0uE1EnT0GPOphUfEO7
- MvMAkNjqE98F9O0+CqnfIbCBrUgGQH6lo+K+CBEVkGVEI/B8Zzy48El59
- zuE8dRbZrOcP/mZqaE+UqNWXsGmthNkUS3Kc60IWXhIyAQoOPejOkH8le g==;
-X-CSE-ConnectionGUID: vC0WdplMQh2/L+OdBp59rA==
-X-CSE-MsgGUID: +1CqzZEqTnmwbVmsCK5HeA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11117"; a="16927317"
-X-IronPort-AV: E=Sophos;i="6.09,170,1716274800"; d="scan'208";a="16927317"
+ t=1719604429; x=1751140429;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=039R6QNCRNAYfuxL4l2UUZNZFinNv/vBkQatz5Zjg04=;
+ b=drrNPkG0HRcbV21hgntT7yoChbjGY/4OPrQa6LSnxxgaZhdYKA/ReOPS
+ GViCzItz32SPGrgHfAQsXtRSsWIFLzYWdnWlmkrQgMfNWMbQT0IFTJ/1K
+ k3XB+7dQwMwFTQNmzeyn+6B2UJGiS5KRt6Wdi0bjkYSBf4YTbJl+ZgXCG
+ jCs4QsNM1Pn0sHENW/OYdIrf/BNNMwf0QwEZvVrGwxsVSUDAf9GGo24vF
+ DPphcg/XDxQpoMCDDZi60pSPBz3bBhM1gvxsepaO/ZzbYE1wN2ih7z6r1
+ zSh88YdxefIRMD3eGHedb+EbaEe3irrgk4vOZuSfTOF6aSqru+4AFracc A==;
+X-CSE-ConnectionGUID: cWNk0kXBS8mqKvjKbXo34g==
+X-CSE-MsgGUID: tkGgUYGCT+ig1plOT6of/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11117"; a="16927321"
+X-IronPort-AV: E=Sophos;i="6.09,170,1716274800"; d="scan'208";a="16927321"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2024 12:53:47 -0700
-X-CSE-ConnectionGUID: Bf+92VcFSCS76VlnZb2+Yw==
-X-CSE-MsgGUID: v/o5wGW0Sc6q7PS1Rnlwgw==
+ 28 Jun 2024 12:53:48 -0700
+X-CSE-ConnectionGUID: fHK8Yeo6RNqq30TfyQQ2Hg==
+X-CSE-MsgGUID: 929lwup7SJqrB/FlDJ8D4A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,170,1716274800"; d="scan'208";a="44917100"
+X-IronPort-AV: E=Sophos;i="6.09,170,1716274800"; d="scan'208";a="44917103"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2024 12:53:45 -0700
+ 28 Jun 2024 12:53:47 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 1/4] drm/ttm: Add a flag to allow drivers to skip clear-on-free
-Date: Fri, 28 Jun 2024 21:38:43 +0200
-Message-ID: <20240628193846.26326-1-nirmoy.das@intel.com>
+Subject: [CI 3/4] drm/xe/migrate: Clear CCS when clearing bo with
+ XE_FAST_COLOR_BLT
+Date: Fri, 28 Jun 2024 21:38:45 +0200
+Message-ID: <20240628193846.26326-3-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20240628193846.26326-1-nirmoy.das@intel.com>
+References: <20240628193846.26326-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
  85579 Neubiberg, Germany, Commercial Register: Amtsgericht Muenchen HRB 186928
 Content-Transfer-Encoding: 8bit
@@ -66,90 +68,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add TTM_TT_FLAG_CLEARED_ON_FREE, which DRM drivers can set before
-releasing backing stores if they want to skip clear-on-free.
+XE_FAST_COLOR_BLT will clear out CCS meta data when clearing bo with
+uncompress PTE, so skip emit_copy_ccs() when XE_FAST_COLOR_BLT is used
+to clear out a bo.
 
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Suggested-by: Christian König <christian.koenig@amd.com>
 Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/ttm/ttm_pool.c | 18 +++++++++++-------
- include/drm/ttm/ttm_tt.h       |  6 +++++-
- 2 files changed, 16 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_migrate.c | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-index 6e1fd6985ffc..b78ee7524bcf 100644
---- a/drivers/gpu/drm/ttm/ttm_pool.c
-+++ b/drivers/gpu/drm/ttm/ttm_pool.c
-@@ -222,15 +222,18 @@ static void ttm_pool_unmap(struct ttm_pool *pool, dma_addr_t dma_addr,
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index e0a3f6921572..9a3f32e90bfc 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -971,6 +971,11 @@ static u32 emit_clear_cmd_len(struct xe_gt *gt)
+ 		return XY_FAST_COLOR_BLT_DW;
  }
  
- /* Give pages into a specific pool_type */
--static void ttm_pool_type_give(struct ttm_pool_type *pt, struct page *p)
-+static void ttm_pool_type_give(struct ttm_pool_type *pt, struct page *p,
-+			       bool cleared)
++static bool is_fast_color_blt_cmd_for_clear(struct xe_gt *gt)
++{
++	return emit_clear_cmd_len(gt) == XY_FAST_COLOR_BLT_DW;
++}
++
+ static void emit_clear(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
+ 		       u32 size, u32 pitch, bool is_vram)
  {
- 	unsigned int i, num_pages = 1 << pt->order;
- 
--	for (i = 0; i < num_pages; ++i) {
--		if (PageHighMem(p))
--			clear_highpage(p + i);
--		else
--			clear_page(page_address(p + i));
-+	if (!cleared) {
-+		for (i = 0; i < num_pages; ++i) {
-+			if (PageHighMem(p))
-+				clear_highpage(p + i);
-+			else
-+				clear_page(page_address(p + i));
-+		}
- 	}
- 
- 	spin_lock(&pt->lock);
-@@ -394,6 +397,7 @@ static void ttm_pool_free_range(struct ttm_pool *pool, struct ttm_tt *tt,
- 				pgoff_t start_page, pgoff_t end_page)
- {
- 	struct page **pages = &tt->pages[start_page];
-+	bool cleared = tt->page_flags & TTM_TT_FLAG_CLEARED_ON_FREE;
- 	unsigned int order;
- 	pgoff_t i, nr;
- 
-@@ -407,7 +411,7 @@ static void ttm_pool_free_range(struct ttm_pool *pool, struct ttm_tt *tt,
- 
- 		pt = ttm_pool_select_type(pool, caching, order);
- 		if (pt)
--			ttm_pool_type_give(pt, *pages);
-+			ttm_pool_type_give(pt, *pages, cleared);
+@@ -1061,7 +1066,8 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 		if (clear_vram && xe_migrate_allow_identity(clear_L0, &src_it))
+ 			xe_res_next(&src_it, clear_L0);
  		else
- 			ttm_pool_free_page(pool, caching, order, *pages);
- 	}
-diff --git a/include/drm/ttm/ttm_tt.h b/include/drm/ttm/ttm_tt.h
-index 2b9d856ff388..cfaf49de2419 100644
---- a/include/drm/ttm/ttm_tt.h
-+++ b/include/drm/ttm/ttm_tt.h
-@@ -85,6 +85,9 @@ struct ttm_tt {
- 	 * fault handling abuses the DMA api a bit and dma_map_attrs can't be
- 	 * used to assure pgprot always matches.
- 	 *
-+	 * TTM_TT_FLAG_CLEARED_ON_FREE: Set this if a drm driver handles
-+	 * clearing backing store
-+	 *
- 	 * TTM_TT_FLAG_PRIV_POPULATED: TTM internal only. DO NOT USE. This is
- 	 * set by TTM after ttm_tt_populate() has successfully returned, and is
- 	 * then unset when TTM calls ttm_tt_unpopulate().
-@@ -94,8 +97,9 @@ struct ttm_tt {
- #define TTM_TT_FLAG_EXTERNAL		BIT(2)
- #define TTM_TT_FLAG_EXTERNAL_MAPPABLE	BIT(3)
- #define TTM_TT_FLAG_DECRYPTED		BIT(4)
-+#define TTM_TT_FLAG_CLEARED_ON_FREE	BIT(5)
+-			emit_pte(m, bb, clear_L0_pt, clear_vram, clear_ccs,
++			/* Use uncompressed pte so clear happens in the real memory. */
++			emit_pte(m, bb, clear_L0_pt, clear_vram, false,
+ 				 &src_it, clear_L0, dst);
  
--#define TTM_TT_FLAG_PRIV_POPULATED	BIT(5)
-+#define TTM_TT_FLAG_PRIV_POPULATED	BIT(6)
- 	uint32_t page_flags;
- 	/** @num_pages: Number of pages in the page array. */
- 	uint32_t num_pages;
+ 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+@@ -1070,7 +1076,9 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 		if (clear_bo_data)
+ 			emit_clear(gt, bb, clear_L0_ofs, clear_L0, XE_PAGE_SIZE, clear_vram);
+ 
+-		if (xe_device_has_flat_ccs(xe)) {
++		/* XY_FAST_COLOR_BLT on uncompress PTE will clear CCS metadata as well */
++		if (xe_device_has_flat_ccs(xe) && clear_ccs && !(clear_bo_data &&
++		    !is_fast_color_blt_cmd_for_clear(gt))) {
+ 			emit_copy_ccs(gt, bb, clear_L0_ofs, true,
+ 				      m->cleared_mem_ofs, false, clear_L0);
+ 			flush_flags = MI_FLUSH_DW_CCS;
 -- 
 2.42.0
 
