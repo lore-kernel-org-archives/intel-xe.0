@@ -4,54 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26559C3064D
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Jun 2024 15:10:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0353C3064D
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Jun 2024 15:39:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7E9910E313;
-	Fri, 28 Jun 2024 15:10:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CBAF10EC6A;
+	Fri, 28 Jun 2024 15:39:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bw9WGdkS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BpJ0GVVG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CC1A10EC61
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Jun 2024 15:10:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83B5510EC76;
+ Fri, 28 Jun 2024 15:39:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719587443; x=1751123443;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=o7pgEsl1M4jkRAL2OMPP8br1xBPkYV2QP+YAJ1OanhY=;
- b=Bw9WGdkSsK0YtrIXbVw1K4OpQUGA5bkZPO8BYzkZBXiYlE9HHsjOzndf
- M2tDDFMfYCH8PdqJe2Wk0+PGZaXrPzFMvvvjpz6DKLuunUPAoqareFhVz
- bjsS8ig6671/wQlIoJWnXmnOld4BuhyFip9pWEAN2PAR9jAIvoHq7a3mG
- 0M3AjtU7zn3qvN6SH/auRatl2tHgOMsUMsAEju6ZaYwAXXjg1X9hbBoeE
- kNJK1FbK5nuFjJbw3w/An3q5JR7j193E193KZ2AlF3iP8LBFYNwLqel5V
- bL8Eq9x299fKplFZ4/y3ZMWGH6jLOsfpQb8+1CsXgOKCqRf4XXGRanuby A==;
-X-CSE-ConnectionGUID: 6guLf0VWSEqXXdakOwQPBA==
-X-CSE-MsgGUID: IF6EECBfQniWdNPSM8m9AQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11117"; a="27460891"
-X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; d="scan'208";a="27460891"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2024 08:10:43 -0700
-X-CSE-ConnectionGUID: hsa7PlmjRC6LHE4aEMPelA==
-X-CSE-MsgGUID: ehHR1RmaR/+QTCgxktHl0Q==
+ t=1719589142; x=1751125142;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xM6QEDnEHb0eGKhPRa9JU/tOf388B5JYNkLW7Kv0I6c=;
+ b=BpJ0GVVG1XTvqoTmzJOkH+9WGZx7zMJ11648G8gs30sysB9QRf0Y3mFi
+ C6Ha1QGFVZ88v918ykP9+D0lQveDYeCxm80wkBauS0Qy8mHmPTimqrr73
+ w1vBJHJI7gPmtzVU6TzuMZ+zqfd7GsIUB7u7mpv2ggi4H+zvwryZtJFp9
+ 21zOwu/TT5nOTz1LcWtvmJs38T75TitaOdbrYWO9aqM4rWoQi1wkZ+ZZs
+ L3rdDPceikJI4XdOczB7xnaktoR2jQamgCpWl6y0+U617ZpX1v2TBqtZ3
+ zzFnsmR8/K+yEJnp8YMxuHi924s3XtQqtWH99T+U9aRhNMH2If5XlF1ra g==;
+X-CSE-ConnectionGUID: wiD88UePRJCdFHXMSafmCg==
+X-CSE-MsgGUID: NZf5t8K9Ty2DQIxOo+0nHA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11117"; a="16612346"
+X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; d="scan'208";a="16612346"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2024 08:39:02 -0700
+X-CSE-ConnectionGUID: J+zJks8NRACER40P2JkL6Q==
+X-CSE-MsgGUID: ydQfAkoeTKSDkRnQoEIsUw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; d="scan'208";a="44848157"
-Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2024 08:10:42 -0700
-From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-To: intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
- david.e.box@linux.intel.com, ilpo.jarvinen@linux.intel.com
-Cc: michael.j.ruhl@intel.com
-Subject: [PATCH v4 5/6] platform/x86/intel/pmt: Add support for PMT base adjust
-Date: Fri, 28 Jun 2024 11:09:43 -0400
-Message-ID: <20240628150945.3363575-6-michael.j.ruhl@intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; d="scan'208";a="45517890"
+Received: from dhhellew-desk2.ger.corp.intel.com.ger.corp.intel.com (HELO
+ fedora..) ([10.245.245.182])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2024 08:39:00 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ stable@vger.kernel.org
+Subject: [PATCH] drm/ttm: Always take the bo delayed cleanup path for imported
+ bos
+Date: Fri, 28 Jun 2024 17:38:48 +0200
+Message-ID: <20240628153848.4989-1-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240628150945.3363575-1-michael.j.ruhl@intel.com>
-References: <20240628150945.3363575-1-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,89 +70,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DVSEC offsets are based on the endpoint BAR.  If an endpoint is
-not avialable allow the offset information to be adjusted by the
-parent driver.
+Bos can be put with multiple unrelated dma-resv locks held. But
+imported bos attempt to grab the bo dma-resv during dma-buf detach
+that typically happens during cleanup. That leads to lockde splats
+similar to the below and a potential ABBA deadlock.
 
-Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+Fix this by always taking the delayed workqueue cleanup path for
+imported bos.
+
+Requesting stable fixes from when the Xe driver was introduced,
+since its usage of drm_exec and wide vm dma_resvs appear to be
+the first reliable trigger of this.
+
+[22982.116427] ============================================
+[22982.116428] WARNING: possible recursive locking detected
+[22982.116429] 6.10.0-rc2+ #10 Tainted: G     U  W
+[22982.116430] --------------------------------------------
+[22982.116430] glxgears:sh0/5785 is trying to acquire lock:
+[22982.116431] ffff8c2bafa539a8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: dma_buf_detach+0x3b/0xf0
+[22982.116438]
+               but task is already holding lock:
+[22982.116438] ffff8c2d9aba6da8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: drm_exec_lock_obj+0x49/0x2b0 [drm_exec]
+[22982.116442]
+               other info that might help us debug this:
+[22982.116442]  Possible unsafe locking scenario:
+
+[22982.116443]        CPU0
+[22982.116444]        ----
+[22982.116444]   lock(reservation_ww_class_mutex);
+[22982.116445]   lock(reservation_ww_class_mutex);
+[22982.116447]
+                *** DEADLOCK ***
+
+[22982.116447]  May be due to missing lock nesting notation
+
+[22982.116448] 5 locks held by glxgears:sh0/5785:
+[22982.116449]  #0: ffff8c2d9aba58c8 (&xef->vm.lock){+.+.}-{3:3}, at: xe_file_close+0xde/0x1c0 [xe]
+[22982.116507]  #1: ffff8c2e28cc8480 (&vm->lock){++++}-{3:3}, at: xe_vm_close_and_put+0x161/0x9b0 [xe]
+[22982.116578]  #2: ffff8c2e31982970 (&val->lock){.+.+}-{3:3}, at: xe_validation_ctx_init+0x6d/0x70 [xe]
+[22982.116647]  #3: ffffacdc469478a8 (reservation_ww_class_acquire){+.+.}-{0:0}, at: xe_vma_destroy_unlocked+0x7f/0xe0 [xe]
+[22982.116716]  #4: ffff8c2d9aba6da8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: drm_exec_lock_obj+0x49/0x2b0 [drm_exec]
+[22982.116719]
+               stack backtrace:
+[22982.116720] CPU: 8 PID: 5785 Comm: glxgears:sh0 Tainted: G     U  W          6.10.0-rc2+ #10
+[22982.116721] Hardware name: ASUS System Product Name/PRIME B560M-A AC, BIOS 2001 02/01/2023
+[22982.116723] Call Trace:
+[22982.116724]  <TASK>
+[22982.116725]  dump_stack_lvl+0x77/0xb0
+[22982.116727]  __lock_acquire+0x1232/0x2160
+[22982.116730]  lock_acquire+0xcb/0x2d0
+[22982.116732]  ? dma_buf_detach+0x3b/0xf0
+[22982.116734]  ? __lock_acquire+0x417/0x2160
+[22982.116736]  __ww_mutex_lock.constprop.0+0xd0/0x13b0
+[22982.116738]  ? dma_buf_detach+0x3b/0xf0
+[22982.116741]  ? dma_buf_detach+0x3b/0xf0
+[22982.116743]  ? ww_mutex_lock+0x2b/0x90
+[22982.116745]  ww_mutex_lock+0x2b/0x90
+[22982.116747]  dma_buf_detach+0x3b/0xf0
+[22982.116749]  drm_prime_gem_destroy+0x2f/0x40 [drm]
+[22982.116775]  xe_ttm_bo_destroy+0x32/0x220 [xe]
+[22982.116818]  ? __mutex_unlock_slowpath+0x3a/0x290
+[22982.116821]  drm_exec_unlock_all+0xa1/0xd0 [drm_exec]
+[22982.116823]  drm_exec_fini+0x12/0xb0 [drm_exec]
+[22982.116824]  xe_validation_ctx_fini+0x15/0x40 [xe]
+[22982.116892]  xe_vma_destroy_unlocked+0xb1/0xe0 [xe]
+[22982.116959]  xe_vm_close_and_put+0x41a/0x9b0 [xe]
+[22982.117025]  ? xa_find+0xe3/0x1e0
+[22982.117028]  xe_file_close+0x10a/0x1c0 [xe]
+[22982.117074]  drm_file_free+0x22a/0x280 [drm]
+[22982.117099]  drm_release_noglobal+0x22/0x70 [drm]
+[22982.117119]  __fput+0xf1/0x2d0
+[22982.117122]  task_work_run+0x59/0x90
+[22982.117125]  do_exit+0x330/0xb40
+[22982.117127]  do_group_exit+0x36/0xa0
+[22982.117129]  get_signal+0xbd2/0xbe0
+[22982.117131]  arch_do_signal_or_restart+0x3e/0x240
+[22982.117134]  syscall_exit_to_user_mode+0x1e7/0x290
+[22982.117137]  do_syscall_64+0xa1/0x180
+[22982.117139]  ? lock_acquire+0xcb/0x2d0
+[22982.117140]  ? __set_task_comm+0x28/0x1e0
+[22982.117141]  ? find_held_lock+0x2b/0x80
+[22982.117144]  ? __set_task_comm+0xe1/0x1e0
+[22982.117145]  ? lock_release+0xca/0x290
+[22982.117147]  ? __do_sys_prctl+0x245/0xab0
+[22982.117149]  ? lockdep_hardirqs_on_prepare+0xde/0x190
+[22982.117150]  ? syscall_exit_to_user_mode+0xb0/0x290
+[22982.117152]  ? do_syscall_64+0xa1/0x180
+[22982.117154]  ? __lock_acquire+0x417/0x2160
+[22982.117155]  ? reacquire_held_locks+0xd1/0x1f0
+[22982.117156]  ? do_user_addr_fault+0x30c/0x790
+[22982.117158]  ? lock_acquire+0xcb/0x2d0
+[22982.117160]  ? find_held_lock+0x2b/0x80
+[22982.117162]  ? do_user_addr_fault+0x357/0x790
+[22982.117163]  ? lock_release+0xca/0x290
+[22982.117164]  ? do_user_addr_fault+0x361/0x790
+[22982.117166]  ? trace_hardirqs_off+0x4b/0xc0
+[22982.117168]  ? clear_bhb_loop+0x45/0xa0
+[22982.117170]  ? clear_bhb_loop+0x45/0xa0
+[22982.117172]  ? clear_bhb_loop+0x45/0xa0
+[22982.117174]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+[22982.117176] RIP: 0033:0x7f943d267169
+[22982.117192] Code: Unable to access opcode bytes at 0x7f943d26713f.
+[22982.117193] RSP: 002b:00007f9430bffc80 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+[22982.117195] RAX: fffffffffffffe00 RBX: 0000000000000000 RCX: 00007f943d267169
+[22982.117196] RDX: 0000000000000000 RSI: 0000000000000189 RDI: 00005622f89579d0
+[22982.117197] RBP: 00007f9430bffcb0 R08: 0000000000000000 R09: 00000000ffffffff
+[22982.117198] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+[22982.117199] R13: 0000000000000000 R14: 0000000000000000 R15: 00005622f89579d0
+[22982.117202]  </TASK>
+
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v6.8+
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/platform/x86/intel/pmt/class.h     | 1 +
- drivers/platform/x86/intel/pmt/telemetry.c | 9 +++++++++
- drivers/platform/x86/intel/vsec.c          | 1 +
- include/linux/intel_vsec.h                 | 2 ++
- 4 files changed, 13 insertions(+)
+ drivers/gpu/drm/ttm/ttm_bo.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/intel/pmt/class.h
-index a267ac964423..984cd40ee814 100644
---- a/drivers/platform/x86/intel/pmt/class.h
-+++ b/drivers/platform/x86/intel/pmt/class.h
-@@ -46,6 +46,7 @@ struct intel_pmt_entry {
- 	void __iomem		*base;
- 	struct pmt_callbacks	*cb;
- 	unsigned long		base_addr;
-+	s32			base_adjust;
- 	size_t			size;
- 	u32			guid;
- 	int			devid;
-diff --git a/drivers/platform/x86/intel/pmt/telemetry.c b/drivers/platform/x86/intel/pmt/telemetry.c
-index c9feac859e57..5c44e500e8f6 100644
---- a/drivers/platform/x86/intel/pmt/telemetry.c
-+++ b/drivers/platform/x86/intel/pmt/telemetry.c
-@@ -78,6 +78,13 @@ static int pmt_telem_header_decode(struct intel_pmt_entry *entry,
- 	header->access_type = TELEM_ACCESS(readl(disc_table));
- 	header->guid = readl(disc_table + TELEM_GUID_OFFSET);
- 	header->base_offset = readl(disc_table + TELEM_BASE_OFFSET);
-+	if (entry->base_adjust) {
-+		u32 new_base = header->base_offset + entry->base_adjust;
-+
-+		dev_dbg(dev, "Adjusting baseoffset from 0x%x to 0x%x\n",
-+			header->base_offset, new_base);
-+		header->base_offset = new_base;
-+	}
- 
- 	/* Size is measured in DWORDS, but accessor returns bytes */
- 	header->size = TELEM_SIZE(readl(disc_table));
-@@ -302,6 +309,8 @@ static int pmt_telem_probe(struct auxiliary_device *auxdev, const struct auxilia
- 	for (i = 0; i < intel_vsec_dev->num_resources; i++) {
- 		struct intel_pmt_entry *entry = &priv->entry[priv->num_entries];
- 
-+		entry->base_adjust = intel_vsec_dev->base_adjust;
-+
- 		mutex_lock(&ep_lock);
- 		ret = intel_pmt_dev_create(entry, &pmt_telem_ns, intel_vsec_dev, i);
- 		mutex_unlock(&ep_lock);
-diff --git a/drivers/platform/x86/intel/vsec.c b/drivers/platform/x86/intel/vsec.c
-index 7b5cc9993974..be079d62a7bc 100644
---- a/drivers/platform/x86/intel/vsec.c
-+++ b/drivers/platform/x86/intel/vsec.c
-@@ -212,6 +212,7 @@ static int intel_vsec_add_dev(struct pci_dev *pdev, struct intel_vsec_header *he
- 	intel_vsec_dev->num_resources = header->num_entries;
- 	intel_vsec_dev->quirks = info->quirks;
- 	intel_vsec_dev->base_addr = info->base_addr;
-+	intel_vsec_dev->base_adjust = info->base_adjust;
- 	intel_vsec_dev->priv_data = info->priv_data;
- 
- 	if (header->id == VSEC_ID_SDSI)
-diff --git a/include/linux/intel_vsec.h b/include/linux/intel_vsec.h
-index 003301783331..930eab246fa1 100644
---- a/include/linux/intel_vsec.h
-+++ b/include/linux/intel_vsec.h
-@@ -79,6 +79,7 @@ struct intel_vsec_platform_info {
- 	unsigned long caps;
- 	unsigned long quirks;
- 	u64 base_addr;
-+	s32 base_adjust;
- };
- 
- struct intel_vsec_device {
-@@ -92,6 +93,7 @@ struct intel_vsec_device {
- 	size_t priv_data_size;
- 	unsigned long quirks;
- 	u64 base_addr;
-+	s32 base_adjust;
- };
- 
- int intel_vsec_add_aux(struct pci_dev *pdev, struct device *parent,
+diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+index 6396dece0db1..2427be8bc97f 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo.c
++++ b/drivers/gpu/drm/ttm/ttm_bo.c
+@@ -346,6 +346,7 @@ static void ttm_bo_release(struct kref *kref)
+ 		if (!dma_resv_test_signaled(bo->base.resv,
+ 					    DMA_RESV_USAGE_BOOKKEEP) ||
+ 		    (want_init_on_free() && (bo->ttm != NULL)) ||
++		    bo->type == ttm_bo_type_sg ||
+ 		    !dma_resv_trylock(bo->base.resv)) {
+ 			/* The BO is not idle, resurrect it for delayed destroy */
+ 			ttm_bo_flush_all_fences(bo);
 -- 
 2.44.0
 
