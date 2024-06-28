@@ -4,73 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 648A4C30658
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Jun 2024 18:06:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5BB7C3065A
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Jun 2024 18:13:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A92C10ECFA;
-	Fri, 28 Jun 2024 18:06:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8887B10ECF6;
+	Fri, 28 Jun 2024 18:13:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="bVQVln/m";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="W+6416L2";
 	dkim-atps=neutral
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com
- [209.85.167.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4A7C10ECF3
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Jun 2024 18:06:33 +0000 (UTC)
-Received: by mail-lf1-f48.google.com with SMTP id
- 2adb3069b0e04-52cd9640bd5so83888e87.0
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Jun 2024 11:06:33 -0700 (PDT)
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com
+ [209.85.208.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F244010ECF3
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Jun 2024 18:13:36 +0000 (UTC)
+Received: by mail-lj1-f178.google.com with SMTP id
+ 38308e7fff4ca-2ee483284b4so1267061fa.1
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Jun 2024 11:13:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1719597992; x=1720202792; darn=lists.freedesktop.org; 
+ d=ffwll.ch; s=google; t=1719598415; x=1720203215; darn=lists.freedesktop.org; 
  h=in-reply-to:content-transfer-encoding:content-disposition
  :mime-version:references:message-id:subject:cc:to:from:date:from:to
  :cc:subject:date:message-id:reply-to;
- bh=D6RF7ZhfHPezXZ+JwgRkmSw3bzrniFyo5WgctlVMcKM=;
- b=bVQVln/mxEEUI2+2zRr/3YTXXTm/q4aebjpNqVkrIJZFW/nDZ66PBGf6975vxZ7swM
- dh24Uanww7yiK/gY9JQlpoUtTbx6QrckB23mgXwM1iJgFqjfjvsf0+Grm78NOuXQFUT3
- bKkbR3kezRDuHfzcVD03n5t7vvLtnVDx6fq1I=
+ bh=huxmsGyg+iUWrBMicDmaxHSG7pbm8X2WK1OQEgwi0+I=;
+ b=W+6416L2uhsREPPUsZtM3+KpJCkX62ngePgSI7cSZIkmnFm4AgOjChClK5K5KxrCHh
+ 4LHsJgtOhvZh3f09IQD91YFNc3mydDerY/B8f/KSTbC0vAew+80RwRPwJF+1aQx5EZZl
+ blNlVg/TMzmk2dXN4NzmArK7eff1x2Kb3uJI0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1719597992; x=1720202792;
+ d=1e100.net; s=20230601; t=1719598415; x=1720203215;
  h=in-reply-to:content-transfer-encoding:content-disposition
  :mime-version:references:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=D6RF7ZhfHPezXZ+JwgRkmSw3bzrniFyo5WgctlVMcKM=;
- b=tWDGmJTL0Ur+wx4uFFG+hFD42nI6Ey7fRHJT6cHPlcovJh87y7I7+XbyMltJj/fF6I
- LodoKDWPYNcxgSvFnLiEridEe9dMcc37yX1xuJcv2uJu2CidlFWvT3URH/R0qYSUciY7
- gW0j3N1leQERv/UtrW8sRSSryfQGht1b3FPNbaDUXjtWcFrzl95h53G4ieuf/MGjUTPf
- oAv0GgDnG7l/O90jXF+TQki/7sr0IG7h3ASmR9s20FETeuL/8FHV01u/eP4Eo23krGtf
- TC70/IoohKn2TscQyWrnd8CLWoRq2MSEUTax1bwAqEAgqmUy0WOS+FoIh7DNgEdZi6f9
- TK+A==
+ bh=huxmsGyg+iUWrBMicDmaxHSG7pbm8X2WK1OQEgwi0+I=;
+ b=VrSvz4UkRDiJ8scQ2447eKwgQ16spcF19aDlx16Ly7aq0aNYuH5+6EGYybXyBgNWOS
+ VZoQauzwg26z1fqm0omTTCExwEc3n0fUDkbxI4gnf3pyUp0NuHpKIlq5HM1e4C3ERR94
+ 7NfxPSx3l1+JKpU/EfhiUJQNyaPEyxvdRWKmVZVzkj8zVoXPVnnwLX6c9AOhhfgKDRUK
+ 4nh9sFsm9HPC2THDF7bCUTh40xFTQ6QQOu2E6SPwnsuWCBzEGSkvj3wIUA6bya2rdL2t
+ 0f8ZPK8S1MkarSCyylfjK6oJu1B1z/kZmAQrYOmYVAzbpP7Qdvl74KCSHGiDgZWZa47s
+ 1Dmg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXPE1fMqi3ZgT9mTuShFsfHmNVBvVepds3swOJYfzl4d1/9mhmrzjBMNQkCjjXKEiyuFtj1mHV6cAQLBcYupcIKACuPBkD7IqfeQCB1PWg=
-X-Gm-Message-State: AOJu0YxjQvEZIYQL5w0ro+3XO6f7soyy/LpXBs+/+6C8/txibofxi6l4
- LDCEWecO6vhwHiGVH67QsC+thcvso17332KzdmmgMsrLUyObQHP4TPzA02xAPBY=
-X-Google-Smtp-Source: AGHT+IFPw3UkwaO7XpBL0spmNeH+I8UeFCE0PwAIAhPs3nFppOSfxvTU+I6UaRVoaBiX0qZ+ssaUIQ==
-X-Received: by 2002:a05:6512:1386:b0:52e:7498:118a with SMTP id
- 2adb3069b0e04-52e7498135emr3870794e87.4.1719597991738; 
- Fri, 28 Jun 2024 11:06:31 -0700 (PDT)
+ AJvYcCUfoY+tYK9K1fYVqqg2CV7XEdrx4Vkbk14Z9r2G3A1kQMTbZyBWIryZELpumIcv+gvXJnTvBIpzRSuRpY3qa8w4t5Q3iJB8/RSO2XT0Gdc=
+X-Gm-Message-State: AOJu0YzvnJcfdkGJIHT5cMheEp8LMAsXe/09xsfJmpKMYr0ncIdSGoxq
+ eodMuGlNzmQRvvdT3JxEIksMTFAlMfPqRhHp7S9zN0sVkn2KXzz2z0h6S9L7ZQ4=
+X-Google-Smtp-Source: AGHT+IE5lOHbq58vJ8cWAIxbIekJmFwVNdX2XgbfvBOtIf4Qv7xRVWjSmCHxNA5l5enxjRzWddwS1g==
+X-Received: by 2002:a05:651c:1986:b0:2ec:5365:34d3 with SMTP id
+ 38308e7fff4ca-2ec560e8d60mr148913521fa.1.1719598415010; 
+ Fri, 28 Jun 2024 11:13:35 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3675a0e0b7csm3010776f8f.49.2024.06.28.11.06.31
+ 5b1f17b1804b1-4256b0c15f8sm44777175e9.47.2024.06.28.11.13.34
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 28 Jun 2024 11:06:31 -0700 (PDT)
-Date: Fri, 28 Jun 2024 20:06:29 +0200
+ Fri, 28 Jun 2024 11:13:34 -0700 (PDT)
+Date: Fri, 28 Jun 2024 20:13:32 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>,
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org,
  Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org
-Subject: Re: [Linaro-mm-sig] Re: dma_buf_detach lockdep splat
-Message-ID: <Zn77penjAruTgLMM@phenom.ffwll.local>
-References: <40611e5ff8c32b99e7863293a0baac078f323d8f.camel@linux.intel.com>
- <Zn0c8l-yQih3j0NE@phenom.ffwll.local>
- <6bc17415f36c2a9c689010e1cf397fc75a8df55e.camel@linux.intel.com>
+ Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ stable@vger.kernel.org
+Subject: Re: [PATCH] drm/ttm: Always take the bo delayed cleanup path for
+ imported bos
+Message-ID: <Zn79TNg1WfERV7gj@phenom.ffwll.local>
+References: <20240628153848.4989-1-thomas.hellstrom@linux.intel.com>
+ <Zn7cBbi/iZ1cxWPb@DUT025-TGLU.fm.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <6bc17415f36c2a9c689010e1cf397fc75a8df55e.camel@linux.intel.com>
+In-Reply-To: <Zn7cBbi/iZ1cxWPb@DUT025-TGLU.fm.intel.com>
 X-Operating-System: Linux phenom 6.8.9-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,67 +86,157 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jun 27, 2024 at 02:18:44PM +0200, Thomas Hellström wrote:
-> On Thu, 2024-06-27 at 10:04 +0200, Daniel Vetter wrote:
-> > On Wed, Jun 26, 2024 at 05:58:02PM +0200, Thomas Hellström wrote:
-> > > Hi!
-> > > 
-> > > I'm seeing the below lockdep splat 1) with the xe driver in an
-> > > imported
-> > > dma-buf object destruction path.
-> > > 
-> > > It's not because we hold the dma_resv lock at that point, but
-> > > rather
-> > > because we hold *another* dma_resv lock at that point, and the
-> > > dma_resv
-> > > detach happens when the object is idle, in this case it was idle at
-> > > the
-> > > final put(), and dma_buf_detach() is called in the putting process.
-> > > 
-> > > Holding another dma-buf lock might happen as part of
-> > > drm_exec_unlock_all, or simply if the wider vm dma_resv was held at
-> > > object put time, so it's not an uncommon pattern, even if the
-> > > drm_exec
-> > > instance can be fixed by putting all bos after unlocking them all.
-> > > 
-> > > Two solutions coming to mind here:
-> > > 
-> > > 1) Provide a dma_buf_detach_locked()
+On Fri, Jun 28, 2024 at 03:51:33PM +0000, Matthew Brost wrote:
+> On Fri, Jun 28, 2024 at 05:38:48PM +0200, Thomas Hellström wrote:
+> > Bos can be put with multiple unrelated dma-resv locks held. But
+> > imported bos attempt to grab the bo dma-resv during dma-buf detach
+> > that typically happens during cleanup. That leads to lockde splats
+> > similar to the below and a potential ABBA deadlock.
 > > 
-> > This smells way too much like the endless headaches we had with
-> > drm_gem_object_put_locked and friends against
-> > drm_device.struct_mutex. Or
-> > I'm not understanding what you're doing, because I'm pretty sure you
-> > have
-> > to take the dma_resv lock on final put() of imported objects. Because
-> > that
-> > final put() is of the import wrapper, the exporter (and other
-> > importers)
-> > can still get at that object and so dma_resv_lock is very much
-> > needed.
+> > Fix this by always taking the delayed workqueue cleanup path for
+> > imported bos.
+> > 
+> > Requesting stable fixes from when the Xe driver was introduced,
+> > since its usage of drm_exec and wide vm dma_resvs appear to be
+> > the first reliable trigger of this.
+> > 
+> > [22982.116427] ============================================
+> > [22982.116428] WARNING: possible recursive locking detected
+> > [22982.116429] 6.10.0-rc2+ #10 Tainted: G     U  W
+> > [22982.116430] --------------------------------------------
+> > [22982.116430] glxgears:sh0/5785 is trying to acquire lock:
+> > [22982.116431] ffff8c2bafa539a8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: dma_buf_detach+0x3b/0xf0
+> > [22982.116438]
+> >                but task is already holding lock:
+> > [22982.116438] ffff8c2d9aba6da8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: drm_exec_lock_obj+0x49/0x2b0 [drm_exec]
+> > [22982.116442]
+> >                other info that might help us debug this:
+> > [22982.116442]  Possible unsafe locking scenario:
+> > 
+> > [22982.116443]        CPU0
+> > [22982.116444]        ----
+> > [22982.116444]   lock(reservation_ww_class_mutex);
+> > [22982.116445]   lock(reservation_ww_class_mutex);
+> > [22982.116447]
+> >                 *** DEADLOCK ***
+> > 
+> > [22982.116447]  May be due to missing lock nesting notation
+> > 
+> > [22982.116448] 5 locks held by glxgears:sh0/5785:
+> > [22982.116449]  #0: ffff8c2d9aba58c8 (&xef->vm.lock){+.+.}-{3:3}, at: xe_file_close+0xde/0x1c0 [xe]
+> > [22982.116507]  #1: ffff8c2e28cc8480 (&vm->lock){++++}-{3:3}, at: xe_vm_close_and_put+0x161/0x9b0 [xe]
+> > [22982.116578]  #2: ffff8c2e31982970 (&val->lock){.+.+}-{3:3}, at: xe_validation_ctx_init+0x6d/0x70 [xe]
+> > [22982.116647]  #3: ffffacdc469478a8 (reservation_ww_class_acquire){+.+.}-{0:0}, at: xe_vma_destroy_unlocked+0x7f/0xe0 [xe]
+> > [22982.116716]  #4: ffff8c2d9aba6da8 (reservation_ww_class_mutex){+.+.}-{3:3}, at: drm_exec_lock_obj+0x49/0x2b0 [drm_exec]
+> > [22982.116719]
+> >                stack backtrace:
+> > [22982.116720] CPU: 8 PID: 5785 Comm: glxgears:sh0 Tainted: G     U  W          6.10.0-rc2+ #10
+> > [22982.116721] Hardware name: ASUS System Product Name/PRIME B560M-A AC, BIOS 2001 02/01/2023
+> > [22982.116723] Call Trace:
+> > [22982.116724]  <TASK>
+> > [22982.116725]  dump_stack_lvl+0x77/0xb0
+> > [22982.116727]  __lock_acquire+0x1232/0x2160
+> > [22982.116730]  lock_acquire+0xcb/0x2d0
+> > [22982.116732]  ? dma_buf_detach+0x3b/0xf0
+> > [22982.116734]  ? __lock_acquire+0x417/0x2160
+> > [22982.116736]  __ww_mutex_lock.constprop.0+0xd0/0x13b0
+> > [22982.116738]  ? dma_buf_detach+0x3b/0xf0
+> > [22982.116741]  ? dma_buf_detach+0x3b/0xf0
+> > [22982.116743]  ? ww_mutex_lock+0x2b/0x90
+> > [22982.116745]  ww_mutex_lock+0x2b/0x90
+> > [22982.116747]  dma_buf_detach+0x3b/0xf0
+> > [22982.116749]  drm_prime_gem_destroy+0x2f/0x40 [drm]
+> > [22982.116775]  xe_ttm_bo_destroy+0x32/0x220 [xe]
+> > [22982.116818]  ? __mutex_unlock_slowpath+0x3a/0x290
+> > [22982.116821]  drm_exec_unlock_all+0xa1/0xd0 [drm_exec]
+> > [22982.116823]  drm_exec_fini+0x12/0xb0 [drm_exec]
+> > [22982.116824]  xe_validation_ctx_fini+0x15/0x40 [xe]
+> > [22982.116892]  xe_vma_destroy_unlocked+0xb1/0xe0 [xe]
+> > [22982.116959]  xe_vm_close_and_put+0x41a/0x9b0 [xe]
+> > [22982.117025]  ? xa_find+0xe3/0x1e0
+> > [22982.117028]  xe_file_close+0x10a/0x1c0 [xe]
+> > [22982.117074]  drm_file_free+0x22a/0x280 [drm]
+> > [22982.117099]  drm_release_noglobal+0x22/0x70 [drm]
+> > [22982.117119]  __fput+0xf1/0x2d0
+> > [22982.117122]  task_work_run+0x59/0x90
+> > [22982.117125]  do_exit+0x330/0xb40
+> > [22982.117127]  do_group_exit+0x36/0xa0
+> > [22982.117129]  get_signal+0xbd2/0xbe0
+> > [22982.117131]  arch_do_signal_or_restart+0x3e/0x240
+> > [22982.117134]  syscall_exit_to_user_mode+0x1e7/0x290
+> > [22982.117137]  do_syscall_64+0xa1/0x180
+> > [22982.117139]  ? lock_acquire+0xcb/0x2d0
+> > [22982.117140]  ? __set_task_comm+0x28/0x1e0
+> > [22982.117141]  ? find_held_lock+0x2b/0x80
+> > [22982.117144]  ? __set_task_comm+0xe1/0x1e0
+> > [22982.117145]  ? lock_release+0xca/0x290
+> > [22982.117147]  ? __do_sys_prctl+0x245/0xab0
+> > [22982.117149]  ? lockdep_hardirqs_on_prepare+0xde/0x190
+> > [22982.117150]  ? syscall_exit_to_user_mode+0xb0/0x290
+> > [22982.117152]  ? do_syscall_64+0xa1/0x180
+> > [22982.117154]  ? __lock_acquire+0x417/0x2160
+> > [22982.117155]  ? reacquire_held_locks+0xd1/0x1f0
+> > [22982.117156]  ? do_user_addr_fault+0x30c/0x790
+> > [22982.117158]  ? lock_acquire+0xcb/0x2d0
+> > [22982.117160]  ? find_held_lock+0x2b/0x80
+> > [22982.117162]  ? do_user_addr_fault+0x357/0x790
+> > [22982.117163]  ? lock_release+0xca/0x290
+> > [22982.117164]  ? do_user_addr_fault+0x361/0x790
+> > [22982.117166]  ? trace_hardirqs_off+0x4b/0xc0
+> > [22982.117168]  ? clear_bhb_loop+0x45/0xa0
+> > [22982.117170]  ? clear_bhb_loop+0x45/0xa0
+> > [22982.117172]  ? clear_bhb_loop+0x45/0xa0
+> > [22982.117174]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+> > [22982.117176] RIP: 0033:0x7f943d267169
+> > [22982.117192] Code: Unable to access opcode bytes at 0x7f943d26713f.
+> > [22982.117193] RSP: 002b:00007f9430bffc80 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+> > [22982.117195] RAX: fffffffffffffe00 RBX: 0000000000000000 RCX: 00007f943d267169
+> > [22982.117196] RDX: 0000000000000000 RSI: 0000000000000189 RDI: 00005622f89579d0
+> > [22982.117197] RBP: 00007f9430bffcb0 R08: 0000000000000000 R09: 00000000ffffffff
+> > [22982.117198] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+> > [22982.117199] R13: 0000000000000000 R14: 0000000000000000 R15: 00005622f89579d0
+> > [22982.117202]  </TASK>
+> > 
+> > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+> > Cc: Christian König <christian.koenig@amd.com>
+> > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > Cc: dri-devel@lists.freedesktop.org
+> > Cc: intel-xe@lists.freedesktop.org
+> > Cc: <stable@vger.kernel.org> # v6.8+
 > 
-> Yeah, the TTM final put looks like
+> Patch and explaination makes sense to me.
 > 
-> if (!dma_resv_trylock() || !idle)
-> 	queue_work(final_distruction);
-> 
-> dma_resv_unlock();
-> dma_buf_detach(); <--- lockdep splat
-> 
-> Here's where a dma_buf_detach_locked() would've made sense before the
-> dma_resv_unlock().
-> 
-> But if you think this will cause grief, I'm completely fine with
-> fixing this in TTM by always taking the deferring path.
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-Oh I misunderstood what you've meant, I thought you want to do a huge
-exercise in passing the "do we know we're locked" flag all the way through
-entire callchains to exporters.
+I guess for stable this is good since minimal, but after Thomas explaine
+what he meant with dma_buf_detach_unlocked I think that total sense as a
+follow-up patch maybe.
 
-If it's just so that the fastpath of bypassing the worker can function for
-imported buffers, then I think that's fine. As long as we just punt to the
-worker if we can't get the lock.
--Sima
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+
+Cheers, Sima
+> 
+> > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/ttm/ttm_bo.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+> > index 6396dece0db1..2427be8bc97f 100644
+> > --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> > +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> > @@ -346,6 +346,7 @@ static void ttm_bo_release(struct kref *kref)
+> >  		if (!dma_resv_test_signaled(bo->base.resv,
+> >  					    DMA_RESV_USAGE_BOOKKEEP) ||
+> >  		    (want_init_on_free() && (bo->ttm != NULL)) ||
+> > +		    bo->type == ttm_bo_type_sg ||
+> >  		    !dma_resv_trylock(bo->base.resv)) {
+> >  			/* The BO is not idle, resurrect it for delayed destroy */
+> >  			ttm_bo_flush_all_fences(bo);
+> > -- 
+> > 2.44.0
+> > 
+
 -- 
 Daniel Vetter
 Software Engineer, Intel Corporation
