@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B657CC2BD09
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Jul 2024 14:17:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9632C41513
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Jul 2024 14:17:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DA9310E443;
-	Mon,  1 Jul 2024 14:17:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92C2410E457;
+	Mon,  1 Jul 2024 14:17:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aOgnKzeK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZGxuOf+8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6FFE10E443
- for <intel-xe@lists.freedesktop.org>; Mon,  1 Jul 2024 14:17:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3912610E452
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 Jul 2024 14:17:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719843466; x=1751379466;
+ t=1719843474; x=1751379474;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PK8jKEBjanS3YdqpprKTjCzizgd+Uj/REfG7hMrrYIg=;
- b=aOgnKzeKY4uphCDH5ezv1JPCqMjwd4yRFVCfslVnx6kPyui11zPD7MaW
- Pvj0VNUI1/uUCAdnCi3rJFx9dorK2prl9UrRi1eLauH/USoCfy0/ke3Yg
- +4jcz7/SbC1vCTtG3gSa4KdVpD76Euz7Aqec68r0/+iS+6gt6I9Bs+Iqh
- xXK9FxsKaebERLYdWSe8Ciz8BaYVgHZLg+h0EDsLt8Ktxi7Z1HyKUIJc0
- ki0zEeGJ+evkcknHMRgCoPWYOgkZt5p1Vwvnjlzzf3VkKe4fudz87lefj
- SChIWpEnPfi5WIQPsyZc4+uPaGucHh+LYf1FWv8ZMr0yFQr6p1h73tRAS w==;
-X-CSE-ConnectionGUID: 1ON7gqwhR7+FpuPvPJuuiQ==
-X-CSE-MsgGUID: 65ZXXNmMQXaUDE+O4RYINw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11120"; a="27566453"
-X-IronPort-AV: E=Sophos;i="6.09,176,1716274800"; d="scan'208";a="27566453"
+ bh=o7pgEsl1M4jkRAL2OMPP8br1xBPkYV2QP+YAJ1OanhY=;
+ b=ZGxuOf+8wbt5+SxecG8JABXzIcP+UdYJFDifUAiUb94vdPNjq7y+gwzS
+ 4LTwUB8lQXahORF9Q1ZoFooGOK4HcmEk2SbHJkRwVdCGKzyU0n0qsCS3k
+ Epr8lhUopz/mBmWW4f43FOz93jKXFA6l4bGmlO9S84Ko9svHwZIWqHnRm
+ 7duWtMSk2bZsPlJ1EbKwmj1L0HMdkCcKdBcuAHyZv36dFUCTTpifmIn/n
+ tO0X+u/2Hsz+Uh94n2RUiDnGXePVqQW26LSUvJR37JpmY5GkhfFZDbwfs
+ zebGMAwfn2bxZ/MbnqEdlqfAWFvG8UfPJjHl5qwJFuwTqhrC3wTQqIvH5 Q==;
+X-CSE-ConnectionGUID: lK1OB9OeQRm0VOZwh7dyqw==
+X-CSE-MsgGUID: nQ4SXs5NT8OT/SOKlDK7Tw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11120"; a="27566476"
+X-IronPort-AV: E=Sophos;i="6.09,176,1716274800"; d="scan'208";a="27566476"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2024 07:17:46 -0700
-X-CSE-ConnectionGUID: EFwYujBZRlirfOMQiK6FxA==
-X-CSE-MsgGUID: G09gP7/WTpGL6t5CXwNdCw==
+ 01 Jul 2024 07:17:52 -0700
+X-CSE-ConnectionGUID: PfDVPbnoT7uDUals/09nMg==
+X-CSE-MsgGUID: GecbTaXQTQG3FQ/L7MH5nw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,176,1716274800"; d="scan'208";a="49880723"
+X-IronPort-AV: E=Sophos;i="6.09,176,1716274800"; d="scan'208";a="49880786"
 Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2024 07:17:44 -0700
+ 01 Jul 2024 07:17:51 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
  david.e.box@linux.intel.com, ilpo.jarvinen@linux.intel.com,
  matthew.brost@intel.com
 Cc: michael.j.ruhl@intel.com
-Subject: [PATCH v5 1/6] platform/x86/intel/vsec.h: Move to include/linux
-Date: Mon,  1 Jul 2024 10:17:22 -0400
-Message-ID: <20240701141730.3585133-2-michael.j.ruhl@intel.com>
+Subject: [PATCH v5 5/6] platform/x86/intel/pmt: Add support for PMT base adjust
+Date: Mon,  1 Jul 2024 10:17:26 -0400
+Message-ID: <20240701141730.3585133-6-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240701141730.3585133-1-michael.j.ruhl@intel.com>
 References: <20240701141730.3585133-1-michael.j.ruhl@intel.com>
@@ -68,235 +68,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: "David E. Box" <david.e.box@linux.intel.com>
+DVSEC offsets are based on the endpoint BAR.  If an endpoint is
+not avialable allow the offset information to be adjusted by the
+parent driver.
 
-Some drivers outside of PDX86 need access to the vsec header. Move it to
-include/linux to make it easier to include.
-
-Reviewed-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
-Signed-off-by: David E. Box <david.e.box@linux.intel.com>
+Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- MAINTAINERS                                           |  1 +
- drivers/platform/x86/intel/pmc/core_ssram.c           |  2 +-
- drivers/platform/x86/intel/pmt/class.c                |  2 +-
- drivers/platform/x86/intel/pmt/class.h                |  2 +-
- drivers/platform/x86/intel/pmt/crashlog.c             |  2 +-
- drivers/platform/x86/intel/pmt/telemetry.c            |  2 +-
- drivers/platform/x86/intel/sdsi.c                     |  3 +--
- drivers/platform/x86/intel/tpmi.c                     |  3 +--
- drivers/platform/x86/intel/vsec.c                     |  7 +++----
- .../x86/intel/vsec.h => include/linux/intel_vsec.h    | 11 +++++++++--
- 10 files changed, 20 insertions(+), 15 deletions(-)
- rename drivers/platform/x86/intel/vsec.h => include/linux/intel_vsec.h (92%)
+ drivers/platform/x86/intel/pmt/class.h     | 1 +
+ drivers/platform/x86/intel/pmt/telemetry.c | 9 +++++++++
+ drivers/platform/x86/intel/vsec.c          | 1 +
+ include/linux/intel_vsec.h                 | 2 ++
+ 4 files changed, 13 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index cd970e09de1b..7bd3b7acd0e0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11420,6 +11420,7 @@ INTEL VENDOR SPECIFIC EXTENDED CAPABILITIES DRIVER
- M:	David E. Box <david.e.box@linux.intel.com>
- S:	Supported
- F:	drivers/platform/x86/intel/vsec.*
-+F:	include/linux/intel_vsec.h
- 
- INTEL VIRTUAL BUTTON DRIVER
- M:	AceLan Kao <acelan.kao@canonical.com>
-diff --git a/drivers/platform/x86/intel/pmc/core_ssram.c b/drivers/platform/x86/intel/pmc/core_ssram.c
-index 1bde86c54eb9..baddaaec25ee 100644
---- a/drivers/platform/x86/intel/pmc/core_ssram.c
-+++ b/drivers/platform/x86/intel/pmc/core_ssram.c
-@@ -9,11 +9,11 @@
-  */
- 
- #include <linux/cleanup.h>
-+#include <linux/intel_vsec.h>
- #include <linux/pci.h>
- #include <linux/io-64-nonatomic-lo-hi.h>
- 
- #include "core.h"
--#include "../vsec.h"
- #include "../pmt/telemetry.h"
- 
- #define SSRAM_HDR_SIZE		0x100
-diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/intel/pmt/class.c
-index 4b53940a64e2..d7939b28e937 100644
---- a/drivers/platform/x86/intel/pmt/class.c
-+++ b/drivers/platform/x86/intel/pmt/class.c
-@@ -9,12 +9,12 @@
-  */
- 
- #include <linux/kernel.h>
-+#include <linux/intel_vsec.h>
- #include <linux/io-64-nonatomic-lo-hi.h>
- #include <linux/module.h>
- #include <linux/mm.h>
- #include <linux/pci.h>
- 
--#include "../vsec.h"
- #include "class.h"
- 
- #define PMT_XA_START		1
 diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/intel/pmt/class.h
-index d23c63b73ab7..d6f9ccaf28c8 100644
+index a267ac964423..984cd40ee814 100644
 --- a/drivers/platform/x86/intel/pmt/class.h
 +++ b/drivers/platform/x86/intel/pmt/class.h
-@@ -2,13 +2,13 @@
- #ifndef _INTEL_PMT_CLASS_H
- #define _INTEL_PMT_CLASS_H
- 
-+#include <linux/intel_vsec.h>
- #include <linux/xarray.h>
- #include <linux/types.h>
- #include <linux/bits.h>
- #include <linux/err.h>
- #include <linux/io.h>
- 
--#include "../vsec.h"
- #include "telemetry.h"
- 
- /* PMT access types */
-diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x86/intel/pmt/crashlog.c
-index 4014c02cafdb..9079d5dffc03 100644
---- a/drivers/platform/x86/intel/pmt/crashlog.c
-+++ b/drivers/platform/x86/intel/pmt/crashlog.c
-@@ -9,6 +9,7 @@
-  */
- 
- #include <linux/auxiliary_bus.h>
-+#include <linux/intel_vsec.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/pci.h>
-@@ -16,7 +17,6 @@
- #include <linux/uaccess.h>
- #include <linux/overflow.h>
- 
--#include "../vsec.h"
- #include "class.h"
- 
- /* Crashlog discovery header types */
+@@ -46,6 +46,7 @@ struct intel_pmt_entry {
+ 	void __iomem		*base;
+ 	struct pmt_callbacks	*cb;
+ 	unsigned long		base_addr;
++	s32			base_adjust;
+ 	size_t			size;
+ 	u32			guid;
+ 	int			devid;
 diff --git a/drivers/platform/x86/intel/pmt/telemetry.c b/drivers/platform/x86/intel/pmt/telemetry.c
-index 09258564dfc4..3478f891ea0b 100644
+index c9feac859e57..5c44e500e8f6 100644
 --- a/drivers/platform/x86/intel/pmt/telemetry.c
 +++ b/drivers/platform/x86/intel/pmt/telemetry.c
-@@ -9,6 +9,7 @@
-  */
+@@ -78,6 +78,13 @@ static int pmt_telem_header_decode(struct intel_pmt_entry *entry,
+ 	header->access_type = TELEM_ACCESS(readl(disc_table));
+ 	header->guid = readl(disc_table + TELEM_GUID_OFFSET);
+ 	header->base_offset = readl(disc_table + TELEM_BASE_OFFSET);
++	if (entry->base_adjust) {
++		u32 new_base = header->base_offset + entry->base_adjust;
++
++		dev_dbg(dev, "Adjusting baseoffset from 0x%x to 0x%x\n",
++			header->base_offset, new_base);
++		header->base_offset = new_base;
++	}
  
- #include <linux/auxiliary_bus.h>
-+#include <linux/intel_vsec.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/pci.h>
-@@ -16,7 +17,6 @@
- #include <linux/uaccess.h>
- #include <linux/overflow.h>
+ 	/* Size is measured in DWORDS, but accessor returns bytes */
+ 	header->size = TELEM_SIZE(readl(disc_table));
+@@ -302,6 +309,8 @@ static int pmt_telem_probe(struct auxiliary_device *auxdev, const struct auxilia
+ 	for (i = 0; i < intel_vsec_dev->num_resources; i++) {
+ 		struct intel_pmt_entry *entry = &priv->entry[priv->num_entries];
  
--#include "../vsec.h"
- #include "class.h"
- 
- #define TELEM_SIZE_OFFSET	0x0
-diff --git a/drivers/platform/x86/intel/sdsi.c b/drivers/platform/x86/intel/sdsi.c
-index 277e4f4b20ac..9d137621f0e6 100644
---- a/drivers/platform/x86/intel/sdsi.c
-+++ b/drivers/platform/x86/intel/sdsi.c
-@@ -12,6 +12,7 @@
- #include <linux/bits.h>
- #include <linux/bitfield.h>
- #include <linux/device.h>
-+#include <linux/intel_vsec.h>
- #include <linux/iopoll.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-@@ -22,8 +23,6 @@
- #include <linux/types.h>
- #include <linux/uaccess.h>
- 
--#include "vsec.h"
--
- #define ACCESS_TYPE_BARID		2
- #define ACCESS_TYPE_LOCAL		3
- 
-diff --git a/drivers/platform/x86/intel/tpmi.c b/drivers/platform/x86/intel/tpmi.c
-index 6c0cbccd80bb..b9fa1cbfdcf7 100644
---- a/drivers/platform/x86/intel/tpmi.c
-+++ b/drivers/platform/x86/intel/tpmi.c
-@@ -51,6 +51,7 @@
- #include <linux/debugfs.h>
- #include <linux/delay.h>
- #include <linux/intel_tpmi.h>
-+#include <linux/intel_vsec.h>
- #include <linux/io.h>
- #include <linux/iopoll.h>
- #include <linux/module.h>
-@@ -59,8 +60,6 @@
- #include <linux/sizes.h>
- #include <linux/string_helpers.h>
- 
--#include "vsec.h"
--
- /**
-  * struct intel_tpmi_pfs_entry - TPMI PM Feature Structure (PFS) entry
-  * @tpmi_id:	TPMI feature identifier (what the feature is and its data format).
++		entry->base_adjust = intel_vsec_dev->base_adjust;
++
+ 		mutex_lock(&ep_lock);
+ 		ret = intel_pmt_dev_create(entry, &pmt_telem_ns, intel_vsec_dev, i);
+ 		mutex_unlock(&ep_lock);
 diff --git a/drivers/platform/x86/intel/vsec.c b/drivers/platform/x86/intel/vsec.c
-index 0fdfaf3a4f5c..2b46807f868b 100644
+index 7b5cc9993974..be079d62a7bc 100644
 --- a/drivers/platform/x86/intel/vsec.c
 +++ b/drivers/platform/x86/intel/vsec.c
-@@ -17,14 +17,13 @@
- #include <linux/bits.h>
- #include <linux/cleanup.h>
- #include <linux/delay.h>
--#include <linux/kernel.h>
- #include <linux/idr.h>
-+#include <linux/intel_vsec.h>
-+#include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/pci.h>
- #include <linux/types.h>
+@@ -212,6 +212,7 @@ static int intel_vsec_add_dev(struct pci_dev *pdev, struct intel_vsec_header *he
+ 	intel_vsec_dev->num_resources = header->num_entries;
+ 	intel_vsec_dev->quirks = info->quirks;
+ 	intel_vsec_dev->base_addr = info->base_addr;
++	intel_vsec_dev->base_adjust = info->base_adjust;
+ 	intel_vsec_dev->priv_data = info->priv_data;
  
--#include "vsec.h"
--
- #define PMT_XA_START			0
- #define PMT_XA_MAX			INT_MAX
- #define PMT_XA_LIMIT			XA_LIMIT(PMT_XA_START, PMT_XA_MAX)
-@@ -341,7 +340,7 @@ static bool intel_vsec_walk_vsec(struct pci_dev *pdev,
- void intel_vsec_register(struct pci_dev *pdev,
- 			 struct intel_vsec_platform_info *info)
- {
--	if (!pdev || !info)
-+	if (!pdev || !info || !info->headers)
- 		return;
- 
- 	intel_vsec_walk_header(pdev, info);
-diff --git a/drivers/platform/x86/intel/vsec.h b/include/linux/intel_vsec.h
-similarity index 92%
-rename from drivers/platform/x86/intel/vsec.h
-rename to include/linux/intel_vsec.h
-index e23e76129691..ff7998cadab4 100644
---- a/drivers/platform/x86/intel/vsec.h
+ 	if (header->id == VSEC_ID_SDSI)
+diff --git a/include/linux/intel_vsec.h b/include/linux/intel_vsec.h
+index 003301783331..930eab246fa1 100644
+--- a/include/linux/intel_vsec.h
 +++ b/include/linux/intel_vsec.h
-@@ -1,6 +1,6 @@
- /* SPDX-License-Identifier: GPL-2.0 */
--#ifndef _VSEC_H
--#define _VSEC_H
-+#ifndef _INTEL_VSEC_H
-+#define _INTEL_VSEC_H
+@@ -79,6 +79,7 @@ struct intel_vsec_platform_info {
+ 	unsigned long caps;
+ 	unsigned long quirks;
+ 	u64 base_addr;
++	s32 base_adjust;
+ };
  
- #include <linux/auxiliary_bus.h>
- #include <linux/bits.h>
-@@ -103,6 +103,13 @@ static inline struct intel_vsec_device *auxdev_to_ivdev(struct auxiliary_device
- 	return container_of(auxdev, struct intel_vsec_device, auxdev);
- }
+ struct intel_vsec_device {
+@@ -92,6 +93,7 @@ struct intel_vsec_device {
+ 	size_t priv_data_size;
+ 	unsigned long quirks;
+ 	u64 base_addr;
++	s32 base_adjust;
+ };
  
-+#if IS_ENABLED(CONFIG_INTEL_VSEC)
- void intel_vsec_register(struct pci_dev *pdev,
- 			 struct intel_vsec_platform_info *info);
-+#else
-+static inline void intel_vsec_register(struct pci_dev *pdev,
-+				       struct intel_vsec_platform_info *info)
-+{
-+}
-+#endif
- #endif
+ int intel_vsec_add_aux(struct pci_dev *pdev, struct device *parent,
 -- 
 2.44.0
 
