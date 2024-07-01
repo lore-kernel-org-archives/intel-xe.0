@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C49CFC2BD09
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA449C30659
 	for <intel-xe@archiver.kernel.org>; Mon,  1 Jul 2024 14:17:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B23C10E454;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9253710E455;
 	Mon,  1 Jul 2024 14:17:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KB8AGcL8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lnr028vv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DA7910E452
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9666010E452
  for <intel-xe@lists.freedesktop.org>; Mon,  1 Jul 2024 14:17:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1719843474; x=1751379474;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7zVNvXwlMMjVGsBI3gWUtWIHqk8+JTEwhwrDZ97wXsk=;
- b=KB8AGcL8/BRtesNN1HDpLv8Llc223ZAaF5rQHZlfqyMRcRDWn6YxCv9B
- aSqVGHhx7qNLOvuvEs7lbdS97Jr7HY6R8xi98DtOq6OkCMdMNmXEGDaFA
- GYgLbo8OxcyyfZo9Gyp5sFvZQhLPbK8f0oMDevS7ospOezN/zstptsD/h
- UY7pJCdr0/kTgTSpp+8o1Rm9JIXB/EREJFdPVItZKYI5BvvmUrPVho19S
- jaccgf27NmteXe4uKqJlhVftuXmRf5FhRcrOuybp23io3o+yiEzRJEV6t
- P0nW1w8m1ckXoBYPezGHgLalLVwpwO6Xca1sTCDMAjICT07VmNlxXasqu g==;
-X-CSE-ConnectionGUID: vm5NvnnnSZilyUNbyOeFEA==
-X-CSE-MsgGUID: T0KY9b1aRG+tBjyRUMhgzQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11120"; a="27566475"
-X-IronPort-AV: E=Sophos;i="6.09,176,1716274800"; d="scan'208";a="27566475"
+ bh=G+xFkXgVDRaidcaqwLq5nuLfh2O9tzzVG8N/zRGSvmo=;
+ b=Lnr028vv8wFG2egJXEG0YzdQkjlIBx0gAuBagSZbH8mnL7QxY+O6tPqe
+ qWtj3Q2zgpsnfGvo/OjD8PArIjAy9oUilNunGpGr/wD8CG8owKzFNYmjV
+ dYPviJrMviNrZyRQzEQwtLXHmD/UCl3rLxE8K8yshHonzh0u3gH9Mbmma
+ WiRwBHjwefmGC9n/S1ijt1rlvnvbWFDLSxoAghY5T9SU/sQovfEjJDVTs
+ 1MOvok4yxdFVBJj3MfyNjvdweqKwIb8wtCsCnYcBLpDSzVlq2troSjoOA
+ krVHpl/A3/2nVRs6xA0y9c20p7NT3Ii1stPK4m1mES+HuUySmkB1ohsI0 w==;
+X-CSE-ConnectionGUID: BCTOtpyCRN6XJitPYLvX/w==
+X-CSE-MsgGUID: q9CM0xk4Q1qlqZr5OJGEtw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11120"; a="27566481"
+X-IronPort-AV: E=Sophos;i="6.09,176,1716274800"; d="scan'208";a="27566481"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2024 07:17:52 -0700
-X-CSE-ConnectionGUID: xnIZgQQeRbCH9gjeIg41hQ==
-X-CSE-MsgGUID: 7Pd9ILaIQ6mFlHbSriEJJw==
+ 01 Jul 2024 07:17:54 -0700
+X-CSE-ConnectionGUID: FnjPYmMzTtCZnHV+Y+nAFw==
+X-CSE-MsgGUID: oeEeMOHNT5alK/y96vmg8A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,176,1716274800"; d="scan'208";a="49880772"
+X-IronPort-AV: E=Sophos;i="6.09,176,1716274800"; d="scan'208";a="49880794"
 Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2024 07:17:47 -0700
+ 01 Jul 2024 07:17:52 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
  david.e.box@linux.intel.com, ilpo.jarvinen@linux.intel.com,
  matthew.brost@intel.com
 Cc: michael.j.ruhl@intel.com
-Subject: [PATCH v5 3/6] platform/x86/intel/pmt: Use PMT callbacks
-Date: Mon,  1 Jul 2024 10:17:24 -0400
-Message-ID: <20240701141730.3585133-4-michael.j.ruhl@intel.com>
+Subject: [PATCH v5 6/6] drm/xe/vsec: Add support for DG2
+Date: Mon,  1 Jul 2024 10:17:27 -0400
+Message-ID: <20240701141730.3585133-7-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240701141730.3585133-1-michael.j.ruhl@intel.com>
 References: <20240701141730.3585133-1-michael.j.ruhl@intel.com>
@@ -68,156 +68,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: "David E. Box" <david.e.box@linux.intel.com>
+DG2 needs to adjust the discovery offset WRT the GT BAR not the
+P2SB bar so add the base_adjust value to allow for the difference
+to be used.
 
-PMT providers may require device specific actions before their telemetry
-may be read. If the read_telem() is assigned, call it instead of
-memcpy_fromio() and return. Since this needs to be done in multiple
-locations, add pmt_telem_read_mmio() as a wrapper function to perform this
-and any other needed checks.
+Update xe_vsec.c to include DG2 header information.
 
-Reviewed-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
-Signed-off-by: David E. Box <david.e.box@linux.intel.com>
+Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/platform/x86/intel/pmt/class.c     | 26 +++++++++++++++++-----
- drivers/platform/x86/intel/pmt/class.h     |  8 +++++--
- drivers/platform/x86/intel/pmt/telemetry.c | 10 +++++----
- 3 files changed, 32 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_vsec.c | 81 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 81 insertions(+)
 
-diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/intel/pmt/class.c
-index d7939b28e937..c04bb7f97a4d 100644
---- a/drivers/platform/x86/intel/pmt/class.c
-+++ b/drivers/platform/x86/intel/pmt/class.c
-@@ -58,6 +58,22 @@ pmt_memcpy64_fromio(void *to, const u64 __iomem *from, size_t count)
- 	return count;
- }
+diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+index dfd42153bc76..68befc410ff3 100644
+--- a/drivers/gpu/drm/xe/xe_vsec.c
++++ b/drivers/gpu/drm/xe/xe_vsec.c
+@@ -15,6 +15,16 @@
  
-+int pmt_telem_read_mmio(struct pci_dev *pdev, struct pmt_callbacks *cb, u32 guid, void *buf,
-+			void __iomem *addr, u32 count)
-+{
-+	if (cb && cb->read_telem)
-+		return cb->read_telem(pdev, guid, buf, count);
+ #define SOC_BASE		0x280000
+ 
++/* from drivers/platform/x86/intel/pmt/telemetry.c */
++#define TELEM_BASE_OFFSET	0x8
 +
-+	if (guid == GUID_SPR_PUNIT)
-+		/* PUNIT on SPR only supports aligned 64-bit read */
-+		return pmt_memcpy64_fromio(buf, addr, count);
++#define DG2_PMT_BASE		0xE8000
++#define DG2_DISCOVERY_START	0x6000
++#define DG2_TELEM_START		0x4000
 +
-+	memcpy_fromio(buf, addr, count);
++#define DG2_DISCOVERY_OFFSET	(SOC_BASE + DG2_PMT_BASE + DG2_DISCOVERY_START)
++#define DG2_TELEM_OFFSET	(SOC_BASE + DG2_PMT_BASE + DG2_TELEM_START)
 +
-+	return count;
-+}
-+EXPORT_SYMBOL_NS_GPL(pmt_telem_read_mmio, INTEL_PMT);
+ #define BMG_PMT_BASE		0xDB000
+ #define BMG_DISCOVERY_OFFSET	(SOC_BASE + BMG_PMT_BASE)
+ 
+@@ -29,6 +39,20 @@
+ #define SG_REMAP_ACCESS(_mem)	((_mem) << 24)
+ #define SG_REMAP_BITS		GENMASK(31, 24)
+ 
++static struct intel_vsec_header dg2_telemetry = {
++	.length = 0x10,
++	.id = VSEC_ID_TELEMETRY,
++	.num_entries = 1,
++	.entry_size = 3,
++	.tbir = GFX_BAR,
++	.offset = DG2_DISCOVERY_OFFSET,
++};
 +
- /*
-  * sysfs
-  */
-@@ -79,11 +95,8 @@ intel_pmt_read(struct file *filp, struct kobject *kobj,
- 	if (count > entry->size - off)
- 		count = entry->size - off;
++static struct intel_vsec_header *dg2_capabilities[] = {
++	&dg2_telemetry,
++	NULL
++};
++
+ static struct intel_vsec_header bmg_telemetry = {
+ 	.length = 0x10,
+ 	.id = VSEC_ID_TELEMETRY,
+@@ -45,10 +69,16 @@ static struct intel_vsec_header *bmg_capabilities[] = {
  
--	if (entry->guid == GUID_SPR_PUNIT)
--		/* PUNIT on SPR only supports aligned 64-bit read */
--		count = pmt_memcpy64_fromio(buf, entry->base + off, count);
--	else
--		memcpy_fromio(buf, entry->base + off, count);
-+	count = pmt_telem_read_mmio(entry->ep->pcidev, entry->cb, entry->header.guid, buf,
-+				    entry->base + off, count);
- 
- 	return count;
- }
-@@ -239,6 +252,7 @@ static int intel_pmt_populate_entry(struct intel_pmt_entry *entry,
- 
- 	entry->guid = header->guid;
- 	entry->size = header->size;
-+	entry->cb = ivdev->priv_data;
- 
- 	return 0;
- }
-@@ -300,7 +314,7 @@ static int intel_pmt_dev_register(struct intel_pmt_entry *entry,
- 		goto fail_ioremap;
- 
- 	if (ns->pmt_add_endpoint) {
--		ret = ns->pmt_add_endpoint(entry, ivdev->pcidev);
-+		ret = ns->pmt_add_endpoint(ivdev, entry);
- 		if (ret)
- 			goto fail_add_endpoint;
- 	}
-diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/intel/pmt/class.h
-index d6f9ccaf28c8..a267ac964423 100644
---- a/drivers/platform/x86/intel/pmt/class.h
-+++ b/drivers/platform/x86/intel/pmt/class.h
-@@ -24,6 +24,7 @@ struct pci_dev;
- struct telem_endpoint {
- 	struct pci_dev		*pcidev;
- 	struct telem_header	header;
-+	struct pmt_callbacks	*cb;
- 	void __iomem		*base;
- 	bool			present;
- 	struct kref		kref;
-@@ -43,6 +44,7 @@ struct intel_pmt_entry {
- 	struct kobject		*kobj;
- 	void __iomem		*disc_table;
- 	void __iomem		*base;
-+	struct pmt_callbacks	*cb;
- 	unsigned long		base_addr;
- 	size_t			size;
- 	u32			guid;
-@@ -55,10 +57,12 @@ struct intel_pmt_namespace {
- 	const struct attribute_group *attr_grp;
- 	int (*pmt_header_decode)(struct intel_pmt_entry *entry,
- 				 struct device *dev);
--	int (*pmt_add_endpoint)(struct intel_pmt_entry *entry,
--				struct pci_dev *pdev);
-+	int (*pmt_add_endpoint)(struct intel_vsec_device *ivdev,
-+				struct intel_pmt_entry *entry);
+ enum xe_vsec {
+ 	XE_VSEC_UNKNOWN = 0,
++	XE_VSEC_DG2,
+ 	XE_VSEC_BMG,
  };
  
-+int pmt_telem_read_mmio(struct pci_dev *pdev, struct pmt_callbacks *cb, u32 guid, void *buf,
-+			void __iomem *addr, u32 count);
- bool intel_pmt_is_early_client_hw(struct device *dev);
- int intel_pmt_dev_create(struct intel_pmt_entry *entry,
- 			 struct intel_pmt_namespace *ns,
-diff --git a/drivers/platform/x86/intel/pmt/telemetry.c b/drivers/platform/x86/intel/pmt/telemetry.c
-index 3478f891ea0b..c9feac859e57 100644
---- a/drivers/platform/x86/intel/pmt/telemetry.c
-+++ b/drivers/platform/x86/intel/pmt/telemetry.c
-@@ -93,8 +93,8 @@ static int pmt_telem_header_decode(struct intel_pmt_entry *entry,
- 	return 0;
+ static struct intel_vsec_platform_info xe_vsec_info[] = {
++	[XE_VSEC_DG2] = {
++		.caps = VSEC_CAP_TELEMETRY,
++		.headers = dg2_capabilities,
++		.quirks = VSEC_QUIRK_EARLY_HW,
++	},
+ 	[XE_VSEC_BMG] = {
+ 		.caps = VSEC_CAP_TELEMETRY,
+ 		.headers = bmg_capabilities,
+@@ -173,6 +203,7 @@ struct pmt_callbacks xe_pmt_cb = {
+ };
+ 
+ static const int vsec_platforms[] = {
++	[XE_DG2] = XE_VSEC_DG2,
+ 	[XE_BATTLEMAGE] = XE_VSEC_BMG,
+ };
+ 
+@@ -184,6 +215,49 @@ static enum xe_vsec get_platform_info(struct xe_device *xe)
+ 	return vsec_platforms[xe->info.platform];
  }
  
--static int pmt_telem_add_endpoint(struct intel_pmt_entry *entry,
--				  struct pci_dev *pdev)
-+static int pmt_telem_add_endpoint(struct intel_vsec_device *ivdev,
-+				  struct intel_pmt_entry *entry)
- {
- 	struct telem_endpoint *ep;
++/*
++ * Access the DG2 PMT MMIO discovery table
++ *
++ * The intel_vsec driver does not typically access the discovery table.
++ * Instead, it creates a memory resource for the table and passes it
++ * to the PMT telemetry driver. Each discovery table contains 3 items,
++ *    - GUID
++ *    - Telemetry size
++ *    - Telemetry offset (offset from P2SB BAR, not GT)
++ *
++ * For DG2 we know what the telemetry offset is, but we still need to
++ * use the discovery table to pass the GUID and the size. So figure
++ * out the difference between the P2SB offset and the GT offset and
++ * save this so that the telemetry driver can use it to adjust the
++ * value.
++ */
++static int dg2_adjust_offset(struct pci_dev *pdev, struct device *dev,
++			     struct intel_vsec_platform_info *info)
++{
++	void __iomem *base;
++	u32 telem_offset;
++	u64 addr;
++
++	/* compile check to verify that quirk has P2SB quirk added */
++
++	addr = pci_resource_start(pdev, GFX_BAR) + info->headers[0]->offset;
++	base = ioremap_wc(addr, 16);
++	if (!base)
++		return -ENOMEM;
++
++	telem_offset = readl(base + TELEM_BASE_OFFSET);
++
++	/* Use the base_addr + P2SB quirk to pass this info */
++	if (telem_offset < DG2_TELEM_OFFSET)
++		info->base_adjust = -(DG2_TELEM_OFFSET - telem_offset);
++	else
++		info->base_adjust = -(telem_offset - DG2_TELEM_OFFSET);
++
++	iounmap(base);
++
++	return 0;
++}
++
+ /**
+  * xe_vsec_init - Initialize resources and add intel_vsec auxiliary
+  * interface
+@@ -195,6 +269,7 @@ void xe_vsec_init(struct xe_device *xe)
+ 	struct device *dev = xe->drm.dev;
+ 	struct pci_dev *pdev = to_pci_dev(dev);
+ 	enum xe_vsec platform;
++	u32 ret;
  
-@@ -104,13 +104,14 @@ static int pmt_telem_add_endpoint(struct intel_pmt_entry *entry,
- 		return -ENOMEM;
+ 	platform = get_platform_info(xe);
+ 	if (platform == XE_VSEC_UNKNOWN)
+@@ -205,6 +280,12 @@ void xe_vsec_init(struct xe_device *xe)
+ 		return;
  
- 	ep = entry->ep;
--	ep->pcidev = pdev;
-+	ep->pcidev = ivdev->pcidev;
- 	ep->header.access_type = entry->header.access_type;
- 	ep->header.guid = entry->header.guid;
- 	ep->header.base_offset = entry->header.base_offset;
- 	ep->header.size = entry->header.size;
- 	ep->base = entry->base;
- 	ep->present = true;
-+	ep->cb = ivdev->priv_data;
- 
- 	kref_init(&ep->kref);
- 
-@@ -218,7 +219,8 @@ int pmt_telem_read(struct telem_endpoint *ep, u32 id, u64 *data, u32 count)
- 	if (offset + NUM_BYTES_QWORD(count) > size)
- 		return -EINVAL;
- 
--	memcpy_fromio(data, ep->base + offset, NUM_BYTES_QWORD(count));
-+	pmt_telem_read_mmio(ep->pcidev, ep->cb, ep->header.guid, data, ep->base + offset,
-+			    NUM_BYTES_QWORD(count));
- 
- 	return ep->present ? 0 : -EPIPE;
- }
+ 	switch (platform) {
++	case XE_VSEC_DG2:
++		ret = dg2_adjust_offset(pdev, dev, info);
++		if (ret)
++			return;
++		break;
++
+ 	case XE_VSEC_BMG:
+ 		info->priv_data = &xe_pmt_cb;
+ 		break;
 -- 
 2.44.0
 
