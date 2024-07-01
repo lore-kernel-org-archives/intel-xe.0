@@ -4,64 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E5FEC2BD09
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Jul 2024 08:56:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1016EC2BD09
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Jul 2024 09:25:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56CDE10E154;
-	Mon,  1 Jul 2024 08:56:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8E8A10E379;
+	Mon,  1 Jul 2024 09:25:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DjD1Y8Fr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TRD7CfPz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DEB910E154;
- Mon,  1 Jul 2024 08:56:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A442910E376;
+ Mon,  1 Jul 2024 09:25:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719824209; x=1751360209;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=2BjaeP94w46H7n1r91rRWwoo5EsLAWvmvbXZeXccQmY=;
- b=DjD1Y8FrgVwRg67m7GzTDJBiMOnzJ1ArB973cJPhg+V1LslIEcAVc8/G
- NDotUcAlttI5qe0QCDvXQakiyOLSLKqJVPgH2TXY10ljh39Ztz2zr8lNu
- zRzII8hGmbgxbN4kZZ0kL/T980XI54tJXZQfL0kUp8h4KLz/oH2Xw2fNs
- 4YAozJ2SjjdGRvIa9jaFptHrOImnOlxoq4G9WWSWYZnLMJLIH/MlyC8Ty
- RY14An+L6S+zkXjxVohNYhVdq0slsgnT+wRZfLxr+u8oLaajcPXy8nqc8
- roDeD0LkF6zqR77u2g0pT5hsaJX+5hOvmf+bBq9Rh0yoVs/anYrcQ7fZH g==;
-X-CSE-ConnectionGUID: 2W/7UP0XTWKZv1hrQCPN9Q==
-X-CSE-MsgGUID: rmtKI4cnScmE6lhPP7A8wg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11119"; a="27615959"
-X-IronPort-AV: E=Sophos;i="6.09,175,1716274800"; d="scan'208";a="27615959"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2024 01:56:49 -0700
-X-CSE-ConnectionGUID: GXt4AAnkRE+jbLwAYf14Jw==
-X-CSE-MsgGUID: oiwCi+6pTtSSJPxeEC3Ngw==
+ t=1719825908; x=1751361908;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=zBGVaBqNwJqKSJ/XcD3Kc7/O+kfYBiURgInjfNkFM2I=;
+ b=TRD7CfPzesVAzx37m//UCW+3AHIQJw2Fw98k5sZoyzJHmRZrmEJgZ0uR
+ 0mZs4GuTPkOTY+8OTXH1MV6w0PPsQVhB8K41dCFGpTfyLKRkXLkX5V9dS
+ LE9NRx12l0+2pihnbP0ZnTs+jQIt/Ur+k6nELAjFBG2/NIHFJ6odsGRcl
+ uN7AjPvmUUgT81Q+l4I8N7boMeUhI8704NHzzqbbXdKgnYMj+Q+eKPHHs
+ t76n3yOQMTmh381XtmkUnWdHUnFBRdR+Kb+a5Fr/gjlZm0IuQhQb7AIbH
+ xJtgxoxeBpGm8FAEgJ9py9OigcEHPIkJgE9P/kAPvgnH9EVzm+7Ta14tZ g==;
+X-CSE-ConnectionGUID: XU9F0JQ+RS211yeQYwAsQA==
+X-CSE-MsgGUID: 3dcTNrc0QpC10l9iUV+O4Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11119"; a="27559458"
+X-IronPort-AV: E=Sophos;i="6.09,175,1716274800"; d="scan'208";a="27559458"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2024 02:25:07 -0700
+X-CSE-ConnectionGUID: gx3ZGV9+QWixFP9x1bnqLg==
+X-CSE-MsgGUID: 8TddMy73TtytfYhco8qPUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,175,1716274800"; d="scan'208";a="45278246"
-Received: from dneilan-mobl1.ger.corp.intel.com (HELO [10.245.244.49])
- ([10.245.244.49])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2024 01:56:47 -0700
-Message-ID: <91cc5e6edbfc09497d9313872af914494f9cb394.camel@linux.intel.com>
-Subject: Re: [Linaro-mm-sig] Re: dma_buf_detach lockdep splat
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Dmitry
- Osipenko <dmitry.osipenko@collabora.com>, dri-devel@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
-Date: Mon, 01 Jul 2024 10:56:34 +0200
-In-Reply-To: <Zn77penjAruTgLMM@phenom.ffwll.local>
-References: <40611e5ff8c32b99e7863293a0baac078f323d8f.camel@linux.intel.com>
- <Zn0c8l-yQih3j0NE@phenom.ffwll.local>
- <6bc17415f36c2a9c689010e1cf397fc75a8df55e.camel@linux.intel.com>
- <Zn77penjAruTgLMM@phenom.ffwll.local>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+X-IronPort-AV: E=Sophos;i="6.09,175,1716274800"; d="scan'208";a="45445623"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.51])
+ ([10.245.244.51])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2024 02:25:02 -0700
+Message-ID: <70289c58-7947-4347-8600-658821a730b0@linux.intel.com>
+Date: Mon, 1 Jul 2024 11:25:12 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 2/6] drm/cgroup: Add memory accounting DRM cgroup
+To: Maxime Ripard <mripard@kernel.org>
+Cc: intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>,
+ Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
+ Andrew Morton <akpm@linux-foundation.org>, Jonathan Corbet <corbet@lwn.net>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Friedrich Vock <friedrich.vock@gmx.de>, cgroups@vger.kernel.org,
+ linux-mm@kvack.org, linux-doc@vger.kernel.org
+References: <20240627154754.74828-1-maarten.lankhorst@linux.intel.com>
+ <20240627154754.74828-3-maarten.lankhorst@linux.intel.com>
+ <20240627-paper-vicugna-of-fantasy-c549ed@houat>
+ <6cb7c074-55cb-4825-9f80-5cf07bbd6745@linux.intel.com>
+ <20240628-romantic-emerald-snake-7b26ca@houat>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240628-romantic-emerald-snake-7b26ca@houat>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,89 +80,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2024-06-28 at 20:06 +0200, Daniel Vetter wrote:
-> On Thu, Jun 27, 2024 at 02:18:44PM +0200, Thomas Hellstr=C3=B6m wrote:
-> > On Thu, 2024-06-27 at 10:04 +0200, Daniel Vetter wrote:
-> > > On Wed, Jun 26, 2024 at 05:58:02PM +0200, Thomas Hellstr=C3=B6m wrote=
-:
-> > > > Hi!
-> > > >=20
-> > > > I'm seeing the below lockdep splat 1) with the xe driver in an
-> > > > imported
-> > > > dma-buf object destruction path.
-> > > >=20
-> > > > It's not because we hold the dma_resv lock at that point, but
-> > > > rather
-> > > > because we hold *another* dma_resv lock at that point, and the
-> > > > dma_resv
-> > > > detach happens when the object is idle, in this case it was
-> > > > idle at
-> > > > the
-> > > > final put(), and dma_buf_detach() is called in the putting
-> > > > process.
-> > > >=20
-> > > > Holding another dma-buf lock might happen as part of
-> > > > drm_exec_unlock_all, or simply if the wider vm dma_resv was
-> > > > held at
-> > > > object put time, so it's not an uncommon pattern, even if the
-> > > > drm_exec
-> > > > instance can be fixed by putting all bos after unlocking them
-> > > > all.
-> > > >=20
-> > > > Two solutions coming to mind here:
-> > > >=20
-> > > > 1) Provide a dma_buf_detach_locked()
-> > >=20
-> > > This smells way too much like the endless headaches we had with
-> > > drm_gem_object_put_locked and friends against
-> > > drm_device.struct_mutex. Or
-> > > I'm not understanding what you're doing, because I'm pretty sure
-> > > you
-> > > have
-> > > to take the dma_resv lock on final put() of imported objects.
-> > > Because
-> > > that
-> > > final put() is of the import wrapper, the exporter (and other
-> > > importers)
-> > > can still get at that object and so dma_resv_lock is very much
-> > > needed.
-> >=20
-> > Yeah, the TTM final put looks like
-> >=20
-> > if (!dma_resv_trylock() || !idle)
-> > 	queue_work(final_distruction);
-> >=20
-> > dma_resv_unlock();
-> > dma_buf_detach(); <--- lockdep splat
-> >=20
-> > Here's where a dma_buf_detach_locked() would've made sense before
-> > the
-> > dma_resv_unlock().
-> >=20
-> > But if you think this will cause grief, I'm completely fine with
-> > fixing this in TTM by always taking the deferring path.
->=20
-> Oh I misunderstood what you've meant, I thought you want to do a huge
-> exercise in passing the "do we know we're locked" flag all the way
-> through
-> entire callchains to exporters.
->=20
-> If it's just so that the fastpath of bypassing the worker can
-> function for
-> imported buffers, then I think that's fine. As long as we just punt
-> to the
-> worker if we can't get the lock.
-
-OK, TBH, the driver would need a drm_prime_gem_destroy_locked() as well
-since that's the function that calls dma_buf_detach. But TBH I think
-it's worth it anyway since if we just modify TTM to always take the
-delayed destruction path, I figure much code will come to depend on it
-and it will be invasive to update.
-
-I'll take a quick stab a that to see how ugly it becomes.
-
-/Thomas
 
 
-> -Sima
+Den 2024-06-28 kl. 16:04, skrev Maxime Ripard:
+> Hi,
+> 
+> On Thu, Jun 27, 2024 at 09:22:56PM GMT, Maarten Lankhorst wrote:
+>> Den 2024-06-27 kl. 19:16, skrev Maxime Ripard:
+>>> Hi,
+>>>
+>>> Thanks for working on this!
+>>>
+>>> On Thu, Jun 27, 2024 at 05:47:21PM GMT, Maarten Lankhorst wrote:
+>>>> The initial version was based roughly on the rdma and misc cgroup
+>>>> controllers, with a lot of the accounting code borrowed from rdma.
+>>>>
+>>>> The current version is a complete rewrite with page counter; it uses
+>>>> the same min/low/max semantics as the memory cgroup as a result.
+>>>>
+>>>> There's a small mismatch as TTM uses u64, and page_counter long pages.
+>>>> In practice it's not a problem. 32-bits systems don't really come with
+>>>>> =4GB cards and as long as we're consistently wrong with units, it's
+>>>> fine. The device page size may not be in the same units as kernel page
+>>>> size, and each region might also have a different page size (VRAM vs GART
+>>>> for example).
+>>>>
+>>>> The interface is simple:
+>>>> - populate drmcgroup_device->regions[..] name and size for each active
+>>>>    region, set num_regions accordingly.
+>>>> - Call drm(m)cg_register_device()
+>>>> - Use drmcg_try_charge to check if you can allocate a chunk of memory,
+>>>>    use drmcg_uncharge when freeing it. This may return an error code,
+>>>>    or -EAGAIN when the cgroup limit is reached. In that case a reference
+>>>>    to the limiting pool is returned.
+>>>> - The limiting cs can be used as compare function for
+>>>>    drmcs_evict_valuable.
+>>>> - After having evicted enough, drop reference to limiting cs with
+>>>>    drmcs_pool_put.
+>>>>
+>>>> This API allows you to limit device resources with cgroups.
+>>>> You can see the supported cards in /sys/fs/cgroup/drm.capacity
+>>>> You need to echo +drm to cgroup.subtree_control, and then you can
+>>>> partition memory.
+>>>>
+>>>> Signed-off-by: Maarten Lankhorst<maarten.lankhorst@linux.intel.com>
+>>>> Co-developed-by: Friedrich Vock<friedrich.vock@gmx.de>
+>>> I'm sorry, I should have wrote minutes on the discussion we had with TJ
+>>> and Tvrtko the other day.
+>>>
+>>> We're all very interested in making this happen, but doing a "DRM"
+>>> cgroup doesn't look like the right path to us.
+>>>
+>>> Indeed, we have a significant number of drivers that won't have a
+>>> dedicated memory but will depend on DMA allocations one way or the
+>>> other, and those pools are shared between multiple frameworks (DRM,
+>>> V4L2, DMA-Buf Heaps, at least).
+>>>
+>>> This was also pointed out by Sima some time ago here:
+>>> https://lore.kernel.org/amd-gfx/YCVOl8%2F87bqRSQei@phenom.ffwll.local/
+>>>
+>>> So we'll want that cgroup subsystem to be cross-framework. We settled on
+>>> a "device" cgroup during the discussion, but I'm sure we'll have plenty
+>>> of bikeshedding.
+>>>
+>>> The other thing we agreed on, based on the feedback TJ got on the last
+>>> iterations of his series was to go for memcg for drivers not using DMA
+>>> allocations.
+>>>
+>>> It's the part where I expect some discussion there too :)
+>>>
+>>> So we went back to a previous version of TJ's work, and I've started to
+>>> work on:
+>>>
+>>>    - Integration of the cgroup in the GEM DMA and GEM VRAM helpers (this
+>>>      works on tidss right now)
+>>>
+>>>    - Integration of all heaps into that cgroup but the system one
+>>>      (working on this at the moment)
+>>
+>> Should be similar to what I have then. I think you could use my work to
+>> continue it.
+>>
+>> I made nothing DRM specific except the name, if you renamed it the device
+>> resource management cgroup and changed the init function signature to take a
+>> name instead of a drm pointer, nothing would change. This is exactly what
+>> I'm hoping to accomplish, including reserving memory.
+> 
+> I've started to work on rebasing my current work onto your series today,
+> and I'm not entirely sure how what I described would best fit. Let's
+> assume we have two KMS device, one using shmem, one using DMA
+> allocations, two heaps, one using the page allocator, the other using
+> CMA, and one v4l2 device using dma allocations.
+> 
+> So we would have one KMS device and one heap using the page allocator,
+> and one KMS device, one heap, and one v4l2 driver using the DMA
+> allocator.
+> 
+> Would these make different cgroup devices, or different cgroup regions?
 
+Each driver would register a device, whatever feels most logical for that device I suppose.
+
+My guess is that a prefix would also be nice here, so register a device with name of drm/$name or v4l2/$name, heap/$name. I didn't give it much thought and we're still experimenting, so just try something. :)
+
+There's no limit to amount of devices, I only fixed amount of pools to match TTM, but even that could be increased arbitrarily. I just don't think there is a point in doing so.
+
+>> The nice thing is that it should be similar to the memory cgroup controller
+>> in semantics, so you would have the same memory behavior whether you use the
+>> device cgroup or memory cgroup.
+>>
+>> I'm sad I missed the discussion, but hopefully we can coordinate more now
+>> that we know we're both working on it. :)
+> 
+> Yeah, definitely :)
+> 
+> Maxime
+Cheers,
+~Maarten
