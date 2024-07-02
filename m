@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84540C2BD09
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Jul 2024 00:01:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47957C2BD09
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Jul 2024 00:12:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 286D910E05B;
-	Tue,  2 Jul 2024 00:01:29 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAEBA10E05B;
- Tue,  2 Jul 2024 00:01:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3885605368329855271=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA7D710E05B;
+	Tue,  2 Jul 2024 00:12:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BQ9EFRzv";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3AC110E05B
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 Jul 2024 00:12:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1719879135; x=1751415135;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=CaxGwJpURWBYIBYEh5sKpuPoPEZyiHPRhTyt/1AiKdc=;
+ b=BQ9EFRzvl4IOBe+DnZPl5154N87fzcL9BlMASRVR/VXU2tVN+PnGcmzo
+ c/K05bC7ZbjNZMA982U/SH37KPEgwFft0FQ+72o1VI4P+4BGMtlg3eZHF
+ E6RbjJhQyGW3hHIhG4XoQhNu/n+oajh+814KYWRIaWXT2LEZlG8om39gY
+ fS6B3lqeLex1uIp84eSIU/EbHcj9wB37skz+7Vtw9TeHJc2bKkUED+6K+
+ SrgErJ3JIeVghpQTASGnIebcRJXJXG46LbFtCaWr364Lc/sh/AibJmnz5
+ PmvV89mU7nBd9q2jJJzEfO/AR4DL47DLmz1AC62AUlg5SpmK354gpqkIx Q==;
+X-CSE-ConnectionGUID: wE/fH47bR1OTOCYF2mM2BQ==
+X-CSE-MsgGUID: I4RqiLkHTiSk5y1uE/h+pw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11120"; a="17172994"
+X-IronPort-AV: E=Sophos;i="6.09,177,1716274800"; d="scan'208";a="17172994"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2024 17:12:15 -0700
+X-CSE-ConnectionGUID: jaxMtbpdT7GiuLC/3fZIrA==
+X-CSE-MsgGUID: /Bcy3LxYQnywSLhvwmKtDg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,177,1716274800"; d="scan'208";a="76870091"
+Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2024 17:12:14 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH] Reapply "drm/xe/gsc: define GSC FW for LNL"
+Date: Mon,  1 Jul 2024 17:11:55 -0700
+Message-ID: <20240702001155.2163743-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B1/2=5D_d?=
- =?utf-8?q?rm/xe/guc=3A_Prevent_use_of_uninitialized_mutex?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 02 Jul 2024 00:01:27 -0000
-Message-ID: <171987848782.3729.5297014658174193620@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240701231529.2582452-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20240701231529.2582452-1-vinay.belgaumkar@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +63,35 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3885605368329855271==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Wa_22019338487 is now merged, so we can re-enable the GSC now that we
+won't hit the HW issue anymore.
 
-== Series Details ==
+Note that this patch is not meant to be merged, but rather the revert
+patch should be dropped from the CI topic branch. This patch is being
+sent for CI and to get an ack on dropping that patch.
 
-Series: series starting with [1/2] drm/xe/guc: Prevent use of uninitialized mutex
-URL   : https://patchwork.freedesktop.org/series/135622/
-State : success
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_uc_fw.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index a69c61f6b064..62ed413bf1c3 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -128,6 +128,7 @@ struct fw_blobs_by_type {
+ 
+ /* for the GSC FW we match the compatibility version and not the release one */
+ #define XE_GSC_FIRMWARE_DEFS(fw_def, major_ver)		\
++	fw_def(LUNARLAKE,	major_ver(intel-ci/xe, gsc, lnl, 1, 0, 0))	\
+ 	fw_def(METEORLAKE,	major_ver(i915,	gsc,	mtl,	1, 0, 0))
+ 
+ #define MAKE_FW_PATH(dir__, uc__, shortname__, version__)			\
+-- 
+2.43.0
 
-CI Bug Log - changes from xe-1542-886eeb6d89b58f914ee5045fcac54b59a73d8299_BAT -> xe-pw-135622v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_7907 -> IGT_7908
-  * Linux: xe-1542-886eeb6d89b58f914ee5045fcac54b59a73d8299 -> xe-pw-135622v1
-
-  IGT_7907: 676b8e660cadae8ffb29a45b12ad5b53ef228b6a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7908: 7908
-  xe-1542-886eeb6d89b58f914ee5045fcac54b59a73d8299: 886eeb6d89b58f914ee5045fcac54b59a73d8299
-  xe-pw-135622v1: 135622v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135622v1/index.html
-
---===============3885605368329855271==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe/guc: Prevent use of uninitialized mutex</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135622/">https://patchwork.freedesktop.org/series/135622/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135622v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135622v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1542-886eeb6d89b58f914ee5045fcac54b59a73d8299_BAT -&gt; xe-pw-135622v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7907 -&gt; IGT_7908</li>
-<li>Linux: xe-1542-886eeb6d89b58f914ee5045fcac54b59a73d8299 -&gt; xe-pw-135622v1</li>
-</ul>
-<p>IGT_7907: 676b8e660cadae8ffb29a45b12ad5b53ef228b6a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7908: 7908<br />
-  xe-1542-886eeb6d89b58f914ee5045fcac54b59a73d8299: 886eeb6d89b58f914ee5045fcac54b59a73d8299<br />
-  xe-pw-135622v1: 135622v1</p>
-
-</body>
-</html>
-
---===============3885605368329855271==--
