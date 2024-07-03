@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1130C2BD09
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Jul 2024 15:53:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 185B6C30653
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Jul 2024 15:54:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 588A710E2FD;
-	Wed,  3 Jul 2024 15:53:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D619510E531;
+	Wed,  3 Jul 2024 15:54:08 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BE1010E2FD;
- Wed,  3 Jul 2024 15:53:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0803B10E531;
+ Wed,  3 Jul 2024 15:54:07 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/uapi=3A_Renam?=
- =?utf-8?q?e_xe_perf_layer_as_xe_observation_layer_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/uapi=3A_Rename_xe_?=
+ =?utf-8?q?perf_layer_as_xe_observation_layer_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 03 Jul 2024 15:53:53 -0000
-Message-ID: <172002203336.25710.7897851341806845341@2413ebb6fbb6>
+Date: Wed, 03 Jul 2024 15:54:07 -0000
+Message-ID: <172002204702.25710.10664644564124179183@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240702214034.2507446-1-ashutosh.dixit@intel.com>
 In-Reply-To: <20240702214034.2507446-1-ashutosh.dixit@intel.com>
@@ -44,13 +44,64 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/uapi: Rename xe perf layer as xe observation layer (rev2)
 URL   : https://patchwork.freedesktop.org/series/135667/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 33b19b3a5b43 drm-tip: 2024y-07m-03d-15h-06m-36s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/uapi: Rename xe perf layer as xe observation layer
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 99f51a879686a4b665c734e73e47376fe55bd546
+Author: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Date:   Tue Jul 2 14:40:34 2024 -0700
+
+    drm/xe/uapi: Rename xe perf layer as xe observation layer
+    
+    In Xe, the perf layer allows capture of HW counter streams. These HW
+    counters are generally performance related but don't have to be necessarily
+    so. Also, the name "perf" is a carryover from i915 and is not preferred.
+    
+    Here we propose the name "observation" for this common layer which allows
+    capture of different types of these counter streams.
+    
+    v2: Rename observability layer to observation layer and in code
+        s/obsrv/observation/ (Lucas/Rodrigo)
+    
+    Fixes: 52c2e956dceb ("drm/xe/perf/uapi: "Perf" layer to support multiple
+           perf counter stream types")
+    Fixes: fe8929bdf835 ("drm/xe/perf/uapi: Add perf_stream_paranoid sysctl")
+    Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+    Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
++ /mt/dim checkpatch 33b19b3a5b43d74fc3c05978969b073936e4772a drm-intel
+99f51a879686 drm/xe/uapi: Rename xe perf layer as xe observation layer
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:16: WARNING:BAD_FIXES_TAG: Please use correct Fixes: style 'Fixes: <12 chars of sha1> ("<title line>")' - ie: 'Fixes: 99f51a879686 ("drm/xe/uapi: Rename xe perf layer as xe observation layer")'
+#16: 
+Fixes: 52c2e956dceb ("drm/xe/perf/uapi: "Perf" layer to support multiple
+
+-:234: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#234: 
+new file mode 100644
+
+-:509: WARNING:LONG_LINE: line length of 127 exceeds 100 columns
+#509: FILE: include/uapi/drm/xe_drm.h:119:
++#define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
+
+total: 0 errors, 3 warnings, 0 checks, 477 lines checked
 
 
