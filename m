@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 856A5C2BD09
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Jul 2024 10:58:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A814C2BD09
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Jul 2024 11:22:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46FAE10E7B0;
-	Wed,  3 Jul 2024 10:58:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47F8E10E289;
+	Wed,  3 Jul 2024 11:22:32 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D231910E7B0;
- Wed,  3 Jul 2024 10:58:57 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1858210E289;
+ Wed,  3 Jul 2024 11:22:31 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4686236052112444039=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_series_starting_with_=5B?=
- =?utf-8?q?v4=2C1/4=5D_drm/ttm=3A_Add_a_flag_to_allow_drivers_to_skip_clear-?=
- =?utf-8?q?on-free_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5Bv4=2C1/4?=
+ =?utf-8?q?=5D_drm/ttm=3A_Add_a_flag_to_allow_drivers_to_skip_clear-on-free_?=
+ =?utf-8?q?=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nirmoy Das" <nirmoy.das@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 03 Jul 2024 10:58:57 -0000
-Message-ID: <172000433785.24496.13819872462394727319@2413ebb6fbb6>
+Date: Wed, 03 Jul 2024 11:22:31 -0000
+Message-ID: <172000575109.24496.18372477073388607750@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240701151738.6749-1-nirmoy.das@intel.com>
 In-Reply-To: <20240701151738.6749-1-nirmoy.das@intel.com>
@@ -41,31 +41,106 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============4686236052112444039==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: series starting with [v4,1/4] drm/ttm: Add a flag to allow drivers to skip clear-on-free (rev2)
 URL   : https://patchwork.freedesktop.org/series/135603/
-State : warning
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 5ca7296d32d5ea4fd002b6adfe05ffda6d654993
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+CI Bug Log - changes from xe-1548-886eeb6d89b58f914ee5045fcac54b59a73d8299_BAT -> xe-pw-135603v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7908 -> IGT_7910
+  * Linux: xe-1548-886eeb6d89b58f914ee5045fcac54b59a73d8299 -> xe-pw-135603v2
+
+  IGT_7908: 7908
+  IGT_7910: f61ff748b6f615e43668ddd4fee67d2ad2f52e75 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1548-886eeb6d89b58f914ee5045fcac54b59a73d8299: 886eeb6d89b58f914ee5045fcac54b59a73d8299
+  xe-pw-135603v2: 135603v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135603v2/index.html
+
+--===============4686236052112444039==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v4,1/4] drm/ttm: Add a flag to allow drivers to skip clear-on-free (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135603/">https://patchwork.freedesktop.org/series/135603/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135603v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135603v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1548-886eeb6d89b58f914ee5045fcac54b59a73d8299_BAT -&gt; xe-pw-135603v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7908 -&gt; IGT_7910</li>
+<li>Linux: xe-1548-886eeb6d89b58f914ee5045fcac54b59a73d8299 -&gt; xe-pw-135603v2</li>
+</ul>
+<p>IGT_7908: 7908<br />
+  IGT_7910: f61ff748b6f615e43668ddd4fee67d2ad2f52e75 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1548-886eeb6d89b58f914ee5045fcac54b59a73d8299: 886eeb6d89b58f914ee5045fcac54b59a73d8299<br />
+  xe-pw-135603v2: 135603v2</p>
+
+</body>
+</html>
+
+--===============4686236052112444039==--
