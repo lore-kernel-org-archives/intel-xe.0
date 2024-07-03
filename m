@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DEEFC30653
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Jul 2024 06:45:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC3BBC2BD09
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Jul 2024 09:07:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0793A10E100;
-	Wed,  3 Jul 2024 06:45:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7C6B10E1BC;
+	Wed,  3 Jul 2024 09:07:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HXvOAQ7/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fnSU5arX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C0A510E100
- for <intel-xe@lists.freedesktop.org>; Wed,  3 Jul 2024 06:45:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70F4910E1BC
+ for <intel-xe@lists.freedesktop.org>; Wed,  3 Jul 2024 09:07:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719989125; x=1751525125;
+ t=1719997622; x=1751533622;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=s8inlRt3nqF90r+QimeuS6Zkkf5szU01bxvhAdh0XwQ=;
- b=HXvOAQ7/0MM5qgyFfsrkRzvpD1CqSanxqYVw3BLq9PSh8S2kcSbOVTyv
- CIXuACLuRSghK0N0RgjyA28RIozbiHL9iWYaAq4sBBcJM4H+CMDA2hn4X
- JnqsKom4hIm52KnpggpCMEWg6sOm1pwnjkJt6QxYU1GwQyQHZLDjtNREp
- ocwxTvo3OW0ZkKbAt0/3zPcWf9eE/rtgDBDaHwdzTNUlF2+mMgj1l0EGn
- jybtkeWwXKR1yf5tm/1Q4BMQt9Id0qUOxXHF9q/2NMtezsrnzdC8KFG6E
- dYYAaXBCPE6fvcOziR0MzaXAcBhtmdNEbOpEeYML5i+WYy7UYCJKCyqrp Q==;
-X-CSE-ConnectionGUID: /d2ti0f0Qg+d+vfsoqE4sg==
-X-CSE-MsgGUID: GjF03XXITAq007EveZw/3w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11121"; a="28592785"
-X-IronPort-AV: E=Sophos;i="6.09,181,1716274800"; d="scan'208";a="28592785"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2024 23:45:24 -0700
-X-CSE-ConnectionGUID: MvRKXywjR22PxJiTa2UYRQ==
-X-CSE-MsgGUID: Zozd0Ro5QpGQHwEiD23lcQ==
+ bh=meYEqq49alTjw2h8V22X7ISpFrTCgjSHi530yQ45DcA=;
+ b=fnSU5arXo5kRnxH+dr5mgEJwDPoOGn1sEwNiA3EjFuiVRA7UOkMxRZaA
+ xwx3QH0l06W7CTD9EfmLubdAq6TwwbrwS452kWxGrqQ0LEpfravzlz5co
+ gsQC++xxUpl2NPXkqvSxoIXkhQP1GMJny/wTNZjIjgKbtmYY2VZxN1zwS
+ 63+OGnvvN4EAhX4cmYr/SmyKzCfJmtheZEeMXPmy2B2jBmve2Giu/6h6w
+ ptEOVpNGHmZKVfHSNS+1B4N1tN2TTG6HudGriaZdfPUVYQ6E2oPJebn+e
+ jRoxYwKHKOx/NVrpOSYlQ+wK4h+olyp3QI9U2gzxDgPoJwAud4MNgvap2 A==;
+X-CSE-ConnectionGUID: W+aOUrpeQ7emWSMKjDL/Tg==
+X-CSE-MsgGUID: pVURu49RRJGvj3hHshXeYQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11121"; a="17348489"
+X-IronPort-AV: E=Sophos;i="6.09,181,1716274800"; d="scan'208";a="17348489"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2024 02:07:02 -0700
+X-CSE-ConnectionGUID: mXJxp/VJTMSO1ZRhShp58g==
+X-CSE-MsgGUID: M9EAthXOSgqQ7CWK71a2zw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,181,1716274800"; d="scan'208";a="46053464"
-Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by orviesa010.jf.intel.com with ESMTP; 02 Jul 2024 23:45:23 -0700
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,181,1716274800"; d="scan'208";a="83739633"
+Received: from bommu-optiplex-5060.iind.intel.com ([10.145.169.63])
+ by orviesa001.jf.intel.com with ESMTP; 03 Jul 2024 02:07:00 -0700
+From: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH V2] drm/xe/xe2: Add Wa_15015404425
-Date: Wed,  3 Jul 2024 12:16:26 +0530
-Message-Id: <20240703064626.2581326-1-tejas.upadhyay@intel.com>
+Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH] drm/xe/xe2lpg: Extend workaround 14021402888
+Date: Wed,  3 Jul 2024 14:37:54 +0530
+Message-Id: <20240703090754.1323647-1-krishnaiah.bommu@intel.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -64,84 +66,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Wa_15015404425 applies to xe2 LNL all steppings
+workaround 14021402888 also applies to Xe2_LPG.
+Replicate the existing entry to one specific for Xe2_LPG.
 
-V2:
-  - Add WA to 8/16/32bit reads also - MattR
-  - Corrected dummy reg address - MattR
-  - Use for loop to avoid mental pause - JaniN
-
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_regs.h |  1 +
- drivers/gpu/drm/xe/xe_mmio.c      | 22 ++++++++++++++++++++++
- 2 files changed, 23 insertions(+)
+ drivers/gpu/drm/xe/xe_wa.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
-index 23e33ec84902..56a1ba59cbd3 100644
---- a/drivers/gpu/drm/xe/regs/xe_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_regs.h
-@@ -45,6 +45,7 @@
- #define STOLEN_RESERVED				XE_REG(0x1082c0)
- #define   WOPCM_SIZE_MASK			REG_GENMASK64(9, 7)
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index c7bf0862b231..91737d7a483d 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -486,6 +486,10 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, SLM_WMTP_RESTORE))
+ 	},
++	{ XE_RTP_NAME("14021402888"),
++	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
++	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN7, CLEAR_OPTIMIZATION_DISABLE))
++	},
  
-+#define MEDIA_DUMMY_REG				XE_REG(0x130030)
- #define MTL_RP_STATE_CAP			XE_REG(0x138000)
+ 	/* Xe2_HPG */
  
- #define MTL_GT_RPE_FREQUENCY			XE_REG(0x13800c)
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index f92faad4b96d..51022a560086 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -121,12 +121,28 @@ int xe_mmio_init(struct xe_device *xe)
- 	return devm_add_action_or_reset(xe->drm.dev, mmio_fini, xe);
- }
- 
-+static void mmio_flush_pending_writes(struct xe_gt *gt)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	int i;
-+
-+	if (!(xe->info.platform == XE_LUNARLAKE))
-+		return;
-+
-+	/* 4 dummy writes */
-+	for (i = 0; i < 4; i++)
-+		xe_mmio_write32(gt, MEDIA_DUMMY_REG, 0);
-+}
-+
- u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg reg)
- {
- 	struct xe_tile *tile = gt_to_tile(gt);
- 	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
- 	u8 val;
- 
-+	/* Wa_15015404425 */
-+	mmio_flush_pending_writes(gt);
-+
- 	val = readb((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
- 	trace_xe_reg_rw(gt, false, addr, val, sizeof(val));
- 
-@@ -139,6 +155,9 @@ u16 xe_mmio_read16(struct xe_gt *gt, struct xe_reg reg)
- 	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
- 	u16 val;
- 
-+	/* Wa_15015404425 */
-+	mmio_flush_pending_writes(gt);
-+
- 	val = readw((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
- 	trace_xe_reg_rw(gt, false, addr, val, sizeof(val));
- 
-@@ -160,6 +179,9 @@ u32 xe_mmio_read32(struct xe_gt *gt, struct xe_reg reg)
- 	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
- 	u32 val;
- 
-+	/* Wa_15015404425 */
-+	mmio_flush_pending_writes(gt);
-+
- 	if (!reg.vf && IS_SRIOV_VF(gt_to_xe(gt)))
- 		val = xe_gt_sriov_vf_read32(gt, reg);
- 	else
 -- 
 2.25.1
 
