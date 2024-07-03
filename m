@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A241C30653
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Jul 2024 12:17:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 814FEC2BD09
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Jul 2024 12:17:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2948210E04C;
-	Wed,  3 Jul 2024 12:17:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E59610E04C;
+	Wed,  3 Jul 2024 12:17:37 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4519D10E04C;
- Wed,  3 Jul 2024 12:17:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 760FD10E04C;
+ Wed,  3 Jul 2024 12:17:36 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/obsrv=3A_Rena?=
- =?utf-8?q?me_xe_perf_layer_as_xe_observability_layer?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/obsrv=3A_Rename_xe?=
+ =?utf-8?q?_perf_layer_as_xe_observability_layer?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 03 Jul 2024 12:17:20 -0000
-Message-ID: <172000904027.24496.14581464841224878926@2413ebb6fbb6>
+Date: Wed, 03 Jul 2024 12:17:36 -0000
+Message-ID: <172000905647.24496.5732669516616869684@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240702160740.2487279-1-ashutosh.dixit@intel.com>
 In-Reply-To: <20240702160740.2487279-1-ashutosh.dixit@intel.com>
@@ -44,13 +44,53 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/obsrv: Rename xe perf layer as xe observability layer
 URL   : https://patchwork.freedesktop.org/series/135658/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 5ca7296d32d5 drm-tip: 2024y-07m-03d-08h-11m-25s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/obsrv: Rename xe perf layer as xe observability layer
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2d6a3681b02bc2a8c0bbf6c4c31bc6ab67ab31e8
+Author: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Date:   Tue Jul 2 09:07:40 2024 -0700
+
+    drm/xe/obsrv: Rename xe perf layer as xe observability layer
+    
+    In Xe, the perf layer allows capture of HW counter streams. These HW
+    counters are generally performance related but don't have to be necessarily
+    so. Also, the name "perf" is a carryover from i915 and is not preferred.
+    
+    In this patch we propose the name "observability" for this common layer
+    which allows capture of different types of these counter streams.
+    
+    Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+    Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 5ca7296d32d5ea4fd002b6adfe05ffda6d654993 drm-intel
+2d6a3681b02b drm/xe/obsrv: Rename xe perf layer as xe observability layer
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:227: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#227: 
+new file mode 100644
+
+-:502: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#502: FILE: include/uapi/drm/xe_drm.h:119:
++#define DRM_IOCTL_XE_OBSRV			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSRV, struct drm_xe_obsrv_param)
+
+total: 0 errors, 2 warnings, 0 checks, 473 lines checked
 
 
