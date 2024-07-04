@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88A17C3271F
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jul 2024 04:05:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F6A6C38150
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jul 2024 04:05:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4136F10E810;
-	Thu,  4 Jul 2024 04:05:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D1C010E8C7;
+	Thu,  4 Jul 2024 04:05:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nUYny7/2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j0Y3pC+r";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98B8610E21D
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jul 2024 04:05:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4970110E8C7
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Jul 2024 04:05:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720065946; x=1751601946;
+ t=1720065947; x=1751601947;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=vT3BrYcAdyB4M8QwsVUZiCRs2mmotMXtK9X3IdU7kFM=;
- b=nUYny7/2rxl/Cp8C1ZTmdC2PMRyuKDfhvrOOjCHhBonSZR3k686UdgW+
- uMlyg8dqFk2lqUeE24cgssfj6wsXNrb5B1+zcgByx4uPecci/IDowjVHg
- 4jdZT5lhXzzV5mc+ik5+ldOsgpn7aTvs3tHdz1h8mzZnqgHTxZ0soIWaq
- ALzm21dh1STQ3+1NQCwqX9WbR1wKKBpa4Sl8+VuLm5KL0xzYXRc+XvNZt
- hIMBCIRfRSrEb9XjRDwGhN1coP/jMGIrp5g4Ob4yJLU8dwUqHQ0xVMfiT
- fO8bKSjolHPdXeCnb0Ye4ZEEl6sNa5UBDyQiqqbd7028Xss3QVyhe/eDL w==;
-X-CSE-ConnectionGUID: xcs7zcrJRMSwKfW8op9aQQ==
-X-CSE-MsgGUID: RhNVn+ozRjisA3TTKrez3Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11122"; a="20227727"
-X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; d="scan'208";a="20227727"
+ bh=9bZQkGr72RSyhR94zCAaOSfYug2jds1xzXuFp6GVJ08=;
+ b=j0Y3pC+rFHhQZHxmYdRkQ7kFvQpjakraLS2QV39NFlUiGQtUA8lZxlHr
+ cTIUzMxqhOOMX5uJJOKk6aQc4I9cjR8RsCjgpGeWr11t1sGiiaOFpUMyA
+ VH+Te78mNEYH+EJW4xGaMFp+wo6ilZ96t1Xn2FIlokfFhPmtN1ZTslm0U
+ Io10TM/JGkQwHBwUF7z+kXJJmG9ysR+EAQfA7asV/VCL2ZN0F5BkH9kp7
+ dqCXEbuS+nBA809jLjC9ZkBR/xKgFpZTkBuwIM4x9ZkGKmolE2J1ljg2a
+ ASGIogJKYqQTZcnPWXOS7RnE9yoGehvCndDiyjpOWPxxvqRxqRN6M7nbR w==;
+X-CSE-ConnectionGUID: bDzV36BYQVadf6/O9KF5Eg==
+X-CSE-MsgGUID: JMfZ1KxwSEGwZ7LE/X9ohQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11122"; a="20227733"
+X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; d="scan'208";a="20227733"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2024 21:05:46 -0700
-X-CSE-ConnectionGUID: 3RgCYQu0SmS1hExcS4KLLA==
-X-CSE-MsgGUID: 4zP4shR2TduFhPVIkcLpkg==
+ 03 Jul 2024 21:05:47 -0700
+X-CSE-ConnectionGUID: gRzS/NCvRYWsbDu6wfiOgg==
+X-CSE-MsgGUID: UzEOO2/NScmD+NfPkIOy+Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; d="scan'208";a="46477978"
+X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; d="scan'208";a="46477982"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2024 21:05:46 -0700
+ 03 Jul 2024 21:05:47 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v7 1/7] drm/xe:
- s/xe_tile_migrate_engine/xe_tile_migrate_exec_queue
-Date: Wed,  3 Jul 2024 21:06:17 -0700
-Message-Id: <20240704040623.267526-2-matthew.brost@intel.com>
+Subject: [PATCH v7 5/7] drm/xe: Update VM trace events
+Date: Wed,  3 Jul 2024 21:06:21 -0700
+Message-Id: <20240704040623.267526-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240704040623.267526-1-matthew.brost@intel.com>
 References: <20240704040623.267526-1-matthew.brost@intel.com>
@@ -66,50 +65,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Engine is old nomenclature, replace with exec queue.
+The trace events have changed moving to a single job per VM bind IOCTL,
+update the trace events align with old behavior as much as possible.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 9 ++++-----
- drivers/gpu/drm/xe/xe_migrate.h | 2 +-
- 2 files changed, 5 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_trace_bo.h | 10 ++++----
+ drivers/gpu/drm/xe/xe_vm.c       | 42 ++++++++++++++++++++++++++++++--
+ 2 files changed, 45 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index c9f5673353ee..ef5ad0efc5dd 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -84,15 +84,14 @@ struct xe_migrate {
- #define MAX_PTE_PER_SDI 0x1FE
+diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
+index f39f09ed3495..9b1a1d4304ae 100644
+--- a/drivers/gpu/drm/xe/xe_trace_bo.h
++++ b/drivers/gpu/drm/xe/xe_trace_bo.h
+@@ -117,11 +117,6 @@ DEFINE_EVENT(xe_vma, xe_vma_acc,
+ 	     TP_ARGS(vma)
+ );
  
- /**
-- * xe_tile_migrate_engine() - Get this tile's migrate engine.
-+ * xe_tile_migrate_exec_queue() - Get this tile's migrate exec queue.
-  * @tile: The tile.
-  *
-- * Returns the default migrate engine of this tile.
-- * TODO: Perhaps this function is slightly misplaced, and even unneeded?
-+ * Returns the default migrate exec queue of this tile.
-  *
-- * Return: The default migrate engine
-+ * Return: The default migrate exec queue
-  */
--struct xe_exec_queue *xe_tile_migrate_engine(struct xe_tile *tile)
-+struct xe_exec_queue *xe_tile_migrate_exec_queue(struct xe_tile *tile)
- {
- 	return tile->migrate->q;
- }
-diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index 951f19318ea4..a5bcaafe4a99 100644
---- a/drivers/gpu/drm/xe/xe_migrate.h
-+++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -106,5 +106,5 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+-DEFINE_EVENT(xe_vma, xe_vma_fail,
+-	     TP_PROTO(struct xe_vma *vma),
+-	     TP_ARGS(vma)
+-);
+-
+ DEFINE_EVENT(xe_vma, xe_vma_bind,
+ 	     TP_PROTO(struct xe_vma *vma),
+ 	     TP_ARGS(vma)
+@@ -237,6 +232,11 @@ DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_exit,
+ 	     TP_ARGS(vm)
+ );
  
- void xe_migrate_wait(struct xe_migrate *m);
- 
--struct xe_exec_queue *xe_tile_migrate_engine(struct xe_tile *tile);
-+struct xe_exec_queue *xe_tile_migrate_exec_queue(struct xe_tile *tile);
++DEFINE_EVENT(xe_vm, xe_vm_ops_fail,
++	     TP_PROTO(struct xe_vm *vm),
++	     TP_ARGS(vm)
++);
++
  #endif
+ 
+ /* This part must be outside protection */
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 36422bc951b6..68f8f975e36e 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2471,6 +2471,38 @@ static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
+ 	return 0;
+ }
+ 
++static void op_trace(struct xe_vma_op *op)
++{
++	switch (op->base.op) {
++	case DRM_GPUVA_OP_MAP:
++		trace_xe_vma_bind(op->map.vma);
++		break;
++	case DRM_GPUVA_OP_REMAP:
++		trace_xe_vma_unbind(gpuva_to_vma(op->base.remap.unmap->va));
++		if (op->remap.prev)
++			trace_xe_vma_bind(op->remap.prev);
++		if (op->remap.next)
++			trace_xe_vma_bind(op->remap.next);
++		break;
++	case DRM_GPUVA_OP_UNMAP:
++		trace_xe_vma_unbind(gpuva_to_vma(op->base.unmap.va));
++		break;
++	case DRM_GPUVA_OP_PREFETCH:
++		trace_xe_vma_bind(gpuva_to_vma(op->base.prefetch.va));
++		break;
++	default:
++		XE_WARN_ON("NOT POSSIBLE");
++	}
++}
++
++static void trace_xe_vm_ops_execute(struct xe_vma_ops *vops)
++{
++	struct xe_vma_op *op;
++
++	list_for_each_entry(op, &vops->list, link)
++		op_trace(op);
++}
++
+ static int vm_ops_setup_tile_args(struct xe_vm *vm, struct xe_vma_ops *vops)
+ {
+ 	struct xe_exec_queue *q = vops->q;
+@@ -2514,8 +2546,10 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
+ 	if (number_tiles > 1) {
+ 		fences = kmalloc_array(number_tiles, sizeof(*fences),
+ 				       GFP_KERNEL);
+-		if (!fences)
+-			return ERR_PTR(-ENOMEM);
++		if (!fences) {
++			fence = ERR_PTR(-ENOMEM);
++			goto err_trace;
++		}
+ 	}
+ 
+ 	for_each_tile(tile, vm->xe, id) {
+@@ -2529,6 +2563,8 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
+ 		}
+ 	}
+ 
++	trace_xe_vm_ops_execute(vops);
++
+ 	for_each_tile(tile, vm->xe, id) {
+ 		if (!vops->pt_update_ops[id].num_ops)
+ 			continue;
+@@ -2575,6 +2611,8 @@ static struct dma_fence *ops_execute(struct xe_vm *vm,
+ 	kfree(fences);
+ 	kfree(cf);
+ 
++err_trace:
++	trace_xe_vm_ops_fail(vm);
+ 	return fence;
+ }
+ 
 -- 
 2.34.1
 
