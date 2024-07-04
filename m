@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1AC5C30653
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6764C41513
 	for <intel-xe@archiver.kernel.org>; Thu,  4 Jul 2024 05:59:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2D1210E07F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7AF010E0AD;
 	Thu,  4 Jul 2024 05:59:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ldlQmgGc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WPSNDhVB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31E4410E07F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CF2310E07F
  for <intel-xe@lists.freedesktop.org>; Thu,  4 Jul 2024 05:59:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720072762; x=1751608762;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=8mPZEN0VdPau42OxQw9v8epMiGlyY+2MsMaEW58kVtw=;
- b=ldlQmgGcqaWhCNhh9n/FVME28FHN8sCaI1p1/V7FnICO4/mLLrLbY+AA
- jx2gQinY87f4CUM6j50/uvcXzu5Qzxdk7uiwCtvvoXoT58MrTNbG0em16
- Sq9FcyOy4IauGClpfEa+Km9YDxemsbikUwJwZBYX35aaWiNNlkmqOwgQH
- TTdVSESSafsvYKuvHMJCTzzudCCFx4Mm4V598F9mkQn2CygdVFiKRYAEg
- TG6VicxEeLLbtdR1D2CLp2PhB1amhUXjeH7AbSY9yKHl043u8BKbqHI/N
- e7OxsA0Xd5+EmBe1mv1/YNOZhCal9nx4l3cww0umbykQX+XAaGqefME+G A==;
-X-CSE-ConnectionGUID: w3nKo0CdQOqp/j0oEbmxHw==
-X-CSE-MsgGUID: cDyXLPkMRSGb/wNLVnv6vw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11122"; a="28006994"
-X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; d="scan'208";a="28006994"
+ t=1720072763; x=1751608763;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=9TLrFAN9aGRmzBqzRDjSue3+RWDyuK0mJeXj/6l+tP4=;
+ b=WPSNDhVB002p3EAxIFB2ewrP/3hjniNxPTcruEQk6fgIHRZX7tw5sihu
+ sVWXyTmJnW9pA6bRmxk7BqU7qv8kmu0rWrlOouGsK8sOkO/h3en5L+ToB
+ 3OsZ0Ixikc/HLfjp9Av1RHc/3OK0u9Jn2PpCtJYEEivcg6R8ChfMjE1+4
+ Zq3KHP93FkjGhuoGy9MaMem+GdXs7wE0zGwkGopS9VC17sfeYDl8zaLK8
+ Yvh2Tdigx7h8n4QOC6+ZFa2BCXwXR/G7BvMHtH2OwIx5RrWSQvq/6WU8x
+ x524y7YdHV2jRdj4yWBPXXzKrLAoIZlfRq/Fkan9ouB6Zo2SBsHn4YlRj Q==;
+X-CSE-ConnectionGUID: RsxVO/q+Rv6PEHiRgFXlFQ==
+X-CSE-MsgGUID: TbmCphi7R0aBB4+g49ICLg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11122"; a="28006995"
+X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; d="scan'208";a="28006995"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2024 22:59:20 -0700
-X-CSE-ConnectionGUID: gI8RNeVbSi+Zxi0LgMf+cQ==
-X-CSE-MsgGUID: lWfBEYE1TjKnuvnZft0L/A==
+ 03 Jul 2024 22:59:23 -0700
+X-CSE-ConnectionGUID: npiIPGs9SV6eadYWHF19uQ==
+X-CSE-MsgGUID: yRy1yOxCSNaiKQB+3Pl0KQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; d="scan'208";a="50933274"
+X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; d="scan'208";a="50933280"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2024 22:59:18 -0700
+ 03 Jul 2024 22:59:20 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  daniele.ceraolospurio@intel.com, matthew.brost@intel.com,
  michal.wajdeczko@intel.com
-Subject: [PATCH v3 0/2] drm/xe: remove GuC reload in D3Hot path
-Date: Thu,  4 Jul 2024 11:42:01 +0530
-Message-Id: <20240704061203.3464835-1-riana.tauro@intel.com>
+Subject: [PATCH v3 1/2] drm/xe: move GuC CT set state function to header
+Date: Thu,  4 Jul 2024 11:42:02 +0530
+Message-Id: <20240704061203.3464835-2-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20240704061203.3464835-1-riana.tauro@intel.com>
+References: <20240704061203.3464835-1-riana.tauro@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,27 +68,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Power is not lost when only D3hot is allowed so remove GuC reload in
-runtime suspend D3Hot path.
+Move GuC CT set state function to header file to be used by
+runtime suspend and resume functions.
 
-Rev2: Rebase
-Rev3: fix review comments
+Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_ct.c | 4 ++--
+ drivers/gpu/drm/xe/xe_guc_ct.h | 2 ++
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-Riana Tauro (2):
-  drm/xe: move GuC CT set state function to header
-  drm/xe: remove GuC reload in D3Hot path
-
- drivers/gpu/drm/xe/xe_gt.c     | 33 ++++++++++++++--
- drivers/gpu/drm/xe/xe_gt.h     |  4 +-
- drivers/gpu/drm/xe/xe_guc.c    | 69 +++++++++++++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_guc.h    |  4 +-
- drivers/gpu/drm/xe/xe_guc_ct.c |  4 +-
- drivers/gpu/drm/xe/xe_guc_ct.h |  2 +
- drivers/gpu/drm/xe/xe_pm.c     |  8 ++--
- drivers/gpu/drm/xe/xe_uc.c     | 32 +++++++++++++++-
- drivers/gpu/drm/xe/xe_uc.h     |  2 +
- 9 files changed, 137 insertions(+), 21 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 7d2e937da1d8..9f183146a5ff 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -318,8 +318,8 @@ static int guc_ct_control_toggle(struct xe_guc_ct *ct, bool enable)
+ 	return ret > 0 ? -EPROTO : ret;
+ }
+ 
+-static void xe_guc_ct_set_state(struct xe_guc_ct *ct,
+-				enum xe_guc_ct_state state)
++void xe_guc_ct_set_state(struct xe_guc_ct *ct,
++			 enum xe_guc_ct_state state)
+ {
+ 	mutex_lock(&ct->lock);		/* Serialise dequeue_one_g2h() */
+ 	spin_lock_irq(&ct->fast_lock);	/* Serialise CT fast-path */
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+index 190202fce2d0..ab073cd21657 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+@@ -14,6 +14,8 @@ int xe_guc_ct_init(struct xe_guc_ct *ct);
+ int xe_guc_ct_enable(struct xe_guc_ct *ct);
+ void xe_guc_ct_disable(struct xe_guc_ct *ct);
+ void xe_guc_ct_stop(struct xe_guc_ct *ct);
++void xe_guc_ct_set_state(struct xe_guc_ct *ct,
++			 enum xe_guc_ct_state state);
+ void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
+ 
+ struct xe_guc_ct_snapshot *
 -- 
 2.40.0
 
