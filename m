@@ -4,82 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92D4AC3271E
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jul 2024 13:17:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87CAFC30653
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jul 2024 13:23:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C8A210EAE7;
-	Thu,  4 Jul 2024 13:17:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="DciM+SkC";
-	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9052110EAEB
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Jul 2024 13:17:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1720099036;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=v2asHracYj/ImZ+OTqgN08Or55nsS5Qo7iBUXEZRik0=;
- b=DciM+SkCr+936w1veVK0kolSHtk1/EKy24K6dmWJu2ZHnysTYTsRNLmBY2jfPNa/blSbvQ
- BHs6gZ6erZX54A5QdCqgsUpz6fkOdA8eIBii3e/IaeacyC/ZbPESVH/1WyMOxBHcMutsdT
- m+uzfS9cctTLuS69vAP6A7BNsxUoeyA=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-498-KKuNBGkONSCyK8qlZwtPsw-1; Thu, 04 Jul 2024 09:17:13 -0400
-X-MC-Unique: KKuNBGkONSCyK8qlZwtPsw-1
-Received: by mail-wm1-f71.google.com with SMTP id
- 5b1f17b1804b1-424fb2df2bdso6299975e9.3
- for <intel-xe@lists.freedesktop.org>; Thu, 04 Jul 2024 06:17:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1720099032; x=1720703832;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=v2asHracYj/ImZ+OTqgN08Or55nsS5Qo7iBUXEZRik0=;
- b=rRuXB6y1lrfH9sFU/l0m1YfMP2xVb6Fm2UaoyFhiu/8fjJpKh/mhiOb30yq6niViQo
- Z6YwTCQZGt860rxS7XYMm0QLIV4yL4ZU85mHYB87r3V2m0RFE0N7jGFh5I9M9BDfPHLQ
- mNCGtcVQBG9SO0NkDCsVbww3aj7TFU0Q0XAZtpAW7C+cUKWS3U0cEPHpfpFvm2nyks43
- n/uh3gtSsjkQTclMR2YCZRja8H+DCX9o4EXl2lkf/J4TOAtzH/7otDpAFqWbDk7XcJY8
- WDSG2nPLcTr3NNoYPDYCN2ovYfUySXq/wonMt6kMMcKtlvFMbul+VCSc485YtBODN2R+
- bexw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUJRzCsPIdVEDAgutVmL4Nc2fqYG0wgigXJ40CE+kvIVMQemBuOWkk6DhxhG5FRMBum95oWrwGNKSo7sACx+3IeNHsjM6J/sYFQ4A321J4=
-X-Gm-Message-State: AOJu0YwHwKKXmtkLubWACSVz21K/DsqN7maA4xvZopTVmqLv7Xmpg4Ug
- Uuf9YZDKFVRiSW7RDq2cUQGpxnDlENsAIOvwvmg6+Oo3k2TMbZ5QUdNpnY9lD6tdgjBAD5Tcajd
- ECC2kuvfuCg6gMNULFWsZHnjIIYy9ao2EyU8Csq3nmpZrdJGBXDkVLMnMmNVB0fl9
-X-Received: by 2002:a05:600c:4a9a:b0:424:ad83:ffb3 with SMTP id
- 5b1f17b1804b1-4264a3bc287mr17072535e9.4.1720099032078; 
- Thu, 04 Jul 2024 06:17:12 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGguh4BWI4tGOBZaJqW9WKFIoUgP2iUdGisZnAIwNI4aquoqwnKueVhb00X1x7MJ70yShKFBg==
-X-Received: by 2002:a05:600c:4a9a:b0:424:ad83:ffb3 with SMTP id
- 5b1f17b1804b1-4264a3bc287mr17072275e9.4.1720099031657; 
- Thu, 04 Jul 2024 06:17:11 -0700 (PDT)
-Received: from localhost ([193.32.126.213]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4264a1dd952sm23873305e9.13.2024.07.04.06.17.10
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 04 Jul 2024 06:17:11 -0700 (PDT)
-Date: Thu, 4 Jul 2024 15:17:09 +0200
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next
-Message-ID: <20240704-curvy-outstanding-lizard-bcea78@houat>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59A0910EAE6;
+	Thu,  4 Jul 2024 13:23:17 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F147910EAF5;
+ Thu,  4 Jul 2024 13:23:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="6gq2io3j4zkiceka"
-Content-Disposition: inline
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_Enable_SR-IOV_for_AD?=
+ =?utf-8?q?L/ATSM?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 04 Jul 2024 13:23:15 -0000
+Message-ID: <172009939597.27753.8035435169834675341@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240704130415.1066-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20240704130415.1066-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,163 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
---6gq2io3j4zkiceka
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Series: drm/xe: Enable SR-IOV for ADL/ATSM
+URL   : https://patchwork.freedesktop.org/series/135760/
+State : success
 
-Hi,
+== Summary ==
 
-Here's this week drm-misc-next PR, and the last PR for the 6.11 release cycle.
+lib/modules/6.10.0-rc6-xe/kernel/sound/core/seq/
+lib/modules/6.10.0-rc6-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/core/snd.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soundcore.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/intel/
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/intel/common/
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/amd/
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/codecs/
+lib/modules/6.10.0-rc6-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/hda/
+lib/modules/6.10.0-rc6-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/hda/ext/
+lib/modules/6.10.0-rc6-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.10.0-rc6-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.10.0-rc6-xe/kernel/arch/
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/kernel/
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/crypto/
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/events/
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/events/intel/
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/kvm/
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.10.0-rc6-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.10.0-rc6-xe/kernel/crypto/
+lib/modules/6.10.0-rc6-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.10.0-rc6-xe/kernel/crypto/cmac.ko
+lib/modules/6.10.0-rc6-xe/kernel/crypto/ccm.ko
+lib/modules/6.10.0-rc6-xe/kernel/crypto/cryptd.ko
+lib/modules/6.10.0-rc6-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.10.0-rc6-xe/kernel/crypto/async_tx/
+lib/modules/6.10.0-rc6-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.10.0-rc6-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.10.0-rc6-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.10.0-rc6-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.10.0-rc6-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.10.0-rc6-xe/build
+lib/modules/6.10.0-rc6-xe/modules.alias.bin
+lib/modules/6.10.0-rc6-xe/modules.builtin
+lib/modules/6.10.0-rc6-xe/modules.softdep
+lib/modules/6.10.0-rc6-xe/modules.alias
+lib/modules/6.10.0-rc6-xe/modules.order
+lib/modules/6.10.0-rc6-xe/modules.symbols
+lib/modules/6.10.0-rc6-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1720099384:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1720099384:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-Thanks!
-Maxime
-
-drm-misc-next-2024-07-04:
-drm-misc-next for $kernel-version:
-
-UAPI Changes:
-
-Cross-subsystem Changes:
-
-Core Changes:
-  - dp/mst: Fix daisy-chaining at resume
-  - dsc: Add helper to dump the DSC configuration
-  - tests: Add tests for the new monochrome TV mode variant
-
-Driver Changes:
-  - ast: Refactor the mode setting code
-  - panfrost: Fix devfreq job reporting
-  - stm: Add LDVS support, DSI PHY updates
-  - panels:
-    - New panel: AUO G104STN01, K&d kd101ne3-40ti,
-The following changes since commit 61bfcd190820d1dce846e58a4c9ddca8db4751ed:
-
-  drm/bridge: analogix_dp: handle AUX transfer timeouts (2024-06-27 11:52:19 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2024-07-04
-
-for you to fetch changes up to 896868eded124059023be0af92d68cdaf9b4de70:
-
-  drm/panthor: Record devfreq busy as soon as a job is started (2024-07-04 09:29:55 +0100)
-
-----------------------------------------------------------------
-drm-misc-next for $kernel-version:
-
-UAPI Changes:
-
-Cross-subsystem Changes:
-
-Core Changes:
-  - dp/mst: Fix daisy-chaining at resume
-  - dsc: Add helper to dump the DSC configuration
-  - tests: Add tests for the new monochrome TV mode variant
-
-Driver Changes:
-  - ast: Refactor the mode setting code
-  - panfrost: Fix devfreq job reporting
-  - stm: Add LDVS support, DSI PHY updates
-  - panels:
-    - New panel: AUO G104STN01, K&d kd101ne3-40ti,
-
-----------------------------------------------------------------
-Dave Stevenson (1):
-      drm/tests: Add tests for the new Monochrome value of tv_mode
-
-Dragan Simic (2):
-      drm/lima: Mark simple_ondemand governor as softdep
-      drm/panfrost: Mark simple_ondemand governor as softdep
-
-Imre Deak (2):
-      drm: Add helpers for q4 fixed point values
-      drm/display/dsc: Add a helper to dump the DSC configuration
-
-Paul Gerber (2):
-      dt-bindings: display: simple: Add AUO G104STN01 panel
-      drm/panel: simple: Add AUO G104STN01 panel entry
-
-Raphael Gallais-Pou (4):
-      dt-bindings: display: add STM32 LVDS device
-      drm/stm: lvds: add new STM32 LVDS Display Interface Transmitter driver
-      drm/stm: dsi: use new SYSTEM_SLEEP_PM_OPS() macro
-      drm/stm: dsi: expose DSI PHY internal clock
-
-Steven Price (1):
-      drm/panthor: Record devfreq busy as soon as a job is started
-
-Thomas Zimmermann (9):
-      drm/ast: Implement atomic enable/disable for encoders
-      drm/ast: Program mode for AST DP in atomic_mode_set
-      drm/ast: Move mode-setting code into mode_set_nofb CRTC helper
-      drm/ast: Handle primary-plane format setup in atomic_update
-      drm/ast: Remove gamma LUT updates from DPMS code
-      drm/ast: Only set VGA SCREEN_DISABLE bit in CRTC code
-      drm/ast: Inline ast_crtc_dpms() into callers
-      drm/ast: Use drm_atomic_helper_commit_tail() helper
-      drm/mgag200: Rename constant MGAREG_Status to MGAREG_STATUS
-
-Thorsten Blum (1):
-      drm/managed: Simplify if condition
-
-Wayne Lin (2):
-      drm/dp_mst: Fix all mstb marked as not probed after suspend/resume
-      drm/dp_mst: Skip CSN if topology probing is not done yet
-
-Yannick Fertre (1):
-      drm/stm: dsi: add pm runtime ops
-
-Zhaoxiong Lv (5):
-      drm/panel: jd9365da: Modify the method of sending commands
-      dt-bindings: display: panel: Add compatible for kingdisplay-kd101ne3
-      drm/panel: panel-jadard-jd9365da-h3: use wrapped MIPI DCS functions
-      drm/panel: jd9365da: Support for kd101ne3-40ti MIPI-DSI panel
-      drm/panel: jd9365da: Add the function of adjusting orientation
-
- .../bindings/display/panel/jadard,jd9365da-h3.yaml |    1 +
- .../bindings/display/panel/panel-simple.yaml       |    2 +
- .../bindings/display/st,stm32mp25-lvds.yaml        |  119 ++
- MAINTAINERS                                        |    1 +
- drivers/gpu/drm/ast/ast_mode.c                     |  204 ++--
- drivers/gpu/drm/ast/ast_reg.h                      |   10 +-
- drivers/gpu/drm/display/drm_dp_helper.c            |    5 +-
- drivers/gpu/drm/display/drm_dp_mst_topology.c      |   15 +-
- drivers/gpu/drm/display/drm_dsc_helper.c           |   91 ++
- drivers/gpu/drm/drm_managed.c                      |    2 +-
- drivers/gpu/drm/lima/lima_drv.c                    |    1 +
- drivers/gpu/drm/mgag200/mgag200_mode.c             |    6 +-
- drivers/gpu/drm/mgag200/mgag200_reg.h              |    2 +-
- drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c   | 1090 ++++++++++-------
- drivers/gpu/drm/panel/panel-simple.c               |   27 +
- drivers/gpu/drm/panfrost/panfrost_drv.c            |    1 +
- drivers/gpu/drm/panthor/panthor_sched.c            |    1 +
- drivers/gpu/drm/stm/Kconfig                        |   11 +
- drivers/gpu/drm/stm/Makefile                       |    2 +
- drivers/gpu/drm/stm/dw_mipi_dsi-stm.c              |  279 ++++-
- drivers/gpu/drm/stm/lvds.c                         | 1226 ++++++++++++++++++++
- drivers/gpu/drm/tests/drm_cmdline_parser_test.c    |   11 +
- drivers/gpu/drm/tests/drm_connector_test.c         |    1 +
- drivers/gpu/drm/tests/drm_modes_test.c             |   31 +
- include/drm/display/drm_dsc_helper.h               |    3 +
- include/drm/drm_fixed.h                            |   23 +
- 26 files changed, 2605 insertions(+), 560 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/st,stm32mp25-lvds.yaml
- create mode 100644 drivers/gpu/drm/stm/lvds.c
-
---6gq2io3j4zkiceka
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZoag1AAKCRDj7w1vZxhR
-xfcFAQCjciqeuY75a6Ef/9gmvph7nyJqMPOGIVhaQl31IlOF/wD/YncQiUYtKQRg
-emWi6z+dp1v7by+D2zAkmI53aqglRwk=
-=4GVn
------END PGP SIGNATURE-----
-
---6gq2io3j4zkiceka--
 
