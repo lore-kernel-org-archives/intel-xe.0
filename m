@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A919C3065C
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Jul 2024 04:05:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88A17C3271F
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Jul 2024 04:05:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F1E910E174;
-	Thu,  4 Jul 2024 04:05:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4136F10E810;
+	Thu,  4 Jul 2024 04:05:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JM9IOV7F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nUYny7/2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D786810E21D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98B8610E21D
  for <intel-xe@lists.freedesktop.org>; Thu,  4 Jul 2024 04:05:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720065947; x=1751601947;
+ t=1720065946; x=1751601946;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=QGsyvplPO0wusHyH5BDICj+tXji5OEXdD4H1XAV3g9E=;
- b=JM9IOV7FzC3b1jpITIXldJg7wmdh4iJlemhdUxfvPi2I74ZCa3GYfqdV
- 4kLN2q+UFgqYwtLhyw5d7gJIXrq8HIZSJyOJhAnFQlpz5+nh+cDy/J0Gw
- hvYup2a4OMSstScxDLe3xhdvahj6yLxGyxYQ60UePVnyHyrDpr/5R3MKU
- gRm2/3NoG1aDXdXw9n16E2l93AOSAA+mcantHndUTw9HcVjilBBpzM+PG
- SpuIu8Q10XDsKFOeAYoDQTL93wX9sORVylbSKUSTs/nf7R9MamTVzIL+3
- ja9/36lE+7lJY62FXTfOcSpoZxp/G79Ys3XRB9u++vL/BXQjPsazJaGuj Q==;
-X-CSE-ConnectionGUID: B4L2gKEcTzGz3Yg18iXCKA==
-X-CSE-MsgGUID: MWEaxDLVSrmALUTtR0BPjA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11122"; a="20227729"
-X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; d="scan'208";a="20227729"
+ bh=vT3BrYcAdyB4M8QwsVUZiCRs2mmotMXtK9X3IdU7kFM=;
+ b=nUYny7/2rxl/Cp8C1ZTmdC2PMRyuKDfhvrOOjCHhBonSZR3k686UdgW+
+ uMlyg8dqFk2lqUeE24cgssfj6wsXNrb5B1+zcgByx4uPecci/IDowjVHg
+ 4jdZT5lhXzzV5mc+ik5+ldOsgpn7aTvs3tHdz1h8mzZnqgHTxZ0soIWaq
+ ALzm21dh1STQ3+1NQCwqX9WbR1wKKBpa4Sl8+VuLm5KL0xzYXRc+XvNZt
+ hIMBCIRfRSrEb9XjRDwGhN1coP/jMGIrp5g4Ob4yJLU8dwUqHQ0xVMfiT
+ fO8bKSjolHPdXeCnb0Ye4ZEEl6sNa5UBDyQiqqbd7028Xss3QVyhe/eDL w==;
+X-CSE-ConnectionGUID: xcs7zcrJRMSwKfW8op9aQQ==
+X-CSE-MsgGUID: RhNVn+ozRjisA3TTKrez3Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11122"; a="20227727"
+X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; d="scan'208";a="20227727"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Jul 2024 21:05:46 -0700
-X-CSE-ConnectionGUID: xbHx8pL6TKCtM5syJnCTBA==
-X-CSE-MsgGUID: NUFbvwUJQ4KukyA7PFASyg==
+X-CSE-ConnectionGUID: 3RgCYQu0SmS1hExcS4KLLA==
+X-CSE-MsgGUID: 4zP4shR2TduFhPVIkcLpkg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; d="scan'208";a="46477980"
+X-IronPort-AV: E=Sophos;i="6.09,183,1716274800"; d="scan'208";a="46477978"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Jul 2024 21:05:46 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v7 3/7] drm/xe: Add xe_exec_queue_last_fence_test_dep
-Date: Wed,  3 Jul 2024 21:06:19 -0700
-Message-Id: <20240704040623.267526-4-matthew.brost@intel.com>
+Subject: [PATCH v7 1/7] drm/xe:
+ s/xe_tile_migrate_engine/xe_tile_migrate_exec_queue
+Date: Wed,  3 Jul 2024 21:06:17 -0700
+Message-Id: <20240704040623.267526-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240704040623.267526-1-matthew.brost@intel.com>
 References: <20240704040623.267526-1-matthew.brost@intel.com>
@@ -65,62 +66,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Helpful to determine if a bind can immediately use CPU or needs to be
-deferred a drm scheduler job.
-
-v7:
- - Better wording in kernel doc (Matthew Auld)
+Engine is old nomenclature, replace with exec queue.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c | 23 +++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_exec_queue.h |  2 ++
- 2 files changed, 25 insertions(+)
+ drivers/gpu/drm/xe/xe_migrate.c | 9 ++++-----
+ drivers/gpu/drm/xe/xe_migrate.h | 2 +-
+ 2 files changed, 5 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 0ba37835849b..3336a01a1006 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -906,3 +906,26 @@ void xe_exec_queue_last_fence_set(struct xe_exec_queue *q, struct xe_vm *vm,
- 	xe_exec_queue_last_fence_put(q, vm);
- 	q->last_fence = dma_fence_get(fence);
- }
-+
-+/**
-+ * xe_exec_queue_last_fence_test_dep - Test last fence dependency of queue
-+ * @q: The exec queue
-+ * @vm: The VM the engine does a bind or exec for
-+ *
-+ * Returns:
-+ * -ETIME if there exists an unsignalled last fence dependency, zero otherwise.
-+ */
-+int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q, struct xe_vm *vm)
-+{
-+	struct dma_fence *fence;
-+	int err = 0;
-+
-+	fence = xe_exec_queue_last_fence_get(q, vm);
-+	if (fence) {
-+		err = test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags) ?
-+			0 : -ETIME;
-+		dma_fence_put(fence);
-+	}
-+
-+	return err;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index 289a3a51d2a2..ded77b0f3b90 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -75,6 +75,8 @@ struct dma_fence *xe_exec_queue_last_fence_get(struct xe_exec_queue *e,
- 					       struct xe_vm *vm);
- void xe_exec_queue_last_fence_set(struct xe_exec_queue *e, struct xe_vm *vm,
- 				  struct dma_fence *fence);
-+int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q,
-+				      struct xe_vm *vm);
- void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q);
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index c9f5673353ee..ef5ad0efc5dd 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -84,15 +84,14 @@ struct xe_migrate {
+ #define MAX_PTE_PER_SDI 0x1FE
  
+ /**
+- * xe_tile_migrate_engine() - Get this tile's migrate engine.
++ * xe_tile_migrate_exec_queue() - Get this tile's migrate exec queue.
+  * @tile: The tile.
+  *
+- * Returns the default migrate engine of this tile.
+- * TODO: Perhaps this function is slightly misplaced, and even unneeded?
++ * Returns the default migrate exec queue of this tile.
+  *
+- * Return: The default migrate engine
++ * Return: The default migrate exec queue
+  */
+-struct xe_exec_queue *xe_tile_migrate_engine(struct xe_tile *tile)
++struct xe_exec_queue *xe_tile_migrate_exec_queue(struct xe_tile *tile)
+ {
+ 	return tile->migrate->q;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 951f19318ea4..a5bcaafe4a99 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -106,5 +106,5 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 
+ void xe_migrate_wait(struct xe_migrate *m);
+ 
+-struct xe_exec_queue *xe_tile_migrate_engine(struct xe_tile *tile);
++struct xe_exec_queue *xe_tile_migrate_exec_queue(struct xe_tile *tile);
  #endif
 -- 
 2.34.1
