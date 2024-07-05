@@ -4,24 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0807BC3271E
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jul 2024 15:43:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A6F0C3271E
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jul 2024 15:43:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB51C10EC13;
-	Fri,  5 Jul 2024 15:43:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2DE710EC17;
+	Fri,  5 Jul 2024 15:43:38 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D8A310EC14;
- Fri,  5 Jul 2024 15:43:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A88310EC14;
+ Fri,  5 Jul 2024 15:43:38 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_TTM_LRU-walk_cherry-?=
- =?utf-8?q?picks?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_TTM_LRU-walk_cherry-picks?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 05 Jul 2024 15:43:08 -0000
-Message-ID: <172019418804.31461.1762416913797854893@2413ebb6fbb6>
+Date: Fri, 05 Jul 2024 15:43:38 -0000
+Message-ID: <172019421862.31461.10214143639405273219@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240705153206.68526-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20240705153206.68526-1-thomas.hellstrom@linux.intel.com>
@@ -44,20 +43,50 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: TTM LRU-walk cherry-picks
 URL   : https://patchwork.freedesktop.org/series/135801/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: cdd1a80a2d16 drm-tip: 2024y-07m-05d-11h-19m-50s UTC integration manifest
-=== git am output follows ===
-Applying: drm/ttm: Allow TTM LRU list nodes of different types
-Applying: drm/ttm: Slightly clean up LRU list iteration
-Applying: drm/ttm: Use LRU hitches
-Applying: drm/ttm, drm/amdgpu, drm/xe: Consider hitch moves within bulk sublist moves
-Applying: drm/ttm: Provide a generic LRU walker helper
-Applying: drm/ttm: Use the LRU walker helper for swapping
-Applying: drm/ttm: Use the LRU walker for eviction
-Applying: drm/ttm: Balance ttm_resource_cursor_init() and ttm_resource_cursor_fini()
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d357200824ab4047e19cbf37038298822a9f5eb9
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Fri Jul 5 17:32:06 2024 +0200
+
+    drm/ttm: Balance ttm_resource_cursor_init() and ttm_resource_cursor_fini()
+    
+    Make the interface more symmetric by providing and using a
+    ttm_resource_cursor_init().
+    
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch cdd1a80a2d16d5213af20a29eb7570a7651db7dc drm-intel
+089afb4f8e1d drm/ttm: Allow TTM LRU list nodes of different types
+0f055d806500 drm/ttm: Slightly clean up LRU list iteration
+74f759dc4e7f drm/ttm: Use LRU hitches
+be6ddb6f31a2 drm/ttm, drm/amdgpu, drm/xe: Consider hitch moves within bulk sublist moves
+09a0acb0944e drm/ttm: Provide a generic LRU walker helper
+eb4ac3426020 drm/ttm: Use the LRU walker helper for swapping
+1075fe9d6706 drm/ttm: Use the LRU walker for eviction
+d357200824ab drm/ttm: Balance ttm_resource_cursor_init() and ttm_resource_cursor_fini()
+-:157: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'cursor' - possible side-effects?
+#157: FILE: include/drm/ttm/ttm_resource.h:477:
++#define ttm_resource_manager_for_each_res(cursor, res)	\
++	for (res = ttm_resource_manager_first(cursor); res;	\
+ 	     res = ttm_resource_manager_next(cursor))
+
+-:157: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'res' - possible side-effects?
+#157: FILE: include/drm/ttm/ttm_resource.h:477:
++#define ttm_resource_manager_for_each_res(cursor, res)	\
++	for (res = ttm_resource_manager_first(cursor); res;	\
+ 	     res = ttm_resource_manager_next(cursor))
+
+total: 0 errors, 0 warnings, 2 checks, 121 lines checked
 
 
