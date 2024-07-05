@@ -4,55 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DA8EC30658
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jul 2024 11:17:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EED8C30658
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jul 2024 13:02:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 437D110EACE;
-	Fri,  5 Jul 2024 11:17:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D276010E1AD;
+	Fri,  5 Jul 2024 13:02:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hl5aEj9I";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X8uo4Omy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66B1810EACE
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Jul 2024 11:17:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3784310E1AD
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Jul 2024 13:02:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720178253; x=1751714253;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=4kjIsMkisVWOOrAn29QfTJ9XNkfHii7d/nQS0eygjQk=;
- b=Hl5aEj9IaAgMgpKSr5UDh8q01pZNQ0/cahVWUPEwSy+0RuIiArXyzUto
- NEmyHoxQ03zJy5ucZR6TfHH7JOnJobwgVBd3ouEnGTnP576csrcugKBcT
- 8GI7BKk9TEzhLqhfvLRq2lRtdS1SN/IGxbm1ihIEtRe8IdkasmmoWm+TS
- LWawgBOyIT3uJfromzhgffLOrXiI76Gwp+jNgXDF5Kp9Fc8vbTzYgNgnY
- Hc4wE31FFRuggEERzxuZQ+hAknzRpa5fn0mmURQv+GWnE4+XU3XNzRYqa
- caRWEqEpgnnzm37JbmaosRRkxjiUfdKlRIygWF16BzJVQAYHQupwEA7fj w==;
-X-CSE-ConnectionGUID: J11CyOvWQQu8uvGxKw1/qw==
-X-CSE-MsgGUID: D5cHUkBJRXip/vEvpyEzIA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="17188936"
-X-IronPort-AV: E=Sophos;i="6.09,184,1716274800"; d="scan'208";a="17188936"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2024 04:17:33 -0700
-X-CSE-ConnectionGUID: AFFlLE3ARoaxWAjU3cY83w==
-X-CSE-MsgGUID: gHPq2jGyTImu2FkZuFuPzQ==
+ t=1720184540; x=1751720540;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0OTjNZ7FsLBLhgHmyPHjYh9D0ye6ivsDUVgfAOZiqHQ=;
+ b=X8uo4OmyZ72m7hkeCR1dPlqbvS0ORBg/F2OyjyJobGfq5ynmGymEayHz
+ 2p06bKDamqc+9BXZ5HNsLf0t/FdhwMU6c7Ne1kQK5XxdaqODPy6mKcKtT
+ TTmz88WEhKj7TK10RhzDmbPpm3WQuJxdr6TD6l1xsZY6T/HxPHUpYEc/5
+ uuheS5M2p3J+eQAVEDLvXrLiWLUy2H96rCjozDbBFzHoU5s8O/uT3Fbe3
+ qv+r4DS3YZzlwxYp65oGRaTAIxK5RJfRYJBFnO9w3xMCjU03+N71C62TY
+ zs79VwxchKMpB+GQ6avo2iuWM18oRTYWiNXpdbFtq5+KE+Hq96e+oZYqS Q==;
+X-CSE-ConnectionGUID: LxKd3WswSw+uTtOWulPY2g==
+X-CSE-MsgGUID: mlTG732pST+8fw02hAfQOg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="28150869"
+X-IronPort-AV: E=Sophos;i="6.09,184,1716274800"; d="scan'208";a="28150869"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jul 2024 06:02:19 -0700
+X-CSE-ConnectionGUID: 4/i1C1CXQKqD55U2E01ZSw==
+X-CSE-MsgGUID: dQQpox+wSUK2+1r0ua0Vyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,184,1716274800"; d="scan'208";a="46825818"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
- by fmviesa008.fm.intel.com with ESMTP; 05 Jul 2024 04:17:32 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sPgwT-000SJA-2J;
- Fri, 05 Jul 2024 11:17:29 +0000
-Date: Fri, 5 Jul 2024 19:17:01 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: oe-kbuild-all@lists.linux.dev, intel-xe@lists.freedesktop.org,
- Matthew Auld <matthew.auld@intel.com>
-Subject: [drm-xe:drm-xe-next 6/7] drivers/gpu/drm/xe/xe_pt.c:931:73: sparse:
- sparse: Using plain integer as NULL pointer
-Message-ID: <202407051904.cZVyDRlA-lkp@intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,184,1716274800"; d="scan'208";a="51825514"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by orviesa005.jf.intel.com with ESMTP; 05 Jul 2024 06:02:18 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH V3] drm/xe/xe2: Add Wa_15015404425
+Date: Fri,  5 Jul 2024 18:33:24 +0530
+Message-Id: <20240705130324.2769481-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,57 +64,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-head:   c55f79f317ab428ae6d005965bc07e37496f209f
-commit: a708f6501c692551e3d4ea618c44021f436730d9 [6/7] drm/xe: Update PT layer with better error handling
-config: openrisc-randconfig-r123-20240705 (https://download.01.org/0day-ci/archive/20240705/202407051904.cZVyDRlA-lkp@intel.com/config)
-compiler: or1k-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20240705/202407051904.cZVyDRlA-lkp@intel.com/reproduce)
+Wa_15015404425 asks us to perform four "dummy" writes to a
+non-existent register offset before every real register read.
+Although the specific offset of the writes doesn't directly
+matter, the workaround suggests offset 0x130030 as a good target
+so that these writes will be easy to recognize and filter out in
+debugging traces.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202407051904.cZVyDRlA-lkp@intel.com/
+V3(MattR):
+  - Define dummy reg local to function
+  - Avoid tracing dummy writes
+  - Update commit message
+V2:
+  - Add WA to 8/16/32bit reads also - MattR
+  - Corrected dummy reg address - MattR
+  - Use for loop to avoid mental pause - JaniN
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/gpu/drm/xe/xe_pt.c:931:73: sparse: sparse: Using plain integer as NULL pointer
-   drivers/gpu/drm/xe/xe_pt.c: note: in included file (through include/linux/smp.h, include/linux/lockdep.h, include/linux/spinlock.h, ...):
-   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+ drivers/gpu/drm/xe/xe_mmio.c | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-vim +931 drivers/gpu/drm/xe/xe_pt.c
-
-   906	
-   907	static void xe_pt_abort_bind(struct xe_vma *vma,
-   908				     struct xe_vm_pgtable_update *entries,
-   909				     u32 num_entries, bool rebind)
-   910	{
-   911		int i, j;
-   912	
-   913		xe_pt_commit_locks_assert(vma);
-   914	
-   915		for (i = num_entries - 1; i >= 0; --i) {
-   916			struct xe_pt *pt = entries[i].pt;
-   917			struct xe_pt_dir *pt_dir;
-   918	
-   919			if (!rebind)
-   920				pt->num_live -= entries[i].qwords;
-   921	
-   922			if (!pt->level)
-   923				continue;
-   924	
-   925			pt_dir = as_xe_pt_dir(pt);
-   926			for (j = 0; j < entries[i].qwords; j++) {
-   927				u32 j_ = j + entries[i].ofs;
-   928				struct xe_pt *newpte = xe_pt_entry(pt_dir, j_);
-   929				struct xe_pt *oldpte = entries[i].pt_entries[j].pt;
-   930	
- > 931				pt_dir->children[j_] = oldpte ? &oldpte->base : 0;
-   932				xe_pt_destroy(newpte, xe_vma_vm(vma)->flags, NULL);
-   933			}
-   934		}
-   935	}
-   936	
-
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index f92faad4b96d..66bfa93a976d 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -121,12 +121,33 @@ int xe_mmio_init(struct xe_device *xe)
+ 	return devm_add_action_or_reset(xe->drm.dev, mmio_fini, xe);
+ }
+ 
++static void mmio_flush_pending_writes(struct xe_gt *gt)
++{
++#define DUMMY_REG	XE_REG(0x130030)
++	struct xe_tile *tile = gt_to_tile(gt);
++	struct xe_device *xe = gt_to_xe(gt);
++	struct xe_reg reg = DUMMY_REG;
++	u32 addr;
++	int i;
++
++	if (!(xe->info.platform == XE_LUNARLAKE))
++		return;
++
++	addr = xe_mmio_adjusted_addr(gt, reg.addr);
++	/* 4 dummy writes */
++	for (i = 0; i < 4; i++)
++		writel(0, (reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
++}
++
+ u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg reg)
+ {
+ 	struct xe_tile *tile = gt_to_tile(gt);
+ 	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
+ 	u8 val;
+ 
++	/* Wa_15015404425 */
++	mmio_flush_pending_writes(gt);
++
+ 	val = readb((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
+ 	trace_xe_reg_rw(gt, false, addr, val, sizeof(val));
+ 
+@@ -139,6 +160,9 @@ u16 xe_mmio_read16(struct xe_gt *gt, struct xe_reg reg)
+ 	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
+ 	u16 val;
+ 
++	/* Wa_15015404425 */
++	mmio_flush_pending_writes(gt);
++
+ 	val = readw((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + addr);
+ 	trace_xe_reg_rw(gt, false, addr, val, sizeof(val));
+ 
+@@ -160,6 +184,9 @@ u32 xe_mmio_read32(struct xe_gt *gt, struct xe_reg reg)
+ 	u32 addr = xe_mmio_adjusted_addr(gt, reg.addr);
+ 	u32 val;
+ 
++	/* Wa_15015404425 */
++	mmio_flush_pending_writes(gt);
++
+ 	if (!reg.vf && IS_SRIOV_VF(gt_to_xe(gt)))
+ 		val = xe_gt_sriov_vf_read32(gt, reg);
+ 	else
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.25.1
+
