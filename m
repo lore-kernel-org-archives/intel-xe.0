@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87B3EC3DA40
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jul 2024 10:16:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09BC1C30658
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jul 2024 10:44:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A3CB10EA2E;
-	Fri,  5 Jul 2024 10:16:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5390B10EAA8;
+	Fri,  5 Jul 2024 10:44:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="h4ng8XnU";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="k4ZNSYA0";
 	dkim-atps=neutral
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB55410EA2E
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Jul 2024 10:16:03 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id
- 5b1f17b1804b1-424a3d36c28so1574175e9.0
- for <intel-xe@lists.freedesktop.org>; Fri, 05 Jul 2024 03:16:03 -0700 (PDT)
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com
+ [209.85.167.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1921210EA9B
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Jul 2024 10:44:30 +0000 (UTC)
+Received: by mail-lf1-f52.google.com with SMTP id
+ 2adb3069b0e04-52e954d7bd5so94555e87.2
+ for <intel-xe@lists.freedesktop.org>; Fri, 05 Jul 2024 03:44:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1720174562; x=1720779362; darn=lists.freedesktop.org; 
+ d=ffwll.ch; s=google; t=1720176268; x=1720781068; darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=e8YpnAFKaUJkZ9e7cjGVcNZMSDBPf7SKXmSIIUefUzk=;
- b=h4ng8XnUaYeQVnz00y2r9yRG/s0m/giZMe05BBOl+sh09PHXtoYgvKMnx0HxrHEt2w
- nM4fT+Y188mHaelH+NFh6qICVKERIkBZSkYu3RaSShTXJ2iPilRWxbbTN7YPU53Gm1Kr
- f/++V5U6HKYexiBD4W01sajyKw7aZmf9ORBAQ=
+ bh=iY+wmuc9gDBD8vkaWCJVg2xR38SmYyHEmg/ulb81llg=;
+ b=k4ZNSYA0IJfzZn0mLrwMmmXJmSamQuk4C6+10d3cpha/TjSg9uaCokka3LNx3C4gYp
+ KGsFdn+lvBTAqCuChPhBALGYNtuFZq6Jlh117SvKzWTlOg640kz5C56UIt+5GTYUBAAs
+ RI1gzAmEw//H/60u1wd/PpbFloZ7xXXYW7RVY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1720174562; x=1720779362;
+ d=1e100.net; s=20230601; t=1720176268; x=1720781068;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=e8YpnAFKaUJkZ9e7cjGVcNZMSDBPf7SKXmSIIUefUzk=;
- b=XNHpJB2KR7Gzgsyg6k59eRVdewbEf3Fo49Ud0Jik4Ezee8GXQPo0VGxEqEVsUML2uE
- 1pULgAIKEimgIbOH4OIKl6+/c7V4kWGiAhsLTGpwjlMVzkgNs0/i2KMZnW6v5XaRhrPi
- een8oYRi7IoDv78qYppFdm1FgtkW+PP/oGbyHLEaTBLEaqyT3Mq6vQxeOkiz2zX8Quo+
- pd1JiAxxZYuaEGYOeiTSlul3z8iiNNHAlxpOhVyweO6vFZbLTB5b1pfZ8ScyhoTxCDuB
- X5ZjJfqBntf8hRxZcwKHGG1tpantZtoYIgW0HjoI3rqjckcmxxVHZFFNa2Y7OXE6L1BS
- khdA==
+ bh=iY+wmuc9gDBD8vkaWCJVg2xR38SmYyHEmg/ulb81llg=;
+ b=MXTgyo8tE3Y5zen+M2D0HTQUZFBZFFntmvopZF62cU3zvCNR+PhsoK1BbpFXZoQV2j
+ P30Z0K+zSv1EsFZ8vU84Ql+OSjq6da16xz9sUSEZGiW3AASVMj/qHY9B+GxT7ObEkO9H
+ JWgWgaDLYif+xn9r5MJiUiJ5vu7OTDei3+C3uvpxh79Qozrgvz23DVM8WuMm7TD/tRNj
+ RIlIMdWdb31w7pjeMsTkVI5H0qODP5qwNupdJGKwD3HIjJO6qkTx0sUuZ54khPfEDXEE
+ j+qAGxnrnpNmvvkPjoBmKWhjOYNM4daGca8cAiIwpM67KomE4JWsJm1NKbP7PGJs44Uy
+ 5bTw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVg5hP4eeQpVh91/6QyfGUcJafFbEgLvLPQrCibVIaejUvxoLHN3F6Nqy6IC8Xr9y+9CzsfKmHY9RJy8DyowBQo8wQjWLTCHj0RaQEiiGc=
-X-Gm-Message-State: AOJu0YxM2PhtsceqNUK7gOOT4BoMYieRcl6U0yzV//Pp6nrkzpkd9Shg
- EB1bG6WgLZ7cPZk5DEOwE5nql6WHd5q61rd9Zi0xfOEEEZhSxvSKpaXJ9AEUFrw=
-X-Google-Smtp-Source: AGHT+IG5jC8qGYerMEa8mW9vXGn+mmSq/y2dFjrm5VbQTJ28UlrGH1KIdniCNnlSUf5lpbXwmBs8Bw==
-X-Received: by 2002:a05:600c:35d2:b0:425:676f:f946 with SMTP id
- 5b1f17b1804b1-4264a456e13mr29828265e9.4.1720174562074; 
- Fri, 05 Jul 2024 03:16:02 -0700 (PDT)
+ AJvYcCXtT4NHgosVzlFmyGNP1aD+eF8t6VrcbGQBk6RuPlFKRjjBCRabe0+Ax1pbELZmzoCjWIM3jLIaXR71Wvlw1YOxzyMoT9dbuBYdsL3Ff2U=
+X-Gm-Message-State: AOJu0YwAjZTU/DSq5TmIaq/e8+/F5kf/Hr88nLDLCNXLptVz9glby2uo
+ G0idePwSOOoapeBTHdpHS29t8/j59m2svmeyGCovcBl5eMaR6iPTt9TPQiQzMso=
+X-Google-Smtp-Source: AGHT+IFv8vmD0HrL5U4YaRADGw3d1unqqJdPgX9u/ZnQoU6sTpOyPpqntCgjf0AGZjf758RbG3Uz7g==
+X-Received: by 2002:ac2:4306:0:b0:52e:7bb4:942d with SMTP id
+ 2adb3069b0e04-52ea06150a9mr2793245e87.1.1720176268148; 
+ Fri, 05 Jul 2024 03:44:28 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4264a251ef5sm55535215e9.36.2024.07.05.03.16.00
+ ffacd0b85a97d-367961a507csm5775873f8f.77.2024.07.05.03.44.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 05 Jul 2024 03:16:01 -0700 (PDT)
-Date: Fri, 5 Jul 2024 12:15:58 +0200
+ Fri, 05 Jul 2024 03:44:27 -0700 (PDT)
+Date: Fri, 5 Jul 2024 12:44:25 +0200
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: Tvrtko Ursulin <tursulin@igalia.com>
+To: Maxime Ripard <mripard@redhat.com>
 Cc: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
@@ -68,13 +68,13 @@ Cc: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: Re: [PULL] drm-intel-gt-next
-Message-ID: <ZofH3gdKKXdg7TV7@phenom.ffwll.local>
-References: <ZoZP6mUSergfzFMh@linux>
+Subject: Re: [PULL] drm-misc-next
+Message-ID: <ZofOidmBv5DcQ6ca@phenom.ffwll.local>
+References: <20240704-curvy-outstanding-lizard-bcea78@houat>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZoZP6mUSergfzFMh@linux>
+In-Reply-To: <20240704-curvy-outstanding-lizard-bcea78@houat>
 X-Operating-System: Linux phenom 6.8.9-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,92 +90,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jul 04, 2024 at 07:31:54AM +0000, Tvrtko Ursulin wrote:
+On Thu, Jul 04, 2024 at 03:17:09PM +0200, Maxime Ripard wrote:
+> Hi,
 > 
-> Hi Dave, Sima,
+> Here's this week drm-misc-next PR, and the last PR for the 6.11 release cycle.
 > 
-> The final pull for 6.11 is quite small and only contains a handful of
-> fixes in areas such as stolen memory probing on ATS-M, GuC priority
-> handling, out of memory reporting noise downgrade and fence register
-> hanlding race condition reported by CI.
+> Thanks!
+> Maxime
 > 
-> Regards,
+> drm-misc-next-2024-07-04:
+> drm-misc-next for $kernel-version:
 > 
-> Tvrtko
+> UAPI Changes:
 > 
-> drm-intel-gt-next-2024-07-04:
+> Cross-subsystem Changes:
+> 
+> Core Changes:
+>   - dp/mst: Fix daisy-chaining at resume
+>   - dsc: Add helper to dump the DSC configuration
+>   - tests: Add tests for the new monochrome TV mode variant
+> 
 > Driver Changes:
+>   - ast: Refactor the mode setting code
+>   - panfrost: Fix devfreq job reporting
+>   - stm: Add LDVS support, DSI PHY updates
+>   - panels:
+>     - New panel: AUO G104STN01, K&d kd101ne3-40ti,
+> The following changes since commit 61bfcd190820d1dce846e58a4c9ddca8db4751ed:
 > 
-> Fixes/improvements/new stuff:
-> 
-> - Downgrade stolen lmem setup warning [gem] (Jonathan Cavitt)
-> - Evaluate GuC priority within locks [gt/uc] (Andi Shyti)
-> - Fix potential UAF by revoke of fence registers [gt] (Janusz Krzysztofik)
-> - Return NULL instead of '0' [gem] (Andi Shyti)
-> - Use the correct format specifier for resource_size_t [gem] (Andi Shyti)
-> - Suppress oom warning in favour of ENOMEM to userspace [gem] (Nirmoy Das)
-> 
-> Miscellaneous:
-> 
-> - Evaluate forcewake usage within locks [gt] (Andi Shyti)
-> - Fix typo in comment [gt/uc] (Andi Shyti)
-> The following changes since commit 79655e867ad6dfde2734c67c7704c0dd5bf1e777:
-> 
->   drm/i915/mtl: Update workaround 14018575942 (2024-06-11 16:06:20 +0200)
+>   drm/bridge: analogix_dp: handle AUX transfer timeouts (2024-06-27 11:52:19 +0200)
 > 
 > are available in the Git repository at:
 > 
->   https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-gt-next-2024-07-04
+>   https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2024-07-04
 > 
-> for you to fetch changes up to 3b85152cb167bd24fe84ceb91b719b5904ca354f:
+> for you to fetch changes up to 896868eded124059023be0af92d68cdaf9b4de70:
 > 
->   drm/i915/gem: Suppress oom warning in favour of ENOMEM to userspace (2024-06-28 00:11:01 +0200)
+>   drm/panthor: Record devfreq busy as soon as a job is started (2024-07-04 09:29:55 +0100)
 
 Pulled, thanks.
 -Sima
 
 > 
 > ----------------------------------------------------------------
+> drm-misc-next for $kernel-version:
+> 
+> UAPI Changes:
+> 
+> Cross-subsystem Changes:
+> 
+> Core Changes:
+>   - dp/mst: Fix daisy-chaining at resume
+>   - dsc: Add helper to dump the DSC configuration
+>   - tests: Add tests for the new monochrome TV mode variant
+> 
 > Driver Changes:
-> 
-> Fixes/improvements/new stuff:
-> 
-> - Downgrade stolen lmem setup warning [gem] (Jonathan Cavitt)
-> - Evaluate GuC priority within locks [gt/uc] (Andi Shyti)
-> - Fix potential UAF by revoke of fence registers [gt] (Janusz Krzysztofik)
-> - Return NULL instead of '0' [gem] (Andi Shyti)
-> - Use the correct format specifier for resource_size_t [gem] (Andi Shyti)
-> - Suppress oom warning in favour of ENOMEM to userspace [gem] (Nirmoy Das)
-> 
-> Miscellaneous:
-> 
-> - Evaluate forcewake usage within locks [gt] (Andi Shyti)
-> - Fix typo in comment [gt/uc] (Andi Shyti)
+>   - ast: Refactor the mode setting code
+>   - panfrost: Fix devfreq job reporting
+>   - stm: Add LDVS support, DSI PHY updates
+>   - panels:
+>     - New panel: AUO G104STN01, K&d kd101ne3-40ti,
 > 
 > ----------------------------------------------------------------
-> Andi Shyti (5):
->       drm/i915/gt: debugfs: Evaluate forcewake usage within locks
->       drm/i915/gt/uc: Fix typo in comment
->       drm/i915/gt/uc: Evaluate GuC priority within locks
->       drm/i915/gem: Return NULL instead of '0'
->       drm/i915/gem: Use the correct format specifier for resource_size_t
+> Dave Stevenson (1):
+>       drm/tests: Add tests for the new Monochrome value of tv_mode
 > 
-> Janusz Krzysztofik (1):
->       drm/i915/gt: Fix potential UAF by revoke of fence registers
+> Dragan Simic (2):
+>       drm/lima: Mark simple_ondemand governor as softdep
+>       drm/panfrost: Mark simple_ondemand governor as softdep
 > 
-> Jonathan Cavitt (1):
->       drm/i915/gem: Downgrade stolen lmem setup warning
+> Imre Deak (2):
+>       drm: Add helpers for q4 fixed point values
+>       drm/display/dsc: Add a helper to dump the DSC configuration
 > 
-> Nirmoy Das (1):
->       drm/i915/gem: Suppress oom warning in favour of ENOMEM to userspace
+> Paul Gerber (2):
+>       dt-bindings: display: simple: Add AUO G104STN01 panel
+>       drm/panel: simple: Add AUO G104STN01 panel entry
 > 
->  drivers/gpu/drm/i915/gem/i915_gem_stolen.c        |  8 +++++--
->  drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c      |  1 +
->  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c     |  4 ++++
->  drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h       |  2 +-
->  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 27 ++++++++++++++---------
->  drivers/gpu/drm/i915/i915_scatterlist.c           |  8 +++----
->  6 files changed, 32 insertions(+), 18 deletions(-)
+> Raphael Gallais-Pou (4):
+>       dt-bindings: display: add STM32 LVDS device
+>       drm/stm: lvds: add new STM32 LVDS Display Interface Transmitter driver
+>       drm/stm: dsi: use new SYSTEM_SLEEP_PM_OPS() macro
+>       drm/stm: dsi: expose DSI PHY internal clock
+> 
+> Steven Price (1):
+>       drm/panthor: Record devfreq busy as soon as a job is started
+> 
+> Thomas Zimmermann (9):
+>       drm/ast: Implement atomic enable/disable for encoders
+>       drm/ast: Program mode for AST DP in atomic_mode_set
+>       drm/ast: Move mode-setting code into mode_set_nofb CRTC helper
+>       drm/ast: Handle primary-plane format setup in atomic_update
+>       drm/ast: Remove gamma LUT updates from DPMS code
+>       drm/ast: Only set VGA SCREEN_DISABLE bit in CRTC code
+>       drm/ast: Inline ast_crtc_dpms() into callers
+>       drm/ast: Use drm_atomic_helper_commit_tail() helper
+>       drm/mgag200: Rename constant MGAREG_Status to MGAREG_STATUS
+> 
+> Thorsten Blum (1):
+>       drm/managed: Simplify if condition
+> 
+> Wayne Lin (2):
+>       drm/dp_mst: Fix all mstb marked as not probed after suspend/resume
+>       drm/dp_mst: Skip CSN if topology probing is not done yet
+> 
+> Yannick Fertre (1):
+>       drm/stm: dsi: add pm runtime ops
+> 
+> Zhaoxiong Lv (5):
+>       drm/panel: jd9365da: Modify the method of sending commands
+>       dt-bindings: display: panel: Add compatible for kingdisplay-kd101ne3
+>       drm/panel: panel-jadard-jd9365da-h3: use wrapped MIPI DCS functions
+>       drm/panel: jd9365da: Support for kd101ne3-40ti MIPI-DSI panel
+>       drm/panel: jd9365da: Add the function of adjusting orientation
+> 
+>  .../bindings/display/panel/jadard,jd9365da-h3.yaml |    1 +
+>  .../bindings/display/panel/panel-simple.yaml       |    2 +
+>  .../bindings/display/st,stm32mp25-lvds.yaml        |  119 ++
+>  MAINTAINERS                                        |    1 +
+>  drivers/gpu/drm/ast/ast_mode.c                     |  204 ++--
+>  drivers/gpu/drm/ast/ast_reg.h                      |   10 +-
+>  drivers/gpu/drm/display/drm_dp_helper.c            |    5 +-
+>  drivers/gpu/drm/display/drm_dp_mst_topology.c      |   15 +-
+>  drivers/gpu/drm/display/drm_dsc_helper.c           |   91 ++
+>  drivers/gpu/drm/drm_managed.c                      |    2 +-
+>  drivers/gpu/drm/lima/lima_drv.c                    |    1 +
+>  drivers/gpu/drm/mgag200/mgag200_mode.c             |    6 +-
+>  drivers/gpu/drm/mgag200/mgag200_reg.h              |    2 +-
+>  drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c   | 1090 ++++++++++-------
+>  drivers/gpu/drm/panel/panel-simple.c               |   27 +
+>  drivers/gpu/drm/panfrost/panfrost_drv.c            |    1 +
+>  drivers/gpu/drm/panthor/panthor_sched.c            |    1 +
+>  drivers/gpu/drm/stm/Kconfig                        |   11 +
+>  drivers/gpu/drm/stm/Makefile                       |    2 +
+>  drivers/gpu/drm/stm/dw_mipi_dsi-stm.c              |  279 ++++-
+>  drivers/gpu/drm/stm/lvds.c                         | 1226 ++++++++++++++++++++
+>  drivers/gpu/drm/tests/drm_cmdline_parser_test.c    |   11 +
+>  drivers/gpu/drm/tests/drm_connector_test.c         |    1 +
+>  drivers/gpu/drm/tests/drm_modes_test.c             |   31 +
+>  include/drm/display/drm_dsc_helper.h               |    3 +
+>  include/drm/drm_fixed.h                            |   23 +
+>  26 files changed, 2605 insertions(+), 560 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/st,stm32mp25-lvds.yaml
+>  create mode 100644 drivers/gpu/drm/stm/lvds.c
+
+
 
 -- 
 Daniel Vetter
