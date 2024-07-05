@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AE79C3271E
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jul 2024 19:11:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D37DC3DA40
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jul 2024 19:11:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66CA810E1AD;
-	Fri,  5 Jul 2024 19:11:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7085F10E1BD;
+	Fri,  5 Jul 2024 19:11:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GfKIKVJM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OblqAjDH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0933710E1AD
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Jul 2024 19:11:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27B4710E1BD
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Jul 2024 19:11:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720206668; x=1751742668;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=73j7RHLqiGgG/pJBATi21G3ANBR0c5O5TgT5wZtdVJg=;
- b=GfKIKVJM7LCm0pWFh8QkpnAGay38Y07wRD6CbKtI3XWLrJylTeyvTodd
- t3XlebG/V9CReBUWI6O9C34ZuektdZQHQrEPe14NO8LkNJllSKIRPYkd9
- Z2xS17aS2Ztpv6ti12bApiWLta4qgHl1wQ1nXsq2/Q9NuEOvCgWbd4faK
- RI4pl6hkz6w5pyVM2FE2S+i1NKdvqTiGxHzjcVJxYi/4pmmC8BbglYGWy
- iSjguN7jtuKZDBErzRIp2W4eN+aYy1VNrJvn6sBmn6jfKwG1SvcutjsvM
- XVvej6DL+8vVkZ/+t5HpKHAgXLXbO3UrWTrl9LhTn0cjSgm7Az16W7YgS A==;
-X-CSE-ConnectionGUID: atREMH4XTzaJbVua5rv5Gw==
-X-CSE-MsgGUID: J6EeI3+1QE2uTG588e/ICg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="17644039"
-X-IronPort-AV: E=Sophos;i="6.09,185,1716274800"; d="scan'208";a="17644039"
+ t=1720206671; x=1751742671;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=j0GGNcyHkvkUQsHpEh481grYYORM1zKi63lh3YCUxUI=;
+ b=OblqAjDH5q6cY5BloRiXO/ukeRRLavjmC7FgKW9UEwgqK1B2w6jdkw0G
+ s2vhGc19pkjYx8pkNI9Grm6d1bXWjo0cFBr8x+UmKu+et92sywSBMnq/s
+ wU6SVlSJl3xU+LmYBXr/8ARtlmzBabFOMxyl5MkYJjJoRKuUrnIZFQukm
+ lNaIWjgXb2l47QbizwnFM+d5xC/DOgIXB5MS36tvZFABG+O0luYCbjQSK
+ TNQrNqnTkj98Wbemh+tZS3vl22ftM+w7T0td53BFzDSovuHVXsSXQBgIZ
+ m/wUFigm4woyqlmZ5asNbPuf0M35cz1jW2W8DO+Uqhhx5LSqG1B0vcbZ8 w==;
+X-CSE-ConnectionGUID: YM1Vb0/1TZ6E35yivSD4nw==
+X-CSE-MsgGUID: cR4d52iLSbeO0Wqww+LpGQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="17644041"
+X-IronPort-AV: E=Sophos;i="6.09,185,1716274800"; d="scan'208";a="17644041"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2024 12:11:08 -0700
-X-CSE-ConnectionGUID: VoQh8oPFSNOyionZKBCFtw==
-X-CSE-MsgGUID: PIxaMLptRGuo95Vvb3/tBw==
+ 05 Jul 2024 12:11:11 -0700
+X-CSE-ConnectionGUID: r9ixRIN8S4yi7DiPya5UYQ==
+X-CSE-MsgGUID: ZURipR1SRX6cyzbsdTlerQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,185,1716274800"; d="scan'208";a="51781482"
+X-IronPort-AV: E=Sophos;i="6.09,185,1716274800"; d="scan'208";a="51781486"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.48.40])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2024 12:11:07 -0700
+ 05 Jul 2024 12:11:09 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 0/2] drm/xe/kunit: Minor cleanup
-Date: Fri,  5 Jul 2024 21:10:55 +0200
-Message-Id: <20240705191057.1110-1-michal.wajdeczko@intel.com>
+Subject: [PATCH 2/2] drm/xe/kunit: Drop XE_TEST_EXPORT
+Date: Fri,  5 Jul 2024 21:10:57 +0200
+Message-Id: <20240705191057.1110-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240705191057.1110-1-michal.wajdeczko@intel.com>
+References: <20240705191057.1110-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,18 +65,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Michal Wajdeczko (2):
-  drm/xe/kunit: Kill xe_cur_kunit()
-  drm/xe/kunit: Drop XE_TEST_EXPORT
+It's unused and can be replaced with VISIBLE_IF_KUNIT if needed.
 
- drivers/gpu/drm/xe/tests/xe_bo.c       |  4 ++--
- drivers/gpu/drm/xe/tests/xe_dma_buf.c  |  4 ++--
- drivers/gpu/drm/xe/tests/xe_migrate.c  |  2 +-
- drivers/gpu/drm/xe/tests/xe_mocs.c     |  8 ++++----
- drivers/gpu/drm/xe/tests/xe_pci_test.c |  4 ++--
- drivers/gpu/drm/xe/tests/xe_test.h     | 10 +++-------
- 6 files changed, 14 insertions(+), 18 deletions(-)
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/tests/xe_test.h | 2 --
+ 1 file changed, 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/tests/xe_test.h b/drivers/gpu/drm/xe/tests/xe_test.h
+index 55e5b5bedccc..9c23ad9dba8d 100644
+--- a/drivers/gpu/drm/xe/tests/xe_test.h
++++ b/drivers/gpu/drm/xe/tests/xe_test.h
+@@ -31,7 +31,6 @@ struct xe_test_priv {
+ 
+ #define XE_TEST_DECLARE(x) x
+ #define XE_TEST_ONLY(x) unlikely(x)
+-#define XE_TEST_EXPORT
+ 
+ /**
+  * xe_cur_kunit_priv - Obtain the struct xe_test_priv pointed to by
+@@ -58,7 +57,6 @@ xe_cur_kunit_priv(enum xe_test_priv_id id)
+ 
+ #define XE_TEST_DECLARE(x)
+ #define XE_TEST_ONLY(x) 0
+-#define XE_TEST_EXPORT static
+ #define xe_cur_kunit_priv(_id) NULL
+ 
+ #endif
 -- 
 2.43.0
 
