@@ -4,54 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 813FBC30658
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jul 2024 07:45:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A69DC3814E
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jul 2024 08:18:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50AE810E058;
-	Fri,  5 Jul 2024 07:45:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D88E10E0C3;
+	Fri,  5 Jul 2024 08:18:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X8vrv4hW";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="WiTlodrI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E53010E058
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Jul 2024 07:45:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720165528; x=1751701528;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=riKyDVaYEuefogWgZDsM9eHOI4guXvyVSCBeMhq/F3Q=;
- b=X8vrv4hWUF+M2SYEMaN5hYQm4/i+grNyo2LvFUOXfAfHEzf5WlzHLTSN
- 18J9IgaQIv3KUP/Medmd3ubggWpX6PPTnKmpUEYjWDrKegcclXMAiLvXS
- y66pEnL++M/5zEPPb+r4F1aM2Y8Igdn+vTRept+1ZrFMZFnE/MFclcx/G
- bQLWY6/cpcHipw3F7czp+gJJ3PFi/948Gj83UBbogOrJVXvBXYZa5E6NR
- BKFfi/C7o+fZJIrEGubqBJsvoJ1BdsulcrDQ+HiLvzC9EcVYRuobrpuDI
- yQO1D+B2T8QLHvmaxj+SWcPMCwixMwvJ/t5akf+d6PbvYxCdXPD2tvWrz w==;
-X-CSE-ConnectionGUID: UnjGGjKlS6eiMAcY1YLuog==
-X-CSE-MsgGUID: oqSsrw7pSYmu5MEC0gxkxg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="28603048"
-X-IronPort-AV: E=Sophos;i="6.09,184,1716274800"; d="scan'208";a="28603048"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2024 00:45:27 -0700
-X-CSE-ConnectionGUID: rKjqFipnSzSZxhqlB1HjGQ==
-X-CSE-MsgGUID: 7gBawKhfTxGmhkzO99dm8Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,184,1716274800"; d="scan'208";a="46872642"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
- by fmviesa010.fm.intel.com with ESMTP; 05 Jul 2024 00:45:25 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sPddD-000S6G-0T;
- Fri, 05 Jul 2024 07:45:23 +0000
-Date: Fri, 05 Jul 2024 15:45:20 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Thomas =?utf-8?Q?Hellstr=C3=B6m"?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
- 1f006470284598060ca1307355352934400b37ca
-Message-ID: <202407051518.6ZEUgrYu-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com
+ [209.85.208.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54DC810E0C3
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Jul 2024 08:18:57 +0000 (UTC)
+Received: by mail-lj1-f176.google.com with SMTP id
+ 38308e7fff4ca-2ec89b67bc0so2317481fa.3
+ for <intel-xe@lists.freedesktop.org>; Fri, 05 Jul 2024 01:18:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1720167535; x=1720772335; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=aNil6PXxRN/q9tG9OiCnl1epy1x9tBFdhrDt3uKNo7w=;
+ b=WiTlodrI/ovf6tenSYp+mmVLpxYn0GRjJRtepjLZlfFiHq83oQ5e880Yeb+XDR1BCj
+ wPpHtgDGVIvjgcKuUfqz/bPU6DIaskv8M1sx1oa32dOBKM93KgbAsG48n9WqpOEZJX/m
+ Q4/lP1Mg/Nw7Zpyj/IciNhxx0EhbtssfetYxY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1720167535; x=1720772335;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=aNil6PXxRN/q9tG9OiCnl1epy1x9tBFdhrDt3uKNo7w=;
+ b=qE0C+rneVZRHm8oUcJogdd3xXKWKjyp4yIsA+yS4RmBOf6IgLLX8ewKNNi0LiBZMm5
+ /SssTB5qga0Wp3JHrQTaadAQtyo5vEanW5gqE/epVKPDdHM4OZqFLgvACvnInkfEYQAR
+ mqn6mMUaZbwQcZSOK9IEohdEcdNZOywqc6RIlwtbnNjVsqJStso3i6cbZhNPZhEOmsFZ
+ upXLn5WvA+FABiY3XQCelstvBLVbwMlCz0vOstcj71Gej4EBLIkCDiSh/rH+2zenW6ip
+ C1eKnu8b620kk6QalNN133hMI37wpbY+TqwlDg02HCX+PASkgLAMbd7WpVHWd42IWbeI
+ HHzA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUtK34h44NH6lZkYV95lVIQGySv6FRi/rxtOXx6Ahvheov0pDRloJRBOVSm8iWIbdb0dHcDMLDG/rYAARy17j3l4yFSUF2GpyhQJQgO8a0=
+X-Gm-Message-State: AOJu0Yx9MRrZjs6IUuINmGN+K/27UiJ0mzOiUBGmLQpU4/s1EEPo744F
+ Uy5nOpu/GCNjdbUM08nRajk5CKYlFrqnP7DkSznKEZ0+WTIeCe8YSKXnIkdJWO0=
+X-Google-Smtp-Source: AGHT+IGYmyGg5iJv4YHVZwPtTbTF3Tt0oY+4/QNuJX6v1nOrlO70C3/6sSxEYhFkqtqXXMMEauAjuw==
+X-Received: by 2002:a2e:8183:0:b0:2eb:e6fe:3092 with SMTP id
+ 38308e7fff4ca-2ee8eea1cadmr25647831fa.4.1720167535235; 
+ Fri, 05 Jul 2024 01:18:55 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4264a1f2375sm52037235e9.27.2024.07.05.01.18.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 05 Jul 2024 01:18:54 -0700 (PDT)
+Date: Fri, 5 Jul 2024 10:18:52 +0200
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: Re: [PULL] drm-xe-next
+Message-ID: <ZoesbMm-dFq4izzb@phenom.ffwll.local>
+References: <ZoROvquFrTFhk3Pb@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZoROvquFrTFhk3Pb@intel.com>
+X-Operating-System: Linux phenom 6.8.9-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,268 +89,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
-branch HEAD: 1f006470284598060ca1307355352934400b37ca  drm/xe/mcr: Avoid clobbering DSS steering
+On Tue, Jul 02, 2024 at 03:02:22PM -0400, Rodrigo Vivi wrote:
+> Hi Dave and Sima,
+> 
+> Here goes our actual last PR towards 6.11.
+> One extra to make the drm-xe-next-fixes smoother.
+> 
+> Mostly with fixes that would be anyway part of the
+> drm-xe-next-fixes, plus some more SRIOV preparation
+> and a BMG w/a.
+> 
+> Thanks,
+> Rodrigo.
+> 
+> drm-xe-next-2024-07-02:
+> Driver Changes:
+> - Fix in migration code (Auld)
+> - Simplification in HWMon related code (Karthik)
+> - Fix in forcewake logic (Nirmoy)
+> - Fix engine utilization information (umesh)
+> - Clean up on MOCS related code (Roper)
+> - Fix on multicast register (Roper)
+> - Fix TLB invalidation timeout (Nirmoy)
+> - More SRIOV preparation (Michal)
+> - Fix out-of-bounds array access (Lucas)
+> - Fixes around some mutex utilization (Ashutosh, Vinay)
+> - Expand LNL workaround to BMG (Vinay)
+> The following changes since commit 406d058dc323ae152d380ac90153eb56a75850c1:
+> 
+>   drm/xe/oa/uapi: Allow preemption to be disabled on the stream exec queue (2024-06-26 18:25:46 -0400)
+> 
+> are available in the Git repository at:
+> 
+>   https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-2024-07-02
+> 
+> for you to fetch changes up to aaa08078e7251131f045ba248a68671db7f7bdf7:
+> 
+>   drm/xe/bmg: Apply Wa_22019338487 (2024-07-02 12:14:00 -0400)
 
-elapsed time: 1274m
+Pulled, thanks.
+-Sima
 
-configs tested: 249
-configs skipped: 8
-
-The following configs have been built successfully.
-More configs may be tested in the coming days.
-
-tested configs:
-alpha                             allnoconfig   gcc-13.2.0
-alpha                            allyesconfig   gcc-13.2.0
-alpha                               defconfig   gcc-13.2.0
-arc                              alldefconfig   gcc-13.2.0
-arc                              allmodconfig   gcc-13.2.0
-arc                               allnoconfig   gcc-13.2.0
-arc                              allyesconfig   gcc-13.2.0
-arc                                 defconfig   gcc-13.2.0
-arc                     haps_hs_smp_defconfig   gcc-13.2.0
-arc                        nsim_700_defconfig   gcc-13.2.0
-arc                 nsimosci_hs_smp_defconfig   gcc-13.2.0
-arc                   randconfig-001-20240705   gcc-13.2.0
-arc                   randconfig-002-20240705   gcc-13.2.0
-arm                              allmodconfig   gcc-13.2.0
-arm                               allnoconfig   gcc-13.2.0
-arm                              allyesconfig   gcc-13.2.0
-arm                                 defconfig   gcc-13.2.0
-arm                         lpc18xx_defconfig   gcc-13.2.0
-arm                            mps2_defconfig   gcc-13.2.0
-arm                         mv78xx0_defconfig   gcc-13.2.0
-arm                             mxs_defconfig   gcc-13.2.0
-arm                   randconfig-001-20240705   gcc-13.2.0
-arm                   randconfig-002-20240705   gcc-13.2.0
-arm                   randconfig-003-20240705   gcc-13.2.0
-arm                   randconfig-004-20240705   gcc-13.2.0
-arm                             rpc_defconfig   gcc-13.2.0
-arm                           sama7_defconfig   gcc-13.2.0
-arm                           u8500_defconfig   gcc-13.2.0
-arm                         vf610m4_defconfig   gcc-13.2.0
-arm64                            allmodconfig   gcc-13.2.0
-arm64                             allnoconfig   gcc-13.2.0
-arm64                               defconfig   gcc-13.2.0
-arm64                 randconfig-001-20240705   gcc-13.2.0
-arm64                 randconfig-002-20240705   gcc-13.2.0
-arm64                 randconfig-003-20240705   gcc-13.2.0
-arm64                 randconfig-004-20240705   gcc-13.2.0
-csky                              allnoconfig   gcc-13.2.0
-csky                                defconfig   gcc-13.2.0
-csky                  randconfig-001-20240705   gcc-13.2.0
-csky                  randconfig-002-20240705   gcc-13.2.0
-hexagon                          allmodconfig   clang-19
-hexagon                          allyesconfig   clang-19
-i386                             allmodconfig   clang-18
-i386                              allnoconfig   clang-18
-i386                             allyesconfig   clang-18
-i386         buildonly-randconfig-001-20240704   clang-18
-i386         buildonly-randconfig-001-20240705   gcc-13
-i386         buildonly-randconfig-002-20240704   clang-18
-i386         buildonly-randconfig-002-20240704   gcc-13
-i386         buildonly-randconfig-002-20240705   gcc-13
-i386         buildonly-randconfig-003-20240704   clang-18
-i386         buildonly-randconfig-003-20240704   gcc-13
-i386         buildonly-randconfig-003-20240705   gcc-13
-i386         buildonly-randconfig-004-20240704   clang-18
-i386         buildonly-randconfig-004-20240704   gcc-12
-i386         buildonly-randconfig-004-20240705   gcc-13
-i386         buildonly-randconfig-005-20240704   clang-18
-i386         buildonly-randconfig-005-20240704   gcc-12
-i386         buildonly-randconfig-005-20240705   gcc-13
-i386         buildonly-randconfig-006-20240704   clang-18
-i386         buildonly-randconfig-006-20240704   gcc-12
-i386         buildonly-randconfig-006-20240705   gcc-13
-i386                                defconfig   clang-18
-i386                  randconfig-001-20240704   clang-18
-i386                  randconfig-001-20240705   gcc-13
-i386                  randconfig-002-20240704   clang-18
-i386                  randconfig-002-20240704   gcc-13
-i386                  randconfig-002-20240705   gcc-13
-i386                  randconfig-003-20240704   clang-18
-i386                  randconfig-003-20240705   gcc-13
-i386                  randconfig-004-20240704   clang-18
-i386                  randconfig-004-20240704   gcc-13
-i386                  randconfig-004-20240705   gcc-13
-i386                  randconfig-005-20240704   clang-18
-i386                  randconfig-005-20240705   gcc-13
-i386                  randconfig-006-20240704   clang-18
-i386                  randconfig-006-20240704   gcc-12
-i386                  randconfig-006-20240705   gcc-13
-i386                  randconfig-011-20240704   clang-18
-i386                  randconfig-011-20240704   gcc-13
-i386                  randconfig-011-20240705   gcc-13
-i386                  randconfig-012-20240704   clang-18
-i386                  randconfig-012-20240705   gcc-13
-i386                  randconfig-013-20240704   clang-18
-i386                  randconfig-013-20240705   gcc-13
-i386                  randconfig-014-20240704   clang-18
-i386                  randconfig-014-20240705   gcc-13
-i386                  randconfig-015-20240704   clang-18
-i386                  randconfig-015-20240705   gcc-13
-i386                  randconfig-016-20240704   clang-18
-i386                  randconfig-016-20240705   gcc-13
-loongarch                        allmodconfig   gcc-13.2.0
-loongarch                         allnoconfig   gcc-13.2.0
-loongarch                           defconfig   gcc-13.2.0
-loongarch                 loongson3_defconfig   gcc-13.2.0
-loongarch             randconfig-001-20240705   gcc-13.2.0
-loongarch             randconfig-002-20240705   gcc-13.2.0
-m68k                             allmodconfig   gcc-13.2.0
-m68k                              allnoconfig   gcc-13.2.0
-m68k                             allyesconfig   gcc-13.2.0
-m68k                       bvme6000_defconfig   gcc-13.2.0
-m68k                                defconfig   gcc-13.2.0
-m68k                        m5307c3_defconfig   gcc-13.2.0
-m68k                        mvme16x_defconfig   gcc-13.2.0
-microblaze                       allmodconfig   gcc-13.2.0
-microblaze                        allnoconfig   gcc-13.2.0
-microblaze                       allyesconfig   gcc-13.2.0
-microblaze                          defconfig   gcc-13.2.0
-mips                              allnoconfig   gcc-13.2.0
-mips                         bigsur_defconfig   gcc-13.2.0
-mips                      bmips_stb_defconfig   gcc-13.2.0
-mips                     cu1830-neo_defconfig   gcc-13.2.0
-mips                  decstation_64_defconfig   gcc-13.2.0
-mips                            gpr_defconfig   gcc-13.2.0
-mips                  maltasmvp_eva_defconfig   gcc-13.2.0
-mips                    maltaup_xpa_defconfig   gcc-13.2.0
-nios2                             allnoconfig   gcc-13.2.0
-nios2                               defconfig   gcc-13.2.0
-nios2                 randconfig-001-20240705   gcc-13.2.0
-nios2                 randconfig-002-20240705   gcc-13.2.0
-openrisc                          allnoconfig   gcc-13.2.0
-openrisc                         allyesconfig   gcc-13.2.0
-openrisc                            defconfig   gcc-13.2.0
-parisc                           allmodconfig   gcc-13.2.0
-parisc                            allnoconfig   gcc-13.2.0
-parisc                           allyesconfig   gcc-13.2.0
-parisc                              defconfig   gcc-13.2.0
-parisc                generic-32bit_defconfig   gcc-13.2.0
-parisc                randconfig-001-20240705   gcc-13.2.0
-parisc                randconfig-002-20240705   gcc-13.2.0
-parisc64                            defconfig   gcc-13.2.0
-powerpc                          allmodconfig   gcc-13.2.0
-powerpc                           allnoconfig   gcc-13.2.0
-powerpc                          allyesconfig   gcc-13.2.0
-powerpc                      chrp32_defconfig   gcc-13.2.0
-powerpc                          g5_defconfig   gcc-13.2.0
-powerpc                    ge_imp3a_defconfig   gcc-13.2.0
-powerpc                 mpc8313_rdb_defconfig   gcc-13.2.0
-powerpc               mpc834x_itxgp_defconfig   gcc-13.2.0
-powerpc                      pcm030_defconfig   gcc-13.2.0
-powerpc                     ppa8548_defconfig   gcc-13.2.0
-powerpc                       ppc64_defconfig   gcc-13.2.0
-powerpc                         ps3_defconfig   gcc-13.2.0
-powerpc64             randconfig-001-20240705   gcc-13.2.0
-powerpc64             randconfig-002-20240705   gcc-13.2.0
-powerpc64             randconfig-003-20240705   gcc-13.2.0
-riscv                            allmodconfig   gcc-13.2.0
-riscv                             allnoconfig   gcc-13.2.0
-riscv                            allyesconfig   gcc-13.2.0
-riscv                               defconfig   gcc-13.2.0
-riscv                 randconfig-001-20240705   gcc-13.2.0
-riscv                 randconfig-002-20240705   gcc-13.2.0
-s390                             allmodconfig   clang-19
-s390                              allnoconfig   clang-19
-s390                              allnoconfig   gcc-13.2.0
-s390                             allyesconfig   clang-19
-s390                                defconfig   gcc-13.2.0
-s390                  randconfig-001-20240705   gcc-13.2.0
-s390                  randconfig-002-20240705   gcc-13.2.0
-sh                               allmodconfig   gcc-13.2.0
-sh                                allnoconfig   gcc-13.2.0
-sh                               allyesconfig   gcc-13.2.0
-sh                                  defconfig   gcc-13.2.0
-sh                             espt_defconfig   gcc-13.2.0
-sh                     magicpanelr2_defconfig   gcc-13.2.0
-sh                            migor_defconfig   gcc-13.2.0
-sh                    randconfig-001-20240705   gcc-13.2.0
-sh                    randconfig-002-20240705   gcc-13.2.0
-sh                   rts7751r2dplus_defconfig   gcc-13.2.0
-sh                          sdk7786_defconfig   gcc-13.2.0
-sh                           se7206_defconfig   gcc-13.2.0
-sh                           se7343_defconfig   gcc-13.2.0
-sh                           se7619_defconfig   gcc-13.2.0
-sh                           se7712_defconfig   gcc-13.2.0
-sh                           sh2007_defconfig   gcc-13.2.0
-sh                        sh7757lcr_defconfig   gcc-13.2.0
-sh                          urquell_defconfig   gcc-13.2.0
-sparc                            allmodconfig   gcc-13.2.0
-sparc                       sparc64_defconfig   gcc-13.2.0
-sparc64                             defconfig   gcc-13.2.0
-sparc64               randconfig-001-20240705   gcc-13.2.0
-sparc64               randconfig-002-20240705   gcc-13.2.0
-um                               allmodconfig   clang-19
-um                               allmodconfig   gcc-13.2.0
-um                                allnoconfig   clang-17
-um                                allnoconfig   gcc-13.2.0
-um                               allyesconfig   gcc-13
-um                               allyesconfig   gcc-13.2.0
-um                                  defconfig   gcc-13.2.0
-um                             i386_defconfig   gcc-13.2.0
-um                    randconfig-001-20240705   gcc-13.2.0
-um                    randconfig-002-20240705   gcc-13.2.0
-um                           x86_64_defconfig   gcc-13.2.0
-x86_64                            allnoconfig   clang-18
-x86_64                           allyesconfig   clang-18
-x86_64       buildonly-randconfig-001-20240704   clang-18
-x86_64       buildonly-randconfig-001-20240705   gcc-7
-x86_64       buildonly-randconfig-002-20240704   clang-18
-x86_64       buildonly-randconfig-002-20240705   gcc-7
-x86_64       buildonly-randconfig-003-20240704   clang-18
-x86_64       buildonly-randconfig-003-20240705   gcc-7
-x86_64       buildonly-randconfig-004-20240704   clang-18
-x86_64       buildonly-randconfig-004-20240705   gcc-7
-x86_64       buildonly-randconfig-005-20240704   clang-18
-x86_64       buildonly-randconfig-005-20240705   gcc-7
-x86_64       buildonly-randconfig-006-20240704   clang-18
-x86_64       buildonly-randconfig-006-20240705   gcc-7
-x86_64                              defconfig   clang-18
-x86_64                randconfig-001-20240704   clang-18
-x86_64                randconfig-001-20240705   gcc-7
-x86_64                randconfig-002-20240704   clang-18
-x86_64                randconfig-002-20240705   gcc-7
-x86_64                randconfig-003-20240704   clang-18
-x86_64                randconfig-003-20240705   gcc-7
-x86_64                randconfig-004-20240704   clang-18
-x86_64                randconfig-004-20240705   gcc-7
-x86_64                randconfig-005-20240704   clang-18
-x86_64                randconfig-005-20240705   gcc-7
-x86_64                randconfig-006-20240704   clang-18
-x86_64                randconfig-006-20240705   gcc-7
-x86_64                randconfig-011-20240704   clang-18
-x86_64                randconfig-011-20240705   gcc-7
-x86_64                randconfig-012-20240704   clang-18
-x86_64                randconfig-012-20240705   gcc-7
-x86_64                randconfig-013-20240704   clang-18
-x86_64                randconfig-013-20240705   gcc-7
-x86_64                randconfig-014-20240704   clang-18
-x86_64                randconfig-014-20240705   gcc-7
-x86_64                randconfig-015-20240704   clang-18
-x86_64                randconfig-015-20240705   gcc-7
-x86_64                randconfig-016-20240704   clang-18
-x86_64                randconfig-016-20240705   gcc-7
-x86_64                randconfig-071-20240704   clang-18
-x86_64                randconfig-071-20240705   gcc-7
-x86_64                randconfig-072-20240704   clang-18
-x86_64                randconfig-072-20240705   gcc-7
-x86_64                randconfig-073-20240704   clang-18
-x86_64                randconfig-073-20240705   gcc-7
-x86_64                randconfig-074-20240704   clang-18
-x86_64                randconfig-074-20240705   gcc-7
-x86_64                randconfig-075-20240704   clang-18
-x86_64                randconfig-075-20240705   gcc-7
-x86_64                randconfig-076-20240704   clang-18
-x86_64                randconfig-076-20240705   gcc-7
-x86_64                          rhel-8.3-rust   clang-18
-xtensa                            allnoconfig   gcc-13.2.0
-xtensa                       common_defconfig   gcc-13.2.0
-xtensa                randconfig-001-20240705   gcc-13.2.0
-xtensa                randconfig-002-20240705   gcc-13.2.0
+> 
+> ----------------------------------------------------------------
+> Driver Changes:
+> - Fix in migration code (Auld)
+> - Simplification in HWMon related code (Karthik)
+> - Fix in forcewake logic (Nirmoy)
+> - Fix engine utilization information (umesh)
+> - Clean up on MOCS related code (Roper)
+> - Fix on multicast register (Roper)
+> - Fix TLB invalidation timeout (Nirmoy)
+> - More SRIOV preparation (Michal)
+> - Fix out-of-bounds array access (Lucas)
+> - Fixes around some mutex utilization (Ashutosh, Vinay)
+> - Expand LNL workaround to BMG (Vinay)
+> 
+> ----------------------------------------------------------------
+> Ashutosh Dixit (1):
+>       drm/xe/oa: Destroy the stream_lock mutex
+> 
+> Karthik Poosa (1):
+>       drm/xe/hwmon: Remove xe_hwmon_process_reg
+> 
+> Lucas De Marchi (1):
+>       drm/xe/rtp: Fix out-of-bounds array access
+> 
+> Matt Roper (3):
+>       drm/xe/mocs: Update MOCS assertions and remove redundant checks
+>       drm/xe/mocs: Clarify difference between hw and sw sizes
+>       drm/xe/mcr: Avoid clobbering DSS steering
+> 
+> Matthew Auld (1):
+>       drm/xe: fix error handling in xe_migrate_update_pgtables
+> 
+> Michal Wajdeczko (3):
+>       drm/xe/pf: Remove inlined #ifdef CONFIG_PCI_IOV
+>       drm/xe/pf: Skip fair VFs provisioning if already provisioned
+>       drm/xe/pf: Restart VFs provisioning after GT reset
+> 
+> Nirmoy Das (2):
+>       drm/xe/client: Check return value of xe_force_wake_get
+>       drm/xe/guc: Configure TLB timeout based on CT buffer size
+> 
+> Umesh Nerlige Ramappa (1):
+>       drm/xe: Get hwe domain specific FW to read RING_TIMESTAMP
+> 
+> Vinay Belgaumkar (2):
+>       drm/xe/guc: Prevent use of uninitialized mutex
+>       drm/xe/bmg: Apply Wa_22019338487
+> 
+>  drivers/gpu/drm/xe/tests/xe_mocs.c          |  8 +--
+>  drivers/gpu/drm/xe/xe_drm_client.c          | 11 +++-
+>  drivers/gpu/drm/xe/xe_ggtt.c                | 11 +++-
+>  drivers/gpu/drm/xe/xe_gt.c                  |  6 +-
+>  drivers/gpu/drm/xe/xe_gt_mcr.c              |  6 +-
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf.c         | 12 ++++
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf.h         |  5 ++
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c  | 78 +++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h  |  4 ++
+>  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 30 +++++++---
+>  drivers/gpu/drm/xe/xe_guc_ct.c              | 17 ++++++
+>  drivers/gpu/drm/xe/xe_guc_ct.h              |  2 +
+>  drivers/gpu/drm/xe/xe_guc_pc.c              | 15 ++++-
+>  drivers/gpu/drm/xe/xe_hw_engine.c           |  5 ++
+>  drivers/gpu/drm/xe/xe_hw_engine.h           |  1 +
+>  drivers/gpu/drm/xe/xe_hwmon.c               | 89 +++++++++++++----------------
+>  drivers/gpu/drm/xe/xe_migrate.c             |  8 +--
+>  drivers/gpu/drm/xe/xe_mocs.c                | 74 ++++++++++++------------
+>  drivers/gpu/drm/xe/xe_oa.c                  |  2 +
+>  drivers/gpu/drm/xe/xe_pci.c                 |  4 --
+>  drivers/gpu/drm/xe/xe_pci_sriov.c           | 13 +++++
+>  drivers/gpu/drm/xe/xe_pci_sriov.h           |  7 +++
+>  drivers/gpu/drm/xe/xe_rtp.c                 |  2 +-
+>  drivers/gpu/drm/xe/xe_wa_oob.rules          |  1 +
+>  24 files changed, 290 insertions(+), 121 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
