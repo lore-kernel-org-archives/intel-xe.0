@@ -4,78 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09BC1C30658
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jul 2024 10:44:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DA8EC30658
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jul 2024 11:17:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5390B10EAA8;
-	Fri,  5 Jul 2024 10:44:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 437D110EACE;
+	Fri,  5 Jul 2024 11:17:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="k4ZNSYA0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hl5aEj9I";
 	dkim-atps=neutral
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com
- [209.85.167.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1921210EA9B
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Jul 2024 10:44:30 +0000 (UTC)
-Received: by mail-lf1-f52.google.com with SMTP id
- 2adb3069b0e04-52e954d7bd5so94555e87.2
- for <intel-xe@lists.freedesktop.org>; Fri, 05 Jul 2024 03:44:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1720176268; x=1720781068; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=iY+wmuc9gDBD8vkaWCJVg2xR38SmYyHEmg/ulb81llg=;
- b=k4ZNSYA0IJfzZn0mLrwMmmXJmSamQuk4C6+10d3cpha/TjSg9uaCokka3LNx3C4gYp
- KGsFdn+lvBTAqCuChPhBALGYNtuFZq6Jlh117SvKzWTlOg640kz5C56UIt+5GTYUBAAs
- RI1gzAmEw//H/60u1wd/PpbFloZ7xXXYW7RVY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1720176268; x=1720781068;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=iY+wmuc9gDBD8vkaWCJVg2xR38SmYyHEmg/ulb81llg=;
- b=MXTgyo8tE3Y5zen+M2D0HTQUZFBZFFntmvopZF62cU3zvCNR+PhsoK1BbpFXZoQV2j
- P30Z0K+zSv1EsFZ8vU84Ql+OSjq6da16xz9sUSEZGiW3AASVMj/qHY9B+GxT7ObEkO9H
- JWgWgaDLYif+xn9r5MJiUiJ5vu7OTDei3+C3uvpxh79Qozrgvz23DVM8WuMm7TD/tRNj
- RIlIMdWdb31w7pjeMsTkVI5H0qODP5qwNupdJGKwD3HIjJO6qkTx0sUuZ54khPfEDXEE
- j+qAGxnrnpNmvvkPjoBmKWhjOYNM4daGca8cAiIwpM67KomE4JWsJm1NKbP7PGJs44Uy
- 5bTw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXtT4NHgosVzlFmyGNP1aD+eF8t6VrcbGQBk6RuPlFKRjjBCRabe0+Ax1pbELZmzoCjWIM3jLIaXR71Wvlw1YOxzyMoT9dbuBYdsL3Ff2U=
-X-Gm-Message-State: AOJu0YwAjZTU/DSq5TmIaq/e8+/F5kf/Hr88nLDLCNXLptVz9glby2uo
- G0idePwSOOoapeBTHdpHS29t8/j59m2svmeyGCovcBl5eMaR6iPTt9TPQiQzMso=
-X-Google-Smtp-Source: AGHT+IFv8vmD0HrL5U4YaRADGw3d1unqqJdPgX9u/ZnQoU6sTpOyPpqntCgjf0AGZjf758RbG3Uz7g==
-X-Received: by 2002:ac2:4306:0:b0:52e:7bb4:942d with SMTP id
- 2adb3069b0e04-52ea06150a9mr2793245e87.1.1720176268148; 
- Fri, 05 Jul 2024 03:44:28 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-367961a507csm5775873f8f.77.2024.07.05.03.44.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 05 Jul 2024 03:44:27 -0700 (PDT)
-Date: Fri, 5 Jul 2024 12:44:25 +0200
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: Maxime Ripard <mripard@redhat.com>
-Cc: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: Re: [PULL] drm-misc-next
-Message-ID: <ZofOidmBv5DcQ6ca@phenom.ffwll.local>
-References: <20240704-curvy-outstanding-lizard-bcea78@houat>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66B1810EACE
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Jul 2024 11:17:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1720178253; x=1751714253;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=4kjIsMkisVWOOrAn29QfTJ9XNkfHii7d/nQS0eygjQk=;
+ b=Hl5aEj9IaAgMgpKSr5UDh8q01pZNQ0/cahVWUPEwSy+0RuIiArXyzUto
+ NEmyHoxQ03zJy5ucZR6TfHH7JOnJobwgVBd3ouEnGTnP576csrcugKBcT
+ 8GI7BKk9TEzhLqhfvLRq2lRtdS1SN/IGxbm1ihIEtRe8IdkasmmoWm+TS
+ LWawgBOyIT3uJfromzhgffLOrXiI76Gwp+jNgXDF5Kp9Fc8vbTzYgNgnY
+ Hc4wE31FFRuggEERzxuZQ+hAknzRpa5fn0mmURQv+GWnE4+XU3XNzRYqa
+ caRWEqEpgnnzm37JbmaosRRkxjiUfdKlRIygWF16BzJVQAYHQupwEA7fj w==;
+X-CSE-ConnectionGUID: J11CyOvWQQu8uvGxKw1/qw==
+X-CSE-MsgGUID: D5cHUkBJRXip/vEvpyEzIA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="17188936"
+X-IronPort-AV: E=Sophos;i="6.09,184,1716274800"; d="scan'208";a="17188936"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jul 2024 04:17:33 -0700
+X-CSE-ConnectionGUID: AFFlLE3ARoaxWAjU3cY83w==
+X-CSE-MsgGUID: gHPq2jGyTImu2FkZuFuPzQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,184,1716274800"; d="scan'208";a="46825818"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+ by fmviesa008.fm.intel.com with ESMTP; 05 Jul 2024 04:17:32 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1sPgwT-000SJA-2J;
+ Fri, 05 Jul 2024 11:17:29 +0000
+Date: Fri, 5 Jul 2024 19:17:01 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: oe-kbuild-all@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: [drm-xe:drm-xe-next 6/7] drivers/gpu/drm/xe/xe_pt.c:931:73: sparse:
+ sparse: Using plain integer as NULL pointer
+Message-ID: <202407051904.cZVyDRlA-lkp@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240704-curvy-outstanding-lizard-bcea78@houat>
-X-Operating-System: Linux phenom 6.8.9-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,153 +67,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jul 04, 2024 at 03:17:09PM +0200, Maxime Ripard wrote:
-> Hi,
-> 
-> Here's this week drm-misc-next PR, and the last PR for the 6.11 release cycle.
-> 
-> Thanks!
-> Maxime
-> 
-> drm-misc-next-2024-07-04:
-> drm-misc-next for $kernel-version:
-> 
-> UAPI Changes:
-> 
-> Cross-subsystem Changes:
-> 
-> Core Changes:
->   - dp/mst: Fix daisy-chaining at resume
->   - dsc: Add helper to dump the DSC configuration
->   - tests: Add tests for the new monochrome TV mode variant
-> 
-> Driver Changes:
->   - ast: Refactor the mode setting code
->   - panfrost: Fix devfreq job reporting
->   - stm: Add LDVS support, DSI PHY updates
->   - panels:
->     - New panel: AUO G104STN01, K&d kd101ne3-40ti,
-> The following changes since commit 61bfcd190820d1dce846e58a4c9ddca8db4751ed:
-> 
->   drm/bridge: analogix_dp: handle AUX transfer timeouts (2024-06-27 11:52:19 +0200)
-> 
-> are available in the Git repository at:
-> 
->   https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2024-07-04
-> 
-> for you to fetch changes up to 896868eded124059023be0af92d68cdaf9b4de70:
-> 
->   drm/panthor: Record devfreq busy as soon as a job is started (2024-07-04 09:29:55 +0100)
+tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+head:   c55f79f317ab428ae6d005965bc07e37496f209f
+commit: a708f6501c692551e3d4ea618c44021f436730d9 [6/7] drm/xe: Update PT layer with better error handling
+config: openrisc-randconfig-r123-20240705 (https://download.01.org/0day-ci/archive/20240705/202407051904.cZVyDRlA-lkp@intel.com/config)
+compiler: or1k-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20240705/202407051904.cZVyDRlA-lkp@intel.com/reproduce)
 
-Pulled, thanks.
--Sima
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202407051904.cZVyDRlA-lkp@intel.com/
 
-> 
-> ----------------------------------------------------------------
-> drm-misc-next for $kernel-version:
-> 
-> UAPI Changes:
-> 
-> Cross-subsystem Changes:
-> 
-> Core Changes:
->   - dp/mst: Fix daisy-chaining at resume
->   - dsc: Add helper to dump the DSC configuration
->   - tests: Add tests for the new monochrome TV mode variant
-> 
-> Driver Changes:
->   - ast: Refactor the mode setting code
->   - panfrost: Fix devfreq job reporting
->   - stm: Add LDVS support, DSI PHY updates
->   - panels:
->     - New panel: AUO G104STN01, K&d kd101ne3-40ti,
-> 
-> ----------------------------------------------------------------
-> Dave Stevenson (1):
->       drm/tests: Add tests for the new Monochrome value of tv_mode
-> 
-> Dragan Simic (2):
->       drm/lima: Mark simple_ondemand governor as softdep
->       drm/panfrost: Mark simple_ondemand governor as softdep
-> 
-> Imre Deak (2):
->       drm: Add helpers for q4 fixed point values
->       drm/display/dsc: Add a helper to dump the DSC configuration
-> 
-> Paul Gerber (2):
->       dt-bindings: display: simple: Add AUO G104STN01 panel
->       drm/panel: simple: Add AUO G104STN01 panel entry
-> 
-> Raphael Gallais-Pou (4):
->       dt-bindings: display: add STM32 LVDS device
->       drm/stm: lvds: add new STM32 LVDS Display Interface Transmitter driver
->       drm/stm: dsi: use new SYSTEM_SLEEP_PM_OPS() macro
->       drm/stm: dsi: expose DSI PHY internal clock
-> 
-> Steven Price (1):
->       drm/panthor: Record devfreq busy as soon as a job is started
-> 
-> Thomas Zimmermann (9):
->       drm/ast: Implement atomic enable/disable for encoders
->       drm/ast: Program mode for AST DP in atomic_mode_set
->       drm/ast: Move mode-setting code into mode_set_nofb CRTC helper
->       drm/ast: Handle primary-plane format setup in atomic_update
->       drm/ast: Remove gamma LUT updates from DPMS code
->       drm/ast: Only set VGA SCREEN_DISABLE bit in CRTC code
->       drm/ast: Inline ast_crtc_dpms() into callers
->       drm/ast: Use drm_atomic_helper_commit_tail() helper
->       drm/mgag200: Rename constant MGAREG_Status to MGAREG_STATUS
-> 
-> Thorsten Blum (1):
->       drm/managed: Simplify if condition
-> 
-> Wayne Lin (2):
->       drm/dp_mst: Fix all mstb marked as not probed after suspend/resume
->       drm/dp_mst: Skip CSN if topology probing is not done yet
-> 
-> Yannick Fertre (1):
->       drm/stm: dsi: add pm runtime ops
-> 
-> Zhaoxiong Lv (5):
->       drm/panel: jd9365da: Modify the method of sending commands
->       dt-bindings: display: panel: Add compatible for kingdisplay-kd101ne3
->       drm/panel: panel-jadard-jd9365da-h3: use wrapped MIPI DCS functions
->       drm/panel: jd9365da: Support for kd101ne3-40ti MIPI-DSI panel
->       drm/panel: jd9365da: Add the function of adjusting orientation
-> 
->  .../bindings/display/panel/jadard,jd9365da-h3.yaml |    1 +
->  .../bindings/display/panel/panel-simple.yaml       |    2 +
->  .../bindings/display/st,stm32mp25-lvds.yaml        |  119 ++
->  MAINTAINERS                                        |    1 +
->  drivers/gpu/drm/ast/ast_mode.c                     |  204 ++--
->  drivers/gpu/drm/ast/ast_reg.h                      |   10 +-
->  drivers/gpu/drm/display/drm_dp_helper.c            |    5 +-
->  drivers/gpu/drm/display/drm_dp_mst_topology.c      |   15 +-
->  drivers/gpu/drm/display/drm_dsc_helper.c           |   91 ++
->  drivers/gpu/drm/drm_managed.c                      |    2 +-
->  drivers/gpu/drm/lima/lima_drv.c                    |    1 +
->  drivers/gpu/drm/mgag200/mgag200_mode.c             |    6 +-
->  drivers/gpu/drm/mgag200/mgag200_reg.h              |    2 +-
->  drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c   | 1090 ++++++++++-------
->  drivers/gpu/drm/panel/panel-simple.c               |   27 +
->  drivers/gpu/drm/panfrost/panfrost_drv.c            |    1 +
->  drivers/gpu/drm/panthor/panthor_sched.c            |    1 +
->  drivers/gpu/drm/stm/Kconfig                        |   11 +
->  drivers/gpu/drm/stm/Makefile                       |    2 +
->  drivers/gpu/drm/stm/dw_mipi_dsi-stm.c              |  279 ++++-
->  drivers/gpu/drm/stm/lvds.c                         | 1226 ++++++++++++++++++++
->  drivers/gpu/drm/tests/drm_cmdline_parser_test.c    |   11 +
->  drivers/gpu/drm/tests/drm_connector_test.c         |    1 +
->  drivers/gpu/drm/tests/drm_modes_test.c             |   31 +
->  include/drm/display/drm_dsc_helper.h               |    3 +
->  include/drm/drm_fixed.h                            |   23 +
->  26 files changed, 2605 insertions(+), 560 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/st,stm32mp25-lvds.yaml
->  create mode 100644 drivers/gpu/drm/stm/lvds.c
+sparse warnings: (new ones prefixed by >>)
+>> drivers/gpu/drm/xe/xe_pt.c:931:73: sparse: sparse: Using plain integer as NULL pointer
+   drivers/gpu/drm/xe/xe_pt.c: note: in included file (through include/linux/smp.h, include/linux/lockdep.h, include/linux/spinlock.h, ...):
+   include/linux/list.h:83:21: sparse: sparse: self-comparison always evaluates to true
 
+vim +931 drivers/gpu/drm/xe/xe_pt.c
 
+   906	
+   907	static void xe_pt_abort_bind(struct xe_vma *vma,
+   908				     struct xe_vm_pgtable_update *entries,
+   909				     u32 num_entries, bool rebind)
+   910	{
+   911		int i, j;
+   912	
+   913		xe_pt_commit_locks_assert(vma);
+   914	
+   915		for (i = num_entries - 1; i >= 0; --i) {
+   916			struct xe_pt *pt = entries[i].pt;
+   917			struct xe_pt_dir *pt_dir;
+   918	
+   919			if (!rebind)
+   920				pt->num_live -= entries[i].qwords;
+   921	
+   922			if (!pt->level)
+   923				continue;
+   924	
+   925			pt_dir = as_xe_pt_dir(pt);
+   926			for (j = 0; j < entries[i].qwords; j++) {
+   927				u32 j_ = j + entries[i].ofs;
+   928				struct xe_pt *newpte = xe_pt_entry(pt_dir, j_);
+   929				struct xe_pt *oldpte = entries[i].pt_entries[j].pt;
+   930	
+ > 931				pt_dir->children[j_] = oldpte ? &oldpte->base : 0;
+   932				xe_pt_destroy(newpte, xe_vma_vm(vma)->flags, NULL);
+   933			}
+   934		}
+   935	}
+   936	
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
