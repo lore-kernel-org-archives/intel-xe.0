@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 585F8C3271E
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Jul 2024 14:48:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E448C3271E
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Jul 2024 14:52:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1046F10E04A;
-	Fri,  5 Jul 2024 14:48:56 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F88910E04A;
- Fri,  5 Jul 2024 14:48:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0561229991234275374=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Use_write-back_caching?=
- =?utf-8?q?_mode_for_system_memory_on_DGFX_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20A5110E04A;
+	Fri,  5 Jul 2024 14:52:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D4QJTGqh";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E941910E042;
+ Fri,  5 Jul 2024 14:52:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1720191178; x=1751727178;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+vT0GQKNbUXT4NW3TpDtgoDim95Oi6z6c/7bBNesMCs=;
+ b=D4QJTGqhNwHE75nQ+byd++wJOsQWeITdCvehquEpAWrTwyJs8W2Kps2K
+ P33zwVu80EUpp6SmS79L4nx4vdMsLa1W/ybpnbduJBTTdc+7MclCq6OMC
+ B+WUuU/IUri88OcaFOGmM8uXQXybOGny1wtCEtwVRkQdHbc1+U2BQSz5A
+ slKNe/2PtfFnzHeYvW/3HHELiIjMCp/Xa8gDQgK5YH4JA0MCKteHHi1PK
+ +QSbK4MAzd4VOgG0KOkkhV/gVnxbuHV3uDGO5VUvU93PZgAH6tDp2Zv6i
+ zeAMejwte8Ul4WspO1sgAfeqTvVN067tUvsmPoq3ZgZxOOmQjljWzSy18 w==;
+X-CSE-ConnectionGUID: s40ic4KhRqeG04AgfP8paA==
+X-CSE-MsgGUID: 6t70xB1sS5++5GuOUQeiWg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="17204719"
+X-IronPort-AV: E=Sophos;i="6.09,185,1716274800"; d="scan'208";a="17204719"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jul 2024 07:52:57 -0700
+X-CSE-ConnectionGUID: 2YEO6GGlRyivt0XBhwwQeg==
+X-CSE-MsgGUID: BApmU/U2Twy1qL9hb1Yjfw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,185,1716274800"; d="scan'208";a="46864338"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 05 Jul 2024 07:52:55 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 05 Jul 2024 17:52:54 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 05 Jul 2024 14:48:55 -0000
-Message-ID: <172019093538.30803.18080717814349444059@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240705132828.27714-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240705132828.27714-1-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH 00/20] drm/{i915, xe}: FBC cleanups + tweak fbdev stolen usage 
+Date: Fri,  5 Jul 2024 17:52:34 +0300
+Message-ID: <20240705145254.3355-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.44.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,129 +63,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0561229991234275374==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Here's an idea for a slightly better heuristic to answer
+the "should fbdev use stolen or not?" question.
 
-Series: drm/xe: Use write-back caching mode for system memory on DGFX (rev4)
-URL   : https://patchwork.freedesktop.org/series/135071/
-State : success
+Ended up with a pile of refactoring and cleanups in
+the FBC code as a result.
 
-== Summary ==
+Ville Syrjälä (20):
+  drm/i915/fbc: Extract intel_fbc_has_fences()
+  drm/i915/fbc: Convert to intel_display, mostly
+  drm/i915/fbc: s/_intel_fbc_cfb_stride()/intel_fbc_plane_cfb_stride()/
+  drm/i915/fbc: Extract intel_fbc_max_plane_size()
+  drm/i915/fbc: Extract intel_fbc_max_surface_size()
+  drm/i915/fbc:
+    s/intel_fbc_hw_tracking_covers_screen()/intel_fbc_surface_size_ok()/
+  drm/i915/fbc: Adjust g4x+ platform checks
+  drm/i915/fbc: Extract _intel_fbc_cfb_stride()
+  drm/i915/fbc: s/lines/height/
+  drm/i915/fbc: Reoder CFB max height platform checks
+  drm/i915/fbc: Extract intel_fbc_max_cfb_height()
+  drm/i915/fbc: Extract _intel_fbc_cfb_size()
+  drm/i915/fbc: Extract intel_fbc_cfb_cpp()
+  drm/i915/fbc: Introduce intel_fbc_preferred_cfb_size()
+  drm/xe/fbdev: Fix BIOS FB vs.s stolen size checke
+  drm/i915/fbdev: Extract intel_fbdev_fb_prefer_stolen()
+  drm/xe/fbdev: Extract intel_fbdev_fb_prefer_stolen()
+  drm/xe/fbdev: Use the same logic for fbdev stolen takever and fresh
+    allocation
+  drm/i915/fbdev: Adjust fbdev stolen mem usage heuristic
+  drm/xe/fbdev: Adjust fbdev stolen mem usage heuristic
 
-CI Bug Log - changes from xe-1567-cdd1a80a2d16d5213af20a29eb7570a7651db7dc_BAT -> xe-pw-135071v4_BAT
-====================================================
+ .../drm/i915/display/intel_display_debugfs.c  |   4 +-
+ .../drm/i915/display/intel_display_driver.c   |   4 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c      | 564 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_fbc.h      |  14 +-
+ drivers/gpu/drm/i915/display/intel_fbdev_fb.c |  23 +-
+ drivers/gpu/drm/i915/display/intel_fbdev_fb.h |   5 +-
+ .../drm/i915/display/intel_fifo_underrun.c    |   2 +-
+ .../drm/i915/display/intel_modeset_setup.c    |   2 +-
+ .../drm/i915/display/intel_plane_initial.c    |  10 +-
+ drivers/gpu/drm/xe/display/intel_fbdev_fb.c   |  22 +-
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |   8 +-
+ 11 files changed, 389 insertions(+), 269 deletions(-)
 
-Summary
--------
+-- 
+2.44.2
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 5)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-135071v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-FAIL][2] ([Intel XE#324])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1567-cdd1a80a2d16d5213af20a29eb7570a7651db7dc/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135071v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
-
-
-Build changes
--------------
-
-  * IGT: IGT_7916 -> IGT_7917
-  * Linux: xe-1567-cdd1a80a2d16d5213af20a29eb7570a7651db7dc -> xe-pw-135071v4
-
-  IGT_7916: 971cfc9d6afc8242db25d1eabd4ae00890d9144a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7917: a1743ac7ed91ce40d742a351b1600da4f75972b1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1567-cdd1a80a2d16d5213af20a29eb7570a7651db7dc: cdd1a80a2d16d5213af20a29eb7570a7651db7dc
-  xe-pw-135071v4: 135071v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135071v4/index.html
-
---===============0561229991234275374==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Use write-back caching mode for system memory on DGFX (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135071/">https://patchwork.freedesktop.org/series/135071/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135071v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135071v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1567-cdd1a80a2d16d5213af20a29eb7570a7651db7dc_BAT -&gt; xe-pw-135071v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 5)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-135071v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1567-cdd1a80a2d16d5213af20a29eb7570a7651db7dc/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135071v4/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7916 -&gt; IGT_7917</li>
-<li>Linux: xe-1567-cdd1a80a2d16d5213af20a29eb7570a7651db7dc -&gt; xe-pw-135071v4</li>
-</ul>
-<p>IGT_7916: 971cfc9d6afc8242db25d1eabd4ae00890d9144a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7917: a1743ac7ed91ce40d742a351b1600da4f75972b1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1567-cdd1a80a2d16d5213af20a29eb7570a7651db7dc: cdd1a80a2d16d5213af20a29eb7570a7651db7dc<br />
-  xe-pw-135071v4: 135071v4</p>
-
-</body>
-</html>
-
---===============0561229991234275374==--
