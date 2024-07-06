@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19EBBC3271E
-	for <intel-xe@archiver.kernel.org>; Sat,  6 Jul 2024 00:02:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40F68C3DA40
+	for <intel-xe@archiver.kernel.org>; Sat,  6 Jul 2024 00:02:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9F2710E008;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABDD410E047;
 	Sat,  6 Jul 2024 00:02:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FHNp/Q28";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hU1ws2zT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F01C710E047
- for <intel-xe@lists.freedesktop.org>; Sat,  6 Jul 2024 00:02:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78CC710E14C
+ for <intel-xe@lists.freedesktop.org>; Sat,  6 Jul 2024 00:02:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720224137; x=1751760137;
+ t=1720224138; x=1751760138;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qPJI/tiPh7Xdn3UpJ1H56Edbl2nvEWLcW9Y4LoXbPAo=;
- b=FHNp/Q287OtF3VNJCITZrHpjIAs2oG7xjdiCnr7o/7w534LgIiThLFkx
- wKzQzpf7Y7zsnqoOYb1UGRfq/LW8PsRM22EWxUQQ/C8QG6tM1dpa8AtfB
- JNr30VS9xjZtD8zuAMbV4FbSqIu0q0WumVALlmnXJHP5LAK2X7inGw7th
- 4K/RcYddS+H7VIBd5wsW9e6rBwYuBWVwuz/virHuc1Rd0IRfK2spQ492/
- ZrbY/7VZbbAExdiZ9Jd1KZdDgL18mlLHxSTfeO2TT9970kIhXw8YvXmv6
- /46gNUlSfSl13vg2NRFSUoh6N7ETHVvJI4kzGldTIJVWVi4U+8CVXxSmX w==;
-X-CSE-ConnectionGUID: k+G1Xs2ER2qa1rn7T5RK2w==
-X-CSE-MsgGUID: PD0bYCXRSw6zFm3tKogXhw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="17464653"
-X-IronPort-AV: E=Sophos;i="6.09,186,1716274800"; d="scan'208";a="17464653"
+ bh=7wudVBXu1VWIIIBkdyPu43mFLe9e3Ts0e4tmO2W3Oow=;
+ b=hU1ws2zTRXREw3SCX9wgP5AQCxvwmqcsZMc1Ab3tglY/x+lYrCrbhzTz
+ +IgPbf0gWjjAtG+PugA9sVKlbqTC0pGjwu25v5FcELNWRyWhh6wz1LihV
+ vd83d7L1w7q3ZqqJeHafroFKJR4fsSQtYhi3d3jkpkwx+O2ThptG1aryq
+ g0qO0PeCbJbJbcnGJyJYxrdxu2Xd4xA/4dmrQd6xlxF8ftSebUB0JXgZi
+ CNLu74RQsYK0hqr2f3rDcPSDNBztH7mo6HKavmrIM5Nv/W1FSz6SPvDFE
+ t0JQQkxhgKgiuqe/JTKjtiIkDJwiCEt2DalgyJYMiyWBdhHBzPb1YQgi/ A==;
+X-CSE-ConnectionGUID: NjDLlIFWTlO1k8yNlm+lew==
+X-CSE-MsgGUID: dY/MHRjmQqe2h9xKsiaS3A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="17464664"
+X-IronPort-AV: E=Sophos;i="6.09,186,1716274800"; d="scan'208";a="17464664"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2024 17:02:14 -0700
-X-CSE-ConnectionGUID: d2hirUUwQjeSwSwP7/f8yA==
-X-CSE-MsgGUID: niHs9Gd1REuSMjUbIFpmEg==
+ 05 Jul 2024 17:02:16 -0700
+X-CSE-ConnectionGUID: BSZ+0uNnRqC3lKuSLKbDyQ==
+X-CSE-MsgGUID: AWZgegKEQVymfAsd5N8EpA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,186,1716274800"; d="scan'208";a="78128236"
+X-IronPort-AV: E=Sophos;i="6.09,186,1716274800"; d="scan'208";a="78128266"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2024 17:02:12 -0700
+ 05 Jul 2024 17:02:15 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: farah.kassabri@intel.com,
 	michal.wajdeczko@intel.com
-Subject: [PATCH 01/11] drm/xe: Add xe_gt_tlb_invalidation_fence_init helper
-Date: Fri,  5 Jul 2024 17:02:42 -0700
-Message-Id: <20240706000252.702044-2-matthew.brost@intel.com>
+Subject: [PATCH 10/11] drm/xe: Add GT TLB coalesce tracepoints
+Date: Fri,  5 Jul 2024 17:02:51 -0700
+Message-Id: <20240706000252.702044-11-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240706000252.702044-1-matthew.brost@intel.com>
 References: <20240706000252.702044-1-matthew.brost@intel.com>
@@ -67,112 +67,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Other layers should not be touching struct xe_gt_tlb_invalidation_fence
-directly, add helper for initialization.
+Add visibility to GT TLB coalescing.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 34 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |  3 ++
- drivers/gpu/drm/xe/xe_pt.c                  | 24 +--------------
- 3 files changed, 38 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 10 +++++++++-
+ drivers/gpu/drm/xe/xe_trace.h               | 10 ++++++++++
+ 2 files changed, 19 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index d9359976ab8b..64a3a25f70c2 100644
+index b85089d27a36..c7634acea938 100644
 --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
 +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -508,3 +508,37 @@ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+@@ -362,7 +362,8 @@ xe_gt_tlb_invalidation_coalesce_issue(struct xe_gt *gt,
+ 	list_for_each_entry(fence, &coalesce->fence_list, link) {
+ 		fence->seqno = seqno;
+ 		fence->invalidation_time = ktime_get();
+-		trace_xe_gt_tlb_invalidation_fence_send(gt_to_xe(gt), fence);
++		trace_xe_gt_tlb_invalidation_fence_send_coalesce(gt_to_xe(gt),
++								 fence);
+ 	}
  
- 	return 0;
- }
-+
-+static const char *
-+invalidation_fence_get_driver_name(struct dma_fence *dma_fence)
-+{
-+	return "xe";
-+}
-+
-+static const char *
-+invalidation_fence_get_timeline_name(struct dma_fence *dma_fence)
-+{
-+	return "invalidation_fence";
-+}
-+
-+static const struct dma_fence_ops invalidation_fence_ops = {
-+	.get_driver_name = invalidation_fence_get_driver_name,
-+	.get_timeline_name = invalidation_fence_get_timeline_name,
-+};
-+
-+/**
-+ * xe_gt_tlb_invalidation_fence_init - Initialize TLB invalidation fence
-+ * @gt: GT
-+ * @fence: TLB invalidation fence to initialize
-+ *
-+ * Initialize TLB invalidation fence for use
-+ */
-+void xe_gt_tlb_invalidation_fence_init(struct xe_gt *gt,
-+				       struct xe_gt_tlb_invalidation_fence *fence)
-+{
-+	spin_lock_irq(&gt->tlb_invalidation.lock);
-+	dma_fence_init(&fence->base, &invalidation_fence_ops,
-+		       &gt->tlb_invalidation.lock,
-+		       dma_fence_context_alloc(1), 1);
-+	spin_unlock_irq(&gt->tlb_invalidation.lock);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-index bf3bebd9f985..948f4a2f5214 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-@@ -26,4 +26,7 @@ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
- int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno);
- int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ 	spin_lock_irq(&gt->tlb_invalidation.pending_lock);
+@@ -411,6 +412,8 @@ xe_gt_tlb_invalidation_coalesce_prep(struct xe_gt *gt,
+ 		goto unlock;
+ 	}
  
-+void xe_gt_tlb_invalidation_fence_init(struct xe_gt *gt,
-+				       struct xe_gt_tlb_invalidation_fence *fence);
++	trace_xe_gt_tlb_invalidation_fence_coalesce(gt_to_xe(gt), fence);
 +
- #endif	/* _XE_GT_TLB_INVALIDATION_ */
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index f391de908033..ff4ca19e31f0 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -1317,23 +1317,6 @@ struct invalidation_fence {
- 	u32 asid;
- };
- 
--static const char *
--invalidation_fence_get_driver_name(struct dma_fence *dma_fence)
--{
--	return "xe";
--}
--
--static const char *
--invalidation_fence_get_timeline_name(struct dma_fence *dma_fence)
--{
--	return "invalidation_fence";
--}
--
--static const struct dma_fence_ops invalidation_fence_ops = {
--	.get_driver_name = invalidation_fence_get_driver_name,
--	.get_timeline_name = invalidation_fence_get_timeline_name,
--};
--
- static void invalidation_fence_cb(struct dma_fence *fence,
- 				  struct dma_fence_cb *cb)
+ 	if (list_empty(&coalesce->link))
+ 		list_add_tail(&coalesce->link,
+ 			      &gt->tlb_invalidation.pending_coalesce);
+@@ -469,6 +472,9 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt,
  {
-@@ -1372,12 +1355,7 @@ static void invalidation_fence_init(struct xe_gt *gt,
+ 	struct xe_device *xe = gt_to_xe(gt);
  
- 	trace_xe_gt_tlb_invalidation_fence_create(gt_to_xe(gt), &ifence->base);
++	xe_gt_assert(gt, coalesce);
++	xe_gt_assert(gt, coalesce->type == XE_GT_TLB_INVALIDATION_COALESCE_GGTT);
++
+ 	if (xe_guc_ct_enabled(&gt->uc.guc.ct) &&
+ 	    gt->uc.guc.submission_state.enabled) {
+ 		struct xe_gt_tlb_invalidation_fence fence;
+@@ -527,6 +533,8 @@ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+ 	int ret = 0;
  
--	spin_lock_irq(&gt->tlb_invalidation.lock);
--	dma_fence_init(&ifence->base.base, &invalidation_fence_ops,
--		       &gt->tlb_invalidation.lock,
--		       dma_fence_context_alloc(1), 1);
--	spin_unlock_irq(&gt->tlb_invalidation.lock);
--
-+	xe_gt_tlb_invalidation_fence_init(gt, &ifence->base);
- 	INIT_LIST_HEAD(&ifence->base.link);
+ 	xe_gt_assert(gt, fence);
++	xe_gt_assert(gt, coalesce);
++	xe_gt_assert(gt, coalesce->type == XE_GT_TLB_INVALIDATION_COALESCE_PPGTT);
  
- 	dma_fence_get(&ifence->base.base);	/* Ref for caller */
+ 	mutex_lock(&gt->tlb_invalidation.seqno_lock);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index 09ca1ad057b0..e2c5af5a1d23 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -60,11 +60,21 @@ DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_cb,
+ 	     TP_ARGS(xe, fence)
+ );
+ 
++DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_coalesce,
++	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
++	     TP_ARGS(xe, fence)
++);
++
+ DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_send,
+ 	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
+ 	     TP_ARGS(xe, fence)
+ );
+ 
++DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_send_coalesce,
++	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
++	     TP_ARGS(xe, fence)
++);
++
+ DEFINE_EVENT(xe_gt_tlb_invalidation_fence, xe_gt_tlb_invalidation_fence_recv,
+ 	     TP_PROTO(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence),
+ 	     TP_ARGS(xe, fence)
 -- 
 2.34.1
 
