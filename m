@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3820C3271E
-	for <intel-xe@archiver.kernel.org>; Sat,  6 Jul 2024 00:02:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA42BC3DA46
+	for <intel-xe@archiver.kernel.org>; Sat,  6 Jul 2024 00:02:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7E5C10E277;
-	Sat,  6 Jul 2024 00:02:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA2D010E0E4;
+	Sat,  6 Jul 2024 00:02:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YIcPX0LI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eY1bkqox";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A0A410E12F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0911410E008
  for <intel-xe@lists.freedesktop.org>; Sat,  6 Jul 2024 00:02:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720224138; x=1751760138;
+ t=1720224137; x=1751760137;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qvua2TO6Jd7pjwCYHMZ5Ht65VBfFOIC676H3lmYjcA8=;
- b=YIcPX0LISQ5K8DDONnb+d5SpJYVSN2saWSG68kvIOv8NBX2fvgUog3F3
- JEKHDds5q1O2x7UTWXdUy7X6yaegZB0hMt9Mv9BoY2ir8tcKQ2216ECH4
- XyyOD/LE8FRN/vrD9KZjdYXXU04dk4mBbw7xkhMGYWcGV4c2UwjyM01UR
- ogJ0fwtp8YAcJ/ZAwe3/sAbFMcXg+Z+9T3iKOBs1ujExM5fmPSUudVF0o
- ir0xzoMOnrtA0/tsIgGhZQ2o/guF6xJVs2ABbdlgZ3L9M2tFllBDku8fP
- bUmcX9GkR7zHPapK/g6efNNHoqx+2vR8DMl/jYGKnPK0vobSl8Ij/CR1l w==;
-X-CSE-ConnectionGUID: eCL+U0+8STGkp138Y2hGqQ==
-X-CSE-MsgGUID: dBZKVQj0TrycAjiWshAxrw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="17464662"
-X-IronPort-AV: E=Sophos;i="6.09,186,1716274800"; d="scan'208";a="17464662"
+ bh=4IIo+rNXJnC23X1DW23RPDihJmGboyEopzRWluL6sIM=;
+ b=eY1bkqox3UWOQVADXF1tpZ5cD4mu+Am1y/W7X3XH1wQ6UPm+BpqgMoaR
+ BP79tDymEMgn4zEiyAKR/u6JXNoCz5L8J3YjTX2J0/Yodct2VVynOtrHy
+ VAFTZ7arS+eWdWMHvbYWl82VZdzGZ2hvm/7eJRKsK4KdDXNxvIoFiYP9R
+ nQOb6hLlwSJEMfSy5mIdxiTkum0bpEHB1CobNczrXcrFHwjn086/2MNba
+ iJuKK+LJitJUKdzYyD8PpdF6MyEi//M+/wwQ70/TNYwaFvz9HEBFWlYf6
+ 5SxDcV0pG2LIlN8b+DENEW3EbsVJ2RJ9sXDVRdwS8plL6DUkCed/7zCL+ g==;
+X-CSE-ConnectionGUID: A7lCrQuzTvOcUFJzmAmSwA==
+X-CSE-MsgGUID: ym3QTKxCTAeOhSBeW11CXQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="17464655"
+X-IronPort-AV: E=Sophos;i="6.09,186,1716274800"; d="scan'208";a="17464655"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2024 17:02:15 -0700
-X-CSE-ConnectionGUID: oeb104g8QYO5MJ/oBK3Hvg==
-X-CSE-MsgGUID: YRNSgLpzT6u8XbHExHlS/Q==
+ 05 Jul 2024 17:02:14 -0700
+X-CSE-ConnectionGUID: 96HkJd3xRl2bCa5LeIggIQ==
+X-CSE-MsgGUID: X2t8uxbLTNCFlAl39nhuqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,186,1716274800"; d="scan'208";a="78128260"
+X-IronPort-AV: E=Sophos;i="6.09,186,1716274800"; d="scan'208";a="78128239"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2024 17:02:14 -0700
+ 05 Jul 2024 17:02:13 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: farah.kassabri@intel.com,
 	michal.wajdeczko@intel.com
-Subject: [PATCH 08/11] drm/xe: Add multi-client support for GT TLB
- invalidations
-Date: Fri,  5 Jul 2024 17:02:49 -0700
-Message-Id: <20240706000252.702044-9-matthew.brost@intel.com>
+Subject: [PATCH 02/11] drm/xe: Drop xe_gt_tlb_invalidation_wait
+Date: Fri,  5 Jul 2024 17:02:43 -0700
+Message-Id: <20240706000252.702044-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240706000252.702044-1-matthew.brost@intel.com>
 References: <20240706000252.702044-1-matthew.brost@intel.com>
@@ -68,256 +67,329 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add multi-client support for GT TLB invalidations as future platforms
-may have multiple sets of TLBs.
+Having two methods to wait on GT TLB invalidations is not ideal. Remove
+xe_gt_tlb_invalidation_wait and only use GT TLB invalidation fences.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c   | 85 +++++++++++++++----
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h   |  4 +-
- .../gpu/drm/xe/xe_gt_tlb_invalidation_types.h |  5 ++
- drivers/gpu/drm/xe/xe_gt_types.h              |  5 +-
- drivers/gpu/drm/xe/xe_guc_tlb_invalidation.c  |  4 +-
- 5 files changed, 81 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 103 ++++++--------------
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |   7 +-
+ drivers/gpu/drm/xe/xe_pt.c                  |   2 -
+ drivers/gpu/drm/xe/xe_vm.c                  |  28 +++---
+ 4 files changed, 51 insertions(+), 89 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index 6764253f5f9a..d63ce1da3a92 100644
+index 64a3a25f70c2..687214d07ac7 100644
 --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
 +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -52,8 +52,9 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
- 			break;
- 
- 		trace_xe_gt_tlb_invalidation_fence_timeout(xe, fence);
--		xe_gt_err(gt, "TLB invalidation fence timeout, seqno=%d recv=%d",
--			  fence->seqno, gt->tlb_invalidation.seqno_recv);
-+		xe_gt_err(gt, "TLB invalidation fence timeout, seqno=%d, guc_recv=%d",
-+			  fence->seqno,
-+			  gt->tlb_invalidation.seqno_recv[XE_GT_TLB_INVALIDATION_CLIENT_GUC]);
- 
- 		list_del(&fence->link);
- 		fence->base.error = -ETIME;
-@@ -84,7 +85,11 @@ int xe_gt_tlb_invalidation_init(struct xe_gt *gt)
- 	spin_lock_init(&gt->tlb_invalidation.fence_lock);
- 	INIT_DELAYED_WORK(&gt->tlb_invalidation.fence_tdr,
- 			  xe_gt_tlb_fence_timeout);
--	gt->tlb_invalidation.ops = xe_guc_tlb_invalidation_get_ops(&gt->uc.guc);
-+
-+	/* Execlists not supported */
-+	if (!gt_to_xe(gt)->info.force_execlist)
-+		gt->tlb_invalidation.ops[XE_GT_TLB_INVALIDATION_CLIENT_GUC] =
-+			xe_guc_tlb_invalidation_get_ops(&gt->uc.guc);
- 
- 	return drmm_mutex_init(&gt_to_xe(gt)->drm,
- 			       &gt->tlb_invalidation.seqno_lock);
-@@ -114,6 +119,7 @@ invalidation_fence_signal(struct xe_device *xe, struct xe_gt_tlb_invalidation_fe
+@@ -111,7 +111,6 @@ invalidation_fence_signal(struct xe_device *xe, struct xe_gt_tlb_invalidation_fe
  void xe_gt_tlb_invalidation_reset(struct xe_gt *gt)
  {
  	struct xe_gt_tlb_invalidation_fence *fence, *next;
-+	enum xe_gt_tlb_invalidation_clients client;
+-	struct xe_guc *guc = &gt->uc.guc;
  	int pending_seqno;
  
  	/*
-@@ -135,7 +141,9 @@ void xe_gt_tlb_invalidation_reset(struct xe_gt *gt)
- 		pending_seqno = TLB_INVALIDATION_SEQNO_MAX - 1;
+@@ -134,7 +133,6 @@ void xe_gt_tlb_invalidation_reset(struct xe_gt *gt)
  	else
  		pending_seqno = gt->tlb_invalidation.seqno - 1;
--	WRITE_ONCE(gt->tlb_invalidation.seqno_recv, pending_seqno);
-+	for (client = 0; client < XE_GT_TLB_INVALIDATION_CLIENT_MAX; ++client)
-+		WRITE_ONCE(gt->tlb_invalidation.seqno_recv[client],
-+			   pending_seqno);
+ 	WRITE_ONCE(gt->tlb_invalidation.seqno_recv, pending_seqno);
+-	wake_up_all(&guc->ct.wq);
  
  	list_for_each_entry_safe(fence, next,
  				 &gt->tlb_invalidation.pending_fences, link)
-@@ -144,9 +152,11 @@ void xe_gt_tlb_invalidation_reset(struct xe_gt *gt)
- 	mutex_unlock(&gt->tlb_invalidation.seqno_lock);
- }
+@@ -165,6 +163,8 @@ static int send_tlb_invalidation(struct xe_guc *guc,
+ 	int seqno;
+ 	int ret;
  
--static bool tlb_invalidation_seqno_past(struct xe_gt *gt, int seqno)
-+static bool __tlb_invalidation_seqno_past(struct xe_gt *gt,
-+					  enum xe_gt_tlb_invalidation_clients client,
-+					  int seqno)
- {
--	int seqno_recv = READ_ONCE(gt->tlb_invalidation.seqno_recv);
-+	int seqno_recv = READ_ONCE(gt->tlb_invalidation.seqno_recv[client]);
++	xe_gt_assert(gt, fence);
++
+ 	/*
+ 	 * XXX: The seqno algorithm relies on TLB invalidation being processed
+ 	 * in order which they currently are, if that changes the algorithm will
+@@ -173,10 +173,8 @@ static int send_tlb_invalidation(struct xe_guc *guc,
  
- 	if (seqno - seqno_recv < -(TLB_INVALIDATION_SEQNO_MAX / 2))
- 		return false;
-@@ -157,16 +167,59 @@ static bool tlb_invalidation_seqno_past(struct xe_gt *gt, int seqno)
- 	return seqno_recv >= seqno;
- }
- 
-+static bool tlb_invalidation_seqno_past(struct xe_gt *gt, int seqno)
-+{
-+	enum xe_gt_tlb_invalidation_clients client;
-+
-+	for (client = 0; client < XE_GT_TLB_INVALIDATION_CLIENT_MAX; ++client)
-+		if (!__tlb_invalidation_seqno_past(gt, client, seqno))
-+			return false;
-+
-+	return true;
-+}
-+
- static int send_tlb_invalidation_ggtt(struct xe_gt *gt, int seqno)
- {
--	return gt->tlb_invalidation.ops->tlb_invalidation_ggtt(gt, seqno);
-+	enum xe_gt_tlb_invalidation_clients client;
-+	int ret;
-+
-+	for (client = 0; client < XE_GT_TLB_INVALIDATION_CLIENT_MAX; ++client) {
-+		const struct xe_gt_tlb_invalidation_ops *ops =
-+			gt->tlb_invalidation.ops[client];
-+
-+		if (!ops || !ops->tlb_invalidation_ggtt) {
-+			xe_gt_tlb_invalidation_done_handler(gt, client, seqno);
-+		} else {
-+			ret = ops->tlb_invalidation_ggtt(gt, seqno);
-+			if (ret < 0)
-+				return ret;
-+		}
-+	}
-+
-+	return 0;
- }
- 
- static int send_tlb_invalidation_ppgtt(struct xe_gt *gt, u64 start, u64 end,
- 				       u32 asid, int seqno)
- {
--	return gt->tlb_invalidation.ops->tlb_invalidation_ppgtt(gt, start, end,
--								asid, seqno);
-+	enum xe_gt_tlb_invalidation_clients client;
-+	int ret;
-+
-+	for (client = 0; client < XE_GT_TLB_INVALIDATION_CLIENT_MAX; ++client) {
-+		const struct xe_gt_tlb_invalidation_ops *ops =
-+			gt->tlb_invalidation.ops[client];
-+
-+		if (!ops || !ops->tlb_invalidation_ppgtt) {
-+			xe_gt_tlb_invalidation_done_handler(gt, client, seqno);
-+		} else {
-+			ret = ops->tlb_invalidation_ppgtt(gt, start, end, asid,
-+							  seqno);
-+			if (ret < 0)
-+				return ret;
-+		}
-+	}
-+
-+	return 0;
- }
- 
- static void xe_gt_tlb_invalidation_fence_prep(struct xe_gt *gt,
-@@ -287,12 +340,6 @@ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
- 
- 	xe_gt_assert(gt, fence);
- 
--	/* Execlists not supported */
--	if (xe->info.force_execlist) {
--		__invalidation_fence_signal(xe, fence);
--		return 0;
+ 	mutex_lock(&guc->ct.lock);
+ 	seqno = gt->tlb_invalidation.seqno;
+-	if (fence) {
+-		fence->seqno = seqno;
+-		trace_xe_gt_tlb_invalidation_fence_send(xe, fence);
 -	}
--
- 	mutex_lock(&gt->tlb_invalidation.seqno_lock);
++	fence->seqno = seqno;
++	trace_xe_gt_tlb_invalidation_fence_send(xe, fence);
+ 	action[1] = seqno;
+ 	ret = xe_guc_ct_send_locked(&guc->ct, action, len,
+ 				    G2H_LEN_DW_TLB_INVALIDATE, 1);
+@@ -209,7 +207,6 @@ static int send_tlb_invalidation(struct xe_guc *guc,
+ 			TLB_INVALIDATION_SEQNO_MAX;
+ 		if (!gt->tlb_invalidation.seqno)
+ 			gt->tlb_invalidation.seqno = 1;
+-		ret = seqno;
+ 	}
+ 	mutex_unlock(&guc->ct.lock);
  
- 	xe_gt_tlb_invalidation_fence_prep(gt, fence);
-@@ -330,7 +377,9 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+@@ -223,14 +220,16 @@ static int send_tlb_invalidation(struct xe_guc *guc,
+ /**
+  * xe_gt_tlb_invalidation_guc - Issue a TLB invalidation on this GT for the GuC
+  * @gt: graphics tile
++ * @fence: invalidation fence which will be signal on TLB invalidation
++ * completion
+  *
+  * Issue a TLB invalidation for the GuC. Completion of TLB is asynchronous and
+- * caller can use seqno + xe_gt_tlb_invalidation_wait to wait for completion.
++ * caller can use the invalidation fence to wait for completion.
+  *
+- * Return: Seqno which can be passed to xe_gt_tlb_invalidation_wait on success,
+- * negative error code on error.
++ * Return: 0 on success, negative error code on error
+  */
+-static int xe_gt_tlb_invalidation_guc(struct xe_gt *gt)
++static int xe_gt_tlb_invalidation_guc(struct xe_gt *gt,
++				      struct xe_gt_tlb_invalidation_fence *fence)
+ {
+ 	u32 action[] = {
+ 		XE_GUC_ACTION_TLB_INVALIDATION,
+@@ -238,7 +237,7 @@ static int xe_gt_tlb_invalidation_guc(struct xe_gt *gt)
+ 		MAKE_INVAL_OP(XE_GUC_TLB_INVAL_GUC),
+ 	};
+ 
+-	return send_tlb_invalidation(&gt->uc.guc, NULL, action,
++	return send_tlb_invalidation(&gt->uc.guc, fence, action,
+ 				     ARRAY_SIZE(action));
+ }
+ 
+@@ -257,13 +256,15 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
+ 
+ 	if (xe_guc_ct_enabled(&gt->uc.guc.ct) &&
+ 	    gt->uc.guc.submission_state.enabled) {
+-		int seqno;
++		struct xe_gt_tlb_invalidation_fence fence;
++		int ret;
+ 
+-		seqno = xe_gt_tlb_invalidation_guc(gt);
+-		if (seqno <= 0)
+-			return seqno;
++		xe_gt_tlb_invalidation_fence_init(gt, &fence);
++		ret = xe_gt_tlb_invalidation_guc(gt, &fence);
++		if (ret < 0)
++			return ret;
+ 
+-		xe_gt_tlb_invalidation_wait(gt, seqno);
++		xe_gt_tlb_invalidation_fence_wait(&fence);
+ 	} else if (xe_device_uc_enabled(xe) && !xe_device_wedged(xe)) {
+ 		if (IS_SRIOV_VF(xe))
+ 			return 0;
+@@ -290,18 +291,16 @@ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt)
+  *
+  * @gt: graphics tile
+  * @fence: invalidation fence which will be signal on TLB invalidation
+- * completion, can be NULL
++ * completion
+  * @start: start address
+  * @end: end address
+  * @asid: address space id
+  *
+  * Issue a range based TLB invalidation if supported, if not fallback to a full
+- * TLB invalidation. Completion of TLB is asynchronous and caller can either use
+- * the invalidation fence or seqno + xe_gt_tlb_invalidation_wait to wait for
+- * completion.
++ * TLB invalidation. Completion of TLB is asynchronous and caller can use
++ * the invalidation fence to wait for completion.
+  *
+- * Return: Seqno which can be passed to xe_gt_tlb_invalidation_wait on success,
+- * negative error code on error.
++ * Return: Negative error code on error, 0 on success
+  */
+ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+ 				 struct xe_gt_tlb_invalidation_fence *fence,
+@@ -312,11 +311,11 @@ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+ 	u32 action[MAX_TLB_INVALIDATION_LEN];
+ 	int len = 0;
+ 
++	xe_gt_assert(gt, fence);
++
+ 	/* Execlists not supported */
+ 	if (gt_to_xe(gt)->info.force_execlist) {
+-		if (fence)
+-			__invalidation_fence_signal(xe, fence);
+-
++		__invalidation_fence_signal(xe, fence);
+ 		return 0;
+ 	}
+ 
+@@ -382,12 +381,10 @@ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+  * @vma: VMA to invalidate
+  *
+  * Issue a range based TLB invalidation if supported, if not fallback to a full
+- * TLB invalidation. Completion of TLB is asynchronous and caller can either use
+- * the invalidation fence or seqno + xe_gt_tlb_invalidation_wait to wait for
+- * completion.
++ * TLB invalidation. Completion of TLB is asynchronous and caller can use
++ * the invalidation fence to wait for completion.
+  *
+- * Return: Seqno which can be passed to xe_gt_tlb_invalidation_wait on success,
+- * negative error code on error.
++ * Return: Negative error code on error, 0 on success
+  */
+ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 			       struct xe_gt_tlb_invalidation_fence *fence,
+@@ -400,43 +397,6 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
  					    xe_vma_vm(vma)->usm.asid);
  }
  
--void xe_gt_tlb_invalidation_done_handler(struct xe_gt *gt, int seqno)
-+void xe_gt_tlb_invalidation_done_handler(struct xe_gt *gt,
-+					 enum xe_gt_tlb_invalidation_clients client,
-+					 int seqno)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_gt_tlb_invalidation_fence *fence, *next;
-@@ -352,12 +401,12 @@ void xe_gt_tlb_invalidation_done_handler(struct xe_gt *gt, int seqno)
- 	 * process_g2h_msg().
- 	 */
- 	spin_lock_irqsave(&gt->tlb_invalidation.pending_lock, flags);
--	if (tlb_invalidation_seqno_past(gt, seqno)) {
-+	if (__tlb_invalidation_seqno_past(gt, client, seqno)) {
- 		spin_unlock_irqrestore(&gt->tlb_invalidation.pending_lock, flags);
- 		return;
+-/**
+- * xe_gt_tlb_invalidation_wait - Wait for TLB to complete
+- * @gt: graphics tile
+- * @seqno: seqno to wait which was returned from xe_gt_tlb_invalidation
+- *
+- * Wait for tlb_timeout_jiffies() for a TLB invalidation to complete.
+- *
+- * Return: 0 on success, -ETIME on TLB invalidation timeout
+- */
+-int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno)
+-{
+-	struct xe_guc *guc = &gt->uc.guc;
+-	int ret;
+-
+-	/* Execlists not supported */
+-	if (gt_to_xe(gt)->info.force_execlist)
+-		return 0;
+-
+-	/*
+-	 * XXX: See above, this algorithm only works if seqno are always in
+-	 * order
+-	 */
+-	ret = wait_event_timeout(guc->ct.wq,
+-				 tlb_invalidation_seqno_past(gt, seqno),
+-				 tlb_timeout_jiffies(gt));
+-	if (!ret) {
+-		struct drm_printer p = xe_gt_err_printer(gt);
+-
+-		xe_gt_err(gt, "TLB invalidation time'd out, seqno=%d, recv=%d\n",
+-			  seqno, gt->tlb_invalidation.seqno_recv);
+-		xe_guc_ct_print(&guc->ct, &p, true);
+-		return -ETIME;
+-	}
+-
+-	return 0;
+-}
+-
+ /**
+  * xe_guc_tlb_invalidation_done_handler - TLB invalidation done handler
+  * @guc: guc
+@@ -480,12 +440,7 @@ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ 		return 0;
  	}
  
--	WRITE_ONCE(gt->tlb_invalidation.seqno_recv, seqno);
-+	WRITE_ONCE(gt->tlb_invalidation.seqno_recv[client], seqno);
+-	/*
+-	 * wake_up_all() and wait_event_timeout() already have the correct
+-	 * barriers.
+-	 */
+ 	WRITE_ONCE(gt->tlb_invalidation.seqno_recv, msg[0]);
+-	wake_up_all(&guc->ct.wq);
  
  	list_for_each_entry_safe(fence, next,
  				 &gt->tlb_invalidation.pending_fences, link) {
+@@ -541,4 +496,6 @@ void xe_gt_tlb_invalidation_fence_init(struct xe_gt *gt,
+ 		       &gt->tlb_invalidation.lock,
+ 		       dma_fence_context_alloc(1), 1);
+ 	spin_unlock_irq(&gt->tlb_invalidation.lock);
++	INIT_LIST_HEAD(&fence->link);
++	dma_fence_get(&fence->base);
+ }
 diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-index ee532ad64aac..df22d9b4d85c 100644
+index 948f4a2f5214..cbf49b3d0265 100644
 --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
 +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-@@ -26,7 +26,9 @@ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+@@ -23,10 +23,15 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+ 				 struct xe_gt_tlb_invalidation_fence *fence,
+ 				 u64 start, u64 end, u32 asid);
+-int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno);
+ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ 
  void xe_gt_tlb_invalidation_fence_init(struct xe_gt *gt,
  				       struct xe_gt_tlb_invalidation_fence *fence);
  
--void xe_gt_tlb_invalidation_done_handler(struct xe_gt *gt, int seqno);
-+void xe_gt_tlb_invalidation_done_handler(struct xe_gt *gt,
-+					 enum xe_gt_tlb_invalidation_clients client,
-+					 int seqno);
- 
- static inline void
- xe_gt_tlb_invalidation_fence_wait(struct xe_gt_tlb_invalidation_fence *fence)
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h
-index 1abb8692d14b..1208edf7a5a4 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h
-@@ -38,4 +38,9 @@ struct xe_gt_tlb_invalidation_ops {
- 				      u32 asid, int seqno);
- };
- 
-+enum xe_gt_tlb_invalidation_clients {
-+	XE_GT_TLB_INVALIDATION_CLIENT_GUC = 0,
-+	XE_GT_TLB_INVALIDATION_CLIENT_MAX,
-+};
++static inline void
++xe_gt_tlb_invalidation_fence_wait(struct xe_gt_tlb_invalidation_fence *fence)
++{
++	dma_fence_wait(&fence->base, false);
++}
 +
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 4b9740a68457..9a2f1e8b74e1 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -10,6 +10,7 @@
- #include "xe_gt_idle_types.h"
- #include "xe_gt_sriov_pf_types.h"
- #include "xe_gt_sriov_vf_types.h"
-+#include "xe_gt_tlb_invalidation_types.h"
- #include "xe_hw_engine_types.h"
- #include "xe_hw_fence_types.h"
- #include "xe_oa.h"
-@@ -170,7 +171,7 @@ struct xe_gt {
- 	/** @tlb_invalidation: TLB invalidation state */
- 	struct {
- 		/** @tlb_invalidation.ops: TLB invalidation ops */
--		const struct xe_gt_tlb_invalidation_ops *ops;
-+		const struct xe_gt_tlb_invalidation_ops *ops[XE_GT_TLB_INVALIDATION_CLIENT_MAX];
- 		/** @tlb_invalidation.seqno_lock: TLB invalidation seqno lock */
- 		struct mutex seqno_lock;
- 		/**
-@@ -184,7 +185,7 @@ struct xe_gt {
- 		 * protected by @tlb_invalidation.seqno_lock (send) and
- 		 * @tlb_invalidation.pending_lock (send, recv)
- 		 */
--		int seqno_recv;
-+		int seqno_recv[XE_GT_TLB_INVALIDATION_CLIENT_MAX];
- 		/**
- 		 * @tlb_invalidation.pending_fences: list of pending fences waiting TLB
- 		 * invaliations, protected by @tlb_invalidation.seqno_lock
-diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_guc_tlb_invalidation.c
-index 0931e0b56561..e16adafd43cc 100644
---- a/drivers/gpu/drm/xe/xe_guc_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_guc_tlb_invalidation.c
-@@ -143,7 +143,9 @@ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
- 	if (unlikely(len != 1))
- 		return -EPROTO;
+ #endif	/* _XE_GT_TLB_INVALIDATION_ */
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index ff4ca19e31f0..1caa99b22c73 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1356,9 +1356,7 @@ static void invalidation_fence_init(struct xe_gt *gt,
+ 	trace_xe_gt_tlb_invalidation_fence_create(gt_to_xe(gt), &ifence->base);
  
--	xe_gt_tlb_invalidation_done_handler(gt, msg[0]);
-+	xe_gt_tlb_invalidation_done_handler(gt,
-+					    XE_GT_TLB_INVALIDATION_CLIENT_GUC,
-+					    msg[0]);
+ 	xe_gt_tlb_invalidation_fence_init(gt, &ifence->base);
+-	INIT_LIST_HEAD(&ifence->base.link);
  
- 	return 0;
+-	dma_fence_get(&ifence->base.base);	/* Ref for caller */
+ 	ifence->fence = fence;
+ 	ifence->gt = gt;
+ 	ifence->start = start;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index cf3aea5d8cdc..478932fb7718 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3176,8 +3176,8 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+ {
+ 	struct xe_device *xe = xe_vma_vm(vma)->xe;
+ 	struct xe_tile *tile;
++	struct xe_gt_tlb_invalidation_fence fence[XE_MAX_TILES_PER_DEVICE];
+ 	u32 tile_needs_invalidate = 0;
+-	int seqno[XE_MAX_TILES_PER_DEVICE];
+ 	u8 id;
+ 	int ret;
+ 
+@@ -3204,29 +3204,31 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+ 
+ 	for_each_tile(tile, xe, id) {
+ 		if (xe_pt_zap_ptes(tile, vma)) {
+-			tile_needs_invalidate |= BIT(id);
+ 			xe_device_wmb(xe);
++			xe_gt_tlb_invalidation_fence_init(tile->primary_gt,
++							  &fence[id]);
++
+ 			/*
+ 			 * FIXME: We potentially need to invalidate multiple
+ 			 * GTs within the tile
+ 			 */
+-			seqno[id] = xe_gt_tlb_invalidation_vma(tile->primary_gt, NULL, vma);
+-			if (seqno[id] < 0)
+-				return seqno[id];
+-		}
+-	}
+-
+-	for_each_tile(tile, xe, id) {
+-		if (tile_needs_invalidate & BIT(id)) {
+-			ret = xe_gt_tlb_invalidation_wait(tile->primary_gt, seqno[id]);
++			ret = xe_gt_tlb_invalidation_vma(tile->primary_gt,
++							 &fence[id], vma);
+ 			if (ret < 0)
+-				return ret;
++				goto wait;
++
++			tile_needs_invalidate |= BIT(id);
+ 		}
+ 	}
+ 
++wait:
++	for_each_tile(tile, xe, id)
++		if (tile_needs_invalidate & BIT(id))
++			xe_gt_tlb_invalidation_fence_wait(&fence[id]);
++
+ 	vma->tile_invalidated = vma->tile_mask;
+ 
+-	return 0;
++	return ret;
  }
+ 
+ struct xe_vm_snapshot {
 -- 
 2.34.1
 
