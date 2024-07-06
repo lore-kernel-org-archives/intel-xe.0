@@ -4,58 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06EA0C2BD09
-	for <intel-xe@archiver.kernel.org>; Sat,  6 Jul 2024 12:07:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27DB2C2BD09
+	for <intel-xe@archiver.kernel.org>; Sat,  6 Jul 2024 13:32:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F00110E188;
-	Sat,  6 Jul 2024 12:07:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9559D10E188;
+	Sat,  6 Jul 2024 13:32:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jRJwk3VD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CK3FlPCP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EADE010E15B;
- Sat,  6 Jul 2024 12:07:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8494310E1D8
+ for <intel-xe@lists.freedesktop.org>; Sat,  6 Jul 2024 13:32:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720267668; x=1751803668;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=knhoTdgUpfDNyLJQ9HKWCHBcLy70fpWtaG2Q+BUyskg=;
- b=jRJwk3VDODVC08RfmUF8M8lgvqmfM9Z9Ej0RWIRwRQ9rPn/Q4czTnpGu
- mbZWMK7+Cae9UQKNNOP0HOaKOZch0UJEtWGbFDZdip8frLj21W00Zv50b
- oHUEt5L24bF+M/ufEKMdBpNbck3xDZnkz6XJy1cfM9j9y3hjTXsxHf1r/
- 2NBgzTYPuJcmpmaMlQJgxyKzgQ3HCH2y3lxYVJbpgaLTqasnXp1kN68Eq
- 2NutXHxNIUJK8aFKLVlX+CimFDixqbDCWU4/AO3fNfPsSIYJ9J6JLA8vR
- 3RzqD6kwpJMG1pMPxM4AJXXcKazTC/XP8VFZNgG8yrvwwZ8hiMXR39Iov A==;
-X-CSE-ConnectionGUID: zhx82QUVS6uzVfZ7rFDwWw==
-X-CSE-MsgGUID: pzwG/kCQSBGUVjTd2Kmcfw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="40040512"
-X-IronPort-AV: E=Sophos;i="6.09,187,1716274800"; d="scan'208";a="40040512"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2024 05:07:48 -0700
-X-CSE-ConnectionGUID: tudvSjpiTUq+jzSN+RmMQQ==
-X-CSE-MsgGUID: 3/Mlj3qkT4iQXoA3W30CmQ==
+ t=1720272720; x=1751808720;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version:content-id;
+ bh=ZhH+lB8/ZbbcXbDhd1ruikCeO+Ks2bilp6M42Ew+R2A=;
+ b=CK3FlPCP+wIcBFmpbVSNujqEL8+vvOhdGS0Kye5end7hg91tl+1JK4rg
+ gFaWeKEyc5jtFD+M2f5qZUFexVTbvzBHJdwXuivGRA4v0KoH5tqluGEDY
+ h0Jpi/OZ8+8194RhydQBZ64VY+OWu1CoQdm8+AEUQnXVi8lxss1OT36vs
+ k4XeW1bYZ64hkWjTLnwAPU+MTaQ1YHR2UTGhOY9A3I/sQCHFVFmpJY24A
+ n0x9L0/smJXUDSPh2WspGYodNp6b4q9ZEMnv+Uf0/3G0F6unyTNkS3E2j
+ DD93kWMQkQy0Z8HA86VNxTpeSMQ0M/GfKxYUqD6RbIH6MQkbW1DPbIh/h Q==;
+X-CSE-ConnectionGUID: ceyqROh5S7iRyXufpXIIRg==
+X-CSE-MsgGUID: 6NHCAzwTTSKRKeIaDRzUWg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11125"; a="17663832"
+X-IronPort-AV: E=Sophos;i="6.09,187,1716274800"; d="scan'208";a="17663832"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2024 06:32:00 -0700
+X-CSE-ConnectionGUID: WkHh+OPAQGGC+BEpK6H7nA==
+X-CSE-MsgGUID: XzVcF9umReWF5YCb+ixKog==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,187,1716274800"; d="scan'208";a="47062396"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
- by fmviesa009.fm.intel.com with ESMTP; 06 Jul 2024 05:07:45 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sQ4Cd-000Tky-2F;
- Sat, 06 Jul 2024 12:07:43 +0000
-Date: Sat, 6 Jul 2024 20:06:58 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 16/20] drm/i915/fbdev: Extract
- intel_fbdev_fb_prefer_stolen()
-Message-ID: <202407061958.ScN1NFtC-lkp@intel.com>
-References: <20240705145254.3355-17-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,187,1716274800"; d="scan'208";a="47820586"
+Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost)
+ ([10.245.247.111])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2024 06:31:57 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Sat, 6 Jul 2024 16:31:53 +0300 (EEST)
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+cc: intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org, 
+ david.e.box@linux.intel.com, matthew.brost@intel.com
+Subject: Re: [PATCH v5 4/6] drm/xe/vsec: Support BMG devices
+In-Reply-To: <20240701141730.3585133-5-michael.j.ruhl@intel.com>
+Message-ID: <71c3782f-47af-f351-1399-0e43c2691d40@linux.intel.com>
+References: <20240701141730.3585133-1-michael.j.ruhl@intel.com>
+ <20240701141730.3585133-5-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240705145254.3355-17-ville.syrjala@linux.intel.com>
+Content-Type: multipart/mixed; BOUNDARY="8323328-15796492-1720271946=:72188"
+Content-ID: <e0b228b9-b710-6392-a455-b099e2a28953@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,134 +69,361 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Ville,
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-kernel test robot noticed the following build errors:
+--8323328-15796492-1720271946=:72188
+Content-Type: text/plain; CHARSET=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-ID: <fe8effc8-86b4-3796-f174-354840e68e20@linux.intel.com>
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-xe/drm-xe-next drm-tip/drm-tip next-20240703]
-[cannot apply to drm-intel/for-linux-next-fixes linus/master v6.10-rc6]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Mon, 1 Jul 2024, Michael J. Ruhl wrote:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ville-Syrjala/drm-i915-fbc-Extract-intel_fbc_has_fences/20240706-041642
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/20240705145254.3355-17-ville.syrjala%40linux.intel.com
-patch subject: [PATCH 16/20] drm/i915/fbdev: Extract intel_fbdev_fb_prefer_stolen()
-config: x86_64-randconfig-014-20240706 (https://download.01.org/0day-ci/archive/20240706/202407061958.ScN1NFtC-lkp@intel.com/config)
-compiler: gcc-13 (Ubuntu 13.2.0-4ubuntu3) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240706/202407061958.ScN1NFtC-lkp@intel.com/reproduce)
+> Utilize the PMT callback API to add support for the BMG
+> devices.
+>=20
+> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+> ---
+>  drivers/gpu/drm/xe/Makefile          |   1 +
+>  drivers/gpu/drm/xe/xe_device.c       |   5 +
+>  drivers/gpu/drm/xe/xe_device_types.h |   6 +
+>  drivers/gpu/drm/xe/xe_vsec.c         | 221 +++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_vsec.h         |  13 ++
+>  5 files changed, 246 insertions(+)
+>  create mode 100644 drivers/gpu/drm/xe/xe_vsec.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_vsec.h
+>=20
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index b1e03bfe4a68..5860d6db1598 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -129,6 +129,7 @@ xe-y +=3D xe_bb.o \
+>  =09xe_vm.o \
+>  =09xe_vram.o \
+>  =09xe_vram_freq.o \
+> +=09xe_vsec.o \
+>  =09xe_wait_user_fence.o \
+>  =09xe_wa.o \
+>  =09xe_wopcm.o
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
+e.c
+> index cfda7cb5df2c..05a666c7bbb7 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -53,6 +53,7 @@
+>  #include "xe_ttm_sys_mgr.h"
+>  #include "xe_vm.h"
+>  #include "xe_vram.h"
+> +#include "xe_vsec.h"
+>  #include "xe_wait_user_fence.h"
+> =20
+>  static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+> @@ -317,6 +318,8 @@ struct xe_device *xe_device_create(struct pci_dev *pd=
+ev,
+>  =09=09goto err;
+>  =09}
+> =20
+> +=09drmm_mutex_init(&xe->drm, &xe->pmt.lock);
+> +
+>  =09err =3D xe_display_create(xe);
+>  =09if (WARN_ON(err))
+>  =09=09goto err;
+> @@ -692,6 +695,8 @@ int xe_device_probe(struct xe_device *xe)
+>  =09for_each_gt(gt, xe, id)
+>  =09=09xe_gt_sanitize_freq(gt);
+> =20
+> +=09xe_vsec_init(xe);
+> +
+>  =09return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
+> =20
+>  err_fini_display:
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe=
+_device_types.h
+> index c37be471d11c..11513d8f3a8b 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -451,6 +451,12 @@ struct xe_device {
+>  =09=09struct mutex lock;
+>  =09} d3cold;
+> =20
+> +=09/** @pmt: Support the PMT driver callback interface */
+> +=09struct {
+> +=09=09/** @pmt.lock: protect access for telemetry data */
+> +=09=09struct mutex lock;
+> +=09} pmt;
+> +
+>  =09/**
+>  =09 * @pm_callback_task: Track the active task that is running in either
+>  =09 * the runtime_suspend or runtime_resume callbacks.
+> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+> new file mode 100644
+> index 000000000000..dfd42153bc76
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_vsec.c
+> @@ -0,0 +1,221 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright =C2=A9 2022 - 2024 Intel Corporation
+> + */
+> +#include <linux/intel_vsec.h>
+> +#include <linux/pci.h>
+> +
+> +#include "xe_device.h"
+> +#include "xe_device_types.h"
+> +#include "xe_drv.h"
+> +#include "xe_mmio.h"
+> +#include "xe_platform_types.h"
+> +#include "xe_pm.h"
+> +#include "xe_vsec.h"
+> +
+> +#define SOC_BASE=09=090x280000
+> +
+> +#define BMG_PMT_BASE=09=090xDB000
+> +#define BMG_DISCOVERY_OFFSET=09(SOC_BASE + BMG_PMT_BASE)
+> +
+> +#define BMG_TELEMETRY_BASE=090xE0000
+> +#define BMG_TELEMETRY_OFFSET=09(SOC_BASE + BMG_TELEMETRY_BASE)
+> +
+> +#define BMG_DEVICE_ID 0xE2F8
+> +
+> +#define GFX_BAR=09=09=090
+> +
+> +#define SG_REMAP_INDEX1=09=09XE_REG(SOC_BASE + 0x08)
+> +#define SG_REMAP_ACCESS(_mem)=09((_mem) << 24)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202407061958.ScN1NFtC-lkp@intel.com/
+Is this perhaps your custom version of FIELD_PREP(SG_REMAP_BITS, _mem)?
+If so, just use FIELD_PREP() directly at the only caller.
 
-All errors (new ones prefixed by >>, old ones prefixed by <<):
+> +#define SG_REMAP_BITS=09=09GENMASK(31, 24)
 
-WARNING: modpost: missing MODULE_DESCRIPTION() in mm/kasan/kasan_test_module.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/ext4/ext4-inode-test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/fat/fat_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nfs/nfsv4.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_cp437.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_cp775.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_cp855.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_cp861.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_cp862.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_cp863.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_cp865.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_cp866.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_cp869.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_cp874.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_cp949.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_cp950.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_ascii.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_iso8859-2.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_iso8859-3.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_iso8859-4.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_iso8859-5.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_iso8859-13.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/mac-celtic.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/mac-centeuro.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/mac-iceland.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/nls/nls_ucs2_utils.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/cramfs/cramfs.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/hfs/hfs.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/qnx4/qnx4.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in fs/adfs/adfs.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in security/keys/trusted-keys/trusted.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in security/keys/encrypted-keys/encrypted-keys.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in crypto/xor.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/kunit/kunit.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/kunit/kunit-test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/math/prime_numbers.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/zlib_deflate/zlib_deflate.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/pinctrl/pinctrl-mcp23s08_i2c.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/pinctrl/pinctrl-mcp23s08.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/backlight/platform_lcd.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/fbdev/matrox/matroxfb_accel.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/fbdev/matrox/matroxfb_DAC1064.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/fbdev/matrox/matroxfb_Ti3026.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/video/fbdev/vfb.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/acpi/platform_profile.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/clk-gate_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/clk-fractional-divider_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/virtio/virtio_dma_buf.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/regulator/max20411-regulator.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/regulator/rt4831-regulator.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/char/agp/intel-agp.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/char/agp/intel-gtt.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/char/agp/via-agp.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/char/tlclk.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_kunit_helpers.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_buddy_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_cmdline_parser_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_connector_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_damage_helper_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_dp_mst_helper_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_exec_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_format_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_framebuffer_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_gem_shmem_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_managed_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_mm_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_modes_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_plane_helper_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_probe_helper_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tests/drm_rect_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tiny/bochs.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/tiny/cirrus.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/drm_panel_orientation_quirks.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/base/regmap/regmap-kunit.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/base/regmap/regmap-ram.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/base/regmap/regmap-raw-ram.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/mfd/arizona.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/mfd/pcf50633-gpio.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/dax/device_dax.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/dax/dax_cxl.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/scsi/scsi_common.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/scsi/BusLogic.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/scsi/aha1740.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/scsi/atp870u.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/input/touchscreen/cyttsp_i2c_common.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/input/tests/input_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/rtc/lib_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/mmc/core/sdio_uart.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/platform/x86/ibm_rtl.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/platform/x86/firmware_attributes_class.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/platform/x86/siemens/simatic-ipc.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/devfreq/governor_performance.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hwtracing/intel_th/intel_th_msu_sink.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/greybus/greybus.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in samples/kfifo/bytestream-example.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in samples/kfifo/dma-example.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in samples/kfifo/inttype-example.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in samples/kfifo/record-example.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in samples/kobject/kobject-example.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in samples/kobject/kset-example.o
->> ERROR: modpost: "intel_fbdev_fb_prefer_stolen" [drivers/gpu/drm/i915/i915.ko] undefined!
+Missing include for GENMASK().
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> +
+> +static struct intel_vsec_header bmg_telemetry =3D {
+> +=09.length =3D 0x10,
+> +=09.id =3D VSEC_ID_TELEMETRY,
+> +=09.num_entries =3D 2,
+> +=09.entry_size =3D 4,
+> +=09.tbir =3D GFX_BAR,
+> +=09.offset =3D BMG_DISCOVERY_OFFSET,
+> +};
+> +
+> +static struct intel_vsec_header *bmg_capabilities[] =3D {
+> +=09&bmg_telemetry,
+> +=09NULL
+> +};
+> +
+> +enum xe_vsec {
+> +=09XE_VSEC_UNKNOWN =3D 0,
+> +=09XE_VSEC_BMG,
+> +};
+> +
+> +static struct intel_vsec_platform_info xe_vsec_info[] =3D {
+> +=09[XE_VSEC_BMG] =3D {
+> +=09=09.caps =3D VSEC_CAP_TELEMETRY,
+> +=09=09.headers =3D bmg_capabilities,
+> +=09},
+> +=09{ }
+> +};
+> +
+> +/* GUID Decode information */
+> +#define GUID_TELEM_ITERATION GENMASK(3, 0)
+> +#define GUID_SEGMENT GENMASK(7, 4)
+> +#define GUID_SOC_SKU GENMASK(11, 8)
+> +#define GUID_DEVICE_ID GENMASK(27, 12)
+> +#define GUID_CAP_TYPE GENMASK(29, 28)
+> +#define GUID_RECORD_ID GENMASK(31, 30)
+
+Please align these with tabs
+
+> +#define PUNIT_TELEMETRY_OFFSET 0x0200
+> +#define PUNIT_WATCHER_OFFSET 0X14A0
+
+X -> x
+
+> +#define OOBMSM_0_WATCHER_OFFSET 0x18D8
+> +#define OOBMSM_1_TELEMETRY_OFFSET 0x1000
+
+Also align all of these.
+
+> +
+> +enum record_id {
+> +=09PUNIT,
+> +=09OOBMSM_0,
+> +=09OOBMSM_1
+> +};
+> +
+> +enum capability {
+> +=09CRASHLOG,
+> +=09TELEMETRY,
+> +=09WATCHER
+> +};
+> +
+> +/*
+> + * The GUID will have the following bits to decode (high bits first):
+> + *
+> + * X(2bits) - Record-ID (0-PUNIT, 1-OOBMSM_0, 2-OOBMSM_1)
+> + * X(2bits) - Capability Type (Crashlog-0, Telemetry Aggregator-1, Watch=
+er-2)
+> + * XXXX(16bits)=E2=80=93 Device ID =E2=80=93 changes for each down bin S=
+KU=E2=80=99s (0xE2F8 for BMG)
+> + * X(4bits) - SOC_SKU (SKU_INDEPENDENT-0, X3-1, X2-2, G31-3),
+> + * X(4bits) - Segment (SEGMENT_INDEPENDENT-0, Client-1, Server-2)
+> + * X(4bits) - {Telemetry space iteration number (0,1,..)}
+
+I'd put these where the GENMASK() are defined.
+
+> + *
+
+Extra line
+
+> + */
+> +static int guid_decode(u32 guid, int *index, u32 *offset)
+> +{
+> +=09u32 record_id =3D FIELD_GET(GUID_RECORD_ID, guid);
+> +=09u32 cap_type  =3D FIELD_GET(GUID_CAP_TYPE, guid);
+> +=09u32 device_id =3D FIELD_GET(GUID_DEVICE_ID, guid);
+
+Missing include for FIELD_GET().
+
+> +
+> +=09if (device_id !=3D BMG_DEVICE_ID)
+> +=09=09return -ENODEV;
+> +
+> +=09if (record_id > OOBMSM_1 || cap_type > WATCHER)
+> +=09=09return -EINVAL;
+> +
+> +=09*offset =3D 0;
+> +
+> +=09if (cap_type =3D=3D CRASHLOG) {
+> +=09=09*index =3D record_id =3D=3D PUNIT ? 2 : 4;
+> +=09=09return 0;
+> +=09}
+> +
+> +=09switch (record_id) {
+> +=09case PUNIT:
+> +=09=09*index =3D 0;
+> +=09=09if (cap_type =3D=3D TELEMETRY)
+> +=09=09=09*offset =3D PUNIT_TELEMETRY_OFFSET;
+> +=09=09else /* if (cap_type =3D=3D WATCHER) */
+
+Code is commented out???
+
+> +=09=09=09*offset =3D PUNIT_WATCHER_OFFSET;
+> +=09=09break;
+> +
+> +=09case OOBMSM_0:
+> +=09=09*index =3D 1;
+> +=09=09if (cap_type =3D=3D WATCHER)
+> +=09=09=09*offset =3D OOBMSM_0_WATCHER_OFFSET;
+> +=09=09break;
+> +
+> +=09case OOBMSM_1:
+> +=09=09*index =3D 1;
+> +=09=09if (cap_type =3D=3D TELEMETRY)
+> +=09=09=09*offset =3D OOBMSM_1_TELEMETRY_OFFSET;
+> +=09=09break;
+> +=09}
+> +
+> +=09return 0;
+> +}
+> +
+> +static int xe_pmt_telem_read(void *args, u32 guid, u64 *data, u32 count)
+> +{
+> +=09struct xe_device *xe =3D pdev_to_xe_device((struct pci_dev *)args);
+
+Casting from void * is not required, but I suspect what you want here=20
+instead of cast is container_of().
+
+> +=09void __iomem *telem_addr =3D xe->mmio.regs + BMG_TELEMETRY_OFFSET;
+> +=09u32 mem_region;
+> +=09u32 offset;
+> +=09int ret;
+> +
+> +=09ret =3D guid_decode(guid, &mem_region, &offset);
+> +=09if (ret)
+> +=09=09return ret;
+> +
+> +=09telem_addr +=3D offset;
+> +
+> +=09mutex_lock(&xe->pmt.lock);
+
+Missing include.
+
+> +=09/* indicate that we are not at an appropriate power level */
+> +=09ret =3D -ENODATA;
+> +=09if (xe_pm_runtime_get_if_active(xe) > 0) {
+> +=09=09/* set SoC re-mapper index register based on guid memory region */
+
+GUID
+
+> +=09=09xe_mmio_rmw32(xe->tiles[0].primary_gt, SG_REMAP_INDEX1, SG_REMAP_B=
+ITS,
+> +=09=09=09      SG_REMAP_ACCESS(mem_region));
+> +
+> +=09=09memcpy_fromio(data, telem_addr, count);
+> +=09=09ret =3D count;
+> +=09=09xe_pm_runtime_put(xe);
+> +=09}
+> +=09mutex_unlock(&xe->pmt.lock);
+> +
+> +=09return ret;
+> +}
+> +
+> +struct pmt_callbacks xe_pmt_cb =3D {
+> +=09.read_telem =3D xe_pmt_telem_read,
+> +};
+> +
+> +static const int vsec_platforms[] =3D {
+> +=09[XE_BATTLEMAGE] =3D XE_VSEC_BMG,
+> +};
+> +
+> +static enum xe_vsec get_platform_info(struct xe_device *xe)
+> +{
+> +=09if (xe->info.platform > XE_BATTLEMAGE)
+> +=09=09return XE_VSEC_UNKNOWN;
+> +
+> +=09return vsec_platforms[xe->info.platform];
+> +}
+> +
+> +/**
+> + * xe_vsec_init - Initialize resources and add intel_vsec auxiliary
+> + * interface
+> + * @xe: valid xe instance
+> + */
+> +void xe_vsec_init(struct xe_device *xe)
+> +{
+> +=09struct intel_vsec_platform_info *info;
+> +=09struct device *dev =3D xe->drm.dev;
+> +=09struct pci_dev *pdev =3D to_pci_dev(dev);
+> +=09enum xe_vsec platform;
+> +
+> +=09platform =3D get_platform_info(xe);
+> +=09if (platform =3D=3D XE_VSEC_UNKNOWN)
+> +=09=09return;
+> +
+> +=09info =3D &xe_vsec_info[platform];
+> +=09if (!info->headers)
+> +=09=09return;
+> +
+> +=09switch (platform) {
+> +=09case XE_VSEC_BMG:
+> +=09=09info->priv_data =3D &xe_pmt_cb;
+> +=09=09break;
+> +=09default:
+> +=09=09break;
+> +=09}
+> +
+> +=09/*
+> +=09 * Register a VSEC. Cleanup is handled using device managed
+> +=09 * resources.
+> +=09 */
+> +=09intel_vsec_register(pdev, info);
+> +}
+> +MODULE_IMPORT_NS(INTEL_VSEC);
+
+Missing include.
+
+--=20
+ i.
+--8323328-15796492-1720271946=:72188--
