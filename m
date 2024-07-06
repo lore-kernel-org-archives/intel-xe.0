@@ -4,52 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D07E4C3271E
-	for <intel-xe@archiver.kernel.org>; Sat,  6 Jul 2024 02:17:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC1FCC2BD09
+	for <intel-xe@archiver.kernel.org>; Sat,  6 Jul 2024 04:45:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F8A910E2C6;
-	Sat,  6 Jul 2024 02:17:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D07110E0A6;
+	Sat,  6 Jul 2024 04:45:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jIUqL/PY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QtQ4eOvU";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A236C10E2C6
- for <intel-xe@lists.freedesktop.org>; Sat,  6 Jul 2024 02:17:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E37A010E0A6;
+ Sat,  6 Jul 2024 04:45:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720232243; x=1751768243;
- h=date:from:to:cc:subject:message-id;
- bh=SY36nqpSChPnpyLzAm2GAnDyzgNPLMvbfed5l/PGwVY=;
- b=jIUqL/PY7sodAzt5J4bKTgPmGdxFWVk8HCoRDVMTe7yQsoFvM2Gv09SV
- 840BsTCcdTeJ5oED82md9QpBExp0hzmJOVTg98m1amCJjxGgbcK3UvfrI
- fk/fMTAJgg5ODj60OLYeSbSKen9FF/KfDvD/8pD7nz5yvnq72Pq2w6yYB
- nBtDzGhsM1OI/vVoPxhgHp26p0cJExaqPD/el90RfUX1Ll+UMzkh6WWpH
- S/K6AiCCRr7f0HA4PaaQRsozr9P7juzakVaGKZIKLBZ2S2cETsq+WCLHY
- 3tlVoFtjzZplbhyBno7oAwtfp8g6JsDmXfl7scSxexHMIbFXMc6WHxz9u g==;
-X-CSE-ConnectionGUID: pH09KBMVQ4CNjhxdBvpwSQ==
-X-CSE-MsgGUID: diR7wkuFRQSDE6sZ6SuoKQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="28188459"
-X-IronPort-AV: E=Sophos;i="6.09,186,1716274800"; d="scan'208";a="28188459"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2024 19:17:22 -0700
-X-CSE-ConnectionGUID: GuGRB/8+QNikOirTni+6eA==
-X-CSE-MsgGUID: yQVbZ7JuTwGXX+EvzXT4Mg==
+ t=1720241130; x=1751777130;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Tn5abEdQ9CH4IR3iMV7Us+q6ibAi/T5jniKdfJH5yr0=;
+ b=QtQ4eOvUmk7hhyx6wottMGMOrKZBxiVzpk6blb1R8BUGJk14ojU3WCVc
+ 4HNyyCSne/o6KYlKs0uhy2GR2u4oJYHFRQ4L5lu9v0MF6r0QSoW6cvTCz
+ 4WqRTJWELcK1WWwLZPzsmKgtvoBgq2QjBecGHF0pdk60TYlvxb3xMIa5z
+ IZ+1nziOa8rU/HsNNClpVy2/GRPmutUo/N+Me4xixx4jnCRkg/fdCbefT
+ cGpUZf1+fCrhTFWTK0sjiAeKv97Lq/WfoUFdF11ugwuvjMig7u/osg0lm
+ 7at3GtNO6ycMiUIzcILU3aLKZ7lTeemv1zukwQQ7w2UrQVHpWdvSB4JVR g==;
+X-CSE-ConnectionGUID: pT8mNu3CRKuw1NlPavSDPA==
+X-CSE-MsgGUID: PHzPRH4ST3a2FQaWUK8VmA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="17651327"
+X-IronPort-AV: E=Sophos;i="6.09,187,1716274800"; d="scan'208";a="17651327"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jul 2024 21:45:29 -0700
+X-CSE-ConnectionGUID: VfCqaFR+Rrm30HFgsHAUFg==
+X-CSE-MsgGUID: I/MDejYIQxO1dUASENMOIg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,186,1716274800"; d="scan'208";a="77744528"
+X-IronPort-AV: E=Sophos;i="6.09,187,1716274800"; d="scan'208";a="84568015"
 Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
- by orviesa002.jf.intel.com with ESMTP; 05 Jul 2024 19:17:20 -0700
+ by orviesa001.jf.intel.com with ESMTP; 05 Jul 2024 21:45:27 -0700
 Received: from kbuild by 68891e0c336b with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sPuzG-000TCu-0f;
- Sat, 06 Jul 2024 02:17:18 +0000
-Date: Sat, 06 Jul 2024 10:17:13 +0800
+ (envelope-from <lkp@intel.com>) id 1sPxIa-000TJo-1I;
+ Sat, 06 Jul 2024 04:45:24 +0000
+Date: Sat, 6 Jul 2024 12:45:14 +0800
 From: kernel test robot <lkp@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- c55f79f317ab428ae6d005965bc07e37496f209f
-Message-ID: <202407061011.dflnh0Bf-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v7 8/8] drm/ttm: Balance ttm_resource_cursor_init() and
+ ttm_resource_cursor_fini()
+Message-ID: <202407061220.4fu8rFR1-lkp@intel.com>
+References: <20240705153206.68526-9-thomas.hellstrom@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240705153206.68526-9-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,233 +76,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: c55f79f317ab428ae6d005965bc07e37496f209f  drm/i915: disable fbc due to Wa_16023588340
+Hi Thomas,
 
-Warning reports:
+kernel test robot noticed the following build warnings:
 
-https://lore.kernel.org/oe-kbuild-all/202407051904.cZVyDRlA-lkp@intel.com
+[auto build test WARNING on drm-xe/drm-xe-next]
+[also build test WARNING on drm/drm-next drm-exynos/exynos-drm-next drm-intel/for-linux-next drm-tip/drm-tip next-20240703]
+[cannot apply to drm-intel/for-linux-next-fixes drm-misc/drm-misc-next linus/master v6.10-rc6]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Unverified Warning (likely false positive, please contact us if interested):
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Hellstr-m/drm-ttm-Allow-TTM-LRU-list-nodes-of-different-types/20240706-050447
+base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+patch link:    https://lore.kernel.org/r/20240705153206.68526-9-thomas.hellstrom%40linux.intel.com
+patch subject: [PATCH v7 8/8] drm/ttm: Balance ttm_resource_cursor_init() and ttm_resource_cursor_fini()
+config: i386-buildonly-randconfig-001-20240706 (https://download.01.org/0day-ci/archive/20240706/202407061220.4fu8rFR1-lkp@intel.com/config)
+compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240706/202407061220.4fu8rFR1-lkp@intel.com/reproduce)
 
-drivers/gpu/drm/xe/xe_gt.c: generated/xe_wa_oob.h is included more than once.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202407061220.4fu8rFR1-lkp@intel.com/
 
-Warning ids grouped by kconfigs:
+All warnings (new ones prefixed by >>):
 
-recent_errors
-|-- openrisc-randconfig-r123-20240705
-|   `-- drivers-gpu-drm-xe-xe_pt.c:sparse:sparse:Using-plain-integer-as-NULL-pointer
-`-- x86_64-allnoconfig
-    `-- drivers-gpu-drm-xe-xe_gt.c:generated-xe_wa_oob.h-is-included-more-than-once.
+>> drivers/gpu/drm/ttm/ttm_resource.c:607: warning: Excess function parameter 'man' description in 'ttm_resource_manager_first'
 
-elapsed time: 993m
 
-configs tested: 199
-configs skipped: 5
+vim +607 drivers/gpu/drm/ttm/ttm_resource.c
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
-
-tested configs:
-alpha                             allnoconfig   gcc-13.2.0
-alpha                            allyesconfig   gcc-13.2.0
-alpha                               defconfig   gcc-13.2.0
-arc                              allmodconfig   gcc-13.2.0
-arc                               allnoconfig   gcc-13.2.0
-arc                              allyesconfig   gcc-13.2.0
-arc                                 defconfig   gcc-13.2.0
-arc                   randconfig-001-20240706   gcc-13.2.0
-arc                   randconfig-002-20240706   gcc-13.2.0
-arm                              allmodconfig   gcc-13.2.0
-arm                               allnoconfig   clang-19
-arm                               allnoconfig   gcc-13.2.0
-arm                              allyesconfig   gcc-13.2.0
-arm                                 defconfig   gcc-13.2.0
-arm                   randconfig-001-20240706   gcc-13.2.0
-arm                   randconfig-002-20240706   gcc-13.2.0
-arm                   randconfig-003-20240706   gcc-13.2.0
-arm                   randconfig-004-20240706   gcc-13.2.0
-arm64                            allmodconfig   clang-19
-arm64                            allmodconfig   gcc-13.2.0
-arm64                             allnoconfig   gcc-13.2.0
-arm64                               defconfig   gcc-13.2.0
-arm64                 randconfig-001-20240706   gcc-13.2.0
-arm64                 randconfig-002-20240706   gcc-13.2.0
-arm64                 randconfig-003-20240706   gcc-13.2.0
-arm64                 randconfig-004-20240706   gcc-13.2.0
-csky                              allnoconfig   gcc-13.2.0
-csky                                defconfig   gcc-13.2.0
-csky                  randconfig-001-20240706   gcc-13.2.0
-csky                  randconfig-002-20240706   gcc-13.2.0
-hexagon                          allmodconfig   clang-19
-hexagon                           allnoconfig   clang-19
-hexagon                          allyesconfig   clang-19
-i386                             allmodconfig   clang-18
-i386                             allmodconfig   gcc-13
-i386                              allnoconfig   clang-18
-i386                              allnoconfig   gcc-13
-i386                             allyesconfig   clang-18
-i386                             allyesconfig   gcc-13
-i386         buildonly-randconfig-001-20240705   gcc-13
-i386         buildonly-randconfig-001-20240706   clang-18
-i386         buildonly-randconfig-002-20240705   gcc-9
-i386         buildonly-randconfig-002-20240706   clang-18
-i386         buildonly-randconfig-003-20240705   gcc-11
-i386         buildonly-randconfig-003-20240706   clang-18
-i386         buildonly-randconfig-004-20240705   clang-18
-i386         buildonly-randconfig-004-20240706   clang-18
-i386         buildonly-randconfig-005-20240705   clang-18
-i386         buildonly-randconfig-005-20240706   clang-18
-i386         buildonly-randconfig-006-20240705   clang-18
-i386         buildonly-randconfig-006-20240706   clang-18
-i386                                defconfig   clang-18
-i386                  randconfig-001-20240705   gcc-13
-i386                  randconfig-001-20240706   clang-18
-i386                  randconfig-002-20240705   clang-18
-i386                  randconfig-002-20240706   clang-18
-i386                  randconfig-003-20240705   gcc-11
-i386                  randconfig-003-20240706   clang-18
-i386                  randconfig-004-20240705   gcc-13
-i386                  randconfig-004-20240706   clang-18
-i386                  randconfig-005-20240705   clang-18
-i386                  randconfig-005-20240706   clang-18
-i386                  randconfig-006-20240705   clang-18
-i386                  randconfig-006-20240706   clang-18
-i386                  randconfig-011-20240705   gcc-13
-i386                  randconfig-011-20240706   clang-18
-i386                  randconfig-012-20240705   gcc-13
-i386                  randconfig-012-20240706   clang-18
-i386                  randconfig-013-20240705   clang-18
-i386                  randconfig-013-20240706   clang-18
-i386                  randconfig-014-20240705   gcc-8
-i386                  randconfig-014-20240706   clang-18
-i386                  randconfig-015-20240705   gcc-10
-i386                  randconfig-015-20240706   clang-18
-i386                  randconfig-016-20240705   clang-18
-i386                  randconfig-016-20240706   clang-18
-loongarch                        allmodconfig   gcc-13.2.0
-loongarch                         allnoconfig   gcc-13.2.0
-loongarch                           defconfig   gcc-13.2.0
-loongarch             randconfig-001-20240706   gcc-13.2.0
-loongarch             randconfig-002-20240706   gcc-13.2.0
-m68k                             allmodconfig   gcc-13.2.0
-m68k                              allnoconfig   gcc-13.2.0
-m68k                             allyesconfig   gcc-13.2.0
-m68k                          amiga_defconfig   gcc-13.2.0
-m68k                         apollo_defconfig   gcc-13.2.0
-m68k                                defconfig   gcc-13.2.0
-m68k                       m5475evb_defconfig   gcc-13.2.0
-microblaze                       allmodconfig   gcc-13.2.0
-microblaze                        allnoconfig   gcc-13.2.0
-microblaze                       allyesconfig   gcc-13.2.0
-microblaze                          defconfig   gcc-13.2.0
-mips                              allnoconfig   gcc-13.2.0
-mips                           ci20_defconfig   gcc-13.2.0
-mips                     loongson1b_defconfig   gcc-13.2.0
-mips                          malta_defconfig   gcc-13.2.0
-mips                       rbtx49xx_defconfig   gcc-13.2.0
-nios2                             allnoconfig   gcc-13.2.0
-nios2                               defconfig   gcc-13.2.0
-nios2                 randconfig-001-20240706   gcc-13.2.0
-nios2                 randconfig-002-20240706   gcc-13.2.0
-openrisc                          allnoconfig   gcc-13.2.0
-openrisc                         allyesconfig   gcc-13.2.0
-openrisc                            defconfig   gcc-13.2.0
-parisc                           allmodconfig   gcc-13.2.0
-parisc                            allnoconfig   gcc-13.2.0
-parisc                           allyesconfig   gcc-13.2.0
-parisc                              defconfig   gcc-13.2.0
-parisc                randconfig-001-20240706   gcc-13.2.0
-parisc                randconfig-002-20240706   gcc-13.2.0
-parisc64                            defconfig   gcc-13.2.0
-powerpc                     akebono_defconfig   gcc-13.2.0
-powerpc                          allmodconfig   gcc-13.2.0
-powerpc                           allnoconfig   gcc-13.2.0
-powerpc                          allyesconfig   clang-19
-powerpc                          allyesconfig   gcc-13.2.0
-powerpc                  mpc866_ads_defconfig   gcc-13.2.0
-powerpc                  mpc885_ads_defconfig   gcc-13.2.0
-powerpc               randconfig-001-20240706   gcc-13.2.0
-powerpc               randconfig-002-20240706   gcc-13.2.0
-powerpc                     sequoia_defconfig   gcc-13.2.0
-powerpc64             randconfig-001-20240706   gcc-13.2.0
-powerpc64             randconfig-002-20240706   gcc-13.2.0
-powerpc64             randconfig-003-20240706   gcc-13.2.0
-riscv                            allmodconfig   clang-19
-riscv                            allmodconfig   gcc-13.2.0
-riscv                             allnoconfig   gcc-13.2.0
-riscv                            allyesconfig   clang-19
-riscv                            allyesconfig   gcc-13.2.0
-riscv                               defconfig   gcc-13.2.0
-riscv                 randconfig-001-20240706   gcc-13.2.0
-riscv                 randconfig-002-20240706   gcc-13.2.0
-s390                             alldefconfig   gcc-13.2.0
-s390                             allmodconfig   clang-19
-s390                              allnoconfig   clang-19
-s390                              allnoconfig   gcc-13.2.0
-s390                             allyesconfig   clang-19
-s390                             allyesconfig   gcc-13.2.0
-s390                                defconfig   gcc-13.2.0
-s390                  randconfig-001-20240706   gcc-13.2.0
-s390                  randconfig-002-20240706   gcc-13.2.0
-sh                               allmodconfig   gcc-13.2.0
-sh                                allnoconfig   gcc-13.2.0
-sh                               allyesconfig   gcc-13.2.0
-sh                                  defconfig   gcc-13.2.0
-sh                ecovec24-romimage_defconfig   gcc-13.2.0
-sh                          r7785rp_defconfig   gcc-13.2.0
-sh                    randconfig-001-20240706   gcc-13.2.0
-sh                    randconfig-002-20240706   gcc-13.2.0
-sh                           se7722_defconfig   gcc-13.2.0
-sparc                            allmodconfig   gcc-13.2.0
-sparc64                             defconfig   gcc-13.2.0
-sparc64               randconfig-001-20240706   gcc-13.2.0
-sparc64               randconfig-002-20240706   gcc-13.2.0
-um                               allmodconfig   clang-19
-um                               allmodconfig   gcc-13.2.0
-um                                allnoconfig   clang-17
-um                                allnoconfig   gcc-13.2.0
-um                               allyesconfig   gcc-13
-um                               allyesconfig   gcc-13.2.0
-um                                  defconfig   gcc-13.2.0
-um                             i386_defconfig   gcc-13.2.0
-um                    randconfig-001-20240706   gcc-13.2.0
-um                    randconfig-002-20240706   gcc-13.2.0
-um                           x86_64_defconfig   gcc-13.2.0
-x86_64                            allnoconfig   clang-18
-x86_64                           allyesconfig   clang-18
-x86_64       buildonly-randconfig-001-20240706   clang-18
-x86_64       buildonly-randconfig-002-20240706   clang-18
-x86_64       buildonly-randconfig-003-20240706   clang-18
-x86_64       buildonly-randconfig-004-20240706   clang-18
-x86_64       buildonly-randconfig-005-20240706   clang-18
-x86_64       buildonly-randconfig-006-20240706   clang-18
-x86_64                              defconfig   clang-18
-x86_64                              defconfig   gcc-13
-x86_64                randconfig-001-20240706   clang-18
-x86_64                randconfig-002-20240706   clang-18
-x86_64                randconfig-003-20240706   clang-18
-x86_64                randconfig-004-20240706   clang-18
-x86_64                randconfig-005-20240706   clang-18
-x86_64                randconfig-006-20240706   clang-18
-x86_64                randconfig-011-20240706   clang-18
-x86_64                randconfig-012-20240706   clang-18
-x86_64                randconfig-013-20240706   clang-18
-x86_64                randconfig-014-20240706   clang-18
-x86_64                randconfig-015-20240706   clang-18
-x86_64                randconfig-016-20240706   clang-18
-x86_64                randconfig-071-20240706   clang-18
-x86_64                randconfig-072-20240706   clang-18
-x86_64                randconfig-073-20240706   clang-18
-x86_64                randconfig-074-20240706   clang-18
-x86_64                randconfig-075-20240706   clang-18
-x86_64                randconfig-076-20240706   clang-18
-x86_64                          rhel-8.3-rust   clang-18
-xtensa                            allnoconfig   gcc-13.2.0
-xtensa                       common_defconfig   gcc-13.2.0
-xtensa                generic_kc705_defconfig   gcc-13.2.0
-xtensa                randconfig-001-20240706   gcc-13.2.0
-xtensa                randconfig-002-20240706   gcc-13.2.0
+60e2bb1468a0ed Thomas Hellström 2024-07-05  593  
+5d05b988f1c0fd Christian König  2021-06-08  594  /**
+c3fc230689e1af Thomas Hellström 2024-07-05  595   * ttm_resource_manager_first() - Start iterating over the resources
+c3fc230689e1af Thomas Hellström 2024-07-05  596   * of a resource manager
+5d05b988f1c0fd Christian König  2021-06-08  597   * @man: resource manager to iterate over
+5d05b988f1c0fd Christian König  2021-06-08  598   * @cursor: cursor to record the position
+5d05b988f1c0fd Christian König  2021-06-08  599   *
+c3fc230689e1af Thomas Hellström 2024-07-05  600   * Initializes the cursor and starts iterating. When done iterating,
+c3fc230689e1af Thomas Hellström 2024-07-05  601   * the caller must explicitly call ttm_resource_cursor_fini().
+c3fc230689e1af Thomas Hellström 2024-07-05  602   *
+c3fc230689e1af Thomas Hellström 2024-07-05  603   * Return: The first resource from the resource manager.
+5d05b988f1c0fd Christian König  2021-06-08  604   */
+5d05b988f1c0fd Christian König  2021-06-08  605  struct ttm_resource *
+c052d143fd54cf Thomas Hellström 2024-07-05  606  ttm_resource_manager_first(struct ttm_resource_cursor *cursor)
+5d05b988f1c0fd Christian König  2021-06-08 @607  {
+c052d143fd54cf Thomas Hellström 2024-07-05  608  	struct ttm_resource_manager *man = cursor->man;
+5d05b988f1c0fd Christian König  2021-06-08  609  
+c052d143fd54cf Thomas Hellström 2024-07-05  610  	if (WARN_ON_ONCE(!man))
+c052d143fd54cf Thomas Hellström 2024-07-05  611  		return NULL;
+c052d143fd54cf Thomas Hellström 2024-07-05  612  
+c052d143fd54cf Thomas Hellström 2024-07-05  613  	lockdep_assert_held(&man->bdev->lru_lock);
+c3fc230689e1af Thomas Hellström 2024-07-05  614  
+c052d143fd54cf Thomas Hellström 2024-07-05  615  	list_move(&cursor->hitch.link, &man->lru[cursor->priority]);
+1d19e02e4ccfef Thomas Hellström 2024-07-05  616  	return ttm_resource_manager_next(cursor);
+5d05b988f1c0fd Christian König  2021-06-08  617  }
+5d05b988f1c0fd Christian König  2021-06-08  618  
 
 -- 
 0-DAY CI Kernel Test Service
