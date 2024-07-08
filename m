@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07A29C3271E
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jul 2024 20:26:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F576C3DA41
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jul 2024 20:27:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C875710E3FC;
-	Mon,  8 Jul 2024 20:26:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E33BD10E3FC;
+	Mon,  8 Jul 2024 20:27:08 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0E7410E3FC;
- Mon,  8 Jul 2024 20:26:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9E5910E3FC;
+ Mon,  8 Jul 2024 20:27:07 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Have_xe=5Fvm_and_xe?=
- =?utf-8?q?=5Fexec=5Fqueue_take_references_to_xef?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Have_xe=5Fvm_and_xe=5Fexe?=
+ =?utf-8?q?c=5Fqueue_take_references_to_xef?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 08 Jul 2024 20:26:53 -0000
-Message-ID: <172047041378.67898.9389469426061759716@2413ebb6fbb6>
+Date: Mon, 08 Jul 2024 20:27:07 -0000
+Message-ID: <172047042775.67898.11842324988411991905@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240708202103.3347869-1-umesh.nerlige.ramappa@intel.com>
 In-Reply-To: <20240708202103.3347869-1-umesh.nerlige.ramappa@intel.com>
@@ -48,13 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 1b010bec39a5 drm-tip: 2024y-07m-08d-15h-26m-33s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Move part of xe_file cleanup to a helper
-Applying: drm/xe: Add ref counting for xe_file
-Applying: drm/xe: Take a reference to xe file when user creates exec_queue
-Applying: drm/xe: Take a ref to xe file when user creates a VM
-Applying: Revert "drm/xe: Do not access xe file when updating exec queue run_ticks"
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0759541395d9bcadd236c02d65d65ee619485d06
+Author: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Date:   Mon Jul 8 13:21:03 2024 -0700
+
+    Revert "drm/xe: Do not access xe file when updating exec queue run_ticks"
+    
+    This reverts commit ce62827bc294ba5f8b3909bfa5d7dbf9de8aab6b.
+    
+    Closes: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1908
+    Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
++ /mt/dim checkpatch 1b010bec39a554cbbd0b51cbf49142e2f218013d drm-intel
+e65a80bb254e drm/xe: Move part of xe_file cleanup to a helper
+52c5a754507b drm/xe: Add ref counting for xe_file
+beb839cbb513 drm/xe: Take a reference to xe file when user creates exec_queue
+0b8a38dea17c drm/xe: Take a ref to xe file when user creates a VM
+0759541395d9 Revert "drm/xe: Do not access xe file when updating exec queue run_ticks"
 
 
