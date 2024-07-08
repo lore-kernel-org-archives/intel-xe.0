@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE2B8C3271E
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jul 2024 21:09:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83701C3DA41
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jul 2024 21:16:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AE6A10E02F;
-	Mon,  8 Jul 2024 21:09:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D7QlfQ+M";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A639D10E02F
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Jul 2024 21:09:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720472967; x=1752008967;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=rtzyVDJeocESbdRo0smte8YgTzi41QaYauxmhMZkbJ0=;
- b=D7QlfQ+M7rLvlqyHrAl9xiIeunGDtcWqBGLnzrYToRv6J+aY1NoyZ3c3
- hoCAZC6CzFCfYiXPrwNKvOdSPfPxc/NbO0YFZR75VxR9b4ri2DwmWHhdF
- t/3aMSdeKejjIB98J/qIZkLq90TZVAo6Z3CBTAg217DONHTnCa0E0Wuuw
- o+zJyNXC5kdO3xCdwg7dGFtHWTAgpNvJbUOoaGlj8EduLGOdZ378Tumgg
- F7tj4vdUCjilvkeZuhnGvGbNwhEkCXptOhEKjE9zxs+bNdxD6YyCdL2Yn
- M5nXGECYdvYwN3RvwU8l4OnAPElMmy35sjkCgr9UbyaIEzN/SEd6ss9uB Q==;
-X-CSE-ConnectionGUID: 7i4TxoMQQKKxfPInUa3UvA==
-X-CSE-MsgGUID: c08zllgSRzavoUlK6RkNAA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11127"; a="17530452"
-X-IronPort-AV: E=Sophos;i="6.09,193,1716274800"; d="scan'208";a="17530452"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2024 14:09:26 -0700
-X-CSE-ConnectionGUID: uSyNhcCBSfKU287+H39GZA==
-X-CSE-MsgGUID: lKccsxNoRA+pgwhon+9Edg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,193,1716274800"; d="scan'208";a="48289070"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2024 14:09:27 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/xe: Drop trace_xe_hw_fence_free
-Date: Mon,  8 Jul 2024 14:10:08 -0700
-Message-Id: <20240708211008.956384-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44FD310E324;
+	Mon,  8 Jul 2024 21:16:47 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 481AB10E02F;
+ Mon,  8 Jul 2024 21:16:46 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1955046163477894868=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_Have_xe=5Fvm_and_xe=5Fexec=5Fque?=
+ =?utf-8?q?ue_take_references_to_xef?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 08 Jul 2024 21:16:46 -0000
+Message-ID: <172047340628.67618.15813265063356053874@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240708202103.3347869-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20240708202103.3347869-1-umesh.nerlige.ramappa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,53 +36,196 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-fence->ctx may be stale memory when trace_xe_hw_fence_free is called
-resuling UAF bug when deriving the device name. This tracepoint is not
-all that useful, so just drop it.
+--===============1955046163477894868==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: 501c4255c409 ("drm/xe/trace: Print device_id in xe_trace events")
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_hw_fence.c | 1 -
- drivers/gpu/drm/xe/xe_trace.h    | 5 -----
- 2 files changed, 6 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
-index 35c0063a831a..45a9789cf501 100644
---- a/drivers/gpu/drm/xe/xe_hw_fence.c
-+++ b/drivers/gpu/drm/xe/xe_hw_fence.c
-@@ -187,7 +187,6 @@ static void xe_hw_fence_release(struct dma_fence *dma_fence)
- {
- 	struct xe_hw_fence *fence = to_xe_hw_fence(dma_fence);
- 
--	trace_xe_hw_fence_free(fence);
- 	XE_WARN_ON(!list_empty(&fence->irq_link));
- 	call_rcu(&dma_fence->rcu, fence_free);
- }
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index 09ca1ad057b0..baba14fb1e32 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -341,11 +341,6 @@ DEFINE_EVENT(xe_hw_fence, xe_hw_fence_try_signal,
- 	     TP_ARGS(fence)
- );
- 
--DEFINE_EVENT(xe_hw_fence, xe_hw_fence_free,
--	     TP_PROTO(struct xe_hw_fence *fence),
--	     TP_ARGS(fence)
--);
--
- TRACE_EVENT(xe_reg_rw,
- 	TP_PROTO(struct xe_gt *gt, bool write, u32 reg, u64 val, int len),
- 
--- 
-2.34.1
+Series: Have xe_vm and xe_exec_queue take references to xef
+URL   : https://patchwork.freedesktop.org/series/135865/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d_BAT -> xe-pw-135865v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-135865v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-135865v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (5 -> 4)
+------------------------------
+
+  Missing    (1): bat-pvc-2 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-135865v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135865v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+    - bat-dg2-oem2:       [PASS][3] -> [ABORT][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135865v1/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
+    - bat-atsm-2:         [PASS][5] -> [ABORT][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135865v1/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@xe_intel_bb@add-remove-objects:
+    - {bat-lnl-1}:        [PASS][7] -> [INCOMPLETE][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d/bat-lnl-1/igt@xe_intel_bb@add-remove-objects.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135865v1/bat-lnl-1/igt@xe_intel_bb@add-remove-objects.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-135865v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_live_ktest@xe_migrate:
+    - bat-adlp-7:         [PASS][9] -> [SKIP][10] ([Intel XE#1192]) +2 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d/bat-adlp-7/igt@xe_live_ktest@xe_migrate.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135865v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7919 -> IGT_7920
+  * Linux: xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d -> xe-pw-135865v1
+
+  IGT_7919: 2c50c98273c55882bdc209fed77d0e40b24431f1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7920: 7920
+  xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d: 1b010bec39a554cbbd0b51cbf49142e2f218013d
+  xe-pw-135865v1: 135865v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135865v1/index.html
+
+--===============1955046163477894868==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Have xe_vm and xe_exec_queue take references to xef</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135865/">https://patchwork.freedesktop.org/series/135865/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135865v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135865v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d_BAT -&gt; xe-pw-135865v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-135865v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-135865v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (5 -&gt; 4)</h2>
+<p>Missing    (1): bat-pvc-2 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-135865v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135865v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135865v1/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135865v1/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@xe_intel_bb@add-remove-objects:<ul>
+<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d/bat-lnl-1/igt@xe_intel_bb@add-remove-objects.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135865v1/bat-lnl-1/igt@xe_intel_bb@add-remove-objects.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-135865v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_migrate:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d/bat-adlp-7/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135865v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192">Intel XE#1192</a>) +2 other tests skip</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7919 -&gt; IGT_7920</li>
+<li>Linux: xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d -&gt; xe-pw-135865v1</li>
+</ul>
+<p>IGT_7919: 2c50c98273c55882bdc209fed77d0e40b24431f1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7920: 7920<br />
+  xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d: 1b010bec39a554cbbd0b51cbf49142e2f218013d<br />
+  xe-pw-135865v1: 135865v1</p>
+
+</body>
+</html>
+
+--===============1955046163477894868==--
