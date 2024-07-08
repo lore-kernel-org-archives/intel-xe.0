@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2256C3271E
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jul 2024 18:11:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18416C3271E
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jul 2024 18:55:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 807B710E224;
-	Mon,  8 Jul 2024 18:11:09 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B1A510E1BF;
- Mon,  8 Jul 2024 18:11:08 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4145835933505909179=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF8CC10E232;
+	Mon,  8 Jul 2024 18:55:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AX4rLvvo";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED37010E232
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Jul 2024 18:55:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1720464951; x=1752000951;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=CaxGwJpURWBYIBYEh5sKpuPoPEZyiHPRhTyt/1AiKdc=;
+ b=AX4rLvvoPj+cH80a33uykxiW4AAX+0XtGp6ST+pd69XC/0l/4H/iDjXA
+ 2jMtnFpq2WVWoRg5a8hL3J4LpWcDaHQUUdJcWpChKYcGHGUu5vYkxjcdx
+ v2i/mHHnuKZb+aemtcaTKX1z0eAwq1cXPNDC/lG7PCtU8/PfGBcWbSHas
+ EtVFgANLOT+ZYsFw1EZYbZ63aoFkUCnZbkCmYq8t9ZDmncnX0SraK+7Ds
+ 0r4I9sMlTijgt90jTIhroDQg95N9bJH69JmFGAuSiHtFRdWeh8hfWYFYE
+ AvH7cstXDr5niqKy7+y97yJBaBYICVDcRYVxgHRJXweZyiQF9l3WkFPCY A==;
+X-CSE-ConnectionGUID: J28uGmhLTNyEN+fu53655w==
+X-CSE-MsgGUID: 0XwcfLMURiOwIZ5njjl1Cw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11127"; a="17820132"
+X-IronPort-AV: E=Sophos;i="6.09,192,1716274800"; d="scan'208";a="17820132"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2024 11:55:51 -0700
+X-CSE-ConnectionGUID: 2zsY4okfRSyzA98P7ZAPew==
+X-CSE-MsgGUID: M4dTs+8/SnyvxJoe0XGlCg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,192,1716274800"; d="scan'208";a="48019594"
+Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2024 11:55:51 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [CI 1/2] Reapply "drm/xe/gsc: define GSC FW for LNL"
+Date: Mon,  8 Jul 2024 11:55:37 -0700
+Message-ID: <20240708185538.2243957-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/gt=3A_Remove_double_inclu?=
- =?utf-8?q?de?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 08 Jul 2024 18:11:08 -0000
-Message-ID: <172046226848.67326.17094237112834275710@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240708173301.1543871-1-lucas.demarchi@intel.com>
-In-Reply-To: <20240708173301.1543871-1-lucas.demarchi@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,130 +60,35 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4145835933505909179==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Wa_22019338487 is now merged, so we can re-enable the GSC now that we
+won't hit the HW issue anymore.
 
-== Series Details ==
+Note that this patch is not meant to be merged, but rather the revert
+patch should be dropped from the CI topic branch. This patch is being
+sent for CI and to get an ack on dropping that patch.
 
-Series: drm/xe/gt: Remove double include
-URL   : https://patchwork.freedesktop.org/series/135856/
-State : success
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_uc_fw.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index a69c61f6b064..62ed413bf1c3 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -128,6 +128,7 @@ struct fw_blobs_by_type {
+ 
+ /* for the GSC FW we match the compatibility version and not the release one */
+ #define XE_GSC_FIRMWARE_DEFS(fw_def, major_ver)		\
++	fw_def(LUNARLAKE,	major_ver(intel-ci/xe, gsc, lnl, 1, 0, 0))	\
+ 	fw_def(METEORLAKE,	major_ver(i915,	gsc,	mtl,	1, 0, 0))
+ 
+ #define MAKE_FW_PATH(dir__, uc__, shortname__, version__)			\
+-- 
+2.43.0
 
-CI Bug Log - changes from xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d_BAT -> xe-pw-135856v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (5 -> 4)
-------------------------------
-
-  Missing    (1): bat-pvc-2 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-135856v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - {bat-lnl-1}:        [FAIL][1] ([Intel XE#886]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135856v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
-
-
-Build changes
--------------
-
-  * Linux: xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d -> xe-pw-135856v1
-
-  IGT_7919: 2c50c98273c55882bdc209fed77d0e40b24431f1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d: 1b010bec39a554cbbd0b51cbf49142e2f218013d
-  xe-pw-135856v1: 135856v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135856v1/index.html
-
---===============4145835933505909179==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/gt: Remove double include</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135856/">https://patchwork.freedesktop.org/series/135856/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135856v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135856v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d_BAT -&gt; xe-pw-135856v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (5 -&gt; 4)</h2>
-<p>Missing    (1): bat-pvc-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-135856v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
-<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135856v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d -&gt; xe-pw-135856v1</li>
-</ul>
-<p>IGT_7919: 2c50c98273c55882bdc209fed77d0e40b24431f1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1576-1b010bec39a554cbbd0b51cbf49142e2f218013d: 1b010bec39a554cbbd0b51cbf49142e2f218013d<br />
-  xe-pw-135856v1: 135856v1</p>
-
-</body>
-</html>
-
---===============4145835933505909179==--
