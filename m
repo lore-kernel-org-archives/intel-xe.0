@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 284E4C3271E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46342C3DA45
 	for <intel-xe@archiver.kernel.org>; Mon,  8 Jul 2024 04:02:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC9FE10E093;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3A7810E0A5;
 	Mon,  8 Jul 2024 04:02:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZJFgrGCm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jKhRmlRH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25F3910E093
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Jul 2024 04:02:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F15810E012
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Jul 2024 04:02:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720411371; x=1751947371;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=/fEiBIASVaj8vuc7DpjHafCM/EJYK4ZkyHIEJL61iYU=;
- b=ZJFgrGCmwFTxr7SeE7aZjcLvoU9FOJyck9VzAU5Alim6/eUl/WXTwiPR
- Cd8PcIqvQqBKasrZ1CX/lE8j4c1Rima1DU65JyK0puUfIAX9DvOTIyQMX
- SQCjKLl5UN1CQW4j7uoHXENwqcVXM6s8PDyAVIbiJGs1CptHcrK6lgPbw
- BfGu9Vm10cY/FAwF7DPHmr7oXXQlyyXJgtv3bR71vreY0PFClQp3dkcnh
- N80yCmCMOspdxrriAB7DcnRSFAA4NQIAbcIqESYRdUV4I+Pxn2g7GPJLb
- dE4Zi2gXWo36tImTcdG8A0HBJ2c58+pzTzLIbrjo2nx2WuiV76hRhqv4i w==;
-X-CSE-ConnectionGUID: KRGXEObARjOgm7LGa1evug==
-X-CSE-MsgGUID: waB2TA8uSkW6u/Q1bqfvrA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11126"; a="28205301"
-X-IronPort-AV: E=Sophos;i="6.09,191,1716274800"; d="scan'208";a="28205301"
+ t=1720411370; x=1751947370;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3L8TU9k9vP+0KvUjOeyqHU/GDCjm6PBUFI29+cO8IyM=;
+ b=jKhRmlRHqO1VFj0BDBoIcFNkvQyBdifb2tDWUv1D69lXrkEfSNc8Wpx7
+ jWBDkt+wlpIv2IL6J+0xsS0tCYFSmO3mCqXRqwX6dYkxmnRZUciXGAW+1
+ +h0/9WuGxLhSoNpJvP8XBYoJ08QUrAjAyp3MEWa/FKOpHzxGazD6hIS1Q
+ uThojZm5jvSLYqyAaiuWcIZjI7lg+K6h/6wNaGx2GjL6b+LkDwfb2ckxc
+ T7scpPzQikvFFAfuSq2oMS20NGSOUboTEMLcotWHxaA1hptfaF9WoXH8G
+ z8yEY0HiBxoRxOh0hCGVm89Dv37V29SIkX/IFe15UaKzcwC22KnaNBr/a A==;
+X-CSE-ConnectionGUID: 8tK+eEphT9ynWKpS1B3Gvw==
+X-CSE-MsgGUID: z4hnLb3DRtq6gZTY9VtW0Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11126"; a="28205297"
+X-IronPort-AV: E=Sophos;i="6.09,191,1716274800"; d="scan'208";a="28205297"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2024 21:02:51 -0700
-X-CSE-ConnectionGUID: uCOQdexwTeayzoE1lgLPeA==
-X-CSE-MsgGUID: H14QKPkuRSS0lnqtdLN3YQ==
+ 07 Jul 2024 21:02:50 -0700
+X-CSE-ConnectionGUID: sOVa+GqxQC2Ok3rSqvPeqg==
+X-CSE-MsgGUID: jDJ3jWc9TbWGGlVSmJv6ug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,191,1716274800"; d="scan'208";a="78518770"
+X-IronPort-AV: E=Sophos;i="6.09,191,1716274800"; d="scan'208";a="78518760"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2024 21:02:50 -0700
+ 07 Jul 2024 21:02:49 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: nirmoy.das@intel.com, farah.kassabri@intel.com, michal.wajdeczko@intel.com
-Subject: [PATCH v2 03/11] drm/xe:
- s/tlb_invalidation.lock/tlb_invalidation.fence_lock
-Date: Sun,  7 Jul 2024 21:03:23 -0700
-Message-Id: <20240708040331.766264-4-matthew.brost@intel.com>
+Subject: [PATCH v2 00/11] Proper GT TLB invalidation layering and new
+ coalescing feature.
+Date: Sun,  7 Jul 2024 21:03:20 -0700
+Message-Id: <20240708040331.766264-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240708040331.766264-1-matthew.brost@intel.com>
-References: <20240708040331.766264-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,58 +65,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tlb_invalidation.lock is the lock for GT TLB invalidation fences, name
-this accurately.
+While debuging [1] an issue was identified in which if too many GT TLB
+invalidations are issued to the GuC, the GuC can get overwhelmed to the
+point scheduling of jobs starts to stall. To avoid this, hold and
+coalesce GT TLB invalidations in the KMD if a watermark of pending
+invalidations is past. Add gitlab for this issue has also been opened
+[2].
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 8 ++++----
- drivers/gpu/drm/xe/xe_gt_types.h            | 4 ++--
- 2 files changed, 6 insertions(+), 6 deletions(-)
+Layering issues with GT TLB invalidations are known [3] which needed to
+be fixed first before adding this new feature.
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index 687214d07ac7..147840b66ba9 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -80,7 +80,7 @@ int xe_gt_tlb_invalidation_init(struct xe_gt *gt)
- 	gt->tlb_invalidation.seqno = 1;
- 	INIT_LIST_HEAD(&gt->tlb_invalidation.pending_fences);
- 	spin_lock_init(&gt->tlb_invalidation.pending_lock);
--	spin_lock_init(&gt->tlb_invalidation.lock);
-+	spin_lock_init(&gt->tlb_invalidation.fence_lock);
- 	INIT_DELAYED_WORK(&gt->tlb_invalidation.fence_tdr,
- 			  xe_gt_tlb_fence_timeout);
- 
-@@ -491,11 +491,11 @@ static const struct dma_fence_ops invalidation_fence_ops = {
- void xe_gt_tlb_invalidation_fence_init(struct xe_gt *gt,
- 				       struct xe_gt_tlb_invalidation_fence *fence)
- {
--	spin_lock_irq(&gt->tlb_invalidation.lock);
-+	spin_lock_irq(&gt->tlb_invalidation.fence_lock);
- 	dma_fence_init(&fence->base, &invalidation_fence_ops,
--		       &gt->tlb_invalidation.lock,
-+		       &gt->tlb_invalidation.fence_lock,
- 		       dma_fence_context_alloc(1), 1);
--	spin_unlock_irq(&gt->tlb_invalidation.lock);
-+	spin_unlock_irq(&gt->tlb_invalidation.fence_lock);
- 	INIT_LIST_HEAD(&fence->link);
- 	dma_fence_get(&fence->base);
- }
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 6b5e0b45efb0..d190a66514c0 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -192,8 +192,8 @@ struct xe_gt {
- 		 * xe_gt_tlb_fence_timeout after the timeut interval is over.
- 		 */
- 		struct delayed_work fence_tdr;
--		/** @tlb_invalidation.lock: protects TLB invalidation fences */
--		spinlock_t lock;
-+		/** @tlb_invalidation.fence_lock: protects TLB invalidation fences */
-+		spinlock_t fence_lock;
- 	} tlb_invalidation;
- 
- 	/**
+- Patches 1-8 fix the layering.
+- Patches 9-11 add coalescing feature.
+
+We could merge these two as seperate series if needed.
+
+CCing various stakeholders (Farah, Michal, Nirmoy) which have raised GT
+TLB invalidation issues in the past.
+
+v2:
+ - Fix CI issues
+ - Clean up some of the series / patch structure
+
+Matt
+
+[1] https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/799#note_2449497
+[2] https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2162
+[3] https://patchwork.freedesktop.org/series/133001/
+
+Matthew Brost (11):
+  drm/xe: Add xe_gt_tlb_invalidation_fence_init helper
+  drm/xe: Drop xe_gt_tlb_invalidation_wait
+  drm/xe: s/tlb_invalidation.lock/tlb_invalidation.fence_lock
+  drm/xe: Add tlb_invalidation.seqno_lock
+  drm/xe: Add xe_gt_tlb_invalidation_done_handler
+  drm/xe: Add send tlb invalidation helpers
+  drm/xe: Add xe_guc_tlb_invalidation layer
+  drm/xe: Add multi-client support for GT TLB invalidations
+  drm/xe: Add GT TLB invalidation coalescing
+  drm/xe: Add GT TLB invalidation coalesce tracepoints
+  drm/xe: Add GT TLB invalidation watermark debugfs
+
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c               |  38 ++
+ drivers/gpu/drm/xe/xe_device.c                |   3 +
+ drivers/gpu/drm/xe/xe_device_types.h          |   5 +
+ drivers/gpu/drm/xe/xe_ggtt.c                  |  21 +-
+ drivers/gpu/drm/xe/xe_ggtt_types.h            |   5 +
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c   | 641 ++++++++++++------
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h   |  26 +-
+ .../gpu/drm/xe/xe_gt_tlb_invalidation_types.h |  41 ++
+ drivers/gpu/drm/xe/xe_gt_types.h              |  43 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c                |   2 +-
+ drivers/gpu/drm/xe/xe_guc_tlb_invalidation.c  | 145 ++++
+ drivers/gpu/drm/xe/xe_guc_tlb_invalidation.h  |  18 +
+ drivers/gpu/drm/xe/xe_pt.c                    |  33 +-
+ drivers/gpu/drm/xe/xe_trace.h                 |  10 +
+ drivers/gpu/drm/xe/xe_vm.c                    |  45 +-
+ drivers/gpu/drm/xe/xe_vm_types.h              |   3 +
+ 17 files changed, 801 insertions(+), 279 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_tlb_invalidation.c
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_tlb_invalidation.h
+
 -- 
 2.34.1
 
