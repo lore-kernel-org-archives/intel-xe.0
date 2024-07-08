@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87E3AC3DA41
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jul 2024 20:43:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE2B8C3271E
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jul 2024 21:09:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5141110E419;
-	Mon,  8 Jul 2024 20:43:48 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F05D10E419;
- Mon,  8 Jul 2024 20:43:46 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AE6A10E02F;
+	Mon,  8 Jul 2024 21:09:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D7QlfQ+M";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A639D10E02F
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Jul 2024 21:09:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1720472967; x=1752008967;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rtzyVDJeocESbdRo0smte8YgTzi41QaYauxmhMZkbJ0=;
+ b=D7QlfQ+M7rLvlqyHrAl9xiIeunGDtcWqBGLnzrYToRv6J+aY1NoyZ3c3
+ hoCAZC6CzFCfYiXPrwNKvOdSPfPxc/NbO0YFZR75VxR9b4ri2DwmWHhdF
+ t/3aMSdeKejjIB98J/qIZkLq90TZVAo6Z3CBTAg217DONHTnCa0E0Wuuw
+ o+zJyNXC5kdO3xCdwg7dGFtHWTAgpNvJbUOoaGlj8EduLGOdZ378Tumgg
+ F7tj4vdUCjilvkeZuhnGvGbNwhEkCXptOhEKjE9zxs+bNdxD6YyCdL2Yn
+ M5nXGECYdvYwN3RvwU8l4OnAPElMmy35sjkCgr9UbyaIEzN/SEd6ss9uB Q==;
+X-CSE-ConnectionGUID: 7i4TxoMQQKKxfPInUa3UvA==
+X-CSE-MsgGUID: c08zllgSRzavoUlK6RkNAA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11127"; a="17530452"
+X-IronPort-AV: E=Sophos;i="6.09,193,1716274800"; d="scan'208";a="17530452"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2024 14:09:26 -0700
+X-CSE-ConnectionGUID: uSyNhcCBSfKU287+H39GZA==
+X-CSE-MsgGUID: lKccsxNoRA+pgwhon+9Edg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,193,1716274800"; d="scan'208";a="48289070"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2024 14:09:27 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH] drm/xe: Drop trace_xe_hw_fence_free
+Date: Mon,  8 Jul 2024 14:10:08 -0700
+Message-Id: <20240708211008.956384-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Have_xe=5Fvm_and_xe=5Fex?=
- =?utf-8?q?ec=5Fqueue_take_references_to_xef?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 08 Jul 2024 20:43:46 -0000
-Message-ID: <172047142658.67898.4273694184718048316@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240708202103.3347869-1-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20240708202103.3347869-1-umesh.nerlige.ramappa@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +61,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+fence->ctx may be stale memory when trace_xe_hw_fence_free is called
+resuling UAF bug when deriving the device name. This tracepoint is not
+all that useful, so just drop it.
 
-Series: Have xe_vm and xe_exec_queue take references to xef
-URL   : https://patchwork.freedesktop.org/series/135865/
-State : success
+Fixes: 501c4255c409 ("drm/xe/trace: Print device_id in xe_trace events")
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_hw_fence.c | 1 -
+ drivers/gpu/drm/xe/xe_trace.h    | 5 -----
+ 2 files changed, 6 deletions(-)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 1b010bec39a554cbbd0b51cbf49142e2f218013d
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
+index 35c0063a831a..45a9789cf501 100644
+--- a/drivers/gpu/drm/xe/xe_hw_fence.c
++++ b/drivers/gpu/drm/xe/xe_hw_fence.c
+@@ -187,7 +187,6 @@ static void xe_hw_fence_release(struct dma_fence *dma_fence)
+ {
+ 	struct xe_hw_fence *fence = to_xe_hw_fence(dma_fence);
+ 
+-	trace_xe_hw_fence_free(fence);
+ 	XE_WARN_ON(!list_empty(&fence->irq_link));
+ 	call_rcu(&dma_fence->rcu, fence_free);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index 09ca1ad057b0..baba14fb1e32 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -341,11 +341,6 @@ DEFINE_EVENT(xe_hw_fence, xe_hw_fence_try_signal,
+ 	     TP_ARGS(fence)
+ );
+ 
+-DEFINE_EVENT(xe_hw_fence, xe_hw_fence_free,
+-	     TP_PROTO(struct xe_hw_fence *fence),
+-	     TP_ARGS(fence)
+-);
+-
+ TRACE_EVENT(xe_reg_rw,
+ 	TP_PROTO(struct xe_gt *gt, bool write, u32 reg, u64 val, int len),
+ 
+-- 
+2.34.1
 
