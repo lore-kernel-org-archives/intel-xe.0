@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36490C41513
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jul 2024 20:21:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CC6CC3271E
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jul 2024 20:21:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7C5210E408;
-	Mon,  8 Jul 2024 20:21:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E179A10E411;
+	Mon,  8 Jul 2024 20:21:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WZzknY1d";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SAF91I9N";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69B2F10E408
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C34C10E3FC
  for <intel-xe@lists.freedesktop.org>; Mon,  8 Jul 2024 20:21:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1720470070; x=1752006070;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=FXYZpgMEnjzigqw/E6Pdr88CkT9wEQXGnJKnID1vu5c=;
- b=WZzknY1dleNCYT53W10bs7n6v6TOaGBQMcK5JET9cdXCCmHHgMYWiO/J
- Ruuioz0qqS/mV4w/jZJuZTlRN9BiVREl8erl4qprudhQRPyk8CES4j3Fu
- Tl4ulJcK6RyV1WZr8/FoMCPRzcmv7wMtIzEQEHUVegiacyzoLuGnaaWVW
- U7yuzNbMbKq/EcYdBApDe8e91x6uxZMW1j0+Of4Vm+IB5RwhGDFFyUfs6
- IxxzV2SrTVEM9InW32wyApuY7B/wVD7I5MaMZ1haJPDhqmn25/0bDaPHY
- K2nwbjHJNwEAyt+uiWY4vY5EH+dnG9GHDVBgKjGuBMGVj+pewFUC5m3kk A==;
-X-CSE-ConnectionGUID: tMj3U9QtSi6B6QP2pufe8A==
-X-CSE-MsgGUID: wdXmf5ZJQ8GwDDo/nZEBwA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11127"; a="43114143"
-X-IronPort-AV: E=Sophos;i="6.09,192,1716274800"; d="scan'208";a="43114143"
+ bh=BoH6HC6q/EW7Vc4//iqKPOuhAngqb9hM+CELlC68qQo=;
+ b=SAF91I9Nkhsqhqj/7yMafIzqX9QD2NDBawLJ0SqAiuU3ibV3E75oUIg5
+ wD8FOOyP4TWcGMQldoOZoVm2HpCU10qndWzrImbySfEB4FTzJsDYCLTKT
+ aZIY/vr1cVV3EmLnB0OyV7h30ctpga3juL2NMb0UqEbXbQarMZ7W0whGd
+ QzwsprDxcA4QPrzka7zBkFdd/UalWDecL13+xqxaSJdzgPxA31r8ucsRV
+ m5iDUCFEq0QSL8rOsJ1hCWqPqCswoSQQ+mapZDf6/njMYM5YFk+S2Ai7s
+ H5IIfxt9226FyA+lpm8UWWDN2oFDY7iKHkkoh289KiI8rGr1Xl+eFRh1O g==;
+X-CSE-ConnectionGUID: mBcufdFBSm+Iy2NOKDkguA==
+X-CSE-MsgGUID: Gs0ihNXESde3BtAEm/RZSw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11127"; a="43114139"
+X-IronPort-AV: E=Sophos;i="6.09,192,1716274800"; d="scan'208";a="43114139"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2024 13:21:09 -0700
-X-CSE-ConnectionGUID: q15H12lYQsmkwuVgWS1crg==
-X-CSE-MsgGUID: LdrTN1EBQ9ONlhrbJeO4DA==
+ 08 Jul 2024 13:21:07 -0700
+X-CSE-ConnectionGUID: aQAI6rZvQKmmIBiIuVzuoQ==
+X-CSE-MsgGUID: 5Te4qH9ESNK7j5Msu3sXpg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,192,1716274800"; d="scan'208";a="47495022"
+X-IronPort-AV: E=Sophos;i="6.09,192,1716274800"; d="scan'208";a="47494977"
 Received: from unerlige-desk.jf.intel.com ([10.165.21.199])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2024 13:21:08 -0700
+ 08 Jul 2024 13:21:07 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
  lucas.demarchi@intel.com
-Subject: [PATCH 5/5] Revert "drm/xe: Do not access xe file when updating exec
- queue run_ticks"
-Date: Mon,  8 Jul 2024 13:21:03 -0700
-Message-Id: <20240708202103.3347869-6-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH 1/5] drm/xe: Move part of xe_file cleanup to a helper
+Date: Mon,  8 Jul 2024 13:20:59 -0700
+Message-Id: <20240708202103.3347869-2-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20240708202103.3347869-1-umesh.nerlige.ramappa@intel.com>
 References: <20240708202103.3347869-1-umesh.nerlige.ramappa@intel.com>
@@ -67,78 +66,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit ce62827bc294ba5f8b3909bfa5d7dbf9de8aab6b.
+In order to make xe_file ref counted, move destruction of xe_file
+members to a helper.
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1908
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_drm_client.c       | 5 +----
- drivers/gpu/drm/xe/xe_exec_queue.c       | 5 ++++-
- drivers/gpu/drm/xe/xe_exec_queue_types.h | 4 ----
- 3 files changed, 5 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 36 +++++++++++++++++++++-------------
+ 1 file changed, 22 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-index 6a26923fa10e..7ddd59908334 100644
---- a/drivers/gpu/drm/xe/xe_drm_client.c
-+++ b/drivers/gpu/drm/xe/xe_drm_client.c
-@@ -251,11 +251,8 @@ static void show_run_ticks(struct drm_printer *p, struct drm_file *file)
- 
- 	/* Accumulate all the exec queues from this client */
- 	mutex_lock(&xef->exec_queue.lock);
--	xa_for_each(&xef->exec_queue.xa, i, q) {
-+	xa_for_each(&xef->exec_queue.xa, i, q)
- 		xe_exec_queue_update_run_ticks(q);
--		xef->run_ticks[q->class] += q->run_ticks - q->old_run_ticks;
--		q->old_run_ticks = q->run_ticks;
--	}
- 	mutex_unlock(&xef->exec_queue.lock);
- 
- 	/* Get the total GPU cycles */
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index b01eccdd75ba..719a70878fe2 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -768,6 +768,7 @@ bool xe_exec_queue_is_idle(struct xe_exec_queue *q)
-  */
- void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q)
- {
-+	struct xe_file *xef;
- 	struct xe_lrc *lrc;
- 	u32 old_ts, new_ts;
- 
-@@ -779,6 +780,8 @@ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q)
- 	if (!q->vm || !q->vm->xef)
- 		return;
- 
-+	xef = q->vm->xef;
-+
- 	/*
- 	 * Only sample the first LRC. For parallel submission, all of them are
- 	 * scheduled together and we compensate that below by multiplying by
-@@ -789,7 +792,7 @@ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q)
- 	 */
- 	lrc = q->lrc[0];
- 	new_ts = xe_lrc_update_timestamp(lrc, &old_ts);
--	q->run_ticks += (new_ts - old_ts) * q->width;
-+	xef->run_ticks[q->class] += (new_ts - old_ts) * q->width;
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index cfda7cb5df2c..babb697652d5 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -90,24 +90,12 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+ 	return 0;
  }
  
- void xe_exec_queue_kill(struct xe_exec_queue *q)
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index f768e48f31e4..b5343cdd0632 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -142,10 +142,6 @@ struct xe_exec_queue {
- 	 * Protected by @vm's resv. Unused if @vm == NULL.
- 	 */
- 	u64 tlb_flush_seqno;
--	/** @old_run_ticks: prior hw engine class run time in ticks for this exec queue */
--	u64 old_run_ticks;
--	/** @run_ticks: hw engine class run time in ticks for this exec queue */
--	u64 run_ticks;
- 	/** @lrc: logical ring context for this exec queue */
- 	struct xe_lrc *lrc[];
- };
+-static void xe_file_close(struct drm_device *dev, struct drm_file *file)
++static void xe_file_destroy(struct xe_file *xef)
+ {
+-	struct xe_device *xe = to_xe_device(dev);
+-	struct xe_file *xef = file->driver_priv;
++	struct xe_device *xe = xef->xe;
+ 	struct xe_vm *vm;
+-	struct xe_exec_queue *q;
+ 	unsigned long idx;
+ 
+-	/*
+-	 * No need for exec_queue.lock here as there is no contention for it
+-	 * when FD is closing as IOCTLs presumably can't be modifying the
+-	 * xarray. Taking exec_queue.lock here causes undue dependency on
+-	 * vm->lock taken during xe_exec_queue_kill().
+-	 */
+-	xa_for_each(&xef->exec_queue.xa, idx, q) {
+-		xe_exec_queue_kill(q);
+-		xe_exec_queue_put(q);
+-	}
+ 	xa_destroy(&xef->exec_queue.xa);
+ 	mutex_destroy(&xef->exec_queue.lock);
+ 	mutex_lock(&xef->vm.lock);
+@@ -125,6 +113,26 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
+ 	kfree(xef);
+ }
+ 
++static void xe_file_close(struct drm_device *dev, struct drm_file *file)
++{
++	struct xe_file *xef = file->driver_priv;
++	struct xe_exec_queue *q;
++	unsigned long idx;
++
++	/*
++	 * No need for exec_queue.lock here as there is no contention for it
++	 * when FD is closing as IOCTLs presumably can't be modifying the
++	 * xarray. Taking exec_queue.lock here causes undue dependency on
++	 * vm->lock taken during xe_exec_queue_kill().
++	 */
++	xa_for_each(&xef->exec_queue.xa, idx, q) {
++		xe_exec_queue_kill(q);
++		xe_exec_queue_put(q);
++	}
++
++	xe_file_destroy(xef);
++}
++
+ static const struct drm_ioctl_desc xe_ioctls[] = {
+ 	DRM_IOCTL_DEF_DRV(XE_DEVICE_QUERY, xe_query_ioctl, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_GEM_CREATE, xe_gem_create_ioctl, DRM_RENDER_ALLOW),
 -- 
 2.38.1
 
