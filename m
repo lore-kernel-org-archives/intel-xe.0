@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48FF8C3271E
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Jul 2024 06:31:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C23F8C3DA42
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Jul 2024 06:32:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 140F910E20A;
-	Mon,  8 Jul 2024 06:31:53 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BD5C10E200;
- Mon,  8 Jul 2024 06:31:51 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FC6810E20E;
+	Mon,  8 Jul 2024 06:32:29 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lgCr/mch";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1026D10E200;
+ Mon,  8 Jul 2024 06:32:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1720420349; x=1751956349;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=9foJf0DXRvtS6LuOd0jTPcCJ0SasK/uxvH4bYe5Znkg=;
+ b=lgCr/mchg5qQTZwqCEipmh4/deJfE4ePp58FQCd4qieBTpRbpI3TZfmo
+ NS9Dx/xP5q/wtlTY29Xc2/HAPVkz90ncmoJvY8blbLQA0i62w1rOhn/GD
+ kmKeRCq4m1VyDTq/oH74inN+P2+meIEABd2JPjHuOz6FcL/UYArAFN3k/
+ NQp3gku/S8fheZukNmuE+Yxb5o2yHKogJi5Ag2yEAlyuK1FxoOy21+KrV
+ TTdn9ctw37z1HsMhMd0SyUc6I73MzZYBS/VmhFg4vHbbWv2R2FSPpYoAH
+ YqQ9RXkeBXkYsOb1lBES7mE0bgb646Ltmi0/QSQd8sOw+ZTPiswtjBsGy A==;
+X-CSE-ConnectionGUID: wKarfkkHTlO3AyfPcB7HbA==
+X-CSE-MsgGUID: UiCC3UvRRIq2ZrRNIxIDkw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11126"; a="28208490"
+X-IronPort-AV: E=Sophos;i="6.09,191,1716274800"; d="scan'208";a="28208490"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2024 23:32:23 -0700
+X-CSE-ConnectionGUID: /ti+YBYxSb6ujilHYjiTFw==
+X-CSE-MsgGUID: ptQKYfwOSzCrTZ1N/WzFtQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,191,1716274800"; d="scan'208";a="47464109"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.94.254.89])
+ ([10.94.254.89])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2024 23:32:21 -0700
+Message-ID: <82730dda-9c16-417d-a12e-456932e62fef@linux.intel.com>
+Date: Mon, 8 Jul 2024 08:32:18 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe=3A_Revert_=22drm/i915?=
- =?utf-8?q?=3A_Disable_DSB_in_Xe_KMD=22_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Animesh Manna" <animesh.manna@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 08 Jul 2024 06:31:51 -0000
-Message-ID: <172042031156.49182.5773926485841098125@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240708055630.4058818-1-animesh.manna@intel.com>
-In-Reply-To: <20240708055630.4058818-1-animesh.manna@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/4] drm/xe/lnl: Offload system clear page activity to
+ GPU
+To: Nirmoy Das <nirmoy.das@intel.com>, dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+References: <20240704081841.30212-1-nirmoy.das@intel.com>
+ <20240704081841.30212-4-nirmoy.das@intel.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20240704081841.30212-4-nirmoy.das@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +71,208 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Gentle reminder!
 
-Series: drm/xe: Revert "drm/i915: Disable DSB in Xe KMD" (rev4)
-URL   : https://patchwork.freedesktop.org/series/131488/
-State : success
-
-== Summary ==
-
-lib/modules/6.10.0-rc6-xe/kernel/sound/core/seq/
-lib/modules/6.10.0-rc6-xe/kernel/sound/core/seq/snd-seq.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/core/snd-seq-device.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/core/snd-hwdep.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/core/snd.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/core/snd-pcm.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/core/snd-compress.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/core/snd-timer.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soundcore.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/intel/
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/intel/atom/
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/intel/atom/sst/
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/intel/common/
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/amd/
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/amd/snd-acp-config.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/intel/
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/amd/
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/snd-sof-utils.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/snd-sof-pci.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/snd-sof.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/snd-sof-probes.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/xtensa/
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/snd-soc-core.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/snd-soc-acpi.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/codecs/
-lib/modules/6.10.0-rc6-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/hda/
-lib/modules/6.10.0-rc6-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/hda/ext/
-lib/modules/6.10.0-rc6-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/hda/snd-intel-dspcfg.ko
-lib/modules/6.10.0-rc6-xe/kernel/sound/hda/snd-hda-core.ko
-lib/modules/6.10.0-rc6-xe/kernel/arch/
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/kernel/
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/kernel/msr.ko
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/kernel/cpuid.ko
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/crypto/
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/crypto/aesni-intel.ko
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/events/
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/events/intel/
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/kvm/
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.10.0-rc6-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.10.0-rc6-xe/kernel/crypto/
-lib/modules/6.10.0-rc6-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.10.0-rc6-xe/kernel/crypto/cmac.ko
-lib/modules/6.10.0-rc6-xe/kernel/crypto/ccm.ko
-lib/modules/6.10.0-rc6-xe/kernel/crypto/cryptd.ko
-lib/modules/6.10.0-rc6-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.10.0-rc6-xe/kernel/crypto/async_tx/
-lib/modules/6.10.0-rc6-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.10.0-rc6-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.10.0-rc6-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.10.0-rc6-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.10.0-rc6-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.10.0-rc6-xe/build
-lib/modules/6.10.0-rc6-xe/modules.alias.bin
-lib/modules/6.10.0-rc6-xe/modules.builtin
-lib/modules/6.10.0-rc6-xe/modules.softdep
-lib/modules/6.10.0-rc6-xe/modules.alias
-lib/modules/6.10.0-rc6-xe/modules.order
-lib/modules/6.10.0-rc6-xe/modules.symbols
-lib/modules/6.10.0-rc6-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1720420299:package_x86_64_nodebug\r\e[0K'
-+ sync
-[0Ksection_end:1720420299:package_x86_64_nodebug
-[0K
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+On 7/4/2024 10:18 AM, Nirmoy Das wrote:
+> On LNL because of flat CCS, driver creates a migrate job to clear
+> CCS meta data. Extend that to also clear system pages using GPU.
+> Inform TTM to allocate pages without __GFP_ZERO to avoid double page
+> clearing by clearing out TTM_TT_FLAG_ZERO_ALLOC flag and set
+> TTM_TT_FLAG_CLEARED_ON_FREE while freeing to skip ttm pool's
+> clearn-on-free as XE now takes care of clearing pages. If a bo
+> is in system placement and there is a cpu map then for such BO gpu
+> clear will be avoided as there is no dma mapping for such BO.
+>
+> To test the patch, created a small test that tries to submit a job
+> after binding various sizes of buffer which shows good gains for larger
+> buffer. For lower buffer sizes, the result is not very reliable as the
+> results vary a lot.
+>
+> With the patch
+> sudo  ~/igt-gpu-tools/build/tests/xe_exec_store --run
+> basic-store-benchmark
+> IGT-Version: 1.28-g2ed908c0b (x86_64) (Linux: 6.10.0-rc2-xe+ x86_64)
+> Using IGT_SRANDOM=1719237905 for randomisation
+> Opened device: /dev/dri/card0
+> Starting subtest: basic-store-benchmark
+> Starting dynamic subtest: WC
+> Dynamic subtest WC: SUCCESS (0.000s)
+> Time taken for size SZ_4K: 9493 us
+> Time taken for size SZ_2M: 5503 us
+> Time taken for size SZ_64M: 13016 us
+> Time taken for size SZ_128M: 29464 us
+> Time taken for size SZ_256M: 38408 us
+> Time taken for size SZ_1G: 148758 us
+> Starting dynamic subtest: WB
+> Dynamic subtest WB: SUCCESS (0.000s)
+> Time taken for size SZ_4K: 3889 us
+> Time taken for size SZ_2M: 6091 us
+> Time taken for size SZ_64M: 20920 us
+> Time taken for size SZ_128M: 32394 us
+> Time taken for size SZ_256M: 61710 us
+> Time taken for size SZ_1G: 215437 us
+> Subtest basic-store-benchmark: SUCCESS (0.589s)
+>
+> With the patch:
+> sudo  ~/igt-gpu-tools/build/tests/xe_exec_store --run
+> basic-store-benchmark
+> IGT-Version: 1.28-g2ed908c0b (x86_64) (Linux: 6.10.0-rc2-xe+ x86_64)
+> Using IGT_SRANDOM=1719238062 for randomisation
+> Opened device: /dev/dri/card0
+> Starting subtest: basic-store-benchmark
+> Starting dynamic subtest: WC
+> Dynamic subtest WC: SUCCESS (0.000s)
+> Time taken for size SZ_4K: 11803 us
+> Time taken for size SZ_2M: 4237 us
+> Time taken for size SZ_64M: 8649 us
+> Time taken for size SZ_128M: 14682 us
+> Time taken for size SZ_256M: 22156 us
+> Time taken for size SZ_1G: 74457 us
+> Starting dynamic subtest: WB
+> Dynamic subtest WB: SUCCESS (0.000s)
+> Time taken for size SZ_4K: 5129 us
+> Time taken for size SZ_2M: 12563 us
+> Time taken for size SZ_64M: 14860 us
+> Time taken for size SZ_128M: 26064 us
+> Time taken for size SZ_256M: 47167 us
+> Time taken for size SZ_1G: 170304 us
+> Subtest basic-store-benchmark: SUCCESS (0.417s)
+>
+> With the patch and init_on_alloc=0
+> sudo  ~/igt-gpu-tools/build/tests/xe_exec_store --run
+> basic-store-benchmark
+> IGT-Version: 1.28-g2ed908c0b (x86_64) (Linux: 6.10.0-rc2-xe+ x86_64)
+> Using IGT_SRANDOM=1719238219 for randomisation
+> Opened device: /dev/dri/card0
+> Starting subtest: basic-store-benchmark
+> Starting dynamic subtest: WC
+> Dynamic subtest WC: SUCCESS (0.000s)
+> Time taken for size SZ_4K: 4803 us
+> Time taken for size SZ_2M: 9212 us
+> Time taken for size SZ_64M: 9643 us
+> Time taken for size SZ_128M: 13479 us
+> Time taken for size SZ_256M: 22429 us
+> Time taken for size SZ_1G: 83110 us
+> Starting dynamic subtest: WB
+> Dynamic subtest WB: SUCCESS (0.000s)
+> Time taken for size SZ_4K: 4003 us
+> Time taken for size SZ_2M: 4443 us
+> Time taken for size SZ_64M: 12960 us
+> Time taken for size SZ_128M: 13741 us
+> Time taken for size SZ_256M: 26841 us
+> Time taken for size SZ_1G: 84746 us
+> Subtest basic-store-benchmark: SUCCESS (0.290s)
+>
+> v2: Handle regression on dgfx(Himal)
+>      Update commit message as no ttm API changes needed.
+> v3: Fix Kunit test.
+> v4: handle data leak on cpu mmap(Thomas)
+>
+> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_bo.c           | 25 ++++++++++++++++++++++++-
+>   drivers/gpu/drm/xe/xe_device.c       |  7 +++++++
+>   drivers/gpu/drm/xe/xe_device_types.h |  2 ++
+>   3 files changed, 33 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 4d6315d2ae9a..b76a44fcf3b1 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -387,6 +387,13 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+>   		caching = ttm_uncached;
+>   	}
+>   
+> +	/* If the device can support gpu clear pages then set proper ttm
+> +	 * flag. Zeroed pages are only required for ttm_bo_type_device so
+> +	 * unwanted data is leaked to userspace.
+> +	 */
+> +	if (ttm_bo->type == ttm_bo_type_device && xe->mem.gpu_page_clear)
+> +		page_flags |= TTM_TT_FLAG_CLEARED_ON_FREE;
+> +
+>   	err = ttm_tt_init(&tt->ttm, &bo->ttm, page_flags, caching, extra_pages);
+>   	if (err) {
+>   		kfree(tt);
+> @@ -408,6 +415,10 @@ static int xe_ttm_tt_populate(struct ttm_device *ttm_dev, struct ttm_tt *tt,
+>   	if (tt->page_flags & TTM_TT_FLAG_EXTERNAL)
+>   		return 0;
+>   
+> +	/* Clear TTM_TT_FLAG_ZERO_ALLOC when GPU is set to clear pages */
+> +	if (tt->page_flags & TTM_TT_FLAG_CLEARED_ON_FREE)
+> +		tt->page_flags &= ~TTM_TT_FLAG_ZERO_ALLOC;
+> +
+>   	err = ttm_pool_alloc(&ttm_dev->pool, tt, ctx);
+>   	if (err)
+>   		return err;
+> @@ -653,6 +664,14 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+>   
+>   	int ret = 0;
+>   
+> +	/*
+> +	 * Clear TTM_TT_FLAG_CLEARED_ON_FREE on bo creation path when
+> +	 * moving to system as the bo doesn't dma_mapping.
+> +	 */
+> +	if (!old_mem && ttm && !ttm_tt_is_populated(ttm)) {
+> +		ttm->page_flags &= ~TTM_TT_FLAG_CLEARED_ON_FREE;
+> +	}
+> +
+>   	/* Bo creation path, moving to system or TT. */
+>   	if ((!old_mem && ttm) && !handle_system_ccs) {
+>   		if (new_mem->mem_type == XE_PL_TT)
+> @@ -676,7 +695,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+>   						(!mem_type_is_vram(old_mem_type) && !tt_has_data);
+>   
+>   	needs_clear = (ttm && ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC) ||
+> -		(!ttm && ttm_bo->type == ttm_bo_type_device);
+> +		(!ttm && ttm_bo->type == ttm_bo_type_device) ||
+> +		(ttm && ttm->page_flags & TTM_TT_FLAG_CLEARED_ON_FREE);
+>   
+>   	if (new_mem->mem_type == XE_PL_TT) {
+>   		ret = xe_tt_map_sg(ttm);
+> @@ -790,6 +810,9 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+>   					 handle_system_ccs;
+>   			bool clear_bo_data = mem_type_is_vram(new_mem->mem_type);
+>   
+> +			if (ttm && (ttm->page_flags & TTM_TT_FLAG_CLEARED_ON_FREE))
+> +				clear_bo_data |= true;
+> +
+>   			fence = xe_migrate_clear(migrate, bo, new_mem,
+>   						 clear_bo_data, clear_ccs);
+>   		}
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 03492fbcb8fb..7c682a53f06e 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -636,6 +636,13 @@ int xe_device_probe(struct xe_device *xe)
+>   	if (err)
+>   		goto err;
+>   
+> +	/**
+> +	 * On iGFX device with flat CCS, we clear CCS metadata, let's extend that
+> +	 * and use GPU to clear pages as well.
+> +	 */
+> +	if (xe_device_has_flat_ccs(xe) && !IS_DGFX(xe))
+> +		xe->mem.gpu_page_clear = true;
+> +
+>   	err = xe_vram_probe(xe);
+>   	if (err)
+>   		goto err;
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index 3bca6d344744..28eaf2ab1f25 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -325,6 +325,8 @@ struct xe_device {
+>   		struct xe_mem_region vram;
+>   		/** @mem.sys_mgr: system TTM manager */
+>   		struct ttm_resource_manager sys_mgr;
+> +		/** @gpu_page_clear: clear pages offloaded to GPU */
+> +		bool gpu_page_clear;
+>   	} mem;
+>   
+>   	/** @sriov: device level virtualization data */
