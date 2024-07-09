@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D21EC2BD09
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Jul 2024 11:17:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C367C3DA41
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Jul 2024 11:17:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C39E10E1C9;
-	Tue,  9 Jul 2024 11:17:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC13B10E1C9;
+	Tue,  9 Jul 2024 11:17:56 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9976B10E1C9;
- Tue,  9 Jul 2024 11:17:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 726B410E1C9;
+ Tue,  9 Jul 2024 11:17:54 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Restrict_Xe2_to_use_?=
- =?utf-8?q?64K_pages_for_scanout_buffers?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Restrict_Xe2_to_use_64K_p?=
+ =?utf-8?q?ages_for_scanout_buffers?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 09 Jul 2024 11:17:40 -0000
-Message-ID: <172052386062.86056.4329875794927801402@2413ebb6fbb6>
+Date: Tue, 09 Jul 2024 11:17:54 -0000
+Message-ID: <172052387446.86056.5349418800155189091@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240709111231.490440-1-zbigniew.kempczynski@intel.com>
 In-Reply-To: <20240709111231.490440-1-zbigniew.kempczynski@intel.com>
@@ -48,10 +48,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: b517815c3f82 drm-tip: 2024y-07m-09d-10h-49m-26s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Separate 64K physical allocation for display
-Applying: drm/xe: Use 64K pages for scanout buffers for Xe2
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit cf0a106bd2d316ed7ca78bf1d7f7a39dec55df9d
+Author: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+Date:   Tue Jul 9 13:12:31 2024 +0200
+
+    drm/xe: Use 64K pages for scanout buffers for Xe2
+    
+    Set Xe2 platforms to use 64K pages for display.
+    
+    Signed-off-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch b517815c3f82589b802e2dccb11c8585fda13979 drm-intel
+33157d8ca0a0 drm/xe: Separate 64K physical allocation for display
+cf0a106bd2d3 drm/xe: Use 64K pages for scanout buffers for Xe2
 
 
