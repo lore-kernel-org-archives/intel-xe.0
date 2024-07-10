@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEE4BC3DA42
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Jul 2024 19:39:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 059FAC2BD09
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Jul 2024 19:44:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9614810E63A;
-	Tue,  9 Jul 2024 19:39:20 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE91110E60D;
- Tue,  9 Jul 2024 19:39:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2856114701079435253=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA3B410E63A;
+	Tue,  9 Jul 2024 19:44:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EXnExHR1";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE0B510E63A
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Jul 2024 19:44:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1720554247; x=1752090247;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZbRwXDTpowOp526BGcBGYM0n5s/oBfPRskFoSwouC9k=;
+ b=EXnExHR1EercNVwzXulPrp7MtPFC7rR/5F5dHKfpy4J90b0SUr8dMr6R
+ xRDb4hExUL04r52FKe+xrWXFM05ZIObCECf/KHEhcMGI8kgtXQ6QfW5YA
+ RVgzfJFOBPza+JqMPu+gl5WFKCZRrS7a1arMGN5bSAIoOTj1W188mIOhU
+ Biq3tjzdSBTP5a8dpuLG9sH5sIWGyxXOFuec+7+TuwCPE/NP2Tmg1l0oE
+ Ds51L5ioo3sGuD5q+VBoxlVB4SkKEcC4RtXN5X1RfAr1HLW6GN2vOGsbB
+ 8UGMQT+sgqJRa9ZhfUdzGwDcjYey2Roy2XUO8PzsbRnGtWNZ0RCKcrkJY g==;
+X-CSE-ConnectionGUID: 20PRimZsTHqmDRXBCMhUSw==
+X-CSE-MsgGUID: 7TxvOq71T9W3VH7tqLNhPg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11128"; a="17469518"
+X-IronPort-AV: E=Sophos;i="6.09,195,1716274800"; d="scan'208";a="17469518"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2024 12:44:06 -0700
+X-CSE-ConnectionGUID: rDbsGxoKSCiAWFZEqrz1rw==
+X-CSE-MsgGUID: 5foD7NMCTFqv/aYFX36OUw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,195,1716274800"; d="scan'208";a="52562212"
+Received: from saurabhg-nuc10i5fnh.jf.intel.com ([10.165.125.7])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2024 12:44:06 -0700
+From: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com, lucas.demarchi@gmail.com,
+ Akshata Jahagirdar <akshata.jahagirdar@intel.com>
+Subject: [PATCH 0/6] Implement compression support on BMG
+Date: Wed, 10 Jul 2024 00:53:44 -0700
+Message-Id: <cover.1720515376.git.akshata.jahagirdar@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Update_page_fault_queue_size_cal?=
- =?utf-8?q?culation?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stuart Summers" <stuart.summers@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 09 Jul 2024 19:39:18 -0000
-Message-ID: <172055395877.87462.9226768410801571638@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <cover.1720550129.git.stuart.summers@intel.com>
-In-Reply-To: <cover.1720550129.git.stuart.summers@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,147 +63,32 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2856114701079435253==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+According to the SAS for BMG compression, we need to decompress during eviction,
+and not recompress on restore. Due to this, we need to introduce encoding pat_index
+in case of vram too. This patch explores the solution of setting up an additional
+identity map for the vram, this time at the end of previous mapping offset and
+with compressed pat_index. 
+We then select the appropriate mapping during eviction/restore/clear.
 
-== Series Details ==
+Akshata Jahagirdar (6):
+  drm/xe/xe2: Introduce identity map for compressed pat for vram
+  drm/xe/migrate: Handle clear ccs logic for xe2 dgfx
+  drm/xe/migrate: Add kunit to test clear functionality
+  drm/xe/xe_migrate: Handle migration logic for xe2+ dgfx
+  drm/xe/migrate: Add kunit to test migration functionality for BMG
+  drm/xe/xe2: Do not run xe_bo_test for xe2+ dgfx
 
-Series: Update page fault queue size calculation
-URL   : https://patchwork.freedesktop.org/series/135915/
-State : success
+ drivers/gpu/drm/xe/tests/xe_bo.c           |   6 +
+ drivers/gpu/drm/xe/tests/xe_migrate.c      | 388 +++++++++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_migrate_test.c |   1 +
+ drivers/gpu/drm/xe/tests/xe_migrate_test.h |   1 +
+ drivers/gpu/drm/xe/xe_device.h             |   5 +
+ drivers/gpu/drm/xe/xe_migrate.c            |  66 +++-
+ 6 files changed, 449 insertions(+), 18 deletions(-)
 
-== Summary ==
+-- 
+2.34.1
 
-CI Bug Log - changes from xe-1582-5ab7f53884ba8f486fafc94521b83096d9f9dfee_BAT -> xe-pw-135915v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (6 -> 6)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-135915v1_BAT:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate:
-    - {bat-lnl-1}:        [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1582-5ab7f53884ba8f486fafc94521b83096d9f9dfee/bat-lnl-1/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135915v1/bat-lnl-1/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html
-
-  * igt@xe_exec_threads@threads-basic:
-    - {bat-bmg-1}:        [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1582-5ab7f53884ba8f486fafc94521b83096d9f9dfee/bat-bmg-1/igt@xe_exec_threads@threads-basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135915v1/bat-bmg-1/igt@xe_exec_threads@threads-basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-
-
-Build changes
--------------
-
-  * Linux: xe-1582-5ab7f53884ba8f486fafc94521b83096d9f9dfee -> xe-pw-135915v1
-
-  IGT_7920: 7920
-  xe-1582-5ab7f53884ba8f486fafc94521b83096d9f9dfee: 5ab7f53884ba8f486fafc94521b83096d9f9dfee
-  xe-pw-135915v1: 135915v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135915v1/index.html
-
---===============2856114701079435253==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Update page fault queue size calculation</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135915/">https://patchwork.freedesktop.org/series/135915/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135915v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135915v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1582-5ab7f53884ba8f486fafc94521b83096d9f9dfee_BAT -&gt; xe-pw-135915v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (6 -&gt; 6)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-135915v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate:</p>
-<ul>
-<li>{bat-lnl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1582-5ab7f53884ba8f486fafc94521b83096d9f9dfee/bat-lnl-1/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135915v1/bat-lnl-1/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_threads@threads-basic:</p>
-<ul>
-<li>{bat-bmg-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1582-5ab7f53884ba8f486fafc94521b83096d9f9dfee/bat-bmg-1/igt@xe_exec_threads@threads-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135915v1/bat-bmg-1/igt@xe_exec_threads@threads-basic.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1582-5ab7f53884ba8f486fafc94521b83096d9f9dfee -&gt; xe-pw-135915v1</li>
-</ul>
-<p>IGT_7920: 7920<br />
-  xe-1582-5ab7f53884ba8f486fafc94521b83096d9f9dfee: 5ab7f53884ba8f486fafc94521b83096d9f9dfee<br />
-  xe-pw-135915v1: 135915v1</p>
-
-</body>
-</html>
-
---===============2856114701079435253==--
