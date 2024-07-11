@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD3D5C3DA4D
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 09:19:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDC3DC3DA4A
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 09:19:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A14EC10E9D3;
-	Thu, 11 Jul 2024 09:19:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80C5510E9DC;
+	Thu, 11 Jul 2024 09:19:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Igp27LuF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IlfRuKHu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 535F810E9D3
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 09:19:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEE5E10E9D2
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 09:18:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720689542; x=1752225542;
+ t=1720689539; x=1752225539;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WbrWZGUH2oUVAjDqhgMn/l7gIP4yytZO/xHtO9tLIs4=;
- b=Igp27LuFY0RwrghCpV1GuSELjn1Dj3sh1n1hxLs1f+j6PyiQocjFK7Xq
- z24R+4zu/+2d2Wb29ecNHKxwrni0Hlq8Wxkj5iCl5NLjGEWn4+9uEYLny
- SGdDc7IE066JYkDZ/Pb/yGsmQSrJOv562Ar4SMfxAPbDkgYUUhuloAEBL
- F+kMdMdAam8OQoFTJ4gLG+Y/LBorO0ZH0ZDrQONW6pCXIFZ9nQPpUNzfq
- J0kM/9hcfCG9syNx9siaQObz73Tap1D/hxIwmubX0X6g3mTPtq6gw8ZBG
- tN4gWBfvM2vWcwaL0kvf6vZ+NtRZfUQ9qPtMxqv+4lVMPlVcVXr7XJioq w==;
-X-CSE-ConnectionGUID: F6iQdq4WQTe9uhHe7A6DMw==
-X-CSE-MsgGUID: XUZGlLXZSQ+fJl/TAyEHZQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="17671961"
-X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="17671961"
+ bh=rtGaBVmX50Zmw5GrqZSQy9ekFMtX7Jx5cClJix+PziA=;
+ b=IlfRuKHuyQzcPSoERofOxA7z7uksgM7TCkNXc7GnkHx2ar9ClcKZ/+HI
+ DJ/Mv96tkaUhxCun5vKsiBqjj4RAHqb4lYTMW2JPo2jtQS3ADWUp2ObFZ
+ iczzmryi/rxiHs+bK/55/7Q1avdarBFv5YGdAc+nvjl5P1vD6fvWsi8xy
+ BVdTjtTXHxp0bvlRLvR/bm+6QuSzmOHDEpop9YZAVBDpUinetrparSWCn
+ BYefW07KOtbACSdyHAl3QFhvnRs7f2BRbmiO1rU7XNVe8EkBuvDkSTnp5
+ 4dnxVThXO7lmewBzhkfG1jvr9cTzqO0aUflZD5Jylxf6EWMPHb3tvYxEI w==;
+X-CSE-ConnectionGUID: TL2zuLesSWWZcKE4/cyCkA==
+X-CSE-MsgGUID: HgEyKR+1SJy6NBEhS64P0Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="17671942"
+X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="17671942"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 02:18:37 -0700
-X-CSE-ConnectionGUID: 9fa8w2AIQ8SIFzcp3d+x/Q==
-X-CSE-MsgGUID: FsDT1Lj2TyGyQERXkrOCDQ==
+ 11 Jul 2024 02:18:33 -0700
+X-CSE-ConnectionGUID: 4BIr/SXERjSc05NGOg3nhA==
+X-CSE-MsgGUID: N+540HNgSoCWlI8Gwu2XHg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="79210110"
+X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="79210101"
 Received: from dut1122bmgfrd.igk.intel.com ([10.211.178.41])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 02:18:35 -0700
+ 11 Jul 2024 02:18:32 -0700
 From: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com, matthew.auld@intel.com,
  himal.prasad.ghimiray@intel.com, lucas.demarchi@intel.com,
  Akshata Jahagirdar <akshata.jahagirdar@intel.com>
-Subject: [PATCH 6/6] drm/xe/xe2: Do not run xe_bo_test for xe2+ dgfx
-Date: Thu, 11 Jul 2024 09:18:19 +0000
-Message-Id: <79f935e813ca24711a6af5f8db71e0a064ec06bf.1720689220.git.akshata.jahagirdar@intel.com>
+Subject: [PATCH 4/6] drm/xe/xe_migrate: Handle migration logic for xe2+ dgfx
+Date: Thu, 11 Jul 2024 09:18:17 +0000
+Message-Id: <4c5165d6352f58371ef3452704c542e1a21284ed.1720689220.git.akshata.jahagirdar@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1720689220.git.akshata.jahagirdar@intel.com>
 References: <cover.1720689220.git.akshata.jahagirdar@intel.com>
@@ -68,33 +68,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In xe2+ dgfx, we don't need to handle the copying of ccs
-metadata during migration. This test validates the ccs data post
-clear and copy during evict/restore operation. Thus, we can skip
-this test on xe2+ dgfx.
+During eviction (vram->sysmem), we use the mapping from compressed -> uncompressed.
+During restore (sysmem->vram), we need the mapping from uncompressed -> uncompressed.
+Handle logic for selecting the compressed identity map for eviction,
+and selecting uncompressed map for restore operations.
 
 Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_bo.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/xe/xe_migrate.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-index 9f3c02826464..f7ef91b9a5d2 100644
---- a/drivers/gpu/drm/xe/tests/xe_bo.c
-+++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-@@ -163,6 +163,12 @@ static int ccs_test_run_device(struct xe_device *xe)
- 		return 0;
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index a3d6d3113ac2..96f747cd949d 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -690,7 +690,7 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
+ 	struct xe_gt *gt = m->tile->primary_gt;
+ 	u32 flush_flags = 0;
  
-+	/* For xe2+ dgfx, we don't handle ccs metadata */
-+	if (GRAPHICS_VER(xe) >= 20 && IS_DGFX(xe)) {
-+		kunit_info(test, "Skipping on xe2+ dgfx device.\n");
-+		return 0;
-+	}
-+
- 	xe_pm_runtime_get(xe);
+-	if (xe_device_has_flat_ccs(gt_to_xe(gt)) && !copy_ccs && dst_is_indirect) {
++	if (xe_device_needs_ccs_emit(gt_to_xe(gt)) && !copy_ccs && dst_is_indirect) {
+ 		/*
+ 		 * If the src is already in vram, then it should already
+ 		 * have been cleared by us, or has been populated by the
+@@ -766,6 +766,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 	bool copy_ccs = xe_device_has_flat_ccs(xe) &&
+ 		xe_bo_needs_ccs_pages(src_bo) && xe_bo_needs_ccs_pages(dst_bo);
+ 	bool copy_system_ccs = copy_ccs && (!src_is_vram || !dst_is_vram);
++	bool use_comp_pat = GRAPHICS_VER(xe) >= 20 && IS_DGFX(xe) && src_is_vram && !dst_is_vram;
  
- 	for_each_tile(tile, xe, id) {
+ 	/* Copying CCS between two different BOs is not supported yet. */
+ 	if (XE_WARN_ON(copy_ccs && src_bo != dst_bo))
+@@ -808,7 +809,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 
+ 		src_L0 = min(src_L0, dst_L0);
+ 
+-		batch_size += pte_update_size(m, src_is_vram, false, src, &src_it, &src_L0,
++		batch_size += pte_update_size(m, src_is_vram, use_comp_pat, src, &src_it, &src_L0,
+ 					      &src_L0_ofs, &src_L0_pt, 0, 0,
+ 					      avail_pts);
+ 
+@@ -827,7 +828,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 
+ 		/* Add copy commands size here */
+ 		batch_size += ((copy_only_ccs) ? 0 : EMIT_COPY_DW) +
+-			((xe_device_has_flat_ccs(xe) ? EMIT_COPY_CCS_DW : 0));
++			((xe_device_needs_ccs_emit(xe) ? EMIT_COPY_CCS_DW : 0));
+ 
+ 		bb = xe_bb_new(gt, batch_size, usm);
+ 		if (IS_ERR(bb)) {
 -- 
 2.34.1
 
