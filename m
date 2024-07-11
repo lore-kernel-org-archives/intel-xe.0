@@ -4,56 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75625C3271E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4F45C3DA45
 	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 05:55:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44D5810E94C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F29710E94D;
 	Thu, 11 Jul 2024 05:55:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y3dqC117";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A9AjpyAl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 820CB10E94C
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 05:55:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CE4410E94A
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 05:55:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720677319; x=1752213319;
+ t=1720677318; x=1752213318;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=p8ptK7tjUsRiu2kZxpx1kwT1D9NFeFirJQedeH2uW5k=;
- b=Y3dqC117wJCeka0DO6uP/UKCLYvsSycvgVLnTV4ikYNtviEq0is7AUC4
- DwC+qfMjP0uAxYQX3y2ufaEBuwZepPctaXhJPQ3zxjeQrNcK9V/6aTwzK
- EJ+CkvcfTkqGGSVL3CfK7Jr0kq1f5IymBPdrkoo4n2+kGcZdNazyyxKva
- vnCUDJVJagHCKTdtn52P1r18tudS2GkI8BQ/VPuXKEXQVG36O0uiCL6TD
- k6Iin65GGXP6eIcFu/6ihUNhBhL0R5yXX6vY6WgdGbctp+mE0GljU9tDU
- OpZXAGP+hbt3FxWYCGfzQOveQpMD6DQF2wzukvuO83PHyOZwwA5dnS1Kz w==;
-X-CSE-ConnectionGUID: ilU9MVxKSZylgyfF3yYgfA==
-X-CSE-MsgGUID: jUgGlb6WS6OFUXEL6+3AKQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="35468632"
-X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="35468632"
+ bh=5FUWcqBfkoGs7Ertc72RMnNC1emplNTUNyIHJWp+CJ8=;
+ b=A9AjpyAl15Dga95IhI6+9I+X0sLBb3hh0jrFZtP8mOjxuPKAd6ydg4VQ
+ k5eAAUl0VNRL53wT7Uf+fVoBJLgMEjqIGseK4r2RBaFq9WMZP2FZIoINS
+ e/AzasAh3L+ozjijD2mz4XvFGCWuhym20ZwUkf2NDn0bKVgpBAKUbrQMT
+ EC5t9S1PT8J7Ob7uDBNUP+tbVI7F46uUZbKYgxidi/qjUePMTUHUFTazu
+ qUqnyhJGX7SyBPO6W6oL8EAvvdKH/OwGBitkc4xF7ROBpIUgJ3oK/OrnP
+ 0sgDI8fQ6PQiADy8hC6UfVzzLMdyyf8Nebs2RoSnf6Z3br7h+tioZQGFG g==;
+X-CSE-ConnectionGUID: i5aNnKEYTyOKEf1wyx/B5Q==
+X-CSE-MsgGUID: A4H2hgqrRYqnksaUB5Ns9A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="35468629"
+X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="35468629"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2024 22:55:19 -0700
-X-CSE-ConnectionGUID: 3glI+yfoTUS1fYCiN8FuxQ==
-X-CSE-MsgGUID: HaP+pjCFTg6YNKRpimcoxg==
+ 10 Jul 2024 22:55:18 -0700
+X-CSE-ConnectionGUID: RwBLe03PTuexvwwyUVCOcg==
+X-CSE-MsgGUID: vMHhlmjcSHmIPLfNMKFT4g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="53627683"
+X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="53627680"
 Received: from dut1110bmgfrd.igk.intel.com ([10.211.177.149])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2024 22:55:18 -0700
+ 10 Jul 2024 22:55:17 -0700
 From: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: akshatajahagirdar6@gmail.com,
  Akshata Jahagirdar <akshata.jahagirdar@intel.com>
-Subject: [PATCH 3/6] drm/xe/xe2: Introduce identity map for compressed pat for
- vram
-Date: Thu, 11 Jul 2024 05:55:02 +0000
-Message-Id: <236fb323ac54bdab74bf98cfe391b95e19a9447b.1720677100.git.akshata.jahagirdar@intel.com>
+Subject: [PATCH 2/6] drm/xe/migrate: Add kunit to test clear functionality
+Date: Thu, 11 Jul 2024 05:55:01 +0000
+Message-Id: <302a8cd8fa3778aa64a60b2b77c062e79bf73bfb.1720677100.git.akshata.jahagirdar@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1720677099.git.akshata.jahagirdar@intel.com>
 References: <cover.1720677099.git.akshata.jahagirdar@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,189 +67,321 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Xe2+ has unified compression (exactly one compression mode/format),
-where compression is now controlled via PAT at PTE level.
-This simplifies KMD operations, as it can now decompress freely
-without concern for the buffer's original compression format—unlike DG2,
-which had multiple compression formats and thus required copying the
-raw CCS state during VRAM eviction. In addition mixed VRAM and system
-memory buffers were not supported with compression enabled.
-
-On Xe2 dGPU compression is still only supported with VRAM, however we
-can now support compression with VRAM and system memory buffers,
-with GPU access being seamless underneath. So long as when doing
-VRAM -> system memory the KMD uses compressed -> uncompressed,
-to decompress it. This also allows CPU access to such buffers,
-assuming that userspace first decompress the corresponding
-pages being accessed.
-If the pages are already in system memory then KMD would have already
-decompressed them. When restoring such buffers with sysmem -> VRAM
-the KMD can't easily know which pages were originally compressed,
-so we always use uncompressed -> uncompressed here.
-With this it also means we can drop all the raw CCS handling on such
-platforms (including needing to allocate extra CCS storage).
-
-In order to support this we now need to have two different identity
-mappings for compressed and uncompressed VRAM.
-In this patch, we set up the additional identity map for the VRAM with
-compressed pat_index. We then select the appropriate mapping during
-migration/clear.During eviction (vram->sysmem), we use the mapping from compressed -> uncompressed.
-During restore (sysmem->vram), we need the mapping from uncompressed -> uncompressed.
-Therefore, we need to have two different mappings for compressed and uncompressed
-vram. We set up an additional identity map for the vram with compressed
-pat_index. We then select the appropriate mapping during migration/clear.
+This test verifies if the main and ccs data are cleared during bo creation.
+The motivation to use Kunit instead of IGT is that, although we can verify
+whether the data is zero following bo creation,
+we cannot confirm whether the zero value after bo creation is the result of
+our clear function or simply because the initial data present there was zero.
 
 Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 55 +++++++++++++++++++++++++--------
- 1 file changed, 42 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_migrate.c      | 271 +++++++++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_migrate_test.c |   1 +
+ drivers/gpu/drm/xe/tests/xe_migrate_test.h |   1 +
+ 3 files changed, 273 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 2fc2cf375b1e..a3d6d3113ac2 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -120,14 +120,20 @@ static u64 xe_migrate_vm_addr(u64 slot, u32 level)
- 	return (slot + 1ULL) << xe_pt_shift(level + 1);
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index 962f6438e219..8e31270f11d1 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -359,3 +359,274 @@ void xe_migrate_sanity_kunit(struct kunit *test)
+ 	xe_call_for_each_device(migrate_test_run_device);
  }
- 
--static u64 xe_migrate_vram_ofs(struct xe_device *xe, u64 addr)
-+static u64 xe_migrate_vram_ofs(struct xe_device *xe, u64 addr, bool is_comp_pte)
- {
- 	/*
- 	 * Remove the DPA to get a correct offset into identity table for the
- 	 * migrate offset
- 	 */
-+	u64 identity_offset = 256ULL;
+ EXPORT_SYMBOL_IF_KUNIT(xe_migrate_sanity_kunit);
 +
-+	if (GRAPHICS_VER(xe) >= 20 && is_comp_pte)
-+		identity_offset = 256ULL +
-+				  DIV_ROUND_UP_ULL(xe->mem.vram.actual_physical_size, SZ_1G);
++static struct dma_fence *blt_copy(struct xe_tile *tile,
++				struct xe_bo *src_bo, struct xe_bo *dst_bo,
++				bool copy_only_ccs, const char *str, struct kunit *test)
++{
++	struct xe_gt *gt = tile->primary_gt;
++	struct xe_migrate *m = tile->migrate;
++	struct xe_device *xe = gt_to_xe(gt);
++	struct dma_fence *fence = NULL;
++	u64 size = src_bo->size;
++	struct xe_res_cursor src_it, dst_it;
++	struct ttm_resource *src = src_bo->ttm.resource, *dst = dst_bo->ttm.resource;
++	u64 src_L0_ofs, dst_L0_ofs;
++	u32 src_L0_pt, dst_L0_pt;
++	u64 src_L0, dst_L0;
++	int err;
++	bool src_is_vram = mem_type_is_vram(src->mem_type);
++	bool dst_is_vram = mem_type_is_vram(dst->mem_type);
 +
- 	addr -= xe->mem.vram.dpa_base;
--	return addr + (256ULL << xe_pt_shift(2));
-+	return addr + (identity_offset << xe_pt_shift(2));
- }
- 
- static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
-@@ -214,12 +220,12 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 	} else {
- 		u64 batch_addr = xe_bo_addr(batch, 0, XE_PAGE_SIZE);
- 
--		m->batch_base_ofs = xe_migrate_vram_ofs(xe, batch_addr);
-+		m->batch_base_ofs = xe_migrate_vram_ofs(xe, batch_addr, false);
- 
- 		if (xe->info.has_usm) {
- 			batch = tile->primary_gt->usm.bb_pool->bo;
- 			batch_addr = xe_bo_addr(batch, 0, XE_PAGE_SIZE);
--			m->usm_batch_base_ofs = xe_migrate_vram_ofs(xe, batch_addr);
-+			m->usm_batch_base_ofs = xe_migrate_vram_ofs(xe, batch_addr, false);
- 		}
- 	}
- 
-@@ -251,7 +257,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 		  | XE_PTE_NULL);
- 	m->cleared_mem_ofs = (255ULL << xe_pt_shift(level));
- 
--	/* Identity map the entire vram at 256GiB offset */
-+	/* Identity map the entire vram for uncompressed pat_index at 256GiB offset */
- 	if (IS_DGFX(xe)) {
- 		u64 pos, ofs, flags;
- 		/* XXX: Unclear if this should be usable_size? */
-@@ -294,6 +300,30 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 		}
- 
- 		xe_assert(xe, pos == vram_limit);
++	if (!src_is_vram)
++		xe_res_first_sg(xe_bo_sg(src_bo), 0, size, &src_it);
++	else
++		xe_res_first(src, 0, size, &src_it);
 +
-+		/*
-+		 * Identity map the entire vram for compressed pat_index for xe2+
-+		 * if flat ccs is enabled.
-+		 */
-+		if (GRAPHICS_VER(xe) >= 20 && xe_device_has_flat_ccs(xe)) {
-+			u16 comp_pat_index = xe->pat.idx[XE_CACHE_NONE_COMPRESSION];
-+			u64 vram_offset = 256 +
-+				DIV_ROUND_UP_ULL(xe->mem.vram.actual_physical_size, SZ_1G);
++	if (!dst_is_vram)
++		xe_res_first_sg(xe_bo_sg(dst_bo), 0, size, &dst_it);
++	else
++		xe_res_first(dst, 0, size, &dst_it);
 +
-+			level = 2;
-+			ofs = map_ofs + XE_PAGE_SIZE * level + vram_offset * 8;
-+			flags = vm->pt_ops->pte_encode_addr(xe, 0, comp_pat_index, level,
-+								true, 0);
++	while (size) {
++		u32 batch_size = 2; /* arb_clear() + MI_BATCH_BUFFER_END */
++		struct xe_sched_job *job;
++		struct xe_bb *bb;
++		u32 flush_flags = 0;
++		u32 update_idx;
++		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
 +
-+			/*
-+			 * Use 1GB pages, it shouldn't matter the physical amount of
-+			 * vram is less, when we don't access it.
-+			 */
-+			for (pos = xe->mem.vram.dpa_base;
-+				 pos < xe->mem.vram.actual_physical_size + xe->mem.vram.dpa_base;
-+				 pos += SZ_1G, ofs += 8)
-+				xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
++		src_L0 = xe_migrate_res_sizes(m, &src_it);
++		dst_L0 = xe_migrate_res_sizes(m, &dst_it);
++
++		src_L0 = min(src_L0, dst_L0);
++
++		batch_size += pte_update_size(m, src_is_vram, src_is_vram, src, &src_it, &src_L0,
++					      &src_L0_ofs, &src_L0_pt, 0, 0,
++					      avail_pts);
++
++		batch_size += pte_update_size(m, dst_is_vram, dst_is_vram, dst, &dst_it, &src_L0,
++					      &dst_L0_ofs, &dst_L0_pt, 0,
++					      avail_pts, avail_pts);
++
++		/* Add copy commands size here */
++		batch_size += ((copy_only_ccs) ? 0 : EMIT_COPY_DW) +
++			((xe_device_has_flat_ccs(xe) && copy_only_ccs) ? EMIT_COPY_CCS_DW : 0);
++
++		bb = xe_bb_new(gt, batch_size, xe->info.has_usm);
++		if (IS_ERR(bb)) {
++			err = PTR_ERR(bb);
++			goto err_sync;
 +		}
- 	}
++
++		if (src_is_vram)
++			xe_res_next(&src_it, src_L0);
++		else
++			emit_pte(m, bb, src_L0_pt, src_is_vram, false,
++				 &src_it, src_L0, src);
++
++		if (dst_is_vram)
++			xe_res_next(&dst_it, src_L0);
++		else
++			emit_pte(m, bb, dst_L0_pt, dst_is_vram, false,
++				 &dst_it, src_L0, dst);
++
++		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
++		update_idx = bb->len;
++		if (!copy_only_ccs)
++			emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0, XE_PAGE_SIZE);
++
++		if (copy_only_ccs)
++			flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs,
++					src_is_vram, dst_L0_ofs,
++					dst_is_vram, src_L0, dst_L0_ofs, copy_only_ccs);
++
++		mutex_lock(&m->job_mutex);
++
++		job = xe_bb_create_migration_job(m->q, bb,
++						 xe_migrate_batch_base(m, xe->info.has_usm),
++						 update_idx);
++		if (IS_ERR(job)) {
++			err = PTR_ERR(job);
++			goto err;
++		}
++
++		xe_sched_job_add_migrate_flush(job, flush_flags);
++
++		xe_sched_job_arm(job);
++		dma_fence_put(fence);
++		fence = dma_fence_get(&job->drm.s_fence->finished);
++		xe_sched_job_push(job);
++
++		dma_fence_put(m->fence);
++		m->fence = dma_fence_get(fence);
++
++		mutex_unlock(&m->job_mutex);
++
++		xe_bb_free(bb, fence);
++		size -= src_L0;
++		continue;
++
++err:
++		mutex_unlock(&m->job_mutex);
++		xe_bb_free(bb, NULL);
++
++err_sync:
++		if (fence) {
++			dma_fence_wait(fence, false);
++			dma_fence_put(fence);
++		}
++		return ERR_PTR(err);
++	}
++
++	return fence;
++}
++
++static void test_clear(struct xe_device *xe, struct xe_tile *tile,
++			struct xe_bo *sys_bo, struct xe_bo *vram_bo, struct kunit *test)
++{
++	struct dma_fence *fence;
++	u64 expected, retval;
++
++	expected = 0xd0d0d0d0d0d0d0d0;
++	xe_map_memset(xe, &sys_bo->vmap, 0, 0xd0, sys_bo->size);
++
++	fence = blt_copy(tile, sys_bo, vram_bo, false, "Blit copy from sysmem to vram", test);
++	if (!sanity_fence_failed(xe, fence, "Blit copy from sysmem to vram", test)) {
++		retval = xe_map_rd(xe, &vram_bo->vmap, 0, u64);
++		if (retval == expected)
++			KUNIT_FAIL(test, "Sanity check failed: VRAM must have compressed value\n");
++	}
++	dma_fence_put(fence);
++
++	fence = blt_copy(tile, vram_bo, sys_bo, false, "Blit copy from vram to sysmem", test);
++	if (!sanity_fence_failed(xe, fence, "Blit copy from vram to sysmem", test)) {
++		retval = xe_map_rd(xe, &sys_bo->vmap, 0, u64);
++		check(retval, expected, "Decompressed value must be equal to initial value", test);
++		retval = xe_map_rd(xe, &sys_bo->vmap, sys_bo->size - 8, u64);
++		check(retval, expected, "Decompressed value must be equal to initial value", test);
++	}
++	dma_fence_put(fence);
++
++	kunit_info(test, "Clear vram buffer object\n");
++	expected = 0x0000000000000000;
++	fence = xe_migrate_clear(tile->migrate, vram_bo, vram_bo->ttm.resource);
++
++	fence = blt_copy(tile, vram_bo, sys_bo,
++				false, "Blit copy from vram to sysmem", test);
++	if (!sanity_fence_failed(xe, fence, "Clear main buffer data", test)) {
++		retval = xe_map_rd(xe, &sys_bo->vmap, 0, u64);
++		check(retval, expected, "Clear main buffer first value", test);
++		retval = xe_map_rd(xe, &sys_bo->vmap, sys_bo->size - 8, u64);
++		check(retval, expected, "Clear main buffer last value", test);
++	}
++	dma_fence_put(fence);
++
++	fence = blt_copy(tile, vram_bo, sys_bo,
++			true, "Blit surf copy from vram to sysmem", test);
++	if (!sanity_fence_failed(xe, fence, "Clear ccs buffer data", test)) {
++		retval = xe_map_rd(xe, &sys_bo->vmap, 0, u64);
++		check(retval, expected, "Clear ccs data first value", test);
++		retval = xe_map_rd(xe, &sys_bo->vmap, sys_bo->size - 8, u64);
++		check(retval, expected, "Clear ccs data last value", test);
++	}
++	dma_fence_put(fence);
++}
++
++static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struct kunit *test)
++{
++	struct xe_bo *sys_bo, *vram_bo;
++	unsigned int bo_flags = XE_BO_CREATE_VRAM_IF_DGFX(tile);
++	int ret;
++
++	sys_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M, DRM_XE_GEM_CPU_CACHING_WC,
++			ttm_bo_type_device, XE_BO_CREATE_SYSTEM_BIT | XE_BO_NEEDS_CPU_ACCESS);
++
++	if (IS_ERR(sys_bo)) {
++		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
++			   PTR_ERR(sys_bo));
++		return;
++	}
++
++	xe_bo_lock(sys_bo, false);
++	ret = xe_bo_validate(sys_bo, NULL, false);
++	if (ret) {
++		KUNIT_FAIL(test, "Failed to validate system bo for: %li\n", ret);
++		goto out_unlock;
++	}
++
++	ret = xe_bo_vmap(sys_bo);
++	if (ret) {
++		KUNIT_FAIL(test, "Failed to vmap system bo: %li\n", ret);
++		goto out_unlock;
++	}
++	xe_bo_unlock(sys_bo);
++
++	vram_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M, DRM_XE_GEM_CPU_CACHING_WC,
++			       ttm_bo_type_device, bo_flags | XE_BO_NEEDS_CPU_ACCESS);
++	if (IS_ERR(vram_bo)) {
++		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
++			   PTR_ERR(vram_bo));
++		return;
++	}
++
++	xe_bo_lock(vram_bo, false);
++	ret = xe_bo_validate(vram_bo, NULL, false);
++	if (ret) {
++		KUNIT_FAIL(test, "Failed to validate vram bo for: %li\n", ret);
++		goto out_unlock;
++	}
++
++	ret = xe_bo_vmap(vram_bo);
++	if (ret) {
++		KUNIT_FAIL(test, "Failed to vmap vram bo: %li\n", ret);
++		goto out_unlock;
++	}
++
++	test_clear(xe, tile, sys_bo, vram_bo, test);
++	xe_bo_unlock(vram_bo);
++
++	xe_bo_lock(vram_bo, false);
++	xe_bo_vunmap(vram_bo);
++	xe_bo_unlock(vram_bo);
++
++	xe_bo_lock(sys_bo, false);
++	xe_bo_vunmap(sys_bo);
++	xe_bo_unlock(sys_bo);
++out_unlock:
++	xe_bo_put(vram_bo);
++	xe_bo_put(sys_bo);
++}
++
++static int validate_ccs_test_run_device(struct xe_device *xe)
++{
++	struct kunit *test = xe_cur_kunit();
++	struct xe_tile *tile;
++	int id;
++
++	if (!xe_device_has_flat_ccs(xe)) {
++		kunit_info(test, "Skipping non-flat-ccs device.\n");
++		return 0;
++	}
++
++	if (!(GRAPHICS_VER(xe) >= 20 && IS_DGFX(xe))) {
++		kunit_info(test, "Skipping non-xe2 discrete device %s.\n",
++			   dev_name(xe->drm.dev));
++		return 0;
++	}
++
++	xe_device_mem_access_get(xe);
++
++	for_each_tile(tile, xe, id)
++		validate_ccs_test_run_tile(xe, tile, test);
++
++	xe_device_mem_access_put(xe);
++
++	return 0;
++}
++
++void xe_validate_ccs_kunit(struct kunit *test)
++{
++	xe_call_for_each_device(validate_ccs_test_run_device);
++}
++EXPORT_SYMBOL_IF_KUNIT(xe_validate_ccs_kunit);
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate_test.c b/drivers/gpu/drm/xe/tests/xe_migrate_test.c
+index eb0d8963419c..49b9ef060ad3 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate_test.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate_test.c
+@@ -9,6 +9,7 @@
  
- 	/*
-@@ -475,7 +505,7 @@ static bool xe_migrate_allow_identity(u64 size, const struct xe_res_cursor *cur)
- }
+ static struct kunit_case xe_migrate_tests[] = {
+ 	KUNIT_CASE(xe_migrate_sanity_kunit),
++	KUNIT_CASE(xe_validate_ccs_kunit),
+ 	{}
+ };
  
- static u32 pte_update_size(struct xe_migrate *m,
--			   bool is_vram,
-+			   bool is_vram, bool is_comp_pte,
- 			   struct ttm_resource *res,
- 			   struct xe_res_cursor *cur,
- 			   u64 *L0, u64 *L0_ofs, u32 *L0_pt,
-@@ -487,7 +517,7 @@ static u32 pte_update_size(struct xe_migrate *m,
- 	if (is_vram && xe_migrate_allow_identity(*L0, cur)) {
- 		/* Offset into identity map. */
- 		*L0_ofs = xe_migrate_vram_ofs(tile_to_xe(m->tile),
--					      cur->start + vram_region_gpu_offset(res));
-+					      cur->start + vram_region_gpu_offset(res), is_comp_pte);
- 		cmds += cmd_size;
- 	} else {
- 		/* Clip L0 to available size */
-@@ -778,17 +808,17 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate_test.h b/drivers/gpu/drm/xe/tests/xe_migrate_test.h
+index 7c645c66824f..dc0ecfdfad39 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate_test.h
++++ b/drivers/gpu/drm/xe/tests/xe_migrate_test.h
+@@ -9,5 +9,6 @@
+ struct kunit;
  
- 		src_L0 = min(src_L0, dst_L0);
+ void xe_migrate_sanity_kunit(struct kunit *test);
++void xe_validate_ccs_kunit(struct kunit *test);
  
--		batch_size += pte_update_size(m, src_is_vram, src, &src_it, &src_L0,
-+		batch_size += pte_update_size(m, src_is_vram, false, src, &src_it, &src_L0,
- 					      &src_L0_ofs, &src_L0_pt, 0, 0,
- 					      avail_pts);
- 
--		batch_size += pte_update_size(m, dst_is_vram, dst, &dst_it, &src_L0,
-+		batch_size += pte_update_size(m, dst_is_vram, false, dst, &dst_it, &src_L0,
- 					      &dst_L0_ofs, &dst_L0_pt, 0,
- 					      avail_pts, avail_pts);
- 
- 		if (copy_system_ccs) {
- 			ccs_size = xe_device_ccs_bytes(xe, src_L0);
--			batch_size += pte_update_size(m, false, NULL, &ccs_it, &ccs_size,
-+			batch_size += pte_update_size(m, false, false, NULL, &ccs_it, &ccs_size,
- 						      &ccs_ofs, &ccs_pt, 0,
- 						      2 * avail_pts,
- 						      avail_pts);
-@@ -1029,14 +1059,13 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 
- 		/* Calculate final sizes and batch size.. */
- 		batch_size = 2 +
--			pte_update_size(m, clear_vram, src, &src_it,
-+			pte_update_size(m, clear_vram, false, src, &src_it,
- 					&clear_L0, &clear_L0_ofs, &clear_L0_pt,
- 					clear_system_ccs ? 0 : emit_clear_cmd_len(gt), 0,
- 					avail_pts);
- 
- 		if (xe_device_needs_ccs_emit(xe))
- 			batch_size += EMIT_COPY_CCS_DW;
--
- 		/* Clear commands */
- 
- 		if (WARN_ON_ONCE(!clear_L0))
-@@ -1146,7 +1175,7 @@ static void write_pgtable(struct xe_tile *tile, struct xe_bb *bb, u64 ppgtt_ofs,
- 	if (!ppgtt_ofs)
- 		ppgtt_ofs = xe_migrate_vram_ofs(tile_to_xe(tile),
- 						xe_bo_addr(update->pt_bo, 0,
--							   XE_PAGE_SIZE));
-+							   XE_PAGE_SIZE), false);
- 
- 	do {
- 		u64 addr = ppgtt_ofs + ofs * 8;
+ #endif
 -- 
 2.34.1
 
