@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8679BC3271E
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 06:51:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7505C3271E
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 06:52:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4029210E964;
-	Thu, 11 Jul 2024 06:51:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84C2E10E968;
+	Thu, 11 Jul 2024 06:52:20 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 379C510E964;
- Thu, 11 Jul 2024 06:51:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 446BF10E966;
+ Thu, 11 Jul 2024 06:52:19 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5B1?=
- =?utf-8?q?/6=5D_drm/xe/migrate=3A_Handle_clear_ccs_logic_for_xe2_dgfx?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_series_starting_with_=5B1/6=5D?=
+ =?utf-8?q?_drm/xe/migrate=3A_Handle_clear_ccs_logic_for_xe2_dgfx?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Akshata Jahagirdar" <akshata.jahagirdar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 11 Jul 2024 06:51:50 -0000
-Message-ID: <172068071022.124492.3908430009981194575@2413ebb6fbb6>
+Date: Thu, 11 Jul 2024 06:52:19 -0000
+Message-ID: <172068073927.124492.14568768818912781872@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <cover.1720677099.git.akshata.jahagirdar@intel.com>
 In-Reply-To: <cover.1720677099.git.akshata.jahagirdar@intel.com>
@@ -44,116 +44,287 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [1/6] drm/xe/migrate: Handle clear ccs logic for xe2 dgfx
 URL   : https://patchwork.freedesktop.org/series/135977/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-51ce9f6cd981d42d7467409d7dbc559a450abc1e
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 87da61e4a9c6a21e5cd3dd7511c10d687183fa7f
-Author: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
-Date:   Thu Jul 11 05:55:05 2024 +0000
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+[06:51:51] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[06:51:55] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
+ERROR:root:In file included from ../drivers/gpu/drm/xe/tests/xe_test.h:13,
+                 from ../drivers/gpu/drm/xe/xe_migrate.c:20:
+../drivers/gpu/drm/xe/tests/xe_migrate.c: In function ‘test_migrate’:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:514:20: warning: format ‘%li’ expects argument of type ‘long int’, but argument 7 has type ‘int’ [-Wformat=]
+  514 |   KUNIT_FAIL(test, "Failed to vmap vram bo: %li\n", ret);
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~
+      |                                                     |
+      |                                                     int
+../include/kunit/test.h:608:9: note: in definition of macro ‘_KUNIT_FAILED’
+  608 |         fmt,           \
+      |         ^~~
+../include/kunit/test.h:638:2: note: in expansion of macro ‘KUNIT_FAIL_ASSERTION’
+  638 |  KUNIT_FAIL_ASSERTION(test,            \
+      |  ^~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/tests/xe_migrate.c:514:3: note: in expansion of macro ‘KUNIT_FAIL’
+  514 |   KUNIT_FAIL(test, "Failed to vmap vram bo: %li\n", ret);
+      |   ^~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_migrate.c:1511:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:514:47: note: format string is defined here
+  514 |   KUNIT_FAIL(test, "Failed to vmap vram bo: %li\n", ret);
+      |                                             ~~^
+      |                                               |
+      |                                               long int
+      |                                             %i
+In file included from ../drivers/gpu/drm/xe/tests/xe_test.h:13,
+                 from ../drivers/gpu/drm/xe/xe_migrate.c:20:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:537:20: warning: format ‘%li’ expects argument of type ‘long int’, but argument 7 has type ‘int’ [-Wformat=]
+  537 |   KUNIT_FAIL(test, "Failed to validate vram bo for: %li\n", ret);
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~
+      |                                                             |
+      |                                                             int
+../include/kunit/test.h:608:9: note: in definition of macro ‘_KUNIT_FAILED’
+  608 |         fmt,           \
+      |         ^~~
+../include/kunit/test.h:638:2: note: in expansion of macro ‘KUNIT_FAIL_ASSERTION’
+  638 |  KUNIT_FAIL_ASSERTION(test,            \
+      |  ^~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/tests/xe_migrate.c:537:3: note: in expansion of macro ‘KUNIT_FAIL’
+  537 |   KUNIT_FAIL(test, "Failed to validate vram bo for: %li\n", ret);
+      |   ^~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_migrate.c:1511:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:537:55: note: format string is defined here
+  537 |   KUNIT_FAIL(test, "Failed to validate vram bo for: %li\n", ret);
+      |                                                     ~~^
+      |                                                       |
+      |                                                       long int
+      |                                                     %i
+In file included from ../drivers/gpu/drm/xe/tests/xe_test.h:13,
+                 from ../drivers/gpu/drm/xe/xe_migrate.c:20:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:553:20: warning: format ‘%li’ expects argument of type ‘long int’, but argument 7 has type ‘int’ [-Wformat=]
+  553 |   KUNIT_FAIL(test, "Failed to vmap vram bo: %li\n", ret);
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~
+      |                                                     |
+      |                                                     int
+../include/kunit/test.h:608:9: note: in definition of macro ‘_KUNIT_FAILED’
+  608 |         fmt,           \
+      |         ^~~
+../include/kunit/test.h:638:2: note: in expansion of macro ‘KUNIT_FAIL_ASSERTION’
+  638 |  KUNIT_FAIL_ASSERTION(test,            \
+      |  ^~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/tests/xe_migrate.c:553:3: note: in expansion of macro ‘KUNIT_FAIL’
+  553 |   KUNIT_FAIL(test, "Failed to vmap vram bo: %li\n", ret);
+      |   ^~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_migrate.c:1511:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:553:47: note: format string is defined here
+  553 |   KUNIT_FAIL(test, "Failed to vmap vram bo: %li\n", ret);
+      |                                             ~~^
+      |                                               |
+      |                                               long int
+      |                                             %i
+../drivers/gpu/drm/xe/tests/xe_migrate.c: In function ‘validate_ccs_test_run_tile’:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:627:26: error: implicit declaration of function ‘XE_BO_CREATE_VRAM_IF_DGFX’; did you mean ‘XE_BO_FLAG_VRAM_IF_DGFX’? [-Werror=implicit-function-declaration]
+  627 |  unsigned int bo_flags = XE_BO_CREATE_VRAM_IF_DGFX(tile);
+      |                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+      |                          XE_BO_FLAG_VRAM_IF_DGFX
+../drivers/gpu/drm/xe/tests/xe_migrate.c:631:24: error: ‘XE_BO_CREATE_SYSTEM_BIT’ undeclared (first use in this function)
+  631 |    ttm_bo_type_device, XE_BO_CREATE_SYSTEM_BIT | XE_BO_NEEDS_CPU_ACCESS);
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/tests/xe_migrate.c:631:24: note: each undeclared identifier is reported only once for each function it appears in
+../drivers/gpu/drm/xe/tests/xe_migrate.c:631:50: error: ‘XE_BO_NEEDS_CPU_ACCESS’ undeclared (first use in this function); did you mean ‘XE_BO_FLAG_NEEDS_CPU_ACCESS’?
+  631 |    ttm_bo_type_device, XE_BO_CREATE_SYSTEM_BIT | XE_BO_NEEDS_CPU_ACCESS);
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+      |                                                  XE_BO_FLAG_NEEDS_CPU_ACCESS
+In file included from ../drivers/gpu/drm/xe/tests/xe_test.h:13,
+                 from ../drivers/gpu/drm/xe/xe_migrate.c:20:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:642:20: warning: format ‘%li’ expects argument of type ‘long int’, but argument 7 has type ‘int’ [-Wformat=]
+  642 |   KUNIT_FAIL(test, "Failed to validate system bo for: %li\n", ret);
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~
+      |                                                               |
+      |                                                               int
+../include/kunit/test.h:608:9: note: in definition of macro ‘_KUNIT_FAILED’
+  608 |         fmt,           \
+      |         ^~~
+../include/kunit/test.h:638:2: note: in expansion of macro ‘KUNIT_FAIL_ASSERTION’
+  638 |  KUNIT_FAIL_ASSERTION(test,            \
+      |  ^~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/tests/xe_migrate.c:642:3: note: in expansion of macro ‘KUNIT_FAIL’
+  642 |   KUNIT_FAIL(test, "Failed to validate system bo for: %li\n", ret);
+      |   ^~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_migrate.c:1511:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:642:57: note: format string is defined here
+  642 |   KUNIT_FAIL(test, "Failed to validate system bo for: %li\n", ret);
+      |                                                       ~~^
+      |                                                         |
+      |                                                         long int
+      |                                                       %i
+In file included from ../drivers/gpu/drm/xe/tests/xe_test.h:13,
+                 from ../drivers/gpu/drm/xe/xe_migrate.c:20:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:648:20: warning: format ‘%li’ expects argument of type ‘long int’, but argument 7 has type ‘int’ [-Wformat=]
+  648 |   KUNIT_FAIL(test, "Failed to vmap system bo: %li\n", ret);
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~
+      |                                                       |
+      |                                                       int
+../include/kunit/test.h:608:9: note: in definition of macro ‘_KUNIT_FAILED’
+  608 |         fmt,           \
+      |         ^~~
+../include/kunit/test.h:638:2: note: in expansion of macro ‘KUNIT_FAIL_ASSERTION’
+  638 |  KUNIT_FAIL_ASSERTION(test,            \
+      |  ^~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/tests/xe_migrate.c:648:3: note: in expansion of macro ‘KUNIT_FAIL’
+  648 |   KUNIT_FAIL(test, "Failed to vmap system bo: %li\n", ret);
+      |   ^~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_migrate.c:1511:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:648:49: note: format string is defined here
+  648 |   KUNIT_FAIL(test, "Failed to vmap system bo: %li\n", ret);
+      |                                               ~~^
+      |                                                 |
+      |                                                 long int
+      |                                               %i
+In file included from ../drivers/gpu/drm/xe/tests/xe_test.h:13,
+                 from ../drivers/gpu/drm/xe/xe_migrate.c:20:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:665:20: warning: format ‘%li’ expects argument of type ‘long int’, but argument 7 has type ‘int’ [-Wformat=]
+  665 |   KUNIT_FAIL(test, "Failed to validate system bo for: %li\n", ret);
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~
+      |                                                               |
+      |                                                               int
+../include/kunit/test.h:608:9: note: in definition of macro ‘_KUNIT_FAILED’
+  608 |         fmt,           \
+      |         ^~~
+../include/kunit/test.h:638:2: note: in expansion of macro ‘KUNIT_FAIL_ASSERTION’
+  638 |  KUNIT_FAIL_ASSERTION(test,            \
+      |  ^~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/tests/xe_migrate.c:665:3: note: in expansion of macro ‘KUNIT_FAIL’
+  665 |   KUNIT_FAIL(test, "Failed to validate system bo for: %li\n", ret);
+      |   ^~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_migrate.c:1511:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:665:57: note: format string is defined here
+  665 |   KUNIT_FAIL(test, "Failed to validate system bo for: %li\n", ret);
+      |                                                       ~~^
+      |                                                         |
+      |                                                         long int
+      |                                                       %i
+In file included from ../drivers/gpu/drm/xe/tests/xe_test.h:13,
+                 from ../drivers/gpu/drm/xe/xe_migrate.c:20:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:671:20: warning: format ‘%li’ expects argument of type ‘long int’, but argument 7 has type ‘int’ [-Wformat=]
+  671 |   KUNIT_FAIL(test, "Failed to vmap system bo: %li\n", ret);
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~
+      |                                                       |
+      |                                                       int
+../include/kunit/test.h:608:9: note: in definition of macro ‘_KUNIT_FAILED’
+  608 |         fmt,           \
+      |         ^~~
+../include/kunit/test.h:638:2: note: in expansion of macro ‘KUNIT_FAIL_ASSERTION’
+  638 |  KUNIT_FAIL_ASSERTION(test,            \
+      |  ^~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/tests/xe_migrate.c:671:3: note: in expansion of macro ‘KUNIT_FAIL’
+  671 |   KUNIT_FAIL(test, "Failed to vmap system bo: %li\n", ret);
+      |   ^~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_migrate.c:1511:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:671:49: note: format string is defined here
+  671 |   KUNIT_FAIL(test, "Failed to vmap system bo: %li\n", ret);
+      |                                               ~~^
+      |                                                 |
+      |                                                 long int
+      |                                               %i
+In file included from ../drivers/gpu/drm/xe/tests/xe_test.h:13,
+                 from ../drivers/gpu/drm/xe/xe_migrate.c:20:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:687:20: warning: format ‘%li’ expects argument of type ‘long int’, but argument 7 has type ‘int’ [-Wformat=]
+  687 |   KUNIT_FAIL(test, "Failed to validate vram bo for: %li\n", ret);
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~
+      |                                                             |
+      |                                                             int
+../include/kunit/test.h:608:9: note: in definition of macro ‘_KUNIT_FAILED’
+  608 |         fmt,           \
+      |         ^~~
+../include/kunit/test.h:638:2: note: in expansion of macro ‘KUNIT_FAIL_ASSERTION’
+  638 |  KUNIT_FAIL_ASSERTION(test,            \
+      |  ^~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/tests/xe_migrate.c:687:3: note: in expansion of macro ‘KUNIT_FAIL’
+  687 |   KUNIT_FAIL(test, "Failed to validate vram bo for: %li\n", ret);
+      |   ^~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_migrate.c:1511:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:687:55: note: format string is defined here
+  687 |   KUNIT_FAIL(test, "Failed to validate vram bo for: %li\n", ret);
+      |                                                     ~~^
+      |                                                       |
+      |                                                       long int
+      |                                                     %i
+In file included from ../drivers/gpu/drm/xe/tests/xe_test.h:13,
+                 from ../drivers/gpu/drm/xe/xe_migrate.c:20:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:693:20: warning: format ‘%li’ expects argument of type ‘long int’, but argument 7 has type ‘int’ [-Wformat=]
+  693 |   KUNIT_FAIL(test, "Failed to vmap vram bo: %li\n", ret);
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~
+      |                                                     |
+      |                                                     int
+../include/kunit/test.h:608:9: note: in definition of macro ‘_KUNIT_FAILED’
+  608 |         fmt,           \
+      |         ^~~
+../include/kunit/test.h:638:2: note: in expansion of macro ‘KUNIT_FAIL_ASSERTION’
+  638 |  KUNIT_FAIL_ASSERTION(test,            \
+      |  ^~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/tests/xe_migrate.c:693:3: note: in expansion of macro ‘KUNIT_FAIL’
+  693 |   KUNIT_FAIL(test, "Failed to vmap vram bo: %li\n", ret);
+      |   ^~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/xe_migrate.c:1511:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:693:47: note: format string is defined here
+  693 |   KUNIT_FAIL(test, "Failed to vmap vram bo: %li\n", ret);
+      |                                             ~~^
+      |                                               |
+      |                                               long int
+      |                                             %i
+../drivers/gpu/drm/xe/tests/xe_migrate.c: In function ‘validate_ccs_test_run_device’:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:735:2: error: implicit declaration of function ‘xe_device_mem_access_get’ [-Werror=implicit-function-declaration]
+  735 |  xe_device_mem_access_get(xe);
+      |  ^~~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/tests/xe_migrate.c:740:2: error: implicit declaration of function ‘xe_device_mem_access_put’ [-Werror=implicit-function-declaration]
+  740 |  xe_device_mem_access_put(xe);
+      |  ^~~~~~~~~~~~~~~~~~~~~~~~
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:244: drivers/gpu/drm/xe/xe_migrate.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+make[6]: *** [../scripts/Makefile.build:485: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:485: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:485: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:485: drivers] Error 2
+make[2]: *** [/kernel/Makefile:1934: .] Error 2
+make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
 
-    drm/xe/xe2: Do not run xe_bo_test for xe2+ dgfx
-    
-    In xe2+ dgfx, we don't need to handle the copying of ccs
-    metadata during migration. This test validates the ccs data post
-    clear and copy during evict/restore operation. Thus, we can skip
-    this test on xe2+ dgfx.
-    
-    Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
-+ /mt/dim checkpatch 36e90f69c967f4cbcdd02c40c9ef25694ffb1a13 drm-intel
-07434ba821fb drm/xe/migrate: Handle clear ccs logic for xe2 dgfx
-1c8ccb77d291 drm/xe/migrate: Add kunit to test clear functionality
--:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#10: 
-our clear function or simply because the initial data present there was zero.
-
--:24: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#24: FILE: drivers/gpu/drm/xe/tests/xe_migrate.c:364:
-+static struct dma_fence *blt_copy(struct xe_tile *tile,
-+				struct xe_bo *src_bo, struct xe_bo *dst_bo,
-
--:101: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#101: FILE: drivers/gpu/drm/xe/tests/xe_migrate.c:441:
-+			flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs,
-+					src_is_vram, dst_L0_ofs,
-
--:146: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#146: FILE: drivers/gpu/drm/xe/tests/xe_migrate.c:486:
-+static void test_clear(struct xe_device *xe, struct xe_tile *tile,
-+			struct xe_bo *sys_bo, struct xe_bo *vram_bo, struct kunit *test)
-
--:176: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#176: FILE: drivers/gpu/drm/xe/tests/xe_migrate.c:516:
-+	fence = blt_copy(tile, vram_bo, sys_bo,
-+				false, "Blit copy from vram to sysmem", test);
-
--:186: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#186: FILE: drivers/gpu/drm/xe/tests/xe_migrate.c:526:
-+	fence = blt_copy(tile, vram_bo, sys_bo,
-+			true, "Blit surf copy from vram to sysmem", test);
-
--:196: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#196: FILE: drivers/gpu/drm/xe/tests/xe_migrate.c:536:
-+static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struct kunit *test)
-
--:203: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#203: FILE: drivers/gpu/drm/xe/tests/xe_migrate.c:543:
-+	sys_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M, DRM_XE_GEM_CPU_CACHING_WC,
-+			ttm_bo_type_device, XE_BO_CREATE_SYSTEM_BIT | XE_BO_NEEDS_CPU_ACCESS);
-
--:226: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#226: FILE: drivers/gpu/drm/xe/tests/xe_migrate.c:566:
-+	vram_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M, DRM_XE_GEM_CPU_CACHING_WC,
-+			       ttm_bo_type_device, bo_flags | XE_BO_NEEDS_CPU_ACCESS);
-
-total: 0 errors, 2 warnings, 7 checks, 287 lines checked
-40d00c6bc128 drm/xe/xe2: Introduce identity map for compressed pat for vram
--:36: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#36: 
-migration/clear.During eviction (vram->sysmem), we use the mapping from compressed -> uncompressed.
-
--:140: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#140: FILE: drivers/gpu/drm/xe/xe_migrate.c:520:
-+					      cur->start + vram_region_gpu_offset(res), is_comp_pte);
-
-total: 0 errors, 2 warnings, 0 checks, 133 lines checked
-f11ec2ba9304 drm/xe/xe_migrate: Handle migration logic for xe2+ dgfx
--:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#6: 
-During eviction (vram->sysmem), we use the mapping from compressed -> uncompressed.
-
-total: 0 errors, 1 warnings, 0 checks, 31 lines checked
-4ddee9420c66 drm/xe/migrate: Add kunit to test migration functionality for BMG
--:33: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#33: FILE: drivers/gpu/drm/xe/tests/xe_migrate.c:486:
-+static void test_migrate(struct xe_device *xe, struct xe_tile *tile,
-+			struct xe_bo *sys_bo, struct xe_bo *vram_bo, struct xe_bo *ccs_bo,
-
--:71: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#71: FILE: drivers/gpu/drm/xe/tests/xe_migrate.c:524:
-+	fence = blt_copy(tile, vram_bo, ccs_bo,
-+			true, "Blit surf copy from vram to sysmem", test);
-
--:110: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#110: FILE: drivers/gpu/drm/xe/tests/xe_migrate.c:563:
-+	fence = blt_copy(tile, vram_bo, ccs_bo,
-+			true, "Blit surf copy from vram to sysmem", test);
-
--:137: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#137: FILE: drivers/gpu/drm/xe/tests/xe_migrate.c:654:
-+	ccs_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M, DRM_XE_GEM_CPU_CACHING_WC,
-+				  ttm_bo_type_device, bo_flags | XE_BO_NEEDS_CPU_ACCESS);
-
-total: 0 errors, 0 warnings, 4 checks, 164 lines checked
-87da61e4a9c6 drm/xe/xe2: Do not run xe_bo_test for xe2+ dgfx
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
