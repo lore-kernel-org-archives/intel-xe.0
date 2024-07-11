@@ -4,57 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3F1DC3DA47
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 09:19:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD3D5C3DA4D
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 09:19:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CB6F10E9DB;
-	Thu, 11 Jul 2024 09:19:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A14EC10E9D3;
+	Thu, 11 Jul 2024 09:19:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MkSWEbOS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Igp27LuF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7903F10E9D0
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 09:18:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 535F810E9D3
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 09:19:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720689536; x=1752225536;
+ t=1720689542; x=1752225542;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=p8ptK7tjUsRiu2kZxpx1kwT1D9NFeFirJQedeH2uW5k=;
- b=MkSWEbOS/pF5fmcerghrVo7zNAZ+85TKraa1Ai+t6/8yTKtaRq1nM2z0
- JXDI6o08/6ulNyYEXWoY+LyuVNsiHpbah1oR4Dc9llOrcpozsujf232In
- l48YdjFb2IgG09ahP7U4m5KaaQK7kAm1uDg8SjoVlK2Of5deoISA7Dc0N
- D8GGQKcxffVcjENdwAhBkoeqEboJ1j3lM22QyrVllqi5gBAEY+cH6AdiA
- jYvp7svyeo2Qwrxq+chJwIrMdOV52WZs0AwrYEhHW1yhFHaSdicu2V4iZ
- wWS9CPo/sauYDiLeVXY943g4XWdNiW6vU0WDBj3J7YepyJvuRr+nXZt6y A==;
-X-CSE-ConnectionGUID: UTFiTwa3RkCoCJxlF4qk/g==
-X-CSE-MsgGUID: TlEusLNESNKRuFP2guItjA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="17671919"
-X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="17671919"
+ bh=WbrWZGUH2oUVAjDqhgMn/l7gIP4yytZO/xHtO9tLIs4=;
+ b=Igp27LuFY0RwrghCpV1GuSELjn1Dj3sh1n1hxLs1f+j6PyiQocjFK7Xq
+ z24R+4zu/+2d2Wb29ecNHKxwrni0Hlq8Wxkj5iCl5NLjGEWn4+9uEYLny
+ SGdDc7IE066JYkDZ/Pb/yGsmQSrJOv562Ar4SMfxAPbDkgYUUhuloAEBL
+ F+kMdMdAam8OQoFTJ4gLG+Y/LBorO0ZH0ZDrQONW6pCXIFZ9nQPpUNzfq
+ J0kM/9hcfCG9syNx9siaQObz73Tap1D/hxIwmubX0X6g3mTPtq6gw8ZBG
+ tN4gWBfvM2vWcwaL0kvf6vZ+NtRZfUQ9qPtMxqv+4lVMPlVcVXr7XJioq w==;
+X-CSE-ConnectionGUID: F6iQdq4WQTe9uhHe7A6DMw==
+X-CSE-MsgGUID: XUZGlLXZSQ+fJl/TAyEHZQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="17671961"
+X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="17671961"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 02:18:31 -0700
-X-CSE-ConnectionGUID: d5XBQjTaTKu1aJD0SbFefA==
-X-CSE-MsgGUID: plrWj2hyQCiVkKmiujsF8w==
+ 11 Jul 2024 02:18:37 -0700
+X-CSE-ConnectionGUID: 9fa8w2AIQ8SIFzcp3d+x/Q==
+X-CSE-MsgGUID: FsDT1Lj2TyGyQERXkrOCDQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="79210098"
+X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="79210110"
 Received: from dut1122bmgfrd.igk.intel.com ([10.211.178.41])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 02:18:30 -0700
+ 11 Jul 2024 02:18:35 -0700
 From: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com, matthew.auld@intel.com,
  himal.prasad.ghimiray@intel.com, lucas.demarchi@intel.com,
  Akshata Jahagirdar <akshata.jahagirdar@intel.com>
-Subject: [PATCH 3/6] drm/xe/xe2: Introduce identity map for compressed pat for
- vram
-Date: Thu, 11 Jul 2024 09:18:16 +0000
-Message-Id: <87ec90a618b3977873ea57e781cd594dbc23a121.1720689220.git.akshata.jahagirdar@intel.com>
+Subject: [PATCH 6/6] drm/xe/xe2: Do not run xe_bo_test for xe2+ dgfx
+Date: Thu, 11 Jul 2024 09:18:19 +0000
+Message-Id: <79f935e813ca24711a6af5f8db71e0a064ec06bf.1720689220.git.akshata.jahagirdar@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1720689220.git.akshata.jahagirdar@intel.com>
 References: <cover.1720689220.git.akshata.jahagirdar@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,189 +68,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Xe2+ has unified compression (exactly one compression mode/format),
-where compression is now controlled via PAT at PTE level.
-This simplifies KMD operations, as it can now decompress freely
-without concern for the buffer's original compression format—unlike DG2,
-which had multiple compression formats and thus required copying the
-raw CCS state during VRAM eviction. In addition mixed VRAM and system
-memory buffers were not supported with compression enabled.
-
-On Xe2 dGPU compression is still only supported with VRAM, however we
-can now support compression with VRAM and system memory buffers,
-with GPU access being seamless underneath. So long as when doing
-VRAM -> system memory the KMD uses compressed -> uncompressed,
-to decompress it. This also allows CPU access to such buffers,
-assuming that userspace first decompress the corresponding
-pages being accessed.
-If the pages are already in system memory then KMD would have already
-decompressed them. When restoring such buffers with sysmem -> VRAM
-the KMD can't easily know which pages were originally compressed,
-so we always use uncompressed -> uncompressed here.
-With this it also means we can drop all the raw CCS handling on such
-platforms (including needing to allocate extra CCS storage).
-
-In order to support this we now need to have two different identity
-mappings for compressed and uncompressed VRAM.
-In this patch, we set up the additional identity map for the VRAM with
-compressed pat_index. We then select the appropriate mapping during
-migration/clear.During eviction (vram->sysmem), we use the mapping from compressed -> uncompressed.
-During restore (sysmem->vram), we need the mapping from uncompressed -> uncompressed.
-Therefore, we need to have two different mappings for compressed and uncompressed
-vram. We set up an additional identity map for the vram with compressed
-pat_index. We then select the appropriate mapping during migration/clear.
+In xe2+ dgfx, we don't need to handle the copying of ccs
+metadata during migration. This test validates the ccs data post
+clear and copy during evict/restore operation. Thus, we can skip
+this test on xe2+ dgfx.
 
 Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 55 +++++++++++++++++++++++++--------
- 1 file changed, 42 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_bo.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 2fc2cf375b1e..a3d6d3113ac2 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -120,14 +120,20 @@ static u64 xe_migrate_vm_addr(u64 slot, u32 level)
- 	return (slot + 1ULL) << xe_pt_shift(level + 1);
- }
- 
--static u64 xe_migrate_vram_ofs(struct xe_device *xe, u64 addr)
-+static u64 xe_migrate_vram_ofs(struct xe_device *xe, u64 addr, bool is_comp_pte)
- {
- 	/*
- 	 * Remove the DPA to get a correct offset into identity table for the
- 	 * migrate offset
- 	 */
-+	u64 identity_offset = 256ULL;
-+
-+	if (GRAPHICS_VER(xe) >= 20 && is_comp_pte)
-+		identity_offset = 256ULL +
-+				  DIV_ROUND_UP_ULL(xe->mem.vram.actual_physical_size, SZ_1G);
-+
- 	addr -= xe->mem.vram.dpa_base;
--	return addr + (256ULL << xe_pt_shift(2));
-+	return addr + (identity_offset << xe_pt_shift(2));
- }
- 
- static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
-@@ -214,12 +220,12 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 	} else {
- 		u64 batch_addr = xe_bo_addr(batch, 0, XE_PAGE_SIZE);
- 
--		m->batch_base_ofs = xe_migrate_vram_ofs(xe, batch_addr);
-+		m->batch_base_ofs = xe_migrate_vram_ofs(xe, batch_addr, false);
- 
- 		if (xe->info.has_usm) {
- 			batch = tile->primary_gt->usm.bb_pool->bo;
- 			batch_addr = xe_bo_addr(batch, 0, XE_PAGE_SIZE);
--			m->usm_batch_base_ofs = xe_migrate_vram_ofs(xe, batch_addr);
-+			m->usm_batch_base_ofs = xe_migrate_vram_ofs(xe, batch_addr, false);
- 		}
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+index 9f3c02826464..f7ef91b9a5d2 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+@@ -163,6 +163,12 @@ static int ccs_test_run_device(struct xe_device *xe)
+ 		return 0;
  	}
  
-@@ -251,7 +257,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 		  | XE_PTE_NULL);
- 	m->cleared_mem_ofs = (255ULL << xe_pt_shift(level));
- 
--	/* Identity map the entire vram at 256GiB offset */
-+	/* Identity map the entire vram for uncompressed pat_index at 256GiB offset */
- 	if (IS_DGFX(xe)) {
- 		u64 pos, ofs, flags;
- 		/* XXX: Unclear if this should be usable_size? */
-@@ -294,6 +300,30 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 		}
- 
- 		xe_assert(xe, pos == vram_limit);
++	/* For xe2+ dgfx, we don't handle ccs metadata */
++	if (GRAPHICS_VER(xe) >= 20 && IS_DGFX(xe)) {
++		kunit_info(test, "Skipping on xe2+ dgfx device.\n");
++		return 0;
++	}
 +
-+		/*
-+		 * Identity map the entire vram for compressed pat_index for xe2+
-+		 * if flat ccs is enabled.
-+		 */
-+		if (GRAPHICS_VER(xe) >= 20 && xe_device_has_flat_ccs(xe)) {
-+			u16 comp_pat_index = xe->pat.idx[XE_CACHE_NONE_COMPRESSION];
-+			u64 vram_offset = 256 +
-+				DIV_ROUND_UP_ULL(xe->mem.vram.actual_physical_size, SZ_1G);
-+
-+			level = 2;
-+			ofs = map_ofs + XE_PAGE_SIZE * level + vram_offset * 8;
-+			flags = vm->pt_ops->pte_encode_addr(xe, 0, comp_pat_index, level,
-+								true, 0);
-+
-+			/*
-+			 * Use 1GB pages, it shouldn't matter the physical amount of
-+			 * vram is less, when we don't access it.
-+			 */
-+			for (pos = xe->mem.vram.dpa_base;
-+				 pos < xe->mem.vram.actual_physical_size + xe->mem.vram.dpa_base;
-+				 pos += SZ_1G, ofs += 8)
-+				xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
-+		}
- 	}
+ 	xe_pm_runtime_get(xe);
  
- 	/*
-@@ -475,7 +505,7 @@ static bool xe_migrate_allow_identity(u64 size, const struct xe_res_cursor *cur)
- }
- 
- static u32 pte_update_size(struct xe_migrate *m,
--			   bool is_vram,
-+			   bool is_vram, bool is_comp_pte,
- 			   struct ttm_resource *res,
- 			   struct xe_res_cursor *cur,
- 			   u64 *L0, u64 *L0_ofs, u32 *L0_pt,
-@@ -487,7 +517,7 @@ static u32 pte_update_size(struct xe_migrate *m,
- 	if (is_vram && xe_migrate_allow_identity(*L0, cur)) {
- 		/* Offset into identity map. */
- 		*L0_ofs = xe_migrate_vram_ofs(tile_to_xe(m->tile),
--					      cur->start + vram_region_gpu_offset(res));
-+					      cur->start + vram_region_gpu_offset(res), is_comp_pte);
- 		cmds += cmd_size;
- 	} else {
- 		/* Clip L0 to available size */
-@@ -778,17 +808,17 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 
- 		src_L0 = min(src_L0, dst_L0);
- 
--		batch_size += pte_update_size(m, src_is_vram, src, &src_it, &src_L0,
-+		batch_size += pte_update_size(m, src_is_vram, false, src, &src_it, &src_L0,
- 					      &src_L0_ofs, &src_L0_pt, 0, 0,
- 					      avail_pts);
- 
--		batch_size += pte_update_size(m, dst_is_vram, dst, &dst_it, &src_L0,
-+		batch_size += pte_update_size(m, dst_is_vram, false, dst, &dst_it, &src_L0,
- 					      &dst_L0_ofs, &dst_L0_pt, 0,
- 					      avail_pts, avail_pts);
- 
- 		if (copy_system_ccs) {
- 			ccs_size = xe_device_ccs_bytes(xe, src_L0);
--			batch_size += pte_update_size(m, false, NULL, &ccs_it, &ccs_size,
-+			batch_size += pte_update_size(m, false, false, NULL, &ccs_it, &ccs_size,
- 						      &ccs_ofs, &ccs_pt, 0,
- 						      2 * avail_pts,
- 						      avail_pts);
-@@ -1029,14 +1059,13 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 
- 		/* Calculate final sizes and batch size.. */
- 		batch_size = 2 +
--			pte_update_size(m, clear_vram, src, &src_it,
-+			pte_update_size(m, clear_vram, false, src, &src_it,
- 					&clear_L0, &clear_L0_ofs, &clear_L0_pt,
- 					clear_system_ccs ? 0 : emit_clear_cmd_len(gt), 0,
- 					avail_pts);
- 
- 		if (xe_device_needs_ccs_emit(xe))
- 			batch_size += EMIT_COPY_CCS_DW;
--
- 		/* Clear commands */
- 
- 		if (WARN_ON_ONCE(!clear_L0))
-@@ -1146,7 +1175,7 @@ static void write_pgtable(struct xe_tile *tile, struct xe_bb *bb, u64 ppgtt_ofs,
- 	if (!ppgtt_ofs)
- 		ppgtt_ofs = xe_migrate_vram_ofs(tile_to_xe(tile),
- 						xe_bo_addr(update->pt_bo, 0,
--							   XE_PAGE_SIZE));
-+							   XE_PAGE_SIZE), false);
- 
- 	do {
- 		u64 addr = ppgtt_ofs + ofs * 8;
+ 	for_each_tile(tile, xe, id) {
 -- 
 2.34.1
 
