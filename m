@@ -4,64 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60B05C3DA41
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 09:51:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CADA4C3DA41
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 10:00:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E18010E9F3;
-	Thu, 11 Jul 2024 09:51:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RkHVihhO";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB87710E9E6;
- Thu, 11 Jul 2024 09:51:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720691513; x=1752227513;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=zk4aDJg6xr1GtYRHJaF39WqhwypP+YR2knZNrnjGJvg=;
- b=RkHVihhO6F5LkdZCfxJzt37/KMZ1mid04x4psVUlksOSRbvM+eGp1q4p
- PMjk4SBCym8ECUbHL2vsVbUwgjreTOY2wrtncayZdEomdFf2ditLB+DUc
- qMypXXWDpRH1cXmzXbnRRTLszzy7ZlhMVBWANE++DJjAerWyCdsGkzjZE
- jfri5bO15WOiiNdZzDM1fySYL4LoIiBTZymfXoKA4/7RCKE1tXER8upwL
- aMuJN4HkH+2tJ82mUZAwGKqNE24aQg6Jyu+I3zxl80Mk0TFw+WtjOvFlN
- SdAKmrHcS25YOOZgEm42nc+4z24ypxOffrSagAzHl9N9VA5OTU4hmG9uo A==;
-X-CSE-ConnectionGUID: xlEgoc/5Saeh75+sTDTJ0A==
-X-CSE-MsgGUID: kRq5CnICTQum3fDdx3sOdg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="18194948"
-X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="18194948"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 02:51:41 -0700
-X-CSE-ConnectionGUID: QpFHjP7MQsShf1VoshUVIA==
-X-CSE-MsgGUID: ymi0An13TOqDlGIStoa9Mg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="71727122"
-Received: from carterle-desk.ger.corp.intel.com (HELO [10.245.245.36])
- ([10.245.245.36])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 02:51:37 -0700
-Message-ID: <8abff46f-eae6-4521-8434-7c6240f9091c@linux.intel.com>
-Date: Thu, 11 Jul 2024 11:51:50 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F31A10E4C3;
+	Thu, 11 Jul 2024 10:00:47 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D0B410E9F8;
+ Thu, 11 Jul 2024 10:00:46 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1078820848101873593=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-fixes
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Restrict_BMG_to_use_64K_pages_fo?=
+ =?utf-8?q?r_scanout_buffers_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 11 Jul 2024 10:00:46 -0000
+Message-ID: <172069204657.125016.3531667152817815550@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240711090925.179366-1-zbigniew.kempczynski@intel.com>
+In-Reply-To: <20240711090925.179366-1-zbigniew.kempczynski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,54 +36,174 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+--===============1078820848101873593==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Few fixes for v6.10. :)
+== Series Details ==
 
-Cheers,
-~Maarten
+Series: Restrict BMG to use 64K pages for scanout buffers (rev2)
+URL   : https://patchwork.freedesktop.org/series/135900/
+State : success
 
-drm-misc-fixes-2024-07-11:
-drm-misc-fixes for v6.10:
-- EDID irq fix for bridge/adv7511.
-- gma500 null mode fixes.
-- Cleanup meson binding.
-The following changes since commit 256abd8e550ce977b728be79a74e1729438b4948:
+== Summary ==
 
-  Linux 6.10-rc7 (2024-07-07 14:23:46 -0700)
+CI Bug Log - changes from xe-1591-36e90f69c967f4cbcdd02c40c9ef25694ffb1a13_BAT -> xe-pw-135900v2_BAT
+====================================================
 
-are available in the Git repository at:
+Summary
+-------
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2024-07-11
+  **SUCCESS**
 
-for you to fetch changes up to cb520c3f366c77e8d69e4e2e2781a8ce48d98e79:
+  No regressions found.
 
-  drm/gma500: fix null pointer dereference in cdv_intel_lvds_get_modes (2024-07-09 20:02:14 +0200)
+  
 
-----------------------------------------------------------------
-drm-misc-fixes for v6.10:
-- EDID irq fix for bridge/adv7511.
-- gma500 null mode fixes.
-- Cleanup meson binding.
+Participating hosts (7 -> 7)
+------------------------------
 
-----------------------------------------------------------------
-Adam Ford (1):
-      drm/bridge: adv7511: Fix Intermittent EDID failures
+  No changes in participating hosts
 
-Ma Ke (2):
-      drm/gma500: fix null pointer dereference in psb_intel_lvds_get_modes
-      drm/gma500: fix null pointer dereference in cdv_intel_lvds_get_modes
+Possible new issues
+-------------------
 
-Yao Zi (1):
-      drm/meson: fix canvas release in bind function
+  Here are the unknown changes that may have been introduced in xe-pw-135900v2_BAT:
 
- drivers/gpu/drm/bridge/adv7511/adv7511.h     |  2 +-
- drivers/gpu/drm/bridge/adv7511/adv7511_cec.c | 13 +++++++---
- drivers/gpu/drm/bridge/adv7511/adv7511_drv.c | 22 ++++++++++-------
- drivers/gpu/drm/gma500/cdv_intel_lvds.c      |  3 +++
- drivers/gpu/drm/gma500/psb_intel_lvds.c      |  3 +++
- drivers/gpu/drm/meson/meson_drv.c            | 37 ++++++++++++++--------------
- 6 files changed, 47 insertions(+), 33 deletions(-)
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - {bat-bmg-1}:        [DMESG-WARN][1] ([Intel XE#2232]) -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1591-36e90f69c967f4cbcdd02c40c9ef25694ffb1a13/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135900v2/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-hdmi-a-3:
+    - {bat-bmg-1}:        [DMESG-WARN][3] ([Intel XE#2232]) -> [DMESG-FAIL][4] +4 other tests dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1591-36e90f69c967f4cbcdd02c40c9ef25694ffb1a13/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-hdmi-a-3.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135900v2/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-hdmi-a-3.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-135900v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [DMESG-FAIL][5] ([Intel XE#324]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1591-36e90f69c967f4cbcdd02c40c9ef25694ffb1a13/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135900v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#2232]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2232
+  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
+
+
+Build changes
+-------------
+
+  * Linux: xe-1591-36e90f69c967f4cbcdd02c40c9ef25694ffb1a13 -> xe-pw-135900v2
+
+  IGT_7922: 325d4f4efbf869f93d3b4479046713d0ce7220e5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1591-36e90f69c967f4cbcdd02c40c9ef25694ffb1a13: 36e90f69c967f4cbcdd02c40c9ef25694ffb1a13
+  xe-pw-135900v2: 135900v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135900v2/index.html
+
+--===============1078820848101873593==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Restrict BMG to use 64K pages for scanout buffers (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135900/">https://patchwork.freedesktop.org/series/135900/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135900v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135900v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1591-36e90f69c967f4cbcdd02c40c9ef25694ffb1a13_BAT -&gt; xe-pw-135900v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (7 -&gt; 7)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-135900v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>{bat-bmg-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1591-36e90f69c967f4cbcdd02c40c9ef25694ffb1a13/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2232">Intel XE#2232</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135900v2/bat-bmg-1/igt@kms_frontbuffer_tracking@basic.html">FAIL</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-hdmi-a-3:</p>
+<ul>
+<li>{bat-bmg-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1591-36e90f69c967f4cbcdd02c40c9ef25694ffb1a13/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-hdmi-a-3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2232">Intel XE#2232</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135900v2/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-hdmi-a-3.html">DMESG-FAIL</a> +4 other tests dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-135900v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1591-36e90f69c967f4cbcdd02c40c9ef25694ffb1a13/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135900v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1591-36e90f69c967f4cbcdd02c40c9ef25694ffb1a13 -&gt; xe-pw-135900v2</li>
+</ul>
+<p>IGT_7922: 325d4f4efbf869f93d3b4479046713d0ce7220e5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1591-36e90f69c967f4cbcdd02c40c9ef25694ffb1a13: 36e90f69c967f4cbcdd02c40c9ef25694ffb1a13<br />
+  xe-pw-135900v2: 135900v2</p>
+
+</body>
+</html>
+
+--===============1078820848101873593==--
