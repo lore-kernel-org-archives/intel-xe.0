@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B81C3C3271E
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 05:11:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1E3DC3271E
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 05:11:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 836F110E0FF;
-	Thu, 11 Jul 2024 05:11:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A681D10E2D3;
+	Thu, 11 Jul 2024 05:11:33 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE23910E0FF;
- Thu, 11 Jul 2024 05:11:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4830310E2D2;
+ Thu, 11 Jul 2024 05:11:32 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/fbdev=3A_Limi?=
- =?utf-8?q?t_the_usage_of_stolen_for_LNL+?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/fbdev=3A_Limit_the?=
+ =?utf-8?q?_usage_of_stolen_for_LNL+?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Uma Shankar" <uma.shankar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 11 Jul 2024 05:11:20 -0000
-Message-ID: <172067468082.124165.13041881205122165200@2413ebb6fbb6>
+Date: Thu, 11 Jul 2024 05:11:32 -0000
+Message-ID: <172067469229.106210.7573583824210257907@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240711051339.3289552-1-uma.shankar@intel.com>
 In-Reply-To: <20240711051339.3289552-1-uma.shankar@intel.com>
@@ -48,9 +48,31 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 36e90f69c967 drm-tip: 2024y-07m-10d-21h-00m-19s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/fbdev: Limit the usage of stolen for LNL+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e43a1d20111fc31768a567331a35003c9b233cc0
+Author: Uma Shankar <uma.shankar@intel.com>
+Date:   Thu Jul 11 10:43:39 2024 +0530
+
+    drm/xe/fbdev: Limit the usage of stolen for LNL+
+    
+    As per recommendation in the workarounds:
+    WA_14021987551, Wa_16023588340:
+    
+    There is an issue with accessing Stolen memory pages due a
+    hardware limitation. Limit the usage of stolen memory for
+    fbdev for LNL+. Don't use BIOS FB from stolen on LNL+ and
+    assign the same from system memory.
+    
+    Signed-off-by: Uma Shankar <uma.shankar@intel.com>
++ /mt/dim checkpatch 36e90f69c967f4cbcdd02c40c9ef25694ffb1a13 drm-intel
+e43a1d20111f drm/xe/fbdev: Limit the usage of stolen for LNL+
 
 
