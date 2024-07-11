@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16E9FC3DA49
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 17:36:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3AA3C3DA45
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 17:36:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D674610E298;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6DF710E031;
 	Thu, 11 Jul 2024 17:36:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gfwg9K9X";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SGcycCWp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3605810E298
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53FF110E031
  for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 17:36:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1720719397; x=1752255397;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=mX/7CzD/lzDdawgNK7zQv3AypJVjcuHd/hXtjkF+txA=;
- b=gfwg9K9Xxtu5Q4L/BrCUnpf6zZDPzRYjt6j3IsDDu8vv9fpGXbchY72S
- Y7d3AYo3msIC1HZG0Dxi+mrL4KTTtct/+dHy/Cogu9dROK2j2EgWxGHwH
- 4eiffNMmgwfw9SAYPlDExHL95XzRo8UjwLjWc6BQa+ny8wu8JALFRxVAb
- 1cQAasr8O0KhjkBLx697HQYTYia2CCPW2jQFLR4uJirMBWnNbfYUfyYdV
- u9UKlzv3Eae2L5dSlP16OpnAhO2q6PNxvjv/T+HMUBX5rwSQm+NGQMqm1
- 3/W4CX0yV9eBSzZUtcoJU0OO1M3oVNj/Gf0nTxm2vnZ9z3tpJw5nV4Hw7 g==;
-X-CSE-ConnectionGUID: MtM1vmdUS7KC4Jom138ajA==
-X-CSE-MsgGUID: DXiVKTcDS3OE3pw2WDqApg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11130"; a="29534484"
-X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="29534484"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=D4RBvlZTUsx018HRsvmeIjaFR9MucMaoKmpBrmsXgOk=;
+ b=SGcycCWpzvcFSGcux5KvtwR9vuwZmZazCJ3W/wiqAppdvYdrfoPXIfHC
+ OgHE9Xdd0pV3EIcx/t9QtdVDIXi2tnqiUj4QH2T+rZ8uS5CPTn5kWa1NU
+ 4hlTgJjV0olLkR1lEw8fp8qZbEpPm2lcKlEIlOFgjgtAzm5Ble03Makf7
+ Om06sE7XtWrTomaILTco7h6cAmPM73OspZspjQUWinHpMtqPXDzs+Sj32
+ gKgE0MgKj6xdnNmSzZ6TdcNwRvR/vTsLPs5p6LOV5K2nWgQQWsSOGdcx9
+ x+WIHG4cPYTa+NnXOVJjJkAmh6Z/nvXXUTt4RJsimaup2w+OYBI6GUN+8 w==;
+X-CSE-ConnectionGUID: T9X1Y3xQSB6Etb/t8fb/Qg==
+X-CSE-MsgGUID: I9RlrI4HRNGmTc5o9/KCAA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11130"; a="29534486"
+X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="29534486"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Jul 2024 10:36:37 -0700
-X-CSE-ConnectionGUID: 0TGhGt4jTb+5nY3iG061TQ==
-X-CSE-MsgGUID: 6sivey6IRLSAxf3oTSgavw==
+X-CSE-ConnectionGUID: kd2vzrm1S0aT9NiW7v+m1Q==
+X-CSE-MsgGUID: cYYnWhxTSDOQQZKZEcotDA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="79768367"
+X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="79768373"
 Received: from live-gta-imageloader.fm.intel.com (HELO
  DUT152ICLU.fm.intel.com) ([10.105.23.81])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
@@ -47,10 +47,12 @@ To:
 Cc: matthew.brost@intel.com, John.C.Harrison@Intel.com, brian.welty@intel.com,
  intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 0/2] Update page fault queue size calculation
-Date: Thu, 11 Jul 2024 17:36:27 +0000
-Message-Id: <cover.1720718987.git.stuart.summers@intel.com>
+Subject: [PATCH 2/2] drm/xe: Use topology to determine page fault queue size
+Date: Thu, 11 Jul 2024 17:36:29 +0000
+Message-Id: <02abbc0c383839ba2fe89bd3e8cfb5735e20d49f.1720718987.git.stuart.summers@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1720718987.git.stuart.summers@intel.com>
+References: <cover.1720718987.git.stuart.summers@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,26 +69,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Right now the page fault queue size is hard coded with an
-estimated value based on legacy platforms. Add a more precise
-calculation based on the number of compute resources available
-which can utilize these page fault queues.
+Currently the page fault queue size is hard coded. However
+the hardware supports faulting for each EU and each CS.
+For some applications running on hardware with a large
+number of EUs and CSs, this can result in an overflow of
+the page fault queue.
 
-v2: Add a drm reset callback for the teardown changes and other
-    suggestions from Matt.
-v3: Add a pf_wq destroy when the access counter wq allocation
-    fails (Rodrigo) and pf queue size calculation adjustment (Matt)
+Add a small calculation to determine the page fault queue
+size based on the number of EUs and CSs in the platform as
+detmined by fuses.
 
-Original series: https://patchwork.freedesktop.org/series/134694/
+Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 54 +++++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_gt_types.h     |  9 +++--
+ 2 files changed, 49 insertions(+), 14 deletions(-)
 
-Stuart Summers (2):
-  drm/xe: Fix missing workqueue destroy in xe_gt_pagefault
-  drm/xe: Use topology to determine page fault queue size
-
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 72 ++++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_gt_types.h     |  9 +++-
- 2 files changed, 65 insertions(+), 16 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index b2a7fa55bd18..6bfc60c0274a 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -287,7 +287,7 @@ static bool get_pagefault(struct pf_queue *pf_queue, struct pagefault *pf)
+ 			PFD_VIRTUAL_ADDR_LO_SHIFT;
+ 
+ 		pf_queue->tail = (pf_queue->tail + PF_MSG_LEN_DW) %
+-			PF_QUEUE_NUM_DW;
++			pf_queue->pf_queue_num_dw;
+ 		ret = true;
+ 	}
+ 	spin_unlock_irq(&pf_queue->lock);
+@@ -299,7 +299,8 @@ static bool pf_queue_full(struct pf_queue *pf_queue)
+ {
+ 	lockdep_assert_held(&pf_queue->lock);
+ 
+-	return CIRC_SPACE(pf_queue->head, pf_queue->tail, PF_QUEUE_NUM_DW) <=
++	return CIRC_SPACE(pf_queue->head, pf_queue->tail,
++			  pf_queue->pf_queue_num_dw) <=
+ 		PF_MSG_LEN_DW;
+ }
+ 
+@@ -312,22 +313,23 @@ int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ 	u32 asid;
+ 	bool full;
+ 
+-	/*
+-	 * The below logic doesn't work unless PF_QUEUE_NUM_DW % PF_MSG_LEN_DW == 0
+-	 */
+-	BUILD_BUG_ON(PF_QUEUE_NUM_DW % PF_MSG_LEN_DW);
+-
+ 	if (unlikely(len != PF_MSG_LEN_DW))
+ 		return -EPROTO;
+ 
+ 	asid = FIELD_GET(PFD_ASID, msg[1]);
+ 	pf_queue = gt->usm.pf_queue + (asid % NUM_PF_QUEUE);
+ 
++	/*
++	 * The below logic doesn't work unless PF_QUEUE_NUM_DW % PF_MSG_LEN_DW == 0
++	 */
++	xe_gt_assert(gt, !(pf_queue->pf_queue_num_dw % PF_MSG_LEN_DW));
++
+ 	spin_lock_irqsave(&pf_queue->lock, flags);
+ 	full = pf_queue_full(pf_queue);
+ 	if (!full) {
+ 		memcpy(pf_queue->data + pf_queue->head, msg, len * sizeof(u32));
+-		pf_queue->head = (pf_queue->head + len) % PF_QUEUE_NUM_DW;
++		pf_queue->head = (pf_queue->head + len) %
++			pf_queue->pf_queue_num_dw;
+ 		queue_work(gt->usm.pf_wq, &pf_queue->worker);
+ 	} else {
+ 		drm_warn(&xe->drm, "PF Queue full, shouldn't be possible");
+@@ -386,26 +388,54 @@ static void pagefault_fini(void *arg)
+ {
+ 	struct xe_gt *gt = arg;
+ 	struct xe_device *xe = gt_to_xe(gt);
++	int i;
+ 
+ 	if (!xe->info.has_usm)
+ 		return;
+ 
+ 	destroy_workqueue(gt->usm.acc_wq);
+ 	destroy_workqueue(gt->usm.pf_wq);
++
++	for (i = 0; i < NUM_PF_QUEUE; ++i)
++		kfree(gt->usm.pf_queue[i].data);
++}
++
++static int xe_alloc_pf_queue(struct xe_gt *gt, struct pf_queue *pf_queue)
++{
++	xe_dss_mask_t all_dss;
++	int num_dss, num_eus;
++
++	bitmap_or(all_dss, gt->fuse_topo.g_dss_mask, gt->fuse_topo.c_dss_mask,
++		  XE_MAX_DSS_FUSE_BITS);
++
++	num_dss = bitmap_weight(all_dss, XE_MAX_DSS_FUSE_BITS);
++	num_eus = bitmap_weight(gt->fuse_topo.eu_mask_per_dss,
++				XE_MAX_EU_FUSE_BITS) * num_dss;
++
++	/* user can issue separate page faults per EU and per CS */
++	pf_queue->pf_queue_num_dw =
++		(num_eus + XE_NUM_HW_ENGINES) * PF_MSG_LEN_DW;
++
++	pf_queue->gt = gt;
++	pf_queue->data = kzalloc(pf_queue->pf_queue_num_dw, GFP_KERNEL);
++	spin_lock_init(&pf_queue->lock);
++	INIT_WORK(&pf_queue->worker, pf_queue_work_func);
++
++	return 0;
+ }
+ 
+ int xe_gt_pagefault_init(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+-	int i;
++	int i, ret = 0;
+ 
+ 	if (!xe->info.has_usm)
+ 		return 0;
+ 
+ 	for (i = 0; i < NUM_PF_QUEUE; ++i) {
+-		gt->usm.pf_queue[i].gt = gt;
+-		spin_lock_init(&gt->usm.pf_queue[i].lock);
+-		INIT_WORK(&gt->usm.pf_queue[i].worker, pf_queue_work_func);
++		ret = xe_alloc_pf_queue(gt, &gt->usm.pf_queue[i]);
++		if (ret)
++			return ret;
+ 	}
+ 	for (i = 0; i < NUM_ACC_QUEUE; ++i) {
+ 		gt->usm.acc_queue[i].gt = gt;
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 38a0d0e178c8..263a604b76b7 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -233,9 +233,14 @@ struct xe_gt {
+ 		struct pf_queue {
+ 			/** @usm.pf_queue.gt: back pointer to GT */
+ 			struct xe_gt *gt;
+-#define PF_QUEUE_NUM_DW	128
+ 			/** @usm.pf_queue.data: data in the page fault queue */
+-			u32 data[PF_QUEUE_NUM_DW];
++			u32 *data;
++			/**
++			 * @usm.pf_queue_num_dw: number of DWORDS in the page
++			 * fault queue. Dynamically calculated based on the number
++			 * of compute resources available.
++			 */
++			u32 pf_queue_num_dw;
+ 			/**
+ 			 * @usm.pf_queue.tail: tail pointer in DWs for page fault queue,
+ 			 * moved by worker which processes faults (consumer).
 -- 
 2.34.1
 
