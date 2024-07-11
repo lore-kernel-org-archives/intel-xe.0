@@ -4,57 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E04FC3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 11:34:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 867BAC3DA4A
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 11:43:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE66010EA27;
-	Thu, 11 Jul 2024 11:34:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F5E510EA2A;
+	Thu, 11 Jul 2024 11:43:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eiBBQH0L";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="fa8a+LOZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03AA710EA26
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 11:34:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720697662; x=1752233662;
- h=from:date:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=Oj7qCuRoZ6BG2CMcxhD5uo6MFrEJN+oqSjK8HVbgmLE=;
- b=eiBBQH0L1GeYaRT0sH75yX9QPQjOmU8OxsyuX4GqpvJpr3ygKbI8t+m/
- 5phFPgoj0ImB3K5GVN+5hb9cvNOnGMg++bLeCtYcDNq936ipxoZeVPG5v
- YzzRUpKxxQpQP+46TETId+UVnWQW+qWbT6dWcxkyQnPrWs+j+42SFJ3Kj
- q+DY1w/wk6UKXFHEFOvSfSv/9a7zx/Zepqpjvn72K0/K4HjDh5WLCcZPr
- M86QuH4WfxnSVxZFNCwzn0BkeXYDX37NR3EgYrx6HKzt+pjFJJfbFvp/I
- JEK30Gl3FC1nXPWnJ7pKIIkfjzm/U8CvQ8ZkumY6Ftzf4P35k6IAF4jXL g==;
-X-CSE-ConnectionGUID: 4PFzIeA3THWGq1FvwsvNlg==
-X-CSE-MsgGUID: +Ra1j3UtQyGQ+/3kyo6+BA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="29222587"
-X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="29222587"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 04:34:22 -0700
-X-CSE-ConnectionGUID: 8YiY9OMWRw2BJEhEUt2OCg==
-X-CSE-MsgGUID: myy/T2T6SoKA91bQpbohUQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="48610060"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost)
- ([10.245.247.127])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 04:34:19 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Thu, 11 Jul 2024 14:34:15 +0300 (EEST)
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-cc: intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org, 
- david.e.box@linux.intel.com, matthew.brost@intel.com
-Subject: Re: [PATCH v6 5/6] platform/x86/intel/pmt: Add support for PMT base
- adjust
-In-Reply-To: <20240710192249.3915396-6-michael.j.ruhl@intel.com>
-Message-ID: <b521ebe3-e7d2-6ca9-e626-ae9d3a455078@linux.intel.com>
-References: <20240710192249.3915396-1-michael.j.ruhl@intel.com>
- <20240710192249.3915396-6-michael.j.ruhl@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AC0810EA2C
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 11:43:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1720698206;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=MofSZeDyVzWkqGzbXdelFG68l2ucBKWV0CSSC6YMCJU=;
+ b=fa8a+LOZAKIO0UNOqbyCtH36v8c6lu8llHALMn1lWv71aDOlLJWWrHI9+7DnzDj6mMMbUb
+ hRxDY9jDNv9hLAaIAyS6NHqyly/Xhgi4MhcgrSB4PaYkuUsgCqThjesEw/L5rqfCHXJvXK
+ Jb4tmcVJ8TQe9Teq2uquD8Z+L/QuF4Y=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-153-NWFI0_vhNGGRND5_Wvia7Q-1; Thu, 11 Jul 2024 07:43:24 -0400
+X-MC-Unique: NWFI0_vhNGGRND5_Wvia7Q-1
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-3678e549a1eso434141f8f.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 04:43:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1720698202; x=1721303002;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=MofSZeDyVzWkqGzbXdelFG68l2ucBKWV0CSSC6YMCJU=;
+ b=GFCERMBIkITt/2BgOLrrcRTCH6kZzUhsagn9Cz+sHs8H8Z7mpXnA0iD95fIBI3Fs0W
+ u2sm2sj7Sf0c6r42NmtIJH1nfL8hKzAET++S9cBfYc6WXOjPE5ySDkSSE0xUR+aU3/vo
+ 9hxYLH6qIu4zeRfyLg+kb0nl/8WH65CV9S9QW9/wlHu3+yWTw1em8ot0+SqSYWoUqI7V
+ AuLwOg21aH/Tz2hXmiNW4QO5/52Hf9us3VYGVmHsk8HBQBuZEXknuzMgs7/2MRPQNg7e
+ ptSo9/FwFRjsunyVztNVtwf+Ssvd6MbLB9lxG+SbYajArUwkh+vIEwllgWd8ClsePaiv
+ 0lxA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWhNWu0KKG3qzqDSaCpOo9rvWpOzq5NeVPu8MmNqROvkXCJwcZpQ/xfpOQFdRUZDceGXQaYlPe1uh3DTf1HMglJjAng3JC2L4R3KzDY3is=
+X-Gm-Message-State: AOJu0YzG84q4So4RoAodRzdS9a9I24HTMaVSHP8oFID5NJ8LkrATolhu
+ rRaXWV+WjGYSUHMGzvhXlXxyc7cs9ivxkXOZ9FvDaMVzqzDy7TPF5XJKJsUqzGJNLH2m5NBcS7v
+ k0wr6PRJU+wFJea2yx3EsQKtMAGhCnJONTBouYDUyOgK97QvQdAsI5MOaLfasWg0G
+X-Received: by 2002:a05:6000:e86:b0:367:8e63:4da4 with SMTP id
+ ffacd0b85a97d-367f04ca2d7mr1970135f8f.14.1720698202615; 
+ Thu, 11 Jul 2024 04:43:22 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEKWwK9mQfjAxuy6d/Q76G5tEr15S1eUj7ecFAczGH+5nB4lofGO2HqY2Y+hF94BBlR5S5EPA==
+X-Received: by 2002:a05:6000:e86:b0:367:8e63:4da4 with SMTP id
+ ffacd0b85a97d-367f04ca2d7mr1970113f8f.14.1720698202132; 
+ Thu, 11 Jul 2024 04:43:22 -0700 (PDT)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4266f737b1bsm116663935e9.32.2024.07.11.04.43.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 11 Jul 2024 04:43:21 -0700 (PDT)
+Date: Thu, 11 Jul 2024 13:43:21 +0200
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next-fixes
+Message-ID: <20240711-benign-rich-mouflon-2eeafe@houat>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="dzmsejr4sz47r6mw"
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,102 +95,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 10 Jul 2024, Michael J. Ruhl wrote:
 
-> DVSEC offsets are based on the endpoint BAR.  If an endpoint is
-> not avialable allow the offset information to be adjusted by the
+--dzmsejr4sz47r6mw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-available
+Hi,
 
-> parent driver.
-> 
-> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
-> ---
->  drivers/platform/x86/intel/pmt/class.h     | 1 +
->  drivers/platform/x86/intel/pmt/telemetry.c | 9 +++++++++
->  drivers/platform/x86/intel/vsec.c          | 1 +
->  include/linux/intel_vsec.h                 | 2 ++
->  4 files changed, 13 insertions(+)
-> 
-> diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/intel/pmt/class.h
-> index a267ac964423..984cd40ee814 100644
-> --- a/drivers/platform/x86/intel/pmt/class.h
-> +++ b/drivers/platform/x86/intel/pmt/class.h
-> @@ -46,6 +46,7 @@ struct intel_pmt_entry {
->  	void __iomem		*base;
->  	struct pmt_callbacks	*cb;
->  	unsigned long		base_addr;
-> +	s32			base_adjust;
->  	size_t			size;
->  	u32			guid;
->  	int			devid;
-> diff --git a/drivers/platform/x86/intel/pmt/telemetry.c b/drivers/platform/x86/intel/pmt/telemetry.c
-> index c9feac859e57..5c44e500e8f6 100644
-> --- a/drivers/platform/x86/intel/pmt/telemetry.c
-> +++ b/drivers/platform/x86/intel/pmt/telemetry.c
-> @@ -78,6 +78,13 @@ static int pmt_telem_header_decode(struct intel_pmt_entry *entry,
->  	header->access_type = TELEM_ACCESS(readl(disc_table));
->  	header->guid = readl(disc_table + TELEM_GUID_OFFSET);
->  	header->base_offset = readl(disc_table + TELEM_BASE_OFFSET);
-> +	if (entry->base_adjust) {
-> +		u32 new_base = header->base_offset + entry->base_adjust;
+Here's this week drm-misc-next-fixes PR
 
-The code setting ->base_adjust is responsible for avoiding stupid settings 
-that would lead to underflows and overflows?
+Thanks!
+Maxime
 
-> +
-> +		dev_dbg(dev, "Adjusting baseoffset from 0x%x to 0x%x\n",
+drm-misc-next-fixes-2024-07-11:
+A fix for fbdev on big endian systems, a condition fix for a sharp panel
+at removal, and a fix for qxl to prevent unpinned buffer access under
+certain conditions.
+The following changes since commit 896868eded124059023be0af92d68cdaf9b4de70:
 
-base offset
+  drm/panthor: Record devfreq busy as soon as a job is started (2024-07-04 09:29:55 +0100)
 
--- 
- i.
+are available in the Git repository at:
 
-> +			header->base_offset, new_base);
-> +		header->base_offset = new_base;
-> +	}
->  
->  	/* Size is measured in DWORDS, but accessor returns bytes */
->  	header->size = TELEM_SIZE(readl(disc_table));
-> @@ -302,6 +309,8 @@ static int pmt_telem_probe(struct auxiliary_device *auxdev, const struct auxilia
->  	for (i = 0; i < intel_vsec_dev->num_resources; i++) {
->  		struct intel_pmt_entry *entry = &priv->entry[priv->num_entries];
->  
-> +		entry->base_adjust = intel_vsec_dev->base_adjust;
-> +
->  		mutex_lock(&ep_lock);
->  		ret = intel_pmt_dev_create(entry, &pmt_telem_ns, intel_vsec_dev, i);
->  		mutex_unlock(&ep_lock);
-> diff --git a/drivers/platform/x86/intel/vsec.c b/drivers/platform/x86/intel/vsec.c
-> index 7b5cc9993974..be079d62a7bc 100644
-> --- a/drivers/platform/x86/intel/vsec.c
-> +++ b/drivers/platform/x86/intel/vsec.c
-> @@ -212,6 +212,7 @@ static int intel_vsec_add_dev(struct pci_dev *pdev, struct intel_vsec_header *he
->  	intel_vsec_dev->num_resources = header->num_entries;
->  	intel_vsec_dev->quirks = info->quirks;
->  	intel_vsec_dev->base_addr = info->base_addr;
-> +	intel_vsec_dev->base_adjust = info->base_adjust;
->  	intel_vsec_dev->priv_data = info->priv_data;
->  
->  	if (header->id == VSEC_ID_SDSI)
-> diff --git a/include/linux/intel_vsec.h b/include/linux/intel_vsec.h
-> index 4569a55e8645..1fd0fcc5615d 100644
-> --- a/include/linux/intel_vsec.h
-> +++ b/include/linux/intel_vsec.h
-> @@ -95,6 +95,7 @@ struct intel_vsec_platform_info {
->  	unsigned long caps;
->  	unsigned long quirks;
->  	u64 base_addr;
-> +	s32 base_adjust;
->  };
->  
->  /**
-> @@ -120,6 +121,7 @@ struct intel_vsec_device {
->  	size_t priv_data_size;
->  	unsigned long quirks;
->  	u64 base_addr;
-> +	s32 base_adjust;
->  };
->  
->  int intel_vsec_add_aux(struct pci_dev *pdev, struct device *parent,
-> 
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2024-07-11
+
+for you to fetch changes up to c537fb4e3d36e7cd1a0837dd577cd30d3d64f1bc:
+
+  drm/qxl: Pin buffer objects for internal mappings (2024-07-10 09:12:42 +0200)
+
+----------------------------------------------------------------
+A fix for fbdev on big endian systems, a condition fix for a sharp panel
+at removal, and a fix for qxl to prevent unpinned buffer access under
+certain conditions.
+
+----------------------------------------------------------------
+Douglas Anderson (1):
+      drm/panel: sharp-lq101r1sx01: Fixed reversed "if" in remove
+
+Maxime Ripard (1):
+      Merge drm-misc-next-2024-07-04 into drm-misc-next-fixes
+
+Thomas Huth (1):
+      drm/fbdev-dma: Fix framebuffer mode for big endian devices
+
+Thomas Zimmermann (1):
+      drm/qxl: Pin buffer objects for internal mappings
+
+ drivers/gpu/drm/arm/display/komeda/komeda_color_mgmt.c |  5 -----
+ drivers/gpu/drm/drm_fbdev_dma.c                        |  3 ++-
+ drivers/gpu/drm/panel/panel-sharp-lq101r1sx01.c        |  2 +-
+ drivers/gpu/drm/qxl/qxl_display.c                      | 14 +++++++-------
+ drivers/gpu/drm/qxl/qxl_object.c                       | 13 +++++++++++--
+ drivers/gpu/drm/qxl/qxl_object.h                       |  4 ++--
+ 6 files changed, 23 insertions(+), 18 deletions(-)
+
+--dzmsejr4sz47r6mw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZo/FWAAKCRAnX84Zoj2+
+ducuAYCQ2yxTQEAVBbW1pjLEqLM8ZqWbhUe30yZe+1K91x/U9fSYGnmsfeWpJYHh
+VsiVNBgBgMVRP82CcCt7Cp2HFfHXl/enrvZaYvJUDetm3ZbnGwAT5TGqbefXGok6
+phXB4NyL4Q==
+=SiwA
+-----END PGP SIGNATURE-----
+
+--dzmsejr4sz47r6mw--
+
