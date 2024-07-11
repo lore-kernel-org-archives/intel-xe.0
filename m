@@ -4,57 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22012C3DA49
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 17:36:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 543EBC3DA45
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 17:38:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D95C410E2AD;
-	Thu, 11 Jul 2024 17:36:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18C7910EB2D;
+	Thu, 11 Jul 2024 17:38:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GL7j4OvZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Px5+QVbx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC55010E031
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 17:36:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FFD310EB2D;
+ Thu, 11 Jul 2024 17:38:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720719397; x=1752255397;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Ze/lVVuJGF9YVI3Y/QUHzhNBNKIJThDI//J8NG3Q9lA=;
- b=GL7j4OvZ03qDp7VAxfpWJKUhnII1O/8j0s8sVjv0cqumK6BG2CWTstD6
- PRFVxiQGWHlGtabLTo6s8KzNgpEcUqOe7iLaXAbBUE/rUi7BtsZfWa+z+
- g7HWeTjgSs1iizNyOMl/IzbE5Mk4jxZhENoNNU025yGD0mBwpsUiZR3Dq
- 51xysRd5CNlbajp4g/6gqksvGnvU2YVE01DwoVZ7eXus6Va6Z25UB0RgG
- iDy939tiPqzcyFDVOND/wWsnd74r0nlLHx9F9EZMs6TH/guV14GLpyLfv
- xGvrWe3pszM2vK8CdwwloTH38UakZfsAJ0hzcE9r7/pvZQdvD0dbUf+7g A==;
-X-CSE-ConnectionGUID: jxIC/YLCQ9qF95QjUk9R2Q==
-X-CSE-MsgGUID: eSXkUfz5TdyQGmDpwQn2UA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11130"; a="29534485"
-X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="29534485"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 10:36:37 -0700
-X-CSE-ConnectionGUID: VrUyx86ZSNi/JhW+AXEMlQ==
-X-CSE-MsgGUID: /Xoq+/BnQvq55znNZfWAlw==
+ t=1720719519; x=1752255519;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=lmSjehbQ9tci0Op9QGk2WEKBkSr6aKR40ZVr2zEDQ/g=;
+ b=Px5+QVbx9AdqrZlvbN72ExR8zEp54AhmcN9m7JRpHbRhx+fcS1GUrndz
+ HtY2K2TH09dnzXq0kRBNSgVywqBi9jvI43e/ADdKfjoOvNgDHd27z2p01
+ J07rXzI9t1v2JtR8vKq4WhpyXBmNc0+6b2h90Mhn7c/ly4gvvFSr+OjNs
+ VtXbDu8sLK53q5gbfPVA41qoaYi8hfObqVSAqCP0F7FSOPb7oulri2wYy
+ 9fnRH90izBDrkoC4nYgXPiYNEXaoqu6jX9RVBwQ5vM7crU//ETfXjeoam
+ UogblEzKJvhbumpHmXTyx2aNP030FWPU3J+uZ1ViG6uChY3zZwYmZi4Dz w==;
+X-CSE-ConnectionGUID: aUh9q6P2RQuMeiLx9qkMTg==
+X-CSE-MsgGUID: bhiYPG3lQVCl4VOfpvcdew==
+X-IronPort-AV: E=McAfee;i="6700,10204,11130"; a="18077784"
+X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="18077784"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2024 10:38:39 -0700
+X-CSE-ConnectionGUID: K+ak8NZUSn6OuHqrMejOlw==
+X-CSE-MsgGUID: Eme1/c2ASCGOKtnM3xgy7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="79768371"
-Received: from live-gta-imageloader.fm.intel.com (HELO
- DUT152ICLU.fm.intel.com) ([10.105.23.81])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 10:36:36 -0700
-From: Stuart Summers <stuart.summers@intel.com>
-To: 
-Cc: matthew.brost@intel.com, John.C.Harrison@Intel.com, brian.welty@intel.com,
- intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
- Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 1/2] drm/xe: Fix missing workqueue destroy in xe_gt_pagefault
-Date: Thu, 11 Jul 2024 17:36:28 +0000
-Message-Id: <f3055416b5941fa5da1ab7ec1419a1248602fb9a.1720718987.git.stuart.summers@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1720718987.git.stuart.summers@intel.com>
-References: <cover.1720718987.git.stuart.summers@intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="48613853"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 11 Jul 2024 10:38:37 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 11 Jul 2024 20:38:35 +0300
+Date: Thu, 11 Jul 2024 20:38:35 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, daniele.ceraolospurio@intel.com,
+ vinay.belgaumkar@intel.com
+Subject: Re: [PATCH] drm/xe/fbdev: Limit the usage of stolen for LNL+
+Message-ID: <ZpAYm0w5DA9bfo-1@intel.com>
+References: <20240711051339.3289552-1-uma.shankar@intel.com>
+ <phpidsyio6aub43cbfdcll44k7rrh73chqsuktraenzx6575af@645b423aaz6q>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <phpidsyio6aub43cbfdcll44k7rrh73chqsuktraenzx6575af@645b423aaz6q>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,54 +72,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On driver reload we never free up the memory for the pagefault and
-access counter workqueues. Add those destroy calls here.
+On Thu, Jul 11, 2024 at 11:31:54AM -0500, Lucas De Marchi wrote:
+> On Thu, Jul 11, 2024 at 10:43:39AM GMT, Uma Shankar wrote:
+> >As per recommendation in the workarounds:
+> >WA_14021987551, Wa_16023588340:
+> >
+> >There is an issue with accessing Stolen memory pages due a
+> >hardware limitation. Limit the usage of stolen memory for
+> >fbdev for LNL+. Don't use BIOS FB from stolen on LNL+ and
+> >assign the same from system memory.
+> >
+> >Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> >---
+> > drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 10 +++++++++-
+> > drivers/gpu/drm/xe/display/xe_plane_initial.c | 10 ++++++++++
+> > 2 files changed, 19 insertions(+), 1 deletion(-)
+> >
+> >diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+> >index 816ad13821a8..8fda8745ce0a 100644
+> >--- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+> >+++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+> >@@ -37,7 +37,14 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
+> > 	size = PAGE_ALIGN(size);
+> > 	obj = ERR_PTR(-ENODEV);
+> >
+> >-	if (!IS_DGFX(xe)) {
+> >+	/*
+> >+	 * WA_14021987551, Wa_16023588340:
+> 
+> not the proper way to handle WAs in xe. Please use XE_WA()
+> 
+> 
+> >+	 * There is an issue with accessing Stolen memory pages
+> >+	 * due a hardware limitation. Limit the usage of stolen
+> >+	 * memory for fbdev for LNL+. Don't use BIOS FB from
+> >+	 * stolen on LNL+ and assign the same from system memory
+> 
+> I wonder if we can't simply set to 0 the available stolen space after the
+> places that really need it already had their allocation done.
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+FBC needs stolen.
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 9292d5468868..b2a7fa55bd18 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -382,6 +382,18 @@ static void pf_queue_work_func(struct work_struct *w)
- 
- static void acc_queue_work_func(struct work_struct *w);
- 
-+static void pagefault_fini(void *arg)
-+{
-+	struct xe_gt *gt = arg;
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	if (!xe->info.has_usm)
-+		return;
-+
-+	destroy_workqueue(gt->usm.acc_wq);
-+	destroy_workqueue(gt->usm.pf_wq);
-+}
-+
- int xe_gt_pagefault_init(struct xe_gt *gt)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
-@@ -409,10 +421,12 @@ int xe_gt_pagefault_init(struct xe_gt *gt)
- 	gt->usm.acc_wq = alloc_workqueue("xe_gt_access_counter_work_queue",
- 					 WQ_UNBOUND | WQ_HIGHPRI,
- 					 NUM_ACC_QUEUE);
--	if (!gt->usm.acc_wq)
-+	if (!gt->usm.acc_wq) {
-+		destroy_workqueue(gt->usm.pf_wq);
- 		return -ENOMEM;
-+	}
- 
--	return 0;
-+	return devm_add_action_or_reset(xe->drm.dev, pagefault_fini, gt);
- }
- 
- void xe_gt_pagefault_reset(struct xe_gt *gt)
 -- 
-2.34.1
-
+Ville Syrjälä
+Intel
