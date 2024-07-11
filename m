@@ -4,56 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FC1AC3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 11:44:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71CF4C3DA4A
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 12:09:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F01E510EA30;
-	Thu, 11 Jul 2024 11:44:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4191B10EA49;
+	Thu, 11 Jul 2024 12:09:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="knnAPIsZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bd8IfOPG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85B2C10EA30
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 11:44:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E39E10EA49
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 12:09:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720698279; x=1752234279;
- h=from:date:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=8GCgu0IoTPi1B5Rkc4JxZdX9C06g0PN0ojcJOy9qs8M=;
- b=knnAPIsZZXrXe00H79mbLILnBDL6oRvtGH8aGphz06sU+vsHLH5bbGNt
- 4kCFZwZyS4hCXk9igSLDD7UQZUdz1NP3ofbdhiVhgzDCQcLM6nctWONCh
- +8pl1dR0hfuCDb1ufxb1fZYuHkW3scp0IG8kAIM6bexv5EcUDEUNlOl06
- wmujhAJ1X8coPCb7Bu5sxxHMVnYTCCZ6MFIrJIPnq158CH3G2v3xiWS8Y
- sKhX+qFqmsASVpEGs/vc1YWPUf66osLY6MR2t0UpqK09tJIzU4GnUZlpx
- Gupm7im0SBi3qOYXb240vNed4TEWuzWfwfiyP9TSqfLnbehAn2zxNoBZB A==;
-X-CSE-ConnectionGUID: 9uaWA0jLRrybiVIjF+SG2A==
-X-CSE-MsgGUID: nE6dViS2R/+8rFpSf+EyDw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="17887324"
-X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="17887324"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 04:44:39 -0700
-X-CSE-ConnectionGUID: HLw3daF6Re+3vp9yzTlwQw==
-X-CSE-MsgGUID: jNTJYawrRE6ObxTceshZnA==
+ t=1720699785; x=1752235785;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=I0m6whyfEIQcRgTPqEtEukRPCxrrSpwpGQRDhJuSO7c=;
+ b=Bd8IfOPGq8B2wbu00d94Vm2Y6qkl0z89aydXo1uhbngnvkd5WZvmhT1C
+ nWJU6BU2OAlnYzTUQ8trKPf37oq1yM0iy/VKGCiVuPhkdsWWKIrpy2E5B
+ mp5X+4R6Um4a7tYSEfqB0Wf6flHI4MyHWdakhzJppj3ojeYuANca7xLfB
+ j+P2ErpEZ6ztdRBXnfjMD3WbbQkIlDiYxz455uoEWf9ENe6pKwnGjQ+s/
+ YzB9ZToRrTvG5M5LfiajowCsbPdqRr+TMTV5vPhypGQmPnT5YD/nRKAxT
+ pa98h8TGvimCcsvxBzujrsD7xEkXNsP5ka86NZzCsQCLTZBlmxmW/PmZV Q==;
+X-CSE-ConnectionGUID: S/5c/7EpTQSBuuoHdsGttA==
+X-CSE-MsgGUID: r59Nz0OgR/GQmnofFYADNQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="17940094"
+X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="17940094"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2024 05:09:44 -0700
+X-CSE-ConnectionGUID: ATtk7DAeRJmbqTQZ0Pma0A==
+X-CSE-MsgGUID: 2vagfyp8Sw681m/Mn9WBDQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="53707003"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost)
- ([10.245.247.127])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 04:44:36 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Thu, 11 Jul 2024 14:44:33 +0300 (EEST)
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-cc: intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org, 
- david.e.box@linux.intel.com, matthew.brost@intel.com
-Subject: Re: [PATCH v6 6/6] drm/xe/vsec: Add support for DG2
-In-Reply-To: <20240710192249.3915396-7-michael.j.ruhl@intel.com>
-Message-ID: <c3a26fdd-ebb7-a5d1-38b3-0832c7e92652@linux.intel.com>
-References: <20240710192249.3915396-1-michael.j.ruhl@intel.com>
- <20240710192249.3915396-7-michael.j.ruhl@intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="52922252"
+Received: from fpallare-mobl3.ger.corp.intel.com (HELO [10.245.245.34])
+ ([10.245.245.34])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2024 05:09:43 -0700
+Message-ID: <26effdad-d3f2-4db6-a75d-899f03639666@intel.com>
+Date: Thu, 11 Jul 2024 13:09:40 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] drm/xe/migrate: Handle clear ccs logic for xe2 dgfx
+To: Akshata Jahagirdar <akshata.jahagirdar@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com, himal.prasad.ghimiray@intel.com,
+ lucas.demarchi@intel.com
+References: <cover.1720689220.git.akshata.jahagirdar@intel.com>
+ <2b3532ca86b91da122154e56bd4ae95c2dafc04a.1720689220.git.akshata.jahagirdar@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <2b3532ca86b91da122154e56bd4ae95c2dafc04a.1720689220.git.akshata.jahagirdar@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,172 +72,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 10 Jul 2024, Michael J. Ruhl wrote:
-
-> DG2 needs to adjust the discovery offset WRT the GT BAR not the
-
-WRT = w.r.t. ?
-
-> P2SB bar so add the base_adjust value to allow for the difference
-> to be used.
-
-Could you please try to write out the problem in clearer terms. Currently 
-the reasonale given in patch 5 doesn't even match the one given here or 
-it is written in so unclear terms I cannot make the connection.
-
-> Update xe_vsec.c to include DG2 header information.
+On 11/07/2024 10:18, Akshata Jahagirdar wrote:
+> For Xe2 dGPU, we clear the bo by modifying the VRAM using an
+> uncompressed pat index which then indirectly updates the
+> compression status as uncompressed i.e zeroed CCS.
+> So xe_migrate_clear() should be updated for BMG to not
+> emit CCS surf copy commands.
 > 
-> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+> Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_vsec.c | 81 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 81 insertions(+)
+>   drivers/gpu/drm/xe/xe_device.h  | 5 +++++
+>   drivers/gpu/drm/xe/xe_migrate.c | 6 +++---
+>   2 files changed, 8 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-> index 98999d467db1..531ddd32a1a6 100644
-> --- a/drivers/gpu/drm/xe/xe_vsec.c
-> +++ b/drivers/gpu/drm/xe/xe_vsec.c
-> @@ -19,6 +19,16 @@
->  
->  #define SOC_BASE		0x280000
->  
-> +/* from drivers/platform/x86/intel/pmt/telemetry.c */
-> +#define TELEM_BASE_OFFSET	0x8
-> +
-> +#define DG2_PMT_BASE		0xE8000
-> +#define DG2_DISCOVERY_START	0x6000
-> +#define DG2_TELEM_START		0x4000
-> +
-> +#define DG2_DISCOVERY_OFFSET	(SOC_BASE + DG2_PMT_BASE + DG2_DISCOVERY_START)
-> +#define DG2_TELEM_OFFSET	(SOC_BASE + DG2_PMT_BASE + DG2_TELEM_START)
-> +
->  #define BMG_PMT_BASE		0xDB000
->  #define BMG_DISCOVERY_OFFSET	(SOC_BASE + BMG_PMT_BASE)
->  
-> @@ -32,6 +42,20 @@
->  #define SG_REMAP_INDEX1		XE_REG(SOC_BASE + 0x08)
->  #define SG_REMAP_BITS		GENMASK(31, 24)
->  
-> +static struct intel_vsec_header dg2_telemetry = {
-> +	.length = 0x10,
-> +	.id = VSEC_ID_TELEMETRY,
-> +	.num_entries = 1,
-> +	.entry_size = 3,
-> +	.tbir = GFX_BAR,
-> +	.offset = DG2_DISCOVERY_OFFSET,
-> +};
-> +
-> +static struct intel_vsec_header *dg2_capabilities[] = {
-> +	&dg2_telemetry,
-> +	NULL
-> +};
-> +
->  static struct intel_vsec_header bmg_telemetry = {
->  	.length = 0x10,
->  	.id = VSEC_ID_TELEMETRY,
-> @@ -48,10 +72,16 @@ static struct intel_vsec_header *bmg_capabilities[] = {
->  
->  enum xe_vsec {
->  	XE_VSEC_UNKNOWN = 0,
-> +	XE_VSEC_DG2,
->  	XE_VSEC_BMG,
->  };
->  
->  static struct intel_vsec_platform_info xe_vsec_info[] = {
-> +	[XE_VSEC_DG2] = {
-> +		.caps = VSEC_CAP_TELEMETRY,
-> +		.headers = dg2_capabilities,
-> +		.quirks = VSEC_QUIRK_EARLY_HW,
-> +	},
->  	[XE_VSEC_BMG] = {
->  		.caps = VSEC_CAP_TELEMETRY,
->  		.headers = bmg_capabilities,
-> @@ -174,6 +204,7 @@ struct pmt_callbacks xe_pmt_cb = {
->  };
->  
->  static const int vsec_platforms[] = {
-> +	[XE_DG2] = XE_VSEC_DG2,
->  	[XE_BATTLEMAGE] = XE_VSEC_BMG,
->  };
->  
-> @@ -185,6 +216,49 @@ static enum xe_vsec get_platform_info(struct xe_device *xe)
->  	return vsec_platforms[xe->info.platform];
->  }
->  
-> +/*
-> + * Access the DG2 PMT MMIO discovery table
-> + *
-> + * The intel_vsec driver does not typically access the discovery table.
-> + * Instead, it creates a memory resource for the table and passes it
-> + * to the PMT telemetry driver. Each discovery table contains 3 items,
-> + *    - GUID
-> + *    - Telemetry size
-> + *    - Telemetry offset (offset from P2SB BAR, not GT)
-> + *
-> + * For DG2 we know what the telemetry offset is, but we still need to
-> + * use the discovery table to pass the GUID and the size. So figure
-> + * out the difference between the P2SB offset and the GT offset and
-> + * save this so that the telemetry driver can use it to adjust the
-> + * value.
-> + */
-> +static int dg2_adjust_offset(struct pci_dev *pdev, struct device *dev,
-> +			     struct intel_vsec_platform_info *info)
+> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+> index 0a2a3e7fd402..c3093506c28c 100644
+> --- a/drivers/gpu/drm/xe/xe_device.h
+> +++ b/drivers/gpu/drm/xe/xe_device.h
+> @@ -144,6 +144,11 @@ static inline bool xe_device_has_flat_ccs(struct xe_device *xe)
+>   	return xe->info.has_flat_ccs;
+>   }
+>   
+> +static inline bool xe_device_needs_ccs_emit(struct xe_device *xe)
 > +{
-> +	void __iomem *base;
-> +	u32 telem_offset;
-> +	u64 addr;
-> +
-> +	/* compile check to verify that quirk has P2SB quirk added */
-
-I don't know what "quirk" the first instance refers to (I think I 
-probably know what the P2SB quirk is).
-
-What is the purpose/meaning of this comment? Is it some leftover for 
-code that no longer exists as it talks about "compile check"??
-
--- 
- i.
-
-> +
-> +	addr = pci_resource_start(pdev, GFX_BAR) + info->headers[0]->offset;
-> +	base = ioremap_wc(addr, 16);
-> +	if (!base)
-> +		return -ENOMEM;
-> +
-> +	telem_offset = readl(base + TELEM_BASE_OFFSET);
-> +
-> +	/* Use the base_addr + P2SB quirk to pass this info */
-> +	if (telem_offset < DG2_TELEM_OFFSET)
-> +		info->base_adjust = -(DG2_TELEM_OFFSET - telem_offset);
-> +	else
-> +		info->base_adjust = -(telem_offset - DG2_TELEM_OFFSET);
-> +
-> +	iounmap(base);
-> +
-> +	return 0;
+> +	return xe_device_has_flat_ccs(xe) && !(GRAPHICS_VER(xe) >= 20 && IS_DGFX(xe));
 > +}
 > +
->  /**
->   * xe_vsec_init - Initialize resources and add intel_vsec auxiliary
->   * interface
-> @@ -196,6 +270,7 @@ void xe_vsec_init(struct xe_device *xe)
->  	struct device *dev = xe->drm.dev;
->  	struct pci_dev *pdev = to_pci_dev(dev);
->  	enum xe_vsec platform;
-> +	u32 ret;
->  
->  	platform = get_platform_info(xe);
->  	if (platform == XE_VSEC_UNKNOWN)
-> @@ -206,6 +281,12 @@ void xe_vsec_init(struct xe_device *xe)
->  		return;
->  
->  	switch (platform) {
-> +	case XE_VSEC_DG2:
-> +		ret = dg2_adjust_offset(pdev, dev, info);
-> +		if (ret)
-> +			return;
-> +		break;
-> +
->  	case XE_VSEC_BMG:
->  		info->priv_data = &xe_pmt_cb;
->  		break;
-> 
+
+This should in theory be hyper specific to the migration code 
+implementation. I think best keep in xe_migrate.c, instead of exporting 
+(if possible).
+
+With that,
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
+>   static inline bool xe_device_has_sriov(struct xe_device *xe)
+>   {
+>   	return xe->info.has_sriov;
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+> index fa23a7e7ec43..2fc2cf375b1e 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> @@ -420,7 +420,7 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
+>   		return ERR_PTR(err);
+>   
+>   	if (IS_DGFX(xe)) {
+> -		if (xe_device_has_flat_ccs(xe))
+> +		if (xe_device_needs_ccs_emit(xe))
+>   			/* min chunk size corresponds to 4K of CCS Metadata */
+>   			m->min_chunk_size = SZ_4K * SZ_64K /
+>   				xe_device_ccs_bytes(xe, SZ_64K);
+> @@ -1034,7 +1034,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+>   					clear_system_ccs ? 0 : emit_clear_cmd_len(gt), 0,
+>   					avail_pts);
+>   
+> -		if (xe_device_has_flat_ccs(xe))
+> +		if (xe_device_needs_ccs_emit(xe))
+>   			batch_size += EMIT_COPY_CCS_DW;
+>   
+>   		/* Clear commands */
+> @@ -1062,7 +1062,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+>   		if (!clear_system_ccs)
+>   			emit_clear(gt, bb, clear_L0_ofs, clear_L0, XE_PAGE_SIZE, clear_vram);
+>   
+> -		if (xe_device_has_flat_ccs(xe)) {
+> +		if (xe_device_needs_ccs_emit(xe)) {
+>   			emit_copy_ccs(gt, bb, clear_L0_ofs, true,
+>   				      m->cleared_mem_ofs, false, clear_L0);
+>   			flush_flags = MI_FLUSH_DW_CCS;
