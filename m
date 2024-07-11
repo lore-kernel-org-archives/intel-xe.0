@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97028C3DA41
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 00:33:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7FC4C3DA42
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 00:57:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 501A710E7D0;
-	Thu, 11 Jul 2024 00:33:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FA6410E0C9;
+	Thu, 11 Jul 2024 00:57:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dO4Hmz4p";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OoOcMO6L";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71E0610E7D0
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 00:33:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3302A10E157
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 00:57:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720657995; x=1752193995;
+ t=1720659459; x=1752195459;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
  bh=Y/8ZInvXqNRbFDK64S7caPCGK5aCAbjJagJ7hyTKggQ=;
- b=dO4Hmz4pH7o/c3yI2bt9qI0u1pMSqFz10FRnNauR073vJZBDomC1/uM3
- k0S84gtgGcvsy2q5T4Ne/SRWfLogq1YYwSv/OF/mUJAwMER0jl5TcG5jQ
- YuOugpOEK5nGQVvwl+hDlPNg+MxT4AuDzZVG9wHYz5H7PXyBmIZOq2/0E
- 3cCbXrXoVG0YEOkd42j+Guz+hXOGl0bTcMZTzPpfuOCG5Sr9sGOGFj7jE
- ncN5bfBSG6RdyI2/XnyO2nbY+cwYIKLK51ykV4aDny4b5ewixPHtdzR8y
- Hck3c1T1xhWd/osBc5drHKnuHS3ULJsA7IT1c9/55qUacQIdDAGD/AU6T g==;
-X-CSE-ConnectionGUID: tZUfk9RiQMafbT0/VISWSQ==
-X-CSE-MsgGUID: WbGv+oesRpOBt5NgKAbDww==
-X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="17884753"
-X-IronPort-AV: E=Sophos;i="6.09,198,1716274800"; d="scan'208";a="17884753"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2024 17:33:15 -0700
-X-CSE-ConnectionGUID: CVXEJNE3TGC+QE5tnPQcoQ==
-X-CSE-MsgGUID: KEG5JrL4S/i+QHSdFbUe4g==
+ b=OoOcMO6LILi9VNUmWb9xw/rDGCjb9WQxDcNVxfjf5BPpLSL2jIk5vOkL
+ PYcJjHud/fvZpxujE1V11f6JJ6KbBk3nyZRjyTLh/pjsYguhQZETSJcjA
+ VbymeQ6RZh41071YMSnpWsKJ+GVrJXHaw92Oh7WMs7ux3Ds/WU+l42HiZ
+ CFXppFW6llYZNDMdQQsBB2cqV43+4V9veiBo1ujXSfrxSiZvScWqLhpr6
+ 5nAp8Vm5kZQDroY/IEVe++E6JsNxZZbiiEfTPa9OoXX4V3/VVZrwZgGO8
+ iB629TuCXYG4cNEWqxyGOB6qAqXH5bQerOmIWl8656dspZlrqHTuIKPl0 g==;
+X-CSE-ConnectionGUID: Q3fpYUTjQVGlXT1a6iUnEg==
+X-CSE-MsgGUID: XYvptSHkQlWMwZfbnXEq1Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="17720387"
+X-IronPort-AV: E=Sophos;i="6.09,198,1716274800"; d="scan'208";a="17720387"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2024 17:57:39 -0700
+X-CSE-ConnectionGUID: 9zP9qSoVSIeJGZ+6Fe+/OQ==
+X-CSE-MsgGUID: FFQhloKdQZ+swz4IiobHHw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,198,1716274800"; d="scan'208";a="71603847"
+X-IronPort-AV: E=Sophos;i="6.09,198,1716274800"; d="scan'208";a="48475733"
 Received: from saurabhg-nuc10i5fnh.jf.intel.com ([10.165.125.7])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2024 17:33:15 -0700
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2024 17:57:38 -0700
 From: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: akshatajahagirdar6@gmail.com,
  Akshata Jahagirdar <akshata.jahagirdar@intel.com>
 Subject: [PATCH 1/6] drm/xe/migrate: Handle clear ccs logic for xe2 dgfx
-Date: Thu, 11 Jul 2024 05:42:59 -0700
+Date: Thu, 11 Jul 2024 06:07:23 -0700
 Message-ID: <e597e39b0c22d3b58cda09e0e4b33f883b9140db.1720515376.git.akshata.jahagirdar@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1720515376.git.akshata.jahagirdar@intel.com>
@@ -66,7 +66,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-Message-ID: <20240711124259.qbP2xZLMy7EV_Oe9qiM2tWPVYpDhMvwv0pkflpRVurM@z>
+Message-ID: <20240711130723.Lx0VmJrGbVNQCrEwih9c1xPyTZy902i-gzX0JZp-vM0@z>
 
 For Xe2 dGPU, we clear the bo by modifying the VRAM using an
 uncompressed pat index which then indirectly updates the
