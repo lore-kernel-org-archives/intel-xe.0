@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0101EC3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 20:26:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 185A8C3DA45
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 20:26:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2BF410E8DC;
-	Thu, 11 Jul 2024 20:26:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDB8810EB8F;
+	Thu, 11 Jul 2024 20:26:31 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C20610E8DC;
- Thu, 11 Jul 2024 20:26:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3541A10EB91;
+ Thu, 11 Jul 2024 20:26:30 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?b?4pyTIENJLlBhdGNoX2FwcGxpZWQ6IHN1Y2Nlc3MgZm9yIGRybS94ZTogVXNlIHhl?=
- =?utf-8?b?X3BtX3J1bnRpbWVfZ2V0KCkgaW4geGVfZ2d0dF9yZW1vdmVfbm9kZSgp?=
+Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?b?4pyTIENJLmNoZWNrcGF0Y2g6IHN1Y2Nlc3MgZm9yIGRybS94ZTogVXNlIHhlX3Bt?=
+ =?utf-8?b?X3J1bnRpbWVfZ2V0KCkgaW4geGVfZ2d0dF9yZW1vdmVfbm9kZSgp?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 11 Jul 2024 20:26:09 -0000
-Message-ID: <172072956917.164910.2660390339798582375@2413ebb6fbb6>
+Date: Thu, 11 Jul 2024 20:26:30 -0000
+Message-ID: <172072959021.164880.1183347046857656390@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240711200031.49798-1-jose.souza@intel.com>
 In-Reply-To: <20240711200031.49798-1-jose.souza@intel.com>
@@ -40,17 +40,122 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+=3D=3D Series Details =3D=3D
 
 Series: drm/xe: Use xe_pm_runtime_get() in xe_ggtt_remove_node()
 URL   : https://patchwork.freedesktop.org/series/136012/
 State : success
 
-== Summary ==
+=3D=3D Summary =3D=3D
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 3ec725ffa5a1 drm-tip: 2024y-07m-11d-18h-37m-03s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Use xe_pm_runtime_get() in xe_ggtt_remove_node()
++ KERNEL=3D/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools=
+.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4a9e2f83b754bea2d62c0eb289111737758e478d
+Author: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
+Date:   Thu Jul 11 13:00:31 2024 -0700
+
+    drm/xe: Use xe_pm_runtime_get() in xe_ggtt_remove_node()
+   =20
+    I don't see a relationship between drm_dev_enter() and pm_runtime.
+    A plugged device could still no one holding a PM refcount.
+   =20
+    And this is being triggered from ttm_bo_delayed_delete() and I can't
+    see no one in the call chain getting a runtime pm before
+    xe_ggtt_remove_node(), so here replacing xe_pm_runtime_get_noresume()
+    by xe_pm_runtime_get().
+   =20
+    This change probably will fix the kernel OOPS below:
+   =20
+    ------------[ cut here ]------------
+    xe 0000:4d:00.0: [drm] Missing outer runtime PM protection
+    WARNING: CPU: 100 PID: 3524 at drivers/gpu/drm/xe/xe_pm.c:551 xe_pm_run=
+time_get_noresume+0x48/0x60 [xe]
+    Modules linked in: snd_hda_intel snd_intel_dspcfg snd_hda_codec snd_hwd=
+ep snd_hda_core snd_pcm snd_timer snd soundcore mei_gsc xe drm_gpuvm video =
+drm_ttm_helper ttm gpu_sched drm_suballoc_helper drm_exec drm_display_helpe=
+r drm_kunit_helpers kunit drm_buddy intel_rapl_msr intel_rapl_common cmdlin=
+epart spi_nor mtd intel_uncore_frequency intel_uncore_frequency_common i10n=
+m_edac nls_iso8859_1 nfit x86_pkg_temp_thermal intel_powerclamp coretemp kv=
+m_intel kvm crct10dif_pclmul crc32_pclmul polyval_clmulni polyval_generic g=
+hash_clmulni_intel sha512_ssse3 sha256_ssse3 sha1_ssse3 aesni_intel crypto_=
+simd cryptd rndis_host ast cdc_ether i2c_algo_bit dm_multipath dax_hmem i40=
+e ixgbe scsi_dh_rdac drm_shmem_helper usbnet mei_me cxl_acpi scsi_dh_emc ra=
+pl scsi_dh_alua mii drm_kms_helper intel_cstate mdio cxl_core e1000e libie =
+efi_pstore i2c_i801 intel_pch_thermal spi_intel_pci mei isst_if_mbox_pci i2=
+c_smbus isst_if_mmio spi_intel isst_if_common intel_th_gth intel_th_pci ipm=
+i_ssif ioatdma intel_vsec intel_th dca wmi ipmi_si
+     acpi_power_meter acpi_ipmi ipmi_devintf acpi_pad ipmi_msghandler mac_h=
+id sch_fq_codel msr parport_pc ppdev lp parport drm ip_tables x_tables auto=
+fs4
+    CPU: 100 PID: 3524 Comm: kworker/u580:4 Not tainted 6.10.0-rc5-xe #1
+    Hardware name: Intel Corporation WHITLEY/WHITLEY, BIOS SE5C6200.86B.002=
+7.P15.2205121306 05/12/2022
+    Workqueue: ttm ttm_bo_delayed_delete [ttm]
+    RIP: 0010:xe_pm_runtime_get_noresume+0x48/0x60 [xe]
+    Code: cc cc cc 48 8b 7b 08 4c 8b 67 50 4d 85 e4 75 03 4c 8b 27 e8 aa bd=
+ f4 e0 4c 89 e2 48 c7 c7 d8 1a 03 a1 48 89 c6 e8 08 b7 32 e0 <0f> 0b 48 8b =
+43 08 f0 ff 80 f8 02 00 00 5b 41 5c 5d c3 cc cc cc cc
+    RSP: 0000:ffa00000225afc00 EFLAGS: 00010282
+    RAX: 0000000000000000 RBX: ff1100014c510000 RCX: 0000000000000027
+    RDX: 0000000000000027 RSI: 0000000000000000 RDI: ff1100103fe31a48
+    RBP: ffa00000225afc10 R08: 0000000000000001 R09: 0000000000000000
+    R10: 0000000000000001 R11: 632da25ec9e647d2 R12: ff1100011d93b710
+    R13: ff1100016cf6c448 R14: 0000000000000001 R15: ff1100014c510000
+    FS:  0000000000000000(0000) GS:ff1100103fe00000(0000) knlGS:00000000000=
+00000
+    CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+    CR2: 00007f4d34e18198 CR3: 000000000aa54006 CR4: 0000000000771ef0
+    DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+    DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+    PKRU: 55555554
+    Call Trace:
+     <TASK>
+     ? show_regs+0x67/0x70
+     ? __warn+0x94/0x1b0
+     ? xe_pm_runtime_get_noresume+0x48/0x60 [xe]
+     ? report_bug+0x1b7/0x1d0
+     ? handle_bug+0x46/0x80
+     ? exc_invalid_op+0x19/0x70
+     ? asm_exc_invalid_op+0x1b/0x20
+     ? xe_pm_runtime_get_noresume+0x48/0x60 [xe]
+     xe_ggtt_remove_node+0x99/0x110 [xe]
+     xe_ggtt_remove_bo+0x59/0x1d0 [xe]
+     ? _raw_write_unlock+0x23/0x50
+     ? drm_vma_offset_remove+0x66/0x80 [drm]
+     xe_ttm_bo_destroy+0x135/0x230 [xe]
+     ttm_bo_release+0x6e/0x320 [ttm]
+     ttm_bo_delayed_delete+0x82/0xa0 [ttm]
+     process_scheduled_works+0x3aa/0x750
+     worker_thread+0x14f/0x2f0
+     ? __pfx_worker_thread+0x10/0x10
+     kthread+0xf5/0x130
+     ? __pfx_kthread+0x10/0x10
+     ret_from_fork+0x39/0x60
+     ? __pfx_kthread+0x10/0x10
+     ret_from_fork_asm+0x1a/0x30
+     </TASK>
+    irq event stamp: 26249
+    hardirqs last  enabled at (26255): [<ffffffff811b8f51>] vprintk_emit+0x=
+351/0x360
+    hardirqs last disabled at (26260): [<ffffffff811b8f33>] vprintk_emit+0x=
+333/0x360
+    softirqs last  enabled at (25326): [<ffffffff810f04bf>] handle_softirqs=
++0x30f/0x430
+    softirqs last disabled at (25319): [<ffffffff810f0e09>] irq_exit_rcu+0x=
+89/0xb0
+    ---[ end trace 0000000000000000 ]---
+   =20
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
++ /mt/dim checkpatch 3ec725ffa5a11587ef9a6a3b8a9f9b3bad05aae1 drm-intel
+4a9e2f83b754 drm/xe: Use xe_pm_runtime_get() in xe_ggtt_remove_node()
 
 
