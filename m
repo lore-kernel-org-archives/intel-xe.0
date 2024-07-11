@@ -4,60 +4,166 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C50A0C3DA41
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 14:27:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59E3CC3DA49
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 14:57:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 845EC10E2EE;
-	Thu, 11 Jul 2024 14:27:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 251A910EAB1;
+	Thu, 11 Jul 2024 14:57:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QA06OfTd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Iv08HiZu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7266210E2EE
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 14:27:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7171D10EAAC
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 14:57:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720708041; x=1752244041;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Pzwnat+M+29ug4+io5Pu5z+dW1NeRyiaIT7X2lnJxzA=;
- b=QA06OfTd3LFyVo3eFKezR8A7F8g99Rv6MkNDbgy3XciPZw7OW9leUHMy
- fiVayXkqNvUvCIRm1szSO7GLOEvPBxoMojIUD96dDDl6ZbbYcdj+SMM+y
- joHV0lbny/xLG7iHuKcc4IFZbYKTWnTos9L54kZnYd8WmzhBK5RSFJV3p
- +23IGeJ0+wDD6gAFsCUwD0kfO22sYV7S67VjA4JszCumSUw+Y4qDd1a+d
- Isg8Q2gEs++9Ztl2BLf9eZ70b4EVbtbcYpNRa+Y8MyYeagPxq6jCkquks
- O4+uvXr0x0rlTojV1QxX+RqheJ1R4bK6vEenhUoQ408wLwYSqCGPYFrXe g==;
-X-CSE-ConnectionGUID: BlU7PmuTT4+WQDczCy3iCA==
-X-CSE-MsgGUID: /lzbBHu6RDqzJqdRtEgNoA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11130"; a="18200624"
-X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="18200624"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 07:27:21 -0700
-X-CSE-ConnectionGUID: Poc+SuYSRDCJtPPO/Uw5Vw==
-X-CSE-MsgGUID: V9OHz2oPQXOStMOPpd3I1Q==
+ t=1720709877; x=1752245877;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=XCe3mQr70BWcZ/c60GS5iLWSycKEoa9pQGVYV3Ryzb0=;
+ b=Iv08HiZui0FA3+Zt0LyW3ZH4zdGTYJ84GMF7FozWjxNimaYU9hiX9KGF
+ 8wY3InijGoRRE8HuAPxg09TyWCvnWRuKed9B5yxla1gBsE2a+qOqry8Eq
+ pXRwVhqf1MTuUIrpCbvnUR9xuIqVF8VxL0C9jLEHkAwiwiUUxpHXAPE4p
+ DvVl0/4zbLoOH8O2sfpu+2VE6VFanWv6bJjr/k8QyGU+4uR4MGxCFF7cP
+ cp8kex+nn23X7km2xww/o+qKMKY8nmx7Yy/7kOpzdYGwaOR20ffH2PINT
+ vUk2Fw0zZuQOYj/Od0t1wwBkN6ZPvb203WAZ4iaa1+EOTL5xAODvJYoVV A==;
+X-CSE-ConnectionGUID: 9lRYtItCSlOpr5ZpTl9OgA==
+X-CSE-MsgGUID: UXJ9sULOS1eP8P8jaqHAdQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11130"; a="12500748"
+X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="12500748"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2024 07:57:56 -0700
+X-CSE-ConnectionGUID: 0gxU1+POS8yApM/vttqdMQ==
+X-CSE-MsgGUID: yVoSKdvRTVeRhgmEN2ZplQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="48641746"
-Received: from fpallare-mobl3.ger.corp.intel.com (HELO [10.245.245.34])
- ([10.245.245.34])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 07:27:19 -0700
-Message-ID: <c58509fa-aca4-47c7-b1a7-1ae2137ce932@intel.com>
-Date: Thu, 11 Jul 2024 15:27:17 +0100
+X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="48563280"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 11 Jul 2024 07:57:56 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 11 Jul 2024 07:57:55 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Thu, 11 Jul 2024 07:57:55 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.44) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Thu, 11 Jul 2024 07:57:55 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Q1kLkiAKnike+8ikF4A2B/j+2+3gqBeWXTjn3h+rt9MLhjZ83enMf7Cg33X+3qnM2hPL1HRenle3aU0IJ09/2ZfNx+Pv7hHhngFsrHsefXn0EIMPn4Go7Jk2PzccLy7JjNwJ1ccb4Xm9XcotwPvgaVqzAvcA8HTfdyEkBlwtr2QFTeTo+c/+EQHvPtCFY2iGo1CX/IlAlutL/8lEEiq8A/ooBF3ejw4uXn54abFhs97CbgigJ872KYuf3Y+4WxondBx9QD74bFKfZZlEhwz57eC4oG5U7zfNXkiHbPazeLZKgwS594pKtQyaah53gxTE0eoBEBailT5uK9lyfe9xvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WKsNLaFipDHt1oJABXCnOOgh/YdhDyH3qalhgLQjRkQ=;
+ b=iR8CG9CDk3cYQJwmRPME/+fbRsYASCqmwCCMI5aWbcqfHIWx1T3aAyLm3mHswkTIjr9mhNmz5l53/oLSGJU6N0tY8j+8/OsyXuVURaJhRJ3hUqU2wW4lpSywMP4BpUMagm7ioSxfFxCssCegE7nBqudmJz8M8tqRM9yQsOd2T+hGon/04N53XecxElnjtk3nU3jz80cAD0lAnVrw+XAGBzK/EL/K3qd3eda4BJLmX0UDUiAIoGeyO9r1zX0vSVzrx4qqGKkcXSu69gzvPKdt57HetMx6YDEXUBso9/2SyQCZJZfWoBTpRFUU0T6mRTdYTg4NncK6A+gjEPCcha79qA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by MW4PR11MB6689.namprd11.prod.outlook.com (2603:10b6:303:1e9::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.20; Thu, 11 Jul
+ 2024 14:57:53 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.7762.016; Thu, 11 Jul 2024
+ 14:57:53 +0000
+Date: Thu, 11 Jul 2024 14:57:02 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Vivi, 
+ Rodrigo" <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH] drm/xe: Add process name and PID to job timedout message
+Message-ID: <Zo/yvlpyIVRHusqj@DUT025-TGLU.fm.intel.com>
+References: <20240710213149.57662-1-jose.souza@intel.com>
+ <Zo8cMyjffKq3mYJo@DUT025-TGLU.fm.intel.com>
+ <03e127ecd193ea405a15c144f3adcccc226fa0bc.camel@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <03e127ecd193ea405a15c144f3adcccc226fa0bc.camel@intel.com>
+X-ClientProxiedBy: BYAPR05CA0015.namprd05.prod.outlook.com
+ (2603:10b6:a03:c0::28) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] drm/xe/migrate: Add kunit to test clear functionality
-To: Akshata Jahagirdar <akshata.jahagirdar@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com, himal.prasad.ghimiray@intel.com,
- lucas.demarchi@intel.com
-References: <cover.1720689220.git.akshata.jahagirdar@intel.com>
- <5ab88aebf91c7f7f35fd3a0d4601df80fde9f03d.1720689220.git.akshata.jahagirdar@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <5ab88aebf91c7f7f35fd3a0d4601df80fde9f03d.1720689220.git.akshata.jahagirdar@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MW4PR11MB6689:EE_
+X-MS-Office365-Filtering-Correlation-Id: 707402c5-01e6-40ac-e030-08dca1b9d704
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?Z7bLG2D0i2P51xsdW3iLxE+wFwYYYlQ16s7Kc3eECTz713OeHfUlaKqkwA?=
+ =?iso-8859-1?Q?utn+hLuO3WkH3jjlqIKIRencWdCqN1UQJ4GZ8GVKS9qNTkBtFJW3Rxb00E?=
+ =?iso-8859-1?Q?Nu/6Iq7N4Bf/bc8dLCs/e1M5EKIxuGbsFVOQtKILq6RUTKY3EN2QvSXBzb?=
+ =?iso-8859-1?Q?o8rv8Ky64AklDfHL/aY7bP8DdrPyPv23szU4OuXcYNE3z3MWbtBGAfKBkV?=
+ =?iso-8859-1?Q?E4N2n1tVP4OwWok/9dvX3WqCATQzoYY98vOn+UiffACUtF4u3shBLsU+ix?=
+ =?iso-8859-1?Q?r8AmF0XfVmg949oUJPWhnTz3JIjNdyronZxtZmK+qS3YuGhOV3F19m7qxK?=
+ =?iso-8859-1?Q?BfkkD+2UR0OgWEo0tD/cQiAVUYfO/81Awh7c0k9HlXy9DjQ9hZtg0XwHvH?=
+ =?iso-8859-1?Q?R1NvLflx8G2OqqazwInAd3/mtHeSaUY9w+KHCy9NHREyJqTIAcsBN8+aqb?=
+ =?iso-8859-1?Q?2RHm4NZnFGfsD10orAS84ObWjjtDNRIlLq5bubfnXSR11+5LpxE+qCpjOY?=
+ =?iso-8859-1?Q?i3zhon3VemwsQLzVD0HH5PPm4laCynShVFFx+GEApety1mUEspHs7ILGiC?=
+ =?iso-8859-1?Q?WwUU4MtNnIdw9FnuzrSMd+dDdRSW70dF9F8UPNhaHqwuN/1PICqtMqy41O?=
+ =?iso-8859-1?Q?EFKHQV4o1ytXVX2N7v1GsP1+r5J4D93wOcuFgRxb1Uhdz4vrVslqElYcs8?=
+ =?iso-8859-1?Q?SvxMc+snVWuGXyxxCm4VEZ+1ASgE7AoRfpRicKS03ZAXYJt3prqGlSHBWc?=
+ =?iso-8859-1?Q?pndHFWlG33RF7uPM6g9rlEUCZEl/TGxm6pLWdUJpNTpiLfvUQQ5s6Lzq9j?=
+ =?iso-8859-1?Q?TDdaA+w23xjjQ9oplZDStjbj1gR2OhLi+FdWGosD5i92yoeT2oUePCAydy?=
+ =?iso-8859-1?Q?hzCLurosD2HsxxMR6nUFerT7yrVGXA2xrm++ul4GPmXEm3rvoB/arL5Ji3?=
+ =?iso-8859-1?Q?R3TccNvdYiuspz/DrhH2t+UpPpiZ1EwPWGma+6747SNEMgCRc2Gp5isWXI?=
+ =?iso-8859-1?Q?Ip3eQk/p5bDm2ueR7VscUPJOwwu1jeUHt8frrB9T1D5bnROl7ys5BeKHiM?=
+ =?iso-8859-1?Q?9a3qbtgYv67tlVGp25OOHmNqR90IxdXhnd5virGg1rFHXmeIYW5Pzcd2vJ?=
+ =?iso-8859-1?Q?tuRI2/CJoLvRhiqyTeAsdrjFrwOHDePFk4z86MTNGRYhmvFE7zMPvhyitU?=
+ =?iso-8859-1?Q?HluoSXK0Em2ihEziHH1muakEZrn1TMlIGhxNqZ6iZ0SKIrylsBbnHlJVsp?=
+ =?iso-8859-1?Q?JZQCUQrukehFStZiIDA3Y3xWiy0wmDmfJQyX5boZDRUI9nFZ94VQgCY1G1?=
+ =?iso-8859-1?Q?aZe7DO35jXOYOC1FApNMirqj/Gm4XI7PNCnTkT4NfziLMD4=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?rZkZlKVRSuruNVqkqhqqLrzbVJUaIGyCj5XTP6fDM3BKHyS3QhPOwB7C6u?=
+ =?iso-8859-1?Q?6csPkMVLkk/abrZwstwt7sxkLE6O/xJaStHVmXYnKywY2hECz8WaDJX98k?=
+ =?iso-8859-1?Q?9fFnQGGtqnvZwMehio1KK3ylxSNhsTcpvZtL1M49Mtm2NOORUGoiWvg7iM?=
+ =?iso-8859-1?Q?J4xRrCJtWSYbmZ5CppcEU41Y9HxcKYtCxNMPJpMR2qUWuh6p1JGp/VHtKN?=
+ =?iso-8859-1?Q?Eqr8BkgjTg4mUZGkeCGIcqJcVjZoHVICAzd+kqWgTc+gNOixd78P/XPuck?=
+ =?iso-8859-1?Q?ZRymcADX85Y/KlnlhJnawDDfaphQQ1ZwhxliwXcE5gzCbYtXFx1A4Tq+l1?=
+ =?iso-8859-1?Q?w5aKdFuxEqzAdnrt71FGNWM9pNgCbTUhyPxWLqXrP0uNUmHCHfhBCKl1Lh?=
+ =?iso-8859-1?Q?uFucyFZqphdTgxUHFNNK3R4k3oSVQ54cL0OImqaNJGhNWn9hFBUM+Hk1dU?=
+ =?iso-8859-1?Q?cnwRKKGCzk2LBjldkKi06lt2WzFXzG0JDW+4fNv+tzdb7dDKNLoyA6+plv?=
+ =?iso-8859-1?Q?+TL7CIqtMY70ewgjuy1VbIJNw3PT/z4boA3jV/Cu8mlUUJw4GrXsBXoWdj?=
+ =?iso-8859-1?Q?tIkj+0GkOOOpBR2wZz9hn1pDFIQlUpZGKtAgz+vE+ZE/y16w9HllcpR2wo?=
+ =?iso-8859-1?Q?WTOABixPXHWFx0HiD4vydeqApBB5hZYvgq9RuS0DTNnHWJKn8OKZuaTciS?=
+ =?iso-8859-1?Q?dqFKHf/XJXIM0xohlvvs6E5ju2Y+AP4Ot44Bih5NJ4726y/iby8IP044QO?=
+ =?iso-8859-1?Q?gd8E7rV9mOU9Vd8t03iEQWr44WcIKR3ixsOP3jgVj4jZSEuZhnDwPF82Q/?=
+ =?iso-8859-1?Q?0jhCidappw9t8+DyKjjLOo1HZEB1Ebq1E5B8hKSIT4eDDXG6LwKoJa0hs0?=
+ =?iso-8859-1?Q?VQ1cFZz5fHTf42JK7wf7fJKaGGH2wuuEYqGcAty504JFFb/7GatOts38vu?=
+ =?iso-8859-1?Q?Qj7YrLIT8nOHeD49M5Zm7k07tiA1drchQ8EGITtpR3xJNleIgkg3MRaWN4?=
+ =?iso-8859-1?Q?N+tAUJ03ixpun8PURcuh+vRlScslzgW84WMuq0QYEr3mHThOgJkh7mUA5E?=
+ =?iso-8859-1?Q?ijAGFi/mPw7GrY3WCQpqnhEUiBIQpkCkYzvlKQp+6E1rFxr4/Rrz41sH3F?=
+ =?iso-8859-1?Q?V/uaRwjTheB70q8bw3qevV2u2eEpnfQMbqM4F1gsS5iKiinRQeuq/dKDMF?=
+ =?iso-8859-1?Q?vGvhnlD+kefp+Z7MjeVznfxsXtYauay0z3uBlRcyab5ZBlv5GqyYZj42v7?=
+ =?iso-8859-1?Q?EdDmcx5BbkFec8+fp8mu68bmx7B9EgCRHipKCO1cWPTJw0Q9HfdeZ4DrTu?=
+ =?iso-8859-1?Q?L1U1JCuxNx1rdFQ/UjgaHnQrlj+xdrz9vH89dAwDfH3lvxEo3zHxh4LqBS?=
+ =?iso-8859-1?Q?RMzF6kaMIAvCf3sdTBso8J+QIvilxyhPulydgJ9QrdwJ/6qr4CztTOG5EZ?=
+ =?iso-8859-1?Q?U9Frz4aO+aYsq3g0h+jKRoJ6/tJ+35fK2N+6XYVeEb2s/GRxtuiIKKUmaC?=
+ =?iso-8859-1?Q?Y+curSQfC7qO1mJQG1qfBURxz/zPofdRMM4Givy+QACpANVRoaJCcMPuxB?=
+ =?iso-8859-1?Q?wTC9A36GVD/12kVtSeCyN3EugBx89nv/b2x8mZz7VI1vdUCshtAp3o7aVw?=
+ =?iso-8859-1?Q?46ED8/HxB8cFB23Q2UxidoZUW9SOlL7W0diMM2HRsHaCnvAJNLKF8y8g?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 707402c5-01e6-40ac-e030-08dca1b9d704
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2024 14:57:53.0028 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xR/MAa03IJ1BkPPc+4fwd6F2/IJ2LZev3fwyM31Xc64DvuObGc1x4yIp3UOR8rmWLkwMw1us95ChgM9XOrIhkw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6689
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,346 +178,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 11/07/2024 10:18, Akshata Jahagirdar wrote:
-> This test verifies if the main and ccs data are cleared during bo creation.
-> The motivation to use Kunit instead of IGT is that, although we can verify
-> whether the data is zero following bo creation,
-> we cannot confirm whether the zero value after bo creation is the result of
-> our clear function or simply because the initial data present there was zero.
-
-One idea might be to pre-fill and release some amount of vram at the 
-start of the test. Then maybe spawn a number threads each allocating a 
-bit of vram (also various sizes) in a loop, each time dirtying the pages 
-and ccs before releasing it. There should be some amount of page re-use 
-to catch issues, plus is a lot more nasty with multiple threads and 
-varying sizes. Such a test can also be useful for lnl, just that we use 
-system memory instead of vram. Or maybe we already have something like that?
-
+On Thu, Jul 11, 2024 at 07:35:43AM -0600, Souza, Jose wrote:
+> On Wed, 2024-07-10 at 23:41 +0000, Matthew Brost wrote:
+> > On Wed, Jul 10, 2024 at 02:31:49PM -0700, José Roberto de Souza wrote:
+> > > This will be very helpful for Mesa CI, where it uses PID to match
+> > > the exacly test that cause timedout/GPU hang and mark that test as
+> > > failing.
+> > > 
+> > > Also printing the process name as it might be relavant for human
+> > > readers.
+> > > 
+> > 
+> > Always for adding useful debug info...
+> > 
+> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_guc_submit.c | 17 +++++++++++++++--
+> > >  1 file changed, 15 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > index 6392381e8e697..8604055271156 100644
+> > > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > @@ -1060,7 +1060,10 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+> > >  	struct xe_exec_queue *q = job->q;
+> > >  	struct xe_gpu_scheduler *sched = &q->guc->sched;
+> > >  	struct xe_guc *guc = exec_queue_to_guc(q);
+> > > +	const char *process_name = "no process";
+> > > +	struct task_struct *task = NULL;
+> > >  	int err = -ETIME;
+> > > +	pid_t pid = -1;
+> > >  	int i = 0;
+> > >  	bool wedged, skip_timeout_check;
+> > >  
+> > > @@ -1157,9 +1160,19 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+> > >  		goto sched_enable;
+> > >  	}
+> > >  
+> > > -	xe_gt_notice(guc_to_gt(guc), "Timedout job: seqno=%u, lrc_seqno=%u, guc_id=%d, flags=0x%lx",
+> > > +	if (q->vm && q->vm->xef) {
+> > > +		task = get_pid_task(q->vm->xef->drm->pid, PIDTYPE_PID);
+> > 
+> > We do something simliar in devcoredump_snapshot.
+> > 
+> > Would it be worth while to have a helper like this?
+> > 
+> > struct task_struct *task xe_exec_queue_get_pid_task(struct xe_exec_queue *q)
+> > {
+> > 	if (q->vm && q->vm->xef)
+> > 		return get_pid_task(q->vm->xef->drm->pid, PIDTYPE_PID);;
+> > 
+> > 	return NULL;
+> > }
 > 
-> Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
-> ---
->   drivers/gpu/drm/xe/tests/xe_migrate.c      | 271 +++++++++++++++++++++
->   drivers/gpu/drm/xe/tests/xe_migrate_test.c |   1 +
->   drivers/gpu/drm/xe/tests/xe_migrate_test.h |   1 +
->   3 files changed, 273 insertions(+)
+> I don't think it is worthy add a function for just 2 lines of code.
 > 
-> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> index 962f6438e219..6538c0e6b57e 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> @@ -359,3 +359,274 @@ void xe_migrate_sanity_kunit(struct kunit *test)
->   	xe_call_for_each_device(migrate_test_run_device);
->   }
->   EXPORT_SYMBOL_IF_KUNIT(xe_migrate_sanity_kunit);
-> +
-> +static struct dma_fence *blt_copy(struct xe_tile *tile,
-> +				struct xe_bo *src_bo, struct xe_bo *dst_bo,
-> +				bool copy_only_ccs, const char *str, struct kunit *test)
-> +{
-> +	struct xe_gt *gt = tile->primary_gt;
-> +	struct xe_migrate *m = tile->migrate;
-> +	struct xe_device *xe = gt_to_xe(gt);
-> +	struct dma_fence *fence = NULL;
-> +	u64 size = src_bo->size;
-> +	struct xe_res_cursor src_it, dst_it;
-> +	struct ttm_resource *src = src_bo->ttm.resource, *dst = dst_bo->ttm.resource;
-> +	u64 src_L0_ofs, dst_L0_ofs;
-> +	u32 src_L0_pt, dst_L0_pt;
-> +	u64 src_L0, dst_L0;
-> +	int err;
-> +	bool src_is_vram = mem_type_is_vram(src->mem_type);
-> +	bool dst_is_vram = mem_type_is_vram(dst->mem_type);
-> +
-> +	if (!src_is_vram)
-> +		xe_res_first_sg(xe_bo_sg(src_bo), 0, size, &src_it);
-> +	else
-> +		xe_res_first(src, 0, size, &src_it);
-> +
-> +	if (!dst_is_vram)
-> +		xe_res_first_sg(xe_bo_sg(dst_bo), 0, size, &dst_it);
-> +	else
-> +		xe_res_first(dst, 0, size, &dst_it);
-> +
-> +	while (size) {
-> +		u32 batch_size = 2; /* arb_clear() + MI_BATCH_BUFFER_END */
-> +		struct xe_sched_job *job;
-> +		struct xe_bb *bb;
-> +		u32 flush_flags = 0;
-> +		u32 update_idx;
-> +		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
-> +
-> +		src_L0 = xe_migrate_res_sizes(m, &src_it);
-> +		dst_L0 = xe_migrate_res_sizes(m, &dst_it);
-> +
-> +		src_L0 = min(src_L0, dst_L0);
-> +
-> +		batch_size += pte_update_size(m, src_is_vram, src_is_vram, src, &src_it, &src_L0,
-> +					      &src_L0_ofs, &src_L0_pt, 0, 0,
-> +					      avail_pts);
-> +
-> +		batch_size += pte_update_size(m, dst_is_vram, dst_is_vram, dst, &dst_it, &src_L0,
-> +					      &dst_L0_ofs, &dst_L0_pt, 0,
-> +					      avail_pts, avail_pts);
-> +
-> +		/* Add copy commands size here */
-> +		batch_size += ((copy_only_ccs) ? 0 : EMIT_COPY_DW) +
-> +			((xe_device_has_flat_ccs(xe) && copy_only_ccs) ? EMIT_COPY_CCS_DW : 0);
-> +
-> +		bb = xe_bb_new(gt, batch_size, xe->info.has_usm);
-> +		if (IS_ERR(bb)) {
-> +			err = PTR_ERR(bb);
-> +			goto err_sync;
-> +		}
-> +
-> +		if (src_is_vram)
-> +			xe_res_next(&src_it, src_L0);
-> +		else
-> +			emit_pte(m, bb, src_L0_pt, src_is_vram, false,
-> +				 &src_it, src_L0, src);
-> +
-> +		if (dst_is_vram)
-> +			xe_res_next(&dst_it, src_L0);
-> +		else
-> +			emit_pte(m, bb, dst_L0_pt, dst_is_vram, false,
-> +				 &dst_it, src_L0, dst);
-> +
-> +		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
-> +		update_idx = bb->len;
-> +		if (!copy_only_ccs)
-> +			emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0, XE_PAGE_SIZE);
-> +
-> +		if (copy_only_ccs)
-> +			flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs,
-> +					src_is_vram, dst_L0_ofs,
-> +					dst_is_vram, src_L0, dst_L0_ofs, copy_only_ccs);
-> +
-> +		mutex_lock(&m->job_mutex);
 
-This is not allowed anymore it seems. CI is also complaing about this. 
-See: 50e52592fbe791d96ec2cb431d158cc6bc495be5
+Typcially I agree but my counter here is we did have a bug for this [1]
+so one point for this logic might be better.
 
-Not sure what else has changed.
+Anyways I'm not going to block this patch on a bikeshed.
 
-> +
-> +		job = xe_bb_create_migration_job(m->q, bb,
-> +						 xe_migrate_batch_base(m, xe->info.has_usm),
-> +						 update_idx);
-> +		if (IS_ERR(job)) {
-> +			err = PTR_ERR(job);
-> +			goto err;
-> +		}
-> +
-> +		xe_sched_job_add_migrate_flush(job, flush_flags);
-> +
-> +		xe_sched_job_arm(job);
-> +		dma_fence_put(fence);
-> +		fence = dma_fence_get(&job->drm.s_fence->finished);
-> +		xe_sched_job_push(job);
-> +
-> +		dma_fence_put(m->fence);
-> +		m->fence = dma_fence_get(fence);
-> +
-> +		mutex_unlock(&m->job_mutex);
-> +
-> +		xe_bb_free(bb, fence);
-> +		size -= src_L0;
-> +		continue;
-> +
-> +err:
-> +		mutex_unlock(&m->job_mutex);
-> +		xe_bb_free(bb, NULL);
-> +
-> +err_sync:
-> +		if (fence) {
-> +			dma_fence_wait(fence, false);
-> +			dma_fence_put(fence);
-> +		}
-> +		return ERR_PTR(err);
-> +	}
-> +
-> +	return fence;
-> +}
-> +
-> +static void test_clear(struct xe_device *xe, struct xe_tile *tile,
-> +			struct xe_bo *sys_bo, struct xe_bo *vram_bo, struct kunit *test)
-> +{
-> +	struct dma_fence *fence;
-> +	u64 expected, retval;
-> +
-> +	expected = 0xd0d0d0d0d0d0d0d0;
-> +	xe_map_memset(xe, &sys_bo->vmap, 0, 0xd0, sys_bo->size);
-> +
-> +	fence = blt_copy(tile, sys_bo, vram_bo, false, "Blit copy from sysmem to vram", test);
-> +	if (!sanity_fence_failed(xe, fence, "Blit copy from sysmem to vram", test)) {
-> +		retval = xe_map_rd(xe, &vram_bo->vmap, 0, u64);
-> +		if (retval == expected)
-> +			KUNIT_FAIL(test, "Sanity check failed: VRAM must have compressed value\n");
-> +	}
-> +	dma_fence_put(fence);
-> +
-> +	fence = blt_copy(tile, vram_bo, sys_bo, false, "Blit copy from vram to sysmem", test);
-> +	if (!sanity_fence_failed(xe, fence, "Blit copy from vram to sysmem", test)) {
-> +		retval = xe_map_rd(xe, &sys_bo->vmap, 0, u64);
-> +		check(retval, expected, "Decompressed value must be equal to initial value", test);
-> +		retval = xe_map_rd(xe, &sys_bo->vmap, sys_bo->size - 8, u64);
-> +		check(retval, expected, "Decompressed value must be equal to initial value", test);
-> +	}
-> +	dma_fence_put(fence);
-> +
-> +	kunit_info(test, "Clear vram buffer object\n");
-> +	expected = 0x0000000000000000;
-> +	fence = xe_migrate_clear(tile->migrate, vram_bo, vram_bo->ttm.resource);
-> +
-> +	fence = blt_copy(tile, vram_bo, sys_bo,
-> +				false, "Blit copy from vram to sysmem", test);
-> +	if (!sanity_fence_failed(xe, fence, "Clear main buffer data", test)) {
-> +		retval = xe_map_rd(xe, &sys_bo->vmap, 0, u64);
-> +		check(retval, expected, "Clear main buffer first value", test);
-> +		retval = xe_map_rd(xe, &sys_bo->vmap, sys_bo->size - 8, u64);
-> +		check(retval, expected, "Clear main buffer last value", test);
-> +	}
-> +	dma_fence_put(fence);
-> +
-> +	fence = blt_copy(tile, vram_bo, sys_bo,
-> +			true, "Blit surf copy from vram to sysmem", test);
-> +	if (!sanity_fence_failed(xe, fence, "Clear ccs buffer data", test)) {
-> +		retval = xe_map_rd(xe, &sys_bo->vmap, 0, u64);
-> +		check(retval, expected, "Clear ccs data first value", test);
-> +		retval = xe_map_rd(xe, &sys_bo->vmap, sys_bo->size - 8, u64);
-> +		check(retval, expected, "Clear ccs data last value", test);
-> +	}
-> +	dma_fence_put(fence);
-> +}
-> +
-> +static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struct kunit *test)
-> +{
-> +	struct xe_bo *sys_bo, *vram_bo;
-> +	unsigned int bo_flags = XE_BO_FLAG_VRAM_IF_DGFX(tile);
-> +	long ret;
-> +
-> +	sys_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M, DRM_XE_GEM_CPU_CACHING_WC,
-> +			ttm_bo_type_device, XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS);
-> +
-> +	if (IS_ERR(sys_bo)) {
-> +		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
-> +			   PTR_ERR(sys_bo));
-> +		return;
-> +	}
-> +
-> +	xe_bo_lock(sys_bo, false);
-> +	ret = xe_bo_validate(sys_bo, NULL, false);
-> +	if (ret) {
-> +		KUNIT_FAIL(test, "Failed to validate system bo for: %li\n", ret);
-> +		goto out_unlock;
+As is or with helper:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-vram_bo is not initialized here.
+[1] https://patchwork.freedesktop.org/patch/596388/?series=134265&rev=1
 
-> +	}
-> +
-> +	ret = xe_bo_vmap(sys_bo);
-> +	if (ret) {
-> +		KUNIT_FAIL(test, "Failed to vmap system bo: %li\n", ret);
-> +		goto out_unlock;
-> +	}
-> +	xe_bo_unlock(sys_bo);
-> +
-> +	vram_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M, DRM_XE_GEM_CPU_CACHING_WC,
-> +			       ttm_bo_type_device, bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS);
-> +	if (IS_ERR(vram_bo)) {
-> +		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
-> +			   PTR_ERR(vram_bo));
-> +		return;
-
-Missing bo_put?
-
-> +	}
-> +
-> +	xe_bo_lock(vram_bo, false);
-> +	ret = xe_bo_validate(vram_bo, NULL, false);
-> +	if (ret) {
-> +		KUNIT_FAIL(test, "Failed to validate vram bo for: %li\n", ret);
-> +		goto out_unlock;
-> +	}
-> +
-> +	ret = xe_bo_vmap(vram_bo);
-> +	if (ret) {
-> +		KUNIT_FAIL(test, "Failed to vmap vram bo: %li\n", ret);
-> +		goto out_unlock;
-> +	}
-> +
-> +	test_clear(xe, tile, sys_bo, vram_bo, test);
-> +	xe_bo_unlock(vram_bo);
-> +
-> +	xe_bo_lock(vram_bo, false);
-> +	xe_bo_vunmap(vram_bo);
-> +	xe_bo_unlock(vram_bo);
-> +
-> +	xe_bo_lock(sys_bo, false);
-> +	xe_bo_vunmap(sys_bo);
-> +	xe_bo_unlock(sys_bo);
-> +out_unlock:
-
-There is no unlock here.
-
-> +	xe_bo_put(vram_bo);
-> +	xe_bo_put(sys_bo);
-> +}
-> +
-> +static int validate_ccs_test_run_device(struct xe_device *xe)
-> +{
-> +	struct kunit *test = xe_cur_kunit();
-> +	struct xe_tile *tile;
-> +	int id;
-> +
-> +	if (!xe_device_has_flat_ccs(xe)) {
-> +		kunit_info(test, "Skipping non-flat-ccs device.\n");
-> +		return 0;
-> +	}
-> +
-> +	if (!(GRAPHICS_VER(xe) >= 20 && IS_DGFX(xe))) {
-> +		kunit_info(test, "Skipping non-xe2 discrete device %s.\n",
-> +			   dev_name(xe->drm.dev));
-> +		return 0;
-> +	}
-
-So is there something else for xe2 igpu and ccs?
-
-> +
-> +	xe_pm_runtime_get(xe);
-> +
-> +	for_each_tile(tile, xe, id)
-> +		validate_ccs_test_run_tile(xe, tile, test);
-> +
-> +	xe_pm_runtime_put(xe);
-> +
-> +	return 0;
-> +}
-> +
-> +void xe_validate_ccs_kunit(struct kunit *test)
-> +{
-> +	xe_call_for_each_device(validate_ccs_test_run_device);
-> +}
-> +EXPORT_SYMBOL_IF_KUNIT(xe_validate_ccs_kunit);
-> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate_test.c b/drivers/gpu/drm/xe/tests/xe_migrate_test.c
-> index eb0d8963419c..49b9ef060ad3 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_migrate_test.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_migrate_test.c
-> @@ -9,6 +9,7 @@
->   
->   static struct kunit_case xe_migrate_tests[] = {
->   	KUNIT_CASE(xe_migrate_sanity_kunit),
-> +	KUNIT_CASE(xe_validate_ccs_kunit),
->   	{}
->   };
->   
-> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate_test.h b/drivers/gpu/drm/xe/tests/xe_migrate_test.h
-> index 7c645c66824f..dc0ecfdfad39 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_migrate_test.h
-> +++ b/drivers/gpu/drm/xe/tests/xe_migrate_test.h
-> @@ -9,5 +9,6 @@
->   struct kunit;
->   
->   void xe_migrate_sanity_kunit(struct kunit *test);
-> +void xe_validate_ccs_kunit(struct kunit *test);
->   
->   #endif
+> > 
+> > Matt
+> > 
+> > > +		if (task) {
+> > > +			process_name = task->comm;
+> > > +			pid = task->pid;
+> > > +		}
+> > > +	}
+> > > +	xe_gt_notice(guc_to_gt(guc), "Timedout job: seqno=%u, lrc_seqno=%u, guc_id=%d, flags=0x%lx in %s [%d]",
+> > >  		     xe_sched_job_seqno(job), xe_sched_job_lrc_seqno(job),
+> > > -		     q->guc->id, q->flags);
+> > > +		     q->guc->id, q->flags, process_name, pid);
+> > > +	if (task)
+> > > +		put_task_struct(task);
+> > > +
+> > >  	trace_xe_sched_job_timedout(job);
+> > >  
+> > >  	if (!exec_queue_killed(q))
+> > > -- 
+> > > 2.45.2
+> > > 
+> 
