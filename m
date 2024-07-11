@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACD29C3271E
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 05:55:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FFB3C3DA41
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 05:55:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50E8210E948;
-	Thu, 11 Jul 2024 05:55:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40EEE10E94A;
+	Thu, 11 Jul 2024 05:55:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jzbIS++s";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="npB5Ds+e";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EA9210E946
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 05:55:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A448910E94A
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 05:55:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720677315; x=1752213315;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=xWOzzb/dvuPpsmmZV8RDyTKoDLYOkEP1bfwa6QNtkV8=;
- b=jzbIS++s+iV3dk6fj9wIKdlwhcmT4AcnLJZtMBqYf17JGgRb3wilWL6G
- 7lFTYCwtnDnRi5nzNvyVOtWhpKg7qLFEPYQ3Idw5E23TVeFmM5adzyrxE
- Oz40yzyxy3mvzMZs5HHlChh4Q/sqDljawRTb7OWEsC5KjQvy748DsfNCm
- Y49/XjsJJKlbmpOEbIs7MhuYQq1sfwsqSIQ87PevjwJPPKb9tFNa/o20g
- h8yvYt9Hk/rQYG649qWu6mLB8EmzMvoHTM9+3+QFi7KA1Mq2Gdv45xsgW
- P/UPF2CDv547pCebNia9N70Qr2AEFip8rl/H0ejiEPR4UYpy/CbwK1LgC Q==;
-X-CSE-ConnectionGUID: Afy1kPWfSaiJslqDvtcArQ==
-X-CSE-MsgGUID: 3vu8EmuVSOijBSyL+/8vVg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="35468622"
-X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="35468622"
+ t=1720677317; x=1752213317;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Y/8ZInvXqNRbFDK64S7caPCGK5aCAbjJagJ7hyTKggQ=;
+ b=npB5Ds+eRZt5hpQP3748+V0z1fD10GZNDk2hiXdirZl7gLBA2aFh5wJ5
+ 0dWUhEcCiawO+u6IkGGXMXOu8bkOoEswHEqAhEgJBsGRabnDeQXm0IwKP
+ pyK+TBKuaE5trqsOX0Y7PLqccQXTYGxjQu1aiOejYGJ/rXWYg1Dd7csXu
+ r6cLiTihlAE0eUDw2UTZs/nXld93gcEEJWrsWxkIFem+B0Eqinh3aSvHz
+ Mc/QJcOyCiQgVOC5qNxDmUoxx4z5A2/Xgdfg9MZp2VuDji3NwS2KpmAXC
+ UHboQN88x6EJv6kHh2elmDRE8AwTARmp+WeNBsNcIoi84HYuzj9QW8V3z A==;
+X-CSE-ConnectionGUID: 13lMldc3SHSznX9wq1zkSg==
+X-CSE-MsgGUID: +g4zAlYFQnKFKjn0OZ4DCQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="35468625"
+X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="35468625"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2024 22:55:15 -0700
-X-CSE-ConnectionGUID: tlwG7K+8S9C6onI8SCSMXQ==
-X-CSE-MsgGUID: 0UFURMFTTUmaBUnGGo1N/w==
+ 10 Jul 2024 22:55:16 -0700
+X-CSE-ConnectionGUID: m+ES7lpiS36fLUaqQsSOVA==
+X-CSE-MsgGUID: UwElGWchSUOvpFy4TjcUyQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="53627673"
+X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="53627676"
 Received: from dut1110bmgfrd.igk.intel.com ([10.211.177.149])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2024 22:55:12 -0700
+ 10 Jul 2024 22:55:15 -0700
 From: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: akshatajahagirdar6@gmail.com,
  Akshata Jahagirdar <akshata.jahagirdar@intel.com>
-Subject: [PATCH 0/6] Implement compression support on BMG
-Date: Thu, 11 Jul 2024 05:54:59 +0000
-Message-ID: <cover.1720515376.git.akshata.jahagirdar@intel.com>
+Subject: [PATCH 1/6] drm/xe/migrate: Handle clear ccs logic for xe2 dgfx
+Date: Thu, 11 Jul 2024 05:55:00 +0000
+Message-Id: <3e9cc1a406a539e03a9e8b55d5a0a28c765a4195.1720677100.git.akshata.jahagirdar@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1720677099.git.akshata.jahagirdar@intel.com>
+References: <cover.1720677099.git.akshata.jahagirdar@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,53 +66,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-Message-ID: <20240711055459.fFyzOLbAA39Yh7EwZpAC4aLdAGTFfJPlqQFDUTubJ60@z>
 
-On Xe2 the compression has moved to a unified universal model
-(exactly one compression mode/format), where compression is now
-controlled via PAT on per-page basis. This now means KMD can
-decompress freely. This was problematic on DG2 since we had
-multiple compression formats, and the compression format used
-on a particular buffer was unknown to the KMD, so instead the
-raw CCS state needed to be copied around when evicting VRAM.
-In addition mixed VRAM and system memory buffers were not
-supported with compression enabled.
+For Xe2 dGPU, we clear the bo by modifying the VRAM using an
+uncompressed pat index which then indirectly updates the
+compression status as uncompressed i.e zeroed CCS.
+So xe_migrate_clear() should be updated for BMG to not
+emit CCS surf copy commands.
 
-On Xe2 dGPU compression is still only supported with VRAM,
-however we can now support compression with VRAM and system
-memory buffers, with GPU access being seamless underneath.
-So long as when doing VRAM -> sysmem the KMD does the move
-using compressed -> uncompressed, to decompress it.
-CPU access to such buffers is also possible, under the premise
-that userspace first decompress the corresponding pages being
-accessed. If the pages are already in system memory then KMD would
-have already decompressed them. When restoring such buffers with
-sysmem -> VRAM the KMD can't easily know which pages were originally
-compressed, so we always use uncompressed -> uncompressed here.
-With this it also means we can drop all the raw CCS handling
-on such platforms (including needing to allocate extra CCS storage).
+Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.h  | 5 +++++
+ drivers/gpu/drm/xe/xe_migrate.c | 6 +++---
+ 2 files changed, 8 insertions(+), 3 deletions(-)
 
-In order to support this we now need to have two different identity
-mappings for compressed and uncompressed VRAM.
-The additional identity map is the VRAM with compressed pat_index.
-We then select the appropriate mapping during migration/clear.
-
-Akshata Jahagirdar (6):
-  drm/xe/xe2: Introduce identity map for compressed pat for vram
-  drm/xe/migrate: Handle clear ccs logic for xe2 dgfx
-  drm/xe/migrate: Add kunit to test clear functionality
-  drm/xe/xe_migrate: Handle migration logic for xe2+ dgfx
-  drm/xe/migrate: Add kunit to test migration functionality for BMG
-  drm/xe/xe2: Do not run xe_bo_test for xe2+ dgfx
-
- drivers/gpu/drm/xe/tests/xe_bo.c           |   6 +
- drivers/gpu/drm/xe/tests/xe_migrate.c      | 388 +++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_migrate_test.c |   1 +
- drivers/gpu/drm/xe/tests/xe_migrate_test.h |   1 +
- drivers/gpu/drm/xe/xe_device.h             |   5 +
- drivers/gpu/drm/xe/xe_migrate.c            |  66 +++-
- 6 files changed, 449 insertions(+), 18 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 0a2a3e7fd402..c3093506c28c 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -144,6 +144,11 @@ static inline bool xe_device_has_flat_ccs(struct xe_device *xe)
+ 	return xe->info.has_flat_ccs;
+ }
+ 
++static inline bool xe_device_needs_ccs_emit(struct xe_device *xe)
++{
++	return xe_device_has_flat_ccs(xe) && !(GRAPHICS_VER(xe) >= 20 && IS_DGFX(xe));
++}
++
+ static inline bool xe_device_has_sriov(struct xe_device *xe)
+ {
+ 	return xe->info.has_sriov;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index fa23a7e7ec43..2fc2cf375b1e 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -420,7 +420,7 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
+ 		return ERR_PTR(err);
+ 
+ 	if (IS_DGFX(xe)) {
+-		if (xe_device_has_flat_ccs(xe))
++		if (xe_device_needs_ccs_emit(xe))
+ 			/* min chunk size corresponds to 4K of CCS Metadata */
+ 			m->min_chunk_size = SZ_4K * SZ_64K /
+ 				xe_device_ccs_bytes(xe, SZ_64K);
+@@ -1034,7 +1034,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 					clear_system_ccs ? 0 : emit_clear_cmd_len(gt), 0,
+ 					avail_pts);
+ 
+-		if (xe_device_has_flat_ccs(xe))
++		if (xe_device_needs_ccs_emit(xe))
+ 			batch_size += EMIT_COPY_CCS_DW;
+ 
+ 		/* Clear commands */
+@@ -1062,7 +1062,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 		if (!clear_system_ccs)
+ 			emit_clear(gt, bb, clear_L0_ofs, clear_L0, XE_PAGE_SIZE, clear_vram);
+ 
+-		if (xe_device_has_flat_ccs(xe)) {
++		if (xe_device_needs_ccs_emit(xe)) {
+ 			emit_copy_ccs(gt, bb, clear_L0_ofs, true,
+ 				      m->cleared_mem_ofs, false, clear_L0);
+ 			flush_flags = MI_FLUSH_DW_CCS;
 -- 
 2.34.1
 
