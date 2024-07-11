@@ -4,54 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7D05C3DA45
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 20:00:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D76EDC3DA4B
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 20:00:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76C4410EB87;
-	Thu, 11 Jul 2024 20:00:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D34610EB87;
+	Thu, 11 Jul 2024 20:00:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OdAzlKNw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="misCXa7u";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FBF710EB87
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 20:00:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC16C10EB87
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 20:00:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720728042; x=1752264042;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=v5KimaDoINi0qLWKpb8lMSoq8UeWMnqboDxSy6H36y8=;
- b=OdAzlKNwCQEYQKkk2faplFo0NqiCpkhYNMSdvs31r0I95u0Mku30d6qX
- C3NeQuteDmwUx6k73ZVZAs3exYcxbj6StMtIad5nIBt31PtnFBjVez6e/
- weWGDLYpNRK9zVSgStj+FWHOBWA4dvJ84VzB7aOFEeOlmphZt0ZNmyBmc
- JjvcqOXDMfQSOe9s5u+pzShk+6DDx9llndih0stTHXFF8TLIJx7dvkWts
- T2VSz1BogGqbg5pXAIoIV2o4OcZYDQKApbHx9wOmHuvh6L6sKezW/461N
- iBNKjVQz24iermcO201bWoj53UNnwJDkORskCDz1H7rqeVuAs0HM+JvEM A==;
-X-CSE-ConnectionGUID: rVj/1U80TwCQdxHzz5PsZw==
-X-CSE-MsgGUID: 4tmcQhUtRXqkJc2nqpuwLQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11130"; a="40664459"
-X-IronPort-AV: E=Sophos;i="6.09,201,1716274800"; d="scan'208";a="40664459"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 13:00:42 -0700
-X-CSE-ConnectionGUID: DbHjfeEyQZK5Mlp2SXyZ7A==
-X-CSE-MsgGUID: VYMbvYxtSnW3F4KoctuXKw==
+ t=1720728055; x=1752264055;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=pbemnWyuy9khthSGRSvoy+yckK08/4dOmtwqsbD1B14=;
+ b=misCXa7uc5893Psyi0UYVHsrITptF7L0FuNdZ+JmsQTxfcztNpApona6
+ zNdN/9psx0m1vo2VzgG5gBDgYHaIuUpvlwO+QOW6IIWHrNKhnNm4/mHR5
+ C0w2HyEdXE3KXiJcv/FaujkDrtFvdz9il5wrMMxrz7wt7oI5+6IgbOuES
+ 6pv15g0cbjUDR6qWD7TfvLHRU19xUS1epvf8Ackq76ZHFO+oKFBhMoBW4
+ yYFU2fHhSW2nm3+RC3zEVACSxl0GUasnHe9/SlDU3rNLGmB52yauDfWr8
+ yweevh7a+0JmrYzJ1X+UMcLOYptkYShl2H8BStRCkpy1Vei/CcnqR9lLH A==;
+X-CSE-ConnectionGUID: qP23BiBbSKOXqpt1oAUBsA==
+X-CSE-MsgGUID: X7DdAe1USXi/ynMMTc6yTg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11130"; a="18286949"
+X-IronPort-AV: E=Sophos;i="6.09,201,1716274800"; d="scan'208";a="18286949"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2024 13:00:55 -0700
+X-CSE-ConnectionGUID: qCmAgYhMSzeYp/iKpSVxJw==
+X-CSE-MsgGUID: /Ei4YlB0TXSWmY0OLEk1RA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,201,1716274800"; d="scan'208";a="53271508"
-Received: from unknown (HELO josouza-mobl2.fso.intel.com) ([10.230.19.149])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 13:00:40 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Subject: [PATCH] drm/xe: Use xe_pm_runtime_get() in xe_ggtt_remove_node()
-Date: Thu, 11 Jul 2024 13:00:31 -0700
-Message-ID: <20240711200031.49798-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.45.2
+X-IronPort-AV: E=Sophos;i="6.09,201,1716274800"; d="scan'208";a="48747992"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa010.fm.intel.com with ESMTP; 11 Jul 2024 13:00:53 -0700
+Received: from [10.246.49.75] (mwajdecz-MOBL.ger.corp.intel.com [10.246.49.75])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 7D2B928793;
+ Thu, 11 Jul 2024 21:00:52 +0100 (IST)
+Message-ID: <3ef3dece-525e-4832-9952-0a425a9c1017@intel.com>
+Date: Thu, 11 Jul 2024 22:00:51 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 08/12] drm/xe: Introduce xe_ggtt_largest_hole
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
+References: <20240711171155.173717-1-rodrigo.vivi@intel.com>
+ <20240711171155.173717-8-rodrigo.vivi@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20240711171155.173717-8-rodrigo.vivi@intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,113 +70,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-I don't see a relationship between drm_dev_enter() and pm_runtime.
-A plugged device could still no one holding a PM refcount.
 
-And this is being triggered from ttm_bo_delayed_delete() and I can't
-see no one in the call chain getting a runtime pm before
-xe_ggtt_remove_node(), so here replacing xe_pm_runtime_get_noresume()
-by xe_pm_runtime_get().
 
-This change probably will fix the kernel OOPS below:
+On 11.07.2024 19:11, Rodrigo Vivi wrote:
+> Introduce a new xe_ggtt_largest_hole helper that attends the SRIOV
+> demand and continue with the goal of limiting drm_mm access to xe_ggtt.
+> 
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_ggtt.c               | 35 ++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_ggtt.h               |  1 +
+>  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 23 ++------------
+>  3 files changed, 38 insertions(+), 21 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> index 67337bfeb81e..dbaf1ce87fb4 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> @@ -584,6 +584,41 @@ void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+>  			    bo->flags & XE_BO_FLAG_GGTT_INVALIDATE);
+>  }
+>  
+> +/**
+> + * xe_ggtt_largest_hole - Largest GGTT hole
+> + * @ggtt: the &xe_ggtt that will be inspected
+> + * @alignment: mininum alignment
 
-------------[ cut here ]------------
-xe 0000:4d:00.0: [drm] Missing outer runtime PM protection
-WARNING: CPU: 100 PID: 3524 at drivers/gpu/drm/xe/xe_pm.c:551 xe_pm_runtime=
-_get_noresume+0x48/0x60 [xe]
-Modules linked in: snd_hda_intel snd_intel_dspcfg snd_hda_codec snd_hwdep s=
-nd_hda_core snd_pcm snd_timer snd soundcore mei_gsc xe drm_gpuvm video drm_=
-ttm_helper ttm gpu_sched drm_suballoc_helper drm_exec drm_display_helper dr=
-m_kunit_helpers kunit drm_buddy intel_rapl_msr intel_rapl_common cmdlinepar=
-t spi_nor mtd intel_uncore_frequency intel_uncore_frequency_common i10nm_ed=
-ac nls_iso8859_1 nfit x86_pkg_temp_thermal intel_powerclamp coretemp kvm_in=
-tel kvm crct10dif_pclmul crc32_pclmul polyval_clmulni polyval_generic ghash=
-_clmulni_intel sha512_ssse3 sha256_ssse3 sha1_ssse3 aesni_intel crypto_simd=
- cryptd rndis_host ast cdc_ether i2c_algo_bit dm_multipath dax_hmem i40e ix=
-gbe scsi_dh_rdac drm_shmem_helper usbnet mei_me cxl_acpi scsi_dh_emc rapl s=
-csi_dh_alua mii drm_kms_helper intel_cstate mdio cxl_core e1000e libie efi_=
-pstore i2c_i801 intel_pch_thermal spi_intel_pci mei isst_if_mbox_pci i2c_sm=
-bus isst_if_mmio spi_intel isst_if_common intel_th_gth intel_th_pci ipmi_ss=
-if ioatdma intel_vsec intel_th dca wmi ipmi_si
- acpi_power_meter acpi_ipmi ipmi_devintf acpi_pad ipmi_msghandler mac_hid s=
-ch_fq_codel msr parport_pc ppdev lp parport drm ip_tables x_tables autofs4
-CPU: 100 PID: 3524 Comm: kworker/u580:4 Not tainted 6.10.0-rc5-xe #1
-Hardware name: Intel Corporation WHITLEY/WHITLEY, BIOS SE5C6200.86B.0027.P1=
-5.2205121306 05/12/2022
-Workqueue: ttm ttm_bo_delayed_delete [ttm]
-RIP: 0010:xe_pm_runtime_get_noresume+0x48/0x60 [xe]
-Code: cc cc cc 48 8b 7b 08 4c 8b 67 50 4d 85 e4 75 03 4c 8b 27 e8 aa bd f4 =
-e0 4c 89 e2 48 c7 c7 d8 1a 03 a1 48 89 c6 e8 08 b7 32 e0 <0f> 0b 48 8b 43 0=
-8 f0 ff 80 f8 02 00 00 5b 41 5c 5d c3 cc cc cc cc
-RSP: 0000:ffa00000225afc00 EFLAGS: 00010282
-RAX: 0000000000000000 RBX: ff1100014c510000 RCX: 0000000000000027
-RDX: 0000000000000027 RSI: 0000000000000000 RDI: ff1100103fe31a48
-RBP: ffa00000225afc10 R08: 0000000000000001 R09: 0000000000000000
-R10: 0000000000000001 R11: 632da25ec9e647d2 R12: ff1100011d93b710
-R13: ff1100016cf6c448 R14: 0000000000000001 R15: ff1100014c510000
-FS:  0000000000000000(0000) GS:ff1100103fe00000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00007f4d34e18198 CR3: 000000000aa54006 CR4: 0000000000771ef0
-DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-PKRU: 55555554
-Call Trace:
- <TASK>
- ? show_regs+0x67/0x70
- ? __warn+0x94/0x1b0
- ? xe_pm_runtime_get_noresume+0x48/0x60 [xe]
- ? report_bug+0x1b7/0x1d0
- ? handle_bug+0x46/0x80
- ? exc_invalid_op+0x19/0x70
- ? asm_exc_invalid_op+0x1b/0x20
- ? xe_pm_runtime_get_noresume+0x48/0x60 [xe]
- xe_ggtt_remove_node+0x99/0x110 [xe]
- xe_ggtt_remove_bo+0x59/0x1d0 [xe]
- ? _raw_write_unlock+0x23/0x50
- ? drm_vma_offset_remove+0x66/0x80 [drm]
- xe_ttm_bo_destroy+0x135/0x230 [xe]
- ttm_bo_release+0x6e/0x320 [ttm]
- ttm_bo_delayed_delete+0x82/0xa0 [ttm]
- process_scheduled_works+0x3aa/0x750
- worker_thread+0x14f/0x2f0
- ? __pfx_worker_thread+0x10/0x10
- kthread+0xf5/0x130
- ? __pfx_kthread+0x10/0x10
- ret_from_fork+0x39/0x60
- ? __pfx_kthread+0x10/0x10
- ret_from_fork_asm+0x1a/0x30
- </TASK>
-irq event stamp: 26249
-hardirqs last  enabled at (26255): [<ffffffff811b8f51>] vprintk_emit+0x351/=
-0x360
-hardirqs last disabled at (26260): [<ffffffff811b8f33>] vprintk_emit+0x333/=
-0x360
-softirqs last  enabled at (25326): [<ffffffff810f04bf>] handle_softirqs+0x3=
-0f/0x430
-softirqs last disabled at (25319): [<ffffffff810f0e09>] irq_exit_rcu+0x89/0=
-xb0
----[ end trace 0000000000000000 ]---
+typo: minimum
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/xe/xe_ggtt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> + * @spare: If not NULL: in: desired memory size to be spared / out: Adjusted possible spare
+> + *
+> + * Return: size of the largest continuous GGTT region
+> + */
+> +u64 xe_ggtt_largest_hole(struct xe_ggtt *ggtt, u64 alignment, u64 *spare)
+> +{
+> +	const struct drm_mm *mm = &ggtt->mm;
+> +	const struct drm_mm_node *entry;
+> +	u64 hole_min_start = xe_wopcm_size(tile_to_xe(ggtt->tile));
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 0cdbc1296e885..13ce0f51f517a 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -489,7 +489,7 @@ void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct d=
-rm_mm_node *node,
-=20
- 	bound =3D drm_dev_enter(&xe->drm, &idx);
- 	if (bound)
--		xe_pm_runtime_get_noresume(xe);
-+		xe_pm_runtime_get(xe);
-=20
- 	mutex_lock(&ggtt->lock);
- 	if (bound)
---=20
-2.45.2
+this is likely not needed any more as xe_ggtt is always above WOPCM
+(unlikely to previous driver ;)
 
+> +	u64 hole_start, hole_end, hole_size;
+> +	u64 max_hole = 0;
+> +
+> +	mutex_lock(&ggtt->lock);
+> +
+> +	drm_mm_for_each_hole(entry, mm, hole_start, hole_end) {
+> +		hole_start = max(hole_start, hole_min_start);
+> +		hole_start = ALIGN(hole_start, alignment);
+> +		hole_end = ALIGN_DOWN(hole_end, alignment);
+> +		if (hole_start >= hole_end)
+> +			continue;
+> +		hole_size = hole_end - hole_start;
+> +		if (spare)
+> +			*spare -= min3(*spare, hole_size, max_hole);
+> +		max_hole = max(max_hole, hole_size);
+> +	}
+> +
+> +	mutex_unlock(&ggtt->lock);
+> +
+> +	return max_hole;
+> +}
+> +
+>  #ifdef CONFIG_PCI_IOV
+>  static u64 xe_encode_vfid_pte(u16 vfid)
+>  {
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+> index f816b3c0732b..31060fe7644b 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.h
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
+> @@ -29,6 +29,7 @@ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
+>  int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+>  			 u64 start, u64 end);
+>  void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
+> +u64 xe_ggtt_largest_hole(struct xe_ggtt *ggtt, u64 alignment, u64 *spare);
+>  
+>  int xe_ggtt_dump(struct xe_ggtt *ggtt, struct drm_printer *p);
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> index efaf188290ea..1d17c34fe5a4 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> @@ -590,30 +590,11 @@ int xe_gt_sriov_pf_config_bulk_set_ggtt(struct xe_gt *gt, unsigned int vfid,
+>  static u64 pf_get_max_ggtt(struct xe_gt *gt)
+>  {
+>  	struct xe_ggtt *ggtt = gt_to_tile(gt)->mem.ggtt;
+> -	const struct drm_mm *mm = &ggtt->mm;
+> -	const struct drm_mm_node *entry;
+>  	u64 alignment = pf_get_ggtt_alignment(gt);
+>  	u64 spare = pf_get_spare_ggtt(gt);
+> -	u64 hole_min_start = xe_wopcm_size(gt_to_xe(gt));
+> -	u64 hole_start, hole_end, hole_size;
+> -	u64 max_hole = 0;
+> -
+> -	mutex_lock(&ggtt->lock);
+> -
+> -	drm_mm_for_each_hole(entry, mm, hole_start, hole_end) {
+> -		hole_start = max(hole_start, hole_min_start);
+> -		hole_start = ALIGN(hole_start, alignment);
+> -		hole_end = ALIGN_DOWN(hole_end, alignment);
+> -		if (hole_start >= hole_end)
+> -			continue;
+> -		hole_size = hole_end - hole_start;
+> -		xe_gt_sriov_dbg_verbose(gt, "HOLE start %llx size %lluK\n",
+> -					hole_start, hole_size / SZ_1K);
+> -		spare -= min3(spare, hole_size, max_hole);
+> -		max_hole = max(max_hole, hole_size);
+> -	}
+> +	u64 max_hole;
+>  
+> -	mutex_unlock(&ggtt->lock);
+> +	max_hole = xe_ggtt_largest_hole(ggtt, alignment, &spare);
+>  
+>  	xe_gt_sriov_dbg_verbose(gt, "HOLE max %lluK reserved %lluK\n",
+>  				max_hole / SZ_1K, spare / SZ_1K);
