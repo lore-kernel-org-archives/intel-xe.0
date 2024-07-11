@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63610C3271E
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 05:52:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACD29C3271E
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 05:55:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2677010E946;
-	Thu, 11 Jul 2024 05:52:49 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96BB410E946;
- Thu, 11 Jul 2024 05:52:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7884109348583193202=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50E8210E948;
+	Thu, 11 Jul 2024 05:55:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jzbIS++s";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EA9210E946
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 05:55:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1720677315; x=1752213315;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xWOzzb/dvuPpsmmZV8RDyTKoDLYOkEP1bfwa6QNtkV8=;
+ b=jzbIS++s+iV3dk6fj9wIKdlwhcmT4AcnLJZtMBqYf17JGgRb3wilWL6G
+ 7lFTYCwtnDnRi5nzNvyVOtWhpKg7qLFEPYQ3Idw5E23TVeFmM5adzyrxE
+ Oz40yzyxy3mvzMZs5HHlChh4Q/sqDljawRTb7OWEsC5KjQvy748DsfNCm
+ Y49/XjsJJKlbmpOEbIs7MhuYQq1sfwsqSIQ87PevjwJPPKb9tFNa/o20g
+ h8yvYt9Hk/rQYG649qWu6mLB8EmzMvoHTM9+3+QFi7KA1Mq2Gdv45xsgW
+ P/UPF2CDv547pCebNia9N70Qr2AEFip8rl/H0ejiEPR4UYpy/CbwK1LgC Q==;
+X-CSE-ConnectionGUID: Afy1kPWfSaiJslqDvtcArQ==
+X-CSE-MsgGUID: 3vu8EmuVSOijBSyL+/8vVg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="35468622"
+X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="35468622"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2024 22:55:15 -0700
+X-CSE-ConnectionGUID: tlwG7K+8S9C6onI8SCSMXQ==
+X-CSE-MsgGUID: 0UFURMFTTUmaBUnGGo1N/w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="53627673"
+Received: from dut1110bmgfrd.igk.intel.com ([10.211.177.149])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2024 22:55:12 -0700
+From: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: akshatajahagirdar6@gmail.com,
+ Akshata Jahagirdar <akshata.jahagirdar@intel.com>
+Subject: [PATCH 0/6] Implement compression support on BMG
+Date: Thu, 11 Jul 2024 05:54:59 +0000
+Message-ID: <cover.1720515376.git.akshata.jahagirdar@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/fbdev=3A_Limit_the_usage_?=
- =?utf-8?q?of_stolen_for_LNL+?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Uma Shankar" <uma.shankar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 11 Jul 2024 05:52:47 -0000
-Message-ID: <172067716760.124165.3501130416737694254@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240711051339.3289552-1-uma.shankar@intel.com>
-In-Reply-To: <20240711051339.3289552-1-uma.shankar@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +63,55 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
+Message-ID: <20240711055459.fFyzOLbAA39Yh7EwZpAC4aLdAGTFfJPlqQFDUTubJ60@z>
 
---===============7884109348583193202==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Xe2 the compression has moved to a unified universal model
+(exactly one compression mode/format), where compression is now
+controlled via PAT on per-page basis. This now means KMD can
+decompress freely. This was problematic on DG2 since we had
+multiple compression formats, and the compression format used
+on a particular buffer was unknown to the KMD, so instead the
+raw CCS state needed to be copied around when evicting VRAM.
+In addition mixed VRAM and system memory buffers were not
+supported with compression enabled.
 
-== Series Details ==
+On Xe2 dGPU compression is still only supported with VRAM,
+however we can now support compression with VRAM and system
+memory buffers, with GPU access being seamless underneath.
+So long as when doing VRAM -> sysmem the KMD does the move
+using compressed -> uncompressed, to decompress it.
+CPU access to such buffers is also possible, under the premise
+that userspace first decompress the corresponding pages being
+accessed. If the pages are already in system memory then KMD would
+have already decompressed them. When restoring such buffers with
+sysmem -> VRAM the KMD can't easily know which pages were originally
+compressed, so we always use uncompressed -> uncompressed here.
+With this it also means we can drop all the raw CCS handling
+on such platforms (including needing to allocate extra CCS storage).
 
-Series: drm/xe/fbdev: Limit the usage of stolen for LNL+
-URL   : https://patchwork.freedesktop.org/series/135970/
-State : success
+In order to support this we now need to have two different identity
+mappings for compressed and uncompressed VRAM.
+The additional identity map is the VRAM with compressed pat_index.
+We then select the appropriate mapping during migration/clear.
 
-== Summary ==
+Akshata Jahagirdar (6):
+  drm/xe/xe2: Introduce identity map for compressed pat for vram
+  drm/xe/migrate: Handle clear ccs logic for xe2 dgfx
+  drm/xe/migrate: Add kunit to test clear functionality
+  drm/xe/xe_migrate: Handle migration logic for xe2+ dgfx
+  drm/xe/migrate: Add kunit to test migration functionality for BMG
+  drm/xe/xe2: Do not run xe_bo_test for xe2+ dgfx
 
-CI Bug Log - changes from xe-1591-36e90f69c967f4cbcdd02c40c9ef25694ffb1a13_BAT -> xe-pw-135970v1_BAT
-====================================================
+ drivers/gpu/drm/xe/tests/xe_bo.c           |   6 +
+ drivers/gpu/drm/xe/tests/xe_migrate.c      | 388 +++++++++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_migrate_test.c |   1 +
+ drivers/gpu/drm/xe/tests/xe_migrate_test.h |   1 +
+ drivers/gpu/drm/xe/xe_device.h             |   5 +
+ drivers/gpu/drm/xe/xe_migrate.c            |  66 +++-
+ 6 files changed, 449 insertions(+), 18 deletions(-)
 
-Summary
--------
+-- 
+2.34.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (7 -> 7)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1591-36e90f69c967f4cbcdd02c40c9ef25694ffb1a13 -> xe-pw-135970v1
-
-  IGT_7922: 325d4f4efbf869f93d3b4479046713d0ce7220e5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1591-36e90f69c967f4cbcdd02c40c9ef25694ffb1a13: 36e90f69c967f4cbcdd02c40c9ef25694ffb1a13
-  xe-pw-135970v1: 135970v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135970v1/index.html
-
---===============7884109348583193202==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/fbdev: Limit the usage of stolen for LNL+</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135970/">https://patchwork.freedesktop.org/series/135970/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135970v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135970v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1591-36e90f69c967f4cbcdd02c40c9ef25694ffb1a13_BAT -&gt; xe-pw-135970v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1591-36e90f69c967f4cbcdd02c40c9ef25694ffb1a13 -&gt; xe-pw-135970v1</li>
-</ul>
-<p>IGT_7922: 325d4f4efbf869f93d3b4479046713d0ce7220e5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1591-36e90f69c967f4cbcdd02c40c9ef25694ffb1a13: 36e90f69c967f4cbcdd02c40c9ef25694ffb1a13<br />
-  xe-pw-135970v1: 135970v1</p>
-
-</body>
-</html>
-
---===============7884109348583193202==--
