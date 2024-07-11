@@ -4,83 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 867BAC3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 11:43:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FC1AC3DA4A
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 11:44:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F5E510EA2A;
-	Thu, 11 Jul 2024 11:43:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F01E510EA30;
+	Thu, 11 Jul 2024 11:44:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="fa8a+LOZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="knnAPIsZ";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AC0810EA2C
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 11:43:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1720698206;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=MofSZeDyVzWkqGzbXdelFG68l2ucBKWV0CSSC6YMCJU=;
- b=fa8a+LOZAKIO0UNOqbyCtH36v8c6lu8llHALMn1lWv71aDOlLJWWrHI9+7DnzDj6mMMbUb
- hRxDY9jDNv9hLAaIAyS6NHqyly/Xhgi4MhcgrSB4PaYkuUsgCqThjesEw/L5rqfCHXJvXK
- Jb4tmcVJ8TQe9Teq2uquD8Z+L/QuF4Y=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-153-NWFI0_vhNGGRND5_Wvia7Q-1; Thu, 11 Jul 2024 07:43:24 -0400
-X-MC-Unique: NWFI0_vhNGGRND5_Wvia7Q-1
-Received: by mail-wr1-f70.google.com with SMTP id
- ffacd0b85a97d-3678e549a1eso434141f8f.0
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 04:43:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1720698202; x=1721303002;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=MofSZeDyVzWkqGzbXdelFG68l2ucBKWV0CSSC6YMCJU=;
- b=GFCERMBIkITt/2BgOLrrcRTCH6kZzUhsagn9Cz+sHs8H8Z7mpXnA0iD95fIBI3Fs0W
- u2sm2sj7Sf0c6r42NmtIJH1nfL8hKzAET++S9cBfYc6WXOjPE5ySDkSSE0xUR+aU3/vo
- 9hxYLH6qIu4zeRfyLg+kb0nl/8WH65CV9S9QW9/wlHu3+yWTw1em8ot0+SqSYWoUqI7V
- AuLwOg21aH/Tz2hXmiNW4QO5/52Hf9us3VYGVmHsk8HBQBuZEXknuzMgs7/2MRPQNg7e
- ptSo9/FwFRjsunyVztNVtwf+Ssvd6MbLB9lxG+SbYajArUwkh+vIEwllgWd8ClsePaiv
- 0lxA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWhNWu0KKG3qzqDSaCpOo9rvWpOzq5NeVPu8MmNqROvkXCJwcZpQ/xfpOQFdRUZDceGXQaYlPe1uh3DTf1HMglJjAng3JC2L4R3KzDY3is=
-X-Gm-Message-State: AOJu0YzG84q4So4RoAodRzdS9a9I24HTMaVSHP8oFID5NJ8LkrATolhu
- rRaXWV+WjGYSUHMGzvhXlXxyc7cs9ivxkXOZ9FvDaMVzqzDy7TPF5XJKJsUqzGJNLH2m5NBcS7v
- k0wr6PRJU+wFJea2yx3EsQKtMAGhCnJONTBouYDUyOgK97QvQdAsI5MOaLfasWg0G
-X-Received: by 2002:a05:6000:e86:b0:367:8e63:4da4 with SMTP id
- ffacd0b85a97d-367f04ca2d7mr1970135f8f.14.1720698202615; 
- Thu, 11 Jul 2024 04:43:22 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEKWwK9mQfjAxuy6d/Q76G5tEr15S1eUj7ecFAczGH+5nB4lofGO2HqY2Y+hF94BBlR5S5EPA==
-X-Received: by 2002:a05:6000:e86:b0:367:8e63:4da4 with SMTP id
- ffacd0b85a97d-367f04ca2d7mr1970113f8f.14.1720698202132; 
- Thu, 11 Jul 2024 04:43:22 -0700 (PDT)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4266f737b1bsm116663935e9.32.2024.07.11.04.43.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 11 Jul 2024 04:43:21 -0700 (PDT)
-Date: Thu, 11 Jul 2024 13:43:21 +0200
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next-fixes
-Message-ID: <20240711-benign-rich-mouflon-2eeafe@houat>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85B2C10EA30
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 11:44:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1720698279; x=1752234279;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=8GCgu0IoTPi1B5Rkc4JxZdX9C06g0PN0ojcJOy9qs8M=;
+ b=knnAPIsZZXrXe00H79mbLILnBDL6oRvtGH8aGphz06sU+vsHLH5bbGNt
+ 4kCFZwZyS4hCXk9igSLDD7UQZUdz1NP3ofbdhiVhgzDCQcLM6nctWONCh
+ +8pl1dR0hfuCDb1ufxb1fZYuHkW3scp0IG8kAIM6bexv5EcUDEUNlOl06
+ wmujhAJ1X8coPCb7Bu5sxxHMVnYTCCZ6MFIrJIPnq158CH3G2v3xiWS8Y
+ sKhX+qFqmsASVpEGs/vc1YWPUf66osLY6MR2t0UpqK09tJIzU4GnUZlpx
+ Gupm7im0SBi3qOYXb240vNed4TEWuzWfwfiyP9TSqfLnbehAn2zxNoBZB A==;
+X-CSE-ConnectionGUID: 9uaWA0jLRrybiVIjF+SG2A==
+X-CSE-MsgGUID: nE6dViS2R/+8rFpSf+EyDw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="17887324"
+X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="17887324"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2024 04:44:39 -0700
+X-CSE-ConnectionGUID: HLw3daF6Re+3vp9yzTlwQw==
+X-CSE-MsgGUID: jNTJYawrRE6ObxTceshZnA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="53707003"
+Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost)
+ ([10.245.247.127])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2024 04:44:36 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Thu, 11 Jul 2024 14:44:33 +0300 (EEST)
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+cc: intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org, 
+ david.e.box@linux.intel.com, matthew.brost@intel.com
+Subject: Re: [PATCH v6 6/6] drm/xe/vsec: Add support for DG2
+In-Reply-To: <20240710192249.3915396-7-michael.j.ruhl@intel.com>
+Message-ID: <c3a26fdd-ebb7-a5d1-38b3-0832c7e92652@linux.intel.com>
+References: <20240710192249.3915396-1-michael.j.ruhl@intel.com>
+ <20240710192249.3915396-7-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="dzmsejr4sz47r6mw"
-Content-Disposition: inline
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,71 +68,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, 10 Jul 2024, Michael J. Ruhl wrote:
 
---dzmsejr4sz47r6mw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> DG2 needs to adjust the discovery offset WRT the GT BAR not the
 
-Hi,
+WRT = w.r.t. ?
 
-Here's this week drm-misc-next-fixes PR
+> P2SB bar so add the base_adjust value to allow for the difference
+> to be used.
 
-Thanks!
-Maxime
+Could you please try to write out the problem in clearer terms. Currently 
+the reasonale given in patch 5 doesn't even match the one given here or 
+it is written in so unclear terms I cannot make the connection.
 
-drm-misc-next-fixes-2024-07-11:
-A fix for fbdev on big endian systems, a condition fix for a sharp panel
-at removal, and a fix for qxl to prevent unpinned buffer access under
-certain conditions.
-The following changes since commit 896868eded124059023be0af92d68cdaf9b4de70:
+> Update xe_vsec.c to include DG2 header information.
+> 
+> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_vsec.c | 81 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 81 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+> index 98999d467db1..531ddd32a1a6 100644
+> --- a/drivers/gpu/drm/xe/xe_vsec.c
+> +++ b/drivers/gpu/drm/xe/xe_vsec.c
+> @@ -19,6 +19,16 @@
+>  
+>  #define SOC_BASE		0x280000
+>  
+> +/* from drivers/platform/x86/intel/pmt/telemetry.c */
+> +#define TELEM_BASE_OFFSET	0x8
+> +
+> +#define DG2_PMT_BASE		0xE8000
+> +#define DG2_DISCOVERY_START	0x6000
+> +#define DG2_TELEM_START		0x4000
+> +
+> +#define DG2_DISCOVERY_OFFSET	(SOC_BASE + DG2_PMT_BASE + DG2_DISCOVERY_START)
+> +#define DG2_TELEM_OFFSET	(SOC_BASE + DG2_PMT_BASE + DG2_TELEM_START)
+> +
+>  #define BMG_PMT_BASE		0xDB000
+>  #define BMG_DISCOVERY_OFFSET	(SOC_BASE + BMG_PMT_BASE)
+>  
+> @@ -32,6 +42,20 @@
+>  #define SG_REMAP_INDEX1		XE_REG(SOC_BASE + 0x08)
+>  #define SG_REMAP_BITS		GENMASK(31, 24)
+>  
+> +static struct intel_vsec_header dg2_telemetry = {
+> +	.length = 0x10,
+> +	.id = VSEC_ID_TELEMETRY,
+> +	.num_entries = 1,
+> +	.entry_size = 3,
+> +	.tbir = GFX_BAR,
+> +	.offset = DG2_DISCOVERY_OFFSET,
+> +};
+> +
+> +static struct intel_vsec_header *dg2_capabilities[] = {
+> +	&dg2_telemetry,
+> +	NULL
+> +};
+> +
+>  static struct intel_vsec_header bmg_telemetry = {
+>  	.length = 0x10,
+>  	.id = VSEC_ID_TELEMETRY,
+> @@ -48,10 +72,16 @@ static struct intel_vsec_header *bmg_capabilities[] = {
+>  
+>  enum xe_vsec {
+>  	XE_VSEC_UNKNOWN = 0,
+> +	XE_VSEC_DG2,
+>  	XE_VSEC_BMG,
+>  };
+>  
+>  static struct intel_vsec_platform_info xe_vsec_info[] = {
+> +	[XE_VSEC_DG2] = {
+> +		.caps = VSEC_CAP_TELEMETRY,
+> +		.headers = dg2_capabilities,
+> +		.quirks = VSEC_QUIRK_EARLY_HW,
+> +	},
+>  	[XE_VSEC_BMG] = {
+>  		.caps = VSEC_CAP_TELEMETRY,
+>  		.headers = bmg_capabilities,
+> @@ -174,6 +204,7 @@ struct pmt_callbacks xe_pmt_cb = {
+>  };
+>  
+>  static const int vsec_platforms[] = {
+> +	[XE_DG2] = XE_VSEC_DG2,
+>  	[XE_BATTLEMAGE] = XE_VSEC_BMG,
+>  };
+>  
+> @@ -185,6 +216,49 @@ static enum xe_vsec get_platform_info(struct xe_device *xe)
+>  	return vsec_platforms[xe->info.platform];
+>  }
+>  
+> +/*
+> + * Access the DG2 PMT MMIO discovery table
+> + *
+> + * The intel_vsec driver does not typically access the discovery table.
+> + * Instead, it creates a memory resource for the table and passes it
+> + * to the PMT telemetry driver. Each discovery table contains 3 items,
+> + *    - GUID
+> + *    - Telemetry size
+> + *    - Telemetry offset (offset from P2SB BAR, not GT)
+> + *
+> + * For DG2 we know what the telemetry offset is, but we still need to
+> + * use the discovery table to pass the GUID and the size. So figure
+> + * out the difference between the P2SB offset and the GT offset and
+> + * save this so that the telemetry driver can use it to adjust the
+> + * value.
+> + */
+> +static int dg2_adjust_offset(struct pci_dev *pdev, struct device *dev,
+> +			     struct intel_vsec_platform_info *info)
+> +{
+> +	void __iomem *base;
+> +	u32 telem_offset;
+> +	u64 addr;
+> +
+> +	/* compile check to verify that quirk has P2SB quirk added */
 
-  drm/panthor: Record devfreq busy as soon as a job is started (2024-07-04 09:29:55 +0100)
+I don't know what "quirk" the first instance refers to (I think I 
+probably know what the P2SB quirk is).
 
-are available in the Git repository at:
+What is the purpose/meaning of this comment? Is it some leftover for 
+code that no longer exists as it talks about "compile check"??
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2024-07-11
+-- 
+ i.
 
-for you to fetch changes up to c537fb4e3d36e7cd1a0837dd577cd30d3d64f1bc:
-
-  drm/qxl: Pin buffer objects for internal mappings (2024-07-10 09:12:42 +0200)
-
-----------------------------------------------------------------
-A fix for fbdev on big endian systems, a condition fix for a sharp panel
-at removal, and a fix for qxl to prevent unpinned buffer access under
-certain conditions.
-
-----------------------------------------------------------------
-Douglas Anderson (1):
-      drm/panel: sharp-lq101r1sx01: Fixed reversed "if" in remove
-
-Maxime Ripard (1):
-      Merge drm-misc-next-2024-07-04 into drm-misc-next-fixes
-
-Thomas Huth (1):
-      drm/fbdev-dma: Fix framebuffer mode for big endian devices
-
-Thomas Zimmermann (1):
-      drm/qxl: Pin buffer objects for internal mappings
-
- drivers/gpu/drm/arm/display/komeda/komeda_color_mgmt.c |  5 -----
- drivers/gpu/drm/drm_fbdev_dma.c                        |  3 ++-
- drivers/gpu/drm/panel/panel-sharp-lq101r1sx01.c        |  2 +-
- drivers/gpu/drm/qxl/qxl_display.c                      | 14 +++++++-------
- drivers/gpu/drm/qxl/qxl_object.c                       | 13 +++++++++++--
- drivers/gpu/drm/qxl/qxl_object.h                       |  4 ++--
- 6 files changed, 23 insertions(+), 18 deletions(-)
-
---dzmsejr4sz47r6mw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZo/FWAAKCRAnX84Zoj2+
-ducuAYCQ2yxTQEAVBbW1pjLEqLM8ZqWbhUe30yZe+1K91x/U9fSYGnmsfeWpJYHh
-VsiVNBgBgMVRP82CcCt7Cp2HFfHXl/enrvZaYvJUDetm3ZbnGwAT5TGqbefXGok6
-phXB4NyL4Q==
-=SiwA
------END PGP SIGNATURE-----
-
---dzmsejr4sz47r6mw--
-
+> +
+> +	addr = pci_resource_start(pdev, GFX_BAR) + info->headers[0]->offset;
+> +	base = ioremap_wc(addr, 16);
+> +	if (!base)
+> +		return -ENOMEM;
+> +
+> +	telem_offset = readl(base + TELEM_BASE_OFFSET);
+> +
+> +	/* Use the base_addr + P2SB quirk to pass this info */
+> +	if (telem_offset < DG2_TELEM_OFFSET)
+> +		info->base_adjust = -(DG2_TELEM_OFFSET - telem_offset);
+> +	else
+> +		info->base_adjust = -(telem_offset - DG2_TELEM_OFFSET);
+> +
+> +	iounmap(base);
+> +
+> +	return 0;
+> +}
+> +
+>  /**
+>   * xe_vsec_init - Initialize resources and add intel_vsec auxiliary
+>   * interface
+> @@ -196,6 +270,7 @@ void xe_vsec_init(struct xe_device *xe)
+>  	struct device *dev = xe->drm.dev;
+>  	struct pci_dev *pdev = to_pci_dev(dev);
+>  	enum xe_vsec platform;
+> +	u32 ret;
+>  
+>  	platform = get_platform_info(xe);
+>  	if (platform == XE_VSEC_UNKNOWN)
+> @@ -206,6 +281,12 @@ void xe_vsec_init(struct xe_device *xe)
+>  		return;
+>  
+>  	switch (platform) {
+> +	case XE_VSEC_DG2:
+> +		ret = dg2_adjust_offset(pdev, dev, info);
+> +		if (ret)
+> +			return;
+> +		break;
+> +
+>  	case XE_VSEC_BMG:
+>  		info->priv_data = &xe_pmt_cb;
+>  		break;
+> 
