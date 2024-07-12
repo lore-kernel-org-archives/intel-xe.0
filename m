@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97E2FC3DA45
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 23:35:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A95DC3DA45
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Jul 2024 23:41:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 634F710E02D;
-	Thu, 11 Jul 2024 23:35:22 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3267B10E02D;
- Thu, 11 Jul 2024 23:35:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0296560863086885167=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A06D10EBC3;
+	Thu, 11 Jul 2024 23:41:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yqz+80Ug";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7834510EBC3
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Jul 2024 23:41:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1720741268; x=1752277268;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Y/8ZInvXqNRbFDK64S7caPCGK5aCAbjJagJ7hyTKggQ=;
+ b=Yqz+80Ug+1cog3VCzyro5gnXKn6d4zJ4TcJy5vcNCISD1ZX2uT9rwz4o
+ bMGqTBZGwoBSvrCAh7Khkke0vYHa0XlmYaVOSfk6r+aODNzqJtGqWgB9i
+ jLTyrVBUdoAPrAn6jY0Ofnw2TE+po6zRtUOaIeS5z5TinWnEEDO+0WAlk
+ tJTwPGJCwoTetLScWjKX8m72CW4MgUN76yYbFIaWlaDVBvgkylwPVkW4U
+ vc5zNuXKy3PRgPzcL1A1xuJTqFek+oDe7wsJ7fjrAJjdVy0OEr0XbGu4y
+ IKjlfZaPAtCGJEc7SFQdbenVfXIT6F/n6yXUlJEBqyuL4UtxjaVVDQGDj w==;
+X-CSE-ConnectionGUID: z4S7LXQ8SaiUU+FDTFLpbw==
+X-CSE-MsgGUID: G4fB/3EgTLumAf66A6U12g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11130"; a="29315086"
+X-IronPort-AV: E=Sophos;i="6.09,201,1716274800"; d="scan'208";a="29315086"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2024 16:41:07 -0700
+X-CSE-ConnectionGUID: mCgkWI3wQ3GP9TJ1MTWqtw==
+X-CSE-MsgGUID: wtXwXHJDSVKuVlWt76VFFA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,201,1716274800"; d="scan'208";a="48471846"
+Received: from saurabhg-nuc10i5fnh.jf.intel.com ([10.165.21.155])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2024 16:41:06 -0700
+From: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: akshatajahagirdar6@gmail.com,
+ Akshata Jahagirdar <akshata.jahagirdar@intel.com>
+Subject: [PATCH 1/6] drm/xe/migrate: Sample patch for testing
+Date: Fri, 12 Jul 2024 04:52:26 -0700
+Message-ID: <e597e39b0c22d3b58cda09e0e4b33f883b9140db.1720515376.git.akshata.jahagirdar@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1720515376.git.akshata.jahagirdar@intel.com>
+References: <cover.1720515376.git.akshata.jahagirdar@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/xe2=3A_Enable_Priority_Me?=
- =?utf-8?q?m_Read_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Pallavi Mishra" <pallavi.mishra@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 11 Jul 2024 23:35:21 -0000
-Message-ID: <172074092120.165318.5325992574464077956@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240711210042.3822494-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20240711210042.3822494-1-jonathan.cavitt@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,133 +64,69 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
+Message-ID: <20240712115226.Z4p-RChElDZygnAh5a_3-KekURcHDfYrp2U5za7woGg@z>
 
---===============0296560863086885167==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+For Xe2 dGPU, we clear the bo by modifying the VRAM using an
+uncompressed pat index which then indirectly updates the
+compression status as uncompressed i.e zeroed CCS.
+So xe_migrate_clear() should be updated for BMG to not
+emit CCS surf copy commands.
 
-== Series Details ==
+Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.h  | 5 +++++
+ drivers/gpu/drm/xe/xe_migrate.c | 6 +++---
+ 2 files changed, 8 insertions(+), 3 deletions(-)
 
-Series: drm/xe/xe2: Enable Priority Mem Read (rev4)
-URL   : https://patchwork.freedesktop.org/series/134038/
-State : failure
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 0a2a3e7fd402..c3093506c28c 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -144,6 +144,11 @@ static inline bool xe_device_has_flat_ccs(struct xe_device *xe)
+ 	return xe->info.has_flat_ccs;
+ }
+ 
++static inline bool xe_device_needs_ccs_emit(struct xe_device *xe)
++{
++	return xe_device_has_flat_ccs(xe) && !(GRAPHICS_VER(xe) >= 20 && IS_DGFX(xe));
++}
++
+ static inline bool xe_device_has_sriov(struct xe_device *xe)
+ {
+ 	return xe->info.has_sriov;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index fa23a7e7ec43..2fc2cf375b1e 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -420,7 +420,7 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
+ 		return ERR_PTR(err);
+ 
+ 	if (IS_DGFX(xe)) {
+-		if (xe_device_has_flat_ccs(xe))
++		if (xe_device_needs_ccs_emit(xe))
+ 			/* min chunk size corresponds to 4K of CCS Metadata */
+ 			m->min_chunk_size = SZ_4K * SZ_64K /
+ 				xe_device_ccs_bytes(xe, SZ_64K);
+@@ -1034,7 +1034,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 					clear_system_ccs ? 0 : emit_clear_cmd_len(gt), 0,
+ 					avail_pts);
+ 
+-		if (xe_device_has_flat_ccs(xe))
++		if (xe_device_needs_ccs_emit(xe))
+ 			batch_size += EMIT_COPY_CCS_DW;
+ 
+ 		/* Clear commands */
+@@ -1062,7 +1062,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 		if (!clear_system_ccs)
+ 			emit_clear(gt, bb, clear_L0_ofs, clear_L0, XE_PAGE_SIZE, clear_vram);
+ 
+-		if (xe_device_has_flat_ccs(xe)) {
++		if (xe_device_needs_ccs_emit(xe)) {
+ 			emit_copy_ccs(gt, bb, clear_L0_ofs, true,
+ 				      m->cleared_mem_ofs, false, clear_L0);
+ 			flush_flags = MI_FLUSH_DW_CCS;
+-- 
+2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-1599-b8617992926ffce3569049c2eb3dffeef5eafe75_BAT -> xe-pw-134038v4_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-134038v4_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-134038v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (7 -> 7)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-134038v4_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
-    - bat-lnl-1:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1599-b8617992926ffce3569049c2eb3dffeef5eafe75/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134038v4/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-1599-b8617992926ffce3569049c2eb3dffeef5eafe75 -> xe-pw-134038v4
-
-  IGT_7925: def41c762723c9ba046a3ffe722d046cd12e993d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1599-b8617992926ffce3569049c2eb3dffeef5eafe75: b8617992926ffce3569049c2eb3dffeef5eafe75
-  xe-pw-134038v4: 134038v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134038v4/index.html
-
---===============0296560863086885167==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe2: Enable Priority Mem Read (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134038/">https://patchwork.freedesktop.org/series/134038/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134038v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134038v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1599-b8617992926ffce3569049c2eb3dffeef5eafe75_BAT -&gt; xe-pw-134038v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-134038v4_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-134038v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-134038v4_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1599-b8617992926ffce3569049c2eb3dffeef5eafe75/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-134038v4/bat-lnl-1/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1599-b8617992926ffce3569049c2eb3dffeef5eafe75 -&gt; xe-pw-134038v4</li>
-</ul>
-<p>IGT_7925: def41c762723c9ba046a3ffe722d046cd12e993d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1599-b8617992926ffce3569049c2eb3dffeef5eafe75: b8617992926ffce3569049c2eb3dffeef5eafe75<br />
-  xe-pw-134038v4: 134038v4</p>
-
-</body>
-</html>
-
---===============0296560863086885167==--
