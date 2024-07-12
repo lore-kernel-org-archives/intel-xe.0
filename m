@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F108C2BD09
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jul 2024 06:45:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52E99C2BD09
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jul 2024 06:45:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA40410EC0F;
-	Fri, 12 Jul 2024 06:45:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23C2810EC11;
+	Fri, 12 Jul 2024 06:45:42 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 644A910EC0F;
- Fri, 12 Jul 2024 06:45:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E208410EC11;
+ Fri, 12 Jul 2024 06:45:40 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Implement_compression_sup?=
- =?utf-8?q?port_on_BMG?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Implement_compression_support_?=
+ =?utf-8?q?on_BMG?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Akshata Jahagirdar" <akshata.jahagirdar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 12 Jul 2024 06:45:12 -0000
-Message-ID: <172076671240.166024.4233476182705859757@2413ebb6fbb6>
+Date: Fri, 12 Jul 2024 06:45:40 -0000
+Message-ID: <172076674091.166024.9201629724102963645@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <cover.1720766122.git.akshata.jahagirdar@intel.com>
 In-Reply-To: <cover.1720766122.git.akshata.jahagirdar@intel.com>
@@ -44,57 +44,69 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Implement compression support on BMG
 URL   : https://patchwork.freedesktop.org/series/136023/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-51ce9f6cd981d42d7467409d7dbc559a450abc1e
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 10b21c37e888b840444931e81111a41ab13cf420
-Author: Jahagirdar, Akshata <akshata.jahagirdar@intel.com>
-Date:   Fri Jul 12 06:39:25 2024 +0000
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_migrate.c: In function ‘xe_migrate_ccs_copy’:
+../drivers/gpu/drm/xe/xe_migrate.c:718:6: error: implicit declaration of function ‘xe_device_needs_ccs_emit’; did you mean ‘xe_migrate_needs_ccs_emit’? [-Werror=implicit-function-declaration]
+  718 |  if (xe_device_needs_ccs_emit(gt_to_xe(gt)) && !copy_ccs && dst_is_indirect) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~
+      |      xe_migrate_needs_ccs_emit
+In file included from ../drivers/gpu/drm/xe/xe_migrate.c:1536:
+../drivers/gpu/drm/xe/tests/xe_migrate.c: In function ‘validate_ccs_test_run_tile’:
+../drivers/gpu/drm/xe/tests/xe_migrate.c:673:3: error: label ‘out_unlock’ used but not defined
+  673 |   goto out_unlock;
+      |   ^~~~
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:244: drivers/gpu/drm/xe/xe_migrate.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+make[6]: *** [../scripts/Makefile.build:485: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:485: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:485: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:485: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [/kernel/Makefile:1934: .] Error 2
+make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
 
-    drm/xe/xe2: Do not run xe_bo_test for xe2+ dgfx
-    
-    In xe2+ dgfx, we don't need to handle the copying of ccs
-    metadata during migration. This test validates the ccs data post
-    clear and copy during evict/restore operation. Thus, we can skip
-    this test on xe2+ dgfx.
-    
-    Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
-    Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-+ /mt/dim checkpatch 0b9174f237436b60b1c6fd9d5fbacbfcde660e3e drm-intel
-eeb7861be028 drm/xe/migrate: Handle clear ccs logic for xe2 dgfx
--:58: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email name mismatch: 'From: "Jahagirdar, Akshata" <akshata.jahagirdar@intel.com>' != 'Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 35 lines checked
-288027bbf066 drm/xe/migrate: Add kunit to test clear functionality
--:317: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email name mismatch: 'From: "Jahagirdar, Akshata" <akshata.jahagirdar@intel.com>' != 'Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 288 lines checked
-0909884d6cb7 drm/xe/xe2: Introduce identity map for compressed pat for vram
-85980848175d drm/xe/xe_migrate: Handle migration logic for xe2+ dgfx
--:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#6: 
-During eviction (vram->sysmem), we use the mapping from compressed -> uncompressed.
-
--:53: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email name mismatch: 'From: "Jahagirdar, Akshata" <akshata.jahagirdar@intel.com>' != 'Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>'
-
-total: 0 errors, 2 warnings, 0 checks, 31 lines checked
-efabe00da866 drm/xe/migrate: Add kunit to test migration functionality for BMG
--:175: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email name mismatch: 'From: "Jahagirdar, Akshata" <akshata.jahagirdar@intel.com>' != 'Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 154 lines checked
-10b21c37e888 drm/xe/xe2: Do not run xe_bo_test for xe2+ dgfx
--:30: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email name mismatch: 'From: "Jahagirdar, Akshata" <akshata.jahagirdar@intel.com>' != 'Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 12 lines checked
+[06:45:13] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[06:45:17] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
