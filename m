@@ -4,59 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66207C3DA45
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jul 2024 20:45:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DD38C2BD09
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jul 2024 20:56:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1962310E17C;
-	Fri, 12 Jul 2024 20:45:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6D8A10E104;
+	Fri, 12 Jul 2024 20:56:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eD97czwq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AWTcd+YL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B5BB10E17C
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Jul 2024 20:44:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BDAA10E104
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Jul 2024 20:56:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720817100; x=1752353100;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=Z/hWgjQCMsn6rF7qMNezYa4LNTe6WLfrUAlIvd5+ErM=;
- b=eD97czwqX6TiYwk1hTbID7Xh7ifJEjZkSykqS4Yl3Cv7l1u1yq3ptEpT
- c/fGLuesFk6zHDesKmPO+OVrWnsmurVZ2qHSK7KwKSWieAjFbTE9jXx8M
- ADMvCbbipZklBP0glhs8oCifcVcvfG/b7og2cH6wRPdxH4i8swhGxl5XR
- WtFguqgVH/wnDEk/gMIvcLD7cUngKGhmK7r5FYflhYZuv2/xu8wbjQfCd
- PZmfdF/9GxcmQVS+umi4A4TppymvgflyBUPXQqJQvxIz12FB+yN3m4v79
- Cnx0XwvUWawGVYixLSGAzyB06dhKypyh6jboxeId+YNrfAbfutEHBUPZm Q==;
-X-CSE-ConnectionGUID: kCkEhflZRyeu2aL7K9yULw==
-X-CSE-MsgGUID: exdfQcSLQZOT6jFI3+yW0A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11131"; a="43689905"
-X-IronPort-AV: E=Sophos;i="6.09,203,1716274800"; d="scan'208";a="43689905"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2024 13:44:59 -0700
-X-CSE-ConnectionGUID: x19qWazpR6q+KMYqRsqWxw==
-X-CSE-MsgGUID: vIevbo+4Sdm3VIPzZ9Gw/w==
+ t=1720817769; x=1752353769;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=ZH1kfCZkG/WvVJRDdiGGqzsvALoBAqBUDhubmLOXBV8=;
+ b=AWTcd+YLqxDEf3VRZcYxI6TiIWWFdFyf+f43YjRHDt7aXYjySQAVpxoE
+ gcdCzV0VkaQjXWceH0TCyQ6FI0JpUs4a326A6IfXhNfjQD54+ngn/7QKR
+ ITA9SkO+p8nRC52sZYtMU+XJuFvkNkJegbgmcZ3wNBxzIseBrIkNpNF4D
+ uSg34ay+LXS/kSZy3oZBzqirkCfq9UamgURbdaUE2ordYm0yXyKDLcwrs
+ JnkB6lnAqA8ZpVvqgwfefMmbrqDqz+Frs1Cfu2A+le4nxWWv5tlvGwZVk
+ Jog5ppw47JcAUVgkA/UZkGMM+miZ3G1eR9mhzKG0GZt4HUUQEXrxBXpyD Q==;
+X-CSE-ConnectionGUID: 8y8coSerTRyhTL0sGknp3w==
+X-CSE-MsgGUID: FSGreD+RTdy9aTm/QsnAwg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11131"; a="40808478"
+X-IronPort-AV: E=Sophos;i="6.09,203,1716274800"; d="scan'208";a="40808478"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jul 2024 13:56:08 -0700
+X-CSE-ConnectionGUID: 95GMxrQVRny43i0EnAg0Qg==
+X-CSE-MsgGUID: ACez4vUBR3epXrNlNzOb/g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,203,1716274800"; d="scan'208";a="48911271"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa007.fm.intel.com with ESMTP; 12 Jul 2024 13:44:57 -0700
-Received: from [10.246.49.75] (mwajdecz-MOBL.ger.corp.intel.com [10.246.49.75])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id EAB7028792;
- Fri, 12 Jul 2024 21:44:54 +0100 (IST)
-Message-ID: <34bd59e5-f921-4ba9-9ea6-5a2ab1481ffe@intel.com>
-Date: Fri, 12 Jul 2024 22:44:53 +0200
+X-IronPort-AV: E=Sophos;i="6.09,203,1716274800"; d="scan'208";a="53594088"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Jul 2024 13:56:06 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Fri, 12 Jul 2024 13:56:05 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Fri, 12 Jul 2024 13:56:05 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.49) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Fri, 12 Jul 2024 13:56:05 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SyF1gOMOo7JLa7BxGFda1kQgq3uHmBV6zEvwotgVnoXVDS5kXVXAx7VyPhXWIAziNrsSp/wH2nLZXc3dBOCt7ZK4/RpmWxzVasqmIMc0o8c3zLOkv4r6h+xEcLU7jPPG3Lb0jRVO4ly4lx2Lgg9EXvoNd+M3gkzwv6XmPTe0QuxuE04/Wl45kPwwNAFMZsBLJi3NMQq5q+cU0ye/XkYt3QOwi5CNO5DXbFhiOvcQnnODGcpFuRp+MNcJ5lHtjYOK1SrRW0iPfJ/wV1dx3kTPPb20UhuBNhDFbKdoqhRV4GJJpRp1fkwkbfwWO5m0wKbixHUrI6PxKTq+iyKhDQwC2Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GVyORSMNeeJPr26dPUBLwBTOQtMQdB2c/y2ZeZxRgPE=;
+ b=No5bZFk9y4pswD82pu1TdCNF0zfjnebb2b5wbsI7pouqPPa11l5pGhPxzxeVuljDZGTro9bjSHeh4gm3c9iOaGWXTjc44yARtMIk0CZHSv6uhOfXAVhgk73zFscMnV+2ZiHMDhGsUZNPTlidS3IBPXN0B2MhAcon7pmInSjWaMNJTYZyxdXWV5GBPPd+eNe7RlKZ4A3QCPE9X9b6zw5InzxX3bvrJd9Jmz/uuCVGg+WtfPhO73xvTWSqRQgnqObWgurIDdu9suBc5u9Y4lsKwEx2KxCgGuYuXtgu102kslxxu2GlHeJJ/Xm3YDUh0C14Zj5lQ4W/tpOr1sauRElIVA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by MW5PR11MB5811.namprd11.prod.outlook.com (2603:10b6:303:198::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.36; Fri, 12 Jul
+ 2024 20:56:01 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.7762.020; Fri, 12 Jul 2024
+ 20:56:01 +0000
+Date: Fri, 12 Jul 2024 15:55:59 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: =?utf-8?B?4pyXIENJLkJBVA==?= =?utf-8?Q?=3A?= failure for
+ drm/xe/pf: Limit fair VF LMEM provisioning
+Message-ID: <suroenml7l5bljgfdvyw5ma7bmbo2r6duboufwnzaqfnrzuozi@safavi5sglj5>
+References: <20240711192320.1198-1-michal.wajdeczko@intel.com>
+ <172072905358.164880.5867005051311083460@2413ebb6fbb6>
+ <4caa431c-0b14-4a61-aa95-b4c845824e25@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <4caa431c-0b14-4a61-aa95-b4c845824e25@intel.com>
+X-ClientProxiedBy: SN7PR04CA0101.namprd04.prod.outlook.com
+ (2603:10b6:806:122::16) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 1/5] drm/xe/guc: Prepare GuC register list and update
- ADS size for error capture
-To: Zhanjun Dong <zhanjun.dong@intel.com>, intel-xe@lists.freedesktop.org
-References: <20240712164724.677393-1-zhanjun.dong@intel.com>
- <20240712164724.677393-2-zhanjun.dong@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20240712164724.677393-2-zhanjun.dong@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|MW5PR11MB5811:EE_
+X-MS-Office365-Filtering-Correlation-Id: e2f0356a-2b33-4175-7af7-08dca2b50980
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?rGEnOO4eUdzHAlgdR3nPYUrFu/G+KQm252nfuwth8CYhb2/rUHFq2WP9RqYf?=
+ =?us-ascii?Q?au+Y/cyzeCRCmJpVnIeXE8BAU1EbLAaE1bTb5faGI8nr7qCPj7mAzo7FWYCm?=
+ =?us-ascii?Q?UY6l/+QuztnUaxuaFjQ6p5VJTVSV1FSp4dVW7TBPa1ZK/fklnu0qYmiQdn+N?=
+ =?us-ascii?Q?Z5LeVO4sOXsxgaILgecFiM9ETBoNrLAjNMROUS8ZI/vTXA5H2palhTCo+FQF?=
+ =?us-ascii?Q?afYQmVtmwmxFlTqCLdu6F6bViIfi4N+JLAC572r3zvmQZh0dnX1TRDlKNoGS?=
+ =?us-ascii?Q?f+T+JqR/4HCmplCrlf+f/i0VMy2fSbmtnUqsVrmM1LWMhKKBurR4lU9q7g+w?=
+ =?us-ascii?Q?SWnCluzI4aSNn2ecRGdLPYccyXK6c0VuW0jaJoxNTjPRPuPgnxQGpBSTr8EO?=
+ =?us-ascii?Q?VeP4iQvsjiodMiNZL2q90IFtGhx9q0jVnPijW9BtE1Y9U4R9bTMlc7pQkXQo?=
+ =?us-ascii?Q?xLTTzaDQILoFdE4exLAyO8PF2VwQ7GKTtuzM4UWVeSdQ7FAvCNQG+uccVj+w?=
+ =?us-ascii?Q?GYxlgQT3F7+rFXjMUGPPJgahJanI4bPK1g2aV4hRwr/DBkmTfMbOCxzVYYvf?=
+ =?us-ascii?Q?P9CtkHKuCeeJOq7aN60ScJiJX3eHRaxEy6kxpOUdpz7f7NmI2AdHbBDje0IZ?=
+ =?us-ascii?Q?V46/A3OGHdO/wFb5MANAeMBMswsque7KJGB3VJxqJlmKHpzXI3xu0GowpdQt?=
+ =?us-ascii?Q?ApVX5jWVIiSBu/kfq5AK2z4vYE32Aaitie5gOyz0SG6/fZRLHe1Ko5HEbAt7?=
+ =?us-ascii?Q?N0GE4M4HoD59oDglbGhR85xuPwUEopL8lHxyn+haS3EJvreORaXNqx8xaI3T?=
+ =?us-ascii?Q?r2Ryqr3lViU3BxGJALW280njbo01jvkcAJKOX6grTUn2Zx5ZK8FpMQ7VZZ8E?=
+ =?us-ascii?Q?BZHvqcZQsNjVv4JP8804ucsTEjDl01SGtuAhlSpupS/MYMhPHZyIw0PUPA2C?=
+ =?us-ascii?Q?MlpTwpGl0gEz/bo1wnBXCH5+0HHG9xNtvVdEOc/0whwWKVvVETTciR1g3Moo?=
+ =?us-ascii?Q?ZxqC2jWhvBhNDh2cyabutH74+oeAWkhFp9qwv0l9L6icCnHmH0+kJd1/hyFQ?=
+ =?us-ascii?Q?vTe21DllH2u65zPCUvEXs6kg/42nPg26S0a5UhRmoOt07WuXHwIybV7dBHIl?=
+ =?us-ascii?Q?jHV/LMdWmtkP1EAABy0FblIH3hcflKofgU39To9VKsytWnTy0OqICnSJL94T?=
+ =?us-ascii?Q?OjRujaFIdswobXnj8DHb7JEmdLXrEI7GNz+EAVrp/u2h7ZL7BkAjRWVlVHOK?=
+ =?us-ascii?Q?v1FfYoMV37zYtnbcgJx6io3pKvSuhlhwGtBPWMVB5qZRSxFmrJMj2n9Ud/1I?=
+ =?us-ascii?Q?J5M=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?scGAGeieDVFJtP3XPCBHMzBEsTraMRihMcWRosm7FiJIZIhOyL3lvEzWJB64?=
+ =?us-ascii?Q?qSlRoEy5pMx1VcFHidk/cY7vG9Nk1mDhvcG+NCDQjqD8cFudjRLsJgSl01MZ?=
+ =?us-ascii?Q?O9vTmoVMHgN/H3oxag2OaV2sWxxsPmqD6iVa79WVVkXbc7QCOW443TwupnPG?=
+ =?us-ascii?Q?LovcLCqrRPl3UmRmeHdwcps3c28SQW6HQ3c/M0IF+uowLVnxgsG9tt9sCkwc?=
+ =?us-ascii?Q?XLzL5Eki6bmHRtb32BwJnIMX8tTJnrhKrReeUCYauxoJ3luMlrY7DPb7aWxY?=
+ =?us-ascii?Q?2zMOFucvuxumub7Q9B5+ykS+XBcinFdc78f7ZDk704Wsih2vKYPPF2NKkzFA?=
+ =?us-ascii?Q?uMSoEuR5a7J16cSv1fvGsgQsepDHBdUd6yLbr0mBAHVoiVx5QaSThLxJmS+P?=
+ =?us-ascii?Q?VZWJ1bmFrNNxy32HSRSRnX5gfJoZF9Snr+A5z9Qu97KwexQpJ7OmOX7kDmYR?=
+ =?us-ascii?Q?7gTPxGiMcAGPQN/peZi6raBs99tyo7zFVgI8SRrA4wgw28jpeR1mjq5yysi8?=
+ =?us-ascii?Q?VndZB+BH7rA8m8ddgqWvDWnUJpmE2B3Ms2idfpBNKGc6jrAfhBzqUeVcLPwT?=
+ =?us-ascii?Q?Tbg3E74gqMQJFPutTzu3grZKBr/5cc8o/FaQAFinDNgDE2NcZFDKrLu+mgXu?=
+ =?us-ascii?Q?aIpI+yhM2CcrbTjzmSMJ6w9RnDh1WdsJrahJEN+5xTKsiMsJSTp2ZVYXM9kW?=
+ =?us-ascii?Q?tvcVZ/QNRA5+RR15xFH5y+J5m0XZhoYNuSR5BGTEs7kHMoRJP3P/r5jZ74XN?=
+ =?us-ascii?Q?EH2T1ou+09sdVVubbfjfHzhF30M9BmO2SlEWURSmd/UOO6c5g1N2/veqBq1i?=
+ =?us-ascii?Q?ap8ADR+SmnYJ+LEEdNY4K4Pv29WjvhZpev2CNMynTndRCi5oQJJWE1hK14pw?=
+ =?us-ascii?Q?wrX/2+83HvwNR7oPuxbKoxH+zjL9YRXh2ZFJm/h+H9AKerN5+3T+bY8kdb2u?=
+ =?us-ascii?Q?C+jo5JczINjXWw8Ryx1chfH216+SMxW33Sxt+oJtivJBt3otxXbQqr9N3MuO?=
+ =?us-ascii?Q?HAR4U7vvN8POf8yAk2zwrQyNQaHRlUdMmgybdvaDEWpJPZKAIQ5gbJ6YBtoJ?=
+ =?us-ascii?Q?Y1pfr3Wx7CsXEDtSNKHoYWr5uJCz1th6wuc/qYCvO8k+B5tkvkKo31JjXpYb?=
+ =?us-ascii?Q?yAbocV8EqQk9vNFIYp9yGQxzkUayf/vwqRHv1bfZKvbMC7xpyOS45owITU8/?=
+ =?us-ascii?Q?xR4fNXpn6Rb/54q2UKsQjHpPYxfOvAsj6L+2r+ml3CtEsERVAGqbuC9Jkr/5?=
+ =?us-ascii?Q?vI+BO0nXdO8ZhOPupozQdZyRpZlZhuKGgvvMbercgWfItwx0ihVeQ4SWFhc8?=
+ =?us-ascii?Q?Hjmzbwj1CZ3TIq6aClHvHY2rNtavlA0mdhrpZiAjPVxDJIWF11JUqDHC/E1Y?=
+ =?us-ascii?Q?a/bFc1e8/4H9clVGhYSiHQIBKHB0LaGUz7w4mIpAVKTrmtOCqWBj2bBNXC2w?=
+ =?us-ascii?Q?y3KJaqVNpndud9854qDYfWLDu7ukqEUaU4p3yxnoILbPIiHFxLBknYD9hxhF?=
+ =?us-ascii?Q?XumpGx2Wy10CtjruUuL926JV0OIFlK0n5967IeLm2bH3repE+v9dTGso6SdC?=
+ =?us-ascii?Q?kHi9k7fHzGT74RqHrDCfnVo4jRlIus02l0ZztZ8On5LCJxyu4P5+ow66/vul?=
+ =?us-ascii?Q?sQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e2f0356a-2b33-4175-7af7-08dca2b50980
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2024 20:56:01.3738 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QYPSyK3OfGbtnOPhb1Q8ZzM/ZJpGCYHpg/j6soBxXYwWFo8k0vvP2b2wYjzshAM/FALOWVIOy8QyJq9FXPgB63a36Sm6bkrBPO03vSaMoBs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR11MB5811
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,1181 +176,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Thu, Jul 11, 2024 at 11:02:45PM GMT, Michal Wajdeczko wrote:
+>
+>
+>On 11.07.2024 22:17, Patchwork wrote:
+>> == Series Details ==
+>>
+>> Series: drm/xe/pf: Limit fair VF LMEM provisioning
+>> URL   : https://patchwork.freedesktop.org/series/136010/
+>> State : failure
+>>
+>> == Summary ==
+>>
+>> CI Bug Log - changes from xe-1597-3bcdb3f9a5370e29bc971883307487527c3e6a65_BAT -> xe-pw-136010v1_BAT
+>> ====================================================
+>>
+>> Summary
+>> -------
+>>
+>>   **FAILURE**
+>>
+>>   Serious unknown changes coming with xe-pw-136010v1_BAT absolutely need to be
+>>   verified manually.
+>>
+>>   If you think the reported changes have nothing to do with the changes
+>>   introduced in xe-pw-136010v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>>   to document this new failure mode, which will reduce false positives in CI.
+>>
+>>
+>>
+>> Participating hosts (7 -> 7)
+>> ------------------------------
+>>
+>>   No changes in participating hosts
+>>
+>> Possible new issues
+>> -------------------
+>>
+>>   Here are the unknown changes that may have been introduced in xe-pw-136010v1_BAT:
+>>
+>> ### IGT changes ###
+>>
+>> #### Possible regressions ####
+>>
+>>   * igt@xe_gt_freq@freq_fixed_idle:
+>>     - bat-adlp-7:         [PASS][1] -> [FAIL][2]
+>>    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1597-3bcdb3f9a5370e29bc971883307487527c3e6a65/bat-adlp-7/igt@xe_gt_freq@freq_fixed_idle.html
+>>    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136010v1/bat-adlp-7/igt@xe_gt_freq@freq_fixed_idle.html
+>
+>this test was executed _after_ running some SR-IOV specific test that
+>forced GuC to run in the VGT mode, which might have some side-effect
+>that is not accounted by the test, or it's just a noise
+>
+>
+><7>[  380.254006] [IGT] sriov_basic: starting subtest
+>enable-vfs-autoprobe-off
+><7>[  380.254694] [IGT] sriov_basic: starting dynamic subtest numvfs-all
+><6>[  380.485443] xe 0000:00:02.0: [drm] PF: Enabled 7 of 7 VFs
+>...
+><6>[  381.607087] xe 0000:00:02.0: [drm] PF: Disabled 7 VFs
+><7>[  381.607448] [IGT] sriov_basic: finished subtest numvfs-all, SUCCESS
+>
+>...
+>
+><7>[  392.445578] [IGT] xe_gt_freq: starting subtest freq_fixed_idle
+><7>[  392.672710] [IGT] xe_gt_freq: finished subtest freq_fixed_idle, FAIL
+>
+>
+>>
+>>
+>> Known issues
+>> ------------
+>>
+>>   Here are the changes found in xe-pw-136010v1_BAT that come from known issues:
+>>
+>> ### IGT changes ###
+>>
+>> #### Possible fixes ####
+>>
+>>   * igt@sriov_basic@enable-vfs-autoprobe-off:
+>>     - bat-atsm-2:         [SKIP][3] ([Intel XE#1932]) -> [PASS][4]
+>>    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1597-3bcdb3f9a5370e29bc971883307487527c3e6a65/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-off.html
+>>    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136010v1/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-off.html
+>>     - bat-adlp-7:         [SKIP][5] ([Intel XE#1932]) -> [PASS][6]
+>>    [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1597-3bcdb3f9a5370e29bc971883307487527c3e6a65/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-off.html
+>>    [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136010v1/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-off.html
+>
+>this is expected fix, but I was expecting also fix for:
+>
+>	igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1
+>
+>that was recently added to BAT by [B]
+>
+>[B] https://patchwork.freedesktop.org/patch/602461/?series=135803&rev=1
+
+it's not that it didn't fix... it wasn't executed before:
+https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136010v1/bat-all.html?testfilter=sriov
+
+>
+>
+>>
+>>
+>>   [Intel XE#1932]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1932
+>>
+>>
+>> Build changes
+>> -------------
+>>
+>>   * IGT: IGT_7924 -> IGT_7925
+
+and if you look at 
+https://intel-gfx-ci.01.org/tree/intel-xe/bat-all.html?testfilter=sriov
+
+you will see that IGT_7925 didn't have this test, only IGT_7926...
 
 
-On 12.07.2024 18:47, Zhanjun Dong wrote:
-> Add referenced registers defines and list of registers.
-> Update GuC ADS size allocation to include space for
-> the lists of error state capture register descriptors.
-> 
-> Then, populate GuC ADS with the lists of registers we want
-> GuC to report back to host on engine reset events. This list
-> should include global, engine-class and engine-instance
-> registers for every engine-class type on the current hardware.
-> 
-> Ensure we allocate a persistent store for the register lists
-> that are populated into ADS so that we don't need to allocate
-> memory during GT resets when GuC is reloaded and ADS population
-> happens again.
-> 
-> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-> ---
->  drivers/gpu/drm/xe/Makefile                   |   1 +
->  drivers/gpu/drm/xe/abi/guc_capture_abi.h      | 144 ++++++
->  .../drm/xe/abi/guc_communication_mmio_abi.h   |  23 +
->  drivers/gpu/drm/xe/xe_guc.c                   |   5 +
->  drivers/gpu/drm/xe/xe_guc.h                   |  29 ++
->  drivers/gpu/drm/xe/xe_guc_ads.c               | 151 +++++-
->  drivers/gpu/drm/xe/xe_guc_ads_types.h         |   2 +
->  drivers/gpu/drm/xe/xe_guc_capture.c           | 454 ++++++++++++++++++
->  drivers/gpu/drm/xe/xe_guc_capture.h           |  22 +
->  drivers/gpu/drm/xe/xe_guc_capture_types.h     |  55 +++
->  drivers/gpu/drm/xe/xe_guc_fwif.h              |  26 +-
->  drivers/gpu/drm/xe/xe_guc_types.h             |   2 +
->  12 files changed, 877 insertions(+), 37 deletions(-)
->  create mode 100644 drivers/gpu/drm/xe/abi/guc_capture_abi.h
->  create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.c
->  create mode 100644 drivers/gpu/drm/xe/xe_guc_capture.h
->  create mode 100644 drivers/gpu/drm/xe/xe_guc_capture_types.h
-> 
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index 1ff9602a52f6..2d8f8acaf846 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -57,6 +57,7 @@ xe-y += xe_bb.o \
->  	xe_gt_topology.o \
->  	xe_guc.o \
->  	xe_guc_ads.o \
-> +	xe_guc_capture.o \
->  	xe_guc_ct.o \
->  	xe_guc_db_mgr.o \
->  	xe_guc_debugfs.o \
-> diff --git a/drivers/gpu/drm/xe/abi/guc_capture_abi.h b/drivers/gpu/drm/xe/abi/guc_capture_abi.h
-> new file mode 100644
-> index 000000000000..c71630aed49b
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/abi/guc_capture_abi.h
-> @@ -0,0 +1,144 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2024 Intel Corporation
-> + */
-> +
-> +#ifndef _ABI_GUC_CAPTURE_ABI_H
-> +#define _ABI_GUC_CAPTURE_ABI_H
-> +
-> +#include <linux/types.h>
-> +
-> +#include "abi/guc_communication_mmio_abi.h"
+so, it seems safe to apply.
 
-hmm, IIUC, "capture" uses ADS data and CTB communication, not MMIO, so
-this looks like a wrong header
+Lucas De Marchi
 
-> +
-> +/* Capture List Index */
-> +enum guc_capture_list_index_type {
-> +	GUC_CAPTURE_LIST_INDEX_PF = 0,
-> +	GUC_CAPTURE_LIST_INDEX_VF = 1,
-> +	GUC_CAPTURE_LIST_INDEX_MAX = 2
-
-IMO, this MAX shouldn't be part of enum, if we want to benefit from
-using enum as index
-
-> +};
-> +
-> +/* Register-types of GuC capture register lists */
-> +enum guc_state_capture_type {
-> +	GUC_STATE_CAPTURE_TYPE_GLOBAL = 0,
-> +	GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS,
-> +	GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE
-> +};
-> +
-> +#define GUC_STATE_CAPTURE_TYPE_MAX	(GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE + 1)
-> +
-> +/* Class indecies for capture_class and capture_instance arrays */
-> +enum guc_capture_list_class_type {
-> +	GUC_CAPTURE_LIST_CLASS_RENDER_COMPUTE = 0,
-> +	GUC_CAPTURE_LIST_CLASS_VIDEO = 1,
-> +	GUC_CAPTURE_LIST_CLASS_VIDEOENHANCE = 2,
-> +	GUC_CAPTURE_LIST_CLASS_BLITTER = 3,
-> +	GUC_CAPTURE_LIST_CLASS_GSC_OTHER = 4,
-> +	GUC_CAPTURE_LIST_CLASS_MAX  = 5
-> +};
-> +
-> +/**
-> + * struct guc_debug_capture_list_header - Debug capture list header.
-> + *
-> + * Debug capture list header.
-> + */
-> +struct guc_debug_capture_list_header {
-> +	/** @info: contains number of MMIO descriptors in the capture list. */
-> +	u32 info;
-> +#define GUC_CAPTURELISTHDR_NUMDESCR GENMASK(15, 0)
-> +} __packed;
-> +
-> +/**
-> + * struct guc_debug_capture_list - Debug capture list
-> + *
-> + * As part of ADS registration, these header structures (followed by
-> + * an array of 'struct guc_mmio_reg' entries) are used to register with
-> + * GuC microkernel the list of registers we want it to dump out prior
-> + * to a engine reset.
-> + */
-> +struct guc_debug_capture_list {
-> +	/** @header: Debug capture list header. */
-> +	struct guc_debug_capture_list_header header;
-> +	/** @regs: MMIO descriptors in the capture list. */
-> +	struct guc_mmio_reg regs[];
-> +} __packed;
-> +
-> +/**
-> + * struct guc_state_capture_header_t - State capture header.
-> + *
-> + * Prior to resetting engines that have hung or faulted, GuC microkernel
-> + * reports the engine error-state (register values that was read) by
-> + * logging them into the shared GuC log buffer using these hierarchy
-> + * of structures.
-> + */
-> +struct guc_state_capture_header_t {
-> +	/**
-> +	 * @owner: VFID
-> +	 * BR[ 7: 0] MBZ when SRIOV is disabled. When SRIOV is enabled
-> +	 * VFID is an integer in range [0, 63] where 0 means the state capture
-> +	 * is corresponding to the PF and an integer N in range [1, 63] means
-> +	 * the state capture is for VF N.
-> +	 */
-> +	u32 owner;
-> +#define GUC_STATE_CAPTURE_HEADER_VFID GENMASK(7, 0)
-> +	/** @info: Engine class/instance and capture type info */
-> +	u32 info;
-> +#define GUC_STATE_CAPTURE_HEADER_CAPTURE_TYPE GENMASK(3, 0) /* see guc_state_capture_type */
-> +#define GUC_STATE_CAPTURE_HEADER_ENGINE_CLASS GENMASK(7, 4) /* see guc_capture_list_class_type */
-> +#define GUC_STATE_CAPTURE_HEADER_ENGINE_INSTANCE GENMASK(11, 8)
-> +	/** @lrca: logical ring context address. */
-> +	u32 lrca; /* if type-instance, LRCA (address) that hung, else set to ~0 */
-
-keep comments in one block:
-
-	/**
-	 * @lrca: logical ring context address.
-	 * if type-instance, LRCA (address) that hung, else set to ~0
-	 */
-
-> +	/** @guc_id: context_index. */
-> +	u32 guc_id; /* if type-instance, context index of hung context, else set to ~0 */
-
-ditto
-
-> +	/** @num_mmio_entries: Number of captured MMIO entries. */
-> +	u32 num_mmio_entries;
-> +#define GUC_STATE_CAPTURE_HEADER_NUM_MMIO_ENTRIES GENMASK(9, 0)
-> +} __packed;
-> +
-> +/**
-> + * struct guc_state_capture_t - State capture.
-> + *
-> + * State capture
-> + */
-> +struct guc_state_capture_t {
-> +	/** @header: State capture header. */
-> +	struct guc_state_capture_header_t header;
-> +	/** @mmio_entries: Array of captured guc_mmio_reg entries. */
-> +	struct guc_mmio_reg mmio_entries[];
-> +} __packed;
-> +
-> +/* State Capture Group Type */
-> +enum guc_state_capture_group_type {
-> +	GUC_STATE_CAPTURE_GROUP_TYPE_FULL = 0,
-> +	GUC_STATE_CAPTURE_GROUP_TYPE_PARTIAL
-> +};
-> +
-> +#define GUC_STATE_CAPTURE_GROUP_TYPE_MAX (GUC_STATE_CAPTURE_GROUP_TYPE_PARTIAL + 1)
-> +
-> +/**
-> + * struct guc_state_capture_group_header_t - State capture group header
-> + *
-> + * State capture group header.
-> + */
-> +struct guc_state_capture_group_header_t {
-> +	/** @owner: VFID */
-> +	u32 owner;
-> +#define GUC_STATE_CAPTURE_GROUP_HEADER_VFID GENMASK(7, 0)
-> +	/** @info: Engine class/instance and capture type info */
-> +	u32 info;
-> +#define GUC_STATE_CAPTURE_GROUP_HEADER_NUM_CAPTURES GENMASK(7, 0)
-> +#define GUC_STATE_CAPTURE_GROUP_HEADER_CAPTURE_GROUP_TYPE GENMASK(15, 8)
-> +} __packed;
-> +
-> +/**
-> + * struct guc_state_capture_group_t - State capture group.
-> + *
-> + * this is the top level structure where an error-capture dump starts
-> + */
-> +struct guc_state_capture_group_t {
-> +	/** @grp_header: State capture group header. */
-> +	struct guc_state_capture_group_header_t grp_header;
-> +	/** @capture_entries: Array of state captures */
-> +	struct guc_state_capture_t capture_entries[];
-> +} __packed;
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/abi/guc_communication_mmio_abi.h b/drivers/gpu/drm/xe/abi/guc_communication_mmio_abi.h
-> index ef538e34f894..219b40063f43 100644
-> --- a/drivers/gpu/drm/xe/abi/guc_communication_mmio_abi.h
-> +++ b/drivers/gpu/drm/xe/abi/guc_communication_mmio_abi.h
-> @@ -6,6 +6,29 @@
->  #ifndef _ABI_GUC_COMMUNICATION_MMIO_ABI_H
->  #define _ABI_GUC_COMMUNICATION_MMIO_ABI_H
->  
-> +#include <linux/types.h>
-> +
-> +/* GuC MMIO reg state struct */
-> +struct guc_mmio_reg {
-> +	u32 offset;
-> +	u32 value;
-> +	u32 flags;
-> +	u32 mask;
-> +#define GUC_REGSET_MASKED		BIT(0)
-> +#define GUC_REGSET_STEERING_NEEDED	BIT(1)
-> +#define GUC_REGSET_MASKED_WITH_VALUE	BIT(2)
-> +#define GUC_REGSET_RESTORE_ONLY		BIT(3)
-> +#define GUC_REGSET_STEERING_GROUP       GENMASK(16, 12)
-> +#define GUC_REGSET_STEERING_INSTANCE    GENMASK(23, 20)
-> +} __packed;
-> +
-> +/* GuC register sets */
-> +struct guc_mmio_reg_set {
-> +	u32 address;
-> +	u16 count;
-> +	u16 reserved;
-> +} __packed;
-> +
-
-this ABI header is for definitions related to 'communication over MMIO'
-
-your additions do not fit here!
-
-move to guc_ads_abi.h or guc_capture_abi.h
-
->  /**
->   * DOC: GuC MMIO based communication
->   *
-> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> index eb655cee19f7..5e108cedbdc5 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc.c
-> @@ -22,6 +22,7 @@
->  #include "xe_gt_sriov_vf.h"
->  #include "xe_gt_throttle.h"
->  #include "xe_guc_ads.h"
-> +#include "xe_guc_capture.h"
->  #include "xe_guc_ct.h"
->  #include "xe_guc_db_mgr.h"
->  #include "xe_guc_hwconfig.h"
-> @@ -338,6 +339,10 @@ int xe_guc_init(struct xe_guc *guc)
->  	if (ret)
->  		goto out;
->  
-> +	ret = xe_guc_capture_init(guc);
-> +	if (ret)
-> +		goto out;
-> +
->  	ret = xe_guc_ads_init(&guc->ads);
->  	if (ret)
->  		goto out;
-> diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
-> index af59c9545753..a823c5b8ab22 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.h
-> +++ b/drivers/gpu/drm/xe/xe_guc.h
-> @@ -59,6 +59,30 @@ static inline u16 xe_engine_class_to_guc_class(enum xe_engine_class class)
->  	}
->  }
->  
-> +static inline enum guc_capture_list_class_type xe_guc_class_to_capture_class(uint class)
-
-we don't use 'uint', use 'u16' or 'unsigned int'
-
-> +{
-> +	switch (class) {
-> +	case GUC_RENDER_CLASS:
-> +	case GUC_COMPUTE_CLASS:
-> +		return GUC_CAPTURE_LIST_CLASS_RENDER_COMPUTE;
-> +	case GUC_GSC_OTHER_CLASS:
-> +		return GUC_CAPTURE_LIST_CLASS_GSC_OTHER;
-> +	case GUC_VIDEO_CLASS:
-> +	case GUC_VIDEOENHANCE_CLASS:
-> +	case GUC_BLITTER_CLASS:
-> +		return class;
-> +	default:
-> +		XE_WARN_ON(class);
-> +		return -1;
-
-if you want to return -1 then function should be of type 'int' not 'enum
-guc_capture_list_class_type'
-
-> +	}
-> +}
-> +
-> +static inline enum guc_capture_list_class_type
-> +xe_engine_class_to_guc_capture_class(enum xe_engine_class class)
-> +{
-> +	return xe_guc_class_to_capture_class(xe_engine_class_to_guc_class(class));
-> +}
-> +
-
-and wouldn't above inlines be better fit in xe_guc_capture.h ?
-
->  static inline struct xe_gt *guc_to_gt(struct xe_guc *guc)
->  {
->  	return container_of(guc, struct xe_gt, uc.guc);
-> @@ -69,4 +93,9 @@ static inline struct xe_device *guc_to_xe(struct xe_guc *guc)
->  	return gt_to_xe(guc_to_gt(guc));
->  }
->  
-> +static inline struct drm_device *guc_to_drm(struct xe_guc *guc)
-> +{
-> +	return &guc_to_xe(guc)->drm;
-> +}
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-> index 1c60b685dbc6..533eb5285942 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-> @@ -18,6 +18,7 @@
->  #include "xe_gt_ccs_mode.h"
->  #include "xe_gt_printk.h"
->  #include "xe_guc.h"
-> +#include "xe_guc_capture.h"
->  #include "xe_guc_ct.h"
->  #include "xe_hw_engine.h"
->  #include "xe_lrc.h"
-> @@ -148,8 +149,7 @@ static u32 guc_ads_waklv_size(struct xe_guc_ads *ads)
->  
->  static size_t guc_ads_capture_size(struct xe_guc_ads *ads)
->  {
-> -	/* FIXME: Allocate a proper capture list */
-> -	return PAGE_ALIGN(PAGE_SIZE);
-> +	return PAGE_ALIGN(ads->capture_size);
->  }
->  
->  static size_t guc_ads_um_queues_size(struct xe_guc_ads *ads)
-> @@ -398,6 +398,7 @@ int xe_guc_ads_init(struct xe_guc_ads *ads)
->  	struct xe_bo *bo;
->  
->  	ads->golden_lrc_size = calculate_golden_lrc_size(ads);
-> +	ads->capture_size = xe_guc_capture_ads_input_worst_size(ads_to_guc(ads));
->  	ads->regset_size = calculate_regset_size(gt);
->  	ads->ads_waklv_size = calculate_waklv_size(ads);
->  
-> @@ -417,9 +418,9 @@ int xe_guc_ads_init(struct xe_guc_ads *ads)
->   * xe_guc_ads_init_post_hwconfig - initialize ADS post hwconfig load
->   * @ads: Additional data structures object
->   *
-> - * Recalcuate golden_lrc_size & regset_size as the number hardware engines may
-> - * have changed after the hwconfig was loaded. Also verify the new sizes fit in
-> - * the already allocated ADS buffer object.
-> + * Recalculate golden_lrc_size, capture_size and regset_size as the number
-> + * hardware engines may have changed after the hwconfig was loaded. Also verify
-> + * the new sizes fit in the already allocated ADS buffer object.
->   *
->   * Return: 0 on success, negative error code on error.
->   */
-> @@ -431,6 +432,8 @@ int xe_guc_ads_init_post_hwconfig(struct xe_guc_ads *ads)
->  	xe_gt_assert(gt, ads->bo);
->  
->  	ads->golden_lrc_size = calculate_golden_lrc_size(ads);
-> +	/* Calculate Capture size with worst size */
-> +	ads->capture_size = xe_guc_capture_ads_input_worst_size(ads_to_guc(ads));
->  	ads->regset_size = calculate_regset_size(gt);
->  
->  	xe_gt_assert(gt, ads->golden_lrc_size +
-> @@ -530,20 +533,142 @@ static void guc_mapping_table_init(struct xe_gt *gt,
->  	}
->  }
->  
-> -static void guc_capture_list_init(struct xe_guc_ads *ads)
-> +static u32 guc_get_capture_engine_mask(struct xe_gt *gt, struct iosys_map *info_map,
-> +				       enum guc_capture_list_class_type capture_class)
->  {
-> +	struct xe_device *xe = gt_to_xe(gt);
-> +	u32 mask;
-> +
-> +	switch (capture_class) {
-> +	case GUC_CAPTURE_LIST_CLASS_RENDER_COMPUTE:
-> +		mask = info_map_read(xe, info_map, engine_enabled_masks[GUC_RENDER_CLASS]);
-> +		mask |= info_map_read(xe, info_map, engine_enabled_masks[GUC_COMPUTE_CLASS]);
-> +		break;
-> +	case GUC_CAPTURE_LIST_CLASS_VIDEO:
-> +		mask = info_map_read(xe, info_map, engine_enabled_masks[GUC_VIDEO_CLASS]);
-> +		break;
-> +	case GUC_CAPTURE_LIST_CLASS_VIDEOENHANCE:
-> +		mask = info_map_read(xe, info_map, engine_enabled_masks[GUC_VIDEOENHANCE_CLASS]);
-> +		break;
-> +	case GUC_CAPTURE_LIST_CLASS_BLITTER:
-> +		mask = info_map_read(xe, info_map, engine_enabled_masks[GUC_BLITTER_CLASS]);
-> +		break;
-> +	case GUC_CAPTURE_LIST_CLASS_GSC_OTHER:
-> +		mask = info_map_read(xe, info_map, engine_enabled_masks[GUC_GSC_OTHER_CLASS]);
-> +		break;
-> +	default:
-> +		mask = 0;
-> +	}
-> +
-> +	return mask;
-> +}
-> +
-> +static inline bool get_capture_list(struct xe_guc_ads *ads, struct xe_guc *guc, struct xe_gt *gt,
-> +				    int owner, int type, int class, u32 *total_size, size_t *size,
-> +				    void **pptr)
-> +{
-> +	*size = 0;
-> +
-> +	if (!xe_guc_capture_getlistsize(guc, owner, type, class, size)) {
-> +		if (*total_size + *size > ads->capture_size)
-> +			xe_gt_dbg(gt, "Capture size overflow :%zu vs %d\n",
-> +				  *total_size + *size, ads->capture_size);
-> +		else if (!xe_guc_capture_getlist(guc, owner, type, class, pptr))
-> +			return false;
-> +	}
-> +
-> +	return true;
-> +}
-> +
-> +static int guc_capture_prep_lists(struct xe_guc_ads *ads)
-> +{
-> +	struct xe_guc *guc = ads_to_guc(ads);
-> +	struct xe_gt *gt = ads_to_gt(ads);
-> +	u32 ads_ggtt, capture_offset, null_ggtt, total_size = 0;
-> +	struct iosys_map info_map;
-> +	size_t size = 0;
-> +	void *ptr;
->  	int i, j;
-> -	u32 addr = xe_bo_ggtt_addr(ads->bo) + guc_ads_capture_offset(ads);
->  
-> -	/* FIXME: Populate a proper capture list */
-> +	capture_offset = guc_ads_capture_offset(ads);
-> +	ads_ggtt = xe_bo_ggtt_addr(ads->bo);
-> +	info_map = IOSYS_MAP_INIT_OFFSET(ads_to_map(ads),
-> +					 offsetof(struct __guc_ads_blob, system_info));
-> +
-> +	/* first, set aside the first page for a capture_list with zero descriptors */
-> +	total_size = PAGE_SIZE;
-> +	if (!xe_guc_capture_getnullheader(guc, &ptr, &size))
-> +		xe_map_memcpy_to(ads_to_xe(ads), ads_to_map(ads), capture_offset, ptr, size);
-> +
-> +	null_ggtt = ads_ggtt + capture_offset;
-> +	capture_offset += PAGE_SIZE;
-> +
-> +	/*
-> +	 * Populate capture list : at this point adps is already allocated and
-> +	 * mapped to worst case size
-> +	 */
->  	for (i = 0; i < GUC_CAPTURE_LIST_INDEX_MAX; i++) {
-> -		for (j = 0; j < GUC_MAX_ENGINE_CLASSES; j++) {
-> -			ads_blob_write(ads, ads.capture_instance[i][j], addr);
-> -			ads_blob_write(ads, ads.capture_class[i][j], addr);
-> +		bool write_empty_list;
-> +
-> +		for (j = 0; j < GUC_CAPTURE_LIST_CLASS_MAX; j++) {
-> +			u32 engine_mask = guc_get_capture_engine_mask(gt, &info_map, j);
-> +			/* null list if we dont have said engine or list */
-> +			if (!engine_mask) {
-> +				ads_blob_write(ads, ads.capture_class[i][j], null_ggtt);
-> +				ads_blob_write(ads, ads.capture_instance[i][j], null_ggtt);
-> +				continue;
-> +			}
-> +
-> +			/* engine exists: start with engine-class registers */
-> +			write_empty_list = get_capture_list(ads, guc, gt, i,
-> +							    GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS,
-> +							    j, &total_size, &size, &ptr);
-> +			if (!write_empty_list) {
-> +				ads_blob_write(ads, ads.capture_class[i][j],
-> +					       ads_ggtt + capture_offset);
-> +				xe_map_memcpy_to(ads_to_xe(ads), ads_to_map(ads), capture_offset,
-> +						 ptr, size);
-> +				total_size += size;
-> +				capture_offset += size;
-> +			} else {
-> +				ads_blob_write(ads, ads.capture_class[i][j], null_ggtt);
-> +			}
-> +
-> +			/* engine exists: next, engine-instance registers   */
-> +			write_empty_list = get_capture_list(ads, guc, gt, i,
-> +							    GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE,
-> +							    j, &total_size, &size, &ptr);
-> +			if (!write_empty_list) {
-> +				ads_blob_write(ads, ads.capture_instance[i][j],
-> +					       ads_ggtt + capture_offset);
-> +				xe_map_memcpy_to(ads_to_xe(ads), ads_to_map(ads), capture_offset,
-> +						 ptr, size);
-> +				total_size += size;
-> +				capture_offset += size;
-> +			} else {
-> +				ads_blob_write(ads, ads.capture_instance[i][j], null_ggtt);
-> +			}
->  		}
->  
-> -		ads_blob_write(ads, ads.capture_global[i], addr);
-> +		/* global registers is last in our PF/VF loops */
-> +		write_empty_list = get_capture_list(ads, guc, gt, i,
-> +						    GUC_STATE_CAPTURE_TYPE_GLOBAL,
-> +						    0, &total_size, &size, &ptr);
-> +		if (!write_empty_list) {
-> +			ads_blob_write(ads, ads.capture_global[i], ads_ggtt + capture_offset);
-> +			xe_map_memcpy_to(ads_to_xe(ads), ads_to_map(ads), capture_offset, ptr,
-> +					 size);
-> +			total_size += size;
-> +			capture_offset += size;
-> +		} else {
-> +			ads_blob_write(ads, ads.capture_global[i], null_ggtt);
-> +		}
->  	}
-> +
-> +	if (ads->capture_size != PAGE_ALIGN(total_size))
-> +		xe_gt_dbg(gt, "ADS capture alloc size changed from %d to %d\n",
-> +			  ads->capture_size, PAGE_ALIGN(total_size));
-> +	return PAGE_ALIGN(total_size);
->  }
->  
->  static void guc_mmio_regset_write_one(struct xe_guc_ads *ads,
-> @@ -732,7 +857,7 @@ void xe_guc_ads_populate(struct xe_guc_ads *ads)
->  	guc_mmio_reg_state_init(ads);
->  	guc_prep_golden_lrc_null(ads);
->  	guc_mapping_table_init(gt, &info_map);
-> -	guc_capture_list_init(ads);
-> +	guc_capture_prep_lists(ads);
->  	guc_doorbell_init(ads);
->  	guc_waklv_init(ads);
->  
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ads_types.h b/drivers/gpu/drm/xe/xe_guc_ads_types.h
-> index 2de5decfe0fd..70c132458ac3 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ads_types.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_ads_types.h
-> @@ -22,6 +22,8 @@ struct xe_guc_ads {
->  	u32 regset_size;
->  	/** @ads_waklv_size: total waklv size supported by platform */
->  	u32 ads_waklv_size;
-> +	/** @capture_size: size of register set passed to GuC for capture */
-> +	u32 capture_size;
->  };
->  
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
-> new file mode 100644
-> index 000000000000..f520c5fe0363
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_guc_capture.c
-> @@ -0,0 +1,454 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2021-2024 Intel Corporation
-> + */
-> +
-> +#include <linux/types.h>
-> +
-> +#include <drm/drm_managed.h>
-> +#include <drm/drm_print.h>
-> +
-> +#include "abi/guc_actions_abi.h"
-> +#include "abi/guc_capture_abi.h"
-> +#include "regs/xe_engine_regs.h"
-> +#include "regs/xe_gt_regs.h"
-> +#include "regs/xe_guc_regs.h"
-> +#include "regs/xe_regs.h"
-> +
-> +#include "xe_bo.h"
-> +#include "xe_device.h"
-> +#include "xe_exec_queue_types.h"
-> +#include "xe_gt.h"
-> +#include "xe_gt_mcr.h"
-> +#include "xe_gt_printk.h"
-> +#include "xe_guc.h"
-> +#include "xe_guc_capture.h"
-> +#include "xe_guc_capture_types.h"
-> +#include "xe_guc_ct.h"
-> +#include "xe_guc_log.h"
-> +#include "xe_guc_submit.h"
-> +#include "xe_hw_engine_types.h"
-> +#include "xe_macros.h"
-> +#include "xe_map.h"
-> +
-> +/*
-> + * Define all device tables of GuC error capture register lists
-> + * NOTE: For engine-registers, GuC only needs the register offsets
-> + *       from the engine-mmio-base
-> + */
-> +#define COMMON_XELP_BASE_GLOBAL \
-> +	{ FORCEWAKE_GT,		    0,      0}
-> +
-> +#define COMMON_BASE_ENGINE_INSTANCE \
-> +	{ RING_ESR(0),              0,      0}, \
-> +	{ RING_EMR(0),              0,      0}, \
-> +	{ RING_EIR(0),              0,      0}, \
-> +	{ RING_EXECLIST_STATUS_HI(0), 0,    0}, \
-> +	{ RING_EXECLIST_STATUS_LO(0), 0,    0}, \
-> +	{ RING_DMA_FADD(0),         0,      0}, \
-> +	{ RING_DMA_FADD_UDW(0),     0,      0}, \
-> +	{ RING_IPEHR(0),            0,      0}, \
-> +	{ RING_BBADDR(0),           0,      0}, \
-> +	{ RING_BBADDR_UDW(0),       0,      0}, \
-> +	{ RING_ACTHD(0),            0,      0}, \
-> +	{ RING_ACTHD_UDW(0),        0,      0}, \
-> +	{ RING_START(0),            0,      0}, \
-> +	{ RING_HEAD(0),             0,      0}, \
-> +	{ RING_TAIL(0),             0,      0}, \
-> +	{ RING_CTL(0),              0,      0}, \
-> +	{ RING_MI_MODE(0),          0,      0}, \
-> +	{ RING_HWS_PGA(0),          0,      0}, \
-> +	{ RING_MODE(0),             0,      0}
-> +
-> +/* XE_LP Global */
-> +static const struct __guc_mmio_reg_descr xe_lp_global_regs[] = {
-> +	COMMON_XELP_BASE_GLOBAL,
-> +};
-> +
-> +/* Render / Compute Per-Engine-Instance */
-> +static const struct __guc_mmio_reg_descr xe_rc_inst_regs[] = {
-> +	COMMON_BASE_ENGINE_INSTANCE,
-> +};
-> +
-> +/* Media Decode/Encode Per-Engine-Instance */
-> +static const struct __guc_mmio_reg_descr xe_vd_inst_regs[] = {
-> +	COMMON_BASE_ENGINE_INSTANCE,
-> +};
-> +
-> +/* Video Enhancement Per-Engine-Instance */
-> +static const struct __guc_mmio_reg_descr xe_vec_inst_regs[] = {
-> +	COMMON_BASE_ENGINE_INSTANCE,
-> +};
-> +
-> +/* Blitter Per-Engine-Instance */
-> +static const struct __guc_mmio_reg_descr xe_blt_inst_regs[] = {
-> +	COMMON_BASE_ENGINE_INSTANCE,
-> +};
-> +
-> +/* XE_LP - GSC Per-Engine-Instance */
-> +static const struct __guc_mmio_reg_descr xe_lp_gsc_inst_regs[] = {
-> +	COMMON_BASE_ENGINE_INSTANCE,
-> +};
-> +
-> +/*
-> + * Empty list to prevent warnings about unknown class/instance types
-> + * as not all class/instance types have entries on all platforms.
-> + */
-> +static const struct __guc_mmio_reg_descr empty_regs_list[] = {
-> +};
-> +
-> +#define TO_GCAP_DEF_OWNER(x) (GUC_CAPTURE_LIST_INDEX_##x)
-> +#define TO_GCAP_DEF_TYPE(x) (GUC_STATE_CAPTURE_TYPE_##x)
-> +#define MAKE_REGLIST(regslist, regsowner, regstype, class) \
-> +	{ \
-> +		regslist, \
-> +		ARRAY_SIZE(regslist), \
-> +		TO_GCAP_DEF_OWNER(regsowner), \
-> +		TO_GCAP_DEF_TYPE(regstype), \
-> +		class, \
-> +	}
-> +
-> +/* List of lists */
-> +static const struct __guc_mmio_reg_descr_group xe_lp_lists[] = {
-> +	MAKE_REGLIST(xe_lp_global_regs, PF, GLOBAL, 0),
-> +	MAKE_REGLIST(empty_regs_list, PF, ENGINE_CLASS, GUC_CAPTURE_LIST_CLASS_RENDER_COMPUTE),
-> +	MAKE_REGLIST(xe_rc_inst_regs, PF, ENGINE_INSTANCE, GUC_CAPTURE_LIST_CLASS_RENDER_COMPUTE),
-> +	MAKE_REGLIST(empty_regs_list, PF, ENGINE_CLASS, GUC_CAPTURE_LIST_CLASS_VIDEO),
-> +	MAKE_REGLIST(xe_vd_inst_regs, PF, ENGINE_INSTANCE, GUC_CAPTURE_LIST_CLASS_VIDEO),
-> +	MAKE_REGLIST(empty_regs_list, PF, ENGINE_CLASS, GUC_CAPTURE_LIST_CLASS_VIDEOENHANCE),
-> +	MAKE_REGLIST(xe_vec_inst_regs, PF, ENGINE_INSTANCE, GUC_CAPTURE_LIST_CLASS_VIDEOENHANCE),
-> +	MAKE_REGLIST(empty_regs_list, PF, ENGINE_CLASS, GUC_CAPTURE_LIST_CLASS_BLITTER),
-> +	MAKE_REGLIST(xe_blt_inst_regs, PF, ENGINE_INSTANCE, GUC_CAPTURE_LIST_CLASS_BLITTER),
-> +	MAKE_REGLIST(empty_regs_list, PF, ENGINE_CLASS, GUC_CAPTURE_LIST_CLASS_GSC_OTHER),
-> +	MAKE_REGLIST(xe_lp_gsc_inst_regs, PF, ENGINE_INSTANCE, GUC_CAPTURE_LIST_CLASS_GSC_OTHER),
-> +	{}
-> +};
-> +
-> +static const char * const capture_list_type_names[] = {
-> +	"Global",
-> +	"Class",
-> +	"Instance",
-> +};
-> +
-> +static const char * const capture_engine_class_names[] = {
-> +	"Render/Compute",
-> +	"Video",
-> +	"VideoEnhance",
-> +	"Blitter",
-> +	"GSC-Other",
-> +};
-> +
-> +struct __guc_capture_ads_cache {
-> +	bool is_valid;
-> +	void *ptr;
-> +	size_t size;
-> +	int status;
-> +};
-> +
-> +struct xe_guc_state_capture {
-> +	const struct __guc_mmio_reg_descr_group *reglists;
-> +	struct __guc_capture_ads_cache ads_cache[GUC_CAPTURE_LIST_INDEX_MAX]
-> +						[GUC_STATE_CAPTURE_TYPE_MAX]
-> +						[GUC_CAPTURE_LIST_CLASS_MAX];
-> +	void *ads_null_cache;
-> +};
-> +
-> +static const struct __guc_mmio_reg_descr_group *
-> +guc_capture_get_one_list(const struct __guc_mmio_reg_descr_group *reglists,
-> +			 u32 owner, u32 type, enum guc_capture_list_class_type capture_class)
-> +{
-> +	int i;
-> +
-> +	if (!reglists)
-> +		return NULL;
-> +
-> +	for (i = 0; reglists[i].list; ++i) {
-> +		if (reglists[i].owner == owner && reglists[i].type == type &&
-> +		    (reglists[i].engine == capture_class ||
-> +		     reglists[i].type == GUC_STATE_CAPTURE_TYPE_GLOBAL))
-> +			return &reglists[i];
-> +	}
-> +
-> +	return NULL;
-> +}
-> +
-> +static const struct __guc_mmio_reg_descr_group *
-> +guc_capture_get_device_reglist(struct xe_guc *guc)
-> +{
-> +	return xe_lp_lists;
-> +}
-> +
-> +static int
-> +guc_capture_list_init(struct xe_guc *guc, u32 owner, u32 type,
-> +		      enum guc_capture_list_class_type capture_class, struct guc_mmio_reg *ptr,
-> +		      u16 num_entries)
-> +{
-> +	u32 i = 0;
-> +	const struct __guc_mmio_reg_descr_group *reglists = guc->capture->reglists;
-> +	const struct __guc_mmio_reg_descr_group *match;
-> +
-> +	if (!reglists)
-> +		return -ENODEV;
-> +
-> +	match = guc_capture_get_one_list(reglists, owner, type, capture_class);
-> +	if (!match)
-> +		return -ENODATA;
-> +
-> +	for (i = 0; i < num_entries && i < match->num_regs; ++i) {
-> +		ptr[i].offset = match->list[i].reg.addr;
-> +		ptr[i].value = 0xDEADF00D;
-> +		ptr[i].flags = match->list[i].flags;
-> +		ptr[i].mask = match->list[i].mask;
-> +	}
-> +
-> +	if (i < num_entries)
-> +		xe_gt_dbg(guc_to_gt(guc), "Got short capture reglist init: %d out %d.\n", i,
-> +			  num_entries);
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +guc_cap_list_num_regs(struct xe_guc_state_capture *gc, u32 owner, u32 type,
-> +		      enum guc_capture_list_class_type capture_class)
-> +{
-> +	const struct __guc_mmio_reg_descr_group *match;
-> +
-> +	match = guc_capture_get_one_list(gc->reglists, owner, type, capture_class);
-> +	if (!match)
-> +		return 0;
-> +
-> +	return match->num_regs;
-> +}
-> +
-> +static int
-> +guc_capture_getlistsize(struct xe_guc *guc, u32 owner, u32 type,
-> +			enum guc_capture_list_class_type capture_class,
-> +			size_t *size, bool is_purpose_est)
-> +{
-> +	struct xe_guc_state_capture *gc = guc->capture;
-> +	struct xe_gt *gt = guc_to_gt(guc);
-> +	struct __guc_capture_ads_cache *cache;
-> +	int num_regs;
-> +
-> +	xe_gt_assert(gt, type < GUC_STATE_CAPTURE_TYPE_MAX);
-> +	xe_gt_assert(gt, capture_class < GUC_CAPTURE_LIST_CLASS_MAX);
-> +
-> +	cache = &gc->ads_cache[owner][type][capture_class];
-> +	if (!gc->reglists) {
-> +		xe_gt_warn(gt, "No capture reglist for this device\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	if (cache->is_valid) {
-> +		*size = cache->size;
-> +		return cache->status;
-> +	}
-> +
-> +	if (!is_purpose_est && owner == GUC_CAPTURE_LIST_INDEX_PF &&
-> +	    !guc_capture_get_one_list(gc->reglists, owner, type, capture_class)) {
-> +		if (type == GUC_STATE_CAPTURE_TYPE_GLOBAL)
-> +			xe_gt_warn(gt, "Missing capture reglist: global!\n");
-> +		else
-> +			xe_gt_warn(gt, "Missing capture reglist: %s(%u):%s(%u)!\n",
-> +				   capture_list_type_names[type], type,
-> +				   capture_engine_class_names[capture_class], capture_class);
-> +		return -ENODEV;
-> +	}
-> +
-> +	num_regs = guc_cap_list_num_regs(gc, owner, type, capture_class);
-> +	/* intentional empty lists can exist depending on hw config */
-> +	if (!num_regs)
-> +		return -ENODATA;
-> +
-> +	if (size)
-> +		*size = PAGE_ALIGN((sizeof(struct guc_debug_capture_list)) +
-> +				   (num_regs * sizeof(struct guc_mmio_reg)));
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * xe_guc_capture_getlistsize - Get list size for owner/type/class combination
-> + * @guc: The GuC object
-> + * @owner: PF/VF owner
-> + * @type: GuC capture register type
-> + * @capture_class: GuC capture engine class id
-> + * @size: Point to the size
-> + *
-> + * This function will get the list for the owner/type/class combination, and
-> + * return the page aligned list size.
-> + *
-> + * Returns: 0 on success or a negative error code on failure.
-> + */
-> +int
-> +xe_guc_capture_getlistsize(struct xe_guc *guc, u32 owner, u32 type,
-> +			   enum guc_capture_list_class_type capture_class, size_t *size)
-> +{
-> +	return guc_capture_getlistsize(guc, owner, type, capture_class, size, false);
-> +}
-> +
-> +/**
-> + * xe_guc_capture_getlist - Get register capture list for owner/type/class
-> + * combination
-> + * @guc:	The GuC object
-> + * @owner:	PF/VF owner
-> + * @type:	GuC capture register type
-> + * @capture_class:	GuC capture engine class id
-> + * @outptr:	Point to cached register capture list
-> + *
-> + * This function will get the register capture list for the owner/type/class
-> + * combination.
-> + *
-> + * Returns: 0 on success or a negative error code on failure.
-> + */
-> +int
-> +xe_guc_capture_getlist(struct xe_guc *guc, u32 owner, u32 type,
-> +		       enum guc_capture_list_class_type capture_class, void **outptr)
-> +{
-> +	struct xe_guc_state_capture *gc = guc->capture;
-> +	struct __guc_capture_ads_cache *cache = &gc->ads_cache[owner][type][capture_class];
-> +	struct guc_debug_capture_list *listnode;
-> +	int ret, num_regs;
-> +	u8 *caplist, *tmp;
-> +	size_t size = 0;
-> +
-> +	if (!gc->reglists)
-> +		return -ENODEV;
-> +
-> +	if (cache->is_valid) {
-> +		*outptr = cache->ptr;
-> +		return cache->status;
-> +	}
-> +
-> +	ret = xe_guc_capture_getlistsize(guc, owner, type, capture_class, &size);
-> +	if (ret) {
-> +		cache->is_valid = true;
-> +		cache->ptr = NULL;
-> +		cache->size = 0;
-> +		cache->status = ret;
-> +		return ret;
-> +	}
-> +
-> +	caplist = drmm_kzalloc(guc_to_drm(guc), size, GFP_KERNEL);
-> +	if (!caplist)
-> +		return -ENOMEM;
-> +
-> +	/* populate capture list header */
-> +	tmp = caplist;
-> +	num_regs = guc_cap_list_num_regs(guc->capture, owner, type, capture_class);
-> +	listnode = (struct guc_debug_capture_list *)tmp;
-> +	listnode->header.info = FIELD_PREP(GUC_CAPTURELISTHDR_NUMDESCR, (u32)num_regs);
-> +
-> +	/* populate list of register descriptor */
-> +	tmp += sizeof(struct guc_debug_capture_list);
-> +	guc_capture_list_init(guc, owner, type, capture_class,
-> +			      (struct guc_mmio_reg *)tmp, num_regs);
-> +
-> +	/* cache this list */
-> +	cache->is_valid = true;
-> +	cache->ptr = caplist;
-> +	cache->size = size;
-> +	cache->status = 0;
-> +
-> +	*outptr = caplist;
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * xe_guc_capture_getnullheader - Get a null list for register capture
-> + * @guc:	The GuC object
-> + * @outptr:	Point to cached register capture list
-> + * @size:	Point to the size
-> + *
-> + * This function will alloc for a null list for register capture.
-> + *
-> + * Returns: 0 on success or a negative error code on failure.
-> + */
-> +int
-> +xe_guc_capture_getnullheader(struct xe_guc *guc, void **outptr, size_t *size)
-> +{
-> +	struct xe_guc_state_capture *gc = guc->capture;
-> +	int tmp = sizeof(u32) * 4;
-> +	void *null_header;
-> +
-> +	if (gc->ads_null_cache) {
-> +		*outptr = gc->ads_null_cache;
-> +		*size = tmp;
-> +		return 0;
-> +	}
-> +
-> +	null_header = drmm_kzalloc(guc_to_drm(guc), tmp, GFP_KERNEL);
-> +	if (!null_header)
-> +		return -ENOMEM;
-> +
-> +	gc->ads_null_cache = null_header;
-> +	*outptr = null_header;
-> +	*size = tmp;
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * xe_guc_capture_ads_input_worst_size - Calculate the worst size for GuC register capture
-> + * @guc: point to xe_guc structure
-> + *
-> + * Calculate the worst size for GuC register capture by including all possible engines classes.
-> + *
-> + * Returns: Calculated size
-> + */
-> +size_t xe_guc_capture_ads_input_worst_size(struct xe_guc *guc)
-> +{
-> +	size_t total_size, class_size, instance_size, global_size;
-> +	int i, j;
-> +
-> +	/*
-> +	 * This function calculates the worst case register lists size by
-> +	 * including all possible engines classes. It is called during the
-> +	 * first of a two-phase GuC (and ADS-population) initialization
-> +	 * sequence, that is, during the pre-hwconfig phase before we have
-> +	 * the exact engine fusing info.
-> +	 */
-> +	total_size = PAGE_SIZE;	/* Pad a page in front for empty lists */
-> +	for (i = 0; i < GUC_CAPTURE_LIST_INDEX_MAX; i++) {
-> +		for (j = 0; j < GUC_CAPTURE_LIST_CLASS_MAX; j++) {
-> +			if (xe_guc_capture_getlistsize(guc, i,
-> +						       GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS,
-> +						       j, &class_size) < 0)
-> +				class_size = 0;
-> +			if (xe_guc_capture_getlistsize(guc, i,
-> +						       GUC_STATE_CAPTURE_TYPE_ENGINE_INSTANCE,
-> +						       j, &instance_size) < 0)
-> +				instance_size = 0;
-> +			total_size += class_size + instance_size;
-> +		}
-> +		if (xe_guc_capture_getlistsize(guc, i,
-> +					       GUC_STATE_CAPTURE_TYPE_GLOBAL,
-> +					       0, &global_size) < 0)
-> +			global_size = 0;
-> +		total_size += global_size;
-> +	}
-> +
-> +	return PAGE_ALIGN(total_size);
-> +}
-> +
-> +/**
-> + * xe_guc_capture_init - Init for GuC register capture
-> + * @guc: The GuC object
-> + *
-> + * Init for GuC register capture, alloc memory for capture data structure.
-> + *
-> + * Returns: 0 if success.
-> +	    -ENOMEM if out of memory
-> + */
-> +int xe_guc_capture_init(struct xe_guc *guc)
-> +{
-> +	guc->capture = drmm_kzalloc(guc_to_drm(guc), sizeof(*guc->capture), GFP_KERNEL);
-> +	if (!guc->capture)
-> +		return -ENOMEM;
-> +
-> +	guc->capture->reglists = guc_capture_get_device_reglist(guc);
-> +
-> +	return 0;
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_guc_capture.h b/drivers/gpu/drm/xe/xe_guc_capture.h
-> new file mode 100644
-> index 000000000000..0a6335b48c50
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_guc_capture.h
-> @@ -0,0 +1,22 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2021-2024 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_GUC_CAPTURE_H
-> +#define _XE_GUC_CAPTURE_H
-> +
-> +#include <linux/types.h>
-> +#include "abi/guc_capture_abi.h"
-> +
-> +struct xe_guc;
-> +
-> +int xe_guc_capture_getlist(struct xe_guc *guc, u32 owner, u32 type,
-> +			   enum guc_capture_list_class_type capture_class, void **outptr);
-> +int xe_guc_capture_getlistsize(struct xe_guc *guc, u32 owner, u32 type,
-> +			       enum guc_capture_list_class_type capture_class, size_t *size);
-> +int xe_guc_capture_getnullheader(struct xe_guc *guc, void **outptr, size_t *size);
-> +size_t xe_guc_capture_ads_input_worst_size(struct xe_guc *guc);
-> +int xe_guc_capture_init(struct xe_guc *guc);
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_guc_capture_types.h b/drivers/gpu/drm/xe/xe_guc_capture_types.h
-> new file mode 100644
-> index 000000000000..839148c9fa0f
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_guc_capture_types.h
-> @@ -0,0 +1,55 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2021-2024 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_GUC_CAPTURE_TYPES_H
-> +#define _XE_GUC_CAPTURE_TYPES_H
-> +
-> +#include <linux/types.h>
-> +#include "regs/xe_reg_defs.h"
-> +
-> +struct xe_guc;
-> +
-> +/**
-> + * struct __guc_mmio_reg_descr - GuC mmio register descriptor
-> + *
-> + * xe_guc_capture module uses these structures to define a register
-> + * (offsets, names, flags,...) that are used at the ADS regisration
-> + * time as well as during runtime processing and reporting of error-
-> + * capture states generated by GuC just prior to engine reset events.
-> + */
-> +struct __guc_mmio_reg_descr {
-> +	/** @reg: the register */
-> +	struct xe_reg reg;
-> +	/** @flags: Flags for the register */
-> +	u32 flags;
-> +	/** @mask: The mask to apply */
-> +	u32 mask;
-> +	/** @regname: Name of the register */
-> +	const char *regname;
-> +};
-> +
-> +/**
-> + * struct __guc_mmio_reg_descr_group - The group of register descriptor
-> + *
-> + * xe_guc_capture module uses these structures to maintain static
-> + * tables (per unique platform) that consists of lists of registers
-> + * (offsets, names, flags,...) that are used at the ADS regisration
-> + * time as well as during runtime processing and reporting of error-
-> + * capture states generated by GuC just prior to engine reset events.
-> + */
-> +struct __guc_mmio_reg_descr_group {
-> +	/** @list: The register list */
-> +	const struct __guc_mmio_reg_descr *list;
-> +	/** @num_regs: Count of registers in the list */
-> +	u32 num_regs;
-> +	/** @owner: PF/VF owner */
-> +	u32 owner; /* see enum guc_capture_list_index_type */
-> +	/** @type: GuC capture register type */
-> +	u32 type; /* see enum guc_state_capture_type */
-> +	/** @engine: The engine class */
-> +	u32 engine; /* see enum guc_capture_list_class_type */
-
-fix comments (keep in one block)
-
-> +};
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
-> index 19ee71aeaf17..01e3ab590c3a 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_fwif.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
-> @@ -8,7 +8,9 @@
->  
->  #include <linux/bits.h>
->  
-> +#include "abi/guc_capture_abi.h"
->  #include "abi/guc_klvs_abi.h"
-> +#include "xe_hw_engine_types.h"
->  
->  #define G2H_LEN_DW_SCHED_CONTEXT_MODE_SET	4
->  #define G2H_LEN_DW_DEREGISTER_CONTEXT		3
-> @@ -157,24 +159,6 @@ struct guc_policies {
->  	u32 reserved[4];
->  } __packed;
->  
-> -/* GuC MMIO reg state struct */
-> -struct guc_mmio_reg {
-> -	u32 offset;
-> -	u32 value;
-> -	u32 flags;
-> -	u32 mask;
-> -#define GUC_REGSET_MASKED		BIT(0)
-> -#define GUC_REGSET_MASKED_WITH_VALUE	BIT(2)
-> -#define GUC_REGSET_RESTORE_ONLY		BIT(3)
-> -} __packed;
-> -
-> -/* GuC register sets */
-> -struct guc_mmio_reg_set {
-> -	u32 address;
-> -	u16 count;
-> -	u16 reserved;
-> -} __packed;
-> -
->  /* Generic GT SysInfo data types */
->  #define GUC_GENERIC_GT_SYSINFO_SLICE_ENABLED		0
->  #define GUC_GENERIC_GT_SYSINFO_VDBOX_SFC_SUPPORT_MASK	1
-> @@ -188,12 +172,6 @@ struct guc_gt_system_info {
->  	u32 generic_gt_sysinfo[GUC_GENERIC_GT_SYSINFO_MAX];
->  } __packed;
->  
-> -enum {
-> -	GUC_CAPTURE_LIST_INDEX_PF = 0,
-> -	GUC_CAPTURE_LIST_INDEX_VF = 1,
-> -	GUC_CAPTURE_LIST_INDEX_MAX = 2,
-> -};
-> -
->  /* GuC Additional Data Struct */
->  struct guc_ads {
->  	struct guc_mmio_reg_set reg_state_list[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
-> diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-> index 546ac6350a31..6d7d0976b7af 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_types.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_types.h
-> @@ -58,6 +58,8 @@ struct xe_guc {
->  	struct xe_guc_ads ads;
->  	/** @ct: GuC ct */
->  	struct xe_guc_ct ct;
-> +	/** @capture: the error-state-capture module's data and objects */
-> +	struct xe_guc_state_capture *capture;
->  	/** @pc: GuC Power Conservation */
->  	struct xe_guc_pc pc;
->  	/** @dbm: GuC Doorbell Manager */
+>>   * Linux: xe-1597-3bcdb3f9a5370e29bc971883307487527c3e6a65 -> xe-pw-136010v1
+>>
+>>   IGT_7924: 6e6ecdef9f167ff987f6d323f3ff6429c01b25e0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+>>   IGT_7925: def41c762723c9ba046a3ffe722d046cd12e993d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+>>   xe-1597-3bcdb3f9a5370e29bc971883307487527c3e6a65: 3bcdb3f9a5370e29bc971883307487527c3e6a65
+>>   xe-pw-136010v1: 136010v1
+>>
+>> == Logs ==
+>>
+>> For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136010v1/index.html
+>>
