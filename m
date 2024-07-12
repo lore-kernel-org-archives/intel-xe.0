@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 992B0C2BD09
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Jul 2024 08:27:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A782EC3DA45
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Jul 2024 08:31:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4243310EC70;
-	Fri, 12 Jul 2024 08:27:16 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0319B10EC6B;
- Fri, 12 Jul 2024 08:27:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1004967968317685214=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59D5210EC55;
+	Fri, 12 Jul 2024 08:31:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VNz05sb7";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D04A310EC55
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Jul 2024 08:31:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1720773077; x=1752309077;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=H4YZlVo8ItBsN1L3RTAmq0NS4QrDI7+JS4fvngV4QPA=;
+ b=VNz05sb7rqaQeonVUuKBX7C9/AcYRs3sUN/HkcRUipIlnMr1a5d4NHjZ
+ TxBpW7uBJpF2AgdH/xkTelQIlcYpCU1Czv/8Afp4DZtK1QBrRYijbDyr2
+ CJnqBW7QSjxwuuOMEN9nsTLmCO0wkJhd0c35TVawvlqb+WnfE5+aixHl/
+ 2riPsL16c+tns15UVDg2tl8ON2UE8hts8J8uxxnta0izVyZaNNWYaPTas
+ KR61Da/JeUkwfKaWUlX5zjChs4jP1ditCAweLHMxyLtPXR4ovPHfcUo/0
+ kj4UjoxsdVr2qi5lEUxLcfp0ebShMi7Fs+kjRDUhdgmH+bDHaXstY/kAw Q==;
+X-CSE-ConnectionGUID: gKiC6ZAeTqOSQLuBdaajOA==
+X-CSE-MsgGUID: TfpiwplJRZSjKRpLe148zQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11130"; a="35746784"
+X-IronPort-AV: E=Sophos;i="6.09,202,1716274800"; d="scan'208";a="35746784"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jul 2024 01:31:17 -0700
+X-CSE-ConnectionGUID: qffckUchSAqOBqOvbS0vxg==
+X-CSE-MsgGUID: cNIXOdweSk24KVHvTPx3Ow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,202,1716274800"; d="scan'208";a="53151132"
+Received: from unknown (HELO localhost) ([10.245.247.129])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jul 2024 01:31:15 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Fri, 12 Jul 2024 11:31:11 +0300 (EEST)
+To: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
+cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
+ "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>, 
+ "david.e.box@linux.intel.com" <david.e.box@linux.intel.com>, 
+ "Brost, Matthew" <matthew.brost@intel.com>
+Subject: RE: [PATCH v6 5/6] platform/x86/intel/pmt: Add support for PMT base
+ adjust
+In-Reply-To: <IA1PR11MB64186499A6047EE3951BE8C4C1A52@IA1PR11MB6418.namprd11.prod.outlook.com>
+Message-ID: <61965dbe-9ad4-edc0-e0f1-131916e1a9b2@linux.intel.com>
+References: <20240710192249.3915396-1-michael.j.ruhl@intel.com>
+ <20240710192249.3915396-6-michael.j.ruhl@intel.com>
+ <b521ebe3-e7d2-6ca9-e626-ae9d3a455078@linux.intel.com>
+ <IA1PR11MB64186499A6047EE3951BE8C4C1A52@IA1PR11MB6418.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B1/6=5D_d?=
- =?utf-8?q?rm/xe/migrate=3A_Handle_clear_ccs_logic_for_xe2_dgfx?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Akshata Jahagirdar" <akshata.jahagirdar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 12 Jul 2024 08:27:16 -0000
-Message-ID: <172077283600.166389.9271224990522912673@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <cover.1720768378.git.akshata.jahagirdar@intel.com>
-In-Reply-To: <cover.1720768378.git.akshata.jahagirdar@intel.com>
+Content-Type: multipart/mixed; boundary="8323328-1723152562-1720773071=:1010"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,148 +69,89 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1004967968317685214==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-== Series Details ==
+--8323328-1723152562-1720773071=:1010
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: QUOTED-PRINTABLE
 
-Series: series starting with [1/6] drm/xe/migrate: Handle clear ccs logic for xe2 dgfx
-URL   : https://patchwork.freedesktop.org/series/136026/
-State : success
+On Thu, 11 Jul 2024, Ruhl, Michael J wrote:
+> >-----Original Message-----
+> >From: Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com>
+> >Sent: Thursday, July 11, 2024 7:34 AM
+> >To: Ruhl, Michael J <michael.j.ruhl@intel.com>
+> >Cc: intel-xe@lists.freedesktop.org; platform-driver-x86@vger.kernel.org;
+> >david.e.box@linux.intel.com; Brost, Matthew <matthew.brost@intel.com>
+> >Subject: Re: [PATCH v6 5/6] platform/x86/intel/pmt: Add support for PMT
+> >base adjust
+> >
+> >On Wed, 10 Jul 2024, Michael J. Ruhl wrote:
+> >
+> >> DVSEC offsets are based on the endpoint BAR.  If an endpoint is
+> >> not avialable allow the offset information to be adjusted by the
+> >
+> >available
+> >
+> >> parent driver.
+> >>
+> >> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+> >> ---
+> >>  drivers/platform/x86/intel/pmt/class.h     | 1 +
+> >>  drivers/platform/x86/intel/pmt/telemetry.c | 9 +++++++++
+> >>  drivers/platform/x86/intel/vsec.c          | 1 +
+> >>  include/linux/intel_vsec.h                 | 2 ++
+> >>  4 files changed, 13 insertions(+)
+> >>
+> >> diff --git a/drivers/platform/x86/intel/pmt/class.h
+> >b/drivers/platform/x86/intel/pmt/class.h
+> >> index a267ac964423..984cd40ee814 100644
+> >> --- a/drivers/platform/x86/intel/pmt/class.h
+> >> +++ b/drivers/platform/x86/intel/pmt/class.h
+> >> @@ -46,6 +46,7 @@ struct intel_pmt_entry {
+> >>  =09void __iomem=09=09*base;
+> >>  =09struct pmt_callbacks=09*cb;
+> >>  =09unsigned long=09=09base_addr;
+> >> +=09s32=09=09=09base_adjust;
+> >>  =09size_t=09=09=09size;
+> >>  =09u32=09=09=09guid;
+> >>  =09int=09=09=09devid;
+> >> diff --git a/drivers/platform/x86/intel/pmt/telemetry.c
+> >b/drivers/platform/x86/intel/pmt/telemetry.c
+> >> index c9feac859e57..5c44e500e8f6 100644
+> >> --- a/drivers/platform/x86/intel/pmt/telemetry.c
+> >> +++ b/drivers/platform/x86/intel/pmt/telemetry.c
+> >> @@ -78,6 +78,13 @@ static int pmt_telem_header_decode(struct
+> >intel_pmt_entry *entry,
+> >>  =09header->access_type =3D TELEM_ACCESS(readl(disc_table));
+> >>  =09header->guid =3D readl(disc_table + TELEM_GUID_OFFSET);
+> >>  =09header->base_offset =3D readl(disc_table + TELEM_BASE_OFFSET);
+> >> +=09if (entry->base_adjust) {
+> >> +=09=09u32 new_base =3D header->base_offset + entry->base_adjust;
+> >
+> >The code setting ->base_adjust is responsible for avoiding stupid settin=
+gs
+> >that would lead to underflows and overflows?
+>=20
+> I would think so.  Since this driver is not aware of why the adjust is se=
+t,
+> it is not clear how it would validate it.
+>=20
+> Is this a request for documentation of the usage, or did you have a conce=
+rn
+> that we need to verify the value?
 
-== Summary ==
+It's just that usually in-kernel interfaces too feature sanity checks but=
+=20
+perhaps you're right and the telemetry side just doesn't know enough to=20
+even make a sanity check on the value. Let's just leave this as is for=20
+now, it can be revisited later if there starts to be many usecases for=20
+this.
 
-CI Bug Log - changes from xe-1601-0b9174f237436b60b1c6fd9d5fbacbfcde660e3e_BAT -> xe-pw-136026v1_BAT
-====================================================
+--=20
+ i.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (7 -> 6)
-------------------------------
-
-  Missing    (1): bat-bmg-1 
-
-New tests
----------
-
-  New tests have been introduced between xe-1601-0b9174f237436b60b1c6fd9d5fbacbfcde660e3e_BAT and xe-pw-136026v1_BAT:
-
-### New IGT tests (1) ###
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - Statuses : 6 pass(s)
-    - Exec time: [0.01, 0.02] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-136026v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [DMESG-FAIL][1] ([Intel XE#324]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1601-0b9174f237436b60b1c6fd9d5fbacbfcde660e3e/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136026v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
-
-
-Build changes
--------------
-
-  * Linux: xe-1601-0b9174f237436b60b1c6fd9d5fbacbfcde660e3e -> xe-pw-136026v1
-
-  IGT_7925: def41c762723c9ba046a3ffe722d046cd12e993d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1601-0b9174f237436b60b1c6fd9d5fbacbfcde660e3e: 0b9174f237436b60b1c6fd9d5fbacbfcde660e3e
-  xe-pw-136026v1: 136026v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136026v1/index.html
-
---===============1004967968317685214==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/6] drm/xe/migrate: Handle clear ccs logic for xe2 dgfx</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136026/">https://patchwork.freedesktop.org/series/136026/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136026v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136026v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1601-0b9174f237436b60b1c6fd9d5fbacbfcde660e3e_BAT -&gt; xe-pw-136026v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (7 -&gt; 6)</h2>
-<p>Missing    (1): bat-bmg-1 </p>
-<h2>New tests</h2>
-<p>New tests have been introduced between xe-1601-0b9174f237436b60b1c6fd9d5fbacbfcde660e3e_BAT and xe-pw-136026v1_BAT:</p>
-<h3>New IGT tests (1)</h3>
-<ul>
-<li>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:<ul>
-<li>Statuses : 6 pass(s)</li>
-<li>Exec time: [0.01, 0.02] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-136026v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1601-0b9174f237436b60b1c6fd9d5fbacbfcde660e3e/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136026v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1601-0b9174f237436b60b1c6fd9d5fbacbfcde660e3e -&gt; xe-pw-136026v1</li>
-</ul>
-<p>IGT_7925: def41c762723c9ba046a3ffe722d046cd12e993d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1601-0b9174f237436b60b1c6fd9d5fbacbfcde660e3e: 0b9174f237436b60b1c6fd9d5fbacbfcde660e3e<br />
-  xe-pw-136026v1: 136026v1</p>
-
-</body>
-</html>
-
---===============1004967968317685214==--
+--8323328-1723152562-1720773071=:1010--
