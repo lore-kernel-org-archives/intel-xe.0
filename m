@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B779C3DA59
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jul 2024 10:34:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E08FBC3DA59
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jul 2024 10:38:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4C2E10E32C;
-	Mon, 15 Jul 2024 10:34:52 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CDDC10E32C;
- Mon, 15 Jul 2024 10:34:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7790887755612382580=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DB3910E32C;
+	Mon, 15 Jul 2024 10:38:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W8QUW3VQ";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E3E010E32C
+ for <intel-xe@lists.freedesktop.org>; Mon, 15 Jul 2024 10:38:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1721039936; x=1752575936;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5f7L4yW7PFy8mhq0cORcZi2O53vzH/x+ze6NbhenyFA=;
+ b=W8QUW3VQqppSctiJdqvL1eAhJcWoyPApxaKxUY76Nhe4T9wVZjwDRhmz
+ prdbFRQXWkHGPtq493AyVo8Kgz3eu7Q6lmxx3JQOOu+Wc40QV+Xi4TWbK
+ wM0wUIpbD3v0Lh3UKZI0U8mP4v2PQZm33RkKCA96sVDYk8/E9BmvrmlN1
+ pDV8uxWkxYMq1onQUHifC56S3ocgvf7nWUcQcMXt3FlungmeNxEge9NvA
+ H4QhIi0Z4RnTNAFuVektu7e/vpoA//5G3pm617VJLW9OEz6AlwsEkpj/P
+ KaIBape0aRQAsgUTA0hTmPS9iZYPK0qZ8qbuJO0rf5B4hLT4VLJHqyWMH g==;
+X-CSE-ConnectionGUID: wfKJF0ZsR/6j3pb7LiFn2A==
+X-CSE-MsgGUID: s2M0JobBRra+Zid3si5kLg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11133"; a="18025536"
+X-IronPort-AV: E=Sophos;i="6.09,210,1716274800"; d="scan'208";a="18025536"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2024 03:38:56 -0700
+X-CSE-ConnectionGUID: aqOqb3O0TteRod27Qj9NyA==
+X-CSE-MsgGUID: wiXG9zz2SAO2USFJUM4yAQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,210,1716274800"; d="scan'208";a="53954484"
+Received: from himal-super-server.iind.intel.com ([10.145.169.168])
+ by fmviesa005.fm.intel.com with ESMTP; 15 Jul 2024 03:38:55 -0700
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH 0/2] Minor cleanups
+Date: Mon, 15 Jul 2024 16:25:53 +0530
+Message-Id: <20240715105555.2220444-1-himal.prasad.ghimiray@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_RFC_drm/xe/xe=5Fgt=5Fidle=3A_Exp?=
- =?utf-8?q?ose_Coarse_power_gating_sysfs_entries?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 15 Jul 2024 10:34:50 -0000
-Message-ID: <172103969024.217590.2888316521722473220@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240715095455.4069296-1-riana.tauro@intel.com>
-In-Reply-To: <20240715095455.4069296-1-riana.tauro@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +61,20 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7790887755612382580==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Removing unused regs and function in driver. No functional change.
 
-== Series Details ==
+Himal Prasad Ghimiray (2):
+  drm/xe: Delete unused register from xe_regs.h
+  drm/xe: Remove function xe_device_canonicalize_addr
 
-Series: RFC drm/xe/xe_gt_idle: Expose Coarse power gating sysfs entries
-URL   : https://patchwork.freedesktop.org/series/136085/
-State : success
+ drivers/gpu/drm/xe/regs/xe_regs.h | 2 --
+ drivers/gpu/drm/xe/xe_device.c    | 5 -----
+ drivers/gpu/drm/xe/xe_device.h    | 1 -
+ 3 files changed, 8 deletions(-)
 
-== Summary ==
+-- 
+2.34.1
 
-CI Bug Log - changes from xe-1609-2e6ff4968b6b2a2ffcc8f3ef99693b28fae8ba87_BAT -> xe-pw-136085v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (7 -> 5)
-------------------------------
-
-  Missing    (2): bat-lnl-2 bat-lnl-1 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-1609-2e6ff4968b6b2a2ffcc8f3ef99693b28fae8ba87 -> xe-pw-136085v1
-
-  IGT_7926: 9c28c27d4d48cecf8b7692a2975bde1cc1632096 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1609-2e6ff4968b6b2a2ffcc8f3ef99693b28fae8ba87: 2e6ff4968b6b2a2ffcc8f3ef99693b28fae8ba87
-  xe-pw-136085v1: 136085v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136085v1/index.html
-
---===============7790887755612382580==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>RFC drm/xe/xe_gt_idle: Expose Coarse power gating sysfs entries</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136085/">https://patchwork.freedesktop.org/series/136085/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136085v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136085v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1609-2e6ff4968b6b2a2ffcc8f3ef99693b28fae8ba87_BAT -&gt; xe-pw-136085v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (7 -&gt; 5)</h2>
-<p>Missing    (2): bat-lnl-2 bat-lnl-1 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1609-2e6ff4968b6b2a2ffcc8f3ef99693b28fae8ba87 -&gt; xe-pw-136085v1</li>
-</ul>
-<p>IGT_7926: 9c28c27d4d48cecf8b7692a2975bde1cc1632096 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1609-2e6ff4968b6b2a2ffcc8f3ef99693b28fae8ba87: 2e6ff4968b6b2a2ffcc8f3ef99693b28fae8ba87<br />
-  xe-pw-136085v1: 136085v1</p>
-
-</body>
-</html>
-
---===============7790887755612382580==--
