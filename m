@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB4BDC3DA4B
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jul 2024 18:14:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D206C3DA4B
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jul 2024 18:15:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94B2D10E491;
-	Mon, 15 Jul 2024 18:14:56 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2079510E491;
- Mon, 15 Jul 2024 18:14:55 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 172E110E48E;
+	Mon, 15 Jul 2024 18:15:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aIncU0K0";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AD3410E1AB;
+ Mon, 15 Jul 2024 18:15:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1721067352; x=1752603352;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=APUYdLaHIyhm/Gll8/ra1nbR3Iv74wrnYKbix553TSU=;
+ b=aIncU0K08VDQ18LqBuAiPvw+6U/+/tCcWiio5B5G8NmLMqpgdw/DyDsm
+ wavmOoJ0totgVr2IlAXxZ9Jcf2L5wG+eOJyVveClldsmWU5SovKRqK5eF
+ 8tYn369JBT0eTjykEoqRh+IoUi+eFFuRp9WogocmoYBhIFAsUvw6vZ5Hq
+ LCZ/S1VqIBLkT6c/PWlL8kxGHx/N3o+cMubmcly2fO+A2kvKH8ZzZvnC0
+ MkVbad/gmVMwQgMja8cIqw0Z2FLD6JSXToVFi0C2n0xU6VbgxxpKD224P
+ ndWutcKP5FUyaxVWjALfhDmOtprmoyV/UAeSlOewwcBFREdg0KtTqQ2Y+ Q==;
+X-CSE-ConnectionGUID: zN2v//uDQaWcEb9PLLRpTQ==
+X-CSE-MsgGUID: QY4TxqyVSJCbotUqTnwr4g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11134"; a="18597034"
+X-IronPort-AV: E=Sophos;i="6.09,210,1716274800"; d="scan'208";a="18597034"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2024 11:15:52 -0700
+X-CSE-ConnectionGUID: 12oFfk2bQO6LfbG94edfPg==
+X-CSE-MsgGUID: 4ZbjN3NRSPW5p+Br02JoMA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,210,1716274800"; d="scan'208";a="54627889"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
+ jkrzyszt-mobl2.intranet) ([10.213.26.74])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2024 11:15:48 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t 0/5] tests/gem_ctx_exec: Fix failing preempt timeout
+ updates
+Date: Mon, 15 Jul 2024 20:13:41 +0200
+Message-ID: <20240715181523.2825921-7-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Support_PMT_features_in_Xe_=28?=
- =?utf-8?q?rev8=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 15 Jul 2024 18:14:55 -0000
-Message-ID: <172106729512.231691.4116803045793285235@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240715175452.4010751-1-michael.j.ruhl@intel.com>
-In-Reply-To: <20240715175452.4010751-1-michael.j.ruhl@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +66,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+CI reports the following failures from basic-nohangcheck subtest:
 
-Series: Support PMT features in Xe (rev8)
-URL   : https://patchwork.freedesktop.org/series/133472/
-State : success
+(gem_ctx_exec:1115) CRITICAL: Test assertion failure function nohangcheck_hostile, file ../../../usr/src/igt-gpu-tools/tests/intel/gem_ctx_exec.c:374:
+(gem_ctx_exec:1115) CRITICAL: Failed assertion: err == 0
+(gem_ctx_exec:1115) CRITICAL: Last errno: 2, No such file or directory
+(gem_ctx_exec:1115) CRITICAL: Hostile unpreemptable context was not cancelled immediately upon closure
 
-== Summary ==
+The subtest sets 50 ms preempt timeout on each engine before proceding
+with submission of spins, then it waits up to 1 second for those spins to
+be terminated.  However, dump of engines' debugfs data performed by the
+subtest after the failure shows preempt timeouts still at their default
+values: 7500 ms on rcs0 and 640 ms on other class engines.  Dmesg records
+confirm preemption timeouts triggered on other engines after 640 ms and
+not on rcs0 within the 1 second limit.
 
-lib/modules/6.10.0-rc7-xe/kernel/sound/core/seq/
-lib/modules/6.10.0-rc7-xe/kernel/sound/core/seq/snd-seq.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/core/snd-seq-device.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/core/snd-hwdep.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/core/snd.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/core/snd-pcm.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/core/snd-compress.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/core/snd-timer.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soundcore.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/atom/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/atom/sst/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/common/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/amd/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/amd/snd-acp-config.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/amd/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/snd-sof-utils.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/snd-sof-pci.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/snd-sof.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/snd-sof-probes.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/xtensa/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/snd-soc-core.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/snd-soc-acpi.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/codecs/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/hda/
-lib/modules/6.10.0-rc7-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/hda/ext/
-lib/modules/6.10.0-rc7-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/hda/snd-intel-dspcfg.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/hda/snd-hda-core.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/kernel/
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/kernel/msr.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/kernel/cpuid.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/aesni-intel.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/events/
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/events/intel/
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/kvm/
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/
-lib/modules/6.10.0-rc7-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/cmac.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/ccm.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/cryptd.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/async_tx/
-lib/modules/6.10.0-rc7-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.10.0-rc7-xe/build
-lib/modules/6.10.0-rc7-xe/modules.alias.bin
-lib/modules/6.10.0-rc7-xe/modules.builtin
-lib/modules/6.10.0-rc7-xe/modules.softdep
-lib/modules/6.10.0-rc7-xe/modules.alias
-lib/modules/6.10.0-rc7-xe/modules.order
-lib/modules/6.10.0-rc7-xe/modules.symbols
-lib/modules/6.10.0-rc7-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1721067282:package_x86_64_nodebug\r\e[0K'
-+ sync
-[0Ksection_end:1721067282:package_x86_64_nodebug
-[0K
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Fix the issue.
 
+Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6268
+
+Janusz Krzysztofik (5):
+  tests/gem_ctx_exec: Fail on unsuccessful preempt timeout update
+  lib: Add more debug messages to error paths
+  lib/gem_engine_topology: Fix premature break from primary find loop
+  lib/gem_engine_topology: Simplify the method of opening a primary
+  lib/gem_engine_topology: Fix broken compare of device links
+
+ lib/i915/gem_engine_topology.c | 24 ++++++++++--------------
+ lib/igt_sysfs.c                |  4 ++--
+ tests/intel/gem_ctx_exec.c     |  5 +++--
+ 3 files changed, 15 insertions(+), 18 deletions(-)
+
+-- 
+2.45.2
 
