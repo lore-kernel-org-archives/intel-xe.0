@@ -4,23 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A164EC3DA59
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Jul 2024 10:45:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0373CC3DA5D
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Jul 2024 10:46:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D09C10E359;
-	Mon, 15 Jul 2024 10:45:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5558210E256;
+	Mon, 15 Jul 2024 10:46:04 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7341E10E364;
- Mon, 15 Jul 2024 10:45:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F3DF10E256;
+ Mon, 15 Jul 2024 10:46:02 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Minor_cleanups?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Minor_cleanups?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 15 Jul 2024 10:45:48 -0000
-Message-ID: <172104034844.217591.5393930641526506635@2413ebb6fbb6>
+Date: Mon, 15 Jul 2024 10:46:02 -0000
+Message-ID: <172104036238.217590.6941776066657462792@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240715105555.2220444-1-himal.prasad.ghimiray@intel.com>
 In-Reply-To: <20240715105555.2220444-1-himal.prasad.ghimiray@intel.com>
@@ -47,10 +47,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 2a1af7813693 drm-tip: 2024y-07m-15d-09h-31m-00s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Delete unused register from xe_regs.h
-Applying: drm/xe: Remove function xe_device_canonicalize_addr
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1bfd84fa50606a16f2f30171afb34ed0d24324c0
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Mon Jul 15 16:25:55 2024 +0530
+
+    drm/xe: Remove function xe_device_canonicalize_addr
+    
+    There is no need for converting regular address to canonical address in
+    driver, therefore remove unused xe_device_canonicalize_addr.
+    
+    Cc: José Roberto de Souza <jose.souza@intel.com>
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch 2a1af781369347d1a4077a51f32c331cba1589b6 drm-intel
+1fc6e6e1da5d drm/xe: Delete unused register from xe_regs.h
+1bfd84fa5060 drm/xe: Remove function xe_device_canonicalize_addr
 
 
