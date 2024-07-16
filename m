@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3467C3DA61
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jul 2024 01:01:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20495C3DA4B
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jul 2024 01:01:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A216510E4BF;
-	Tue, 16 Jul 2024 01:01:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E839D10E4CE;
+	Tue, 16 Jul 2024 01:01:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k+wwLZBX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BBltFZzH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28E8E10E415
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Jul 2024 01:01:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FBCA10E4CE
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Jul 2024 01:01:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721091690; x=1752627690;
+ t=1721091693; x=1752627693;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SwG5fwG/hpcRQ9Vb3v+rA3ayprQU8UTxkfnEJfUlP0E=;
- b=k+wwLZBXdWWEXB5x14q+APVAFF/DuhUlvOWcj+a/brVFRYV5uqjeEKz1
- mHAd/EKu7xPD1xHhk6FaaNExnDQ7GqinkZoZ4xrtvwDrR8J5JhskV52HU
- RNXtOnb4VHXBIVwEaATKxahsc0k7LlObs//5iZs9uWBt+xrSA0LmWR0ut
- N9BaqWQ7c+5hxA3ThfcsI1WmwUazIdCnRbvJwobmsHaWb4C4t+2wtlMZ+
- bYyAm+D/Fm3easo6GIUwel5dNeDTDqUPgz2vJRSz06gTCQO84dkUA23GK
- xuxZH8kaZJu7EcSSmAC2HLre/WDlgrzsjSvwzPOyJ816TPFgO0Z3tpKoM w==;
-X-CSE-ConnectionGUID: OxxWvkUYTi28GbmkWGHfbg==
-X-CSE-MsgGUID: QTWY/KFPTrGc2timqhoqZw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11134"; a="18618357"
-X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; d="scan'208";a="18618357"
+ bh=tcmBuNn27WzSZQ25PNWZIzf5bmaUz7p5/NXtqAIUxtE=;
+ b=BBltFZzHJ0ICF9cfiCt8Zmcm6prBKzh/h/RlhG6OEhC8I2jmMohIi4OH
+ 1ixrJ/VSZgADUe6AmiYO/pLyW3jv0OGOpTVcLqBV/Rc1Z1JJ0dvrXEApl
+ xoJ0PSS/8KWXCQJLhEcPbS0ir8agKxWGJtNfFGYwHtaglwme0D+iBghU7
+ EqbR4ePxNJMpFB4ioULrgkk1h5vIvJB7x7AlcWYN7nYq80/CcSDkHbQjx
+ xUz+tSUKqPdZMmoKNEWu3xIuk/lCPL++UId3mKqW5o0eo+C+BbGPB+eXg
+ OvfAo4I8E4TBsh1vIGxgw2WyozKtVtLEgbzEyolfK88T4OlnbLm66TUsz w==;
+X-CSE-ConnectionGUID: xHbbyNHBS+SK1AxTjx0Rtw==
+X-CSE-MsgGUID: /b+3nSM7RSWCquMcVzBjyg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11134"; a="18618362"
+X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; d="scan'208";a="18618362"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2024 18:01:30 -0700
-X-CSE-ConnectionGUID: as3sieUJR5arxittDkkb8g==
-X-CSE-MsgGUID: 1NEkkJBaSw+oY+yy1U41jQ==
+ 15 Jul 2024 18:01:33 -0700
+X-CSE-ConnectionGUID: TePPOfrjSJKANov1kDo9eQ==
+X-CSE-MsgGUID: 2rEdcZ0lSjadnv8JEZWPRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; d="scan'208";a="49874281"
+X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; d="scan'208";a="49874300"
 Received: from dut1103bmgfrd.igk.intel.com ([10.211.177.128])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2024 18:01:28 -0700
+ 15 Jul 2024 18:01:32 -0700
 From: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: akshatajahagirdar6@gmail.com,
- "Jahagirdar, Akshata" <akshata.jahagirdar@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v4 5/7] drm/xe/migrate: Add kunit to test migration
- functionality for BMG
-Date: Tue, 16 Jul 2024 01:01:09 +0000
-Message-Id: <0bf5226bb25f8ab2edd0aaf96280297e676d5d1f.1721091282.git.akshata.jahagirdar@intel.com>
+ Akshata Jahagirdar <akshata.jahagirdar@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
+Subject: [PATCH v4 7/7] drm/xe/migrate: Parameterize ccs and bo data clear in
+ xe_migrate_clear()
+Date: Tue, 16 Jul 2024 01:01:11 +0000
+Message-Id: <3148ab4b02400ee5e296af9968f0cde9b0a7aaa2.1721091282.git.akshata.jahagirdar@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1721091282.git.akshata.jahagirdar@intel.com>
 References: <cover.1721091282.git.akshata.jahagirdar@intel.com>
@@ -69,179 +69,187 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: "Jahagirdar, Akshata" <akshata.jahagirdar@intel.com>
+Parameterize clearing ccs and bo data in xe_migrate_clear() which  higher
+layers can utilize. This patch will be used later on when doing bo data
+clear for igfx as well.
 
-This part of kunit verifies that
-- main data is decompressed and ccs data is clear post bo eviction.
-- main data is raw copied and ccs data is clear post bo restore.
-
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_migrate.c | 119 +++++++++++++++++++++++++-
- 1 file changed, 118 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/tests/xe_bo.c      |  3 ++-
+ drivers/gpu/drm/xe/tests/xe_migrate.c |  8 ++++----
+ drivers/gpu/drm/xe/xe_bo.c            | 10 ++++++++--
+ drivers/gpu/drm/xe/xe_migrate.c       | 23 +++++++++++++++--------
+ drivers/gpu/drm/xe/xe_migrate.h       |  4 +++-
+ 5 files changed, 32 insertions(+), 16 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+index e2e0ea24757a..750759be4d4d 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+@@ -35,7 +35,8 @@ static int ccs_test_migrate(struct xe_tile *tile, struct xe_bo *bo,
+ 
+ 	/* Optionally clear bo *and* CCS data in VRAM. */
+ 	if (clear) {
+-		fence = xe_migrate_clear(tile->migrate, bo, bo->ttm.resource);
++		fence = xe_migrate_clear(tile->migrate, bo, bo->ttm.resource,
++					 true, true);
+ 		if (IS_ERR(fence)) {
+ 			KUNIT_FAIL(test, "Failed to submit bo clear.\n");
+ 			return PTR_ERR(fence);
 diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index f586a982f8bf..93fff3f515eb 100644
+index 93fff3f515eb..1dd144e96bd6 100644
 --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
 +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -479,6 +479,94 @@ static struct dma_fence *blt_copy(struct xe_tile *tile,
+@@ -104,7 +104,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+ 	}
+ 
+ 	xe_map_memset(xe, &remote->vmap, 0, 0xd0, remote->size);
+-	fence = xe_migrate_clear(m, remote, remote->ttm.resource);
++	fence = xe_migrate_clear(m, remote, remote->ttm.resource, true, true);
+ 	if (!sanity_fence_failed(xe, fence, big ? "Clearing remote big bo" :
+ 				 "Clearing remote small bo", test)) {
+ 		retval = xe_map_rd(xe, &remote->vmap, 0, u64);
+@@ -278,7 +278,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 	kunit_info(test, "Clearing small buffer object\n");
+ 	xe_map_memset(xe, &tiny->vmap, 0, 0x22, tiny->size);
+ 	expected = 0;
+-	fence = xe_migrate_clear(m, tiny, tiny->ttm.resource);
++	fence = xe_migrate_clear(m, tiny, tiny->ttm.resource, true, true);
+ 	if (sanity_fence_failed(xe, fence, "Clearing small bo", test))
+ 		goto out;
+ 
+@@ -299,7 +299,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 	kunit_info(test, "Clearing big buffer object\n");
+ 	xe_map_memset(xe, &big->vmap, 0, 0x11, big->size);
+ 	expected = 0;
+-	fence = xe_migrate_clear(m, big, big->ttm.resource);
++	fence = xe_migrate_clear(m, big, big->ttm.resource, true, true);
+ 	if (sanity_fence_failed(xe, fence, "Clearing big bo", test))
+ 		goto out;
+ 
+@@ -595,7 +595,7 @@ static void test_clear(struct xe_device *xe, struct xe_tile *tile,
+ 
+ 	kunit_info(test, "Clear vram buffer object\n");
+ 	expected = 0x0000000000000000;
+-	fence = xe_migrate_clear(tile->migrate, vram_bo, vram_bo->ttm.resource);
++	fence = xe_migrate_clear(tile->migrate, vram_bo, vram_bo->ttm.resource, true, true);
+ 	if (sanity_fence_failed(xe, fence, "Clear vram_bo", test))
+ 		return;
+ 	dma_fence_put(fence);
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 31192d983d9e..2a298f5e3e6e 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -793,8 +793,14 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 			}
+ 		}
+ 	} else {
+-		if (move_lacks_source)
+-			fence = xe_migrate_clear(migrate, bo, new_mem);
++		if (move_lacks_source) {
++			bool clear_ccs = mem_type_is_vram(new_mem->mem_type) ||
++					 handle_system_ccs;
++			bool clear_bo_data = mem_type_is_vram(new_mem->mem_type);
++
++			fence = xe_migrate_clear(migrate, bo, new_mem,
++						 clear_bo_data, clear_ccs);
++		}
+ 		else
+ 			fence = xe_migrate_copy(migrate, bo, bo, old_mem,
+ 						new_mem, handle_system_ccs);
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 2cb10437f289..b30ed7a3abfc 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1017,9 +1017,12 @@ static void emit_clear(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
+  * @m: The migration context.
+  * @bo: The buffer object @dst is currently bound to.
+  * @dst: The dst TTM resource to be cleared.
++ * @clear_bo_data: clear bo data
++ * @clear_ccs: clear ccs metadata
+  *
+- * Clear the contents of @dst to zero. On flat CCS devices,
+- * the CCS metadata is cleared to zero as well on VRAM destinations.
++ * Clear the contents of @dst to zero when @clear_bo_data is set.
++ * On flat CCS devices, the CCS metadata is cleared to zero with @clear_ccs.
++ * Set both, @clear_bo_data and  @clear_ccs to clear bo as well as CCS metadata
+  * TODO: Eliminate the @bo argument.
+  *
+  * Return: Pointer to a dma_fence representing the last clear batch, or
+@@ -1028,18 +1031,22 @@ static void emit_clear(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
+  */
+ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 				   struct xe_bo *bo,
+-				   struct ttm_resource *dst)
++				   struct ttm_resource *dst,
++				   bool clear_bo_data,
++				   bool clear_ccs)
+ {
+ 	bool clear_vram = mem_type_is_vram(dst->mem_type);
+ 	struct xe_gt *gt = m->tile->primary_gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+-	bool clear_system_ccs = (xe_bo_needs_ccs_pages(bo) && !IS_DGFX(xe)) ? true : false;
+ 	struct dma_fence *fence = NULL;
+ 	u64 size = bo->size;
+ 	struct xe_res_cursor src_it;
+ 	struct ttm_resource *src = dst;
+ 	int err;
+ 
++	if (WARN_ON(!clear_bo_data && !clear_ccs))
++		return NULL;
++
+ 	if (!clear_vram)
+ 		xe_res_first_sg(xe_bo_sg(bo), 0, bo->size, &src_it);
+ 	else
+@@ -1063,7 +1070,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 		batch_size = 2 +
+ 			pte_update_size(m, clear_vram, false, src, &src_it,
+ 					&clear_L0, &clear_L0_ofs, &clear_L0_pt,
+-					clear_system_ccs ? 0 : emit_clear_cmd_len(gt), 0,
++					clear_bo_data ? emit_clear_cmd_len(gt) : 0, 0,
+ 					avail_pts);
+ 
+ 		if (xe_migrate_needs_ccs_emit(xe))
+@@ -1084,13 +1091,13 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 		if (clear_vram && xe_migrate_allow_identity(clear_L0, &src_it))
+ 			xe_res_next(&src_it, clear_L0);
+ 		else
+-			emit_pte(m, bb, clear_L0_pt, clear_vram, clear_system_ccs,
++			emit_pte(m, bb, clear_L0_pt, clear_vram, clear_ccs,
+ 				 &src_it, clear_L0, dst);
+ 
+ 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+ 		update_idx = bb->len;
+ 
+-		if (!clear_system_ccs)
++		if (clear_bo_data)
+ 			emit_clear(gt, bb, clear_L0_ofs, clear_L0, XE_PAGE_SIZE, clear_vram);
+ 
+ 		if (xe_migrate_needs_ccs_emit(xe)) {
+@@ -1149,7 +1156,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 		return ERR_PTR(err);
+ 	}
+ 
+-	if (clear_system_ccs)
++	if (clear_ccs)
+ 		bo->ccs_cleared = true;
+ 
  	return fence;
- }
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 453e0ecf5034..45f6c180148f 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -104,7 +104,9 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
  
-+static void test_migrate(struct xe_device *xe, struct xe_tile *tile,
-+			 struct xe_bo *sys_bo, struct xe_bo *vram_bo, struct xe_bo *ccs_bo,
-+			 struct kunit *test)
-+{
-+	struct dma_fence *fence;
-+	u64 expected, retval;
-+	long timeout;
-+	long ret;
-+
-+	expected = 0xd0d0d0d0d0d0d0d0;
-+	xe_map_memset(xe, &sys_bo->vmap, 0, 0xd0, sys_bo->size);
-+
-+	fence = blt_copy(tile, sys_bo, vram_bo, false, "Blit copy from sysmem to vram", test);
-+	if (!sanity_fence_failed(xe, fence, "Blit copy from sysmem to vram", test)) {
-+		retval = xe_map_rd(xe, &vram_bo->vmap, 0, u64);
-+		if (retval == expected)
-+			KUNIT_FAIL(test, "Sanity check failed: VRAM must have compressed value\n");
-+	}
-+	dma_fence_put(fence);
-+
-+	kunit_info(test, "Evict vram buffer object\n");
-+	ret = xe_bo_evict(vram_bo, true);
-+	if (ret) {
-+		KUNIT_FAIL(test, "Failed to evict bo.\n");
-+		return;
-+	}
-+
-+	ret = xe_bo_vmap(vram_bo);
-+	if (ret) {
-+		KUNIT_FAIL(test, "Failed to vmap vram bo: %li\n", ret);
-+		return;
-+	}
-+
-+	retval = xe_map_rd(xe, &vram_bo->vmap, 0, u64);
-+	check(retval, expected, "Clear evicted vram data first value", test);
-+	retval = xe_map_rd(xe, &vram_bo->vmap, vram_bo->size - 8, u64);
-+	check(retval, expected, "Clear evicted vram data last value", test);
-+
-+	fence = blt_copy(tile, vram_bo, ccs_bo,
-+			 true, "Blit surf copy from vram to sysmem", test);
-+	if (!sanity_fence_failed(xe, fence, "Clear ccs buffer data", test)) {
-+		retval = xe_map_rd(xe, &ccs_bo->vmap, 0, u64);
-+		check(retval, 0, "Clear ccs data first value", test);
-+
-+		retval = xe_map_rd(xe, &ccs_bo->vmap, ccs_bo->size - 8, u64);
-+		check(retval, 0, "Clear ccs data last value", test);
-+	}
-+	dma_fence_put(fence);
-+
-+	kunit_info(test, "Restore vram buffer object\n");
-+	ret = xe_bo_validate(vram_bo, NULL, false);
-+	if (ret) {
-+		KUNIT_FAIL(test, "Failed to validate vram bo for: %li\n", ret);
-+		return;
-+	}
-+
-+	/* Sync all migration blits */
-+	timeout = dma_resv_wait_timeout(vram_bo->ttm.base.resv,
-+					DMA_RESV_USAGE_KERNEL,
-+					true,
-+					5 * HZ);
-+	if (timeout <= 0) {
-+		KUNIT_FAIL(test, "Failed to sync bo eviction.\n");
-+		return;
-+	}
-+
-+	ret = xe_bo_vmap(vram_bo);
-+	if (ret) {
-+		KUNIT_FAIL(test, "Failed to vmap vram bo: %li\n", ret);
-+		return;
-+	}
-+
-+	retval = xe_map_rd(xe, &vram_bo->vmap, 0, u64);
-+	check(retval, expected, "Restored value must be equal to initial value", test);
-+	retval = xe_map_rd(xe, &vram_bo->vmap, vram_bo->size - 8, u64);
-+	check(retval, expected, "Restored value must be equal to initial value", test);
-+
-+	fence = blt_copy(tile, vram_bo, ccs_bo,
-+			 true, "Blit surf copy from vram to sysmem", test);
-+	if (!sanity_fence_failed(xe, fence, "Clear ccs buffer data", test)) {
-+		retval = xe_map_rd(xe, &ccs_bo->vmap, 0, u64);
-+		check(retval, 0, "Clear ccs data first value", test);
-+		retval = xe_map_rd(xe, &ccs_bo->vmap, ccs_bo->size - 8, u64);
-+		check(retval, 0, "Clear ccs data last value", test);
-+	}
-+	dma_fence_put(fence);
-+}
-+
- static void test_clear(struct xe_device *xe, struct xe_tile *tile,
- 		       struct xe_bo *sys_bo, struct xe_bo *vram_bo, struct kunit *test)
- {
-@@ -536,7 +624,7 @@ static void test_clear(struct xe_device *xe, struct xe_tile *tile,
- static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *tile,
- 				       struct kunit *test)
- {
--	struct xe_bo *sys_bo, *vram_bo;
-+	struct xe_bo *sys_bo, *vram_bo = NULL, *ccs_bo = NULL;
- 	unsigned int bo_flags = XE_BO_FLAG_VRAM_IF_DGFX(tile);
- 	long ret;
+ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 				   struct xe_bo *bo,
+-				   struct ttm_resource *dst);
++				   struct ttm_resource *dst,
++				   bool clear_bo_data,
++				   bool clear_ccs);
  
-@@ -564,6 +652,29 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
- 	}
- 	xe_bo_unlock(sys_bo);
- 
-+	ccs_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M, DRM_XE_GEM_CPU_CACHING_WC,
-+				   ttm_bo_type_device, bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS);
-+
-+	if (IS_ERR(ccs_bo)) {
-+		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
-+			   PTR_ERR(ccs_bo));
-+		return;
-+	}
-+
-+	xe_bo_lock(ccs_bo, false);
-+	ret = xe_bo_validate(ccs_bo, NULL, false);
-+	if (ret) {
-+		KUNIT_FAIL(test, "Failed to validate system bo for: %li\n", ret);
-+		goto out_put;
-+	}
-+
-+	ret = xe_bo_vmap(ccs_bo);
-+	if (ret) {
-+		KUNIT_FAIL(test, "Failed to vmap system bo: %li\n", ret);
-+		goto out_put;
-+	}
-+	xe_bo_unlock(ccs_bo);
-+
- 	vram_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M, DRM_XE_GEM_CPU_CACHING_WC,
- 				    ttm_bo_type_device, bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS);
- 	if (IS_ERR(vram_bo)) {
-@@ -586,17 +697,23 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
- 	}
- 
- 	test_clear(xe, tile, sys_bo, vram_bo, test);
-+	test_migrate(xe, tile, sys_bo, vram_bo, ccs_bo, test);
- 	xe_bo_unlock(vram_bo);
- 
- 	xe_bo_lock(vram_bo, false);
- 	xe_bo_vunmap(vram_bo);
- 	xe_bo_unlock(vram_bo);
- 
-+	xe_bo_lock(ccs_bo, false);
-+	xe_bo_vunmap(ccs_bo);
-+	xe_bo_unlock(ccs_bo);
-+
- 	xe_bo_lock(sys_bo, false);
- 	xe_bo_vunmap(sys_bo);
- 	xe_bo_unlock(sys_bo);
- out_put:
- 	xe_bo_put(vram_bo);
-+	xe_bo_put(ccs_bo);
- 	xe_bo_put(sys_bo);
- }
+ struct xe_vm *xe_migrate_get_vm(struct xe_migrate *m);
  
 -- 
 2.34.1
