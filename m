@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EA6EC3DA59
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jul 2024 05:30:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 604E5C3DA59
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jul 2024 05:36:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2206C10E0A6;
-	Tue, 16 Jul 2024 05:30:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IB8Xf8Lo";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 324B110E0A6
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Jul 2024 05:30:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721107845; x=1752643845;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=tlFySUUzX16j7ovR/8UiXyVsIFSMtJCUOgAVeiESiyw=;
- b=IB8Xf8LoKP1K8QBHg9fGmE0bYYY7a5/Iaw0bMkZWuS/8HaOX+GgOPRI8
- XmCRqyICThsHWpkQ3D6cHjdqXhIV0UEySHUhJbltRJGFs7VKebnS+K3MC
- QJW+j65Qi+TxGLQJW1M0d6lgqDlGJkJ0CTi+JmMz0RsiHv0fsJ3s7xExx
- g1eMDyiGvGI2lTIRUGfl0lq41gLLyjtwzNdSgnIde+xBduwmLvqgMe3N4
- J2uoVSipakahweEMneao1NkNtNyf5AY1Vgh9dHdw2kwfNaYR8qOTTXrff
- HQy46g9YhQ2ivJdlGuYC6WoV64t/odiGzekdzCaC484wVsj+/D2jTv23C A==;
-X-CSE-ConnectionGUID: OlN24nIwRrChPPhJi7MxjQ==
-X-CSE-MsgGUID: TgJh2kVRQuWElcdZv9+v+w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11134"; a="22332569"
-X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; d="scan'208";a="22332569"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2024 22:30:33 -0700
-X-CSE-ConnectionGUID: Pf113c3kQJGFst+zIJ+QLA==
-X-CSE-MsgGUID: vYchqgnJT+aX9GlK0z8xMg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; d="scan'208";a="54234429"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2024 22:30:32 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com
-Subject: [PATCH] drm/xe: Wedge the entire device
-Date: Mon, 15 Jul 2024 22:31:14 -0700
-Message-Id: <20240716053114.1300997-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDD4610E1C2;
+	Tue, 16 Jul 2024 05:36:58 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D52D610E1C2;
+ Tue, 16 Jul 2024 05:36:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Wedge_the_?=
+ =?utf-8?q?entire_device?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 16 Jul 2024 05:36:57 -0000
+Message-ID: <172110821786.233765.18200463395994450075@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240716053114.1300997-1-matthew.brost@intel.com>
+In-Reply-To: <20240716053114.1300997-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,233 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Wedge the entire device, not just GT which may have triggered the wedge.
-To implement this, cleanup the layering so xe_device_declare_wedged()
-calls into the lower layers (GT) to ensure entire device is wedged.
+== Series Details ==
 
-While we are here, also signal any pending GT TLB invalidations upon
-wedging device.
+Series: drm/xe: Wedge the entire device
+URL   : https://patchwork.freedesktop.org/series/136123/
+State : success
 
-Fixes: 8ed9aaae39f3 ("drm/xe: Force wedged state and block GT reset upon any GPU hang")
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c     |  6 +++++
- drivers/gpu/drm/xe/xe_gt.c         | 15 +++++++++++++
- drivers/gpu/drm/xe/xe_gt.h         |  1 +
- drivers/gpu/drm/xe/xe_guc.c        | 16 ++++++++++++++
- drivers/gpu/drm/xe/xe_guc.h        |  1 +
- drivers/gpu/drm/xe/xe_guc_submit.c | 35 ++++++++++++++++++++----------
- drivers/gpu/drm/xe/xe_guc_submit.h |  1 +
- drivers/gpu/drm/xe/xe_uc.c         | 14 ++++++++++++
- drivers/gpu/drm/xe/xe_uc.h         |  1 +
- 9 files changed, 78 insertions(+), 12 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 64aea962afd5..1e3d3a7e74d5 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -909,6 +909,9 @@ u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address)
-  */
- void xe_device_declare_wedged(struct xe_device *xe)
- {
-+	struct xe_gt *gt;
-+	u8 id;
-+
- 	if (xe->wedged.mode == 0) {
- 		drm_dbg(&xe->drm, "Wedged mode is forcibly disabled\n");
- 		return;
-@@ -922,4 +925,7 @@ void xe_device_declare_wedged(struct xe_device *xe)
- 			"Please file a _new_ bug report at https://gitlab.freedesktop.org/drm/xe/kernel/issues/new\n",
- 			dev_name(xe->drm.dev));
- 	}
-+
-+	for_each_gt(gt, xe, id)
-+		xe_gt_declare_wedged(gt);
- }
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index b04e47186f5b..a4fd3665c1b8 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -957,3 +957,18 @@ struct xe_hw_engine *xe_gt_any_hw_engine(struct xe_gt *gt)
- 
- 	return NULL;
- }
-+
-+/**
-+ * xe_gt_declare_wedged() - Declare GT wedged
-+ * @gt: the GT object
-+ *
-+ * Wedge the GT which stops all submission, saves desired debug state, and
-+ * cleans up anything which could timeout.
-+ */
-+void xe_gt_declare_wedged(struct xe_gt *gt)
-+{
-+	xe_gt_assert(gt, gt_to_xe(gt)->wedged.mode);
-+
-+	xe_uc_declare_wedged(&gt->uc);
-+	xe_gt_tlb_invalidation_reset(gt);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index 1123fdfc4ebc..8b1a5027dcf2 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -37,6 +37,7 @@ struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
- int xe_gt_init_hwconfig(struct xe_gt *gt);
- int xe_gt_init_early(struct xe_gt *gt);
- int xe_gt_init(struct xe_gt *gt);
-+void xe_gt_declare_wedged(struct xe_gt *gt);
- int xe_gt_record_default_lrcs(struct xe_gt *gt);
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index eb655cee19f7..de0fe9e65746 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1178,3 +1178,19 @@ void xe_guc_print_info(struct xe_guc *guc, struct drm_printer *p)
- 	xe_guc_ct_print(&guc->ct, p, false);
- 	xe_guc_submit_print(guc, p);
- }
-+
-+/**
-+ * xe_guc_declare_wedged() - Declare GuC wedged
-+ * @guc: the GuC object
-+ *
-+ * Wedge the GuC which stops all submission, saves desired debug state, and
-+ * cleans up anything which could timeout.
-+ */
-+void xe_guc_declare_wedged(struct xe_guc *guc)
-+{
-+	xe_gt_assert(guc_to_gt(guc), guc_to_xe(guc)->wedged.mode);
-+
-+	xe_guc_reset_prepare(guc);
-+	xe_guc_ct_stop(&guc->ct);
-+	xe_guc_submit_wedge(guc);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
-index af59c9545753..e0bbf98f849d 100644
---- a/drivers/gpu/drm/xe/xe_guc.h
-+++ b/drivers/gpu/drm/xe/xe_guc.h
-@@ -37,6 +37,7 @@ void xe_guc_reset_wait(struct xe_guc *guc);
- void xe_guc_stop_prepare(struct xe_guc *guc);
- void xe_guc_stop(struct xe_guc *guc);
- int xe_guc_start(struct xe_guc *guc);
-+void xe_guc_declare_wedged(struct xe_guc *guc);
- 
- static inline u16 xe_engine_class_to_guc_class(enum xe_engine_class class)
- {
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 6392381e8e69..ce00fb2094ef 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -861,29 +861,27 @@ static void xe_guc_exec_queue_trigger_cleanup(struct xe_exec_queue *q)
- 		xe_sched_tdr_queue_imm(&q->guc->sched);
- }
- 
--static bool guc_submit_hint_wedged(struct xe_guc *guc)
-+/**
-+ * xe_guc_submit_wedge() - Wedge GuC submission
-+ * @guc: the GuC object
-+ *
-+ * Save exec queue's registered with GuC state by taking a ref to each queue.
-+ * Register a DRMM handler to drop refs upon driver unload.
-+ */
-+void xe_guc_submit_wedge(struct xe_guc *guc)
- {
- 	struct xe_device *xe = guc_to_xe(guc);
- 	struct xe_exec_queue *q;
- 	unsigned long index;
- 	int err;
- 
--	if (xe->wedged.mode != 2)
--		return false;
--
--	if (xe_device_wedged(xe))
--		return true;
--
--	xe_device_declare_wedged(xe);
--
--	xe_guc_submit_reset_prepare(guc);
--	xe_guc_ct_stop(&guc->ct);
-+	xe_gt_assert(guc_to_gt(guc), guc_to_xe(guc)->wedged.mode);
- 
- 	err = drmm_add_action_or_reset(&guc_to_xe(guc)->drm,
- 				       guc_submit_wedged_fini, guc);
- 	if (err) {
- 		drm_err(&xe->drm, "Failed to register xe_guc_submit clean-up on wedged.mode=2. Although device is wedged.\n");
--		return true; /* Device is wedged anyway */
-+		return;
- 	}
- 
- 	mutex_lock(&guc->submission_state.lock);
-@@ -891,6 +889,19 @@ static bool guc_submit_hint_wedged(struct xe_guc *guc)
- 		if (xe_exec_queue_get_unless_zero(q))
- 			set_exec_queue_wedged(q);
- 	mutex_unlock(&guc->submission_state.lock);
-+}
-+
-+static bool guc_submit_hint_wedged(struct xe_guc *guc)
-+{
-+	struct xe_device *xe = guc_to_xe(guc);
-+
-+	if (xe->wedged.mode != 2)
-+		return false;
-+
-+	if (xe_device_wedged(xe))
-+		return true;
-+
-+	xe_device_declare_wedged(xe);
- 
- 	return true;
- }
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
-index 4ad5f4c1b084..bdf8c9f3d24a 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.h
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.h
-@@ -18,6 +18,7 @@ int xe_guc_submit_reset_prepare(struct xe_guc *guc);
- void xe_guc_submit_reset_wait(struct xe_guc *guc);
- void xe_guc_submit_stop(struct xe_guc *guc);
- int xe_guc_submit_start(struct xe_guc *guc);
-+void xe_guc_submit_wedge(struct xe_guc *guc);
- 
- int xe_guc_sched_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
- int xe_guc_deregister_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index 0f240534fb72..0d073a9987c2 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -300,3 +300,17 @@ void xe_uc_remove(struct xe_uc *uc)
- {
- 	xe_gsc_remove(&uc->gsc);
- }
-+
-+/**
-+ * xe_uc_declare_wedged() - Declare UC wedged
-+ * @uc: the UC object
-+ *
-+ * Wedge the UC which stops all submission, saves desired debug state, and
-+ * cleans up anything which could timeout.
-+ */
-+void xe_uc_declare_wedged(struct xe_uc *uc)
-+{
-+	xe_gt_assert(uc_to_gt(uc), uc_to_xe(uc)->wedged.mode);
-+
-+	xe_guc_declare_wedged(&uc->guc);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_uc.h b/drivers/gpu/drm/xe/xe_uc.h
-index 11856f24e6f9..506517c11333 100644
---- a/drivers/gpu/drm/xe/xe_uc.h
-+++ b/drivers/gpu/drm/xe/xe_uc.h
-@@ -21,5 +21,6 @@ int xe_uc_start(struct xe_uc *uc);
- int xe_uc_suspend(struct xe_uc *uc);
- int xe_uc_sanitize_reset(struct xe_uc *uc);
- void xe_uc_remove(struct xe_uc *uc);
-+void xe_uc_declare_wedged(struct xe_uc *uc);
- 
- #endif
--- 
-2.34.1
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: b6af83ceb593 drm-tip: 2024y-07m-15d-16h-05m-20s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe: Wedge the entire device
+
 
