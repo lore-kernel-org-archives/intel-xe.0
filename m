@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67E2DC3DA59
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jul 2024 10:36:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32B16C3DA49
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jul 2024 10:38:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 267B010E643;
-	Tue, 16 Jul 2024 10:36:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fob7GH1p";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B033E10E643
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Jul 2024 10:36:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721126212; x=1752662212;
- h=from:date:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=XT/Pn1E3JBg8iuXZyAyEGJyBmC9D3+4fTJP2LqzCCHE=;
- b=fob7GH1p8+f2LmDUy/LxsZ4gNphIFZ6eTq2N1A7IeBNwz6I/u1Z0s84Y
- eiiYtlYTq0qAxmHXw2LNAFerei1eBp+vC6mULiuHT6aDneducTYcVVk0G
- HHwODB8oScdd9bDikl4Z6LondtLTLExDSo3ePiBTDil/0xkG2xiUsEPsU
- wUOZvAyNQRDqfJzmsd85/sIq9wzn0mKtMFco3+FXgZpSAa50cmj8XR5O0
- +7f5Kbn0YHkfudzk8wZisKiSNxJ5bt7tZXE54KWQ7SLO1n8R+fmmadbBk
- 165bdW+veEa6xz26UCl8/Yw4tGy0tG8mL4TSOqzo4ntzaKJaHRaGQMkyk w==;
-X-CSE-ConnectionGUID: lWn7+nh6TBqQNnYNV9iD6A==
-X-CSE-MsgGUID: krEgd6mXTRm8k1osZlZtQg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11134"; a="29703400"
-X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; d="scan'208";a="29703400"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2024 03:36:32 -0700
-X-CSE-ConnectionGUID: WggglImAQkisQMw6rZcmMw==
-X-CSE-MsgGUID: Sejq/lUPTKadLeauOj15WA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; d="scan'208";a="50354094"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost)
- ([10.245.247.133])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2024 03:36:27 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Tue, 16 Jul 2024 13:36:22 +0300 (EEST)
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-cc: intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org, 
- david.e.box@linux.intel.com, matthew.brost@intel.com, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH v7 3/6] platform/x86/intel/pmt: Use PMT callbacks
-In-Reply-To: <20240715175452.4010751-4-michael.j.ruhl@intel.com>
-Message-ID: <c2056a69-35a0-49ba-8267-1f03e3d9ed26@linux.intel.com>
-References: <20240715175452.4010751-1-michael.j.ruhl@intel.com>
- <20240715175452.4010751-4-michael.j.ruhl@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0192C10E646;
+	Tue, 16 Jul 2024 10:38:37 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B99410E652;
+ Tue, 16 Jul 2024 10:38:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2142109599134001634=="
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-1471858199-1721126182=:1037"
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/xe2=3A_Use_XE=5FWA=28=29_?=
+ =?utf-8?q?check?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 16 Jul 2024 10:38:35 -0000
+Message-ID: <172112631523.234721.214235614881856256@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240716094635.3427833-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20240716094635.3427833-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,193 +36,174 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+--===============2142109599134001634==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---8323328-1471858199-1721126182=:1037
-Content-Type: text/plain; charset=ISO-8859-15
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+== Series Details ==
 
-On Mon, 15 Jul 2024, Michael J. Ruhl wrote:
+Series: drm/xe/xe2: Use XE_WA() check
+URL   : https://patchwork.freedesktop.org/series/136138/
+State : failure
 
-> From: "David E. Box" <david.e.box@linux.intel.com>
->=20
-> PMT providers may require device specific actions before their telemetry
-> may be read. If the read_telem() is assigned, call it instead of
-> memcpy_fromio() and return. Since this needs to be done in multiple
-> locations, add pmt_telem_read_mmio() as a wrapper function to perform thi=
-s
-> and any other needed checks.
->=20
-> Reviewed-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
-> Signed-off-by: David E. Box <david.e.box@linux.intel.com>
-> ---
->  drivers/platform/x86/intel/pmt/class.c     | 26 +++++++++++++++++-----
->  drivers/platform/x86/intel/pmt/class.h     |  8 +++++--
->  drivers/platform/x86/intel/pmt/telemetry.c | 10 +++++----
->  3 files changed, 32 insertions(+), 12 deletions(-)
->=20
-> diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x8=
-6/intel/pmt/class.c
-> index d7939b28e937..c04bb7f97a4d 100644
-> --- a/drivers/platform/x86/intel/pmt/class.c
-> +++ b/drivers/platform/x86/intel/pmt/class.c
-> @@ -58,6 +58,22 @@ pmt_memcpy64_fromio(void *to, const u64 __iomem *from,=
- size_t count)
->  =09return count;
->  }
-> =20
-> +int pmt_telem_read_mmio(struct pci_dev *pdev, struct pmt_callbacks *cb, =
-u32 guid, void *buf,
-> +=09=09=09void __iomem *addr, u32 count)
-> +{
-> +=09if (cb && cb->read_telem)
-> +=09=09return cb->read_telem(pdev, guid, buf, count);
-> +
-> +=09if (guid =3D=3D GUID_SPR_PUNIT)
-> +=09=09/* PUNIT on SPR only supports aligned 64-bit read */
-> +=09=09return pmt_memcpy64_fromio(buf, addr, count);
+== Summary ==
 
-Perhaps this SPR quirk could now also use the ->read_telem() callback. It=
-=20
-would seem nice cleanup if viable.
+CI Bug Log - changes from xe-1613-b6af83ceb593bc4e0d79acda73684462b13a15b9_BAT -> xe-pw-136138v1_BAT
+====================================================
 
-> +
-> +=09memcpy_fromio(buf, addr, count);
-> +
-> +=09return count;
-> +}
-> +EXPORT_SYMBOL_NS_GPL(pmt_telem_read_mmio, INTEL_PMT);
-> +
->  /*
->   * sysfs
->   */
-> @@ -79,11 +95,8 @@ intel_pmt_read(struct file *filp, struct kobject *kobj=
-,
->  =09if (count > entry->size - off)
->  =09=09count =3D entry->size - off;
-> =20
-> -=09if (entry->guid =3D=3D GUID_SPR_PUNIT)
-> -=09=09/* PUNIT on SPR only supports aligned 64-bit read */
-> -=09=09count =3D pmt_memcpy64_fromio(buf, entry->base + off, count);
-> -=09else
-> -=09=09memcpy_fromio(buf, entry->base + off, count);
-> +=09count =3D pmt_telem_read_mmio(entry->ep->pcidev, entry->cb, entry->he=
-ader.guid, buf,
-> +=09=09=09=09    entry->base + off, count);
-> =20
->  =09return count;
->  }
-> @@ -239,6 +252,7 @@ static int intel_pmt_populate_entry(struct intel_pmt_=
-entry *entry,
-> =20
->  =09entry->guid =3D header->guid;
->  =09entry->size =3D header->size;
-> +=09entry->cb =3D ivdev->priv_data;
-> =20
->  =09return 0;
->  }
-> @@ -300,7 +314,7 @@ static int intel_pmt_dev_register(struct intel_pmt_en=
-try *entry,
->  =09=09goto fail_ioremap;
-> =20
->  =09if (ns->pmt_add_endpoint) {
-> -=09=09ret =3D ns->pmt_add_endpoint(entry, ivdev->pcidev);
-> +=09=09ret =3D ns->pmt_add_endpoint(ivdev, entry);
->  =09=09if (ret)
->  =09=09=09goto fail_add_endpoint;
->  =09}
-> diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x8=
-6/intel/pmt/class.h
-> index d6f9ccaf28c8..a267ac964423 100644
-> --- a/drivers/platform/x86/intel/pmt/class.h
-> +++ b/drivers/platform/x86/intel/pmt/class.h
-> @@ -24,6 +24,7 @@ struct pci_dev;
->  struct telem_endpoint {
->  =09struct pci_dev=09=09*pcidev;
->  =09struct telem_header=09header;
-> +=09struct pmt_callbacks=09*cb;
->  =09void __iomem=09=09*base;
->  =09bool=09=09=09present;
->  =09struct kref=09=09kref;
-> @@ -43,6 +44,7 @@ struct intel_pmt_entry {
->  =09struct kobject=09=09*kobj;
->  =09void __iomem=09=09*disc_table;
->  =09void __iomem=09=09*base;
-> +=09struct pmt_callbacks=09*cb;
->  =09unsigned long=09=09base_addr;
->  =09size_t=09=09=09size;
->  =09u32=09=09=09guid;
-> @@ -55,10 +57,12 @@ struct intel_pmt_namespace {
->  =09const struct attribute_group *attr_grp;
->  =09int (*pmt_header_decode)(struct intel_pmt_entry *entry,
->  =09=09=09=09 struct device *dev);
-> -=09int (*pmt_add_endpoint)(struct intel_pmt_entry *entry,
-> -=09=09=09=09struct pci_dev *pdev);
-> +=09int (*pmt_add_endpoint)(struct intel_vsec_device *ivdev,
-> +=09=09=09=09struct intel_pmt_entry *entry);
->  };
-> =20
-> +int pmt_telem_read_mmio(struct pci_dev *pdev, struct pmt_callbacks *cb, =
-u32 guid, void *buf,
-> +=09=09=09void __iomem *addr, u32 count);
->  bool intel_pmt_is_early_client_hw(struct device *dev);
->  int intel_pmt_dev_create(struct intel_pmt_entry *entry,
->  =09=09=09 struct intel_pmt_namespace *ns,
-> diff --git a/drivers/platform/x86/intel/pmt/telemetry.c b/drivers/platfor=
-m/x86/intel/pmt/telemetry.c
-> index 3478f891ea0b..c9feac859e57 100644
-> --- a/drivers/platform/x86/intel/pmt/telemetry.c
-> +++ b/drivers/platform/x86/intel/pmt/telemetry.c
-> @@ -93,8 +93,8 @@ static int pmt_telem_header_decode(struct intel_pmt_ent=
-ry *entry,
->  =09return 0;
->  }
-> =20
-> -static int pmt_telem_add_endpoint(struct intel_pmt_entry *entry,
-> -=09=09=09=09  struct pci_dev *pdev)
-> +static int pmt_telem_add_endpoint(struct intel_vsec_device *ivdev,
-> +=09=09=09=09  struct intel_pmt_entry *entry)
->  {
->  =09struct telem_endpoint *ep;
-> =20
-> @@ -104,13 +104,14 @@ static int pmt_telem_add_endpoint(struct intel_pmt_=
-entry *entry,
->  =09=09return -ENOMEM;
-> =20
->  =09ep =3D entry->ep;
-> -=09ep->pcidev =3D pdev;
-> +=09ep->pcidev =3D ivdev->pcidev;
->  =09ep->header.access_type =3D entry->header.access_type;
->  =09ep->header.guid =3D entry->header.guid;
->  =09ep->header.base_offset =3D entry->header.base_offset;
->  =09ep->header.size =3D entry->header.size;
->  =09ep->base =3D entry->base;
->  =09ep->present =3D true;
-> +=09ep->cb =3D ivdev->priv_data;
-> =20
->  =09kref_init(&ep->kref);
-> =20
-> @@ -218,7 +219,8 @@ int pmt_telem_read(struct telem_endpoint *ep, u32 id,=
- u64 *data, u32 count)
->  =09if (offset + NUM_BYTES_QWORD(count) > size)
->  =09=09return -EINVAL;
-> =20
-> -=09memcpy_fromio(data, ep->base + offset, NUM_BYTES_QWORD(count));
-> +=09pmt_telem_read_mmio(ep->pcidev, ep->cb, ep->header.guid, data, ep->ba=
-se + offset,
-> +=09=09=09    NUM_BYTES_QWORD(count));
-> =20
->  =09return ep->present ? 0 : -EPIPE;
->  }
->=20
+Summary
+-------
 
-Reviewed-by: Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com>
+  **FAILURE**
 
---=20
- i.
+  Serious unknown changes coming with xe-pw-136138v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-136138v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
---8323328-1471858199-1721126182=:1037--
+  
+
+Participating hosts (5 -> 5)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-136138v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_module_load@load:
+    - bat-dg2-oem2:       [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1613-b6af83ceb593bc4e0d79acda73684462b13a15b9/bat-dg2-oem2/igt@xe_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136138v1/bat-dg2-oem2/igt@xe_module_load@load.html
+    - bat-atsm-2:         [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1613-b6af83ceb593bc4e0d79acda73684462b13a15b9/bat-atsm-2/igt@xe_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136138v1/bat-atsm-2/igt@xe_module_load@load.html
+    - bat-pvc-2:          [PASS][5] -> [INCOMPLETE][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1613-b6af83ceb593bc4e0d79acda73684462b13a15b9/bat-pvc-2/igt@xe_module_load@load.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136138v1/bat-pvc-2/igt@xe_module_load@load.html
+    - bat-adlp-7:         [PASS][7] -> [ABORT][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1613-b6af83ceb593bc4e0d79acda73684462b13a15b9/bat-adlp-7/igt@xe_module_load@load.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136138v1/bat-adlp-7/igt@xe_module_load@load.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@xe_module_load@load:
+    - {bat-bmg-1}:        [PASS][9] -> [ABORT][10]
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1613-b6af83ceb593bc4e0d79acda73684462b13a15b9/bat-bmg-1/igt@xe_module_load@load.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136138v1/bat-bmg-1/igt@xe_module_load@load.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7926 -> IGT_7927
+  * Linux: xe-1613-b6af83ceb593bc4e0d79acda73684462b13a15b9 -> xe-pw-136138v1
+
+  IGT_7926: 9c28c27d4d48cecf8b7692a2975bde1cc1632096 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7927: a2ab0ec12ef447c96c67dc539813462b6b39f857 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1613-b6af83ceb593bc4e0d79acda73684462b13a15b9: b6af83ceb593bc4e0d79acda73684462b13a15b9
+  xe-pw-136138v1: 136138v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136138v1/index.html
+
+--===============2142109599134001634==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe2: Use XE_WA() check</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136138/">https://patchwork.freedesktop.org/series/136138/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136138v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136138v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1613-b6af83ceb593bc4e0d79acda73684462b13a15b9_BAT -&gt; xe-pw-136138v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-136138v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-136138v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (5 -&gt; 5)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-136138v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1613-b6af83ceb593bc4e0d79acda73684462b13a15b9/bat-dg2-oem2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136138v1/bat-dg2-oem2/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1613-b6af83ceb593bc4e0d79acda73684462b13a15b9/bat-atsm-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136138v1/bat-atsm-2/igt@xe_module_load@load.html">INCOMPLETE</a></li>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1613-b6af83ceb593bc4e0d79acda73684462b13a15b9/bat-pvc-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136138v1/bat-pvc-2/igt@xe_module_load@load.html">INCOMPLETE</a></li>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1613-b6af83ceb593bc4e0d79acda73684462b13a15b9/bat-adlp-7/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136138v1/bat-adlp-7/igt@xe_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>{bat-bmg-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1613-b6af83ceb593bc4e0d79acda73684462b13a15b9/bat-bmg-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136138v1/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7926 -&gt; IGT_7927</li>
+<li>Linux: xe-1613-b6af83ceb593bc4e0d79acda73684462b13a15b9 -&gt; xe-pw-136138v1</li>
+</ul>
+<p>IGT_7926: 9c28c27d4d48cecf8b7692a2975bde1cc1632096 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7927: a2ab0ec12ef447c96c67dc539813462b6b39f857 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1613-b6af83ceb593bc4e0d79acda73684462b13a15b9: b6af83ceb593bc4e0d79acda73684462b13a15b9<br />
+  xe-pw-136138v1: 136138v1</p>
+
+</body>
+</html>
+
+--===============2142109599134001634==--
