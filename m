@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0CA5C3DA5E
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jul 2024 22:54:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99DFBC3DA61
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jul 2024 22:54:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4922510E901;
-	Tue, 16 Jul 2024 22:54:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CDFE10E902;
+	Tue, 16 Jul 2024 22:54:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iQHieZpv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cJiGH0Th";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4285510E8FD
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Jul 2024 22:54:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B145110E8FD
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Jul 2024 22:54:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721170462; x=1752706462;
+ t=1721170465; x=1752706465;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CBZdywFqvh/ciR//poN7FlLLaAdg4iSYzGWZqnpL4+w=;
- b=iQHieZpvHEIv/zWw2TYw1JTsGAVs/Ek/px8xIkboqan4gQplIlFXW+Oa
- iIgnRWnTk8JNBQvVi8dZ/lIYGmX0LBK2hDUmNA5StayMElcS4CgeZANFj
- FvnsCU3m4hPWbE7JJrVneF3EpJUIaQwWf7o462l++Az9EhAub8xNeaay9
- c3agnWK+AK9uA6UzSToi7tqM5IbPRh90KFiiPpfkO3pCjt+5Ip589RUx9
- rV7zEmP0Zbm28SrlwCRwVnK2XuB9GiIaXX5DxU1S4YWqaeYf5MVoSlbwa
- rfA7Wl4+B+QOcjXYbm2ELBlocLqRgYFdDhrFp5aZ923dfkx76vgWsZZxd A==;
-X-CSE-ConnectionGUID: ti/LYlv5RlmHUb64fTSnHA==
-X-CSE-MsgGUID: SCgs6lUPRbelgEoU6ZbNuA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11135"; a="22457138"
-X-IronPort-AV: E=Sophos;i="6.09,212,1716274800"; d="scan'208";a="22457138"
+ bh=YmzahVmGxbgImM63vCJdEXYXXXJEtCnGVRUUTsXg8Pc=;
+ b=cJiGH0Thj+o/Refqsar5B87Dz2LnVBjeboc1Ce844jrzCWhQW72/+dy8
+ /9fOFYU67JBNUyb8bQAwfLDYTOng0xjKhTxqZK/r4p0j6MIcaNAeqd8JE
+ mur1TTLRtPY8Sdme1eMlmj4caEa+8OXHKM5x5hvkr9c1Pdleoj/NZXmph
+ 1mJlc889ygQhDzofl3PCghnny+ZsIie+yVlne67EWeRo1hjtxcBqdxruA
+ UfCxOxiM2AL7FjF7GmhbWZ435i7fQL/ArxAMdBuR0oZ/uRTiWV3XPvJpt
+ p+hF1/W8rSwiWceA71Wewb7WoqXmWFFX8Rku7saviTlAx9dmp/eNOrnvB w==;
+X-CSE-ConnectionGUID: N4uUloxsRymY5ng04HwOLw==
+X-CSE-MsgGUID: lvniBb/gQPqGwOlMj17dWw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11135"; a="22457142"
+X-IronPort-AV: E=Sophos;i="6.09,212,1716274800"; d="scan'208";a="22457142"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2024 15:54:22 -0700
-X-CSE-ConnectionGUID: v36EllgmT2mCb9xxMSNP+Q==
-X-CSE-MsgGUID: QmQXFsbJS+OCDN59U57KWw==
+ 16 Jul 2024 15:54:25 -0700
+X-CSE-ConnectionGUID: b7exfEANSlO+SUmsnKAN9Q==
+X-CSE-MsgGUID: 8Q+sFLojQ2uX2VkKRzAEaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,212,1716274800"; d="scan'208";a="50765835"
+X-IronPort-AV: E=Sophos;i="6.09,212,1716274800"; d="scan'208";a="50765860"
 Received: from unknown (HELO DUT1107BMGFRD.igk.intel.com) ([10.211.177.88])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2024 15:54:20 -0700
+ 16 Jul 2024 15:54:23 -0700
 From: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: akshatajahagirdar6@gmail.com,
- Akshata Jahagirdar <akshata.jahagirdar@intel.com>
-Subject: [PATCH v5 3/8] drm/xe/migrate: Add helper function to program
- identity map
-Date: Tue, 16 Jul 2024 22:54:04 +0000
-Message-Id: <810bcf155874734488222a4be7414054d6445b8d.1721170212.git.akshata.jahagirdar@intel.com>
+ Akshata Jahagirdar <akshata.jahagirdar@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v5 5/8] drm/xe/xe_migrate: Handle migration logic for xe2+ dgfx
+Date: Tue, 16 Jul 2024 22:54:06 +0000
+Message-Id: <b19600d1ae661599f17884b288b1ea00fba9bb8c.1721170212.git.akshata.jahagirdar@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1721170212.git.akshata.jahagirdar@intel.com>
 References: <cover.1721170212.git.akshata.jahagirdar@intel.com>
@@ -68,122 +69,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add an helper function to program identity map.
-
-v2: Formatting nits
+During eviction (vram->sysmem), we use compressed -> uncompressed mapping.
+During restore (sysmem->vram), we need to use mapping from
+uncompressed -> uncompressed.
+Handle logic for selecting the compressed identity map for eviction,
+and selecting uncompressed map for restore operations.
+v2: Move check of xe_migrate_ccs_emit() before calling
+xe_migrate_ccs_copy(). (Nirmoy)
 
 Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 88 ++++++++++++++++++---------------
- 1 file changed, 48 insertions(+), 40 deletions(-)
+ drivers/gpu/drm/xe/xe_migrate.c | 20 +++++++++++---------
+ 1 file changed, 11 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 85eec95c9bc2..6b952ed98a51 100644
+index 601c9e790dae..b28724caec10 100644
 --- a/drivers/gpu/drm/xe/xe_migrate.c
 +++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -130,6 +130,51 @@ static u64 xe_migrate_vram_ofs(struct xe_device *xe, u64 addr)
- 	return addr + (256ULL << xe_pt_shift(2));
- }
+@@ -697,7 +697,7 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
+ 	struct xe_gt *gt = m->tile->primary_gt;
+ 	u32 flush_flags = 0;
  
-+static void xe_migrate_program_identity(struct xe_device *xe, struct xe_vm *vm, struct xe_bo *bo,
-+					u64 map_ofs, u64 vram_offset, u16 pat_index, u64 pt_ofs)
-+{
-+	u64 pos, ofs, flags;
-+	u64 entry;
-+	/* XXX: Unclear if this should be usable_size? */
-+	u64 vram_limit =  xe->mem.vram.actual_physical_size +
-+		xe->mem.vram.dpa_base;
-+	u32 level = 2;
-+
-+	ofs = map_ofs + XE_PAGE_SIZE * level + vram_offset * 8;
-+	flags = vm->pt_ops->pte_encode_addr(xe, 0, pat_index, level,
-+					    true, 0);
-+
-+	xe_assert(xe, IS_ALIGNED(xe->mem.vram.usable_size, SZ_2M));
-+
-+	/*
-+	 * Use 1GB pages when possible, last chunk always use 2M
-+	 * pages as mixing reserved memory (stolen, WOCPM) with a single
-+	 * mapping is not allowed on certain platforms.
-+	 */
-+	for (pos = xe->mem.vram.dpa_base; pos < vram_limit;
-+	     pos += SZ_1G, ofs += 8) {
-+		if (pos + SZ_1G >= vram_limit) {
-+			entry = vm->pt_ops->pde_encode_bo(bo, pt_ofs,
-+							  pat_index);
-+			xe_map_wr(xe, &bo->vmap, ofs, u64, entry);
-+
-+			flags = vm->pt_ops->pte_encode_addr(xe, 0,
-+							    pat_index,
-+							    level - 1,
-+							    true, 0);
-+
-+			for (ofs = pt_ofs; pos < vram_limit;
-+			     pos += SZ_2M, ofs += 8)
-+				xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
-+			break;	/* Ensure pos == vram_limit assert correct */
-+		}
-+
-+		xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
-+	}
-+
-+	xe_assert(xe, pos == vram_limit);
-+}
-+
- static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 				 struct xe_vm *vm)
- {
-@@ -253,47 +298,10 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+-	if (xe_device_has_flat_ccs(gt_to_xe(gt)) && !copy_ccs && dst_is_indirect) {
++	if (!copy_ccs && dst_is_indirect) {
+ 		/*
+ 		 * If the src is already in vram, then it should already
+ 		 * have been cleared by us, or has been populated by the
+@@ -773,6 +773,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 	bool copy_ccs = xe_device_has_flat_ccs(xe) &&
+ 		xe_bo_needs_ccs_pages(src_bo) && xe_bo_needs_ccs_pages(dst_bo);
+ 	bool copy_system_ccs = copy_ccs && (!src_is_vram || !dst_is_vram);
++	bool use_comp_pat = GRAPHICS_VER(xe) >= 20 && IS_DGFX(xe) && src_is_vram && !dst_is_vram;
  
- 	/* Identity map the entire vram at 256GiB offset */
- 	if (IS_DGFX(xe)) {
--		u64 pos, ofs, flags;
--		/* XXX: Unclear if this should be usable_size? */
--		u64 vram_limit =  xe->mem.vram.actual_physical_size +
--			xe->mem.vram.dpa_base;
--
--		level = 2;
--		ofs = map_ofs + XE_PAGE_SIZE * level + 256 * 8;
--		flags = vm->pt_ops->pte_encode_addr(xe, 0, pat_index, level,
--						    true, 0);
--
--		xe_assert(xe, IS_ALIGNED(xe->mem.vram.usable_size, SZ_2M));
--
--		/*
--		 * Use 1GB pages when possible, last chunk always use 2M
--		 * pages as mixing reserved memory (stolen, WOCPM) with a single
--		 * mapping is not allowed on certain platforms.
--		 */
--		for (pos = xe->mem.vram.dpa_base; pos < vram_limit;
--		     pos += SZ_1G, ofs += 8) {
--			if (pos + SZ_1G >= vram_limit) {
--				u64 pt31_ofs = bo->size - XE_PAGE_SIZE;
--
--				entry = vm->pt_ops->pde_encode_bo(bo, pt31_ofs,
--								  pat_index);
--				xe_map_wr(xe, &bo->vmap, ofs, u64, entry);
--
--				flags = vm->pt_ops->pte_encode_addr(xe, 0,
--								    pat_index,
--								    level - 1,
--								    true, 0);
--
--				for (ofs = pt31_ofs; pos < vram_limit;
--				     pos += SZ_2M, ofs += 8)
--					xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
--				break;	/* Ensure pos == vram_limit assert correct */
--			}
--
--			xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
--		}
-+		u64 pt31_ofs = bo->size - XE_PAGE_SIZE;
+ 	/* Copying CCS between two different BOs is not supported yet. */
+ 	if (XE_WARN_ON(copy_ccs && src_bo != dst_bo))
+@@ -799,7 +800,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 		u32 batch_size = 2; /* arb_clear() + MI_BATCH_BUFFER_END */
+ 		struct xe_sched_job *job;
+ 		struct xe_bb *bb;
+-		u32 flush_flags;
++		u32 flush_flags = 0;
+ 		u32 update_idx;
+ 		u64 ccs_ofs, ccs_size;
+ 		u32 ccs_pt;
+@@ -815,7 +816,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
  
--		xe_assert(xe, pos == vram_limit);
-+		xe_migrate_program_identity(xe, vm, bo, map_ofs, 256, pat_index, pt31_ofs);
-+		xe_assert(xe, (xe->mem.vram.actual_physical_size <= SZ_256G));
- 	}
+ 		src_L0 = min(src_L0, dst_L0);
  
- 	/*
+-		batch_size += pte_update_size(m, src_is_vram, false, src, &src_it, &src_L0,
++		batch_size += pte_update_size(m, src_is_vram, use_comp_pat, src, &src_it, &src_L0,
+ 					      &src_L0_ofs, &src_L0_pt, 0, 0,
+ 					      avail_pts);
+ 
+@@ -834,7 +835,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 
+ 		/* Add copy commands size here */
+ 		batch_size += ((copy_only_ccs) ? 0 : EMIT_COPY_DW) +
+-			((xe_device_has_flat_ccs(xe) ? EMIT_COPY_CCS_DW : 0));
++			((xe_migrate_needs_ccs_emit(xe) ? EMIT_COPY_CCS_DW : 0));
+ 
+ 		bb = xe_bb_new(gt, batch_size, usm);
+ 		if (IS_ERR(bb)) {
+@@ -863,11 +864,12 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 		if (!copy_only_ccs)
+ 			emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0, XE_PAGE_SIZE);
+ 
+-		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs,
+-						  IS_DGFX(xe) ? src_is_vram : src_is_pltt,
+-						  dst_L0_ofs,
+-						  IS_DGFX(xe) ? dst_is_vram : dst_is_pltt,
+-						  src_L0, ccs_ofs, copy_ccs);
++		if (xe_migrate_needs_ccs_emit(xe))
++			flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs,
++							  IS_DGFX(xe) ? src_is_vram : src_is_pltt,
++							  dst_L0_ofs,
++							  IS_DGFX(xe) ? dst_is_vram : dst_is_pltt,
++							  src_L0, ccs_ofs, copy_ccs);
+ 
+ 		job = xe_bb_create_migration_job(m->q, bb,
+ 						 xe_migrate_batch_base(m, usm),
 -- 
 2.34.1
 
