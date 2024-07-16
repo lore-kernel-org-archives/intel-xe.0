@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90EF1C3DA49
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jul 2024 15:28:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9CC7C3DA59
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jul 2024 15:29:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45C6E10E792;
-	Tue, 16 Jul 2024 15:28:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="pbjmyBG8";
-	dkim-atps=neutral
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E6EB10E2EE;
- Tue, 16 Jul 2024 15:28:42 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id EEE92CE1379;
- Tue, 16 Jul 2024 15:28:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 391F0C116B1;
- Tue, 16 Jul 2024 15:28:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1721143720;
- bh=oYk79yYoHfk1BiMcdQ9ld3zs0u7RPwPBSxPb2TgLp5E=;
- h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
- b=pbjmyBG8/qNPde2BxQX7XyMn5B2hC4heU4FLjAEjNRXpiIFWHrgtjDNGj0xwpnT6Q
- 18RShO3lxd0VYjizxqpA9otxA4Y5birjA66C3f5a3YZ9WbADng9nyqIq4pcvL9QxMY
- 1aDRXv53OKKLLVTunkduYT8ep7QW/2tiLJJB9CVBvICkil2Fp2dFwPzg3ePZfFFw+U
- aeOgdWdOw7e8voVTGbAtqdiy767+Yb6y8wNi+I3x8kEnCZ6XYU7Be1+WWRXyGPsWBN
- uC/KZNccAckuKX2k1JNqJ3pFy4iYh6dnuiJ8OrIo0DvcVdmlz4CCrNPY7Vqzo3gkNx
- TOuzG0yE3h3vg==
-Received: by mail-yb1-f173.google.com with SMTP id
- 3f1490d57ef6-e05a4d6e443so3199404276.0; 
- Tue, 16 Jul 2024 08:28:40 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCV4tdv2pn8fYXjfvaU3yulqfMf6yqX/+WWD9BZjgJEIAtTs7ahBkSiWb5VEIMDYmeC0cvt09Z512fpqB7Oa+Xg31x8Zdu3c5u0F9dV2vPSli/SLZO19bNmfN2/t73Hw0dK+hPOu1gTPZlC6sxF6cHM=
-X-Gm-Message-State: AOJu0YwgabgTZHOILRnRDQOb2iySnGZ5VlCx0ca+PygUBs1MeoxtazZj
- ybMkvGvciceHW3IikXc4F8udIENzcKdjT2ktejxvqCsGhQNP5VtnIZqYYyhIW1Ep9ezQxwpSWSC
- tKJJGY0QY03YFgInAbzqJDNFWiQg=
-X-Google-Smtp-Source: AGHT+IGyD7lhCC/ceGwYEzYBum7Le5Z6nMx73Ar3tWS5J0mfRjeXehvz+S+c3wOSJw4eVUKvrbxY8Dz8rbAwQtL28zg=
-X-Received: by 2002:a05:6902:18c6:b0:e05:a159:6248 with SMTP id
- 3f1490d57ef6-e05d5a2069dmr3584167276.57.1721143719416; Tue, 16 Jul 2024
- 08:28:39 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67D2010E2EE;
+	Tue, 16 Jul 2024 15:29:00 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E220110E2EE;
+ Tue, 16 Jul 2024 15:28:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0080205178881243216=="
 MIME-Version: 1.0
-References: <20240716132455.8401-2-gustavo.sousa@intel.com>
-In-Reply-To: <20240716132455.8401-2-gustavo.sousa@intel.com>
-From: Josh Boyer <jwboyer@kernel.org>
-Date: Tue, 16 Jul 2024 11:28:28 -0400
-X-Gmail-Original-Message-ID: <CA+5PVA6FdFByuinUqU=8RtPJeSs5fzL8Ed+Y21sJyRp2wHrVow@mail.gmail.com>
-Message-ID: <CA+5PVA6FdFByuinUqU=8RtPJeSs5fzL8Ed+Y21sJyRp2wHrVow@mail.gmail.com>
-Subject: Re: PR for Xe2LPD DMC v2.21
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: linux-firmware@kernel.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Add_assert_for_XE=5FWA?=
+ =?utf-8?q?=28=29_usage?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 16 Jul 2024 15:28:57 -0000
+Message-ID: <172114373792.251871.1482891677910032361@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240716143720.2790982-1-lucas.demarchi@intel.com>
+In-Reply-To: <20240716143720.2790982-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,56 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jul 16, 2024 at 9:25=E2=80=AFAM Gustavo Sousa <gustavo.sousa@intel.=
-com> wrote:
->
-> The following changes since commit 93f329774542b9b7d57abb18ea8b6542f2d8fe=
-ac:
->
->   Merge branch 'robot/pr-0-1709214990' into 'main' (2024-02-29 14:10:53 +=
-0000)
->
-> are available in the Git repository at:
->
->   https://gitlab.freedesktop.org/drm/firmware.git tags/intel-2024-07-16
+--===============0080205178881243216==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I don't know what repo you generated this against, but it was very far
-behind upstream.  I rebased and it effectively only pulled in the
-single commit to update Xe2LPD DMC.
+== Series Details ==
 
-https://gitlab.com/kernel-firmware/linux-firmware/-/merge_requests/252/comm=
-its
+Series: drm/xe: Add assert for XE_WA() usage
+URL   : https://patchwork.freedesktop.org/series/136146/
+State : success
 
-If there's something missing, please submit it separately.
+== Summary ==
 
-josh
+CI Bug Log - changes from xe-1614-e6cf7ddccb36f44102032b3c803d978ef5c8016c_BAT -> xe-pw-136146v1_BAT
+====================================================
 
->
-> for you to fetch changes up to 72e5970de400e6d55a31e38bcba439ec17cedfe1:
->
->   i915: Update Xe2LPD DMC to v2.21 (2024-07-16 16:11:43 +0530)
->
-> ----------------------------------------------------------------
-> Intel DRM firmware intel-2024-07-16
->
-> ----------------------------------------------------------------
-> Daniele Ceraolo Spurio (1):
->       i915: Add DG2 HuC 7.10.15
->
-> Dnyaneshwar Bhadane (2):
->       i915: Update Xe2LPD DMC to v2.20
->       i915: Update Xe2LPD DMC to v2.21
->
-> Gustavo Sousa (1):
->       i915: Add BMG DMC v2.06
->
->  WHENCE               |   7 +++++--
->  i915/bmg_dmc.bin     | Bin 0 -> 45964 bytes
->  i915/dg2_huc_gsc.bin | Bin 622592 -> 630784 bytes
->  i915/xe2lpd_dmc.bin  | Bin 61208 -> 59872 bytes
->  4 files changed, 5 insertions(+), 2 deletions(-)
->  create mode 100644 i915/bmg_dmc.bin
->  mode change 100755 =3D> 100644 i915/dg2_huc_gsc.bin
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (7 -> 7)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-136146v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#324]) -> [PASS][2] +2 other tests pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1614-e6cf7ddccb36f44102032b3c803d978ef5c8016c/bat-adlp-7/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136146v1/bat-adlp-7/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
+
+  
+  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
+
+
+Build changes
+-------------
+
+  * Linux: xe-1614-e6cf7ddccb36f44102032b3c803d978ef5c8016c -> xe-pw-136146v1
+
+  IGT_7927: a2ab0ec12ef447c96c67dc539813462b6b39f857 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1614-e6cf7ddccb36f44102032b3c803d978ef5c8016c: e6cf7ddccb36f44102032b3c803d978ef5c8016c
+  xe-pw-136146v1: 136146v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136146v1/index.html
+
+--===============0080205178881243216==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add assert for XE_WA() usage</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136146/">https://patchwork.freedesktop.org/series/136146/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136146v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136146v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1614-e6cf7ddccb36f44102032b3c803d978ef5c8016c_BAT -&gt; xe-pw-136146v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (7 -&gt; 7)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-136146v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1614-e6cf7ddccb36f44102032b3c803d978ef5c8016c/bat-adlp-7/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136146v1/bat-adlp-7/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1614-e6cf7ddccb36f44102032b3c803d978ef5c8016c -&gt; xe-pw-136146v1</li>
+</ul>
+<p>IGT_7927: a2ab0ec12ef447c96c67dc539813462b6b39f857 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1614-e6cf7ddccb36f44102032b3c803d978ef5c8016c: e6cf7ddccb36f44102032b3c803d978ef5c8016c<br />
+  xe-pw-136146v1: 136146v1</p>
+
+</body>
+</html>
+
+--===============0080205178881243216==--
