@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67E08C3DA60
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jul 2024 21:40:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85B63C3DA61
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jul 2024 21:40:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1391B10E8DF;
-	Tue, 16 Jul 2024 21:40:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A12810E8E0;
+	Tue, 16 Jul 2024 21:40:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iVrx3OS8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XcBiAKvV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E09410E8E1
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Jul 2024 21:39:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F14510E8E0
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Jul 2024 21:39:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721165998; x=1752701998;
+ t=1721165999; x=1752701999;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gt1hOK1E7Of3frcWf/UVC3Cn1IIvlgaLDI2Sx0eT4cs=;
- b=iVrx3OS8aZi0Gp8+z3t4IqiBHzalJe7NghA82XzUohnTBqYEgyPCidob
- qdm6WQ7cgWfpq5PONH0M2RjnFUJDTZlAOxiWq8A0XkSh/Iik+FUcqoQmR
- DLBckYMsHUidpEWg7G9RuMCvixePfGj5Lrf5lfcbIRCC+tT7dIiu6QxnL
- nA2gpb8qxFKCuOn3ktelIvHeLkM3+8+/p9gLomucd6AynkIZ3awQeOMbX
- kHGcZUpTA3vNMUNY8zAR+IKORWyqIbgz2k3HqGrQcExJBBauievZHq6WH
- 8K4NcZLZYREfEDzqijqq6ZSj8hsytTpECgL7tCF5LhWgjRhL4c3JbgFMs A==;
-X-CSE-ConnectionGUID: 9uDd5rQvQJCUfGTZ9AlQnA==
-X-CSE-MsgGUID: 2sdaqvZ5SI2grbgEurD1jg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11135"; a="44063150"
-X-IronPort-AV: E=Sophos;i="6.09,212,1716274800"; d="scan'208";a="44063150"
+ bh=J8uQkLn9WWvqPNCGiLL1Tp2c2o7A6W+c/wnBoOoShyA=;
+ b=XcBiAKvVQcoyPA4Fd1Vw6ITkL4gKag8CAOM+sMkVoWZw8qxwCIHHtBbQ
+ Qwoa3OKIctnYmPgUv175V0UCTfIojl4qS0I39INyw6LSo/MGPfx/RyrcJ
+ 3wgcsU2Vfvgf3p9QIU7DQfdhLyAf6qw+p48CdXmRCcuAzxUYQEXm0ATLO
+ yUVVohDwafzD8hAQPyvQNSM41xEPtDgCf4pyjdJSjjGf0afvzqmM/7dtq
+ 4h9s6qYbTLQLjVnf+Z+EUsHVJfLu+Tw/CZQ4u/eKnlNFgVXME5QgD56BF
+ 3zprcYwmaf+y0sUaFykFbDkuk16LH6Ed2NVxlaY+nRb+gaUztcMA3oSdI g==;
+X-CSE-ConnectionGUID: 5zPRkPfOT6Wpk5WVwXZ2Bg==
+X-CSE-MsgGUID: R321lKxmT42yfSLwG3Izag==
+X-IronPort-AV: E=McAfee;i="6700,10204,11135"; a="44063151"
+X-IronPort-AV: E=Sophos;i="6.09,212,1716274800"; d="scan'208";a="44063151"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2024 14:39:58 -0700
-X-CSE-ConnectionGUID: jgZnWVleROGRisNz67w4fg==
-X-CSE-MsgGUID: ki4gKJhiQ9m6mdRLr8D/+A==
+ 16 Jul 2024 14:39:59 -0700
+X-CSE-ConnectionGUID: 1COJkq4sTqSUy0Q2BTivNA==
+X-CSE-MsgGUID: b4io7KAbQmazrRN/BxkIxw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,212,1716274800"; d="scan'208";a="73364361"
+X-IronPort-AV: E=Sophos;i="6.09,212,1716274800"; d="scan'208";a="73364368"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.36.158])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2024 14:39:57 -0700
+ 16 Jul 2024 14:39:58 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 2/7] drm/xe/tests: Add helpers for use in live tests
-Date: Tue, 16 Jul 2024 23:38:56 +0200
-Message-Id: <20240716213901.398-3-michal.wajdeczko@intel.com>
+Subject: [PATCH 3/7] drm/xe/tests: Convert xe_bo live tests
+Date: Tue, 16 Jul 2024 23:38:57 +0200
+Message-Id: <20240716213901.398-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20240716213901.398-1-michal.wajdeczko@intel.com>
 References: <20240716213901.398-1-michal.wajdeczko@intel.com>
@@ -66,169 +66,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of iterating over available Xe devices within a testcase,
-without being able to distinguish potential failures from different
-devices on system with many Xe devices, introduce helpers that will
-allow to treat each Xe device as a parameter for the testcase like:
-
-static void bar(struct kunit *test)
-{
-	struct xe_device *xe = test->priv;
-	...
-}
-
-struct kunit_case foo_live_tests[] = {
-	KUNIT_CASE_PARAM(bar, xe_pci_live_device_gen_param),
-	{}
-};
-
-struct kunit_suite foo_suite = {
-	.name = "foo_live",
-	.test_cases = foo_live_tests,
-	.init = xe_kunit_helper_xe_device_live_test_init,
-	.exit = xe_kunit_helper_xe_device_live_test_exit,
-};
+Convert xe_bo live tests to parameterized style.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_kunit_helpers.c | 55 +++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_kunit_helpers.h |  3 ++
- drivers/gpu/drm/xe/tests/xe_pci.c           | 30 +++++++++++
- drivers/gpu/drm/xe/tests/xe_pci_test.h      |  2 +
- 4 files changed, 90 insertions(+)
+ drivers/gpu/drm/xe/tests/xe_bo.c | 19 +++++++++++++------
+ 1 file changed, 13 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-index fefe79b3b75a..d68d887a2646 100644
---- a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-+++ b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-@@ -12,7 +12,9 @@
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+index 692e1b46b9cf..53bb4686fa73 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+@@ -6,6 +6,7 @@
+ #include <kunit/test.h>
+ #include <kunit/visibility.h>
  
- #include "tests/xe_kunit_helpers.h"
++#include "tests/xe_kunit_helpers.h"
  #include "tests/xe_pci_test.h"
-+#include "xe_device.h"
- #include "xe_device_types.h"
-+#include "xe_pm.h"
+ #include "tests/xe_test.h"
  
- /**
-  * xe_kunit_helper_alloc_xe_device - Allocate a &xe_device for a KUnit test.
-@@ -88,3 +90,56 @@ int xe_kunit_helper_xe_device_test_init(struct kunit *test)
- 	return 0;
- }
- EXPORT_SYMBOL_IF_KUNIT(xe_kunit_helper_xe_device_test_init);
-+
-+/**
-+ * xe_kunit_helper_xe_device_live_test_init - Prepare a &xe_device for
-+ *                                            use in a live KUnit test.
-+ * @test: the &kunit where live &xe_device will be used
-+ *
-+ * This function expects pointer to the &xe_device in the &test.param_value,
-+ * like it is prepared by the &xe_pci_live_device_gen_param and stores that
-+ * pointer as &kunit.priv to allow the test code to access it.
-+ *
-+ * This function makes sure that device is not wedged and then resumes it
-+ * to avoid waking up the device inside the test.
-+ *
-+ * This function can be used as custom implementation of &kunit_suite.init
-+ * but must be accompanied by the &xe_kunit_helper_xe_device_live_test_exit().
-+ *
-+ * This function uses KUNIT_ASSERT to detect any failures.
-+ *
-+ * Return: Always 0.
-+ */
-+int xe_kunit_helper_xe_device_live_test_init(struct kunit *test)
-+{
-+	struct xe_device *xe;
-+
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, test->param_value);
-+	xe = xe_device_const_cast(test->param_value);
-+
-+	kunit_info(test, "running on %s device\n", xe->info.platform_name);
-+
-+	KUNIT_ASSERT_FALSE(test, xe_device_wedged(xe));
-+	xe_pm_runtime_get(xe);
-+
-+	test->priv = xe;
-+	return 0;
-+}
-+EXPORT_SYMBOL_IF_KUNIT(xe_kunit_helper_xe_device_live_test_init);
-+
-+/**
-+ * xe_kunit_helper_xe_device_live_test_exit - Cleanup a live KUnit test.
-+ * @test: the &kunit where live &xe_device was used
-+ *
-+ * This function accompanies the &xe_kunit_helper_xe_device_live_test_init()
-+ * and should be used as custom implementation of &kunit_suite.exit.
-+ */
-+void xe_kunit_helper_xe_device_live_test_exit(struct kunit *test)
-+{
+@@ -158,7 +159,7 @@ static int ccs_test_run_device(struct xe_device *xe)
+ 	int id;
+ 
+ 	if (!xe_device_has_flat_ccs(xe)) {
+-		kunit_info(test, "Skipping non-flat-ccs device.\n");
++		kunit_skip(test, "Skipping non-flat-ccs device.\n");
+ 		return 0;
+ 	}
+ 
+@@ -178,7 +179,9 @@ static int ccs_test_run_device(struct xe_device *xe)
+ 
+ static void xe_ccs_migrate_kunit(struct kunit *test)
+ {
+-	xe_call_for_each_device(ccs_test_run_device);
 +	struct xe_device *xe = test->priv;
 +
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, xe);
-+	xe_pm_runtime_put(xe);
-+	KUNIT_EXPECT_FALSE(test, xe_device_wedged(xe));
-+}
-+EXPORT_SYMBOL_IF_KUNIT(xe_kunit_helper_xe_device_live_test_exit);
-diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
-index 067a1babf049..cc59ba23ade0 100644
---- a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
-+++ b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
-@@ -14,4 +14,7 @@ struct xe_device *xe_kunit_helper_alloc_xe_device(struct kunit *test,
- 						  struct device *dev);
- int xe_kunit_helper_xe_device_test_init(struct kunit *test);
- 
-+int xe_kunit_helper_xe_device_live_test_init(struct kunit *test);
-+void xe_kunit_helper_xe_device_live_test_exit(struct kunit *test);
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
-index f62809ca8b51..ab570dbb71ac 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci.c
-+++ b/drivers/gpu/drm/xe/tests/xe_pci.c
-@@ -167,3 +167,33 @@ int xe_pci_fake_device_init(struct xe_device *xe)
- 	return 0;
++	ccs_test_run_device(xe);
  }
- EXPORT_SYMBOL_IF_KUNIT(xe_pci_fake_device_init);
-+
-+/**
-+ * xe_pci_live_device_gen_param - Helper to iterate Xe devices as a KUnit parameters
-+ * @prev: the previously returned value, or NULL for the first iteration
-+ * @desc: the buffer for a parameter name
-+ *
-+ * Iterates over the available Xe devices on the system. Uses the device name
-+ * as the parameter name.
-+ *
-+ * To be used only as a parameter generator function in &KUNIT_CASE_PARAM.
-+ *
-+ * Return: pointer to the next &struct xe_device ready to be used as a parameter
-+ *         or NULL if there are no more Xe devices on the system.
-+ */
-+const void *xe_pci_live_device_gen_param(const void *prev, char *desc)
-+{
-+	const struct xe_device *xe = prev;
-+	struct device *dev = xe ? xe->drm.dev : NULL;
-+	struct device *next;
-+
-+	next = driver_find_next_device(&xe_pci_driver.driver, dev);
-+	if (dev)
-+		put_device(dev);
-+	if (!next)
-+		return NULL;
-+
-+	snprintf(desc, KUNIT_PARAM_DESC_SIZE, "%s", dev_name(next));
-+	return pdev_to_xe_device(to_pci_dev(next));
-+}
-+EXPORT_SYMBOL_IF_KUNIT(xe_pci_live_device_gen_param);
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.h b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-index f40dcec83992..3e2558bc3c90 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci_test.h
-+++ b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-@@ -35,4 +35,6 @@ struct xe_pci_fake_data {
  
- int xe_pci_fake_device_init(struct xe_device *xe);
+ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struct kunit *test)
+@@ -328,7 +331,7 @@ static int evict_test_run_device(struct xe_device *xe)
+ 	int id;
  
-+const void *xe_pci_live_device_gen_param(const void *prev, char *desc);
+ 	if (!IS_DGFX(xe)) {
+-		kunit_info(test, "Skipping non-discrete device %s.\n",
++		kunit_skip(test, "Skipping non-discrete device %s.\n",
+ 			   dev_name(xe->drm.dev));
+ 		return 0;
+ 	}
+@@ -345,12 +348,14 @@ static int evict_test_run_device(struct xe_device *xe)
+ 
+ static void xe_bo_evict_kunit(struct kunit *test)
+ {
+-	xe_call_for_each_device(evict_test_run_device);
++	struct xe_device *xe = test->priv;
 +
- #endif
++	evict_test_run_device(xe);
+ }
+ 
+ static struct kunit_case xe_bo_tests[] = {
+-	KUNIT_CASE(xe_ccs_migrate_kunit),
+-	KUNIT_CASE(xe_bo_evict_kunit),
++	KUNIT_CASE_PARAM(xe_ccs_migrate_kunit, xe_pci_live_device_gen_param),
++	KUNIT_CASE_PARAM(xe_bo_evict_kunit, xe_pci_live_device_gen_param),
+ 	{}
+ };
+ 
+@@ -358,5 +363,7 @@ VISIBLE_IF_KUNIT
+ struct kunit_suite xe_bo_test_suite = {
+ 	.name = "xe_bo",
+ 	.test_cases = xe_bo_tests,
++	.init = xe_kunit_helper_xe_device_live_test_init,
++	.exit = xe_kunit_helper_xe_device_live_test_exit,
+ };
+ EXPORT_SYMBOL_IF_KUNIT(xe_bo_test_suite);
 -- 
 2.43.0
 
