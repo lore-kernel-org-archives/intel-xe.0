@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C9FFC3DA49
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jul 2024 21:51:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47570C3DA59
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jul 2024 21:56:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A475110E8F0;
-	Tue, 16 Jul 2024 21:51:14 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R3KGNhMb";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F34610E8EF
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Jul 2024 21:51:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721166672; x=1752702672;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=uhLh/MuL1OpBCXoMTbcTkqf3RGUn2nmTyQWOvZu4KbA=;
- b=R3KGNhMb33JAN3uGmZR3x9F9O454khjxVhFqK5cdkZC5N+Z7YzGhVBt4
- 0DFL40HnwEegWLhWW+4w0sscj/0n/hHZjJlpANR2KNduEPMzs4878+rE0
- 4lvxvEyi0M4zW1KfVuQrFQA43w7VMxQINJwQP9lz83eBXNsqj0MvZcUlE
- zspx04VEYMhnWXn0IRsB9/CMylshfsOjmLsFickdEGE/w87ZnfTW70wE9
- nYUKSyCXOBy57oCgOq2+8sNlqxJqGegl5PiCbi4i5PKtrqZ1/ouf7vbXt
- zG6CBePsmEyD2tXDr8Eca1+sQmAsVDfnU4lT7Hm6erK8p0jcjqOh2RAqy g==;
-X-CSE-ConnectionGUID: Is74Q6ymTHiGUjpsacy+bw==
-X-CSE-MsgGUID: 7SwjfvSJQRO4kD9+/KsQmg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11135"; a="21544917"
-X-IronPort-AV: E=Sophos;i="6.09,212,1716274800"; d="scan'208";a="21544917"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2024 14:51:12 -0700
-X-CSE-ConnectionGUID: nu+hDGAqSSSMgJ9RbAnWtQ==
-X-CSE-MsgGUID: 7Q39nEI3TCW2vg67w7NAnQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,212,1716274800"; d="scan'208";a="49972250"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa007.fm.intel.com with ESMTP; 16 Jul 2024 14:51:09 -0700
-Received: from [10.246.36.158] (mwajdecz-MOBL.ger.corp.intel.com
- [10.246.36.158])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 623D228783;
- Tue, 16 Jul 2024 22:51:07 +0100 (IST)
-Message-ID: <145dbe6d-4493-4f2d-b723-f575c68109a1@intel.com>
-Date: Tue, 16 Jul 2024 23:51:05 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F0AC10E8EF;
+	Tue, 16 Jul 2024 21:56:06 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1DB210E8EF;
+ Tue, 16 Jul 2024 21:56:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1913844757377207354=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Refactor mmio setup for multi-tile
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Koby Elbaz <kelbaz@habana.ai>,
- Moti Haimovski <mhaimovski@habana.ai>
-References: <20240716195608.2819428-1-lucas.demarchi@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20240716195608.2819428-1-lucas.demarchi@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Support_PMT_features_in_Xe_=28re?=
+ =?utf-8?q?v9=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 16 Jul 2024 21:56:04 -0000
+Message-ID: <172116696491.253774.11033086848853436505@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240716210805.4012517-1-michael.j.ruhl@intel.com>
+In-Reply-To: <20240716210805.4012517-1-michael.j.ruhl@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,171 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============1913844757377207354==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: Support PMT features in Xe (rev9)
+URL   : https://patchwork.freedesktop.org/series/133472/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-1615-297dce9fadb6008b164278f5d702b4d7ba402576_BAT -> xe-pw-133472v9_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (7 -> 7)
+------------------------------
+
+  No changes in participating hosts
 
 
-On 16.07.2024 21:54, Lucas De Marchi wrote:
-> Extract functions to setup the multi-tile mmio space and extension
-> space, while better documenting the final memory layout.  No change in
-> behavior.
-> 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
-> 
-> tested only on single-tile platforms for now. It shouldn't change the
-> behavior, but it would be good to get some extra testing.
+Changes
+-------
 
-hmm, but CI likely wont help here as our PVC are running with:
+  No changes found
 
-<6>[  149.783555] xe 0000:aa:00.0: [drm] tile_count: 2, reduced_tile_count 1
 
-> 
->  drivers/gpu/drm/xe/xe_mmio.c | 99 ++++++++++++++++++++++++++++--------
->  1 file changed, 77 insertions(+), 22 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-> index ea3c37d3e13f..31f6703daec2 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.c
-> +++ b/drivers/gpu/drm/xe/xe_mmio.c
-> @@ -33,29 +33,56 @@ static void tiles_fini(void *arg)
->  		tile->mmio.regs = NULL;
->  }
->  
-> -int xe_mmio_probe_tiles(struct xe_device *xe)
-> +/*
-> + * On multi-tile devices, partition the BAR space for MMIO on each tile,
-> + * possibly accounting for register override on the number of tiles available.
-> + * Resulting memory layout is like below:
-> + *
-> + * .----------------------. <- tile_count * tile_mmio_size
-> + * |         ....         |
-> + * |----------------------| <- 2 * tile_mmio_size
-> + * |   tile1->mmio.regs   |
-> + * |----------------------| <- 1 * tile_mmio_size
-> + * |   tile0->mmio.regs   |
-> + * '----------------------' <- 0MB
-> + */
-> +static void mmio_multi_tile_setup(struct xe_device *xe, size_t tile_mmio_size)
->  {
-> -	size_t tile_mmio_size = SZ_16M, tile_mmio_ext_size = xe->info.tile_mmio_ext_size;
-> -	u8 id, tile_count = xe->info.tile_count;
-> -	struct xe_gt *gt = xe_root_mmio_gt(xe);
->  	struct xe_tile *tile;
->  	void __iomem *regs;
-> -	u32 mtcfg;
-> +	u8 id;
->  
-> -	if (tile_count == 1)
-> -		goto add_mmio_ext;
-> +	/*
-> +	 * Nothing to be done as tile 0 has already been setup earlier with the
-> +	 * entire BAR mapped - see xe_mmio_init()
-> +	 */
-> +	if (xe->info.tile_count == 1)
-> +		return;
->  
-> +	/* Possibly override number of tile based on configuration register */
->  	if (!xe->info.skip_mtcfg) {
-> +		struct xe_gt *gt = xe_root_mmio_gt(xe);
-> +		u8 tile_count = xe->info.tile_count;
-> +		u32 mtcfg;
-> +
-> +		/*
-> +		 * Although the per-tile mmio regs are not yet initialized, this
-> +		 * is fine as it's going to the root gt, that's guaranteed to be
-> +		 * initialized earlier in xe_mmio_init()
-> +		 */
->  		mtcfg = xe_mmio_read64_2x32(gt, XEHP_MTCFG_ADDR);
->  		tile_count = REG_FIELD_GET(TILE_COUNT, mtcfg) + 1;
-> +
->  		if (tile_count < xe->info.tile_count) {
->  			drm_info(&xe->drm, "tile_count: %d, reduced_tile_count %d\n",
->  					xe->info.tile_count, tile_count);
->  			xe->info.tile_count = tile_count;
->  
->  			/*
-> -			 * FIXME: Needs some work for standalone media, but should be impossible
-> -			 * with multi-tile for now.
-> +			 * FIXME: Needs some work for standalone media, but
-> +			 * should be impossible with multi-tile for now:
-> +			 * multi-tile platform with standalone media doesn't
-> +			 * exist
->  			 */
->  			xe->info.gt_count = xe->info.tile_count;
->  		}
-> @@ -67,23 +94,51 @@ int xe_mmio_probe_tiles(struct xe_device *xe)
->  		tile->mmio.regs = regs;
->  		regs += tile_mmio_size;
->  	}
-> +}
->  
-> -add_mmio_ext:
-> -	/*
-> -	 * By design, there's a contiguous multi-tile MMIO space (16MB hard coded per tile).
-> -	 * When supported, there could be an additional contiguous multi-tile MMIO extension
-> -	 * space ON TOP of it, and hence the necessity for distinguished MMIO spaces.
-> -	 */
-> -	if (xe->info.has_mmio_ext) {
-> -		regs = xe->mmio.regs + tile_mmio_size * tile_count;
-> +/*
-> + * On top of all the multi-tile MMIO space there can be a platform-dependent
-> + * extension for each tile, resulting in a layout like below:
-> + *
-> + * .----------------------. <- ext_base + tile_count * tile_mmio_ext_size
-> + * |         ....         |
-> + * |----------------------| <- ext_base + 2 * tile_mmio_ext_size
-> + * | tile1->mmio_ext.regs |
-> + * |----------------------| <- ext_base + 1 * tile_mmio_ext_size
-> + * | tile0->mmio_ext.regs |
-> + * |======================| <- ext_base = tile_count * tile_mmio_size
-> + * |                      |
-> + * |       mmio.regs      |
-> + * |                      |
-> + * '----------------------' <- 0MB
-> + *
-> + * Set up the tile[]->mmio_ext pointers/sizes.
-> + */
-> +static void mmio_extension_setup(struct xe_device *xe, size_t tile_mmio_size,
-> +				 size_t tile_mmio_ext_size)
-> +{
-> +	struct xe_tile *tile;
-> +	void __iomem *regs;
-> +	u8 id;
->  
-> -		for_each_tile(tile, xe, id) {
-> -			tile->mmio_ext.size = tile_mmio_ext_size;
-> -			tile->mmio_ext.regs = regs;
-> +	if (!xe->info.has_mmio_ext)
-> +		return;
->  
-> -			regs += tile_mmio_ext_size;
-> -		}
-> +	regs = xe->mmio.regs + tile_mmio_size * xe->info.tile_count;
-> +	for_each_tile(tile, xe, id) {
-> +		tile->mmio_ext.size = tile_mmio_ext_size;
-> +		tile->mmio_ext.regs = regs;
-> +		regs += tile_mmio_ext_size;
->  	}
-> +}
-> +
+Build changes
+-------------
 
-as you are adding some documentation to static functions, maybe you can
-also add true kernel-doc for xe_mmio_probe_tiles() below ?
+  * Linux: xe-1615-297dce9fadb6008b164278f5d702b4d7ba402576 -> xe-pw-133472v9
 
-> +int xe_mmio_probe_tiles(struct xe_device *xe)
-> +{
-> +	size_t tile_mmio_size = SZ_16M;
-> +	size_t tile_mmio_ext_size = xe->info.tile_mmio_ext_size;
-> +
-> +	mmio_multi_tile_setup(xe, tile_mmio_size);
-> +	mmio_extension_setup(xe, tile_mmio_size, tile_mmio_ext_size);
->  
->  	return devm_add_action_or_reset(xe->drm.dev, tiles_fini, xe);
+  IGT_7927: a2ab0ec12ef447c96c67dc539813462b6b39f857 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1615-297dce9fadb6008b164278f5d702b4d7ba402576: 297dce9fadb6008b164278f5d702b4d7ba402576
+  xe-pw-133472v9: 133472v9
 
-btw, I'm wondering if we really need this tiles_fini as it just reset
-some pointers, while in general we don't do such detailed cleanup any
-more, since actions are called in order and only care about resources
+== Logs ==
 
->  }
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133472v9/index.html
+
+--===============1913844757377207354==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Support PMT features in Xe (rev9)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133472/">https://patchwork.freedesktop.org/series/133472/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133472v9/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-133472v9/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1615-297dce9fadb6008b164278f5d702b4d7ba402576_BAT -&gt; xe-pw-133472v9_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (7 -&gt; 7)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1615-297dce9fadb6008b164278f5d702b4d7ba402576 -&gt; xe-pw-133472v9</li>
+</ul>
+<p>IGT_7927: a2ab0ec12ef447c96c67dc539813462b6b39f857 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1615-297dce9fadb6008b164278f5d702b4d7ba402576: 297dce9fadb6008b164278f5d702b4d7ba402576<br />
+  xe-pw-133472v9: 133472v9</p>
+
+</body>
+</html>
+
+--===============1913844757377207354==--
