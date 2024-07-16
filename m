@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7348C3DA49
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Jul 2024 14:47:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DC56C3DA49
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Jul 2024 14:48:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BEE910E757;
-	Tue, 16 Jul 2024 14:47:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB56C10E75B;
+	Tue, 16 Jul 2024 14:48:02 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0674B10E757;
- Tue, 16 Jul 2024 14:47:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FFF410E75B;
+ Tue, 16 Jul 2024 14:47:59 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Add_assert?=
- =?utf-8?q?_for_XE=5FWA=28=29_usage?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Add_assert_for_?=
+ =?utf-8?q?XE=5FWA=28=29_usage?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 16 Jul 2024 14:47:31 -0000
-Message-ID: <172114125102.251871.4791851640427001505@2413ebb6fbb6>
+Date: Tue, 16 Jul 2024 14:47:59 -0000
+Message-ID: <172114127912.251998.10322431897512971678@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240716143720.2790982-1-lucas.demarchi@intel.com>
 In-Reply-To: <20240716143720.2790982-1-lucas.demarchi@intel.com>
@@ -44,13 +44,38 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Add assert for XE_WA() usage
 URL   : https://patchwork.freedesktop.org/series/136146/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: e6cf7ddccb36 drm-tip: 2024y-07m-16d-14h-17m-32s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Add assert for XE_WA() usage
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit bd12d143796af45ba4e1d1af81d5324a42f8adb1
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Tue Jul 16 07:37:20 2024 -0700
+
+    drm/xe: Add assert for XE_WA() usage
+    
+    It's not always safe to call XE_WA() in the driver initialization. Add a
+    xe_gt_assert() so this doesn't go unnoticed.
+    
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch e6cf7ddccb36f44102032b3c803d978ef5c8016c drm-intel
+bd12d143796a drm/xe: Add assert for XE_WA() usage
+-:66: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'gt__' - possible side-effects?
+#66: FILE: drivers/gpu/drm/xe/xe_wa.h:30:
++#define XE_WA(gt__, id__) ({						\
++	xe_gt_assert(gt__, (gt__)->wa_active.oob_initialized);		\
++	test_bit(XE_WA_OOB_ ## id__, (gt__)->wa_active.oob);		\
++})
+
+total: 0 errors, 0 warnings, 1 checks, 44 lines checked
 
 
