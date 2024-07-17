@@ -4,55 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84911C3DA62
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 12:30:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5953EC3DA42
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 12:30:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7343910EADE;
-	Wed, 17 Jul 2024 12:30:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2A8510EAC8;
+	Wed, 17 Jul 2024 12:30:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dd5TgypJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VRnwKW34";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 693C610EAAE;
- Wed, 17 Jul 2024 12:30:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 310FE10EAB1;
+ Wed, 17 Jul 2024 12:30:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721219439; x=1752755439;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ZmV6Y23MWit/JDE7okfxV4BSVvtKfKdhKYOxpG+Zpmg=;
- b=dd5TgypJ+pYR7Z+DpFDWwoUUcx1oNHHgeOYkGO09cgnx21bQJqI5ijqI
- Tz9Va0LNclgoxfKIEE6ScuCc+OVZhZ+UMIzVc2P4/NItdwZRqZLJeWSPN
- HJWczsiaFIlXjEb5Tbyr63KZTBWDZZCTTbEglHW5g5/HHB/Szwlx6qmyU
- dB4op1Swj0j5vrjCZwyLmcGzhEUbM1HC3+nqLckKRTc0zTcvBd+h6o5GN
- +bpg1KJWoTkoZfD+yyYptFvVqz14i8VpPlCNNSbkc1OlptJ/L991vQovS
- pHzY+9//J5wFEPLx/8HsOW7kn3SXwco7/QSo5B2pS0XmDo7vWYL+nfbe5 g==;
-X-CSE-ConnectionGUID: VVIfENwxQwifhK8+AJkqLQ==
-X-CSE-MsgGUID: sZB6DTR0TH+ZHKPYF6Safw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11135"; a="18856394"
-X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="18856394"
+ t=1721219440; x=1752755440;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=7Qas8+G+GTS52c5aG1HCCUGygm6knJTs3zuYcBqn9uE=;
+ b=VRnwKW342hthVxBjX3kQNDmFOCtuaMXV9dfKtoqyu7+YauxcNUAgqOxU
+ IjJMTnT9a5MIae6bEjKAuN3QMRqgg1p2hdfHmR3rYf9DWV5Hp85lI61Xp
+ Te4pO1f3XjXLQxB/edohk3n8Q4eTtVCEr2n1HWq+3etLBKA8nOULFZd1L
+ 3dkpYJ9dxH9o/V+WCAXEfeAy2vSMpECri3Gd49oPJwGQaNVIN84S/Epo1
+ 1diOgnjj9umyqeMvpIE8rBqJVDTVOU2XbVaWTMJ2erGeNfhmeV7GJiIp3
+ VBbbKZWpGsxdwS2xcZ4hn3TRPPaVcinYW4Lvj1xxh4/+75/pBXBFVBPqN g==;
+X-CSE-ConnectionGUID: 2TmdnGMqTgmNfn2rffwpog==
+X-CSE-MsgGUID: sZGBlFxOT7ukZjBC8IX78g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11135"; a="18856397"
+X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="18856397"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jul 2024 05:30:39 -0700
-X-CSE-ConnectionGUID: Fd5bKPLISSaJMDI5to/8+w==
-X-CSE-MsgGUID: DuMB7AnuRqGp8KcSJF2HvA==
+X-CSE-ConnectionGUID: Dkus1MlCQFe7IS5AYTVP1g==
+X-CSE-MsgGUID: 2R0DRTQmTnmN5JkNMnN/kQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="50165229"
+X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="50165234"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
  jkrzyszt-mobl2.intranet) ([10.213.26.163])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2024 05:28:57 -0700
+ 17 Jul 2024 05:29:03 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  Kamil Konieczny <kamil.konieczny@linux.intel.com>,
  Chris Wilson <chris.p.wilson@linux.intel.com>,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t v3 0/5] tests/gem_ctx_exec: Fix failing preempt timeout
- updates
-Date: Wed, 17 Jul 2024 14:26:11 +0200
-Message-ID: <20240717122836.3481656-7-janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v3 3/5] lib/gem_engine_topology: Fix premature break
+ from primary find loop
+Date: Wed, 17 Jul 2024 14:26:14 +0200
+Message-ID: <20240717122836.3481656-10-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240717122836.3481656-7-janusz.krzysztofik@linux.intel.com>
+References: <20240717122836.3481656-7-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,42 +71,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-CI reports the following failures from basic-nohangcheck subtest:
+When looking for a primary counterpart of a render device, we try to open
+each primary minor.  When one fails, we should continue rather then break,
+since contiguity of minor numbers assigned to devices is not guaranteed.
 
-(gem_ctx_exec:1115) CRITICAL: Test assertion failure function nohangcheck_hostile, file ../../../usr/src/igt-gpu-tools/tests/intel/gem_ctx_exec.c:374:
-(gem_ctx_exec:1115) CRITICAL: Failed assertion: err == 0
-(gem_ctx_exec:1115) CRITICAL: Last errno: 2, No such file or directory
-(gem_ctx_exec:1115) CRITICAL: Hostile unpreemptable context was not cancelled immediately upon closure
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+ lib/i915/gem_engine_topology.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-The subtest sets 50 ms preempt timeout on each engine before proceding
-with submission of spins, then it waits up to 1 second for those spins to
-be terminated.  However, dump of engines' debugfs data performed by the
-subtest after the failure shows preempt timeouts still at their default
-values: 7500 ms on rcs0 and 640 ms on other class engines.  Dmesg records
-confirm preemption timeouts triggered on other engines after 640 ms and
-not on rcs0 within the 1 second limit.
-
-Fix the issue.
-
-Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6268
-
-v2: Fix missing closing parenthesis.
-v3: Don't fail on unsuccessful update of preempt_timeout_ms, older
-    platforms don't support it but can still succeed,
-  - add still more debug messages.
-
-Janusz Krzysztofik (5):
-  tests/gem_ctx_exec: Fail on unsuccessful preempt timeout update
-  lib: Add more debug messages to error paths
-  lib/gem_engine_topology: Fix premature break from primary find loop
-  lib/gem_engine_topology: Simplify the method of opening a primary
-  lib/gem_engine_topology: Fix broken compare of device links
-
- lib/i915/gem_engine_topology.c | 33 ++++++++++++++++-----------------
- lib/igt_sysfs.c                |  4 ++--
- tests/intel/gem_ctx_exec.c     | 11 +++++++----
- 3 files changed, 25 insertions(+), 23 deletions(-)
-
+diff --git a/lib/i915/gem_engine_topology.c b/lib/i915/gem_engine_topology.c
+index 3e9bdf2e0a..55000f90ce 100644
+--- a/lib/i915/gem_engine_topology.c
++++ b/lib/i915/gem_engine_topology.c
+@@ -479,7 +479,7 @@ static int __open_primary(int dir)
+ 		sprintf(buf, "/sys/dev/char/%d:%d", major, minor);
+ 		dir = openat(fd, buf, O_RDONLY);
+ 		if (dir < 0)
+-			break;
++			continue;
+ 
+ 		if (readlinkat(dir, "device", device, sizeof(device)) > 0 &&
+ 		    !strcmp(device, target))
 -- 
 2.45.2
 
