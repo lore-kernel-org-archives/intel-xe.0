@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8328FC3DA5D
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 21:38:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C63D5C3DA60
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 21:53:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37A2A10E464;
-	Wed, 17 Jul 2024 21:38:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="edneze/Y";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DECE10E464
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Jul 2024 21:38:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721252315; x=1752788315;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=RncUIAep9PVLuGxMtP+s/6+ygB2vR0+Wy04JSYQFuaM=;
- b=edneze/Yzwk8C5wcXs6IghUDEbz31H2B61PuFaxxyUykYu44Ayfz2N/d
- 5zVOTyFG8X0Mmrxb781KRi2Tx8ADfM3ED2AHjk62/VQXnFc8oKAVcquZL
- Vha5LnpYqU6JWBkZXzEoihEPnublQTf2I0Sis2Azsx0uWdDS8jwI+dIFV
- imY8TM9X1ci25136iGZk26Lv+gtkyY85XSFaRcQidIe0RcKtX+V2xrjcu
- F6ZGahzAp+svngMBlZo8XinJOt5XnrNxMuNaqUtSDSr5cViwHT/OrOU98
- 5McZA/WnGmoavUSJ5cLhuaq+ObJ7e6fuRHlTMAYtKKMsLBz1R9EVqbS39 Q==;
-X-CSE-ConnectionGUID: YyawkrzdSfWbggbfj5JROw==
-X-CSE-MsgGUID: ELt/8kKgSwaH8vYjg70QSw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11136"; a="18598839"
-X-IronPort-AV: E=Sophos;i="6.09,215,1716274800"; d="scan'208";a="18598839"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2024 14:38:35 -0700
-X-CSE-ConnectionGUID: l78fIfiSSTetT6CYI+Zy5g==
-X-CSE-MsgGUID: wx4glKYETfyBks+s/OGlxA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,215,1716274800"; d="scan'208";a="55381900"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa003.jf.intel.com with ESMTP; 17 Jul 2024 14:38:33 -0700
-Received: from [10.246.1.253] (mwajdecz-MOBL.ger.corp.intel.com [10.246.1.253])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id CEA982878D;
- Wed, 17 Jul 2024 22:38:32 +0100 (IST)
-Message-ID: <3bb0e3ca-25f2-413e-bb94-d264eba2cd83@intel.com>
-Date: Wed, 17 Jul 2024 23:38:32 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74E9A10E464;
+	Wed, 17 Jul 2024 21:53:54 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B07DA10E464;
+ Wed, 17 Jul 2024 21:53:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1820356743700939936=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] drm/xe: Introduce const cast helper
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <20240717195155.442-1-michal.wajdeczko@intel.com>
- <20240717195155.442-2-michal.wajdeczko@intel.com>
- <CH0PR11MB5444E1B66CFF7EDFAA997B68E5A32@CH0PR11MB5444.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <CH0PR11MB5444E1B66CFF7EDFAA997B68E5A32@CH0PR11MB5444.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Implement_Compression_Support_on?=
+ =?utf-8?q?_BMG?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Akshata Jahagirdar" <akshata.jahagirdar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 17 Jul 2024 21:53:52 -0000
+Message-ID: <172125323271.271339.17574838137791685504@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <cover.1721250309.git.akshata.jahagirdar@intel.com>
+In-Reply-To: <cover.1721250309.git.akshata.jahagirdar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,65 +36,194 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============1820356743700939936==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: Implement Compression Support on BMG
+URL   : https://patchwork.freedesktop.org/series/136211/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-1620-bd2a84d801982bd4a899a29916b458a8f82cb01f_BAT -> xe-pw-136211v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (7 -> 7)
+------------------------------
+
+  No changes in participating hosts
+
+New tests
+---------
+
+  New tests have been introduced between xe-1620-bd2a84d801982bd4a899a29916b458a8f82cb01f_BAT and xe-pw-136211v1_BAT:
+
+### New IGT tests (1) ###
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - Statuses : 7 pass(s)
+    - Exec time: [0.01, 0.02] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-136211v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-FAIL][2] ([Intel XE#324])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1620-bd2a84d801982bd4a899a29916b458a8f82cb01f/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136211v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-hdmi-a-3:
+    - {bat-bmg-1}:        [DMESG-WARN][3] ([Intel XE#2232]) -> [PASS][4] +63 other tests pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1620-bd2a84d801982bd4a899a29916b458a8f82cb01f/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-hdmi-a-3.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136211v1/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-hdmi-a-3.html
+
+  * igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:
+    - {bat-bmg-1}:        [INCOMPLETE][5] ([Intel XE#2232]) -> [PASS][6] +16 other tests pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1620-bd2a84d801982bd4a899a29916b458a8f82cb01f/bat-bmg-1/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136211v1/bat-bmg-1/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
+
+  * igt@xe_live_ktest@xe_migrate:
+    - {bat-bmg-1}:        [SKIP][7] ([Intel XE#2109]) -> [PASS][8] +2 other tests pass
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1620-bd2a84d801982bd4a899a29916b458a8f82cb01f/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136211v1/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#2109]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2109
+  [Intel XE#2232]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2232
+  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
 
 
-On 17.07.2024 22:07, Cavitt, Jonathan wrote:
-> -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Michal Wajdeczko
-> Sent: Wednesday, July 17, 2024 12:52 PM
-> To: intel-xe@lists.freedesktop.org
-> Cc: Wajdeczko, Michal <Michal.Wajdeczko@intel.com>
-> Subject: [PATCH v2 1/7] drm/xe: Introduce const cast helper
->>
->> Typically we want to preserve pointer constness when converting
->> from one xe pointer to another, but in some rare cases, like kunit
->> parameter conversions, we might want to discard this constness.
->> Add a helper that we will use to clearly indicate our intention.
->>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_device.h | 5 +++++
->>  1 file changed, 5 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
->> index 0a2a3e7fd402..c2b1f9f066bd 100644
->> --- a/drivers/gpu/drm/xe/xe_device.h
->> +++ b/drivers/gpu/drm/xe/xe_device.h
->> @@ -20,6 +20,11 @@ static inline struct xe_device *pdev_to_xe_device(struct pci_dev *pdev)
->>  	return pci_get_drvdata(pdev);
->>  }
->>  
->> +static inline struct xe_device *xe_device_const_cast(const struct xe_device *xe)
->> +{
->> +	return pdev_to_xe_device(to_pci_dev(xe->drm.dev));
->> +}
-> 
-> This function is used in the next patch and no others.  It may or may not be
-> better to have this patch and the next squashed together, since that's where
-> this function is used, but I can see the argument go either way.
+Build changes
+-------------
 
-This _other_ argument was that this helper is not strictly designed for
-explicit use by those new kunit helpers, or it can be implemented in a
-different way, so IMO it deserved standalone patch in a series where it
-was actually used for the first time.
+  * Linux: xe-1620-bd2a84d801982bd4a899a29916b458a8f82cb01f -> xe-pw-136211v1
 
-> 
-> Just something to consider.  Not blocking.
-> 
-> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> -Jonathan Cavitt
+  IGT_7928: 294a7a487aab103c54b0deeb1559fcba371232d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1620-bd2a84d801982bd4a899a29916b458a8f82cb01f: bd2a84d801982bd4a899a29916b458a8f82cb01f
+  xe-pw-136211v1: 136211v1
 
-Thanks!
+== Logs ==
 
-> 
->> +
->>  static inline struct xe_device *ttm_to_xe_device(struct ttm_device *ttm)
->>  {
->>  	return container_of(ttm, struct xe_device, ttm);
->> -- 
->> 2.43.0
->>
->>
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136211v1/index.html
+
+--===============1820356743700939936==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Implement Compression Support on BMG</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136211/">https://patchwork.freedesktop.org/series/136211/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136211v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136211v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1620-bd2a84d801982bd4a899a29916b458a8f82cb01f_BAT -&gt; xe-pw-136211v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (7 -&gt; 7)</h2>
+<p>No changes in participating hosts</p>
+<h2>New tests</h2>
+<p>New tests have been introduced between xe-1620-bd2a84d801982bd4a899a29916b458a8f82cb01f_BAT and xe-pw-136211v1_BAT:</p>
+<h3>New IGT tests (1)</h3>
+<ul>
+<li>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:<ul>
+<li>Statuses : 7 pass(s)</li>
+<li>Exec time: [0.01, 0.02] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-136211v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1620-bd2a84d801982bd4a899a29916b458a8f82cb01f/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136211v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-hdmi-a-3:</p>
+<ul>
+<li>{bat-bmg-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1620-bd2a84d801982bd4a899a29916b458a8f82cb01f/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-hdmi-a-3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2232">Intel XE#2232</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136211v1/bat-bmg-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-hdmi-a-3.html">PASS</a> +63 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:</p>
+<ul>
+<li>{bat-bmg-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1620-bd2a84d801982bd4a899a29916b458a8f82cb01f/bat-bmg-1/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2232">Intel XE#2232</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136211v1/bat-bmg-1/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">PASS</a> +16 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate:</p>
+<ul>
+<li>{bat-bmg-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1620-bd2a84d801982bd4a899a29916b458a8f82cb01f/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2109">Intel XE#2109</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136211v1/bat-bmg-1/igt@xe_live_ktest@xe_migrate.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1620-bd2a84d801982bd4a899a29916b458a8f82cb01f -&gt; xe-pw-136211v1</li>
+</ul>
+<p>IGT_7928: 294a7a487aab103c54b0deeb1559fcba371232d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1620-bd2a84d801982bd4a899a29916b458a8f82cb01f: bd2a84d801982bd4a899a29916b458a8f82cb01f<br />
+  xe-pw-136211v1: 136211v1</p>
+
+</body>
+</html>
+
+--===============1820356743700939936==--
