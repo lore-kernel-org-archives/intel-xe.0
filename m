@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E3BEC3DA5D
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 13:08:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F4BAC3DA42
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 13:09:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A9B410EAF6;
-	Wed, 17 Jul 2024 13:08:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF11610EAEE;
+	Wed, 17 Jul 2024 13:09:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ka6gxaut";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DnfOCVsU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED6C410EAEE
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Jul 2024 13:08:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8159D10EAF2
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Jul 2024 13:08:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721221734; x=1752757734;
+ t=1721221730; x=1752757730;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RU21r8MmpKd9FUJMNLwsnph2qc7UdYo9G9JLzQ01Pa4=;
- b=Ka6gxautqg/S1JcKn96wEmlfmacKJK8LUOvcWiuxX2cDgFem1SAezxoa
- ZROw3Rulev9hXT0F9kZO8WhEhZAyPc8o4R9286+KVBOurQzRpcjI7ps/x
- tUy5fwsqxr81hPJT86GcnY32kb0z3+nh1hoa9C8aCpfHL8KZcgiriINQk
- nH+w9QuiPA0U6NzmYlqSfS2GurOAAKhfWK4PfxKCXqLzb+hvWPWVhCAF3
- r+O2umm2aiqPgsrx8WUP8pkQtwc31nw2bYZaG89Y5Ny2UEpAQZHUUDx3i
- k7FzFFZSvUUKtdaPddkGHmUjO14weQ1rfE6QXLxdQIKjnm9uuCqYSeg2k A==;
-X-CSE-ConnectionGUID: Ey4YdSidQbyRN50xuAv5BQ==
-X-CSE-MsgGUID: gx4ZUBjYR/mmmfMEd9TD4A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11136"; a="18832089"
-X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="18832089"
+ bh=I8HZVUD0zksn+wJVedoFAaB/whQ5ctTOrNXcag/qZ7k=;
+ b=DnfOCVsUnpr6fHZV+rgEMxmNgOtpaNIbF22rEw9tU5x55xBHjR5YJmpY
+ cowy/6YbvtALtpO3SKRVwwT9EXVpxvIJob1lGP4HkW6p69ksRcWPQAbJZ
+ ro+tHioyoihugUtiSPKTHbh0CW4gbriAkTNR7iBKj+z8BQcPAzCkJTo9e
+ a2zZ5AFtAozZT/uk9DER6mS3egCxsn3hX8dPbFhJ7kdzyhtwrZv1NvsmD
+ I4s8h5nnkqIWPzLGl3qyBZ8DCaGzZ/1XrrIqQqdM4o7dn2d0qco9CnXS9
+ MH+du6gVKWrKWD+YPb+mocuPQ/NF+HzEUq+dmz+CFd2g9h3zlsHZ1zvFo Q==;
+X-CSE-ConnectionGUID: g6qBh8hVT62syskerpm4OA==
+X-CSE-MsgGUID: T6kadWMgRtKSf5ea2s/TBw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11136"; a="18832075"
+X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="18832075"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2024 06:08:54 -0700
-X-CSE-ConnectionGUID: cmDRyzllRmC/f6tDM4kuaA==
-X-CSE-MsgGUID: kmrsufTHQdSTuZWR34XIPQ==
+ 17 Jul 2024 06:08:50 -0700
+X-CSE-ConnectionGUID: KG+oS/jaQ0yxoiRPIvtWCw==
+X-CSE-MsgGUID: +lEZC5HDT2OOIhqM26nktQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="55532083"
+X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="55532041"
 Received: from rajritu-mobl2.ger.corp.intel.com (HELO fdugast-desk.intel.com)
  ([10.251.217.45])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2024 06:08:53 -0700
+ 17 Jul 2024 06:08:48 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  Francois Dugast <francois.dugast@intel.com>
-Subject: [RFC v1 9/9] drm/xe/vm: Remove restriction that all VMs must be
- faulting if one is
-Date: Wed, 17 Jul 2024 15:07:30 +0200
-Message-ID: <20240717130821.1073379-10-francois.dugast@intel.com>
+Subject: [RFC v1 6/9] drm/xe/hw_engine_group: Ensure safe transition between
+ execution modes
+Date: Wed, 17 Jul 2024 15:07:27 +0200
+Message-ID: <20240717130821.1073379-7-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240717130821.1073379-1-francois.dugast@intel.com>
 References: <20240717130821.1073379-1-francois.dugast@intel.com>
@@ -69,62 +69,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With this restriction, all VMs on the device must be faulting VMs
-if there is already one faulting VM, in which case the device is
-considered in fault mode. This prevents for example an application
-from running 3D jobs for the compositor while submitting a SVM
-compute job on the same device.
+Provide a way to safely transition execution modes of the hw engine
+group ahead of the actual execution. When necessary, either wait for
+running jobs to complete or preempt them, thus ensuring mutual
+exclusion between modes EXEC_MODE_LR and EXEC_MODE_DMA_FENCE.
 
-Now that mutual exclusion of LR jobs and dma fence jobs is ensured
-on the hw engine group, remove this restriction to allow running
-faulting and non-faulting VMs on the same device.
+Unlike a mutex, the rw_semaphore used in this context allows multiple
+submissions in the same mode.
 
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.h | 10 ----------
- drivers/gpu/drm/xe/xe_vm.c     |  8 --------
- 2 files changed, 18 deletions(-)
+ drivers/gpu/drm/xe/xe_hw_engine.c | 67 +++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_hw_engine.h |  3 ++
+ 2 files changed, 70 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index bb07f5669dbb..cb69ecf02c25 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -129,16 +129,6 @@ static inline struct xe_force_wake *gt_to_fw(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index dc75dfe6187a..4f539711357a 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -1278,3 +1278,70 @@ static int xe_hw_engine_group_wait_for_dma_fence_jobs(struct xe_hw_engine_group
  
- void xe_device_assert_mem_access(struct xe_device *xe);
+ 	return 0;
+ }
++
++static int switch_mode(struct xe_hw_engine_group *group,
++		       enum xe_hw_engine_group_execution_mode new_mode)
++{
++	int err = 0;
++
++	lockdep_assert_held(&group->mode_sem);
++
++	if (group->cur_mode == new_mode)
++		return 0;
++	else if (group->cur_mode == EXEC_MODE_LR && new_mode == EXEC_MODE_DMA_FENCE)
++		err = xe_hw_engine_group_suspend_lr_jobs(group);
++	else if (group->cur_mode == EXEC_MODE_DMA_FENCE && new_mode == EXEC_MODE_LR)
++		err = xe_hw_engine_group_wait_for_dma_fence_jobs(group);
++	else
++		err = -EINVAL;
++
++	if (err)
++		return err;
++
++	group->cur_mode = new_mode;
++
++	return 0;
++}
++
++/**
++ * xe_hw_engine_group_get_mode() - Get the group to execute in the new mode
++ * @group: The hw engine group
++ * @mode: The new execution mode
++ *
++ * Return: 0 if successful, -EINTR if locking failed.
++ */
++int xe_hw_engine_group_get_mode(struct xe_hw_engine_group *group,
++				enum xe_hw_engine_group_execution_mode mode)
++{
++	int err = down_read_interruptible(&group->mode_sem);
++
++	if (err)
++		return err;
++
++	if (mode != group->cur_mode) {
++		up_read(&group->mode_sem);
++		err = down_write_killable(&group->mode_sem);
++		if (err)
++			return err;
++
++		if (mode != group->cur_mode) {
++			err = switch_mode(group, mode);
++			if (err) {
++				up_write(&group->mode_sem);
++				return err;
++			}
++		}
++		downgrade_write(&group->mode_sem);
++	}
++
++	return err;
++}
++
++/**
++ * xe_hw_engine_group_put() - Put the group
++ * @group: The hw engine group
++ */
++void xe_hw_engine_group_put(struct xe_hw_engine_group *group)
++{
++	up_read(&group->mode_sem);
++}
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
+index ce59d83a75ad..fce0adf6a7c4 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine.h
+@@ -73,5 +73,8 @@ u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe);
  
--static inline bool xe_device_in_fault_mode(struct xe_device *xe)
--{
--	return xe->usm.num_vm_in_fault_mode != 0;
--}
--
--static inline bool xe_device_in_non_fault_mode(struct xe_device *xe)
--{
--	return xe->usm.num_vm_in_non_fault_mode != 0;
--}
--
- static inline bool xe_device_has_flat_ccs(struct xe_device *xe)
- {
- 	return xe->info.has_flat_ccs;
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 5b166fa03684..f0d2dc41a25d 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1875,14 +1875,6 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 			 args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
- 		return -EINVAL;
+ int xe_hw_engine_group_add_exec_queue(struct xe_hw_engine_group *group, struct xe_exec_queue *q);
+ int xe_hw_engine_group_del_exec_queue(struct xe_hw_engine_group *group, struct xe_exec_queue *q);
++int xe_hw_engine_group_get_mode(struct xe_hw_engine_group *group,
++				enum xe_hw_engine_group_execution_mode mode);
++void xe_hw_engine_group_put(struct xe_hw_engine_group *group);
  
--	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE &&
--			 xe_device_in_non_fault_mode(xe)))
--		return -EINVAL;
--
--	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE) &&
--			 xe_device_in_fault_mode(xe)))
--		return -EINVAL;
--
- 	if (XE_IOCTL_DBG(xe, args->extensions))
- 		return -EINVAL;
- 
+ #endif
 -- 
 2.43.0
 
