@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A670C3DA4B
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 05:43:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF5E6C3DA4B
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 05:44:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1165510E93F;
-	Wed, 17 Jul 2024 05:43:45 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1A4610E93F;
- Wed, 17 Jul 2024 05:43:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 511BA10E941;
+	Wed, 17 Jul 2024 05:44:04 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dEtBq7fV";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B2B410E93F
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Jul 2024 05:43:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1721194981; x=1752730981;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=v6s+GXCrlnPt9DWjaZCjiJ5cEQnXw3yeptmf7FA3+Uo=;
+ b=dEtBq7fVElVoLrGb+C46/KD6zKaGLMMszU8q8hOxdUBP+aHb7qv6W0ID
+ OiqY6f9rwoY4v4DKZCxOLV9BpJDIflUPW4s72TOnO3qtMVazLOHmlAcOE
+ qaJJKhtmpVuajWgumI0DFK3sb8fAq6Mk1Wxr8TOLdSwpWHSapVx6yS730
+ 11tF8paT3s88y0lkXJ+C4wVhHofJpBWcjnykJ+u9zwVQ3L0VwjU5+t5gt
+ us90kYi+0XT5bVzt9nfuEj/0pYqAsvXy7q+Fbdce0gTklwsb7aA7scWrT
+ Cs2+UhgQxc6Ohn0q1A5K58yMCkHlQnlhdJjrbkpdK+1Epy1d7pLgWgHnC g==;
+X-CSE-ConnectionGUID: vZ8zg0N6Qo2jqLkUoJ5qJw==
+X-CSE-MsgGUID: vZPctz7jQHCZtQ2L9l00sQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11135"; a="22534444"
+X-IronPort-AV: E=Sophos;i="6.09,213,1716274800"; d="scan'208";a="22534444"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2024 22:43:00 -0700
+X-CSE-ConnectionGUID: +vcejycxQ/eN0mYf09rQOQ==
+X-CSE-MsgGUID: mQvv1px7T2Wf05qDWYmpDA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,213,1716274800"; d="scan'208";a="54589615"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2024 22:42:57 -0700
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ daniele.ceraolospurio@intel.com, matthew.brost@intel.com,
+ michal.wajdeczko@intel.com, karthik.poosa@intel.com
+Subject: [PATCH v4 0/2] drm/xe: remove GuC reload in D3Hot path
+Date: Wed, 17 Jul 2024 11:25:56 +0530
+Message-Id: <20240717055558.4169407-1-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Implement_compression_support_?=
- =?utf-8?q?on_BMG?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Akshata Jahagirdar" <akshata.jahagirdar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 17 Jul 2024 05:43:21 -0000
-Message-ID: <172119500178.254370.11685663640905151763@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <cover.1721193361.git.akshata.jahagirdar@intel.com>
-In-Reply-To: <cover.1721193361.git.akshata.jahagirdar@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +63,32 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Power is not lost when only D3hot is allowed so remove GuC reload in
+runtime suspend D3Hot path.
 
-Series: Implement compression support on BMG
-URL   : https://patchwork.freedesktop.org/series/136167/
-State : success
+Rev2: Rebase
+Rev3: fix review comments
+Rev4: fix commit message and kernel-doc
+      split patches
 
-== Summary ==
+Riana Tauro (2):
+  drm/xe: modify GuC CTB enable communication
+  drm/xe: remove GuC reload in D3Hot path
 
-lib/modules/6.10.0-rc7-xe/kernel/sound/core/seq/
-lib/modules/6.10.0-rc7-xe/kernel/sound/core/seq/snd-seq.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/core/snd-seq-device.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/core/snd-hwdep.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/core/snd.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/core/snd-pcm.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/core/snd-compress.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/core/snd-timer.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soundcore.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/atom/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/atom/sst/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/common/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/amd/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/amd/snd-acp-config.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/amd/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/snd-sof-utils.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/snd-sof-pci.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/snd-sof.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/snd-sof-probes.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/xtensa/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/snd-soc-core.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/snd-soc-acpi.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/codecs/
-lib/modules/6.10.0-rc7-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/hda/
-lib/modules/6.10.0-rc7-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/hda/ext/
-lib/modules/6.10.0-rc7-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/hda/snd-intel-dspcfg.ko
-lib/modules/6.10.0-rc7-xe/kernel/sound/hda/snd-hda-core.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/kernel/
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/kernel/msr.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/kernel/cpuid.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/aesni-intel.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/events/
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/events/intel/
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/events/intel/intel-cstate.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/events/rapl.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/kvm/
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/kvm/kvm.ko
-lib/modules/6.10.0-rc7-xe/kernel/arch/x86/kvm/kvm-intel.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/
-lib/modules/6.10.0-rc7-xe/kernel/crypto/crypto_simd.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/cmac.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/ccm.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/cryptd.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/polyval-generic.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/async_tx/
-lib/modules/6.10.0-rc7-xe/kernel/crypto/async_tx/async_xor.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/async_tx/async_tx.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/async_tx/async_memcpy.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/async_tx/async_pq.ko
-lib/modules/6.10.0-rc7-xe/kernel/crypto/async_tx/async_raid6_recov.ko
-lib/modules/6.10.0-rc7-xe/build
-lib/modules/6.10.0-rc7-xe/modules.alias.bin
-lib/modules/6.10.0-rc7-xe/modules.builtin
-lib/modules/6.10.0-rc7-xe/modules.softdep
-lib/modules/6.10.0-rc7-xe/modules.alias
-lib/modules/6.10.0-rc7-xe/modules.order
-lib/modules/6.10.0-rc7-xe/modules.symbols
-lib/modules/6.10.0-rc7-xe/modules.dep.bin
-+ mv kernel-nodebug.tar.gz ..
-+ cd ..
-+ rm -rf archive
-++ date +%s
-+ echo -e '\e[0Ksection_end:1721194871:package_x86_64_nodebug\r\e[0K'
-+ sync
-[0Ksection_end:1721194871:package_x86_64_nodebug
-[0K
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+ drivers/gpu/drm/xe/xe_gt.c     | 33 ++++++++++++++--
+ drivers/gpu/drm/xe/xe_gt.h     |  4 +-
+ drivers/gpu/drm/xe/xe_guc.c    | 69 +++++++++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_guc.h    |  4 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c |  3 +-
+ drivers/gpu/drm/xe/xe_guc_ct.h |  2 +
+ drivers/gpu/drm/xe/xe_pm.c     |  8 ++--
+ drivers/gpu/drm/xe/xe_uc.c     | 32 +++++++++++++++-
+ drivers/gpu/drm/xe/xe_uc.h     |  2 +
+ 9 files changed, 136 insertions(+), 21 deletions(-)
 
+-- 
+2.40.0
 
