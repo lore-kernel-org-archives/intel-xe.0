@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3F77C3DA42
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 14:41:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04E1FC3DA4B
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 15:12:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FAB610E084;
-	Wed, 17 Jul 2024 14:41:14 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cB+1Cfgo";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAAF610E084
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Jul 2024 14:41:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721227273; x=1752763273;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=uOztcWv/XC6EwR8dd662eNEvt1hVc/d0Ov0hiJoNYP4=;
- b=cB+1Cfgo2C5Pqsi++VsB2O51alEziR4Bx7ioeJQxFL5AFFZ2xSX2GmdE
- GS4lHbMvLO7hdhhMDsMDlnAVUMEm/SZb+NHugQuL6F75gTs3PKcfhXi2U
- SmXUtCHdWIKkrJ0Cl9MbOY52RZWvJx/tttQ8iLimzBM9Nc0V+cU4cHplL
- Hq/akzGRMQW1vRtbJGYfYCMxEfzAZUlvDFjfPLeYHzER7FphjMYvO4DNB
- bG14tQsDu88osMUjD5hUfRIY7hTPuJorKJ1iYZ/Y98Pbxt0OW6CGnwBfw
- XbUrxkfa8FY9pJ4oiuJxEkFxUm86mfAEEHNjDW7luklo2e0K1gB2bBlIz w==;
-X-CSE-ConnectionGUID: pj2fD0scR1avtXhkBuYmQw==
-X-CSE-MsgGUID: 7CEhxMyhRGyhn3QaKHDsXQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11136"; a="18600247"
-X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="18600247"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2024 07:41:12 -0700
-X-CSE-ConnectionGUID: TJ2ip+KcTxWQBsMkkx10kg==
-X-CSE-MsgGUID: ewsChj7GQGWtqHk1fPGK1w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="54599062"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.38.191])
- ([10.246.38.191])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2024 07:41:12 -0700
-Message-ID: <dee6ac05-b16e-4db2-bd63-bbe65323d64d@linux.intel.com>
-Date: Wed, 17 Jul 2024 16:41:10 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id B679510E03B;
+	Wed, 17 Jul 2024 15:12:50 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63FF610E03B;
+ Wed, 17 Jul 2024 15:12:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4809214983929223779=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe: Remove used xe_sync_entry_wait
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_starting_with_=5B1/2=5D_d?=
+ =?utf-8?q?rm/xe=3A_Validate_user_fence_during_creation?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 17 Jul 2024 15:12:49 -0000
+Message-ID: <172122916939.270701.6147112144669080705@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
 References: <20240717140429.1396820-1-matthew.brost@intel.com>
- <20240717140429.1396820-2-matthew.brost@intel.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20240717140429.1396820-2-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240717140429.1396820-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,52 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============4809214983929223779==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 7/17/2024 4:04 PM, Matthew Brost wrote:
-> xe_sync_entry_wait is no longer used, remove it.
->
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+== Series Details ==
 
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+Series: series starting with [1/2] drm/xe: Validate user fence during creation
+URL   : https://patchwork.freedesktop.org/series/136196/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-1619-cf52b34c47ed2a05c46193f0b9807ffd8838dbd8_BAT -> xe-pw-136196v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (7 -> 7)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-136196v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-FAIL][2] ([Intel XE#324])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1619-cf52b34c47ed2a05c46193f0b9807ffd8838dbd8/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136196v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
 
 
-> ---
->   drivers/gpu/drm/xe/xe_sync.c | 8 --------
->   drivers/gpu/drm/xe/xe_sync.h | 1 -
->   2 files changed, 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-> index f2e5e3c8c0cd..533246f42256 100644
-> --- a/drivers/gpu/drm/xe/xe_sync.c
-> +++ b/drivers/gpu/drm/xe/xe_sync.c
-> @@ -204,14 +204,6 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
->   	return 0;
->   }
->   
-> -int xe_sync_entry_wait(struct xe_sync_entry *sync)
-> -{
-> -	if (sync->fence)
-> -		dma_fence_wait(sync->fence, true);
-> -
-> -	return 0;
-> -}
-> -
->   int xe_sync_entry_add_deps(struct xe_sync_entry *sync, struct xe_sched_job *job)
->   {
->   	int err;
-> diff --git a/drivers/gpu/drm/xe/xe_sync.h b/drivers/gpu/drm/xe/xe_sync.h
-> index 006dbf780793..256ffc1e54dc 100644
-> --- a/drivers/gpu/drm/xe/xe_sync.h
-> +++ b/drivers/gpu/drm/xe/xe_sync.h
-> @@ -22,7 +22,6 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
->   			struct xe_sync_entry *sync,
->   			struct drm_xe_sync __user *sync_user,
->   			unsigned int flags);
-> -int xe_sync_entry_wait(struct xe_sync_entry *sync);
->   int xe_sync_entry_add_deps(struct xe_sync_entry *sync,
->   			   struct xe_sched_job *job);
->   void xe_sync_entry_signal(struct xe_sync_entry *sync,
+Build changes
+-------------
+
+  * IGT: IGT_7927 -> IGT_7928
+  * Linux: xe-1619-cf52b34c47ed2a05c46193f0b9807ffd8838dbd8 -> xe-pw-136196v1
+
+  IGT_7927: a2ab0ec12ef447c96c67dc539813462b6b39f857 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7928: 294a7a487aab103c54b0deeb1559fcba371232d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1619-cf52b34c47ed2a05c46193f0b9807ffd8838dbd8: cf52b34c47ed2a05c46193f0b9807ffd8838dbd8
+  xe-pw-136196v1: 136196v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136196v1/index.html
+
+--===============4809214983929223779==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe: Validate user fence during creation</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136196/">https://patchwork.freedesktop.org/series/136196/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136196v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136196v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1619-cf52b34c47ed2a05c46193f0b9807ffd8838dbd8_BAT -&gt; xe-pw-136196v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (7 -&gt; 7)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-136196v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1619-cf52b34c47ed2a05c46193f0b9807ffd8838dbd8/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136196v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7927 -&gt; IGT_7928</li>
+<li>Linux: xe-1619-cf52b34c47ed2a05c46193f0b9807ffd8838dbd8 -&gt; xe-pw-136196v1</li>
+</ul>
+<p>IGT_7927: a2ab0ec12ef447c96c67dc539813462b6b39f857 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7928: 294a7a487aab103c54b0deeb1559fcba371232d9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1619-cf52b34c47ed2a05c46193f0b9807ffd8838dbd8: cf52b34c47ed2a05c46193f0b9807ffd8838dbd8<br />
+  xe-pw-136196v1: 136196v1</p>
+
+</body>
+</html>
+
+--===============4809214983929223779==--
