@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 628B8C3DA42
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 14:19:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77910C3DA42
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 14:20:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0FB410E064;
-	Wed, 17 Jul 2024 14:19:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3774F10E06C;
+	Wed, 17 Jul 2024 14:20:00 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D925F10E064;
- Wed, 17 Jul 2024 14:19:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FE6610E06C;
+ Wed, 17 Jul 2024 14:19:57 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5B1/2=5D_drm/xe=3A_Validate_user_fence_during_creation?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_series_starting_with_=5B1?=
+ =?utf-8?q?/2=5D_drm/xe=3A_Validate_user_fence_during_creation?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 17 Jul 2024 14:19:25 -0000
-Message-ID: <172122596588.269472.18236912160460462903@2413ebb6fbb6>
+Date: Wed, 17 Jul 2024 14:19:57 -0000
+Message-ID: <172122599719.269472.1262627678380931934@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240717140429.1396820-1-matthew.brost@intel.com>
 In-Reply-To: <20240717140429.1396820-1-matthew.brost@intel.com>
@@ -48,10 +48,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: cf52b34c47ed drm-tip: 2024y-07m-17d-11h-07m-11s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Validate user fence during creation
-Applying: drm/xe: Remove used xe_sync_entry_wait
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 959197c8c3f5eb0fc8da21759b70b8784278c350
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Wed Jul 17 07:04:29 2024 -0700
+
+    drm/xe: Remove used xe_sync_entry_wait
+    
+    xe_sync_entry_wait is no longer used, remove it.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch cf52b34c47ed2a05c46193f0b9807ffd8838dbd8 drm-intel
+1fc0f999c017 drm/xe: Validate user fence during creation
+959197c8c3f5 drm/xe: Remove used xe_sync_entry_wait
 
 
