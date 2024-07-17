@@ -4,181 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6CDCC3DA4B
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 12:13:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3E5FC3DA42
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 12:28:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BD1A10EA7F;
-	Wed, 17 Jul 2024 12:13:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E6BD10EAAC;
+	Wed, 17 Jul 2024 12:28:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gOSjcoLM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WXVBbCNb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0745B10EA7F
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Jul 2024 12:13:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A65C10EAAC
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Jul 2024 12:28:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721218436; x=1752754436;
+ t=1721219337; x=1752755337;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=UPdNHaWLRNaudZs9S46D0PbZGomz0GMZ/AQ5/rPU0Fo=;
- b=gOSjcoLMc+qdIZ6Vds/rxDLe/fUX1iy40079QOuTbNYYu+xJHLPpUZxG
- jkZBhF0h5mG4BOpNK5YVY7cjjI5UJb0ivXxgqNF7TmBgoTzQwpkdCQl53
- 5V29aUETeXQRuePKfLr3CKu5XJJiD0siP8+W3oZ9YRDzFBP0z35aOTH+o
- SbEvctt5axNM3vB46I7ejbmwErFJu/razwy3iQI9frpBoI/J2Kh8fAXiI
- pEdowi1E6ZN/e/cuCgd1vDeGLEfLg6wRvakeg+iVaqA7bkL35EXPRGnT2
- IoYO3FyGya7i1Lxe44JQgBhBIZWQGscZj6xNwJC6ISXpAj1aMHmrLCiv+ w==;
-X-CSE-ConnectionGUID: kQ+CKSofSbuVat5v6AwKqw==
-X-CSE-MsgGUID: x2Gi1c6CQSyvGqYHzPwtkQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11135"; a="44141448"
-X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="44141448"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2024 05:13:55 -0700
-X-CSE-ConnectionGUID: e4ZqJrRgRrax47zHtcc/5A==
-X-CSE-MsgGUID: pehPnzbPTheM3qgC/Bev6Q==
+ in-reply-to:mime-version;
+ bh=hWVmAGEPox/1PXeUaIYNrnKDXgVafsdJeJWp1ZumgHA=;
+ b=WXVBbCNbecbE3XHvpFoS98+BJwQy5i1MKHs8+O+bG9+nSLRAza6aqsjY
+ z3j89rOx6ClA+lhggR1RgvhyEYd+N9+HPOeQ8tphdJMjE491XCaTRS0YG
+ EBSSaydaER3j+6WAeFoodExeuodZERTo5WvjR0pqReoyBQ8NfyJbvbfpF
+ 3JrPahitCKhEfgkZHLr1f5hZffNvTTODUgHx6Qd+ULj9qXVhTGbDD5hkS
+ x2g+v7tvfvQdJIiiP/Zpa1zIaGzE42EzVgwTYOpzok79WNY2w0BkrrJy8
+ G0BS17GECN8fs9+suls1D9EMiHKfqLcxqWlLRDz4OA5i/2HCI7staaeZB g==;
+X-CSE-ConnectionGUID: w8FWsk86R1+GsuK84tFPlA==
+X-CSE-MsgGUID: 8YWy4rpNT96NOPOsTm2BKQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11135"; a="29386414"
+X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="29386414"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2024 05:28:56 -0700
+X-CSE-ConnectionGUID: Vy4xT+N3RA6pGOsexKvBlw==
+X-CSE-MsgGUID: mLUynbSNTve1Eum8P0N75g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="50110749"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 17 Jul 2024 05:13:55 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="54698505"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 17 Jul 2024 05:28:56 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 17 Jul 2024 05:13:54 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.39; Wed, 17 Jul 2024 05:28:55 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 17 Jul 2024 05:13:54 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Wed, 17 Jul 2024 05:28:55 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.42) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 17 Jul 2024 05:13:54 -0700
+ 15.1.2507.39; Wed, 17 Jul 2024 05:28:55 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WGNvtjaUj5TEgkul2WPi5+We8RcWb+QnW4JBYUDb4OMGdu1h4CPiZq78KyOxMWwMiO7zX7gTR+2opLxZmGXvd+GaNdaKzBydXtPaZo2r1h5f9V3arufoZJSRDBT6s7HB70xsvLzjna5c29Y0Kfpr67pL74Y/JxVQqxhlsibWdt2m+u64eIq/1J7RCk+Hm3FkyYiC4lswiRTawV150Y+Ttf+nW0VZJgMPjDqSwKp0S19vNPS932exkoWLtj8/sqL0zMYhNSolbHXdxMIMpMUWMD3NqHfzQc/5ZA9i2oG6kofjiWsPgWlrNFgGbR0FTS/tF18LjC82+703qiI1O0wn+w==
+ b=MQYJ603HcX8+eg2bI/QiGK1qP/l2iUiN+wtkuV9gd6lSKXVZLzcAyCi0JQiqlIB6su1NZzRwDJ3K4+FRYQ91OTCjl5MwpcQ9Wrch9N9YpIKI7mvMaaRBEoZr98pBZ2kL2WEp3uFvFbfL7cu0kSD9ZEWNDjkt0JpzdVWUSfOthdY71EhQXCcA1dYCA32dGHgBQhsZ2mBVfL9CHbmeWJJcWnXQjrlEM3cn26vBOwgn9IZUO8lBKBxhWjxbDp899/nw+0d6NJho3pcbGMn9d1i2Et3pFzPew9M1YU2bIWtwstq5rFs4HgF4xou7uI2PSw3O8a1nFs86KCMye/VjQT8jbQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RjsZSMIDXhVxUMnSVzQFmlgoUR6knZTGMfdl5pUjy84=;
- b=aC5SBMrRiD6aGX4SC413i479z8mATUVS8hkDEpCAHHCb5uYQpGdm6ff7mZqXZ/SAUOFzw6+LjZxMsOEXXjSnYdh24Xmn6bROaKhqYNXjXdn0arEoTg2F39+jD8z24oaXAC6WRBmI2udnBVcmHtQocQOlPiKKPwTaJtU6Ny4CQwPJhlRoVyJfxErkDPMqfFaHe9Z99UIgbAkblQCscteFh73rwmEuAOqhjoctedObQa13zUd8p1ysKeaZ3FaFltmLSzZHMjdwe1lDBytaWZ2+/OJVcdKcc7iQETz7YvYCwWDyCO2hUUyaV9xlNgRZUXHir9OjFcReo3x65+V0mmDt3Q==
+ bh=N7zSE+6se9A7hh6ru9Zat1bHXD0G291yOgBLCFWn17g=;
+ b=RCChvzah/rLqjN4B2/q57cWh0UjgPz0vd7fGKWJ09odJs23EdXrZMJBAytcWp7kpM9qxQP3q/GIpei9HIVk31XuT9m9Fp3xBS4mJGSHLN3cgBw58+Psp8MR0hoGl30yxCXMM7EHJ7Blhw1U6PF4aRStDW2geTclLxC5VuNi7cR3rsCU4C/vRArUz5JYq88zUTWF+Zps8GxkLtUoqy1AfM0aktJ0mOxQJWOmm0tNlv8qxgBPKdO7lHSUVf+joGptbvWfYQiEs4VSyUrR04w060iEAcBBPwWv+bS87uU6/YEZGpqXagIi8K1TWYpd/1s1NfGKKn+U/jcda+mGh2wajHA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by PH0PR11MB4853.namprd11.prod.outlook.com (2603:10b6:510:40::20)
+ by PH0PR11MB5126.namprd11.prod.outlook.com (2603:10b6:510:3a::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.16; Wed, 17 Jul
- 2024 12:13:46 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.28; Wed, 17 Jul
+ 2024 12:28:53 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%5]) with mapi id 15.20.7762.032; Wed, 17 Jul 2024
- 12:13:46 +0000
-Date: Wed, 17 Jul 2024 12:12:57 +0000
+ 12:28:53 +0000
+Date: Wed, 17 Jul 2024 12:28:03 +0000
 From: Matthew Brost <matthew.brost@intel.com>
 To: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <akshatajahagirdar6@gmail.com>, "Himal
- Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Subject: Re: [PATCH v6 4/8] drm/xe/xe2: Introduce identity map for compressed
- pat for vram
-Message-ID: <Zpe1SYQMQzMaZKUP@DUT025-TGLU.fm.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <akshatajahagirdar6@gmail.com>, "Nirmoy
+ Das" <nirmoy.das@intel.com>
+Subject: Re: [PATCH v6 8/8] drm/xe/migrate: Parameterize ccs and bo data
+ clear in xe_migrate_clear()
+Message-ID: <Zpe400axUhGEfIrE@DUT025-TGLU.fm.intel.com>
 References: <cover.1721193361.git.akshata.jahagirdar@intel.com>
- <8168fd897d321f46ede7e932375119d2cb971911.1721193361.git.akshata.jahagirdar@intel.com>
-Content-Type: text/plain; charset="utf-8"
+ <2d4fb2f3bbbd38180b878f00775c9df5a5017b2a.1721193361.git.akshata.jahagirdar@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8168fd897d321f46ede7e932375119d2cb971911.1721193361.git.akshata.jahagirdar@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0085.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::30) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <2d4fb2f3bbbd38180b878f00775c9df5a5017b2a.1721193361.git.akshata.jahagirdar@intel.com>
+X-ClientProxiedBy: BYAPR21CA0006.namprd21.prod.outlook.com
+ (2603:10b6:a03:114::16) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH0PR11MB4853:EE_
-X-MS-Office365-Filtering-Correlation-Id: 762a41de-055c-4841-bef8-08dca659e8ac
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH0PR11MB5126:EE_
+X-MS-Office365-Filtering-Correlation-Id: e089926f-d39e-4e16-69f8-08dca65c04e7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?S1JaUXY3eUp0UTBQckI4OXJneDJIalY4SC9USkhvUFBPbUJqQVpnMkwrY0NP?=
- =?utf-8?B?Wm4yWW0waklyWFlRUU9UbGxScHVtUTZ2bjVaQkVnbkhHdTd4Yzh6MFFrcEFx?=
- =?utf-8?B?Rk9ZK0ZjRVM5WXhGOXpGS05JaVpFbGt0aUxWYWJySzhaS0tGeitaUGRPY3NC?=
- =?utf-8?B?YlZsQVV1UEVsVVkrNERDalFzRXpTeXNYUFFlN0crS1BhQUZEdjk0ZUtSb0RI?=
- =?utf-8?B?aU9zVytiaGhwU0hkNmVOZ2FlWFpsdXlyemNrUXRFYWdqM2pvY3FGOWhjSEdu?=
- =?utf-8?B?Rnk3TWVic1NuQTdwWGlkUzZkazd2MS9mRWhKY3QyTkRFNk1XRXcyVjNMek1B?=
- =?utf-8?B?UGFVbEVRM0ZsM2NvR1Y4N1FJcEZGa0dHOVhCc2RBNFR2emRoT2E4UjR4RlFW?=
- =?utf-8?B?cU5pdHRlbVZjMjhvQ0pSaW5hejhQUm4xY0lrN3hodE9LRkxrcmNOdCt5UytI?=
- =?utf-8?B?RUx2R0Vvei9hZ1E3SE9mYVdGTWVsbzFpREJvK2s2dklVQ3BwWXVUQjlmaG5p?=
- =?utf-8?B?YnUxRjVrV05KYVhDMHJIaXhqUXZJMHJQMVU2SzQ4d2VkUEdhVy94eWdWVmVK?=
- =?utf-8?B?a2pTTlg1b2tuQTlIU1lZOUp3eXdyZ1hvT0liWnQxQ2xENmRYemwzWUd5MHV0?=
- =?utf-8?B?cWp4WXM0aWIvVGdHTG1XZHZ0b3N1cnk2U3pidC9WYmV6RHhRbnVpUTNPU2Za?=
- =?utf-8?B?NHlld2lDR2I4ck85cWg5Mm1VRFJ5Z2dTeUhsRlF1K2IyWEhWU2pVZDQ1MW9O?=
- =?utf-8?B?S1Q2OWUwQmJFcmUzSUVGRnNwU0FmbWxSczc2ODM1WmFZVUxidmNkYmhrT1Mz?=
- =?utf-8?B?OFpBWEFCMndlNmozOW4yU1RrczNFdFBaQkg1aGdhU2E3ajZ0WElZdnplWXI2?=
- =?utf-8?B?aG55ekIrZDBQcFBTVDBvWXBBekZEdTZidE1lVVB3STVWN2Y3ZVljREM1S2Y5?=
- =?utf-8?B?Q09WWW1pci8vVjlKREpyWnBKUzhlUC9RNUljVDQyU3ZWK3lWdlo5TGdpZ3hk?=
- =?utf-8?B?YndOL0EySDZ4aC80YzFXbUYzVUU1ZFN6clZ5czZ6NUdKZWUvSWJVeWhxZFdQ?=
- =?utf-8?B?YjUycVFDOG1HU0YrUVZ5ZXpJRG9tSVBmZTFmU1FBaW5nMmI2d0tWRDRxYVZn?=
- =?utf-8?B?ZmJxY1BSbjZSa0MvMnMvdUdRclltRThoYjVZQTNsUTJTSlBSSnNsd3B3MlJS?=
- =?utf-8?B?VTl6SnB6cC9sN2kvVkUzUTJIRXZwQmtjZW5mTGlmc1JBcWY5WU5UTjFFZ0Iz?=
- =?utf-8?B?YkV4eUN4Q2VVNzBkeXJxaEdYbnVoOFpjcFcyYUwySkluSmVLNUVsKzlOSjR0?=
- =?utf-8?B?MFl2KzhnSmJjVDBvL0IrQXBYcG90UDB5UklVQ0tDU2k3L1ZHTUhtbmdCYlRi?=
- =?utf-8?B?RWpkQytLUGRjbFp2eGw3UEovMGt6bEVnTlBPcXNpRjg2OUJqUlJWakJVcEJr?=
- =?utf-8?B?OWhodFdqWmloOVoxcENzQlp2cFc3ZGh3ZDNSMnQ2Z05JZ29vTHVpR0pON0Jy?=
- =?utf-8?B?Rm5yaXdtRkhabFhqSGhPU2VxWi9pSFhtak82K2tLdERBN01RM3Vrd3RSN1hP?=
- =?utf-8?B?Ry9NUjJFSDFDQVFOaWdwYzVNVE5yNHBjalRqVHo3T2M4MHdBV2dXWitQRkRL?=
- =?utf-8?B?dmhrVWVIS3U4ZVhQYk9VbWo0NVErT2thUGtTUTFPSEtaVzlMZ2hraTQ1ODRi?=
- =?utf-8?B?cjdCN3RZdHNWK1JBZzdwSkxrcFA1TTFxVU1tcUVsZHRXWms3bUxPbkI2cmFj?=
- =?utf-8?B?Ynl0Uk12T3FyRktSSFQ5SVpIUURpTlMvQkV4WmM5ZUZPUE5wWWo4alVlT0dH?=
- =?utf-8?B?Nk5KbzgyRklGMGhiSTFkUT09?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Qv81RGbxyqF2urK4j14GFxsjvSLAyLJbYRNEzICC3IXp+lW0wUh+32dhvA/A?=
+ =?us-ascii?Q?i6C9RbzYy2jZH28e6Z/xzUTneaVxBfA8qtvUVZWa3PjO7TW6/eV8vti02N/7?=
+ =?us-ascii?Q?pxbMuBmBtUWdywlJJI7mLpffqBX8o6S777BllzyJ5cc8Fwo2oI7l8i+Kk22M?=
+ =?us-ascii?Q?xrjNjdKO8q4kzktCJika5GrkwQnTf3Rjmi0L4bNkGuyeCJomCuchBoQQML6X?=
+ =?us-ascii?Q?EypYmvaWn63toUtY3bBl9QAihO5vrxbYlu1YtK68KC7fccXPHi3+hopUxQd5?=
+ =?us-ascii?Q?0Geplkpt7U8Cd0XOzwM6fclxVKxFuj3BTPyGQTnbDkwCVm06+aNpMAp3QUjE?=
+ =?us-ascii?Q?7EolWFGp1BxZYkYC5MwU0jHKvuNiNV19PHcaL+dY0Jcdk8PeGvrLLVUIxeln?=
+ =?us-ascii?Q?wr+7dBi5Ldr7KHRLJU28Zh7baELNn9Rc9oVOfmzWQNJSU5Q+WuNZkYUMikSO?=
+ =?us-ascii?Q?7l7LJhqEGK+JpceOTLaNe/ft8ezItB7TVbZqJgkf/WGzkxS9MJouAoo1Dqvj?=
+ =?us-ascii?Q?Lhe1AgeahZbiZRQiF7RgjrWx8blbVzsC4Q0/MaGPmbI66rQyi9mBfkxknoE/?=
+ =?us-ascii?Q?8fDCf9CkbGn6+t4nrtn26x1YxKpM3JLIhmYuNBFLy8o4UzRso51oaKDFa90A?=
+ =?us-ascii?Q?OkCCgYKrLeALBMPIlqLKrL+77F/hg0BinF5xOj69E0S6z2MPOSbb5tt7WNgj?=
+ =?us-ascii?Q?pvOdEB8Sn9oYY7YfShOSaM4GmoPg7xnV5J/8MfznHB9FUUW9p0PH4f0Lm9uu?=
+ =?us-ascii?Q?xWHfBRitk1bbCfL4KQ0fV1/pW6pXa7LduOCsbWG145JqgtmqMODocYsev91Y?=
+ =?us-ascii?Q?TD/Ulo7XqHTd07rlbBtTd9MAFuj7+XflvMc7aB1I8zeF3jXrAhHinLQXymqb?=
+ =?us-ascii?Q?C177lsmsOkqPsfCi5B5HCfPUcwwkEKGRtzld1RkfqQ34oUiwXvT76Zj5UJyX?=
+ =?us-ascii?Q?qlZP5lrFUNfgILbStJRIJm0c3XTpkSMuoaCvd6pwJqsLRPHFOneBD1U9z9pS?=
+ =?us-ascii?Q?Y826EFtdweZ/ljopeEL0rFAgR0upmjFsyeMib2WNyHb2ojF3yxMBNOHwQ4P/?=
+ =?us-ascii?Q?0zCvKiNsml0NpUQ9s0TESTgUWiwcLCZ3jdMrjZc6d8NUgOzQr1Hf4swZjXT6?=
+ =?us-ascii?Q?a11PMg/4gqJXaQhwGKaunn5gYEra9broS/np8KBZiAuP13nEZUA+K+XgVbd5?=
+ =?us-ascii?Q?mn7KYS6f+umK8eQ6otfzcPL44Tf1cS9YUKvWQVRuaw/duyCf67EYwfmtDdeB?=
+ =?us-ascii?Q?9ACKv1evQ/ISUP0x1RKIrZLeh9kdgRqxSPIdBh5sK/0w//o15QuUHXnz59Mm?=
+ =?us-ascii?Q?pOozWTYPQX9st2IKCL2sjnY04jliMyZrkV6niNijTOGUOg=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZXdRWHJIOUlOdUt4SUh3bkFQM29ROHkyWW1PalFxblBjd3BxZW15Wlp0VWJw?=
- =?utf-8?B?NU8yVDdUejlxTGc0RFNUcnlXT20yeUo0c0dOc2dMVDV5Wlliak5nWjBoWHhN?=
- =?utf-8?B?WU1HQitCZTFteG9nNWFXWGJ3SzNtcWtFQnNpNENtQTliRFp1bTVqNDdFZHhX?=
- =?utf-8?B?SWFLeUlyMENJeGRFUENuQ0E0Qm16TmRvUW9ydmxsaWMvZjYzOXdHYjBnNXlX?=
- =?utf-8?B?cGY5VHc1NzViQVNoVUVhc1djeEpxdnM1YXBEbWhVYmVVeW1YTENncmtUZ1pL?=
- =?utf-8?B?UGNpS0ViU1Nkb0pLTnlrQW9jVmdZZWtNN2NqczFJN1p5UzRUUTY3aEZFak4r?=
- =?utf-8?B?L1RlVHFMNXIvVlJwcUhqOERLcDVBUzc5a0xMMFc5NXptNWQ2TDkyS2c1a1FY?=
- =?utf-8?B?TGhiUE1PSmtaVnBhNzRjYlJlSnY2N0h2QmFjditOa2M4SThDSysrYmhkczlB?=
- =?utf-8?B?NXA2LzBndG5NQmpMdkppckdxYXl3NXZkRkpXeFNnalJlVFVOUnpueUxmb05T?=
- =?utf-8?B?NzVTeU1aK3YxRkQwSFhVdDQ2eFhBZzVsSElNcUg1WWdWT3hWWEliakd2cW5G?=
- =?utf-8?B?Q2N2Wkc3UFVtZDF1TzJ1MTNqS1lwV2ZUYk94N3JrK3hSR0JFSGN2eVFlVHcr?=
- =?utf-8?B?cmdmR3ROOWJxUVRwL0NjcWJKZmR4VXJYVTBFay83TXdXblVRSEp3WmY5eEhx?=
- =?utf-8?B?aXhTSG9rc3k2a1RYZE16dTB0dExpU2pMcHlSZmZ1dEpUK25lYStDSVNsYkxj?=
- =?utf-8?B?YmRnd2NMRHlKV3JBWWxpY2laT1JIaGFmN1JDU3hScVYxNzUvQi8rUmJCYy9N?=
- =?utf-8?B?YitQaloxaDRLTjVRZUtEMHBDaHpRajlqQUZRNkdsakZIUFFvM2Ntc3dEcS91?=
- =?utf-8?B?djhDdUVQMVhBTDhYeS8xNmV1eDVrMDQ5SHRkSjMxYlA1MWtjdHduR2phWXI0?=
- =?utf-8?B?U3U2cldrQ0xGVFJ4djJqaXN4YWphbVhKMFBVVzkvREJpQ0w3N2NUa1plaC9S?=
- =?utf-8?B?YWRvY1ZHV1I1ZXR4bnh3NWtxWFJadFNDMlpMR1VWMGoreTRvL3FOaE5HS1Zw?=
- =?utf-8?B?UWtwOWNpTzM3Uy9RNkRXMW1UYW5zeXBGczB5R3d5TjVTUmdZSTV0UkFTRXVI?=
- =?utf-8?B?OWJKSkVQN2VRNlZzdXJRNDhxTDBaWTBDZkhyeXNUTFhTNm9WaUdyUHVyRTVC?=
- =?utf-8?B?RW54YzFpZXo2MnY4eG91RG5mQkFpc0JYMyt1TCsxZGxPeXhRVTI4SGtJaHB6?=
- =?utf-8?B?cEw3Z0pmQmxWL2JRUkVoNTE4eUdtZjNaVXRwZE5zZU1WRXkxK1RtdlZ5WTJp?=
- =?utf-8?B?b0NTU3l5eFVYNmlrSHNhS09TL1czYW1qZzV2R1R4U1AyWnFFc2ZwbFRTclpi?=
- =?utf-8?B?RXdsUXhPczZmN0IranZlY1ZtRXRWdWh2anNqbHRoM1RjVnBCN0hJZ0ZkS2pm?=
- =?utf-8?B?TUhTVTR1WXFua3R1U25KQXRjN1NGTld2L1drVTcwbk5DemRZY0dsVzBYNjJk?=
- =?utf-8?B?L2s3dnFISHJWdmdjenU4RklHQ01zNUlNMzVwZXJvSWU0UHhKNzZGTTkvMklk?=
- =?utf-8?B?ZU1kUUMrTGNYVjdWWm9lMWRTQkY1SGxjSVFQMnBtT0tXdEhCbnBWRk1Yeng1?=
- =?utf-8?B?ckpncmFLaGdlT0RWNHVhaXFWN2doaHBoeVQ1UmV0WW0vSjR4ZnVlY2xpRUZi?=
- =?utf-8?B?MWtMcTNubEtER0IxTzV4b0QxZXdVQWVZQjhDb25pR25GcncrQjdWdlFpMnFx?=
- =?utf-8?B?M0c2K3hvM1crWkxaWEhpNUU5My9lallQaDVMSDlUcHF6RlRIWWF4ZGlVV2dp?=
- =?utf-8?B?aGc0UzJhVnBDa2xtN3BqSzlYcUdMVWFiK09zdzBJK1JLZkNOUDhqbDNMQTNh?=
- =?utf-8?B?Znk2T0ZMOWhrTlhlcUZvSWkzRTdmd0dpWkc0Y1hGWEJreWl5czQxdmw3a3B4?=
- =?utf-8?B?enc3NEorb3o5eHBqQzVSTU1zOW1NZE4wZ2JVNGR4cWY5c0UrWWsyRFNRVnp4?=
- =?utf-8?B?SnE0QTNLNVpIbTFwRVhWTUI5T3c0Y1FFWFBUVlJTRUpoSTVYclNjbXNlMXNK?=
- =?utf-8?B?SnV4R0k4UHF5Y3VOU1ZUcFcyV2xuUVNnWXhrQnM0dmsxMStoN3hMditlajZL?=
- =?utf-8?B?SFYycHNhejcrcytnUHlKSXNNdm5PM2FydmZnU3Iwclo1ZW0zY0FyeUxwN0R3?=
- =?utf-8?B?L0E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 762a41de-055c-4841-bef8-08dca659e8ac
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bEE3/uPi3es6yxPz9HNO+IlMTGPhEDZCAUqtf2I+WyDUY6PP92wcBQbLXYaF?=
+ =?us-ascii?Q?DipuKFDkYz2MBW440ahiVjd0srA+AgjlIoWagsGpLHH1uLzvEhBYsXAVqWa+?=
+ =?us-ascii?Q?XJV7QnOaoOn7J2o8MJrTK7QJ1DwCzKzeNRCQRcoi8KYGcvI3Cyb5QPOKBms7?=
+ =?us-ascii?Q?9etqjPprqb8lshUz/SnLANMC7VnJEgwmSVJ5lw+Im4Z1nvPm75r6hRhuX7qz?=
+ =?us-ascii?Q?WXcDr6z1nkm2TRVNuHToqXtmfNzZNpNGOo/E8D1yKggiQSyLAjfMOtNdF/jv?=
+ =?us-ascii?Q?p3uSt8x7hrTz09YqvY3IrJGTCyAH48vSfEVhwn4LOgA3rEvqWluTRNG6HVmr?=
+ =?us-ascii?Q?ATRsi5yU9hqb+UKb328xxWAMfwjs75YdKKjR9HyuRQ2LrIKanLyM3B8KtyKj?=
+ =?us-ascii?Q?2rfu54rXualRD4zppgnJ1s++uP095CH3v2YG7xdiQulWMESMrZIx4/vcMwZq?=
+ =?us-ascii?Q?X2vly5EbUy2kl+GSVy50mlAJGjLjYzvKP04cVxgQVUEyg/SebgTaHA84qsCF?=
+ =?us-ascii?Q?pO9M8rs+9I/LB7LoxPgniDpk9zqL4nVPJHt55Un+73EfSQz9WMqW+aQLMI/n?=
+ =?us-ascii?Q?FPEgeNsEcxmtg15rkv5aM0gI+XePhgpOs36IvPtwGIegfYe59ugmF/XT72Fo?=
+ =?us-ascii?Q?4XEQTI1r2tMTer53cmA48tbU9IrjLHpP15SuHcp97m3bLCicSIhJsNOci+F8?=
+ =?us-ascii?Q?8getx+vUiKP2S48QuzIRgVZ1zQthfa79BD/3O/BNaQOPYU4xrdNgzb/edLYI?=
+ =?us-ascii?Q?C908C19/Bp8WIUJuH4U5VUecz3Bk8bzKFTCCCRAz8GjKtfTqfSXRL5M4m2n8?=
+ =?us-ascii?Q?bKFPxzD2BrFKFry/BOeQormqLIx7NRf3bJcHEqVLA1ADNtrAp7ia8CfcLXyA?=
+ =?us-ascii?Q?VuebwuTYVQ8xLFjhxus+s3DI8tAxU+Efq1vgYQ98SsOAV/1NkS8jv761xKRE?=
+ =?us-ascii?Q?Ii/y/nRD/9H6TI0yrLn4gAE7iBKuxpiSycuNqwLypV2tg0ed15lq432608Vh?=
+ =?us-ascii?Q?2S+2empIoBWklSsgG4Kqw4fNjcE4wDVXJYdqVmEVWN7GTn6puuKB08URivfs?=
+ =?us-ascii?Q?ccbbB59JKSDeetCRF4ag5DDXFBl8xOtWoHwzBEeACe+g1IqBcAhEHhw2Y4rP?=
+ =?us-ascii?Q?9p+e1/1QcE5oUhedCuKnp6oIcUQaDymbDxAQdQ+LC2+0KhzapmxbAOiVgjig?=
+ =?us-ascii?Q?szE0bNtWRUVQrTtk35AoAona8VBfeSGuwKXv92UaW/CdWx0l628ps0rYdkx7?=
+ =?us-ascii?Q?bjwU6dGmAlxN7ZOUfgnmrlVzBgpzP23xHrNLQYBXxqoSJIsyZAKUUkt6cc6C?=
+ =?us-ascii?Q?WhN10J7yjYag0nasaeYqbC+BJrdSL/VUaxF2+ZWRjrt0wbG9Vn+uJHSFBW96?=
+ =?us-ascii?Q?KmZNR6XPuyGESVHU8wnAAUamkLeKjkxpAGZLO3IbtazhhQRIgPDrFXaK5bPM?=
+ =?us-ascii?Q?eeFn7AQIc+aEGzqqukHT7ZmoipLWzYy517+gjHlbLW/8SSU8xXi2vsXQI5b8?=
+ =?us-ascii?Q?YT8jjirkrUUAdCKFaIWcRtHqlUttGvJlIcd7mWIEKxy84Gxoof/X8W1lrmB6?=
+ =?us-ascii?Q?+o1oRe8vJ3dJ/Co/6cmDkjGlY2XKDjHrpt5E/60Ur23koGj51dELBZAsi1al?=
+ =?us-ascii?Q?Hw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e089926f-d39e-4e16-69f8-08dca65c04e7
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2024 12:13:46.6932 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2024 12:28:53.0360 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4bP5QTEH30kWJAKphRDzgsDBA2UDSqIB5Y4NEZh09KPhiHv1/P6lga1AYRDhr7anE7E3ygFCf+msSasByYr0Fw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4853
+X-MS-Exchange-CrossTenant-UserPrincipalName: JuwrDFKmd8qEjEyUVKTop9FKs//+Rzk1XLSlzSl+iDMY4TXZnW1qdt67FWqjKNZ2FeSJHtHbLZEnjIshP+InUw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5126
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -194,326 +176,244 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jul 17, 2024 at 05:21:29AM +0000, Akshata Jahagirdar wrote:
-> Xe2+ has unified compression (exactly one compression mode/format),
-> where compression is now controlled via PAT at PTE level.
-> This simplifies KMD operations, as it can now decompress freely
-> without concern for the buffer's original compression format—unlike DG2,
-> which had multiple compression formats and thus required copying the
-> raw CCS state during VRAM eviction. In addition mixed VRAM and system
-> memory buffers were not supported with compression enabled.
+On Wed, Jul 17, 2024 at 05:21:33AM +0000, Akshata Jahagirdar wrote:
+> Parameterize clearing ccs and bo data in xe_migrate_clear() which  higher
+> layers can utilize. This patch will be used later on when doing bo data
+> clear for igfx as well.
 > 
-> On Xe2 dGPU compression is still only supported with VRAM, however we
-> can now support compression with VRAM and system memory buffers,
-> with GPU access being seamless underneath. So long as when doing
-> VRAM -> system memory the KMD uses compressed -> uncompressed,
-> to decompress it. This also allows CPU access to such buffers,
-> assuming that userspace first decompress the corresponding
-> pages being accessed.
-> If the pages are already in system memory then KMD would have already
-> decompressed them. When restoring such buffers with sysmem -> VRAM
-> the KMD can't easily know which pages were originally compressed,
-> so we always use uncompressed -> uncompressed here.
-> With this it also means we can drop all the raw CCS handling on such
-> platforms (including needing to allocate extra CCS storage).
+> v2: Moved 2 bool arguments to a flag argument
 > 
-> In order to support this we now need to have two different identity
-> mappings for compressed and uncompressed VRAM.
-> In this patch, we set up the additional identity map for the VRAM with
-> compressed pat_index. We then select the appropriate mapping during
-> migration/clear. During eviction (vram->sysmem), we use the mapping
-> from compressed -> uncompressed. During restore (sysmem->vram), we need
-> the mapping from uncompressed -> uncompressed.
-> Therefore, we need to have two different mappings for compressed and
-> uncompressed vram. We set up an additional identity map for the vram
-> with compressed pat_index.
-> We then select the appropriate mapping during migration/clear.
-> 
-> v2: Formatting nits, Updated code to match recent changes in
->     xe_migrate_prepare_vm(). (Matt)
-> 
-> v3: Move identity map loop to a helper function. (Matt Brost)
-> 
-> v4: Split helper function in different patch, and
-> 	add asserts and nits. (Matt Brost)
-> 
-> v5: Convert the 2 bool arguments of pte_update_size to flags
-> 	argument (Matt Brost)
-> 
-> v6: Formatting nits (Matt Brost)
-> 
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 > Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
-> Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-
-A few nits that can fixed at merge but LGTM:
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-
 > ---
->  drivers/gpu/drm/xe/tests/xe_migrate.c |  7 ++-
->  drivers/gpu/drm/xe/xe_migrate.c       | 81 ++++++++++++++++++++-------
->  2 files changed, 65 insertions(+), 23 deletions(-)
+>  drivers/gpu/drm/xe/tests/xe_bo.c      |  3 ++-
+>  drivers/gpu/drm/xe/tests/xe_migrate.c |  8 +++----
+>  drivers/gpu/drm/xe/xe_bo.c            | 10 +++++++--
+>  drivers/gpu/drm/xe/xe_migrate.c       | 32 ++++++++++++++++++---------
+>  drivers/gpu/drm/xe/xe_migrate.h       |  3 ++-
+>  5 files changed, 37 insertions(+), 19 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+> index e2e0ea24757a..c6db62a07276 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+> @@ -35,7 +35,8 @@ static int ccs_test_migrate(struct xe_tile *tile, struct xe_bo *bo,
+>  
+>  	/* Optionally clear bo *and* CCS data in VRAM. */
+>  	if (clear) {
+> -		fence = xe_migrate_clear(tile->migrate, bo, bo->ttm.resource);
+> +		fence = xe_migrate_clear(tile->migrate, bo, bo->ttm.resource,
+> +					 BIT(2) | BIT(3));
+
+Use defines everywhere. e.g. s/BIT(2)/CLEAR_BO_DATA_FLAG
+
+>  		if (IS_ERR(fence)) {
+>  			KUNIT_FAIL(test, "Failed to submit bo clear.\n");
+>  			return PTR_ERR(fence);
 > diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> index 353b908845f7..47c105263b49 100644
+> index 4929af88e75c..ac52bc4d2c51 100644
 > --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
 > +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> @@ -393,17 +393,20 @@ static struct dma_fence *blt_copy(struct xe_tile *tile,
->  		u32 flush_flags = 0;
->  		u32 update_idx;
->  		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
-> +		u32 pte_flags;
+> @@ -104,7 +104,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+>  	}
 >  
->  		src_L0 = xe_migrate_res_sizes(m, &src_it);
->  		dst_L0 = xe_migrate_res_sizes(m, &dst_it);
+>  	xe_map_memset(xe, &remote->vmap, 0, 0xd0, remote->size);
+> -	fence = xe_migrate_clear(m, remote, remote->ttm.resource);
+> +	fence = xe_migrate_clear(m, remote, remote->ttm.resource, BIT(2) | BIT(3));
+>  	if (!sanity_fence_failed(xe, fence, big ? "Clearing remote big bo" :
+>  				 "Clearing remote small bo", test)) {
+>  		retval = xe_map_rd(xe, &remote->vmap, 0, u64);
+> @@ -278,7 +278,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+>  	kunit_info(test, "Clearing small buffer object\n");
+>  	xe_map_memset(xe, &tiny->vmap, 0, 0x22, tiny->size);
+>  	expected = 0;
+> -	fence = xe_migrate_clear(m, tiny, tiny->ttm.resource);
+> +	fence = xe_migrate_clear(m, tiny, tiny->ttm.resource, BIT(2) | BIT(3));
+>  	if (sanity_fence_failed(xe, fence, "Clearing small bo", test))
+>  		goto out;
 >  
->  		src_L0 = min(src_L0, dst_L0);
+> @@ -299,7 +299,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+>  	kunit_info(test, "Clearing big buffer object\n");
+>  	xe_map_memset(xe, &big->vmap, 0, 0x11, big->size);
+>  	expected = 0;
+> -	fence = xe_migrate_clear(m, big, big->ttm.resource);
+> +	fence = xe_migrate_clear(m, big, big->ttm.resource, BIT(2) | BIT(3));
+>  	if (sanity_fence_failed(xe, fence, "Clearing big bo", test))
+>  		goto out;
 >  
-> -		batch_size += pte_update_size(m, src_is_vram, src_is_vram, src, &src_it, &src_L0,
-> +		pte_flags = src_is_vram ? (BIT(0) | BIT(1)) : 0;
-
-You should be able to use PTE_UPDATE_FLAG_IS_VRAM and
-PTE_UPDATE_FLAG_IS_COMP_PTE here because this file is included
-drivers/gpu/drm/xe/xe_migrate.c here those are defined.
-
-> +		batch_size += pte_update_size(m, pte_flags, src, &src_it, &src_L0,
->  					      &src_L0_ofs, &src_L0_pt, 0, 0,
->  					      avail_pts);
+> @@ -598,7 +598,7 @@ static void test_clear(struct xe_device *xe, struct xe_tile *tile,
 >  
-> -		batch_size += pte_update_size(m, dst_is_vram, dst_is_vram, dst, &dst_it, &src_L0,
-> +		pte_flags = dst_is_vram ? (BIT(0) | BIT(1)) : 0;
-> +		batch_size += pte_update_size(m, pte_flags, dst, &dst_it, &src_L0,
->  					      &dst_L0_ofs, &dst_L0_pt, 0,
->  					      avail_pts, avail_pts);
->  
+>  	kunit_info(test, "Clear vram buffer object\n");
+>  	expected = 0x0000000000000000;
+> -	fence = xe_migrate_clear(tile->migrate, vram_bo, vram_bo->ttm.resource);
+> +	fence = xe_migrate_clear(tile->migrate, vram_bo, vram_bo->ttm.resource, BIT(2) | BIT(3));
+>  	if (sanity_fence_failed(xe, fence, "Clear vram_bo", test))
+>  		return;
+>  	dma_fence_put(fence);
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 31192d983d9e..22b16a0006c5 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -793,8 +793,14 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+>  			}
+>  		}
+>  	} else {
+> -		if (move_lacks_source)
+> -			fence = xe_migrate_clear(migrate, bo, new_mem);
+> +		if (move_lacks_source) {
+> +			u32 clear_flags = mem_type_is_vram(new_mem->mem_type) ?
+> +						BIT(2) : 0;
+> +			clear_flags |= mem_type_is_vram(new_mem->mem_type) || handle_system_ccs ?
+> +						BIT(3) : 0;
+> +			fence = xe_migrate_clear(migrate, bo, new_mem,
+> +						 clear_flags);
+> +		}
+>  		else
+>  			fence = xe_migrate_copy(migrate, bo, bo, old_mem,
+>  						new_mem, handle_system_ccs);
 > diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> index 49ad5d8443cf..746656dfc970 100644
+> index efd64af4f8cd..da06b434b9eb 100644
 > --- a/drivers/gpu/drm/xe/xe_migrate.c
 > +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -73,6 +73,7 @@ struct xe_migrate {
->  #define NUM_PT_SLOTS 32
->  #define LEVEL0_PAGE_TABLE_ENCODE_SIZE SZ_2M
->  #define MAX_NUM_PTE 512
-> +#define IDENTITY_OFFSET 256ULL
+> @@ -518,15 +518,15 @@ static bool xe_migrate_allow_identity(u64 size, const struct xe_res_cursor *cur)
+>  #define PTE_UPDATE_FLAG_IS_COMP_PTE	BIT(1)
 >  
->  /*
->   * Although MI_STORE_DATA_IMM's "length" field is 10-bits, 0x3FE is the largest
-> @@ -120,14 +121,19 @@ static u64 xe_migrate_vm_addr(u64 slot, u32 level)
->  	return (slot + 1ULL) << xe_pt_shift(level + 1);
->  }
->  
-> -static u64 xe_migrate_vram_ofs(struct xe_device *xe, u64 addr)
-> +static u64 xe_migrate_vram_ofs(struct xe_device *xe, u64 addr, bool is_comp_pte)
->  {
->  	/*
->  	 * Remove the DPA to get a correct offset into identity table for the
->  	 * migrate offset
->  	 */
-> +	u64 identity_offset = IDENTITY_OFFSET;
-> +
-> +	if (GRAPHICS_VER(xe) >= 20 && is_comp_pte)
-> +		identity_offset += DIV_ROUND_UP_ULL(xe->mem.vram.actual_physical_size, SZ_1G);
-> +
->  	addr -= xe->mem.vram.dpa_base;
-> -	return addr + (256ULL << xe_pt_shift(2));
-> +	return addr + (identity_offset << xe_pt_shift(2));
->  }
->  
->  static void xe_migrate_program_identity(struct xe_device *xe, struct xe_vm *vm, struct xe_bo *bo,
-> @@ -182,10 +188,13 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->  	u16 pat_index = xe->pat.idx[XE_CACHE_WB];
->  	u8 id = tile->id;
->  	u32 num_entries = NUM_PT_SLOTS, num_level = vm->pt_root[id]->level,
-> -	    num_setup = num_level + 1;
-> +	    num_setup;
-> +#define VRAM_IDENTITY_MAP_COUNT	2
-> +num_setup = num_level + VRAM_IDENTITY_MAP_COUNT;
-
-I'm suprised checkpatch is not complaining here.
-
-Sorry if I was clear here, the formatting should be so indentation is
-correct and 'num_setup' is initialized when declared.
-
- 	u32 num_entries = NUM_PT_SLOTS, num_level = vm->pt_root[id]->level;
-#define VRAM_IDENTITY_MAP_COUNT	2
-	u32 num_setup = num_level + VRAM_IDENTITY_MAP_COUNT;
-#undef
-
-> +#undef VRAM_IDENTITY_MAP_COUNT
->  	u32 map_ofs, level, i;
->  	struct xe_bo *bo, *batch = tile->mem.kernel_bb_pool->bo;
-> -	u64 entry, pt30_ofs;
-> +	u64 entry, pt29_ofs;
->  
->  	/* Can't bump NUM_PT_SLOTS too high */
->  	BUILD_BUG_ON(NUM_PT_SLOTS > SZ_2M/XE_PAGE_SIZE);
-> @@ -205,9 +214,9 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->  	if (IS_ERR(bo))
->  		return PTR_ERR(bo);
->  
-> -	/* PT31 reserved for 2M identity map */
-> -	pt30_ofs = bo->size - 2 * XE_PAGE_SIZE;
-> -	entry = vm->pt_ops->pde_encode_bo(bo, pt30_ofs, pat_index);
-> +	/* PT30 & PT31 reserved for 2M identity map */
-> +	pt29_ofs = bo->size - 3 * XE_PAGE_SIZE;
-> +	entry = vm->pt_ops->pde_encode_bo(bo, pt29_ofs, pat_index);
->  	xe_pt_write(xe, &vm->pt_root[id]->bo->vmap, 0, entry);
->  
->  	map_ofs = (num_entries - num_setup) * XE_PAGE_SIZE;
-> @@ -259,12 +268,12 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->  	} else {
->  		u64 batch_addr = xe_bo_addr(batch, 0, XE_PAGE_SIZE);
->  
-> -		m->batch_base_ofs = xe_migrate_vram_ofs(xe, batch_addr);
-> +		m->batch_base_ofs = xe_migrate_vram_ofs(xe, batch_addr, false);
->  
->  		if (xe->info.has_usm) {
->  			batch = tile->primary_gt->usm.bb_pool->bo;
->  			batch_addr = xe_bo_addr(batch, 0, XE_PAGE_SIZE);
-> -			m->usm_batch_base_ofs = xe_migrate_vram_ofs(xe, batch_addr);
-> +			m->usm_batch_base_ofs = xe_migrate_vram_ofs(xe, batch_addr, false);
->  		}
->  	}
->  
-> @@ -298,18 +307,36 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->  
->  	/* Identity map the entire vram at 256GiB offset */
->  	if (IS_DGFX(xe)) {
-> -		u64 pt31_ofs = bo->size - XE_PAGE_SIZE;
-> +		u64 pt30_ofs = bo->size - 2 * XE_PAGE_SIZE;
->  
-> -		xe_migrate_program_identity(xe, vm, bo, map_ofs, 256, pat_index, pt31_ofs);
-> -		xe_assert(xe, (xe->mem.vram.actual_physical_size <= SZ_256G));
-> +		xe_migrate_program_identity(xe, vm, bo, map_ofs, IDENTITY_OFFSET,
-> +					    pat_index, pt30_ofs);
-> +		xe_assert(xe, xe->mem.vram.actual_physical_size <=
-> +					(MAX_NUM_PTE - IDENTITY_OFFSET) * SZ_1G);
-> +
-> +		/*
-> +		 * Identity map the entire vram for compressed pat_index for xe2+
-> +		 * if flat ccs is enabled.
-> +		 */
-> +		if (GRAPHICS_VER(xe) >= 20 && xe_device_has_flat_ccs(xe)) {
-> +			u16 comp_pat_index = xe->pat.idx[XE_CACHE_NONE_COMPRESSION];
-> +			u64 vram_offset = IDENTITY_OFFSET +
-> +				DIV_ROUND_UP_ULL(xe->mem.vram.actual_physical_size, SZ_1G);
-> +			u64 pt31_ofs = bo->size - XE_PAGE_SIZE;
-> +
-> +			xe_assert(xe, xe->mem.vram.actual_physical_size <= (MAX_NUM_PTE -
-> +						IDENTITY_OFFSET - IDENTITY_OFFSET / 2) * SZ_1G);
-> +			xe_migrate_program_identity(xe, vm, bo, map_ofs, vram_offset,
-> +						    comp_pat_index, pt31_ofs);
-> +		}
->  	}
->  
->  	/*
->  	 * Example layout created above, with root level = 3:
->  	 * [PT0...PT7]: kernel PT's for copy/clear; 64 or 4KiB PTE's
->  	 * [PT8]: Kernel PT for VM_BIND, 4 KiB PTE's
-> -	 * [PT9...PT27]: Userspace PT's for VM_BIND, 4 KiB PTE's
-> -	 * [PT28 = PDE 0] [PT29 = PDE 1] [PT30 = PDE 2] [PT31 = 2M vram identity map]
-> +	 * [PT9...PT26]: Userspace PT's for VM_BIND, 4 KiB PTE's
-> +	 * [PT27 = PDE 0] [PT28 = PDE 1] [PT29 = PDE 2] [PT30 & PT31 = 2M vram identity map]
->  	 *
->  	 * This makes the lowest part of the VM point to the pagetables.
->  	 * Hence the lowest 2M in the vm should point to itself, with a few writes
-> @@ -487,20 +514,26 @@ static bool xe_migrate_allow_identity(u64 size, const struct xe_res_cursor *cur)
->  	return cur->size >= size;
->  }
->  
-> +#define PTE_UPDATE_FLAG_IS_VRAM		BIT(0)
-> +#define PTE_UPDATE_FLAG_IS_COMP_PTE	BIT(1)
-> +
 >  static u32 pte_update_size(struct xe_migrate *m,
-> -			   bool is_vram,
-> +			   u32 flags,
+> -			   u32 flags,
+> +			   u32 pte_flags,
+
+Looks unrelated.
+
 >  			   struct ttm_resource *res,
 >  			   struct xe_res_cursor *cur,
 >  			   u64 *L0, u64 *L0_ofs, u32 *L0_pt,
 >  			   u32 cmd_size, u32 pt_ofs, u32 avail_pts)
 >  {
 >  	u32 cmds = 0;
-> +	bool is_vram = PTE_UPDATE_FLAG_IS_VRAM & flags;
-> +	bool is_comp_pte = PTE_UPDATE_FLAG_IS_COMP_PTE & flags;
+> -	bool is_vram = PTE_UPDATE_FLAG_IS_VRAM & flags;
+> -	bool is_comp_pte = PTE_UPDATE_FLAG_IS_COMP_PTE & flags;
+> +	bool is_vram = PTE_UPDATE_FLAG_IS_VRAM & pte_flags;
+> +	bool is_comp_pte = PTE_UPDATE_FLAG_IS_COMP_PTE & pte_flags;
 >  
 >  	*L0_pt = pt_ofs;
 >  	if (is_vram && xe_migrate_allow_identity(*L0, cur)) {
->  		/* Offset into identity map. */
->  		*L0_ofs = xe_migrate_vram_ofs(tile_to_xe(m->tile),
-> -					      cur->start + vram_region_gpu_offset(res));
-> +					      cur->start + vram_region_gpu_offset(res),
-> +					      is_comp_pte);
->  		cmds += cmd_size;
->  	} else {
->  		/* Clip L0 to available size */
-> @@ -779,6 +812,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
->  		u32 update_idx;
->  		u64 ccs_ofs, ccs_size;
->  		u32 ccs_pt;
-> +		u32 pte_flags;
+> @@ -1032,14 +1032,19 @@ static void emit_clear(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
+>  				     is_vram);
+>  }
 >  
->  		bool usm = xe->info.has_usm;
->  		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
-> @@ -791,17 +825,19 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
->  
->  		src_L0 = min(src_L0, dst_L0);
->  
-> -		batch_size += pte_update_size(m, src_is_vram, src, &src_it, &src_L0,
-> +		pte_flags = src_is_vram ? PTE_UPDATE_FLAG_IS_VRAM : 0;
-> +		batch_size += pte_update_size(m, pte_flags, src, &src_it, &src_L0,
->  					      &src_L0_ofs, &src_L0_pt, 0, 0,
->  					      avail_pts);
->  
-> -		batch_size += pte_update_size(m, dst_is_vram, dst, &dst_it, &src_L0,
-> +		pte_flags = dst_is_vram ? PTE_UPDATE_FLAG_IS_VRAM : 0;
-> +		batch_size += pte_update_size(m, pte_flags, dst, &dst_it, &src_L0,
->  					      &dst_L0_ofs, &dst_L0_pt, 0,
->  					      avail_pts, avail_pts);
->  
->  		if (copy_system_ccs) {
->  			ccs_size = xe_device_ccs_bytes(xe, src_L0);
-> -			batch_size += pte_update_size(m, false, NULL, &ccs_it, &ccs_size,
-> +			batch_size += pte_update_size(m, 0, NULL, &ccs_it, &ccs_size,
->  						      &ccs_ofs, &ccs_pt, 0,
->  						      2 * avail_pts,
->  						      avail_pts);
-> @@ -1034,6 +1070,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
->  		struct xe_sched_job *job;
->  		struct xe_bb *bb;
->  		u32 batch_size, update_idx;
-> +		u32 pte_flags;
->  
->  		bool usm = xe->info.has_usm;
->  		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
-> @@ -1041,8 +1078,9 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
->  		clear_L0 = xe_migrate_res_sizes(m, &src_it);
->  
->  		/* Calculate final sizes and batch size.. */
-> +		pte_flags = clear_vram ? PTE_UPDATE_FLAG_IS_VRAM : 0;
->  		batch_size = 2 +
-> -			pte_update_size(m, clear_vram, src, &src_it,
-> +			pte_update_size(m, pte_flags, src, &src_it,
->  					&clear_L0, &clear_L0_ofs, &clear_L0_pt,
->  					clear_system_ccs ? 0 : emit_clear_cmd_len(gt), 0,
->  					avail_pts);
-> @@ -1159,7 +1197,7 @@ static void write_pgtable(struct xe_tile *tile, struct xe_bb *bb, u64 ppgtt_ofs,
->  	if (!ppgtt_ofs)
->  		ppgtt_ofs = xe_migrate_vram_ofs(tile_to_xe(tile),
->  						xe_bo_addr(update->pt_bo, 0,
-> -							   XE_PAGE_SIZE));
-> +							   XE_PAGE_SIZE), false);
->  
->  	do {
->  		u64 addr = ppgtt_ofs + ofs * 8;
-> @@ -1493,3 +1531,4 @@ void xe_migrate_wait(struct xe_migrate *m)
->  #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
->  #include "tests/xe_migrate.c"
->  #endif
+> +#define CLEAR_BO_DATA_FLAG	BIT(2)
+> +#define CLEAR_CCS_DATA_FLAG	BIT(3)
 > +
 
-Not related.
+BIT(0), BIT(1)
 
-Matt
+Also since this is a public function, define these in xe_migrate.h.
 
+Since public define, probably normalize too (see xe_bo.h XE_BO_FLAG_*).
+
+So...
+
+s/CLEAR_BO_DATA_FLAG/XE_MIGRATE_CLEAR_FLAG_BO_DATA
+s/CLEAR_BO_DATA_FLAG/XE_MIGRATE_CLEAR_FLAG_CCS_DATA
+
+>  /**
+>   * xe_migrate_clear() - Copy content of TTM resources.
+>   * @m: The migration context.
+>   * @bo: The buffer object @dst is currently bound to.
+>   * @dst: The dst TTM resource to be cleared.
+> + * @flags: flags to clear_bo_data and ccs metadata
+
+Mismatch variable names flags & clear_flags. CI hooks is complaining about this.
+
+>   *
+> - * Clear the contents of @dst to zero. On flat CCS devices,
+> - * the CCS metadata is cleared to zero as well on VRAM destinations.
+> + * Clear the contents of @dst to zero when clear_bo_data_flag is set.
+> + * On flat CCS devices, the CCS metadata is cleared to zero with clear_ccs_flag.
+> + * Set both, clear_bo_data_flag and clear_ccs_flag to clear bo as well as CCS metadata
+>   * TODO: Eliminate the @bo argument.
+>   *
+>   * Return: Pointer to a dma_fence representing the last clear batch, or
+> @@ -1048,18 +1053,23 @@ static void emit_clear(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
+>   */
+>  struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+>  				   struct xe_bo *bo,
+> -				   struct ttm_resource *dst)
+> +				   struct ttm_resource *dst,
+> +				   u32 clear_flags)
+>  {
+>  	bool clear_vram = mem_type_is_vram(dst->mem_type);
+> +	bool clear_bo_data = CLEAR_BO_DATA_FLAG & clear_flags;
+> +	bool clear_ccs = CLEAR_CCS_DATA_FLAG & clear_flags;
+>  	struct xe_gt *gt = m->tile->primary_gt;
+>  	struct xe_device *xe = gt_to_xe(gt);
+> -	bool clear_system_ccs = (xe_bo_needs_ccs_pages(bo) && !IS_DGFX(xe)) ? true : false;
+
+I'm not familar enough with this code to know if this change is correct...
+
+I'd check with Matt Auld or Thomas (but he is out for 3 more weeks),
+don't feel comfortable RBing this one as I'm unfamilar.
+
+>  	struct dma_fence *fence = NULL;
+>  	u64 size = bo->size;
+>  	struct xe_res_cursor src_it;
+>  	struct ttm_resource *src = dst;
+>  	int err;
+>  
+> +	if (WARN_ON(!clear_bo_data && !clear_ccs))
+> +		return NULL;
+> +
+>  	if (!clear_vram)
+>  		xe_res_first_sg(xe_bo_sg(bo), 0, bo->size, &src_it);
+>  	else
+> @@ -1085,7 +1095,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+>  		batch_size = 2 +
+>  			pte_update_size(m, pte_flags, src, &src_it,
+>  					&clear_L0, &clear_L0_ofs, &clear_L0_pt,
+> -					clear_system_ccs ? 0 : emit_clear_cmd_len(gt), 0,
+> +					clear_bo_data ? emit_clear_cmd_len(gt) : 0, 0,
+>  					avail_pts);
+>  
+>  		if (xe_migrate_needs_ccs_emit(xe))
+> @@ -1107,13 +1117,13 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+>  		if (clear_vram && xe_migrate_allow_identity(clear_L0, &src_it))
+>  			xe_res_next(&src_it, clear_L0);
+>  		else
+> -			emit_pte(m, bb, clear_L0_pt, clear_vram, clear_system_ccs,
+> +			emit_pte(m, bb, clear_L0_pt, clear_vram, clear_ccs,
+>  				 &src_it, clear_L0, dst);
+>  
+>  		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+>  		update_idx = bb->len;
+>  
+> -		if (!clear_system_ccs)
+> +		if (clear_bo_data)
+>  			emit_clear(gt, bb, clear_L0_ofs, clear_L0, XE_PAGE_SIZE, clear_vram);
+>  
+>  		if (xe_migrate_needs_ccs_emit(xe)) {
+> @@ -1172,7 +1182,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+>  		return ERR_PTR(err);
+>  	}
+>  
+> -	if (clear_system_ccs)
+> +	if (clear_ccs)
+>  		bo->ccs_cleared = true;
+>  
+>  	return fence;
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+> index 453e0ecf5034..0d19bfe02a23 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.h
+> +++ b/drivers/gpu/drm/xe/xe_migrate.h
+> @@ -104,7 +104,8 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+>  
+>  struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+>  				   struct xe_bo *bo,
+> -				   struct ttm_resource *dst);
+> +				   struct ttm_resource *dst,
+> +				   u32 clear_flags);
+>  
+>  struct xe_vm *xe_migrate_get_vm(struct xe_migrate *m);
+>  
 > -- 
 > 2.34.1
 > 
