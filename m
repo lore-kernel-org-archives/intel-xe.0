@@ -4,26 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABCCDC3DA4B
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 07:32:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4829DC3DA42
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 07:33:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FB4510E9A6;
-	Wed, 17 Jul 2024 07:32:43 +0000 (UTC)
-Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E4AA10E9A6
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Jul 2024 07:32:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9038410E9A8;
+	Wed, 17 Jul 2024 07:33:24 +0000 (UTC)
+Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B24A510E9CC
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Jul 2024 07:33:22 +0000 (UTC)
 Received: internal info suppressed
 Received: from illevi-vm-u22.habana-labs.com (localhost [127.0.0.1])
  by illevi-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
- id 46H7WN0o1135105; Wed, 17 Jul 2024 10:32:23 +0300
+ id 46H7WN0v1135105; Wed, 17 Jul 2024 10:33:09 +0300
 From: Ilia Levi <ilia.levi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: ilia.levi@intel.com, dliberman@habana.ai,
  niranjana.vishwanathapura@intel.com, michal.wajdeczko@intel.com
-Subject: [PATCH v3 00/11] Add MSIX functionality to XE
-Date: Wed, 17 Jul 2024 10:32:12 +0300
-Message-ID: <20240717073223.1135072-1-ilia.levi@intel.com>
+Subject: [PATCH v3 07/11] drm/xe: move the kernel lrc from hwe to execlist port
+Date: Wed, 17 Jul 2024 10:32:19 +0300
+Message-ID: <20240717073223.1135072-8-ilia.levi@intel.com>
 X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240717073223.1135072-1-ilia.levi@intel.com>
+References: <20240717073223.1135072-1-ilia.levi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -40,66 +42,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch set enables MSIX workflow. The main changes are:
+The kernel lrc is used solely by the execlist infra.
+We move it to the execlist port struct and initialize it only when
+execlists are used.
 
-1. The code supports both msi and msix, some refactoring had
-   to be done.
-2. Since multiple interrupts are now available there is no need for
-   interrupt aggregation in HW, hence there are new interrupt
-   handlers.
-3. MSIX interrupts are system resources so an interrupt allocator was
-   implemented.
-4. Adding MSIX infra to exec queues.
-5. MSIX in GT also uses memirq, some refactoring had to be done to
-   enable it.
+Signed-off-by: Ilia Levi <ilia.levi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_execlist.c        | 10 ++++++++--
+ drivers/gpu/drm/xe/xe_execlist_types.h  |  2 ++
+ drivers/gpu/drm/xe/xe_hw_engine.c       | 15 ++-------------
+ drivers/gpu/drm/xe/xe_hw_engine_types.h |  2 --
+ 4 files changed, 12 insertions(+), 17 deletions(-)
 
-v2: 
-  - Rebase
-  - Fix build and checkpatch errors
-  - Fix commit messages
-
-v3:
-  - Rebase
-  - Code review comments (Niranjana)
-  - Proper memirq usage to distinguish interrupt source and status
-  - Default MSI-X vector when unique MSI-X is not required
-
-Dani Liberman (4):
-  drm/xe/irq: refactor irq flows to support also msix
-  drm/xe/irq: add msix allocator
-  drm/xe/exec: adding msix infra to exec queue
-  drm/xe/irq: add default msix
-
-Ilia Levi (7):
-  drm/xe: add irq offset of engine instance 0 to hw engine properties
-  drm/xe: move memirq out of vf
-  drm/xe: memirq infra changes for msix
-  drm/xe/irq: add hw engine irq handler
-  drm/xe: move the kernel lrc from hwe to execlist port
-  drm/xe: msix support preparations - enable memirq
-  drm/xe: msix support for hw engines
-
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |   3 +
- drivers/gpu/drm/xe/regs/xe_lrc_layout.h  |   3 +
- drivers/gpu/drm/xe/xe_device.c           |   8 +-
- drivers/gpu/drm/xe/xe_device.h           |  12 +
- drivers/gpu/drm/xe/xe_device_types.h     |  22 +-
- drivers/gpu/drm/xe/xe_exec_queue.c       |  46 +++-
- drivers/gpu/drm/xe/xe_exec_queue_types.h |   2 +
- drivers/gpu/drm/xe/xe_execlist.c         |  18 +-
- drivers/gpu/drm/xe/xe_execlist_types.h   |   2 +
- drivers/gpu/drm/xe/xe_guc.c              |   2 +-
- drivers/gpu/drm/xe/xe_hw_engine.c        |  50 ++--
- drivers/gpu/drm/xe/xe_hw_engine_types.h  |   4 +-
- drivers/gpu/drm/xe/xe_irq.c              | 324 ++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_irq.h              |   7 +
- drivers/gpu/drm/xe/xe_lrc.c              |  32 ++-
- drivers/gpu/drm/xe/xe_lrc.h              |   2 +-
- drivers/gpu/drm/xe/xe_memirq.c           | 123 +++++----
- drivers/gpu/drm/xe/xe_memirq.h           |   8 +-
- drivers/gpu/drm/xe/xe_memirq_types.h     |   6 +-
- 19 files changed, 541 insertions(+), 133 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index 7502e3486eaf..447c290cb02b 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -123,8 +123,8 @@ static void __xe_execlist_port_idle(struct xe_execlist_port *port)
+ 	if (!port->running_exl)
+ 		return;
+ 
+-	xe_lrc_write_ring(port->hwe->kernel_lrc, noop, sizeof(noop));
+-	__start_lrc(port->hwe, port->hwe->kernel_lrc, 0);
++	xe_lrc_write_ring(port->lrc, noop, sizeof(noop));
++	__start_lrc(port->hwe, port->lrc, 0);
+ 	port->running_exl = NULL;
+ }
+ 
+@@ -262,6 +262,10 @@ struct xe_execlist_port *xe_execlist_port_create(struct xe_device *xe,
+ 
+ 	port->hwe = hwe;
+ 
++	port->lrc = xe_lrc_create(hwe, NULL, SZ_16K);
++	if (IS_ERR(port->lrc))
++		return ERR_PTR(PTR_ERR(port->lrc));
++
+ 	spin_lock_init(&port->lock);
+ 	for (i = 0; i < ARRAY_SIZE(port->active); i++)
+ 		INIT_LIST_HEAD(&port->active[i]);
+@@ -287,6 +291,8 @@ void xe_execlist_port_destroy(struct xe_execlist_port *port)
+ 	spin_lock_irq(&gt_to_xe(port->hwe->gt)->irq.lock);
+ 	port->hwe->irq_handler = NULL;
+ 	spin_unlock_irq(&gt_to_xe(port->hwe->gt)->irq.lock);
++
++	xe_lrc_put(port->lrc);
+ }
+ 
+ static struct dma_fence *
+diff --git a/drivers/gpu/drm/xe/xe_execlist_types.h b/drivers/gpu/drm/xe/xe_execlist_types.h
+index f94bbf4c53e4..415140936f11 100644
+--- a/drivers/gpu/drm/xe/xe_execlist_types.h
++++ b/drivers/gpu/drm/xe/xe_execlist_types.h
+@@ -27,6 +27,8 @@ struct xe_execlist_port {
+ 	struct xe_execlist_exec_queue *running_exl;
+ 
+ 	struct timer_list irq_fail;
++
++	struct xe_lrc *lrc;
+ };
+ 
+ struct xe_execlist_exec_queue {
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 4d1715ad25a1..c432e77b2e9e 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -296,7 +296,6 @@ static void hw_engine_fini(struct drm_device *drm, void *arg)
+ 
+ 	if (hwe->exl_port)
+ 		xe_execlist_port_destroy(hwe->exl_port);
+-	xe_lrc_put(hwe->kernel_lrc);
+ 
+ 	hwe->gt = NULL;
+ }
+@@ -556,21 +555,13 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 		goto err_name;
+ 	}
+ 
+-	hwe->kernel_lrc = xe_lrc_create(hwe, NULL, SZ_16K);
+-	if (IS_ERR(hwe->kernel_lrc)) {
+-		err = PTR_ERR(hwe->kernel_lrc);
+-		goto err_hwsp;
+-	}
+-
+ 	if (!xe_device_uc_enabled(xe)) {
+ 		hwe->exl_port = xe_execlist_port_create(xe, hwe);
+ 		if (IS_ERR(hwe->exl_port)) {
+ 			err = PTR_ERR(hwe->exl_port);
+-			goto err_kernel_lrc;
++			goto err_hwsp;
+ 		}
+-	}
+-
+-	if (xe_device_uc_enabled(xe)) {
++	} else {
+ 		/* GSCCS has a special interrupt for reset */
+ 		if (hwe->class == XE_ENGINE_CLASS_OTHER)
+ 			hwe->irq_handler = xe_gsc_hwe_irq_handler;
+@@ -585,8 +576,6 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 
+ 	return drmm_add_action_or_reset(&xe->drm, hw_engine_fini, hwe);
+ 
+-err_kernel_lrc:
+-	xe_lrc_put(hwe->kernel_lrc);
+ err_hwsp:
+ 	xe_bo_unpin_map_no_vm(hwe->hwsp);
+ err_name:
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+index f6cb425ebab0..437d41bc932b 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+@@ -138,8 +138,6 @@ struct xe_hw_engine {
+ 	enum xe_force_wake_domains domain;
+ 	/** @hwsp: hardware status page buffer object */
+ 	struct xe_bo *hwsp;
+-	/** @kernel_lrc: Kernel LRC (should be replaced /w an xe_engine) */
+-	struct xe_lrc *kernel_lrc;
+ 	/** @exl_port: execlists port */
+ 	struct xe_execlist_port *exl_port;
+ 	/** @fence_irq: fence IRQ to run when a hw engine IRQ is received */
 -- 
 2.43.2
 
