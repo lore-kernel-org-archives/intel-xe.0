@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A818C3DA60
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 19:58:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E489CC3DA60
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 19:59:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35D6410E3E1;
-	Wed, 17 Jul 2024 19:58:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D22210E3D9;
+	Wed, 17 Jul 2024 19:59:01 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B50D10E3D9;
- Wed, 17 Jul 2024 19:58:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4E8410E3D9;
+ Wed, 17 Jul 2024 19:59:00 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Convert_live_tests_t?=
- =?utf-8?q?o_parameterized_style_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Convert_live_tests_to_par?=
+ =?utf-8?q?ameterized_style_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 17 Jul 2024 19:58:30 -0000
-Message-ID: <172124631010.271041.566676051759872215@2413ebb6fbb6>
+Date: Wed, 17 Jul 2024 19:59:00 -0000
+Message-ID: <172124634080.270701.11895302702031321726@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240717195155.442-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20240717195155.442-1-michal.wajdeczko@intel.com>
@@ -48,15 +48,39 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: bd2a84d80198 drm-tip: 2024y-07m-17d-17h-00m-05s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Introduce const cast helper
-Applying: drm/xe/tests: Add helpers for use in live tests
-Applying: drm/xe/tests: Convert xe_bo live tests
-Applying: drm/xe/tests: Convert xe_dma_buf live tests
-Applying: drm/xe/tests: Convert xe_migrate live tests
-Applying: drm/xe/tests: Convert xe_mocs live tests
-Applying: drm/xe/tests: Skip xe_mocs live tests on VF device
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 59a7e03c79cad273448e8ea91e034b184b6a1cc3
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Wed Jul 17 21:51:55 2024 +0200
+
+    drm/xe/tests: Skip xe_mocs live tests on VF device
+    
+    There is no point to run those tests on VFs devices as they can't
+    access any of the MOCS registers. Skip testing on the VF device.
+    
+      [ ] =================== xe_mocs (1 subtest) ====================
+      [ ] ================ xe_live_mocs_kernel_kunit  ================
+      [ ] [PASSED] 0000:4d:00.0
+      [ ] [SKIPPED] 0000:4d:00.1
+      [ ] ============ [PASSED] xe_live_mocs_kernel_kunit ============
+      [ ] ===================== [PASSED] xe_mocs =====================
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch bd2a84d801982bd4a899a29916b458a8f82cb01f drm-intel
+dc58c9fccad4 drm/xe: Introduce const cast helper
+48fb0625ac2e drm/xe/tests: Add helpers for use in live tests
+f1ae7cc066e2 drm/xe/tests: Convert xe_bo live tests
+be6885d1dd1d drm/xe/tests: Convert xe_dma_buf live tests
+5387f04a943f drm/xe/tests: Convert xe_migrate live tests
+55d245927e46 drm/xe/tests: Convert xe_mocs live tests
+59a7e03c79ca drm/xe/tests: Skip xe_mocs live tests on VF device
 
 
