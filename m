@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75F6CC3DA4B
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 13:08:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE445C3DA4B
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Jul 2024 13:08:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E77E10EAF2;
-	Wed, 17 Jul 2024 13:08:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B519210EAF3;
+	Wed, 17 Jul 2024 13:08:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dpziwsHF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CxXEXwvo";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77E1C10EAEF
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Jul 2024 13:08:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 708E210EAF6
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Jul 2024 13:08:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721221727; x=1752757727;
+ t=1721221733; x=1752757733;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xzWF0k7MIKurYPcZRoK1zRoDBvqqLFb5Dj/ZBvIV9mQ=;
- b=dpziwsHFB/ZwJ8MLJLQAlBGQAZ70dXv4/vz8QtCtmQug/fOzlOdWEUAB
- 5A2ONWK7HCUg6q2jB3vtwTRYaUcICh+qf/8hpBlSdzecd2ymbBqJW2S4p
- vR091fthaGsjk4kHZkKdwaI3bXOHroBPtWnnONZeHMf9E2JBg0PamKC1Z
- BhRpy/777lNox37juGATfuO0nIllbKH8tkMYG6hl4blRig7JDVlVEBX0H
- gF7TX691aKeTw9J380rjfokxv/QHz2Fm9DkWA4Y3S1l5ICBFbzTUphRqN
- RCEZ0k86if34SCw3mcMu91IDRB8sNibmUa4Kb3AmY9MRR9nCYytnPBHce g==;
-X-CSE-ConnectionGUID: RGP47Tu3Qt2Ep2Hb4rV2gA==
-X-CSE-MsgGUID: zdAOtnJeSIea1Alh+8lmyQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11136"; a="18832065"
-X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="18832065"
+ bh=WV1xtwMYjuzU6SsSuWGCQ0M3buc9BCSyfDQzQWEKHZ8=;
+ b=CxXEXwvoUceVROh/A5jnZ7Kr4koWLqCRVeX1qN+YG8GlrTNeiVkIJau2
+ 1HR/PTYjeLeRu9Lbv9hGgTuoA6KVz76fGrBaIBvZ33RZji5nNULGafUVn
+ YylvUbIJVIragle5fqRmKWA1hCybDAiPHnfHdgwZ91lZVv1rCKNv1Czsr
+ FMnyGZ2qoAR2nO57dtB+IV4QtQ2mc5JXskZ4L3DGAC8QoU5fAjIgqRpan
+ RpejmBkqJsIw2ND5yw8OrsqQo+P1RLXgYXFlJojif3MjpfNT6om1e+fMh
+ esIblLNLlk+8wwenzbSDWuErI6GMrhjR+85SRigBSxEaLaTLrqsBYhV2/ g==;
+X-CSE-ConnectionGUID: lynSJ9AYSFmGL3DkzEb3Fw==
+X-CSE-MsgGUID: POBsGh3xRrCBPFGrk6+0dA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11136"; a="18832084"
+X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="18832084"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2024 06:08:47 -0700
-X-CSE-ConnectionGUID: hSOJsvgISEeyVdCEKyuS2w==
-X-CSE-MsgGUID: rYdxSXQYTRW+vNeKOGvxCg==
+ 17 Jul 2024 06:08:53 -0700
+X-CSE-ConnectionGUID: 2zavu93RRguaTuZ10TwNsg==
+X-CSE-MsgGUID: Eb5GpueNSASTeM5I2vPY5w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="55532019"
+X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="55532065"
 Received: from rajritu-mobl2.ger.corp.intel.com (HELO fdugast-desk.intel.com)
  ([10.251.217.45])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2024 06:08:45 -0700
+ 17 Jul 2024 06:08:51 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  Francois Dugast <francois.dugast@intel.com>
-Subject: [RFC v1 4/9] drm/xe/hw_engine_group: Add helper to suspend LR jobs
-Date: Wed, 17 Jul 2024 15:07:25 +0200
-Message-ID: <20240717130821.1073379-5-francois.dugast@intel.com>
+Subject: [RFC v1 8/9] drm/xe/hw_engine_group: Resume LR exec queues suspended
+ by dma fence jobs
+Date: Wed, 17 Jul 2024 15:07:29 +0200
+Message-ID: <20240717130821.1073379-9-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240717130821.1073379-1-francois.dugast@intel.com>
 References: <20240717130821.1073379-1-francois.dugast@intel.com>
@@ -68,8 +69,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a required feature for dma fence jobs to preempt long running
-jobs in order to ensure mutual exclusion on a given hw engine group.
+Submission of a dma fence job leads to suspending the long running exec
+queues of the hw engine group. Work is queued in the resume worker for
+this group and execution is resumed on the attached exec queues in long
+running mode.
+
+This is another entry point for execution on the hw engine group so the
+execution mode is updated.
 
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
@@ -77,41 +83,67 @@ Signed-off-by: Francois Dugast <francois.dugast@intel.com>
  1 file changed, 28 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 4dcc885a55c8..850f7b15b154 100644
+index e6c755a04fd8..dd8ef65cbf2d 100644
 --- a/drivers/gpu/drm/xe/xe_hw_engine.c
 +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -1223,3 +1223,31 @@ int xe_hw_engine_group_del_exec_queue(struct xe_hw_engine_group *group, struct x
- 
- 	return 0;
+@@ -431,6 +431,26 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
+ 	xe_rtp_process_to_sr(&ctx, engine_entries, &hwe->reg_sr);
  }
-+
-+/**
-+ * xe_hw_engine_group_suspend_lr_jobs() - Suspend the long running jobs of this hw engine group
-+ * @group: The hw engine group
-+ *
-+ * Return: 0 on success,
-+ *	   -EINVAL if one jobs could not be suspended
-+ */
-+static int xe_hw_engine_group_suspend_lr_jobs(struct xe_hw_engine_group *group)
+ 
++static void hw_engine_group_resume_work_func(struct work_struct *w)
 +{
-+	int err;
 +	struct xe_exec_queue *q;
++	struct xe_hw_engine_group *group = container_of(w, struct xe_hw_engine_group, resume_work);
++	int err;
 +
-+	lockdep_assert_held(&group->mode_sem);
++	err = xe_hw_engine_group_get_mode(group, EXEC_MODE_LR);
++	if (err)
++		return;
 +
 +	list_for_each_entry(q, &group->exec_queue_list, hw_engine_group_link) {
 +		if (!xe_vm_in_lr_mode(q->vm))
 +			continue;
 +
-+		err = q->ops->suspend(q);
-+		if (err)
-+			return err;
-+
-+		q->ops->suspend_wait(q);
++		q->ops->resume(q);
 +	}
 +
-+	return 0;
++	xe_hw_engine_group_put(group);
 +}
++
+ static struct xe_hw_engine_group *
+ hw_engine_group_alloc(struct xe_device *xe)
+ {
+@@ -438,6 +458,8 @@ hw_engine_group_alloc(struct xe_device *xe)
+ 
+ 	group = kzalloc(sizeof(*group), GFP_KERNEL);
+ 	init_rwsem(&group->mode_sem);
++	group->resume_wq = alloc_ordered_workqueue("xe-resume-lr-jobs-wq", 0);
++	INIT_WORK(&group->resume_work, hw_engine_group_resume_work_func);
+ 	INIT_LIST_HEAD(&group->exec_queue_list);
+ 
+ 	return group;
+@@ -1235,6 +1257,7 @@ static int xe_hw_engine_group_suspend_lr_jobs(struct xe_hw_engine_group *group)
+ {
+ 	int err;
+ 	struct xe_exec_queue *q;
++	bool suspended_queue = false;
+ 
+ 	lockdep_assert_held(&group->mode_sem);
+ 
+@@ -1247,8 +1270,13 @@ static int xe_hw_engine_group_suspend_lr_jobs(struct xe_hw_engine_group *group)
+ 			return err;
+ 
+ 		q->ops->suspend_wait(q);
++
++		suspended_queue = true;
+ 	}
+ 
++	if (suspended_queue)
++		queue_work(group->resume_wq, &group->resume_work);
++
+ 	return 0;
+ }
+ 
 -- 
 2.43.0
 
