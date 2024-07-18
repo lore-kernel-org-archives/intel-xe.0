@@ -4,26 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AB70C3DA61
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Jul 2024 09:35:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CBF0C3DA6A
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Jul 2024 09:54:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61CA310E68F;
-	Thu, 18 Jul 2024 09:35:50 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D856310E68F;
- Thu, 18 Jul 2024 09:35:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7908069496076538934=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90EB810E6F0;
+	Thu, 18 Jul 2024 09:54:45 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="djTNqt3x";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E14B10E6E7;
+ Thu, 18 Jul 2024 09:54:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1721296484; x=1752832484;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=LNvfFe6lpclQyzVtfWGQIEmYsoX37dvAyhtKRFDDsFM=;
+ b=djTNqt3x0NVN/TPsCHJHQUKmNhkIE2DW7FcWg333NVa9X9SX/OqGlMrz
+ uBFZK3HjNMdiulFJhnPKNClBeGUrSJ7Es3doFdFtFkef4ul5hYNmLvOLz
+ zUH8isZdJ2m3pnothz+TDORmgjT7NAzCAVCaUQ97qu0OZgGqPf0PqaDG+
+ Y+TeeibqrjJcmZXF+efKfediQGcK5XI/drXLGKgNJKHXgKCAsJ4G+auJF
+ OnFIIePgyQyF/Ffr8FuyxtNgrLJpGA8W6bjWbXdDBJyK+1k8+xWwfwaj7
+ LUCAqtQWFRfIW9YqYgmYFB2hEUpkwhb9vR7ae0pwakT8OaBJNvDk5Syu8 g==;
+X-CSE-ConnectionGUID: lPNMKw2cTc2W9CVBtZP4qw==
+X-CSE-MsgGUID: kFgfAdNHQsqJKFgi9ei6nw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11136"; a="18805821"
+X-IronPort-AV: E=Sophos;i="6.09,217,1716274800"; d="scan'208";a="18805821"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2024 02:54:43 -0700
+X-CSE-ConnectionGUID: 2zJkzbk3Qg25Fe946qM/UA==
+X-CSE-MsgGUID: 9WjGZjySSfipH90FxDXWBg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,217,1716274800"; d="scan'208";a="73943022"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.52])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2024 02:54:38 -0700
+Date: Thu, 18 Jul 2024 11:54:34 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Easwar Hariharan <eahariha@linux.microsoft.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>, 
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ "open list:INTEL GVT-g DRIVERS (Intel GPU Virtualization)"
+ <intel-gvt-dev@lists.freedesktop.org>, 
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+ Zhi Wang <zhiwang@kernel.org>
+Subject: Re: [PATCH v4 3/6] drm/i915: Make I2C terminology more inclusive
+Message-ID: <ZpjmWtmaiu294ca_@ashyti-mobl2.lan>
+References: <20240711052734.1273652-1-eahariha@linux.microsoft.com>
+ <20240711052734.1273652-4-eahariha@linux.microsoft.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_Build_PM_into_GuC_CT_layer?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 18 Jul 2024 09:35:48 -0000
-Message-ID: <172129534887.272449.11155664152741494517@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240718084519.1478010-1-matthew.brost@intel.com>
-In-Reply-To: <20240718084519.1478010-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240711052734.1273652-4-eahariha@linux.microsoft.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,248 +84,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7908069496076538934==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Easwar,
 
-== Series Details ==
+On Thu, Jul 11, 2024 at 05:27:31AM +0000, Easwar Hariharan wrote:
+> I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
+> with more appropriate terms. Inspired by Wolfram's series to fix drivers/i2c/,
+> fix the terminology for users of I2C_ALGOBIT bitbanging interface, now that
+> the approved verbiage exists in the specification.
+> 
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Acked-by: Zhi Wang <zhiwang@kernel.org>
+> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+> ---
+>  drivers/gpu/drm/i915/display/dvo_ch7017.c     | 14 ++++-----
+>  drivers/gpu/drm/i915/display/dvo_ch7xxx.c     | 18 +++++------
+>  drivers/gpu/drm/i915/display/dvo_ivch.c       | 16 +++++-----
+>  drivers/gpu/drm/i915/display/dvo_ns2501.c     | 18 +++++------
+>  drivers/gpu/drm/i915/display/dvo_sil164.c     | 18 +++++------
+>  drivers/gpu/drm/i915/display/dvo_tfp410.c     | 18 +++++------
+>  drivers/gpu/drm/i915/display/intel_bios.c     | 22 +++++++-------
+>  .../gpu/drm/i915/display/intel_display_core.h |  2 +-
+>  drivers/gpu/drm/i915/display/intel_dsi.h      |  2 +-
+>  drivers/gpu/drm/i915/display/intel_dsi_vbt.c  | 20 ++++++-------
+>  drivers/gpu/drm/i915/display/intel_dvo.c      | 14 ++++-----
+>  drivers/gpu/drm/i915/display/intel_dvo_dev.h  |  2 +-
+>  drivers/gpu/drm/i915/display/intel_gmbus.c    |  4 +--
+>  drivers/gpu/drm/i915/display/intel_sdvo.c     | 30 +++++++++----------
+>  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  4 +--
+>  drivers/gpu/drm/i915/gvt/edid.c               | 28 ++++++++---------
+>  drivers/gpu/drm/i915/gvt/edid.h               |  4 +--
+>  drivers/gpu/drm/i915/gvt/opregion.c           |  2 +-
+>  18 files changed, 118 insertions(+), 118 deletions(-)
 
-Series: Build PM into GuC CT layer
-URL   : https://patchwork.freedesktop.org/series/136226/
-State : failure
+it's a complex/long patch and I want to make sure there are no
+subtle errors. I will submit another round of tests and if it
+convinces me, I will take it in.
 
-== Summary ==
+The failures you see[*] are definitely not related to this patch,
+but better safe safe safe than sorry sorry sorry :-)
 
-CI Bug Log - changes from xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f_BAT -> xe-pw-136226v1_BAT
-====================================================
+Thanks,
+Andi
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-136226v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-136226v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (7 -> 7)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-136226v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_intel_bb@render:
-    - bat-atsm-2:         [PASS][3] -> [DMESG-WARN][4] +21 other tests dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f/bat-atsm-2/igt@xe_intel_bb@render.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/bat-atsm-2/igt@xe_intel_bb@render.html
-
-  
-#### Warnings ####
-
-  * igt@xe_evict@evict-beng-small-external:
-    - bat-pvc-2:          [FAIL][5] ([Intel XE#1000]) -> [DMESG-FAIL][6] +3 other tests dmesg-fail
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@xe_intel_bb@render@render-tile64-256}:
-    - bat-atsm-2:         [PASS][7] -> [DMESG-WARN][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f/bat-atsm-2/igt@xe_intel_bb@render@render-tile64-256.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/bat-atsm-2/igt@xe_intel_bb@render@render-tile64-256.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-136226v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_intel_bb@intel-bb-blit-y:
-    - bat-pvc-2:          [PASS][9] -> [DMESG-WARN][10] ([Intel XE#1705]) +17 other tests dmesg-warn
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f/bat-pvc-2/igt@xe_intel_bb@intel-bb-blit-y.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/bat-pvc-2/igt@xe_intel_bb@intel-bb-blit-y.html
-
-  * igt@xe_live_ktest@xe_migrate:
-    - bat-pvc-2:          [PASS][11] -> [SKIP][12] ([Intel XE#2109]) +2 other tests skip
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f/bat-pvc-2/igt@xe_live_ktest@xe_migrate.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/bat-pvc-2/igt@xe_live_ktest@xe_migrate.html
-    - bat-atsm-2:         [PASS][13] -> [SKIP][14] ([Intel XE#2109]) +2 other tests skip
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_exec_balancer@twice-virtual-userptr-rebind:
-    - {bat-bmg-1}:        [DMESG-WARN][15] ([Intel XE#877]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f/bat-bmg-1/igt@xe_exec_balancer@twice-virtual-userptr-rebind.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/bat-bmg-1/igt@xe_exec_balancer@twice-virtual-userptr-rebind.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1000]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1000
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#1705]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1705
-  [Intel XE#2109]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2109
-  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
-
-
-Build changes
--------------
-
-  * Linux: xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f -> xe-pw-136226v1
-
-  IGT_7929: 7929
-  xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f: c2610cb0857b1e68f684691f6d3e7fb110f7149f
-  xe-pw-136226v1: 136226v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/index.html
-
---===============7908069496076538934==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Build PM into GuC CT layer</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136226/">https://patchwork.freedesktop.org/series/136226/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f_BAT -&gt; xe-pw-136226v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-136226v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-136226v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-136226v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_intel_bb@render:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f/bat-atsm-2/igt@xe_intel_bb@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/bat-atsm-2/igt@xe_intel_bb@render.html">DMESG-WARN</a> +21 other tests dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_evict@evict-beng-small-external:<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1000">Intel XE#1000</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html">DMESG-FAIL</a> +3 other tests dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>{igt@xe_intel_bb@render@render-tile64-256}:<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f/bat-atsm-2/igt@xe_intel_bb@render@render-tile64-256.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/bat-atsm-2/igt@xe_intel_bb@render@render-tile64-256.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-136226v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_intel_bb@intel-bb-blit-y:</p>
-<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f/bat-pvc-2/igt@xe_intel_bb@intel-bb-blit-y.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/bat-pvc-2/igt@xe_intel_bb@intel-bb-blit-y.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1705">Intel XE#1705</a>) +17 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate:</p>
-<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f/bat-pvc-2/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/bat-pvc-2/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2109">Intel XE#2109</a>) +2 other tests skip</li>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2109">Intel XE#2109</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_exec_balancer@twice-virtual-userptr-rebind:<ul>
-<li>{bat-bmg-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f/bat-bmg-1/igt@xe_exec_balancer@twice-virtual-userptr-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v1/bat-bmg-1/igt@xe_exec_balancer@twice-virtual-userptr-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f -&gt; xe-pw-136226v1</li>
-</ul>
-<p>IGT_7929: 7929<br />
-  xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f: c2610cb0857b1e68f684691f6d3e7fb110f7149f<br />
-  xe-pw-136226v1: 136226v1</p>
-
-</body>
-</html>
-
---===============7908069496076538934==--
+[*] https://patchwork.freedesktop.org/series/131867/
