@@ -4,44 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E13F4C3DA60
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Jul 2024 05:49:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFFBFC3DA62
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Jul 2024 05:49:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D9E410E554;
-	Thu, 18 Jul 2024 05:49:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="axwz1eiu";
-	dkim-atps=neutral
-Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51EFF10E554
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Jul 2024 05:49:03 +0000 (UTC)
-Received: internal info suppressed
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1721281736; bh=c4CZ/MCALA2cY0OXpLDxeHKHwMEOqwOfZ6Tnrhx7Drs=;
- h=From:To:Cc:Subject:Date:From;
- b=axwz1eiuGB43lGmhOcv6pzcDw7qpH8UJZTh8QcFcQMUmWbMCCw0XZJugdBmMNu/s2
- J8CdbbxFLFQiKgp1nMiVNFs+InHG3etnJhi8mCZVf8H3NDCr9HtwACgK5NwA0Xh+/3
- 1zk+PRzehS0JBkW0UXsbOaO6eq2Wv0WWqgl8gUoWyhJNXKxrXt9hQdUee+XyiwAm3J
- Iz7kTXYcmVO5hIrPPcE0brKNTUaLr6BbKORJvFXe5Y69JH2g9isHhksOjcEZGQP+Oz
- SjPR2e190i1LmgtyLAjFVdtuT1vnWcquWrTkNx9NIEXkxKUjcorJWEQIiUT9hVlPcL
- mOatzKyoG00gg==
-Received: from osharabi-vm-u22.habana-labs.com (localhost [127.0.0.1])
- by osharabi-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
- ESMTPS id 46I5mokQ2955849
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
- Thu, 18 Jul 2024 08:48:50 +0300
-Received: (from osharabi@localhost)
- by osharabi-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 46I5mocO2955848; 
- Thu, 18 Jul 2024 08:48:50 +0300
-From: Ohad Sharabi <osharabi@habana.ai>
-To: intel-xe@lists.freedesktop.org
-Cc: osharabi@habana.ai, ashutosh.dixit@intel.com, obitton@habana.ai
-Subject: [PATCH] fixup! drm/xe/oa: Add OAR support
-Date: Thu, 18 Jul 2024 08:48:48 +0300
-Message-Id: <20240718054848.2955818-1-osharabi@habana.ai>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FA0B10E55A;
+	Thu, 18 Jul 2024 05:49:38 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B40E210E55A;
+ Thu, 18 Jul 2024 05:49:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_Keep_device_awake_during?=
+ =?utf-8?q?_GT_TLB_invalidations?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 18 Jul 2024 05:49:36 -0000
+Message-ID: <172128177673.271838.3821680658100826863@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240718052733.1434755-1-matthew.brost@intel.com>
+In-Reply-To: <20240718052733.1434755-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,29 +36,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The current implementation uses static CS codes instead of common.
+== Series Details ==
 
-Signed-off-by: Ohad Sharabi <osharabi@habana.ai>
----
- drivers/gpu/drm/xe/xe_oa.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: Keep device awake during GT TLB invalidations
+URL   : https://patchwork.freedesktop.org/series/136219/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 6d69f751bf78..3ef92eb8fbb1 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -641,7 +641,7 @@ static void xe_oa_store_flex(struct xe_oa_stream *stream, struct xe_lrc *lrc,
- 	u32 offset = xe_bo_ggtt_addr(lrc->bo);
- 
- 	do {
--		bb->cs[bb->len++] = MI_STORE_DATA_IMM | BIT(22) /* GGTT */ | 2;
-+		bb->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_GGTT | MI_SDI_NUM_DW(1);
- 		bb->cs[bb->len++] = offset + flex->offset * sizeof(u32);
- 		bb->cs[bb->len++] = 0;
- 		bb->cs[bb->len++] = flex->value;
--- 
-2.34.1
+== Summary ==
+
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast edeb340ae6172c699ea801a19d831d37cee9d2b3
+Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
+Fast mode used, each commit won't be checked separately.
+Okay!
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
