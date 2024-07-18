@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D874C3DA63
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CBCEC3DA49
 	for <intel-xe@archiver.kernel.org>; Thu, 18 Jul 2024 18:55:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3330610EACA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0169910EAC2;
 	Thu, 18 Jul 2024 18:55:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SsULbEvO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OGupAHWz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48BD410EAC2
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 281B110EAC1
  for <intel-xe@lists.freedesktop.org>; Thu, 18 Jul 2024 18:54:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1721328897; x=1752864897;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=0Enl82tbHilg9GbGBhxxzNgO/ioIYIHeINLVvDvIE7U=;
- b=SsULbEvO6sc3r1ylfIsdT//CNXy/00KH7NGlWHzlCpXjuRKgaFvMlRHQ
- 785OjzIv9u/+hzpx+qij7bUclAiQUCT9LTenQGA14AXZ6mHbkxd4jBmlP
- cBGkDhqOr+RlgQZoeCTerWFDLq3IidI0P+KWOr9pEwkiCnz3R5dhE2osj
- 6PPEr/qvXdEFqbIHm8OciQoqYcxJQ+zJI4r0iP0FEi2wRPRoPxY1Pfw4M
- Q84d0UVdy38Nsz3Bbk78peTJTG9tMMbtx6KJKq+nmKTnKyiDQ6uTbSGQr
- GFoN3MJP2KOhVrUK/7WT8RXbVbX9tUWrKxYfnG3CKkJaXJSYLyIBw47H7 A==;
-X-CSE-ConnectionGUID: OlGHWIAbSNah3ys85h68jg==
-X-CSE-MsgGUID: tsOqQdtuT2+yGkRvv0tyew==
-X-IronPort-AV: E=McAfee;i="6700,10204,11137"; a="21816223"
-X-IronPort-AV: E=Sophos;i="6.09,218,1716274800"; d="scan'208";a="21816223"
+ bh=v2bXDghRuea8GSiAgP/gvIGpJxek1qIvTh4h1KboAys=;
+ b=OGupAHWzc4vJgL4nD/yotYPXcFxwG1W75J8GXKRqLqvIK4JVoaBt/iaD
+ iiAVXivZOWBa3bicgg6htwbHubTii37VAKIQP1bvSlX+x5RipMRIfrmJ1
+ mkJjKGLPwuUFe0Aq1l8RhJWGqSPgyzipcSyUYFcpMIkOvpaVeD1ZuTJW/
+ CqiE+QSFrLzwH2EM55NGShpLrPEbV8JS4w2GpeD3EfcmNFY0nQyZiamt7
+ orq9g72XpfFB17Rl/8AQvEwI+qA/AabwoYyuucXa+JaDQL59wowP6v8Xu
+ Vx0c8D0J9OUSVJNlEsp7HygVWluuiZR0z3vNpNf9hJ+IOJlh1o6uCAYwE g==;
+X-CSE-ConnectionGUID: AFOw2/ihQ4qud/2ovCCbmg==
+X-CSE-MsgGUID: xZntY1AgRPqkLCtbC5bXXQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11137"; a="21816220"
+X-IronPort-AV: E=Sophos;i="6.09,218,1716274800"; d="scan'208";a="21816220"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Jul 2024 11:54:46 -0700
-X-CSE-ConnectionGUID: Sp/A5QCERbGpqkpZsOMnyw==
-X-CSE-MsgGUID: agkDV8keSASFrpJ9xoongA==
+X-CSE-ConnectionGUID: hHJj60jKRR+ghpHxT7jI7g==
+X-CSE-MsgGUID: DNzk1V42Qquyfmh/DoobKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,218,1716274800"; d="scan'208";a="51152680"
+X-IronPort-AV: E=Sophos;i="6.09,218,1716274800"; d="scan'208";a="51152677"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Jul 2024 11:54:46 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 4/4] drm/xe: Build PM into GuC CT layer
-Date: Thu, 18 Jul 2024 11:55:31 -0700
-Message-Id: <20240718185531.1500815-5-matthew.brost@intel.com>
+Subject: [PATCH v4 1/4] drm/xe: Add xe_gt_tlb_invalidation_fence_init helper
+Date: Thu, 18 Jul 2024 11:55:28 -0700
+Message-Id: <20240718185531.1500815-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240718185531.1500815-1-matthew.brost@intel.com>
 References: <20240718185531.1500815-1-matthew.brost@intel.com>
@@ -65,115 +65,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Take PM ref when any G2H are outstanding, drop when none are
-outstanding.
-
-To safely ensure we have PM ref when in the GuC CT layer, a PM ref needs
-to be held when scheduler messages are pending too.
+Other layers should not be touching struct xe_gt_tlb_invalidation_fence
+directly, add helper for initialization.
 
 v2:
- - Add outer PM protections to xe_file_close (CI)
-v3:
- - Only take PM ref 0->1 and drop on 1->0 (Matthew Auld)
-v4:
- - Add assert to G2H increment function
+ - Add dma_fence_get and list init to xe_gt_tlb_invalidation_fence_init
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c     |  4 ++++
- drivers/gpu/drm/xe/xe_guc_ct.c     | 10 +++++++++-
- drivers/gpu/drm/xe/xe_guc_submit.c |  4 ++++
- 3 files changed, 17 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 36 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |  3 ++
+ drivers/gpu/drm/xe/xe_pt.c                  | 26 +--------------
+ 3 files changed, 40 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 06cebaffb451..b68ab474e1a0 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -101,6 +101,8 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
- 	struct xe_exec_queue *q;
- 	unsigned long idx;
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index d9359976ab8b..92a18a0e4acd 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -508,3 +508,39 @@ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
  
-+	xe_pm_runtime_get(xe);
-+
- 	/*
- 	 * No need for exec_queue.lock here as there is no contention for it
- 	 * when FD is closing as IOCTLs presumably can't be modifying the
-@@ -126,6 +128,8 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
- 
- 	xe_drm_client_put(xef->client);
- 	kfree(xef);
-+
-+	xe_pm_runtime_put(xe);
+ 	return 0;
  }
++
++static const char *
++invalidation_fence_get_driver_name(struct dma_fence *dma_fence)
++{
++	return "xe";
++}
++
++static const char *
++invalidation_fence_get_timeline_name(struct dma_fence *dma_fence)
++{
++	return "invalidation_fence";
++}
++
++static const struct dma_fence_ops invalidation_fence_ops = {
++	.get_driver_name = invalidation_fence_get_driver_name,
++	.get_timeline_name = invalidation_fence_get_timeline_name,
++};
++
++/**
++ * xe_gt_tlb_invalidation_fence_init - Initialize TLB invalidation fence
++ * @gt: GT
++ * @fence: TLB invalidation fence to initialize
++ *
++ * Initialize TLB invalidation fence for use
++ */
++void xe_gt_tlb_invalidation_fence_init(struct xe_gt *gt,
++				       struct xe_gt_tlb_invalidation_fence *fence)
++{
++	spin_lock_irq(&gt->tlb_invalidation.lock);
++	dma_fence_init(&fence->base, &invalidation_fence_ops,
++		       &gt->tlb_invalidation.lock,
++		       dma_fence_context_alloc(1), 1);
++	spin_unlock_irq(&gt->tlb_invalidation.lock);
++	INIT_LIST_HEAD(&fence->link);
++	dma_fence_get(&fence->base);
++}
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+index bf3bebd9f985..948f4a2f5214 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+@@ -26,4 +26,7 @@ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+ int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno);
+ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
  
- static const struct drm_ioctl_desc xe_ioctls[] = {
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 7d2e937da1d8..64afc90ad2c5 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -327,6 +327,8 @@ static void xe_guc_ct_set_state(struct xe_guc_ct *ct,
- 	xe_gt_assert(ct_to_gt(ct), ct->g2h_outstanding == 0 ||
- 		     state == XE_GUC_CT_STATE_STOPPED);
++void xe_gt_tlb_invalidation_fence_init(struct xe_gt *gt,
++				       struct xe_gt_tlb_invalidation_fence *fence);
++
+ #endif	/* _XE_GT_TLB_INVALIDATION_ */
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index f391de908033..1caa99b22c73 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1317,23 +1317,6 @@ struct invalidation_fence {
+ 	u32 asid;
+ };
  
-+	if (ct->g2h_outstanding)
-+		xe_pm_runtime_put(ct_to_xe(ct));
- 	ct->g2h_outstanding = 0;
- 	ct->state = state;
- 
-@@ -495,10 +497,15 @@ static void h2g_reserve_space(struct xe_guc_ct *ct, u32 cmd_len)
- static void __g2h_reserve_space(struct xe_guc_ct *ct, u32 g2h_len, u32 num_g2h)
+-static const char *
+-invalidation_fence_get_driver_name(struct dma_fence *dma_fence)
+-{
+-	return "xe";
+-}
+-
+-static const char *
+-invalidation_fence_get_timeline_name(struct dma_fence *dma_fence)
+-{
+-	return "invalidation_fence";
+-}
+-
+-static const struct dma_fence_ops invalidation_fence_ops = {
+-	.get_driver_name = invalidation_fence_get_driver_name,
+-	.get_timeline_name = invalidation_fence_get_timeline_name,
+-};
+-
+ static void invalidation_fence_cb(struct dma_fence *fence,
+ 				  struct dma_fence_cb *cb)
  {
- 	xe_gt_assert(ct_to_gt(ct), g2h_len <= ct->ctbs.g2h.info.space);
-+	xe_gt_assert(ct_to_gt(ct), (!g2h_len && !num_g2h) ||
-+		     (g2h_len && num_g2h));
+@@ -1372,15 +1355,8 @@ static void invalidation_fence_init(struct xe_gt *gt,
  
- 	if (g2h_len) {
- 		lockdep_assert_held(&ct->fast_lock);
+ 	trace_xe_gt_tlb_invalidation_fence_create(gt_to_xe(gt), &ifence->base);
  
-+		if (!ct->g2h_outstanding)
-+			xe_pm_runtime_get_noresume(ct_to_xe(ct));
-+
- 		ct->ctbs.g2h.info.space -= g2h_len;
- 		ct->g2h_outstanding += num_g2h;
- 	}
-@@ -511,7 +518,8 @@ static void __g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
- 		     ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space);
+-	spin_lock_irq(&gt->tlb_invalidation.lock);
+-	dma_fence_init(&ifence->base.base, &invalidation_fence_ops,
+-		       &gt->tlb_invalidation.lock,
+-		       dma_fence_context_alloc(1), 1);
+-	spin_unlock_irq(&gt->tlb_invalidation.lock);
+-
+-	INIT_LIST_HEAD(&ifence->base.link);
++	xe_gt_tlb_invalidation_fence_init(gt, &ifence->base);
  
- 	ct->ctbs.g2h.info.space += g2h_len;
--	--ct->g2h_outstanding;
-+	if (!--ct->g2h_outstanding)
-+		xe_pm_runtime_put(ct_to_xe(ct));
- }
- 
- static void g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 860405527115..993d0344dc88 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1402,6 +1402,8 @@ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
- 	default:
- 		XE_WARN_ON("Unknown message type");
- 	}
-+
-+	xe_pm_runtime_put(guc_to_xe(exec_queue_to_guc(msg->private_data)));
- }
- 
- static const struct drm_sched_backend_ops drm_sched_ops = {
-@@ -1492,6 +1494,8 @@ static void guc_exec_queue_kill(struct xe_exec_queue *q)
- static void guc_exec_queue_add_msg(struct xe_exec_queue *q, struct xe_sched_msg *msg,
- 				   u32 opcode)
- {
-+	xe_pm_runtime_get_noresume(guc_to_xe(exec_queue_to_guc(q)));
-+
- 	INIT_LIST_HEAD(&msg->link);
- 	msg->opcode = opcode;
- 	msg->private_data = q;
+-	dma_fence_get(&ifence->base.base);	/* Ref for caller */
+ 	ifence->fence = fence;
+ 	ifence->gt = gt;
+ 	ifence->start = start;
 -- 
 2.34.1
 
