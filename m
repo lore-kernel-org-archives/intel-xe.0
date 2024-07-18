@@ -4,75 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CBF0C3DA6A
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Jul 2024 09:54:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DB38C3DA61
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Jul 2024 10:05:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90EB810E6F0;
-	Thu, 18 Jul 2024 09:54:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="djTNqt3x";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E14B10E6E7;
- Thu, 18 Jul 2024 09:54:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721296484; x=1752832484;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=LNvfFe6lpclQyzVtfWGQIEmYsoX37dvAyhtKRFDDsFM=;
- b=djTNqt3x0NVN/TPsCHJHQUKmNhkIE2DW7FcWg333NVa9X9SX/OqGlMrz
- uBFZK3HjNMdiulFJhnPKNClBeGUrSJ7Es3doFdFtFkef4ul5hYNmLvOLz
- zUH8isZdJ2m3pnothz+TDORmgjT7NAzCAVCaUQ97qu0OZgGqPf0PqaDG+
- Y+TeeibqrjJcmZXF+efKfediQGcK5XI/drXLGKgNJKHXgKCAsJ4G+auJF
- OnFIIePgyQyF/Ffr8FuyxtNgrLJpGA8W6bjWbXdDBJyK+1k8+xWwfwaj7
- LUCAqtQWFRfIW9YqYgmYFB2hEUpkwhb9vR7ae0pwakT8OaBJNvDk5Syu8 g==;
-X-CSE-ConnectionGUID: lPNMKw2cTc2W9CVBtZP4qw==
-X-CSE-MsgGUID: kFgfAdNHQsqJKFgi9ei6nw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11136"; a="18805821"
-X-IronPort-AV: E=Sophos;i="6.09,217,1716274800"; d="scan'208";a="18805821"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2024 02:54:43 -0700
-X-CSE-ConnectionGUID: 2zJkzbk3Qg25Fe946qM/UA==
-X-CSE-MsgGUID: 9WjGZjySSfipH90FxDXWBg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,217,1716274800"; d="scan'208";a="73943022"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.52])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2024 02:54:38 -0700
-Date: Thu, 18 Jul 2024 11:54:34 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Easwar Hariharan <eahariha@linux.microsoft.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-gfx@lists.freedesktop.org>, 
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-xe@lists.freedesktop.org>, 
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>,
- "open list:INTEL GVT-g DRIVERS (Intel GPU Virtualization)"
- <intel-gvt-dev@lists.freedesktop.org>, 
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
- "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
- Zhi Wang <zhiwang@kernel.org>
-Subject: Re: [PATCH v4 3/6] drm/i915: Make I2C terminology more inclusive
-Message-ID: <ZpjmWtmaiu294ca_@ashyti-mobl2.lan>
-References: <20240711052734.1273652-1-eahariha@linux.microsoft.com>
- <20240711052734.1273652-4-eahariha@linux.microsoft.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 309F810E710;
+	Thu, 18 Jul 2024 10:05:20 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3707710E710;
+ Thu, 18 Jul 2024 10:05:19 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240711052734.1273652-4-eahariha@linux.microsoft.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_tests/gem=5Fctx=5Fex?=
+ =?utf-8?q?ec=3A_Fix_failing_preempt_timeout_updates_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 18 Jul 2024 10:05:19 -0000
+Message-ID: <172129711921.272469.14524175566095438030@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240718085912.15434-7-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20240718085912.15434-7-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,50 +36,27 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Easwar,
+== Series Details ==
 
-On Thu, Jul 11, 2024 at 05:27:31AM +0000, Easwar Hariharan wrote:
-> I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
-> with more appropriate terms. Inspired by Wolfram's series to fix drivers/i2c/,
-> fix the terminology for users of I2C_ALGOBIT bitbanging interface, now that
-> the approved verbiage exists in the specification.
-> 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Acked-by: Zhi Wang <zhiwang@kernel.org>
-> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
-> ---
->  drivers/gpu/drm/i915/display/dvo_ch7017.c     | 14 ++++-----
->  drivers/gpu/drm/i915/display/dvo_ch7xxx.c     | 18 +++++------
->  drivers/gpu/drm/i915/display/dvo_ivch.c       | 16 +++++-----
->  drivers/gpu/drm/i915/display/dvo_ns2501.c     | 18 +++++------
->  drivers/gpu/drm/i915/display/dvo_sil164.c     | 18 +++++------
->  drivers/gpu/drm/i915/display/dvo_tfp410.c     | 18 +++++------
->  drivers/gpu/drm/i915/display/intel_bios.c     | 22 +++++++-------
->  .../gpu/drm/i915/display/intel_display_core.h |  2 +-
->  drivers/gpu/drm/i915/display/intel_dsi.h      |  2 +-
->  drivers/gpu/drm/i915/display/intel_dsi_vbt.c  | 20 ++++++-------
->  drivers/gpu/drm/i915/display/intel_dvo.c      | 14 ++++-----
->  drivers/gpu/drm/i915/display/intel_dvo_dev.h  |  2 +-
->  drivers/gpu/drm/i915/display/intel_gmbus.c    |  4 +--
->  drivers/gpu/drm/i915/display/intel_sdvo.c     | 30 +++++++++----------
->  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  4 +--
->  drivers/gpu/drm/i915/gvt/edid.c               | 28 ++++++++---------
->  drivers/gpu/drm/i915/gvt/edid.h               |  4 +--
->  drivers/gpu/drm/i915/gvt/opregion.c           |  2 +-
->  18 files changed, 118 insertions(+), 118 deletions(-)
+Series: tests/gem_ctx_exec: Fix failing preempt timeout updates (rev4)
+URL   : https://patchwork.freedesktop.org/series/136108/
+State : failure
 
-it's a complex/long patch and I want to make sure there are no
-subtle errors. I will submit another round of tests and if it
-convinces me, I will take it in.
+== Summary ==
 
-The failures you see[*] are definitely not related to this patch,
-but better safe safe safe than sorry sorry sorry :-)
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 66d3fbb02488 drm-tip: 2024y-07m-18d-08h-48m-08s UTC integration manifest
+=== git am output follows ===
+error: tests/intel/gem_ctx_exec.c: does not exist in index
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: tests/gem_ctx_exec: Fail on unsuccessful preempt timeout update
+Patch failed at 0001 tests/gem_ctx_exec: Fail on unsuccessful preempt timeout update
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
-Thanks,
-Andi
 
-[*] https://patchwork.freedesktop.org/series/131867/
