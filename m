@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E696CC3DA49
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Jul 2024 07:09:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6955C3DA60
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Jul 2024 07:10:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99E2410E584;
-	Thu, 18 Jul 2024 07:09:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE9E610E584;
+	Thu, 18 Jul 2024 07:10:01 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91D9710E584;
- Thu, 18 Jul 2024 07:09:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF12510E584;
+ Thu, 18 Jul 2024 07:09:59 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Keep_device_awake_du?=
- =?utf-8?q?ring_GT_TLB_invalidations_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Keep_device_awake_during_?=
+ =?utf-8?q?GT_TLB_invalidations_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 18 Jul 2024 07:09:31 -0000
-Message-ID: <172128657158.272061.5134319420951471627@2413ebb6fbb6>
+Date: Thu, 18 Jul 2024 07:09:59 -0000
+Message-ID: <172128659997.272061.13324136413077244429@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240718065935.1451330-1-matthew.brost@intel.com>
 In-Reply-To: <20240718065935.1451330-1-matthew.brost@intel.com>
@@ -48,11 +48,33 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: c2610cb0857b drm-tip: 2024y-07m-18d-05h-49m-52s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Add xe_gt_tlb_invalidation_fence_init helper
-Applying: drm/xe: Drop xe_gt_tlb_invalidation_wait
-Applying: drm/xe: Hold a PM ref when GT TLB invalidations are inflight
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+51ce9f6cd981d42d7467409d7dbc559a450abc1e
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b640351c51ce2f9674db61c25b82dfdf65513a51
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Wed Jul 17 23:59:35 2024 -0700
+
+    drm/xe: Hold a PM ref when GT TLB invalidations are inflight
+    
+    Avoid GT TLB invalidation timeouts by holding a PM ref when
+    invalidations are inflight.
+    
+    v2:
+     - Drop PM ref before signaling fence (CI)
+    
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Nirmoy Das <nirmoy.das@intel.com>
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch c2610cb0857b1e68f684691f6d3e7fb110f7149f drm-intel
+7dfc39006c0b drm/xe: Add xe_gt_tlb_invalidation_fence_init helper
+af9147346fc8 drm/xe: Drop xe_gt_tlb_invalidation_wait
+b640351c51ce drm/xe: Hold a PM ref when GT TLB invalidations are inflight
 
 
