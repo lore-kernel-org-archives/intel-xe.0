@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15521C3DA61
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Jul 2024 20:32:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1A8DC3DA49
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Jul 2024 20:37:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7B1F10EB0B;
-	Thu, 18 Jul 2024 20:32:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PFSZA+vf";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6EA8110EB0B
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Jul 2024 20:32:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721334729; x=1752870729;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=F4Lw2WKTYc2T1IaNGcAtLwVLRQ5hZOJnFVmY2OZrZTE=;
- b=PFSZA+vf0zJFCfyd/UErVv2krE2C+TLV6hOylhzVSORLDvdwLvRvEdgO
- MTNoMUtwiHinyma6Tbx/TFeC2SkbZJyoKDX/dehqQFIO5LZJ1tq+US9X3
- +OU8SgxQA9Z8ZLqKAHWuEy+RGiJNlAp/inLJWqUtBhQ2aPtWroR+A/S6o
- GLeaClWyRKXorDWYG1y0cIY2zcwgkVVZ4nR6tQ6S0UwlD5Ovw/iVeS+8C
- FljNUoakQVg+UERTRxh87I2G0UOE1ckJCAy+d9Ai5SgQbR1VXIuYAcqMl
- zkyZ6qyZrU5R9sqXYJIK/1IqQ23xKFRUEZT0fe0Ic7zFP/hEMQqmyBlgI g==;
-X-CSE-ConnectionGUID: nXTrKpqZQpuVMQLdhcQy6Q==
-X-CSE-MsgGUID: KWYaD7LcQ2qR+KHHHOEerQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11137"; a="44347746"
-X-IronPort-AV: E=Sophos;i="6.09,218,1716274800"; d="scan'208";a="44347746"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2024 13:32:09 -0700
-X-CSE-ConnectionGUID: hfKOvsa6QY+f3SdtbPhC7A==
-X-CSE-MsgGUID: pq6rP7KaSke2gF5gpAdU1g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,218,1716274800"; d="scan'208";a="50760731"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.19.248])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2024 13:32:07 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH] drm/xe/vf: Fix register value lookup
-Date: Thu, 18 Jul 2024 22:31:55 +0200
-Message-Id: <20240718203155.486-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F4E610EB0C;
+	Thu, 18 Jul 2024 20:37:48 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96E8010EB0C;
+ Thu, 18 Jul 2024 20:37:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_Have_xe=5Fvm_and_xe?=
+ =?utf-8?q?=5Fexec=5Fqueue_take_references_to_xef_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 18 Jul 2024 20:37:47 -0000
+Message-ID: <172133506760.287473.4411593904766474716@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240718203152.3566929-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20240718203152.3566929-1-umesh.nerlige.ramappa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,35 +36,30 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We should use the number of actual entries stored in the runtime
-register buffer, not the maximum number of entries that this buffer
-can hold, otherwise bsearch() may fail and we may miss the data and
-wrongly report unexpected access to some registers.
+== Series Details ==
 
-Fixes: 4edadc41a3a4 ("drm/xe/vf: Use register values obtained from the PF")
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: Have xe_vm and xe_exec_queue take references to xef (rev3)
+URL   : https://patchwork.freedesktop.org/series/135865/
+State : failure
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 6a87d31c44e6..47222bd9988d 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -850,7 +850,7 @@ static struct vf_runtime_reg *vf_lookup_reg(struct xe_gt *gt, u32 addr)
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 
--	return bsearch(&key, runtime->regs, runtime->regs_size, sizeof(key),
-+	return bsearch(&key, runtime->regs, runtime->num_regs, sizeof(key),
- 		       vf_runtime_reg_cmp);
- }
- 
--- 
-2.43.0
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 776d87c393f0 drm-tip: 2024y-07m-18d-20h-08m-58s UTC integration manifest
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/xe_vm.c:1670
+error: drivers/gpu/drm/xe/xe_vm.c: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: drm/xe: Move part of xe_file cleanup to a helper
+Applying: drm/xe: Add ref counting for xe_file
+Applying: drm/xe: Take a ref to xe file when user creates a VM
+Patch failed at 0003 drm/xe: Take a ref to xe file when user creates a VM
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 
