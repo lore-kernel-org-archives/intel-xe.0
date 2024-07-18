@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25930C3DA60
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Jul 2024 06:59:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E250C3DA60
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Jul 2024 07:04:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7CA610E57E;
-	Thu, 18 Jul 2024 06:59:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cfHZ4e+L";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1EC110E57A
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Jul 2024 06:58:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721285934; x=1752821934;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=v2bXDghRuea8GSiAgP/gvIGpJxek1qIvTh4h1KboAys=;
- b=cfHZ4e+L2LSaBbOmxJJXPHufD7QK1SmplnB2Mb5JtBnmphDfCY4IgReg
- CMSbMbclT9SmR5BIGgt2S/9ZgjzWDuVASFEhhm0Yr8MPUbyYRGqORmHjk
- /tKRraGlIJgVlEPIUy038wwRnNocPHKlST/NcKQu2S79tTn7w4Z5ldGIp
- T3xtggYBQTBjz//X66O5IWa7Qk8xGIRbJAG7v0QgkmFus4uGfbPRIvnuf
- Dree2AAZbXVTZje/dikcp9UVCQBTWLc+/OH1XgwbQZU6DU80VPFpqLMdT
- 9mDOUU9xjKhKl37eWCaiis23Jqf21fAjJRlp+8r/PT6ISQ8MTh0JI3UPx w==;
-X-CSE-ConnectionGUID: IyTMz2U7QaCbL780itk5mA==
-X-CSE-MsgGUID: QZCoGt/wTWyKl2i7YIH/1g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11136"; a="18639348"
-X-IronPort-AV: E=Sophos;i="6.09,217,1716274800"; d="scan'208";a="18639348"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2024 23:58:50 -0700
-X-CSE-ConnectionGUID: n4Ueyoj9SCaVbDsmDryJhw==
-X-CSE-MsgGUID: ekdIFSdITQ2MEkn677k4PQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,217,1716274800"; d="scan'208";a="51279282"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2024 23:58:50 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: nirmoy.das@intel.com,
-	rodrigo.vivi@intel.com
-Subject: [PATCH v3 1/3] drm/xe: Add xe_gt_tlb_invalidation_fence_init helper
-Date: Wed, 17 Jul 2024 23:59:33 -0700
-Message-Id: <20240718065935.1451330-2-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240718065935.1451330-1-matthew.brost@intel.com>
-References: <20240718065935.1451330-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B20C410E57C;
+	Thu, 18 Jul 2024 07:04:27 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82F0A10E57C;
+ Thu, 18 Jul 2024 07:04:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0472126674735861758=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_fixup!_drm/xe/oa=3A_Add_OAR_supp?=
+ =?utf-8?q?ort?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ohad Sharabi" <osharabi@habana.ai>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 18 Jul 2024 07:04:24 -0000
+Message-ID: <172128626452.272204.15348879042215969226@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240718054848.2955818-1-osharabi@habana.ai>
+In-Reply-To: <20240718054848.2955818-1-osharabi@habana.ai>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,124 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Other layers should not be touching struct xe_gt_tlb_invalidation_fence
-directly, add helper for initialization.
+--===============0472126674735861758==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2:
- - Add dma_fence_get and list init to xe_gt_tlb_invalidation_fence_init
+== Series Details ==
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 36 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |  3 ++
- drivers/gpu/drm/xe/xe_pt.c                  | 26 +--------------
- 3 files changed, 40 insertions(+), 25 deletions(-)
+Series: fixup! drm/xe/oa: Add OAR support
+URL   : https://patchwork.freedesktop.org/series/136220/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index d9359976ab8b..92a18a0e4acd 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -508,3 +508,39 @@ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
- 
- 	return 0;
- }
-+
-+static const char *
-+invalidation_fence_get_driver_name(struct dma_fence *dma_fence)
-+{
-+	return "xe";
-+}
-+
-+static const char *
-+invalidation_fence_get_timeline_name(struct dma_fence *dma_fence)
-+{
-+	return "invalidation_fence";
-+}
-+
-+static const struct dma_fence_ops invalidation_fence_ops = {
-+	.get_driver_name = invalidation_fence_get_driver_name,
-+	.get_timeline_name = invalidation_fence_get_timeline_name,
-+};
-+
-+/**
-+ * xe_gt_tlb_invalidation_fence_init - Initialize TLB invalidation fence
-+ * @gt: GT
-+ * @fence: TLB invalidation fence to initialize
-+ *
-+ * Initialize TLB invalidation fence for use
-+ */
-+void xe_gt_tlb_invalidation_fence_init(struct xe_gt *gt,
-+				       struct xe_gt_tlb_invalidation_fence *fence)
-+{
-+	spin_lock_irq(&gt->tlb_invalidation.lock);
-+	dma_fence_init(&fence->base, &invalidation_fence_ops,
-+		       &gt->tlb_invalidation.lock,
-+		       dma_fence_context_alloc(1), 1);
-+	spin_unlock_irq(&gt->tlb_invalidation.lock);
-+	INIT_LIST_HEAD(&fence->link);
-+	dma_fence_get(&fence->base);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-index bf3bebd9f985..948f4a2f5214 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-@@ -26,4 +26,7 @@ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
- int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno);
- int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
- 
-+void xe_gt_tlb_invalidation_fence_init(struct xe_gt *gt,
-+				       struct xe_gt_tlb_invalidation_fence *fence);
-+
- #endif	/* _XE_GT_TLB_INVALIDATION_ */
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index f391de908033..1caa99b22c73 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -1317,23 +1317,6 @@ struct invalidation_fence {
- 	u32 asid;
- };
- 
--static const char *
--invalidation_fence_get_driver_name(struct dma_fence *dma_fence)
--{
--	return "xe";
--}
--
--static const char *
--invalidation_fence_get_timeline_name(struct dma_fence *dma_fence)
--{
--	return "invalidation_fence";
--}
--
--static const struct dma_fence_ops invalidation_fence_ops = {
--	.get_driver_name = invalidation_fence_get_driver_name,
--	.get_timeline_name = invalidation_fence_get_timeline_name,
--};
--
- static void invalidation_fence_cb(struct dma_fence *fence,
- 				  struct dma_fence_cb *cb)
- {
-@@ -1372,15 +1355,8 @@ static void invalidation_fence_init(struct xe_gt *gt,
- 
- 	trace_xe_gt_tlb_invalidation_fence_create(gt_to_xe(gt), &ifence->base);
- 
--	spin_lock_irq(&gt->tlb_invalidation.lock);
--	dma_fence_init(&ifence->base.base, &invalidation_fence_ops,
--		       &gt->tlb_invalidation.lock,
--		       dma_fence_context_alloc(1), 1);
--	spin_unlock_irq(&gt->tlb_invalidation.lock);
--
--	INIT_LIST_HEAD(&ifence->base.link);
-+	xe_gt_tlb_invalidation_fence_init(gt, &ifence->base);
- 
--	dma_fence_get(&ifence->base.base);	/* Ref for caller */
- 	ifence->fence = fence;
- 	ifence->gt = gt;
- 	ifence->start = start;
--- 
-2.34.1
+== Summary ==
 
+CI Bug Log - changes from xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f_BAT -> xe-pw-136220v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (7 -> 7)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-136220v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_exec_balancer@twice-virtual-userptr-rebind:
+    - {bat-bmg-1}:        [DMESG-WARN][1] -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f/bat-bmg-1/igt@xe_exec_balancer@twice-virtual-userptr-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136220v1/bat-bmg-1/igt@xe_exec_balancer@twice-virtual-userptr-rebind.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+
+
+Build changes
+-------------
+
+  * Linux: xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f -> xe-pw-136220v1
+
+  IGT_7929: 7929
+  xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f: c2610cb0857b1e68f684691f6d3e7fb110f7149f
+  xe-pw-136220v1: 136220v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136220v1/index.html
+
+--===============0472126674735861758==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>fixup! drm/xe/oa: Add OAR support</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136220/">https://patchwork.freedesktop.org/series/136220/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136220v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136220v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f_BAT -&gt; xe-pw-136220v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (7 -&gt; 7)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-136220v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_balancer@twice-virtual-userptr-rebind:<ul>
+<li>{bat-bmg-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f/bat-bmg-1/igt@xe_exec_balancer@twice-virtual-userptr-rebind.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136220v1/bat-bmg-1/igt@xe_exec_balancer@twice-virtual-userptr-rebind.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f -&gt; xe-pw-136220v1</li>
+</ul>
+<p>IGT_7929: 7929<br />
+  xe-1622-c2610cb0857b1e68f684691f6d3e7fb110f7149f: c2610cb0857b1e68f684691f6d3e7fb110f7149f<br />
+  xe-pw-136220v1: 136220v1</p>
+
+</body>
+</html>
+
+--===============0472126674735861758==--
