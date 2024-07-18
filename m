@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15270C3DA49
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Jul 2024 20:32:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15521C3DA61
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Jul 2024 20:32:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7AC410EB09;
-	Thu, 18 Jul 2024 20:32:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7B1F10EB0B;
+	Thu, 18 Jul 2024 20:32:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R/w+HPcT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PFSZA+vf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11D1910EB07
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Jul 2024 20:31:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EA8110EB0B
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Jul 2024 20:32:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721334718; x=1752870718;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=DtdfRjhpfs46Vsn2bp6+zoye8ee9u37VOWrhpstNCIE=;
- b=R/w+HPcTCLf7/frZBvxaOErNIIUJgUXBhoTWFGYYFXElEkucLT9g5hDH
- Ww10ioNkz05cR+UjjqKOSVYTS2mugLX2VSBP1/hm3GST407QcNxCtc1FB
- Zaw2MO/x6Z2pepA4AZH2hLiYAoCxgMDT6FKrPlDX30MRmW5Rs492jB63s
- +rzlKDOrtWq86jHdb7W20QL78RI8I+skcrMUIqqX7Fi4lzI2VzjxuQTOC
- Ajah53jDFEbBaLd4xP0+CvIGxRLhXkxfn6RIv8cpPbkflHK7zEL90u2V9
- U926Vyv4uJkGzRS9HHiBh11pEr+vqtfftLaAoyiO2+JZ2mXKm4rOlIDwL A==;
-X-CSE-ConnectionGUID: tC+mCK0mTRydLrfiBdBOUw==
-X-CSE-MsgGUID: CfUyzJDwQzyTzUvFuN2bKw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11137"; a="19059946"
-X-IronPort-AV: E=Sophos;i="6.09,218,1716274800"; d="scan'208";a="19059946"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2024 13:31:57 -0700
-X-CSE-ConnectionGUID: w/Q3y2oVQpq7q3BzxvP+iA==
-X-CSE-MsgGUID: WEBngpLKQmir4XZ82U2+ug==
+ t=1721334729; x=1752870729;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=F4Lw2WKTYc2T1IaNGcAtLwVLRQ5hZOJnFVmY2OZrZTE=;
+ b=PFSZA+vf0zJFCfyd/UErVv2krE2C+TLV6hOylhzVSORLDvdwLvRvEdgO
+ MTNoMUtwiHinyma6Tbx/TFeC2SkbZJyoKDX/dehqQFIO5LZJ1tq+US9X3
+ +OU8SgxQA9Z8ZLqKAHWuEy+RGiJNlAp/inLJWqUtBhQ2aPtWroR+A/S6o
+ GLeaClWyRKXorDWYG1y0cIY2zcwgkVVZ4nR6tQ6S0UwlD5Ovw/iVeS+8C
+ FljNUoakQVg+UERTRxh87I2G0UOE1ckJCAy+d9Ai5SgQbR1VXIuYAcqMl
+ zkyZ6qyZrU5R9sqXYJIK/1IqQ23xKFRUEZT0fe0Ic7zFP/hEMQqmyBlgI g==;
+X-CSE-ConnectionGUID: nXTrKpqZQpuVMQLdhcQy6Q==
+X-CSE-MsgGUID: KWYaD7LcQ2qR+KHHHOEerQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11137"; a="44347746"
+X-IronPort-AV: E=Sophos;i="6.09,218,1716274800"; d="scan'208";a="44347746"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2024 13:32:09 -0700
+X-CSE-ConnectionGUID: hfKOvsa6QY+f3SdtbPhC7A==
+X-CSE-MsgGUID: pq6rP7KaSke2gF5gpAdU1g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,218,1716274800"; d="scan'208";a="81520624"
-Received: from unerlige-desk.jf.intel.com ([10.165.21.199])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2024 13:31:57 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,218,1716274800"; d="scan'208";a="50760731"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.246.19.248])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2024 13:32:07 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 3/4] drm/xe: Take a ref to xe file when user creates a VM
-Date: Thu, 18 Jul 2024 13:31:51 -0700
-Message-Id: <20240718203152.3566929-4-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20240718203152.3566929-1-umesh.nerlige.ramappa@intel.com>
-References: <20240718203152.3566929-1-umesh.nerlige.ramappa@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH] drm/xe/vf: Fix register value lookup
+Date: Thu, 18 Jul 2024 22:31:55 +0200
+Message-Id: <20240718203155.486-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,40 +67,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Take a reference to xef when user creates the VM and put the reference
-when user destroys the VM.
+We should use the number of actual entries stored in the runtime
+register buffer, not the maximum number of entries that this buffer
+can hold, otherwise bsearch() may fail and we may miss the data and
+wrongly report unexpected access to some registers.
 
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Fixes: 4edadc41a3a4 ("drm/xe/vf: Use register values obtained from the PF")
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index cf3aea5d8cdc..6adb0ff09d40 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1670,6 +1670,10 @@ static void vm_destroy_work_func(struct work_struct *w)
- 		XE_WARN_ON(vm->pt_root[id]);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 6a87d31c44e6..47222bd9988d 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -850,7 +850,7 @@ static struct vf_runtime_reg *vf_lookup_reg(struct xe_gt *gt, u32 addr)
  
- 	trace_xe_vm_free(vm);
-+
-+	if (vm->xef)
-+		xe_file_put(vm->xef);
-+
- 	kfree(vm);
+ 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+ 
+-	return bsearch(&key, runtime->regs, runtime->regs_size, sizeof(key),
++	return bsearch(&key, runtime->regs, runtime->num_regs, sizeof(key),
+ 		       vf_runtime_reg_cmp);
  }
  
-@@ -1802,7 +1806,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 	}
- 
- 	args->vm_id = id;
--	vm->xef = xef;
-+	vm->xef = xe_file_get(xef);
- 
- 	/* Record BO memory for VM pagetable created against client */
- 	for_each_tile(tile, xe, id)
 -- 
-2.38.1
+2.43.0
 
