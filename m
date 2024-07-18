@@ -4,164 +4,187 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAD63C3DA61
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Jul 2024 18:43:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B291C3DA49
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Jul 2024 18:45:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8921E10E063;
-	Thu, 18 Jul 2024 18:43:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 531E610EAB9;
+	Thu, 18 Jul 2024 18:45:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T6zS6lC1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eT13ymzk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0573E10E063
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Jul 2024 18:43:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E659E10EAB9;
+ Thu, 18 Jul 2024 18:45:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721328214; x=1752864214;
- h=date:from:to:subject:message-id:references:in-reply-to:
- mime-version; bh=5rKXBdwWpVOXAzRK/5D7hcvdofEV/eOM/hzo5cuQ3iM=;
- b=T6zS6lC1qZcHuavg1Jin1MW3tyqQb/9532opo9wqVxG2CuQIMzp4kJFG
- Q2G0dsRO33JEay6SBQIln56/cgQUp4FbdG2UFLF8TcI0ah4P1v+IEqFRd
- JZfSsTRzR3HAQN5Ngy7/yk8H+ICAOm20PbJLOJYhcOs9Gbz4rF00DtcCv
- +thU2raSNuIRJ0u3r6cCQAwIDzzd0ow0CED7uy1CFix5/XUh4U1bLJDSt
- UrWB0IweXbNcyMi8Rz5XXJJrxVSizPUPz4N763zQOioGXqmPT82CttqHC
- C/Gh7m7VMOwxu+fDOjLFJFt2MQSVDZ4iJBALaulJO6ZuNgO4thHiNn12i A==;
-X-CSE-ConnectionGUID: wzTo+H3XSKamDZFKan1g6A==
-X-CSE-MsgGUID: ZRZfq0eZQQCj+GFfgrjI/w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11137"; a="36452934"
-X-IronPort-AV: E=Sophos;i="6.09,218,1716274800"; d="scan'208";a="36452934"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2024 11:43:33 -0700
-X-CSE-ConnectionGUID: BeoeYnebQv2hSxChMmPEAw==
-X-CSE-MsgGUID: HTlkNnyAQhWfi8R+bxpBvA==
+ t=1721328320; x=1752864320;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:mime-version;
+ bh=bgLFaRr69TzdMRehjQt7fInWa7msRGnlj2Nl/oxON4w=;
+ b=eT13ymzk9cQbLiDqhwq7GD5L7x3CtWMbiNfGuMNdcH/s8P1U6MK7J78R
+ +gyB8s5yNo5sbHtaMXQ9mYWr5iIJl1QQCm4uhZOTAG3cH0jDMw8OylG1h
+ AF2LTPuVkPdM20eFzRvJuvbOBw7kuoU8bdzXKNv3VNV2rEH0y0qdRFY/q
+ eFdFfrjbiJ3Azmi5kdJyTzlSSDrOI2WF7PH2Sxb4peTEPD6VZte7g375e
+ qA4ltfFhFmFm+2tA7QbBHb/ABOSmTSa4JMdne/SKnXGVvo+aLBrv/oXB9
+ DOGBYayHDIKpcqyOhyzje/8GyHcDnkdrgh4SZAUtoY5euHI+Co8RhueBf w==;
+X-CSE-ConnectionGUID: /TYNqKv9TlGrkB52XLdv6w==
+X-CSE-MsgGUID: Dj+yn+3tSsKk5eIg09oghg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11137"; a="29525980"
+X-IronPort-AV: E=Sophos;i="6.09,218,1716274800"; d="scan'208,217";a="29525980"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2024 11:45:19 -0700
+X-CSE-ConnectionGUID: zPbeQvUPQw2MvEBxbEjHYQ==
+X-CSE-MsgGUID: TgjDPSauQl+P4seUQjmN7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,218,1716274800"; d="scan'208";a="50723855"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 18 Jul 2024 11:43:33 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.09,218,1716274800"; d="scan'208,217";a="56018786"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 18 Jul 2024 11:45:19 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 18 Jul 2024 11:43:32 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 18 Jul 2024 11:45:18 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 18 Jul 2024 11:43:32 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 18 Jul 2024 11:45:18 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 18 Jul 2024 11:43:32 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.171)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Thu, 18 Jul 2024 11:45:18 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.41) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 18 Jul 2024 11:43:32 -0700
+ 15.1.2507.39; Thu, 18 Jul 2024 11:45:17 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cuIhnGMNBfC3qVRQ6wcUDSCUwNvP5RObBVxmymA5nhKq3+9JO9cmbniKp6nI0tRtFI3LnLahMxD7hUhJ90SlE6NRPtXLbz5gXcpgoABvEOvmPkWdOMfhkLJx++bwnexlqfe+neh0Wj4MKR14naWvuPeb3P9Ken017lI6OV4aTwAn0rsEai6sTXTW9dxMMXzv3+lYJE2mfDgIzRKe4uwXt/0jLGyzFYi3dsH8NMrzrMv1POgYOOPy+vt7k20n0B2nppBEN+CAYaZjRJpfdcXdaEzI0aSoG8qJEvOKjpZ7XKnQk0u18octbnhcN25Vs8LpitatNMY02x2SVFUBUT1Rxw==
+ b=g+uI/MN0wa6Sj71kE0aJ2bTkTUIMyXkNzgvCzW/R0aUfu1IpiNpPaM1y+SzHe7ck0Fw6aUwMYZu2VMrfRJfctj/BtPyvNU7jZHF1VP7yGslXX/9fxHe7+MjUvM32guq/5r2NwRhRvlUkSrmeucGkZkwIce3CaM/YVOpQyNafcS5c9MA59cuY4S5v4wS8I7DhJQ3u6fMui09phdIBgCbXIpasITj8PQJWLdS0FNQC2MDIZDQ5zIZgzEfRCLXZbmRahQ7zie9e9ab6RTLs096+7d76T2W0eATXIzGas2vLQZGmgA+5ViPPUS+fUcFApWlg45z7/2DXi1l+pK+R7EAH+A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=44HaVBMiGyzGDn34tdKHK4FbiGCdJNgE2fw3YHW5mLQ=;
- b=bIA5VAPuPRRSuP3TxQsdSb675ZOm0HHowY2lfMCPeYfdXQKA7lEBYV7q1sNyaN3YvuMhmxTtgNoLpkcWkPQx+6elxTH0WWNwbc5vwSq5AlQiONtOJTVYuEGYsyIVWGc9FCcdK1GmPegQNL16o3srpwt6S0odvXnKiK58OGrhk1rkJw8KRHtnySUl8IztdOwkBzyx/aosijzz/Ukj1upr26lpXYCXeyUrWS4dmSVs0yGh9FDp7dE332PNzV4+L74gVcQBWvYUIRkWK4XQCfNEJUWEV5TUfB2ITLwLq1/wXP7chD5zeT+zyMQNyhTQJfT8675d2KMf9nYPCnOtSlrhlg==
+ bh=BSYHarHzviU8Gr+w5okhlOR0YeYHBHu1ZxQRxT4R6KY=;
+ b=trOrLp3rUWHAZxyjW43Mpn4/RP0CYz2tj0p1GjkCspwWescYQQsuWIf2ExL5VkiMn3VT/uxRAXga7ql7JBSZgc1ydiPIO7ee6CRJ0XF1kMncNG43B7DAuOlNRVAnvmIG844iOkskuCPxo0YpbSpum3VqAlmORlW4MMij61tPA5Db9n42oJ/vBmrI/zhbGtLFQUIR8O7HviOgK77Suw3mCU2/fET0iBHrfIhPXmz4Yq4bg0gT19K8teFx+rwQWzR+kqv49rp8nnxBJvdVnY3kU5bEw55mvfQy//93sDY0JNw2yGchGJfjR5qo8iLwPI3qF2OblH9MUOdqp7Kjog7vIQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by LV3PR11MB8580.namprd11.prod.outlook.com (2603:10b6:408:1ae::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.14; Thu, 18 Jul
- 2024 18:43:29 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%5]) with mapi id 15.20.7762.032; Thu, 18 Jul 2024
- 18:43:29 +0000
-Date: Thu, 18 Jul 2024 18:42:43 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Subject: Re: =?utf-8?B?4pyXIENJLkJBVA==?= =?utf-8?Q?=3A?= failure for Build
- PM into GuC CT layer (rev2)
-Message-ID: <ZpliI+lLtsV+ILfz@DUT025-TGLU.fm.intel.com>
-References: <20240718173445.1490455-1-matthew.brost@intel.com>
- <172132675089.287349.11586045289897142861@2413ebb6fbb6>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <172132675089.287349.11586045289897142861@2413ebb6fbb6>
-X-ClientProxiedBy: BYAPR11CA0063.namprd11.prod.outlook.com
- (2603:10b6:a03:80::40) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+Received: from DS0PR11MB6541.namprd11.prod.outlook.com (2603:10b6:8:d3::14) by
+ SJ0PR11MB5024.namprd11.prod.outlook.com (2603:10b6:a03:2dd::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.29; Thu, 18 Jul
+ 2024 18:45:14 +0000
+Received: from DS0PR11MB6541.namprd11.prod.outlook.com
+ ([fe80::e268:87f2:3bd1:1347]) by DS0PR11MB6541.namprd11.prod.outlook.com
+ ([fe80::e268:87f2:3bd1:1347%5]) with mapi id 15.20.7784.015; Thu, 18 Jul 2024
+ 18:45:14 +0000
+Content-Type: multipart/alternative;
+ boundary="------------1QUW480Vwy7olren6x9uouLJ"
+Message-ID: <0a5cdda6-d275-45b7-97e6-82a7405d6a0c@intel.com>
+Date: Thu, 18 Jul 2024 20:45:09 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/4] drm/xe/lnl: Offload system clear page activity to
+ GPU
+To: Matthew Auld <matthew.auld@intel.com>, <dri-devel@lists.freedesktop.org>
+CC: <intel-xe@lists.freedesktop.org>, Himal Prasad Ghimiray
+ <himal.prasad.ghimiray@intel.com>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>
+References: <20240704081841.30212-1-nirmoy.das@intel.com>
+ <20240704081841.30212-4-nirmoy.das@intel.com>
+ <005ede82-0d72-4ad5-87a4-9a8bfdb81d2a@intel.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@intel.com>
+In-Reply-To: <005ede82-0d72-4ad5-87a4-9a8bfdb81d2a@intel.com>
+X-ClientProxiedBy: DUZPR01CA0324.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4ba::29) To DS0PR11MB6541.namprd11.prod.outlook.com
+ (2603:10b6:8:d3::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|LV3PR11MB8580:EE_
-X-MS-Office365-Filtering-Correlation-Id: b72ef5ae-663e-4f53-e725-08dca759844c
+X-MS-TrafficTypeDiagnostic: DS0PR11MB6541:EE_|SJ0PR11MB5024:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4611411c-1a58-4b03-80e4-08dca759c2c1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?m32F0CAU58CbvhlZdraof3BcVYAeDMjD2BNTUpMu3f6mlS69XQ3/DzRNKWue?=
- =?us-ascii?Q?+w3ComWIMLlxvDOUP72dtK7dyETzP1flxS5avIQx9gyaAZ0uFqroH7/XdY8w?=
- =?us-ascii?Q?60xS42Z/uO21nd+tCSmoa+QJIBkrJxRKc/oK9IET3W+N9/SbA+MxIHUeRg7n?=
- =?us-ascii?Q?FHy7bQwMULEeNfrw1L9MIa5IgsOdME45i8RuNSBwunymSm1z8uoQ+fRQziWi?=
- =?us-ascii?Q?XuupJXNOw2nXRgzDjQk7guR637A3lMvl8wkA3BHq9sJuNMFAL35rxaVGMq1D?=
- =?us-ascii?Q?46Vuc14htYjhfhTVcbBkQLhqH+/EE1LFgm8U4r2oZuKrwUD46t6NSI8mVlpi?=
- =?us-ascii?Q?JkW454Qqrm+o4QyCvOZ45OhDa6VL8bYKzdSuaK1zl4u+MxB8QzzTuYLvBJOA?=
- =?us-ascii?Q?dBjuS3mlszNWrjy+V27NFwMfZw/fXVqJJ/YtzMf40AoTrqcPQMSye+oiy7eq?=
- =?us-ascii?Q?gGHbl95KX5NloeszK9Uo08glm92BspzGm6ev7k6UJwc8ptXf7mToNwFKZ9iz?=
- =?us-ascii?Q?Q7XZrbTVJhfhZi6VVBO5hf5cjJ0nHQ+iYqyhSRwotOrBDdzRy9xOjjG211Ne?=
- =?us-ascii?Q?PHmB/vBrW0qKJN9RaYV5gZg8EhN59mEPUeEqQRYTYNIBVWqFEMeXkuINjlYG?=
- =?us-ascii?Q?mu1oN/t5XHhHqdmB9EkobmLoKCQsmUnVUBBoLLXppbd/LeMaiOH3fFzsk8zY?=
- =?us-ascii?Q?7Yq6n8RnF5GKDLJYFaAg7Q2WmMpyGStYaItcpk5UN+Mgh2fPRHv5Moe/O3yr?=
- =?us-ascii?Q?pn/fOc094zVcsDviB7fp/j7TdqVAFs8Z7TFfj0IAhVcGKG+HEvKs2fgUlAvC?=
- =?us-ascii?Q?xHTm/KJaaq54MW4OhJd90cX9b2wo+D2D3EpSDI+CJd9zBY1/OsJUtJcpQG3c?=
- =?us-ascii?Q?KRi05/4uxuKNyahxVs4KAUV/USTJdw/d2Nc72rudqmC3VJTiMx9AaUNwAwaJ?=
- =?us-ascii?Q?De3ASU1Rh5IHWSkYt3CNA+IdLj0oSQJnp+o7MNqVmB5EQWJpoySTz9cfyLEf?=
- =?us-ascii?Q?MJFSEgh+AMPj2DQrfli6KVr4uk4mh03pfH3482F/5qrwy/pLzE7BkqToryLe?=
- =?us-ascii?Q?D8UNpvWGuP7UccsgMCZKqX+pJM+vJhvvVx2Ekb106LKV5wt5eRdKEAmTxlNu?=
- =?us-ascii?Q?tEbCXKzQt9pq+V6OOFxpl3mRB5ie/f0juwfHZW61OjldUTYrtwN6N2NtNfhO?=
- =?us-ascii?Q?UGE1OjPvMQ6ZSvQ/5lIyNWvJ8Lwq2r5rwKiVugkGlK7n1Y7+GSwoxI+hXfPb?=
- =?us-ascii?Q?eJKpOJpqtPa6vhat/3Mdj90hlAxh/o5zgz4z3JIwY+dRiTUqL+ItiVkB7Oj/?=
- =?us-ascii?Q?Mnc=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SUhMR0VaQ0s5K2RzeUNVaS9WNUZoOE5ZT3JlVUF4ZEhWSVVaeFRDd2JEN0ZH?=
+ =?utf-8?B?aEVxRGcwWURubUpwdjRGUzdiVU5BSzV3K3JIak4rdTJCaTBQemVacjhPQWlL?=
+ =?utf-8?B?NUpLbVBHNW5vMFJHT251TGJBZmVndHg3N1JHdEtjSzdUSTcyYnVpT3dUMlhr?=
+ =?utf-8?B?N1FjWmtKRUdvaFZ1QjB4WlpZbkU2MXRqVUhKVCsrY3IvVTNrN0c1dG1YVVMr?=
+ =?utf-8?B?RzlNMTQ3c0JPakNuc2Z0QjR6SUFiSDhyMks3cW1hZnBSWEZoNVg5VGZoN3dN?=
+ =?utf-8?B?eWJyY09xeVJEMHN0TUY5bkxYODRhYjVDaUtoUmdOelBNRXQ5ZkVoQjRWNDZH?=
+ =?utf-8?B?cnB3aFRsRUNReDRYdTlRM2xZWUJjbVhyVzVnNHFhMjRBdXpWVFpMZG9IbVVv?=
+ =?utf-8?B?a3AvblhIeGNnNTcxQm9jcnFSMU9XN0xYSC9rRFNISUp4c3RBeTFFd3BodVR4?=
+ =?utf-8?B?N1hLQis2ZHZ4ZllUQUVuM1h5eXp6RUd5MWk1WWZTcGFuVWRMTkU0K0lFWmhn?=
+ =?utf-8?B?VzZuOUdLUm5tc1pkQ3FGT0pva0NHOXdjTWRQS2hUWnk4bDNxdHlXYVNDRlI2?=
+ =?utf-8?B?cmdsQjVRMzczekpONmhyZ1pnRjNtMkpRVnAxVWVRakQwOUMxcVNieVp5OEFF?=
+ =?utf-8?B?V2VVMnRtWHNTQzM1aXBySEdpMER6NDB4MC9oN0h4c29nejRTTU4zTnN5T2M2?=
+ =?utf-8?B?Zy92TW85azFBSkNYaEIvQzlCZzhocGtJVW5CMG9GN21pSTIwN1V1d1M1VTBk?=
+ =?utf-8?B?aFFoSnBBNnhJQkoybGFVWDk0L2MwWVhMVDZ2enk5ZDh3emcyZjI3K3NzUU5C?=
+ =?utf-8?B?SDgzY0JWM1ZLY0V1SS9qNnE2TlcwYUdCOStqd2pHR0J0QlhlRG5IQUFwVkJ3?=
+ =?utf-8?B?YXR4WnY5KzZLRWs3Z1NYTC9BV1QzWEg0QTVNdjVndFdlRE1LZlBjSUVUeGVM?=
+ =?utf-8?B?MThuUWNWNjc4MkdOazFMek9WMGQwOVZobU83WlVWTWNPYVFUR0lTK1h1NzNE?=
+ =?utf-8?B?R0hZOXdyTmVFbFpzSFo2T1QwODRIUTVHdmdrQ3BOOVczNUpJcjAzMmlvTEJM?=
+ =?utf-8?B?ZnpWalMwQ2QvWWhYU3YxNWQ1TjNxMFA4bk9zYnRhaWZHWEhJaFNybDBwaTdY?=
+ =?utf-8?B?WTZJMVFtMXZJSzV4NGJUcnk2dERLdE42djcvM0RoL01EczhETG1MNUtHVVB4?=
+ =?utf-8?B?ODQvOERUUzVRVjRtUmhBQ2xIWGR5ZllXVDJ6aFBKazdBeEVxMGRBdENoSUtC?=
+ =?utf-8?B?QlR4Uy8yeWh4eDJkTzlhbzZvLzMyWFNlN1lyblpMYmJkNjFES3I2cVVFZDVI?=
+ =?utf-8?B?UGhSdVIvSlNrRXVtZVk1a1E3QUZXSld5ZVpaQWx3YWVmdEJWQUVHbzhXZUg0?=
+ =?utf-8?B?TEhuWFM0VDlTRVFzSXN0VkYrV1Rsdis4YUpmVGt2ZW5zZHFUSGhqWmRMNzBu?=
+ =?utf-8?B?eHU1YUxjWmNwckIzMmNlTWJETGhNWDVhRllTdXVFNGhRSjNwYmhyZ1lFS1FY?=
+ =?utf-8?B?OGVJSE9DTkZpbU9TQWx3NGl3YlRWeFVLelRqOHI2MGZJSEREMG1RUXFKaWhV?=
+ =?utf-8?B?L0dCU0FuR0RtSnJnNjZtbFQxaW9BdEJwRlFHbUk3RG9LejhyLzVNdXNLelpa?=
+ =?utf-8?B?UHBSQ21KNTBEYUpLUHVxdlFFdnd3aGZVRXRsclpxcm5XSFhmWk5WL241Wmsw?=
+ =?utf-8?B?andxQjRWVUNZQlVCWVFkS0N6dUhONzRQRTdybWJHL0E5eWN5VEU3T3ROVFBk?=
+ =?utf-8?B?VXNBZURjLzlHOXdsZ01nZXhkZlY5VDdVdE0wQXpCYjNybGRkbmRUemlBRWtI?=
+ =?utf-8?B?VEszZVJTcy9rakRzWEhnQT09?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB6541.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?104O0SkV6noGbDEllSJ8Xy+onil5IvlSXv1tarNcuemk/xgMDnH1icxCYQud?=
- =?us-ascii?Q?h20WI8Iax47+Y1aROI/gCjdtrnyQoGiZXEHCA2EULkyShxtLKk/d6slHZJXL?=
- =?us-ascii?Q?aPy2a82v+7KjNcF25E8dq/7gamQ6HlO9uo0VC7hrTkAiTS8pwk9hKYBOLosC?=
- =?us-ascii?Q?Mblh55ssMDnCiYxB5S3q1uBASejvhAfjUeOL/rSrci2ylo7MOOMQ7KN8n2sm?=
- =?us-ascii?Q?PDEDpY3FLXlNJbHlibwQdPfc6bb2oqUnP4+j5g+AfWiaiuTWJI1vLAwTTrak?=
- =?us-ascii?Q?EG/TjzMHtmwxiyij5CY+6gS7GPXBjfaQPdQhM4DPW8t7sayldDXtQDGsWyUi?=
- =?us-ascii?Q?YLOyuwSP/DYIZoDlAAU2I5NLe2ucdO+hAy5DNnqN0BysdxnHrM8hislTCQNL?=
- =?us-ascii?Q?LUvpcRrhNAl+oakF+G3CoxrubcjwAmRdsyj9Orx3LYuODep8sJHLjOMJKAF7?=
- =?us-ascii?Q?hhegYjpGRzH45/UU0wT0DCJ9V03beGfUMi7Cs5YgiINun+KsC/VpMyDzhb5j?=
- =?us-ascii?Q?L5TnQgfZzGG3JKlRhJrbgA5Vj4lzDEiAyPzKXxy+0bNOcgic+3L1RC+cNSNX?=
- =?us-ascii?Q?0fEDHLdefL5iC8GsHLWdXRIhWzerv3AfZ2u9PMJ+qDzKH5hxoMRO3znEQ3yZ?=
- =?us-ascii?Q?mtaBkELt0rX5k9tyLUXv9HPcPXbjhfWUgKum64oRnaojw0Vs/SQ/W3klJFN/?=
- =?us-ascii?Q?hOg35yNRi0wdJ4HK4qwS4mueg4szalRJiBz6iVBEC/nkB+L7fxSnArkNuEGF?=
- =?us-ascii?Q?v7h/DmULLPwnEr3YByHtHba3ouN3Ui9he2TS88xR9YdrvDm6n+Iw0Drct3d4?=
- =?us-ascii?Q?phicoBDayDNIF0nwvVMZaWwTCNN9/hnrabrPgJh957tTgDbc9mVL6tXfWE7d?=
- =?us-ascii?Q?rUuuTu9gEkJWBGL8M/y/pjOdl/+uq5svHkd8WfshjwZ4DPVKk9hE70ybAvbW?=
- =?us-ascii?Q?/ig+qLXC+eWbnvhShQSuxAMCTI9KE3sYSqODYixf04WfGT7BJkj0iXf0rptw?=
- =?us-ascii?Q?PG9m+skEmhTmfJ2DxGzVsvqFjpVBF64Ukl5WqWaHA+9Ex3MS78MoVTTk4KQA?=
- =?us-ascii?Q?bR9KYmm6T9bgIJKZkdR4DPyTNoSgT1VLU1l+k4dc/vnY23JFPtsKKxvrHLLf?=
- =?us-ascii?Q?xj87NOzOiz6vPU7mNkGwHn9MRhEETy44vU4+0bAY2x4FDHXZ598OL37+oUGc?=
- =?us-ascii?Q?HVYFzPF1n8Od7VmUOvGG8vCd1DWKs8swUFXzH4reSed4bcm02RJINpeqU+S2?=
- =?us-ascii?Q?8NJ8HzDBKyvta8jS88Hfi/5SB4myDpmEPWzs/2536oJgogrUSg0u/oB6ix51?=
- =?us-ascii?Q?V+dNT2dJOAa+68aAISDEt8ahbuZJJo/Qy50p874aiJhPbjohuizajzcmrFrR?=
- =?us-ascii?Q?K3ToChLd1Z3k0l2GYJlI1enwXFDiiyuZABJO9gdoHLxvzZsVQ/Zucylnlog6?=
- =?us-ascii?Q?dZIQvMkKO4i46UvUzlGgFYlQos6PBVG21PVI24AMdAqzrF6j6hgW76kuX53j?=
- =?us-ascii?Q?FR1gqxDwIm58kEARfCKCh3EKgW8/4OyLpZZq0eCjTlgn91j04b4rWblWRpfM?=
- =?us-ascii?Q?wyemG+FzxiU5rSQMcmkpjD7B1zrXn87XInf02AqDvQ93MTZWttRWhC3qLzue?=
- =?us-ascii?Q?Dw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b72ef5ae-663e-4f53-e725-08dca759844c
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R1pqd3gyMFdPcGVnQlNBS3FPdlU1M3RYTUtROWduMVJLRkxKb2tPcUZIVUhh?=
+ =?utf-8?B?WjZoUXRBRVhZUE9KNm1OZkFPRVlNMXdvSjVZbHpQZ2xxU0d5dTJPdkNUQnVx?=
+ =?utf-8?B?OGxUN00wK3YxQ2Q0eHdpOWhVYmc0eklnODEyRnBZb3lVV2pkWDcrZDQya25k?=
+ =?utf-8?B?T3N4d25lVlZEd2p1dHRHcmEyT2FSd3p3S0ZPTUo1YlY4bzUvU2ZWUnBacGlN?=
+ =?utf-8?B?T0N3MTU0WGRQMW56emVvK0FMOTRuZkFDZmQ3c0dOWXpDSFFSWG1UVU55cDJR?=
+ =?utf-8?B?Tjl6RHBCZjV1YlJ0anJnbk5zL1BwQWxyZVRZUWFTZ01vUi9lZ0g4SGRJN3Rq?=
+ =?utf-8?B?ZGR5K2thSlJDZ1pBanRWUXNCaURvVWxCMjNJS2VBbnhrb0I0eU5oYktrSG0z?=
+ =?utf-8?B?aldmYzR6b01mbUpEd1pPSjF5WWhJOVBXN05MNUNveVpxMTBXNUtoOVlsZmZj?=
+ =?utf-8?B?cjJYT2tuSnJ0ZDA0cm1NS25uaWR0MEdaS1ZsQ2VFVVJXVUl6R1VoblJWUEQ4?=
+ =?utf-8?B?ZnV2WlBTYzFjK2NNeEw5KzhDbVNybjVZOHdnK2tRbmhmSkE5Yno5RjZmQ1hy?=
+ =?utf-8?B?akRISld3ei9qUmdDcU9WMTU4UHhtbzh6RmN3Zk1ZZDRZc3dUbDBxcUg0cDFQ?=
+ =?utf-8?B?R1lKVGJlekxZdHYvaHNXaG91bU9aYVM1eEpuMHF3aEkvWVFPdnd3bkdPbUtX?=
+ =?utf-8?B?REhVcUlmMjA0ckxjVnVXNklIVXVNR2llUHdyRFFDTUNyejlldTJzb0tJTHdT?=
+ =?utf-8?B?UDdQM2pUV2hLNU5kbm5jOEEybXRuNkMwOXV3RGVmV0kzL040SDhWMExpWWVv?=
+ =?utf-8?B?dFdzbit2MHgyMnkrZVkzeWlnakJ1UTBJSENmbUplaG9OeDdVRUIzR0ZyUnBN?=
+ =?utf-8?B?MUhmaEdGckNIbm51bE05R24zUDB5Q29zYzZ3akVyNHJibnpNd3EvcGx3Znow?=
+ =?utf-8?B?ZXJOaE9Cc1crUXBTVStBaVpFYmhjWi9vUU4xNUpGc2JIRStrK3JmQ1dPOENy?=
+ =?utf-8?B?UElzVDZaMTZoUUw3QjFydGdESEZkNjhvL0FyMHBKQWlzZ3hoalBpMCtlVzFl?=
+ =?utf-8?B?cm9KZ2N6TzBxTEpTQjJpOXR6RzVZbGV2SDl0eEZYQ3JDbnU3R2tRTGptK0V1?=
+ =?utf-8?B?QnZVYUd3QWQvSTN6MmY2dVV6bDhabTl0bFFCYmg3ZEVPVWNsUzI2OGNaK2pu?=
+ =?utf-8?B?a3VDZGgvSmFZMTdsTi8xZVAwRUNnanJ6MUlOOUxvWEphYTRDRHMySnB0Kzk1?=
+ =?utf-8?B?a0t4Lzc0UGFBQWY4aFMvN2xOYjZOcThwVXF3SEVvZ2d0aTlRL1V4b2JWS2pj?=
+ =?utf-8?B?UytrTXd2WUxQN0RDSFJVdVRYTTRZd3BjcEpaMEdqbDFhZmE3eFJmUzJzRjBR?=
+ =?utf-8?B?eFVBZVZpSHo4OE5NOTBhYW02WXJ4T2xiamxreXZVcGROL2cwYnpWUnJITXFM?=
+ =?utf-8?B?ZnFBY3VoMFZRVEg0M3J3eFR5cmxjaXQyWEk1UVdaWUFYNktQTmNMNWJxR2lu?=
+ =?utf-8?B?SUs4VTZZYi8xVjJwWkd4UVp0WUQ3dEhRVkVlTHM5b0FLSndSakw5UW03UHAr?=
+ =?utf-8?B?MnlVSGhxaDYrT0t1NWJsTEZMQ1MwZlVKbDJZV2JSbE9lV0pxNmpYMlRBSjVH?=
+ =?utf-8?B?TC9pbHRVT01lQWZnc3c0S0J3ckcxaEVTUnJ3SUdHNWFtTlcwb3hPaG1rNUJ2?=
+ =?utf-8?B?YlRkWFlSR3lldGtBM2FzZDR1RnB6NFQxdjZSaVdnQllwazVTOVYyRXBIYjJz?=
+ =?utf-8?B?Z2dhUHJsMDduZEZxUS9zbjMvbnJpQ0VrdVNTeWljTFlzQmpWZEdTMTN1eWZ1?=
+ =?utf-8?B?OFBSYkFvaCtjLzh6UTNKcFNSTnhQU0pTMUEyWHdJYjlScnVma2djaHorWm5V?=
+ =?utf-8?B?L3Q4SkdzdFFzMU96ZzVTV3llb2tCeW5ibVZaVmN6a2RuMFlhUkxiTVF0clUy?=
+ =?utf-8?B?NnJXRzNNS2J4ODVmZUFXMkJmdk95MWV4ZFd3NFBtOTVPT0N4ZHVTUS9lZDQ1?=
+ =?utf-8?B?ZXNiTGMvakUyVWFkZTBGS1hmTFFVSU42SFNmMEcwRVcvemE1S0FyZjg3eWNr?=
+ =?utf-8?B?SjVDT1lJZ0FYUHNxdm8yS2xjRGYzODAyR094dW1wNVU0S21aWk5kTUQ3Qll2?=
+ =?utf-8?Q?y+rwN5XGUj2Zt983CS/YxDajh?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4611411c-1a58-4b03-80e4-08dca759c2c1
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB6541.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2024 18:43:29.4538 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2024 18:45:14.3511 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SVXLoiueZhKIMl7aeXUVRMsIEZrvnVpmxQ5mIpctITj6YZIMss3qbdoBdTik6+w0E//salguk0QCB5T28qBcvA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8580
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2f7m3VuSKAQDBOiRLdZLIcsdiHmo8Bi5LekI3dOIxtedfbVvqgd48NwJ0LCyRb6NGNP7HasO+8foPykXrrjjVw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5024
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -177,99 +200,815 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jul 18, 2024 at 06:19:10PM +0000, Patchwork wrote:
->    Patch Details
-> 
->    Series:  Build PM into GuC CT layer (rev2)
->    URL:     [1]https://patchwork.freedesktop.org/series/136226/
->    State:   failure
->    Details:
->    [2]https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v2/index.html
-> 
->  CI Bug Log - changes from xe-1626-943ad04000a54cc7fdb5347606d0ce6a93ea286d_BAT
->                              -> xe-pw-136226v2_BAT
-> 
-> Summary
-> 
->    FAILURE
-> 
->    Serious unknown changes coming with xe-pw-136226v2_BAT absolutely need
->    to be
->    verified manually.
-> 
->    If you think the reported changes have nothing to do with the changes
->    introduced in xe-pw-136226v2_BAT, please notify your bug team
->    (I915-ci-infra@lists.freedesktop.org) to allow them
->    to document this new failure mode, which will reduce false positives in
->    CI.
-> 
-> Participating hosts (7 -> 7)
-> 
->    No changes in participating hosts
-> 
-> Possible new issues
-> 
->    Here are the unknown changes that may have been introduced in
->    xe-pw-136226v2_BAT:
-> 
->   IGT changes
-> 
->     Possible regressions
-> 
->      * igt@xe_vm@shared-pde-page:
->           + bat-atsm-2: [3]PASS -> [4]DMESG-WARN
+--------------1QUW480Vwy7olren6x9uouLJ
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-It looks like this series needs to be combined with [1] to be fully safe
-due to TLB invalidations of bind being kicked to a worker after a bind
-job signals. Still worthwhile for correctness, I don't think a device
-should be suspended when G2H are inflight or scheduler messages are
-inflight either.
 
-Will post a combined series shortly.
+On 7/18/2024 6:27 PM, Matthew Auld wrote:
+> On 04/07/2024 09:18, Nirmoy Das wrote:
+>> On LNL because of flat CCS, driver creates a migrate job to clear
+>> CCS meta data. Extend that to also clear system pages using GPU.
+>> Inform TTM to allocate pages without __GFP_ZERO to avoid double page
+>> clearing by clearing out TTM_TT_FLAG_ZERO_ALLOC flag and set
+>> TTM_TT_FLAG_CLEARED_ON_FREE while freeing to skip ttm pool's
+>> clearn-on-free as XE now takes care of clearing pages. If a bo
+>> is in system placement and there is a cpu map then for such BO gpu
+>> clear will be avoided as there is no dma mapping for such BO.
+>>
+>> To test the patch, created a small test that tries to submit a job
+>> after binding various sizes of buffer which shows good gains for larger
+>> buffer. For lower buffer sizes, the result is not very reliable as the
+>> results vary a lot.
+>>
+>> With the patch
+>> sudo  ~/igt-gpu-tools/build/tests/xe_exec_store --run
+>> basic-store-benchmark
+>> IGT-Version: 1.28-g2ed908c0b (x86_64) (Linux: 6.10.0-rc2-xe+ x86_64)
+>> Using IGT_SRANDOM=1719237905 for randomisation
+>> Opened device: /dev/dri/card0
+>> Starting subtest: basic-store-benchmark
+>> Starting dynamic subtest: WC
+>> Dynamic subtest WC: SUCCESS (0.000s)
+>> Time taken for size SZ_4K: 9493 us
+>> Time taken for size SZ_2M: 5503 us
+>> Time taken for size SZ_64M: 13016 us
+>> Time taken for size SZ_128M: 29464 us
+>> Time taken for size SZ_256M: 38408 us
+>> Time taken for size SZ_1G: 148758 us
+>> Starting dynamic subtest: WB
+>> Dynamic subtest WB: SUCCESS (0.000s)
+>> Time taken for size SZ_4K: 3889 us
+>> Time taken for size SZ_2M: 6091 us
+>> Time taken for size SZ_64M: 20920 us
+>> Time taken for size SZ_128M: 32394 us
+>> Time taken for size SZ_256M: 61710 us
+>> Time taken for size SZ_1G: 215437 us
+>> Subtest basic-store-benchmark: SUCCESS (0.589s)
+>>
+>> With the patch:
+>> sudo  ~/igt-gpu-tools/build/tests/xe_exec_store --run
+>> basic-store-benchmark
+>> IGT-Version: 1.28-g2ed908c0b (x86_64) (Linux: 6.10.0-rc2-xe+ x86_64)
+>> Using IGT_SRANDOM=1719238062 for randomisation
+>> Opened device: /dev/dri/card0
+>> Starting subtest: basic-store-benchmark
+>> Starting dynamic subtest: WC
+>> Dynamic subtest WC: SUCCESS (0.000s)
+>> Time taken for size SZ_4K: 11803 us
+>> Time taken for size SZ_2M: 4237 us
+>> Time taken for size SZ_64M: 8649 us
+>> Time taken for size SZ_128M: 14682 us
+>> Time taken for size SZ_256M: 22156 us
+>> Time taken for size SZ_1G: 74457 us
+>> Starting dynamic subtest: WB
+>> Dynamic subtest WB: SUCCESS (0.000s)
+>> Time taken for size SZ_4K: 5129 us
+>> Time taken for size SZ_2M: 12563 us
+>> Time taken for size SZ_64M: 14860 us
+>> Time taken for size SZ_128M: 26064 us
+>> Time taken for size SZ_256M: 47167 us
+>> Time taken for size SZ_1G: 170304 us
+>> Subtest basic-store-benchmark: SUCCESS (0.417s)
+>>
+>> With the patch and init_on_alloc=0
+>> sudo  ~/igt-gpu-tools/build/tests/xe_exec_store --run
+>> basic-store-benchmark
+>> IGT-Version: 1.28-g2ed908c0b (x86_64) (Linux: 6.10.0-rc2-xe+ x86_64)
+>> Using IGT_SRANDOM=1719238219 for randomisation
+>> Opened device: /dev/dri/card0
+>> Starting subtest: basic-store-benchmark
+>> Starting dynamic subtest: WC
+>> Dynamic subtest WC: SUCCESS (0.000s)
+>> Time taken for size SZ_4K: 4803 us
+>> Time taken for size SZ_2M: 9212 us
+>> Time taken for size SZ_64M: 9643 us
+>> Time taken for size SZ_128M: 13479 us
+>> Time taken for size SZ_256M: 22429 us
+>> Time taken for size SZ_1G: 83110 us
+>> Starting dynamic subtest: WB
+>> Dynamic subtest WB: SUCCESS (0.000s)
+>> Time taken for size SZ_4K: 4003 us
+>> Time taken for size SZ_2M: 4443 us
+>> Time taken for size SZ_64M: 12960 us
+>> Time taken for size SZ_128M: 13741 us
+>> Time taken for size SZ_256M: 26841 us
+>> Time taken for size SZ_1G: 84746 us
+>> Subtest basic-store-benchmark: SUCCESS (0.290s)
+>>
+>> v2: Handle regression on dgfx(Himal)
+>>      Update commit message as no ttm API changes needed.
+>> v3: Fix Kunit test.
+>> v4: handle data leak on cpu mmap(Thomas)
+>>
+>> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_bo.c           | 25 ++++++++++++++++++++++++-
+>>   drivers/gpu/drm/xe/xe_device.c       |  7 +++++++
+>>   drivers/gpu/drm/xe/xe_device_types.h |  2 ++
+>>   3 files changed, 33 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+>> index 4d6315d2ae9a..b76a44fcf3b1 100644
+>> --- a/drivers/gpu/drm/xe/xe_bo.c
+>> +++ b/drivers/gpu/drm/xe/xe_bo.c
+>> @@ -387,6 +387,13 @@ static struct ttm_tt *xe_ttm_tt_create(struct 
+>> ttm_buffer_object *ttm_bo,
+>>           caching = ttm_uncached;
+>>       }
+>>   +    /* If the device can support gpu clear pages then set proper ttm
+>
+> Nit: for multi-line block comment style is usually:
+>
+> /*
+>  * If the device
+>
+>> +     * flag. Zeroed pages are only required for ttm_bo_type_device so
+>> +     * unwanted data is leaked to userspace.
+>
+> not leaked?
 
-Matt
 
-[1] https://patchwork.freedesktop.org/series/136219/
+Yes, should be not leaked.
 
-> 
-> Known issues
-> 
->    Here are the changes found in xe-pw-136226v2_BAT that come from known
->    issues:
-> 
->   IGT changes
-> 
->     Issues hit
-> 
->      * igt@xe_live_ktest@xe_migrate:
->           + bat-atsm-2: [5]PASS -> [6]SKIP ([7]Intel XE#2109) +2 other
->             tests skip
-> 
->     Possible fixes
-> 
->      * igt@kms_flip@basic-flip-vs-wf_vblank:
->           + bat-lnl-1: [8]FAIL ([9]Intel XE#886) -> [10]PASS +1 other test
->             pass
-> 
-> Build changes
-> 
->      * Linux: xe-1626-943ad04000a54cc7fdb5347606d0ce6a93ea286d ->
->        xe-pw-136226v2
-> 
->    IGT_7930: 7930
->    xe-1626-943ad04000a54cc7fdb5347606d0ce6a93ea286d:
->    943ad04000a54cc7fdb5347606d0ce6a93ea286d
->    xe-pw-136226v2: 136226v2
-> 
-> References
-> 
->    1. https://patchwork.freedesktop.org/series/136226/
->    2. https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v2/index.html
->    3. https://intel-gfx-ci.01.org/tree/intel-xe/xe-1626-943ad04000a54cc7fdb5347606d0ce6a93ea286d/bat-atsm-2/igt@xe_vm@shared-pde-page.html
->    4. https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v2/bat-atsm-2/igt@xe_vm@shared-pde-page.html
->    5. https://intel-gfx-ci.01.org/tree/intel-xe/xe-1626-943ad04000a54cc7fdb5347606d0ce6a93ea286d/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html
->    6. https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v2/bat-atsm-2/igt@xe_live_ktest@xe_migrate.html
->    7. https://gitlab.freedesktop.org/drm/xe/kernel/issues/2109
->    8. https://intel-gfx-ci.01.org/tree/intel-xe/xe-1626-943ad04000a54cc7fdb5347606d0ce6a93ea286d/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
->    9. https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
->   10. https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136226v2/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank.html
+>
+>> +     */
+>> +    if (ttm_bo->type == ttm_bo_type_device && xe->mem.gpu_page_clear)
+>> +        page_flags |= TTM_TT_FLAG_CLEARED_ON_FREE;
+>> +
+>>       err = ttm_tt_init(&tt->ttm, &bo->ttm, page_flags, caching, 
+>> extra_pages);
+>>       if (err) {
+>>           kfree(tt);
+>> @@ -408,6 +415,10 @@ static int xe_ttm_tt_populate(struct ttm_device 
+>> *ttm_dev, struct ttm_tt *tt,
+>>       if (tt->page_flags & TTM_TT_FLAG_EXTERNAL)
+>>           return 0;
+>>   +    /* Clear TTM_TT_FLAG_ZERO_ALLOC when GPU is set to clear pages */
+>> +    if (tt->page_flags & TTM_TT_FLAG_CLEARED_ON_FREE)
+>> +        tt->page_flags &= ~TTM_TT_FLAG_ZERO_ALLOC;
+>> +
+>>       err = ttm_pool_alloc(&ttm_dev->pool, tt, ctx);
+>>       if (err)
+>>           return err;
+>> @@ -653,6 +664,14 @@ static int xe_bo_move(struct ttm_buffer_object 
+>> *ttm_bo, bool evict,
+>>         int ret = 0;
+>>   +    /*
+>> +     * Clear TTM_TT_FLAG_CLEARED_ON_FREE on bo creation path when
+>> +     * moving to system as the bo doesn't dma_mapping.
+>> +     */
+>
+> Ok, so I guess with deferred allocation you always get CPU clear, 
+
+Yes
+
+
+> but there is no funny business in the fault hander.
+
+There is sort of  one, so we have 3 cases:
+
+1 DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING + CPU mmap --> CPU clear always
+
+2 Not DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING + CPU mmap --> GPU clear
+
+I wasn't sure if this was correct but Thomas confirmed that this is fine 
+as  "cpu fault handler already waits for the kernel fence that the 
+xe_migrate_clear() attaches"
+
+3 Not DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING + exec_buf/GPU access  --> 
+GPU clear
+
+
+>
+>> +    if (!old_mem && ttm && !ttm_tt_is_populated(ttm)) {
+>> +        ttm->page_flags &= ~TTM_TT_FLAG_CLEARED_ON_FREE;
+>> +    }
+>
+> Nit: Can drop the {}
+
++1
+
+
+>
+>> +
+>>       /* Bo creation path, moving to system or TT. */
+>>       if ((!old_mem && ttm) && !handle_system_ccs) {
+>>           if (new_mem->mem_type == XE_PL_TT)
+>> @@ -676,7 +695,8 @@ static int xe_bo_move(struct ttm_buffer_object 
+>> *ttm_bo, bool evict,
+>>                           (!mem_type_is_vram(old_mem_type) && 
+>> !tt_has_data);
+>>         needs_clear = (ttm && ttm->page_flags & 
+>> TTM_TT_FLAG_ZERO_ALLOC) ||
+>> -        (!ttm && ttm_bo->type == ttm_bo_type_device);
+>> +        (!ttm && ttm_bo->type == ttm_bo_type_device) ||
+>> +        (ttm && ttm->page_flags & TTM_TT_FLAG_CLEARED_ON_FREE);
+>>         if (new_mem->mem_type == XE_PL_TT) {
+>>           ret = xe_tt_map_sg(ttm);
+>> @@ -790,6 +810,9 @@ static int xe_bo_move(struct ttm_buffer_object 
+>> *ttm_bo, bool evict,
+>>                        handle_system_ccs;
+>>               bool clear_bo_data = mem_type_is_vram(new_mem->mem_type);
+>>   +            if (ttm && (ttm->page_flags & 
+>> TTM_TT_FLAG_CLEARED_ON_FREE))
+>> +                clear_bo_data |= true;
+>> +
+>>               fence = xe_migrate_clear(migrate, bo, new_mem,
+>>                            clear_bo_data, clear_ccs);
+>>           }
+>> diff --git a/drivers/gpu/drm/xe/xe_device.c 
+>> b/drivers/gpu/drm/xe/xe_device.c
+>> index 03492fbcb8fb..7c682a53f06e 100644
+>> --- a/drivers/gpu/drm/xe/xe_device.c
+>> +++ b/drivers/gpu/drm/xe/xe_device.c
+>> @@ -636,6 +636,13 @@ int xe_device_probe(struct xe_device *xe)
+>>       if (err)
+>>           goto err;
+>>   +    /**
+>
+> Nit: can drop the extra * since this is not actual kernel-doc.
+
++1
+
+
+>
+>> +     * On iGFX device with flat CCS, we clear CCS metadata, let's 
+>> extend that
+>> +     * and use GPU to clear pages as well.
+>> +     */
+>> +    if (xe_device_has_flat_ccs(xe) && !IS_DGFX(xe))
+>> +        xe->mem.gpu_page_clear = true;
+>
+> Could potentially move this into xe_ttm_sys_mgr_init() ?
+
+
+Yes, good idea.
+
+>
+>> +
+>>       err = xe_vram_probe(xe);
+>>       if (err)
+>>           goto err;
+>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h 
+>> b/drivers/gpu/drm/xe/xe_device_types.h
+>> index 3bca6d344744..28eaf2ab1f25 100644
+>> --- a/drivers/gpu/drm/xe/xe_device_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+>> @@ -325,6 +325,8 @@ struct xe_device {
+>>           struct xe_mem_region vram;
+>>           /** @mem.sys_mgr: system TTM manager */
+>>           struct ttm_resource_manager sys_mgr;
+>> +        /** @gpu_page_clear: clear pages offloaded to GPU */
+>
+> @mem.gpu_page_clear?
+>
+> Should we maybe also rename this to gpu_page_clear_sys or similar? 
+> Since we technically already "clear pages offloaded to GPU" for vram.
+
+
+Yes, gpu_page_clear_sys  should make it more clear.
+
+
+Thanks,
+
+Nirmoy
+
+>
+>> +        bool gpu_page_clear;
+>>       } mem;
+>>         /** @sriov: device level virtualization data */
+--------------1QUW480Vwy7olren6x9uouLJ
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 7/18/2024 6:27 PM, Matthew Auld
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:005ede82-0d72-4ad5-87a4-9a8bfdb81d2a@intel.com">On
+      04/07/2024 09:18, Nirmoy Das wrote:
+      <br>
+      <blockquote type="cite">On LNL because of flat CCS, driver creates
+        a migrate job to clear
+        <br>
+        CCS meta data. Extend that to also clear system pages using GPU.
+        <br>
+        Inform TTM to allocate pages without __GFP_ZERO to avoid double
+        page
+        <br>
+        clearing by clearing out TTM_TT_FLAG_ZERO_ALLOC flag and set
+        <br>
+        TTM_TT_FLAG_CLEARED_ON_FREE while freeing to skip ttm pool's
+        <br>
+        clearn-on-free as XE now takes care of clearing pages. If a bo
+        <br>
+        is in system placement and there is a cpu map then for such BO
+        gpu
+        <br>
+        clear will be avoided as there is no dma mapping for such BO.
+        <br>
+        <br>
+        To test the patch, created a small test that tries to submit a
+        job
+        <br>
+        after binding various sizes of buffer which shows good gains for
+        larger
+        <br>
+        buffer. For lower buffer sizes, the result is not very reliable
+        as the
+        <br>
+        results vary a lot.
+        <br>
+        <br>
+        With the patch
+        <br>
+        sudo&nbsp; ~/igt-gpu-tools/build/tests/xe_exec_store --run
+        <br>
+        basic-store-benchmark
+        <br>
+        IGT-Version: 1.28-g2ed908c0b (x86_64) (Linux: 6.10.0-rc2-xe+
+        x86_64)
+        <br>
+        Using IGT_SRANDOM=1719237905 for randomisation
+        <br>
+        Opened device: /dev/dri/card0
+        <br>
+        Starting subtest: basic-store-benchmark
+        <br>
+        Starting dynamic subtest: WC
+        <br>
+        Dynamic subtest WC: SUCCESS (0.000s)
+        <br>
+        Time taken for size SZ_4K: 9493 us
+        <br>
+        Time taken for size SZ_2M: 5503 us
+        <br>
+        Time taken for size SZ_64M: 13016 us
+        <br>
+        Time taken for size SZ_128M: 29464 us
+        <br>
+        Time taken for size SZ_256M: 38408 us
+        <br>
+        Time taken for size SZ_1G: 148758 us
+        <br>
+        Starting dynamic subtest: WB
+        <br>
+        Dynamic subtest WB: SUCCESS (0.000s)
+        <br>
+        Time taken for size SZ_4K: 3889 us
+        <br>
+        Time taken for size SZ_2M: 6091 us
+        <br>
+        Time taken for size SZ_64M: 20920 us
+        <br>
+        Time taken for size SZ_128M: 32394 us
+        <br>
+        Time taken for size SZ_256M: 61710 us
+        <br>
+        Time taken for size SZ_1G: 215437 us
+        <br>
+        Subtest basic-store-benchmark: SUCCESS (0.589s)
+        <br>
+        <br>
+        With the patch:
+        <br>
+        sudo&nbsp; ~/igt-gpu-tools/build/tests/xe_exec_store --run
+        <br>
+        basic-store-benchmark
+        <br>
+        IGT-Version: 1.28-g2ed908c0b (x86_64) (Linux: 6.10.0-rc2-xe+
+        x86_64)
+        <br>
+        Using IGT_SRANDOM=1719238062 for randomisation
+        <br>
+        Opened device: /dev/dri/card0
+        <br>
+        Starting subtest: basic-store-benchmark
+        <br>
+        Starting dynamic subtest: WC
+        <br>
+        Dynamic subtest WC: SUCCESS (0.000s)
+        <br>
+        Time taken for size SZ_4K: 11803 us
+        <br>
+        Time taken for size SZ_2M: 4237 us
+        <br>
+        Time taken for size SZ_64M: 8649 us
+        <br>
+        Time taken for size SZ_128M: 14682 us
+        <br>
+        Time taken for size SZ_256M: 22156 us
+        <br>
+        Time taken for size SZ_1G: 74457 us
+        <br>
+        Starting dynamic subtest: WB
+        <br>
+        Dynamic subtest WB: SUCCESS (0.000s)
+        <br>
+        Time taken for size SZ_4K: 5129 us
+        <br>
+        Time taken for size SZ_2M: 12563 us
+        <br>
+        Time taken for size SZ_64M: 14860 us
+        <br>
+        Time taken for size SZ_128M: 26064 us
+        <br>
+        Time taken for size SZ_256M: 47167 us
+        <br>
+        Time taken for size SZ_1G: 170304 us
+        <br>
+        Subtest basic-store-benchmark: SUCCESS (0.417s)
+        <br>
+        <br>
+        With the patch and init_on_alloc=0
+        <br>
+        sudo&nbsp; ~/igt-gpu-tools/build/tests/xe_exec_store --run
+        <br>
+        basic-store-benchmark
+        <br>
+        IGT-Version: 1.28-g2ed908c0b (x86_64) (Linux: 6.10.0-rc2-xe+
+        x86_64)
+        <br>
+        Using IGT_SRANDOM=1719238219 for randomisation
+        <br>
+        Opened device: /dev/dri/card0
+        <br>
+        Starting subtest: basic-store-benchmark
+        <br>
+        Starting dynamic subtest: WC
+        <br>
+        Dynamic subtest WC: SUCCESS (0.000s)
+        <br>
+        Time taken for size SZ_4K: 4803 us
+        <br>
+        Time taken for size SZ_2M: 9212 us
+        <br>
+        Time taken for size SZ_64M: 9643 us
+        <br>
+        Time taken for size SZ_128M: 13479 us
+        <br>
+        Time taken for size SZ_256M: 22429 us
+        <br>
+        Time taken for size SZ_1G: 83110 us
+        <br>
+        Starting dynamic subtest: WB
+        <br>
+        Dynamic subtest WB: SUCCESS (0.000s)
+        <br>
+        Time taken for size SZ_4K: 4003 us
+        <br>
+        Time taken for size SZ_2M: 4443 us
+        <br>
+        Time taken for size SZ_64M: 12960 us
+        <br>
+        Time taken for size SZ_128M: 13741 us
+        <br>
+        Time taken for size SZ_256M: 26841 us
+        <br>
+        Time taken for size SZ_1G: 84746 us
+        <br>
+        Subtest basic-store-benchmark: SUCCESS (0.290s)
+        <br>
+        <br>
+        v2: Handle regression on dgfx(Himal)
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; Update commit message as no ttm API changes needed.
+        <br>
+        v3: Fix Kunit test.
+        <br>
+        v4: handle data leak on cpu mmap(Thomas)
+        <br>
+        <br>
+        Cc: Himal Prasad Ghimiray
+        <a class="moz-txt-link-rfc2396E" href="mailto:himal.prasad.ghimiray@intel.com">&lt;himal.prasad.ghimiray@intel.com&gt;</a>
+        <br>
+        Cc: Matthew Auld <a class="moz-txt-link-rfc2396E" href="mailto:matthew.auld@intel.com">&lt;matthew.auld@intel.com&gt;</a>
+        <br>
+        Cc: &quot;Thomas Hellström&quot; <a class="moz-txt-link-rfc2396E" href="mailto:thomas.hellstrom@linux.intel.com">&lt;thomas.hellstrom@linux.intel.com&gt;</a>
+        <br>
+        Signed-off-by: Nirmoy Das <a class="moz-txt-link-rfc2396E" href="mailto:nirmoy.das@intel.com">&lt;nirmoy.das@intel.com&gt;</a>
+        <br>
+        ---
+        <br>
+        &nbsp; drivers/gpu/drm/xe/xe_bo.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 25
+        ++++++++++++++++++++++++-
+        <br>
+        &nbsp; drivers/gpu/drm/xe/xe_device.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 7 +++++++
+        <br>
+        &nbsp; drivers/gpu/drm/xe/xe_device_types.h |&nbsp; 2 ++
+        <br>
+        &nbsp; 3 files changed, 33 insertions(+), 1 deletion(-)
+        <br>
+        <br>
+        diff --git a/drivers/gpu/drm/xe/xe_bo.c
+        b/drivers/gpu/drm/xe/xe_bo.c
+        <br>
+        index 4d6315d2ae9a..b76a44fcf3b1 100644
+        <br>
+        --- a/drivers/gpu/drm/xe/xe_bo.c
+        <br>
+        +++ b/drivers/gpu/drm/xe/xe_bo.c
+        <br>
+        @@ -387,6 +387,13 @@ static struct ttm_tt
+        *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; caching = ttm_uncached;
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+        <br>
+        &nbsp; +&nbsp;&nbsp;&nbsp; /* If the device can support gpu clear pages then set
+        proper ttm
+        <br>
+      </blockquote>
+      <br>
+      Nit: for multi-line block comment style is usually:
+      <br>
+      <br>
+      /*
+      <br>
+      &nbsp;* If the device
+      <br>
+      <br>
+      <blockquote type="cite">+&nbsp;&nbsp;&nbsp;&nbsp; * flag. Zeroed pages are only
+        required for ttm_bo_type_device so
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp; * unwanted data is leaked to userspace.
+        <br>
+      </blockquote>
+      <br>
+      not leaked?
+      <br>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>Yes, should be not leaked.<br>
+    </p>
+    <blockquote type="cite" cite="mid:005ede82-0d72-4ad5-87a4-9a8bfdb81d2a@intel.com">
+      <br>
+      <blockquote type="cite">+&nbsp;&nbsp;&nbsp;&nbsp; */
+        <br>
+        +&nbsp;&nbsp;&nbsp; if (ttm_bo-&gt;type == ttm_bo_type_device &amp;&amp;
+        xe-&gt;mem.gpu_page_clear)
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; page_flags |= TTM_TT_FLAG_CLEARED_ON_FREE;
+        <br>
+        +
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; err = ttm_tt_init(&amp;tt-&gt;ttm, &amp;bo-&gt;ttm,
+        page_flags, caching, extra_pages);
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (err) {
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kfree(tt);
+        <br>
+        @@ -408,6 +415,10 @@ static int xe_ttm_tt_populate(struct
+        ttm_device *ttm_dev, struct ttm_tt *tt,
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (tt-&gt;page_flags &amp; TTM_TT_FLAG_EXTERNAL)
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;
+        <br>
+        &nbsp; +&nbsp;&nbsp;&nbsp; /* Clear TTM_TT_FLAG_ZERO_ALLOC when GPU is set to clear
+        pages */
+        <br>
+        +&nbsp;&nbsp;&nbsp; if (tt-&gt;page_flags &amp; TTM_TT_FLAG_CLEARED_ON_FREE)
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tt-&gt;page_flags &amp;= ~TTM_TT_FLAG_ZERO_ALLOC;
+        <br>
+        +
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; err = ttm_pool_alloc(&amp;ttm_dev-&gt;pool, tt, ctx);
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (err)
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return err;
+        <br>
+        @@ -653,6 +664,14 @@ static int xe_bo_move(struct
+        ttm_buffer_object *ttm_bo, bool evict,
+        <br>
+        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret = 0;
+        <br>
+        &nbsp; +&nbsp;&nbsp;&nbsp; /*
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp; * Clear TTM_TT_FLAG_CLEARED_ON_FREE on bo creation path
+        when
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp; * moving to system as the bo doesn't dma_mapping.
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp; */
+        <br>
+      </blockquote>
+      <br>
+      Ok, so I guess with deferred allocation you always get CPU clear,
+    </blockquote>
+    <p>Yes</p>
+    <p><br>
+    </p>
+    <blockquote type="cite" cite="mid:005ede82-0d72-4ad5-87a4-9a8bfdb81d2a@intel.com">but
+      there is no funny business in the fault hander.
+      <br>
+    </blockquote>
+    <p>There is sort of&nbsp; one, so we have 3 cases:&nbsp; <br>
+    </p>
+    <p><span><span class="ui-provider a b c d e f g h i j k l m n o p q r s t u v w x y z ab ac ae af ag ah ai aj ak" dir="ltr">
+          <p> 1 DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING + CPU mmap --&gt;
+            CPU clear always<br>
+          </p>
+          <p><span><span class="ui-provider a b c d e f g h i j k l m n o p q r s t u v w x y z ab ac ae af ag ah ai aj ak" dir="ltr">2 Not DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING +
+                CPU mmap --&gt; GPU clear</span></span></p>
+          <p><span><span class="ui-provider a b c d e f g h i j k l m n o p q r s t u v w x y z ab ac ae af ag ah ai aj ak" dir="ltr">I wasn't sure if this was correct but Thomas
+                confirmed that this is fine as&nbsp; &quot;</span></span><span><span class="ui-provider a b c d e f g h i j k l m n o p q r s t u v w x y z ab ac ae af ag ah ai aj ak" dir="ltr">cpu fault handler already waits for the kernel
+                fence that the xe_migrate_clear() attache</span></span><span><span class="ui-provider a b c d e f g h i j k l m n o p q r s t u v w x y z ab ac ae af ag ah ai aj ak" dir="ltr">s&quot;</span></span></p>
+          <p><span><span class="ui-provider a b c d e f g h i j k l m n o p q r s t u v w x y z ab ac ae af ag ah ai aj ak" dir="ltr">3 Not DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING +
+                exec_buf/GPU access&nbsp; --&gt; GPU clear<br>
+              </span></span></p>
+        </span></span></p>
+    <p><br>
+    </p>
+    <blockquote type="cite" cite="mid:005ede82-0d72-4ad5-87a4-9a8bfdb81d2a@intel.com">
+      <br>
+      <blockquote type="cite">+&nbsp;&nbsp;&nbsp; if (!old_mem &amp;&amp; ttm
+        &amp;&amp; !ttm_tt_is_populated(ttm)) {
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ttm-&gt;page_flags &amp;= ~TTM_TT_FLAG_CLEARED_ON_FREE;
+        <br>
+        +&nbsp;&nbsp;&nbsp; }
+        <br>
+      </blockquote>
+      <br>
+      Nit: Can drop the {}
+      <br>
+    </blockquote>
+    <p>+1</p>
+    <p><br>
+    </p>
+    <blockquote type="cite" cite="mid:005ede82-0d72-4ad5-87a4-9a8bfdb81d2a@intel.com">
+      <br>
+      <blockquote type="cite">+
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Bo creation path, moving to system or TT. */
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((!old_mem &amp;&amp; ttm) &amp;&amp;
+        !handle_system_ccs) {
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (new_mem-&gt;mem_type == XE_PL_TT)
+        <br>
+        @@ -676,7 +695,8 @@ static int xe_bo_move(struct
+        ttm_buffer_object *ttm_bo, bool evict,
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (!mem_type_is_vram(old_mem_type)
+        &amp;&amp; !tt_has_data);
+        <br>
+        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; needs_clear = (ttm &amp;&amp; ttm-&gt;page_flags &amp;
+        TTM_TT_FLAG_ZERO_ALLOC) ||
+        <br>
+        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (!ttm &amp;&amp; ttm_bo-&gt;type ==
+        ttm_bo_type_device);
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (!ttm &amp;&amp; ttm_bo-&gt;type == ttm_bo_type_device)
+        ||
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (ttm &amp;&amp; ttm-&gt;page_flags &amp;
+        TTM_TT_FLAG_CLEARED_ON_FREE);
+        <br>
+        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (new_mem-&gt;mem_type == XE_PL_TT) {
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret = xe_tt_map_sg(ttm);
+        <br>
+        @@ -790,6 +810,9 @@ static int xe_bo_move(struct
+        ttm_buffer_object *ttm_bo, bool evict,
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; handle_system_ccs;
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bool clear_bo_data =
+        mem_type_is_vram(new_mem-&gt;mem_type);
+        <br>
+        &nbsp; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ttm &amp;&amp; (ttm-&gt;page_flags &amp;
+        TTM_TT_FLAG_CLEARED_ON_FREE))
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clear_bo_data |= true;
+        <br>
+        +
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fence = xe_migrate_clear(migrate, bo, new_mem,
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clear_bo_data, clear_ccs);
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+        <br>
+        diff --git a/drivers/gpu/drm/xe/xe_device.c
+        b/drivers/gpu/drm/xe/xe_device.c
+        <br>
+        index 03492fbcb8fb..7c682a53f06e 100644
+        <br>
+        --- a/drivers/gpu/drm/xe/xe_device.c
+        <br>
+        +++ b/drivers/gpu/drm/xe/xe_device.c
+        <br>
+        @@ -636,6 +636,13 @@ int xe_device_probe(struct xe_device *xe)
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (err)
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto err;
+        <br>
+        &nbsp; +&nbsp;&nbsp;&nbsp; /**
+        <br>
+      </blockquote>
+      <br>
+      Nit: can drop the extra * since this is not actual kernel-doc.
+      <br>
+    </blockquote>
+    <p>+1</p>
+    <p><br>
+    </p>
+    <blockquote type="cite" cite="mid:005ede82-0d72-4ad5-87a4-9a8bfdb81d2a@intel.com">
+      <br>
+      <blockquote type="cite">+&nbsp;&nbsp;&nbsp;&nbsp; * On iGFX device with flat CCS, we
+        clear CCS metadata, let's extend that
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp; * and use GPU to clear pages as well.
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp; */
+        <br>
+        +&nbsp;&nbsp;&nbsp; if (xe_device_has_flat_ccs(xe) &amp;&amp; !IS_DGFX(xe))
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xe-&gt;mem.gpu_page_clear = true;
+        <br>
+      </blockquote>
+      <br>
+      Could potentially move this into xe_ttm_sys_mgr_init() ?
+      <br>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>Yes, good idea.</p>
+    <blockquote type="cite" cite="mid:005ede82-0d72-4ad5-87a4-9a8bfdb81d2a@intel.com">
+      <br>
+      <blockquote type="cite">+
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; err = xe_vram_probe(xe);
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (err)
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto err;
+        <br>
+        diff --git a/drivers/gpu/drm/xe/xe_device_types.h
+        b/drivers/gpu/drm/xe/xe_device_types.h
+        <br>
+        index 3bca6d344744..28eaf2ab1f25 100644
+        <br>
+        --- a/drivers/gpu/drm/xe/xe_device_types.h
+        <br>
+        +++ b/drivers/gpu/drm/xe/xe_device_types.h
+        <br>
+        @@ -325,6 +325,8 @@ struct xe_device {
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct xe_mem_region vram;
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /** @mem.sys_mgr: system TTM manager */
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct ttm_resource_manager sys_mgr;
+        <br>
+        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /** @gpu_page_clear: clear pages offloaded to GPU */
+        <br>
+      </blockquote>
+      <br>
+      @mem.gpu_page_clear?
+      <br>
+      <br>
+      Should we maybe also rename this to gpu_page_clear_sys or similar?
+      Since we technically already &quot;clear pages offloaded to GPU&quot; for
+      vram.
+      <br>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>Yes, gpu_page_clear_sys&nbsp; should make it more clear.</p>
+    <p><br>
+    </p>
+    <p>Thanks,</p>
+    <p>Nirmoy<br>
+    </p>
+    <blockquote type="cite" cite="mid:005ede82-0d72-4ad5-87a4-9a8bfdb81d2a@intel.com">
+      <br>
+      <blockquote type="cite">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bool gpu_page_clear;
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } mem;
+        <br>
+        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /** @sriov: device level virtualization data */
+        <br>
+      </blockquote>
+    </blockquote>
+  </body>
+</html>
+
+--------------1QUW480Vwy7olren6x9uouLJ--
