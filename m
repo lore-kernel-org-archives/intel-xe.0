@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4F06C3DA5D
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Jul 2024 23:13:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90D47C3DA59
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Jul 2024 23:13:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43F3310E1D7;
-	Fri, 19 Jul 2024 23:13:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6471A10E1D7;
+	Fri, 19 Jul 2024 23:13:18 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D04510E1D7;
- Fri, 19 Jul 2024 23:13:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9CC110E1D7;
+ Fri, 19 Jul 2024 23:13:17 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/guc=3A_Enable?=
- =?utf-8?q?_w/a_14022293748_and_22019794406?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/guc=3A_Enable_w/a_?=
+ =?utf-8?q?14022293748_and_22019794406?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Julia Filipchuk" <julia.filipchuk@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 19 Jul 2024 23:13:01 -0000
-Message-ID: <172143078150.291659.10422448134003023690@2413ebb6fbb6>
+Date: Fri, 19 Jul 2024 23:13:17 -0000
+Message-ID: <172143079788.291801.3622380816788429777@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240719230525.2444543-1-julia.filipchuk@intel.com>
 In-Reply-To: <20240719230525.2444543-1-julia.filipchuk@intel.com>
@@ -44,13 +44,50 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/guc: Enable w/a 14022293748 and 22019794406
 URL   : https://patchwork.freedesktop.org/series/136307/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 51eaf1afceb4 drm-tip: 2024y-07m-19d-22h-56m-33s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/guc: Enable w/a 14022293748 and 22019794406
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+5ce3e132caaa5b45e5e50201b574a097d130967c
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 48a45cb9606769255b2407633ecf363c9978702d
+Author: Julia Filipchuk <julia.filipchuk@intel.com>
+Date:   Fri Jul 19 16:05:25 2024 -0700
+
+    drm/xe/guc: Enable w/a 14022293748 and 22019794406
+    
+    Enable workarounds for HW bug where render engine reset fails.
+    
+    Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
++ /mt/dim checkpatch 51eaf1afceb400cf4fe9ed1147dffccc4cc8204f drm-intel
+48a45cb96067 drm/xe/guc: Enable w/a 14022293748 and 22019794406
+-:48: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#48: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:108:
++	fw_def(BATTLEMAGE,	major_ver(intel-ci/xe,	guc,	bmg,	70, 29, 0))	\
+ 	                  	               ^
+
+-:48: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#48: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:108:
++	fw_def(BATTLEMAGE,	major_ver(intel-ci/xe,	guc,	bmg,	70, 29, 0))	\
+ 	                  	                  ^
+
+-:49: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#49: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:109:
++	fw_def(LUNARLAKE,	major_ver(intel-ci/xe,	guc,	lnl,	70, 29, 0))	\
+ 	                 	               ^
+
+-:49: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#49: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:109:
++	fw_def(LUNARLAKE,	major_ver(intel-ci/xe,	guc,	lnl,	70, 29, 0))	\
+ 	                 	                  ^
+
+total: 0 errors, 0 warnings, 4 checks, 36 lines checked
 
 
