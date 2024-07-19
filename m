@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F173CC3DA59
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Jul 2024 17:34:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AB4AC3DA70
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Jul 2024 17:58:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFAE310EC7C;
-	Fri, 19 Jul 2024 17:34:15 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49B5B10EC7C;
- Fri, 19 Jul 2024 17:34:14 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id E02AE10EC8B;
+	Fri, 19 Jul 2024 17:58:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cFMqd8+a";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 491C210EC8A
+ for <intel-xe@lists.freedesktop.org>; Fri, 19 Jul 2024 17:58:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1721411916; x=1752947916;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4L0voMJ0lAPxvjh0PDB6FFjCUUgxTGLJ3nf5MVVY7tA=;
+ b=cFMqd8+a45hh+wYqHaEWdLyxFloo5A5wZRG5kRtoXPR+0lWxYIBFnhvI
+ B4VZEGnVrRPD97CAP5cC626OPv3se1nBXny44EUNp3wOQ3Q83iTRO1ONx
+ h/tm0F6x4swKWOqExdDlvD0YnX6wNGZyQDXw79mTIFnFlWjkY3G2NNb7p
+ ZZO0r7WVE0fk93L7JslMlQD2h0JCdaBxTpXPy/2jFunSRVOoYgVLzVP8G
+ VHUtUIhK+6BavUauxUG2vO1aQCvfWVMcvykxy/HZYg6jT4D98Cpcty5UL
+ kQOv9c8ZQL3hUEQEXBmm5j2Y1Ja0Eq6JFwKG2XUNiFea1CyJ/R14L6JTl g==;
+X-CSE-ConnectionGUID: /1CCI88ITCeWHjS6rzh6pw==
+X-CSE-MsgGUID: qWNo0xt/ThCVa7NbH3euaw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11138"; a="29701555"
+X-IronPort-AV: E=Sophos;i="6.09,221,1716274800"; d="scan'208";a="29701555"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2024 10:58:35 -0700
+X-CSE-ConnectionGUID: rl/QKo6gSpOn2mQBD8/uzQ==
+X-CSE-MsgGUID: Fsb5LAh4RPW6yt5h1xm5cQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,221,1716274800"; d="scan'208";a="56316032"
+Received: from dut152iclu.fm.intel.com ([10.105.23.86])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2024 10:58:35 -0700
+From: Stuart Summers <stuart.summers@intel.com>
+To: 
+Cc: matthew.brost@intel.com, John.C.Harrison@Intel.com, brian.welty@intel.com,
+ rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org,
+ Stuart Summers <stuart.summers@intel.com>
+Subject: [PATCH 0/3] Update page fault queue size calculation
+Date: Fri, 19 Jul 2024 17:58:25 +0000
+Message-Id: <cover.1721411802.git.stuart.summers@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Keep_device_awake_TLB_invalida?=
- =?utf-8?q?tions_and_G2H_in_flight_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 19 Jul 2024 17:34:14 -0000
-Message-ID: <172141045429.291226.10552830918992571784@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240719172905.1527927-1-matthew.brost@intel.com>
-In-Reply-To: <20240719172905.1527927-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,226 +63,32 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Right now the page fault queue size is hard coded with an
+estimated value based on legacy platforms. Add a more precise
+calculation based on the number of compute resources available
+which can utilize these page fault queues.
 
-Series: Keep device awake TLB invalidations and G2H in flight (rev3)
-URL   : https://patchwork.freedesktop.org/series/136256/
-State : failure
+v2: Add a drm reset callback for the teardown changes and other
+    suggestions from Matt.
+v3: Add a pf_wq destroy when the access counter wq allocation
+    fails (Rodrigo) and pf queue size calculation adjustment (Matt)
+v4: Bump up the size of the G2H queue as well (Matt)
 
-== Summary ==
+Original series: https://patchwork.freedesktop.org/series/134694/
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:In file included from ../drivers/gpu/drm/drm_atomic.c:46:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_atomic_uapi.c:43:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_blend.c:36:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_bridge.c:38:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_client.c:23:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_eld.c:11:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_client_modeset.c:26:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_displayid.c:9:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_color_mgmt.c:32:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_connector.c:41:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_crtc.c:52:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_dumb_buffers.c:31:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_drv.c:50:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_edid.c:49:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_encoder.c:32:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_file.c:48:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_framebuffer.c:38:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_ioctl.c:43:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_lease.c:15:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_mode_config.c:34:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_mode_object.c:33:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_plane.c:36:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_modes.c:50:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_property.c:33:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_sysfs.c:34:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_debugfs.c:45:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_atomic_helper.c:48:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/drm_fb_helper.c:47:
-../drivers/gpu/drm/drm_crtc_internal.h:322:6: warning: no previous prototype for ‘drm_panic_is_enabled’ [-Wmissing-prototypes]
-  322 | bool drm_panic_is_enabled(struct drm_device *dev) {return false; }
-      |      ^~~~~~~~~~~~~~~~~~~~
-../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
-  156 | u64 ioread64_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
-  163 | u64 ioread64_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~
-../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
-  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
-  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
-      |     ^~~~~~~~~~~~~~~~
-../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
-  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
-  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~
-../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
-  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
-  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
-      |      ^~~~~~~~~~~~~~~~~
-ld: drivers/gpu/drm/drm_atomic_uapi.o: in function `drm_panic_is_enabled':
-drm_atomic_uapi.c:(.text+0x1120): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_blend.o: in function `drm_panic_is_enabled':
-drm_blend.c:(.text+0x890): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_bridge.o: in function `drm_panic_is_enabled':
-drm_bridge.c:(.text+0x1270): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_client.o: in function `drm_panic_is_enabled':
-drm_client.c:(.text+0xbd0): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_client_modeset.o: in function `drm_panic_is_enabled':
-drm_client_modeset.c:(.text+0x2bb0): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_color_mgmt.o: in function `drm_panic_is_enabled':
-drm_color_mgmt.c:(.text+0x520): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_connector.o: in function `drm_panic_is_enabled':
-drm_connector.c:(.text+0x2ae0): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_crtc.o: in function `drm_panic_is_enabled':
-drm_crtc.c:(.text+0xd50): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_displayid.o: in function `drm_panic_is_enabled':
-drm_displayid.c:(.text+0x0): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_drv.o: in function `drm_panic_is_enabled':
-drm_drv.c:(.text+0x1500): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_dumb_buffers.o: in function `drm_panic_is_enabled':
-drm_dumb_buffers.c:(.text+0x0): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_edid.o: in function `drm_panic_is_enabled':
-drm_edid.c:(.text+0x7fb0): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_eld.o: in function `drm_panic_is_enabled':
-drm_eld.c:(.text+0xa0): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_encoder.o: in function `drm_panic_is_enabled':
-drm_encoder.c:(.text+0x620): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_file.o: in function `drm_panic_is_enabled':
-drm_file.c:(.text+0xc20): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_framebuffer.o: in function `drm_panic_is_enabled':
-drm_framebuffer.c:(.text+0xc30): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_ioctl.o: in function `drm_panic_is_enabled':
-drm_ioctl.c:(.text+0x1080): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_lease.o: in function `drm_panic_is_enabled':
-drm_lease.c:(.text+0x210): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_mode_config.o: in function `drm_panic_is_enabled':
-drm_mode_config.c:(.text+0xfe0): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_mode_object.o: in function `drm_panic_is_enabled':
-drm_mode_object.c:(.text+0x8b0): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_modes.o: in function `drm_panic_is_enabled':
-drm_modes.c:(.text+0x2e10): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_plane.o: in function `drm_panic_is_enabled':
-drm_plane.c:(.text+0x20a0): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_property.o: in function `drm_panic_is_enabled':
-drm_property.c:(.text+0xe10): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_sysfs.o: in function `drm_panic_is_enabled':
-drm_sysfs.c:(.text+0x8b0): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_debugfs.o: in function `drm_panic_is_enabled':
-drm_debugfs.c:(.text+0x1370): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_atomic_helper.o: in function `drm_panic_is_enabled':
-drm_atomic_helper.c:(.text+0x69c0): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_panic_is_enabled':
-drm_fb_helper.c:(.text+0x2ea0): multiple definition of `drm_panic_is_enabled'; drivers/gpu/drm/drm_atomic.o:drm_atomic.c:(.text+0x3130): first defined here
-make[3]: *** [../scripts/Makefile.vmlinux_o:62: vmlinux.o] Error 1
-make[2]: *** [/kernel/Makefile:1152: vmlinux_o] Error 2
-make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
+Stuart Summers (3):
+  drm/xe: Fix missing workqueue destroy in xe_gt_pagefault
+  drm/xe: Use topology to determine page fault queue size
+  drm/xe/guc: Bump the G2H queue size to account for page faults
 
-[17:33:40] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[17:33:45] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 72 ++++++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_gt_types.h     |  9 +++-
+ drivers/gpu/drm/xe/xe_guc_ct.c       | 10 +++-
+ 3 files changed, 74 insertions(+), 17 deletions(-)
 
+-- 
+2.34.1
 
