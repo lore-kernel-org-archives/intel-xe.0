@@ -4,53 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6374FC3DA5D
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Jul 2024 16:49:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD174C3DA59
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Jul 2024 16:54:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F92F10EC56;
-	Fri, 19 Jul 2024 16:49:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADCF510EC66;
+	Fri, 19 Jul 2024 16:54:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JRHvG9tS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nPhjnebz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C07810EC5F
- for <intel-xe@lists.freedesktop.org>; Fri, 19 Jul 2024 16:49:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3AF210EC66
+ for <intel-xe@lists.freedesktop.org>; Fri, 19 Jul 2024 16:54:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721407768; x=1752943768;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=mD0JpdM9b+DO5/xnZAXgxuBz7xVMuPBAT/lAK+LHmOU=;
- b=JRHvG9tS2pLt+HxsNuasgZLvwmCSg+nfGtsB4pyYnGv2WD7lXqy2YQRw
- DT+hUzODt/sxFzwoqjnjG6j7nzwbxs/RvciG3o4ZH9RfcAHJPbPUdrdWM
- tBK5Td3ZedWn8mnOmRfrBNgixq7JwjiIB4ZI89UC0P0ioZMYEDUFd8HuB
- o45lCumz4RgJZhraq/CAWPv8jd7Umd6QB7yIMkd6ZnVxyenBHXeFMtHOI
- W/dOJjZsazhGvAf7ihnfhDpUom8vPAGhjbR1pcFBtylxJ4XbCuayc3Fil
- aOo/JVVfHsogTpZL5ZgPx7hlDYR/J0yOCcX0qYwfMGMkB+DJ1hDT2Nqaa g==;
-X-CSE-ConnectionGUID: dXV8wBwaSJ+wNTCaJKuO/Q==
-X-CSE-MsgGUID: ug6s35qmRlqrLLdFuQvwtg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11138"; a="18651480"
-X-IronPort-AV: E=Sophos;i="6.09,221,1716274800"; d="scan'208";a="18651480"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2024 09:49:27 -0700
-X-CSE-ConnectionGUID: lEOsoaQgT925qPB0GqEZew==
-X-CSE-MsgGUID: Dc8Asa08ScCyRqjz8Zu9ow==
+ t=1721408082; x=1752944082;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=JYwQE/6RXVA/s6DfbLVU33QwEauZwB1z7KQQSnHofkc=;
+ b=nPhjnebzMdB0vshYaI+wCiIFMByjX7B44UhfHWdiPjStZ1eEBbiYIiYQ
+ eZv984GNM1QsgdLI55DGX7M2CJu5eT8RfsCztP0cjrffzqSCGXLhLy0si
+ GFoaA5AdMlUNFAw+JppqFe8pGeiip8QeedJVMHcx9iZ6pGz6QES7fvWDc
+ 90bERkwwjFfEObFillJBvDQVogzPqMB/g7H+Jfb6gfslJ0nait4mdnY9Q
+ 1z11WciGiOfQgswbCvnUu/a/4wTVm+tilrWHDVRcCMzm4ZcVRdUm2It0J
+ 9AUL4+G+1PjibcyOJPfpgiWGR6hzd72DpKfIarqDL9Htl9y7uHS+5Wg/5 A==;
+X-CSE-ConnectionGUID: FoxIOWs0S2+RAopUGobI/g==
+X-CSE-MsgGUID: 1sTXUeYqS7mN9KWMz17iVA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11138"; a="41557078"
+X-IronPort-AV: E=Sophos;i="6.09,221,1716274800"; d="scan'208";a="41557078"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2024 09:54:41 -0700
+X-CSE-ConnectionGUID: OZeTi3VfQvyPIMmzXCVKJg==
+X-CSE-MsgGUID: XHoNFfE1SpWYu2TcS+cTJw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,221,1716274800"; d="scan'208";a="51192720"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2024 09:49:26 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v5 4/4] drm/xe: Build PM into GuC CT layer
-Date: Fri, 19 Jul 2024 09:50:12 -0700
-Message-Id: <20240719165012.1512428-5-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240719165012.1512428-1-matthew.brost@intel.com>
-References: <20240719165012.1512428-1-matthew.brost@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.09,221,1716274800"; d="scan'208";a="50912888"
+Received: from calebbar-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.125.49.33])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2024 09:54:41 -0700
+Date: Fri, 19 Jul 2024 09:50:04 -0700
+Message-ID: <871q3p5nsz.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>, 
+ Jose Souza <jose.souza@intel.com>
+Subject: When sysfs is not available (say containers)
+In-Reply-To: <20240618014609.3233427-6-ashutosh.dixit@intel.com>
+References: <20240618014609.3233427-1-ashutosh.dixit@intel.com>	<20240618014609.3233427-6-ashutosh.dixit@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/29.4 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,117 +73,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Take PM ref when any G2H are outstanding, drop when none are
-outstanding.
+On Mon, 17 Jun 2024 18:45:57 -0700, Ashutosh Dixit wrote:
+>
 
-To safely ensure we have PM ref when in the GuC CT layer, a PM ref needs
-to be held when scheduler messages are pending too.
+Folks,
 
-v2:
- - Add outer PM protections to xe_file_close (CI)
-v3:
- - Only take PM ref 0->1 and drop on 1->0 (Matthew Auld)
-v4:
- - Add assert to G2H increment function
-v5:
- - Rebase
+The below is just an example from one of the earlier OA patches (already
+merged):
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c     |  4 ++++
- drivers/gpu/drm/xe/xe_guc_ct.c     | 10 +++++++++-
- drivers/gpu/drm/xe/xe_guc_submit.c |  4 ++++
- 3 files changed, 17 insertions(+), 1 deletion(-)
+> [PATCH 05/17] drm/xe/oa/uapi: Add/remove OA config perf ops
+>
+> +static ssize_t show_dynamic_id(struct kobject *kobj,
+> +			       struct kobj_attribute *attr,
+> +			       char *buf)
+> +{
+> +	struct xe_oa_config *oa_config =
+> +		container_of(attr, typeof(*oa_config), sysfs_metric_id);
+> +
+> +	return sysfs_emit(buf, "%d\n", oa_config->id);
+> +}
+> +
+> +static int create_dynamic_oa_sysfs_entry(struct xe_oa *oa,
+> +					 struct xe_oa_config *oa_config)
+> +{
+> +	sysfs_attr_init(&oa_config->sysfs_metric_id.attr);
+> +	oa_config->sysfs_metric_id.attr.name = "id";
+> +	oa_config->sysfs_metric_id.attr.mode = 0444;
+> +	oa_config->sysfs_metric_id.show = show_dynamic_id;
+> +	oa_config->sysfs_metric_id.store = NULL;
+> +
+> +	oa_config->attrs[0] = &oa_config->sysfs_metric_id.attr;
+> +	oa_config->attrs[1] = NULL;
+> +
+> +	oa_config->sysfs_metric.name = oa_config->uuid;
+> +	oa_config->sysfs_metric.attrs = oa_config->attrs;
+> +
+> +	return sysfs_create_group(oa->metrics_kobj, &oa_config->sysfs_metric);
+> +}
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 50c302cf3249..a8148326c69c 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -146,6 +146,8 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
- 	struct xe_exec_queue *q;
- 	unsigned long idx;
- 
-+	xe_pm_runtime_get(xe);
-+
- 	/*
- 	 * No need for exec_queue.lock here as there is no contention for it
- 	 * when FD is closing as IOCTLs presumably can't be modifying the
-@@ -162,6 +164,8 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
- 	mutex_unlock(&xef->vm.lock);
- 
- 	xe_file_put(xef);
-+
-+	xe_pm_runtime_put(xe);
- }
- 
- static const struct drm_ioctl_desc xe_ioctls[] = {
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 7d2e937da1d8..64afc90ad2c5 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -327,6 +327,8 @@ static void xe_guc_ct_set_state(struct xe_guc_ct *ct,
- 	xe_gt_assert(ct_to_gt(ct), ct->g2h_outstanding == 0 ||
- 		     state == XE_GUC_CT_STATE_STOPPED);
- 
-+	if (ct->g2h_outstanding)
-+		xe_pm_runtime_put(ct_to_xe(ct));
- 	ct->g2h_outstanding = 0;
- 	ct->state = state;
- 
-@@ -495,10 +497,15 @@ static void h2g_reserve_space(struct xe_guc_ct *ct, u32 cmd_len)
- static void __g2h_reserve_space(struct xe_guc_ct *ct, u32 g2h_len, u32 num_g2h)
- {
- 	xe_gt_assert(ct_to_gt(ct), g2h_len <= ct->ctbs.g2h.info.space);
-+	xe_gt_assert(ct_to_gt(ct), (!g2h_len && !num_g2h) ||
-+		     (g2h_len && num_g2h));
- 
- 	if (g2h_len) {
- 		lockdep_assert_held(&ct->fast_lock);
- 
-+		if (!ct->g2h_outstanding)
-+			xe_pm_runtime_get_noresume(ct_to_xe(ct));
-+
- 		ct->ctbs.g2h.info.space -= g2h_len;
- 		ct->g2h_outstanding += num_g2h;
- 	}
-@@ -511,7 +518,8 @@ static void __g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
- 		     ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space);
- 
- 	ct->ctbs.g2h.info.space += g2h_len;
--	--ct->g2h_outstanding;
-+	if (!--ct->g2h_outstanding)
-+		xe_pm_runtime_put(ct_to_xe(ct));
- }
- 
- static void g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 26f8c6a4f665..da2ead86b9ae 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1413,6 +1413,8 @@ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
- 	default:
- 		XE_WARN_ON("Unknown message type");
- 	}
-+
-+	xe_pm_runtime_put(guc_to_xe(exec_queue_to_guc(msg->private_data)));
- }
- 
- static const struct drm_sched_backend_ops drm_sched_ops = {
-@@ -1503,6 +1505,8 @@ static void guc_exec_queue_kill(struct xe_exec_queue *q)
- static void guc_exec_queue_add_msg(struct xe_exec_queue *q, struct xe_sched_msg *msg,
- 				   u32 opcode)
- {
-+	xe_pm_runtime_get_noresume(guc_to_xe(exec_queue_to_guc(q)));
-+
- 	INIT_LIST_HEAD(&msg->link);
- 	msg->opcode = opcode;
- 	msg->private_data = q;
--- 
-2.34.1
+So we often expose things in sysfs. The question is: are there general
+guidelines for what to do for environments (such as containers) where
+userspace cannot access sysfs? E.g. in such cases, do we expose the
+information exposed in sysfs via queries (i.e. an ioctl)? Or another way?
+What have we done in the past in drm and what should we do in these cases
+for Xe?
 
+Thanks.
+--
+Ashutosh
