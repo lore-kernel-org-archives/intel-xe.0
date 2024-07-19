@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17824C3DA59
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Jul 2024 16:55:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FC75C3DA59
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Jul 2024 16:55:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCCDA10EC68;
-	Fri, 19 Jul 2024 16:55:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B9FC10EC69;
+	Fri, 19 Jul 2024 16:55:34 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EC6010EC68;
- Fri, 19 Jul 2024 16:55:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5DBE10EC69;
+ Fri, 19 Jul 2024 16:55:33 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Keep_device_awake_TLB_inv?=
- =?utf-8?q?alidations_and_G2H_in_flight_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Keep_device_awake_TLB_invalida?=
+ =?utf-8?q?tions_and_G2H_in_flight_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 19 Jul 2024 16:55:05 -0000
-Message-ID: <172140810518.291225.1031248264372482473@2413ebb6fbb6>
+Date: Fri, 19 Jul 2024 16:55:33 -0000
+Message-ID: <172140813367.291225.15003949461473149603@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240719165012.1512428-1-matthew.brost@intel.com>
 In-Reply-To: <20240719165012.1512428-1-matthew.brost@intel.com>
@@ -44,51 +44,65 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Keep device awake TLB invalidations and G2H in flight (rev2)
 URL   : https://patchwork.freedesktop.org/series/136256/
-State : success
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-5ce3e132caaa5b45e5e50201b574a097d130967c
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 25e2d94e6396189ca52580e89f926506403ab9ef
-Author: Matthew Brost <matthew.brost@intel.com>
-Date:   Fri Jul 19 09:50:12 2024 -0700
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_device.c: In function ‘xe_file_close’:
+../drivers/gpu/drm/xe/xe_device.c:149:20: error: ‘xe’ undeclared (first use in this function); did you mean ‘xef’?
+  149 |  xe_pm_runtime_get(xe);
+      |                    ^~
+      |                    xef
+../drivers/gpu/drm/xe/xe_device.c:149:20: note: each undeclared identifier is reported only once for each function it appears in
+make[7]: *** [../scripts/Makefile.build:244: drivers/gpu/drm/xe/xe_device.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:485: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:485: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:485: drivers/gpu] Error 2
+make[4]: *** Waiting for unfinished jobs....
+make[3]: *** [../scripts/Makefile.build:485: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+make[2]: *** [/kernel/Makefile:1934: .] Error 2
+make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
 
-    drm/xe: Build PM into GuC CT layer
-    
-    Take PM ref when any G2H are outstanding, drop when none are
-    outstanding.
-    
-    To safely ensure we have PM ref when in the GuC CT layer, a PM ref needs
-    to be held when scheduler messages are pending too.
-    
-    v2:
-     - Add outer PM protections to xe_file_close (CI)
-    v3:
-     - Only take PM ref 0->1 and drop on 1->0 (Matthew Auld)
-    v4:
-     - Add assert to G2H increment function
-    v5:
-     - Rebase
-    
-    Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-    Cc: Matthew Auld <matthew.auld@intel.com>
-    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-    Cc: Nirmoy Das <nirmoy.das@intel.com>
-    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-    Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-    Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-+ /mt/dim checkpatch eb6045a759ea13e8d159bdaea423e904b9e3717b drm-intel
-bc54ff07979f drm/xe: Add xe_gt_tlb_invalidation_fence_init helper
-d8d6210ed001 drm/xe: Drop xe_gt_tlb_invalidation_wait
-3365da42248a drm/xe: Hold a PM ref when GT TLB invalidations are inflight
-25e2d94e6396 drm/xe: Build PM into GuC CT layer
+[16:55:05] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[16:55:10] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
