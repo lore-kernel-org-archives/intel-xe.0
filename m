@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE88CC3DA59
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jul 2024 16:05:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A462C3DA5D
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jul 2024 16:08:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5205210E19D;
-	Mon, 22 Jul 2024 16:05:33 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7B4910E12B;
- Mon, 22 Jul 2024 16:05:30 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D63A10E19E;
+	Mon, 22 Jul 2024 16:08:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SkWC2r5W";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC89110E199
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Jul 2024 16:08:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1721664503; x=1753200503;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Oz2TxrcG5sAIohZU1+O0Iit856hS4jpvQPPXLRLJPxE=;
+ b=SkWC2r5WD3g2NW769uVHB0ZkaRvQIcS5N/eutc4iWIXti6EIRfXwbFT1
+ wA+qeNIUf4SJ6p7L4ED5TDsM4IXJCsnJbem+vuFnwrc9/Yj3vSZcRnkIb
+ g3IzmEJJ2xC5M6we197ZI6QMN4Z8DZ8Q3hzkgjzJ+f6Kucfn14mvU8ah1
+ ZxRw5boc3wTCtRKkKJwj6Vsdtrhzp4eQT0RLLt3BxGSHjTgCsn4A/RkVV
+ +Unr+vRJKXzpncOmqRV7WgYOKETMFYWexJOPwNw/DDV7aPeKdGM8m6O9z
+ 68aGUoCNnZsQPFmo3VSyRAAIaXxN8sUl9DMrs+L9e/p7QU/sxPt2AZEju g==;
+X-CSE-ConnectionGUID: a6IbYN/YTE22gaPIdz+WFQ==
+X-CSE-MsgGUID: LZ9T1V+PQ3CeD+CNl7lPfw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11141"; a="19395006"
+X-IronPort-AV: E=Sophos;i="6.09,228,1716274800"; d="scan'208";a="19395006"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2024 09:08:22 -0700
+X-CSE-ConnectionGUID: vKCo6rxXTfWofdGalLzKxg==
+X-CSE-MsgGUID: QdlUxs02T36fukAZOsM13A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,228,1716274800"; d="scan'208";a="82564712"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2024 09:08:23 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v2] drm/xe: Add assert for XE_WA() usage
+Date: Mon, 22 Jul 2024 09:06:39 -0700
+Message-ID: <20240722160815.4085605-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/dp=3A_Make_read?=
- =?utf-8?q?-only_array_bw=5Fgbps_static_const?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Colin Ian King" <colin.i.king@gmail.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 22 Jul 2024 16:05:30 -0000
-Message-ID: <172166433087.327591.7988337085635429346@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240722153937.574819-1-colin.i.king@gmail.com>
-In-Reply-To: <20240722153937.574819-1-colin.i.king@gmail.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,35 +62,77 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+It's not always safe to call XE_WA() in the driver initialization. Add a
+xe_gt_assert() so this doesn't go unnoticed.
 
-Series: drm/i915/dp: Make read-only array bw_gbps static const
-URL   : https://patchwork.freedesktop.org/series/136344/
-State : warning
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
 
-== Summary ==
+v2:
+  - Fix kernel-doc (Tejas)
+  - Remove needless initialization (Tejas)
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 14a3cba64e7d9a418b7f9cffdc266c6bdf546a3b
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+ drivers/gpu/drm/xe/xe_gt_types.h | 6 ++++++
+ drivers/gpu/drm/xe/xe_wa.c       | 1 +
+ drivers/gpu/drm/xe/xe_wa.h       | 7 ++++++-
+ 3 files changed, 13 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index ef68c4a92972..4dd01adf63c6 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -389,6 +389,12 @@ struct xe_gt {
+ 		unsigned long *lrc;
+ 		/** @wa_active.oob: bitmap with active OOB workaroudns */
+ 		unsigned long *oob;
++		/**
++		 * @wa_active.oob_initialized: mark oob as initialized to help
++		 * detecting misuse of XE_WA() - it can only be called on
++		 * initialization after OOB WAs have being processed
++		 */
++		bool oob_initialized;
+ 	} wa_active;
+ 
+ 	/** @user_engines: engines present in GT and available to userspace */
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index fd009b2c68fa..564e32e44e3b 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -755,6 +755,7 @@ void xe_wa_process_oob(struct xe_gt *gt)
+ 
+ 	xe_rtp_process_ctx_enable_active_tracking(&ctx, gt->wa_active.oob,
+ 						  ARRAY_SIZE(oob_was));
++	gt->wa_active.oob_initialized = true;
+ 	xe_rtp_process(&ctx, oob_was);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_wa.h b/drivers/gpu/drm/xe/xe_wa.h
+index db9ddeaf69bf..52337405b5bc 100644
+--- a/drivers/gpu/drm/xe/xe_wa.h
++++ b/drivers/gpu/drm/xe/xe_wa.h
+@@ -6,6 +6,8 @@
+ #ifndef _XE_WA_
+ #define _XE_WA_
+ 
++#include "xe_assert.h"
++
+ struct drm_printer;
+ struct xe_gt;
+ struct xe_hw_engine;
+@@ -25,6 +27,9 @@ void xe_wa_dump(struct xe_gt *gt, struct drm_printer *p);
+  * @gt__: gt instance
+  * @id__: XE_OOB_<id__>, as generated by build system in generated/xe_wa_oob.h
+  */
+-#define XE_WA(gt__, id__) test_bit(XE_WA_OOB_ ## id__, (gt__)->wa_active.oob)
++#define XE_WA(gt__, id__) ({						\
++	xe_gt_assert(gt__, (gt__)->wa_active.oob_initialized);		\
++	test_bit(XE_WA_OOB_ ## id__, (gt__)->wa_active.oob);		\
++})
+ 
+ #endif
+-- 
+2.43.0
 
