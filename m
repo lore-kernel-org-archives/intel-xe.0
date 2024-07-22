@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04CE8C3DA59
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jul 2024 08:10:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B493C3DA5D
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jul 2024 08:15:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01E8A10E3E3;
-	Mon, 22 Jul 2024 08:10:31 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bnmXtdqE";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB86110E3D6;
- Mon, 22 Jul 2024 08:09:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721635794; x=1753171794;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Vi0K1DntkP/Tuz9xM7tuojD9fBCZDNTvlpfzPG+69dw=;
- b=bnmXtdqEOyAilB03sY6uG1cfkoDl7lxss6HsDbGLkjzRMS+cljVD9Cwi
- cabMWQwLOrmwwxK/t7Uf8ulPUY1A3vRzGfw6UOlOmEzoMfN4JOckjmuUK
- mvWrc04GYORmr0/dKHCIvkqIs3+jPVhF8ZIULJGQQR0ZuAf0+WBe076fh
- 11A5EUncmq299fptNozH9/uvB+PPSS1iJg5QIRii5qg4LyF02iovd4NUo
- srGMaIKp27cD+mzmvUS5TYjgCdX9fVyYQD5mPW8eHo2Jgms7ADf0cNgC7
- 3aurJ9tvoNV34YNUfjPZ97tP8A2kUaq3bbjiRgDzV37vhW06ubSby3+CB A==;
-X-CSE-ConnectionGUID: ZEGTXfTDTNyKiTPA9ZCtFg==
-X-CSE-MsgGUID: uPo3P+mWTWOqFrLP/RLu2g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11140"; a="19037726"
-X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; d="scan'208";a="19037726"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2024 01:09:54 -0700
-X-CSE-ConnectionGUID: FOob59qsQeml7i5Hvth2qA==
-X-CSE-MsgGUID: UMbWChTQTqekg/EW3kfUoA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; d="scan'208";a="51463688"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.233])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2024 01:09:51 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- =?UTF-8?q?Zbigniew=20Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t 3/3] lib/kunit: Improve a comment on action=list
- parameter
-Date: Mon, 22 Jul 2024 10:01:04 +0200
-Message-ID: <20240722080913.74333-8-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240722080913.74333-5-janusz.krzysztofik@linux.intel.com>
-References: <20240722080913.74333-5-janusz.krzysztofik@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC15610E3E7;
+	Mon, 22 Jul 2024 08:15:51 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DA1410E3E7;
+ Mon, 22 Jul 2024 08:15:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_lib/kunit=3A_Fixes_a?=
+ =?utf-8?q?nd_enhancements?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 22 Jul 2024 08:15:47 -0000
+Message-ID: <172163614718.326805.17288167801970093988@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240722080913.74333-5-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20240722080913.74333-5-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,36 +36,27 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Emphasize the fact that test case list of unknown length we want to avoid
-parsing of is an unstructured free text list.
+== Series Details ==
 
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
----
- lib/igt_kmod.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Series: lib/kunit: Fixes and enhancements
+URL   : https://patchwork.freedesktop.org/series/136330/
+State : failure
 
-diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-index a13c6fe063..464c0dcf48 100644
---- a/lib/igt_kmod.c
-+++ b/lib/igt_kmod.c
-@@ -1284,10 +1284,10 @@ static bool kunit_get_tests(struct igt_list_head *tests,
- 	/*
- 	 * To get a list of test cases provided by a kunit test module, ask the
- 	 * generic kunit module to respond with SKIP result for each test found.
--	 * We could also use action=list kunit parameter to get the listing,
--	 * however, parsing a KTAP report -- something that we already can do
--	 * perfectly -- seems to be more safe than extracting a test case list
--	 * of unknown length from /dev/kmsg.
-+	 * We could also try to use action=list kunit parameter to get the
-+	 * listing, however, parsing a structured KTAP report -- something that
-+	 * we already can do perfectly -- seems to be more safe than extracting
-+	 * a free text list of unknown length from /dev/kmsg.
- 	 */
- 	if (igt_debug_on(!kunit_set_filtering(suite, "module=none", "skip")))
- 		return false;
--- 
-2.45.2
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 867eb2599d00 drm-tip: 2024y-07m-22d-08h-03m-40s UTC integration manifest
+=== git am output follows ===
+error: lib/igt_kmod.c: does not exist in index
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Applying: lib/kunit: Fix selective execution of test cases
+Patch failed at 0001 lib/kunit: Fix selective execution of test cases
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 
