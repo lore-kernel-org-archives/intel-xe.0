@@ -4,53 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A462C3DA5D
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jul 2024 16:08:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C448C3DA59
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jul 2024 16:15:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D63A10E19E;
-	Mon, 22 Jul 2024 16:08:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE48A10E1A9;
+	Mon, 22 Jul 2024 16:15:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SkWC2r5W";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="V+Be+luh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC89110E199
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Jul 2024 16:08:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721664503; x=1753200503;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Oz2TxrcG5sAIohZU1+O0Iit856hS4jpvQPPXLRLJPxE=;
- b=SkWC2r5WD3g2NW769uVHB0ZkaRvQIcS5N/eutc4iWIXti6EIRfXwbFT1
- wA+qeNIUf4SJ6p7L4ED5TDsM4IXJCsnJbem+vuFnwrc9/Yj3vSZcRnkIb
- g3IzmEJJ2xC5M6we197ZI6QMN4Z8DZ8Q3hzkgjzJ+f6Kucfn14mvU8ah1
- ZxRw5boc3wTCtRKkKJwj6Vsdtrhzp4eQT0RLLt3BxGSHjTgCsn4A/RkVV
- +Unr+vRJKXzpncOmqRV7WgYOKETMFYWexJOPwNw/DDV7aPeKdGM8m6O9z
- 68aGUoCNnZsQPFmo3VSyRAAIaXxN8sUl9DMrs+L9e/p7QU/sxPt2AZEju g==;
-X-CSE-ConnectionGUID: a6IbYN/YTE22gaPIdz+WFQ==
-X-CSE-MsgGUID: LZ9T1V+PQ3CeD+CNl7lPfw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11141"; a="19395006"
-X-IronPort-AV: E=Sophos;i="6.09,228,1716274800"; d="scan'208";a="19395006"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2024 09:08:22 -0700
-X-CSE-ConnectionGUID: vKCo6rxXTfWofdGalLzKxg==
-X-CSE-MsgGUID: QdlUxs02T36fukAZOsM13A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,228,1716274800"; d="scan'208";a="82564712"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2024 09:08:23 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2] drm/xe: Add assert for XE_WA() usage
-Date: Mon, 22 Jul 2024 09:06:39 -0700
-Message-ID: <20240722160815.4085605-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E36EB10E194;
+ Mon, 22 Jul 2024 16:15:10 +0000 (UTC)
+Received: from [192.168.49.54] (c-73-118-245-227.hsd1.wa.comcast.net
+ [73.118.245.227])
+ by linux.microsoft.com (Postfix) with ESMTPSA id 4184C20B7165;
+ Mon, 22 Jul 2024 09:15:09 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 4184C20B7165
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+ s=default; t=1721664910;
+ bh=ozaD6a0NowW7U00u2hDPiAL5ijIAeQOS6klyJ53d2c4=;
+ h=Date:Cc:Subject:To:References:From:In-Reply-To:From;
+ b=V+Be+luhiZ8Vm/+HC2PjwH4zOP92nkalDiLRJjrSQvC864P+D/G4vw/lmtCrL7Q8X
+ G7WleFzsAkcxI/PB6XLFlYW+dla75nxrE0O7vv/A33otKhT1NGFd5hIwVDq4yT7bf7
+ yHV3vX0SAFFRgXi8unj18rDH25shXH/3nQiLksGE=
+Message-ID: <24fa9e9b-81a8-4bbe-8d13-4d559ee76a96@linux.microsoft.com>
+Date: Mon, 22 Jul 2024 09:15:08 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Cc: eahariha@linux.microsoft.com, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Zhenyu Wang <zhenyuw@linux.intel.com>,
+ Zhi Wang <zhi.wang.linux@gmail.com>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ "open list:INTEL GVT-g DRIVERS (Intel GPU Virtualization)"
+ <intel-gvt-dev@lists.freedesktop.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+ Zhi Wang <zhiwang@kernel.org>
+Subject: Re: [PATCH v4 3/6] drm/i915: Make I2C terminology more inclusive
+To: Andi Shyti <andi.shyti@linux.intel.com>
+References: <20240711052734.1273652-1-eahariha@linux.microsoft.com>
+ <20240711052734.1273652-4-eahariha@linux.microsoft.com>
+ <Zp5Vq9JoYC_OrA2C@ashyti-mobl2.lan>
+Content-Language: en-US
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+In-Reply-To: <Zp5Vq9JoYC_OrA2C@ashyti-mobl2.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,74 +74,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It's not always safe to call XE_WA() in the driver initialization. Add a
-xe_gt_assert() so this doesn't go unnoticed.
+On 7/22/2024 5:50 AM, Andi Shyti wrote:
+> Hi Easwar,
+> 
+> merged to drm-intel-next. Thanks!
+> 
+> On Thu, Jul 11, 2024 at 05:27:31AM +0000, Easwar Hariharan wrote:
+>> I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
+>> with more appropriate terms. Inspired by Wolfram's series to fix drivers/i2c/,
+>> fix the terminology for users of I2C_ALGOBIT bitbanging interface, now that
+>> the approved verbiage exists in the specification.
+>>
+>> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> 
+> I realized after pushing that this had the tag:
+> 
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> 
+> Not a big deal, but it's still a minor mistake.
+> 
+> Andi
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
+Thank you for the merge, Andi! I'm missing what the mistake is, I added
+the tags as I got them. Was I supposed to drop the R-B when Rodrigo gave
+an A-B?
 
-v2:
-  - Fix kernel-doc (Tejas)
-  - Remove needless initialization (Tejas)
-
- drivers/gpu/drm/xe/xe_gt_types.h | 6 ++++++
- drivers/gpu/drm/xe/xe_wa.c       | 1 +
- drivers/gpu/drm/xe/xe_wa.h       | 7 ++++++-
- 3 files changed, 13 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index ef68c4a92972..4dd01adf63c6 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -389,6 +389,12 @@ struct xe_gt {
- 		unsigned long *lrc;
- 		/** @wa_active.oob: bitmap with active OOB workaroudns */
- 		unsigned long *oob;
-+		/**
-+		 * @wa_active.oob_initialized: mark oob as initialized to help
-+		 * detecting misuse of XE_WA() - it can only be called on
-+		 * initialization after OOB WAs have being processed
-+		 */
-+		bool oob_initialized;
- 	} wa_active;
- 
- 	/** @user_engines: engines present in GT and available to userspace */
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index fd009b2c68fa..564e32e44e3b 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -755,6 +755,7 @@ void xe_wa_process_oob(struct xe_gt *gt)
- 
- 	xe_rtp_process_ctx_enable_active_tracking(&ctx, gt->wa_active.oob,
- 						  ARRAY_SIZE(oob_was));
-+	gt->wa_active.oob_initialized = true;
- 	xe_rtp_process(&ctx, oob_was);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_wa.h b/drivers/gpu/drm/xe/xe_wa.h
-index db9ddeaf69bf..52337405b5bc 100644
---- a/drivers/gpu/drm/xe/xe_wa.h
-+++ b/drivers/gpu/drm/xe/xe_wa.h
-@@ -6,6 +6,8 @@
- #ifndef _XE_WA_
- #define _XE_WA_
- 
-+#include "xe_assert.h"
-+
- struct drm_printer;
- struct xe_gt;
- struct xe_hw_engine;
-@@ -25,6 +27,9 @@ void xe_wa_dump(struct xe_gt *gt, struct drm_printer *p);
-  * @gt__: gt instance
-  * @id__: XE_OOB_<id__>, as generated by build system in generated/xe_wa_oob.h
-  */
--#define XE_WA(gt__, id__) test_bit(XE_WA_OOB_ ## id__, (gt__)->wa_active.oob)
-+#define XE_WA(gt__, id__) ({						\
-+	xe_gt_assert(gt__, (gt__)->wa_active.oob_initialized);		\
-+	test_bit(XE_WA_OOB_ ## id__, (gt__)->wa_active.oob);		\
-+})
- 
- #endif
--- 
-2.43.0
-
+Thanks,
+Easwar
