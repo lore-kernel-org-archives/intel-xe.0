@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE8A3C3DA5D
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Jul 2024 21:11:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3820BC3DA59
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Jul 2024 21:26:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C22B10E142;
-	Mon, 22 Jul 2024 21:11:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nDA9ZMWr";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D23910E142
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Jul 2024 21:11:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721682670; x=1753218670;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=UMaLYx2P0B+tWbco5+Q8ANetCHJOdRX4xjJuaOUCxGQ=;
- b=nDA9ZMWrS3+k0JUu33Zq6/VS9zkxsT/YENyQTzk5nJIwf0a7gOUJ9zWH
- cXCvfIgjfX3Iygd+dKJc59RGJLpNWulyJOpCFVcoreFYvrUH8TaMQevrX
- VRhxTt5AUzmRVbCU3cALuwuHT9oKxrG3eRxUuOiJA9xfbh2tBsk5kIn9Z
- Rh9r1yVGCrqOcBHqDWhOx9ylFJn3RC6AZt7HXsSVxm9H0nNLdAlaYkyQZ
- xq1RP0lO/T/ppGUMiCHhpK/XRo9udnHaJQ/b0OUe0ebYkJOdxV5yl/YkB
- 7T8emkZp6ClC15LF/RswO+MZWBM3JjPe9sl6wvGWOvAr8fy9NeXDu5gRo A==;
-X-CSE-ConnectionGUID: xy0o0HWIRHG703195DKUmg==
-X-CSE-MsgGUID: eg0O8QrSQWe/UI16g33D+Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11141"; a="44699864"
-X-IronPort-AV: E=Sophos;i="6.09,229,1716274800"; d="scan'208";a="44699864"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2024 14:11:09 -0700
-X-CSE-ConnectionGUID: ZgutG3GaRLa8cvNyDCNPww==
-X-CSE-MsgGUID: 0YgPLf3dSeyee/Vn7sQVhg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,229,1716274800"; d="scan'208";a="56171900"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa003.fm.intel.com with ESMTP; 22 Jul 2024 14:11:08 -0700
-Received: from [10.246.48.141] (mwajdecz-MOBL.ger.corp.intel.com
- [10.246.48.141])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id E10EC28775;
- Mon, 22 Jul 2024 22:11:05 +0100 (IST)
-Message-ID: <fe86a6cc-65c6-48eb-8425-ecd73c879fba@intel.com>
-Date: Mon, 22 Jul 2024 23:11:04 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id E128410E165;
+	Mon, 22 Jul 2024 21:26:45 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 220E910E165;
+ Mon, 22 Jul 2024 21:26:44 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3675499700240061048=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Remove stale declaration of xe_mmio_probe_vram()
-To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org
-References: <20240722190524.71548-2-gustavo.sousa@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20240722190524.71548-2-gustavo.sousa@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Decalre_xe_variable_in?=
+ =?utf-8?q?_xe=5Ffile=5Fclose?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 22 Jul 2024 21:26:44 -0000
+Message-ID: <172168360413.358367.8427955000463313240@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240722203318.1608626-1-matthew.brost@intel.com>
+In-Reply-To: <20240722203318.1608626-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,32 +36,148 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============3675499700240061048==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/xe: Decalre xe variable in xe_file_close
+URL   : https://patchwork.freedesktop.org/series/136358/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-1646-ea064de9c72e649eca5659c6ef24019faa7019b0_BAT -> xe-pw-136358v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (7 -> 7)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-136358v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_compute@compute-square:
+    - {bat-bmg-1}:        [SKIP][1] ([Intel XE#2240]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1646-ea064de9c72e649eca5659c6ef24019faa7019b0/bat-bmg-1/igt@xe_compute@compute-square.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136358v1/bat-bmg-1/igt@xe_compute@compute-square.html
+
+  * igt@xe_query@query-gt-list:
+    - {bat-bmg-1}:        [FAIL][3] ([Intel XE#2238]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1646-ea064de9c72e649eca5659c6ef24019faa7019b0/bat-bmg-1/igt@xe_query@query-gt-list.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136358v1/bat-bmg-1/igt@xe_query@query-gt-list.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#2238]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2238
+  [Intel XE#2240]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2240
 
 
-On 22.07.2024 21:05, Gustavo Sousa wrote:
-> The declaration of xe_mmio_probe_vram() became useless since
-> commit 638d1c79cbf1 ("drm/xe: Promote VRAM initialization function to
-> own file"). Remove it.
-> 
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_mmio.h | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-> index 6ae0cc32c651..26551410ecc8 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.h
-> +++ b/drivers/gpu/drm/xe/xe_mmio.h
-> @@ -22,7 +22,6 @@ u32 xe_mmio_rmw32(struct xe_gt *gt, struct xe_reg reg, u32 clr, u32 set);
->  int xe_mmio_write32_and_verify(struct xe_gt *gt, struct xe_reg reg, u32 val, u32 mask, u32 eval);
->  bool xe_mmio_in_range(const struct xe_gt *gt, const struct xe_mmio_range *range, struct xe_reg reg);
->  
-> -int xe_mmio_probe_vram(struct xe_device *xe);
->  u64 xe_mmio_read64_2x32(struct xe_gt *gt, struct xe_reg reg);
->  int xe_mmio_wait32(struct xe_gt *gt, struct xe_reg reg, u32 mask, u32 val, u32 timeout_us,
->  		   u32 *out_val, bool atomic);
+Build changes
+-------------
 
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+  * IGT: IGT_7933 -> IGT_7935
+  * Linux: xe-1646-ea064de9c72e649eca5659c6ef24019faa7019b0 -> xe-pw-136358v1
+
+  IGT_7933: 7933
+  IGT_7935: a85286b8cdfc8d2c902128946e90f8b17cecaa89 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1646-ea064de9c72e649eca5659c6ef24019faa7019b0: ea064de9c72e649eca5659c6ef24019faa7019b0
+  xe-pw-136358v1: 136358v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136358v1/index.html
+
+--===============3675499700240061048==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Decalre xe variable in xe_file_close</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136358/">https://patchwork.freedesktop.org/series/136358/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136358v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136358v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1646-ea064de9c72e649eca5659c6ef24019faa7019b0_BAT -&gt; xe-pw-136358v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (7 -&gt; 7)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-136358v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_compute@compute-square:</p>
+<ul>
+<li>{bat-bmg-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1646-ea064de9c72e649eca5659c6ef24019faa7019b0/bat-bmg-1/igt@xe_compute@compute-square.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2240">Intel XE#2240</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136358v1/bat-bmg-1/igt@xe_compute@compute-square.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_query@query-gt-list:</p>
+<ul>
+<li>{bat-bmg-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1646-ea064de9c72e649eca5659c6ef24019faa7019b0/bat-bmg-1/igt@xe_query@query-gt-list.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2238">Intel XE#2238</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136358v1/bat-bmg-1/igt@xe_query@query-gt-list.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7933 -&gt; IGT_7935</li>
+<li>Linux: xe-1646-ea064de9c72e649eca5659c6ef24019faa7019b0 -&gt; xe-pw-136358v1</li>
+</ul>
+<p>IGT_7933: 7933<br />
+  IGT_7935: a85286b8cdfc8d2c902128946e90f8b17cecaa89 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1646-ea064de9c72e649eca5659c6ef24019faa7019b0: ea064de9c72e649eca5659c6ef24019faa7019b0<br />
+  xe-pw-136358v1: 136358v1</p>
+
+</body>
+</html>
+
+--===============3675499700240061048==--
