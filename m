@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF1D3C3DA49
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jul 2024 20:16:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D687C3DA49
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jul 2024 20:16:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7676E10E627;
-	Tue, 23 Jul 2024 20:16:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFE0510E62B;
+	Tue, 23 Jul 2024 20:16:44 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D33410E627;
- Tue, 23 Jul 2024 20:16:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBD4310E62B;
+ Tue, 23 Jul 2024 20:16:42 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Fix_possible_UA?=
- =?utf-8?q?F_in_guc=5Fexec=5Fqueue=5Fprocess=5Fmsg_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_Fix_possible_UAF_in_?=
+ =?utf-8?q?guc=5Fexec=5Fqueue=5Fprocess=5Fmsg_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 23 Jul 2024 20:16:12 -0000
-Message-ID: <172176577250.360643.5312279020014628703@2413ebb6fbb6>
+Date: Tue, 23 Jul 2024 20:16:42 -0000
+Message-ID: <172176580296.360612.4339272640956425075@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240723191903.1753729-1-matthew.brost@intel.com>
 In-Reply-To: <20240723191903.1753729-1-matthew.brost@intel.com>
@@ -44,43 +44,66 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Fix possible UAF in guc_exec_queue_process_msg (rev2)
 URL   : https://patchwork.freedesktop.org/series/136397/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-5ce3e132caaa5b45e5e50201b574a097d130967c
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit a3c7bb198ddd661a528e739b6416610ad982edc8
-Author: Matthew Brost <matthew.brost@intel.com>
-Date:   Tue Jul 23 12:19:03 2024 -0700
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_device.c: In function ‘xe_file_close’:
+../drivers/gpu/drm/xe/xe_device.c:158:20: error: ‘xe’ undeclared (first use in this function); did you mean ‘xef’?
+  158 |  xe_pm_runtime_get(xe);
+      |                    ^~
+      |                    xef
+../drivers/gpu/drm/xe/xe_device.c:158:20: note: each undeclared identifier is reported only once for each function it appears in
+make[7]: *** [../scripts/Makefile.build:244: drivers/gpu/drm/xe/xe_device.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:485: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:485: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:485: drivers/gpu] Error 2
+make[4]: *** Waiting for unfinished jobs....
+make[3]: *** [../scripts/Makefile.build:485: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+../lib/iomap.c:156:5: warning: no previous prototype for ‘ioread64_lo_hi’ [-Wmissing-prototypes]
+  156 | u64 ioread64_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:163:5: warning: no previous prototype for ‘ioread64_hi_lo’ [-Wmissing-prototypes]
+  163 | u64 ioread64_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~
+../lib/iomap.c:170:5: warning: no previous prototype for ‘ioread64be_lo_hi’ [-Wmissing-prototypes]
+  170 | u64 ioread64be_lo_hi(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:178:5: warning: no previous prototype for ‘ioread64be_hi_lo’ [-Wmissing-prototypes]
+  178 | u64 ioread64be_hi_lo(const void __iomem *addr)
+      |     ^~~~~~~~~~~~~~~~
+../lib/iomap.c:264:6: warning: no previous prototype for ‘iowrite64_lo_hi’ [-Wmissing-prototypes]
+  264 | void iowrite64_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:272:6: warning: no previous prototype for ‘iowrite64_hi_lo’ [-Wmissing-prototypes]
+  272 | void iowrite64_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~
+../lib/iomap.c:280:6: warning: no previous prototype for ‘iowrite64be_lo_hi’ [-Wmissing-prototypes]
+  280 | void iowrite64be_lo_hi(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+../lib/iomap.c:288:6: warning: no previous prototype for ‘iowrite64be_hi_lo’ [-Wmissing-prototypes]
+  288 | void iowrite64be_hi_lo(u64 val, void __iomem *addr)
+      |      ^~~~~~~~~~~~~~~~~
+make[2]: *** [/kernel/Makefile:1934: .] Error 2
+make[1]: *** [/kernel/Makefile:240: __sub-make] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
 
-    drm/xe: Fix possible UAF in guc_exec_queue_process_msg
-    
-    Store xe_device ahead of processing message as message can be free'd in
-    some cases.
-    
-    v2:
-     - Including missing local changes
-    
-    Reported-by: kernel test robot <lkp@intel.com>
-    Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-    Closes: https://lore.kernel.org/r/202407231445.rpisd1vA-lkp@intel.com/
-    Fixes: d930c19fdff3 ("drm/xe: Build PM into GuC CT layer")
-    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-+ /mt/dim checkpatch 8a52c2cc81b4c9cfee85520ec8a9f29cfc319e7e drm-intel
-a3c7bb198ddd drm/xe: Fix possible UAF in guc_exec_queue_process_msg
--:12: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
-#12: 
-Reported-by: kernel test robot <lkp@intel.com>
-Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-
-total: 0 errors, 1 warnings, 0 checks, 16 lines checked
+[20:16:14] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[20:16:18] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
