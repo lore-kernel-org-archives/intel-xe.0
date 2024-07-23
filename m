@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78956C3DA49
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jul 2024 15:16:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01249C3DA63
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jul 2024 15:16:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC87110E5F2;
-	Tue, 23 Jul 2024 15:16:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF03D10E5F5;
+	Tue, 23 Jul 2024 15:16:15 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5527410E013;
- Tue, 23 Jul 2024 15:16:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7479B10E5F5;
+ Tue, 23 Jul 2024 15:16:13 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe=3A_Store_proc?=
- =?utf-8?q?ess_name_and_pid_in_xe_file?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe=3A_Store_process_n?=
+ =?utf-8?q?ame_and_pid_in_xe_file?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 23 Jul 2024 15:16:00 -0000
-Message-ID: <172174776034.360249.4116536303268858801@2413ebb6fbb6>
+Date: Tue, 23 Jul 2024 15:16:13 -0000
+Message-ID: <172174777347.360194.1578232548716383455@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240723151045.1725417-1-matthew.brost@intel.com>
 In-Reply-To: <20240723151045.1725417-1-matthew.brost@intel.com>
@@ -48,9 +48,34 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 049eae5224ed drm-tip: 2024y-07m-23d-09h-34m-35s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe: Store process name and pid in xe file
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+5ce3e132caaa5b45e5e50201b574a097d130967c
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d603a261063b7dbec3fdb1928ec3166c324fcbc2
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Tue Jul 23 08:10:45 2024 -0700
+
+    drm/xe: Store process name and pid in xe file
+    
+    An xe file can outlive the associated process as the GPU cleanup is just
+    triggered upon file close (process kill) and completes sometime later.
+    If the file close triggers error conditions (GPU hangs) the process
+    cannot be safely referenced to retrieve the name and pid for debug
+    information. Store the process name and pid directly in the xe file to
+    be safe.
+    
+    v2:
+     - Access file->pid via rcu_access_pointer (Matthew Auld)
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Matthew Auld <matthew.auld@intel.com>
++ /mt/dim checkpatch 049eae5224ed92f3cb723a492593b255654e0649 drm-intel
+d603a261063b drm/xe: Store process name and pid in xe file
 
 
