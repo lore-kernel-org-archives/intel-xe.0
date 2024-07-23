@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45B25C3DA7E
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jul 2024 09:07:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10BFFC3DA63
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jul 2024 09:17:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E041610E4E6;
-	Tue, 23 Jul 2024 09:07:32 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56DC510E4E6;
- Tue, 23 Jul 2024 09:07:31 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DED710E4F3;
+	Tue, 23 Jul 2024 09:17:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j7a0/VnV";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4636A10E521
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Jul 2024 09:17:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1721726255; x=1753262255;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=pcDkKTKG3q2cddQoKkf9eaf1THTCEpxSOLhQGmdWsrg=;
+ b=j7a0/VnVS1L/baTC/34UOH1VFcw/5ITWmLWU6W+QlVoLwdemOGjoSemu
+ nSMpl1I+Q6BeLI5236Atoy6FyI9fV0vJZ8W+E/cDth/rtlrXJLQI8p/+g
+ TjJ2TfItxDFEvRnkIrogrimQDt5v2GtHJXVDA9xkBIbSYIj5Jn6iLNgG4
+ ZTi3vfdNGs+l55bd/+zm3q37yb6jhXXaZzAcG/3DY8x+kMRtB0MYs948b
+ 1BFVcs/cDBrKueeJk1lFBl+ItjC9eU1SxCfYj73yWp1iZ+FFybJNzlnPy
+ ko6uW/S1IEUngBC+OFNurQCRGWjo/U4MqQzgN5SlSBJ1VvQ6/xf9lzhM1 w==;
+X-CSE-ConnectionGUID: VnK1TBEuSaylQgdGThKnYw==
+X-CSE-MsgGUID: VVXCZr3bTfi/vcWxK+D4pA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11141"; a="29956172"
+X-IronPort-AV: E=Sophos;i="6.09,230,1716274800"; d="scan'208";a="29956172"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2024 02:17:19 -0700
+X-CSE-ConnectionGUID: bK0aHqAUQ26f86T1yE8Z2Q==
+X-CSE-MsgGUID: Ln5Dl7OqSOWR4DVOtTfJZQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,230,1716274800"; d="scan'208";a="83186289"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.245.253])
+ ([10.245.245.253])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2024 02:15:57 -0700
+Message-ID: <25a3301b-4925-4630-8ee5-4c7951fb8b4a@intel.com>
+Date: Tue, 23 Jul 2024 10:15:54 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Fix xe_pt_abort_unbind
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+References: <20240723010230.1652707-1-matthew.brost@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20240723010230.1652707-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_for_Restrict_BMG_to_use_?=
- =?utf-8?q?64K_pages_for_scanout_buffers_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 23 Jul 2024 09:07:31 -0000
-Message-ID: <172172565134.359168.8431255102115043003@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240723090226.128718-1-zbigniew.kempczynski@intel.com>
-In-Reply-To: <20240723090226.128718-1-zbigniew.kempczynski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,28 +65,20 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 23/07/2024 02:02, Matthew Brost wrote:
+> When restoring the childern PT entries on a bind failure the incorrect
 
-Series: Restrict BMG to use 64K pages for scanout buffers (rev3)
-URL   : https://patchwork.freedesktop.org/series/135900/
-State : failure
+children
 
-== Summary ==
+> loop index has used resulting in PT entries being leaked. This is shown
+> by running xe_vm.bind-array-conflict-error-inject on a VRAM device going
+> into a suspend state after the test completes.
+> 
+> Fixes: a708f6501c69 ("drm/xe: Update PT layer with better error handling")
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 4d1cf05441fc drm-tip: 2024y-07m-23d-07h-53m-13s UTC integration manifest
-=== git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/xe_bo.c:1263
-error: drivers/gpu/drm/xe/xe_bo.c: patch does not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Applying: drm/xe: Separate 64K physical allocation for display
-Patch failed at 0001 drm/xe: Separate 64K physical allocation for display
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-
-
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
