@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2A11C3DA49
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jul 2024 16:56:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA685C3DA49
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jul 2024 16:57:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38AEE10E187;
-	Tue, 23 Jul 2024 16:56:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C54D10E2F2;
+	Tue, 23 Jul 2024 16:57:00 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C1D610E187;
- Tue, 23 Jul 2024 16:56:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95B9D10E2F2;
+ Tue, 23 Jul 2024 16:56:57 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/guc=3A_Enable?=
- =?utf-8?q?_w/a_14022293748_and_22019794406_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/guc=3A_Enable_w/a_?=
+ =?utf-8?q?14022293748_and_22019794406_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Julia Filipchuk" <julia.filipchuk@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 23 Jul 2024 16:56:45 -0000
-Message-ID: <172175380543.360288.3609809845446969302@2413ebb6fbb6>
+Date: Tue, 23 Jul 2024 16:56:57 -0000
+Message-ID: <172175381760.360430.6626882565299270713@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240723154815.2601622-1-julia.filipchuk@intel.com>
 In-Reply-To: <20240723154815.2601622-1-julia.filipchuk@intel.com>
@@ -44,13 +44,53 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/guc: Enable w/a 14022293748 and 22019794406 (rev3)
 URL   : https://patchwork.freedesktop.org/series/136307/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 049eae5224ed drm-tip: 2024y-07m-23d-09h-34m-35s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/guc: Enable w/a 14022293748 and 22019794406
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+5ce3e132caaa5b45e5e50201b574a097d130967c
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit dcd5ff2d4a8dd85698d21adc12f7ecb87b59fc79
+Author: Julia Filipchuk <julia.filipchuk@intel.com>
+Date:   Tue Jul 23 08:48:15 2024 -0700
+
+    drm/xe/guc: Enable w/a 14022293748 and 22019794406
+    
+    Enable workarounds for HW bug where render engine reset fails.
+    
+    v2: Enable KLV for either workarrounds (feedback from Lucas De Marchi)
+    v3: Resubmit for Kunit fails strange failure.
+    
+    Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
++ /mt/dim checkpatch 049eae5224ed92f3cb723a492593b255654e0649 drm-intel
+dcd5ff2d4a8d drm/xe/guc: Enable w/a 14022293748 and 22019794406
+-:51: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#51: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:108:
++	fw_def(BATTLEMAGE,	major_ver(intel-ci/xe,	guc,	bmg,	70, 29, 0))	\
+ 	                  	               ^
+
+-:51: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#51: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:108:
++	fw_def(BATTLEMAGE,	major_ver(intel-ci/xe,	guc,	bmg,	70, 29, 0))	\
+ 	                  	                  ^
+
+-:52: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#52: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:109:
++	fw_def(LUNARLAKE,	major_ver(intel-ci/xe,	guc,	lnl,	70, 29, 0))	\
+ 	                 	               ^
+
+-:52: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#52: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:109:
++	fw_def(LUNARLAKE,	major_ver(intel-ci/xe,	guc,	lnl,	70, 29, 0))	\
+ 	                 	                  ^
+
+total: 0 errors, 0 warnings, 4 checks, 36 lines checked
 
 
