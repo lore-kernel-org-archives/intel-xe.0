@@ -4,62 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5A12C3DA49
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jul 2024 14:27:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07C01C3DA63
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jul 2024 15:10:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B5E710E076;
-	Tue, 23 Jul 2024 14:27:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A672B10E5F0;
+	Tue, 23 Jul 2024 15:10:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bac7Lb+H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kTxFr9Om";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1176D10E076
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Jul 2024 14:27:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C998110E5F0
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Jul 2024 15:09:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721744835; x=1753280835;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=OA1+z3FI0qi/bnVeRuHwNWEjZp0Hg4U2URBzcVEc51o=;
- b=bac7Lb+HQGvEyCdM8KOO/FapN3Uv9U+I55VOtAnejHQ5IqYydvvbR9of
- BYV0qrdGIFP3qbRgJ7mi9BVhqAbDQfmA1oQVYnNedMXJVPalDGN8m2wE0
- qirz2bKzVJIubwSbfsBhcDX40BAed5QBaal93RUAbhZ47D7o6fubT2/NH
- USgIXvIsHnZ7ACg8dFvd8qDImJ+AqvUbw7CRApIkSgKegXbAQpozTpcVl
- uqkuMxenyBzKPGPFpt6UnPondH1Wk+S1H6ZO9GiCoa0x6LaqTSs4NntSa
- MkpdIImRm1u+5pPoKKwo6jYVXYP831fWQFuVx4HW4YR0iysou/nLO/n0Q Q==;
-X-CSE-ConnectionGUID: PmT0qUP/QQqW3xtaKlIvMw==
-X-CSE-MsgGUID: 69rXVZZAT6i1satq38KVLw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11142"; a="23176736"
-X-IronPort-AV: E=Sophos;i="6.09,230,1716274800"; d="scan'208";a="23176736"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2024 07:27:15 -0700
-X-CSE-ConnectionGUID: wfO7WLU4QtyMJM+LMA8Thw==
-X-CSE-MsgGUID: bODg+wjESKuKq1c822lVbA==
+ t=1721747400; x=1753283400;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MzTGYr6sjQpUELF0vm42CfJZlrKf+ANn0G9dpvMOLrg=;
+ b=kTxFr9OmOsMSFUSlFwpJu9MDbL0jxOPPwRCdSRYP4yJ1b0lBij3Fej2j
+ oC5ZfUJDa/XsjQl9KZQZ5HHGp6NBC7gUsa0GgTjdQB1YhGBwOEOQbltsE
+ iaQbWF27DddNilRdETAHaBpa+LDCKW/xC2TVi1UTwmh+0eDkK3XA5AKE3
+ XuRbrp9vwzBbzq1axTZZ2VckNKsLAGb7KdXC5cIuQiLJVr0+uoaYj09m5
+ nQAVFdYhZYRvxaakCxiei5CzHFtroBx0rayhKKRU9bBU+BdRofA9AkM5R
+ zRx5jce5QIK8wy+U9UGwvLo+wJj9NYDm0utOmc7leGQeQcuCOnt1ryR3f w==;
+X-CSE-ConnectionGUID: e2wN2K8yQtKdy4hFiWFLhA==
+X-CSE-MsgGUID: djYXeMiKSZqBqffGTEHvCQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11142"; a="19562759"
+X-IronPort-AV: E=Sophos;i="6.09,230,1716274800"; d="scan'208";a="19562759"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2024 08:09:59 -0700
+X-CSE-ConnectionGUID: 7GMw4o9pTnG52JbfnIpt0A==
+X-CSE-MsgGUID: 6fX/rWTZSzOHDkpwAV3+pA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,230,1716274800"; d="scan'208";a="56548914"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa005.fm.intel.com with ESMTP; 23 Jul 2024 07:27:13 -0700
-Received: from [10.246.1.253] (mwajdecz-MOBL.ger.corp.intel.com [10.246.1.253])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 85B4528780;
- Tue, 23 Jul 2024 15:27:11 +0100 (IST)
-Message-ID: <dd026199-6e24-44e6-b3ae-a90707c02897@intel.com>
-Date: Tue, 23 Jul 2024 16:27:10 +0200
+X-IronPort-AV: E=Sophos;i="6.09,230,1716274800"; d="scan'208";a="57379681"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2024 08:09:59 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH v2] drm/xe: Store process name and pid in xe file
+Date: Tue, 23 Jul 2024 08:10:45 -0700
+Message-Id: <20240723151045.1725417-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe: Create debugfs for tlb inval stats
-To: Nirmoy Das <nirmoy.das@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Sai Gowtham Ch <sai.gowtham.ch@intel.com>
-References: <20240723111610.21564-1-nirmoy.das@intel.com>
- <20240723111610.21564-3-nirmoy.das@intel.com>
- <95966c2f-45d2-43f4-a744-9b14fe05ba9d@intel.com>
- <ec4ed028-64ae-445f-bbc6-3376972c750b@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <ec4ed028-64ae-445f-bbc6-3376972c750b@intel.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,141 +63,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+An xe file can outlive the associated process as the GPU cleanup is just
+triggered upon file close (process kill) and completes sometime later.
+If the file close triggers error conditions (GPU hangs) the process
+cannot be safely referenced to retrieve the name and pid for debug
+information. Store the process name and pid directly in the xe file to
+be safe.
 
+v2:
+ - Access file->pid via rcu_access_pointer (Matthew Auld)
 
-On 23.07.2024 15:15, Nirmoy Das wrote:
-> 
-> On 7/23/2024 2:14 PM, Michal Wajdeczko wrote:
->>
->> On 23.07.2024 13:16, Nirmoy Das wrote:
->>> Create debugfs file for each GT to dump tlb sent/receive
->>> stats.
->>>
->>> Cc: Matthew Brost <matthew.brost@intel.com>
->>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> Cc: Sai Gowtham Ch <sai.gowtham.ch@intel.com>
->>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->>> ---
->>>   drivers/gpu/drm/xe/xe_gt_debugfs.c          | 9 +++++++++
->>>   drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 7 +++++++
->>>   drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h | 2 ++
->>>   3 files changed, 18 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c
->>> b/drivers/gpu/drm/xe/xe_gt_debugfs.c
->>> index 5e7fd937917a..959d979927dd 100644
->>> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
->>> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
->>> @@ -17,6 +17,7 @@
->>>   #include "xe_gt_mcr.h"
->>>   #include "xe_gt_sriov_pf_debugfs.h"
->>>   #include "xe_gt_sriov_vf_debugfs.h"
->>> +#include "xe_gt_tlb_invalidation.h"
->>>   #include "xe_gt_topology.h"
->>>   #include "xe_hw_engine.h"
->>>   #include "xe_lrc.h"
->>> @@ -269,6 +270,13 @@ static int vecs_default_lrc(struct xe_gt *gt,
->>> struct drm_printer *p)
->>>       return 0;
->>>   }
->>>   +static int tlb_stats(struct xe_gt *gt, struct drm_printer *p)
->>> +{
->>> +    xe_gt_tlb_dump(gt, p);
->>> +
->>> +    return 0;
->>> +}
->>> +
->>>   static const struct drm_info_list debugfs_list[] = {
->>>       {"hw_engines", .show = xe_gt_debugfs_simple_show, .data =
->>> hw_engines},
->>>       {"force_reset", .show = xe_gt_debugfs_simple_show, .data =
->>> force_reset},
->>> @@ -286,6 +294,7 @@ static const struct drm_info_list debugfs_list[] = {
->>>       {"default_lrc_bcs", .show = xe_gt_debugfs_simple_show, .data =
->>> bcs_default_lrc},
->>>       {"default_lrc_vcs", .show = xe_gt_debugfs_simple_show, .data =
->>> vcs_default_lrc},
->>>       {"default_lrc_vecs", .show = xe_gt_debugfs_simple_show, .data =
->>> vecs_default_lrc},
->>> +    {"tlb_stats", .show = xe_gt_debugfs_simple_show, .data =
->>> tlb_stats},
->>>   };
->>>     void xe_gt_debugfs_register(struct xe_gt *gt)
->>> diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
->>> b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
->>> index f84717c1aafa..62a6f42b6c60 100644
->>> --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
->>> +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
->>> @@ -540,3 +540,10 @@ void xe_gt_tlb_invalidation_fence_fini(struct
->>> xe_gt_tlb_invalidation_fence *fenc
->>>   {
->>>       xe_pm_runtime_put(gt_to_xe(fence->gt));
->>>   }
->>> +
->>> +void xe_gt_tlb_dump(struct xe_gt *gt, struct drm_printer *p)
->> if you make this function as returning "int" then you will be able to
->> plug it directly into debugfs_list without the tlb_stats() wrapper
-> 
-> 
-> Sounds goodI will modify it.
-> 
->>
->>> +{
->>> +    drm_printf(p, "GT%d, TLB Requests sent: %llu, received: %llu\n",
->>> +           gt->info.id,
->>> atomic64_read(&gt->tlb_invalidation.sent_count),
->>> +           atomic64_read(&gt->tlb_invalidation.received_count));
->> printing the GT identifier (GT%d) is redundant as path to this debugfs
->> entry already contains GT identifier:
->>
->> $ sudo cat  /sys/kernel/debug/dri/0/gt1/tlb_stats
->>                                      ^^^
->>
->> GT1, TLB Requests sent: 212, received: 212
->> ^^^
-> 
-> Agreed but I was thinking when we do "cat
-> /sys/kernel/debug/dri/0/gt*/tlb_stats" then keeping GT ID info  is useful.
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/xe/xe_devcoredump.c  | 10 ++--------
+ drivers/gpu/drm/xe/xe_device.c       |  9 +++++++++
+ drivers/gpu/drm/xe/xe_device_types.h | 12 ++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.c   | 10 ++--------
+ 4 files changed, 25 insertions(+), 16 deletions(-)
 
-TBH this doesn't convinced me, as our other entries are not duplicating
-GT id in the output and likely someone can do other trick to see the id:
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index 62c2b10fbf1d..d8d8ca2c19d3 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -171,7 +171,6 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 	u32 adj_logical_mask = q->logical_mask;
+ 	u32 width_mask = (0x1 << q->width) - 1;
+ 	const char *process_name = "no process";
+-	struct task_struct *task = NULL;
+ 
+ 	int i;
+ 	bool cookie;
+@@ -179,14 +178,9 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 	ss->snapshot_time = ktime_get_real();
+ 	ss->boot_time = ktime_get_boottime();
+ 
+-	if (q->vm && q->vm->xef) {
+-		task = get_pid_task(q->vm->xef->drm->pid, PIDTYPE_PID);
+-		if (task)
+-			process_name = task->comm;
+-	}
++	if (q->vm && q->vm->xef)
++		process_name = q->vm->xef->process_name;
+ 	strscpy(ss->process_name, process_name);
+-	if (task)
+-		put_task_struct(task);
+ 
+ 	ss->gt = q->gt;
+ 	INIT_WORK(&ss->work, xe_devcoredump_deferred_snap_work);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index b677608eb592..1aba6f9eaa19 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -64,6 +64,7 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+ 	struct xe_drm_client *client;
+ 	struct xe_file *xef;
+ 	int ret = -ENOMEM;
++	struct task_struct *task = NULL;
+ 
+ 	xef = kzalloc(sizeof(*xef), GFP_KERNEL);
+ 	if (!xef)
+@@ -92,6 +93,13 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+ 	file->driver_priv = xef;
+ 	kref_init(&xef->refcount);
+ 
++	task = get_pid_task(rcu_access_pointer(file->pid), PIDTYPE_PID);
++	if (task) {
++		xef->process_name = kstrdup(task->comm, GFP_KERNEL);
++		xef->pid = task->pid;
++		put_task_struct(task);
++	}
++
+ 	return 0;
+ }
+ 
+@@ -110,6 +118,7 @@ static void xe_file_destroy(struct kref *ref)
+ 	spin_unlock(&xe->clients.lock);
+ 
+ 	xe_drm_client_put(xef->client);
++	kfree(xef->process_name);
+ 	kfree(xef);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 36252d5b1663..5b7292a9a66d 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -582,6 +582,18 @@ struct xe_file {
+ 	/** @client: drm client */
+ 	struct xe_drm_client *client;
+ 
++	/**
++	 * @process_name: process name for file handle, used to safely output
++	 * during error situations where xe file can outlive process
++	 */
++	char *process_name;
++
++	/**
++	 * @pid: pid for file handle, used to safely output uring error
++	 * situations where xe file can outlive process
++	 */
++	pid_t pid;
++
+ 	/** @refcount: ref count of this xe file */
+ 	struct kref refcount;
+ };
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index da2ead86b9ae..a4570631926f 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1072,7 +1072,6 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 	struct xe_gpu_scheduler *sched = &q->guc->sched;
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+ 	const char *process_name = "no process";
+-	struct task_struct *task = NULL;
+ 	int err = -ETIME;
+ 	pid_t pid = -1;
+ 	int i = 0;
+@@ -1172,17 +1171,12 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 	}
+ 
+ 	if (q->vm && q->vm->xef) {
+-		task = get_pid_task(q->vm->xef->drm->pid, PIDTYPE_PID);
+-		if (task) {
+-			process_name = task->comm;
+-			pid = task->pid;
+-		}
++		process_name = q->vm->xef->process_name;
++		pid = q->vm->xef->pid;
+ 	}
+ 	xe_gt_notice(guc_to_gt(guc), "Timedout job: seqno=%u, lrc_seqno=%u, guc_id=%d, flags=0x%lx in %s [%d]",
+ 		     xe_sched_job_seqno(job), xe_sched_job_lrc_seqno(job),
+ 		     q->guc->id, q->flags, process_name, pid);
+-	if (task)
+-		put_task_struct(task);
+ 
+ 	trace_xe_sched_job_timedout(job);
+ 
+-- 
+2.34.1
 
-# grep . -r /sys/kernel/debug/dri/0/gt*/tlb_stats
-
-/sys/kernel/debug/dri/0/gt0/tlb_stats: Requests sent: 212, received: 212
-/sys/kernel/debug/dri/0/gt1/tlb_stats: Requests sent: 212, received: 212
-
-> 
-> 
->> btw, maybe 'last seqno' and 'default timeout' will be worth to be
->> included in debugfs ?
-> 
-> 
-> I will add those too, should be useful.
-> 
-> 
-> Thanks,
-> 
-> Nirmoy
-> 
->>
->>> +}
->>> diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
->>> b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
->>> index a84065fa324c..f420029ec02d 100644
->>> --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
->>> +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
->>> @@ -10,6 +10,7 @@
->>>     #include "xe_gt_tlb_invalidation_types.h"
->>>   +struct drm_printer;
->>>   struct xe_gt;
->>>   struct xe_guc;
->>>   struct xe_vma;
->>> @@ -36,4 +37,5 @@ xe_gt_tlb_invalidation_fence_wait(struct
->>> xe_gt_tlb_invalidation_fence *fence)
->>>       dma_fence_wait(&fence->base, false);
->>>   }
->>>   +void xe_gt_tlb_dump(struct xe_gt *gt, struct drm_printer *p);
->> missing empty separation line
->>
->>>   #endif    /* _XE_GT_TLB_INVALIDATION_ */
