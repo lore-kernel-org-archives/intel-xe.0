@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 392EBC3DA49
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Jul 2024 12:22:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17A6CC3DA63
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Jul 2024 12:34:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E02C110E5AC;
-	Tue, 23 Jul 2024 12:22:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h0gSNpYG";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BA9110E5AC
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Jul 2024 12:22:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721737369; x=1753273369;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=8mavhsK7qrgg10XkBWrey2YUmg2znvtlGIdKs5mGzMo=;
- b=h0gSNpYGOfDpehbgJYpYoLo7OhwMKfxnTulD/xqjfqNJG1Yiow5xgn8V
- mj1rmlgFRaeMrMoSSK3FzY0EdYwEzdsJAHStp+Myh53ikG+8uVcMJTP19
- a+NxTWPM5erj+su5p7gRP8Wz7IUpwA24hOCQXVMDyaA7bZL6iKoSbttf+
- LRlDBNFBm6O0cX2vf2/RZSdB9wE8NqBb3hvJar/0d4uahkrJDXascCBiK
- LueHi8AJRRgUPWkGChrJi2jklMhs2ND7ryoBGt6R71bPD2qU9wckYdYMR
- 1hdfcuMBOzKA/8BTksGl4li7VxWHKItsrhrUSeWD6YnD04Fvtu9pb7E0f Q==;
-X-CSE-ConnectionGUID: 5tStHRR8QcOXkxVlnfof9g==
-X-CSE-MsgGUID: EMKLeE0hSsqePM+U63faTw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11142"; a="29975950"
-X-IronPort-AV: E=Sophos;i="6.09,230,1716274800"; d="scan'208";a="29975950"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2024 05:22:48 -0700
-X-CSE-ConnectionGUID: Ooj+RzdDRzKnhyzIZoNGZQ==
-X-CSE-MsgGUID: YnVmbe3xTWOaGWu9osg2jQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,230,1716274800"; d="scan'208";a="52103326"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa010.jf.intel.com with ESMTP; 23 Jul 2024 05:22:45 -0700
-Received: from [10.246.1.253] (mwajdecz-MOBL.ger.corp.intel.com [10.246.1.253])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id CC96A28774;
- Tue, 23 Jul 2024 13:22:43 +0100 (IST)
-Message-ID: <9ecd36c8-b880-4097-a6ae-27e786b15497@intel.com>
-Date: Tue, 23 Jul 2024 14:22:43 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1AAC10E1CF;
+	Tue, 23 Jul 2024 12:34:18 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45CB310E1CF;
+ Tue, 23 Jul 2024 12:34:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/xe: Add sent and recv counters for tlb
- invalidations
-To: Nirmoy Das <nirmoy.das@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Sai Gowtham Ch <sai.gowtham.ch@intel.com>
-References: <20240723111610.21564-1-nirmoy.das@intel.com>
- <20240723111610.21564-2-nirmoy.das@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20240723111610.21564-2-nirmoy.das@intel.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/mmio=3A_Use_single_logi?=
+ =?utf-8?q?c_for_waiting_functions?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 23 Jul 2024 12:34:16 -0000
+Message-ID: <172173805627.359666.17623886742423786167@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240723120120.5443-2-gustavo.sousa@intel.com>
+In-Reply-To: <20240723120120.5443-2-gustavo.sousa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,171 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: drm/xe/mmio: Use single logic for waiting functions
+URL   : https://patchwork.freedesktop.org/series/136384/
+State : success
+
+== Summary ==
+
+lib/modules/6.10.0-rc7-xe/kernel/sound/core/seq/
+lib/modules/6.10.0-rc7-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/core/snd.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soundcore.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/common/
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/amd/
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/codecs/
+lib/modules/6.10.0-rc7-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/hda/
+lib/modules/6.10.0-rc7-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/hda/ext/
+lib/modules/6.10.0-rc7-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.10.0-rc7-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.10.0-rc7-xe/kernel/arch/
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/kernel/
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/events/
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/events/intel/
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/kvm/
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.10.0-rc7-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.10.0-rc7-xe/kernel/crypto/
+lib/modules/6.10.0-rc7-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.10.0-rc7-xe/kernel/crypto/cmac.ko
+lib/modules/6.10.0-rc7-xe/kernel/crypto/ccm.ko
+lib/modules/6.10.0-rc7-xe/kernel/crypto/cryptd.ko
+lib/modules/6.10.0-rc7-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.10.0-rc7-xe/kernel/crypto/async_tx/
+lib/modules/6.10.0-rc7-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.10.0-rc7-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.10.0-rc7-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.10.0-rc7-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.10.0-rc7-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.10.0-rc7-xe/build
+lib/modules/6.10.0-rc7-xe/modules.alias.bin
+lib/modules/6.10.0-rc7-xe/modules.builtin
+lib/modules/6.10.0-rc7-xe/modules.softdep
+lib/modules/6.10.0-rc7-xe/modules.alias
+lib/modules/6.10.0-rc7-xe/modules.order
+lib/modules/6.10.0-rc7-xe/modules.symbols
+lib/modules/6.10.0-rc7-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1721738044:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1721738044:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
-On 23.07.2024 13:16, Nirmoy Das wrote:
-> Add counters for TLB invalidation sent, receive requests which
-> then could be query as sysfs files from userspace.
-
-s/sysfs/debugfs ?
-
-> 
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Sai Gowtham Ch <sai.gowtham.ch@intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 37 +++++++++++++++------
->  drivers/gpu/drm/xe/xe_gt_types.h            |  4 +++
->  2 files changed, 30 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-> index 481d83d07367..f84717c1aafa 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-> @@ -37,8 +37,11 @@ static long tlb_timeout_jiffies(struct xe_gt *gt)
->  }
->  
->  static void
-> -__invalidation_fence_signal(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence)
-> +__invalidation_fence_signal(struct xe_gt *gt,
-> +			    struct xe_gt_tlb_invalidation_fence *fence,
-> +			    bool failed)
->  {
-> +	struct xe_device *xe = gt_to_xe(gt);
->  	bool stack = test_bit(FENCE_STACK_BIT, &fence->base.flags);
->  
->  	trace_xe_gt_tlb_invalidation_fence_signal(xe, fence);
-> @@ -46,13 +49,19 @@ __invalidation_fence_signal(struct xe_device *xe, struct xe_gt_tlb_invalidation_
->  	dma_fence_signal(&fence->base);
->  	if (!stack)
->  		dma_fence_put(&fence->base);
-> +
-> +	/* Only increment the counter when tlb inval is done successfully */
-> +	if (!failed)
-> +		atomic64_inc(&gt->tlb_invalidation.received_count);
->  }
->  
->  static void
-> -invalidation_fence_signal(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence)
-> +invalidation_fence_signal(struct xe_gt *gt,
-> +			  struct xe_gt_tlb_invalidation_fence *fence,
-> +			  bool failed)
->  {
->  	list_del(&fence->link);
-> -	__invalidation_fence_signal(xe, fence);
-> +	__invalidation_fence_signal(gt, fence, failed);
->  }
->  
->  static void xe_gt_tlb_fence_timeout(struct work_struct *work)
-> @@ -76,7 +85,7 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
->  			  fence->seqno, gt->tlb_invalidation.seqno_recv);
->  
->  		fence->base.error = -ETIME;
-> -		invalidation_fence_signal(xe, fence);
-> +		invalidation_fence_signal(gt, fence, true);
->  	}
->  	if (!list_empty(&gt->tlb_invalidation.pending_fences))
->  		queue_delayed_work(system_wq,
-> @@ -102,6 +111,8 @@ int xe_gt_tlb_invalidation_init(struct xe_gt *gt)
->  	spin_lock_init(&gt->tlb_invalidation.lock);
->  	INIT_DELAYED_WORK(&gt->tlb_invalidation.fence_tdr,
->  			  xe_gt_tlb_fence_timeout);
-> +	atomic64_set(&gt->tlb_invalidation.sent_count, 0);
-> +	atomic64_set(&gt->tlb_invalidation.received_count, 0);
->  
->  	return 0;
->  }
-> @@ -140,7 +151,9 @@ void xe_gt_tlb_invalidation_reset(struct xe_gt *gt)
->  
->  	list_for_each_entry_safe(fence, next,
->  				 &gt->tlb_invalidation.pending_fences, link)
-> -		invalidation_fence_signal(gt_to_xe(gt), fence);
-> +		invalidation_fence_signal(gt, fence, false);
-> +	atomic64_set(&gt->tlb_invalidation.sent_count, 0);
-> +	atomic64_set(&gt->tlb_invalidation.received_count, 0);
-
-hmm, any TLB invalidation timeouts/errors, which would make
-received_count != sent_count, should trigger a GT reset, which in turn
-will reset those counters, so under which condition you expect those two
-stats being not equal? is it just during the waiting for some ack?
-
-maybe better/cleaner option would be to track/display number of TLB
-invalidation requests in flight ?
-
->  	spin_unlock_irq(&gt->tlb_invalidation.pending_lock);
->  	mutex_unlock(&gt->uc.guc.ct.lock);
->  }
-> @@ -182,7 +195,7 @@ static int send_tlb_invalidation(struct xe_guc *guc,
->  	action[1] = seqno;
->  	ret = xe_guc_ct_send_locked(&guc->ct, action, len,
->  				    G2H_LEN_DW_TLB_INVALIDATE, 1);
-> -	if (!ret && fence) {
-> +	if (!ret) {
->  		spin_lock_irq(&gt->tlb_invalidation.pending_lock);
->  		/*
->  		 * We haven't actually published the TLB fence as per
-> @@ -191,7 +204,7 @@ static int send_tlb_invalidation(struct xe_guc *guc,
->  		 * we can just go ahead and signal the fence here.
->  		 */
->  		if (tlb_invalidation_seqno_past(gt, seqno)) {
-> -			__invalidation_fence_signal(xe, fence);
-> +			__invalidation_fence_signal(gt, fence, false);
->  		} else {
->  			fence->invalidation_time = ktime_get();
->  			list_add_tail(&fence->link,
-> @@ -203,14 +216,16 @@ static int send_tlb_invalidation(struct xe_guc *guc,
->  						   tlb_timeout_jiffies(gt));
->  		}
->  		spin_unlock_irq(&gt->tlb_invalidation.pending_lock);
-> -	} else if (ret < 0 && fence) {
-> -		__invalidation_fence_signal(xe, fence);
-> +	} else if (ret < 0) {
-> +		__invalidation_fence_signal(gt, fence, true);
->  	}
->  	if (!ret) {
->  		gt->tlb_invalidation.seqno = (gt->tlb_invalidation.seqno + 1) %
->  			TLB_INVALIDATION_SEQNO_MAX;
->  		if (!gt->tlb_invalidation.seqno)
->  			gt->tlb_invalidation.seqno = 1;
-> +
-> +		atomic64_inc(&gt->tlb_invalidation.sent_count);
->  	}
->  	mutex_unlock(&guc->ct.lock);
->  
-> @@ -321,7 +336,7 @@ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
->  
->  	/* Execlists not supported */
->  	if (gt_to_xe(gt)->info.force_execlist) {
-> -		__invalidation_fence_signal(xe, fence);
-> +		__invalidation_fence_signal(gt, fence, true);
->  		return 0;
->  	}
->  
-> @@ -455,7 +470,7 @@ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
->  		if (!tlb_invalidation_seqno_past(gt, fence->seqno))
->  			break;
->  
-> -		invalidation_fence_signal(xe, fence);
-> +		invalidation_fence_signal(gt, fence, false);
->  	}
->  
->  	if (!list_empty(&gt->tlb_invalidation.pending_fences))
-> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-> index ef68c4a92972..130d9f5cb5c2 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> @@ -199,6 +199,10 @@ struct xe_gt {
->  		struct delayed_work fence_tdr;
->  		/** @tlb_invalidation.lock: protects TLB invalidation fences */
->  		spinlock_t lock;
-> +		/** @tlb_invalidation.sent_count: counter for sent TLB inval requests */
-> +		atomic64_t sent_count;
-> +		/** @tlb_invalidation.received_count: counter for received TLB inval requestes */
-> +		atomic64_t received_count;
->  	} tlb_invalidation;
->  
->  	/**
