@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E655C3DA63
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Jul 2024 09:18:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC931C3DA63
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Jul 2024 09:20:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98C0110E5DF;
-	Wed, 24 Jul 2024 09:18:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D41B10E567;
+	Wed, 24 Jul 2024 09:20:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kH6wA/CD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LW/mSWcv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 069AE10E5DF
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Jul 2024 09:18:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A048710E612
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Jul 2024 09:20:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721812708; x=1753348708;
+ t=1721812823; x=1753348823;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=ubdTZYbP4E+5ZlRdrPgcu3yIH5pST8WmWwpqb/9I708=;
- b=kH6wA/CD2JuOYq+i0UBZka//GFHmem6H9VAnKFAE+6rxaySpvmkGKDay
- 29YKOmHQikjZMRIwJ57a1jttw+9CWssQ62jtboMePhvkDjYV1IP9B3Skg
- OVHSylj0ao2zCZFb16+r/KOAqgivrlPhBN8NbmIc1ebGj+rxKQAsK8suy
- Q/dYXpFzxmNMNCEg+/L7M4rMxtBTpP45EiSfpd0clgpq/edU3Xo/ThueV
- toV6BoDYJhi3Q44PWDYhPd7odyqNzKdVaKh0sxznJuFT/BuZLoca0QKRY
- q8RgAi6NuZQwKd95k09QyauVsY0KNuiQ+//8cRjQ4kr8UU+jtEB/GM6Bh w==;
-X-CSE-ConnectionGUID: pZ/l5RtzRayfnXKACslHuQ==
-X-CSE-MsgGUID: hNdrYUv3QcKlhCfJ4uhpeQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11142"; a="19616825"
-X-IronPort-AV: E=Sophos;i="6.09,232,1716274800"; d="scan'208";a="19616825"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ bh=hElO9YY/qo2yuqA8RxJfnfTjfTXxd9AXv5AYa2tSWNU=;
+ b=LW/mSWcvc518NuMJNsBA0WT3yhyoJ0J/R0mD/vBsr3j3x8TAl5Kso2hK
+ fUB+ZCE7f4Ox/5Hx3JDNLIzctKvpoNKFeVwXUGFP2nubDO1443bwJsY95
+ WSTELxYVHVKcYGN5pcFF0WbtPh+olZuiq/298lz3qKJ6Rs2IFd6iH51p4
+ vYSaNm/N7T04C7Dsb/ZA/4LHl8u8isRc62X8onMuOlgpzrekfLBeJr7F+
+ 7mZaFlB++lbcndPvg3BJaSAny4cXCutokDib7ajRAYCTDyYjII72pyg3w
+ ZtRS0TIk8Z0HwXZg8jqL2QClh72C0ZeHD8U3I5sjhdgKwadaAtcjuPAXR g==;
+X-CSE-ConnectionGUID: fi8Qd3NNRdyEJry8TdI6fQ==
+X-CSE-MsgGUID: 3AEqbXZXSvSxQwQgJ4mUlA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11142"; a="19617025"
+X-IronPort-AV: E=Sophos;i="6.09,232,1716274800"; d="scan'208";a="19617025"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2024 02:18:28 -0700
-X-CSE-ConnectionGUID: hCE+PCQKQzuEdQEK6mLk8Q==
-X-CSE-MsgGUID: nISZQ+M6SH6CiVtY/CHhhQ==
+ 24 Jul 2024 02:20:23 -0700
+X-CSE-ConnectionGUID: Hqf3VL/CTlO5+JTST68uwQ==
+X-CSE-MsgGUID: 0QNRTuyaTm2DZ4mIziou5w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,232,1716274800"; d="scan'208";a="52435571"
+X-IronPort-AV: E=Sophos;i="6.09,232,1716274800"; d="scan'208";a="83534488"
 Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.38.191])
  ([10.246.38.191])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2024 02:18:26 -0700
-Message-ID: <3ba3ce09-e6e2-4fdf-bffd-f6f7d976c4f3@linux.intel.com>
-Date: Wed, 24 Jul 2024 11:18:24 +0200
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2024 02:20:21 -0700
+Message-ID: <a7358792-6858-4681-807e-490d0765541d@linux.intel.com>
+Date: Wed, 24 Jul 2024 11:20:19 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe: Create debugfs for tlb inval stats
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
+Subject: Re: [PATCH 1/2] drm/xe: Add sent and recv counters for tlb
+ invalidations
+To: Matthew Brost <matthew.brost@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Sai Gowtham Ch <sai.gowtham.ch@intel.com>
 References: <20240723111610.21564-1-nirmoy.das@intel.com>
- <20240723111610.21564-3-nirmoy.das@intel.com>
- <95966c2f-45d2-43f4-a744-9b14fe05ba9d@intel.com>
- <ec4ed028-64ae-445f-bbc6-3376972c750b@intel.com>
- <dd026199-6e24-44e6-b3ae-a90707c02897@intel.com>
+ <20240723111610.21564-2-nirmoy.das@intel.com>
+ <9ecd36c8-b880-4097-a6ae-27e786b15497@intel.com>
+ <51db88f1-79b1-44e9-9354-0f628069a64b@intel.com>
+ <Zp/ZEeUAAepmpqs4@DUT025-TGLU.fm.intel.com>
 Content-Language: en-US
 From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <dd026199-6e24-44e6-b3ae-a90707c02897@intel.com>
+In-Reply-To: <Zp/ZEeUAAepmpqs4@DUT025-TGLU.fm.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -77,107 +77,30 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 7/23/2024 4:27 PM, Michal Wajdeczko wrote:
->
-> On 23.07.2024 15:15, Nirmoy Das wrote:
->> On 7/23/2024 2:14 PM, Michal Wajdeczko wrote:
+On 7/23/2024 6:23 PM, Matthew Brost wrote:
+> On Tue, Jul 23, 2024 at 03:07:05PM +0200, Nirmoy Das wrote:
+>> On 7/23/2024 2:22 PM, Michal Wajdeczko wrote:
 >>> On 23.07.2024 13:16, Nirmoy Das wrote:
->>>> Create debugfs file for each GT to dump tlb sent/receive
->>>> stats.
->>>>
->>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>>> Cc: Sai Gowtham Ch <sai.gowtham.ch@intel.com>
->>>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->>>> ---
->>>>    drivers/gpu/drm/xe/xe_gt_debugfs.c          | 9 +++++++++
->>>>    drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 7 +++++++
->>>>    drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h | 2 ++
->>>>    3 files changed, 18 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c
->>>> b/drivers/gpu/drm/xe/xe_gt_debugfs.c
->>>> index 5e7fd937917a..959d979927dd 100644
->>>> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
->>>> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
->>>> @@ -17,6 +17,7 @@
->>>>    #include "xe_gt_mcr.h"
->>>>    #include "xe_gt_sriov_pf_debugfs.h"
->>>>    #include "xe_gt_sriov_vf_debugfs.h"
->>>> +#include "xe_gt_tlb_invalidation.h"
->>>>    #include "xe_gt_topology.h"
->>>>    #include "xe_hw_engine.h"
->>>>    #include "xe_lrc.h"
->>>> @@ -269,6 +270,13 @@ static int vecs_default_lrc(struct xe_gt *gt,
->>>> struct drm_printer *p)
->>>>        return 0;
->>>>    }
->>>>    +static int tlb_stats(struct xe_gt *gt, struct drm_printer *p)
->>>> +{
->>>> +    xe_gt_tlb_dump(gt, p);
->>>> +
->>>> +    return 0;
->>>> +}
->>>> +
->>>>    static const struct drm_info_list debugfs_list[] = {
->>>>        {"hw_engines", .show = xe_gt_debugfs_simple_show, .data =
->>>> hw_engines},
->>>>        {"force_reset", .show = xe_gt_debugfs_simple_show, .data =
->>>> force_reset},
->>>> @@ -286,6 +294,7 @@ static const struct drm_info_list debugfs_list[] = {
->>>>        {"default_lrc_bcs", .show = xe_gt_debugfs_simple_show, .data =
->>>> bcs_default_lrc},
->>>>        {"default_lrc_vcs", .show = xe_gt_debugfs_simple_show, .data =
->>>> vcs_default_lrc},
->>>>        {"default_lrc_vecs", .show = xe_gt_debugfs_simple_show, .data =
->>>> vecs_default_lrc},
->>>> +    {"tlb_stats", .show = xe_gt_debugfs_simple_show, .data =
->>>> tlb_stats},
->>>>    };
->>>>      void xe_gt_debugfs_register(struct xe_gt *gt)
->>>> diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
->>>> b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
->>>> index f84717c1aafa..62a6f42b6c60 100644
->>>> --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
->>>> +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
->>>> @@ -540,3 +540,10 @@ void xe_gt_tlb_invalidation_fence_fini(struct
->>>> xe_gt_tlb_invalidation_fence *fenc
->>>>    {
->>>>        xe_pm_runtime_put(gt_to_xe(fence->gt));
->>>>    }
->>>> +
->>>> +void xe_gt_tlb_dump(struct xe_gt *gt, struct drm_printer *p)
->>> if you make this function as returning "int" then you will be able to
->>> plug it directly into debugfs_list without the tlb_stats() wrapper
+>>>> Add counters for TLB invalidation sent, receive requests which
+>>>> then could be query as sysfs files from userspace.
+>>> s/sysfs/debugfs ?
 >>
->> Sounds goodI will modify it.
+>> I will fix it.
 >>
->>>> +{
->>>> +    drm_printf(p, "GT%d, TLB Requests sent: %llu, received: %llu\n",
->>>> +           gt->info.id,
->>>> atomic64_read(&gt->tlb_invalidation.sent_count),
->>>> +           atomic64_read(&gt->tlb_invalidation.received_count));
->>> printing the GT identifier (GT%d) is redundant as path to this debugfs
->>> entry already contains GT identifier:
->>>
->>> $ sudo cat  /sys/kernel/debug/dri/0/gt1/tlb_stats
->>>                                       ^^^
->>>
->>> GT1, TLB Requests sent: 212, received: 212
->>> ^^^
->> Agreed but I was thinking when we do "cat
->> /sys/kernel/debug/dri/0/gt*/tlb_stats" then keeping GT ID info  is useful.
-> TBH this doesn't convinced me, as our other entries are not duplicating
-> GT id in the output and likely someone can do other trick to see the id:
+> I think this debugfs then I think we certainly need to hide this
+> implementation behind a Kconfig option as atomics have a non-zero
+> execution cost.
 >
-> # grep . -r /sys/kernel/debug/dri/0/gt*/tlb_stats
+> I'm thinking a generic DRM_XE_DEBUG_STATS or something.
 >
-> /sys/kernel/debug/dri/0/gt0/tlb_stats: Requests sent: 212, received: 212
-> /sys/kernel/debug/dri/0/gt1/tlb_stats: Requests sent: 212, received: 212
+> Then also with that, build generic stats layer which other code calls
+> into and stats object which encapsulates all the stats.
+>
+> Fine with only having TLB invalidations to start but having the
+> infrastructure to add more stats over time would be good.
 
 
-Yes, I see your point. If other entries are not duplicating it then it 
-doesn't make sense.
+Ok, I will give it a try and improve it with further suggestions.
 
 
 Thanks,
@@ -185,34 +108,162 @@ Thanks,
 Nirmoy
 
 >
+> Matt
+>
+>>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>>> Cc: Sai Gowtham Ch <sai.gowtham.ch@intel.com>
+>>>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>>>> ---
+>>>>    drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 37 +++++++++++++++------
+>>>>    drivers/gpu/drm/xe/xe_gt_types.h            |  4 +++
+>>>>    2 files changed, 30 insertions(+), 11 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+>>>> index 481d83d07367..f84717c1aafa 100644
+>>>> --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+>>>> +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+>>>> @@ -37,8 +37,11 @@ static long tlb_timeout_jiffies(struct xe_gt *gt)
+>>>>    }
+>>>>    static void
+>>>> -__invalidation_fence_signal(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence)
+>>>> +__invalidation_fence_signal(struct xe_gt *gt,
+>>>> +			    struct xe_gt_tlb_invalidation_fence *fence,
+>>>> +			    bool failed)
+>>>>    {
+>>>> +	struct xe_device *xe = gt_to_xe(gt);
+>>>>    	bool stack = test_bit(FENCE_STACK_BIT, &fence->base.flags);
+>>>>    	trace_xe_gt_tlb_invalidation_fence_signal(xe, fence);
+>>>> @@ -46,13 +49,19 @@ __invalidation_fence_signal(struct xe_device *xe, struct xe_gt_tlb_invalidation_
+>>>>    	dma_fence_signal(&fence->base);
+>>>>    	if (!stack)
+>>>>    		dma_fence_put(&fence->base);
+>>>> +
+>>>> +	/* Only increment the counter when tlb inval is done successfully */
+>>>> +	if (!failed)
+>>>> +		atomic64_inc(&gt->tlb_invalidation.received_count);
+>>>>    }
+>>>>    static void
+>>>> -invalidation_fence_signal(struct xe_device *xe, struct xe_gt_tlb_invalidation_fence *fence)
+>>>> +invalidation_fence_signal(struct xe_gt *gt,
+>>>> +			  struct xe_gt_tlb_invalidation_fence *fence,
+>>>> +			  bool failed)
+>>>>    {
+>>>>    	list_del(&fence->link);
+>>>> -	__invalidation_fence_signal(xe, fence);
+>>>> +	__invalidation_fence_signal(gt, fence, failed);
+>>>>    }
+>>>>    static void xe_gt_tlb_fence_timeout(struct work_struct *work)
+>>>> @@ -76,7 +85,7 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
+>>>>    			  fence->seqno, gt->tlb_invalidation.seqno_recv);
+>>>>    		fence->base.error = -ETIME;
+>>>> -		invalidation_fence_signal(xe, fence);
+>>>> +		invalidation_fence_signal(gt, fence, true);
+>>>>    	}
+>>>>    	if (!list_empty(&gt->tlb_invalidation.pending_fences))
+>>>>    		queue_delayed_work(system_wq,
+>>>> @@ -102,6 +111,8 @@ int xe_gt_tlb_invalidation_init(struct xe_gt *gt)
+>>>>    	spin_lock_init(&gt->tlb_invalidation.lock);
+>>>>    	INIT_DELAYED_WORK(&gt->tlb_invalidation.fence_tdr,
+>>>>    			  xe_gt_tlb_fence_timeout);
+>>>> +	atomic64_set(&gt->tlb_invalidation.sent_count, 0);
+>>>> +	atomic64_set(&gt->tlb_invalidation.received_count, 0);
+>>>>    	return 0;
+>>>>    }
+>>>> @@ -140,7 +151,9 @@ void xe_gt_tlb_invalidation_reset(struct xe_gt *gt)
+>>>>    	list_for_each_entry_safe(fence, next,
+>>>>    				 &gt->tlb_invalidation.pending_fences, link)
+>>>> -		invalidation_fence_signal(gt_to_xe(gt), fence);
+>>>> +		invalidation_fence_signal(gt, fence, false);
+>>>> +	atomic64_set(&gt->tlb_invalidation.sent_count, 0);
+>>>> +	atomic64_set(&gt->tlb_invalidation.received_count, 0);
+>>> hmm, any TLB invalidation timeouts/errors, which would make
+>>> received_count != sent_count, should trigger a GT reset, which in turn
+>>> will reset those counters, so under which condition you expect those two
+>>> stats being not equal?
+>> We tolerate GGTT tlb inval timeouts without needed to do a GT reset,
+>> probably we shouldn't? If not then, I agree that we can have
 >>
->>> btw, maybe 'last seqno' and 'default timeout' will be worth to be
->>> included in debugfs ?
->>
->> I will add those too, should be useful.
+>> a total sent counter  and another for inflight counter.
 >>
 >>
->> Thanks,
+>>> is it just during the waiting for some ack?
+>>>
+>>> maybe better/cleaner option would be to track/display number of TLB
+>>> invalidation requests in flight ?
+>>
+>> Request from Sai was about having total tlb inval sent counter and I think
+>> inflight would be a bonus and should be useful for debugging.
+>>
+>>
+>> Regards,
 >>
 >> Nirmoy
 >>
->>>> +}
->>>> diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
->>>> b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
->>>> index a84065fa324c..f420029ec02d 100644
->>>> --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
->>>> +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
->>>> @@ -10,6 +10,7 @@
->>>>      #include "xe_gt_tlb_invalidation_types.h"
->>>>    +struct drm_printer;
->>>>    struct xe_gt;
->>>>    struct xe_guc;
->>>>    struct xe_vma;
->>>> @@ -36,4 +37,5 @@ xe_gt_tlb_invalidation_fence_wait(struct
->>>> xe_gt_tlb_invalidation_fence *fence)
->>>>        dma_fence_wait(&fence->base, false);
->>>>    }
->>>>    +void xe_gt_tlb_dump(struct xe_gt *gt, struct drm_printer *p);
->>> missing empty separation line
->>>
->>>>    #endif    /* _XE_GT_TLB_INVALIDATION_ */
+>>>>    	spin_unlock_irq(&gt->tlb_invalidation.pending_lock);
+>>>>    	mutex_unlock(&gt->uc.guc.ct.lock);
+>>>>    }
+>>>> @@ -182,7 +195,7 @@ static int send_tlb_invalidation(struct xe_guc *guc,
+>>>>    	action[1] = seqno;
+>>>>    	ret = xe_guc_ct_send_locked(&guc->ct, action, len,
+>>>>    				    G2H_LEN_DW_TLB_INVALIDATE, 1);
+>>>> -	if (!ret && fence) {
+>>>> +	if (!ret) {
+>>>>    		spin_lock_irq(&gt->tlb_invalidation.pending_lock);
+>>>>    		/*
+>>>>    		 * We haven't actually published the TLB fence as per
+>>>> @@ -191,7 +204,7 @@ static int send_tlb_invalidation(struct xe_guc *guc,
+>>>>    		 * we can just go ahead and signal the fence here.
+>>>>    		 */
+>>>>    		if (tlb_invalidation_seqno_past(gt, seqno)) {
+>>>> -			__invalidation_fence_signal(xe, fence);
+>>>> +			__invalidation_fence_signal(gt, fence, false);
+>>>>    		} else {
+>>>>    			fence->invalidation_time = ktime_get();
+>>>>    			list_add_tail(&fence->link,
+>>>> @@ -203,14 +216,16 @@ static int send_tlb_invalidation(struct xe_guc *guc,
+>>>>    						   tlb_timeout_jiffies(gt));
+>>>>    		}
+>>>>    		spin_unlock_irq(&gt->tlb_invalidation.pending_lock);
+>>>> -	} else if (ret < 0 && fence) {
+>>>> -		__invalidation_fence_signal(xe, fence);
+>>>> +	} else if (ret < 0) {
+>>>> +		__invalidation_fence_signal(gt, fence, true);
+>>>>    	}
+>>>>    	if (!ret) {
+>>>>    		gt->tlb_invalidation.seqno = (gt->tlb_invalidation.seqno + 1) %
+>>>>    			TLB_INVALIDATION_SEQNO_MAX;
+>>>>    		if (!gt->tlb_invalidation.seqno)
+>>>>    			gt->tlb_invalidation.seqno = 1;
+>>>> +
+>>>> +		atomic64_inc(&gt->tlb_invalidation.sent_count);
+>>>>    	}
+>>>>    	mutex_unlock(&guc->ct.lock);
+>>>> @@ -321,7 +336,7 @@ int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
+>>>>    	/* Execlists not supported */
+>>>>    	if (gt_to_xe(gt)->info.force_execlist) {
+>>>> -		__invalidation_fence_signal(xe, fence);
+>>>> +		__invalidation_fence_signal(gt, fence, true);
+>>>>    		return 0;
+>>>>    	}
+>>>> @@ -455,7 +470,7 @@ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>>>>    		if (!tlb_invalidation_seqno_past(gt, fence->seqno))
+>>>>    			break;
+>>>> -		invalidation_fence_signal(xe, fence);
+>>>> +		invalidation_fence_signal(gt, fence, false);
+>>>>    	}
+>>>>    	if (!list_empty(&gt->tlb_invalidation.pending_fences))
+>>>> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+>>>> index ef68c4a92972..130d9f5cb5c2 100644
+>>>> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+>>>> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+>>>> @@ -199,6 +199,10 @@ struct xe_gt {
+>>>>    		struct delayed_work fence_tdr;
+>>>>    		/** @tlb_invalidation.lock: protects TLB invalidation fences */
+>>>>    		spinlock_t lock;
+>>>> +		/** @tlb_invalidation.sent_count: counter for sent TLB inval requests */
+>>>> +		atomic64_t sent_count;
+>>>> +		/** @tlb_invalidation.received_count: counter for received TLB inval requestes */
+>>>> +		atomic64_t received_count;
+>>>>    	} tlb_invalidation;
+>>>>    	/**
