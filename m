@@ -4,61 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FA9FC3DA63
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Jul 2024 10:06:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5991C3DA61
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Jul 2024 12:16:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C026510E684;
-	Wed, 24 Jul 2024 10:06:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FB5410E695;
+	Wed, 24 Jul 2024 12:16:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PtjFDiws";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ngOe7bZN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38C4E10E67D;
- Wed, 24 Jul 2024 10:06:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F40910E695
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Jul 2024 12:16:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721815564; x=1753351564;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=R6nytAPZD4VSGNeS55Spjqw6SGRF9f95mchzaxhpM1k=;
- b=PtjFDiwsaGynUAVPwDp7ixVQcRdhG+zh0/dJqNSB6iziZFCsyn0fLzOt
- e482SMZeeQIjZAUQ6vy+ahTTxZ3wpHt4MCOB2kogIGA7HeIGqbyHaqhz4
- x4wD3LLSbX//NzaMyRFGMEc4tEvouaPphu5CeAsm95RPmWLGMbBDcZjQe
- QlYoIG62Ny3NzWk1xcKjhagmhR9G9sJDZrLE5mUh1ixse6niNxEZtU5Ad
- fuU3UcP8IvKpuVzBzPr2W0MvPedFYwq3VAEVVfsKpZHDwZ828Pw9yKGZ9
- wrzLGXAqi0c1/V5qZM4iqepFLT8dfruGMxZrXdmPMMHAfmJr4775hkX3Y w==;
-X-CSE-ConnectionGUID: h1zeJiyQTgW00zHbGQTugQ==
-X-CSE-MsgGUID: hFqpsDZ5ScaKcU5ZajBDpQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11142"; a="19096983"
-X-IronPort-AV: E=Sophos;i="6.09,232,1716274800"; d="scan'208";a="19096983"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2024 03:06:04 -0700
-X-CSE-ConnectionGUID: YtIHWzjnTKi1WnBKn0frTg==
-X-CSE-MsgGUID: 23DthYL/QFaQDRvlZzjYGg==
+ t=1721823374; x=1753359374;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HrGHzIIqQ5YWKKh3mb42BJdesmxfFVUVEJBgC7GEc3s=;
+ b=ngOe7bZNJ6WwpMVp93Tl1nhxCHAnjsEkzh17WKJx4+l0QE0A+OSTmHZC
+ yCpWZYDLoOuz/ka9ZZIEGvpy2Ioi5g45O3UFlMijli7p6gXLImR9c0d9S
+ 7aP7WSUYDpRfFnfmdHy6cw6/OZiaKh1PTZ34YAEIcqpwzAgoseMZVZcvq
+ pEOrPEg2w1SP6GP+eT8WS10XSZi/1NG+bsBiNa1/ImR0OqsJQ+2zNsuNF
+ 6FBW4FJyG35EyC28ydDinF1ywlFg5qzZcSquAuqsZfz3wzP5cR+7Gleo1
+ QAgG2UvKXz8BQAqMFxM+9pltulDveoaRDqWa6uuBS6BzsQ2PlJeKH/C95 A==;
+X-CSE-ConnectionGUID: RA+tePsjRSCOScltS2ZSdg==
+X-CSE-MsgGUID: qspgo6kxRPOw3RJCd0WdbA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11143"; a="30097679"
+X-IronPort-AV: E=Sophos;i="6.09,232,1716274800"; d="scan'208";a="30097679"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2024 05:16:14 -0700
+X-CSE-ConnectionGUID: 43MFhwHTTgmPmn/dSEKokA==
+X-CSE-MsgGUID: mxMC5ZgIRfOPm0bDnWCsTQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,232,1716274800"; d="scan'208";a="56684670"
-Received: from iklimasz-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.170])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2024 03:06:00 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Colin Ian King <colin.i.king@gmail.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH][next] drm/i915/dp: Make read-only array bw_gbps static
- const
-In-Reply-To: <20240722153937.574819-1-colin.i.king@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240722153937.574819-1-colin.i.king@gmail.com>
-Date: Wed, 24 Jul 2024 13:05:56 +0300
-Message-ID: <87frrzf6kb.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,232,1716274800"; d="scan'208";a="52441938"
+Received: from spottumu-desk.iind.intel.com ([10.145.152.200])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2024 05:16:11 -0700
+From: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+Subject: [PATCH] drm/xe/xe2hpg: Introduce performance tuning changes for
+ Xe2_HPG
+Date: Wed, 24 Jul 2024 17:45:21 +0530
+Message-Id: <20240724121521.2347524-1-sai.teja.pottumuttu@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,34 +65,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 22 Jul 2024, Colin Ian King <colin.i.king@gmail.com> wrote:
-> Don't populate the read-only array bw_gbps on the stack at run time,
-> instead make it static const.
->
-> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+Add performance tuning changes for Xe2_HPG
 
-Pushed to drm-intel-next, thanks for the patch.
+Signed-off-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 1 +
+ drivers/gpu/drm/xe/xe_tuning.c       | 8 ++++++++
+ 2 files changed, 9 insertions(+)
 
-BR,
-Jani.
-
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 59f11af3b0a1..a082ed8f5464 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -3434,7 +3434,7 @@ static void intel_dp_get_pcon_dsc_cap(struct intel_dp *intel_dp)
->  
->  static int intel_dp_pcon_get_frl_mask(u8 frl_bw_mask)
->  {
-> -	int bw_gbps[] = {9, 18, 24, 32, 40, 48};
-> +	static const int bw_gbps[] = {9, 18, 24, 32, 40, 48};
->  	int i;
->  
->  	for (i = ARRAY_SIZE(bw_gbps) - 1; i >= 0; i--) {
-
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 8a94a94d2267..3b87f95f9ecf 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -108,6 +108,7 @@
+ 
+ #define FF_MODE					XE_REG_MCR(0x6210)
+ #define   DIS_TE_AUTOSTRIP			REG_BIT(31)
++#define   VS_HIT_MAX_VALUE_MASK			REG_GENMASK(25, 20)
+ #define   DIS_MESH_PARTIAL_AUTOSTRIP		REG_BIT(16)
+ #define   DIS_MESH_AUTOSTRIP			REG_BIT(15)
+ 
+diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
+index d4e6fa918942..a8e1cfc99ed2 100644
+--- a/drivers/gpu/drm/xe/xe_tuning.c
++++ b/drivers/gpu/drm/xe/xe_tuning.c
+@@ -93,6 +93,14 @@ static const struct xe_rtp_entry_sr lrc_tunings[] = {
+ 				   REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f)))
+ 	},
+ 
++	/* Xe2_HPG */
++
++	{ XE_RTP_NAME("Tuning: vs hit max value"),
++	  XE_RTP_RULES(GRAPHICS_VERSION(2001), ENGINE_CLASS(RENDER)),
++	  XE_RTP_ACTIONS(FIELD_SET(FF_MODE, VS_HIT_MAX_VALUE_MASK,
++				   REG_FIELD_PREP(VS_HIT_MAX_VALUE_MASK, 0x3F)))
++	},
++
+ 	{}
+ };
+ 
 -- 
-Jani Nikula, Intel
+2.34.1
+
