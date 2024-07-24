@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53023C3DA61
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Jul 2024 14:09:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CEDFC3DA63
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Jul 2024 14:09:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F36910E6F5;
-	Wed, 24 Jul 2024 14:09:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F408D10E6EC;
+	Wed, 24 Jul 2024 14:09:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f4QJ4oya";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cJKWvgCY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1DD510E6E4;
- Wed, 24 Jul 2024 14:09:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11D0110E6ED;
+ Wed, 24 Jul 2024 14:09:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721830160; x=1753366160;
+ t=1721830176; x=1753366176;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=11QOs8u+bUy7eaSFVBIk7XtmbUWxd8eyYN7UZ5kbeYM=;
- b=f4QJ4oyaQtq1JGp9TdOR9oBln93sGlyIXk5h4UTdH0nTcsnnLPvPOb5q
- EH/Gl095exvQevN0Y/qjnZU8PIXvM0MR1bNcj74znIvIV4tv2HvxA9YEX
- G9oDjjhrfh/YHwwPHp/vMsmhI36/kdgNSxP3ig/zylA2812BdA7VtqFXW
- N7qL40ilVLuXnzbF8queaoC/BD8N06NoWZybuy4lwuJ9Z63NelLbhFACw
- wGrpcaHT2yA24BqEElbm4Y4DY1wQKncPVKPiws2hmVwUOpUjeJlniy+g/
- HnsXzH8mhOaPYXBypljcE79wrJ2Omfei3ijBmKcwk2XcCSruoZvADgmWY Q==;
-X-CSE-ConnectionGUID: gKsww4YtSo+MHwMT/Nz9rg==
-X-CSE-MsgGUID: rz3VJyK5QxasAHrb28F52A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11143"; a="30173792"
-X-IronPort-AV: E=Sophos;i="6.09,233,1716274800"; d="scan'208";a="30173792"
+ bh=qWTpkyGmT+qHfbsiAtnPnaMcQltPze6qXR966ASrSdQ=;
+ b=cJKWvgCYeWMlLKIhFSJMmez+5PuBtogVbptHeSn5ShVHtdJE6RncEQOp
+ q9C2J/xRdF2x5Cb6Vlhqs364tLh5KQ7fzbOFbHtIx2YppoZALyZlojeSQ
+ WuS6BacfgNgdEQyZ9ospjsQ+Tvjl7dZISM3h7b0ud3ZjSIXq4+M7ldxaY
+ NLKyXZqfpSfZP/HsfrH57qaxhfM4RCxmrdG/MDHnGovBo6RsFI6kbtHNt
+ b4C4IyM/In8rEk6HQTgUu1GBXFcGXHcyhrNwh2ehX9TQ/6EocGSDdl6Dl
+ Kq2imLT9hXMw/H6rNfpWP0dntDaXXFR74dVqj83jIFPwfq48KQ7HBcFWY w==;
+X-CSE-ConnectionGUID: f2kxynhFQWGPCLz44Z7bWQ==
+X-CSE-MsgGUID: 28fSjshgTrulmYmRxEowWQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11143"; a="30173848"
+X-IronPort-AV: E=Sophos;i="6.09,233,1716274800"; d="scan'208";a="30173848"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2024 07:09:19 -0700
-X-CSE-ConnectionGUID: jAWtK+DZQniwI/JoNncp9w==
-X-CSE-MsgGUID: 8lRaHHmkQxS3H+k+PwJWmA==
+ 24 Jul 2024 07:09:35 -0700
+X-CSE-ConnectionGUID: gHORDn0PTo6+/Ct2UTB5iQ==
+X-CSE-MsgGUID: gkvas0LWQcWE60tkqBP0wg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,233,1716274800"; d="scan'208";a="83211503"
+X-IronPort-AV: E=Sophos;i="6.09,233,1716274800"; d="scan'208";a="83211555"
 Received: from sannilnx-dsk.jer.intel.com ([10.12.231.107])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2024 07:09:15 -0700
+ 24 Jul 2024 07:09:31 -0700
 From: Alexander Usyskin <alexander.usyskin@intel.com>
 To: Mark Brown <broonie@kernel.org>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
@@ -58,9 +58,9 @@ Cc: Tomas Winkler <tomas.winkler@intel.com>,
  Vitaly Lubart <vitaly.lubart@intel.com>, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-spi@vger.kernel.org,
  intel-gfx@lists.freedesktop.org
-Subject: [PATCH v2 07/12] spi: intel-dg: wake card on operations
-Date: Wed, 24 Jul 2024 17:00:09 +0300
-Message-Id: <20240724140014.428991-8-alexander.usyskin@intel.com>
+Subject: [PATCH v2 10/12] drm/i915/spi: add support for access mode
+Date: Wed, 24 Jul 2024 17:00:12 +0300
+Message-Id: <20240724140014.428991-11-alexander.usyskin@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240724140014.428991-1-alexander.usyskin@intel.com>
 References: <20240724140014.428991-1-alexander.usyskin@intel.com>
@@ -80,142 +80,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable runtime PM in spi driver to notify graphics driver that
-whole card should be kept awake while spi operations are
-performed through this driver.
+Check SPI access mode from GSC FW status registers
+and overwrite access status read from SPI descriptor, if needed.
 
-CC: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
 ---
- drivers/spi/spi-intel-dg.c | 44 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+ drivers/gpu/drm/i915/spi/intel_spi.c | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-diff --git a/drivers/spi/spi-intel-dg.c b/drivers/spi/spi-intel-dg.c
-index 534e99cb336d..9671c4ec01a9 100644
---- a/drivers/spi/spi-intel-dg.c
-+++ b/drivers/spi/spi-intel-dg.c
-@@ -12,11 +12,14 @@
- #include <linux/module.h>
- #include <linux/mtd/mtd.h>
- #include <linux/mtd/partitions.h>
-+#include <linux/pm_runtime.h>
- #include <linux/string.h>
- #include <linux/slab.h>
- #include <linux/sizes.h>
- #include <linux/types.h>
+diff --git a/drivers/gpu/drm/i915/spi/intel_spi.c b/drivers/gpu/drm/i915/spi/intel_spi.c
+index 8dd4065551e2..747e43313c6f 100644
+--- a/drivers/gpu/drm/i915/spi/intel_spi.c
++++ b/drivers/gpu/drm/i915/spi/intel_spi.c
+@@ -10,6 +10,7 @@
+ #include "spi/intel_spi.h"
  
-+#define INTEL_DG_SPI_RPM_TIMEOUT 500
-+
- struct intel_dg_spi {
- 	struct kref refcnt;
- 	struct mtd_info mtd;
-@@ -471,6 +474,12 @@ static int intel_dg_spi_erase(struct mtd_info *mtd, struct erase_info *info)
- 	total_len = info->len;
- 	addr = info->addr;
+ #define GEN12_GUNIT_SPI_SIZE 0x80
++#define HECI_FW_STATUS_2_SPI_ACCESS_MODE BIT(3)
  
-+	ret = pm_runtime_resume_and_get(mtd->dev.parent);
-+	if (ret < 0) {
-+		dev_err(&mtd->dev, "rpm: get failed %d\n", ret);
-+		return ret;
-+	}
-+
- 	mutex_lock(&spi->lock);
- 
- 	while (total_len > 0) {
-@@ -512,6 +521,8 @@ static int intel_dg_spi_erase(struct mtd_info *mtd, struct erase_info *info)
- 
- out:
- 	mutex_unlock(&spi->lock);
-+	pm_runtime_mark_last_busy(mtd->dev.parent);
-+	pm_runtime_put_autosuspend(mtd->dev.parent);
- 	return ret;
+ static const struct intel_dg_spi_region regions[INTEL_DG_SPI_REGIONS] = {
+ 	[0] = { .name = "DESCRIPTOR", },
+@@ -22,6 +23,29 @@ static void i915_spi_release_dev(struct device *dev)
+ {
  }
  
-@@ -545,6 +556,12 @@ static int intel_dg_spi_read(struct mtd_info *mtd, loff_t from, size_t len,
- 	if (len > spi->regions[idx].size - from)
- 		len = spi->regions[idx].size - from;
- 
-+	ret = pm_runtime_resume_and_get(mtd->dev.parent);
-+	if (ret < 0) {
-+		dev_err(&mtd->dev, "rpm: get failed %zd\n", ret);
-+		return ret;
++static bool i915_spi_writeable_override(struct drm_i915_private *dev_priv)
++{
++	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
++	resource_size_t base;
++	bool writeable_override;
++
++	if (IS_DG1(dev_priv)) {
++		base = DG1_GSC_HECI2_BASE;
++	} else if (IS_DG2(dev_priv)) {
++		base = DG2_GSC_HECI2_BASE;
++	} else {
++		dev_err(&pdev->dev, "Unknown platform\n");
++		return true;
 +	}
 +
- 	mutex_lock(&spi->lock);
- 
- 	ret = spi_read(spi, region, from, len, buf);
-@@ -557,6 +574,8 @@ static int intel_dg_spi_read(struct mtd_info *mtd, loff_t from, size_t len,
- 	*retlen = ret;
- 
- 	mutex_unlock(&spi->lock);
-+	pm_runtime_mark_last_busy(mtd->dev.parent);
-+	pm_runtime_put_autosuspend(mtd->dev.parent);
- 	return 0;
- }
- 
-@@ -590,6 +609,12 @@ static int intel_dg_spi_write(struct mtd_info *mtd, loff_t to, size_t len,
- 	if (len > spi->regions[idx].size - to)
- 		len = spi->regions[idx].size - to;
- 
-+	ret = pm_runtime_resume_and_get(mtd->dev.parent);
-+	if (ret < 0) {
-+		dev_err(&mtd->dev, "rpm: get failed %zd\n", ret);
-+		return ret;
-+	}
++	writeable_override =
++		!(intel_uncore_read(&dev_priv->uncore, HECI_FWSTS(base, 2)) &
++		  HECI_FW_STATUS_2_SPI_ACCESS_MODE);
++	if (writeable_override)
++		dev_info(&pdev->dev, "SPI access overridden by jumper\n");
++	return writeable_override;
++}
 +
- 	mutex_lock(&spi->lock);
- 
- 	ret = spi_write(spi, region, to, len, buf);
-@@ -602,6 +627,8 @@ static int intel_dg_spi_write(struct mtd_info *mtd, loff_t to, size_t len,
- 	*retlen = ret;
- 
- 	mutex_unlock(&spi->lock);
-+	pm_runtime_mark_last_busy(mtd->dev.parent);
-+	pm_runtime_put_autosuspend(mtd->dev.parent);
- 	return 0;
- }
- 
-@@ -747,6 +774,17 @@ static int intel_dg_spi_probe(struct auxiliary_device *aux_dev,
- 		}
- 	}
- 
-+	pm_runtime_enable(device);
-+
-+	pm_runtime_set_autosuspend_delay(device, INTEL_DG_SPI_RPM_TIMEOUT);
-+	pm_runtime_use_autosuspend(device);
-+
-+	ret = pm_runtime_resume_and_get(device);
-+	if (ret < 0) {
-+		dev_err(device, "rpm: get failed %d\n", ret);
-+		goto err_norpm;
-+	}
-+
- 	spi->base = devm_ioremap_resource(device, &ispi->bar);
- 	if (IS_ERR(spi->base)) {
- 		dev_err(device, "mmio not mapped\n");
-@@ -769,9 +807,13 @@ static int intel_dg_spi_probe(struct auxiliary_device *aux_dev,
- 
- 	dev_set_drvdata(&aux_dev->dev, spi);
- 
-+	pm_runtime_put(device);
- 	return 0;
- 
- err:
-+	pm_runtime_put(device);
-+err_norpm:
-+	pm_runtime_disable(device);
- 	kref_put(&spi->refcnt, intel_dg_spi_release);
- 	return ret;
- }
-@@ -783,6 +825,8 @@ static void intel_dg_spi_remove(struct auxiliary_device *aux_dev)
- 	if (!spi)
+ void intel_spi_init(struct drm_i915_private *dev_priv)
+ {
+ 	struct intel_dg_spi_dev *spi = &dev_priv->spi;
+@@ -33,6 +57,7 @@ void intel_spi_init(struct drm_i915_private *dev_priv)
+ 	if (!IS_DGFX(dev_priv))
  		return;
  
-+	pm_runtime_disable(&aux_dev->dev);
-+
- 	mtd_device_unregister(&spi->mtd);
- 
- 	dev_set_drvdata(&aux_dev->dev, NULL);
++	spi->writeable_override = i915_spi_writeable_override(dev_priv);
+ 	spi->bar.parent = &pdev->resource[0];
+ 	spi->bar.start = GEN12_GUNIT_SPI_BASE + pdev->resource[0].start;
+ 	spi->bar.end = spi->bar.start + GEN12_GUNIT_SPI_SIZE - 1;
 -- 
 2.34.1
 
