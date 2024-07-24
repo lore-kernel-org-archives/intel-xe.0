@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D014C3DA63
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Jul 2024 23:43:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EECE0C3DA61
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Jul 2024 23:49:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0163910E02C;
-	Wed, 24 Jul 2024 23:43:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AQeUPTFJ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B60E010E02C;
- Wed, 24 Jul 2024 23:43:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721864612; x=1753400612;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+issbmYEhiGlATbSKaBJFYe3SQ2jl1QH65/RLRxyuJ4=;
- b=AQeUPTFJnxL7/G7FY2jFJqqsHUE/xHQMTd7GthKoQOwBX/OEmKk5HhgS
- Mtb9t++JaA7xmrbGtkW6xYFcUtVnaPkOZipTKhVkrvXZBSr+STF0HIPYw
- g0fascsQpTWNaVyuC171iclaYFrf/3CkyJCbivz1qos+1sAb1msjBJmqO
- 8ugZxRjHvr8dUPSF4Gb1hV/GCmAHFAOF3AtEg3XPmI56hnlf54ace/n60
- rdr7UwNmEec3Gw+pIhLeobWZXXC/qM4sU4OBWajG3CkChx6BsNu4JewuM
- evgC+hGdu0cETrnsZ4cNaj03PvWTvV8zAP+Zqz+hhSUTJ1XY+oO90ZHoM w==;
-X-CSE-ConnectionGUID: ibJ6UBefRfaY4R6HME4DPg==
-X-CSE-MsgGUID: CTgBoBONRnWTB9nVm6Omag==
-X-IronPort-AV: E=McAfee;i="6700,10204,11143"; a="19711113"
-X-IronPort-AV: E=Sophos;i="6.09,234,1716274800"; d="scan'208";a="19711113"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2024 16:43:30 -0700
-X-CSE-ConnectionGUID: w/p/RwSxTjmQahbfUd8puQ==
-X-CSE-MsgGUID: pDpKBj9vREWnF9I27iurCA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,234,1716274800"; d="scan'208";a="75968423"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2024 16:43:29 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, christian.koenig@amd.com,
- ltuikov89@gmail.com, daniel@ffwll.ch, felix.kuehling@amd.com
-Subject: [PATCH] drm/sched: Only start TDR in drm_sched_job_begin on first job
-Date: Wed, 24 Jul 2024 16:44:17 -0700
-Message-Id: <20240724234417.1912357-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FC4910E213;
+	Wed, 24 Jul 2024 23:49:05 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8B7B10E213;
+ Wed, 24 Jul 2024 23:49:03 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/sched=3A_Only_st?=
+ =?utf-8?q?art_TDR_in_drm=5Fsched=5Fjob=5Fbegin_on_first_job?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 24 Jul 2024 23:49:03 -0000
+Message-ID: <172186494374.363919.7486967875704132334@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240724234417.1912357-1-matthew.brost@intel.com>
+In-Reply-To: <20240724234417.1912357-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,35 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Only start in drm_sched_job_begin on first job being added to the
-pending list as if pending list non-empty the TDR has already been
-started. It is problematic to restart the TDR as it will extend TDR
-period for an already running job, potentially leading to dma-fence
-signaling for a very long period of with continous stream of jobs.
+== Series Details ==
 
-Cc: Christian König <christian.koenig@amd.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/scheduler/sched_main.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Series: drm/sched: Only start TDR in drm_sched_job_begin on first job
+URL   : https://patchwork.freedesktop.org/series/136461/
+State : success
 
-diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-index 7e90c9f95611..feeeb9dbeb86 100644
---- a/drivers/gpu/drm/scheduler/sched_main.c
-+++ b/drivers/gpu/drm/scheduler/sched_main.c
-@@ -540,7 +540,8 @@ static void drm_sched_job_begin(struct drm_sched_job *s_job)
- 
- 	spin_lock(&sched->job_list_lock);
- 	list_add_tail(&s_job->list, &sched->pending_list);
--	drm_sched_start_timeout(sched);
-+	if (list_is_singular(&sched->pending_list))
-+		drm_sched_start_timeout(sched);
- 	spin_unlock(&sched->job_list_lock);
- }
- 
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 4a9ed276779a drm-tip: 2024y-07m-24d-20h-41m-30s UTC integration manifest
+=== git am output follows ===
+Applying: drm/sched: Only start TDR in drm_sched_job_begin on first job
+
 
