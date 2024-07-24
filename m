@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0289C3DA61
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDD07C3DA63
 	for <intel-xe@archiver.kernel.org>; Wed, 24 Jul 2024 19:35:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEB1A10E7A6;
-	Wed, 24 Jul 2024 19:35:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A884610E7A3;
+	Wed, 24 Jul 2024 19:35:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YIU+YpgP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XMZVObRq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1E9110E795
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Jul 2024 19:35:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69F0C10E7A3
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Jul 2024 19:35:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721849706; x=1753385706;
+ t=1721849709; x=1753385709;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sJhb87L6SQh6Xr/ycRugGdqYuXyUaxut/xz5+gpomZE=;
- b=YIU+YpgPfSY2jbKbIMiGhcalFevScVdEcqDnffjyKUqBVbSiVrETNhhd
- QLwCX9DGTUk81BxpQ3G4byTjNKNWWvRvKHjZEbeh4pKWCWtjEs/V/tRRO
- +j0xXwL3NrXkslpBXStVLR/q8QiVbfK0SEQYV4K7OZOTZOEhs0LWt1x3Z
- wcEN+HE6quZa/gtB1HGKbqu7IaFrIJpCJGJuqmOQM7JjZWgyIGdpLSyA2
- dROes2wIxSZd1oGsK/XrHPn5egv4+PdTiPH/FyPi916ffW64cxutyPv+G
- cJRj9WHr8tgABAzU2VgnCEtk7nOi/CDChlL9ZJ8VejpEvv+JHsddBmeX6 A==;
-X-CSE-ConnectionGUID: 1wLM1GadS4WT2/GweFTTrg==
-X-CSE-MsgGUID: F3Al/78sT8imHO6MF4taXw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11143"; a="19691131"
-X-IronPort-AV: E=Sophos;i="6.09,233,1716274800"; d="scan'208";a="19691131"
+ bh=j7RSurCFcAMjE98Crf+DBlFzehssTLJ/F91Zh8IHUQs=;
+ b=XMZVObRqhOc0oVGAk7mV2w+TpoqXDhDq6TE6PfoDDBEASjNldSss0ql4
+ s1kxM7jCGg06nGFrt17j455j1o2Dzm8tPNHStDC1rerl7WQ+RnlsMkDJN
+ aD/ngXUPKQyZocIX7dHPfjotWSRjQgnrhjz1GfZFeN89oxW+JiCvE6r6X
+ unbxp7YOZImlm9ihcDUSVLcIiGdbH20qWVLexyYywkdnIcOivwWUYo2Jp
+ Rbci8hy+8n6vEezTZX+7kNdI0Q5mzaKEQm876ObOqUDKyWnEFpRDi1fPj
+ ziLV6th8HUZEkCDcBroNqXMI9iQHFu9hhMGnEml+z+w7BsITvRD71vkZa g==;
+X-CSE-ConnectionGUID: 2OcepuSnTMaXkxVrWdRRlA==
+X-CSE-MsgGUID: swMkDiUnRIqnY8YfGVndzA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11143"; a="19691136"
+X-IronPort-AV: E=Sophos;i="6.09,233,1716274800"; d="scan'208";a="19691136"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2024 12:35:06 -0700
-X-CSE-ConnectionGUID: cxpHMzEBQ+qoJ3VdT1SfCQ==
-X-CSE-MsgGUID: 3evQ7aPkT7GW74uevfE0ig==
+ 24 Jul 2024 12:35:08 -0700
+X-CSE-ConnectionGUID: LUYeAk+bTzybZ7/xpsfYBQ==
+X-CSE-MsgGUID: mr4yCK9TT72/H+w5QKFrKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,233,1716274800"; d="scan'208";a="83292253"
+X-IronPort-AV: E=Sophos;i="6.09,233,1716274800"; d="scan'208";a="83292275"
 Received: from ntgaliba-mobl2.amr.corp.intel.com (HELO fdugast-desk.intel.com)
  ([10.251.217.180])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2024 12:35:04 -0700
+ 24 Jul 2024 12:35:07 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com,
 	Francois Dugast <francois.dugast@intel.com>
-Subject: [PATCH v2 04/12] drm/xe/hw_engine_group: Add helper to suspend
- faulting LR jobs
-Date: Wed, 24 Jul 2024 21:32:57 +0200
-Message-ID: <20240724193431.2685833-5-francois.dugast@intel.com>
+Subject: [PATCH v2 06/12] drm/xe/hw_engine_group: Add helper to wait for dma
+ fence jobs
+Date: Wed, 24 Jul 2024 21:32:59 +0200
+Message-ID: <20240724193431.2685833-7-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240724193431.2685833-1-francois.dugast@intel.com>
 References: <20240724193431.2685833-1-francois.dugast@intel.com>
@@ -69,50 +69,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a required feature for dma fence jobs to preempt faulting long
-running jobs in order to ensure mutual exclusion on a given hw engine
-group.
+This is a required feature for faulting long running jobs not to be
+submitted while dma fence jobs are running on the hw engine group.
 
-v2: Pipeline calls to suspend(q) and suspend_wait(q) to improve
-    efficiency, switch to lockdep_assert_held_write (Matt Brost)
+v2: Switch to lockdep_assert_held_write in worker, get a proper reference
+    for the last fence (Matt Brost)
 
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine_group.c | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+ drivers/gpu/drm/xe/xe_hw_engine_group.c | 33 +++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.c b/drivers/gpu/drm/xe/xe_hw_engine_group.c
-index da1515068850..4dabb0e8908a 100644
+index 4dabb0e8908a..27890c3df76b 100644
 --- a/drivers/gpu/drm/xe/xe_hw_engine_group.c
 +++ b/drivers/gpu/drm/xe/xe_hw_engine_group.c
-@@ -149,3 +149,28 @@ void xe_hw_engine_group_del_exec_queue(struct xe_hw_engine_group *group, struct
- 
- 	up_write(&group->mode_sem);
+@@ -174,3 +174,36 @@ static void xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_grou
+ 		q->ops->suspend_wait(q);
+ 	}
  }
 +
 +/**
-+ * xe_hw_engine_group_suspend_faulting_lr_jobs() - Suspend the faulting LR jobs of this group
++ * xe_hw_engine_group_wait_for_dma_fence_jobs() - Wait for dma fence jobs to complete
 + * @group: The hw engine group
++ *
++ * This function is not meant to be called directly from a user IOCTL as dma_fence_wait()
++ * is not interruptible.
++ *
++ * Return: 0 on success,
++ *	   -ETIME if waiting for one job failed
 + */
-+static void xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_group *group)
++static int xe_hw_engine_group_wait_for_dma_fence_jobs(struct xe_hw_engine_group *group)
 +{
++	long timeout;
 +	struct xe_exec_queue *q;
++	struct dma_fence *fence;
 +
 +	lockdep_assert_held_write(&group->mode_sem);
 +
 +	list_for_each_entry(q, &group->exec_queue_list, hw_engine_group_link) {
-+		if (!xe_vm_in_fault_mode(q->vm))
++		if (xe_vm_in_lr_mode(q->vm))
 +			continue;
 +
-+		q->ops->suspend(q);
++		fence = xe_exec_queue_last_fence_get_to_resume(q, q->vm);
++		timeout = dma_fence_wait(fence, false);
++		xe_exec_queue_last_fence_put(q, q->vm);
++
++		if (timeout < 0)
++			return -ETIME;
 +	}
 +
-+	list_for_each_entry(q, &group->exec_queue_list, hw_engine_group_link) {
-+		if (!xe_vm_in_fault_mode(q->vm))
-+			continue;
-+
-+		q->ops->suspend_wait(q);
-+	}
++	return 0;
 +}
 -- 
 2.43.0
