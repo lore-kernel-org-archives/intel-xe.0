@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6DCAC3DA49
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 22:10:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA4D6C52CD8
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 22:10:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88F4910E8D4;
-	Thu, 25 Jul 2024 22:10:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9378310E8D9;
+	Thu, 25 Jul 2024 22:10:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ljhv4UJT";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cD4mdtti";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D48A10E8D2
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DCB210E8D2
  for <intel-xe@lists.freedesktop.org>; Thu, 25 Jul 2024 22:10:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721945404; x=1753481404;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Tzaet8VOH2t0Yeoq1+Oq7sUrots6CsIZZOyaOlNt+u0=;
- b=ljhv4UJTMz+vuH18TJLogP4zTGx5kUjPR5NflgDf3iLFxSDXeC3hQQiv
- 42eWLpmvzMSiJQeZxcXlHMIWR35ak5V6U6YxX3ZYZ+BV235COrxW8SSej
- fuO/70JgZs/s0OyAWLGd0+0Az8GxbT+x6opozyQRbPaGpbEiSglcI8kp1
- nesbxx4JVuMjA3ifm04I+Jq1NA1wpqOqZdbCaCKPJHLI9iY5ykJKi8NSe
- VkJRZ2xZBXSH+GlhqpaETpObz+3BmihitG78Zh2FhwDOYCM5+l0vSWaaL
- 6DovuBFbBzFV6E7fpRw9c/UCStWz+kEUuVA/SxlsEQpE/E2Ah87HLazuB Q==;
-X-CSE-ConnectionGUID: 1V2KVo1oQbmhx+xEqqVN7A==
-X-CSE-MsgGUID: 8bTp00+eRG20xDXY1oiwFA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11144"; a="19853165"
-X-IronPort-AV: E=Sophos;i="6.09,237,1716274800"; d="scan'208";a="19853165"
+ t=1721945405; x=1753481405;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ja+9O0TZszu+3bslcBvUviPJIEmtw5zqZyQF7kY6MlA=;
+ b=cD4mdttiHr8VNSQVPWJlqtZ+vTcJ+rDpeUuyQ1pAXduvsxvdm/FZ3/G3
+ gNwGvPNBn0Qa/eApnGQCEmN0XBXRhLMQu4CIdXiMvha6WGUyovs0j+k41
+ 4iruJ+rN1dTOfuOBcbwOsarLqk0v2gMe27y9DiqMtbAVBP3Y3KZVtOw7F
+ ztuKo2Umk59l8Lt7d5Vr06hEdqA5ge4KdRw+HFe/gbTrFO7PyG0K/KRZo
+ ta3N5YOVzaJnrfjpvRMRN8/dCwZaemRw04cllZkVs5/iJURyC9DEQYJKj
+ ZSBV2LSRpEHTuTXNaVeJhZA4S7NRL2CMSJaXrLEgEXCeCVo7MM5veIP8G Q==;
+X-CSE-ConnectionGUID: ADPAkw19QHSDW6LxqaOOIA==
+X-CSE-MsgGUID: dnp0o6efRR6UDnjET7TvMw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11144"; a="19853168"
+X-IronPort-AV: E=Sophos;i="6.09,237,1716274800"; d="scan'208";a="19853168"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Jul 2024 15:10:04 -0700
-X-CSE-ConnectionGUID: AqUpHTXgQAGS9iNQcb4FfA==
-X-CSE-MsgGUID: alFh+tr+RKm8HyblXfo+Tw==
+X-CSE-ConnectionGUID: AcPKVCiCQmKPfpkgC9xtzw==
+X-CSE-MsgGUID: OeGRuHkXRQSH72vvLaddzQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,237,1716274800"; d="scan'208";a="57346265"
+X-IronPort-AV: E=Sophos;i="6.09,237,1716274800"; d="scan'208";a="57346277"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2024 15:10:04 -0700
+ 25 Jul 2024 15:10:05 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: gustavo@freedesktop.org,
 	Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH 0/5] Fix rtp when processing OOB workarounds
-Date: Thu, 25 Jul 2024 15:09:51 -0700
-Message-ID: <20240725220956.737987-1-lucas.demarchi@intel.com>
+Subject: [PATCH 3/5] drm/xe/kunit: Test WAs for BMG
+Date: Thu, 25 Jul 2024 15:09:54 -0700
+Message-ID: <20240725220956.737987-4-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240725220956.737987-1-lucas.demarchi@intel.com>
+References: <20240725220956.737987-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,28 +67,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-First patch is a quick fix for processing rtp entries that is used by
-the OOB WAs, i.e. WAs without an action associated. Thanks Gustavo for
-spotting the issue while browsing the code.
+Add one variant for BMG to make sure the workarounds do not conflict.
 
-Second patch refactor it a little so it's more obvious what it's doing.
-Last patch enabling kunit test to check the active entries. This still
-doesn't cover what caused this bug since it's only using
-xe_rtp_process_to_sr(), not xe_rtp_process(). We should either join both
-into a single interface or add more tests later.
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/tests/xe_wa_test.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Lucas De Marchi (5):
-  drm/xe/rtp: Fix off-by-one when processing rules
-  drm/xe/rtp: Simplify marking active workarounds
-  drm/xe/kunit: Test WAs for BMG
-  drm/xe/kunit: Rename count to sr_entries
-  drm/xe/kunit: Test active rtp entries
-
- drivers/gpu/drm/xe/tests/xe_rtp_test.c | 53 ++++++++++++++++++--------
- drivers/gpu/drm/xe/tests/xe_wa_test.c  |  1 +
- drivers/gpu/drm/xe/xe_rtp.c            | 14 +++----
- 3 files changed, 43 insertions(+), 25 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/tests/xe_wa_test.c b/drivers/gpu/drm/xe/tests/xe_wa_test.c
+index 9d0c715142b9..8d6a77fbc716 100644
+--- a/drivers/gpu/drm/xe/tests/xe_wa_test.c
++++ b/drivers/gpu/drm/xe/tests/xe_wa_test.c
+@@ -74,6 +74,7 @@ static const struct platform_test_case cases[] = {
+ 	GMDID_CASE(METEORLAKE, 1274, A0, 1300, A0),
+ 	GMDID_CASE(LUNARLAKE, 2004, A0, 2000, A0),
+ 	GMDID_CASE(LUNARLAKE, 2004, B0, 2000, A0),
++	GMDID_CASE(BATTLEMAGE, 2001, A0, 2000, A1),
+ };
+ 
+ static void platform_desc(const struct platform_test_case *t, char *desc)
 -- 
 2.43.0
 
