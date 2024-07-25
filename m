@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D004DC3DA5D
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 16:56:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E500AC3DA49
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 16:56:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E4F610E89B;
-	Thu, 25 Jul 2024 16:56:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B507910E89C;
+	Thu, 25 Jul 2024 16:56:21 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F09A10E899;
- Thu, 25 Jul 2024 16:56:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96EEC10E898;
+ Thu, 25 Jul 2024 16:56:20 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/i915=3A_Fix_poss?=
- =?utf-8?q?ible_int_overflow_in_skl=5Fddi=5Fcalculate=5Fwrpll=28=29?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/i915=3A_Fix_possible_?=
+ =?utf-8?q?int_overflow_in_skl=5Fddi=5Fcalculate=5Fwrpll=28=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nikita Zhandarovich" <n.zhandarovich@fintech.ru>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 25 Jul 2024 16:56:09 -0000
-Message-ID: <172192656964.382997.4314674879441580797@2413ebb6fbb6>
+Date: Thu, 25 Jul 2024 16:56:20 -0000
+Message-ID: <172192658061.382997.6821195685006104251@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240724184911.12250-1-n.zhandarovich@fintech.ru>
 In-Reply-To: <20240724184911.12250-1-n.zhandarovich@fintech.ru>
@@ -48,9 +48,36 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 9f8e597a1c39 drm-tip: 2024y-07m-25d-14h-31m-22s UTC integration manifest
-=== git am output follows ===
-Applying: drm/i915: Fix possible int overflow in skl_ddi_calculate_wrpll()
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+5ce3e132caaa5b45e5e50201b574a097d130967c
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 9054eb2134f4ed62141f453543c89e73b51d4a2a
+Author: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+Date:   Wed Jul 24 11:49:11 2024 -0700
+
+    drm/i915: Fix possible int overflow in skl_ddi_calculate_wrpll()
+    
+    On the off chance that clock value ends up being too high (by means
+    of skl_ddi_calculate_wrpll() having benn called with big enough
+    value of crtc_state->port_clock * 1000), one possible consequence
+    may be that the result will not be able to fit into signed int.
+    
+    Fix this, albeit unlikely, issue by first casting one of the operands
+    to u32, then to u64, and thus avoid causing an integer overflow.
+    
+    Found by Linux Verification Center (linuxtesting.org) with static
+    analysis tool SVACE.
+    
+    Fixes: fe70b262e781 ("drm/i915: Move a bunch of stuff into rodata from the stack")
+    Cc: stable@vger.kernel.org
+    Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
++ /mt/dim checkpatch 9f8e597a1c39d7e316f9479e6f627c15dbc58e1d drm-intel
+9054eb2134f4 drm/i915: Fix possible int overflow in skl_ddi_calculate_wrpll()
 
 
