@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D88CAC3DA5D
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 11:39:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CE4FC3DA49
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 12:22:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89B8410E13B;
-	Thu, 25 Jul 2024 11:39:52 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9497410E123;
- Thu, 25 Jul 2024 11:39:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2612616195652290372=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25AC510E27D;
+	Thu, 25 Jul 2024 12:22:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kbho/oE2";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B446D10E27D
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Jul 2024 12:22:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1721910146; x=1753446146;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5KornmEAf5kl0PDvjCkHFEC9MX4Ry9jlDgg7sDF9D94=;
+ b=Kbho/oE2lHvznXT6IA3L/FY76Y5mK6ZARAeNTFo5PvLYvG6GlNd8R94c
+ 7yKKBTubPTCdlVQglJ1br2kbEsEzkNTBdMnKsLQUZXtOevETih66vKpGr
+ oAslfHs1g/5I837XTsxsW2eu0ToW/bHvBSOYN6jfoh0IFCWmezJygP/rQ
+ BQdTgD8R7+92FQDNhN6Hw90ym8Zo/r7Vc20/f4W2i9Xgd+0shrgaxo1dl
+ igkn9O87461VnMVh40kVTR03tjTckWDY0BJs0sH+6iwztvTZr+br9oIIp
+ JOyRC9cazek1ocLfAhg1aOoe3gtH0Hq9wUlE0iNoC0K+1oJH6S4Zb+7gB w==;
+X-CSE-ConnectionGUID: m16pCBScTTKai8M00WQIow==
+X-CSE-MsgGUID: Vu5+weM+Q82AoUbquJ1EWg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11143"; a="31060748"
+X-IronPort-AV: E=Sophos;i="6.09,235,1716274800"; d="scan'208";a="31060748"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2024 05:22:25 -0700
+X-CSE-ConnectionGUID: sdILFKTpTnW2l/3OFJcLRg==
+X-CSE-MsgGUID: tNtcVAH/QO+gbI7AF9108w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,235,1716274800"; d="scan'208";a="52786136"
+Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2024 05:22:24 -0700
+From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+To: intel-xe@lists.freedesktop.org, platform-driver-x86@vger.kernel.org,
+ david.e.box@linux.intel.com, ilpo.jarvinen@linux.intel.com,
+ matthew.brost@intel.com, andriy.shevchenko@linux.intel.com
+Cc: michael.j.ruhl@intel.com
+Subject: [PATCH v8 0/6] Support PMT features in Xe
+Date: Thu, 25 Jul 2024 08:22:07 -0400
+Message-ID: <20240725122214.4063886-1-michael.j.ruhl@intel.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_Add_MSIX_functionality_to_XE_=28?=
- =?utf-8?q?rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dani Liberman" <dliberman@habana.ai>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 25 Jul 2024 11:39:51 -0000
-Message-ID: <172190759160.381312.2294417375703712527@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240725102213.2182896-1-ilia.levi@intel.com>
-In-Reply-To: <20240725102213.2182896-1-ilia.levi@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,195 +64,75 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2612616195652290372==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+DG2 and Battlemage have the Intel Platform Monitoring Technology (PMT)
+feature available, but not in the "standard" (pci endpoint) way.
 
-== Series Details ==
+Add support to the vsec and Xe drivers to allow access to the PMT space
+for the DG2 and BMG devices.
 
-Series: Add MSIX functionality to XE (rev6)
-URL   : https://patchwork.freedesktop.org/series/135422/
-State : failure
+The intel_vsec_register() function allows drivers to provide telemetry
+header information (usually found at probe time), to allow the PMT
+driver to probe the telemetry features.
 
-== Summary ==
+Battlemage has a shared memory area (selected by index), so a callback
+function is required to access the appropriate PMT data.
 
-CI Bug Log - changes from xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2_BAT -> xe-pw-135422v6_BAT
-====================================================
+V2:
+  Re-worked DG2 support patches using a base_adjust rather than a
+  quirk.
+  Updated GUID decode, for correct decode.
+v3:
+  Fixed a documentation issue for the pmt struct.
+v4:
+  Fixed a documentation issue in the xe_vsec.c module
+v5:
+  Addressed review comments for patch 4 (Xe driver)
+  Add r/b for the first three patches
+v6:
+  Added kernel doc to moved data structure
+  Added required include files
+  Correct usage for FIELD_PREP()/FIELD_GET()
+  Whitespace clean up
+  Removed unnecessary type cast
+v7:
+  Commit message updates
+v8:
+  Added some r/b (patch 2 and 3).
+  Updated kernel doc patch 2 (priv_data) patch 5 (base_adjust)
 
-Summary
--------
+David E. Box (3):
+  platform/x86/intel/vsec.h: Move to include/linux
+  platform/x86/intel/vsec: Add PMT read callbacks
+  platform/x86/intel/pmt: Use PMT callbacks
 
-  **FAILURE**
+Michael J. Ruhl (3):
+  drm/xe/vsec: Support BMG devices
+  platform/x86/intel/pmt: Add support for PMT base adjust
+  drm/xe/vsec: Add support for DG2
 
-  Serious unknown changes coming with xe-pw-135422v6_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-135422v6_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+ MAINTAINERS                                   |   3 +-
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/xe_device.c                |   5 +
+ drivers/gpu/drm/xe/xe_device_types.h          |   6 +
+ drivers/gpu/drm/xe/xe_vsec.c                  | 300 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vsec.h                  |  13 +
+ drivers/platform/x86/intel/pmc/core_ssram.c   |   2 +-
+ drivers/platform/x86/intel/pmt/class.c        |  28 +-
+ drivers/platform/x86/intel/pmt/class.h        |  11 +-
+ drivers/platform/x86/intel/pmt/crashlog.c     |   2 +-
+ drivers/platform/x86/intel/pmt/telemetry.c    |  21 +-
+ drivers/platform/x86/intel/sdsi.c             |   3 +-
+ drivers/platform/x86/intel/tpmi.c             |   3 +-
+ drivers/platform/x86/intel/vsec.c             |   9 +-
+ .../vsec.h => include/linux/intel_vsec.h      |  50 ++-
+ 15 files changed, 428 insertions(+), 29 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_vsec.c
+ create mode 100644 drivers/gpu/drm/xe/xe_vsec.h
+ rename drivers/platform/x86/intel/vsec.h => include/linux/intel_vsec.h (61%)
 
-  
+-- 
+2.44.0
 
-Participating hosts (7 -> 7)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-135422v6_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@sriov_basic@enable-vfs-autoprobe-on:
-    - bat-adlp-7:         [PASS][1] -> [ABORT][2] +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135422v6/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html
-
-  * igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:
-    - bat-atsm-2:         [PASS][3] -> [ABORT][4] +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135422v6/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-135422v6_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [DMESG-FAIL][5] ([Intel XE#324]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135422v6/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_exec_fault_mode@twice-userptr-rebind:
-    - {bat-bmg-1}:        [DMESG-WARN][7] ([Intel XE#877]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135422v6/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
-  [Intel XE#877]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/877
-
-
-Build changes
--------------
-
-  * IGT: IGT_7936 -> IGT_7937
-  * Linux: xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2 -> xe-pw-135422v6
-
-  IGT_7936: 7936
-  IGT_7937: eba69333dfe8c295d053997367e395d7bde2b4b4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2: 724a2a53988a57709d7f9dcd5c58dd5737d45cb2
-  xe-pw-135422v6: 135422v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135422v6/index.html
-
---===============2612616195652290372==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add MSIX functionality to XE (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135422/">https://patchwork.freedesktop.org/series/135422/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135422v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135422v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2_BAT -&gt; xe-pw-135422v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-135422v6_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-135422v6_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-135422v6_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135422v6/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135422v6/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-135422v6_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135422v6/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-rebind:</p>
-<ul>
-<li>{bat-bmg-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/877">Intel XE#877</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-135422v6/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7936 -&gt; IGT_7937</li>
-<li>Linux: xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2 -&gt; xe-pw-135422v6</li>
-</ul>
-<p>IGT_7936: 7936<br />
-  IGT_7937: eba69333dfe8c295d053997367e395d7bde2b4b4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2: 724a2a53988a57709d7f9dcd5c58dd5737d45cb2<br />
-  xe-pw-135422v6: 135422v6</p>
-
-</body>
-</html>
-
---===============2612616195652290372==--
