@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B27EC3DA5D
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 19:35:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B083CC3DA49
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 19:35:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BA6910E28E;
-	Thu, 25 Jul 2024 19:35:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7284910E28E;
+	Thu, 25 Jul 2024 19:35:37 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04B8010E28E;
- Thu, 25 Jul 2024 19:35:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B54BC10E29B;
+ Thu, 25 Jul 2024 19:35:35 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Introducing_I915=5FF?=
- =?utf-8?q?ORMAT=5FMOD=5F4=5FTILED=5FXE2=5FCCS_Modifier_for_Xe2_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introducing_I915=5FFORMAT?=
+ =?utf-8?q?=5FMOD=5F4=5FTILED=5FXE2=5FCCS_Modifier_for_Xe2_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 25 Jul 2024 19:35:24 -0000
-Message-ID: <172193612401.383619.6980556855819855020@2413ebb6fbb6>
+Date: Thu, 25 Jul 2024 19:35:35 -0000
+Message-ID: <172193613574.383619.1587361370509065769@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240725183600.3458050-1-juhapekka.heikkila@gmail.com>
 In-Reply-To: <20240725183600.3458050-1-juhapekka.heikkila@gmail.com>
@@ -44,14 +44,38 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Introducing I915_FORMAT_MOD_4_TILED_XE2_CCS Modifier for Xe2 (rev2)
 URL   : https://patchwork.freedesktop.org/series/133252/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 9f8e597a1c39 drm-tip: 2024y-07m-25d-14h-31m-22s UTC integration manifest
-=== git am output follows ===
-Applying: drm/fourcc: define Intel Xe2 related tile4 ccs modifier
-Applying: drm/i915/display: allow creation of case I915_FORMAT_MOD_4_TILED_XE2_CCS type framebuffer
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+5ce3e132caaa5b45e5e50201b574a097d130967c
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a0a23e024035daf622ab942a8c878766303e4925
+Author: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Date:   Thu Jul 25 21:35:54 2024 +0300
+
+    drm/i915/display: allow creation of case I915_FORMAT_MOD_4_TILED_XE2_CCS type framebuffer
+    
+    Add I915_FORMAT_MOD_4_TILED_XE2_CCS to possible created tiling for new framebuffer
+    on Xe driver. Here taken out unconditional decompression of Tile4 type framebuffers
+    on Xe2 hardware as Tile4 vs I915_FORMAT_MOD_4_TILED_XE2_CCS have different
+    requirement on dGfx.
+    
+    Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
++ /mt/dim checkpatch 9f8e597a1c39d7e316f9479e6f627c15dbc58e1d drm-intel
+89889735770f drm/fourcc: define Intel Xe2 related tile4 ccs modifier
+a0a23e024035 drm/i915/display: allow creation of case I915_FORMAT_MOD_4_TILED_XE2_CCS type framebuffer
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+Add I915_FORMAT_MOD_4_TILED_XE2_CCS to possible created tiling for new framebuffer
+
+total: 0 errors, 1 warnings, 0 checks, 60 lines checked
 
 
