@@ -4,83 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97837C3DA49
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 14:59:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD3F7C3DA5D
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 15:02:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F4C610E83B;
-	Thu, 25 Jul 2024 14:59:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="aUUM6RDa";
-	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 307CA10E83C
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Jul 2024 14:59:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1721919544;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=F5ZoSYsZGaDw2dOGbs0OwYpDKl56Fzks8qZErLXmwLY=;
- b=aUUM6RDa78YFLwKPqz8nox/EhAa71aW4CYbNdR7D0S7K6YYc6XQudNuQkLPNW67mPWx3Yl
- G5PDCDXxKB7v/QTbwVdB8VrVQYExb6nHhc16PVYX/4am5lfmxsLFAgu8Ye/w2qZRiH+CsG
- 9IeqEoOM2GTlezRETVQ9+SK7a5Dh3To=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-371-jkhVHiDJPIuRnI_F6HCWkg-1; Thu, 25 Jul 2024 10:59:02 -0400
-X-MC-Unique: jkhVHiDJPIuRnI_F6HCWkg-1
-Received: by mail-wr1-f71.google.com with SMTP id
- ffacd0b85a97d-3679ab94cdbso601171f8f.3
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Jul 2024 07:59:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1721919541; x=1722524341;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=F5ZoSYsZGaDw2dOGbs0OwYpDKl56Fzks8qZErLXmwLY=;
- b=WlXrYkUlvptpfNBJJGhNq9ZihXFrNq9T8wRPUETgYS7Uz1I9FJCLDboQlxEbwZA3o5
- W4tkgqcDq3zXlXTDEbwPoX32OZxW7hZINjKN4ZvqZsdGTlhEOrdJucRKUgLWt6lozjKQ
- qSrIaNsi51FtmzfWAwWhCvAqlspKY1R2SuTrF6+P6afM6FzL2Wt5c3MDS9WVhxsywF4Q
- 7mVbkn76PnZGIqMysO9psfbmytcQeUcw738oDNKTou23EzRVRIhIHOPYxur9MWMDA5hA
- /BnC4QekpH4KdgTnCtGqVzbTPm/Cy3dtfmwGCtRLGYKN5hNXEwq/rrf/SFhm7RVncnK7
- Z0dw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVReUEAkyT5gYO5S9rmsdaDV2s3uBPz6z+y5badNmQgEE+AYGFJjbCfFOOO2F9YhRVAgsOVH1aihsPhJ2Hj+0ndz207gbvwAnWUEbOZBT0=
-X-Gm-Message-State: AOJu0YyRPiIKAMG90Q3PaUG3P0JnP+rfIl4UrvBNH2hPvzsgIYcNjF99
- q2FTJSkBVjEJjKdukbrhPve6XR8q0qSQVAGfKApwRGEXeFzuBFKtuX8JI6Y8/rDMUpV2rwtj7DN
- xisC/tnbcSmYxKsfpZF44c/XspJt6NLuE1hEFvZrmPv6eq7SdjTf9v3Ku5Yq752iC
-X-Received: by 2002:adf:fc8d:0:b0:367:926a:7413 with SMTP id
- ffacd0b85a97d-36b3664af5cmr1550881f8f.63.1721919541183; 
- Thu, 25 Jul 2024 07:59:01 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF+NVPsJdjWpOoZv9kl75pyyXyS6KI24cjaV3bYhAWPCMWcUU5fAEb2n3xEHhHtR6Unbf0Pjw==
-X-Received: by 2002:adf:fc8d:0:b0:367:926a:7413 with SMTP id
- ffacd0b85a97d-36b3664af5cmr1550872f8f.63.1721919540858; 
- Thu, 25 Jul 2024 07:59:00 -0700 (PDT)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-36b36858229sm2511373f8f.82.2024.07.25.07.59.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 25 Jul 2024 07:59:00 -0700 (PDT)
-Date: Thu, 25 Jul 2024 16:59:00 +0200
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next-fixes
-Message-ID: <20240725-frisky-wren-of-tact-f5f504@houat>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8193A10E871;
+	Thu, 25 Jul 2024 15:02:35 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6898510E871;
+ Thu, 25 Jul 2024 15:02:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="djddhsk7xnue6mdo"
-Content-Disposition: inline
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_spi=3A_add_driver_fo?=
+ =?utf-8?q?r_Intel_discrete_graphics_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alexander Usyskin" <alexander.usyskin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 25 Jul 2024 15:02:34 -0000
+Message-ID: <172191975442.382191.16831948170076163658@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240725135657.1061836-1-alexander.usyskin@intel.com>
+In-Reply-To: <20240725135657.1061836-1-alexander.usyskin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,55 +36,32 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
---djddhsk7xnue6mdo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Series: spi: add driver for Intel discrete graphics (rev2)
+URL   : https://patchwork.freedesktop.org/series/136430/
+State : success
 
-Hi,
+== Summary ==
 
-Here's this week drm-misc-next-fixes PR
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 9f8e597a1c39 drm-tip: 2024y-07m-25d-14h-31m-22s UTC integration manifest
+=== git am output follows ===
+Applying: spi: add driver for intel graphics on-die spi device
+Applying: spi: intel-dg: implement region enumeration
+Applying: spi: intel-dg: implement spi access functions
+Applying: spi: intel-dg: spi register with mtd
+Applying: spi: intel-dg: implement mtd access handlers
+Applying: spi: intel-dg: align 64bit read and write
+Applying: spi: intel-dg: wake card on operations
+Applying: drm/i915/spi: add spi device for discrete graphics
+Applying: drm/i915/spi: add intel_spi_region map
+Applying: drm/i915/spi: add support for access mode
+Applying: drm/xe/spi: add on-die spi device
+Applying: drm/xe/spi: add support for access mode
 
-Maxime
-
-drm-misc-next-fixes-2024-07-25:
-A single fix for a panel compatible
-The following changes since commit 1fe1c66274fb80cc1ac42e0d38917d53adc7d7a3:
-
-  drm/v3d: Fix Indirect Dispatch configuration for V3D 7.1.6 and later (2024-07-15 12:49:52 -0300)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2024-07-25
-
-for you to fetch changes up to b6f7d984ebf826069d3dc6fa187b4d1cfb90f965:
-
-  dt-bindings: display: panel: samsung,atna33xc20: Document ATNA45AF01 (2024-07-22 08:40:32 -0700)
-
-----------------------------------------------------------------
-A single fix for a panel compatible
-
-----------------------------------------------------------------
-Stephan Gerhold (1):
-      dt-bindings: display: panel: samsung,atna33xc20: Document ATNA45AF01
-
- .../devicetree/bindings/display/panel/samsung,atna33xc20.yaml     | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
-
---djddhsk7xnue6mdo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZqJoMwAKCRAnX84Zoj2+
-dv3wAX9uhXuJHQ99wQ/RUjs48BI39MRvUD2V8xthlvqYprxbUUb3kLaKYAkzaO0q
-/0QTIfMBgIzD+UyFxrDtQgHD6C6XXvUe8D3T8PwK5N1czxywG3y//5cROWj35J+D
-itUZryZOvg==
-=oso5
------END PGP SIGNATURE-----
-
---djddhsk7xnue6mdo--
 
