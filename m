@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BD03C3DA7E
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 07:44:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B984BC3DA5D
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 08:04:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA66210E243;
-	Thu, 25 Jul 2024 07:44:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="l6K5Anap";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A46A10E13E;
- Thu, 25 Jul 2024 07:44:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
- Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=3amSF8I19BHTxTB8T37Iz1NyyDj9scSeBCJHngA2vGs=; b=l6K5AnapJfPGf2h71KGS+mm6K/
- cXQHa/m3eVmUcTF+Lpb8gwKUPDztmIk5jzmGVhIbco8IkoaRN5TF7463bSkSuSJgmqAVh/yT8o/uW
- /H/s+GzrN+ztdAYPLMd7OC+DX5OpNgyxZIt1kTMQIyMCv65e+OPvQW+9C8EfZ5b4IqGSxBaBbzZcx
- PriLh4gVl/WYBj6/KPMJoreQZz18YmLeCg34EiDUxOoz/+hR7dO2lN9FjJaFIPHZFN8y9dtFXo60c
- NtDubj4UimetNE+7v3Bhl9kYXr7fBOxa6M1ib27ETwSGPuAvlqEG17yuO5cyJWXQlwDqoThdzbVmm
- D1oWtEyQ==;
-Received: from [84.69.19.168] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1sWt9E-001or2-6R; Thu, 25 Jul 2024 09:44:24 +0200
-Date: Thu, 25 Jul 2024 08:44:23 +0100
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-next-fixes
-Message-ID: <ZqICQzyzm/6hDWy4@linux>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B82710E22A;
+	Thu, 25 Jul 2024 08:04:07 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D93DF10E22A;
+ Thu, 25 Jul 2024 08:04:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5559285860419051481=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/xe=5Fgt=5Fidle=3A_add_deb?=
+ =?utf-8?q?ugfs_entry_for_powergating_info?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 25 Jul 2024 08:04:05 -0000
+Message-ID: <172189464588.378399.5286004546942556947@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240725073507.723568-1-riana.tauro@intel.com>
+In-Reply-To: <20240725073507.723568-1-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,46 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============5559285860419051481==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hi Dave, Sima,
+== Series Details ==
 
-Two fixes for the merge window - turning off preemption on Gen8 since it
-apparently just doesn't work reliably enough and a fix for potential NULL
-pointer dereference when stolen memory probing failed.
+Series: drm/xe/xe_gt_idle: add debugfs entry for powergating info
+URL   : https://patchwork.freedesktop.org/series/136477/
+State : success
 
-Regards,
+== Summary ==
 
-Tvrtko
+CI Bug Log - changes from xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2_BAT -> xe-pw-136477v1_BAT
+====================================================
 
-drm-intel-next-fixes-2024-07-25:
-- Do not consider preemption during execlists_dequeue for gen8 [gt] (Nitin Gote)
-- Allow NULL memory region (Jonathan Cavitt)
-The following changes since commit 509580fad7323b6a5da27e8365cd488f3b57210e:
+Summary
+-------
 
-  drm/i915/dp: Don't switch the LTTPR mode on an active link (2024-07-16 08:14:29 +0000)
+  **SUCCESS**
 
-are available in the Git repository at:
+  No regressions found.
 
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-fixes-2024-07-25
+  
 
-for you to fetch changes up to 26720dd2b5a1d088bff8f7e6355fca021c83718f:
+Participating hosts (7 -> 7)
+------------------------------
 
-  drm/i915: Allow NULL memory region (2024-07-23 09:34:13 +0000)
+  No changes in participating hosts
 
-----------------------------------------------------------------
-- Do not consider preemption during execlists_dequeue for gen8 [gt] (Nitin Gote)
-- Allow NULL memory region (Jonathan Cavitt)
+Known issues
+------------
 
-----------------------------------------------------------------
-Jonathan Cavitt (1):
-      drm/i915: Allow NULL memory region
+  Here are the changes found in xe-pw-136477v1_BAT that come from known issues:
 
-Nitin Gote (1):
-      drm/i915/gt: Do not consider preemption during execlists_dequeue for gen8
+### IGT changes ###
 
- drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 6 +-----
- drivers/gpu/drm/i915/intel_memory_region.c           | 6 ++++--
- 2 files changed, 5 insertions(+), 7 deletions(-)
+#### Possible fixes ####
+
+  * igt@xe_exec_fault_mode@twice-userptr-rebind:
+    - {bat-bmg-1}:        [DMESG-WARN][1] -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v1/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+
+
+Build changes
+-------------
+
+  * Linux: xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2 -> xe-pw-136477v1
+
+  IGT_7936: 7936
+  xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2: 724a2a53988a57709d7f9dcd5c58dd5737d45cb2
+  xe-pw-136477v1: 136477v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v1/index.html
+
+--===============5559285860419051481==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe_gt_idle: add debugfs entry for powergating info</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136477/">https://patchwork.freedesktop.org/series/136477/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2_BAT -&gt; xe-pw-136477v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (7 -&gt; 7)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-136477v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_fault_mode@twice-userptr-rebind:<ul>
+<li>{bat-bmg-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v1/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2 -&gt; xe-pw-136477v1</li>
+</ul>
+<p>IGT_7936: 7936<br />
+  xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2: 724a2a53988a57709d7f9dcd5c58dd5737d45cb2<br />
+  xe-pw-136477v1: 136477v1</p>
+
+</body>
+</html>
+
+--===============5559285860419051481==--
