@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 798BEC3DA5D
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 07:26:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B26BAC3DA5D
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 07:27:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C38910E0DD;
-	Thu, 25 Jul 2024 07:26:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6699710E730;
+	Thu, 25 Jul 2024 07:27:01 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75AA610E0DD;
- Thu, 25 Jul 2024 07:26:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02DBF10E22A;
+ Thu, 25 Jul 2024 07:27:01 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/xe=5Fgt=5Fidl?=
- =?utf-8?q?e=3A_add_debugfs_entry_for_powergating_info?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/xe=5Fgt=5Fidle=3A_?=
+ =?utf-8?q?add_debugfs_entry_for_powergating_info?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Riana Tauro" <riana.tauro@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 25 Jul 2024 07:26:48 -0000
-Message-ID: <172189240847.380610.7385530769181623496@2413ebb6fbb6>
+Date: Thu, 25 Jul 2024 07:27:01 -0000
+Message-ID: <172189242100.378399.777631134837587077@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240725073507.723568-1-riana.tauro@intel.com>
 In-Reply-To: <20240725073507.723568-1-riana.tauro@intel.com>
@@ -48,9 +48,33 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 724a2a53988a drm-tip: 2024y-07m-25d-03h-35m-38s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe_gt_idle: add debugfs entry for powergating info
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+5ce3e132caaa5b45e5e50201b574a097d130967c
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 8063fc5a825cb2b35ee222b43824dc4878a44e62
+Author: Riana Tauro <riana.tauro@intel.com>
+Date:   Thu Jul 25 13:05:07 2024 +0530
+
+    drm/xe/xe_gt_idle: add debugfs entry for powergating info
+    
+    Coarse Powergating is a power saving technique where Render and Media
+    can be power-gated independently irrespective of the rest of the GT.
+    
+    For debug purposes, it is useful to expose the powergating information.
+    
+    v2: move to debugfs
+        add details to commit message
+        add per-slice status for media
+        define reg bits in descending order (Matt Roper)
+    
+    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
++ /mt/dim checkpatch 724a2a53988a57709d7f9dcd5c58dd5737d45cb2 drm-intel
+8063fc5a825c drm/xe/xe_gt_idle: add debugfs entry for powergating info
 
 
