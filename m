@@ -4,69 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FDB8C3DA49
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57E18C3DA64
 	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 16:50:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F8B310E302;
-	Thu, 25 Jul 2024 16:50:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=toblux-com.20230601.gappssmtp.com header.i=@toblux-com.20230601.gappssmtp.com header.b="cWXfczfG";
-	dkim-atps=neutral
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com
- [209.85.208.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC2D710E78F
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Jul 2024 18:19:02 +0000 (UTC)
-Received: by mail-ed1-f53.google.com with SMTP id
- 4fb4d7f45d1cf-5a2ffc34677so176125a12.2
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Jul 2024 11:19:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=toblux-com.20230601.gappssmtp.com; s=20230601; t=1721845141; x=1722449941;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=u/dAQiFueQuhjl+MjEIf3d+/e2gf4wNWZn6jJ/xAWzw=;
- b=cWXfczfGApeo0kVPeEKKdMn/c2ThwaC/Dmzc2mWJ8wvcejUTU6fEMuRodfFJHMf6CL
- GApMwWVDAUZHtguq/NjDNdMlv12c82rV3obY+qCSqCoVQcl5636Qjay09XgY4Rtz3mQ1
- HR05KkXiT4k+kqdrTuxXjShwrLBBtYdJDhfEJhlTlOzjO6Gc2/RhF/hBeIgyT1wo8ITQ
- HOTxi+ONxvtUw6FykJk1el7J3XuFDYY4mQxa5xddyCeFLFbESvdXXp5liwv7Y4YNnyNM
- 6Bp5eNVxQcKRKxZw5lSJQEmJaN7uEL1XTrCuTN+f/WRE4OC6BFcRI6e6B4t0oQGH80yV
- k4hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1721845141; x=1722449941;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=u/dAQiFueQuhjl+MjEIf3d+/e2gf4wNWZn6jJ/xAWzw=;
- b=osIkEkAUwEx3gghzsx3bycE4yIG1nOFjuPjUB99NC88RiB1xOktxEO4QHkofoR6Qcr
- fhdsdPb3g9zMs/HuVDHqIRiGoTO48iHxq6Nv/XhRrWpRf44YWWnJMdZtOaD+AItc1C3u
- 6oLw2MMaG0n/1nbf590ZVsUxDyGLtEraPEXbUZbyGGsEwgNhd/AR5biqeOuvAsPzMqcY
- cs4787a2Dn3RMueCieptTy9A1DLVQ4zpQP4k5cuknf+fa1klPb4HgF/yvVm6Xq00TLWx
- YJEPUvnf05dqJAJ4cXBPjv8wUMtLRjVtWEJDgxhJOBIA+l5byrDb1GA++778tu0chKvF
- A/1Q==
-X-Gm-Message-State: AOJu0YzMHgQGcRFfjATLoRtaPurjcpyn3SLFyxFmr5rcuejHkD/XTEcC
- mAvc54Bni90CphzdxzGksvrmFAR45qxXlgH3VT88P9nC7FgNjDd07usM2csmgQSYCCOcAhIkUjo
- AgCo=
-X-Google-Smtp-Source: AGHT+IEcoUjg/H7Tny99gyfAD8CirkS4HB9FW7AtPMpVNqZyQxrRGb//+nTTNOgXurdHH0YDNc7dgw==
-X-Received: by 2002:a50:ccd5:0:b0:5a3:8c9:3c1d with SMTP id
- 4fb4d7f45d1cf-5ac2a6c2b15mr172141a12.14.1721845140713; 
- Wed, 24 Jul 2024 11:19:00 -0700 (PDT)
-Received: from fedora.fritz.box (aftr-82-135-80-26.dynamic.mnet-online.de.
- [82.135.80.26]) by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-5a30aaa30b9sm9101646a12.28.2024.07.24.11.18.59
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 24 Jul 2024 11:19:00 -0700 (PDT)
-From: Thorsten Blum <thorsten.blum@toblux.com>
-To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Thorsten Blum <thorsten.blum@toblux.com>
-Subject: [PATCH] drm/xe/oa: Use vma_pages() helper function in xe_oa_mmap()
-Date: Wed, 24 Jul 2024 20:18:27 +0200
-Message-ID: <20240724181826.3163-2-thorsten.blum@toblux.com>
-X-Mailer: git-send-email 2.45.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AF2610E894;
+	Thu, 25 Jul 2024 16:50:52 +0000 (UTC)
+Received: from exchange.fintech.ru (exchange.fintech.ru [195.54.195.159])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CB1A10E263;
+ Thu, 25 Jul 2024 14:53:55 +0000 (UTC)
+Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
+ (195.54.195.169) with Microsoft SMTP Server (TLS) id 14.3.498.0; Thu, 25 Jul
+ 2024 17:53:53 +0300
+Received: from [192.168.211.130] (10.0.253.138) by Ex16-01.fintech.ru
+ (10.0.10.18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Thu, 25 Jul
+ 2024 17:53:52 +0300
+Message-ID: <e6c131df-64b6-4856-8778-0fa7e8c7c876@fintech.ru>
+Date: Thu, 25 Jul 2024 07:53:49 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915: Fix possible int overflow in
+ skl_ddi_calculate_wrpll()
+To: Jani Nikula <jani.nikula@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+CC: Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>,
+ <stable@vger.kernel.org>
+References: <20240724184911.12250-1-n.zhandarovich@fintech.ru>
+ <87sevxzy0i.fsf@intel.com>
+Content-Language: en-US
+From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+In-Reply-To: <87sevxzy0i.fsf@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.0.253.138]
+X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
+ (10.0.10.18)
 X-Mailman-Approved-At: Thu, 25 Jul 2024 16:50:50 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -82,30 +58,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use the vma_pages() helper function and remove the following
-Coccinelle/coccicheck warning reported by vma_pages.cocci:
+Hi,
 
-  WARNING: Consider using vma_pages helper on vma
+On 7/25/24 01:17, Jani Nikula wrote:
+> On Wed, 24 Jul 2024, Nikita Zhandarovich <n.zhandarovich@fintech.ru> wrote:
+>> On the off chance that clock value ends up being too high (by means
+>> of skl_ddi_calculate_wrpll() having benn called with big enough
+>> value of crtc_state->port_clock * 1000), one possible consequence
+>> may be that the result will not be able to fit into signed int.
+>>
+>> Fix this, albeit unlikely, issue by first casting one of the operands
+>> to u32, then to u64, and thus avoid causing an integer overflow.
+> 
+> Okay, thanks for the patch, but please let's not do this.
+> 
+> Currently the highest possible port clock is 2000000 kHz, and 1000 times
+> that fits into 31 bits. When we need to support higher clocks, we'll
+> need to handle this. But not like this.
+> 
+> That (u64)(u32) is just too unintuitive, and assumes the caller has
+> already passed in something that has overflown. People are just going to
+> pause there, and wonder what's going on.
+> 
+> If we want to appease the static analyzer, I think a better approach
+> would be to change the parameter to u64 clock_hz, and have the caller
+> do:
+> 
+> 	ret = skl_ddi_calculate_wrpll((u64)crtc_state->port_clock * 1000,
+> 				      i915->display.dpll.ref_clks.nssc, &wrpll_params);
+> 
+> BR,
+> Jani.
+> 
 
-Signed-off-by: Thorsten Blum <thorsten.blum@toblux.com>
----
- drivers/gpu/drm/xe/xe_oa.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+First, I agree that using (u64)(u32) is confusing and not intuitive,
+even if there are some similar examples in kernel code.
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 6d69f751bf78..133292a9d687 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -1244,8 +1244,7 @@ static int xe_oa_mmap(struct file *file, struct vm_area_struct *vma)
- 	vm_flags_mod(vma, VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP | VM_DONTCOPY,
- 		     VM_MAYWRITE | VM_MAYEXEC);
- 
--	xe_assert(stream->oa->xe, bo->ttm.ttm->num_pages ==
--		  (vma->vm_end - vma->vm_start) >> PAGE_SHIFT);
-+	xe_assert(stream->oa->xe, bo->ttm.ttm->num_pages == vma_pages(vma));
- 	for (i = 0; i < bo->ttm.ttm->num_pages; i++) {
- 		ret = remap_pfn_range(vma, start, page_to_pfn(bo->ttm.ttm->pages[i]),
- 				      PAGE_SIZE, vma->vm_page_prot);
--- 
-2.45.2
+The reason why I thought I had to opt for it though is the following: I
+was worried that if the int value of 'clock' in
+skl_ddi_calculate_wrpll() is big enough (specifically, high bit is 1),
+then after casting it to long or u64 in this case, the resulting value
+of wider type will have all its ~32 upper bits also set to 1, per rules
+of Integer Promotion. Changing the type from signed to unsigned, then to
+bigger unsigned seems to mitigate *this* particular issue and I can't
+come up with a more elegant solution at the moment. Correct me if I'm
+wrong somewhere.
 
+Also, while port clock may be able to fit its value timed 1000 into 31
+bits, multiplying it by 5 to get AFE Clock value, as far as I can see,
+*will* lead to overflow, as 2,000,000,000 * 5 won't fit into 32 bits.
+
+To sum it up, with current max possible port clock values an integer
+overflow can occur and changing 'clock' parameter from int to u64 may
+lead to a different issue. If my understanding about integer promotion
+is flawed, I'll gladly send v2 patch with your solution.
+
+Regards,
+Nikita
+> 
+>>
+>> Found by Linux Verification Center (linuxtesting.org) with static
+>> analysis tool SVACE.
+>>
+>> Fixes: fe70b262e781 ("drm/i915: Move a bunch of stuff into rodata from the stack")
+>> Cc: stable@vger.kernel.org
+>> Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+>> ---
+>> Fixes: tag is not entirely correct, as I can't properly identify the
+>> origin with all the code movement. I opted out for using the most
+>> recent topical commit instead.
+>>
+>>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>> index 90998b037349..46d4dac6c491 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>> @@ -1683,7 +1683,7 @@ skl_ddi_calculate_wrpll(int clock /* in Hz */,
+>>  	};
+>>  	unsigned int dco, d, i;
+>>  	unsigned int p0, p1, p2;
+>> -	u64 afe_clock = clock * 5; /* AFE Clock is 5x Pixel clock */
+>> +	u64 afe_clock = (u64)(u32)clock * 5; /* AFE Clock is 5x Pixel clock */
+>>  
+>>  	for (d = 0; d < ARRAY_SIZE(dividers); d++) {
+>>  		for (dco = 0; dco < ARRAY_SIZE(dco_central_freq); dco++) {
+> 
