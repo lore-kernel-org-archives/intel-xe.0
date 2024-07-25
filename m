@@ -4,24 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC09EC3DA49
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 15:48:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2E99C3DA5D
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 15:48:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6B0510E28B;
-	Thu, 25 Jul 2024 15:48:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2B2410E885;
+	Thu, 25 Jul 2024 15:48:51 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0603010E28B;
- Thu, 25 Jul 2024 15:48:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EE3B10E885;
+ Thu, 25 Jul 2024 15:48:50 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Use_64K_pages_on_Xe2?=
- =?utf-8?q?_HPG?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Use_64K_pages_on_Xe2_HPG?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 25 Jul 2024 15:48:40 -0000
-Message-ID: <172192252001.382191.10800135479800221486@2413ebb6fbb6>
+Date: Thu, 25 Jul 2024 15:48:50 -0000
+Message-ID: <172192253012.382191.8935900582719615661@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240725141916.3406757-1-juhapekka.heikkila@gmail.com>
 In-Reply-To: <20240725141916.3406757-1-juhapekka.heikkila@gmail.com>
@@ -44,13 +43,36 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Use 64K pages on Xe2 HPG
 URL   : https://patchwork.freedesktop.org/series/136503/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 9f8e597a1c39 drm-tip: 2024y-07m-25d-14h-31m-22s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/xe2: Separate graphics_xe2 features to hpg and lpg
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+5ce3e132caaa5b45e5e50201b574a097d130967c
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit dbf510faaef0ff6883836ae6e5bad176e8bdb7c6
+Author: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Date:   Thu Jul 25 17:19:11 2024 +0300
+
+    drm/xe/xe2: Separate graphics_xe2 features to hpg and lpg
+    
+    Separate graphics_xe2 to graphics_xe2hpg and graphics_xe2lpg. This is done to
+    be able to add XE_VRAM_FLAGS_NEED64K for xe2hpg. Without 64K pages xe2hpg
+    ccs decompression can result in corruption on display.
+    
+    Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
++ /mt/dim checkpatch 9f8e597a1c39d7e316f9479e6f627c15dbc58e1d drm-intel
+dbf510faaef0 drm/xe/xe2: Separate graphics_xe2 features to hpg and lpg
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+Separate graphics_xe2 to graphics_xe2hpg and graphics_xe2lpg. This is done to
+
+total: 0 errors, 1 warnings, 0 checks, 32 lines checked
 
 
