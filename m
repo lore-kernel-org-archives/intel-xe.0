@@ -4,26 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93F9BC3DA70
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 22:45:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 595C0C3DA49
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 23:17:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D58C10E0DC;
-	Thu, 25 Jul 2024 22:45:01 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D46A710E0DC;
- Thu, 25 Jul 2024 22:44:59 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0670726223427567897=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08F0410E075;
+	Thu, 25 Jul 2024 23:17:17 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b6tsQs/2";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58E0810E075
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Jul 2024 23:17:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1721949435; x=1753485435;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vommkjyKWEHbOpXJqo30vBSn9JnHICz+Q7qAJagarPI=;
+ b=b6tsQs/2nBEF2Rxy9RT6+ST6UI+ctjfyRVbCwyiSz5EPnbeFJHn1Z+DO
+ KpNOOiII2qbvez/1gDBZrpZGWs7BJ2lgBoYpZ1ssLKhgO47qpDmNXNJ/8
+ 2ownnCc/C5eXkXnpTD6fXN+1vd+jhZGK8jPR43thdl1qMCDSVaYXSv8fm
+ T55+N+Ibk/bSqN8Z1Q8nyi++DDMoRYKz4UUQ2Io39Ea2g95Tz4EHpNUOk
+ zEMD2jhHmOhQvuV3txQOx3bckbfFGHh1rLRdx8VD5R7kV5bTR3tMyvfqK
+ pjPaNo4H+o3w8Ad0A01DOHr7QgNF35kW8ZKuX4fctknO1R0hOXXtMA2v0 A==;
+X-CSE-ConnectionGUID: gKpWR2TASv6cgEGKINlsdA==
+X-CSE-MsgGUID: 0yW0t1hETE+ylkwp6Jywtw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11144"; a="19859374"
+X-IronPort-AV: E=Sophos;i="6.09,237,1716274800"; d="scan'208";a="19859374"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2024 16:17:14 -0700
+X-CSE-ConnectionGUID: +xRmnMunSMeDvu3cibDB7g==
+X-CSE-MsgGUID: O7AXGp7XQT2GkKLT7x/9ow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,237,1716274800"; d="scan'208";a="76296462"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2024 16:17:15 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH] drm/xe: Assert G2H outstanding when releasing G2H
+Date: Thu, 25 Jul 2024 16:18:01 -0700
+Message-Id: <20240725231801.1958038-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Remove_unused_variable?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Azhar Shaikh" <azhar.shaikh@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 25 Jul 2024 22:44:59 -0000
-Message-ID: <172194749986.384145.9491505394672776522@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240725214804.31650-1-azhar.shaikh@intel.com>
-In-Reply-To: <20240725214804.31650-1-azhar.shaikh@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,145 +60,29 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0670726223427567897==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Ensure we are managing G2H credits correctly. Extra important now that
+this is tied to PM.
 
-== Series Details ==
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_ct.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Series: drm/xe: Remove unused variable
-URL   : https://patchwork.freedesktop.org/series/136530/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 64afc90ad2c5..beeeb120d1fc 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -516,6 +516,7 @@ static void __g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
+ 	lockdep_assert_held(&ct->fast_lock);
+ 	xe_gt_assert(ct_to_gt(ct), ct->ctbs.g2h.info.space + g2h_len <=
+ 		     ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space);
++	xe_gt_assert(ct_to_gt(ct), ct->g2h_outstanding);
+ 
+ 	ct->ctbs.g2h.info.space += g2h_len;
+ 	if (!--ct->g2h_outstanding)
+-- 
+2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-1668-1c38b092d18ce973d9ec31a4ab097fbc344ab8f2_BAT -> xe-pw-136530v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (7 -> 7)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-136530v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-FAIL][2] ([Intel XE#324])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1668-1c38b092d18ce973d9ec31a4ab097fbc344ab8f2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136530v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_evict@evict-small-external:
-    - {bat-bmg-1}:        [DMESG-WARN][3] -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1668-1c38b092d18ce973d9ec31a4ab097fbc344ab8f2/bat-bmg-1/igt@xe_evict@evict-small-external.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136530v1/bat-bmg-1/igt@xe_evict@evict-small-external.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
-
-
-Build changes
--------------
-
-  * Linux: xe-1668-1c38b092d18ce973d9ec31a4ab097fbc344ab8f2 -> xe-pw-136530v1
-
-  IGT_7937: eba69333dfe8c295d053997367e395d7bde2b4b4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1668-1c38b092d18ce973d9ec31a4ab097fbc344ab8f2: 1c38b092d18ce973d9ec31a4ab097fbc344ab8f2
-  xe-pw-136530v1: 136530v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136530v1/index.html
-
---===============0670726223427567897==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Remove unused variable</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136530/">https://patchwork.freedesktop.org/series/136530/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136530v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136530v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1668-1c38b092d18ce973d9ec31a4ab097fbc344ab8f2_BAT -&gt; xe-pw-136530v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-136530v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1668-1c38b092d18ce973d9ec31a4ab097fbc344ab8f2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136530v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_evict@evict-small-external:<ul>
-<li>{bat-bmg-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1668-1c38b092d18ce973d9ec31a4ab097fbc344ab8f2/bat-bmg-1/igt@xe_evict@evict-small-external.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136530v1/bat-bmg-1/igt@xe_evict@evict-small-external.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1668-1c38b092d18ce973d9ec31a4ab097fbc344ab8f2 -&gt; xe-pw-136530v1</li>
-</ul>
-<p>IGT_7937: eba69333dfe8c295d053997367e395d7bde2b4b4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1668-1c38b092d18ce973d9ec31a4ab097fbc344ab8f2: 1c38b092d18ce973d9ec31a4ab097fbc344ab8f2<br />
-  xe-pw-136530v1: 136530v1</p>
-
-</body>
-</html>
-
---===============0670726223427567897==--
