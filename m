@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90201C3DA49
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 06:09:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12D11C3DA49
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Jul 2024 07:22:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A1E610E500;
-	Thu, 25 Jul 2024 06:09:43 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 676FD10E500;
- Thu, 25 Jul 2024 06:09:40 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3840942915484856057=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2E2210E0DD;
+	Thu, 25 Jul 2024 07:21:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H3kOAV/U";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 593B210E0DD
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Jul 2024 07:21:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1721892119; x=1753428119;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=63nAyyPxqlCZ70UiJG7L1ymTRTqLE8026UlvnY8n17k=;
+ b=H3kOAV/UsCpKn7BriHjziJTSNdOiP0t7LMJGQE4orrNL730urDKCZ7Yv
+ qwz2s2P0HhTEq2LzXHxXFdFdZNExgEmtNi+GXv2IubfmUXlWkNAAa4aRo
+ X1qCeXv7pnbas2cBVY0SuFJTYZzrbs10Xt+OclZ4F0O9EcDqnvehkrleC
+ DC2vEDO7DJ4XJUj/FpIoIlEUCOYCrvo27Ph3mNg5MvO/N9/iEI9V59lRR
+ /6e9fb8+Ue0rjycVU4jtShqHM63ye6CAPXNKI/y+TYaOSAzc3YoSfAvrN
+ g9V0mbbjvppc5JVLGRuOThYdj5XgH940Mgw+Kjzc2D97MNOJMeTBZ8x1/ g==;
+X-CSE-ConnectionGUID: IjW92la2RDajgzN3+dPE4Q==
+X-CSE-MsgGUID: gWTpO7qfTduBIzS60vC2SA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11143"; a="31000093"
+X-IronPort-AV: E=Sophos;i="6.09,235,1716274800"; d="scan'208";a="31000093"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2024 00:21:58 -0700
+X-CSE-ConnectionGUID: irW4wh/eSnSc8sO5cRiSHw==
+X-CSE-MsgGUID: iXWqZjMjRCawcwemw64BkA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,235,1716274800"; d="scan'208";a="57646037"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2024 00:21:56 -0700
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, anshuman.gupta@intel.com,
+ vinay.belgaumkar@intel.com, rodrigo.vivi@intel.com,
+ matthew.d.roper@intel.com
+Subject: [PATCH] drm/xe/xe_gt_idle: add debugfs entry for powergating info
+Date: Thu, 25 Jul 2024 13:05:07 +0530
+Message-Id: <20240725073507.723568-1-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A_Nuke_VM=27s_mapping_up?=
- =?utf-8?q?on_close?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 25 Jul 2024 06:09:40 -0000
-Message-ID: <172188778041.373618.3272619380129491092@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240725050028.1924802-1-matthew.brost@intel.com>
-In-Reply-To: <20240725050028.1924802-1-matthew.brost@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,207 +63,192 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3840942915484856057==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Coarse Powergating is a power saving technique where Render and Media
+can be power-gated independently irrespective of the rest of the GT.
 
-== Series Details ==
+For debug purposes, it is useful to expose the powergating information.
 
-Series: drm/xe: Nuke VM's mapping upon close
-URL   : https://patchwork.freedesktop.org/series/136474/
-State : failure
+v2: move to debugfs
+    add details to commit message
+    add per-slice status for media
+    define reg bits in descending order (Matt Roper)
 
-== Summary ==
+Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  8 +++
+ drivers/gpu/drm/xe/xe_gt_debugfs.c   | 11 ++++
+ drivers/gpu/drm/xe/xe_gt_idle.c      | 80 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_idle.h      |  2 +
+ 4 files changed, 101 insertions(+)
 
-CI Bug Log - changes from xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2_BAT -> xe-pw-136474v1_BAT
-====================================================
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 8a94a94d2267..fe774d0894fa 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -336,6 +336,14 @@
+ #define   CTC_SOURCE_DIVIDE_LOGIC		REG_BIT(0)
+ 
+ #define FORCEWAKE_RENDER			XE_REG(0xa278)
++
++#define POWERGATE_DOMAIN_STATUS			XE_REG(0xa2a0)
++#define   MEDIA_SLICE3_AWAKE_STATUS		REG_BIT(4)
++#define   MEDIA_SLICE2_AWAKE_STATUS		REG_BIT(3)
++#define   MEDIA_SLICE1_AWAKE_STATUS		REG_BIT(2)
++#define   RENDER_AWAKE_STATUS			REG_BIT(1)
++#define   MEDIA_SLICE0_AWAKE_STATUS		REG_BIT(0)
++
+ #define FORCEWAKE_MEDIA_VDBOX(n)		XE_REG(0xa540 + (n) * 4)
+ #define FORCEWAKE_MEDIA_VEBOX(n)		XE_REG(0xa560 + (n) * 4)
+ #define FORCEWAKE_GSC				XE_REG(0xa618)
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index 5e7fd937917a..5ba153aac577 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -15,6 +15,7 @@
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
+ #include "xe_gt_mcr.h"
++#include "xe_gt_idle.h"
+ #include "xe_gt_sriov_pf_debugfs.h"
+ #include "xe_gt_sriov_vf_debugfs.h"
+ #include "xe_gt_topology.h"
+@@ -107,6 +108,15 @@ static int hw_engines(struct xe_gt *gt, struct drm_printer *p)
+ 	return 0;
+ }
+ 
++static int powergate_info(struct xe_gt *gt, struct drm_printer *p)
++{
++	xe_pm_runtime_get(gt_to_xe(gt));
++	xe_gt_idle_print(gt, p);
++	xe_pm_runtime_put(gt_to_xe(gt));
++
++	return 0;
++}
++
+ static int force_reset(struct xe_gt *gt, struct drm_printer *p)
+ {
+ 	xe_pm_runtime_get(gt_to_xe(gt));
+@@ -277,6 +287,7 @@ static const struct drm_info_list debugfs_list[] = {
+ 	{"topology", .show = xe_gt_debugfs_simple_show, .data = topology},
+ 	{"steering", .show = xe_gt_debugfs_simple_show, .data = steering},
+ 	{"ggtt", .show = xe_gt_debugfs_simple_show, .data = ggtt},
++	{"powergate_info", .show = xe_gt_debugfs_simple_show, .data = powergate_info},
+ 	{"register-save-restore", .show = xe_gt_debugfs_simple_show, .data = register_save_restore},
+ 	{"workarounds", .show = xe_gt_debugfs_simple_show, .data = workarounds},
+ 	{"pat", .show = xe_gt_debugfs_simple_show, .data = pat},
+diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
+index 67aba4140510..c8dd4b732658 100644
+--- a/drivers/gpu/drm/xe/xe_gt_idle.c
++++ b/drivers/gpu/drm/xe/xe_gt_idle.c
+@@ -145,6 +145,86 @@ void xe_gt_idle_disable_pg(struct xe_gt *gt)
+ 	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
+ }
+ 
++/**
++ * xe_gt_idle_print - Xe gt idle print
++ * @gt: GT object
++ * @p: drm_printer.
++ *
++ * This function prints the powergating information
++ */
++int xe_gt_idle_print(struct xe_gt *gt, struct drm_printer *p)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++	u32 pg_enabled, pg_status;
++	u32 vcs_mask, vecs_mask;
++	int err;
++
++	if (xe->info.platform == XE_PVC) {
++		drm_printf(p, "Power Gating Enabled: no\n");
++		return 0;
++	}
++
++	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++	if (err)
++		return err;
++
++	pg_enabled = xe_mmio_read32(gt, POWERGATE_ENABLE);
++	pg_status = xe_mmio_read32(gt, POWERGATE_DOMAIN_STATUS);
++
++	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
++
++	if (gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK) {
++		drm_printf(p, "Render Power Gating Enabled: %s\n",
++			   str_yes_no(pg_enabled & RENDER_POWERGATE_ENABLE));
++
++		drm_printf(p, "Render Power Gate Status: %s\n",
++			   (pg_status & RENDER_AWAKE_STATUS) ? "Up" : "Down");
++	}
++
++	vcs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_VIDEO_DECODE);
++	vecs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_VIDEO_ENHANCE);
++
++	/* Print media CPG status only if media is present */
++	if (vcs_mask || vecs_mask) {
++		drm_printf(p, "Media Power Gating Enabled: %s\n",
++			   str_yes_no(pg_enabled & MEDIA_POWERGATE_ENABLE));
++
++		/*
++		 * Media Slices
++		 *
++		 * Slice 0: VCS0, VCS1, VECS0
++		 * Slice 1: VCS2, VCS3, VECS1
++		 * Slice 2: VCS4, VCS5, VECS2
++		 * Slice 3: VCS6, VCS7, VECS3
++		 */
++		if (gt->info.engine_mask & (BIT(XE_HW_ENGINE_VCS0)
++					    | BIT(XE_HW_ENGINE_VCS1)
++					    | BIT(XE_HW_ENGINE_VECS0)))
++			drm_printf(p, "Media Slice0 Power Gate Status: %s\n",
++				   (pg_status & MEDIA_SLICE0_AWAKE_STATUS) ? "Up" : "Down");
++
++		if (gt->info.engine_mask & (BIT(XE_HW_ENGINE_VCS2)
++					    | BIT(XE_HW_ENGINE_VCS3)
++					    | BIT(XE_HW_ENGINE_VECS1)))
++			drm_printf(p, "Media Slice1 Power Gate Status: %s\n",
++				   (pg_status & MEDIA_SLICE1_AWAKE_STATUS) ? "Up" : "Down");
++
++		if (gt->info.engine_mask & (BIT(XE_HW_ENGINE_VCS4)
++					    | BIT(XE_HW_ENGINE_VCS5)
++					    | BIT(XE_HW_ENGINE_VECS2)))
++			drm_printf(p, "Media Slice2 Power Gate Status: %s\n",
++				   (pg_status & MEDIA_SLICE2_AWAKE_STATUS) ? "Up" : "Down");
++
++		if (gt->info.engine_mask & (BIT(XE_HW_ENGINE_VCS6)
++					    | BIT(XE_HW_ENGINE_VCS7)
++					    | BIT(XE_HW_ENGINE_VECS3)))
++			drm_printf(p, "Media Slice3 Power Gate Status: %s\n",
++				   (pg_status & MEDIA_SLICE3_AWAKE_STATUS) ? "Up" : "Down");
++	}
++
++	return 0;
++}
++
+ static ssize_t name_show(struct device *dev,
+ 			 struct device_attribute *attr, char *buff)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_gt_idle.h b/drivers/gpu/drm/xe/xe_gt_idle.h
+index 554447b5d46d..4b8192d3aee0 100644
+--- a/drivers/gpu/drm/xe/xe_gt_idle.h
++++ b/drivers/gpu/drm/xe/xe_gt_idle.h
+@@ -8,6 +8,7 @@
+ 
+ #include "xe_gt_idle_types.h"
+ 
++struct drm_printer;
+ struct xe_gt;
+ 
+ int xe_gt_idle_init(struct xe_gt_idle *gtidle);
+@@ -15,5 +16,6 @@ void xe_gt_idle_enable_c6(struct xe_gt *gt);
+ void xe_gt_idle_disable_c6(struct xe_gt *gt);
+ void xe_gt_idle_enable_pg(struct xe_gt *gt);
+ void xe_gt_idle_disable_pg(struct xe_gt *gt);
++int xe_gt_idle_print(struct xe_gt *gt, struct drm_printer *p);
+ 
+ #endif /* _XE_GT_IDLE_H_ */
+-- 
+2.40.0
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-136474v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-136474v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (7 -> 7)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-136474v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-dg2-oem2:       [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136474v1/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@sriov_basic@enable-vfs-autoprobe-on:
-    - bat-adlp-7:         [PASS][3] -> [ABORT][4] +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136474v1/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html
-
-  * igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:
-    - bat-atsm-2:         [PASS][5] -> [ABORT][6] +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136474v1/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@core_hotunplug@unbind-rebind:
-    - {bat-bmg-1}:        [PASS][7] -> [ABORT][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136474v1/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@xe_pat@prime-self-import-coh:
-    - {bat-bmg-1}:        [PASS][9] -> [DMESG-WARN][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-bmg-1/igt@xe_pat@prime-self-import-coh.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136474v1/bat-bmg-1/igt@xe_pat@prime-self-import-coh.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-136474v1_BAT that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#1192]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1192
-  [Intel XE#1705]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1705
-
-
-Build changes
--------------
-
-  * Linux: xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2 -> xe-pw-136474v1
-
-  IGT_7936: 7936
-  xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2: 724a2a53988a57709d7f9dcd5c58dd5737d45cb2
-  xe-pw-136474v1: 136474v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136474v1/index.html
-
---===============3840942915484856057==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Nuke VM&#x27;s mapping upon close</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136474/">https://patchwork.freedesktop.org/series/136474/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136474v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136474v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2_BAT -&gt; xe-pw-136474v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-136474v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-136474v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-136474v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136474v1/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136474v1/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136474v1/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>{bat-bmg-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136474v1/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@prime-self-import-coh:</p>
-<ul>
-<li>{bat-bmg-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2/bat-bmg-1/igt@xe_pat@prime-self-import-coh.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136474v1/bat-bmg-1/igt@xe_pat@prime-self-import-coh.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-136474v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2 -&gt; xe-pw-136474v1</li>
-</ul>
-<p>IGT_7936: 7936<br />
-  xe-1664-724a2a53988a57709d7f9dcd5c58dd5737d45cb2: 724a2a53988a57709d7f9dcd5c58dd5737d45cb2<br />
-  xe-pw-136474v1: 136474v1</p>
-
-</body>
-</html>
-
---===============3840942915484856057==--
