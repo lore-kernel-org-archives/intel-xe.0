@@ -4,180 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3272EC3DA49
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jul 2024 16:46:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A05B2C3DA49
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jul 2024 16:59:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE29210E9A9;
-	Fri, 26 Jul 2024 16:46:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0687210E03D;
+	Fri, 26 Jul 2024 16:59:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DnJRaktD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JGNcGU1c";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 412E510E9A9
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Jul 2024 16:46:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A5E310E03D
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 Jul 2024 16:59:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722012382; x=1753548382;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:cc:to:date:message-id:mime-version;
- bh=BWg6iqrPwLNwMqG9kij/jRyWTGwDRfD3zeGUKtQZ+lc=;
- b=DnJRaktDU0p1GDaD+VNjreTG85ahDT0h+BquZl1rc3ohRrgKkiUo5sdK
- QqY4LuiILJl0Q2sCvurp1QrtpuGHAc7RB4VX6TmZZ3J4QHaKD6pOq6Mbu
- CnMLrtpO6Ul9qvUFBgEgkNwOo+gcupuKxWjB5sUTSfySb7M9Kgyp2Qp8J
- jDnXoNFrOhy7Xzf9iBaY3NkdEWDSHscnc0yvibdrV3H6nLS9QdSjQLgwk
- nHTmFV0G/XaPnt2S87YH5WneYnBKm9CR6ogYQDhNdxOsrAiAlMi5m3kaz
- obgKx7teapzyf1btj41HKEt/XmKARgLEaC7+CWavSnbNuXB5/uwh0+v5G Q==;
-X-CSE-ConnectionGUID: THuOMxL9RC+ScbggzXPYvw==
-X-CSE-MsgGUID: uCBQIPe4RzSnHydHTTqVlA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11145"; a="23668525"
-X-IronPort-AV: E=Sophos;i="6.09,239,1716274800"; d="scan'208";a="23668525"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2024 09:46:22 -0700
-X-CSE-ConnectionGUID: P9tBRGHdT3+Vy3574hcplw==
-X-CSE-MsgGUID: Lt1IAA8pS8epa9092PQJsQ==
+ t=1722013156; x=1753549156;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=veXHfvGmWV14z8F7HF65xkuyb6/HCPiOEMm7Ft32w/U=;
+ b=JGNcGU1cR7sdYTgtCdIQGAVyuBo8FOey5x+cPzcTVEiLGwnRVIedLEqo
+ XnqAzKc4Ty66Y7v4cJLWxmenfBPayxlLpZVCzIqoxc8ERybunqwyKdeeS
+ VX9F3VretIqy9EQ3QkoCIzzpBEXGeUkED+RsT6lvHEGToGLXT+uGa49jB
+ hJk0jo2HG9QO56dvv9sTG3JLYDacGP4PRIrTPVx2LqWTvHaoqVFk0fkrh
+ idM1q05VWe4x7sgDRCRIQslZ3VSihj21MSjm+kRsFCylV/bEIPzbUSbPF
+ PCJgCLorIzMQBvz1L5oymX5N4EjPc+A/DBIzT0I3zEWWAwkUEwvelhxyq g==;
+X-CSE-ConnectionGUID: LhWMAiRAQEKrBX8jGJ1ZUg==
+X-CSE-MsgGUID: PnGLywFbQPqa9W/MSxsyFw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11145"; a="31207137"
+X-IronPort-AV: E=Sophos;i="6.09,239,1716274800"; d="scan'208";a="31207137"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2024 09:59:16 -0700
+X-CSE-ConnectionGUID: ThQYWmdiTxmxcdXfkjgt6g==
+X-CSE-MsgGUID: /G39TTlCSS6hBzCPYzsQLg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,239,1716274800"; d="scan'208";a="53925483"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 26 Jul 2024 09:46:21 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.09,239,1716274800"; d="scan'208";a="53545164"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 26 Jul 2024 09:59:16 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 26 Jul 2024 09:46:20 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.39; Fri, 26 Jul 2024 09:59:15 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 26 Jul 2024 09:46:20 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.45) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Fri, 26 Jul 2024 09:59:15 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.41) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 26 Jul 2024 09:46:20 -0700
+ 15.1.2507.39; Fri, 26 Jul 2024 09:59:15 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wWDVuwQYjr4dRQlvWoyXZ1noRCyCkW5hG1tnCH/M6EN8Yu4x44LMMad2/ADIxDJQ6/aVA4/jBXWT8DDBoiSm1f7BWodg2YGE9wo6qrql7f1axLF+Og4xglxKMqJrfNxKZOQJPm+8iJ/mQYu8yv3NGUfkxwgUvcjYpiz1IYr9cUUMhQ2Nz3N2SIxSo/YbppIPlhTdfuvUWe8+eOzZTHW83II5AIts25Cl2Hgq4dZxVcXyAQm5GvmWM7T2DvYLsLcBbS+8bO1lCEAHxVoHiag02Kvk6CkX+iu4B57s0kGPrIEO1WcZIoL8Skzx3RwLtRW8uT79E/vwbOfsNbRgNoXzVQ==
+ b=CsZlZVrkaYcku0KH6jrw/L5ApKiESV5i2FPL6yyUnPB3fsp27/A3JsSX87lb0FfPU4HGHXOuAHlTZY/1OB2saxsONNR1aTafbcfRFpTIxEuk3mUKEY5shMzvE8B2RLWqmEeFACpBFPiJ3UF/g2nGwmJoY06R0M6RJgR3ev5B/upmNzs+mCV1LTxECi8g9ThVtjI8lAYO6bTSWcrEDJjPRaKaPKfdTCQ0OWXMhQB7ESyuznztpggEsz7r1d+Eegrc2DPbNRsmOAdz8KjR11u6eCGqTN++lroanSPlICMC1OUmKy2+qYQeTn2EL9I4s3aSsNZ7IAOQZ3OPf48qPn6CXg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vJHoyxyEWm9HIY5gMdVtT3BcBIZyBynKr5ikTxNKHt8=;
- b=PdKc4UJyGhgZ5jy62oCXc7lu66NScUbnwWINYePfw+ZCcgeJZj2+psquqGV0ynFYgEQn7U/mVNHssxJBPZ+d3cjvGN4/NABiNEapOCx7qDRgpqUWD4snLw/1c5DfOP6vgnjONizoEj5+p2zD/mjYmupS6JBM/PjnUtSHkbZYoTA6arwfvTEouHYaUAvDpAcwekQojkmie/+0jdSaQUicBiPaMpiaaCKmQ01ANtRY/nvPdESnSYg3x9WDmtrCORjAPi0fsLxjY6l6kLb3r7dMXEbyoHMOZesNXX87rIBqMkSjuP3XyInCkHPT2LEli2ae393tKmqXuEvpFesSEBx8KA==
+ bh=Wxgxge5z5B8tUkOn871T+GsDIR6x90cCkXHfBW0ae6A=;
+ b=byqxCLFMsE2Bwmykw56C7oWSwI8KEKO2mqUT4vXrfItXkTDW3advuDRUWbgxju5X+4CmeecRYG+KJ+EQOuU75w9KnTEKfxA4DOSPz+Y8ASbIsDkIi1hwZ6x0SzgZx/3/TPWxAQhaf5KrY28QtkH33ocjopOkk9LXhPmt9OJnTCRfQM5xs2W1hmu+XdkHaL4jhAGMVQazmNN132lp3NX5dddnWr68VjKVxVfgQC4aQ4E2iujfTrouBT5JdTGN+Bk8RSEgNN3cOdeC6fsbRHyYAxq1+K6lfBNdmOdGk3DJuBuUHd7ByEFwpkxHZw1pc41Tk8mPYFQoFWVKaAf+xtkZSw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by IA1PR11MB8245.namprd11.prod.outlook.com (2603:10b6:208:448::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.29; Fri, 26 Jul
- 2024 16:46:16 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350%4]) with mapi id 15.20.7762.027; Fri, 26 Jul 2024
- 16:46:16 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240726064337.797576-8-lucas.demarchi@intel.com>
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by DS7PR11MB5965.namprd11.prod.outlook.com (2603:10b6:8:70::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.31; Fri, 26 Jul
+ 2024 16:59:10 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.7784.017; Fri, 26 Jul 2024
+ 16:59:10 +0000
+Date: Fri, 26 Jul 2024 11:59:08 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v2 6/7] drm/xe/kunit: Test rtp with no actions
+Message-ID: <zfoxb4wpuo7hgyvrtaizhyc3zkq3lktze3jkkr3lziahalm5kn@smecpemtkout>
 References: <20240726064337.797576-1-lucas.demarchi@intel.com>
- <20240726064337.797576-8-lucas.demarchi@intel.com>
-Subject: Re: [PATCH v2 7/7] drm/xe/rtp: Simplify marking active workarounds
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- <intel-xe@lists.freedesktop.org>
-Date: Fri, 26 Jul 2024 13:46:11 -0300
-Message-ID: <172201237134.1586.8196077901199945907@gjsousa-mobl2>
-User-Agent: alot/0.10
-X-ClientProxiedBy: MW4PR02CA0022.namprd02.prod.outlook.com
- (2603:10b6:303:16d::15) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+ <20240726064337.797576-7-lucas.demarchi@intel.com>
+ <172201183744.1586.17708055766759678866@gjsousa-mobl2>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <172201183744.1586.17708055766759678866@gjsousa-mobl2>
+X-ClientProxiedBy: MW4PR03CA0123.namprd03.prod.outlook.com
+ (2603:10b6:303:8c::8) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|IA1PR11MB8245:EE_
-X-MS-Office365-Filtering-Correlation-Id: cc2e0941-d5cb-450e-71df-08dcad92775d
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS7PR11MB5965:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2bc3dfb3-6a63-4169-8ac9-08dcad9444f1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?bU9sdnY5UEtWQVNBdzVHcGZrMHVxYmVxZ1dKdVBEcVkzOVVFWHIyMWNFa3NC?=
- =?utf-8?B?UGJzaVN1Zkk3a2svK0J1MGJmdVJaMWpzWkc3V3hjMjd1TVU2bWZBbEhZRE0y?=
- =?utf-8?B?cXM3dDk3R0FGNllzUk4vWkdSL2lySTJrZklPMjJ1UW9mc2RNZkphZW9XUnRP?=
- =?utf-8?B?YXRDNkpQRWsrRmJYQ0RMRm4rN3Z0SnBDQzJjcnFkK1RHODJMUzhJVUxrczdC?=
- =?utf-8?B?Z3BTUnYxYVJKOERHbFZHZGZodThHT3p3ZzEzSEFLSUFtaVI3TGFqY1ZDR1p0?=
- =?utf-8?B?Qm5xRGYyTzdTWVFKdWRoU09RanptY0g3eGswc0M4Nk5TazN4MWd5SjUrOUg3?=
- =?utf-8?B?cmFtOUJ6cWMyQjYwTkVPRVVHa2EzSzhqcUJhMDNSZjY4c1pwVXlYYVJHNGhS?=
- =?utf-8?B?NjQ0QjJZdDNWeFpTYWVrOEkvSERhTkk5aEJUYStrbWNrS1c4WFU0NWxFMnZn?=
- =?utf-8?B?SmI3aGhiNFEwbnV1enU4bVMycnFyMFZPYmt1NU4rd0w0T1dHdlJPdUNBQUVa?=
- =?utf-8?B?ZzRlK2hac3NjcHhwRFJXZVI2VFhXVGtlbEo1cUNnU1E4ajIzYTk0cnlsdVpi?=
- =?utf-8?B?UkdqNmlxOW9oa0J3aWpsdFBNMCtjN2tCYThlVGJqQVlESVRFYmJNNGdhcHps?=
- =?utf-8?B?UnRpZkozdGFENXNlaSt2R293UmlXTFV2L0pIQVBna3JYd3gySG1TUnVpNUwr?=
- =?utf-8?B?YWRRM28wMTBiZWtOOTlHUVRJdHpuZVoyOWVLSjJqcEtocFMxRjQ5ai8xNlJG?=
- =?utf-8?B?N0o0Q3hCNHRWYnBTeUkrM0FReXNWejd1d3lyZXFadUc1V0F4VjZGbGt2NHpl?=
- =?utf-8?B?TDhyc3FuYnAzbXUrREhSVTZMQ2VlSE1qd0Y1dmFmblJuZVFaNHBDVStxU3lN?=
- =?utf-8?B?MnBYdDAzWGo1d09ZeFdobnBLWlVWMjVMUm1WZHEzRjg1RUwza3gzU0plai9a?=
- =?utf-8?B?Q2tsaytIeGpudlZ0ZnB6VHFXWDY0U2RkbUwySVdUZGlaZUpqWURPQlFjU2Zu?=
- =?utf-8?B?RjFiNGVuYzBiNTRURDVSOGhTTGtwSGpERlJtZFNEdGFjeUR2ZGhnM2NvYmJR?=
- =?utf-8?B?aGNvNGp0OGtGZWJYL3NFalgyaU9QaDAwOE5mN3E5MkxEb0Zrb0hFUjZxYzJs?=
- =?utf-8?B?UGFIRWVUallWTmczOGlDRmlURjVUQ2dGallBdWEwUS95cFBXWGNaQlZBeGJ3?=
- =?utf-8?B?Yk9nV3JLR0cyV1pkdXpSOUx6T3RZekpIQXVRcGU0TTBzUnNMUjhUK2tjZVl6?=
- =?utf-8?B?SklkRHJVb0ZvUVhhc0hIV1lQZzVOaG4xNjRtTEhjNGdESUF5NG5tQllRbXZK?=
- =?utf-8?B?dUpnVUl4T25yUGwrK1ZPQ29sb1dVdCt2M09OMS9qbUFBMW4yekV3MHFmUDZC?=
- =?utf-8?B?WTRtU1h6NnIwZzVid0MrSERoSnFLNHJVU2VkdDZMWml4eVcrOXpaS3E2MDY3?=
- =?utf-8?B?L3F0SnVodUdpTXRFcW9FWS8xdFB2a1JEbmZONEtKbHFYU2ZBMXd0ZWxnKzkv?=
- =?utf-8?B?dCtTSW1LOTdFcE02RFRQZFFrb1Bia2lkQTBKU1kzb1YvTWxXYlhycFZzalFO?=
- =?utf-8?B?UzRYT2JFSHRJb1ZmbWlFd1YzVzJLMktNUzVVS0ttT3BwT1lJTHc1d2lHc1VU?=
- =?utf-8?B?NjFXWWl5TFJpNDVhdVZSdStCV1JyUjFsUlpJa2QweHVTY1paYzFqMm9pRmR4?=
- =?utf-8?B?bWRibmxOaTdhdWQ0dTViamVSMGFiYk85SUg0WURIWVhTMGI0SW56RWNrK0ho?=
- =?utf-8?B?VkhqL1JUemlqNWhDS1hhaVR3SFJsN3BFZHdhSWljUWJlV1hOWjFsbisxb245?=
- =?utf-8?B?SzFUVjNZZUZROE03WXdzdz09?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|27256017;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?UwbJfZqaEQ7JAs5kY1RMwJb9hFZ+9YLF5F/5x2XGyOdz67JLWYiWQ2F6li3e?=
+ =?us-ascii?Q?GK9rpJVHJNvjw0umjKvCI+QQJEu5J3Vz1xQFupoA2HVUHw69v/XzmucfeuwT?=
+ =?us-ascii?Q?M+9ySVxw1TtA+/yFCYLwqtUEwUFcwpbpMAp1IHWVH8GGXqknz60Stc1W+hcX?=
+ =?us-ascii?Q?/BD18row4cNRzWiDWZLBo68chJdFShs7NWK6aYimhW242KSFHRiLLqRx1cV5?=
+ =?us-ascii?Q?y1WK3SoLKOV654WUhqpZMBAyR618aDQZunOJRkcBS+wM6LleFcJssqn1YzlZ?=
+ =?us-ascii?Q?ob5VftmS3WzvISj5rbYlHRXYPlZSPjkZBuFp/v0A0h3i9BT9qY9jDqf2sOud?=
+ =?us-ascii?Q?pN7uFf05CnOwgYYcnHy8FVXVcRUiXfiEWaQ8Y91Ad2rlc6QYnYdHbX/yX6bf?=
+ =?us-ascii?Q?2c3bJguMo6z5s2m13HIbAeJ8t2bg3vXcIXXJEjifLn/NkUfyAB+Mu+vV6RvC?=
+ =?us-ascii?Q?zFUm1CrXd1SBk9ZkWC51G8P1HR0bYDbiwuLZDezXf2aAHK/fJAHE80dG00/1?=
+ =?us-ascii?Q?8CH5Zh93mLRBwayiEztpZPkXeILpMc3zMWLIvpup64xe8mQmuLWpwQUzxAmd?=
+ =?us-ascii?Q?D6uf404U407ddAfgAMN1LoQSd1f5chdGTqQgCF16gAZwzrIfOSv8NgWMltcH?=
+ =?us-ascii?Q?3z3mUblRsWfQpe0pA0jeplYcZLCEuXwWp/2MdZmrcNMKP4X83YGnhbU9Q5ni?=
+ =?us-ascii?Q?ECwex8jKKIoei29i3t4f2J+CnKbzBxbflrwpnOS/vEdlwevsb5GJDAU4jJjp?=
+ =?us-ascii?Q?zzAfuwkVtg8+xpsjKG4nnqwf3iQc6JU7Xst82UOnNKqsPjQYTfI/fShp8NB0?=
+ =?us-ascii?Q?amwjdWaXHQIr0PBrqnIiRh88VkinqM7NzV4WSvfljMkpoe4MSr5nw0eGsQoW?=
+ =?us-ascii?Q?1FOqjMUoGRsDYOI07+nLg/X7HRtpqZB/HUeuKL1BcTiX9B474PiBKuTXYgz0?=
+ =?us-ascii?Q?lyq0lMU+AFlm6CYkv1vK8mGFz9nC7ZD0KSVO5Ie4z2zxR9OUOKH+9LHtFstE?=
+ =?us-ascii?Q?8WfO8HG3+LRVUHf6scoEyyEAplpmydy8sJMI+WpV+Ef36MiDmVWeD/5QQSQB?=
+ =?us-ascii?Q?TxXsEC1MgZrjCR7O2zrUQ2V25Fo2LY6YzcpnQSbcmJXf0mp3Li0TfY/4ZmE7?=
+ =?us-ascii?Q?5ihf4G/ONhhdhoSz/dWN92MqsfYa8dRHCl9EYMusIogzIoY2PH6qTspiR68C?=
+ =?us-ascii?Q?bNbnD1G3ABnVSqsw0bOJQia6X+ztD5H5+6CKKWLT2jx9l5klePdLqxSsTdhy?=
+ =?us-ascii?Q?4Xi9GePiTwjZ+zcV2hRGlswZathnVnYA/wdpxrUK+bI02bXGijCQD4P3uVEc?=
+ =?us-ascii?Q?XwA90N9bosZKeHuUAi0pmZJ4CDT6hwtcP865XzSK79QUWDiEDBqwVmWhQgeC?=
+ =?us-ascii?Q?7XTq4g+1Xl8lXwOVPY1Zg/A09U9DZvcPIxfle/Ke2Z/Mj5ZYUQ=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(27256017); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TFRrN00yTkgwbWtoZE14cEhqNzhONnN4Y0FCU0FaYWhxaWRZTFFjT1RydnZX?=
- =?utf-8?B?ZTBjVDlWOTRNVklHZ3VZemF3WjhTZG8xaHVnU1ZRek0yWC92a3pFd0ZLN3NH?=
- =?utf-8?B?aW5ZbzErVW9QbmF5bmJjSmNnQUUrTm1XQkdoN09xSWVOK2ZZSk5HaTl2WmVP?=
- =?utf-8?B?MXRZQkZuZjFzR1dZMnBjSUJZOE1RNHJMekI1eE1TbnlPWFRHNmVWdDdldzNm?=
- =?utf-8?B?TTdjRTdPUGhXcWZLWm1QNFJVM29oN2ZDRVVqU2o2V2kxU1d3Z3Y0MWVPb1Ra?=
- =?utf-8?B?S0s4Y1RpR3IrdFg2UFpFMkx6a3p3ajF2bkZKeldFUk0wd0NDMkNRT0tHdjFI?=
- =?utf-8?B?a0hQZExHMFhPLzFQYStHeUdjclNYeVVIbXFCa1F0bmluTUprVXc3UU9NUzda?=
- =?utf-8?B?ZkhnWGVvUFlmaTVUVXRTWWNHSHZoTnhIeUd2S0MvSXd0SEpRMmlHc3lHQk9D?=
- =?utf-8?B?STdxK3FGc1lPZkRWa3dsR3YxZm9vbDBhOThEVGlNWEtKcUk5K0diYmQ0eEtr?=
- =?utf-8?B?M1hnanFva0FPek5PK25nRmxMWFVNZGZkYjY1RW9FYktDZ24rNm4wY1Mvc2pq?=
- =?utf-8?B?UnJJWlArSCtWaDNwU2VvRnhvTFEzOVZlaitRMmpTbWtrcVlJS3VrV2NRN3d3?=
- =?utf-8?B?a0xjeVhvWU5UWXU0Mmg3YlRKY3lrZE9DRHh0bzlhVmhZWG9JNkZyQWVUSklp?=
- =?utf-8?B?R2t0UXNrY3YzRnhOQlBSdVI3ektrWXJkSDU4ekRMcXd3ZUFNeTZ3QUNqSjV6?=
- =?utf-8?B?VWR5Mk1vQ1dGZkJSYlBVRGtQL1RzTDJ4N0hOOHhSVU9wQXZPYUljREFKNlJ2?=
- =?utf-8?B?ck1KSlcvK3g2Ui9lQm4xTkwzQVBBMmFvQXp4bThnbm1Xci9ZNENWSzYzWmIy?=
- =?utf-8?B?UDFjQlJBZkFtaEpQVWtJcG1vZFBqeUV0dDRmY1pzbTlLT1NEY2ZTT3RHdVR1?=
- =?utf-8?B?cFdXQmErRDE2UWYxaGVyaTZqSnJSeTFLMWtYOW82MFowb3ZOK016NERZemM1?=
- =?utf-8?B?ckNOdUFJVzVTUEg1NDQ1Ni82ZXhqdVNrVmVTZVFqUlZZZ0JrYllnd3ArczBR?=
- =?utf-8?B?LzlRalNDWUN3NVFYRE54c0FDcW5ncVdZa0xjOS9wNVlFa2NkVm1iZ0g5RndB?=
- =?utf-8?B?enRzWE9adCs2dDJZNkNmUzNuQUJEalh0eThQQlBZTmdhRys0VW9zd1NIQnRw?=
- =?utf-8?B?eW52a3BLK3lnWlE1VDV2NlRBYWxRQWpDcEl5TTYrVlJTT01NbHRrSkRmam96?=
- =?utf-8?B?b0lPSTN5ejE2cmJ3QjM2ZWZmMWVOUDFTZFdmcU5hSWVKMlhMWkhDdTJ6YmxK?=
- =?utf-8?B?ZmtvRmNYc2p0RjNmb2R1K0YzZzdpMjJMKzNUMThVNVZ1Mis1ZFZSNmJ4bTlr?=
- =?utf-8?B?Z0RzZnVHeTJrdmUrMGhjaVVCUklaRUtsWGJBVE9kV0lUUFZURWo1TU40aHc0?=
- =?utf-8?B?bjJhWXJ4T2luMkRTaERUQmlMcnhTTy9paUhSL1ZMZjYzdFpDd0licGdBbWtD?=
- =?utf-8?B?ZzEwWFBXYmJZQVhrNnhZMnRIM1FGU0RBZ3ZtU0FGRkVWT21pZ0lKY3BhR2N2?=
- =?utf-8?B?aFFCUEgvbXd1MDQwK0Y1c2lTam9ZdSt0bHkxMVZYc0FsYzhuYzFOVnFiSk04?=
- =?utf-8?B?RVdsb1FuYkxHTk9OZkFiQWJtckFiMHFBQS8yWVJPazNHMzVPTkNGNXRNN3lP?=
- =?utf-8?B?amNsUjJBR2VsNVFFb3YyYU9UeUl1OUw0eVdPeUkvWHpNWnV5dzFLMmtrMlRL?=
- =?utf-8?B?VU1MUzBCaFVzL08rSVlMWjBBUGtlMkwwSE5sSm05SUljVE02OXVKWHpoUm93?=
- =?utf-8?B?dUI0VzN1ZkJrODVtcDRnUytIRlN6ckl0QkZyQTJTb2ZXR3JWMmZPeWtrZlUv?=
- =?utf-8?B?aUw5T3N0V2dhT2UzeUpGSXh5N0dPdzRkK1JLZzF6aGhyZXhpdE1aYy9wZldO?=
- =?utf-8?B?QjJEQ3ZhWGJaM3NESUtuY0w4WnFUcXk5RGtMR2d5a3g4OGtSTEpLQ2E0djdH?=
- =?utf-8?B?U2c3TGhTZitnd3pjNWs0VmRIdW5NZ080Ykd0Y1Q5WDZQbWNmUDhrbUNMRHBL?=
- =?utf-8?B?aWJMcVE2TVhCcHYxMjZiaStxdXlQWGdST3lSYm9Pczc1V0Z6Q3RqS0QrQzZ4?=
- =?utf-8?B?TVFDUlpBTTRhYkZwc0d2dnJ1RXZGbFFJZFlBRXJla1UwMWZkdXJ2b1JBYloz?=
- =?utf-8?B?SVE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: cc2e0941-d5cb-450e-71df-08dcad92775d
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?t5OT/0FJruiKe8+arkv7+ToHO8bF6aa+WUD1c4u+rBi/V2Dd2ZniY20VqReo?=
+ =?us-ascii?Q?ZzMO9CaVC0TN0yEZyAnJPaIAJFB1bIiJ4Q7tw8JafQ3dHhS/XuGNppzX3MoW?=
+ =?us-ascii?Q?H/VcPje8MCX8PGVb+IRVbmZKXOuhXesR4AewJ/0UcGgKck875b4CQ/R42diz?=
+ =?us-ascii?Q?j8WdEFQSRnLTS/AyWXeklOJ6WFf2WROaSOa1dnvYFrf1eYBon9/VPLTz8Q6+?=
+ =?us-ascii?Q?jSkRKR/zlma5eGpm763v6il0IN6TZiXd/Y913UBPeAjo5eLNwQwqvsRKqNaY?=
+ =?us-ascii?Q?QSPEwd4HqlUrsvYEtHb2dLywJQDNiPqp1x+4Kn2Mp57j+mztd/Cipiqaj5Qy?=
+ =?us-ascii?Q?3BSt/32kWDHMqVJ2Nj+fQtx/CyMeG4UqxO0QhYhyLBlSnIg70jsvmWYuP6mo?=
+ =?us-ascii?Q?x+dbF6CSPa8gWEbYLnsDgvpz1z2iemvJNE4MSPbntIbPcapmu62CBeXYa/DZ?=
+ =?us-ascii?Q?jUws6ThIGMwp8hHY7RVJSq2OuDp1S4IHJe9yAmCUTXBMThMu5pqWuCbuVWNu?=
+ =?us-ascii?Q?c8sOQXd2+P4++dSAvH21Q4XuR5jhpgny+kd1fa2GS8SKemIdCFdBNqE9yhwU?=
+ =?us-ascii?Q?cRT9B1FgIb5hh89fFuj9xHCYX4DvpTlDgIHN8w6YEoY78F+fw1YY68sKewIh?=
+ =?us-ascii?Q?5Uq5yE6igdpMAliWCXYc6HayfbZ2iG9aJuZPAPQ1ncnxderdF1GzryCSPxP6?=
+ =?us-ascii?Q?sbZ3fJ7YfiaBYhXo6CVRhTxJqeJhiMPPF0kfpvmpqLTBokBmLh27m24fPE7F?=
+ =?us-ascii?Q?5ZGesGMAST1FDRBg+soRDBpohQWZ0TC7mqh2a6aJGu2HNsVTrR3qiwTnwluU?=
+ =?us-ascii?Q?ZH/65Q+5xrOvYT4YHMiEtZt1gGwqgbYxn0u8WFNCk5Z7heniLwba/R6pQFV4?=
+ =?us-ascii?Q?04mZkXyfcUw2rT/IO6OSfPG4by+jg2M8Z4fdvSNYtOO6Ct7pGaOsd5ZRHCai?=
+ =?us-ascii?Q?aQJH+5rCpJ1CVXCkf6CRvGON+qqeQzKsF5GJQexWRNzsJ9EtdHyI6qUeQiOE?=
+ =?us-ascii?Q?kzGm60b9PMdfYScwyuKHIpuIh5kcy8SC5DdqvOBpE9NjtrtYmBcGs800huBv?=
+ =?us-ascii?Q?XKavckh0wWSGM5QrfNNHvQ/Q6JL+YV7t8wJqJzJteX9gDh5HtFkwpz+CaRwt?=
+ =?us-ascii?Q?1Q1ggVIqfeSXWFPJoDobU3GkMBFIe8Azehrf0E6OGDEGl4rWigwGmXH0yD7B?=
+ =?us-ascii?Q?x1jLC6V6OwTzNTJSHChQUvxmKUl2XICKYp9NhNqQzzrqg2PaNLtJLtCsR91q?=
+ =?us-ascii?Q?EUReMHPAnsc6pXPzDrbkmj7JQvVXNCWkCrLXAWK0r5MyLUQ1PR9qYRenAQJR?=
+ =?us-ascii?Q?uI9DJhgNoMuDyP7QwZWi3lDCi0epBf7EU0tt2AKotDZPGR8JyHG3cEZOwujm?=
+ =?us-ascii?Q?cP/SruxQZo9Vtba9iTWqlEOGFJlbdaT01WgGg4GQVwtqjO37ad4I6+gtKfy3?=
+ =?us-ascii?Q?626lhlwLvPAqFeVrGxzCP8KCZKyPKTdYhNBAejncToooLGqpBkTp4PUvDbld?=
+ =?us-ascii?Q?aI6lyPtlbjsQ2nWPNUrXMO4GOTnPrDAUhTeit81kopNd7hCuRP+b+qqJFDXA?=
+ =?us-ascii?Q?nmF9bJeQrCuOX/QtVsFkww0ms/exEgq3ZyePPmVbdXXyS8NLh21n/f81iZCz?=
+ =?us-ascii?Q?JA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2bc3dfb3-6a63-4169-8ac9-08dcad9444f1
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jul 2024 16:46:15.9936 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jul 2024 16:59:10.5751 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: okMh5DAhl0O3/cg20DU8uavi1IfEMc/De2Xr7w+7x+zUkmwFu+bsD/kBVrnTPTh2esbUbW7nQqZ4ri8euL0ynA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8245
+X-MS-Exchange-CrossTenant-UserPrincipalName: R28wf6nb0+YHgUlEDORkeydfQ05X3P6sJXL6IzzWBU8okf5A4HHCjwwapn1vUKi5z1wfqIQAQEcy/vD9IuPLKR5HSBaU1Q3J0FW7Qnj+k2A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB5965
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -193,73 +176,258 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Quoting Lucas De Marchi (2024-07-26 03:43:37-03:00)
->Stop doing the calculation both in rtp_mark_active() and in its caller.
->The caller easily knows the number of entries to mark, so just pass it
->forward. That also simplifies rtp_mark_active() since now it doesn't
->have a special case when handling 1 entry.
+On Fri, Jul 26, 2024 at 01:37:17PM GMT, Gustavo Sousa wrote:
+>Quoting Lucas De Marchi (2024-07-26 03:43:36-03:00)
+>>The OOB WAs use xe_rtp_process(), without passing an sr to save result
+>>of the actions since there are none. They are also executed in a gt-only
+>>context, making it harder to share the implementation. Thus, introduce a
+>>new set of tests to check these RTP entries. The only check that can be
+>>done is if the entry was marked as active.
+>>
+>>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>---
+>> drivers/gpu/drm/xe/tests/xe_rtp_test.c | 163 +++++++++++++++++++++++++
+>> drivers/gpu/drm/xe/xe_rtp.c            |   1 +
+>> 2 files changed, 164 insertions(+)
+>>
+>>diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+>>index 73e97f8d2b5b..5b425a335706 100644
+>>--- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+>>+++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+>>@@ -42,6 +42,12 @@ struct rtp_to_sr_test_case {
+>>         const struct xe_rtp_entry_sr *entries;
+>> };
+>>
+>>+struct rtp_test_case {
+>>+        const char *name;
+>>+        unsigned long expected_active;
+>>+        const struct xe_rtp_entry *entries;
+>>+};
+>>+
+>> static bool match_yes(const struct xe_gt *gt, const struct xe_hw_engine *hwe)
+>> {
+>>         return true;
+>>@@ -339,6 +345,155 @@ static void xe_rtp_process_to_sr_tests(struct kunit *test)
+>>         KUNIT_EXPECT_EQ(test, reg_sr->errors, param->expected_sr_errors);
+>> }
+>>
+>>+/*
+>>+ * Entries below follow the logic used with xe_wa_oob.rules:
+>>+ * 1) Entries with empty name are OR'ed: all entries marked active since the
+>>+ *    last entry with a name
+>>+ * 2) There are no action associated with rules
+>>+ */
+>>+static const struct rtp_test_case rtp_cases[] = {
+>>+        {
+>>+                .name = "active1",
+>>+                .expected_active = BIT(0),
+>>+                .entries = (const struct xe_rtp_entry[]) {
+>>+                        { XE_RTP_NAME("r1"),
+>>+                          XE_RTP_RULES(FUNC(match_yes)),
+>>+                        },
+>>+                        {}
+>>+                },
+>>+        },
+>>+        {
+>>+                .name = "active2",
+>>+                .expected_active = BIT(0) | BIT(1),
+>>+                .entries = (const struct xe_rtp_entry[]) {
+>>+                        { XE_RTP_NAME("r1"),
+>>+                          XE_RTP_RULES(FUNC(match_yes)),
+>>+                        },
+>>+                        { XE_RTP_NAME("r2"),
+>>+                          XE_RTP_RULES(FUNC(match_yes)),
+>>+                        },
+>>+                        {}
+>>+                },
+>>+        },
+>>+        {
+>>+                .name = "active-inactive",
+>>+                .expected_active = BIT(0),
+>>+                .entries = (const struct xe_rtp_entry[]) {
+>>+                        { XE_RTP_NAME("r1"),
+>>+                          XE_RTP_RULES(FUNC(match_yes)),
+>>+                        },
+>>+                        { XE_RTP_NAME("r2"),
+>>+                          XE_RTP_RULES(FUNC(match_no)),
+>>+                        },
+>>+                        {}
+>>+                },
+>>+        },
+>>+        {
+>>+                .name = "inactive-active",
+>>+                .expected_active = BIT(1),
+>>+                .entries = (const struct xe_rtp_entry[]) {
+>>+                        { XE_RTP_NAME("r1"),
+>>+                          XE_RTP_RULES(FUNC(match_no)),
+>>+                        },
+>>+                        { XE_RTP_NAME("r2"),
+>>+                          XE_RTP_RULES(FUNC(match_yes)),
+>>+                        },
+>>+                        {}
+>>+                },
+>>+        },
+>>+        {
+>>+                .name = "inactive-1st_or_active-inactive",
+>>+                .expected_active = BIT(1) | BIT(2) | BIT(3),
+>>+                .entries = (const struct xe_rtp_entry[]) {
+>>+                        { XE_RTP_NAME("r1"),
+>>+                          XE_RTP_RULES(FUNC(match_no)),
+>>+                        },
+>>+                        { XE_RTP_NAME("r2_or_conditions"),
+>>+                          XE_RTP_RULES(FUNC(match_yes)),
+>>+                        },
+>>+                        { XE_RTP_RULES(FUNC(match_no)) },
+>>+                        { XE_RTP_RULES(FUNC(match_no)) },
+>>+                        { XE_RTP_NAME("r3"),
+>>+                          XE_RTP_RULES(FUNC(match_no)),
+>>+                        },
+>>+                        {}
+>>+                },
+>>+        },
+>>+        {
+>>+                .name = "inactive-2nd_or_active-inactive",
+>>+                .expected_active = BIT(1) | BIT(2) | BIT(3),
+>>+                .entries = (const struct xe_rtp_entry[]) {
+>>+                        { XE_RTP_NAME("r1"),
+>>+                          XE_RTP_RULES(FUNC(match_no)),
+>>+                        },
+>>+                        { XE_RTP_NAME("r2_or_conditions"),
+>>+                          XE_RTP_RULES(FUNC(match_no)),
+>>+                        },
+>>+                        { XE_RTP_RULES(FUNC(match_yes)) },
+>>+                        { XE_RTP_RULES(FUNC(match_no)) },
+>>+                        { XE_RTP_NAME("r3"),
+>>+                          XE_RTP_RULES(FUNC(match_no)),
+>>+                        },
+>>+                        {}
+>>+                },
+>>+        },
+>>+        {
+>>+                .name = "inactive-last_or_active-inactive",
+>>+                .expected_active = BIT(1) | BIT(2) | BIT(3),
+>>+                .entries = (const struct xe_rtp_entry[]) {
+>>+                        { XE_RTP_NAME("r1"),
+>>+                          XE_RTP_RULES(FUNC(match_no)),
+>>+                        },
+>>+                        { XE_RTP_NAME("r2_or_conditions"),
+>>+                          XE_RTP_RULES(FUNC(match_no)),
+>>+                        },
+>>+                        { XE_RTP_RULES(FUNC(match_no)) },
+>>+                        { XE_RTP_RULES(FUNC(match_yes)) },
+>>+                        { XE_RTP_NAME("r3"),
+>>+                          XE_RTP_RULES(FUNC(match_no)),
+>>+                        },
+>>+                        {}
+>>+                },
+>>+        },
+>>+        {
+>>+                .name = "inactive-no_or_active-inactive",
+>>+                .expected_active = 0,
+>>+                .entries = (const struct xe_rtp_entry[]) {
+>>+                        { XE_RTP_NAME("r1"),
+>>+                          XE_RTP_RULES(FUNC(match_no)),
+>>+                        },
+>>+                        { XE_RTP_NAME("r2_or_conditions"),
+>>+                          XE_RTP_RULES(FUNC(match_no)),
+>>+                        },
+>>+                        { XE_RTP_RULES(FUNC(match_no)) },
+>>+                        { XE_RTP_RULES(FUNC(match_no)) },
+>>+                        { XE_RTP_NAME("r3"),
+>>+                          XE_RTP_RULES(FUNC(match_no)),
+>>+                        },
+>>+                        {}
+>>+                },
+>>+        },
+>>+};
+>>+
+>>+static void xe_rtp_process_tests(struct kunit *test)
+>>+{
+>>+        const struct rtp_test_case *param = test->param_value;
+>>+        struct xe_device *xe = test->priv;
+>>+        struct xe_gt *gt = xe_device_get_root_tile(xe)->primary_gt;
+>>+        struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(gt);
+>>+        unsigned long count_rtp_entries = 0, active = 0;
+>>+        const struct xe_rtp_entry *rtp_entry;
+>>+
+>>+        for (rtp_entry = param->entries; rtp_entry && rtp_entry->rules;
+>>+             rtp_entry++, count_rtp_entries++)
+>>+                ;
+>
+>Same comment as for "drm/xe/kunit: Test active rtp entries", otherwise,
+>looks good to me.
+>
+>Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>
+>Since we are on the subject, I wonder if this "unnamed entry to
+>represent an OR" could be now replaced with a proper OR rule, so we
+>would have a single implementation for the OR logic.
 
-By the way, the "first =3D=3D last" case was not even necessary, since "x -
-x + 1 =3D 1".
+yes... I was looking at going one step further and merge even the
+process function.  One drawback of merging just the OR is that we'd have
+to raise the max number of rules/actions for not much benefit. Hhumn..
+however this would only change the preprocessor with no change on the
+size of the tables, so maybe it's worth it. It would also simplify this
+kunit tests as then it's simply checking 1 entry rather than a mask.
 
-:-)
+I will think about that when sending a v2 - I will merge the bug fix
+right away, so I can mention the commit hash too.
+
+Thanks for spotting the bug and the reviews.
+
+Lucas De Marchi
 
 >
->Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
-
->---
-> drivers/gpu/drm/xe/xe_rtp.c | 14 +++++---------
-> 1 file changed, 5 insertions(+), 9 deletions(-)
+>Since xe_wa_oob.rules currently has a nice formatting, we could have
+>xe_gen_wa_oob doing the conversion.
 >
->diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
->index 1c641cc0f5a1..86727f34ca25 100644
->--- a/drivers/gpu/drm/xe/xe_rtp.c
->+++ b/drivers/gpu/drm/xe/xe_rtp.c
->@@ -221,18 +221,15 @@ EXPORT_SYMBOL_IF_KUNIT(xe_rtp_process_ctx_enable_act=
-ive_tracking);
->=20
-> static void rtp_mark_active(struct xe_device *xe,
->                             struct xe_rtp_process_ctx *ctx,
->-                            unsigned int first, unsigned int last)
->+                            unsigned int first, unsigned int n_entries)
-> {
->         if (!ctx->active_entries)
->                 return;
->=20
->-        if (drm_WARN_ON(&xe->drm, last > ctx->n_entries))
->+        if (drm_WARN_ON(&xe->drm, first + n_entries > ctx->n_entries))
->                 return;
->=20
->-        if (first =3D=3D last)
->-                bitmap_set(ctx->active_entries, first, 1);
->-        else
->-                bitmap_set(ctx->active_entries, first, last - first + 1);
->+        bitmap_set(ctx->active_entries, first, n_entries);
-> }
->=20
-> /**
->@@ -277,8 +274,7 @@ void xe_rtp_process_to_sr(struct xe_rtp_process_ctx *c=
-tx,
->                 }
->=20
->                 if (match)
->-                        rtp_mark_active(xe, ctx, entry - entries,
->-                                        entry - entries);
->+                        rtp_mark_active(xe, ctx, entry - entries, 1);
->         }
-> }
-> EXPORT_SYMBOL_IF_KUNIT(xe_rtp_process_to_sr);
->@@ -324,7 +320,7 @@ void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
->                 entry--;
->=20
->                 rtp_mark_active(xe, ctx, first_entry - entries,
->-                                entry - entries);
->+                                entry - first_entry + 1);
->         }
-> }
-> EXPORT_SYMBOL_IF_KUNIT(xe_rtp_process);
->--=20
->2.43.0
+>--
+>Gustavo Sousa
 >
+>>+
+>>+        xe_rtp_process_ctx_enable_active_tracking(&ctx, &active, count_rtp_entries);
+>>+        xe_rtp_process(&ctx, param->entries);
+>>+
+>>+        KUNIT_EXPECT_EQ(test, active, param->expected_active);
+>>+}
+>>+
+>> static void rtp_to_sr_desc(const struct rtp_to_sr_test_case *t, char *desc)
+>> {
+>>         strscpy(desc, t->name, KUNIT_PARAM_DESC_SIZE);
+>>@@ -346,6 +501,13 @@ static void rtp_to_sr_desc(const struct rtp_to_sr_test_case *t, char *desc)
+>>
+>> KUNIT_ARRAY_PARAM(rtp_to_sr, rtp_to_sr_cases, rtp_to_sr_desc);
+>>
+>>+static void rtp_desc(const struct rtp_test_case *t, char *desc)
+>>+{
+>>+        strscpy(desc, t->name, KUNIT_PARAM_DESC_SIZE);
+>>+}
+>>+
+>>+KUNIT_ARRAY_PARAM(rtp, rtp_cases, rtp_desc);
+>>+
+>> static int xe_rtp_test_init(struct kunit *test)
+>> {
+>>         struct xe_device *xe;
+>>@@ -378,6 +540,7 @@ static void xe_rtp_test_exit(struct kunit *test)
+>>
+>> static struct kunit_case xe_rtp_tests[] = {
+>>         KUNIT_CASE_PARAM(xe_rtp_process_to_sr_tests, rtp_to_sr_gen_params),
+>>+        KUNIT_CASE_PARAM(xe_rtp_process_tests, rtp_gen_params),
+>>         {}
+>> };
+>>
+>>diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+>>index f054ac9cf06d..1c641cc0f5a1 100644
+>>--- a/drivers/gpu/drm/xe/xe_rtp.c
+>>+++ b/drivers/gpu/drm/xe/xe_rtp.c
+>>@@ -327,6 +327,7 @@ void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
+>>                                 entry - entries);
+>>         }
+>> }
+>>+EXPORT_SYMBOL_IF_KUNIT(xe_rtp_process);
+>>
+>> bool xe_rtp_match_even_instance(const struct xe_gt *gt,
+>>                                 const struct xe_hw_engine *hwe)
+>>--
+>>2.43.0
+>>
