@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98ADDC3DA70
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jul 2024 14:17:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C1DBC52CDA
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jul 2024 14:17:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A08510E9A8;
-	Fri, 26 Jul 2024 14:17:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BFAA10E9AD;
+	Fri, 26 Jul 2024 14:17:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n0tExSZN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kmj3v9tu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E92710E9A8
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Jul 2024 14:17:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58D6D10E9A3
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 Jul 2024 14:17:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722003461; x=1753539461;
+ t=1722003451; x=1753539451;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gR6pn2uB7PUXMc7wtEDlRdifXMPzyBw6vBOkdeCOKvs=;
- b=n0tExSZNtTiv/MtuzRypXkeGIX5anI2Y1f//i1DGQ2KuAEwmTVSHIADD
- 4KDMa5nUc5zA6uX6J+Kq5j/5RYEdwsOtbYp2wiS4hW72iKcYa8c0yeNCx
- tTatkdBTH46vlqNFeh2McIQnSK4kTCyerK86F2lTBmxngK9G0FxhwmyR3
- gR/vgdjMHXOpWf/sFnAh5dnw7QuLTDNrKjm/PsFutL5cwAV+T1/jHO2es
- Uk6vEm7f55VUdyrsdOEdQa1Z4i1LYbX72aytrVC70bKv4zju0RDECo30x
- Nj+X84OytrgYPKuQaPxb5PeSKOTtOg48RwQj+J636kShjwo4EYY0dscM3 g==;
-X-CSE-ConnectionGUID: aH6QEUHLR9WicKEoANLfHg==
-X-CSE-MsgGUID: f5lWL/vKRiuxa4n25b9FBQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11145"; a="23598779"
-X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="23598779"
+ bh=TOU1BOcWtUn3eAppPynkgnImdm8WA4HA1lzuIVu0/cQ=;
+ b=kmj3v9tuXCaWWzouQaQOiFxokLxEfhPriNrXekGvziMxuQPxeGN8DqHH
+ 2lDbjl8AQButBRHxrVJGPvZe8f0TF1iBdBplLT1JxmffuQ9K1LlIlwHRx
+ qCARv7z84/fLnVxlHplEJ4qyMYXpSNBJe100zJdjBwvqGQTQiLslV2afG
+ DOL8kMnylFgys6oD2FvlfZs+FWef4ycJdkAil338I/b7vFmIcbI2jrv/L
+ ftGGOvSM+LHI89HCxxO2BDEP7banNuFl7QMgFJuziJhFCES+aPQBoiXga
+ o08oLQzr035veOPrLX3mhAqx5XsqPSwqcR9HkllJaHgjsSjWFzVenazYk w==;
+X-CSE-ConnectionGUID: mKIcre0OToaywu4R26HtBw==
+X-CSE-MsgGUID: Gu3mNq3RQe69/voLABU5Vw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11145"; a="23598757"
+X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="23598757"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2024 07:17:41 -0700
-X-CSE-ConnectionGUID: xbClohJbTui+q20u0x3wcQ==
-X-CSE-MsgGUID: lu+E8fEPQUKngr/gll4Uvw==
+ 26 Jul 2024 07:17:29 -0700
+X-CSE-ConnectionGUID: 2jGzoGNQTI2RqKJZdcsltA==
+X-CSE-MsgGUID: b1HvQZj/TiC1WJXKn2I/1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="57861461"
+X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="57861389"
 Received: from mkuoppal-desk.fi.intel.com ([10.237.72.193])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2024 07:17:39 -0700
+ 26 Jul 2024 07:17:28 -0700
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Dominik Grzegorzek <dominik.grzegorzek@intel.com>,
- Maciej Patelczyk <maciej.patelczyk@intel.com>,
  Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Subject: [PATCH 17/21] drm/xe: Attach debug metadata to vma
-Date: Fri, 26 Jul 2024 17:08:14 +0300
-Message-Id: <20240726140818.54304-18-mika.kuoppala@linux.intel.com>
+Subject: [PATCH 09/21] drm/xe: Add EUDEBUG_ENABLE exec queue property
+Date: Fri, 26 Jul 2024 17:08:06 +0300
+Message-Id: <20240726140818.54304-10-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240726140818.54304-1-mika.kuoppala@linux.intel.com>
 References: <20240726140818.54304-1-mika.kuoppala@linux.intel.com>
@@ -70,447 +69,223 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
 
-Introduces a vm_bind_op extension, enabling users to attach metadata objects
-to each [OP_MAP|OP_MAP_USERPTR] operation. This interface will be utilized
-by the EU debugger to relay information about the contents of specified
-VMAs from the debugee to the debugger process.
+Introduce exec queue immutable property of eudebug
+with a flags as value to enable eudebug specific feature(s).
+
+For now engine lrc will use this flag to set up runalone
+hw feature. Runalone is used to ensure that only one hw engine
+of group [rcs0, ccs0-3] is active on a tile.
+
+Note: unlike the i915, xe allows user to set runalone
+also on devices with single render/compute engine. It should not
+make much difference, but leave control to the user.
+
+v2: use exec queue flags (Mika)
+v3: eudebug enable as flags (Mika)
+v4: adapt to lrc_create (Mika)
+v5: EUDEBUG property space squash (Mika)
+v6: runalone as rmw (Dominik)
 
 Signed-off-by: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
-Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_debug_metadata.c |  13 ++
- drivers/gpu/drm/xe/xe_debug_metadata.h |   2 +
- drivers/gpu/drm/xe/xe_vm.c             | 198 ++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_vm_types.h       |  15 ++
- include/uapi/drm/xe_drm.h              |  19 +++
- 5 files changed, 243 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |  1 +
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 35 ++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |  7 +++++
+ drivers/gpu/drm/xe/xe_hw_engine.c        |  2 +-
+ drivers/gpu/drm/xe/xe_lrc.c              | 16 +++++++++--
+ drivers/gpu/drm/xe/xe_lrc.h              |  4 ++-
+ include/uapi/drm/xe_drm.h                |  3 +-
+ 7 files changed, 60 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_debug_metadata.c b/drivers/gpu/drm/xe/xe_debug_metadata.c
-index 8d99170d3591..daffc13c58d6 100644
---- a/drivers/gpu/drm/xe/xe_debug_metadata.c
-+++ b/drivers/gpu/drm/xe/xe_debug_metadata.c
-@@ -24,6 +24,19 @@ void xe_debug_metadata_put(struct xe_debug_metadata *mdata)
- 	kref_put(&mdata->refcount, xe_debug_metadata_release);
- }
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index fd31f3fb2b4c..764c270599d0 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -136,6 +136,7 @@
+ #define	  CTX_CTRL_OAC_CONTEXT_ENABLE		REG_BIT(8)
+ #define	  CTX_CTRL_RUN_ALONE			REG_BIT(7)
+ #define	  CTX_CTRL_INDIRECT_RING_STATE_ENABLE	REG_BIT(4)
++#define	  CTX_CTRL_RUN_ALONE			REG_BIT(7)
+ #define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	REG_BIT(3)
+ #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
  
-+struct xe_debug_metadata *xe_debug_metadata_get(struct xe_file *xef, u32 id)
-+{
-+	struct xe_debug_metadata *mdata;
-+
-+	mutex_lock(&xef->debug_metadata.lock);
-+	mdata = xa_load(&xef->debug_metadata.xa, id);
-+	if (mdata)
-+		kref_get(&mdata->refcount);
-+	mutex_unlock(&xef->debug_metadata.lock);
-+
-+	return mdata;
-+}
-+
- int xe_debug_metadata_create_ioctl(struct drm_device *dev,
- 				   void *data,
- 				   struct drm_file *file)
-diff --git a/drivers/gpu/drm/xe/xe_debug_metadata.h b/drivers/gpu/drm/xe/xe_debug_metadata.h
-index abaea076c12d..deca24fa2cba 100644
---- a/drivers/gpu/drm/xe/xe_debug_metadata.h
-+++ b/drivers/gpu/drm/xe/xe_debug_metadata.h
-@@ -10,7 +10,9 @@
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 26ae2fdbf682..bc2edade5e5b 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -106,10 +106,14 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
  
- struct drm_device;
- struct drm_file;
-+struct xe_file;
- 
-+struct xe_debug_metadata *xe_debug_metadata_get(struct xe_file *xef, u32 id);
- void xe_debug_metadata_put(struct xe_debug_metadata *mdata);
- 
- int xe_debug_metadata_create_ioctl(struct drm_device *dev,
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index b117a892e386..9e27ae9d64e6 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -24,6 +24,7 @@
- #include "regs/xe_gtt_defs.h"
- #include "xe_assert.h"
- #include "xe_bo.h"
-+#include "xe_debug_metadata.h"
- #include "xe_device.h"
- #include "xe_drm_client.h"
- #include "xe_exec_queue.h"
-@@ -940,6 +941,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 			vma->gpuva.gem.obj = &bo->ttm.base;
- 	}
- 
-+	INIT_LIST_HEAD(&vma->debug_metadata);
-+
- 	INIT_LIST_HEAD(&vma->combined_links.rebind);
- 
- 	INIT_LIST_HEAD(&vma->gpuva.gem.entry);
-@@ -1003,6 +1006,48 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 	return vma;
- }
- 
-+static void vma_free_debug_metadata(struct list_head *debug_metadata)
-+{
-+	struct xe_vma_debug_metadata *vmad, *tmp;
-+
-+	list_for_each_entry_safe(vmad, tmp, debug_metadata, link) {
-+		list_del(&vmad->link);
-+		kfree(vmad);
-+	}
-+}
-+
-+static struct xe_vma_debug_metadata *
-+vma_new_debug_metadata(u32 metadata_id, u64 cookie)
-+{
-+	struct xe_vma_debug_metadata *vmad;
-+
-+	vmad = kzalloc(sizeof(*vmad), GFP_KERNEL);
-+	if (!vmad)
-+		return ERR_PTR(-ENOMEM);
-+
-+	INIT_LIST_HEAD(&vmad->link);
-+
-+	vmad->metadata_id = metadata_id;
-+	vmad->cookie = cookie;
-+
-+	return vmad;
-+}
-+
-+static int vma_debug_metadata_copy(struct xe_vma *from,
-+				   struct xe_vma *to)
-+{
-+	struct xe_vma_debug_metadata *vmad, *vma;
-+
-+	list_for_each_entry(vmad, &from->debug_metadata, link) {
-+		vma = vma_new_debug_metadata(vmad->metadata_id, vmad->cookie);
-+		if (IS_ERR(vma))
-+			return PTR_ERR(vma);
-+
-+		list_add_tail(&vmad->link, &to->debug_metadata);
-+	}
-+	return 0;
-+}
-+
- static void xe_vma_destroy_late(struct xe_vma *vma)
+ static int __xe_exec_queue_init(struct xe_exec_queue *q)
  {
- 	struct xe_vm *vm = xe_vma_vm(vma);
-@@ -1032,6 +1077,7 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
- 		xe_bo_put(xe_vma_bo(vma));
- 	}
++	u32 flags = 0;
+ 	int i, err;
  
-+	vma_free_debug_metadata(&vma->debug_metadata);
- 	xe_vma_free(vma);
- }
- 
-@@ -2005,6 +2051,8 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 			op->map.is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
- 			op->map.dumpable = flags & DRM_XE_VM_BIND_FLAG_DUMPABLE;
- 			op->map.pat_index = pat_index;
++	if (q->eudebug_flags & EXEC_QUEUE_EUDEBUG_FLAG_ENABLE)
++		flags |= LRC_CREATE_RUNALONE;
 +
-+			INIT_LIST_HEAD(&op->map.debug_metadata);
- 		} else if (__op->op == DRM_GPUVA_OP_PREFETCH) {
- 			op->prefetch.region = prefetch_region;
- 		}
-@@ -2195,11 +2243,11 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 			flags |= op->map.dumpable ?
- 				VMA_CREATE_FLAG_DUMPABLE : 0;
- 
--			vma = new_vma(vm, &op->base.map, op->map.pat_index,
--				      flags);
-+			vma = new_vma(vm, &op->base.map, op->map.pat_index, flags);
- 			if (IS_ERR(vma))
- 				return PTR_ERR(vma);
- 
-+			list_splice_tail_init(&op->map.debug_metadata, &vma->debug_metadata);
- 			op->map.vma = vma;
- 			if (op->map.immediate || !xe_vm_in_fault_mode(vm))
- 				xe_vma_ops_incr_pt_update_ops(vops,
-@@ -2230,6 +2278,8 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 				if (IS_ERR(vma))
- 					return PTR_ERR(vma);
- 
-+				list_splice_tail_init(&old->debug_metadata, &vma->debug_metadata);
-+
- 				op->remap.prev = vma;
- 
- 				/*
-@@ -2269,6 +2319,16 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 				if (IS_ERR(vma))
- 					return PTR_ERR(vma);
- 
-+				if (op->base.remap.prev) {
-+					err = vma_debug_metadata_copy(op->remap.prev,
-+								      vma);
-+					if (err)
-+						return err;
-+				} else {
-+					list_splice_tail_init(&old->debug_metadata,
-+							      &vma->debug_metadata);
-+				}
-+
- 				op->remap.next = vma;
- 
- 				/*
-@@ -2319,6 +2379,7 @@ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
- 	switch (op->base.op) {
- 	case DRM_GPUVA_OP_MAP:
- 		if (op->map.vma) {
-+			vma_free_debug_metadata(&op->map.debug_metadata);
- 			prep_vma_destroy(vm, op->map.vma, post_commit);
- 			xe_vma_destroy_unlocked(op->map.vma);
- 		}
-@@ -2557,6 +2618,120 @@ static int vm_ops_setup_tile_args(struct xe_vm *vm, struct xe_vma_ops *vops)
- 	}
- 
- 	return number_tiles;
-+};
-+
-+static int vma_new_debug_metadata_op(struct xe_vma_op *op,
-+				     u32 metadata_id, u64 cookie,
-+				     u64 flags)
-+{
-+	struct xe_vma_debug_metadata *vmad;
-+
-+	vmad = vma_new_debug_metadata(metadata_id, cookie);
-+	if (IS_ERR(vmad))
-+		return PTR_ERR(vmad);
-+
-+	list_add_tail(&vmad->link, &op->map.debug_metadata);
-+	return 0;
-+}
-+
-+typedef int (*xe_vm_bind_op_user_extension_fn)(struct xe_device *xe,
-+					       struct xe_file *xef,
-+					       struct drm_gpuva_ops *ops,
-+					       u32 operation, u64 extension);
-+
-+static int vm_bind_op_ext_attach_debug(struct xe_device *xe,
-+				       struct xe_file *xef,
-+				       struct drm_gpuva_ops *ops,
-+				       u32 operation, u64 extension)
-+{
-+	u64 __user *address = u64_to_user_ptr(extension);
-+	struct drm_xe_vm_bind_op_ext_attach_debug ext;
-+	struct xe_debug_metadata *mdata;
-+	struct drm_gpuva_op *__op;
-+	int err;
-+
-+	err = __copy_from_user(&ext, address, sizeof(ext));
-+	if (XE_IOCTL_DBG(xe, err))
-+		return -EFAULT;
-+
-+	if (XE_IOCTL_DBG(xe,
-+			 operation != DRM_XE_VM_BIND_OP_MAP_USERPTR &&
-+			 operation != DRM_XE_VM_BIND_OP_MAP))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe, ext.flags))
-+		return -EINVAL;
-+
-+	mdata = xe_debug_metadata_get(xef, (u32)ext.metadata_id);
-+	if (XE_IOCTL_DBG(xe, !mdata))
-+		return -ENOENT;
-+
-+	/* care about metadata existence only on the time of attach */
-+	xe_debug_metadata_put(mdata);
-+
-+	if (!ops)
-+		return 0;
-+
-+	drm_gpuva_for_each_op(__op, ops) {
-+		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
-+
-+		if (op->base.op == DRM_GPUVA_OP_MAP) {
-+			err = vma_new_debug_metadata_op(op,
-+							ext.metadata_id,
-+							ext.cookie,
-+							ext.flags);
-+			if (err)
-+				return err;
-+		}
-+	}
-+	return 0;
-+}
-+
-+static const xe_vm_bind_op_user_extension_fn vm_bind_op_extension_funcs[] = {
-+	[XE_VM_BIND_OP_EXTENSIONS_ATTACH_DEBUG] = vm_bind_op_ext_attach_debug,
-+};
-+
-+#define MAX_USER_EXTENSIONS	16
-+static int vm_bind_op_user_extensions(struct xe_device *xe,
-+				      struct xe_file *xef,
-+				      struct drm_gpuva_ops *ops,
-+				      u32 operation,
-+				      u64 extensions, int ext_number)
-+{
-+	u64 __user *address = u64_to_user_ptr(extensions);
-+	struct drm_xe_user_extension ext;
-+	int err;
-+
-+	if (XE_IOCTL_DBG(xe, ext_number >= MAX_USER_EXTENSIONS))
-+		return -E2BIG;
-+
-+	err = __copy_from_user(&ext, address, sizeof(ext));
-+	if (XE_IOCTL_DBG(xe, err))
-+		return -EFAULT;
-+
-+	if (XE_IOCTL_DBG(xe, ext.pad) ||
-+	    XE_IOCTL_DBG(xe, ext.name >=
-+			 ARRAY_SIZE(vm_bind_op_extension_funcs)))
-+		return -EINVAL;
-+
-+	err = vm_bind_op_extension_funcs[ext.name](xe, xef, ops,
-+						   operation, extensions);
-+	if (XE_IOCTL_DBG(xe, err))
-+		return err;
-+
-+	if (ext.next_extension)
-+		return vm_bind_op_user_extensions(xe, xef, ops,
-+						  operation, ext.next_extension,
-+						  ++ext_number);
-+
-+	return 0;
-+}
-+
-+static int vm_bind_op_user_extensions_check(struct xe_device *xe,
-+					    struct xe_file *xef,
-+					    u32 operation, u64 extensions)
-+{
-+	return vm_bind_op_user_extensions(xe, xef, NULL, operation, extensions, 0);
- }
- 
- static struct dma_fence *ops_execute(struct xe_vm *vm,
-@@ -2753,6 +2928,7 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
- #define ALL_DRM_XE_SYNCS_FLAGS (DRM_XE_SYNCS_FLAG_WAIT_FOR_OP)
- 
- static int vm_bind_ioctl_check_args(struct xe_device *xe,
-+				    struct xe_file *xef,
- 				    struct drm_xe_vm_bind *args,
- 				    struct drm_xe_vm_bind_op **bind_ops)
- {
-@@ -2796,6 +2972,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 		u64 obj_offset = (*bind_ops)[i].obj_offset;
- 		u32 prefetch_region = (*bind_ops)[i].prefetch_mem_region_instance;
- 		bool is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
-+		u64 extensions = (*bind_ops)[i].extensions;
- 		u16 pat_index = (*bind_ops)[i].pat_index;
- 		u16 coh_mode;
- 
-@@ -2856,6 +3033,13 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
-+
-+		if (extensions) {
-+			err = vm_bind_op_user_extensions_check(xe, xef, op, extensions);
-+			if (err)
-+				goto free_bind_ops;
-+		}
-+
- 	}
- 
+ 	for (i = 0; i < q->width; ++i) {
+-		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K);
++		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K, flags);
+ 		if (IS_ERR(q->lrc[i])) {
+ 			err = PTR_ERR(q->lrc[i]);
+ 			goto err_lrc;
+@@ -336,6 +340,31 @@ static int exec_queue_set_timeslice(struct xe_device *xe, struct xe_exec_queue *
  	return 0;
-@@ -2958,7 +3142,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	int err;
- 	int i;
+ }
  
--	err = vm_bind_ioctl_check_args(xe, args, &bind_ops);
-+	err = vm_bind_ioctl_check_args(xe, xef, args, &bind_ops);
- 	if (err)
- 		return err;
- 
-@@ -3086,11 +3270,17 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		u64 obj_offset = bind_ops[i].obj_offset;
- 		u32 prefetch_region = bind_ops[i].prefetch_mem_region_instance;
- 		u16 pat_index = bind_ops[i].pat_index;
-+		u64 extensions = bind_ops[i].extensions;
- 
- 		ops[i] = vm_bind_ioctl_ops_create(vm, bos[i], obj_offset,
- 						  addr, range, op, flags,
- 						  prefetch_region, pat_index);
--		if (IS_ERR(ops[i])) {
-+		if (!IS_ERR(ops[i]) && extensions) {
-+			err = vm_bind_op_user_extensions(xe, xef, ops[i],
-+							 op, extensions, 0);
-+			if (err)
-+				goto unwind_ops;
-+		} else if (IS_ERR(ops[i])) {
- 			err = PTR_ERR(ops[i]);
- 			ops[i] = NULL;
- 			goto unwind_ops;
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index da9d7ef6ab8f..fe64ce6ed1d9 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -121,6 +121,9 @@ struct xe_vma {
- 	 * Needs to be signalled before UNMAP can be processed.
- 	 */
- 	struct xe_user_fence *ufence;
++static int exec_queue_set_eudebug(struct xe_device *xe, struct xe_exec_queue *q,
++				  u64 value)
++{
++	const u64 known_flags = DRM_XE_EXEC_QUEUE_EUDEBUG_FLAG_ENABLE;
 +
-+	/** @debug_metadata: List of vma debug metadata */
-+	struct list_head debug_metadata;
++	if (XE_IOCTL_DBG(xe, (q->class != XE_ENGINE_CLASS_RENDER &&
++			      q->class != XE_ENGINE_CLASS_COMPUTE)))
++		return -EINVAL;
++
++	if (XE_IOCTL_DBG(xe, (value & ~known_flags)))
++		return -EINVAL;
++
++	/*
++	 * We want to explicitly set the global feature if
++	 * property is set.
++	 */
++	if (XE_IOCTL_DBG(xe,
++			 !(value & DRM_XE_EXEC_QUEUE_EUDEBUG_FLAG_ENABLE)))
++		return -EINVAL;
++
++	q->eudebug_flags = EXEC_QUEUE_EUDEBUG_FLAG_ENABLE;
++
++	return 0;
++}
++
+ typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
+ 					     struct xe_exec_queue *q,
+ 					     u64 value);
+@@ -343,6 +372,7 @@ typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
+ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
+ 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY] = exec_queue_set_priority,
+ 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE] = exec_queue_set_timeslice,
++	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_EUDEBUG] = exec_queue_set_eudebug,
  };
+ 
+ static int exec_queue_user_ext_set_property(struct xe_device *xe,
+@@ -362,7 +392,8 @@ static int exec_queue_user_ext_set_property(struct xe_device *xe,
+ 			 ARRAY_SIZE(exec_queue_set_property_funcs)) ||
+ 	    XE_IOCTL_DBG(xe, ext.pad) ||
+ 	    XE_IOCTL_DBG(xe, ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY &&
+-			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE))
++			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE &&
++			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_EUDEBUG))
+ 		return -EINVAL;
+ 
+ 	idx = array_index_nospec(ext.property, ARRAY_SIZE(exec_queue_set_property_funcs));
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index 1408b02eea53..48e1190c2b58 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -90,6 +90,13 @@ struct xe_exec_queue {
+ 	 */
+ 	unsigned long flags;
+ 
++	/**
++	 * @eudebug_flags: immutable eudebug flags for this exec queue.
++	 * Set up with DRM_XE_EXEC_QUEUE_SET_PROPERTY_EUDEBUG.
++	 */
++#define EXEC_QUEUE_EUDEBUG_FLAG_ENABLE		BIT(0)
++	unsigned long eudebug_flags;
++
+ 	union {
+ 		/** @multi_gt_list: list head for VM bind engines if multi-GT */
+ 		struct list_head multi_gt_list;
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 0d8b871b47fe..74813bc20787 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -532,7 +532,7 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 		goto err_name;
+ 	}
+ 
+-	hwe->kernel_lrc = xe_lrc_create(hwe, NULL, SZ_16K);
++	hwe->kernel_lrc = xe_lrc_create(hwe, NULL, SZ_16K, 0);
+ 	if (IS_ERR(hwe->kernel_lrc)) {
+ 		err = PTR_ERR(hwe->kernel_lrc);
+ 		goto err_hwsp;
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 94ff62e1d95e..563b57f5b9ee 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -890,7 +890,7 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
+ #define PVC_CTX_ACC_CTR_THOLD	(0x2a + 1)
+ 
+ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+-		       struct xe_vm *vm, u32 ring_size)
++		       struct xe_vm *vm, u32 ring_size, u32 flags)
+ {
+ 	struct xe_gt *gt = hwe->gt;
+ 	struct xe_tile *tile = gt_to_tile(gt);
+@@ -1007,6 +1007,16 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 	map = __xe_lrc_start_seqno_map(lrc);
+ 	xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - 1);
+ 
++	if (flags & LRC_CREATE_RUNALONE) {
++		u32 ctx_control = xe_lrc_read_ctx_reg(lrc, CTX_CONTEXT_CONTROL);
++
++		drm_dbg(&xe->drm, "read CTX_CONTEXT_CONTROL: 0x%x\n", ctx_control);
++		ctx_control |= _MASKED_BIT_ENABLE(CTX_CTRL_RUN_ALONE);
++		drm_dbg(&xe->drm, "written CTX_CONTEXT_CONTROL: 0x%x\n", ctx_control);
++
++		xe_lrc_write_ctx_reg(lrc, CTX_CONTEXT_CONTROL, ctx_control);
++	}
++
+ 	return 0;
+ 
+ err_lrc_finish:
+@@ -1026,7 +1036,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+  * upon failure.
+  */
+ struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+-			     u32 ring_size)
++			     u32 ring_size, u32 flags)
+ {
+ 	struct xe_lrc *lrc;
+ 	int err;
+@@ -1035,7 +1045,7 @@ struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+ 	if (!lrc)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	err = xe_lrc_init(lrc, hwe, vm, ring_size);
++	err = xe_lrc_init(lrc, hwe, vm, ring_size, flags);
+ 	if (err) {
+ 		kfree(lrc);
+ 		return ERR_PTR(err);
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index c24542e89318..d2429a26fb22 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -22,8 +22,10 @@ struct xe_vm;
+ 
+ #define LRC_PPHWSP_SCRATCH_ADDR (0x34 * 4)
+ 
++#define LRC_CREATE_RUNALONE     BIT(0)
++
+ struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+-			     u32 ring_size);
++			     u32 ring_size, u32 flags);
+ void xe_lrc_destroy(struct kref *ref);
  
  /**
-@@ -309,6 +312,8 @@ struct xe_vma_op_map {
- 	bool dumpable;
- 	/** @pat_index: The pat index to use for this operation. */
- 	u16 pat_index;
-+	/** @debug_metadata: List of attached debug metadata */
-+	struct list_head debug_metadata;
- };
- 
- /** struct xe_vma_op_remap - VMA remap operation */
-@@ -386,4 +391,14 @@ struct xe_vma_ops {
- #endif
- };
- 
-+struct xe_vma_debug_metadata {
-+	/** @debug.metadata: id of attached xe_debug_metadata */
-+	u32 metadata_id;
-+	/** @debug.cookie: user defined cookie */
-+	u64 cookie;
-+
-+	/** @link: list of metadata attached to vma */
-+	struct list_head link;
-+};
-+
- #endif
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index cddc36c9be02..eab503754735 100644
+index a68734ff12f4..61c4c061bd75 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -886,6 +886,23 @@ struct drm_xe_vm_destroy {
- 	__u64 reserved[2];
- };
- 
-+struct drm_xe_vm_bind_op_ext_attach_debug {
-+	/** @base: base user extension */
-+	struct drm_xe_user_extension base;
-+
-+	/** @id: Debug object id from create metadata */
-+	__u64 metadata_id;
-+
-+	/** @flags: Flags */
-+	__u64 flags;
-+
-+	/** @cookie: Cookie */
-+	__u64 cookie;
-+
-+	/** @reserved: Reserved */
-+	__u64 reserved;
-+};
-+
- /**
-  * struct drm_xe_vm_bind_op - run bind operations
-  *
-@@ -910,7 +927,9 @@ struct drm_xe_vm_destroy {
-  *    handle MBZ, and the BO offset MBZ. This flag is intended to
-  *    implement VK sparse bindings.
-  */
-+
- struct drm_xe_vm_bind_op {
-+#define XE_VM_BIND_OP_EXTENSIONS_ATTACH_DEBUG 0
+@@ -1110,7 +1110,8 @@ struct drm_xe_exec_queue_create {
+ #define DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY		0
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY		0
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE		1
+-
++#define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_EUDEBUG		2
++#define     DRM_XE_EXEC_QUEUE_EUDEBUG_FLAG_ENABLE		(1 << 0)
  	/** @extensions: Pointer to the first extension struct, if any */
  	__u64 extensions;
  
