@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BFC1C3DA70
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C946EC52D1D
 	for <intel-xe@archiver.kernel.org>; Fri, 26 Jul 2024 14:17:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CAD910E9A4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F27110E9AA;
 	Fri, 26 Jul 2024 14:17:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wv88Hytw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UJFtfKCy";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33A5810E9A3
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A63110E9A4
  for <intel-xe@lists.freedesktop.org>; Fri, 26 Jul 2024 14:17:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1722003451; x=1753539451;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MOLCSYAMesv1wlz+ugyZBZWAPYlni/wYX8Po3UVSVQQ=;
- b=Wv88HytwCJajXkc+OyENPD+qbiPbSgxJZ8B2Faq82Bv3Xl+Y6e1HFAxG
- /uX3U6qnFWwOuBskl2Lb/sXSgWF+0g/px1w6TicC9e7O+5yqtrI9T/gyg
- HEknP0oPmd4HZur5pHTPjZtHM/Mj5YaCCNjrIPQVI421ZQVpv0MKxxRYB
- 51rt1RDlGyExnIVHLBd+1f4J6G8Qwgixs1XSML7y37gvPQbovdzDDJ/ZN
- rpo+SmOcA6beiSeYeA86c6mhMqLQflti1ig4H20D+QzKMD2wcW5FTZg48
- 8nWi0znzwVSudt3yw58Pe2OstQQZLbDApuAgcdkIgfyzz5hfUlTLbQ3tV A==;
-X-CSE-ConnectionGUID: rS3hXRtcTReI8VIuBglqmQ==
-X-CSE-MsgGUID: 0pTFlSNCTY6nLBrAqk9Utw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11145"; a="23598744"
-X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="23598744"
+ bh=XJkCP4ihW//LxVT6sfJT7kSuf+FprSlU48gBCsuM+54=;
+ b=UJFtfKCyBOxilwn/swh03jEBM6Af3MdR3fcaTBCdHOCq/Im5KsIUpDqC
+ sQCLnJA8UOcQfVTTRw3Z6wDMjgnYDi48ovpLK4mDMcqnNU1DhjjEFkxfu
+ bgFOqErwRVir4/YSBjCtI1448hkYTN/kqI0NkhYDXeOZLqKkV2U8Lxxw/
+ sch6Yp9945IXMAbkMSmSIJl4vBOoPeYWQ7bPkppnUYBZgnFWe4TQjjyjZ
+ NXljpSrzFLLWyhnvO7mg9JQIMTkOj1ap51gc1bLO+XbMqqCkiJjWQAdg5
+ BkY2zxoYLRuTnKYNWemduLbKhZWrjGUFaM+4Pwhkm6Zlr9aMuzCUIi+mE Q==;
+X-CSE-ConnectionGUID: 9qftc8zvQ7ytQfIgK1YYdQ==
+X-CSE-MsgGUID: nBo084wFRZ+YyNM7kNunHA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11145"; a="23598751"
+X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="23598751"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2024 07:17:17 -0700
-X-CSE-ConnectionGUID: +vx/YjUmQ+6Lwwo6KiKTjw==
-X-CSE-MsgGUID: Bvgnn7IzRT2gttbkLrknSw==
+ 26 Jul 2024 07:17:24 -0700
+X-CSE-ConnectionGUID: lDYMMxFlQt2BVQ8zZS6XJg==
+X-CSE-MsgGUID: qGqF0i1NQsSeaEJuR11mLw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="57861343"
+X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="57861370"
 Received: from mkuoppal-desk.fi.intel.com ([10.237.72.193])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2024 07:17:16 -0700
+ 26 Jul 2024 07:17:23 -0700
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Dominik Grzegorzek <dominik.grzegorzek@intel.com>,
- Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Subject: [PATCH 02/21] drm/xe: Move and export xe_hw_engine lookup.
-Date: Fri, 26 Jul 2024 17:07:59 +0300
-Message-Id: <20240726140818.54304-3-mika.kuoppala@linux.intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ Maciej Patelczyk <maciej.patelczyk@intel.com>
+Subject: [PATCH 06/21] drm/xe/eudebug: Introduce discovery for resources
+Date: Fri, 26 Jul 2024 17:08:03 +0300
+Message-Id: <20240726140818.54304-7-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240726140818.54304-1-mika.kuoppala@linux.intel.com>
 References: <20240726140818.54304-1-mika.kuoppala@linux.intel.com>
@@ -67,169 +67,220 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+Debugger connection can happen way after the client has
+created and destroyed arbitrary number of resources.
 
-Move and export xe_hw_engine lookup. This is in preparation
-to use this in eudebug code where we want to find active
-engine.
+We need to playback all currently existing resources for the
+debugger. The client is held until this so called discovery
+process, executed by workqueue, is complete.
 
-v2: s/tile/gt due to uapi changes (Mika)
+This patch is based on discovery work by Maciej Patelczyk
+for i915 driver.
 
-Signed-off-by: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+Co-developed-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
+Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c | 37 ++++--------------------------
- drivers/gpu/drm/xe/xe_hw_engine.c  | 31 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_hw_engine.h  |  6 +++++
- 3 files changed, 41 insertions(+), 33 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c        |  6 +-
+ drivers/gpu/drm/xe/xe_device_types.h  |  3 +
+ drivers/gpu/drm/xe/xe_eudebug.c       | 91 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_eudebug_types.h |  7 +++
+ 4 files changed, 106 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 69867a7b7c77..956dc15b432a 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -413,34 +413,6 @@ static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue
- 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 6c5eceaca4ab..90bb0a8b1881 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -312,6 +312,9 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
+ 	if (xe->unordered_wq)
+ 		destroy_workqueue(xe->unordered_wq);
+ 
++	if (xe->eudebug.ordered_wq)
++		destroy_workqueue(xe->eudebug.ordered_wq);
++
+ 	ttm_device_fini(&xe->ttm);
  }
  
--static const enum xe_engine_class user_to_xe_engine_class[] = {
--	[DRM_XE_ENGINE_CLASS_RENDER] = XE_ENGINE_CLASS_RENDER,
--	[DRM_XE_ENGINE_CLASS_COPY] = XE_ENGINE_CLASS_COPY,
--	[DRM_XE_ENGINE_CLASS_VIDEO_DECODE] = XE_ENGINE_CLASS_VIDEO_DECODE,
--	[DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_ENGINE_CLASS_VIDEO_ENHANCE,
--	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
--};
--
--static struct xe_hw_engine *
--find_hw_engine(struct xe_device *xe,
--	       struct drm_xe_engine_class_instance eci)
--{
--	u32 idx;
--
--	if (eci.engine_class >= ARRAY_SIZE(user_to_xe_engine_class))
--		return NULL;
--
--	if (eci.gt_id >= xe->info.gt_count)
--		return NULL;
--
--	idx = array_index_nospec(eci.engine_class,
--				 ARRAY_SIZE(user_to_xe_engine_class));
--
--	return xe_gt_hw_engine(xe_device_get_gt(xe, eci.gt_id),
--			       user_to_xe_engine_class[idx],
--			       eci.engine_instance, true);
--}
--
- static u32 bind_exec_queue_logical_mask(struct xe_device *xe, struct xe_gt *gt,
- 					struct drm_xe_engine_class_instance *eci,
- 					u16 width, u16 num_placements)
-@@ -462,8 +434,7 @@ static u32 bind_exec_queue_logical_mask(struct xe_device *xe, struct xe_gt *gt,
- 		if (xe_hw_engine_is_reserved(hwe))
- 			continue;
+@@ -382,8 +385,9 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 	xe->preempt_fence_wq = alloc_ordered_workqueue("xe-preempt-fence-wq", 0);
  
--		if (hwe->class ==
--		    user_to_xe_engine_class[DRM_XE_ENGINE_CLASS_COPY])
-+		if (hwe->class == XE_ENGINE_CLASS_COPY)
- 			logical_mask |= BIT(hwe->logical_instance);
+ 	xe->ordered_wq = alloc_ordered_workqueue("xe-ordered-wq", 0);
++	xe->eudebug.ordered_wq = alloc_ordered_workqueue("xe-eudebug-ordered-wq", 0);
+ 	xe->unordered_wq = alloc_workqueue("xe-unordered-wq", 0, 0);
+-	if (!xe->ordered_wq || !xe->unordered_wq ||
++	if (!xe->ordered_wq || !xe->unordered_wq || !xe->eudebug.ordered_wq ||
+ 	    !xe->preempt_fence_wq) {
+ 		/*
+ 		 * Cleanup done in xe_device_destroy via
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index bef7c11bd668..4dcfd39cb909 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -513,6 +513,9 @@ struct xe_device {
+ 
+ 		/** @available: is the debugging functionality available */
+ 		bool available;
++
++		/** @ordered_wq: used to discovery */
++		struct workqueue_struct *ordered_wq;
+ 	} eudebug;
+ 
+ 	/* private: */
+diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
+index c4bc66660218..d3051bbe9ec8 100644
+--- a/drivers/gpu/drm/xe/xe_eudebug.c
++++ b/drivers/gpu/drm/xe/xe_eudebug.c
+@@ -427,6 +427,12 @@ xe_eudebug_get(struct xe_file *xef)
+ 	if (!d)
+ 		return NULL;
+ 
++	if (!xe_eudebug_detached(d) &&
++	    !completion_done(&d->discovery) &&
++	    wait_for_completion_killable_timeout(&d->discovery,
++						 HZ * 40) <= 0)
++		xe_eudebug_disconnect(d, -ETIMEDOUT);
++
+ 	if (xe_eudebug_detached(d)) {
+ 		xe_eudebug_put(d);
+ 		return NULL;
+@@ -830,6 +836,8 @@ static const struct file_operations fops = {
+ 	.unlocked_ioctl	= xe_eudebug_ioctl,
+ };
+ 
++static void discovery_work_fn(struct work_struct *work);
++
+ static int
+ xe_eudebug_connect(struct xe_device *xe,
+ 		   struct drm_xe_eudebug_connect *param)
+@@ -864,9 +872,11 @@ xe_eudebug_connect(struct xe_device *xe,
+ 	spin_lock_init(&d->connection.lock);
+ 	init_waitqueue_head(&d->events.write_done);
+ 	init_waitqueue_head(&d->events.read_done);
++	init_completion(&d->discovery);
+ 
+ 	spin_lock_init(&d->events.lock);
+ 	INIT_KFIFO(d->events.fifo);
++	INIT_WORK(&d->discovery_work, discovery_work_fn);
+ 
+ 	d->res = xe_eudebug_resources_alloc();
+ 	if (IS_ERR(d->res)) {
+@@ -884,6 +894,9 @@ xe_eudebug_connect(struct xe_device *xe,
+ 		goto err_detach;
  	}
  
-@@ -492,7 +463,7 @@ static u32 calc_validate_logical_mask(struct xe_device *xe, struct xe_gt *gt,
- 
- 			n = j * width + i;
- 
--			hwe = find_hw_engine(xe, eci[n]);
-+			hwe = xe_hw_engine_lookup(xe, eci[n]);
- 			if (XE_IOCTL_DBG(xe, !hwe))
- 				return 0;
- 
-@@ -571,7 +542,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 			if (XE_IOCTL_DBG(xe, !logical_mask))
- 				return -EINVAL;
- 
--			hwe = find_hw_engine(xe, eci[0]);
-+			hwe = xe_hw_engine_lookup(xe, eci[0]);
- 			if (XE_IOCTL_DBG(xe, !hwe))
- 				return -EINVAL;
- 
-@@ -608,7 +579,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 		if (XE_IOCTL_DBG(xe, !logical_mask))
- 			return -EINVAL;
- 
--		hwe = find_hw_engine(xe, eci[0]);
-+		hwe = xe_hw_engine_lookup(xe, eci[0]);
- 		if (XE_IOCTL_DBG(xe, !hwe))
- 			return -EINVAL;
- 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index b8c0cfbf8b49..20c4fdf40790 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -5,7 +5,10 @@
- 
- #include "xe_hw_engine.h"
- 
-+#include <linux/nospec.h>
++	kref_get(&d->ref);
++	queue_work(xe->eudebug.ordered_wq, &d->discovery_work);
 +
- #include <drm/drm_managed.h>
-+#include <drm/xe_drm.h>
+ 	eu_dbg(d, "connected session %lld", d->session);
  
- #include "regs/xe_engine_regs.h"
- #include "regs/xe_gt_regs.h"
-@@ -1134,3 +1137,31 @@ enum xe_force_wake_domains xe_hw_engine_to_fw_domain(struct xe_hw_engine *hwe)
- {
- 	return engine_infos[hwe->engine_id].domain;
+ 	return fd;
+@@ -1090,3 +1103,81 @@ void xe_eudebug_vm_destroy(struct xe_file *xef, struct xe_vm *vm)
+ 
+ 	xe_eudebug_event_put(d, vm_destroy_event(d, xef, vm));
  }
 +
-+static const enum xe_engine_class user_to_xe_engine_class[] = {
-+	[DRM_XE_ENGINE_CLASS_RENDER] = XE_ENGINE_CLASS_RENDER,
-+	[DRM_XE_ENGINE_CLASS_COPY] = XE_ENGINE_CLASS_COPY,
-+	[DRM_XE_ENGINE_CLASS_VIDEO_DECODE] = XE_ENGINE_CLASS_VIDEO_DECODE,
-+	[DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_ENGINE_CLASS_VIDEO_ENHANCE,
-+	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
-+};
-+
-+struct xe_hw_engine *
-+xe_hw_engine_lookup(struct xe_device *xe,
-+		    struct drm_xe_engine_class_instance eci)
++static int discover_client(struct xe_eudebug *d, struct xe_file *xef)
 +{
-+	unsigned int idx;
++	struct xe_vm *vm;
++	unsigned long i;
++	int err;
 +
-+	if (eci.engine_class > ARRAY_SIZE(user_to_xe_engine_class))
-+		return NULL;
++	err = client_create_event(d, xef);
++	if (err)
++		return err;
 +
-+	if (eci.gt_id >= xe->info.gt_count)
-+		return NULL;
++	mutex_lock(&xef->vm.lock);
++	xa_for_each(&xef->vm.xa, i, vm) {
++		err = vm_create_event(d, xef, vm);
++		if (err)
++			break;
++	}
++	mutex_unlock(&xef->vm.lock);
 +
-+	idx = array_index_nospec(eci.engine_class,
-+				 ARRAY_SIZE(user_to_xe_engine_class));
-+
-+	return xe_gt_hw_engine(xe_device_get_gt(xe, eci.gt_id),
-+			       user_to_xe_engine_class[idx],
-+			       eci.engine_instance, true);
++	return err;
 +}
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
-index 08c3a9df7154..0383aa7d8e89 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.h
-@@ -9,6 +9,8 @@
- #include "xe_hw_engine_types.h"
- 
- struct drm_printer;
-+struct drm_xe_engine_class_instance;
-+struct xe_device;
- 
- #ifdef CONFIG_DRM_XE_JOB_TIMEOUT_MIN
- #define XE_HW_ENGINE_JOB_TIMEOUT_MIN CONFIG_DRM_XE_JOB_TIMEOUT_MIN
-@@ -67,6 +69,10 @@ void hw_engine_mmio_write32(struct xe_hw_engine *hwe, struct xe_reg reg, u32 val
- 
- u32 hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg);
- 
-+struct xe_hw_engine *
-+xe_hw_engine_lookup(struct xe_device *xe,
-+		    struct drm_xe_engine_class_instance eci);
 +
- static inline bool xe_hw_engine_is_valid(struct xe_hw_engine *hwe)
- {
- 	return hwe->name;
++static bool xe_eudebug_task_match(struct xe_eudebug *d, struct xe_file *xef)
++{
++	struct task_struct *task;
++	bool match;
++
++	task = find_task_get(xef);
++	if (!task)
++		return false;
++
++	match = same_thread_group(d->target_task, task);
++
++	put_task_struct(task);
++
++	return match;
++}
++
++static void discover_clients(struct xe_device *xe, struct xe_eudebug *d)
++{
++	struct xe_file *xef, *tmp;
++	int err;
++
++	mutex_lock(&xe->files.lock);
++	list_for_each_entry_safe(xef, tmp, &xe->files.list, link) {
++		if (xe_eudebug_detached(d))
++			break;
++
++		if (xe_eudebug_task_match(d, xef))
++			err = discover_client(d, xef);
++		else
++			err = 0;
++
++		if (err) {
++			eu_dbg(d, "discover client %p: %d\n", xef, err);
++			xe_eudebug_disconnect(d, err);
++			break;
++		}
++	}
++	mutex_unlock(&xe->files.lock);
++}
++
++static void discovery_work_fn(struct work_struct *work)
++{
++	struct xe_eudebug *d = container_of(work, typeof(*d),
++					    discovery_work);
++	struct xe_device *xe = d->xe;
++
++	eu_dbg(d, "Discovery start for %lld\n", d->session);
++
++	discover_clients(xe, d);
++
++	eu_dbg(d, "Discovery end for %lld\n", d->session);
++
++	complete_all(&d->discovery);
++
++	xe_eudebug_put(d);
++}
+diff --git a/drivers/gpu/drm/xe/xe_eudebug_types.h b/drivers/gpu/drm/xe/xe_eudebug_types.h
+index 093221a707df..202ddf41a325 100644
+--- a/drivers/gpu/drm/xe/xe_eudebug_types.h
++++ b/drivers/gpu/drm/xe/xe_eudebug_types.h
+@@ -19,6 +19,7 @@
+ struct xe_device;
+ struct task_struct;
+ struct xe_eudebug_event;
++struct workqueue_struct;
+ 
+ #define CONFIG_DRM_XE_DEBUGGER_EVENT_QUEUE_SIZE 64
+ 
+@@ -96,6 +97,12 @@ struct xe_eudebug {
+ 	/** @session: session number for this connection (for logs) */
+ 	u64 session;
+ 
++	/** @discovery: completion to wait for discovery */
++	struct completion discovery;
++
++	/** @discovery_work: worker to discover resources for target_task */
++	struct work_struct discovery_work;
++
+ 	/** @events: kfifo queue of to-be-delivered events */
+ 	struct {
+ 		/** @lock: guards access to fifo */
 -- 
 2.34.1
 
