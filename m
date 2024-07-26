@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39BE2C3DA4A
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Jul 2024 22:49:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A003CC3DA4A
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Jul 2024 23:00:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BCC710E046;
-	Fri, 26 Jul 2024 22:49:45 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 689CF10E046;
- Fri, 26 Jul 2024 22:49:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0153264136483871872=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F09610E07B;
+	Fri, 26 Jul 2024 23:00:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AtnrEUE4";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2779F10E07B
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 Jul 2024 23:00:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1722034825; x=1753570825;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:subject:from:to:cc:date:message-id;
+ bh=sRyVauga/Kv/DwcEelke3DOzcNA4Eqqq7L5zb9M1pI4=;
+ b=AtnrEUE42z4J9EwA3faX+bYAYIOV6ftYzn9Vlw3LQRRt1nivgf2sS54Q
+ cTSRICFIMpeNPtHxJ6CW5GB9tRgdTS5yPlDAuL8g6blhDHpuMXqqq791H
+ rUNyRgq35jhBvgNl+uJ/QynsnBQYmSnLbXAGKTdiUZ7beEwIQ0WuU12yl
+ CiicLHLfpZ0u9b/NMk60w6xE+6LV24iLGxwTcRwHlYIiW2H+iKS/85OhE
+ fsr0m/1VJtYG3eokkz8XJwEC+fPivh+qr6iY+Tgloht2bevWArLMxEXnV
+ jpnioI3hxLE+91/Jjy1F1gV1d1ZnKxip/Lf7kDfSTLkNJlB69A1icie3s A==;
+X-CSE-ConnectionGUID: ZbE0qvquRqmm81Ow0R8SVQ==
+X-CSE-MsgGUID: ow0xLGe/Rs23cHJ78aRYNA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11145"; a="20034181"
+X-IronPort-AV: E=Sophos;i="6.09,239,1716274800"; d="scan'208";a="20034181"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2024 16:00:24 -0700
+X-CSE-ConnectionGUID: cnPM4109Sbqn/vMmxBSt9g==
+X-CSE-MsgGUID: gt7LKo0IR82wPmDGNnQ+vw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,239,1716274800"; d="scan'208";a="57568484"
+Received: from cmdeoliv-mobl.amr.corp.intel.com (HELO localhost)
+ ([10.125.111.248])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2024 16:00:24 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Prime_userptr_notifier?=
- =?utf-8?q?_lock_with_reclaim?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 26 Jul 2024 22:49:43 -0000
-Message-ID: <172203418342.387310.2569448011058286563@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240726215322.2108865-1-matthew.brost@intel.com>
-In-Reply-To: <20240726215322.2108865-1-matthew.brost@intel.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <zin6leryq7xgs5vmlfmubo43g5iirhuohvxemxc4liukjufp4w@mjquccbaogwr>
+References: <20240710220446.2169797-1-lucas.demarchi@intel.com>
+ <ZpAaK5OjjziS3S88@intel.com>
+ <iuknmfhu2anc6f7sqfalijhaws6mmx5djfu3vhv5j4frhnxin7@2jqs23zqm5kn>
+ <oidc3dwrlj4rlm4yczudf4uqy442a77o35bvr2zai7fnxnfhl7@7jjaergakoxn>
+ <ddb6a30acade05a9e1a95c934d4201d68a89a990.camel@intel.com>
+ <zin6leryq7xgs5vmlfmubo43g5iirhuohvxemxc4liukjufp4w@mjquccbaogwr>
+Subject: Re: [PATCH v2] drm/xe/uapi: Expose SIMD16 EU mask in topology query
+From: Jordan Justen <jordan.l.justen@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: =?utf-8?q?Jos=C3=A9?= Roberto de Souza <jose.souza@intel.com>,
+ intel-xe@lists.freedesktop.org
+Date: Fri, 26 Jul 2024 16:00:22 -0700
+Message-ID: <172203482291.323134.1548881068994911540@jljusten-skl>
+User-Agent: alot/0.10
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,139 +71,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0153264136483871872==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 2024-07-18 15:32:47,  wrote:
+> On Tue, Jul 16, 2024 at 06:39:26PM GMT, Jose Souza wrote:
+> >> humn... if we decide to set both for backward compatibility, why not
+> >> rather go with v1 of the patch?  v1 of the patch documents that the EU
+> >> reported in EU_PER_DSS is of type X. Having both masks here doesn't
+> >> answer that question and requires that we always convert back to the
+> >> simd8 number (and eventually to the simd16 number) for newer platforms.
+> >>
+> >> so suppose 5 years from now we have simd123 (using arbitrary/absurd na=
+me
+> >> on purpose to avoid people jumping to conclusions):  would we keep
+> >> exposing the simd8, simd16, simdX, fooY numbers for the sake of
+> >> backward compatibility with previous HW?  On the other hand, the
+> >> alternative means: if userspace X really supports platform Y, it has to
+> >> know about that type of EU if it's using that mask for anything.
+> >>
+> >> So my preference would be, in order:
+> >>
+> >> 1) v2
+> >> 2) v1
+> >> 3) v2-with-forever-bc-between-platforms
+> >>
+> >> Both (2) and (3) have the silent misbehavior in userspace if userspace
+> >> didn't adapt to new UAPI.
+> >
+> >option 1) v2 is better in my opinion.
+>=20
+>=20
+> great. I fixed a typo in the kernel-doc, added a few more
+> Acked-by's received offline and pushed to drm-xe-next.
+>=20
+> [1/1] drm/xe/uapi: Expose SIMD16 EU mask in topology query
+>        commit: 7108b4a589cd6d3a2c1276fd610b3500f46de66a
 
-== Series Details ==
+Mesa 24.2.0 will support LNL using only DRM_XE_TOPO_EU_PER_DSS, since
+this new uapi is not in the upstream drm tree.
 
-Series: drm/xe: Prime userptr notifier lock with reclaim
-URL   : https://patchwork.freedesktop.org/series/136579/
-State : success
+After this change, Mesa 24.2.0 will be broken on LNL. Isn't this the
+sort of breakage that the kmd is supposed to avoid for platforms in
+the upstream drm tree?
 
-== Summary ==
+Unless this uapi can be added to the upstream drm tree before Mesa
+24.2.0 (August 7th), I think LNL should advertise either
+DRM_XE_TOPO_EU_PER_DSS only, or both.
 
-CI Bug Log - changes from xe-1675-74f391125fd70bda2e8a3b2579f9d30e9689a128_BAT -> xe-pw-136579v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (7 -> 7)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-136579v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [DMESG-FAIL][1] ([Intel XE#324]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1675-74f391125fd70bda2e8a3b2579f9d30e9689a128/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136579v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_gt_freq@freq_basic_api:
-    - bat-adlp-7:         [FAIL][3] ([Intel XE#2196]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1675-74f391125fd70bda2e8a3b2579f9d30e9689a128/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136579v1/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html
-
-  
-  [Intel XE#2196]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2196
-  [Intel XE#324]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/324
-
-
-Build changes
--------------
-
-  * Linux: xe-1675-74f391125fd70bda2e8a3b2579f9d30e9689a128 -> xe-pw-136579v1
-
-  IGT_7940: 2a73158fa69a2b8e20d5a0bdf773ee194bfe13c2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1675-74f391125fd70bda2e8a3b2579f9d30e9689a128: 74f391125fd70bda2e8a3b2579f9d30e9689a128
-  xe-pw-136579v1: 136579v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136579v1/index.html
-
---===============0153264136483871872==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Prime userptr notifier lock with reclaim</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136579/">https://patchwork.freedesktop.org/series/136579/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136579v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136579v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1675-74f391125fd70bda2e8a3b2579f9d30e9689a128_BAT -&gt; xe-pw-136579v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-136579v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1675-74f391125fd70bda2e8a3b2579f9d30e9689a128/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/324">Intel XE#324</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136579v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_gt_freq@freq_basic_api:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1675-74f391125fd70bda2e8a3b2579f9d30e9689a128/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2196">Intel XE#2196</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136579v1/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1675-74f391125fd70bda2e8a3b2579f9d30e9689a128 -&gt; xe-pw-136579v1</li>
-</ul>
-<p>IGT_7940: 2a73158fa69a2b8e20d5a0bdf773ee194bfe13c2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1675-74f391125fd70bda2e8a3b2579f9d30e9689a128: 74f391125fd70bda2e8a3b2579f9d30e9689a128<br />
-  xe-pw-136579v1: 136579v1</p>
-
-</body>
-</html>
-
---===============0153264136483871872==--
+-Jordan
