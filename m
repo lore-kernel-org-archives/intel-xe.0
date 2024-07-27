@@ -4,161 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A278DC3DA49
-	for <intel-xe@archiver.kernel.org>; Sat, 27 Jul 2024 00:41:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84E1CC3DA49
+	for <intel-xe@archiver.kernel.org>; Sat, 27 Jul 2024 00:55:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FA5E10E20B;
-	Sat, 27 Jul 2024 00:41:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 402F910E2C3;
+	Sat, 27 Jul 2024 00:55:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gGTkUAy9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="giw+zI1G";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7071710E2C3
- for <intel-xe@lists.freedesktop.org>; Sat, 27 Jul 2024 00:41:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB67A10E2C3
+ for <intel-xe@lists.freedesktop.org>; Sat, 27 Jul 2024 00:55:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722040882; x=1753576882;
+ t=1722041723; x=1753577723;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=X7l6y4NLG52LDs4OHBpLtokvOIVVuF/JGirnAj0wcjg=;
- b=gGTkUAy9xy8vM/0Ec981PegU5aDZd6lib5Pwvc+dxKscp2VADKgZlaA0
- piAHxXn6c0SRnEC4hAKPx7gAF27xULVUbcB9boy7EG5QEsTL+zkfykW40
- t4lYffzZdFO8YZD1S3jMfpSeT/G2f/L9iOGHjAQrO0UGXtAuRxWjuP6Uf
- 12C+0/MOZadp8oQYpnjRtExBJ94Avy+2S3KMkHTULd46DJ+YJopTSoBog
- J50G0UIhRSrLk3IjZ3RodDBuxJTQr0KH1IAh5nv4TWkhvr/IKW56pJMHe
- u3bixR/s7ENFkqm2lk9baAXn5uq3M8kIesKDVo6Mqh/GdXvGMh+WQRH8Y g==;
-X-CSE-ConnectionGUID: TWVvlNarS/qQiqq0QYjbnQ==
-X-CSE-MsgGUID: 3sZTR5HuQquQdrzN8td/Bw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11145"; a="19544383"
-X-IronPort-AV: E=Sophos;i="6.09,240,1716274800"; d="scan'208";a="19544383"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2024 17:41:22 -0700
-X-CSE-ConnectionGUID: wzOSzIO3RmShUQzwk1jgww==
-X-CSE-MsgGUID: Cwp+manGR+edg/nw/RXv7g==
+ bh=wfiOMCtTnhBBzGK5OqSJ/4KXDGuSkCHg0R9bkB38Nxo=;
+ b=giw+zI1GZGBGtb1+GHd6MLJyG5W64TJ5QrzfLeKF0NBxVyEOqkyTs0Pv
+ fo1/1x/gIZGohrBk45ezYe2V3USpYnGEsXLkopd1fuJ0SYVEauDvk+RDV
+ AoWQu9zTYBbRzGdNnQHzvSctK388RMSKPriMydxamPfm3EAtou5xOoQfm
+ o7Gg+LpnnnQ4WFto8WfkplXhibCEPgADoBh7HCcKilHq6NUg5WSuhkcm/
+ 7UFm9QM8FTl2i//1zzgvthhWsVqA14rqWmuzrsIZVwC794D3duDCeCcjB
+ 4Cil1Q+fbvYE+qFmR8X0u0PgjEgWEqXd6uXE4gBgxNk1OnMsC5j2rFZAV A==;
+X-CSE-ConnectionGUID: btN1r/iWS6m/rt6eARlOIg==
+X-CSE-MsgGUID: w5R0Et+yQ2W30t9Mi1cWAg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11145"; a="30462579"
+X-IronPort-AV: E=Sophos;i="6.09,240,1716274800"; d="scan'208";a="30462579"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2024 17:55:22 -0700
+X-CSE-ConnectionGUID: 3Eu9JAWKTVObVFeUvfyHnw==
+X-CSE-MsgGUID: kuJctdQlQGe7MMsAG1vaLQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,240,1716274800"; d="scan'208";a="53326277"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 26 Jul 2024 17:41:22 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.09,240,1716274800"; d="scan'208";a="58201752"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 26 Jul 2024 17:55:23 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 26 Jul 2024 17:41:21 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.39; Fri, 26 Jul 2024 17:55:21 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 26 Jul 2024 17:41:21 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Fri, 26 Jul 2024 17:55:21 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 26 Jul 2024 17:41:21 -0700
+ 15.1.2507.39; Fri, 26 Jul 2024 17:55:21 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=L0SkrN8z1jRZSXAR8y7lQMO64UeY5pQBDePYDKwG6yBKiSBjgZ6ZwandGaTYWvWKZANlpM3YGukOH/YhKljAcUJzO2Qz+Fi9UI0iRmNR+H/7+UqRdXW3pnzpvJH5Qb3nQinwiJVZiAQBW8oIjMkW3SF1awnwk1ZacmFQD9MrCg/nUCtJeEzCAoF39zWtI76HcUMrL5ach9EgpPXUQxPzZqFXfVRS0JSJfhorKiP8TL9iWIm9eWs4UJZiLdiUfxWTZ+X+eegppA46Z7YGIW/xUdMZZzWRLDc62nN4yRhVRbK6XfcaClz7uGUX3ZRu3D+QM6pUk3Krxxz3z3Bcl9iswQ==
+ b=gOiC7O08OlAgzhg49z7p7mTsC2SATs7b1ws0xLyxdeIGMoY3yJYKa9XAWPJ3+bB2VUSdriSZmi/HPsef5hWrCEbcRnCBO/oEilyMz4OFu0zfCqSq3oiIolN1zPY82QkRfTms1gyEOG9pfKq78LtAueyXDUJy9j3vWNABSz28ZQB3A9dUZescb71YgQiT5HddZ155OwksO7rh/ymvaDsbbNhwRpr7V+Vbj3S/HoMOccjKcSSbrK70c91jEpI9/kWIMKwR6ybKNeq56OHq3RTdEzzo+S9hjJW7qB7aYjNJFQNsTFo3qSpGpiCIPafn0osFuul9+yr3EoN6KK4Yq4MGsQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=46z6V2pZ6g6FMw+dbuzoLQKsqIwAq5xJn03cv4GcZig=;
- b=EZk9w7/xfd9sEJnVS85q4Bq3e+WiVkYGiIWwSI0U5JbznBIzVwOfyyDlRdJDvIt2tvISXvRXSyZBq+50o9gE2QKKTdRNXgHS2IVk7bosP7C6rb7atNZa+QwMrh0Lx+OR2uiczFtBlsZFezpvvoEAOxwaa1kC2PeW1vlI6qNjk4MD08rWUPUW9VCZdyH/g3q2KSjLoIe4Q5hH7MsGpmB0IrM05HoLGUDetG5zrF1+vEy+UdWWAwYpoV7rnXCYxaWJRowBCXykVAHCcSS930ldoIRd6D4Sbeji59SYUwi2nbMS7IB12KyfXoYoJpi3l01h+9LwTNliA5TZDy7gISHDxA==
+ bh=sEx4Z+5pNdGgDfWKmmtJJ/9fgetfeMOhQ5HD8kCPUsQ=;
+ b=Lqt/zWfEfbSS/0wj0bHugrMuO/XmSkvP3Cu+tAjfd2h78X3xDg9FFZ/ucmRFLtkp+ts1sBYMiLOBWpU4Tnh6iUJ03PcO4Kb9b7S5g2j2i/XMfEgA4fa51yeCOkGyn4Xu15DMbs2BAR//1jQ5ygMZuT06q+21ftF3ZZFhPuRrYkbaehBNDakdITOUhvzQdOFDTbBGnX1mSmXRL8Z30QPqZ7hNA7QwPwUkEUeJF+P+Rkz9B62Yi64dFEsBMvTR9irhoRB9qpOhdsrTfn7hkFIZ88MJllY3Wmjv+X1IND2VTXap/wZAzovK2gjGJvYtbs2qr0hhGS6OiHZy/3Vp4Y2yEg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by LV2PR11MB6022.namprd11.prod.outlook.com (2603:10b6:408:17c::11)
+ by SJ0PR11MB5040.namprd11.prod.outlook.com (2603:10b6:a03:2d6::21)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.20; Sat, 27 Jul
- 2024 00:41:19 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.14; Sat, 27 Jul
+ 2024 00:55:14 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.7784.020; Sat, 27 Jul 2024
- 00:41:19 +0000
-Date: Sat, 27 Jul 2024 00:40:29 +0000
+ 00:55:14 +0000
+Date: Sat, 27 Jul 2024 00:54:24 +0000
 From: Matthew Brost <matthew.brost@intel.com>
 To: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 13/21] drm/xe/eudebug: Add UFENCE events with acks
-Message-ID: <ZqRB/aJGEiGWml+s@DUT025-TGLU.fm.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Dominik Grzegorzek
+ <dominik.grzegorzek@intel.com>
+Subject: Re: [PATCH 09/21] drm/xe: Add EUDEBUG_ENABLE exec queue property
+Message-ID: <ZqRFQF2i0P6jjOtm@DUT025-TGLU.fm.intel.com>
 References: <20240726140818.54304-1-mika.kuoppala@linux.intel.com>
- <20240726140818.54304-14-mika.kuoppala@linux.intel.com>
+ <20240726140818.54304-10-mika.kuoppala@linux.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240726140818.54304-14-mika.kuoppala@linux.intel.com>
-X-ClientProxiedBy: BYAPR02CA0071.namprd02.prod.outlook.com
- (2603:10b6:a03:54::48) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <20240726140818.54304-10-mika.kuoppala@linux.intel.com>
+X-ClientProxiedBy: SJ0PR13CA0028.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c0::33) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|LV2PR11MB6022:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3d831478-f487-4730-1a18-08dcadd4d476
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ0PR11MB5040:EE_
+X-MS-Office365-Filtering-Correlation-Id: a310f038-4bf2-40cf-d8ab-08dcadd6c64f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ts0vG5ZIsGopc1lFInlv+VRp3FAYSAca49bljpToC04hGkkGe7ErJkYqbi5Z?=
- =?us-ascii?Q?BlIshkVL7o4OfBkPwRp1b9RCZ3EigZw6bsqjkggiECPVReetizGZe084C626?=
- =?us-ascii?Q?XZcwAV6tLxFn2Xg6KyvOb9KSY1ALbRX/J33QdZL14S/c5PJL8PYlCa9leosh?=
- =?us-ascii?Q?/yKIjwzlIB0+UER/0SKvJjlgz3rPZP0+Khs3Ha+ovNLHiSSDSgmJtzPNXC3u?=
- =?us-ascii?Q?kGtmmFot++IfNyC1EEeqQmEMQPNgg8keFuc/TqXlW8q70nK0/WtDlUOFcfcM?=
- =?us-ascii?Q?KQeHJXph87tvJe4oB3+I6tcjj45b79XOWIwIMuk7t5ALH/Lh4H0Dvpou6aic?=
- =?us-ascii?Q?TfKkN7l/aK75I/qTxNfgqNXH9tMvp6sHXyuz1objwt2OkiSqxj4ySR5I8PGp?=
- =?us-ascii?Q?QxrP0y2RO/Aka0c7dTJIjorRbHSXak4Tw2r/sIeM/npz5dUT0f9dqy6sfykr?=
- =?us-ascii?Q?phzwvMP710rgKdREi0Hd5tWdafZ2JL2hcI8cGCV7OUDdtxzvrcfJwDYfqUAZ?=
- =?us-ascii?Q?TsE2HrSspWZT2jSpprPRlrY90aVFk/uljvWbNIfF5EVinUMzek8IfDyR/5jB?=
- =?us-ascii?Q?zhf9uCkkDlM7JZZWjpCPW4doPcLk15i4chw+qRevarHmqZK+rSy2vL9gqYwF?=
- =?us-ascii?Q?tfAyK9IMwBTP/9rQIjavpUva25y+p43gVHfPAcKpktWnukT4PRBuqPYhHwlc?=
- =?us-ascii?Q?Lku/NrJaTIurP18phxflpa9RrEV9XV6HlZ1cTsY/9GOjTEKKwtygVAbtYdS2?=
- =?us-ascii?Q?CF2041tvWblt65r/nr+BsQ8yZhygOh1zfvKmubgQuf+gJmZAZZIpuDdZFlOW?=
- =?us-ascii?Q?MdnqrfNL9T7c9Q19trsJ8XtZVeiA7BqRFA3jzOHPlsmn+W6a7u0yrK2Gmsym?=
- =?us-ascii?Q?429FcZLAJM9qysQ/wKMymNvi/43ktQW8AdjhbmSwPj3AJ01/B0UHjc0zFupK?=
- =?us-ascii?Q?eKbI/qADXQINaG9lQ3Badz9LhEf0qjVVbNOsI+mhPuNqRSkaxN14PQuhuWmY?=
- =?us-ascii?Q?HbokxSlcK33VtplRUrWtDcMOTIMkazDvYQO4bCRX7Xp5QeM9NS0ew6x4O6Hw?=
- =?us-ascii?Q?iXMBpOY6i7kVUHOZHhz1z5fD8+FiFPOZhDSniIpwqK1wMonVVQXmD4Y9ljyB?=
- =?us-ascii?Q?N0rEAZ343yJYLHXJ/nf0RFNLK9QFHQl8YEINRLUdDIP7z/fJlzrbhNj0FOT/?=
- =?us-ascii?Q?m6VrnDaqhBGiNBbZ6CF6wTRhjXpVgiqWek4BbWu72AX02KdThNt/vRVROFQZ?=
- =?us-ascii?Q?EtmNW+Z6s77GgDFX3/25G3kMS2PGKxoqh8by3lplgdh4NQrvLesO6gUVB7iD?=
- =?us-ascii?Q?a0ggIHRiJtqoquCVBmjN70uZ/gRdZPAk5HDe5Ut8Df58Og=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?/Hx6NfVOG0MDtXqexmplqfuaL+HgJLzZ3FkclXRQghCaNwgVLdZRTzO/csP/?=
+ =?us-ascii?Q?Gu0ImiB4CtydmjnI+/HW3I5x+LL30NrC4CeN/pSbdVUlxHxi/tOA3PiXSuWc?=
+ =?us-ascii?Q?KTQKWfd5Ccuv7kru2SzXt8X1maj20VL4mgN4GzFlSGgKg3yg3E4dLt8gNGAq?=
+ =?us-ascii?Q?fAEBAVHnCgX63Z66zBZ0ZbFsi6+k7vrlQMw1wRJxsKAFff4c+tfkCaAuKolb?=
+ =?us-ascii?Q?3RODF8puV6VnwwmVxZIKhvXOfOTDM1EjD1yjQv7M2LAPGcb2AKWzYFBMBaQg?=
+ =?us-ascii?Q?A/lHp70oIY7YvvzEh/cBqyly86Dzn6KA2gvIoUiBNoqar8Ibcj+yMXAlcwKh?=
+ =?us-ascii?Q?iWhz4TAChF9eSQqiwzBhIvlpPwcj3euPY5sscPFHdM7l9RGLfJJYBZa1w6hH?=
+ =?us-ascii?Q?2WArObkpAjyUdBP6TmuTLkJIzOiC3651wHVyO5ydK9nS+PSbj0YrNN/kmn+B?=
+ =?us-ascii?Q?ieq3jOpDneV2tB3eqzgPl9p0x3GwdpbGSIJSrXDjo9jAGBf86oXN/ztTvSuq?=
+ =?us-ascii?Q?6kJ8Y3WYzCzv+BPoZ/oXQqYvlV62lGP0iJ56PmFo5yrAOndfuFuItwTLVnBq?=
+ =?us-ascii?Q?s4FDpnl40SiXoyXgi5je/DDG5VDFRwA+GtqnQY+3LFA55OK8OQnL1iytBZiU?=
+ =?us-ascii?Q?Bd4S09Mq/Wo1aaS2WjKAd+yji0HsZOABFrN8EoIQm6YY6i9cGjgGX40x7X+g?=
+ =?us-ascii?Q?8wSc4/4kU21l4q3fPD+WN86ZD7nQVuMVHYSqxAKO9T79wDRJ3xe2Y8b799tZ?=
+ =?us-ascii?Q?MBCBNtw4C54avGiiSb1G9oYr2ksFulSBUnCWNjnSf6WgxyWWloue0bqOED2K?=
+ =?us-ascii?Q?LrgqW73m+khSmugnRwEieIBG3AANtZb0PJM1/UqZibUyxl6Q0xLUjUWUYQ8o?=
+ =?us-ascii?Q?yktCQtSkRskl0qCAk/PzillIVDoL1ixx7tuVLZhzFQ7u6q5B+V0WVMJpFoRt?=
+ =?us-ascii?Q?yX9C1jzmYNpF0xPmW/CW5fKvQFjV43G6K5hqf5AABuWTWMZAmQ+tOnLFkg4W?=
+ =?us-ascii?Q?VL9GOmsir0NYMvBWsulPLjMZ7qjSNVPM7KV1KbTddi/6Q/TYFgTpXm24tJzq?=
+ =?us-ascii?Q?5+GMXSjOphNsSCOuzNJuQsdJpRzYtacwvWrh3uEt0uKnOSQCuXmrfvMP8+Sx?=
+ =?us-ascii?Q?KAZgjUntyWY2qkrYTcvV3YNGM5VO3dlfO2WnTx5zxl/DXjDQRck9fXG7Do05?=
+ =?us-ascii?Q?6wyUCL/qYsLGN3BZzDKThWle9uBoslGqtFykq8/ucEM+ZtW08GLl/wuh2Ixu?=
+ =?us-ascii?Q?MSUptOKU6UC9rjnJGBdepS99t+8hfyqpKCGMkQUTdeWgCrwKgCiZtpmbT/Gs?=
+ =?us-ascii?Q?W2o=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?DnzIouiymL8S8Vb6KNg22wz7T5AK7Z+L5Orz2+x1b+jWomNjJJgsP8cyZbIW?=
- =?us-ascii?Q?T0j5Kzvwhe8vRb40tVbMOW89myu2qcx5lVnnPkgHwyz6OUX4RTnRlI+Y+z8C?=
- =?us-ascii?Q?uACY0bOgwLFeMv4OUcxtordm1qUDxdP3TzoH7TcRLvkIlOBdstGA0t5GkZEO?=
- =?us-ascii?Q?wKVMY0IE33/BX+NkoujJcdQK0L+Y2cBrF7MWCG0OLAIw15bSoiAGbUrV2poY?=
- =?us-ascii?Q?YkMlfNng0zY9F58i7+lLPIsgglvYSiV0oo/uPUnc90uxZd/fRvPThMPGbr23?=
- =?us-ascii?Q?pr2bl7oKsZSIVcA6oTgkp4fYa+KC4KeeSHkEfpgMgcO64QilzT0I0U3trxeu?=
- =?us-ascii?Q?2Sla9lpYGR3zhzOFHKg1LGKSditISQYuitMFCuZ2yUssePN2jwcEQTlydCyl?=
- =?us-ascii?Q?Sq+XNewLojSif5G/b+HZdCzXn+7ecY+CjhP0iL138AYA8IGvUkcU921uaUnM?=
- =?us-ascii?Q?2u7oEVd4drZR1ihA/rbyLv/WFODLWLxhBLFib4u86LImMYsiZWjAKkw8mLZw?=
- =?us-ascii?Q?86Oo0887x6bFnS+75QZNIIpE9uA+XrVr8et9bPikW6HPj/18966ZEHZsGDg0?=
- =?us-ascii?Q?+AftFSK2wyDDvbs/dthBX+xBvYnmy0G+uSHTZXfiAr48ZO20i/WDtu3p4pvV?=
- =?us-ascii?Q?F60/TOB3p7NLi5K8ETjrdo/EmIQqUaDzqnZ7pQug+Kt9XK9AMz7up+x9g2uw?=
- =?us-ascii?Q?jiNVVc7dR6IPkZF0AGctUrj9T6hmblnGa7rpRC2ZwjT/vzv3hq25nUHNdeu0?=
- =?us-ascii?Q?zL2UUgVjoC8GlkVFSN4eAT1Izdhk8SO3UmD4WLWkVUzuQRInDioDivNnppuq?=
- =?us-ascii?Q?vzvwDUpqMixdHrbPveGrpZ+7hJqzpQ7sNxIRaRfuy+fNrpdGS2fPARov5PoA?=
- =?us-ascii?Q?f5rtzyhd3OMIghxjYDUyz728up3pfkwtLJ0GyYZ3ce+1StLx5M/7xQSKoMlH?=
- =?us-ascii?Q?1/eqlZlQOyrbBR1RkQHkGTm3DZZ6R9O1afkdzoYXVI/yGeAZQKNpy6IJlL6F?=
- =?us-ascii?Q?aihL1svJ7KJFdWONtCUMhw/M06IrvfYLgAjQgwVEONL2PDAYfsKE9HgdjB6B?=
- =?us-ascii?Q?S8SBP4eh5wO62bihTc6nQNa1bCEMsJGUQiKvgOQDbhvnOGQNCpVtTq9hpq5K?=
- =?us-ascii?Q?JU/DgoEi0FpKdMUt70F0UchDXiFmDDw9U8s7eyBgwyLf3giWMQiR/r0xBi1a?=
- =?us-ascii?Q?CAD6RE2A0TodnVlV4pNU++reuYCeS/xMPFT+qyzqP4/E4+wYT7vlvWSn5+5W?=
- =?us-ascii?Q?ojrWMbbRSzQJ5xO88KwpZ/A4wANbuaK2plPzgxls3xt9Bmge28LTu6eon/Zw?=
- =?us-ascii?Q?i2uRfCUsdLhQtO/7RYLkVuSrlNYD5VhvrYUnAvAjnGr0J3vBIU1mXl/7JtMX?=
- =?us-ascii?Q?t0A3p1A3Xg/yOSSX6Ohsj6H3fksHFJNZgCLTMIxdjYpLKCWqcGy30BYZC/Yc?=
- =?us-ascii?Q?1JdHj+EeUFVLzjMbrlPkvtdyNPr4KBoXfmcdBpjpL403Kgpr9tKHt6qnTgNW?=
- =?us-ascii?Q?L4eeRkmOfucM1YG7vTVg06CtlcV2IjykKLAIPA7JSoK3N2uI3eX50suQiRhW?=
- =?us-ascii?Q?BI1U3c3xSD5ijPlYHII2a86hcWus2qNYqseri+0kuOCVgjhghRnMLY6xO6pH?=
- =?us-ascii?Q?bw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3d831478-f487-4730-1a18-08dcadd4d476
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?P23nve1rMEba61RbtA4PYXTUbgFnD+mgy6Hi/fdpOCZR0jgI3w146AfZQQFD?=
+ =?us-ascii?Q?DvcgAGjMTvgVdqFER8XKKcxawkic/OZOArCfOAP6q2GJQzckyNyewMTny0aw?=
+ =?us-ascii?Q?kbN1C+sVFGfke/cRUi56x0H+9Roj8pfb8Z5S3BM0QDh+m0jVLNjRElnkGLgN?=
+ =?us-ascii?Q?XzbkPWERAySfGDnZRDIi9EU4F2KE13fOquYRm95dz+yVdzA0V3P4Nh4D/QB7?=
+ =?us-ascii?Q?EHzUjZhwGCkDUdspRz13cgII8qMjKUMVh0msxgD6YiIHnpRAvYDvqYWb8JBj?=
+ =?us-ascii?Q?LwpeZNRJLrsYkUivFRU2bWEg7fNb4yQQtlH5vxn169TI/2/czAGCsV9zG9EU?=
+ =?us-ascii?Q?HNrN4qty2yTENMc7btgqlBXbCD27JZG14s/BrxAmCAw2ZzAQI8V7iUJPcz0z?=
+ =?us-ascii?Q?GyFdTxYq2P6kOn//RBE0gagJg0my2Oh/W4ut0awsOuRPhHolTQFUrcg5fQFA?=
+ =?us-ascii?Q?vGlu1nEjL79nLrQjfwW9zhOpBftuIQsdKGYjL1IvveMgpQ//mwcZdNx+xA26?=
+ =?us-ascii?Q?REK47LPlx1fQMl80soH4YEm0VIceq64efFD/bndSOXqOXWVr9D99djVb3/YP?=
+ =?us-ascii?Q?JlAe/HH6CNvjHqb29Pcfxiy7etWQBX4lTzP3L/3uerMjsdHBti8CaaC3dPZ2?=
+ =?us-ascii?Q?67nc8pLxGz7uKgPw58Ytj5o1mYJnbzKQ42n4IAW5MYN8m3X1r5k6j11Fq64U?=
+ =?us-ascii?Q?4y4uXCLRuPx2A9nV5eWh9sq7oSF24tRp9l7OR1OUIGub/JmaKs5oSebGl2NA?=
+ =?us-ascii?Q?H/aKip7KtNxYcqOr0qfOoZ9vAdE8570d/bcCNfx41GtHOS2aepeDfHSn9ISB?=
+ =?us-ascii?Q?95gyJY3tNtrPujnxibGiSyXc5OGTEfaM7jRI781Dnot9C8knBnzWTgSk8oCD?=
+ =?us-ascii?Q?3euflUhYgAt6ohV3SBujIBtN183yvnNQQDe9kNh0+jeybIKVu47XOT+Buh7f?=
+ =?us-ascii?Q?xOVEa7ygLGLlUvluJa7ZPJw5NYgCkrDPmUyX73lhUGFTVqJfFTF6e7u+/mz7?=
+ =?us-ascii?Q?QfPnM+EVOiEgtHu31uK2qex/EEcN21Yo0V104lLuDjaZfcYr8GLkGFMuIt7v?=
+ =?us-ascii?Q?U/zI3heC/pbgrvg1bDefI0yyQMnzhRyaExMwL6RS6zJ+1/T7Ua9KjKgxn4vC?=
+ =?us-ascii?Q?nwc6vba9ElgfKsJIAnvgKchWIr9fpi2Bh5ENXBmw8sBQoza0S/GcnSWhhOvl?=
+ =?us-ascii?Q?TPaoqyisINrbg+8b9MWiZwQCneoXBWFEYQLUjCSrqteDMEcFe6jNqkQlhsO9?=
+ =?us-ascii?Q?msNVUrl09LCbFdyP8uLBGxTaUEuZHavJutiDZmD66eSvTTqXDdXyjItDHcgz?=
+ =?us-ascii?Q?86MhzsETNvK6VF6UzcbOIwrfk78hiVwiB4hz262iAGIUwMKt9u92zfRCHqJj?=
+ =?us-ascii?Q?cx2uhPk0SE1Twuo8PtU0L/xza7EgfuZOCcuHBcyL8PSJIj//1yIaj0XUMRtP?=
+ =?us-ascii?Q?+taxz/xD3WwdHajKrZeLz1zl46gXmFUc8V8n0X2nsn46GJGfdWh4lLWHVkZK?=
+ =?us-ascii?Q?cNyqDiBewQ5DWz5WQpfLm0LZAJYixTcB+NeYPXOV+SahlWotbBQWFjMTZaGi?=
+ =?us-ascii?Q?u9W5NBet8dRMo4S+J2NOJXnD5mpdHb49c5nZwWOYv5c2gNnjBTLjUgk3ujWT?=
+ =?us-ascii?Q?2A=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a310f038-4bf2-40cf-d8ab-08dcadd6c64f
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jul 2024 00:41:19.0032 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jul 2024 00:55:14.2394 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ddM2NDZVRFZDHOcy/1gFOYxxJFvw+AAbrc7fmEHibwjXTEo6g4chV8riCc395VjmwF5XeXd9mDh9XB3E/jzw9w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB6022
+X-MS-Exchange-CrossTenant-UserPrincipalName: +oXQZfSnT/61rmyVckUFxNJnFgCMprp3wSqkOx6/BgpEbkhQear8NLKSJfFLAgvaYx+8jacQxBVUG0mOZHChfA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5040
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -174,676 +175,247 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jul 26, 2024 at 05:08:10PM +0300, Mika Kuoppala wrote:
-> When vma is in place, debugger needs to intercept before
-> userspace proceeds with the workload. For example to install
-> a breakpoint in a eu shader.
+On Fri, Jul 26, 2024 at 05:08:06PM +0300, Mika Kuoppala wrote:
+> From: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
 > 
-> Attach debugger in xe_user_fence, send UFENCE event
-> and stall normal user fence signal path to yield if
-> there is debugger attached to ufence.
+> Introduce exec queue immutable property of eudebug
+> with a flags as value to enable eudebug specific feature(s).
 > 
-> When ack (ioctl) is received for the corresponding seqno,
-> signal ufence.
+> For now engine lrc will use this flag to set up runalone
+> hw feature. Runalone is used to ensure that only one hw engine
+> of group [rcs0, ccs0-3] is active on a tile.
 > 
-> v2: ufence worker in own workqueue
+> Note: unlike the i915, xe allows user to set runalone
+> also on devices with single render/compute engine. It should not
+> make much difference, but leave control to the user.
 > 
-
-Not a complete review again, just a couple of quick comments.
-
+> v2: use exec queue flags (Mika)
+> v3: eudebug enable as flags (Mika)
+> v4: adapt to lrc_create (Mika)
+> v5: EUDEBUG property space squash (Mika)
+> v6: runalone as rmw (Dominik)
+> 
+> Signed-off-by: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
 > Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_eudebug.c       | 239 +++++++++++++++++++++++++-
->  drivers/gpu/drm/xe/xe_eudebug.h       |   6 +
->  drivers/gpu/drm/xe/xe_eudebug_types.h |  12 ++
->  drivers/gpu/drm/xe/xe_exec.c          |   2 +-
->  drivers/gpu/drm/xe/xe_sync.c          |  49 ++++--
->  drivers/gpu/drm/xe/xe_sync.h          |   8 +-
->  drivers/gpu/drm/xe/xe_sync_types.h    |  26 ++-
->  drivers/gpu/drm/xe/xe_vm.c            |   4 +-
->  include/uapi/drm/xe_drm_eudebug.h     |  15 +-
->  9 files changed, 333 insertions(+), 28 deletions(-)
+>  drivers/gpu/drm/xe/regs/xe_engine_regs.h |  1 +
+>  drivers/gpu/drm/xe/xe_exec_queue.c       | 35 ++++++++++++++++++++++--
+>  drivers/gpu/drm/xe/xe_exec_queue_types.h |  7 +++++
+>  drivers/gpu/drm/xe/xe_hw_engine.c        |  2 +-
+>  drivers/gpu/drm/xe/xe_lrc.c              | 16 +++++++++--
+>  drivers/gpu/drm/xe/xe_lrc.h              |  4 ++-
+>  include/uapi/drm/xe_drm.h                |  3 +-
+>  7 files changed, 60 insertions(+), 8 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
-> index 8f0e6a56a65e..5dcb7c9464e9 100644
-> --- a/drivers/gpu/drm/xe/xe_eudebug.c
-> +++ b/drivers/gpu/drm/xe/xe_eudebug.c
-> @@ -35,6 +35,7 @@
->  #include "xe_vm.h"
->  #include "xe_wa.h"
->  #include "xe_force_wake.h"
-> +#include "xe_sync.h"
+> diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> index fd31f3fb2b4c..764c270599d0 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> @@ -136,6 +136,7 @@
+>  #define	  CTX_CTRL_OAC_CONTEXT_ENABLE		REG_BIT(8)
+>  #define	  CTX_CTRL_RUN_ALONE			REG_BIT(7)
+>  #define	  CTX_CTRL_INDIRECT_RING_STATE_ENABLE	REG_BIT(4)
+> +#define	  CTX_CTRL_RUN_ALONE			REG_BIT(7)
+>  #define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	REG_BIT(3)
+>  #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
 >  
->  /*
->   * If there is no detected event read by userspace, during this period, assume
-> @@ -240,11 +241,115 @@ static void xe_eudebug_free(struct kref *ref)
->  	kfree_rcu(d, rcu);
->  }
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+> index 26ae2fdbf682..bc2edade5e5b 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> @@ -106,10 +106,14 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
 >  
-> -static void xe_eudebug_put(struct xe_eudebug *d)
-> +void xe_eudebug_put(struct xe_eudebug *d)
+>  static int __xe_exec_queue_init(struct xe_exec_queue *q)
 >  {
->  	kref_put(&d->ref, xe_eudebug_free);
->  }
+> +	u32 flags = 0;
+>  	int i, err;
 >  
-> +struct xe_eudebug_ack {
-> +	struct rb_node rb_node;
-> +	u64 seqno;
-
-Here we have a seqno but then an RB tree for search which is a bit
-incongruent. Let me explain, seqno typically mean something which
-signals sequentially in order. But then you have RB tree for searching,
-if everything signaled in order a list would be sufficient.
-
-So without looking too much I think we want one of two things.
-
-1. seqno + list
-2. key + rb tree
-
-Make sense?
-
-Kinda a nit but naming matters in this case as a name implies in-order
-vs out-of-order signaling.
-
-Matt
-
-> +	u64 ts_insert;
-> +	struct xe_user_fence *ufence;
-> +};
+> +	if (q->eudebug_flags & EXEC_QUEUE_EUDEBUG_FLAG_ENABLE)
+> +		flags |= LRC_CREATE_RUNALONE;
 > +
-> +#define fetch_ack(x) rb_entry(x, struct xe_eudebug_ack, rb_node)
-> +
-> +static int compare_ack(const u64 a, const u64 b)
-> +{
-> +	if (a < b)
-> +		return -1;
-> +	else if (a > b)
-> +		return 1;
-> +
-> +	return 0;
-> +}
-> +
-> +static int ack_insert_cmp(struct rb_node * const node,
-> +			  const struct rb_node * const p)
-> +{
-> +	return compare_ack(fetch_ack(node)->seqno,
-> +			   fetch_ack(p)->seqno);
-> +}
-> +
-> +static int ack_lookup_cmp(const void * const key,
-> +			  const struct rb_node * const node)
-> +{
-> +	return compare_ack(*(const u64 *)key,
-> +			   fetch_ack(node)->seqno);
-> +}
-> +
-> +static struct xe_eudebug_ack *remove_ack(struct xe_eudebug *d, u64 seqno)
-> +{
-> +	struct rb_root * const root = &d->acks.tree;
-> +	struct rb_node *node;
-> +
-> +	spin_lock(&d->acks.lock);
-> +	node = rb_find(&seqno, root, ack_lookup_cmp);
-> +	if (node)
-> +		rb_erase(node, root);
-> +	spin_unlock(&d->acks.lock);
-> +
-> +	if (!node)
-> +		return NULL;
-> +
-> +	return rb_entry_safe(node, struct xe_eudebug_ack, rb_node);
-> +}
-> +
-> +static void ufence_signal_worker(struct work_struct *w)
-> +{
-> +	struct xe_user_fence * const ufence =
-> +		container_of(w, struct xe_user_fence, eudebug.worker);
-> +
-> +	if (READ_ONCE(ufence->signalled))
-> +		xe_sync_ufence_signal(ufence);
-> +
-> +	xe_sync_ufence_put(ufence);
-> +}
-> +
-> +static void kick_ufence_worker(struct xe_user_fence *f)
-> +{
-> +	INIT_WORK(&f->eudebug.worker, ufence_signal_worker);
-> +	queue_work(f->xe->eudebug.ordered_wq, &f->eudebug.worker);
-> +}
-> +
-> +static void handle_ack(struct xe_eudebug *d, struct xe_eudebug_ack *ack,
-> +		       bool on_disconnect)
-> +{
-> +	struct xe_user_fence *f = ack->ufence;
-> +	u64 signaller_ack, signalled_by;
-> +
-> +	signaller_ack = cmpxchg64(&f->eudebug.signalled_seqno, 0, ack->seqno);
-> +	signalled_by = f->eudebug.signalled_seqno;
-> +
-> +	if (!signaller_ack)
-> +		kick_ufence_worker(f);
-> +	else
-> +		xe_sync_ufence_put(f);
-> +
-> +	eu_dbg(d, "ACK: seqno=%llu: %ssignalled by %s (%llu) (held %lluus)",
-> +	       ack->seqno, signaller_ack ? "already " : "",
-> +	       on_disconnect ? "disconnect" : "debugger",
-> +	       signalled_by,
-> +	       ktime_us_delta(ktime_get(), ack->ts_insert));
-> +
-> +	kfree(ack);
-> +}
-> +
-> +static void release_acks(struct xe_eudebug *d)
-> +{
-> +	struct xe_eudebug_ack *ack, *n;
-> +	struct rb_root root;
-> +
-> +	spin_lock(&d->acks.lock);
-> +	root = d->acks.tree;
-> +	d->acks.tree = RB_ROOT;
-> +	spin_unlock(&d->acks.lock);
-> +
-> +	rbtree_postorder_for_each_entry_safe(ack, n, &root, rb_node)
-> +		handle_ack(d, ack, true);
-> +}
-> +
->  static struct task_struct *find_get_target(const pid_t nr)
->  {
->  	struct task_struct *task;
-> @@ -328,6 +433,8 @@ static bool xe_eudebug_detach(struct xe_device *xe,
->  
->  	eu_dbg(d, "session %lld detached with %d", d->session, err);
->  
-> +	release_acks(d);
-> +
->  	/* Our ref with the connection_link */
->  	xe_eudebug_put(d);
->  
-> @@ -428,7 +535,7 @@ static struct task_struct *find_task_get(struct xe_file *xef)
->  	return task;
->  }
->  
-> -static struct xe_eudebug *
-> +struct xe_eudebug *
->  xe_eudebug_get(struct xe_file *xef)
->  {
->  	struct task_struct *task;
-> @@ -889,6 +996,44 @@ static long xe_eudebug_read_event(struct xe_eudebug *d,
->  	return ret;
->  }
->  
-> +static long
-> +xe_eudebug_ack_event_ioctl(struct xe_eudebug *d,
-> +			   const unsigned int cmd,
-> +			   const u64 arg)
-> +{
-> +	struct drm_xe_eudebug_ack_event __user * const user_ptr =
-> +		u64_to_user_ptr(arg);
-> +	struct drm_xe_eudebug_ack_event user_arg;
-> +	struct xe_eudebug_ack *ack;
-> +	struct xe_device *xe = d->xe;
-> +
-> +	if (XE_IOCTL_DBG(xe, _IOC_SIZE(cmd) < sizeof(user_arg)))
-> +		return -EINVAL;
-> +
-> +	/* Userland write */
-> +	if (XE_IOCTL_DBG(xe, !(_IOC_DIR(cmd) & _IOC_WRITE)))
-> +		return -EINVAL;
-> +
-> +	if (XE_IOCTL_DBG(xe, copy_from_user(&user_arg,
-> +					    user_ptr,
-> +					    sizeof(user_arg))))
-> +		return -EFAULT;
-> +
-> +	if (XE_IOCTL_DBG(xe, user_arg.flags))
-> +		return -EINVAL;
-> +
-> +	if (XE_IOCTL_DBG(xe, xe_eudebug_detached(d)))
-> +		return -ENOTCONN;
-> +
-> +	ack = remove_ack(d, user_arg.seqno);
-> +	if (XE_IOCTL_DBG(xe, !ack))
-> +		return -EINVAL;
-> +
-> +	handle_ack(d, ack, false);
-> +
-> +	return 0;
-> +}
-> +
->  static int do_eu_control(struct xe_eudebug *d,
->  			 const struct drm_xe_eudebug_eu_control * const arg,
->  			 struct drm_xe_eudebug_eu_control __user * const user_ptr)
-> @@ -1070,7 +1215,10 @@ static long xe_eudebug_ioctl(struct file *file,
->  		ret = xe_eudebug_eu_control(d, arg);
->  		eu_dbg(d, "ioctl cmd=EU_CONTROL ret=%ld\n", ret);
->  		break;
-> -
-> +	case DRM_XE_EUDEBUG_IOCTL_ACK_EVENT:
-> +		ret = xe_eudebug_ack_event_ioctl(d, cmd, arg);
-> +		eu_dbg(d, "ioctl cmd=EVENT_ACK ret=%ld\n", ret);
-> +		break;
->  	default:
->  		ret = -EINVAL;
->  	}
-> @@ -1759,6 +1907,9 @@ xe_eudebug_connect(struct xe_device *xe,
->  	INIT_KFIFO(d->events.fifo);
->  	INIT_WORK(&d->discovery_work, discovery_work_fn);
->  
-> +	spin_lock_init(&d->acks.lock);
-> +	d->acks.tree = RB_ROOT;
-> +
->  	d->res = xe_eudebug_resources_alloc();
->  	if (IS_ERR(d->res)) {
->  		err = PTR_ERR(d->res);
-> @@ -2337,6 +2488,70 @@ static int vm_bind_op(struct xe_eudebug *d, struct xe_vm *vm,
+>  	for (i = 0; i < q->width; ++i) {
+> -		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K);
+> +		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K, flags);
+>  		if (IS_ERR(q->lrc[i])) {
+>  			err = PTR_ERR(q->lrc[i]);
+>  			goto err_lrc;
+> @@ -336,6 +340,31 @@ static int exec_queue_set_timeslice(struct xe_device *xe, struct xe_exec_queue *
 >  	return 0;
 >  }
 >  
-> +static int xe_eudebug_track_ufence(struct xe_eudebug *d,
-> +				   struct xe_user_fence *f,
-> +				   u64 seqno)
+> +static int exec_queue_set_eudebug(struct xe_device *xe, struct xe_exec_queue *q,
+> +				  u64 value)
 > +{
-> +	struct xe_eudebug_ack *ack;
-> +	struct rb_node *old;
+> +	const u64 known_flags = DRM_XE_EXEC_QUEUE_EUDEBUG_FLAG_ENABLE;
 > +
-> +	ack = kzalloc(sizeof(*ack), GFP_KERNEL);
-> +	if (!ack)
-> +		return -ENOMEM;
+> +	if (XE_IOCTL_DBG(xe, (q->class != XE_ENGINE_CLASS_RENDER &&
+> +			      q->class != XE_ENGINE_CLASS_COMPUTE)))
+> +		return -EINVAL;
 > +
-> +	ack->seqno = seqno;
-> +	ack->ts_insert = ktime_get();
+> +	if (XE_IOCTL_DBG(xe, (value & ~known_flags)))
+> +		return -EINVAL;
 > +
-> +	spin_lock(&d->acks.lock);
-> +	old = rb_find_add(&ack->rb_node,
-> +			  &d->acks.tree, ack_insert_cmp);
-> +	if (!old) {
-> +		kref_get(&f->refcount);
-> +		ack->ufence = f;
-> +	}
-> +	spin_unlock(&d->acks.lock);
+
+Since I've talked about layering a bit [1] [2] it worth mentioning I
+think this patch fine wrt layering.
+
+If we add a Kconfig as I suggest [1] here you'd wanna add something
+like:
+
+if (!IS_ENABLED(CONFIG_EU_DEBUG))
+	return -EOPNOTSUPP;
+
+Just make sure it is unique error code return which the UMD can
+interrupt as 'kernel not compiled with EU debug support'.
+
+Matt
+
+[1] https://patchwork.freedesktop.org/patch/606049/?series=136572&rev=1#comment_1101330
+[2] https://patchwork.freedesktop.org/patch/606056/?series=136572&rev=1#comment_1101337
+
+> +	/*
+> +	 * We want to explicitly set the global feature if
+> +	 * property is set.
+> +	 */
+> +	if (XE_IOCTL_DBG(xe,
+> +			 !(value & DRM_XE_EXEC_QUEUE_EUDEBUG_FLAG_ENABLE)))
+> +		return -EINVAL;
 > +
-> +	if (old) {
-> +		eu_dbg(d, "ACK: seqno=%llu: already exists", seqno);
-> +		kfree(ack);
-> +		return -EEXIST;
-> +	}
-> +
-> +	eu_dbg(d, "ACK: seqno=%llu: tracking started", seqno);
+> +	q->eudebug_flags = EXEC_QUEUE_EUDEBUG_FLAG_ENABLE;
 > +
 > +	return 0;
 > +}
 > +
-> +static int vm_bind_ufence_event(struct xe_eudebug *d,
-> +				struct xe_user_fence *ufence)
-> +{
-> +	struct xe_eudebug_event *event;
-> +	struct xe_eudebug_event_vm_bind_ufence *e;
-> +	const u32 sz = sizeof(*e);
-> +	const u32 flags = DRM_XE_EUDEBUG_EVENT_CREATE |
-> +		DRM_XE_EUDEBUG_EVENT_NEED_ACK;
-> +	u64 seqno;
-> +	int ret;
-> +
-> +	seqno = atomic_long_inc_return(&d->events.seqno);
-> +
-> +	event = xe_eudebug_create_event(d, DRM_XE_EUDEBUG_EVENT_VM_BIND_UFENCE,
-> +					seqno, flags, sz, GFP_KERNEL);
-> +	if (!event)
-> +		return -ENOMEM;
-> +
-> +	e = cast_event(e, event);
-> +
-> +	write_member(struct drm_xe_eudebug_event_vm_bind_ufence,
-> +		     e, vm_bind_ref_seqno, ufence->eudebug.bind_ref_seqno);
-> +
-> +	ret = xe_eudebug_track_ufence(d, ufence, seqno);
-> +	if (!ret)
-> +		ret = xe_eudebug_queue_event(d, event);
-> +
-> +	return ret;
-> +}
-> +
->  void xe_eudebug_vm_bind_start(struct xe_vm *vm)
->  {
->  	struct xe_eudebug *d;
-> @@ -2507,6 +2722,24 @@ void xe_eudebug_vm_bind_end(struct xe_vm *vm, bool has_ufence, int bind_err)
->  		xe_eudebug_put(d);
->  }
->  
-> +int xe_eudebug_vm_bind_ufence(struct xe_user_fence *ufence)
-> +{
-> +	struct xe_eudebug *d;
-> +	int err;
-> +
-> +	d = ufence->eudebug.debugger;
-> +	if (!d || xe_eudebug_detached(d))
-> +		return -ENOTCONN;
-> +
-> +	err = vm_bind_ufence_event(d, ufence);
-> +	if (err) {
-> +		eu_err(d, "error %d on %s", err, __func__);
-> +		xe_eudebug_disconnect(d, err);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int discover_client(struct xe_eudebug *d, struct xe_file *xef)
->  {
->  	struct xe_exec_queue *q;
-> diff --git a/drivers/gpu/drm/xe/xe_eudebug.h b/drivers/gpu/drm/xe/xe_eudebug.h
-> index 2cab90773b21..3de54802a6ca 100644
-> --- a/drivers/gpu/drm/xe/xe_eudebug.h
-> +++ b/drivers/gpu/drm/xe/xe_eudebug.h
-> @@ -15,6 +15,7 @@ struct xe_vm;
->  struct xe_vma;
->  struct xe_exec_queue;
->  struct xe_hw_engine;
-> +struct xe_user_fence;
->  
->  int xe_eudebug_connect_ioctl(struct drm_device *dev,
->  			     void *data,
-> @@ -38,4 +39,9 @@ void xe_eudebug_vm_bind_start(struct xe_vm *vm);
->  void xe_eudebug_vm_bind_op_add(struct xe_vm *vm, u32 op, u64 addr, u64 range);
->  void xe_eudebug_vm_bind_end(struct xe_vm *vm, bool has_ufence, int err);
->  
-> +int xe_eudebug_vm_bind_ufence(struct xe_user_fence *ufence);
-> +
-> +struct xe_eudebug *xe_eudebug_get(struct xe_file *xef);
-> +void xe_eudebug_put(struct xe_eudebug *d);
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_eudebug_types.h b/drivers/gpu/drm/xe/xe_eudebug_types.h
-> index 1ffe33f15409..a32c51416b5f 100644
-> --- a/drivers/gpu/drm/xe/xe_eudebug_types.h
-> +++ b/drivers/gpu/drm/xe/xe_eudebug_types.h
-> @@ -86,6 +86,7 @@ struct xe_eudebug_eu_control_ops {
->  	int (*stopped)(struct xe_eudebug *e, struct xe_exec_queue *q,
->  		       struct xe_lrc *lrc, u8 *bitmap, unsigned int bitmap_size);
+>  typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
+>  					     struct xe_exec_queue *q,
+>  					     u64 value);
+> @@ -343,6 +372,7 @@ typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
+>  static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
+>  	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY] = exec_queue_set_priority,
+>  	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE] = exec_queue_set_timeslice,
+> +	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_EUDEBUG] = exec_queue_set_eudebug,
 >  };
+>  
+>  static int exec_queue_user_ext_set_property(struct xe_device *xe,
+> @@ -362,7 +392,8 @@ static int exec_queue_user_ext_set_property(struct xe_device *xe,
+>  			 ARRAY_SIZE(exec_queue_set_property_funcs)) ||
+>  	    XE_IOCTL_DBG(xe, ext.pad) ||
+>  	    XE_IOCTL_DBG(xe, ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY &&
+> -			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE))
+> +			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE &&
+> +			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_EUDEBUG))
+>  		return -EINVAL;
+>  
+>  	idx = array_index_nospec(ext.property, ARRAY_SIZE(exec_queue_set_property_funcs));
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> index 1408b02eea53..48e1190c2b58 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> @@ -90,6 +90,13 @@ struct xe_exec_queue {
+>  	 */
+>  	unsigned long flags;
+>  
+> +	/**
+> +	 * @eudebug_flags: immutable eudebug flags for this exec queue.
+> +	 * Set up with DRM_XE_EXEC_QUEUE_SET_PROPERTY_EUDEBUG.
+> +	 */
+> +#define EXEC_QUEUE_EUDEBUG_FLAG_ENABLE		BIT(0)
+> +	unsigned long eudebug_flags;
 > +
->  /**
->   * struct xe_eudebug - Top level struct for eudebug: the connection
+>  	union {
+>  		/** @multi_gt_list: list head for VM bind engines if multi-GT */
+>  		struct list_head multi_gt_list;
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+> index 0d8b871b47fe..74813bc20787 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+> @@ -532,7 +532,7 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+>  		goto err_name;
+>  	}
+>  
+> -	hwe->kernel_lrc = xe_lrc_create(hwe, NULL, SZ_16K);
+> +	hwe->kernel_lrc = xe_lrc_create(hwe, NULL, SZ_16K, 0);
+>  	if (IS_ERR(hwe->kernel_lrc)) {
+>  		err = PTR_ERR(hwe->kernel_lrc);
+>  		goto err_hwsp;
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> index 94ff62e1d95e..563b57f5b9ee 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -890,7 +890,7 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
+>  #define PVC_CTX_ACC_CTR_THOLD	(0x2a + 1)
+>  
+>  static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+> -		       struct xe_vm *vm, u32 ring_size)
+> +		       struct xe_vm *vm, u32 ring_size, u32 flags)
+>  {
+>  	struct xe_gt *gt = hwe->gt;
+>  	struct xe_tile *tile = gt_to_tile(gt);
+> @@ -1007,6 +1007,16 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+>  	map = __xe_lrc_start_seqno_map(lrc);
+>  	xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - 1);
+>  
+> +	if (flags & LRC_CREATE_RUNALONE) {
+> +		u32 ctx_control = xe_lrc_read_ctx_reg(lrc, CTX_CONTEXT_CONTROL);
+> +
+> +		drm_dbg(&xe->drm, "read CTX_CONTEXT_CONTROL: 0x%x\n", ctx_control);
+> +		ctx_control |= _MASKED_BIT_ENABLE(CTX_CTRL_RUN_ALONE);
+> +		drm_dbg(&xe->drm, "written CTX_CONTEXT_CONTROL: 0x%x\n", ctx_control);
+> +
+> +		xe_lrc_write_ctx_reg(lrc, CTX_CONTEXT_CONTROL, ctx_control);
+> +	}
+> +
+>  	return 0;
+>  
+>  err_lrc_finish:
+> @@ -1026,7 +1036,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+>   * upon failure.
 >   */
-> @@ -149,6 +150,12 @@ struct xe_eudebug {
->  		atomic_long_t seqno;
->  	} events;
->  
-> +	/* user fences tracked by this debugger */
-> +	struct {
-> +		spinlock_t lock;
-> +		struct rb_root tree;
-> +	} acks;
-> +
->  	/** @ops operations for eu_control */
->  	struct xe_eudebug_eu_control_ops *ops;
->  };
-> @@ -286,4 +293,9 @@ struct xe_eudebug_event_vm_bind_op {
->  	u64 range; /* Zero for unmap all ? */
->  };
->  
-> +struct xe_eudebug_event_vm_bind_ufence {
-> +	struct xe_eudebug_event base;
-> +	u64 vm_bind_ref_seqno;
-> +};
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-> index f36980aa26e6..400cb576f3b9 100644
-> --- a/drivers/gpu/drm/xe/xe_exec.c
-> +++ b/drivers/gpu/drm/xe/xe_exec.c
-> @@ -157,7 +157,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->  	vm = q->vm;
->  
->  	for (num_syncs = 0; num_syncs < args->num_syncs; num_syncs++) {
-> -		err = xe_sync_entry_parse(xe, xef, &syncs[num_syncs],
-> +		err = xe_sync_entry_parse(xe, xef, vm, &syncs[num_syncs],
->  					  &syncs_user[num_syncs], SYNC_PARSE_FLAG_EXEC |
->  					  (xe_vm_in_lr_mode(vm) ?
->  					   SYNC_PARSE_FLAG_LR_MODE : 0));
-> diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-> index 533246f42256..52d56bfdf932 100644
-> --- a/drivers/gpu/drm/xe/xe_sync.c
-> +++ b/drivers/gpu/drm/xe/xe_sync.c
-> @@ -18,17 +18,7 @@
->  #include "xe_exec_queue.h"
->  #include "xe_macros.h"
->  #include "xe_sched_job_types.h"
-> -
-> -struct xe_user_fence {
-> -	struct xe_device *xe;
-> -	struct kref refcount;
-> -	struct dma_fence_cb cb;
-> -	struct work_struct worker;
-> -	struct mm_struct *mm;
-> -	u64 __user *addr;
-> -	u64 value;
-> -	int signalled;
-> -};
-> +#include "xe_eudebug.h"
->  
->  static void user_fence_destroy(struct kref *kref)
+>  struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+> -			     u32 ring_size)
+> +			     u32 ring_size, u32 flags)
 >  {
-> @@ -36,6 +26,10 @@ static void user_fence_destroy(struct kref *kref)
->  						 refcount);
->  
->  	mmdrop(ufence->mm);
-> +
-> +	if (ufence->eudebug.debugger)
-> +		xe_eudebug_put(ufence->eudebug.debugger);
-> +
->  	kfree(ufence);
->  }
->  
-> @@ -49,7 +43,10 @@ static void user_fence_put(struct xe_user_fence *ufence)
->  	kref_put(&ufence->refcount, user_fence_destroy);
->  }
->  
-> -static struct xe_user_fence *user_fence_create(struct xe_device *xe, u64 addr,
-> +static struct xe_user_fence *user_fence_create(struct xe_device *xe,
-> +					       struct xe_file *xef,
-> +					       struct xe_vm *vm,
-> +					       u64 addr,
->  					       u64 value)
->  {
->  	struct xe_user_fence *ufence;
-> @@ -58,7 +55,7 @@ static struct xe_user_fence *user_fence_create(struct xe_device *xe, u64 addr,
->  	if (!access_ok(ptr, sizeof(ptr)))
->  		return ERR_PTR(-EFAULT);
->  
-> -	ufence = kmalloc(sizeof(*ufence), GFP_KERNEL);
-> +	ufence = kzalloc(sizeof(*ufence), GFP_KERNEL);
->  	if (!ufence)
+>  	struct xe_lrc *lrc;
+>  	int err;
+> @@ -1035,7 +1045,7 @@ struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+>  	if (!lrc)
 >  		return ERR_PTR(-ENOMEM);
 >  
-> @@ -69,12 +66,17 @@ static struct xe_user_fence *user_fence_create(struct xe_device *xe, u64 addr,
->  	ufence->mm = current->mm;
->  	mmgrab(ufence->mm);
+> -	err = xe_lrc_init(lrc, hwe, vm, ring_size);
+> +	err = xe_lrc_init(lrc, hwe, vm, ring_size, flags);
+>  	if (err) {
+>  		kfree(lrc);
+>  		return ERR_PTR(err);
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+> index c24542e89318..d2429a26fb22 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.h
+> +++ b/drivers/gpu/drm/xe/xe_lrc.h
+> @@ -22,8 +22,10 @@ struct xe_vm;
 >  
-> +	if (vm->eudebug_bind.ref) {
-> +		ufence->eudebug.debugger = xe_eudebug_get(xef);
-> +		ufence->eudebug.bind_ref_seqno = vm->eudebug_bind.ref;
-> +	}
+>  #define LRC_PPHWSP_SCRATCH_ADDR (0x34 * 4)
+>  
+> +#define LRC_CREATE_RUNALONE     BIT(0)
 > +
->  	return ufence;
->  }
+>  struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+> -			     u32 ring_size);
+> +			     u32 ring_size, u32 flags);
+>  void xe_lrc_destroy(struct kref *ref);
 >  
-> -static void user_fence_worker(struct work_struct *w)
-> +void xe_sync_ufence_signal(struct xe_user_fence *ufence)
->  {
-> -	struct xe_user_fence *ufence = container_of(w, struct xe_user_fence, worker);
-> +	XE_WARN_ON(!ufence->signalled);
+>  /**
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index a68734ff12f4..61c4c061bd75 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -1110,7 +1110,8 @@ struct drm_xe_exec_queue_create {
+>  #define DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY		0
+>  #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY		0
+>  #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE		1
+> -
+> +#define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_EUDEBUG		2
+> +#define     DRM_XE_EXEC_QUEUE_EUDEBUG_FLAG_ENABLE		(1 << 0)
+>  	/** @extensions: Pointer to the first extension struct, if any */
+>  	__u64 extensions;
 >  
->  	if (mmget_not_zero(ufence->mm)) {
->  		kthread_use_mm(ufence->mm);
-> @@ -85,7 +87,20 @@ static void user_fence_worker(struct work_struct *w)
->  	}
->  
->  	wake_up_all(&ufence->xe->ufence_wq);
-> +}
-> +
-> +static void user_fence_worker(struct work_struct *w)
-> +{
-> +	struct xe_user_fence *ufence = container_of(w, struct xe_user_fence, worker);
-> +	int ret;
-> +
->  	WRITE_ONCE(ufence->signalled, 1);
-> +
-> +	/* Lets see if debugger wants to track this */
-> +	ret = xe_eudebug_vm_bind_ufence(ufence);
-> +	if (ret)
-> +		xe_sync_ufence_signal(ufence);
-> +
->  	user_fence_put(ufence);
->  }
->  
-> @@ -104,6 +119,7 @@ static void user_fence_cb(struct dma_fence *fence, struct dma_fence_cb *cb)
->  }
->  
->  int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
-> +			struct xe_vm *vm,
->  			struct xe_sync_entry *sync,
->  			struct drm_xe_sync __user *sync_user,
->  			unsigned int flags)
-> @@ -185,7 +201,8 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
->  		if (exec) {
->  			sync->addr = sync_in.addr;
->  		} else {
-> -			sync->ufence = user_fence_create(xe, sync_in.addr,
-> +			sync->ufence = user_fence_create(xe, xef, vm,
-> +							 sync_in.addr,
->  							 sync_in.timeline_value);
->  			if (XE_IOCTL_DBG(xe, IS_ERR(sync->ufence)))
->  				return PTR_ERR(sync->ufence);
-> diff --git a/drivers/gpu/drm/xe/xe_sync.h b/drivers/gpu/drm/xe/xe_sync.h
-> index 256ffc1e54dc..f5bec2b1b4f6 100644
-> --- a/drivers/gpu/drm/xe/xe_sync.h
-> +++ b/drivers/gpu/drm/xe/xe_sync.h
-> @@ -9,8 +9,12 @@
->  #include "xe_sync_types.h"
->  
->  struct xe_device;
-> -struct xe_exec_queue;
->  struct xe_file;
-> +struct xe_exec_queue;
-> +struct drm_syncobj;
-> +struct dma_fence;
-> +struct dma_fence_chain;
-> +struct drm_xe_sync;
->  struct xe_sched_job;
->  struct xe_vm;
->  
-> @@ -19,6 +23,7 @@ struct xe_vm;
->  #define SYNC_PARSE_FLAG_DISALLOW_USER_FENCE	BIT(2)
->  
->  int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
-> +			struct xe_vm *vm,
->  			struct xe_sync_entry *sync,
->  			struct drm_xe_sync __user *sync_user,
->  			unsigned int flags);
-> @@ -40,5 +45,6 @@ struct xe_user_fence *__xe_sync_ufence_get(struct xe_user_fence *ufence);
->  struct xe_user_fence *xe_sync_ufence_get(struct xe_sync_entry *sync);
->  void xe_sync_ufence_put(struct xe_user_fence *ufence);
->  int xe_sync_ufence_get_status(struct xe_user_fence *ufence);
-> +void xe_sync_ufence_signal(struct xe_user_fence *ufence);
->  
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_sync_types.h b/drivers/gpu/drm/xe/xe_sync_types.h
-> index 30ac3f51993b..907c601a6d8c 100644
-> --- a/drivers/gpu/drm/xe/xe_sync_types.h
-> +++ b/drivers/gpu/drm/xe/xe_sync_types.h
-> @@ -7,12 +7,28 @@
->  #define _XE_SYNC_TYPES_H_
->  
->  #include <linux/types.h>
-> +#include <linux/spinlock.h>
-> +#include <linux/kref.h>
-> +#include <linux/dma-fence-array.h>
->  
-> -struct drm_syncobj;
-> -struct dma_fence;
-> -struct dma_fence_chain;
-> -struct drm_xe_sync;
-> -struct user_fence;
-> +struct xe_eudebug;
-> +
-> +struct xe_user_fence {
-> +	struct xe_device *xe;
-> +	struct kref refcount;
-> +	struct dma_fence_cb cb;
-> +	struct work_struct worker;
-> +	struct mm_struct *mm;
-> +	u64 __user *addr;
-> +	u64 value;
-> +	int signalled;
-> +	struct {
-> +		struct xe_eudebug *debugger;
-> +		u64 bind_ref_seqno;
-> +		u64 signalled_seqno;
-> +		struct work_struct worker;
-> +	} eudebug;
-> +};
->  
->  struct xe_sync_entry {
->  	struct drm_syncobj *syncobj;
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 657a54b74eea..b117a892e386 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -3049,9 +3049,11 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->  		}
->  	}
->  
-> +	xe_eudebug_vm_bind_start(vm);
-> +
->  	syncs_user = u64_to_user_ptr(args->syncs);
->  	for (num_syncs = 0; num_syncs < args->num_syncs; num_syncs++) {
-> -		err = xe_sync_entry_parse(xe, xef, &syncs[num_syncs],
-> +		err = xe_sync_entry_parse(xe, xef, vm, &syncs[num_syncs],
->  					  &syncs_user[num_syncs],
->  					  (xe_vm_in_lr_mode(vm) ?
->  					   SYNC_PARSE_FLAG_LR_MODE : 0) |
-> diff --git a/include/uapi/drm/xe_drm_eudebug.h b/include/uapi/drm/xe_drm_eudebug.h
-> index 789c8aa81c09..1875192e92bd 100644
-> --- a/include/uapi/drm/xe_drm_eudebug.h
-> +++ b/include/uapi/drm/xe_drm_eudebug.h
-> @@ -17,6 +17,7 @@ extern "C" {
->   */
->  #define DRM_XE_EUDEBUG_IOCTL_READ_EVENT		_IO('j', 0x0)
->  #define DRM_XE_EUDEBUG_IOCTL_EU_CONTROL		_IOWR('j', 0x2, struct drm_xe_eudebug_eu_control)
-> +#define DRM_XE_EUDEBUG_IOCTL_ACK_EVENT		_IOW('j', 0x4, struct drm_xe_eudebug_ack_event)
->  
->  /* XXX: Document events to match their internal counterparts when moved to xe_drm.h */
->  struct drm_xe_eudebug_event {
-> @@ -31,7 +32,8 @@ struct drm_xe_eudebug_event {
->  #define DRM_XE_EUDEBUG_EVENT_EU_ATTENTION	5
->  #define DRM_XE_EUDEBUG_EVENT_VM_BIND		6
->  #define DRM_XE_EUDEBUG_EVENT_VM_BIND_OP		7
-> -#define DRM_XE_EUDEBUG_EVENT_MAX_EVENT		DRM_XE_EUDEBUG_EVENT_VM_BIND_OP
-> +#define DRM_XE_EUDEBUG_EVENT_VM_BIND_UFENCE	8
-> +#define DRM_XE_EUDEBUG_EVENT_MAX_EVENT		DRM_XE_EUDEBUG_EVENT_VM_BIND_UFENCE
->  
->  	__u16 flags;
->  #define DRM_XE_EUDEBUG_EVENT_CREATE		(1 << 0)
-> @@ -158,6 +160,17 @@ struct drm_xe_eudebug_event_vm_bind_op {
->  	__u64 range; /* XXX: Zero for unmap all? */
->  };
->  
-> +struct drm_xe_eudebug_event_vm_bind_ufence {
-> +	struct drm_xe_eudebug_event base;
-> +	__u64 vm_bind_ref_seqno; /* *_event_vm_bind.base.seqno */
-> +};
-> +
-> +struct drm_xe_eudebug_ack_event {
-> +	__u32 type;
-> +	__u32 flags; /* MBZ */
-> +	__u64 seqno;
-> +};
-> +
->  #if defined(__cplusplus)
->  }
->  #endif
 > -- 
 > 2.34.1
 > 
