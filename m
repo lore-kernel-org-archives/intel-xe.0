@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9C58C3DA49
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C085FC3DA4A
 	for <intel-xe@archiver.kernel.org>; Sat, 27 Jul 2024 01:59:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E4CC10E9A2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7724610E9A9;
 	Sat, 27 Jul 2024 01:59:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hgSQgt0p";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fu5WDbTh";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6B8B10E8D2
- for <intel-xe@lists.freedesktop.org>; Sat, 27 Jul 2024 01:59:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCD1E10E82E
+ for <intel-xe@lists.freedesktop.org>; Sat, 27 Jul 2024 01:59:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722045564; x=1753581564;
+ t=1722045565; x=1753581565;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IF1hrWJ+ovOZSGmXdTVCncOT+HhJghvZLE1XgLC0Xxg=;
- b=hgSQgt0pRZh3D/1JTSortmYo6vUD6WSWOKcls6KeRUIdzQvJ6gWF0uGj
- dmcS5SqhI94dlI0Zy/+sLYy5YjnlqLvUkT5u9BTV6dmzNAPjN0g16Xyr+
- pwvF0KrdgdKR2f7kj67fPQ7m1IFui4aundHwppIDcnPK5Qt9p97Pg56we
- yNjcIBrX4BKDiVukTOMwaC9YMqdWvPx1THSbzPiDbVZKpmH0jSD6gJ+Ds
- AYxxaTzdfwVn163TKdN62REJ1+EGpfH9OYlV4dJe0rHr98fI39pfYrAcm
- vc3JMvpLRBIZxN5EunZyhHz3MxHD+eO4dtIhcyo7S6oEypo9G+0F8Gy0j A==;
-X-CSE-ConnectionGUID: Xy+cb45yQfGLX4/QiIi2yQ==
-X-CSE-MsgGUID: nwUIyDxuSVqH00xmDuGJJQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11145"; a="19460257"
-X-IronPort-AV: E=Sophos;i="6.09,240,1716274800"; d="scan'208";a="19460257"
+ bh=815lSNfI6EO1JJsBi97HlMjYzkjv69IigjEXSUSb4JU=;
+ b=fu5WDbThSdP4H53whpPIdA152Xd2joPGKcF5XMOGj+/pYE87Twi0LdbD
+ y67OaqdDVb79vBXqWEcCgFX4+qdTzSt4OafxsRctinxJLHuLLrEUCwHHo
+ ww8++LiFUwEkCTnu0lmMZyvRPsr+nZ+NZQ9zyOA6zFRGuO45/q8s8sgdD
+ OmHmkss6tZynCt3F8lawxSqteRMSsJxtLlFuXXuRMIVnkRL+l39SBM16u
+ fX9ZQ+jJitWkCHKJSPr2KmMVyEHjdgEXfwjz4fFOicVFRUD00n29H24AF
+ JYlWRyV0K0VFnuTLwwYWzI4F8zar/f/lXOf79cHi1v3BA6i87kG+a/1i3 A==;
+X-CSE-ConnectionGUID: nP9XZ0f+R/aKj/iiopShQg==
+X-CSE-MsgGUID: t4pgBD/9QjqsMBfROFJAag==
+X-IronPort-AV: E=McAfee;i="6700,10204,11145"; a="19460261"
+X-IronPort-AV: E=Sophos;i="6.09,240,1716274800"; d="scan'208";a="19460261"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2024 18:59:24 -0700
-X-CSE-ConnectionGUID: Yig9EdqVSlGRvKM59OCayw==
-X-CSE-MsgGUID: qxq+AQg6Tg2KVEY0uyH7nw==
+ 26 Jul 2024 18:59:25 -0700
+X-CSE-ConnectionGUID: RSFQVoCGSnKQNnLp5V/taQ==
+X-CSE-MsgGUID: PyX7pbj9SmaYK63PT5BpGA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,240,1716274800"; d="scan'208";a="53108381"
+X-IronPort-AV: E=Sophos;i="6.09,240,1716274800"; d="scan'208";a="53108397"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2024 18:59:23 -0700
+ 26 Jul 2024 18:59:24 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v3 3/8] drm/xe/kunit: Test active rtp entries
-Date: Fri, 26 Jul 2024 18:59:02 -0700
-Message-ID: <20240727015907.899192-4-lucas.demarchi@intel.com>
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH v3 7/8] drm/xe/rtp: Expand max rules/actions per entry again
+Date: Fri, 26 Jul 2024 18:59:06 -0700
+Message-ID: <20240727015907.899192-8-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240727015907.899192-1-lucas.demarchi@intel.com>
 References: <20240727015907.899192-1-lucas.demarchi@intel.com>
@@ -67,145 +68,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enabling active tracking in the rtp context and check for all the tests
-the expected entries become active.
+Like commit 512660cd1f1a ("drm/xe/rtp: Expand max rules/actions per
+entry") did, expand the maximum number of actions/rules. That commit was
+too conservative, just incrementing 2. Other than the ugliness of these
+macros and additional preprocessor steps when they are used, there are
+no downsides on increasing the maximum: the tables in which they are
+used use a sentinel to mark the last element.
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+With rtp processing now supporting OR rules, it's possible to migrate
+the extension made for OOB WAs that "entries with name are OR'ed in
+previous entry". For that the maximum number of rules needs to be
+increased.
+
+Just double it. Hopefully 12 is sufficient for longer than 6 was.
+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20240618050044.324454-3-lucas.demarchi@intel.com
 ---
- drivers/gpu/drm/xe/tests/xe_rtp_test.c | 20 +++++++++++++++++++-
- drivers/gpu/drm/xe/xe_rtp.c            |  1 +
- 2 files changed, 20 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_rtp.h         | 4 ++--
+ drivers/gpu/drm/xe/xe_rtp_helpers.h | 6 ++++++
+ 2 files changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-index 5ebaed1af3f2..459f6ae9449d 100644
---- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-@@ -38,6 +38,7 @@ struct rtp_test_case {
- 	u32 expected_clr_bits;
- 	unsigned long expected_count_sr_entries;
- 	unsigned int expected_sr_errors;
-+	unsigned long expected_active;
- 	const struct xe_rtp_entry_sr *entries;
- };
+diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
+index ad446731192c..827d932b6908 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.h
++++ b/drivers/gpu/drm/xe/xe_rtp.h
+@@ -374,7 +374,7 @@ struct xe_reg_sr;
+  * XE_RTP_RULES - Helper to set multiple rules to a struct xe_rtp_entry_sr entry
+  * @...: Rules
+  *
+- * At least one rule is needed and up to 6 are supported. Multiple rules are
++ * At least one rule is needed and up to 12 are supported. Multiple rules are
+  * AND'ed together, i.e. all the rules must evaluate to true for the entry to
+  * be processed. See XE_RTP_MATCH_* for the possible match rules. Example:
+  *
+@@ -399,7 +399,7 @@ struct xe_reg_sr;
+  * XE_RTP_ACTIONS - Helper to set multiple actions to a struct xe_rtp_entry_sr
+  * @...: Actions to be taken
+  *
+- * At least one action is needed and up to 6 are supported. See XE_RTP_ACTION_*
++ * At least one action is needed and up to 12 are supported. See XE_RTP_ACTION_*
+  * for the possible actions. Example:
+  *
+  * .. code-block:: c
+diff --git a/drivers/gpu/drm/xe/xe_rtp_helpers.h b/drivers/gpu/drm/xe/xe_rtp_helpers.h
+index c59e40fd7fff..a33b0ae98bbc 100644
+--- a/drivers/gpu/drm/xe/xe_rtp_helpers.h
++++ b/drivers/gpu/drm/xe/xe_rtp_helpers.h
+@@ -60,6 +60,12 @@
+ #define XE_RTP_PASTE_4(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_3(prefix_, sep_, _XE_TUPLE_TAIL args_)
+ #define XE_RTP_PASTE_5(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_4(prefix_, sep_, _XE_TUPLE_TAIL args_)
+ #define XE_RTP_PASTE_6(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_5(prefix_, sep_, _XE_TUPLE_TAIL args_)
++#define XE_RTP_PASTE_7(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_6(prefix_, sep_, _XE_TUPLE_TAIL args_)
++#define XE_RTP_PASTE_8(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_7(prefix_, sep_, _XE_TUPLE_TAIL args_)
++#define XE_RTP_PASTE_9(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_8(prefix_, sep_, _XE_TUPLE_TAIL args_)
++#define XE_RTP_PASTE_10(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_9(prefix_, sep_, _XE_TUPLE_TAIL args_)
++#define XE_RTP_PASTE_11(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_10(prefix_, sep_, _XE_TUPLE_TAIL args_)
++#define XE_RTP_PASTE_12(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_11(prefix_, sep_, _XE_TUPLE_TAIL args_)
  
-@@ -57,6 +58,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = REG_BIT(0) | REG_BIT(1),
- 		.expected_clr_bits = REG_BIT(0) | REG_BIT(1),
-+		.expected_active = BIT(0) | BIT(1),
- 		.expected_count_sr_entries = 1,
- 		/* Different bits on the same register: create a single entry */
- 		.entries = (const struct xe_rtp_entry_sr[]) {
-@@ -76,6 +78,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = REG_BIT(0),
- 		.expected_clr_bits = REG_BIT(0),
-+		.expected_active = BIT(0),
- 		.expected_count_sr_entries = 1,
- 		/* Don't coalesce second entry since rules don't match */
- 		.entries = (const struct xe_rtp_entry_sr[]) {
-@@ -95,6 +98,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = REG_BIT(0) | REG_BIT(1) | REG_BIT(2),
- 		.expected_clr_bits = REG_BIT(0) | REG_BIT(1) | REG_BIT(2),
-+		.expected_active = BIT(0) | BIT(1) | BIT(2),
- 		.expected_count_sr_entries = 1,
- 		.entries = (const struct xe_rtp_entry_sr[]) {
- 			{ XE_RTP_NAME("first"),
-@@ -148,6 +152,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = REG_BIT(0),
- 		.expected_clr_bits = REG_BIT(0),
-+		.expected_active = BIT(0),
- 		.expected_count_sr_entries = 1,
- 		/* Don't coalesce second entry due to one of the rules */
- 		.entries = (const struct xe_rtp_entry_sr[]) {
-@@ -167,6 +172,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = REG_BIT(0),
- 		.expected_clr_bits = REG_BIT(0),
-+		.expected_active = BIT(0) | BIT(1),
- 		.expected_count_sr_entries = 2,
- 		/* Same bits on different registers are not coalesced */
- 		.entries = (const struct xe_rtp_entry_sr[]) {
-@@ -186,6 +192,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = REG_BIT(0),
- 		.expected_clr_bits = REG_BIT(1) | REG_BIT(0),
-+		.expected_active = BIT(0) | BIT(1),
- 		.expected_count_sr_entries = 1,
- 		/* Check clr vs set actions on different bits */
- 		.entries = (const struct xe_rtp_entry_sr[]) {
-@@ -207,6 +214,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = TEMP_FIELD,
- 		.expected_clr_bits = TEMP_MASK,
-+		.expected_active = BIT(0),
- 		.expected_count_sr_entries = 1,
- 		/* Check FIELD_SET works */
- 		.entries = (const struct xe_rtp_entry_sr[]) {
-@@ -225,6 +233,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = REG_BIT(0),
- 		.expected_clr_bits = REG_BIT(0),
-+		.expected_active = BIT(0) | BIT(1),
- 		.expected_count_sr_entries = 1,
- 		.expected_sr_errors = 1,
- 		.entries = (const struct xe_rtp_entry_sr[]) {
-@@ -245,6 +254,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = REG_BIT(0),
- 		.expected_clr_bits = REG_BIT(0),
-+		.expected_active = BIT(0) | BIT(1),
- 		.expected_count_sr_entries = 1,
- 		.expected_sr_errors = 1,
- 		.entries = (const struct xe_rtp_entry_sr[]) {
-@@ -265,6 +275,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = REG_BIT(0),
- 		.expected_clr_bits = REG_BIT(0),
-+		.expected_active = BIT(0) | BIT(1) | BIT(2),
- 		.expected_count_sr_entries = 1,
- 		.expected_sr_errors = 2,
- 		.entries = (const struct xe_rtp_entry_sr[]) {
-@@ -295,9 +306,14 @@ static void xe_rtp_process_tests(struct kunit *test)
- 	struct xe_reg_sr *reg_sr = &gt->reg_sr;
- 	const struct xe_reg_sr_entry *sre, *sr_entry = NULL;
- 	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(gt);
--	unsigned long idx, count_sr_entries = 0;
-+	unsigned long idx, count_sr_entries = 0, count_rtp_entries = 0, active = 0;
- 
- 	xe_reg_sr_init(reg_sr, "xe_rtp_tests", xe);
-+
-+	while (param->entries[count_rtp_entries].rules)
-+		count_rtp_entries++;
-+
-+	xe_rtp_process_ctx_enable_active_tracking(&ctx, &active, count_rtp_entries);
- 	xe_rtp_process_to_sr(&ctx, param->entries, reg_sr);
- 
- 	xa_for_each(&reg_sr->xa, idx, sre) {
-@@ -307,6 +323,8 @@ static void xe_rtp_process_tests(struct kunit *test)
- 		count_sr_entries++;
- 	}
- 
-+	KUNIT_EXPECT_EQ(test, active, param->expected_active);
-+
- 	KUNIT_EXPECT_EQ(test, count_sr_entries, param->expected_count_sr_entries);
- 	if (count_sr_entries) {
- 		KUNIT_EXPECT_EQ(test, sr_entry->clr_bits, param->expected_clr_bits);
-diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index 5efe83cc82ab..f054ac9cf06d 100644
---- a/drivers/gpu/drm/xe/xe_rtp.c
-+++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -217,6 +217,7 @@ void xe_rtp_process_ctx_enable_active_tracking(struct xe_rtp_process_ctx *ctx,
- 	ctx->active_entries = active_entries;
- 	ctx->n_entries = n_entries;
- }
-+EXPORT_SYMBOL_IF_KUNIT(xe_rtp_process_ctx_enable_active_tracking);
- 
- static void rtp_mark_active(struct xe_device *xe,
- 			    struct xe_rtp_process_ctx *ctx,
+ /*
+  * XE_RTP_DROP_CAST - Drop cast to convert a compound statement to a initializer
 -- 
 2.43.0
 
