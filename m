@@ -4,47 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 272D6C3DA64
-	for <intel-xe@archiver.kernel.org>; Sun, 28 Jul 2024 15:42:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B349C3DA49
+	for <intel-xe@archiver.kernel.org>; Sun, 28 Jul 2024 15:43:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D247A10E1B7;
-	Sun, 28 Jul 2024 15:42:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3893B10E1E4;
+	Sun, 28 Jul 2024 15:43:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="fF1Cyo7e";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="B3KUDdkT";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E8F810E1B7;
- Sun, 28 Jul 2024 15:42:35 +0000 (UTC)
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3023D10E1EE;
+ Sun, 28 Jul 2024 15:43:08 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 2A025611F1;
- Sun, 28 Jul 2024 15:42:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 011B4C116B1;
- Sun, 28 Jul 2024 15:42:31 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTP id 5B2A4CE0957;
+ Sun, 28 Jul 2024 15:43:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DE53C116B1;
+ Sun, 28 Jul 2024 15:43:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1722181353;
- bh=8q5D2B9OW6lTxci4LEAhIIy1s+NJNtC4AYx42sA6Xts=;
- h=From:To:Cc:Subject:Date:From;
- b=fF1Cyo7eX1QOiKplbmpbh0dNRqh+QJP9ls93EcvUmxzYaqgtgFl7ORfhcS4oSvgoy
- ck0Gucc1TiHWsyzuhxG5CW45D38fwFaLoBFJGNj/0bvAVJ/lqL6vfv6lTiDWhPDAZJ
- fZMCLyGTpxouT9907MqOiwJJRNAVBTCSX0V/qq1KUs1RpoHVnxj3cC9yZE+yEtux7J
- 6yg9ofcDGdxL4KRROkSXNdcaFlPdB55R65eVXdHW/Nsp72K3XfIyUfoGpyvVuN8NZK
- 4jeDaSTiBY2mTif6LyMCSPySgQSoAuRzKbXVuEbV7YAbsLKvWnGTGTd9gA0zY8S1Yx
- PJFDjM7ezug/A==
+ s=k20201202; t=1722181386;
+ bh=EZMMz4krHIUvdzWVI5xV0nWibKMMsJlJ0glYjhFHBCs=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=B3KUDdkToYQWiFb0WndBYesteIu4OLcsXsgyWY4BeGRy1U6qKNrx3OSpLadeYuift
+ wybK884S0esKxVbNGh0BmuOQOmNbWK9VmyKa8pdTshrNup+nZwSDVhGa+E9SvpYg8T
+ Is6AAArNrphaPYwZP2qpQwPDDXUp2s/j5JpCbpuDSg2sWagV5trV7fadPgaFl52JZx
+ 1wSux/j0HlWJ1ELSJQvB8yXZAmSUKaCbb2n8CCeQ/M7H1rANPU6pOMSQu68GG4V+l5
+ qJAIKVqrBLiGn8oMT4Fom0UPRqeTSrsN3CoD+DQx/jamJMB5XkaPSGkNlQlxejAjRT
+ Uddg6oJEyqFsg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Sasha Levin <sashal@kernel.org>,
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Stuart Summers <stuart.summers@intel.com>, Sasha Levin <sashal@kernel.org>,
  lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
  rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com,
  mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
  daniel@ffwll.ch, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.10 01/34] drm/xe/preempt_fence: enlarge the fence
- critical section
-Date: Sun, 28 Jul 2024 11:40:25 -0400
-Message-ID: <20240728154230.2046786-1-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.10 07/34] drm/xe/xe_guc_submit: Fix exec queue stop
+ race condition
+Date: Sun, 28 Jul 2024 11:40:31 -0400
+Message-ID: <20240728154230.2046786-7-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240728154230.2046786-1-sashal@kernel.org>
+References: <20240728154230.2046786-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -64,56 +67,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Auld <matthew.auld@intel.com>
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 
-[ Upstream commit 3cd1585e57908b6efcd967465ef7685f40b2a294 ]
+[ Upstream commit 1564d411e17f51e2f64655b4e4da015be1ba7eaa ]
 
-It is really easy to introduce subtle deadlocks in
-preempt_fence_work_func() since we operate on single global ordered-wq
-for signalling our preempt fences behind the scenes, so even though we
-signal a particular fence, everything in the callback should be in the
-fence critical section, since blocking in the callback will prevent
-other published fences from signalling. If we enlarge the fence critical
-section to cover the entire callback, then lockdep should be able to
-understand this better, and complain if we grab a sensitive lock like
-vm->lock, which is also held when waiting on preempt fences.
+Reorder the xe_sched_tdr_queue_imm and set_exec_queue_banned calls in
+guc_exec_queue_stop.  This prevents a possible race condition between
+the two events in which it's possible for xe_sched_tdr_queue_imm to
+wake the ufence waiter before the exec queue is banned, causing the
+ufence waiter to miss the banned state.
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20240418144630.299531-2-matthew.auld@intel.com
+Reviewed-by: Stuart Summers <stuart.summers@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20240510194540.3246991-1-jonathan.cavitt@intel.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/xe/xe_preempt_fence.c | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_preempt_fence.c b/drivers/gpu/drm/xe/xe_preempt_fence.c
-index 7d50c6e89d8e7..5b243b7feb59d 100644
---- a/drivers/gpu/drm/xe/xe_preempt_fence.c
-+++ b/drivers/gpu/drm/xe/xe_preempt_fence.c
-@@ -23,11 +23,19 @@ static void preempt_fence_work_func(struct work_struct *w)
- 		q->ops->suspend_wait(q);
- 
- 	dma_fence_signal(&pfence->base);
--	dma_fence_end_signalling(cookie);
--
-+	/*
-+	 * Opt for keep everything in the fence critical section. This looks really strange since we
-+	 * have just signalled the fence, however the preempt fences are all signalled via single
-+	 * global ordered-wq, therefore anything that happens in this callback can easily block
-+	 * progress on the entire wq, which itself may prevent other published preempt fences from
-+	 * ever signalling.  Therefore try to keep everything here in the callback in the fence
-+	 * critical section. For example if something below grabs a scary lock like vm->lock,
-+	 * lockdep should complain since we also hold that lock whilst waiting on preempt fences to
-+	 * complete.
-+	 */
- 	xe_vm_queue_rebind_worker(q->vm);
--
- 	xe_exec_queue_put(q);
-+	dma_fence_end_signalling(cookie);
- }
- 
- static const char *
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index e4e3658e6a138..0f42971ff0a83 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1429,8 +1429,8 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
+ 			    !xe_sched_job_completed(job)) ||
+ 			    xe_sched_invalidate_job(job, 2)) {
+ 				trace_xe_sched_job_ban(job);
+-				xe_sched_tdr_queue_imm(&q->guc->sched);
+ 				set_exec_queue_banned(q);
++				xe_sched_tdr_queue_imm(&q->guc->sched);
+ 			}
+ 		}
+ 	}
 -- 
 2.43.0
 
