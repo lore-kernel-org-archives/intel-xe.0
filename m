@@ -4,49 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F154EC3DA4A
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jul 2024 09:34:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AB58C3DA61
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jul 2024 09:35:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A364E10E376;
-	Mon, 29 Jul 2024 09:34:20 +0000 (UTC)
-X-Greylist: delayed 455 seconds by postgrey-1.36 at gabe;
- Mon, 29 Jul 2024 09:34:19 UTC
-Received: from riemann.telenet-ops.be (riemann.telenet-ops.be [195.130.137.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A5F810E376
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Jul 2024 09:34:19 +0000 (UTC)
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be
- [IPv6:2a02:1800:110:4::f00:19])
- by riemann.telenet-ops.be (Postfix) with ESMTPS id 4WXY023pfTz4wyWT
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Jul 2024 11:26:42 +0200 (CEST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B25C10E376;
+	Mon, 29 Jul 2024 09:35:52 +0000 (UTC)
+Received: from weierstrass.telenet-ops.be (weierstrass.telenet-ops.be
+ [195.130.137.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC3A610E376
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Jul 2024 09:35:50 +0000 (UTC)
+Received: from andre.telenet-ops.be (andre.telenet-ops.be
+ [IPv6:2a02:1800:120:4::f00:15])
+ by weierstrass.telenet-ops.be (Postfix) with ESMTPS id 4WXYBY1nXMz4wyGd
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Jul 2024 11:35:49 +0200 (CEST)
 Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:4441:3808:f850:4280])
- by laurent.telenet-ops.be with bizsmtp
- id tMSc2C0030ZURL201MScHA; Mon, 29 Jul 2024 11:26:42 +0200
-Received: from rox.of.borg ([192.168.97.57])
- by ramsan.of.borg with esmtp (Exim 4.95)
- (envelope-from <geert@linux-m68k.org>) id 1sYMdw-003sUd-Sq;
- Mon, 29 Jul 2024 11:26:36 +0200
-Received: from geert by rox.of.borg with local (Exim 4.95)
- (envelope-from <geert@linux-m68k.org>) id 1sYMeJ-009LXV-Uh;
- Mon, 29 Jul 2024 11:26:35 +0200
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Ashutosh Dixit <ashutosh.dixit@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] drm/xe/oa/uapi: Make bit masks unsigned
-Date: Mon, 29 Jul 2024 11:26:34 +0200
-Message-Id: <20240729092634.2227611-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+ by andre.telenet-ops.be with bizsmtp
+ id tMbo2C0080ZURL201MboMp; Mon, 29 Jul 2024 11:35:49 +0200
+Received: from geert (helo=localhost)
+ by ramsan.of.borg with local-esmtp (Exim 4.95)
+ (envelope-from <geert@linux-m68k.org>) id 1sYMnE-003sYs-9i;
+ Mon, 29 Jul 2024 11:35:48 +0200
+Date: Mon, 29 Jul 2024 11:35:48 +0200 (CEST)
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+To: linux-kernel@vger.kernel.org
+cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ linux-mips@vger.kernel.org, dm-devel@lists.linux.dev, 
+ linuxppc-dev@lists.ozlabs.org, linux-btrfs@vger.kernel.org, 
+ intel-xe@lists.freedesktop.org, Arnd Bergmann <arnd@arndb.de>, 
+ linux-sh@vger.kernel.org, sparclinux@vger.kernel.org
+Subject: Re: Build regressions/improvements in v6.11-rc1
+In-Reply-To: <20240729092807.2235937-1-geert@linux-m68k.org>
+Message-ID: <bd4e9928-17b3-9257-8ba7-6b7f9bbb639a@linux-m68k.org>
+References: <CAHk-=wiyNokz0d3b=GRORij=mGvwoYHy=+bv6m2Hu_VqNdg66g@mail.gmail.com>
+ <20240729092807.2235937-1-geert@linux-m68k.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII; format=flowed
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,46 +53,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When building with gcc-5:
+On Mon, 29 Jul 2024, Geert Uytterhoeven wrote:
+> Below is the list of build error/warning regressions/improvements in
+> v6.11-rc1[1] compared to v6.10[2].
+>
+> Summarized:
+>  - build errors: +7/-22
 
-    In function ‘decode_oa_format.isra.26’,
-	inlined from ‘xe_oa_set_prop_oa_format’ at drivers/gpu/drm/xe/xe_oa.c:1664:6:
-    ././include/linux/compiler_types.h:510:38: error: call to ‘__compiletime_assert_1336’ declared with attribute error: FIELD_GET: mask is not constant
-    [...]
-    ./include/linux/bitfield.h:155:3: note: in expansion of macro ‘__BF_FIELD_CHECK’
-       __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: "); \
-       ^
-    drivers/gpu/drm/xe/xe_oa.c:1573:18: note: in expansion of macro ‘FIELD_GET’
-      u32 bc_report = FIELD_GET(DRM_XE_OA_FORMAT_MASK_BC_REPORT, fmt);
-		      ^
+> [1] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/8400291e289ee6b2bf9779ff1c83a291501f017b/ (all 132 configs)
 
-Fixes: b6fd51c6211910b1 ("drm/xe/oa/uapi: Define and parse OA stream properties")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-Compile-tested only.
----
- include/uapi/drm/xe_drm.h | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+> 7 error regressions:
+>  + /kisskb/src/arch/mips/sgi-ip22/ip22-gio.c: error: initialization of 'int (*)(struct device *, const struct device_driver *)' from incompatible pointer type 'int (*)(struct device *, struct device_driver *)' [-Werror=incompatible-pointer-types]:  => 384:14
 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 19619d4952a863f7..db232a25189eba9f 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1590,10 +1590,10 @@ enum drm_xe_oa_property_id {
- 	 * b. Counter select c. Counter size and d. BC report. Also refer to the
- 	 * oa_formats array in drivers/gpu/drm/xe/xe_oa.c.
- 	 */
--#define DRM_XE_OA_FORMAT_MASK_FMT_TYPE		(0xff << 0)
--#define DRM_XE_OA_FORMAT_MASK_COUNTER_SEL	(0xff << 8)
--#define DRM_XE_OA_FORMAT_MASK_COUNTER_SIZE	(0xff << 16)
--#define DRM_XE_OA_FORMAT_MASK_BC_REPORT		(0xff << 24)
-+#define DRM_XE_OA_FORMAT_MASK_FMT_TYPE		(0xffu << 0)
-+#define DRM_XE_OA_FORMAT_MASK_COUNTER_SEL	(0xffu << 8)
-+#define DRM_XE_OA_FORMAT_MASK_COUNTER_SIZE	(0xffu << 16)
-+#define DRM_XE_OA_FORMAT_MASK_BC_REPORT		(0xffu << 24)
- 
- 	/**
- 	 * @DRM_XE_OA_PROPERTY_OA_PERIOD_EXPONENT: Requests periodic OA unit
--- 
-2.34.1
+mips-gcc8/ip22_defconfig
 
+>  + /kisskb/src/drivers/md/dm-integrity.c: error: logical not is only applied to the left hand side of comparison [-Werror=logical-not-parentheses]:  => 4718:45
+
+powerpc-gcc5/powerpc-all{mod,yes}config
+powerpc-gcc5/ppc64le_allmodconfig
+
+>  + /kisskb/src/fs/btrfs/inode.c: error: 'location.objectid' may be used uninitialized in this function [-Werror=maybe-uninitialized]:  => 5603:9
+>  + /kisskb/src/fs/btrfs/inode.c: error: 'location.type' may be used uninitialized in this function [-Werror=maybe-uninitialized]:  => 5674:5
+
+m68k-gcc8/m68k-allmodconfig
+mips-gcc8/mips-allmodconfig
+powerpc-gcc5/powerpc-all{mod,yes}config
+powerpc-gcc5/ppc64_defconfig
+
+>  + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_933' declared with attribute error: FIELD_GET: mask is not constant:  => 510:38
+>  + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_934' declared with attribute error: FIELD_GET: mask is not constant:  => 510:38
+
+     inlined from 'xe_oa_set_prop_oa_format' at /kisskb/src/drivers/gpu/drm/xe/xe_oa.c:1664:6:
+
+powerpc-gcc5/powerpc-all{yes,mod}config
+powerpc-gcc5/powerpc-allmodconfig
+powerpc-gcc5/ppc64le_allmodconfig
+
+(fix sent)
+
+>  + /kisskb/src/kernel/fork.c: error: #warning clone3() entry point is missing, please fix [-Werror=cpp]:  => 3072:2
+
+sh4-gcc13/se{7619,7750}_defconfig
+sh4-gcc13/sh-all{mod,no,yes}config
+sh4-gcc13/sh-defconfig
+sparc64-gcc5/sparc-allnoconfig
+sparc64-gcc{5,13}/sparc32_defconfig
+sparc64-gcc{5,13}/sparc64-{allno,def}config
+sparc64-gcc13/sparc-all{mod,no}config
+sparc64-gcc13/sparc64-allmodconfig
+
+Gr{oetje,eeting}s,
+
+ 						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+ 							    -- Linus Torvalds
