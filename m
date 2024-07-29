@@ -4,45 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02F05C3DA61
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jul 2024 12:15:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C82F2C3DA61
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jul 2024 12:19:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD30710E05A;
-	Mon, 29 Jul 2024 12:15:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97E1710E3AB;
+	Mon, 29 Jul 2024 12:19:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="UG6iwaHx";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lPSv4F42";
 	dkim-atps=neutral
-Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 918F410E3A4
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Jul 2024 12:15:40 +0000 (UTC)
-Received: internal info suppressed
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1722255339; bh=vm8ZzAoYfVtn2ZJZ+MUEu9Nk+GL2VCYR8sFgwXWv2xY=;
- h=From:To:Cc:Subject:Date:From;
- b=UG6iwaHxZuTXSiUS5CfLXxdj4KLtSczK/rH0XLW6yvQ5lHKxqDTgPtYOaEtF/A89+
- 8YuypD29OpQ6H39C0jIK1EhNpXCF5CQGmEj/ycDXmBfQi8GRQyPD1iL/tXsP8yK75R
- NgqSYopH7Fg3hvqfw06STfZEW4LKqc4WNx4yxec+TXWcBvNA+/zH13Zzu2BuTj6zt7
- mMezH4ovxcgdv1gn7a1+44UOrC1G08bCXhaLhWeetnylRDpnLh0EbXcAI6NlCczIe0
- FL2wi2EzMoNhbNC65CdEaqNToI55r9U7hJtZHXF1XxXH4QylrvJArcuOabyrdSCvDe
- 7Rnw8DeCMiDxg==
-Received: from osharabi-vm-u22.habana-labs.com (localhost [127.0.0.1])
- by osharabi-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
- ESMTPS id 46TCFSuX448224
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
- Mon, 29 Jul 2024 15:15:28 +0300
-Received: (from osharabi@localhost)
- by osharabi-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 46TCFSVd448223;
- Mon, 29 Jul 2024 15:15:28 +0300
-From: Ohad Sharabi <osharabi@habana.ai>
-To: intel-xe@lists.freedesktop.org
-Cc: obitton@habana.ai, kelbaz@habana.ai, gustavo.sousa@intel.com,
- Ohad Sharabi <osharabi@habana.ai>
-Subject: [PATCH v2] drm/xe/uapi: restructure query config types in an enum
-Date: Mon, 29 Jul 2024 15:15:26 +0300
-Message-Id: <20240729121526.448199-1-osharabi@habana.ai>
-X-Mailer: git-send-email 2.34.1
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1045610E3A4;
+ Mon, 29 Jul 2024 12:19:14 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id CE9E5CE0AFB;
+ Mon, 29 Jul 2024 12:19:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70D9DC32786;
+ Mon, 29 Jul 2024 12:19:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1722255550;
+ bh=tIzcJd6foO8ybptyd/SyJu705RkhfF4wS/3uvuz9Vig=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=lPSv4F42jTw6sPJ1kRcRlBn/PWbQ/gcuJ4gPaM1AElCmTTQxcvMQ/VZsYeZFIvW49
+ fQnA0vqNYBEJ4bCEiJpdVdTkwAe4cnN8WgmhfTpwTy0Jz4Z26q5rWhE1IudhkIZ4mE
+ 8TaFz+3yd6/nUMLqn3rknbn3Ray1X2L+1IwkHJJezDLm8IywSU8WikgaoaJlgJmA2D
+ 27Vzbt1j258x8bbp8hIAzXA2s/E4wFhJ7dj+4XwI/KW9CKH5yN/76ogyK6pEpuz+A6
+ 6/Qugdd9fYsPfXkmpr6hYhorwSbNngJxufJGZPqiJZjqIxyqhKLoxOFSaoVbJtU49k
+ We6rLQKs46a2A==
+Date: Mon, 29 Jul 2024 13:19:03 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Alexander Usyskin <alexander.usyskin@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Tomas Winkler <tomas.winkler@intel.com>,
+ Vitaly Lubart <vitaly.lubart@intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-spi@vger.kernel.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v5 00/12] spi: add driver for Intel discrete graphics
+Message-ID: <9e188405-1508-4019-ba65-6803c51e9c1c@sirena.org.uk>
+References: <20240729084326.2278014-1-alexander.usyskin@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="v8Yavn7pPaf63/9P"
+Content-Disposition: inline
+In-Reply-To: <20240729084326.2278014-1-alexander.usyskin@intel.com>
+X-Cookie: List was current at time of printing.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,119 +71,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The config query has entries per config type.
 
-In query_config(), an array is allocated using the last element of
-the query config to dictate the array length.
+--v8Yavn7pPaf63/9P
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Instead, a more robust approach would be to use the standard "number of
-elements" last element of an enum such that one wouldn't need to modify
-the ioctl each time another entry is added.
+On Mon, Jul 29, 2024 at 11:43:14AM +0300, Alexander Usyskin wrote:
 
-v2:
- - modify `enum drm_xe_query_config_type` doc
+> V5: depend solely on AUXILIARY_BUS, not on COMPILE_TEST
+>     disable spi driver on virtual function in Xe, no spi device there
 
-Signed-off-by: Ohad Sharabi <osharabi@habana.ai>
----
- drivers/gpu/drm/xe/xe_query.c |  2 +-
- include/uapi/drm/xe_drm.h     | 58 ++++++++++++++++++++++-------------
- 2 files changed, 38 insertions(+), 22 deletions(-)
+> V4: fix white-spaces
+>     add check for discrete graphics missed in i915 intel_spi_fini
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 73ef6e4c2dc9..aaa60ff764ee 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -313,7 +313,7 @@ static int query_mem_regions(struct xe_device *xe,
- 
- static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- {
--	const u32 num_params = DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY + 1;
-+	const u32 num_params = DRM_XE_QUERY_CONFIG_NUM_CONFIGS;
- 	size_t size =
- 		sizeof(struct drm_xe_query_config) + num_params * sizeof(u64);
- 	struct drm_xe_query_config __user *query_ptr =
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 29425d7fdc77..9222563cddc3 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -378,6 +378,42 @@ struct drm_xe_query_mem_regions {
- 	struct drm_xe_mem_region mem_regions[];
- };
- 
-+#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
-+
-+/**
-+ * enum drm_xe_query_config_type - Indices for the supported configs returned
-+ * in &drm_xe_query_config.info array
-+ */
-+enum drm_xe_query_config_type {
-+	/**
-+	 * @DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID: Device ID (lower 16 bits)
-+	 * and the device revision (next 8 bits).
-+	 */
-+	DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID,
-+	/**
-+	 * @DRM_XE_QUERY_CONFIG_FLAGS: Flags describing the device
-+	 * configuration, see list below.
-+	 *
-+	 *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM - Flag is set if the device
-+	 *      has usable VRAM
-+	 */
-+	DRM_XE_QUERY_CONFIG_FLAGS,
-+	/**
-+	 * @DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT: Minimal memory alignment
-+	 * required by this device, typically SZ_4K or SZ_64K.
-+	 */
-+	DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT,
-+	/** @DRM_XE_QUERY_CONFIG_VA_BITS: Maximum bits of a virtual address. */
-+	DRM_XE_QUERY_CONFIG_VA_BITS,
-+	/**
-+	 * @DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY: Value of the highest
-+	 * available exec queue priority.
-+	 */
-+	DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY,
-+	/** @DRM_XE_QUERY_CONFIG_NUM_CONFIGS: must be last. Number of configs */
-+	DRM_XE_QUERY_CONFIG_NUM_CONFIGS,
-+};
-+
- /**
-  * struct drm_xe_query_config - describe the device configuration
-  *
-@@ -385,33 +421,13 @@ struct drm_xe_query_mem_regions {
-  * is equal to DRM_XE_DEVICE_QUERY_CONFIG, then the reply uses
-  * struct drm_xe_query_config in .data.
-  *
-- * The index in @info can be:
-- *  - %DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID - Device ID (lower 16 bits)
-- *    and the device revision (next 8 bits)
-- *  - %DRM_XE_QUERY_CONFIG_FLAGS - Flags describing the device
-- *    configuration, see list below
-- *
-- *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM - Flag is set if the device
-- *      has usable VRAM
-- *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
-- *    required by this device, typically SZ_4K or SZ_64K
-- *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
-- *  - %DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY - Value of the highest
-- *    available exec queue priority
-+ * The index in @info are the entries in `enum drm_xe_query_config`
-  */
- struct drm_xe_query_config {
- 	/** @num_params: number of parameters returned in info */
- 	__u32 num_params;
--
- 	/** @pad: MBZ */
- 	__u32 pad;
--
--#define DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID	0
--#define DRM_XE_QUERY_CONFIG_FLAGS			1
--	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
--#define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
--#define DRM_XE_QUERY_CONFIG_VA_BITS			3
--#define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
- 	/** @info: array of elements containing the config info */
- 	__u64 info[];
- };
--- 
-2.34.1
+> V3: rebase over drm-xe-next to enable CI run
 
+> V2: fix review comments
+>     fix signatures order
+>     depend spi presence in Xe on special flag,
+>      as not all new discrete cards have such spi
+
+You're sending approximately one version of this large series a day.
+Please stop resending until it's in a reviewable state.
+
+--v8Yavn7pPaf63/9P
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmaniLYACgkQJNaLcl1U
+h9B8Fgf/R84LLkxVU7o6YWZXc87iNf2D4zwFaOP1TaZaTG/pZ83HiD3OP07jg8H+
+K4gpsiPmfjgxll7albPKJ/6Wv9mhXARdK68ZgDdtrAE3FSf7HUkYa+dLzgwZqzjd
+u9KCTePwAjhcvePOfgcF2SPp2TDVASPWnqG/qG6qhLxpIFx9Alv0UJjVy2tqOEyR
+nRoRuO6+WhJYDxGlhipUvD2bAb045MTOMV6pRgdlHN6RpaGpswN5Yk3suwjda+qH
+l+kEpEYo0uXz/xlK5a3O1TrAN3JJgocjV3/sm2HQ4t8PBL8YG2RaFE0gpSEIr4SF
+41kyRyWffD8Dv5jONOaupsVqZUmGrQ==
+=VvS7
+-----END PGP SIGNATURE-----
+
+--v8Yavn7pPaf63/9P--
