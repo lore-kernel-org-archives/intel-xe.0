@@ -4,41 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AB58C3DA61
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jul 2024 09:35:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A76AFC3DA4A
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jul 2024 09:37:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B25C10E376;
-	Mon, 29 Jul 2024 09:35:52 +0000 (UTC)
-Received: from weierstrass.telenet-ops.be (weierstrass.telenet-ops.be
- [195.130.137.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC3A610E376
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Jul 2024 09:35:50 +0000 (UTC)
-Received: from andre.telenet-ops.be (andre.telenet-ops.be
- [IPv6:2a02:1800:120:4::f00:15])
- by weierstrass.telenet-ops.be (Postfix) with ESMTPS id 4WXYBY1nXMz4wyGd
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Jul 2024 11:35:49 +0200 (CEST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:4441:3808:f850:4280])
- by andre.telenet-ops.be with bizsmtp
- id tMbo2C0080ZURL201MboMp; Mon, 29 Jul 2024 11:35:49 +0200
-Received: from geert (helo=localhost)
- by ramsan.of.borg with local-esmtp (Exim 4.95)
- (envelope-from <geert@linux-m68k.org>) id 1sYMnE-003sYs-9i;
- Mon, 29 Jul 2024 11:35:48 +0200
-Date: Mon, 29 Jul 2024 11:35:48 +0200 (CEST)
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-To: linux-kernel@vger.kernel.org
-cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- linux-mips@vger.kernel.org, dm-devel@lists.linux.dev, 
- linuxppc-dev@lists.ozlabs.org, linux-btrfs@vger.kernel.org, 
- intel-xe@lists.freedesktop.org, Arnd Bergmann <arnd@arndb.de>, 
- linux-sh@vger.kernel.org, sparclinux@vger.kernel.org
-Subject: Re: Build regressions/improvements in v6.11-rc1
-In-Reply-To: <20240729092807.2235937-1-geert@linux-m68k.org>
-Message-ID: <bd4e9928-17b3-9257-8ba7-6b7f9bbb639a@linux-m68k.org>
-References: <CAHk-=wiyNokz0d3b=GRORij=mGvwoYHy=+bv6m2Hu_VqNdg66g@mail.gmail.com>
- <20240729092807.2235937-1-geert@linux-m68k.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 794D310E37F;
+	Mon, 29 Jul 2024 09:37:14 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27AD510E37E;
+ Mon, 29 Jul 2024 09:37:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6871864611783526504=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_spi=3A_add_driver_for_Intel_disc?=
+ =?utf-8?q?rete_graphics_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alexander Usyskin" <alexander.usyskin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 29 Jul 2024 09:37:13 -0000
+Message-ID: <172224583315.407150.7084466271195960365@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240729084326.2278014-1-alexander.usyskin@intel.com>
+In-Reply-To: <20240729084326.2278014-1-alexander.usyskin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,65 +36,144 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 29 Jul 2024, Geert Uytterhoeven wrote:
-> Below is the list of build error/warning regressions/improvements in
-> v6.11-rc1[1] compared to v6.10[2].
->
-> Summarized:
->  - build errors: +7/-22
+--===============6871864611783526504==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> [1] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/8400291e289ee6b2bf9779ff1c83a291501f017b/ (all 132 configs)
+== Series Details ==
 
-> 7 error regressions:
->  + /kisskb/src/arch/mips/sgi-ip22/ip22-gio.c: error: initialization of 'int (*)(struct device *, const struct device_driver *)' from incompatible pointer type 'int (*)(struct device *, struct device_driver *)' [-Werror=incompatible-pointer-types]:  => 384:14
+Series: spi: add driver for Intel discrete graphics (rev4)
+URL   : https://patchwork.freedesktop.org/series/136430/
+State : success
 
-mips-gcc8/ip22_defconfig
+== Summary ==
 
->  + /kisskb/src/drivers/md/dm-integrity.c: error: logical not is only applied to the left hand side of comparison [-Werror=logical-not-parentheses]:  => 4718:45
+CI Bug Log - changes from xe-1679-7b8299ef6e80db2d0621a593f5d58f9b6f892bee_BAT -> xe-pw-136430v4_BAT
+====================================================
 
-powerpc-gcc5/powerpc-all{mod,yes}config
-powerpc-gcc5/ppc64le_allmodconfig
+Summary
+-------
 
->  + /kisskb/src/fs/btrfs/inode.c: error: 'location.objectid' may be used uninitialized in this function [-Werror=maybe-uninitialized]:  => 5603:9
->  + /kisskb/src/fs/btrfs/inode.c: error: 'location.type' may be used uninitialized in this function [-Werror=maybe-uninitialized]:  => 5674:5
+  **SUCCESS**
 
-m68k-gcc8/m68k-allmodconfig
-mips-gcc8/mips-allmodconfig
-powerpc-gcc5/powerpc-all{mod,yes}config
-powerpc-gcc5/ppc64_defconfig
+  No regressions found.
 
->  + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_933' declared with attribute error: FIELD_GET: mask is not constant:  => 510:38
->  + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_934' declared with attribute error: FIELD_GET: mask is not constant:  => 510:38
+  
 
-     inlined from 'xe_oa_set_prop_oa_format' at /kisskb/src/drivers/gpu/drm/xe/xe_oa.c:1664:6:
+Participating hosts (6 -> 6)
+------------------------------
 
-powerpc-gcc5/powerpc-all{yes,mod}config
-powerpc-gcc5/powerpc-allmodconfig
-powerpc-gcc5/ppc64le_allmodconfig
+  No changes in participating hosts
 
-(fix sent)
+Known issues
+------------
 
->  + /kisskb/src/kernel/fork.c: error: #warning clone3() entry point is missing, please fix [-Werror=cpp]:  => 3072:2
+  Here are the changes found in xe-pw-136430v4_BAT that come from known issues:
 
-sh4-gcc13/se{7619,7750}_defconfig
-sh4-gcc13/sh-all{mod,no,yes}config
-sh4-gcc13/sh-defconfig
-sparc64-gcc5/sparc-allnoconfig
-sparc64-gcc{5,13}/sparc32_defconfig
-sparc64-gcc{5,13}/sparc64-{allno,def}config
-sparc64-gcc13/sparc-all{mod,no}config
-sparc64-gcc13/sparc64-allmodconfig
+### IGT changes ###
 
-Gr{oetje,eeting}s,
+#### Possible fixes ####
 
- 						Geert
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-lnl-1:          [FAIL][1] ([Intel XE#886]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1679-7b8299ef6e80db2d0621a593f5d58f9b6f892bee/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136430v4/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+  * igt@xe_gt_freq@freq_fixed_idle:
+    - {bat-lnl-2}:        [FAIL][3] ([Intel XE#2262]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1679-7b8299ef6e80db2d0621a593f5d58f9b6f892bee/bat-lnl-2/igt@xe_gt_freq@freq_fixed_idle.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136430v4/bat-lnl-2/igt@xe_gt_freq@freq_fixed_idle.html
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
- 							    -- Linus Torvalds
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#2262]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2262
+  [Intel XE#886]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/886
+
+
+Build changes
+-------------
+
+  * Linux: xe-1679-7b8299ef6e80db2d0621a593f5d58f9b6f892bee -> xe-pw-136430v4
+
+  IGT_7940: 2a73158fa69a2b8e20d5a0bdf773ee194bfe13c2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1679-7b8299ef6e80db2d0621a593f5d58f9b6f892bee: 7b8299ef6e80db2d0621a593f5d58f9b6f892bee
+  xe-pw-136430v4: 136430v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136430v4/index.html
+
+--===============6871864611783526504==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>spi: add driver for Intel discrete graphics (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136430/">https://patchwork.freedesktop.org/series/136430/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136430v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136430v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1679-7b8299ef6e80db2d0621a593f5d58f9b6f892bee_BAT -&gt; xe-pw-136430v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (6 -&gt; 6)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-136430v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
+<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1679-7b8299ef6e80db2d0621a593f5d58f9b6f892bee/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/886">Intel XE#886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136430v4/bat-lnl-1/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_gt_freq@freq_fixed_idle:</p>
+<ul>
+<li>{bat-lnl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1679-7b8299ef6e80db2d0621a593f5d58f9b6f892bee/bat-lnl-2/igt@xe_gt_freq@freq_fixed_idle.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2262">Intel XE#2262</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136430v4/bat-lnl-2/igt@xe_gt_freq@freq_fixed_idle.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1679-7b8299ef6e80db2d0621a593f5d58f9b6f892bee -&gt; xe-pw-136430v4</li>
+</ul>
+<p>IGT_7940: 2a73158fa69a2b8e20d5a0bdf773ee194bfe13c2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1679-7b8299ef6e80db2d0621a593f5d58f9b6f892bee: 7b8299ef6e80db2d0621a593f5d58f9b6f892bee<br />
+  xe-pw-136430v4: 136430v4</p>
+
+</body>
+</html>
+
+--===============6871864611783526504==--
