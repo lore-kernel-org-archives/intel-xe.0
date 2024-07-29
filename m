@@ -4,27 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1500C3DA4A
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jul 2024 10:00:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FC8CC3DA4A
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jul 2024 10:01:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADD1C10E38A;
-	Mon, 29 Jul 2024 10:00:13 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A500110E386;
- Mon, 29 Jul 2024 10:00:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F37910E381;
+	Mon, 29 Jul 2024 10:01:17 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=arndb.de header.i=@arndb.de header.b="sGeo6C1x";
+	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="BYEV6eol";
+	dkim-atps=neutral
+X-Greylist: delayed 366 seconds by postgrey-1.36 at gabe;
+ Mon, 29 Jul 2024 10:01:15 UTC
+Received: from fhigh4-smtp.messagingengine.com
+ (fhigh4-smtp.messagingengine.com [103.168.172.155])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2C2F10E381
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Jul 2024 10:01:15 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailfhigh.nyi.internal (Postfix) with ESMTP id 38B3A1140158;
+ Mon, 29 Jul 2024 05:55:08 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+ by compute4.internal (MEProxy); Mon, 29 Jul 2024 05:55:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+ :cc:content-type:content-type:date:date:from:from:in-reply-to
+ :in-reply-to:message-id:mime-version:references:reply-to:subject
+ :subject:to:to; s=fm2; t=1722246908; x=1722333308; bh=wXV/r3Ef+R
+ SOwF3n9b+Go+Q2efekHDW22bLwz2SfG8U=; b=sGeo6C1x+smISDrrbyZ04v7yjH
+ iZ0mw8uxR0llQzXg1BRcJlNE0S9qM0PfgzAYcXWXOybVkmd6nPWhvCdpIY/8TESa
+ s8QSOBViokCkYq7oeQURDo3I99SC2wA/LQRHxH2w4UW8p6WMpb1q9NnP7hYfnyUX
+ +hhq5uc35LJD8aLqqloOaDogbX+baUzVeco9AbiucecA4HJrjwSZ3Qg1ZrE2MJzy
+ pCX1sA86LQTlJnTi1mE0zafviR7WrMmhvw1ULywlXCE9KNqrC07veaq7byj3KEGc
+ Zy8bYWy3dJnTNRmAQGBkhrtTI3tqHw7F+G1cl+OoB8DOs5UZcGIuexZUigPQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:content-type:date:date
+ :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:subject:subject:to
+ :to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm3; t=1722246908; x=1722333308; bh=wXV/r3Ef+RSOwF3n9b+Go+Q2efek
+ HDW22bLwz2SfG8U=; b=BYEV6eolZK5ALcEAnnnsWy2rseyxqIwqhekuEBooGfxD
+ 7KrNXk/OH6YQBNw1YlT9clYlTtk0DiCuRNt38id90a0aXgq6oj/BIWJZkUBhCiQf
+ jaiLN2Zyj37g+Z8uy6O/NgySBsWOMlQz3mDxQHV0DKdXW/ejJKMcrIreCHEUzgj/
+ 3VExgSckmfDM4jrm5fVvf4/wPFm+gRhEKTTOCv2QOHka0wOz6PQg+8d5aAwu4x0W
+ F+Dojy9u4xwYL4G/u4GtiZTkkItQ1yC0oTdBUvIHaRKL3+QlTP8+6IvVWvyP59dF
+ 95JebUMqIJpnI52cNdVv1fKREF4tg+Z5FNIWMmH+zQ==
+X-ME-Sender: <xms:_GanZuUFj9a4RBACPe0wzqbttPE7veUNjUeWZ8rCXHqnfRFxmGkAIQ>
+ <xme:_GanZqlcQycvH9Nwsr8pFF0SMHpAdvNkQJlVIYe-YI2gPHk4lNhd97IVgCwttA8gO
+ 5_k54V12HnxP6mPA1s>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrjedvgddvvdcutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
+ ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
+ gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
+ ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
+ hnugesrghrnhgusgdruggvpdhnsggprhgtphhtthhopedt
+X-ME-Proxy: <xmx:_GanZiaiGi4ItI5HJqKLwKX8lOzNDC3NZ7MI-4UmXjAfZiY2oz3Z2g>
+ <xmx:_GanZlWa8EJeZaqO_p8fzZTkloUL4bpdZryWl5E7xgzVJi6vl-Ml7g>
+ <xmx:_GanZonYueOLEeXCG7W-f1RY4yUQV7OSCmBSnyZTyonKoC35cayIhw>
+ <xmx:_GanZqfk3tsJlL3EsCDS-FlEQ1EvK20d-iRG8tAH4Lr1DsXB7JeMPQ>
+ <xmx:_GanZhefW1QGQFVvsMx3iJHP8GHj0MEL_fFdncS-8VMEIz123uNHAZfP>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id 0A546B6008D; Mon, 29 Jul 2024 05:55:08 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-582-g5a02f8850-fm-20240719.002-g5a02f885
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe/oa/uapi=3A_Make_b?=
- =?utf-8?q?it_masks_unsigned?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Geert Uytterhoeven" <geert+renesas@glider.be>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 29 Jul 2024 10:00:12 -0000
-Message-ID: <172224721267.407236.399282106299690614@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240729092634.2227611-1-geert+renesas@glider.be>
-In-Reply-To: <20240729092634.2227611-1-geert+renesas@glider.be>
+Message-Id: <502ee081-8e09-422a-a1f9-be40aeaa84fb@app.fastmail.com>
+In-Reply-To: <bd4e9928-17b3-9257-8ba7-6b7f9bbb639a@linux-m68k.org>
+References: <CAHk-=wiyNokz0d3b=GRORij=mGvwoYHy=+bv6m2Hu_VqNdg66g@mail.gmail.com>
+ <20240729092807.2235937-1-geert@linux-m68k.org>
+ <bd4e9928-17b3-9257-8ba7-6b7f9bbb639a@linux-m68k.org>
+Date: Mon, 29 Jul 2024 11:54:47 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Geert Uytterhoeven" <geert@linux-m68k.org>, linux-kernel@vger.kernel.org
+Cc: "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ linux-mips@vger.kernel.org, dm-devel@lists.linux.dev,
+ linuxppc-dev@lists.ozlabs.org, linux-btrfs@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, linux-sh@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-hexagon@vger.kernel.org,
+ linux-sh@vger.kernel.org
+Subject: Re: Build regressions/improvements in v6.11-rc1
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +95,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Jul 29, 2024, at 11:35, Geert Uytterhoeven wrote:
+>
+>>  + /kisskb/src/kernel/fork.c: error: #warning clone3() entry point is missing, please fix [-Werror=cpp]:  => 3072:2
+>
+> sh4-gcc13/se{7619,7750}_defconfig
+> sh4-gcc13/sh-all{mod,no,yes}config
+> sh4-gcc13/sh-defconfig
+> sparc64-gcc5/sparc-allnoconfig
+> sparc64-gcc{5,13}/sparc32_defconfig
+> sparc64-gcc{5,13}/sparc64-{allno,def}config
+> sparc64-gcc13/sparc-all{mod,no}config
+> sparc64-gcc13/sparc64-allmodconfig
 
-Series: drm/xe/oa/uapi: Make bit masks unsigned
-URL   : https://patchwork.freedesktop.org/series/136608/
-State : success
+Hexagon and NIOS2 as well, but this is expected. I really just
+moved the warning into the actual implementation, the warning
+is the same as before. hexagon and sh look like they should be
+trivial, it's just that nobody seems to care. I'm sure the
+patches were posted before and never applied.
 
-== Summary ==
+sparc and nios2 do need some real work to write and test
+the wrappers.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 6f226dd91cbd83b14b375dac4246f617f0b98288
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+It does look like CONFIG_WERROR did not fail the build before
+505d66d1abfb ("clone3: drop __ARCH_WANT_SYS_CLONE3 macro")
+as it probably was intended.
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+      Arnd
