@@ -4,41 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4797C3DA4A
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jul 2024 12:12:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02F05C3DA61
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jul 2024 12:15:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B662C10E2FB;
-	Mon, 29 Jul 2024 12:12:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD30710E05A;
+	Mon, 29 Jul 2024 12:15:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="U27XRZF2";
+	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="UG6iwaHx";
 	dkim-atps=neutral
 Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F320910E177
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Jul 2024 12:12:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 918F410E3A4
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Jul 2024 12:15:40 +0000 (UTC)
 Received: internal info suppressed
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1722255160; bh=GKJ3/v0vF9fcEaAvohy2yUNxgvrwy2OS0FFlbGyG7Rs=;
+ t=1722255339; bh=vm8ZzAoYfVtn2ZJZ+MUEu9Nk+GL2VCYR8sFgwXWv2xY=;
  h=From:To:Cc:Subject:Date:From;
- b=U27XRZF2MOxrovAHKSLmX0IOPnHs722iEcSwSjXLhzYi6PSIDPNH28pOVnoT8vhy3
- PK10XZ80UTmvZ5wvZJZOt6nULJOR5fg1kgR5s8CW3CfkGqfsio+gxHtzfaAPvvx80u
- mltLUh8b3V4euK5ts0/eUwRmUQ09FIhTsdvn6uZrUcurxx9oZRKSLPymE6jTU41mjp
- /n2/QPwzrj06iQAsYdJolY5fKff1IRwbFAq03X/tfpIj3BbyIjUetCeiySu+r0AsRL
- 4/feX2CziWdtCsN5YFvalkpXER959MMDc8HHcI3U4Z1ws71AdYYlqMMWsMn8T1ndIT
- OLeeXjS4/vFSA==
+ b=UG6iwaHxZuTXSiUS5CfLXxdj4KLtSczK/rH0XLW6yvQ5lHKxqDTgPtYOaEtF/A89+
+ 8YuypD29OpQ6H39C0jIK1EhNpXCF5CQGmEj/ycDXmBfQi8GRQyPD1iL/tXsP8yK75R
+ NgqSYopH7Fg3hvqfw06STfZEW4LKqc4WNx4yxec+TXWcBvNA+/zH13Zzu2BuTj6zt7
+ mMezH4ovxcgdv1gn7a1+44UOrC1G08bCXhaLhWeetnylRDpnLh0EbXcAI6NlCczIe0
+ FL2wi2EzMoNhbNC65CdEaqNToI55r9U7hJtZHXF1XxXH4QylrvJArcuOabyrdSCvDe
+ 7Rnw8DeCMiDxg==
 Received: from osharabi-vm-u22.habana-labs.com (localhost [127.0.0.1])
  by osharabi-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
- ESMTPS id 46TCCSZ1446983
+ ESMTPS id 46TCFSuX448224
  (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
- Mon, 29 Jul 2024 15:12:28 +0300
+ Mon, 29 Jul 2024 15:15:28 +0300
 Received: (from osharabi@localhost)
- by osharabi-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 46TCCSMK446982;
- Mon, 29 Jul 2024 15:12:28 +0300
+ by osharabi-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 46TCFSVd448223;
+ Mon, 29 Jul 2024 15:15:28 +0300
 From: Ohad Sharabi <osharabi@habana.ai>
 To: intel-xe@lists.freedesktop.org
-Cc: obitton@habana.ai, kelbaz@habana.ai, Ohad Sharabi <osharabi@habana.ai>
+Cc: obitton@habana.ai, kelbaz@habana.ai, gustavo.sousa@intel.com,
+ Ohad Sharabi <osharabi@habana.ai>
 Subject: [PATCH v2] drm/xe/uapi: restructure query config types in an enum
-Date: Mon, 29 Jul 2024 15:12:27 +0300
-Message-Id: <20240729121227.446958-1-osharabi@habana.ai>
+Date: Mon, 29 Jul 2024 15:15:26 +0300
+Message-Id: <20240729121526.448199-1-osharabi@habana.ai>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -64,6 +65,9 @@ the query config to dictate the array length.
 Instead, a more robust approach would be to use the standard "number of
 elements" last element of an enum such that one wouldn't need to modify
 the ioctl each time another entry is added.
+
+v2:
+ - modify `enum drm_xe_query_config_type` doc
 
 Signed-off-by: Ohad Sharabi <osharabi@habana.ai>
 ---
