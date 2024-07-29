@@ -4,44 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CE4AC3DA4A
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Jul 2024 10:57:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8ABCBC3DA61
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Jul 2024 11:11:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDBA410E183;
-	Mon, 29 Jul 2024 10:57:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=habana.ai header.i=@habana.ai header.b="oMBsNqmM";
-	dkim-atps=neutral
-Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32F2610E183
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Jul 2024 10:57:49 +0000 (UTC)
-Received: internal info suppressed
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1722250667; bh=/nJ0RJRE1hUDuP33R2vkUcVhX8zQzBJKCd0tFJXBc/4=;
- h=From:To:Cc:Subject:Date:From;
- b=oMBsNqmMcNupcR2hY4ZE6Zuwb8J8WDVl058KgaC0qbbAs6gZ88Q9EZbV4ZhL1aQBl
- YZkK4yL8cBWUYA2KNPyM1h2TirKfxFLNTnuM+D7gzjJX3zzo1E5PCf/n1d8Vi3A0wW
- 85Y4ssTFH+ell2uTClICpnyjHdqDU3DbMmWlWNf9uJuPUeMhCMC7zAM9fwX2C9f/oF
- u3vEPQm0Lb2/1AnKp2/PcKgCV4hJAH+o8Ld5hOTMDELderHl98Fq+gCdS5Zz03RipZ
- zgyw5H1L+Jt2onTw61etgA87A+nESIM5xj+QArtZ3oKDVWU2cKVfUbX1xfs4JjZ8Op
- GslNFt2N7+G1w==
-Received: from osharabi-vm-u22.habana-labs.com (localhost [127.0.0.1])
- by osharabi-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
- ESMTPS id 46TAvdga419909
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
- Mon, 29 Jul 2024 13:57:39 +0300
-Received: (from osharabi@localhost)
- by osharabi-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 46TAvdp5419908;
- Mon, 29 Jul 2024 13:57:39 +0300
-From: Ohad Sharabi <osharabi@habana.ai>
-To: intel-xe@lists.freedesktop.org
-Cc: obitton@habana.ai, kelbaz@habana.ai, Ohad Sharabi <osharabi@habana.ai>
-Subject: [PATCH] drm/xe/uapi: restructure query config types in an enum
-Date: Mon, 29 Jul 2024 13:57:31 +0300
-Message-Id: <20240729105731.419850-1-osharabi@habana.ai>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50F7E10E387;
+	Mon, 29 Jul 2024 11:11:32 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E65810E387;
+ Mon, 29 Jul 2024 11:11:31 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8701081058068058738=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/xe=5Fgt=5Fidle=3A_add_deb?=
+ =?utf-8?q?ugfs_entry_for_powergating_info_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 29 Jul 2024 11:11:31 -0000
+Message-ID: <172225149157.407415.14087206611455541934@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240729102942.937680-1-riana.tauro@intel.com>
+In-Reply-To: <20240729102942.937680-1-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,118 +36,150 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The config query has entries per config type.
+--===============8701081058068058738==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-In query_config(), an array is allocated using the last element of
-the query config to dictate the array length.
+== Series Details ==
 
-Instead, a more robust approach would be to use the standard "number of
-elements" last element of an enum such that one wouldn't need to modify
-the ioctl each time another entry is added.
+Series: drm/xe/xe_gt_idle: add debugfs entry for powergating info (rev2)
+URL   : https://patchwork.freedesktop.org/series/136477/
+State : success
 
-Signed-off-by: Ohad Sharabi <osharabi@habana.ai>
----
- drivers/gpu/drm/xe/xe_query.c |  2 +-
- include/uapi/drm/xe_drm.h     | 57 ++++++++++++++++++++++-------------
- 2 files changed, 37 insertions(+), 22 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 73ef6e4c2dc9..aaa60ff764ee 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -313,7 +313,7 @@ static int query_mem_regions(struct xe_device *xe,
- 
- static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- {
--	const u32 num_params = DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY + 1;
-+	const u32 num_params = DRM_XE_QUERY_CONFIG_NUM_CONFIGS;
- 	size_t size =
- 		sizeof(struct drm_xe_query_config) + num_params * sizeof(u64);
- 	struct drm_xe_query_config __user *query_ptr =
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 29425d7fdc77..b087789956e3 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -378,6 +378,41 @@ struct drm_xe_query_mem_regions {
- 	struct drm_xe_mem_region mem_regions[];
- };
- 
-+#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
-+
-+/**
-+ * enum drm_xe_query_config_type - Supported config queries.
-+ */
-+enum drm_xe_query_config_type {
-+	/**
-+	 * @DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID: Device ID (lower 16 bits)
-+	 * and the device revision (next 8 bits).
-+	 */
-+	DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID,
-+	/**
-+	 * @DRM_XE_QUERY_CONFIG_FLAGS: Flags describing the device
-+	 * configuration, see list below.
-+	 *
-+	 *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM - Flag is set if the device
-+	 *      has usable VRAM
-+	 */
-+	DRM_XE_QUERY_CONFIG_FLAGS,
-+	/**
-+	 * @DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT: Minimal memory alignment
-+	 * required by this device, typically SZ_4K or SZ_64K.
-+	 */
-+	DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT,
-+	/** @DRM_XE_QUERY_CONFIG_VA_BITS: Maximum bits of a virtual address. */
-+	DRM_XE_QUERY_CONFIG_VA_BITS,
-+	/**
-+	 * @DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY: Value of the highest
-+	 * available exec queue priority.
-+	 */
-+	DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY,
-+	/** @DRM_XE_QUERY_CONFIG_NUM_CONFIGS: must be last. Number of configs */
-+	DRM_XE_QUERY_CONFIG_NUM_CONFIGS,
-+};
-+
- /**
-  * struct drm_xe_query_config - describe the device configuration
-  *
-@@ -385,33 +420,13 @@ struct drm_xe_query_mem_regions {
-  * is equal to DRM_XE_DEVICE_QUERY_CONFIG, then the reply uses
-  * struct drm_xe_query_config in .data.
-  *
-- * The index in @info can be:
-- *  - %DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID - Device ID (lower 16 bits)
-- *    and the device revision (next 8 bits)
-- *  - %DRM_XE_QUERY_CONFIG_FLAGS - Flags describing the device
-- *    configuration, see list below
-- *
-- *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM - Flag is set if the device
-- *      has usable VRAM
-- *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
-- *    required by this device, typically SZ_4K or SZ_64K
-- *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
-- *  - %DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY - Value of the highest
-- *    available exec queue priority
-+ * The index in @info are the entries in `enum drm_xe_query_config`
-  */
- struct drm_xe_query_config {
- 	/** @num_params: number of parameters returned in info */
- 	__u32 num_params;
--
- 	/** @pad: MBZ */
- 	__u32 pad;
--
--#define DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID	0
--#define DRM_XE_QUERY_CONFIG_FLAGS			1
--	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
--#define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
--#define DRM_XE_QUERY_CONFIG_VA_BITS			3
--#define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
- 	/** @info: array of elements containing the config info */
- 	__u64 info[];
- };
--- 
-2.34.1
+CI Bug Log - changes from xe-1680-15ee2b591d910842b8f4aab6f8a86b075049bb0f_BAT -> xe-pw-136477v2_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (6 -> 7)
+------------------------------
+
+  Additional (1): bat-bmg-1 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-136477v2_BAT:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@core_hotunplug@unbind-rebind:
+    - {bat-bmg-1}:        NOTRUN -> [ABORT][1]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v2/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-136477v2_BAT that come from known issues:
+
+### IGT changes ###
+
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
+  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
+  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
+  [Intel XE#2244]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2244
+  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
+
+
+Build changes
+-------------
+
+  * Linux: xe-1680-15ee2b591d910842b8f4aab6f8a86b075049bb0f -> xe-pw-136477v2
+
+  IGT_7940: 2a73158fa69a2b8e20d5a0bdf773ee194bfe13c2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1680-15ee2b591d910842b8f4aab6f8a86b075049bb0f: 15ee2b591d910842b8f4aab6f8a86b075049bb0f
+  xe-pw-136477v2: 136477v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v2/index.html
+
+--===============8701081058068058738==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe_gt_idle: add debugfs entry for powergating info (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136477/">https://patchwork.freedesktop.org/series/136477/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1680-15ee2b591d910842b8f4aab6f8a86b075049bb0f_BAT -&gt; xe-pw-136477v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (6 -&gt; 7)</h2>
+<p>Additional (1): bat-bmg-1 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-136477v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>{bat-bmg-1}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136477v2/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-136477v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1680-15ee2b591d910842b8f4aab6f8a86b075049bb0f -&gt; xe-pw-136477v2</li>
+</ul>
+<p>IGT_7940: 2a73158fa69a2b8e20d5a0bdf773ee194bfe13c2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1680-15ee2b591d910842b8f4aab6f8a86b075049bb0f: 15ee2b591d910842b8f4aab6f8a86b075049bb0f<br />
+  xe-pw-136477v2: 136477v2</p>
+
+</body>
+</html>
+
+--===============8701081058068058738==--
