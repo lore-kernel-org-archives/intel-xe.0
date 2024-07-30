@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CB4CC3DA49
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63340C52D1F
 	for <intel-xe@archiver.kernel.org>; Tue, 30 Jul 2024 22:16:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAE5610E344;
-	Tue, 30 Jul 2024 22:16:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B03A10E35A;
+	Tue, 30 Jul 2024 22:16:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IQOP5jOV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cIThiYea";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFF9E10E305;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36E8210E305;
  Tue, 30 Jul 2024 22:16:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1722377815; x=1753913815;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ND0M1O/b09cO9CGWjH0eDAueXMZa8J6c/uYozl9G1ZY=;
- b=IQOP5jOVoWxrk4+GO89rkdYzNH7v6mm/xui635pWEX41a3V6tXhYcAmI
- l2b3ynaMC/aYkwCp2f+JrjsG/xbZxDzZNajT/Uoj/+wR9UzH1eK7At3mq
- vfbT7bUq8zc5JKbiUBHD0MFi0fCYeRByDv3U/WTkxpO3t+dPeUl17Bn9H
- yeANUsd+T9Ib4QC9L5do9J/IzF6l8zXyic0zXVAasU94g7yAYPgaLyxbB
- u++nbx7omB4zyAnpqiGyT1CeYwqUwQGNBkdTRGH+NIJ+TsvVeF5VLh80D
- ojADyXySgnChh/G9x5gMUXX26Mp7U8wFPCLjgvKns4yGIVtHLsWM/zjwW w==;
-X-CSE-ConnectionGUID: UtVmRzFXS9OApHAEgqDRwA==
-X-CSE-MsgGUID: F5j99xWFT1eExTXfMfmt7w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11149"; a="24094138"
-X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="24094138"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=gEPb57BREpeXHaJKVZXrhup82u31NcDS3AdggQZJUoM=;
+ b=cIThiYeaaUg5cIurG1MooSX/9np1aa+X4ETn/FT/YhvueP4NVijahjJQ
+ WG9dv0fBsjzpxMWtDt4nQduF2wgknSh+0L57h6E2Fojr3YOqv+Zr0ZZI6
+ CPYG5O7wEnLXlFrIgyjO3r6H6oLglZhCiM98TylNN5kWjTYxaUoPnxz7O
+ aI2PKUSq9RdogkiZcwNTx+mtpRlYHc5IaHsqqBSkq8YgPKOEPhXgJUBfG
+ TGzNESMhTn4LVVqf8m34NuB0+//V7AQ83kUu6rS0ZAmVPfyYXb2qX5i03
+ dqRd8ewTNaFze2FmU1VUJU1eAyErFfTFM9tjw7UvjvBGzLxj7PmkTXXSw A==;
+X-CSE-ConnectionGUID: 5f26o5hHRSq00IuvIbjpLg==
+X-CSE-MsgGUID: jaBz93nbRimo0IMb6PN3rQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11149"; a="24094117"
+X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="24094117"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2024 15:16:55 -0700
-X-CSE-ConnectionGUID: 7WxHhnR9TaueAGKqB2JvwA==
-X-CSE-MsgGUID: pNpF4eF7S02MYcejiLF95Q==
+ 30 Jul 2024 15:16:54 -0700
+X-CSE-ConnectionGUID: TOVCBaCnSMKa+N946Z7rCg==
+X-CSE-MsgGUID: i7g48lOkSq2E/tN3BkAgOw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="58613347"
+X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="58613340"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2024 15:16:56 -0700
+ 30 Jul 2024 15:16:55 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
 Cc: tj@kernel.org, jiangshanlai@gmail.com, christian.koenig@amd.com,
  ltuikov89@gmail.com, daniel@ffwll.ch
-Subject: [RFC PATCH 3/3] drm/xe: Drop GuC submit_wq pool
-Date: Tue, 30 Jul 2024 15:17:42 -0700
-Message-Id: <20240730221742.2248527-4-matthew.brost@intel.com>
+Subject: [RFC PATCH 0/3] Use user-defined workqueue lockdep map for drm sched
+Date: Tue, 30 Jul 2024 15:17:39 -0700
+Message-Id: <20240730221742.2248527-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240730221742.2248527-1-matthew.brost@intel.com>
-References: <20240730221742.2248527-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,123 +67,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that drm sched uses a single lockdep map for all submit_wq, drop the
-GuC submit_wq pool hack.
+By default, each DRM scheduler instance creates an ordered workqueue for
+submission, and each workqueue creation allocates a new lockdep map.
+This becomes problematic when a DRM scheduler is created for every user
+queue (e.g., in DRM drivers with firmware schedulers like Xe) due to the
+limited number of available lockdep maps. With numerous user queues
+being created and destroyed, lockdep may run out of maps, leading to
+lockdep being disabled. Xe mitigated this by creating a pool of
+workqueues for DRM scheduler use. However, this approach also encounters
+issues if the driver is unloaded and reloaded multiple times or if many
+VFs are probed.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_submit.c | 60 +-----------------------------
- drivers/gpu/drm/xe/xe_guc_types.h  |  7 ----
- 2 files changed, 1 insertion(+), 66 deletions(-)
+To address this, we propose creating a single lockdep map for all DRM
+scheduler workqueues, which will also resolve issues for other DRM
+drivers that create a DRM scheduler per user queue.
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 460808507947..882cef3a10dc 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -224,64 +224,11 @@ static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
- 		 EXEC_QUEUE_STATE_BANNED));
- }
- 
--#ifdef CONFIG_PROVE_LOCKING
--static int alloc_submit_wq(struct xe_guc *guc)
--{
--	int i;
--
--	for (i = 0; i < NUM_SUBMIT_WQ; ++i) {
--		guc->submission_state.submit_wq_pool[i] =
--			alloc_ordered_workqueue("submit_wq", 0);
--		if (!guc->submission_state.submit_wq_pool[i])
--			goto err_free;
--	}
--
--	return 0;
--
--err_free:
--	while (i)
--		destroy_workqueue(guc->submission_state.submit_wq_pool[--i]);
--
--	return -ENOMEM;
--}
--
--static void free_submit_wq(struct xe_guc *guc)
--{
--	int i;
--
--	for (i = 0; i < NUM_SUBMIT_WQ; ++i)
--		destroy_workqueue(guc->submission_state.submit_wq_pool[i]);
--}
--
--static struct workqueue_struct *get_submit_wq(struct xe_guc *guc)
--{
--	int idx = guc->submission_state.submit_wq_idx++ % NUM_SUBMIT_WQ;
--
--	return guc->submission_state.submit_wq_pool[idx];
--}
--#else
--static int alloc_submit_wq(struct xe_guc *guc)
--{
--	return 0;
--}
--
--static void free_submit_wq(struct xe_guc *guc)
--{
--
--}
--
--static struct workqueue_struct *get_submit_wq(struct xe_guc *guc)
--{
--	return NULL;
--}
--#endif
--
- static void guc_submit_fini(struct drm_device *drm, void *arg)
- {
- 	struct xe_guc *guc = arg;
- 
- 	xa_destroy(&guc->submission_state.exec_queue_lookup);
--	free_submit_wq(guc);
- }
- 
- static void guc_submit_wedged_fini(struct drm_device *drm, void *arg)
-@@ -337,10 +284,6 @@ int xe_guc_submit_init(struct xe_guc *guc, unsigned int num_ids)
- 	if (err)
- 		return err;
- 
--	err = alloc_submit_wq(guc);
--	if (err)
--		return err;
--
- 	gt->exec_queue_ops = &guc_exec_queue_ops;
- 
- 	xa_init(&guc->submission_state.exec_queue_lookup);
-@@ -1445,8 +1388,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 	timeout = (q->vm && xe_vm_in_lr_mode(q->vm)) ? MAX_SCHEDULE_TIMEOUT :
- 		  msecs_to_jiffies(q->sched_props.job_timeout_ms);
- 	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
--			    get_submit_wq(guc),
--			    q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES, 64,
-+			    NULL, q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES, 64,
- 			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
- 			    q->name, gt_to_xe(q->gt)->drm.dev);
- 	if (err)
-diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-index 546ac6350a31..585f5c274f09 100644
---- a/drivers/gpu/drm/xe/xe_guc_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_types.h
-@@ -72,13 +72,6 @@ struct xe_guc {
- 		atomic_t stopped;
- 		/** @submission_state.lock: protects submission state */
- 		struct mutex lock;
--#ifdef CONFIG_PROVE_LOCKING
--#define NUM_SUBMIT_WQ	256
--		/** @submission_state.submit_wq_pool: submission ordered workqueues pool */
--		struct workqueue_struct *submit_wq_pool[NUM_SUBMIT_WQ];
--		/** @submission_state.submit_wq_idx: submission ordered workqueue index */
--		int submit_wq_idx;
--#endif
- 		/** @submission_state.enabled: submission is enabled */
- 		bool enabled;
- 	} submission_state;
+This solution has been tested by unloading and reloading the Xe driver.
+Before this series, around 30 driver reloads would result in lockdep
+being turned off. After implementing the series, the driver can be
+unloaded and reloaded hundreds of times without issues.
+
+This is being sent as an RFC to gather feedback from workqueue
+maintainers on the viability of this solution.
+
+Matt
+
+Matthew Brost (3):
+  workqueue: Add interface for user-defined workqueue lockdep map
+  drm/sched: Use drm sched lockdep map for submit_wq
+  drm/xe: Drop GuC submit_wq pool
+
+ drivers/gpu/drm/scheduler/sched_main.c | 12 +++++-
+ drivers/gpu/drm/xe/xe_guc_submit.c     | 60 +-------------------------
+ drivers/gpu/drm/xe/xe_guc_types.h      |  7 ---
+ include/linux/workqueue.h              |  3 ++
+ kernel/workqueue.c                     | 44 ++++++++++++++++---
+ 5 files changed, 52 insertions(+), 74 deletions(-)
+
 -- 
 2.34.1
 
