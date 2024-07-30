@@ -4,165 +4,186 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAFAFC3DA70
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jul 2024 13:57:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80131C3DA70
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jul 2024 14:02:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89B1710E056;
-	Tue, 30 Jul 2024 13:57:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D7A710E073;
+	Tue, 30 Jul 2024 14:02:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JWDXUFNk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gQc9ogFr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EFE510E073
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Jul 2024 13:56:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8C9E10E073
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Jul 2024 14:02:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722347818; x=1753883818;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=L4hJD3k/VkfWiuEuSyYR+sUi4MwcI4CAoG1QfHb9oNk=;
- b=JWDXUFNkYjbe0tjQi/TZg2gH9GVYP2BjAYuXId4xPTE4ejmng9gH6otR
- zeeTtLlwEdW9qUXd8t+rf9jkkWMLuuOlQDO/k+lbG2TAesgWBtapoelX8
- BY0lynebKlo97jk65yfI2x+dljfROWhUhG217V6KvZMy/TNaBIEYaB2Gg
- zvif6jLcAo+mHLIAF3O1VfxpqV0SqnwIN1Rtd4sLlIC5kOiP5frfiUdNF
- iEDH/aqfzB0Ch4uXn/4zpgK3Oli2eGeCztCktDdnZxinamh0FRXDKfN7o
- +yRFUZ0OWq1qVETLNMdLZzplNCzrqF0hQMVRGFE2YX7QrY5xbKFF3tDN6 g==;
-X-CSE-ConnectionGUID: Na75G6fCRH+Ppv+iEgWeZA==
-X-CSE-MsgGUID: W4XWTDAcQlOv7RlzmCtXTA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11149"; a="20343390"
-X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="20343390"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2024 06:56:58 -0700
-X-CSE-ConnectionGUID: Ij4TVCX3TymQI4fQR8y+SA==
-X-CSE-MsgGUID: 7xf4agXVR9GzUzM/90ImIA==
+ t=1722348176; x=1753884176;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=G6bM3OsVmjvnmEyeHG2G0KYpNqF8q9xa/J1kj0Zjh18=;
+ b=gQc9ogFryCVKzCmfcUlIX6cTRYXycGXu7QTx3h/dZHEU/6oTR9Dx3UH2
+ KPyrLqpgKk0PHz7MQRRWdv5SW93XnfYZEegt14JQg/+NrIIOplbSQwUQ2
+ Svr/TvhHEEqlDNeQvVw3xVh61QrRAaD+PE4K2+e+RkYgyAlPv6ntzn2d3
+ wHx6Ppfv9I7npcquJHonUgyV6jDASRyUU2iUlYP8P+jG07YZBy5/7smVJ
+ C/7wKXa98yuewsTMZ/jbyNfjRD5GYpqbyAgm2sgSEXFUNWHz4snLjYRiv
+ rqtjCu6Rb7hOGadlzgAIwDbmMNg8Y7a3sY+/+V8AXTDkWUFFNzO2hvLqU A==;
+X-CSE-ConnectionGUID: QF9LAqn6SSmOpygcpDsdaQ==
+X-CSE-MsgGUID: +yk2X1WcRueyPQNAbeLXUg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11149"; a="23926884"
+X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="23926884"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2024 07:02:56 -0700
+X-CSE-ConnectionGUID: 2KPUUqCCQe+cyhbeTA07Ew==
+X-CSE-MsgGUID: fh2lXGAWSnmYBblZnvfuBA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="91853461"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 30 Jul 2024 06:56:55 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="77584352"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 30 Jul 2024 07:02:56 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 30 Jul 2024 06:56:52 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.39; Tue, 30 Jul 2024 07:02:55 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 30 Jul 2024 06:56:52 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.39; Tue, 30 Jul 2024 07:02:55 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Tue, 30 Jul 2024 07:02:55 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.46) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 30 Jul 2024 06:56:52 -0700
+ 15.1.2507.39; Tue, 30 Jul 2024 07:02:55 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ivAxJyoWVYuTZ7Q16KjwaqIUjFpQ0Oc76wAaswOnoZmrvyPpO2JyaltMoI5w3+LGXtJ3xuT2Z2FfiRLoxaIYVej2SOVtg4RSXhwHMHeGp5RCftfR/+YzknrVtvvv2kljUKooAXg1Pgos2WGQvBvM940MPCvfZdCdXbro+euU6fFBptHiA+B5aYivLoPVDw/xO/P2smD7UyoGIFl6oyanXCzv0M8VtdEaADOmUtEPl9+1eQ/yinY4udCUjYquaK2D+KMq0kZl+8aenoVWqDtEZT9ySKhVd2/+I5p2zuYQFRVcmSu4MnewXqiWB1IodVWsoinFY9vu/ZLDa0nF565R0A==
+ b=UctasMJPXFSdjzKKTONnNIheomxKtMVumw3q0HoWTjUHePzHanYnUg/LvDzbMkCXnSisJzi8GM0kzb1mYlNe790rQxjVdZeazOnl8/v5Cf/s7OpnXQ4wI5Db8Bc4D0qQwP9IUcT5Xu0/qvLtIxMt3zzcgwrF/bNbHCmReYCNKnCgaHZgIkdcdBqcBgZM2Hl8r8hl9keIowinQ25ycYVA/6xB58Ejmjl1vYZDOTu5M4vF8HcrN3SghggMieQef0kg9oLS1Y387W2cVs6D5mx1hxX1T52yWBCCvzDzEYbX5dmiuHXcLIaEmaQzLRdBBWRGZxpOGJQSAnr4AbL8zxZl7A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7hR+yKkfqqTB8PaIcGfALBIqIx36LwUxtkAAp5kEOKA=;
- b=Ea5PR5LIikUjnv+MhFUIPHuz39xGDOzN5+xiLB9g+i1CeTYBw3Ci1uXgOaGdhPrP7vDFiHtKvbf7dUoPdTMgTDVI4qexBrjIwRgJMvJBQzpmWpE+bN4jC/QAE/FGD+Ka6jQ4CevZNoEKGQ8R/DDINxMvd3BUeAqot3VZZzSMC1Y/L1nbwPg24cgV/VEKBcjsBdqGt7951i8Tm3FOKCOW0BBs3NJukn4jjcywL+UFvqyqKdfVBPrlilDQktyiQH9LDeOJLrxysJgKvwb7YUXDy605RHILHF0fLsrHmYPMGxaIhWN1GF+VSiI+ctgaS24LbURUboFVkgwH8EkpS/9wmA==
+ bh=qiiumFrP3n9dwBDj4+2Xr5NUIq23tlODScev3YfwDHE=;
+ b=L9Bbb9663iaPbnK7HUazEdbv1i1d+wcnmjhfIgy/3+Iw1Nbz+MtI8pgQEsVu848vI6TwAGnCDZcpHDJLTv4jBt46mKqpVfQVgVh7jkI7dgHTFOoaviuyZy97JhB13xQv9Ugn97t3h+tHXvSiYQOlfPFPuhtPaVYgZ+BqXPo/cIhMbZ80lS6CwflXKh0EoClKgwa19bBQHpKWoTDwFSKf42AUP68NbAXSipVrd7jhaTeKxpyowumP2kiiDJqUivrxQIe6lo0WIFtEZMdDugXZHOXnBIGDUwtRosP1/HgjWEs4B9eIClGzP80nPv2J373Is6Xdasxo4sAvpKbZzD1+uA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by CH3PR11MB8362.namprd11.prod.outlook.com (2603:10b6:610:175::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.27; Tue, 30 Jul
- 2024 13:56:49 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%7]) with mapi id 15.20.7807.026; Tue, 30 Jul 2024
- 13:56:49 +0000
-Date: Tue, 30 Jul 2024 08:56:45 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Grzegorzek, Dominik" <dominik.grzegorzek@intel.com>
-CC: "mika.kuoppala@linux.intel.com" <mika.kuoppala@linux.intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, Matt Roper
- <matthew.d.roper@intel.com>
-Subject: Re: [PATCH 08/21] drm/xe/eudebug: hw enablement for eudebug
-Message-ID: <omwu2mogw7qa5bjad5gzqdjil7f54udrxg3n56qhxnvccxdrc7@4rrdg5jfo6wy>
-References: <20240726140818.54304-1-mika.kuoppala@linux.intel.com>
- <20240726140818.54304-9-mika.kuoppala@linux.intel.com>
- <icykmctrrffrulnbf6tnvb2jxnsasejdkk3zxxysizdqn3fsok@qrfh2iyol2ii>
- <718c4e50d84f77af4045872fcb7748a1081c68d3.camel@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <718c4e50d84f77af4045872fcb7748a1081c68d3.camel@intel.com>
-X-ClientProxiedBy: MW3PR06CA0004.namprd06.prod.outlook.com
- (2603:10b6:303:2a::9) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
+ IA1PR11MB7890.namprd11.prod.outlook.com (2603:10b6:208:3ff::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.19; Tue, 30 Jul
+ 2024 14:02:51 +0000
+Received: from DS0PR11MB7958.namprd11.prod.outlook.com
+ ([fe80::a255:8030:603f:7245]) by DS0PR11MB7958.namprd11.prod.outlook.com
+ ([fe80::a255:8030:603f:7245%5]) with mapi id 15.20.7828.016; Tue, 30 Jul 2024
+ 14:02:51 +0000
+Message-ID: <bdea1614-6bd0-4629-83ca-61c8299a8eeb@intel.com>
+Date: Tue, 30 Jul 2024 19:32:40 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/xe/xe_gt_idle: add debugfs entry for powergating
+ info
+To: "Nilawar, Badal" <badal.nilawar@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+CC: <anshuman.gupta@intel.com>, <vinay.belgaumkar@intel.com>,
+ <matthew.d.roper@intel.com>, <michal.wajdeczko@intel.com>
+References: <20240729102942.937680-1-riana.tauro@intel.com>
+ <8373f7f9-fcce-4779-942f-360fb1e2f3f8@intel.com>
+Content-Language: en-US
+From: Riana Tauro <riana.tauro@intel.com>
+In-Reply-To: <8373f7f9-fcce-4779-942f-360fb1e2f3f8@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA0PR01CA0092.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:ae::16) To DS0PR11MB7958.namprd11.prod.outlook.com
+ (2603:10b6:8:f9::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CH3PR11MB8362:EE_
-X-MS-Office365-Filtering-Correlation-Id: ce696562-a004-4431-c3ec-08dcb09f7572
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|IA1PR11MB7890:EE_
+X-MS-Office365-Filtering-Correlation-Id: e9ed1ce1-a3d1-4480-ddec-08dcb0a04cd7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?myGVaEhOD1svKTCS0tntFiOoL/AViiBBKAaCz7WoHjsyBkiyQA9cAUOfVE94?=
- =?us-ascii?Q?oXcqlyyGt2yyzJYrSrZc8S5ut8fLv4p0C8dqu3RY+i/6l7I8zvS8UegKRQAi?=
- =?us-ascii?Q?++u/JTAK+3uStftszd6ApYRgPqAG/nJgqhtFfyLZGWmuRGnakEcekDA6OZfU?=
- =?us-ascii?Q?9ToR3gkxHELu8bitUDCadNAsr1V7V2QlZuJF3EOYlwh0cWLFoVrzxI5T7l+w?=
- =?us-ascii?Q?dgAZ327WLdgZFuiUXW2j8Z7YOVxvFMQdz/wdgqnoSdn5GlLVzfPn3+izEhHs?=
- =?us-ascii?Q?F4DA6HRTF5tFe15VaLUzWJXn7T/ay5E7WhP8O5wTQ8gXumiOGYpoZqhtMvj5?=
- =?us-ascii?Q?5G71J0tluqe8UlMLoYsbd1UVZ3K2pn+6pzlkwaj3IsA9TfRSO+vyZvOiq2Ou?=
- =?us-ascii?Q?HLM/5nBtDy5sTz9aZ+V6Pfw7MuDlMwa/G593kaNIFgoJ7+BOcJaHLajt4Aif?=
- =?us-ascii?Q?jLZASLFcvxjtGXOQD1rNuJvbkCeiWJZEcHPIR00fD1OIt0pXohTztiAj0D0M?=
- =?us-ascii?Q?PEq+FEwEqNshNaOjCa0kLm7RJXLYXZ5rH00F5Fcy1KBPKeWfb91eh/ffAvv2?=
- =?us-ascii?Q?E0gyUQ7qsuo5tKq+7AZYhrVRRQ3l3FWC0gb6jw5SuB1nhbMhehJefEFQRcKq?=
- =?us-ascii?Q?VDF3TdAPLp6cqrGEW6ksmzQ9D7JbcZJznpa3aiJExksPKQwWXrzQMyvFT08E?=
- =?us-ascii?Q?Oh+i7xXkMIOz9qkrVCr+s4K0PjY4+Yi9X7Hzyn93bsR3iqStmQCGBoTAGEv8?=
- =?us-ascii?Q?z3pckFu51ShW16mAFcx7PNVqzmOKKRGLyNBCYGfVQdmht9N5Tuhszc/1D/rF?=
- =?us-ascii?Q?Bx+zznZdBrXaoehq27C5pxZDm5h+MvSY0m7IbNhmgGB3hlJy+0vGIutpfvAb?=
- =?us-ascii?Q?rnIgPEAMQ+tycdBooimv/u7hcLKcjQy4VRjxIr2xl6xu6V0MzT6BZmer7EJO?=
- =?us-ascii?Q?tDguXxjqQzQZexxAMrmoCZ0k3s19NCg8f3HqViEce5J7daeybokgC2kvGHmL?=
- =?us-ascii?Q?wNFAFq0X4Ez43kXfdFf4b4Nmw02fapmkfHWrt2ZbZiBBOgykHeltljmNzvVz?=
- =?us-ascii?Q?/2LMAqnnIqHGWcJ8LNYuxsoBUDPJ4bGzkiDZHISAL9zFpO6Zvde/TASUWjYg?=
- =?us-ascii?Q?PwCv9eqVtTdbuk3FWdLUE7v1TPL+RhtWEq0BB4YkZxHrUkiXlb7P3M2AmPbN?=
- =?us-ascii?Q?JmRW7sLP/V1JLM00PWHMTMEAa2NGZWC6suE0n3JG5wQnzQYMNWG1Abu6vQiY?=
- =?us-ascii?Q?SoEc9Neeldw4XS05Qij5o6pQpWUME9vL0dcGRu7fmFl2Hgj4CFzajelenlXR?=
- =?us-ascii?Q?v2Ya/AN4m7t0Yij4v1ErJEl4jw29bcEKcgEE6ITIUUXQ3g=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?RTlIdTVvVGdQd1QrOTNUU2hMczZGM3lCemhaUllxYXFHRCsyTUI1VzBQYm1r?=
+ =?utf-8?B?RmN5LzBxd1BpTFArY05IbDUwU1NneEFWZ3FJNUlkRDF2MEtpQnlwM3F0Ykwy?=
+ =?utf-8?B?eWwzWmpFM2YxRTFwZHQ2aXdtYzI3SXVwbktFckoycm5mdS9QK2xPcGtPSWMr?=
+ =?utf-8?B?Unc0V1lNU1Y1MkNhblQ2SzV5Zk1zbThueDJaWGNsZ1hqeXBXZ1h2UGowWGZo?=
+ =?utf-8?B?dkU1RmhUVUFSMm9yNWhsK3gyNC9PaVAzUXdiV0xRMGxoZzBnelRuZXh4ZTRv?=
+ =?utf-8?B?RmFWYU1ha2VpbWtvM09pS3ZpMzlwazh1QmFHcHk4NDNqVlE3RWFnWlE1UjFM?=
+ =?utf-8?B?dVN4NHJUUStTUExGOGt2ck50eW1uQUxRSW1CemZ4RnZ5K1l4M1RubHBVL2xS?=
+ =?utf-8?B?aTdqL2VxSVdTY1lhTWYwdnlSV0FoeVBZeFRuN0ZVcE9IamdyazFqUUlRb3hV?=
+ =?utf-8?B?UjlROFlSSnpMR0UxcWNscVJ6dW8xQmNWSjdqV3BLMXBqNjU1V1ZBeUV3dHFY?=
+ =?utf-8?B?a0tYTm1xT0xLVElrN2ZtTkM3dW5CSjBnYnlZVFhkZlZMbzVqK0dnVXFkeEJy?=
+ =?utf-8?B?amlpT0kvQ1dDZnV2Y1BROFVQMTc2aUQxMDBta0d6KzZrQjgxVVB4TXAxNm9a?=
+ =?utf-8?B?U2RIM0pNc3orZjdtdEFjSC9OdFVzR1YzbmU0Z2xBeFBNMkNCN0hlQjZUQ2NQ?=
+ =?utf-8?B?KzFvdk9tbHBVTWljTCtXcWpkMEhOenU5VTJNNWF6eEkzSEUyYTdLbTFLeGRw?=
+ =?utf-8?B?OE5vWVBKeDJKTVEzZHZsSmVRWGNuK2JPQy91Yk9xLzhkUTQ3b21nTzRnT2tH?=
+ =?utf-8?B?bWMyZWdGTFlHMVVFOVBmT2wySENVRzQ4SHYwckFXSGpmNlM3VTUxaForMUVO?=
+ =?utf-8?B?NXF1Q0h3WUNtSTFEQlVaMVdIL1BrSGJBYWFMVHYzRUZBVk1CRzMvQmhLeFBI?=
+ =?utf-8?B?SEdHdWZINzhYQzdSem44VCtxK081cEFnWWtMZHE1YURRcm9NZzNtaWZpVnN2?=
+ =?utf-8?B?ejF6US9ENExrN01ySUtLUzdiRG1CWStycTZFU1pGZlp6YXNiUUVZNkhZdElZ?=
+ =?utf-8?B?bUV4REFzaFA3TXBVZmJ5ZXRHNU5GRDJ5ZGx2T3VpRENGMzB1NnArQjRYTzhM?=
+ =?utf-8?B?K0o1WGZwSlVDSWdBKzV0aTV5NVl2TktvQnNJd2VlVm1uU2Q3My9YbG1wQTA0?=
+ =?utf-8?B?SjBnQ2E3T2VpaThMUGdteGZhOEVlSlJ4NWFTTVVmM1JJNCtuWlo1cjM0SlFj?=
+ =?utf-8?B?bmNlb1RoVDR6bVlwTUdGSUFFNGlXN0FsdHRIWGZ0WHk5bGJyblNZKzdvWm1L?=
+ =?utf-8?B?WEFSekFoWFNsaURzNVNMRWVIT0RjNCtnQWNjSWVKNVNQN3ZRNllmZUhsUlRl?=
+ =?utf-8?B?cXcrdjVYQWx2b0VzRWc1Q2RDK1JxUXNKLzRIUnVPNG5xamdDVFQxYjloMGNL?=
+ =?utf-8?B?TlFJR0RHZkN2VWZUd0RjajRvR1ZUdFpZMlMwVHVOSENmMVluMlRjQkd5RXc1?=
+ =?utf-8?B?NFZNZmwzamNPQkpQTDRkc1AwSlBBRzNOWVQ1U1JFRHB2VHB3anBkcmh4UE9q?=
+ =?utf-8?B?b3A2OGpHKzg5ZXFGSWVPRnlVbzU0ZW5jUUlERElpMXUxRloxbmhUTTVGL2th?=
+ =?utf-8?B?WUorWTdxV0dQNUZLOHAvYVorV2FwVGNPOXQ5OWxBc24yN3AvMVF0ZFJ5S1pM?=
+ =?utf-8?B?NFBzTCtWNmJOcDgwQm9sNUlwY3drcWFGSkZUOFN0UXlYaWVSSHpRTW9WZEVu?=
+ =?utf-8?B?eVVpMndLZnk4SUN5OG9RQUFkYmR5ZUVXOTlVbTh0ajREam0wWGlHcmpJaDZ4?=
+ =?utf-8?B?amZPdkJJM2hsbnp4ckFYZz09?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?pQWzyyJ/jtswhT8EU6LVqxVupzn7BLmGV2RBL4mJdMo/oQDWq38wztR6pcO1?=
- =?us-ascii?Q?yeQ66KpsdFFuqehjR2J9b2wODftDxACyqhilMNppXMq4vi3WsrKtWJBT7yZL?=
- =?us-ascii?Q?xZf7IAsYj3ZmTMsTCaFkLjGLEUWtjiC1bBELtEmhSiCt1FlQrRr+d6dPy6eR?=
- =?us-ascii?Q?GpjcY40EB6l964tPnFiONqxWiVEufe1pb5hoe/kD2mHAru9T+5MQSlXxA4pB?=
- =?us-ascii?Q?c/N7CcBlIQT73S6Cenu/arbkr11LDohgHYHM3fYsSU9XuP0yUZe8yj3D1xMT?=
- =?us-ascii?Q?VPjatuCNr7ZSDI100Z54oio0vuiw5d5glQeaJOIOmWtMfT6cWr8urecE2LYv?=
- =?us-ascii?Q?UubfZxIAAFzYvDbiSJI38hclo6Nc1Y+x+CUyB1YLObiXi9ZgvQ9gMpBw6Cxg?=
- =?us-ascii?Q?GEdgF+k34fwKIx513m1VZ5GsOxq51FVa/yluBA5TAHtSYP+bIJgz/XzgknEy?=
- =?us-ascii?Q?sbc6QMAkKuRHbFo0Q0QZaEXjp/ILbP+F0q4fy5rX9wTCVx1EL5t3j8Lkm4s6?=
- =?us-ascii?Q?MEQAiX7e0W/IRO6pVbq3+OAOid+JuumZA9vtdMTKdhYjbnb+5w8+E+lI+0xr?=
- =?us-ascii?Q?bz1N5N6BTBdMcsWbUUuIRicwtIodiKIufU4R8giCyzzQU0YnVUZJchhr0lvQ?=
- =?us-ascii?Q?AOM1VtCNQ5sdSNkMSr/xy69qPgCD6h0L7yg99bHlLBQxsVS7BHWAdRZZjHFX?=
- =?us-ascii?Q?NdVEIE8lM+BLgiK+kla+jTLK6tW1ZZQKPL+DhfnjFhNAOdE+dYXivgl+GpQz?=
- =?us-ascii?Q?PB10rE2Tgl1WwuSMWh7tlRaWUU8B9UpcRHRr/FxyePjVDBTm/NGS8CqRqcPN?=
- =?us-ascii?Q?wSROjAXWMdAJEXwKxROZMA5bkprcNVesGdj0YV6weUrr34naaJ82jESEuQqM?=
- =?us-ascii?Q?LAoglSGB/bi59PFM0GaTQQ2F3zkkyO2oj+XORQzGF3BuRQnlMewq3ud0qmln?=
- =?us-ascii?Q?hoKMIPtdX5cW3Yr7ipDfw+YzqLnkTKUJzPblX1cJHGU/MjDxyUtsIGNJmcoW?=
- =?us-ascii?Q?C8jGxBHXqgngfOisEnjuAct472d9Mn7u9GGXUxeWbO9uJYCi5tzIP7aZ4EC+?=
- =?us-ascii?Q?GeLV29XNid1GulhDJ83Qvx4QECf41zRQZNaR8WR4941U/zgO+O1Sa27PsREX?=
- =?us-ascii?Q?g2qGwOMm3SVqYiotskXvpTlOYTeeLEw4g7SDALcY1gZJdTyerCQ8HEfJKAbI?=
- =?us-ascii?Q?wZIY4Hmf9sHblDTR/zDJdV/9snjxJ0wqHgXNKlO51KHdfojAEdmvAVqThn7c?=
- =?us-ascii?Q?dtWkfr/Bh/vokBy1UHd9AYO3A/rJXhwKqrurC5W6frDb94cYVQHu6DW85mh2?=
- =?us-ascii?Q?AB7eZ+Ec+ieNr9qZouXYreUVkYzY3AZgy414JXUriQ0O5myzr/b60UnR1Sf9?=
- =?us-ascii?Q?YplRJHwqeJpbl2NlRylkSmM15lmxBSjaQlXunTNs2Rc7Z6U43YwH+DBcm1fq?=
- =?us-ascii?Q?WOk9DizhvmTZhaIy8qxuXhSjzxWrTpNAop5L168wJ4k8r+Md+VBJDCJjvjXC?=
- =?us-ascii?Q?wmykDWsqxE2oWQRkwPouRj/4J0AHyX1SLd4dAwJr2HXMe3qghDuoXDyheuvk?=
- =?us-ascii?Q?3SumeXh2RhAXDivWtAnpQAK/JHySQdDNjgPrQBl7GqXwEh/2BY3VyX4/jPVZ?=
- =?us-ascii?Q?qw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ce696562-a004-4431-c3ec-08dcb09f7572
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L1o3ZmEydWNYZEFQWmJGa2piNzI2UFp0dWdXbHdncitkekRxTHdFYTFkNnNh?=
+ =?utf-8?B?TVNsbzZUVmNpS3N0eS9RRm1sM3krQ2JmLys0VVJNK3ViWnNuNmZjbGt3NUds?=
+ =?utf-8?B?ZzNON3pINlJLNlNBbmM5WGtKbVZTQzdvOVlLV05ta215c2ptMUhiYzRCSG5m?=
+ =?utf-8?B?VlFBOHZiejU4OHlOUjFjNUYyQ2QrMHNOQzZQMU45QjZ6dW1iZ0tibGdYMm1P?=
+ =?utf-8?B?a1pxeThjOVZqYk02SmdhQ2FhY2t4QVNSazYxS0doMld0WURobTlxaXpxdmp0?=
+ =?utf-8?B?MmdXdVVPUVNTWE54R0VUckh3R2haVElidjhKeklRN1VES0NJaDl5U25LVHN1?=
+ =?utf-8?B?VHJ4eHFoQWFEWXZ6elI0TCtxRDhZcHNkVVcwSU1jSy85b3YxNExNc2pKZFJa?=
+ =?utf-8?B?TUwxZER6VS96UlAxdHZua0lpUERLQVAvb21uSTNMNTdpZ3VVUTE4YTEwRGtj?=
+ =?utf-8?B?T2VwZDNrdUZYUHMyWWNwVTJVMXZ3RlJzdlRBczFRamJrdktGaFljd3RXKzln?=
+ =?utf-8?B?R3I5MldoTzd3ZmM2NndjRGdUbS9pOFJPWTgvQ2hyMFpkek16VmJVamdUSVBU?=
+ =?utf-8?B?U1JQR3dweVZZQm94V0VjNlo0WExzOGNYcHoveU1paExnbEQ0Lzl5SGFvNU8z?=
+ =?utf-8?B?dm9wUWIzUHhPWW1kbXljWUVIUUl3VzM0cFFBT1pSS25nbHd3c01KUEJLN2Np?=
+ =?utf-8?B?U3I3WUdxOGg5Vkt6Vmhhay9oSDMvWklkVngvUy9OWUR2d001MHkvczFlY3Vi?=
+ =?utf-8?B?NHJwMXQyVVYwd1lGYVFidVRtYjg1bDJqcTVEZlRpTHV4NU1yLzJlYXNJTDBT?=
+ =?utf-8?B?M3JRMGE4MEY4aDNRRjdidk5MNWJUUGEvbXorOUNmS04rK2lhZTZrVWUzZW5Q?=
+ =?utf-8?B?QnVjNkZMZm1mTWVubUM0bGJBUWJmVFFkTEVBazl3elJISlhMV0YyVHZmVjZR?=
+ =?utf-8?B?RDF3bEdwNFdLSVBnSVpUZ2VPWThlODNTbHRQMlZaTHVrTHJBc3VEa2dodHBx?=
+ =?utf-8?B?MFNSYWdsUTVSZDRsbnVPemdtWHlqK01JcUNaUHpVazdpeTNzS0ZCbzJGQTZP?=
+ =?utf-8?B?Qjc1WDk0L1ROUCttcDkzVWN0aHdEdGx5UnZvUVViMkpYTVgycTJLUk1pa1JQ?=
+ =?utf-8?B?SHBzU3FsbVJKQTZ1NE9PQlYxTjNORk9nVktwZURMZDNhdllXQVREMjBvYnFG?=
+ =?utf-8?B?NmtSVlJhTXdZSXEyUnlheFZBZHBsV2RsRS9WS0NhaE5sSEJyL1UrcXVpbHQ1?=
+ =?utf-8?B?T2xaa2hUcmdCbm9adUpWa0c5QkRSaW80VmxYZEpGbWdXMEl4eExFMUs1bkdO?=
+ =?utf-8?B?d3AzTGphMXpKR1pQbm1wQmVKWmJ5VzBldXlkWThZcHZpbStyTzYvTzl5UFkw?=
+ =?utf-8?B?RWU1Sm4rWHJRWC9WVWlpMmlpY1QzTVJ2aVNzSjJtYzRWYWJHc3k5eU9yRWl5?=
+ =?utf-8?B?WkdJQzN2NTVLQnp2WDQrZnZMWTFicnk4SVhyL3MvMnRmTjVGcnNmZ2FmdFha?=
+ =?utf-8?B?L3d1VWsvaEorUWZtVDQybUxORXBHc2ZKK2pIOTRFZlBEcXIyeWtkS3d6Zm1r?=
+ =?utf-8?B?VlRmY3ZQSkhwZVYwMUNNQTVQaG8rcExEMjJJbVRNeU1wdGk3VGErWHJORUZq?=
+ =?utf-8?B?V1NCRG9Sd1V2clZ4aTlVMlRhOHE3NHFYblRnS1FoTEFMVzJIbFk5MG1HTWEv?=
+ =?utf-8?B?b0NaQjlLSm5yVlJ0T2ZQK1FDNXl2R3ZES3JJd3hWdDNadG9hWlR2UjR4dzdh?=
+ =?utf-8?B?L1IrVG5RQmdiVXR6M3Rya0VuYnduYXVCVitNYVBvK2FDQklhKzl3RmNablpF?=
+ =?utf-8?B?SWx4VzMzbFRUK3o2VVBxRmlZN0NwVXdONFdoSmNYYXYzQnBCdG9YVHRiWnNN?=
+ =?utf-8?B?Y2VJVWM3Wndiem1XSEVlVG9XOWdZTjk1WGthVUxOb0hYMi8yWWFJUVRWRVYy?=
+ =?utf-8?B?TEhRZ3M1ZTRoM3Q1SCtDUm5HZGNDdHVEZEhGZXZublFnMkYzZksybm16eVFz?=
+ =?utf-8?B?N1JhQ2lEdDlSQ1VsRzBkRVJrYXFZK2RiL28yTHcwcXNXb3JSTndQTVZyZFVj?=
+ =?utf-8?B?S01sVEUzTWJZNHlTbjJVQ21EUnc1RXdjVmxRZXdlVmlNYjI5R2xlRllrYisr?=
+ =?utf-8?Q?xtV/dxQiKHQLTbX4kCYuruVZg?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9ed1ce1-a3d1-4480-ddec-08dcb0a04cd7
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jul 2024 13:56:49.8110 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jul 2024 14:02:51.3754 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VQ9KuAvbW6OPp6wb2iGqvy0RgVivDc5aTvFGG5mGBkrvUSkMRTAdA9xOkNv77gvSGySXJNmtSYAnwbD9FlMs6yQz/JMpirJ2UQwovmC3JyI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8362
+X-MS-Exchange-CrossTenant-UserPrincipalName: ew/bgR6addG/g1mbJ/39p81C0aCzXNPKJYP+sIXSluCwHNG3woxHANBINCJjW7r8hSsVPuXf2YE4QKysQ8Dgpw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7890
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,250 +199,237 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jul 30, 2024 at 09:01:50AM GMT, Grzegorzek, Dominik wrote:
->On Mon, 2024-07-29 at 14:05 -0500, Lucas De Marchi wrote:
->> On Fri, Jul 26, 2024 at 05:08:05PM GMT, Mika Kuoppala wrote:
->> > From: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
->> >
->> > In order to turn on debug capabilities, (i.e. breakpoints), TD_CTL
->> > and some other registers needs to be programmed. Implement eudebug
->> > mode enabling including eudebug related workarounds.
+Hi Badal
+
+Thanks for the review comments
+
+On 7/30/2024 4:38 PM, Nilawar, Badal wrote:
+> Hi Riana,
+> 
+> On 29-07-2024 15:59, Riana Tauro wrote:
+>> Coarse Powergating is a power saving technique where Render and Media
+>> can be power-gated independently irrespective of the rest of the GT.
 >>
->> nack for the workadound part. See below.
+>> For debug purposes, it is useful to expose the powergating information.
 >>
->> >
->> > 1) Enable exceptions only on platforms that does not have per context
->> >   debugging functionality
->> >
->> > 2) Fixup 22015693276:
->> >   Use lineage HSD instead of per platform specific, be precise defining
->> >   graphics range.
->> >
->> > Signed-off-by: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
->> > Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
->> > ---
->> > drivers/gpu/drm/xe/regs/xe_engine_regs.h |  4 ++
->> > drivers/gpu/drm/xe/regs/xe_gt_regs.h     | 10 +++++
->> > drivers/gpu/drm/xe/xe_eudebug.c          | 50 ++++++++++++++++++++++++
->> > drivers/gpu/drm/xe/xe_eudebug.h          |  2 +
->> > drivers/gpu/drm/xe/xe_hw_engine.c        |  2 +
->> > 5 files changed, 68 insertions(+)
->> >
->> > diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
->> > index c38db2a74614..fd31f3fb2b4c 100644
->> > --- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
->> > +++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
->> > @@ -114,6 +114,10 @@
->> >
->> > #define INDIRECT_RING_STATE(base)		XE_REG((base) + 0x108)
->> >
->> > +#define CS_DEBUG_MODE2(base)			XE_REG((base) + 0xd8, XE_REG_OPTION_MASKED)
->> > +#define   INST_STATE_CACHE_INVALIDATE		REG_BIT(6)
->> > +#define   GLOBAL_DEBUG_ENABLE			REG_BIT(5)
->> > +
->> > #define RING_BBADDR(base)			XE_REG((base) + 0x140)
->> > #define RING_BBADDR_UDW(base)			XE_REG((base) + 0x168)
->> >
->> > diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->> > index 8a94a94d2267..96a59a96dd4c 100644
->> > --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->> > +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->> > @@ -425,6 +425,14 @@
->> > #define   DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA	REG_BIT(15)
->> > #define   CLEAR_OPTIMIZATION_DISABLE			REG_BIT(6)
->> >
->> > +#define TD_CTL					XE_REG_MCR(0xe400)
->> > +#define   TD_CTL_FEH_AND_FEE_ENABLE		REG_BIT(7) /* forced halt and exception */
->> > +#define   TD_CTL_FORCE_EXTERNAL_HALT		REG_BIT(6)
->> > +#define   TD_CTL_FORCE_THREAD_BREAKPOINT_ENABLE	REG_BIT(4)
->> > +#define   TD_CTL_FORCE_EXCEPTION		REG_BIT(3)
->> > +#define   TD_CTL_BREAKPOINT_ENABLE		REG_BIT(2)
->> > +#define   TD_CTL_GLOBAL_DEBUG_ENABLE		REG_BIT(0) /* XeHP */
->> > +
->> > #define CACHE_MODE_SS				XE_REG_MCR(0xe420, XE_REG_OPTION_MASKED)
->> > #define   DISABLE_ECC				REG_BIT(5)
->> > #define   ENABLE_PREFETCH_INTO_IC		REG_BIT(3)
->> > @@ -450,11 +458,13 @@
->> > #define   MDQ_ARBITRATION_MODE			REG_BIT(12)
->> > #define   STALL_DOP_GATING_DISABLE		REG_BIT(5)
->> > #define   EARLY_EOT_DIS				REG_BIT(1)
->> > +#define   STALL_DOP_GATING_DISABLE		REG_BIT(5)
->> >
->> > #define ROW_CHICKEN2				XE_REG_MCR(0xe4f4, XE_REG_OPTION_MASKED)
->> > #define   DISABLE_READ_SUPPRESSION		REG_BIT(15)
->> > #define   DISABLE_EARLY_READ			REG_BIT(14)
->> > #define   ENABLE_LARGE_GRF_MODE			REG_BIT(12)
->> > +#define   XEHPC_DISABLE_BTB			REG_BIT(11)
->> > #define   PUSH_CONST_DEREF_HOLD_DIS		REG_BIT(8)
->> > #define   DISABLE_TDL_SVHS_GATING		REG_BIT(1)
->> > #define   DISABLE_DOP_GATING			REG_BIT(0)
->> > diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
->> > index db55e449049a..9611acedeee9 100644
->> > --- a/drivers/gpu/drm/xe/xe_eudebug.c
->> > +++ b/drivers/gpu/drm/xe/xe_eudebug.c
->> > @@ -11,13 +11,19 @@
->> >
->> > #include <drm/drm_managed.h>
->> >
->> > +#include "regs/xe_gt_regs.h"
->> > +#include "regs/xe_engine_regs.h"
->> > #include "xe_device.h"
->> > #include "xe_assert.h"
->> > #include "xe_macros.h"
->> > +#include "xe_gt.h"
->> > #include "xe_eudebug_types.h"
->> > #include "xe_eudebug.h"
->> > #include "xe_exec_queue_types.h"
->> > +#include "xe_module.h"
->> > +#include "xe_rtp.h"
->> > #include "xe_vm.h"
->> > +#include "xe_wa.h"
->> >
->> > /*
->> >  * If there is no detected event read by userspace, during this period, assume
->> > @@ -925,6 +931,50 @@ int xe_eudebug_connect_ioctl(struct drm_device *dev,
->> > 	return ret;
->> > }
->> >
->> > +#undef XE_REG_MCR
->> > +#define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr = 1)
->> > +
->> > +void xe_eudebug_init_hw_engine(struct xe_hw_engine *hwe)
->> > +{
->> > +	const struct xe_rtp_entry_sr eudebug_was[] = {
->> > +		{ XE_RTP_NAME("GlobalDebugEnable"),
->> > +		  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210),
->> > +			       ENGINE_CLASS(RENDER)),
->> > +		  XE_RTP_ACTIONS(SET(CS_DEBUG_MODE2(RENDER_RING_BASE),
->> > +				     GLOBAL_DEBUG_ENABLE))
->> > +		},
->> > +		{ XE_RTP_NAME("TdCtlDebugEnable"),
->> > +		  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 3499),
->> > +			       FUNC(xe_rtp_match_first_render_or_compute)),
->> > +		  XE_RTP_ACTIONS(SET(TD_CTL,
->> > +				     TD_CTL_BREAKPOINT_ENABLE |
->> > +				     TD_CTL_FORCE_THREAD_BREAKPOINT_ENABLE |
->> > +				     TD_CTL_FEH_AND_FEE_ENABLE))
->> > +		},
->> > +		{ XE_RTP_NAME("TdCtlGlobalDebugEnable"),
->> > +		  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1250, XE_RTP_END_VERSION_UNDEFINED),
->> > +			       FUNC(xe_rtp_match_first_render_or_compute)),
->> > +		  XE_RTP_ACTIONS(SET(TD_CTL, TD_CTL_GLOBAL_DEBUG_ENABLE))
->> > +		},
->> > +		{ XE_RTP_NAME("18022722726"),
->> > +		  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1250, 1274),
->> > +			       FUNC(xe_rtp_match_first_render_or_compute)),
->> > +		  XE_RTP_ACTIONS(SET(ROW_CHICKEN, STALL_DOP_GATING_DISABLE))
->> > +		},
->> > +		{ XE_RTP_NAME("14015527279"),
->> > +		  XE_RTP_RULES(PLATFORM(PVC),
->> > +			       FUNC(xe_rtp_match_first_render_or_compute)),
->> > +		  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, XEHPC_DISABLE_BTB))
->> > +		},
+>> v2: move to debugfs
+>>      add details to commit message
+>>      add per-slice status for media
+>>      define reg bits in descending order (Matt Roper)
 >>
->> workarounds don't belong here. All workarounds should be moved to
->> xe_wa.c, which also has tracking for active workarounds and make them
->> show up in debugfs.
+>> v3: fix return statement
+>>      fix kernel-doc
+>>      use loop for media slices
+>>      use helper function for status (Michal)
 >>
->> tuning and other non-wa stuff may be added separately, like we have in
->> xe_tuning.c, xe_hw_engine.c etc.
+>> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/regs/xe_gt_regs.h |  8 +++
+>>   drivers/gpu/drm/xe/xe_gt_debugfs.c   | 13 +++++
+>>   drivers/gpu/drm/xe/xe_gt_idle.c      | 83 ++++++++++++++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_gt_idle.h      |  2 +
+>>   4 files changed, 106 insertions(+)
 >>
->> Lucas De Marchi
->
->The thing is that these workarounds are purely specific to EU debug. For
->instance, the description in 18022722726 states, "When enabling the
->Debug feature, [...]" I assumed that there is no need to enable them when
+>> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h 
+>> b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> index 8a94a94d2267..fe774d0894fa 100644
+>> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> @@ -336,6 +336,14 @@
+>>   #define   CTC_SOURCE_DIVIDE_LOGIC        REG_BIT(0)
+>>   #define FORCEWAKE_RENDER            XE_REG(0xa278)
+>> +
+>> +#define POWERGATE_DOMAIN_STATUS            XE_REG(0xa2a0)
+>> +#define   MEDIA_SLICE3_AWAKE_STATUS        REG_BIT(4)
+>> +#define   MEDIA_SLICE2_AWAKE_STATUS        REG_BIT(3)
+>> +#define   MEDIA_SLICE1_AWAKE_STATUS        REG_BIT(2)
+>> +#define   RENDER_AWAKE_STATUS            REG_BIT(1)
+>> +#define   MEDIA_SLICE0_AWAKE_STATUS        REG_BIT(0)
+>> +
+>>   #define FORCEWAKE_MEDIA_VDBOX(n)        XE_REG(0xa540 + (n) * 4)
+>>   #define FORCEWAKE_MEDIA_VEBOX(n)        XE_REG(0xa560 + (n) * 4)
+>>   #define FORCEWAKE_GSC                XE_REG(0xa618)
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c 
+>> b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+>> index 5e7fd937917a..c623295235d9 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+>> @@ -15,6 +15,7 @@
+>>   #include "xe_ggtt.h"
+>>   #include "xe_gt.h"
+>>   #include "xe_gt_mcr.h"
+>> +#include "xe_gt_idle.h"
+> Header inclusion is out of order.
+>>   #include "xe_gt_sriov_pf_debugfs.h"
+>>   #include "xe_gt_sriov_vf_debugfs.h"
+>>   #include "xe_gt_topology.h"
+>> @@ -107,6 +108,17 @@ static int hw_engines(struct xe_gt *gt, struct 
+>> drm_printer *p)
+>>       return 0;
+>>   }
+>> +static int powergate_info(struct xe_gt *gt, struct drm_printer *p)
+>> +{
+>> +    int ret;
+>> +
+>> +    xe_pm_runtime_get(gt_to_xe(gt));
+>> +    ret = xe_gt_idle_print(gt, p);
+>> +    xe_pm_runtime_put(gt_to_xe(gt));
+>> +
+>> +    return ret;
+>> +}
+>> +
+>>   static int force_reset(struct xe_gt *gt, struct drm_printer *p)
+>>   {
+>>       xe_pm_runtime_get(gt_to_xe(gt));
+>> @@ -277,6 +289,7 @@ static const struct drm_info_list debugfs_list[] = {
+>>       {"topology", .show = xe_gt_debugfs_simple_show, .data = topology},
+>>       {"steering", .show = xe_gt_debugfs_simple_show, .data = steering},
+>>       {"ggtt", .show = xe_gt_debugfs_simple_show, .data = ggtt},
+>> +    {"powergate_info", .show = xe_gt_debugfs_simple_show, .data = 
+>> powergate_info},
+>>       {"register-save-restore", .show = xe_gt_debugfs_simple_show, 
+>> .data = register_save_restore},
+>>       {"workarounds", .show = xe_gt_debugfs_simple_show, .data = 
+>> workarounds},
+>>       {"pat", .show = xe_gt_debugfs_simple_show, .data = pat},
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c 
+>> b/drivers/gpu/drm/xe/xe_gt_idle.c
+>> index 67aba4140510..70fe76735621 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_idle.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt_idle.c
+>> @@ -53,6 +53,11 @@ pc_to_xe(struct xe_guc_pc *pc)
+>>       return gt_to_xe(gt);
+>>   }
+>> +static inline const char *str_up_down(bool v)
+>> +{
+>> +    return v ? "up" : "down";
+>> +}
+>> +
+>>   static const char *gt_idle_state_to_string(enum xe_gt_idle_state state)
+>>   {
+>>       switch (state) {
+>> @@ -145,6 +150,84 @@ void xe_gt_idle_disable_pg(struct xe_gt *gt)
+>>       XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
+>>   }
+>> +/**
+>> + * xe_gt_idle_print - Xe gt idle print
+>> + * @gt: GT object
+>> + * @p: drm_printer.
+>> + *
+>> + * This function prints the powergating information
+>> + *
+>> + * Return: 0 on success, negative error code otherwise
+>> + */
+>> +int xe_gt_idle_print(struct xe_gt *gt, struct drm_printer *p)
+> Prefix xe_gt_idle points towards RC6, better to incorporate _pg_ 
+> sufix/prefix in function name.  
+Kept the name general if anything else needs to be added.
+will add pg prefix
+> +{
+>> +    struct xe_device *xe = gt_to_xe(gt);
+>> +    u32 pg_enabled, pg_status;
+>> +    u32 vcs_mask, vecs_mask;
+>> +    int err, n;
+>> +    /*
+>> +     * Media Slices
+>> +     *
+>> +     * Slice 0: VCS0, VCS1, VECS0
+>> +     * Slice 1: VCS2, VCS3, VECS1
+>> +     * Slice 2: VCS4, VCS5, VECS2
+>> +     * Slice 3: VCS6, VCS7, VECS3
+>> +     */
+>> +    static const struct {
+>> +        u64 engines;
+>> +        u32 status_bit;
+>> +    } media_slices[] = {
+>> +        {(BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VCS1) |
+>> +          BIT(XE_HW_ENGINE_VECS0)), MEDIA_SLICE0_AWAKE_STATUS},
+>> +
+>> +        {(BIT(XE_HW_ENGINE_VCS2) | BIT(XE_HW_ENGINE_VCS3) |
+>> +           BIT(XE_HW_ENGINE_VECS1)), MEDIA_SLICE1_AWAKE_STATUS},
+>> +
+>> +        {(BIT(XE_HW_ENGINE_VCS4) | BIT(XE_HW_ENGINE_VCS5) |
+>> +           BIT(XE_HW_ENGINE_VECS2)), MEDIA_SLICE2_AWAKE_STATUS},
+>> +
+>> +        {(BIT(XE_HW_ENGINE_VCS6) | BIT(XE_HW_ENGINE_VCS7) |
+>> +           BIT(XE_HW_ENGINE_VECS3)), MEDIA_SLICE3_AWAKE_STATUS},
+>> +    };
+>> +
+>> +    if (xe->info.platform == XE_PVC) {
+>> +        drm_printf(p, "Power Gating Enabled: no\n");
+>> +        return 0;
+>> +    }
+>> +
+>> +    err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+> When device is in RC6 is there any significance in waking it up and 
+> checking pg status. I think we should check PG status only when device 
+> not in RC6, may be we should add RC6 check at the top.
 
-ok, we may have to do something else for that then:
+This is required only for debug purposes, is the coupling wih rc6 
+necessary? We cannot save the previous status as there is no park/unpark.
 
-1) if there's no side-effect of setting it, enable it unconditionally
-2) set it as an OOB WA - this will enable the WA tracking and allow us
-    to check the WAs implemented for each platform
+Any suggestions on what should be the output when in Rc6?
+Should it dump Rc6 status instead of powergating
+>> +    if (err)
+> Decrease the refcount / xe_force_wake_put
+If there is an err there is no need of forcewake put
 
-(1) is the simplest one
-
-For (2), then if you are using an RTP table for enabling/disabling you
-basically check if that OOB WA is enabled as the rule.  Currently you
-will need to split some rules as the OOB WAs are gt-centric (so the
-engine check part would still be in outside OOB).  +Matt Roper if he
-has other ideas.
-
->the debugger is not active to limit any negative interference, and we
->address this later in the series. Please take a look on "[PATCH 20/21]
->drm/xe/eudebug: Dynamically toggle debugger functionality." Could you
->also share your thoughts on that?
->
->xe_rtp isn't really designed for dynamic changes and we may be bending it
-
-that part is beyond rtp. RTP is mainly about getting a bunch of entries
-on a table. Applying the outcome of that table to the hw is left to
-xe_sr and guc-ads
-
->a bit there. If so, we would appreciate any ideas on how to dynamically feed
->GuC restore list in a proper way.
-
-will try to take a look later today, but I believe you will need tweak
-the ADS and reset GuC.
-
-Lucas De Marchi
-
->
->Regards,
->Dominik
->>
->> > +		{}
->> > +	};
->> > +	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
->> > +	struct xe_device *xe = gt_to_xe(hwe->gt);
->> > +
->> > +	if (xe->eudebug.available)
->> > +		xe_rtp_process_to_sr(&ctx, eudebug_was, &hwe->reg_sr);
->> > +}
->> > +
->> > void xe_eudebug_init(struct xe_device *xe)
->> > {
->> > 	spin_lock_init(&xe->eudebug.lock);
->> > diff --git a/drivers/gpu/drm/xe/xe_eudebug.h b/drivers/gpu/drm/xe/xe_eudebug.h
->> > index 44b20549eb6d..ac89a3d1ee1d 100644
->> > --- a/drivers/gpu/drm/xe/xe_eudebug.h
->> > +++ b/drivers/gpu/drm/xe/xe_eudebug.h
->> > @@ -11,6 +11,7 @@ struct xe_device;
->> > struct xe_file;
->> > struct xe_vm;
->> > struct xe_exec_queue;
->> > +struct xe_hw_engine;
->> >
->> > int xe_eudebug_connect_ioctl(struct drm_device *dev,
->> > 			     void *data,
->> > @@ -18,6 +19,7 @@ int xe_eudebug_connect_ioctl(struct drm_device *dev,
->> >
->> > void xe_eudebug_init(struct xe_device *xe);
->> > void xe_eudebug_fini(struct xe_device *xe);
->> > +void xe_eudebug_init_hw_engine(struct xe_hw_engine *hwe);
->> >
->> > void xe_eudebug_file_open(struct xe_file *xef);
->> > void xe_eudebug_file_close(struct xe_file *xef);
->> > diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
->> > index 20c4fdf40790..0d8b871b47fe 100644
->> > --- a/drivers/gpu/drm/xe/xe_hw_engine.c
->> > +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
->> > @@ -15,6 +15,7 @@
->> > #include "xe_assert.h"
->> > #include "xe_bo.h"
->> > #include "xe_device.h"
->> > +#include "xe_eudebug.h"
->> > #include "xe_execlist.h"
->> > #include "xe_force_wake.h"
->> > #include "xe_gsc.h"
->> > @@ -503,6 +504,7 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
->> > 	xe_tuning_process_engine(hwe);
->> > 	xe_wa_process_engine(hwe);
->> > 	hw_engine_setup_default_state(hwe);
->> > +	xe_eudebug_init_hw_engine(hwe);
->> >
->> > 	xe_reg_sr_init(&hwe->reg_whitelist, hwe->name, gt_to_xe(gt));
->> > 	xe_reg_whitelist_process_engine(hwe);
->> > --
->> > 2.34.1
->> >
->
+Thanks,
+Riana
+> 
+> Regards,
+> Badal
+>> +        return err;
+>> +
+>> +    pg_enabled = xe_mmio_read32(gt, POWERGATE_ENABLE);
+>> +    pg_status = xe_mmio_read32(gt, POWERGATE_DOMAIN_STATUS);
+>> +
+>> +    XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
+>> +
+>> +    if (gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK) {
+>> +        drm_printf(p, "Render Power Gating Enabled: %s\n",
+>> +               str_yes_no(pg_enabled & RENDER_POWERGATE_ENABLE));
+>> +
+>> +        drm_printf(p, "Render Power Gate Status: %s\n",
+>> +               str_up_down(pg_status & RENDER_AWAKE_STATUS));
+>> +    }
+>> +
+>> +    vcs_mask = xe_hw_engine_mask_per_class(gt, 
+>> XE_ENGINE_CLASS_VIDEO_DECODE);
+>> +    vecs_mask = xe_hw_engine_mask_per_class(gt, 
+>> XE_ENGINE_CLASS_VIDEO_ENHANCE);
+>> +
+>> +    /* Print media CPG status only if media is present */
+>> +    if (vcs_mask || vecs_mask) {
+>> +        drm_printf(p, "Media Power Gating Enabled: %s\n",
+>> +               str_yes_no(pg_enabled & MEDIA_POWERGATE_ENABLE));
+>> +
+>> +        for (n = 0; n < ARRAY_SIZE(media_slices); n++)
+>> +            if (gt->info.engine_mask & media_slices[n].engines)
+>> +                drm_printf(p, "Media Slice%d Power Gate Status: 
+>> %s\n", n,
+>> +                       str_up_down(pg_status & 
+>> media_slices[n].status_bit));
+>> +    }
+>> +    return 0;
+>> +}
+>> +
+>>   static ssize_t name_show(struct device *dev,
+>>                struct device_attribute *attr, char *buff)
+>>   {
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_idle.h 
+>> b/drivers/gpu/drm/xe/xe_gt_idle.h
+>> index 554447b5d46d..4b8192d3aee0 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_idle.h
+>> +++ b/drivers/gpu/drm/xe/xe_gt_idle.h
+>> @@ -8,6 +8,7 @@
+>>   #include "xe_gt_idle_types.h"
+>> +struct drm_printer;
+>>   struct xe_gt;
+>>   int xe_gt_idle_init(struct xe_gt_idle *gtidle);
+>> @@ -15,5 +16,6 @@ void xe_gt_idle_enable_c6(struct xe_gt *gt);
+>>   void xe_gt_idle_disable_c6(struct xe_gt *gt);
+>>   void xe_gt_idle_enable_pg(struct xe_gt *gt);
+>>   void xe_gt_idle_disable_pg(struct xe_gt *gt);
+>> +int xe_gt_idle_print(struct xe_gt *gt, struct drm_printer *p);
+>>   #endif /* _XE_GT_IDLE_H_ */
