@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CDF3C3DA49
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jul 2024 04:31:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2C6DC3DA61
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jul 2024 04:50:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF67A10E05C;
-	Tue, 30 Jul 2024 04:31:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98E4E10E23C;
+	Tue, 30 Jul 2024 04:50:51 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4860B10E05C;
- Tue, 30 Jul 2024 04:31:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 830FB10E23C;
+ Tue, 30 Jul 2024 04:50:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8665852616939111338=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_i915/display/dp=3A_Compu?=
- =?utf-8?q?te_AS_SDP_when_vrr_is_also_enabled?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_i915/display/dp=3A_Compute_AS_SD?=
+ =?utf-8?q?P_when_vrr_is_also_enabled?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 30 Jul 2024 04:31:21 -0000
-Message-ID: <172231388129.427011.17169515586474968197@2413ebb6fbb6>
+Date: Tue, 30 Jul 2024 04:50:50 -0000
+Message-ID: <172231505053.427061.7166056554366930875@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240725133110.112401-1-mitulkumar.ajitkumar.golani@intel.com>
 In-Reply-To: <20240725133110.112401-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -40,31 +40,120 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============8665852616939111338==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: i915/display/dp: Compute AS SDP when vrr is also enabled
 URL   : https://patchwork.freedesktop.org/series/136650/
-State : warning
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast b6f9528c7fffc2f65c8e4969d35d9346fd503c9b
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+CI Bug Log - changes from xe-1686-b6f9528c7fffc2f65c8e4969d35d9346fd503c9b_BAT -> xe-pw-136650v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (7 -> 7)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-136650v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_intel_bb@blit-simple:
+    - bat-bmg-1:          [DMESG-WARN][1] -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1686-b6f9528c7fffc2f65c8e4969d35d9346fd503c9b/bat-bmg-1/igt@xe_intel_bb@blit-simple.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136650v1/bat-bmg-1/igt@xe_intel_bb@blit-simple.html
+
+  
 
 
+Build changes
+-------------
+
+  * Linux: xe-1686-b6f9528c7fffc2f65c8e4969d35d9346fd503c9b -> xe-pw-136650v1
+
+  IGT_7942: 0f02dc176959e6296866b1bafd3982e277a5e44b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1686-b6f9528c7fffc2f65c8e4969d35d9346fd503c9b: b6f9528c7fffc2f65c8e4969d35d9346fd503c9b
+  xe-pw-136650v1: 136650v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136650v1/index.html
+
+--===============8665852616939111338==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>i915/display/dp: Compute AS SDP when vrr is also enabled</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136650/">https://patchwork.freedesktop.org/series/136650/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136650v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136650v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1686-b6f9528c7fffc2f65c8e4969d35d9346fd503c9b_BAT -&gt; xe-pw-136650v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (7 -&gt; 7)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-136650v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_intel_bb@blit-simple:<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1686-b6f9528c7fffc2f65c8e4969d35d9346fd503c9b/bat-bmg-1/igt@xe_intel_bb@blit-simple.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136650v1/bat-bmg-1/igt@xe_intel_bb@blit-simple.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1686-b6f9528c7fffc2f65c8e4969d35d9346fd503c9b -&gt; xe-pw-136650v1</li>
+</ul>
+<p>IGT_7942: 0f02dc176959e6296866b1bafd3982e277a5e44b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1686-b6f9528c7fffc2f65c8e4969d35d9346fd503c9b: b6f9528c7fffc2f65c8e4969d35d9346fd503c9b<br />
+  xe-pw-136650v1: 136650v1</p>
+
+</body>
+</html>
+
+--===============8665852616939111338==--
