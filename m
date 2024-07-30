@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1BD8C3DA7F
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jul 2024 22:16:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CB4CC3DA49
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jul 2024 22:16:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D6C510E305;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAE5610E344;
 	Tue, 30 Jul 2024 22:16:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fuyX+OMF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IQOP5jOV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 682A910E305;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFF9E10E305;
  Tue, 30 Jul 2024 22:16:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1722377815; x=1753913815;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qCyhA4EZ+YVt5V2C/j3gEoE4CkrbPbSQ4eW9bIIZI3o=;
- b=fuyX+OMFKvUfGSIo40FkuL1D1VyTqvY3Vjc42XVLt52Q2tyVKPag6Wd2
- 4ukv2UliV6xQthi3JLwbjaivUSvBK3hytmhtEnHxZUYjXy9EGcKoJ+GQM
- BXCRMnvV4Eb1tvT21ZWeI6kAu0mA4N1X8L9MLxuCmsFQpsatrfq442NF9
- VBZkzUYEko45vqmsbzinbhmEMCxiHgkfyrptmzkMHo+NCwt8hFMEd7I7j
- aVyL55frW45SJ4QTOrIkbfd8I7fRhy9ssYhOsGbyoN8PTpFFUzN4PdDZe
- VLGTYKIGcgDH9LsuJCTwtOhmqTnpYPjN0f3e2TyyphJKVZ7s08kzjFaJz w==;
-X-CSE-ConnectionGUID: w+nkM9KCSMCPFus9Wzj9bA==
-X-CSE-MsgGUID: RFIJiXDaSCCYLLSEJW6ztQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11149"; a="24094124"
-X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="24094124"
+ bh=ND0M1O/b09cO9CGWjH0eDAueXMZa8J6c/uYozl9G1ZY=;
+ b=IQOP5jOVoWxrk4+GO89rkdYzNH7v6mm/xui635pWEX41a3V6tXhYcAmI
+ l2b3ynaMC/aYkwCp2f+JrjsG/xbZxDzZNajT/Uoj/+wR9UzH1eK7At3mq
+ vfbT7bUq8zc5JKbiUBHD0MFi0fCYeRByDv3U/WTkxpO3t+dPeUl17Bn9H
+ yeANUsd+T9Ib4QC9L5do9J/IzF6l8zXyic0zXVAasU94g7yAYPgaLyxbB
+ u++nbx7omB4zyAnpqiGyT1CeYwqUwQGNBkdTRGH+NIJ+TsvVeF5VLh80D
+ ojADyXySgnChh/G9x5gMUXX26Mp7U8wFPCLjgvKns4yGIVtHLsWM/zjwW w==;
+X-CSE-ConnectionGUID: UtVmRzFXS9OApHAEgqDRwA==
+X-CSE-MsgGUID: F5j99xWFT1eExTXfMfmt7w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11149"; a="24094138"
+X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="24094138"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Jul 2024 15:16:55 -0700
-X-CSE-ConnectionGUID: lPUoaK04Rlur3pRGWxuJ8g==
-X-CSE-MsgGUID: nN2hCdBdRPeP6gSawUSfVw==
+X-CSE-ConnectionGUID: 7WxHhnR9TaueAGKqB2JvwA==
+X-CSE-MsgGUID: pNpF4eF7S02MYcejiLF95Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="58613341"
+X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="58613347"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2024 15:16:55 -0700
+ 30 Jul 2024 15:16:56 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
 Cc: tj@kernel.org, jiangshanlai@gmail.com, christian.koenig@amd.com,
  ltuikov89@gmail.com, daniel@ffwll.ch
-Subject: [RFC PATCH 1/3] workqueue: Add interface for user-defined workqueue
- lockdep map
-Date: Tue, 30 Jul 2024 15:17:40 -0700
-Message-Id: <20240730221742.2248527-2-matthew.brost@intel.com>
+Subject: [RFC PATCH 3/3] drm/xe: Drop GuC submit_wq pool
+Date: Tue, 30 Jul 2024 15:17:42 -0700
+Message-Id: <20240730221742.2248527-4-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240730221742.2248527-1-matthew.brost@intel.com>
 References: <20240730221742.2248527-1-matthew.brost@intel.com>
@@ -69,152 +68,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add an interface for a user-defined workqueue lockdep map, which is
-helpful when multiple workqueues are created for the same purpose. This
-also helps avoid leaking lockdep maps on each workqueue creation.
+Now that drm sched uses a single lockdep map for all submit_wq, drop the
+GuC submit_wq pool hack.
 
-Implement a new workqueue flag, WQ_USER_OWNED_LOCKDEP, to indicate that
-the user will set up the workqueue lockdep map using the new function
-wq_init_user_lockdep_map.
-
-Cc: Tejun Heo <tj@kernel.org>
-Cc: Lai Jiangshan <jiangshanlai@gmail.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- include/linux/workqueue.h |  3 +++
- kernel/workqueue.c        | 44 ++++++++++++++++++++++++++++++++-------
- 2 files changed, 40 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 60 +-----------------------------
+ drivers/gpu/drm/xe/xe_guc_types.h  |  7 ----
+ 2 files changed, 1 insertion(+), 66 deletions(-)
 
-diff --git a/include/linux/workqueue.h b/include/linux/workqueue.h
-index d9968bfc8eac..3e6db0889e2b 100644
---- a/include/linux/workqueue.h
-+++ b/include/linux/workqueue.h
-@@ -223,6 +223,8 @@ struct execute_work {
- };
- 
- #ifdef CONFIG_LOCKDEP
-+void wq_init_user_lockdep_map(struct workqueue_struct *wq,
-+			      struct lockdep_map *lockdep_map);
- /*
-  * NB: because we have to copy the lockdep_map, setting _key
-  * here is required, otherwise it could get initialised to the
-@@ -401,6 +403,7 @@ enum wq_flags {
- 	 * http://thread.gmane.org/gmane.linux.kernel/1480396
- 	 */
- 	WQ_POWER_EFFICIENT	= 1 << 7,
-+	WQ_USER_OWNED_LOCKDEP	= 1 << 8,	/* allow users to define lockdep map */
- 
- 	__WQ_DESTROYING		= 1 << 15, /* internal: workqueue is destroying */
- 	__WQ_DRAINING		= 1 << 16, /* internal: workqueue is draining */
-diff --git a/kernel/workqueue.c b/kernel/workqueue.c
-index 3fbaecfc88c2..228b52b8d7c4 100644
---- a/kernel/workqueue.c
-+++ b/kernel/workqueue.c
-@@ -366,7 +366,8 @@ struct workqueue_struct {
- #ifdef CONFIG_LOCKDEP
- 	char			*lock_name;
- 	struct lock_class_key	key;
--	struct lockdep_map	lockdep_map;
-+	struct lockdep_map	__lockdep_map;
-+	struct lockdep_map	*lockdep_map;
- #endif
- 	char			name[WQ_NAME_LEN]; /* I: workqueue name */
- 
-@@ -3220,7 +3221,7 @@ __acquires(&pool->lock)
- 	lockdep_start_depth = lockdep_depth(current);
- 	/* see drain_dead_softirq_workfn() */
- 	if (!bh_draining)
--		lock_map_acquire(&pwq->wq->lockdep_map);
-+		lock_map_acquire(pwq->wq->lockdep_map);
- 	lock_map_acquire(&lockdep_map);
- 	/*
- 	 * Strictly speaking we should mark the invariant state without holding
-@@ -3254,7 +3255,7 @@ __acquires(&pool->lock)
- 	pwq->stats[PWQ_STAT_COMPLETED]++;
- 	lock_map_release(&lockdep_map);
- 	if (!bh_draining)
--		lock_map_release(&pwq->wq->lockdep_map);
-+		lock_map_release(pwq->wq->lockdep_map);
- 
- 	if (unlikely((worker->task && in_atomic()) ||
- 		     lockdep_depth(current) != lockdep_start_depth ||
-@@ -3892,8 +3893,8 @@ static void touch_wq_lockdep_map(struct workqueue_struct *wq)
- 	if (wq->flags & WQ_BH)
- 		local_bh_disable();
- 
--	lock_map_acquire(&wq->lockdep_map);
--	lock_map_release(&wq->lockdep_map);
-+	lock_map_acquire(wq->lockdep_map);
-+	lock_map_release(wq->lockdep_map);
- 
- 	if (wq->flags & WQ_BH)
- 		local_bh_enable();
-@@ -3927,7 +3928,8 @@ void __flush_workqueue(struct workqueue_struct *wq)
- 	struct wq_flusher this_flusher = {
- 		.list = LIST_HEAD_INIT(this_flusher.list),
- 		.flush_color = -1,
--		.done = COMPLETION_INITIALIZER_ONSTACK_MAP(this_flusher.done, wq->lockdep_map),
-+		.done = COMPLETION_INITIALIZER_ONSTACK_MAP(this_flusher.done,
-+							   (*wq->lockdep_map)),
- 	};
- 	int next_color;
- 
-@@ -4778,26 +4780,54 @@ static int init_worker_pool(struct worker_pool *pool)
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 460808507947..882cef3a10dc 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -224,64 +224,11 @@ static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
+ 		 EXEC_QUEUE_STATE_BANNED));
  }
  
- #ifdef CONFIG_LOCKDEP
-+/**
-+ * wq_init_user_lockdep_map - init user lockdep map for workqueue
-+ * @wq: workqueue to init lockdep map for
-+ * @lockdep_map: lockdep map to use for workqueue
-+ *
-+ * Initialize workqueue with a user defined lockdep map. WQ_USER_OWNED_LOCKDEP
-+ * must be set for workqueue.
-+ */
-+void wq_init_user_lockdep_map(struct workqueue_struct *wq,
-+			      struct lockdep_map *lockdep_map)
-+{
-+	if (WARN_ON_ONCE(!(wq->flags & WQ_USER_OWNED_LOCKDEP)))
-+		return;
-+
-+	wq->lockdep_map = lockdep_map;
-+}
-+EXPORT_SYMBOL_GPL(wq_init_user_lockdep_map);
-+
- static void wq_init_lockdep(struct workqueue_struct *wq)
+-#ifdef CONFIG_PROVE_LOCKING
+-static int alloc_submit_wq(struct xe_guc *guc)
+-{
+-	int i;
+-
+-	for (i = 0; i < NUM_SUBMIT_WQ; ++i) {
+-		guc->submission_state.submit_wq_pool[i] =
+-			alloc_ordered_workqueue("submit_wq", 0);
+-		if (!guc->submission_state.submit_wq_pool[i])
+-			goto err_free;
+-	}
+-
+-	return 0;
+-
+-err_free:
+-	while (i)
+-		destroy_workqueue(guc->submission_state.submit_wq_pool[--i]);
+-
+-	return -ENOMEM;
+-}
+-
+-static void free_submit_wq(struct xe_guc *guc)
+-{
+-	int i;
+-
+-	for (i = 0; i < NUM_SUBMIT_WQ; ++i)
+-		destroy_workqueue(guc->submission_state.submit_wq_pool[i]);
+-}
+-
+-static struct workqueue_struct *get_submit_wq(struct xe_guc *guc)
+-{
+-	int idx = guc->submission_state.submit_wq_idx++ % NUM_SUBMIT_WQ;
+-
+-	return guc->submission_state.submit_wq_pool[idx];
+-}
+-#else
+-static int alloc_submit_wq(struct xe_guc *guc)
+-{
+-	return 0;
+-}
+-
+-static void free_submit_wq(struct xe_guc *guc)
+-{
+-
+-}
+-
+-static struct workqueue_struct *get_submit_wq(struct xe_guc *guc)
+-{
+-	return NULL;
+-}
+-#endif
+-
+ static void guc_submit_fini(struct drm_device *drm, void *arg)
  {
- 	char *lock_name;
+ 	struct xe_guc *guc = arg;
  
-+	if (wq->flags & WQ_USER_OWNED_LOCKDEP)
-+		return;
-+
- 	lockdep_register_key(&wq->key);
- 	lock_name = kasprintf(GFP_KERNEL, "%s%s", "(wq_completion)", wq->name);
- 	if (!lock_name)
- 		lock_name = wq->name;
- 
- 	wq->lock_name = lock_name;
--	lockdep_init_map(&wq->lockdep_map, lock_name, &wq->key, 0);
-+	wq->lockdep_map = &wq->__lockdep_map;
-+	lockdep_init_map(wq->lockdep_map, lock_name, &wq->key, 0);
+ 	xa_destroy(&guc->submission_state.exec_queue_lookup);
+-	free_submit_wq(guc);
  }
  
- static void wq_unregister_lockdep(struct workqueue_struct *wq)
- {
-+	if (wq->flags & WQ_USER_OWNED_LOCKDEP)
-+		return;
-+
- 	lockdep_unregister_key(&wq->key);
- }
+ static void guc_submit_wedged_fini(struct drm_device *drm, void *arg)
+@@ -337,10 +284,6 @@ int xe_guc_submit_init(struct xe_guc *guc, unsigned int num_ids)
+ 	if (err)
+ 		return err;
  
- static void wq_free_lockdep(struct workqueue_struct *wq)
- {
-+	if (wq->flags & WQ_USER_OWNED_LOCKDEP)
-+		return;
-+
- 	if (wq->lock_name != wq->name)
- 		kfree(wq->lock_name);
- }
+-	err = alloc_submit_wq(guc);
+-	if (err)
+-		return err;
+-
+ 	gt->exec_queue_ops = &guc_exec_queue_ops;
+ 
+ 	xa_init(&guc->submission_state.exec_queue_lookup);
+@@ -1445,8 +1388,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 	timeout = (q->vm && xe_vm_in_lr_mode(q->vm)) ? MAX_SCHEDULE_TIMEOUT :
+ 		  msecs_to_jiffies(q->sched_props.job_timeout_ms);
+ 	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
+-			    get_submit_wq(guc),
+-			    q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES, 64,
++			    NULL, q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES, 64,
+ 			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
+ 			    q->name, gt_to_xe(q->gt)->drm.dev);
+ 	if (err)
+diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
+index 546ac6350a31..585f5c274f09 100644
+--- a/drivers/gpu/drm/xe/xe_guc_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_types.h
+@@ -72,13 +72,6 @@ struct xe_guc {
+ 		atomic_t stopped;
+ 		/** @submission_state.lock: protects submission state */
+ 		struct mutex lock;
+-#ifdef CONFIG_PROVE_LOCKING
+-#define NUM_SUBMIT_WQ	256
+-		/** @submission_state.submit_wq_pool: submission ordered workqueues pool */
+-		struct workqueue_struct *submit_wq_pool[NUM_SUBMIT_WQ];
+-		/** @submission_state.submit_wq_idx: submission ordered workqueue index */
+-		int submit_wq_idx;
+-#endif
+ 		/** @submission_state.enabled: submission is enabled */
+ 		bool enabled;
+ 	} submission_state;
 -- 
 2.34.1
 
