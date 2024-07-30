@@ -4,63 +4,171 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23178C3DA7E
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jul 2024 12:08:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37F57C3DA7E
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jul 2024 12:29:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E130B10E50F;
-	Tue, 30 Jul 2024 12:08:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8CB310E1F3;
+	Tue, 30 Jul 2024 12:29:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J/00lp7N";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fXTDEgZH";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEC5310E50F;
- Tue, 30 Jul 2024 12:08:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C5C010E1F3
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Jul 2024 12:29:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722341310; x=1753877310;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=/sfpWWW8V+Cpbz4W8KtLY2uaeQ4/J756IydOKw4ia+g=;
- b=J/00lp7NvZu/0uJXn+nZ8hRO2t4Xd+6V2O9kG16mUqiiL2/vGdB6ImNd
- 66GSWSPi1BHAe46N4EYEgq49vBlIrHXuDyR5tTv0M0NW1hw0Ey+kL7SXg
- WMok3qaqG/25pp0jTcEuhWmyGTaINKZeN7FzPwtvA28D4QVJRNbc/OBcN
- rpEFwqHWs0XqWqzZ3VU5Ciw9+St3eO4RpaHLscmDp48ljJbF1o1LdH3xL
- ahRYW+3fn/BrDPzf/qcPcU3+em09SGUFxHVcCyQoHjpaIcSkTjXPqwdLK
- IAEW8wFv8C7WP+0wQtu0N0cOG3EFKSNJhPb37lIQhrGYQZyjKs2rYrPRj g==;
-X-CSE-ConnectionGUID: do7s1UPFQXabfdqgf7Tg6g==
-X-CSE-MsgGUID: NAcpVlsVQBmn360Ox+mW5w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11148"; a="30779269"
-X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="30779269"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2024 05:08:29 -0700
-X-CSE-ConnectionGUID: AasE62mgQD6Ed+q30Inkxw==
-X-CSE-MsgGUID: p4irrj0DT/aQcMbXVuDN+A==
+ t=1722342577; x=1753878577;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=S5X36xPIERy2aTOcYD+z0HEwUYrHQ8ksKo8JsZ4f6t0=;
+ b=fXTDEgZHbJWLzCd/IvYhkLsbFFKsKNNVln1PlU3mzROrEgjiu+7G5fL8
+ qouic7Db1uydo3gyZGfWRGe2iJ0YgLzx/WH3a2dwEJtbld76DKcaVAkaL
+ IqrT4Lgsz8sCkf92I//M2BFORdnrsHec9l/5ieqH4ajCPiS5hXVBSjXF/
+ bfZangJYn5LS7synLfaRz5xqfgc0Q8hhlLr/FqoqIPpZjCwWk8OTJYhiF
+ Z7n/Aab9FXVdiBbAhKJLQ5t02qPUNx/Y9jCaMpduupF0F9VjkNBCYSDtM
+ fsgB3wa7baS3OSE0I3EF1xxtXlzOThoYLZkuYYR75QmQKukC6/tBC5lDQ A==;
+X-CSE-ConnectionGUID: 7PM28/+hQpyReE753UkNwQ==
+X-CSE-MsgGUID: WN5dbtQJTSGl8qVacH6Y7A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11148"; a="12787730"
+X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="12787730"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2024 05:29:37 -0700
+X-CSE-ConnectionGUID: X1SfG+bVS8+PQrmEQyevsA==
+X-CSE-MsgGUID: UOjtq9+7Riyib5dXb+QrNQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="84965012"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.34])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2024 05:08:25 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Tvrtko Ursulin
- <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, Daniel Vetter
- <daniel@ffwll.ch>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- lvc-project@linuxtesting.org, stable@vger.kernel.org
-Subject: Re: [PATCH v2] drm/i915: Fix possible int overflow in
- skl_ddi_calculate_wrpll()
-In-Reply-To: <20240729174035.25727-1-n.zhandarovich@fintech.ru>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240729174035.25727-1-n.zhandarovich@fintech.ru>
-Date: Tue, 30 Jul 2024 15:08:21 +0300
-Message-ID: <875xsnxetm.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="59124223"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 30 Jul 2024 05:29:37 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 30 Jul 2024 05:29:35 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Tue, 30 Jul 2024 05:29:35 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.41) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Tue, 30 Jul 2024 05:29:35 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Um5lZtaTzhumMNMHwpshJLyb7H09HJucF+yf3wmOdLWQWYk5ZDtwrS5/RekNL/4RlOmvC9FfIp6CpFcCoGOU5KTScxOlWsY5Z/jxN7ESWXVefkEQCoSZV0rOVuRM4GMLjpOSryGxKOwt/rnV3aEbplVbB4UCQyds+jdwBIEO0xIw4w/VJN49N1joeVig+/2uElxxTMgQvYcBmVP4EBCZ9rFVQXStKCGLa5J9ZsOHNqccyg9oi0hZy7yTlV/xNT2hxhcbleUr8WhIgKajuEoxI19sIpeahkGfimeJUT9N/yTXzTf0jVrR+4PIJnKnDTemq/J3JG9dkJYwe0On60bt9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Z82MIXZ7EV/zjLmag0hv8pJgXSyR9WiBVvfdiNPDNvM=;
+ b=mafbTTmxQctCVMbEc+DmmG/H1sCKXXv/fuzvTUlmNB31ZYRMR/rLyCiwCaldgJmo3yBVudcXxbPuCYFMtQqj0gCH+G8PA6YZVg6A7wsbhyJPFTFouQU5se+hZlWjok9oOKObgMWC9uuXkRKHiCYtuMPbaSC+GwTWmSOJe4RWmOlp/9bA+BHoajl6K71G0aXhP/EGzISktNwX5I789Zi48lOiO1ZCNgjZSlfNGQ9ihWk5nUSQ2eriiXF6fGLk4A7hsgBkj2S3IGWFtOOttz/XqxClttlNqo97E9CV1z2nteK3suKV1hfYQGjLfzLh5WS5VpfOhYWl784HyA37pEIQdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA1PR11MB6418.namprd11.prod.outlook.com (2603:10b6:208:3aa::18)
+ by CY8PR11MB7729.namprd11.prod.outlook.com (2603:10b6:930:70::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.28; Tue, 30 Jul
+ 2024 12:29:31 +0000
+Received: from IA1PR11MB6418.namprd11.prod.outlook.com
+ ([fe80::68b8:5391:865e:a83]) by IA1PR11MB6418.namprd11.prod.outlook.com
+ ([fe80::68b8:5391:865e:a83%7]) with mapi id 15.20.7807.026; Tue, 30 Jul 2024
+ 12:29:31 +0000
+From: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
+To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
+ "david.e.box@linux.intel.com" <david.e.box@linux.intel.com>,
+ "ilpo.jarvinen@linux.intel.com" <ilpo.jarvinen@linux.intel.com>, "Brost,
+ Matthew" <matthew.brost@intel.com>, "andriy.shevchenko@linux.intel.com"
+ <andriy.shevchenko@linux.intel.com>
+Subject: RE: [PATCH v9 5/6] platform/x86/intel/pmt: Add support for PMT base
+ adjust
+Thread-Topic: [PATCH v9 5/6] platform/x86/intel/pmt: Add support for PMT base
+ adjust
+Thread-Index: AQHa3o2UzQ6Srp5sNkmojIJgnAERKrIPOwhw
+Date: Tue, 30 Jul 2024 12:29:31 +0000
+Message-ID: <IA1PR11MB6418A4F423C1D099EA5A2395C1B02@IA1PR11MB6418.namprd11.prod.outlook.com>
+References: <20240725122346.4063913-1-michael.j.ruhl@intel.com>
+ <20240725122346.4063913-6-michael.j.ruhl@intel.com>
+In-Reply-To: <20240725122346.4063913-6-michael.j.ruhl@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA1PR11MB6418:EE_|CY8PR11MB7729:EE_
+x-ms-office365-filtering-correlation-id: 292a685e-b05e-4169-a92d-08dcb093436b
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|366016|376014|1800799024|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?lIiku8h5bg77Ly+LmLrOpjIw26dTBOE2oQkM4YZvlQB3C+NXqubDxN1QPPkj?=
+ =?us-ascii?Q?0Y59I23Fq22CG82jVc7ijlMRPq0rAsRwta/zXtpy+UTnlcfXe2KfmoJWIDsG?=
+ =?us-ascii?Q?a7rQd5Bf99YrGkLzWOTl6sxuexvbZv0SK7QysAElMk0X4zcoA1uqtVsoRahx?=
+ =?us-ascii?Q?1icd0RYfln1llIrqDlLKPQeT3svtZmCF6wwnSK7Ce3KUkPcpLL9fdTF4UGHQ?=
+ =?us-ascii?Q?0+fubi2OWPfd/EFqHdTZTmx94ujLX7nWt2j8Rn6EKBJOGqRLzlpULHq10NX/?=
+ =?us-ascii?Q?mUTCGZlOEm2ea2nmDVQWZRD59c2E+rgn6NEo4y3dbb8XEsW5IP+csWGG4gAA?=
+ =?us-ascii?Q?RswW0GoUbYASoQvHoAJa0mlbprKw5nMLip5fv1LMJMoJi/12ojpBfTTHsmoz?=
+ =?us-ascii?Q?UYPoC5YCi4mYGNhz0PXJu54r9cQTy8hVxRLR2AzIFPgDa/njsodUPot1ZmDa?=
+ =?us-ascii?Q?RbVwV1GQhFxYIzHe87TiM2AZ07rP/wCYc6s12iir8bUZRlp6rA0LvNR3DtG3?=
+ =?us-ascii?Q?v9xW6JcQPXV4pKvvZJRfXrjxK6Adxm+Qn7gHC4lCZWUNh9fJxOgpycZoehMt?=
+ =?us-ascii?Q?CX1eIxpReUhazVDDKRpw6UnNwpHq1cMaLl1mMVIVQiXPfmDOxPRzEOUKUjZl?=
+ =?us-ascii?Q?hJT2mVSvoxc1ufbNYYT8UbvrUF56X0wQoTqGGHsO5Burby48STJZrZTX7cV2?=
+ =?us-ascii?Q?obTkukOO+0LxuWaqzpdEskVoDGWdEudE6kzYrXVIOwsbbLqfliKVeZSdw711?=
+ =?us-ascii?Q?fYHtHU7UJIgtI0INoz9F7fPU+EPqGHqdzz2aXOAZiqr+CCLh/UkYhTcGj8ng?=
+ =?us-ascii?Q?rN3O/U8MX7FInV81S9M4PxTVeO2x5bl3HmGJfeQu/d0+d+GkFs02b7M4uKwr?=
+ =?us-ascii?Q?wz8Cs9t7NH7XG2GRJmtX15OVjJpVbm7bpMR2bK+3O0r+EnW3lAMHa0TtgA3f?=
+ =?us-ascii?Q?kphQEW4gUkng3oELdoTHZJcpdr7bWtdEPWSbhuSj392PWZFp/btBcotRfqRP?=
+ =?us-ascii?Q?KyYe25LbaR7Wz4SgJ8Wvt39W6qndD9QNSKGlPcIHLvjSVCgRIjlZoIf2kTeg?=
+ =?us-ascii?Q?HlYWPszMn7On71/DvfvNvdRyfKdJMi1xbtgX6bgClt/CKx/exZ8mCZ40J7xu?=
+ =?us-ascii?Q?9kxQJZDz2nzsz55vxR25slOimPngMPZNGnpDDWtnfynEWe6pHnOtdN9cmUZA?=
+ =?us-ascii?Q?TCshdNR3e3sKeADcDu0t6T5WqdjGHmy/fqEMabxCY9TFE64Cd5Od79moAv3w?=
+ =?us-ascii?Q?YgSpqU+RTewtanSVkI4skfQBNv02x3jX1Up4YGMXLukwFqf0ss0BT5HHCI+I?=
+ =?us-ascii?Q?aWVvmbsCfXPm5yt0ULzg6grkP9ta0bVzaHZXFGa7c7BGWYqjqYwaMXWW4KSy?=
+ =?us-ascii?Q?YxqZXjT6wB2TotinR0cZrPG5seGY46NmLMbN0OwiPrAGtukxwg=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB6418.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?KFX9KpYs3e5giApoKg9Dt7w/ZbOC0bnptPlfAmKo81UqkaLHyqZf7QuqRvB5?=
+ =?us-ascii?Q?2h18UZBdJnI+e6/5evC2ohKJChVrrOZxjNc3ONqkJOKWYbwkxN4/pqhqnJUu?=
+ =?us-ascii?Q?GpoDH4Z4HaG48FtzxDuae5sM57+e0Tj6u4/rbUO3XZXoNQXANTSzexVZ/nLg?=
+ =?us-ascii?Q?ws1SF2bD3tl07iskzQn6huMntBAqc0p417WA2ojvV5kZlfZW7mtJjBebfyj1?=
+ =?us-ascii?Q?FEHTMiXj37dRdjkFhk9/z7j/Hukf3bdl/3Qm9BqsE4ZwttVraXkIYob7sxVU?=
+ =?us-ascii?Q?yZx9L0D+JJ+bz/tIoB1pLMnQFCaa2KP5RxTnTFSoE55ZQUK/KV6d8JVrNbHe?=
+ =?us-ascii?Q?i8wI8Qat5hALJan/+nevuWvNBw1uiNYfyD6xgvSDTB7qWXD+LI1BGBdiKDQT?=
+ =?us-ascii?Q?ux0+bJGdmvN1wsWlv+VF54aKHWhtEBBgkmL/cQARBblqnmzCLXRJPZkbcjM8?=
+ =?us-ascii?Q?s3Jujv0mzpzBuu2cl8hmhpM/2bn8cRNSVYIkUCz/BmOTR+3CDMlU6r+KIph8?=
+ =?us-ascii?Q?Q0Abj9i51Xpob2tRr5KjKoJSTwkZwHi0qD8/u22O225pSNgt2YQtwm2YMRLm?=
+ =?us-ascii?Q?mEbCjiX3qSLAmoL5k9XIwaTi3pDohJm+6vITbuajsnDttAYGH+76bp7ITVk2?=
+ =?us-ascii?Q?TBtBv86lft5kmcZ8VxV4uYKSgMJbtwQkDsn+K/vQaujYybfZX83IoAcLH9Zu?=
+ =?us-ascii?Q?dE/aim1/Dgzs4hKoW5cW5wyLBp3MNYAUGFBOdtKhW417tSjt93mt0TPEZnE6?=
+ =?us-ascii?Q?ecRbc23H/UXw0vdbjMH/IEmPq61sBAv7KYmCaGzJYdQP5G36Kc0eNWeNOPem?=
+ =?us-ascii?Q?Hv+eD0uB/6L8jb+F9KaY+UNCYORjgyXV0dsomwzjFFwitpGke4QJmnesXa3O?=
+ =?us-ascii?Q?tHCbRumWt3MGIpRSsV+iopgjdKN8mwgvUErZNHeho5rOWRq+Laz629oCap4n?=
+ =?us-ascii?Q?c/phIaMSiqtgpv+bIV4i0ZdYSRI1q4r+cfIfljh9Wd6lTN71WbnLNazmliYc?=
+ =?us-ascii?Q?T4kebkxRnYGfZstRnA5pQFvD1iLnn0AFFjgWZJ63Qykd5sETHH8XPhFmCwcW?=
+ =?us-ascii?Q?323Oj+zj4/BPejek6MTskDaqdAfdg+LCN7yhrtWw+njUBGbi1HIiTwL8brTj?=
+ =?us-ascii?Q?r2BIkjyE8rnvt7l6RZr/Kz0Nk3CzoJMfRZA+f/r4C3ctaaRSh1wkv7X25lUL?=
+ =?us-ascii?Q?XxgWo3I/XJOlxaWw8U+NFlirGOYxUjUxYD8T8eoFThTckOfIOyTap0/3Vi/O?=
+ =?us-ascii?Q?WEIoqDINexvbVvVCbRkBUw7z5slSD8UuDlE2LVq6p07QoMcB1SrUQPzv9sms?=
+ =?us-ascii?Q?9vz4Js5dEBRKrRJQlGi1yZv4r5QQpUM5UFYlArZZiyYXgcxpbIyxTpDccpYF?=
+ =?us-ascii?Q?W7gDfRVwe3e7U9o9WtLsVF+qetwolBJq6ZuxORCxsjvb6qsIKXhh7aLj/OJP?=
+ =?us-ascii?Q?ZYR7L7dSXp9WED0QHsBaEu0DP2fF1QZ2MJyrfIX+sSeVB5Gt4cq/JQncyj19?=
+ =?us-ascii?Q?/6BEq1E+VADs3okZ1+PsZlTaryNRm2bZsNLApueg2AbEzGG5xMeSMqkhxpRD?=
+ =?us-ascii?Q?nqX7mSmMSh+fnhv0y4a+Yw17gmeUK9pf+xYYD0GK?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6418.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 292a685e-b05e-4169-a92d-08dcb093436b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jul 2024 12:29:31.7560 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 5LO6wCUdi0GLEBfFt4DPp6wjsBb88WWKYx00EeV5uXNddJ6GQoNrsnz28C7rLIFeJN3cSkCR/McMfpiwulSvm5uJWxuHEBVk1MT3uqjQdLE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7729
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,80 +183,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 29 Jul 2024, Nikita Zhandarovich <n.zhandarovich@fintech.ru> wrote:
-> On the off chance that clock value ends up being too high (by means
-> of skl_ddi_calculate_wrpll() having benn called with big enough
-> value of crtc_state->port_clock * 1000), one possible consequence
-> may be that the result will not be able to fit into signed int.
+>-----Original Message-----
+>From: Ruhl, Michael J <michael.j.ruhl@intel.com>
+>Sent: Thursday, July 25, 2024 8:24 AM
+>To: intel-xe@lists.freedesktop.org; platform-driver-x86@vger.kernel.org;
+>david.e.box@linux.intel.com; ilpo.jarvinen@linux.intel.com; Brost, Matthew
+><matthew.brost@intel.com>; andriy.shevchenko@linux.intel.com
+>Cc: Ruhl, Michael J <michael.j.ruhl@intel.com>
+>Subject: [PATCH v9 5/6] platform/x86/intel/pmt: Add support for PMT base
+>adjust
 >
-> Fix this issue by moving conversion of clock parameter from kHz to Hz
-> into the body of skl_ddi_calculate_wrpll(), as well as casting the
-> same parameter to u64 type while calculating the value for AFE clock.
-> This both mitigates the overflow problem and avoids possible erroneous
-> integer promotion mishaps.
+>DVSEC offsets are based on the endpoint BAR.  If an endpoint is
+>not available allow the offset information to be adjusted by the
+>parent driver.
+
+Hello,
+
+Any further comments or questions WRT this patch?
+
+Thanks,
+
+M
+
+>Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+>---
+> drivers/platform/x86/intel/pmt/class.h     | 1 +
+> drivers/platform/x86/intel/pmt/telemetry.c | 9 +++++++++
+> drivers/platform/x86/intel/vsec.c          | 1 +
+> include/linux/intel_vsec.h                 | 3 +++
+> 4 files changed, 14 insertions(+)
 >
-> Found by Linux Verification Center (linuxtesting.org) with static
-> analysis tool SVACE.
+>diff --git a/drivers/platform/x86/intel/pmt/class.h
+>b/drivers/platform/x86/intel/pmt/class.h
+>index a267ac964423..984cd40ee814 100644
+>--- a/drivers/platform/x86/intel/pmt/class.h
+>+++ b/drivers/platform/x86/intel/pmt/class.h
+>@@ -46,6 +46,7 @@ struct intel_pmt_entry {
+> 	void __iomem		*base;
+> 	struct pmt_callbacks	*cb;
+> 	unsigned long		base_addr;
+>+	s32			base_adjust;
+> 	size_t			size;
+> 	u32			guid;
+> 	int			devid;
+>diff --git a/drivers/platform/x86/intel/pmt/telemetry.c
+>b/drivers/platform/x86/intel/pmt/telemetry.c
+>index c9feac859e57..88e4f1315097 100644
+>--- a/drivers/platform/x86/intel/pmt/telemetry.c
+>+++ b/drivers/platform/x86/intel/pmt/telemetry.c
+>@@ -78,6 +78,13 @@ static int pmt_telem_header_decode(struct
+>intel_pmt_entry *entry,
+> 	header->access_type =3D TELEM_ACCESS(readl(disc_table));
+> 	header->guid =3D readl(disc_table + TELEM_GUID_OFFSET);
+> 	header->base_offset =3D readl(disc_table + TELEM_BASE_OFFSET);
+>+	if (entry->base_adjust) {
+>+		u32 new_base =3D header->base_offset + entry->base_adjust;
+>+
+>+		dev_dbg(dev, "Adjusting base offset from 0x%x to 0x%x\n",
+>+			header->base_offset, new_base);
+>+		header->base_offset =3D new_base;
+>+	}
 >
-> Fixes: fe70b262e781 ("drm/i915: Move a bunch of stuff into rodata from the stack")
-
-I don't think that's right. The code was only shuffled around at that
-point. I think the bug's been there since the code was added in commit
-82d354370189 ("drm/i915/skl: Implementation of SKL DPLL programming").
-
-Fixed while applying to drm-intel-next, thanks for the patch.
-
-BR,
-Jani.
-
-
-
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-> ---
-> v2: instead of double casting of 'clock' with (u64)(u32), convert
-> 'clock' to Hz inside skl_ddi_calculate_wrpll() and cast it only
-> to u64 to mitigate the issue. Per Jani's <jani.nikula@linux.intel.com>
-> helpful suggestion made here:
-> https://lore.kernel.org/all/87ed7gzhin.fsf@intel.com/
-> Also, change commit description accordingly.
+> 	/* Size is measured in DWORDS, but accessor returns bytes */
+> 	header->size =3D TELEM_SIZE(readl(disc_table));
+>@@ -302,6 +309,8 @@ static int pmt_telem_probe(struct auxiliary_device
+>*auxdev, const struct auxilia
+> 	for (i =3D 0; i < intel_vsec_dev->num_resources; i++) {
+> 		struct intel_pmt_entry *entry =3D &priv->entry[priv-
+>>num_entries];
 >
-> v1: https://lore.kernel.org/all/20240724184911.12250-1-n.zhandarovich@fintech.ru/
+>+		entry->base_adjust =3D intel_vsec_dev->base_adjust;
+>+
+> 		mutex_lock(&ep_lock);
+> 		ret =3D intel_pmt_dev_create(entry, &pmt_telem_ns,
+>intel_vsec_dev, i);
+> 		mutex_unlock(&ep_lock);
+>diff --git a/drivers/platform/x86/intel/vsec.c
+>b/drivers/platform/x86/intel/vsec.c
+>index 7b5cc9993974..be079d62a7bc 100644
+>--- a/drivers/platform/x86/intel/vsec.c
+>+++ b/drivers/platform/x86/intel/vsec.c
+>@@ -212,6 +212,7 @@ static int intel_vsec_add_dev(struct pci_dev *pdev,
+>struct intel_vsec_header *he
+> 	intel_vsec_dev->num_resources =3D header->num_entries;
+> 	intel_vsec_dev->quirks =3D info->quirks;
+> 	intel_vsec_dev->base_addr =3D info->base_addr;
+>+	intel_vsec_dev->base_adjust =3D info->base_adjust;
+> 	intel_vsec_dev->priv_data =3D info->priv_data;
 >
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+> 	if (header->id =3D=3D VSEC_ID_SDSI)
+>diff --git a/include/linux/intel_vsec.h b/include/linux/intel_vsec.h
+>index 11ee185566c3..75d17fa10d05 100644
+>--- a/include/linux/intel_vsec.h
+>+++ b/include/linux/intel_vsec.h
+>@@ -88,6 +88,7 @@ struct pmt_callbacks {
+>  * @caps:      bitmask of PMT capabilities for the given headers
+>  * @quirks:    bitmask of VSEC device quirks
+>  * @base_addr: allow a base address to be specified (rather than derived)
+>+ * @base_adjust: allow adjustment to base offset information
+>  */
+> struct intel_vsec_platform_info {
+> 	struct device *parent;
+>@@ -96,6 +97,7 @@ struct intel_vsec_platform_info {
+> 	unsigned long caps;
+> 	unsigned long quirks;
+> 	u64 base_addr;
+>+	s32 base_adjust;
+> };
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index 90998b037349..292d163036b1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -1658,7 +1658,7 @@ static void skl_wrpll_params_populate(struct skl_wrpll_params *params,
->  }
->  
->  static int
-> -skl_ddi_calculate_wrpll(int clock /* in Hz */,
-> +skl_ddi_calculate_wrpll(int clock,
->  			int ref_clock,
->  			struct skl_wrpll_params *wrpll_params)
->  {
-> @@ -1683,7 +1683,7 @@ skl_ddi_calculate_wrpll(int clock /* in Hz */,
->  	};
->  	unsigned int dco, d, i;
->  	unsigned int p0, p1, p2;
-> -	u64 afe_clock = clock * 5; /* AFE Clock is 5x Pixel clock */
-> +	u64 afe_clock = (u64)clock * 1000 * 5; /* AFE Clock is 5x Pixel clock, in Hz */
->  
->  	for (d = 0; d < ARRAY_SIZE(dividers); d++) {
->  		for (dco = 0; dco < ARRAY_SIZE(dco_central_freq); dco++) {
-> @@ -1808,7 +1808,7 @@ static int skl_ddi_hdmi_pll_dividers(struct intel_crtc_state *crtc_state)
->  	struct skl_wrpll_params wrpll_params = {};
->  	int ret;
->  
-> -	ret = skl_ddi_calculate_wrpll(crtc_state->port_clock * 1000,
-> +	ret = skl_ddi_calculate_wrpll(crtc_state->port_clock,
->  				      i915->display.dpll.ref_clks.nssc, &wrpll_params);
->  	if (ret)
->  		return ret;
+> /**
+>@@ -121,6 +123,7 @@ struct intel_vsec_device {
+> 	size_t priv_data_size;
+> 	unsigned long quirks;
+> 	u64 base_addr;
+>+	s32 base_adjust;
+> };
+>
+> int intel_vsec_add_aux(struct pci_dev *pdev, struct device *parent,
+>--
+>2.44.0
 
--- 
-Jani Nikula, Intel
