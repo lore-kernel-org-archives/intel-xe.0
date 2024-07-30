@@ -4,52 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0FFCC3DA7F
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jul 2024 21:01:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1BD8C3DA7F
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jul 2024 22:16:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F36B10E588;
-	Tue, 30 Jul 2024 21:01:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D6C510E305;
+	Tue, 30 Jul 2024 22:16:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZTpNVNGX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fuyX+OMF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1537710E588
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Jul 2024 21:01:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 682A910E305;
+ Tue, 30 Jul 2024 22:16:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722373260; x=1753909260;
- h=date:from:to:cc:subject:message-id;
- bh=TML/HqRGkt2G9CLjEsZfnrZ2suEjuO/CtdbGFCqryLk=;
- b=ZTpNVNGXB8DutOa+JHjHGbzOqmHNZyKl1iv0tte2mKgyrdGNaDggVLMB
- ZbGOM7FoGDtS9vWlKyCa/E4Qnv88lwjJ54ygF/LyfKDjYFMbBUamGs98r
- RTz+sI2KozFMQm7qWgFk90wCLjjz0IPwhXZABDEWmC7bRKS59z/LPPxRI
- YHHbONNyH6nXcWQiIWocaI4EZ1fgykZi7Z8Huhvu5xXeKv7AyqweS27iM
- sHJModCNcssynJMxU20osEVsk27Mv2V2Y4BiEGuYVxv3l7GUVrnLos4Z4
- UP/GYqhy7GmhmvCqO/nkChHdEFHoIj9dk16xU2gVF0yB63v2e6Kpj2nD6 Q==;
-X-CSE-ConnectionGUID: rwvXMCv8Qfenjyr6BZ88Xw==
-X-CSE-MsgGUID: 5iKBZ7f5S3CaLamFxTCZpA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11149"; a="20105521"
-X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="20105521"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2024 14:01:00 -0700
-X-CSE-ConnectionGUID: gqXk2JtKQU+BFH1ABaLrNw==
-X-CSE-MsgGUID: WFHoJRQiTjeBNn9ie1wYzA==
+ t=1722377815; x=1753913815;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=qCyhA4EZ+YVt5V2C/j3gEoE4CkrbPbSQ4eW9bIIZI3o=;
+ b=fuyX+OMFKvUfGSIo40FkuL1D1VyTqvY3Vjc42XVLt52Q2tyVKPag6Wd2
+ 4ukv2UliV6xQthi3JLwbjaivUSvBK3hytmhtEnHxZUYjXy9EGcKoJ+GQM
+ BXCRMnvV4Eb1tvT21ZWeI6kAu0mA4N1X8L9MLxuCmsFQpsatrfq442NF9
+ VBZkzUYEko45vqmsbzinbhmEMCxiHgkfyrptmzkMHo+NCwt8hFMEd7I7j
+ aVyL55frW45SJ4QTOrIkbfd8I7fRhy9ssYhOsGbyoN8PTpFFUzN4PdDZe
+ VLGTYKIGcgDH9LsuJCTwtOhmqTnpYPjN0f3e2TyyphJKVZ7s08kzjFaJz w==;
+X-CSE-ConnectionGUID: w+nkM9KCSMCPFus9Wzj9bA==
+X-CSE-MsgGUID: RFIJiXDaSCCYLLSEJW6ztQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11149"; a="24094124"
+X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="24094124"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2024 15:16:55 -0700
+X-CSE-ConnectionGUID: lPUoaK04Rlur3pRGWxuJ8g==
+X-CSE-MsgGUID: nN2hCdBdRPeP6gSawUSfVw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="55066690"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
- by orviesa007.jf.intel.com with ESMTP; 30 Jul 2024 14:00:59 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sYtxo-000tLM-01;
- Tue, 30 Jul 2024 21:00:56 +0000
-Date: Wed, 31 Jul 2024 05:00:48 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- e4ac526c440af8aa94d2bdfe6066339dd93b4db2
-Message-ID: <202407310544.2pi6BMuQ-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.09,248,1716274800"; d="scan'208";a="58613341"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2024 15:16:55 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: tj@kernel.org, jiangshanlai@gmail.com, christian.koenig@amd.com,
+ ltuikov89@gmail.com, daniel@ffwll.ch
+Subject: [RFC PATCH 1/3] workqueue: Add interface for user-defined workqueue
+ lockdep map
+Date: Tue, 30 Jul 2024 15:17:40 -0700
+Message-Id: <20240730221742.2248527-2-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240730221742.2248527-1-matthew.brost@intel.com>
+References: <20240730221742.2248527-1-matthew.brost@intel.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,275 +69,152 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: e4ac526c440af8aa94d2bdfe6066339dd93b4db2  drm/xe/xe2hpg: Introduce performance tuning changes for Xe2_HPG
+Add an interface for a user-defined workqueue lockdep map, which is
+helpful when multiple workqueues are created for the same purpose. This
+also helps avoid leaking lockdep maps on each workqueue creation.
 
-elapsed time: 1451m
+Implement a new workqueue flag, WQ_USER_OWNED_LOCKDEP, to indicate that
+the user will set up the workqueue lockdep map using the new function
+wq_init_user_lockdep_map.
 
-configs tested: 256
-configs skipped: 10
+Cc: Tejun Heo <tj@kernel.org>
+Cc: Lai Jiangshan <jiangshanlai@gmail.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ include/linux/workqueue.h |  3 +++
+ kernel/workqueue.c        | 44 ++++++++++++++++++++++++++++++++-------
+ 2 files changed, 40 insertions(+), 7 deletions(-)
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
-
-tested configs:
-alpha                             allnoconfig   gcc-13.3.0
-alpha                            allyesconfig   gcc-13.3.0
-alpha                               defconfig   gcc-13.2.0
-alpha                               defconfig   gcc-13.3.0
-arc                              allmodconfig   gcc-13.2.0
-arc                               allnoconfig   gcc-13.2.0
-arc                              allyesconfig   gcc-13.2.0
-arc                                 defconfig   gcc-13.2.0
-arc                        nsimosci_defconfig   gcc-13.2.0
-arc                   randconfig-001-20240730   gcc-13.2.0
-arc                   randconfig-002-20240730   gcc-13.2.0
-arm                              allmodconfig   gcc-13.2.0
-arm                              allmodconfig   gcc-14.1.0
-arm                               allnoconfig   clang-20
-arm                              allyesconfig   gcc-13.2.0
-arm                              allyesconfig   gcc-14.1.0
-arm                         bcm2835_defconfig   clang-20
-arm                                 defconfig   clang-14
-arm                                 defconfig   gcc-13.2.0
-arm                            hisi_defconfig   gcc-14.1.0
-arm                        keystone_defconfig   clang-20
-arm                        keystone_defconfig   gcc-14.1.0
-arm                             pxa_defconfig   gcc-14.1.0
-arm                   randconfig-001-20240730   gcc-13.2.0
-arm                   randconfig-001-20240730   gcc-14.1.0
-arm                   randconfig-002-20240730   gcc-13.2.0
-arm                   randconfig-002-20240730   gcc-14.1.0
-arm                   randconfig-003-20240730   gcc-13.2.0
-arm                   randconfig-003-20240730   gcc-14.1.0
-arm                   randconfig-004-20240730   gcc-13.2.0
-arm                   randconfig-004-20240730   gcc-14.1.0
-arm64                            allmodconfig   clang-20
-arm64                            allmodconfig   gcc-13.2.0
-arm64                             allnoconfig   gcc-14.1.0
-arm64                            allyesconfig   clang-20
-arm64                               defconfig   gcc-13.2.0
-arm64                               defconfig   gcc-14.1.0
-arm64                 randconfig-001-20240730   gcc-13.2.0
-arm64                 randconfig-001-20240730   gcc-14.1.0
-arm64                 randconfig-002-20240730   clang-20
-arm64                 randconfig-002-20240730   gcc-13.2.0
-arm64                 randconfig-003-20240730   clang-20
-arm64                 randconfig-003-20240730   gcc-13.2.0
-arm64                 randconfig-004-20240730   gcc-13.2.0
-arm64                 randconfig-004-20240730   gcc-14.1.0
-csky                              allnoconfig   gcc-14.1.0
-csky                                defconfig   gcc-13.2.0
-csky                                defconfig   gcc-14.1.0
-csky                  randconfig-001-20240730   gcc-13.2.0
-csky                  randconfig-001-20240730   gcc-14.1.0
-csky                  randconfig-002-20240730   gcc-13.2.0
-csky                  randconfig-002-20240730   gcc-14.1.0
-hexagon                          allmodconfig   clang-20
-hexagon                           allnoconfig   clang-20
-hexagon                          allyesconfig   clang-20
-hexagon                             defconfig   clang-20
-hexagon               randconfig-001-20240730   clang-20
-hexagon               randconfig-002-20240730   clang-20
-i386                             allmodconfig   clang-18
-i386                             allmodconfig   gcc-13
-i386                              allnoconfig   clang-18
-i386                              allnoconfig   gcc-13
-i386                             allyesconfig   clang-18
-i386                             allyesconfig   gcc-13
-i386         buildonly-randconfig-001-20240730   gcc-13
-i386         buildonly-randconfig-002-20240730   gcc-13
-i386         buildonly-randconfig-003-20240730   gcc-13
-i386         buildonly-randconfig-004-20240730   gcc-13
-i386         buildonly-randconfig-005-20240730   gcc-13
-i386         buildonly-randconfig-006-20240730   gcc-13
-i386                                defconfig   clang-18
-i386                  randconfig-001-20240730   gcc-13
-i386                  randconfig-002-20240730   gcc-13
-i386                  randconfig-003-20240730   gcc-13
-i386                  randconfig-004-20240730   gcc-13
-i386                  randconfig-005-20240730   gcc-13
-i386                  randconfig-006-20240730   gcc-13
-i386                  randconfig-011-20240730   gcc-13
-i386                  randconfig-012-20240730   gcc-13
-i386                  randconfig-013-20240730   gcc-13
-i386                  randconfig-014-20240730   gcc-13
-i386                  randconfig-015-20240730   gcc-13
-i386                  randconfig-016-20240730   gcc-13
-loongarch                        allmodconfig   gcc-14.1.0
-loongarch                         allnoconfig   gcc-14.1.0
-loongarch                           defconfig   gcc-13.2.0
-loongarch                           defconfig   gcc-14.1.0
-loongarch             randconfig-001-20240730   gcc-13.2.0
-loongarch             randconfig-001-20240730   gcc-14.1.0
-loongarch             randconfig-002-20240730   gcc-13.2.0
-loongarch             randconfig-002-20240730   gcc-14.1.0
-m68k                             allmodconfig   gcc-14.1.0
-m68k                              allnoconfig   gcc-14.1.0
-m68k                             allyesconfig   gcc-14.1.0
-m68k                                defconfig   gcc-13.2.0
-m68k                                defconfig   gcc-14.1.0
-microblaze                       allmodconfig   gcc-14.1.0
-microblaze                        allnoconfig   gcc-14.1.0
-microblaze                       allyesconfig   gcc-14.1.0
-microblaze                          defconfig   gcc-13.2.0
-microblaze                          defconfig   gcc-14.1.0
-mips                             allmodconfig   clang-20
-mips                              allnoconfig   gcc-14.1.0
-mips                             allyesconfig   clang-20
-mips                     cu1000-neo_defconfig   gcc-13.2.0
-mips                           gcw0_defconfig   clang-20
-mips                            gpr_defconfig   clang-20
-mips                malta_qemu_32r6_defconfig   clang-20
-mips                      maltaaprp_defconfig   clang-14
-nios2                             allnoconfig   gcc-14.1.0
-nios2                               defconfig   gcc-13.2.0
-nios2                               defconfig   gcc-14.1.0
-nios2                 randconfig-001-20240730   gcc-13.2.0
-nios2                 randconfig-001-20240730   gcc-14.1.0
-nios2                 randconfig-002-20240730   gcc-13.2.0
-nios2                 randconfig-002-20240730   gcc-14.1.0
-openrisc                          allnoconfig   gcc-14.1.0
-openrisc                         allyesconfig   gcc-14.1.0
-openrisc                            defconfig   gcc-14.1.0
-parisc                           allmodconfig   gcc-14.1.0
-parisc                            allnoconfig   gcc-14.1.0
-parisc                           allyesconfig   gcc-14.1.0
-parisc                              defconfig   gcc-14.1.0
-parisc                generic-64bit_defconfig   gcc-14.1.0
-parisc                randconfig-001-20240730   gcc-13.2.0
-parisc                randconfig-001-20240730   gcc-14.1.0
-parisc                randconfig-002-20240730   gcc-13.2.0
-parisc                randconfig-002-20240730   gcc-14.1.0
-parisc64                            defconfig   gcc-13.2.0
-parisc64                            defconfig   gcc-14.1.0
-powerpc                          allmodconfig   gcc-14.1.0
-powerpc                           allnoconfig   gcc-14.1.0
-powerpc                          allyesconfig   clang-20
-powerpc                          allyesconfig   gcc-14.1.0
-powerpc                 canyonlands_defconfig   clang-20
-powerpc                       ebony_defconfig   clang-20
-powerpc                     ep8248e_defconfig   clang-20
-powerpc                      pmac32_defconfig   clang-20
-powerpc               randconfig-001-20240730   gcc-14.1.0
-powerpc               randconfig-002-20240730   clang-16
-powerpc               randconfig-002-20240730   gcc-13.2.0
-powerpc               randconfig-003-20240730   clang-20
-powerpc               randconfig-003-20240730   gcc-13.2.0
-powerpc                    sam440ep_defconfig   gcc-14.1.0
-powerpc                     taishan_defconfig   clang-20
-powerpc                     tqm8555_defconfig   clang-20
-powerpc                      tqm8xx_defconfig   clang-20
-powerpc64             randconfig-001-20240730   gcc-13.2.0
-powerpc64             randconfig-001-20240730   gcc-14.1.0
-powerpc64             randconfig-002-20240730   clang-20
-powerpc64             randconfig-002-20240730   gcc-13.2.0
-powerpc64             randconfig-003-20240730   gcc-13.2.0
-powerpc64             randconfig-003-20240730   gcc-14.1.0
-riscv                            allmodconfig   clang-20
-riscv                            allmodconfig   gcc-14.1.0
-riscv                             allnoconfig   gcc-14.1.0
-riscv                            allyesconfig   clang-20
-riscv                            allyesconfig   gcc-14.1.0
-riscv                               defconfig   clang-20
-riscv                               defconfig   gcc-14.1.0
-riscv                 randconfig-001-20240730   clang-14
-riscv                 randconfig-001-20240730   gcc-13.2.0
-riscv                 randconfig-002-20240730   gcc-13.2.0
-riscv                 randconfig-002-20240730   gcc-14.1.0
-s390                             allmodconfig   clang-20
-s390                              allnoconfig   clang-20
-s390                              allnoconfig   gcc-14.1.0
-s390                             allyesconfig   clang-20
-s390                             allyesconfig   gcc-14.1.0
-s390                                defconfig   clang-20
-s390                                defconfig   gcc-14.1.0
-s390                  randconfig-001-20240730   gcc-13.2.0
-s390                  randconfig-001-20240730   gcc-14.1.0
-s390                  randconfig-002-20240730   clang-20
-s390                  randconfig-002-20240730   gcc-13.2.0
-sh                               allmodconfig   gcc-14.1.0
-sh                                allnoconfig   gcc-14.1.0
-sh                               allyesconfig   gcc-14.1.0
-sh                                  defconfig   gcc-14.1.0
-sh                             espt_defconfig   gcc-14.1.0
-sh                          polaris_defconfig   gcc-14.1.0
-sh                          r7780mp_defconfig   gcc-14.1.0
-sh                    randconfig-001-20240730   gcc-13.2.0
-sh                    randconfig-001-20240730   gcc-14.1.0
-sh                    randconfig-002-20240730   gcc-13.2.0
-sh                    randconfig-002-20240730   gcc-14.1.0
-sh                          rsk7269_defconfig   gcc-14.1.0
-sh                           se7721_defconfig   gcc-14.1.0
-sparc                            allmodconfig   gcc-14.1.0
-sparc64                             defconfig   gcc-14.1.0
-sparc64               randconfig-001-20240730   gcc-13.2.0
-sparc64               randconfig-001-20240730   gcc-14.1.0
-sparc64               randconfig-002-20240730   gcc-13.2.0
-sparc64               randconfig-002-20240730   gcc-14.1.0
-um                               allmodconfig   clang-20
-um                               allmodconfig   gcc-13.3.0
-um                                allnoconfig   clang-17
-um                                allnoconfig   gcc-14.1.0
-um                               allyesconfig   gcc-13
-um                               allyesconfig   gcc-13.3.0
-um                                  defconfig   clang-20
-um                                  defconfig   gcc-14.1.0
-um                             i386_defconfig   gcc-13
-um                             i386_defconfig   gcc-14.1.0
-um                    randconfig-001-20240730   gcc-13
-um                    randconfig-001-20240730   gcc-13.2.0
-um                    randconfig-002-20240730   clang-20
-um                    randconfig-002-20240730   gcc-13.2.0
-um                           x86_64_defconfig   clang-15
-um                           x86_64_defconfig   gcc-14.1.0
-x86_64                            allnoconfig   clang-18
-x86_64                           allyesconfig   clang-18
-x86_64       buildonly-randconfig-001-20240730   clang-18
-x86_64       buildonly-randconfig-002-20240730   clang-18
-x86_64       buildonly-randconfig-002-20240730   gcc-12
-x86_64       buildonly-randconfig-003-20240730   clang-18
-x86_64       buildonly-randconfig-004-20240730   clang-18
-x86_64       buildonly-randconfig-004-20240730   gcc-13
-x86_64       buildonly-randconfig-005-20240730   clang-18
-x86_64       buildonly-randconfig-005-20240730   gcc-12
-x86_64       buildonly-randconfig-006-20240730   clang-18
-x86_64                              defconfig   clang-18
-x86_64                              defconfig   gcc-13
-x86_64                                  kexec   clang-18
-x86_64                randconfig-001-20240730   clang-18
-x86_64                randconfig-002-20240730   clang-18
-x86_64                randconfig-002-20240730   gcc-13
-x86_64                randconfig-003-20240730   clang-18
-x86_64                randconfig-004-20240730   clang-18
-x86_64                randconfig-005-20240730   clang-18
-x86_64                randconfig-006-20240730   clang-18
-x86_64                randconfig-011-20240730   clang-18
-x86_64                randconfig-011-20240730   gcc-13
-x86_64                randconfig-012-20240730   clang-18
-x86_64                randconfig-013-20240730   clang-18
-x86_64                randconfig-014-20240730   clang-18
-x86_64                randconfig-015-20240730   clang-18
-x86_64                randconfig-015-20240730   gcc-8
-x86_64                randconfig-016-20240730   clang-18
-x86_64                randconfig-016-20240730   gcc-13
-x86_64                randconfig-071-20240730   clang-18
-x86_64                randconfig-071-20240730   gcc-8
-x86_64                randconfig-072-20240730   clang-18
-x86_64                randconfig-073-20240730   clang-18
-x86_64                randconfig-073-20240730   gcc-12
-x86_64                randconfig-074-20240730   clang-18
-x86_64                randconfig-075-20240730   clang-18
-x86_64                randconfig-076-20240730   clang-18
-x86_64                          rhel-8.3-rust   clang-18
-x86_64                               rhel-8.3   clang-18
-xtensa                            allnoconfig   gcc-14.1.0
-xtensa                randconfig-001-20240730   gcc-13.2.0
-xtensa                randconfig-001-20240730   gcc-14.1.0
-xtensa                randconfig-002-20240730   gcc-13.2.0
-xtensa                randconfig-002-20240730   gcc-14.1.0
-xtensa                    smp_lx200_defconfig   gcc-14.1.0
-
+diff --git a/include/linux/workqueue.h b/include/linux/workqueue.h
+index d9968bfc8eac..3e6db0889e2b 100644
+--- a/include/linux/workqueue.h
++++ b/include/linux/workqueue.h
+@@ -223,6 +223,8 @@ struct execute_work {
+ };
+ 
+ #ifdef CONFIG_LOCKDEP
++void wq_init_user_lockdep_map(struct workqueue_struct *wq,
++			      struct lockdep_map *lockdep_map);
+ /*
+  * NB: because we have to copy the lockdep_map, setting _key
+  * here is required, otherwise it could get initialised to the
+@@ -401,6 +403,7 @@ enum wq_flags {
+ 	 * http://thread.gmane.org/gmane.linux.kernel/1480396
+ 	 */
+ 	WQ_POWER_EFFICIENT	= 1 << 7,
++	WQ_USER_OWNED_LOCKDEP	= 1 << 8,	/* allow users to define lockdep map */
+ 
+ 	__WQ_DESTROYING		= 1 << 15, /* internal: workqueue is destroying */
+ 	__WQ_DRAINING		= 1 << 16, /* internal: workqueue is draining */
+diff --git a/kernel/workqueue.c b/kernel/workqueue.c
+index 3fbaecfc88c2..228b52b8d7c4 100644
+--- a/kernel/workqueue.c
++++ b/kernel/workqueue.c
+@@ -366,7 +366,8 @@ struct workqueue_struct {
+ #ifdef CONFIG_LOCKDEP
+ 	char			*lock_name;
+ 	struct lock_class_key	key;
+-	struct lockdep_map	lockdep_map;
++	struct lockdep_map	__lockdep_map;
++	struct lockdep_map	*lockdep_map;
+ #endif
+ 	char			name[WQ_NAME_LEN]; /* I: workqueue name */
+ 
+@@ -3220,7 +3221,7 @@ __acquires(&pool->lock)
+ 	lockdep_start_depth = lockdep_depth(current);
+ 	/* see drain_dead_softirq_workfn() */
+ 	if (!bh_draining)
+-		lock_map_acquire(&pwq->wq->lockdep_map);
++		lock_map_acquire(pwq->wq->lockdep_map);
+ 	lock_map_acquire(&lockdep_map);
+ 	/*
+ 	 * Strictly speaking we should mark the invariant state without holding
+@@ -3254,7 +3255,7 @@ __acquires(&pool->lock)
+ 	pwq->stats[PWQ_STAT_COMPLETED]++;
+ 	lock_map_release(&lockdep_map);
+ 	if (!bh_draining)
+-		lock_map_release(&pwq->wq->lockdep_map);
++		lock_map_release(pwq->wq->lockdep_map);
+ 
+ 	if (unlikely((worker->task && in_atomic()) ||
+ 		     lockdep_depth(current) != lockdep_start_depth ||
+@@ -3892,8 +3893,8 @@ static void touch_wq_lockdep_map(struct workqueue_struct *wq)
+ 	if (wq->flags & WQ_BH)
+ 		local_bh_disable();
+ 
+-	lock_map_acquire(&wq->lockdep_map);
+-	lock_map_release(&wq->lockdep_map);
++	lock_map_acquire(wq->lockdep_map);
++	lock_map_release(wq->lockdep_map);
+ 
+ 	if (wq->flags & WQ_BH)
+ 		local_bh_enable();
+@@ -3927,7 +3928,8 @@ void __flush_workqueue(struct workqueue_struct *wq)
+ 	struct wq_flusher this_flusher = {
+ 		.list = LIST_HEAD_INIT(this_flusher.list),
+ 		.flush_color = -1,
+-		.done = COMPLETION_INITIALIZER_ONSTACK_MAP(this_flusher.done, wq->lockdep_map),
++		.done = COMPLETION_INITIALIZER_ONSTACK_MAP(this_flusher.done,
++							   (*wq->lockdep_map)),
+ 	};
+ 	int next_color;
+ 
+@@ -4778,26 +4780,54 @@ static int init_worker_pool(struct worker_pool *pool)
+ }
+ 
+ #ifdef CONFIG_LOCKDEP
++/**
++ * wq_init_user_lockdep_map - init user lockdep map for workqueue
++ * @wq: workqueue to init lockdep map for
++ * @lockdep_map: lockdep map to use for workqueue
++ *
++ * Initialize workqueue with a user defined lockdep map. WQ_USER_OWNED_LOCKDEP
++ * must be set for workqueue.
++ */
++void wq_init_user_lockdep_map(struct workqueue_struct *wq,
++			      struct lockdep_map *lockdep_map)
++{
++	if (WARN_ON_ONCE(!(wq->flags & WQ_USER_OWNED_LOCKDEP)))
++		return;
++
++	wq->lockdep_map = lockdep_map;
++}
++EXPORT_SYMBOL_GPL(wq_init_user_lockdep_map);
++
+ static void wq_init_lockdep(struct workqueue_struct *wq)
+ {
+ 	char *lock_name;
+ 
++	if (wq->flags & WQ_USER_OWNED_LOCKDEP)
++		return;
++
+ 	lockdep_register_key(&wq->key);
+ 	lock_name = kasprintf(GFP_KERNEL, "%s%s", "(wq_completion)", wq->name);
+ 	if (!lock_name)
+ 		lock_name = wq->name;
+ 
+ 	wq->lock_name = lock_name;
+-	lockdep_init_map(&wq->lockdep_map, lock_name, &wq->key, 0);
++	wq->lockdep_map = &wq->__lockdep_map;
++	lockdep_init_map(wq->lockdep_map, lock_name, &wq->key, 0);
+ }
+ 
+ static void wq_unregister_lockdep(struct workqueue_struct *wq)
+ {
++	if (wq->flags & WQ_USER_OWNED_LOCKDEP)
++		return;
++
+ 	lockdep_unregister_key(&wq->key);
+ }
+ 
+ static void wq_free_lockdep(struct workqueue_struct *wq)
+ {
++	if (wq->flags & WQ_USER_OWNED_LOCKDEP)
++		return;
++
+ 	if (wq->lock_name != wq->name)
+ 		kfree(wq->lock_name);
+ }
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
