@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CD74C3DA61
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jul 2024 04:09:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52604C3DA49
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jul 2024 04:14:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6D1410E3BF;
-	Tue, 30 Jul 2024 04:08:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NuV4899d";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 820F310E3B9;
- Tue, 30 Jul 2024 04:08:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722312539; x=1753848539;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=kBt1nQUt2Z9tbOcRDrC8iBOn6XJW4BtgDVITyGR0DTI=;
- b=NuV4899dWLc5EfGi13wwsn2reApM5rgFGhmOU9hg4pRJp41mmpnUmpJu
- 1s2Pb1CAau2N8yN2eRlWx70sN0o8JbLj96W4EEa0GXi/bOJAoc/ExI5uK
- W6138nsdlYLcMWxbAEzxir5up6PnMAfo3etptdEkkZhC361K3N5vGjHGY
- 6wtq+i2MCq93TVROYrNlSK9mDC49XT8sDEVgWclp1MO2J77gt8//LOVk+
- +GlSCj+jpK3f0/pMprrUZRB3P2EJjro2Deb3+3QnQZ1t0tOKgkRQajqVU
- SYW7LgGjmIvFKH/DbqLYo+TbZ5kn/i6d37GSzlPN/eEcls7dLFWf0uY36 g==;
-X-CSE-ConnectionGUID: BnD41IyTRDGROIdQA8w4OA==
-X-CSE-MsgGUID: 7FGR7ZScSdaAas+YQ7rb1Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11148"; a="19989303"
-X-IronPort-AV: E=Sophos;i="6.09,247,1716274800"; d="scan'208";a="19989303"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2024 21:08:58 -0700
-X-CSE-ConnectionGUID: RIK72WKIR1qkYtwlIo2D2g==
-X-CSE-MsgGUID: IWAgTHqxQSWgDkWfl6Kpqg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,247,1716274800"; d="scan'208";a="59021647"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa003.jf.intel.com with ESMTP; 29 Jul 2024 21:08:56 -0700
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: 
-Cc: intel-gfx@lists.freedesktop.org, arun.r.murthy@intel.com,
- intel-xe@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
- jani.nikula@intel.com
-Subject: [PATCH v3] i915/display/dp: Compute AS SDP when vrr is also enabled
-Date: Tue, 30 Jul 2024 09:39:40 +0530
-Message-ID: <20240730040941.396862-1-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240726085012.277687-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20240726085012.277687-1-mitulkumar.ajitkumar.golani@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1873710E3DA;
+	Tue, 30 Jul 2024 04:14:35 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F115B10E107;
+ Tue, 30 Jul 2024 04:14:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_i915/display/dp=3A_C?=
+ =?utf-8?q?ompute_AS_SDP_when_vrr_is_also_enabled?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 30 Jul 2024 04:14:33 -0000
+Message-ID: <172231287398.426984.14359515531638167800@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240725133110.112401-1-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20240725133110.112401-1-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,41 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-AS SDP should be computed when VRR timing generator is also enabled.
-Correct the compute condition to compute params of Adaptive sync SDP
-when VRR timing genrator is enabled along with sink support indication.
+== Series Details ==
 
---v2:
-Modify if condition (Jani).
+Series: i915/display/dp: Compute AS SDP when vrr is also enabled
+URL   : https://patchwork.freedesktop.org/series/136650/
+State : success
 
-Fixes: b2013783c445 ("drm/i915/display: Cache adpative sync caps to use it later")
-Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 5d6568c8e186..86412ae7b48f 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2617,7 +2617,7 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
- 
--	if (!crtc_state->vrr.enable || intel_dp->as_sdp_supported)
-+	if (!crtc_state->vrr.enable || !intel_dp->as_sdp_supported)
- 		return;
- 
- 	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
--- 
-2.45.2
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: b6f9528c7fff drm-tip: 2024y-07m-29d-20h-37m-01s UTC integration manifest
+=== git am output follows ===
+Applying: i915/display/dp: Compute AS SDP when vrr is also enabled
+
 
