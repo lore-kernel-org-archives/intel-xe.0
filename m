@@ -4,72 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9D68C3DA7F
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Jul 2024 22:34:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB14CC3DA7F
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Jul 2024 22:35:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9155710E344;
-	Tue, 30 Jul 2024 22:34:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WQHXdtX7";
-	dkim-atps=neutral
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com
- [209.85.210.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 801EC10E344;
- Tue, 30 Jul 2024 22:34:10 +0000 (UTC)
-Received: by mail-pf1-f175.google.com with SMTP id
- d2e1a72fcca58-70d1cbbeeaeso3663024b3a.0; 
- Tue, 30 Jul 2024 15:34:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1722378850; x=1722983650; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
- :reply-to; bh=fGVgOlNgOT878PCHFDWA1bgAufTRCTw9AMRW+Zn7Z0E=;
- b=WQHXdtX76BT5jR0Sp4aaRwhVykwgPC0KhIuP25krwlbqRIwbj4iylfykWzTvRUjOvZ
- +vlvUbs2P4nXz6slPAJdSnP22IDu8kWFye/NUQ51K2yPVF3fSZ55Bvfb8ZayChxOFvSh
- 6VvI+28YQcM5MX0xf3m7VQEKszPmemTfqBvfYSAzPoCJzosVlctJL9MF68osmDFORSom
- XMMM0KRCFhmKTOg46rw6AO+yG4qkZwUq/RjfwvHQtmE7K5Wl0+Tl1v0zlpt4HWQcqdpO
- hgPj2Y4M/J8HWM/vU7QsORAJkg8CV1o4l84iw90+4tjQg8T3lrwEuZVqXvQAB6oKTcve
- GVew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1722378850; x=1722983650;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=fGVgOlNgOT878PCHFDWA1bgAufTRCTw9AMRW+Zn7Z0E=;
- b=w8HuVqsZCFmIB6r9BwRACqjKtyqEM7DqOG/5lXqovVyZagz+2Eerau+b53NO0xoR7w
- GL6jEb91j3TR9mUraKwfdQ5MdVrMNv6T7Dnvefd+mJIZzg1dcY9y5JDlTb+2kk/9hWjC
- f77C/ducwCk2VcdhDdW2fF7nJtU2V5UJQjBmCr9pW9TlEoFk7H1ZbxyxM/S7AeEYcf9N
- dUMjxOo2mFG5JiKVIPQkpCWFiUrHoTN+Ai7tP4Re4E7pFdyzlgeJwAKr2Ny8BFmGhLs/
- p4ATC/cqk3srGEFXCnnCHwN/2jWBgiOwaZpO6rc75XKzcVXMx0ocej2Z0oAnyo/fe7K5
- KgqA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXOkgaFMH69P/rnZbDNRYA6kIB1L9LLTr0Db2UCSF+RImje0ZHtzVKw+OIxGmgc/tbWqJtFoi7HX0oqmgTk+i6nWQkgTWXoKZlXxoKLIn3G
-X-Gm-Message-State: AOJu0YxNL8fIWSYpD30Ci4bBqMH+nDngyS33q8cJw/V0fUwMjtd3ZEgK
- EekW+PnPsxe4UFovJy8zKelXOJgqfOKOKLa6Maa9H8I86cEqdJougTIcaQ==
-X-Google-Smtp-Source: AGHT+IHLMghuz0GXRqifWQUr2fqTNJGM+/BW5td2jxBxhYkXrbaXvteLwK2lMQMAN2FE+UH0wfVdxw==
-X-Received: by 2002:a05:6a00:1389:b0:70d:3337:7820 with SMTP id
- d2e1a72fcca58-70ecea0e6e0mr12366446b3a.8.1722378849828; 
- Tue, 30 Jul 2024 15:34:09 -0700 (PDT)
-Received: from localhost (dhcp-141-239-149-160.hawaiiantel.net.
- [141.239.149.160]) by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-70ead8a39d8sm8934759b3a.213.2024.07.30.15.34.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Jul 2024 15:34:09 -0700 (PDT)
-Date: Tue, 30 Jul 2024 12:34:08 -1000
-From: Tejun Heo <tj@kernel.org>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, jiangshanlai@gmail.com,
- christian.koenig@amd.com, ltuikov89@gmail.com, daniel@ffwll.ch
-Subject: Re: [RFC PATCH 1/3] workqueue: Add interface for user-defined
- workqueue lockdep map
-Message-ID: <ZqlqYLZWCiLKhVJf@slm.duckdns.org>
-References: <20240730221742.2248527-1-matthew.brost@intel.com>
- <20240730221742.2248527-2-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABC9010E59D;
+	Tue, 30 Jul 2024 22:35:19 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA98510E344;
+ Tue, 30 Jul 2024 22:35:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240730221742.2248527-2-matthew.brost@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Use_user-defined_workqueue_loc?=
+ =?utf-8?q?kdep_map_for_drm_sched?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 30 Jul 2024 22:35:18 -0000
+Message-ID: <172237891876.465798.16304310440319286039@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240730221742.2248527-1-matthew.brost@intel.com>
+In-Reply-To: <20240730221742.2248527-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,35 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hello, Matthew.
+== Series Details ==
 
-On Tue, Jul 30, 2024 at 03:17:40PM -0700, Matthew Brost wrote:
-> +/**
-> + * wq_init_user_lockdep_map - init user lockdep map for workqueue
-> + * @wq: workqueue to init lockdep map for
-> + * @lockdep_map: lockdep map to use for workqueue
-> + *
-> + * Initialize workqueue with a user defined lockdep map. WQ_USER_OWNED_LOCKDEP
-> + * must be set for workqueue.
-> + */
-> +void wq_init_user_lockdep_map(struct workqueue_struct *wq,
-> +			      struct lockdep_map *lockdep_map)
-> +{
-> +	if (WARN_ON_ONCE(!(wq->flags & WQ_USER_OWNED_LOCKDEP)))
-> +		return;
-> +
-> +	wq->lockdep_map = lockdep_map;
-> +}
-> +EXPORT_SYMBOL_GPL(wq_init_user_lockdep_map);
+Series: Use user-defined workqueue lockdep map for drm sched
+URL   : https://patchwork.freedesktop.org/series/136701/
+State : success
 
-Would it be possible to make it a one-piece interface - ie. add
-alloc_workqueue_lockdep_map() which takes an external lockdep map rather
-than splitting it over two calls?
+== Summary ==
 
-Thanks.
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/seq/
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/snd.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soundcore.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/common/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/amd/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/codecs/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/hda/
+lib/modules/6.11.0-rc1-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/hda/ext/
+lib/modules/6.11.0-rc1-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/kernel/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/events/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/events/intel/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/kvm/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/
+lib/modules/6.11.0-rc1-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/cmac.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/ccm.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/cryptd.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/async_tx/
+lib/modules/6.11.0-rc1-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.11.0-rc1-xe/build
+lib/modules/6.11.0-rc1-xe/modules.alias.bin
+lib/modules/6.11.0-rc1-xe/modules.builtin
+lib/modules/6.11.0-rc1-xe/modules.softdep
+lib/modules/6.11.0-rc1-xe/modules.alias
+lib/modules/6.11.0-rc1-xe/modules.order
+lib/modules/6.11.0-rc1-xe/modules.symbols
+lib/modules/6.11.0-rc1-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1722378906:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1722378906:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
--- 
-tejun
+
