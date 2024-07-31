@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BB5FC3DA7F
-	for <intel-xe@archiver.kernel.org>; Wed, 31 Jul 2024 18:14:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61762C3DA7F
+	for <intel-xe@archiver.kernel.org>; Wed, 31 Jul 2024 19:47:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A18910E6AD;
-	Wed, 31 Jul 2024 18:14:44 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 905E710E6AD;
- Wed, 31 Jul 2024 18:14:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1191984848457204699=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18A7710E683;
+	Wed, 31 Jul 2024 19:47:29 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FIkys+cd";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B0FA10E683
+ for <intel-xe@lists.freedesktop.org>; Wed, 31 Jul 2024 19:47:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1722455248; x=1753991248;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Q8/9Ws/tYMYYLz+Fg5cF6qwtXp24Z+B7uTiv7aSyDBk=;
+ b=FIkys+cd/Nb9el6pWZKp5WGmGVTptw4wgbiFFQVTnkcISnT7Cbc/aN1g
+ FlKUFrxsD7A6OUJPpAN7BHJOl6ytTduRGPvdWK/4sz2LQRv3C0+Zf+ZeF
+ yAkUpkt5WL9erM/Crnf9DAJyYh4uRAmeKyN70txiE/28O0Sqq3479uKRP
+ hfwUER9xpoyYjmP35gghRDVNmUOoJ5AAi5PSK/OetpW6mwfpnOdLuenlQ
+ rCM//so6HFuebNNl5h9q1SvWn4vOvg4zJtaJQN+RCjfdLF1aZO42wa6CK
+ wngwEJDn3RvuQtlEJDntoeXnqtFdqBDdxANKnwrVAMlmbdZZ+zMj7x7YI g==;
+X-CSE-ConnectionGUID: 6ZQrwdPFSH+iFywrPt7Qhg==
+X-CSE-MsgGUID: uq7dByYOT3mPh085gQwNTw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11150"; a="45776917"
+X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; d="scan'208";a="45776917"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2024 12:47:28 -0700
+X-CSE-ConnectionGUID: CUrVCqdVRL6SW09evJmZcw==
+X-CSE-MsgGUID: SxNxAXgHQmm3YRz156tAGQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; d="scan'208";a="59622925"
+Received: from pallavim-desk.iind.intel.com ([10.145.162.180])
+ by orviesa003.jf.intel.com with ESMTP; 31 Jul 2024 12:47:25 -0700
+From: Pallavi Mishra <pallavi.mishra@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com, carl.zhang@intel.com, jose.souza@intel.com,
+ Pallavi Mishra <pallavi.mishra@intel.com>
+Subject: [Intel-xe] [PATCH v6] drm/xe/xe2: Enable Priority Mem Read
+Date: Thu,  1 Aug 2024 01:26:22 +0530
+Message-Id: <20240731195622.1868401-1-pallavi.mishra@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/i915=3A_struct_intel=5Fdispl?=
- =?utf-8?q?ay_conversions?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 31 Jul 2024 18:14:42 -0000
-Message-ID: <172244968258.468961.14273750234731545274@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <cover.1722444150.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1722444150.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +62,72 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1191984848457204699==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Enable feature to allow memory reads to take a priority memory path.
+This will reduce latency on the read path, but may introduce read after
+write (RAW) hazards as read and writes will no longer be ordered.
 
-== Series Details ==
+To avoid RAW hazards, SW can use the MI_MEM_FENCE command or any other
+MI command that generates non posted memory writes.  This will ensure
+data is coherent in memory prior to execution of commands which read
+data from memory. RCS,BCS and CCS support this feature.
 
-Series: drm/i915: struct intel_display conversions
-URL   : https://patchwork.freedesktop.org/series/136757/
-State : success
+No pattern identified in KMD that could lead to a hazard.
 
-== Summary ==
+v2: Modify commit message, enable priority mem read feature for media,
+modify version range, modify bspec detail (Matt Roper)
 
-CI Bug Log - changes from xe-1697-91efc68883cbff0e7e453d1828c8e84d9959c458_BAT -> xe-pw-136757v1_BAT
-====================================================
+v3: Rebase, fix cramped line-wrapping (jcavitt)
 
-Summary
--------
+v4: Rebase
 
-  **SUCCESS**
+v5: Media does not support Priority Mem Read. Modify commit
+to reflect the same.
 
-  No regressions found.
+v6: Rebase
 
-  
+Bspec: 60298, 60237, 60187, 60188
 
-Participating hosts (7 -> 7)
-------------------------------
+Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Acked-by: José Roberto de Souza <jose.souza@intel.com>
+Acked-by: Carl Zhang <carl.zhang@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h | 1 +
+ drivers/gpu/drm/xe/xe_hw_engine.c        | 6 ++++++
+ 2 files changed, 7 insertions(+)
 
-  No changes in participating hosts
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index c38db2a74614..81b71903675e 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -104,6 +104,7 @@
+ #define CSFE_CHICKEN1(base)			XE_REG((base) + 0xd4, XE_REG_OPTION_MASKED)
+ #define   GHWSP_CSB_REPORT_DIS			REG_BIT(15)
+ #define   PPHWSP_CSB_AND_TIMESTAMP_REPORT_DIS	REG_BIT(14)
++#define   CS_PRIORITY_MEM_READ			REG_BIT(7)
+ 
+ #define FF_SLICE_CS_CHICKEN1(base)		XE_REG((base) + 0xe0, XE_REG_OPTION_MASKED)
+ #define   FFSC_PERCTX_PREEMPT_CTRL		REG_BIT(14)
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 00ace5fcc284..403eb1d2d20a 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -428,6 +428,12 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
+ 					   0xA,
+ 					   XE_RTP_ACTION_FLAG(ENGINE_BASE)))
+ 		},
++		/* Enable Priority Mem Read */
++		{ XE_RTP_NAME("Priority_Mem_Read"),
++		  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED)),
++		  XE_RTP_ACTIONS(SET(CSFE_CHICKEN1(0), CS_PRIORITY_MEM_READ,
++				     XE_RTP_ACTION_FLAG(ENGINE_BASE)))
++		},
+ 		{}
+ 	};
+ 
+-- 
+2.25.1
 
-Known issues
-------------
-
-  Here are the changes found in xe-pw-136757v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_gt_freq@freq_basic_api:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#2196])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1697-91efc68883cbff0e7e453d1828c8e84d9959c458/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136757v1/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html
-
-  
-  [Intel XE#2196]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2196
-
-
-Build changes
--------------
-
-  * Linux: xe-1697-91efc68883cbff0e7e453d1828c8e84d9959c458 -> xe-pw-136757v1
-
-  IGT_7947: 6b46cef93ce2c2f821bfcaa3c3a111e1cf5c76fc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1697-91efc68883cbff0e7e453d1828c8e84d9959c458: 91efc68883cbff0e7e453d1828c8e84d9959c458
-  xe-pw-136757v1: 136757v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136757v1/index.html
-
---===============1191984848457204699==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: struct intel_display conversions</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136757/">https://patchwork.freedesktop.org/series/136757/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136757v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136757v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1697-91efc68883cbff0e7e453d1828c8e84d9959c458_BAT -&gt; xe-pw-136757v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-136757v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_gt_freq@freq_basic_api:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1697-91efc68883cbff0e7e453d1828c8e84d9959c458/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136757v1/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2196">Intel XE#2196</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-1697-91efc68883cbff0e7e453d1828c8e84d9959c458 -&gt; xe-pw-136757v1</li>
-</ul>
-<p>IGT_7947: 6b46cef93ce2c2f821bfcaa3c3a111e1cf5c76fc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1697-91efc68883cbff0e7e453d1828c8e84d9959c458: 91efc68883cbff0e7e453d1828c8e84d9959c458<br />
-  xe-pw-136757v1: 136757v1</p>
-
-</body>
-</html>
-
---===============1191984848457204699==--
