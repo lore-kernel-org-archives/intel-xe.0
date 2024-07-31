@@ -4,175 +4,169 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D531C3DA7F
-	for <intel-xe@archiver.kernel.org>; Wed, 31 Jul 2024 01:19:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BC84C3DA7F
+	for <intel-xe@archiver.kernel.org>; Wed, 31 Jul 2024 01:26:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8CD210E050;
-	Wed, 31 Jul 2024 01:19:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 329CE10E353;
+	Wed, 31 Jul 2024 01:26:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OdY5qSQh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="agzYwtae";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6232210E050
- for <intel-xe@lists.freedesktop.org>; Wed, 31 Jul 2024 01:19:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B36410E050
+ for <intel-xe@lists.freedesktop.org>; Wed, 31 Jul 2024 01:26:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722388794; x=1753924794;
+ t=1722389198; x=1753925198;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=WvrT+T2+tMSuUPweDnIRa18Wh9DxM38ou60MxefSzYg=;
- b=OdY5qSQhwmAdYh1sYtW8X9chjZRWSrUKaMRo3bAzuyI9t/U+HNTObZe0
- 2haTEgJSqXtfzUBCdLXN4kMl4dXyOetliigMvtKWQX1JWRptjFy2owAP9
- OmY8nDEB2keQ3NZxGUkTD+OfE0Xd+5XTeyx5NkR8oHsQCDAROmIT6WPmx
- mnZGJ3f36x4vwqoZmjuVGoGKwjucNb2UHiqs+bLx7B0t+krv/E05XkJd1
- P3LqYTZLjz6+E7gduFw153MXlh5GGKOHJpgQA6WaJqRyZDNZ5xlUYIztY
- p2iaMfxBJaiLgu9yRabJG7osel+9VU7f03HOSA1L4hFP+fsCxTd+hEOWe w==;
-X-CSE-ConnectionGUID: kYcNkCR6QxmlYy0LDb0wfQ==
-X-CSE-MsgGUID: v68mXmK5SdaZ1jTIHgpgPQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11149"; a="31633231"
-X-IronPort-AV: E=Sophos;i="6.09,250,1716274800"; d="scan'208";a="31633231"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2024 18:19:53 -0700
-X-CSE-ConnectionGUID: aGpPHvcJQ+u2BLBoI3A98Q==
-X-CSE-MsgGUID: tKlSf3pKQbOnmr9uCelDiQ==
+ bh=SGopbpvIbr9hkMMDKr8N2VNfi3m7jV/uEDhumJIUl+I=;
+ b=agzYwtaeYQzG9B/Y0y8Gf/j23W5Dbyk9tBVjJ9qsaqgCLUCaHrZy3BU0
+ 9PP4h+SFbwir3IHQN5vStqqs4Lnl2Sjjx+Rot1Nd4ZjF9pvN3AuljRbUh
+ W5wxSfs1PZRV5V7hGLPen4FyTeCralCyZiaVqO7MhtU8tsSX4x8FUVWNw
+ Cj6QJqIssstnUOHBi1hZt8ywTRfjbCSchI27JRnOTFzbKmnVkYQ0JyenE
+ wpy0QRCZYgUYGZy+WNbyfg0P2TacTUgKqXRYKuUf6yEZQDNLd8F8gvjmQ
+ JYV7sGrcmFrKerL+4i1Vt9I28rhxWRvXj1gtvOgqoyUV9fvOlpS3UYqXG A==;
+X-CSE-ConnectionGUID: Zkgp1UZ5TpCY5JP4T/6f0g==
+X-CSE-MsgGUID: eNLU8a2cRTyXxvm1T3EmvQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11149"; a="24108840"
+X-IronPort-AV: E=Sophos;i="6.09,250,1716274800"; d="scan'208";a="24108840"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2024 18:26:37 -0700
+X-CSE-ConnectionGUID: ZAACittHSOO/r4te7sNnpA==
+X-CSE-MsgGUID: oDP11DK8RvGtZ2wix3emxA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,250,1716274800"; d="scan'208";a="58652594"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 30 Jul 2024 18:19:52 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 30 Jul 2024 18:19:51 -0700
+X-IronPort-AV: E=Sophos;i="6.09,250,1716274800"; d="scan'208";a="54517904"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 30 Jul 2024 18:26:37 -0700
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 30 Jul 2024 18:19:51 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ 15.1.2507.39; Tue, 30 Jul 2024 18:26:37 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 30 Jul 2024 18:19:51 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.40) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Tue, 30 Jul 2024 18:26:37 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.40) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 30 Jul 2024 18:19:51 -0700
+ 15.1.2507.39; Tue, 30 Jul 2024 18:26:36 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qGZjeURjEOF1/qEJbxveqbKWOzOfkX1AAsmyZxMVJFha8+k28HRY0+5mlZkEfebQo1w1J56iU4DYL9optMZdWhok6PnMgQpLkxhCM6+wwJwo4m1AQqwVpj/wRZaqoJw7OxAL5tFdtFch4M9Fh29f7cUqawGv3AlcQcszgb0XxnulJTlhkKdToQce6Wi08E9T7iQUgrakBHSgV2Pm2zeJ1DhYM6CUG8Zl0cPl7JySnV5exNe6OmuPYhqugZHz28dWz/KF5rruIPfr1rzxtdlWK66kyx1AlE40XKvAgODdJuqyYph/eMd+yGvC93ISl5RJXxnzTAuy8KeuMswe4LY/xw==
+ b=RkWX4omGrkntDFWHHg9cgebLdyEVyX0BDl6f7rprOXzWHRrD8DYh+23mxINafUafD8DcErmA1k1X4xrv23mA7IZUc8Y2PbIDVSZWvij48OspsYaosUQw0Ns7X5QFztZPDbi1p3ex+x8JrzSOWIb88lswlF3VTEHor6T4AGySMOesHhjorb0vpsykE9WiW0vXeIfDh84mL4ei0Vz0YDqFCP2vtKTh0TCdAtJISY6wCMvYJ+JsxnzSfGP2xMYTE0eL3aguvWgfd/hfelPia666wpbEFux/NfzrorivyUbYVwEPvnURii4uIRGx6FnxR1N+GdW4wXsTaHCR55Bye20TDA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HuIN4j8QzbKkM5woSnJbN9JNkRfWZCNU5xtg9RUzDDQ=;
- b=gviehpDILu9S0dojt7F2SucUpygxvDTHbAQjncnYOqo7iBsQ8IaOQOO+Bja1AfcR5bec12xvWIqRP+ShRYj3/7JIMOisew9FMC91iCJZEci/A9kEG2bKp3Ghy8FsNUuILoDOR310XKzeaGSxO1418kykMo/Ane1pP8k/NlMyroQOaVGnqQzp+FJQCxpZJE3dM6V6bIv3U7B030ORVGqd42l2ti2WPZSofqJm9RedO2rU4SEew0OHyN3a794uyvEtFnCEF8kxF3okbHrHQViSzKF8RX/HO8dB50hM/qXTbnfi2nztFvJRr+C/PnCOzX9Gmqtj8QN87d4AEwbbX3nNGQ==
+ bh=YAXuReeXm2sZr/fPiHKbqUjvbPJ0wimEsgQCuMa5MFQ=;
+ b=CkyO/o9s3liZi2yE2o47bCqTkniL0gDrywDv9SYCBQwcARCqzWCJgLHPVZOd3wfe324zHin7Y7gESpwnPzjhxQRSxUsDgTPa5mQKKO7hkr8DJVuL1DRcJrJM/8/m3xXkoUCfiN8eQx/sQoJMxGixLEHTe17EjYkBbsBhsKOHnkY+LKBRNa7rBTUU+h5LiM/hBij/A7405Gdvjl9O0mSYmjX9E8MVDBGc0v6m/ipPlasKJZKtYwSoyBU0+eEqKAypxC3exxfJcfAhWGD7F0HTmoFS0+KDtM5TlYx9FipicXG7IC3W9zHztqENIyiYS8/MfkiiZD4XjZTcfK4bEAwBYw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by PH0PR11MB4950.namprd11.prod.outlook.com (2603:10b6:510:33::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.21; Wed, 31 Jul
- 2024 01:19:49 +0000
+ by DS0PR11MB6447.namprd11.prod.outlook.com (2603:10b6:8:c4::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.28; Wed, 31 Jul
+ 2024 01:26:34 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.7807.026; Wed, 31 Jul 2024
- 01:19:48 +0000
-Date: Wed, 31 Jul 2024 01:18:56 +0000
+ 01:26:34 +0000
+Date: Wed, 31 Jul 2024 01:25:42 +0000
 From: Matthew Brost <matthew.brost@intel.com>
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Dominik Grzegorzek
- <dominik.grzegorzek@intel.com>, Andi Shyti <andi.shyti@linux.intel.com>, Matt
- Roper <matthew.d.roper@intel.com>, Maciej Patelczyk
- <maciej.patelczyk@intel.com>
-Subject: Re: [PATCH 03/21] drm/xe/eudebug: Introduce eudebug support
-Message-ID: <ZqmRACb+bucnaLCx@DUT025-TGLU.fm.intel.com>
+To: "Grzegorzek, Dominik" <dominik.grzegorzek@intel.com>
+CC: "mika.kuoppala@linux.intel.com" <mika.kuoppala@linux.intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Patelczyk, Maciej" <maciej.patelczyk@intel.com>, "Manszewski, Christoph"
+ <christoph.manszewski@intel.com>
+Subject: Re: [PATCH 10/21] drm/xe/eudebug: Introduce per device attention
+ scan worker
+Message-ID: <ZqmSlkynYYMP02wb@DUT025-TGLU.fm.intel.com>
 References: <20240726140818.54304-1-mika.kuoppala@linux.intel.com>
- <20240726140818.54304-4-mika.kuoppala@linux.intel.com>
- <ZqP24ijtGBw2Gud2@DUT025-TGLU.fm.intel.com>
- <87mslzt1d1.fsf@mkuoppal-desk>
+ <20240726140818.54304-11-mika.kuoppala@linux.intel.com>
+ <ZqSAsu1LYQkD/+TC@DUT025-TGLU.fm.intel.com>
+ <943d772d71757ded944509ef111debf197c3ad22.camel@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87mslzt1d1.fsf@mkuoppal-desk>
-X-ClientProxiedBy: BYAPR02CA0011.namprd02.prod.outlook.com
- (2603:10b6:a02:ee::24) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <943d772d71757ded944509ef111debf197c3ad22.camel@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0009.namprd03.prod.outlook.com
+ (2603:10b6:a03:33a::14) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH0PR11MB4950:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9a888061-1ab6-43b0-cd2f-08dcb0fedee9
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DS0PR11MB6447:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9c5ef325-74da-48d1-d6a3-08dcb0ffd08e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?tLrMXwTWIXLZDEizT5LRVOitQQbqC4DdqK882v/FCf5GZEbLjFJ3n5JuBm?=
- =?iso-8859-1?Q?WIrrgCyPlKNd0RfJkn2/JZ7JbL/f6yBNHj8K5yh6gLOvyFc8gez4CIAQqp?=
- =?iso-8859-1?Q?Of0DdTIXHsocI4B62jUeaq1ffKzgdWC6dDYW0rhvfUXkdMmb23eNe9tZzu?=
- =?iso-8859-1?Q?62s195jDPzGgO6LVnaQN+IP/+hUdsIr+bOz2Qg3dtXZaosbnwxrFFq3j4P?=
- =?iso-8859-1?Q?UWqlFasXPb8cuMa4rodT0bXtdVAkIwHRU9Eb0kYL5ukYpmFS1KDcvyddIF?=
- =?iso-8859-1?Q?UOws6oKrK6a90PTRnhcG6Xq63OSOyF9Ez+d8Ei104gCai9bxssyIL2oI3E?=
- =?iso-8859-1?Q?K9WKu1Q5rqzLrE6OXW3FnSinsb0j8OlWw2O+mnVJGJeKwFpKZWBTQrr9lS?=
- =?iso-8859-1?Q?SEYCzhpCfTBmz1sc8QjYEKvaHpymtx1eI3VJzXW8Hrf45lZZiUSl6upxoN?=
- =?iso-8859-1?Q?pFdG2eA9NGxmln/fAeK5UOzwkP4LdtNPSVj/eFpeFiiaxEgMK/JB/3oCFJ?=
- =?iso-8859-1?Q?7j/6ce6/FGnvzDsf/WJ4Vs00NnUL1mf4cm7BO+DFApOPsQQ15KML9Z34lr?=
- =?iso-8859-1?Q?cD4760Gafq+X9DmEwDEf9SPpiv9Q7NpvZMhVPBuBM2vd1kn2vBUdoMdyKK?=
- =?iso-8859-1?Q?eyhTaMDQDeZ4VUhIZ0rUiTMGw2vaj4SShXKUMQFuRP2O668NXUutja5CUA?=
- =?iso-8859-1?Q?hZl/8HJCVTxrAD1bgjJtNnge1STVxMWDUKNfNuhTDwIkQLksBr52875A1X?=
- =?iso-8859-1?Q?afIbbjjWvtFTVN/slk1pvMRhI+EQET421E6j2X+RNKy8toh4AvTSzemZI3?=
- =?iso-8859-1?Q?rfBULb7lCqL5Vm/dqnVsRBDtV3P9+a04KDtwUu3z4tOLQvPMV/dObo8yBb?=
- =?iso-8859-1?Q?sHP5wZ8Sx3UlknJPXXpZL5VdLHeaZxEwAUfZ+EdjDUtswEfEeRPK58rpQF?=
- =?iso-8859-1?Q?5hx3+SAAdT8nZNrEr9u3G1wjmCaIj9EvyEJ+Rz2m1UaiDz11xlfaNlJ+QE?=
- =?iso-8859-1?Q?DruYaxt7Wgv4qIv7jEHVz0UyenmQvcgJIl9QWqMhUgMSjZS6VPKBVsRI8y?=
- =?iso-8859-1?Q?tGvfCwL0YTaw/3BYlXn99P4yi5x746S1clPsWYFmue9clmkqmSyOra4iMZ?=
- =?iso-8859-1?Q?ayGEvd3/ceEX9hmWXuz4TN1dmK7Ig7MXE55iDbibHU2scXaWsQzyVVO9TG?=
- =?iso-8859-1?Q?s3rOqG2yy/Nfcw3CZp5wBmQqHLw+5c74JmGEvYJSAVoyFcTNVEYA6lRtGa?=
- =?iso-8859-1?Q?HqjtkZSjfGoCNI507rAkb3tzW7GI5wzYX3BrY6nj5G9l61bKfsPNtYPSeb?=
- =?iso-8859-1?Q?kgjlSRn8ZVNmm6ZzvOWcyCzIo6U3eP7XvvWUPqAWxCukscUjrHDqaAiItT?=
- =?iso-8859-1?Q?XnWmxr3gGdQ0sD3deTleRZ4llFmwvX0g=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?M1JotaEOGXM64+SE9MhpdxOMODI1L/OmK18cKziZAR2H/HNbYlKcLpfiKJ?=
+ =?iso-8859-1?Q?HZBCriPAb5/lxwbhIZKLesfewonUTcmBe7GVomsTna+dyfcfRWnRL8TJcB?=
+ =?iso-8859-1?Q?5OtnTwwnK85D0uu0auZL5Rjm0wgXdrV9XaA3nilAxAoE7wlTcSMPYeZaj7?=
+ =?iso-8859-1?Q?1R7spQMIakU9G+MCkoglrpyifXGynt5dIE3oM0U1ioLg1bTN4Zj84xCrRH?=
+ =?iso-8859-1?Q?3r42X9G0S63dho+Nc+e/3ffZDLWuOdbUCgC9ns7TR0kBZGFr9QBgCSIevA?=
+ =?iso-8859-1?Q?N8QgPZSnFKyJBOcf2c+jYPdf7WzCqSDjbiLAKbe6pZwz0Q/+PJkw3uLKJs?=
+ =?iso-8859-1?Q?uyI4B9//T9bAjUUjpDUNPYrDTKla1PQCjVy/Sm0DbzxHfBOOxZxe/pTbwf?=
+ =?iso-8859-1?Q?+GBCP/amkJTY+Iv2VNXEx5abSAR0ynB+XmDtJNt35/hKSiKGOH+Wct/qGc?=
+ =?iso-8859-1?Q?ZP9Jw+kTdXVvqs/iNyV4gr6A+5acCfHLMamkEzBqZN1xUOnEEnJA1V1ITZ?=
+ =?iso-8859-1?Q?0Btyi/nYMU5JGzOJO0A/8pzDqeyK0cVd8Zkl3h4I385sa24p0DAiF3jCmt?=
+ =?iso-8859-1?Q?oxJA2RrizLFVStl4zz72t2H8lw9iUF1DeQEpLvV4aAD3b3iU5AAtaucLh2?=
+ =?iso-8859-1?Q?EmQ+dUqNMDxkKG4ZK23/3qOCBkfURRNj33p6P0eLutnnPxD6FLrXiOMqNs?=
+ =?iso-8859-1?Q?2BVCA34OKCXBzFUXo8RFQzmhJyayvi0z6CSV4FRoESn2ZZ6kl8xe5nl8ZV?=
+ =?iso-8859-1?Q?ySRb8r75l5FtIzP6fSKd/Bh5tack9jhoKGFRTPXfI9Xx1JWhihPRi9OZLQ?=
+ =?iso-8859-1?Q?xY0nGjHnConosCqLJsGDqMWJ1cDix5YYFuVyUAWS/P6VPA4+b63J//pFW6?=
+ =?iso-8859-1?Q?y6UGTPr2wq48ua0wFGup3knboxFdc7MkX0x6FdzV6bo4hDN+wqXMI0XVv/?=
+ =?iso-8859-1?Q?eozJlyaNaUymb+A4mxhs5Ca6jhJj3Pg0x06j+THW5/2Fe6tfvJV9wVu9wV?=
+ =?iso-8859-1?Q?B1LV4Z0ecOIuJG87zznAaE0wohCUKYFobM7qbBQnapKaqEe36tHiQWLPnN?=
+ =?iso-8859-1?Q?LNclz89kcXLp0xD1nuUlaaPSIEYQmpt9iIJMCLXguvHTKT2hbJrVAUVPrJ?=
+ =?iso-8859-1?Q?RbaOfbYWHojPSPV2namrx2ix7YD4fwjpfhgd7az7kk20SFLZzdeD0u8tjA?=
+ =?iso-8859-1?Q?Cn3zLFiZIWal7/ERMDHpGDDhm0K1UGkdm+mFP7GQ8ctab1ik4cerblB0Vx?=
+ =?iso-8859-1?Q?gmSsiILt6Vyd2Kc3GwSe263objS8V0/a4VNkelmQmVTgkDAknH2BHiUSnj?=
+ =?iso-8859-1?Q?REH9pX6SxTT3JwgND2cbeErCzdfqUhVG+tZEHjtwjc3sbHA=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?3uj86RbJSO6ApghwoiHbIRfzIET3r/Hpc+J1mWFghI9t9V4PNaHRbi4tvX?=
- =?iso-8859-1?Q?GJg+/NcrnlQYK0Sz9pBOkPIeeqI6inIZCA/mSmGdmVeqKA7ubVPOHk3q2w?=
- =?iso-8859-1?Q?x1aLXsukY5eNrPozvNd5Z6M5tiG6/zFOIBM8EL+ThE3iaR4nG+vg9rrJcU?=
- =?iso-8859-1?Q?2kW3nYPV935Qk0lRRWQzIMyFfAVB2+zKfanEG7XfercryKUuD558Ipaahp?=
- =?iso-8859-1?Q?Lmn4iwZ43tHapXPV6w2SqjRlKzQBBeczpO27U6P3PF6e5hXMRRdXpCxvBN?=
- =?iso-8859-1?Q?IgpsCmk9c3KUoXEXAIL0bxvOyMZRQq1ZcveSejFkVQKJVD8XsvmtL9TEvJ?=
- =?iso-8859-1?Q?4J1W/9zVsJ4n5rA6vbaZp5gmfX7WJmEy3L4vMQGgd8GCfAAakz+hi/LWqJ?=
- =?iso-8859-1?Q?ClGK1EpkAMTzdTnseqx+Rth24V3Ylkddv4NqVN7kJzRWlBrDItml1FcgPD?=
- =?iso-8859-1?Q?S1sh+ZZ6cFNjTHzrMUFhBx/pdACc8TmazwD/ytkdmzFC0y6WUT9+M84NGq?=
- =?iso-8859-1?Q?sI0Tnbr5yKHhGZwU/R1ygPvYzPJ7L1F4/QXtHxvzuqHFI/J4sToTa46KQ7?=
- =?iso-8859-1?Q?Fri15Z5nwArGbgb01sn8DTqieU3uhnG8mYFO7GvR/IxSpzlHGfFIC6sXKJ?=
- =?iso-8859-1?Q?76obnezfiWTb4i8sDLUpN0Xg/ZLPaXCrsc1ENJUdlrTINByQ2G5lFg83YE?=
- =?iso-8859-1?Q?jGco6Kqc1M1wBUuOs1UIhYGfsqH91if0FsYleV0R2Gth97xT2IcSguvUF3?=
- =?iso-8859-1?Q?awIMmvQJlxW/jAl5VtpYQJstW6Ys43dYpG84JYflhC8mle+/fMeNl1ejdW?=
- =?iso-8859-1?Q?zse7MX7w15+dj3nmf2H2BT++3sn4uAwKlwsupY1JytW30fC05JYwmllsi1?=
- =?iso-8859-1?Q?XKGuaRvJguSwv7eVl2ZC3LBjl4RUs/NGVZ+a22WDZ5Q9DIornLECBhujZ9?=
- =?iso-8859-1?Q?cHWuJrHDnfJDs2iaxibMpk1dZMiEo23yXDz3qpJ4YP0oBodASPkCnZJRK3?=
- =?iso-8859-1?Q?JTBvAl9hLL+XqJPL2cDNIxd+l+aZ0gK6ia46dQ3HJXGurXDKv0aA76VM5f?=
- =?iso-8859-1?Q?d3CS4ALE0H42LhpmljjgY1hmFTK+64Yze+RJW0HMuul+qxxRVc6GHnU7iZ?=
- =?iso-8859-1?Q?XyUfN1zg5fP0mOxwIF4iP3tIyURg7KWuytgUhKNp1bHX3+PYrpMQoPpuyt?=
- =?iso-8859-1?Q?NTIc8UCAmAYVnn90tZjfF0uBeZWvOdVOEFcGTI2Hwsj0C8F02wLo7siXgB?=
- =?iso-8859-1?Q?LjzPGswdavNFhPFX4s8Ra02tt/o9nCPI/aqS8Zy/IXLo77d9zXgczsR5Ct?=
- =?iso-8859-1?Q?ruRO1DLy4GAvs7UWvb+6N0Tr1feiI9E8NqdpyIvbtWVafwmV6U7daSPqNt?=
- =?iso-8859-1?Q?erMFKEsnLcmtKSfhqw4Rzd2iPKOQnFXYMo/a2yVQHJCycbM27tETE10cX3?=
- =?iso-8859-1?Q?31cdlIkWFCdx7ocW3GcBxJcSPD0xyDjrArRPdqVlnL3wk+6uSpBHz8eTZ3?=
- =?iso-8859-1?Q?oQdVxjE4Z2n8uNGz7Cz5iwR5RKaDmjCOE9pDS3GGGUKYMjgCGafuGE42qD?=
- =?iso-8859-1?Q?3p0DeA9bdMIzHy2mIgCtkqRPh3OtOX3flxugqAV5SUE6gwyvc93qVjc6jJ?=
- =?iso-8859-1?Q?1xTFqaC8ZIUI7NLs59RRmhRKmjEMd84OzgidDo53NnaNfe16FnefUh2w?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?ZE5wEUaSnE5P5F668pRjkH7/ouf3r6JW0NsJcXRPrTnP50bvbm/GO/KT6l?=
+ =?iso-8859-1?Q?/vwos1Em+RT6XCi46zSQMbfxZpztNX0JxGi0+GPBakzER4cENPynPhQTbS?=
+ =?iso-8859-1?Q?QM9GwkJIlAOzgs3TvCRDPoftNVIiJaHavhCnQf76TlJ0E1VfaZMmMyhmHX?=
+ =?iso-8859-1?Q?KNZ7MX49nsK4qk+J/W3yUr+yOjpguzqH34EeGFGyVc4IvTv8oxw4koVDAF?=
+ =?iso-8859-1?Q?S02e8SJ1TCAyJXQE+KKMuCWMnDQWd2MkBo1bXeAwklfGqRlE8gGYoReYDW?=
+ =?iso-8859-1?Q?KlOicSSXJ2OzShHmy4j4C75RcgQ73gvdA4oOvCD2lY/Ud3SxmCiBfxLSmn?=
+ =?iso-8859-1?Q?mG2cqadvBg33qAhu0lv4isyw5KSgT3Uo8rubSUcQwA9HUayL3ts7z5cNog?=
+ =?iso-8859-1?Q?D5BG06vUzRgFHrvr6dSo9nepE04R0Wp3tjnhhsot9eIxYMehIDNkNuIsDs?=
+ =?iso-8859-1?Q?SRCwFqYDbbE4/gg7QTBJ5tg1blJcw8wtNYuOb0JCSfwnR2K4w0yvVlmxR9?=
+ =?iso-8859-1?Q?SvtjwOFotV/C0WE+IsF7LQIqZu4FC0mxsqcVsP3t2a61i6QzgI5XUENmll?=
+ =?iso-8859-1?Q?bNIFE0eHHmmtp1RSI1GrgS9NS9J3GlEQZAZXdggLXAHukOFc6Fa+Kow2iI?=
+ =?iso-8859-1?Q?rFbYCSXGMPwN1gqL/NnUo6ShdaYJWYXNva1Bhi/UJLeIXuOTWr1NnSOrp5?=
+ =?iso-8859-1?Q?DT4qh3Hanc4AbouAbpFRQ1MRXfvSly9ROe3c2SYQWUFYFgetZNzmWDdIti?=
+ =?iso-8859-1?Q?nV3BekwjhomhmS0hyZzEhGbdianDjek/9utglyPRjfzjArfQC8byHca2AG?=
+ =?iso-8859-1?Q?G3d69NLlco9oZi2Nzv6/ySoPOcToOsmhJ6g7hAAxBlYx3YzqKywIeJ87jo?=
+ =?iso-8859-1?Q?Y0X44Ardm672oHDF6KlRf49iMBsGn50lThwgMQv42AkyHoSR+aHuDFKc2I?=
+ =?iso-8859-1?Q?N0zXelHpTIQJG1XB++VyZz3L1ShTvzmIMp3xCGBwFPmX8lB5MWC51zVnY8?=
+ =?iso-8859-1?Q?xGxv550ZtDGLfJFmL+hYt6+RQ7qfKgotGR378H5693p3w4ei74Nut0kZpy?=
+ =?iso-8859-1?Q?7RsUevate045aP75DZQliCaFxQjtFeYaKXdalSRu7txuPF1309FOrSBZts?=
+ =?iso-8859-1?Q?/VCOW9+1kTGts4e0qzkwQSO91TSGtvxcRNhcXEqujj/zwU4eCfVb+XioMj?=
+ =?iso-8859-1?Q?+RLXEW1J325k4RnWk4D2oMhqqhCcHNRFXtUX5FJv1GHBiy3aQpHHJYJf8O?=
+ =?iso-8859-1?Q?ghTPmBoyQlzotCfYtBBX7iahQLT3Y+RwkngjDQF/M1UNM0mzyQtQ/ebGie?=
+ =?iso-8859-1?Q?rY3xS9YPbXUchMgSSNPRe94Sx5pkoSVMmzovy3gMv+9y190Qy8p64riR6k?=
+ =?iso-8859-1?Q?1oE1mXHyuXRl5ytO0tuFTu1B9wMF4H6Byapmjn2EhqAOaZn6xM+eNWs23k?=
+ =?iso-8859-1?Q?rcjswEU7HxE3EzLASz7w7O9zeTzCSmCb8a/ZN0vrgm/rt3vHRVXbLuEQ5S?=
+ =?iso-8859-1?Q?/GsGToSGUcVTPLqVGHfV3J+jOgu0QCcoi1RPcDxHz68vkMIAf8NiBXXdBk?=
+ =?iso-8859-1?Q?4hSzH/W0wHjRVobBYSEZDdS7BFF/bRapMu5R/u0bcfvc15I/2dHksFavvm?=
+ =?iso-8859-1?Q?vS/pyblKfBPuRqxmmEFTqyTCIZdZtnjo7FI+HCtrBJlsB/5cktbaCPgQ?=
  =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9a888061-1ab6-43b0-cd2f-08dcb0fedee9
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9c5ef325-74da-48d1-d6a3-08dcb0ffd08e
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jul 2024 01:19:48.9290 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jul 2024 01:26:34.3315 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Yvp5jm2X/oV0ut5bCEhx8b86Ds7Qlwc/NHj4jb7y9KOnimI9V5QoFBX4K4ANb13DV+7xecpqzWLGVgc/JtcWBA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4950
+X-MS-Exchange-CrossTenant-UserPrincipalName: T8Fpw6CSU+vUWIw0E34ycpQnjryCnPUsKpHPRD9IAydc4rwt1Z0hV4lE75nq30ZOYsbMXVeyfW1fYNhm0w5tWQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6447
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -188,1695 +182,946 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jul 30, 2024 at 05:12:42PM +0300, Mika Kuoppala wrote:
-> Matthew Brost <matthew.brost@intel.com> writes:
-> 
-> > On Fri, Jul 26, 2024 at 05:08:00PM +0300, Mika Kuoppala wrote:
-> >> With eudebug event interface, user space debugger process (like gdb)
-> >> is able to keep track of resources created by another process
-> >> (debuggee using drm/xe) and act upon these resources.
-> >> 
-> >> For example, debugger can find a client vm which contains isa/elf
-> >> for a particular shader/eu-kernel and then inspect and modify it
-> >> (for example installing a breakpoint).
-> >> 
-> >> Debugger first opens a connection to xe with a drm ioctl specifying
-> >> target pid to connect. This returns an anon fd handle that can then be
-> >> used to listen for events with dedicated ioctl.
-> >> 
-> >> This patch introduces eudebug connection and event queuing, adding
-> >> client create/destroy and vm create/destroy events as a baseline.
-> >> More events for full debugger operation are needed and
-> >> those will be introduced in follow up patches.
-> >> 
-> >> The resource tracking parts are inspired by the work of
-> >> Maciej Patelczyk on resource handling for i915. Chris Wilson
-> >> suggested improvement of two ways mapping which makes it easy to
-> >> use resource map as a definitive bookkeep of what resources
-> >> are played to debugger in the discovery phase (on follow up patch).
-> >> 
-> >
-> > Not a full review just an idea. Do you think it would be worthwhile to
-> > add a Kconfig option to enable EU debug support so if we don't care
-> > about EU debug it compiles out?
-> >
-> 
-> It is possible and it was done like this in i915. Test triage space will
-> grow. On the other hand, we can isolate on hunting issues.
+On Mon, Jul 29, 2024 at 04:10:24AM -0600, Grzegorzek, Dominik wrote:
+> /On Sat, 2024-07-27 at 05:08 +0000, Matthew Brost wrote:
+> > On Fri, Jul 26, 2024 at 05:08:07PM +0300, Mika Kuoppala wrote:
+> > > From: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+> > > 
+> > > Scan for EU debugging attention bits periodically to detect if some EU
+> > > thread has entered the system routine (SIP) due to EU thread exception.
+> > > 
+> > > Make the scanning interval 10 times slower when there is no debugger
+> > > connection open. Send attention event whenever we see attention with
+> > > debugger presence. If there is no debugger connection active - reset.
+> > > 
+> > > Based on work by authors and other folks who were part of attentions in
+> > > i915.
+> > > 
+> > > - v2 Do not validate potentially active hwe against engine->hwe.
+> > >   Whenever the engine has width > 1, this field contains only the first
+> > >   hwe of the class.
+> > > - squash dss walking and semaphore to mutex
+> > > - v3 error path fix in xe_send_gt_attention (Christoph)
+> > > - v4 runalone active fix (Mika)
+> > > - v5 q->lrc changes (Mika)
+> > > - v6 Use C99 flexible arrays (Maciej, checkpatch)
+> > >      function with 'for_each' in name (Maciej, checkpatch)
+> > > - v7 long running active fix (Dominik)
+> > > - v8 resource handling errors rebase (Mika)
+> > > - v9 find out lrc handles first before sending event (Mika)
+> > > - v10 adjust runalone shift according to hw
+> > > 
+> > > Signed-off-by: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+> > > Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
+> > > Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
+> > > Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> > > ---
+> > >  drivers/gpu/drm/xe/Makefile              |   1 +
+> > >  drivers/gpu/drm/xe/regs/xe_engine_regs.h |   3 +
+> > >  drivers/gpu/drm/xe/regs/xe_gt_regs.h     |   7 +
+> > >  drivers/gpu/drm/xe/xe_device.c           |   2 +
+> > >  drivers/gpu/drm/xe/xe_device_types.h     |   3 +
+> > >  drivers/gpu/drm/xe/xe_eudebug.c          | 389 ++++++++++++++++++++++-
+> > >  drivers/gpu/drm/xe/xe_eudebug.h          |   1 +
+> > >  drivers/gpu/drm/xe/xe_eudebug_types.h    |  32 ++
+> > >  drivers/gpu/drm/xe/xe_gt_debug.c         | 152 +++++++++
+> > >  drivers/gpu/drm/xe/xe_gt_debug.h         |  21 ++
+> > >  include/uapi/drm/xe_drm_eudebug.h        |  15 +-
+> > >  11 files changed, 624 insertions(+), 2 deletions(-)
+> > >  create mode 100644 drivers/gpu/drm/xe/xe_gt_debug.c
+> > >  create mode 100644 drivers/gpu/drm/xe/xe_gt_debug.h
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> > > index 06badc5f99af..b7b6b047c02c 100644
+> > > --- a/drivers/gpu/drm/xe/Makefile
+> > > +++ b/drivers/gpu/drm/xe/Makefile
+> > > @@ -49,6 +49,7 @@ xe-y += xe_bb.o \
+> > >  	xe_gt_debugfs.o \
+> > >  	xe_gt_freq.o \
+> > >  	xe_gt_idle.o \
+> > > +	xe_gt_debug.o \
+> > >  	xe_gt_mcr.o \
+> > >  	xe_gt_pagefault.o \
+> > >  	xe_gt_sysfs.o \
+> > > diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> > > index 764c270599d0..b9d713a2061d 100644
+> > > --- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> > > +++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> > > @@ -132,6 +132,9 @@
+> > >  #define RING_EXECLIST_STATUS_LO(base)		XE_REG((base) + 0x234)
+> > >  #define RING_EXECLIST_STATUS_HI(base)		XE_REG((base) + 0x234 + 4)
+> > >  
+> > > +#define RING_CURRENT_LRCA(base)			XE_REG((base) + 0x240)
+> > > +#define   CURRENT_LRCA_VALID			REG_BIT(0)
+> > > +
+> > >  #define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244, XE_REG_OPTION_MASKED)
+> > >  #define	  CTX_CTRL_OAC_CONTEXT_ENABLE		REG_BIT(8)
+> > >  #define	  CTX_CTRL_RUN_ALONE			REG_BIT(7)
+> > > diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> > > index 96a59a96dd4c..03e83ce3e35d 100644
+> > > --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> > > +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> > > @@ -437,6 +437,8 @@
+> > >  #define   DISABLE_ECC				REG_BIT(5)
+> > >  #define   ENABLE_PREFETCH_INTO_IC		REG_BIT(3)
+> > >  
+> > > +#define TD_ATT(x)				XE_REG_MCR(0xe470 + (x) * 4)
+> > > +
+> > >  #define ROW_CHICKEN4				XE_REG_MCR(0xe48c, XE_REG_OPTION_MASKED)
+> > >  #define   DISABLE_GRF_CLEAR			REG_BIT(13)
+> > >  #define   XEHP_DIS_BBL_SYSPIPE			REG_BIT(11)
+> > > @@ -516,6 +518,11 @@
+> > >  #define   CCS_MODE_CSLICE(cslice, ccs) \
+> > >  	((ccs) << ((cslice) * CCS_MODE_CSLICE_WIDTH))
+> > >  
+> > > +#define RCU_DEBUG_1				XE_REG(0x14a00)
+> > > +#define   RCU_DEBUG_1_ENGINE_STATUS		REG_GENMASK(2, 0)
+> > > +#define   RCU_DEBUG_1_RUNALONE_ACTIVE		REG_BIT(2)
+> > > +#define   RCU_DEBUG_1_CONTEXT_ACTIVE		REG_BIT(0)
+> > > +
+> > >  #define FORCEWAKE_ACK_GT			XE_REG(0x130044)
+> > >  
+> > >  /* Applicable for all FORCEWAKE_DOMAIN and FORCEWAKE_ACK_DOMAIN regs */
+> > > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> > > index 90bb0a8b1881..ba1c80089906 100644
+> > > --- a/drivers/gpu/drm/xe/xe_device.c
+> > > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > > @@ -768,6 +768,8 @@ int xe_device_probe(struct xe_device *xe)
+> > >  
+> > >  	xe_debugfs_register(xe);
+> > >  
+> > > +	xe_eudebug_init_late(xe);
+> > > +
+> > >  	xe_hwmon_register(xe);
+> > >  
+> > >  	for_each_gt(gt, xe, id)
+> > > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> > > index 4dcfd39cb909..3b33add576be 100644
+> > > --- a/drivers/gpu/drm/xe/xe_device_types.h
+> > > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> > > @@ -516,6 +516,9 @@ struct xe_device {
+> > >  
+> > >  		/** @ordered_wq: used to discovery */
+> > >  		struct workqueue_struct *ordered_wq;
+> > > +
+> > > +		/** @attention_scan: attention scan worker */
+> > > +		struct delayed_work attention_scan;
+> > >  	} eudebug;
+> > >  
+> > >  	/* private: */
+> > > diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
+> > > index 9611acedeee9..c2de001cc33a 100644
+> > > --- a/drivers/gpu/drm/xe/xe_eudebug.c
+> > > +++ b/drivers/gpu/drm/xe/xe_eudebug.c
+> > > @@ -11,19 +11,29 @@
+> > >  
+> > >  #include <drm/drm_managed.h>
+> > >  
+> > > -#include "regs/xe_gt_regs.h"
+> > >  #include "regs/xe_engine_regs.h"
+> > > +#include "regs/xe_gt_regs.h"
+> > >  #include "xe_device.h"
+> > >  #include "xe_assert.h"
+> > >  #include "xe_macros.h"
+> > >  #include "xe_gt.h"
+> > > +#include "xe_gt_debug.h"
+> > > +#include "xe_lrc.h"
+> > > +#include "xe_hw_engine.h"
+> > > +#include "xe_exec_queue.h"
+> > >  #include "xe_eudebug_types.h"
+> > >  #include "xe_eudebug.h"
+> > >  #include "xe_exec_queue_types.h"
+> > > +#include "xe_guc_exec_queue_types.h"
+> > > +#include "xe_execlist_types.h"
+> > > +#include "xe_mmio.h"
+> > >  #include "xe_module.h"
+> > > +#include "xe_pm.h"
+> > >  #include "xe_rtp.h"
+> > > +#include "xe_sched_job.h"
+> > >  #include "xe_vm.h"
+> > >  #include "xe_wa.h"
+> > > +#include "xe_force_wake.h"
+> > >  
+> > >  /*
+> > >   * If there is no detected event read by userspace, during this period, assume
+> > > @@ -843,6 +853,371 @@ static const struct file_operations fops = {
+> > >  	.unlocked_ioctl	= xe_eudebug_ioctl,
+> > >  };
+> > >  
+> > > +static bool queue_has_active_job(struct xe_exec_queue *q)
+> > 
+> > This should probably be a generic function in xe_exec_queue.c. We seemly
+> > already have one - xe_exec_queue_is_idle.
+> > 
+> > > +{
+> > > +
+> > > +	struct drm_gpu_scheduler *sched;
+> > > +	struct drm_sched_job *drm_job;
+> > > +
+> > > +	if (xe_device_uc_enabled(gt_to_xe(q->gt)))
+> > 
+> > General comment, we likely don't want to the EU debugger enabled unless
+> > GuC submission is enabled as the execlist backend really doesn't work. 
+> > 
+> > > +		sched = &q->guc->sched.base;
+> > > +	else
+> > > +		sched = &q->execlist->sched;
+> > > +
+> > > +	drm_job = list_first_entry_or_null(&sched->pending_list, struct drm_sched_job, list);
+> > 
+> > Random musing that don't apply as we have xe_exec_queue_is_idle but...
+> > 
+> > You need a scheduler lock here which is missing. If you wanted to see
+> > the scheduler pending list was not empty, we'd call into the drm
+> > scheduler layer.
+> > 
+> > That being said, I think the EU debugger only support LR VMs? If so,
+> > then this always going to be empty.
+> Up until now, we were not requiring a VM to be in lr mode, thus I wanted to support both paths.
+> However, we do depend on LR mode, as job timeouts would make debugging effectively ineffective.
+> Therefore, we should add this constraint.
 > 
 
-Yes, too many Kconfig options is always a concern wrt to testing.
+It would great if we could enable EU debug for non-LR VM's but we'd
+have to throw dma-fencing rules out the window then (e.g. disable job
+timeouts) and I don't think that is likely to get accepted. I think we'd
+also have to intercept some dma-fences from signaling too which this
+series doesn't do. 
 
-> > The layering would have to be fixed up to make this sane (e.g. all
-> > common Xe code calls into the EU layer so we don't have 'if
-> > IS_ENABLED(CONFIG_EU_DEBUG)' sprinkled all over the place. Fixing up
-> > layering probably isn't bad idea anyways and as common Xe code really
-> > shouldn't open code EU debug specific things anyways. This would enforce
-> > good layering too.
-> 
-> Agreed that it would enforce better layering. Naturally we cant reach
-> 100% here as there are some ioctl argument and null checks sprinkled.
-> But perfect is enemy is good. We will push more into the xe_eudebug_*
-> files and lets see how it look. Kconfig is trivial and icing on the
-> cake after this.
-> 
+> Thanks for your comments! I will reuse xe_exec_queue_is_idle here as proposed, and I will try to
 
-Sounds good.
++1
+
+> follow your hints with respect to locking and forcewake.
+>
+
+s/forcewake/pm, taking a forcewake ref where ever is safe while taking a
+pm ref is not.
 
 Matt
 
-> -Mika
-> 
+> Regards,
+> Dominik
+> > 
+> > > +
+> > > +	if (drm_job) {
+> > > +		struct xe_sched_job *job = to_xe_sched_job(drm_job);
+> > > +
+> > > +		return xe_sched_job_started(job) && !xe_sched_job_completed(job);
+> > > +	} else if (xe_exec_queue_is_lr(q) &&
+> > > +		   (xe_lrc_ring_head(q->lrc[0]) != xe_lrc_ring_tail(q->lrc[0]))) {
+> > > +		return true;
+> > > +	}
+> > > +
+> > > +	return false;
+> > > +}
+> > > +
+> > > +static int current_lrc(struct xe_hw_engine *hwe, u32 *lrc_hw)
+> > > +{
+> > > +	u32 lrc_reg;
+> > > +	int err;
+> > > +
+> > > +	err = xe_force_wake_get(gt_to_fw(hwe->gt), hwe->domain);
+> > > +	if (err)
+> > > +		return err;
+> > > +
+> > > +	lrc_reg = hw_engine_mmio_read32(hwe, RING_CURRENT_LRCA(0));
+> > > +
+> > > +	xe_force_wake_put(gt_to_fw(hwe->gt), hwe->domain);
+> > > +
+> > > +	if (!(lrc_reg & CURRENT_LRCA_VALID))
+> > > +		return -ENOENT;
+> > > +
+> > > +	*lrc_hw = lrc_reg & GENMASK(31, 12);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int match_engine_lrc(struct xe_exec_queue *q, u32 lrc_hw)
+> > > +{
+> > > +	int i;
+> > > +	u32 lrc_ggtt;
+> > > +
+> > > +	for (i = 0; i < q->width; i++) {
+> > > +		lrc_ggtt = lower_32_bits(xe_lrc_descriptor(q->lrc[i]));
+> > > +		lrc_ggtt &= GENMASK(31, 12);
+> > > +		if (lrc_ggtt == lrc_hw)
+> > > +			return i;
+> > > +	}
+> > > +
+> > > +	return -1;
+> > > +}
+> > > +
+> > > +static u32 engine_status(const struct xe_hw_engine * const hwe,
+> > > +			 u32 rcu_debug1)
+> > > +{
+> > > +	const bool xe1 = GRAPHICS_VER(gt_to_xe(hwe->gt)) < 20;
+> > > +	unsigned int shift;
+> > > +
+> > > +	if (hwe->class == XE_ENGINE_CLASS_RENDER) {
+> > > +		shift = 7;
+> > > +		XE_WARN_ON(hwe->instance != 0);
+> > > +	} else if (hwe->class == XE_ENGINE_CLASS_COMPUTE) {
+> > > +		XE_WARN_ON(hwe->instance > 3);
+> > > +
+> > > +		if (xe1)
+> > > +			shift = 10 + (hwe->instance * 3);
+> > > +		else
+> > > +			shift = 11 + (hwe->instance * 4);
+> > > +	} else {
+> > > +		XE_WARN_ON(hwe->class);
+> > > +		return 0;
+> > > +	}
+> > > +
+> > > +	return (rcu_debug1 >> shift) & RCU_DEBUG_1_ENGINE_STATUS;
+> > > +}
+> > > +
+> > > +static bool engine_runalone_set(const struct xe_hw_engine * const hwe,
+> > > +				   u32 rcu_debug1)
+> > > +{
+> > > +	return engine_status(hwe, rcu_debug1) & RCU_DEBUG_1_RUNALONE_ACTIVE;
+> > > +}
+> > > +
+> > > +static bool engine_context_set(const struct xe_hw_engine * const hwe,
+> > > +			       u32 rcu_debug1)
+> > > +{
+> > > +	return engine_status(hwe, rcu_debug1) & RCU_DEBUG_1_CONTEXT_ACTIVE;
+> > > +}
+> > > +
+> > > +static bool engine_has_runalone(const struct xe_hw_engine * const hwe)
+> > > +{
+> > > +	return hwe->class == XE_ENGINE_CLASS_RENDER ||
+> > > +		hwe->class == XE_ENGINE_CLASS_COMPUTE;
+> > > +}
+> > > +
+> > > +static struct xe_hw_engine *get_runalone_active_hw_engine(struct xe_gt *gt)
+> > > +{
+> > > +	struct xe_hw_engine *hwe, *first = NULL;
+> > > +	unsigned int num_active, id;
+> > > +	u32 val;
+> > > +
+> > > +	if (xe_force_wake_get(gt_to_fw(gt), XE_FW_GT)) {
+> > > +		drm_dbg(&gt_to_xe(gt)->drm, "eudbg: runalone failed to get force wake\n");
+> > > +		return NULL;
+> > > +	}
+> > > +
+> > > +	val = xe_mmio_read32(gt, RCU_DEBUG_1);
+> > > +	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+> > > +
+> > > +	drm_dbg(&gt_to_xe(gt)->drm, "eudbg: runalone RCU_DEBUG_1 = 0x%08x\n", val);
+> > > +
+> > > +	num_active = 0;
+> > > +	for_each_hw_engine(hwe, gt, id) {
+> > > +		bool runalone, ctx;
+> > > +
+> > > +		if (!engine_has_runalone(hwe))
+> > > +			continue;
+> > > +
+> > > +		runalone = engine_runalone_set(hwe, val);
+> > > +		ctx = engine_context_set(hwe, val);
+> > > +
+> > > +		drm_dbg(&gt_to_xe(gt)->drm, "eudbg: engine %s: runalone=%s, context=%s",
+> > > +			hwe->name, runalone ? "active" : "inactive",
+> > > +			ctx ? "active" : "inactive");
+> > > +
+> > > +		/*
+> > > +		 * On earlier gen12 the context status seems to be idle when
+> > > +		 * it has raised attention. We have to omit the active bit.
+> > > +		 */
+> > > +		if (IS_DGFX(gt_to_xe(gt)))
+> > > +			ctx = true;
+> > > +
+> > > +		if (runalone && ctx) {
+> > > +			num_active++;
+> > > +
+> > > +			drm_dbg(&gt_to_xe(gt)->drm, "eudbg: runalone engine %s %s",
+> > > +				hwe->name, first ? "selected" : "found");
+> > > +			if (!first)
+> > > +				first = hwe;
+> > > +		}
+> > > +	}
+> > > +
+> > > +	if (num_active > 1)
+> > > +		drm_err(&gt_to_xe(gt)->drm, "eudbg: %d runalone engines active!",
+> > > +			num_active);
+> > > +
+> > > +	return first;
+> > > +}
+> > > +
+> > > +static struct xe_exec_queue *runalone_active_queue_get(struct xe_gt *gt, int *lrc_idx)
+> > > +{
+> > > +	struct xe_device *xe = gt_to_xe(gt);
+> > > +	struct xe_exec_queue *q, *found = NULL;
+> > > +	struct xe_hw_engine *active;
+> > > +	struct xe_file *xef, *tmp;
+> > > +	unsigned long i;
+> > > +	int idx, err;
+> > > +	u32 lrc_hw;
+> > > +
+> > > +	active = get_runalone_active_hw_engine(gt);
+> > > +	if (!active) {
+> > > +		drm_dbg(&gt_to_xe(gt)->drm, "Runalone engine not found!");
+> > > +		return ERR_PTR(-ENOENT);
+> > > +	}
+> > > +
+> > > +	err = current_lrc(active, &lrc_hw);
+> > > +	if (err)
+> > > +		return ERR_PTR(err);
+> > > +
+> > > +	mutex_lock(&xe->files.lock);
+> > > +	list_for_each_entry_safe(xef, tmp, &xe->files.list, link) {
+> > > +		mutex_lock(&xef->exec_queue.lock);
+> > > +		xa_for_each(&xef->exec_queue.xa, i, q) {
+> > 
+> > Same comment here as [1]. Don't hold xe->files.lock or
+> > xef->exec_queue.lock for anything but the lookup. Holding locks longer
+> > than needed creates unwanted lock dep chains which creates all sorts of
+> > problems. The only time chains should exist is when we have well defined
+> > locking chain like we have for a VM (vm->lock -> dma-resv -> notifier
+> > lock).
+> > 
+> > So this should look something like this:
+> > 
+> > mutex_lock(&xe->files.lock);
+> > xa_for_each(.., xef) {
+> > 	xe_file_get(xef);
+> > 	mutex_unlock(&xe->files.lock);
+> > 
+> > 	mutex_lock(&xef->exec_queue.lock);
+> > 	xa_for_each(&xef->exec_queue.xa, i, q) {
+> > 		xe_exec_queue_get(q);
+> > 		mutex_unlock(&xef->exec_queue.lock);
+> > 
+> > 		/* Do something */
+> > 	
+> > 		xe_exec_queue_put(q);
+> > 		mutex_lock(&xef->exec_queue.lock);
+> > 	}
+> > 	mutex_unlock(&xef->exec_queue.lock);
+> > 	
+> > 	xe_file_put(xef);
+> > 	mutex_lock(&xe->files.lock);
+> > }
+> > mutex_unlock(&xe->files.lock);
+> > 
+> > Note you will need to change xe->files.list to an xarray to make this
+> > safe too.
+> > 
 > > Matt
-> >
-> >> v2: - event printer removed (Maarten)
-> >>     - trim down kfifo accessors (Maarten)
-> >>     - xa_alloc spurious locking removed (Maarten)
-> >> v3: - use list for clients (Matt)
-> >> v4: - avoid reporting clients too early (Maciej, VLK-56889)
-> >> v5: - return from wait if disconnect (Mika)
-> >> v6: - read waitqueue (Mika)
-> >> v7: - ENOTCONN early in read_event (Mika)
-> >> v8: - consolidate resource error handling (Mika, Maciej)
-> >> v9: - ptrace access check (Jonathan)
-> >> v10: - detach error handling (Dominik)
-> >> 
-> >> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> >> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> >> Cc: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
-> >> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> >> Cc: Matt Roper <matthew.d.roper@intel.com>
-> >> 
-> >> Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> >> Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/xe/Makefile           |    3 +-
-> >>  drivers/gpu/drm/xe/xe_device.c        |   24 +
-> >>  drivers/gpu/drm/xe/xe_device_types.h  |   26 +
-> >>  drivers/gpu/drm/xe/xe_eudebug.c       | 1093 +++++++++++++++++++++++++
-> >>  drivers/gpu/drm/xe/xe_eudebug.h       |   27 +
-> >>  drivers/gpu/drm/xe/xe_eudebug_types.h |  169 ++++
-> >>  drivers/gpu/drm/xe/xe_vm.c            |    7 +-
-> >>  include/uapi/drm/xe_drm.h             |   21 +
-> >>  include/uapi/drm/xe_drm_eudebug.h     |   57 ++
-> >>  9 files changed, 1425 insertions(+), 2 deletions(-)
-> >>  create mode 100644 drivers/gpu/drm/xe/xe_eudebug.c
-> >>  create mode 100644 drivers/gpu/drm/xe/xe_eudebug.h
-> >>  create mode 100644 drivers/gpu/drm/xe/xe_eudebug_types.h
-> >>  create mode 100644 include/uapi/drm/xe_drm_eudebug.h
-> >> 
-> >> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> >> index 1ff9602a52f6..06badc5f99af 100644
-> >> --- a/drivers/gpu/drm/xe/Makefile
-> >> +++ b/drivers/gpu/drm/xe/Makefile
-> >> @@ -114,7 +114,8 @@ xe-y += xe_bb.o \
-> >>  	xe_vram_freq.o \
-> >>  	xe_wait_user_fence.o \
-> >>  	xe_wa.o \
-> >> -	xe_wopcm.o
-> >> +	xe_wopcm.o \
-> >> +	xe_eudebug.o
-> >>  
-> >>  xe-$(CONFIG_HMM_MIRROR) += xe_hmm.o
-> >>  
-> >> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> >> index 1aba6f9eaa19..6c5eceaca4ab 100644
-> >> --- a/drivers/gpu/drm/xe/xe_device.c
-> >> +++ b/drivers/gpu/drm/xe/xe_device.c
-> >> @@ -54,6 +54,7 @@
-> >>  #include "xe_vm.h"
-> >>  #include "xe_vram.h"
-> >>  #include "xe_wait_user_fence.h"
-> >> +#include "xe_eudebug.h"
-> >>  #include "xe_wa.h"
-> >>  
-> >>  #include <generated/xe_wa_oob.h>
-> >> @@ -100,6 +101,14 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
-> >>  		put_task_struct(task);
-> >>  	}
-> >>  
-> >> +	INIT_LIST_HEAD(&xef->link);
-> >> +
-> >> +	mutex_lock(&xe->files.lock);
-> >> +	list_add_tail(&xef->link, &xe->files.list);
-> >> +	mutex_unlock(&xe->files.lock);
-> >> +
-> >> +	xe_eudebug_file_open(xef);
-> >> +
-> >>  	return 0;
-> >>  }
-> >>  
-> >> @@ -158,6 +167,12 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
-> >>  
-> >>  	xe_pm_runtime_get(xe);
-> >>  
-> >> +	xe_eudebug_file_close(xef);
-> >> +
-> >> +	mutex_lock(&xef->xe->files.lock);
-> >> +	list_del_init(&xef->link);
-> >> +	mutex_unlock(&xef->xe->files.lock);
-> >> +
-> >>  	/*
-> >>  	 * No need for exec_queue.lock here as there is no contention for it
-> >>  	 * when FD is closing as IOCTLs presumably can't be modifying the
-> >> @@ -196,6 +211,7 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
-> >>  	DRM_IOCTL_DEF_DRV(XE_WAIT_USER_FENCE, xe_wait_user_fence_ioctl,
-> >>  			  DRM_RENDER_ALLOW),
-> >>  	DRM_IOCTL_DEF_DRV(XE_OBSERVATION, xe_observation_ioctl, DRM_RENDER_ALLOW),
-> >> +	DRM_IOCTL_DEF_DRV(XE_EUDEBUG_CONNECT, xe_eudebug_connect_ioctl, DRM_RENDER_ALLOW),
-> >>  };
-> >>  
-> >>  static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
-> >> @@ -285,6 +301,8 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
-> >>  {
-> >>  	struct xe_device *xe = to_xe_device(dev);
-> >>  
-> >> +	xe_eudebug_fini(xe);
-> >> +
-> >>  	if (xe->preempt_fence_wq)
-> >>  		destroy_workqueue(xe->preempt_fence_wq);
-> >>  
-> >> @@ -330,6 +348,9 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
-> >>  	spin_lock_init(&xe->irq.lock);
-> >>  	spin_lock_init(&xe->clients.lock);
-> >>  
-> >> +	drmm_mutex_init(&xe->drm, &xe->files.lock);
-> >> +	INIT_LIST_HEAD(&xe->files.list);
-> >> +
-> >>  	init_waitqueue_head(&xe->ufence_wq);
-> >>  
-> >>  	err = drmm_mutex_init(&xe->drm, &xe->usm.lock);
-> >> @@ -356,7 +377,10 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
-> >>  	INIT_LIST_HEAD(&xe->pinned.external_vram);
-> >>  	INIT_LIST_HEAD(&xe->pinned.evicted);
-> >>  
-> >> +	xe_eudebug_init(xe);
-> >> +
-> >>  	xe->preempt_fence_wq = alloc_ordered_workqueue("xe-preempt-fence-wq", 0);
-> >> +
-> >>  	xe->ordered_wq = alloc_ordered_workqueue("xe-ordered-wq", 0);
-> >>  	xe->unordered_wq = alloc_workqueue("xe-unordered-wq", 0, 0);
-> >>  	if (!xe->ordered_wq || !xe->unordered_wq ||
-> >> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> >> index 5b7292a9a66d..bef7c11bd668 100644
-> >> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> >> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> >> @@ -355,6 +355,15 @@ struct xe_device {
-> >>  		u64 count;
-> >>  	} clients;
-> >>  
-> >> +	/** @files: xe_file list (opens) */
-> >> +	struct {
-> >> +		/** @lock: Protects xe_file list */
-> >> +		struct mutex lock;
-> >> +
-> >> +		/** @list: xe file list */
-> >> +		struct list_head list;
-> >> +	} files;
-> >> +
-> >>  	/** @usm: unified memory state */
-> >>  	struct {
-> >>  		/** @usm.asid: convert a ASID to VM */
-> >> @@ -492,6 +501,20 @@ struct xe_device {
-> >>  	u8 vm_inject_error_position;
-> >>  #endif
-> >>  
-> >> +	/** @debugger connection list and globals for device */
-> >> +	struct {
-> >> +		/** @lock: protects the list of connections */
-> >> +		spinlock_t lock;
-> >> +		/** @list: list of connections, aka debuggers */
-> >> +		struct list_head list;
-> >> +
-> >> +		/** @session_count: session counter to track connections */
-> >> +		u64 session_count;
-> >> +
-> >> +		/** @available: is the debugging functionality available */
-> >> +		bool available;
-> >> +	} eudebug;
-> >> +
-> >>  	/* private: */
-> >>  
-> >>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
-> >> @@ -596,6 +619,9 @@ struct xe_file {
-> >>  
-> >>  	/** @refcount: ref count of this xe file */
-> >>  	struct kref refcount;
-> >> +
-> >> +	/** @link: link into xe_device.client.list */
-> >> +	struct list_head link;
-> >>  };
-> >>  
-> >>  #endif
-> >> diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
-> >> new file mode 100644
-> >> index 000000000000..8aab02824f8a
-> >> --- /dev/null
-> >> +++ b/drivers/gpu/drm/xe/xe_eudebug.c
-> >> @@ -0,0 +1,1093 @@
-> >> +// SPDX-License-Identifier: MIT
-> >> +/*
-> >> + * Copyright © 2023 Intel Corporation
-> >> + */
-> >> +
-> >> +#include <linux/uaccess.h>
-> >> +
-> >> +#include <linux/anon_inodes.h>
-> >> +#include <linux/poll.h>
-> >> +#include <linux/delay.h>
-> >> +
-> >> +#include <drm/drm_managed.h>
-> >> +
-> >> +#include "xe_device.h"
-> >> +#include "xe_assert.h"
-> >> +#include "xe_macros.h"
-> >> +
-> >> +#include "xe_eudebug_types.h"
-> >> +#include "xe_eudebug.h"
-> >> +
-> >> +/*
-> >> + * If there is no detected event read by userspace, during this period, assume
-> >> + * userspace problem and disconnect debugger to allow forward progress.
-> >> + */
-> >> +#define XE_EUDEBUG_NO_READ_DETECTED_TIMEOUT_MS (25 * 1000)
-> >> +
-> >> +#define for_each_debugger_rcu(debugger, head) \
-> >> +	list_for_each_entry_rcu((debugger), (head), connection_link)
-> >> +#define for_each_debugger(debugger, head) \
-> >> +	list_for_each_entry((debugger), (head), connection_link)
-> >> +
-> >> +#define cast_event(T, event) container_of((event), typeof(*(T)), base)
-> >> +
-> >> +#define XE_EUDEBUG_DBG_STR "eudbg: %lld:%lu:%s (%d/%d) -> (%d/%d): "
-> >> +#define XE_EUDEBUG_DBG_ARGS(d) (d)->session, \
-> >> +		atomic_long_read(&(d)->events.seqno), \
-> >> +		READ_ONCE(d->connection.status) <= 0 ? "disconnected" : "", \
-> >> +		current->pid, \
-> >> +		task_tgid_nr(current), \
-> >> +		(d)->target_task->pid, \
-> >> +		task_tgid_nr((d)->target_task)
-> >> +
-> >> +#define eu_err(d, fmt, ...) drm_err(&(d)->xe->drm, XE_EUDEBUG_DBG_STR # fmt, \
-> >> +				    XE_EUDEBUG_DBG_ARGS(d), ##__VA_ARGS__)
-> >> +#define eu_warn(d, fmt, ...) drm_warn(&(d)->xe->drm, XE_EUDEBUG_DBG_STR # fmt, \
-> >> +				      XE_EUDEBUG_DBG_ARGS(d), ##__VA_ARGS__)
-> >> +#define eu_dbg(d, fmt, ...) drm_dbg(&(d)->xe->drm, XE_EUDEBUG_DBG_STR # fmt, \
-> >> +				    XE_EUDEBUG_DBG_ARGS(d), ##__VA_ARGS__)
-> >> +
-> >> +#define xe_eudebug_assert(d, ...) xe_assert((d)->xe, ##__VA_ARGS__)
-> >> +
-> >> +#define struct_member(T, member) (((T *)0)->member)
-> >> +
-> >> +/* Keep 1:1 parity with uapi events */
-> >> +#define write_member(T_out, ptr, member, value) { \
-> >> +	BUILD_BUG_ON(sizeof(*ptr) != sizeof(T_out)); \
-> >> +	BUILD_BUG_ON(offsetof(typeof(*ptr), member) != \
-> >> +		     offsetof(typeof(T_out), member)); \
-> >> +	BUILD_BUG_ON(sizeof(ptr->member) != sizeof(value)); \
-> >> +	BUILD_BUG_ON(sizeof(struct_member(T_out, member)) != sizeof(value)); \
-> >> +	BUILD_BUG_ON(!typecheck(typeof((ptr)->member), value));	\
-> >> +	(ptr)->member = (value); \
-> >> +	}
-> >> +
-> >> +static struct xe_eudebug_event *
-> >> +event_fifo_pending(struct xe_eudebug *d)
-> >> +{
-> >> +	struct xe_eudebug_event *event;
-> >> +
-> >> +	if (kfifo_peek(&d->events.fifo, &event))
-> >> +		return event;
-> >> +
-> >> +	return NULL;
-> >> +}
-> >> +
-> >> +/*
-> >> + * This is racy as we dont take the lock for read but all the
-> >> + * callsites can handle the race so we can live without lock.
-> >> + */
-> >> +__no_kcsan
-> >> +static unsigned int
-> >> +event_fifo_num_events_peek(const struct xe_eudebug * const d)
-> >> +{
-> >> +	return kfifo_len(&d->events.fifo);
-> >> +}
-> >> +
-> >> +static bool
-> >> +xe_eudebug_detached(struct xe_eudebug *d)
-> >> +{
-> >> +	int status;
-> >> +
-> >> +	spin_lock(&d->connection.lock);
-> >> +	status = d->connection.status;
-> >> +	spin_unlock(&d->connection.lock);
-> >> +
-> >> +	return status <= 0;
-> >> +}
-> >> +
-> >> +static int
-> >> +xe_eudebug_error(const struct xe_eudebug * const d)
-> >> +{
-> >> +	const int status = READ_ONCE(d->connection.status);
-> >> +
-> >> +	return status <= 0 ? status : 0;
-> >> +}
-> >> +
-> >> +static unsigned int
-> >> +event_fifo_has_events(struct xe_eudebug *d)
-> >> +{
-> >> +	if (xe_eudebug_detached(d))
-> >> +		return 1;
-> >> +
-> >> +	return event_fifo_num_events_peek(d);
-> >> +}
-> >> +
-> >> +static const struct rhashtable_params rhash_res = {
-> >> +	.head_offset = offsetof(struct xe_eudebug_handle, rh_head),
-> >> +	.key_len = sizeof_field(struct xe_eudebug_handle, key),
-> >> +	.key_offset = offsetof(struct xe_eudebug_handle, key),
-> >> +	.automatic_shrinking = true,
-> >> +};
-> >> +
-> >> +static struct xe_eudebug_resource *
-> >> +resource_from_type(struct xe_eudebug_resources * const res, const int t)
-> >> +{
-> >> +	return &res->rt[t];
-> >> +}
-> >> +
-> >> +static struct xe_eudebug_resources *
-> >> +xe_eudebug_resources_alloc(void)
-> >> +{
-> >> +	struct xe_eudebug_resources *res;
-> >> +	int err;
-> >> +	int i;
-> >> +
-> >> +	res = kzalloc(sizeof(*res), GFP_ATOMIC);
-> >> +	if (!res)
-> >> +		return ERR_PTR(-ENOMEM);
-> >> +
-> >> +	mutex_init(&res->lock);
-> >> +
-> >> +	for (i = 0; i < XE_EUDEBUG_RES_TYPE_COUNT; i++) {
-> >> +		xa_init_flags(&res->rt[i].xa, XA_FLAGS_ALLOC1);
-> >> +		err = rhashtable_init(&res->rt[i].rh, &rhash_res);
-> >> +
-> >> +		if (err)
-> >> +			break;
-> >> +	}
-> >> +
-> >> +	if (err) {
-> >> +		while (i--) {
-> >> +			xa_destroy(&res->rt[i].xa);
-> >> +			rhashtable_destroy(&res->rt[i].rh);
-> >> +		}
-> >> +
-> >> +		kfree(res);
-> >> +		return ERR_PTR(err);
-> >> +	}
-> >> +
-> >> +	return res;
-> >> +}
-> >> +
-> >> +static void res_free_fn(void *ptr, void *arg)
-> >> +{
-> >> +	XE_WARN_ON(ptr);
-> >> +	kfree(ptr);
-> >> +}
-> >> +
-> >> +static void
-> >> +xe_eudebug_destroy_resources(struct xe_eudebug *d)
-> >> +{
-> >> +	struct xe_eudebug_resources *res = d->res;
-> >> +	struct xe_eudebug_handle *h;
-> >> +	unsigned long j;
-> >> +	int i;
-> >> +	int err;
-> >> +
-> >> +	mutex_lock(&res->lock);
-> >> +	for (i = 0; i < XE_EUDEBUG_RES_TYPE_COUNT; i++) {
-> >> +		struct xe_eudebug_resource *r = &res->rt[i];
-> >> +
-> >> +		xa_for_each(&r->xa, j, h) {
-> >> +			struct xe_eudebug_handle *t;
-> >> +
-> >> +			err = rhashtable_remove_fast(&r->rh,
-> >> +						     &h->rh_head,
-> >> +						     rhash_res);
-> >> +			xe_eudebug_assert(d, !err);
-> >> +			t = xa_erase(&r->xa, h->id);
-> >> +			xe_eudebug_assert(d, t == h);
-> >> +			kfree(t);
-> >> +		}
-> >> +	}
-> >> +	mutex_unlock(&res->lock);
-> >> +
-> >> +	for (i = 0; i < XE_EUDEBUG_RES_TYPE_COUNT; i++) {
-> >> +		struct xe_eudebug_resource *r = &res->rt[i];
-> >> +
-> >> +		rhashtable_free_and_destroy(&r->rh, res_free_fn, NULL);
-> >> +		xe_eudebug_assert(d, xa_empty(&r->xa));
-> >> +		xa_destroy(&r->xa);
-> >> +	}
-> >> +
-> >> +	mutex_destroy(&res->lock);
-> >> +
-> >> +	kfree(res);
-> >> +}
-> >> +
-> >> +static void xe_eudebug_free(struct kref *ref)
-> >> +{
-> >> +	struct xe_eudebug *d = container_of(ref, typeof(*d), ref);
-> >> +	struct xe_eudebug_event *event;
-> >> +
-> >> +	while (kfifo_get(&d->events.fifo, &event))
-> >> +		kfree(event);
-> >> +
-> >> +	xe_eudebug_destroy_resources(d);
-> >> +	put_task_struct(d->target_task);
-> >> +
-> >> +	xe_eudebug_assert(d, !kfifo_len(&d->events.fifo));
-> >> +
-> >> +	kfree_rcu(d, rcu);
-> >> +}
-> >> +
-> >> +static void xe_eudebug_put(struct xe_eudebug *d)
-> >> +{
-> >> +	kref_put(&d->ref, xe_eudebug_free);
-> >> +}
-> >> +
-> >> +static struct task_struct *find_get_target(const pid_t nr)
-> >> +{
-> >> +	struct task_struct *task;
-> >> +
-> >> +	rcu_read_lock();
-> >> +	task = pid_task(find_pid_ns(nr, task_active_pid_ns(current)), PIDTYPE_PID);
-> >> +	if (task)
-> >> +		get_task_struct(task);
-> >> +	rcu_read_unlock();
-> >> +
-> >> +	return task;
-> >> +}
-> >> +
-> >> +static int
-> >> +xe_eudebug_attach(struct xe_device *xe, struct xe_eudebug *d,
-> >> +		  const pid_t pid_nr)
-> >> +{
-> >> +	struct task_struct *target;
-> >> +	struct xe_eudebug *iter;
-> >> +	kuid_t uid = current_uid();
-> >> +	int ret = 0;
-> >> +
-> >> +	target = find_get_target(pid_nr);
-> >> +	if (!target)
-> >> +		return -ENOENT;
-> >> +
-> >> +	if (!uid_eq(uid, task_uid(target)) && !capable(CAP_SYS_ADMIN)) {
-> >> +		put_task_struct(target);
-> >> +		return -EACCES;
-> >> +	}
-> >> +
-> >> +	XE_WARN_ON(d->connection.status != 0);
-> >> +
-> >> +	spin_lock(&xe->eudebug.lock);
-> >> +	for_each_debugger(iter, &xe->eudebug.list) {
-> >> +		if (!same_thread_group(iter->target_task, target))
-> >> +			continue;
-> >> +
-> >> +		ret = -EBUSY;
-> >> +	}
-> >> +
-> >> +	if (!ret && xe->eudebug.session_count + 1 == 0)
-> >> +		ret = -ENOSPC;
-> >> +
-> >> +	if (!ret) {
-> >> +		d->connection.status = XE_EUDEBUG_STATUS_CONNECTED;
-> >> +		d->xe = xe;
-> >> +		d->target_task = target;
-> >> +		d->session = ++xe->eudebug.session_count;
-> >> +		kref_get(&d->ref);
-> >> +		list_add_tail_rcu(&d->connection_link, &xe->eudebug.list);
-> >> +	}
-> >> +	spin_unlock(&xe->eudebug.lock);
-> >> +
-> >> +	if (ret)
-> >> +		put_task_struct(target);
-> >> +
-> >> +	return ret;
-> >> +}
-> >> +
-> >> +static bool xe_eudebug_detach(struct xe_device *xe,
-> >> +			      struct xe_eudebug *d,
-> >> +			      const int err)
-> >> +{
-> >> +	bool detached = false;
-> >> +
-> >> +	XE_WARN_ON(err > 0);
-> >> +
-> >> +	spin_lock(&d->connection.lock);
-> >> +	if (d->connection.status == XE_EUDEBUG_STATUS_CONNECTED) {
-> >> +		d->connection.status = err;
-> >> +		detached = true;
-> >> +	}
-> >> +	spin_unlock(&d->connection.lock);
-> >> +
-> >> +	if (!detached)
-> >> +		return false;
-> >> +
-> >> +	spin_lock(&xe->eudebug.lock);
-> >> +	list_del_rcu(&d->connection_link);
-> >> +	spin_unlock(&xe->eudebug.lock);
-> >> +
-> >> +	eu_dbg(d, "session %lld detached with %d", d->session, err);
-> >> +
-> >> +	/* Our ref with the connection_link */
-> >> +	xe_eudebug_put(d);
-> >> +
-> >> +	return true;
-> >> +}
-> >> +
-> >> +static int _xe_eudebug_disconnect(struct xe_eudebug *d,
-> >> +				  const int err)
-> >> +{
-> >> +	wake_up_all(&d->events.write_done);
-> >> +	wake_up_all(&d->events.read_done);
-> >> +
-> >> +	return xe_eudebug_detach(d->xe, d, err);
-> >> +}
-> >> +
-> >> +#define xe_eudebug_disconnect(_d, _err) ({ \
-> >> +	if (_xe_eudebug_disconnect((_d), (_err))) { \
-> >> +		if ((_err) == 0 || (_err) == -ETIMEDOUT) \
-> >> +			eu_dbg(d, "Session closed (%d)", (_err)); \
-> >> +		else \
-> >> +			eu_err(d, "Session disconnected, err = %d (%s:%d)", \
-> >> +			       (_err), __func__, __LINE__); \
-> >> +	} \
-> >> +})
-> >> +
-> >> +static int xe_eudebug_release(struct inode *inode, struct file *file)
-> >> +{
-> >> +	struct xe_eudebug *d = file->private_data;
-> >> +
-> >> +	xe_eudebug_disconnect(d, 0);
-> >> +	xe_eudebug_put(d);
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +
-> >> +static __poll_t xe_eudebug_poll(struct file *file, poll_table *wait)
-> >> +{
-> >> +	struct xe_eudebug * const d = file->private_data;
-> >> +	__poll_t ret = 0;
-> >> +
-> >> +	poll_wait(file, &d->events.write_done, wait);
-> >> +
-> >> +	if (xe_eudebug_detached(d)) {
-> >> +		ret |= EPOLLHUP;
-> >> +		if (xe_eudebug_error(d))
-> >> +			ret |= EPOLLERR;
-> >> +	}
-> >> +
-> >> +	if (event_fifo_num_events_peek(d))
-> >> +		ret |= EPOLLIN;
-> >> +
-> >> +	return ret;
-> >> +}
-> >> +
-> >> +static ssize_t xe_eudebug_read(struct file *file,
-> >> +			       char __user *buf,
-> >> +			       size_t count,
-> >> +			       loff_t *ppos)
-> >> +{
-> >> +	return -EINVAL;
-> >> +}
-> >> +
-> >> +static struct xe_eudebug *
-> >> +xe_eudebug_for_task_get(struct xe_device *xe,
-> >> +			struct task_struct *task)
-> >> +{
-> >> +	struct xe_eudebug *d, *iter;
-> >> +
-> >> +	d = NULL;
-> >> +
-> >> +	rcu_read_lock();
-> >> +	for_each_debugger_rcu(iter, &xe->eudebug.list) {
-> >> +		if (!same_thread_group(iter->target_task, task))
-> >> +			continue;
-> >> +
-> >> +		if (kref_get_unless_zero(&iter->ref))
-> >> +			d = iter;
-> >> +
-> >> +		break;
-> >> +	}
-> >> +	rcu_read_unlock();
-> >> +
-> >> +	return d;
-> >> +}
-> >> +
-> >> +static struct task_struct *find_task_get(struct xe_file *xef)
-> >> +{
-> >> +	struct task_struct *task;
-> >> +	struct pid *pid;
-> >> +
-> >> +	rcu_read_lock();
-> >> +	pid = rcu_dereference(xef->drm->pid);
-> >> +	task = pid_task(pid, PIDTYPE_PID);
-> >> +	if (task)
-> >> +		get_task_struct(task);
-> >> +	rcu_read_unlock();
-> >> +
-> >> +	return task;
-> >> +}
-> >> +
-> >> +static struct xe_eudebug *
-> >> +xe_eudebug_get(struct xe_file *xef)
-> >> +{
-> >> +	struct task_struct *task;
-> >> +	struct xe_eudebug *d;
-> >> +
-> >> +	d = NULL;
-> >> +	task = find_task_get(xef);
-> >> +	if (task) {
-> >> +		d = xe_eudebug_for_task_get(to_xe_device(xef->drm->minor->dev),
-> >> +					    task);
-> >> +		put_task_struct(task);
-> >> +	}
-> >> +
-> >> +	if (!d)
-> >> +		return NULL;
-> >> +
-> >> +	if (xe_eudebug_detached(d)) {
-> >> +		xe_eudebug_put(d);
-> >> +		return NULL;
-> >> +	}
-> >> +
-> >> +	return d;
-> >> +}
-> >> +
-> >> +static int xe_eudebug_queue_event(struct xe_eudebug *d,
-> >> +				  struct xe_eudebug_event *event)
-> >> +{
-> >> +	const u64 wait_jiffies = msecs_to_jiffies(1000);
-> >> +	u64 last_read_detected_ts, last_head_seqno, start_ts;
-> >> +
-> >> +	xe_eudebug_assert(d, event->len > sizeof(struct xe_eudebug_event));
-> >> +	xe_eudebug_assert(d, event->type);
-> >> +	xe_eudebug_assert(d, event->type != DRM_XE_EUDEBUG_EVENT_READ);
-> >> +
-> >> +	start_ts = ktime_get();
-> >> +	last_read_detected_ts = start_ts;
-> >> +	last_head_seqno = 0;
-> >> +
-> >> +	do  {
-> >> +		struct xe_eudebug_event *head;
-> >> +		u64 head_seqno;
-> >> +		bool was_queued;
-> >> +
-> >> +		if (xe_eudebug_detached(d))
-> >> +			break;
-> >> +
-> >> +		spin_lock(&d->events.lock);
-> >> +		head = event_fifo_pending(d);
-> >> +		if (head)
-> >> +			head_seqno = event->seqno;
-> >> +		else
-> >> +			head_seqno = 0;
-> >> +
-> >> +		was_queued = kfifo_in(&d->events.fifo, &event, 1);
-> >> +		spin_unlock(&d->events.lock);
-> >> +
-> >> +		wake_up_all(&d->events.write_done);
-> >> +
-> >> +		if (was_queued) {
-> >> +			event = NULL;
-> >> +			break;
-> >> +		}
-> >> +
-> >> +		XE_WARN_ON(!head_seqno);
-> >> +
-> >> +		/* If we detect progress, restart timeout */
-> >> +		if (last_head_seqno != head_seqno)
-> >> +			last_read_detected_ts = ktime_get();
-> >> +
-> >> +		last_head_seqno = head_seqno;
-> >> +
-> >> +		wait_event_interruptible_timeout(d->events.read_done,
-> >> +						 !kfifo_is_full(&d->events.fifo),
-> >> +						 wait_jiffies);
-> >> +
-> >> +	} while (ktime_ms_delta(ktime_get(), last_read_detected_ts) <
-> >> +		 XE_EUDEBUG_NO_READ_DETECTED_TIMEOUT_MS);
-> >> +
-> >> +	if (event) {
-> >> +		eu_dbg(d,
-> >> +		       "event %llu queue failed (blocked %lld ms, avail %d)",
-> >> +		       event ? event->seqno : 0,
-> >> +		       ktime_ms_delta(ktime_get(), start_ts),
-> >> +		       kfifo_avail(&d->events.fifo));
-> >> +
-> >> +		kfree(event);
-> >> +
-> >> +		return -ETIMEDOUT;
-> >> +	}
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +
-> >> +static struct xe_eudebug_handle *
-> >> +alloc_handle(const int type, const u64 key)
-> >> +{
-> >> +	struct xe_eudebug_handle *h;
-> >> +
-> >> +	h = kzalloc(sizeof(*h), GFP_ATOMIC);
-> >> +	if (!h)
-> >> +		return NULL;
-> >> +
-> >> +	h->key = key;
-> >> +
-> >> +	return h;
-> >> +}
-> >> +
-> >> +static struct xe_eudebug_handle *
-> >> +__find_handle(struct xe_eudebug_resource *r,
-> >> +	      const u64 key)
-> >> +{
-> >> +	struct xe_eudebug_handle *h;
-> >> +
-> >> +	h = rhashtable_lookup_fast(&r->rh,
-> >> +				   &key,
-> >> +				   rhash_res);
-> >> +	return h;
-> >> +}
-> >> +
-> >> +static int find_handle(struct xe_eudebug_resources *res,
-> >> +		       const int type,
-> >> +		       const void *p)
-> >> +{
-> >> +	const u64 key = (u64)p;
-> >> +	struct xe_eudebug_resource *r;
-> >> +	struct xe_eudebug_handle *h;
-> >> +	int id;
-> >> +
-> >> +	if (XE_WARN_ON(!key))
-> >> +		return -EINVAL;
-> >> +
-> >> +	r = resource_from_type(res, type);
-> >> +
-> >> +	mutex_lock(&res->lock);
-> >> +	h = __find_handle(r, key);
-> >> +	id = h ? h->id : -ENOENT;
-> >> +	mutex_unlock(&res->lock);
-> >> +
-> >> +	return id;
-> >> +}
-> >> +
-> >> +static int _xe_eudebug_add_handle(struct xe_eudebug *d,
-> >> +				  int type,
-> >> +				  void *p,
-> >> +				  u64 *seqno,
-> >> +				  int *handle)
-> >> +{
-> >> +	const u64 key = (u64)p;
-> >> +	struct xe_eudebug_resource *r;
-> >> +	struct xe_eudebug_handle *h, *o;
-> >> +	int err;
-> >> +
-> >> +	if (XE_WARN_ON(p == NULL))
-> >> +		return -EINVAL;
-> >> +
-> >> +	if (xe_eudebug_detached(d))
-> >> +		return -ENOTCONN;
-> >> +
-> >> +	h = alloc_handle(type, key);
-> >> +	if (!h)
-> >> +		return -ENOMEM;
-> >> +
-> >> +	r = resource_from_type(d->res, type);
-> >> +
-> >> +	mutex_lock(&d->res->lock);
-> >> +	o = __find_handle(r, key);
-> >> +	if (!o) {
-> >> +		err = xa_alloc(&r->xa, &h->id, h, xa_limit_31b, GFP_KERNEL);
-> >> +
-> >> +		if (h->id >= INT_MAX) {
-> >> +			xa_erase(&r->xa, h->id);
-> >> +			err = -ENOSPC;
-> >> +		}
-> >> +
-> >> +		if (!err)
-> >> +			err = rhashtable_insert_fast(&r->rh,
-> >> +						     &h->rh_head,
-> >> +						     rhash_res);
-> >> +
-> >> +		if (err) {
-> >> +			xa_erase(&r->xa, h->id);
-> >> +		} else {
-> >> +			if (seqno)
-> >> +				*seqno = atomic_long_inc_return(&d->events.seqno);
-> >> +		}
-> >> +	} else {
-> >> +		xe_eudebug_assert(d, o->id);
-> >> +		err = -EEXIST;
-> >> +	}
-> >> +	mutex_unlock(&d->res->lock);
-> >> +
-> >> +	if (handle)
-> >> +		*handle = o ? o->id : h->id;
-> >> +
-> >> +	if (err) {
-> >> +		kfree(h);
-> >> +		XE_WARN_ON(err > 0);
-> >> +		return err;
-> >> +	}
-> >> +
-> >> +	xe_eudebug_assert(d, h->id);
-> >> +
-> >> +	return h->id;
-> >> +}
-> >> +
-> >> +static int xe_eudebug_add_handle(struct xe_eudebug *d,
-> >> +				 int type,
-> >> +				 void *p,
-> >> +				 u64 *seqno)
-> >> +{
-> >> +	int ret;
-> >> +
-> >> +	ret = _xe_eudebug_add_handle(d, type, p, seqno, NULL);
-> >> +	if (ret == -EEXIST || ret == -ENOTCONN) {
-> >> +		eu_dbg(d, "%d on adding %d", ret, type);
-> >> +		return 0;
-> >> +	}
-> >> +
-> >> +	if (ret < 0)
-> >> +		xe_eudebug_disconnect(d, ret);
-> >> +
-> >> +	return ret;
-> >> +}
-> >> +
-> >> +static int _xe_eudebug_remove_handle(struct xe_eudebug *d, int type, void *p,
-> >> +				     u64 *seqno)
-> >> +{
-> >> +	const u64 key = (u64)p;
-> >> +	struct xe_eudebug_resource *r;
-> >> +	struct xe_eudebug_handle *h, *xa_h;
-> >> +	int ret;
-> >> +
-> >> +	if (XE_WARN_ON(!key))
-> >> +		return -EINVAL;
-> >> +
-> >> +	if (xe_eudebug_detached(d))
-> >> +		return -ENOTCONN;
-> >> +
-> >> +	r = resource_from_type(d->res, type);
-> >> +
-> >> +	mutex_lock(&d->res->lock);
-> >> +	h = __find_handle(r, key);
-> >> +	if (h) {
-> >> +		ret = rhashtable_remove_fast(&r->rh,
-> >> +					     &h->rh_head,
-> >> +					     rhash_res);
-> >> +		xe_eudebug_assert(d, !ret);
-> >> +		xa_h = xa_erase(&r->xa, h->id);
-> >> +		xe_eudebug_assert(d, xa_h == h);
-> >> +		if (!ret) {
-> >> +			ret = h->id;
-> >> +			if (seqno)
-> >> +				*seqno = atomic_long_inc_return(&d->events.seqno);
-> >> +		}
-> >> +	} else {
-> >> +		ret = -ENOENT;
-> >> +	}
-> >> +	mutex_unlock(&d->res->lock);
-> >> +
-> >> +	kfree(h);
-> >> +
-> >> +	xe_eudebug_assert(d, ret);
-> >> +
-> >> +	return ret;
-> >> +}
-> >> +
-> >> +static int xe_eudebug_remove_handle(struct xe_eudebug *d, int type, void *p,
-> >> +				    u64 *seqno)
-> >> +{
-> >> +	int ret;
-> >> +
-> >> +	ret = _xe_eudebug_remove_handle(d, type, p, seqno);
-> >> +	if (ret == -ENOENT || ret == -ENOTCONN) {
-> >> +		eu_dbg(d, "%d on removing %d", ret, type);
-> >> +		return 0;
-> >> +	}
-> >> +
-> >> +	if (ret < 0)
-> >> +		xe_eudebug_disconnect(d, ret);
-> >> +
-> >> +	return ret;
-> >> +}
-> >> +
-> >> +static struct xe_eudebug_event *
-> >> +__xe_eudebug_create_event(struct xe_eudebug *d,
-> >> +			  u64 seqno, u16 type, u16 flags, u32 len, gfp_t gfp)
-> >> +{
-> >> +	struct xe_eudebug_event *event;
-> >> +
-> >> +	xe_eudebug_assert(d, len > sizeof(*event));
-> >> +
-> >> +	event = kzalloc(len, gfp);
-> >> +	if (!event)
-> >> +		return NULL;
-> >> +
-> >> +	event->type = type;
-> >> +	event->flags = flags;
-> >> +	event->len = len;
-> >> +	event->seqno = seqno;
-> >> +
-> >> +	return event;
-> >> +}
-> >> +
-> >> +static struct xe_eudebug_event *
-> >> +xe_eudebug_create_event(struct xe_eudebug *d, u16 type, u64 seqno, u16 flags,
-> >> +			u32 len, gfp_t gfp)
-> >> +{
-> >> +	return __xe_eudebug_create_event(d, seqno, type, flags, len, gfp);
-> >> +}
-> >> +
-> >> +static long xe_eudebug_read_event(struct xe_eudebug *d,
-> >> +				  const u64 arg,
-> >> +				  const bool wait)
-> >> +{
-> >> +	struct xe_device *xe = d->xe;
-> >> +	struct drm_xe_eudebug_event __user * const user_orig =
-> >> +		u64_to_user_ptr(arg);
-> >> +	struct drm_xe_eudebug_event user_event;
-> >> +	struct xe_eudebug_event *event;
-> >> +	long ret = 0;
-> >> +
-> >> +	if (XE_IOCTL_DBG(xe, copy_from_user(&user_event, user_orig, sizeof(user_event))))
-> >> +		return -EFAULT;
-> >> +
-> >> +	if (XE_IOCTL_DBG(xe, !user_event.type))
-> >> +		return -EINVAL;
-> >> +
-> >> +	if (XE_IOCTL_DBG(xe, user_event.type > DRM_XE_EUDEBUG_EVENT_MAX_EVENT))
-> >> +		return -EINVAL;
-> >> +
-> >> +	if (XE_IOCTL_DBG(xe, user_event.type != DRM_XE_EUDEBUG_EVENT_READ))
-> >> +		return -EINVAL;
-> >> +
-> >> +	if (XE_IOCTL_DBG(xe, user_event.len < sizeof(*user_orig)))
-> >> +		return -EINVAL;
-> >> +
-> >> +	if (XE_IOCTL_DBG(xe, user_event.flags))
-> >> +		return -EINVAL;
-> >> +
-> >> +	if (XE_IOCTL_DBG(xe, user_event.reserved))
-> >> +		return -EINVAL;
-> >> +
-> >> +	/* XXX: define wait time in connect arguments ? */
-> >> +	if (wait) {
-> >> +		ret = wait_event_interruptible_timeout(d->events.write_done,
-> >> +						       event_fifo_has_events(d),
-> >> +						       msecs_to_jiffies(5 * 1000));
-> >> +
-> >> +		if (XE_IOCTL_DBG(xe, ret < 0))
-> >> +			return ret;
-> >> +	}
-> >> +
-> >> +	ret = 0;
-> >> +	spin_lock(&d->events.lock);
-> >> +	event = event_fifo_pending(d);
-> >> +	if (event) {
-> >> +		if (user_event.len < event->len) {
-> >> +			ret = -EMSGSIZE;
-> >> +		} else if (!kfifo_out(&d->events.fifo, &event, 1)) {
-> >> +			eu_warn(d, "internal fifo corruption");
-> >> +			ret = -ENOTCONN;
-> >> +		}
-> >> +	}
-> >> +	spin_unlock(&d->events.lock);
-> >> +
-> >> +	wake_up_all(&d->events.read_done);
-> >> +
-> >> +	if (XE_IOCTL_DBG(xe, ret))
-> >> +		return ret;
-> >> +
-> >> +	if (!event) {
-> >> +		if (xe_eudebug_detached(d))
-> >> +			return -ENOTCONN;
-> >> +		if (!wait)
-> >> +			return -EAGAIN;
-> >> +
-> >> +		return -ENOENT;
-> >> +	}
-> >> +
-> >> +	if (copy_to_user(user_orig, event, event->len))
-> >> +		ret = -EFAULT;
-> >> +	else
-> >> +		eu_dbg(d, "event read: type=%u, flags=0x%x, seqno=%llu", event->type,
-> >> +		       event->flags, event->seqno);
-> >> +
-> >> +	kfree(event);
-> >> +
-> >> +	return ret;
-> >> +}
-> >> +
-> >> +static long xe_eudebug_ioctl(struct file *file,
-> >> +			     unsigned int cmd,
-> >> +			     unsigned long arg)
-> >> +{
-> >> +	struct xe_eudebug * const d = file->private_data;
-> >> +	long ret;
-> >> +
-> >> +	switch (cmd) {
-> >> +	case DRM_XE_EUDEBUG_IOCTL_READ_EVENT:
-> >> +		ret = xe_eudebug_read_event(d, arg,
-> >> +					    !(file->f_flags & O_NONBLOCK));
-> >> +		break;
-> >> +
-> >> +	default:
-> >> +		ret = -EINVAL;
-> >> +	}
-> >> +
-> >> +	return ret;
-> >> +}
-> >> +
-> >> +static const struct file_operations fops = {
-> >> +	.owner		= THIS_MODULE,
-> >> +	.llseek		= no_llseek,
-> >> +	.release	= xe_eudebug_release,
-> >> +	.poll		= xe_eudebug_poll,
-> >> +	.read		= xe_eudebug_read,
-> >> +	.unlocked_ioctl	= xe_eudebug_ioctl,
-> >> +};
-> >> +
-> >> +static int
-> >> +xe_eudebug_connect(struct xe_device *xe,
-> >> +		   struct drm_xe_eudebug_connect *param)
-> >> +{
-> >> +	const u64 known_open_flags = 0;
-> >> +	unsigned long f_flags = 0;
-> >> +	struct xe_eudebug *d;
-> >> +	int fd, err;
-> >> +
-> >> +	if (param->extensions)
-> >> +		return -EINVAL;
-> >> +
-> >> +	if (!param->pid)
-> >> +		return -EINVAL;
-> >> +
-> >> +	if (param->flags & ~known_open_flags)
-> >> +		return -EINVAL;
-> >> +
-> >> +	if (param->version && param->version != DRM_XE_EUDEBUG_VERSION)
-> >> +		return -EINVAL;
-> >> +
-> >> +	param->version = DRM_XE_EUDEBUG_VERSION;
-> >> +
-> >> +	if (!xe->eudebug.available)
-> >> +		return -EOPNOTSUPP;
-> >> +
-> >> +	d = kzalloc(sizeof(*d), GFP_KERNEL);
-> >> +	if (!d)
-> >> +		return -ENOMEM;
-> >> +
-> >> +	kref_init(&d->ref);
-> >> +	spin_lock_init(&d->connection.lock);
-> >> +	init_waitqueue_head(&d->events.write_done);
-> >> +	init_waitqueue_head(&d->events.read_done);
-> >> +
-> >> +	spin_lock_init(&d->events.lock);
-> >> +	INIT_KFIFO(d->events.fifo);
-> >> +
-> >> +	d->res = xe_eudebug_resources_alloc();
-> >> +	if (IS_ERR(d->res)) {
-> >> +		err = PTR_ERR(d->res);
-> >> +		goto err_free;
-> >> +	}
-> >> +
-> >> +	err = xe_eudebug_attach(xe, d, param->pid);
-> >> +	if (err)
-> >> +		goto err_free_res;
-> >> +
-> >> +	fd = anon_inode_getfd("[xe_eudebug]", &fops, d, f_flags);
-> >> +	if (fd < 0) {
-> >> +		err = fd;
-> >> +		goto err_detach;
-> >> +	}
-> >> +
-> >> +	eu_dbg(d, "connected session %lld", d->session);
-> >> +
-> >> +	return fd;
-> >> +
-> >> +err_detach:
-> >> +	xe_eudebug_detach(xe, d, err);
-> >> +err_free_res:
-> >> +	xe_eudebug_destroy_resources(d);
-> >> +err_free:
-> >> +	kfree(d);
-> >> +
-> >> +	return err;
-> >> +}
-> >> +
-> >> +int xe_eudebug_connect_ioctl(struct drm_device *dev,
-> >> +			     void *data,
-> >> +			     struct drm_file *file)
-> >> +{
-> >> +	struct xe_device *xe = to_xe_device(dev);
-> >> +	struct drm_xe_eudebug_connect * const param = data;
-> >> +	int ret = 0;
-> >> +
-> >> +	ret = xe_eudebug_connect(xe, param);
-> >> +
-> >> +	return ret;
-> >> +}
-> >> +
-> >> +void xe_eudebug_init(struct xe_device *xe)
-> >> +{
-> >> +	spin_lock_init(&xe->eudebug.lock);
-> >> +	INIT_LIST_HEAD(&xe->eudebug.list);
-> >> +
-> >> +	xe->eudebug.available = true;
-> >> +}
-> >> +
-> >> +void xe_eudebug_fini(struct xe_device *xe)
-> >> +{
-> >> +	xe_assert(xe, list_empty_careful(&xe->eudebug.list));
-> >> +}
-> >> +
-> >> +static int send_open_event(struct xe_eudebug *d, u32 flags, const u64 handle,
-> >> +			   const u64 seqno)
-> >> +{
-> >> +	struct xe_eudebug_event *event;
-> >> +	struct xe_eudebug_event_open *eo;
-> >> +
-> >> +	if (!handle)
-> >> +		return -EINVAL;
-> >> +
-> >> +	if (XE_WARN_ON((long)handle >= INT_MAX))
-> >> +		return -EINVAL;
-> >> +
-> >> +	event = xe_eudebug_create_event(d, DRM_XE_EUDEBUG_EVENT_OPEN, seqno,
-> >> +					flags, sizeof(*eo), GFP_KERNEL);
-> >> +	if (!event)
-> >> +		return -ENOMEM;
-> >> +
-> >> +	eo = cast_event(eo, event);
-> >> +
-> >> +	write_member(struct drm_xe_eudebug_event_client, eo,
-> >> +		     client_handle, handle);
-> >> +
-> >> +	return xe_eudebug_queue_event(d, event);
-> >> +}
-> >> +
-> >> +static int client_create_event(struct xe_eudebug *d, struct xe_file *xef)
-> >> +{
-> >> +	u64 seqno;
-> >> +	int ret;
-> >> +
-> >> +	ret = xe_eudebug_add_handle(d, XE_EUDEBUG_RES_TYPE_CLIENT, xef, &seqno);
-> >> +	if (ret > 0)
-> >> +		ret = send_open_event(d, DRM_XE_EUDEBUG_EVENT_CREATE,
-> >> +					     ret, seqno);
-> >> +
-> >> +	return ret;
-> >> +}
-> >> +
-> >> +static int client_destroy_event(struct xe_eudebug *d, struct xe_file *xef)
-> >> +{
-> >> +	u64 seqno;
-> >> +	int ret;
-> >> +
-> >> +	ret = xe_eudebug_remove_handle(d, XE_EUDEBUG_RES_TYPE_CLIENT,
-> >> +				       xef, &seqno);
-> >> +	if (ret > 0)
-> >> +		ret = send_open_event(d, DRM_XE_EUDEBUG_EVENT_DESTROY,
-> >> +				      ret, seqno);
-> >> +
-> >> +	return ret;
-> >> +}
-> >> +
-> >> +#define xe_eudebug_event_put(_d, _err) ({ \
-> >> +	if ((_err)) \
-> >> +		xe_eudebug_disconnect((_d), (_err)); \
-> >> +	xe_eudebug_put((_d)); \
-> >> +	})
-> >> +
-> >> +void xe_eudebug_file_open(struct xe_file *xef)
-> >> +{
-> >> +	struct xe_eudebug *d;
-> >> +
-> >> +	d = xe_eudebug_get(xef);
-> >> +	if (!d)
-> >> +		return;
-> >> +
-> >> +	xe_eudebug_event_put(d, client_create_event(d, xef));
-> >> +}
-> >> +
-> >> +void xe_eudebug_file_close(struct xe_file *xef)
-> >> +{
-> >> +	struct xe_eudebug *d;
-> >> +
-> >> +	d = xe_eudebug_get(xef);
-> >> +	if (!d)
-> >> +		return;
-> >> +
-> >> +	xe_eudebug_event_put(d, client_destroy_event(d, xef));
-> >> +}
-> >> +
-> >> +static int send_vm_event(struct xe_eudebug *d, u32 flags,
-> >> +			 const u64 client_handle,
-> >> +			 const u64 vm_handle,
-> >> +			 const u64 seqno)
-> >> +{
-> >> +	struct xe_eudebug_event *event;
-> >> +	struct xe_eudebug_event_vm *e;
-> >> +
-> >> +	event = xe_eudebug_create_event(d, DRM_XE_EUDEBUG_EVENT_VM,
-> >> +					seqno, flags, sizeof(*e), GFP_KERNEL);
-> >> +	if (!event)
-> >> +		return -ENOMEM;
-> >> +
-> >> +	e = cast_event(e, event);
-> >> +
-> >> +	write_member(struct drm_xe_eudebug_event_vm, e, client_handle, client_handle);
-> >> +	write_member(struct drm_xe_eudebug_event_vm, e, vm_handle, vm_handle);
-> >> +
-> >> +	return xe_eudebug_queue_event(d, event);
-> >> +}
-> >> +
-> >> +static int vm_create_event(struct xe_eudebug *d,
-> >> +			   struct xe_file *xef, struct xe_vm *vm)
-> >> +{
-> >> +	int h_c, h_vm;
-> >> +	u64 seqno;
-> >> +	int ret;
-> >> +
-> >> +	h_c = find_handle(d->res, XE_EUDEBUG_RES_TYPE_CLIENT, xef);
-> >> +	if (h_c < 0)
-> >> +		return h_c;
-> >> +
-> >> +	xe_eudebug_assert(d, h_c);
-> >> +
-> >> +	h_vm = xe_eudebug_add_handle(d, XE_EUDEBUG_RES_TYPE_VM, vm, &seqno);
-> >> +	if (h_vm <= 0)
-> >> +		return h_vm;
-> >> +
-> >> +	ret = send_vm_event(d, DRM_XE_EUDEBUG_EVENT_CREATE, h_c, h_vm, seqno);
-> >> +
-> >> +	return ret;
-> >> +}
-> >> +
-> >> +static int vm_destroy_event(struct xe_eudebug *d,
-> >> +			    struct xe_file *xef, struct xe_vm *vm)
-> >> +{
-> >> +	int h_c, h_vm;
-> >> +	u64 seqno;
-> >> +
-> >> +	h_c = find_handle(d->res, XE_EUDEBUG_RES_TYPE_CLIENT, xef);
-> >> +	if (h_c < 0) {
-> >> +		XE_WARN_ON("no client found for vm");
-> >> +		eu_warn(d, "no client found for vm");
-> >> +		return h_c;
-> >> +	}
-> >> +
-> >> +	xe_eudebug_assert(d, h_c);
-> >> +
-> >> +	h_vm = xe_eudebug_remove_handle(d, XE_EUDEBUG_RES_TYPE_VM, vm, &seqno);
-> >> +	if (h_vm <= 0)
-> >> +		return h_vm;
-> >> +
-> >> +	return send_vm_event(d, DRM_XE_EUDEBUG_EVENT_DESTROY, h_c, h_vm, seqno);
-> >> +}
-> >> +
-> >> +void xe_eudebug_vm_create(struct xe_file *xef, struct xe_vm *vm)
-> >> +{
-> >> +	struct xe_eudebug *d;
-> >> +
-> >> +	d = xe_eudebug_get(xef);
-> >> +	if (!d)
-> >> +		return;
-> >> +
-> >> +	xe_eudebug_event_put(d, vm_create_event(d, xef, vm));
-> >> +}
-> >> +
-> >> +void xe_eudebug_vm_destroy(struct xe_file *xef, struct xe_vm *vm)
-> >> +{
-> >> +	struct xe_eudebug *d;
-> >> +
-> >> +	d = xe_eudebug_get(xef);
-> >> +	if (!d)
-> >> +		return;
-> >> +
-> >> +	xe_eudebug_event_put(d, vm_destroy_event(d, xef, vm));
-> >> +}
-> >> diff --git a/drivers/gpu/drm/xe/xe_eudebug.h b/drivers/gpu/drm/xe/xe_eudebug.h
-> >> new file mode 100644
-> >> index 000000000000..df577b581364
-> >> --- /dev/null
-> >> +++ b/drivers/gpu/drm/xe/xe_eudebug.h
-> >> @@ -0,0 +1,27 @@
-> >> +/* SPDX-License-Identifier: MIT */
-> >> +/*
-> >> + * Copyright © 2023 Intel Corporation
-> >> + */
-> >> +
-> >> +#ifndef _XE_EUDEBUG_H_
-> >> +
-> >> +struct drm_device;
-> >> +struct drm_file;
-> >> +struct xe_device;
-> >> +struct xe_file;
-> >> +struct xe_vm;
-> >> +
-> >> +int xe_eudebug_connect_ioctl(struct drm_device *dev,
-> >> +			     void *data,
-> >> +			     struct drm_file *file);
-> >> +
-> >> +void xe_eudebug_init(struct xe_device *xe);
-> >> +void xe_eudebug_fini(struct xe_device *xe);
-> >> +
-> >> +void xe_eudebug_file_open(struct xe_file *xef);
-> >> +void xe_eudebug_file_close(struct xe_file *xef);
-> >> +
-> >> +void xe_eudebug_vm_create(struct xe_file *xef, struct xe_vm *vm);
-> >> +void xe_eudebug_vm_destroy(struct xe_file *xef, struct xe_vm *vm);
-> >> +
-> >> +#endif
-> >> diff --git a/drivers/gpu/drm/xe/xe_eudebug_types.h b/drivers/gpu/drm/xe/xe_eudebug_types.h
-> >> new file mode 100644
-> >> index 000000000000..093221a707df
-> >> --- /dev/null
-> >> +++ b/drivers/gpu/drm/xe/xe_eudebug_types.h
-> >> @@ -0,0 +1,169 @@
-> >> +/* SPDX-License-Identifier: MIT */
-> >> +/*
-> >> + * Copyright © 2023 Intel Corporation
-> >> + */
-> >> +
-> >> +#ifndef __XE_EUDEBUG_TYPES_H_
-> >> +
-> >> +#include <linux/mutex.h>
-> >> +#include <linux/kref.h>
-> >> +#include <linux/kfifo.h>
-> >> +#include <linux/completion.h>
-> >> +#include <linux/wait.h>
-> >> +#include <linux/xarray.h>
-> >> +#include <linux/rbtree.h>
-> >> +#include <linux/rhashtable.h>
-> >> +
-> >> +#include <uapi/drm/xe_drm.h>
-> >> +
-> >> +struct xe_device;
-> >> +struct task_struct;
-> >> +struct xe_eudebug_event;
-> >> +
-> >> +#define CONFIG_DRM_XE_DEBUGGER_EVENT_QUEUE_SIZE 64
-> >> +
-> >> +/**
-> >> + * struct xe_eudebug_handle - eudebug resource handle
-> >> + */
-> >> +struct xe_eudebug_handle {
-> >> +	/** @key: key value in rhashtable <key:id> */
-> >> +	u64 key;
-> >> +
-> >> +	/** @id: opaque handle id for xarray <id:key> */
-> >> +	int id;
-> >> +
-> >> +	/** @rh_head: rhashtable head */
-> >> +	struct rhash_head rh_head;
-> >> +};
-> >> +
-> >> +/**
-> >> + * struct xe_eudebug_resource - Resource map for one resource
-> >> + */
-> >> +struct xe_eudebug_resource {
-> >> +	/** @xa: xarrays for <id->key> */
-> >> +	struct xarray xa;
-> >> +
-> >> +	/** @rh rhashtable for <key->id> */
-> >> +	struct rhashtable rh;
-> >> +};
-> >> +
-> >> +#define XE_EUDEBUG_RES_TYPE_CLIENT	0
-> >> +#define XE_EUDEBUG_RES_TYPE_VM		1
-> >> +#define XE_EUDEBUG_RES_TYPE_COUNT	(XE_EUDEBUG_RES_TYPE_VM + 1)
-> >> +
-> >> +/**
-> >> + * struct xe_eudebug_resources - eudebug resources for all types
-> >> + */
-> >> +struct xe_eudebug_resources {
-> >> +	/** @lock: guards access into rt */
-> >> +	struct mutex lock;
-> >> +
-> >> +	/** @rt: resource maps for all types */
-> >> +	struct xe_eudebug_resource rt[XE_EUDEBUG_RES_TYPE_COUNT];
-> >> +};
-> >> +
-> >> +/**
-> >> + * struct xe_eudebug - Top level struct for eudebug: the connection
-> >> + */
-> >> +struct xe_eudebug {
-> >> +	/** @ref: kref counter for this struct */
-> >> +	struct kref ref;
-> >> +
-> >> +	/** @rcu: rcu_head for rcu destruction */
-> >> +	struct rcu_head rcu;
-> >> +
-> >> +	/** @connection_link: our link into the xe_device:eudebug.list */
-> >> +	struct list_head connection_link;
-> >> +
-> >> +	struct {
-> >> +		/** @status: connected = 1, disconnected = error */
-> >> +#define XE_EUDEBUG_STATUS_CONNECTED 1
-> >> +		int status;
-> >> +
-> >> +		/** @lock: guards access to status */
-> >> +		spinlock_t lock;
-> >> +	} connection;
-> >> +
-> >> +	/** @xe: the parent device we are serving */
-> >> +	struct xe_device *xe;
-> >> +
-> >> +	/** @target_task: the task that we are debugging */
-> >> +	struct task_struct *target_task;
-> >> +
-> >> +	/** @res: the resource maps we track for target_task */
-> >> +	struct xe_eudebug_resources *res;
-> >> +
-> >> +	/** @session: session number for this connection (for logs) */
-> >> +	u64 session;
-> >> +
-> >> +	/** @events: kfifo queue of to-be-delivered events */
-> >> +	struct {
-> >> +		/** @lock: guards access to fifo */
-> >> +		spinlock_t lock;
-> >> +
-> >> +		/** @fifo: queue of events pending */
-> >> +		DECLARE_KFIFO(fifo,
-> >> +			      struct xe_eudebug_event *,
-> >> +			      CONFIG_DRM_XE_DEBUGGER_EVENT_QUEUE_SIZE);
-> >> +
-> >> +		/** @write_done: waitqueue for signalling write to fifo */
-> >> +		wait_queue_head_t write_done;
-> >> +
-> >> +		/** @read_done: waitqueue for signalling read from fifo */
-> >> +		wait_queue_head_t read_done;
-> >> +
-> >> +		/** @event_seqno: seqno counter to stamp events for fifo */
-> >> +		atomic_long_t seqno;
-> >> +	} events;
-> >> +
-> >> +};
-> >> +
-> >> +/**
-> >> + * struct xe_eudebug_event - Internal base event struct for eudebug
-> >> + */
-> >> +struct xe_eudebug_event {
-> >> +	/** @len: length of this event, including payload */
-> >> +	u32 len;
-> >> +
-> >> +	/** @type: message type */
-> >> +	u16 type;
-> >> +
-> >> +	/** @flags: message flags */
-> >> +	u16 flags;
-> >> +
-> >> +	/** @seqno: sequence number for ordering */
-> >> +	u64 seqno;
-> >> +
-> >> +	/** @reserved: reserved field MBZ */
-> >> +	u64 reserved;
-> >> +
-> >> +	/** @data: payload bytes */
-> >> +	u8 data[];
-> >> +};
-> >> +
-> >> +/**
-> >> + * struct xe_eudebug_event_open - Internal event for client open/close
-> >> + */
-> >> +struct xe_eudebug_event_open {
-> >> +	/** @base: base event */
-> >> +	struct xe_eudebug_event base;
-> >> +
-> >> +	/** @client_handle: opaque handle for client */
-> >> +	u64 client_handle;
-> >> +};
-> >> +
-> >> +/**
-> >> + * struct xe_eudebug_event_vm - Internal event for vm open/close
-> >> + */
-> >> +struct xe_eudebug_event_vm {
-> >> +	/** @base: base event */
-> >> +	struct xe_eudebug_event base;
-> >> +
-> >> +	/** @client_handle: client containing the vm open/close */
-> >> +	u64 client_handle;
-> >> +
-> >> +	/** @vm_handle: vm handle it's open/close */
-> >> +	u64 vm_handle;
-> >> +};
-> >> +
-> >> +#endif
-> >> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> >> index f225107bdd65..9e101c992d9c 100644
-> >> --- a/drivers/gpu/drm/xe/xe_vm.c
-> >> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> >> @@ -39,6 +39,7 @@
-> >>  #include "xe_trace_bo.h"
-> >>  #include "xe_wa.h"
-> >>  #include "xe_hmm.h"
-> >> +#include "xe_eudebug.h"
-> >>  
-> >>  static struct drm_gem_object *xe_vm_obj(struct xe_vm *vm)
-> >>  {
-> >> @@ -1818,6 +1819,8 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
-> >>  	args->reserved[0] = xe_bo_main_addr(vm->pt_root[0]->bo, XE_PAGE_SIZE);
-> >>  #endif
-> >>  
-> >> +	xe_eudebug_vm_create(xef, vm);
-> >> +
-> >>  	return 0;
-> >>  
-> >>  err_free_id:
-> >> @@ -1853,8 +1856,10 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
-> >>  		xa_erase(&xef->vm.xa, args->vm_id);
-> >>  	mutex_unlock(&xef->vm.lock);
-> >>  
-> >> -	if (!err)
-> >> +	if (!err) {
-> >> +		xe_eudebug_vm_destroy(xef, vm);
-> >>  		xe_vm_close_and_put(vm);
-> >> +	}
-> >>  
-> >>  	return err;
-> >>  }
-> >> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> >> index 29425d7fdc77..a68734ff12f4 100644
-> >> --- a/include/uapi/drm/xe_drm.h
-> >> +++ b/include/uapi/drm/xe_drm.h
-> >> @@ -102,6 +102,7 @@ extern "C" {
-> >>  #define DRM_XE_EXEC			0x09
-> >>  #define DRM_XE_WAIT_USER_FENCE		0x0a
-> >>  #define DRM_XE_OBSERVATION		0x0b
-> >> +#define DRM_XE_EUDEBUG_CONNECT		0x0c
-> >>  
-> >>  /* Must be kept compact -- no holes */
-> >>  
-> >> @@ -117,6 +118,7 @@ extern "C" {
-> >>  #define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
-> >>  #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
-> >>  #define DRM_IOCTL_XE_OBSERVATION		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
-> >> +#define DRM_IOCTL_XE_EUDEBUG_CONNECT		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EUDEBUG_CONNECT, struct drm_xe_eudebug_connect)
-> >>  
-> >>  /**
-> >>   * DOC: Xe IOCTL Extensions
-> >> @@ -1694,6 +1696,25 @@ struct drm_xe_oa_stream_info {
-> >>  	__u64 reserved[3];
-> >>  };
-> >>  
-> >> +/*
-> >> + * Debugger ABI (ioctl and events) Version History:
-> >> + * 0 - No debugger available
-> >> + * 1 - Initial version
-> >> + */
-> >> +#define DRM_XE_EUDEBUG_VERSION 1
-> >> +
-> >> +struct drm_xe_eudebug_connect {
-> >> +	/** @extensions: Pointer to the first extension struct, if any */
-> >> +	__u64 extensions;
-> >> +
-> >> +	__u64 pid; /* input: Target process ID */
-> >> +	__u32 flags; /* MBZ */
-> >> +
-> >> +	__u32 version; /* output: current ABI (ioctl / events) version */
-> >> +};
-> >> +
-> >> +#include "xe_drm_eudebug.h"
-> >> +
-> >>  #if defined(__cplusplus)
-> >>  }
-> >>  #endif
-> >> diff --git a/include/uapi/drm/xe_drm_eudebug.h b/include/uapi/drm/xe_drm_eudebug.h
-> >> new file mode 100644
-> >> index 000000000000..a1cad9c005fc
-> >> --- /dev/null
-> >> +++ b/include/uapi/drm/xe_drm_eudebug.h
-> >> @@ -0,0 +1,57 @@
-> >> +/* SPDX-License-Identifier: MIT */
-> >> +/*
-> >> + * Copyright © 2023 Intel Corporation
-> >> + */
-> >> +
-> >> +#ifndef _UAPI_XE_DRM_EUDEBUG_H_
-> >> +#define _UAPI_XE_DRM_EUDEBUG_H_
-> >> +
-> >> +#if defined(__cplusplus)
-> >> +extern "C" {
-> >> +#endif
-> >> +
-> >> +/**
-> >> + * Do a eudebug event read for a debugger connection.
-> >> + *
-> >> + * This ioctl is available in debug version 1.
-> >> + */
-> >> +#define DRM_XE_EUDEBUG_IOCTL_READ_EVENT _IO('j', 0x0)
-> >> +
-> >> +/* XXX: Document events to match their internal counterparts when moved to xe_drm.h */
-> >> +struct drm_xe_eudebug_event {
-> >> +	__u32 len;
-> >> +
-> >> +	__u16 type;
-> >> +#define DRM_XE_EUDEBUG_EVENT_NONE		0
-> >> +#define DRM_XE_EUDEBUG_EVENT_READ		1
-> >> +#define DRM_XE_EUDEBUG_EVENT_OPEN		2
-> >> +#define DRM_XE_EUDEBUG_EVENT_VM			3
-> >> +#define DRM_XE_EUDEBUG_EVENT_MAX_EVENT		DRM_XE_EUDEBUG_EVENT_VM
-> >> +
-> >> +	__u16 flags;
-> >> +#define DRM_XE_EUDEBUG_EVENT_CREATE		(1 << 0)
-> >> +#define DRM_XE_EUDEBUG_EVENT_DESTROY		(1 << 1)
-> >> +#define DRM_XE_EUDEBUG_EVENT_STATE_CHANGE	(1 << 2)
-> >> +#define DRM_XE_EUDEBUG_EVENT_NEED_ACK		(1 << 3)
-> >> +	__u64 seqno;
-> >> +	__u64 reserved;
-> >> +};
-> >> +
-> >> +struct drm_xe_eudebug_event_client {
-> >> +	struct drm_xe_eudebug_event base;
-> >> +
-> >> +	__u64 client_handle; /* This is unique per debug connection */
-> >> +};
-> >> +
-> >> +struct drm_xe_eudebug_event_vm {
-> >> +	struct drm_xe_eudebug_event base;
-> >> +
-> >> +	__u64 client_handle;
-> >> +	__u64 vm_handle;
-> >> +};
-> >> +
-> >> +#if defined(__cplusplus)
-> >> +}
-> >> +#endif
-> >> +
-> >> +#endif
-> >> -- 
-> >> 2.34.1
-> >> 
+> > 
+> > [1] https://patchwork.freedesktop.org/patch/606052/?series=136572&rev=1
+> > 
+> > > +			if (q->gt != gt)
+> > > +				continue;
+> > > +
+> > > +			if (q->class != active->class)
+> > > +				continue;
+> > > +
+> > > +			if (!queue_has_active_job(q))
+> > > +				continue;
+> > > +
+> > > +			idx = match_engine_lrc(q, lrc_hw);
+> > > +			if (idx < 0)
+> > > +				continue;
+> > > +
+> > > +			xe_exec_queue_get(q);
+> > > +			found = q;
+> > > +
+> > > +			if (lrc_idx)
+> > > +				*lrc_idx = idx;
+> > > +
+> > > +			break;
+> > > +		}
+> > > +		mutex_unlock(&xef->exec_queue.lock);
+> > > +
+> > > +		if (found)
+> > > +			break;
+> > > +	}
+> > > +	mutex_unlock(&xe->files.lock);
+> > > +
+> > > +	if (!found)
+> > > +		return ERR_PTR(-ENOENT);
+> > > +
+> > > +	if (XE_WARN_ON(current_lrc(active, &lrc_hw)) &&
+> > > +	    XE_WARN_ON(match_engine_lrc(found, lrc_hw) < 0)) {
+> > > +		xe_exec_queue_put(found);
+> > > +		return ERR_PTR(-ENOENT);
+> > > +	}
+> > > +
+> > > +	return found;
+> > > +}
+> > > +
+> > > +static int send_attention_event(struct xe_eudebug *d, struct xe_exec_queue *q, int lrc_idx)
+> > > +{
+> > > +	struct xe_eudebug_event_eu_attention *ea;
+> > > +	struct xe_eudebug_event *event;
+> > > +	int h_c, h_queue, h_lrc;
+> > > +	u32 size = xe_gt_eu_attention_bitmap_size(q->gt);
+> > > +	u32 sz = struct_size(ea, bitmask, size);
+> > > +	int ret;
+> > > +
+> > > +	XE_WARN_ON(lrc_idx < 0 || lrc_idx >= q->width);
+> > > +
+> > > +	h_c = find_handle(d->res, XE_EUDEBUG_RES_TYPE_CLIENT, q->vm->xef);
+> > > +	if (h_c < 0)
+> > > +		return h_c;
+> > > +
+> > > +	h_queue = find_handle(d->res, XE_EUDEBUG_RES_TYPE_EXEC_QUEUE, q);
+> > > +	if (h_queue < 0)
+> > > +		return h_queue;
+> > > +
+> > > +	h_lrc = find_handle(d->res, XE_EUDEBUG_RES_TYPE_LRC, q->lrc[lrc_idx]);
+> > > +	if (h_lrc < 0)
+> > > +		return h_lrc;
+> > > +
+> > > +	event = __xe_eudebug_create_event(d, 0, DRM_XE_EUDEBUG_EVENT_EU_ATTENTION,
+> > > +					  DRM_XE_EUDEBUG_EVENT_STATE_CHANGE, sz, GFP_KERNEL);
+> > > +
+> > > +	if (!event)
+> > > +		return -ENOSPC;
+> > > +
+> > > +	ea = cast_event(ea, event);
+> > > +	write_member(struct drm_xe_eudebug_event_eu_attention, ea, client_handle, (u64)h_c);
+> > > +	write_member(struct drm_xe_eudebug_event_eu_attention, ea, exec_queue_handle, (u64)h_queue);
+> > > +	write_member(struct drm_xe_eudebug_event_eu_attention, ea, lrc_handle, (u64)h_lrc);
+> > > +	write_member(struct drm_xe_eudebug_event_eu_attention, ea, bitmask_size, size);
+> > > +
+> > > +	mutex_lock(&d->eu_lock);
+> > > +	event->seqno = atomic_long_inc_return(&d->events.seqno);
+> > > +	ret = xe_gt_eu_attention_bitmap(q->gt, &ea->bitmask[0], ea->bitmask_size);
+> > > +	mutex_unlock(&d->eu_lock);
+> > > +
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	return xe_eudebug_queue_event(d, event);
+> > > +}
+> > > +
+> > > +
+> > > +static int xe_send_gt_attention(struct xe_gt *gt)
+> > > +{
+> > > +	struct xe_eudebug *d;
+> > > +	struct xe_exec_queue *q;
+> > > +	int ret, lrc_idx;
+> > > +
+> > > +	if (list_empty_careful(&gt_to_xe(gt)->eudebug.list))
+> > > +		return -ENOTCONN;
+> > > +
+> > > +	q = runalone_active_queue_get(gt, &lrc_idx);
+> > > +	if (IS_ERR(q))
+> > > +		return PTR_ERR(q);
+> > > +
+> > > +	d = xe_eudebug_get(q->vm->xef);
+> > > +	if (!d) {
+> > > +		ret = -ENOTCONN;
+> > > +		goto err_exec_queue_put;
+> > > +	}
+> > > +
+> > > +	if (!completion_done(&d->discovery)) {
+> > > +		eu_dbg(d, "discovery not yet done\n");
+> > > +		ret = -EBUSY;
+> > > +		goto err_eudebug_put;
+> > > +	}
+> > > +
+> > > +	ret = send_attention_event(d, q, lrc_idx);
+> > > +	if (ret)
+> > > +		xe_eudebug_disconnect(d, ret);
+> > > +
+> > > +err_eudebug_put:
+> > > +	xe_eudebug_put(d);
+> > > +err_exec_queue_put:
+> > > +	xe_exec_queue_put(q);
+> > > +
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +static int xe_eudebug_handle_gt_attention(struct xe_gt *gt)
+> > > +{
+> > > +	int ret;
+> > > +
+> > > +	ret = xe_gt_eu_threads_needing_attention(gt);
+> > > +	if (ret <= 0)
+> > > +		return ret;
+> > > +
+> > > +	ret = xe_send_gt_attention(gt);
+> > > +
+> > > +	/* Discovery in progress, fake it */
+> > > +	if (ret == -EBUSY)
+> > > +		return 0;
+> > > +
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +#define XE_EUDEBUG_ATTENTION_INTERVAL 100
+> > > +static void attention_scan_fn(struct work_struct *work)
+> > > +{
+> > > +	struct xe_device *xe = container_of(work, typeof(*xe), eudebug.attention_scan.work);
+> > > +	long delay = msecs_to_jiffies(XE_EUDEBUG_ATTENTION_INTERVAL);
+> > > +	struct xe_gt *gt;
+> > > +	u8 gt_id;
+> > > +
+> > > +	if (list_empty_careful(&xe->eudebug.list))
+> > > +		delay *= 10;
+> > > +
+> > > +	if (delay >= HZ)
+> > > +		delay = round_jiffies_up_relative(delay);
+> > > +
+> > > +	if (pm_runtime_active(xe->drm.dev)) {
+> > > +		for_each_gt(gt, xe, gt_id) {
+> > > +			int ret;
+> > > +
+> > > +			ret = xe_eudebug_handle_gt_attention(gt);
+> > > +			if (ret) {
+> > > +				// TODO: error capture
+> > > +				drm_info(&gt_to_xe(gt)->drm,
+> > > +					 "gt:%d unable to handle eu attention ret=%d\n",
+> > > +					 gt_id, ret);
+> > > +
+> > > +				xe_gt_reset_async(gt);
+> > > +			}
+> > > +		}
+> > > +	}
+> > > +
+> > > +	schedule_delayed_work(&xe->eudebug.attention_scan, delay);
+> > > +}
+> > > +
+> > > +static void attention_scan_cancel(struct xe_device *xe)
+> > > +{
+> > > +	cancel_delayed_work_sync(&xe->eudebug.attention_scan);
+> > > +}
+> > > +
+> > > +static void attention_scan_flush(struct xe_device *xe)
+> > > +{
+> > > +	mod_delayed_work(system_wq, &xe->eudebug.attention_scan, 0);
+> > > +}
+> > > +
+> > >  static void discovery_work_fn(struct work_struct *work);
+> > >  
+> > >  static int
+> > > @@ -877,6 +1252,7 @@ xe_eudebug_connect(struct xe_device *xe,
+> > >  
+> > >  	kref_init(&d->ref);
+> > >  	spin_lock_init(&d->connection.lock);
+> > > +	mutex_init(&d->eu_lock);
+> > >  	init_waitqueue_head(&d->events.write_done);
+> > >  	init_waitqueue_head(&d->events.read_done);
+> > >  	init_completion(&d->discovery);
+> > > @@ -903,6 +1279,7 @@ xe_eudebug_connect(struct xe_device *xe,
+> > >  
+> > >  	kref_get(&d->ref);
+> > >  	queue_work(xe->eudebug.ordered_wq, &d->discovery_work);
+> > > +	attention_scan_flush(xe);
+> > >  
+> > >  	eu_dbg(d, "connected session %lld", d->session);
+> > >  
+> > > @@ -979,12 +1356,22 @@ void xe_eudebug_init(struct xe_device *xe)
+> > >  {
+> > >  	spin_lock_init(&xe->eudebug.lock);
+> > >  	INIT_LIST_HEAD(&xe->eudebug.list);
+> > > +	INIT_DELAYED_WORK(&xe->eudebug.attention_scan, attention_scan_fn);
+> > >  
+> > >  	xe->eudebug.available = true;
+> > >  }
+> > >  
+> > > +void xe_eudebug_init_late(struct xe_device *xe)
+> > > +{
+> > > +	if (!xe->eudebug.available)
+> > > +		return;
+> > > +
+> > > +	attention_scan_flush(xe);
+> > > +}
+> > > +
+> > >  void xe_eudebug_fini(struct xe_device *xe)
+> > >  {
+> > > +	attention_scan_cancel(xe);
+> > >  	xe_assert(xe, list_empty_careful(&xe->eudebug.list));
+> > >  }
+> > >  
+> > > diff --git a/drivers/gpu/drm/xe/xe_eudebug.h b/drivers/gpu/drm/xe/xe_eudebug.h
+> > > index ac89a3d1ee1d..1e233c4683d6 100644
+> > > --- a/drivers/gpu/drm/xe/xe_eudebug.h
+> > > +++ b/drivers/gpu/drm/xe/xe_eudebug.h
+> > > @@ -18,6 +18,7 @@ int xe_eudebug_connect_ioctl(struct drm_device *dev,
+> > >  			     struct drm_file *file);
+> > >  
+> > >  void xe_eudebug_init(struct xe_device *xe);
+> > > +void xe_eudebug_init_late(struct xe_device *xe);
+> > >  void xe_eudebug_fini(struct xe_device *xe);
+> > >  void xe_eudebug_init_hw_engine(struct xe_hw_engine *hwe);
+> > >  
+> > > diff --git a/drivers/gpu/drm/xe/xe_eudebug_types.h b/drivers/gpu/drm/xe/xe_eudebug_types.h
+> > > index 6e3c23023933..16667b4dfe45 100644
+> > > --- a/drivers/gpu/drm/xe/xe_eudebug_types.h
+> > > +++ b/drivers/gpu/drm/xe/xe_eudebug_types.h
+> > > @@ -105,6 +105,9 @@ struct xe_eudebug {
+> > >  	/** @discovery_work: worker to discover resources for target_task */
+> > >  	struct work_struct discovery_work;
+> > >  
+> > > +	/** eu_lock: guards operations on eus (eu thread control and attention) */
+> > > +	struct mutex eu_lock;
+> > > +
+> > >  	/** @events: kfifo queue of to-be-delivered events */
+> > >  	struct {
+> > >  		/** @lock: guards access to fifo */
+> > > @@ -202,4 +205,33 @@ struct xe_eudebug_event_exec_queue {
+> > >  	u64 lrc_handle[];
+> > >  };
+> > >  
+> > > +/**
+> > > + * struct xe_eudebug_event_eu_attention - Internal event for EU attention
+> > > + */
+> > > +struct xe_eudebug_event_eu_attention {
+> > > +	/** @base: base event */
+> > > +	struct xe_eudebug_event base;
+> > > +
+> > > +	/** @client_handle: client for the attention */
+> > > +	u64 client_handle;
+> > > +
+> > > +	/** @exec_queue_handle: handle of exec_queue which raised attention */
+> > > +	u64 exec_queue_handle;
+> > > +
+> > > +	/** @lrc_handle: lrc handle of the workload which raised attention */
+> > > +	u64 lrc_handle;
+> > > +
+> > > +	/** @flags: eu attention event flags, currently MBZ */
+> > > +	u32 flags;
+> > > +
+> > > +	/** @bitmask_size: size of the bitmask, specific to device */
+> > > +	u32 bitmask_size;
+> > > +
+> > > +	/**
+> > > +	 * @bitmask: reflects threads currently signalling attention,
+> > > +	 * starting from natural hardware order of DSS=0, eu=0
+> > > +	 */
+> > > +	u8 bitmask[];
+> > > +};
+> > > +
+> > >  #endif
+> > > diff --git a/drivers/gpu/drm/xe/xe_gt_debug.c b/drivers/gpu/drm/xe/xe_gt_debug.c
+> > > new file mode 100644
+> > > index 000000000000..04d2d43ce249
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/xe/xe_gt_debug.c
+> > > @@ -0,0 +1,152 @@
+> > > +// SPDX-License-Identifier: MIT
+> > > +/*
+> > > + * Copyright © 2023 Intel Corporation
+> > > + */
+> > > +
+> > > +#include "regs/xe_gt_regs.h"
+> > > +#include "xe_device.h"
+> > > +#include "xe_force_wake.h"
+> > > +#include "xe_gt.h"
+> > > +#include "xe_gt_topology.h"
+> > > +#include "xe_gt_debug.h"
+> > > +#include "xe_gt_mcr.h"
+> > > +#include "xe_pm.h"
+> > > +#include "xe_macros.h"
+> > > +
+> > > +static int xe_gt_foreach_dss_group_instance(struct xe_gt *gt,
+> > > +					    int (*fn)(struct xe_gt *gt,
+> > > +						      void *data,
+> > > +						      u16 group,
+> > > +						      u16 instance),
+> > > +					    void *data)
+> > > +{
+> > > +	const enum xe_force_wake_domains fw_domains = XE_FW_GT | XE_FW_RENDER;
+> > > +	unsigned int dss;
+> > > +	u16 group, instance;
+> > > +	int ret;
+> > > +
+> > > +	xe_pm_runtime_get(gt_to_xe(gt));
+> > > +	ret = xe_force_wake_get(gt_to_fw(gt), fw_domains);
+> > > +	if (ret)
+> > > +		goto pm_runtime_put;
+> > > +
+> > > +	for_each_dss_steering(dss, gt, group, instance) {
+> > > +		ret = fn(gt, data, group, instance);
+> > > +		if (ret)
+> > > +			break;
+> > > +	}
+> > > +
+> > > +	xe_force_wake_put(gt_to_fw(gt), fw_domains);
+> > > +pm_runtime_put:
+> > > +	xe_pm_runtime_put(gt_to_xe(gt));
+> > > +
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +static int read_first_attention_mcr(struct xe_gt *gt, void *data,
+> > > +				    u16 group, u16 instance)
+> > > +{
+> > > +	unsigned int row;
+> > > +
+> > > +	for (row = 0; row < 2; row++) {
+> > > +		u32 val;
+> > > +
+> > > +		val = xe_gt_mcr_unicast_read(gt, TD_ATT(row), group, instance);
+> > > +
+> > > +		if (val)
+> > > +			return 1;
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +#define MAX_EUS_PER_ROW 4u
+> > > +#define MAX_THREADS 8u
+> > > +
+> > > +/**
+> > > + * xe_gt_eu_attention_bitmap_size - query size of the attention bitmask
+> > > + *
+> > > + * @gt: pointer to struct xe_gt
+> > > + *
+> > > + * Return: size in bytes.
+> > > + */
+> > > +int xe_gt_eu_attention_bitmap_size(struct xe_gt *gt)
+> > > +{
+> > > +	xe_dss_mask_t dss_mask;
+> > > +
+> > > +	bitmap_or(dss_mask, gt->fuse_topo.c_dss_mask,
+> > > +		  gt->fuse_topo.g_dss_mask, XE_MAX_DSS_FUSE_BITS);
+> > > +
+> > > +	return  bitmap_weight(dss_mask, XE_MAX_DSS_FUSE_BITS) *
+> > > +		TD_EU_ATTENTION_MAX_ROWS * MAX_THREADS *
+> > > +		MAX_EUS_PER_ROW / 8;
+> > > +}
+> > > +
+> > > +struct attn_read_iter {
+> > > +	struct xe_gt *gt;
+> > > +	unsigned int i;
+> > > +	unsigned int size;
+> > > +	u8 *bits;
+> > > +};
+> > > +
+> > > +static int read_eu_attentions_mcr(struct xe_gt *gt, void *data,
+> > > +				  u16 group, u16 instance)
+> > > +{
+> > > +	struct attn_read_iter * const iter = data;
+> > > +	unsigned int row;
+> > > +
+> > > +	for (row = 0; row < TD_EU_ATTENTION_MAX_ROWS; row++) {
+> > > +		u32 val;
+> > > +
+> > > +		if (iter->i >= iter->size)
+> > > +			return 0;
+> > > +
+> > > +		XE_WARN_ON(iter->i + sizeof(val) > xe_gt_eu_attention_bitmap_size(gt));
+> > > +
+> > > +		val = xe_gt_mcr_unicast_read(gt, TD_ATT(row), group, instance);
+> > > +
+> > > +
+> > > +		memcpy(&iter->bits[iter->i], &val, sizeof(val));
+> > > +		iter->i += sizeof(val);
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +/**
+> > > + * xe_gt_eu_attention_bitmap - query host attention
+> > > + *
+> > > + * @gt: pointer to struct xe_gt
+> > > + *
+> > > + * Return: 0 on success, negative otherwise.
+> > > + */
+> > > +int xe_gt_eu_attention_bitmap(struct xe_gt *gt, u8 *bits,
+> > > +			      unsigned int bitmap_size)
+> > > +{
+> > > +	struct attn_read_iter iter = {
+> > > +		.gt = gt,
+> > > +		.i = 0,
+> > > +		.size = bitmap_size,
+> > > +		.bits = bits
+> > > +	};
+> > > +
+> > > +	return xe_gt_foreach_dss_group_instance(gt, read_eu_attentions_mcr, &iter);
+> > > +}
+> > > +
+> > > +/**
+> > > + * xe_gt_eu_threads_needing_attention - Query host attention
+> > > + *
+> > > + * @gt: pointer to struct xe_gt
+> > > + *
+> > > + * Return: 1 if threads waiting host attention, 0 otherwise.
+> > > + */
+> > > +int xe_gt_eu_threads_needing_attention(struct xe_gt *gt)
+> > > +{
+> > > +	int err;
+> > > +
+> > > +	err = xe_gt_foreach_dss_group_instance(gt, read_first_attention_mcr, NULL);
+> > > +
+> > > +	XE_WARN_ON(err < 0);
+> > > +
+> > > +	return err < 0 ? 0 : err;
+> > > +}
+> > > diff --git a/drivers/gpu/drm/xe/xe_gt_debug.h b/drivers/gpu/drm/xe/xe_gt_debug.h
+> > > new file mode 100644
+> > > index 000000000000..3f13dbb17a5f
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/xe/xe_gt_debug.h
+> > > @@ -0,0 +1,21 @@
+> > > +/* SPDX-License-Identifier: MIT */
+> > > +/*
+> > > + * Copyright © 2023 Intel Corporation
+> > > + */
+> > > +
+> > > +#ifndef __XE_GT_DEBUG_
+> > > +#define __XE_GT_DEBUG_
+> > > +
+> > > +#define TD_EU_ATTENTION_MAX_ROWS 2u
+> > > +
+> > > +#include "xe_gt_types.h"
+> > > +
+> > > +#define XE_GT_ATTENTION_TIMEOUT_MS 100
+> > > +
+> > > +int xe_gt_eu_threads_needing_attention(struct xe_gt *gt);
+> > > +
+> > > +int xe_gt_eu_attention_bitmap_size(struct xe_gt *gt);
+> > > +int xe_gt_eu_attention_bitmap(struct xe_gt *gt, u8 *bits,
+> > > +			      unsigned int bitmap_size);
+> > > +
+> > > +#endif
+> > > diff --git a/include/uapi/drm/xe_drm_eudebug.h b/include/uapi/drm/xe_drm_eudebug.h
+> > > index 25dddb8b22f4..453269ac8307 100644
+> > > --- a/include/uapi/drm/xe_drm_eudebug.h
+> > > +++ b/include/uapi/drm/xe_drm_eudebug.h
+> > > @@ -27,13 +27,15 @@ struct drm_xe_eudebug_event {
+> > >  #define DRM_XE_EUDEBUG_EVENT_OPEN		2
+> > >  #define DRM_XE_EUDEBUG_EVENT_VM			3
+> > >  #define DRM_XE_EUDEBUG_EVENT_EXEC_QUEUE		4
+> > > -#define DRM_XE_EUDEBUG_EVENT_MAX_EVENT		DRM_XE_EUDEBUG_EVENT_EXEC_QUEUE
+> > > +#define DRM_XE_EUDEBUG_EVENT_EU_ATTENTION	5
+> > > +#define DRM_XE_EUDEBUG_EVENT_MAX_EVENT		DRM_XE_EUDEBUG_EVENT_EU_ATTENTION
+> > >  
+> > >  	__u16 flags;
+> > >  #define DRM_XE_EUDEBUG_EVENT_CREATE		(1 << 0)
+> > >  #define DRM_XE_EUDEBUG_EVENT_DESTROY		(1 << 1)
+> > >  #define DRM_XE_EUDEBUG_EVENT_STATE_CHANGE	(1 << 2)
+> > >  #define DRM_XE_EUDEBUG_EVENT_NEED_ACK		(1 << 3)
+> > > +
+> > >  	__u64 seqno;
+> > >  	__u64 reserved;
+> > >  };
+> > > @@ -62,6 +64,17 @@ struct drm_xe_eudebug_event_exec_queue {
+> > >  	__u64 lrc_handle[];
+> > >  };
+> > >  
+> > > +struct drm_xe_eudebug_event_eu_attention {
+> > > +	struct drm_xe_eudebug_event base;
+> > > +
+> > > +	__u64 client_handle;
+> > > +	__u64 exec_queue_handle;
+> > > +	__u64 lrc_handle;
+> > > +	__u32 flags;
+> > > +	__u32 bitmask_size;
+> > > +	__u8 bitmask[];
+> > > +};
+> > > +
+> > >  #if defined(__cplusplus)
+> > >  }
+> > >  #endif
+> > > -- 
+> > > 2.34.1
+> > > 
+> 
