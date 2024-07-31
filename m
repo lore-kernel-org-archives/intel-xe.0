@@ -4,59 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86EDBC3DA64
-	for <intel-xe@archiver.kernel.org>; Wed, 31 Jul 2024 11:11:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83E24C3DA64
+	for <intel-xe@archiver.kernel.org>; Wed, 31 Jul 2024 12:23:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CF7110E15B;
-	Wed, 31 Jul 2024 11:11:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1237410E5E6;
+	Wed, 31 Jul 2024 12:23:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZMkIiEmJ";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="zvAjUxKS";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="g8A0Lbnm";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="z8dpdXuf";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="B2CFou3z";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6902210E15B
- for <intel-xe@lists.freedesktop.org>; Wed, 31 Jul 2024 11:11:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722424296; x=1753960296;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8qijpVTaFD1AHYWlcOcJ9Y8y2TalFHKO3qiqwAg/g4s=;
- b=ZMkIiEmJzPwk/NMUcwKPeK9joLB+Pv+n4NCDobRTYubmXWNjlexlLJ9F
- /3Wjcr6ISPey7e4JX/qGjyLyPGSN5R5lqHQC61/D2EF1eixK7HqUO1GSF
- 8FYMXCvNpuWQ9eOwW0op8LdPnxRr5H4iN8V0JCQ+MjntpDDlgi7ZN7Hr0
- 47WdQNj3R2U8OiR/NpzgvRl0PkHd5FhxvnW+HpjUCfkxGuAuln0zWLKVY
- RZXb8wu2zxukGyEhZ1CIvrZ0qQGTgwlZOwsSPBKy7yTNqIpomzC5SCVnw
- 0N87oyYh/7Wt669spszNOc5oqcZ7Gp4blyX7MYqiK1IKtRAia8bWCOMdD Q==;
-X-CSE-ConnectionGUID: KNHC7kVSRnOMulDjcq6NOw==
-X-CSE-MsgGUID: ksBl3aEgRYWtxOyqXcACow==
-X-IronPort-AV: E=McAfee;i="6700,10204,11149"; a="42825555"
-X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; d="scan'208";a="42825555"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2024 04:11:35 -0700
-X-CSE-ConnectionGUID: IzBU+q79TZ+o6/+6r1Mtvw==
-X-CSE-MsgGUID: lCmL9Ip1Q2mWA5PwbsgWUg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; d="scan'208";a="59290204"
-Received: from lab-ah.igk.intel.com ([10.102.138.202])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2024 04:11:33 -0700
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- intel-xe@lists.freedesktop.org,
- Maciej Patelczyk <maciej.patelczyk@intel.com>
-Subject: [PATCH] fixup! drm/xe/eudebug: implement userptr_vma access
-Date: Wed, 31 Jul 2024 13:11:12 +0200
-Message-Id: <20240731111112.2702343-1-andrzej.hajda@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <ZqRRQmDz9zF/IMUW@DUT025-TGLU.fm.intel.com>
-References: <ZqRRQmDz9zF/IMUW@DUT025-TGLU.fm.intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 580D710E5D9;
+ Wed, 31 Jul 2024 12:23:20 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id D8CA821B3C;
+ Wed, 31 Jul 2024 12:23:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1722428599; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=mOTdCVaEnYGtfzTCQMNlTu9oxJH8V7lV/p5wiT3z57w=;
+ b=zvAjUxKSvjWVQRVdDndV+jDEFK9TH0jercAEgFfBYcmMUOHslDkCqM8P1b8/j5hDGvZlC0
+ epm8++gA1WlB61yhaAMjIZ/mmhgSLQhgFlogjVCGxjPWYlDTBe3Wcwac/LnOse/oYyV3RS
+ O/dlzhYahbNap7o05jNlsd+6gSYKBB0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1722428599;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=mOTdCVaEnYGtfzTCQMNlTu9oxJH8V7lV/p5wiT3z57w=;
+ b=g8A0LbnmGMo5w3T0+iwYRWddDEnLLNVVTN29j9+gK1uW9Ul2M4iRUSLfCQV8Pu1/kP8zvj
+ A5ABv7HP8OlrDBDw==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1722428597; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=mOTdCVaEnYGtfzTCQMNlTu9oxJH8V7lV/p5wiT3z57w=;
+ b=z8dpdXufM+P1Myhaaospgg5kt0lZYMLGVLy9RhEa3DcyitoDCThX/MTGRJew7VerH8LuAz
+ b2nLQMfRNeZoVtfpmk0oGxbn+u/YfNTfyP2t0AZc8OkHXlv3sHVBTw011vU7vIFS4o6mx5
+ p2PrSZFnpJfytdd7yC33KRkY8Pnqpxk=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1722428597;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=mOTdCVaEnYGtfzTCQMNlTu9oxJH8V7lV/p5wiT3z57w=;
+ b=B2CFou3zXQ0f+EadaDIqls49cBrWInTvbSgYjOp4z312RLBOMxe1OMoeJvWh1SRuPGqZkq
+ 3xKxkbLrC0D2ulDg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 8496F13297;
+ Wed, 31 Jul 2024 12:23:17 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 6BwnH7UsqmacTQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Wed, 31 Jul 2024 12:23:17 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
+ daniel@ffwll.ch
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>
+Subject: [PATCH 2/9] drm/i915: Use backlight power constants
+Date: Wed, 31 Jul 2024 14:17:14 +0200
+Message-ID: <20240731122311.1143153-3-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240731122311.1143153-1-tzimmermann@suse.de>
+References: <20240731122311.1143153-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.40 / 50.00]; MID_CONTAINS_FROM(1.00)[];
+ NEURAL_HAM_LONG(-1.00)[-1.000]; R_MISSING_CHARSET(0.50)[];
+ MIME_GOOD(-0.10)[text/plain]; ARC_NA(0.00)[];
+ FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,gmail.com,ffwll.ch];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_HAS_DN(0.00)[]; RCPT_COUNT_TWELVE(0.00)[13];
+ MIME_TRACE(0.00)[0:+]; FUZZY_BLOCKED(0.00)[rspamd.com];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; TO_DN_SOME(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; FROM_EQ_ENVFROM(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,intel.com:email,ursulin.net:email];
+ RCVD_TLS_ALL(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,51 +115,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This fixup pulls call to xe_vma_userptr_pin_pages out of
-vm->userptr.notifier_lock.
+Replace FB_BLANK_ constants with their counterparts from the
+backlight subsystem. The values are identical, so there's no
+change in functionality or semantics.
 
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Tvrtko Ursulin <tursulin@ursulin.net>
 ---
-Hi Matthew,
+ drivers/gpu/drm/i915/display/intel_backlight.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-I hope this fixup should answer your concerns.
-It was tested on LNL with lockdep turned on and with your
-two patches mentioned earlier.
-
-Posted in form of fixup to underline the difference,
-let me know if you insist on full patch.
-
-Regards
-Andrzej
----
- drivers/gpu/drm/xe/xe_eudebug.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
-index 472d9314505a..80d6f886969a 100644
---- a/drivers/gpu/drm/xe/xe_eudebug.c
-+++ b/drivers/gpu/drm/xe/xe_eudebug.c
-@@ -3343,6 +3343,7 @@ static int xe_eudebug_uvma_access(struct xe_userptr_vma *uvma, u64 offset,
- 	struct xe_res_cursor cur = {};
- 	int cur_len, ret = 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+index 071668bfe5d1..6f678c039ed8 100644
+--- a/drivers/gpu/drm/i915/display/intel_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+@@ -455,7 +455,7 @@ void intel_backlight_disable(const struct drm_connector_state *old_conn_state)
+ 	mutex_lock(&i915->display.backlight.lock);
  
-+lock_notifier:
- 	/* lock notifier in non-invalidation state */
- 	for (unsigned long nseq = uvma->userptr.notifier_seq; true;
- 	     nseq = mmu_interval_read_begin(&uvma->userptr.notifier)) {
-@@ -3358,9 +3359,11 @@ static int xe_eudebug_uvma_access(struct xe_userptr_vma *uvma, u64 offset,
- 		list_del_init(&uvma->userptr.invalidate_link);
- 		spin_unlock(&vm->userptr.invalidated_lock);
+ 	if (panel->backlight.device)
+-		panel->backlight.device->props.power = FB_BLANK_POWERDOWN;
++		panel->backlight.device->props.power = BACKLIGHT_POWER_OFF;
+ 	panel->backlight.enabled = false;
+ 	panel->backlight.funcs->disable(old_conn_state, 0);
  
-+		up_read(&vm->userptr.notifier_lock);
- 		ret = xe_vma_userptr_pin_pages(uvma);
- 		if (ret)
--			goto out_unlock_notifier;
-+			return ret;
-+		goto lock_notifier;
+@@ -773,7 +773,7 @@ static void __intel_backlight_enable(const struct intel_crtc_state *crtc_state,
+ 	panel->backlight.funcs->enable(crtc_state, conn_state, panel->backlight.level);
+ 	panel->backlight.enabled = true;
+ 	if (panel->backlight.device)
+-		panel->backlight.device->props.power = FB_BLANK_UNBLANK;
++		panel->backlight.device->props.power = BACKLIGHT_POWER_ON;
+ }
+ 
+ void intel_backlight_enable(const struct intel_crtc_state *crtc_state,
+@@ -870,12 +870,12 @@ static int intel_backlight_device_update_status(struct backlight_device *bd)
+ 	 */
+ 	if (panel->backlight.enabled) {
+ 		if (panel->backlight.power) {
+-			bool enable = bd->props.power == FB_BLANK_UNBLANK &&
++			bool enable = bd->props.power == BACKLIGHT_POWER_ON &&
+ 				bd->props.brightness != 0;
+ 			panel->backlight.power(connector, enable);
+ 		}
+ 	} else {
+-		bd->props.power = FB_BLANK_POWERDOWN;
++		bd->props.power = BACKLIGHT_POWER_OFF;
  	}
  
- 	if (!up->sg) {
+ 	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
+@@ -945,9 +945,9 @@ int intel_backlight_device_register(struct intel_connector *connector)
+ 					    props.max_brightness);
+ 
+ 	if (panel->backlight.enabled)
+-		props.power = FB_BLANK_UNBLANK;
++		props.power = BACKLIGHT_POWER_ON;
+ 	else
+-		props.power = FB_BLANK_POWERDOWN;
++		props.power = BACKLIGHT_POWER_OFF;
+ 
+ 	name = kstrdup_const("intel_backlight", GFP_KERNEL);
+ 	if (!name)
 -- 
-2.34.1
+2.45.2
 
