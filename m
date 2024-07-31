@@ -4,171 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E482C52D6D
-	for <intel-xe@archiver.kernel.org>; Wed, 31 Jul 2024 22:31:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3F35C3DA7F
+	for <intel-xe@archiver.kernel.org>; Wed, 31 Jul 2024 22:35:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7874810E2BF;
-	Wed, 31 Jul 2024 22:31:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF79E10E2C2;
+	Wed, 31 Jul 2024 22:35:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CYEteV7M";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bHhtW/xt";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8414B10E2AD;
- Wed, 31 Jul 2024 22:31:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 951D210E2C2
+ for <intel-xe@lists.freedesktop.org>; Wed, 31 Jul 2024 22:35:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722465068; x=1754001068;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=PnszGiLh8ophyhWmh6H2tQEGEnLNe99bFBwkSCFSCvQ=;
- b=CYEteV7MfbyS0yix3wvMgYLwTwq4fDJDBrMMRAoq/AUx/8KsR43Lb5hf
- PCD4XVfB5w7ACQuSVoscDUZJ7YusU+cETc2Js4jB5+oANiWE9HpC5Laeu
- Lf+pJ76oejk0Dva7hrarPH2ZAXuzRKSMkqkgyWYQSSm4HyJmpIfUSA7Ij
- yJ6EkiFC1yjUssdJIyiLYjHmNIzDg7IeUSH4rVf2DtMf5OhZkYYbRa7UW
- JWe5CmwaTVN3J8fNYQ//uQyT5dm2JV9SB556P/7i9rUj3r5w7OeW+gxT4
- UgezogzhUJaNY0fQ32QPJvIvy+GMX/1R2NqbRvEtHJ5HW/+qqYd2AZRQf g==;
-X-CSE-ConnectionGUID: RrNNOwAlTZWQ+sXwK3GpPQ==
-X-CSE-MsgGUID: slUT6XlAQIuz27ODe8Ey/A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11150"; a="37850425"
-X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; d="scan'208";a="37850425"
+ t=1722465327; x=1754001327;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=3RwotGu34TIYMPaiL3PFr8dIHm69vNjX1QxQIMybsW4=;
+ b=bHhtW/xtHan2trY13byp3Vs7rqtHPnZHbpJELNrgmg2f2AHFmv5vAxMg
+ zKxi2CneEAxFxmFsvc0vl3txTj0kJ+dcos5yzdQQPgRE2t4k733CNdTfY
+ wL+OUm18PjmBtOSwP/9ziMNqwEjwJ49aqE1PXmMvBc0LIG+K3+mP/J0eG
+ Bw8o0cIR1N6gXkKxQuKx++nkDyeHyNuHtQ3VLSSWkX4t6zewq+VSp6e6O
+ 62CA4gso2k922TneFHHBpw6vp+c2y1nDWJwIwaiPv7KPyTG2ZJecmcoiQ
+ JqwOrFFqDrVtigl3GXqwcOtXbyVGeSV3cE8I/Qx7LSSZxFv5gO8mPDBoE A==;
+X-CSE-ConnectionGUID: IS29D1D/SveT9NOaT2SJ8Q==
+X-CSE-MsgGUID: F1dTa0tgTsGynzmJ69C4iw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11150"; a="37851165"
+X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; d="scan'208";a="37851165"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2024 15:31:06 -0700
-X-CSE-ConnectionGUID: WJcRpW/+ROyQbBypTzgszw==
-X-CSE-MsgGUID: zfIM/6f7Rqmvvi5OOUTW4A==
+ 31 Jul 2024 15:35:15 -0700
+X-CSE-ConnectionGUID: 9AulF8qjSdCJ4/LKKq24xg==
+X-CSE-MsgGUID: 1sy6Fl2VQBm1myePGTgiUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; d="scan'208";a="85439827"
+X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; d="scan'208";a="85440828"
 Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
  by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 31 Jul 2024 15:31:05 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ 31 Jul 2024 15:35:14 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
  fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 31 Jul 2024 15:31:04 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 31 Jul 2024 15:31:03 -0700
+ 15.1.2507.39; Wed, 31 Jul 2024 15:35:13 -0700
 Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 31 Jul 2024 15:31:03 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.49) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Wed, 31 Jul 2024 15:35:13 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 31 Jul 2024 15:31:03 -0700
+ 15.1.2507.39; Wed, 31 Jul 2024 15:35:13 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lv/y5Z586dmIWrmjct+6/qJ8eQUp0Y6Qvxqa+tNIhU+oJjGp3wA/aLEpYX2ZjBZbvTr9AfNSQ4uUSNX9qTGeplsFUtLW2U7j54WqN84opIwhbMGlPcoircxO/Sp4gI++Okqtc0FTooaBhFWuCLwAl8tFp0cwZ15StLbOVc28O8W/uu5e2ldVzNUzBguZE6n50DaeOA5h7DjsBpVjIYuzrSwCzTUTeNRE+jItY06i++tiVKIBNu4Og7Snl8NdHrCIh5Uejz48iBVLVDNVBoTL3KPRRZl3jNKOWgxO6Oaa2xwTt40i/7e9mAoevhRq/T9vxUrhnkjh8kMKIFwrsFqc0Q==
+ b=xSX/yX/7lcC0e0G6jxYdxP4j7UWzNp4gIC3RF/POIr8er7WPy3ti5W+C0nv/InAc/29bK3Pi3h7zjn/e+R12uNPHvTldaO4h+pJr8JjPE7uik1nMYYsRVaZZKMdUoI/InG3RGeswMdiCnZAIdQRHpodBftg/ZiWjg4JCj3UTT2iN14S6PZvR8uXX4Spllk2/SJRcmQvr9+0aEhzgbq5o7r6RT4T78NgLRsxXGR/C0kUDqq8kAEpea5S61zCiaAfjAmjaqLzq4ZN4isXrFVN2PwST5zlx3GHSQVJNJMn04Jlt+oM8qw4vbweOndSqJ5O5/7cc5iq6Z+hdS9PBkKUDWA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7BZ/7GnQafJz4DsyBgSbToLaxJxK0L+vZqH6beI4xvs=;
- b=WugPLRFoHlxXDJVzgi0sR54vCbc2HgKp0Afx39QUOwa6sd2K1G0OcA1gR4JpzsSre/fwMz0fBNJmLS1Bx9t4CnAtqMn+OaPBnoyFR919JlFoWDyaoY3Hq5rgPPLpofIw7E9DWiKK3FHfFPDIAZDRINxCpvNTlY+RpkgEY7NxOTrmb7HEozyDel9reATJzgA3KDWGyNjARwX6RieHiXU3ii/XhgvIXkwCfhSotI8ZNjMs8QP7fr1lb2mKVc3dsx3pWDMphFqK/xRSzme0q+dRcLcPnwR4F6O7UUHigOmaW/b52Uth4mDr9Cke2tWJoXu1P2MkxL/UuwaoM+SXqZt+Iw==
+ bh=xBEHJNp+Mcc9gD97cVaajOfnzmXYx2jiXTZl2sMWguM=;
+ b=HvCXIwDKaSQSYknJQajVPKZEk5IcbYpiJYc6moWwneT6UwPt55P0O8V1c1KzkeR5m0rkZlnS3d+ZGvl1RTpCw2NBmx4g2SK1Wzg+KgZjfNwvDxXb84UW2KvUxgrkuLE1FiFLsqLJ0heUNTqKfVIH1fsKX3ogqpd/IAEcoddTghTgPlQTj1qrJFsvL3rAUYjaQ0Cau3iPvqth9etP1ehqbnDN8UBOmGij9tTuY09fRpGh+nBGig8qpkLiFoD7Qc0cWZyC4L7gVdeA3E+N832G0da76o0ZehthmKAT3zqzB5HVFnLqsZjLIaHOykiKCOnjVXPUAO61dERXt8A1f7Z4Zw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from CH0PR11MB5444.namprd11.prod.outlook.com (2603:10b6:610:d3::13)
- by DS7PR11MB6128.namprd11.prod.outlook.com (2603:10b6:8:9c::5) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7807.29; Wed, 31 Jul 2024 22:31:01 +0000
-Received: from CH0PR11MB5444.namprd11.prod.outlook.com
- ([fe80::5f89:ba81:ff70:bace]) by CH0PR11MB5444.namprd11.prod.outlook.com
- ([fe80::5f89:ba81:ff70:bace%6]) with mapi id 15.20.7828.021; Wed, 31 Jul 2024
- 22:31:01 +0000
-From: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-To: "Brost, Matthew" <matthew.brost@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-CC: "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "Cavitt, Jonathan"
- <jonathan.cavitt@intel.com>
-Subject: RE: [PATCH v4 3/3] drm/xe: Faster devcoredump
-Thread-Topic: [PATCH v4 3/3] drm/xe: Faster devcoredump
-Thread-Index: AQHa45EhrRr+t6/cKkK7aaQGfsNwFrIRaZlw
-Date: Wed, 31 Jul 2024 22:31:01 +0000
-Message-ID: <CH0PR11MB5444691DD3B93D99108A22C9E5B12@CH0PR11MB5444.namprd11.prod.outlook.com>
-References: <20240731213221.2523989-1-matthew.brost@intel.com>
- <20240731213221.2523989-4-matthew.brost@intel.com>
-In-Reply-To: <20240731213221.2523989-4-matthew.brost@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH0PR11MB5444:EE_|DS7PR11MB6128:EE_
-x-ms-office365-filtering-correlation-id: 9ef95d86-75c2-45ba-4b8c-08dcb1b074c2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|366016|1800799024|376014|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?GXi7MlPv6LU0HAL4F3XvKrmxH+256LwI1ZBKsB2uKbrYn6b013oSbRsP+jk0?=
- =?us-ascii?Q?MHaPMBDK/Ne9cTbQMkmmi73v+iO9o0x2EBXLrrjpWqNjVmor7fqzEKbCEYo4?=
- =?us-ascii?Q?6xeAenEkHIN1CLMbwplW2k/xqhBpeg+/k9Q7liws7ETYSLvV9NJS1WMpMw9c?=
- =?us-ascii?Q?Q8rauV5J8p4g0LVWGtXSwYWJ5Oj/c//v1Cg072RaYj3m6+QfmTiHtq+m7Fia?=
- =?us-ascii?Q?SlfLFQLSO8vnx2aBucjcpooU6IbsahqkWUF3WFErOX/1JkOUYcHqpzLQfMxM?=
- =?us-ascii?Q?o2JD7vNIanIvBAjiP17bBlAhyQ/ylvrnqbxtitS80hNXKRbl1cMMgQGUn3cl?=
- =?us-ascii?Q?4smmpL+IaV5eZ4Hl0nY4jNLn86VfyrAvxmydP+S9l0bmuAUpJd1/ppLkRNC+?=
- =?us-ascii?Q?SLIh5UAEgkwUsgeQP7fMR5VHqvcYdnTUtHcwb0iN4cXv3Q3xRNQW6b4Iatc9?=
- =?us-ascii?Q?BIpA0KzpEV0Yl9ntG/iHty1ZYDr0Lx+X2+Kstq9PI3qgRoYUGa+Ux1ZH2Q7x?=
- =?us-ascii?Q?BrWC3v394RdqKWpY0wRHfNqSde5g6ckgghMHZrqsQulHNK5YnMFWojtCpasb?=
- =?us-ascii?Q?GmOfXNWIivR86qCu2l9m9sR8FQOEJXRHGucFz7Ml1APFwyft5mz2KhxHhj0E?=
- =?us-ascii?Q?PRHBXvYLCTayrr9u+U7qRVx8ecL+jASQiupIio89JQ2f8XO88yu2GN3HBN1t?=
- =?us-ascii?Q?kwzB9syoz4aADhwQKrRpsd8kpbTXzwzDg/K3CXQaneq5a3X07HgdbCeVyUuV?=
- =?us-ascii?Q?klVj9v0NoEoqnzVfgrkpmB+5+I4Te+Yz3NH4Fqv12shKlcrF/zLYANASQr3h?=
- =?us-ascii?Q?7aN1EtMhE/PIRDPVGqAt+tXlwiT1277C6N1ydUsSiKQlif6CLRizTYD5BdXF?=
- =?us-ascii?Q?GgDVtDonHPU0mUY4sy5AzBE3e1KhskwsRfpV1HOX6ZEQMySaqnPnRdRVtSo5?=
- =?us-ascii?Q?t+24AiX0E8cF8ZDGkjDx9eL1eOT81QMYNosvbVHc4rhCeD0x0Cn8Cn6vPiqQ?=
- =?us-ascii?Q?sUQ1Kkck0qqI1H2g9uXRNTc3T9EOi5QjNwVelXLzont1xJn+sv21QP9gZihE?=
- =?us-ascii?Q?ytIkOppOz56PBfn5zA30rpBgzjnlBH6ULSRNeHBrHwMOWIUtNA6eqXexssvk?=
- =?us-ascii?Q?0ZC8rRbmg+DSCuu8gIFqbyCdiz6SKd4gRTBnOBCjrgyvlYRmrcrKi5wo6Meq?=
- =?us-ascii?Q?bhKYEJRI20EZSQNf92euWySR6dKKZMfKi76koTnTBhGcIUZt6c2g0XFQuP/+?=
- =?us-ascii?Q?DqWqSvO9QVeP+YYaI3hGVXuAx7mm53OGQyw/x4bE5flDynq9JGm9fmKVSaN6?=
- =?us-ascii?Q?r6LO50pH/NYP3zjy0rdr079rAF/k2aJB2gilXbuSUuUuXQ=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5444.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?hOF6WHiEnwYT+t8Ec3vKcf6QXjvx15fXgpwsOLK8mucSwuWVvRWB0qRv65J8?=
- =?us-ascii?Q?XPIZ5iUPvyve8moixiBsiGemUFWyDb7FtmG8CoXUhobxpfL2mopBqT0kDvJh?=
- =?us-ascii?Q?UfnhbYkhcJ+iYOIhLSPvtzqG4W+Jba9YLU/r/0fE7GVBGifWCI+eJrdh5MoI?=
- =?us-ascii?Q?dafALgD/4C+jlo2uJgIMyxS7xwg9vVoBhikAGB+8Aun4adAtZQG23wdpfqs8?=
- =?us-ascii?Q?FyQn9X+OkUGn7c3X53J4BfRERj0wkBNZrIzI49XvKcGJ/itaWy6NynoFZmDE?=
- =?us-ascii?Q?92+eB2M+HhN5/+X1r8/AToKPamWAtHmHy9gVW08TgrPUjq/NRMiczBOL4mWM?=
- =?us-ascii?Q?jzoU2+oyruN1OxEgXmq6r/vtYia46LFDjnAraznjP4fJXLnRlnEneH8SgRab?=
- =?us-ascii?Q?P8iARw70ZBxO7vOvA9cCDrkSrHlagimciSxtXtNKyb4eQlFSLOocwBtyd5oN?=
- =?us-ascii?Q?pN6j08sO8Kdbf/7V8luKK60R9tHRnMR2X5t9z52CR4dq9o4CT6HUg/lg+0+P?=
- =?us-ascii?Q?wFQtyjd1hlkEdolKR5z8taZEZVFqx+alVtcjsSzSkhzodJ6NjVj3TYx6Kl71?=
- =?us-ascii?Q?f/YRt3wTVrkBO4rVUdhQlHcgUIqdNwPrbErAv2emzFV/et1YhloWjRai8tiq?=
- =?us-ascii?Q?A7m82yA5zNCQzVpSWWQJTu7RaCyyIw2G63WZ28ZVMbbueBVmOa0n2nh9OGsz?=
- =?us-ascii?Q?iQS35gBUvNtss7pXgabaez69aMu87cv2faeS2ZCtKSDgsDPPKzk+9xE5MKO1?=
- =?us-ascii?Q?D2+liU4LnJxQYdno/SNrg/Xh1Kn7pMxE0876QsZSAIfTumEgjjQeq+rvN16Z?=
- =?us-ascii?Q?HqP7RGkMGrTvW63uWvuB9pkxhkphuh1B07PjwGzAKZtylKgV6b0HpCrgz1XV?=
- =?us-ascii?Q?pX8sEwMjsr04oNOI+eEgvoA1zmTTy+MwctTg9b+vHoMQLrnqnEWF+PpRn1s8?=
- =?us-ascii?Q?phakqs/L+rGCfk8g50ZuJfiu6aSNHpWjdqNsG0K4mgM+fi47m1uyL54uXg6Z?=
- =?us-ascii?Q?YYm59ES2V0Oiq4cUi/o8ZRTy9K92zygAfv04ZBUCsPkmdQ0qWkfi8oju9PXU?=
- =?us-ascii?Q?5wPFyTZ2whJceRfN4kmd8pch231bOFbb5yeMKgE/8p/Dt+Ah9lf6BBFO95LZ?=
- =?us-ascii?Q?4sdiE4cLaLvmXysEmXVV8LDFBqSzndtwlkYnMdZ0u2ZQ9WjOBoFx1tcOLozS?=
- =?us-ascii?Q?CxHoC2p/lt71CH9dsgnn5MUn6e0wec/r2wsiw8eYt1IO5f/34T5rdtX6fcUx?=
- =?us-ascii?Q?KWUxzhzf0ppP62FB5RK6ZuMLLYaCyk+USv5PlFqXcsPovJCTb9zCn2BlYG7q?=
- =?us-ascii?Q?oeR+/KRRqCyueOTgmavhYooMfFpx4z9kfRobJaFIYYaL2dXsRMIkNP5rNHJJ?=
- =?us-ascii?Q?4r836u6CP69sK+vhFWjH81qNrUkVxNSj0kHzJ2TUKBcDyvPlbQsGjDb1Aa6p?=
- =?us-ascii?Q?YtrxKSbT8zcQ4YgvqwfB7FGt0uYMjq1zsJPkHdFxOwdr6hG1PrbTJNlEev4H?=
- =?us-ascii?Q?9bql5llVmeDsl/Ws4uZ2+Y+3SF5MnVHIV9p2HMKI4YQchyltfcWwwohJ+pa/?=
- =?us-ascii?Q?TbDhq9bnoHfrOS732yG7emTadxlhvlS2hY0L1cDV?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by SJ2PR11MB7503.namprd11.prod.outlook.com (2603:10b6:a03:4cb::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.20; Wed, 31 Jul
+ 2024 22:35:10 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e%6]) with mapi id 15.20.7828.016; Wed, 31 Jul 2024
+ 22:35:10 +0000
+Date: Wed, 31 Jul 2024 15:35:07 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Francois Dugast <francois.dugast@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <matthew.brost@intel.com>
+Subject: Re: [PATCH v3 01/13] drm/xe/hw_engine_group: Introduce
+ xe_hw_engine_group
+Message-ID: <20240731223507.GG2685051@mdroper-desk1.amr.corp.intel.com>
+References: <20240731142349.4101307-1-francois.dugast@intel.com>
+ <20240731142349.4101307-2-francois.dugast@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240731142349.4101307-2-francois.dugast@intel.com>
+X-ClientProxiedBy: BYAPR02CA0009.namprd02.prod.outlook.com
+ (2603:10b6:a02:ee::22) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SJ2PR11MB7503:EE_
+X-MS-Office365-Filtering-Correlation-Id: 490bb4ce-e61e-43ca-e95a-08dcb1b10977
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?r2bj63g83VIHTFUFZMxn58RNi1/VIC7kWAl9098SJ6HoCBvTUP/1cCOCw0?=
+ =?iso-8859-1?Q?LYnsW+DW9cFDYW9UNjlIGokaCWymRHEFOX27WQWbdm8RyNcu1seypHNkRB?=
+ =?iso-8859-1?Q?IlpfvlPDL3FaqN1SFoNgQycZnHLST3go30kCgInXWEszT9g+EVnmMk/Id4?=
+ =?iso-8859-1?Q?xmBB53lTeI2fM1ohL+StcPR2BhRnhWueTSgdsv0aL44QtcEO46g8o1BPpg?=
+ =?iso-8859-1?Q?Krie9GQ14dG2+HjtKXXg6Hh2Kc/KPxUH0eBaZ0d/AMgIr8UYmXiHyCaYAj?=
+ =?iso-8859-1?Q?gZB0922oA53mCuDT+TSiJh6YIuaozMrIZDZrExFFYrzmurJH9jeVqtQEVG?=
+ =?iso-8859-1?Q?WsdSP1EsGPSHjv4RFD3VwSnqFYvIfDRxZexoAFmkvT0ZToL+XzwDI5/53c?=
+ =?iso-8859-1?Q?elAsLIZUh6IQGx1orBd7uElViqGlhgqkp5FSKzWXAE+/SpNBXTLyP1Qkwr?=
+ =?iso-8859-1?Q?mPOH1daK4XsRkIZOsB/8koLCImBn3teTVn/66fwLZIjfU8US2A0qHBb6F8?=
+ =?iso-8859-1?Q?qfGp/ULiVkTUKCf5e+brOVL7gqNsMvBpBtOMuFBCJMXF3OmBDLuP5Rz3Jf?=
+ =?iso-8859-1?Q?IA1bQ5vXMe/4ewDUthocR6NLk2JclFnu3RAsz7bD5d3JMiC9DrnFRVd9h9?=
+ =?iso-8859-1?Q?w/hfFnNgKi5ULOCYUzhkgc6MlWmDaU16xyK66JLzD3WrYsvDjDWx90TXsf?=
+ =?iso-8859-1?Q?aNLCF0uS7cD7TTlTgHsaDndhZesFM0BrzVYL8OdWwfE4FXjGS7PyRurTIo?=
+ =?iso-8859-1?Q?owooQcMZhHs5T8tw2PXEbtwQ8ek7ZTkXTQtQY6Xk3PTOEXlVptVv8ZPs2+?=
+ =?iso-8859-1?Q?oP3mhSN++B7viIQMVj5PpiojijMEm+ZNO1BcXv2Mct+zrqnEFdsbLQHA2M?=
+ =?iso-8859-1?Q?QL9yGRqlmnvSvaKiS2n9C+Iif3X9gLYF8FmXWJMfEL0jB8n0831WN7fNxI?=
+ =?iso-8859-1?Q?JipZL+vSHKxo8eUCZ9P2q4/KbpYu3fOFLeETTXCFpxt5cr+AfL1QF1pvsm?=
+ =?iso-8859-1?Q?hIJweMXFuIfQ91gPdN9UvJerCEvGPm0spfVz8lOMoc8DRLY6qbx4MI1N8p?=
+ =?iso-8859-1?Q?FQe09PVD/CCY2WVZ/6VvtsjmszbgTX895/v6Rsc4VXvBMh4A0KIN5MSyas?=
+ =?iso-8859-1?Q?CPhmjYv9eUTF2LtWBDSE7OWfrDgsCFwcFNtQATQKGWE6gSkwxJh+pyYFDG?=
+ =?iso-8859-1?Q?x8fc0EdwhxJu0OhtDIZx3zQdoqcSXHh3MO4CozQ+XtWwiJc6ITaAoVg/NF?=
+ =?iso-8859-1?Q?za8qOFul/4TvfAPU4HxGKgDvdkD3FQYANp15nhSnMFFfxdRKR2RHocRtfH?=
+ =?iso-8859-1?Q?ynK40dhrvhpCpuQICIWjlKhGmxtULXQHcfPz4d+uEstanSTiZzMoYQdlKs?=
+ =?iso-8859-1?Q?TGXhrHx+Rm32j5dVcmM8BqXOtOVIyvzA=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?bDVXIJzFKKYwO02guqDnWC8k/jwbHLyIdQTqQUU5rGjqXQAsMvIiNEMvYV?=
+ =?iso-8859-1?Q?ND1inM2r2w0y9/1LDSk8G4zDi9qgLj7w0tOB2yiytw+5nQWOeyBXq/pnPe?=
+ =?iso-8859-1?Q?MXj/k/X1UnPnR0S8N5nCaUSXoPepVTLs4pWWvLrSDlTVtpkyD5zE5ChJax?=
+ =?iso-8859-1?Q?glYtTdRpr2o4IfXxntbQdVRn1RHLmyvK3WduN425X2Hq22BvtI+041kDjl?=
+ =?iso-8859-1?Q?Pri8ElokM952nvrbMDHG00UNeN4U4p6HwxzgokRlYW10cZBdIepxOnrlJI?=
+ =?iso-8859-1?Q?YfEiJX0i6cB75HgJivENVQX54QYCQuwLyrLFhnS8t18FHVw4J1WntspPNu?=
+ =?iso-8859-1?Q?KyefqA/Pg0IkkxIDFNvM+qrpNvCx3ShuLEbMtF+Dxa+uXSZknHvLZBjK19?=
+ =?iso-8859-1?Q?kobSjK/yJIxsx6FfNwccYpqXldzLvAPG+NjT4WQpc27aTNKV+CPfWsFkrP?=
+ =?iso-8859-1?Q?MCVVG4Mq75MGDiUKUkJ9Lu+/xhM2dD/Nn7uK95TS4w0OHfDv/6mLYc2Oka?=
+ =?iso-8859-1?Q?a6s5rLHg4j+o6HpYoXHy5B9zqzlwyJQLXPjrRnpi91CdCyR7fk++px4YF+?=
+ =?iso-8859-1?Q?6wUzPAw4kLM8Vvkq+Y2HQRafCxL99hqF+PDbxH3SLQSa1QXDNTlsZUx3NE?=
+ =?iso-8859-1?Q?+/VfKU+z9jYwOwZtjEHMKRVCd8HAqevh4dkkSFfHAlZLWYdODkj+rn1u4k?=
+ =?iso-8859-1?Q?ZtqiROC3aQz7ca4NZPUvFea795hWzBC9BnyTe81aaRog/hu+zVSnfv/vZw?=
+ =?iso-8859-1?Q?XE1Kf0ZfJLUPWOu+JohOtSRhZnU3uM+2xd2E84HApKDb8p1xJIi19RPRzp?=
+ =?iso-8859-1?Q?eSIxdyYNv+tkB+4kSk1vz6PSdwAds5gxsGyCeFPVelWuN0aM6zkinvMVpr?=
+ =?iso-8859-1?Q?Z3hv0KIbeyggLqvclAxusCvYesrpPXauis4OOWU7Cg0nHlsQC4B2jhFP2e?=
+ =?iso-8859-1?Q?qpogZWi/61iVrKF8gGIo9L1RbAXiFeZsFy4xNVy/YV391BRYoEUbopJkaN?=
+ =?iso-8859-1?Q?uMz8EN4iO++TrnzJuzAhDzY93iMVGbaTbpuFuy/xe8U+9ohoT+t5/Nu9fD?=
+ =?iso-8859-1?Q?JLEhcOUPAp42xnH59CGwwa2pYifoVIhvJ2E/025o1BpooXuThC5BazAOs4?=
+ =?iso-8859-1?Q?fBe4ThrALS447O1Ao1PYO/cZSzKa/NyhC5a2qbkszr7WTVghQhD7yqjAT7?=
+ =?iso-8859-1?Q?3C8/LAqsBN0FmLob7jGVJCePbhn5n5nG4aQmgeR564BHlCce/ZL1v308DL?=
+ =?iso-8859-1?Q?cZ2gs/o4besFIDjcDRxjfRSPUXyXxS6FphwgL6FHw4FemwU30ESxAT9C+X?=
+ =?iso-8859-1?Q?PmJRi0djlpCkTMIvYlRbBzFS2NQ2O7xk0NPQd9tqDlYyHKVebyUqiXHL45?=
+ =?iso-8859-1?Q?YJm2MCXijtTLkmbHUahr5rMz/IgZZs8NKh8Ixdba6SX6lifDlWT8r6XNKX?=
+ =?iso-8859-1?Q?ZPIuVNLDr4hMF89lMfsytn42j8Ke3D96JovC/O7WClsEDK1O5g0PzM1IKq?=
+ =?iso-8859-1?Q?xVuHa3ZpjwPqGorhqENC4YmJmwg8CWAF6eg5x0Wd+xKQs/ZQZqqAu/1fzy?=
+ =?iso-8859-1?Q?Fy0CFfZ9wnzvmTZ0vQPjMlQMnGomfkFMR3ro2HvLKtlrNFAUyiN3E3IjqH?=
+ =?iso-8859-1?Q?Zg+NNQ5qtTZFmxwh+IE/SctiV2zMqqTLNLUWdpo4v7fIZKoKJOVIBYDA?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 490bb4ce-e61e-43ca-e95a-08dcb1b10977
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5444.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9ef95d86-75c2-45ba-4b8c-08dcb1b074c2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jul 2024 22:31:01.0790 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9nzIjm1Ck9TbQL393/uEnSro1tMKjvXn2u7EfX6adktapN3fEEI4eygN33TRF/BhW+n6ARMBpRLxIiAR83OuW33bdRfdfpgnDDyXmjbrlMw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6128
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jul 2024 22:35:10.7367 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7AffFRtbVWKeSgoxRw/eS1SF135vO5X6WXCHnyqvKwZRE1VLsKPP+8Er47Ttnp/dgCM7FDo+7tjeoGudW6eROzZRQtf0+tcue0p/ZzST5aw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7503
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -184,241 +178,286 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
------Original Message-----
-From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Matthe=
-w Brost
-Sent: Wednesday, July 31, 2024 2:32 PM
-To: intel-xe@lists.freedesktop.org; dri-devel@lists.freedesktop.org
-Cc: maarten.lankhorst@linux.intel.com; Vivi, Rodrigo <rodrigo.vivi@intel.co=
-m>
-Subject: [PATCH v4 3/3] drm/xe: Faster devcoredump
->=20
-> The current algorithm to read out devcoredump is O(N*N) where N is the
-> size of coredump due to usage of the drm_coredump_printer in
-> xe_devcoredump_read. Switch to a O(N) algorithm which prints the
-> devcoredump into a readable format in snapshot work and update
-> xe_devcoredump_read to memcpy from the readable format directly.
->=20
-> v2:
->  - Fix double free on devcoredump removal (Testing)
->  - Set read_data_size after snap work flush
->  - Adjust remaining in iterator upon realloc (Testing)
->  - Set read_data upon realloc (Testing)
-> v3:
->  - Kernel doc
->=20
-> Reported-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2408
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+On Wed, Jul 31, 2024 at 04:21:35PM +0200, Francois Dugast wrote:
+> A xe_hw_engine_group is a group of hw engines. Two hw engines belong to
+> the same xe_hw_engine_group if one hw engine cannot make progress while
+> the other is stuck on a page fault.
+> 
+> Typically, hw engines of the same group share some resources such as EUs.
+> This depends on the hardware configuration of the platforms.
+
+How do we determine what the shared resources are for a given platform?
+Are there bspec references that we should be checking to figure out what
+does/doesn't need to be grouped on a given platform?
+
+The EUs shared by the RCS+CCS engines are the obvious ones, but is it
+really true that BCS engines can't make progress while another engine of
+the same type is faulting?  Wouldn't that be a huge problem (since a
+fault on one BCS engine usually requires that we utilize a different BCS
+engine for the migration operations to resolve the fault)?  Or am I not
+understanding what the groupings represent?
+
+For VCS/VECS, is the shared resource we're concerned about the SFC?  If
+so, then I'd expect there to be a separate group per SCMI / media slice
+since each one has its own dedicated SFC (and sometimes some of the
+engines aren't even tied to the SFC at all).  Throwing all the media
+engines across all the SCMI's into a single group seems like it would be
+overkill unless there's some other resource that we're concerned about,
+so it would be good to have some more details in the commit message here.
+
+
+Matt
+
+> 
+> v2: Move to own files, improve error handling (Matt Brost)
+> 
+> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_devcoredump.c       | 112 ++++++++++++++++------
->  drivers/gpu/drm/xe/xe_devcoredump_types.h |   4 +
->  2 files changed, 85 insertions(+), 31 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_=
-devcoredump.c
-> index d8d8ca2c19d3..b802a35c22f2 100644
-> --- a/drivers/gpu/drm/xe/xe_devcoredump.c
-> +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-> @@ -66,22 +66,9 @@ static struct xe_guc *exec_queue_to_guc(struct xe_exec=
-_queue *q)
->  	return &q->gt->uc.guc;
+>  drivers/gpu/drm/xe/Makefile                   |  1 +
+>  drivers/gpu/drm/xe/xe_hw_engine.c             |  4 +
+>  drivers/gpu/drm/xe/xe_hw_engine_group.c       | 99 +++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_hw_engine_group.h       | 16 +++
+>  drivers/gpu/drm/xe/xe_hw_engine_group_types.h | 48 +++++++++
+>  drivers/gpu/drm/xe/xe_hw_engine_types.h       |  2 +
+>  6 files changed, 170 insertions(+)
+>  create mode 100644 drivers/gpu/drm/xe/xe_hw_engine_group.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_hw_engine_group.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_hw_engine_group_types.h
+> 
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 1ff9602a52f6..b67ace7ed204 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -69,6 +69,7 @@ xe-y += xe_bb.o \
+>  	xe_heci_gsc.o \
+>  	xe_hw_engine.o \
+>  	xe_hw_engine_class_sysfs.o \
+> +	xe_hw_engine_group.o \
+>  	xe_hw_fence.o \
+>  	xe_huc.o \
+>  	xe_huc_debugfs.o \
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+> index 00ace5fcc284..f62992d0497a 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+> @@ -23,6 +23,7 @@
+>  #include "xe_gt_printk.h"
+>  #include "xe_gt_mcr.h"
+>  #include "xe_gt_topology.h"
+> +#include "xe_hw_engine_group.h"
+>  #include "xe_hw_fence.h"
+>  #include "xe_irq.h"
+>  #include "xe_lrc.h"
+> @@ -764,6 +765,9 @@ int xe_hw_engines_init(struct xe_gt *gt)
+>  	}
+>  
+>  	hw_engine_setup_logical_mapping(gt);
+> +	err = xe_hw_engine_setup_groups(gt);
+> +	if (err)
+> +		return err;
+>  
+>  	return 0;
 >  }
-> =20
-> -static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
-> -{
-> -	struct xe_devcoredump_snapshot *ss =3D container_of(work, typeof(*ss), =
-work);
-> -
-> -	/* keep going if fw fails as we still want to save the memory and SW da=
-ta */
-> -	if (xe_force_wake_get(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL))
-> -		xe_gt_info(ss->gt, "failed to get forcewake for coredump capture\n");
-> -	xe_vm_snapshot_capture_delayed(ss->vm);
-> -	xe_guc_exec_queue_snapshot_capture_delayed(ss->ge);
-> -	xe_force_wake_put(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL);
-> -}
-> -
-> -static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
-> -				   size_t count, void *data, size_t datalen)
-> +static ssize_t __xe_devcoredump_read(char *buffer, size_t count,
-> +				     struct xe_devcoredump *coredump)
->  {
-> -	struct xe_devcoredump *coredump =3D data;
->  	struct xe_device *xe;
->  	struct xe_devcoredump_snapshot *ss;
->  	struct drm_printer p;
-> @@ -89,18 +76,12 @@ static ssize_t xe_devcoredump_read(char *buffer, loff=
-_t offset,
->  	struct timespec64 ts;
->  	int i;
-> =20
-> -	if (!coredump)
-> -		return -ENODEV;
-> -
->  	xe =3D coredump_to_xe(coredump);
->  	ss =3D &coredump->snapshot;
-> =20
-> -	/* Ensure delayed work is captured before continuing */
-> -	flush_work(&ss->work);
-> -
->  	iter.data =3D buffer;
->  	iter.offset =3D 0;
-> -	iter.start =3D offset;
-> +	iter.start =3D 0;
->  	iter.remain =3D count;
-> =20
->  	p =3D drm_coredump_printer(&iter);
-> @@ -131,13 +112,86 @@ static ssize_t xe_devcoredump_read(char *buffer, lo=
-ff_t offset,
->  	drm_printf(&p, "\n**** VM state ****\n");
->  	xe_vm_snapshot_print(coredump->snapshot.vm, &p);
-> =20
-> -	return count - iter.remain;
-> +	return iter.offset;
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.c b/drivers/gpu/drm/xe/xe_hw_engine_group.c
+> new file mode 100644
+> index 000000000000..7fd10f0780ea
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine_group.c
+> @@ -0,0 +1,99 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2024 Intel Corporation
+> + */
+> +
+> +#include <drm/drm_managed.h>
+> +
+> +#include "xe_device.h"
+> +#include "xe_gt.h"
+> +#include "xe_hw_engine_group.h"
+> +
+> +static void
+> +hw_engine_group_free(struct drm_device *drm, void *arg)
+> +{
+> +	struct xe_hw_engine_group *group = arg;
+> +
+> +	kfree(group);
 > +}
 > +
-> +static void xe_devcoredump_snapshot_free(struct xe_devcoredump_snapshot =
-*ss)
+> +static struct xe_hw_engine_group *
+> +hw_engine_group_alloc(struct xe_device *xe)
 > +{
-> +	int i;
+> +	struct xe_hw_engine_group *group;
+> +	int err;
 > +
-> +	xe_guc_ct_snapshot_free(ss->ct);
-> +	ss->ct =3D NULL;
+> +	group = kzalloc(sizeof(*group), GFP_KERNEL);
+> +	if (!group)
+> +		return ERR_PTR(-ENOMEM);
 > +
-> +	xe_guc_exec_queue_snapshot_free(ss->ge);
-> +	ss->ge =3D NULL;
+> +	init_rwsem(&group->mode_sem);
+> +	INIT_LIST_HEAD(&group->exec_queue_list);
 > +
-> +	xe_sched_job_snapshot_free(ss->job);
-> +	ss->job =3D NULL;
+> +	err = drmm_add_action_or_reset(&xe->drm, hw_engine_group_free, group);
+> +	if (err)
+> +		return ERR_PTR(err);
 > +
-> +	for (i =3D 0; i < XE_NUM_HW_ENGINES; i++)
-> +		if (ss->hwe[i]) {
-> +			xe_hw_engine_snapshot_free(ss->hwe[i]);
-> +			ss->hwe[i] =3D NULL;
+> +	return group;
+> +}
+> +
+> +/**
+> + * xe_hw_engine_setup_groups() - Setup the hw engine groups for the gt
+> + * @gt: The gt for which groups are setup
+> + *
+> + * Return: 0 on success, negative error code on error.
+> + */
+> +int xe_hw_engine_setup_groups(struct xe_gt *gt)
+> +{
+> +	struct xe_hw_engine *hwe;
+> +	enum xe_hw_engine_id id;
+> +	struct xe_hw_engine_group *group_rcs_ccs, *group_bcs, *group_vcs_vecs;
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +	int err;
+> +
+> +	group_rcs_ccs = hw_engine_group_alloc(xe);
+> +	if (IS_ERR(group_rcs_ccs)) {
+> +		err = PTR_ERR(group_rcs_ccs);
+> +		goto err_group_rcs_ccs;
+> +	}
+> +
+> +	group_bcs = hw_engine_group_alloc(xe);
+> +	if (IS_ERR(group_bcs)) {
+> +		err = PTR_ERR(group_bcs);
+> +		goto err_group_bcs;
+> +	}
+> +
+> +	group_vcs_vecs = hw_engine_group_alloc(xe);
+> +	if (IS_ERR(group_vcs_vecs)) {
+> +		err = PTR_ERR(group_vcs_vecs);
+> +		goto err_group_vcs_vecs;
+> +	}
+> +
+> +	for_each_hw_engine(hwe, gt, id) {
+> +		switch (hwe->class) {
+> +		case XE_ENGINE_CLASS_COPY:
+> +			hwe->hw_engine_group = group_bcs;
+> +			break;
+> +		case XE_ENGINE_CLASS_RENDER:
+> +		case XE_ENGINE_CLASS_COMPUTE:
+> +			hwe->hw_engine_group = group_rcs_ccs;
+> +			break;
+> +		case XE_ENGINE_CLASS_VIDEO_DECODE:
+> +		case XE_ENGINE_CLASS_VIDEO_ENHANCE:
+> +			hwe->hw_engine_group = group_vcs_vecs;
+> +			break;
+> +		default:
 > +		}
+> +	}
 > +
-> +	xe_vm_snapshot_free(ss->vm);
-> +	ss->vm =3D NULL;
+> +	return 0;
+> +
+> +err_group_vcs_vecs:
+> +	kfree(group_vcs_vecs);
+> +err_group_bcs:
+> +	kfree(group_bcs);
+> +err_group_rcs_ccs:
+> +	kfree(group_rcs_ccs);
+> +
+> +	return err;
 > +}
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.h b/drivers/gpu/drm/xe/xe_hw_engine_group.h
+> new file mode 100644
+> index 000000000000..c2648f87f7ef
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine_group.h
+> @@ -0,0 +1,16 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2024 Intel Corporation
+> + */
 > +
-> +static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
-> +{
-> +	struct xe_devcoredump_snapshot *ss =3D container_of(work, typeof(*ss), =
-work);
-> +	struct xe_devcoredump *coredump =3D container_of(ss, typeof(*coredump),=
- snapshot);
+> +#ifndef _XE_HW_ENGINE_GROUP_H_
+> +#define _XE_HW_ENGINE_GROUP_H_
 > +
-> +	/* keep going if fw fails as we still want to save the memory and SW da=
-ta */
-> +	if (xe_force_wake_get(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL))
-> +		xe_gt_info(ss->gt, "failed to get forcewake for coredump capture\n");
-> +	xe_vm_snapshot_capture_delayed(ss->vm);
-> +	xe_guc_exec_queue_snapshot_capture_delayed(ss->ge);
-> +	xe_force_wake_put(gt_to_fw(ss->gt), XE_FORCEWAKE_ALL);
+> +#include "xe_hw_engine_group_types.h"
 > +
-> +	/* Calculate devcoredump size */
-> +	ss->read_data_size =3D __xe_devcoredump_read(NULL, INT_MAX, coredump);
+> +struct drm_device;
+> +struct xe_gt;
 > +
-> +	ss->read_data =3D kvmalloc(ss->read_data_size, GFP_USER);
-> +	if (!ss->read_data)
-> +		return;
+> +int xe_hw_engine_setup_groups(struct xe_gt *gt);
 > +
-> +	__xe_devcoredump_read(ss->read_data, ss->read_data_size, coredump);
-> +	xe_devcoredump_snapshot_free(ss);
-> +}
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group_types.h b/drivers/gpu/drm/xe/xe_hw_engine_group_types.h
+> new file mode 100644
+> index 000000000000..b828d85d24cb
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine_group_types.h
+> @@ -0,0 +1,48 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2024 Intel Corporation
+> + */
 > +
-> +static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
-> +				   size_t count, void *data, size_t datalen)
-> +{
-> +	struct xe_devcoredump *coredump =3D data;
-> +	struct xe_devcoredump_snapshot *ss;
-> +	ssize_t byte_copied;
+> +#ifndef _XE_HW_ENGINE_GROUP_TYPES_H_
+> +#define _XE_HW_ENGINE_GROUP_TYPES_H_
 > +
-> +	if (!coredump)
-> +		return -ENODEV;
+> +#include "xe_force_wake_types.h"
+> +#include "xe_lrc_types.h"
+> +#include "xe_reg_sr_types.h"
 > +
-> +	ss =3D &coredump->snapshot;
+> +/**
+> + * enum xe_hw_engine_group_execution_mode - possible execution modes of a hw
+> + * engine group
+> + */
+> +enum xe_hw_engine_group_execution_mode {
+> +	EXEC_MODE_LR,
+> +	EXEC_MODE_DMA_FENCE,
+> +};
 > +
-> +	/* Ensure delayed work is captured before continuing */
-> +	flush_work(&ss->work);
+> +/**
+> + * struct xe_hw_engine_group - Hardware engine group
+> + *
+> + * hw engines belong to the same group if they share hardware resources in a way
+> + * that prevents them from making progress when one is stuck on a page fault.
+> + */
+> +struct xe_hw_engine_group {
+> +	/**
+> +	 * @exec_queue_list: list of exec queues attached to this
+> +	 * xe_hw_engine_group
+> +	 */
+> +	struct list_head exec_queue_list;
+> +	/** @resume_work: worker to resume faulting LR exec queues */
+> +	struct work_struct resume_work;
+> +	/** @resume_wq: workqueue to resume faulting LR exec queues */
+> +	struct workqueue_struct *resume_wq;
+> +	/**
+> +	 * @mode_sem: used to protect this group's hardware resources and ensure
+> +	 * mutual exclusion between execution only in faulting LR mode and
+> +	 * execution only in DMA_FENCE mode
+> +	 */
+> +	struct rw_semaphore mode_sem;
+> +	/** @cur_mode: current execution mode of this hw engine group */
+> +	enum xe_hw_engine_group_execution_mode cur_mode;
+> +};
 > +
-> +	if (!ss->read_data)
-> +		return -ENODEV;
-> +
-> +	if (offset >=3D ss->read_data_size)
-> +		return 0;
-> +
-> +	byte_copied =3D count < ss->read_data_size - offset ? count :
-> +		ss->read_data_size - offset;
-> +	memcpy(buffer, ss->read_data + offset, byte_copied);
-> +
-> +	return byte_copied;
->  }
-> =20
->  static void xe_devcoredump_free(void *data)
->  {
->  	struct xe_devcoredump *coredump =3D data;
-> -	int i;
-> =20
->  	/* Our device is gone. Nothing to do... */
->  	if (!data || !coredump_to_xe(coredump))
-> @@ -145,13 +199,8 @@ static void xe_devcoredump_free(void *data)
-> =20
->  	cancel_work_sync(&coredump->snapshot.work);
-> =20
-> -	xe_guc_ct_snapshot_free(coredump->snapshot.ct);
-> -	xe_guc_exec_queue_snapshot_free(coredump->snapshot.ge);
-> -	xe_sched_job_snapshot_free(coredump->snapshot.job);
-> -	for (i =3D 0; i < XE_NUM_HW_ENGINES; i++)
-> -		if (coredump->snapshot.hwe[i])
-> -			xe_hw_engine_snapshot_free(coredump->snapshot.hwe[i]);
-> -	xe_vm_snapshot_free(coredump->snapshot.vm);
-> +	xe_devcoredump_snapshot_free(&coredump->snapshot);
-> +	kvfree(coredump->snapshot.read_data);
-> =20
->  	/* To prevent stale data on next snapshot, clear everything */
->  	memset(&coredump->snapshot, 0, sizeof(coredump->snapshot));
-> @@ -260,4 +309,5 @@ int xe_devcoredump_init(struct xe_device *xe)
->  {
->  	return devm_add_action_or_reset(xe->drm.dev, xe_driver_devcoredump_fini=
-, &xe->drm);
->  }
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/=
-xe/xe_devcoredump_types.h
-> index 923cdf72a816..0298037edae4 100644
-> --- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
-> +++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-> @@ -46,6 +46,10 @@ struct xe_devcoredump_snapshot {
->  	struct xe_sched_job_snapshot *job;
->  	/** @vm: Snapshot of VM state */
->  	struct xe_vm_snapshot *vm;
-> +	/** @read_data_size: size of read data */
-> +	ssize_t read_data_size;
-> +	/** @read_data: Read data */
-> +	void *read_data;
-
-Perhaps the data size and read data can be stapled together under the same
-struct?
-
-struct {
-	ssize_t size;
-	void *data;
-} read_data;
-
-It's not that big of a deal if this is untouched, just something to conside=
-r.
-Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
--Jonathan Cavitt
-
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+> index 70e6434f150d..39f24012d0f4 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+> @@ -150,6 +150,8 @@ struct xe_hw_engine {
+>  	struct xe_hw_engine_class_intf *eclass;
+>  	/** @oa_unit: oa unit for this hw engine */
+>  	struct xe_oa_unit *oa_unit;
+> +	/** @hw_engine_group: the group of hw engines this one belongs to */
+> +	struct xe_hw_engine_group *hw_engine_group;
 >  };
-> =20
+>  
 >  /**
-> --=20
-> 2.34.1
->=20
->=20
+> -- 
+> 2.43.0
+> 
+
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
