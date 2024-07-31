@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C7B5C3DA7F
-	for <intel-xe@archiver.kernel.org>; Wed, 31 Jul 2024 16:25:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 060C8C3DA64
+	for <intel-xe@archiver.kernel.org>; Wed, 31 Jul 2024 16:43:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3959F10E685;
-	Wed, 31 Jul 2024 16:25:11 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8128710E685;
- Wed, 31 Jul 2024 16:25:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1948984255846551250=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1BEE10E688;
+	Wed, 31 Jul 2024 16:43:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d9DktHON";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88DDD10E688
+ for <intel-xe@lists.freedesktop.org>; Wed, 31 Jul 2024 16:43:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1722444213; x=1753980213;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=IXAJqHDo68u2Ns+qFkN9a4+mCR4LX1emQgvhukw2M6U=;
+ b=d9DktHONOA7BP0d1rQ9G0C0nkcobeWKNXGQtDpTTfpZmp6JUNP/C0796
+ Or4ilABCKvS3ZIZ60nFstGKOQhUVi/1XMUPVcVIDKFvN3J4v58YLyf3vz
+ smuGT90GTrejw6hPFtzR8P0D/jJIRoqnnWn7Cq0LOlMBkVTxc5iMX7wcn
+ 8QNdquboSTM8gAuUUWnG+4XSv5Ywyj3IUXfN5ptPC+LqXhMRbtOr8pVtk
+ e3ByrbW4/jWU6v4NYb27kILPiPZWFHb9XOFg5yHwcnz/wBshJnxzl0Wt3
+ v9DHdSbIRYpD+Tnfb1Cga9AGMdl+FP51HXrglKVGBuM9RiiAAA567fjeb Q==;
+X-CSE-ConnectionGUID: Eh+0TPXERMyDOq283IpwSg==
+X-CSE-MsgGUID: vV+BmqDdR9ugVH42pjzc7w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11150"; a="12808867"
+X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; d="scan'208";a="12808867"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2024 09:43:33 -0700
+X-CSE-ConnectionGUID: P+r0rX/bRweH8IH44DPqsw==
+X-CSE-MsgGUID: 6z8wD/JqQcme78253jQQBw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; d="scan'208";a="59584963"
+Received: from sinjan-super-server.iind.intel.com ([10.145.169.153])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2024 09:43:30 -0700
+From: Karthik Poosa <karthik.poosa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ vinay.belgaumkar@intel.com, ashutosh.dixit@intel.com,
+ rodrigo.vivi@intel.com, Karthik Poosa <karthik.poosa@intel.com>
+Subject: [PATCH i-g-t] drm/xe/hwmon: Fix PL1 disable flow in
+ xe_hwmon_power_max_write
+Date: Wed, 31 Jul 2024 22:26:36 +0530
+Message-Id: <20240731165636.1401533-1-karthik.poosa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A_Export_xe=5Fhw=5Fengin?=
- =?utf-8?q?e=27s_mmio_accessors?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 31 Jul 2024 16:25:09 -0000
-Message-ID: <172244310952.468618.4376861706916570490@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240731153422.401458-1-mika.kuoppala@linux.intel.com>
-In-Reply-To: <20240731153422.401458-1-mika.kuoppala@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,129 +64,35 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1948984255846551250==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+In xe_hwmon_power_max_write, for PL1 disable supported case, instead of
+returning after PL1 disable, PL1 enable was path also being run.
+Fixed it by returing after disable.
 
-== Series Details ==
+Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+Fixes: fef6dd12b45a ("drm/xe/hwmon: Protect hwmon rw attributes with hwmon_lock")
+---
+ drivers/gpu/drm/xe/xe_hwmon.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Series: drm/xe: Export xe_hw_engine's mmio accessors
-URL   : https://patchwork.freedesktop.org/series/136755/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index 0c8ce09e5025..832ea81faeee 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -203,9 +203,10 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, int channel, long va
+ 		reg_val = xe_mmio_rmw32(hwmon->gt, rapl_limit, PKG_PWR_LIM_1_EN, 0);
+ 		reg_val = xe_mmio_read32(hwmon->gt, rapl_limit);
+ 		if (reg_val & PKG_PWR_LIM_1_EN) {
++			drm_warn(&gt_to_xe(hwmon->gt)->drm, "PL1 disable is not supported!\n");
+ 			ret = -EOPNOTSUPP;
+-			goto unlock;
+ 		}
++		goto unlock;
+ 	}
+ 
+ 	/* Computation in 64-bits to avoid overflow. Round to nearest. */
+-- 
+2.25.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-1696-2a74e6714291a2c9cf26c08f729d5feb203e8338_BAT -> xe-pw-136755v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (7 -> 7)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-136755v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_gt_freq@freq_basic_api:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#2196])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1696-2a74e6714291a2c9cf26c08f729d5feb203e8338/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136755v1/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html
-
-  
-  [Intel XE#2196]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2196
-
-
-Build changes
--------------
-
-  * IGT: IGT_7944 -> IGT_7947
-  * Linux: xe-1696-2a74e6714291a2c9cf26c08f729d5feb203e8338 -> xe-pw-136755v1
-
-  IGT_7944: 7944
-  IGT_7947: 6b46cef93ce2c2f821bfcaa3c3a111e1cf5c76fc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-1696-2a74e6714291a2c9cf26c08f729d5feb203e8338: 2a74e6714291a2c9cf26c08f729d5feb203e8338
-  xe-pw-136755v1: 136755v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136755v1/index.html
-
---===============1948984255846551250==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Export xe_hw_engine&#x27;s mmio accessors</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136755/">https://patchwork.freedesktop.org/series/136755/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136755v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136755v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-1696-2a74e6714291a2c9cf26c08f729d5feb203e8338_BAT -&gt; xe-pw-136755v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-136755v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_gt_freq@freq_basic_api:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1696-2a74e6714291a2c9cf26c08f729d5feb203e8338/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136755v1/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2196">Intel XE#2196</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7944 -&gt; IGT_7947</li>
-<li>Linux: xe-1696-2a74e6714291a2c9cf26c08f729d5feb203e8338 -&gt; xe-pw-136755v1</li>
-</ul>
-<p>IGT_7944: 7944<br />
-  IGT_7947: 6b46cef93ce2c2f821bfcaa3c3a111e1cf5c76fc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-1696-2a74e6714291a2c9cf26c08f729d5feb203e8338: 2a74e6714291a2c9cf26c08f729d5feb203e8338<br />
-  xe-pw-136755v1: 136755v1</p>
-
-</body>
-</html>
-
---===============1948984255846551250==--
