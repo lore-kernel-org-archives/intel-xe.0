@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13C32C52D6D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4596C3DA64
 	for <intel-xe@archiver.kernel.org>; Wed, 31 Jul 2024 21:31:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D111110E6D5;
-	Wed, 31 Jul 2024 21:31:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E05510E6D6;
+	Wed, 31 Jul 2024 21:31:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RmGf70yB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z5KjyDuz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD80B10E6D0;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F6A010E6D1;
  Wed, 31 Jul 2024 21:31:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1722461500; x=1753997500;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=au3TGgfpi/Lgdi9QsgHL3ol5Ks1DJ8E3L9NSvnmbXd0=;
- b=RmGf70yBhEtKS9JCY63FT2gMNbgS2vl9N3DhisUzGfAsOdQYMd5F+YQ2
- 745rDQegjZso2MnlYRrE1akCRy4LTP6QUiPUVws2XOzJRGt+R0k0V8wsf
- Cm0dA0FSxkFL0PiTv7LEuSIk8yqG9LVPpVV5ZGDz0rrytYrmXFF7QP6YD
- v18U+QwQJU4phYPeY1uU9l1iroyB1ZfQxUXObdn054hQuUN4wGSOCrFIi
- HIVnMt/vrPuRYZAc4Z0XhURErkawqbeHIKKMdCWn85DwEWEQhc5MaPRwD
- T3KPuBRuKvN6KKXiNVXD0/9UErB6JhH4CEUJjWH9+lXtQqfrQVUwMBwEO Q==;
-X-CSE-ConnectionGUID: SfRc8Gn3Tb2K3xOClcVABA==
-X-CSE-MsgGUID: UF2et8OHRSOaCudVifq9Xg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11150"; a="24234740"
-X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; d="scan'208";a="24234740"
+ bh=N9+XfoSWNqokS/xvMQE3ZOTLhTqBOlxZmUfNyJorS1s=;
+ b=Z5KjyDuzEIWW5af0XX9ceIgKWCgw2k09AJkPsLwnk8OdHfRT6Bx53bQ+
+ 8g6gg06vJ8PhHnYbW+sXoInLZyK4y1Ql8z3Pl9T7abD0YS21giXl9p1Lv
+ q0cdRd0ZLTmw6u+1TCefZMqumd7Z52qJuVdlZCf9Y7Psg7YFW03/xZDU6
+ QN/BAToJUwyXsFmCNE4kIV7Hcxh+Rpfvrc9NDoGdz05sj0FnnKG/tSqyp
+ H/RcsOsHNr9iNaFT4sgIZJtwUvO8ADYQMBeh8CdBhyLvb3qS1siLNoQ2P
+ 9hbkM/e6HFIH2SnKkaJRmN6i2ol6ub7uqkO8iTKWte4PjiTrByoe+o9me g==;
+X-CSE-ConnectionGUID: v/PluKISQ+6wtjIf/DVk8w==
+X-CSE-MsgGUID: IvyGP5jXS827naCs4jrCng==
+X-IronPort-AV: E=McAfee;i="6700,10204,11150"; a="24234739"
+X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; d="scan'208";a="24234739"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  31 Jul 2024 14:31:39 -0700
-X-CSE-ConnectionGUID: G8LMnLfcTdOhYFTXg8AX5Q==
-X-CSE-MsgGUID: YM+eEjTDRRKKbceW+clEbw==
+X-CSE-ConnectionGUID: TDNsbXVjTtuGNsJkH1e03A==
+X-CSE-MsgGUID: XCEzY0knQPmJWb20vmtIzw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; d="scan'208";a="58938906"
+X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; d="scan'208";a="58938900"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2024 14:31:41 -0700
+ 31 Jul 2024 14:31:40 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: maarten.lankhorst@linux.intel.com,
 	rodrigo.vivi@intel.com
-Subject: [PATCH v4 2/3] drm/printer: Allow NULL data in devcoredump printer
-Date: Wed, 31 Jul 2024 14:32:20 -0700
-Message-Id: <20240731213221.2523989-3-matthew.brost@intel.com>
+Subject: [PATCH v4 1/3] drm/xe: Take ref to VM in delayed snapshot
+Date: Wed, 31 Jul 2024 14:32:19 -0700
+Message-Id: <20240731213221.2523989-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240731213221.2523989-1-matthew.brost@intel.com>
 References: <20240731213221.2523989-1-matthew.brost@intel.com>
@@ -68,52 +68,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Useful to determine size of devcoreump before writing it out.
+Kernel BO's don't take a ref to the VM, we need to the VM for the
+delayed snapshot, so take a ref to the VM in delayed snapshot.
 
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+v2:
+ - Check for lrc_bo before taking a VM ref (CI)
+ - Check lrc_bo->vm before taking / dropping a VM ref (CI)
+ - Drop VM in xe_lrc_snapshot_free
+
+47058633d9c5 ("drm/xe: Move lrc snapshot capturing to xe_lrc.c")
+Cc: Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/drm_print.c | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_lrc.c | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
-index cf24dfdeb6b2..a1a4de9f9c44 100644
---- a/drivers/gpu/drm/drm_print.c
-+++ b/drivers/gpu/drm/drm_print.c
-@@ -100,8 +100,9 @@ void __drm_puts_coredump(struct drm_printer *p, const char *str)
- 			copy = iterator->remain;
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 94ff62e1d95e..58121821f081 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1634,6 +1634,9 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
+ 	if (!snapshot)
+ 		return NULL;
  
- 		/* Copy out the bit of the string that we need */
--		memcpy(iterator->data,
--			str + (iterator->start - iterator->offset), copy);
-+		if (iterator->data)
-+			memcpy(iterator->data,
-+				str + (iterator->start - iterator->offset), copy);
++	if (lrc->bo && lrc->bo->vm)
++		xe_vm_get(lrc->bo->vm);
++
+ 	snapshot->context_desc = xe_lrc_ggtt_addr(lrc);
+ 	snapshot->indirect_context_desc = xe_lrc_indirect_ring_ggtt_addr(lrc);
+ 	snapshot->head = xe_lrc_ring_head(lrc);
+@@ -1653,12 +1656,14 @@ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc)
+ void xe_lrc_snapshot_capture_delayed(struct xe_lrc_snapshot *snapshot)
+ {
+ 	struct xe_bo *bo;
++	struct xe_vm *vm;
+ 	struct iosys_map src;
  
- 		iterator->offset = iterator->start + copy;
- 		iterator->remain -= copy;
-@@ -110,7 +111,8 @@ void __drm_puts_coredump(struct drm_printer *p, const char *str)
+ 	if (!snapshot)
+ 		return;
  
- 		len = min_t(ssize_t, strlen(str), iterator->remain);
+ 	bo = snapshot->lrc_bo;
++	vm = bo->vm;
+ 	snapshot->lrc_bo = NULL;
  
--		memcpy(iterator->data + pos, str, len);
-+		if (iterator->data)
-+			memcpy(iterator->data + pos, str, len);
+ 	snapshot->lrc_snapshot = kvmalloc(snapshot->lrc_size, GFP_KERNEL);
+@@ -1678,6 +1683,8 @@ void xe_lrc_snapshot_capture_delayed(struct xe_lrc_snapshot *snapshot)
+ 	xe_bo_unlock(bo);
+ put_bo:
+ 	xe_bo_put(bo);
++	if (vm)
++		xe_vm_put(vm);
+ }
  
- 		iterator->offset += len;
- 		iterator->remain -= len;
-@@ -140,8 +142,9 @@ void __drm_printfn_coredump(struct drm_printer *p, struct va_format *vaf)
- 	if ((iterator->offset >= iterator->start) && (len < iterator->remain)) {
- 		ssize_t pos = iterator->offset - iterator->start;
+ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer *p)
+@@ -1727,8 +1734,14 @@ void xe_lrc_snapshot_free(struct xe_lrc_snapshot *snapshot)
+ 		return;
  
--		snprintf(((char *) iterator->data) + pos,
--			iterator->remain, "%pV", vaf);
-+		if (iterator->data)
-+			snprintf(((char *) iterator->data) + pos,
-+				iterator->remain, "%pV", vaf);
+ 	kvfree(snapshot->lrc_snapshot);
+-	if (snapshot->lrc_bo)
++	if (snapshot->lrc_bo) {
++		struct xe_vm *vm;
++
++		vm = snapshot->lrc_bo->vm;
+ 		xe_bo_put(snapshot->lrc_bo);
++		if (vm)
++			xe_vm_put(vm);
++	}
+ 	kfree(snapshot);
+ }
  
- 		iterator->offset += len;
- 		iterator->remain -= len;
 -- 
 2.34.1
 
