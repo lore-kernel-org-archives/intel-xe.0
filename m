@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8089CC3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Aug 2024 21:28:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FAE7C3DA4A
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Aug 2024 21:33:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F75210E081;
-	Thu,  1 Aug 2024 21:28:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BciJUF2e";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34A2310E081
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Aug 2024 21:28:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722547716; x=1754083716;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=JL4OIPpj2h78myg7tQMlp+Hp59PT/DFJt+d9lIUA2Ks=;
- b=BciJUF2elg6b5JgvbaVJ2F6Xek6jaXsW7CjKjasDlw1imN9o/m01UYcH
- kZA1a5G3PgyeUrCm0aQ0qVFjWT3V74Z8Zp9uSSLCobTJKO360adBMrmzi
- Kf/YU7dNpnt65Zx6UqBp/JWZqXlerssQCRZj03efvEYAGXemWNtM0AYjd
- vWbFKaKXYRNHIHs4IOzOyotJEI9jAjOJHlu3BTOD+9TYm+JdosviSrUwi
- c5W0fkqKldACXPJX+J7Rj6RgjHVtE0Pe9IU61cZ6QH42mnQ+xlkuI1jF9
- ppGBv7EHhNkBC8lwkLUP4FLjbVXKIXxV+qauCdIrrJBO3RJL1IaDxXPho w==;
-X-CSE-ConnectionGUID: QZGhIk9LR+eIxTWsabIodQ==
-X-CSE-MsgGUID: BCeJq2XBQl6jWhDO+17BkQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11151"; a="20359483"
-X-IronPort-AV: E=Sophos;i="6.09,255,1716274800"; d="scan'208";a="20359483"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2024 14:28:35 -0700
-X-CSE-ConnectionGUID: RJbmPR2VRe+cKBBIhUeBZg==
-X-CSE-MsgGUID: 3z0YrBjLQH6XxLUPggT11w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,255,1716274800"; d="scan'208";a="60024517"
-Received: from saurabhg-nuc10i5fnh.jf.intel.com ([10.165.21.155])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2024 14:28:36 -0700
-From: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com, tejas.upadhyay@intel.com,
- Akshata Jahagirdar <akshata.jahagirdar@intel.com>
-Subject: [PATCH v3 1/1] drm/xe/xe2: Introduce performance changes
-Date: Fri,  2 Aug 2024 02:39:29 -0700
-Message-Id: <3e8ff481eeba3f9b20bd542fa8d304e5736bb704.1722591343.git.akshata.jahagirdar@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1722591343.git.akshata.jahagirdar@intel.com>
-References: <cover.1722591343.git.akshata.jahagirdar@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A5A710E0CB;
+	Thu,  1 Aug 2024 21:33:38 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20C5310E0CB;
+ Thu,  1 Aug 2024 21:33:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Release_GuC_v70=2E29=2E2_for_L?=
+ =?utf-8?q?NL=2C_BMG?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Julia Filipchuk" <julia.filipchuk@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 01 Aug 2024 21:33:37 -0000
+Message-ID: <172254801712.489274.7636649315976983233@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240801204010.3042850-1-julia.filipchuk@intel.com>
+In-Reply-To: <20240801204010.3042850-1-julia.filipchuk@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,56 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add Compression Performance Improvement Changes in Xe2
+== Series Details ==
 
-v2: Rebase
+Series: Release GuC v70.29.2 for LNL, BMG
+URL   : https://patchwork.freedesktop.org/series/136815/
+State : success
 
-v3: Rebase, updated as per latest changes on bspec,
-    Removed unnecessary default actions (Matt)
-    formatting nits (Tejas)
+== Summary ==
 
-Bspec: 72161
-Signed-off-by: Akshata Jahagirdar <akshata.jahagirdar@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_gt_regs.h | 4 ++++
- drivers/gpu/drm/xe/xe_tuning.c       | 6 ++++++
- 2 files changed, 10 insertions(+)
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/seq/
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/snd.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soundcore.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/common/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/amd/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/codecs/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/hda/
+lib/modules/6.11.0-rc1-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/hda/ext/
+lib/modules/6.11.0-rc1-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/kernel/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/events/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/events/intel/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/kvm/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/
+lib/modules/6.11.0-rc1-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/cmac.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/ccm.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/cryptd.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/async_tx/
+lib/modules/6.11.0-rc1-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.11.0-rc1-xe/build
+lib/modules/6.11.0-rc1-xe/modules.alias.bin
+lib/modules/6.11.0-rc1-xe/modules.builtin
+lib/modules/6.11.0-rc1-xe/modules.softdep
+lib/modules/6.11.0-rc1-xe/modules.alias
+lib/modules/6.11.0-rc1-xe/modules.order
+lib/modules/6.11.0-rc1-xe/modules.symbols
+lib/modules/6.11.0-rc1-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1722548004:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1722548004:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 3b87f95f9ecf..0d6a73a3c8c7 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -367,6 +367,10 @@
- #define XEHP_L3NODEARBCFG			XE_REG_MCR(0xb0b4)
- #define   XEHP_LNESPARE				REG_BIT(19)
- 
-+#define L3SQCREG2				XE_REG_MCR(0xb104)
-+#define   COMPMEMRD256BOVRFETCHEN		REG_BIT(20)
-+#define	  MEMRD256BOVRFETCHEN			REG_BIT(14)
-+
- #define L3SQCREG3				XE_REG_MCR(0xb108)
- #define   COMPPWOVERFETCHEN			REG_BIT(28)
- 
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index 77d4eec0118d..b41fdb350411 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -45,6 +45,12 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED)),
- 	  XE_RTP_ACTIONS(SET(L3SQCREG3, COMPPWOVERFETCHEN))
- 	},
-+	{ XE_RTP_NAME("Tuning: L2 Overfetch Compressible Only"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED)),
-+	  XE_RTP_ACTIONS(SET(L3SQCREG2,
-+	  		     COMPMEMRD256BOVRFETCHEN |
-+	  		     MEMRD256BOVRFETCHEN))
-+	},
- 	{}
- };
- 
--- 
-2.34.1
 
