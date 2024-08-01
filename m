@@ -4,187 +4,183 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04930C3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Aug 2024 13:10:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56809C52D54
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Aug 2024 13:16:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C53CD10E058;
-	Thu,  1 Aug 2024 13:10:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5DF310E96F;
+	Thu,  1 Aug 2024 13:16:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DZUR4/Zl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QYxC8zhM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFF0A10E058
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Aug 2024 13:10:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFF5D10E96F
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Aug 2024 13:16:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722517832; x=1754053832;
+ t=1722518183; x=1754054183;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=islXeIDA1Is5n+ChfSroGqdvtCSYPiKNO8doiOWlmek=;
- b=DZUR4/ZlI2ZnOQPGaXokZBGPBdZyDNvnBcQcK7jSFDfIz62r+wEnlIGS
- X465lKVjryfw5YFltR4F3OUH+cBKaFuyRU2X+06k12i877tEpgZ64wafG
- 3bBiFxGeaeuFIY975kGKtiWZ+Ktz3a6OR1bJWcf+uINdUGd+Kc++Ly+Ym
- EtQibft3XmkiwXSXxlTFQqjQ2ZZtGLTYcwOvocBlrHFo6g3iPZT2XY+q+
- 6X8mN6kyas5nFt4BMcm0UTV24nRnlKpCW2qLZRYrFT++cCWzKdyba7qHT
- egIJYMe1XeG6tW0hvIzzJUiK0bgCt/Sh6V/ilGQXsjzkzF6M9bLaVzfHm A==;
-X-CSE-ConnectionGUID: jZsxq9reS/CQGGv0etFLKg==
-X-CSE-MsgGUID: ua9MfdfPQmODtmbj8g+wqg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11151"; a="20359596"
-X-IronPort-AV: E=Sophos;i="6.09,254,1716274800"; d="scan'208";a="20359596"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2024 06:10:31 -0700
-X-CSE-ConnectionGUID: /12AbhLiQbuQxFickI/PuQ==
-X-CSE-MsgGUID: KchVI3/fRGeyyRZO51mFzw==
+ bh=If3xpNpCjyTkmPgLxXvPI2SxAv3SvJTUKM347JjSN1Q=;
+ b=QYxC8zhMY0m8OCswIasG0MR1ObpZno7bApngKLIXOBba21IKkDMYJANp
+ 6E7Al6b4DTUPml/6br+t8evcrdE87vxu5SmU8r6hU+MXWUroEzXDXidZ+
+ fuFtnbPxy4ZZ7FAtfUjJFgI/gqPgoXr3Keu5xQyKQIplRYMLACBzhmVLZ
+ DipprhmZGfyjJ4MVUC5YJchvV4EPHEhc5ytnSWXCeFFJLHob9Nw2Wfxg0
+ 7MuwqQY4lkGVdfkVPqZu4U8dy5iciFc0K8VQELyiqtxYNIpjeHjrOauu7
+ MUUrFJyLy/dpcrODpcHF8KFKyJVOWAAwoYBxuW/nFMkLWY5bBQecVizGI Q==;
+X-CSE-ConnectionGUID: VeWySZAHTmSkkC0p1CuAyA==
+X-CSE-MsgGUID: 6qjja2skRsWWPmy4rBSdJw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11151"; a="20624964"
+X-IronPort-AV: E=Sophos;i="6.09,254,1716274800"; d="scan'208";a="20624964"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2024 06:16:22 -0700
+X-CSE-ConnectionGUID: 64LrQ+k7SJOqHjrOjhB1OA==
+X-CSE-MsgGUID: WaPFIsVVQC+9AcfbEFV4eg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,254,1716274800"; d="scan'208";a="60062437"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 01 Aug 2024 06:10:31 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+X-IronPort-AV: E=Sophos;i="6.09,254,1716274800"; d="scan'208";a="54696528"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 01 Aug 2024 06:16:24 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 1 Aug 2024 06:16:23 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 1 Aug 2024 06:10:30 -0700
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 1 Aug 2024 06:10:30 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 1 Aug 2024 06:10:30 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Thu, 1 Aug 2024 06:16:23 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.47) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 1 Aug 2024 06:10:29 -0700
+ 15.1.2507.39; Thu, 1 Aug 2024 06:16:23 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Wl2HvGemBsyX7nxvpyNl+mAa557kSU5f9rB41zdAedhEofyUm+QHtCz76UYiZJxZkfxphdFGaWWUgofC1vt/jDdlLdfkuiwc/gRPxRBEs4iHTsss/1PabuwXIm12TrhUWIGJajW0bK7QLiBWV/sYopzvrZQSNEbh6Jp0m1UdzBGGnpnTEdSEySlNBSBw7Gcy+5w/I74L8SBdZyzmKZ2jAoQc4LWHgBQGXfay8ucUpmnJVTk+95Yodvso1mQyAXwNITZrilKSP7UPwKabh+vKAlPiy4jzfXIGJ8fbF7AkS3BXYB8i/+Z55EXplcDiAm2euTTNzku9TFgt4rUGKHpvEA==
+ b=hr69SpMEefO5PmMvy73AJGqAAJHK5/OWaoNKf+Qeh+3SThipQpnvfTar+fEyoGt6/U3pJZzPsDXa8RCibTzGMEn+ZScOrQQUerV/h/pcTdjGE3PbPtiTMHAzcC2J/00k0pVUOIMBPLVwX7F9dzQLMv0HUsaPWbOeuE/AO6xf11y4p6sb6UymgcwGZ5ZcTCiQ0um5ct1nomEmVaINr0QfSxGd/cR5Hug3a4ILH4xwcZzbr6ULCVKrM9GLQF5j3VnWdpEkJ+qbi4Bd1cx55Awv3PMta7fZefkT9BWJmC/yvQITFbU4tVqf6giHK6ngD51M38UOJNa/SD+Y+snZ8SFLtw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xoBOc+O1rLXD/APBm19x376sz5wQG5BLwk1xst69a4g=;
- b=b7dc0kJriCcOmXPIZSMhO3PiEVqiznIWEOKEwvofBOj5/OzgxsSDwSDe4zcjECft/fMWfS82O7qjokUhGZ2rvI3tr20oObo+AcKDq/oJYcFdVRRnq6dAwE8cSsIiGZv8HgRLTvPd3GBajAmcxYaKCwVqtha2EL8Bxzh1mIx7mdvK+wwfJi7hNQeBq3pDL2v3kRH36nSu38xVFc4n0jzZjcU8dmWSuznN55nGME/QTC0SonQt4tLVVcdLUTLEEyDWfmci31TdyzP0PRzyoBnpZcCX+2XssrO88yJ0MamLzJrEb7vjy0yQbn70AnLBa7CYrf1Z5/Q+bvR+4aDlqDNtMA==
+ bh=zPaCVFWV0w8uR+7+wAv2BoemseIT1nJjq92W+DOKxJU=;
+ b=Q9YebUfFbsXd7lSh0rXW9izI09iLtrh6T7xWd5GUpJMEUXHKhNrzOuSfxONr8KcYv9H+dysmalecrEjUIwTaQDefQvkdmHM1mFQ36Kuzq7V1MjmO0oURj6Km8FNO8J2kgm9I3r4IBBSy4VGegkkW5DerXpQYS/qSZrJfDAvfBiu2pJY7kXAsP9QZs7cP9QgNmHn5pchZpj98WEoH+tml9yOkd0t9bO9LMVGVmmgr2dx5CclXI8Gf+UAwQxHG8LKOPOTvcmh1VwOr3bKOuGw+f4+fkpmlMsGyMCxDkaLq973awihEkxNKAou8Ngg9eerz4bo0wMa51fYM6NfzNm/Gbg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- PH8PR11MB6925.namprd11.prod.outlook.com (2603:10b6:510:227::8) with
+ CY5PR11MB6162.namprd11.prod.outlook.com (2603:10b6:930:29::19) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7807.28; Thu, 1 Aug 2024 13:10:27 +0000
+ 15.20.7828.22; Thu, 1 Aug 2024 13:16:20 +0000
 Received: from DS0PR11MB7958.namprd11.prod.outlook.com
  ([fe80::a255:8030:603f:7245]) by DS0PR11MB7958.namprd11.prod.outlook.com
  ([fe80::a255:8030:603f:7245%5]) with mapi id 15.20.7828.016; Thu, 1 Aug 2024
- 13:10:26 +0000
-Message-ID: <fbc79914-d4cd-46bb-be28-7dc49c470467@intel.com>
-Date: Thu, 1 Aug 2024 18:40:18 +0530
+ 13:16:20 +0000
+Message-ID: <bd7dfd17-0052-4176-8977-5b2b3bacbfad@intel.com>
+Date: Thu, 1 Aug 2024 18:46:11 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] drm/xe/xe_gt_idle: store powergate enable bits in
- gtidle
+Subject: Re: [PATCH v3 2/2] drm/xe/xe_gt_idle: add debugfs entry for
+ powergating info
 To: "Nilawar, Badal" <badal.nilawar@intel.com>,
  <intel-xe@lists.freedesktop.org>
 CC: <anshuman.gupta@intel.com>, <vinay.belgaumkar@intel.com>,
  <matthew.d.roper@intel.com>
 References: <20240801095305.1209046-1-riana.tauro@intel.com>
- <20240801095305.1209046-2-riana.tauro@intel.com>
- <cfcf0bd5-6f45-4f82-9619-a5ca8dbc5e25@intel.com>
+ <20240801095305.1209046-3-riana.tauro@intel.com>
+ <8f3bb44d-fdd7-45ae-8b46-2a41fb5ed45d@intel.com>
 Content-Language: en-US
 From: Riana Tauro <riana.tauro@intel.com>
-In-Reply-To: <cfcf0bd5-6f45-4f82-9619-a5ca8dbc5e25@intel.com>
+In-Reply-To: <8f3bb44d-fdd7-45ae-8b46-2a41fb5ed45d@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA0PR01CA0012.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:80::11) To DS0PR11MB7958.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA0PR01CA0019.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:b8::6) To DS0PR11MB7958.namprd11.prod.outlook.com
  (2603:10b6:8:f9::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|PH8PR11MB6925:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1d8cda91-2a11-4ce8-b5ff-08dcb22b4f55
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|CY5PR11MB6162:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9d33c1f9-9356-451a-6261-08dcb22c222b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?OHIrM2gvZTlqWlRISDhPVDBXT3R5ZFEzbE82NEhXZktDK3YxNW8vSTR4VEM1?=
- =?utf-8?B?WDlFNGc3ZVpUS1ZuaytzTjdCVGdtVEtRQlM1b0o5eVVLVEtYQU9ZVTBJZjJQ?=
- =?utf-8?B?Slp6Z0djRVh1TVRzSlBYcjN6NzNVSW1WTk5qRnlXVW9oTjN5a3JkWmpTVTE4?=
- =?utf-8?B?N3d2MXhOdjExRGlDKzJGeVdnRG85YXc4amhTWndGeHJ4Y01zc1luK0tlSGoy?=
- =?utf-8?B?eUNCZ3greEorWm82d2JGWE9BK1pwZ0RYVk9KZlpCNHVQa3RQMnNjaHBCM1RV?=
- =?utf-8?B?QTlJK0kvRGFBeDBsbHRrakFLTjZVQTcxTHVTUy9tSXU4Z2NkWDNkYW5QSVVh?=
- =?utf-8?B?NXI2aGZrQTMranlUZTQ2aWorM2hGSXJMSkkzeFhxdS9DTXBGRzVudFpJNXh3?=
- =?utf-8?B?MWc1NEs1RW5uRVRKNklxMVpZbVl6d3FFaDQxRkNnV21Kd2xoUG9xcHlKUmhZ?=
- =?utf-8?B?a00zcGpQYjRVYzE1YkVWQ1NuOVlINk40bUFPMktUZXVBbXN6SWk3Y0dDK0hj?=
- =?utf-8?B?UzVxZE9QL2s0Q29kejZFT0hFUEIwOGYvVVp0eXFQOHhqU1BvZHhJVXIyWVJa?=
- =?utf-8?B?R2NWNTJUdnYzSlVyNVRPak13clhxSzlDaEhGbVdwQ1hrYlFRRml5MzhPeU5Z?=
- =?utf-8?B?d2tpSlZETkp5cVBRMUJnNjU2anQ5L2x4VUpZMWlmUFM3aGtIT0x5bVk0S3VQ?=
- =?utf-8?B?Q1FGQTRPYzUyVHg0MTVnYmVHUXU1ci9wcjBSb2p0a25RdVhsRUJMTVBVb0Ft?=
- =?utf-8?B?aE8yeU5SdjZndmZYazR5YW13YW1IMUlDKytyb2NiVGJaeE5TWWdrNkZKenE5?=
- =?utf-8?B?WS8vRU9kM1k3VVBIc0s1K0VUSE1iV29ua0NCVnY1Z3Bkbm5rSEhWLzhYUXBS?=
- =?utf-8?B?UTZjaE9nNTFqblQvcEZZSzRheEFyRmpnajNzc2NrdXhWQXRVY1JaQkVmQ0dS?=
- =?utf-8?B?L1JoYmFxbmppaHIxcDJkNVAwYmllS0E3Q3k2UlBrKzI0a3ZXaFBGazRCM01v?=
- =?utf-8?B?MmJaVmloSTdZdUdUcUxvanFuVXQ1OTNZWnVNRzFHeDRoZFFIdUplOFl1dXZN?=
- =?utf-8?B?dlUzUW9QNlhpQjBoMmxSRFVWNVlqQk4yRTNDQXdTbU03YTB5a1o3SXdPbkdW?=
- =?utf-8?B?UmIvR3NsZUkxL1JIUTByVVF1ZFU1bEMzbVZFTStCR0ZYR0VyNERrQnR1SXUy?=
- =?utf-8?B?dkZ6WW1CN3FnK3VtbnZ6em16aWc0djg1YUQrVXJtMTRYTnMzbjRFc1FkWFZH?=
- =?utf-8?B?LzJ5S08xd2pCU216Q2ZWMnhCc1NRQXdNMzhZZFJoanprZktKRmdITW51aHYw?=
- =?utf-8?B?NGxvTXg4UEYxR1VHQUlCTzcwTXBjMnJ5WDZPQXVZVHAyaElBbjFmSUl0U0kz?=
- =?utf-8?B?RzhWUTUyczBiaGhwbk9Zdnp2VFNodWY0dXNQNlJoVnNwQ2lvU3MxSUhIUC96?=
- =?utf-8?B?WnlKczNIYXV4bWxqSDQzMUc5cGNRcUlJOHRHUGhNRFRjaUJZUlNQV1JSNUF3?=
- =?utf-8?B?by80WXRwZ0F5bGdjMXduRG1OTWRnSlVOaVU4cmJWc0k3Rzc1Tmpwa2l1WHNx?=
- =?utf-8?B?Ykg5TXQxekkwenFrSGMrYm1DRjBlUzM1dXdxMWZYeEd5S1c3Q1B4T2VBbUFi?=
- =?utf-8?B?SUdqU24zbk1lSytWekhZVTBTVnJiQjRKUkFqZkc2M01rNWlxZGdRYnVXSldq?=
- =?utf-8?B?N0Vid05WeFEwMlprUCs0U09RNDg1ZDcxNHN6OURtektFTHFoNWdvSlQremYx?=
- =?utf-8?B?OHZ0VWtOamNYQTNuS0RYejE1RWpCZnRNYzBEZFJ0RGtuNTJrOXUzcVhnRzgy?=
- =?utf-8?B?bGZLNDVMdmlzYmp5VnVHUT09?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dTZRbldOQnV0NXhmcHdTVzg3cmgzTk9BZHM3TDlaVTMrVDJabkJzcllUbEJU?=
+ =?utf-8?B?b0JiaUtNUXlkZkdJL29yMXRBQzJSRy8zemxieit5U1BWdDZQMHJia1REemNJ?=
+ =?utf-8?B?OGcwQ2hzTnFLN0VhZUdlaCszQjVjYzNydEhRU3VVQ3hFTk5NV1NJSmY5Q0Zv?=
+ =?utf-8?B?Rm5NNzVTTUV6aGg5eVBhMU1CZDgrazA2KzY3RWRReVNtSlZDbW1Lalh0aElG?=
+ =?utf-8?B?NGRvVlBHa3NlRmhUc3Q3NC9Da0FLU1BIdmFDTEdTaFk1Yko0QVo3N0V3L0xB?=
+ =?utf-8?B?M0lXS1NTcUlldVo4T0ppSDY0Y25jWVNIOHlCVHhrUER4V0lxTFZ0bnFlODFy?=
+ =?utf-8?B?NWxpQnUwK0ZPdjJCSGc2dHk2eFBDeXNTaCtrQVZ0WDAvc2YwQkRiMlFTWEk1?=
+ =?utf-8?B?NG9Dd2JSc2Qxb3JTUGRRb0dyLzJhSDV0bW1nckJhVkw2YktNaWlZdmdoZWtI?=
+ =?utf-8?B?VWtYZGJ5MUtBNVNmSVhua2pLSnNSSmwwcEVqY3hZK1hTd3JuQ3dENC9RWm1U?=
+ =?utf-8?B?Tk9KV20waTNZNDJDbWtjS2pNV0RuQkFPUmZUdWRXWVhVK1lmaVdjQmZmZGxX?=
+ =?utf-8?B?enBwRUg4TEhjREk3VTJKYWlFakRRSnE2blBodTFtREhjQStkVU9RWmt1aXRv?=
+ =?utf-8?B?MXB1TGIxSlVmaUdpVmxnRlR4ZnlxY2plcVBpMGg3bkwrQVlJOUVlVkFMdWlM?=
+ =?utf-8?B?eDcyaExlbHQzUVRiVzdvNE9LWHlPZGZiMnRxSU9RcjJrWjNPNWtialNUT3Y2?=
+ =?utf-8?B?WG94bzlwSExudldWMUxSckxmRFVFbDNrUkJpKzMrVjVKY0FnYURGOEwvMjBN?=
+ =?utf-8?B?Tjk0dWhKWGdERWx4N1hOOE5DZW9zU2xCR2dGNUtsYzZDcEorRHFRTUI3K3E1?=
+ =?utf-8?B?eG1TdVdIZ2czS2U0S3ZsQmxoVjVJbjJoSlF3SVA3cmFSN2ZZWUxLQUxodmZE?=
+ =?utf-8?B?aHYzUlRDdTQ4aFBtMVAvK1hlMHVGZW5uRCtleEM3aEVpZTMrM3ltYkllREpM?=
+ =?utf-8?B?VzI4RzBJV0cvS0tuZ3ZoQUtmcHdKRDhoQ3RWT25zM280OEtwT2oxcmxWemFs?=
+ =?utf-8?B?MnRuUkpPZzhmeWJyTXJHNFIzei9yTGUrOTkrMjdQQ1hVRFVQVnkwUVlGQ0di?=
+ =?utf-8?B?WnJvb2tIS3RnQ0FTMXRHdUpPcitNUXZvU3JjQzhFZ0tZNUxSNlBDMWxHUFJ1?=
+ =?utf-8?B?eEZsVDBDR3hGcDJORjF0blhuclZUT3BybVBhVDJ3Zy9qRTJXZk5Nc2orWEVo?=
+ =?utf-8?B?MWRGR3YxNUFkUWZSTThZSTZKOTBYcGlDRGJFdmgyVHBNYlRYWWpZQndlQ3lh?=
+ =?utf-8?B?YVROd0tzNGlYWTFIaTJkeGZ4VmVUaGZwYjVORGFJSzhzK1ZuWFRtalYva201?=
+ =?utf-8?B?VklHSnlRaVg1c2MwdzhFcUhSRWx5THJzN25TL1ZjQkRtS0ZteW9qUmlqV3N3?=
+ =?utf-8?B?YjNyMW8rU1pZMEdac2R3bDMxRTZ0b2N6b01oSHN1cm40TE9FdkhyTk9lVFZN?=
+ =?utf-8?B?WThZRmhVK09aaHlneUxGMDFmL3VvRGpvaEpCRW1kYjEvU2dmakYrUGJuZ1JD?=
+ =?utf-8?B?U2RvaVRpeHU5ZFZJSmE2MWUvZUZHSENuWEJrYUNhR1ZKK0g5cVdxUGQwZ0gr?=
+ =?utf-8?B?NHFFazlVYW9PaVpOd09ocGMxbHRkdks1TkxTOE5WOVoyQUhuQXM1Ni9zTGE1?=
+ =?utf-8?B?Zy9wRzk1c0ljRUdITnNMSjJQNWQ1VHg1bnhhcWhpNkxzc1VQRXhCL2ZEL2lV?=
+ =?utf-8?B?T3I3QkdpNG95cUpKd3ZqNHdORFY5cnN4UUN0ajVqL3NEVHFuY3lLQzcwaUpE?=
+ =?utf-8?B?OGd2Q0NGTWhjdzYySnk0dz09?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NW1BRzZ6UldJU1ZSK281aVBUS3pVTjIxbUI3MzdNNnhkSFhyWllQRktyYkQ2?=
- =?utf-8?B?d2t5Z29DNTNlNkppYjNJL1g5RkZUcmlZN3IrcjVOYThHcXlsQXFrSVBKK1Qr?=
- =?utf-8?B?RXk5MXZmNFJkanNWY3JRa21sQWlFNjEwVEUrQ2pUZjU4MVBqZ3dwY0Y2QlJN?=
- =?utf-8?B?U3RwTDRaSC83SzluY0xacG9tVllzcEJmQVJKWmFiT0tNTGk0czB2emtQd0E0?=
- =?utf-8?B?OGNoTmFzdU9yUDFNOGI1dUFBaXUxZWZXY3RDYWVBK1cxZVk5RmorQmNMeEJK?=
- =?utf-8?B?TGc2bWFpWUNqdE5WVGNTVXR2YzRLUU9MMHhodVU5ME5xVkZTakxWYUhQQXZv?=
- =?utf-8?B?OHZrcHV5anMzNDUzNDR0YjZGcTQwTUVtNzFJUzkwRnM2VkJlL1hHWnI0Ym9l?=
- =?utf-8?B?bWt5Rit6UTlUcDhjaEIvNWtubUo5bCtwRzMyZjBZakMvT1dURDRhRDBGNzIv?=
- =?utf-8?B?TEltL3psWWduWE4xb1czQmJQNG9NemRMQ1lud2c0aXZubDhBNVVpeUVoQ3kx?=
- =?utf-8?B?L0NNV1YybnpNNUZSVXFsb2g1Q0JRL0VTZFpONHFRT0R5MUxlUUZoUU9XdUZU?=
- =?utf-8?B?Y1huWXBTZm1JckcweVZNWlRYQnBmQ09rM2NIMi9BRkdTMERiUkhzU3FMRWM4?=
- =?utf-8?B?Uk1XRG5hblJ3SmdOcWdsOUhRZVRCZTlnYTQ5djRQSEw1OHNxd2l1U0dQc0pk?=
- =?utf-8?B?Zm40YitLYU00SmdvM0tmckJTMmhmbGRUVlVGRmdPUFdvQVZ5K3laZXphLzBX?=
- =?utf-8?B?czc3Q1ZINEFQYjJLanU2Tk9HbGgxQWozWXloMHYzUHBhZlFVQ21Vd3FJSjZ2?=
- =?utf-8?B?eFExRTVoNDdFU1lLNTAreTdMZFhXQjJOMlQyeGhJKzlGelovS3VHa1QzdTUx?=
- =?utf-8?B?RjV3eEdZSEdaNjI5U0YrcWxVN3VJU2plZVJzSis2aDBXc1JtSzJxSGNyUmJy?=
- =?utf-8?B?WEUrM3k4dlhyZW9KOHhEZUFGV3F4UmZRMWQ3bEF1bDhOTHB0SDZPeThYcWRn?=
- =?utf-8?B?VlFjMGZYNGt6R0RiVzhZYkhYdzhQNjM5MXJwc21maWlFeDEvQW5WWE1oWDhm?=
- =?utf-8?B?YVNyMkNxVFR5NG03MUZCNVVhTExIVVRkWjVzUURjNUpkQnZtWlJveVJNaExh?=
- =?utf-8?B?c0REQmZSUVpKTkVmSDEyRXRobHdRU1c3a1BMVVdKOVlIMGV6UHR5UmJnRUlZ?=
- =?utf-8?B?OE54OWhURWZ6UDFrZFlJV28zd2xva0R3cnRPQUZDaXF5SGlZSlZZbXhvZFVt?=
- =?utf-8?B?Nm5EbEFibkphL1ZobnAwNDBDS3JxODBQaE9qTXdLbnZOcTllYnQ2V0c3dmpI?=
- =?utf-8?B?V0wrbFFjdUhBUW00MWtsSjA5aVI4WkVCQnVyQTd3WXEzdW4vOHl6czJIckYw?=
- =?utf-8?B?NTNYWDl1WjRDVEREUWdUeEo5UHhGMklTU1V1bDNjdnpSeFBuZjJvU25xWDRT?=
- =?utf-8?B?ZjA0eTRZeHdiS2lHUVhpWnlLbkFvYmIzMTBhcS9CazZ2V0JhVEN0UFkrQzR0?=
- =?utf-8?B?eUlmZVRQZklucm4zZWdVSFpwQVVsRDlha0VNV1gyb0xLWVRCcUVwSkROdkEr?=
- =?utf-8?B?OXlCS0w4bDJLS1VNYXA1S2dlbzVvdXV4QW5VL2lTc2czNXlGZHZKYm9WZSs4?=
- =?utf-8?B?QWpYdlZJdDM5ZC8vWm1EZmthMzBQNnFhZFFUS2RUdVpxYXQ1NmRMS3h4QXhZ?=
- =?utf-8?B?T29LdzJsQi9aeVFJb0pNMS9lT1lQamZnYVpTWUp2MU9XQ1NsbCtqUTZaNzhZ?=
- =?utf-8?B?bnB4U2JTQVBWMVNLNzZMKzVEL0k4dlZieWQxbDhnc2RWU0hXb3VTM0phdW1L?=
- =?utf-8?B?K0FwZEwrbGg3QUtpelhneWN1aW9xS3JGS2xvRTJvQkNrRm1FSmd4bnRCdndu?=
- =?utf-8?B?RDh4WllCUzBPUURrUlVxZTlHUGdQblMrYXY3K1BHWXpKczRRRUZhVXBhczN1?=
- =?utf-8?B?RXlWazJwdnFWQ0plN1AxSmZ2dkpibXgwM09qU1N5Mk95SjU5TSsyVGhSY0tT?=
- =?utf-8?B?UGZYZnE4T0hmUFRGN3dhMFZMU1BDTDI0RHVjSE9xajFrRGpuUFk0N3paOXB0?=
- =?utf-8?B?MDRrL3ErZjhJbzRoQmxyaVhOMWZzWTV0REY3VzdPTlY4R2l4TkFhMVllZzVB?=
- =?utf-8?Q?IR3wd9UN59JiAQw1egqiQfqB8?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1d8cda91-2a11-4ce8-b5ff-08dcb22b4f55
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q2tMZUhUa2ZUUjQ3WEVrbGFGbUlvSjVkdTZ5cjF3ZG5NYWQrSGgySCt5ZER4?=
+ =?utf-8?B?dmhGTStCeHhYa2JPQ1gyRGE4eDRybndIZGF6ZnJzWW01Qjhub3NNSDJRamZh?=
+ =?utf-8?B?WkJmSjNMUlNuelJNdllzQ3l3ZTJSMFNIL0FZZ2laWDlsbGxOVHg3ampLUDhl?=
+ =?utf-8?B?RFMxZ2hycVM5bmkzZm1hWEJ1QjQ3N1IvL1AydmIzc29EN2FQU0REem9kbk1m?=
+ =?utf-8?B?VUJPcEtudFQxa3IzUDJxV21mWHZyRVFtN2ErNFlpQklGUmVlS2VQQ1RPZjZX?=
+ =?utf-8?B?eDl4V2hoYWUvQ01EMGdnUmFBZEpTQ09hUm1EUlBNL3hpbW5rT3BMWVBIakJw?=
+ =?utf-8?B?ZHY5NmxoamRtVFgyQzlSbS8zUnlQRXNuSGtUSDJZK0Y0Q0syZVduOFBkV0Rn?=
+ =?utf-8?B?blF4Y1A2bGVPQUJ6RldRQ3ZsWFBXM21qWUZEb21WVnl5aGI4QVQxQnBYaVRJ?=
+ =?utf-8?B?WjVMSDNOMWtHdzVFWGczN3dKQ05oN2NyclVTZGwzbE5wV05GTHpveEY2NFRn?=
+ =?utf-8?B?TDQxVzBnVjFjUGVqaGp4SlhCWEVxN2RveUFLR3pEL3I2NnZkc1FwellDRE83?=
+ =?utf-8?B?blNnOVl0OThYczB6UHlCVjF3MmpCbUR0ZXFxeTFSWDhBbDI2ekt1Wit2cllG?=
+ =?utf-8?B?eXRZdzI1dkhMZjlZZWZYQXM5d1k3c2JYdi95VlQzV3NaWnVzM2QvNWhiZk9R?=
+ =?utf-8?B?S2lXWUtNc0NjZndjVHJhbGliMVRuNmpYTXdCVGRDSFFBMUc5K1BVV3k3bkpo?=
+ =?utf-8?B?aUwzOWJCcGU1T2Z4d1hmc2xTOFRoK09HeE1LZk5GQmJCa3NKSlV6YWNEQkR6?=
+ =?utf-8?B?cmhWcHcxdW9ZeFRVc0NuOG9pWFp4TVltb1JXT3YyRmNVRURHUjFNNm1oZjZG?=
+ =?utf-8?B?VTJSRWNicW9FUUE2R25FYlNhOUM2VGZpWThCWkRsRkpCeG5jcXJxVTFBRndn?=
+ =?utf-8?B?REl2Mkp4WUN2eFlmVVU3RlZYMWkzU0JlSVlZR1haSDJFTkFEMlRmdEtteWdT?=
+ =?utf-8?B?UVZrRFFOWUNMcFJ6WUV4MG8wb1VxOWdYS0YrbVdaRUJQcnJoYVQ5VjJUUlpS?=
+ =?utf-8?B?TXZTNldjVmhmQ2F1NHBMU09ZQlU4Z0VPU0MvRmNKblFXNm1aWXJCRWl0TkhC?=
+ =?utf-8?B?SG13aVI0aXZkTytnbDg2SldSRlRKNnU1NktuNzRuS3NhNHNXMHVjRGhNdEJk?=
+ =?utf-8?B?VVJSOHlzRFJ6NTRtMlB2aGJSeWIzRWpwOTNJcVh1bGpJSFBPUGlvdVdVOVZy?=
+ =?utf-8?B?OWgwMUFPbUxPSG9wOGZNWDJhcVZQRGpFWUFWcWlvVmZ4bmFmSDlSbjQrKzZy?=
+ =?utf-8?B?M2xmdzBGMFVXdDNkUnZ1cm52ZjJnOHFGSXNCNjduSXY3ZzhGdVlieFNHckJL?=
+ =?utf-8?B?cnMxMVRZVzlseUYxU2RGUm9WSDlSS25KQ0ZXOHlHODloSGxKaHpGNlpXcG9S?=
+ =?utf-8?B?MFBMbUtTdVdGazk0dlhvTElveUQwdTROakpXOU4vV0JhUTNMMm5uL1lrYnRS?=
+ =?utf-8?B?RWo2ZXBtZEtSVFVkdWRHcHFPR3c4elgrdmtVMTdQb2hEOHdhVnRVQjhZQ1Nm?=
+ =?utf-8?B?MndNT0ZzTXVSQU9XYUUvMkVGRVZNamdITWxFbk5ROUkwV2VMbGZVQzdTRkdI?=
+ =?utf-8?B?WXdlQ01QamppQzlsa0tLTWpId2ErZHBZb1VVZGQyUW5WUUZxeE5UTFBZVTJM?=
+ =?utf-8?B?WUpxSzgwS3IvcC8zdklVZ1ZpbmNIQUJYMkV5N0l1TmExalhrZVBQUm41WTNQ?=
+ =?utf-8?B?UWRRYlhtNFRYd0tEK1pYcDE3MDM1NHNvWXhrVEJwSSsxQXFwSVFJa1RHeXc5?=
+ =?utf-8?B?MXhlRElvdHAwcVp6TnNHRGxkU25LM25wNHJhRTZmbnh1ZWMrUjFQMVJISW91?=
+ =?utf-8?B?WHhuL0ZMWDl1T003OTA0SjJucnMzSWRGTURMTi9CWWpVa1F3ME9LaEdPdVVH?=
+ =?utf-8?B?QXkyRS9rZlMwVjhxK1dyd2VFUnNTdlpsblU1OHljR25qMTdPMmgyVVhkb1Nv?=
+ =?utf-8?B?VUhINVlmb1BKRDIyMjZoMCtCMU9xSFY3amYrSzdjRFRkTEpuS3F4TVM4c1V0?=
+ =?utf-8?B?VGk2QVVyNlNlcDM2dElZUFNaZW80cEN0cy9rc1ptUnFIVGRWL2JEWmh0WnV6?=
+ =?utf-8?Q?WgRSZE/Bn2mD61tOSgEcS5QPN?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9d33c1f9-9356-451a-6261-08dcb22c222b
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Aug 2024 13:10:26.8488 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Aug 2024 13:16:20.5072 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YmUG+Gvhx4vcJK3ODQqIMh4hI2NRdINS+8ap1o37pQtovfQwpAMX8YV+7v0hjUbD4t4RFuC9yMSkmZcaB6o6KQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6925
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5r2ULh0eBGRmEQ5z9IThMz0q/0ra4MBIfTY/HuhsEmt2VV3sKGKNaQhfLiiIv/po9+wV1h4TqRURf0UuFZD/og==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6162
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -202,92 +198,239 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 8/1/2024 3:37 PM, Nilawar, Badal wrote:
+On 8/1/2024 3:33 PM, Nilawar, Badal wrote:
 > 
 > 
 > On 01-08-2024 15:23, Riana Tauro wrote:
->> Have a copy of the value written to powergate enable
->> register. No functional changes
+>> Coarse Powergating is a power saving technique where Render and Media
+>> can be power-gated independently irrespective of the rest of the GT.
+>>
+>> For debug purposes, it is useful to expose the powergating information.
+>>
+>> v2: move to debugfs
+>>      add details to commit message
+>>      add per-slice status for media
+>>      define reg bits in descending order (Matt Roper)
+>>
+>> v3: fix return statement
+>>      fix kernel-doc
+>>      use loop for media slices
+>>      use helper function for status (Michal)
+>>
+>> v4: add pg prefix
+>>      do not wake GT if in C6 (Badal)
 >>
 >> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_gt_idle.c       | 18 ++++++++++--------
->>   drivers/gpu/drm/xe/xe_gt_idle_types.h |  2 ++
->>   2 files changed, 12 insertions(+), 8 deletions(-)
+>>   drivers/gpu/drm/xe/regs/xe_gt_regs.h |  8 +++
+>>   drivers/gpu/drm/xe/xe_gt_debugfs.c   | 13 ++++
+>>   drivers/gpu/drm/xe/xe_gt_idle.c      | 91 ++++++++++++++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_gt_idle.h      |  2 +
+>>   4 files changed, 114 insertions(+)
 >>
+>> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h 
+>> b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> index 3b87f95f9ecf..279d862c306a 100644
+>> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> @@ -337,6 +337,14 @@
+>>   #define   CTC_SOURCE_DIVIDE_LOGIC        REG_BIT(0)
+>>   #define FORCEWAKE_RENDER            XE_REG(0xa278)
+>> +
+>> +#define POWERGATE_DOMAIN_STATUS            XE_REG(0xa2a0)
+>> +#define   MEDIA_SLICE3_AWAKE_STATUS        REG_BIT(4)
+>> +#define   MEDIA_SLICE2_AWAKE_STATUS        REG_BIT(3)
+>> +#define   MEDIA_SLICE1_AWAKE_STATUS        REG_BIT(2)
+>> +#define   RENDER_AWAKE_STATUS            REG_BIT(1)
+>> +#define   MEDIA_SLICE0_AWAKE_STATUS        REG_BIT(0)
+>> +
+>>   #define FORCEWAKE_MEDIA_VDBOX(n)        XE_REG(0xa540 + (n) * 4)
+>>   #define FORCEWAKE_MEDIA_VEBOX(n)        XE_REG(0xa560 + (n) * 4)
+>>   #define FORCEWAKE_GSC                XE_REG(0xa618)
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c 
+>> b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+>> index 5e7fd937917a..47e3a1ca2394 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+>> @@ -15,6 +15,7 @@
+>>   #include "xe_ggtt.h"
+>>   #include "xe_gt.h"
+>>   #include "xe_gt_mcr.h"
+>> +#include "xe_gt_idle.h"
+>>   #include "xe_gt_sriov_pf_debugfs.h"
+>>   #include "xe_gt_sriov_vf_debugfs.h"
+>>   #include "xe_gt_topology.h"
+>> @@ -107,6 +108,17 @@ static int hw_engines(struct xe_gt *gt, struct 
+>> drm_printer *p)
+>>       return 0;
+>>   }
+>> +static int powergate_info(struct xe_gt *gt, struct drm_printer *p)
+>> +{
+>> +    int ret;
+>> +
+>> +    xe_pm_runtime_get(gt_to_xe(gt));
+> In suspend resume path I am seeing PG disabled and enabled. Will it 
+> cause any race while this debugfs entry is being exercised?
+
+I checked the suspend cases and the enable_pg is called before the 
+print.  But there might be a case where we check the idle_status and see 
+  C6 but before dumping it might be in C0, reporting wrong status
+
+>> +    ret = xe_gt_idle_pg_print(gt, p);
+>> +    xe_pm_runtime_put(gt_to_xe(gt));
+>> +
+>> +    return ret;
+>> +}
+>> +
+>>   static int force_reset(struct xe_gt *gt, struct drm_printer *p)
+>>   {
+>>       xe_pm_runtime_get(gt_to_xe(gt));
+>> @@ -277,6 +289,7 @@ static const struct drm_info_list debugfs_list[] = {
+>>       {"topology", .show = xe_gt_debugfs_simple_show, .data = topology},
+>>       {"steering", .show = xe_gt_debugfs_simple_show, .data = steering},
+>>       {"ggtt", .show = xe_gt_debugfs_simple_show, .data = ggtt},
+>> +    {"powergate_info", .show = xe_gt_debugfs_simple_show, .data = 
+>> powergate_info},
+>>       {"register-save-restore", .show = xe_gt_debugfs_simple_show, 
+>> .data = register_save_restore},
+>>       {"workarounds", .show = xe_gt_debugfs_simple_show, .data = 
+>> workarounds},
+>>       {"pat", .show = xe_gt_debugfs_simple_show, .data = pat},
 >> diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c 
 >> b/drivers/gpu/drm/xe/xe_gt_idle.c
->> index 67aba4140510..7188542aea43 100644
+>> index 7188542aea43..2ab0eaafa7d7 100644
 >> --- a/drivers/gpu/drm/xe/xe_gt_idle.c
 >> +++ b/drivers/gpu/drm/xe/xe_gt_idle.c
->> @@ -98,7 +98,7 @@ static u64 get_residency_ms(struct xe_gt_idle 
->> *gtidle, u64 cur_residency)
->>   void xe_gt_idle_enable_pg(struct xe_gt *gt)
+>> @@ -53,6 +53,11 @@ pc_to_xe(struct xe_guc_pc *pc)
+>>       return gt_to_xe(gt);
+>>   }
+>> +static inline const char *str_up_down(bool v)
+>> +{
+>> +    return v ? "up" : "down";
+>> +}
+>> +
+>>   static const char *gt_idle_state_to_string(enum xe_gt_idle_state state)
 >>   {
->>       struct xe_device *xe = gt_to_xe(gt);
->> -    u32 pg_enable;
+>>       switch (state) {
+>> @@ -147,6 +152,92 @@ void xe_gt_idle_disable_pg(struct xe_gt *gt)
+>>       XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
+>>   }
+>> +/**
+>> + * xe_gt_idle_pg_print - Xe powergating info
+>> + * @gt: GT object
+>> + * @p: drm_printer.
+>> + *
+>> + * This function prints the powergating information
+>> + *
+>> + * Return: 0 on success, negative error code otherwise
+>> + */
+>> +int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p)
+>> +{
 >> +    struct xe_gt_idle *gtidle = &gt->gtidle;
->>       int i, j;
->>       if (IS_SRIOV_VF(xe))
->> @@ -110,12 +110,12 @@ void xe_gt_idle_enable_pg(struct xe_gt *gt)
->>       xe_device_assert_mem_access(gt_to_xe(gt));
->> -    pg_enable = RENDER_POWERGATE_ENABLE | MEDIA_POWERGATE_ENABLE;
->> +    gtidle->powergate_enable = RENDER_POWERGATE_ENABLE | 
->> MEDIA_POWERGATE_ENABLE;
-> Here I think we should have platform check. Like on MTL, LNL RPG 
-> applicable for only for GT (GT0) and Media PG is applicable only for 
-> Media GT (GT1) ?
-
-We cannot have platform check for this as its applicable even for 
-products that do not have a separate media gt
+>> +    struct xe_device *xe = gt_to_xe(gt);
+>> +    enum xe_gt_idle_state state;
+>> +    u32 pg_enabled, pg_status = 0;
+>> +    u32 vcs_mask, vecs_mask;
+>> +    int err, n;
+>> +    /*
+>> +     * Media Slices
+>> +     *
+>> +     * Slice 0: VCS0, VCS1, VECS0
+>> +     * Slice 1: VCS2, VCS3, VECS1
+>> +     * Slice 2: VCS4, VCS5, VECS2
+>> +     * Slice 3: VCS6, VCS7, VECS3
+>> +     */
+>> +    static const struct {
+>> +        u64 engines;
+>> +        u32 status_bit;
+>> +    } media_slices[] = {
+>> +        {(BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VCS1) |
+>> +          BIT(XE_HW_ENGINE_VECS0)), MEDIA_SLICE0_AWAKE_STATUS},
+>> +
+>> +        {(BIT(XE_HW_ENGINE_VCS2) | BIT(XE_HW_ENGINE_VCS3) |
+>> +           BIT(XE_HW_ENGINE_VECS1)), MEDIA_SLICE1_AWAKE_STATUS},
+>> +
+>> +        {(BIT(XE_HW_ENGINE_VCS4) | BIT(XE_HW_ENGINE_VCS5) |
+>> +           BIT(XE_HW_ENGINE_VECS2)), MEDIA_SLICE2_AWAKE_STATUS},
+>> +
+>> +        {(BIT(XE_HW_ENGINE_VCS6) | BIT(XE_HW_ENGINE_VCS7) |
+>> +           BIT(XE_HW_ENGINE_VECS3)), MEDIA_SLICE3_AWAKE_STATUS},
+>> +    };
+>> +
+>> +    if (xe->info.platform == XE_PVC) {
+>> +        drm_printf(p, "Power Gating not supported\n");
+>> +        return 0;
+>> +    }
+>> +
+>> +    state = gtidle->idle_status(gtidle_to_pc(gtidle));
+>> +    pg_enabled = gtidle->powergate_enable;
+>> +
+>> +    /* Do not wake the GT to read powergating status */
+>> +    if (state != GT_IDLE_C6) {
+> How about if (pg_enabled && state != GT_IDLE_C6) ?
+Always enabled so would be unnecessary check
+>> +        err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+>> +        if (err)
+>> +            return err;
+>> +
+>> +        pg_enabled = xe_mmio_read32(gt, POWERGATE_ENABLE);
+> Is this needed?
+can remove this
 
 Thanks,
 Riana
 > 
 > Regards,
 > Badal
->>       for (i = XE_HW_ENGINE_VCS0, j = 0; i <= XE_HW_ENGINE_VCS7; ++i, 
->> ++j) {
->>           if ((gt->info.engine_mask & BIT(i)))
->> -            pg_enable |= (VDN_HCP_POWERGATE_ENABLE(j) |
->> -                      VDN_MFXVDENC_POWERGATE_ENABLE(j));
->> +            gtidle->powergate_enable |= (VDN_HCP_POWERGATE_ENABLE(j) |
->> +                             VDN_MFXVDENC_POWERGATE_ENABLE(j));
->>       }
->>       XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FW_GT));
->> @@ -128,20 +128,22 @@ void xe_gt_idle_enable_pg(struct xe_gt *gt)
->>           xe_mmio_write32(gt, RENDER_POWERGATE_IDLE_HYSTERESIS, 25);
->>       }
->> -    xe_mmio_write32(gt, POWERGATE_ENABLE, pg_enable);
->> +    xe_mmio_write32(gt, POWERGATE_ENABLE, gtidle->powergate_enable);
->>       XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
->>   }
->>   void xe_gt_idle_disable_pg(struct xe_gt *gt)
->>   {
->> +    struct xe_gt_idle *gtidle = &gt->gtidle;
+>> +        pg_status = xe_mmio_read32(gt, POWERGATE_DOMAIN_STATUS);
 >> +
->>       if (IS_SRIOV_VF(gt_to_xe(gt)))
->>           return;
->>       xe_device_assert_mem_access(gt_to_xe(gt));
->> -    XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FW_GT));
->> -
->> -    xe_mmio_write32(gt, POWERGATE_ENABLE, 0);
->> +    gtidle->powergate_enable = 0;
->> +    XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FW_GT));
->> +    xe_mmio_write32(gt, POWERGATE_ENABLE, gtidle->powergate_enable);
->>       XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
->>   }
->> diff --git a/drivers/gpu/drm/xe/xe_gt_idle_types.h 
->> b/drivers/gpu/drm/xe/xe_gt_idle_types.h
->> index f99b447534f3..7a8e63f2ebcc 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_idle_types.h
->> +++ b/drivers/gpu/drm/xe/xe_gt_idle_types.h
->> @@ -23,6 +23,8 @@ enum xe_gt_idle_state {
->>   struct xe_gt_idle {
->>       /** @name: name */
->>       char name[16];
->> +    /** powergate_enable: copy of powergate enable bits*/
->> +    u32 powergate_enable;
->>       /** @residency_multiplier: residency multiplier in ns */
->>       u32 residency_multiplier;
->>       /** @cur_residency: raw driver copy of idle residency */
+>> +        XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
+>> +    }
+>> +
+>> +    if (gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK) {
+>> +        drm_printf(p, "Render Power Gating Enabled: %s\n",
+>> +               str_yes_no(pg_enabled & RENDER_POWERGATE_ENABLE));
+>> +
+>> +        drm_printf(p, "Render Power Gate Status: %s\n",
+>> +               str_up_down(pg_status & RENDER_AWAKE_STATUS));
+>> +    }
+>> +
+>> +    vcs_mask = xe_hw_engine_mask_per_class(gt, 
+>> XE_ENGINE_CLASS_VIDEO_DECODE);
+>> +    vecs_mask = xe_hw_engine_mask_per_class(gt, 
+>> XE_ENGINE_CLASS_VIDEO_ENHANCE);
+>> +
+>> +    /* Print media CPG status only if media is present */
+>> +    if (vcs_mask || vecs_mask) {
+>> +        drm_printf(p, "Media Power Gating Enabled: %s\n",
+>> +               str_yes_no(pg_enabled & MEDIA_POWERGATE_ENABLE));
+>> +
+>> +        for (n = 0; n < ARRAY_SIZE(media_slices); n++)
+>> +            if (gt->info.engine_mask & media_slices[n].engines)
+>> +                drm_printf(p, "Media Slice%d Power Gate Status: 
+>> %s\n", n,
+>> +                       str_up_down(pg_status & 
+>> media_slices[n].status_bit));
+>> +    }
+>> +    return 0;
+>> +}
+>> +
+>>   static ssize_t name_show(struct device *dev,
+>>                struct device_attribute *attr, char *buff)
+>>   {
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_idle.h 
+>> b/drivers/gpu/drm/xe/xe_gt_idle.h
+>> index 554447b5d46d..4455a6501cb0 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_idle.h
+>> +++ b/drivers/gpu/drm/xe/xe_gt_idle.h
+>> @@ -8,6 +8,7 @@
+>>   #include "xe_gt_idle_types.h"
+>> +struct drm_printer;
+>>   struct xe_gt;
+>>   int xe_gt_idle_init(struct xe_gt_idle *gtidle);
+>> @@ -15,5 +16,6 @@ void xe_gt_idle_enable_c6(struct xe_gt *gt);
+>>   void xe_gt_idle_disable_c6(struct xe_gt *gt);
+>>   void xe_gt_idle_enable_pg(struct xe_gt *gt);
+>>   void xe_gt_idle_disable_pg(struct xe_gt *gt);
+>> +int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p);
+>>   #endif /* _XE_GT_IDLE_H_ */
