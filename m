@@ -4,54 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27073C52D54
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Aug 2024 15:40:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4E7BC52D6D
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Aug 2024 15:40:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3D4610E15C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BAD910E058;
 	Thu,  1 Aug 2024 15:40:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X1Y0Azbs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lG1caEJi";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6571A10E15C;
- Thu,  1 Aug 2024 15:40:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5CEE10E033;
+ Thu,  1 Aug 2024 15:40:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722526832; x=1754062832;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=sDzWO6Q0F/GhIOS4hERZ/4TGAr+HrP9PBNonnltY2R8=;
- b=X1Y0AzbscRyfpwmLdfSDnXBmqPZuQxlkdWeWckaIQuf55yvyqVwIXhq7
- 3yLJFoOYT62h9WlE+mGiNGqPvMoQjCuPnxSurJUy56UF2wQmLyNtoocwP
- YX9h32DUxblWdE5WuiHkpufBE3RehfJgOVIjo1ycUuq/5R0v9wE/7Sf+u
- A0CyukKnYBYAo105844NaZGwXDBA2pcY+KtYu5uZRyiyub8FK76qyVny2
- 4/b7eoAA35s0mro9HRzUKaiE/ICfkEc0ADIratr5YClG1BDWdPfVc+tEC
- 3d3ZiE15EDOBMCe+yMBYeJOLPIAYMrpTKI7ozQ5AbhxtJyZ85KBjbeEUS g==;
-X-CSE-ConnectionGUID: l9ZnZ4GAQeSincutAwoJMA==
-X-CSE-MsgGUID: F9/+GcumQYu28epgHXzZ7g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11151"; a="23407969"
-X-IronPort-AV: E=Sophos;i="6.09,255,1716274800"; d="scan'208";a="23407969"
+ t=1722526831; x=1754062831;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pHFG42LyKSRuBafIP8HqoYW1DbsSQ57JPAuadFIeowU=;
+ b=lG1caEJicMAnFNz6883ZZFC3YLyevHd03Z5POa/UsdkME+Glsh4GPxog
+ lauH/zJrVozFT3cjEP+WeVggeax8wYpoWl2SWOrHeIkQFsNSZ9SbCCueC
+ 5pkfvhJgNui/Rt6t+1vM01ar2zNqTFAZZaB9wHhDPbNYyl1bDc1olhZcC
+ TNki5V1s5Ug+Gpt0kCdP9wwkzUm+1SgYtvo/kFcCqccPnTMEr6ewVQsJ8
+ U81FZds4o/N91uZgghP5wh4u5uvfaKD5LWXdTmdGwLtjJsB7N654j/NT6
+ X4fm6d0chXBiD0RqOunb5zSyUtb8eKE2j7YXxNtgu3I2yIJKX+cdV/8Ar g==;
+X-CSE-ConnectionGUID: oK5CT7LURP6tAwhDdXt2lQ==
+X-CSE-MsgGUID: EnMKTCvGSXqCJ3d5sczC3g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11151"; a="23407964"
+X-IronPort-AV: E=Sophos;i="6.09,255,1716274800"; d="scan'208";a="23407964"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Aug 2024 08:40:31 -0700
-X-CSE-ConnectionGUID: pdotNOoQTyOsZqUZr3czhg==
-X-CSE-MsgGUID: wjt93MIyTTSYDS1FxkOTbg==
+X-CSE-ConnectionGUID: +vFZ/WbgQG6o41d6ki+qYA==
+X-CSE-MsgGUID: ejLFSmfiRs+kNmxYMr/Asg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,254,1716274800"; d="scan'208";a="55047754"
+X-IronPort-AV: E=Sophos;i="6.09,254,1716274800"; d="scan'208";a="55047748"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2024 08:40:31 -0700
+ 01 Aug 2024 08:40:30 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: maarten.lankhorst@linux.intel.com,
 	rodrigo.vivi@intel.com
-Subject: [PATCH v5 2/3] drm/printer: Allow NULL data in devcoredump printer
-Date: Thu,  1 Aug 2024 08:41:17 -0700
-Message-Id: <20240801154118.2547543-3-matthew.brost@intel.com>
+Subject: [PATCH v5 0/3] Faster devcoredump and fixes
+Date: Thu,  1 Aug 2024 08:41:15 -0700
+Message-Id: <20240801154118.2547543-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240801154118.2547543-1-matthew.brost@intel.com>
-References: <20240801154118.2547543-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,136 +66,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We want to determine the size of the devcoredump before writing it out.
-To that end, we will run the devcoredump printer with NULL data to get
-the size, alloc data based on the generated offset, then run the
-devcorecump again with a valid data pointer to print.  This necessitates
-not writing data to the data pointer on the initial pass, when it is
-NULL.
+Combine [1] [2] for complete series to speedup devcoredump and fix it.
 
-v5:
- - Better commit message (Jonathan)
- - Add kerenl doc with examples (Jani)
+[1] https://patchwork.freedesktop.org/series/136541/
+[2] https://patchwork.freedesktop.org/series/136545/
 
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Acked-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
----
- drivers/gpu/drm/drm_print.c | 13 +++++----
- include/drm/drm_print.h     | 54 ++++++++++++++++++++++++++++++++++++-
- 2 files changed, 61 insertions(+), 6 deletions(-)
+Matthew Brost (3):
+  drm/xe: Take ref to VM in delayed snapshot
+  drm/printer: Allow NULL data in devcoredump printer
+  drm/xe: Faster devcoredump
 
-diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
-index cf24dfdeb6b2..a1a4de9f9c44 100644
---- a/drivers/gpu/drm/drm_print.c
-+++ b/drivers/gpu/drm/drm_print.c
-@@ -100,8 +100,9 @@ void __drm_puts_coredump(struct drm_printer *p, const char *str)
- 			copy = iterator->remain;
- 
- 		/* Copy out the bit of the string that we need */
--		memcpy(iterator->data,
--			str + (iterator->start - iterator->offset), copy);
-+		if (iterator->data)
-+			memcpy(iterator->data,
-+				str + (iterator->start - iterator->offset), copy);
- 
- 		iterator->offset = iterator->start + copy;
- 		iterator->remain -= copy;
-@@ -110,7 +111,8 @@ void __drm_puts_coredump(struct drm_printer *p, const char *str)
- 
- 		len = min_t(ssize_t, strlen(str), iterator->remain);
- 
--		memcpy(iterator->data + pos, str, len);
-+		if (iterator->data)
-+			memcpy(iterator->data + pos, str, len);
- 
- 		iterator->offset += len;
- 		iterator->remain -= len;
-@@ -140,8 +142,9 @@ void __drm_printfn_coredump(struct drm_printer *p, struct va_format *vaf)
- 	if ((iterator->offset >= iterator->start) && (len < iterator->remain)) {
- 		ssize_t pos = iterator->offset - iterator->start;
- 
--		snprintf(((char *) iterator->data) + pos,
--			iterator->remain, "%pV", vaf);
-+		if (iterator->data)
-+			snprintf(((char *) iterator->data) + pos,
-+				iterator->remain, "%pV", vaf);
- 
- 		iterator->offset += len;
- 		iterator->remain -= len;
-diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-index 5d9dff5149c9..d2676831d765 100644
---- a/include/drm/drm_print.h
-+++ b/include/drm/drm_print.h
-@@ -221,7 +221,8 @@ drm_vprintf(struct drm_printer *p, const char *fmt, va_list *va)
- 
- /**
-  * struct drm_print_iterator - local struct used with drm_printer_coredump
-- * @data: Pointer to the devcoredump output buffer
-+ * @data: Pointer to the devcoredump output buffer, can be NULL if using
-+ * drm_printer_coredump to determine size of devcoredump
-  * @start: The offset within the buffer to start writing
-  * @remain: The number of bytes to write for this iteration
-  */
-@@ -266,6 +267,57 @@ struct drm_print_iterator {
-  *			coredump_read, ...)
-  *	}
-  *
-+ * The above example has a time complexity of O(N^2), where N is the size of the
-+ * devcoredump. This is acceptable for small devcoredumps but scales poorly for
-+ * larger ones.
-+ *
-+ * Another use case for drm_coredump_printer is to capture the devcoredump into
-+ * a saved buffer before the dev_coredump() callback. This involves two passes:
-+ * one to determine the size of the devcoredump and another to print it to a
-+ * buffer. Then, in dev_coredump(), copy from the saved buffer into the
-+ * devcoredump read buffer.
-+ *
-+ * For example::
-+ *
-+ *	char *devcoredump_saved_buffer;
-+ *
-+ *	ssize_t __coredump_print(char *buffer, ssize_t count, ...)
-+ *	{
-+ *		struct drm_print_iterator iter;
-+ *		struct drm_printer p;
-+ *
-+ *		iter.data = buffer;
-+ *		iter.start = 0;
-+ *		iter.remain = count;
-+ *
-+ *		p = drm_coredump_printer(&iter);
-+ *
-+ *		drm_printf(p, "foo=%d\n", foo);
-+ *		...
-+ *		return count - iter.remain;
-+ *	}
-+ *
-+ *	void coredump_print(...)
-+ *	{
-+ *		ssize_t count;
-+ *
-+ *		count = __coredump_print(NULL, INT_MAX, ...);
-+ *		devcoredump_saved_buffer = kvmalloc(count, GFP_KERNEL);
-+ *		__coredump_print(devcoredump_saved_buffer, count, ...);
-+ *	}
-+ *
-+ *	void coredump_read(char *buffer, loff_t offset, size_t count,
-+ *			   void *data, size_t datalen)
-+ *	{
-+ *		...
-+ *		memcpy(buffer, devcoredump_saved_buffer + offset, count);
-+ *		...
-+ *	}
-+ *
-+ * The above example has a time complexity of O(N*2), where N is the size of the
-+ * devcoredump. This scales better than the previous example for larger
-+ * devcoredumps.
-+ *
-  * RETURNS:
-  * The &drm_printer object
-  */
+ drivers/gpu/drm/drm_print.c               |  13 ++-
+ drivers/gpu/drm/xe/xe_devcoredump.c       | 111 ++++++++++++++++------
+ drivers/gpu/drm/xe/xe_devcoredump_types.h |   8 ++
+ drivers/gpu/drm/xe/xe_lrc.c               |  15 ++-
+ include/drm/drm_print.h                   |  54 ++++++++++-
+ 5 files changed, 163 insertions(+), 38 deletions(-)
+
 -- 
 2.34.1
 
