@@ -4,82 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C595C3DA4A
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Aug 2024 22:47:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EABE6C52D54
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Aug 2024 22:57:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 565D910E758;
-	Thu,  1 Aug 2024 22:47:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="lVy6nWXV";
-	dkim-atps=neutral
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BFC910E758;
- Thu,  1 Aug 2024 22:47:09 +0000 (UTC)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 471LaoJj014916;
- Thu, 1 Aug 2024 22:47:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- FYOWrb6ubNjPkqwuRRertTY/eatkE6q4NMNF+ENifPQ=; b=lVy6nWXVg6MmxApj
- 3+prpMqaw1wEHVqizlq/yCMBhxVavgfcQolAS3zhfE3tV7U2ylF5XUMWpsJrpXiO
- chUiKzWJB8x3zNhsRStA6GqD9kECyU3TtCvwJmLpPeeFnRg4FFgI4Ef58bfmqAnq
- yBv7CknxXSZjBRf01QYzweDuARIYspln1I8IZHozkto5innXDQkrVhlPozkygatU
- ZEPhR+ElIG8vmqTnWziOvPi9dtsFs8JqGCe7boAludsyYvPBmovvoFCNU5lzXWIW
- NwemmN6bLJVm1hLL2IBMj0iZ1ZBc/7DAYENTTeW75IaNZeejZXfZRWDf7tvyMuIr
- WGJMXg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com
- [199.106.103.254])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40rjeb83q6-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 01 Aug 2024 22:47:01 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com
- [10.46.141.250])
- by NASANPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id
- 471Ml0sH005956
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 1 Aug 2024 22:47:00 GMT
-Received: from [10.134.70.212] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 1 Aug 2024
- 15:46:59 -0700
-Message-ID: <ad011d4a-0206-43dc-83f3-11d673e78cfa@quicinc.com>
-Date: Thu, 1 Aug 2024 15:46:59 -0700
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADA3410E0DB;
+	Thu,  1 Aug 2024 22:57:57 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6294710E0DB;
+ Thu,  1 Aug 2024 22:57:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/9] drm/panel: panel-sony-acx565akm: Use backlight power
- constants
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
- <airlied@gmail.com>, <daniel@ffwll.ch>
-CC: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, Neil
- Armstrong <neil.armstrong@linaro.org>
-References: <20240731122311.1143153-1-tzimmermann@suse.de>
- <20240731122311.1143153-8-tzimmermann@suse.de>
-Content-Language: en-US
-From: Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <20240731122311.1143153-8-tzimmermann@suse.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-GUID: fEsdcuFpXCtcc5j5ClHwd4z9iX3sYurv
-X-Proofpoint-ORIG-GUID: fEsdcuFpXCtcc5j5ClHwd4z9iX3sYurv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-01_21,2024-08-01_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 spamscore=0
- clxscore=1015 phishscore=0 lowpriorityscore=0 suspectscore=0
- mlxlogscore=999 priorityscore=1501 impostorscore=0 bulkscore=0 mlxscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408010152
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_Release_GuC_v70=2E29=2E2_as_mi?=
+ =?utf-8?q?nimum_for_Xe_=28support_LNL=2C_BMG=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Julia Filipchuk" <julia.filipchuk@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 01 Aug 2024 22:57:56 -0000
+Message-ID: <172255307638.489647.12434320544589210869@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240801220934.3048796-1-julia.filipchuk@intel.com>
+In-Reply-To: <20240801220934.3048796-1-julia.filipchuk@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,39 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: Release GuC v70.29.2 as minimum for Xe (support LNL, BMG)
+URL   : https://patchwork.freedesktop.org/series/136817/
+State : success
+
+== Summary ==
+
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/seq/
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/snd.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soundcore.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/common/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/amd/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/codecs/
+lib/modules/6.11.0-rc1-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/hda/
+lib/modules/6.11.0-rc1-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/hda/ext/
+lib/modules/6.11.0-rc1-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.11.0-rc1-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/kernel/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/events/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/events/intel/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/kvm/
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.11.0-rc1-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/
+lib/modules/6.11.0-rc1-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/cmac.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/ccm.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/cryptd.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/async_tx/
+lib/modules/6.11.0-rc1-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.11.0-rc1-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.11.0-rc1-xe/build
+lib/modules/6.11.0-rc1-xe/modules.alias.bin
+lib/modules/6.11.0-rc1-xe/modules.builtin
+lib/modules/6.11.0-rc1-xe/modules.softdep
+lib/modules/6.11.0-rc1-xe/modules.alias
+lib/modules/6.11.0-rc1-xe/modules.order
+lib/modules/6.11.0-rc1-xe/modules.symbols
+lib/modules/6.11.0-rc1-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1722553064:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1722553064:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
-On 7/31/2024 5:17 AM, Thomas Zimmermann wrote:
-> Replace FB_BLANK_ constants with their counterparts from the
-> backlight subsystem. The values are identical, so there's no
-> change in functionality or semantics.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> Cc: Jessica Zhang <quic_jesszhan@quicinc.com>
-
-Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>
-
-> ---
->   drivers/gpu/drm/panel/panel-sony-acx565akm.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-sony-acx565akm.c b/drivers/gpu/drm/panel/panel-sony-acx565akm.c
-> index 73ba93ff00fe..217f03569494 100644
-> --- a/drivers/gpu/drm/panel/panel-sony-acx565akm.c
-> +++ b/drivers/gpu/drm/panel/panel-sony-acx565akm.c
-> @@ -342,7 +342,7 @@ static const struct backlight_ops acx565akm_bl_ops = {
->   static int acx565akm_backlight_init(struct acx565akm_panel *lcd)
->   {
->   	struct backlight_properties props = {
-> -		.power = FB_BLANK_UNBLANK,
-> +		.power = BACKLIGHT_POWER_ON,
->   		.type = BACKLIGHT_RAW,
->   	};
->   	int ret;
-> -- 
-> 2.45.2
-> 
