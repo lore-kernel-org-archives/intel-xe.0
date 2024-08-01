@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22B9EC3DA7F
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Aug 2024 00:14:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42A4DC52D1D
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Aug 2024 00:15:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E58B410E73E;
-	Thu,  1 Aug 2024 00:14:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A7F810E742;
+	Thu,  1 Aug 2024 00:15:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="vJX/Cxz6";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="M5H6PFjA";
 	dkim-atps=neutral
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A86BC10E73D;
- Thu,  1 Aug 2024 00:14:36 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23D0810E742;
+ Thu,  1 Aug 2024 00:15:13 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id D4084CE122C;
- Thu,  1 Aug 2024 00:14:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43CCCC4AF0E;
- Thu,  1 Aug 2024 00:14:32 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 9586F6173C;
+ Thu,  1 Aug 2024 00:15:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A26D5C116B1;
+ Thu,  1 Aug 2024 00:15:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1722471274;
- bh=z0kPG+8i0YtyeC1UePHtGH+PiVUeD566BDbFxMMRRcY=;
+ s=k20201202; t=1722471312;
+ bh=4jGE/HMHzC1CdEpHNS0Zke1c5VcLzul6vO3XVwoF4Lo=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=vJX/Cxz6M0ja4iXAdihsP5IkWH4Lmhsrd06Uy89mDNxeh5RQc6OmL0ZRdMmH6Feqy
- SVlbNgKm6hbYRqJQGBJNzEGpAqDYdsl7nOZj361GidY87aK89OPhVdzZECsgNQHTJe
- KSMR8Aj60btiluJ9GTv92B6pHMTtgYNDeGF3piig2zgKDqWue/DvAEvE4WnZATXNxN
- h2Wd4wV0kJCHZkrOTvL0xXD1/6dq3sQWhNwoQInoSW+CT+n+VK3TGZ/5XXuod98JJo
- p65mdCjHN5xo0Yo+WTFESPTzVPwXzYiGPa26CFd/5rrxGtHmVCaSB8R6zYkoD+HhEA
- 0NRfNMn4ILBCA==
+ b=M5H6PFjAacbTEc3ZFhuA78Rhp5eFmWjoWJxUs20y0Xvet6sel+vna2G50iszrEGCd
+ G90RkkD3SguVQsXNa4Exmm6wcMQ4CKQkBUtePs5KPE38egPG+53vSWTelY0/yah1hL
+ OcrGn+Yyp+T+uZ35wzFgj7/BUbx4ZCBp6UcazTIPDHFW64Sq4xVml7wPIStPYAvHHj
+ DrjlHkKuEXTOTKYxuSQ0K7xvSe2DCeKo6zJ2/mDr3exOxicsq/bXGBi5jmZLmOJhBj
+ PV/4rjYsceSF2QryHOyhRI+r3VrC7wLYmjxLsJWuM2aAJDpLx4jqSd7tNCAimVo7Z1
+ t1ZLn2eeo49Pw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Francois Dugast <francois.dugast@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Sasha Levin <sashal@kernel.org>, lucas.demarchi@intel.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, daniel@ffwll.ch, intel-xe@lists.freedesktop.org,
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>, Sasha Levin <sashal@kernel.org>,
+ thomas.hellstrom@linux.intel.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+ daniel@ffwll.ch, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.10 053/121] drm/xe: Fix xe_pm_runtime_get_if_active
- return
-Date: Wed, 31 Jul 2024 19:59:51 -0400
-Message-ID: <20240801000834.3930818-53-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.10 067/121] drm/xe: Check valid domain is passed in
+ xe_force_wake_ref
+Date: Wed, 31 Jul 2024 20:00:05 -0400
+Message-ID: <20240801000834.3930818-67-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240801000834.3930818-1-sashal@kernel.org>
 References: <20240801000834.3930818-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.10.2
@@ -67,65 +68,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-[ Upstream commit 46edb0a3eb16cebc2db6f9b6f7c19813d52bfcc9 ]
+[ Upstream commit 35feb8dbbca627d118ccc1f2111841788c142703 ]
 
-Current callers of this function are already taking the result
-to a boolean and using in an if. It might be a problem because
-current function might return negative error codes on failure,
-without increasing the reference counter.
+Assert domain is not XE_FORCEWAKE_ALL.
 
-In this scenario we could end up with extra 'put' call ending
-in unbalanced scenarios.
+v2
+- use domain != XE_FORCEWAKE_ALL (Michal)
 
-Let's fix it, while aligning with the current xe_pm_get_if_in_use
-style.
+v3
+- Fix commit description.
 
-Tested-by: Francois Dugast <francois.dugast@intel.com>
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20240522170105.327472-1-rodrigo.vivi@intel.com
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Badal Nilawar <badal.nilawar@intel.com>
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20240607125741.1407331-2-himal.prasad.ghimiray@intel.com
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/xe/xe_pm.c | 8 ++++----
- drivers/gpu/drm/xe/xe_pm.h | 2 +-
- 2 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_force_wake.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 37fbeda12d3bd..19eb12a91cf56 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -505,12 +505,12 @@ int xe_pm_runtime_get_ioctl(struct xe_device *xe)
-  * xe_pm_runtime_get_if_active - Get a runtime_pm reference if device active
-  * @xe: xe device instance
-  *
-- * Returns: Any number greater than or equal to 0 for success, negative error
-- * code otherwise.
-+ * Return: True if device is awake (regardless the previous number of references)
-+ * and a new reference was taken, false otherwise.
-  */
--int xe_pm_runtime_get_if_active(struct xe_device *xe)
-+bool xe_pm_runtime_get_if_active(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.h b/drivers/gpu/drm/xe/xe_force_wake.h
+index 83cb157da7cc6..23b36d13f18a6 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.h
++++ b/drivers/gpu/drm/xe/xe_force_wake.h
+@@ -24,7 +24,7 @@ static inline int
+ xe_force_wake_ref(struct xe_force_wake *fw,
+ 		  enum xe_force_wake_domains domain)
  {
--	return pm_runtime_get_if_active(xe->drm.dev);
-+	return pm_runtime_get_if_active(xe->drm.dev) > 0;
+-	xe_gt_assert(fw->gt, domain);
++	xe_gt_assert(fw->gt, domain != XE_FORCEWAKE_ALL);
+ 	return fw->domains[ffs(domain) - 1].ref;
  }
  
- /**
-diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
-index 18b0613fe57b9..f694005db2782 100644
---- a/drivers/gpu/drm/xe/xe_pm.h
-+++ b/drivers/gpu/drm/xe/xe_pm.h
-@@ -29,7 +29,7 @@ int xe_pm_runtime_resume(struct xe_device *xe);
- void xe_pm_runtime_get(struct xe_device *xe);
- int xe_pm_runtime_get_ioctl(struct xe_device *xe);
- void xe_pm_runtime_put(struct xe_device *xe);
--int xe_pm_runtime_get_if_active(struct xe_device *xe);
-+bool xe_pm_runtime_get_if_active(struct xe_device *xe);
- bool xe_pm_runtime_get_if_in_use(struct xe_device *xe);
- void xe_pm_runtime_get_noresume(struct xe_device *xe);
- bool xe_pm_runtime_resume_and_get(struct xe_device *xe);
 -- 
 2.43.0
 
