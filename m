@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DF57C52D54
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 313FEC3DA4A
 	for <intel-xe@archiver.kernel.org>; Thu,  1 Aug 2024 22:42:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13FA310E120;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01FF210E115;
 	Thu,  1 Aug 2024 22:42:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iRM2t+Gp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H4PB36Bg";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E024D10E120
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Aug 2024 22:42:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A6F310E120
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Aug 2024 22:42:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1722552169; x=1754088169;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BxhRwSUR+J1HBn7weVIuWUkq2bLjRbeuITkJjknjspk=;
- b=iRM2t+GpC2N1VWmnXkEN+tHdpMipfWA0TVDhVDkwBt/6lao02CBII09h
- jW+MtmF/qdwdL4hj7bOSjv+GfyiP8ic7lLWsE23oa6Yd3O5wgERxkCYei
- gr7GwSzIpToYMtda9uV334vIfCysyQAeamQd/AWnEr9DDjHDWSwE2tz0k
- hZV1iEvdW5oVfXQLUoRWkEmvoFeH8PcAhky+yzWz9aaX+0R/LLwD6i/t5
- FR4+Y8fCPsqsU/2q9C1G7yZ/RUPWQjkZKNUD++RjoBk6D4PctOwJDn9t8
- sGsDz4Kho6QDYOpigLBPrEgaR1NS+u8FFh3a27byI/tSH0AbEA451xYCM w==;
-X-CSE-ConnectionGUID: jz3fbCvsRPmZf1/7+ng6Cw==
-X-CSE-MsgGUID: 52WbKo9QSo+tvWEnx0K/cg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11151"; a="38008319"
-X-IronPort-AV: E=Sophos;i="6.09,255,1716274800"; d="scan'208";a="38008319"
+ bh=6dNUAMqeun06k8tTgFxNboAbPWJh0aeZTPZwr5Lv1l4=;
+ b=H4PB36BgoOZifBeSIWGGXhLllwyWuqrt3x/d7hY8800o8b3YdfgBaUTZ
+ TlNDp38mBHjS+keVqpAJ3iXqrEmSxkHpWAL7uSZcreoiPU1qwrsU4BZUc
+ xnm8oaaCCTTr3Q3qbM07iDkoxekl0O3cL4j4aMN/lVXF5Uw2RxcDgK+QM
+ o6oSVIivjcdkHzv4vJpVo+GdV7b8Mad+s2ji172gPO6/RglvqbLLLcGF7
+ ElEpZz1GpdMD3uQbTV3lKD++a4HpQjSJSrZx7i9zbHQKg+ICDQCpxJod6
+ 4mH/kg56rY5CwueG1lK7REUvzQkdSyW3/62g6C3ABUAW1xf7bhT2pqzAp w==;
+X-CSE-ConnectionGUID: qZKEvS5GSeO8hBooksPynA==
+X-CSE-MsgGUID: uSFwstWqSjWqUZxSUj0IjQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11151"; a="38008321"
+X-IronPort-AV: E=Sophos;i="6.09,255,1716274800"; d="scan'208";a="38008321"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Aug 2024 15:42:48 -0700
-X-CSE-ConnectionGUID: hGSZQ6DFQuedZMRBp8vMBg==
-X-CSE-MsgGUID: 6p7pflSsSuqvcm91LubDBg==
+X-CSE-ConnectionGUID: GioRQaJaQa2/2+7fEoS8JA==
+X-CSE-MsgGUID: CzwKXJrxTbeXfgtETHvtIw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,255,1716274800"; d="scan'208";a="55116243"
+X-IronPort-AV: E=Sophos;i="6.09,255,1716274800"; d="scan'208";a="55116249"
 Received: from bfilipch-desk.jf.intel.com ([10.165.21.204])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Aug 2024 15:42:48 -0700
 From: Julia Filipchuk <julia.filipchuk@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH v3 1/4] drm/xe/guc: Drop use of pre-release GuC definitions
- for LNL and BMG
-Date: Thu,  1 Aug 2024 15:42:37 -0700
-Message-ID: <20240801224241.3050352-2-julia.filipchuk@intel.com>
+Subject: [PATCH v3 3/4] drm/xe/guc: Release GuC v70.29.2 for BMG
+Date: Thu,  1 Aug 2024 15:42:39 -0700
+Message-ID: <20240801224241.3050352-4-julia.filipchuk@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240801224241.3050352-1-julia.filipchuk@intel.com>
 References: <20240801224241.3050352-1-julia.filipchuk@intel.com>
@@ -67,32 +66,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With BMG, LNL guc binaries ready in linux-fimware, we remove pre-release
-definitions to prepare for final defines of recommended firmware
-version.
+UAPI version 1.13.4
 
-This patch is meant to be squashed with the patch in xe-for-ci that adds
-the definitions ("drm/xe/guc: Pre-release GuC firmware v70.24.0 for LNL/BMG/PVC"). We want to keep the PVC definition from that patch.
+Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
 ---
- drivers/gpu/drm/xe/xe_uc_fw.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_uc_fw.c | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 6b92255a769d..5b70d23724c4 100644
+index fe1b97d3d2a0..05a3c5b80b5b 100644
 --- a/drivers/gpu/drm/xe/xe_uc_fw.c
 +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -105,10 +105,8 @@ struct fw_blobs_by_type {
+@@ -106,6 +106,7 @@ struct fw_blobs_by_type {
  };
  
  #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)			\
--	fw_def(BATTLEMAGE,	major_ver(intel-ci/xe,	guc,	bmg,	70, 24, 0))	\
--	fw_def(LUNARLAKE,	major_ver(intel-ci/xe,	guc,	lnl,	70, 24, 0))	\
-+	fw_def(LUNARLAKE,	major_ver(xe,	guc,	lnl,	70, 19, 2))	\
- 	fw_def(METEORLAKE,	major_ver(i915,	guc,	mtl,	70, 19, 2))	\
--	fw_def(PVC,		mmp_ver(intel-ci/xe, guc, pvc,	70, 24, 0))	\
- 	fw_def(DG2,		major_ver(i915,	guc,	dg2,	70, 19, 2))	\
- 	fw_def(DG1,		major_ver(i915,	guc,	dg1,	70, 19, 2))	\
- 	fw_def(ALDERLAKE_N,	major_ver(i915,	guc,	tgl,	70, 19, 2))	\
++	fw_def(BATTLEMAGE,	major_ver(xe,	guc,	bmg,	70, 29, 2))	\
+ 	fw_def(LUNARLAKE,	major_ver(xe,	guc,	lnl,	70, 29, 2))	\
+ 	fw_def(METEORLAKE,	major_ver(i915,	guc,	mtl,	70, 29, 2))	\
+ 	fw_def(DG2,		major_ver(i915,	guc,	dg2,	70, 29, 2))	\
 -- 
 2.45.2
 
