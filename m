@@ -4,185 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20433C3DA7F
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Aug 2024 18:25:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6CEAC3DA7F
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Aug 2024 18:34:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC4B010E0CE;
-	Fri,  2 Aug 2024 18:25:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9275210E194;
+	Fri,  2 Aug 2024 18:34:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aj8UG327";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LzriugkJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1619F10E0CE
- for <intel-xe@lists.freedesktop.org>; Fri,  2 Aug 2024 18:25:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 978BC10E194
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 Aug 2024 18:34:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722623104; x=1754159104;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=kl11ep3wg2b6D0pe/ykgijl8enFivCe79ynlFGRnxTw=;
- b=aj8UG327UgbvIqPvGTCNTkzi+K1oqvOf0unHDv+f1rp1WmI9zuYGzJvK
- ZmBx0ItzsWCkj1DbRIhYNsBMLxtna5Rw0E+4yOgCN9FIGFech1cUjjaw9
- azs1iGs464wijQGrYd6MK+RgcsWvmnM0gS8nVkJLMZAB1vsDkdDPiG5LE
- cqBhebWxAeeV0/Jcls+DJujoWrORwDRSt+PY/5x2a4ISpC6hQW2DmrRKh
- HhJxcIXNioS+jQGxjlImrOisvlu6xAtR+KlmFdHaO4teZVNKzBq5Cg5rm
- s3OpvSOCRONOOxumyNkeSo4KTt1+yruuit19u3nRsA1EO9MwSJzZktcUu g==;
-X-CSE-ConnectionGUID: 5hwkHXO6QUeF260+jX9rOQ==
-X-CSE-MsgGUID: sdfvAihHQraRLUDuxI0eGg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11152"; a="31233273"
-X-IronPort-AV: E=Sophos;i="6.09,258,1716274800"; d="scan'208";a="31233273"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Aug 2024 11:25:03 -0700
-X-CSE-ConnectionGUID: 4LJT4uidQx6DxajhSsfq2w==
-X-CSE-MsgGUID: 3a0WCBrWTGWEtGQxfl5s7w==
+ t=1722623685; x=1754159685;
+ h=date:from:to:cc:subject:message-id;
+ bh=qFux6ZimYtYDrra+NHmIWLTv92UXWTlPUR7yIc0tPbY=;
+ b=LzriugkJZanCSTlaJKC7lRi46gHqBKAHFrR+6Ib0BGbSSLDOOIpbD3f+
+ 1LtueQ3pOT0eblrX/pl4DJPAOUw+ZyJ9KGnUke/R4poTXkuEYWErAB7u3
+ KC0+YQFn/1BpaMpg0E0AXcsftyjeyjbeSYk16vGIg8AlYgZKVFx4SrSyM
+ rb07RgZ7jeozrNa5XDGkSQtfXee0y5SO0MblejXYhCNpFDn0t/qD4TY9d
+ vtPpiQAFyWh6ho/2nJkosonMdqqimaXufkkB5nfLk44ivAePton+KVrmK
+ JM5eQ54jSx6PDwL2ZprXIV7FlR2h4lvjI9qGAARW8dONd20fD6W3xaiFa w==;
+X-CSE-ConnectionGUID: 2i5EwrwyTJyWkc/LBi4Zvg==
+X-CSE-MsgGUID: p9S3zfq0R5KdID8H24wtmA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11152"; a="32030626"
+X-IronPort-AV: E=Sophos;i="6.09,258,1716274800"; d="scan'208";a="32030626"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2024 11:34:45 -0700
+X-CSE-ConnectionGUID: VoI/nwjuRKS5G5SkXOOXiA==
+X-CSE-MsgGUID: 2PQR++ZKSoOTWcn7m3dB/w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,258,1716274800"; d="scan'208";a="86085704"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 02 Aug 2024 11:25:03 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 2 Aug 2024 11:25:02 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 2 Aug 2024 11:25:01 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 2 Aug 2024 11:25:01 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.174)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 2 Aug 2024 11:25:01 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aP/jTJ+4BPQL8VoFyd8Vd0r1zVIq5zr0+T822vIovVVVBSzhWRtP9Z1FCP5HPyicbZdR3US2OD2U2vijVmEDOQwJ+0cSjKtTFkOaXOWwk1B6w50aXtz8ep7BBN5QrezSxLVseP0XJrcymMD/2xfG9qcWVxTy7nCfWr7pOJ/6UjovdjTZsNYiYc58HefV3FUR5tlnLPJlE1oKVGFMFIXrnnY09a+AVb5SAcxV9QIMBRY2nqbVyRlMFK/lXJ0cGIomFP5UO2ZJiGCQYEFXNlf1idDKKzAQNO+ZB/hfv5/Hm6DkRC5Fxs6rekfppwbJow49uahbz8wnfP8+89G81cUlIw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ea/571JEFxjGIee71KrGpg3ItAYSBuxUiNwUVYcnvE0=;
- b=g4wCZ85N54rCo630YcYRg+/HtGTRCK6M1TMqPdFyQVMiU0RrWZaT7m1/tZGvEgU9L/CUanHoiKQQw9QPn1eI/UcsMrTFPOPnv0IFEHHJmmVvCph9L7qxRkoB82zUDIiStmAAnwB/NtwezcdjueHnlQmT3gdSF5n5yfp1egzxFmnJ1XnGTLNqiRszyOvLi94hl5zLr5gd2Hj+qrk5hcIquZBb9oQybonEQVINQlIoGjgEzbLMIimq65xPEhll5oXbe+Z2SjgYTDyRYHvlsvn1XOOs5pCLeaUuHHMWpC+VD7yoY+zd8ELkHTJk67gKfaFrggeZr8Xh3mZBsv0m+lOh1g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.24; Fri, 2 Aug
- 2024 18:24:53 +0000
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::d720:25db:67bb:6f50]) by PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::d720:25db:67bb:6f50%7]) with mapi id 15.20.7828.021; Fri, 2 Aug 2024
- 18:24:53 +0000
-Message-ID: <95e92605-e070-4ca1-91c6-6790b91788f8@intel.com>
-Date: Fri, 2 Aug 2024 11:24:51 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] drm/xe/guc: Release GuC v70.29.2 for BMG
-To: Julia Filipchuk <julia.filipchuk@intel.com>,
- <intel-xe@lists.freedesktop.org>
-References: <20240801224241.3050352-1-julia.filipchuk@intel.com>
- <20240801224241.3050352-4-julia.filipchuk@intel.com>
-Content-Language: en-US
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20240801224241.3050352-4-julia.filipchuk@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR03CA0268.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::33) To PH7PR11MB7605.namprd11.prod.outlook.com
- (2603:10b6:510:277::5)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|DM4PR11MB7183:EE_
-X-MS-Office365-Filtering-Correlation-Id: a0889007-f953-49db-6d7e-08dcb320672f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?QUlJRlM2cXRGdStzNWVibDhoYVZrbzBuMkcvSkJtY2RBMG5IVnpZTkw1dkls?=
- =?utf-8?B?dkNHRVl5OXEwZnBSdDM1cHpYR1N2WHcwRkczYmlWZzRoTS81Z1pLRHV0Zi8x?=
- =?utf-8?B?WjlzUGhLVmtpOGg0aFBUdm9pNGswT3BtWmFLVmNNaFRYUklxQkt5TEttZVBj?=
- =?utf-8?B?aVQxZUNGdkVqQjUrbERKREd2VlBSaEt5SWl5TWRLSlJaU3F1M1p6dTNhRHY4?=
- =?utf-8?B?aWsyRmQ2K2I4ODJRbkVheWgrNU13WTRMdnN2WElFZzhnNkVMZkxkZDZ3QXRK?=
- =?utf-8?B?Uk1qeVQ0SVFGNVk3bEwxNkI1MkVWZXZHaC9SaXRpMHNtKytsK0dROTE5cTJR?=
- =?utf-8?B?QlNSakpxZzRXcSt1dFkxKzJKV2k4M2ZrNzhyYStSYlNlKzBHWWg0bUc2MTFI?=
- =?utf-8?B?SXoyYjNMc1B1OXRxYkRKNFhsRnNRVnk1OFNXclBrclRaRTYrb2FDdDFkZFJD?=
- =?utf-8?B?SmNrOU1rODBQRktubkkwN1VsUjJjN3Y3WEZsNUoraC9LdUxpZmp2RXdBbGNN?=
- =?utf-8?B?azdlYU9na2ZvRUNHVEVyQjFqNlJZV2lLcVA3bThmUWJxZERWVlFlRkV5WGZs?=
- =?utf-8?B?NEJHTktCMy8wSXByRkNOS2Rkc0Zmd2RyV2tvc1dCc1JtSncrTzV0b3U3Z2Z4?=
- =?utf-8?B?dTFuVS91bUpyRTVrVjZ3U0tpVTI3YVgzSjJOT080TUFUZUYyckZ0OC9SZWMr?=
- =?utf-8?B?S0ozR0VXRU0zcWgzbDk2NitLNWZ4MDJQVzAzVnJTc1hFWFlYTDBsVVBCOUFP?=
- =?utf-8?B?S1VPK0pEU2d2NVgrb2tkMzZEU2ppRHhXUXh0bVpNMjY5ZC9ScHErdnNSNzdq?=
- =?utf-8?B?bE9kaDFFQmdIRjBjM0tLRU1YK1NyaVY1N0YrcnVsV0JiWnJMY3pFTWpEMWRz?=
- =?utf-8?B?TE9VYlgreU4vczZseGZTT0tuU2xodEsreERKZEVDYzBoeUlDTy8rVEtXSElt?=
- =?utf-8?B?bmhNQmU3NjFrTHhkMWFYNXdtdmhjNUw3ZGRCWmhTTVpFdmd2U3NhNE1nY2Nn?=
- =?utf-8?B?WmR6bDFyWkZHR1lKTlY2MUFkanBFRDdiRUQzYVh3VHRwM2hWVW5XV29tcVlS?=
- =?utf-8?B?d29MVFZ1OEdVaUZseHhOR0FmNkxka25tRzV3MEwxdVdyTkRxbDF3VEZNdnNF?=
- =?utf-8?B?S0hMZUFnd3FGOU1rK2NTbjFHZ2crbFRBMUJKK2xaa2FxcVZYeW5SdnVmcUJj?=
- =?utf-8?B?N0FQaTVkaTk2K2pESldMbzRSQ01IZmZxbDZDeWRYbSsxcUxZYXYreUJETExO?=
- =?utf-8?B?S0FQRFEyaDJGZENpZjQxZmFlZ2s0QVhNeFo4ZnJKWUk1K1hyODBSdjdnNGFD?=
- =?utf-8?B?NHB5Yk9lalJKQkx4NEdkdUw5K3cwSFpjelJ0eE5walFVdnJ0OGErYUwyd0Fa?=
- =?utf-8?B?akhlSk1SQWhaMnVSM2ZoTENUdEhCMy9YelVyWE9XU0RBNHdTdzg4TmJWaGlB?=
- =?utf-8?B?SDFrb0lkS1lMdVp3VU5ZSk0wOWJtdytDd2ViRmY5UWhNanhvZld2YVE0N3NJ?=
- =?utf-8?B?WVVRYmJFUE1wOTJiVWd0bXlPTkhTUFNCZ2YyU3ZaWENKUlBmUFcwVHc0U3RT?=
- =?utf-8?B?TFNWdW8rYm9VbnVrTE1INmdPTVk5eENIaVhDMHdUN1RzcWwyN295RENNLzhO?=
- =?utf-8?B?MithOEI2Mm15UEJpaXBOU3FwclpTR3FXNC9hSVlXQ1hkdHk4MFNKUjZiY0Yw?=
- =?utf-8?B?NHRyN2Voekk4WnZlYWVNeTM3QWVuV3pYb1RUK3F4SkJ5RGEvWmpYMTlHbi8y?=
- =?utf-8?B?ZE84blhOTGo1YzBFSG52YXBoS2VlejQ2WllNL1ZBTkVRa1g1bVM1aWpic2ZR?=
- =?utf-8?B?MXduZ3R3QUdERWVnZURRZz09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NlJQd1hQNHBkNVE5eE5RRDl0VE1LWGxqTWhpSjdpN2NDTm1zQXJGUGJJWldr?=
- =?utf-8?B?SHU1dS9jLzVaQkt4RGRDK3NXVWZvREhsNnlGTjRRYkRSdHhtdFNqK3dIVXNt?=
- =?utf-8?B?ZytpZWlGYjk5VnVVRjVaY0ErcmdWeVNMWThVZHJGa1lBU2dZYVkvSDVEUWlW?=
- =?utf-8?B?NDFpbGpSelFqRHBIODRIdHVnVnlUdThrUlhCekltUG9XazhLREo1K3Vla2hx?=
- =?utf-8?B?QW93MlpEdXRXTVErOEk2VHMrNGNWRTJqd3NEaWpyS1A3dGRJdmN1aGNtT3Y3?=
- =?utf-8?B?R1JqSmF6WEtLNVNMbXUzbzJleVJzd0VoMWdJS25ENkJLRmU0R1hFdDRXNU1m?=
- =?utf-8?B?SkVkaUxlMERQK0FRejRGa0JNQVcwWWlkRVhLWXpYQ3NxWFlUSTMyTHM1V0hB?=
- =?utf-8?B?MGxiaFhhc1Z0d2toc2RUNXc0WnFiQnpyd1lvZElYTjhtL2d1UWg5dVdqL0ZZ?=
- =?utf-8?B?MklNcXFVZlJ3NkdJemU5MVF0Z25RaEpCcDVjRHhXdWdwRHRYQm9JTHJBVjZY?=
- =?utf-8?B?aS9TTWtjTENSRnZibHdBRTZHNElwUnZXUmFndlkzbFFkWXZDaThHdFhZVTRU?=
- =?utf-8?B?d05LbTFPQlNsUjUrNDV3NkU0blRXTFhVbFBGOVJIWnZ2ZVU4c3k2TEw0T05G?=
- =?utf-8?B?eGdKWXdWODNKRTBDczBhbUNzTi9UWHZvb2hBS0paa2Y2b2FBODUvU2FYOXBZ?=
- =?utf-8?B?cHhXQURnRzZuSjcxSVoxS2Z4VEJWendHZm83MWFvR3kydU9BSURRYysrbDY5?=
- =?utf-8?B?UEM1ZktoYW5obUEyZzNrS0FxdTFHMmpyRmJiMFAvSlorcnVYNTdTWG5lYndD?=
- =?utf-8?B?TmJwVzZsTmtyMkxZRFJkbXJycHVaNUx2VUJGc3huelVRd3E3R09IOEZkeE1W?=
- =?utf-8?B?RkpPRnhhbXpuUWJkblY2Mlg1ekRVNW91eWxZbDdRSWxBMTNSUStMV3FkTExm?=
- =?utf-8?B?bXR6T0ErMktJbFFKN3h2RmJzREJWUnBzZGRYSzZKVGV0Rm1nNldzUlVicmVN?=
- =?utf-8?B?Y3piU0wyYkh1RzVneDNtZ0Nna3l6QjczcHphWW12MGVXRGZURldzSER1NG1O?=
- =?utf-8?B?eGhDQTlQSTh5NDZqQVkvb0lKckZqZ01qMDRqTmZid2MyVE5rUHYyYjc2Y04x?=
- =?utf-8?B?VUpJNEQrS0d1bExzU0Z4b1N5Y0VsSElIL3BaS1VxRjRXdzBUMFZ1aHNxQ3d5?=
- =?utf-8?B?M3pxZzNpMGJRdFFxdGpLYjZTY0U3UmJiK05GN0NTb25IcVU3TjVnbi8xak1t?=
- =?utf-8?B?eWJXb0xTeGJGNWM2Nk9wTzdhK1VXZFlncDNDRkhwUXdVUldaNWF3c3hQaVdZ?=
- =?utf-8?B?RTZhTjA2Y0lLN3dIY2E4MzhyUGsxZFp1dTk5Wk5lRHlYNElhclBmWEFIcXZO?=
- =?utf-8?B?OE16N0dCcUxNejFESXNYTlhEdFVXdXVSUDd1bml5Sll5VEhFeC9JeU1KejU5?=
- =?utf-8?B?eitoRktzdENJV2ZCM3NScTBraVdNaVNUdTlIUFZJZmhjRDd5aHQ0RDNWQTlY?=
- =?utf-8?B?SlNhcmwvcEsrVEs0YjVFZjhyajQ2VTY3aGR3OWgzTEtmNWhpMkt3K2M2Q0t4?=
- =?utf-8?B?b2FKTWxmVDBKYS8razlOaThVL2YxRWFxUUgyL1dPMEtYenFLQktaS2ZONml3?=
- =?utf-8?B?QjhQWUE4cjFzRmRRREdUenA0NFMwbUFtd0tIV1R1Q2VOVThSOG01bDZNUEpi?=
- =?utf-8?B?akRkcHBLS3dKYkoyemJjMGlIb2xzcnBFVitYazRheUVMNy9xU3pBdktqS0tk?=
- =?utf-8?B?K1Ivc0ZTTnM4MU95cndTTEVqQTdZenVxVmRNb2x5SzZRZGp1TjZLK1JSU253?=
- =?utf-8?B?QnhHWFBXSVBFYzQ1Y2dhRm42dmViaWJqNzZhMnRSd1JWSUtIWkljdG1Td0xu?=
- =?utf-8?B?ZTlFSzhwVjlaZ1poRVhuTGZSVm1MT2ErbGdvcWsrWjBBSHdTcXBNb3cwYWdD?=
- =?utf-8?B?UkhLSDlnWUNHZ1haOGQ2eGpJMDhMdDlhM0xKbjN3NzErOEVSQVV0MnNGN3R4?=
- =?utf-8?B?c3NiS29jOTJScDUrOTVZNXdxeWdKbFFGYUFlblRmL1o1YUlOZ25pMGZVK1pU?=
- =?utf-8?B?KzQzdWJ2VDJ3MmNYSkxXUXBzL1hnVTBVUlA2RTVLK0RmaTVlY0NYOFJ1TUZl?=
- =?utf-8?B?WWhVRFRoaGNLVWIzMjFKVXlTRjY4dXQxakw5YzBRVmpWdCtzbnlyQi93aXJ3?=
- =?utf-8?Q?LtL69EB7VuT/76INKGbCY5M=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a0889007-f953-49db-6d7e-08dcb320672f
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2024 18:24:53.2240 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YvYW4VHSKRmOd0LoE9SGlb8j0AbVuy3rzPhSdadVuyEhSOo3l7CvySLIEURFSpQs+oSJkkDzvYKAsmrI7Fl04IISF3w6waTkhzN3yxGNpOI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7183
-X-OriginatorOrg: intel.com
+X-IronPort-AV: E=Sophos;i="6.09,258,1716274800"; d="scan'208";a="55717730"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+ by orviesa006.jf.intel.com with ESMTP; 02 Aug 2024 11:34:45 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1sZx6w-000xHU-0w;
+ Fri, 02 Aug 2024 18:34:42 +0000
+Date: Sat, 03 Aug 2024 02:33:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 4f04d07c0a94b0b30db839e44f1b8364a1b508ac
+Message-ID: <202408030234.TxO1OCBp-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,33 +64,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-"Release" in the commit title is a bit of a misdirection, because this 
-patch does not release any GuC, we just define it. Maybe just 
-s/Release/Define/ ?
-With that (or a similar reword):
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 4f04d07c0a94b0b30db839e44f1b8364a1b508ac  drm/xe: Faster devcoredump
 
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+elapsed time: 1446m
 
-Daniele
+configs tested: 142
+configs skipped: 3
 
-On 8/1/2024 3:42 PM, Julia Filipchuk wrote:
-> UAPI version 1.13.4
->
-> Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_uc_fw.c | 1 +
->   1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-> index fe1b97d3d2a0..05a3c5b80b5b 100644
-> --- a/drivers/gpu/drm/xe/xe_uc_fw.c
-> +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-> @@ -106,6 +106,7 @@ struct fw_blobs_by_type {
->   };
->   
->   #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)			\
-> +	fw_def(BATTLEMAGE,	major_ver(xe,	guc,	bmg,	70, 29, 2))	\
->   	fw_def(LUNARLAKE,	major_ver(xe,	guc,	lnl,	70, 29, 2))	\
->   	fw_def(METEORLAKE,	major_ver(i915,	guc,	mtl,	70, 29, 2))	\
->   	fw_def(DG2,		major_ver(i915,	guc,	dg2,	70, 29, 2))	\
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
+tested configs:
+alpha                             allnoconfig   gcc-13.2.0
+alpha                            allyesconfig   gcc-13.3.0
+alpha                               defconfig   gcc-13.2.0
+arc                              allmodconfig   gcc-13.2.0
+arc                               allnoconfig   gcc-13.2.0
+arc                              allyesconfig   gcc-13.2.0
+arc                          axs101_defconfig   gcc-13.2.0
+arc                                 defconfig   gcc-13.2.0
+arc                        nsimosci_defconfig   gcc-13.2.0
+arc                        vdk_hs38_defconfig   gcc-13.2.0
+arm                              allmodconfig   gcc-13.2.0
+arm                               allnoconfig   gcc-13.2.0
+arm                              allyesconfig   gcc-13.2.0
+arm                        clps711x_defconfig   gcc-13.2.0
+arm                                 defconfig   gcc-13.2.0
+arm                          exynos_defconfig   gcc-13.2.0
+arm                      integrator_defconfig   gcc-13.2.0
+arm                        mvebu_v7_defconfig   gcc-13.2.0
+arm                             rpc_defconfig   gcc-13.2.0
+arm                         s3c6400_defconfig   gcc-13.2.0
+arm                           sunxi_defconfig   gcc-13.2.0
+arm64                            allmodconfig   gcc-13.2.0
+arm64                             allnoconfig   gcc-13.2.0
+arm64                               defconfig   gcc-13.2.0
+csky                              allnoconfig   gcc-13.2.0
+csky                                defconfig   gcc-13.2.0
+i386                             allmodconfig   clang-18
+i386                              allnoconfig   clang-18
+i386                             allyesconfig   clang-18
+i386         buildonly-randconfig-001-20240802   gcc-13
+i386         buildonly-randconfig-002-20240802   gcc-13
+i386         buildonly-randconfig-003-20240802   gcc-13
+i386         buildonly-randconfig-004-20240802   gcc-13
+i386         buildonly-randconfig-005-20240802   gcc-13
+i386         buildonly-randconfig-006-20240802   gcc-13
+i386                                defconfig   clang-18
+i386                  randconfig-001-20240802   gcc-13
+i386                  randconfig-002-20240802   gcc-13
+i386                  randconfig-003-20240802   gcc-13
+i386                  randconfig-004-20240802   gcc-13
+i386                  randconfig-005-20240802   gcc-13
+i386                  randconfig-006-20240802   gcc-13
+i386                  randconfig-011-20240802   gcc-13
+i386                  randconfig-012-20240802   gcc-13
+i386                  randconfig-013-20240802   gcc-13
+i386                  randconfig-014-20240802   gcc-13
+i386                  randconfig-015-20240802   gcc-13
+i386                  randconfig-016-20240802   gcc-13
+loongarch                        allmodconfig   gcc-14.1.0
+loongarch                         allnoconfig   gcc-13.2.0
+loongarch                           defconfig   gcc-13.2.0
+m68k                             allmodconfig   gcc-14.1.0
+m68k                              allnoconfig   gcc-13.2.0
+m68k                             allyesconfig   gcc-14.1.0
+m68k                                defconfig   gcc-13.2.0
+m68k                           virt_defconfig   gcc-13.2.0
+microblaze                       allmodconfig   gcc-14.1.0
+microblaze                        allnoconfig   gcc-13.2.0
+microblaze                       allyesconfig   gcc-14.1.0
+microblaze                          defconfig   gcc-13.2.0
+microblaze                      mmu_defconfig   gcc-13.2.0
+mips                              allnoconfig   gcc-13.2.0
+mips                        bcm63xx_defconfig   gcc-13.2.0
+mips                           ip30_defconfig   gcc-13.2.0
+mips                malta_qemu_32r6_defconfig   gcc-13.2.0
+mips                      maltasmvp_defconfig   gcc-13.2.0
+nios2                             allnoconfig   gcc-13.2.0
+nios2                               defconfig   gcc-13.2.0
+openrisc                          allnoconfig   gcc-14.1.0
+openrisc                         allyesconfig   gcc-14.1.0
+openrisc                            defconfig   gcc-14.1.0
+parisc                           allmodconfig   gcc-14.1.0
+parisc                            allnoconfig   gcc-14.1.0
+parisc                           allyesconfig   gcc-14.1.0
+parisc                              defconfig   gcc-14.1.0
+parisc                generic-64bit_defconfig   gcc-13.2.0
+parisc64                            defconfig   gcc-13.2.0
+powerpc                          allmodconfig   gcc-14.1.0
+powerpc                           allnoconfig   gcc-14.1.0
+powerpc                          allyesconfig   gcc-14.1.0
+powerpc                       maple_defconfig   gcc-13.2.0
+powerpc                   microwatt_defconfig   gcc-13.2.0
+powerpc                     rainier_defconfig   gcc-13.2.0
+powerpc                     sequoia_defconfig   gcc-13.2.0
+powerpc                         wii_defconfig   gcc-13.2.0
+riscv                            allmodconfig   gcc-14.1.0
+riscv                             allnoconfig   gcc-14.1.0
+riscv                            allyesconfig   gcc-14.1.0
+riscv                               defconfig   gcc-14.1.0
+s390                             allmodconfig   clang-20
+s390                              allnoconfig   gcc-14.1.0
+s390                             allyesconfig   clang-20
+s390                                defconfig   gcc-14.1.0
+sh                                allnoconfig   gcc-13.2.0
+sh                                  defconfig   gcc-14.1.0
+sh                        edosk7760_defconfig   gcc-13.2.0
+sh                          rsk7269_defconfig   gcc-13.2.0
+sh                          sdk7786_defconfig   gcc-13.2.0
+sh                             sh03_defconfig   gcc-13.2.0
+sh                   sh7770_generic_defconfig   gcc-13.2.0
+sh                            titan_defconfig   gcc-13.2.0
+sparc64                             defconfig   gcc-14.1.0
+um                               allmodconfig   gcc-13.3.0
+um                                allnoconfig   gcc-14.1.0
+um                               allyesconfig   gcc-13.3.0
+um                                  defconfig   gcc-14.1.0
+um                             i386_defconfig   gcc-13.2.0
+um                             i386_defconfig   gcc-14.1.0
+um                           x86_64_defconfig   gcc-14.1.0
+x86_64                            allnoconfig   clang-18
+x86_64                           allyesconfig   clang-18
+x86_64       buildonly-randconfig-001-20240802   gcc-8
+x86_64       buildonly-randconfig-002-20240802   gcc-8
+x86_64       buildonly-randconfig-003-20240802   gcc-8
+x86_64       buildonly-randconfig-004-20240802   gcc-8
+x86_64       buildonly-randconfig-005-20240802   gcc-8
+x86_64       buildonly-randconfig-006-20240802   gcc-8
+x86_64                              defconfig   clang-18
+x86_64                randconfig-001-20240802   gcc-8
+x86_64                randconfig-002-20240802   gcc-8
+x86_64                randconfig-003-20240802   gcc-8
+x86_64                randconfig-004-20240802   gcc-8
+x86_64                randconfig-005-20240802   gcc-8
+x86_64                randconfig-006-20240802   gcc-8
+x86_64                randconfig-011-20240802   gcc-8
+x86_64                randconfig-012-20240802   gcc-8
+x86_64                randconfig-013-20240802   gcc-8
+x86_64                randconfig-014-20240802   gcc-8
+x86_64                randconfig-015-20240802   gcc-8
+x86_64                randconfig-016-20240802   gcc-8
+x86_64                randconfig-071-20240802   gcc-8
+x86_64                randconfig-072-20240802   gcc-8
+x86_64                randconfig-073-20240802   gcc-8
+x86_64                randconfig-074-20240802   gcc-8
+x86_64                randconfig-075-20240802   gcc-8
+x86_64                randconfig-076-20240802   gcc-8
+x86_64                          rhel-8.3-rust   clang-18
+xtensa                            allnoconfig   gcc-13.2.0
+xtensa                  audio_kc705_defconfig   gcc-13.2.0
+xtensa                       common_defconfig   gcc-13.2.0
+xtensa                  nommu_kc705_defconfig   gcc-13.2.0
+xtensa                         virt_defconfig   gcc-13.2.0
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
