@@ -4,56 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8C88C3DA49
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Aug 2024 08:19:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F4159C3DA4A
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Aug 2024 10:08:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E53410E9B1;
-	Fri,  2 Aug 2024 08:19:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB42F10E962;
+	Fri,  2 Aug 2024 10:08:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MNM0Yy04";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vbz33T+b";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 262ED10E1B3;
- Fri,  2 Aug 2024 08:18:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDC1210E962;
+ Fri,  2 Aug 2024 10:08:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722586740; x=1754122740;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=iss1TAxYmSeY+j7ox0/KOlD9btGXnk267Lv/vxWUBJg=;
- b=MNM0Yy04eWZZ5mnJ1UIjpi6cfuv7jlz3TV4OM17+uQLIchd8KH/gfcsN
- kYB0RVCWJ82g1hiZq/gXpWvf75dXk2ToVYMPyG+Ta3R5bqr3RWW1FgIcT
- 52Jt5wBtCwTS/UHT/BiS9y6EETvPalIqxc50604jUz7XxmUd1cGXvLrY8
- pPn3adyrFa0SNEidYYjsmIWOiOCcw5868kUw2/1eAv597PFtWCF+/OsW8
- vdfg/ewdAhjj626ZOJJmItJMY8KRjgCocmi3D+/k98W2siJ1uaHb8iAQ0
- 5yhloRK/TCbFSOLQxZ8cn7brDBJIKXqiykydAKusv00X9f7uPeHUfUdUz A==;
-X-CSE-ConnectionGUID: +6bJ/Lu+RzWjn+NRvxZxJA==
-X-CSE-MsgGUID: GNxsfApMR7SATbgVTymLsQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11151"; a="20431668"
-X-IronPort-AV: E=Sophos;i="6.09,257,1716274800"; d="scan'208";a="20431668"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Aug 2024 01:18:47 -0700
-X-CSE-ConnectionGUID: 1f5SbOcFQceTaxOEVFfGgw==
-X-CSE-MsgGUID: gs3OrNsFSSWAKXuwQRkYYQ==
+ t=1722593289; x=1754129289;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=NKka8igrXdKrMdB7U5JbTReFcWmRHWXdt6QriFqEmZ0=;
+ b=Vbz33T+bgpXKA5xUcFUE533kHHsZ6SoeZ8stpFchgJAQAdvnqi5qIzqn
+ Kz+ek7krBO5Kx9cOBBxae+s0SQ1dv53ziRzP4RjnKoJJ8pom8paSgtHFM
+ q3CJHXJarIKpINCxFOJGRpzYO9PurROOU0GzDfWCeWHwTcZFroAfbz4Pu
+ kB4EjW/rWchUq5oqHJm+j9+GnK782Fm63UkFWM+rQcRHR9LYQBw1mL/kL
+ kMNdTTZ18+2PZizQKojD2bpJyObwmxgLNDBZyMk8wvbb8tLnnUU+JL71V
+ Hch/wHawviQZ5cM1yiOgHXJYvPch+MlJm3iTeFd67nndKnmT0RRo7WAsN g==;
+X-CSE-ConnectionGUID: b6etFM07QVGyFhF1OPhIYQ==
+X-CSE-MsgGUID: iaJi8yo4TIyi4zicz/yk8Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11151"; a="20766995"
+X-IronPort-AV: E=Sophos;i="6.09,257,1716274800"; d="scan'208";a="20766995"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2024 03:08:08 -0700
+X-CSE-ConnectionGUID: D+YKVNstTtKqLzZTwyfUSg==
+X-CSE-MsgGUID: YdIepn79Qx+wmFm+8A8c7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,257,1716274800"; d="scan'208";a="55927331"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.66])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Aug 2024 01:18:44 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 05/10] drm/i915 & drm/xe: save struct drm_device to drvdata
-In-Reply-To: <172253392110.5121.3280125155104128634@gjsousa-mobl2>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1722263308.git.jani.nikula@intel.com>
- <c479244bb25e915c6467f76e48a3260455454dd9.1722263308.git.jani.nikula@intel.com>
- <172253392110.5121.3280125155104128634@gjsousa-mobl2>
-Date: Fri, 02 Aug 2024 11:18:39 +0300
-Message-ID: <8734nn72xs.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,257,1716274800"; d="scan'208";a="55019677"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+ by fmviesa006.fm.intel.com with ESMTP; 02 Aug 2024 03:08:07 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1sZpCf-000wdU-0T;
+ Fri, 02 Aug 2024 10:08:05 +0000
+Date: Fri, 2 Aug 2024 18:07:11 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, jani.nikula@intel.com
+Subject: Re: [PATCH 3/4] drm/i915/opregion: convert to struct intel_display
+Message-ID: <202408021709.1eljj3eQ-lkp@intel.com>
+References: <8a71cea4f260a992200c76480c5358b72a7f9187.1722444150.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8a71cea4f260a992200c76480c5358b72a7f9187.1722444150.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,151 +69,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 01 Aug 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Quoting Jani Nikula (2024-07-29 11:30:06-03:00)
->>In the future, the display code shall not have any idea about struct
->>xe_device or struct drm_i915_private, but will need to get at the struct
->>drm_device via drvdata. Store the struct drm_device pointer to drvdata
->>instead of the driver specific pointer.
->>
->>Even though struct drm_device is embedded in both struct xe_device and
->>struct drm_i915_private at offset 0, take care to check for NULL before
->>using container_of() to allow for other offsets.
->
-> I think the second half of this paragraph could be rephrased. One might
-> think that the text is suggesting that checking for NULL has something
-> to do with allowing other offsets.
->
-> I would jump directly to mention using container_of() and would assume
-> that it is implied that NULL check is necessary before using it. :-)
+Hi Jani,
 
-But I *am* suggesting the NULL check before container_of() has
-everything to do with allowing other offsets!
+kernel test robot noticed the following build errors:
 
-container_of() will return a NULL pointer for a NULL pointer when the
-offset is 0, but will return a negative garbage pointer otherwise.
+[auto build test ERROR on drm-intel/for-linux-next]
+[also build test ERROR on drm-tip/drm-tip next-20240802]
+[cannot apply to drm-intel/for-linux-next-fixes drm-xe/drm-xe-next linus/master v6.11-rc1]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-BR,
-Jani.
+url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-i915-acpi-convert-to-struct-intel_display/20240802-080825
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link:    https://lore.kernel.org/r/8a71cea4f260a992200c76480c5358b72a7f9187.1722444150.git.jani.nikula%40intel.com
+patch subject: [PATCH 3/4] drm/i915/opregion: convert to struct intel_display
+config: i386-buildonly-randconfig-004-20240802 (https://download.01.org/0day-ci/archive/20240802/202408021709.1eljj3eQ-lkp@intel.com/config)
+compiler: gcc-13 (Ubuntu 13.2.0-4ubuntu3) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240802/202408021709.1eljj3eQ-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408021709.1eljj3eQ-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/gpu/drm/i915/display/intel_bios.c: In function 'opregion_get_panel_type':
+>> drivers/gpu/drm/i915/display/intel_bios.c:626:46: error: passing argument 1 of 'intel_opregion_get_panel_type' from incompatible pointer type [-Werror=incompatible-pointer-types]
+     626 |         return intel_opregion_get_panel_type(display);
+         |                                              ^~~~~~~
+         |                                              |
+         |                                              struct intel_display *
+   In file included from drivers/gpu/drm/i915/display/intel_display_core.h:28,
+                    from drivers/gpu/drm/i915/i915_drv.h:40,
+                    from drivers/gpu/drm/i915/display/intel_bios.c:34:
+   drivers/gpu/drm/i915/display/intel_opregion.h:112:74: note: expected 'struct drm_i915_private *' but argument is of type 'struct intel_display *'
+     112 | static inline int intel_opregion_get_panel_type(struct drm_i915_private *dev)
+         |                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+   cc1: some warnings being treated as errors
+--
+   drivers/gpu/drm/i915/i915_driver.c: In function 'intel_runtime_suspend':
+>> drivers/gpu/drm/i915/i915_driver.c:1536:47: error: passing argument 1 of 'intel_opregion_notify_adapter' from incompatible pointer type [-Werror=incompatible-pointer-types]
+    1536 |                 intel_opregion_notify_adapter(display, PCI_D3hot);
+         |                                               ^~~~~~~
+         |                                               |
+         |                                               struct intel_display *
+   In file included from drivers/gpu/drm/i915/display/intel_display_core.h:28,
+                    from drivers/gpu/drm/i915/i915_drv.h:40,
+                    from drivers/gpu/drm/i915/gt/intel_context.h:14,
+                    from drivers/gpu/drm/i915/gem/i915_gem_context.h:12,
+                    from drivers/gpu/drm/i915/i915_driver.c:67:
+   drivers/gpu/drm/i915/display/intel_opregion.h:107:56: note: expected 'struct drm_i915_private *' but argument is of type 'struct intel_display *'
+     107 | intel_opregion_notify_adapter(struct drm_i915_private *dev, pci_power_t state)
+         |                               ~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+   drivers/gpu/drm/i915/i915_driver.c:1545:47: error: passing argument 1 of 'intel_opregion_notify_adapter' from incompatible pointer type [-Werror=incompatible-pointer-types]
+    1545 |                 intel_opregion_notify_adapter(display, PCI_D1);
+         |                                               ^~~~~~~
+         |                                               |
+         |                                               struct intel_display *
+   drivers/gpu/drm/i915/display/intel_opregion.h:107:56: note: expected 'struct drm_i915_private *' but argument is of type 'struct intel_display *'
+     107 | intel_opregion_notify_adapter(struct drm_i915_private *dev, pci_power_t state)
+         |                               ~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+   drivers/gpu/drm/i915/i915_driver.c: In function 'intel_runtime_resume':
+   drivers/gpu/drm/i915/i915_driver.c:1575:39: error: passing argument 1 of 'intel_opregion_notify_adapter' from incompatible pointer type [-Werror=incompatible-pointer-types]
+    1575 |         intel_opregion_notify_adapter(display, PCI_D0);
+         |                                       ^~~~~~~
+         |                                       |
+         |                                       struct intel_display *
+   drivers/gpu/drm/i915/display/intel_opregion.h:107:56: note: expected 'struct drm_i915_private *' but argument is of type 'struct intel_display *'
+     107 | intel_opregion_notify_adapter(struct drm_i915_private *dev, pci_power_t state)
+         |                               ~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+   cc1: some warnings being treated as errors
 
 
->
-> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
->
->>
->>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>---
->> drivers/gpu/drm/i915/i915_driver.c                | 2 +-
->> drivers/gpu/drm/i915/i915_drv.h                   | 8 ++++++--
->> drivers/gpu/drm/i915/selftests/mock_gem_device.c  | 2 +-
->> drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 4 +++-
->> drivers/gpu/drm/xe/xe_device.h                    | 8 ++++++--
->> drivers/gpu/drm/xe/xe_pci.c                       | 2 +-
->> 6 files changed, 18 insertions(+), 8 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
->>index fb8e9c2fcea5..176c13c2e191 100644
->>--- a/drivers/gpu/drm/i915/i915_driver.c
->>+++ b/drivers/gpu/drm/i915/i915_driver.c
->>@@ -723,7 +723,7 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
->>         if (IS_ERR(i915))
->>                 return i915;
->> 
->>-        pci_set_drvdata(pdev, i915);
->>+        pci_set_drvdata(pdev, &i915->drm);
->> 
->>         /* Device parameters start as a copy of module parameters. */
->>         i915_params_copy(&i915->params, &i915_modparams);
->>diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
->>index d7723dd11c80..f6edaef73db5 100644
->>--- a/drivers/gpu/drm/i915/i915_drv.h
->>+++ b/drivers/gpu/drm/i915/i915_drv.h
->>@@ -365,12 +365,16 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
->> 
->> static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
->> {
->>-        return dev_get_drvdata(kdev);
->>+        struct drm_device *drm = dev_get_drvdata(kdev);
->>+
->>+        return drm ? to_i915(drm) : NULL;
->> }
->> 
->> static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
->> {
->>-        return pci_get_drvdata(pdev);
->>+        struct drm_device *drm = pci_get_drvdata(pdev);
->>+
->>+        return drm ? to_i915(drm) : NULL;
->> }
->> 
->> static inline struct intel_gt *to_gt(const struct drm_i915_private *i915)
->>diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
->>index 0bd29846873b..91794ca17a58 100644
->>--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
->>+++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
->>@@ -172,7 +172,7 @@ struct drm_i915_private *mock_gem_device(void)
->>                 return NULL;
->>         }
->> 
->>-        pci_set_drvdata(pdev, i915);
->>+        pci_set_drvdata(pdev, &i915->drm);
->> 
->>         /* Device parameters start as a copy of module parameters. */
->>         i915_params_copy(&i915->params, &i915_modparams);
->>diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
->>index 2feedddf1e40..766fba88a3c8 100644
->>--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
->>+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
->>@@ -23,7 +23,9 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
->> 
->> static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
->> {
->>-        return dev_get_drvdata(kdev);
->>+        struct drm_device *drm = dev_get_drvdata(kdev);
->>+
->>+        return drm ? to_i915(drm) : NULL;
->> }
->> 
->> #define IS_PLATFORM(xe, x) ((xe)->info.platform == x)
->>diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
->>index 2c96f1b2aafd..022876eebfd5 100644
->>--- a/drivers/gpu/drm/xe/xe_device.h
->>+++ b/drivers/gpu/drm/xe/xe_device.h
->>@@ -17,12 +17,16 @@ static inline struct xe_device *to_xe_device(const struct drm_device *dev)
->> 
->> static inline struct xe_device *kdev_to_xe_device(struct device *kdev)
->> {
->>-        return dev_get_drvdata(kdev);
->>+        struct drm_device *drm = dev_get_drvdata(kdev);
->>+
->>+        return drm ? to_xe_device(drm) : NULL;
->> }
->> 
->> static inline struct xe_device *pdev_to_xe_device(struct pci_dev *pdev)
->> {
->>-        return pci_get_drvdata(pdev);
->>+        struct drm_device *drm = pci_get_drvdata(pdev);
->>+
->>+        return drm ? to_xe_device(drm) : NULL;
->> }
->> 
->> static inline struct xe_device *xe_device_const_cast(const struct xe_device *xe)
->>diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
->>index 7bb811b4a057..f861b8cf931a 100644
->>--- a/drivers/gpu/drm/xe/xe_pci.c
->>+++ b/drivers/gpu/drm/xe/xe_pci.c
->>@@ -800,7 +800,7 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->>         if (IS_ERR(xe))
->>                 return PTR_ERR(xe);
->> 
->>-        pci_set_drvdata(pdev, xe);
->>+        pci_set_drvdata(pdev, &xe->drm);
->> 
->>         xe_pm_assert_unbounded_bridge(xe);
->>         subplatform_desc = find_subplatform(xe, desc);
->>-- 
->>2.39.2
->>
+vim +/intel_opregion_get_panel_type +626 drivers/gpu/drm/i915/display/intel_bios.c
+
+   619	
+   620	static int opregion_get_panel_type(struct drm_i915_private *i915,
+   621					   const struct intel_bios_encoder_data *devdata,
+   622					   const struct drm_edid *drm_edid, bool use_fallback)
+   623	{
+   624		struct intel_display *display = &i915->display;
+   625	
+ > 626		return intel_opregion_get_panel_type(display);
+   627	}
+   628	
 
 -- 
-Jani Nikula, Intel
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
