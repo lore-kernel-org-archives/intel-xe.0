@@ -4,55 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70B88C52D6F
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Aug 2024 17:12:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C367C3DA7F
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Aug 2024 17:59:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 645C510E11C;
-	Fri,  2 Aug 2024 17:12:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3528810E0CE;
+	Fri,  2 Aug 2024 17:59:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=kapsi.fi header.i=@kapsi.fi header.b="zp/TqSzt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zfk4pHP4";
 	dkim-atps=neutral
-X-Greylist: delayed 1810 seconds by postgrey-1.36 at gabe;
- Fri, 02 Aug 2024 07:30:48 UTC
-Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABFB010E99D;
- Fri,  2 Aug 2024 07:30:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
- s=20161220; h=References:Cc:To:Subject:Message-ID:From:
- Content-Transfer-Encoding:Content-Type:Date:MIME-Version:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=pNOEhidxMr88WUeRwjolcg948ZGsyDBZIrg4gRDa9l4=; b=zp/TqSztDeBrtRbgdjrSfwz3QT
- 3IalpkIfeQjyLgkBeC/TOpv++FMXsYcKe3GFm88YWCaABWIOFBT9MnWHVay6jnMqfsW3vkiPbPOvl
- xLTNzJ8Dtk/YUElZJcwrtKrfh8oAbeqijEs/tgitD1AIYHn6ahOwxMfeEopYV6HtklI0n1OXlCrlu
- eeoNtryeqXSY3s5MUPCnY81iRgPqsWcpnCAvtcG0T7BRiLckh1Cc/gfGxCcH4rBwvq034ysVCchL/
- R64dgvXX8sZwl+RjuhPvTUuVvrIMXZtMD/nMQoJMLz8zcVk2ikaeUIVjF6Zc0XYawsH2KrNOXUJ2K
- yvyK8x/A==;
-Received: from webng-gw.kapsi.fi ([91.232.154.200] helo=rainloop.kapsi.fi)
- by mail.kapsi.fi with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96)
- (envelope-from <jyri.sarha@iki.fi>) id 1sZmH3-00E0j4-10;
- Fri, 02 Aug 2024 10:00:25 +0300
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6C2610E0CE;
+ Fri,  2 Aug 2024 17:59:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1722621582; x=1754157582;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9FIQ97N7/vfYBav7zrBpsLEIlOBsQebPw9pi9lWuOho=;
+ b=Zfk4pHP4wIDWQGxMgYMeed23hZ9UZA8Nh5xfv1zWGMLjYH3He8+x58wX
+ o80ME3JCZZD/DBDKCj9PfNnsF4FcdWndnpNI7K+E0kf8bxHhzuZaaG7aE
+ joMmvjqFrNKqRtsRQPGuboIGAaKID3cQI8nRyXKrG7XgIN5LV4gkfrdf7
+ m/2UcA4lJZByaAEQCKq4es2/NyeqXeHSOAWcj0+9wY76ekmUgiYl6bzzl
+ 0nZsQbSt/jHbxTq4BWj9gK8DHTyrZTmVTBDl5bU6ZchBhnu88torZvh+7
+ KmDrRqzMP+ux77uWa27dC1K20gRkr+dF767+snRX7ubgbccJcxYQ94hG3 g==;
+X-CSE-ConnectionGUID: +RJhAVq6Q/OSsUZtnYT1wQ==
+X-CSE-MsgGUID: cCyHhLNLR1mHYz5QNL713A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11152"; a="20326692"
+X-IronPort-AV: E=Sophos;i="6.09,258,1716274800"; d="scan'208";a="20326692"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2024 10:59:41 -0700
+X-CSE-ConnectionGUID: x1Fv5axaTNGk4N1tYMy1TA==
+X-CSE-MsgGUID: k4MgQKkBQgGJNgVLzbo2kw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,258,1716274800"; d="scan'208";a="55411093"
+Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2024 10:59:41 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: linux-firmware@kernel.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ gustavo.sousa@intel.com, John.C.Harrison@Intel.com
+Subject: PR for new i915 and Xe binaries
+Date: Fri,  2 Aug 2024 10:59:32 -0700
+Message-ID: <20240802175932.784781-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Date: Fri, 02 Aug 2024 07:00:23 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-From: jyri.sarha@iki.fi
-Message-ID: <907bfa7ecffde2e2b0550edf183d6c58b6caf42d@iki.fi>
-Subject: Re: [PATCH 9/9] drm/tilcdc: Use backlight power constants
-To: "Thomas Zimmermann" <tzimmermann@suse.de>,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
- daniel@ffwll.ch
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, "Jyri
- Sarha" <jyri.sarha@iki.fi>, "Tomi Valkeinen"
- <tomi.valkeinen@ideasonboard.com>
-References: undefined <20240731122311.1143153-1-tzimmermann@suse.de>
-X-SA-Exim-Connect-IP: 91.232.154.200
-X-SA-Exim-Mail-From: jyri.sarha@iki.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
-X-Mailman-Approved-At: Fri, 02 Aug 2024 17:12:10 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,43 +65,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-July 31, 2024 at 3:17 PM, "Thomas Zimmermann" <tzimmermann@suse.de mailto=
-:tzimmermann@suse.de?to=3D%22Thomas%20Zimmermann%22%20%3Ctzimmermann%40su=
-se.de%3E > wrote:
+A bulk update of several binaries in the i915 and Xe folders.
 
->=20
->=20Replace FB_BLANK_ constants with their counterparts from the
-> backlight subsystem. The values are identical, so there's no
-> change in functionality or semantics.
->=20
->=20Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Jyri Sarha <jyri.sarha@iki.fi>
-> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> ---
+- GuC:
+    - All TGL+ binaries updated to v70.29.2
+    - New binary added for BMG, also v70.29.2
 
-Acked-by: Jyri Sarha <jyri.sarha@iki.fi>
+- HuC:
+    - DG2 binary updated to latest rev (v7.10.16)
+    - New binaries added for LNL (v9.4.13) and BMG (v8.2.10)
 
-Thank,
-Jyri
+- GSC:
+    - MTL binary updated to v102.0.10.1878
+    - New binary added for LNL, v104.0.0.1161
 
-> drivers/gpu/drm/tilcdc/tilcdc_panel.c | 2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
->=20
->=20diff --git a/drivers/gpu/drm/tilcdc/tilcdc_panel.c b/drivers/gpu/drm/=
-tilcdc/tilcdc_panel.c
-> index 68093d6b6b16..5f2d1b6f9ee9 100644
-> --- a/drivers/gpu/drm/tilcdc/tilcdc_panel.c
-> +++ b/drivers/gpu/drm/tilcdc/tilcdc_panel.c
-> @@ -49,7 +49,7 @@ static void panel_encoder_dpms(struct drm_encoder *en=
-coder, int mode)
->=20
->=20 if (backlight) {
->  backlight->props.power =3D mode =3D=3D DRM_MODE_DPMS_ON ?
-> - FB_BLANK_UNBLANK : FB_BLANK_POWERDOWN;
-> + BACKLIGHT_POWER_ON : BACKLIGHT_POWER_OFF;
->  backlight_update_status(backlight);
->  }
->=20
->=20--=20
->=202.45.2
->
+- DMC:
+    - MTL binary updated to v2.22
+
+The following changes since commit 65c5d9b1a4808462f5e885447dae1a133c96abec:
+
+  Merge branch 'amdgpu-20240726' into 'main' (2024-07-28 14:28:08 +0000)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/firmware.git tags/intel-2024-08-02
+
+for you to fetch changes up to 95c414d44c8e60880be787822d5020a010044a49:
+
+  xe: First GuC release v70.29.2 for BMG (2024-08-01 11:11:04 -0700)
+
+----------------------------------------------------------------
+Daniele Ceraolo Spurio (5):
+      i915: update DG2 HuC to v7.10.16
+      xe: Add LNL HuC 9.4.13
+      xe: Add GSC 104.0.0.1161 for LNL
+      xe: Add BMG HuC 8.2.10
+      i915: update MTL GSC to v102.0.10.1878
+
+Dnyaneshwar Bhadane (1):
+      i915: Update MTL DMC v2.22
+
+Julia Filipchuk (3):
+      i915: Add GuC v70.29.2 for ADL-P, DG1, DG2, MTL, and TGL
+      xe: Add GuC v70.29.2 for LNL
+      xe: First GuC release v70.29.2 for BMG
+
+ WHENCE               |  30 +++++++++++++++++++++---------
+ i915/adlp_guc_70.bin | Bin 347584 -> 328768 bytes
+ i915/dg1_guc_70.bin  | Bin 321472 -> 302656 bytes
+ i915/dg2_guc_70.bin  | Bin 410368 -> 369408 bytes
+ i915/dg2_huc_gsc.bin | Bin 630784 -> 630784 bytes
+ i915/mtl_dmc.bin     | Bin 52476 -> 52700 bytes
+ i915/mtl_gsc_1.bin   | Bin 1142784 -> 1134592 bytes
+ i915/mtl_guc_70.bin  | Bin 332544 -> 303872 bytes
+ i915/tgl_guc_70.bin  | Bin 335168 -> 316352 bytes
+ xe/bmg_guc_70.bin    | Bin 0 -> 406272 bytes
+ xe/bmg_huc.bin       | Bin 0 -> 585728 bytes
+ xe/lnl_gsc_1.bin     | Bin 0 -> 1155072 bytes
+ xe/lnl_guc_70.bin    | Bin 336640 -> 316160 bytes
+ xe/lnl_huc.bin       | Bin 0 -> 643072 bytes
+ 14 files changed, 21 insertions(+), 9 deletions(-)
+ create mode 100644 xe/bmg_guc_70.bin
+ create mode 100644 xe/bmg_huc.bin
+ create mode 100644 xe/lnl_gsc_1.bin
+ create mode 100644 xe/lnl_huc.bin
