@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 363C5C3DA4A
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Aug 2024 00:40:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C11C8C3DA64
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Aug 2024 00:40:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D414410E526;
-	Fri,  2 Aug 2024 00:40:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A17689664;
+	Fri,  2 Aug 2024 00:40:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y8887Z10";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ztpyg/vZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 133FD10E638
- for <intel-xe@lists.freedesktop.org>; Fri,  2 Aug 2024 00:40:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02DBC10E526
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 Aug 2024 00:40:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1722559223; x=1754095223;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
  bh=XMqbaU3ROElkTeNTx2cE1LWew9FEpw/t7TfGEwNRfeQ=;
- b=Y8887Z10E0BOfEytx1rZAgW16tSX/sSAKGwZ3jCNaA9E3d/fsnDgiZTM
- IhChv1Jv4U9WwQstJmSd7EunIVACZuBlijNa2uPDAmUGgQAGlJ91Zb++b
- WOWNlh36jSNleYfcit0QNBYc6jcIiVWEOe+QjIvGVJxDPCbQxNhVhhWkz
- NxhvFt5qZXTUQ8fiA8FaJArE8ttahEMB+VRd5h+363M86VYagjYeVtG/9
- ZQ4TU1UduWXz7vpwh5QhyVtoNZh4/Y33SvxJBlz+/nJ45GTQIc4MPHlqF
- JVbn4GeVd5fC342ZlOHV+HXV/z+1F8kcD2pX2iQommt67u1Clwc0aR80m Q==;
-X-CSE-ConnectionGUID: 6NOozJPSTAOGpn52sc5M7A==
-X-CSE-MsgGUID: FH80ITOLQk+o5yXd99tXgQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11151"; a="45963266"
-X-IronPort-AV: E=Sophos;i="6.09,256,1716274800"; d="scan'208";a="45963266"
+ b=Ztpyg/vZsgS9bCO9Z5nMyiJah1WtGN8VrQTL3A8UohttX4pM48WVcvWt
+ QRhuTM9Bua/jGQu/Ah7f9gaV1vAnbg7XMDwhjJif3S95bYlEMurJ1tTsd
+ qGMyNbeWFgZ9oucaOgeUE0ndNP5PZ4in0rgLiiWR9fjWl/5i3Diu/HGT4
+ O1xcSAKmMzWJcS9GcZ5P2zm4Xf7uUdm5O5YPK1tQIoZgEi4eJBMFZ+zKF
+ YBNI853d1W2mSWrq3kz8QlYyx8zn+DK0fQcwBnaZihKYmVAves5t10zN/
+ oXbDuOsWqYhK/Ora6ViXIU/Dk6w8LFO6L1CSO865k/+C1kwhW31t5osDh g==;
+X-CSE-ConnectionGUID: 5QL5vEqHQv2oxHE8C5HAJw==
+X-CSE-MsgGUID: mT2XTS3eTJa23wj+bxXSkg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11151"; a="45963265"
+X-IronPort-AV: E=Sophos;i="6.09,256,1716274800"; d="scan'208";a="45963265"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Aug 2024 17:40:22 -0700
-X-CSE-ConnectionGUID: VhtvNSJBQZOrjiTJdS4yNQ==
-X-CSE-MsgGUID: 5dWGHxhHR2ia3O8SKNEIfA==
+X-CSE-ConnectionGUID: 1yj+DR6PTSK6pUP0RYWsVQ==
+X-CSE-MsgGUID: OAgfltI1SFqISlvQ6OzBUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,256,1716274800"; d="scan'208";a="92767538"
+X-IronPort-AV: E=Sophos;i="6.09,256,1716274800"; d="scan'208";a="92767536"
 Received: from bfilipch-desk.jf.intel.com ([10.165.21.204])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Aug 2024 17:40:21 -0700
 From: Julia Filipchuk <julia.filipchuk@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH 1/2] NOT_UPSTREAM/CIdrm/xe/guc: Release GuC v70.29.2
-Date: Thu,  1 Aug 2024 17:40:16 -0700
-Message-ID: <20240802004017.3057708-3-julia.filipchuk@intel.com>
+Subject: [PATCH 1/2] NOT_UPSTREAM/CI: drm/xe/guc: Release GuC v70.29.2
+Date: Thu,  1 Aug 2024 17:40:15 -0700
+Message-ID: <20240802004017.3057708-2-julia.filipchuk@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240802004017.3057708-1-julia.filipchuk@intel.com>
 References: <20240802004017.3057708-1-julia.filipchuk@intel.com>
