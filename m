@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32DF7C3DA4A
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Aug 2024 15:48:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34227C3DA7F
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Aug 2024 15:48:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD86D10E23C;
-	Mon,  5 Aug 2024 15:48:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 028FE10E23C;
+	Mon,  5 Aug 2024 15:48:43 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AAF010E23F;
- Mon,  5 Aug 2024 15:48:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6772210E23F;
+ Mon,  5 Aug 2024 15:48:41 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/display_suspe?=
- =?utf-8?q?nd/resume_fixes=2E?=
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_drm/xe/display_suspend/re?=
+ =?utf-8?q?sume_fixes=2E?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 05 Aug 2024 15:48:29 -0000
-Message-ID: <172287290923.540680.3066319914181401619@2413ebb6fbb6>
+Date: Mon, 05 Aug 2024 15:48:41 -0000
+Message-ID: <172287292141.540680.14836336459487151785@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240805151309.461021-1-maarten.lankhorst@linux.intel.com>
 In-Reply-To: <20240805151309.461021-1-maarten.lankhorst@linux.intel.com>
@@ -48,10 +48,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: d15caf398bcc drm-tip: 2024y-08m-05d-13h-00m-34s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/display: Match i915 driver suspend/resume sequences better
-Applying: drm/xe/display: Make display suspend/resume work on discrete
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9e645341d3008ce246879af606f45d0e5d21d698
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3be2022c90c5a259f0931dce4a659f174adcc358
+Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Date:   Mon Aug 5 17:13:09 2024 +0200
+
+    drm/xe/display: Make display suspend/resume work on discrete
+    
+    We should unpin before evicting all memory, and repin after GT resume.
+    This way, we preserve the contents of the framebuffers, and won't hang
+    on resume due to migration engine not being restored yet.
+    
+    Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+    Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+    Cc: <stable@vger.kernel.org> # v6.8+
++ /mt/dim checkpatch d15caf398bccf6c9d34363f65251b7192f833dc9 drm-intel
+3ce2f362ecbb drm/xe/display: Match i915 driver suspend/resume sequences better
+3be2022c90c5 drm/xe/display: Make display suspend/resume work on discrete
 
 
