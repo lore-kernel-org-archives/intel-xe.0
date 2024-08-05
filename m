@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9166AC3DA4A
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Aug 2024 06:21:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D679CC3DA7F
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Aug 2024 06:21:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44B6410E117;
-	Mon,  5 Aug 2024 06:21:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NIIbXTFG";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B9D710E117
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Aug 2024 06:21:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722838870; x=1754374870;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=oOhhVXV74Z9/eu51mu8D8N0mKWsMKB7tUJ/RxOHN3a0=;
- b=NIIbXTFGsUuw8EJv/dnSdkl7jUs2hJK3hd6MwkUz4EvvUjmF0NUjZ3rQ
- ZZ2W8irgNZmtTm14+Z5BAZso0nvhc1ftRjJDcvZYv0ZxYgOpWYY+CgWzu
- AbyQ16hzhE/fsEkkowh96VoWmDGrVXtHmfYXbFMF+Phq559A5tVp9vkvj
- yz4JLFVny7IFFKUW+pyzf+rHovvuzeDmiyXgbloYdW7a5LMEC7bZz3A0p
- eYuHbT3Ij3K8in92k5wOoAQVEb1ljYL1VJvWzWNOgnXkOfcHs+vFUXDkZ
- ZU+h8+REUxcnbd3dOZqgt1BP49TxnGF1RV3krRGhTor8pYcT7uiVHVqXQ g==;
-X-CSE-ConnectionGUID: 2Z6841FKSJiKxhGpLJQY+A==
-X-CSE-MsgGUID: IPB1wDXqTh6D/VTrxBuDOg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11154"; a="32154143"
-X-IronPort-AV: E=Sophos;i="6.09,263,1716274800"; d="scan'208";a="32154143"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2024 23:21:09 -0700
-X-CSE-ConnectionGUID: 421LlJZPQs2mzPWb7jRn1w==
-X-CSE-MsgGUID: qPh0dESwRXKI9ToVX+ij1A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,263,1716274800"; d="scan'208";a="55997167"
-Received: from orsosgc001.jf.intel.com ([10.165.21.138])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2024 23:21:07 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Zbigniew Kempczynski <zbigniew.kempczynski@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH] drm/xe/observation: Drop empty sysctl table entry
-Date: Sun,  4 Aug 2024 23:20:57 -0700
-Message-ID: <20240805062057.3547560-1-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.41.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id A56EE10E117;
+	Mon,  5 Aug 2024 06:21:24 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE11210E122;
+ Mon,  5 Aug 2024 06:21:22 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8343211806897367616=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/xe2=3A_Add_performance_tu?=
+ =?utf-8?q?rning_changes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shekhar Chauhan" <shekhar.chauhan@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 05 Aug 2024 06:21:22 -0000
+Message-ID: <172283888290.539585.18293770757677970832@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240805053710.877119-1-shekhar.chauhan@intel.com>
+In-Reply-To: <20240805053710.877119-1-shekhar.chauhan@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,36 +36,133 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-An empty sysctl table entry was inadvertently left behind for observation
-sysctl. The breaks on 6.11 with the following errors:
+--===============8343211806897367616==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-[  219.654850] sysctl table check failed: dev/xe/(null) procname is null
-[  219.654862] sysctl table check failed: dev/xe/(null) No proc_handler
+== Series Details ==
 
-Drop the empty entry.
+Series: drm/xe/xe2: Add performance turning changes
+URL   : https://patchwork.freedesktop.org/series/136873/
+State : failure
 
-Fixes: 8169b2097d88 ("drm/xe/uapi: Rename xe perf layer as xe observation layer")
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2419
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/xe/xe_observation.c | 1 -
- 1 file changed, 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_observation.c b/drivers/gpu/drm/xe/xe_observation.c
-index fcb584b42a7d5..a78c92a44ec2d 100644
---- a/drivers/gpu/drm/xe/xe_observation.c
-+++ b/drivers/gpu/drm/xe/xe_observation.c
-@@ -66,7 +66,6 @@ static struct ctl_table observation_ctl_table[] = {
- 	 .extra1 = SYSCTL_ZERO,
- 	 .extra2 = SYSCTL_ONE,
- 	 },
--	{}
- };
- 
- /**
--- 
-2.41.0
+CI Bug Log - changes from xe-1711-0b8d955bfdcf0864a764a125ab13bc0fd81f3b71_BAT -> xe-pw-136873v1_BAT
+====================================================
 
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-136873v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-136873v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (7 -> 7)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-136873v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_sysfs_scheduler@timeslice_duration_us-invalid@vecs:
+    - bat-bmg-1:          [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-1711-0b8d955bfdcf0864a764a125ab13bc0fd81f3b71/bat-bmg-1/igt@xe_sysfs_scheduler@timeslice_duration_us-invalid@vecs.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136873v1/bat-bmg-1/igt@xe_sysfs_scheduler@timeslice_duration_us-invalid@vecs.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-1711-0b8d955bfdcf0864a764a125ab13bc0fd81f3b71 -> xe-pw-136873v1
+
+  IGT_7954: a22f1dab2c2604f9678e4b27ba40bee7dcce9dfd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-1711-0b8d955bfdcf0864a764a125ab13bc0fd81f3b71: 0b8d955bfdcf0864a764a125ab13bc0fd81f3b71
+  xe-pw-136873v1: 136873v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136873v1/index.html
+
+--===============8343211806897367616==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe2: Add performance turning changes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136873/">https://patchwork.freedesktop.org/series/136873/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136873v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136873v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-1711-0b8d955bfdcf0864a764a125ab13bc0fd81f3b71_BAT -&gt; xe-pw-136873v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-136873v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-136873v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (7 -&gt; 7)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-136873v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_sysfs_scheduler@timeslice_duration_us-invalid@vecs:<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-1711-0b8d955bfdcf0864a764a125ab13bc0fd81f3b71/bat-bmg-1/igt@xe_sysfs_scheduler@timeslice_duration_us-invalid@vecs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-136873v1/bat-bmg-1/igt@xe_sysfs_scheduler@timeslice_duration_us-invalid@vecs.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-1711-0b8d955bfdcf0864a764a125ab13bc0fd81f3b71 -&gt; xe-pw-136873v1</li>
+</ul>
+<p>IGT_7954: a22f1dab2c2604f9678e4b27ba40bee7dcce9dfd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-1711-0b8d955bfdcf0864a764a125ab13bc0fd81f3b71: 0b8d955bfdcf0864a764a125ab13bc0fd81f3b71<br />
+  xe-pw-136873v1: 136873v1</p>
+
+</body>
+</html>
+
+--===============8343211806897367616==--
