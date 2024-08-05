@@ -4,166 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5AE9C3DA7F
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Aug 2024 20:26:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C07A2C3DA4A
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Aug 2024 20:30:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 701F510E2B1;
-	Mon,  5 Aug 2024 20:26:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 932EE10E2B1;
+	Mon,  5 Aug 2024 20:30:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UgbLIZ7s";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b+E4N6Wt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6851D10E2B1
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Aug 2024 20:26:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CA7110E2B1
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Aug 2024 20:30:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722889595; x=1754425595;
+ t=1722889859; x=1754425859;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=swLPxQBqk74oM0iUSrmjkcjsDa1/O97EC1JL2eKIXkI=;
- b=UgbLIZ7sEvdeZM8//YFUD8qqtt9DMyUV8/Q88sKOq3sOBJS2T3lrfCoP
- oi1Y8H+2T1+5g1V7eZUMYzUoq4Cgqwiks/mYuSNLPfpxatUbxTGbyzH4Z
- JK5+H5AgUuiVpWjoeHfCln+4T/EENuGjfn6VUuMCKsQpc/kKe7LQ/11Tu
- 2W8KNmUjZ9gZADoxWD5ACF5+gnH+ty4cUZTogJtoOIuX8/XDef419XLZq
- vSCBmZHRkvXHnyfKphG39tVPVESPKpJJMW1EckbG0Im82wcATmyeJ3Msf
- tDhZccG1G4oJmRHiA+olHIAgfSHaB2037Ht7R85yBfZlyhRY9icLI5vjG w==;
-X-CSE-ConnectionGUID: dU2RsK1mRDuwUPOaHJrubQ==
-X-CSE-MsgGUID: lUeFkuYASZaoLOtm1MkYlg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11155"; a="23789601"
-X-IronPort-AV: E=Sophos;i="6.09,265,1716274800"; d="scan'208";a="23789601"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2024 13:26:35 -0700
-X-CSE-ConnectionGUID: m6423Y12RjW5r15QV/Qd3A==
-X-CSE-MsgGUID: 9KDQa3R8Q1mgWMpnzONhGw==
+ bh=3KqPgUFCetOvez8PSxLsOO10WuZ2FnblZFOhG3BK9wE=;
+ b=b+E4N6WtErTlkXXiNLczD3SeRmV3znzpgWyxHZVrs3hpaXARdPSgJ89w
+ hjONVRIxX6RF7WLsMXM6Ekjddr+hABMNqq9XYarSIAqZMFrVaj6tE5+si
+ wtuKeEYw5lwokExRSbonG9OTTzKNlZOXY97g/xK0VgDZL7zSqBhqxid2+
+ OMDhw89oLliB8bLJUP0BiZDRpKRVWd2PVQYyxjnZPelEArVEgdFKIcc30
+ 6iBQYWlzcwo6BnSZz/DtBKK77kQ/TJOUETp/hHlyScvw1COIwwnbIJsnM
+ lJdfsorwNLSe6s7/Igv9bXMKXEVreG55RX1nghOxJqC15aROCs8Qq4TYY A==;
+X-CSE-ConnectionGUID: V06BY5LNSqq8Ujg9pwMyng==
+X-CSE-MsgGUID: Dlh8bZJBQayyDTTyY9SN9Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11155"; a="46280356"
+X-IronPort-AV: E=Sophos;i="6.09,265,1716274800"; d="scan'208";a="46280356"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2024 13:30:56 -0700
+X-CSE-ConnectionGUID: f3PVIzk3QGSdF2zrJdwHHQ==
+X-CSE-MsgGUID: L6vgT9UUSNmpdJaN5dCzyQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,265,1716274800"; d="scan'208";a="61094268"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Aug 2024 13:26:35 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.09,265,1716274800"; d="scan'208";a="56373111"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 05 Aug 2024 13:30:56 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 5 Aug 2024 13:26:34 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.39; Mon, 5 Aug 2024 13:30:55 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 5 Aug 2024 13:26:34 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Mon, 5 Aug 2024 13:26:34 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Mon, 5 Aug 2024 13:30:53 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Mon, 5 Aug 2024 13:26:33 -0700
+ 15.1.2507.39; Mon, 5 Aug 2024 13:30:53 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VM1Lxaw2mT7BmakkoF7Dmn5yMvEDEsuOjW7DHrGkFSbLaLDjPv5Wtd8SSRKNJruK+k0uz2O7IhdJ5pdv4YY2iNge8FuH5kWFFw45emrfNeHkqqI3K61ML92WRcTSZR9g79/Cp2Ad2bHtWSSNPJVhN+tOZcrOmViyyAs95GAV8QxXoPEUFpSrh/mwCZNDpKFrhqscn7suH9jzI7xLgrxjyCsm4KGG7PHuL0vu5q/gYGKPm/DEj4baMgTccs2VP22ejFIjQnl7qB8klyqmgwf2ZvUdgQrVDSmUAPE7OHJWqp4RY38Rdacb8lvJUASfmGDSF3RmUeZJkyXd6YsA+gRZ+g==
+ b=msTP9IZO4H/XjJYcjeIrsgn2QthDurjyuBnnKzQw1cLQebbHsep0RCm/QOXNr2f0nszMd+o9PckcD3hBIL0lVdsuNlSpKEoXjs8rOORq468syoroq4e0JTLrAv+5xAr8FeKWyhjT2PAO5h9v+wqpHtQcMh4ivJPKGT5d+gUHKPyawGahLLXZQC6g8aLycfg09Beg99gDkn58mrjgnhybbLOhxfbvmqneuay4mxgjC7zfhLsx4fElp6sFh9N9l3UyZpW+m53O9RI1kC7CGY1GCIjzjM/LD8PRgeN4tqJmLPQ6w7hio4eExnPZn9j7REPlWgtjevS7qIn/7Sr7o8nftQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oPqSwMGNT8M5pfj7MGuLjybJE+1bW9QYdybvRtvAdUo=;
- b=QtU4+1N74BewD+CMr/OCW5f+Xgc5/VjljmHJmB2nmX1zYNqm2CltuLshqM5SEc3pAU0HvbaxnTg0Ty1DnaxmyoZz6lnklhoT9Lac+OAdpEVYvUOrQGXGQbviY1j3aYqcPjExyYuqzDeZ481xlrJIJeYmMUhMrGOTE6cj7kqWqaCpUuRhYNl1Oy+Tm3PcoTMv+F7vMUcT4k9QZ5OkWhrd6VJxC3BqGDEqw3Ih21AZUahouNikOC5ye65rRKTvhakbi/DZMBVfElTsHYTpm+bt9xPM7yZsqbjJLxh6ATuxYxq5N1kc4UBBYSvd3XRDPfQVOuSg97UWtTVDxqE8UDxgzQ==
+ bh=BnHZM1AYSmCT47zzbCny9qgTe4oO5r4ovmympVHI/rk=;
+ b=iVZNEp6htfd9I9gHVgIH21hVE5kiJyWF8ub8u/L00xeZRiizKm/eOmKxIQE6zM//RjZvbDlYehkcqhINdfkpjgkMPK1FCu8B9A5xqmM6emf4AIDNjS99/kha6und7HVRY8RCYGFivhO1LHnsxC/1bhDMHjvQ9k6pL+ySc6KFJi6nKels4cW/QB21TlwiSLem5NiD4hQm6cQQddTz8SXo6rIGRE6Dkyk3C5rPfmJ7e9mJ9tq9BSIOQIKaHFvcNyyOYZXvgpv3aPEDK5gQqOTL1h462dEHmYIx8G8IXos08iJgnLuFKi9krUCEGQg/lkQ1OiAYNeP+3R1ZkKbeBpPwFw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SJ0PR11MB5103.namprd11.prod.outlook.com (2603:10b6:a03:2d3::11)
+ by SN7PR11MB7044.namprd11.prod.outlook.com (2603:10b6:806:29b::5)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.20; Mon, 5 Aug
- 2024 20:26:29 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.23; Mon, 5 Aug
+ 2024 20:30:50 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.7828.023; Mon, 5 Aug 2024
- 20:26:29 +0000
-Date: Mon, 5 Aug 2024 20:25:19 +0000
+ 20:30:50 +0000
+Date: Mon, 5 Aug 2024 20:29:41 +0000
 From: Matthew Brost <matthew.brost@intel.com>
 To: Francois Dugast <francois.dugast@intel.com>
 CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v4 06/13] drm/xe/exec_queue: Prepare last fence for hw
- engine group resume context
-Message-ID: <ZrE1L2hhrsFndmrP@DUT025-TGLU.fm.intel.com>
+Subject: Re: [PATCH v4 08/13] drm/xe/hw_engine_group: Ensure safe transition
+ between execution modes
+Message-ID: <ZrE2NR1nFWfSRlZ8@DUT025-TGLU.fm.intel.com>
 References: <20240801125748.355078-1-francois.dugast@intel.com>
- <20240801125748.355078-7-francois.dugast@intel.com>
+ <20240801125748.355078-9-francois.dugast@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240801125748.355078-7-francois.dugast@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0105.namprd03.prod.outlook.com
- (2603:10b6:a03:333::20) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <20240801125748.355078-9-francois.dugast@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0107.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c5::22) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ0PR11MB5103:EE_
-X-MS-Office365-Filtering-Correlation-Id: 94607385-9268-473c-fb9f-08dcb58ce354
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SN7PR11MB7044:EE_
+X-MS-Office365-Filtering-Correlation-Id: 59191644-105b-4c68-02bf-08dcb58d7ed5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?KukGEhyOaq9ZVTxsuwz+C//b+VTotW/foqofljVj5bqD4Xj1uaXWE6L2bSmf?=
- =?us-ascii?Q?GSi7s8f7nBZdsT2gfftKOOiJUw1y5/4C23OISBZKi85ByXnT5sfqS+hmxAUF?=
- =?us-ascii?Q?VaBPIWx7tyz4kIGsXbNFZjJfafCBAImN+hmNrtiioAKdax7bQxbEl4dkua0j?=
- =?us-ascii?Q?+0uzGMWX81fm9qZlVZNCp8DSOXSzKwYktRLihrKsA8SyJS0ftqvHABvrsVqO?=
- =?us-ascii?Q?yLT/TophuqbQ45/jSTRHbfRhr0o2rCSF71NB99JIoLq+XPfs8qA0GUiF1SDQ?=
- =?us-ascii?Q?a+EOmnCXuE0mpZ36MZn+dbUTpPAnGYiEWkgwxlZ8Hmh0C51DzC0ZqqjJHZY5?=
- =?us-ascii?Q?+fdO5/zpnydVuyPzR6C688tqkqgWQpBNc7QsConr5KlgdBUbAkYoDOLWcV3V?=
- =?us-ascii?Q?yg2r/t8kO70oItRWupOYI3E/A/FhhiAyedYGAgRWC3PpoYabegl7DejwdhwZ?=
- =?us-ascii?Q?tvEu6lB3u+52f042L8TbEuYV4TFO8SIgRDpnAejmB2aDWy+R7m1cxW7nQHU5?=
- =?us-ascii?Q?SdLkfcIASC/nWHTW1caJe7ULI4qd1FGu/C6VNTjAmyAby4gkA5Rao9JJBqzr?=
- =?us-ascii?Q?uUCMClQgUNvvRW6OAAsOc0BSufLRxapM/D8TcsBdgRngxXrqd5BgXz0Rc7B9?=
- =?us-ascii?Q?4NLbjBNpZt7S1BgM9AiHeAfn+uB6xhC40tqu7yVngKNA77o+rhizU/NmaM5d?=
- =?us-ascii?Q?jRjAYySyrqx18i3voKwLCQJxe7nqu9pAttYNjLvieUyXyCcn84AE0SaeGxXT?=
- =?us-ascii?Q?PBppbjrlXf4iTTb3Dmy/aCY2GSa4SNeIDtFlsZ/17D+qjGJzDqa5aAsbain4?=
- =?us-ascii?Q?oYlUI+h/zZJmEimtDTitM4F8E45Z6ZXL7SVC/V7CDyvoGa4XAB/2+SnYnOzN?=
- =?us-ascii?Q?tCjYNbpNUinZmLROIJsS1jnW/oxPyN5P1SaZNBt05cmJng7cnaFgeGl4zZMf?=
- =?us-ascii?Q?Qi65Rqo0T6axiGhQSDwexy7TSRiKj3uw2cK3WtjHdhg9686kl3C7p6dt/R4e?=
- =?us-ascii?Q?vlx8eqJ9f5tOHJeueUpT3nwaI4OE9hN1xplTaHPGGFgHO/h3m5mejnxvjPmc?=
- =?us-ascii?Q?5lFk+8KemWy5/YiFWuneikjreIsK0QKfzab2UIUOp4NMLQV0cga0+BPjNz/T?=
- =?us-ascii?Q?OW33YJycffOTMvkReiW8peKgwli8ADp056JrxfvcpocqpvLtKIzlpfwMtBW2?=
- =?us-ascii?Q?nwxrprfPNxz/CzsA4gEGHwTOCtcK53iJ9A4l72UZrBbHvirzjDuQji7myG/y?=
- =?us-ascii?Q?nN23s/mE+w9KO247BAxV+Z0MIR/BB6ld+vO9eglAO1b9W2/zBhOnam6iPKaY?=
- =?us-ascii?Q?Bgs=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?TChAu8MsbCGeVxI/VimsE+QaEpqkbfrwcR75muR474BxSNeqX/Q/LIdQmj13?=
+ =?us-ascii?Q?+fhyc6+CCIZ8RoHZpF3uNfq6ce+cHxOk8jeecLmugMZnbiJG8khC0EcJZo9y?=
+ =?us-ascii?Q?YpTbfm8i6zFOqex43MOalfQrc30UHhYsH1AUCJXidSbDHX/+69fMrxQSW5s1?=
+ =?us-ascii?Q?99MLgN2q0d2lwJZVJ6+Vm1iXcQSW336RYkf9kAHrUvKVKVs9idjbSctiMuF4?=
+ =?us-ascii?Q?ofsIyqorsnIyKBEk12dbGpPkJnJoT0eED/UWOVteE/4MGlfjJa2B8ld1Mnfz?=
+ =?us-ascii?Q?sRaIg3wX56i3o7XoAle6cADMi9X9McygNY0hTMwuRsAjl9rTGOLOsty779aG?=
+ =?us-ascii?Q?8wqtm5SGX1uYtQhx9kcdcgPAZVg4ZUqpbU8u/GcnLti85DDT5kWW/rVCbbXK?=
+ =?us-ascii?Q?uKyUAjBWVGMlwj/q57d8m5QyV3gV8FOrZ8SAe0dQsTzziFUuDWxVU+K7qkUX?=
+ =?us-ascii?Q?V0Fqa8svUrfqThbn2+ps64PPjmXtpw2RYOZwO4BiP20fRwmFyLQUOORXY/JM?=
+ =?us-ascii?Q?gERHor1s7/MSGkrVZiwECpm00qkCGn4fStpswExaCsSTO3WSyaoPSZIrVtD4?=
+ =?us-ascii?Q?ZoNl9OW7cenNqTXwrsft2LBGC3sUzfcr5I/y+8YpaR98cnTXDTsaWsRBLnuM?=
+ =?us-ascii?Q?GnDN0xH8lIqeoYyVIlvoKk9Lpvo4OSZPA2jmTF6RMPIscwgWU9h1zTDpb82N?=
+ =?us-ascii?Q?KHb0U18025PJnISRZh0i4bvsrnKuFbldGEyzraJPPP9fB8ISpFvt5m+pyzNH?=
+ =?us-ascii?Q?Xf0emh3qEYG2PDqChPBUB0c9Q9YpQUIQmprFNSS043QFvYb0E4XSYc3nuwMz?=
+ =?us-ascii?Q?d1xTGe8nFObkgIvrlM9mv45cfRxu6Hf/uZqsGYkyGR/tQLwjzGKXl+T+ejgH?=
+ =?us-ascii?Q?SepEi2DWV8E62mheU+i7t6/jYCYqNn83jrk/Ky/yMQ/9XQhJ7c0oTKD3Wx0P?=
+ =?us-ascii?Q?ShHyovPcjDWe9ZMYqBTiM1inpFJtX2lMTEXqZrLPWk9OWxOEWUVuDwDlHV0k?=
+ =?us-ascii?Q?MsYUg83qo5JhfLMIkjxnGpWWXPvWgnveRZhYGBW35y9LezGyhzxdPclDkksT?=
+ =?us-ascii?Q?va9Ui1CQdXpyr2mIGICsHTYJRVf+ZSEZ2kuA3ulKuLb76dSiN/cn5UbzeTQD?=
+ =?us-ascii?Q?f/nAZh3rpAUxwA5JZyUNrdUFkICGWdwyr1Y+3Hh/j13gxTBfbN7T5242BrvM?=
+ =?us-ascii?Q?tnTGOGugRZSFZJGsuFH5p02YtE8ldNKbQDHyGsUngJOKNVAbDiKnhsrijNa3?=
+ =?us-ascii?Q?YUJP6a1NPNdQl9AU/F8xZ/F76SELumAozYS72PmSwDfWXPTF88HFbEIXYALp?=
+ =?us-ascii?Q?2HgO8EyqZhLY73lVev5xk8yQG6M8Jsgq+oiU9gDCV6aezw=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uZQq166BuF+1blIdfbdbaTesqs6gzSyYt/FWEmQKItvoD7S0F8lqPMw+UuZd?=
- =?us-ascii?Q?6QrsD5suDe5HUVDNxb5yCTyfJmvXQTvRPW7xbSRJuF+TMjQeYpbnriV30nyU?=
- =?us-ascii?Q?p1kBdgWfm4oGRXAw33sNrJgPIb6vJk2NMN37WgN8Vw9mo57tpLpKLziBvRg7?=
- =?us-ascii?Q?7oqeRqyJjyqntluXPbS3vSPZWcD8kYaeVPMYfBSTQh6lcObWYolxtklTvhZx?=
- =?us-ascii?Q?zmvtioXtUBy1bBbSZoWmsSI94Rz2+p8AaSE6fTtOh45rZ3RXLvNnNLVZWbEs?=
- =?us-ascii?Q?aXNAyAXyDQMGVkT4iYsfz05PyMYGIg4wIDI3jgicVkNTLwXohmAE7OQb0Ggd?=
- =?us-ascii?Q?HRVxYKkf58sxHcrvy/MEZ6K607Hl9jHDtou9ySCaN89sYa2WEYsukuWksKGx?=
- =?us-ascii?Q?XNbZZoAHbQ/ZtQFzbNEjYrpH5lYY2R2/SqTh5+2qldDyTvDsZVerJ993uf56?=
- =?us-ascii?Q?H+0EMGdGEcOktb+8j/S788b7vJkZOzUqjj0yc51E+3BKUe2ozO7VrIR+lr7b?=
- =?us-ascii?Q?dBaYGim6btSb9XcHB7WisoxYMkFxMOL54VV2fN5eg6u3MWqEyc9Oqbiq+emq?=
- =?us-ascii?Q?8mWiL4N7UAY61lPNMX4d24vJ6UbPMMTjKb+br9C12anItLkf5b/7i5tqhWey?=
- =?us-ascii?Q?xpxhlwojYgNdBEpHOJhaOnBEy4kIb27NHN6/JSyoS/Hej48VWUD1AB+UGsJY?=
- =?us-ascii?Q?/zJLJfuQeXctwdGzZNSmXKEp8VlRgdO1+DvtD75Znp+0EZtZgsNtuwoOzndv?=
- =?us-ascii?Q?xxtuCUYYT5FSwZ8+KH+ki/kVCoGIlCts2y0T10X5q2MRY7BY5E47p4ce/frg?=
- =?us-ascii?Q?5Nxb12Iar3R1KYYMjbAvJ1QjO4PceURcAxHcbfpn4wnh0dsqUWJKz5OLTc7j?=
- =?us-ascii?Q?Tuc8lgMnqh/rr6AYnLKsQ1FoM+Ld2j+vgR5JBY/Hhv1hSQsXdxiAct9s9C6+?=
- =?us-ascii?Q?Yn81ZTRJHHuln4HnpsjSCk9+gMJjLb7klyv/yTsRjPqrQldGFIH8F7p4DsBS?=
- =?us-ascii?Q?xZ8WoEKBm+HE9u0WJAc8HqRlD0x7La5125fVaklNzqAUA209Kp7h//C9sof9?=
- =?us-ascii?Q?8Dc8WUMk+U1EIeCr8JFa7Yz3sQB/GiiUtpj5AswXDjJou/F8G2R2CLNW2WxV?=
- =?us-ascii?Q?kXSmAyr2+Vq3usvU7rB6+79tgy6khzTBizY2MSasreLZsHHoKagTjdRIv7aY?=
- =?us-ascii?Q?hzFpOyngMRBHgfzRjx9pXEL+LMSgNqZJewkRP0dCZLlKqxxh5D/y3zUAJmFB?=
- =?us-ascii?Q?criYBqTV1b8hGaeeiyAhGIJeCk/VNj6TTZzELU/J8T66zg5Wqg1hH5/EZsFk?=
- =?us-ascii?Q?M4njOIr0clw3Jfz8u/vch0ETgiNYvWbnxyyEKbtZUT/X6rasDAgWQeHo4kZf?=
- =?us-ascii?Q?xcHFlhlmc2YEinxG9FQm0YLJmIP70vwNhbsweBTCYtoHHZH/yfbQfJpclGMs?=
- =?us-ascii?Q?Jh402XBeePPv26oO9D5vCCqDNisQv5lTfuEnsrSTj3ZADsYxLh7woBcBDup4?=
- =?us-ascii?Q?1t7V2gjXMFvPFb6+n9qz1gMydTWzwzZvAIuPULrfxzC/O8MBz/KPfpsFGxVQ?=
- =?us-ascii?Q?1RFJcRSK6g2gbJ1Fs+FaIuE/2sfyJpI7o+qyJYld6Sn50RHQK5icakTbff+d?=
- =?us-ascii?Q?Pw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94607385-9268-473c-fb9f-08dcb58ce354
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?lyjuPw1BRhZT+geCnQugBheETXjYOMa8ycTzexQyWsMEwFIxUwmmLE99aEsb?=
+ =?us-ascii?Q?VVK5tI0PcIH1yuLLag5iZuJ9V8QRKQ6gqyPrSSnrATLdbsrW7I+98UIl8xQ9?=
+ =?us-ascii?Q?e/d2KVFn7KI21iJr6YmeGG2W5CvSLsbwEAlX/3BLwX/sA5jZvvqtUID17PmZ?=
+ =?us-ascii?Q?pqVjTo4MV9RQeWDhosHO9Lggsv8Sc8HFJn4GbdiWoqPHMyIciU/CbH5x82+1?=
+ =?us-ascii?Q?jtnMfhbriurZsuXDcDCZ0uZod6U4zR0xMae4IfqVlrRaaGh7ve7OKs8EdU88?=
+ =?us-ascii?Q?eUPP67UxYp8cn6ukgONObeEv5778YtWBcWuY9AcSkdiGRP5T2x/iDinhoVAN?=
+ =?us-ascii?Q?U+2SfEY/Q77IVpW4z/PMVHnc6S5PtXfcdLkVtO1ezk28yqZiV09f4o3N6jai?=
+ =?us-ascii?Q?yM8rfq5oFqB4uXmxwB/Gpq0KLS4lCuoKiAXWTeZHKME8WZyQBQOEXey/e4Xh?=
+ =?us-ascii?Q?NmT32IlI24UdF1m7JiBjFPabtMJ6vLCTLT89hxaJwbzNw0mI7z3joFTq5nEB?=
+ =?us-ascii?Q?8vrULgJVF7NDZdJEBtXUH+ZMcwwtk2Puu4ZIIRXTDUFJWw8HbeJed9A0f0B3?=
+ =?us-ascii?Q?EO16afYJxfoLESsMLFNfSZ+nKaODZfuIRFqu3rbiTZXqOrdt6Q3T4Gf+N59W?=
+ =?us-ascii?Q?PfCia9kIFJmsoWBxufGzTzJsqFMPIEr2TWw3E3NnfzWD/uMF/4m7xbmjlo5n?=
+ =?us-ascii?Q?2nkWPPaIIeK9XF0VzbG6+dHtozMs3yahniMNtYZOFYYhLGtefKK2LCx1/2zl?=
+ =?us-ascii?Q?eHjJumSOF958GEeuGETNdyk05LXApizgAK9zUIVqQffvNy3YDNdt5EQh9XfU?=
+ =?us-ascii?Q?BXJ4/x2u485S9WjRinonmAYZ84w6PeJfpkJC/CaG5fUSf/pxlM7Jf3cp/KHl?=
+ =?us-ascii?Q?b/d0f3UPwus73afuXc6QFNG4DN7IbPgR9GlnVhXk1NymVuVf7TcPH8tozMLq?=
+ =?us-ascii?Q?DOBH9eMUfIUzG+M/69n8Ns6jEjdqDl4Se3P8MtgyG3As82XH+HX1F5NsNzrQ?=
+ =?us-ascii?Q?CsplMnVCOPxF294UZyi3tPxPHfqxO4LgWnxOJhDElzPrkh/yLX67uDLyHhvd?=
+ =?us-ascii?Q?U/Gj5irFoRnaGrIxEhELpceV4mrKsHPsWE27HkSUk692aqC+ImZ/eFNH7bIX?=
+ =?us-ascii?Q?dDlyPq42O/YqessI2wZyTr2l2p7fYRw3lHevOe1aZoKW5cPN38yZLiOl6H2S?=
+ =?us-ascii?Q?uodAkTLmJZPGdUaIJ4vAA1aUrwga8yU4RZgSgLSFMv/b8g/8mrGl4H+qWxMa?=
+ =?us-ascii?Q?QtF4ymJiB0NpQpD1fGMCs/P8AaUmQgGDQqGhanh/woC/TaJ6q+6ITYpLos4J?=
+ =?us-ascii?Q?ISFRUIBmEymOTSpXulaHdpqoFbuvUBSW6YGWcgExgxbbsjM/rCYZEg7c+RhJ?=
+ =?us-ascii?Q?v0L/ltZpnKK+Sp6LrDR559so0Ix7Zih3vYjkaZoMUWAonQ64dYOxdxtetXaR?=
+ =?us-ascii?Q?u711l7xqiYMXTHeH7P6ANx14dvbWCoZ/kC9bkGO2jXGJ4SYXIpOzqd1JZ1Hl?=
+ =?us-ascii?Q?MoZ8AMGDlk2w90+8rU4LT8VzpiwDTZsQ+7AqjjlzsAG0KOj4a10UB074bQ2S?=
+ =?us-ascii?Q?/1PkylcL78u8Y6Yb4jy0vJqgG2kU8ezWFemo9NHdNbem63P1/Fxf3jfz8Z2m?=
+ =?us-ascii?Q?nQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 59191644-105b-4c68-02bf-08dcb58d7ed5
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2024 20:26:29.4951 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2024 20:30:50.3858 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: n2Hq8kQGoegO2Ad1VuXv1vPLtLnCq9JJttQWjvsDgk7FDUtpqxyl6YhtaRspsFMeujVdqmQLVOWZ+j3AF/9oMg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5103
+X-MS-Exchange-CrossTenant-UserPrincipalName: bUyFMPLTiWm6drA5gTBMtmpnCLSW+mlKRcUE73aLzTBE+X1mlLGt2QCvln2Lab1AqH7TPDaDzR7MEfdXneeagA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7044
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -179,228 +175,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Aug 01, 2024 at 02:56:47PM +0200, Francois Dugast wrote:
-> Ensure we can safely take a ref of the exec queue's last fence from the
-> context of resuming jobs from the hw engine group. The locking requirements
-> differ from the general case, hence the introduction of
-> xe_exec_queue_last_fence_{get,put}_for_resume().
+On Thu, Aug 01, 2024 at 02:56:49PM +0200, Francois Dugast wrote:
+> Provide a way to safely transition execution modes of the hw engine group
+> ahead of the actual execution. When necessary, either wait for running
+> jobs to complete or preempt them, thus ensuring mutual exclusion between
+> execution modes.
 > 
-> v2: Add kernel doc, rework the code to prevent code duplication
+> Unlike a mutex, the rw_semaphore used in this context allows multiple
+> submissions in the same mode.
+> 
+> v2: Use lockdep_assert_held_write, add annotations (Matt Brost)
 > 
 > Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_exec_queue.c | 123 ++++++++++++++++++++++++++---
->  drivers/gpu/drm/xe/xe_exec_queue.h |   3 +
->  2 files changed, 113 insertions(+), 13 deletions(-)
+>  drivers/gpu/drm/xe/xe_hw_engine_group.c | 71 +++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_hw_engine_group.h |  5 ++
+>  2 files changed, 76 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index 85da2a30a4a4..a860ba752786 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -815,8 +815,37 @@ int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.c b/drivers/gpu/drm/xe/xe_hw_engine_group.c
+> index de057c98d5a5..a5754e6de7c9 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine_group.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine_group.c
+> @@ -208,3 +208,74 @@ static int xe_hw_engine_group_wait_for_dma_fence_jobs(struct xe_hw_engine_group
+>  
 >  	return 0;
 >  }
->  
-> -static void xe_exec_queue_last_fence_lockdep_assert(struct xe_exec_queue *q,
-> -						    struct xe_vm *vm)
-> +/**
-> + * exec_queue_last_fence_lockdep_assert() - Assert locking to access last fence
-> + * @q: The exec queue
-> + * @vm: The VM
-> + *
-> + * These are the locking requirements to access the last fence of this exec
-> + * queue. This is the general and strictest version, to be used by default.
-> + */
-> +static void exec_queue_last_fence_lockdep_assert(struct xe_exec_queue *q,
-> +						 struct xe_vm *vm)
+> +
+> +static int switch_mode(struct xe_hw_engine_group *group,
+> +		       enum xe_hw_engine_group_execution_mode new_mode)
 > +{
-> +	if (q->flags & EXEC_QUEUE_FLAG_VM) {
-> +		lockdep_assert_held(&vm->lock);
-> +	} else {
-> +		xe_vm_assert_held(vm);
-> +		lockdep_assert_held(&q->hwe->hw_engine_group->mode_sem);
+> +	int err = 0;
+> +
+> +	lockdep_assert_held_write(&group->mode_sem);
+> +
+> +	if (group->cur_mode == EXEC_MODE_LR && new_mode == EXEC_MODE_DMA_FENCE)
 
-I think this (lockdep_assert_held(&q->hwe->hw_engine_group->mode_sem))
-is the only change needed here, then just use existing functions as is.
-Yes, we won't have have lockdep_assert_held_write in this layer for
-resume but we'd have it in the resume worker so I think we are fine?
-Does that sounds reasonable?
+This seems redunant, how about:
 
-Note you will need this patch though [1] to stop kernel binds from
-blowing up lockdep.
+switch (group->cur_mode) {
+case EXEC_MODE_LR:
+	xe_hw_engine_group_suspend_faulting_lr_jobs(group);
+	break;
+case EXEC_MODE_DMA_FENCE:
+	err = xe_hw_engine_group_wait_for_dma_fence_jobs(group);
+	break;
+}
 
 Matt
 
-[1] https://patchwork.freedesktop.org/series/136898/
-
-> +	}
-> +}
-> +
-> +/**
-> + * exec_queue_last_fence_lockdep_assert_for_test_dep() - Assert locking only to
-> + * test the last fence dep
-> + * @q: The exec queue
-> + * @vm: The VM
-> + *
-> + * This version of exec_queue_last_fence_lockdep_assert() does not require
-> + * locking of the hw engine group semaphore. It is exclusively meant to be used
-> + * from the context of xe_exec_queue_last_fence_test_dep().
-> + */
-> +static void exec_queue_last_fence_lockdep_assert_for_test_dep(struct xe_exec_queue *q,
-> +							      struct xe_vm *vm)
->  {
->  	if (q->flags & EXEC_QUEUE_FLAG_VM)
->  		lockdep_assert_held(&vm->lock);
-> @@ -831,7 +860,22 @@ static void xe_exec_queue_last_fence_lockdep_assert(struct xe_exec_queue *q,
->   */
->  void xe_exec_queue_last_fence_put(struct xe_exec_queue *q, struct xe_vm *vm)
->  {
-> -	xe_exec_queue_last_fence_lockdep_assert(q, vm);
-> +	exec_queue_last_fence_lockdep_assert(q, vm);
-> +
-> +	xe_exec_queue_last_fence_put_unlocked(q);
-> +}
-> +
-> +/**
-> + * xe_exec_queue_last_fence_put_for_resume() - Drop ref to last fence
-> + * @q: The exec queue
-> + * @vm: The VM the engine does a bind or exec for
-> + *
-> + * Only safe to be called in the context of resuming the hw engine group's
-> + * long-running exec queue, when the group semaphore is held.
-> + */
-> +void xe_exec_queue_last_fence_put_for_resume(struct xe_exec_queue *q, struct xe_vm *vm)
-> +{
-> +	lockdep_assert_held_write(&q->hwe->hw_engine_group->mode_sem);
->  
->  	xe_exec_queue_last_fence_put_unlocked(q);
->  }
-> @@ -851,30 +895,82 @@ void xe_exec_queue_last_fence_put_unlocked(struct xe_exec_queue *q)
->  }
->  
->  /**
-> - * xe_exec_queue_last_fence_get() - Get last fence
-> + * exec_queue_last_fence_get() - Get last fence
->   * @q: The exec queue
->   * @vm: The VM the engine does a bind or exec for
-> + * @only_for_test_dep: True if context is testing last fence dependency
-> + * @only_for_resume: True if context is resuming the hw engine group's queues
->   *
-> - * Get last fence, takes a ref
-> + * Get last fence, takes a ref, after checking locking depending on the
-> + * context.
->   *
-> - * Returns: last fence if not signaled, dma fence stub if signaled
-> + * This function is parameterized to cover various contexts and consequently
-> + * various locking requirements from which the caller gets the last fence,
-> + * while also avoiding code duplication.
-> + *
-> + * It is intentionally made static to hide those parameters externally and
-> + * limit possible incorrect uses from the wrong context.
->   */
-> -struct dma_fence *xe_exec_queue_last_fence_get(struct xe_exec_queue *q,
-> -					       struct xe_vm *vm)
-> +static struct dma_fence *exec_queue_last_fence_get(struct xe_exec_queue *q,
-> +						   struct xe_vm *vm,
-> +						   bool only_for_test_dep,
-> +						   bool only_for_resume)
->  {
->  	struct dma_fence *fence;
->  
-> -	xe_exec_queue_last_fence_lockdep_assert(q, vm);
-> +	xe_assert(vm->xe, !(only_for_test_dep && only_for_resume));
-> +	if (only_for_resume)
-> +		lockdep_assert_held_write(&q->hwe->hw_engine_group->mode_sem);
-> +	else if (only_for_test_dep)
-> +		exec_queue_last_fence_lockdep_assert_for_test_dep(q, vm);
+> +		xe_hw_engine_group_suspend_faulting_lr_jobs(group);
+> +	else if (group->cur_mode == EXEC_MODE_DMA_FENCE && new_mode == EXEC_MODE_LR)
+> +		err = xe_hw_engine_group_wait_for_dma_fence_jobs(group);
 > +	else
-> +		exec_queue_last_fence_lockdep_assert(q, vm);
->  
->  	if (q->last_fence &&
-> -	    test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &q->last_fence->flags))
-> -		xe_exec_queue_last_fence_put(q, vm);
-> +	    test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &q->last_fence->flags)) {
-> +		if (only_for_resume)
-> +			xe_exec_queue_last_fence_put_for_resume(q, vm);
-> +		else
-> +			xe_exec_queue_last_fence_put(q, vm);
+> +		err = -EINVAL;
+> +
+> +	if (err)
+> +		return err;
+> +
+> +	group->cur_mode = new_mode;
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * xe_hw_engine_group_get_mode() - Get the group to execute in the new mode
+> + * @group: The hw engine group
+> + * @mode: The new execution mode
+> + * @previous_mode: Pointer to the previous mode provided for use by caller
+> + *
+> + * Return: 0 if successful, -EINTR if locking failed.
+> + */
+> +int xe_hw_engine_group_get_mode(struct xe_hw_engine_group *group,
+> +				enum xe_hw_engine_group_execution_mode new_mode,
+> +				enum xe_hw_engine_group_execution_mode *previous_mode)
+> +__acquires(&group->mode_sem)
+> +{
+> +	int err = down_read_interruptible(&group->mode_sem);
+> +
+> +	if (err)
+> +		return err;
+> +
+> +	*previous_mode = group->cur_mode;
+> +
+> +	if (new_mode != group->cur_mode) {
+> +		up_read(&group->mode_sem);
+> +		err = down_write_killable(&group->mode_sem);
+> +		if (err)
+> +			return err;
+> +
+> +		if (new_mode != group->cur_mode) {
+> +			err = switch_mode(group, new_mode);
+> +			if (err) {
+> +				up_write(&group->mode_sem);
+> +				return err;
+> +			}
+> +		}
+> +		downgrade_write(&group->mode_sem);
 > +	}
->  
->  	fence = q->last_fence ? q->last_fence : dma_fence_get_stub();
->  	dma_fence_get(fence);
->  	return fence;
->  }
->  
-> +/**
-> + * xe_exec_queue_last_fence_get() - Get last fence
-> + * @q: The exec queue
-> + * @vm: The VM the engine does a bind or exec for
-> + *
-> + * Get last fence, takes a ref
-> + *
-> + * Returns: last fence if not signaled, dma fence stub if signaled
-> + */
-> +struct dma_fence *xe_exec_queue_last_fence_get(struct xe_exec_queue *q,
-> +					       struct xe_vm *vm)
-> +{
-> +	return exec_queue_last_fence_get(q, vm, false, false);
+> +
+> +	return err;
 > +}
 > +
 > +/**
-> + * xe_exec_queue_last_fence_get_to_resume() - Get last fence
-> + * @q: The exec queue
-> + * @vm: The VM the engine does a bind or exec for
-> + *
-> + * Get last fence, takes a ref. Only safe to be called in the context of
-> + * resuming the hw engine group's long-running exec queue, when the group
-> + * semaphore is held.
-> + *
-> + * Returns: last fence if not signaled, dma fence stub if signaled
+> + * xe_hw_engine_group_put() - Put the group
+> + * @group: The hw engine group
 > + */
-> +struct dma_fence *xe_exec_queue_last_fence_get_for_resume(struct xe_exec_queue *q,
-> +							  struct xe_vm *vm)
+> +void xe_hw_engine_group_put(struct xe_hw_engine_group *group)
+> +__releases(&group->mode_sem)
 > +{
-> +	return exec_queue_last_fence_get(q, vm, false, true);
+> +	up_read(&group->mode_sem);
 > +}
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.h b/drivers/gpu/drm/xe/xe_hw_engine_group.h
+> index 857a83787504..e0deb7c7bb5b 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine_group.h
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine_group.h
+> @@ -17,4 +17,9 @@ int xe_hw_engine_setup_groups(struct xe_gt *gt);
+>  int xe_hw_engine_group_add_exec_queue(struct xe_hw_engine_group *group, struct xe_exec_queue *q);
+>  void xe_hw_engine_group_del_exec_queue(struct xe_hw_engine_group *group, struct xe_exec_queue *q);
+>  
+> +int xe_hw_engine_group_get_mode(struct xe_hw_engine_group *group,
+> +				enum xe_hw_engine_group_execution_mode new_mode,
+> +				enum xe_hw_engine_group_execution_mode *previous_mode);
+> +void xe_hw_engine_group_put(struct xe_hw_engine_group *group);
 > +
->  /**
->   * xe_exec_queue_last_fence_set() - Set last fence
->   * @q: The exec queue
-> @@ -887,7 +983,7 @@ struct dma_fence *xe_exec_queue_last_fence_get(struct xe_exec_queue *q,
->  void xe_exec_queue_last_fence_set(struct xe_exec_queue *q, struct xe_vm *vm,
->  				  struct dma_fence *fence)
->  {
-> -	xe_exec_queue_last_fence_lockdep_assert(q, vm);
-> +	exec_queue_last_fence_lockdep_assert(q, vm);
->  
->  	xe_exec_queue_last_fence_put(q, vm);
->  	q->last_fence = dma_fence_get(fence);
-> @@ -906,7 +1002,8 @@ int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q, struct xe_vm *vm)
->  	struct dma_fence *fence;
->  	int err = 0;
->  
-> -	fence = xe_exec_queue_last_fence_get(q, vm);
-> +	fence = exec_queue_last_fence_get(q, vm, true, false);
-> +
->  	if (fence) {
->  		err = test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags) ?
->  			0 : -ETIME;
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-> index ded77b0f3b90..fc9884a6ce85 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.h
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-> @@ -71,8 +71,11 @@ enum xe_exec_queue_priority xe_exec_queue_device_get_max_priority(struct xe_devi
->  
->  void xe_exec_queue_last_fence_put(struct xe_exec_queue *e, struct xe_vm *vm);
->  void xe_exec_queue_last_fence_put_unlocked(struct xe_exec_queue *e);
-> +void xe_exec_queue_last_fence_put_for_resume(struct xe_exec_queue *e, struct xe_vm *vm);
->  struct dma_fence *xe_exec_queue_last_fence_get(struct xe_exec_queue *e,
->  					       struct xe_vm *vm);
-> +struct dma_fence *xe_exec_queue_last_fence_get_for_resume(struct xe_exec_queue *e,
-> +							  struct xe_vm *vm);
->  void xe_exec_queue_last_fence_set(struct xe_exec_queue *e, struct xe_vm *vm,
->  				  struct dma_fence *fence);
->  int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q,
+>  #endif
 > -- 
 > 2.43.0
 > 
