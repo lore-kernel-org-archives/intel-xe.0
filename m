@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87B3BC52D6F
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Aug 2024 15:13:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D9ACC3DA4A
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Aug 2024 15:20:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 138B510E221;
-	Mon,  5 Aug 2024 15:13:02 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CEDE10E217
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Aug 2024 15:13:00 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- stable@vger.kernel.org
-Subject: [PATCH 2/2] drm/xe/display: Make display suspend/resume work on
- discrete
-Date: Mon,  5 Aug 2024 17:13:09 +0200
-Message-ID: <20240805151309.461021-3-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240805151309.461021-1-maarten.lankhorst@linux.intel.com>
-References: <20240805151309.461021-1-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B63F10E086;
+	Mon,  5 Aug 2024 15:20:45 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DF7510E086;
+ Mon,  5 Aug 2024 15:20:44 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_usb=3A_typec=3A_ucsi=3A_Fix_a_?=
+ =?utf-8?q?potential_deadlock_in_ucsi=5Fsend=5Fcommand=5Fcommon=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Luca Coelho" <luciano.coelho@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 05 Aug 2024 15:20:44 -0000
+Message-ID: <172287124405.540583.13252462281447573132@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240805150230.258618-1-luciano.coelho@intel.com>
+In-Reply-To: <20240805150230.258618-1-luciano.coelho@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,109 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We should unpin before evicting all memory, and repin after GT resume.
-This way, we preserve the contents of the framebuffers, and won't hang
-on resume due to migration engine not being restored yet.
+== Series Details ==
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Cc: <stable@vger.kernel.org> # v6.8+
----
- drivers/gpu/drm/xe/display/xe_display.c | 23 +++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_pm.c              | 11 ++++++-----
- 2 files changed, 29 insertions(+), 5 deletions(-)
+Series: usb: typec: ucsi: Fix a potential deadlock in ucsi_send_command_common()
+URL   : https://patchwork.freedesktop.org/series/136889/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 44405f17c1d28..3ff7ed278e08b 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -283,6 +283,27 @@ static bool suspend_to_idle(void)
- 	return false;
- }
- 
-+static void xe_display_flush_cleanup_work(struct xe_device *xe)
-+{
-+	struct intel_crtc *crtc;
-+
-+	for_each_intel_crtc(&xe->drm, crtc) {
-+		struct drm_crtc_commit *commit;
-+
-+		spin_lock(&crtc->base.commit_lock);
-+		commit = list_first_entry_or_null(&crtc->base.commit_list,
-+						  struct drm_crtc_commit, commit_entry);
-+		if (commit)
-+			drm_crtc_commit_get(commit);
-+		spin_unlock(&crtc->base.commit_lock);
-+
-+		if (commit) {
-+			wait_for_completion(&commit->cleanup_done);
-+			drm_crtc_commit_put(commit);
-+		}
-+	}
-+}
-+
- void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
- {
- 	bool s2idle = suspend_to_idle();
-@@ -304,6 +325,8 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
- 	if (!runtime)
- 		intel_display_driver_suspend(xe);
- 
-+	xe_display_flush_cleanup_work(xe);
-+
- 	intel_dp_mst_suspend(xe);
- 
- 	intel_hpd_cancel_work(xe);
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 9f3c14fd9f337..fcfb49af8c891 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -93,13 +93,13 @@ int xe_pm_suspend(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_suspend_prepare(gt);
- 
-+	xe_display_pm_suspend(xe, false);
-+
- 	/* FIXME: Super racey... */
- 	err = xe_bo_evict_all(xe);
- 	if (err)
- 		goto err;
- 
--	xe_display_pm_suspend(xe, false);
--
- 	for_each_gt(gt, xe, id) {
- 		err = xe_gt_suspend(gt);
- 		if (err) {
-@@ -154,11 +154,11 @@ int xe_pm_resume(struct xe_device *xe)
- 
- 	xe_irq_resume(xe);
- 
--	xe_display_pm_resume(xe, false);
--
- 	for_each_gt(gt, xe, id)
- 		xe_gt_resume(gt);
- 
-+	xe_display_pm_resume(xe, false);
-+
- 	err = xe_bo_restore_user(xe);
- 	if (err)
- 		goto err;
-@@ -367,10 +367,11 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
- 	mutex_unlock(&xe->mem_access.vram_userfault.lock);
- 
- 	if (xe->d3cold.allowed) {
-+		xe_display_pm_suspend(xe, true);
-+
- 		err = xe_bo_evict_all(xe);
- 		if (err)
- 			goto out;
--		xe_display_pm_suspend(xe, true);
- 	}
- 
- 	for_each_gt(gt, xe, id) {
--- 
-2.45.2
+== Summary ==
+
+lib/modules/6.11.0-rc2-xe/kernel/sound/core/seq/
+lib/modules/6.11.0-rc2-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/core/snd.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soundcore.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/intel/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/intel/common/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/amd/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/codecs/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/hda/
+lib/modules/6.11.0-rc2-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/hda/ext/
+lib/modules/6.11.0-rc2-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/kernel/
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/crypto/
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/events/
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/events/intel/
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/kvm/
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/
+lib/modules/6.11.0-rc2-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/cmac.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/ccm.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/cryptd.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/async_tx/
+lib/modules/6.11.0-rc2-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.11.0-rc2-xe/build
+lib/modules/6.11.0-rc2-xe/modules.alias.bin
+lib/modules/6.11.0-rc2-xe/modules.builtin
+lib/modules/6.11.0-rc2-xe/modules.softdep
+lib/modules/6.11.0-rc2-xe/modules.alias
+lib/modules/6.11.0-rc2-xe/modules.order
+lib/modules/6.11.0-rc2-xe/modules.symbols
+lib/modules/6.11.0-rc2-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1722871232:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1722871232:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
