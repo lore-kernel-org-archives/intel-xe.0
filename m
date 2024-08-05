@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17E93C3DA4A
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Aug 2024 20:59:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0EF2C3DA7F
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Aug 2024 20:59:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99AF210E2B5;
-	Mon,  5 Aug 2024 20:59:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A412D10E2B6;
+	Mon,  5 Aug 2024 20:59:56 +0000 (UTC)
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6ECDB10E2B5;
- Mon,  5 Aug 2024 20:59:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93F2B10E2B6;
+ Mon,  5 Aug 2024 20:59:55 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/guc=3A_Enable?=
- =?utf-8?q?_w/a_14022293748_and_22019794406_=28rev5=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/guc=3A_Enable_w/a_?=
+ =?utf-8?q?14022293748_and_22019794406_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Julia Filipchuk" <julia.filipchuk@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 05 Aug 2024 20:59:45 -0000
-Message-ID: <172289158544.541731.12022721974102791463@2413ebb6fbb6>
+Date: Mon, 05 Aug 2024 20:59:55 -0000
+Message-ID: <172289159559.541758.10950677019369610241@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240805205435.921921-1-daniele.ceraolospurio@intel.com>
 In-Reply-To: <20240805205435.921921-1-daniele.ceraolospurio@intel.com>
@@ -44,13 +44,44 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/guc: Enable w/a 14022293748 and 22019794406 (rev5)
 URL   : https://patchwork.freedesktop.org/series/136307/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-tip' with base: ===
-Base commit: 23ec1faf2266 drm-tip: 2024y-08m-05d-18h-59m-52s UTC integration manifest
-=== git am output follows ===
-Applying: drm/xe/guc: Enable w/a 14022293748 and 22019794406
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+9e645341d3008ce246879af606f45d0e5d21d698
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 22eabcb694beaff3d2a41394890d15f8c343f022
+Author: Julia Filipchuk <julia.filipchuk@intel.com>
+Date:   Mon Aug 5 13:54:35 2024 -0700
+
+    drm/xe/guc: Enable w/a 14022293748 and 22019794406
+    
+    Enable workarounds for HW bug where render engine reset fails. Given
+    that we're bumping the minimun required GuC version to 70.29, we're
+    guaranteed to always have support for this KLV in the GuC.
+    
+    v2: Enable KLV correctly for either workaround (Lucas)
+    v4: Add check for minimum supported GuC firmware version. Enable w/a for
+    hw version 20.01 too. (Daniele)
+    v5 (Daniele): remove now unneeded fw type and version checks (JohnH)
+    
+    Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
+    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Cc: John Harrison <John.C.Harrison@Intel.com>
++ /mt/dim checkpatch 23ec1faf2266dcf876eec794bbd6ccdfb8c3c0de drm-intel
+22eabcb694be drm/xe/guc: Enable w/a 14022293748 and 22019794406
+-:7: WARNING:TYPO_SPELLING: 'minimun' may be misspelled - perhaps 'minimum'?
+#7: 
+that we're bumping the minimun required GuC version to 70.29, we're
+                       ^^^^^^^
+
+total: 0 errors, 1 warnings, 0 checks, 35 lines checked
 
 
