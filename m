@@ -4,60 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D234C3DA64
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 08:54:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4201DC3DA64
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 09:06:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C06C110E010;
-	Tue,  6 Aug 2024 08:54:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F291010E344;
+	Tue,  6 Aug 2024 09:06:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bsTOG6Pg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="curG8W/k";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47FB510E010;
- Tue,  6 Aug 2024 08:54:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21ABE10E350;
+ Tue,  6 Aug 2024 09:06:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722934481; x=1754470481;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Iyf3zdABSVg02IOekBnUIw0m3tMKfI4cdpn0Jy57kgE=;
- b=bsTOG6PgJjBXS1Bfz67SYJdy2Pd8NSMXUeDg8aWWhFy2ktrZPxAe8OlR
- rH2zPW/ZDoz2u2ZYEu/R1vVGV2hL1q+PzUSVQ11Asi/c6lqY9EfW639oB
- ffwYPhWv+jQjW1gSCxkY4egaxCPt6UXwINLijJcgYPuRwUGvpXSV4ylQ4
- YgwLKByXeb6evSrObOlflAkyk2NZwcOHg6AFLe/XsNIGG/59fkL/yRtzv
- C2R68yLWOrozTdUbVy+Je2Nk9E3p0Noo3+fqIug/kaCKySFUdtJFm4CS3
- Z/osEE/9f+Ux/el1sVEk5MMEPZThdapRX/vbMQFhgv010+l1Nkqg7zYcA Q==;
-X-CSE-ConnectionGUID: lAbdjbEoTMCA48djF3lJow==
-X-CSE-MsgGUID: hE/XiEcNSPSuCfkcYZP/Ng==
-X-IronPort-AV: E=McAfee;i="6700,10204,11155"; a="21115836"
-X-IronPort-AV: E=Sophos;i="6.09,267,1716274800"; d="scan'208";a="21115836"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2024 01:54:40 -0700
-X-CSE-ConnectionGUID: XTvT/GwVR6i1J0gFExicYw==
-X-CSE-MsgGUID: 0RcR880GT5WdhZ2I/7E1Xg==
+ t=1722935197; x=1754471197;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=T8IzNXUCYsVgUgyU0qxyNhM5+wbwEOnbB/RrHs/3Rpw=;
+ b=curG8W/kHmImSVGIXag2Vah9eOeomwaydYRhQlRPuvJVgGVTa3o+JvOo
+ AhFJHJmnR2dxSGIRi2HIlxquNbEowjb5+6ilCqEs1xOIBbZZ1nOsgNhJS
+ vDF5M3oBZWHSVPWDjnzvDGREwslCtR/kj0++jh8OWLHg2HvXzSAgDCrKS
+ ExqgmkxbXIQXPjGyFIUIDH/OTQD+/eDJ1Cs85kNbO2uQvH6XIm2VjUuxa
+ qC9/yzGy/rEf8dVuL7gyY/mfyuCbomEsP2/P37NP5Zi/gLVxqWkCZLj28
+ VBeAALoWSVXXSRMMiCYdJKHZyIDA4IVbICd/FllY2UemDwpJ40ZLm6/R5 Q==;
+X-CSE-ConnectionGUID: 7K6gKFvZSdqXRcEYngfXtQ==
+X-CSE-MsgGUID: MqzHbbPUQyyanX88pLSSmA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11155"; a="20789320"
+X-IronPort-AV: E=Sophos;i="6.09,267,1716274800"; d="scan'208";a="20789320"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2024 02:06:37 -0700
+X-CSE-ConnectionGUID: GUM4KrbsSpeAQGTQ0eyDYg==
+X-CSE-MsgGUID: mTLK20sGSmWzWfdaVlcqvw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,267,1716274800"; d="scan'208";a="61264296"
-Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
- ([10.145.162.146])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2024 01:54:34 -0700
-Message-ID: <35971288-2142-4dc4-8ce1-62b730fa9b44@linux.intel.com>
-Date: Tue, 6 Aug 2024 14:27:41 +0530
+X-IronPort-AV: E=Sophos;i="6.09,267,1716274800"; d="scan'208";a="56139597"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa007.fm.intel.com with ESMTP; 06 Aug 2024 02:06:28 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCH] drm/xe/pm: Change HPD to polling on runtime suspend
+Date: Tue,  6 Aug 2024 14:25:13 +0530
+Message-Id: <20240806085513.3051107-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] drm/xe/uapi: Bring back reset uevent
-To: Raag Jadav <raag.jadav@intel.com>, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, himal.prasad.ghimiray@intel.com,
- francois.dugast@intel.com, rodrigo.vivi@intel.com, anshuman.gupta@intel.com
-References: <20240806043231.624645-1-raag.jadav@intel.com>
-Content-Language: en-US
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <20240806043231.624645-1-raag.jadav@intel.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,127 +64,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+HPD is interrupt based and on runtime suspend change it to polling as
+HPD is not a wakeup event. A worker thread is scheduled for doing this
+polling and it keeps polling for HPD live status on an internval of 10s.
+On runtime resume disable polling and fallback to interrupt mechanism.
 
-On 06/08/24 10:02, Raag Jadav wrote:
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pm.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-This change  was originally sent by Himal, so may be you should keep his authorship.
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index 9f3c14fd9f33..d952b06ebfb4 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -22,6 +22,7 @@
+ #include "xe_pcode.h"
+ #include "xe_trace.h"
+ #include "xe_wa.h"
++#include "intel_hotplug.h"
+ 
+ /**
+  * DOC: Xe Power Management
+@@ -378,6 +379,8 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
+ 		if (err)
+ 			goto out;
+ 	}
++	/* Enable hpd polling on runtime suspend */
++	intel_hpd_poll_enable(xe);
+ 
+ 	xe_irq_suspend(xe);
+ 
+@@ -427,6 +430,9 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+ 
+ 	xe_irq_resume(xe);
+ 
++	/* Disable hpd polling on runtime resume */
++	intel_hpd_poll_disable(xe);
++
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_resume(gt);
+ 
+-- 
+2.25.1
 
-
-> From: Lucas De Marchi <lucas.demarchi@intel.com>
->
-> Bring back uevent for gt reset failure with better uapi naming.
-> With this in place we can receive failure event using udev.
->
-> $ udevadm monitor --property --kernel
-> monitor will print the received events for:
-> KERNEL - the kernel uevent
->
-> KERNEL[871.188570] change   /devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0 (pci)
-> ACTION=change
-> DEVPATH=/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0
-> SUBSYSTEM=pci
-> DEVICE_STATUS=NEEDS_RESET
-> REASON=GT_RESET_FAILED
-> TILE_ID=0
-> GT_ID=0
-> DRIVER=xe
-> PCI_CLASS=30000
-> PCI_ID=8086:56B1
-> PCI_SUBSYS_ID=8086:1210
-> PCI_SLOT_NAME=0000:03:00.0
-> MODALIAS=pci:v00008086d000056B1sv00008086sd00001210bc03sc00i00
-> SEQNUM=6104
->
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_gt.c | 27 +++++++++++++++++++++++++--
->  include/uapi/drm/xe_drm.h  | 17 +++++++++++++++++
->  2 files changed, 42 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index b04e47186f5b..5ceef0059861 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -740,6 +740,30 @@ static int do_gt_restart(struct xe_gt *gt)
->  	return 0;
->  }
->  
-> +static void xe_uevent_gt_reset_failure(struct pci_dev *pdev, u8 tile_id, u8 gt_id)
-> +{
-> +	char *reset_event[5];
-> +
-> +	reset_event[0] = DRM_XE_RESET_REQUIRED_UEVENT;
-> +	reset_event[1] = DRM_XE_RESET_REQUIRED_UEVENT_REASON_GT;
-> +	reset_event[2] = kasprintf(GFP_KERNEL, "TILE_ID=%d", tile_id);
-> +	reset_event[3] = kasprintf(GFP_KERNEL, "GT_ID=%d", gt_id);
-> +	reset_event[4] = NULL;
-> +	kobject_uevent_env(&pdev->dev.kobj, KOBJ_CHANGE, reset_event);
-> +
-> +	kfree(reset_event[2]);
-> +	kfree(reset_event[3]);
-> +}
-> +
-> +static void gt_reset_failed(struct xe_gt *gt, int err)
-> +{
-> +	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
-> +
-> +	/* Notify userspace about gt reset failure */
-> +	xe_uevent_gt_reset_failure(to_pci_dev(gt_to_xe(gt)->drm.dev),
-> +				   gt_to_tile(gt)->id, gt->info.id);
-> +}
-> +
->  static int gt_reset(struct xe_gt *gt)
->  {
->  	int err;
-> @@ -795,8 +819,7 @@ static int gt_reset(struct xe_gt *gt)
->  	XE_WARN_ON(xe_uc_start(&gt->uc));
->  	xe_pm_runtime_put(gt_to_xe(gt));
->  err_fail:
-> -	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
-> -
-> +	gt_reset_failed(gt, err);
->  	xe_device_declare_wedged(gt_to_xe(gt));
-Also, we might want to have a RESET_REQUIRED event whenever
-device is wedged.
-
-
-Thanks,
-Aravind.
->  
->  	return err;
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index 19619d4952a8..9ea3be97535e 100644
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-> @@ -20,6 +20,7 @@ extern "C" {
->   *   2. Extension definition and helper structs
->   *   3. IOCTL's Query structs in the order of the Query's entries.
->   *   4. The rest of IOCTL structs in the order of IOCTL declaration.
-> + *   5. uEvents
->   */
->  
->  /**
-> @@ -1686,6 +1687,22 @@ struct drm_xe_oa_stream_info {
->  	__u64 reserved[3];
->  };
->  
-> +/**
-> + * DOC: uevent generated by xe on it's pci node.
-> + *
-> + * DRM_XE_RESET_REQUIRED_UEVENT - Event is generated when device needs reset.
-> + * The REASON is provided along with the event for which reset is required.
-> + * On the basis of REASONS, additional information might be supplied.
-> + */
-> +#define DRM_XE_RESET_REQUIRED_UEVENT "DEVICE_STATUS=NEEDS_RESET"
-> +
-> +/**
-> + * DRM_XE_RESET_REQUIRED_UEVENT_REASON_GT - Reason provided to DRM_XE_RESET_REQUIRED_UEVENT
-> + * incase of gt reset failure. The additional information supplied is tile id and
-> + * gt id of the gt unit for which reset has failed.
-> + */
-> +#define DRM_XE_RESET_REQUIRED_UEVENT_REASON_GT "REASON=GT_RESET_FAILED"
-> +
->  #if defined(__cplusplus)
->  }
->  #endif
