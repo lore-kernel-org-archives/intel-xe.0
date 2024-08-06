@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8360CC49EA1
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 14:09:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECFEBC3DA64
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 14:14:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BC2C10E377;
-	Tue,  6 Aug 2024 14:09:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A481D10E386;
+	Tue,  6 Aug 2024 14:14:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="qU48sPAX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SkJhn02W";
 	dkim-atps=neutral
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 408C110E377;
- Tue,  6 Aug 2024 14:09:49 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 0FFEDCE0B94;
- Tue,  6 Aug 2024 14:09:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DABEFC32786;
- Tue,  6 Aug 2024 14:09:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1722953386;
- bh=AANtZuK2j5YEXT3CJVteG6oAKDxOt2lT1fCvlswfZMU=;
- h=Date:From:To:Subject:References:In-Reply-To:From;
- b=qU48sPAXbcCNf08qJMYn4cRDhmKshB4+owlW/3xBbNEK3hIyVR1Uhp95Td3/HZ27s
- zR81i0EcxAbCl7s9oej3PXzLPNbaCzxhiLiBnjWwYfdTlaxXaom4/tkVBAFXqRGLDT
- FjieblmWqLGB+yhlzrS8nQU9+iU7ZZKxSqk6EYno2V0V92BRUN9HS5XRfT4aZGGYpg
- 200j81hrEyKqdhCUMPHKqnY+z73arRoO9gWDjvpA6fcHsrSqbydsok2jJCTPJVdAbs
- itSiIM837RvV3G7R3hbWY8u01k56a2iF0dyfRxmG/j0A2InvEHp8d7y7XIF0fKnV5U
- 0bCrCJONLTrDQ==
-Date: Tue, 6 Aug 2024 16:09:43 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Tvrtko Ursulin <tursulin@ursulin.net>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>,
- Zefan Li <lizefan.x@bytedance.com>, 
- Johannes Weiner <hannes@cmpxchg.org>, Andrew Morton <akpm@linux-foundation.org>,
- Jonathan Corbet <corbet@lwn.net>, David Airlie <airlied@gmail.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Friedrich Vock <friedrich.vock@gmx.de>,
- cgroups@vger.kernel.org, linux-mm@kvack.org, linux-doc@vger.kernel.org
-Subject: Re: [RFC PATCH 2/6] drm/cgroup: Add memory accounting DRM cgroup
-Message-ID: <20240806-gharial-of-abstract-reverence-aad6ea@houat>
-References: <20240627154754.74828-1-maarten.lankhorst@linux.intel.com>
- <20240627154754.74828-3-maarten.lankhorst@linux.intel.com>
- <20240627-paper-vicugna-of-fantasy-c549ed@houat>
- <6cb7c074-55cb-4825-9f80-5cf07bbd6745@linux.intel.com>
- <20240628-romantic-emerald-snake-7b26ca@houat>
- <70289c58-7947-4347-8600-658821a730b0@linux.intel.com>
- <40ef0eed-c514-4ec1-9486-2967f23824be@ursulin.net>
- <ZrIeuLi88jqbQ0FH@phenom.ffwll.local>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D489910E377;
+ Tue,  6 Aug 2024 14:14:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1722953658; x=1754489658;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=O1JEELeIwr/pwZxGeh8ERvLNo0d6hxrlloSmVbSLZIc=;
+ b=SkJhn02WQVo29mMmuIIdqIS2XMF6nJXbwbK/SfuYaZ1gTxTvZsulbwF2
+ mWllOtY6cqeS8eVblmGw7Wt9UgUpI8Rdcmj9LiEUhSfhOAWHuzQTIS4l1
+ 5W2tLN9n2ZT1YJmQ1oyTcv+pE5JQwpGs+aRR9yJONKt5x23B3cq5EjaNA
+ C1bodxSLEMFaYVCATgUjMca/gWZGr4z4FlbVpA6iuIZovP9wQiahZ9/Os
+ genupscKKrDYY6RLi7MtyPdY32a/oTONHH3zc1vj7WldP4mcFmc2muIfI
+ lT5N1/XbNO661fQS2rno94U1YDBoBCITVzaAzkeaKy/XMxGXRX5sIvH2d g==;
+X-CSE-ConnectionGUID: hceApdVnR562skbcy8cr2w==
+X-CSE-MsgGUID: MLYqu6lRRyCo/K7tFau44g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="31546531"
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="31546531"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2024 07:14:17 -0700
+X-CSE-ConnectionGUID: 9TwKyv8TRra+G1ziofOckA==
+X-CSE-MsgGUID: Oiz0xR+mQKa0b6ttJerQPg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="79783893"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.4])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2024 07:14:15 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 09/10] drm/i915/hdcp: migrate away from kdev_to_i915()
+ in GSC messaging
+In-Reply-To: <878qx9695l.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1722263308.git.jani.nikula@intel.com>
+ <3e32cbf601f367e353637afc22dc84436aaaf06f.1722263308.git.jani.nikula@intel.com>
+ <172253577624.5121.4958252043028255730@gjsousa-mobl2>
+ <878qx9695l.fsf@intel.com>
+Date: Tue, 06 Aug 2024 17:14:00 +0300
+Message-ID: <875xsd68nr.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="tjibocpyvmmmnhi7"
-Content-Disposition: inline
-In-Reply-To: <ZrIeuLi88jqbQ0FH@phenom.ffwll.local>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,212 +70,315 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Tue, 06 Aug 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> On Thu, 01 Aug 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+>> Quoting Jani Nikula (2024-07-29 11:30:10-03:00)
+>>>Use to_intel_display() instead of kdev_to_i915() in the HDCP component
+>>>API hooks. Avoid further drive-by changes at this point, and just
+>>>convert the display pointer to i915, and leave the struct intel_display
+>>>conversion for later.
+>>>
+>>>The NULL error checking in the hooks make this a bit cumbersome. I'm not
+>>>actually sure they're really required, but don't go down that rabbit
+>>>hole just now.
+>>>
+>>>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>>---
+>>> .../drm/i915/display/intel_hdcp_gsc_message.c | 67 +++++++++++++------
+>>> 1 file changed, 45 insertions(+), 22 deletions(-)
+>>>
+>>>diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
+>>>index 6548e71b4c49..35bdb532bbb3 100644
+>>>--- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
+>>>+++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
+>>>@@ -7,6 +7,7 @@
+>>> #include <drm/intel/i915_hdcp_interface.h>
+>>> 
+>>> #include "i915_drv.h"
+>>>+#include "intel_display_types.h"
+>>> #include "intel_hdcp_gsc_message.h"
+>>> 
+>>> int
+>>>@@ -15,17 +16,19 @@ intel_hdcp_gsc_initiate_session(struct device *dev, struct hdcp_port_data *data,
+>>> {
+>>>         struct wired_cmd_initiate_hdcp2_session_in session_init_in = {};
+>>>         struct wired_cmd_initiate_hdcp2_session_out session_init_out = {};
+>>>+        struct intel_display *display;
+>>>         struct drm_i915_private *i915;
+>>>         ssize_t byte;
+>>> 
+>>>         if (!dev || !data || !ake_data)
+>>>                 return -EINVAL;
+>>> 
+>>>-        i915 = kdev_to_i915(dev);
+>>>-        if (!i915) {
+>>>+        display = to_intel_display(dev);
+>>>+        if (!display) {
+>>
+>> Hm... I'm afraid that wouldn't really work if drvdata was NULL, would
+>> it?
+>>
+>> With a NULL drvdata, I believe we would probably get a non-zero offset
+>> here.
+>
+> Right, good catch. Not sure I want to add that check to everything in
+> to_intel_display() macro, because in most cases the passed in value
+> can't be NULL. Driver data is a bit different, though I don't think it
+> should really be NULL either.
 
---tjibocpyvmmmnhi7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Decided to fix this in __drm_device_to_intel_display() like this:
 
-On Tue, Aug 06, 2024 at 03:01:44PM GMT, Daniel Vetter wrote:
-> On Mon, Jul 01, 2024 at 06:01:41PM +0100, Tvrtko Ursulin wrote:
-> >=20
-> > On 01/07/2024 10:25, Maarten Lankhorst wrote:
-> > > Den 2024-06-28 kl. 16:04, skrev Maxime Ripard:
-> > > > Hi,
-> > > >=20
-> > > > On Thu, Jun 27, 2024 at 09:22:56PM GMT, Maarten Lankhorst wrote:
-> > > > > Den 2024-06-27 kl. 19:16, skrev Maxime Ripard:
-> > > > > > Hi,
-> > > > > >=20
-> > > > > > Thanks for working on this!
-> > > > > >=20
-> > > > > > On Thu, Jun 27, 2024 at 05:47:21PM GMT, Maarten Lankhorst wrote:
-> > > > > > > The initial version was based roughly on the rdma and misc cg=
-roup
-> > > > > > > controllers, with a lot of the accounting code borrowed from =
-rdma.
-> > > > > > >=20
-> > > > > > > The current version is a complete rewrite with page counter; =
-it uses
-> > > > > > > the same min/low/max semantics as the memory cgroup as a resu=
-lt.
-> > > > > > >=20
-> > > > > > > There's a small mismatch as TTM uses u64, and page_counter lo=
-ng pages.
-> > > > > > > In practice it's not a problem. 32-bits systems don't really =
-come with
-> > > > > > > > =3D4GB cards and as long as we're consistently wrong with u=
-nits, it's
-> > > > > > > fine. The device page size may not be in the same units as ke=
-rnel page
-> > > > > > > size, and each region might also have a different page size (=
-VRAM vs GART
-> > > > > > > for example).
-> > > > > > >=20
-> > > > > > > The interface is simple:
-> > > > > > > - populate drmcgroup_device->regions[..] name and size for ea=
-ch active
-> > > > > > >     region, set num_regions accordingly.
-> > > > > > > - Call drm(m)cg_register_device()
-> > > > > > > - Use drmcg_try_charge to check if you can allocate a chunk o=
-f memory,
-> > > > > > >     use drmcg_uncharge when freeing it. This may return an er=
-ror code,
-> > > > > > >     or -EAGAIN when the cgroup limit is reached. In that case=
- a reference
-> > > > > > >     to the limiting pool is returned.
-> > > > > > > - The limiting cs can be used as compare function for
-> > > > > > >     drmcs_evict_valuable.
-> > > > > > > - After having evicted enough, drop reference to limiting cs =
-with
-> > > > > > >     drmcs_pool_put.
-> > > > > > >=20
-> > > > > > > This API allows you to limit device resources with cgroups.
-> > > > > > > You can see the supported cards in /sys/fs/cgroup/drm.capacity
-> > > > > > > You need to echo +drm to cgroup.subtree_control, and then you=
- can
-> > > > > > > partition memory.
-> > > > > > >=20
-> > > > > > > Signed-off-by: Maarten Lankhorst<maarten.lankhorst@linux.inte=
-l.com>
-> > > > > > > Co-developed-by: Friedrich Vock<friedrich.vock@gmx.de>
-> > > > > > I'm sorry, I should have wrote minutes on the discussion we had=
- with TJ
-> > > > > > and Tvrtko the other day.
-> > > > > >=20
-> > > > > > We're all very interested in making this happen, but doing a "D=
-RM"
-> > > > > > cgroup doesn't look like the right path to us.
-> > > > > >=20
-> > > > > > Indeed, we have a significant number of drivers that won't have=
- a
-> > > > > > dedicated memory but will depend on DMA allocations one way or =
-the
-> > > > > > other, and those pools are shared between multiple frameworks (=
-DRM,
-> > > > > > V4L2, DMA-Buf Heaps, at least).
-> > > > > >=20
-> > > > > > This was also pointed out by Sima some time ago here:
-> > > > > > https://lore.kernel.org/amd-gfx/YCVOl8%2F87bqRSQei@phenom.ffwll=
-=2Elocal/
-> > > > > >=20
-> > > > > > So we'll want that cgroup subsystem to be cross-framework. We s=
-ettled on
-> > > > > > a "device" cgroup during the discussion, but I'm sure we'll hav=
-e plenty
-> > > > > > of bikeshedding.
-> > > > > >=20
-> > > > > > The other thing we agreed on, based on the feedback TJ got on t=
-he last
-> > > > > > iterations of his series was to go for memcg for drivers not us=
-ing DMA
-> > > > > > allocations.
-> > > > > >=20
-> > > > > > It's the part where I expect some discussion there too :)
-> > > > > >=20
-> > > > > > So we went back to a previous version of TJ's work, and I've st=
-arted to
-> > > > > > work on:
-> > > > > >=20
-> > > > > >     - Integration of the cgroup in the GEM DMA and GEM VRAM hel=
-pers (this
-> > > > > >       works on tidss right now)
-> > > > > >=20
-> > > > > >     - Integration of all heaps into that cgroup but the system =
-one
-> > > > > >       (working on this at the moment)
-> > > > >=20
-> > > > > Should be similar to what I have then. I think you could use my w=
-ork to
-> > > > > continue it.
-> > > > >=20
-> > > > > I made nothing DRM specific except the name, if you renamed it th=
-e device
-> > > > > resource management cgroup and changed the init function signatur=
-e to take a
-> > > > > name instead of a drm pointer, nothing would change. This is exac=
-tly what
-> > > > > I'm hoping to accomplish, including reserving memory.
-> > > >=20
-> > > > I've started to work on rebasing my current work onto your series t=
-oday,
-> > > > and I'm not entirely sure how what I described would best fit. Let's
-> > > > assume we have two KMS device, one using shmem, one using DMA
-> > > > allocations, two heaps, one using the page allocator, the other usi=
-ng
-> > > > CMA, and one v4l2 device using dma allocations.
-> > > >=20
-> > > > So we would have one KMS device and one heap using the page allocat=
-or,
-> > > > and one KMS device, one heap, and one v4l2 driver using the DMA
-> > > > allocator.
-> > > >=20
-> > > > Would these make different cgroup devices, or different cgroup regi=
-ons?
-> > >=20
-> > > Each driver would register a device, whatever feels most logical for =
-that device I suppose.
-> > >=20
-> > > My guess is that a prefix would also be nice here, so register a devi=
-ce with name of drm/$name or v4l2/$name, heap/$name. I didn't give it much =
-thought and we're still experimenting, so just try something. :)
-> > >=20
-> > > There's no limit to amount of devices, I only fixed amount of pools t=
-o match TTM, but even that could be increased arbitrarily. I just don't thi=
-nk there is a point in doing so.
-> >=20
-> > Do we need a plan for top level controls which do not include region na=
-mes?
-> > If the latter will be driver specific then I am thinking of ease of
-> > configuring it all from the outside. Especially considering that one cg=
-roup
-> > can have multiple devices in it.
-> >=20
-> > Second question is about double accounting for shmem backed objects. I =
-think
-> > they will be seen, for drivers which allocate backing store at buffer
-> > objects creation time, under the cgroup of process doing the creation, =
-in
-> > the existing memory controller. Right?
->=20
-> We currently don't set __GFP_ACCOUNT respectively use GFP_KERNEL_ACCOUNT,
-> so no. Unless someone allocates them with GFP_USER ...
->=20
-> > Is there a chance to exclude those from there and only have them in thi=
-s new
-> > controller? Or would the opposite be a better choice? That is, not see =
-those
-> > in the device memory controller but only in the existing one.
->=20
-> I missed this, so jumping in super late. I think guidance from Tejun was
-> to go the other way around: Exclude allocations from normal system
-> memory from device cgroups and instead make sure it's tracked in the
-> existing memcg.
->=20
-> Which might mean we need memcg shrinkers and the assorted pain ...
->=20
-> Also I don't think we ever reached some agreement on where things like cma
-> allocations should be accounted for in this case.
+ #define __drm_device_to_intel_display(p) \
+-       (&to_i915(p)->display)
++       ((p) ? &to_i915(p)->display : NULL)
 
-Yeah, but that's the thing, memcg probably won't cut it for CMA. Because
-if you pull the thread, that means that dma-heaps also have to register
-their buffers into memcg too, even if it's backed by something else than
-RAM.
+That'll have to change anyway when we can no longer use struct
+drm_i915_private when going from drm_device to intel_display.
 
-This is what this cgroup controller is meant to do: memcg for memory
-(GFP'd) buffers, this cgroup for everything else.
+BR,
+Jani.
 
-Maxime
+>
+> BR,
+> Jani.
+>
+>
+>
+>>
+>> --
+>> Gustavo Sousa
+>>
+>>>                 dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+>>>                 return -ENODEV;
+>>>         }
+>>>+        i915 = to_i915(display->drm);
+>>> 
+>>>         session_init_in.header.api_version = HDCP_API_VERSION;
+>>>         session_init_in.header.command_id = WIRED_INITIATE_HDCP2_SESSION;
+>>>@@ -72,17 +75,19 @@ intel_hdcp_gsc_verify_receiver_cert_prepare_km(struct device *dev,
+>>> {
+>>>         struct wired_cmd_verify_receiver_cert_in verify_rxcert_in = {};
+>>>         struct wired_cmd_verify_receiver_cert_out verify_rxcert_out = {};
+>>>+        struct intel_display *display;
+>>>         struct drm_i915_private *i915;
+>>>         ssize_t byte;
+>>> 
+>>>         if (!dev || !data || !rx_cert || !km_stored || !ek_pub_km || !msg_sz)
+>>>                 return -EINVAL;
+>>> 
+>>>-        i915 = kdev_to_i915(dev);
+>>>-        if (!i915) {
+>>>+        display = to_intel_display(dev);
+>>>+        if (!display) {
+>>>                 dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+>>>                 return -ENODEV;
+>>>         }
+>>>+        i915 = to_i915(display->drm);
+>>> 
+>>>         verify_rxcert_in.header.api_version = HDCP_API_VERSION;
+>>>         verify_rxcert_in.header.command_id = WIRED_VERIFY_RECEIVER_CERT;
+>>>@@ -135,17 +140,19 @@ intel_hdcp_gsc_verify_hprime(struct device *dev, struct hdcp_port_data *data,
+>>> {
+>>>         struct wired_cmd_ake_send_hprime_in send_hprime_in = {};
+>>>         struct wired_cmd_ake_send_hprime_out send_hprime_out = {};
+>>>+        struct intel_display *display;
+>>>         struct drm_i915_private *i915;
+>>>         ssize_t byte;
+>>> 
+>>>         if (!dev || !data || !rx_hprime)
+>>>                 return -EINVAL;
+>>> 
+>>>-        i915 = kdev_to_i915(dev);
+>>>-        if (!i915) {
+>>>+        display = to_intel_display(dev);
+>>>+        if (!display) {
+>>>                 dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+>>>                 return -ENODEV;
+>>>         }
+>>>+        i915 = to_i915(display->drm);
+>>> 
+>>>         send_hprime_in.header.api_version = HDCP_API_VERSION;
+>>>         send_hprime_in.header.command_id = WIRED_AKE_SEND_HPRIME;
+>>>@@ -183,17 +190,19 @@ intel_hdcp_gsc_store_pairing_info(struct device *dev, struct hdcp_port_data *dat
+>>> {
+>>>         struct wired_cmd_ake_send_pairing_info_in pairing_info_in = {};
+>>>         struct wired_cmd_ake_send_pairing_info_out pairing_info_out = {};
+>>>+        struct intel_display *display;
+>>>         struct drm_i915_private *i915;
+>>>         ssize_t byte;
+>>> 
+>>>         if (!dev || !data || !pairing_info)
+>>>                 return -EINVAL;
+>>> 
+>>>-        i915 = kdev_to_i915(dev);
+>>>-        if (!i915) {
+>>>+        display = to_intel_display(dev);
+>>>+        if (!display) {
+>>>                 dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+>>>                 return -ENODEV;
+>>>         }
+>>>+        i915 = to_i915(display->drm);
+>>> 
+>>>         pairing_info_in.header.api_version = HDCP_API_VERSION;
+>>>         pairing_info_in.header.command_id = WIRED_AKE_SEND_PAIRING_INFO;
+>>>@@ -234,17 +243,19 @@ intel_hdcp_gsc_initiate_locality_check(struct device *dev,
+>>> {
+>>>         struct wired_cmd_init_locality_check_in lc_init_in = {};
+>>>         struct wired_cmd_init_locality_check_out lc_init_out = {};
+>>>+        struct intel_display *display;
+>>>         struct drm_i915_private *i915;
+>>>         ssize_t byte;
+>>> 
+>>>         if (!dev || !data || !lc_init_data)
+>>>                 return -EINVAL;
+>>> 
+>>>-        i915 = kdev_to_i915(dev);
+>>>-        if (!i915) {
+>>>+        display = to_intel_display(dev);
+>>>+        if (!display) {
+>>>                 dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+>>>                 return -ENODEV;
+>>>         }
+>>>+        i915 = to_i915(display->drm);
+>>> 
+>>>         lc_init_in.header.api_version = HDCP_API_VERSION;
+>>>         lc_init_in.header.command_id = WIRED_INIT_LOCALITY_CHECK;
+>>>@@ -280,17 +291,19 @@ intel_hdcp_gsc_verify_lprime(struct device *dev, struct hdcp_port_data *data,
+>>> {
+>>>         struct wired_cmd_validate_locality_in verify_lprime_in = {};
+>>>         struct wired_cmd_validate_locality_out verify_lprime_out = {};
+>>>+        struct intel_display *display;
+>>>         struct drm_i915_private *i915;
+>>>         ssize_t byte;
+>>> 
+>>>         if (!dev || !data || !rx_lprime)
+>>>                 return -EINVAL;
+>>> 
+>>>-        i915 = kdev_to_i915(dev);
+>>>-        if (!i915) {
+>>>+        display = to_intel_display(dev);
+>>>+        if (!display) {
+>>>                 dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+>>>                 return -ENODEV;
+>>>         }
+>>>+        i915 = to_i915(display->drm);
+>>> 
+>>>         verify_lprime_in.header.api_version = HDCP_API_VERSION;
+>>>         verify_lprime_in.header.command_id = WIRED_VALIDATE_LOCALITY;
+>>>@@ -330,17 +343,19 @@ int intel_hdcp_gsc_get_session_key(struct device *dev,
+>>> {
+>>>         struct wired_cmd_get_session_key_in get_skey_in = {};
+>>>         struct wired_cmd_get_session_key_out get_skey_out = {};
+>>>+        struct intel_display *display;
+>>>         struct drm_i915_private *i915;
+>>>         ssize_t byte;
+>>> 
+>>>         if (!dev || !data || !ske_data)
+>>>                 return -EINVAL;
+>>> 
+>>>-        i915 = kdev_to_i915(dev);
+>>>-        if (!i915) {
+>>>+        display = to_intel_display(dev);
+>>>+        if (!display) {
+>>>                 dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+>>>                 return -ENODEV;
+>>>         }
+>>>+        i915 = to_i915(display->drm);
+>>> 
+>>>         get_skey_in.header.api_version = HDCP_API_VERSION;
+>>>         get_skey_in.header.command_id = WIRED_GET_SESSION_KEY;
+>>>@@ -382,17 +397,19 @@ intel_hdcp_gsc_repeater_check_flow_prepare_ack(struct device *dev,
+>>> {
+>>>         struct wired_cmd_verify_repeater_in verify_repeater_in = {};
+>>>         struct wired_cmd_verify_repeater_out verify_repeater_out = {};
+>>>+        struct intel_display *display;
+>>>         struct drm_i915_private *i915;
+>>>         ssize_t byte;
+>>> 
+>>>         if (!dev || !rep_topology || !rep_send_ack || !data)
+>>>                 return -EINVAL;
+>>> 
+>>>-        i915 = kdev_to_i915(dev);
+>>>-        if (!i915) {
+>>>+        display = to_intel_display(dev);
+>>>+        if (!display) {
+>>>                 dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+>>>                 return -ENODEV;
+>>>         }
+>>>+        i915 = to_i915(display->drm);
+>>> 
+>>>         verify_repeater_in.header.api_version = HDCP_API_VERSION;
+>>>         verify_repeater_in.header.command_id = WIRED_VERIFY_REPEATER;
+>>>@@ -442,6 +459,7 @@ int intel_hdcp_gsc_verify_mprime(struct device *dev,
+>>> {
+>>>         struct wired_cmd_repeater_auth_stream_req_in *verify_mprime_in;
+>>>         struct wired_cmd_repeater_auth_stream_req_out verify_mprime_out = {};
+>>>+        struct intel_display *display;
+>>>         struct drm_i915_private *i915;
+>>>         ssize_t byte;
+>>>         size_t cmd_size;
+>>>@@ -449,11 +467,12 @@ int intel_hdcp_gsc_verify_mprime(struct device *dev,
+>>>         if (!dev || !stream_ready || !data)
+>>>                 return -EINVAL;
+>>> 
+>>>-        i915 = kdev_to_i915(dev);
+>>>-        if (!i915) {
+>>>+        display = to_intel_display(dev);
+>>>+        if (!display) {
+>>>                 dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+>>>                 return -ENODEV;
+>>>         }
+>>>+        i915 = to_i915(display->drm);
+>>> 
+>>>         cmd_size = struct_size(verify_mprime_in, streams, data->k);
+>>>         if (cmd_size == SIZE_MAX)
+>>>@@ -504,17 +523,19 @@ int intel_hdcp_gsc_enable_authentication(struct device *dev,
+>>> {
+>>>         struct wired_cmd_enable_auth_in enable_auth_in = {};
+>>>         struct wired_cmd_enable_auth_out enable_auth_out = {};
+>>>+        struct intel_display *display;
+>>>         struct drm_i915_private *i915;
+>>>         ssize_t byte;
+>>> 
+>>>         if (!dev || !data)
+>>>                 return -EINVAL;
+>>> 
+>>>-        i915 = kdev_to_i915(dev);
+>>>-        if (!i915) {
+>>>+        display = to_intel_display(dev);
+>>>+        if (!display) {
+>>>                 dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+>>>                 return -ENODEV;
+>>>         }
+>>>+        i915 = to_i915(display->drm);
+>>> 
+>>>         enable_auth_in.header.api_version = HDCP_API_VERSION;
+>>>         enable_auth_in.header.command_id = WIRED_ENABLE_AUTH;
+>>>@@ -549,17 +570,19 @@ intel_hdcp_gsc_close_session(struct device *dev, struct hdcp_port_data *data)
+>>> {
+>>>         struct wired_cmd_close_session_in session_close_in = {};
+>>>         struct wired_cmd_close_session_out session_close_out = {};
+>>>+        struct intel_display *display;
+>>>         struct drm_i915_private *i915;
+>>>         ssize_t byte;
+>>> 
+>>>         if (!dev || !data)
+>>>                 return -EINVAL;
+>>> 
+>>>-        i915 = kdev_to_i915(dev);
+>>>-        if (!i915) {
+>>>+        display = to_intel_display(dev);
+>>>+        if (!display) {
+>>>                 dev_err(dev, "DRM not initialized, aborting HDCP.\n");
+>>>                 return -ENODEV;
+>>>         }
+>>>+        i915 = to_i915(display->drm);
+>>> 
+>>>         session_close_in.header.api_version = HDCP_API_VERSION;
+>>>         session_close_in.header.command_id = WIRED_CLOSE_SESSION;
+>>>-- 
+>>>2.39.2
+>>>
 
---tjibocpyvmmmnhi7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZrIupwAKCRDj7w1vZxhR
-xfMYAQCjlZGY+yaQq7/ZkakE1LIj5TJntjlKikfSQ4PwzDajvgD/Ts1r9zy6Xvhn
-V56sDNPfYscg2EVK3lOydnNo2fLjVAw=
-=bQek
------END PGP SIGNATURE-----
-
---tjibocpyvmmmnhi7--
+-- 
+Jani Nikula, Intel
