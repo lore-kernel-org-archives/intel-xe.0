@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06C62C52D71
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 19:28:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D386C52D70
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 19:28:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9EEC10E3F2;
-	Tue,  6 Aug 2024 19:28:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBE8F10E3F3;
+	Tue,  6 Aug 2024 19:28:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VFgtlYma";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xpzjemhc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50EB010E3F2
- for <intel-xe@lists.freedesktop.org>; Tue,  6 Aug 2024 19:28:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D141310E3F3
+ for <intel-xe@lists.freedesktop.org>; Tue,  6 Aug 2024 19:28:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722972486; x=1754508486;
+ t=1722972488; x=1754508488;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=mfQD+lox0PN6GCXFzoksaO1oXwXQxB8Nvcg66Ho5gHg=;
- b=VFgtlYma0Gc8jhDxt/qAutCcBBUr3DfdttZOp3gMQjc97QLtNf28rO/e
- qrjC99FdFpdU9Yxa8pIllHW5UNcdNQ2qtu/4TmRj7cXG79acuf02r6cPD
- dl5aECyLQ9UjhSSSCY43/dTsqWO1IAmwrkD8NcHfzviF3cJf3H4f682rK
- 0hR96alRzlb6FLzM8LULsDbCCo+P23Q9ORzaJLG+VAvsQZeEfPJXySpno
- P4K9k/IH3KAVwhbWIFn626s+876LmwTqi0BMTN8zOCvT0rit4mUJzA7Od
- brr7JyQimwU8qCEn9g6cjOHsTplxraGvisn0GKapmkwPt/Z+NZ8iCXWHQ Q==;
-X-CSE-ConnectionGUID: nUmjKp6uRjuRoZkklII1PQ==
-X-CSE-MsgGUID: KaLGPxLDQ/OMtSmebA3LAw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="31682128"
-X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="31682128"
+ bh=RkEnjYf8y8v12q1CHKHLhNgb5bWyf2+2Q7uaF3+UCqM=;
+ b=XpzjemhcYfxpXMs4E7ORXADQVWR+VnOmBFbj3OAAkWy/QTLA8dTXwDaf
+ fdY7ul7D3PNjCQ2nHCmGypG/lOA7KnnXoHBsIrR+8T1M9p4jFAEs5Sjts
+ J3TIaduZKwdyQd+/0dtcy3Nox66G+eRJZWKYfgz1Fw5mqBPROc7d9ZfYU
+ MZz121JLi4bcteCPIWesr+JUYgq21a8SniahmFWqNmbtMAPnLMYPE0WBc
+ /29zMVTGecCOQ8H4o1ZrnsOl4qSP/kzY6odbPxXPJDxOslxhUgDKp3H6s
+ xQ8R2nHqj5BsyN5wNRjwTIhn1dNY6nthx342bfZuwvwDhSpaZVa6Kgi6m w==;
+X-CSE-ConnectionGUID: 5GbSOcEVSm6WukNKK2KS/w==
+X-CSE-MsgGUID: hr5PPmyoR+CzIVL6FjqI5A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="31682129"
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="31682129"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2024 12:28:06 -0700
-X-CSE-ConnectionGUID: hEaS+9unTsCl6ifcRnFW/Q==
-X-CSE-MsgGUID: BtdorbnGRJmvWAqKn6QQbA==
+ 06 Aug 2024 12:28:08 -0700
+X-CSE-ConnectionGUID: pyKZMyJVTAqla9kxUDZZiw==
+X-CSE-MsgGUID: 5aUR+EpwQw2d0KugP4NskQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="56585064"
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="56585076"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO fdugast-desk.intel.com)
  ([10.245.246.51])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2024 12:28:05 -0700
+ 06 Aug 2024 12:28:06 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com,
 	Francois Dugast <francois.dugast@intel.com>
-Subject: [PATCH v6 06/13] drm/xe/exec_queue: Prepare last fence for hw engine
- group resume context
-Date: Tue,  6 Aug 2024 21:27:04 +0200
-Message-ID: <20240806192739.1076344-7-francois.dugast@intel.com>
+Subject: [PATCH v6 07/13] drm/xe/hw_engine_group: Add helper to wait for dma
+ fence jobs
+Date: Tue,  6 Aug 2024 21:27:05 +0200
+Message-ID: <20240806192739.1076344-8-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240806192739.1076344-1-francois.dugast@intel.com>
 References: <20240806192739.1076344-1-francois.dugast@intel.com>
@@ -69,112 +69,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Ensure we can safely take a ref of the exec queue's last fence from the
-context of resuming jobs from the hw engine group. The locking requirements
-differ from the general case, hence the introduction of
-xe_exec_queue_last_fence_{get,put}_for_resume().
+This is a required feature for faulting long running jobs not to be
+submitted while dma fence jobs are running on the hw engine group.
 
-v2: Add kernel doc, rework the code to prevent code duplication
-
-v3: Fix kernel doc, remove now unnecessary lockdep variants (Matt Brost)
+v2: Switch to lockdep_assert_held_write in worker, get a proper reference
+    for the last fence (Matt Brost)
 
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c | 48 ++++++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_exec_queue.h |  3 ++
- 2 files changed, 49 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_hw_engine_group.c | 33 +++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 85da2a30a4a4..99ddcc826bce 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -818,10 +818,12 @@ int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
- static void xe_exec_queue_last_fence_lockdep_assert(struct xe_exec_queue *q,
- 						    struct xe_vm *vm)
- {
--	if (q->flags & EXEC_QUEUE_FLAG_VM)
-+	if (q->flags & EXEC_QUEUE_FLAG_VM) {
- 		lockdep_assert_held(&vm->lock);
--	else
-+	} else {
- 		xe_vm_assert_held(vm);
-+		lockdep_assert_held(&q->hwe->hw_engine_group->mode_sem);
-+	}
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.c b/drivers/gpu/drm/xe/xe_hw_engine_group.c
+index dfdff26f2eb9..7ff470eb850e 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_group.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine_group.c
+@@ -178,3 +178,36 @@ static void xe_hw_engine_group_suspend_faulting_lr_jobs(struct xe_hw_engine_grou
+ 		q->ops->suspend_wait(q);
+ 	}
  }
- 
- /**
-@@ -836,6 +838,21 @@ void xe_exec_queue_last_fence_put(struct xe_exec_queue *q, struct xe_vm *vm)
- 	xe_exec_queue_last_fence_put_unlocked(q);
- }
- 
-+/**
-+ * xe_exec_queue_last_fence_put_for_resume() - Drop ref to last fence
-+ * @q: The exec queue
-+ * @vm: The VM the engine does a bind or exec for
-+ *
-+ * Only safe to be called in the context of resuming the hw engine group's
-+ * long-running exec queue, when the group semaphore is held.
-+ */
-+void xe_exec_queue_last_fence_put_for_resume(struct xe_exec_queue *q, struct xe_vm *vm)
-+{
-+	lockdep_assert_held_write(&q->hwe->hw_engine_group->mode_sem);
 +
-+	xe_exec_queue_last_fence_put_unlocked(q);
-+}
-+
- /**
-  * xe_exec_queue_last_fence_put_unlocked() - Drop ref to last fence unlocked
-  * @q: The exec queue
-@@ -875,6 +892,33 @@ struct dma_fence *xe_exec_queue_last_fence_get(struct xe_exec_queue *q,
- 	return fence;
- }
- 
 +/**
-+ * xe_exec_queue_last_fence_get_for_resume() - Get last fence
-+ * @q: The exec queue
-+ * @vm: The VM the engine does a bind or exec for
++ * xe_hw_engine_group_wait_for_dma_fence_jobs() - Wait for dma fence jobs to complete
++ * @group: The hw engine group
 + *
-+ * Get last fence, takes a ref. Only safe to be called in the context of
-+ * resuming the hw engine group's long-running exec queue, when the group
-+ * semaphore is held.
++ * This function is not meant to be called directly from a user IOCTL as dma_fence_wait()
++ * is not interruptible.
 + *
-+ * Returns: last fence if not signaled, dma fence stub if signaled
++ * Return: 0 on success,
++ *	   -ETIME if waiting for one job failed
 + */
-+struct dma_fence *xe_exec_queue_last_fence_get_for_resume(struct xe_exec_queue *q,
-+							  struct xe_vm *vm)
++static int xe_hw_engine_group_wait_for_dma_fence_jobs(struct xe_hw_engine_group *group)
 +{
++	long timeout;
++	struct xe_exec_queue *q;
 +	struct dma_fence *fence;
 +
-+	lockdep_assert_held_write(&q->hwe->hw_engine_group->mode_sem);
++	lockdep_assert_held_write(&group->mode_sem);
 +
-+	if (q->last_fence &&
-+	    test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &q->last_fence->flags))
-+		xe_exec_queue_last_fence_put_for_resume(q, vm);
++	list_for_each_entry(q, &group->exec_queue_list, hw_engine_group_link) {
++		if (xe_vm_in_lr_mode(q->vm))
++			continue;
 +
-+	fence = q->last_fence ? q->last_fence : dma_fence_get_stub();
-+	dma_fence_get(fence);
-+	return fence;
++		fence = xe_exec_queue_last_fence_get_for_resume(q, q->vm);
++		timeout = dma_fence_wait(fence, false);
++		xe_exec_queue_last_fence_put_for_resume(q, q->vm);
++
++		if (timeout < 0)
++			return -ETIME;
++	}
++
++	return 0;
 +}
-+
- /**
-  * xe_exec_queue_last_fence_set() - Set last fence
-  * @q: The exec queue
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index ded77b0f3b90..fc9884a6ce85 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -71,8 +71,11 @@ enum xe_exec_queue_priority xe_exec_queue_device_get_max_priority(struct xe_devi
- 
- void xe_exec_queue_last_fence_put(struct xe_exec_queue *e, struct xe_vm *vm);
- void xe_exec_queue_last_fence_put_unlocked(struct xe_exec_queue *e);
-+void xe_exec_queue_last_fence_put_for_resume(struct xe_exec_queue *e, struct xe_vm *vm);
- struct dma_fence *xe_exec_queue_last_fence_get(struct xe_exec_queue *e,
- 					       struct xe_vm *vm);
-+struct dma_fence *xe_exec_queue_last_fence_get_for_resume(struct xe_exec_queue *e,
-+							  struct xe_vm *vm);
- void xe_exec_queue_last_fence_set(struct xe_exec_queue *e, struct xe_vm *vm,
- 				  struct dma_fence *fence);
- int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q,
 -- 
 2.43.0
 
