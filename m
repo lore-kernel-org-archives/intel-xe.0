@@ -4,22 +4,22 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19111C52D70
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 10:50:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26EB1C52D6F
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 10:50:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7BAC10E32C;
-	Tue,  6 Aug 2024 10:50:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E64B110E32D;
+	Tue,  6 Aug 2024 10:50:52 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBAEA10E32C
- for <intel-xe@lists.freedesktop.org>; Tue,  6 Aug 2024 10:50:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 246E210E32D
+ for <intel-xe@lists.freedesktop.org>; Tue,  6 Aug 2024 10:50:51 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Imre Deak <imre.deak@intel.com>
-Subject: [PATCH v2 1/2] drm/xe/display: Match i915 driver suspend/resume
- sequences better
-Date: Tue,  6 Aug 2024 12:50:43 +0200
-Message-ID: <20240806105044.596842-2-maarten.lankhorst@linux.intel.com>
+ stable@vger.kernel.org
+Subject: [PATCH v2 2/2] drm/xe/display: Make display suspend/resume work on
+ discrete
+Date: Tue,  6 Aug 2024 12:50:44 +0200
+Message-ID: <20240806105044.596842-3-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240806105044.596842-1-maarten.lankhorst@linux.intel.com>
 References: <20240806105044.596842-1-maarten.lankhorst@linux.intel.com>
@@ -39,81 +39,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Suspend fbdev sooner, and disable user access before suspending to
-prevent some races. I've noticed this when comparing xe suspend to
-i915's.
-
-Matches the following commits from i915:
-24b412b1bfeb ("drm/i915: Disable intel HPD poll after DRM poll init/enable")
-1ef28d86bea9 ("drm/i915: Suspend the framebuffer console earlier during system suspend")
-bd738d859e71 ("drm/i915: Prevent modesets during driver init/shutdown")
-
-Thanks to Imre for pointing me to those commits.
-
-Driver shutdown is currently missing, but I have some idea how to
-implement it next.
+We should unpin before evicting all memory, and repin after GT resume.
+This way, we preserve the contents of the framebuffers, and won't hang
+on resume due to migration engine not being restored yet.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Cc: <stable@vger.kernel.org> # v6.8+
 ---
- drivers/gpu/drm/xe/display/xe_display.c | 19 ++++++++++++++-----
- 1 file changed, 14 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display.c | 23 +++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pm.c              | 11 ++++++-----
+ 2 files changed, 29 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index ca4468c820788..d544d18ad1ecc 100644
+index d544d18ad1ecc..4b9ce1f34f4c7 100644
 --- a/drivers/gpu/drm/xe/display/xe_display.c
 +++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -294,8 +294,11 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
- 	 * properly.
- 	 */
- 	intel_power_domains_disable(xe);
--	if (has_display(xe))
-+	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_SUSPENDED, true);
-+	if (has_display(xe)) {
- 		drm_kms_helper_poll_disable(&xe->drm);
-+		intel_display_driver_disable_user_access(xe);
-+	}
- 
- 	if (!runtime)
- 		intel_display_driver_suspend(xe);
-@@ -304,12 +307,13 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
- 
- 	intel_hpd_cancel_work(xe);
- 
-+	if (has_display(xe))
-+		intel_display_driver_suspend_access(xe);
-+
- 	intel_encoder_suspend_all(&xe->display);
- 
- 	intel_opregion_suspend(xe, s2idle ? PCI_D1 : PCI_D3cold);
- 
--	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_SUSPENDED, true);
--
- 	intel_dmc_suspend(xe);
+@@ -283,6 +283,27 @@ static bool suspend_to_idle(void)
+ 	return false;
  }
  
-@@ -347,14 +351,19 @@ void xe_display_pm_resume(struct xe_device *xe, bool runtime)
- 	intel_display_driver_init_hw(xe);
- 	intel_hpd_init(xe);
- 
-+	if (has_display(xe))
-+		intel_display_driver_resume_access(xe);
++static void xe_display_flush_cleanup_work(struct xe_device *xe)
++{
++	struct intel_crtc *crtc;
 +
- 	/* MST sideband requires HPD interrupts enabled */
- 	intel_dp_mst_resume(xe);
- 	if (!runtime)
- 		intel_display_driver_resume(xe);
- 
--	intel_hpd_poll_disable(xe);
--	if (has_display(xe))
-+	if (has_display(xe)) {
- 		drm_kms_helper_poll_enable(&xe->drm);
-+		intel_display_driver_enable_user_access(xe);
++	for_each_intel_crtc(&xe->drm, crtc) {
++		struct drm_crtc_commit *commit;
++
++		spin_lock(&crtc->base.commit_lock);
++		commit = list_first_entry_or_null(&crtc->base.commit_list,
++						  struct drm_crtc_commit, commit_entry);
++		if (commit)
++			drm_crtc_commit_get(commit);
++		spin_unlock(&crtc->base.commit_lock);
++
++		if (commit) {
++			wait_for_completion(&commit->cleanup_done);
++			drm_crtc_commit_put(commit);
++		}
 +	}
-+	intel_hpd_poll_disable(xe);
++}
++
+ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
+ {
+ 	bool s2idle = suspend_to_idle();
+@@ -303,6 +324,8 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
+ 	if (!runtime)
+ 		intel_display_driver_suspend(xe);
  
- 	intel_opregion_resume(xe);
++	xe_display_flush_cleanup_work(xe);
++
+ 	intel_dp_mst_suspend(xe);
  
+ 	intel_hpd_cancel_work(xe);
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index 9f3c14fd9f337..fcfb49af8c891 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -93,13 +93,13 @@ int xe_pm_suspend(struct xe_device *xe)
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_suspend_prepare(gt);
+ 
++	xe_display_pm_suspend(xe, false);
++
+ 	/* FIXME: Super racey... */
+ 	err = xe_bo_evict_all(xe);
+ 	if (err)
+ 		goto err;
+ 
+-	xe_display_pm_suspend(xe, false);
+-
+ 	for_each_gt(gt, xe, id) {
+ 		err = xe_gt_suspend(gt);
+ 		if (err) {
+@@ -154,11 +154,11 @@ int xe_pm_resume(struct xe_device *xe)
+ 
+ 	xe_irq_resume(xe);
+ 
+-	xe_display_pm_resume(xe, false);
+-
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_resume(gt);
+ 
++	xe_display_pm_resume(xe, false);
++
+ 	err = xe_bo_restore_user(xe);
+ 	if (err)
+ 		goto err;
+@@ -367,10 +367,11 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
+ 	mutex_unlock(&xe->mem_access.vram_userfault.lock);
+ 
+ 	if (xe->d3cold.allowed) {
++		xe_display_pm_suspend(xe, true);
++
+ 		err = xe_bo_evict_all(xe);
+ 		if (err)
+ 			goto out;
+-		xe_display_pm_suspend(xe, true);
+ 	}
+ 
+ 	for_each_gt(gt, xe, id) {
 -- 
 2.45.2
 
