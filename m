@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B9FBC3DA7F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9927DC52D7E
 	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 19:48:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3258F10E59D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50B9410E5A1;
 	Wed,  7 Aug 2024 19:48:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KRo1Yh+M";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bAwtcOMC";
 	dkim-atps=neutral
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A30610E0F1;
- Tue,  6 Aug 2024 23:10:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B05F10E0DC;
+ Tue,  6 Aug 2024 23:10:06 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 03AD461069;
+ by dfw.source.kernel.org (Postfix) with ESMTP id B608B6117C;
  Tue,  6 Aug 2024 23:10:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 0EC67C4AF1B;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DB346C4AF16;
  Tue,  6 Aug 2024 23:10:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1722985803;
- bh=Y/65RkebTnQaJk1vPg1V/dSUpJJYPtRYtTmiu8GArpE=;
+ s=k20201202; t=1722985804;
+ bh=F/61/VQXtzneQgOaAhBFTxqHT0QyvEg2fHmrDz3d6fc=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
- b=KRo1Yh+MKuM2zphOGYW5HGzc/KIhWNRSVf/+7VfO25MuNFsQrDNXAQbKHrwJEzSQO
- /Gs9jHmiG4IRAnMzVfysvp0g9us4R2yhjf3yYFLCJjkk1UAA0L7HAfV8VEMM/g1OLL
- 8ACRLTePfpM8OdtW3IMjLhwhRp627HZgsPj+Wjz9p78awSL5385MA69s+6GEOSZbAL
- Lb7bgONSqmS/hFdPOqMnwz3XPsIYOj2GC0DOi7wCsBWEL4rEzcJSjInjCTSfejA2LL
- 4RQ5q8bwV0tectV4NJcm5D8rk0JEUBWM77oa3hoy+GetJFKPazFdt2pvF/6Vy/I6GB
- +TcXuL0G6+qiw==
+ b=bAwtcOMC8uO9tQnqyMg3XmA8qwx6z04MqrogLLb2sa0ckkM37lEQCb10pqiKe5Sh1
+ fmisLW9J+woUaDJ1WuRkdMlf2ppQaPwmanZ1ABs7nrUmoeOywkpZbOvijM0iJgZSr+
+ GRrc+9SDnopW0bT7lbT4XbO+bPLex8HyZUrSExZxqT2uc+CucKsSSiDYhc2dyTs/se
+ q3HQRFQnsfAs13xFXF0v164/6XO2YrL130OLGwcMh3XlYX99l7xORXhsy54KZAf4qk
+ ka5IeQgoPsUv1Pncs0bCSiRpdk+AYCOSJ61umxoJoNVYkY9UujpLl7drVDp3WCEszh
+ zeN2ZldHpKbhQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
  (localhost.localdomain [127.0.0.1])
- by smtp.lore.kernel.org (Postfix) with ESMTP id F3CAFC52D7C;
- Tue,  6 Aug 2024 23:10:02 +0000 (UTC)
+ by smtp.lore.kernel.org (Postfix) with ESMTP id CCECFC52D6F;
+ Tue,  6 Aug 2024 23:10:03 +0000 (UTC)
 From: Daniel Gomez via B4 Relay <devnull+da.gomez.samsung.com@kernel.org>
-Date: Wed, 07 Aug 2024 01:09:18 +0200
-Subject: [PATCH 04/12] drm/xe: xe_gen_wa_oob: fix
- program_invocation_short_name for macos
+Date: Wed, 07 Aug 2024 01:09:26 +0200
+Subject: [PATCH 12/12] scripts/kallsyms: add compatibility support for
+ macos
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240807-macos-build-support-v1-4-4cd1ded85694@samsung.com>
+Message-Id: <20240807-macos-build-support-v1-12-4cd1ded85694@samsung.com>
 References: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
 In-Reply-To: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
 To: Masahiro Yamada <masahiroy@kernel.org>, 
@@ -76,11 +76,11 @@ Cc: linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
  "Daniel Gomez (Samsung)" <d+samsung@kruces.com>, gost.dev@samsung.com, 
  Daniel Gomez <da.gomez@samsung.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1722985800; l=1537;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1722985800; l=1149;
  i=da.gomez@samsung.com; s=20240621; h=from:subject:message-id;
- bh=xYJE9WRRAIRv4i+z5sDXuKkMiFQ3KMmcYsQNverwAeg=;
- b=b7BMXAQke1LOkRHzmeWm0G5v1jBPAvdTULfW44FJ1gmeQ2FlQKfG/qqW9uaRzI43lVO8Cvgjq
- vO6Mvk57URgBL7EXOhPLs+fmTIcw6Z85RQzfx1AxgOGdYc6oq2bS1zD
+ bh=m407j60dxP91/ofe/fC4k8KKLnSnwDft1+cuKD+Nr3Q=;
+ b=9wVc3kFNW+eWlInTH68OVYW9lOTG64z9J8uGc06BNi0UKGSdgCWwd1pkJsrDb88EilcZAB+Hc
+ BJiETDqZxOnA90nq/6n8hSEX1pXA+98beHklgtsWgzrpZRnNCLjTyIj
 X-Developer-Key: i=da.gomez@samsung.com; a=ed25519;
  pk=BqYk31UHkmv0WZShES6pIZcdmPPGay5LbzifAdZ2Ia4=
 X-Endpoint-Received: by B4 Relay for da.gomez@samsung.com/20240621 with
@@ -104,55 +104,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Daniel Gomez <da.gomez@samsung.com>
 
-Use getprogname() [1] instead of program_invocation_short_name() [2]
-for macOS hosts.
+Commit 67bf347ba924 ("kbuild: remove PROVIDE() for kallsyms symbols")
+introduces the use of scripts/kallsyms with /dev/null as input to
+generate the kernel symbols file. This results in getline() returning
+ENOTTY as the errno value on macOS hosts. To handle this different
+behavior, add a specific #ifdef condition for macOS.
 
-[1]:
-https://www.gnu.org/software/gnulib/manual/html_node/
-program_005finvocation_005fshort_005fname.html
-
-[2]:
-https://developer.apple.com/library/archive/documentation/System/
-Conceptual/ManPages_iPhoneOS/man3/getprogname.3.html
-
-Fixes build error for macOS hosts:
-
-drivers/gpu/drm/xe/xe_gen_wa_oob.c:34:3: error: use of
-undeclared identifier 'program_invocation_short_name'    34 |
-program_invocation_short_name);       |                 ^ 1 error
-generated.
+Fixes:
++ scripts/kallsyms --base-relative /dev/null
+read_symbol: Inappropriate ioctl for device
+make[1]: *** [scripts/Makefile.vmlinux:34: vmlinux] Error 1
+make: *** [Makefile:1172: vmlinux] Error 2
 
 Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
 ---
- drivers/gpu/drm/xe/xe_gen_wa_oob.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ scripts/kallsyms.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gen_wa_oob.c b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-index 904cf47925aa..079b8870c461 100644
---- a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-+++ b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-@@ -9,6 +9,12 @@
- #include <stdbool.h>
- #include <stdio.h>
- #include <string.h>
-+#define PROG_INV_NAME program_invocation_short_name
-+
-+#ifdef __APPLE__
-+#include <stdlib.h>
-+#define PROG_INV_NAME getprogname()
+diff --git a/scripts/kallsyms.c b/scripts/kallsyms.c
+index 0ed873491bf5..cb200120a072 100644
+--- a/scripts/kallsyms.c
++++ b/scripts/kallsyms.c
+@@ -130,7 +130,11 @@ static struct sym_entry *read_symbol(FILE *in, char **buf, size_t *buf_len)
+ 	errno = 0;
+ 	readlen = getline(buf, buf_len, in);
+ 	if (readlen < 0) {
++#ifndef __APPLE__
+ 		if (errno) {
++#else
++		if (errno && errno != ENOTTY) {
 +#endif
- 
- #define HEADER \
- 	"// SPDX-License-Identifier: MIT\n" \
-@@ -31,7 +37,7 @@
- static void print_usage(FILE *f)
- {
- 	fprintf(f, "usage: %s <input-rule-file> <generated-c-source-file> <generated-c-header-file>\n",
--		program_invocation_short_name);
-+		PROG_INV_NAME);
- }
- 
- static void print_parse_error(const char *err_msg, const char *line,
+ 			perror("read_symbol");
+ 			exit(EXIT_FAILURE);
+ 		}
 
 -- 
 Git-146)
