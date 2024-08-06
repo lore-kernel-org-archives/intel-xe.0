@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E94B4C531DC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0000EC531DD
 	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 19:48:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9061C10E5A7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B5FB10E5A8;
 	Wed,  7 Aug 2024 19:48:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="aLbLyJxt";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="hZOOQ616";
 	dkim-atps=neutral
 Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB41210E0F6;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB9B610E0F1;
  Tue,  6 Aug 2024 23:10:06 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 871F6CE0FB1;
- Tue,  6 Aug 2024 23:10:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 21795C4AF52;
+ by sin.source.kernel.org (Postfix) with ESMTP id D4161CE0C70;
  Tue,  6 Aug 2024 23:10:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CC20EC4AF0C;
+ Tue,  6 Aug 2024 23:10:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1722985803;
- bh=+He+gtxBEfl84UV5f19qlMQcV5CCfyJDOMqxiVvtbII=;
+ s=k20201202; t=1722985802;
+ bh=TxCIbk5kpqAWpCSxGxR1hhZf2RT69+54zaMWnuFPywQ=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
- b=aLbLyJxtYoDu5TGf0hBkTczCnA5tXznd/CqtRPoDueECJQqPixBgxrK1R6VJU4ALQ
- wHZifyZwJpUqkcXzqh6ZTUeJXh9uE8lwd+OxU3dU99uZ56ZTSP+q0vSy4QSJktfZ2x
- /tZyFRY2dnCmPxOfo9NVMRqfVfcLqsZZVeXzBKgqj3BArSKVY8my2wx9g9QVJssTD6
- gNmwARWq1WXchHb2JkQ5HlE7cifTbfItuWLYcMPM7rUweSS21IVX5l3qCGZP/bNc0S
- UUfSWuCWYu8/aAQmFYejLcdLA2FzilLeIF0l4Ry824CqiUIGQZq5bXm3UEaPJIRGnc
- RI9UhDJq7BmUw==
+ b=hZOOQ616lMICi1so631oPK8lRs/b8+S/8NaZ6SrLVqGuF+LQNJgMyPSJa1nIbWE2q
+ VqyNqczws1XjLMxdIMijDBp6g6qTQwD6CMVOLaiwwwBx9EfUJm2PNcQCxR2HBhdQ9Y
+ Mmtjek0ooH7L0sjGVJ2vTl9/2kYXQwT2EOrBmVxZEyLp8iDAB2AgnrBxIbZQd5BgLm
+ 90n8FyZfoEp0mpvKWjPlgi/xZIN/2dCunx9ghGpPs8kYMtNeF5BdN08WnomLmfQZ5K
+ IYyO4kNQrRObqmsxmBC9Cxv1pPaWq1XytcmrulFBUrsRx6OkZDFLr2FTYDc+GVqBcm
+ DHda1Az6QvaXw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
  (localhost.localdomain [127.0.0.1])
- by smtp.lore.kernel.org (Postfix) with ESMTP id 13D5DC52D7D;
- Tue,  6 Aug 2024 23:10:03 +0000 (UTC)
+ by smtp.lore.kernel.org (Postfix) with ESMTP id B3827C52D7B;
+ Tue,  6 Aug 2024 23:10:02 +0000 (UTC)
 From: Daniel Gomez via B4 Relay <devnull+da.gomez.samsung.com@kernel.org>
-Date: Wed, 07 Aug 2024 01:09:19 +0200
-Subject: [PATCH 05/12] accessiblity/speakup: genmap and makemapdata require
- linux/version.h
+Date: Wed, 07 Aug 2024 01:09:15 +0200
+Subject: [PATCH 01/12] scripts: subarch.include: fix SUBARCH on MacOS hosts
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240807-macos-build-support-v1-5-4cd1ded85694@samsung.com>
+Message-Id: <20240807-macos-build-support-v1-1-4cd1ded85694@samsung.com>
 References: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
 In-Reply-To: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
 To: Masahiro Yamada <masahiroy@kernel.org>, 
@@ -74,13 +73,14 @@ Cc: linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
  linux-serial@vger.kernel.org, llvm@lists.linux.dev, 
  Finn Behrens <me@kloenk.dev>, 
  "Daniel Gomez (Samsung)" <d+samsung@kruces.com>, gost.dev@samsung.com, 
- Daniel Gomez <da.gomez@samsung.com>
+ Daniel Gomez <da.gomez@samsung.com>, 
+ Nick Desaulniers <nick.desaulniers@gmail.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1722985800; l=1496;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1722985800; l=1489;
  i=da.gomez@samsung.com; s=20240621; h=from:subject:message-id;
- bh=D/b2l/ogAQ53pGShlNQZ21O8ea5Cj2WGeFYeW0o1yvE=;
- b=R4qyiYP+OSMcXzv9ooR7/t6MnLqProoNVp1nlUQ8nIYUNbvpy7GzUbYP6W8c5xRb6Xs1z5qrf
- NNsKqstejrNCJU8W3NSEixOEN8GSNjVGvk+o0yOAwyi6oB306luifET
+ bh=pKrUy+kUc7s1sGJ4V0pnKiAjUgJie+thKNoMDcFS8Ws=;
+ b=BaL7A1rlA7gJqeye5jr4ewbPFIbJKovsy2703k4UjEVlRUIdHP5xKklCusXzrOGVDQfD0QJSj
+ APMBaZZ1ODpAzcjGgS5l4MO4plml4BUxFF4TM1ExHvcSpGvrfIornNn
 X-Developer-Key: i=da.gomez@samsung.com; a=ed25519;
  pk=BqYk31UHkmv0WZShES6pIZcdmPPGay5LbzifAdZ2Ia4=
 X-Endpoint-Received: by B4 Relay for da.gomez@samsung.com/20240621 with
@@ -102,48 +102,45 @@ Reply-To: da.gomez@samsung.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Daniel Gomez <da.gomez@samsung.com>
+From: Nick Desaulniers <nick.desaulniers@gmail.com>
 
-Both genmap and makemapdata require the linux/version.h header. To
-ensure successful builds on macOS hosts, make sure usr/include is
-included in the HOSTCFLAGS.
+When building the Linux kernel on an aarch64 MacOS based host, if we don't
+specify a value for ARCH when invoking make, we default to arm and thus
+multi_v7_defconfig rather than the expected arm64 and arm64's defconfig.
 
-Fixes errors:
-drivers/accessibility/speakup/genmap.c:13:10: fatal error: 'linux/version.h' file not found
-   13 | #include <linux/version.h>
-      |          ^~~~~~~~~~~~~~~~~
-1 error generated.
+This is because subarch.include invokes `uname -m` which on MacOS hosts
+evaluates to `arm64` but on Linux hosts evaluates to `aarch64`,
 
-drivers/accessibility/speakup/makemapdata.c:13:10: fatal error: 'linux/version.h' file not found
-   13 | #include <linux/version.h>
-      |          ^~~~~~~~~~~~~~~~~
-1 error generated.
+This allows us to build ARCH=arm64 natively on MacOS (as in ARCH need
+not be specified on an aarch64-based system).
 
+Utilize a negative lookahead regular expression to avoid matching arm64.
+
+Add a separate expression to support for armv.* as per error reported by
+Nicolas Schier [1].
+
+[1] https://lore.kernel.org/all/Y3MRvtwdjIwMHvRo@bergen.fjasle.eu/#t
+
+Signed-off-by: Nick Desaulniers <nick.desaulniers@gmail.com>
 Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
 ---
- drivers/accessibility/speakup/Makefile | 2 ++
- 1 file changed, 2 insertions(+)
+ scripts/subarch.include | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/accessibility/speakup/Makefile b/drivers/accessibility/speakup/Makefile
-index 6f6a83565c0d..74ee0c31370f 100644
---- a/drivers/accessibility/speakup/Makefile
-+++ b/drivers/accessibility/speakup/Makefile
-@@ -38,6 +38,7 @@ clean-files := mapdata.h speakupmap.h
- # Generate mapdata.h from headers
- hostprogs += makemapdata
- makemapdata-objs := makemapdata.o
-+HOSTCFLAGS_makemapdata.o += -I$(srctree)/usr/include
+diff --git a/scripts/subarch.include b/scripts/subarch.include
+index 4bd327d0ae42..5d84ad8c0dee 100644
+--- a/scripts/subarch.include
++++ b/scripts/subarch.include
+@@ -6,7 +6,8 @@
  
- quiet_cmd_mkmap = MKMAP   $@
-       cmd_mkmap = TOPDIR=$(srctree) \
-@@ -51,6 +52,7 @@ $(obj)/mapdata.h: $(obj)/makemapdata
- # Generate speakupmap.h from mapdata.h
- hostprogs += genmap
- genmap-objs := genmap.o
-+HOSTCFLAGS_genmap.o += -I$(srctree)/usr/include
- $(obj)/genmap.o: $(obj)/mapdata.h
- 
- quiet_cmd_genmap = GENMAP  $@
+ SUBARCH := $(shell uname -m | sed -e s/i.86/x86/ -e s/x86_64/x86/ \
+ 				  -e s/sun4u/sparc64/ \
+-				  -e s/arm.*/arm/ -e s/sa110/arm/ \
++				  -e s/armv.*/arm/ \
++				  -e s/arm\(?:\(?!64\).*\)/arm/ -e s/sa110/arm/ \
+ 				  -e s/s390x/s390/ \
+ 				  -e s/ppc.*/powerpc/ -e s/mips.*/mips/ \
+ 				  -e s/sh[234].*/sh/ -e s/aarch64.*/arm64/ \
 
 -- 
 Git-146)
