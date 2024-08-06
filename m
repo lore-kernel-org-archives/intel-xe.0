@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B775C3DA64
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 12:02:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B92DC3DA64
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 12:11:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 237E810E098;
-	Tue,  6 Aug 2024 12:02:11 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE5B010E098;
- Tue,  6 Aug 2024 12:02:09 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 391EA10E33E;
+	Tue,  6 Aug 2024 12:11:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MC4j4eSU";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D5E210E33E;
+ Tue,  6 Aug 2024 12:11:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1722946269; x=1754482269;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=pmSCZC5r0g4KvRmXY24BY9nHK9R0E9mSSLRofabUWTQ=;
+ b=MC4j4eSUkKHZfp2m71O+ZZYoZP7P+WwvndMNa+Mtw96yWvXmbIb7LmTo
+ p4TA42pfHE738IQGcrSvwl9RIspYQ/G8XGmDl+ts8RDtya9fBdlBNUpAm
+ dM/qnJXRi/Y8YOQvE+A1egxzVciid9tRCZr+AckMEiP1DAZega3WFPsGv
+ SMIkX+7lTSoot4cNDG04HsOMvyfHljBoVj/kdMvz3Z1oQzJ5FHMeQRZb5
+ l5DXJ3tP6X23n4+CzZLXZYJwzmtZaAQ528rkxZw9tH9JiJWCWsTL7qgsn
+ GdhKrMcAuzFZkE68WDwW4BVKN5vKsIKcQPvAe4z+KlYAU4OGg50Da0krA Q==;
+X-CSE-ConnectionGUID: 2dlxl4nOTMiVPFNgoYpG7Q==
+X-CSE-MsgGUID: 0cfRVacgQlerEw4W6T9KwA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="38462385"
+X-IronPort-AV: E=Sophos;i="6.09,267,1716274800"; d="scan'208";a="38462385"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2024 05:11:08 -0700
+X-CSE-ConnectionGUID: n6yZA6U/RcSKiyaeKFcmbQ==
+X-CSE-MsgGUID: 1wi0fgk5TgWStyuGLGmZdg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,267,1716274800"; d="scan'208";a="56379719"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.4])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2024 05:11:07 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 02/10] drm/xe: add kdev_to_xe_device() helper and use it
+In-Reply-To: <172253051169.5121.1482254642233377824@gjsousa-mobl2>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1722263308.git.jani.nikula@intel.com>
+ <55d57008c0f9bcfc089cf8b940e531c770f43454.1722263308.git.jani.nikula@intel.com>
+ <172253051169.5121.1482254642233377824@gjsousa-mobl2>
+Date: Tue, 06 Aug 2024 15:10:51 +0300
+Message-ID: <87jzgt6ed0.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_drm/xe=3A_Fix_access=5Fo?=
- =?utf-8?q?k_check_in_user=5Ffence=5Fcreate?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 06 Aug 2024 12:02:09 -0000
-Message-ID: <172294572990.542888.10024034039838713825@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240806110722.28661-1-nirmoy.das@intel.com>
-In-Reply-To: <20240806110722.28661-1-nirmoy.das@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +65,88 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 01 Aug 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Quoting Jani Nikula (2024-07-29 11:30:03-03:00)
+>>There are enough users for kernel device to xe device conversion, add a
+>>helper for it.
+>>
+>>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>---
+>> drivers/gpu/drm/xe/xe_device.h    | 5 +++++
+>> drivers/gpu/drm/xe/xe_gsc_proxy.c | 9 ++-------
+>> 2 files changed, 7 insertions(+), 7 deletions(-)
+>>
+>>diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+>>index db6cc8d0d6b8..2c96f1b2aafd 100644
+>>--- a/drivers/gpu/drm/xe/xe_device.h
+>>+++ b/drivers/gpu/drm/xe/xe_device.h
+>>@@ -15,6 +15,11 @@ static inline struct xe_device *to_xe_device(const struct drm_device *dev)
+>>         return container_of(dev, struct xe_device, drm);
+>> }
+>> 
+>>+static inline struct xe_device *kdev_to_xe_device(struct device *kdev)
+>
+> Nitpick: Although there are some places that do it differently, it seems
+> it is very common to use "dev" to refer to the generic struct device, so
+> I would s/kdev/dev/ here.
 
-Series: drm/xe: Fix access_ok check in user_fence_create
-URL   : https://patchwork.freedesktop.org/series/136922/
-State : success
+I think kdev is often used to distinguish from struct drm_device *dev.
 
-== Summary ==
+> In any case:
+>
+> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 38af90f98c71935da87b28c0552f32d175352d9f
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+Thanks,
+Jani.
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+>
+>>+{
+>>+        return dev_get_drvdata(kdev);
+>>+}
+>>+
+>> static inline struct xe_device *pdev_to_xe_device(struct pci_dev *pdev)
+>> {
+>>         return pci_get_drvdata(pdev);
+>>diff --git a/drivers/gpu/drm/xe/xe_gsc_proxy.c b/drivers/gpu/drm/xe/xe_gsc_proxy.c
+>>index aa812a2bc3ed..28e6a7a1d282 100644
+>>--- a/drivers/gpu/drm/xe/xe_gsc_proxy.c
+>>+++ b/drivers/gpu/drm/xe/xe_gsc_proxy.c
+>>@@ -62,11 +62,6 @@ gsc_to_gt(struct xe_gsc *gsc)
+>>         return container_of(gsc, struct xe_gt, uc.gsc);
+>> }
+>> 
+>>-static inline struct xe_device *kdev_to_xe(struct device *kdev)
+>>-{
+>>-        return dev_get_drvdata(kdev);
+>>-}
+>>-
+>> bool xe_gsc_proxy_init_done(struct xe_gsc *gsc)
+>> {
+>>         struct xe_gt *gt = gsc_to_gt(gsc);
+>>@@ -345,7 +340,7 @@ void xe_gsc_proxy_irq_handler(struct xe_gsc *gsc, u32 iir)
+>> static int xe_gsc_proxy_component_bind(struct device *xe_kdev,
+>>                                        struct device *mei_kdev, void *data)
+>> {
+>>-        struct xe_device *xe = kdev_to_xe(xe_kdev);
+>>+        struct xe_device *xe = kdev_to_xe_device(xe_kdev);
+>>         struct xe_gt *gt = xe->tiles[0].media_gt;
+>>         struct xe_gsc *gsc = &gt->uc.gsc;
+>> 
+>>@@ -360,7 +355,7 @@ static int xe_gsc_proxy_component_bind(struct device *xe_kdev,
+>> static void xe_gsc_proxy_component_unbind(struct device *xe_kdev,
+>>                                           struct device *mei_kdev, void *data)
+>> {
+>>-        struct xe_device *xe = kdev_to_xe(xe_kdev);
+>>+        struct xe_device *xe = kdev_to_xe_device(xe_kdev);
+>>         struct xe_gt *gt = xe->tiles[0].media_gt;
+>>         struct xe_gsc *gsc = &gt->uc.gsc;
+>> 
+>>-- 
+>>2.39.2
+>>
 
-
+-- 
+Jani Nikula, Intel
