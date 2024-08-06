@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F4E3C52D70
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 16:32:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 678DDC52D71
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 16:40:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33F5810E3BA;
-	Tue,  6 Aug 2024 16:32:16 +0000 (UTC)
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E442510E3BA;
- Tue,  6 Aug 2024 16:32:14 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F6AF10E02A;
+	Tue,  6 Aug 2024 16:40:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QrSpTYN9";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B18F10E02A;
+ Tue,  6 Aug 2024 16:40:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1722962445; x=1754498445;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=Szjecu8os5RDxE+j60wuM1kaRWvqouYxKr/EyH2KLN8=;
+ b=QrSpTYN9YRfPkmy/CU0nQ+WkGoiEMg3rUbp12GJbEDwX9HyPP7yVRsDN
+ ZSBEopifsBP0LeeYrgC87Vv8upMJ6+0wFofKFbEx7gyVw7BEQ52vrQPmU
+ fjGR/AaZ+fmJgjuZRjCViDXY4x6TnZe7ZsgURwjIsg23Yz12DYk8kOspY
+ 2oJQbznb9V/EFJT8i31eI6IVTtQWjh6TFU8BA9/XYMuLlvIXnAwW+Kk8S
+ F0MbKj52nYILMlV6WxkKln6YT0pJGePaYOWvEOo1Edn6mgHkWz6zkWv/2
+ y2Vc6uzBL0Z6JTpGKHwLw+blp51o/oshHh7TqZ6PIvG6IYCPttA1RAdPg Q==;
+X-CSE-ConnectionGUID: KyI8geh2Q7eRHGxxSzVb4Q==
+X-CSE-MsgGUID: 6qA3BxXOR/+UVBU8aK2OmA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="32399121"
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="32399121"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2024 09:40:45 -0700
+X-CSE-ConnectionGUID: oDIY2BstQZeJahLyeZCXbg==
+X-CSE-MsgGUID: v2N2pxEUQTiVI3xIDmDHLQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="61204819"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2024 09:40:43 -0700
+Date: Tue, 6 Aug 2024 19:41:01 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/xe/pm: Change HPD to polling on runtime suspend
+Message-ID: <ZrJSHdb7bu90VnJr@ideak-desk.fi.intel.com>
+References: <20240806085513.3051107-1-arun.r.murthy@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_series_starting_with_=5B?=
- =?utf-8?q?1/2=5D_drm/xe=3A_Export_xe=5Fhw=5Fengine=27s_mmio_accessors?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 06 Aug 2024 16:32:14 -0000
-Message-ID: <172296193493.543866.18235267361553141627@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240806153009.1081382-1-mika.kuoppala@linux.intel.com>
-In-Reply-To: <20240806153009.1081382-1-mika.kuoppala@linux.intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240806085513.3051107-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +63,64 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Aug 06, 2024 at 02:25:13PM +0530, Arun R Murthy wrote:
+> HPD is interrupt based and on runtime suspend change it to polling as
+> HPD is not a wakeup event. A worker thread is scheduled for doing this
+> polling and it keeps polling for HPD live status on an internval of 10s.
+> On runtime resume disable polling and fallback to interrupt mechanism.
+> 
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_pm.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> index 9f3c14fd9f33..d952b06ebfb4 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.c
+> +++ b/drivers/gpu/drm/xe/xe_pm.c
+> @@ -22,6 +22,7 @@
+>  #include "xe_pcode.h"
+>  #include "xe_trace.h"
+>  #include "xe_wa.h"
+> +#include "intel_hotplug.h"
+>  
+>  /**
+>   * DOC: Xe Power Management
+> @@ -378,6 +379,8 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
+>  		if (err)
+>  			goto out;
+>  	}
+> +	/* Enable hpd polling on runtime suspend */
+> +	intel_hpd_poll_enable(xe);
+>  
+>  	xe_irq_suspend(xe);
+>  
+> @@ -427,6 +430,9 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+>  
+>  	xe_irq_resume(xe);
+>  
+> +	/* Disable hpd polling on runtime resume */
+> +	intel_hpd_poll_disable(xe);
 
-Series: series starting with [1/2] drm/xe: Export xe_hw_engine's mmio accessors
-URL   : https://patchwork.freedesktop.org/series/136937/
-State : success
+This should be handled in xe_display_pm_resume() (likewise enabling
+polling in xe_display_pm_suspend()), in fact it's already called there.
+Also this is missing the xe->info.enable_display check and polling
+shouldn't be enabled when system (vs. runtime) suspending.
 
-== Summary ==
+Not sure why the display is suspended/resumed only if d3cold is allowed,
+for many of the display s/r steps at least it doesn't make sense to me.
+For now moving the d3cold check within
+xe_display_pm_suspend()/resume() and enabling/disabling polling
+regardless of that flag would be the simplest imo.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 83eea64f81edb86ed3aa368039520810c154fd94
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+> +
+>  	for_each_gt(gt, xe, id)
+>  		xe_gt_resume(gt);
+>  
+> -- 
+> 2.25.1
+> 
