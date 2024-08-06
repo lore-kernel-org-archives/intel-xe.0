@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15678C52D70
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 16:17:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05269C52D70
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 16:28:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCD9710E3C0;
-	Tue,  6 Aug 2024 16:17:30 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vst3L9da";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86D4A10E3BD;
- Tue,  6 Aug 2024 16:17:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722961050; x=1754497050;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=VBFqMyp0z0Fqbh+LSvutdD5ttwC1ITUFm1aAWojOAzc=;
- b=Vst3L9daxpaH//bkLdGfPx7xbopY4yyh6FwBnH1GPx//mlNW+1k+lYeZ
- xu4UCCM38om/qghfRelzw1ik6GGfIfE5Yg0X7mo4JNOhgvZVnVd8id5NQ
- ysPLoa11+BUy0fTyTUveefTtUOwLuFNf5oB3yUdBFYA6ZqV3x//Vseryl
- uEUU3Fpk0k9j5ndpFrsxh0zbuGoPuMZvbHHedZtwfY0d5TEePMf/HUdE2
- 4KR4o/M4NaqQnxKKmppOcsjbwdFMSoBe7344cfIhsS+OmIFZeNxZCvVCm
- rwCTB9lJsaRHPiE3ySyoQNdfX4Nx/hB9/kjt03STY4pQ+2qrwjg5Q7TUr A==;
-X-CSE-ConnectionGUID: kY6V7tbCRbeq9d+Twrb5ew==
-X-CSE-MsgGUID: AXPDu+IXQrG8G26NC9GQ3w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="20842311"
-X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="20842311"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2024 09:17:29 -0700
-X-CSE-ConnectionGUID: WcThjglDRZqKLy8SIZI5nw==
-X-CSE-MsgGUID: F0d1Qlo2RCSAUEF0jZJj6g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="56264909"
-Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
- by fmviesa007.fm.intel.com with ESMTP; 06 Aug 2024 09:17:27 -0700
-Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sbMsH-0004e6-1b;
- Tue, 06 Aug 2024 16:17:25 +0000
-Date: Wed, 7 Aug 2024 00:17:07 +0800
-From: kernel test robot <lkp@intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, Arun R Murthy <arun.r.murthy@intel.com>
-Subject: Re: [PATCH] drm/xe/pm: Change HPD to polling on runtime suspend
-Message-ID: <202408062332.8Cl1FjhB-lkp@intel.com>
-References: <20240806085513.3051107-1-arun.r.murthy@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C645410E3BB;
+	Tue,  6 Aug 2024 16:28:32 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33CAE10E3BA;
+ Tue,  6 Aug 2024 16:28:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240806085513.3051107-1-arun.r.murthy@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_series_starting_with_=5B1/2=5D?=
+ =?utf-8?q?_drm/xe=3A_Export_xe=5Fhw=5Fengine=27s_mmio_accessors?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 06 Aug 2024 16:28:32 -0000
+Message-ID: <172296171220.543786.8115979780767205671@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240806153009.1081382-1-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20240806153009.1081382-1-mika.kuoppala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,58 +36,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Arun,
+== Series Details ==
 
-kernel test robot noticed the following build errors:
+Series: series starting with [1/2] drm/xe: Export xe_hw_engine's mmio accessors
+URL   : https://patchwork.freedesktop.org/series/136937/
+State : success
 
-[auto build test ERROR on drm-xe/drm-xe-next]
-[also build test ERROR on drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.11-rc2 next-20240806]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+== Summary ==
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Arun-R-Murthy/drm-xe-pm-Change-HPD-to-polling-on-runtime-suspend/20240806-175155
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20240806085513.3051107-1-arun.r.murthy%40intel.com
-patch subject: [PATCH] drm/xe/pm: Change HPD to polling on runtime suspend
-config: i386-buildonly-randconfig-003-20240806 (https://download.01.org/0day-ci/archive/20240806/202408062332.8Cl1FjhB-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240806/202408062332.8Cl1FjhB-lkp@intel.com/reproduce)
+lib/modules/6.11.0-rc2-xe/kernel/sound/core/seq/
+lib/modules/6.11.0-rc2-xe/kernel/sound/core/seq/snd-seq.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/core/snd-seq-device.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/core/snd.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/core/snd-pcm.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/core/snd-compress.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/core/snd-timer.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soundcore.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/intel/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/intel/atom/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/intel/atom/snd-soc-sst-atom-hifi2-platform.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/intel/atom/sst/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-acpi.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/intel/atom/sst/snd-intel-sst-core.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/intel/common/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/intel/common/snd-soc-acpi-intel-match.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/amd/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/amd/snd-acp-config.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/intel/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-tgl.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-mlink.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-cnl.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-lnl.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-common.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda-generic.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-intel-hda.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/intel/snd-sof-pci-intel-mtl.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/amd/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/amd/snd-sof-amd-renoir.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/amd/snd-sof-amd-acp.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/snd-sof-utils.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/snd-sof-pci.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/snd-sof.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/snd-sof-probes.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/xtensa/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/snd-soc-core.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/snd-soc-acpi.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/codecs/
+lib/modules/6.11.0-rc2-xe/kernel/sound/soc/codecs/snd-soc-hdac-hda.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/hda/
+lib/modules/6.11.0-rc2-xe/kernel/sound/hda/snd-intel-sdw-acpi.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/hda/ext/
+lib/modules/6.11.0-rc2-xe/kernel/sound/hda/ext/snd-hda-ext-core.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/hda/snd-intel-dspcfg.ko
+lib/modules/6.11.0-rc2-xe/kernel/sound/hda/snd-hda-core.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/kernel/
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/kernel/msr.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/kernel/cpuid.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/crypto/
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/crypto/sha512-ssse3.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/crypto/crct10dif-pclmul.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/crypto/ghash-clmulni-intel.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/crypto/sha1-ssse3.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/crypto/crc32-pclmul.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/crypto/sha256-ssse3.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/crypto/aesni-intel.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/crypto/polyval-clmulni.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/events/
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/events/intel/
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/events/intel/intel-cstate.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/events/rapl.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/kvm/
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/kvm/kvm.ko
+lib/modules/6.11.0-rc2-xe/kernel/arch/x86/kvm/kvm-intel.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/
+lib/modules/6.11.0-rc2-xe/kernel/crypto/crypto_simd.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/cmac.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/ccm.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/cryptd.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/polyval-generic.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/async_tx/
+lib/modules/6.11.0-rc2-xe/kernel/crypto/async_tx/async_xor.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/async_tx/async_tx.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/async_tx/async_memcpy.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/async_tx/async_pq.ko
+lib/modules/6.11.0-rc2-xe/kernel/crypto/async_tx/async_raid6_recov.ko
+lib/modules/6.11.0-rc2-xe/build
+lib/modules/6.11.0-rc2-xe/modules.alias.bin
+lib/modules/6.11.0-rc2-xe/modules.builtin
+lib/modules/6.11.0-rc2-xe/modules.softdep
+lib/modules/6.11.0-rc2-xe/modules.alias
+lib/modules/6.11.0-rc2-xe/modules.order
+lib/modules/6.11.0-rc2-xe/modules.symbols
+lib/modules/6.11.0-rc2-xe/modules.dep.bin
++ mv kernel-nodebug.tar.gz ..
++ cd ..
++ rm -rf archive
+++ date +%s
++ echo -e '\e[0Ksection_end:1722961699:package_x86_64_nodebug\r\e[0K'
++ sync
+[0Ksection_end:1722961699:package_x86_64_nodebug
+[0K
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408062332.8Cl1FjhB-lkp@intel.com/
 
-All errors (new ones prefixed by >>):
-
->> drivers/gpu/drm/xe/xe_pm.c:25:10: fatal error: intel_hotplug.h: No such file or directory
-      25 | #include "intel_hotplug.h"
-         |          ^~~~~~~~~~~~~~~~~
-   compilation terminated.
-
-
-vim +25 drivers/gpu/drm/xe/xe_pm.c
-
-    12	
-    13	#include "display/xe_display.h"
-    14	#include "xe_bo.h"
-    15	#include "xe_bo_evict.h"
-    16	#include "xe_device.h"
-    17	#include "xe_device_sysfs.h"
-    18	#include "xe_ggtt.h"
-    19	#include "xe_gt.h"
-    20	#include "xe_guc.h"
-    21	#include "xe_irq.h"
-    22	#include "xe_pcode.h"
-    23	#include "xe_trace.h"
-    24	#include "xe_wa.h"
-  > 25	#include "intel_hotplug.h"
-    26	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
