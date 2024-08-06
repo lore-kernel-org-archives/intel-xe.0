@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26EB1C52D6F
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 10:50:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE5BBC3DA64
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Aug 2024 10:56:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E64B110E32D;
-	Tue,  6 Aug 2024 10:50:52 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 246E210E32D
- for <intel-xe@lists.freedesktop.org>; Tue,  6 Aug 2024 10:50:51 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- stable@vger.kernel.org
-Subject: [PATCH v2 2/2] drm/xe/display: Make display suspend/resume work on
- discrete
-Date: Tue,  6 Aug 2024 12:50:44 +0200
-Message-ID: <20240806105044.596842-3-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240806105044.596842-1-maarten.lankhorst@linux.intel.com>
-References: <20240806105044.596842-1-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C25A10E32A;
+	Tue,  6 Aug 2024 10:56:02 +0000 (UTC)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 929E610E32A;
+ Tue,  6 Aug 2024 10:56:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_drm/xe/display_suspe?=
+ =?utf-8?q?nd/resume_fixes=2E_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 06 Aug 2024 10:56:01 -0000
+Message-ID: <172294176159.542712.16124988150439292745@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240806105044.596842-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240806105044.596842-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,109 +36,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We should unpin before evicting all memory, and repin after GT resume.
-This way, we preserve the contents of the framebuffers, and won't hang
-on resume due to migration engine not being restored yet.
+== Series Details ==
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Cc: <stable@vger.kernel.org> # v6.8+
----
- drivers/gpu/drm/xe/display/xe_display.c | 23 +++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_pm.c              | 11 ++++++-----
- 2 files changed, 29 insertions(+), 5 deletions(-)
+Series: drm/xe/display suspend/resume fixes. (rev2)
+URL   : https://patchwork.freedesktop.org/series/136891/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index d544d18ad1ecc..4b9ce1f34f4c7 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -283,6 +283,27 @@ static bool suspend_to_idle(void)
- 	return false;
- }
- 
-+static void xe_display_flush_cleanup_work(struct xe_device *xe)
-+{
-+	struct intel_crtc *crtc;
-+
-+	for_each_intel_crtc(&xe->drm, crtc) {
-+		struct drm_crtc_commit *commit;
-+
-+		spin_lock(&crtc->base.commit_lock);
-+		commit = list_first_entry_or_null(&crtc->base.commit_list,
-+						  struct drm_crtc_commit, commit_entry);
-+		if (commit)
-+			drm_crtc_commit_get(commit);
-+		spin_unlock(&crtc->base.commit_lock);
-+
-+		if (commit) {
-+			wait_for_completion(&commit->cleanup_done);
-+			drm_crtc_commit_put(commit);
-+		}
-+	}
-+}
-+
- void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
- {
- 	bool s2idle = suspend_to_idle();
-@@ -303,6 +324,8 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
- 	if (!runtime)
- 		intel_display_driver_suspend(xe);
- 
-+	xe_display_flush_cleanup_work(xe);
-+
- 	intel_dp_mst_suspend(xe);
- 
- 	intel_hpd_cancel_work(xe);
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 9f3c14fd9f337..fcfb49af8c891 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -93,13 +93,13 @@ int xe_pm_suspend(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_suspend_prepare(gt);
- 
-+	xe_display_pm_suspend(xe, false);
-+
- 	/* FIXME: Super racey... */
- 	err = xe_bo_evict_all(xe);
- 	if (err)
- 		goto err;
- 
--	xe_display_pm_suspend(xe, false);
--
- 	for_each_gt(gt, xe, id) {
- 		err = xe_gt_suspend(gt);
- 		if (err) {
-@@ -154,11 +154,11 @@ int xe_pm_resume(struct xe_device *xe)
- 
- 	xe_irq_resume(xe);
- 
--	xe_display_pm_resume(xe, false);
--
- 	for_each_gt(gt, xe, id)
- 		xe_gt_resume(gt);
- 
-+	xe_display_pm_resume(xe, false);
-+
- 	err = xe_bo_restore_user(xe);
- 	if (err)
- 		goto err;
-@@ -367,10 +367,11 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
- 	mutex_unlock(&xe->mem_access.vram_userfault.lock);
- 
- 	if (xe->d3cold.allowed) {
-+		xe_display_pm_suspend(xe, true);
-+
- 		err = xe_bo_evict_all(xe);
- 		if (err)
- 			goto out;
--		xe_display_pm_suspend(xe, true);
- 	}
- 
- 	for_each_gt(gt, xe, id) {
--- 
-2.45.2
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-tip' with base: ===
+Base commit: 38af90f98c71 drm-tip: 2024y-08m-06d-09h-35m-18s UTC integration manifest
+=== git am output follows ===
+Applying: drm/xe/display: Match i915 driver suspend/resume sequences better
+Applying: drm/xe/display: Make display suspend/resume work on discrete
+
 
