@@ -4,88 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0000EC531DD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5EA9C52D7C
 	for <intel-xe@archiver.kernel.org>; Wed,  7 Aug 2024 19:48:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B5FB10E5A8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6405910E5A3;
 	Wed,  7 Aug 2024 19:48:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="hZOOQ616";
-	dkim-atps=neutral
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB9B610E0F1;
- Tue,  6 Aug 2024 23:10:06 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id D4161CE0C70;
- Tue,  6 Aug 2024 23:10:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id CC20EC4AF0C;
- Tue,  6 Aug 2024 23:10:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1722985802;
- bh=TxCIbk5kpqAWpCSxGxR1hhZf2RT69+54zaMWnuFPywQ=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
- b=hZOOQ616lMICi1so631oPK8lRs/b8+S/8NaZ6SrLVqGuF+LQNJgMyPSJa1nIbWE2q
- VqyNqczws1XjLMxdIMijDBp6g6qTQwD6CMVOLaiwwwBx9EfUJm2PNcQCxR2HBhdQ9Y
- Mmtjek0ooH7L0sjGVJ2vTl9/2kYXQwT2EOrBmVxZEyLp8iDAB2AgnrBxIbZQd5BgLm
- 90n8FyZfoEp0mpvKWjPlgi/xZIN/2dCunx9ghGpPs8kYMtNeF5BdN08WnomLmfQZ5K
- IYyO4kNQrRObqmsxmBC9Cxv1pPaWq1XytcmrulFBUrsRx6OkZDFLr2FTYDc+GVqBcm
- DHda1Az6QvaXw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by smtp.lore.kernel.org (Postfix) with ESMTP id B3827C52D7B;
- Tue,  6 Aug 2024 23:10:02 +0000 (UTC)
-From: Daniel Gomez via B4 Relay <devnull+da.gomez.samsung.com@kernel.org>
-Date: Wed, 07 Aug 2024 01:09:15 +0200
-Subject: [PATCH 01/12] scripts: subarch.include: fix SUBARCH on MacOS hosts
+X-Greylist: delayed 413 seconds by postgrey-1.36 at gabe;
+ Tue, 06 Aug 2024 09:30:00 UTC
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E17AE10E1E7;
+ Tue,  6 Aug 2024 09:30:00 +0000 (UTC)
+Received: from icess-ProLiant-DL380-Gen10.. (unknown [183.174.60.14])
+ by APP-03 (Coremail) with SMTP id rQCowABXfQBq67Fm3g3cAw--.39396S2;
+ Tue, 06 Aug 2024 17:22:57 +0800 (CST)
+From: Ma Ke <make24@iscas.ac.cn>
+To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ daniel@ffwll.ch, ville.syrjala@linux.intel.com,
+ stanislav.lisovskiy@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Ma Ke <make24@iscas.ac.cn>, stable@vger.kernel.org
+Subject: [PATCH] drm/i915: Fix NULL ptr deref in intel_async_flip_check_uapi()
+Date: Tue,  6 Aug 2024 17:22:49 +0800
+Message-Id: <20240806092249.2407555-1-make24@iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240807-macos-build-support-v1-1-4cd1ded85694@samsung.com>
-References: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
-In-Reply-To: <20240807-macos-build-support-v1-0-4cd1ded85694@samsung.com>
-To: Masahiro Yamada <masahiroy@kernel.org>, 
- Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- William Hubbs <w.d.hubbs@gmail.com>, Chris Brannon <chris@the-brannons.com>, 
- Kirk Reiser <kirk@reisers.ca>, 
- Samuel Thibault <samuel.thibault@ens-lyon.org>, 
- Paul Moore <paul@paul-moore.com>, 
- Stephen Smalley <stephen.smalley.work@gmail.com>, 
- Ondrej Mosnacek <omosnace@redhat.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Marc Zyngier <maz@kernel.org>, Oliver Upton <oliver.upton@linux.dev>, 
- James Morse <james.morse@arm.com>, 
- Suzuki K Poulose <suzuki.poulose@arm.com>, 
- Zenghui Yu <yuzenghui@huawei.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, 
- Nick Desaulniers <ndesaulniers@google.com>, 
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>
-Cc: linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- speakup@linux-speakup.org, selinux@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, 
- linux-serial@vger.kernel.org, llvm@lists.linux.dev, 
- Finn Behrens <me@kloenk.dev>, 
- "Daniel Gomez (Samsung)" <d+samsung@kruces.com>, gost.dev@samsung.com, 
- Daniel Gomez <da.gomez@samsung.com>, 
- Nick Desaulniers <nick.desaulniers@gmail.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1722985800; l=1489;
- i=da.gomez@samsung.com; s=20240621; h=from:subject:message-id;
- bh=pKrUy+kUc7s1sGJ4V0pnKiAjUgJie+thKNoMDcFS8Ws=;
- b=BaL7A1rlA7gJqeye5jr4ewbPFIbJKovsy2703k4UjEVlRUIdHP5xKklCusXzrOGVDQfD0QJSj
- APMBaZZ1ODpAzcjGgS5l4MO4plml4BUxFF4TM1ExHvcSpGvrfIornNn
-X-Developer-Key: i=da.gomez@samsung.com; a=ed25519;
- pk=BqYk31UHkmv0WZShES6pIZcdmPPGay5LbzifAdZ2Ia4=
-X-Endpoint-Received: by B4 Relay for da.gomez@samsung.com/20240621 with
- auth_id=175
-X-Original-From: Daniel Gomez <da.gomez@samsung.com>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: rQCowABXfQBq67Fm3g3cAw--.39396S2
+X-Coremail-Antispam: 1UD129KBjvdXoWrKFy3JF48Aw4UCF1rury3Jwb_yoWkKrgEgF
+ 1UArnayry5AFs0va17Crs3uFyFka4qvFWxZ340qa4ava42k348u3yfur1rWw1S9FyjyrWU
+ Za1jgF92kwsa9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUIcSsGvfJTRUUUbSkFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+ 6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+ A2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
+ Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AKxVW8Jr
+ 0_Cr1UM2vYz4IE04k24VAvwVAKI4IrM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVAC
+ Y4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJV
+ W8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI2
+ 0VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28Icx
+ kI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2Iq
+ xVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42
+ IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY
+ 6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aV
+ CY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUbQVy7UUUUU==
+X-Originating-IP: [183.174.60.14]
+X-CM-SenderInfo: ppdnvj2u6l2u1dvotugofq/
 X-Mailman-Approved-At: Wed, 07 Aug 2024 19:48:12 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -98,51 +62,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: da.gomez@samsung.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Nick Desaulniers <nick.desaulniers@gmail.com>
+intel_atomic_get_new_crtc_state can return NULL, unless crtc state wasn't
+obtained previously with intel_atomic_get_crtc_state. We should check it
+for NULLness here, just as in many other places, where we can't guarantee
+that intel_atomic_get_crtc_state was called.
 
-When building the Linux kernel on an aarch64 MacOS based host, if we don't
-specify a value for ARCH when invoking make, we default to arm and thus
-multi_v7_defconfig rather than the expected arm64 and arm64's defconfig.
-
-This is because subarch.include invokes `uname -m` which on MacOS hosts
-evaluates to `arm64` but on Linux hosts evaluates to `aarch64`,
-
-This allows us to build ARCH=arm64 natively on MacOS (as in ARCH need
-not be specified on an aarch64-based system).
-
-Utilize a negative lookahead regular expression to avoid matching arm64.
-
-Add a separate expression to support for armv.* as per error reported by
-Nicolas Schier [1].
-
-[1] https://lore.kernel.org/all/Y3MRvtwdjIwMHvRo@bergen.fjasle.eu/#t
-
-Signed-off-by: Nick Desaulniers <nick.desaulniers@gmail.com>
-Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
+Cc: stable@vger.kernel.org
+Fixes: b0b2bed2a130 ("drm/i915: Check async flip capability early on")
+Signed-off-by: Ma Ke <make24@iscas.ac.cn>
 ---
- scripts/subarch.include | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/scripts/subarch.include b/scripts/subarch.include
-index 4bd327d0ae42..5d84ad8c0dee 100644
---- a/scripts/subarch.include
-+++ b/scripts/subarch.include
-@@ -6,7 +6,8 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index c2c388212e2e..9dd7b5985d57 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -6115,7 +6115,7 @@ static int intel_async_flip_check_uapi(struct intel_atomic_state *state,
+ 		return -EINVAL;
+ 	}
  
- SUBARCH := $(shell uname -m | sed -e s/i.86/x86/ -e s/x86_64/x86/ \
- 				  -e s/sun4u/sparc64/ \
--				  -e s/arm.*/arm/ -e s/sa110/arm/ \
-+				  -e s/armv.*/arm/ \
-+				  -e s/arm\(?:\(?!64\).*\)/arm/ -e s/sa110/arm/ \
- 				  -e s/s390x/s390/ \
- 				  -e s/ppc.*/powerpc/ -e s/mips.*/mips/ \
- 				  -e s/sh[234].*/sh/ -e s/aarch64.*/arm64/ \
-
+-	if (intel_crtc_needs_modeset(new_crtc_state)) {
++	if (new_crtc_state && intel_crtc_needs_modeset(new_crtc_state)) {
+ 		drm_dbg_kms(&i915->drm,
+ 			    "[CRTC:%d:%s] modeset required\n",
+ 			    crtc->base.base.id, crtc->base.name);
 -- 
-Git-146)
-
+2.25.1
 
